@@ -556,7 +556,7 @@
         {
           "source": "manual",
           "package": "anydesk-linux",
-          "source_url": "https://support.anydesk.com/docs/anydesk-for-linux-raspberry-pi",
+          "source_url": "https://support.anydesk.com/docs/anydeREDACTED-SECRET",
           "manual_steps": [
             "Open the source URL and confirm that your Linux distribution is officially supported by AnyDesk.",
             "Download and install the official package or repository configuration for your distribution from AnyDesk.",

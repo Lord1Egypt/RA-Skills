@@ -1,46 +1,63 @@
-## Description: <br>
-Daily briefing gathers calendar events, active todos, and local weather from available companion skills, then composes a concise summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily briefing: gathers calendar (gcalcli-calendar), active todos (todo-management), and weather (openmeteo-sh-weather-simple) into a concise summary.
 
-## Publisher: <br>
-[lstpsche](https://clawhub.ai/user/lstpsche) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lstpsche](https://clawhub.ai/user/lstpsche)
 
-## Use Case: <br>
-OpenClaw users use this skill to generate a daily briefing from their available calendar, todo, and weather companion skills. It is suited for manual invocation or scheduled morning delivery when the destination channel is private and trusted. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled or chat-channel delivery may expose sensitive schedule, task, or location-related details. <br>
-Mitigation: Enable scheduled delivery only to private, trusted channels and review the companion calendar and todo skill permissions before use. <br>
-Risk: Unavailable companion skills or command failures can result in an incomplete briefing. <br>
-Mitigation: Treat omitted sections as unavailable data and verify companion skill setup when expected calendar, todo, or weather details are missing. <br>
+## Use Case:
 
+OpenClaw users use this skill to collect their calendar agenda, active todos, and local weather into a concise daily briefing for mobile chat or scheduled delivery.
 
-## Reference(s): <br>
-- [Briefing skill page](https://clawhub.ai/lstpsche/briefing) <br>
-- [gcalcli-calendar companion skill](https://clawhub.ai/lstpsche/gcalcli-calendar) <br>
-- [todo-management companion skill](https://clawhub.ai/lstpsche/todo-management) <br>
-- [openmeteo-sh-weather-simple companion skill](https://clawhub.ai/lstpsche/openmeteo-sh-weather-simple) <br>
-- [gcalcli](https://github.com/insanum/gcalcli) <br>
-- [openmeteo-sh](https://github.com/lstpsche/openmeteo-sh) <br>
-- [Open-Meteo](https://open-meteo.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown text briefing with compact sections for weather, calendar, upcoming events, and todos] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Sections are omitted when companion skills are unavailable; missing data is noted rather than fabricated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence) <br>
+Risk: Briefings may expose calendar entries, active todos, and default-location weather in the generated message.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if that data access is acceptable, and use a private delivery channel for scheduled briefings.
+
+Risk: Scheduled delivery can send briefings at an unintended time or destination if cron settings, timezone, channel, or permissions are misconfigured.
+
+Mitigation: Verify the cron schedule, timezone, session mode, delivery channel, and permissions before relying on automated delivery.
+
+Risk: Missing or failing companion skills can produce incomplete briefings.
+
+Mitigation: The skill omits unavailable sections, reports command failures briefly, and instructs the agent not to fabricate data.
+
+## Reference(s):
+
+- [Briefing skill page](https://clawhub.ai/lstpsche/skills/briefing)
+- [gcalcli-calendar companion skill](https://clawhub.ai/lstpsche/gcalcli-calendar)
+- [todo-management companion skill](https://clawhub.ai/lstpsche/todo-management)
+- [openmeteo-sh-weather-simple companion skill](https://clawhub.ai/lstpsche/openmeteo-sh-weather-simple)
+- [gcalcli](https://github.com/insanum/gcalcli)
+- [openmeteo-sh](https://github.com/lstpsche/openmeteo-sh)
+- [Open-Meteo](https://open-meteo.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Concise mobile-friendly briefing with optional weather, calendar, upcoming, and todo sections.]
+
+## Skill Version(s):
+
+2.1.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

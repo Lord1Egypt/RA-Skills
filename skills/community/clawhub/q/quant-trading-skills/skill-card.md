@@ -1,43 +1,57 @@
-## Description: <br>
-Fetches quantitative data for stocks, funds, and related financial instruments, including market prices, financial metrics, fund flows, public-opinion signals, stock-code lists, and batch data pulls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches quantitative market, financial, fund-flow, stock-code, and opinion data for Chinese stocks and funds, supporting both single-symbol queries and batch pulls.
 
-## Publisher: <br>
-[sharkpicker](https://clawhub.ai/user/sharkpicker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sharkpicker](https://clawhub.ai/user/sharkpicker)
 
-## Use Case: <br>
-Developers, quantitative researchers, and trading-analysis agents use this skill to retrieve A-share market, financial, fund-flow, sentiment, and stock-code data, including long-running batch collection into Parquet datasets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Batch modes can write collected data and status files to caller-chosen local paths. <br>
-Mitigation: Run the skill in a virtual environment and keep status_file and data_path values inside the skill's own config and data directories. <br>
-Risk: Long-running batch collection can consume substantial network, disk, and runtime resources. <br>
-Mitigation: Monitor disk and network usage during batch jobs and schedule large first-time pulls when extended execution is acceptable. <br>
-Risk: The advertised single-stock public_opinion output may return mock news rather than real financial sentiment. <br>
-Mitigation: Do not rely on public_opinion output for investment or sentiment decisions until the feature is fixed or clearly labeled as mock data. <br>
+## Use Case:
 
+Developers and quantitative finance practitioners use this skill to retrieve A-share market, financial, fund-flow, stock-code, and sentiment-style datasets for analysis workflows and local data pipelines.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sharkpicker/quant-trading-skills) <br>
-- [Publisher profile](https://clawhub.ai/user/sharkpicker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON result objects with success, data, and message fields; batch modes may also produce local Parquet files and status JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports cached single-symbol queries and long-running batch jobs that collect market, north-flow, LHB, sentiment, and financial datasets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Batch modes can write to caller-chosen local paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in an isolated project or account and keep the default status_file and data_path values unless the target paths have been reviewed.
+
+Risk: The public_opinion mode may return unlabeled mock data.
+
+Mitigation: Treat public_opinion results as unreliable until the publisher clearly labels or replaces the mock implementation.
+
+Risk: The skill makes outbound requests to AkShare-backed data sources.
+
+Mitigation: Run it only where outbound finance-data requests are expected and acceptable for the workspace.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sharkpicker/skills/quant-trading-skills)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Files]
+
+**Output Format:** [JSON response objects; batch modes may also write Apache Parquet files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses use success, data, and message fields; batch outputs include summary counts and local partitioned data files.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and package.json; artifact frontmatter lists 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

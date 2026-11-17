@@ -1,40 +1,53 @@
-## Description: <br>
-Provides Traditional Chinese Medicine explanations and reference analysis for theory, herbs, formulas, acupuncture, pattern differentiation, and seasonal wellness based on Master Ni Haixia's curriculum. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides educational Traditional Chinese Medicine explanations and analysis covering theory, herbs, formulas, acupuncture, pattern differentiation, and seasonal health guidance based on Master Ni Haixia's curriculum.
 
-## Publisher: <br>
-[xzhenxing666](https://clawhub.ai/user/xzhenxing666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xzhenxing666](https://clawhub.ai/user/xzhenxing666)
 
-## Use Case: <br>
-TCM learners, practitioners, and interested readers use this skill as an educational reference for questions about classical TCM concepts, formula and herb relationships, acupuncture points, and pattern differentiation. It should not be used for real diagnosis, treatment, dosing, urgent symptoms, pregnancy-related care, or medication interaction decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat educational Traditional Chinese Medicine reference content as medical advice. <br>
-Mitigation: Use the skill only for education and consult a licensed clinician or qualified TCM practitioner for care decisions. <br>
-Risk: Herbal dosing, acupuncture decisions, pregnancy-related care, medication interactions, urgent symptoms, diagnosis, or treatment decisions may cause harm if applied directly from generated text. <br>
-Mitigation: Do not rely on the skill for those decisions; escalate real health concerns to qualified medical or TCM professionals. <br>
+## Use Case:
 
+TCM learners, practitioners, and interested readers use this skill as an educational reference for Traditional Chinese Medicine concepts, classical formulas, herbs, acupoints, pattern differentiation, and wellness topics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xzhenxing666/nihaisha-learner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text educational reference responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only TCM reference output; no executable behavior is described in the evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Users may treat educational TCM reference content as a substitute for licensed medical care.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the skill as informational only and consult a qualified clinician or TCM practitioner before acting on herbs, formulas, acupuncture, or pattern-diagnosis guidance.
+
+Risk: Herb, formula, acupuncture, or diagnosis guidance may be inappropriate for urgent symptoms, pregnancy, children, chronic illness, or medication interactions.
+
+Mitigation: Escalate urgent or higher-risk situations to qualified medical care instead of relying on the skill's response.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xzhenxing666/skills/nihaisha-learner)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text explanations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Educational health content; not a substitute for licensed medical care.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

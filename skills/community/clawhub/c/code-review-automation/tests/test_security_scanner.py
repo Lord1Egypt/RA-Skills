@@ -11,7 +11,7 @@ class TestSecurityScanner:
     def test_scan_for_api_keys(self):
         """Test detection of API keys."""
         scanner = SecurityScanner()
-        diff = '''+api_key = "sk-1234567890abcdefghijklmnopqrstuv"
+        diff = '''+api_key = "REDACTED-SECRET"
 +token = "ghp_1234567890abcdefghijklmnopqrstuv"'''
 
         issues = scanner.scan_diff(diff, "test/repo")
@@ -96,7 +96,7 @@ class TestSecurityScanner:
     def test_get_summary(self):
         """Test summary generation."""
         scanner = SecurityScanner()
-        diff = '''+api_key = "sk-1234567890abcdefghijklmnopqrstuv"
+        diff = '''+api_key = "REDACTED-SECRET"
 +password = "mypassword123"'''
 
         scanner.scan_diff(diff, "test/repo")

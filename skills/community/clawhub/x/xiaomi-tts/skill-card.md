@@ -1,38 +1,54 @@
-## Description: <br>
-把文字转成语音。可以发语音、念给我听、唱歌、用方言或夹子音说话，支持各种情绪和风格。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+把文字转成语音。可以发语音、念给我听、唱歌、用方言或夹子音说话，支持各种情绪和风格。
 
-## Publisher: <br>
-[zhangalexhy](https://clawhub.ai/user/zhangalexhy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangalexhy](https://clawhub.ai/user/zhangalexhy)
 
-## Use Case: <br>
-Developers and agents use this skill to convert supplied text into expressive MiMo TTS speech with selectable voices, styles, emotions, roles, dialects, and output handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text submitted for synthesis is sent to Xiaomi/MiMo's remote TTS API. <br>
-Mitigation: Do not submit secrets, private notes, or confidential prompts unless that sharing is acceptable; prefer a limited API key. <br>
+## Use Case:
 
+External users and developers use this skill to synthesize Chinese or English speech from text through the MiMo/Xiaomi TTS service, with options for voice, style, emotion, character, dialect, and output WAV handling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangalexhy/xiaomi-tts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Audio files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; the bundled script returns WAV audio or writes a .wav file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a MIMO_API_KEY value supplied by environment variable, config file, or command-line option.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Text submitted for synthesis and the MiMo API credential are sent to an external MiMo/Xiaomi TTS service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using secrets, private personal data, regulated data, or text that should not be processed by that provider.
+
+Risk: The skill may read a MiMo API key from ~/.openclaw/config.json when no key is passed explicitly.
+
+Mitigation: Prefer passing credentials explicitly for controlled runs and review local OpenClaw configuration before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangalexhy/skills/xiaomi-tts)
+- [MiMo TTS API endpoint](https://api.xiaomimimo.com/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Command-line usage guidance and WAV audio output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write WAV audio to a file or stream audio bytes to stdout; requires a MiMo API key.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

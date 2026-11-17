@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn754w8negkve53dntzhycyd0h82565k",
-  "slug": "api-gateway-starter",
+  "schema_version": "1",
+  "name": "api-gateway-starter",
   "version": "1.0.0",
-  "publishedAt": 1772646388177
+  "description": "Production-ready API Gateway with auth, rate limiting, caching, and monitoring",
+  "homepage": "",
+  "author": {"name": "Sunshine-del-ux"},
+  "keywords": ["api", "gateway", "authentication", "rate-limit", "caching"],
+  "license": "MIT"
 }

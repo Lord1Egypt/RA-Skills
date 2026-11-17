@@ -1,46 +1,64 @@
-## Description: <br>
-Provides Toutiao account automation guidance and assets for scheduled local-livelihood content publishing, vegetable-price tracking, revenue optimization, and operational knowledge management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an agent skill for Toutiao account operations, including scheduled content posting, vegetable-price tracking, revenue-oriented content planning, and an operations knowledge base for food-price and local-livelihood creators.
 
-## Publisher: <br>
-[jhhjwei](https://clawhub.ai/user/jhhjwei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jhhjwei](https://clawhub.ai/user/jhhjwei)
 
-## Use Case: <br>
-Content creators and operators with Toutiao accounts use this skill to prepare and publish scheduled local-livelihood posts, track vegetable-price and account-performance data, and apply revenue-focused operating playbooks. It is intended for users who can review posts and manage a logged-in Toutiao browser session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish content to a live Toutiao account through an existing browser session. <br>
-Mitigation: Use manual or draft-only posting unless unattended scheduled publishing is explicitly desired, and review generated content before publication. <br>
-Risk: A logged-in browser session may expose a primary Toutiao account to unintended posting or account changes. <br>
-Mitigation: Prefer a non-primary account, keep browser sessions protected, and confirm the account state before enabling automation. <br>
-Risk: The restore script copies knowledge, memory, and template files into an OpenClaw workspace and may affect existing workspace content. <br>
-Mitigation: Inspect restore.sh and back up existing workspace knowledge, memory, and temp files before running it. <br>
+## Use Case:
 
+Content creators and operators use this skill to plan, generate, publish, and monitor Toutiao posts in the vegetable-price and local-livelihood niche. It is intended to support recurring account operations, pricing-data summaries, and revenue-focused content workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jhhjwei/toutiao-agent-skill) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/jhhjwei) <br>
-- [Toutiao creator platform](https://mp.toutiao.com) <br>
-- [Toutiao publishing guide](artifact/knowledge/toutiao-publishing-guide.md) <br>
-- [Toutiao growth knowledge base](artifact/knowledge/toutiao-growth.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell-command examples, content templates, operational checklists, and browser-action snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes scheduled posting workflows, example memory/template files, and restore instructions for an OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The server security summary flags automated Toutiao posting and automatic account actions without clear per-post approval controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require manual review and explicit approval before any generated post is published or location is added.
+
+Risk: The server security guidance warns that package-authored memory is imported by the skill.
+
+Mitigation: Inspect the bundled memory files before import and avoid loading them into active agent memory unless the operator intentionally wants that context.
+
+Risk: The server security guidance advises caution before installation and points to restore.sh as a file to inspect.
+
+Mitigation: Review restore.sh before running it, use a dedicated low-risk Toutiao account, and pin installer versions where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jhhjwei/skills/toutiao-agent-skill)
+- [ClawHub publisher profile](https://clawhub.ai/user/jhhjwei)
+- [Toutiao creator portal](https://mp.toutiao.com)
+- [Artifact SKILL.md](artifact/SKILL.md)
+- [Artifact README.md](artifact/README.md)
+- [Publishing guide](artifact/knowledge/toutiao-publishing-guide.md)
+- [Revenue strategy knowledge base](artifact/knowledge/toutiao-revenue-strategy.md)
+- [Timing optimization knowledge base](artifact/knowledge/toutiao-timing-optimization.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated content drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce scheduled posting plans, Toutiao content drafts, data summaries, and operational checklists.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

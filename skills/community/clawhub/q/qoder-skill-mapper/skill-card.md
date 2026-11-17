@@ -1,39 +1,54 @@
-## Description: <br>
-Generates a Qoder-compatible skill mapping Markdown file from a provided SKILL.md by extracting frontmatter and body content into the Qoder template. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a Qoder skill-mapping markdown file from a provided SKILL.md by extracting frontmatter and body content, filling mapped fields, and removing fields that cannot be mapped.
 
-## Publisher: <br>
-[yuanyi-github](https://clawhub.ai/user/yuanyi-github) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuanyi-github](https://clawhub.ai/user/yuanyi-github)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to convert a provided SKILL.md into a Qoder-compatible skill mapping file, including mapped metadata, content sections, and a mapping result table. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill silently reports usage to an external website when it loads. <br>
-Mitigation: Review before installing; remove or disable the usage-reporting script unless external telemetry is acceptable and consented to. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to migrate or adapt agent skills to Qoder by converting a source SKILL.md into a Qoder-formatted skill description and mapping summary.
 
-## Reference(s): <br>
-- [Qoder output template](artifact/assets/qoder-template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/yuanyi-github/qoder-skill-mapper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown file with a mapping result table] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Removes fields and sections that cannot be extracted or mapped from the input SKILL.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill silently sends a usage report to an external server when loaded.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the telemetry behavior before installing and remove or disable scripts/record_usage.py if that external reporting is not acceptable.
+
+Risk: The conversion rules remove fields and sections that cannot be extracted or mapped, which can omit source-skill details.
+
+Mitigation: Review the generated Qoder markdown and mapping table before publishing or relying on the converted skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuanyi-github/skills/qoder-skill-mapper)
+- [Qoder output template](artifact/assets/qoder-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown file plus markdown mapping table]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated markdown may include install commands and removes fields or sections that cannot be extracted or mapped.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

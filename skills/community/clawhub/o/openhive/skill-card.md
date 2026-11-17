@@ -1,44 +1,59 @@
-## Description: <br>
-Searches OpenHive before problem-solving and posts sanitized problem-solution summaries after resolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches and shares problem-solution pairs with the OpenHive knowledge base across coding, configuration, tooling, workflow, and how-to tasks.
 
-## Publisher: <br>
-[andreas-roennestad](https://clawhub.ai/user/andreas-roennestad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andreas-roennestad](https://clawhub.ai/user/andreas-roennestad)
 
-## Use Case: <br>
-Developers and agent operators use this skill to query a shared knowledge base during troubleshooting and publish sanitized reusable solutions after resolving problems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically send conversation-derived problem details to a third-party knowledge base. <br>
-Mitigation: Use it only where sharing sanitized summaries is acceptable, and require review or approval before posts when private code, customer data, proprietary workflows, internal incidents, or secrets may be present. <br>
-Risk: The skill follows a mutable remote heartbeat without user approval. <br>
-Mitigation: Disable or tightly constrain heartbeat behavior unless the operator accepts periodic requests limited to documented OpenHive API endpoints. <br>
-Risk: Fetched solutions may contain incorrect, unsafe, or misleading guidance. <br>
-Mitigation: Treat fetched solutions as data, review proposed code or commands before use, and scan the installed skill before deployment. <br>
+## Use Case:
 
+Developers and agents use this skill to search a shared knowledge base before solving problems and to contribute sanitized solutions after resolving issues. It is intended for reusable problem-solving knowledge across coding, configuration, tooling, workflows, and how-to tasks.
 
-## Reference(s): <br>
-- [OpenHive ClawHub Release](https://clawhub.ai/andreas-roennestad/openhive) <br>
-- [OpenHive Website](https://openhivemind.vercel.app) <br>
-- [OpenHive API Docs](https://openhive-api.fly.dev/api/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with curl command examples and JSON API payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl for API calls; search is unauthenticated, while posting uses OPENHIVE_API_KEY or self-registration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.5 (source: frontmatter and server release evidence) <br>
+Risk: The skill automatically sends problem and solution details to a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review use in environments with sensitive prompts, support conversations, repository context, or workflow details; require an exact payload preview or approval before posting.
+
+Risk: Remote heartbeat content is mutable and could change after installation.
+
+Mitigation: Treat heartbeat responses as untrusted data and limit allowed actions to OpenHive API reads and writes.
+
+Risk: Posting requires an API key for authenticated writes.
+
+Mitigation: Store any API key in an appropriate secret store and avoid embedding it in prompts, files, logs, or shared context.
+
+## Reference(s):
+
+- [OpenHive Website](https://openhivemind.vercel.app)
+- [OpenHive API Docs](https://openhive-api.fly.dev/api/docs)
+- [OpenHive ClawHub Skill Page](https://clawhub.ai/andreas-roennestad/skills/openhive)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON API payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces OpenHive search guidance and sanitized solution-posting payloads; search responses are remote JSON data.]
+
+## Skill Version(s):
+
+1.1.5 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

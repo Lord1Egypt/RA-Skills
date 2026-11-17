@@ -1,41 +1,54 @@
-## Description: <br>
-Audits Go code for denial-of-service and resource-exhaustion patterns involving goroutines, channels, HTTP handlers, allocation, decoding, and panic recovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents auditing Go code for denial of service and resource exhaustion risks involving goroutines, channels, HTTP handling, resource allocation, parsers, and panic recovery.
 
-## Publisher: <br>
-[yhy0](https://clawhub.ai/user/yhy0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yhy0](https://clawhub.ai/user/yhy0)
 
-## Use Case: <br>
-Developers and security engineers use this skill to review Go projects for denial-of-service and resource-exhaustion risks, including goroutine leaks, unbounded reads or allocations, channel deadlocks, decoder abuse, and panic handling gaps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides an agent to search through a selected Go repository, which can surface sensitive code paths or internal implementation details. <br>
-Mitigation: Run the audit only against repositories the user intends to inspect, and review findings before sharing excerpts outside the project context. <br>
-Risk: Pattern-based DoS checks can produce false positives when code has lifecycle controls, trusted inputs, or bounded resources that are not obvious from a grep match. <br>
-Mitigation: Validate each candidate with source-to-sink tracing and confirm missing limits, timeouts, cancellation, or recovery before reporting it as a vulnerability. <br>
+## Use Case:
 
+Developers and security engineers use this skill to guide Go denial-of-service audits, identify resource-exhaustion patterns, and produce review notes or search commands for follow-up validation.
 
-## Reference(s): <br>
-- [Go DoS/Resource Exhaustion real-world cases](references/cases.md) <br>
-- [ClawHub release page](https://clawhub.ai/yhy0/go-vuln-dos) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown audit guidance with checklists and inline grep commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no executable code or hidden access is bundled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The documentation is primarily Chinese, which can make review harder for users who need English or bilingual guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in workflows where reviewers can accurately read the guidance or translate it before relying on findings.
+
+Risk: The skill provides heuristic audit guidance and grep patterns that can produce false positives or miss context-specific issues.
+
+Mitigation: Validate suspected vulnerabilities with manual code review, tests, and project-specific threat modeling before reporting or remediation.
+
+## Reference(s):
+
+- [Go DoS/Resource Exhaustion Real-World Cases](references/cases.md)
+- [ClawHub skill page](https://clawhub.ai/yhy0/skills/go-vuln-dos)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown guidance with inline shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Primarily Chinese-language audit guidance; no executable code is included in the skill artifact.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

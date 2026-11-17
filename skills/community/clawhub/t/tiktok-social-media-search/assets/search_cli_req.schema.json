@@ -1,0 +1,47 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "title": "TikTok关键词搜索 - 命令行入参",
+    "description": "TikTok实时关键词搜索, 命令行参数入参Schema详解",
+    "required": [
+        "keyword"
+    ],
+    "properties": {
+        "keyword": {
+            "type": "string",
+            "description": "TikTok关键词搜索的关键词",
+            "minLength": 2,
+            "maxLength": 100
+        },
+        "sort": {
+            "type": "number",
+            "description": "排序方式: 0=相关度 , 1=最多点赞",
+            "default": 0,
+            "enum": [
+                0,
+                1
+            ]
+        },
+        "time": {
+            "type": "number",
+            "description": "时间范围: 0=全部 , 1=最近一天 , 7=最近七天 , 30=最近一个月 , 90=最近三个月 , 180=最近半年",
+            "default": 0,
+            "enum": [
+                0,
+                1,
+                7,
+                30,
+                90,
+                180
+            ]
+        },
+        "limit": {
+            "type": "number",
+            "description": "获取数量",
+            "minimum": 1,
+            "maximum": 10000,
+            "default": 10
+        }
+    },
+    "additionalProperties": false
+}

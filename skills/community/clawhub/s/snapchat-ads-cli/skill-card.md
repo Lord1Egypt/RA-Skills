@@ -1,44 +1,61 @@
-## Description: <br>
-Snapchat Ads data analysis and reporting via snapchat-ads-cli. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SnapChat Ads CLI helps agents analyze Snapchat Ads data, inspect account structure, pull performance statistics, debug delivery issues, estimate bids and audience size, review creatives and audiences, manage AR lenses, and retrieve billing information through the snapchat-ads-cli tool.
 
-## Publisher: <br>
-[bin-huang](https://clawhub.ai/user/bin-huang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bin-huang](https://clawhub.ai/user/bin-huang)
 
-## Use Case: <br>
-Developers, analysts, and marketing operators use this skill to query Snapchat Ads account structure, campaign performance, audience data, delivery status, and billing details through a read-only CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill accesses sensitive Snapchat Ads business data, including billing, member, audience, and customer-related details. <br>
-Mitigation: Use a least-privilege Snapchat OAuth token and request only the data needed for the user's task. <br>
-Risk: Outputs may include OAuth tokens, identifiers, customer or audience details, and financial data. <br>
-Mitigation: Redact sensitive values unless the user explicitly needs them for the current analysis. <br>
+## Use Case:
 
+External marketers, analysts, and developers use this skill to query Snapchat Ads organizations, accounts, campaigns, ad squads, ads, creatives, audiences, pixels, billing records, and performance statistics. It supports reporting, troubleshooting, conversion tracking checks, and account exploration when the user has an appropriate Snapchat Ads OAuth token.
 
-## Reference(s): <br>
-- [SnapChat Ads CLI on ClawHub](https://clawhub.ai/bin-huang/snapchat-ads-cli) <br>
-- [snapchat-ads-cli documentation](https://github.com/Bin-Huang/snapchat-ads-cli) <br>
-- [Snapchat Marketing API overview](https://developers.snap.com/api/marketing-api/Ads-API) <br>
-- [Snapchat Marketing API authentication](https://developers.snap.com/api/marketing-api/Ads-API/authentication) <br>
-- [Snapchat Marketing API measurement](https://developers.snap.com/api/marketing-api/Ads-API/measurement) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The CLI returns pretty-printed JSON by default and compact JSON when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill uses a third-party CLI package installed globally and handled with a Snapchat Ads OAuth token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, reviewed, local or sandboxed install before granting access to production accounts.
+
+Risk: Snapchat Ads OAuth tokens can expose sensitive campaign, audience, billing, member, and account records.
+
+Mitigation: Use narrowly scoped and short-lived tokens, avoid logging sensitive records, and rotate tokens if package behavior is unexpected.
+
+Risk: Billing, audience, member, and performance outputs may contain commercially sensitive information.
+
+Mitigation: Limit shared transcripts and exported CLI output to the minimum data needed for the task.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bin-huang/skills/snapchat-ads-cli)
+- [snapchat-ads-cli documentation](https://github.com/Bin-Huang/snapchat-ads-cli)
+- [Snapchat Marketing API overview](https://developers.snap.com/api/marketing-api/Ads-API)
+- [Snapchat Marketing API authentication](https://developers.snap.com/api/marketing-api/Ads-API/authentication)
+- [Snapchat Measurement API](https://developers.snap.com/api/marketing-api/Ads-API/measurement)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill directs use of a read-only CLI whose commands output pretty-printed JSON by default.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

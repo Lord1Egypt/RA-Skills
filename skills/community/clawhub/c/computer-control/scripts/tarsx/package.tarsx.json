@@ -1,0 +1,15 @@
+{
+  "name": "tars-mcp",
+  "version": "0.1.0",
+  "description": "TARS-style computer control for macOS: MCP server + CLI (screenshot, click, type, keys, apps). Works with Claude Desktop, Qoder, ZCode, Cursor and any MCP client.",
+  "type": "module",
+  "bin": { "tarsx": "./cli.mjs" },
+  "scripts": {
+    "start": "node server.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "zod": "^3.24.0"
+  },
+  "license": "Apache-2.0"
+}

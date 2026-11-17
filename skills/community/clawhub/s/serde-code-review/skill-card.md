@@ -1,42 +1,51 @@
-## Description: <br>
-Reviews serde serialization code for derive patterns, enum representations, custom implementations, and common serialization bugs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews serde serialization code for derive patterns, enum representations, custom implementations, and common serialization bugs.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill to review Rust code that uses serde, serde_json, toml, bincode, or related serialization formats. It helps check derive usage, enum representations, field attributes, custom serialization, edition 2024 compatibility, and round-trip correctness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may produce incorrect or unsupported review findings if the agent has not inspected the current Cargo.toml and relevant source lines. <br>
-Mitigation: Follow the documented gates: confirm serde context from disk and cite current-tree FILE:LINE evidence before reporting each finding. <br>
-Risk: Some checks refer to a companion review-verification-protocol skill that may not be available in every agent environment. <br>
-Mitigation: Confirm that companion protocol is available before relying on it, or perform equivalent verification against the referenced source code before adding findings. <br>
+## Use Case:
 
+Developers and engineers use this skill to review Rust serde serialization code for derive usage, enum representation, field attributes, custom serialization, format-specific issues, and round-trip correctness.
 
-## Reference(s): <br>
-- [Derive Patterns](references/derive-patterns.md) <br>
-- [Custom Serialization](references/custom-serialization.md) <br>
-- [Serde Code Review on ClawHub](https://clawhub.ai/anderskev/serde-code-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown review findings with file and line citations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings are expected to include severity, description, and current-tree file references.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill inspects local Rust project files, so review quality depends on current Cargo.toml context and file-level evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit review to the intended Rust project, confirm serde and format-crate context from Cargo.toml, and require current file:line citations for each finding.
+
+## Reference(s):
+
+- [Derive Patterns](references/derive-patterns.md)
+- [Custom Serialization](references/custom-serialization.md)
+- [Serde Code Review on ClawHub](https://clawhub.ai/anderskev/skills/serde-code-review)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown issue report with file:line citations and severity labels]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings follow the skill's required ISSUE_TITLE, Severity, and description structure.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

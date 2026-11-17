@@ -1,6 +1,6 @@
 # `call` 参考
 
-本文件为 **Smartbi CLI Skill** 的附属参考；流程性 MUST 以上级 `SKILL.md` 为准。
+本文件为 **SmartBI CLI Skill** 的附属参考；流程性 MUST 以上级 `SKILL.md` 为准。
 
 **用途**：Phase 3（Execute）— 在已明确 `operationKey` 与参数来源的前提下发起 HTTP 调用。参数与 body **必须与** `describe` 中的 `callParameterPlan` 与 `requestBodySchema` 一致；未知字段值须先向用户确认。
 
@@ -21,7 +21,7 @@
 ## 命令形式
 
 ```bash
-smartbi call <operationKey> [选项...] [--json|--yaml|--agent]
+smartbi call <operationKey> --profile <name> [选项...] [--json|--yaml|--agent]
 ```
 
 ## 常用选项
@@ -29,7 +29,7 @@ smartbi call <operationKey> [选项...] [--json|--yaml|--agent]
 
 | 选项                      | 说明                          |
 | ----------------------- | --------------------------- |
-| `--profile <name>`      | 使用配置中的指定 profile            |
+| `--profile <name>`      | 环境名；**所有命令一律带**（环境选择见 `references/profiles.md`） |
 | `-d, --data <json>`     | JSON 请求体；**必须**使用 `-d @file.json`（将 JSON 写入文件后传入 @ 路径） |
 | `-F, --form <k=v\|k=@file>` | multipart 字段（可重复）      |
 | `--path <k=v>`          | 路径参数（可重复）                   |
@@ -70,7 +70,7 @@ smartbi call <operationKey> [选项...] [--json|--yaml|--agent]
 - `tid`：追踪标识（若存在）
 - `data`：业务载体；失败或业务错误时可能含 `data.success`、`data.error`（与 Phase 4 诊断字段一致）
 
-具体形状以 `smartbi-cli/schemas/smartbi.cli.call.v1.schema.json` 与当前实现为准。
+具体形状以当前安装 CLI 的 `smartbi call --help`、目标 operation 的 `describe` 响应和实际实现为准；Skill 不捆绑版本固定的 schema 文件。
 
 ## 重试与幂等（与 CLI 实现对齐）
 
@@ -83,11 +83,11 @@ smartbi call <operationKey> [选项...] [--json|--yaml|--agent]
 
 ## 前置条件与子任务（MUST）
 
-执行 `call` 前，若 Phase 2 的 `describe` 输出表明某些参数值**无法由用户直接提供**，而需要先调用其他 smartbi 操作获取（例如：创建资源后得到 ID、查询列表后选取条目），则属于前置条件。
+执行 `call` 前，若 Phase 2 的 `describe` 输出表明某些参数值**无法由用户直接提供**，而需要先调用其他 `smartbi` 操作获取（例如：创建资源后得到 ID、查询列表后选取条目），则属于前置条件。
 
 处理流程：
 
-1. 识别前置条件：从 `callParameterPlan` 与 `requestBodySchema` 中判定哪些必填参数的值依赖其他 smartbi 操作。
+1. 识别前置条件：从 `callParameterPlan` 与 `requestBodySchema` 中判定哪些必填参数的值依赖其他 `smartbi` 操作。
 2. 创建子任务：子任务内容为再次发动 `smartbi-cli` 技能，以用户原始业务意图描述该前置操作，获取所需的参数值。
 3. 等待子任务完成，将返回结果填入当前 `call` 的参数。
 4. 所有前置条件满足后，继续执行当前 `call`。
@@ -142,6 +142,6 @@ smartbi call <operationKey> [选项...] [--json|--yaml|--agent]
 
 ## 输出契约（机器校验）
 
-- `smartbi-cli/schemas/smartbi.cli.call.v1.schema.json`
+- 当前安装 CLI 的 `smartbi call --help` 和目标 operation 的 `describe` 响应
 
 与 CLI 行为或 schema 不一致时，以**当前安装的 `smartbi call --help` 与上述 schema 文件**为准。

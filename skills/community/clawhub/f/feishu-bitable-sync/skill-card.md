@@ -1,40 +1,53 @@
-## Description: <br>
-Syncs data between Feishu Bitable tables and external sources, including one-way sync, two-way conflict handling, CSV imports, and scheduled sync markers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feishu Bitable Data Sync helps an agent synchronize data between Feishu Bitables or import data from external sources.
 
-## Publisher: <br>
-[ramlee77](https://clawhub.ai/user/ramlee77) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ramlee77](https://clawhub.ai/user/ramlee77)
 
-## Use Case: <br>
-Agents supporting Feishu Bitable users use this skill to read, transform, create, update, and delete records while syncing data between tables or importing external data such as CSV rows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bulk sync operations can create, update, overwrite, or delete Feishu Bitable records at scale. <br>
-Mitigation: Use least-privilege credentials scoped to specific bases and tables, then require a dry-run summary and explicit confirmation before any write or delete action. <br>
-Risk: Incorrect field mapping or conflict resolution can corrupt destination records. <br>
-Mitigation: Validate field types and unique identifiers, preview record-level changes, and back up or export affected tables before syncing. <br>
+## Use Case:
 
+Developers and automation users use this skill to guide one-way or two-way Feishu Bitable sync workflows, including listing tables, reading records, importing external data, and preparing create, update, or delete record operations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ramlee77/feishu-bitable-sync) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, API calls, JSON] <br>
-**Output Format:** [Markdown with JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Feishu app tokens, table IDs, matching field types, and user review before write or delete actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Bulk sync operations can create, update, or delete live Feishu Bitable records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require a preview or explicit confirmation before create, update, or delete operations.
+
+Risk: Incorrect app_token, table_id, or field type mappings can target the wrong table or produce malformed record changes.
+
+Mitigation: Verify exact app_token and table_id values and confirm field types match before running a sync.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ramlee77/skills/feishu-bitable-sync)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, API calls, JSON]
+
+**Output Format:** [Markdown guidance with JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs rely on user-provided Feishu app_token and table_id values and matching field schemas.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

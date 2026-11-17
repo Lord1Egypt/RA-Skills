@@ -261,7 +261,7 @@ description: >
 **触发场景**：用户需要进行招标风险评估
 
 **执行步骤**：
-1. 读取 `references/risk-assessment-framework.md`，加载风险评估框架
+1. 读取 `references/riREDACTED-SECRET.md`，加载风险评估框架
 2. 识别招标风险
    - 法律风险
    - 合规风险
@@ -446,7 +446,7 @@ description: >
 - `references/tendering-planning-guide.md` — 招标策划指南
 - `references/bidding-doc-templates.md` — 招标文件模板
 - `references/bid-evaluation-guide.md` — 评标指南
-- `references/risk-assessment-framework.md` — 风险评估框架
+- `references/riREDACTED-SECRET.md` — 风险评估框架
 - `references/legal-basis.md` — 法律依据汇编
 - `references/contract-templates.md` — 合同模板
 

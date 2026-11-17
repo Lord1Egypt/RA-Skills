@@ -1,45 +1,56 @@
-## Description: <br>
-AI tuning assistant for Gran Turismo 7 that helps an agent read GT7 settings screenshots, use GT Pro Tune, and return optimized car setup guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps Gran Turismo 7 players turn a settings screenshot into a complete optimized tune using the GT Pro Tune calculator.
 
-## Publisher: <br>
-[IamSteveBot](https://clawhub.ai/user/IamSteveBot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iamstevebot](https://clawhub.ai/user/iamstevebot)
 
-## Use Case: <br>
-Players and agent users use this skill to tune Gran Turismo 7 cars for specific tracks, driving styles, and setup goals. The agent extracts or confirms car settings, helps operate GT Pro Tune, and summarizes suspension, transmission, and differential recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may require an agent to access a user's GT Pro Tune account. <br>
-Mitigation: Keep credentials out of chat and logs, store them securely, and explicitly approve any browser login. <br>
-Risk: OCR-extracted GT7 settings may be wrong or incomplete when screenshots are unclear. <br>
-Mitigation: Confirm extracted values with the user before submitting them to GT Pro Tune or applying the resulting tune. <br>
-Risk: The workflow may upload screenshots or operate GT Pro Tune through browser automation. <br>
-Mitigation: Ask for explicit user approval before screenshot upload or browser actions involving the GT Pro Tune account. <br>
+## Use Case:
 
+External Gran Turismo 7 players use this skill to extract tuning values from screenshots, automate GT Pro Tune form entry, and receive suspension, transmission, and differential settings to test in game.
 
-## Reference(s): <br>
-- [GT7 tuning knowledge base](references/gt7-tuning-knowledge.md) <br>
-- [GT Pro Tune](https://app.gtprotune.com/) <br>
-- [GT Pro Tune registration](https://app.gtprotune.com/register) <br>
-- [ClawHub release page](https://clawhub.ai/IamSteveBot/gt7-tuner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with tuning values, checklists, and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include OCR confidence checks, unit conversions, browser automation steps, and GT7 tuning recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The workflow may require a GT Pro Tune account and may upload GT7 screenshots to that third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm with the user before login or upload, and keep credentials secure without logging, echoing, or displaying them.
+
+Risk: OCR or image analysis can misread GT7 settings and produce an unsuitable tune.
+
+Mitigation: Confirm extracted values with the user before form entry, ask for a clearer image when confidence is low, and recommend testing calculated tunes in game.
+
+## Reference(s):
+
+- [GT7 Tuning Knowledge Base](artifact/references/gt7-tuning-knowledge.md)
+- [GT Pro Tune](https://app.gtprotune.com/)
+- [GT Pro Tune Registration](https://app.gtprotune.com/register)
+- [ClawHub Skill Page](https://clawhub.ai/iamstevebot/skills/gt7-tuner)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with tuning settings, confirmation prompts, and inline browser automation commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include OCR-derived values, GT Pro Tune form-entry steps, and tune tables for suspension, transmission, and differential settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

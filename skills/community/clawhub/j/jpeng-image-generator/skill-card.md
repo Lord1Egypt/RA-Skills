@@ -1,39 +1,53 @@
-## Description: <br>
-AI image generation skill using DALL-E, Stable Diffusion, or Midjourney API. Generate, edit, and vary images from text prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI image generation skill using DALL-E, Stable Diffusion, or Midjourney API. Generate, edit, and vary images from text prompts.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Developers and creators use this skill to generate images from text prompts, create variations of existing images, and perform inpainting edits through supported image-generation providers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, source images, masks, or generated assets may be sent to third-party image-generation services. <br>
-Mitigation: Use dedicated API keys, avoid confidential or regulated content unless provider terms allow it, and review the provider script before running it. <br>
+## Use Case:
 
+Developers and content creators use this skill to ask an agent for image-generation setup and commands for creating images from text prompts, making variations, and performing inpainting edits.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/jpeng-image-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and JSON output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated image files are written to configured output paths when the referenced provider script is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Provider API keys may be exposed if they are saved in project files, shell history, or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use scoped provider API keys and keep credentials out of project files, prompts, command output, and logs.
+
+Risk: The documented image-generation script is not included in the artifact.
+
+Mitigation: Review and scan any separate script or provider client before running the documented commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jpengcheng523-netizen/skills/jpeng-image-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Files, JSON]
+
+**Output Format:** [Markdown with bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Image outputs are written to local paths; provider API keys are required for the documented workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

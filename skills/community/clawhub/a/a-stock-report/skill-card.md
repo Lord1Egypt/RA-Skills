@@ -1,51 +1,66 @@
-## Description: <br>
-A-stock-report generates and schedules A-share market reports, including morning reports, close summaries, evening reports, intraday alerts, IPO weekly reports, and weekend finance digests with investor-sentiment scoring and market outlook guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A-stock-report automates A-share market reports and WeCom delivery for morning, market-close, evening, intraday alert, IPO weekly, and weekend finance workflows, with sentiment scoring and AI outlook sections.
 
-## Publisher: <br>
-[cookfish1979](https://clawhub.ai/user/cookfish1979) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cookfish1979](https://clawhub.ai/user/cookfish1979)
 
-## Use Case: <br>
-External users and market-operations agents use this skill to collect A-share market data, generate scheduled finance reports and alerts, and push the resulting summaries to a configured WeCom webhook. The reports are informational and include built-in no-investment-advice disclaimers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches finance data on a schedule and can send generated reports or alerts automatically to WeCom. <br>
-Mitigation: Install it only for this workflow, verify the configured webhook destination, and use dry-run or manual review paths before enabling unattended delivery. <br>
-Risk: Credentials may be exposed or over-scoped if unrelated secrets are placed in the environment file used by the scripts. <br>
-Mitigation: Keep the environment file limited to the documented WeCom and iWencai keys, and remove broader fallback secret sources in stricter environments. <br>
-Risk: Market reports can be affected by data-source outages, stale search results, or provider field changes. <br>
-Mitigation: Monitor scheduled runs, preserve the built-in data-missing markers and source labels, and treat generated market commentary as informational rather than investment advice. <br>
-Risk: The skill writes intermediate and report files under /tmp and the workspace reports directory. <br>
-Mitigation: Run it in an isolated workspace with expected write permissions and review generated files before sharing them beyond the configured audience. <br>
+## Use Case:
 
+External users and operators use this skill to collect A-share market data, generate scheduled finance reports, and deliver them to a controlled WeCom destination. It supports operational reporting and monitoring workflows, not unchecked financial decision-making.
 
-## Reference(s): <br>
-- [A-stock-report ClawHub page](https://clawhub.ai/cookfish1979/a-stock-report) <br>
-- [cron_jobs README](cron_jobs/README.md) <br>
-- [Fallback Chain Validation Log](references/fallback-chain-validation.md) <br>
-- [Weekend 4KB Budget Record](references/weekend-4kb-budget.md) <br>
-- [Eastmoney finance news](https://finance.eastmoney.com/news/cywjh.html) <br>
-- [Sina Finance](https://finance.sina.com.cn/) <br>
-- [21st Century Business Herald](https://www.21jingji.com/) <br>
-- [CNFIN](https://www.cnfin.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reports, JSON data files, shell commands, and WeCom text messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scheduled jobs may write report files under the workspace and send generated reports or alerts to a configured WeCom webhook.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.5.4 (source: frontmatter and server release evidence) <br>
+Risk: The skill can automatically post market reports and investment-related suggestions to WeCom.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only on hosts and WeCom destinations you control, review the configured cron jobs before enabling them, and keep the report disclaimer intact.
+
+Risk: Secrets are loaded from environment files and may be exposed if /workspace/.env is broadly readable or sourced into more processes than necessary.
+
+Mitigation: Protect /workspace/.env with restrictive permissions, keep only the required WECOM_WEBHOOK_KEY and IWENCAI_API_KEY values available to this skill, and avoid broad .env sourcing in cron.
+
+Risk: Shared temporary handoff and lock files can create tampering or race-condition exposure on multi-user hosts.
+
+Mitigation: Move handoff and lock files into a private 0700 runtime directory and use atomic creation for lock and state files.
+
+Risk: Webhook sending currently relies on a curl subprocess path.
+
+Mitigation: Replace subprocess-based sending with an in-process HTTPS client before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cookfish1979/skills/a-stock-report)
+- [cron_jobs README](cron_jobs/README.md)
+- [cron_mirror.json](cron_jobs/cron_mirror.json)
+- [fallback-chain-validation](references/fallback-chain-validation.md)
+- [weekend-4kb-budget](references/weekend-4kb-budget.md)
+- [historical config reference](references/config.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and text reports with JSON configuration and shell-command workflows]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Automated WeCom text delivery, scheduled cron workflows, and report files with byte-budget constraints for weekend messages.]
+
+## Skill Version(s):
+
+3.5.4 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

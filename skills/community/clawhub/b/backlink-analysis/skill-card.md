@@ -1,38 +1,49 @@
-## Description: <br>
-Guides SEO backlink profile analysis by assessing link quality, identifying toxic or suspicious links, comparing competitors, and planning improvements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides backlink profile analysis by assessing link quality, identifying risk signals, and planning SEO improvements.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-External SEO practitioners, marketers, and site owners use this skill to audit backlink profiles, assess link quality and risk, compare competitors, and plan link improvement work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitting an overly broad or unnecessary Google disavow file can harm search visibility. <br>
-Mitigation: Treat disavow recommendations as advisory and require a manual review before taking action in Google Search Console. <br>
+## Use Case:
 
+External SEO practitioners and marketing teams use this skill to audit a site's backlink profile, review referring domains and anchor text, compare competitors, and plan cautious remediation or growth actions.
 
-## Reference(s): <br>
-- [Google Search Central: Block Search Indexing with noindex](https://developers.google.com/search/docs/crawling-indexing/block-indexing#disavow-links) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, analysis, markdown] <br>
-**Output Format:** [Markdown guidance with profile summaries, quality assessments, risk signals, recommendations, and competitive insights] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code or hidden install behavior; outputs are advisory SEO analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill frontmatter) <br>
+Risk: Backlink remediation or disavow recommendations can affect search visibility if applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat recommendations as review material and make final changes manually in the relevant SEO tools or Google Search Console.
+
+## Reference(s):
+
+- [Google Search Central: Disavow Links](https://developers.google.com/search/docs/crawling-indexing/block-indexing#disavow-links)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Markdown prose with profile summary, quality assessment, risk signals, recommendations, and competitive insights]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference SEO tool data supplied by the user; does not execute tools itself.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -30,7 +30,7 @@ EXCLUDE_FILES_EXACT = {
 }
 EXCLUDE_FILES_GLOB = {
     "*.pyc", "*.pyo", "*.log", "*.zip", "*.bak*",
-    "*.tmp", "._*", ".decisions.json",
+    "*.tmp", "._*", ".decisions.json", ".standardization/git-sync/temp/*",
     "*.sensitive_scan_*.json", "zip_out", "preview_server.py",
     "*_fixed.py", "stderr.txt", "stdout.txt",
     "*.bat",  # Windows 批处理文件

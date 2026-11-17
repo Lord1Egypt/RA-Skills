@@ -1,47 +1,54 @@
-## Description: <br>
-专业短剧/AI漫剧剧本创作助手，支持男频/女频爆款短剧、AI漫剧剧本撰写，包含最新行业成功要素、标准结构模板、爆款爽点设计和漫剧专属分镜规范。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+专业短剧/AI漫剧剧本创作助手，支持男频/女频爆款短剧、AI漫剧剧本撰写，包含最新行业成功要素、标准结构模板、爆款爽点设计和漫剧专属分镜规范。
 
-## Publisher: <br>
-[kenz1117](https://clawhub.ai/user/kenz1117) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kenz1117](https://clawhub.ai/user/kenz1117)
 
-## Use Case: <br>
-External creators and writing agents use this skill to draft vertical short-drama scripts, short-drama outlines, AI manhua storyboard scripts, hook templates, and plot pacing guidance for male- and female-audience formats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger language may steer adjacent creative-writing requests toward Chinese short-drama and AI manhua conventions. <br>
-Mitigation: Review and narrow activation triggers when deploying the skill in agents that handle many unrelated writing workflows. <br>
-Risk: Market statistics, platform advice, and production recommendations may become outdated or may not reflect a user's current business context. <br>
-Mitigation: Treat market data as creative guidance and verify current platform rules, audience data, and commercial assumptions before production use. <br>
+## Use Case:
 
+External creators and agent users use this skill to draft Chinese-language vertical short-drama scripts, AI manhua storyboard scripts, episode outlines, hook templates, and prompt guidance for short-form serialized content.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/kenz1117/short-play-writer) <br>
-- [Publisher profile](https://clawhub.ai/user/kenz1117) <br>
-- [市场现状与爆款规律](references/market-rules.md) <br>
-- [标准剧本结构模板](references/structure-templates.md) <br>
-- [爆款创作技巧](references/writing-skills.md) <br>
-- [工业化生产流程](references/production-process.md) <br>
-- [百种爆款钩子模板](examples/hook-templates.md) <br>
-- [爆款案例深度拆解](examples/case-studies.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose, outlines, script templates, storyboard beats, and AI image-prompt guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only creative-writing output; no extra runtime dependencies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, _meta.json, CHANGELOG, release evidence) <br>
+Risk: The skill is tuned for Chinese-language viral short-drama and AI comic scripting, so default outputs may be language-specific or formulaic.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask explicitly for the desired language, tone, originality level, and any genre or platform constraints before using the generated script or storyboard.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kenz1117/skills/short-play-writer)
+- [Publisher profile](https://clawhub.ai/user/kenz1117)
+- [市场现状与爆款规律](references/market-rules.md)
+- [标准剧本结构模板](references/structure-templates.md)
+- [爆款创作技巧](references/writing-skills.md)
+- [工业化生产流程](references/production-process.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown screenplay templates, episode outlines, hook lists, storyboard descriptions, and AI image prompt guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only skill with no additional Python dependencies.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, _meta.json, release evidence, changelog released 2026-01-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

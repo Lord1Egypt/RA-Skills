@@ -138,7 +138,7 @@ For Type 2 decisions (RS ≤ 0.40):
 
 **Purpose**: Gather context and identify terrain before strategy.
 
-**Experts**: Scout (Qwen Turbo), Intelligence Officer (Gemini Pro)
+**Experts**: Scout (Qwen `coder-model`), Intelligence Officer (Gemini Pro)
 
 **Execution**: Parallel
 
@@ -154,7 +154,7 @@ For Type 2 decisions (RS ≤ 0.40):
 
 ### Phase 2: Situation Assessment
 
-**Purpose**: Synthesize intelligence into actionable assessment.
+**Purpose**: Synthesize intelligence into a concrete assessment.
 
 **Expert**: Chief Strategist (Sonnet)
 
@@ -362,9 +362,9 @@ When `--agent-teams` is active (Full Council / Delphi only), phases execute thro
 
 ### Key Differences
 
-**Bidirectional messaging** (Phases 3-6): In standard mode, experts produce one-shot responses. In agent teams mode, experts can exchange messages mid-phase — the Red Team can ask a COA author to clarify assumptions, and premortem participants can chain failure scenarios.
+**Bidirectional messaging** (Phases 3-6): In standard mode, experts produce one-shot responses. In agent teams mode, experts can exchange messages mid-phase: the Red Team can ask a COA author to clarify assumptions, and premortem participants can chain failure scenarios.
 
-**Delphi persistence**: In standard mode, each Delphi round re-invokes all experts from scratch. In agent teams mode, teammates persist across rounds, retaining prior context and positions. This reduces token waste and enables more nuanced position evolution.
+**Delphi persistence**: In standard mode, each Delphi round re-invokes all experts from scratch. In agent teams mode, teammates persist across rounds, retaining prior context and positions. This reduces token waste and lets each expert revise a position against the others' earlier rounds.
 
 **Anonymization**: Agent teams still uses anonymized COA labeling (Response A, B, C) during Phases 3-5. Attribution is revealed in Phase 7 by the lead agent after de-anonymization.
 

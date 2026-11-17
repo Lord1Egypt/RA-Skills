@@ -1,39 +1,54 @@
-## Description: <br>
-Bollinger reference tool for finance-context reference, formulas, risk notes, regulations, strategies, glossary terms, and due diligence checklists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bollinger is a finance reference tool for quick guidance on Bollinger-related concepts, formulas, risks, regulations, instruments, strategies, glossary terms, and checklists.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers, analysts, and external users can use this skill to ask an agent for static Bollinger-related finance reference material, including formulas, risk categories, strategy outlines, glossary terms, and checklist-style guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence reports a suspicious security verdict because the finance content is generic and may be mismatched for reliable Bollinger Bands or investment use. <br>
-Mitigation: Treat output as low-capability reference text only and verify trading, compliance, or investment-related output against authoritative finance sources before acting on it. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve quick Bollinger-related finance reference material such as formulas, risk categories, regulations, strategies, glossary terms, and checklists.
 
-## Reference(s): <br>
-- [Bollinger Skill Page](https://clawhub.ai/bytesagain3/bollinger) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown text emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference content; finance-related output should be verified against authoritative sources before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Finance reference content is generic and may not be accurate enough for Bollinger Bands analysis, trading decisions, regulatory obligations, or compliance decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as a lightweight orientation aid only; verify formulas, market analysis, regulatory statements, and compliance requirements against authoritative sources before acting.
+
+Risk: The skill emits static reference text from shell commands, so content can become stale as markets, regulations, or standards change.
+
+Mitigation: Review and update the references before operational or commercial use in finance workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain3/skills/bollinger)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown reference text emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference content; no API keys or external service calls are required.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

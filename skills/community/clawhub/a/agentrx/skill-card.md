@@ -1,45 +1,60 @@
-## Description: <br>
-AgentRx diagnoses AI agent tool failures, returns suggested recovery actions for agent evaluation, and provides preflight checks before risky tool calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentRx is a recovery layer for AI agent tool failures that diagnoses failed or risky tool calls and returns advisory recovery suggestions for the agent to evaluate before acting.
 
-## Publisher: <br>
-[chainassetslab](https://clawhub.ai/user/chainassetslab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chainassetslab](https://clawhub.ai/user/chainassetslab)
 
-## Use Case: <br>
-Developers and agent operators use AgentRx to classify failed or risky external tool calls, receive recovery suggestions, and decide whether to retry, correct payloads, pause, or escalate to a human. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected tool-failure context and preflight payloads may be sent to the AgentRx third-party API. <br>
-Mitigation: Redact secrets, credentials, regulated data, payment details, private prompts, and sensitive tool arguments before invoking AgentRx. <br>
-Risk: Remote recovery suggestions may be wrong, out of scope, or risky for the current task. <br>
-Mitigation: Treat every suggestion as advisory; evaluate it against the task, stop for human handoff or low confidence, and require human confirmation before writes, external communications, or data transfers. <br>
-Risk: A shared beta key or incorrect service endpoint can weaken production controls. <br>
-Mitigation: Use a dedicated API key, verify the base URL, avoid shared beta credentials for production, and rotate and monitor keys regularly. <br>
+## Use Case:
 
+Developers and agent operators use AgentRx to recover from failed, timed-out, malformed, or suspicious tool calls and to preflight risky operations before execution.
 
-## Reference(s): <br>
-- [AgentRx ClawHub page](https://clawhub.ai/chainassetslab/agentrx) <br>
-- [Chain Assets homepage](https://chainassetslab.com) <br>
-- [AgentRx API documentation](https://agentrx-production.up.railway.app/docs) <br>
-- [AgentRx SDK on PyPI](https://pypi.org/project/agentrx-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON service responses with plaintext recovery guidance and shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AGENTRX_API_KEY, AGENTRX_BASE_URL, curl, and jq; suggestions are advisory and require agent evaluation before action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: Tool errors and planned operation payloads may contain sensitive data that is sent to the remote AgentRx service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact secrets, credentials, PII, payment data, and sensitive schemas before calling AgentRx; avoid using the skill in workflows that cannot be safely sanitized.
+
+Risk: Remote recovery suggestions may be incorrect, out of scope, or unsafe for the current task.
+
+Mitigation: Treat every suggestion as advisory, require human approval for low-confidence or externally directed actions, and keep the agent's original task scope as the authority.
+
+Risk: API key exposure or endpoint misuse could broaden access to recovery traces or service calls.
+
+Mitigation: Use a dedicated scoped API key, keep it in the environment, rotate keys regularly, and restrict the base URL to a trusted HTTPS host.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chainassetslab/skills/agentrx)
+- [Chain Assets homepage](https://chainassetslab.com)
+- [AgentRx API documentation](https://agentrx-production.up.railway.app/docs)
+- [AgentRx SDK on PyPI](https://pypi.org/project/agentrx-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON]
+
+**Output Format:** [JSON responses with plaintext recovery guidance and Markdown documentation containing shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Suggestions are advisory; agents are expected to evaluate confidence, scope, and safety before acting.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

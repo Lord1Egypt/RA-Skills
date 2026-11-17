@@ -1,45 +1,57 @@
-## Description: <br>
-淘宝/千牛商家商品自动发布技能，可帮助商家打开发布页、上传商品图片、填写标题、价格、库存、属性等商品信息，并执行发布或保存草稿流程。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates the Taobao/Qianniu merchant product publishing workflow, including opening the product page, uploading product images, filling listing details, selecting categories or dropdown values, and submitting or saving a listing.
 
-## Publisher: <br>
-[279458179](https://clawhub.ai/user/279458179) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[279458179](https://clawhub.ai/user/279458179)
 
-## Use Case: <br>
-External Taobao/Qianniu sellers and their agents use this skill to automate product listing preparation, including image-based product entry, category adjustment, field completion, dropdown handling, and draft or submit actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can drive a real Taobao/Qianniu seller workflow and may submit a live product listing without a built-in final confirmation. <br>
-Mitigation: Configure agents to save drafts by default and require explicit user approval after showing the title, category, images, price, stock, shipping settings, and attributes before any live submit action. <br>
-Risk: Automated field entry or dropdown selection can publish incorrect product details if page state, category, or extracted image information is wrong. <br>
-Mitigation: Require a human review of all listing fields and category selections before saving or submitting the listing. <br>
+## Use Case:
 
+Taobao/Qianniu merchants or their agent operators use this skill to draft and publish product listings from product images while filling titles, prices, inventory, attributes, categories, and dropdown selections.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/279458179/taobao-dianshang) <br>
-- [Publisher profile](https://clawhub.ai/user/279458179) <br>
-- [Taobao product publish page](https://myseller.taobao.com/home.htm/PublishProduct/index) <br>
-- [Qianniu seller center](https://myseller.taobao.com/home.htm/QnworkbenchHome/) <br>
-- [Image-based product publishing](https://item.upload.taobao.com/sell/ai/category.htm) <br>
-- [Taobao image asset center](https://suc.taobao.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code] <br>
-**Output Format:** [Markdown instructions with browser automation commands and JavaScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce live browser actions that save drafts or submit Taobao/Qianniu product listings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can submit live Taobao product listings from a merchant account without a documented final confirmation checkpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review listing title, price, inventory, category, shipping template, product images, and other details before allowing submission; prefer saving as draft first.
+
+Risk: Dropdown and category automation may select an unintended value if page text or merchant UI state differs from the documented workflow.
+
+Mitigation: Confirm selected category, sale status, age suitability, brand, and other combobox values in the page before submitting the listing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/279458179/skills/taobao-dianshang)
+- [Qianniu seller workbench](https://myseller.taobao.com/home.htm/QnworkbenchHome/)
+- [Taobao product publishing page](https://myseller.taobao.com/home.htm/PublishProduct/index)
+- [Taobao image-based product publishing](https://item.upload.taobao.com/sell/ai/category.htm)
+- [Taobao image material center](https://suc.taobao.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code]
+
+**Output Format:** [Markdown with browser automation commands and JavaScript snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce browser actions that fill merchant listing fields, click dropdown options, upload images, submit listings, or save drafts.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,79 @@
+{
+  "$schema": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/official-source.schema.json",
+  "repository": "https://github.com/ChatCut-Inc/agent-plugin",
+  "commit": "877b9177144feeecdef0da70f0e4d5cb760f6037",
+  "observedAt": "2026-09-30T09:12:11Z",
+  "hostedPluginVersion": "1.10.15",
+  "desktopConnectorVersion": "1.0.5",
+  "websiteVersions": {
+    "url": "https://chatcut.io/docs/releases",
+    "desktop": "0.4.21",
+    "agentPlugin": "1.10.12"
+  },
+  "latestPublicChangelog": {
+    "date": "2026-09-20",
+    "url": "https://chatcut.io/docs/changelog/2026-09-20-desktop-projects-imports-effects"
+  },
+  "hostedSkills": [
+    "asset-import",
+    "chatcut-plugin-basics",
+    "create-motion-graphics",
+    "digital-human",
+    "export",
+    "known-errors",
+    "multicam-sync",
+    "music",
+    "product-help",
+    "shader-gen",
+    "talking-head-guide",
+    "transcription",
+    "verification",
+    "video-gen",
+    "video-translation",
+    "voice",
+    "widget-forms"
+  ],
+  "reviewedFiles": [
+    {
+      "path": "codex/.codex-plugin/plugin.json",
+      "sha256": "a7f3fe7b24c2e881fcc506b921ff99ade7351d8db5fffb2178cc9595dbf57e9c"
+    },
+    {
+      "path": "chatcut-desktop-codex-plugin/.codex-plugin/plugin.json",
+      "sha256": "6ff8c092df7d3895ac7bb960d85928479ec1a942f155763b26328af6b98bdf91"
+    },
+    {
+      "path": "codex/skills/chatcut-plugin-basics/SKILL.md",
+      "sha256": "9c810774b1fbd5ef6bbcd36bdc4aaed956ffd68b3bb992dd61e6344a8ca3cc43"
+    },
+    {
+      "path": "codex/skills/transcription/SKILL.md",
+      "sha256": "b037443b44b51fd24eb0481b30233fdf3815baba93dbd7c8bcc03ecf8ad39ab9"
+    },
+    {
+      "path": "codex/skills/talking-head-guide/SKILL.md",
+      "sha256": "f52fdb8e1225720091108ae99014819b738c3eb3c0d2478f2aa577fb8f91819f"
+    },
+    {
+      "path": "codex/skills/talking-head-guide/references/captions.md",
+      "sha256": "a79e2420e273092f08c9eedb2d1c83982b43b7fa27033b0cf562df3d6584c29a"
+    },
+    {
+      "path": "codex/skills/verification/SKILL.md",
+      "sha256": "033b486503514af0072f6d6e8526de6b856b05620ed733170ae00ba31a6ae785"
+    },
+    {
+      "path": "codex/skills/voice/references/fix-spoken-mistakes.md",
+      "sha256": "2931398e10c4b202dff6dcab63067acb71f73d52c6a0b94a41730732ca3a4d09"
+    },
+    {
+      "path": "chatcut-desktop-codex-plugin/skills/connect-chatcut-desktop/SKILL.md",
+      "sha256": "5282a999677f58da2e2c0f64bb7f30805e7f8f242bfa1f9b7852e93aaad53712"
+    }
+  ],
+  "license": "GPL-3.0-only",
+  "sourceUse": "References and original compatibility logic only; upstream code and Skill text are not redistributed.",
+  "verificationScope": "official-source-review",
+  "liveToolsObserved": false,
+  "mediaVerified": false
+}

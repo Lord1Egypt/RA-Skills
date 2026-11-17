@@ -7,6 +7,8 @@ description: 当 OpenClaw 或 AIOS agent 需要把 JSON、Markdown 表格或 ECh
 
 本技能用于把结构化数据生成 ECharts 图表，并导出为图片文件。优先使用内置脚本 `scripts/make_chart_image.mjs`，不要在对话中临时拼一个替代渲染脚本。
 
+所有输入文件和输出文件必须遵守 OpenClaw workspace 的 `senderId` 文件隔离规则。`senderId` 是生成、下载、上传文件的唯一目录隔离标识；`topic_id` 不得作为文件目录。图表图片、保存的 ECharts option 和其他渲染中间产物都属于 AI 生成文件，必须写入当前 workspace 的 `<senderId>/generated`。
+
 ## 适用场景
 
 - 用户提供 JSON 数据并要求生成柱状图、折线图、饼图、散点图等图片。
@@ -18,7 +20,9 @@ description: 当 OpenClaw 或 AIOS agent 需要把 JSON、Markdown 表格或 ECh
 
 - 必须在本 skill 目录中运行内置脚本，确保依赖从本地 `node_modules` 解析。
 - 本项目统一使用 JavaScript/TypeScript；不要为本技能添加 Python 渲染流程。
-- 输出到当前工作区内的 `chart_output` 目录。
+- 每次运行脚本都必须显式传入当前通道的 `--sender-id <senderId>`；如果无法确认 `senderId`，停止生成，不得用 `topic_id`、用户名或推测值替代。
+- 输出到当前工作区内的 `<senderId>/generated` 目录。
+- 输入文件必须来自当前 `<senderId>` 目录内的 `upload`、`download` 或 `generated`，或通过 stdin / `--data` 提供；禁止读取其他 `senderId` 目录。
 - 如果需要把生成的图片发给用户，先生成本地文件，再使用 `aios-transfer-file` 上传返回。
 - 如果输入是完整 ECharts option，保留用户提供的 option，只补必要的画布尺寸和背景色。
 - 如果输入是表格数据，先选择合适的 `chartType`、分类字段和数值字段；字段不明确时说明假设。
@@ -48,20 +52,20 @@ npm install
 从 JSON 或 Markdown 文件生成 PNG：
 
 ```bash
-node scripts/make_chart_image.mjs --input "/abs/path/data.json" --output "/abs/path/chart.png"
-node scripts/make_chart_image.mjs --input "/abs/path/table.md" --output "/abs/path/chart.png" --chart-type line
+node scripts/make_chart_image.mjs --workspace "/abs/path/workspace" --sender-id "<senderId>" --input "<senderId>/upload/data.json" --output "chart.png"
+node scripts/make_chart_image.mjs --workspace "/abs/path/workspace" --sender-id "<senderId>" --input "<senderId>/upload/table.md" --output "chart.png" --chart-type line
 ```
 
 从 stdin 读取：
 
 ```bash
-cat table.md | node scripts/make_chart_image.mjs --input - --output "/abs/path/chart.png"
+cat table.md | node scripts/make_chart_image.mjs --workspace "/abs/path/workspace" --sender-id "<senderId>" --input - --output "chart.png"
 ```
 
 保存推断出的 ECharts option 便于审查：
 
 ```bash
-node scripts/make_chart_image.mjs --input data.md --output chart.png --save-option chart.option.json
+node scripts/make_chart_image.mjs --workspace "/abs/path/workspace" --sender-id "<senderId>" --input "<senderId>/upload/data.md" --output "chart.png" --save-option "chart.option.json"
 ```
 
 ## 支持的输入
@@ -83,6 +87,8 @@ Markdown 输入使用第一张标准 Markdown 表格，并会尝试从第一个�
 - `--title "标题"`，覆盖输入里的标题。
 - `--width 1200 --height 800`，默认 `1200x800`。
 - `--format png|svg|jpg|jpeg|webp`，未指定时从输出扩展名推断。
+- `--workspace "/abs/path/workspace"`，当前 agent workspace 根目录。
+- `--sender-id "<senderId>"`，当前通道提供的文件隔离标识，必填。
 - `--x field`，指定分类字段。
 - `--y field1,field2`，指定数值字段。
 - `--name field --value field`，指定饼图字段。
@@ -100,3 +106,5 @@ Markdown 输入使用第一张标准 Markdown 表格，并会尝试从第一个�
 - `chartType`
 
 如果脚本失败，读取 stderr 的真实错误并据实报告，不要声称图片已生成。
+
+脚本成功后，`output` 和可选的 `option` 路径必须位于当前 `<senderId>/generated` 内；如果不是，视为违反文件隔离规则，不得继续使用或发送该文件。

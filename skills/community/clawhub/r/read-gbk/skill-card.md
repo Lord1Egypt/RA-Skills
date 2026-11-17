@@ -1,44 +1,54 @@
-## Description: <br>
-Reads local text-oriented files with GBK-first and UTF-8 fallback encoding detection, including DOCX and text-based PDF extraction when optional dependencies are available. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads local text files and automatically detects GBK or UTF-8 encoding.
 
-## Publisher: <br>
-[Delicate314](https://clawhub.ai/user/Delicate314) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[delicate314](https://clawhub.ai/user/delicate314)
 
-## Use Case: <br>
-Developers and agent users use this skill to inspect local files that may use Chinese Windows encodings, and to extract text from DOCX or text-based PDF files when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read local files that the agent is pointed at, which may expose sensitive documents or credentials if the selected path is inappropriate. <br>
-Mitigation: Use it only on files intended for the task, and avoid credential stores, private configuration files, and personal documents unless their contents should be shared. <br>
-Risk: Reading DOCX or PDF files can trigger automatic pip installation of optional Python dependencies. <br>
-Mitigation: Preinstall approved dependencies in controlled environments, or avoid DOCX/PDF inputs when automatic package installation is not acceptable. <br>
-Risk: Unsupported binary files, scanned PDFs, and very large files may fail, produce little text, or return truncated content. <br>
-Mitigation: Use supported text-oriented files and verify the returned content before relying on it. <br>
+## Use Case:
 
+Developers and end users use this skill to read local text-oriented files, especially Chinese Windows files that may use GBK encoding. It can also extract text from DOCX and text-based PDF files when the required Python packages are available.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Delicate314/read-gbk) <br>
-- [Python downloads](https://www.python.org/downloads/) <br>
-- [Miniconda documentation](https://docs.conda.io/en/latest/miniconda.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text file contents on stdout with status or error messages on stderr] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads an explicitly provided local file path; DOCX/PDF support may install optional Python packages and very large or unsupported files may fail or be truncated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may automatically install unpinned Python packages when reading DOCX or PDF files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a controlled Python environment such as a virtual environment or container, and preinstall reviewed, pinned versions of python-docx and pypdf.
+
+Risk: Local file contents are printed to stdout and may appear in agent transcripts or logs.
+
+Mitigation: Avoid using the skill on credentials, private records, or other sensitive files unless that exposure is acceptable.
+
+## Reference(s):
+
+- [Python downloads](https://www.python.org/downloads/)
+- [Miniconda documentation](https://docs.conda.io/en/latest/miniconda.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text written to stdout, with errors and encoding notices written to stderr]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads a single local file path per invocation; very large files may be truncated.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

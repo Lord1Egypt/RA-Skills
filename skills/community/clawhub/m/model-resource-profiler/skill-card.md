@@ -1,43 +1,58 @@
-## Description: <br>
-Analyze model training or inference resource behavior from profiler artifacts, with focus on GPU memory (VRAM) and CPU hotspots. Uses JSON/JSON.GZ artifacts only to avoid unsafe deserialization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze model training or inference resource behavior from profiler artifacts, with focus on GPU memory (VRAM) and CPU hotspots. Uses JSON/JSON.GZ artifacts only to avoid unsafe deserialization.
 
-## Publisher: <br>
-[daiwk](https://clawhub.ai/user/daiwk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[daiwk](https://clawhub.ai/user/daiwk)
 
-## Use Case: <br>
-Developers and ML engineers use this skill to analyze trusted PyTorch CUDA memory snapshots and profiler traces, identify GPU memory pressure and CPU bottlenecks, and prepare a ranked optimization plan. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Profiler artifacts may contain private model, workload, path, or host details. <br>
-Mitigation: Analyze only trusted local files that the user intentionally provides, and avoid pointing the analyzer at unrelated private files. <br>
-Risk: Unsafe serialized profiler inputs can execute code or hide behavior if deserialized. <br>
-Mitigation: Use only JSON or JSON.GZ artifacts; the analyzer rejects pickle input and asks users to re-export snapshots as JSON in their own trusted environment. <br>
-Risk: Optimization recommendations can be misleading when traces are incomplete or the target phase is unclear. <br>
-Mitigation: Label low-confidence conclusions as hypotheses, capture run context, and validate each action with a measurable follow-up profiler metric. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Model Resource Profiler on ClawHub](https://clawhub.ai/daiwk/model-resource-profiler) <br>
-- [Interpretation Guide](references/interpretation.md) <br>
-- [Analyzer Implementation](scripts/analyze_profile.py) <br>
+## Use Case:
 
+Developers and engineers use this skill to analyze trusted local PyTorch profiler and CUDA memory snapshot JSON artifacts, identify CPU and GPU memory bottlenecks, and produce prioritized optimization actions with validation metrics.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown and JSON reports with concise diagnostic guidance and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads user-selected local JSON or JSON.GZ profiler artifacts and rejects pickle input.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Profiler artifacts can come from untrusted or unknown training environments.
+
+Mitigation: Use the skill only with trusted local JSON/JSON.GZ artifacts and confirm the trust boundary before analysis.
+
+Risk: Legacy pickle memory snapshots can execute unsafe deserialization paths in other workflows.
+
+Mitigation: Do not analyze pickle snapshots; re-export the data as JSON in the user's trusted training environment.
+
+Risk: Reports may be written outside the intended workspace if broad output paths are supplied.
+
+Mitigation: Provide explicit output paths, preferably in a temporary or project-local directory.
+
+## Reference(s):
+
+- [Interpretation Guide](references/interpretation.md)
+- [Analyzer Implementation](scripts/analyze_profile.py)
+- [ClawHub Skill Page](https://clawhub.ai/daiwk/skills/model-resource-profiler)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON analysis files, shell commands, and optimization guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads local JSON/JSON.GZ profiler artifacts and can write markdown and JSON report files.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

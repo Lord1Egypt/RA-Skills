@@ -1,42 +1,60 @@
-## Description: <br>
-Multi-agent task coordination via Git-backed Markdown (tick-md). Use when coordinating work across avatars or agents, managing tasks, tracking dependencies, or running multi-agent workflows with TICK.md files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinate work across avatars and agents using the Tick protocol and Git-backed TICK.md task files.
 
-## Publisher: <br>
-[CryptoReuMD](https://clawhub.ai/user/CryptoReuMD) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[cryptoreumd](https://clawhub.ai/user/cryptoreumd)
 
-## Use Case: <br>
-Developers, engineers, and multi-agent operators use this skill to coordinate work through TICK.md task files, command-line workflows, MCP tools, dependency tracking, agent handoffs, and status reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Project task records may contain sensitive details and can be exposed through a network dashboard or remote sync. <br>
-Mitigation: Use localhost-only dashboard access, stop the background server after inspection, avoid public or shared networks, and review task contents before Git push or Convex sync. <br>
-Risk: Agents can edit TICK.md task records as part of normal coordination workflows. <br>
-Mitigation: Review task changes before syncing or committing, and validate task structure after bulk edits or multi-agent handoffs. <br>
+## Use Case:
 
+Developers, engineers, and multi-agent operators use this skill to create, claim, update, validate, and summarize coordinated tasks across humans and agents. It supports dependency tracking, handoffs, local Git-backed audit trails, and optional CLI or MCP workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/CryptoReuMD/tick-coord) <br>
-- [tick-md CLI npm package](https://npmjs.com/package/tick-md) <br>
-- [tick-mcp-server npm package](https://npmjs.com/package/tick-mcp-server) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and task-management examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update local TICK.md task records and suggest Git, CLI, MCP, dashboard, or sync commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: The optional dashboard can expose project task data through a temporary web server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local-only operation when possible, bind the dashboard to 127.0.0.1, run it only on trusted networks, and stop it after inspection.
+
+Risk: Remote task syncing can transfer project task data outside the local repository.
+
+Mitigation: Sync only to Convex deployments and keys you control, and avoid syncing sensitive task content unless remote visibility is required.
+
+Risk: Agents maintaining TICK.md may make incorrect task, status, dependency, or handoff changes.
+
+Mitigation: Review TICK.md diffs, run tick validate before syncing, and rely on Git history to audit or revert unwanted task-state changes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cryptoreumd/skills/tick-coord)
+- [Tick CLI npm Package](https://npmjs.com/package/tick-md)
+- [Tick MCP Server npm Package](https://npmjs.com/package/tick-mcp-server)
+- [Tick Project Reference](https://github.com/Purple-Horizons/tick-md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional MCP tool-call descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct an agent to create or update local TICK.md task state through the Tick CLI or configured MCP tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release and artifact skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

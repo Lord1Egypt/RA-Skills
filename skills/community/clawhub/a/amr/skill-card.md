@@ -1,41 +1,58 @@
-## Description: <br>
-Amr provides a local command-line tracker for AMR-labeled tasks, entries, status checks, exports, and configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous mobile robot fleet manager for AMR task entries, CSV or JSON exports, and status checks.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Developers and operations users can ask an agent to use or explain the bundled CLI for AMR-labeled local notes and task records, including status summaries, entry management, search, export, and configuration. It should not be treated as live robot fleet status or control. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is described as an AMR fleet manager, but the security evidence characterizes it as a local notes and task tracker. <br>
-Mitigation: Use it only for AMR-labeled local records and do not rely on it for live robot fleet status, dispatch, or control. <br>
-Risk: Operational notes may be stored under ~/.amr and exported as JSON or CSV into the current working directory. <br>
-Mitigation: Avoid storing sensitive operational data unless local file storage and export behavior are acceptable; set AMR_DIR to an approved location when needed. <br>
+## Use Case:
 
+Developers and operators can use this skill to run an AMR-themed local notes and configuration utility that records entries, lists and searches them, exports JSON or CSV, and reports simple status or statistics. It should not be used for real robot or fleet operations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/amr) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and CLI output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local JSONL data under the configured AMR data directory and export JSON or CSV files into the current working directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: The release is advertised as an autonomous mobile robot fleet manager, but security evidence says it behaves like a local notes and configuration shell utility.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not rely on it for real robot, facility, or fleet operations; treat outputs as local log entries only.
+
+Risk: The script writes to ~/.amr by default and can create amr-export.json or amr-export.csv in the current directory.
+
+Mitigation: Run it only in non-sensitive directories and set AMR_DIR to an isolated path when testing or using it.
+
+Risk: Security guidance warns against passing untrusted text to add, search, or config.
+
+Mitigation: Use trusted input only and review generated data or configuration files before sharing or reusing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/skills/amr)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local data under ~/.amr and export amr-export.json or amr-export.csv in the current directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

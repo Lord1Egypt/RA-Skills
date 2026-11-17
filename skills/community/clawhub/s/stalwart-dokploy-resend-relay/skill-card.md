@@ -1,40 +1,62 @@
-## Description: <br>
-Set up Stalwart Mail Server on a new VPS via Dokploy, with default outbound delivery through Resend SMTP relay for environments where direct SMTP port 25 egress is blocked. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up Stalwart Mail Server on a new VPS via Dokploy, with default outbound delivery through Resend SMTP relay for environments where direct SMTP port 25 egress is blocked.
 
-## Publisher: <br>
-[clarezoe](https://clawhub.ai/user/clarezoe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clarezoe](https://clawhub.ai/user/clarezoe)
 
-## Use Case: <br>
-Developers and operators use this skill to configure a self-hosted Stalwart mail server on Dokploy and route outbound mail through Resend when direct SMTP egress is blocked. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Resend API keys, mailbox passwords, Dokploy admin access, and SSH credentials may be exposed during setup. <br>
-Mitigation: Use protected secret storage, avoid placing credentials in chat logs, tickets, screenshots, shell history, or repositories, and rotate any credential that may have been exposed. <br>
-Risk: DNS, TLS, port, or relay misconfiguration can prevent inbound or outbound mail delivery. <br>
-Mitigation: Run the documented preflight checks and verification checklist before relying on the mail server. <br>
+## Use Case:
 
+Developers and infrastructure operators use this skill to deploy a self-hosted Stalwart mail server on a Dokploy-managed VPS and route outbound mail through Resend when direct SMTP port 25 egress is blocked.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clarezoe/stalwart-dokploy-resend-relay) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-supplied domain, VPS SSH access, Dokploy access, and a Resend API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence and artifact metadata) <br>
+Risk: Production deployment guidance may expose the Stalwart admin service if port 8080 is reachable from the public internet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict port 8080 to localhost or the reverse proxy and confirm public access is only through the intended HTTPS route.
+
+Risk: The Resend API key could be spread to mail clients or other unintended locations.
+
+Mitigation: Keep the Resend API key server-side in Stalwart and do not configure it directly in end-user mail clients except as a temporary reviewed fallback.
+
+Risk: Using the unpinned Stalwart container tag can change deployed behavior across installs.
+
+Mitigation: Pin the Stalwart image to a reviewed version or digest before production deployment.
+
+Risk: Shell commands using sudo and production paths can modify the wrong VPS or volume if copied without review.
+
+Mitigation: Run commands only on the intended VPS after confirming domains, mapped ports, and volume paths.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clarezoe/skills/stalwart-dokploy-resend-relay)
+- [ClawHub publisher profile](https://clawhub.ai/user/clarezoe)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-supplied domain, mail host, VPS SSH access, Dokploy access, and Resend API key.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

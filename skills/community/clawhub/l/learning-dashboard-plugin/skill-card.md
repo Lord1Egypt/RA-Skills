@@ -1,37 +1,52 @@
-## Description: <br>
-Updates a learner's error log and course map after a completed lesson when the user asks to save or update progress. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+After a lesson, this skill updates a learner's error log and course map when the user uses Chinese end-of-lesson phrases such as "更新进度", "存档", or "下课".
 
-## Publisher: <br>
-[yizhan-yao](https://clawhub.ai/user/yizhan-yao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[yizhan-yao](https://clawhub.ai/user/yizhan-yao)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External learners use this skill to save end-of-lesson progress by updating a Markdown error log and course map, then receiving a concise progress summary.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Short Chinese phrases such as "存档" or "下课" could activate the skill unintentionally.
+
+Mitigation: Ask the agent to confirm the target files and update scope before applying changes when activation phrases are brief or ambiguous.
+
+Risk: The skill modifies Markdown learning records.
+
+Mitigation: Review proposed changes to the error log and course map before accepting them, especially when existing file structure must be preserved.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Learners and study agents use this skill to record completed lessons, update tracked mistakes, and maintain a course progress map in local markdown files. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Casual save or end-of-lesson phrases can trigger unintended edits to the learning dashboard files. <br>
-Mitigation: Ask the agent to confirm the target files and planned changes before writing when the request is brief or ambiguous. <br>
+**Output Format:** [Markdown file updates with a concise text summary]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Updates disclosed learning-dashboard records and avoids outputting full file contents.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Guidance] <br>
-**Output Format:** [Markdown file edits plus a concise progress summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Updates only the named learning dashboard files and avoids outputting full file contents.] <br>
+1.0.0 (source: plugin.json, release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence and plugin.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Guide rowing machine buyers through questions on body profile, goals, noise, space, and region to determine resistance type, rail length, weight capacity, and monitor while staying brand-neutral. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide rowing machine buyers through questions on body profile, goals, noise, space, and region to determine resistance type, rail length, weight capacity, and monitor - brand-neutral.
 
-## Publisher: <br>
-[arbazex](https://clawhub.ai/user/arbazex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arbazex](https://clawhub.ai/user/arbazex)
 
-## Use Case: <br>
-External users use this skill when buying or upgrading a rowing machine and need a structured consultation that converts their body profile, goals, noise limits, space, and region into practical purchase specs and model suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Buying advice may become inaccurate as current model specs, prices, warranties, seller reputation, and return policies change. <br>
-Mitigation: Independently verify the latest product details and seller terms before purchasing. <br>
-Risk: The consultation asks for body measurements and location details that some users may consider sensitive. <br>
-Mitigation: Share only approximate measurements and regional details that are necessary for sizing, safety, power, and availability guidance. <br>
+## Use Case:
 
+External users use this skill to choose a rowing machine by translating their body profile, goals, noise limits, space, and region into concrete buying specifications. The agent produces a prioritized specification list and a small set of matched product suggestions after gathering the required context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arbazex/rowing-machine-buying-consultant) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/arbazex) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown consultation response with prioritized recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces buyer questions, non-negotiable specs, recommended specs, optional specs, warnings, and up to five matching product suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill asks for approximate body measurements and household setup details to tailor a purchase recommendation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only approximate measurements and relevant setup constraints needed for sizing, noise, space, and safety guidance.
+
+Risk: Product availability, specifications, pricing, and subscription terms can change after the recommendation is generated.
+
+Mitigation: Verify suggested models and current terms with the manufacturer or an authorized retailer before buying.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arbazex/skills/rowing-machine-buying-consultant)
+- [ClawHub publisher profile](https://clawhub.ai/user/arbazex)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured consultation results with non-negotiable, recommended, and optional specs plus up to five model suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

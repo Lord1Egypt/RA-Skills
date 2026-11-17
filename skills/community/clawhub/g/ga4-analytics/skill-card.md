@@ -1,40 +1,60 @@
-## Description: <br>
-Google Analytics 4, Search Console, and Indexing API toolkit for analyzing website traffic, page performance, user demographics, real-time visitors, search queries, SEO metrics, URL indexing status, and e-commerce revenue. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Analytics 4, Search Console, and Indexing API toolkit for analyzing website traffic, page performance, user demographics, real-time visitors, search queries, SEO metrics, URL indexing status, and re-indexing requests.
 
-## Publisher: <br>
-[adamkristopher](https://clawhub.ai/user/adamkristopher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[adamkristopher](https://clawhub.ai/user/adamkristopher)
 
-## Use Case: <br>
-Developers, site owners, and SEO or analytics operators use this skill to pull GA4, Search Console, and Google Indexing API data, compare date ranges, inspect URLs, and create saved summaries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes a Google URL removal action that can request URL deletion from Google's index. <br>
-Mitigation: Do not expose or invoke removeFromIndex() unless URL removal is explicitly required, and require confirmation for each URL before use. <br>
-Risk: Google service account credentials and analytics exports may expose sensitive site or business data. <br>
-Mitigation: Use a dedicated least-privilege Google service account limited to the intended GA4 property and Search Console site, and keep .env and results/ out of version control. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [API Reference](references/api-reference.md) <br>
-- [ClawHub GA4 Analytics skill page](https://clawhub.ai/adamkristopher/ga4-analytics) <br>
+## Use Case:
 
+Developers, site operators, and analytics teams use this skill to query GA4, Search Console, and Google Indexing APIs, then save structured results and produce human-readable summaries for traffic, SEO, content, conversion, and indexing workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, API calls, Files] <br>
-**Output Format:** [Markdown guidance with TypeScript examples, shell commands, Google API responses, saved JSON files, and markdown summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results are saved under results/ by category when the skill functions run with saving enabled.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and scripts/package.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A broadly scoped Google service account could expose more GA4, Search Console, or Indexing API access than the intended property or site requires.
+
+Mitigation: Use a least-privilege Google service account limited to the target GA4 property and Search Console site.
+
+Risk: Index removal functionality can request removal of URLs from Google indexing.
+
+Mitigation: Avoid invoking removeFromIndex unless the operator explicitly intends to remove the URL from Google indexing.
+
+Risk: Saved analytics and Search Console results may contain sensitive business or traffic data.
+
+Mitigation: Keep the results directory private and control access to generated JSON and Markdown summaries.
+
+Risk: The skill includes npm dependencies that may change over time or require security review before use with sensitive analytics data.
+
+Mitigation: Audit and update npm dependencies before installation in sensitive or production environments.
+
+## Reference(s):
+
+- [API Reference](references/api-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript examples, shell commands, and JSON result files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are saved as timestamped JSON files under results/ by category; summaries may be written as Markdown.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, scripts/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,60 @@
-## Description: <br>
-Manages free AI models from OpenRouter for OpenClaw by ranking available free models, configuring fallback routing for rate limits, and updating openclaw.json. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages free AI models from OpenRouter for OpenClaw by ranking available models, configuring fallbacks for rate-limit handling, and updating OpenClaw model configuration.
 
-## Publisher: <br>
-[pz33y](https://clawhub.ai/user/pz33y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pz33y](https://clawhub.ai/user/pz33y)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to configure OpenRouter free models, choose a ranked primary model, and set fallback models to reduce cost and handle rate limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Marketplace identity is inconsistent: server metadata names the release SEEK while artifact files describe FreeRide. <br>
-Mitigation: Verify that this is the expected FreeRide/OpenRouter package before installation or execution. <br>
-Risk: The skill can persistently change OpenClaw's default model routing and fallback configuration. <br>
-Mitigation: Back up ~/.openclaw/openclaw.json before running FreeRide commands and review routing changes before restarting the gateway. <br>
-Risk: The optional watcher can make ongoing OpenRouter health checks and automatic model rotations. <br>
-Mitigation: Run freeride-watcher --daemon only when continuous checks and automatic rotation are intended. <br>
-Risk: The skill depends on an OpenRouter API key. <br>
-Mitigation: Keep OPENROUTER_API_KEY out of shared files and source control. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to reduce model costs by selecting OpenRouter free models, setting a primary model, and maintaining fallback models when rate limits occur.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/pz33y/nmvnb) <br>
-- [OpenClaw project](https://github.com/openclaw/openclaw) <br>
-- [OpenRouter API keys](https://openrouter.ai/keys) <br>
-- [OpenRouter models API](https://openrouter.ai/api/v1/models) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to run FreeRide CLI commands that update OpenClaw model routing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact files also declare 1.0.0, 1.0.1, and 1.0.5) <br>
+Risk: Setup instructions can expose the OpenRouter API key if the key is echoed or stored in shared files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a presence-only API key check, avoid printing secrets, and keep OPENROUTER_API_KEY out of files that may be shared.
+
+Risk: The skill persistently changes OpenClaw model configuration.
+
+Mitigation: Back up ~/.openclaw/openclaw.json before running configuration-changing commands and review the resulting model and fallback settings.
+
+Risk: Installation and runtime behavior depend on an external Python dependency and OpenRouter service availability.
+
+Mitigation: Prefer a pinned installer/dependency set and review availability or rate-limit failures before relying on the configured fallback chain.
+
+## Reference(s):
+
+- [SEEK on ClawHub](https://clawhub.ai/pz33y/skills/nmvnb)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [OpenRouter API models endpoint](https://openrouter.ai/api/v1/models)
+- [OpenRouter API keys](https://openrouter.ai/keys)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include OpenClaw configuration changes and OpenRouter API checks that require OPENROUTER_API_KEY.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

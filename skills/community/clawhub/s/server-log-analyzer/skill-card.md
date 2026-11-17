@@ -1,41 +1,53 @@
-## Description: <br>
-Analyzes server log files to detect problems, extract performance metrics, and provide troubleshooting insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes server log files to detect problems, extract performance metrics, and provide troubleshooting insights.
 
-## Publisher: <br>
-[chengaojian](https://clawhub.ai/user/chengaojian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chengaojian](https://clawhub.ai/user/chengaojian)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to inspect structured server logs, identify errors and Python exceptions, summarize performance metrics, and guide troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Log files may contain secrets, tokens, personal data, or confidential production details. <br>
-Mitigation: Provide only intended log files and review logs for sensitive data before analysis. <br>
-Risk: Broad trigger phrases could activate the skill unexpectedly. <br>
-Mitigation: Use explicit prompts and confirm the target log file before running analysis. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect structured server logs, identify errors and Python exceptions, summarize performance metrics, and produce troubleshooting guidance.
 
-## Reference(s): <br>
-- [Server Log Analyzer](https://clawhub.ai/chengaojian/server-log-analyzer) <br>
-- [Log Reference](references/log_reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Terminal report or JSON with summary, exceptions, performance, issues, and module statistics] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local log files as input; no external dependencies are documented.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill reads user-provided log files, which may contain sensitive operational or personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review log contents before analysis and avoid processing highly sensitive logs unless local handling is acceptable.
+
+Risk: Very large logs may require noticeable local processing time or memory.
+
+Mitigation: Use appropriately scoped log excerpts or review resource usage before running analysis on large files.
+
+## Reference(s):
+
+- [Server Log Analysis Reference](references/log_reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, guidance]
+
+**Output Format:** [Markdown troubleshooting summaries and optional JSON analysis output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can summarize log statistics, exceptions, performance metrics, detected issues, and module frequency from user-provided log files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

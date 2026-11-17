@@ -1,0 +1,1 @@
+PASS pnpm test checkout: checkout empty-state, totals, and payment smoke checks green

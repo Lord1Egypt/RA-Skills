@@ -1,43 +1,59 @@
-## Description: <br>
-Superdesign is a frontend UI/UX design agent for analyzing existing interfaces, preparing design-system context, and generating or iterating design drafts through the SuperDesign CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Superdesign helps frontend developers analyze existing UI, create design-system context, and generate or iterate UI/UX design drafts through the Superdesign CLI.
 
-## Publisher: <br>
-[JayZeeDesign](https://clawhub.ai/user/JayZeeDesign) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jayzeedesign](https://clawhub.ai/user/jayzeedesign)
 
-## Use Case: <br>
-Developers and designers use this skill before frontend implementation to collect UI source context, define or reuse design-system guidance, reproduce current pages, branch design variations, extract reusable components, and extend approved designs across flows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can scan substantial frontend source and write persistent context files that may include sensitive or proprietary material. <br>
-Mitigation: Approve exactly which files are included as context, exclude secrets, proprietary non-UI code, server logic, and sensitive configs, and review generated .superdesign files before reuse. <br>
-Risk: The skill relies on mutable remote guideline files that can change independently of the released artifact. <br>
-Mitigation: Review and pin the remote instruction files before execution when repeatability or policy control matters. <br>
-Risk: The workflow can install or update a global npm CLI and requires account login before design commands run. <br>
-Mitigation: Use an isolated environment, approve or pin the CLI version, and use an appropriate SuperDesign account with least-privilege project access. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/JayZeeDesign/superdesigndev) <br>
-- [SuperDesign init guidelines](https://raw.githubusercontent.com/superdesigndev/superdesign-skill/main/skills/superdesign/INIT.md) <br>
-- [SuperDesign workflow guidelines](https://raw.githubusercontent.com/superdesigndev/superdesign-skill/main/skills/superdesign/SUPERDESIGN.md) <br>
+## Use Case:
 
+Developers and frontend teams use this skill to collect UI context from a repository, establish a design system, create Superdesign drafts, iterate design variations, and prepare implementation guidance after approval.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands, generated context files, and SuperDesign CLI design draft outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create .superdesign/init/*.md, .superdesign/design-system.md, temporary component HTML, and design drafts through the SuperDesign CLI.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Mutable remote instructions can change workflow behavior between runs.
+
+Mitigation: Review fetched guideline files before execution and pin trusted copies for sensitive or regulated projects.
+
+Risk: The workflow may install or update a global npm CLI and require SuperDesign login.
+
+Mitigation: Require explicit approval for global installs or updates and verify CLI authentication state before running design commands.
+
+Risk: The skill can send selected repository source files to the SuperDesign service.
+
+Mitigation: Use a non-sensitive repository or sandbox when possible, and review or redact context files before remote transmission.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jayzeedesign/skills/superdesigndev)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/jayzeedesign)
+- [Superdesign Init Guidelines](https://raw.githubusercontent.com/superdesigndev/superdesign-skill/main/skills/superdesign/INIT.md)
+- [Superdesign Workflow Guidelines](https://raw.githubusercontent.com/superdesigndev/superdesign-skill/main/skills/superdesign/SUPERDESIGN.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated design-context files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create .superdesign context files, invoke the Superdesign CLI, and produce design drafts or implementation guidance after user approval.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter metadata.version is 0.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

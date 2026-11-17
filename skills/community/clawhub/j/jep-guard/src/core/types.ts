@@ -133,6 +133,7 @@ export interface Extension {
 }
 
 export interface ExtensionResult {
+  extension?: string;
   action: 'allow' | 'block' | 'review';
   rule_matched?: string;
   metadata?: Record<string, unknown>;
@@ -151,7 +152,7 @@ export interface JEPCoreService {
   createDelegate(payload: unknown, agent: string, predecessors: string[]): JPEvent;
   createVerify(payload: unknown, agent: string, predecessors: string[]): JPEvent;
   createTerminate(payload: unknown, agent: string, predecessors: string[]): JPEvent;
-  updateStatus(eventId: string, status: JPEvent['status']): void;
+  updateStatus(eventId: string, status: JEPMetadata['status']): void;
   getActiveDelegations(agent: string): JPEvent[];
   dag: CausalDAG;
 }

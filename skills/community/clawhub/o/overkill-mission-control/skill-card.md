@@ -1,39 +1,56 @@
-## Description: <br>
-Comprehensive Mission Control dashboard for OpenClaw - monitor agents, automation, teams, documents, messages, and system metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Overkill Mission Control is a comprehensive OpenClaw dashboard for monitoring agents, automation, teams, documents, messages, system metrics, real-time activity, task execution, and enterprise-level operations.
 
-## Publisher: <br>
-[Broedkrummen](https://clawhub.ai/user/Broedkrummen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[broedkrummen](https://clawhub.ai/user/broedkrummen)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to run and manage a Mission Control dashboard for monitoring agents, messaging, task execution, automation workflows, documents, alerts, SLOs, and system metrics. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The dashboard can expose remote mission-control capabilities without clearly documented access controls or safety boundaries. <br>
-Mitigation: Keep it localhost-only unless the application source, authentication model, Tailnet ACLs, per-agent permissions, and approval controls have been reviewed. <br>
-Risk: The documented setup includes persistent services and a Tailscale proxy that may run with elevated privileges. <br>
-Mitigation: Avoid running the proxy as root where possible, and confirm how to stop, disable, and remove the mission-control and Tailscale services before installation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Broedkrummen/overkill-mission-control) <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to set up and operate a mission-control dashboard for agent monitoring, messaging, task execution, automation workflows, document management, alerts, SLOs, and system health review.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides operational instructions for a local OpenClaw Mission Control dashboard.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs persistent system services, including a root-level Tailscale proxy service.
+
+Mitigation: Review service units, required privileges, logs, and uninstall or disable steps before installation.
+
+Risk: The dashboard can expose an agent-control interface over Tailscale.
+
+Mitigation: Keep access local until Tailscale ACLs, authentication, allowed users, and logging are confirmed.
+
+Risk: The skill documents autonomous execution and polling endpoints for agent messages and tasks.
+
+Mitigation: Review endpoint behavior and restrict network access before enabling message polling or task execution.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/broedkrummen/skills/overkill-mission-control)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash commands and systemd configuration blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes local dashboard startup guidance, service configuration, Tailscale exposure steps, and troubleshooting commands.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

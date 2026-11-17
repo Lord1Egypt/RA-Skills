@@ -1,42 +1,56 @@
-## Description: <br>
-Use this skill when the user wants to design, scope, or refine a Buddhist, spiritual, or cyber-chanting AI product. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs, scopes, and refines Buddhist, spiritual, and cyber-chanting AI product concepts with local-first roadmaps, merit mechanics, safety boundaries, naming, and monetization.
 
-## Publisher: <br>
-[LucasZH7](https://clawhub.ai/user/LucasZH7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lucaszh7](https://clawhub.ai/user/lucaszh7)
 
-## Use Case: <br>
-Product managers, founders, and builders use this skill to turn Buddhist AI, cyber-chanting, ritual companion, merit-score, scripture library, temple service, or shrine robot ideas into scoped product concepts with user segments, scenarios, safety boundaries, monetization, and roadmaps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Outputs about Buddhist practice, merit, or ritual products could be mistaken for religious authority. <br>
-Mitigation: Treat outputs as product brainstorming and require review by appropriate religious, cultural, and domain experts before launch or public claims. <br>
-Risk: Ideas involving payments, temple integrations, personal practice logs, family sync, health-related guidance, or merit claims may introduce privacy, compliance, operational, or spiritual-overclaim risks. <br>
-Mitigation: Perform separate legal, privacy, security, and religious-safety review before implementing those features, and avoid claims that computed merit points represent real karmic merit. <br>
+## Use Case:
 
+External users, founders, product teams, and agent builders use this skill to turn Buddhist ritual-tech ideas into product concepts, MVP scopes, usage loops, trust boundaries, and launch roadmaps. It is especially suited to local-first ritual companions, shrine robots, scripture assistants, merit-point systems, and future temple or community services.
 
-## Reference(s): <br>
-- [MeritLoop Architect on ClawHub](https://clawhub.ai/LucasZH7/meritloop-architect) <br>
-- [Buddhist Agent Scenario Bank](references/use-cases.md) <br>
-- [Naming And Gaps](references/naming-and-gaps.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown concept packs, product plans, naming options, safety boundaries, and roadmaps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are advisory product-design proposals and may include structured sections for concept, scope, users, scenarios, MVP, merit mechanics, trust boundaries, expansion paths, and missing pieces.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Outputs may be culturally, doctrinally, or locally insensitive when discussing Buddhist practices, merit scoring, temple services, or localization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated concepts with culturally and doctrinally knowledgeable humans, use source texts or temple-defined templates where available, and present merit scores as practice indexes rather than literal spiritual measurements.
+
+Risk: Product concepts could overstate spiritual, clergy, or health authority if a user asks for an AI master, healing claims, karmic predictions, or miracle outcomes.
+
+Mitigation: Keep the agent framed as a practice companion, ritual guide, or Dharma librarian; do not claim enlightenment, ordination, karmic guarantees, or replacement of clergy, teachers, or medical or mental-health professionals.
+
+## Reference(s):
+
+- [Buddhist Agent Product Skill](SKILL.md)
+- [Buddhist Agent Scenario Bank](references/use-cases.md)
+- [Naming And Gaps](references/naming-and-gaps.md)
+- [ClawHub Skill Page](https://clawhub.ai/lucaszh7/skills/meritloop-architect)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown concept packs with structured sections and concise recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include product one-liners, user segments, scenarios, MVP features, merit-score framing, trust boundaries, monetization options, roadmaps, naming directions, and gap reviews.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

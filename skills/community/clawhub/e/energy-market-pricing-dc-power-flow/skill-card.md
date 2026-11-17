@@ -1,40 +1,53 @@
-## Description: <br>
-DC power flow analysis for power systems. Use when computing power flows using DC approximation, building susceptance matrices, calculating line flows and loading percentages, or performing sensitivity analysis on transmission networks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DC power flow analysis for power systems, including DC approximation, susceptance matrix construction, line-flow and loading calculations, and sensitivity analysis on transmission networks.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wu-uk](https://clawhub.ai/user/wu-uk)
 
-## Use Case: <br>
-Developers, power-system engineers, and energy-market analysts use this skill to apply DC power-flow approximations, construct susceptance matrices, calculate line flows, and reason about thermal loading in MATPOWER-style network data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Network input data may be malformed, unexpected, or not MATPOWER-style, which can produce incorrect power-flow results. <br>
-Mitigation: Review the local network JSON before running the helper script and confirm bus, branch, reactance, baseMVA, and rating fields match the expected MATPOWER-style structure. <br>
-Risk: DC power-flow assumptions can omit AC effects such as losses, voltage magnitude variation, and large angle behavior. <br>
-Mitigation: Use the outputs as DC approximation guidance and validate high-impact planning, operational, or market decisions with appropriate power-system review. <br>
+## Use Case:
 
+Developers and power-system engineers use this skill to guide DC power-flow calculations, construct susceptance matrices from MATPOWER-style bus and branch data, calculate line flows, and reason about line loading and OPF constraints.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wu-uk/energy-market-pricing-dc-power-flow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with Python code snippets and local helper script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include calculations, matrix-building guidance, line-flow formulas, and review notes for local MATPOWER-style JSON inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: The optional Python helper reads local MATPOWER-style network data and depends on numpy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the helper only on intended local input files and install numpy in a controlled environment.
+
+Risk: DC power flow is a linearized approximation and may omit effects that matter in AC power-flow studies.
+
+Mitigation: Review outputs against the intended engineering use case and validate critical decisions with appropriate power-system analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wu-uk/skills/energy-market-pricing-dc-power-flow)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with Python code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference a local Python helper that expects MATPOWER-style network JSON and numpy.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

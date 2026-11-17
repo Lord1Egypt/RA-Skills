@@ -1,40 +1,57 @@
-## Description: <br>
-Multi-agent AI orchestration, prompt engineering, and eval-driven development for designing, coordinating, and evaluating AI agent systems with structured communication and context management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-agent AI orchestration, prompt engineering, and eval-driven development. Design, coordinate, and evaluate AI agent systems with structured communication and context management.
 
-## Publisher: <br>
-[pietjepuh](https://clawhub.ai/user/pietjepuh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pietjepuh](https://clawhub.ai/user/pietjepuh)
 
-## Use Case: <br>
-Developers and engineers use this skill to design, coordinate, and evaluate multi-agent AI systems, including agent decomposition, prompt patterns, context management, and eval-driven workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Orchestration workflows can lead agents to log secrets, private transcripts, or excessive implementation detail. <br>
-Mitigation: Decide what may be logged before use, avoid storing secrets or private transcripts, and prefer redacted or metadata-only logs unless full transcripts are truly needed. <br>
-Risk: Broad multi-agent coordination can expand scope beyond the intended task. <br>
-Mitigation: Keep orchestration and logging behavior deliberately scoped, and install the skill only when multi-agent orchestration support is intended. <br>
+## Use Case:
 
+Developers and engineers use this skill to design, coordinate, and evaluate multi-agent AI workflows, including prompt patterns, parallel or sequential task delegation, context management, and eval-driven development.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pietjepuh/ai-orchestration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with examples, code blocks, command snippets, and structured output templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include prompt templates, orchestration plans, evaluation criteria, and implementation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad activation or overuse of orchestration patterns can route routine tasks into unnecessary multi-agent workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit success criteria and reserve multi-agent delegation for tasks with independent or specialized subtasks.
+
+Risk: Suggested Bash, write, or edit actions could change files or run commands.
+
+Mitigation: Review proposed shell and file-modification actions before execution.
+
+Risk: Full agent interaction logs can retain sensitive data.
+
+Mitigation: Redact sensitive data and control retention before storing or sharing logs.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/pietjepuh/skills/ai-orchestration)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with prompt templates, code examples, shell command examples, and structured workflow patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces human-facing orchestration guidance for agent workflows; no executable runtime artifact is bundled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

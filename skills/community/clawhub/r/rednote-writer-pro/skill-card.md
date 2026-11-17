@@ -1,39 +1,52 @@
-## Description: <br>
-RedNote Writer Pro helps draft Xiaohongshu/RedNote posts, high-engagement title options, polished copy, cover suggestions, topic tags, and posting recommendations across content categories such as beauty, fashion, food, travel, career, and learning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and improves RedNote/Xiaohongshu-style Chinese marketing posts with title options, body copy, cover suggestions, hashtags, and publishing advice.
 
-## Publisher: <br>
-[awdasfdada](https://clawhub.ai/user/awdasfdada) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[awdasfdada](https://clawhub.ai/user/awdasfdada)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and content teams use this skill to draft, optimize, and batch-produce Chinese RedNote/Xiaohongshu-style notes across beauty, fashion, food, travel, workplace, study, home, and fitness topics.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill is specialized for Chinese Xiaohongshu-style marketing copy and may be unsuitable for other languages, platforms, or regulated promotional contexts without review.
+
+Mitigation: Confirm the target language, platform, brand requirements, and compliance constraints before using generated copy.
+
+Risk: Engagement-optimized marketing drafts may include claims, tone, or publishing advice that do not match a user's product facts or brand policy.
+
+Mitigation: Review generated titles, body copy, tags, and timing suggestions against source facts and brand guidelines before publication.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External creators, marketers, and content teams use this skill to draft or improve Xiaohongshu/RedNote social posts, including titles, body copy, cover concepts, hashtags, and publishing suggestions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing copy may contain inaccurate claims, platform-policy issues, or missing disclosure language before publication. <br>
-Mitigation: Review and edit generated content for factual accuracy, RedNote/Xiaohongshu policy compliance, and required disclosures before publishing. <br>
+**Output Format:** [Markdown-formatted Chinese copywriting guidance and draft post content]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/awdasfdada/rednote-writer-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/awdasfdada) <br>
+**Other Properties Related to Output:** [Produces cover concepts, 10 title options, body copy, 15-20 topic tags, and publishing timing suggestions.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style copywriting suggestions with structured sections for cover ideas, title options, post body, hashtags, and publishing advice] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are generated text for review before publication.] <br>
+1.0.0 (source: server release metadata and package.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

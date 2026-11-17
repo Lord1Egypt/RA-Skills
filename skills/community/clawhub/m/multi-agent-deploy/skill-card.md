@@ -1,42 +1,50 @@
-## Description: <br>
-Deploys a new OpenClaw assistant agent by selecting the next assistant number, copying the template workspace, creating the agent directory, and updating the OpenClaw configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quickly deploys a new OpenClaw assistant agent by selecting the next assistant number, creating the workspace and agent directory structure, and updating the local OpenClaw configuration.
 
-## Publisher: <br>
-[zhou19931993](https://clawhub.ai/user/zhou19931993) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhou19931993](https://clawhub.ai/user/zhou19931993)
 
-## Use Case: <br>
-Developers and operators who manage OpenClaw deployments use this skill when they explicitly want to add another persistent assistant agent while reusing the existing workspace and agent directory layout. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes persistent OpenClaw configuration changes and creates local workspace and agent directories. <br>
-Mitigation: Back up ~/.openclaw/openclaw.json, inspect the generated paths, and review the configuration before restarting the gateway. <br>
-Risk: Security evidence reports a path bug that can create files outside the documented location. <br>
-Mitigation: Fix or account for the workspace path mismatch before deployment and verify the resulting workspace and agentDir values. <br>
-Risk: Broad natural-language triggers may create a new persistent assistant when that is not intended. <br>
-Mitigation: Use the skill only after the user explicitly asks to create or deploy a new assistant agent. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to add a new local assistant agent without manually creating directories or editing the agent list. It is intended for requests such as adding another assistant, creating assistant2 or assistant3, or deploying a daily helper agent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhou19931993/multi-agent-deploy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces persistent local OpenClaw workspace, agent directory, and configuration changes when the deployment script is executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Running the deployment script can change the local OpenClaw agent configuration and create new agent workspace directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or back up ~/.openclaw/openclaw.json before execution and require explicit confirmation before creating agents in shared or production OpenClaw environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhou19931993/skills/multi-agent-deploy)
+- [Publisher profile](https://clawhub.ai/user/zhou19931993)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and terminal output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local OpenClaw workspace and agent directories and update the local OpenClaw configuration when its deployment script is run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

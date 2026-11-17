@@ -1,43 +1,60 @@
-## Description: <br>
-cn-geo-monitor helps agents plan China-focused AI search optimization for DeepSeek, Kimi, Doubao, Tongyi, and ERNIE by using per-engine citation guidance, brand visibility checks, competitor comparison, content adaptation, and prediction workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cn Geo Monitor helps agents plan Chinese AI search optimization across DeepSeek, Kimi, Doubao, Tongyi, and Ernie, with shell helpers for engine lookup and content performance prediction through a remote API.
 
-## Publisher: <br>
-[lm203688](https://clawhub.ai/user/lm203688) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lm203688](https://clawhub.ai/user/lm203688)
 
-## Use Case: <br>
-Developers, marketers, and brand operators use this skill to evaluate and improve how Chinese brands appear in domestic AI search engines. The skill supports engine-specific content planning, API-backed visibility checks, competitor comparison, and prediction/calibration before publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; intended for Chinese AI search optimization workflows. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Brand, competitor, keyword, and content text may be sent to external Tencent Cloud Function API endpoints. <br>
-Mitigation: Use the skill only with data approved for external processing, avoid confidential unpublished material, and disclose/confirm network use before running API-backed checks. <br>
-Risk: The security evidence reports unsafe script input handling in predict.sh. <br>
-Mitigation: Do not run predict.sh on untrusted or adversarial text until payload construction is fixed and reviewed. <br>
+## Use Case:
 
+External users, marketers, and developers use this skill to compare brand visibility and content-fit strategies for major Chinese AI search engines. It can guide platform-specific content adaptation and call bundled shell scripts for engine data and prediction scoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lm203688/cn-geo-monitor) <br>
-- [Publisher profile](https://clawhub.ai/user/lm203688) <br>
-- [Web app free check](https://1341839497-1w5tkesfb0.ap-shanghai.tencentscf.com/) <br>
-- [API backend](https://1341839497-2yuxt6z58d.ap-guangzhou.tencentscf.com) <br>
+### Deployment Geography for Use:
 
+Global; intended for Chinese-market AI search optimization workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Shell commands, API Calls, Markdown] <br>
-**Output Format:** [Markdown guidance with executable shell commands and API-backed analysis summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May send brand, competitor, keyword, and content text to external Tencent Cloud Function endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.4.0 (source: server release evidence) <br>
+Risk: The prediction script is unsafe with untrusted arguments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not pass untrusted text to predict.sh until its payload construction is fixed; run the skill in a constrained environment.
+
+Risk: Draft content, brand plans, competitor names, and search queries may be sent to the listed Tencent SCF API.
+
+Mitigation: Require explicit confirmation before remote API calls and avoid submitting confidential or sensitive business material.
+
+Risk: Remote data sharing is under-disclosed in the artifact.
+
+Mitigation: Review the API endpoints and data handling expectations before installation or operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lm203688/skills/cn-geo-monitor)
+- [Publisher profile](https://clawhub.ai/user/lm203688)
+- [Skill web app](https://1341839497-1w5tkesfb0.ap-shanghai.tencentscf.com/)
+- [Remote API base URL](https://1341839497-2yuxt6z58d.ap-guangzhou.tencentscf.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance, api calls]
+
+**Output Format:** [Markdown guidance with shell command examples and CLI text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Remote API behavior depends on Tencent SCF service availability; bundled scripts require curl and jq.]
+
+## Skill Version(s):
+
+4.4.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

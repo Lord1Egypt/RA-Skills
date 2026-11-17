@@ -1,42 +1,59 @@
-## Description: <br>
-OpenClaw external memory plugin for AgentMemo that enables semantic memory search and auto-capture via a self-hosted AgentMemo server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory (AgentMemo) connects OpenClaw to a self-hosted AgentMemo server for semantic memory search, auto-recall, and optional auto-capture.
 
-## Publisher: <br>
-[yxjsxy](https://clawhub.ai/user/yxjsxy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yxjsxy](https://clawhub.ai/user/yxjsxy)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to connect OpenClaw's memory layer to a self-hosted AgentMemo server for semantic recall and optional memory capture instead of local file-based memory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and captured messages can be sent to the configured AgentMemo server. <br>
-Mitigation: Install only when you trust and control that server; prefer localhost or a protected HTTPS instance. <br>
-Risk: Auto-capture can store conversation-derived memories, including sensitive content if users provide it. <br>
-Mitigation: Keep autoCapture disabled unless intentional, and avoid secrets, regulated data, or private conversations without retention and deletion controls. <br>
+## Use Case:
 
+Developers and external OpenClaw users use this plugin to connect agent memory workflows to a self-hosted AgentMemo service for semantic recall and optional memory capture.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yxjsxy/memory-agentmemo) <br>
-- [AgentMemo project](https://github.com/yxjsxy/agentMemo) <br>
-- [AgentMemo server reference](https://github.com/agentmemo/agentmemo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Configuration, Guidance] <br>
-**Output Format:** [Plain text memory snippets with JSON HTTP requests and responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can auto-inject relevant memories into context and optionally store conversation-derived memories when autoCapture is enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata and package.json) <br>
+Risk: Prompts and optionally captured user messages are sent to the configured AgentMemo server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a local or trusted HTTPS AgentMemo server and enable auto-capture only with user consent.
+
+Risk: API keys protect authenticated AgentMemo instances.
+
+Mitigation: Store API keys in environment variables or another secret manager and avoid committing them in configuration.
+
+Risk: A compromised or unverified AgentMemo server package could expose memory content.
+
+Mitigation: Pin or otherwise verify the AgentMemo server package before running it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yxjsxy/skills/memory-agentmemo)
+- [AgentMemo Project](https://github.com/yxjsxy/agentMemo)
+- [AgentMemo Server](https://github.com/agentmemo/agentmemo)
+
+## Skill Output:
+
+**Output Type(s):** [text, API calls, configuration]
+
+**Output Format:** [Plain text context blocks with JSON HTTP requests to the configured AgentMemo service]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the configured server URL, optional bearer token, optional user namespace, auto-recall, and auto-capture settings.]
+
+## Skill Version(s):
+
+0.1.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

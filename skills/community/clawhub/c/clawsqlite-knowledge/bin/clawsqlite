@@ -5,8 +5,12 @@ SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 SKILL_DIR=$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)
 LOCAL_TARGET="$SKILL_DIR/.clawsqlite-python"
 
-if [ "${XDG_DATA_HOME:-}" ]; then
+if [ "${OPENCLAW_WORKSPACE:-}" ]; then
+  INSTANCE_BASE="$OPENCLAW_WORKSPACE/data/clawsqlite-knowledge"
+elif [ "${XDG_DATA_HOME:-}" ]; then
   INSTANCE_BASE="$XDG_DATA_HOME/clawsqlite-knowledge"
+elif [ -d "$HOME/.openclaw/workspace" ]; then
+  INSTANCE_BASE="$HOME/.openclaw/workspace/data/clawsqlite-knowledge"
 else
   INSTANCE_BASE="$HOME/.local/share/clawsqlite-knowledge"
 fi

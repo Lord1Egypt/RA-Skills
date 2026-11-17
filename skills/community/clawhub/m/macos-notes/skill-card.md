@@ -1,43 +1,58 @@
-## Description: <br>
-Create, read, search, and manage Apple Notes on macOS through AppleScript-backed shell commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, read, search, and manage macOS Notes through AppleScript on macOS.
 
-## Publisher: <br>
-[lucaperret](https://clawhub.ai/user/lucaperret) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lucaperret](https://clawhub.ai/user/lucaperret)
 
-## Use Case: <br>
-External macOS users and their agents use this skill to create notes, list folders and notes, search note titles, and read Apple Notes content when requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can let an agent access Apple Notes on the user's Mac when the user asks it to read, search, or manage notes. <br>
-Mitigation: Use it only for intended Notes workflows and avoid asking it to read or search notes that contain secrets. <br>
-Risk: Local activity logs may include note titles, commands, or search terms that are sensitive. <br>
-Mitigation: Review or delete logs/notes.log periodically when note titles or search terms are sensitive. <br>
-Risk: Notes may be created or searched in an unintended account or folder when names are ambiguous. <br>
-Mitigation: List folders first and specify both account and folder when location matters. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent create, read, list, and search Apple Notes from natural-language requests on macOS.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lucaperret/macos-notes) <br>
-- [Project homepage](https://github.com/lucaperret/agent-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and Markdown with JSON-over-stdin shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS with Notes.app, osascript, and python3; password-protected notes are skipped.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can read from and create entries in Apple Notes on the local macOS account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the requested account, folder, and note operation before running commands that access private notes.
+
+Risk: A persistent plaintext log can retain note titles, note names, search terms, and folder or account names.
+
+Mitigation: Review or disable the logging behavior before using the skill with sensitive personal, work, health, legal, password, or account-related notes.
+
+Risk: Password-protected notes are skipped and cannot be read or modified by the helper script.
+
+Mitigation: Do not rely on this skill for workflows that require access to protected notes; handle those notes directly in Notes.app.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lucaperret/skills/macos-notes)
+- [Project homepage](https://github.com/lucaperret/agent-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON-over-stdin inputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands return plaintext or Markdown-like text from Apple Notes; create operations accept plain text or HTML note bodies.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

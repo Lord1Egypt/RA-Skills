@@ -1,0 +1,55 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "ppp://schemas/term-report@7",
+ "title": "paper-polisher-pro term_report result (v7 contract)",
+ "description": "pp_api.term_report / term_check.py --output 的输出契约：术语保护检查。",
+ "type": "object",
+ "required": [
+  "total_issues",
+  "standardization_rate",
+  "issues",
+  "summary"
+ ],
+ "properties": {
+  "total_issues": {
+   "type": "integer",
+   "minimum": 0
+  },
+  "standardization_rate": {
+   "type": "number",
+   "minimum": 0,
+   "maximum": 100
+  },
+  "issues": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": [
+     "original",
+     "standard"
+    ],
+    "properties": {
+     "original": {
+      "type": "string"
+     },
+     "standard": {
+      "type": "string"
+     },
+     "position": {
+      "type": "integer"
+     },
+     "context": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  "summary": {
+   "type": "string"
+  },
+  "file": {
+   "type": "string"
+  }
+ },
+ "additionalProperties": true
+}

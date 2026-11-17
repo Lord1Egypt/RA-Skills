@@ -1,41 +1,51 @@
-## Description: <br>
-Helps users discover and install agent skills when they ask questions like "how do I do X", "find a skill for X", "is there a skill that can...", or express interest in extending capabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users discover and install agent skills when they ask questions like "how do I do X", "find a skill for X", "is there a skill that can...", or express interest in extending capabilities.
 
-## Publisher: <br>
-[zzzmmmeee](https://clawhub.ai/user/zzzmmmeee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zzzmmmeee](https://clawhub.ai/user/zzzmmmeee)
 
-## Use Case: <br>
-Developers and agent users use this skill to search for relevant installable skills, evaluate basic quality signals, and optionally prepare installation commands for the open agent skills ecosystem. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide users toward global third-party skill installation with confirmation skipped. <br>
-Mitigation: Review each recommended skill's source and run installation commands only when the package and persistent environment changes are trusted. <br>
-Risk: Search results or popularity signals may be insufficient to establish skill quality or safety. <br>
-Mitigation: Inspect source reputation, install counts, repository activity, and security posture before recommending or installing a skill. <br>
+## Use Case:
 
+Developers and agent users use this skill to discover relevant installable skills, compare quality signals, and install vetted skills when extending an agent's capabilities.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zzzmmmeee/find-skill4) <br>
-- [Open agent skills directory](https://skills.sh/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown] <br>
-**Output Format:** [Markdown with inline shell commands and links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend third-party skill searches or installation commands that should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill recommends unpinned remote Skills CLI commands and includes a global install command that skips prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review target skill source before installing, prefer a pinned and locally vetted Skills CLI, and avoid global or prompt-skipping installs unless persistent global installation is intentional.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zzzmmmeee/skills/find-skill4)
+- [Skills Directory and Leaderboard](https://skills.sh/)
+- [Example Skills Directory Listing](https://skills.sh/vercel-labs/agent-skills/react-best-practices)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include install commands and external skill links; users should vet sources before executing commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

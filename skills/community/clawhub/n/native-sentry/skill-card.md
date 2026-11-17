@@ -1,41 +1,54 @@
-## Description: <br>
-Read Sentry issues, events, and production errors via the Sentry REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Native Sentry helps agents read Sentry issues, events, and production errors through the Sentry REST API using a read-only token.
 
-## Publisher: <br>
-[codeninja23](https://clawhub.ai/user/codeninja23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[codeninja23](https://clawhub.ai/user/codeninja23)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to inspect Sentry production diagnostics, list recent issues and events, retrieve issue details, and request stack traces when needed using a read-only Sentry token. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Sentry diagnostics can expose production error data and sensitive user or application details. <br>
-Mitigation: Use a dedicated read-only Sentry token, keep redaction enabled by default, and avoid --no-redact in shared or logged sessions. <br>
-Risk: Stack traces may reveal sensitive implementation details. <br>
-Mitigation: Request stack traces only when needed and only in a trusted environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Native Sentry on ClawHub](https://clawhub.ai/codeninja23/native-sentry) <br>
-- [Sentry](https://sentry.io) <br>
-- [Sentry Auth Tokens](https://sentry.io/settings/account/api/auth-tokens/) <br>
+## Use Case:
 
+Developers and production support engineers use this skill to inspect recent Sentry issues, retrieve issue and event details, and summarize production error health without leaving the agent workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; helper commands return JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SENTRY_AUTH_TOKEN. PII is redacted by default, and stack traces are omitted unless requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A configurable Sentry base URL could send the Sentry token to an untrusted host if it is misconfigured or influenced.
+
+Mitigation: Use only trusted HTTPS Sentry hosts for SENTRY_BASE_URL or --base-url, and avoid overriding the default endpoint unless self-hosting requires it.
+
+Risk: Sentry data may include sensitive production details, including stack traces or personal data.
+
+Mitigation: Use narrowly scoped read-only tokens, keep default redaction enabled, avoid --no-redact in shared or logged environments, and request stack traces only when needed.
+
+## Reference(s):
+
+- [Native Sentry on ClawHub](https://clawhub.ai/codeninja23/skills/native-sentry)
+- [Sentry](https://sentry.io)
+- [Sentry auth tokens](https://sentry.io/settings/account/api/auth-tokens/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Sentry API responses are redacted for emails and IP addresses by default; stack traces require an explicit include flag.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

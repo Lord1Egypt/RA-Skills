@@ -1,0 +1,79 @@
+{
+  "pipeline_name": "多Agent协作流水线模板",
+  "version": "5.0",
+  "description": "v5.0 模板 - 线性流水线 + 人工审批节点（动态控制流示例见 control_flow_template.json，子流水线示例见 sub_pipeline_template.json）",
+  "agents": [
+    {
+      "id": "collector",
+      "name": "数据采集Agent",
+      "role": "从指定数据源采集原始数据，包括网页内容、API数据、文件内容等",
+      "type": "task",
+      "inputs": ["data_source", "query_params"],
+      "outputs": ["raw_data"],
+      "depends_on": [],
+      "retry": 3,
+      "timeout": 60,
+      "fallback": "skip",
+      "default_value": null,
+      "comment": "首节点无依赖；skip=失败时跳过此节点继续执行下游"
+    },
+    {
+      "id": "cleaner",
+      "name": "数据清洗Agent",
+      "role": "对原始数据进行去重、格式标准化、异常值过滤",
+      "type": "task",
+      "inputs": ["raw_data"],
+      "outputs": ["cleaned_data"],
+      "depends_on": ["collector"],
+      "retry": 2,
+      "timeout": 90,
+      "fallback": "default",
+      "default_value": {"cleaned_data": "数据清洗失败，使用原始数据"},
+      "comment": "default=使用预设默认值完成，下游收到默认值继续执行"
+    },
+    {
+      "id": "reviewer",
+      "name": "人工审核节点",
+      "role": "人工审核数据质量，确认无误后继续",
+      "type": "approval",
+      "inputs": ["cleaned_data"],
+      "outputs": ["approved_data"],
+      "depends_on": ["cleaner"],
+      "retry": 0,
+      "timeout": 0,
+      "fallback": "abort",
+      "comment": "type=approval 表示人工审批节点，执行到此会暂停等待用户确认"
+    },
+    {
+      "id": "analyzer",
+      "name": "数据分析Agent",
+      "role": "对清洗后数据进行统计分析、趋势识别、关键指标提取",
+      "type": "task",
+      "inputs": ["approved_data"],
+      "outputs": ["analysis_result", "key_metrics"],
+      "depends_on": ["reviewer"],
+      "retry": 2,
+      "timeout": 120,
+      "fallback": "default",
+      "default_value": {"analysis_result": "数据不足，无法完成分析", "key_metrics": {}}
+    },
+    {
+      "id": "reporter",
+      "name": "报告生成Agent",
+      "role": "基于分析结果生成结构化 Markdown 报告，包含摘要、图表建议、结论",
+      "type": "task",
+      "inputs": ["analysis_result", "key_metrics"],
+      "outputs": ["report"],
+      "depends_on": ["analyzer"],
+      "retry": 1,
+      "timeout": 180,
+      "fallback": "abort",
+      "default_value": null,
+      "comment": "abort=失败后中止流水线，需要修复后 resume 断点续传"
+    }
+  ],
+  "state_store": {
+    "type": "json",
+    "path": "./pipeline_state.json"
+  }
+}

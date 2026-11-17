@@ -1,0 +1,432 @@
+{
+  "version": "2.4.0",
+  "source_id": "quiz-gov-cn",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:04:16.426Z",
+  "entry": {
+    "url": "https://www.gov.cn/zhengce/xxgk/gjgzk/index.htm",
+    "final_url": "https://www.gov.cn/zhengce/xxgk/gjgzk/index.htm?searchWord=",
+    "title": "国家规章库_中国政府网",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:04:16.426Z",
+    "identity": {
+      "declared_name": "中国政府网·政策文件库",
+      "hostname": "www.gov.cn",
+      "domain_matches": true
+    },
+    "links": [],
+    "frames": [
+      {
+        "src": "https://www.gov.cn/2016public/top.htm",
+        "id": "sear-d",
+        "name": "",
+        "title": ""
+      },
+      {
+        "src": "https://www.gov.cn/2016public/bottom.htm",
+        "id": "iframe_footer_p",
+        "name": "",
+        "title": ""
+      }
+    ]
+  },
+  "controls": [
+    {
+      "tag": "input",
+      "type": null,
+      "text": "检索国务院部门，省（区、市）及市（州）规章",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "检索国务院部门，省（区、市）及市（州）规章",
+      "name": null,
+      "id": "search_in_ID",
+      "css": "#search_in_ID",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#search_in_ID"
+      },
+      "observed_url": "https://www.gov.cn/zhengce/xxgk/gjgzk/index.htm?searchWord=",
+      "observed_at": "2026-10-09T09:04:14.386Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "首页",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "首页",
+        "exact": true
+      },
+      "observed_url": "https://www.gov.cn/zhengce/xxgk/gjgzk/index.htm?searchWord=",
+      "observed_at": "2026-10-09T09:04:14.386Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "上一页",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "上一页",
+        "exact": true
+      },
+      "observed_url": "https://www.gov.cn/zhengce/xxgk/gjgzk/index.htm?searchWord=",
+      "observed_at": "2026-10-09T09:04:14.386Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "下一页",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "下一页",
+        "exact": true
+      },
+      "observed_url": "https://www.gov.cn/zhengce/xxgk/gjgzk/index.htm?searchWord=",
+      "observed_at": "2026-10-09T09:04:14.386Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "尾页",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "尾页",
+        "exact": true
+      },
+      "observed_url": "https://www.gov.cn/zhengce/xxgk/gjgzk/index.htm?searchWord=",
+      "observed_at": "2026-10-09T09:04:14.386Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "跳转",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "跳转",
+        "exact": true
+      },
+      "observed_url": "https://www.gov.cn/zhengce/xxgk/gjgzk/index.htm?searchWord=",
+      "observed_at": "2026-10-09T09:04:14.386Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "1",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "1",
+      "name": null,
+      "id": "",
+      "css": "input[placeholder=\"1\"]",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "input[placeholder=\"1\"]"
+      },
+      "observed_url": "https://www.gov.cn/zhengce/xxgk/gjgzk/index.htm?searchWord=",
+      "observed_at": "2026-10-09T09:04:14.386Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "确定",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "确定",
+        "exact": true
+      },
+      "observed_url": "https://www.gov.cn/zhengce/xxgk/gjgzk/index.htm?searchWord=",
+      "observed_at": "2026-10-09T09:04:14.386Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "quiz-gov-cn:record-lookup",
+      "source_id": "quiz-gov-cn",
+      "task_kind": "record-lookup",
+      "status": "entry_observed",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.gov.cn/zhengce/xxgk/gjgzk/index.htm?searchWord=",
+      "controls": [
+        {
+          "tag": "input",
+          "type": null,
+          "text": "检索国务院部门，省（区、市）及市（州）规章",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "检索国务院部门，省（区、市）及市（州）规章",
+          "name": null,
+          "id": "search_in_ID",
+          "css": "#search_in_ID",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#search_in_ID"
+          },
+          "observed_url": "https://www.gov.cn/zhengce/xxgk/gjgzk/index.htm?searchWord=",
+          "observed_at": "2026-10-09T09:04:14.386Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "首页",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "首页",
+            "exact": true
+          },
+          "observed_url": "https://www.gov.cn/zhengce/xxgk/gjgzk/index.htm?searchWord=",
+          "observed_at": "2026-10-09T09:04:14.386Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "上一页",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "上一页",
+            "exact": true
+          },
+          "observed_url": "https://www.gov.cn/zhengce/xxgk/gjgzk/index.htm?searchWord=",
+          "observed_at": "2026-10-09T09:04:14.386Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "下一页",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "下一页",
+            "exact": true
+          },
+          "observed_url": "https://www.gov.cn/zhengce/xxgk/gjgzk/index.htm?searchWord=",
+          "observed_at": "2026-10-09T09:04:14.386Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "尾页",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "尾页",
+            "exact": true
+          },
+          "observed_url": "https://www.gov.cn/zhengce/xxgk/gjgzk/index.htm?searchWord=",
+          "observed_at": "2026-10-09T09:04:14.386Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "跳转",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "跳转",
+            "exact": true
+          },
+          "observed_url": "https://www.gov.cn/zhengce/xxgk/gjgzk/index.htm?searchWord=",
+          "observed_at": "2026-10-09T09:04:14.386Z"
+        },
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "1",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "1",
+          "name": null,
+          "id": "",
+          "css": "input[placeholder=\"1\"]",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "input[placeholder=\"1\"]"
+          },
+          "observed_url": "https://www.gov.cn/zhengce/xxgk/gjgzk/index.htm?searchWord=",
+          "observed_at": "2026-10-09T09:04:14.386Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "确定",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "确定",
+            "exact": true
+          },
+          "observed_url": "https://www.gov.cn/zhengce/xxgk/gjgzk/index.htm?searchWord=",
+          "observed_at": "2026-10-09T09:04:14.386Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": null,
+    "quiz_entries": [
+      "quiz-entry-031"
+    ],
+    "example_ids": [],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:04:16.426Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/quiz-gov-cn-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/quiz-gov-cn-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

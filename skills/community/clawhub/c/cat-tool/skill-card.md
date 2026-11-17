@@ -1,38 +1,52 @@
-## Description: <br>
-Concatenate and display file contents to standard output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Concatenate and display file contents to standard output.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and other agent users can use this skill to read one or more requested files and display their contents as plain text.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The helper can print any file path that the user asks it to read.
+
+Mitigation: Review requested paths before execution and avoid using it on sensitive files unless disclosure is intended.
+
+Risk: The documented -n and -s options are not implemented in the included script.
+
+Mitigation: Verify expected command behavior before relying on line numbering or blank-line squeezing in a workflow.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill to display one or more local files, optionally with simple cat-style formatting behavior. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: File contents may include secrets or private data if sensitive paths are requested. <br>
-Mitigation: Run the skill only on intended files and avoid secrets or private files unless their contents may appear in the conversation or command output. <br>
+**Output Format:** [Plain text output with optional Markdown command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dinghaibin/cat-tool) <br>
+**Other Properties Related to Output:** [No hidden network, persistence, or privilege behavior was reported by the authoritative security evidence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text] <br>
-**Output Format:** [Plain text written to standard output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports multiple file inputs and standard input; documented flags include line numbers and blank-line squeezing.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

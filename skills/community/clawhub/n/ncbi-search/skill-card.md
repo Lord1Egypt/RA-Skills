@@ -1,46 +1,62 @@
-## Description: <br>
-Searches NCBI databases through the official E-Utilities API and routes biomedical literature, gene, protein, nucleotide, dbSNP, ClinVar, taxonomy, BioSample, Assembly, and SRA queries to the appropriate database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search NCBI databases using E-Utilities API (official, free). Supports 10+ databases: PubMed (literature), Gene, Protein, Nucleotide, dbSNP, ClinVar, Taxonomy, BioSample, Assembly, SRA. Automatically detects search intent and routes to appropriate database. Returns formatted results with key information. Use for biomedical literature, gene information, protein sequences, genetic variants, and more.
 
-## Publisher: <br>
-[side-peng](https://clawhub.ai/user/side-peng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[side-peng](https://clawhub.ai/user/side-peng)
 
-## Use Case: <br>
-Developers, researchers, and agents use this skill to run NCBI and PubMed searches, route biomedical queries to the right database, fetch summaries or JSON results, and batch fetch PubMed article details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Biomedical search terms are sent to NCBI. <br>
-Mitigation: Avoid sensitive queries when that disclosure is inappropriate, or confirm that sending the query to NCBI is acceptable before use. <br>
-Risk: Returned NCBI results may be stored locally in the SQLite cache. <br>
-Mitigation: Set NCBI_NO_CACHE=1 for sensitive searches or clear .ncbi_cache/cache.db after use on shared machines. <br>
-Risk: Passing an NCBI API key on the command line can expose it through shell history or process listings. <br>
-Mitigation: Prefer the NCBI_API_KEY environment variable instead of the --api-key argument. <br>
+## Use Case:
 
+Developers, researchers, and biomedical analysts use this skill to guide an agent through NCBI E-Utilities searches across PubMed, Gene, Protein, Nucleotide, dbSNP, ClinVar, Taxonomy, BioSample, Assembly, and SRA. It helps choose the right NCBI database, construct searches, run the bundled scripts, and return readable summaries or JSON results.
 
-## Reference(s): <br>
-- [PubMed Query Syntax Guide](references/query_syntax.md) <br>
-- [NCBI E-Utilities Documentation](https://www.ncbi.nlm.nih.gov/books/NBK25501/) <br>
-- [NCBI Database List](https://www.ncbi.nlm.nih.gov/books/NBK25500/table/chapter.T5/) <br>
-- [PubMed Help](https://pubmed.ncbi.nlm.nih.gov/help/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/side-peng/ncbi-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with bash commands; command output can be summary text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can save results to files when requested; repeated NCBI API responses may be stored in a local SQLite cache.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: NCBI API keys can be exposed in shell history or process listings when passed directly on the command line.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set NCBI_API_KEY as an environment variable instead of passing the key as a command argument.
+
+Risk: Biomedical queries and retrieved results can remain on disk through the local cache or explicit output-file options.
+
+Mitigation: Disable caching with NCBI_NO_CACHE=1 for sensitive searches and manage output files according to the user's data-handling requirements.
+
+Risk: The skill runs third-party Python scripts that make network requests to NCBI services.
+
+Mitigation: Install and run the scripts in an isolated Python environment before using them in a shared or production workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/side-peng/skills/ncbi-search)
+- [PubMed Query Syntax Guide](references/query_syntax.md)
+- [NCBI E-Utilities API](https://www.ncbi.nlm.nih.gov/books/NBK25501/)
+- [PubMed Help](https://pubmed.ncbi.nlm.nih.gov/help/)
+- [MeSH Browser](https://mesh.nlm.nih.gov/)
+- [PubMed Advanced Search Builder](https://pubmed.ncbi.nlm.nih.gov/advanced/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; command output can be summary text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write requested result files and may create a local SQLite cache unless caching is disabled.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

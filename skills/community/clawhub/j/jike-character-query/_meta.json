@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn72cqttfa4en7epyybjca4m2x85ppvj",
+  "owner": "jikeapi",
   "slug": "jike-character-query",
   "version": "1.0.0",
-  "publishedAt": 1777445458796
+  "title": "新华字典 - 即刻数据",
+  "description": "支持拼音列表、部首列表、按拼音查汉字、按部首查汉字、汉字详情查询。",
+  "env": "JIKE_CHARACTER_QUERY_KEY",
+  "api_url": "https://api.jikeapi.cn/v1/character/chinese/detail",
+  "homepage": "https://www.jikeapi.cn/"
 }

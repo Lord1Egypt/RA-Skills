@@ -1,0 +1,9 @@
+{
+  "name": "research-methodology",
+  "normalizedName": "research-methodology",
+  "description": "调研执行方法论（Plan → Do → Check → Act 全流程），用于回答「这个课题该怎么查」「怎么保证调研不是拍脑袋」「多个来源冲突信谁」这类问题。补齐调研最缺的 Plan（Research Brief：问题定义、边界、验收标准）与 Do（检索设计、多源交叉验证、证据分级），Check 环节接质量门禁。全程按真实参照法（Grounded Reference Method）执行——每条结论挂得出可核验来源，来源冲突须显式标注而非取平均，无来源不主张。适用正式调研、深度研究、方案论证、情报收集、行业 / 竞品 / 标准调研并产出调研报告的场景。触发词：调研、研究、深度调研、情报收集、查证、多源验证、Research Brief、调研方法论、竞品调研、标准调研、research methodology、desk research。本技能为通用方法论工具，非医疗器械 / 非医疗软件，无疗",
+  "author": "诺源(Arche)@SynomosAI",
+  "copyright": "SynomosAI",
+  "version": "1.0.0",
+  "license": "MIT"
+}

@@ -1,43 +1,51 @@
-## Description: <br>
-Runtime security hardening for OpenClaw agents that helps protect against prompt injection, data exfiltration, credential leaks, and unauthorized operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Eridian provides runtime security hardening for OpenClaw agents against prompt injection, data exfiltration, credential leaks, and unauthorized operations.
 
-## Publisher: <br>
-[iampaulpatterson-boop](https://clawhub.ai/user/iampaulpatterson-boop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[iampaulpatterson-boop](https://clawhub.ai/user/iampaulpatterson-boop)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add runtime security guidance, audit checklists, and approval patterns for OpenClaw agents handling external content, credentials, files, browser navigation, and sensitive operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Broad runtime security guidance can affect routine agent behavior by requiring confirmation for file writes, shell commands, browser navigation, configuration changes, credential handling, and external sharing. <br>
-Mitigation: Review the activation description and reference files before installation, then tailor allowlists and approval rules to the workspace owner’s operating model. <br>
-Risk: Attack examples include malicious URLs and credential-exfiltration patterns as training material. <br>
-Mitigation: Treat the examples as inert reference material and do not execute, browse, or copy them into operational workflows. <br>
+## Use Case:
 
+Developers and operators use this skill to add runtime security rules, audit checklists, and browser navigation controls to OpenClaw agents. It is intended for hardening agent configurations and reducing exposure to prompt injection, data exfiltration, credential leakage, and unauthorized operations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/iampaulpatterson-boop/eridian) <br>
-- [Security Patterns Reference](references/security-patterns.md) <br>
-- [Attack Vectors & Defenses](references/attack-vectors.md) <br>
-- [Security Audit Template](references/audit-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions, Shell commands] <br>
-**Output Format:** [Markdown guidance with inline code blocks and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces security rules, audit checklist content, attack-pattern references, and browser allowlist configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/SKILL.md) <br>
+Risk: The security scan reports an unsafe credential-disclosure exception that could allow raw config files or API keys to be shown in chat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit the credential rules before installation; remove exceptions that permit printing secrets and use presence checks, masked values, or local secret-manager inspection instead.
+
+## Reference(s):
+
+- [Security Patterns Reference](references/security-patterns.md)
+- [Attack Vectors & Defenses](references/attack-vectors.md)
+- [Security Audit Template](references/audit-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes copy-paste security rules, an audit checklist, and a browser allowlist example; no executable payload.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

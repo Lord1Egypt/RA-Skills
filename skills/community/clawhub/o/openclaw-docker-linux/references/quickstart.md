@@ -18,7 +18,7 @@ cd openclaw-docker
 ```bash
 cat > .env << 'EOF'
 # AI Model API Key (REQUIRED - at least one)
-ANTHROPIC_API_KEY=sk-ant-api03-your-key-here
+ANTHROPIC_API_KEY=REDACTED-SECRET
 # OPENAI_API_KEY=sk-your-key-here
 # GOOGLE_API_KEY=your-key-here
 
@@ -30,6 +30,10 @@ OPENCLAW_GATEWAY_TOKEN=your-secure-random-token-here
 # DISCORD_BOT_TOKEN=
 # SLACK_BOT_TOKEN=
 EOF
+
+# Lock it down before adding real secrets — .env holds your gateway token
+# and model API keys.
+chmod 600 .env
 ```
 
 ### 3. Create `docker-compose.yml`
@@ -43,7 +47,10 @@ See `references/docker-config.md` for the full template.
 mkdir -p ~/.openclaw ~/openclaw/workspace
 
 # On Linux, set ownership to UID 1000 (the 'node' user in the container)
-sudo chown -R 1000:1000 ~/.openclaw ~/openclaw
+# Verify the uid first - 1000 is not your uid on every machine.
+id -u; id -g
+# Then use YOUR actual ids (shown above), not a guessed 1000:
+sudo chown -R "$(id -u):$(id -g)" ~/.openclaw ~/openclaw
 
 # On Mac, the default user is already compatible
 ```

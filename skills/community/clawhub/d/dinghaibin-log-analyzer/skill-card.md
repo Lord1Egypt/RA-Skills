@@ -1,40 +1,52 @@
-## Description: <br>
-Analyze log files to extract insights, errors, and patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze log files to extract insights, errors, and patterns.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to inspect application, access, JSON, syslog, and web-server logs for errors, warnings, regex matches, and summary statistics during troubleshooting.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Log files may contain sensitive data that could be summarized, printed, or written to an output file.
+
+Mitigation: Analyze only logs the user intends to inspect and choose output paths deliberately.
+
+Risk: Complex regular expressions can make analysis slow or hang on large or crafted logs.
+
+Mitigation: Use trusted, simple regex patterns and limit analysis scope for large files.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect local application, access, JSON, or syslog-style logs for errors, warnings, regex matches, summary statistics, and optional JSON reports. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Log files may contain credentials, personal data, or other sensitive operational details. <br>
-Mitigation: Review or redact logs before analysis and provide only files the agent should read. <br>
-Risk: JSON reports can persist sensitive log excerpts or counts to disk. <br>
-Mitigation: Write reports only to appropriate local paths and handle generated files according to the log data sensitivity. <br>
+**Output Format:** [Markdown guidance with inline shell commands; analyzer results are plain text or JSON when --json is used.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dinghaibin/dinghaibin-log-analyzer) <br>
+**Other Properties Related to Output:** [Reads user-specified local log files and can write user-directed JSON output files.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands] <br>
-**Output Format:** [Plain text summaries, filtered log lines, or JSON reports from a local command-line analyzer.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads a user-provided local log file and can write an optional JSON report to a user-chosen local path.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

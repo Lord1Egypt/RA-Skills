@@ -1,0 +1,9 @@
+{
+  "name": "授权码与本地凭据 Broker 设计",
+  "normalizedName": "authz-code-design",
+  "description": "设计安全授权码 / 本地凭据 broker 的可复用方法论，用于回答「怎么给 AI 发临时权限」「密钥别进模型上下文怎么办」「授权能不能一键收回」这类问题。覆盖 broker 架构、HS256 JWT、scope 限定、短 TTL（JIT 即时授权）、设备指纹（X-Device-Id）、生物标记、审计哈希链防篡改、吊销与一键解绑、零知识红线。凭证签发与吊销按注册方法论登记为可核验属性，哈希链留痕对应证据链审计。当需要给 AI agent 或本地程序发放短时、窄域、可审计凭证，又绝不希望秘文进模型上下文 / 落盘时使用。触发词：授权码设计、凭据 broker、JWT 授权、短时令牌、JIT 授权、设备指纹、审计哈希链、吊销解绑、零知识、AI agent 授权、authorization code、credential broker。本技能为通用方法论工具，非医疗器械 / 非医疗软件，无疗效或",
+  "author": "诺卫(Phylax)@SynomosAI",
+  "copyright": "SynomosAI",
+  "version": "1.1.0",
+  "license": "MIT"
+}

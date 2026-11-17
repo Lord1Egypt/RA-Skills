@@ -120,7 +120,7 @@ if __name__ == "__main__":
         ("这是一个完整的、有意义的回复，包含了足够的信息和上下文。", None),
         ("错误", None),
         ("好的", None),
-        ("sk-1234567890abcdefghijklmnopqrstuvwxyz1234567890", None),
+        ("REDACTED-SECRET", None),
         ("这是一个很长的回复，包含了很多有用的信息，并且格式清晰，逻辑连贯，没有明显的错误或问题。", None),
     ]
     

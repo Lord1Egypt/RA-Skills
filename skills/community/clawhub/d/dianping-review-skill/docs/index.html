@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>dianping-review-skill · 大众点评评价助手</title>
+<meta name="description" content="dianping-review-skill · 大众点评评价助手：照片加一句话，写成真实的评价和探店笔记。正文里每个数字都能在你的事实卡里找到。免费版 MIT-0，需要 Python 3 和 hekouwang-writer-skill。">
+<meta property="og:title" content="dianping-review-skill · 大众点评评价助手">
+<meta property="og:description" content="照片加一句话，写成真实的大众点评评价和探店笔记。每个数字都有出处，评价笔记不撞车，品类必写项自动提醒。">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://huiyonghkw.github.io/dianping-review-skill/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23ff5a1f'/%3E%3Ctext x='16' y='23' font-size='18' text-anchor='middle' fill='%23fff' font-family='sans-serif' font-weight='900'%3E%E8%AF%84%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="tailwind.css?v=331e9acb48">
+</head>
+<body class="bg-page text-ink font-sans leading-[1.7]">
+
+<header class="sticky top-0 z-20 border-b border-rule bg-paper/80 backdrop-blur-md">
+  <div class="mx-auto flex h-15 w-[min(1120px,calc(100%-32px))] items-center justify-between gap-4 md:w-[min(1120px,calc(100%-48px))]">
+    <a class="flex items-center gap-2.5 whitespace-nowrap text-[15px] font-extrabold no-underline" href="#">
+      <b class="bg-flame inline-grid size-6.5 place-items-center rounded-slip text-sm font-black text-white">评</b>dianping-review-skill
+    </a>
+    <nav class="flex items-center gap-5.5 text-sm text-ink2">
+      <a class="hidden hover:text-ink md:inline" href="#audit">对账</a>
+      <a class="hidden hover:text-ink md:inline" href="#features">功能</a>
+      <a class="hidden hover:text-ink md:inline" href="#category">品类</a>
+      <a class="hidden hover:text-ink md:inline" href="#lines">红线</a>
+      <a class="hidden hover:text-ink md:inline" href="https://github.com/huiyonghkw/dianping-review-skill" target="_blank" rel="noopener">GitHub</a>
+      <a class="font-bold text-accent-ink" href="#pro">Pro ¥49</a>
+      <a class="hidden rounded-slip bg-ink px-3.5 py-2 text-[13.5px] font-extrabold whitespace-nowrap text-paper transition-colors duration-200 hover:bg-accent hover:text-white md:inline-flex" href="#install">免费安装</a>
+    </nav>
+  </div>
+</header>
+
+<div class="bg-hero border-b border-rule py-12 md:pt-18 md:pb-22">
+  <div class="mx-auto grid w-[min(1120px,calc(100%-32px))] items-center gap-9 md:w-[min(1120px,calc(100%-48px))] md:grid-cols-[1.15fr_.85fr] md:gap-16">
+    <div>
+      <div class="inline-flex flex-wrap items-center gap-x-2 gap-y-1 rounded-full border border-rule2 bg-slip/70 px-3.5 py-1.5 font-mono text-[12.5px] text-ink2">
+        <span class="font-bold text-ink">dianping-review-skill</span><span class="text-ink3">·</span><span>v1.1.0</span><span class="text-ink3">·</span><span>MIT-0</span><span class="text-ink3">·</span><span>Agent Skill</span>
+      </div>
+      <h1 class="mt-6 text-[clamp(48px,7vw,92px)] leading-[1.04] font-black tracking-[-.03em]">大众点评<br><em class="bg-linear-to-r from-accent to-accent-deep bg-clip-text not-italic text-transparent">评价助手</em></h1>
+      <p class="mt-5 text-[clamp(22px,2.6vw,30px)] leading-snug font-black text-ink2">每个数字，都对得上账。</p>
+      <p class="mt-4 max-w-[30em] text-[18px] leading-[1.75] text-ink2">给 Claude Code、Cursor 等 AI 用的 Skill。把照片和一句话交给它，写成真实的大众点评评价和探店笔记；正文里每个数字，都能在你的事实卡里找到。</p>
+      <div class="mt-8.5 flex flex-wrap gap-3">
+        <a class="bg-flame inline-flex items-center rounded-slip px-5.5 py-3.25 text-[15px] font-extrabold whitespace-nowrap text-white shadow-[0_10px_24px_rgb(255_90_31/.32)] transition-transform duration-200 hover:-translate-y-0.5" href="#install">免费安装</a>
+        <a class="inline-flex items-center rounded-slip border-[1.5px] border-ink px-5.5 py-3.25 text-[15px] font-extrabold whitespace-nowrap transition-colors duration-200 hover:bg-paper2" href="#audit">看它怎么对账</a>
+      </div>
+    </div>
+    <div class="slip rv px-6.5 pt-6.5 pb-8.5 font-mono text-[13.5px] text-ink2 md:rotate-[1.2deg]" aria-label="事实卡示例">
+      <h4 class="text-center font-sans text-[15px] font-black tracking-wide text-ink">事实卡 · 同治龙窑</h4>
+      <div class="mt-1 text-center text-[11.5px] text-ink3">2026-10-12 · 亲子陶艺 · 双流</div>
+      <hr class="my-3.5 border-0 border-t-[1.5px] border-dashed border-rule2">
+      <ul class="space-y-0.5">
+        <li class="flex justify-between gap-3"><span class="font-sans text-ink">参观</span><span>免费</span></li>
+        <li class="flex justify-between gap-3"><span class="font-sans text-ink">做陶罐</span><span>2 个 ¥100</span></li>
+        <li class="flex justify-between gap-3"><span class="font-sans text-ink">上釉</span><span>另收费</span></li>
+        <li class="flex justify-between gap-3"><span class="font-sans text-ink">寄送</span><span>约 1 个月</span></li>
+        <li class="flex justify-between gap-3"><span class="font-sans text-ink">离市区</span><span>30 多公里</span></li>
+        <li class="flex justify-between gap-3"><span class="font-sans text-ink">吃饭</span><span>1 公里外镇上</span></li>
+      </ul>
+      <hr class="my-3.5 border-0 border-t-[1.5px] border-dashed border-rule2">
+      <div class="flex justify-between font-bold text-ink"><span class="font-sans">总体（你给的分）</span><span>4.5 星</span></div>
+      <div class="mt-4 flex justify-end"><span class="-rotate-6 rounded border-2 border-ok px-2.5 py-1 font-sans text-[13px] font-black text-ok opacity-85">全部有出处</span></div>
+    </div>
+  </div>
+</div>
+
+<section id="audit" class="border-b border-rule py-18 md:py-26">
+  <div class="mx-auto w-[min(1120px,calc(100%-32px))] md:w-[min(1120px,calc(100%-48px))]">
+    <div class="mb-4 font-mono text-[12.5px] text-accent-ink">对账演示 · 真实发布的评价</div>
+    <h2 class="max-w-[18em] text-[clamp(30px,4.2vw,48px)] leading-[1.18] font-black tracking-[-.02em]">指一下数字，看它从哪来。</h2>
+    <p class="mt-4.5 max-w-[36em] text-[17px] text-ink2">AI 写点评最常见的毛病是编：编一个价格，编一句「娃第一次上手也能拉出形状」。它先把你说过的记成事实卡，再让正文里的每个数字都能对回去，对不上的整句删掉。</p>
+
+    <div class="mt-13 grid items-start gap-9 md:grid-cols-[1.3fr_.7fr] md:gap-10">
+      <div class="rv space-y-3.5 text-[17.5px] leading-[2.05]">
+        <p class="text-[19px] font-extrabold">免费逛<mark class="f" tabindex="0" data-f="banner">150年</mark>龙窑，<mark class="f" tabindex="0" data-f="price">100元</mark>带娃拉了<mark class="f" tabindex="0" data-f="price">2个</mark>陶罐</p>
+        <p>我们这次带娃来同治龙窑，冲着拉坯来的。参观是<mark class="f" tabindex="0" data-f="free">免费</mark>的，制作陶罐<mark class="f" tabindex="0" data-f="price">2个100元</mark>，老师可以在旁边指导。<del class="text-ink3 decoration-accent decoration-2">娃第一次上手也能拉出形状。</del><span class="ml-1.5 inline-block rounded border border-accent px-1.5 align-[2px] text-[12.5px] leading-normal font-bold text-accent-ink">事实卡里没有，删掉</span></p>
+        <p>除了上釉要<mark class="f" tabindex="0" data-f="glaze">单独收费</mark>，其他都不另外收钱。做好的陶罐要等<mark class="f" tabindex="0" data-f="ship">1个月左右</mark>，会联系寄送。</p>
+        <p>时间上，我们上午<mark class="f" tabindex="0" data-f="time">11点</mark>拉坯，下午<mark class="f" tabindex="0" data-f="time">2点半</mark>看成品，刚好半天。离市区<mark class="f" tabindex="0" data-f="dist">30多公里</mark>，适合自驾；吃饭可以去周边<mark class="f" tabindex="0" data-f="food">1公里</mark>的镇上。</p>
+      </div>
+      <aside class="md:sticky md:top-22">
+        <div class="slip px-6.5 pt-6.5 pb-8.5 font-mono text-[13.5px] text-ink2" id="ledger">
+          <h4 class="text-center font-sans text-[15px] font-black tracking-wide text-ink">事实卡</h4>
+          <div class="mt-1 text-center text-[11.5px] text-ink3">你说的 + 照片里看得到的</div>
+          <hr class="my-3.5 border-0 border-t-[1.5px] border-dashed border-rule2">
+          <ul>
+            <li class="-mx-1.5 flex justify-between gap-3 rounded px-1.5 py-1.25 transition-colors duration-200" data-f="free"><span class="font-sans text-ink">你说：参观</span><span class="whitespace-nowrap">免费</span></li>
+            <li class="-mx-1.5 flex justify-between gap-3 rounded px-1.5 py-1.25 transition-colors duration-200" data-f="price"><span class="font-sans text-ink">你说：做陶罐</span><span class="whitespace-nowrap">2 个 100 元</span></li>
+            <li class="-mx-1.5 flex justify-between gap-3 rounded px-1.5 py-1.25 transition-colors duration-200" data-f="glaze"><span class="font-sans text-ink">你说：上釉</span><span class="whitespace-nowrap">单独收费</span></li>
+            <li class="-mx-1.5 flex justify-between gap-3 rounded px-1.5 py-1.25 transition-colors duration-200" data-f="ship"><span class="font-sans text-ink">你说：寄送</span><span class="whitespace-nowrap">等 1 个月左右</span></li>
+            <li class="-mx-1.5 flex justify-between gap-3 rounded px-1.5 py-1.25 transition-colors duration-200" data-f="dist"><span class="font-sans text-ink">你说：离市区</span><span class="whitespace-nowrap">30 多公里</span></li>
+            <li class="-mx-1.5 flex justify-between gap-3 rounded px-1.5 py-1.25 transition-colors duration-200" data-f="food"><span class="font-sans text-ink">你说：吃饭</span><span class="whitespace-nowrap">周边 1 公里镇上</span></li>
+            <li class="-mx-1.5 flex justify-between gap-3 rounded px-1.5 py-1.25 transition-colors duration-200" data-f="time"><span class="font-sans text-ink">照片时间</span><span class="whitespace-nowrap">11:00 / 14:30</span></li>
+            <li class="-mx-1.5 flex justify-between gap-3 rounded px-1.5 py-1.25 transition-colors duration-200" data-f="banner"><span class="font-sans text-ink">照片里的横幅</span><span class="whitespace-nowrap">一百五十年窑火</span></li>
+          </ul>
+        </div>
+        <p class="mt-4 text-[13.5px] leading-relaxed text-ink3">内容检查脚本做的就是这件事：正文出现事实卡里没有的数字，直接拦下，改完才能交付。</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section id="features" class="border-b border-rule py-18 md:py-26">
+  <div class="mx-auto w-[min(1120px,calc(100%-32px))] md:w-[min(1120px,calc(100%-48px))]">
+    <div class="mb-4 font-mono text-[12.5px] text-accent-ink">功能清单</div>
+    <h2 class="max-w-[18em] text-[clamp(30px,4.2vw,48px)] leading-[1.18] font-black tracking-[-.02em]">从拍完照，到能发出去。</h2>
+    <p class="mt-4.5 max-w-[36em] text-[17px] text-ink2">一次对话走完：问清缺的事实，写正文，自查，整理成能直接发的样子。</p>
+    <div class="slip rv mt-12 px-6 pt-4 pb-10 md:px-9">
+      <ol class="divide-y divide-dashed divide-rule2 [&>li]:grid [&>li]:grid-cols-[2.5rem_1fr] [&>li]:items-baseline [&>li]:gap-x-3 [&>li]:py-5 md:[&>li]:grid-cols-[3rem_14rem_1fr_auto] md:[&>li]:gap-x-6 [&_.n]:font-mono [&_.n]:text-[15px] [&_.n]:font-bold [&_.n]:text-accent [&_h3]:text-[18px] [&_h3]:font-black [&_p]:col-start-2 [&_p]:text-[15px] [&_p]:text-ink2 md:[&_p]:col-start-auto [&_.tag]:col-start-2 [&_.tag]:mt-2 [&_.tag]:justify-self-start [&_.tag]:rounded-full [&_.tag]:px-2.5 [&_.tag]:py-0.5 [&_.tag]:font-mono [&_.tag]:text-[12px] [&_.tag]:font-bold md:[&_.tag]:col-start-auto md:[&_.tag]:mt-0">
+        <li><span class="n">01</span><h3>事实卡</h3><p>一次问清价格、时长、交通这些缺的事实，连同照片里看得到的，记成一张卡。</p><span class="tag bg-accent-soft text-accent-ink">免费</span></li>
+        <li><span class="n">02</span><h3>评价 + 笔记</h3><p>同一家店写两篇，开头卖点不撞车；附标题、标签、图片顺序和你给的星级。</p><span class="tag bg-accent-soft text-accent-ink">免费</span></li>
+        <li><span class="n">03</span><h3>品类必写项</h3><p>餐饮、美容美发、休闲娱乐、亲子、酒店民宿，各有读者最想先知道的几件事。</p><span class="tag bg-accent-soft text-accent-ink">免费</span></li>
+        <li><span class="n">04</span><h3>内容检查</h3><p>数字没出处、人均前后不一、广告法极限词、手机号微信、AI 套话、硬推销，交付前全部拦下；没写怎么去、不适合谁会提醒。</p><span class="tag bg-accent-soft text-accent-ink">免费</span></li>
+        <li><span class="n">05</span><h3>手动发布包</h3><p>首图叠上白字标题和几行事实，其余照片按顺序编号，文案存成文件，打开点评 App 照着发。</p><span class="tag bg-accent-soft text-accent-ink">免费</span></li>
+        <li><span class="n">06</span><h3>代发与手机交接</h3><p>Mac 微信小程序代发，停在预览等你确认；发不了的店经 iCloud 送到手机。</p><span class="tag bg-ink text-paper">Pro</span></li>
+        <li><span class="n">07</span><h3>数据复盘</h3><p>发布 3 天后采集浏览、点赞、评论，结论写回经验库，下一篇写得更好。</p><span class="tag bg-ink text-paper">Pro</span></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section id="pair" class="bg-fade border-b border-rule py-18 md:py-26">
+  <div class="mx-auto w-[min(1120px,calc(100%-32px))] md:w-[min(1120px,calc(100%-48px))]">
+    <h2 class="max-w-[18em] text-[clamp(30px,4.2vw,48px)] leading-[1.18] font-black tracking-[-.02em]">同一家店，评价和笔记各写各的。</h2>
+    <p class="mt-4.5 max-w-[36em] text-[17px] text-ink2">评价写给已经想去、在做决定的人；笔记写给还在找周末去处的人。两篇开头卖点不能是同一个，不然就是一篇写了两遍。</p>
+    <div class="rv mt-13 grid overflow-hidden rounded-slip border-[1.5px] border-ink shadow-[0_24px_48px_rgb(120_60_20/.10)] md:grid-cols-2">
+      <div class="bg-slip p-8">
+        <div class="text-[13px] text-ink3"><b class="font-extrabold text-ink">评价</b> · 读者在做决定</div>
+        <div class="mt-3.5 mb-4 text-[23px] leading-[1.4] font-black">免费逛150年龙窑，<span class="rounded-sm bg-accent-soft px-0.5 text-accent-ink">100元</span>带娃拉了2个陶罐</div>
+        <dl class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 text-[14.5px]"><dt class="text-ink3">写什么</dt><dd class="text-ink2">价格、老师怎么带、成品怎么拿、避雷</dd><dt class="text-ink3">字数</dt><dd class="font-mono text-ink2">200–400</dd><dt class="text-ink3">附带</dt><dd class="text-ink2">你给的星级</dd></dl>
+      </div>
+      <div class="bg-pro border-t-[1.5px] border-dashed border-rule2 p-8 md:border-t-0 md:border-l-[1.5px]">
+        <div class="text-[13px] text-ink3"><b class="font-extrabold text-ink">笔记</b> · 读者在找去处</div>
+        <div class="mt-3.5 mb-4 text-[23px] leading-[1.4] font-black"><span class="rounded-sm bg-accent-soft px-0.5 text-accent-ink">30公里外</span>，带娃逛一座还在用的清代龙窑</div>
+        <dl class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 text-[14.5px]"><dt class="text-ink3">写什么</dt><dd class="text-ink2">半天路线、拍照机位、适合和不适合谁</dd><dt class="text-ink3">字数</dt><dd class="font-mono text-ink2">400–1000</dd><dt class="text-ink3">附带</dt><dd class="text-ink2">15–20 字标题</dd></dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="category" class="border-b border-rule py-18 md:py-26">
+  <div class="mx-auto w-[min(1120px,calc(100%-32px))] md:w-[min(1120px,calc(100%-48px))]">
+    <h2 class="max-w-[18em] text-[clamp(30px,4.2vw,48px)] leading-[1.18] font-black tracking-[-.02em]">每个品类，读者最想先知道什么。</h2>
+    <p class="mt-4.5 max-w-[36em] text-[17px] text-ink2">写到哪个品类，就对照哪张清单。缺了会提醒你补，没有就问你，不会替你编。</p>
+    <div class="tabs mt-12 flex flex-wrap gap-2" role="tablist">
+      <button class="cursor-pointer rounded-full border-[1.5px] border-rule2 px-4.5 py-2.25 text-[15px] font-bold text-ink2 transition-colors duration-200 hover:border-ink aria-selected:border-transparent aria-selected:bg-ink aria-selected:text-paper" role="tab" aria-selected="true" data-cat="kids">亲子体验</button>
+      <button class="cursor-pointer rounded-full border-[1.5px] border-rule2 px-4.5 py-2.25 text-[15px] font-bold text-ink2 transition-colors duration-200 hover:border-ink aria-selected:border-transparent aria-selected:bg-ink aria-selected:text-paper" role="tab" aria-selected="false" data-cat="food">餐饮</button>
+      <button class="cursor-pointer rounded-full border-[1.5px] border-rule2 px-4.5 py-2.25 text-[15px] font-bold text-ink2 transition-colors duration-200 hover:border-ink aria-selected:border-transparent aria-selected:bg-ink aria-selected:text-paper" role="tab" aria-selected="false" data-cat="beauty">美容美发</button>
+      <button class="cursor-pointer rounded-full border-[1.5px] border-rule2 px-4.5 py-2.25 text-[15px] font-bold text-ink2 transition-colors duration-200 hover:border-ink aria-selected:border-transparent aria-selected:bg-ink aria-selected:text-paper" role="tab" aria-selected="false" data-cat="fun">休闲娱乐</button>
+      <button class="cursor-pointer rounded-full border-[1.5px] border-rule2 px-4.5 py-2.25 text-[15px] font-bold text-ink2 transition-colors duration-200 hover:border-ink aria-selected:border-transparent aria-selected:bg-ink aria-selected:text-paper" role="tab" aria-selected="false" data-cat="hotel">酒店民宿</button>
+    </div>
+    <div class="mt-7 grid items-start gap-9 md:grid-cols-[.9fr_1.1fr] md:gap-10" role="tabpanel">
+      <p class="text-[15px] text-ink3 [&_b]:mb-1.5 [&_b]:block [&_b]:text-xl [&_b]:font-black [&_b]:text-ink" id="cat-eg"></p>
+      <ul class="checks grid gap-2.5" id="cat-list"></ul>
+    </div>
+  </div>
+</section>
+
+<section id="lines" class="bg-night py-18 text-[#efe8da] md:py-26">
+  <div class="mx-auto w-[min(1120px,calc(100%-32px))] md:w-[min(1120px,calc(100%-48px))]">
+    <h2 class="max-w-[18em] text-[clamp(30px,4.2vw,48px)] leading-[1.18] font-black tracking-[-.02em]">六条红线，哪条做不到就停下问你。</h2>
+    <ol class="mt-11 grid gap-x-14 md:grid-cols-2">
+      <li class="grid grid-cols-[64px_1fr] gap-1.5 border-t border-white/12 py-6.5"><span class="font-mono text-[40px] leading-none font-bold text-[#ff7a45]">1</span><div><h3 class="mb-1 text-[19px] font-black">只写事实</h3><p class="text-[15px] text-[#c9c1b0]">只写你说过的和照片里看得到的，不编数字，不编感受。</p></div></li>
+      <li class="grid grid-cols-[64px_1fr] gap-1.5 border-t border-white/12 py-6.5"><span class="font-mono text-[40px] leading-none font-bold text-[#ff7a45]">2</span><div><h3 class="mb-1 text-[19px] font-black">不改你的评价</h3><p class="text-[15px] text-[#c9c1b0]">你说「一般」就写「一般」，可以写具体，不会改成夸奖。星级必须是你给的分。</p></div></li>
+      <li class="grid grid-cols-[64px_1fr] gap-1.5 border-t border-white/12 py-6.5"><span class="font-mono text-[40px] leading-none font-bold text-[#ff7a45]">3</span><div><h3 class="mb-1 text-[19px] font-black">不造假</h3><p class="text-[15px] text-[#c9c1b0]">不代写虚假好评，不刷评，不冒充顾客，不帮商家写好评。</p></div></li>
+      <li class="grid grid-cols-[64px_1fr] gap-1.5 border-t border-white/12 py-6.5"><span class="font-mono text-[40px] leading-none font-bold text-[#ff7a45]">4</span><div><h3 class="mb-1 text-[19px] font-black">不留站外联系方式</h3><p class="text-[15px] text-[#c9c1b0]">手机号、微信号、二维码都不行，照片里拍到的也算。也不用广告法极限词。</p></div></li>
+      <li class="grid grid-cols-[64px_1fr] gap-1.5 border-t border-white/12 py-6.5"><span class="font-mono text-[40px] leading-none font-bold text-[#ff7a45]">5</span><div><h3 class="mb-1 text-[19px] font-black">差评讲事实</h3><p class="text-[15px] text-[#c9c1b0]">差评只写事实和感受，不攻击商家。</p></div></li>
+      <li class="grid grid-cols-[64px_1fr] gap-1.5 border-t border-white/12 py-6.5"><span class="font-mono text-[40px] leading-none font-bold text-[#ff7a45]">6</span><div><h3 class="mb-1 text-[19px] font-black">不承诺结果</h3><p class="text-[15px] text-[#c9c1b0]">不承诺流量、优质评价或审核通过。</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<section id="install" class="border-b border-rule py-18 md:py-26">
+  <div class="mx-auto w-[min(1120px,calc(100%-32px))] md:w-[min(1120px,calc(100%-48px))]">
+    <h2 class="max-w-[18em] text-[clamp(30px,4.2vw,48px)] leading-[1.18] font-black tracking-[-.02em]">装好之后，像平时一样说话就行。</h2>
+    <div class="mt-11 grid items-center gap-9 md:grid-cols-2 md:gap-12">
+      <div class="bg-term overflow-x-auto rounded-slip px-6 py-5.5 font-mono text-[13.5px] leading-[1.95] whitespace-pre text-[#e8e1d2] shadow-[0_24px_48px_rgb(20_12_6/.25)]"><span class="text-[#ff7a45]">$</span> git clone https://github.com/huiyonghkw/dianping-review-skill.git
+<span class="text-[#ff7a45]">$</span> ln -s "$PWD/dianping-review-skill" \
+    ~/.claude/skills/dianping-review-skill
+<span class="text-[#8f8878]"># 或者从 ClawHub 装</span>
+<span class="text-[#ff7a45]">$</span> clawhub install dianping-review-skill
+<span class="text-[#ff7a45]">$</span> clawhub install hekouwang-writer-skill
+<span class="text-[#8f8878]"># Claude Code、Cursor、Codebuddy 都能用
+# 内容检查依赖 hekouwang-writer-skill 的写作规范
+# 合成带标题的首图：python3 -m pip install pillow</span></div>
+      <div class="flex flex-col gap-3">
+        <p class="text-[15px] text-ink3">把照片发给 AI，然后说：</p>
+        <div class="self-start rounded-[18px_18px_18px_4px] border border-rule bg-slip px-4 py-2.5 text-base font-bold">刚吃完，帮我写个点评</div>
+        <div class="self-start rounded-[18px_18px_18px_4px] border border-rule bg-slip px-4 py-2.5 text-base font-bold">把这几张图整理成笔记</div>
+        <div class="self-start rounded-[18px_18px_18px_4px] border border-rule bg-slip px-4 py-2.5 text-base font-bold">评价和笔记都要</div>
+        <div class="bg-flame self-start rounded-[18px_18px_18px_4px] px-4 py-2.5 text-base font-bold text-white">帮我整理好，我自己发</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pro" class="bg-fade py-18 md:py-26">
+  <div class="mx-auto w-[min(1120px,calc(100%-32px))] md:w-[min(1120px,calc(100%-48px))]">
+    <h2 class="max-w-[18em] text-[clamp(30px,4.2vw,48px)] leading-[1.18] font-black tracking-[-.02em]">写完还想省事，就换 Pro。</h2>
+    <p class="mt-4.5 max-w-[36em] text-[17px] text-ink2">免费版是完整的写作工具，不是试用版。Pro 在同一套写作规则上，加上「替你发出去」和「越写越好」。两个版本的 Skill 名一样，升级时把文件夹整个换掉。</p>
+    <div class="mt-12 grid items-stretch gap-6 md:grid-cols-2">
+      <div class="plan rv flex flex-col rounded-slip border-[1.5px] border-rule2 bg-slip p-7.5">
+        <div class="text-[15px] font-extrabold text-ink2">免费版 · MIT-0</div>
+        <div class="mt-2 mb-0.5 font-mono text-[44px] leading-[1.1] font-bold">¥0</div>
+        <div class="text-sm text-ink3">任何系统 · Python 3 + 写作规范 skill</div>
+        <ul class="mt-5.5 mb-6.5 grid gap-2.25 text-[15px] [&>li]:grid [&>li]:grid-cols-[22px_1fr] [&>li]:gap-1.5 [&>li]:text-ink2">
+          <li>写评价和笔记，事实卡不脑补</li>
+          <li>内容检查：数字出处、人均一致、极限词、站外导流</li>
+          <li>5 个品类的必写项</li>
+          <li>手动发布包：带标题的首图 + 照片编号 + 文案文件</li>
+          <li>写作经验库基础版</li>
+          <li class="no">代发、手机交接、复盘</li>
+        </ul>
+        <a class="mt-auto self-start rounded-slip border-[1.5px] border-ink px-5.5 py-3.25 text-[15px] font-extrabold transition-colors duration-200 hover:bg-paper2" href="#install">免费安装</a>
+      </div>
+      <div class="plan rv bg-pro flex flex-col rounded-slip border-[1.5px] border-ink p-7.5 shadow-[8px_8px_0_var(--color-accent)]">
+        <div class="text-[15px] font-extrabold text-ink2">Pro · 含一年更新</div>
+        <div class="mt-2 mb-0.5 font-mono text-[44px] leading-[1.1] font-bold">¥49 <small class="text-[15px] font-medium text-ink3">一次付清</small></div>
+        <div class="text-sm text-ink3">macOS · Mac 微信大众点评小程序</div>
+        <ul class="mt-5.5 mb-6.5 grid gap-2.25 text-[15px] [&>li]:grid [&>li]:grid-cols-[22px_1fr] [&>li]:gap-1.5 [&>li]:text-ink2">
+          <li>免费版的全部能力</li>
+          <li>小程序代发：核对店名，停在发布前给你看预览，你确认才发</li>
+          <li>发不了的店，经 iCloud 相册和备忘录把图文送到你手机</li>
+          <li>发布 3 天后采集浏览、点赞、评论，结论写回经验库</li>
+          <li>写作经验库持续更新，每条附真实发布数据</li>
+        </ul>
+        <a class="bg-flame mt-auto self-start rounded-slip px-5.5 py-3.25 text-[15px] font-extrabold text-white shadow-[0_10px_24px_rgb(255_90_31/.32)] transition-transform duration-200 hover:-translate-y-0.5" href="#buy">怎么买</a>
+      </div>
+    </div>
+
+    <div class="mt-18 grid items-start gap-9 md:grid-cols-[1fr_1.4fr] md:gap-12" id="buy">
+      <ol class="steps grid gap-5 [&>li]:grid [&>li]:grid-cols-[40px_1fr] [&>li]:gap-3 [&_h3]:text-[17px] [&_h3]:font-black [&_p]:text-[14.5px] [&_p]:text-ink2 [&_code]:rounded [&_code]:bg-paper2 [&_code]:px-1.5 [&_code]:font-mono [&_code]:text-[.9em]">
+        <li><div><h3>付款 ¥49</h3><p>微信支付、支付宝二选一。</p></div></li>
+        <li><div><h3>加微信，发付款截图</h3><p>微信号 <code>hekouwang</code>，备注「点评Pro」。</p></div></li>
+        <li><div><h3>收 Pro 包，换掉文件夹</h3><p>解压后替换 <code>~/.claude/skills/dianping-review-skill</code>，照包里 README 装好运行环境。</p></div></li>
+      </ol>
+      <div class="grid grid-cols-2 gap-3.5 sm:grid-cols-3 [&_figure]:rounded-slip [&_figure]:border [&_figure]:border-rule [&_figure]:bg-white [&_figure]:px-3 [&_figure]:pt-3 [&_figure]:pb-2.5 [&_figure]:text-center [&_figure]:shadow-[0_12px_28px_rgb(120_60_20/.10)] [&_figcaption]:mt-1.5 [&_figcaption]:text-[13px] [&_figcaption]:font-bold [&_figcaption]:text-[#1c1a16] [&_img]:block [&_img]:h-auto [&_img]:w-full">
+        <figure><img src="images/pay-wechat.png" alt="微信支付收款码" width="560" height="596" loading="lazy"><figcaption>微信支付 ¥49</figcaption></figure>
+        <figure><img src="images/pay-alipay.png" alt="支付宝收款码" width="560" height="622" loading="lazy"><figcaption>支付宝 ¥49</figcaption></figure>
+        <figure><img src="images/wechat-qr.png" alt="微信加好友二维码" width="560" height="560" loading="lazy"><figcaption>加微信 hekouwang</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="mt-12 grid gap-6 text-sm text-ink2 md:grid-cols-3 [&_b]:mb-1 [&_b]:block [&_b]:text-[15px] [&_b]:text-ink">
+      <p><b>风险说明</b>自动化发布违反大众点评用户协议，有触发风控的可能。Pro 每次都停在预览、你确认才提交，每类内容每天最多 1 条；用不用由你决定。</p>
+      <p><b>授权</b>Pro 包仅供个人使用，请勿二次分发。免费版是 MIT-0，随便用、随便改。</p>
+      <p><b>公众号</b>更多 AI 实战拆解，关注「会勇禾口王的AI笔记」。</p>
+    </div>
+  </div>
+</section>
+
+<footer class="border-t border-rule pt-10 pb-14">
+  <div class="mx-auto flex w-[min(1120px,calc(100%-32px))] flex-wrap justify-between gap-3 text-sm text-ink3 md:w-[min(1120px,calc(100%-48px))]">
+    <span><b class="font-extrabold text-ink">会勇禾口王的AI笔记</b> · dianping-review-skill</span>
+    <span><a class="border-b border-rule2" href="https://github.com/huiyonghkw/dianping-review-skill" target="_blank" rel="noopener">GitHub</a> · <a class="border-b border-rule2" href="https://github.com/huiyonghkw/dianping-review-skill/blob/main/SKILL.md" target="_blank" rel="noopener">SKILL.md</a> · MIT-0</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  function light(f, on){
+    document.querySelectorAll('[data-f="' + f + '"]').forEach(function(el){ el.classList.toggle('lit', on); });
+  }
+  document.querySelectorAll('mark[data-f], #ledger li[data-f]').forEach(function(el){
+    var f = el.getAttribute('data-f');
+    ['mouseenter','focus'].forEach(function(e){ el.addEventListener(e, function(){ light(f, true); }); });
+    ['mouseleave','blur'].forEach(function(e){ el.addEventListener(e, function(){ light(f, false); }); });
+  });
+
+  var cats = {
+    kids:{eg:'<b>同治龙窑 · 评价初版</b>五项缺了「时长或节奏」。照片时间是 11 点拉坯、2 点半看成品，补上一句就过了。',
+      items:['适合年龄或人群','费用','时长或节奏','交通或停车','配套：吃饭 / 休息 / 厕所'], miss:2},
+    food:{eg:'<b>火锅、烧烤、咖啡、甜品</b>读者先看贵不贵、好不好吃、要不要排队。',items:['价格','口感或味道','排队或位置']},
+    beauty:{eg:'<b>美甲、理发、烫染、SPA</b>读者最怕被推销，也想知道要不要预约。',items:['价格','是否推销','时长或预约']},
+    fun:{eg:'<b>密室、骑行、露营、景点</b>读者要算时间和人数。',items:['价格','时长','预约或人数']},
+    hotel:{eg:'<b>酒店、民宿、客栈</b>住过才知道的几件事，写出来最有用。',items:['隔音','水压或卫浴','早餐','位置或交通']}
+  };
+  var item = 'flex items-center gap-3 rounded-slip border px-4.5 py-3.5 text-[17px] font-bold ';
+  var ok = 'border-rule bg-slip';
+  var miss = 'miss border-accent bg-linear-to-r from-accent-soft to-slip';
+  var tabs = document.querySelectorAll('.tabs button');
+  function show(key){
+    var c = cats[key];
+    document.getElementById('cat-eg').innerHTML = c.eg;
+    document.getElementById('cat-list').innerHTML = c.items.map(function(t, i){
+      return '<li class="' + item + (i === c.miss ? miss : ok) + '">' + t + '</li>';
+    }).join('');
+    tabs.forEach(function(b){ b.setAttribute('aria-selected', b.getAttribute('data-cat') === key); });
+  }
+  tabs.forEach(function(b){ b.addEventListener('click', function(){ show(b.getAttribute('data-cat')); }); });
+  show('kids');
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {threshold:.15});
+    document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.rv').forEach(function(el){ el.classList.add('in'); });
+  }
+})();
+</script>
+</body>
+</html>

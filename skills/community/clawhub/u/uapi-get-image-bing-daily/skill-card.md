@@ -1,46 +1,57 @@
-## Description: <br>
-Guides an agent to call UAPI's GET /image/bing-daily endpoint and handle its image response, optional authentication, quota errors, and documented status codes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps an agent use UAPI's GET /image/bing-daily endpoint to fetch the current Bing daily wallpaper and understand its response codes.
 
-## Publisher: <br>
-[shuakami](https://clawhub.ai/user/shuakami) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shuakami](https://clawhub.ai/user/shuakami)
 
-## Use Case: <br>
-Developers and agents use this skill when a user explicitly needs Bing's daily wallpaper through UAPI. It helps confirm the endpoint, request shape, authentication posture, response format, and common error handling before calling the API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Discovery keywords mention unrelated image capabilities such as compression, base64 conversion, SVG conversion, and NSFW detection. <br>
-Mitigation: Use the skill only for retrieving Bing's daily wallpaper through GET /image/bing-daily. <br>
-Risk: The endpoint may require a UAPI key or reject anonymous requests after quota limits are reached. <br>
-Mitigation: Provide any UAPI key only through normal credential handling, and retry with authenticated access only when the service explicitly requires it. <br>
-Risk: Successful responses are image binary data rather than JSON. <br>
-Mitigation: Ensure the caller can process JPEG or PNG response bodies before using the endpoint. <br>
+## Use Case:
 
+Developers and external users can use this skill when they need an agent to call the UAPI Bing daily wallpaper endpoint, confirm that no request parameters are required, and handle image responses or documented errors.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shuakami/uapi-get-image-bing-daily) <br>
-- [Quick start](references/quick-start.md) <br>
-- [GET /image/bing-daily operation](references/operations/get-image-bing-daily.md) <br>
-- [Image resource category](references/resources/Image.md) <br>
-- [UAPI base URL](https://uapis.cn/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls] <br>
-**Output Format:** [Markdown or concise text instructions with endpoint details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Successful API responses are image binary data, usually JPEG or PNG, rather than JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad routing keywords may cause the skill to be invoked for unrelated image tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill only when the request is specifically about Bing daily wallpaper, and confirm GET /image/bing-daily is the intended endpoint before calling.
+
+Risk: Anonymous use may be rate-limited or may require a UAPI key for some requests.
+
+Mitigation: If the endpoint returns a quota, rate-limit, or authentication error, ask the user to create a UAPI key and retry with that credential.
+
+## Reference(s):
+
+- [Quick Start](references/quick-start.md)
+- [Bing Daily Wallpaper Operation](references/operations/get-image-bing-daily.md)
+- [Image Resource Reference](references/resources/Image.md)
+- [UAPI Base API](https://uapis.cn/api/v1)
+- [ClawHub Skill Page](https://clawhub.ai/shuakami/skills/uapi-get-image-bing-daily)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API calls, Configuration]
+
+**Output Format:** [Markdown guidance with endpoint details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Successful endpoint calls return image binary data, usually JPEG or PNG; the skill itself provides guidance rather than storing files.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

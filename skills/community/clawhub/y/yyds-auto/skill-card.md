@@ -1,44 +1,59 @@
-## Description: <br>
-Control Android devices via MCP, including tapping, swiping, OCR, screenshots, UI automation, shell access, file management, and AI agent orchestration for Android RPA. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Android devices via MCP - tap, swipe, OCR, screenshot, UI automation, shell, file management, and AI agent orchestration for Android RPA.
 
-## Publisher: <br>
-[chenanzong](https://clawhub.ai/user/chenanzong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenanzong](https://clawhub.ai/user/chenanzong)
 
-## Use Case: <br>
-Developers, QA engineers, and automation teams use this skill to connect AI agents to Android devices for RPA, app testing, UI inspection, OCR, file operations, and controlled device workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an AI agent broad control over a connected Android device, including touch input, OCR, screenshots, app control, file operations, and messaging-capable workflows. <br>
-Mitigation: Use a dedicated test device or isolated profile, avoid sensitive personal accounts, and require manual approval before actions that affect accounts, messages, purchases, files, or installed apps. <br>
-Risk: Shell access, file deletion, app install or uninstall, Python execution, and package management can change device state or expose sensitive data. <br>
-Mitigation: Gate high-impact tools behind explicit approval, keep backups of important device data, and verify the intended command, path, package, or script before execution. <br>
-Risk: The on-device automation engine may be reachable over USB forwarding or WiFi/LAN, which can increase exposure if used on untrusted networks. <br>
-Mitigation: Keep the engine off untrusted networks, prefer local ADB forwarding or a trusted LAN, restrict host and port access, and verify the npm package and Android app provenance before use. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to connect AI agents to Android devices for robotic process automation, UI inspection, screenshots, OCR, app management, file operations, shell execution, and on-device agent orchestration.
 
-## Reference(s): <br>
-- [Yyds.Auto homepage](https://yydsauto.com) <br>
-- [yyds-auto-mcp npm package](https://www.npmjs.com/package/yyds-auto-mcp) <br>
-- [ClawHub skill page](https://clawhub.ai/chenanzong/yyds-auto) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration snippets, shell command examples, and MCP tool result descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce Android device observations such as screenshots, OCR text, UI hierarchy data, shell results, file operation results, and app or agent status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill enables broad Android device control, including shell commands, file deletion, APK installation, Python execution, pip changes, and agent_run tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated test device and require manual review before high-impact actions are executed.
+
+Risk: Example installation can fetch the npm MCP package without pinning a version.
+
+Mitigation: Pin and verify the yyds-auto-mcp package version and avoid automatic npx -y fetching in controlled environments.
+
+Risk: Remote WiFi or LAN connections can expose device automation beyond the local machine.
+
+Mitigation: Limit remote access to trusted networks or localhost forwarding.
+
+## Reference(s):
+
+- [Yyds.Auto Website](https://yydsauto.com)
+- [yyds-auto-mcp npm Package](https://www.npmjs.com/package/yyds-auto-mcp)
+- [ClawHub Skill Page](https://clawhub.ai/chenanzong/skills/yyds-auto)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell command and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can guide an agent to invoke MCP tools that operate on a connected Android device.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

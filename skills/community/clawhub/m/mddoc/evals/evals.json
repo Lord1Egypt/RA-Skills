@@ -1,0 +1,23 @@
+{
+  "skill_name": "mddoc",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我把这份 Markdown 文件转成 docx 格式的 Word 文档",
+      "expected_output": "生成 .docx 文件，包含正确的标题格式、正文格式、图片和表格，页眉正确设置",
+      "files": ["evals/test-sample.md"]
+    },
+    {
+      "id": 2,
+      "prompt": "将下面这段 markdown 转成格式化的 Word 文档，保存到当前目录：\n\n# 实验报告\n\n## 实验目的\n\n本实验旨在验证深度学习模型在小样本数据集上的泛化性能。通过对比实验分析不同正则化策略的效果。\n\n## 实验方法\n\n### 数据集准备\n\n实验采用 CIFAR-10 数据集，随机选取每类 100 张图片作为训练集。测试集保持原始大小。\n\n![实验流程图](https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Tensor_visualization.svg/400px-Tensor_visualization.svg.png)\n\n表 超参数配置\n\n| 参数 | 取值 |\n|------|------|\n| 学习率 | 0.001 |\n| 批量大小 | 32 |\n| 训练轮次 | 100 |\n\n### 评估指标\n\n采用 Top-1 准确率和 F1 分数作为评估指标。",
+      "expected_output": "在当前目录生成 实验报告.docx，包含题目、各级标题、正文、图片、表格的正确格式",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "/mddoc 把这个转成word @evals/test-sample.md",
+      "expected_output": "在 evals/ 目录生成第一章 基于深度学习的图像识别研究.docx，格式完全符合学术规范",
+      "files": ["evals/test-sample.md"]
+    }
+  ]
+}

@@ -1,6 +1,175 @@
 {
-  "ownerId": "kn791bxpmse6nv4nqy8skgg2n182b5t2",
-  "slug": "server-mate",
+  "name": "server-mate",
   "version": "1.6.1",
-  "publishedAt": 1782824726558
+  "description": "Lightweight, centralized server monitoring and AI operations workflow for Linux hosts running Nginx or Apache, with optional BT-Panel API integration for agentless remote log collection",
+  "author": "tankeito",
+  "license": "MIT",
+  "homepage": "https://github.com/tankeito/server-mate",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tankeito/server-mate.git"
+  },
+  "keywords": [
+    "server-monitoring",
+    "ai-ops",
+    "multi-site",
+    "centralized-monitoring",
+    "bt-panel",
+    "baota",
+    "remote-log-collection",
+    "agentless",
+    "telegram",
+    "geoip",
+    "maxmind",
+    "systemd",
+    "ssh-security",
+    "ssl-monitoring",
+    "certificate-expiry",
+    "linux",
+    "nginx",
+    "apache",
+    "log-analysis",
+    "webhook-alerts",
+    "auto-remediation",
+    "iowait",
+    "swap-monitoring",
+    "inode-monitoring",
+    "process-monitoring",
+    "tcp-states",
+    "disk-iops",
+    "systemd-service-probe"
+  ],
+  "platform": [
+    "CentOS",
+    "Ubuntu",
+    "Debian",
+    "Rocky Linux",
+    "AlmaLinux"
+  ],
+  "language": [
+    "Python"
+  ],
+  "dependencies": {
+    "python": ">=3.8",
+    "packages": [
+      "psutil",
+      "pyyaml",
+      "matplotlib",
+      "requests"
+    ],
+    "optional": [
+      "geoip2",
+      "maxminddb",
+      "aiohttp"
+    ]
+  },
+  "features": [
+    "Centralized remote monitoring via BT-Panel (Baota) API — collect logs from many hosts with a single Agent, no remote installation required",
+    "Byte-offset incremental log fetching with a 5 MB per-cycle chunk cap, protecting against OOM and network timeout when remote error logs explode",
+    "Production-grade security guardrails: shlex-based shell-injection defense, NTP time-drift detection on BT signature failures",
+    "Multi-site matrix configuration with isolated per-domain rollups",
+    "Real-time host metrics (CPU, memory, disk, network)",
+    "Extended Linux system metrics — Layer 1: CPU iowait/user/system, memory available, swap, disk IOPS deltas, network Mbps + error/drop counters",
+    "Extended Linux system metrics — Layer 2: process count, zombie detection, top-5 CPU and memory processes",
+    "Extended Linux system metrics — Layer 3: root inode usage, configurable extra partition monitoring",
+    "Extended Linux system metrics — Layer 4: TCP connection state breakdown (ESTABLISHED/TIME_WAIT/CLOSE_WAIT), systemd service health probes",
+    "10 new alert kinds: iowait_high, swap_high, memory_critical, net_errors, high_iops, zombie_process, inode_low, disk_multi_low, tcp_timewait_high, service_down",
+    "Post-alert automatic deep diagnostics (ps, ss, df, iostat, dmesg, systemctl status) and AI diagnosis caching with configurable cooldown (ai_cooldown_seconds) to prevent token wastage",
+    "Alert recovery tracking, notifications with duration/peak stats, and dynamic CPU-spike auto-ban (DDoS mitigation on slow endpoints under high load)",
+    "Built-in SRE Web Dashboard serving real-time metrics, active alerts, active bans, and historical charts via standard HTTP",
+    "AI Security Shield Dynamic Traffic Auditor to inspect candidate IPs via LLM, preventing false crawler bans and explaining block reasons",
+    "Nginx/Apache access and error log parsing",
+    "Traffic analysis (PV, UV, IP, QPS, bandwidth)",
+    "Spider detection and traffic separation",
+    "Threshold-based webhook alerts",
+    "SSH brute-force monitoring with linked guarded auto-ban",
+    "Telegram bot alert delivery",
+    "AI alert diagnosis with plain-language remediation hints",
+    "AI-powered error diagnosis",
+    "Daily/Weekly/Monthly PDF reports",
+    "GeoIP auto-provisioning via local MaxMind GeoIP.conf, with an operator-reviewed public mirror bootstrap fallback",
+    "SSL certificate expiry inspection in reports and webhook summaries",
+    "PDF-safe long URL and referer truncation",
+    "Guarded auto-ban and auto-heal automation"
+  ],
+  "integrations": [
+    "BT-Panel (Baota) HTTP API for remote log collection",
+    "DingTalk webhook",
+    "WeCom webhook",
+    "Feishu webhook",
+    "Telegram bot API",
+    "MaxMind GeoLite2 via geoipupdate",
+    "OpenClaw AI analyzer",
+    "SQLite for local storage"
+  ],
+  "environment_variables": {
+    "required": [],
+    "optional": [
+      "TELEGRAM_BOT_TOKEN",
+      "TELEGRAM_CHAT_ID",
+      "OPENAI_API_KEY",
+      "BT_PANEL_*_API_KEY"
+    ]
+  },
+  "credentials": {
+    "optional_env": [
+      "TELEGRAM_BOT_TOKEN",
+      "TELEGRAM_CHAT_ID",
+      "OPENAI_API_KEY",
+      "BT_PANEL_*_API_KEY"
+    ],
+    "config_secrets": [
+      "notifications.webhooks.*.url",
+      "notifications.webhooks.telegram.bot_token",
+      "notifications.webhooks.telegram.chat_id",
+      "notifications.ai_analysis.api_key_env",
+      "remote_panels.*.api_key",
+      "remote_panels.*.api_key_env",
+      "./data/GeoIP.conf"
+    ],
+    "notes": [
+      "OPENAI_API_KEY is strictly an optional environment variable, only needed if the user manually enables AI analysis.",
+      "Telegram bot_token and chat_id may be stored in config.yaml or supplied via environment variables.",
+      "Webhook URLs and tokens are operator-supplied secrets stored in config.yaml.",
+      "GeoIP.conf stores MaxMind AccountID and LicenseKey and should stay local-only.",
+      "BT-Panel api_key grants full panel privileges. Always inject it via remote_panels.<id>.api_key_env, never commit a config.yaml that contains the plaintext key."
+    ]
+  },
+  "security": {
+    "default_mode": "read-only collection with Guarded Automation dry_run enabled",
+    "automation_opt_in": true,
+    "privileged_operations": [
+      "Firewall ban and unban commands when auto_ban is enabled",
+      "Service restart commands when auto_heal is enabled"
+    ],
+    "requires_root_when_enabled": true,
+    "operator_review_required": [
+      "Keep automation.dry_run=true during initial deployment and only disable it after reviewing audit notifications",
+      "Only enable auto_ban or auto_heal after reviewing whitelist, cooldown, TTL, and command_template settings",
+      "Prefer local MaxMind GeoIP.conf and geoipupdate; review the public mirror fallback before allowing that network path"
+    ],
+    "data_egress": [
+      "User-configured webhook endpoints",
+      "Telegram bot API when Telegram delivery is enabled",
+      "OpenAI API when AI analysis is enabled",
+      "raw.githubusercontent.com only when GeoIP auto-bootstrap fallback is triggered",
+      "User-configured BT-Panel HTTPS endpoints when remote_panels are enabled"
+    ]
+  },
+  "scripts": {
+    "agent": "python3 ./scripts/server_agent.py --config ./config.yaml --once",
+    "report-daily": "python3 ./scripts/report_generator.py --config ./config.yaml pdf --range daily --send",
+    "report-weekly": "python3 ./scripts/report_generator.py --config ./config.yaml pdf --range weekly --send",
+    "report-monthly": "python3 ./scripts/report_generator.py --config ./config.yaml pdf --range monthly --send"
+  },
+  "config": {
+    "default_config_file": "./config.yaml",
+    "default_database_file": "./metrics.db",
+    "default_log_dir": "./logs/",
+    "default_report_dir": "./reports/",
+    "default_data_dir": "./data/"
+  },
+  "created_at": "2026-03-26",
+  "updated_at": "2026-06-30",
+  "release_channel": "1.6.x — SRE Themes & Responsive Layouts"
 }

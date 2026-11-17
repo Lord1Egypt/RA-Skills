@@ -2,7 +2,7 @@
   "type": "function",
   "function": {
     "name": "_edit_table_module",
-    "description": "Modify data table module information.",
+    "description": "Modify data table module information. This tool can rename a table module and update tableSetting.tableView.gridDisplaySetting only. updateFieldList must explicitly declare the property paths to update; properties not listed in updateFieldList will not be updated. Do not use this tool to edit fields; use the dedicated table-field tools for adding, deleting, or changing data fields.",
     "parameters": {
       "type": "object",
       "properties": {
@@ -10,12 +10,310 @@
           "type": "string",
           "description": "Data table ID (must exist)."
         },
+        "updateFieldList": {
+          "type": "array",
+          "description": "List of property paths explicitly to be modified in this edit operation. Required. Only properties listed in updateFieldList will be updated; values provided outside this list will be ignored. Supported paths: name, tableSetting.tableView.gridDisplaySetting, tableSetting.tableView.gridDisplaySetting.fontSize, tableSetting.tableView.gridDisplaySetting.tableHeaderOverflow, tableSetting.tableView.gridDisplaySetting.lineHeight, tableSetting.tableView.gridDisplaySetting.border, tableSetting.tableView.gridDisplaySetting.customLineHeight, tableSetting.tableView.gridDisplaySetting.columnList, tableSetting.tableView.gridDisplaySetting.defaultShowDetailOpt, tableSetting.tableView.gridDisplaySetting.tableIndex, tableSetting.tableView.gridDisplaySetting.hideFooter, tableSetting.tableView.gridDisplaySetting.stripe, tableSetting.tableView.gridDisplaySetting.hideFieldIcon, tableSetting.tableView.gridDisplaySetting.selectionMode, tableSetting.tableView.gridDisplaySetting.hideHeader, tableSetting.tableView.gridDisplaySetting.tableStripe, tableSetting.tableView.gridDisplaySetting.selectionDisableExpression, tableSetting.tableView.gridDisplaySetting.cellEditMode, tableSetting.tableView.gridDisplaySetting.enableHighlightCurrent, tableSetting.tableView.gridDisplaySetting.highlightCurrentBackgroundColor, tableSetting.tableView.gridDisplaySetting.tableDragSort, tableSetting.tableView.gridDisplaySetting.defaultGroupFieldId, tableSetting.tableView.gridDisplaySetting.autoExpendWhenGroup, tableSetting.tableView.gridDisplaySetting.footerAggregateType, tableSetting.tableView.gridDisplaySetting.cellActiveType, tableSetting.tableView.gridDisplaySetting.scrollBarPosition.",
+          "items": {
+            "type": "string",
+            "enum": [
+              "name",
+              "tableSetting.tableView.gridDisplaySetting",
+              "tableSetting.tableView.gridDisplaySetting.fontSize",
+              "tableSetting.tableView.gridDisplaySetting.tableHeaderOverflow",
+              "tableSetting.tableView.gridDisplaySetting.lineHeight",
+              "tableSetting.tableView.gridDisplaySetting.border",
+              "tableSetting.tableView.gridDisplaySetting.customLineHeight",
+              "tableSetting.tableView.gridDisplaySetting.columnList",
+              "tableSetting.tableView.gridDisplaySetting.defaultShowDetailOpt",
+              "tableSetting.tableView.gridDisplaySetting.tableIndex",
+              "tableSetting.tableView.gridDisplaySetting.hideFooter",
+              "tableSetting.tableView.gridDisplaySetting.stripe",
+              "tableSetting.tableView.gridDisplaySetting.hideFieldIcon",
+              "tableSetting.tableView.gridDisplaySetting.selectionMode",
+              "tableSetting.tableView.gridDisplaySetting.hideHeader",
+              "tableSetting.tableView.gridDisplaySetting.tableStripe",
+              "tableSetting.tableView.gridDisplaySetting.selectionDisableExpression",
+              "tableSetting.tableView.gridDisplaySetting.cellEditMode",
+              "tableSetting.tableView.gridDisplaySetting.enableHighlightCurrent",
+              "tableSetting.tableView.gridDisplaySetting.highlightCurrentBackgroundColor",
+              "tableSetting.tableView.gridDisplaySetting.tableDragSort",
+              "tableSetting.tableView.gridDisplaySetting.defaultGroupFieldId",
+              "tableSetting.tableView.gridDisplaySetting.autoExpendWhenGroup",
+              "tableSetting.tableView.gridDisplaySetting.footerAggregateType",
+              "tableSetting.tableView.gridDisplaySetting.cellActiveType",
+              "tableSetting.tableView.gridDisplaySetting.scrollBarPosition"
+            ]
+          }
+        },
         "name": {
           "type": "string",
-          "description": "Data table name"
+          "description": "Data table name. Takes effect only when updateFieldList contains name."
+        },
+        "tableSetting": {
+          "type": "object",
+          "description": "Data table setting. In this edit tool, only tableSetting.tableView.gridDisplaySetting is supported.",
+          "properties": {
+            "tableView": {
+              "type": "object",
+              "description": "View Setting. In this edit tool, only gridDisplaySetting is supported; other tableView properties are ignored.",
+              "properties": {
+                "gridDisplaySetting": {
+                  "type": "object",
+                  "description": "Grid display setting for the table view. Use this to configure row style, table display behavior, and especially the field columns shown in the grid.",
+                  "properties": {
+                    "fontSize": {
+                      "type": "string",
+                      "description": "Table font size."
+                    },
+                    "tableHeaderOverflow": {
+                      "type": "string",
+                      "description": "Header overflow behavior: tooltip (ellipsis with tooltip) or wrap (auto wrap).",
+                      "enum": ["tooltip", "wrap"]
+                    },
+                    "lineHeight": {
+                      "type": "string",
+                      "description": "Row height: min, default, max, auto, or custom.",
+                      "enum": ["min", "default", "max", "auto", "custom"],
+                      "default": "min"
+                    },
+                    "border": {
+                      "type": "string",
+                      "description": "Table border style.",
+                      "enum": ["full", "none"],
+                      "default": "full"
+                    },
+                    "customLineHeight": {
+                      "type": "integer",
+                      "description": "Custom row height in pixels, used when lineHeight=custom.",
+                      "default": 32
+                    },
+                    "columnList": {
+                      "type": "array",
+                      "description": "VERY IMPORTANT: table field setting list. This is the list of fields displayed in the grid/table view. Each field that should appear as a column in the table view must be included here. For normal field columns, pass the current table field key in id; the backend converts it to the stored field ID before saving. Query the table definition first and do not fabricate keys. The order of this array is the display order in the table. Use children for grouped/multi-level headers and type=button with buttonList for button columns.",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "description": "Column field key in the request. For type=field, this must be a real field key in the current data table; the backend converts it to the stored field ID before saving. For type=button, use a stable column ID."
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "Column display name."
+                          },
+                          "icon": {
+                            "type": "string",
+                            "description": "Column icon."
+                          },
+                          "type": {
+                            "type": "string",
+                            "description": "Column type: field or button. Default is field.",
+                            "enum": ["field", "button"],
+                            "default": "field"
+                          },
+                          "summaryFunc": {
+                            "type": "string",
+                            "description": "Summary function: sum, avg, min, max, or count. Empty means no summary.",
+                            "enum": ["sum", "avg", "min", "max", "count", ""]
+                          },
+                          "align": {
+                            "type": "string",
+                            "description": "Column alignment. Default is left.",
+                            "enum": ["left", "center", "right"]
+                          },
+                          "width": {
+                            "type": "string",
+                            "description": "Column width, for example 130. Default is 150."
+                          },
+                          "children": {
+                            "type": "array",
+                            "description": "Child columns for grouped/multi-level table headers. Child field columns must also use real field keys from the current table; the backend converts them to stored field IDs before saving.",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "string",
+                                  "description": "Child column field key in the request. For type=field, this must be a real field key in the current data table; the backend converts it to the stored field ID before saving."
+                                },
+                                "name": {
+                                  "type": "string",
+                                  "description": "Child column display name."
+                                },
+                                "icon": {
+                                  "type": "string",
+                                  "description": "Child column icon."
+                                },
+                                "type": {
+                                  "type": "string",
+                                  "description": "Child column type: field or button. Default is field.",
+                                  "enum": ["field", "button"],
+                                  "default": "field"
+                                },
+                                "summaryFunc": {
+                                  "type": "string",
+                                  "description": "Summary function: sum, avg, min, max, or count. Empty means no summary.",
+                                  "enum": ["sum", "avg", "min", "max", "count", ""]
+                                },
+                                "align": {
+                                  "type": "string",
+                                  "description": "Child column alignment. Default is left.",
+                                  "enum": ["left", "center", "right"]
+                                },
+                                "width": {
+                                  "type": "string",
+                                  "description": "Child column width, for example 130. Default is 150."
+                                },
+                                "fixed": {
+                                  "type": "string",
+                                  "description": "Fixed position: left or right. Empty means not fixed.",
+                                  "enum": ["left", "right", ""]
+                                },
+                                "edit": {
+                                  "type": "boolean",
+                                  "description": "Whether this child column is editable in the grid."
+                                },
+                                "editExpression": {
+                                  "type": "string",
+                                  "description": "Editable when the expression condition is met."
+                                },
+                                "mergeCell": {
+                                  "type": "string",
+                                  "description": "Cell merge mode: merge or none.",
+                                  "enum": ["merge", "none"]
+                                },
+                                "hideExpression": {
+                                  "type": "string",
+                                  "description": "Hide this child column when the expression condition is met."
+                                }
+                              },
+                              "required": ["id"]
+                            }
+                          },
+                          "buttonList": {
+                            "type": "array",
+                            "description": "Button list for type=button columns.",
+                            "items": {
+                              "type": "object",
+                              "description": "Button definition. Use existing button/action schemas when configuring concrete actions."
+                            }
+                          },
+                          "fixed": {
+                            "type": "string",
+                            "description": "Fixed position: left or right. Empty means not fixed.",
+                            "enum": ["left", "right", ""]
+                          },
+                          "edit": {
+                            "type": "boolean",
+                            "description": "Whether this column is editable in the grid."
+                          },
+                          "editExpression": {
+                            "type": "string",
+                            "description": "Editable when the expression condition is met."
+                          },
+                          "mergeCell": {
+                            "type": "string",
+                            "description": "Cell merge mode: merge or none.",
+                            "enum": ["merge", "none"]
+                          },
+                          "hideExpression": {
+                            "type": "string",
+                            "description": "Hide this column when the expression condition is met."
+                          }
+                        },
+                        "required": ["id"]
+                      }
+                    },
+                    "defaultShowDetailOpt": {
+                      "type": "boolean",
+                      "description": "Whether to show the detail operation by default."
+                    },
+                    "tableIndex": {
+                      "type": "boolean",
+                      "description": "Whether to show row index."
+                    },
+                    "hideFooter": {
+                      "type": "boolean",
+                      "description": "Whether to hide table footer."
+                    },
+                    "stripe": {
+                      "type": "boolean",
+                      "description": "Whether to use striped rows.",
+                      "default": true
+                    },
+                    "hideFieldIcon": {
+                      "type": "boolean",
+                      "description": "Whether to hide field icons in table columns."
+                    },
+                    "selectionMode": {
+                      "type": "string",
+                      "description": "Row selection mode.",
+                      "enum": ["checkbox", "radio", "none"],
+                      "default": "checkbox"
+                    },
+                    "hideHeader": {
+                      "type": "boolean",
+                      "description": "Whether to hide the table header."
+                    },
+                    "tableStripe": {
+                      "type": "boolean",
+                      "description": "Whether to use table striped rows.",
+                      "default": true
+                    },
+                    "selectionDisableExpression": {
+                      "type": "string",
+                      "description": "Expression for disabling row selection."
+                    },
+                    "cellEditMode": {
+                      "type": "string",
+                      "description": "Cell edit activation mode.",
+                      "enum": ["dblclick", "click"],
+                      "default": "dblclick"
+                    },
+                    "enableHighlightCurrent": {
+                      "type": "boolean",
+                      "description": "Whether to highlight the currently selected row."
+                    },
+                    "highlightCurrentBackgroundColor": {
+                      "type": "string",
+                      "description": "Background color for the highlighted current row."
+                    },
+                    "tableDragSort": {
+                      "type": "boolean",
+                      "description": "Whether table row drag sorting is enabled."
+                    },
+                    "defaultGroupFieldId": {
+                      "type": "string",
+                      "description": "Default group field key in the request. Must be a real field key in the current table; the backend converts it to the stored field ID before saving."
+                    },
+                    "autoExpendWhenGroup": {
+                      "type": "boolean",
+                      "description": "Whether grouped rows are expanded by default.",
+                      "default": true
+                    },
+                    "footerAggregateType": {
+                      "type": "string",
+                      "description": "Footer aggregate scope.",
+                      "enum": ["currentPage", "all"]
+                    },
+                    "cellActiveType": {
+                      "type": "string",
+                      "description": "Cell auto activation mode.",
+                      "enum": ["none", "row", "column"]
+                    },
+                    "scrollBarPosition": {
+                      "type": "string",
+                      "description": "Scroll position after pagination: keep or backToTop.",
+                      "enum": ["keep", "backToTop"],
+                      "default": "keep"
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       },
-      "required": ["id", "name"]
+      "required": ["id", "updateFieldList"]
     }
   }
 }

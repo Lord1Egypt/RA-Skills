@@ -1,0 +1,35 @@
+name: zodiac-claymote
+display_name: 十二生肖黏土软萌风表情包生成器
+description: 生成黏土软萌风十二生肖表情包，原创生肖角色 × 多工种职场人设 × 日常生活与职场场景，输出可直接投稿微信表情开放平台的成套图。适用于表情包批量生产、社媒配图、社群斗图、节日祝福图。
+version: 1.2.0
+author: peisenzhang
+license: 限时免费商用，详见 LICENSE.md
+entry: SKILL.md
+
+# 可选：运行环境与依赖（扣子/Coze 等平台会读取）
+runtime: python3
+dependencies:
+  - python>=3.8
+  - Pillow>=10.0.0
+requirements: scripts/requirements.txt
+
+tags:
+  - 表情包
+  - 十二生肖
+  - 黏土风
+  - 3D软萌
+  - 职场
+  - 打工人
+  - meme
+  - AI绘画
+
+# 目录结构说明（各平台通用）
+structure:
+  SKILL.md: 技能主入口（必需）
+  README.md: 使用说明
+  LICENSE.md: 限时免费商用授权条款
+  DISCLAIMER.md: 免责声明
+  授权证书模板.md: 原创声明与商用授权凭证
+  scripts/: 可执行脚本
+  references/: 参考文档（按需加载）
+  assets/: 示例与模板资源

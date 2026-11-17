@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mosocanvas.local/schemas/series-plan-0.1.json",
+  "title": "MoSoCanvas Series Plan 0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "id", "spec_ref", "frame_count", "series_invariants", "variation_dimensions", "beats", "color_script", "pilot_gate"],
+  "properties": {
+    "schema": { "const": "moso.series-plan/0.1" },
+    "id": { "type": "string", "minLength": 1 },
+    "spec_ref": { "type": "string", "minLength": 1 },
+    "frame_count": { "type": "integer", "minimum": 2 },
+    "series_invariants": { "$ref": "#/$defs/nonEmptyStringArray" },
+    "variation_dimensions": {
+      "type": "array",
+      "minItems": 2,
+      "items": { "enum": ["shot-distance", "viewpoint", "occlusion", "density", "narrative-time", "information-power", "spatial-logic", "value-key", "accent-area"] },
+      "uniqueItems": true
+    },
+    "beats": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["index", "shot_id", "job", "narrative_verb", "new_information", "spatial_strategy"],
+        "properties": {
+          "index": { "type": "integer", "minimum": 1 },
+          "shot_id": { "type": "string", "minLength": 1 },
+          "job": { "type": "string", "minLength": 1 },
+          "narrative_verb": { "type": "string", "minLength": 1 },
+          "new_information": { "type": "string", "minLength": 1 },
+          "spatial_strategy": { "type": "string", "minLength": 1 },
+          "continuity_from_previous": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "color_script": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["index", "value_key", "dominant_hue_family", "accent", "contrast_locus", "light_source", "transition"],
+        "properties": {
+          "index": { "type": "integer", "minimum": 1 },
+          "value_key": { "enum": ["low", "middle", "high"] },
+          "dominant_hue_family": { "type": "string", "minLength": 1 },
+          "accent": { "type": "string", "minLength": 1 },
+          "accent_area_pct": { "type": "number", "minimum": 0, "maximum": 100 },
+          "contrast_locus": { "type": "string", "minLength": 1 },
+          "light_source": { "type": "string", "minLength": 1 },
+          "transition": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "pilot_gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pilot_index", "status"],
+      "properties": {
+        "pilot_index": { "type": "integer", "minimum": 1 },
+        "status": { "enum": ["pending", "approved", "rejected", "revise"] },
+        "artifact_ref": { "type": "string", "minLength": 1 },
+        "review_ref": { "type": "string", "minLength": 1 },
+        "user_confirmed_at": { "type": "string", "format": "date-time" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "status": { "const": "approved" } } },
+          "then": { "required": ["artifact_ref", "review_ref", "user_confirmed_at"] }
+        }
+      ]
+    },
+    "contact_sheet_ref": { "type": "string", "minLength": 1 }
+  },
+  "$defs": {
+    "nonEmptyStringArray": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 }, "uniqueItems": true }
+  }
+}

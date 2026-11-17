@@ -1,0 +1,21 @@
+{
+  "email_accounts": [
+    {
+      "name": "QQ 邮箱",
+      "user": "your_qq@qq.com",
+      "password": "your_auth_code",
+      "host": "pop.qq.com",
+      "port": 995
+    },
+    {
+      "name": "163 邮箱",
+      "user": "your_name@163.com",
+      "password": "your_auth_code",
+      "host": "pop.163.com",
+      "port": 995
+    }
+  ],
+  "feishu_target": "user:YOUR_FEISHU_USER_ID",
+  "feishu_app_id": "cli_xxx_可选_用于每日简报API直发",
+  "feishu_app_secret": "xxx_可选"
+}

@@ -1,0 +1,17 @@
+# Meta-Analysis Skill — Dependency Manifest / 依赖清单
+#
+# 计算模型：COZE-ONLY（云端计算，本地零依赖）。
+# Compute model: COZE-ONLY (cloud compute, zero local deps).
+#
+# 所有数值计算均在 coze 端 meta-analysis 工作流的 R 引擎中完成（唯一路径）。终端用户
+# 无需本地安装 R、无需本地计算。回退逻辑已于 2026-08-26 取消：coze 不可达/未授权时
+# 直接返回结构化错误，不再调用本地 R。历史本地引擎 adapters/_dev/local_engine.py
+# 已于 2026-09-01 按架构终态原则删除，无本地回退。
+# Python 适配器（adapters/coze_client.py、scripts/i18n.py、scripts/generate_topic_report.py）
+# 仅依赖 Python 标准库。
+
+# ---------------------------------------------------------------------------
+# 唯一真实可选 Python 依赖（仅 PNG 输出模式需要）
+# ---------------------------------------------------------------------------
+# cairosvg        # 仅当要求 PNG 输出时，由 adapters/rendering.svg_to_png 按需 import；
+#                 # 默认输出 SVG，不需要。安装：pip install cairosvg

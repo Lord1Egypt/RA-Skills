@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn75zj7vzdyvap84adxa8heyyd82f5eh",
-  "slug": "web-to-feishu",
-  "version": "1.0.2",
-  "publishedAt": 1775984564283
+  "name": "web-to-feishu",
+  "version": "1.0.0",
+  "description": "Convert web content to Feishu/ima documents",
+  "author": "EdwardWason",
+  "homepage": "https://github.com/EdwardWason/web-to-feishu",
+  "tags": ["feishu", "ima", "web", "markdown", "twitter", "wechat"]
 }

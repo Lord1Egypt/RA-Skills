@@ -1,39 +1,54 @@
-## Description: <br>
-Use when a user wants to run an Etsy print-on-demand store with Printify integration, automate Etsy listings, generate POD designs, manage SEO tags, or schedule social media promotion for Etsy products. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when a user wants to run an Etsy print-on-demand store with Printify integration, automated Etsy listings, AI-generated designs, SEO tags, and scheduled social media promotion.
 
-## Publisher: <br>
-[simoncai519](https://clawhub.ai/user/simoncai519) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simoncai519](https://clawhub.ai/user/simoncai519)
 
-## Use Case: <br>
-External sellers, developers, and store operators use this skill to coordinate trend research, design generation, Printify product creation, Etsy listing creation, social promotion, and listing performance review for print-on-demand workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review notes that the skill can publish listings, change prices or tags, retire products, and post publicly without clear approval gates. <br>
-Mitigation: Run connected workflows with least-privilege credentials, keep secrets out of version control, start in draft or dry-run mode, and require manual approval before public posting or store-changing actions. <br>
+## Use Case:
 
+Developers and store operators can use this skill to guide Etsy print-on-demand workflows, including trend research, design generation, Printify product setup, Etsy listing creation, social promotion, and performance monitoring.
 
-## Reference(s): <br>
-- [Etsy POD Automation Workflows](references/workflows.md) <br>
-- [ClawHub skill page](https://clawhub.ai/simoncai519/etsy-pod-automation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline command examples, API workflow guidance, and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference authenticated Etsy, Printify, social-media, trend-research, and image-generation workflows that should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can guide actions that affect live Etsy listings, prices, social posts, and retired products without clear approval gates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require dry-run previews and explicit user approval before publishing, posting, changing prices, or retiring listings.
+
+Risk: The workflows rely on credentials for Etsy, Printify, scraping providers, and social media tools.
+
+Mitigation: Use least-privilege tokens, keep secrets out of version control, and avoid unattended cron automation until safeguards are in place.
+
+## Reference(s):
+
+- [Etsy POD Automation Workflows](references/workflows.md)
+- [Printify Shops API](https://api.printify.com/v1/shops.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with command examples, API workflow guidance, and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference external platform credentials and approval steps for Etsy, Printify, scraping providers, and social media tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

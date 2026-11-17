@@ -61,7 +61,7 @@ curl -s http://127.0.0.1:8642/api/v1/health
 # Test scan
 curl -s -X POST http://127.0.0.1:8642/api/v1/scan \
   -H "Content-Type: application/json" \
-  -d '{"content": "key=AKIAIOSFODNN7EXAMPLE"}'
+  -d '{"content": "key=REDACTED-SECRET"}'
 
 # Dashboard
 open http://127.0.0.1:8642/dashboard

@@ -1,42 +1,55 @@
-## Description: <br>
-Compares AI model API costs and helps developers estimate, compare, and optimize model spending. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI cost calculator that compares model pricing and helps AI application developers and cost-sensitive users optimize API spending.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers and cost-sensitive AI users use this skill to calculate token-based API costs, compare model pricing, and choose lower-cost models for common workloads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Model prices in the skill may become outdated. <br>
-Mitigation: Verify pricing against official provider pages before making spending or model-selection decisions. <br>
-Risk: The skill may suggest curl commands to query public pricing pages. <br>
-Mitigation: Review URLs and commands before execution; the available evidence does not show credential, private-file, account-access, or persistent-permission requirements. <br>
+## Use Case:
 
+Developers and AI application teams use this skill to estimate API usage costs, compare model pricing, and choose lower-cost models for routine workloads.
 
-## Reference(s): <br>
-- [Ai Cost Calculator on ClawHub](https://clawhub.ai/yang1002378395-cmyk/ai-cost-calculator) <br>
-- [OpenAI API pricing](https://openai.com/api/pricing) <br>
-- [DeepSeek API pricing](https://api.deepseek.com/zh-CN/zh/cewin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown cost reports with tables, recommendations, and optional inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses static example prices and may suggest curl checks against public pricing pages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.4 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Static model prices can become outdated and lead to incorrect cost estimates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current provider pricing before relying on calculated savings or budget recommendations.
+
+Risk: Optional curl commands contact external AI provider pricing pages.
+
+Mitigation: Run network commands only in environments where contacting those provider URLs is acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-cost-calculator)
+- [OpenAI API Pricing](https://openai.com/api/pricing)
+- [DeepSeek Pricing](https://api.deepseek.com/zh-CN/zh/cewin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with cost tables, recommendations, and optional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static pricing examples should be checked against provider pricing pages before business decisions.]
+
+## Skill Version(s):
+
+1.2.4 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

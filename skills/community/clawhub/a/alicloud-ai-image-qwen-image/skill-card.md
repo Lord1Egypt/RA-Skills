@@ -1,43 +1,64 @@
-## Description: <br>
-Generate images with Model Studio DashScope SDK using Qwen Image generation models (qwen-image, qwen-image-plus, qwen-image-max and snapshots). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates images with Alibaba Cloud Model Studio DashScope SDK using Qwen Image generation models and helps agents map normalized image.generate requests to SDK calls and responses.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and engineers use this skill to standardize Alibaba Cloud DashScope Qwen image generation requests, map normalized image.generate fields, and capture generated image outputs and metadata for agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A local path supplied as reference_image can be read and uploaded to DashScope without validation or confirmation. <br>
-Mitigation: Only pass inspected reference images, keep sensitive files outside the agent workspace, and require explicit user control over generation requests. <br>
-Risk: Image generation requests are external Alibaba Cloud uploads that may incur cost and expose prompts or image inputs to the service. <br>
-Mitigation: Use a scoped DASHSCOPE_API_KEY, limit request scope, and treat each generation as a potentially billable external operation. <br>
+## Use Case:
 
+Developers and agent builders use this skill to integrate Alibaba Cloud Qwen Image generation into workflows, normalize prompt, size, seed, and reference_image inputs, and produce image URLs, downloaded files, and metadata.
 
-## Reference(s): <br>
-- [DashScope SDK Reference (Qwen Image)](references/api_reference.md) <br>
-- [Prompt Guide (Qwen Image)](references/prompt-guide.md) <br>
-- [Source list](references/sources.md) <br>
-- [ClawHub release page](https://clawhub.ai/cinience/alicloud-ai-image-qwen-image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON examples, Python code snippets, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes normalized image.generate request and response fields; the helper can download generated image files and print normalized JSON metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: Untrusted request JSON can cause local reference_image paths to be read and sent to the image generation service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted request JSON and restrict reference images to explicit files from a dedicated input folder.
+
+Risk: The helper can download returned image URLs without independent URL validation.
+
+Mitigation: Constrain outbound downloads before production use and review returned URLs before saving generated files.
+
+Risk: The DashScope API key is required for operation and could be exposed through unsafe local configuration.
+
+Mitigation: Protect DASHSCOPE_API_KEY and credentials files, and avoid printing or committing secrets.
+
+Risk: The dashscope dependency is installed at runtime unless constrained by the deployment environment.
+
+Mitigation: Pin the dashscope dependency and review dependency updates before production deployment.
+
+## Reference(s):
+
+- [DashScope SDK Reference (Qwen Image)](references/api_reference.md)
+- [Prompt Guide (Qwen Image)](references/prompt-guide.md)
+- [Source List](references/sources.md)
+- [ClawHub Skill Page](https://clawhub.ai/cinience/skills/alicloud-ai-image-qwen-image)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON request and response examples, Python code, shell commands, and generated image file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses DASHSCOPE_API_KEY for authenticated image generation and may write generated images and response metadata under output directories.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

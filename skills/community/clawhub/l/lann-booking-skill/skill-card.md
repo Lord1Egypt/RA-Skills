@@ -1,44 +1,61 @@
-## Description: <br>
-lann-booking helps agents look up Lann Thai Massage stores and services and create bookings for supported locations in China. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent query Lann Thai Massage stores and services, collect required booking details, and create massage appointments through MCP or a direct booking API.
 
-## Publisher: <br>
-[lystrosaurus](https://clawhub.ai/user/lystrosaurus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lystrosaurus](https://clawhub.ai/user/lystrosaurus)
 
-## Use Case: <br>
-External users and service agents use this skill to find Lann Thai Massage locations and services, then prepare or submit reservations after confirming phone number, store, service, party size, and appointment time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled test scripts can contact the live booking service and submit personal phone data. <br>
-Mitigation: Review before installing, do not run test scripts unless live booking calls are intended, and avoid real customer phone numbers in tests. <br>
-Risk: Booking workflows collect phone numbers and can expose personal data through full request or response logs. <br>
-Mitigation: Confirm booking details before submission and redact phone numbers and other personal data from logs. <br>
+## Use Case:
 
+External users use this skill through an assistant to find Lann Thai Massage locations, compare available massage and spa services, and complete appointment booking after confirming mobile number, store, service, party size, and time.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lystrosaurus/lann-booking-skill) <br>
-- [Lann Booking API reference](artifact/references/api_reference.md) <br>
-- [Booking response templates](artifact/assets/booking_template.md) <br>
-- [Remote MCP service](https://open.lannlife.com/mcp) <br>
-- [Direct booking API](https://open.lannlife.com/mcp/book/create) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and structured API request guidance with optional shell commands and MCP configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include store and service recommendations, masked phone confirmation, booking status, and booking details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Booking requests send personal contact details, including a mobile number, to open.lannlife.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Collect only the details required for booking, show a masked mobile number during confirmation, and submit only after explicit user approval.
+
+Risk: The included test helpers can call the live booking API and print request or response data.
+
+Mitigation: Run tests only against a reviewed test endpoint or with non-real data, and avoid storing logs that contain booking details.
+
+Risk: Local MCP setup may run an unpinned lann-mcp-server package or source tree.
+
+Mitigation: Use a pinned and reviewed MCP server version, or use the documented remote endpoint after confirming it is trusted for the deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lystrosaurus/skills/lann-booking-skill)
+- [Lann Booking API reference](references/api_reference.md)
+- [Booking response templates](assets/booking_template.md)
+- [Lann MCP service endpoint](https://open.lannlife.com/mcp)
+- [Booking API endpoint](https://open.lannlife.com/mcp/book/create)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style assistant messages with booking confirmations, MCP/API parameters, and optional shell or client configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Collects and confirms booking parameters before submission; mobile numbers should be masked in user-visible summaries and logs.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

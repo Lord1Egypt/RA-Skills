@@ -1,42 +1,58 @@
-## Description: <br>
-Helps agents repair merged Android APK installation failures by providing shell-based guidance to update the manifest, keep resources.arsc uncompressed and aligned, re-sign the APK, and verify the result. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents guide developers through repairing universal_signed.apk installation failures on Android 11+ by updating APK manifest handling, resource compression, alignment, and signing steps.
 
-## Publisher: <br>
-[softwareme](https://clawhub.ai/user/softwareme) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[softwareme](https://clawhub.ai/user/softwareme)
 
-## Use Case: <br>
-Developers and Android engineers use this skill when a merged universal APK fails to install, especially on Android 11 and later. It guides the agent through manifest repair, native library extraction settings, resources.arsc compression handling, APK alignment, signing, and validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The script rewrites and re-signs an APK using hard-coded paths and embedded signing values. <br>
-Mitigation: Edit the script before use, set explicit input and output paths, remove hard-coded signing passwords, and use a dedicated non-production test key. <br>
-Risk: APK repair steps can alter app packaging, signing identity, or install behavior. <br>
-Mitigation: Work on a copy of the APK, verify the final APK, and test on non-production devices before distribution or installation. <br>
-Risk: Sideloading a modified APK can expose devices or users to untrusted code. <br>
-Mitigation: Use trusted APK sources only and avoid personal or production devices for sideloading tests. <br>
+## Use Case:
 
+Developers and mobile engineers use this skill when a merged universal APK fails to install because native libraries cannot be extracted or resources.arsc is compressed or misaligned. It provides procedural guidance and shell-command examples for unpacking, modifying, rebuilding, aligning, signing, and checking the APK.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/softwareme/fix-universal-apk-installation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and shell script guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires users to customize APK paths, Android SDK build tools paths, keystore paths, and signing values before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill rewrites and signs APK files, which can alter package integrity and installation behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep a backup of the original APK, test on a disposable device or emulator, and verify the package name and signing certificate before installation.
+
+Risk: The artifact uses hard-coded local paths and signing material examples that may be inappropriate for another environment.
+
+Mitigation: Replace paths and signing credentials with environment-specific values and protect keystores and passwords outside shared scripts.
+
+Risk: Sideloading repaired APKs can expose devices to untrusted application risk.
+
+Mitigation: Install only APKs from trusted sources, disable unknown-source installation after testing, and follow the security guidance from the release evidence.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/softwareme/skills/fix-universal-apk-installation)
+- [Publisher profile](https://clawhub.ai/user/softwareme)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include APK toolchain commands, signing guidance, Android SDK build-tools paths, and verification steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

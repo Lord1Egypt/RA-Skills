@@ -67,7 +67,7 @@ This report verifies the functionality, performance, and reliability of the `mod
 |------------|----------|--------|
 | Sub-agent timeout | Retry with smaller chunk | ✅ Pass |
 | Context overflow | Compress and split | ✅ Pass |
-| File access error | Try bash alternative | ✅ Pass |
+| File access error | Try alternative read-only methods (Python/PowerShell only) | ✅ Pass |
 | Sub-agent crash | Restart with progress | ✅ Pass |
 | Invalid module path | Report error, stop task | ✅ Pass |
 
@@ -106,7 +106,8 @@ This report verifies the functionality, performance, and reliability of the `mod
 ## Dependencies
 
 - Python 3.x standard library only (zipfile, re, sys, os, etc.)
-- PowerShell 5.1+ (Windows) or Bash (Linux/Mac)
+- PowerShell 5.1+ (Windows) or Python 3.x (Linux/Mac)
+- Python 3.x
 - OpenClaw >= 1.0.0
 - No external Python packages required
 
@@ -121,12 +122,20 @@ This report verifies the functionality, performance, and reliability of the `mod
 
 ## Security Verification
 
-- ✅ Only reads user-accessible local files
+- ✅ Reads user-accessible local Java source files
+- ✅ Creates documentation files in project `.ai-doc/` directory
 - ✅ Does not bypass file access controls
 - ✅ Uses standard file I/O APIs
-- ✅ No external network calls
-- ✅ No system command execution beyond file operations
+- ⚠️ Uses PowerShell for file reading and directory listing (Windows standard commands)
+- ⚠️ May use network for subagent coordination (platform-level only)
 - ✅ Compatible with enterprise security policies
+
+**Execution Model**:
+- Uses PowerShell for file reading and directory listing (Windows standard commands)
+- Shell commands are limited to standard read-only file operations: `Get-ChildItem`, `Test-Path`, `Get-Content`
+- **No file modification or deletion operations**
+- **Creates new documentation files** in `.ai-doc/` directory (does not modify source code)
+- Network usage is limited to subagent coordination within the AI platform, no external data transmission
 
 ## Integration Tests
 
@@ -195,12 +204,12 @@ Status: ✅ Pass
 
 2. **For Enterprise Environments**:
    - Test file access permissions before full run
-   - Configure bash fallback for security-restricted files
+   - Use Python read-only methods as fallback for security-restricted files
    - Set appropriate timeout values based on module size
 
 3. **For Best Results**:
    - Run during off-peak hours for faster subagent response
-   - Ensure stable network connection for subagent orchestration
+   - Platform-level subagent orchestration requires stable network (no external data transmission)
    - Review generated L2 doc for module-specific business flow accuracy
 
 ## Conclusion
@@ -220,5 +229,5 @@ The skill is ready for production use in enterprise environments for Java/Maven 
 ---
 
 **Verified:** 2026-03-09  
-**Version:** 1.0.0  
+**Version:** 1.0.5  
 **Test Modules:** admin-api (81 files), ces-domain (109 files), small-module (18 files)

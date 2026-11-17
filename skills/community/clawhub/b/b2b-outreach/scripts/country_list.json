@@ -1,0 +1,1770 @@
+[
+  {
+    "id": 1,
+    "area": "亚洲",
+    "code": "AF",
+    "icon": "https://api.upkuajing.com/client/static/img/country/afh.gif",
+    "nameEn": "Afghanistan",
+    "name": "阿富汗"
+  },
+  {
+    "id": 4,
+    "area": "欧洲",
+    "code": "AL",
+    "icon": "https://api.upkuajing.com/client/static/img/country/arbny.gif",
+    "nameEn": "Albania",
+    "name": "阿尔巴尼亚"
+  },
+  {
+    "id": 5,
+    "area": "中东",
+    "code": "DZ",
+    "icon": "https://api.upkuajing.com/client/static/img/country/arjly.gif",
+    "nameEn": "Algeria",
+    "name": "阿尔及利亚"
+  },
+  {
+    "id": 6,
+    "area": "大洋洲",
+    "code": "AS",
+    "icon": "https://api.upkuajing.com/client/static/img/country/samoya.gif",
+    "nameEn": "American Samoa",
+    "name": "美属萨摩亚"
+  },
+  {
+    "id": 7,
+    "area": "欧洲",
+    "code": "AD",
+    "icon": "https://api.upkuajing.com/client/static/img/country/andaor.gif",
+    "nameEn": "Andorra",
+    "name": "安道尔"
+  },
+  {
+    "id": 8,
+    "area": "非洲",
+    "code": "AO",
+    "icon": "https://api.upkuajing.com/client/static/img/country/angla.gif",
+    "nameEn": "Angola",
+    "name": "安哥拉"
+  },
+  {
+    "id": 9,
+    "area": "北美洲",
+    "code": "AG",
+    "icon": "https://api.upkuajing.com/client/static/img/country/antigua.gif",
+    "nameEn": "Antigua and Barbuda",
+    "name": "安提瓜和巴布达"
+  },
+  {
+    "id": 10,
+    "area": "南美洲",
+    "code": "AR",
+    "icon": "https://api.upkuajing.com/client/static/img/country/agt.gif",
+    "nameEn": "Argentina",
+    "name": "阿根廷"
+  },
+  {
+    "id": 11,
+    "area": "中东",
+    "code": "AM",
+    "icon": "https://api.upkuajing.com/client/static/img/country/yamnia.gif",
+    "nameEn": "Armenia",
+    "name": "亚美尼亚"
+  },
+  {
+    "id": 12,
+    "area": "大洋洲",
+    "code": "AU",
+    "icon": "https://api.upkuajing.com/client/static/img/country/aodly.gif",
+    "nameEn": "Australia",
+    "name": "澳大利亚"
+  },
+  {
+    "id": 13,
+    "area": "欧洲",
+    "code": "AT",
+    "icon": "https://api.upkuajing.com/client/static/img/country/aodili.gif",
+    "nameEn": "Austria",
+    "name": "奥地利"
+  },
+  {
+    "id": 14,
+    "area": "中东",
+    "code": "AZ",
+    "icon": "https://api.upkuajing.com/client/static/img/country/asbj.gif",
+    "nameEn": "Azerbaijan",
+    "name": "阿塞拜疆"
+  },
+  {
+    "id": 15,
+    "area": "北美洲",
+    "code": "BS",
+    "icon": "https://api.upkuajing.com/client/static/img/country/bahama.gif",
+    "nameEn": "Bahamas",
+    "name": "巴哈马"
+  },
+  {
+    "id": 16,
+    "area": "中东",
+    "code": "BH",
+    "icon": "https://api.upkuajing.com/client/static/img/country/balin.gif",
+    "nameEn": "Bahrain",
+    "name": "巴林"
+  },
+  {
+    "id": 17,
+    "area": "亚洲",
+    "code": "BD",
+    "icon": "https://api.upkuajing.com/client/static/img/country/mjl.gif",
+    "nameEn": "Bangladesh",
+    "name": "孟加拉国"
+  },
+  {
+    "id": 18,
+    "area": "北美洲",
+    "code": "BB",
+    "icon": "https://api.upkuajing.com/client/static/img/country/babaduos.gif",
+    "nameEn": "Barbados",
+    "name": "巴巴多斯"
+  },
+  {
+    "id": 19,
+    "area": "欧洲",
+    "code": "BY",
+    "icon": "https://api.upkuajing.com/client/static/img/country/16.jpg",
+    "nameEn": "Belarus",
+    "name": "白俄罗斯"
+  },
+  {
+    "id": 20,
+    "area": "欧洲",
+    "code": "BE",
+    "icon": "https://api.upkuajing.com/client/static/img/country/bilishi.gif",
+    "nameEn": "Belgium",
+    "name": "比利时"
+  },
+  {
+    "id": 21,
+    "area": "北美洲",
+    "code": "BZ",
+    "icon": "https://api.upkuajing.com/client/static/img/country/bolizi.gif",
+    "nameEn": "Belize",
+    "name": "伯利兹"
+  },
+  {
+    "id": 22,
+    "area": "非洲",
+    "code": "BJ",
+    "icon": "https://api.upkuajing.com/client/static/img/country/beinin.gif",
+    "nameEn": "Benin",
+    "name": "贝宁"
+  },
+  {
+    "id": 23,
+    "area": "北美洲",
+    "code": "BM",
+    "icon": "https://api.upkuajing.com/client/static/img/country/23.jpg",
+    "nameEn": "Bermuda",
+    "name": "百慕大"
+  },
+  {
+    "id": 24,
+    "area": "亚洲",
+    "code": "BT",
+    "icon": "https://api.upkuajing.com/client/static/img/country/budan.gif",
+    "nameEn": "Bhutan",
+    "name": "不丹"
+  },
+  {
+    "id": 25,
+    "area": "南美洲",
+    "code": "BO",
+    "icon": "https://api.upkuajing.com/client/static/img/country/blwy.gif",
+    "nameEn": "Bolivia",
+    "name": "玻利维亚"
+  },
+  {
+    "id": 27,
+    "area": "欧洲",
+    "code": "BA",
+    "icon": "https://api.upkuajing.com/client/static/img/country/27.jpg",
+    "nameEn": "Bosnia and Herzegovina",
+    "name": "波斯尼亚和黑塞哥维那"
+  },
+  {
+    "id": 28,
+    "area": "非洲",
+    "code": "BW",
+    "icon": "https://api.upkuajing.com/client/static/img/country/bociwana.gif",
+    "nameEn": "Botswana",
+    "name": "博茨瓦纳"
+  },
+  {
+    "id": 29,
+    "area": "南美洲",
+    "code": "BR",
+    "icon": "https://api.upkuajing.com/client/static/img/country/baxi.gif",
+    "nameEn": "Brazil",
+    "name": "巴西"
+  },
+  {
+    "id": 31,
+    "area": "东南亚",
+    "code": "BN",
+    "icon": "https://api.upkuajing.com/client/static/img/country/wenlai.gif",
+    "nameEn": "Brunei",
+    "name": "文莱"
+  },
+  {
+    "id": 32,
+    "area": "欧洲",
+    "code": "BG",
+    "icon": "https://api.upkuajing.com/client/static/img/country/baojly.gif",
+    "nameEn": "Bulgaria",
+    "name": "保加利亚"
+  },
+  {
+    "id": 33,
+    "area": "非洲",
+    "code": "BF",
+    "icon": "https://api.upkuajing.com/client/static/img/country/bjnfs.gif",
+    "nameEn": "Burkina Faso",
+    "name": "布基纳法索"
+  },
+  {
+    "id": 34,
+    "area": "非洲",
+    "code": "BI",
+    "icon": "https://api.upkuajing.com/client/static/img/country/bulongdi.gif",
+    "nameEn": "Burundi",
+    "name": "布隆迪"
+  },
+  {
+    "id": 35,
+    "area": "东南亚",
+    "code": "KH",
+    "icon": "https://api.upkuajing.com/client/static/img/country/jpzh.gif",
+    "nameEn": "Cambodia",
+    "name": "柬埔寨"
+  },
+  {
+    "id": 36,
+    "area": "非洲",
+    "code": "CM",
+    "icon": "https://api.upkuajing.com/client/static/img/country/kamailong.gif",
+    "nameEn": "Cameroon",
+    "name": "喀麦隆"
+  },
+  {
+    "id": 37,
+    "area": "北美洲",
+    "code": "CA",
+    "icon": "https://api.upkuajing.com/client/static/img/country/jnd.gif",
+    "nameEn": "Canada",
+    "name": "加拿大"
+  },
+  {
+    "id": 39,
+    "area": "北美洲",
+    "code": "KY",
+    "icon": "https://api.upkuajing.com/client/static/img/country/39.jpg",
+    "nameEn": "Cayman Islands",
+    "name": "开曼群岛"
+  },
+  {
+    "id": 40,
+    "area": "非洲",
+    "code": "CF",
+    "icon": "https://api.upkuajing.com/client/static/img/country/zhongfei.gif",
+    "nameEn": "Central African Republic",
+    "name": "中非共和国"
+  },
+  {
+    "id": 41,
+    "area": "非洲",
+    "code": "TD",
+    "icon": "https://api.upkuajing.com/client/static/img/country/zhade.gif",
+    "nameEn": "Chad",
+    "name": "乍得"
+  },
+  {
+    "id": 42,
+    "area": "南美洲",
+    "code": "CL",
+    "icon": "https://api.upkuajing.com/client/static/img/country/zhili.gif",
+    "nameEn": "Chile",
+    "name": "智利"
+  },
+  {
+    "id": 43,
+    "area": "亚洲",
+    "code": "CN",
+    "icon": "https://api.upkuajing.com/client/static/img/country/china.jpg",
+    "nameEn": "China",
+    "name": "中国"
+  },
+  {
+    "id": 44,
+    "area": "南美洲",
+    "code": "CO",
+    "icon": "https://api.upkuajing.com/client/static/img/country/glby.gif",
+    "nameEn": "Colombia",
+    "name": "哥伦比亚"
+  },
+  {
+    "id": 45,
+    "area": "非洲",
+    "code": "KM",
+    "icon": "https://api.upkuajing.com/client/static/img/country/kemoluo.gif",
+    "nameEn": "Comoros",
+    "name": "科摩罗"
+  },
+  {
+    "id": 46,
+    "area": "北美洲",
+    "code": "CR",
+    "icon": "https://api.upkuajing.com/client/static/img/country/gsdlj.gif",
+    "nameEn": "Costa Rica",
+    "name": "哥斯达黎加"
+  },
+  {
+    "id": 47,
+    "area": "非洲",
+    "code": "CI",
+    "icon": "https://api.upkuajing.com/client/static/img/country/ketediwa.gif",
+    "nameEn": "Côte d'Ivoire",
+    "name": "科特迪瓦"
+  },
+  {
+    "id": 48,
+    "area": "欧洲",
+    "code": "HR",
+    "icon": "https://api.upkuajing.com/client/static/img/country/kldy.gif",
+    "nameEn": "Croatia",
+    "name": "克罗地亚"
+  },
+  {
+    "id": 49,
+    "area": "北美洲",
+    "code": "CU",
+    "icon": "https://api.upkuajing.com/client/static/img/country/guba.gif",
+    "nameEn": "Cuba",
+    "name": "古巴"
+  },
+  {
+    "id": 50,
+    "area": "中东",
+    "code": "CY",
+    "icon": "https://api.upkuajing.com/client/static/img/country/spls.gif",
+    "nameEn": "Cyprus",
+    "name": "塞浦路斯"
+  },
+  {
+    "id": 51,
+    "area": "欧洲",
+    "code": "CZ",
+    "icon": "https://api.upkuajing.com/client/static/img/country/jieke.gif",
+    "nameEn": "Czech Republic",
+    "name": "捷克共和国"
+  },
+  {
+    "id": 52,
+    "area": "欧洲",
+    "code": "DK",
+    "icon": "https://api.upkuajing.com/client/static/img/country/danmai.gif",
+    "nameEn": "Denmark",
+    "name": "丹麦"
+  },
+  {
+    "id": 53,
+    "area": "非洲",
+    "code": "DJ",
+    "icon": "https://api.upkuajing.com/client/static/img/country/jibuti.gif",
+    "nameEn": "Djibouti",
+    "name": "吉布提"
+  },
+  {
+    "id": 54,
+    "area": "其它",
+    "code": "DO",
+    "icon": "https://api.upkuajing.com/client/static/img/country/54.jpg",
+    "nameEn": "Dominican Republic",
+    "name": "多米尼加共和国"
+  },
+  {
+    "id": 55,
+    "area": "北美洲",
+    "code": "DM",
+    "icon": "https://api.upkuajing.com/client/static/img/country/dmnk.gif",
+    "nameEn": "Dominica",
+    "name": "多米尼克"
+  },
+  {
+    "id": 56,
+    "area": "南美洲",
+    "code": "EC",
+    "icon": "https://api.upkuajing.com/client/static/img/country/egdr.gif",
+    "nameEn": "Ecuador",
+    "name": "厄瓜多尔"
+  },
+  {
+    "id": 57,
+    "area": "中东",
+    "code": "EG",
+    "icon": "https://api.upkuajing.com/client/static/img/country/aiji.gif",
+    "nameEn": "Egypt",
+    "name": "埃及"
+  },
+  {
+    "id": 58,
+    "area": "北美洲",
+    "code": "SV",
+    "icon": "https://api.upkuajing.com/client/static/img/country/58.jpg",
+    "nameEn": "El Salvador",
+    "name": "萨尔瓦多"
+  },
+  {
+    "id": 59,
+    "area": "非洲",
+    "code": "GQ",
+    "icon": "https://api.upkuajing.com/client/static/img/country/chdjny.gif",
+    "nameEn": "Equatorial Guinea",
+    "name": "赤道几内亚"
+  },
+  {
+    "id": 60,
+    "area": "非洲",
+    "code": "ER",
+    "icon": "https://api.upkuajing.com/client/static/img/country/eltly.gif",
+    "nameEn": "Eritrea",
+    "name": "厄立特里亚"
+  },
+  {
+    "id": 61,
+    "area": "欧洲",
+    "code": "EE",
+    "icon": "https://api.upkuajing.com/client/static/img/country/aishny.gif",
+    "nameEn": "Estonia",
+    "name": "爱沙尼亚"
+  },
+  {
+    "id": 62,
+    "area": "非洲",
+    "code": "ET",
+    "icon": "https://api.upkuajing.com/client/static/img/country/aiseby.gif",
+    "nameEn": "Ethiopia",
+    "name": "埃塞俄比亚"
+  },
+  {
+    "id": 63,
+    "area": "欧洲",
+    "code": "FO",
+    "icon": "https://api.upkuajing.com/client/static/img/country/63.jpg",
+    "nameEn": "Faroe Islands",
+    "name": "法罗群岛"
+  },
+  {
+    "id": 64,
+    "area": "大洋洲",
+    "code": "FJ",
+    "icon": "https://api.upkuajing.com/client/static/img/country/feiji.gif",
+    "nameEn": "Fiji",
+    "name": "斐济"
+  },
+  {
+    "id": 65,
+    "area": "欧洲",
+    "code": "FI",
+    "icon": "https://api.upkuajing.com/client/static/img/country/fenlan.gif",
+    "nameEn": "Finland",
+    "name": "芬兰"
+  },
+  {
+    "id": 66,
+    "area": "欧洲",
+    "code": "FR",
+    "icon": "https://api.upkuajing.com/client/static/img/country/faguo.gif",
+    "nameEn": "France",
+    "name": "法国"
+  },
+  {
+    "id": 67,
+    "area": "南美洲",
+    "code": "GF",
+    "icon": "https://api.upkuajing.com/client/static/img/country/gyn.gif",
+    "nameEn": "French Guiana",
+    "name": "法属圭亚那"
+  },
+  {
+    "id": 68,
+    "area": "大洋洲",
+    "code": "PF",
+    "icon": "https://api.upkuajing.com/client/static/img/country/68.jpg",
+    "nameEn": "French Polynesia",
+    "name": "法属波利尼西亚"
+  },
+  {
+    "id": 70,
+    "area": "非洲",
+    "code": "GA",
+    "icon": "https://api.upkuajing.com/client/static/img/country/jiapeng.gif",
+    "nameEn": "Gabon",
+    "name": "加蓬"
+  },
+  {
+    "id": 71,
+    "area": "非洲",
+    "code": "GM",
+    "icon": "https://api.upkuajing.com/client/static/img/country/gbya.gif",
+    "nameEn": "Gambia",
+    "name": "冈比亚"
+  },
+  {
+    "id": 72,
+    "area": "其它",
+    "code": "GE",
+    "icon": "https://api.upkuajing.com/client/static/img/country/mei.gif",
+    "nameEn": "Georgia",
+    "name": "格鲁吉亚"
+  },
+  {
+    "id": 73,
+    "area": "欧洲",
+    "code": "DE",
+    "icon": "https://api.upkuajing.com/client/static/img/country/deguo.gif",
+    "nameEn": "Germany",
+    "name": "德国"
+  },
+  {
+    "id": 74,
+    "area": "非洲",
+    "code": "GH",
+    "icon": "https://api.upkuajing.com/client/static/img/country/jiana.gif",
+    "nameEn": "Ghana",
+    "name": "加纳"
+  },
+  {
+    "id": 75,
+    "area": "欧洲",
+    "code": "GR",
+    "icon": "https://api.upkuajing.com/client/static/img/country/xila.gif",
+    "nameEn": "Greece",
+    "name": "希腊"
+  },
+  {
+    "id": 76,
+    "area": "北美洲",
+    "code": "GL",
+    "icon": "https://api.upkuajing.com/client/static/img/country/76.jpg",
+    "nameEn": "Greenland",
+    "name": "格陵兰"
+  },
+  {
+    "id": 77,
+    "area": "北美洲",
+    "code": "GD",
+    "icon": "https://api.upkuajing.com/client/static/img/country/glnd.gif",
+    "nameEn": "Grenada",
+    "name": "格林纳达"
+  },
+  {
+    "id": 78,
+    "area": "北美洲",
+    "code": "GP",
+    "icon": "https://api.upkuajing.com/client/static/img/country/78.jpg",
+    "nameEn": "Guadeloupe",
+    "name": "瓜德罗普"
+  },
+  {
+    "id": 79,
+    "area": "大洋洲",
+    "code": "GU",
+    "icon": "https://api.upkuajing.com/client/static/img/country/79.jpg",
+    "nameEn": "Guam",
+    "name": "关岛"
+  },
+  {
+    "id": 80,
+    "area": "北美洲",
+    "code": "GT",
+    "icon": "https://api.upkuajing.com/client/static/img/country/wdml.gif",
+    "nameEn": "Guatemala",
+    "name": "危地马拉"
+  },
+  {
+    "id": 81,
+    "area": "欧洲",
+    "code": "GG",
+    "icon": "https://api.upkuajing.com/client/static/img/country/81.jpg",
+    "nameEn": "Guernsey",
+    "name": "根西岛"
+  },
+  {
+    "id": 82,
+    "area": "非洲",
+    "code": "GW",
+    "icon": "https://api.upkuajing.com/client/static/img/country/bishao.gif",
+    "nameEn": "Guinea-Bissau",
+    "name": "几内亚比绍"
+  },
+  {
+    "id": 83,
+    "area": "非洲",
+    "code": "GN",
+    "icon": "https://api.upkuajing.com/client/static/img/country/jineiya.gif",
+    "nameEn": "Guinea",
+    "name": "几内亚"
+  },
+  {
+    "id": 84,
+    "area": "南美洲",
+    "code": "GY",
+    "icon": "https://api.upkuajing.com/client/static/img/country/gyn.gif",
+    "nameEn": "Guyana",
+    "name": "圭亚那"
+  },
+  {
+    "id": 85,
+    "area": "北美洲",
+    "code": "HT",
+    "icon": "https://api.upkuajing.com/client/static/img/country/haidi.gif",
+    "nameEn": "Haiti",
+    "name": "海地"
+  },
+  {
+    "id": 86,
+    "area": "北美洲",
+    "code": "HN",
+    "icon": "https://api.upkuajing.com/client/static/img/country/hdls.gif",
+    "nameEn": "Honduras",
+    "name": "洪都拉斯"
+  },
+  {
+    "id": 87,
+    "area": "亚洲",
+    "code": "HK",
+    "icon": "https://api.upkuajing.com/client/static/img/country/china.jpg",
+    "nameEn": "Hong Kong(China)",
+    "name": "中国香港"
+  },
+  {
+    "id": 88,
+    "area": "欧洲",
+    "code": "HU",
+    "icon": "https://api.upkuajing.com/client/static/img/country/xyl.gif",
+    "nameEn": "Hungary",
+    "name": "匈牙利"
+  },
+  {
+    "id": 89,
+    "area": "欧洲",
+    "code": "IS",
+    "icon": "https://api.upkuajing.com/client/static/img/country/bingdao.gif",
+    "nameEn": "Iceland",
+    "name": "冰岛"
+  },
+  {
+    "id": 90,
+    "area": "亚洲",
+    "code": "IN",
+    "icon": "https://api.upkuajing.com/client/static/img/country/yindu.gif",
+    "nameEn": "India",
+    "name": "印度"
+  },
+  {
+    "id": 91,
+    "area": "东南亚",
+    "code": "ID",
+    "icon": "https://api.upkuajing.com/client/static/img/country/yinni.png",
+    "nameEn": "Indonesia",
+    "name": "印度尼西亚"
+  },
+  {
+    "id": 92,
+    "area": "中东",
+    "code": "IR",
+    "icon": "https://api.upkuajing.com/client/static/img/country/yl.gif",
+    "nameEn": "Iran",
+    "name": "伊朗"
+  },
+  {
+    "id": 93,
+    "area": "中东",
+    "code": "IQ",
+    "icon": "https://api.upkuajing.com/client/static/img/country/ylk.gif",
+    "nameEn": "Iraq",
+    "name": "伊拉克"
+  },
+  {
+    "id": 94,
+    "area": "欧洲",
+    "code": "IE",
+    "icon": "https://api.upkuajing.com/client/static/img/country/airlan.gif",
+    "nameEn": "Ireland",
+    "name": "爱尔兰"
+  },
+  {
+    "id": 95,
+    "area": "其它",
+    "code": "IM",
+    "icon": "https://api.upkuajing.com/client/static/img/country/95.jpg",
+    "nameEn": "Isle of Man",
+    "name": "马恩岛"
+  },
+  {
+    "id": 96,
+    "area": "中东",
+    "code": "IL",
+    "icon": "https://api.upkuajing.com/client/static/img/country/ysl.gif",
+    "nameEn": "Israel",
+    "name": "以色列"
+  },
+  {
+    "id": 97,
+    "area": "欧洲",
+    "code": "IT",
+    "icon": "https://api.upkuajing.com/client/static/img/country/ydl.gif",
+    "nameEn": "Italy",
+    "name": "意大利"
+  },
+  {
+    "id": 98,
+    "area": "北美洲",
+    "code": "JM",
+    "icon": "https://api.upkuajing.com/client/static/img/country/yamj.gif",
+    "nameEn": "Jamaica",
+    "name": "牙买加"
+  },
+  {
+    "id": 99,
+    "area": "日韩",
+    "code": "JP",
+    "icon": "https://api.upkuajing.com/client/static/img/country/riben.gif",
+    "nameEn": "Japan",
+    "name": "日本"
+  },
+  {
+    "id": 100,
+    "area": "其它",
+    "code": "JE",
+    "icon": "https://api.upkuajing.com/client/static/img/country/100.jpg",
+    "nameEn": "Jersey",
+    "name": "泽西"
+  },
+  {
+    "id": 101,
+    "area": "中东",
+    "code": "JO",
+    "icon": "https://api.upkuajing.com/client/static/img/country/yuedan.gif",
+    "nameEn": "Jordan",
+    "name": "约旦"
+  },
+  {
+    "id": 102,
+    "area": "亚洲",
+    "code": "KZ",
+    "icon": "https://api.upkuajing.com/client/static/img/country/hsk.gif",
+    "nameEn": "Kazakhstan",
+    "name": "哈萨克斯坦"
+  },
+  {
+    "id": 103,
+    "area": "非洲",
+    "code": "KE",
+    "icon": "https://api.upkuajing.com/client/static/img/country/keniya.gif",
+    "nameEn": "Kenya",
+    "name": "肯尼亚"
+  },
+  {
+    "id": 104,
+    "area": "欧洲",
+    "code": "KV",
+    "icon": "https://api.upkuajing.com/client/static/img/country/104.jpg",
+    "nameEn": "Kosovo",
+    "name": "科索沃"
+  },
+  {
+    "id": 105,
+    "area": "中东",
+    "code": "KW",
+    "icon": "https://api.upkuajing.com/client/static/img/country/kwt.gif",
+    "nameEn": "Kuwait",
+    "name": "科威特"
+  },
+  {
+    "id": 106,
+    "area": "亚洲",
+    "code": "KG",
+    "icon": "https://api.upkuajing.com/client/static/img/country/jerjs.gif",
+    "nameEn": "Kyrgyzstan",
+    "name": "吉尔吉斯斯坦"
+  },
+  {
+    "id": 107,
+    "area": "东南亚",
+    "code": "LA",
+    "icon": "https://api.upkuajing.com/client/static/img/country/laowo.gif",
+    "nameEn": "Laos",
+    "name": "老挝"
+  },
+  {
+    "id": 108,
+    "area": "欧洲",
+    "code": "LV",
+    "icon": "https://api.upkuajing.com/client/static/img/country/latwy.gif",
+    "nameEn": "Latvia",
+    "name": "拉脱维亚"
+  },
+  {
+    "id": 109,
+    "area": "中东",
+    "code": "LB",
+    "icon": "https://api.upkuajing.com/client/static/img/country/lbn.gif",
+    "nameEn": "Lebanon",
+    "name": "黎巴嫩"
+  },
+  {
+    "id": 110,
+    "area": "非洲",
+    "code": "LS",
+    "icon": "https://api.upkuajing.com/client/static/img/country/laisuotuo.gif",
+    "nameEn": "Lesotho",
+    "name": "莱索托"
+  },
+  {
+    "id": 111,
+    "area": "非洲",
+    "code": "LR",
+    "icon": "https://api.upkuajing.com/client/static/img/country/libiliya.gif",
+    "nameEn": "Liberia",
+    "name": "利比里亚"
+  },
+  {
+    "id": 112,
+    "area": "中东",
+    "code": "LY",
+    "icon": "https://api.upkuajing.com/client/static/img/country/libia.gif",
+    "nameEn": "Libya",
+    "name": "利比亚"
+  },
+  {
+    "id": 113,
+    "area": "欧洲",
+    "code": "LI",
+    "icon": "https://api.upkuajing.com/client/static/img/country/liezdsd.gif",
+    "nameEn": "Liechtenstein",
+    "name": "列支敦士登"
+  },
+  {
+    "id": 114,
+    "area": "欧洲",
+    "code": "LT",
+    "icon": "https://api.upkuajing.com/client/static/img/country/litaow.gif",
+    "nameEn": "Lithuania",
+    "name": "立陶宛"
+  },
+  {
+    "id": 115,
+    "area": "欧洲",
+    "code": "LU",
+    "icon": "https://api.upkuajing.com/client/static/img/country/lusbao.gif",
+    "nameEn": "Luxembourg",
+    "name": "卢森堡"
+  },
+  {
+    "id": 116,
+    "area": "非洲",
+    "code": "NA",
+    "icon": "https://api.upkuajing.com/client/static/img/country/nmby.gif",
+    "nameEn": "Namibia",
+    "name": "纳米比亚"
+  },
+  {
+    "id": 117,
+    "area": "大洋洲",
+    "code": "NR",
+    "icon": "https://api.upkuajing.com/client/static/img/country/naolu.gif",
+    "nameEn": "Nauru",
+    "name": "瑙鲁"
+  },
+  {
+    "id": 118,
+    "area": "亚洲",
+    "code": "NP",
+    "icon": "https://api.upkuajing.com/client/static/img/country/nibor.gif",
+    "nameEn": "Nepal",
+    "name": "尼泊尔"
+  },
+  {
+    "id": 119,
+    "area": "欧洲",
+    "code": "NL",
+    "icon": "https://api.upkuajing.com/client/static/img/country/helan.gif",
+    "nameEn": "Netherlands",
+    "name": "荷兰"
+  },
+  {
+    "id": 120,
+    "area": "其它",
+    "code": "NC",
+    "icon": "https://api.upkuajing.com/client/static/img/country/120.jpg",
+    "nameEn": "New Caledonia",
+    "name": "新喀里多尼亚"
+  },
+  {
+    "id": 121,
+    "area": "大洋洲",
+    "code": "NZ",
+    "icon": "https://api.upkuajing.com/client/static/img/country/xxl.gif",
+    "nameEn": "New Zealand",
+    "name": "新西兰"
+  },
+  {
+    "id": 122,
+    "area": "北美洲",
+    "code": "NI",
+    "icon": "https://api.upkuajing.com/client/static/img/country/njlg.gif",
+    "nameEn": "Nicaragua",
+    "name": "尼加拉瓜"
+  },
+  {
+    "id": 123,
+    "area": "非洲",
+    "code": "NE",
+    "icon": "https://api.upkuajing.com/client/static/img/country/nirir.gif",
+    "nameEn": "Niger",
+    "name": "尼日尔"
+  },
+  {
+    "id": 124,
+    "area": "非洲",
+    "code": "NG",
+    "icon": "https://api.upkuajing.com/client/static/img/country/niriliya.gif",
+    "nameEn": "Nigeria",
+    "name": "尼日利亚"
+  },
+  {
+    "id": 127,
+    "area": "其它",
+    "code": "XNC",
+    "icon": "https://api.upkuajing.com/client/static/img/country/spls.gif",
+    "nameEn": "Northern Cyprus",
+    "name": "北塞浦路斯"
+  },
+  {
+    "id": 129,
+    "area": "欧洲",
+    "code": "NO",
+    "icon": "https://api.upkuajing.com/client/static/img/country/nuowei.gif",
+    "nameEn": "Norway",
+    "name": "挪威"
+  },
+  {
+    "id": 130,
+    "area": "中东",
+    "code": "OM",
+    "icon": "https://api.upkuajing.com/client/static/img/country/aman.gif",
+    "nameEn": "Oman",
+    "name": "阿曼"
+  },
+  {
+    "id": 131,
+    "area": "亚洲",
+    "code": "PK",
+    "icon": "https://api.upkuajing.com/client/static/img/country/bjst.gif",
+    "nameEn": "Pakistan",
+    "name": "巴基斯坦"
+  },
+  {
+    "id": 132,
+    "area": "大洋洲",
+    "code": "PW",
+    "icon": "https://api.upkuajing.com/client/static/img/country/palao.gif",
+    "nameEn": "Palau",
+    "name": "帕劳"
+  },
+  {
+    "id": 133,
+    "area": "中东",
+    "code": "PS",
+    "icon": "https://api.upkuajing.com/client/static/img/country/blst.gif",
+    "nameEn": "Palestina",
+    "name": "巴勒斯坦"
+  },
+  {
+    "id": 134,
+    "area": "北美洲",
+    "code": "PA",
+    "icon": "https://api.upkuajing.com/client/static/img/country/banama.gif",
+    "nameEn": "Panama",
+    "name": "巴拿马"
+  },
+  {
+    "id": 135,
+    "area": "大洋洲",
+    "code": "PG",
+    "icon": "https://api.upkuajing.com/client/static/img/country/jineiya.gif",
+    "nameEn": "Papua New Guinea",
+    "name": "巴布亚新几内亚"
+  },
+  {
+    "id": 136,
+    "area": "南美洲",
+    "code": "PY",
+    "icon": "https://api.upkuajing.com/client/static/img/country/balagui.gif",
+    "nameEn": "Paraguay",
+    "name": "巴拉圭"
+  },
+  {
+    "id": 137,
+    "area": "南美洲",
+    "code": "PE",
+    "icon": "https://api.upkuajing.com/client/static/img/country/bilu.gif",
+    "nameEn": "Peru",
+    "name": "秘鲁"
+  },
+  {
+    "id": 138,
+    "area": "东南亚",
+    "code": "PH",
+    "icon": "https://api.upkuajing.com/client/static/img/country/flb.gif",
+    "nameEn": "Philippines",
+    "name": "菲律宾"
+  },
+  {
+    "id": 139,
+    "area": "欧洲",
+    "code": "PL",
+    "icon": "https://api.upkuajing.com/client/static/img/country/bolan.gif",
+    "nameEn": "Poland",
+    "name": "波兰"
+  },
+  {
+    "id": 140,
+    "area": "欧洲",
+    "code": "PT",
+    "icon": "https://api.upkuajing.com/client/static/img/country/putaoya.gif",
+    "nameEn": "Portugal",
+    "name": "葡萄牙"
+  },
+  {
+    "id": 141,
+    "area": "北美洲",
+    "code": "PR",
+    "icon": "https://api.upkuajing.com/client/static/img/country/141.jpg",
+    "nameEn": "Puerto Rico",
+    "name": "波多黎各"
+  },
+  {
+    "id": 142,
+    "area": "中东",
+    "code": "QA",
+    "icon": "https://api.upkuajing.com/client/static/img/country/katar.gif",
+    "nameEn": "Qatar",
+    "name": "卡塔尔"
+  },
+  {
+    "id": 143,
+    "area": "非洲",
+    "code": "CG",
+    "icon": "https://api.upkuajing.com/client/static/img/country/gangguo.gif",
+    "nameEn": "Republic of Congo",
+    "name": "刚果共和国"
+  },
+  {
+    "id": 144,
+    "area": "非洲",
+    "code": "RE",
+    "icon": "https://api.upkuajing.com/client/static/img/country/144.jpg",
+    "nameEn": "Reunion",
+    "name": "留尼汪"
+  },
+  {
+    "id": 145,
+    "area": "欧洲",
+    "code": "RO",
+    "icon": "https://api.upkuajing.com/client/static/img/country/luomny.gif",
+    "nameEn": "Romania",
+    "name": "罗马尼亚"
+  },
+  {
+    "id": 146,
+    "area": "欧洲",
+    "code": "RU",
+    "icon": "https://api.upkuajing.com/client/static/img/country/eluosi.gif",
+    "nameEn": "Russia",
+    "name": "俄罗斯"
+  },
+  {
+    "id": 147,
+    "area": "非洲",
+    "code": "RW",
+    "icon": "https://api.upkuajing.com/client/static/img/country/luwangda.gif",
+    "nameEn": "Rwanda",
+    "name": "卢旺达"
+  },
+  {
+    "id": 148,
+    "area": "非洲",
+    "code": "SH",
+    "icon": "https://api.upkuajing.com/client/static/img/country/148.jpg",
+    "nameEn": "Saint Helena",
+    "name": "圣赫勒拿"
+  },
+  {
+    "id": 149,
+    "area": "北美洲",
+    "code": "KN",
+    "icon": "https://api.upkuajing.com/client/static/img/country/sjchnws.gif",
+    "nameEn": "Saint Kitts and Nevis",
+    "name": "圣基茨和尼维斯"
+  },
+  {
+    "id": 150,
+    "area": "北美洲",
+    "code": "LC",
+    "icon": "https://api.upkuajing.com/client/static/img/country/slxy.gif",
+    "nameEn": "Saint Lucia",
+    "name": "圣卢西亚"
+  },
+  {
+    "id": 151,
+    "area": "北美洲",
+    "code": "PM",
+    "icon": "https://api.upkuajing.com/client/static/img/country/151.jpg",
+    "nameEn": "Saint Pierre and Miquelon",
+    "name": "圣皮埃尔和密克隆"
+  },
+  {
+    "id": 153,
+    "area": "大洋洲",
+    "code": "WS",
+    "icon": "https://api.upkuajing.com/client/static/img/country/samoya.gif",
+    "nameEn": "Samoa",
+    "name": "萨摩亚"
+  },
+  {
+    "id": 154,
+    "area": "欧洲",
+    "code": "SM",
+    "icon": "https://api.upkuajing.com/client/static/img/country/154.jpg",
+    "nameEn": "San Marino",
+    "name": "圣马力诺"
+  },
+  {
+    "id": 156,
+    "area": "亚洲",
+    "code": "SA",
+    "icon": "https://api.upkuajing.com/client/static/img/country/shate.gif",
+    "nameEn": "Saudi Arabia",
+    "name": "沙特阿拉伯"
+  },
+  {
+    "id": 157,
+    "area": "非洲",
+    "code": "SN",
+    "icon": "https://api.upkuajing.com/client/static/img/country/snjer.gif",
+    "nameEn": "Senegal",
+    "name": "塞内加尔"
+  },
+  {
+    "id": 158,
+    "area": "欧洲",
+    "code": "RS",
+    "icon": "https://api.upkuajing.com/client/static/img/country/158.jpg",
+    "nameEn": "Serbia",
+    "name": "塞尔维亚"
+  },
+  {
+    "id": 159,
+    "area": "非洲",
+    "code": "SC",
+    "icon": "https://api.upkuajing.com/client/static/img/country/saisher.gif",
+    "nameEn": "Seychelles",
+    "name": "塞舌尔"
+  },
+  {
+    "id": 160,
+    "area": "非洲",
+    "code": "SL",
+    "icon": "https://api.upkuajing.com/client/static/img/country/sllang.gif",
+    "nameEn": "Sierra Leone",
+    "name": "塞拉利昂"
+  },
+  {
+    "id": 161,
+    "area": "东南亚",
+    "code": "SG",
+    "icon": "https://api.upkuajing.com/client/static/img/country/xjp.gif",
+    "nameEn": "Singapore",
+    "name": "新加坡"
+  },
+  {
+    "id": 162,
+    "area": "欧洲",
+    "code": "SK",
+    "icon": "https://api.upkuajing.com/client/static/img/country/slfk.gif",
+    "nameEn": "Slovakia",
+    "name": "斯洛伐克"
+  },
+  {
+    "id": 163,
+    "area": "欧洲",
+    "code": "SI",
+    "icon": "https://api.upkuajing.com/client/static/img/country/slwny.gif",
+    "nameEn": "Slovenia",
+    "name": "斯洛文尼亚"
+  },
+  {
+    "id": 164,
+    "area": "大洋洲",
+    "code": "SB",
+    "icon": "https://api.upkuajing.com/client/static/img/country/164.jpg",
+    "nameEn": "Solomon Islands",
+    "name": "所罗门群岛"
+  },
+  {
+    "id": 165,
+    "area": "非洲",
+    "code": "SO",
+    "icon": "https://api.upkuajing.com/client/static/img/country/suomali.gif",
+    "nameEn": "Somalia",
+    "name": "索马里"
+  },
+  {
+    "id": 166,
+    "area": "非洲",
+    "code": "ZA",
+    "icon": "https://api.upkuajing.com/client/static/img/country/nanfei.gif",
+    "nameEn": "South Africa",
+    "name": "南非"
+  },
+  {
+    "id": 167,
+    "area": "日韩",
+    "code": "KR",
+    "icon": "https://api.upkuajing.com/client/static/img/country/hanguo.gif",
+    "nameEn": "South Korea",
+    "name": "韩国"
+  },
+  {
+    "id": 168,
+    "area": "非洲",
+    "code": "SS",
+    "icon": "https://api.upkuajing.com/client/static/img/country/sudan.gif",
+    "nameEn": "South Sudan",
+    "name": "南苏丹"
+  },
+  {
+    "id": 169,
+    "area": "欧洲",
+    "code": "ES",
+    "icon": "https://api.upkuajing.com/client/static/img/country/xiby.gif",
+    "nameEn": "Spain",
+    "name": "西班牙"
+  },
+  {
+    "id": 170,
+    "area": "亚洲",
+    "code": "LK",
+    "icon": "https://api.upkuajing.com/client/static/img/country/sllk.gif",
+    "nameEn": "Sri Lanka",
+    "name": "斯里兰卡"
+  },
+  {
+    "id": 171,
+    "area": "非洲",
+    "code": "SD",
+    "icon": "https://api.upkuajing.com/client/static/img/country/sudan.gif",
+    "nameEn": "Sudan",
+    "name": "苏丹"
+  },
+  {
+    "id": 172,
+    "area": "南美洲",
+    "code": "SR",
+    "icon": "https://api.upkuajing.com/client/static/img/country/sulinan.gif",
+    "nameEn": "Suriname",
+    "name": "苏里南"
+  },
+  {
+    "id": 174,
+    "area": "非洲",
+    "code": "SZ",
+    "icon": "https://api.upkuajing.com/client/static/img/country/swshlan.gif",
+    "nameEn": "Swaziland",
+    "name": "斯威士兰"
+  },
+  {
+    "id": 175,
+    "area": "欧洲",
+    "code": "SE",
+    "icon": "https://api.upkuajing.com/client/static/img/country/ruidian.gif",
+    "nameEn": "Sweden",
+    "name": "瑞典"
+  },
+  {
+    "id": 176,
+    "area": "欧洲",
+    "code": "CH",
+    "icon": "https://api.upkuajing.com/client/static/img/country/ruishi.gif",
+    "nameEn": "Switzerland",
+    "name": "瑞士"
+  },
+  {
+    "id": 177,
+    "area": "中东",
+    "code": "SY",
+    "icon": "https://api.upkuajing.com/client/static/img/country/xulia.gif",
+    "nameEn": "Syria",
+    "name": "叙利亚"
+  },
+  {
+    "id": 178,
+    "area": "亚洲",
+    "code": "TW",
+    "icon": "https://api.upkuajing.com/client/static/img/country/china.jpg",
+    "nameEn": "Taiwan(China)",
+    "name": "中国台湾"
+  },
+  {
+    "id": 179,
+    "area": "亚洲",
+    "code": "TJ",
+    "icon": "https://api.upkuajing.com/client/static/img/country/tjk.gif",
+    "nameEn": "Tajikistan",
+    "name": "塔吉克斯坦"
+  },
+  {
+    "id": 180,
+    "area": "非洲",
+    "code": "TZ",
+    "icon": "https://api.upkuajing.com/client/static/img/country/tsny.gif",
+    "nameEn": "Tanzania",
+    "name": "坦桑尼亚"
+  },
+  {
+    "id": 181,
+    "area": "东南亚",
+    "code": "TH",
+    "icon": "https://api.upkuajing.com/client/static/img/country/tai.gif",
+    "nameEn": "Thailand",
+    "name": "泰国"
+  },
+  {
+    "id": 182,
+    "area": "东南亚",
+    "code": "TL",
+    "icon": "https://api.upkuajing.com/client/static/img/country/182.jpg",
+    "nameEn": "Timor-Leste",
+    "name": "东帝汶"
+  },
+  {
+    "id": 183,
+    "area": "非洲",
+    "code": "TG",
+    "icon": "https://api.upkuajing.com/client/static/img/country/duoge.gif",
+    "nameEn": "Togo",
+    "name": "多哥"
+  },
+  {
+    "id": 184,
+    "area": "大洋洲",
+    "code": "TK",
+    "icon": "https://api.upkuajing.com/client/static/img/country/184.jpg",
+    "nameEn": "Tokelau",
+    "name": "托克劳"
+  },
+  {
+    "id": 185,
+    "area": "大洋洲",
+    "code": "TO",
+    "icon": "https://api.upkuajing.com/client/static/img/country/tangjia.gif",
+    "nameEn": "Tonga",
+    "name": "汤加"
+  },
+  {
+    "id": 186,
+    "area": "北美洲",
+    "code": "TT",
+    "icon": "https://api.upkuajing.com/client/static/img/country/tlndhdbg.gif",
+    "nameEn": "Trinidad and Tobago",
+    "name": "特立尼达和多巴哥"
+  },
+  {
+    "id": 187,
+    "area": "中东",
+    "code": "TN",
+    "icon": "https://api.upkuajing.com/client/static/img/country/tunis.gif",
+    "nameEn": "Tunisia",
+    "name": "突尼斯"
+  },
+  {
+    "id": 188,
+    "area": "中东",
+    "code": "TR",
+    "icon": "https://api.upkuajing.com/client/static/img/country/turq.gif",
+    "nameEn": "Turkey",
+    "name": "土耳其"
+  },
+  {
+    "id": 189,
+    "area": "亚洲",
+    "code": "TM",
+    "icon": "https://api.upkuajing.com/client/static/img/country/tukm.gif",
+    "nameEn": "Turkmenistan",
+    "name": "土库曼斯坦"
+  },
+  {
+    "id": 190,
+    "area": "北美洲",
+    "code": "TC",
+    "icon": "https://api.upkuajing.com/client/static/img/country/190.jpg",
+    "nameEn": "Turks and Caicos Islands",
+    "name": "特克斯和凯科斯群岛"
+  },
+  {
+    "id": 191,
+    "area": "大洋洲",
+    "code": "TV",
+    "icon": "https://api.upkuajing.com/client/static/img/country/tuwalu.gif",
+    "nameEn": "Tuvalu",
+    "name": "图瓦卢"
+  },
+  {
+    "id": 192,
+    "area": "非洲",
+    "code": "UG",
+    "icon": "https://api.upkuajing.com/client/static/img/country/wgd.gif",
+    "nameEn": "Uganda",
+    "name": "乌干达"
+  },
+  {
+    "id": 193,
+    "area": "欧洲",
+    "code": "UA",
+    "icon": "https://api.upkuajing.com/client/static/img/country/wukelan.gif",
+    "nameEn": "Ukraine",
+    "name": "乌克兰"
+  },
+  {
+    "id": 194,
+    "area": "亚洲",
+    "code": "AE",
+    "icon": "https://api.upkuajing.com/client/static/img/country/194.jpg",
+    "nameEn": "United Arab Emirates",
+    "name": "阿拉伯联合酋长国"
+  },
+  {
+    "id": 195,
+    "area": "欧洲",
+    "code": "GB",
+    "icon": "https://api.upkuajing.com/client/static/img/country/ying.gif",
+    "nameEn": "United Kingdom",
+    "name": "英国"
+  },
+  {
+    "id": 197,
+    "area": "北美洲",
+    "code": "US",
+    "icon": "https://api.upkuajing.com/client/static/img/country/mei.gif",
+    "nameEn": "United States",
+    "name": "美国"
+  },
+  {
+    "id": 198,
+    "area": "南美洲",
+    "code": "UY",
+    "icon": "https://api.upkuajing.com/client/static/img/country/wlgui.gif",
+    "nameEn": "Uruguay",
+    "name": "乌拉圭"
+  },
+  {
+    "id": 199,
+    "area": "亚洲",
+    "code": "UZ",
+    "icon": "https://api.upkuajing.com/client/static/img/country/uzbk.gif",
+    "nameEn": "Uzbekistan",
+    "name": "乌兹别克斯坦"
+  },
+  {
+    "id": 200,
+    "area": "大洋洲",
+    "code": "VU",
+    "icon": "https://api.upkuajing.com/client/static/img/country/wnat.gif",
+    "nameEn": "Vanuatu",
+    "name": "瓦努阿图"
+  },
+  {
+    "id": 201,
+    "area": "南美洲",
+    "code": "VE",
+    "icon": "https://api.upkuajing.com/client/static/img/country/wnrl.gif",
+    "nameEn": "Venezuela",
+    "name": "委内瑞拉"
+  },
+  {
+    "id": 202,
+    "area": "东南亚",
+    "code": "VN",
+    "icon": "https://api.upkuajing.com/client/static/img/country/yuenan.gif",
+    "nameEn": "Vietnam",
+    "name": "越南"
+  },
+  {
+    "id": 204,
+    "area": "大洋洲",
+    "code": "WF",
+    "icon": "https://api.upkuajing.com/client/static/img/country/204.jpg",
+    "nameEn": "Wallis and Futuna",
+    "name": "瓦利斯和富图纳"
+  },
+  {
+    "id": 205,
+    "area": "中东",
+    "code": "EH",
+    "icon": "https://api.upkuajing.com/client/static/img/country/xishl.gif",
+    "nameEn": "Western Sahara",
+    "name": "西撒哈拉"
+  },
+  {
+    "id": 206,
+    "area": "中东",
+    "code": "YE",
+    "icon": "https://api.upkuajing.com/client/static/img/country/yemen.gif",
+    "nameEn": "Yemen",
+    "name": "也门"
+  },
+  {
+    "id": 207,
+    "area": "非洲",
+    "code": "ZM",
+    "icon": "https://api.upkuajing.com/client/static/img/country/zanbiya.gif",
+    "nameEn": "Zambia",
+    "name": "赞比亚"
+  },
+  {
+    "id": 208,
+    "area": "非洲",
+    "code": "ZW",
+    "icon": "https://api.upkuajing.com/client/static/img/country/jbbw.gif",
+    "nameEn": "Zimbabwe",
+    "name": "津巴布韦"
+  },
+  {
+    "id": 210,
+    "area": "亚洲",
+    "code": "MO",
+    "icon": "https://api.upkuajing.com/client/static/img/country/china.jpg",
+    "nameEn": "Macao(China)",
+    "name": "中国澳门"
+  },
+  {
+    "id": 211,
+    "area": "欧洲",
+    "code": "MK",
+    "icon": "https://api.upkuajing.com/client/static/img/country/Macedonia.svg.png",
+    "nameEn": "Macedonia",
+    "name": "马其顿"
+  },
+  {
+    "id": 212,
+    "area": "非洲",
+    "code": "MG",
+    "icon": "https://api.upkuajing.com/client/static/img/country/Madagascar.svg.png",
+    "nameEn": "Madagascar",
+    "name": "马达加斯加"
+  },
+  {
+    "id": 213,
+    "area": "非洲",
+    "code": "MW",
+    "icon": "https://api.upkuajing.com/client/static/img/country/Malawi.svg.png",
+    "nameEn": "Malawi",
+    "name": "马拉维"
+  },
+  {
+    "id": 214,
+    "area": "东南亚",
+    "code": "MY",
+    "icon": "https://api.upkuajing.com/client/static/img/country/Malaysia.svg.png",
+    "nameEn": "Malaysia",
+    "name": "马来西亚"
+  },
+  {
+    "id": 215,
+    "area": "非洲",
+    "code": "ML",
+    "icon": "https://api.upkuajing.com/client/static/img/country/Mali.svg.png",
+    "nameEn": "Mali",
+    "name": "马里"
+  },
+  {
+    "id": 216,
+    "area": "欧洲",
+    "code": "MT",
+    "icon": "https://api.upkuajing.com/client/static/img/country/Malta.svg.png",
+    "nameEn": "Malta",
+    "name": "马耳他"
+  },
+  {
+    "id": 217,
+    "area": "北美洲",
+    "code": "MQ",
+    "icon": "https://api.upkuajing.com/client/static/img/country/Martinique.svg.png",
+    "nameEn": "Martinique",
+    "name": "马提尼克岛"
+  },
+  {
+    "id": 218,
+    "area": "非洲",
+    "code": "MR",
+    "icon": "https://api.upkuajing.com/client/static/img/country/Mauritania.svg.png",
+    "nameEn": "Mauritania",
+    "name": "毛里塔尼亚"
+  },
+  {
+    "id": 219,
+    "area": "非洲",
+    "code": "MU",
+    "icon": "https://api.upkuajing.com/client/static/img/country/Mauritius.svg.png",
+    "nameEn": "Mauritius",
+    "name": "毛里求斯"
+  },
+  {
+    "id": 220,
+    "area": "非洲",
+    "code": "MYT",
+    "icon": "https://api.upkuajing.com/client/static/img/country/Mayotte.svg.png",
+    "nameEn": "Mayotte",
+    "name": "马约特岛"
+  },
+  {
+    "id": 221,
+    "area": "北美洲",
+    "code": "MX",
+    "icon": "https://api.upkuajing.com/client/static/img/country/Mexico.svg.png",
+    "nameEn": "Mexico",
+    "name": "墨西哥"
+  },
+  {
+    "id": 223,
+    "area": "欧洲",
+    "code": "MD",
+    "icon": "https://api.upkuajing.com/client/static/img/country/Moldova.svg.png",
+    "nameEn": "Moldova",
+    "name": "摩尔多瓦"
+  },
+  {
+    "id": 224,
+    "area": "亚洲",
+    "code": "MN",
+    "icon": "https://api.upkuajing.com/client/static/img/country/Mongolia.svg.png",
+    "nameEn": "Mongolia",
+    "name": "蒙古"
+  },
+  {
+    "id": 225,
+    "area": "欧洲",
+    "code": "ME",
+    "icon": "https://api.upkuajing.com/client/static/img/country/Montenegro.svg.png",
+    "nameEn": "Montenegro",
+    "name": "黑山"
+  },
+  {
+    "id": 226,
+    "area": "北美洲",
+    "code": "MS",
+    "icon": "https://api.upkuajing.com/client/static/img/country/Montserrat.svg.png",
+    "nameEn": "Montserrat",
+    "name": "蒙特塞拉特"
+  },
+  {
+    "id": 227,
+    "area": "中东",
+    "code": "MA",
+    "icon": "https://api.upkuajing.com/client/static/img/country/Morocco.svg.png",
+    "nameEn": "Morocco",
+    "name": "摩洛哥"
+  },
+  {
+    "id": 228,
+    "area": "非洲",
+    "code": "MZ",
+    "icon": "https://api.upkuajing.com/client/static/img/country/Mozambique.svg.png",
+    "nameEn": "Mozambique",
+    "name": "莫桑比克"
+  },
+  {
+    "id": 229,
+    "area": "东南亚",
+    "code": "MM",
+    "icon": "https://api.upkuajing.com/client/static/img/country/Myanmar.svg.png",
+    "nameEn": "Myanmar",
+    "name": "缅甸"
+  },
+  {
+    "id": 230,
+    "area": "非洲",
+    "code": "CD",
+    "icon": "https://api.upkuajing.com/client/static/img/country/gangguomz.gif",
+    "nameEn": "Congo, Democratic Republic of the",
+    "name": "刚果民主共和国"
+  },
+  {
+    "id": 232,
+    "area": "欧洲",
+    "code": "GI",
+    "icon": "https://api.upkuajing.com/client/static/img/country/zhibuluotuo.png",
+    "nameEn": "Gibraltar",
+    "name": "直布罗陀"
+  },
+  {
+    "id": 238,
+    "area": "大洋洲",
+    "code": "NU",
+    "icon": "https://api.upkuajing.com/client/static/img/country/niuai.gif",
+    "nameEn": "Niue",
+    "name": "纽埃"
+  },
+  {
+    "id": 240,
+    "area": "大洋洲",
+    "code": "CK",
+    "icon": "https://api.upkuajing.com/client/static/img/country/kukequndao.gif",
+    "nameEn": "Cook Islands",
+    "name": "库克群岛"
+  },
+  {
+    "id": 242,
+    "area": "亚洲",
+    "code": "MV",
+    "icon": "https://api.upkuajing.com/client/static/img/country/maerdaifu.png",
+    "nameEn": "Maldives",
+    "name": "马尔代夫"
+  },
+  {
+    "id": 247,
+    "area": "北美洲",
+    "code": "AW",
+    "icon": "https://api.upkuajing.com/client/static/img/country/aluba.png",
+    "nameEn": "Aruba",
+    "name": "阿鲁巴"
+  },
+  {
+    "id": 248,
+    "area": "欧洲",
+    "code": "MC",
+    "icon": "https://api.upkuajing.com/client/static/img/country/monage.gif",
+    "nameEn": "Monaco",
+    "name": "摩纳哥"
+  },
+  {
+    "id": 251,
+    "area": "大洋洲",
+    "code": "KI",
+    "icon": "https://api.upkuajing.com/client/static/img/country/jilibasi.gif",
+    "nameEn": "Kiribati",
+    "name": "基里巴斯"
+  }
+]

@@ -1,38 +1,53 @@
-## Description: <br>
-Gets the current date, time, and timezone from the local system and returns a formatted response. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Current Time returns formatted date, time, and timezone information from the local system clock.
 
-## Publisher: <br>
-[changsheng0804](https://clawhub.ai/user/changsheng0804) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[changsheng0804](https://clawhub.ai/user/changsheng0804)
 
-## Use Case: <br>
-External users and agents use this skill to answer current time, date, weekday, and timezone questions or to capture a timestamp for logs and scheduling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Time and date answers can be inaccurate if the host system clock or timezone is misconfigured. <br>
-Mitigation: Confirm the runtime environment clock and timezone before relying on output for logs, scheduling, or other time-sensitive work. <br>
+## Use Case:
 
+External users and developers use this skill to answer Chinese-language current time and date prompts, producing formatted local date, time, and timezone text for scheduling, logging, or quick checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/changsheng0804/current-time) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and formatted time text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the local date command; output reflects the host system clock and configured timezone.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill is written for Chinese prompts and output, which may not match every workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it when Chinese-language time responses are acceptable, or review and adapt the output format before deployment.
+
+Risk: Time and timezone output depends on the local system date command and host timezone settings.
+
+Mitigation: Confirm the host timezone convention and output format before relying on the result for scheduling or logs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/changsheng0804/skills/current-time)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text with optional Markdown bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the local date command; output follows the system clock and timezone unless the agent adapts the format.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,64 @@
-## Description: <br>
-Launch Solana tokens on Pumpfun, create memecoins, mint crypto tokens, manage creator fee sharing, claim trading earnings, and track a portfolio through chat with no code or config. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Launch Solana tokens on Pumpfun, create memecoins, mint crypto tokens, manage creator fee sharing, claim trading earnings, and track your portfolio.
 
-## Publisher: <br>
-[jcoulaud](https://clawhub.ai/user/jcoulaud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jcoulaud](https://clawhub.ai/user/jcoulaud)
 
-## Use Case: <br>
-External developers and token creators use this skill to create Pumpfun/Solana tokens through an agent conversation, manage creator fee sharing, claim fees, and view portfolio recaps. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent authority to submit real Solana mainnet transactions for token launches, fee claims, and fee share changes. <br>
-Mitigation: Use a dedicated low-balance wallet, require explicit user confirmation before transaction actions, and review the transaction intent before execution. <br>
-Risk: The generated wallet private key controls funds and can be exported into chat if the user requests a backup. <br>
-Mitigation: Avoid exporting the private key unless necessary, store any backup in a secure password manager or encrypted note, and never share it with others. <br>
-Risk: Creator fee sharing reserves 20% of creator fees for Ship My Token. <br>
-Mitigation: Confirm the fee split is understood before launches or fee-sharing updates and review the shareholder configuration. <br>
-Risk: Daily recap setup can create persistent recurring portfolio activity through a heartbeat file or scheduled job. <br>
-Mitigation: Check for and remove HEARTBEAT.md entries or scheduled recap jobs if recurring portfolio checks are not desired. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jcoulaud/ship-my-token) <br>
-- [Ship My Token docs](https://shipmytoken.com) <br>
-- [Solana CLI install](https://docs.solanalabs.com/cli/install) <br>
+## Use Case:
 
+External users and developers use this skill to launch Pumpfun tokens on Solana, configure creator fee sharing, claim fees, export or manage the generated wallet, and monitor token portfolios through an AI agent.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with inline shell commands and parsed JSON script results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local wallet and token history files, submit Solana mainnet transactions, and configure recurring portfolio recaps.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.5.3 (source: SKILL.md metadata, CHANGELOG, package.json, server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles a locally custodied Solana private key and can export it on request.
+
+Mitigation: Install only if local key custody is acceptable; never paste the private key into chat or share it, and store any backup in a secure password manager or encrypted note.
+
+Risk: The skill can submit real Solana transactions for token launches, fee claims, and fee share updates.
+
+Mitigation: Require explicit user confirmation before every transaction and review the launch summary, fee claim, or share update before execution.
+
+Risk: The default fee-sharing flow routes 20% of creator fees to the skill operator.
+
+Mitigation: Confirm the 80% creator and 20% Ship My Token split before use, and only proceed if the non-negotiable operator share is acceptable.
+
+Risk: The skill can install dependencies, schedule recurring portfolio checks, and upload token images or metadata to Pumpfun/IPFS.
+
+Mitigation: Require approval for dependency installs, scheduled jobs, file uploads, and network-connected operations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jcoulaud/skills/ship-my-token)
+- [Publisher Profile](https://clawhub.ai/user/jcoulaud)
+- [Ship My Token Documentation](https://shipmytoken.com)
+- [Solana CLI Install](https://docs.solanalabs.com/cli/install)
+- [Agent Skills](https://agentskills.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with inline shell commands and JSON-parsed script results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local wallet configuration and token history files, schedule daily recap checks, upload token images and metadata, and submit Solana transactions after user confirmation.]
+
+## Skill Version(s):
+
+1.5.3 (source: SKILL.md metadata, package.json, CHANGELOG, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

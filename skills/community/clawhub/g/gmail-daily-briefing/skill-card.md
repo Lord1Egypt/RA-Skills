@@ -1,46 +1,62 @@
-## Description: <br>
-Fetch Gmail emails from the last 24h, rank by importance, summarize into bullet points, and auto-create Google Calendar events for detected meetings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch Gmail emails from the last 24h, rank by importance, summarize into bullet points, and auto-create Google Calendar events for detected meetings.
 
-## Publisher: <br>
-[russidan-nadee](https://clawhub.ai/user/russidan-nadee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[russidan-nadee](https://clawhub.ai/user/russidan-nadee)
 
-## Use Case: <br>
-External OpenClaw users use this skill to review recent Gmail messages, receive concise bullet summaries, and create calendar events for detected meetings or interviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Google OAuth scopes for Gmail read access and Calendar event creation. <br>
-Mitigation: Use a low-risk Google account when possible and revoke the OAuth grant when the skill is no longer needed. <br>
-Risk: The skill stores persistent OAuth credentials in token.json. <br>
-Mitigation: Protect token.json, avoid sharing the workspace, and delete the token when access is no longer required. <br>
-Risk: Fetched email bodies may be printed in full during processing. <br>
-Mitigation: Run the skill only in trusted agent environments and avoid using it on accounts with highly sensitive mail unless that exposure is acceptable. <br>
-Risk: Calendar events may be created from detected meeting details without strong confirmation. <br>
-Mitigation: Ask the agent to show proposed calendar events before creating them. <br>
+## Use Case:
 
+External users and developers use this skill to have an agent fetch recent Gmail messages, summarize important email content, and create Google Calendar events for detected meetings or interviews.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/russidan-nadee/gmail-daily-briefing) <br>
-- [Google Cloud Console](https://console.cloud.google.com/) <br>
-- [OpenClaw](https://openclaw.ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown bullet summaries with inline command-driven actions and calendar creation status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May print full fetched email contents during processing and may create Google Calendar events when meeting details are detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: The skill requires access to recent Gmail messages and permission to create Google Calendar events.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing the requested OAuth scopes and use it only with accounts where this access is acceptable.
+
+Risk: OAuth client secrets, callback URLs, and token.json can expose account access if mishandled.
+
+Mitigation: Use a local OAuth flow when possible, avoid sharing secrets through chat, protect token.json, and revoke the token when access is no longer needed.
+
+Risk: Calendar events may be created from email-derived content that is incomplete or misinterpreted.
+
+Mitigation: Require a user-visible review step before creating events and confirm event title, date, time, and duration.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/russidan-nadee/skills/gmail-daily-briefing)
+- [Publisher Profile](https://clawhub.ai/user/russidan-nadee)
+- [OpenClaw](https://openclaw.ai/)
+- [Google Cloud Console](https://console.cloud.google.com/)
+- [Gmail API Read-Only OAuth Scope](https://www.googleapis.com/auth/gmail.readonly)
+- [Google Calendar Events OAuth Scope](https://www.googleapis.com/auth/calendar.events)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown summary with inline command execution results and calendar event status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python, local OAuth credentials, token.json, Gmail read-only access, and Google Calendar event creation permission.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

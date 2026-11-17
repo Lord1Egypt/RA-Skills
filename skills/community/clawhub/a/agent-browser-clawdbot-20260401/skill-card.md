@@ -1,43 +1,54 @@
-## Description: <br>
-Headless browser automation CLI optimized for AI agents with accessibility tree snapshots and ref-based element selection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Headless browser automation CLI optimized for AI agents with accessibility tree snapshots and ref-based element selection.
 
-## Publisher: <br>
-[dahai520520520](https://clawhub.ai/user/dahai520520520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dahai520520520](https://clawhub.ai/user/dahai520520520)
 
-## Use Case: <br>
-Developers and AI-agent operators use this skill to drive the agent-browser CLI for deterministic browser navigation, interaction, extraction, session isolation, and state persistence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved browser state, cookies, and storage can contain sensitive credentials. <br>
-Mitigation: Keep saved auth JSON files out of repositories and shared folders, and avoid printing or logging cookie or storage values. <br>
-Risk: Browser automation commands can mutate sessions, cookies, storage, and network behavior. <br>
-Mitigation: Use mutation and network-control commands only for sites and accounts the operator is authorized to automate or test. <br>
-Risk: The skill depends on the upstream agent-browser npm package and Chromium download. <br>
-Mitigation: Install only when the upstream package and browser runtime are trusted for the target environment. <br>
+## Use Case:
 
+Developers and AI agents use this skill to automate browser navigation, interaction, state inspection, and extraction workflows through the agent-browser CLI. It is suited for deterministic multi-step browser tasks, complex SPAs, session isolation, and command-oriented testing or data collection workflows.
 
-## Reference(s): <br>
-- [Agent Browser project](https://github.com/vercel-labs/agent-browser) <br>
-- [ClawHub skill page](https://clawhub.ai/dahai520520520/agent-browser-clawdbot-20260401) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance centers on the agent-browser command, including snapshots, browser interaction commands, session handling, state files, screenshots, PDFs, and network controls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Saved browser state can include cookies, localStorage, and authentication material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use isolated environments and test accounts where possible; do not commit or share saved state files, and delete them when no longer needed.
+
+Risk: A broad unpinned global npm installation can install unexpected package versions or alter the host environment.
+
+Mitigation: Review and pin the npm package version before installation, and avoid elevated privileges unless the host changes are understood.
+
+## Reference(s):
+
+- [agent-browser GitHub repository](https://github.com/vercel-labs/agent-browser)
+- [ClawHub skill page](https://clawhub.ai/dahai520520520/skills/agent-browser-clawdbot-20260401)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, JSON]
+
+**Output Format:** [Markdown with bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to create browser artifacts such as screenshots, PDFs, cookies, localStorage, and saved auth state when the generated commands are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

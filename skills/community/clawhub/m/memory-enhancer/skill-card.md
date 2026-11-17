@@ -1,43 +1,52 @@
-## Description: <br>
-Automatically extracts structured facts from daily memory logs and maintains long-term memory summaries and stats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically extracts facts from daily logs to update and maintain structured long-term memory and summaries.
 
-## Publisher: <br>
-[xpneuma](https://clawhub.ai/user/xpneuma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[xpneuma](https://clawhub.ai/user/xpneuma)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and personal-knowledge users use this skill to automatically extract preferences, contacts, habits, and project status from daily memory logs into long-term memory files.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Daily logs may contain private, sensitive, regulated, or third-party information that is sent to an external model for analysis.
+
+Mitigation: Use only with logs appropriate for external analysis, or require a local-only or redacted processing path before deployment.
+
+Risk: The spawned agent can write long-term memory entries without human review.
+
+Mitigation: Prefer an opt-in workflow with preview-before-write and schema validation for memory updates.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent users use this skill to process daily memory logs, extract preferences, contacts, habits, and project status, and maintain structured long-term memory files. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Private daily logs are analyzed by an external model agent. <br>
-Mitigation: Enable the skill only when users intentionally want those logs sent for analysis, and confirm the configured provider and model before running it. <br>
-Risk: Extracted personal details are written into long-term memory files without a built-in review step. <br>
-Mitigation: Add a manual review or diff approval step before committing changes to MEMORY.md and memory/stats JSON files. <br>
-Risk: Hard-coded workspace paths and execution logging can expose private data or fail outside the original environment. <br>
-Mitigation: Review and parameterize paths, create log directories deliberately, and avoid logging full model results or raw error stacks. <br>
+**Output Format:** [JSON file updates, Markdown summary entries, and status/log text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xpneuma/memory-enhancer) <br>
-- [Publisher profile](https://clawhub.ai/user/xpneuma) <br>
+**Other Properties Related to Output:** [Processes daily memory logs and writes merged memory statistics plus concise summaries.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration] <br>
-**Output Format:** [Markdown summaries, JSON memory stats, and status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Updates long-term memory files and logs execution status.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

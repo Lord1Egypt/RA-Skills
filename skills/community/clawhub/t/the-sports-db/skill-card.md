@@ -1,40 +1,52 @@
-## Description: <br>
-Access sports data via TheSportsDB, including teams, events, and scores. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access sports data via TheSportsDB (teams, events, scores).
 
-## Publisher: <br>
-[gumadeiras](https://clawhub.ai/user/gumadeiras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gumadeiras](https://clawhub.ai/user/gumadeiras)
 
-## Use Case: <br>
-Developers and agent users use this skill to look up sports teams, recent scores, and upcoming fixtures through TheSportsDB API examples. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The TheSportsDB API key could be exposed through shell history, logs, or shared command output. <br>
-Mitigation: Store THE_SPORTS_DB_KEY in the local environment file, restrict access to that file, and avoid sharing logs or command output that include expanded API URLs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gumadeiras/the-sports-db) <br>
-- [TheSportsDB search team API example](https://www.thesportsdb.com/api/v1/json/$THE_SPORTS_DB_KEY/searchteams.php?t=Palmeiras) <br>
-- [TheSportsDB last events API example](https://www.thesportsdb.com/api/v1/json/$THE_SPORTS_DB_KEY/eventslast.php?id=134465) <br>
-- [TheSportsDB next events API example](https://www.thesportsdb.com/api/v1/json/$THE_SPORTS_DB_KEY/eventsnext.php?id=134465) <br>
+## Use Case:
 
+Developers and agent users use this skill to configure TheSportsDB access and generate curl requests for team search, recent scores, and upcoming fixtures.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires THE_SPORTS_DB_KEY and is subject to a documented 30 requests per minute rate limit.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires a TheSportsDB API key stored in a local .env file and sends requests to TheSportsDB.
+
+Mitigation: Use a scoped key where available, avoid committing the .env file, and confirm that sending sports-data queries to TheSportsDB is acceptable for the deployment context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gumadeiras/skills/the-sports-db)
+- [Publisher profile](https://clawhub.ai/user/gumadeiras)
+- [TheSportsDB team search endpoint example](https://www.thesportsdb.com/api/v1/json/$THE_SPORTS_DB_KEY/searchteams.php?t=Palmeiras)
+- [TheSportsDB last events endpoint example](https://www.thesportsdb.com/api/v1/json/$THE_SPORTS_DB_KEY/eventslast.php?id=134465)
+- [TheSportsDB next events endpoint example](https://www.thesportsdb.com/api/v1/json/$THE_SPORTS_DB_KEY/eventsnext.php?id=134465)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires THE_SPORTS_DB_KEY and notes a 30 requests/minute rate limit.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

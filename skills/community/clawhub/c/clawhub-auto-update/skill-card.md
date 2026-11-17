@@ -1,38 +1,57 @@
-## Description: <br>
-Checks installed ClawHub skills for updates and runs bulk updates, with guidance for manual or scheduled operation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+自动检查并更新ClawHub已安装技能。有更新时通知用户，支持手动和定时运行。
 
-## Publisher: <br>
-[jimmieting](https://clawhub.ai/user/jimmieting) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jimmieting](https://clawhub.ai/user/jimmieting)
 
-## Use Case: <br>
-Developers and ClawHub users use this skill to keep locally installed ClawHub skills up to date through manual checks or scheduled update jobs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Unattended bulk updates can overwrite local modifications or introduce changed skill behavior. <br>
-Mitigation: Review before installing, run the updater manually first, keep backups of locally modified skills, and only add the cron job when unattended all-skill updates are acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Auto Update release page](https://clawhub.ai/jimmieting/clawhub-auto-update) <br>
-- [jimmieting ClawHub profile](https://clawhub.ai/user/jimmieting) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to check installed ClawHub skills for updates and run bulk updates manually or on a cron schedule.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and shell output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs npx clawhub update --all and appends update logs under ~/.openclaw/logs when the script is used.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can update all installed ClawHub skills through an unpinned command.
+
+Mitigation: Review updates before installation, pin the clawhub CLI version where possible, and keep a rollback path for local skill state.
+
+Risk: The documented cron setup can run bulk updates unattended.
+
+Mitigation: Prefer manual runs unless the environment has separate review, backup, logging, and rollback processes.
+
+Risk: Updates may overwrite local skill changes.
+
+Mitigation: Back up local skill modifications and important configuration before running bulk updates.
+
+## Reference(s):
+
+- [ClawHub Auto Update release page](https://clawhub.ai/jimmieting/skills/clawhub-auto-update)
+- [jimmieting publisher profile](https://clawhub.ai/user/jimmieting)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and shell output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write update logs under ~/.openclaw/logs when the generated shell workflow is run.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.json release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

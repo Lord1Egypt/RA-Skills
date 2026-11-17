@@ -1,18 +1,34 @@
 from __future__ import annotations
 
+import os
+import re
+from fnmatch import fnmatch
 from pathlib import Path
 from typing import Any
 
 
-FORBIDDEN_LEAK_MARKERS = {
-    "horst",
-    "tailscale",
-    "openclawchaperone",
-    "/home/openclaw",
-    "d068138",
-    "bot - books",
-    "books & blogs",
-}
+PRIVATE_MARKERS_ENV = "AUDIBLE_SCOUT_PRIVATE_MARKERS"
+GENERIC_LEAK_PATTERNS = (
+    (
+        "absolute_home_path",
+        re.compile(r"(?<![<\w])/(?:Users|home)/[A-Za-z0-9._-]+(?:/[^\s\"'`)>]*)?", re.I),
+    ),
+    (
+        "ssh_overlay_alias",
+        re.compile(r"\bssh\s+[A-Za-z0-9._-]*tailscale[A-Za-z0-9._-]*\b", re.I),
+    ),
+    (
+        "credential_assignment",
+        re.compile(
+            r"(?i)\b(?:access[_-]?token|refresh[_-]?token|api[_-]?key|password|secret)\b\s*[:=]\s*[\"']?[A-Za-z0-9._~+/=-]{12,}"
+        ),
+    ),
+)
+
+
+def configured_private_markers() -> tuple[str, ...]:
+    raw = os.environ.get(PRIVATE_MARKERS_ENV, "")
+    return tuple(marker.strip().casefold() for marker in raw.split(",") if marker.strip())
 
 
 def iter_repo_files(root: Path) -> list[Path]:
@@ -29,22 +45,43 @@ def iter_repo_files(root: Path) -> list[Path]:
     return files
 
 
-def scan_repo_for_leaks(root: Path) -> dict[str, Any]:
+def is_publish_ignored(relative_path: str, patterns: set[str]) -> bool:
+    rel = relative_path.lstrip("./")
+    for pattern in patterns:
+        normalized = pattern.lstrip("./")
+        if normalized.endswith("/") and rel.startswith(normalized):
+            return True
+        if fnmatch(rel, normalized) or fnmatch(Path(rel).name, normalized):
+            return True
+    return False
+
+
+def publish_file_paths(root: Path, patterns: set[str]) -> list[Path]:
+    return [
+        path
+        for path in iter_repo_files(root)
+        if not is_publish_ignored(path.relative_to(root).as_posix(), patterns)
+    ]
+
+
+def scan_repo_for_leaks(root: Path, *, paths: list[Path] | None = None) -> dict[str, Any]:
     findings: list[dict[str, str]] = []
-    for path in iter_repo_files(root):
+    private_markers = configured_private_markers()
+    for path in paths if paths is not None else iter_repo_files(root):
         rel = path.relative_to(root).as_posix()
-        lowered_rel = rel.casefold()
-        for marker in FORBIDDEN_LEAK_MARKERS:
-            if marker in lowered_rel:
-                findings.append({"type": "path", "marker": marker, "path": rel})
-        if rel == "audible_goodreads_deal_scout/repo_audit.py":
-            continue
         try:
             text = path.read_text(encoding="utf-8")
         except Exception:
             continue
+        combined = f"{rel}\n{text}"
+        for label, pattern in GENERIC_LEAK_PATTERNS:
+            if pattern.search(combined):
+                findings.append({"type": "pattern", "marker": label, "path": rel})
         lowered_text = text.casefold()
-        for marker in FORBIDDEN_LEAK_MARKERS:
+        lowered_rel = rel.casefold()
+        for marker in private_markers:
+            if marker in lowered_rel:
+                findings.append({"type": "path", "marker": "configured_private_marker", "path": rel})
             if marker in lowered_text:
-                findings.append({"type": "content", "marker": marker, "path": rel})
+                findings.append({"type": "content", "marker": "configured_private_marker", "path": rel})
     return {"ok": not findings, "findings": findings}

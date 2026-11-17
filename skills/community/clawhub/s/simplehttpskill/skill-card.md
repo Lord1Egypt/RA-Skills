@@ -1,43 +1,52 @@
-## Description: <br>
-Make HTTP requests (GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS) with custom headers, automatic retries, and graceful error handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Make HTTP requests with custom headers, retries, and graceful error handling using only Node.js built-in modules.
 
-## Publisher: <br>
-[stephen-standridge](https://clawhub.ai/user/stephen-standridge) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[stephen-standridge](https://clawhub.ai/user/stephen-standridge)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and agents use this skill to call APIs, fetch URLs, send webhooks, or make HTTP requests without adding external dependencies.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can make broad user-directed HTTP requests, including requests with sensitive headers or bodies.
+
+Mitigation: Review request destinations before execution and send Authorization headers or sensitive bodies only to trusted APIs.
+
+Risk: Examples, logs, or generated requests could expose real credentials if secrets are copied into them.
+
+Mitigation: Use placeholders in examples and avoid placing real secrets in logs or shared request snippets.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill to call APIs, fetch URLs, send webhooks, and make HTTP requests without external dependencies. It is useful when requests need custom headers, retries, timeout handling, and inspectable responses. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [code, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send authenticated or state-changing HTTP requests. <br>
-Mitigation: Require explicit confirmation before POST, PUT, PATCH, or DELETE requests against real systems. <br>
-Risk: Requests may expose secrets or personal data to untrusted destinations. <br>
-Mitigation: Verify destination URLs before use and send secrets only to trusted endpoints with scoped temporary tokens. <br>
-Risk: Automatic retries can repeat transiently failing requests. <br>
-Mitigation: Use conservative retry settings for non-idempotent operations and inspect failed responses before retrying manually. <br>
+**Output Format:** [Markdown guidance with JavaScript examples and structured response objects]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stephen-standridge/simplehttpskill) <br>
-- [Publisher profile](https://clawhub.ai/user/stephen-standridge) <br>
+**Other Properties Related to Output:** [Produces inspectable HTTP response objects with status, headers, body, ok, and error fields.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [code, API calls, configuration, guidance] <br>
-**Output Format:** [JavaScript module usage with structured response objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses include ok, status, headers, body, and error fields; JSON response bodies are parsed when content type indicates JSON.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

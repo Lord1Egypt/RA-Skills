@@ -1,39 +1,57 @@
-## Description: <br>
-Jadwal Sholat helps agents retrieve Indonesian prayer times, including imsak, subuh, dzuhur, ashar, maghrib, and isya, for a requested city or regency from api.myquran.com. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ambil jadwal sholat (imsak, subuh, dzuhur, ashar, maghrib, isya) untuk kota/kabupaten di Indonesia dari API Muslim api.myquran.com (sumber Kemenag Bimas Islam).
 
-## Publisher: <br>
-[banghasan](https://clawhub.ai/user/banghasan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[banghasan](https://clawhub.ai/user/banghasan)
 
-## Use Case: <br>
-External users and agents use this skill to look up Indonesian prayer schedules for a city or regency for today, a specific date, or a month. <br>
-
-### Deployment Geography for Use: <br>
-Global, for Indonesian city and regency prayer-time lookups. <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Location, date or month, and timezone query values are sent to api.myquran.com. <br>
-Mitigation: Use only the location and date information needed for the prayer-time lookup, and do not enter unrelated private information as a location search term. <br>
-Risk: Prayer-time accuracy depends on the availability and response data of the public api.myquran.com service. <br>
-Mitigation: Review returned locations and times before relying on them, especially when a search term can match multiple Indonesian cities or regencies. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [api.myquran.com v3 API](https://api.myquran.com/v3) <br>
+## Use Case:
 
+External users and developers use this skill to look up Indonesian prayer schedules by city or regency name, location ID, date, month, and timezone. It supports location search plus daily, dated, and monthly prayer-time lookups through api.myquran.com.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text with Markdown shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No credentials are required. Location, date or month, and timezone values are used to query the public api.myquran.com service.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact frontmatter reports 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prayer-time lookup inputs such as city or location ID, date or month, and timezone are sent to api.myquran.com.
+
+Mitigation: Install only when that external API use is acceptable for the intended environment and avoid submitting sensitive location context.
+
+Risk: Monthly lookup output is a seven-day preview rather than a complete month.
+
+Mitigation: Treat monthly results as a preview and request specific dates when complete daily values are needed.
+
+Risk: Location search can return multiple Indonesian city or regency candidates and may select the first match when no exact match is found.
+
+Mitigation: Use a more specific location keyword or a known location ID when precision matters.
+
+## Reference(s):
+
+- [api.myquran.com v3 API](https://api.myquran.com/v3)
+- [ClawHub skill page](https://clawhub.ai/banghasan/skills/jadwal-sholat-banghasan)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and plain-text prayer-time results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Indonesian-language output; monthly results are presented as a seven-day preview in the helper script.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -68,8 +68,19 @@ ssh wip-vps 'pm2 restart mcp-server'
 - **Never squash merge.** Every commit has co-authors.
 - **Worktrees** for isolated work: `.worktrees/<repo>--<branch>/`
 - **Release pipeline:** merge -> `wip-release patch` -> `deploy-public.sh`
+- **Release notes ownership:** release notes belong to the PR or batch that actually triggers the release. Docs-only, tracker-only, and private `ai/` PRs should not speculatively add next-alpha `RELEASE-NOTES-v*.md` files unless the current release owner explicitly marks that PR as part of an imminent release. If there is no dedicated merge/deploy agent, the agent cutting the release owns this decision.
 - **Footer format:** WIP Computer, Inc. / Learning Dreaming Machines / Are you an AI Agent? | Privacy Policy | Terms of Use / Made in California.
 - **Writing style:** No em dashes. Use periods, colons, semicolons, or ellipsis (...). PST timezone.
+
+## Canonical pattern ownership
+
+LDM OS owns canonical cross-cutting patterns for the WIP Computer agent-native ecosystem. Install prompts, SKILL.md structure, source-type schemas, track-selection logic, README install snippets, and other reusable conventions originate in `wip-ldm-os-private` and propagate down to child products (Codex Remote Control, future tools, Kaleidoscope sub-products).
+
+The flow is **LDM OS first, children inherit.** Never the reverse.
+
+A child-first implementation leaves the parent out of date with its own descendants. Example: on 2026-05-11 the track-aware install prompt landed in Codex Remote Control's SKILL.md but never in LDM OS's. The 2026-05-13 dogfood reproduced the gap because the LDM OS install prompt was older than its child product's install prompt. See `ai/product/bugs/installer/2026-05-11--codex--installer-track-selection-and-release-note-placement.md` for the worked example.
+
+When a cross-cutting feature is proposed, ask: "is this pattern reusable across products?" If yes, LDM OS owns it. If no (e.g., phone pairing is Codex Remote Control specific), the child owns it.
 
 ## Full system context
 

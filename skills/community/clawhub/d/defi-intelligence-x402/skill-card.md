@@ -1,41 +1,54 @@
-## Description: <br>
-16-tool DeFi intelligence agent for token prices, swap quotes, wallet analytics, portfolio tracking, DeFi positions, gas oracle, ENS resolution, and contract reads via x402. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides DeFi analytics and on-chain execution support through Spraay x402, including token prices, swap quotes, wallet and portfolio profiling, DeFi positions, gas data, ENS resolution, contract reads, swap execution, and contract writes.
 
-## Publisher: <br>
-[plagtech](https://clawhub.ai/user/plagtech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[plagtech](https://clawhub.ai/user/plagtech)
 
-## Use Case: <br>
-Developers, analysts, and agent operators use this skill to query DeFi market data, wallet activity, portfolio exposure, swap quotes, and contract reads through a paid x402 gateway. The skill also exposes wallet-affecting write operations, so operational use should include explicit review before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends wallet-related data and an API key to a paid external gateway. <br>
-Mitigation: Install only if the gateway operator is trusted, scope and rotate the API key, and avoid submitting wallet data that should not leave the operating environment. <br>
-Risk: Write endpoints can initiate irreversible wallet-affecting actions such as swaps or contract writes. <br>
-Mitigation: Require explicit human approval before any write call and verify chain, recipient, token amounts, allowances, and slippage out of band. <br>
+## Use Case:
 
+External developers and DeFi operators use this skill to retrieve token prices, wallet and portfolio analytics, gas and FX data, swap quotes, and contract-read data. The skill can also help prepare human-approved swap execution and contract-write operations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/plagtech/defi-intelligence-x402) <br>
-- [x402 gateway](https://gateway.spraay.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline bash commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires RESEARCH_API_KEY, curl, and python3; RESEARCH_GATEWAY_URL is optional and defaults to the x402 gateway. Endpoint calls may incur USDC micropayment costs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and frontmatter) <br>
+Risk: Paid x402 endpoint calls debit USDC, and write operations can submit irreversible on-chain transactions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited-purpose wallet, require explicit human approval for write operations, and manually verify transaction details before approving execution.
+
+Risk: Wallet addresses, portfolio data, and contract call details are sent to gateway.spraay.app.
+
+Mitigation: Install only when the gateway is trusted and avoid sending sensitive wallet data that should not leave the local environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/plagtech/skills/defi-intelligence-x402)
+- [Spraay x402 gateway](https://gateway.spraay.app)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON endpoint parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires bash and curl; endpoint calls may create paid x402 requests and may return wallet, portfolio, market, contract, or transaction data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

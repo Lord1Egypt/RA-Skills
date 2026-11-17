@@ -1,39 +1,54 @@
-## Description: <br>
-Connect AI agents to BytesAgain skill search via MCP SSE. Shows setup commands for OpenClaw, Claude Desktop, and curl. No files modified. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect AI agents to BytesAgain skill search via MCP SSE. Shows setup commands for OpenClaw, Claude Desktop, and curl. No files modified.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Developers and agent users use this skill to register or test the BytesAgain MCP endpoint and to search BytesAgain-published skills from MCP-compatible clients. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can register or test a remote MCP endpoint and can run user-invoked network requests to bytesagain.com. <br>
-Mitigation: Review setup commands before registering the endpoint in OpenClaw or Claude, and only install if remote contact with bytesagain.com is acceptable. <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure MCP-compatible clients for BytesAgain skill search and to check available BytesAgain MCP tools.
 
-## Reference(s): <br>
-- [BytesAgain MCP documentation](https://bytesagain.com/mcp) <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/bytesagain-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Terminal text with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may contact bytesagain.com for MCP endpoint checks, tool discovery, and skill search.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Commands that test, list tools, or search contact bytesagain.com; search sends the query text provided by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run network commands only when outbound access to bytesagain.com is acceptable, and avoid sending sensitive or private query text.
+
+Risk: Adding a third-party MCP server changes the tools available to the agent.
+
+Mitigation: Review the BytesAgain MCP tools and install the server only in agent environments where third-party tool access is approved.
+
+## Reference(s):
+
+- [BytesAgain MCP documentation](https://bytesagain.com/mcp)
+- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/skills/bytesagain-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Network-check commands may call bytesagain.com and search commands send the query text provided by the user.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

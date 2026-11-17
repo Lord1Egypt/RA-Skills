@@ -1,38 +1,49 @@
-## Description: <br>
-Collect, analyze, and act on customer feedback to improve your product and business. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collect, analyze, and act on customer feedback to improve a product or business.
 
-## Publisher: <br>
-[JK-0001](https://clawhub.ai/user/JK-0001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jk-0001](https://clawhub.ai/user/jk-0001)
 
-## Use Case: <br>
-Solopreneurs and small teams use this skill to build feedback channels, run customer interviews, measure satisfaction, analyze feature requests, prioritize product decisions, and close the feedback loop. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Customer interviews, recordings, and feedback notes may contain personal or sensitive customer information. <br>
-Mitigation: Obtain explicit informed consent, explain how recordings or notes will be used, store them securely, limit access, and delete or redact sensitive material according to organizational policies and applicable law. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Customer Feedback ClawHub listing](https://clawhub.ai/JK-0001/customer-feedback) <br>
-- [JK-0001 publisher profile](https://clawhub.ai/user/JK-0001) <br>
+## Use Case:
 
+External founders, solopreneurs, and small product teams use this skill to build feedback collection channels, run customer interviews, measure satisfaction, prioritize requests, and close the feedback loop.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with tables, checklists, and example interview or response prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Customer interviews may involve recordings, transcripts, or other personal information.
+
+Mitigation: Get informed consent before recording, explain any third-party transcription or recording tools, restrict access to stored material, and delete recordings or transcripts when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jk-0001/skills/customer-feedback)
+- [Release artifact: SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown guidance with checklists, tables, examples, and interview prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; guidance may reference third-party feedback, survey, support, scheduling, recording, and transcription tools.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

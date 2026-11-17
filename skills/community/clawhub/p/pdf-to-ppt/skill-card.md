@@ -1,43 +1,57 @@
-## Description: <br>
-Convert PDF files to PowerPoint presentations via intermediate image rendering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert PDF files to PowerPoint presentations via intermediate image rendering.
 
-## Publisher: <br>
-[jvtop](https://clawhub.ai/user/jvtop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jvtop](https://clawhub.ai/user/jvtop)
 
-## Use Case: <br>
-Developers, analysts, and document teams use this skill to convert visual PDF documents into PowerPoint presentations while preserving page layout as slide images. It is suited for scanned presentations, design drawings, complex-layout PDFs, and batch conversion workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The converter writes a PPTX file and intermediate image files to local paths, which can expose confidential PDF content if directories are chosen carelessly. <br>
-Mitigation: Choose output and image directories deliberately, keep sensitive conversions in controlled locations, and delete intermediate images when they are no longer needed. <br>
-Risk: Installing dependencies into a shared system Python can affect other local projects. <br>
-Mitigation: Install PyMuPDF and python-pptx in a virtual environment where possible. <br>
-Risk: Very large PDFs or high zoom settings can consume significant memory and produce large output files. <br>
-Mitigation: Process large PDFs in batches, reduce the zoom factor when needed, or use JPG output when smaller files are acceptable. <br>
+## Use Case:
 
+Developers and document workflow users use this skill to convert visual PDFs, scanned presentation material, design drawings, and similar documents into PPTX slide decks while preserving each PDF page as a slide image.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jvtop/pdf-to-ppt) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/jvtop) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and a Python conversion script that produces PPTX files plus intermediate PNG or JPG images.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Output file paths, image directory, zoom factor, slide dimensions, and image format are configurable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Installing dependencies into the system Python environment can affect other Python tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a virtual environment before installing PyMuPDF and python-pptx.
+
+Risk: Default output and image paths write next to the source PDF and can replace existing generated files.
+
+Mitigation: Use explicit --output and --img-dir paths for each conversion.
+
+Risk: The generated slides contain rendered page images rather than selectable PowerPoint text, and images are stretched to fill slides.
+
+Mitigation: Review generated slides before use and choose a text-preserving or aspect-ratio-preserving workflow when those properties matter.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jvtop/skills/pdf-to-ppt)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated PPTX/image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a PPTX file and optional intermediate PNG or JPG page images on the local filesystem.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-蜂兵虾将 is a multi-agent AI collaboration skill for monitoring industry trends, generating content strategy, analyzing status, automating workflow reports, and maintaining cross-session memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+蜂兵虾将 coordinates AI agents for cross-industry hotspot monitoring, content planning, trend insight, workflow execution, and persistent memory-assisted reporting.
 
-## Publisher: <br>
-[e2e5g](https://clawhub.ai/user/e2e5g) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[e2e5g](https://clawhub.ai/user/e2e5g)
 
-## Use Case: <br>
-External users and developers use this skill to coordinate AI agents for trend monitoring, content planning, workflow capture, and personal goal or status analysis across industries. It is intended to create recurring reports and reuse local memory about preferences, history, goals, and workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automatically builds persistent user memory and profiles across broad use cases without clear built-in retention or deletion controls. <br>
-Mitigation: Use it only with explicit user consent, define retention and deletion practices before deployment, review stored memory files regularly, and avoid regulated, confidential, medical, financial, or personal material unless suitable controls are added. <br>
+## Use Case:
 
+External users and developers can use this skill to structure AI-assisted hotspot monitoring, content strategy, trend analysis, and automated report workflows across industries. It is also useful as a JavaScript demonstration package for memory, signal recognition, workflow asset, and goal-tracking subsystems.
 
-## Reference(s): <br>
-- [Skill instructions](SKILL.md) <br>
-- [README](README.md) <br>
-- [AI collaboration system manual](docs/AI协作操作系统_完整使用说明书.md) <br>
-- [Module data flow](references/data-flow.md) <br>
-- [Workflow design](references/workflow-design.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with structured tables, JSON-like memory records, JavaScript examples, and shell command snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read from and write to local memory files that store preferences, history, goals, and workflow records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.1 (source: server release metadata) <br>
+Risk: The skill requests broad persistent memory access for profile and history files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit memory consent, a dedicated storage directory, and avoid sensitive personal or business data until scoping and deletion controls are in place.
+
+Risk: The inspected artifacts overstate autonomous monitoring and reporting capabilities.
+
+Mitigation: Review outputs before operational use and confirm required data sources, scheduling, and automation are actually configured.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/e2e5g/skills/bingbingxiajiang)
+- [README](README.md)
+- [AI collaboration operating system manual](docs/AI协作操作系统_完整使用说明书.md)
+- [Complete user manual](docs/完整使用手册.md)
+- [Centralized deployment guide](docs/集中部署指南.md)
+- [Module data flow](references/data-flow.md)
+- [Workflow design](references/workflow-design.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JavaScript examples, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and update persistent memory/profile files when used as described.]
+
+## Skill Version(s):
+
+1.4.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

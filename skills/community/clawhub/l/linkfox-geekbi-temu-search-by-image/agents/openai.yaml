@@ -1,0 +1,4 @@
+interface:
+  display_name: "Temu Visual Product Search"
+  short_description: "Find visually similar Temu products from an image"
+  default_prompt: "Use $linkfox-geekbi-temu-search-by-image to find similar Temu products from this image."

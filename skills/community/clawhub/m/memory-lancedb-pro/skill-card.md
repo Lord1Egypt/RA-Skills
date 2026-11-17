@@ -1,43 +1,66 @@
-## Description: <br>
-Guides agents through installing, configuring, verifying, and operating the memory-lancedb-pro long-term memory plugin for OpenClaw, including Smart Extraction, hybrid retrieval, memory lifecycle management, multi-scope isolation, and memory tool usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill should be used when working with memory-lancedb-pro, a production-grade long-term memory MCP plugin for OpenClaw AI agents.
 
-## Publisher: <br>
-[aaronx-hu](https://clawhub.ai/user/aaronx-hu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaronx-hu](https://clawhub.ai/user/aaronx-hu)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure and troubleshoot the memory-lancedb-pro OpenClaw memory plugin, choose provider plans, apply OpenClaw configuration, and use persistent memory tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API keys may be exposed if users paste credentials into chat or inline them in openclaw.json. <br>
-Mitigation: Use environment variables or a secret manager, and avoid storing secrets in conversation history or configuration files. <br>
-Risk: A remote setup script may change or be compromised if run directly from an unpinned URL. <br>
-Mitigation: Inspect the setup script before execution, pin a reviewed version, and prefer dry-run or manual installation for sensitive environments. <br>
-Risk: AutoCapture and autoRecall can persist and surface conversation memory across configured scopes. <br>
-Mitigation: Enable persistent memory only for acceptable scopes, configure explicit scope isolation, and disable memory for sensitive agents. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to install, configure, verify, and operate memory-lancedb-pro for persistent agent memory. It guides setup for Smart Extraction, hybrid retrieval, memory lifecycle management, multi-scope isolation, local or cloud provider choices, and MCP memory tools.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/aaronx-hu/memory-lancedb-pro) <br>
-- [Full Technical Reference](references/full-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JSON and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include provider-specific configuration plans and verification steps; users should avoid sharing API keys in chat.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks users to work with API keys and provider credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use environment variables or a secret manager, and avoid pasting API keys into chat.
+
+Risk: The skill recommends a one-line remote installer and downloaded validator scripts.
+
+Mitigation: Prefer audited local installation paths, or pin and verify the exact remote source before execution.
+
+Risk: Automatic capture, recall, and Smart Extraction can process conversation or memory data through cloud providers.
+
+Mitigation: Use the local Ollama plan or disable autoCapture, autoRecall, and smartExtraction for confidential work; enable cloud providers only after deciding what data may leave the machine.
+
+Risk: Auto-recalled memory content is injected into the agent context and could surface in responses.
+
+Mitigation: Instruct the agent not to quote injected memory context, limit recalled entries, and disable autoRecall for sensitive sessions.
+
+## Reference(s):
+
+- [memory-lancedb-pro ClawHub page](https://clawhub.ai/aaronx-hu/skills/memory-lancedb-pro)
+- [Full technical reference](references/full-reference.md)
+- [memory-lancedb-pro GitHub repository](https://github.com/CortexReach/memory-lancedb-pro)
+- [memory-lancedb-pro setup tools](https://github.com/CortexReach/toolbox/tree/main/memory-lancedb-pro-setup)
+- [OpenClaw](https://openclaw.ai)
+- [Ollama download](https://ollama.com/download)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include OpenClaw configuration snippets, provider setup steps, and MCP memory tool guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact documentation describes the underlying memory-lancedb-pro plugin as v1.1.0-beta.8)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

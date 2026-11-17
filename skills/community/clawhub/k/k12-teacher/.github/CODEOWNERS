@@ -1,0 +1,5 @@
+# Code owners for k12-teacher
+# Pull requests touching any path require review from the owners listed below.
+# Reference: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+* @JohnSmithfan

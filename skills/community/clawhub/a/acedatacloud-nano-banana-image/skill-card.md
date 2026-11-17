@@ -1,44 +1,59 @@
-## Description: <br>
-Generate and edit AI images with NanoBanana (Gemini-based) via AceDataCloud API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate or edit images with Nano Banana through AceDataCloud, including the 2.1 model.
 
-## Publisher: <br>
-[Germey](https://clawhub.ai/user/Germey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[acedatacloud](https://clawhub.ai/user/acedatacloud)
 
-## Use Case: <br>
-Developers and creative automation users use this skill to create images from text prompts or edit existing images with natural-language instructions through AceDataCloud's NanoBanana API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and source image URLs may be sent to AceDataCloud or its hosted MCP service. <br>
-Mitigation: Avoid confidential prompts and private image links unless approved for that service. <br>
-Risk: The skill requires an AceDataCloud API token. <br>
-Mitigation: Use a dedicated token, keep it in approved secret storage or environment configuration, and do not hard-code it in shared files. <br>
-Risk: The optional MCP package introduces an additional dependency path. <br>
-Mitigation: Verify the MCP package and hosted endpoint before installing or connecting it in an agent environment. <br>
+## Use Case:
 
+Developers and other ClawHub users use this skill to generate or edit images through AceDataCloud's Nano Banana API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Germey/acedatacloud-nano-banana-image) <br>
-- [AceDataCloud NanoBanana image API](https://api.acedata.cloud/nano-banana/images) <br>
-- [Hosted NanoBanana MCP endpoint](https://nano-banana.mcp.acedata.cloud/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces API usage guidance and direct image URL handling details; generated images are returned by the external service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Prompts and source image URLs are sent to AceDataCloud.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive content and never include secrets in prompts.
+
+Risk: Image requests may incur charges, including duplicate submissions while a task is pending.
+
+Mitigation: Check service pricing and poll the existing task ID instead of resubmitting.
+
+Risk: The optional mcp-nano-banana package adds a separate dependency.
+
+Mitigation: Pin or review the package separately before enabling it.
+
+## Reference(s):
+
+- [AceDataCloud first-run guide](https://github.com/AceDataCloud/Skills#first-run-with-clawhub-and-openclaw)
+- [AceDataCloud authentication guide](https://github.com/AceDataCloud/Skills/blob/main/skills/_shared/authentication.md)
+- [AceDataCloud async task guide](https://github.com/AceDataCloud/Skills/blob/main/skills/_shared/async-tasks.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions, API requests]
+
+**Output Format:** [Markdown with bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Image generation and editing requests can return an asynchronous task ID requiring polling.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,50 @@
-## Description: <br>
-Pulls a SwanLab cloud experiment's metrics, config, metadata, requirements, and run information into a local directory, then summarizes what was fetched. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+swanlog pulls SwanLab cloud experiment metrics, config, metadata, requirements, and run information into a local directory and summarizes the run for inspection or analysis.
 
-## Publisher: <br>
-[jasonwei1002](https://clawhub.ai/user/jasonwei1002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jasonwei1002](https://clawhub.ai/user/jasonwei1002)
 
-## Use Case: <br>
-Developers and machine learning engineers use this skill to inspect, sync, archive, diff, or analyze SwanLab experiment runs from a local machine without signing into the training host. It fetches scalar metrics and run profile files, then guides the agent to report a concise Markdown brief. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses the user's existing SwanLab login to fetch experiment data that may include sensitive metrics, configuration, metadata, or requirements. <br>
-Mitigation: Install and run it only when that access is intended, and review the exported files before sharing or syncing the output directory. <br>
-Risk: Experiment dumps are written to a local directory that may be accidentally placed in a shared or synced location. <br>
-Mitigation: Choose an output path appropriate for the data sensitivity and avoid shared folders unless the run contents are safe to disclose. <br>
+## Use Case:
 
+Developers and ML engineers use swanlog to fetch SwanLab experiment data from cloud runs to local files for inspection, archiving, comparison, diffing, and agent-assisted analysis without SSH access to the training machine.
 
-## Reference(s): <br>
-- [SwanLab](https://swanlab.cn) <br>
-- [ClawHub swanlog release](https://clawhub.ai/jasonwei1002/swanlog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown summary with local files including CSV, YAML, JSON, and text artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads from SwanLab using the user's existing local login and writes experiment data to a local output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill uses the user's existing SwanLab login and saves run details locally, including files that may contain sensitive configuration, metadata, requirements, and metrics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when local SwanLab data export is intended, store outputs in an appropriate local directory, and review generated files before sharing them.
+
+## Reference(s):
+
+- [SwanLab](https://swanlab.cn)
+- [ClawHub skill page](https://clawhub.ai/jasonwei1002/skills/swanlog)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Markdown summary plus local CSV, YAML, JSON, and text files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a SwanLab run directory containing metrics.csv, config.yaml, metadata.json, requirements.txt, run_info.json, and brief.md.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

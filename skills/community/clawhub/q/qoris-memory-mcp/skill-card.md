@@ -1,45 +1,64 @@
-## Description: <br>
-Persistent memory for OpenClaw agents via the Qoris MCP server, with explicit save and recall tools for cross-session context and no automatic data capture. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent memory for OpenClaw agents via the Qoris MCP server, with explicit save and recall tools for cross-session context and no automatic data capture.
 
-## Publisher: <br>
-[qoris-ai](https://clawhub.ai/user/qoris-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qoris-ai](https://clawhub.ai/user/qoris-ai)
 
-## Use Case: <br>
-Developers, teams, and external users use this skill to give OpenClaw agents explicit, cross-session memory backed by Qoris workspace storage, semantic search, and versioned records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected memory content is sent to the hosted Qoris service for the configured workspace. <br>
-Mitigation: Install only when the provider, retention policy, access controls, and workspace sharing model are approved for the data being stored. <br>
-Risk: The skill requires QORIS_API_KEY, which grants access to the configured memory workspace. <br>
-Mitigation: Protect the API key as a sensitive credential, use restricted workspaces where appropriate, and rotate the key if exposure is suspected. <br>
-Risk: Shared persistent memory can expose stored information to other holders of the workspace credentials. <br>
-Mitigation: Do not store secrets, regulated data, or sensitive customer or personal information unless organizational controls explicitly allow it. <br>
+## Use Case:
 
+External developers and teams use this skill to give OpenClaw agents explicit, workspace-scoped persistent memory across sessions, projects, and shared team contexts. The skill supports saving, retrieving, searching, updating, and deleting user-selected memories through the Qoris MCP service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qoris-ai/qoris-memory-mcp) <br>
-- [Qoris homepage](https://qoris.ai) <br>
-- [Qoris Memory documentation](https://docs.qoris.ai/memory) <br>
-- [Qoris dashboard](https://qoris.ai/dashboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell and JSON configuration examples; memory tool responses are text or structured MCP results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires QORIS_API_KEY and QORIS_WORKSPACE_ID. Memory content is sent only through explicit memory tool calls to the configured Qoris workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server evidence release, SKILL.md frontmatter, package.json) <br>
+Risk: The skill stores selected agent memories in an external Qoris workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when external persistent memory is intended, and review Qoris retention and deletion controls before using it for confidential work.
+
+Risk: QORIS_API_KEY grants access to the configured workspace memory.
+
+Mitigation: Treat QORIS_API_KEY as a secret, avoid committing it to source control, and rotate it from the Qoris dashboard if exposure is suspected.
+
+Risk: Shared workspaces can expose saved memories to other holders of the same workspace credentials.
+
+Mitigation: Use a separate Qoris workspace for shared, client-specific, sensitive, or enterprise projects.
+
+Risk: Persisted memories may include credentials, regulated data, or other sensitive content if an agent or user explicitly saves them.
+
+Mitigation: Avoid saving credentials or regulated data unless policy allows it and the workspace controls are appropriate.
+
+## Reference(s):
+
+- [Qoris Memory Documentation](https://docs.qoris.ai/memory)
+- [Qoris AI Homepage](https://qoris.ai)
+- [Qoris Dashboard](https://qoris.ai/dashboard)
+- [ClawHub Skill Page](https://clawhub.ai/qoris-ai/skills/qoris-memory-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration snippets; memory and search results are returned as text records from the MCP service.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires QORIS_API_KEY and QORIS_WORKSPACE_ID environment variables; data is persisted only through explicit memory tool calls.]
+
+## Skill Version(s):
+
+1.0.5 (source: SKILL.md frontmatter, package.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,59 @@
-## Description: <br>
-Enables agents to convert uploaded DOCX, PDF, XLSX, and PPTX files into a persistent local Markdown knowledge base and retrieve relevant stored documents for future answers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Super Claw Local Knowledge helps an agent convert uploaded DOCX, PDF, XLSX, and PPTX documents into a local Markdown knowledge base and retrieve relevant stored content for future responses.
 
-## Publisher: <br>
-[subaru0573](https://clawhub.ai/user/subaru0573) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[subaru0573](https://clawhub.ai/user/subaru0573)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to initialize and operate a local document knowledge base, ingest uploaded office documents, and retrieve stored Markdown content to ground agent responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Converted documents and the knowledge index are retained locally and can be searched later. <br>
-Mitigation: Install only when a persistent local knowledge base is intended, and treat converted Markdown as retained workspace data. <br>
-Risk: The workflow may delete original uploaded files after conversion. <br>
-Mitigation: Review the converted Markdown and index entry before deleting source documents. <br>
-Risk: Optional proactive SOUL.md setup can cause retrieval attempts when the agent is uncertain. <br>
-Mitigation: Narrow or skip proactive setup when knowledge-base retrieval should happen only after explicit user requests. <br>
+## Use Case:
 
+External users and developers use this skill to add uploaded documents to an OpenClaw local knowledge base, then retrieve relevant indexed Markdown content when answering questions that depend on stored documents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/subaru0573/skills/super-claw-local-knowledge) <br>
-- [README](artifact/README.md) <br>
-- [Add knowledge guide](artifact/references/add_knowledge.md) <br>
-- [Knowledge retrieval guide](artifact/references/retrieval_knowledge.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with shell command examples and JSON index entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local knowledge-base Markdown files and a JSON index when the workflow is followed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Uploaded documents may be converted, stored, indexed, and reused from the local OpenClaw workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when local document persistence is intended, review the knowledge base index and stored Markdown files, and avoid adding sensitive documents unless reuse is acceptable.
+
+Risk: The optional SOUL.md change can make the agent proactively retrieve stored knowledge across future sessions.
+
+Mitigation: Add the SOUL.md retrieval block only when persistent proactive retrieval is desired, and remove it if retrieval should remain user-initiated.
+
+Risk: The ingestion workflow recommends deleting uploaded source files after successful conversion and indexing.
+
+Mitigation: Keep backups of original files before ingestion and confirm converted Markdown quality before deleting source documents.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/subaru0573/skills/super-claw-local-knowledge)
+- [Document ingestion workflow](artifact/references/add_knowledge.md)
+- [Knowledge retrieval workflow](artifact/references/retrieval_knowledge.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON index entries, and file path instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local workspace files under .openclaw/workspace/memory/knowledge_base and updates knowledge_base_index.json when ingestion is performed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

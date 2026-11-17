@@ -1,42 +1,53 @@
-## Description: <br>
-Manage enterprise SSO, Directory Sync (SCIM), Admin Portal links, and user management through the WorkOS API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage enterprise SSO, Directory Sync (SCIM), Admin Portal, and user management via WorkOS API.
 
-## Publisher: <br>
-[dwhite-oss](https://clawhub.ai/user/dwhite-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dwhite-oss](https://clawhub.ai/user/dwhite-oss)
 
-## Use Case: <br>
-Developers and administrators use this skill to generate WorkOS API calls for organization setup, SSO connection checks, Directory Sync queries, Admin Portal link creation, and AuthKit user management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide privileged WorkOS administration with a sensitive API key. <br>
-Mitigation: Install only when the agent is expected to administer WorkOS, protect WORKOS_API_KEY, and scope access according to operational need. <br>
-Risk: The skill includes high-impact user deletion instructions. <br>
-Mitigation: Require explicit confirmation before create or delete operations and carefully verify organization and user IDs before execution. <br>
+## Use Case:
 
+Developers and administrators use this skill to generate WorkOS API guidance and curl commands for enterprise SSO, Directory Sync, Admin Portal links, and AuthKit user-management tasks.
 
-## Reference(s): <br>
-- [WorkOS API](https://api.workos.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/dwhite-oss/workos) <br>
-- [Publisher Profile](https://clawhub.ai/user/dwhite-oss) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with curl examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a WORKOS_API_KEY environment variable for generated API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Generated commands may perform high-impact WorkOS tenant or account administration actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human confirmation before creating organizations, generating Admin Portal links, exchanging auth codes, or deleting users.
+
+Risk: Using broad or production WorkOS credentials can increase the blast radius of mistakes.
+
+Mitigation: Use a least-privilege WorkOS API key where possible and avoid production keys for exploration.
+
+## Reference(s):
+
+- [WorkOS API base](https://api.workos.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a WORKOS_API_KEY environment variable for generated API calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

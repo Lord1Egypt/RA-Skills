@@ -1,43 +1,59 @@
-## Description: <br>
-Go concurrency patterns for high-throughput web applications including worker pools, rate limiting, race detection, and safe shared state management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Go concurrency patterns for high-throughput web applications including worker pools, rate limiting, race detection, and safe shared state management.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill to design and review concurrent Go web services, especially worker pools, rate limiters, race-detector checks, and safe shared-state handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example snippets may be unsuitable as direct production code without project-specific adaptation, especially around context cancellation and shutdown behavior. <br>
-Mitigation: Review the pattern in the target service, adapt it to the service lifecycle, and run the relevant Go tests or builds before deployment. <br>
-Risk: Race-detector commands execute project tests or builds and may be inappropriate in restricted environments without approval. <br>
-Mitigation: Run `go test -race` or `go build -race` only in approved local or CI environments where executing the project code is acceptable. <br>
+## Use Case:
 
+Developers and engineers use this skill to apply Go concurrency patterns in web applications, including bounded worker pools, rate limiting, race detection, and safe shared state handling.
 
-## Reference(s): <br>
-- [Worker Pools](references/worker-pools.md) <br>
-- [Rate Limiting](references/rate-limiting.md) <br>
-- [Race Detection](references/race-detection.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/anderskev/go-concurrency-web) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with Go and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; examples should be adapted and reviewed before production use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.1 (source: server release evidence) <br>
+Risk: Adopted concurrency examples can change application behavior through worker counts, queue sizes, background work, and shutdown paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review sizing, backpressure, context propagation, and graceful teardown against the target service before merging generated changes.
+
+Risk: Rate-limiting examples involving IPs, proxy headers, users, or API keys can be misapplied if trust boundaries or secret handling are wrong.
+
+Mitigation: Trust forwarded headers only behind a controlled reverse proxy, protect API keys, and validate limiter keys and tiers during code review.
+
+Risk: Race-detector output can miss logical races, deadlocks, starvation, or races not exercised by tests.
+
+Mitigation: Pair race-detector runs with targeted concurrent tests and code inspection for synchronization, cancellation, and shared mutable state.
+
+## Reference(s):
+
+- [Worker Pools](references/worker-pools.md)
+- [Rate Limiting](references/rate-limiting.md)
+- [Race Detection](references/race-detection.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with Go, shell, and YAML code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes review gates and examples that should be adapted to the target service.]
+
+## Skill Version(s):
+
+2.3.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

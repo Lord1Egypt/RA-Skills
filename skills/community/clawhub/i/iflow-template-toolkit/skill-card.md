@@ -1,38 +1,50 @@
-## Description: <br>
-Dependency-free template engine with variable substitution, conditionals, loops, and multi-language support for iFlow skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dependency-free template engine with variable substitution, conditionals, loops, and multi-language support for iFlow skills.
 
-## Publisher: <br>
-[sylvanxiao](https://clawhub.ai/user/sylvanxiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sylvanxiao](https://clawhub.ai/user/sylvanxiao)
 
-## Use Case: <br>
-Developers building iFlow skills use this toolkit to render text, Markdown, code, or configuration from simple templates and to add lightweight English and Chinese localization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Rendering untrusted template filenames or template text can produce misleading output or expose data supplied in the render context. <br>
-Mitigation: Use trusted templates, review rendered output before applying it, and pass plain dictionaries rather than sensitive objects as template context. <br>
+## Use Case:
 
+Developers building iFlow skills use this toolkit to render small templates and localize agent-facing content without adding external dependencies.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sylvanxiao/iflow-template-toolkit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration] <br>
-**Output Format:** [Rendered template text and localized strings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dependency-free Python helper; template rendering uses caller-provided templates and context dictionaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact version) <br>
+Risk: Template-file loading can read files outside the intended template directory if callers pass unsafe template paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted, fixed template names or map external template IDs to known files before calling load_template or render_file.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sylvanxiao/skills/iflow-template-toolkit)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration]
+
+**Output Format:** [Rendered template text and translated strings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external runtime dependencies; file-based template rendering depends on caller-supplied paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

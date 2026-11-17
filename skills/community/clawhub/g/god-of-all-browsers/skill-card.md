@@ -1,45 +1,60 @@
-## Description: <br>
-A browser automation CLI for AI agents that uses a persistent Chromium instance to manage tabs, preserve sessions, map page elements to interaction tags, and extract web content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A browser automation CLI for AI agents that uses a persistent Chromium session, multi-tab management, DOM snapshots, and command-line actions to navigate, interact with, and extract content from websites.
 
-## Publisher: <br>
-[MaThanMiThun1999](https://clawhub.ai/user/MaThanMiThun1999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mathanmithun1999](https://clawhub.ai/user/mathanmithun1999)
 
-## Use Case: <br>
-Developers and AI-agent operators use this skill to drive Chromium through shell commands for web navigation, tagged interaction, session reuse, multi-tab workflows, and content extraction from complex sites. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent login sessions and exported cookies can retain sensitive account access after automation finishes. <br>
-Mitigation: Use a dedicated non-sensitive browser profile in an isolated environment and delete chrome_profile, session.json, recordings, and learning files when finished. <br>
-Risk: The skill supports arbitrary in-page JavaScript through eval. <br>
-Mitigation: Review every eval script before running it and only use scripts from trusted sources. <br>
-Risk: Bot-evasion behavior and automatic confirmations can automate sites in ways that may violate permissions or policies. <br>
-Mitigation: Only automate sites where the user has permission and avoid important accounts or unauthorized access workflows. <br>
+## Use Case:
 
+Developers and AI agents use this skill to drive a local Chromium browser for web navigation, interaction, search, authentication checks, and data extraction workflows. It is intended for stateful browser automation where tags, tabs, cookies, screenshots, and extracted page data help an agent complete browsing tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MaThanMiThun1999/god-of-all-browsers) <br>
-- [Puppeteer documentation](https://pptr.dev/) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, CLI text output, JSON-like tag maps, screenshots, and JavaScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses persistent browser profile, session files, recordings, and optional in-page JavaScript execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata; artifact package metadata reports 1.1.0) <br>
+Risk: The skill stores browser login state, cookies, screenshots, recordings, and session data that can contain sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated environment with a disposable browser profile, avoid logging into sensitive accounts, treat session and recording files as secrets, and clear chrome_profile, session.json, and recordings after use.
+
+Risk: The eval command can run arbitrary JavaScript in a persistent browser context.
+
+Mitigation: Run only trusted inline code or script files, review agent-generated scripts before execution, and watch for network request patterns that could expose data.
+
+Risk: The browser automation flow uses weak containment and bot-evasion techniques that may be inappropriate for some sites or policies.
+
+Mitigation: Review the target site's rules before automation, keep the browser in a constrained environment, and update or constrain the Puppeteer dependency chain before relying on the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mathanmithun1999/skills/god-of-all-browsers)
+- [Artifact README](artifact/README.md)
+- [Artifact skill instructions](artifact/SKILL.md)
+- [Puppeteer documentation](https://pptr.dev/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Code, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local browser profiles, session cookies, screenshots, snapshot JSON, eval results, and debug logs during operation.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata; artifact package.json and _meta.json report 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

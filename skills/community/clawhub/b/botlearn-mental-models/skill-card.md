@@ -1,41 +1,55 @@
-## Description: <br>
-Provides decision support by applying Charlie Munger's mental models to reveal non-obvious insights and shifts in framing for judgment calls and strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mental Models helps agents analyze genuine judgment calls through a lattice of Munger-style meta-lenses and twenty disciplinary mental models.
 
-## Publisher: <br>
-[Romanluoman00007](https://clawhub.ai/user/Romanluoman00007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[romanluoman00007](https://clawhub.ai/user/romanluoman00007)
 
-## Use Case: <br>
-External users and agents use this skill when a user's decision depends on specific goals, constraints, risk tolerance, or context. It applies a lattice of mental models to surface framing shifts, tensions, risks, and next actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill silently reads and updates a persistent local profile containing decision context, risk preferences, blind spots, and repeated interaction patterns. <br>
-Mitigation: Install only if this persistence is acceptable; review or delete the profile periodically, and avoid storing sensitive financial, personal, or business details in it. <br>
-Risk: Repeated session learnings can carry forward stale or incorrect assumptions about the user. <br>
-Mitigation: Review the profile's learnings and promoted preferences periodically, especially after major changes in goals, constraints, or risk tolerance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Romanluoman00007/botlearn-mental-models) <br>
-- [Skill Instructions](artifact/SKILL.md) <br>
-- [User Profile Template](artifact/assets/user-profile-template.md) <br>
+## Use Case:
 
+External users and developers use this skill to help an agent surface framing shifts, risks, incentives, and tensions when evaluating personal, product, investment, or strategy decisions.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Analysis] <br>
-**Output Format:** [Markdown decision-lattice or thinking-diagnostic response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and update a local profile file when available to personalize future analysis.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may maintain cross-session notes about reasoning, blind spots, risk profile, or decision context.
+
+Mitigation: Review profile behavior before installation and require explicit approval before storing or updating personal decision-context notes.
+
+Risk: Automatic personalization can silently mutate a long-term user profile.
+
+Mitigation: Keep the profile file inspectable, limit stored observations to necessary context, and disable automatic profile updates when persistent personalization is not desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/romanluoman00007/skills/botlearn-mental-models)
+- [SKILL.md](artifact/SKILL.md)
+- [User profile template](artifact/assets/user-profile-template.md)
+- [Mental model reference files](artifact/models/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with structured latticework analysis and occasional shell setup commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May personalize analysis from a local profile and record repeated learning patterns when the lattice is used.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

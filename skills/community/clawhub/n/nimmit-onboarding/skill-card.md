@@ -1,42 +1,61 @@
-## Description: <br>
-Guides new Nimmit users through first-run Telegram chat onboarding for organization setup, industry, language, team size, priorities, and briefing setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when a new user messages the bot for the first time or sends /start. Guides them through conversational onboarding - organization setup, industry, language, priorities - entirely via Telegram chat.
 
-## Publisher: <br>
-[rithythul](https://clawhub.ai/user/rithythul) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rithythul](https://clawhub.ai/user/rithythul)
 
-## Use Case: <br>
-External Nimmit users use this skill to complete conversational onboarding in Telegram. The agent collects setup details, confirms the configuration, updates workspace setup, installs matching skill packs, and schedules a daily morning briefing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The onboarding flow can make persistent workspace changes from chat responses. <br>
-Mitigation: Require explicit user confirmation before writing files and document the exact files that may be changed. <br>
-Risk: The skill can install unspecified matching skill packs. <br>
-Mitigation: List the eligible skill packs before installation and require owner or administrator approval. <br>
-Risk: The skill can schedule a recurring daily briefing. <br>
-Mitigation: Show the proposed schedule, obtain consent, and document how to disable or roll back the briefing. <br>
+## Use Case:
 
+External users and organization operators use this skill to complete first-run Nimmit setup through Telegram chat. It gathers organization details, language preference, team size, and priorities, then configures the workspace and onboarding checklist for the user.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/rithythul/nimmit-onboarding) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Telegram chat responses plus workspace configuration changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update workspace files, install skill packs, and schedule a recurring daily briefing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill directs the agent to make persistent workspace changes during onboarding without clearly exposing the full scope to the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require an explicit confirmation step that lists the files to be changed before setup actions are executed.
+
+Risk: The skill may install additional skill packs as part of setup.
+
+Mitigation: Restrict installation to an approved allowlist and disclose the selected skill packs before installation.
+
+Risk: The skill may create a recurring daily briefing schedule.
+
+Mitigation: Disclose the schedule, timezone, and removal steps, and allow the user to opt out before creating the job.
+
+Risk: The security verdict is suspicious because consent, scope, audit trail, and rollback behavior are not clear.
+
+Mitigation: Review the skill before installing and ask the publisher for exact changed files, cron details, confirmation prompts, audit logging, and rollback instructions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rithythul/skills/nimmit-onboarding)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, configuration, shell commands]
+
+**Output Format:** [Conversational text with agent actions for workspace file updates, skill-pack installation, and scheduled briefing setup]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chat-based onboarding flow with Khmer and English language handling]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

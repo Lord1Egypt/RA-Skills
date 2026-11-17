@@ -1,40 +1,52 @@
-## Description: <br>
-Guides agents in reading Feishu IM conversation history, thread replies, cross-chat search results, and message attachments that the user is authorized to access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents to read Feishu IM chat history, thread replies, searchable messages, and downloadable message resources using the user's Feishu permissions.
 
-## Publisher: <br>
-[chenfa188](https://clawhub.ai/user/chenfa188) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[chenfa188](https://clawhub.ai/user/chenfa188)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers with Feishu access use this skill to help an agent retrieve permitted chat history, expand thread replies, search messages by filters such as keyword, sender, chat, or time range, and fetch message attachments.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can expose sensitive Feishu chat history, thread replies, search results, and attachments available to the user.
+
+Mitigation: Limit requests by chat, sender, keyword, and time range, and fetch only attachments explicitly needed for the task.
+
+Risk: Broad or underspecified searches can return more accessible conversation content than intended.
+
+Mitigation: Ask the agent to narrow searches before execution and review returned messages before using or sharing their contents.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Agents use this skill when a user asks to retrieve Feishu chat history, inspect thread replies, search messages across conversations, or download message resources such as images, files, audio, or video. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, API Calls, Text]
 
-## Known Risks and Mitigations: <br>
-Risk: Feishu messages and downloaded attachments may contain sensitive or private information. <br>
-Mitigation: Keep searches narrowly scoped to the user's request and retrieve only conversations and resources the user is authorized to access. <br>
-Risk: Images, files, audio, or video attachments can create retained local copies of sensitive content. <br>
-Mitigation: Ask the user to confirm before downloading attachments and remove downloaded copies when they are no longer needed. <br>
+**Output Format:** [Markdown guidance with JSON tool-call examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chenfa188/openclaw-feishu-im-read) <br>
+**Other Properties Related to Output:** [Tool calls operate under the user's existing Feishu authorization and accessible conversations.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, API calls] <br>
-**Output Format:** [Markdown guidance with JSON parameter examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides Feishu message retrieval, search, pagination, thread expansion, and attachment download decisions.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

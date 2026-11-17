@@ -1,47 +1,60 @@
-## Description: <br>
-Export large Yahoo Mail archives with the folder-rotation IMAP workflow, resumable downloads, and safe delete-after-verify handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Export large Yahoo Mail archives with the folder-rotation IMAP workflow, resumable downloads, and safe delete-after-verify handling.
 
-## Publisher: <br>
-[jimdawdy-hub](https://clawhub.ai/user/jimdawdy-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT No Attribution <br>
+## Publisher:
 
+[jimdawdy-hub](https://clawhub.ai/user/jimdawdy-hub)
 
-## Use Case: <br>
-Developers and operators use this skill to export large Yahoo Mail accounts through IMAP folder rotation, preserve local .eml copies, and triage exported messages with local models. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mailbox data can be deleted during the export workflow. <br>
-Mitigation: Run with dry-run or no-delete behavior until a small test completes, then verify local .eml files and message counts before enabling deletion. <br>
-Risk: The release includes a hardcoded app-password-like secret. <br>
-Mitigation: Remove the secret, rotate it if it was ever valid, and provide Yahoo app passwords through a safer runtime mechanism. <br>
-Risk: Exported email data and derived artifacts can contain sensitive personal information. <br>
-Mitigation: Treat the local export directory as sensitive, restrict access, and review retention before storing .eml files, metadata, embeddings, triage outputs, or reports. <br>
-Risk: Email content may be sent to local model services during embedding and triage. <br>
-Mitigation: Confirm local model service configuration and data handling before processing private mail content. <br>
+## Use Case:
 
+Developers and technical users use this skill to export large Yahoo Mail archives through a bounded IMAP folder-rotation workflow, then optionally pre-filter, vectorize, triage, and summarize copied email data with local tools.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jimdawdy-hub/yahoomail-export) <br>
-- [README](README.md) <br>
-- [Yahoo Mail IMAP Export Guide](YAHOO_EXPORT_GUIDE.md) <br>
-- [Yahoo app passwords](https://login.yahoo.com/account/security/app-passwords) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration values, and Python workflow references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The referenced scripts can produce local .eml files, JSONL metadata, SQLite vector indexes, triage outputs, and summary reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The workflow can move and delete mailbox contents repeatedly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove embedded credentials, supply credentials securely, test with --dry-run and --no-delete, verify message counts and backups, and require human approval before deletion.
+
+Risk: Local export files, SQLite indexes, reports, and prompts may contain sensitive email data.
+
+Mitigation: Treat the local ~/email-purge outputs as sensitive data and store, share, and delete them according to the user's data handling requirements.
+
+Risk: Automated recurring execution can continue destructive mailbox operations after the intended migration window.
+
+Mitigation: Avoid enabling the documented cron job unless it has an expiration condition and a human approval checkpoint before deletion.
+
+## Reference(s):
+
+- [Yahoo Mail IMAP Export ClawHub page](https://clawhub.ai/jimdawdy-hub/skills/yahoomail-export)
+- [README.md](README.md)
+- [YAHOO_EXPORT_GUIDE.md](YAHOO_EXPORT_GUIDE.md)
+- [Yahoo app password setup](https://login.yahoo.com/account/security/app-passwords)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and Python script references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local .eml files, JSONL metadata and triage files, a SQLite vector index, and a Markdown summary report when the bundled scripts are adapted and run.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

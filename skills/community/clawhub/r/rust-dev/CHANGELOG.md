@@ -2,10 +2,269 @@
 
 All notable changes to this skill will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/2.0.0/),
 and this skill adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.9.0] - 2026-11-05
+
+### Added
+
+- SKILL.md: module paths (`crate::`, `super::`, `self::`, `pub use` re-exports); keeping `main.rs` thin so `tests/` can reach the logic; `cargo run -- <args>`, `RUST_BACKTRACE=1`, and `rustup update` in Day-1 Setup; anti-pattern #10, a `File::lock` is held by any descriptor "duplicated or inherited from it", so call `unlock()` in `Drop`.
+- references/testing.md: regression tests that cannot fail (fixture not where old and new behavior differ, race tests by brute force, hand mutations that did not apply); measuring a flake over N runs; iteration order is not an API; the Book's "can't create integration tests" rule for `main.rs`; `TempDir` binding lifetime and `.keep()` leaks; multiple name filters after `--`, `--exact`, and `--test-threads=1` as a diagnostic; `#[cfg(windows)]` tests compiled out locally and Windows `Path::is_absolute` semantics; insta normalization with `filters` and `cargo insta test`.
+- references/async-basics.md: `select!` over `&mut handle` in a loop panics with "JoinHandle polled after completion"; disable the branch with an `, if` precondition.
+- references/dev-environment.md: repo-local `[alias]`, and the built-in `b`/`c`/`d`/`t`/`r`/`rm` aliases it silently redefines; macOS XProtect developer-tool exemption (rustc UI suite 9m42s to 3m33s); check/clippy and build artifacts are different units, so give a lint job its own target dir; `cargo update --precise`, `cargo tree --duplicates`, and a `cargo metadata --locked` drift check; jobs that write a shared cache must not hold secrets; `linker_messages` and `build.warnings`.
+- references/crate-shortlist.md: `EnvFilter::from_default_env()` falls back to ERROR only, so give it a real default; clap `#[arg(env = ...)]` needs the `env` feature and `hide_env_values` for secrets; itertools, rand/fastrand, walkdir/ignore, indicatif, directories, rusqlite in Honorable Mentions.
+- references/traits-and-generics.md: `enumerate`/`zip`/`any`/`position`/`fold`/`rev`; sorting, why `f64` is not `Ord`, and `total_cmp`.
+- references/ownership-and-types.md: `floor_char_boundary` (1.91) for truncating to a byte budget.
+- references/error-handling.md: `Command::output()` is `Ok` on a failing child, so check `status.success()`.
+- references/performance.md: buffered output with `BufWriter` over a locked stdout, and `flush()` before drop.
+- references/releasing.md: `strip` and `opt-level = "z"` for binary size; raise the `Cargo.toml` requirement, not just the lock, when a fix needs a dependency patch release.
+
+### Changed
+
+- Rust 1.99.1: `rust-toolchain.toml` pin bumped from 1.99.0; dev-environment.md adds its FFI `bool` miscompile as the newest point-release example.
+- references/dev-environment.md: kache re-verified against 2.0.0 (pin was 1.0.0). Install `kache` and `kache-engine` together; `kache daemon restart` and `kache doctor --probe` after upgrading; key schema 33 makes a 1.x to 2.0 upgrade a cold build; disk-pressure recovery is on by default since 1.2.0 (10 GiB, `0` in CI); adaptive incremental skips the cache for "up to eight builds"; worktree incremental seeding; `target/check` for check and clippy; target discovery across worktrees; `kache config set`; AWS profiles fail explicitly; kache-action example pinned to 2.0.0, and its save step skips cancelled runs.
+- references/dev-environment.md: `[profile.dev.package."*"]` uses `opt-level = 1`, with `3` for named hot crates; the line-tables-only gain is framed as something to measure.
+- references/dev-environment.md: advisory examples refreshed to rustls 0.23.46 (RUSTSEC-2026-0346 to -0349), rustls-webpki (RUSTSEC-2026-0382), and the yanked tokio 1.54.0 (RUSTSEC-2026-0384).
+- references/releasing.md: dist 0.34.0, now current on crates.io, moved Apple Silicon builds to `macos-15`, so regenerate `release.yml`; cargo-zigbuild #479 fixed in 0.24.0.
+- references/crate-shortlist.md and SKILL.md: jiff 0.2.39 (`jiff-sqlx` serde support), and blessed.rs now "weakly recommend[s] jiff" with `time` as the third option.
+- Date stamps re-verified to November 2026: rustfmt `imports_granularity`/`group_imports` still unstable, and `cfg_select!` arms are not formatted on stable.
+
+### Fixed
+
+- references/dev-environment.md: committing `build.warnings = "deny"` is not safe on a pinned toolchain alone. 1.97's `linker_messages` lint is exempt from `-D warnings` but not from `build.warnings` (cargo#17142), so a linker or Xcode update fails the build; `linker_messages = "allow"` restores the old behavior. The `build.warnings` quote is now attributed to the 1.97 release notes.
+- references/releasing.md: the packaging guard ran `cargo package --list` without `--locked`, which rewrites a stale `Cargo.lock` on disk.
+- references/async-basics.md: `large_futures` is a `pedantic` lint (16 KiB threshold), so it finds nothing until enabled.
+- SKILL.md: for `0.x` crates the minor version is the breaking one; a closer `rust-toolchain.toml` beats a farther `rustup override`; the crate-shortlist entry no longer says "8 crates".
+- references/project-shape.md: a member's `default-features = false` override is unified away when members build together, and `cargo fix --edition` removes it.
+- references/performance.md: `[profile.dist]` uses thin LTO, matching releasing.md and SKILL.md.
+
+Verified against: rust@1.99.1, tokio@1.54.1, jiff@0.2.39, kache@2.0.0, dist@0.34.0, release-plz-action@0.5.148
+
+## [0.8.1] - 2026-11-05
+
+### Removed
+
+- Per-skill `LICENSE.txt`: ClawHub licenses every published skill MIT-0.
+
+## [0.8.0] - 2026-10-06
+
+### Added
+
+- SKILL.md: shadowing (`let input = input.trim();`) in "Coming From Python or JavaScript"; `as` truncation (`300_u32 as u8` is `44`) with `try_from`, `strict_*` ops (1.91), and `overflow-checks = true` in the overflow bullet; `bool::ok_or` (1.98) in "Recent sugar"; anti-pattern #9, `std::fs::write` is not crash-safe (temp file in the same directory, `sync_all`, rename, fsync the parent); `#[expect(lint, reason = ...)]` (1.81) over `#[allow]`, with clippy's `allow_attributes` lints and the per-OS `cfg_attr` catch; a `rustup override` outranks `rust-toolchain.toml`.
+- references/traits-and-generics.md: inherent `impl` blocks, methods vs associated functions, and `fn new` as convention ("`new` isn't a special name").
+- references/ownership-and-types.md: `mem::take`, `mem::replace`, `Option::take`, and `as_deref` for "cannot move out of" errors; `Weak<T>` for back-pointers and `Rc` cycles; edition 2024 dropping `if let` scrutinee temporaries before `else`.
+- references/error-handling.md: `std::process::ExitCode` and `eprintln!` for CLI exit codes, and why not `process::exit`.
+- references/testing.md: `#[should_panic(expected = ...)]`, `#[ignore = "reason"]`, `cargo test -- --ignored`, name filters, and `--show-output`.
+- references/project-shape.md: `[patch.crates-io]` for an unreleased fix (root-manifest only, pin `rev`); dev-dependency features unify only while dev-dependencies are being built, so `cargo build` and `cargo test` resolve different feature sets.
+- references/crate-shortlist.md: serde ignores unknown fields by default, so add `deny_unknown_fields` (not with `flatten`); tracing-subscriber's ANSI default checks only `NO_COLOR`, never the writer, so set `.with_ansi(stderr().is_terminal())`.
+- references/async-basics.md: a spawned task's panic becomes a `JoinError`, so a `main` that only logs it exits 0 (`is_panic` + `resume_unwind`, or `panic = "abort"`); the 1 MiB Windows main-thread stack overflows large async state machines before argument parsing.
+- references/dev-environment.md: heavy transitive crates usually arrive through default features, so trim them with `cargo tree -e features -i` and `default-features = false`.
+
+### Changed
+
+- Rust 1.99.0: `rust-toolchain.toml` pin bumped from 1.98.1. dev-environment.md uses 1.99 as the concrete case for bumping deliberately: `semicolon_in_expressions_from_non_local_macros` fails a `build.warnings = "deny"` test build with insta 1.48 and builds clean with 1.49.0 (both reproduced locally), and three new clippy lints land in denied groups. The built-in `debug` profile is "no different" from `dev` yet, so `[profile.debug] debug = true` is needed, and 1.98 rejects that name as reserved.
+- references/dev-environment.md: kache re-verified against 1.0.0 (pin was 0.28.1). `why-miss` is now `explain`, `report` is `stats --full`, `targets` is `clean --dry-run`; 1.0.0 kept key schema 32, but "Cache-key recipes ... can change during 1.x"; `cache.auto_share_target_files` (on by default) and the opt-in `cache.auto_recover_min_free_bytes`; the OCI remote, which stays read-only for PRs even with `pull_request_prefix`; `kache init --check`/`-y`/`--no-shell` and what init sets beyond the wrapper; pin `kache-action`'s `version` input, which defaults to "latest".
+- references/releasing.md: Windows moves from `x86_64-pc-windows-gnu` (whose rustc page says "do not have any maintainers") to msvc built with `cargo-xwin`, `+crt-static` to drop the `vcruntime140.dll` dependency, an explicit `--target`, and a mandatory run on real Windows.
+- references/project-shape.md: on edition 2024 with Rust 1.85-1.98, overriding inherited `default-features` was rejected outright, not ignored.
+- Date stamps re-verified to October 2026: rustfmt `imports_granularity`/`group_imports` still unstable; cargo-zigbuild #479 fix still unreleased.
+
+### Fixed
+
+- references/async-basics.md: the paused-clock advice was reversed. tokio says to "prefer using [`sleep`] with auto-advance rather than `advance`", which "doesn't guarantee that all timers will be processed"; the skill said the opposite.
+- references/crate-shortlist.md: the SIGPIPE `SIG_DFL` recipe kills any process that also does network I/O on Linux, because std's `TcpStream::write_vectored` goes to `writev` without `MSG_NOSIGNAL`. It now shows the `BrokenPipe`-at-the-write-site fix and limits `SIG_DFL` to pure filters.
+- references/crate-shortlist.md: `sqlx.toml` is read only with the `sqlx-toml` feature, which "`sqlx-cli` has ... enabled by default, but `sqlx` does **not**"; the tracing `format::Json` quote is now verbatim.
+- references/dev-environment.md: kache's automatic GC starts at 110% of `local_max_size` (evicting to 90%), not at the cap.
+
+Verified against: rust@1.99.0, tokio@1.53.2, kache@1.0.0
+
+## [0.7.0] - 2026-09-30
+
+### Added
+
+- references/crate-shortlist.md: reqwest's three production defaults - build one `Client` and reuse it (`reqwest::get` "creates a new internal `Client` on each call"), set a timeout because the builder's "Default is no timeout", and call `error_for_status()` because a 404 or 500 is a successful `send()`. Plus axum shared state with `State<T>` and `with_state`, which the skill mentioned only in passing.
+- references/async-basics.md: bounded concurrency - the `JoinSet` example spawned 100 tasks at once, so `buffer_unordered(n)` and a `Semaphore` now cap it. `TaskTracker` as the pair to `CancellationToken`, so shutdown waits for the tasks it cancelled. And `abort()` is not a fence: "aborting a task does not guarantee that it fails with a cancelled error, since it may complete normally first", so cancel-and-replace loops need a generation tag.
+- references/error-handling.md: collecting an iterator of `Result`s into `Result<Vec<_>, _>`.
+- references/traits-and-generics.md: `impl Trait` in return position (iterator chains, closures), and the edition 2024 rule that the hidden type captures every in-scope lifetime, with `use<>` to narrow it.
+- references/dev-environment.md: a "Keeping `target/` in check" section - Cargo never garbage-collects `target/`, a shared `CARGO_TARGET_DIR` serializes parallel builds on its lock (`Blocking waiting for file lock on build directory`), and `build.build-dir` (stable since 1.91) splits intermediate artifacts out.
+- references/releasing.md: release-plz only counts commits that touch files in `cargo package --list`, so a docs- or CI-only commit never releases, even with `!`. Pin cargo-zigbuild and Zig together and run the release build on toolchain-bump PRs (cargo-zigbuild 0.23.4 with Zig 0.16 broke Apple `cdylib` links, issue #479). jiff 0.2.36 as a real instance of the `include_str!` packaging break the file already warned about. release-plz before 0.3.168 skipped semver checks for `cdylib`+`rlib` crates. A link to the crates.io Trusted Publishing docs.
+- references/project-shape.md: a `required-features` binary is skipped silently by `cargo build`, `cargo test`, and `cargo install`, so CI must build it with the feature on. MSRV verification with the Cargo guide's `cargo hack check --rust-version` recipe, and `cargo-msrv`.
+- references/testing.md: a test for a shutdown or cancellation fix passes whenever the timeout backstop finishes the job, so it must assert the backstop was not taken. insta's compile-time `INSTA_WORKSPACE_ROOT` escape hatch from its `env!` path baking.
+- references/performance.md: `malloc_trim` is glibc-only, so cutting the peak remains the portable fix for retained memory.
+- SKILL.md: `src/bin/` and `examples/` in the project layout.
+
+### Changed
+
+- references/testing.md: fixture paths come from the crate root read at runtime (a cwd-relative path, or `std::env::var_os("CARGO_MANIFEST_DIR")`), not `concat!(env!("CARGO_MANIFEST_DIR"), ...)`. `env!` bakes the checkout path into the test binary, so a compiler cache keys it per checkout and every new worktree recompiles it; the same goes for `CARGO_BIN_EXE_<name>` and insta's snapshot macros.
+- references/dev-environment.md: the kache section re-verified against 0.28.1 (pin was 0.18.0). Upgrading across 0.27.0 is a fully cold cache - the key schema moved from 31 to 32, so "no entry written by 0.26.x matches any more, locally or on a remote" - which replaces the claim that upgrades cost only a partial recompile. New quirks rows: kache itself forces CI to read-only unless the job is a push to a protected branch; S3 permission failures now read as misses (`kache doctor`); the daemon deletes orphaned target directories and seeds new checkouts; a different kache on `PATH` misses everything. Also: clippy and build-script caching (0.23.0), adaptive incremental in a normal edit loop (0.27.0), `cache.bypass_crates`, and `why-miss` across checkouts.
+- references/dev-environment.md: the CI recipe now runs `cargo clippy --locked --all-targets` - with no target flags clippy lints only the library and binaries - and the SKILL.md dev loop matches. `build.warnings = "deny"` in `.cargo/config.toml` is now weighed against the Cargo guide's advice to deny in CI and stay lax locally.
+- references/async-basics.md: `spawn_blocking` for CPU-bound work needs a cap - the pool allows 512 threads, and tokio's docs call for "a semaphore or some other synchronization primitive", or `rayon`.
+- Rust 1.99 (2026-10-01): an edition 2024 workspace member can now turn off inherited `default-features`, so "cannot subtract them" in references/project-shape.md is narrowed; Cargo disables incremental compilation in CI by itself, so `CARGO_INCREMENTAL=0` becomes redundant there; and the new built-in `debug` profile is noted next to the custom `[profile.debugging]` recipe.
+- Version stamps: jiff 0.2.37 (0.2.36 was yanked), dist 0.33.0 (GitHub Releases; crates.io still lists 0.32.0).
+
+### Fixed
+
+- references/crate-shortlist.md: the axum rate-limit example did not compile. `Router::layer` needs a `Clone` service and tower's `RateLimit` is `#[derive(Debug)]` only, so the example now wraps it in `ServiceBuilder` with `BufferLayer` and `HandleErrorLayer`, names the `tower-http` crate `TraceLayer` comes from, and says that over-limit requests queue rather than get a 429.
+- references/project-shape.md: the `build.rs` example emitted a custom cfg without `cargo::rustc-check-cfg`, which trips `unexpected_cfgs` and fails the build under the `build.warnings = "deny"` the skill recommends. The same note now covers `#[cfg(tokio_unstable)]` in async-basics.md.
+- references/async-basics.md: tokio's `rt` feature was said to "avoid `Send` bounds". It does not - `tokio::spawn` requires `Send` on every runtime - so `!Send` work now points at `#[tokio::main(flavor = "local")]` / `LocalRuntime` (stable since tokio 1.51) and `spawn_local`.
+- SKILL.md: the `rust-toolchain.toml` example used `channel = "stable"`, which pins nothing - it is whatever stable each machine last installed. It now pins an exact version and notes that only rustup reads the file.
+- references/dev-environment.md: kache restores were described as "a reflink ..., a hardlink otherwise". Current kache tries a copy-on-write clone, then a restricted hardlink fallback for immutable artifacts, and otherwise copies.
+
+### Security
+
+- references/dev-environment.md: RUSTSEC-2026-0285 (2026-09-14), "TLS 1.3 handshake messages incorrectly accepted across encryption level boundaries" in rustls, patched in 0.23.45, is now the concrete case for `cargo audit`. rustls is reqwest 0.13's default TLS backend, so it sat in ordinary HTTP-client binaries. This supersedes 0.6.0's note that no new advisory touched a crate this skill names.
+
+Verified against: tokio@1.53.1, jiff@0.2.37, kache@0.28.1, dist@0.33.0, release-plz-action@0.5.139
+
+## [0.6.0] - 2026-09-09
+
+### Added
+
+- references/ownership-and-types.md: the two Book-chapter-8 collections gaps the skill was silent on - `HashMap` with the `entry` API (`or_insert`, `or_insert_with`, `or_default`, and why `contains_key` + `insert` hashes twice), and the fact that a string cannot be indexed. `s[0]` does not compile because a byte offset is not a character offset; `.chars()`, `.char_indices()`, and byte-range slicing are what you actually want, and a range that lands mid-character panics.
+- SKILL.md "From Python or JavaScript": integer overflow behaves differently per profile. Debug "includes checks for integer overflow that cause your program to _panic_ at runtime"; `--release` drops them and performs "_two's complement wrapping_" - so a passing test suite can still wrap in production. Plus a pointer to the string-indexing material above.
+- references/async-basics.md: a "Threads First, Async Second" section. The skill sent CPU-bound work to threads (`performance.md`: "use threads or `rayon`") and then only ever showed tokio. Covers `thread::spawn` and its `'static` bound, `thread::scope` for borrowing stack data without `Arc`, `std::sync::mpsc`, and the classic hang where the original `tx` is never dropped so the receiver loop never ends.
+- SKILL.md Project Structure: items are private by default, including to a parent module. `mod config;` makes a module exist without making anything in it reachable - the source of the most common early "why can't I call this" error - with `pub` vs `pub(crate)` and why `pub(crate)` is what makes the `unreachable_pub` lint useful.
+- references/testing.md: what a doc comment actually looks like, since the file already told you to keep doctests for public-API examples without showing one. `///` vs `//!`, the `# ` hidden-line trick that lets an example use `?` without showing the boilerplate, and `no_run` vs `ignore`.
+- references/traits-and-generics.md: a "Closures and the `Fn` Traits" section. The file taught iterator chains built entirely out of closures while naming `Fn`/`FnMut`/`FnOnce` only in a passing anti-pattern. Covers which trait a closure gets (decided by what it does with its captures, not how it is written), that the three nest, and that `move` and `FnOnce` are unrelated.
+- references/crate-shortlist.md (clap): two CLI footguns that only appear once real users touch the binary. A positional argument beginning with `-` is parsed as a flag unless `--` precedes it; and Rust ignores SIGPIPE at startup - std's own comment reads "we set SIGPIPE to ignore when the program starts up in order to prevent this problem" - so `mytool | head -5` fails instead of exiting quietly. Includes the stable `libc::signal` fix and notes `-Zon-broken-pipe` is nightly-only.
+- references/async-basics.md: handling SIGTERM, not just Ctrl-C. Nearly every shutdown snippet awaits `tokio::signal::ctrl_c()`, which is SIGINT only, so a service is hard-killed on every container or systemd stop while Ctrl-C keeps working locally. Plus the two follow-on traps: `with_graceful_shutdown` waits for all connections, so one long-lived stream holds shutdown open forever, and `/proc/<pid>/status` `SigCgt` tells you what the shipped binary actually catches.
+- references/dev-environment.md: mold's own August 2026 benchmark now quantifies the Linux linker choice - it "links 4.9x faster than LLVM lld and 1.9x faster than wild at the median".
+- references/dev-environment.md: the Cargo Book's "Optimizing Build Performance" chapter (added in Rust 1.92), which is the canonical first-party version of most of this page, along with its fuller debug-info recipe - `[profile.dev.package."*"] debug = false` plus an opt-in `[profile.debugging]` - rather than the `line-tables-only` one-liner alone.
+- references/dev-environment.md: Cargo's first-party `unused_dependencies` lint, noted as covering the same ground as `cargo machete` but unusable on stable, since "Cargo's linting system is unstable and can only be used on nightly toolchains".
+- references/dev-environment.md: kache 0.17/0.18 surface - `[cache.volumes]` volume-local shards (what keeps a restore zero-copy when checkout and store live on different volumes), read-only remotes for untrusted CI as a supply-chain boundary, and `explain_miss` alongside `why-miss` in the diagnosis list.
+- references/error-handling.md: a "Wrap at the Boundary, Not Before It" section. `anyhow::Error` is a one-way door, and wrapping a typed error upstream of a retry loop or a status mapping silently destroys the classification that code needed - the retry loop then treats a permanent failure exactly like a retryable one.
+- references/crate-shortlist.md: three reqwest 0.13 changes the notes omitted, all of which alter the dependency tree rather than the API - the rustls crypto provider "defaults to aws-lc instead of _ring_", the rustls roots features were dropped for `rustls-platform-verifier`, and native-tls now includes ALPN.
+- references/crate-shortlist.md: sqlx 0.9's per-crate `sqlx.toml`, and the packaging regression that "`cargo install --locked sqlx-cli` will no longer work".
+- references/crate-shortlist.md (axum): scope a tower layer to the routes it exists for. A `.layer()` on the root `Router` runs on every route, so a rate limiter meant for one expensive endpoint also throttles static assets and health checks, and the first page load exhausts the bucket.
+- references/testing.md: never assert a negative wall-clock property. It is not a flaky test that a looser threshold fixes - nothing guarantees the thread is scheduled at all on a loaded runner - so assert the thing you meant (the backend was not hit, the value came from the cache) or control the clock.
+- references/testing.md: `cargo nextest bench` now runs benchmark targets through the same runner.
+- references/releasing.md: verify the plain `cargo install <crate>` path in a clean container. Teams that ship via Homebrew, Nix, or binstall never exercise the compile-from-crates.io path, so a packaging break can survive several releases.
+
+### Changed
+
+- SKILL.md: the `.gitignore` section claimed committing `Cargo.lock` is "the recommended default for every crate type, libraries included". The Cargo FAQ no longer frames it that way - "whether you do is dependent on the needs of your package" - so the claim now cites the guide's actual wording ("When in doubt, check `Cargo.lock` into the version control system") and keeps the recommendation without overstating its source.
+- references/dev-environment.md: the CI recipe now pins `actions-rust-lang/setup-rust-toolchain@v2` and drops `-- -D warnings` from the clippy step. v2.0.0 stopped exporting `RUSTFLAGS="-D warnings"` and sets cargo's `build.warnings` instead (its `build-warnings` input defaults to `deny`), because a `RUSTFLAGS` export silently overrides any `target.*.rustflags` the project set. The `@v1` form and why lint flags must follow `--` are kept for anyone still pinned there.
+- references/dev-environment.md: replaced the mold quote. The current README contains no mention of macOS at all, so "mold's own source says outright that 'mold does not support macOS'" was no longer sourceable; the substance is now carried by mold's self-description as a replacement for "existing Unix linkers" plus its ELF-only architecture list.
+- references/crate-shortlist.md: sqlx 0.9.0's release date corrected to 2026-05-21 (crates.io publish and release commit), not 2026-05-06.
+- SKILL.md + references/crate-shortlist.md: three "as of May 2026" date stamps re-stamped to September 2026 after re-verifying the facts behind them - rustfmt's `imports_granularity` and `group_imports` are still nightly-only (tracking issues #4991 and #5083), and jiff is still 0.2.35 pre-1.0 with its 1.0 issue open.
+- SKILL.md: dropped the "Rust 1.89.0" attribution on `uninlined_format_args` moving to `clippy::pedantic`. Clippy's own CHANGELOG lists the same PR under both 1.89 and 1.90, so the entry now says "the 1.89/1.90 cycle" rather than asserting a version upstream is inconsistent about.
+- SKILL.md: the Reference Docs list re-describes ownership-and-types, traits-and-generics, async-basics, and error-handling to match what those files now contain, so the router still points at the right file.
+
+### Fixed
+
+- references/dev-environment.md: the kache quirks table said "`local_max_size` defaults to **50GiB**" and told you to raise the cap. Since 0.17.0 the default is "5% of the volume that holds the store, rounded to the nearest GiB, then clamped to 5GiB..=100GiB", with 50GiB only as a probe-failure fallback - so the old advice was wrong on a small disk and on a large one, and the fix is to check what you got rather than assume a number.
+- references/project-shape.md: "Cargo ships a lint (`missing_lints_inheritance`) specifically because so many people assume otherwise" implied a safety net a stable-toolchain reader does not have. The lint exists, but Cargo's whole lint system is nightly-only, so on stable nothing warns about a member that omits `[lints] workspace = true`.
+
+### Security
+
+- references/dev-environment.md: the toolchain-currency argument now includes Rust 1.98.1 (2026-09-03), a one-line point release fixing "a miscompilation in generating vtables" - 1.98.0 could emit a vtable with a null pointer where a function pointer belonged, which is undefined behavior in code that compiled cleanly. No new RustSec advisory since the last refresh touches any crate this skill names.
+
+Verified against: rust@1.98.1, reqwest@0.13.5, kache@0.18.0, release-plz-action@0.5.135
+
+## [0.5.1] - 2026-09-09
+
+### Changed
+- Description condensed to fit the repo's 250-character limit.
+
+## [0.5.0] - 2026-08-26
+
+### Added
+
+- SKILL.md: Rust 1.96-1.98 sugar and tooling - `assert_matches!`/`debug_assert_matches!` (1.96), plus let-chains (stable in edition 2024 since 1.88) and async closures (1.85), which the "Recent sugar" section skipped even though the skill defaults to edition 2024.
+- New reference references/project-shape.md, and a pointer to it from SKILL.md's Project Structure section: the multi-crate cliff the skill never covered. Workspaces and `workspace.dependencies` (features can be added by a member, never subtracted), `[workspace.lints]` plus the trap that `[lints] workspace = true` is not implicitly inherited - a member that omits it is silently unlinted, which is why Cargo ships `missing_lints_inheritance`; feature flags including `dep:` (1.60) and the `foo?/bar` conditional form, and why features must be additive; `build.rs` with the `cargo:` -> `cargo::` directive change (1.77) and the two costs of adding one (build-time tool requirements that break `cargo install` for users, and opacity to compiler caches); what `rust-version` now controls, given edition 2024's `resolver = "3"` flips `incompatible-rust-versions` to `fallback`, so a stale MSRV silently holds the whole dependency tree back; and `#[non_exhaustive]` as the right default for a published error enum, with the `E0639` struct-literal error it produces downstream.
+- references/dev-environment.md: supply-chain hygiene, previously absent entirely - `cargo audit` against the RustSec database as the first step, `cargo deny` with the warning that `cargo deny init` writes a template that fails immediately (an empty license allow-list rejects everything), and `cargo machete` with its documented static-`use`-scan false positives.
+- references/dev-environment.md: `cargo build --timings` as the free diagnostic to run *before* installing a build cache, plus `cargo fix --edition` and `cargo clippy --fix`.
+- references/crate-shortlist.md: `tracing_subscriber::fmt()` writes to **stdout** by default (`SubscriberBuilder`'s writer parameter is `W = fn() -> Stdout`, with no TTY detection), which silently corrupts any binary whose stdout carries data - JSON-RPC, MCP, a CLI piping records. `.with_writer(std::io::stderr)` is the documented fix, and the skill's own example inherited the default. Also the `json` feature and `tracing-appender` for production logging.
+- references/crate-shortlist.md: a table for when the anyhow/thiserror split is not enough - `eyre` (customizable reports), `miette` (source-span diagnostics), `snafu` (per-`?` context selectors), `error-stack` (attachable context stack).
+- references/releasing.md: crates.io Trusted Publishing - OIDC via `rust-lang/crates-io-auth-action@v1` with 30-minute tokens, removing the stored `CARGO_REGISTRY_TOKEN` secret, with the two constraints (first publish still needs an API token; there is no `cargo publish --trusted-publishing` flag).
+- references/releasing.md: `dist` hard-refuses a Linux-host -> macOS cross-build via a typed `UnsupportedCrossCompile` error ("cross-compiling to macOS is a road paved with sadness - we cowardly refuse to walk it"), which is the concrete decision criterion between Route A and Route B.
+- references/releasing.md: `clap_complete`'s `generate_to` named as the compile-time API the existing "ship pre-generated completions" advice requires, plus `clap_mangen`.
+- references/async-basics.md: `#[tokio::test(start_paused = true)]` cannot control `std::time::Instant`, so production code must use `tokio::time::Instant` to be testable at all (behavior is identical outside a paused runtime); advance with `advance()`, not `sleep()`. Plus `tokio-console` for diagnosing a task that is not being polled, and a note that `async-std` is discontinued.
+- references/testing.md: `cargo clippy --all-targets` lints `tests/` and `benches/`, so `print_stdout`/`unwrap_used`-style lints need a crate-level allow header there.
+
+### Changed
+
+- SKILL.md Minimal Cargo.toml: `unsafe_code` is now `"deny"` rather than `"forbid"`. `forbid` cannot be lifted by a local `#[allow]` with a SAFETY justification, and that bites on ordinary `mmap`, not only on FFI - the previous "downgrade to deny if you do FFI" comment understated when it matters.
+- references/dev-environment.md: rewrote the kache quirks table against 0.16.0 (pin was 0.9.0, seven minors back). Four claims had gone stale: `cache_executables` now defaults to **`true` on Linux and macOS** (only Windows keeps `false`), so the "turn it on" advice is removed; eviction has been **cost-aware** since 0.12.0, indexing each entry's `compile_time_ms` rather than ranking by size, which retires the "LRU throws away your expensive artifacts first" failure mode (the 50GiB cap stands, now with its 10% hysteresis band); the cache key hashes the `rustc --version --verbose` banner plus the linker's `--version`, with no LLVM-version component as previously claimed; and the path-leak detector is `KACHE_LOG=warn`, not `KACHE_LOG=kache=warn`. The undocumented S3 virtual-hosted/`NoSuchKey` row is replaced with the documented endpoint requirement (kache always addresses path-style).
+- references/dev-environment.md: "kache disables incremental compilation - do not turn it back on" no longer holds unconditionally; `adaptive_incremental` defaults to `true` and hands a repeatedly-missing crate an isolated incremental directory for a bounded run. Adds `cache.incremental_crates`, workspace-level `[[workspace.extra_inputs]]`, `kache sync`'s non-zero exit on partial failure (0.15.0) with `--allow-partial`, the proc-macro env-var keying fix (0.13.0), the schema v27 one-time cold miss, and the `KACHE_PRESERVE_INCREMENTAL` caveat on `KACHE_DISABLED=1`.
+- references/releasing.md: `breaking_always_increment_major` was presented as a release-plz config key alongside `features_always_increment_minor`. It is not one - it exists only as a Rust API on the version updater, so readers were being sent to look for a `release-plz.toml` key that does not exist.
+- references/releasing.md: "a pull request opened by `GITHUB_TOKEN` does not trigger workflows" restated - GitHub now creates those runs in an approval-required state rather than not at all. The practical failure and the PAT recommendation are unchanged.
+- references/dev-environment.md: sccache's "leaves incremental compilation on (which is what keeps your own workspace crates rebuilding fast)" was misleading - sccache does not change the setting, but "Incrementally compiled crates cannot be cached" either way, which is why the skill's own CI line sets `CARGO_INCREMENTAL=0`. Its linker-crate exclusion is now quoted directly.
+- references/dev-environment.md + releasing.md: `actions/checkout@v6` -> `@v7`.
+- SKILL.md + references/dev-environment.md: `cargo install --locked bacon` at both occurrences, matching bacon's own documented install command.
+- references/dev-environment.md: the macOS linker note now cites mold's own "mold does not support macOS" and reflects wild's move to `wild-linker/wild` (published as the `wild-linker` crate), whose Mach-O support is still listed as unsupported.
+- references/performance.md: Rust 1.97 made **v0 symbol mangling the default**, which can defeat older profilers and debuggers and changes backtrace text formatting - so garbled frames after a toolchain bump are usually a stale tool, not a broken build. `cargo-flamegraph` on Linux now needs `--no-rosegment` because rust-lld is the default linker since 1.90.
+- references/performance.md: `dhat` is no longer described as "native-speed" - its docs warn the slowdown "can be large" - and its maintenance caveat is noted.
+- references/async-basics.md: `block_in_place` "works only on the multi-threaded runtime" was too strong; calling it outside a runtime is allowed and simply runs the closure. The `current_thread` panic is the actual constraint.
+- references/error-handling.md: clippy's `unwrap_used` does not flag literally every `.unwrap()` - `allow-unwrap-in-consts` defaults to `true`.
+- references/crate-shortlist.md: the jiff migration list claimed more than upstream shows - the arrow-rs and jj-vcs changes are still open PRs, while kube-rs and k8s-openapi have landed. Adds the `jiff-chrono-conversions` bridge, `jiff-sqlx` tracking sqlx 0.9, jiff's 0.2 support commitment (critical fixes for a year after 1.0), and the note that chrono's deprecation lives in an issue thread rather than its README.
+- SKILL.md: the unbounded-read anti-pattern now attributes its quote to `BufRead::read_line`, where std actually carries the warning, and explains that `.lines()` inherits it by delegation.
+
+### Deprecated
+
+- references/crate-shortlist.md: `serde_yaml` and `bincode` were listed as plain "other formats" with no caveat. `serde_yaml` is archived at `0.9.34+deprecated` with no official successor; `bincode` 3.0.0 is a tombstone release whose entire `src/lib.rs` is `compile_error!("https://xkcd.com/2347/")`, so `bincode = "3"` fails to compile rather than failing at runtime - 2.0.1 is the last usable version.
+
+### Security
+
+- references/dev-environment.md: notes that Rust 1.96.0 shipped Cargo fixes for CVE-2026-5222 and CVE-2026-5223, and 1.96.1 patched CVE-2025-15661, CVE-2026-55199 and CVE-2026-55200 in vendored libssh2 - a concrete argument that a `rust-toolchain.toml` pin is for reproducibility, not for freezing.
+
+Verified against: rust@1.98.0, reqwest@0.13.4, jiff@0.2.35, kache@0.16.0
+
+## [0.4.3] - 2026-08-21
+
+### Changed
+
+- Declared ClawHub browse categories (`development`) and topics in `metadata`, so the release pipeline publishes them instead of leaving the skill in the `other` category.
+
+### Removed
+
+- `skill-card.md`. The ClawHub CLI strips a root `skill-card.md` from every publish and the registry generates its own card, so the authored file never reached ClawHub.
+
+## [0.4.2] - 2026-08-07
+
+### Changed
+
+- Trimmed the frontmatter description to what-plus-when; dropped the trailing trigger-keyword enumeration (semantic matching makes it redundant).
+
+### Fixed
+
+- `metadata.upstream` pinned the floating series `release-plz@0.5`; now tracks the concrete GitHub Action release `release-plz-action@0.5.131` (the artifact references/releasing.md actually uses).
+
+Verified against: release-plz-action@0.5.131
+
+## [0.4.1] - 2026-07-22
+
+### Added
+
+- skill-card.md release record following NVIDIA's skill-card format
+- metadata.openclaw block (emoji, homepage) for ClawHub display
+
+## [0.4.0] - 2026-07-14
+
+### Added
+- New reference references/releasing.md: shipping a Rust binary. Two routes, presented as alternatives rather than one blessed path - `dist` (formerly cargo-dist; community-maintained again after axo wound down, and the batteries-included default) versus a hand-rolled `release-plz` + `cargo-zigbuild` pipeline given as one worked reference implementation. Covers the design decisions that are not obvious from the YAML: build binaries before publishing (crates.io publishes are irreversible), detect a pending release via the git tag because release-plz's dry-run always reports `releases_created=false`, per-job concurrency so a cancel cannot kill a release mid-publish into an unrecoverable state, a PAT rather than `GITHUB_TOKEN` so the release PR actually triggers CI, the `[profile.dist]`/`[profile.release]` split, cross-compiling every target from one Linux runner with `cargo-zigbuild` plus the cross-target feature-unification trap, fanning out to cargo-binstall (with the crate-name-vs-binary-name URL template gotcha), Homebrew, and Nix from a single build, shipping pre-generated shell completions, and guarding `exclude` against dropping a file the code embeds via `include_str!` (an invisible `cargo install` break). Notes why no monorepo task runner appears.
+- references/dev-environment.md: kache (https://github.com/kunobi-ninja/kache) is now the recommended build cache on both macOS and Linux - install and `kache init` setup, the `[cache.remote]` S3 block, and a quirks table covering the traps that actually cost time: the 50GiB default store cap (LRU-evicts the expensive artifacts first and mimics broken cross-path reuse), count vs cost-weighted hit rate, `cache_executables = false` by default, `kache sync --push` filtering to workspace members only, the service daemon not inheriting shell env (use an AWS profile for S3 credentials), the base-vs-virtual-hosted endpoint, upgrades orphaning the launchd/systemd service, keys encoding toolchain identity rather than machine identity (prefix per toolchain, not per machine), `key_salt` for toolchain changes the key cannot see, `extra_inputs` for macro-read files such as sqlx's `.sqlx/` and `migrations/` (a stale-hit hazard), and the container/NFS cache-directory rule. Plus a diagnosis recipe (`kache stats`, `kache list --sort size`, `kache why-miss`, the `KACHE_LOG=kache=warn` path-leak detector) and a note that upgrades never need a cache wipe.
+- references/dev-environment.md CI section: `kunobi-ninja/kache-action@v1` as the upgrade path once `Swatinem/rust-cache` is outgrown, with the caveat that cross-machine hits require an exactly matching toolchain.
+
+- SKILL.md anti-patterns: reading untrusted input with `.lines()`/`read_line`, which allocate without bound (std's docs warn an attacker can send bytes forever without a newline); bound with `Read::take(n)` and drain with `BufRead::skip_until` (stable 1.83).
+- references/async-basics.md: the `!Send` compile error on a `std::sync::MutexGuard` held across `.await` is a different problem from the *design* question of holding a `tokio::sync::Mutex` across `.await` - which is sometimes correct, single-flight being the clearest case (N concurrent cold-start callers coalesce into one expensive load). New pitfall: `impl Stream` in a signature does not make the body stream.
+- references/performance.md: `into_iter()` rather than `.iter()` when transforming an owned collection, as a peak-memory lever. New section on why high RSS is usually allocator retention rather than a leak, and why swapping the global allocator to `jemalloc`/`mimalloc` is a measure-first move rather than a free win - the real lever is the transient peak.
+- references/testing.md: `cargo test` uses the `test` profile (inherits `dev`, so `debug-assertions` is on), which means a `debug_assert!` inside a *dependency* can fail the suite on input that is fine in release. `#![recursion_limit]` is a crate-root attribute and each `tests/*.rs` is its own crate root, so an E0275 trait-solving overflow in an integration binary needs it there, not in `src/lib.rs`. Env-var test pollution: isolating the test that *sets* a variable is not enough - every test that *reads* it must be isolated too.
+- references/dev-environment.md: any `RUSTC_WRAPPER` puts the build cache in the failure path, so a broken wrapper surfaces as a baffling compile error - bypass it (`KACHE_DISABLED=1`, or `RUSTC_WRAPPER=`) before trusting the failure. Caveat against `--all-features` in lint/test jobs, which force-enables optional features needing toolchains the runner lacks (CUDA/`nvcc`, GPU SDKs).
+- references/releasing.md: one cargo invocation is one feature-resolution graph (so per-target artifacts with different feature sets are impossible by design, not a missing flag), and the cross-target feature leak can originate in a transitive dependency you have no flag to control. `cargo tree -e features` inspects resolved features - `Cargo.lock` does not record them at all. release-plz downgrades `feat:` to a patch bump on 0.x (and `feat!:` to `0.(x+1).0`, not 1.0.0). Squash-merging a release-worthy PR under a `ci:`/`chore:` title erases the `feat:`/`fix:` commit and produces no release. `cargo publish` aborts on a dirty tree (untracked build output counts) - gitignore the output rather than reaching for `--allow-dirty`.
+
+### Changed
+- references/dev-environment.md: the "Build speed" section is reorganized around one caching recommendation instead of two platform stories. sccache is retained as the conservative alternative (and as a `KACHE_FALLBACK` chain target) rather than the macOS headline; linker guidance is now a platform note independent of the cache choice. Notes that kache disables incremental compilation while it wraps rustc - the point where its advice diverges from sccache's.
+- SKILL.md: reference-list entry for dev-environment.md updated to mention kache and CI; releasing.md added to the list; releasing and distribution added to the description's triggers.
+
+Verified against: kache@0.9.0, dist@0.32.0, release-plz@0.5
+
+## [0.3.1] - 2026-07-10
+
+### Changed
+- CHANGELOG preamble pinned to Keep a Changelog 2.0.0 (format unchanged; KaC 2.0.0 keeps existing changelogs valid).
 
 ## [0.3.0] - 2026-05-21
 

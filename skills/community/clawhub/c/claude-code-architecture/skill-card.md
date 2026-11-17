@@ -1,46 +1,63 @@
-## Description: <br>
-Claude Code Architecture provides AI agent architecture patterns for tool systems, safety gates, context compression, and task orchestration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language AI agent architecture patterns for designing or refactoring tool systems, safety gates, context compression, and task orchestration.
 
-## Publisher: <br>
-[wudi488](https://clawhub.ai/user/wudi488) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wudi488](https://clawhub.ai/user/wudi488)
 
-## Use Case: <br>
-Developers and engineers use this skill to design or refactor AI agent harness architecture, including permission gates, lazy tool loading, context compression, and read/write task scheduling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated architecture templates could be written into a real project without sufficient review. <br>
-Mitigation: Confirm the destination path, review the diff, and test changes in a branch or sandbox before deployment. <br>
-Risk: Reference implementations may need adaptation for a project's actual permissions, tools, and context limits. <br>
-Mitigation: Treat the bundled implementations as design references and adjust them to the target system before use. <br>
-Risk: Incorrect permission or scheduling configuration could allow actions that should require approval. <br>
-Mitigation: Use fail-closed defaults, require explicit approval for write actions, and audit generated permission changes. <br>
+## Use Case:
 
+Developers and agent framework engineers use this skill as a reference template pack when designing permission gates, lazy tool loading, context compression, and read/write scheduling for agent harnesses.
 
-## Reference(s): <br>
-- [Permission Gate Full Implementation](references/permission_gate_full.py) <br>
-- [Tool Lazy Loading Full Implementation](references/tool_lazy_loading_full.py) <br>
-- [Context Compressor Full Implementation](references/context_compressor_full.py) <br>
-- [Read/Write Scheduler Full Implementation](references/rw_scheduler_full.py) <br>
-- [Agent Framework Architecture Comparison](references/framework_comparison.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with Python code templates and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated templates should be reviewed and adapted before use in a project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: frontmatter and server release evidence) <br>
+Risk: Safety-critical templates may lead to unsafe authorization behavior if copied directly into a production agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adapt generated permission-gate code, including authorization state and approval binding, before use.
+
+Risk: Context compression templates may remove or weaken important safety messages if implemented without safeguards.
+
+Mitigation: Preserve all system and developer safety messages when adapting context-compression logic.
+
+Risk: Template code may not match a target project's security, concurrency, or deployment requirements.
+
+Mitigation: Test adapted code in a branch or sandbox and avoid overwriting existing files without explicit user confirmation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wudi488/skills/claude-code-architecture)
+- [SKILL.md](SKILL.md)
+- [Permission gate implementation](references/permission_gate_full.py)
+- [Tool lazy loading implementation](references/tool_lazy_loading_full.py)
+- [Context compressor implementation](references/context_compressor_full.py)
+- [Read/write scheduler implementation](references/rw_scheduler_full.py)
+- [Framework comparison](references/framework_comparison.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline code examples and reference implementations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language architecture guidance; generated code should be reviewed and adapted before use.]
+
+## Skill Version(s):
+
+2.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

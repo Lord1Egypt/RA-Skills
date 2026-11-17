@@ -1,42 +1,58 @@
-## Description: <br>
-Coordinates one existing ALab project with a project admin key, including experiment creation, configuration validation, project evidence review, and token-isolated worker handoff. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through project-level ALab administration, including experiment coordination, project configuration, evidence review, and credential-separated worker handoff.
 
-## Publisher: <br>
-[bebetterest](https://clawhub.ai/user/bebetterest) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bebetterest](https://clawhub.ai/user/bebetterest)
 
-## Use Case: <br>
-Developers and project operators use this skill to coordinate ALab project-level workflows, create and compare experiments, manage scoped configuration and lifecycle state, and delegate experiment work without exposing project admin credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide powerful project-level ALab actions, including lifecycle changes and worker delegation. <br>
-Mitigation: Install only for ALab project-level workflows, review destructive lifecycle actions before force or confirm removal, and use dry-run behavior where available. <br>
-Risk: Project admin keys or unrelated tokens could be exposed to experiment worker sessions if credentials are passed through prompts, argv, copied files, or inherited environments. <br>
-Mitigation: Provide project admin keys only through private environment variables or secure stdin, and ensure delegated workers receive only experiment worktree tokens. <br>
+## Use Case:
 
+Developers and engineers use this skill to coordinate an existing ALab project with a project admin key while keeping project-level administration separate from experiment worker execution.
 
-## Reference(s): <br>
-- [ALab Project Controller Commands](references/commands.md) <br>
-- [ALab Project Controller Commands (Chinese)](references/commands_cn.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/bebetterest/alab-project-controller) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Project-level summaries should identify created or reused experiments, relevant runs or commits, withheld credentials, and safe follow-up artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.9 (source: server release evidence) <br>
+Risk: Project admin credentials could be exposed through command arguments, logs, prompts, reports, or worker sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide the project admin key only through a private environment variable or secure stdin, prefer --key-stdin, and withhold admin or root credentials from experiment workers.
+
+Risk: Project lifecycle and cleanup commands can remove or alter experiments, sources, worktrees, validations, annotations, secrets, or configuration.
+
+Mitigation: Review destructive operations before execution, run dry-run removal commands first, and require exact confirmation only after blockers and cleanup consequences are understood.
+
+Risk: Worker sessions may operate with excessive authority or in the wrong filesystem context.
+
+Mitigation: Launch workers in the specific experiment worktree, provide only the experiment worker instructions and non-secret helper variables, and clear unrelated admin, root, and ambient token variables.
+
+## Reference(s):
+
+- [commands.md](references/commands.md)
+- [commands_cn.md](references/commands_cn.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes project-level summaries, command patterns, credential-handling guidance, worker handoff instructions, and risk-aware lifecycle recommendations.]
+
+## Skill Version(s):
+
+0.1.9 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

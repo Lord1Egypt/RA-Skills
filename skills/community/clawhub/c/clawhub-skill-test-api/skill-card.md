@@ -1,41 +1,57 @@
-## Description: <br>
-Weaver E10 API helps agents call Weaver E10 workflow APIs to create requests, query todos, approve submissions, reject workflows, inspect workflow state, and manage OAuth2 token refresh. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Weaver E10 Api helps agents call Weaver E10 workflow APIs to create workflows, list pending tasks, approve or reject requests, query workflow details, and manage OAuth 2.0 tokens.
 
-## Publisher: <br>
-[xfnet](https://clawhub.ai/user/xfnet) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xfnet](https://clawhub.ai/user/xfnet)
 
-## Use Case: <br>
-Developers and operations teams use this skill to automate Weaver E10 workflow actions from an agent environment while relying on configured OAuth2 credentials and cached tokens. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, approve, and reject Weaver E10 business workflows using stored credentials without built-in confirmation controls. <br>
-Mitigation: Require explicit human confirmation before running create, approve, or reject commands, and restrict allowed users and workflows in Weaver where possible. <br>
-Risk: The skill depends on Weaver credentials and cached OAuth tokens stored outside the skill files. <br>
-Mitigation: Use least-privileged Weaver credentials, protect the env file and token cache, and avoid logging authentication output. <br>
+## Use Case:
 
+Developers and operations teams use this skill to automate Weaver E10 workflow actions from an agent, including workflow creation, pending-task lookup, approval, rejection, and workflow status queries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xfnet/clawhub-skill-test-api) <br>
-- [Publisher profile](https://clawhub.ai/user/xfnet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands can produce JSON responses from Weaver E10 API calls and may read configured credentials and cached tokens.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release metadata) <br>
+Risk: The skill handles OAuth secrets and token cache files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted Weaver E10 server over HTTPS, secure the .env file and token cache, and avoid shared hosts.
+
+Risk: Approve and reject commands can immediately change business workflows.
+
+Mitigation: Restrict the app permissions and review workflow-changing commands before execution.
+
+Risk: ClawHub security evidence marks the release as suspicious because safeguards are weak.
+
+Mitigation: Review before installing and deploy only where the connected Weaver E10 permissions are appropriately limited.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xfnet/skills/clawhub-skill-test-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, configuration snippets, and JSON request or response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may create, approve, or reject workflow requests in the connected Weaver E10 system.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata; artifact _meta.json reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

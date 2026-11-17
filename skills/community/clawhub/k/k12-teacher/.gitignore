@@ -1,0 +1,165 @@
+# .gitignore for k12-teacher
+# Purpose: Exclude build artifacts, OS metadata, and editor temp files from version control.
+# Generated based on README_FOR_AI.md Section 5.1 specification.
+
+# ============================================
+# OS Metadata Files
+# ============================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Linux
+*~
+.Spotlight-V100
+.Trashes
+
+# ============================================
+# Editor / IDE Files
+# ============================================
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# IntelliJ / JetBrains
+.idea/
+*.iml
+*.ipr
+*.iws
+*.jws
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Vim / Neovim
+*.swp
+*.swo
+*~
+*.sva
+*.viminfo
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Atom
+.atom/
+
+# Emacs
+*#
+.#*
+
+# ============================================
+# Build Artifacts
+# ============================================
+
+build/
+dist/
+out/
+
+# Python
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+*.egg
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+develop-eggs/
+installed.cfg
+*.so
+
+# Node.js (if any JS tooling is added later)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# ============================================
+# Environment & Configuration
+# ============================================
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Secrets and credentials
+*.key
+*.pem
+*.secrets
+credentials/
+secrets/
+
+# ============================================
+# Downloaded Content (Optional Directory)
+# ============================================
+
+# The downloads/ directory contains locally downloaded syllabus documents
+# These are external resources and should not be tracked in version control
+downloads/
+# Except keep the directory structure itself
+downloads/.gitkeep
+
+# ============================================
+# Log Files
+# ============================================
+
+*.log
+logs/
+*.log.*
+
+# ============================================
+# Temporary Files
+# ============================================
+
+tmp/
+temp/
+*.tmp
+*.bak
+
+# ============================================
+# CI/CD Artifacts (Optional .github/ directory)
+# ============================================
+
+# GitHub Actions cached dependencies
+.github/actions/*/node_modules/
+
+# ============================================
+# Syllabus Download Cache
+# ============================================
+
+# Cache files from knowledge-base-update.sh
+downloads/cache/
+downloads/tmp/
+
+# ============================================
+# Local Tooling and Reports
+# ============================================
+
+# Local agent workspace data (audit reports, memory, task state)
+.workbuddy/
+
+# ============================================
+# End of .gitignore
+# ============================================

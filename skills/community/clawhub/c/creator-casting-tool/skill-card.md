@@ -1,40 +1,57 @@
-## Description: <br>
-Find the right creators for any brand campaign, activation, or ambassador program by taking a campaign brief, searching Instagram, TikTok, YouTube, and Substack, and returning a castable shortlist with stats, content examples, rate estimates, and brand conflict checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds and shortlists creators for brand campaigns, activations, ambassador programs, and related casting needs using a campaign brief, public creator research, rate estimates, and brand conflict checks.
 
-## Publisher: <br>
-[alexa853](https://clawhub.ai/user/alexa853) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexa853](https://clawhub.ai/user/alexa853)
 
-## Use Case: <br>
-Brand marketing teams, agencies, casting directors, DTC brands, and creative teams use this skill to source and rank creators for campaigns, activations, ambassador programs, and content productions. It helps turn a brief into a shortlist with fit scores, estimated rates, content examples, and conflict checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Creator fit, rate, engagement, and brand-safety conclusions may be incomplete or based on estimated public data. <br>
-Mitigation: Manually verify shortlisted creators, recent content, conflicts, rate assumptions, and audience fit before using the report with clients. <br>
-Risk: The workflow may use web search and an optional Instagram CLI, so discovery quality depends on available public data and installed tools. <br>
-Mitigation: Provide only the campaign details needed, note when the Instagram CLI is unavailable, and label reduced-confidence engagement or rate data clearly. <br>
+## Use Case:
 
+External brand marketing teams, PR agencies, casting directors, DTC brands, and creative agencies use this skill to source and compare creators for campaigns, events, activations, ambassador programs, and content productions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alexa853/creator-casting-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown casting report with shortlist entries, scoring, budget summary, conflict checks, and methodology notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Rate estimates and engagement metrics are approximate and should be manually verified before client use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Creator rates, audience signals, engagement metrics, and sponsorship histories can be incomplete or outdated when gathered from public web and social content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Manually verify rate estimates, recent partnerships, audience fit, and engagement quality before relying on the shortlist for business decisions.
+
+Risk: Brand conflict and brand-safety classifications may miss recent posts, private sponsorships, or context that is not visible in public search results.
+
+Mitigation: Review each recommended creator's current profiles and recent sponsored content, and confirm competitor conflicts with the campaign team before outreach.
+
+Risk: The workflow uses web searches and public creator content, which may surface personal or sensitive public-facing information.
+
+Mitigation: Use the skill only for a real campaign brief and limit downstream use to campaign-relevant, publicly available professional signals.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alexa853/skills/creator-casting-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown creator casting report with shortlist entries, campaign fit scores, rate estimates, content examples, conflict checks, budget summary, and methodology notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Rate estimates, conflict checks, and brand-safety judgments are based on public research and should be manually verified before business use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

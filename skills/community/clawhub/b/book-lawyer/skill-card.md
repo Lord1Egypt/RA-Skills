@@ -1,40 +1,49 @@
-## Description: <br>
-Book lawyer services through Lokuli MCP for users who need to find and book legal services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book lawyer services through Lokuli MCP for users who need to find and book a lawyer.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users and agents use this skill to search for lawyers, check availability, and create bookings through Lokuli's MCP server. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Creating a booking shares customer contact details and booking context with Lokuli or the selected provider. <br>
-Mitigation: Confirm the user is comfortable sharing their name, email, phone number, and booking context before creating a booking. <br>
-Risk: A booking may be created for the wrong lawyer, service, time, fee terms, or cancellation terms. <br>
-Mitigation: Confirm the provider, service, time, fees, and cancellation terms when available before submitting the booking. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
-- [ClawHub skill page](https://clawhub.ai/edwardrodriguez703-design/book-lawyer) <br>
+## Use Case:
 
+External users use this skill to search for lawyer services, check appointment availability, and create bookings through Lokuli's MCP server.
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, API calls] <br>
-**Output Format:** [Markdown or plain text summaries plus JSON-RPC MCP tool calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May request customer name, email, phone number, provider, service, time slot, and booking context when creating a booking.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send sensitive legal-service booking details and contact information to an external service without clear consent guidance.
+
+Mitigation: Review before installing, use only when intentionally searching or booking through Lokuli, and confirm before sending name, email, phone number, legal matter details, location, or appointment information.
+
+## Reference(s):
+
+- [Book Lawyer ClawHub release](https://clawhub.ai/edwardrodriguez703-design/skills/book-lawyer)
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API Calls, configuration]
+
+**Output Format:** [Markdown with JSON-RPC examples and endpoint configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May involve external MCP calls carrying legal-service booking details and contact information.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

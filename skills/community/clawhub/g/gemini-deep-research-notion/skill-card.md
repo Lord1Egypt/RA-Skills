@@ -1,42 +1,59 @@
-## Description: <br>
-Triggers Gemini Deep Research through a browser session, waits for completion, extracts the report, and creates a formatted Notion page. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Triggers Gemini Deep Research through an OpenClaw browser session, extracts the completed report, and exports it as a formatted Notion page.
 
-## Publisher: <br>
-[PalmPalm7](https://clawhub.ai/user/PalmPalm7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[palmpalm7](https://clawhub.ai/user/palmpalm7)
 
-## Use Case: <br>
-External users and developers use this skill to run a Gemini Deep Research workflow from an OpenClaw browser session and archive the resulting report in Notion. It is intended for users who have a logged-in Gemini account and a configured Notion integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a logged-in Gemini browser session and use a local Notion API key to create pages. <br>
-Mitigation: Review before installing, confirm the browser and Notion access are acceptable, and use a least-privilege Notion integration token shared only with the intended page. <br>
-Risk: Research topics and full reports may be stored in Gemini, Notion, and an intermediate /tmp Markdown file. <br>
-Mitigation: Avoid sensitive research topics unless that storage is acceptable, or edit the workflow to change storage behavior before use. <br>
-Risk: The artifact includes a hard-coded Notion parent page ID and prepends a Chinese-language instruction to research queries. <br>
-Mitigation: Replace the Notion parent page ID with the user's own destination and edit the language instruction if Chinese output is not desired. <br>
+## Use Case:
 
+OpenClaw users use this skill to run a Gemini Deep Research workflow from a logged-in browser session and publish the resulting research report to a configured Notion page.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PalmPalm7/gemini-deep-research-notion) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report text, Notion page content, shell/API commands, and a final text summary with the Notion page URL] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a Chinese-language research report unless the skill prompt is edited; may write an intermediate Markdown file under /tmp before exporting to Notion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill uses the user's logged-in Gemini browser profile and local Notion token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in an environment where that browser profile and token are intended for agent use.
+
+Risk: The skill exports full reports to a hard-coded Notion destination without a built-in confirmation step.
+
+Mitigation: Replace and verify the Notion parent page ID, restrict the Notion integration to the intended page, and add review before export for sensitive topics.
+
+Risk: The skill temporarily saves full research reports under /tmp.
+
+Mitigation: Avoid sensitive research topics unless temporary files are reviewed, protected, or removed after use.
+
+## Reference(s):
+
+- [Gemini app](https://gemini.google.com/app)
+- [Notion pages API](https://api.notion.com/v1/pages)
+- [ClawHub skill page](https://clawhub.ai/palmpalm7/skills/gemini-deep-research-notion)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, API calls, guidance]
+
+**Output Format:** [Markdown report text, Notion blocks, status updates, and a Notion page URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a logged-in Gemini browser profile, a local Notion API key, and a configured Notion parent page.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

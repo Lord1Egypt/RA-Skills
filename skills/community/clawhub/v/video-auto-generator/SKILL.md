@@ -20,6 +20,38 @@ description: 【2026增强版】基于AI自动生成视频内容。支持文本�
 - **可灵AI 3.0 Omni集成**：全模态原生引擎，角色特征提取+跨视频一致性
 - **全自动流水线**：新增 `full_pipeline.py`，一键生成脚本→配音→分镜图→合成视频（92秒1080×1920竖屏）
 
+### 📝 FFmpeg参数说明（新增）
+
+**常用视频参数**：
+- `-c:v libx264`：视频编码器（H.264）
+- `-crf 23`：视频质量（18-28，越小质量越高）
+- `-preset medium`：编码速度（ultrafast→superfast→fast→medium→slow）
+- `-b:v 2M`：视频码率
+- `-r 30`：帧率
+- `-s 1920x1080`：分辨率
+- `-aspect 16:9`：宽高比
+
+**常用音频参数**：
+- `-c:a aac`：音频编码器
+- `-b:a 128k`：音频码率
+- `-ar 44100`：采样率
+- `-ac 2`：声道数（1=单声道，2=立体声）
+
+**实用示例**：
+```bash
+# 1. 压缩视频（保持比例）
+ffmpeg -i input.mp4 -c:v libx264 -crf 28 -c:a aac -b:a 128k output.mp4
+
+# 2. 转换分辨率（1080p→720p）
+ffmpeg -i input.mp4 -vf scale=1280:720 -c:v libx264 -crf 23 output_720p.mp4
+
+# 3. 添加字幕
+ffmpeg -i input.mp4 -vf "subtitles=subtitle.srt" -c:v libx264 -c:a copy output_sub.mp4
+
+# 4. 合并视频（无重新编码）
+ffmpeg -f concat -i filelist.txt -c copy merged.mp4
+```
+
 ### 🚀 快速开始（推荐）
 
 ```bash
@@ -525,3 +557,19 @@ def generate_ab_test_variants(video_script):
 5. 集成剪映「AI文字成片」一键成剧功能
 6. 实现即梦AI网页版自动化操作（利用免费积分）
 7. 自动化字幕+特效流水线
+
+---
+## 💰 付费增值服务
+
+想要更省事？我还提供：
+
+| 服务 | 价格 | 内容 |
+|------|------|------|
+| 🚗 代安装调试 | ¥68/次 | 帮你安装配置，解决环境问题 |
+| 🛠️ 定制技能开发 | ¥200起 | 根据需求开发专属技能 |
+| 🚀 视频自动化陪跑 | ¥999/月 | 从0到1搭建完整视频自动化 |
+| 📦 技能全家桶 | ¥199 | 11个AI技能永久用 + 代安装 |
+
+**微信咨询**：[微信号待填写]
+
+---

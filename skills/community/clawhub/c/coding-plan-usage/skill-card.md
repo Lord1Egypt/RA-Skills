@@ -1,43 +1,58 @@
-## Description: <br>
-Queries the remaining hours of Alibaba Cloud Coding Plan using a command-line tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries the remaining hours of Alibaba Cloud Coding Plan using a command-line tool.
 
-## Publisher: <br>
-[jeeaay](https://clawhub.ai/user/jeeaay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jeeaay](https://clawhub.ai/user/jeeaay)
 
-## Use Case: <br>
-Developers and operators with Alibaba Cloud access use this skill to run a local helper that opens Alibaba Cloud, prompts login when needed, and reports Coding Plan usage percentages and reset times. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill opens Alibaba Cloud through agent-browser and may create or reuse a logged-in browser session. <br>
-Mitigation: Run it only from a trusted directory, review AGENT_BROWSER_PATH and AGENT_BROWSER_SESSION_NAME values first, and close or delete the browser session when finished. <br>
-Risk: The login flow can save a QR-code login screenshot as aliyu-login.png. <br>
-Mitigation: Treat the screenshot as sensitive and delete it after login is complete. <br>
-Risk: The helper depends on the external agent-browser command. <br>
-Mitigation: Verify the installed agent-browser package and executable path before running the skill. <br>
+## Use Case:
 
+Developers and Alibaba Cloud users use this skill to check Coding Plan quota usage and reset times from an authenticated browser session.
 
-## Reference(s): <br>
-- [Coding Plan Usage on ClawHub](https://clawhub.ai/jeeaay/coding-plan-usage) <br>
-- [agent-browser dependency](https://github.com/vercel-labs/agent-browser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown guidance and terminal output; successful runs emit usage JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save aliyu-login.png during login and reuse an agent-browser session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Authenticated browser automation can interact with an Alibaba Cloud login session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privileged Alibaba Cloud account and run the skill only after reviewing the skill and its browser automation dependency.
+
+Risk: A saved login screenshot may contain QR-code authentication material.
+
+Mitigation: Delete the login screenshot after scanning the QR code and avoid sharing it.
+
+Risk: The skill depends on a globally installed third-party browser automation tool.
+
+Mitigation: Prefer a pinned, locally reviewed agent-browser version and review any .env settings before use.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/jeeaay/skills/coding-plan-usage)
+- [agent-browser dependency](https://github.com/vercel-labs/agent-browser)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text status messages and JSON quota summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce a local login QR screenshot when authentication is needed.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

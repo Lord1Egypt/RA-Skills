@@ -1,44 +1,57 @@
-## Description: <br>
-Decide whether to run `memory_search` before following another skill or workflow so the agent can reduce token usage without forcing retrieval on every task. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Decides whether an agent should run `memory_search` before another skill or workflow, including when to retrieve, how to query, how much context to keep, and when to fall back.
 
-## Publisher: <br>
-[otweihan](https://clawhub.ai/user/otweihan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[otweihan](https://clawhub.ai/user/otweihan)
 
-## Use Case: <br>
-Developers and agent operators use this skill to decide when local memory retrieval is warranted before another skill or workflow, build a compact `memory_search` query, limit retrieved context, and fall back when retrieval is weak or unnecessary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local memory may contain information that should not be reused in future tasks. <br>
-Mitigation: Enable the skill only with memory sources whose contents are appropriate for relevant future reuse. <br>
-Risk: Weak, stale, or noisy retrieval results can mislead the downstream workflow. <br>
-Mitigation: Inspect only a few high-signal results, keep relevant facts, and fall back immediately when retrieval quality is low. <br>
+## Use Case:
 
+Developers and agents use this skill to decide when local memory retrieval is useful before continuing project work, following another skill, or relying on prior decisions. It helps build compact memory queries, keep only high-signal results, and fall back when retrieval is weak or unnecessary.
 
-## Reference(s): <br>
-- [Decision Flow](references/decision-flow.md) <br>
-- [Fallback Rules](references/fallback-rules.md) <br>
-- [Query Construction](references/query-construction.md) <br>
-- [Result Trimming](references/result-trimming.md) <br>
-- [Skill Tiering](references/skill-tiering.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text] <br>
-**Output Format:** [Markdown guidance and decision criteria] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bounded retrieval decision, compact query guidance, result trimming guidance, and fallback recommendation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The agent may consult local memory when a task appears to depend on prior project context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill's decision flow to retrieve only when the task depends on project history, prior decisions, local notes, or user-specific preferences.
+
+Risk: Noisy, stale, or low-relevance memory results could add unnecessary context or influence later reasoning.
+
+Mitigation: Start with the top 1-3 results, expand only clearly relevant hits, and fall back immediately when retrieval is weak, unavailable, or unnecessary.
+
+## Reference(s):
+
+- [Decision Flow](references/decision-flow.md)
+- [Fallback Rules](references/fallback-rules.md)
+- [Query Construction](references/query-construction.md)
+- [Result Trimming](references/result-trimming.md)
+- [Skill Tiering](references/skill-tiering.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, markdown]
+
+**Output Format:** [Markdown guidance with concise decision criteria and query recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces retrieval decisions, compact memory-search query guidance, result-limit guidance, and fallback guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

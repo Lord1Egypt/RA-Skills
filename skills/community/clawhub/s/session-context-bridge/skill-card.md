@@ -1,42 +1,49 @@
-## Description: <br>
-Session Context Bridge helps agents save, restore, and switch project session context through structured markdown notes for tasks, decisions, file state, blockers, and environment details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents save, restore, and switch structured project session context using local markdown files.
 
-## Publisher: <br>
-[aptratcn](https://clawhub.ai/user/aptratcn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aptratcn](https://clawhub.ai/user/aptratcn)
 
-## Use Case: <br>
-Developers and agent users use this skill to maintain project-local markdown notes for active tasks, decisions, file maps, blockers, and environment state so a later session can resume accurately. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Session notes can accidentally persist passwords, tokens, private keys, raw .env contents, connection strings, internal URLs, or sensitive credential setup details. <br>
-Mitigation: Keep secrets out of .context/ files and review saved or restored notes before acting on them. <br>
-Risk: Project-local .context/ files may be committed or shared unintentionally. <br>
-Mitigation: Add .context/ to .gitignore unless the team intentionally wants the notes versioned. <br>
+## Use Case:
 
+Developers and agent users use this skill to maintain project continuity by saving active tasks, decisions, file maps, blockers, and environment notes, then restoring that context at the start of a later session.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aptratcn/session-context-bridge) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with reusable file templates and inline shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces project-local .context/ markdown notes; no runtime automation is included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Local context notes may contain sensitive project state if users save secrets, credentials, customer data, or raw connection details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the .context directory out of source control when it may contain sensitive state, review entries before saving or restoring, and never store secrets, tokens, passwords, connection strings, customer data, or credential files in the markdown notes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aptratcn/skills/session-context-bridge)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with file templates and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces reviewable session notes and context file structure guidance without requiring external services.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

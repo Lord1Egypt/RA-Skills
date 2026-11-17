@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "travel-buddy",
+  "owner": {
+    "name": "Leo-Lyu",
+    "url": "https://github.com/dong845"
+  },
+  "metadata": {
+    "description": "travel-buddy skill — destination discovery, fact-checked booking-ready itinerary generation for Claude Code and Codex",
+    "version": "2.9.0"
+  },
+  "plugins": [
+    {
+      "name": "travel-buddy",
+      "source": "./",
+      "description": "Decide where to go before building the itinerary: hard-filter destinations before scoring them, verify every fare, timetable and entry rule against a live source through a five-domain parallel check, and ship a self-contained booking-ready HTML plan gated on its own internal consistency, on every outbound button naming the provider it actually opens, on every map link carrying coordinates that land where the label says, on every venue and property carrying the rating that says somebody actually opened its page, on a score having evidence under it, on a stated walking cap being answered rather than passed by silence, on every scheduled ticket saying when it goes on sale and the plan not putting the traveller in transit at that hour, and on the plan saying how the traveller's requirements were collected. The saved page carries the stamp of the gates it passed, so a hand-written one is tellable apart. Discovery ships through a door of its own rather than a paragraph, a source is only called unreachable after this machine has actually asked it, and every key in a plan is checked against the contract in one pass before the gates run. A trip that sleeps in more than one place is planned as a sequence: one stay group per stop, one entry answer per jurisdiction it enters, one compared ticket per intercity journey, and a map provider chosen per day rather than per page, so a Shenzhen leg and a Hong Kong leg each get the provider that works there. The page shows where you sleep and when that changes. Both intake forms speak English and Chinese, and the plan starts in the language the traveller chose. A verified plan edited afterwards is rechecked part by part — a changed party or constraint rechecks everything bought for it — instead of keeping a verification that never saw the edit. Flight cards can start from Kiwi.com's public flight search, priced per person and protected unless the traveller accepted a self-transfer in their own words. What the traveller chose or booked is recorded beside the options — never a booking reference or a payment detail — and the calendar carries only those decisions, written in UTC from the plan's own time zones so it shows the right hour in Google Calendar and Outlook, not only Apple's. Runs entirely on your machine and says so plainly: it executes this repo's own Python scripts, opens a loopback-only HTTP form on 127.0.0.1 to collect your trip details, reads and writes files under the Travel Buddy workspace you choose, and makes outbound requests to Wikimedia for freely-licensed photographs, to the providers it links so it can report where a button actually lands, and — only when asked to fill flight cards — to Kiwi.com's public flight search. It starts no background planner unless you ask for one by name (--assistant codex or --assistant claude); the default never spawns anything. It never books, pays, logs in, or stores passport numbers, credentials or payment details. Runs under any assistant, not only the two it can name.",
+      "version": "2.9.0",
+      "author": {
+        "name": "Leo-Lyu",
+        "url": "https://github.com/dong845"
+      },
+      "homepage": "https://github.com/dong845/travel-buddy",
+      "repository": "https://github.com/dong845/travel-buddy",
+      "license": "MIT",
+      "category": "productivity",
+      "keywords": [
+        "agent-skill",
+        "booking-ready-html",
+        "destination-discovery",
+        "fact-checking",
+        "itinerary",
+        "local-first",
+        "python",
+        "quality-gates",
+        "travel",
+        "travel-planner",
+        "trip-planning",
+        "verification"
+      ]
+    }
+  ]
+}

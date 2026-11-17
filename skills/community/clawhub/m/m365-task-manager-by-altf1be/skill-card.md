@@ -1,44 +1,59 @@
-## Description: <br>
-Manage lightweight Microsoft 365 task workflows by using Microsoft Graph to create, list, update, and delete Microsoft To Do tasks with structured naming, due dates, and status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs Microsoft Graph CRUD operations for Microsoft To Do tasks and provides operating guidance for lightweight Microsoft 365 task workflows.
 
-## Publisher: <br>
-[Abdelkrim](https://clawhub.ai/user/Abdelkrim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abdelkrim](https://clawhub.ai/user/abdelkrim)
 
-## Use Case: <br>
-Employees and operations teams use this skill to capture, track, update, and close Microsoft To Do tasks from an agent workflow. It is suited to operational follow-up where tasks need clear names, due dates, and status values. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, update, and delete real Microsoft To Do tasks through delegated Microsoft Graph access. <br>
-Mitigation: Grant Tasks.ReadWrite only when that behavior is intended, and verify list names and task IDs before update or delete commands. <br>
-Risk: The optional local token cache may hold reusable authentication material after device-code sign-in. <br>
-Mitigation: Store the cache in a user-private directory, avoid shared or CI workstations, and set M365_TOKEN_CACHE_PATH when a controlled location is needed. <br>
+## Use Case:
 
+Developers and operators use this skill to authenticate with Microsoft Graph, inspect Microsoft To Do lists, and create, read, update, or delete To Do tasks from an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Abdelkrim/m365-task-manager-by-altf1be) <br>
-- [Publisher profile](https://clawhub.ai/user/Abdelkrim) <br>
-- [M365 Task Manager Playbook](references/playbook.md) <br>
-- [Skill homepage](https://github.com/ALT-F1-OpenClaw/openclaw-skill-m365-task-manager) <br>
-- [Microsoft Graph API endpoint](https://graph.microsoft.com/v1.0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands; CLI commands return JSON responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires M365_TENANT_ID and M365_CLIENT_ID; M365_TOKEN_CACHE_PATH is optional.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release evidence) <br>
+Risk: The skill can read, create, update, and delete Microsoft To Do tasks through delegated Microsoft Graph access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for tenants and accounts where this delegated access is acceptable, and revoke the app grant if the skill is no longer needed.
+
+Risk: Reusable Microsoft authentication tokens are cached locally without evidence of enforced safe file permissions.
+
+Mitigation: Store the token cache in a protected user-only location, use M365_TOKEN_CACHE_PATH when needed, and remove or revoke cached access on shared or compromised machines.
+
+Risk: Server security evidence says the release overstates Planner, owner assignment, reminder, and assignment capabilities.
+
+Mitigation: Rely on the observed Microsoft To Do CRUD behavior only, and verify any Planner, assignment, owner, or reminder workflow before using it operationally.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abdelkrim/skills/m365-task-manager-by-altf1be)
+- [M365 Task Manager Playbook](references/playbook.md)
+- [ClawHub publisher profile](https://clawhub.ai/user/abdelkrim)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires M365_TENANT_ID and M365_CLIENT_ID; M365_TOKEN_CACHE_PATH is optional.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

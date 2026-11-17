@@ -1,48 +1,64 @@
-## Description: <br>
-Automatically collects AI news, formats it as WeChat-ready HTML, and creates drafts in a WeChat official account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates collection and formatting of AI news into HTML drafts for a WeChat Official Account.
 
-## Publisher: <br>
-[403914291](https://clawhub.ai/user/403914291) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[403914291](https://clawhub.ai/user/403914291)
 
-## Use Case: <br>
-Developers and WeChat official-account operators use this skill to automate daily AI-news draft creation, with configurable WeChat credentials, schedule, template, and draft-publishing settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: WeChat official-account AppSecrets and access tokens can grant draft-creation access. <br>
-Mitigation: Use environment variables or a protected secret store, avoid screenshots or command history that expose secrets, and rotate credentials if they are copied into local files or logs. <br>
-Risk: Scheduled publishing can create drafts against the wrong or a sensitive official account. <br>
-Mitigation: Test first on a non-critical account, confirm the AppID and IP whitelist, and review generated drafts before enabling unattended scheduling. <br>
-Risk: Artifact documentation includes sample AppSecrets and unsafe secret-handling examples. <br>
-Mitigation: Treat the examples as placeholders only, replace them with non-secret dummy values in operational docs, and never hardcode real AppSecrets in scripts or shared configuration. <br>
+## Use Case:
 
+Developers and account operators use this skill to prepare scheduled AI-news posts, generate WeChat-compatible HTML, and create drafts in a WeChat Official Account for review before publication.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/403914291/wechat-publisher-403914291) <br>
-- [Publisher Profile](https://clawhub.ai/user/403914291) <br>
-- [User Guide](artifact/docs/user-guide.md) <br>
-- [Install Guide](artifact/docs/install-guide.md) <br>
-- [Publish Rules](artifact/docs/publish-rules.md) <br>
-- [Block Layout](artifact/docs/block-layout.md) <br>
-- [Troubleshooting](artifact/docs/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration, and WeChat-ready HTML draft content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates WeChat drafts through the WeChat official-account API and writes local status and result files when the publishing script runs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: server release metadata) <br>
+Risk: Unsafe install and credential-handling guidance may expose the WeChat AppSecret or encourage risky setup steps.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, avoid the sudo curl pipeline, keep AppSecret values out of command lines and documentation, and store credentials with owner-only permissions or a secret manager.
+
+Risk: The publishing workflow writes access tokens and usage data to local files.
+
+Mitigation: Use a test WeChat account first and restrict local token, status, and configuration files to the account owner.
+
+Risk: Drafts include hardcoded author and footer branding from the third-party publisher.
+
+Mitigation: Replace or remove the hardcoded author and footer branding before using the skill with a production WeChat account.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/403914291/skills/wechat-publisher-403914291)
+- [Publisher profile](https://clawhub.ai/user/403914291)
+- [Skill overview](artifact/skill.md)
+- [Installation guide](artifact/docs/install-guide.md)
+- [User guide](artifact/docs/user-guide.md)
+- [Template guide](artifact/docs/templates.md)
+- [Block layout specification](artifact/docs/block-layout.md)
+- [Troubleshooting guide](artifact/docs/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON configuration, Python code, and HTML templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces WeChat draft content and status artifacts through the included publishing workflow.]
+
+## Skill Version(s):
+
+2.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

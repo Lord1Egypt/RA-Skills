@@ -1,44 +1,63 @@
-## Description: <br>
-Transcribes English classroom audio, lecture videos, meeting recordings, or page-linked media with SenseAudio ASR, then produces Chinese study notes with summaries, key concepts, timelines, review questions, and optional Notion or Obsidian export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+接收课堂录音、讲座音频或视频文件（视频会先抽取音轨），调用 SenseAudio HTTP ASR API 进行英文转录，可选直出中文翻译；随后整理为结构化 Markdown 学习笔记，包含摘要、关键概念、术语表、时间轴与复习问题，生成到桌面，并支持导出到 Notion 或保存到 Obsidian vault。
 
-## Publisher: <br>
-[KLilyZ](https://clawhub.ai/user/KLilyZ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[klilyz](https://clawhub.ai/user/klilyz)
 
-## Use Case: <br>
-Students, educators, and knowledge workers use this skill to turn English classes, lectures, group meetings, or learning media into structured Chinese Markdown notes for review. It is most useful when the user wants transcription plus summarized study material rather than a raw transcript only. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected recordings are uploaded to SenseAudio for transcription. <br>
-Mitigation: Use the skill only with recordings the user is allowed to process, avoid confidential or unauthorized content, and review SenseAudio handling requirements before use. <br>
-Risk: Optional OpenAI-compatible summarization, Notion export, and page-media download can send transcripts, notes, tokens, or media URLs to additional services. <br>
-Mitigation: Use scoped tokens, enable only the exports needed for the task, and set OPENAI_BASE_URL only to an endpoint the user fully trusts. <br>
-Risk: Generated transcripts, translations, and summaries may contain recognition or summarization errors. <br>
-Mitigation: Review the generated Markdown, bilingual text, and transcript JSON before relying on the notes for study, publication, or operational decisions. <br>
+## Use Case:
 
+Students, researchers, educators, and other external users can use this skill to turn English classroom recordings, lecture videos, meeting audio, or media linked from a web page into Chinese study notes. It is intended for transcription, optional bilingual translation, summarization, review materials, and optional export to Notion or an Obsidian vault.
 
-## Reference(s): <br>
-- [SenseAudio Speech Recognition HTTP API](https://senseaudio.cn/docs/speech_recognition/http_api) <br>
-- [Skill Setup Guide](references/setup.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/KLilyZ/classroom-note-senseaudio-translator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown notes, bilingual text, transcript JSON, and optional Notion or Obsidian exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SENSEAUDIO_API_KEY; OPENAI_API_KEY, OPENAI_BASE_URL, NOTION_TOKEN, ffmpeg, Notion export, and Obsidian export are optional depending on the selected workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence) <br>
+Risk: Recordings and generated notes may be uploaded to configured transcription, summarization, or export services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with content approved for those services, review service terms, and keep API tokens scoped and private.
+
+Risk: Page URL input can trigger broad network fetching before transcription.
+
+Mitigation: Prefer trusted local audio or video files; avoid untrusted page URLs unless the source is known and expected.
+
+Risk: The skill writes transcript, summary, bilingual text, and optional Obsidian files to user-specified locations.
+
+Mitigation: Use a limited output directory or test Obsidian vault first, and skip Obsidian export when vault writes are not desired.
+
+Risk: Custom OpenAI-compatible summarization endpoints can send generated notes to a non-default service.
+
+Mitigation: Use only OpenAI-compatible base URLs that you control or trust, or keep the local summary provider.
+
+## Reference(s):
+
+- [SenseAudio HTTP ASR API documentation](https://senseaudio.cn/docs/speech_recognition/http_api)
+- [ClawHub skill page](https://clawhub.ai/klilyz/skills/classroom-note-senseaudio-translator)
+- [Setup and usage reference](references/setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; generated files include JSON transcript, Markdown summary, and bilingual text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May optionally create a Notion page or write Markdown into an Obsidian vault when configured.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

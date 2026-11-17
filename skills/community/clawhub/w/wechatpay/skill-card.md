@@ -1,41 +1,52 @@
-## Description: <br>
-Guides users and developers through WeChat Pay payment methods, integration options, security measures, troubleshooting, and ecosystem features. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users and developers through WeChat Pay payment methods, integration options, security measures, ecosystem features, and common troubleshooting scenarios.
 
-## Publisher: <br>
-[DuanC-Chao](https://clawhub.ai/user/DuanC-Chao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[duanc-chao](https://clawhub.ai/user/duanc-chao)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to understand WeChat Pay payment flows, merchant integration options, account safety practices, and troubleshooting steps. It is useful for answering user-facing payment questions and for giving implementation-oriented guidance for WeChat Pay API scenarios.
+
+### Deployment Geography for Use:
+
+Global, with China-market-specific payment-limit and regional-support caveats
+
+## Known Risks and Mitigations:
+
+Risk: Payment limits, password-free payment behavior, refunds, merchant integration requirements, and cross-border support can vary by region and account context.
+
+Mitigation: Confirm the user's region and check current WeChat Pay documentation or in-app settings before relying on the guidance for real payment decisions or merchant integrations.
+
+Risk: Users may expose sensitive payment credentials or act on untrusted QR codes when following payment instructions.
+
+Mitigation: Warn users not to share payment codes and to avoid scanning unknown QR codes from untrusted sources.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to understand WeChat Pay payment flows, troubleshoot common payment issues, and plan merchant integrations across Native Pay, JSAPI Pay, App Pay, and Mini Program Pay. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Configuration instructions, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Payment flows and merchant integrations can be account-, region-, and API-version-specific. <br>
-Mitigation: Verify implementation details against current WeChat Pay merchant documentation and test with non-production credentials before deployment. <br>
-Risk: Incorrect handling of payment codes or untrusted QR codes can expose users to fraud. <br>
-Mitigation: Warn users not to share payment codes and to scan only trusted QR codes, matching the artifact's security guidance. <br>
+**Output Format:** [Markdown prose with inline code identifiers and implementation guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DuanC-Chao/wechatpay) <br>
-- [Publisher profile](https://clawhub.ai/user/DuanC-Chao) <br>
+**Other Properties Related to Output:** [Outputs should prompt users to confirm region-specific limits, merchant requirements, refunds, cross-border support, and current WeChat Pay documentation or in-app settings before making real payment or integration decisions.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration guidance] <br>
-**Output Format:** [Markdown with explanatory text, procedural steps, and optional code or API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include user-facing payment guidance, developer integration notes, troubleshooting steps, and safety reminders.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

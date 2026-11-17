@@ -1,5 +1,7 @@
 # Archetype Composer / 原型组合器
 
+> Language scope: Simplified Chinese reference material by design. Adapt conversational reports to the user's chosen language; the optional bundled HTML layout targets Chinese readers.
+
 用途：当 `life-archetype-library.md` 没有强匹配时，使用本文件从人生迁移语法、张力轴和事件冲击生成“临时人生原型”。目标是避免每遇到新题就新增固定案例。
 
 ## 使用时机

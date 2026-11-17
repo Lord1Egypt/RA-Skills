@@ -1,37 +1,59 @@
-## Description: <br>
-Optimize shopping-cart top-up plans for Taobao, JD, PDD, Tmall, and local ecommerce promotions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimize shopping-cart top-up plans for Taobao, JD, PDD, Tmall, and local ecommerce promotions.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Shoppers and agents assisting shoppers use this skill to estimate cart top-up amounts, compare promotion tiers and coupon stacking, and choose add-on items to reduce final checkout cost. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Estimated discounts may not match checkout truth if coupon stacking, return limits, shipping fees, final payment, or platform rules differ from the user's input. <br>
-Mitigation: Verify coupon stacking, return restrictions, final payment, and platform rules directly on the shopping site before buying. <br>
+## Use Case:
 
+External shoppers and shopping assistants use this skill to compare cart top-up options, coupon thresholds, add-on item choices, and stacking caveats before checkout.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with calculations, recommendations, and checkout caveats] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided cart totals, promotion rules, coupon constraints, add-on item prices, shipping fees, and return restrictions when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence) <br>
+Risk: Coupon stacking, refundability, shipping, and category restrictions can differ from the skill's estimates at checkout.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask users to verify final platform checkout terms before acting on the recommendation.
+
+Risk: Users may overbuy filler items that are not useful just to trigger a discount.
+
+Mitigation: Prefer useful or refundable household items and avoid recommending useless purchases unless the user explicitly optimizes only for lowest immediate price.
+
+Risk: The skill could be asked for account-specific shopping help that would require credentials or session access.
+
+Mitigation: Keep guidance calculation-only and do not request account credentials or platform session access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/cart-optimizer)
+- [Publisher profile](https://clawhub.ai/user/harrylabsj)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with shopping-cart calculations, recommendations, and checkout caveats]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not require account credentials or platform session access.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

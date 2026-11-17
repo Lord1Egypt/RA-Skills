@@ -1,0 +1,80 @@
+{
+  "skill": "riREDACTED-SECRET",
+  "version": "0.1.0",
+  "source_book": "《价值互联网产业应用蓝皮书（2025 年）》 价值互联网产业应用蓝皮书编写组",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "朋友推了个 RWA 项目，说上链了很安全、收益稳定，我想先判断它会不会爆、是不是坑。",
+      "expected_behavior": "应激活 riREDACTED-SECRET，做产业/产品/合规三层体检并对照三大反例。",
+      "notes": "正面场景：投资前识别结构性风险与'伪 RWA'话术。"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "有个项目白皮书说底层是应收账款，回款要 3 年但随时能 T+0 赎回转让，这正常吗？",
+      "expected_behavior": "应激活 riREDACTED-SECRET，重点判定 ce06 慢资产快金融错配（红灯）。",
+      "notes": "正面场景：慢回款却承诺高流动性，典型体检信号。"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "我想尽调一下这个资产上链项目的 SPV 破产隔离和预言机责任边界到不到位。",
+      "expected_behavior": "应激活 riREDACTED-SECRET，做合规层体检（SPV 隔离）与产品层体检（预言机责任链条）。",
+      "notes": "正面场景：尽调自偿性/SPV/预言机责任，description 明确信号。"
+    },
+    {
+      "id": "should-trigger-04",
+      "type": "should_trigger",
+      "prompt": "我在做一个 RWA 项目科普视频，想先判断它是不是伪 RWA，别误导观众。",
+      "expected_behavior": "应激活 riREDACTED-SECRET，用三层体检与反例库判断项目属性。",
+      "notes": "正面场景：内容创作者测评前风险判断。"
+    },
+    {
+      "id": "should-trigger-05",
+      "type": "should_trigger",
+      "prompt": "我们项目方自己想做个体检，怕炫技上链、脱离实体、过度金融化。",
+      "expected_behavior": "应激活 riREDACTED-SECRET，按 E 步骤输出结构与反例命中清单。",
+      "notes": "正面场景：立项前反向体检，S7 核心用途。"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "什么是 RWA？通证化到底是什么意思，能给我讲讲概念吗？",
+      "expected_behavior": "不应激活本 skill，应转 S1 通证/代币化概念辨析器（纯名词解释非体检）。",
+      "notes": "诱饵：纯概念澄清属 S1，S7 不做名词解释。"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "境内能不能发稳定币、做代币化融资？会不会踩红线？",
+      "expected_behavior": "不应激活本 skill，应转 S2 合规边界红线检查（纯合规生死判读非体检）。",
+      "notes": "诱饵：纯合规生死判读属 S2 闸门。"
+    },
+    {
+      "id": "should-not-trigger-03",
+      "type": "should_not_trigger",
+      "prompt": "我们决定做 RWA 了，想问具体分步上链发行怎么操作、流程怎么走？",
+      "expected_behavior": "不应激活本 skill，应转 S8 RWA 落地流程与路径设计器（纯落地路径非体检）。",
+      "notes": "诱饵：纯落地路径设计属 S8，S7 是前置风险闸门。"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "某美股上市公司发了代币化股票，算不算 RWA、能不能投？",
+      "expected_behavior": "可触发 S7 做结构体检（自偿性/责任链条），但跨境法域合规须提示转 S10/S2；因含'能不能投'需先判其美欧传统金融延伸范式。",
+      "notes": "边界：既做体检又涉跨境法域，S7 主做结构、合规桥接转 S10。"
+    },
+    {
+      "id": "edge-02",
+      "type": "edge_case",
+      "prompt": "我看中一个项目，底层是光伏电站收益权、回款稳定，但宣传说'已获批、稳赚不赔'，要不要跟？",
+      "expected_behavior": "应触发 S7：产业层偏正面，但'已获批/稳赚'话术触发 ce03/ce12 投机炒作警示，须做三层体检而非轻信。",
+      "notes": "边界：正面资产信号叠加高危话术，正应触发体检而非放行。"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "至少 3 条 should_trigger + 2 条 should_not_trigger + 1 条 edge_case。全部 should_not_trigger 必须通过（诱饵容错为 0）。"
+}

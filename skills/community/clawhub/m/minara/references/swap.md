@@ -21,6 +21,7 @@
 **Options:**
 - `-s, --side <buy|sell>` — buy = spend USDC, sell = sell token for USDC
 - `-t, --token <address|ticker>` — token contract address, ticker symbol, or `$TICKER`
+- `-c, --chain <chain>` — explicit blockchain selection (ethereum, base, solana, etc.)
 - `-a, --amount <amount>` — USD amount (buy) or token amount (sell); `all` to sell entire balance
 - `-y, --yes` — skip confirmation (⚠️ never use unless user explicitly requests)
 - `--dry-run` — simulate without executing

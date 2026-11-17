@@ -1,0 +1,129 @@
+{
+  "name": "site-layout-plan",
+  "displayName": "施工平面布置图",
+  "version": "0.7.3",
+  "author": "lis",
+  "license": "CC-BY-NC-SA-4.0",
+  "entry": "SKILL.md",
+  "platforms": [
+    "macos",
+    "windows",
+    "linux"
+  ],
+  "requires": {
+    "python": ">=3.10"
+  },
+  "scripts": [
+    "scripts/crane_check.py",
+    "scripts/draw_layout.py",
+    "scripts/prepare_site.py",
+    "scripts/build_site_plan.py",
+    "scripts/generate_site_layout.py",
+    "scripts/dxf_view_export.py",
+    "scripts/render_facility_showcase.py"
+  ],
+  "modules": [
+    "site_layout/__init__.py",
+    "site_layout/annotate.py",
+    "site_layout/bootstrap.py",
+    "site_layout/model.py",
+    "site_layout/crane_check.py",
+    "site_layout/draw.py",
+    "site_layout/prepare.py",
+    "site_layout/taxonomy.py",
+    "site_layout/siteplan.py",
+    "site_layout/stage_draw.py",
+    "site_layout/dimensions.py",
+    "site_layout/road_geometry.py",
+    "site_layout/review_panel.py",
+    "site_layout/context.py",
+    "site_layout/symbols.py",
+    "site_layout/generator.py",
+    "site_layout/pipeline.py"
+  ],
+  "schemas": [
+    "schemas/base-map.schema.json",
+    "schemas/crane_fleet.schema.json",
+    "schemas/site_handoff.schema.json",
+    "schemas/site-context.schema.json",
+    "schemas/site-layout-requirements.schema.json"
+  ],
+  "tests": [
+    "tests/test_context.py",
+    "tests/test_crane_check.py",
+    "tests/test_draw.py",
+    "tests/test_dxf_view_export.py",
+    "tests/test_facility_showcase.py",
+    "tests/test_generator.py",
+    "tests/test_living_zones.py",
+    "tests/test_prepare.py",
+    "tests/test_reader_gate.py",
+    "tests/test_review_panel.py",
+    "tests/test_road_geometry.py",
+    "tests/test_siteplan.py",
+    "tests/test_stage_draw.py",
+    "tests/test_symbols.py",
+    "tests/test_v063_geometry.py",
+    "tests/test_v067_exit_facilities.py",
+    "tests/test_v06_facilities.py"
+  ],
+  "fixtures": [
+    "tests/fixtures/baseline.json",
+    "tests/fixtures/baseline_unlocked.json",
+    "tests/fixtures/baseline_version_mismatch.json",
+    "tests/fixtures/fleet_p4.json",
+    "tests/fixtures/fleet_p3.json",
+    "tests/fixtures/fleet_p6.json",
+    "tests/fixtures/fleet_d.json",
+    "tests/fixtures/fleet_zone.json",
+    "tests/fixtures/handoff_p4.json",
+    "tests/fixtures/handoff_p3.json",
+    "tests/fixtures/handoff_p6.json",
+    "tests/fixtures/handoff_d.json",
+    "tests/fixtures/handoff_zone.json",
+    "tests/fixtures/handoff_cm.json",
+    "tests/fixtures/handoff_missing_weight.json",
+    "tests/fixtures/site_sample.layout.json",
+    "tests/fixtures/reader_site_mm.json",
+    "tests/fixtures/reader_site_m.json",
+    "tests/fixtures/reader_site_cm.json",
+    "tests/fixtures/reader_site_no_unit.json",
+    "tests/fixtures/reader_site_conflict.json",
+    "tests/fixtures/base_map_demo.json",
+    "tests/fixtures/facilities_demo.json",
+    "tests/fixtures/reader_crane.json",
+    "tests/fixtures/context_demo.json",
+    "tests/fixtures/requirements_demo.json"
+  ],
+  "contract_schema": "site-layout-base-map/v1 + site-context/v1 + site-layout-requirements/v1 -> crane-layout(cad-contract/v1) + cad-site-facility/v1 -> site-stage-layout/v1 -> site-plan-manifest/v1",
+  "description": "施工平面布置：总工视角多方案比选+消防道路校核；不替代审批。",
+  "notes": "final_check=false；单位优先级为顶层→scale_unit_audit[]→逐条几何→人工 --unit，reader 顶层无 coord_unit 时自动回退 scale_unit_audit[].units，无单位必须 --unit + --confirmed-by，冲突 exit 4；塔吊 units.basis 非 explicit 拒绝出图；三阶段 earthwork/structure/finish 分别过滤、分别校核；37 类设施含钢筋/木工/砂浆加工区、变压器、消防泵房、消防水池、排水沟、员工宿舍/工人生活区及生活区配套，processing_zone 仅旧数据兼容，塔吊默认只进 structure、钢筋加工区只进 structure、木工/砂浆加工区进 structure+finish、垃圾池全阶段保留，任一阶段 fail 即硬伤，人工项取并集，分数取最不利阶段；A/B/C 为自动候选，source=auto-layout、confidence=candidate，不是最优解，必须逐项确认；26 条规则 + 道路 R1~R4 + 周边硬/软约束给 pass/fail/manual/review，缺证据不补 0；永久道路不判尽头但可作接顺点，共线消防车道不重复计长；六视角审查只重排结论、不替代审批；同源优先比 source_sha256，源图哈希缺失时退回比 cad-contract 契约号，两者都缺标 unverified 并告警、不冒充同源；塔吊以外设施需人工确认，不能把 reader candidate 当已确认。 0.6.4：generate_site_layout.py 每套方案同时输出可复用的 generated-cranes.json（m 制、units.basis=explicit、center_status=insert_point），修复 A/B/C 生成结果进入 build_site_plan.py 时主体规则 13 误报“缺：塔吊”的链路断裂；新增生成→正式构建端到端回归。真实凹/凸/斜置红线按多边形内缩并校验落界/自交，仅失败时回退外接矩形并告警；建筑外轮廓从真实图层提取多栋闭合环并取最大主体，无主体默认拒绝 A/B/C，--allow-assumed-building 仅出草案；底图只保留红线外 50m 并按 Liang-Barsky 裁剪；主图坐标表取关键转角、CSV 保留全量；变压器按 10m 矩形边净距避让人员区/可燃堆场；出图窗口、消火栓数量和设施图元显示尺寸均有回归测试。 0.6.4 同时修复同源闸门：真实 detail.site.json 链路里 source_sha256 可能为 null（source_not_found），旧逻辑会把空集合当成 same_source=true；现在按契约号 cadc1-… 核实并写入 same_source_basis。 0.6.6：PNG 图例符号放大（塔吊36px/电梯32px/常规26px，两列间距26px），图例标题按 textbbox 动态排布，塔吊/施工电梯图元在图上仍按最小可辨认尺寸绘制并注明“放大示意”；token/合同不变，重跑真实总图三阶段出图验证。 0.6.6 修复看图软件空白：保存 DXF 前按模型空间包围盒写回 $EXTMIN/$EXTMAX/$LIMMIN/$LIMMAX（ezdxf 默认 1e+20 哨兵值，CAD快速看图等按 HEADER 判空导致黑屏），并加回归测试。 0.6.6 补丁（看图黑屏）：定位到 CAD快速看图 macOS 不执行 zoom-extents，只按 VPORT *Active 中心/高度定位，工程坐标 5e8/4e9 级时一打开就是黑屏；finalize_doc_extents 现在同时写 VPORT/$VIEWCTR/$VIEWSIZE，新增 scripts/dxf_view_export.py 输出 R12 看图版（VPORT 对准范围、坐标平移并用 $USERR1/2 记录偏移、LWPOLYLINE→POLYLINE、MTEXT→TEXT、DIMENSION→几何块），新增 tests/test_dxf_view_export.py；真实总图 12 张主 DXF 与 12 张 -r12 看图版均 audit 0 error/0 fix，并在 CAD快速看图实机打开目视确认。 0.6.7：新增地磅（weighbridge）设施与 SLP_WEIGHBRIDGE 图块（平台/引坡/传感器/称重房/行车箭头）；九牌一图改为 9 块×1.2 m 长条区域直线排布（总长 11.0 m，图内 8 条分隔线）；洗车台改为跨出入口接入道路布置（layout=drive-through、on_access_road=true），地磅沿大门主环道布置（layout=on_main_road）；新增规则 22“出入口洗车/称重组织”（洗车台距门≤30 m/距路≤8 m，地磅距门≤60 m/距路≤10 m，均为经验值），规则 14 不再把贴路设施误报为冲突；设施总数 32 类、规则总数 22 条（0.7.0 起为 37 类、26 条）；多门时默认第 1 个大门为主重车出入口并在属性中留痕。 0.7.0：员工宿舍区（staff_dormitory）与工人生活区（worker_living_zone）分设，工人生活区内置食堂（canteen）、卫生间/淋浴（toilet_shower）、晾晒区（drying_area）三个子块；子块必须写 attrs.parent_id 且完全位于父包络内，规则 14 据此跳过父子包含误报。自动生成把三块尺寸按 100%/85%/70%/60%/50% 整体组合搜索，先保证最差一块保持率、再比总面积，默认净距 0.8 m，必要时降 0.6/0.5 m 并写 assumption；子块形心避开塔吊回转半径。场地夹逼降级写 size_degraded/size_note，不代表人数、床位数和消防疏散已确认。新增规则 23 生活区与作业面分离（无风玫瑰只能 manual）、24 生活区道路与消防疏散（道路穿越 fail）、25 生活区配套完整性、26 办公区靠近主出入口。规则总数 26 条；新增 tests/test_living_zones.py 回归。 0.7.0 标准块：7 类设施（塔吊/施工电梯/地磅/洗车台/办公区/员工宿舍区/工人生活区）采用纯 Python 同源图元，DXF BLOCK 与 PNG 大样共用 primitives；块名稳定为 SLP_CRANE/SLP_ELEV/SLP_WEIGHBRIDGE/SLP_WASH/SLP_OFFICE/SLP_STAFFDORM/SLP_LIVING，办公区/宿舍/生活区展示键不新增重复块；render_facility_showcase.py 支持 --only 与 --out-dir，新增 tests/test_facility_showcase.py 覆盖块名、图元语义、DXF 创建和 7 张 PNG。 0.7.2：draw_layout.py 移除输入 DXF 解析分支，只收 reader 契约或其派生 base-map（source_schema 必须回指 cad-site-geometry/v1），直读 DWG/DXF/PDF exit 2；新增直读 DXF 回归；规则 26 的 50 m 明确为经验提示，超距记 manual 不阻断出图；SKILL.md 压到 8 KB 内。 0.7.3：仅新增系列蓝图蓝标图标（icons/icon_large.png 512、icon_small.png 128）与 agents/openai.yaml 图标引用，功能、规则与契约与 0.7.2 一致。",
+  "privacy": "本机可读取、解析、编辑、测试真实图纸与项目数据，并可用于制作 skill、程序和插件，本机使用不受限制；助手不得擅自把公司内容交给云端模型、在线 OCR/转换、第三方服务、Git 远端或发布物，确需外发须先说明范围与字节并取得明确同意。发布物（发布包、GitHub Release、SkillHub/ClawHub、插件/程序/Skill 仓库、Git 远端）不得含公司图纸、施工资料、客户/项目敏感信息或真实公司资料；发布前必须扫描并脱敏公司名、项目名、人名、客户信息、图签图号、本地路径和元数据；发布与备份分离。确需使用公司样例时须逐项列明字节并取得用户明确同意，否则不得发布。用户自行网络备份不属于助手外发。",
+  "icons": [
+    "icons/icon_large.png",
+    "icons/icon_small.png"
+  ],
+  "templates": [
+    "templates/titleblock.json"
+  ],
+  "references": [
+    "references/prepare.md",
+    "references/capabilities.md",
+    "references/site-plan.md",
+    "references/crane-check.md",
+    "references/draw.md",
+    "references/road-review.md",
+    "references/generator.md",
+    "references/context-and-schemes.md",
+    "references/privacy-and-release.md"
+  ],
+  "requires_skills": [
+    "lis-skill-bus",
+    "cad-file-reader"
+  ],
+  "reader_contract": {
+    "schema": "cad-site-geometry/v1",
+    "contract_version": "cad-contract/v1",
+    "direct_cad_parse": false
+  }
+}

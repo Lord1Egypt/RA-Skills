@@ -1,46 +1,59 @@
-## Description: <br>
-Verify email addresses using the BillionVerify API. Use when user wants to verify single emails, batch verify email lists, upload files for bulk verification, check credit balance, or manage webhooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verify email addresses using the BillionVerify API for single checks, batch lists, bulk file verification, credit balance checks, and webhook management.
 
-## Publisher: <br>
-[billionverifier](https://clawhub.ai/user/billionverifier) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[billionverifier](https://clawhub.ai/user/billionverifier)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent verify individual email addresses, process bulk email lists, check BillionVerify credit usage, and manage webhook notifications through the BillionVerify API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send individual addresses, large email lists, and downloaded verification results to or from a third-party service. <br>
-Mitigation: Use it only for email data you are authorized to process with BillionVerify, strip unnecessary columns before upload, and avoid regulated or confidential lists unless third-party processing is approved. <br>
-Risk: Webhook setup can expose destination URLs and file-completion events to the wrong endpoint. <br>
-Mitigation: Review webhook URLs before creation, limit events to the needed scope, and store the returned webhook secret securely. <br>
-Risk: Authenticated API commands rely on a BillionVerify API key. <br>
-Mitigation: Provide the key through the BILLIONVERIFY_API_KEY environment variable and avoid embedding it in prompts, scripts, logs, or shared files. <br>
+## Use Case:
 
+External developers and teams use this skill to prepare BillionVerify API requests for email verification workflows, including individual addresses, email batches, uploaded files, credit checks, and webhook setup.
 
-## Reference(s): <br>
-- [BillionVerify API Documentation](https://billionverify.com/docs) <br>
-- [BillionVerify Website](https://billionverify.com/) <br>
-- [BillionVerify Node SDK](https://www.npmjs.com/package/billionverify-sdk) <br>
-- [BillionVerify MCP Server](https://www.npmjs.com/package/billionverify-mcp) <br>
-- [Billionverify Skill on ClawHub](https://clawhub.ai/billionverifier/billionverify-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with inline bash and curl commands; API result downloads may be CSV files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BILLIONVERIFY_API_KEY for authenticated BillionVerify endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: Bulk and file verification can send email addresses or spreadsheet contents to BillionVerify.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm authorization for the addresses, remove unrelated spreadsheet data, and avoid uploading data that is not needed for verification.
+
+Risk: Verification requests may consume paid BillionVerify credits.
+
+Mitigation: Check credit balance and review batch or file size before running large verification jobs.
+
+Risk: Webhook setup can expose callback URLs and creation-time secrets.
+
+Mitigation: Use HTTPS webhook URLs you control and store webhook secrets securely when they are returned.
+
+## Reference(s):
+
+- [BillionVerify API Documentation](https://billionverify.com/docs)
+- [BillionVerify Website](https://billionverify.com/)
+- [ClawHub Skill Page](https://clawhub.ai/billionverifier/skills/billionverify-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include curl commands, API endpoint details, environment-variable setup, request bodies, and result-handling guidance.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

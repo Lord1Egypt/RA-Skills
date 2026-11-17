@@ -1,0 +1,25 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_app_member_update",
+    "description": "Update an application member's role information.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "string",
+          "description": "The account ID of the application member to update (required)."
+        },
+        "roleIdList": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of application role IDs to assign to this member."
+        }
+      },
+      "required": ["accountId", "roleIdList"],
+      "additionalProperties": false
+    }
+  }
+}

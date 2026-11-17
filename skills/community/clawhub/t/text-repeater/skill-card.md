@@ -1,43 +1,59 @@
-## Description: <br>
-Repeat, format, and transform text by generating repeated text, numbered lists, Unicode decorative styles, invisible characters, cleanup results, and text counts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Repeat, format, and transform text by generating repeated text, numbered lists, Unicode decorative font conversions, invisible characters, text cleanup, and character, word, and line counts.
 
-## Publisher: <br>
-[fechin](https://clawhub.ai/user/fechin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fechin](https://clawhub.ai/user/fechin)
 
-## Use Case: <br>
-External users and agents use this skill to repeat text, create formatted or decorative Unicode text, generate invisible characters, clean line-based text, and count text statistics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Invisible or blank Unicode characters can confuse readers or be misused for impersonation, moderation evasion, or misleading blank names and messages. <br>
-Mitigation: Inspect copied output before pasting it elsewhere, and do not use invisible characters to impersonate people, evade moderation, or confuse readers. <br>
-Risk: Large repetition counts can create very long outputs that are hard to review in chat. <br>
-Mitigation: Warn before producing 500 or more repetitions and offer a downloadable text file for large outputs. <br>
+## Use Case:
 
+External users and developers use this skill to repeat text, create copyable formatted text, convert ASCII text into Unicode decorative styles, generate invisible Unicode characters, clean line-oriented text, and count text length metrics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fechin/text-repeater) <br>
-- [Unicode Font Character Maps](artifact/references/unicode-fonts.md) <br>
-- [Text Repeater online GUI](https://textrepeater.io) <br>
-- [Font Repeater visual picker](https://textrepeater.io/font-repeater) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with copyable code blocks and occasional tables.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce long text outputs or a downloadable text file for large repetition counts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Very large repeated outputs can be difficult to review or may overwhelm a chat response.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: For 500 or more repetitions, warn the user and offer a downloadable text file instead of direct chat output.
+
+Risk: Optional external website links may take users outside the agent environment.
+
+Mitigation: Treat external links as optional references and avoid sending user content to external websites unless the user chooses to use them.
+
+Risk: Invisible Unicode characters can be confusing when copied or displayed.
+
+Mitigation: Identify the intended blank character or code point and provide it in a clearly labeled copyable code block.
+
+## Reference(s):
+
+- [Unicode Font Character Maps](references/unicode-fonts.md)
+- [Text Repeater](https://textrepeater.io)
+- [Text Repeater Font Repeater](https://textrepeater.io/font-repeater)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Files, Guidance]
+
+**Output Format:** [Markdown with copyable text or code blocks and optional generated text files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Large repetition requests may produce very long outputs; the skill asks before direct chat output for 500 or more repetitions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

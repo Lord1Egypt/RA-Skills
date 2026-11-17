@@ -1,39 +1,49 @@
-## Description: <br>
-Detects structural holes, hidden dependencies, and missing links in directed networks using eigenvalue decomposition of a combined adjacency and similarity matrix. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect structural holes, hidden dependencies, and missing links in directed networks using eigenvalue decomposition of a combined adjacency and similarity matrix.
 
-## Publisher: <br>
-[evezart](https://clawhub.ai/user/evezart) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evezart](https://clawhub.ai/user/evezart)
 
-## Use Case: <br>
-Developers and analysts use this skill to apply spectral graph analysis to directed networks, identify structural gaps, and inspect candidate missing links or hidden dependencies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill references a local topology_engine.py implementation that is not included in the submitted artifact. <br>
-Mitigation: Inspect and trust the referenced local implementation before installing or using it. <br>
+## Use Case:
 
+Developers and analysts use this skill to analyze directed graphs for structural gaps, hidden dependencies, missing links, and connectivity patterns.
 
-## Reference(s): <br>
-- [Submitted skill artifact](artifact/SKILL.md) <br>
-- [ClawHub skill page](https://clawhub.ai/evezart/skills/spectral-topology) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown with Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe TopologyReport summaries, JSON export behavior, and StructuralGap fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The reviewed artifact documents use of a local Python module, but the implementation code was not included in the evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify that the referenced module exists and comes from a trusted source before relying on its graph-analysis outputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/evezart/skills/spectral-topology)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with Python code examples and human-readable analysis guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can describe TopologyReport summaries, JSON export, and structural-gap objects when the referenced analysis module is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

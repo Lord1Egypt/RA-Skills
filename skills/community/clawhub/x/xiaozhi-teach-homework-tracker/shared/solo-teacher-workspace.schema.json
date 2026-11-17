@@ -1,0 +1,336 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xiaozhi-skills.openclaw.dev/schemas/solo-teacher-workspace.schema.json",
+  "title": "SoloTeacherWorkspace",
+  "x-distributed-to": "xiaozhi-teach-homework-tracker",
+  "x-skill-scope": {
+    "note": "本副本随 xiaozhi-teach-homework-tracker 分发，已按其 SKILL.md 的“读：/写：”声明裁剪：读 homeworkFollowups、lessonLogs、studentCards；写 homeworkFollowups、progressEvidence、studentCards（同一键既读又写时，读/写各自的子字段列在 x-skill-scope.fields；各字段只留声明列出的子字段；删去 5 个顶层字段）。完整定义在归属技能处。",
+    "paths": [
+      "homeworkFollowups",
+      "lessonLogs",
+      "progressEvidence",
+      "studentCards"
+    ],
+    "reads": [
+      "homeworkFollowups",
+      "lessonLogs",
+      "studentCards"
+    ],
+    "writes": [
+      "homeworkFollowups",
+      "progressEvidence",
+      "studentCards"
+    ],
+    "fields": {
+      "homeworkFollowups": {
+        "reads": [
+          "task",
+          "dueDate",
+          "status",
+          "overdueDays",
+          "mainErrors"
+        ],
+        "writes": [
+          "task",
+          "dueDate",
+          "status",
+          "overdueDays",
+          "mainErrors",
+          "nextAction"
+        ]
+      },
+      "studentCards": {
+        "reads": [
+          "primaryWeaknesses",
+          "goals",
+          "gradeLevel",
+          "gradeBand",
+          "status"
+        ],
+        "writes": [
+          "primaryWeaknesses"
+        ]
+      },
+      "lessonLogs": {
+        "reads": [
+          "nextLessonFocus",
+          "date"
+        ]
+      },
+      "progressEvidence": {
+        "writes": [
+          "evidenceType",
+          "description",
+          "date",
+          "confidenceLevel"
+        ]
+      }
+    }
+  },
+  "description": "独立教师工作空间数据结构。用于低敏记录学员卡、课表、课后记录、作业跟进、家长沟通、课时包和阶段证据。",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "studentCards": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/studentCard"
+      }
+    },
+    "lessonLogs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/lessonLog"
+      }
+    },
+    "homeworkFollowups": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/homeworkFollowup"
+      }
+    },
+    "progressEvidence": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/progressEvidence"
+      }
+    }
+  },
+  "required": [],
+  "$defs": {
+    "studentCard": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "studentId": {
+          "type": "string"
+        },
+        "alias": {
+          "type": "string",
+          "description": "低敏代号，不记录真实全名"
+        },
+        "gradeLevel": {
+          "type": "string"
+        },
+        "goals": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 100
+          }
+        },
+        "primaryWeaknesses": {
+          "type": "array",
+          "maxItems": 5,
+          "items": {
+            "type": "string",
+            "maxLength": 60
+          },
+          "description": "仅在老师确认后写入；由作业跟进自动建议的弱项先进入 progressEvidence（shared/vocab.md §5）"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "在读",
+            "暂停记录",
+            "已结课",
+            "待删除"
+          ],
+          "default": "在读",
+          "description": "暂停记录：不再写入任何新记录；待删除：等待老师确认后整卡删除"
+        },
+        "gradeBand": {
+          "type": "string",
+          "enum": [
+            "小学低段",
+            "小学中段",
+            "小学高段",
+            "初中",
+            "高中",
+            "未知"
+          ],
+          "description": "学段（shared/vocab.md §10）"
+        }
+      },
+      "required": [
+        "studentId",
+        "alias"
+      ]
+    },
+    "lessonLog": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "logId": {
+          "type": "string"
+        },
+        "lessonId": {
+          "type": "string"
+        },
+        "studentId": {
+          "type": "string"
+        },
+        "masteryStatus": {
+          "type": "string",
+          "enum": [
+            "已掌握",
+            "基本理解",
+            "仍需巩固",
+            "需要重讲",
+            "证据不足"
+          ]
+        },
+        "nextLessonFocus": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "date": {
+          "type": "string",
+          "format": "date",
+          "description": "上课日期，用于仪表盘‘最近 N 条’规则"
+        }
+      },
+      "required": [
+        "logId",
+        "lessonId",
+        "studentId",
+        "date",
+        "masteryStatus"
+      ]
+    },
+    "homeworkFollowup": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "homeworkId": {
+          "type": "string"
+        },
+        "studentId": {
+          "type": "string"
+        },
+        "task": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "dueDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "已布置",
+            "已提交",
+            "部分提交",
+            "未交",
+            "已批改",
+            "已订正",
+            "已减免"
+          ]
+        },
+        "mainErrors": {
+          "type": "array",
+          "maxItems": 10,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "knowledgePoint": {
+                "type": "string",
+                "maxLength": 60
+              },
+              "dimension": {
+                "type": "string",
+                "enum": [
+                  "概念模糊",
+                  "计算失误",
+                  "读题失误",
+                  "方法用错"
+                ]
+              },
+              "teacherCategory": {
+                "type": "string",
+                "enum": [
+                  "知识漏洞",
+                  "规则错误",
+                  "计算错误",
+                  "审题错误",
+                  "策略错误",
+                  "表达/书写不规范",
+                  "习惯性失误"
+                ]
+              }
+            },
+            "required": [
+              "knowledgePoint",
+              "dimension"
+            ]
+          },
+          "description": "错因按 shared/vocab.md §1/§3 记录；teacherCategory 为老师端七类，写入时必须同时给出通用四维 dimension"
+        },
+        "nextAction": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "overdueDays": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "逾期天数：从 dueDate 算到做完那天，做完（status 为已提交、已批改、已订正）后不再增加；还没做完的（已布置、部分提交、未交）算到当前日期，读取方按当天算；已减免的记 0（仪表盘‘逾期’规则据此判断，status 中无 overdue 值）"
+        }
+      },
+      "required": [
+        "homeworkId",
+        "studentId",
+        "task",
+        "status"
+      ]
+    },
+    "progressEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "evidenceId": {
+          "type": "string"
+        },
+        "studentId": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "evidenceType": {
+          "type": "string",
+          "enum": [
+            "课堂表现",
+            "作业",
+            "测评",
+            "订正",
+            "口头表达",
+            "家长反馈"
+          ]
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 500,
+          "description": "进步证据的事实描述，受 500 字符硬约束。禁止写入真实姓名、联系方式、家庭/医疗/财务等高敏信息。"
+        },
+        "confidenceLevel": {
+          "type": "string",
+          "enum": [
+            "data_sufficient",
+            "preliminary_trend",
+            "insufficient_sample"
+          ]
+        }
+      },
+      "required": [
+        "evidenceId",
+        "studentId",
+        "date",
+        "evidenceType",
+        "description"
+      ]
+    }
+  }
+}

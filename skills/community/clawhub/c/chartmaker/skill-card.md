@@ -1,41 +1,54 @@
-## Description: <br>
-Chartmaker records, searches, summarizes, and exports chart-related data entries from a local command-line data store. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chartmaker records, searches, summarizes, and exports chart-related text entries from a local command-line data store.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers and data practitioners use this skill to log chart, visualization, transformation, schema, and validation notes locally, then search or export those accumulated entries for reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can retain free-form user text in local log files, which may include sensitive or proprietary information if entered. <br>
-Mitigation: Use it only for data that is acceptable to store under ~/.local/share/chartmaker, and avoid entering secrets, credentials, personal data, or proprietary business data. <br>
-Risk: The release summary and behavior differ: it is presented as chart visualization but primarily logs, searches, and exports text entries. <br>
-Mitigation: Review the installed behavior before operational use and treat the tool as a local text logging and export utility rather than a chart renderer. <br>
+## Use Case:
 
+Developers and data practitioners can use this skill to log chart-related notes, track transformations, search previous entries, and export accumulated local records. It should be treated as a local activity log rather than a chart rendering tool.
 
-## Reference(s): <br>
-- [Chartmaker on ClawHub](https://clawhub.ai/bytesagain1/chartmaker) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal-oriented text with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local log and export files under ~/.local/share/chartmaker when its shell script is installed and run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill is advertised as terminal chart visualization but primarily stores and searches user text locally, which may retain sensitive data unexpectedly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use it only when a local activity log is intended, and avoid passing secrets, personal data, credentials, proprietary datasets, or other sensitive content.
+
+Risk: Free-form command input is written to persistent files in the user's home directory.
+
+Mitigation: Periodically inspect or delete ~/.local/share/chartmaker and limit logged content to non-sensitive chart or workflow notes.
+
+## Reference(s):
+
+- [Chartmaker ClawHub Skill](https://clawhub.ai/bytesagain1/skills/chartmaker)
+- [BytesAgain](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files]
+
+**Output Format:** [Terminal text with local log and export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local activity logs and exports under ~/.local/share/chartmaker.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,61 @@
-## Description: <br>
-Work with a user's Semantic Scholar account to read Research Feeds, inspect private Library folders, add papers to folders, and resolve Semantic Scholar paper records from identifiers such as arXiv IDs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Work with a user's Semantic Scholar account to read Research Feeds, inspect private Library folders, add papers to folders, and resolve Semantic Scholar paper records from identifiers such as arXiv IDs.
 
-## Publisher: <br>
-[zjsxply](https://clawhub.ai/user/zjsxply) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zjsxply](https://clawhub.ai/user/zjsxply)
 
-## Use Case: <br>
-Developers and research-oriented agents use this skill to access authenticated Semantic Scholar Library and Research Feed workflows, including feed export, private folder inspection, folder updates, and paper ID resolution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores reusable Semantic Scholar session cookies in plaintext and can reuse them for authenticated requests. <br>
-Mitigation: Treat copied curl commands and saved cookie files like passwords, restrict file permissions, avoid inline secrets in shell commands, and delete the cookie store when work is complete. <br>
-Risk: The skill can export private Library and Research Feed data from a Semantic Scholar account. <br>
-Mitigation: Review output paths before export and store generated JSON files only in locations appropriate for private account data. <br>
-Risk: The skill can change private library folders by adding papers in bulk. <br>
-Mitigation: Review folder IDs and paper IDs before running folder-add commands, then re-fetch the folder to verify the intended changes. <br>
+## Use Case:
 
+Developers and researchers use this skill to operate against authenticated Semantic Scholar Library and Research Feed surfaces, including feed export, private folder inspection, folder updates, and Semantic Scholar paper ID resolution.
 
-## Reference(s): <br>
-- [Authentication And Cookie Store](references/auth-and-cookies.md) <br>
-- [Library Workflow](references/library.md) <br>
-- [Research Feed Workflow](references/research-feed.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zjsxply/semantic-scholar-library-feed) <br>
-- [Semantic Scholar Recommendations](https://www.semanticscholar.org/me/recommendations) <br>
-- [Semantic Scholar Graph Paper Batch API](https://api.semanticscholar.org/graph/v1/paper/batch?fields=paperId,title,year,url,externalIds) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON file outputs from the bundled CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The CLI can export feed and folder data to JSON files and can write reusable Semantic Scholar cookie stores.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill stores live Semantic Scholar session cookies on disk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat saved cookie files like passwords, keep them out of repositories, shared folders, logs, and backups, and remove or rotate them when no longer needed.
+
+Risk: Authenticated cookies can be sent with user-supplied page URLs in feed and SSR commands.
+
+Mitigation: Use --page-url only with https://www.semanticscholar.org until the skill constrains authenticated requests to the official origin.
+
+Risk: Folder update commands can modify a user's private Semantic Scholar Library.
+
+Mitigation: Resolve paper IDs, diff against current folder entries, use dry-run behavior where available, and re-fetch the folder to verify expected changes.
+
+## Reference(s):
+
+- [Authentication And Cookie Store](references/auth-and-cookies.md)
+- [Library Workflow](references/library.md)
+- [Research Feed Workflow](references/research-feed.md)
+- [Semantic Scholar](https://www.semanticscholar.org)
+- [Semantic Scholar Graph API](https://api.semanticscholar.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON file outputs from the bundled CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or read local cookie-store files and JSON exports when the agent runs the bundled CLI.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,53 @@
-## Description: <br>
-Framework core engineer skill for low-level WelineFramework implementation and architectural guardrail compliance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Framework core engineer skill for low-level WelineFramework implementation and architectural guardrail compliance.
 
-## Publisher: <br>
-[aiweline](https://clawhub.ai/user/aiweline) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aiweline](https://clawhub.ai/user/aiweline)
 
-## Use Case: <br>
-Developers and engineers use this skill when maintaining WelineFramework internals, shared abstractions, and low-level framework behavior that can affect multiple modules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Framework-core changes can affect shared WelineFramework behavior across multiple modules. <br>
-Mitigation: Review proposed edits carefully and require focused setup, HTTP, or targeted test validation for the changed framework path before relying on the output. <br>
+## Use Case:
 
+Developers and engineers use this skill to implement low-level WelineFramework core changes, shared abstractions, and cross-module conventions while preserving framework guardrails and compatibility.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aiweline/core-development) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code edits, shell commands, validation notes, and compatibility summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include affected framework boundaries, migration impact, documentation updates, and residual risk notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill reads local Weline project AI documentation and may coordinate with named Weline agent roles.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target project and Weline-specific workflow before installing or invoking the skill.
+
+Risk: Framework-core changes can affect shared behavior across modules.
+
+Mitigation: Use focused setup, HTTP, or targeted tests that cover the changed framework path and check module-facing contracts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aiweline/skills/core-development)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Markdown, Guidance]
+
+**Output Format:** [Markdown containing implementation changes, validation commands, and concise engineering notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include compatibility impact, affected boundaries, documentation notes, and collaboration status.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

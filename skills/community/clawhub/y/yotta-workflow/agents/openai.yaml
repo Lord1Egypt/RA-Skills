@@ -1,0 +1,5 @@
+interface:
+  display_name: "工作流标准"
+  short_description: "跨会话/跨项目通用工作流：开工读状态、进行中记流水、收工留锚点"
+  brand_color: "#3B82F6"
+  default_prompt: "Use $yotta-workflow to start this working session: read the project state, then plan and execute per the standard."

@@ -1,41 +1,54 @@
-## Description: <br>
-Full CRM with accounts, leads, deals, contacts, pipelines, and work orders - built for AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full CRM with accounts, leads, deals, contacts, pipelines, and work orders - built for AI agents.
 
-## Publisher: <br>
-[cameron48](https://clawhub.ai/user/cameron48) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cameron48](https://clawhub.ai/user/cameron48)
 
-## Use Case: <br>
-External developers and AI agents use this skill to create and update CRM accounts, leads, deals, contacts, pipelines, and work orders through paid API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages paid API calls that can create or modify sensitive CRM, customer, sales, and service records. <br>
-Mitigation: Use scoped credentials or test data first, require human approval for write operations and paid calls, and set budget and rate limits. <br>
-Risk: Customer data may be sent to an external paid gateway with provider-specific handling practices. <br>
-Mitigation: Verify the provider privacy, retention, deletion, tenant isolation, and audit-log policies before using real customer records. <br>
+## Use Case:
 
+External developers and autonomous sales or service agents use this skill to create and update CRM accounts, leads, deals, contacts, pipelines, and work orders through the MCF Agentic gateway.
 
-## Reference(s): <br>
-- [CRM Engine ClawHub listing](https://clawhub.ai/cameron48/mcf-crm-engine) <br>
-- [MCF Agentic CRM gateway](https://gateway.mcfagentic.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration] <br>
-**Output Format:** [Markdown with JSON API request and response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documents paid x402 CRM endpoints with example payloads and per-call pricing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Agents may send business contacts, sales pipeline details, notes, and work-order information to an external paid CRM gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure agents to minimize sensitive data, obtain appropriate consent, and avoid regulated information unless the deployment has approval to submit it.
+
+Risk: Autonomous API use can incur per-call x402 USDC charges on Base L2.
+
+Mitigation: Set budgets, rate limits, and approval controls before enabling automated CRM requests.
+
+## Reference(s):
+
+- [CRM Engine ClawHub listing](https://clawhub.ai/cameron48/skills/mcf-crm-engine)
+- [MCF Agentic gateway](https://gateway.mcfagentic.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Configuration]
+
+**Output Format:** [Markdown with JSON request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes endpoint paths, per-call pricing, x402 payment posture, and sample payloads.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

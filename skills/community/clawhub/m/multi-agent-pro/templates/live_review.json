@@ -1,0 +1,95 @@
+{
+  "name": "直播复盘",
+  "description": "直播数据复盘：采集直播数据（观看/互动/带货）→ 关键指标计算 → 高光/低谷时段识别 → 生成复盘报告。适用于电商直播、知识直播、秀场直播。",
+  "category": "media",
+  "version": "1.0",
+  "tags": ["直播", "复盘", "数据分析", "电商"],
+  "three_elements": {
+    "time_estimate": "5-10 分钟",
+    "api_key_required": "可选",
+    "output_files": ["live_review.md", "live_review_state.json"]
+  },
+  "dependencies": [
+    {
+      "skill_id": "tencent-docs",
+      "install_link": "https://skillhub.cn/skill/tencent-docs",
+      "description": "腾讯文档（用于复盘报告协作）",
+      "required": false
+    }
+  ],
+  "pipeline": {
+    "pipeline_name": "直播复盘",
+    "version": "1.0",
+    "description": "直播数据复盘与报告生成",
+    "agents": [
+      {
+        "id": "data_collector",
+        "name": "直播数据采集Agent",
+        "role": "采集直播基础数据：在线人数、观看时长、互动数、打赏金额、商品点击",
+        "type": "task",
+        "inputs": ["live_data_source"],
+        "outputs": ["raw_live_data"],
+        "depends_on": [],
+        "retry": 3,
+        "timeout": 90,
+        "fallback": "default",
+        "default_value": {"raw_live_data": {}}
+      },
+      {
+        "id": "metric_calculator",
+        "name": "指标计算Agent",
+        "role": "计算核心指标：平均在线、最高在线、互动率、转化率、GMV",
+        "type": "task",
+        "inputs": ["raw_live_data"],
+        "outputs": ["live_metrics"],
+        "depends_on": ["data_collector"],
+        "retry": 2,
+        "timeout": 60,
+        "fallback": "default",
+        "default_value": {"live_metrics": {}}
+      },
+      {
+        "id": "highlight_detector",
+        "name": "高光/低谷识别Agent",
+        "role": "识别直播中的高光时刻（峰值在线/高互动）和低谷时段（掉粉/冷场）",
+        "type": "task",
+        "inputs": ["raw_live_data"],
+        "outputs": ["highlights", "lowlights"],
+        "depends_on": ["data_collector"],
+        "retry": 2,
+        "timeout": 60,
+        "fallback": "default",
+        "default_value": {"highlights": [], "lowlights": []}
+      },
+      {
+        "id": "content_analyzer",
+        "name": "内容分析Agent",
+        "role": "分析高光时段对应的商品/话术/互动策略，提炼可复用模式",
+        "type": "task",
+        "inputs": ["highlights"],
+        "outputs": ["content_patterns"],
+        "depends_on": ["highlight_detector"],
+        "retry": 2,
+        "timeout": 60,
+        "fallback": "default",
+        "default_value": {"content_patterns": []}
+      },
+      {
+        "id": "reporter",
+        "name": "复盘报告Agent",
+        "role": "生成结构化直播复盘报告：数据概览、高光/低谷分析、改进建议、下次直播优化清单",
+        "type": "task",
+        "inputs": ["live_metrics", "highlights", "lowlights", "content_patterns"],
+        "outputs": ["live_review"],
+        "depends_on": ["metric_calculator", "highlight_detector", "content_analyzer"],
+        "retry": 2,
+        "timeout": 120,
+        "fallback": "abort"
+      }
+    ],
+    "state_store": {
+      "type": "json",
+      "path": "./live_review_state.json"
+    }
+  }
+}

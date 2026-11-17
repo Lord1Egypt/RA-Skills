@@ -1,44 +1,54 @@
-## Description: <br>
-Sort files, lines, and columns with custom ordering and dedup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sort files, lines, and columns with custom ordering, deduplication, ranking, shuffling, frequency analysis, and basic statistics.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and operators use this skill to sort, deduplicate, rank, shuffle, and summarize local text, CSV, and JSON files during file review and lightweight data analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Operation history is persisted locally and can include filenames or other command details. <br>
-Mitigation: Avoid using the skill on sensitive filenames or private data unless local history in ~/.local/share/sort/history.log is acceptable. <br>
-Risk: The JSON command's Python fallback can execute unintended local code with crafted input. <br>
-Mitigation: Prefer environments with jq installed, and avoid the json command with untrusted file paths or keys until the fallback is rewritten to pass arguments safely. <br>
-Risk: The security verdict is suspicious. <br>
-Mitigation: Review and scan the skill before installing or deploying it. <br>
+## Use Case:
 
+Developers, analysts, and agents use Sort to process local text, CSV, JSON, and tabular files for ordering, deduplication, ranking, frequency reports, and basic file statistics.
 
-## Reference(s): <br>
-- [Sort skill page](https://clawhub.ai/ckchzh/sort) <br>
-- [ckchzh publisher profile](https://clawhub.ai/user/ckchzh) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell command examples and command output text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May emit sorted text, tabular summaries, JSON arrays, and status lines depending on the selected command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.2 (source: server release and frontmatter) <br>
+Risk: The security evidence reports that one JSON sorting fallback can turn crafted input into Python code execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, prefer systems with jq available, and avoid using the json command on untrusted filenames or keys.
+
+Risk: The skill keeps a persistent local operation history containing processed filenames and metadata.
+
+Mitigation: Do not use it on sensitive paths unless retaining an audit trail at ~/.local/share/sort/history.log is acceptable.
+
+## Reference(s):
+
+- [Sort skill page](https://clawhub.ai/ckchzh/skills/sort)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and command-line text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands read local files and print sorted, deduplicated, ranked, shuffled, frequency, statistics, CSV, or JSON results to standard output.]
+
+## Skill Version(s):
+
+3.0.2 (source: frontmatter and server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

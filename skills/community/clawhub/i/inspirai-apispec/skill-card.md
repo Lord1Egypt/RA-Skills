@@ -1,41 +1,57 @@
-## Description: <br>
-API specification management skill for initializing, updating, querying, and searching cross-project API documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Initializes, updates, queries, and searches cross-project API specification documentation for backend projects.
 
-## Publisher: <br>
-[alexxxiong](https://clawhub.ai/user/alexxxiong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexxxiong](https://clawhub.ai/user/alexxxiong)
 
-## Use Case: <br>
-Developers and API maintainers use this skill to create local API specification configuration, inspect existing API documentation, search across a shared API registry, and generate updates from backend route definitions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The update workflow can commit and push generated API documentation to a Git repository. <br>
-Mitigation: Review the configured repository, target branch, and generated diff before allowing publication. <br>
-Risk: Generated API documentation may expose internal endpoints or sensitive request and response fields. <br>
-Mitigation: Exclude sensitive routes and fields before syncing or publishing the API registry. <br>
+## Use Case:
 
+Developers and engineers use this skill to maintain a local API specification registry, generate YAML API documentation from backend route and handler files, and quickly look up or search existing API definitions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alexxxiong/inspirai-apispec) <br>
-- [Publisher profile](https://clawhub.ai/user/alexxxiong) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with shell commands and YAML configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or generate .api-spec.yaml configuration and API documentation YAML files for a user-controlled registry.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The update workflow can publish generated API details to a remote repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit review and approval of generated API docs before any commit or push.
+
+Risk: Route and handler analysis may expose internal endpoints, schemas, tokens, or business-sensitive API details.
+
+Mitigation: Limit use to repositories whose API details are approved for registry storage, and review generated YAML before sharing.
+
+Risk: The skill maintains a persistent API-spec registry under ~/.apispec.
+
+Mitigation: Confirm the registry location and access controls before initialization or update.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alexxxiong/skills/inspirai-apispec)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Concise text and Markdown with shell command, YAML configuration, and API-spec examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update .api-spec.yaml and YAML API specification files in a local registry.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

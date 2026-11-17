@@ -1,41 +1,54 @@
-## Description: <br>
-Six Sigma methodology reference - DMAIC process, statistical tools, control charts, and capability analysis for improvement projects, process variation analysis, and Six Sigma certification preparation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Six Sigma methodology reference - DMAIC process, statistical tools, control charts, and capability analysis for improvement projects, process variation analysis, and Six Sigma certification preparation.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-External quality, operations, manufacturing, and process improvement practitioners use this skill as a quick reference for DMAIC projects, statistical tools, control charts, capability analysis, and Six Sigma certification review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat static Six Sigma reference guidance as a substitute for validated project analysis or organization-specific quality procedures. <br>
-Mitigation: Review recommendations against current process data, measurement system evidence, and applicable internal quality standards before using them in decisions. <br>
-Risk: The artifact includes a Bash helper script that is intended to print reference content. <br>
-Mitigation: Review the script before local execution and run only the specific documented commands needed for the task. <br>
+## Use Case:
 
+External users and process-improvement practitioners use this skill as a quick reference for DMAIC phases, statistical methods, control charts, capability metrics, root-cause tools, project examples, and phase-gate checklists.
 
-## Reference(s): <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [Sixsigma ClawHub release](https://clawhub.ai/ckchzh/sixsigma) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown command documentation and plain text topic reference output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command-selected static reference sections for Six Sigma topics such as DMAIC, statistics, charts, capability, tools, examples, and checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Users may treat concise Six Sigma reference output as authoritative for a regulated or safety-critical process decision.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the guidance against internal quality procedures and validate statistical assumptions before applying it to operational decisions.
+
+Risk: The artifact includes an executable shell script.
+
+Mitigation: Inspect the script before deployment and run only the documented commands; release security evidence says it prints static reference material and does not access data, network services, credentials, or persistent system settings.
+
+## Reference(s):
+
+- [Sixsigma ClawHub skill page](https://clawhub.ai/ckchzh/skills/sixsigma)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text reference output with documented shell command entry points]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The shell script prints static Six Sigma reference material for the selected command.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

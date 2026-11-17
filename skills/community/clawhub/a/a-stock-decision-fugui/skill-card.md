@@ -1,44 +1,58 @@
-## Description: <br>
-从共享记忆读取持仓，生成 A 股投资决策报告（止损/止盈/仓位管理） <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+从共享记忆读取持仓，生成 A 股投资决策报告（止损/止盈/仓位管理）。
 
-## Publisher: <br>
-[hzx0385-cpu](https://clawhub.ai/user/hzx0385-cpu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hzx0385-cpu](https://clawhub.ai/user/hzx0385-cpu)
 
-## Use Case: <br>
-OpenClaw users with A-share holdings can generate a Markdown decision report that reads local portfolio data, checks current prices, and summarizes stop-loss, take-profit, and position-management signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill imports and executes an unbundled local helper from ~/.openclaw/workspace/shared_memory_loader.py at startup. <br>
-Mitigation: Inspect and trust that helper before running the skill, and keep the workspace path limited to code you control. <br>
-Risk: Portfolio symbols are queried through qt.gtimg.cn and reports are saved locally under ~/.openclaw/decisions. <br>
-Mitigation: Run only if that data flow is acceptable, and review local file permissions for generated reports. <br>
-Risk: The generated stock signals may be incomplete, stale, or unsuitable for real trading decisions. <br>
-Mitigation: Treat the report as informational guidance and verify prices, holdings, and thresholds before acting. <br>
+## Use Case:
 
+External users and developers use this skill to read A-share portfolio holdings, retrieve quote data, and generate a Markdown decision report with stop-loss, take-profit, position-sizing, and risk-warning guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hzx0385-cpu/a-stock-decision-fugui) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [Tencent stock quote endpoint](https://qt.gtimg.cn/q={symbol}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown investment decision report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [When executed, the skill also saves a timestamped Markdown report under ~/.openclaw/decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, release evidence) <br>
+Risk: The skill can make financial recommendations from quote data or silent fallback prices.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Independently verify market prices and analysis before acting on any trading recommendation.
+
+Risk: The skill reads local portfolio holdings and saves financial reports on disk.
+
+Mitigation: Use it only in a trusted workspace and protect saved reports under ~/.openclaw/decisions.
+
+Risk: The security review notes that executable code is imported from a user-writable workspace.
+
+Mitigation: Review trusted workspace files before installing or running the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hzx0385-cpu/skills/a-stock-decision-fugui)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown investment decision report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns the report text and saves a timestamped Markdown report under ~/.openclaw/decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

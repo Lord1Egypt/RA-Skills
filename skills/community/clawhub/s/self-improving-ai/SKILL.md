@@ -106,7 +106,7 @@ When AI learnings prove broadly applicable, promote them:
 
 ### Optional: Enable Hook
 
-For automatic reminders at session start:
+Opt-in and project-scoped. Enabling a hook persists across future sessions; skip this unless you need reminders:
 
 ```bash
 cp -r hooks/openclaw ~/.openclaw/hooks/self-improving-ai
@@ -330,7 +330,8 @@ When a learning is broadly applicable (not a one-off model quirk), promote it to
 
 1. **Distill** the learning into an actionable guideline or configuration
 2. **Add** to appropriate target (matrix entry, prompt template, runbook step)
-3. **Update** original entry:
+3. **Show a reviewed diff and apply only after explicit user approval**
+4. **Update** original entry:
    - Change `**Status**: pending` → `**Status**: promoted`
    - Add `**Promoted**: model selection matrix` (or `prompt library`, `fine-tuning runbook`, etc.)
 
@@ -482,7 +483,7 @@ Pin exact versions in production. Keep eval results versioned alongside model co
 ```
 
 **Track learnings in repo** (team-wide):
-Don't add to .gitignore — learnings become shared knowledge.
+Only track `.learnings/` after a human has reviewed entries for secrets, PII, and privileged content.
 
 **Hybrid** (track templates, ignore entries):
 ```gitignore
@@ -494,6 +495,8 @@ Don't add to .gitignore — learnings become shared knowledge.
 
 Enable automatic reminders through agent hooks. This is **opt-in**.
 
+Hooks persist across sessions once installed. Keep them **project-scoped**. Do **not** install user-level or global hooks. Never use an empty `matcher`. `PostToolUse` inspects command output in-process; do not log raw output, secrets, or transcripts.
+
 ### Quick Setup (Claude Code / Codex)
 
 Create `.claude/settings.json` in your project:
@@ -502,7 +505,7 @@ Create `.claude/settings.json` in your project:
 {
   "hooks": {
     "UserPromptSubmit": [{
-      "matcher": "",
+      "matcher": "model|inference|prompt|rag|embed|hallucin|latency|fine-tune|guardrail",
       "hooks": [{
         "type": "command",
         "command": "./skills/self-improving-ai/scripts/activator.sh"
@@ -512,7 +515,7 @@ Create `.claude/settings.json` in your project:
 }
 ```
 
-This injects an AI-focused learning evaluation reminder after each prompt (~50-100 tokens overhead).
+This injects an AI-focused learning evaluation reminder after matching prompts (~50-100 tokens overhead).
 
 ### Advanced Setup (With Error Detection)
 
@@ -520,7 +523,7 @@ This injects an AI-focused learning evaluation reminder after each prompt (~50-1
 {
   "hooks": {
     "UserPromptSubmit": [{
-      "matcher": "",
+      "matcher": "model|inference|prompt|rag|embed|hallucin|latency|fine-tune|guardrail",
       "hooks": [{
         "type": "command",
         "command": "./skills/self-improving-ai/scripts/activator.sh"
@@ -549,6 +552,8 @@ Enable `PostToolUse` only if you want the hook to inspect command output for mod
 See `references/hooks-setup.md` for detailed configuration and troubleshooting.
 
 ## Automatic Skill Extraction
+
+Extracted skills are untrusted until a human reviews the generated `SKILL.md`. Do not keep or publish an extracted skill without explicit user approval.
 
 When an AI learning is valuable enough to become a reusable skill, extract it.
 
@@ -638,3 +643,7 @@ When guidance conflicts, apply:
 ### Ownership Rules
 - This skill writes only to `.learnings/ai/` in stackable mode.
 - It may read other skill folders for cross-linking, but should not rewrite their entries.
+- Standalone mode writes to this project's `.learnings/*.md` log files only.
+- Stackable mode writes only to the namespaced folder above and must not rewrite other skills' log entries.
+- Promotion into `AGENTS.md`, `SOUL.md`, `TOOLS.md`, `MEMORY.md`, rules, hooks, or generated skills is not a logging write. Show a reviewed diff and apply only after explicit user approval.
+

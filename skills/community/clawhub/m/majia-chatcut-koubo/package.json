@@ -1,0 +1,61 @@
+{
+  "name": "majia-chatcut-koubo",
+  "version": "1.7.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "majia-koubo": "src/cli/koubo.mjs"
+  },
+  "engines": {
+    "node": ">=24.18.0 <25"
+  },
+  "scripts": {
+    "koubo": "node src/cli/koubo.mjs",
+    "run": "node src/cli/koubo.mjs run",
+    "status": "node src/cli/koubo.mjs status",
+    "review": "node src/cli/koubo.mjs review",
+    "approve-decisions": "node src/cli/koubo.mjs approve-decisions",
+    "approve-sample": "node src/cli/koubo.mjs approve-sample",
+    "request-revision": "node src/cli/koubo.mjs request-revision",
+    "resume": "node src/cli/koubo.mjs resume",
+    "report": "node src/cli/koubo.mjs report",
+    "doctor": "node scripts/doctor.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "test:contract": "node --test tests/schema-validation.test.mjs",
+    "test:orchestration": "node --test tests/intent-profile.test.mjs tests/representative-preview.test.mjs tests/handoff-report.test.mjs tests/one-click-smoke.test.mjs",
+    "test:risk-policy": "node --test tests/risk-policy.test.mjs",
+    "test:run-state": "node --test tests/run-state.test.mjs",
+    "test:starter-prompts": "node --test tests/starter-prompts.test.mjs",
+    "test:cli": "node --test tests/koubo-cli.test.mjs",
+    "validate:schema": "node scripts/validate-all-json.mjs --mode baseline",
+    "validate:schema:release": "node scripts/validate-all-json.mjs --mode release",
+    "validate:rules": "node scripts/validate-rule-registry.mjs",
+    "validate:plans": "node scripts/validate-plan-bundle.mjs --bundle fixtures/plan-bundles/valid/bundle.json",
+    "validate:planner": "node scripts/validate-explainable-planner.mjs --transcript fixtures/plan-bundles/valid/transcript.json --edit-plan fixtures/plan-bundles/valid/edit-plan.json --expected fixtures/planning/valid/content-scorecard.json",
+    "validate:visual": "node scripts/validate-visual-decision-plan.mjs --plan fixtures/visual-decisions/valid/plan.json",
+    "validate:srt": "node scripts/srt-bridge.mjs diff --srt fixtures/srt/valid/captions.srt --sidecar fixtures/srt/valid/captions.sidecar.json",
+    "validate:preview": "node scripts/validate-preview-approval.mjs --preview fixtures/preview/valid/preview-bundle.json --approval-log fixtures/preview/valid/approval-log.json --plan-hash sha256:f6850dade638dfed44228323b690207bb2d1b5b770537e4890d44f3849948866 --style-fingerprint sha256:5a7f8654f8c85a338d1ee517fa9286981042504b91324cf232dc4f95cf8c4c78 --timeline-revision rev_demo",
+    "validate:recovery": "node scripts/validate-recovery-fixtures.mjs",
+    "validate:capabilities": "node scripts/validate-capability-profile.mjs --profile fixtures/capabilities/valid/unverified-profile.json --as-of 2026-07-24T12:00:00Z",
+    "validate:media": "node scripts/validate-media-release.mjs --report fixtures/media-qa/valid/release-report.json",
+    "validate:distribution": "node scripts/validate-distribution-pack.mjs --pack fixtures/distribution/valid/distribution-pack.json --as-of 2026-07-24",
+    "validate:feedback": "node scripts/validate-feedback-governance.mjs --event fixtures/feedback/valid/event.json --queue fixtures/feedback/valid/suggestion-queue.json",
+    "validate:extensions": "node scripts/validate-extensions.mjs",
+    "validate:runtime-contracts": "node scripts/validate-runtime-fixtures.mjs",
+    "validate:docs-routing": "node scripts/validate-docs-routing.mjs",
+    "validate:live-claim": "node scripts/validate-live-canary-claim.mjs",
+    "smoke:one-click:fake": "node scripts/smoke-one-click.mjs",
+    "validate:contrast": "node assets/theme-kit/scripts/check-contrast.mjs",
+    "validate:assets": "node scripts/check-assets.mjs",
+    "validate:public": "node scripts/check-public-safety.mjs",
+    "validate:version": "node scripts/check-version-drift.mjs",
+    "verify": "npm run validate:schema:release && npm run validate:runtime-contracts && npm run validate:rules && npm run validate:plans && npm run validate:planner && npm run validate:visual && npm run validate:srt && npm run validate:preview && npm run validate:recovery && npm run validate:capabilities && npm run validate:media && npm run validate:distribution && npm run validate:feedback && npm run validate:extensions && npm run check:official && npm run validate:docs-routing && npm run validate:live-claim && npm run smoke:one-click:fake && npm test && npm run validate:contrast && npm run validate:assets && npm run validate:public && npm run validate:version",
+    "preflight": "node src/cli/koubo.mjs preflight",
+    "check:official": "node scripts/check-official-drift.mjs",
+    "test:compatibility": "node --test tests/session-preflight.test.mjs tests/text-edit-routing.test.mjs tests/official-drift.test.mjs"
+  },
+  "dependencies": {
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1"
+  }
+}

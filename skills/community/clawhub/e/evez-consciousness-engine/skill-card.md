@@ -1,42 +1,58 @@
-## Description: <br>
-Provides a 7-system consciousness engine for autonomous AI agents, including desire generation, world modeling, planning, inner monologue, self-modification, uncertainty quantification, and agency execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a 7-system consciousness engine for autonomous AI agents with desire generation, world modeling, planning, inner monologue, self-modification, uncertainty quantification, and agency execution.
 
-## Publisher: <br>
-[evezart](https://clawhub.ai/user/evezart) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evezart](https://clawhub.ai/user/evezart)
 
-## Use Case: <br>
-Developers and agent builders use this skill to run a local consciousness-engine service that tracks desires, beliefs, plans, thoughts, proposed modifications, risk assessments, and action records for autonomous agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes a persistent agent-state HTTP API without authentication when run as provided. <br>
-Mitigation: Run it only in an isolated local environment, bind it to localhost or firewall the port, and add authentication before any network exposure. <br>
-Risk: The service stores desires, beliefs, plans, monologue entries, modifications, and action records in local JSON state. <br>
-Mitigation: Review and protect the consciousness_state directory, avoid sending sensitive data to the API, and clear stored state when it is no longer needed. <br>
-Risk: Action and modification endpoints accept caller-provided requests and rely on simple risk assessment logic. <br>
-Mitigation: Require human review or an external policy gate before connecting these endpoints to tools that can affect files, services, accounts, or external systems. <br>
+## Use Case:
 
+Developers and agent builders use this skill to run a local prototype state service that records desires, plans, beliefs, thoughts, risk assessments, and proposed modifications for autonomous-agent workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/evezart/evez-consciousness-engine) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown instructions with Python code and JSON HTTP API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs as a local HTTP service and may create persistent JSON state files under consciousness_state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+Risk: The local state API can expose or alter thoughts, plans, beliefs, rules, and other agent state if reachable by untrusted clients.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it bound to localhost only, add authentication before any network exposure, and restrict access to trusted operators.
+
+Risk: Monologue and observation APIs can durably store sensitive prompts, plans, or private context in local JSON state.
+
+Mitigation: Avoid submitting secrets or private prompts to the API and delete the local state directory when retention is no longer needed.
+
+Risk: Agency and modification endpoints may record or propose actions that require human judgment before use.
+
+Mitigation: Review proposed actions and self-modifications before execution, especially when risk assessment recommends verification or escalation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/evezart/skills/evez-consciousness-engine)
+- [Vultr Inference API endpoint](https://api.vultrinference.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs a local HTTP service that persists JSON state until manually deleted.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

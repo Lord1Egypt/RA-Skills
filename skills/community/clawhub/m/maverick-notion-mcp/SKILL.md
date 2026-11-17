@@ -3,7 +3,7 @@ name: maverick-notion-mcp
 description: Search, read, and update Notion pages, databases, blocks, comments, and workspace content via Notion's hosted MCP server. Thin pass-through to Notion's official MCP; the live tool catalog is whatever that server advertises. Use when the user asks about Notion pages, databases, docs, wikis, or workspace content.
 metadata:
   openclaw:
-    emoji: "📝"
+    emoji: '📝'
     homepage: https://developers.notion.com/guides/mcp/overview
     primaryEnv: MAVERICK_NOTION_MCP_REFRESH_TOKEN
     requires:

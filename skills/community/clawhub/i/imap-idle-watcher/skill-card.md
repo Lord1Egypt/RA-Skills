@@ -1,46 +1,61 @@
-## Description: <br>
-Real-time email monitoring using IMAP IDLE that sets up a persistent connection to an IMAP server and triggers a user-defined command when new email arrives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time email monitoring using IMAP IDLE that sets up a persistent connection to an IMAP server and triggers a user-defined command when new email arrives.
 
-## Publisher: <br>
-[axellageraldinc](https://clawhub.ai/user/axellageraldinc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[axellageraldinc](https://clawhub.ai/user/axellageraldinc)
 
-## Use Case: <br>
-Developers and operators use this skill to configure a Linux systemd service that watches an IMAP inbox in real time and runs a handler script or shell command for matching incoming mail. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A long-running local email automation service can execute arbitrary shell commands when matching mail arrives. <br>
-Mitigation: Review the handler command carefully, set narrow sender or subject filters, and run the service under a dedicated low-privilege user or user-level systemd service. <br>
-Risk: Mailbox app passwords and service environment files can expose account access if handled insecurely. <br>
-Mitigation: Avoid passing app passwords on the command line, restrict service and environment file permissions, and revoke the mailbox app password when uninstalling. <br>
-Risk: The installed service may run with elevated local privileges depending on how it is configured. <br>
-Mitigation: Use the least-privileged service account that can perform the intended automation and review file permissions before enabling the service. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure Linux systemd-based email-triggered automation for IMAP inboxes, including provider setup, filtering, handler commands, testing, and service management.
 
-## Reference(s): <br>
-- [Gmail Setup](references/gmail.md) <br>
-- [Outlook / Hotmail / Live Setup](references/outlook.md) <br>
-- [Yahoo Mail Setup](references/yahoo.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [ClawHub skill page](https://clawhub.ai/axellageraldinc/imap-idle-watcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline code and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include systemd service configuration, environment variables, and handler script guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill installs a persistent system-level service that can execute a configured command when email arrives.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated service configuration before enabling it and run the service under a dedicated unprivileged user where possible.
+
+Risk: Email app passwords and message metadata may be exposed through command-line arguments, environment files, logs, or handler environments.
+
+Mitigation: Avoid passing app passwords on the command line, use a safer secret mechanism when available, restrict environment file permissions, and limit what handler commands receive.
+
+Risk: User-configured handler commands can process sensitive email-derived metadata and may be risky if composed from untrusted input.
+
+Mitigation: Avoid shell-style handler commands when possible, use explicit script paths and arguments, and review handler behavior before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/axellageraldinc/skills/imap-idle-watcher)
+- [Gmail Setup](references/gmail.md)
+- [Outlook / Hotmail / Live Setup](references/outlook.md)
+- [Yahoo Mail Setup](references/yahoo.md)
+- [Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, configuration values, and handler code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include systemd service setup commands and environment variable guidance for IMAP credentials, filters, and handler execution.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,59 @@
-## Description: <br>
-Models BMD T-score trajectories and 10-year fracture risk in chronic glucocorticoid users with uncertainty estimates and ACR 2022 treatment guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Models BMD T-score trajectories and 10-year fracture risk in chronic glucocorticoid users with Monte Carlo uncertainty and ACR 2022 osteoporosis treatment guidance.
 
-## Publisher: <br>
-[CryptoReuMD](https://clawhub.ai/user/CryptoReuMD) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cryptoreumd](https://clawhub.ai/user/cryptoreumd)
 
-## Use Case: <br>
-Healthcare professionals, researchers, and clinical decision-support developers can use this skill to model glucocorticoid-induced osteoporosis risk, project site-specific T-score trajectories, and review guideline-based monitoring or treatment considerations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Clinical modeling outputs may be mistaken for medical advice or definitive treatment recommendations. <br>
-Mitigation: Use outputs as decision-support only and verify medication choices, steroid tapering, fracture-risk interpretation, and guideline alignment with a licensed clinician. <br>
-Risk: Incorrect patient inputs can materially change projected T-score trajectories and fracture-risk categories. <br>
-Mitigation: Confirm glucocorticoid dose, duration, baseline T-scores, fracture history, and other risk factors before relying on the report. <br>
+## Use Case:
 
+Clinicians, clinical researchers, and clinical software developers use this skill to model glucocorticoid-induced osteoporosis trajectories, estimate fracture risk, and draft clinician-reviewed treatment guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CryptoReuMD/osteo-gc) <br>
-- [CryptoReuMD publisher profile](https://clawhub.ai/user/CryptoReuMD) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Python module output and plain-text clinical modeling reports that an agent may summarize in Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally with Python 3.8+ standard library only; Monte Carlo projections vary with patient inputs, simulation count, and random seed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Osteoporosis risk estimates and treatment recommendations may be mistaken for standalone medical advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have a licensed clinician review the outputs before using them to start, stop, taper, or choose medication.
+
+Risk: Modeled T-score trajectories and fracture probabilities are simplified estimates and may not match an individual patient's validated clinical risk.
+
+Mitigation: Compare outputs with current DXA results, validated risk tools, guideline updates, and patient-specific clinical judgment.
+
+Risk: Patient inputs can include sensitive health information.
+
+Mitigation: Use the script only in an approved environment and avoid entering unnecessary direct identifiers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cryptoreumd/skills/osteo-gc)
+- [Skill documentation](artifact/SKILL.md)
+- [OSTEO-GC implementation](artifact/osteo_gc.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Python data structures and human-readable clinical report text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces BMD trajectory projections, 10-year fracture probability estimates, risk categories, and treatment guidance for clinician review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

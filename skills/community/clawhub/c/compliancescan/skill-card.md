@@ -1,43 +1,64 @@
-## Description: <br>
-Scans public websites for GDPR/DSGVO compliance from the terminal and reports a 0-100 score plus key findings such as trackers, cookies, consent banner status, pre-consent tracking, fonts, and third-party transfers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans any website for GDPR/DSGVO compliance from the terminal with no API key or signup required, returning a 0-100 score plus findings for trackers, cookies, consent banners, pre-consent tracking, fonts, and third-party transfers.
 
-## Publisher: <br>
-[2g4y1](https://clawhub.ai/user/2g4y1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[2g4y1](https://clawhub.ai/user/2g4y1)
 
-## Use Case: <br>
-Developers, site operators, and compliance reviewers use this skill to run a limited public Quick-Scan or authenticated full scan for GDPR/DSGVO, cookie, tracker, consent-banner, external-font, and related website compliance signals. The result is an automated technical indication and should not be treated as legal advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scan output is an automated technical indication and can be incomplete or stale, especially for cached Quick-Scan results. <br>
-Mitigation: State scan scope and cache status when present, report only fields returned by the API, and direct users to a full scan or legal review for decisions. <br>
-Risk: The skill sends target URLs to an external scanning service and anonymous scans are rate limited. <br>
-Mitigation: Validate the target URL, start only one scan per invocation, respect retry and rate-limit guidance, and avoid scanning private or internal addresses. <br>
-Risk: Authenticated full scans use an API key and may consume credits or expose account-scoped capabilities. <br>
-Mitigation: Use the key only when configured, never print credentials or authorization headers, and avoid automatic retries for write operations. <br>
+## Use Case:
 
+Developers, site operators, and compliance reviewers use this skill to run a terminal-based GDPR/DSGVO quick scan of a public website and summarize returned findings. It is suited for checking trackers, cookies, consent banners, pre-consent tracking, external fonts, mail/TLS signals, and whether a fuller scan is warranted.
 
-## Reference(s): <br>
-- [Compliancescan ClawHub skill page](https://clawhub.ai/2g4y1/skills/compliancescan) <br>
-- [Compliancescan homepage](https://compliancescan.eu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Concise Markdown with terminal commands and scan-result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Replies in the user's language; Quick-Scan output is limited to fields returned by the public scan API, and authenticated full scans require COMPLIANCESCAN_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and release evidence) <br>
+Risk: Scanned URLs are sent to compliancescan.eu and may expose sensitive query strings or non-public targets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Scan only URLs the user is comfortable sharing with that service, avoid confidential query strings, and reject private or internal address targets.
+
+Risk: The skill can use COMPLIANCESCAN_API_KEY for paid or full-scan API calls.
+
+Mitigation: Configure the API key only when full-scan access is intended, never print or log the key, and use authenticated calls only when the environment variable is present.
+
+Risk: Quick-Scan results are limited, may be cached, and are not legal advice.
+
+Mitigation: Report only returned fields, identify cached or limited-scope results, and direct users to a full scan or professional review for compliance decisions.
+
+Risk: Provider responses may include upgrade, registration, or provider links.
+
+Mitigation: Present such links as service-provided options and keep the compliance findings distinct from upsell messaging.
+
+## Reference(s):
+
+- [Compliancescan homepage](https://compliancescan.eu)
+- [Quick-Scan endpoint](https://compliancescan.eu/api/scanner/quick)
+- [Authenticated API](https://compliancescan.eu/api/v1)
+- [ClawHub skill page](https://clawhub.ai/2g4y1/skills/compliancescan)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, API Calls, Shell commands, Markdown, Guidance]
+
+**Output Format:** [Concise localized Markdown with compliance score, counts, risk flags, scan scope, cache notes, and failure details when applicable]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include command snippets using curl and jq; responses are limited to data returned by compliancescan.eu and should not be treated as legal advice.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

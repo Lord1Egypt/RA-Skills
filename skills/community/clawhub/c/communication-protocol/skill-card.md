@@ -1,41 +1,49 @@
-## Description: <br>
-Defines how the OpenClaw agent should communicate with Tidy during a build session, ensuring clear, predictable, and build-focused interactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Defines how the OpenClaw agent should communicate with Tidy during a build session, ensuring clear, predictable, and build-focused interactions.
 
-## Publisher: <br>
-[DweikAnas](https://clawhub.ai/user/DweikAnas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dweikanas](https://clawhub.ai/user/dweikanas)
 
-## Use Case: <br>
-Developers and agent builders use this skill to standardize OpenClaw communication with Tidy during build sessions, including structured progress events, concise user-facing messages, clarification questions, and terminal status events. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan found no suspicious behavior in available inputs, but deeper review was limited by the available artifact evidence. <br>
-Mitigation: Inspect the skill files and requested permissions before use, especially for commands, network access, credential handling, or persistent storage. <br>
-Risk: Incorrect implementation of the event contract could cause confusing progress updates or expose transport metadata in user-facing messages. <br>
-Mitigation: Validate emitted events against the documented payload shapes and review chat output to confirm transport headers are not repeated to users. <br>
+## Use Case:
 
+Developers and engineers use this skill to keep OpenClaw build-session communication predictable, concise, and aligned with Tidy's structured event flow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DweikAnas/communication-protocol) <br>
-- [Publisher profile](https://clawhub.ai/user/DweikAnas) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown with JSON event examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defines event names, payload shapes, message-frequency rules, and language guardrails for agent communication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Agents may expose transport metadata or internal orchestration language in user-facing build messages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Follow the skill's communication guardrails and review generated messages for concise, user-facing language before deployment.
+
+## Reference(s):
+
+- [Communication Protocol ClawHub Skill](https://clawhub.ai/dweikanas/skills/communication-protocol)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with JSON event examples and structured communication rules]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces concise user-facing message guidance and structured event contract recommendations for Tidy build sessions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

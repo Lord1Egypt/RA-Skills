@@ -1,45 +1,59 @@
-## Description: <br>
-Use when a task needs a real iPhone, including operating iOS apps that have no API, exporting on-phone data, tapping, typing, scrolling, or taking screenshots through the iphone-use daemon's HTTP agent API over macOS iPhone Mirroring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when a task needs a real iPhone: operating iOS apps that have no API, exporting on-phone data, tapping, typing, scrolling, or taking phone screenshots through the iphone-use daemon's HTTP agent API over macOS iPhone Mirroring.
 
-## Publisher: <br>
-[leeguooooo](https://clawhub.ai/user/leeguooooo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leeguooooo](https://clawhub.ai/user/leeguooooo)
 
-## Use Case: <br>
-Developers and operators use this skill to drive a physical iPhone for user-directed workflows in apps without APIs, including data export, screenshots, and repeatable UI automation through the iphone-use daemon. It is suited to tasks where the agent must inspect the phone state, take one action at a time, and verify the result before continuing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad operational control over a real iPhone that may already be logged into sensitive apps. <br>
-Mitigation: Install and use it only for explicit, user-directed tasks, and avoid unattended banking, payment, two-factor authentication, messaging, account-change, or medical-data workflows. <br>
-Risk: Phone screenshots, logs, scripts, and exported files can preserve sensitive session data after the task ends. <br>
-Mitigation: Review or disable durable logs and screenshots for sensitive sessions, and delete exported phone data when the task is complete. <br>
-Risk: Actions can land in the wrong app or field if the phone state changes or a human is actively using the Mac or phone. <br>
-Mitigation: Probe status before acting, verify the foreground app or UI elements before text entry, back off when human activity is detected, and take one verified action at a time. <br>
+## Use Case:
 
+Developers and operators use this skill to guide an agent through real iPhone workflows where app APIs are unavailable, including UI automation, screenshots, data export, and repeatable task scripting.
 
-## Reference(s): <br>
-- [Server-resolved source import](https://github.com/leeguooooo/iphone-use/tree/main/skills/iphone-use) <br>
-- [ClawHub skill page](https://clawhub.ai/leeguooooo/skills/iphone-use) <br>
-- [Publisher profile](https://clawhub.ai/user/leeguooooo) <br>
-- [iphone-use repository](https://github.com/leeguooooo/iphone-use) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API calls, code, configuration] <br>
-**Output Format:** [Markdown guidance with inline bash commands and JSON API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide an agent to create replay scripts and handle screenshots or exported phone data during user-directed workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can operate a real iPhone, including sensitive apps and actions with real-world consequences.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with a phone and Mac you control, verify the screen before destructive actions, and avoid unattended payment or 2FA flows.
+
+Risk: The daemon API is protected by a bearer token, so leaked credentials could allow unwanted phone control.
+
+Mitigation: Protect the daemon token, keep it out of logs and shared files, and restrict access to trusted hosts and networks.
+
+Risk: The documented installer path relies on a remote shell command that creates persistent software on the Mac.
+
+Mitigation: Review or pin the installer before execution and confirm the LaunchAgent behavior before installing.
+
+## Reference(s):
+
+- [Server-resolved GitHub provenance](https://github.com/leeguooooo/iphone-use/tree/main/skills/iphone-use)
+- [ClawHub skill page](https://clawhub.ai/leeguooooo/skills/iphone-use)
+- [Publisher profile](https://clawhub.ai/user/leeguooooo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline JSON and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API request payloads, curl commands, troubleshooting guidance, and reusable script outlines.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

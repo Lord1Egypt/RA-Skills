@@ -1,42 +1,54 @@
-## Description: <br>
-AI writing assistant for generating article outlines, expanding paragraphs, polishing copy, checking grammar, and optimizing titles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI writing assistant for generating article outlines, expanding paragraphs, polishing copy, optimizing titles, and checking grammar.
 
-## Publisher: <br>
-[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1)
 
-## Use Case: <br>
-External users and content creators use this skill to draft article outlines, expand short passages, polish text, optimize titles, and prepare Chinese or English content for articles, technical docs, reports, email, and social media. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted writing prompts may be handled over the network by an external service. <br>
-Mitigation: Do not submit confidential, regulated, unpublished, or business-sensitive text unless the service's privacy and retention practices are acceptable. <br>
-Risk: Generated writing may be incorrect, misleading, or unsuitable for the intended audience. <br>
-Mitigation: Review and edit generated outlines, titles, and polished text before publishing or sending them. <br>
+## Use Case:
 
+External users and content creators use this skill to draft outlines, expand short text, polish existing writing, and create titles for articles, documentation, reports, email, and social media copy.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kaising-openclaw1/xiaoming-writing-assistant) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact Skill Definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and plain text with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access; supports Chinese and English; artifact documentation states a single request limit of 5000 characters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact _meta.json) <br>
+Risk: Installation examples use the ClawHub installer with @latest, which can change over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin or verify the ClawHub installer version before installing in controlled environments.
+
+Risk: The skill requires network-based AI processing, so submitted drafts may leave the local environment.
+
+Mitigation: Avoid sending confidential, regulated, or sensitive drafts unless the processing path is approved for that data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaising-openclaw1/skills/xiaoming-writing-assistant)
+- [Publisher profile](https://clawhub.ai/user/kaising-openclaw1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown and plain text responses, with documented command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports Chinese and English; documented single-request input limit is 5000 characters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

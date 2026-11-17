@@ -1,40 +1,54 @@
-## Description: <br>
-Campaign is a command-line helper for campaign content tasks such as drafting, editing, optimizing, scheduling, hashtags, hooks, calls to action, rewriting, translating, tone adjustment, headlines, outlines, status checks, and exports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Campaign is a command-line tool for campaign and content tasks, including drafting, editing, optimization, scheduling, search, status checks, and local export.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Employees, external users, and developers can use this skill to run quick campaign content workflows from the terminal and include those commands in automation pipelines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Campaign drafts and related text are stored in plaintext under ~/.local/share/campaign. <br>
-Mitigation: Avoid entering secrets, customer data, embargoed plans, or confidential business material unless you are prepared to manage or delete that directory yourself. <br>
+## Use Case:
 
+Developers and external users can use this skill to manage campaign and content notes from the terminal, review recent activity, search saved entries, and export local logs for automation workflows.
 
-## Reference(s): <br>
-- [Campaign on ClawHub](https://clawhub.ai/xueyetianya/campaign) <br>
-- [xueyetianya Publisher Profile](https://clawhub.ai/user/xueyetianya) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files] <br>
-**Output Format:** [Plain text command output with optional JSON, CSV, or TXT export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores command history and entered campaign text under ~/.local/share/campaign] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Campaign/content text may be stored in plaintext under ~/.local/share/campaign and exported locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill for confidential customer, account, strategy, credential, or regulated data unless plaintext local storage and export behavior are acceptable.
+
+Risk: The description and command documentation understate persistent storage, search, and export behavior.
+
+Mitigation: Review the script behavior before installation and make users aware of local storage, search, and export paths.
+
+## Reference(s):
+
+- [Campaign ClawHub listing](https://clawhub.ai/xueyetianya/skills/campaign)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save, search, summarize, and export plaintext campaign/content log entries under ~/.local/share/campaign.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

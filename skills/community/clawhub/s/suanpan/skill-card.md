@@ -1,45 +1,57 @@
-## Description: <br>
-将用户自然语言交易描述转换为 suanpan CLI 命令，用于记账、消费、支出、收入、转账、查账和统计等个人财务任务。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Chinese natural-language transaction descriptions into suanpan CLI commands for bookkeeping, expense and income recording, transfers, queries, and statistics.
 
-## Publisher: <br>
-[yinguobing](https://clawhub.ai/user/yinguobing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yinguobing](https://clawhub.ai/user/yinguobing)
 
-## Use Case: <br>
-Personal finance users and agents use this skill to translate Chinese natural-language bookkeeping requests into suanpan CLI commands for recording, querying, updating, importing, and analyzing financial records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can propose commands that add, update, remove, import, or otherwise change persistent financial records. <br>
-Mitigation: Require explicit user confirmation before executing mutating suanpan commands and keep backups of the finance database. <br>
-Risk: The quick installer uses a curl-to-bash pattern. <br>
-Mitigation: Inspect or pin the downloaded install script before running it, or build from source after review. <br>
-Risk: Financial account names, transaction records, and related personal finance details may be sensitive. <br>
-Mitigation: Avoid exposing private finance data in prompts, logs, shared transcripts, or generated command examples. <br>
+## Use Case:
 
+People using the suanpan personal finance CLI use this skill to turn Chinese bookkeeping requests into reviewable shell commands for adding, querying, analyzing, and managing local financial records.
 
-## Reference(s): <br>
-- [交易管理命令参考](references/commands.md) <br>
-- [统计分析命令参考](references/analytics.md) <br>
-- [数据管理命令参考](references/management.md) <br>
-- [ClawHub skill page](https://clawhub.ai/yinguobing/suanpan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces proposed suanpan CLI commands and brief guidance; users should review commands before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release evidence) <br>
+Risk: The skill references a one-line remote installer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect or verify the install script and upstream repository before running it; prefer a reviewed source build or pinned release when possible.
+
+Risk: Generated commands can add, update, remove, import, or export financial records.
+
+Mitigation: Require explicit user confirmation before executing mutating or export commands, review command arguments, and use dry-run mode for imports before committing changes.
+
+## Reference(s):
+
+- [Transaction command reference](references/commands.md)
+- [Analytics command reference](references/analytics.md)
+- [Management command reference](references/management.md)
+- [Suanpan source repository referenced by the skill](https://github.com/yinguobing/suanpan.git)
+- [Suanpan install script referenced by the skill](https://raw.githubusercontent.com/yinguobing/suanpan/main/install.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands are proposals for user review and may affect local financial records if executed.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,51 @@
-## Description: <br>
-Manage tasks, projects, and notes in tududi (self-hosted task manager). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage tasks, projects, and notes in tududi (self-hosted task manager). Use for todo lists, task management, project organization.
 
-## Publisher: <br>
-[chrisvel](https://clawhub.ai/user/chrisvel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chrisvel](https://clawhub.ai/user/chrisvel)
 
-## Use Case: <br>
-Developers, operators, and personal productivity users use this skill to let an agent manage tududi tasks, projects, inbox items, and tags through the configured tududi API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends requests to a user-configured tududi server using an API token. <br>
-Mitigation: Confirm the configured TUDUDI_URL is trusted and use the least-privilege API token available. <br>
-Risk: Delete operations can remove task or inbox items by UID. <br>
-Mitigation: Ask the agent to list or fetch the item first and repeat the exact UID before proceeding. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub tududi skill page](https://clawhub.ai/chrisvel/tududi) <br>
+## Use Case:
+
+Developers and agents use this skill to manage a trusted tududi instance through documented API calls for tasks, projects, inbox items, tags, and task filters.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: A misconfigured base URL or overly broad API token could cause the agent to access or modify the wrong tududi instance.
+
+Mitigation: Configure TUDUDI_URL only for a trusted instance and use an API token with the least access needed.
+
+Risk: The documented DELETE operations can remove tasks or inbox items when given an incorrect UID.
+
+Mitigation: Review destructive commands and confirm the target UID before execution.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown with curl examples and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a configured tududi server URL and API token; destructive operations should be confirmed against the exact UID before execution.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+**Output Type(s):** [Shell commands, API Calls, Configuration instructions, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TUDUDI_URL and TUDUDI_API_TOKEN to be configured for the target tududi instance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

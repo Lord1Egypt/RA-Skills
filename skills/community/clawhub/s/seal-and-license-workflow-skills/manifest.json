@@ -1,0 +1,99 @@
+{
+  "id": "seal-workflow-licensing-en",
+  "spec": "usk/3.0",
+  "version": "1.3.0",
+  "name": "Seal and License Workflows or Skill Packages (Anti-Piracy, Node-Authorized Delivery)",
+  "description": "For script sales and local delivery scenarios: seal Python script collections into source-bound local packages. Scripts keep their original code (import / relative paths / subprocess all supported) — MGC 1.5.4 auto-routes through sealed execution. Double-layer encryption plus link authorization binds the source node; supports single-node licensing and free-mode public distribution. Zero cloud, zero exposure.",
+  "author": "MirginCipher Team",
+  "license": "MIT",
+  "tags": ["anti-piracy", "encrypted-delivery", "zero-exposure", "workflow-licensing", "local-delivery", "node-authorized", "free-mode-distribution", "link-authorization", "sealed-cross-script", "auto-recognized-workflow", "script-sales", "small-system-delivery", "knowledge-products", "mgc", "blackbox"],
+  "platform_compatibility": ["windows", "macos", "linux"],
+  "mcp_tools": ["mgc_save", "mgc_save_file", "mgc_get", "mgc_run", "mgc_find", "mgc_list", "mgc_seal", "mgc_seal_package", "mgc_package", "mgc_delete", "mgc_open_webui", "mgc_skill"],
+  "requirements": {
+    "mgc_version": ">=1.5.4"
+  },
+  "install": "pip install mgc-blackbox>=1.5.4",
+  "runtime": "mgc",
+  "port": 57219,
+  "files": {
+    "skill": "SKILL.md",
+    "readme": "README.md",
+    "example_dir": "example/"
+  },
+  "example": {
+    "path": "./example",
+    "entry": "script_d.py",
+    "scripts": [
+      {"name": "config_a.py", "role": "config", "called_by": ["script_b", "script_c", "script_d"]},
+      {"name": "script_b.py", "role": "importer", "calls": ["config_a"]},
+      {"name": "script_c.py", "role": "subprocess_caller", "calls": ["config_a"]},
+      {"name": "script_d.py", "role": "driver", "calls": ["script_b", "script_c"]}
+    ],
+    "covers_ext08": [
+      "from_import",
+      "import",
+      "subprocess_literal_list",
+      "path_relative"
+    ]
+  },
+  "links": {
+    "homepage": "https://github.com/zkeviny/MGC-Blackbox",
+    "issues": "https://github.com/zkeviny/MGC-Blackbox/issues",
+    "contact": "mirgincipher@outlook.com"
+  },
+  "keywords": [
+    "sell python script",
+    "small system delivery",
+    "workflow licensing",
+    "sealed delivery",
+    "anti-piracy",
+    "no-rewrite sealing",
+    "sealed cross-script import",
+    "auto-recognized workflow",
+    "local delivery",
+    "one key per node",
+    "node-locked",
+    "free mode distribution",
+    "link authorization",
+    "public distribution",
+    "MGC sealed package"
+  ],
+  "changelog": [
+    {
+      "version": "1.3.0",
+      "changes": [
+        "Upgraded to MGC 1.5.4: sealing mechanism switched to double-layer encryption (ext09 mode field + ext07 source binding)",
+        "Rewrote Selling point 2: from single-layer RSA binding to double-layer encryption + link authorization, and documented free mode (omit ext04)",
+        "Added free-mode public distribution scenario (skill marketplace / public demo)",
+        "Added output_dir to every sealing example (required from 1.5.4, no desktop fallback) and documented the artifact directory layout",
+        "Corrected recognizable cross-script scope: same-package cross-subdirectory references supported from 1.5.4; added computed absolute-path subprocess",
+        "Added ext10 runtime compatibility badge and fatal path check guidance",
+        "Added error codes AMBIGUOUS_SCRIPT / NO_SCRIPT_TO_SEAL / MULTIPLE_MATCHES / MISSING_REQUIRED_FIELDS",
+        "Corrected mgc_run params: diff_1 optional, diff_3 is the most reliable way to target a single script",
+        "Added single-script capsule export and dual-path import (with the same-info_owner overwrite warning)",
+        "Added a verified 'try free mode with example/' walkthrough (no second node or key exchange needed)",
+        "Corrected import identity semantics: package records carry their own info_owner; the value passed at import only satisfies the required-field check",
+        "Normalized wording: de-AI-ified phrasing, security boundary restated as source binding and responsibility attribution",
+        "mcp_tools extended with mgc_delete and mgc_skill",
+        "Added tags/keywords: free-mode-distribution, link-authorization, public-distribution"
+      ]
+    },
+    {
+      "version": "1.2.0",
+      "changes": [
+        "Upgraded to MGC 1.5.2: included ext08 auto-recognition and sealed cross-script import",
+        "Added market scenario opener (script sales / small system delivery / workflow licensing / knowledge products)",
+        "Added problem-to-solution map (hardcoded paths, config dependencies, missing libraries, platform incompatibility)",
+        "Added error code handling (DIFF2_MISMATCH / DEP_MISSING / PLATFORM_INCOMPAT)",
+        "Rewrote Rule 1: changed from 'forbidden paths' to 'same-package paths auto-sealed'",
+        "Added tags/keywords: sealed-cross-script, auto-recognized-workflow, script-sales, small-system-delivery, local-delivery, one-key-per-node"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "changes": [
+        "Initial release. Based on MGC 1.5.0, introduces sealing & licensing of skill packages / workflow folders"
+      ]
+    }
+  ]
+}

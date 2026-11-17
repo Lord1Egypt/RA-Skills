@@ -1,45 +1,59 @@
-## Description: <br>
-NDIS Incident Reporting Specialist helps an agent triage NDIS incident descriptions, identify reportable categories and notification timeframes, flag missing facts, and draft objective incident reports for Australian disability support providers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns an AI agent into an NDIS reportable incident specialist for Australian providers, helping triage reportability, identify categories and deadlines, and draft objective incident reports.
 
-## Publisher: <br>
-[arbazex](https://clawhub.ai/user/arbazex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arbazex](https://clawhub.ai/user/arbazex)
 
-## Use Case: <br>
-Use for Australian NDIS incident-reporting support when a user describes an event involving a participant and needs reportability triage, category selection, deadline guidance, missing-information prompts, or a structured draft for initial notification or follow-up reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Australia only, for NDIS provider incident-reporting workflows. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat draft categorisation or deadlines as final legal or compliance advice. <br>
-Mitigation: Require review by a compliance lead or the NDIS Quality and Safeguards Commission before submission, especially for ambiguous, severe, or legally contested incidents. <br>
-Risk: NDIS incident-reporting rules or Commission guidance may change after the skill release. <br>
-Mitigation: Verify current categories, timeframes, and submission requirements against NDIS Commission guidance before relying on the output. <br>
-Risk: Incomplete incident facts can lead to incorrect categorisation or speculative report language. <br>
-Mitigation: Ask for missing facts, mark unknown details as to be confirmed, and draft only from information the user has provided. <br>
+## Use Case:
 
+External NDIS providers and their compliance teams use this skill to assess whether a participant incident is reportable, determine notification timing, and draft fact-based initial and follow-up reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arbazex/ndis-incident-reporting-specialist) <br>
-- [Publisher profile](https://clawhub.ai/user/arbazex) <br>
-- [NDIS Quality and Safeguards Commission](https://www.ndiscommission.gov.au) <br>
-- [NDIS incident management guidance](https://www.ndiscommission.gov.au/providers/incident-management) <br>
+### Deployment Geography for Use:
 
+Australia
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured natural-language assessment with reportability decision, category and timeframe guidance, missing-information flags, and draft incident-report sections.] <br>
-**Output Parameters:** [Incident description, participant and provider context, timing, people involved, immediate actions, notification status, and any known evidence or gaps.] <br>
-**Other Properties Related to Output:** [Outputs should remain objective, mark unknown facts as to be confirmed, avoid legal-advice claims, and avoid full participant identifiers unless explicitly provided for a real submission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 <br>
+Risk: The skill may provide incorrect or incomplete compliance guidance for ambiguous or serious incidents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm categorisation and submission obligations with a compliance lead or the NDIS Quality and Safeguards Commission before relying on the draft.
+
+Risk: Incident drafts may contain sensitive participant information.
+
+Mitigation: Use participant initials or IDs in drafts where possible and include identifying details only when required for a real submission.
+
+Risk: NDIS Commission reporting requirements may change over time.
+
+Mitigation: Verify current NDIS Commission requirements before final submission.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/arbazex/skills/ndis-incident-reporting-specialist)
+- [NDIS Quality and Safeguards Commission](https://www.ndiscommission.gov.au)
+- [NDIS Incident Management](https://www.ndiscommission.gov.au/providers/incident-management)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured incident-report sections and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces reportability analysis, notification timing, missing-information prompts, and draft incident-report text.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact documentation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

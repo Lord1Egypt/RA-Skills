@@ -1,0 +1,4 @@
+interface:
+  display_name: "YouTube video"
+  short_description: "Publish a YouTube video via Ego Lite; login-check first"
+  default_prompt: "Use youtube-video: check-login, then publish a local video file. Default visibility is private. Made for kids is No. Success is a video URL plus a processing status."

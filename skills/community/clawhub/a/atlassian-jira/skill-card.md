@@ -1,41 +1,58 @@
-## Description: <br>
-Manage Jira Cloud issues: search, create, update, comment, transition, assign, and list project and user data through Jira Cloud. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Jira Cloud issues - search, create, update, comment, transition.
 
-## Publisher: <br>
-[pejovicvuk](https://clawhub.ai/user/pejovicvuk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pejovicvuk](https://clawhub.ai/user/pejovicvuk)
 
-## Use Case: <br>
-Developers, support engineers, and project teams use this skill to manage Jira Cloud issues from an agent workflow, including searching issues, creating tickets, commenting, updating fields, assigning users, and changing workflow status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and change live Jira Cloud records using configured credentials. <br>
-Mitigation: Install only in trusted workspaces, use a least-privileged Jira API token limited to intended projects, and require explicit human approval before create, comment, transition, assign, or update commands. <br>
-Risk: User and project enumeration can expose Jira account and project metadata. <br>
-Mitigation: Limit broad user searches and project listing to cases where the task needs them, and avoid sharing returned account details outside the authorized workspace. <br>
+## Use Case:
 
+Developers and teams use this skill to let an agent search, inspect, create, comment on, assign, transition, and update Jira Cloud issues through a shell wrapper.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pejovicvuk/atlassian-jira) <br>
-- [Atlassian API token management](https://id.atlassian.com/manage-profile/security/api-tokens) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON responses from a bash CLI wrapper, with Markdown setup and command guidance in the skill documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ATLASSIAN_URL, ATLASSIAN_EMAIL, ATLASSIAN_API_TOKEN, curl, and python3; write commands can modify live Jira Cloud records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Crafted issue text passed to create, comment, or update commands can make the shell wrapper run local code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid untrusted issue text until argument handling is fixed, and review proposed text before invoking mutating commands.
+
+Risk: Create, comment, transition, assign, and update commands can change live Jira data without built-in confirmation.
+
+Mitigation: Require explicit human confirmation for mutating commands and use a dedicated low-privilege Jira account or token.
+
+Risk: The skill requires Jira API credentials.
+
+Mitigation: Provide credentials through managed environment variables or secrets and scope Jira permissions to the minimum needed.
+
+## Reference(s):
+
+- [ClawHub Jira skill page](https://clawhub.ai/pejovicvuk/skills/atlassian-jira)
+- [Atlassian API tokens](https://id.atlassian.com/manage-profile/security/api-tokens)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, JSON, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ATLASSIAN_URL, ATLASSIAN_EMAIL, ATLASSIAN_API_TOKEN, curl, and python3.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

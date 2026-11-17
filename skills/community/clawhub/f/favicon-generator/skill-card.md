@@ -1,42 +1,55 @@
-## Description: <br>
-Guides favicon and app icon implementation for brand consistency across browser tabs, bookmarks, mobile home screens, and Google Search results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents that implement, optimize, or audit favicon and app icon assets for websites, PWAs, browser tabs, bookmarks, mobile home screens, and Google Search results.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Developers and site maintainers use this skill to plan, implement, or audit favicon, app icon, Apple Touch Icon, PWA icon, and Google Search favicon coverage for web projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read local project-context files for brand and visual identity details. <br>
-Mitigation: Keep secrets, credentials, and unrelated private data out of project-context files before using the skill. <br>
-Risk: Incorrect favicon guidance can leave icons missing, stale, uncrawlable, or inconsistent across browsers, mobile launchers, PWAs, and Google Search. <br>
-Mitigation: Review generated favicon tags, manifest entries, file sizes, cache strategy, crawlability, and platform-specific assets before release. <br>
+## Use Case:
 
+Developers and site maintainers use this skill to produce favicon size checklists, format recommendations, implementation notes, Google Search favicon checks, and PWA manifest guidance tailored to a site's stack and brand assets.
 
-## Reference(s): <br>
-- [Google Search Central favicon documentation](https://developers.google.com/search/docs/appearance/favicon-in-search) <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/favicon-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/kostja94) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown with HTML examples and implementation checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May tailor recommendations to the detected site stack, PWA status, existing logo assets, and project brand context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill may read local project-context files for branding details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the referenced project context and generated recommendations before applying favicon or app icon changes.
+
+Risk: Incorrect favicon guidance can lead to missing icons, poor brand display, or delayed Google Search updates.
+
+Mitigation: Verify generated asset sizes, homepage link tags, crawlability, and PWA manifest entries against the target site before release.
+
+## Reference(s):
+
+- [Google Search Central favicon documentation](https://developers.google.com/search/docs/appearance/favicon-in-search)
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/favicon-generator)
+- [Publisher profile](https://clawhub.ai/user/kostja94)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with HTML link tag examples and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include stack-specific favicon, Apple Touch Icon, Google Search, and PWA manifest recommendations.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

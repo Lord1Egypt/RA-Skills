@@ -1,42 +1,55 @@
-## Description: <br>
-GoalGetter helps an agent create, track, and complete tasks and goals with streak tracking in local markdown files under ~/.openclaw/goalgetter/. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GoalGetter helps OpenClaw agents create, track, complete, and display tasks and goals using local markdown files with streak tracking.
 
-## Publisher: <br>
-[Steffano198](https://clawhub.ai/user/Steffano198) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[steffano198](https://clawhub.ai/user/steffano198)
 
-## Use Case: <br>
-OpenClaw users use this skill to keep local task lists, track goals, and maintain habit streaks in human-readable markdown files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates and updates local markdown files under ~/.openclaw/goalgetter/. <br>
-Mitigation: Review task and goal text before writing, and avoid storing secrets, tokens, or sensitive personal data in these files. <br>
-Risk: Manual installation from a live repository may differ from the reviewed ClawHub release. <br>
-Mitigation: Prefer the reviewed ClawHub package for installation. <br>
+## Use Case:
 
+External users and developers use GoalGetter to manage personal or team tasks, goals, and habit streaks through an agent workflow backed by local markdown files.
 
-## Reference(s): <br>
-- [GoalGetter ClawHub page](https://clawhub.ai/Steffano198/goalgetter) <br>
-- [GoalGetter README](README.md) <br>
-- [GoalGetter issue tracker](https://github.com/Steffano198/goalgetter/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown files and concise assistant responses with optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores task and goal state under ~/.openclaw/goalgetter/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Task names, goal names, streak counts, and completion history are stored in local markdown files under ~/.openclaw/goalgetter/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive personal or work information unless local plaintext storage is acceptable for the environment.
+
+Risk: Casual phrasing could be interpreted as a request to update a task or goal streak.
+
+Mitigation: Use explicit commands for task completion and goal updates, and review the current markdown state before modifying files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/steffano198/skills/goalgetter)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and local file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes task, goal, streak, and completion history to local markdown files under ~/.openclaw/goalgetter/.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

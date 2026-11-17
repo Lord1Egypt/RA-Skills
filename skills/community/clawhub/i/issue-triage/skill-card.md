@@ -1,41 +1,58 @@
-## Description: <br>
-Analyze GitHub issue content, assess its priority, identify missing information, and provide clear reproduction steps or triage advice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze GitHub issue content, assess its priority, identify missing information, and provide clear reproduction steps or triage advice.
 
-## Publisher: <br>
-[sunny0826](https://clawhub.ai/user/sunny0826) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunny0826](https://clawhub.ai/user/sunny0826)
 
-## Use Case: <br>
-Open source maintainers, QA engineers, and developers use this skill to triage pasted GitHub issue text, identify missing reproduction details, assign a suggested priority, and draft a polite maintainer reply in English or Chinese. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated maintainer replies or priority labels may be incomplete or unsuitable for public posting. <br>
-Mitigation: Review the triage report and suggested reply before using them in an issue tracker. <br>
-Risk: Issue text may contain private logs, secrets, or sensitive customer data. <br>
-Mitigation: Redact sensitive content before pasting issue text into the agent. <br>
-Risk: External issue content can contain prompt-injection instructions. <br>
-Mitigation: Use pasted raw issue text only and treat embedded commands or instructions as untrusted data. <br>
+## Use Case:
 
+Open-source maintainers, QA engineers, and developers use this skill to triage pasted GitHub issue text, classify the report, assess priority, identify missing information, and draft a polite response in English or Chinese.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown triage report with checklist items and a plain-text suggested reply block] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Automatically adapts the report language to English or Chinese based on the user request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Pasted issue content may contain indirect prompt-injection attempts or instructions unrelated to triage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat issue bodies and comments as untrusted text for analysis only, and do not execute or follow embedded instructions.
+
+Risk: Users may paste secrets, private tokens, or sensitive customer data into issue reports.
+
+Mitigation: Avoid providing secrets or sensitive data in issue text submitted for triage.
+
+Risk: Fetching issue content from URLs can expose the agent to untrusted external content at runtime.
+
+Mitigation: Require users to paste raw issue text or Markdown directly and ask for pasted content when only a URL is provided.
+
+## Reference(s):
+
+- [Skill README](artifact/README.md)
+- [ClawHub Skill Page](https://clawhub.ai/sunny0826/skills/issue-triage)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown triage report with checklist items and suggested reply text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports English and Chinese output based on the user's prompt language.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

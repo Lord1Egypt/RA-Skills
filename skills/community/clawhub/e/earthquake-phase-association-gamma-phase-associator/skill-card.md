@@ -1,42 +1,50 @@
-## Description: <br>
-An overview of the python package for running the GaMMA earthquake phase association algorithm. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An overview of the python package for running the GaMMA earthquake phase association algorithm.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wu-uk](https://clawhub.ai/user/wu-uk)
 
-## Use Case: <br>
-Developers and geoscience engineers use this skill to understand how to prepare phase picks, station metadata, and configuration for GaMMA earthquake phase association, then interpret the returned events and pick assignments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The documented GitHub-based pip install command can execute third-party package installation code. <br>
-Mitigation: Review or pin the referenced repository before installation and use a virtual environment or container. <br>
-Risk: Incorrect phase pick, station coordinate, velocity model, or DBSCAN configuration values can produce misleading earthquake associations. <br>
-Mitigation: Validate input schemas, coordinate projections, velocity assumptions, and association outputs against domain expectations before operational use. <br>
+## Use Case:
 
+Developers, researchers, and seismic data engineers use this skill to understand how GaMMA associates P/S phase picks with earthquake events and how to prepare pick, station, and configuration inputs for the core API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wu-uk/earthquake-phase-association-gamma-phase-associator) <br>
-- [GaMMA project repository](https://github.com/AI4EPS/GaMMA) <br>
-- [GaMMA installation repository](https://github.com/wayneweiqiang/GaMMA.git) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with Python examples, shell commands, tables, and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output; no hidden automation or credential access is indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The installation command uses an unpinned mutable GitHub dependency, and the security evidence says the relationship between the installed wayneweiqiang/GaMMA repository and the artifact's stated AI4EPS/GaMMA derivative source is not explained.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin the GaMMA dependency before installation, prefer a trusted release or fully reviewed commit hash, install in an isolated virtual environment or container, and confirm the intended upstream repository before use.
+
+## Reference(s):
+
+- [GaMMA repository named in skill artifact](https://github.com/AI4EPS/GaMMA)
+- [GaMMA install dependency named in skill artifact](https://github.com/wayneweiqiang/GaMMA.git)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with API signatures, tables, and inline Python and shell snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documents expected DataFrame inputs, configuration keys, return values, and practical usage notes for GaMMA association workflows.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,48 @@
-## Description: <br>
-Repo Scout helps agents discover, evaluate, and rank GitHub repositories by ecosystem or domain, producing a structured markdown ranking with repository health and contribution-friendliness signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover, evaluate, and rank GitHub repositories in any ecosystem or domain. Produces a structured ranking document with star counts, languages, issue health, and contribution friendliness scores.
 
-## Publisher: <br>
-[sliverp](https://clawhub.ai/user/sliverp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[sliverp](https://clawhub.ai/user/sliverp)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, engineers, and technical evaluators use this skill to scout open-source GitHub projects for contribution targeting, technology evaluation, competitive analysis, and ecosystem exploration.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: GitHub authentication and broad token access may expose private repository access or sensitive credentials during repository scouting.
+
+Mitigation: Prefer unauthenticated public searches when possible; when authentication is necessary, use interactive gh auth login with minimum required permissions and do not paste GitHub tokens into chat.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, maintainers, and technical evaluators use this skill to scout open-source projects, compare technology options, plan contribution campaigns, or survey an ecosystem. It guides repository search, scoring, filtering, and markdown report creation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may require GitHub authentication for repository research, and mishandled tokens could expose account or private repository access. <br>
-Mitigation: Authenticate locally with GitHub CLI where possible, avoid pasting tokens into chat or generated files, and use fine-grained tokens with the narrowest read access needed. <br>
+**Output Format:** [Markdown report with repository rankings, skipped repositories, and detailed profiles]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [The report is written as {workspace}/ecosystem-top{N}.md.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with inline shell commands and structured tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces an ecosystem ranking document such as {workspace}/ecosystem-top{N}.md.] <br>
+1.0.0 (source: release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

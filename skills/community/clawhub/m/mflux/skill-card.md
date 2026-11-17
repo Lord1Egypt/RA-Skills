@@ -1,41 +1,59 @@
-## Description: <br>
-Local image generation using Apple MLX via mflux with FLUX.2 Klein and Z-Image Turbo models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local image generation using Apple MLX via mflux with FLUX.2 Klein and Z-Image Turbo models.
 
-## Publisher: <br>
-[pjain](https://clawhub.ai/user/pjain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[pjain](https://clawhub.ai/user/pjain)
 
-## Use Case: <br>
-Developers and content-creation agents use this skill to generate, edit, and transform images locally on Apple Silicon Macs using mflux CLI commands and Python examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The setup process installs an external Python package and may download large model files during installation or first use. <br>
-Mitigation: Verify the intended mflux package and model sources before installation, and plan for network access and persistent local model cache storage. <br>
-Risk: Image-generation commands write local output files and may use substantial RAM and disk space. <br>
-Mitigation: Use the documented output paths, quantization options, and model-size guidance to control storage and memory use on Apple Silicon Macs. <br>
+## Use Case:
 
+Developers and content creation agents use this skill to install and invoke mflux for local image generation and editing on Apple Silicon Macs. It guides CLI and Python usage, model selection, quantization, and cache expectations.
 
-## Reference(s): <br>
-- [MFlux Skill for OpenClaw release page](https://clawhub.ai/pjain/mflux) <br>
-- [Publisher profile](https://clawhub.ai/user/pjain) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands, Python snippets, model-selection guidance, and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated image files are produced locally by mflux when the agent or user runs the provided commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: First use contacts external package and model download sources despite local generation after setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after confirming trust in the upstream mflux package and the selected Hugging Face model repositories.
+
+Risk: Model downloads and local caches can consume substantial disk space.
+
+Mitigation: Confirm sufficient free disk space for 8-32GB downloads and plan cache management for ~/.cache/huggingface/.
+
+Risk: Lower-memory Apple Silicon systems may fail or perform poorly with larger models.
+
+Mitigation: Use quantization options or smaller supported models when running on 8GB or otherwise constrained Macs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pjain/skills/mflux)
+- [Artifact README](artifact/README.md)
+- [Artifact SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May result in local image files when generated commands or code are executed; first use downloads model weights and uses local cache space.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

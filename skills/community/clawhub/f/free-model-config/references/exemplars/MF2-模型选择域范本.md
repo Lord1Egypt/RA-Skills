@@ -8,21 +8,24 @@
 
 | 平台 | 模型名称 | 能力 | 接口地址 |
 |------|---------|------|---------|
-| Agnes AI | agnes-2.0-flash | 文本/图像/视频生成 | https://apihub.agnes-ai.com/v1 |
-| 智谱 BigModel | glm-4.7-flash | 文本生成 | https://open.bigmodel.cn/api/paas/v4/ |
-| 商汤 SenseNova | sensenova-6.7-flash-lite | 文本生成 | https://token.sensenova.cn/v1 |
-| 小米 MIMO | mimo-v2.5-pro | 文本生成 | https://token-plan-cn.xiaomimimo.com/v1 |
-| 美团 LongCat | LongCat-2.0 | 文本生成 | https://api.longcat.chat/openai |
+| Agnes AI | agnes-3.0-flash（推荐）/ agnes-2.5-flash / agnes-image-2.5-flash / agnes-video-2.5(-flash) | 文本 / 图像 / 视频生成 | https://apihub.agnes-ai.com/v1 |
+| 智谱 BigModel | glm-4.7-flash（推荐，部分免费）/ glm-5.3-flash（付费） | 文本、视觉、图像、视频 | https://open.bigmodel.cn/api/paas/v4 |
+| 商汤 SenseNova | sensenova-6.8-flash（推荐）/ u1.5-fast / deepseek-flash / glm-5.2 / kimi-k3 | 多模态对话 / 图像 / 推理 | https://token.sensenova.cn/v1 |
+| 小红书 dots studio | dots3-note-prev（推荐） | 长上下文 / 多模态 / 工具调用 | https://note3-prev-api.askdiandian.com/v1 |
+| 美团 LongCat | LongCat-2.5（推荐） | 文本 / 视觉 / Agentic 编程 | https://api.longcat.chat/openai |
+| 小米 MIMO | mimo-v2.6-pro（推荐）/ mimo-v2.6-flash / mimo-v2.5-asr / mimo-v2.5-tts 系列 | 文本 / 全模态 / 语音识别 / 语音合成 | https://token-plan-cn.xiaomimimo.com/v1 |
 
 2. **平台能力对比**：
 
-| 能力维度 | Agnes AI | 智谱 BigModel | 商汤 SenseNova | 小米 MIMO | 美团 LongCat |
-|---------|----------|---------------|----------------|-----------|--------------|
-| 文本生成 | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 图像生成 | ✅ | ❌ | ❌ | ❌ | ❌ |
-| 视频生成 | ✅ | ❌ | ❌ | ❌ | ❌ |
-| 中文支持 | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 免费额度 | 有限 | 有限 | 有限 | 有限 | 有限 |
+| 能力维度 | Agnes AI | 智谱 BigModel | 商汤 SenseNova | 小红书 dots | 美团 LongCat | 小米 MIMO |
+|---------|----------|---------------|----------------|-------------|--------------|-----------|
+| 文本生成 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 图像生成 | ✅ | ✅（免费 CogView-3-Flash） | ✅（U1.5） | ❌ | ❌ | ❌ |
+| 视频生成 | ✅ | ✅（免费 CogVideoX-Flash） | ❌ | ❌ | ❌ | ❌ |
+| 语音识别/合成 | ❌ | ❌（付费） | ❌ | ❌ | ❌ | ✅ |
+| 超长上下文 | ✅（1M） | ✅（1M） | ✅（1M） | ✅（512K） | ✅（1M） | ✅（1M） |
+| 中文支持 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 免费额度 | 核心模型限流免费 | 部分免费（仅免费档小模型） | 积分制 | 预览期限时免费 | 免费额度 | 新客额度 + 订阅 |
 
 3. **平台选择理由**：
 
@@ -37,11 +40,12 @@
 
 | 平台 | 优点 | 缺点 |
 |------|------|------|
-| Agnes AI | 多模态能力强 | 需要配置 |
-| 智谱 BigModel | 中文能力强 | 仅文本 |
-| 商汤 SenseNova | 稳定性好 | 仅文本 |
-| 小米 MIMO | 响应速度快 | 仅文本 |
-| 美团 LongCat | 免费额度高 | 仅文本 |
+| Agnes AI | 三模态免费、1M 上下文、接口规范 | 视频仅 flash 档免费，高清按秒计费 |
+| 智谱 BigModel | 免费档覆盖文本/视觉/图像/视频四模态 | 仅小模型免费，旗舰/OCR/语音付费 |
+| 商汤 SenseNova | 多模态 Agent 强、免费额度可用旗舰 | 积分制，生图链接 24 小时有效 |
+| 小红书 dots | 512K 上下文、多模态、预览期免费且额度明确 | 认证头非标准（api-key），预览版稳定性未知 |
+| 美团 LongCat | 1M 上下文、256K 输出，免费额度高 | 仅文本/视觉，无生成能力 |
+| 小米 MIMO | 全模态 + 语音，1M 上下文 | 免费依赖新客额度/订阅；旧版 ID 已停用 |
 
 **平台推荐**：
 
@@ -53,9 +57,11 @@
 
 | 用户需求 | 推荐平台 | 推荐模型 | 推荐理由 |
 |---------|---------|---------|---------|
-| 图像生成 | Agnes AI | agnes-image-2.0-flash | 唯一支持图像生成的免费模型 |
-| 视频生成 | Agnes AI | agnes-video-v2.0 | 唯一支持视频生成的免费模型 |
-| 文本生成 | models.json 中第一个可用模型 | - | 优先使用已配置的模型 |
+| 图像生成 | Agnes AI | agnes-image-2.5-flash | 免费、支持 1K–4K 与多图合成；备选智谱 cogview-3-flash |
+| 视频生成 | Agnes AI | agnes-video-2.5-flash（720P 免费）/ agnes-video-2.5（高清付费） | 支持文生/首尾帧/多模态参考；备选智谱 cogvideox-flash |
+| 文本生成 | models.json 中第一个可用模型 | - | 优先使用已配置的模型；新装建议 agnes-3.0-flash |
+| 超长文档 / 图文混合 | 小红书 dots studio | dots3-note-prev | 512K 上下文，预览期免费 |
+| 语音识别/合成 | 小米 MIMO | mimo-v2.5-asr / mimo-v2.5-tts | 国内可用、支持音色克隆与设计 |
 
 展示推荐结果，询问用户是否接受或自行选择。
 
@@ -76,17 +82,21 @@
 ## 平台列表
 | 平台 | 模型名称 | 能力 | 接口地址 |
 |------|---------|------|---------|
-| Agnes AI | agnes-2.0-flash | 文本/图像/视频生成 | https://apihub.agnes-ai.com/v1 |
-| 智谱 BigModel | glm-4.7-flash | 文本生成 | https://open.bigmodel.cn/api/paas/v4/ |
+| Agnes AI | agnes-3.0-flash（推荐） | 文本 / 图像 / 视频生成 | https://apihub.agnes-ai.com/v1 |
+| 智谱 BigModel | glm-4.7-flash（推荐） | 文本 / 视觉 / 图像 / 视频（部分免费） | https://open.bigmodel.cn/api/paas/v4 |
+| 商汤 SenseNova | sensenova-6.8-flash（推荐） | 多模态对话 / 图像 / 推理 | https://token.sensenova.cn/v1 |
+| 小红书 dots | dots3-note-prev（推荐） | 长上下文 / 多模态 / 工具调用 | https://note3-prev-api.askdiandian.com/v1 |
+| 美团 LongCat | LongCat-2.5（推荐） | 文本 / 视觉 / Agentic 编程 | https://api.longcat.chat/openai |
+| 小米 MIMO | mimo-v2.6-pro（推荐） | 文本 / 全模态 / 语音 | https://token-plan-cn.xiaomimimo.com/v1 |
 
 ## 平台能力对比
-| 能力维度 | Agnes AI | 智谱 BigModel |
-|---------|----------|---------------|
-| 文本生成 | ✅ | ✅ |
-| 图像生成 | ✅ | ❌ |
-| 视频生成 | ✅ | ❌ |
-| 中文支持 | ✅ | ✅ |
-| 免费额度 | 有限 | 有限 |
+| 能力维度 | Agnes AI | 智谱 BigModel | 商汤 SenseNova | 小红书 dots | 美团 LongCat | 小米 MIMO |
+|---------|----------|---------------|----------------|-------------|--------------|-----------|
+| 文本生成 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 图像生成 | ✅ | ✅ | ✅ | ❌ | ❌ | ❌ |
+| 视频生成 | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ |
+| 中文支持 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 免费额度 | 核心模型限流免费 | 部分免费（仅小模型） | 积分制 | 预览期限时免费 | 免费额度 | 新客额度 + 订阅 |
 
 ## 平台选择理由
 选择 Agnes AI 的理由：
@@ -97,8 +107,12 @@
 ## 平台优缺点分析
 | 平台 | 优点 | 缺点 |
 |------|------|------|
-| Agnes AI | 多模态能力强 | 需要配置 |
-| 智谱 BigModel | 中文能力强 | 仅文本 |
+| Agnes AI | 三模态免费、1M 上下文 | 视频仅 flash 档免费 |
+| 智谱 BigModel | 免费档覆盖四模态 | 仅小模型免费 |
+| 商汤 SenseNova | 免费额度可用旗舰 | 积分制、生图链接 24 小时有效 |
+| 小红书 dots | 512K 上下文、预览期免费 | 认证头非标准、能力单一 |
+| 美团 LongCat | 1M 上下文、256K 输出 | 仅文本/视觉 |
+| 小米 MIMO | 全模态 + 语音 | 免费依赖新客额度/订阅 |
 
 ## 平台推荐
 根据用户需求，推荐使用 Agnes AI：
@@ -117,11 +131,12 @@
 
 | 平台 | 模型名称 | 文本生成 | 图像生成 | 视频生成 | 中文支持 |
 |------|---------|---------|---------|---------|---------|
-| Agnes AI | agnes-2.0-flash | ✅ | ✅ | ✅ | ✅ |
-| 智谱 BigModel | glm-4.7-flash | ✅ | ❌ | ❌ | ✅ |
-| 商汤 SenseNova | sensenova-6.7-flash-lite | ✅ | ❌ | ❌ | ✅ |
-| 小米 MIMO | mimo-v2.5-pro | ✅ | ❌ | ❌ | ✅ |
-| 美团 LongCat | LongCat-2.0 | ✅ | ❌ | ❌ | ✅ |
+| Agnes AI | agnes-3.0-flash / agnes-2.5-flash | ✅ | ✅（image-2.5-flash） | ✅（video-2.5-flash） | ✅ |
+| 智谱 BigModel | glm-4.7-flash / glm-4.6v-flash | ✅ | ✅（cogview-3-flash） | ✅（cogvideox-flash） | ✅ |
+| 商汤 SenseNova | sensenova-6.8-flash / u1.5-fast / deepseek-flash / glm-5.2 / kimi-k3 | ✅ | ✅ | ❌ | ✅ |
+| 小红书 dots | dots3-note-prev | ✅ | ❌ | ❌ | ✅ |
+| 美团 LongCat | LongCat-2.5 | ✅ | ❌ | ❌ | ✅ |
+| 小米 MIMO | mimo-v2.6-pro / mimo-v2.6-flash / mimo-v2.5-asr / mimo-v2.5-tts 系列 | ✅ | ❌ | ❌ | ✅ |
 
 2. **需求匹配度分析**：
 
@@ -169,8 +184,12 @@
 ## 模型能力列表
 | 平台 | 模型名称 | 文本生成 | 图像生成 | 视频生成 | 中文支持 |
 |------|---------|---------|---------|---------|---------|
-| Agnes AI | agnes-2.0-flash | ✅ | ✅ | ✅ | ✅ |
-| 智谱 BigModel | glm-4.7-flash | ✅ | ❌ | ❌ | ✅ |
+| Agnes AI | agnes-3.0-flash | ✅ | ✅ | ✅ | ✅ |
+| 智谱 BigModel | glm-4.7-flash | ✅ | ✅ | ✅ | ✅ |
+| 商汤 SenseNova | sensenova-6.8-flash | ✅ | ✅ | ❌ | ✅ |
+| 小红书 dots | dots3-note-prev | ✅ | ❌ | ❌ | ✅ |
+| 美团 LongCat | LongCat-2.5 | ✅ | ❌ | ❌ | ✅ |
+| 小米 MIMO | mimo-v2.6-pro | ✅ | ❌ | ❌ | ✅ |
 
 ## 需求匹配度分析
 | 能力维度 | 用户需求 | 平台能力 | 匹配度 |
@@ -262,8 +281,8 @@
 
 ```json
 {
-  "id": "agnes-2.0-flash",
-  "name": "agnes-2.0-flash",
+  "id": "agnes-3.0-flash",
+  "name": "agnes-3.0-flash",
   "vendor": "Custom",
   "url": "https://apihub.agnes-ai.com/v1",
   "apiKey": "your_api_key_here",
@@ -326,16 +345,16 @@
 - 如果需要创造性输出，建议设置 temperature 为 0.7-0.9
 - 如果需要多样性强的输出，建议设置 top_p 为 0.9-1.0
 
-**视频参数自动推荐规则**：
+**视频参数自动推荐规则（Video 2.5）**：
 
-| 用户意图 | 分辨率 | 帧数 | 帧率 | 预计时长 |
-|---------|--------|------|------|---------|
-| 最长视频 | 480p (854×480) | 961 | 24fps | ~40 秒 |
-| 高质量 | 720p (1088×832) | 409 | 24fps | ~17 秒 |
-| 快速生成 | 1080p (1920×1080) | 169 | 24fps | ~7 秒 |
-| 默认 | 720p (1088×832) | 121 | 24fps | ~5 秒 |
+| 用户意图 | 档位 | 时长 | 画幅 | 说明 |
+|---------|------|------|------|------|
+| 最长单段 | 720P | "12" | 按画幅 | 单段上限 |
+| 高质量 | 2K 或 1080P | "8" | 按画幅 | 按秒计费 |
+| 快速/低成本 | 720P（flash） | "4" | 按画幅 | 限时免费 |
+| 默认 | 720P | "5" | 16:9 | |
 
-向用户展示推荐参数和理由，询问是否接受或自定义。
+需要 >12 秒 → `long-video --segments N --segment-seconds 10` 分段拼接。向用户展示推荐参数和理由，询问是否接受或自定义。
 
 **组装顺序**：参数识别 → 参数设置 → 参数验证
 

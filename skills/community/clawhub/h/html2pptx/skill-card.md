@@ -1,43 +1,62 @@
-## Description: <br>
-Converts HTML slide decks, especially frontend-slides output, into editable PowerPoint (PPTX) files while preserving slide structure, text, lists, images, and basic styling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts HTML presentations, especially frontend-slides output, into editable PowerPoint (.pptx) files while preserving slide structure, text, lists, images, and basic colors.
 
-## Publisher: <br>
-[liberalchang](https://clawhub.ai/user/liberalchang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liberalchang](https://clawhub.ai/user/liberalchang)
 
-## Use Case: <br>
-Developers and presentation authors use this skill to convert local HTML presentation files into editable PPTX decks, including batch-style workflows where generated HTML slides need to become PowerPoint files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documentation describes prompt-generation and virtual-environment behavior that is not supported by the reviewed converter entry point. <br>
-Mitigation: Use the local Python converter on explicitly chosen HTML files and verify the available entry point before automating workflows. <br>
-Risk: Dependency hygiene issues may cause behavior to change across environments. <br>
-Mitigation: Pin and review dependencies before shared or production use, then test conversion results with representative slide decks. <br>
-Risk: The converter parses local HTML and writes PPTX files, so unexpected input can produce incomplete or inaccurate slides. <br>
-Mitigation: Run it on trusted or reviewed HTML inputs and inspect generated PPTX files before distributing them. <br>
+## Use Case:
 
+Developers and presentation authors use this skill to convert HTML slide decks into editable PPTX files for presentation workflows.
 
-## Reference(s): <br>
-- [ClawHub release page for html2pptx](https://clawhub.ai/liberalchang/html2pptx) <br>
-- [Publisher profile: liberalchang](https://clawhub.ai/user/liberalchang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [PPTX files with Markdown usage guidance and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally against explicit input HTML files and writes a PPTX output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Dependency hygiene and stale package metadata require caution before use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill in a least-privileged project environment, preferably after pinning dependencies or using a reviewed lockfile.
+
+Risk: The converter saves output to the path provided by the caller.
+
+Mitigation: Review the output path before execution to avoid overwriting important files.
+
+Risk: Sensitive or untrusted HTML is parsed locally.
+
+Mitigation: Avoid processing sensitive or untrusted HTML unless the local parsing and dependency risks are acceptable.
+
+Risk: Complex CSS animations, gradients, custom fonts, and absolute positioning may not survive conversion cleanly.
+
+Mitigation: Review the generated PPTX manually and adjust formatting before sharing or publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liberalchang/skills/html2pptx)
+- [Publisher profile](https://clawhub.ai/user/liberalchang)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated .pptx files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local PPTX files from provided HTML input paths; conversion fidelity depends on supported slide structure and CSS.]
+
+## Skill Version(s):
+
+3.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

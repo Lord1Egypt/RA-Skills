@@ -1,44 +1,51 @@
-## Description: <br>
-使用 mopng.cn (MoPNG) API 进行图片处理，包括智能抠图、高清放大、智能扩图、图片翻译、文生图、图生图等功能。支持 API Key 鉴权；处理本地文件时会上传至 MoPNG 服务。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通过 qise-studio/motu-agent 的 MoPNG Agent OpenAPI 协商完成图片生成与修图。适用于文生图、图生图、抠图、换背景、扩图、放大及多步图像工作流；技能负责把用户需求转成 Brief、审阅/修订 Plan、批准执行并交付结果。
 
-## Publisher: <br>
-[jkin8010](https://clawhub.ai/user/jkin8010) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jkin8010](https://clawhub.ai/user/jkin8010)
 
-## Use Case: <br>
-Developers, creative operators, and external users use this skill to invoke MoPNG image APIs from agent workflows for background removal, upscaling, outpainting, image translation, text-to-image generation, image-to-image editing, and model listing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected images and generation or editing prompts are sent to MoPNG for processing. <br>
-Mitigation: Avoid sensitive images or prompts unless the user accepts MoPNG handling policies. <br>
-Risk: The MoPNG API key can consume account credits and may be exposed if pasted into conversations or public files. <br>
-Mitigation: Store MOPNG_API_KEY only in private client, host, or local environment configuration. <br>
-Risk: Raw main-branch install URLs can change outside the reviewed release. <br>
-Mitigation: Prefer the reviewed ClawHub release or a pinned source when installing. <br>
+## Use Case:
 
+Developers and OpenClaw agents use this skill to turn image-generation and editing requests into a proposed plan, negotiate revisions, and deliver generated image links or text results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jkin8010/mopng-api) <br>
-- [MoPNG API documentation](https://mopng.cn/agent/docs) <br>
-- [MoPNG API key portal](https://mopng.cn/agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text, Shell commands, Configuration instructions, API Calls] <br>
-**Output Format:** [Image files with text status output and MEDIA paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes generated or processed images under outputs/mopng-api; requires MOPNG_API_KEY and may consume MoPNG account credits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.7 (source: server release metadata; artifact _meta.json and pyproject.toml list 0.1.0) <br>
+Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and scan skill before deployment.
+
+## Reference(s):
+
+- [Source repository](https://github.com/jkin8010/mopng-api)
+- [Server-resolved source commit](https://github.com/jkin8010/mopng-api/commit/093ae39b1b7c564b68b271f6a26373b4d9386e46)
+- [ClawHub release page](https://clawhub.ai/jkin8010/skills/mopng-api)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Image URLs]
+
+**Output Format:** [Generated image links or text results with plan and execution summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include plan details, service-reported cost and time estimates, execution status, and result links.]
+
+## Skill Version(s):
+
+0.1.9 (source: server-resolved ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

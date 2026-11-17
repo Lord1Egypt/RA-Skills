@@ -1,38 +1,53 @@
-## Description: <br>
-Book language-tutor services through Lokuli MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book language-tutor services through Lokuli MCP by searching providers, checking availability, and creating bookings.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users use this skill to search for language-tutor services through Lokuli, check provider availability, and create a booking after confirming the provider, service, time, and contact details. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send personal contact details and create a real tutor booking without clear consent safeguards. <br>
-Mitigation: Before calling create_booking, show the provider, service, date, time, contact details to be shared, price if available, and cancellation terms, then require explicit user confirmation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Book Language Tutor on ClawHub](https://clawhub.ai/edwardrodriguez703-design/book-language-tutor) <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users can ask an agent to find language tutors, check appointment availability, and create a tutor booking through Lokuli.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration] <br>
-**Output Format:** [Markdown with JSON-RPC examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create real booking requests that include customer contact details.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The booking flow can send customer name, email, phone number, and appointment details to an external booking service.
+
+Mitigation: Ask for explicit user confirmation before creating a booking, and request personal contact details only when the user is ready to submit them.
+
+Risk: The skill can create bookings through an external service without the source clearly requiring explicit confirmation.
+
+Mitigation: Present the provider, service, time slot, and contact details for review before calling the booking action.
+
+## Reference(s):
+
+- [Book Language Tutor listing](https://clawhub.ai/edwardrodriguez703-design/skills/book-language-tutor)
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Text, Guidance]
+
+**Output Format:** [JSON-RPC tool calls and conversational text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Lokuli MCP search, availability, and booking actions; booking may require customer contact details.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

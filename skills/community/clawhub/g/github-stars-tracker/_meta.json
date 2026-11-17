@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn78gtvscyas8xfjhqjf6sj8x1831j1y",
-  "slug": "github-stars-tracker",
   "version": "1.0.0",
-  "publishedAt": 1773647426529
+  "openclaw": {
+    "emoji": "🌟",
+    "requires": {
+      "bins": ["python3"],
+      "env": ["GITHUB_TOKEN"]
+    },
+    "install": []
+  }
 }

@@ -1,43 +1,56 @@
-## Description: <br>
-Provides daily Shopify sales summaries, low-stock alerts, and competitor price tracking using a user-provided Shopify API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides daily Shopify sales summaries, low stock alerts, and competitor price tracking using a user-provided Shopify API key.
 
-## Publisher: <br>
-[jamod](https://clawhub.ai/user/jamod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jamod](https://clawhub.ai/user/jamod)
 
-## Use Case: <br>
-Store operators and developers can use this skill to have an agent summarize Shopify sales, flag low inventory, and monitor competitor prices. The skill requires a user-provided Shopify API key and explicit alert destinations for email or Telegram notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive Shopify store data and may send sales or inventory information to outbound alert channels. <br>
-Mitigation: Use a read-only, least-privilege Shopify API key and approve exact email or Telegram recipients before enabling alerts. <br>
-Risk: The artifact gives contradictory signals about scheduled automation and persistence. <br>
-Mitigation: Do not allow any cron or scheduled job unless the skill shows the schedule, the data sent, and clear removal steps. <br>
-Risk: The authoritative security verdict is suspicious. <br>
-Mitigation: Review the skill before installing and confirm that store access, alert destinations, and scheduling behavior match the intended use. <br>
+## Use Case:
 
+External ecommerce operators and developers use this skill to have an agent summarize Shopify sales, flag low inventory, and monitor competitor prices from user-provided Shopify access.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jamod/surfisup-ecom-monitor) <br>
-- [Publisher profile](https://clawhub.ai/user/jamod) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with alert text, configuration details, and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference Shopify API access, email or Telegram recipients, and scheduling details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill may lead an agent to create a recurring cron job that keeps accessing Shopify data, despite documentation claiming no scheduling or persistence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when recurring monitoring is intended, inspect and remove scheduled tasks when no longer needed, and review generated commands before execution.
+
+Risk: Shopify API access and notification destinations could expose store data if permissions or recipients are too broad.
+
+Mitigation: Use a Shopify API key restricted to read-only minimum scopes and verify where email or Telegram reports are sent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jamod/skills/surfisup-ecom-monitor)
+- [Artifact skill instructions](artifact/SKILL.md)
+- [Artifact README](artifact/README.md)
+- [Artifact changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text reports and setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May involve user-provided Shopify API access and notification destinations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

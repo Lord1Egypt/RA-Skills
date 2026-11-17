@@ -1,42 +1,56 @@
-## Description: <br>
-Get current weather and forecasts with no API key required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get current weather and forecasts with no API key required.
 
-## Publisher: <br>
-[mars82311111](https://clawhub.ai/user/mars82311111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mars82311111](https://clawhub.ai/user/mars82311111)
 
-## Use Case: <br>
-Agents use this skill to provide current weather conditions, compact forecasts, and programmatic weather JSON for user-specified locations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Weather lookups send the requested location to public services such as wttr.in or Open-Meteo. <br>
-Mitigation: Avoid querying sensitive locations unless sharing them with those public services is acceptable. <br>
-Risk: Weather data and forecasts may be unavailable, delayed, or inaccurate. <br>
-Mitigation: Treat returned weather information as advisory and verify critical decisions with an authoritative source. <br>
+## Use Case:
 
+External users and developers use this skill to get current weather, compact condition summaries, full forecasts, and JSON weather data for chosen locations through public weather services.
 
-## Reference(s): <br>
-- [wttr.in help](https://wttr.in/:help) <br>
-- [Open-Meteo forecast API](https://open-meteo.com/en/docs) <br>
-- [ClawHub skill page](https://clawhub.ai/mars82311111/mars-weather-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl; public weather services may receive queried locations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Location names or coordinates requested through the skill are sent to public weather services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid querying highly sensitive precise locations when that privacy tradeoff is unacceptable.
+
+Risk: Weather responses depend on availability and behavior of wttr.in and Open-Meteo.
+
+Mitigation: Use Open-Meteo as a fallback when wttr.in output is unavailable or unsuitable for programmatic use.
+
+## Reference(s):
+
+- [wttr.in help](https://wttr.in/:help)
+- [Open-Meteo forecast API](https://api.open-meteo.com/v1/forecast?latitude=51.5&longitude=-0.12&current_weather=true)
+- [Open-Meteo documentation](https://open-meteo.com/en/docs)
+- [ClawHub skill page](https://clawhub.ai/mars82311111/skills/mars-weather-ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and JSON API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl for command examples; no API key is required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,65 @@
-## Description: <br>
-Provides guidance and helper scripts for installing and binding a WeChat channel so users can chat with an OpenClaw assistant from WeChat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance and scripts for installing, binding, and operating a WeChat channel that connects users to an OpenClaw assistant.
 
-## Publisher: <br>
-[ynxiyan](https://clawhub.ai/user/ynxiyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ynxiyan](https://clawhub.ai/user/ynxiyan)
 
-## Use Case: <br>
-OpenClaw users and administrators use this skill to check prerequisites, install the Tencent WeChat OpenClaw plugin, bind a WeChat account by QR code, and troubleshoot the WeChat access channel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Binding WeChat creates a persistent access channel to the user's OpenClaw assistant. <br>
-Mitigation: Install only when this access channel is intended, bind only trusted accounts, and configure authentication, allowlists, rate limits, and tool approval where available. <br>
-Risk: The installation flow uses an unpinned npx command for the Tencent WeChat plugin. <br>
-Mitigation: Review the plugin source or package before running the command and prefer a reviewed pinned version when operational policy requires it. <br>
-Risk: Messages, files, or images sent through WeChat may reach the assistant channel. <br>
-Mitigation: Avoid sending secrets, regulated files, or sensitive data through the channel unless the deployment has appropriate controls. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to set up a WeChat integration, scan-bind an account, configure the OpenClaw WeChat channel, and troubleshoot message, file, and gateway connectivity.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ynxiyan/wechat-openclaw-skill) <br>
-- [WeChat plugin documentation](https://docs.openclaw.ai/channels/weixin) <br>
-- [OpenClaw integration guide](https://docs.openclaw.ai/integration) <br>
-- [Bilibili installation tutorial](https://www.bilibili.com/video/BV1mdAgziEkh) <br>
-- [Tencent WeChat OpenClaw issues](https://github.com/tencent-weixin/openclaw-weixin/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local environment checks and installation guidance for a WeChat-to-OpenClaw channel.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The installation path uses an unpinned remote package version through `@latest`.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, reviewed package version and inspect the package before running installation commands.
+
+Risk: WeChat messages and attachments can be routed into OpenClaw.
+
+Mitigation: Use the integration only with trusted accounts, avoid secrets or regulated data, and disable `autoReply` and `autoAccept` unless a trusted sender allowlist is in place.
+
+Risk: Running installer commands with elevated privileges can increase local system impact.
+
+Mitigation: Run the installer as a normal user and review generated configuration changes before enabling the channel.
+
+Risk: Gateway and network failures can interrupt installation or message routing.
+
+Mitigation: Run the environment check, confirm the OpenClaw gateway is active, and verify access to WeChat and npm endpoints before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ynxiyan/skills/wechat-openclaw-skill)
+- [OpenClaw WeChat channel documentation](https://docs.openclaw.ai/channels/weixin)
+- [OpenClaw integration guide](https://docs.openclaw.ai/integration)
+- [OpenClaw plugin documentation](https://docs.openclaw.ai/plugins)
+- [Bilibili tutorial referenced by the skill](https://www.bilibili.com/video/BV1mdAgziEkh)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell, JSON, and JavaScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes installation, environment-check, binding, troubleshooting, and maintenance steps for OpenClaw and WeChat.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

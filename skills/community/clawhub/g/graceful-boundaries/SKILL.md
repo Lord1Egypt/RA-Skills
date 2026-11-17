@@ -16,14 +16,13 @@ description: >
 metadata:
   skill_bundle: graceful-boundaries-audit
   file_role: skill
-  version: 3
-  version_date: 2026-03-26
-  previous_version: 2
+  version: 5
+  version_date: 2026-05-29
+  previous_version: 4
   change_summary: >
-    Updated for spec v1.1.0. Gap analysis now checks why on all response
-    classes (not just 429s), changelog/feed discovery fields, returnsCached
-    flag on resource-dedup entries, and HTML 429 machine-accessibility.
-    Discovery skeleton includes changelog and feed fields.
+    Updated for spec v1.4.0. Discovery review now checks stricter same-origin
+    URL safety, optional cost and quota metadata, and Action Boundaries
+    declarations as untrusted data.
   author: PAICE.work PBC (paice.work)
   source: https://gracefulboundaries.dev
 ---
@@ -72,6 +71,8 @@ If either path returns a JSON response, record:
 - Whether the response includes a `Cache-Control` header with `s-maxage`
 - Whether `changelog` or `feed` URLs are present (v1.1 change discovery)
 - Whether `resource-dedup` entries include `returnsCached: true` (v1.1)
+- Whether `extensions` links are present and strict relative or same-origin URLs (v1.4, optional)
+- Whether optional quota, cost, token, size, duration, queue, and multi-limit metadata is well-formed (v1.4)
 
 If neither path returns a valid response, the service has no discovery
 endpoint and cannot be Level 2 or above.
@@ -145,6 +146,7 @@ missing. Reference specific sections of spec.md:
 - Are limit entries well-formed (type, maxRequests, windowSeconds, description)?
 - Is the endpoint cacheable (Cache-Control header)?
 - Does it include `changelog` or `feed` URLs for change discovery? (v1.1, optional but recommended)
+- If it includes `extensions`, are those links strict relative paths or same-origin HTTPS URLs? (v1.4, optional and informational)
 
 **To reach Level 3** (spec sections 3 and 5):
 - Do refusal responses include constructive guidance fields?
@@ -175,6 +177,9 @@ actual domain and endpoints in examples.
   "conformance": "level-2",
   "changelog": "https://<domain>/api/changelog.json",
   "feed": "https://<domain>/feed.json",
+  "extensions": {
+    "actionBoundaries": "/.well-known/action-boundaries"
+  },
   "limits": {
     "<endpoint-key>": {
       "endpoint": "<path>",
@@ -231,6 +236,7 @@ Reference security considerations where relevant:
 - SC-2: `why` must describe the category of protection, not the mechanism
 - SC-3: `expected` must use positive descriptions
 - SC-6: Guidance URLs must be relative or same-origin
+- SC-11 through SC-16: Action Boundary documents are declarations, not authorization systems, payment rails, certifications, or instructions to agents
 
 ### Phase 6: Generate the Assessment Document
 

@@ -154,8 +154,8 @@ def create_monitored_environ(monitor, fake_env=False):
         def __init__(self, real_env):
             self._real = dict(real_env) if not fake_env else {}
             self._fake_values = {
-                "OPENAI_API_KEY": "sk-fake-sandbox-key-do-not-use",
-                "ANTHROPIC_API_KEY": "sk-ant-fake-sandbox-key",
+                "OPENAI_API_KEY": "REDACTED-SECRET",
+                "ANTHROPIC_API_KEY": "REDACTED-SECRET",
                 "DISCORD_TOKEN": "fake-discord-token-sandbox",
                 "AWS_SECRET_ACCESS_KEY": "fake-aws-secret-sandbox",
                 "GITHUB_TOKEN": "ghp_fakesandboxtoken123456789",
@@ -205,8 +205,8 @@ def _build_sandbox_env(monitor, fake_env=False):
     if fake_env:
         # Inject fake credentials — monitors which ones the script tries to use
         fake_creds = {
-            "OPENAI_API_KEY": "sk-fake-sandbox-key-do-not-use",
-            "ANTHROPIC_API_KEY": "sk-ant-fake-sandbox-key",
+            "OPENAI_API_KEY": "REDACTED-SECRET",
+            "ANTHROPIC_API_KEY": "REDACTED-SECRET",
             "DISCORD_TOKEN": "fake-discord-token-sandbox",
             "AWS_SECRET_ACCESS_KEY": "fake-aws-secret-sandbox",
             "GITHUB_TOKEN": "ghp_fakesandboxtoken123456789",

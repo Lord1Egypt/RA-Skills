@@ -1,45 +1,60 @@
-## Description: <br>
-Creates and configures OpenClaw agents by guiding workspace setup, OpenClaw configuration, Telegram routing, cron job prompts, and gateway verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and configure OpenClaw agents, including workspace files, openclaw.json entries, Telegram routing, cron prompts, and gateway restart guidance for Arch's multi-agent system.
 
-## Publisher: <br>
-[arch1904](https://clawhub.ai/user/arch1904) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[arch1904](https://clawhub.ai/user/arch1904)
 
-## Use Case: <br>
-Developers and OpenClaw administrators use this skill to create or modify local OpenClaw agents, including workspace files, OpenClaw JSON configuration, Telegram group routing, cron jobs, and gateway restart checks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide changes to local OpenClaw configuration and scheduled jobs. <br>
-Mitigation: Review every configuration edit, cron schedule, shell substitution, and report command before restarting the gateway. <br>
-Risk: Cron prompts and report commands may send unintended or sensitive output to Telegram destinations. <br>
-Mitigation: Verify Telegram targets, avoid untrusted cron prompt input, and avoid report commands that expose secrets unless that output is explicitly intended. <br>
-Risk: Editing OpenClaw files while the gateway is running can lose or corrupt job state. <br>
-Mitigation: Stop the OpenClaw gateway before edits, keep backups, and restart only after reviewing the final configuration. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw Agent Creator](https://clawhub.ai/arch1904/claw-agent-creator-archit) <br>
-- [OpenClaw Agent Config Schema](references/config-schema.md) <br>
-- [Telegram Routing - The 3-Layer System](references/telegram-routing.md) <br>
-- [Cron Job Prompt Patterns](references/prompt-patterns.md) <br>
-- [Bugs and Pitfalls](references/bugs-and-pitfalls.md) <br>
+## Use Case:
 
+Developers and operators maintaining Arch's OpenClaw setup use this skill to scaffold new agents, update agent configuration, set up Telegram routing, and prepare scheduled jobs with safer prompt patterns.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with JSON examples and inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces human-reviewed setup steps for local OpenClaw files, Telegram routing, cron prompts, and gateway checks.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide edits to ~/.openclaw configuration, gateway restarts, cron jobs, and Telegram messaging.
+
+Mitigation: Use only in an intended OpenClaw environment and require explicit review of every file change and cron payload before execution.
+
+Risk: Under-scoped shell-evaluated cron prompts can run unintended shell syntax or arbitrary commands.
+
+Mitigation: Reject untrusted agent IDs or prompt text containing shell syntax, and avoid scheduled prompts that run arbitrary commands.
+
+Risk: Persistent scheduled agents and Telegram routing changes can continue operating after setup.
+
+Mitigation: Confirm schedules, recipients, and routing bindings before enabling cron jobs or restarting the gateway.
+
+## Reference(s):
+
+- [OpenClaw Agent Creator ClawHub Listing](https://clawhub.ai/arch1904/skills/claw-agent-creator-archit)
+- [OpenClaw Agent Config Schema](references/config-schema.md)
+- [Telegram Routing](references/telegram-routing.md)
+- [Cron Job Prompt Patterns](references/prompt-patterns.md)
+- [Bugs and Pitfalls](references/bugs-and-pitfalls.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON snippets and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose persistent OpenClaw config, cron job, and Telegram routing changes that require human review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

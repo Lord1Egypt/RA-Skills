@@ -1,44 +1,59 @@
-## Description: <br>
-Domain Research Tool helps agents run domain research across RDAP, WHOIS, DNS records, SSL/TLS certificates, domain availability, reverse DNS, multi-resolver checks, subdomain enumeration, batch analysis, and interactive HTML reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Investigates domains with RDAP, WHOIS, DNS record lookup, SSL/TLS certificate checks, availability checks, multi-resolver DNS propagation checks, subdomain enumeration, batch analysis, and interactive HTML reports.
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-Developers, security teams, and operations teams use this skill to research domains, inspect registration, DNS, and SSL signals, assess availability, run authorized batch or subdomain checks, and produce structured reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound domain-research requests to registries, WHOIS and DNS infrastructure, public resolvers, target HTTPS endpoints, and common subdomains. <br>
-Mitigation: Run batch and subdomain checks only for domains you are authorized to assess and expect the listed outbound lookups when invoking the skill. <br>
-Risk: Generated HTML reports contain third-party lookup data. <br>
-Mitigation: Open generated reports cautiously and review their contents before sharing or using them in sensitive workflows. <br>
-Risk: RDAP, WHOIS, DNS, and SSL results can be incomplete, cached, unavailable, rate limited, or inconsistent across registries and resolvers. <br>
-Mitigation: Treat findings as research signals and corroborate important decisions with authoritative registries, DNS providers, or certificate sources. <br>
+## Use Case:
 
+Developers, security analysts, and operations teams use this skill to collect domain registration, DNS, SSL/TLS, availability, resolver propagation, subdomain, and reverse-DNS information and turn results into structured JSON or an HTML report.
 
-## Reference(s): <br>
-- [Domain Research Protocols Reference](references/domain_protocols.md) <br>
-- [IANA RDAP Bootstrap](https://data.iana.org/rdap/) <br>
-- [ClawHub Domain Research Tool Release](https://clawhub.ai/bettermen/domain-research) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with shell commands; lookup results are JSON or text, with optional self-contained HTML reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write JSON result files and HTML reports; batch mode accepts one domain per line.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated HTML reports may render untrusted domain data without escaping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated reports from attacker-controlled or untrusted domains as unsafe until output escaping is fixed; open them only in a constrained environment.
+
+Risk: Domain, DNS, RDAP, WHOIS, SSL, and resolver checks disclose queried targets to external services.
+
+Mitigation: Use the skill only for domains or IPs you are authorized to investigate, and avoid sensitive unreleased or internal targets unless external disclosure is acceptable.
+
+Risk: Dependency installation can introduce package supply-chain risk.
+
+Mitigation: Install dependencies in an isolated environment with pinned versions from a trusted package index.
+
+## Reference(s):
+
+- [Domain Research Protocols Reference](references/domain_protocols.md)
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/domain-research)
+- [Publisher profile](https://clawhub.ai/user/bettermen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; the bundled scripts produce JSON and self-contained HTML reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can process single domains, IP reverse lookups, selected query types, or batch domain files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

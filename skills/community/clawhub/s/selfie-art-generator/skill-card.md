@@ -1,39 +1,59 @@
-## Description: <br>
-Generate AI selfie art portraits from text descriptions - cinematic portraits, anime illustrations, oil painting style, and artistic profile pictures via the Neta AI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI selfie art portraits from text descriptions, including cinematic portraits, anime illustrations, oil painting style, and artistic profile pictures via the Neta AI image generation API.
 
-## Publisher: <br>
-[barbaraledbettergq](https://clawhub.ai/user/barbaraledbettergq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[barbaraledbettergq](https://clawhub.ai/user/barbaraledbettergq)
 
-## Use Case: <br>
-External users and developers use this skill to generate stylized selfie portraits and profile-picture art from a text prompt, with optional size, style, and reference-image controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, optional reference image UUIDs, and the Neta token are sent to the external Neta/TalesOfAI service. <br>
-Mitigation: Use a dedicated or low-privilege token, avoid sensitive personal or confidential prompt content, and rotate the token if it appears in logs, shell history, or shared output. <br>
+## Use Case:
 
+External users and developers use this skill to generate stylized portrait or profile-picture artwork from text prompts. It is intended for requests involving AI selfie art, cinematic portraits, anime-style images, realistic portraits, or oil-painting-style portraits.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/barbaraledbettergq/selfie-art-generator) <br>
-- [Neta token setup](https://www.neta.art/open/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Plain text image URL on stdout, with Markdown usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Neta API token; accepts a prompt, size, style, and optional reference image UUID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata and package.json) <br>
+Risk: The Neta API token is passed as a command-line argument and may be exposed through shell history or process inspection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the token as sensitive, prefer environment-based handling, and rotate the token if exposure is suspected.
+
+Risk: The skill sends prompts and optional reference image identifiers to an external image-generation service.
+
+Mitigation: Avoid submitting sensitive personal descriptions or reference identifiers unless external processing is acceptable for the use case.
+
+Risk: Installation instructions include mutable package references.
+
+Mitigation: Install from a pinned, trusted release version and review the downloaded skill before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/barbaraledbettergq/skills/selfie-art-generator)
+- [Publisher profile](https://clawhub.ai/user/barbaraledbettergq)
+- [Neta AI image generation API token page](https://www.neta.art/open/)
+
+## Skill Output:
+
+**Output Type(s):** [Text]
+
+**Output Format:** [Plain text image URL printed to stdout]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns a hosted generated image URL after polling the external image-generation task.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

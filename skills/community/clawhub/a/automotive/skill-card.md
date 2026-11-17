@@ -1,44 +1,61 @@
-## Description: <br>
-Vehicle and automotive image editing for cars, trucks, SUVs, and motorcycles using Bria.ai endpoints for scene generation, reflections, tire refinement, segmentation, atmospheric effects, and lighting harmonization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automotive helps agents create and edit vehicle images with Bria.ai endpoints for scene generation, reflections, tire refinement, segmentation, atmospheric effects, and lighting harmonization.
 
-## Publisher: <br>
-[galbria](https://clawhub.ai/user/galbria) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[galbria](https://clawhub.ai/user/galbria)
 
-## Use Case: <br>
-Developers, creative operators, and automotive marketing teams use this skill to direct agents through vehicle-aware image editing workflows, including generating scenes, segmenting vehicle parts, refining tires, adding reflections or effects, and harmonizing lighting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Vehicle images are uploaded to Bria.ai for processing, which can expose sensitive customer, location-bearing, or proprietary photos to a third-party service. <br>
-Mitigation: Use only images that the user is authorized to send to Bria.ai and avoid sensitive or regulated content unless third-party processing is acceptable. <br>
-Risk: Bria credentials may be stored locally at ~/.bria/credentials. <br>
-Mitigation: Restrict the credential file's permissions and delete it when the workflow is complete or when credentials should no longer persist. <br>
-Risk: The helper can call more than the documented automotive endpoints if an agent or user supplies other Bria paths. <br>
-Mitigation: Review requested endpoint paths before execution and prefer the documented /v1/product/vehicle/* endpoints for this skill. <br>
+## Use Case:
 
+External users, developers, and creative teams use this skill to produce automotive marketing, dealership, configurator, catalog, and social media imagery from vehicle photos or image URLs.
 
-## Reference(s): <br>
-- [API Endpoints Reference](references/api-endpoints.md) <br>
-- [Shell Client](references/code-examples/bria_client.sh) <br>
-- [Bria Automotive Docs](https://docs.bria.ai/product-shot-editing/automotive-endpoints) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, code, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and API-call guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return Bria API result URLs, JSON responses, local output filenames, and authentication or billing status messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill handles Bria account credentials and can cache API tokens in ~/.bria/credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for trusted users, restrict ~/.bria permissions, and review token storage before using the skill in shared environments.
+
+Risk: Vehicle images or image URLs are uploaded to Bria API endpoints during normal workflows.
+
+Mitigation: Avoid sensitive, confidential, or internal vehicle images unless the intended Bria account and data handling terms are acceptable.
+
+Risk: The helper performs HTTPS API calls using the configured Bria base URL and API token.
+
+Mitigation: Keep the default trusted Bria HTTPS endpoint or review any BRIA_API_BASE override before execution.
+
+## Reference(s):
+
+- [API Endpoints Reference](references/api-endpoints.md)
+- [Shell Client](references/code-examples/bria_client.sh)
+- [Bria automotive docs](https://docs.bria.ai/product-shot-editing/automotive-endpoints)
+- [ClawHub skill page](https://clawhub.ai/galbria/skills/automotive)
+- [Publisher profile](https://clawhub.ai/user/galbria)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON request examples, and API response URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or download edited vehicle image files when the agent runs the documented API workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

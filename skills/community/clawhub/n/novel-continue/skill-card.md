@@ -1,43 +1,54 @@
-## Description: <br>
-Continue writing from existing novel content, following the original settings, character relationships, background, personality, plot direction, while reasonably introducing new characters and storylines, focusing on detailed descriptions and character psychology, and employing rhetorical techniques to enhance drama. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Continue writing from existing novel content while preserving established settings, character relationships, personalities, plot direction, and narrative style.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-External users and writers use this skill to continue an existing novel scene or chapter while preserving the established setting, characters, narrative perspective, tense, and plot direction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad fiction-writing prompts such as "keep writing" may activate the skill when the user intended another writing mode. <br>
-Mitigation: Ask the user to specify whether the source text is fiction and whether they want novel continuation before applying the continuation workflow. <br>
-Risk: Continuation may contradict established facts, character traits, or narrative perspective in the supplied novel text. <br>
-Mitigation: Analyze the current plot node, character status, unresolved foreshadowing, perspective, and tense before writing new continuation text. <br>
-Risk: Sensitive subject matter in source fiction may be amplified inappropriately. <br>
-Mitigation: Treat sensitive content only as literary material and avoid intensifying harmful or inappropriate details. <br>
+## Use Case:
 
+External writers and agents use this skill to continue a novel from existing prose, analyze the current story state, and produce the next section with notes about plot advancement and newly introduced elements.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openlark/novel-continue) <br>
-- [OpenLark publisher profile](https://clawhub.ai/user/openlark) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Text, Guidance] <br>
-**Output Format:** [Markdown with original analysis, continuation text, and continuation notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no files, code execution, credentials, persistence, or external data access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generic prompts such as "keep writing" may activate the skill for non-novel writing tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Specify that the source material is novel or fiction content, and provide genre, continuation point, and desired direction when needed.
+
+Risk: Continuation output may contradict established facts if the source excerpt lacks enough context.
+
+Mitigation: Provide relevant prior context, character relationships, unresolved foreshadowing, and any constraints before asking for continuation.
+
+## Reference(s):
+
+- [Novel Continue on ClawHub](https://clawhub.ai/openlark/skills/novel-continue)
+- [openlark publisher profile](https://clawhub.ai/user/openlark)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with original analysis, continuation text, and continuation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces creative prose and brief narrative analysis; no code execution, persistence, credential use, or hidden data handling is indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

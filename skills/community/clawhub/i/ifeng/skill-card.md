@@ -1,41 +1,53 @@
-## Description: <br>
-Searches public Ifeng news and channel pages to summarize keyword news, channel trends, and long-form report highlights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ifeng helps an agent search and summarize public Phoenix News pages, including keyword news collections, channel trends, and article key points.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-Analysts and automation workflows use this skill for lightweight summaries of publicly available Ifeng content, including keyword result lists, channel hot topics, and article key points. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public news pages can change, be dynamically rendered, or expose incomplete metadata. <br>
-Mitigation: Wait for page load, cite source links, include collection time, and treat extracted summaries as time-bound. <br>
-Risk: Over-collection or automated bulk access could violate site rules. <br>
-Mitigation: Use only public pages, avoid interface reverse engineering and bulk collection, and apply rate limits. <br>
+## Use Case:
 
+Analysts and agent users use this skill for lightweight monitoring and summarization of publicly available Phoenix News articles and channel pages. Typical tasks include keyword news summaries, channel hot-topic statistics, and long-form article key point extraction.
 
-## Reference(s): <br>
-- [Ifeng homepage](https://www.ifeng.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/codenova58/ifeng) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries and structured text fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include titles, sources, authors when shown, publication times, summaries, tags, links, public interaction metrics, channel names, and collection time.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Heavy or automated use could conflict with Phoenix News site terms or create unwanted bulk collection behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review site terms, keep usage light, avoid bulk collection, and do not reverse engineer platform interfaces.
+
+Risk: Summaries of public news pages may omit context or reflect source-page errors.
+
+Mitigation: Include source links and collection time in outputs so users can verify important claims against the original pages.
+
+## Reference(s):
+
+- [Phoenix News homepage](https://www.ifeng.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summaries and structured lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes source links, collection time, and publicly displayed metadata when available.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

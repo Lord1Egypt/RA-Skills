@@ -1,9 +1,17 @@
 # QSR Labor Leak Auditor
-**v2.0.0 · McPherson AI · San Diego, CA**
+**v3.1.4 · McPherson AI · San Diego, CA**
 
 AI-powered weekly labor cost auditor for QSR operators: tracks labor as a percentage of revenue, catches clock padding and scheduling drift, and flags mid-week risks before payroll closes.
 
 **v2 update:** now uses contextual windows like catering, promotions, events, and weather before recommending labor cuts, with manager override and a full audit trail.
+
+## Building with AI agents? Get started with Observa
+
+Observa shows supported OpenClaw and n8n runtime activity, what governance WOULD have done in SHADOW mode, and the evidence behind it.
+
+[**Get started with Observa →**](https://mcphersonai.com/observa/getting-started?utm_source=github&utm_medium=skill-readme&utm_campaign=observa-getting-started&utm_content=qsr-labor-leak-auditor)
+
+*SHADOW ONLY · AUTHORITY NONE · ENFORCEMENT OFF. This publisher notice does not change the QSR skill itself.*
 
 ---
 
@@ -147,6 +155,15 @@ Builder of practical AI systems for restaurant operations, labor control, and ex
 ---
 
 ## Version
+
+**v3.1.4**
+Publisher-notice refresh: Observa CTA updated to the current Getting Started flow. No functional changes.
+
+**v3.1.3**
+Publisher-note release; the Observa private beta is now open. No functional changes.
+
+**v3.1.2**
+Publisher-note release; operational behavior and license unchanged.
 
 **v2.0.0**  
 Adds contextual audit support, manager override logging, and weather-aware labor review.

@@ -1,0 +1,128 @@
+# voices.yaml — TTS 音色库配置（v2.8）
+#
+# 说明：
+# 1. 本文件由 scripts/voice_policy.py 加载（pyyaml 不可用时降级 JSON 或内置默认值）
+# 2. 3 套预设音色覆盖 正式通知 / 客服安抚 / 营销外呼 三类场景
+# 3. emotion_adjust 为情感动态调整参数，叠加在预设参数之上
+# 4. clone_voices 为语音克隆外呼（voice_clone.py）登记区，未配置克隆能力时为空
+# 5. 修改本文件无需改代码，重启生效
+#
+# 联系信息：njskills@agent.qq.com
+
+version: 1
+
+# ==========================================
+# 预设音色（3 套）
+# ==========================================
+presets:
+  formal_notice:
+    display_name: 正式通知
+    voice: zh-CN-YunxiNeural
+    rate: "-10%"
+    pitch: "+0Hz"
+    style: "formal"
+    description: 沉稳正式，适合系统通知、日程提醒、审批结果告知
+    scenarios:
+      - ivr
+      - system_notice
+
+  service_soothe:
+    display_name: 客服安抚
+    voice: zh-CN-XiaoxiaoNeural
+    rate: "-5%"
+    pitch: "+0Hz"
+    style: "gentle"
+    description: 温柔耐心，适合投诉安抚、故障解释、焦虑客户接听
+    scenarios:
+      - inbound
+      - complaint
+
+  marketing_outbound:
+    display_name: 营销外呼
+    voice: zh-CN-YunjieNeural
+    rate: "+5%"
+    pitch: "+2Hz"
+    style: "promo"
+    description: 热情活力，适合活动通知、产品推介、回访调查
+    scenarios:
+      - outbound
+      - survey
+
+# ==========================================
+# 场景 → 预设映射（未列出的场景走 default）
+# ==========================================
+scene_mapping:
+  ivr: formal_notice
+  system_notice: formal_notice
+  inbound: service_soothe
+  complaint: service_soothe
+  outbound: marketing_outbound
+  survey: marketing_outbound
+  default: formal_notice
+
+# ==========================================
+# 情感 → 参数动态调整（emotion_analyzer 五类情感）
+# rate/pitch 会叠加到预设参数之上；空表示不调整
+# ==========================================
+emotion_adjust:
+  angry:
+    rate: "-15%"
+    pitch: "-5Hz"
+    note: 愤怒时放慢语速、降低音调，避免激化情绪
+  anxious:
+    rate: "-10%"
+    pitch: "-2Hz"
+    note: 焦虑时放缓语速，传递稳重感
+  satisfied:
+    rate: "+5%"
+    pitch: "+2Hz"
+    note: 满意时轻快，传递积极情绪
+  confused:
+    rate: "-10%"
+    pitch: "+0Hz"
+    note: 困惑时放慢，便于听清
+  neutral:
+    rate: "+0%"
+    pitch: "+0Hz"
+    note: 中性不调整
+
+# ==========================================
+# SSML 构建开关
+# ==========================================
+ssml:
+  enabled: true
+  # 长文本自动插入停顿（句号/问号/感叹号后）
+  sentence_pause_ms: 300
+  # 关键数字与日期自动加重（emphasis）
+  auto_emphasis: true
+
+# ==========================================
+# 合成链路（双链路，规则 9 降级 + 规则 16 无 Key）
+# ==========================================
+links:
+  primary:
+    name: edge
+    display_name: Edge TTS（主链路）
+    required: false
+    note: 免费无需 Key，edge_tts 包可用时自动启用；不可用时静默降级
+  fallback:
+    name: volcengine
+    display_name: 火山引擎 TTS（备用链路）
+    required: false
+    env_key: VOLC_TTS_KEY
+    note: 需配置 VOLC_TTS_KEY；未配置时静默跳过，不影响主流程
+
+# ==========================================
+# 克隆音色登记区（voice_clone.py 写入，未配置克隆能力时保持为空）
+# ==========================================
+clone_voices: []
+
+# ==========================================
+# 群聊语音合规（v2.9）
+# 群内语音默认不落盘仅转写；如需留存录音，必须管理员显式开启并经确认
+# ==========================================
+group:
+  record: false                # 群内语音默认不落盘（磁盘零语音文件）
+  transcribe_only: true        # 仅转写、不落盘音频
+  retention_days: 1            # 转写文本保留天数（最短可配，默认 1 天清理）
+  opt_in_requires_admin: true  # 开启落盘需管理员确认（合规红线）

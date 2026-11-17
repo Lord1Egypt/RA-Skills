@@ -1,42 +1,56 @@
-## Description: <br>
-Fast package tracking and logistics timeline lookup for 2000+ couriers through BijieServ. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fast package tracking and logistics timeline lookup for 2000+ couriers with BijieServ.
 
-## Publisher: <br>
-[huhao19871026](https://clawhub.ai/user/huhao19871026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huhao19871026](https://clawhub.ai/user/huhao19871026)
 
-## Use Case: <br>
-External users and agents use this skill to check package status, identify couriers, and summarize logistics timelines through BijieServ. It is suited for Chinese and international courier tracking requests where users provide a tracking number and, when required by the carrier, a phone number or route hint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Package tracking numbers, phone numbers, route hints, and returned logistics text can reveal shipment or location information. <br>
-Mitigation: Provide only the minimum details required by the carrier, use the skill's masking behavior, and review logistics text before sharing it. <br>
-Risk: Repeated queries for the same shipment can trigger rate limiting or carrier lockout behavior. <br>
-Mitigation: Avoid unnecessary repeat lookups and retry later when the API reports frequent querying or lockout. <br>
+## Use Case:
 
+External users and agents use this skill to query BijieServ for package status, courier identity, recent logistics events, delivery timelines, and ETA when available.
 
-## Reference(s): <br>
-- [BijieServ Express Query API](https://www.bijieserv.com/api/method/express_app.open.v1.query.exec) <br>
-- [BijieServ](https://www.bijieserv.com/) <br>
-- [Company Codes](references/company-codes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown tracking summary with package status, latest update, recent timeline, and ETA when available] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Masks phone numbers and limits recent timeline output to up to 10 events when using the bundled script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Package tracking numbers and optional phone or address hints are sent to BijieServ during queries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where this data sharing is acceptable, provide only required tracking details, and review output redaction before privacy-sensitive use.
+
+Risk: The security guidance notes dependency and privacy hygiene issues.
+
+Mitigation: Review and pin dependency versions, remove or move the unused clawhub dependency, and improve redaction before privacy-sensitive deployment.
+
+## Reference(s):
+
+- [Courier company code table](references/company-codes.md)
+- [BijieServ Express Query API](https://www.bijieserv.com/api/method/express_app.open.v1.query.exec)
+- [BijieServ](https://www.bijieserv.com/)
+- [ClawHub skill page](https://clawhub.ai/huhao19871026/skills/bijieserv-express)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown package-tracking summary with status, latest event, recent timeline, and ETA when available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Masks phone numbers in returned tracking text and limits displayed tracking events to recent entries.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; artifact package metadata lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

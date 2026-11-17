@@ -1,40 +1,58 @@
-## Description: <br>
-Cocktail Advisor recommends cocktails from flavor preferences, available ingredients, or drinking scenarios, with exact ratios, mixing steps, and personalized reasons across six major base spirits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cocktail Advisor recommends cocktails from user flavor preferences, available ingredients, or drinking scenarios, covering major base spirits with ratios, mixing steps, and personalized rationale.
 
-## Publisher: <br>
-[billxfan](https://clawhub.ai/user/billxfan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[billxfan](https://clawhub.ai/user/billxfan)
 
-## Use Case: <br>
-External users and agent operators use this skill to choose cocktail recipes from ingredients on hand, desired flavor profiles, or drinking occasions. It is intended to return practical recipe guidance, substitutions, and recommendation rationale. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local preference memory can retain cocktail recommendations and user feedback in the workspace. <br>
-Mitigation: Keep feedback brief, avoid sensitive personal details, and delete the memory file if retention is not desired. <br>
-Risk: Cocktail recipe guidance involves alcoholic drinks and can be misused in unsuitable or unsafe contexts. <br>
-Mitigation: Use recipes responsibly and apply applicable age, health, workplace, and local legal restrictions before serving or consuming alcohol. <br>
+## Use Case:
 
+External users use this skill to get cocktail recommendations based on ingredients they have, preferred flavor profiles, or social and dining contexts. The agent provides recipe proportions, preparation steps, suitable occasions, and concise reasoning for each recommendation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/billxfan/cocktail-advisor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown recipe recommendations with measurements, preparation steps, recommendation rationale, and scenario notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and update a local workspace cocktail preference note when user feedback is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Preference feedback may be retained locally for future recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid recording sensitive personal details in feedback and periodically review or clear saved cocktail preferences.
+
+Risk: Supplemental web searches for uncommon ingredients or detailed flavor requests may surface unreliable recipes.
+
+Mitigation: Check recipe proportions and ingredient suitability before following search-augmented recommendations.
+
+Risk: Alcohol recommendations may be unsuitable for some users or contexts.
+
+Mitigation: Apply local age, health, medication, and responsible-use requirements before acting on a recommendation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/billxfan/skills/cocktail-advisor)
+- [Publisher profile](https://clawhub.ai/user/billxfan)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with recipe ratios, preparation steps, recommendation rationale, and suitable scenarios]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include multiple cocktail options and preference-aware follow-up recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

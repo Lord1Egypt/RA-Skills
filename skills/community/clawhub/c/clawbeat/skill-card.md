@@ -1,42 +1,54 @@
-## Description: <br>
-Query live OpenClaw ecosystem intelligence from ClawBeat.co, including news, research papers, events, repositories, and daily briefings for the OpenClaw agentic framework and alternatives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query live OpenClaw ecosystem intelligence from ClawBeat.co, including news, research papers, events, repositories, and daily briefings for the OpenClaw agentic framework and alternatives.
 
-## Publisher: <br>
-[thekenyeung](https://clawhub.ai/user/thekenyeung) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thekenyeung](https://clawhub.ai/user/thekenyeung)
 
-## Use Case: <br>
-Developers, researchers, and OpenClaw ecosystem users use this skill to retrieve current ClawBeat news, research papers, events, repository listings, and daily briefing data through read-only API queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Returned news, event, repository, research, and briefing data comes from a third-party ClawBeat API and may be incomplete, stale, or inaccurate. <br>
-Mitigation: Review important results against the linked source URLs before relying on them for decisions. <br>
-Risk: Using the skill sends requests to the disclosed ClawBeat/Supabase public API. <br>
-Mitigation: Avoid placing sensitive or private information in search terms or downstream prompts that may be included in API requests. <br>
+## Use Case:
 
+Developers, researchers, and ecosystem analysts use this skill to retrieve ClawBeat's public OpenClaw intelligence feeds for current news, research, events, tracked repositories, and daily briefings.
 
-## Reference(s): <br>
-- [ClawBeat homepage](https://clawbeat.co/?utm_source=clawhub&utm_medium=skill&utm_campaign=openclaw) <br>
-- [ClawHub skill listing](https://clawhub.ai/thekenyeung/clawbeat) <br>
-- [Publisher profile](https://clawhub.ai/user/thekenyeung) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses read-only requests to the disclosed ClawBeat/Supabase public API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Using the skill contacts ClawBeat's API, and entered search terms may be visible to that service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive or confidential search terms; use the skill for public ecosystem intelligence.
+
+Risk: Live feed results may be incomplete, stale, or need source-level verification before operational decisions.
+
+Mitigation: Review returned source URLs and dates before relying on results in external reporting or decision workflows.
+
+## Reference(s):
+
+- [ClawBeat homepage](https://clawbeat.co/?utm_source=clawhub&utm_medium=skill&utm_campaign=openclaw)
+- [ClawHub skill page](https://clawhub.ai/thekenyeung/skills/clawbeat)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash commands and API response summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces read-only API query guidance for public ClawBeat feeds.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

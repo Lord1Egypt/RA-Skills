@@ -1,44 +1,69 @@
-## Description: <br>
-Logs, finds, updates, and deletes expenses, income, and recurring budget items in a Simplify Budget Google Sheet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simplify Budget Expense Tracker lets agents log, find, update, and delete expenses, income, subscriptions, and recurring items in a Simplify Budget Google Sheet.
 
-## Publisher: <br>
-[serdarsalim](https://clawhub.ai/user/serdarsalim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[serdarsalim](https://clawhub.ai/user/serdarsalim)
 
-## Use Case: <br>
-External users and agents use this skill to operate a personal budget tracker backed by the required Simplify Budget Google Sheet. It supports budget ledger reads and writes for expenses, income, recurring items, subscription-style entries, receipt logging, and monthly summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires editor access to a user's budget spreadsheet. <br>
-Mitigation: Use a dedicated copy of the required sheet template, share it only with the intended Google service account, and keep the service-account key outside the repository with restrictive file permissions. <br>
-Risk: Financial mutation paths can update or delete budget records, including recurring-payment records. <br>
-Mitigation: Review the bundled commands before deployment and require explicit confirmation before destructive recurring-item deletes or other sensitive mutations. <br>
-Risk: The package includes an unrelated local OpenClaw session-pruning script. <br>
-Mitigation: Remove or ignore the session-pruning script unless that local maintenance behavior is intentionally needed. <br>
+## Use Case:
 
+External users and personal finance agents use this skill to maintain a Simplify Budget Google Sheet through conversational expense, income, subscription, and recurring-payment workflows. It is intended for users who have copied the required sheet template and configured Google Sheets service-account access.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/serdarsalim/simplify-budget-expense-tracker) <br>
-- [Simplify Budget Template](https://docs.google.com/spreadsheets/d/1fA8lHlDC8bZKVHSWSGEGkXHNmVylqF0Ef2imI_2jkZ8/edit?gid=524897973#gid=524897973) <br>
-- [Simplify Budget website](https://simplifybudget.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text with shell commands, configuration values, and summarized script results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May perform Google Sheets reads and writes through bundled shell scripts when configured with spreadsheet and service-account credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.6 (source: server release metadata) <br>
+Risk: The security verdict is suspicious because the skill can write financial data in unsafe or under-disclosed ways.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, test against a copied sheet, and require user confirmation before write operations.
+
+Risk: The default command wrapper contains a fallback SPREADSHEET_ID, which could direct writes to an unintended sheet if not overridden.
+
+Mitigation: Set SPREADSHEET_ID explicitly to the user's own copied Simplify Budget sheet before use.
+
+Risk: The skill uses a Google service account with spreadsheet edit access.
+
+Mitigation: Limit the service account to the copied budget sheet and avoid granting broader Drive or account permissions.
+
+Risk: Untrusted transaction text may be unsafe until formula handling is fixed.
+
+Mitigation: Avoid accepting untrusted transaction text and review logged values before deployment.
+
+Risk: The package includes an unrelated session-pruning utility that archives OpenClaw Telegram sessions.
+
+Mitigation: Remove or ignore the session-pruning script unless that archival behavior is intentionally needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/serdarsalim/skills/simplify-budget-expense-tracker)
+- [Simplify Budget Template](https://docs.google.com/spreadsheets/d/1fA8lHlDC8bZKVHSWSGEGkXHNmVylqF0Ef2imI_2jkZ8/edit?gid=524897973#gid=524897973)
+- [Simplify Budget Web UI](https://simplifybudget.com/)
+- [README](artifact/README.md)
+- [Setup Guide](artifact/SETUP.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Conversational text with command-backed budget results and inline shell command usage.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Google Sheets as the source of truth and requires GOOGLE_SA_FILE, SPREADSHEET_ID, and TRACKER_CURRENCY at runtime.]
+
+## Skill Version(s):
+
+1.1.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

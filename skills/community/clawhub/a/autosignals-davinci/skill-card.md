@@ -1,42 +1,58 @@
-## Description: <br>
-Monitors and controls the AutoSignals autonomous research loop. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Monitors and controls the AutoSignals autonomous research loop.
 
-## Publisher: <br>
-[clawdiri-ai](https://clawhub.ai/user/clawdiri-ai) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawdiri-ai](https://clawhub.ai/user/clawdiri-ai)
 
-## Use Case: <br>
-Developers and research engineers use this skill to monitor, start, stop, and inspect a local autonomous trading-signal research loop. It supports experimentation with signal logic and backtest results, not live trading or guaranteed profitable strategies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill controls an autonomous trading-research loop that can run continuously, edit local files, and write logs. <br>
-Mitigation: Use it in a dedicated sandbox or disposable repository, review the affected files and logs, and confirm start and stop behavior before enabling the loop. <br>
-Risk: Trading-signal experiments can produce misleading or overfit results and should not be treated as investment advice. <br>
-Mitigation: Keep usage to research and development, avoid live trading connections, and require independent validation before using any generated signal logic. <br>
-Risk: The security review classified the release as suspicious because the autonomous loop needs review before use. <br>
-Mitigation: Follow the server security guidance: review resource impact, logging location, start/stop commands, and surrounding controls before installation. <br>
+## Use Case:
 
+Developers and researchers use this skill to check, start, stop, and inspect an autonomous loop that experiments with trading signal logic and backtests proposed changes.
 
-## Reference(s): <br>
-- [AutoSignals ClawHub listing](https://clawhub.ai/clawdiri-ai/autosignals-davinci) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and status-oriented explanations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local project paths, logs, process IDs, score summaries, and experiment records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can start a persistent autonomous research loop that edits code and consumes compute.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in an isolated, version-controlled AutoSignals checkout after reviewing the local start, status, monitor, and stop behavior.
+
+Risk: The documented stop command kills a process from a PID file, which can be unsafe if the file is stale or incorrect.
+
+Mitigation: Replace the PID-file kill command with a validated stop script that confirms the target process before termination.
+
+Risk: Trading signal optimization is experimental and may overfit backtests or produce unprofitable strategies.
+
+Mitigation: Treat results as research output only and require out-of-sample validation before using any signal outside the research environment.
+
+## Reference(s):
+
+- [AutoSignals README](artifact/README.md)
+- [AutoSignals ClawHub Skill Page](https://clawhub.ai/clawdiri-ai/skills/autosignals-davinci)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Natural language guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local project paths and long-running background processes.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; artifact frontmatter states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Meme Rush helps agents retrieve real-time meme-token launchpad rankings and AI-generated market topics from Binance Web3 endpoints across Solana and BSC. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Meme Rush helps agents query public Binance Web3 meme-token and topic data for launchpad lifecycle tracking, market-topic discovery, and filtered token analysis.
 
-## Publisher: <br>
-[Awessh](https://clawhub.ai/user/Awessh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[awessh](https://clawhub.ai/user/awessh)
 
-## Use Case: <br>
-External users and agents use this skill to inspect new, finalizing, and migrated meme tokens, discover market topics, and apply token filters such as liquidity, market cap, holder distribution, and developer activity. It is intended for informational market-data workflows, not trading execution. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Meme-token rankings may be mistaken for financial advice. <br>
-Mitigation: Present results as informational market data and avoid buy, sell, or hold recommendations. <br>
-Risk: Users may expose wallet secrets or attempt to authorize trades while researching tokens. <br>
-Mitigation: Do not request seed phrases, private keys, wallet credentials, or transaction authorization. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Awessh/meme-rush) <br>
-- [Publisher profile](https://clawhub.ai/user/Awessh) <br>
-- [Meme Rush Rank List endpoint](https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/market/token/pulse/rank/list) <br>
-- [Topic Rush Rank List endpoint](https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/market/token/social-rush/rank/list) <br>
+## Use Case:
 
+External agents and users use this skill to retrieve meme-token launchpad rankings, migration-stage data, hot-topic rankings, and token filtering signals for Solana and BSC markets. Outputs should be treated as informational market data, not trading recommendations.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with API parameters, response-field descriptions, and inline curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Market-data guidance only; no credential handling or trading execution is described.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may mistake meme-token rankings, inflow signals, or topic narratives for financial advice.
+
+Mitigation: Present outputs as informational market data and require users to make independent trading decisions.
+
+Risk: Meme tokens can be illiquid, manipulated, scams, or total-loss assets, and the skill does not verify token legitimacy.
+
+Mitigation: Encourage independent due diligence before acting on token data, including liquidity, holder concentration, dev activity, and external legitimacy checks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/awessh/skills/meme-rush)
+- [Binance Web3 Meme Rush rank list API](https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/market/token/pulse/rank/list)
+- [Binance Web3 Topic Rush rank list API](https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/market/token/social-rush/rank/list)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, shell commands, guidance]
+
+**Output Format:** [Markdown with API request examples and structured market-data summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include public token, topic, liquidity, holder-distribution, migration, and narrative fields returned by Binance Web3 APIs.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

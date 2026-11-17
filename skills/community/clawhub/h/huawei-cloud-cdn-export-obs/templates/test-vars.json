@@ -1,0 +1,60 @@
+{
+  "skill_name": "huawei-cloud-cdn-export-obs",
+  "region": "cn-north-4",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "CDN 服务可用性检查（只读）",
+      "command": "hcloud CDN --help",
+      "expected": "帮助信息正常输出，命令存在",
+      "type": "syntax",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-02",
+      "name": "CDN ListDomains 只读加速域名列表",
+      "command": "hcloud CDN ListDomains --cli-region={region} --page_size=1 --page_number=1",
+      "expected": "返回加速域名列表 JSON 或空列表",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-03",
+      "name": "CDN ListDomains 服务端过滤（domain_status）",
+      "command": "hcloud CDN ListDomains --cli-region={region} --page_size=1 --page_number=1 --domain_status=online",
+      "expected": "过滤参数被接受，返回匹配的加速域名列表",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-04",
+      "name": "OBS 对象回读探测（只读，stat）",
+      "command": "hcloud OBS stat obs://{bucket}/{key} -e=obs.{region}.myhuaweicloud.com",
+      "expected": "对象存在时返回元数据（Size/ETag）；不存在时返回 NotFound",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-05",
+      "name": "端到端：查询 → 本地导出（不上传）",
+      "command": "python3 scripts/cdn_export_obs.py --region {region} --export-only --format md --output /tmp/cdn_domains.md",
+      "expected": "生成 Markdown 文件并打印路径，exit 0",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-06",
+      "name": "端到端：查询 → 导出 → 上传 OBS（默认不覆盖）",
+      "command": "python3 scripts/cdn_export_obs.py --region {region} --bucket {bucket} --key verify/cdn_domains.json",
+      "expected": "上传成功并回读校验通过；目标已存在时默认拒绝覆盖（exit 1）",
+      "type": "write",
+      "executor": "cli",
+      "confirm_required": true
+    }
+  ],
+  "env_vars_required": [
+    "以 HUAWEI/HW/HWC 开头的环境变量中匹配 AK/SK 的键值对（同时覆盖 CDN 与 OBS）",
+    "{bucket}：目标 OBS 桶名（上传用例）"
+  ],
+  "notes": "只读用例使用真实可用的 hcloud 只读命令（CDN ListDomains、OBS stat），区域 cn-north-4。上传用例（TC-06）会向目标桶写入对象，属写操作：默认拒绝覆盖已存在对象，仅 --overwrite 才覆盖，可能覆盖目标 key 既有数据，需用户确认后执行；其余用例为只读或无云写入（本地导出）。缺 hcloud/凭据时只读用例跳过，不产生伪失败；真实只读与上传验证由 QA 带外执行。"
+}

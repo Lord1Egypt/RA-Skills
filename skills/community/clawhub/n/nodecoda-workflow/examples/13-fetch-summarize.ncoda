@@ -1,0 +1,10 @@
+@language nodecoda/1
+@mode workflow
+
+// 标准库复合节点:HTTP 获取 + LLM 摘要
+// 展示 std.v1.fetch_and_summarize(url, model) — url 与 model 必须为字符串字面量
+
+function main() -> string {
+    // 抓取网页内容并让模型总结(参数全部字面量,见 language-reference §7)
+    return std.v1.fetch_and_summarize("https://example.com/news", "openai/gpt-4o");
+}

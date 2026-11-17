@@ -1,39 +1,53 @@
-## Description: <br>
-Analyze PCAP/PCAPNG files with tshark and produce a structured network-forensics summary covering talkers, ports, DNS, TLS, HTTP, and anomalies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze local PCAP and PCAPNG files with tshark to generate structured network forensics reports covering talkers, conversations, ports, DNS, TLS, HTTP, and anomaly summaries.
 
-## Publisher: <br>
-[marposins](https://clawhub.ai/user/marposins) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[marposins](https://clawhub.ai/user/marposins)
 
-## Use Case: <br>
-Developers, security analysts, and network engineers use this skill to summarize local packet captures for lab work, incident triage, and CPENT-style exercises. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The configured command invokes an unbundled hardcoded local script whose behavior was not available for review. <br>
-Mitigation: Inspect and trust /home/tom/openclaw-tools/pcap_summary.sh before use, or change the skill to use the bundled scripts/analyze.sh fallback directly. <br>
-Risk: PCAP files and generated reports can expose hostnames, URLs, services, and internal network activity. <br>
-Mitigation: Treat input captures and reports as sensitive, keep analysis local, and use read-only access where possible. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [tshark Manual Page](https://www.wireshark.org/docs/man-pages/tshark.html) <br>
+## Use Case:
 
+Security analysts, incident responders, lab users, and network engineers use this skill to summarize local packet captures for triage, investigation, and training exercises.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text structured network-forensics report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local PCAP or PCAPNG file path and can optionally focus output on a specified host.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The command entry point can execute unsafe shell input.
+
+Mitigation: Review before installing, use only trusted PCAP paths, and run in a restricted environment until the command uses safe argument-array execution and path handling.
+
+Risk: The skill depends on an unreviewed external summarizer.
+
+Mitigation: Bundle the summarizer or verify it by digest and restrictive ownership before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marposins/skills/pcap-analyzer)
+- [TShark manual](https://www.wireshark.org/docs/man-pages/tshark.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text structured network-forensics report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Report sections may include capture metadata, top talkers, conversations, service and port summaries, DNS, TLS, HTTP, and best-effort anomaly findings.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

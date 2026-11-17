@@ -1,47 +1,66 @@
-## Description: <br>
-Installs, configures, and manages the 1-SEC all-in-one cybersecurity platform on Linux servers and VPS instances, covering security monitoring, intrusion detection, endpoint defense, enforcement presets, alert management, and ongoing operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install, configure, and manage 1-SEC, an open-source all-in-one cybersecurity platform for Linux servers and VPS-hosted AI agent hosts, including setup, enforcement presets, module configuration, alert management, and ongoing operations.
 
-## Publisher: <br>
-[cutmob](https://clawhub.ai/user/cutmob) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-AGPL-3.0 <br>
+## Publisher:
 
+[cutmob](https://clawhub.ai/user/cutmob)
 
-## Use Case: <br>
-Developers and operators use this skill to install and operate 1-SEC on Linux servers, VPS instances, and AI agent hosts for local security monitoring, intrusion detection, and controlled enforcement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+AGPL-3.0
 
-## Known Risks and Mitigations: <br>
-Risk: Live enforcement can automatically block IPs, kill processes, quarantine files, or otherwise affect host behavior. <br>
-Mitigation: Start with dry-run or the safe preset, monitor enforcement history, and enable live or vps-agent enforcement only after reviewing expected actions. <br>
-Risk: Configured webhooks, cloud management, or Gemini correlation can send alert metadata or anonymized alert context off host. <br>
-Mitigation: Keep optional integrations disabled unless needed, configure destinations deliberately, and review what each integration sends before enabling it. <br>
-Risk: Full enforcement requires administrative privileges on the Linux host. <br>
-Mitigation: Install only on systems you administer, verify the downloaded release and checksum, and use unprivileged or log-only operation when full enforcement is not required. <br>
+## Use Case:
 
+Developers and operators use this skill to secure Linux servers and AI agent hosts with 1-SEC monitoring, intrusion detection, enforcement tuning, alert workflows, and operational runbooks. It is most relevant when installing endpoint defense, hardening a VPS, or managing response presets for an unattended agent host.
 
-## Reference(s): <br>
-- [1-SEC Source Repository](https://github.com/1sec-security/1sec) <br>
-- [1-SEC Security Policy](https://github.com/1sec-security/1sec/blob/main/SECURITY.md) <br>
-- [1-SEC Configuration Reference](references/config-reference.md) <br>
-- [1-SEC Operations Runbook](references/operations-runbook.md) <br>
-- [VPS Agent Deployment Guide](references/vps-agent-guide.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/cutmob/1sec-security) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and YAML code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may include operational commands, configuration snippets, and risk notes; operators decide before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.15 (source: server release metadata; artifact frontmatter reports 0.4.11) <br>
+Risk: The skill installs a powerful downloaded security binary that can run with root enforcement privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the upstream project and release provenance, use the manual GitHub Releases download path, and independently verify checksums before installing.
+
+Risk: Live enforcement presets can block IPs, drop connections, kill processes, quarantine files, or otherwise disrupt important systems.
+
+Mitigation: Keep dry-run enabled until tested, monitor alerts and enforcement history, and avoid the vps-agent live preset on important systems without active monitoring.
+
+Risk: Self-update behavior may change the installed binary after deployment.
+
+Mitigation: Disable self-update checks in hardened environments or require a controlled update process with checksum verification.
+
+Risk: Full enforcement requires elevated permissions.
+
+Mitigation: Run unprivileged when only log-only monitoring is needed, and grant root or sudo access only for explicitly approved enforcement actions.
+
+## Reference(s):
+
+- [1-SEC source repository](https://github.com/1sec-security/1sec)
+- [1-SEC security policy](https://github.com/1sec-security/1sec/blob/main/SECURITY.md)
+- [Security Policy](SECURITY.md)
+- [Configuration Reference](references/config-reference.md)
+- [Operations Runbook](references/operations-runbook.md)
+- [VPS Agent Deployment Guide](references/vps-agent-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Markdown]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose privileged installation, enforcement, and monitoring commands for Linux hosts; operators should review commands before execution.]
+
+## Skill Version(s):
+
+0.4.15 (source: server release metadata; skill metadata lists 0.4.11)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

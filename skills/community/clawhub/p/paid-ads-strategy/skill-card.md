@@ -1,42 +1,57 @@
-## Description: <br>
-Guides paid ads strategy, including channel selection, budget allocation, product-market-fit testing, ad-to-landing-page alignment, and cross-platform best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides paid ads strategy, channel selection, budget allocation, PMF testing, ad-to-landing-page alignment, and cross-platform measurement.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-External users, marketers, founders, and growth teams use this skill to plan paid acquisition strategy, choose channels, allocate budget, align ads with landing pages, and decide when paid media is appropriate for product-market-fit testing or conversion-driven campaigns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Paid media recommendations could lead to budget waste or unintended campaign changes if treated as authorization to execute. <br>
-Mitigation: Require explicit approval before invoking downstream ad-platform skills that create campaigns, change public ads, or spend budget. <br>
-Risk: The skill may read local project context that contains sensitive business, audience, budget, or funnel details. <br>
-Mitigation: Review project-context files for sensitive information before use and share only the details needed for planning. <br>
-Risk: Planning guidance can be incorrect, stale, or mismatched to a specific product, market, or tracking setup. <br>
-Mitigation: Review recommendations before execution and validate decisions against current conversion tracking, CAC, ROAS, and landing-page data. <br>
+## Use Case:
 
+External users and marketing operators use this skill to decide when paid ads are appropriate, select channels, allocate budget, align ads with landing pages, and choose metrics for PMF testing or conversion-driven acquisition.
 
-## Reference(s): <br>
-- [Marketing Cactus - Using Google Ads to Test Product-Market Fit](https://mktcactus.com/en/using-google-ads-to-test-product-market-fit-before-launching/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with tables, recommendations, budgets, metrics, and routing notes to platform-specific ad skills] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend channels, PMF readiness checks, budget approach, landing page requirements, and metrics to track.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.7.0 (source: release evidence and skill frontmatter) <br>
+Risk: Paid-ad plans can be mistaken for authorization to spend advertising budget.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human approval and budget controls before launching campaigns or changing spend.
+
+Risk: PMF tests, waitlists, and lead-capture pages may collect personal data.
+
+Mitigation: Review privacy notices, consent handling, and relevant ad-platform policies before collecting leads.
+
+Risk: Competitor-brand bidding and platform-specific ad practices may create policy or legal exposure.
+
+Mitigation: Review current platform policies and applicable legal requirements before using competitor names, brand terms, or regulated targeting.
+
+## Reference(s):
+
+- [Marketing Cactus - Using Google Ads to Test Product-Market Fit Before Launching](https://mktcactus.com/en/using-google-ads-to-test-product-market-fit-before-launching/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with tables, channel recommendations, budget notes, landing-page requirements, and metrics to track]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May route execution-specific work to related platform skills such as google-ads, meta-ads, app-ads, ctv-ads, display-ads, and landing-page-generator.]
+
+## Skill Version(s):
+
+1.7.0 (source: artifact frontmatter and server release evidence, released 2026-04-08)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

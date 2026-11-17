@@ -1,42 +1,59 @@
-## Description: <br>
-Mecha Art Generator helps agents generate anime-style mecha artwork from text prompts through the Neta AI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mecha Art Generator helps agents create anime-style mecha artwork, robot illustrations, sci-fi armor concepts, mech posters, and related concept art through the Neta AI image generation API.
 
-## Publisher: <br>
-[blammectrappora](https://clawhub.ai/user/blammectrappora) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blammectrappora](https://clawhub.ai/user/blammectrappora)
 
-## Use Case: <br>
-External users and developers use this skill to generate mecha-themed concept art, posters, cosplay references, fanart, and model-kit inspiration from text prompts, with optional size and style-reference controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, optional reference UUIDs, and the Neta/TalesOfAI token are sent to api.talesofai.com. <br>
-Mitigation: Use non-sensitive prompts, review the service terms, and use a revocable or limited-purpose token. <br>
-Risk: Passing tokens on the command line can expose them through shell history or local process inspection. <br>
-Mitigation: Prefer safer local token handling where possible and rotate tokens if exposure is suspected. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent to generate mecha-themed image prompts, run the image-generation client, and return the resulting image URL for fanart, cosplay reference, model kit inspiration, or concept design.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/blammectrappora/mecha-art-generator) <br>
-- [Neta open platform](https://www.neta.art/open/) <br>
-- [TalesOfAI image API](https://api.talesofai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text URL and Markdown guidance with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns a direct image URL after polling the remote image-generation API; requires a Neta API token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill sends image prompts, optional reference UUIDs, and a Neta/TalesOfAI API token to an external image-generation service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm external-service use is acceptable before deployment and avoid including sensitive or confidential content in prompts or reference identifiers.
+
+Risk: Passing real API tokens directly on the command line can expose them through shell history or process listings.
+
+Mitigation: Prefer environment variables or a managed secret flow for tokens, and avoid pasting long-lived credentials directly into shell commands.
+
+Risk: The documented npx install command is unpinned.
+
+Mitigation: Prefer ClawHub installation or a pinned package/version when deploying in controlled environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/blammectrappora/skills/mecha-art-generator)
+- [Neta AI token and API access](https://www.neta.art/open/)
+- [TalesOfAI API service](https://api.talesofai.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text URL with command-line guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires prompt text, a Neta API token, optional image size, and optional reference image UUID.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

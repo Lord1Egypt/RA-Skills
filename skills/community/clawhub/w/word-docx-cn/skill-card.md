@@ -1,41 +1,59 @@
-## Description: <br>
-Create, inspect, and edit Microsoft Word documents and DOCX files with reliable styles, numbering, tracked changes, tables, sections, and compatibility checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents create, inspect, and edit Microsoft Word DOCX documents while preserving styles, numbering, tracked changes, tables, sections, and compatibility.
 
-## Publisher: <br>
-[linbo405](https://clawhub.ai/user/linbo405) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linbo405](https://clawhub.ai/user/linbo405)
 
-## Use Case: <br>
-External users and developers use this skill when creating, inspecting, editing, or reviewing Microsoft Word and DOCX files where styles, numbering, tracked changes, comments, fields, tables, sections, or round-trip compatibility matter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Important Word or DOCX files can be damaged by broad edits, stale fields, broken review anchors, or layout drift across Word, LibreOffice, Google Docs, and conversion tools. <br>
-Mitigation: Work on copies, make minimal structure-preserving edits, and review tracked changes, comments, fields, tables, headers, footers, and layout before sharing final documents. <br>
-Risk: Macro-enabled DOCM files and legacy DOC files can carry higher compatibility or security risk than ordinary DOCX workflows. <br>
-Mitigation: Treat DOCM files as macro-bearing, convert legacy DOC inputs before relying on DOCX assumptions, and verify the converted document before delivery. <br>
+## Use Case:
 
+Developers, document automation agents, and business users use this skill when working with Word or DOCX files that need careful handling of review metadata, formatting, numbering, page layout, tables, fields, and round-trip compatibility.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/linbo405/word-docx-cn) <br>
-- [Skill homepage](https://clawic.com/skills/word-docx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline commands or code when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no executable code is bundled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Word review files can contain sensitive comments, tracked changes, deleted text, and other review metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect and preserve review metadata deliberately, and remove or disclose it only when the user explicitly requests that outcome.
+
+Risk: DOCX documents can appear correct while fields, references, numbering, tables, headers, or pagination drift after opening in another editor.
+
+Mitigation: Use structure-aware DOCX handling and verify round-trip behavior in the target editor when layout or references matter.
+
+Risk: Legacy or macro-bearing Word formats such as .doc and .docm can carry compatibility or execution risks.
+
+Mitigation: Convert legacy .doc inputs before relying on DOCX assumptions and treat macro-bearing .docm files as higher risk.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linbo405/skills/word-docx-cn)
+- [Publisher profile](https://clawhub.ai/user/linbo405)
+- [Original skill homepage](https://clawic.com/skills/word-docx)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or plain text guidance, with code or shell commands when document tooling is needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide creation or editing of DOCX files while preserving document structure and review metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -2,9 +2,10 @@
 
 | API | Line |
 |-----|------|
-| Clerk | 2 |
-| WorkOS | 185 |
-| Stytch | 280 |
+| Clerk | 12 |
+| Auth0 | 102 |
+| WorkOS | 195 |
+| Stytch | 290 |
 
 ---
 

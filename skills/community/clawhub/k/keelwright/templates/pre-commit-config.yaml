@@ -1,0 +1,64 @@
+# Pre-commit configuration for keelwright Python projects
+# Install: `pre-commit install`
+# Run manually: `pre-commit run --all-files`
+
+repos:
+  # Gitleaks — secrets scanning (MIT)
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.25.0
+    hooks:
+      - id: gitleaks
+        args: ["--staged", "--redact", "-v"]
+        stages: [commit]
+
+  # Ruff — lint + format (MIT)
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.9.0
+    hooks:
+      - id: ruff
+        args: ["check", "--fix"]
+        stages: [commit]
+      - id: ruff-format
+        stages: [commit]
+
+  # MyPy — type checking (MIT)
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.13.0
+    hooks:
+      - id: mypy
+        args: ["--strict"]
+        stages: [commit]
+        additional_dependencies: []
+
+  # Jscpd — duplication detection (MIT)
+  - repo: local
+    hooks:
+      - id: jscpd
+        name: jscpd duplication check
+        entry: jscpd
+        args: ["--threshold", "10", "--reporters", "consoleFull", "./src"]
+        language: system
+        types: [python]
+        stages: [commit]
+
+  # Lizard — complexity check (MIT)
+  - repo: local
+    hooks:
+      - id: lizard
+        name: lizard complexity check
+        entry: python -m lizard
+        args: ["-C", "25", "./src"]
+        language: system
+        types: [python]
+        stages: [commit]
+
+  # Python syntax check (stdlib)
+  - repo: local
+    hooks:
+      - id: python-syntax
+        name: Python syntax check
+        entry: python -m py_compile
+        args: []
+        language: system
+        types: [python]
+        stages: [commit]

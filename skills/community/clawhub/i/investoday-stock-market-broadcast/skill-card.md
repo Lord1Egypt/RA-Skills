@@ -1,40 +1,58 @@
-## Description: <br>
-Produces structured A-share market broadcast recaps and sentiment commentary from public market breadth, index, and news data supplied by the investoday finance data skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill produces structured A-share market broadcasts and market-sentiment recaps using public Investoday market data, including breadth, index performance, topical news, and session-stage interpretation.
 
-## Publisher: <br>
-[kenneth-bro](https://clawhub.ai/user/kenneth-bro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kenneth-bro](https://clawhub.ai/user/kenneth-bro)
 
-## Use Case: <br>
-External users and agents use this skill to generate concise A-share morning, midday, intraday, or after-close market recaps. It helps summarize market breadth, major index performance, hot themes, catalysts, and follow-up signals without presenting the output as investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market commentary can become stale quickly or be mistaken for investment advice. <br>
-Mitigation: Include the broadcast time and data source, present conclusions as informational commentary, and avoid telling users to buy, sell, or hold securities. <br>
-Risk: The skill depends on live public market data supplied by the separate investoday-finance-data skill. <br>
-Mitigation: Confirm the dependency is available before generating a recap and clearly state when data is missing, delayed, or outside trading hours. <br>
+## Use Case:
 
+External users use this skill to generate concise A-share market broadcasts for morning, midday, intraday, after-close, or general market-status questions. The skill helps summarize market breadth, major index movement, active themes, and follow-up signals without presenting the result as investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kenneth-bro/investoday-stock-market-broadcast) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown market recap] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public A-share market data and should remain informational, time-stamped, and non-advisory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: Generic Chinese market-status questions may activate the skill and fetch current public market data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use clear invocation and review whether live market commentary is appropriate for the user request before relying on the output.
+
+Risk: The broadcast is time-sensitive and may become stale as market prices, breadth, and news change.
+
+Mitigation: Treat generated summaries as point-in-time commentary and refresh data before making decisions or sharing externally.
+
+Risk: Users could mistake market commentary for personalized investment advice.
+
+Mitigation: Preserve the skill's risk notice that outputs are based on real-time market and public information, are for reference only, and do not constitute investment advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kenneth-bro/skills/investoday-stock-market-broadcast)
+- [Publisher profile](https://clawhub.ai/user/kenneth-bro)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown market broadcast with structured sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are time-sensitive commentary based on current public market data and should not be treated as investment advice.]
+
+## Skill Version(s):
+
+1.3.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

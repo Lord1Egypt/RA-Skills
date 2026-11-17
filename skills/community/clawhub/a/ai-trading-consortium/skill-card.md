@@ -1,43 +1,53 @@
-## Description: <br>
-AI-powered hedge fund that combines multi-expert trading strategies with comprehensive information gathering, analyzes stocks through systematic data collection, analyst reports, bull/bear debates, and a council of legendary investor personas, and produces executive summary slides. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Ai Trading Consortium guides agents through educational stock research by gathering market data, running multi-analyst assessments, debating bull and bear cases, collecting investor-persona votes, evaluating risk, and producing executive summary slides.
 
-## Publisher: <br>
-[ericn26-star](https://clawhub.ai/user/ericn26-star) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ericn26-star](https://clawhub.ai/user/ericn26-star)
 
-## Use Case: <br>
-External users use this skill to generate educational stock-analysis workflows that collect market context, compare bullish and bearish cases, summarize investor-persona votes, assess risk, and produce an informational buy/hold/sell-style recommendation with slides. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill produces stock forecasts and buy/hold/sell-style recommendations that users could mistake for financial advice. <br>
-Mitigation: Treat outputs as informational research only and independently verify material investment decisions before acting. <br>
-Risk: Ticker-analysis prompts may be sent through a third-party API-key workflow. <br>
-Mitigation: Install only if comfortable using that API key flow and avoid sending sensitive portfolio or account information in prompts. <br>
-Risk: Market, news, and sentiment data may be stale, incomplete, or inconsistent across sources. <br>
-Mitigation: Check timestamps, flag missing data, and validate important claims against independent current sources. <br>
+## Use Case:
 
+External users and finance-oriented developers use this skill to create educational stock research workflows that combine data gathering, analyst-style reports, bull and bear debate, investor-persona voting, risk review, and slide summaries. Its outputs should support research and discussion, not replace independent financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ericn26-star/ai-trading-consortium) <br>
-- [Publisher profile](https://clawhub.ai/user/ericn26-star) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown reports with structured JSON-style sections and PDF/PPTX slide deliverables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should remain informational and include risk context, confidence levels, and non-financial-advice framing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Outputs may include buy, sell, or hold-style analysis, price targets, stop-losses, and position-sizing examples.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as educational research only and require independent review by a qualified professional before making any trading decision.
+
+Risk: Market, company, news, and sentiment data can be stale, incomplete, or inconsistent across sources.
+
+Mitigation: Check data freshness, cite source timestamps, and cross-validate important figures against authoritative financial sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ericn26-star/skills/ai-trading-consortium)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown reports with structured JSON-style sections and requested PPTX/PDF slide deliverables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes stock identification, market data summaries, analyst reports, debate summaries, council votes, risk assessment, final recommendation, and three executive summary slides.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

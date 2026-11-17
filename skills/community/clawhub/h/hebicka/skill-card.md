@@ -1,42 +1,55 @@
-## Description: <br>
-Generate naive/childlike comics in the style of Hébička (Czech webcomic). Creates simple, charming creature comics with hand-drawn aesthetic, speech bubbles, and wholesome stories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate naive/childlike comics in the style of Hébička (Czech webcomic). Creates simple, charming creature comics with hand-drawn aesthetic, speech bubbles, and wholesome stories.
 
-## Publisher: <br>
-[vilda007](https://clawhub.ai/user/vilda007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vilda007](https://clawhub.ai/user/vilda007)
 
-## Use Case: <br>
-External users and creative developers use this skill to prompt agents for simple Czech webcomic-style character comics, including visual style notes, character details, speech patterns, and image generation prompt guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated comics may raise copyright or style-permission concerns because the skill guides users toward a named webcomic style. <br>
-Mitigation: Confirm the right to generate or publish derivative images before using the output commercially or publicly. <br>
-Risk: Creative prompt guidance may produce inaccurate or inconsistent visual details. <br>
-Mitigation: Review generated prompts and images before publication, especially character details, language, and speech bubbles. <br>
+## Use Case:
 
+External users and creative agents use this skill to draft prompts and guidance for simple Czech naive-comic scenes featuring Hébička-style characters, speech bubbles, and wholesome stories.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vilda007/skills/hebicka) <br>
-- [Publisher profile](https://clawhub.ai/user/vilda007) <br>
-- [Hébička webcomic website](https://heebicka.misto.cz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with prompt templates and example prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces creative image-generation guidance only; the artifact is Markdown-only and does not execute code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and OpenClaw metadata) <br>
+Risk: The skill defaults to Czech text and contains inconsistent black-and-white versus color style guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit prompt defaults before use when another language, strict monochrome output, or consistent color treatment is required.
+
+Risk: The skill is a prompt guide, so generated outputs may not reliably match the intended hand-drawn comic style.
+
+Mitigation: Review generated prompts and images before publication or downstream use.
+
+## Reference(s):
+
+- [Original Hébička Website](https://heebicka.misto.cz)
+- [ClawHub Skill Page](https://clawhub.ai/vilda007/skills/hebicka)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/vilda007)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prompt guidance and example image-generation prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; guidance is intended for agent-authored image-generation prompts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and OpenClaw metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

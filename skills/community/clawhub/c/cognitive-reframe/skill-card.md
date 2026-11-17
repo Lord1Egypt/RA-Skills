@@ -1,40 +1,53 @@
-## Description: <br>
-Helps users identify negative thinking patterns and try seeing situations from a more balanced perspective. A CBT-based thought exercise tool for daily self-regulation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users identify negative thinking patterns and try seeing situations from a more balanced perspective.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users use this skill for CBT-style self-help thought exercises: identifying negative thinking patterns, reframing them into more balanced alternatives, and receiving a small action tip. It is not mental health care and should redirect self-harm, suicidal thoughts, severe symptoms, trauma, eating-disorder concerns, or immediate danger to professional or crisis services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with China-specific crisis hotline examples and job-search suggestions that should be localized for users elsewhere. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake CBT-style self-help reframing for professional mental health care. <br>
-Mitigation: Present the skill only as a thought-reframing aid and direct diagnosis, treatment, persistent severe symptoms, self-harm, suicidal thoughts, trauma, eating-disorder concerns, or immediate danger to professional or crisis services. <br>
-Risk: Crisis hotline examples and some job-search suggestions are China-specific. <br>
-Mitigation: Localize crisis resources and regional job-search guidance for users outside China before relying on those examples. <br>
+## Use Case:
 
+External users can use this skill for CBT-style daily self-reflection: naming negative thinking patterns, considering balanced alternatives, and choosing a small next step. It should not be used for diagnosis, therapy, crisis intervention, or ongoing mental health support.
 
-## Reference(s): <br>
-- [Cognitive Reframe ClawHub listing](https://clawhub.ai/harrylabsj/cognitive-reframe) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text with structured CBT-style prompts, reframes, safety boundary notices, and small action tips] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only; no technical access, storage, or tracking is described.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: Users may mistake the CBT-style self-reflection guidance for therapy or medical advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the skill framed as a daily self-regulation exercise and direct users with persistent distress, self-harm thoughts, or severe symptoms to qualified professional help.
+
+Risk: The included crisis examples and hotline numbers are China-centered and may be inappropriate for users elsewhere.
+
+Mitigation: Tell users outside China to rely on local emergency, crisis, or mental health services instead of the China-specific resources in the examples.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/cognitive-reframe)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with structured reflection prompts and safety boundary reminders]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only guidance; no code execution, tool calls, or data access]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,62 @@
-## Description: <br>
-Extracts brand identity from a website URL by analyzing colors, typography, visual style, imagery, CSS, and images into a structured brand profile. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts brand identity signals from a website URL, including colors, typography, visual style, imagery, and a structured brand profile for on-brand content generation.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers, marketers, and content teams use this skill to extract a reusable visual brand profile from public or authorized websites before generating on-brand content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches target websites and should not be used on sites the user is not authorized to analyze. <br>
-Mitigation: Use it only on public or authorized sites and respect access restrictions. <br>
-Risk: Visual analysis may send selected images or derived visual data to Gemini or OpenAI providers. <br>
-Mitigation: Avoid sensitive or private sites and review provider data-handling requirements before use. <br>
-Risk: Optional Supabase caching can store extracted profiles and requires careful handling of Supabase credentials. <br>
-Mitigation: Disable storage for sensitive work, keep the Supabase key server-side and scoped where possible, and keep secrets out of logs and shared environments. <br>
+## Use Case:
 
+Developers, marketers, and brand teams use this skill to analyze public websites and create reusable visual brand profiles before generating on-brand content.
 
-## Reference(s): <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/brand-dna-extractor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples and structured BrandDNA fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe website fetching, VLM analysis, API-key configuration, and optional Supabase caching.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Analyzing websites without authorization may create legal, privacy, or terms-of-service concerns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on public sites you are allowed to analyze and review each target site's restrictions before scraping.
+
+Risk: Images and derived brand metadata may be sent to Gemini or OpenAI for visual analysis.
+
+Mitigation: Avoid sensitive or private targets, disclose external processing where required, and review provider data-handling terms before use.
+
+Risk: A Supabase service-role key can grant broad database access if reused from a production project.
+
+Mitigation: Keep caching disabled unless needed, use a scoped non-production key, and store secrets outside prompts, logs, and source files.
+
+Risk: Installing scraping, browser, image-processing, and VLM dependencies expands the local execution surface.
+
+Mitigation: Install dependencies in a virtual environment or container and review the package set before deployment.
+
+## Reference(s):
+
+- [Canlah AI](https://canlah.ai)
+- [ClawHub Skill Page](https://clawhub.ai/phy041/skills/brand-dna-extractor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python and bash code blocks, plus structured brand profile data when implemented]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe JSON-like BrandDNA objects containing colors, typography, imagery, visual style, cache status, and error fields.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

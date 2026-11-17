@@ -1,52 +1,61 @@
-## Description: <br>
-Ai Support Pro helps customer-support teams classify tickets, track SLA risk, route escalations across L1/L2/L3, draft customer responses, review sentiment, prepare NPS/CSAT reports, onboard operators, and configure CRM-connected support workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ai Support Pro is a customer-support automation skill for classifying tickets, tracking SLA, routing L1/L2/L3 escalations, analyzing sentiment, drafting replies, onboarding support agents, and producing NPS/CSAT reports.
 
-## Publisher: <br>
-[raaipro](https://clawhub.ai/user/raaipro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raaipro](https://clawhub.ai/user/raaipro)
 
-## Use Case: <br>
-Customer-support leaders, operators, and operations teams use this skill to standardize ticket intake, SLA tracking, escalation decisions, customer-response drafting, CRM-card summaries, and support-quality reporting for businesses with recurring support volume. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can process customer records and CRM context. <br>
-Mitigation: Use least-privilege CRM credentials, limit access to required fields, and test with sample or redacted customer records before connecting production data. <br>
-Risk: The skill can draft or trigger customer-facing messages and ticket closures. <br>
-Mitigation: Require human approval before sending messages, closing tickets, or updating customer records until support policies and escalation rules are validated. <br>
-Risk: Refund and compensation workflows can affect customer finances or commitments. <br>
-Mitigation: Disable refund automation or keep it in dry-run mode until return policies, approval thresholds, and manager review steps are confirmed. <br>
-Risk: SLA and escalation outputs depend on accurate ticket data, assigned owners, and configured policies. <br>
-Mitigation: Populate SLA targets, L2/L3 owners, ticket categories, and CRM fields before operational use, then review daily reports during rollout. <br>
-Risk: The artifact includes install and build scripts. <br>
-Mitigation: Review scripts before execution and run smoke tests in a sandbox before granting production credentials. <br>
+## Use Case:
 
+Support leaders, COOs, CEOs, and customer-support teams use the skill to standardize intake, prioritization, SLA monitoring, escalation, response drafting, reporting, and agent onboarding for businesses handling recurring support tickets.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/raaipro/raai-ai-support-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/raaipro) <br>
-- [README](artifact/README.md) <br>
-- [Configuration reference](artifact/config.yaml) <br>
-- [Onboarding guide](artifact/docs/onboarding.md) <br>
-- [Limitations and anti-fail guidance](artifact/docs/anti-fail.md) <br>
-- [Quick-start examples](artifact/examples/quick-start.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and structured operational text with configuration snippets and occasional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include ticket classifications, SLA reports, escalation briefs, customer-response drafts, CRM-card summaries, onboarding checklists, and support analytics guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.5.2 (source: server release evidence and frontmatter) <br>
+Risk: The skill may process sensitive customer data and propose CRM or ticket actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start with test tickets, connect real channels only after privacy controls are defined, and require administrator approval for CRM write actions.
+
+Risk: Credentials for AI providers, messaging channels, and CRM systems may be mishandled during setup.
+
+Mitigation: Keep real API keys out of config files, use environment variables or a secrets manager, and grant least-privilege access.
+
+Risk: Automated routing or response guidance can be wrong for refunds, legal threats, VIP customers, or high-severity incidents.
+
+Mitigation: Require human review for high-priority, financial, legal, VIP, and escalation decisions before messages or actions are finalized.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/raaipro/skills/raai-ai-support-pro)
+- [Quick start](examples/quick-start.md)
+- [Onboarding guide](docs/onboarding.md)
+- [Limitations and anti-fail guide](docs/anti-fail.md)
+- [ROI guide](docs/roi.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with structured ticket summaries, SLA reports, escalation handoffs, response drafts, onboarding checklists, and setup commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires configuration of company details, support-team roles, SLA rules, escalation contacts, and optional CRM or channel credentials before live use.]
+
+## Skill Version(s):
+
+3.5.2 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

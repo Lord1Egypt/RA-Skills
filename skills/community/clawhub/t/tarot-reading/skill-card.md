@@ -1,46 +1,58 @@
-## Description: <br>
-A tarot reading and interpretation skill that draws from a 78-card Rider-Waite-Smith tarot deck and produces symbolic, reflective readings with spread-aware card meanings and action steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A tarot reading and interpretation skill that draws from the Rider-Waite-Smith 78-card deck and provides symbolic readings for single-card, three-card, Celtic Cross, relationship, and other spreads.
 
-## Publisher: <br>
-[eamanc-lab](https://clawhub.ai/user/eamanc-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eamanc-lab](https://clawhub.ai/user/eamanc-lab)
 
-## Use Case: <br>
-External users use this skill for entertainment-oriented tarot readings, daily card pulls, and reflective exploration of personal questions. It is intended for symbolic self-reflection and not for medical, legal, financial, or other professional advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional preference memory may retain sensitive personal reading topics if a user explicitly asks to save them. <br>
-Mitigation: Avoid saving sensitive personal details as preferences and review MEMORY.md before reuse if past topics should not influence future readings. <br>
-Risk: Broad trigger phrases such as 'daily card' or 'draw a card' may route an ambiguous request to this skill. <br>
-Mitigation: Confirm the user's intent when the request is ambiguous or could refer to a non-tarot task. <br>
-Risk: Users may over-rely on tarot output for professional, health, legal, or financial decisions. <br>
-Mitigation: Keep readings framed as entertainment and self-reflection, and direct users to qualified professionals for medical, legal, financial, or other professional advice. <br>
+## Use Case:
 
+External users use this skill to request reflective tarot readings for personal questions, daily guidance, relationship topics, career questions, and decision support. The skill frames readings as symbolic self-exploration rather than prediction or professional advice.
 
-## Reference(s): <br>
-- [Project homepage](https://github.com/eamanc-lab/fortune-telling-skills) <br>
-- [Tarot Interpretation Rules](references/interpretation-rules.md) <br>
-- [Major Arcana](references/major-arcana.md) <br>
-- [Minor Arcana](references/minor-arcana.md) <br>
-- [Tarot Spread Reference](references/spreads.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown tarot reading with drawn cards, card-by-card interpretation, synthesis, and action steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include user-selected or recommended spreads; card draws and upright/reversed orientation are randomized.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: release evidence) <br>
+Risk: The skill may reuse saved reading preferences or related fortune-hub memory data during future readings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing sensitive personal details in memory files, and save or update preferences only when the user explicitly asks.
+
+Risk: Users may treat tarot output as medical, legal, financial, or deterministic advice.
+
+Mitigation: Keep readings framed as symbolic reflection and direct users to qualified professionals for medical, legal, financial, or life-and-death concerns.
+
+## Reference(s):
+
+- [Tarot Reading ClawHub Page](https://clawhub.ai/eamanc-lab/skills/tarot-reading)
+- [Fortune Telling Skills Repository](https://github.com/eamanc-lab/fortune-telling-skills)
+- [Tarot Interpretation Rules](references/interpretation-rules.md)
+- [Major Arcana](references/major-arcana.md)
+- [Minor Arcana](references/minor-arcana.md)
+- [Tarot Spread Reference](references/spreads.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with card tables, narrative interpretation, synthesis, and action steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses randomized card draws and may incorporate saved reading preferences when present.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence; artifact metadata version is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

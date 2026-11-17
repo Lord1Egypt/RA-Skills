@@ -1,0 +1,79 @@
+{
+  "version": "quick",
+  "nickname": "All-A Tester",
+  "timestamp": "2026-08-27T11:04:14",
+  "type": "INFP",
+  "name_cn": "调停者",
+  "name_en": "The Mediator",
+  "dimensions": {
+    "E/I": {
+      "counts": {
+        "E": 8,
+        "I": 8
+      },
+      "total": 16,
+      "winner": "I",
+      "pct": 50.0,
+      "clarity": 0.0,
+      "band_zh": "轻微",
+      "band_en": "Slight"
+    },
+    "S/N": {
+      "counts": {
+        "S": 8,
+        "N": 11
+      },
+      "total": 19,
+      "winner": "N",
+      "pct": 57.9,
+      "clarity": 15.8,
+      "band_zh": "轻微",
+      "band_en": "Slight"
+    },
+    "T/F": {
+      "counts": {
+        "T": 8,
+        "F": 10
+      },
+      "total": 18,
+      "winner": "F",
+      "pct": 55.6,
+      "clarity": 11.1,
+      "band_zh": "轻微",
+      "band_en": "Slight"
+    },
+    "J/P": {
+      "counts": {
+        "J": 8,
+        "P": 9
+      },
+      "total": 17,
+      "winner": "P",
+      "pct": 52.9,
+      "clarity": 5.9,
+      "band_zh": "轻微",
+      "band_en": "Slight"
+    }
+  },
+  "overall_clarity": 8.2,
+  "top3_similar": [
+    {
+      "type": "ENFP",
+      "similarity_pct": 54.1
+    },
+    {
+      "type": "ENFJ",
+      "similarity_pct": 52.6
+    },
+    {
+      "type": "INFJ",
+      "similarity_pct": 52.6
+    }
+  ],
+  "borderline_dimensions": [
+    "E/I",
+    "S/N",
+    "T/F",
+    "J/P"
+  ]
+}

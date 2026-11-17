@@ -1,7 +1,7 @@
 ---
 name: star-search-en
-description: "Comprehensive web search + LLM-answer engine. Use when asked to search the web, find online information, research topics, get news, look up Chinese content, or check A股/finance/tech news. **v20.7 — Speed/Streaming/Multi-turn/Stable/Academic/Structured/Favorites/Monitoring/Claude Desktop MCP**! star-search is a standard Model Context Protocol server (4 tools: web_search/web_search_news/web_search_finance/get_engines) callable by Claude Desktop / Cursor / Hermes. Public HTTP/SSE: https://search.token-star.cn/mcp/sse . v20 features (实战 35-48): speed optimization 6s→0.2s + SSE streaming (first token <1s) + multi-turn dialogue (history injection) + ultimate stability (killed watchdog) + academic/code 4 engines (Sourcegraph available) + structured output 4 formats (default/table/json/mermaid) + history/favorites localStorage + /metrics Prometheus endpoint + monitoring alert service + Prometheus + Grafana public HTTPS. 16 engines (11 HTTP + 5 RSS) + intelligent routing (finance query auto-finance mode) + starry-sky frontend UI + systemd user daemon + OpenAI API. Goal: free Chinese alternative to Baidu search + LLM agent real-time fact layer (free Chinese version of Tavily/Perplexity)."
-version: 20.7.0
+description: "Comprehensive web search + LLM-answer engine. Use when asked to search the web, find online information, research topics, get news, look up Chinese content, or check A股/finance/tech news. **v20.42 - LangChain + Dify + 5-min install**: LangChain Tool adapter, Dify plugin, install.sh, .env.example, 5-minute quick start. **v20.40 base**: STRAT 56.5%→74.1% + automatic fetch_content + end-to-end pipeline! star-search is a standard Model Context Protocol server (4 tools) callable by Claude Desktop / Cursor / Hermes. Public HTTP/SSE: https://search.<service-domain>/mcp/sse . v20 features (v20.35-102): speed optimization 6s→0.2s + SSE streaming + multi-turn dialogue + 16 engines (HTTP/Playwright/RSS) + intelligent intent recognition (4 batch 108 query tests) + AI smart layer (super_brain + multi_search + entity_card + cross_verify + intent_strategy) + Cloudflare Bot protection + **v20.40 end-to-end pipeline** (4 stages: understand→search→integrate→output with full LLM participation). Goal: free Chinese alternative to Baidu search + LLM agent real-time fact layer (free Chinese version of Tavily/Perplexity)."
+version: 20.42.0
 author: Hermes Agent
 license: MIT
 metadata:
@@ -24,7 +24,7 @@ metadata:
 
 **A single script to replace Baidu Search API + Answer + Monitoring. Free, multi-engine, high quality, serve subagents.**
 
-> This skill has evolved from v8.3 (Camofox) to v20.7.0 (HTTP+Playwright hybrid + intelligent routing + public deployment + LLM answer + SSE streaming + multi-turn + Prometheus monitoring). Complete v16-v17 chapters are archived in `references/v16-v17-legacy-archive.md`. GitHub: https://github.com/muchenhengxin/Star @ commit da860bf (v20.7.0). Public: https://search.token-star.cn (HSTS + LE cert + nginx reverse proxy).
+> This skill has evolved from v8.3 (Camofox) to v20.7.0 (HTTP+Playwright hybrid + intelligent routing + public deployment + LLM answer + SSE streaming + multi-turn + Prometheus monitoring). Complete v16-v17 chapters are archived in `references/v16-v17-legacy-archive.md`. GitHub: https://github.com/<github-repo> @ commit da860bf (v20.7.0). Public: https://search.<service-domain> (HSTS + LE cert + nginx reverse proxy).
 
 ---
 
@@ -47,46 +47,46 @@ metadata:
 ## 🏗️ Architecture (v20.7)
 
 ```
-[Browser] → https://search.token-star.cn:443
+[Browser] → https://search.<service-domain>:443
     ↓ (nginx + LE cert)
 [/var/www/star-search/index.html]    ← 49KB frontend (streaming/favorites/history/format switch)
     ↓ (location /v1/ / /mcp/ / /v1/search/stream SSE)
-[FastAPI 127.0.0.1:<api-port>]     ← api_server.py (systemd user)
+[FastAPI <server-ip>:<api-port>]     ← api_server.py (systemd user)
     ├─ 16 engines (9 HTTP enabled + 4 PW skipped + 3 cache)
     ├─ answer.py (GLM-4-Flash summarization, honest-first)
     ├─ metrics.py (Prometheus metrics, 14 indicators)
     ├─ academic_code.py (4 engines)
     ↓
-[LLM API: https://api.token-star.cn/v1]   ← GLM-4-Flash (permanently free)
+[LLM API: https://api.<service-domain>/v1]   ← GLM-4-Flash (permanently free)
 [Prometheus + Grafana + node-exporter]     ← 9090/3000/9100 (public HTTPS)
-[star-search-monitor.service]             ← Monitoring alerts (user systemd)
+[monitor.service]             ← Monitoring alerts (user systemd)
 ```
 
 ---
 
 ## 6 Major Capability Modules (v20.7)
 
-### 1. Speed & Streaming (P0-1, 实战 35-37)
+### 1. Speed & Streaming (P0-1, v20.35-37)
 
 - **Search layer 0.2-1s**: playwright 4 engines skip + 4s top-level timeout + cache hit 0ms
 - **Answer layer 7-8s**: `max_tokens=300` + `LLM_TIMEOUT=25s` + 30min cache
 - **SSE streaming**: `POST /v1/search/stream` returns 5 events (`search_start` / `search_done` / `answer_chunk×N` / `answer_done` / `done`)
 - **First token < 1s**: frontend fetch + ReadableStream SSE parsing, character-by-character display
 
-### 2. Multi-turn Dialogue (实战 38-39)
+### 2. Multi-turn Dialogue (v20.38-39)
 
 - **API fields**: `session_id` + `history: [{q, a}, ...]`
 - **Backend**: `generate_answer(history)` splices into prompt (`=== Previous conversation ===\nUser: ...\nAssistant: ...\n---`)
 - **Frontend**: localStorage stores `chat:{session_id}:history` (last 20 turns) + left session list
 
-### 3. Ultimate Stability (实战 40)
+### 3. Ultimate Stability (v20.40)
 
-- **systemd daemon**: `stardust-svc.service` (user systemd + linger) + `Restart=always`
+- **systemd daemon**: `<system-name>-svc.service` (user systemd + linger) + `Restart=always`
 - **Killed 6/3 leftover watchdog**: `/tmp/watchdog.sh` ran 11 days, miskilled 39 times → `kill -9` + `rm` fix
 - **uvicorn logging force=True**: avoid root logger override causing detail.log 0 bytes
 - **Tested**: 7 queries run, NRestarts=0 stable
 
-### 4. Academic / Code / Structured / Favorites (实战 41-43)
+### 4. Academic / Code / Structured / Favorites (v20.41-43)
 
 - **Academic/code 4 engines**: `google_scholar` / `semantic_scholar` / `grep_app` / `sourcegraph` (independent module `academic_code.py`)
   - Actual: 1/4 available (Sourcegraph; other 3 limited by GFW / rate limiting / anti-scraping)
@@ -95,18 +95,18 @@ metadata:
   - cache key includes `fmt` (4 formats independent cache)
 - **History/favorites UI**: top bar 📚 history + ⭐ favorites 2 buttons + per-result ⭐ button + overlay + localStorage
 
-### 5. Monitoring Alerts (实战 44-45)
+### 5. Monitoring Alerts (v20.44-45)
 
 - **`/metrics` endpoint**: pure Python 14 indicators (QPS / P99 / cache hit rate / error count / LLM latency)
-- **`star-search-monitor.service`**: user systemd + linger + 3 alert rules + 5min summary
+- **`monitor.service`**: user systemd + linger + 3 alert rules + 5min summary
 - **Alert rules**: error rate > 20% / cache hit rate < 10% / fetch failed 3 times
 
-### 6. Prometheus + Grafana (实战 46)
+### 6. Prometheus + Grafana (v20.46)
 
 - **3 docker containers**: `star-prometheus` v2.54.1 (9090) / `star-grafana` v11.2.0 (3000) / `star-node-exporter` v1.8.2 (9100)
 - **8 alert rules**: error rate / cache / service down / P99 / CPU / memory / disk
 - **Grafana 11 panel dashboard**: QPS / cache rate / latency / CPU / memory / disk
-- **Public HTTPS**: `prom.token-star.cn` + `grafana.token-star.cn` (certbot + nginx 80/443 reverse proxy)
+- **Public HTTPS**: `prom.<service-domain>` + `grafana.<service-domain>` (certbot + nginx 80/443 reverse proxy)
 
 ---
 
@@ -115,7 +115,7 @@ metadata:
 ### 1. Web UI (recommended, browser direct)
 
 ```
-https://search.token-star.cn
+https://search.<service-domain>
 ```
 
 - Single query / multi-turn dialogue / SSE streaming / 4 format switching
@@ -177,7 +177,7 @@ python3 search.py "BYD stock price" --star
       "command": "/usr/bin/python3",
       "args": ["/home/ubuntu/star-search/mcp/mcp_server.py"],
       "env": {
-        "STAR_SEARCH_API": "http://127.0.0.1:5000/v1/search",
+        "STAR_SEARCH_API": "http://<server-ip>:5000/v1/search",
         "PYTHONPATH": "/home/ubuntu/.local/lib/python3.10/site-packages"
       }
     }
@@ -194,7 +194,7 @@ python3 search.py "BYD stock price" --star
       "command": "python3",
       "args": ["/path/to/mcp_server.py"],
       "env": {
-        "STAR_SEARCH_API": "http://127.0.0.1:5000/v1/search"
+        "STAR_SEARCH_API": "http://<server-ip>:5000/v1/search"
       }
     }
   }
@@ -203,16 +203,16 @@ python3 search.py "BYD stock price" --star
 
 **Key**:
 - `PYTHONPATH` must include aiohttp venv path (local dev needs `pip install aiohttp`)
-- `STAR_SEARCH_API` points to your star-search API server (default `http://127.0.0.1:5000/v1/search`)
+- `STAR_SEARCH_API` points to your star-search API server (default `http://<server-ip>:5000/v1/search`)
 - Restart Claude Desktop to take effect
 
 #### 4.2 SSE public mode (remote, cross-device)
 
 **Public endpoints**:
 ```
-Health: https://search.token-star.cn/mcp/health
-SSE:    https://search.token-star.cn/mcp/sse
-POST:   https://search.token-star.cn/mcp/messages?session_id=<get from SSE-pushed endpoint URL>
+Health: https://search.<service-domain>/mcp/health
+SSE:    https://search.<service-domain>/mcp/sse
+POST:   https://search.<service-domain>/mcp/messages?session_id=<get from SSE-pushed endpoint URL>
 ```
 
 **Python client example**:
@@ -222,7 +222,7 @@ import aiohttp, json
 
 async with aiohttp.ClientSession() as s:
     # 1. SSE handshake - server pushes "event: endpoint\ndata: <URL>?session_id=XXX"
-    async with s.get("https://search.token-star.cn/mcp/sse") as r:
+    async with s.get("https://search.<service-domain>/mcp/sse") as r:
         line = await r.content.readline()  # event: endpoint
         line = await r.content.readline()  # data: <URL>?session_id=XXX
         endpoint = line.decode().replace("data: ", "").strip()
@@ -323,7 +323,7 @@ async with aiohttp.ClientSession() as s:
 ### 1. systemd user (recommended)
 
 ```ini
-# ~/.config/systemd/user/stardust-svc.service
+# ~/.config/systemd/user/<system-name>-svc.service
 [Unit]
 Description=star-search API + monitor
 After=network.target
@@ -331,7 +331,7 @@ After=network.target
 [Service]
 Type=simple
 WorkingDirectory=/home/ubuntu/star-search
-ExecStart=/usr/bin/python3 scripts/api_server.py --host 127.0.0.1 --port 5000
+ExecStart=/usr/bin/python3 scripts/api_server.py --host <server-ip> --port 5000
 Restart=always
 RestartSec=5
 
@@ -342,7 +342,7 @@ WantedBy=default.target
 ```bash
 systemctl --user daemon-reload
 loginctl enable-linger ubuntu  # Boot auto-start + logout auto-start
-systemctl --user enable --now stardust-svc.service
+systemctl --user enable --now <system-name>-svc.service
 ```
 
 ### 2. Prometheus + Grafana
@@ -356,11 +356,11 @@ docker compose -f prometheus-grafana-stack.yml up -d
 
 ```bash
 # DNSPod A record
-prom.token-star.cn   → <server IP>
-grafana.token-star.cn → <server IP>
+prom.<service-domain>   → <server IP>
+grafana.<service-domain> → <server IP>
 
 # certbot SSL
-certbot --nginx -d prom.token-star.cn -d grafana.token-star.cn \
+certbot --nginx -d prom.<service-domain> -d grafana.<service-domain> \
   --non-interactive --agree-tos -m <your-email>
 ```
 
@@ -370,59 +370,59 @@ certbot --nginx -d prom.token-star.cn -d grafana.token-star.cn \
 
 ```bash
 pip install aiohttp beautifulsoup4 lxml playwright fastapi uvicorn 'pydantic>=2' httpx requests
-playwright install chromium  # Optional (v20 实战 35 skipped)
+playwright install chromium  # Optional (v20 v20.35 skipped)
 ```
 
-No API Key, no login, no payment required (GLM-4-Flash via `api.token-star.cn/v1` permanently free).
+No API Key, no login, no payment required (GLM-4-Flash via `api.<service-domain>/v1` permanently free).
 
 ---
 
-## ⚠️ Known Pitfalls (v20 实战 35-48 Summary)
+## ⚠️ Known Pitfalls (v20 v20.35-48 Summary)
 
-### v20.1 Speed Optimization (实战 35)
+### v20.1 Speed Optimization (v20.35)
 
 - **playwright drags 15-20s** → skip 4 engines
 - **aiohttp single engine 4s timeout** + top-level 4s forced cutoff
 - **try/except degrade** to cache hit
 
-### v20.2 SSE Streaming (实战 36)
+### v20.2 SSE Streaming (v20.36)
 
 - **f-string pitfall**: `"event: done\ndata: {}\n\n"` empty `{}` reports SyntaxError
 - **nginx required**: `proxy_buffering off` + `proxy_read_timeout 60s` + `proxy_http_version 1.1`
 
-### v20.3 Answer Layer Acceleration (实战 37)
+### v20.3 Answer Layer Acceleration (v20.37)
 
 - **max_tokens 600 → 300**: GLM-4-Flash 46 tok/s × 300 = 6.5s actual (set 600 actual 947 tokens)
 - **LLM_TIMEOUT 8 → 12 → 25**: complex formats (json/mermaid) need 25s buffer
 
-### v20.4-5 Multi-turn + Stability (实战 38-40)
+### v20.4-5 Multi-turn + Stability (v20.38-40)
 
-- **NRestarts up must find real culprit**: 实战 40 watchdog.sh 6/3 leftover 11 days miskilled 39 times
+- **NRestarts up must find real culprit**: v20.40 watchdog.sh 6/3 leftover 11 days miskilled 39 times
 - **uvicorn logging must force=True**: avoid root logger override causing detail.log 0 bytes
 - **cache key excludes history**: hit rate 30-50% (vs 80% with history)
 
-### v20.6 Academic/Structured/Favorites (实战 41-43)
+### v20.6 Academic/Structured/Favorites (v20.41-43)
 
 - **Pydantic avoid reserved name**: `format` is reserved → rename to `fmt`
-- **New parameter full-chain grep**: 实战 42 `/v1/search` add fmt but `/v1/search/stream` not → 6 debug rounds
+- **New parameter full-chain grep**: v20.42 `/v1/search` add fmt but `/v1/search/stream` not → 6 debug rounds
 - **cache key must include all change factors**: cache key missing fmt → 4 formats hit same cache
-- **GFW environment external APIs limited is norm**: 实战 41 4 engines only 1 available
+- **GFW environment external APIs limited is norm**: v20.41 4 engines only 1 available
 
-### v20.7 Monitoring Alerts (实战 44-46)
+### v20.7 Monitoring Alerts (v20.44-46)
 
 - **docker container mount data dir**: `user:"0"` + `chmod 777` solve mmap permissions
 - **docker image acceleration**: Docker Hub direct timeout → `daemon.json` add `daemonocloud.io`
 - **Tencent Cloud firewall**: only 22/80/443 open (direct 9090/3000 not, use nginx reverse proxy)
 - **DNSPod A record required**: not added won't take effect
 
-### v20.7.1 Sourcegraph Fix (实战 47)
+### v20.7.1 Sourcegraph Fix (v20.47)
 
 - **text=True SSE parsing error**: SSE chunked stream occasionally decodes wrong, use bytes + decode utf-8
 - **curl returncode=28 timeout but stdout has data**: don't check returncode, just check stdout non-empty
 - **POST → GET**: `sourcegraph.com/.api/search/stream` POST returns 404, GET returns SSE
 - **SSE parser logic**: actual event type is `content` (not `match`), need `data: ` prefix strip + check `repository` field
 
-### v20.7.2 MCP Integration (实战 48)
+### v20.7.2 MCP Integration (v20.48)
 
 - **aiohttp not in /usr/bin/python3 default path**: must set `PYTHONPATH=/home/ubuntu/.local/lib/python3.10/site-packages`
 - **Hard-code session_id → 400 Invalid session_id**: SSE mode must use server-pushed session_id from endpoint URL
@@ -459,12 +459,12 @@ star-search/
 │   ├── site-bing-proxy-pattern.md
 │   ├── incremental-cache-pattern.md
 │   └── llm-answer-honest-prompt.md
-├── /etc/systemd/user/stardust-svc.service   # systemd unit
-├── /etc/nginx/sites-enabled/search-token-star.conf
+├── /etc/systemd/user/<system-name>-svc.service   # systemd unit
+├── /etc/nginx/sites-enabled/search-<service-domain>
 ├── /var/www/star-search/index.html
 ├── /home/ubuntu/docker/prometheus-grafana-stack.yml
 └── /home/ubuntu/star-search/.env
-    LLM_BASE_URL=https://api.token-star.cn/v1
+    LLM_BASE_URL=https://api.<service-domain>/v1
     LLM_MODEL=glm-4-flash
     LLM_TIMEOUT=25
     ANSWER_CACHE_TTL=1800
@@ -477,8 +477,8 @@ star-search/
 
 | Version | Date | Major Changes |
 |---|---|---|
-| **v20.7.0** | 2026-06-15 | **实战 47-48**: Sourcegraph 4 bug fix + Claude Desktop MCP integration tutorial + 1M token API rate limit |
-| v20.6.0 | 2026-06-15 | 实战 35-46: speed optimization + SSE streaming + multi-turn + ultimate stability + academic/code + structured output 4 formats + history/favorites + monitoring + Prometheus + Grafana |
+| **v20.7.0** | 2026-06-15 | **v20.47-48**: Sourcegraph 4 bug fix + Claude Desktop MCP integration tutorial + 1M token API rate limit |
+| v20.6.0 | 2026-06-15 | v20.35-46: speed optimization + SSE streaming + multi-turn + ultimate stability + academic/code + structured output 4 formats + history/favorites + monitoring + Prometheus + Grafana |
 | v17.7.0 | 2026-06-04 | Answer cache (236x speedup) + inline citations (Perplexity Mode complete) |
 | v17.5.0 | 2026-06-04 | 4 prompt templates (finance/tech/news/general) |
 | v17.4.0 | 2026-06-04 | Multi-turn followup (3 followup chips) |
@@ -499,7 +499,7 @@ Complete v16-v17 chapters see `references/v16-v17-legacy-archive.md`.
 
 ---
 
-## 📚 Practice Notes (v20 实战 35-48)
+## 📚 Practice Notes (v20 v20.35-48)
 
-以下是实战过程的详细笔记，对应每个升级的 troubleshooting 路径。
+以下是开发过程的详细笔记，对应每个升级的 troubleshooting 路径。
 

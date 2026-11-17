@@ -1,45 +1,55 @@
-## Description: <br>
-Guides engineering researchers through reproducible academic literature surveys with initial-survey or daily-reading modes, user checkpoints, IEEE citations, and structured research briefs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Engineering literature survey following Academic Research methodology with initial survey and daily reading modes, user checkpoints, IEEE citations, and structured research briefs.
 
-## Publisher: <br>
-[Gao-tech1](https://clawhub.ai/user/Gao-tech1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gao-tech1](https://clawhub.ai/user/gao-tech1)
 
-## Use Case: <br>
-External researchers and engineering teams use this skill to survey defined engineering research topics, track recent academic progress, and produce reproducible paper briefs with screening criteria, paper tables, IEEE citations, and method appendices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive research topics may be exposed through external academic searches or optional memory use. <br>
-Mitigation: Avoid confidential topics in normal runs, or instruct the agent not to store memory for sensitive research. <br>
-Risk: Paywalls or login barriers can limit paper analysis and lead to abstract-only interpretations. <br>
-Mitigation: Provide authorized full-text content when available, or explicitly skip inaccessible papers and label abstract-only analysis. <br>
-Risk: Generated literature summaries may contain incomplete or incorrect interpretations of papers. <br>
-Mitigation: Review cited sources, paper lists, and the method appendix before relying on the brief for decisions. <br>
+## Use Case:
 
+Researchers and engineering teams use this skill to run reproducible literature surveys or daily paper briefings on defined engineering topics. It is intended for users who need transparent retrieval strategy, screening checkpoints, engineering-focused interpretation, and IEEE-style references.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Gao-tech1/paper-briefing-assistant) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Quick reference](artifact/quickref.md) <br>
-- [Example workflow](artifact/example.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown research brief with tables, IEEE citations, appendices, and checkpoint prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include paper lists, code and data links, abstract-only notices, and reproducibility details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow may encounter paywalled academic papers or login-gated sources during retrieval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not provide institutional login credentials; provide only paper content you are allowed to share or instruct the agent to skip the source.
+
+Risk: Broad web retrieval and paper screening can include incomplete metadata, abstract-only evidence, or irrelevant results.
+
+Mitigation: Use the built-in user checkpoints, mark abstract-only analysis clearly, and review the shortlist and draft before finalizing the brief.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gao-tech1/skills/paper-briefing-assistant)
+- [Publisher profile](https://clawhub.ai/user/gao-tech1)
+- [Homepage](https://github.com/kesslerio/academic-deep-research-clawhub-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown research brief with tables, IEEE citations, paper links, and a method appendix]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-selected mode and topic before retrieval; uses checkpoints before shortlisting and before final publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

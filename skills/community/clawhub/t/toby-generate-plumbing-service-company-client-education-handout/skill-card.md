@@ -1,42 +1,55 @@
-## Description: <br>
-Create a polished explainer handout with visuals, FAQs, and clear next steps for a plumbing service company. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a polished explainer handout with visuals, FAQs, and clear next steps for a plumbing service company.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Plumbing owners, service managers, and client-facing teams use this skill to draft customer education handouts with clear explanations, FAQs, visuals, and next steps for plumbing service topics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Customer-facing handouts may include inaccurate or overly general plumbing guidance. <br>
-Mitigation: Review the handout for technical accuracy, business fit, readability, and actionability before sharing it with clients. <br>
-Risk: Generated visuals or FAQs may imply service steps, code requirements, or guarantees that the plumbing company does not offer. <br>
-Mitigation: Have a qualified reviewer align the content with local code requirements, company policy, and the intended service scope. <br>
+## Use Case:
 
+Plumbing owners and service managers use this skill to draft customer education handouts with visuals, FAQs, and clear next steps for service-related client education.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/toby-generate-plumbing-service-company-client-education-handout) <br>
-- [SkillBoss skill page](https://www.skillboss.co/skills/generate-plumbing-service-company-client-education-handout) <br>
-- [SkillBoss setup guide](https://skillboss.co/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style client education handout with explanatory text, FAQs, visual prompts or assets, and next-step guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use chat and image generation capabilities to create polished customer-facing educational material.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: Generated plumbing guidance may be inaccurate for local codes, site conditions, or safety requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have qualified staff review the handout for local-code and safety accuracy before sharing it with customers.
+
+Risk: The skill declares Bash and Read even though the visible workflow only needs content generation.
+
+Mitigation: Review installation steps, external setup guidance, and requested tool use before running the skill in a customer or production workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/toby-generate-plumbing-service-company-client-education-handout)
+- [SkillBoss skill homepage](https://www.skillboss.co/skills/generate-plumbing-service-company-client-education-handout)
+- [SkillBoss setup guide](https://skillboss.co/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown handout draft with FAQ content, visual direction, and next steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include prompts or descriptions for generated visuals; review plumbing advice for local-code and safety accuracy before customer use.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

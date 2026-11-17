@@ -120,11 +120,11 @@ The skill is now:
 
 ## 🚀 Ready for Publication
 
-**Location**: `/Users/chloe/Desktop/task-orchestrator-cron-heartbeat-subagent/`
+**Location**: `/Users/chloe/Desktop/taREDACTED-SECRET/`
 
 **Command**:
 ```bash
-cd /Users/chloe/Desktop/task-orchestrator-cron-heartbeat-subagent
+cd /Users/chloe/Desktop/taREDACTED-SECRET
 clawhub publish
 ```
 

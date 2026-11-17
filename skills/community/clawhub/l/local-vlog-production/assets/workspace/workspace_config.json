@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "toolkit_version": "1.0.0",
+  "paths": {
+    "sources": "素材",
+    "projects": "作品",
+    "catalog": "工作数据/索引",
+    "prepared": "工作数据/预处理",
+    "cache": "工作数据/缓存",
+    "logs": "工作数据/日志",
+    "resources": "公共资源",
+    "templates": "模板"
+  },
+  "executables": {
+    "ffmpeg": "ffmpeg",
+    "ffprobe": "ffprobe",
+    "exiftool": null
+  },
+  "defaults": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "audio_sample_rate": 48000
+  },
+  "policy": {
+    "originals_read_only": true,
+    "follow_links": false,
+    "progressive_montage_requires_explicit_request": true,
+    "automatic_publication": false,
+    "automatic_deletion": false
+  }
+}

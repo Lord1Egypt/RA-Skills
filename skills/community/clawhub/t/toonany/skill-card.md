@@ -1,48 +1,64 @@
-## Description: <br>
-Toonany helps creators turn novels and stories into AI-generated short dramas through a guided pipeline for storylines, outlines, assets, scripts, storyboards, video, audio, subtitles, and final post-production. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Toonany helps creators turn novels and stories into AI-generated short dramas through guided story, script, storyboard, media generation, and post-production workflows.
 
-## Publisher: <br>
-[casperkwok](https://clawhub.ai/user/casperkwok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[casperkwok](https://clawhub.ai/user/casperkwok)
 
-## Use Case: <br>
-External creators, developers, and media teams use Toonany to convert written stories into short-form visual drama projects and final video outputs. It supports staged control over style samples, character assets, storyboard images, video clips, narration, subtitles, and post-production. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Story text, prompts, reference images, dialogue, and generated media may be sent to configured external AI providers. <br>
-Mitigation: Use only approved providers for the project and avoid processing confidential manuscripts or client material without permission. <br>
-Risk: The skill requires sensitive API credentials and may incur provider costs. <br>
-Mitigation: Store keys in environment variables or a secret manager, do not place secrets in project files, and review provider usage limits before running generation steps. <br>
-Risk: Intermediate project files and exports can contain sensitive creative material. <br>
-Mitigation: Keep project directories private, restrict sharing of exported bundles, and review generated files before distribution. <br>
+## Use Case:
 
+External creators, developers, and media teams use Toonany to convert written stories into short drama projects with generated storylines, outlines, scripts, storyboards, images, video clips, audio, subtitles, and final edited episodes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/casperkwok/toonany) <br>
-- [README](README.md) <br>
-- [Tutorial](TUTORIAL.md) <br>
-- [Workflow Reference](references/workflow.md) <br>
-- [Commands Reference](references/commands.md) <br>
-- [Model Configuration Guide](references/model-config.md) <br>
-- [Data Model Reference](references/data-model.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON configuration, Shell commands, Media files, Guidance] <br>
-**Output Format:** [Markdown, JSON project files, shell commands, image/audio/video files, and SRT subtitles] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires configured AI provider API keys and ffmpeg for final video assembly.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata; artifact frontmatter and changelog list 1.1.0) <br>
+Risk: Project-configurable API endpoints or returned URLs could receive paid service credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review project.json before use, especially baseUrl fields, avoid projects from untrusted sources, and use limited-scope or disposable API keys where possible.
+
+Risk: Creative manuscripts and prompts may be processed by third-party model providers.
+
+Mitigation: Use only content approved for external processing and confirm provider terms before entering confidential manuscripts.
+
+Risk: API keys stored directly in project files can be exposed through sharing or logs.
+
+Mitigation: Prefer environment-variable configuration and do not print or share full API keys during setup.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/casperkwok/skills/toonany)
+- [Data Model Reference](references/data-model.md)
+- [Production Workflow Reference](references/workflow.md)
+- [Model Configuration Guide](references/model-config.md)
+- [Command Reference](references/commands.md)
+- [DeepSeek API Keys](https://platform.deepseek.com/api_keys)
+- [Volcengine Ark Console](https://console.volcengine.com/ark/)
+- [Kling AI](https://klingai.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Configuration, Media files, Guidance]
+
+**Output Format:** [Markdown, JSON project files, generated media assets, subtitles, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates project directories under output/{project-name}; media generation depends on configured third-party provider APIs and ffmpeg.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata; artifact frontmatter and changelog show 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

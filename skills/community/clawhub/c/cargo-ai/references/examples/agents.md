@@ -58,7 +58,7 @@ cargo-ai ai release update-draft --agent-uuid <agent-uuid> \
 
 # 4. Deploy the draft
 cargo-ai ai release deploy-draft --agent-uuid <agent-uuid> \
-  --integration-slug openai \
+  --integration-slug openAi \
   --language-model-slug gpt-4o-mini \
   --actions '[]' \
   --mcp-clients '[]' \
@@ -91,11 +91,11 @@ cargo-ai ai agent remove <agent-uuid>
 ## Create an agent from a template
 
 ```bash
-# 1. Browse templates
+# 1. Browse templates — the response is complete, not a summary
 cargo-ai ai template list
 
-# 2. Get the template
-cargo-ai ai template get <template-slug>
+# 2. Pick one out of that same response (there is no `template get`)
+cargo-ai ai template list | jq '.templates[] | select(.slug == "<template-slug>")'
 # → Copy the systemPrompt, actions, resources, model settings
 
 # 3. Create the agent

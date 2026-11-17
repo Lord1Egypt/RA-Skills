@@ -1,38 +1,49 @@
-## Description: <br>
-[Didoo AI] Framework for planning and allocating Meta Ads budget across campaigns, audiences, and testing phases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+[Didoo AI] Framework for planning and allocating Meta Ads budget across campaigns, audiences, and testing phases.
 
-## Publisher: <br>
-[elias-didoo](https://clawhub.ai/user/elias-didoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[elias-didoo](https://clawhub.ai/user/elias-didoo)
 
-## Use Case: <br>
-External marketers, small businesses, and agencies use this skill to plan Meta Ads budgets, allocate spend across campaigns and audiences, and decide how much budget to reserve for testing before scaling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Budget recommendations may be stale or unsuitable for a user's current Meta Ads guidance, campaign data, margins, or risk tolerance. <br>
-Mitigation: Compare recommendations with current Meta Ads guidance and business performance data before applying real spend, and make budget changes gradually. <br>
+## Use Case:
 
+Marketing operators, small-business advertisers, and agencies use this skill to plan Meta Ads budgets, allocate spend across campaigns and audiences, and reserve testing budget before scaling.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/elias-didoo/meta-ads-budget-planning) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text budget planning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include budget tiers, spend allocation rules, testing reserves, and campaign or audience scaling recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Budget and CPA ranges may be treated as guaranteed or account-specific performance advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations against campaign history, margins, geography, seasonality, and current Meta Ads account data before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/elias-didoo/skills/meta-ads-budget-planning)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown guidance with budget rules, planning tables, and allocation recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory budgeting reference only; budget and CPA ranges are not guaranteed financial outcomes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

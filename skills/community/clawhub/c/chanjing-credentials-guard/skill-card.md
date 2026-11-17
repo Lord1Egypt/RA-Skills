@@ -1,45 +1,59 @@
-## Description: <br>
-Guide users to configure local Chanjing credentials safely via local commands only, and validate local token status when needed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide users to configure local Chanjing credentials safely via local commands only, and validate local token status when needed.
 
-## Publisher: <br>
-[binkes](https://clawhub.ai/user/binkes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[binkes](https://clawhub.ai/user/binkes)
 
-## Use Case: <br>
-Developers and operators use this skill to set up and check local Chanjing AK/SK credentials and access tokens before running Chanjing API workflows. It keeps secret handling in local commands and credential files instead of asking users to paste secrets into chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles live Chanjing AK/SK values and access tokens stored on disk. <br>
-Mitigation: Keep credentials in the local credentials file only, do not paste keys or tokens into chat, and rotate credentials if they appear in shell history, logs, or shared backups. <br>
-Risk: Overriding the Chanjing API base URL can redirect token requests away from the default service. <br>
-Mitigation: Leave CHANJING_OPENAPI_BASE_URL and CHANJING_API_BASE unset unless intentionally using a verified Chanjing HTTPS endpoint. <br>
-Risk: The scanner verdict is suspicious because the helper handles secrets and has under-scoped token and environment controls. <br>
-Mitigation: Review before installation, restrict file permissions on the credentials directory, and install only when the publisher and intended Chanjing workflow are trusted. <br>
+## Use Case:
 
+Developers and agent users use this skill to set up, check, and refresh local Chanjing AK/SK and access-token credentials without pasting secrets into chat.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/binkes/chanjing-credentials-guard) <br>
-- [Credentials Guard Reference](reference.md) <br>
-- [Chanjing documentation](https://doc.chanjing.cc) <br>
-- [Chanjing OpenAPI login](https://www.chanjing.cc/openapi/login) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown with inline shell commands and local configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May open a browser for Chanjing login and may print local token status or a valid access token when the user runs the bundled scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release evidence) <br>
+Risk: Server security evidence marks this release suspicious because Chanjing AK/SK values and access tokens are stored locally and can be exposed if the local environment is mishandled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the publisher is trusted, keep the credentials file on a trusted device with restricted permissions, and rotate keys if secrets are exposed.
+
+Risk: The helper can use CHANJING_OPENAPI_BASE_URL or CHANJING_API_BASE to choose the token endpoint.
+
+Mitigation: Set those variables only to trusted Chanjing-compatible endpoints, and leave them unset for the documented default endpoint unless a trusted override is required.
+
+Risk: The token helper may print an access token to stdout.
+
+Mitigation: Treat printed tokens as sensitive material and avoid capturing them in shell history, CI logs, chat transcripts, or shared terminal recordings.
+
+## Reference(s):
+
+- [Credentials Guard Reference](reference.md)
+- [Chanjing Documentation](https://doc.chanjing.cc)
+- [ClawHub Skill Page](https://clawhub.ai/binkes/skills/chanjing-credentials-guard)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and local credential status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local credential file paths, environment variables, and access-token status.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release evidence; artifact manifest lists 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

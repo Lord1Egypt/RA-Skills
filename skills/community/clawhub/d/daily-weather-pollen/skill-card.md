@@ -1,45 +1,69 @@
-## Description: <br>
-花粉过敏指数权威发布。当用户需要查询花粉浓度、设置每日定时推送花粉过敏预警时使用。支持自定义城市，可查询花粉浓度和天气，并可设置定时任务自动推送。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+查询中国主要城市的花粉浓度和天气，并生成或定时推送花粉过敏预警。
 
-## Publisher: <br>
-[fengdzh](https://clawhub.ai/user/fengdzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fengdzh](https://clawhub.ai/user/fengdzh)
 
-## Use Case: <br>
-External users and operators use this skill to query Chinese city weather and pollen levels, configure daily allergy-risk alerts, and send WeCom markdown notifications with execution logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The v4 push helper may forcibly terminate Chrome processes while trying to clean browser sessions. <br>
-Mitigation: Avoid running the v3/v4 helpers on shared or active machines unless browser cleanup is limited to processes started by this skill. <br>
-Risk: WeCom webhook credentials are required for scheduled push notifications. <br>
-Mitigation: Use a dedicated low-impact WeCom bot key and keep ~/.openclaw/config/wecom.env private with owner-only permissions. <br>
-Risk: Weather and pollen alerts depend on external web sources and page parsing. <br>
-Mitigation: Review failed or missing data in the generated push logs before relying on the alert content. <br>
+## Use Case:
 
+External users and operators use this skill to query pollen concentration and weather for supported Chinese cities, then prepare daily allergy-risk guidance or schedule WeCom push notifications.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/fengdzh/daily-weather-pollen) <br>
-- [Publisher profile](https://clawhub.ai/user/fengdzh) <br>
-- [Pollen data source](https://richerculture.cn/hf/) <br>
-- [Weather data source](https://wttr.in/) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and WeCom markdown message content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces city-specific pollen risk summaries, weather notes, scheduled push instructions, and log entries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.0 (source: server release evidence) <br>
+Risk: The bundled push scripts use root-oriented HOME and PATH settings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill under a dedicated unprivileged account and adjust HOME, PATH, and config paths before installation.
+
+Risk: Broad browser cleanup can terminate unrelated Chrome or agent-browser processes.
+
+Mitigation: Remove the global pkill cleanup or scope cleanup to an isolated session owned by this task.
+
+Risk: Some push scripts write logs under /tmp.
+
+Mitigation: Move logs to a protected per-user directory with appropriate permissions and retention.
+
+Risk: The WeCom webhook key is sourced from shell configuration and used to send messages.
+
+Mitigation: Protect and rotate the key, keep it outside version control, and avoid sourcing arbitrary shell files.
+
+Risk: The release claims configurable city support, but bundled scripts still fetch Beijing weather in places.
+
+Mitigation: Validate non-Beijing city behavior before relying on scheduled push notifications.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fengdzh/skills/daily-weather-pollen)
+- [Publisher profile](https://clawhub.ai/user/fengdzh)
+- [Pollen data source](https://richerculture.cn/hf/)
+- [wttr.in weather service](https://wttr.in/)
+- [Open-Meteo forecast API](https://api.open-meteo.com/v1/forecast)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call external weather, pollen, browser, cron, and WeCom webhook services; push delivery requires a configured WECOM_WEBHOOK_KEY.]
+
+## Skill Version(s):
+
+4.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

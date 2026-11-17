@@ -1,0 +1,8 @@
+interface:
+  display_name: "商品评价需求提炼"
+  short_description: "从合法自有商品评价中提炼诉求、反馈主题与详情页补充点"
+  default_prompt: "使用 $shop-review-miner-cn 分析我合法提供的真实商品评价，并输出需求提炼 Markdown。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,11 @@
+{
+  "tool_name": "batch_factor_analysis",
+  "feature_days": 5,
+  "factor_dict": {
+    "ACCT_OHLSON_OSCORE": "equity = d['每股净资产'] * d['总股本']\ndr = d['资产负债率'].replace(0, np.nan)\nTA = equity / (1 - dr.clip(upper=0.99))\ntlta = d['资产负债率']\nwcta = d['营运资金'] / TA\nca_to_ta = d['流动资产/总资产']\ncl_to_tl = d['流动负债/负债合计']\nclca = (cl_to_tl / ca_to_ta) * dr\nNI = d['扣非净利润']\nnita = NI / TA\noeneg = (equity < 0).astype(float)\nchin = (NI - NI.shift(252)) / (NI.abs() + NI.shift(252).abs()).replace(0, np.nan)\nZ = ((NI < 0) | (NI.shift(252) < 0)).astype(float)\nO = -1.32 - 0.407*np.log(TA.replace(0, np.nan)) + 6.03*tlta - 1.43*wcta + 0.076*clca - 1.72*oeneg + 0.035*nita - 0.521*chin - 0.267*Z\nout = O",
+    "ACCT_MOHANRAM_GSCORE": "gm = d['销售毛利率']\ncogs_to_ta = d['销售成本率'] * d['总资产周转率']\nrev_ps = d['每股营业收入']\nequity = d['每股净资产'] * d['总股本']\ndr = d['资产负债率'].replace(0, np.nan)\nTA = equity / (1 - dr.clip(upper=0.99))\nNI = d['扣非净利润']\naccruals = (NI - d['每股经营现金流净额'] * d['总股本']) / TA\ngmi = (gm.shift(252) / gm).gt(1).astype(float)\naqi = ((1 - cogs_to_ta) / (1 - cogs_to_ta.shift(252))).gt(1).astype(float)\nsgi = (rev_ps / rev_ps.shift(252)).gt(1).astype(float)\nsgai = (d['销售费用率'] / d['销售费用率'].shift(252)).gt(1).astype(float)\nlvgi = (d['资产负债率'] / d['资产负债率'].shift(252)).gt(1).astype(float)\ntata = accruals.gt(0).astype(float)\nG = gmi + aqi + sgi + sgai + lvgi + tata\nout = G",
+    "ACCT_NOVYMARX_GP": "equity = d['每股净资产'] * d['总股本']\ndr = d['资产负债率'].replace(0, np.nan)\nTA = equity / (1 - dr.clip(upper=0.99))\ngp = d['毛利']\nout = gp / TA",
+    "ACCT_ACCRUALS_TA": "equity = d['每股净资产'] * d['总股本']\ndr = d['资产负债率'].replace(0, np.nan)\nTA = equity / (1 - dr.clip(upper=0.99))\nNI = d['扣非净利润']\naccruals = (NI - d['每股经营现金流净额'] * d['总股本']) / TA\nout = -accruals"
+  },
+  "save_path": "output\\factor-AccountingQuality.xlsx"
+}

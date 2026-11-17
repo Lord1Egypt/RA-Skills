@@ -1,41 +1,54 @@
-## Description: <br>
-Read historical Agentic SWMM experiment audit artifacts and summarize repeated assumptions, QA issues, failures, missing evidence, run-to-run differences, lessons learned, and controlled skill update proposals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarizes historical Agentic SWMM audit artifacts into reusable modeling memory, lessons learned, failure patterns, and human-reviewed skill update proposals.
 
-## Publisher: <br>
-[zhonghao1995](https://clawhub.ai/user/zhonghao1995) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhonghao1995](https://clawhub.ai/user/zhonghao1995)
 
-## Use Case: <br>
-Developers and engineers use this skill after SWMM experiment audits to summarize historical run evidence, identify repeated QA and failure patterns, and draft human-reviewed skill refinement proposals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill has under-scoped filesystem write behavior and may write or overwrite memory summaries in selected output, audited run, or optional Obsidian directories. <br>
-Mitigation: Run it first on a copied test directory, set output paths explicitly, avoid broad or symlink-heavy run directories, and review generated summary files before relying on them. <br>
-Risk: Generated skill update proposals could carry forward incorrect assumptions or misleading lessons from incomplete audit artifacts. <br>
-Mitigation: Treat proposals as review material only and accept refinements only after human review and benchmark verification. <br>
+## Use Case:
 
+Developers and engineers use this skill after SWMM experiment audits to summarize repeated assumptions, QA issues, failures, missing evidence, run-to-run differences, and proposed skill refinements across audited runs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhonghao1995/swmm-modeling-memory) <br>
-- [Agentic SWMM project](https://github.com/Zhonghao1995/agentic-swmm-workflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [JSON and Markdown files, with shell command examples for running the summarizer] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes aggregate memory outputs under the chosen output directory, writes per-run memory_summary.json by default, and can optionally copy Markdown exports to an Obsidian directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.7.3 (source: server release evidence) <br>
+Risk: Untrusted run notes or audit artifacts could introduce misleading content into generated modeling memory used by an agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted or reviewed run directories and review generated Markdown before using it for retrieval or accepting any proposed skill update.
+
+Risk: Memory refresh can mutate run-level or aggregate memory files when a user only wants analysis.
+
+Mitigation: Keep --runs-dir and --out-dir narrowly scoped, and disable per-run or audit-end memory refresh when mutation is unwanted.
+
+## Reference(s):
+
+- [Agentic SWMM Project](https://github.com/Zhonghao1995/agentic-swmm-workflow)
+- [SWMM Modeling Memory Example](examples/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Markdown, Guidance]
+
+**Output Format:** [JSON and Markdown files with human-readable summaries and reviewable proposals]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes aggregate memory outputs under the selected output directory and can optionally write run-level memory summaries and Obsidian-compatible Markdown.]
+
+## Skill Version(s):
+
+0.7.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

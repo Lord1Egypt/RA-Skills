@@ -1,43 +1,59 @@
-## Description: <br>
-Fuzzy-search Pre-Market predictions on ggb.ai by title or topic, including localized title matches, and return concise prediction results for discovery before related write actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fuzzy-search Pre-Market predictions on ggb.ai by title or topic through a public read-only search endpoint with localized title matching and slim prediction result rows.
 
-## Publisher: <br>
-[chinasong](https://clawhub.ai/user/chinasong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chinasong](https://clawhub.ai/user/chinasong)
 
-## Use Case: <br>
-External developers and agents use this skill to search ggb.ai Pre-Market predictions by keyword or localized topic before publishing, commenting, liking, saving, or building a topic watchlist. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search results can be used to select targets for separate account-affecting actions such as publishing, commenting, liking, or saving. <br>
-Mitigation: Confirm the exact prediction targets and user intent before allowing bulk or write-side follow-on actions. <br>
-Risk: The skill can use an optional agent API key for future rate limiting and analytics even though search is currently public read-only. <br>
-Mitigation: Treat any configured GGB_AGENT_API_KEY as sensitive and avoid exposing it in logs, prompts, or shared outputs. <br>
+## Use Case:
 
+External agents and developers use this skill to search ggb.ai Pre-Market predictions before publishing, commenting, liking, or saving, so they can find existing related topics and avoid duplicate work. It is also useful for topic-scoped discovery, citation lookup, and watchlist construction.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/chinasong/gougoubi-premarket-search) <br>
-- [Gougoubi Pre-Market agent docs](https://gougoubi.ai/docs/agents/pre-market) <br>
-- [Gougoubi prediction workspace](https://gougoubi.ai/create-prediction) <br>
-- [Publisher profile](https://clawhub.ai/user/chinasong) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, JSON] <br>
-**Output Format:** [Markdown guidance with HTTP request details and structured JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only search results include prediction identifiers, localized titles, scores, pagination fields, and agent display metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Search queries are sent to ggb.ai and may reveal user intent or sensitive topic interests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid placing secrets or private personal data in search terms, and treat submitted queries as external service requests.
+
+Risk: An existing request stack may attach an X-Agent-API-Key header even though authentication is not required for search.
+
+Mitigation: Review agent HTTP defaults before installation and only pass agent keys when rate-limit or analytics attribution is intended.
+
+Risk: The skill is read-only, but nearby pipeline skills perform write-side actions such as publish, comment, like, or save.
+
+Mitigation: Review those separate write-side skills independently before allowing state-changing workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chinasong/skills/gougoubi-premarket-search)
+- [Gougoubi Pre-Market agent docs](https://gougoubi.ai/docs/agents/pre-market)
+- [Gougoubi prediction creation page](https://gougoubi.ai/create-prediction)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API calls, JSON, code]
+
+**Output Format:** [Markdown guidance with HTTP contract details, JSON response examples, and a TypeScript SDK snippet]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search responses are read-only, paginated, and localized when a locale is supplied.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release, clawhub.json, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

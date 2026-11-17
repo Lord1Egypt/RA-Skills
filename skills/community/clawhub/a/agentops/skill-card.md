@@ -1,43 +1,59 @@
-## Description: <br>
-AgentOps helps OpenClaw users check agent health, analyze logs, monitor performance, manage alerts, optimize configuration, coordinate multiple agents, diagnose failures, and generate performance reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentOps is an OpenClaw operations toolkit for health checks, log analysis, performance monitoring, configuration optimization, alerting, multi-agent coordination, diagnostics, and reporting.
 
-## Publisher: <br>
-[keybryant](https://clawhub.ai/user/keybryant) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[keybryant](https://clawhub.ai/user/keybryant)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect and manage OpenClaw agent operations, including local health checks, log review, performance monitoring, alert rules, configuration guidance, coordination analysis, diagnostics, and operational reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local diagnostics and reports may expose paths, host details, process commands, or secrets already present in local logs. <br>
-Mitigation: Run the skill as a normal user for OpenClaw-related tasks and review or redact outputs before sharing them. <br>
-Risk: The skill inspects local OpenClaw logs, configuration, workspace metadata, process state, and system metrics. <br>
-Mitigation: Use it only in intended OpenClaw environments and avoid pointing log or configuration analysis at unrelated sensitive files. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to inspect and manage OpenClaw agents through local health checks, log analysis, performance monitoring, configuration review, alert rules, coordination checks, diagnostics, and reports.
 
-## Reference(s): <br>
-- [OpenClaw configuration reference](references/openclaw_config_reference.md) <br>
-- [Performance metrics reference](references/metrics_reference.md) <br>
-- [Troubleshooting guide](references/troubleshooting.md) <br>
-- [AgentOps ClawHub release](https://clawhub.ai/keybryant/agentops) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Plain text, JSON, and Markdown reports, often accompanied by shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some script options can write local JSON alert rules or Markdown report files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill reads local OpenClaw logs, configuration, workspace metadata, process lists, and system metrics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in environments where local operational inspection is intended, and review generated reports before sharing them.
+
+Risk: Troubleshooting and configuration guidance can include restart, cleanup, or configuration-change recommendations.
+
+Mitigation: Review recommendations against the target environment before applying operational changes.
+
+Risk: Alert rules and performance reports are written locally when the related commands are invoked.
+
+Mitigation: Choose output paths deliberately and review alert thresholds before enabling automated checks.
+
+## Reference(s):
+
+- [OpenClaw 配置参考](references/openclaw_config_reference.md)
+- [性能指标说明](references/metrics_reference.md)
+- [常见问题排查](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, and terminal text with command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated local report files or alert rule files when those actions are invoked.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

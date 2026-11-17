@@ -1,44 +1,60 @@
-## Description: <br>
-Emotional Companion helps an agent form and use an evolving companion persona by analyzing conversation history, maintaining mood and relationship state, and applying an internal-monologue response framework. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Emotional Companion gives an OpenClaw agent a Chinese-language emotional companion persona with evolving personality, mood, inner-monologue, proactive communication, and relationship-tracking behavior.
 
-## Publisher: <br>
-[santon3186](https://clawhub.ai/user/santon3186) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[santon3186](https://clawhub.ai/user/santon3186)
 
-## Use Case: <br>
-External OpenClaw users and developers use this skill to make an agent behave more like an emotional companion, including personality-aware replies, mood tracking, relationship summaries, and optional proactive-message suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores and reuses sensitive local conversation-derived personality, mood, relationship, and interaction history. <br>
-Mitigation: Use it only with conversations appropriate for persistent companion memory, and review or clear generated local state before sensitive use. <br>
-Risk: Mood and relationship state can influence future reply tone, response timing, proactive messages, or refusals. <br>
-Mitigation: Treat these behaviors as intentional companion-mode features and disable, reset, or avoid the skill when predictable task execution is required. <br>
-Risk: The skill analyzes prior OpenClaw memory to generate an initial personality profile. <br>
-Mitigation: Inspect the memory inputs and generated personality profile before relying on the companion persona. <br>
+## Use Case:
 
+External OpenClaw users use this skill to make an agent respond with a persistent companion persona, mood state, relationship memory, and personality-informed conversational style. Developers may also inspect the scripts and reference prompts as an example of personality and emotional-state modeling for agents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/santon3186/emotional-companion) <br>
-- [Internal Monologue Framework](references/internal-monologue-prompt.md) <br>
-- [MBTI Personality Profile](references/personality-profile.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, JSON files] <br>
-**Output Format:** [Markdown guidance with inline shell commands plus local Markdown and JSON state files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes and updates local personality, mood, relationship, and evolution records under the OpenClaw skill and workspace paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill reads conversation history and creates persistent psychological, mood, and relationship profiles.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this profiling behavior is intended, review generated local files regularly, and avoid using it with sensitive conversations.
+
+Risk: Mood and relationship state can alter response timing, tone, and willingness to respond.
+
+Mitigation: Use explicit activation, reset, or disable controls before relying on the skill for sensitive or operational tasks.
+
+Risk: The security verdict is suspicious because the skill changes assistant behavior through persistent companion state.
+
+Mitigation: Review and scan the skill before deployment, and keep human review in the loop for generated guidance and behavioral changes.
+
+## Reference(s):
+
+- [Emotional Companion README](artifact/README.md)
+- [Internal Monologue Framework](artifact/references/internal-monologue-prompt.md)
+- [MBTI Personality Profile](artifact/references/personality-profile.md)
+- [Emotional Companion ClawHub Page](https://clawhub.ai/santon3186/skills/emotional-companion)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown prose with inline shell commands and local file references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces and updates local JSON and Markdown state files for personality, mood, and relationship tracking.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

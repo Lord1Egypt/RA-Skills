@@ -1,44 +1,63 @@
-## Description: <br>
-Daily work report skill that logs work through conversation, writes records to Tencent Docs, and generates monthly summaries with one command. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+龙虾教研日报助手 helps education and research staff record daily work through conversation, write entries to Tencent Docs, and generate monthly summaries.
 
-## Publisher: <br>
-[nmww](https://clawhub.ai/user/nmww) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nmww](https://clawhub.ai/user/nmww)
 
-## Use Case: <br>
-Employees in a teaching and research team use this skill to record daily work, leave, and overtime entries in Tencent Docs, then prepare monthly summaries from those records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Monthly read and summary features can read and summarize coworkers' records from a shared Tencent Docs sheet. <br>
-Mitigation: Use only with an intentionally connected Tencent Docs workspace, require user-level filtering before relying on monthly features, and restrict Tencent Docs sharing to approved users. <br>
-Risk: The skill requires Tencent Docs OAuth credentials and writes work-report data to an online spreadsheet. <br>
-Mitigation: Limit spreadsheet permissions, avoid broad editable access for attendance or project details, and revoke or rotate authorization if credentials are exposed. <br>
+## Use Case:
 
+Employees and team members who track education or research work use this skill to configure Tencent Docs access, log daily work, leave, and overtime, and prepare monthly summaries from the shared report sheet.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/nmww/daily-report-assistant) <br>
-- [Data schema](references/data-schema.md) <br>
-- [Setup guide](references/setup-guide.md) <br>
-- [Deployment guide](references/deploy-guide.md) <br>
-- [Tencent Docs authorization](https://docs.qq.com/scenario/open-claw.html?nlc=1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and terminal-oriented status text with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, npm, mcporter, and Tencent Docs OAuth credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; package.json reports 1.0.0) <br>
+Risk: Shared Tencent Docs report data may expose team report contents to users who should not see them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where all users are authorized for the configured shared sheet, and review Tencent Docs collaborator permissions before deployment.
+
+Risk: The runtime invokes mcporter through npx and package metadata lists mcporter as latest, which can execute changing code over time.
+
+Mitigation: Pin and vet the mcporter version before installation or production use.
+
+Risk: Tencent Docs tokens and local memory/configuration can expose account or report access if mishandled.
+
+Mitigation: Avoid entering tokens directly on the command line, revoke leaked authorization in Tencent Docs, and treat workspace memory and mcporter configuration as sensitive.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nmww/skills/daily-report-assistant)
+- [Setup guide](references/setup-guide.md)
+- [Data schema](references/data-schema.md)
+- [Deployment guide](references/deploy-guide.md)
+- [Tencent Docs authorization](https://docs.qq.com/scenario/open-claw.html?nlc=1)
+- [Tencent Docs MCP endpoint](https://docs.qq.com/openapi/mcp)
+- [Node.js](https://nodejs.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Conversational text and Markdown with shell command invocations and Tencent Docs status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js, npm, Python 3, mcporter, Tencent Docs authorization, and access to the configured report sheets.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; package.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -25,7 +25,7 @@ endpoint failure.
 from __future__ import annotations
 
 import sys
-from urllib.parse import urljoin
+from urllib.parse import quote, urljoin
 
 import httpx
 
@@ -47,10 +47,35 @@ GRAPH_BASE = "https://graph.microsoft.com/v1.0/"
 # below, and ``$batch`` is just transport, so the surface is exercised
 # indirectly. Refactor to support POST rows if a $batch-specific
 # regression ever needs catching at preflight time.
+#
+# The same caveat applies to the To Do attachment *write* path: the inline
+# base64 POST to ``.../tasks/{id}/attachments`` mutates the task, so it
+# stays out of this read-only script; the GET rows that ``_todo_task_rows``
+# adds cover the same resource family (a 403/501 "not supported for this
+# account type" shows up on the GETs too). The To Do upload-session route
+# (``createUploadSession``) is deliberately not probed either: the To Do
+# tools don't use it (its upload URL needs per-chunk Authorization/Content-Type
+# headers the current inline path doesn't), so its reachability says
+# nothing about this release. The mail and event attachment tools do use an
+# upload session for a file over 3 MB, but creating one is a POST that
+# changes the draft or event, so it is not probed here either (the
+# ``live_write`` tier's event-attachment round trip exercises the event one).
+#
+# Not probed here, because each needs a real resource id (a message or an
+# event with an attachment) that no static row has: mail attachments
+# (``me/messages/{id}/attachments``, the download and ``outlook_read_attachment``
+# reads) and event attachments (``me/events/{id}/attachments``). The live
+# tier reads event attachments; neither has a provisioned row yet. The
+# original-MIME export (``me/messages/{id}/$value``) does have one, in
+# ``_mime_export_probe``, and contact photos (``me/contacts/{id}/photo``) in
+# ``_contact_photo_probe``.
 ENDPOINTS: list[tuple[str, str]] = [
     ("me", "Auth / whoami"),
     ("me/messages?$top=1", "Mail read / search"),
     ("me/mailFolders?$top=1", "Mail folders"),
+    # Subfolder listings: recursive `outlook_list_folders`, nested names and
+    # folder paths (`Inbox/Travel/Flights`) walk these one level at a time.
+    ("me/mailFolders/inbox/childFolders?$top=1", "Mail subfolders / folder paths"),
     ("me/mailFolders/drafts/messages?$top=1", "Drafts"),
     ("me/events?$top=1", "Calendar read"),
     ("me/calendars", "Calendar list"),
@@ -60,12 +85,240 @@ ENDPOINTS: list[tuple[str, str]] = [
     ("me/outlook/masterCategories", "Categories"),
     ("me/mailFolders/inbox/messages/delta", "Mail delta"),
     (
-        "me/calendarView/delta?startDateTime=2026-05-21T00:00:00Z"
-        "&endDateTime=2026-05-28T00:00:00Z",
+        "me/calendarView/delta?startDateTime=2026-05-21T00:00:00Z&endDateTime=2026-05-28T00:00:00Z",
         "Calendar delta",
     ),
     ("me/contacts/delta", "Contacts delta"),
+    # Not ``me/mailFolders/inbox/messageRules`` (the opt-in rules group): whether
+    # a personal mailbox allows rules is per account, and the maintainer's
+    # refuses even a listing with 403 while categories read fine under the same
+    # scope. Probed here, that known refusal would block every release; the
+    # tools name it instead (``RULE_LIST_DENIED``, README "Mail Rules").
 ]
+
+
+def _graph_url(path_or_url: str) -> str:
+    """The absolute Graph URL for a path or a paging link; anything else raises.
+
+    Every request here carries the user's Graph token. Most paths are fixed,
+    but a paging link (``@odata.nextLink``) is read from a response and
+    followed as given, so the token would go wherever it pointed. A URL is
+    sent only if it starts with ``GRAPH_BASE``: the prefix runs to the first
+    ``/`` after the host, so it fixes the scheme, the host and the version.
+    """
+    url = path_or_url if path_or_url.startswith("http") else urljoin(GRAPH_BASE, path_or_url)
+    if not url.startswith(GRAPH_BASE):
+        raise ValueError(
+            f"not Microsoft Graph: refusing to send the token to {url} (only under {GRAPH_BASE})"
+        )
+    return url
+
+
+def _get_json(path_or_url: str, headers: dict[str, str], timeout: int = 20):
+    """GET and return (status_code, parsed_json_or_None).
+
+    Raises ``ValueError`` before sending if the URL is not Graph's (``_graph_url``).
+    """
+    url = _graph_url(path_or_url)
+    try:
+        r = httpx.get(url, headers=headers, timeout=timeout)
+    except Exception as exc:
+        return None, f"exception: {exc}"
+    try:
+        return r.status_code, r.json()
+    except Exception:
+        return r.status_code, None
+
+
+def _default_list_id(headers: dict[str, str]) -> str:
+    """The id of the default task list, the same way the To Do tools pick it.
+
+    ``?$top=1`` on ``/me/todo/lists`` is not that: it grabs whichever list
+    Graph happens to return first (often enough, none — leaving every task
+    family unprobed), and the tools themselves resolve
+    ``wellknownListName="defaultList"`` + ``isOwner``, falling back to the
+    first list. The preflight harvests tasks from the list the tools would
+    actually use.
+    """
+    path = "me/todo/lists?$top=100"
+    pages = 0
+    first_id = None
+    while path and pages < 20:
+        status, body = _get_json(path, headers)
+        if status != 200 or not isinstance(body, dict):
+            raise RuntimeError(f"listing me/todo/lists -> {status}")
+        for lst in body.get("value") or []:
+            if first_id is None and lst.get("id"):
+                first_id = lst["id"]
+            if lst.get("isOwner") and lst.get("wellknownListName") == "defaultList":
+                return lst["id"]
+        path = body.get("@odata.nextLink")
+        pages += 1
+    if first_id:
+        return first_id
+    raise RuntimeError("no task list at all (GET me/todo/lists -> 200, empty)")
+
+
+def _task_with_attachment(headers: dict[str, str], list_id: str) -> tuple[str, str | None]:
+    """A task id from the default list, plus an attachment id if one task has
+    one (first task wins for the id; up to five tasks are checked for
+    attachments so an attachment on a slightly older task still widens the
+    probe)."""
+    status, body = _get_json(f"me/todo/lists/{list_id}/tasks?$top=10", headers)
+    if status != 200 or not isinstance(body, dict):
+        raise RuntimeError(f"listing tasks of the default list -> {status}")
+    tasks = body.get("value") or []
+    if not tasks:
+        raise RuntimeError("default list has no tasks")
+    task_id = tasks[0]["id"]
+    for task in tasks[:5]:
+        tid = task.get("id")
+        if not tid:
+            continue
+        s, b = _get_json(f"me/todo/lists/{list_id}/tasks/{tid}/attachments?$top=1", headers)
+        if s == 200 and isinstance(b, dict) and b.get("value"):
+            return tid, b["value"][0].get("id")
+    return task_id, None
+
+
+def _todo_task_rows(headers: dict[str, str]) -> tuple[list[tuple[str, str]], list[str], list[str]]:
+    """Probe rows for the To Do checklist/attachment families.
+
+    Unlike every static row above, these need a real task id — the endpoints
+    live under ``.../tasks/{taskId}/…`` and a made-up id 404s for the wrong
+    reason (missing resource, not unsupported family). Read-only throughout.
+
+    Returns ``(rows, not_probed, failures)``: ``rows`` go to the generic
+    probe loop; ``not_probed`` names families that could not be provisioned
+    and must surface in the summary rather than counting as checked;
+    ``failures`` carries 403/501-class verdicts measured here (the entity
+    GET is fetched in this function because its verdict is not the status
+    code alone — ``contentBytes`` has to be in the body for the download
+    tool to have something to read).
+    """
+    rows: list[tuple[str, str]] = []
+    not_probed: list[str] = []
+    failures: list[str] = []
+    try:
+        list_id = _default_list_id(headers)
+        task_id, attachment_id = _task_with_attachment(headers, list_id)
+    except Exception as exc:
+        reason = f"could not provision a live task: {exc}"
+        return (
+            [],
+            [
+                f"To Do checklist items ({reason})",
+                f"To Do task attachments ({reason})",
+                f"To Do attachment entity GET ({reason})",
+            ],
+            [],
+        )
+    task_path = f"me/todo/lists/{list_id}/tasks/{task_id}"
+
+    rows.append((f"{task_path}/checklistItems?$top=1", "To Do checklist items"))
+    rows.append((f"{task_path}/attachments?$top=1", "To Do task attachments"))
+
+    if not attachment_id:
+        not_probed.append(
+            "To Do attachment entity GET + $value (no attachment on the default "
+            "list's recent tasks — attach a file to a task to widen this probe)"
+        )
+        return rows, not_probed, failures
+
+    # The entity GET is what outlook_download_task_attachment actually calls
+    # (contentBytes off the attachment entity), so it is probed directly and
+    # the body is checked — a 200 without contentBytes is the shape the
+    # download tool now refuses, and worth a loud line here.
+    status, body = _get_json(f"{task_path}/attachments/{attachment_id}", headers, timeout=60)
+    verdict = classify(status) if status is not None else "FAIL"
+    has_bytes = isinstance(body, dict) and "contentBytes" in body
+    print(
+        f"{verdict:5s} {'To Do attachment entity':30s} "
+        f"{task_path}/attachments/{attachment_id}  {status} "
+        f"contentBytes={'yes' if has_bytes else 'NO'}"
+    )
+    if verdict == "FAIL":
+        failures.append("To Do attachment entity")
+    if status == 200 and not has_bytes:
+        print(
+            "      NOTE  a 200 without contentBytes is the response shape the "
+            "download tool refuses (size cross-check) — if the attachment is "
+            "genuinely non-empty, that is a finding, not a pass"
+        )
+    # Legacy raw route, no longer used by any tool — kept as an extra signal.
+    rows.append((f"{task_path}/attachments/{attachment_id}/$value", "To Do attachment $value"))
+    return rows, not_probed, failures
+
+
+def _mime_export_probe(headers: dict[str, str]) -> tuple[str | None, list[str], list[str]]:
+    """Probe the original-MIME export (``outlook_export_message``, opt-in ``mime`` group).
+
+    ``$value`` lives under a real message id, so one is harvested from the
+    newest message. The request is the tool's own: ``Accept: message/rfc822``,
+    no compression, no redirects. Only the status is read; the message is never
+    downloaded, so a large one costs nothing.
+
+    Returns ``(verdict, not_probed, failures)``; ``verdict`` is None when no
+    message could be provisioned, which the summary reports as not probed.
+    """
+    label = "Original MIME export"
+    status, body = _get_json("me/messages?$top=1&$select=id", headers)
+    messages = body.get("value") if status == 200 and isinstance(body, dict) else None
+    if not messages or not messages[0].get("id"):
+        reason = f"GET me/messages -> {status}" if status != 200 else "the mailbox has no message"
+        return None, [f"{label} (could not provision a message: {reason})"], []
+
+    path = f"me/messages/{quote(messages[0]['id'], safe='')}/$value"
+    probe_headers = {**headers, "Accept": "message/rfc822", "Accept-Encoding": "identity"}
+    try:
+        with httpx.stream(
+            "GET",
+            _graph_url(path),
+            headers=probe_headers,
+            timeout=20,
+            follow_redirects=False,
+        ) as r:
+            status = r.status_code
+    except Exception as exc:
+        print(f"FAIL  {label:30s} {path}  exception: {exc}")
+        return "FAIL", [], [label]
+
+    verdict = classify(status)
+    suffix = " (non-blocking)" if verdict == "SKIP" else ""
+    print(f"{verdict:5s} {label:30s} {path}  {status}{suffix}")
+    return verdict, [], [label] if verdict == "FAIL" else []
+
+
+def _contact_photo_probe(headers: dict[str, str]) -> tuple[str | None, list[str], list[str]]:
+    """Probe contact photos (``outlook_set_contact_photo``, opt-in ``contact_photos`` group).
+
+    The tool PUTs ``me/contacts/{id}/photo/$value``. A PUT would change a real
+    contact, so this reads the same family instead: the photo metadata of the
+    first contact. A contact with no photo answers ``404 ErrorItemNotFound``
+    (probed on a personal account, 2026-11-14), which still shows the family is
+    served, so it counts as reachable; 403/501 block the release as elsewhere.
+
+    Returns ``(verdict, not_probed, failures)``; ``verdict`` is None when no
+    contact could be provisioned, which the summary reports as not probed.
+    """
+    label = "Contact photos"
+    status, body = _get_json("me/contacts?$top=1&$select=id", headers)
+    contacts = body.get("value") if status == 200 and isinstance(body, dict) else None
+    if not contacts or not contacts[0].get("id"):
+        reason = f"GET me/contacts -> {status}" if status != 200 else "there is no contact"
+        return None, [f"{label} (could not provision a contact: {reason})"], []
+
+    path = f"me/contacts/{quote(contacts[0]['id'], safe='')}/photo"
+    status, body = _get_json(path, headers)
+    if status is None:
+        print(f"FAIL  {label:30s} {path}  {body}")
+        return "FAIL", [], [label]
+    code = (body.get("error") or {}).get("code", "") if isinstance(body, dict) else ""
+    verdict = "OK" if status == 404 and code == "ErrorItemNotFound" else classify(status)
+    suffix = " (non-blocking)" if verdict == "SKIP" else ""
+    note = " (no photo yet)" if status == 404 and verdict == "OK" else ""
+    print(f"{verdict:5s} {label:30s} {path}  {status} {code}{note}{suffix}".rstrip())
+    return verdict, [], [label] if verdict == "FAIL" else []
 
 
 def classify(status_code: int) -> str:
@@ -87,7 +340,7 @@ def classify(status_code: int) -> str:
 def fetch_token() -> str:
     config = load_config()
     am = AuthManager(config)
-    am.try_cached_token(am.get_token_scopes())
+    am.try_cached_token()
     cred = am.get_credential()
     tok = cred.get_token("https://graph.microsoft.com/.default")
     return tok.token
@@ -104,10 +357,14 @@ def run() -> int:
     headers = {"Authorization": f"Bearer {token}"}
     failures: list[str] = []
 
-    for path, label in ENDPOINTS:
-        url = urljoin(GRAPH_BASE, path)
+    todo_rows, not_probed, todo_failures = _todo_task_rows(headers)
+    failures.extend(todo_failures)
+    endpoints = ENDPOINTS + todo_rows
+    reachable = 0
+
+    for path, label in endpoints:
         try:
-            r = httpx.get(url, headers=headers, timeout=20)
+            r = httpx.get(_graph_url(path), headers=headers, timeout=20)
         except Exception as exc:
             print(f"FAIL  {label:30s} {path}  exception: {exc}")
             failures.append(label)
@@ -115,6 +372,7 @@ def run() -> int:
 
         verdict = classify(r.status_code)
         if verdict == "OK":
+            reachable += 1
             print(f"OK    {label:30s} {path}  {r.status_code}")
         elif verdict == "FAIL":
             code = ""
@@ -127,6 +385,16 @@ def run() -> int:
         else:
             print(f"SKIP  {label:30s} {path}  {r.status_code} (non-blocking)")
 
+    probed = len(endpoints)
+    # Families under a real resource id, each provisioning its own. Looked up by
+    # name at call time, so a test can stand either one in.
+    for probe in (_mime_export_probe, _contact_photo_probe):
+        verdict, probe_not_probed, probe_failures = probe(headers)
+        not_probed = not_probed + probe_not_probed
+        failures.extend(probe_failures)
+        probed += verdict is not None
+        reachable += verdict == "OK"
+
     print()
     if failures:
         print(
@@ -135,7 +403,17 @@ def run() -> int:
             "Do not release until resolved."
         )
         return 1
-    print(f"All {len(ENDPOINTS)} endpoints reachable. Safe to tag.")
+    summary = f"{reachable} of {probed} probed endpoints reachable."
+    if not_probed:
+        # Unprobed is not verified — say so instead of printing "Safe to tag"
+        # over families the run never touched.
+        print(
+            f"{summary} {len(not_probed)} NOT probed: "
+            + "; ".join(not_probed)
+            + ". Not probed is not verified — widen the probe before tagging."
+        )
+    else:
+        print(f"{summary} Safe to tag.")
     return 0
 
 

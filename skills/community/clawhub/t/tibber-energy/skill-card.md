@@ -1,44 +1,60 @@
-## Description: <br>
-Use Tibber API data to fetch hourly spot prices, plan cheapest appliance or EV charging windows, detect consumption anomalies, and trigger smart-home actions from price thresholds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Tibber API data to fetch hourly spot prices, plan cheapest appliance or EV charging windows, detect consumption anomalies, and trigger smart-home actions from price thresholds.
 
-## Publisher: <br>
-[pmagnomuller](https://clawhub.ai/user/pmagnomuller) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pmagnomuller](https://clawhub.ai/user/pmagnomuller)
 
-## Use Case: <br>
-External users and developers use this skill to inspect Tibber electricity prices, choose low-cost operating windows, detect unusual consumption, and optionally automate trusted local smart-home commands from price thresholds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Control mode can run arbitrary local shell commands when --execute is enabled. <br>
-Mitigation: Keep control mode in dry-run until every command and threshold is verified, and use only trusted command strings. <br>
-Risk: The skill requires a Tibber access token and may read credentials from environment variables or local configuration. <br>
-Mitigation: Store credentials locally, avoid publishing .env or config files with real tokens, and use the minimum token access needed. <br>
-Risk: Unattended automation may trigger smart-home actions from incorrect thresholds or untrusted command inputs. <br>
-Mitigation: Avoid --execute in unattended agent workflows and prefer read-only price, optimization, and anomaly commands unless local automation is specifically required. <br>
+## Use Case:
 
+External users and developers use this skill to inspect Tibber electricity prices, identify low-cost appliance or EV charging windows, detect unusual hourly consumption, and prepare price-triggered smart-home actions.
 
-## Reference(s): <br>
-- [Tibber Developer Documentation](https://developer.tibber.com) <br>
-- [Tibber GraphQL API Endpoint](https://api.tibber.com/v1-beta/gql) <br>
-- [ClawHub Skill Page](https://clawhub.ai/pmagnomuller/tibber-energy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text CLI output and Markdown command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Tibber access token and Python 3; control mode is dry-run unless --execute is supplied.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Local credential loading can expose sensitive Tibber access tokens when the skill is run from a shared or untrusted directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer environment variables or a user-owned config file, keep tokens out of project files, and avoid running the skill from shared or untrusted directories.
+
+Risk: Price-triggered control can run arbitrary on/off command strings when execution mode is enabled.
+
+Mitigation: Keep control in dry-run until thresholds and command text are reviewed, and use only trusted, narrowly scoped smart-home commands.
+
+Risk: The skill requests broad Tibber home and account fields while fetching price and consumption data.
+
+Mitigation: Review API permissions and narrow the queried Tibber GraphQL fields before deployment where data minimization is required.
+
+## Reference(s):
+
+- [Tibber Developer Documentation](https://developer.tibber.com)
+- [Tibber GraphQL API](https://api.tibber.com/v1-beta/gql)
+- [ClawHub Skill Page](https://clawhub.ai/pmagnomuller/skills/tibber-energy)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/pmagnomuller)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3 and a Tibber personal access token.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,49 @@
-## Description: <br>
-Removes dates, hashes, UUIDs, and extra symbols from filenames to create clean, readable file names. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Removes dates, hashes, UUIDs, and extra symbols from filenames to create clean, readable file names.
 
-## Publisher: <br>
-[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del)
 
-## Use Case: <br>
-Developers and other local command-line users use Fileclean to preview and optionally apply filename cleanup across files or shallow directory contents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Direct renaming can change local filenames in a way that is hard to undo. <br>
-Mitigation: Preview changes before using --rename and try it first on a small or backed-up folder. <br>
-Risk: Different source files may clean to the same target filename. <br>
-Mitigation: Review planned changes for filename collisions before applying renames. <br>
+## Use Case:
 
+Developers and end users can use this skill to preview and apply cleaner filenames by removing common clutter such as date stamps, hashes, UUIDs, and repeated separators.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/albionaiinc-del/fileclean) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text command-line preview and rename status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preview mode is the default; direct file renaming requires the --rename option.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Apply mode can rename files in place without collision checks, which may overwrite or lose expected filenames.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use preview mode first, avoid running apply mode on important folders without backups, and add collision detection that refuses existing destination names by default.
+
+## Reference(s):
+
+- [Fileclean ClawHub release page](https://clawhub.ai/albionaiinc-del/skills/fileclean)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and plain-text rename previews]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preview mode lists planned filename changes; apply mode renames files on disk.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

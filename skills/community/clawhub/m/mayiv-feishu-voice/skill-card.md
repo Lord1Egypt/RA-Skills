@@ -1,43 +1,54 @@
-## Description: <br>
-Converts text to speech with Edge TTS and sends audio, or paired text and audio, to Feishu using credentials supplied through environment variables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feishu Voice converts text to speech with Edge TTS and sends voice, or paired text and voice, messages to Feishu using environment-provided credentials.
 
-## Publisher: <br>
-[mayiv-ai](https://clawhub.ai/user/mayiv-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mayiv-ai](https://clawhub.ai/user/mayiv-ai)
 
-## Use Case: <br>
-Developers and teams use this skill to send generated voice messages, or combined text and voice summaries, to Feishu from agent workflows or shell scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Message content is transmitted to external TTS and Feishu services. <br>
-Mitigation: Use the skill only for content approved for those services by the deploying organization. <br>
-Risk: Credentials or recipient IDs with excessive scope can cause unintended message delivery. <br>
-Mitigation: Use least-privilege Feishu app credentials and verify the recipient ID before sending. <br>
+## Use Case:
 
+Developers and automation agents use this skill to send generated voice messages, or paired text and voice summaries, to Feishu recipients or chats from shell workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mayiv-ai/mayiv-feishu-voice) <br>
-- [Feishu tenant access token API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal) <br>
-- [Feishu messages API](https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type=open_id) <br>
-- [Feishu file upload API](https://open.feishu.cn/open-apis/im/v1/files) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown guidance with inline shell commands and environment-variable configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Sends user-provided content to Edge TTS and Feishu services when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Provided text and generated audio are sent to Edge TTS and Feishu services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for content that is acceptable to send to those services, and avoid sensitive or regulated content unless the deployment has been reviewed.
+
+Risk: The server security summary says Feishu app secrets are handled unsafely enough to require review before installation.
+
+Mitigation: Use a Feishu app with minimal permissions, run on a trusted machine, and fix the curl secret handling before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mayiv-ai/skills/mayiv-feishu-voice)
+- [Project address listed by the skill](https://github.com/Mayiv-Ai/feishu-voice)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Text]
+
+**Output Format:** [Markdown with inline bash commands and environment variable examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local edge-tts, ffmpeg, curl, python3, and Feishu app credentials.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

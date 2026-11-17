@@ -1,41 +1,56 @@
-## Description: <br>
-Converts Figma designs into frontend component code by running the Sloth D2C CLI, processing generated chunks, and writing final project files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Figma designs into frontend component code by using the `sloth d2c` CLI to fetch design data, split it into chunks, and generate final project files.
 
-## Publisher: <br>
-[cherokeeli](https://clawhub.ai/user/cherokeeli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[cherokeeli](https://clawhub.ai/user/cherokeeli)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to turn specified Figma file and node IDs into frontend component code. It is suited for design-to-code workflows that may target React, Vue, iOS, Taro, UniApp, Hippy, or related frontend outputs.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The workflow can install or depend on a global npm CLI and use generated markdown to drive project file edits.
+
+Mitigation: Install the sloth CLI from a reviewed, pinned source and run the workflow in a restricted or disposable workspace.
+
+Risk: Figma access tokens may be required for private designs.
+
+Mitigation: Provide tokens only when needed, scope them carefully, and avoid exposing them in logs or committed configuration.
+
+Risk: Generated code may be incorrect, incomplete, or unsafe for the target project.
+
+Mitigation: Review all generated diffs, run normal project checks, and build or test before committing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers use this skill to turn a specified Figma file and node into frontend project code, with optional framework selection and follow-up chunk aggregation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Code, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow requires access to the target Figma file and may use sensitive Figma credentials. <br>
-Mitigation: Use least-privileged Figma credentials and provide access only to the design files needed for the conversion. <br>
-Risk: The workflow depends on the Sloth CLI/npm package and executes it in the target workspace. <br>
-Mitigation: Install and run the skill only if you trust the Sloth CLI package, preferably on a branch or disposable workspace. <br>
-Risk: Generated code and .sloth chunks may be incorrect or may include design-derived content that should not be shared. <br>
-Mitigation: Review generated files and .sloth chunks before committing, deploying, or sharing the output. <br>
+**Output Format:** [Markdown guidance with bash and JSON snippets, plus generated code written to project files]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Requires Figma fileKey and nodeId inputs; generated diffs should be reviewed before build or commit.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON parsing steps, and generated code or project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Figma file key and node ID; may write generated project files and reviewable .sloth chunks.] <br>
+1.0.2 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

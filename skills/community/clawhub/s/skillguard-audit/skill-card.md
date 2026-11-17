@@ -1,41 +1,60 @@
-## Description: <br>
-Audit OpenClaw skills for security risks before installation via the SkillGuard API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit OpenClaw skills for security risks before installation via SkillGuard API.
 
-## Publisher: <br>
-[jonathanliu811026](https://clawhub.ai/user/jonathanliu811026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jonathanliu811026](https://clawhub.ai/user/jonathanliu811026)
 
-## Use Case: <br>
-Developers and agent users use this skill to audit OpenClaw skills or local skill files before installation. It helps them review verdicts, risk scores, and threat lists before deciding whether to proceed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Auditing sends skill source or selected local files to api.agentsouls.io. <br>
-Mitigation: Do not audit private code, secrets, or proprietary skills unless you trust the service and its retention claim; use manual review or self-hosting when external upload is not acceptable. <br>
-Risk: The safe-install wrapper can install a target skill and includes a force mode that skips the audit. <br>
-Mitigation: Treat safe-install.sh as an installer, avoid --force unless the target skill is already trusted, and review CAUTION or UNKNOWN audit results manually before installing. <br>
+## Use Case:
 
+Developers and security-conscious OpenClaw users use this skill to audit skills before installation and to gate ClawHub installs based on returned risk verdicts.
 
-## Reference(s): <br>
-- [ClawHub SkillGuard page](https://clawhub.ai/jonathanliu811026/skillguard-audit) <br>
-- [SkillGuard API homepage](https://api.agentsouls.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Guidance, Shell commands] <br>
-**Output Format:** [JSON audit results with terminal guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns a verdict, risk score, and threat list; the installer wrapper may prompt before installation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Audited source code is transmitted to the external SkillGuard API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Audit only code that is acceptable to share externally; avoid submitting proprietary code, secrets, or sensitive files.
+
+Risk: The safe-install wrapper can skip the audit and does not prove the installed artifact exactly matches the audited artifact.
+
+Mitigation: Avoid force mode for routine installs and verify the artifact source or hash separately before installation.
+
+Risk: Remote audit verdicts are incomplete pre-install guarantees.
+
+Mitigation: Treat the returned verdict as one review signal and inspect relevant source and threats before installing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jonathanliu811026/skills/skillguard-audit)
+- [Publisher profile](https://clawhub.ai/user/jonathanliu811026)
+- [SkillGuard API homepage](https://api.agentsouls.io)
+- [SkillGuard audit API](https://api.agentsouls.io/api/audit)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON audit verdicts and terminal install prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, and clawhub; submits audited source code to the SkillGuard API.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

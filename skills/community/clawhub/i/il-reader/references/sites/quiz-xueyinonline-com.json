@@ -1,0 +1,583 @@
+{
+  "version": "2.4.0",
+  "source_id": "quiz-xueyinonline-com",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:05:03.508Z",
+  "entry": {
+    "url": "https://www.xueyinonline.com",
+    "final_url": "https://www.xueyinonline.com/xueyinonline-ans-vue/",
+    "title": "学银",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:05:03.508Z",
+    "identity": {
+      "declared_name": "学银在线",
+      "hostname": "www.xueyinonline.com",
+      "domain_matches": true
+    },
+    "links": [],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "搜索",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "搜索",
+      "name": null,
+      "id": "",
+      "css": "input[placeholder=\"搜索\"]",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "input[placeholder=\"搜索\"]"
+      },
+      "observed_url": "https://www.xueyinonline.com/xueyinonline-ans-vue/",
+      "observed_at": "2026-10-09T09:04:59.497Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "切换语言",
+      "label": "",
+      "aria_label": "切换语言",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "切换语言",
+        "exact": true
+      },
+      "observed_url": "https://www.xueyinonline.com/xueyinonline-ans-vue/",
+      "observed_at": "2026-10-09T09:04:59.497Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "登录\n注册",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "登录\n注册",
+        "exact": true
+      },
+      "observed_url": "https://www.xueyinonline.com/xueyinonline-ans-vue/",
+      "observed_at": "2026-10-09T09:04:59.497Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "Go to group 1",
+      "label": "",
+      "aria_label": "Go to group 1",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Go to group 1",
+        "exact": true
+      },
+      "observed_url": "https://www.xueyinonline.com/xueyinonline-ans-vue/",
+      "observed_at": "2026-10-09T09:04:59.497Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "Go to group 2",
+      "label": "",
+      "aria_label": "Go to group 2",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Go to group 2",
+        "exact": true
+      },
+      "observed_url": "https://www.xueyinonline.com/xueyinonline-ans-vue/",
+      "observed_at": "2026-10-09T09:04:59.497Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "Go to group 3",
+      "label": "",
+      "aria_label": "Go to group 3",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Go to group 3",
+        "exact": true
+      },
+      "observed_url": "https://www.xueyinonline.com/xueyinonline-ans-vue/",
+      "observed_at": "2026-10-09T09:04:59.497Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "Go to group 4",
+      "label": "",
+      "aria_label": "Go to group 4",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Go to group 4",
+        "exact": true
+      },
+      "observed_url": "https://www.xueyinonline.com/xueyinonline-ans-vue/",
+      "observed_at": "2026-10-09T09:04:59.497Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "Go to group 5",
+      "label": "",
+      "aria_label": "Go to group 5",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Go to group 5",
+        "exact": true
+      },
+      "observed_url": "https://www.xueyinonline.com/xueyinonline-ans-vue/",
+      "observed_at": "2026-10-09T09:04:59.497Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "Go to group 6",
+      "label": "",
+      "aria_label": "Go to group 6",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Go to group 6",
+        "exact": true
+      },
+      "observed_url": "https://www.xueyinonline.com/xueyinonline-ans-vue/",
+      "observed_at": "2026-10-09T09:04:59.497Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "Go to group 7",
+      "label": "",
+      "aria_label": "Go to group 7",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Go to group 7",
+        "exact": true
+      },
+      "observed_url": "https://www.xueyinonline.com/xueyinonline-ans-vue/",
+      "observed_at": "2026-10-09T09:04:59.497Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "Previous slide",
+      "label": "",
+      "aria_label": "Previous slide",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Previous slide",
+        "exact": true
+      },
+      "observed_url": "https://www.xueyinonline.com/xueyinonline-ans-vue/",
+      "observed_at": "2026-10-09T09:04:59.497Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "Next slide",
+      "label": "",
+      "aria_label": "Next slide",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Next slide",
+        "exact": true
+      },
+      "observed_url": "https://www.xueyinonline.com/xueyinonline-ans-vue/",
+      "observed_at": "2026-10-09T09:04:59.497Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "quiz-xueyinonline-com:record-lookup",
+      "source_id": "quiz-xueyinonline-com",
+      "task_kind": "record-lookup",
+      "status": "entry_observed",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.xueyinonline.com/xueyinonline-ans-vue/",
+      "controls": [
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "搜索",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "搜索",
+          "name": null,
+          "id": "",
+          "css": "input[placeholder=\"搜索\"]",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "input[placeholder=\"搜索\"]"
+          },
+          "observed_url": "https://www.xueyinonline.com/xueyinonline-ans-vue/",
+          "observed_at": "2026-10-09T09:04:59.497Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "切换语言",
+          "label": "",
+          "aria_label": "切换语言",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "切换语言",
+            "exact": true
+          },
+          "observed_url": "https://www.xueyinonline.com/xueyinonline-ans-vue/",
+          "observed_at": "2026-10-09T09:04:59.497Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "登录\n注册",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "登录\n注册",
+            "exact": true
+          },
+          "observed_url": "https://www.xueyinonline.com/xueyinonline-ans-vue/",
+          "observed_at": "2026-10-09T09:04:59.497Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Go to group 1",
+          "label": "",
+          "aria_label": "Go to group 1",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Go to group 1",
+            "exact": true
+          },
+          "observed_url": "https://www.xueyinonline.com/xueyinonline-ans-vue/",
+          "observed_at": "2026-10-09T09:04:59.497Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Go to group 2",
+          "label": "",
+          "aria_label": "Go to group 2",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Go to group 2",
+            "exact": true
+          },
+          "observed_url": "https://www.xueyinonline.com/xueyinonline-ans-vue/",
+          "observed_at": "2026-10-09T09:04:59.497Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Go to group 3",
+          "label": "",
+          "aria_label": "Go to group 3",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Go to group 3",
+            "exact": true
+          },
+          "observed_url": "https://www.xueyinonline.com/xueyinonline-ans-vue/",
+          "observed_at": "2026-10-09T09:04:59.497Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Go to group 4",
+          "label": "",
+          "aria_label": "Go to group 4",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Go to group 4",
+            "exact": true
+          },
+          "observed_url": "https://www.xueyinonline.com/xueyinonline-ans-vue/",
+          "observed_at": "2026-10-09T09:04:59.497Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Go to group 5",
+          "label": "",
+          "aria_label": "Go to group 5",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Go to group 5",
+            "exact": true
+          },
+          "observed_url": "https://www.xueyinonline.com/xueyinonline-ans-vue/",
+          "observed_at": "2026-10-09T09:04:59.497Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Go to group 6",
+          "label": "",
+          "aria_label": "Go to group 6",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Go to group 6",
+            "exact": true
+          },
+          "observed_url": "https://www.xueyinonline.com/xueyinonline-ans-vue/",
+          "observed_at": "2026-10-09T09:04:59.497Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Go to group 7",
+          "label": "",
+          "aria_label": "Go to group 7",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Go to group 7",
+            "exact": true
+          },
+          "observed_url": "https://www.xueyinonline.com/xueyinonline-ans-vue/",
+          "observed_at": "2026-10-09T09:04:59.497Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Previous slide",
+          "label": "",
+          "aria_label": "Previous slide",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Previous slide",
+            "exact": true
+          },
+          "observed_url": "https://www.xueyinonline.com/xueyinonline-ans-vue/",
+          "observed_at": "2026-10-09T09:04:59.497Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Next slide",
+          "label": "",
+          "aria_label": "Next slide",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Next slide",
+            "exact": true
+          },
+          "observed_url": "https://www.xueyinonline.com/xueyinonline-ans-vue/",
+          "observed_at": "2026-10-09T09:04:59.497Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": null,
+    "quiz_entries": [
+      "quiz-entry-064"
+    ],
+    "example_ids": [],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:05:03.508Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/quiz-xueyinonline-com-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/quiz-xueyinonline-com-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

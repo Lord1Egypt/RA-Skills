@@ -1,38 +1,48 @@
-## Description: <br>
-Deep SLO/SLI workflow-user-centric SLIs, SLO targets and windows, error budgets, multi-window burn alerts, and policy when budget is exhausted. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep SLO/SLI workflow--user-centric SLIs, SLO targets and windows, error budgets, multi-window burn alerts, and policy when budget is exhausted.
 
-## Publisher: <br>
-[mikeclaw007](https://clawhub.ai/user/mikeclaw007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mikeclaw007](https://clawhub.ai/user/mikeclaw007)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, SREs, and product-aligned engineering teams use this skill to define user-centered SLIs and SLOs, set error budget policy, configure burn-rate alerting, and establish a review cadence for reliability targets.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Operational guidance may affect alerting, error-budget, or engineering workflow decisions if adopted without review.
+
+Mitigation: Review proposed SLOs, alert rules, and error-budget policies with engineering and product owners before adopting them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, SREs, and product stakeholders use this skill to define user-centered SLIs, SLO targets, error budget policies, burn-rate alerts, and review practices for service reliability planning. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Drafted SLOs, alert rules, or error-budget policies may be wrong for the user's production environment. <br>
-Mitigation: Review recommendations against current telemetry, dependencies, business impact, and operational runbooks before adoption. <br>
+**Output Format:** [Markdown guidance with checklists, formulas, policy suggestions, and alerting recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Observability Slos on ClawHub](https://clawhub.ai/mikeclaw007/observability-slos) <br>
+**Other Properties Related to Output:** [Produces planning guidance only; it does not contain executable behavior or hidden access requests.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with tables, checklists, formulas, and alert-policy recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory reliability-planning content; review before applying to production operations.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

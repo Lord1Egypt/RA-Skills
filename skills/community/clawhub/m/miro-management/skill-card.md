@@ -1,44 +1,61 @@
-## Description: <br>
-Manage Miro through the Miro REST API using OAuth 2.0, saved token files, or direct access tokens. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Miro through the REST API using OAuth 2.0, saved token files, or direct access tokens for board inspection, content changes, webhooks, exports, and raw API calls.
 
-## Publisher: <br>
-[stanestane](https://clawhub.ai/user/stanestane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stanestane](https://clawhub.ai/user/stanestane)
 
-## Use Case: <br>
-Developers and operators use this skill to connect a personal or local Miro integration, inspect boards and members, create or update board content, manage webhooks, export board data, and preview or send Miro REST API requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses powerful Miro API credentials that can read, write, delete, manage webhooks, and send raw API requests depending on token permissions. <br>
-Mitigation: Use a least-privilege Miro app or token, test on noncritical boards first, and explicitly approve every write, delete, webhook, or raw API request. <br>
-Risk: OAuth flows and saved token files can expose client secrets, access tokens, or refresh tokens if terminal output or local files are shared. <br>
-Mitigation: Keep secrets outside the skill package, avoid running OAuth flows where terminal output is captured in shared logs or chat, and protect or rotate any saved .miro/tokens.json file. <br>
+## Use Case:
 
+Developers and agents use this skill to connect to a Miro workspace, inspect boards, manage board items and webhooks, export board data, and preview or execute Miro REST API requests in a local workflow.
 
-## Reference(s): <br>
-- [Miro OAuth notes](references/miro-oauth-notes.md) <br>
-- [Miro request examples](references/miro-request-examples.md) <br>
-- [Miro OAuth authorization endpoint](https://miro.com/oauth/authorize) <br>
-- [Miro OAuth token endpoint](https://api.miro.com/v1/oauth/token) <br>
-- [Miro REST API base](https://api.miro.com/v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and optional JSON, CSV, or Markdown export files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide Miro API calls that read or write local token files and mutate live Miro boards when the user runs the generated commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: OAuth tokens and direct bearer tokens can expose the user's Miro workspace if they are logged, shared, or stored carelessly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Miro app, avoid direct bearer-token entry in shared shells, store token files outside shared or synced folders, and rotate any token that appears in logs.
+
+Risk: Write, delete, webhook, and raw API commands can alter live Miro boards or integrations.
+
+Mitigation: Confirm board and item IDs, review the endpoint and request body before changes, and use preview-write for non-obvious writes before sending a live request.
+
+Risk: Large board exports or raw API responses can expose workspace content in chat or files.
+
+Mitigation: Prefer writing exports to local files, inspect results before sharing, and avoid dumping unnecessary board payloads into conversation logs.
+
+## Reference(s):
+
+- [Miro OAuth notes](artifact/references/miro-oauth-notes.md)
+- [Miro request examples](artifact/references/miro-request-examples.md)
+- [Miro REST API base](https://api.miro.com/v2)
+- [Miro OAuth authorization endpoint](https://miro.com/oauth/authorize)
+- [Miro OAuth token endpoint](https://api.miro.com/v1/oauth/token)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples, JSON API responses, and optional markdown, CSV, or JSON export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May perform live Miro API reads or writes when the user supplies credentials and confirms actions.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

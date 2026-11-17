@@ -1,67 +1,70 @@
-# Yandex Tracker skill for OpenClaw
+# Yandex Tracker agent skill
 
-Lets your OpenClaw agent work with [Yandex Tracker](https://tracker.yandex.ru) via the official Python client — no MCP server required.
+A skill for working with [Yandex Tracker](https://tracker.yandex.ru) through the Python `yandex_tracker_client` package.
 
-## What the agent can do
+It supports:
 
-- Get, create, update, and close issues
-- Search with Tracker Query Language or structured filters
-- Change issue status via transitions
-- Add and read comments (with @-mentions and attachments)
-- Log time (worklogs)
-- Manage links between issues
-- Bulk update, transition, or move issues across queues
-- Read and write custom fields
-- Find users by name or email, look up sprints and boards
+- reading, creating, updating, and transitioning issues;
+- Tracker Query Language and structured searches;
+- custom fields, comments, attachments, links, and worklogs;
+- queues, users, boards, and sprints;
+- bulk updates, transitions, and queue moves.
 
 ## Prerequisites
 
-Python 3 must be available in the agent's environment.
+- An agent runtime that can read filesystem-based skills and execute Python 3.
+- A Yandex account with access to the required Tracker organization and queues.
+- A least-privilege OAuth token with the Tracker scope.
+- The Yandex 360 or Yandex Cloud organization ID.
 
-The skill declares a pip install step for `yandex_tracker_client` (from [PyPI](https://pypi.org/project/yandex-tracker-client/), official Yandex package). It is installed automatically when the skill is first used, or you can install it manually:
+Install [`yandex_tracker_client`](https://pypi.org/project/yandex-tracker-client/) when the runtime does not manage dependencies automatically:
 
 ```bash
-pip install yandex_tracker_client
+python -m pip install yandex_tracker_client
 ```
 
 ## Setup
 
 ### 1. Get a Yandex OAuth token
 
-Open [oauth.yandex.ru](https://oauth.yandex.ru) and create a **least-privilege** token with only Tracker read/write scope. For Yandex Cloud organizations you can use a **temporary IAM token** instead; prefer short-lived tokens where possible.
+Create a token at [oauth.yandex.ru](https://oauth.yandex.ru) with only the permissions needed for Tracker. Avoid broad administrative tokens.
 
-### 2. Find your organization ID
+### 2. Find the organization ID
 
-- **Yandex 360** — go to Tracker settings → Organization → copy the numeric org ID → use `TRACKER_ORG_ID`
-- **Yandex Cloud** — copy the cloud org ID string → use `TRACKER_CLOUD_ORG_ID`
+- **Yandex 360:** open Tracker settings, select the organization, and copy its numeric ID.
+- **Yandex Cloud:** copy the string organization ID from Yandex Cloud Organization Manager.
 
-### 3. Declare and set credentials in OpenClaw
+### 3. Configure credentials
 
-The skill requires `TRACKER_TOKEN` and one of `TRACKER_ORG_ID` or `TRACKER_CLOUD_ORG_ID` (declared in skill metadata). Add them to the `env` section of your `openclaw.json`:
+Store the token and organization ID in the secret or environment mechanism provided by the agent runtime:
 
-```json
-"env": {
-  "TRACKER_TOKEN": "your_oauth_or_iam_token",
-  "TRACKER_ORG_ID": "12345678"
-}
+```text
+TRACKER_TOKEN=your_oauth_token
+TRACKER_ORG_ID=12345678
 ```
 
-For Yandex Cloud organizations use `TRACKER_CLOUD_ORG_ID` instead of `TRACKER_ORG_ID`.
+For a Yandex Cloud organization, set `TRACKER_CLOUD_ORG_ID` instead of `TRACKER_ORG_ID`. Set exactly one organization ID variable.
 
-## Usage examples
+Do not put tokens in prompts, generated scripts, or repository files. OpenClaw users can follow the additional [OpenClaw configuration](references/openclaw.md).
 
-Once credentials are set, just ask the agent in natural language:
+## Structure
 
-> «Покажи все задачи в очереди DEV, назначенные на меня»
+`SKILL.md` contains the shared workflow, safety constraints, and a topic index. Detailed instructions live one level down in `references/`, so an agent loads only the material relevant to the current request.
 
-> «Создай задачу в очереди BACKEND: "Migrate auth to OAuth 2.0", тип Task, приоритет Critical»
+See the [skill card](skill-card.md) for ownership, intended use, dependencies, known risks, outputs, and release evidence.
 
-> «Закрой задачу DEV-42 с комментарием "Fixed in v3.1" и резолюцией fixed»
+## License
 
-> «Сколько открытых задач в каждой очереди? Сгруппируй по исполнителям»
+This project is available under the [MIT License](LICENSE).
 
-The agent writes and executes Python scripts using `yandex_tracker_client` to fulfil each request, aggregating data from multiple API calls into a single readable result.
+## Example requests
 
-## Full API reference
+> Show all issues assigned to me in queue DEV.
 
-All available operations, field types, filter parameters, and error handling patterns are documented in `SKILL.md` inside the skill folder.
+> Create a critical task in BACKEND titled "Migrate auth to OAuth 2.0".
+
+> Close DEV-42 with the comment "Fixed in v3.1" and the `fixed` resolution.
+
+> Group open issues by assignee and summarize the totals.
+
+The agent should execute the required API calls, aggregate related results, and return a concise confirmation or report.

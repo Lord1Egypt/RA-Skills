@@ -1,0 +1,12 @@
+{
+  "name": "dufu",
+  "version": "1.0.2",
+  "description": "杜甫中文真实写作",
+  "author": "xxjrq",
+  "private": false,
+  "license": "MIT-0",
+  "scripts": {
+    "test": "python3 -m unittest discover -s tests -p 'test_*.py'",
+    "self-test": "python3 scripts/detect.py --file fixtures/sample.txt --json"
+  }
+}

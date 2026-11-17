@@ -1,43 +1,55 @@
-## Description: <br>
-Diting Training Expert helps agents analyze training needs, design training programs, evaluate training effectiveness, and plan organizational capability building. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diting Training Expert supports training needs analysis, training program design, effectiveness evaluation, capability building, leadership enablement, onboarding, skills training systems, and training budget planning.
 
-## Publisher: <br>
-[tuobadaidai](https://clawhub.ai/user/tuobadaidai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tuobadaidai](https://clawhub.ai/user/tuobadaidai)
 
-## Use Case: <br>
-HR, learning and development, and management teams use this skill to diagnose capability gaps, design structured training plans, evaluate outcomes with Kirkpatrick and ROI methods, and build employee development paths. It is not intended for compensation design, labor-law compliance, recruiting, or performance-management system design. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Training surveys, evaluation forms, and development plans may collect identifiable employee information. <br>
-Mitigation: Add the organization's privacy notice, make identifying fields optional where possible, restrict access to responses, and define retention rules before using templates with real employees. <br>
-Risk: Training recommendations may be mistaken for broader HR, legal, compensation, recruiting, or performance-management advice. <br>
-Mitigation: Keep use within training and capability-building workflows, and route out-of-scope HR, legal, recruiting, and performance-management questions to the appropriate specialist. <br>
+## Use Case:
 
+HR, learning and development, and management teams use this skill to diagnose training needs, design training plans, evaluate learning outcomes, and build employee development systems. It is intended for training advisory workflows and excludes compensation, labor-law compliance, recruiting, performance management, and organization design questions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tuobadaidai/diting-training-expert) <br>
-- [classic-books.md](references/classic-books.md) <br>
-- [output-templates.md](references/output-templates.md) <br>
-- [tools.md](references/tools.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown tables, checklists, templates, and structured advisory text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include training needs analyses, program plans, evaluation forms, ROI calculations, development plans, and budget guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill includes HR questionnaires and evaluation forms that may collect employee information or training feedback.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add consent, data minimization, access-control, retention, and confidentiality language before using the forms with employees.
+
+Risk: Training feedback or evaluation outputs could be reused as performance or disciplinary evidence outside the intended training context.
+
+Mitigation: Avoid reusing training feedback for performance or disciplinary decisions unless proper policy notice and governance are in place.
+
+## Reference(s):
+
+- [Output Templates](artifact/references/output-templates.md)
+- [Training Tools](artifact/references/tools.md)
+- [Classic Training Frameworks](artifact/references/classic-books.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Analysis, Configuration]
+
+**Output Format:** [Markdown with structured tables, checklists, and training plan templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-first advisory output; no executable behavior.]
+
+## Skill Version(s):
+
+2.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

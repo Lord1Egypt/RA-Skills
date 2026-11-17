@@ -1,46 +1,61 @@
-## Description: <br>
-Helps agents search eco-hotel and sustainable travel flights by using flyai CLI results and returning booking-ready Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Eco Hotel helps agents search flights for eco-hotel and sustainable travel destinations using FlyAI/Fliggy CLI results with booking links.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External travelers or travel support agents use this skill to collect route and date preferences, run real-time flight searches, and return booking options with Book links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install and run an external global CLI package to fetch travel results. <br>
-Mitigation: Review the @fly-ai/flyai-cli package source, install it in an isolated environment when possible, and use the skill only for the documented flight-search flows. <br>
-Risk: The skill advertises broader travel capabilities than its documented workflows support. <br>
-Mitigation: Limit use to the documented flight search commands unless additional workflows are reviewed and added with matching parameters and validation. <br>
-Risk: Travel answers can be misleading if they are produced from model knowledge instead of live CLI output. <br>
-Mitigation: Require CLI output as the data source and verify every displayed result includes a Book link derived from detailUrl. <br>
+## Use Case:
 
+External travel users and travel-support agents use this skill to collect route details, run FlyAI/Fliggy flight searches, and format bookable eco-hotel or sustainable travel options. It is intended for real-time travel search workflows where results must come from CLI output rather than model memory.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejinsong/eco-hotel) <br>
-- [Parameter collection and output templates](references/templates.md) <br>
-- [Scenario playbooks](references/playbooks.md) <br>
-- [Failure recovery](references/fallbacks.md) <br>
-- [Execution runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown travel search results with booking links and occasional shell commands for CLI execution or installation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CLI-derived results; each listed result must include a Book link when results are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can direct an agent to install a global FlyAI CLI package before serving travel requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package source and installation policy before deployment; prefer pinned or verified CLI versions where possible.
+
+Risk: The skill routes broad travel searches through one provider and requires provider booking links.
+
+Mitigation: Disclose the provider dependency to users and validate that returned booking links are appropriate before presenting results.
+
+Risk: User-supplied route and date values are passed into shell commands.
+
+Mitigation: Validate and quote command arguments before execution, and ask for missing origin, destination, or date details instead of guessing.
+
+## Reference(s):
+
+- [eco-hotel ClawHub Skill Page](https://clawhub.ai/xiejinsong/skills/eco-hotel)
+- [Parameter Collection & Output Templates](references/templates.md)
+- [Scenario Playbooks](references/playbooks.md)
+- [Failure Recovery](references/fallbacks.md)
+- [Execution Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Markdown, Guidance]
+
+**Output Format:** [Markdown with CLI command examples, comparison tables, and booking links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are expected to come from FlyAI CLI output and include a Book link for each result.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

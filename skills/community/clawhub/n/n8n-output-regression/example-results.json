@@ -1,0 +1,57 @@
+{
+  "scope": "Author-run synthetic invoice fixture; JSON output IDs/count before Slack delivery. External reads, backend state and delivery use separate integration tests.",
+  "observed_at": "2026-11-13T22:31:06.693892+00:00",
+  "runner_version": "0.1.8",
+  "n8n_version": "2.41.7",
+  "fixture_items": 2,
+  "expected_ids": [
+    "INV-42",
+    "INV-43"
+  ],
+  "http_requests": 0,
+  "runs": [
+    {
+      "export": "examples/stop-after/fixed.json",
+      "n8n_execution_succeeded": true,
+      "actual_count": 2,
+      "actual_ids": [
+        "INV-42",
+        "INV-43"
+      ],
+      "contract": "passed",
+      "exit_code": 0
+    },
+    {
+      "export": "examples/stop-after/broken.json",
+      "n8n_execution_succeeded": true,
+      "actual_count": 1,
+      "actual_ids": [
+        "INV-42"
+      ],
+      "contract": "failed",
+      "exit_code": 1
+    }
+  ],
+  "native_editor_generation": {
+    "generator_version": "0.1.9",
+    "n8n_version": "2.41.7",
+    "emitted_locally": true,
+    "imported_unmodified": true,
+    "runs": [
+      {
+        "export": "examples/stop-after/fixed.json",
+        "oracle_executed": true,
+        "contract": "passed",
+        "count": 2,
+        "n8n_cli_exit": 0
+      },
+      {
+        "export": "examples/stop-after/broken.json",
+        "oracle_executed": true,
+        "contract": "failed",
+        "error": "expected 2 items, got 1",
+        "n8n_cli_exit": 1
+      }
+    ]
+  }
+}

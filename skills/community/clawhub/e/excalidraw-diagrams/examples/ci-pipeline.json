@@ -1,0 +1,24 @@
+{
+  "title": "CI pipeline",
+  "direction": "TB",
+  "theme": "clean",
+  "nodes": [
+    {"id": "push", "label": "git push", "shape": "ellipse", "color": "gray"},
+    {"id": "build", "label": "Build"},
+    {"id": "test", "label": "Unit tests"},
+    {"id": "scan", "label": "Security scan", "color": "orange"},
+    {"id": "pass", "label": "All green?", "shape": "diamond", "color": "yellow"},
+    {"id": "deploy", "label": "Deploy to\nstaging", "color": "green"},
+    {"id": "fix", "label": "Fix and\nrecommit", "color": "red"}
+  ],
+  "edges": [
+    {"from": "push", "to": "build"},
+    {"from": "build", "to": "test"},
+    {"from": "build", "to": "scan"},
+    {"from": "test", "to": "pass"},
+    {"from": "scan", "to": "pass"},
+    {"from": "pass", "to": "deploy", "label": "yes"},
+    {"from": "pass", "to": "fix", "label": "no"},
+    {"from": "fix", "to": "build", "style": "dashed"}
+  ]
+}

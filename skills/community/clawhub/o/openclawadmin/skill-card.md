@@ -1,44 +1,66 @@
-## Description: <br>
-Helps agents install, update, diagnose, configure, fix, and tune local OpenClaw installations, including gateway, channel, model failover, authentication, routing, plugin, and configuration issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when installing, updating, diagnosing, configuring, fixing, tuning, or setting up anything in OpenClaw, including gateway outages, silent channels, model failover issues, auth errors, agent routing problems, config validation failures, plugin drift after update, and operational tasks involving openclaw.json, the gateway, agents, channels, or the openclaw CLI.
 
-## Publisher: <br>
-[rendrag-git](https://clawhub.ai/user/rendrag-git) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rendrag-git](https://clawhub.ai/user/rendrag-git)
 
-## Use Case: <br>
-Developers, operators, and support engineers use this skill to troubleshoot and maintain local OpenClaw installations. It guides read-only diagnosis, safe configuration edits, service verification, docs lookup, plugin repair, and incident recovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide broad local administration of OpenClaw, including diagnostics and proposed service or configuration changes. <br>
-Mitigation: Install it only for trusted agents and review confirmations before restarts, deletes, token changes, plugin changes, or docs-cache refreshes. <br>
-Risk: OpenClaw environments may contain secrets, OAuth material, private sessions, and agent workspace contents. <br>
-Mitigation: Do not allow the skill to read secret files or private session contents unless the scope is explicitly narrowed and approved. <br>
-Risk: Incorrect config edits can break gateway startup or channel routing. <br>
-Mitigation: Use the skill's backup, narrow-edit, validation, and post-change verification workflow before treating a repair as complete. <br>
+## Use Case:
 
+Developers, operators, and AI coding assistants use this skill to diagnose, configure, repair, and maintain local OpenClaw installations. It provides operational runbooks for gateway health, channels, plugins, config validation, install/update drift, and safe OpenClaw CLI workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rendrag-git/openclawadmin) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai/) <br>
-- [OpenClaw docs index](https://docs.openclaw.ai/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local diagnostics, config edits, backups, service checks, plugin repairs, and docs-cache refresh steps for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Risk: Broad local administration workflows can expose OpenClaw credentials or private session data if an agent reads full config, env, secrets, logs, or workspace contents indiscriminately.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing in credentialed environments, prefer narrow `openclaw config get <key>` reads, never open secrets or env files, and require approval before reading session or workspace file contents.
+
+Risk: Full-config reads may reveal inline credentials or sensitive routing and provider configuration.
+
+Mitigation: Use targeted config reads whenever possible; when edits are required, back up first, change individual keys, validate with `openclaw config validate`, and avoid batch-writing openclaw.json.
+
+Risk: Gateway restart, stop, service reinstall, deletion, token rotation, or destructive system changes can interrupt service or remove state.
+
+Mitigation: Require explicit user confirmation for restart/write/delete actions, verify the active service manager and process before changes, and rerun health, doctor, channel, plugin, and task checks after each fix.
+
+Risk: Online documentation refreshes or fetches could accidentally carry local logs, config, session text, or secrets to an external service.
+
+Mitigation: Fetch only public OpenClaw documentation URLs, keep local evidence out of web requests, and avoid refreshing live docs during active incidents unless the user approves and the immediate repair is not blocked.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/rendrag-git/skills/openclawadmin)
+- [OpenClaw documentation](https://docs.openclaw.ai/)
+- [OpenClaw docs index](https://docs.openclaw.ai/llms.txt)
+- [Config map](config-map.md)
+- [Local install profile](local-install.md)
+- [Update failure patterns](update-failure-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, markdown, code]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration paths, and operational checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local diagnostic command sequences, config-editing steps, risk notes, and follow-up verification checks.]
+
+## Skill Version(s):
+
+1.2.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,14 @@
+{
+  "source_type": "tencent_docs",
+  "source_config": {
+    "file_id": "[请填入腾讯文档文件ID]",
+    "default_sheet_id": "[请填入默认工作表ID]",
+    "sheet_mapping": {
+      "客户管理": "t00i2h",
+      "房源信息": "[请填入工作表ID]",
+      "租金报价": "[请填入工作表ID]",
+      "配套资源": "[请填入工作表ID]",
+      "政策信息": "[请填入工作表ID]"
+    }
+  }
+}

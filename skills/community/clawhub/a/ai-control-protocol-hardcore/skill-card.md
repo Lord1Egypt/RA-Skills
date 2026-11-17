@@ -1,41 +1,55 @@
-## Description: <br>
-AI Control Protocol (Hardcore: The Absolutist) is a persistent response-style overlay for terse, anti-sycophantic answers with explicit uncertainty labels and strategic self-audit sections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enforces a blunt, always-on anti-sycophancy response style with mandatory uncertainty labels, contradiction-first analysis, deconstruction panels, and strategic self-audits.
 
-## Publisher: <br>
-[daibinthink](https://clawhub.ai/user/daibinthink) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daibinthink](https://clawhub.ai/user/daibinthink)
 
-## Use Case: <br>
-External users and developers use this skill to make an agent respond with stricter brevity, anti-flattery constraints, explicit inference labeling, contradiction-first analysis, and optional strategic deconstruction prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill persistently changes assistant tone and may make ordinary conversations more adversarial or less concise than expected. <br>
-Mitigation: Install it only when that strict response posture is desired, and disable it for workflows that require softer tone, standard brevity, or collaborative drafting. <br>
-Risk: The skill can add audit or deconstruction sections that may distract from direct answers in routine tasks. <br>
-Mitigation: Review outputs for task fit and ask for a direct answer when the extra analysis is not useful. <br>
+## Use Case:
 
+External users and developers use this skill to make an agent adopt a high-friction critique style that labels uncertainty, challenges conventional advice, and adds self-audit structures during analytical or strategic responses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daibinthink/ai-control-protocol-hardcore) <br>
-- [Declared homepage](https://github.com/DaibinThink/AI-Control-Protocol-Hardcore) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-formatted assistant responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persistent style and reasoning overlay; no code execution, credential use, or data access is indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.1.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill globally changes assistant behavior and tone across broad categories of responses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable it only where a blunt anti-sycophancy style is desired, and review representative prompts before using it in regular workflows.
+
+Risk: The skill can add analysis panels or labels that conflict with strict output formats or requests for a different communication style.
+
+Mitigation: Avoid enabling it for workflows that require exact schemas, tightly constrained Markdown, or a softer user-facing tone.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daibinthink/skills/ai-control-protocol-hardcore)
+- [Publisher profile](https://clawhub.ai/user/daibinthink)
+- [Project homepage from clawdis metadata](https://github.com/DaibinThink/AI-Control-Protocol-Hardcore)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with explicit uncertainty labels and optional analysis panels]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Always-on behavioral style; does not run code or access data]
+
+## Skill Version(s):
+
+5.1.0 (source: SKILL.MD frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

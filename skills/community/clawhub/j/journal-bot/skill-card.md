@@ -1,44 +1,55 @@
-## Description: <br>
-Daily journaling through your agent. Smart prompts, mood tracking, weekly reflections, pattern detection. Private, local, no cloud. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily journaling through your agent. Smart prompts, mood tracking, weekly reflections, pattern detection. Private, local, no cloud.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-External users use this skill to keep daily journal entries with rotating prompts, optional mood notes, weekly statistics, and local markdown storage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Personal journal entries are stored as local markdown files and may be unencrypted by default. <br>
-Mitigation: Keep the journal directory private, avoid recording secrets, and use device encryption or an encrypted storage location on shared or synced systems. <br>
-Risk: Local journal files can be lost or corrupted through device failure, software bugs, or user error. <br>
-Mitigation: Maintain independent backups for journal data that should be preserved. <br>
-Risk: Mood tracking and pattern detection may produce incomplete or misleading reflections. <br>
-Mitigation: Treat generated insights as journaling prompts and review them before relying on them for decisions. <br>
+## Use Case:
 
+External users use this skill to add daily journaling prompts, local markdown entry storage, mood notes, and weekly writing statistics to an agent workflow.
 
-## Reference(s): <br>
-- [JournalBot ClawHub listing](https://clawhub.ai/TheShadowRose/journal-bot) <br>
-- [Publisher profile](https://clawhub.ai/user/TheShadowRose) <br>
-- [OpenClaw project](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown journal entries, text prompts, and JavaScript return objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local markdown files under a configurable journal directory and returns date, time, file path, and word-count metadata for entries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release) <br>
+Risk: Journal entries may contain sensitive personal information and are stored in local markdown files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose the journal storage location carefully, apply local access controls, and keep independent backups of important entries.
+
+Risk: Advertised pattern detection and reflection features may be overstated or incomplete in this version.
+
+Mitigation: Treat generated insights as prompts for personal reflection rather than authoritative analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/theshadowrose/skills/journal-bot)
+- [Publisher profile](https://clawhub.ai/user/theshadowrose)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown journal prompts, local markdown entries, JavaScript module output, and concise agent guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or appends local markdown journal files and returns entry metadata or weekly writing statistics.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

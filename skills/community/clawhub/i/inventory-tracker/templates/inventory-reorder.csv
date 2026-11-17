@@ -1,0 +1,11 @@
+# Inventory Tracker - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+sku,item_name,on_hand_qty,counted_qty,adjustment_qty,average_weekly_demand,lead_time_weeks,safety_stock_qty,reorder_point_qty,unit_cost_usd,country_of_origin,tax_state,supplier,last_counted_on,counted_by_role
+sku-001,<item name>,0,0,0,0,0,0,0,0,<country of origin>,<state>,<supplier>,<YYYY-MM-DD>,<role>
+sku-002,<item name>,0,0,0,0,0,0,0,0,<country of origin>,<state>,<supplier>,<YYYY-MM-DD>,<role>
+sku-003,<item name>,0,0,0,0,0,0,0,0,<country of origin>,<state>,<supplier>,<YYYY-MM-DD>,<role>
+sku-004,<item name>,0,0,0,0,0,0,0,0,<country of origin>,<state>,<supplier>,<YYYY-MM-DD>,<role>
+sku-005,<item name>,0,0,0,0,0,0,0,0,<country of origin>,<state>,<supplier>,<YYYY-MM-DD>,<role>
+sku-006,<item name>,0,0,0,0,0,0,0,0,<country of origin>,<state>,<supplier>,<YYYY-MM-DD>,<role>
+sku-007,<item name>,0,0,0,0,0,0,0,0,<country of origin>,<state>,<supplier>,<YYYY-MM-DD>,<role>
+sku-008,<item name>,0,0,0,0,0,0,0,0,<country of origin>,<state>,<supplier>,<YYYY-MM-DD>,<role>

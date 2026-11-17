@@ -1,44 +1,55 @@
-## Description: <br>
-Automation skill package for multi-engine web search, JSON search-result output, and local reflection notes with reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automation Skill provides agent-facing workflows for multi-engine web search, deduplicated search results, JSON search output, and structured self-reflection reports.
 
-## Publisher: <br>
-[xunet2025](https://clawhub.ai/user/xunet2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xunet2025](https://clawhub.ai/user/xunet2025)
 
-## Use Case: <br>
-Developers and agent users can use this skill to run multi-engine searches, save ranked results as JSON, record lessons learned, and generate local reflection reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to external search engines. <br>
-Mitigation: Do not submit secrets, credentials, private project details, or sensitive personal data as search terms. <br>
-Risk: Reflection entries are stored locally under ~/.qclaw/memory. <br>
-Mitigation: Avoid recording sensitive personal data, credentials, or private project details in reflection notes, and review local memory files before sharing the environment. <br>
-Risk: The skill can help search for additional skills to install. <br>
-Mitigation: Review any additional skill and its security status before installing it. <br>
+## Use Case:
 
+Developers and agent users can use this skill to run repeatable search workflows across multiple search engines, save ranked JSON results, and record or review lessons from prior tasks. It is intended for search assistance, workflow automation, and lightweight personal improvement records.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xunet2025/automation-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/xunet2025) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON search results, and Markdown reflection reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search queries may be sent to external search engines; reflection notes are stored locally under ~/.qclaw/memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Reflection entries are stored as persistent agent memory and may include sensitive user-provided content or untrusted instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review reflection content before saving it, avoid secrets or credentials, and require explicit confirmation before writing to or searching the QClaw memory file.
+
+Risk: Search results are gathered from external search engines and may include incomplete, low-quality, or misleading pages.
+
+Mitigation: Treat search output as unverified reference material and review source quality before using results in decisions, code, or documentation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xunet2025/skills/automation-skill)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Console text, Markdown reports, and optional JSON files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search output includes ranked result metadata; reflection output may persist user-provided lessons under the user's QClaw memory directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

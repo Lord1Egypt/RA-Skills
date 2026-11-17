@@ -1,0 +1,21 @@
+{
+  "code": 200,
+  "msg": "",
+  "data": {
+    "rowCount": 2,
+    "pageCount": 1,
+    "list": [
+      {
+        "areaName": "广东省 / 深圳市",
+        "cooperationCount": 18,
+        "cooperationAmount": 9600000
+      },
+      {
+        "areaName": "广东省 / 广州市",
+        "cooperationCount": 4,
+        "cooperationAmount": 1320000
+      }
+    ]
+  },
+  "success": true
+}

@@ -1,43 +1,58 @@
-## Description: <br>
-Init Kb guides an agent through creating or refreshing a project knowledge base by collecting user input, scraping approved URLs with Firecrawl, analyzing the results, and writing structured markdown reference files for future agent work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Init Kb initializes or updates a project knowledge base by scraping websites and social profiles with Firecrawl, guiding the user through gap-filling questions, and producing structured on-demand markdown references for agents.
 
-## Publisher: <br>
-[Kevjade](https://clawhub.ai/user/Kevjade) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kevjade](https://clawhub.ai/user/kevjade)
 
-## Use Case: <br>
-External users, developers, and operators use this skill to bootstrap or update a structured project, business, or client knowledge base for future agent work. It is intended for workflows where the user can approve scraping, answer targeted questions, and review generated workspace files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send selected URLs and profile content to Firecrawl during scraping. <br>
-Mitigation: Review every URL before scraping and only use the skill when external processing by Firecrawl is acceptable. <br>
-Risk: The skill may store a Firecrawl API key in .firecrawl/api-key.txt. <br>
-Mitigation: Prefer setting FIRECRAWL_API_KEY yourself; if a local key file is used, protect it and ensure it is ignored by version control. <br>
-Risk: The skill can make persistent workspace changes, including knowledge base files and AGENTS.md or CLAUDE.md snippets. <br>
-Mitigation: Require a diff before accepting changes to generated files or agent configuration files. <br>
+## Use Case:
 
+External users and agent operators use this skill to build or refresh a structured knowledge base for a business, project, or client. The generated KB gives downstream agents project context, voice guidance, business intelligence, guardrails, and on-demand source material.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Kevjade/init-kb) <br>
-- [Firecrawl API](https://api.firecrawl.dev/v1/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files, shell commands, configuration snippets, and conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes persistent workspace files, including knowledge base markdown, scraped site-content markdown, Firecrawl cache files, and AGENTS.md or CLAUDE.md guidance snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: The skill may handle Firecrawl API keys through chat input or a local .firecrawl/api-key.txt file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer FIRECRAWL_API_KEY in the environment or a secret manager, avoid pasting secrets into shared chats, and keep .firecrawl out of version control.
+
+Risk: The skill can append knowledge-base loading guidance to persistent agent configuration files.
+
+Mitigation: Review proposed AGENTS.md or CLAUDE.md changes before accepting them, especially in shared or multi-project workspaces.
+
+Risk: The skill sends provided URLs to Firecrawl and stores scraped content locally.
+
+Mitigation: Scrape only public URLs you are comfortable sending to Firecrawl and retaining in local project files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kevjade/skills/init-kb)
+- [Firecrawl API endpoint](https://api.firecrawl.dev/v1/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files with conversational guidance and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a project knowledge-base directory, scraped page markdown, Firecrawl cache files, and optional AGENTS.md or CLAUDE.md integration snippets.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

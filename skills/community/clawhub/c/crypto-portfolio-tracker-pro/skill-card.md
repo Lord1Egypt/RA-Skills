@@ -1,42 +1,59 @@
-## Description: <br>
-Real-time cryptocurrency portfolio tracking and analysis for monitoring holdings, portfolio value, performance metrics, and price alerts across crypto sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crypto Portfolio Tracker Pro provides basic cryptocurrency portfolio tracking, CoinGecko price lookup for a sample portfolio, and local price alert recording.
 
-## Publisher: <br>
-[dagangtj](https://clawhub.ai/user/dagangtj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dagangtj](https://clawhub.ai/user/dagangtj)
 
-## Use Case: <br>
-External users and developers use this skill to track cryptocurrency holdings, calculate portfolio value and short-term performance, configure alerts, and review portfolio allocation across exchanges and wallets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crypto exchange, wallet, and alert integrations can expose sensitive financial data or credentials if configured too broadly. <br>
-Mitigation: Review integrations before use, prefer read-only exchange keys, never provide seed phrases or withdrawal-enabled credentials, and confirm what data is sent, stored, and retained. <br>
-Risk: Portfolio values and price alerts rely on external market data that may be delayed, incomplete, or unavailable. <br>
-Mitigation: Verify important balances and prices against authoritative exchange or wallet sources before making financial decisions. <br>
+## Use Case:
 
+External users and developers can use this skill to track cryptocurrency holdings, estimate portfolio value changes, and record price alerts. Users should review the shipped behavior before connecting real accounts or storing sensitive financial configuration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dagangtj/crypto-portfolio-tracker-pro) <br>
-- [Configuration reference](references/config.json) <br>
-- [CoinGecko API](https://api.coingecko.com/api/v3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and terminal text with shell command examples and JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May fetch live market data from third-party cryptocurrency APIs and may write local alert configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release describes broader exchange, wallet, analytics, and report capabilities than the shipped code appears to provide.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate the actual artifact behavior before relying on the skill for financial decisions, operational monitoring, or portfolio reporting.
+
+Risk: The configuration shape includes plaintext fields for exchange API keys, API secrets, Telegram bot tokens, wallet addresses, and other sensitive financial metadata.
+
+Mitigation: Keep live secrets and sensitive wallet data out of the included config unless they have been moved to safer storage and access controls.
+
+Risk: Running the portfolio tracker can contact an external market data service.
+
+Mitigation: Confirm that CoinGecko API use is acceptable for the deployment environment before executing the tracking script.
+
+## Reference(s):
+
+- [Configuration reference](references/config.json)
+- [CoinGecko API](https://api.coingecko.com/api/v3)
+- [ClawHub skill page](https://clawhub.ai/dagangtj/skills/crypto-portfolio-tracker-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or terminal text with command examples and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local alert records and may contact CoinGecko when the portfolio tracking script is run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

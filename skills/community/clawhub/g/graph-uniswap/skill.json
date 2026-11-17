@@ -1,0 +1,24 @@
+{
+  "name": "graph-uniswap",
+  "version": "0.3.3",
+  "description": "Simulate a Uniswap swap before making it — amount out, effective price and price impact, computed offline from The Graph with the protocol's own concentrated-liquidity math (wei-exact vs @uniswap/v3-sdk, no RPC). Plus pools, prices, pairs and swap flow across Uniswap V2/V3/V4 on Ethereum, Arbitrum, Base, Polygon, Optimism and BSC.",
+  "author": "paulieb14",
+  "license": "MIT",
+  "homepage": "https://github.com/PaulieB14/graph-uniswap-mcp",
+  "tags": [
+    "uniswap", "defi", "swap", "quote", "price-impact", "slippage",
+    "concentrated-liquidity", "the-graph", "subgraph", "ethereum", "base",
+    "arbitrum", "polygon", "optimism", "bsc", "onchain-data", "web3", "mcp"
+  ],
+  "categories": ["Finance", "Web", "AI/ML"],
+  "mcp": {
+    "tools": [
+      "quote_swap", "list_markets", "discover_markets", "get_token_price",
+      "top_pools", "find_pool", "pool_info", "recent_swaps", "raw_query"
+    ],
+    "transport": "stdio",
+    "command": "npx",
+    "args": ["-y", "graph-uniswap-mcp"],
+    "env": { "GRAPH_API_KEY": "required — free at https://thegraph.com/studio" }
+  }
+}

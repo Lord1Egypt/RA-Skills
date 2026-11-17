@@ -1,42 +1,55 @@
-## Description: <br>
-Terminal-native spreadsheet engine for Excel-compatible .xlsx operations — read, write, format, formula, charts, and multidimensional tables via CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Terminal-native spreadsheet engine for Excel-compatible .xlsx operations: read, write, format, formula, charts, and multidimensional tables via CLI.
 
-## Publisher: <br>
-[wuritu](https://clawhub.ai/user/wuritu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuritu](https://clawhub.ai/user/wuritu)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect, edit, convert, and automate Excel-compatible .xlsx workbooks from terminal workflows. It is suited for spreadsheet analysis, report generation, chart or formatting operations, and scripted workbook pipelines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing a global npm package introduces trust in third-party package code. <br>
-Mitigation: Install only when the npm package source is trusted and the workflow requires command-line spreadsheet automation. <br>
-Risk: Spreadsheet operations can unintentionally overwrite or alter important workbooks. <br>
-Mitigation: Use explicit input and output paths, avoid in-place edits unless intended, and keep backups of important or sensitive workbooks. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect, edit, convert, and automate Excel-compatible .xlsx workflows from the terminal.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wuritu/univer-cli) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/wuritu) <br>
-- [npm package: univer-cli](https://www.npmjs.com/package/univer-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration instructions] <br>
-**Output Format:** [Markdown with inline shell commands and JavaScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide local .xlsx reads, writes, conversions, formulas, formatting, charts, and preview workflows through the unv CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Installing a global npm CLI package can execute package lifecycle code and grant broad local access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify that univer-cli is the intended package, prefer a pinned reviewed version or project-local install, and avoid elevated privileges unless the package has been separately reviewed.
+
+Risk: Spreadsheet automation may change workbook formulas, formatting, charts, or exported data in ways that affect downstream decisions.
+
+Mitigation: Review generated commands and inspect resulting workbook or export changes before using them in production workflows.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/wuritu/skills/univer-cli)
+- [Publisher profile](https://clawhub.ai/user/wuritu)
+- [univer-cli npm package](https://www.npmjs.com/package/univer-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 18+ and the unv binary from the univer-cli npm package.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

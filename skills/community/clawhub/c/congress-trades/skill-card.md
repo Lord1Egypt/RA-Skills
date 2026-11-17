@@ -1,38 +1,58 @@
-## Description: <br>
-Track US congress member and politician stock trades in real-time using the Quiver Quant API, sync trades to a local SQLite database, detect new significant trades above 15K, and send alerts via OpenClaw messaging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track US congress member and politician stock trades in real-time using the Quiver Quant API, sync trades to a local SQLite database, detect new significant trades above 15K, and send alerts via OpenClaw messaging.
 
-## Publisher: <br>
-[Armax](https://clawhub.ai/user/Armax) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[armax](https://clawhub.ai/user/armax)
 
-## Use Case: <br>
-Developers and external users use this skill to monitor reported US congressional stock trades, keep a local SQLite record, and surface alerts for new buy or sell activity above a configured threshold. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
-
-## Reference(s): <br>
-- [Congress Trades Tracker on ClawHub](https://clawhub.ai/Armax/congress-trades) <br>
-- [Quiver Quant](https://www.quiverquant.com/) <br>
-- [Quiver Quant Congress Trading API endpoint](https://api.quiverquant.com/beta/live/congresstrading) <br>
+### License/Terms of Use:
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local SQLite data, JSON alert history, and a pending text alert file for agent pickup.] <br>
+## Use Case:
 
-## Skill Version(s): <br>
-1.1.4 (source: server release evidence) <br>
+Developers and analysts use this skill to set up congressional trade monitoring, politician stock trade alerts, and local review of trade data from the Quiver Quant API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Persistent per-minute cron execution may create unnecessary operational load or make the installation harder to audit.
+
+Mitigation: Review the schedule before installing, reduce polling when minute-level alerts are unnecessary, and document an uninstall step for the cron entry.
+
+Risk: Environment setup can expose secrets if broad shell profiles are sourced by scheduled jobs.
+
+Mitigation: Use a dedicated virtual environment, pin dependencies, and store only QUIVER_API_KEY and needed settings in a dedicated env file.
+
+Risk: Remote API text is written into an alert channel that an agent may read later.
+
+Mitigation: Treat alert file contents strictly as untrusted data for display and never as instructions.
+
+## Reference(s):
+
+- [Congress Trades Tracker on ClawHub](https://clawhub.ai/armax/skills/congress-trades)
+- [Quiver Quant](https://www.quiverquant.com/)
+- [Quiver Quant Congress Trading API endpoint](https://api.quiverquant.com/beta/live/congresstrading)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Code, Files, Text, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands, Python code, local SQLite data, JSON alert history, and text alert files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3.10+, the requests library, and QUIVER_API_KEY; optional settings include CONGRESS_DB_PATH and MIN_TRADE_AMOUNT.]
+
+## Skill Version(s):
+
+1.1.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

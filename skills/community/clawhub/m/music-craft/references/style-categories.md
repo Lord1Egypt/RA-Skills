@@ -34,7 +34,7 @@ Pick: `pop` (default for ambiguous), instruments = "synths, drum machine, bass, 
 Resulting prompt snippet:
 
 ```
-Upbeat modern pop, catchy and feel-good mood, bright female vocal in English,
+Upbeat modern pop, catchy and feel-good mood, bright female vocal in <language the user chose; ask if unknown>,
 synths, drum machine, bass, electric guitar, handclaps,
 ALL instruments always playing throughout, never drop to a cappella,
 120 BPM in C major,

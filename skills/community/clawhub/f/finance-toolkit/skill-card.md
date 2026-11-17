@@ -1,44 +1,60 @@
-## Description: <br>
-A股量化工具包 helps an agent retrieve market data, calculate technical indicators, run backtests, monitor scores, perform FFT analysis, and generate A-share market reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A China A-share quantitative analysis toolkit that helps agents fetch market data, run technical indicators and backtests, monitor scores, perform FFT analysis, and generate daily reports.
 
-## Publisher: <br>
-[dnaxxx-hub](https://clawhub.ai/user/dnaxxx-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dnaxxx-hub](https://clawhub.ai/user/dnaxxx-hub)
 
-## Use Case: <br>
-Developers and finance-focused agents use this skill to analyze A-share market data, compare trading strategies, run parameter searches, monitor technical signals, and produce concise market reports. Outputs are analytical aids and should not be treated as investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence marks the release suspicious because some modules contain hidden automatic execution paths. <br>
-Mitigation: Review the skill before installing or running it, and remove or explicitly document hidden execution paths before use in managed environments. <br>
-Risk: The skill performs expected market-data network access and may optionally forward alerts. <br>
-Mitigation: Run it in a network policy appropriate for market-data access, and make alert forwarding explicit and opt-in before deployment. <br>
-Risk: Backtests, scores, and strategy signals can be mistaken for reliable trading advice. <br>
-Mitigation: Treat generated analysis as decision support only, validate data quality independently, and require human review before any trading action. <br>
+## Use Case:
 
+Developers, finance analysts, and agent builders use this skill to guide Python-based A-share market analysis workflows, including market-data retrieval, technical analysis, strategy backtesting, monitoring, and report generation. Outputs should be reviewed as analytical support rather than financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dnaxxx-hub/finance-toolkit) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with Python examples, shell commands, tables, and generated report content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include live market data, backtest metrics, technical indicators, monitoring alerts, and generated daily-report summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill contacts third-party market-data providers and queried stock symbols may be disclosed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when this disclosure is acceptable for the stocks being analyzed, and avoid querying sensitive watchlists in trusted or confidential environments.
+
+Risk: The security review flagged under-disclosed automatic interpreter handoff behavior.
+
+Mitigation: Review or remove the MSYS64 interpreter handoff before using the skill in a trusted agent environment.
+
+Risk: The security review flagged optional external bridge behavior for alert synchronization.
+
+Mitigation: Review or disable the optional system_bridge alert synchronization before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dnaxxx-hub/skills/finance-toolkit)
+- [Publisher profile](https://clawhub.ai/user/dnaxxx-hub)
+- [Artifact README](artifact/README.md)
+- [Artifact skill file](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with Python examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include finance-analysis outputs, strategy signals, backtest summaries, monitoring scores, FFT insights, and daily-report content for reviewer validation.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

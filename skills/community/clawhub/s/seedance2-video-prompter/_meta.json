@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn73r3yvetg070hg0n3a75qj5x83p31r",
-  "slug": "seedance2-video-prompter",
-  "version": "1.0.2",
-  "publishedAt": 1774862384232
+  "name": "seedance2.0-video-prompter",
+  "version": "1.0.0",
+  "description": "Seedance 2.0 即梦视频生成提示词工程（中文优化版），支持多模态参考、时间轴编排、多段拼接、IP规避等",
+  "author": "openclaw",
+  "tags": ["seedance", "即梦", "video", "prompt", "AI视频", "提示词"]
 }

@@ -1,46 +1,62 @@
-## Description: <br>
-ToB销售提案生成器。输入客户信息/行业/痛点/产品，基于知识库真实案例输出带品牌色CSS的4模块HTML分页提案。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese-language four-page HTML ToB sales proposals from client, industry, pain point, budget, timeline, and product inputs using bundled case and methodology data.
 
-## Publisher: <br>
-[william202404](https://clawhub.ai/user/william202404) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[william202404](https://clawhub.ai/user/william202404)
 
-## Use Case: <br>
-Sales and presales teams use this skill to turn customer, industry, pain point, product, budget, and timeline inputs into a four-section HTML sales proposal. The generated proposal aligns pains, solution value, implementation plan, and ROI with examples from the bundled case library. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated proposals can include customer names, budgets, and pain points that may be sensitive if copied into external AI or presentation services. <br>
-Mitigation: Review and redact sensitive customer information before sharing or pasting the generated proposal outside the trusted environment. <br>
-Risk: The tool writes an HTML proposal to the selected output path and could overwrite an existing file. <br>
-Mitigation: Choose a fresh output path, such as a new proposal.html, before generation. <br>
-Risk: Sales proposal content may contain incorrect or misleading business claims if accepted without review. <br>
-Mitigation: Review the generated proposal, case references, ROI assumptions, and customer-specific claims before using it with customers. <br>
-Risk: Dependency changes can alter runtime behavior. <br>
-Mitigation: Install from the reviewed package and prefer deterministic installs using the included lockfile. <br>
+## Use Case:
 
+Sales and presales teams use this skill to turn client discovery inputs into a Chinese-language HTML proposal covering pain-point alignment, solution alignment, implementation path, and ROI with anonymized case examples.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/william202404/tob-sales-proposal) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [HTML file with embedded CSS and proposal text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a proposal HTML file, defaulting to ./proposal.html unless an output path is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: package.json and ClawHub release metadata) <br>
+Risk: Generated HTML proposals may expose confidential client information if users enter sensitive details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering confidential client details unless they are approved for inclusion in the generated proposal file.
+
+Risk: The artifact claims sensitive information is automatically desensitized, but the security evidence says not to rely on that behavior.
+
+Mitigation: Manually review generated proposals for sensitive information before sharing or storing them.
+
+Risk: Proposal case references and ROI claims can be misleading if not verified against the bundled knowledge base and the target client context.
+
+Mitigation: Review case citations, ROI ranges, and assumptions before using the output in a customer-facing proposal.
+
+Risk: The security evidence notes dependency and documentation issues.
+
+Mitigation: Audit or update dependencies before CI use or use on untrusted repositories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/william202404/skills/tob-sales-proposal)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, guidance, files]
+
+**Output Format:** [HTML file with supporting command-line guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces proposal.html by default; generated proposal content should be reviewed before customer use.]
+
+## Skill Version(s):
+
+1.2.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

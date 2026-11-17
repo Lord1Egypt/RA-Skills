@@ -1,39 +1,62 @@
-## Description: <br>
-Data Hub provides an asynchronous in-memory data sharing layer for multi-agent quantitative trading systems, organizing market state, indicators, intelligence, and risk-audit state. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Data Hub provides an asynchronous in-memory sharing layer for multi-agent digital-asset trading systems across market state, indicators, intelligence, and risk audit namespaces.
 
-## Publisher: <br>
-[johnny-ggao](https://clawhub.ai/user/johnny-ggao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnny-ggao](https://clawhub.ai/user/johnny-ggao)
 
-## Use Case: <br>
-Developers and agent builders use this skill to share validated market, indicator, intelligence, and risk-audit data across trading-system agents. It is for shared context and status retrieval, not persistent history, market-data sourcing, or direct trade execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Risk-audit snapshots can persist sensitive risk data to disk when snapshot_path or snapshot helpers are used. <br>
-Mitigation: Avoid sensitive account details, constrain snapshot locations at the application layer, and review or patch snapshot functions before use in a trading environment. <br>
+## Use Case:
 
+Developers and trading-agent operators use Data Hub to let orchestrator, analyst, and guard agents write and read shared real-time context with namespace permissions and Pydantic validation. It is not intended for historical storage, market data sourcing, or direct trading execution.
 
-## Reference(s): <br>
-- [Data Hub Skill Documentation](docs/Data_Hub_Skill.md) <br>
-- [Data Hub on ClawHub](https://clawhub.ai/johnny-ggao/data-hub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Text, Guidance] <br>
-**Output Format:** [Structured JSON-compatible dictionaries with concise text error messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes market_state, indicators, intelligence, and risk_audit namespaces; summary access may mark stale market data and expired intelligence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: pyproject.toml and server release evidence) <br>
+Risk: Agent_ID namespace checks are not a real security boundary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only inside a trusted agent process and enforce caller identity and authorization before invoking write operations.
+
+Risk: Risk-audit data can be persisted even though the skill is primarily described as in-memory.
+
+Mitigation: Use path-scoped snapshot storage, retention controls, and review stored risk data before production use.
+
+Risk: Mutable read results can let consumers accidentally alter shared state.
+
+Mitigation: Return deep copies or immutable views from read paths before relying on the hub across trust boundaries.
+
+Risk: Large numbers of symbols, payloads, or stored entries can increase memory use.
+
+Mitigation: Apply quotas for symbols, payload size, and stored entries in the calling system.
+
+## Reference(s):
+
+- [ClawHub Data Hub release page](https://clawhub.ai/johnny-ggao/skills/data-hub)
+- [Data Hub skill documentation](docs/Data_Hub_Skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, configuration, guidance]
+
+**Output Format:** [Python package interfaces and structured JSON-like result dictionaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores shared in-memory state by namespace and can optionally write risk-audit snapshots when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

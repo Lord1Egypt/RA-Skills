@@ -1,44 +1,63 @@
-## Description: <br>
-Archive2Figure (a2f) helps agents convert PDF archives containing character information into digital character figure images by extracting features, generating prompts, submitting image-generation jobs, and polling for results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Archive2Figure (a2f) converts PDF archives into digital character figures by extracting character features, generating images, and retrieving results.
 
-## Publisher: <br>
-[wadipapa](https://clawhub.ai/user/wadipapa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wadipapa](https://clawhub.ai/user/wadipapa)
 
-## Use Case: <br>
-Developers and agent operators use this skill to work with the Archive2Figure API for extracting character features from PDFs, creating feature-based prompts, generating character images, and retrieving image result URLs. It is especially oriented toward Chinese historical character and realistic portrait workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send selected local PDFs, extracted character data, prompts, job IDs, and generated-output requests to wuji.cyphy.com. <br>
-Mitigation: Use it only for explicit requests, review the PDF path before upload, and confirm the user is comfortable sending that data to the external service. <br>
-Risk: Confidential, regulated, private, or copyrighted PDFs could be exposed if used without proper authorization. <br>
-Mitigation: Do not use those materials unless authorization and the service's data handling are understood. <br>
+## Use Case:
 
+Developers and content creators use this skill to call the Wuji A2F API for extracting character details from PDFs, composing prompts, starting image-generation jobs, and polling for generated character images.
 
-## Reference(s): <br>
-- [ClawHub a2f skill page](https://clawhub.ai/wadipapa/a2f) <br>
-- [Publisher profile](https://clawhub.ai/user/wadipapa) <br>
-- [Wuji API base](https://wuji.cyphy.com/api) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples, JSON API payloads, endpoint descriptions, and shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include instructions for uploading PDFs and prompts to wuji.cyphy.com, polling job IDs, and handling generated image URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill sends selected PDFs, extracted character details, and generation prompts to the Wuji A2F API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential, regulated, copyrighted, or personal documents unless the provider's retention and privacy terms are understood.
+
+Risk: A custom api_base value could redirect uploads, prompts, or API credentials to an untrusted service.
+
+Mitigation: Use the default trusted API endpoint and do not accept api_base values from untrusted sources.
+
+Risk: Dependency installation and examples may run in the user's local Python environment.
+
+Mitigation: Install dependencies in an isolated environment and skip the unnecessary asyncio package.
+
+## Reference(s):
+
+- [ClawHub a2f Skill Page](https://clawhub.ai/wadipapa/skills/a2f)
+- [wadipapa Publisher Profile](https://clawhub.ai/user/wadipapa)
+- [Wuji A2F API Base](https://wuji.cyphy.com/api)
+- [Examples Guide](artifact/README.md)
+- [Complete A2F Client Example](artifact/a2f_example.py)
+- [Quick Start Example](artifact/quick_start.py)
+- [Batch Generation Example](artifact/batch_generation.py)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python code examples, shell commands, configuration values, and API request patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe PDF upload, prompt construction, asynchronous job polling, and result URL handling.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact metadata lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

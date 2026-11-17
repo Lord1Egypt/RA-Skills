@@ -1,40 +1,54 @@
-## Description: <br>
-Checks a local OpenClaw environment for configuration, file integrity, permissions, dependencies, and API-token presence, then reports issues with suggested manual fixes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-Check performs OpenClaw environment diagnostics covering configuration, file integrity, permissions, dependencies, API token presence, and manual repair suggestions without applying fixes.
 
-## Publisher: <br>
-[solarise94](https://clawhub.ai/user/solarise94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[solarise94](https://clawhub.ai/user/solarise94)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to audit local setup health after environment changes, before troubleshooting, or during periodic checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The report can reveal local setup details, installed skills, enabled services, file paths, permissions, and API-key presence. <br>
-Mitigation: Treat generated reports as sensitive and review or redact them before sharing. <br>
-Risk: Suggested repair commands may change packages, services, or configuration if copied into a shell. <br>
-Mitigation: Run suggested commands only after manual review in the intended OpenClaw environment; the skill does not execute repairs automatically. <br>
+## Use Case:
 
+Developers and operators use this skill to check an OpenClaw workspace before troubleshooting, after environment changes, or during routine health checks. It reports passed checks, warnings, errors, and suggested manual repair commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/solarise94/self-check) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with inline shell commands for suggested manual repairs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports API-key presence without values and sorts findings by severity.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence; artifact frontmatter states 2.0.0) <br>
+Risk: The diagnostic reads local OpenClaw configuration, skill metadata, logs, permissions, and API-key presence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in workspaces where that local inspection is acceptable; the report indicates token presence without exposing token values.
+
+Risk: Suggested repair commands may install packages, alter ownership, or start services if a user chooses to run them.
+
+Mitigation: Review each suggested command before execution, avoid curl|bash installer patterns, and use sudo only when an ownership change is intentional.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/solarise94/skills/self-check)
+- [ClawHub publisher profile](https://clawhub.ai/user/solarise94)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown diagnostic report with inline shell command suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are sorted by severity and expose API token presence without printing token values.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

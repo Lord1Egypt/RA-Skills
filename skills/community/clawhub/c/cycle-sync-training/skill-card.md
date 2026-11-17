@@ -1,41 +1,58 @@
-## Description: <br>
-Cycle Sync Training helps an agent plan women-focused workouts around menstrual-cycle phases, symptoms, energy, and training goals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cycle Sync Training helps agents plan workouts around menstrual-cycle phases, log symptoms, adjust training intensity, and predict high-energy training windows.
 
-## Publisher: <br>
-[kritsanan1](https://clawhub.ai/user/kritsanan1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kritsanan1](https://clawhub.ai/user/kritsanan1)
 
-## Use Case: <br>
-External users and fitness agents use this skill to record cycle phase context, generate phase-aware workout plans, adjust intensity from symptoms and energy, and predict higher-energy windows for training goals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles menstrual-cycle, symptom, mood, energy, and fitness data with persistent storage expectations, but the evidence does not show clear consent, retention, access, or deletion controls. <br>
-Mitigation: Use only when users intentionally want cycle-based fitness guidance, avoid logging sensitive health data until storage and deletion controls are understood, and add explicit consent plus retention and sharing documentation. <br>
-Risk: The artifact asks agents to trigger on women-focused fitness planning even when a user does not explicitly mention cycle tracking. <br>
-Mitigation: Narrow activation to explicit cycle-related requests and avoid collecting cycle or symptom details during general fitness conversations. <br>
+## Use Case:
 
+External users and developers use this skill to provide cycle-aware fitness guidance, workout planning, intensity adjustments, and energy-window predictions for people who choose to share menstrual-cycle and symptom information.
 
-## Reference(s): <br>
-- [Server-resolved source repository](https://github.com/kritsanan1/cycle-sync-training) <br>
-- [ClawHub skill page](https://clawhub.ai/kritsanan1/skills/cycle-sync-training) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, JSON, Configuration] <br>
-**Output Format:** [Markdown documentation with JSON request and response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes MCP tool descriptions for logging cycle phase, generating workouts, adjusting intensity, and predicting energy windows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server-resolved release) <br>
+Risk: The skill handles sensitive menstrual-cycle and symptom data with under-specified backend and messaging controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user consent before logging cycle data, configure per-user Supabase access controls, keep service credentials server-side, and avoid sending health details through LINE or Facebook by default.
+
+Risk: Broad activation rules may apply cycle-aware guidance to general women's fitness requests.
+
+Mitigation: Confirm that the user wants cycle-aware guidance before collecting, logging, or using menstrual-cycle information.
+
+Risk: Deployment instructions list dependencies without version pins.
+
+Mitigation: Pin dependencies before deployment and review the package set before installation.
+
+## Reference(s):
+
+- [Server-resolved GitHub provenance](https://github.com/kritsanan1/cycle-sync-training)
+- [ClawHub skill page](https://clawhub.ai/kritsanan1/skills/cycle-sync-training)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown or JSON-like tool guidance with configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include workout recommendations, phase tips, avoid lists, intensity adjustments, scheduling windows, and backend configuration guidance.]
+
+## Skill Version(s):
+
+0.1.2 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

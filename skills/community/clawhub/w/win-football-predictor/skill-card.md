@@ -1,44 +1,60 @@
-## Description: <br>
-A football match outcome predictor for Chinese win/draw/loss lottery-style picks using Pi-Rating, CatBoost/XGBoost, and Dixon-Coles model signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Win Football Predictor helps agents generate football lottery outcome analysis using Pi-Rating, odds-derived probabilities, ensemble heuristics, upset detection, and league-specific adjustments.
 
-## Publisher: <br>
-[yangjinfc](https://clawhub.ai/user/yangjinfc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangjinfc](https://clawhub.ai/user/yangjinfc)
 
-## Use Case: <br>
-External users and developers use this skill to generate football win/draw/loss predictions, odds comparisons, upset indicators, and confidence labels for match analysis. The security review says to treat it as entertainment or a demo predictor rather than betting guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review says the historical-data, model-method, and backtest-accuracy claims are not supported by the included code. <br>
-Mitigation: Treat predictions as entertainment or demo output unless the publisher supplies real source data, reproducible backtests, dependency versions, and trained model artifacts. <br>
-Risk: Users could mistake football outcome predictions for evidence-backed betting guidance. <br>
-Mitigation: Present outputs as non-advisory match analysis and require human review before any consequential or financial use. <br>
+## Use Case:
 
+External users and developers can use this skill to draft football match prediction reports, compare model probabilities with market odds, and flag possible upset outcomes. Its outputs should be treated as entertainment or decision-support analysis, not as betting advice or validated forecasting.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yangjinfc/win-football-predictor) <br>
-- [Publisher profile](https://clawhub.ai/user/yangjinfc) <br>
-- [Backtest notes](references/backtest.md) <br>
-- [Feature engineering notes](references/features.md) <br>
-- [500.com football lottery data reference](https://datachain.500.com/sfc/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text with command examples and prediction summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces entertainment-oriented match outcome analysis with confidence labels; accuracy and historical-performance claims require publisher verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The release advertises historical training and accuracy claims that are not supported by the bundled code or data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat predictions and backtest numbers as unverified heuristic outputs until the publisher provides real historical data, model artifacts, provenance, and reproducible evaluation methodology.
+
+Risk: Users may mistake football prediction outputs for betting advice.
+
+Mitigation: Present outputs as entertainment or decision-support analysis, include the skill's stated caution that it is not betting advice, and require human review before any wagering-related use.
+
+Risk: The bundled script can create output files when prediction or backtest commands are run.
+
+Mitigation: Run the script in a controlled workspace and review generated JSON or reports before sharing or using them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yangjinfc/skills/win-football-predictor)
+- [Feature engineering reference](references/features.md)
+- [Backtest analysis reference](references/backtest.md)
+- [500.com football lottery data](https://datachain.500.com/sfc/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with JSON prediction artifacts and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write prediction and backtest JSON files when the bundled script is executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

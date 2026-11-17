@@ -1,0 +1,12 @@
+{
+  "name": "real-browser-qa-ceki",
+  "description": "Rent real residential Chrome browsers for QA testing, security auditing, and vulnerability discovery",
+  "url": "https://api.ceki.me/mcp/agent",
+  "install": {
+    "pip": "ceki-sdk",
+    "npm": "@ceki/sdk",
+    "env": {
+      "CEKI_API_KEY": "Get from https://ceki.me/dashboard/agents"
+    }
+  }
+}

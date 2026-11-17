@@ -1,42 +1,60 @@
-## Description: <br>
-公众号搜索工具，支持按关键词搜索爆款文章，展示推荐热门文章，助力内容创作者把握趋势与获取灵感。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+公众号搜索工具，支持按关键词搜索爆款文章，展示推荐热门文章，助力内容创作者把握趋势与获取灵感；当用户需要搜索公众号文章、查找爆款内容、获取创作灵感时使用。当接口返回积分不足（code=3210）时，自动唤起支付宝完成充值后继续查询。
 
-## Publisher: <br>
-[redfox-data](https://clawhub.ai/user/redfox-data) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redfox-data](https://clawhub.ai/user/redfox-data)
 
-## Use Case: <br>
-Content creators, new media operators, and self-media teams use this skill to search recent WeChat public-account articles, compare popularity and relevance signals, and find topic inspiration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documentation includes an apparent API key and the skill requires a RedFox API key. <br>
-Mitigation: Do not reuse embedded credentials; configure only your own REDFOX_API_KEY after deciding you trust RedFox with submitted keywords and date ranges. <br>
-Risk: The subscription workflow can create persistent calendar or reminder entries, with incomplete cancellation and privacy detail in the evidence. <br>
-Mitigation: Confirm how subscription reminders are stored, delivered, and cancelled before enabling daily pushes. <br>
+## Use Case:
 
+Content creators, social media operators, and publishing teams can find trending WeChat Official Account articles by keyword, review popular recommendations and ranking signals, and use the results for topic research and inspiration.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/redfox-data/wechat-explosive-content) <br>
-- [RedFox API Key Settings](https://redfox.hk/settings/api-keys?source=clawhub) <br>
-- [WeChat trend data format reference](references/gzh_trend_data_format.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown tables and prompts, JSON script output, and optional HTML report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REDFOX_API_KEY and may create calendar/reminder subscriptions when the user opts in.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Insufficient provider credits can start a payment setup flow, and payment tooling may be installed if missing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep recharge manual or require approval after verifying the payee and exact amount. Use a reviewed, pinned payment CLI and approve installation before proceeding.
+
+Risk: Optional HTML reports may contain unsafe markup or links.
+
+Mitigation: Prefer JSON output; review HTML and validate escaping and links before opening or sharing it.
+
+Risk: Searches consume provider credits, and recurring delivery can create ongoing activity.
+
+Mitigation: Confirm the intended query and credit use; enable recurring delivery only when requested.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/redfox-data/skills/wechat-explosive-content)
+- [Article result format](references/gzh_trend_data_format.md)
+- [Recharge flow reference](references/alipay-recharge.md)
+- [RedFox API key setup](https://redfox.hk/settings/api-keys?source=clawhub)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, HTML reports]
+
+**Output Format:** [JSON search results or an optional HTML report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results include ranked articles and may include popular-topic recommendations; HTML output is saved as a local file.]
+
+## Skill Version(s):
+
+1.0.4 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

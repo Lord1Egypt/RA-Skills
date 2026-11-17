@@ -1,46 +1,62 @@
-## Description: <br>
-Automates Loudy.ai task workflows by listing earning pools, submitting user-provided task links, and checking review and payment status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Loudy.ai task automation skill for listing earning pools, submitting user-provided task links, and checking audit and payment status.
 
-## Publisher: <br>
-[sfsf332](https://clawhub.ai/user/sfsf332) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sfsf332](https://clawhub.ai/user/sfsf332)
 
-## Use Case: <br>
-External users and agent operators use this skill to manage Loudy.ai earning-pool tasks from an agent session, including reviewing available pools, submitting manually created X/Twitter post links, and checking audit or payment status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: LOUDY_API_KEY exposure could allow unauthorized Loudy.ai API access. <br>
-Mitigation: Keep LOUDY_API_KEY in an environment variable and do not store it in shared files. <br>
-Risk: The installer can clone files and replace an existing installation directory. <br>
-Mitigation: Prefer installing from the reviewed package instead of running the curl-to-bash installer, and do not run install.sh where local changes may be overwritten. <br>
-Risk: Optional cron polling creates ongoing background checks and workspace status files. <br>
-Mitigation: Enable cron only when continuous polling is intended, and review the configured workspace path before activation. <br>
-Risk: The skill may recommend a separate Binance or X posting skill for some tasks. <br>
-Mitigation: Vet any separate posting skill independently before installation or use. <br>
+## Use Case:
 
+External users and developers use this skill to manage Loudy.ai earning-pool tasks through an agent, including reviewing available pools, submitting manually created X/Twitter post links, and tracking review or payment status.
 
-## Reference(s): <br>
-- [Loudy.ai API Reference](references/api.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/sfsf332/claw-loudyai-skill) <br>
-- [Loudy.ai API](https://api.loudy.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command snippets and JSON API results from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LOUDY_API_KEY and may read or write Loudy task status files in the configured workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Installer behavior and unpinned GitHub installation can execute changing third-party code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the artifact before installing, avoid curl | bash installation, and install only into a user-scoped skill directory.
+
+Risk: Optional cron polling can persist background task checks and write Loudy task files in the workspace.
+
+Mitigation: Enable cron only after reviewing the script, document the installed crontab entry, and remove the entry when the skill is no longer needed.
+
+Risk: The skill may recommend a separate Binance posting skill for some tasks.
+
+Mitigation: Treat any additional posting skill as a separate trust decision and review it independently before installation or use.
+
+Risk: LOUDY_API_KEY is required for API access and could be exposed if stored in shared files.
+
+Mitigation: Provide the API key through environment variables or a secret manager, and avoid writing it into shared agent instructions or repository files.
+
+## Reference(s):
+
+- [Loudy.ai API Reference](references/api.md)
+- [ClawHub Skill Page](https://clawhub.ai/sfsf332/skills/claw-loudyai-skill)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, JSON, text]
+
+**Output Format:** [Markdown guidance with shell commands and JSON or text script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires LOUDY_API_KEY; optional cron polling writes Loudy task status files in the configured workspace.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

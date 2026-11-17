@@ -1,40 +1,56 @@
-## Description: <br>
-Automatically extract key facts from conversation history and persist to local memory files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically extract key facts from conversation history and persist to local memory files.
 
-## Publisher: <br>
-[xiaobu2020](https://clawhub.ai/user/xiaobu2020) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaobu2020](https://clawhub.ai/user/xiaobu2020)
 
-## Use Case: <br>
-External users and developers use this skill to scan recent conversation history, extract memorable facts, classify them, and persist them into local memory/profile files for future agent context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can silently retain private chat details in local memory and profile files. <br>
-Mitigation: Use dry-run first, review extracted facts before enabling automatic hooks, and define deletion, backup, and sensitive-data handling rules before use on private conversations. <br>
-Risk: Persisted conversation text may influence future agent behavior through memory or tool-instruction files. <br>
-Mitigation: Disable or tightly review writes to TOOLS.md and other behavior-shaping files, and audit saved facts for accuracy before relying on them. <br>
+## Use Case:
 
+Developers and agent users use this skill to capture useful facts from recent conversations and keep local memory files current without manual note-taking. It is intended for local-first memory persistence in OpenClaw-style agent workspaces.
 
-## Reference(s): <br>
-- [Conversation Saver ClawHub release](https://clawhub.ai/xiaobu2020/conversation-saver) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local memory-file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can run in dry-run mode to preview extracted facts before writing local files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Automatic memory capture may persist sensitive or unintended conversation content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when automatic local memory capture is desired, use dry-run before enabling scheduled extraction, and regularly inspect stored memory files.
+
+Risk: Conversation-derived system rules may be written into agent instruction files and affect future agent behavior.
+
+Mitigation: Review or disable automatic hooks and remove any route that writes extracted chat text to TOOLS.md or AGENTS.md unless explicitly needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaobu2020/skills/conversation-saver)
+- [README](artifact/README.md)
+- [Chinese README](artifact/README-zh.md)
+- [Configuration](artifact/config.json)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Text, Configuration]
+
+**Output Format:** [Markdown memory entries, JSON-like ontology records, and terminal status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes are local file updates controlled by config.json; dry-run mode previews extracted facts without writing.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

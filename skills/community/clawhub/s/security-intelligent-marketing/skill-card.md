@@ -1,39 +1,48 @@
-## Description: <br>
-AI-powered marketing assistant for banking and securities teams that supports customer segmentation, campaign design, content generation, A/B testing, and ROI analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drafts customer segments, campaign plans, marketing copy, A/B tests, and ROI analyses for regulated bank and securities marketing, with compliance review before publication.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[gechengling](https://clawhub.ai/user/gechengling)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Bank and securities marketing teams use this skill to prepare customer-segmentation guidance, campaign plans, compliant copy drafts, A/B tests, and ROI analyses for review by qualified internal staff.
+
+### Deployment Geography for Use:
+
+China
+
+## Known Risks and Mitigations:
+
+Risk: The security evidence reports conflicting customer-segmentation guidance and only partial scan coverage, with a benign verdict at medium confidence.
+
+Mitigation: Keep outputs in draft scope, reconcile segmentation rules with institution-approved policy, and require separate suitability checks and human compliance approval before adopting sample logic or publishing material.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Banking and securities marketing teams use this skill to draft segmentation approaches, campaign templates, marketing content, A/B test analysis, and ROI-oriented recommendations for regulated financial marketing workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Marketing recommendations or generated campaign content could be incomplete, misleading, or unsuitable for regulated financial promotions. <br>
-Mitigation: Treat outputs as drafts and require legal or compliance review before using them in campaigns. <br>
-Risk: Customer identifiers, account details, or other sensitive banking data could be exposed if entered into prompts without authorization. <br>
-Mitigation: Avoid entering real customer identifiers or sensitive account data unless approved by the organization. <br>
+**Output Format:** [Markdown with tables and pre-publication marketing drafts]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Drafts require suitability checks, prohibited-claims review, and human compliance sign-off before external use.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown guidance with example Python snippets and campaign templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be treated as drafts and reviewed for financial marketing compliance before use.] <br>
+3.0.5 (source: frontmatter)
 
-## Skill Version(s): <br>
-3.0.1 (source: server release metadata and skill frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

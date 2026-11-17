@@ -1,42 +1,59 @@
-## Description: <br>
-Helps agents build or revise Python workflows that parse private fund valuation spreadsheets, analyze holdings, hedging, index exposure, sectors, and market-cap distribution, and generate visual portfolio reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents build Python workflows for private fund portfolio analysis from XLS/XLSX valuation statements, covering market-neutral futures hedges, index-enhanced benchmark comparisons, holdings enrichment, and visual reports.
 
-## Publisher: <br>
-[xiaoerdata](https://clawhub.ai/user/xiaoerdata) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoerdata](https://clawhub.ai/user/xiaoerdata)
 
-## Use Case: <br>
-Developers and analysts use this skill to generate or refine scripts for analyzing private fund valuation XLS/XLSX files, including market-neutral futures hedges and index-enhanced portfolio over/underweight analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill evidence includes real-looking MySQL connection defaults that could cause unintended external database access or expose credentials. <br>
-Mitigation: Replace database defaults with nonfunctional placeholders or securely supplied environment variables, and rotate the exposed credential if it may be real. <br>
-Risk: Portfolio holdings, generated CSV/JSON/PNG reports, and market-data caches may contain sensitive private fund information. <br>
-Mitigation: Run generated analysis in a private workspace, disable external enrichment when holdings must remain local, and delete generated files and caches when no longer needed. <br>
+## Use Case:
 
+Developers and financial analysts use this skill to generate or refine Python analysis scripts that parse private fund valuation spreadsheets, enrich holdings with market, industry, and index data, and produce portfolio analysis reports.
 
-## Reference(s): <br>
-- [XLS Structure Reference](references/xls_structure.md) <br>
-- [Data Sources Reference](references/data_sources.md) <br>
-- [Analysis Script Prompt Generator](scripts/generate_analysis_script_prompt.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation of CSV, JSON, and PNG portfolio analysis artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.0 (source: server release evidence) <br>
+Risk: Published guidance includes hardcoded MySQL connection defaults that could expose or unintentionally use database credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove hardcoded database defaults, rotate any exposed credential, and provide secrets only through protected environment variables or a secrets manager.
+
+Risk: Database-backed enrichment can access private or licensed financial data.
+
+Mitigation: Use only authorized, least-privilege database access and verify that any generated script connects to approved data sources.
+
+Risk: Generated CSV, JSON, and PNG reports may contain sensitive private-fund holdings and portfolio information.
+
+Mitigation: Treat generated reports as sensitive financial files and store or share them only through access-controlled channels.
+
+## Reference(s):
+
+- [XLS Structure Reference](references/xls_structure.md)
+- [Data Sources Reference](references/data_sources.md)
+- [Analysis Script Prompt Generator](scripts/generate_analysis_script_prompt.py)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration, Markdown]
+
+**Output Format:** [Markdown guidance with Python code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to produce CSV, JSON, and PNG analysis artifacts from private fund valuation data.]
+
+## Skill Version(s):
+
+1.6.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

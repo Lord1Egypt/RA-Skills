@@ -1,0 +1,31 @@
+{
+ "_chart_type": "bland_altman",
+ "_command": "python3 scripts/gen_figure.py -t bland_altman -d templates/bland_altman.json -o bland_altman.png",
+ "methods": {
+  "新仪器": [
+   5.1,
+   4.9,
+   5.3,
+   5.6,
+   4.8,
+   5.2,
+   5.0,
+   5.5,
+   5.4,
+   4.7
+  ],
+  "金标准": [
+   5.0,
+   5.1,
+   5.2,
+   5.4,
+   5.0,
+   5.1,
+   5.2,
+   5.3,
+   5.2,
+   4.9
+  ]
+ },
+ "_note": "场景：两台检测设备/两测量者对同批样本的平行测量（模拟数据）。横轴=两法均值，纵轴=差值； bias 线与 95% 一致性界限（LoA）判断可互换性——若临床可接受差值落在 LoA 内则两法可互换。逐点看系统偏移与离群。"
+}

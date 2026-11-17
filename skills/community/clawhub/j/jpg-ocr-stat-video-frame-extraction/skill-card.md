@@ -1,39 +1,56 @@
-## Description: <br>
-Extract frames from video files and save them as images using OpenCV. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract frames from video files and save them as images using OpenCV
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wu-uk](https://clawhub.ai/user/wu-uk)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to extract image frames from video files for video analysis, training dataset creation, thumbnail generation, object detection preprocessing, and image-sequence workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Frame extraction can consume significant disk space for long or high-resolution videos.
+
+Mitigation: Choose a dedicated output folder and confirm adequate free disk space before extraction.
+
+Risk: Reusing an output folder can overwrite or mix frame files with existing outputs.
+
+Mitigation: Use a new output directory or confirm that overwriting same-named frame files is acceptable.
+
+Risk: Some video codecs, damaged files, DRM-protected videos, and variable frame rate videos may fail or produce partial or inaccurate results.
+
+Mitigation: Validate source videos with OpenCV before extraction and report warnings for unsupported codecs, early termination, or seeking issues.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to extract full, sampled, time-based, or specific frames from video files for analysis, dataset preparation, thumbnails, and preprocessing workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Frame extraction can create many image files and consume significant disk space. <br>
-Mitigation: Set a specific output directory and confirm sufficient free space before full-frame or batch extraction. <br>
-Risk: Processing untrusted videos depends on OpenCV and codec handling. <br>
-Mitigation: Use trusted OpenCV dependencies and avoid running untrusted videos in sensitive environments. <br>
+**Output Format:** [Markdown guidance with Python/OpenCV code examples and JSON result schemas]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Produces guidance for writing image frames to a selected output folder and returning extraction metadata as JSON.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration] <br>
-**Output Format:** [Markdown with Python code blocks and JSON schema] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes an extraction result schema with video metadata, output filenames, warnings, and extraction parameters.] <br>
+0.1.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

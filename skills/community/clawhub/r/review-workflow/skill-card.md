@@ -1,47 +1,64 @@
-## Description: <br>
-Review Workflow coordinates change-background collection, structured code review, debugging and fix guidance, commit-message generation, and Git operation guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review Workflow orchestrates change-context collection, structured code review, debugging and fix suggestions, test and regression checks, commit message generation, and Git workflow guidance.
 
-## Publisher: <br>
-[abeautifulsnow](https://clawhub.ai/user/abeautifulsnow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abeautifulsnow](https://clawhub.ai/user/abeautifulsnow)
 
-## Use Case: <br>
-Developers and engineers use this skill to review local code changes, reason about fixes, prepare conventional commit messages, and receive Git command guidance before submitting work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can collect repository diffs and untracked non-ignored file contents into review artifacts. <br>
-Mitigation: Before running it, ensure secrets, private keys, .env files, drafts, and other sensitive local files are ignored or removed from the working tree. <br>
-Risk: The skill may suggest git add, commit, push, or force-with-lease commands as part of the workflow. <br>
-Mitigation: Review and confirm each suggested Git command before execution, and avoid staging files that contain sensitive or unrelated changes. <br>
-Risk: Broad activation triggers can start the review workflow in repositories where the user did not intend to collect change context. <br>
-Mitigation: Use the skill only in the intended repository and inspect generated review artifacts before sharing or reusing them. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to review local code changes with explicit change context, language-aware review rules, fix proposals, test validation, and commit preparation.
 
-## Reference(s): <br>
-- [Code Reviewer](references/code-reviewer/SKILL.md) <br>
-- [Common Bugs Checklist](references/code-reviewer/references/common-bugs-checklist.md) <br>
-- [Security Review Guide](references/code-reviewer/references/security-review-guide.md) <br>
-- [Parallel Debugging](references/parallel-debugging/SKILL.md) <br>
-- [Hypothesis Testing](references/parallel-debugging/references/hypothesis-testing.md) <br>
-- [Git Commit](references/git-commit/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with structured reports, diffs, commit messages, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create structured review artifacts such as review_diff.json and review_classified.json when its helper scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter reports 1.0.1) <br>
+Risk: The workflow may collect tracked diffs and untracked file contents, which can expose local secrets or private work-in-progress.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in repositories prepared for review, remove untracked secrets first, and require explicit approval before collecting untracked files.
+
+Risk: The workflow may run broad lint, format, test, dependency-scan, and npx-based commands that can modify files or execute project tooling.
+
+Mitigation: Review planned commands before execution, prefer explicit approval for auto-fix steps, and inspect resulting diffs before committing.
+
+Risk: The workflow can provide Git push, rebase, and history-management guidance that may affect shared branches if followed carelessly.
+
+Mitigation: Treat Git commands as guidance, verify the target branch and remote, and require human confirmation before push or history-rewriting operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abeautifulsnow/skills/review-workflow)
+- [Server-resolved GitHub provenance](https://github.com/Abeautifulsnow/skills/tree/main/review-workflow)
+- [Review preferences](references/review-preferences/SKILL.md)
+- [Code reviewer](references/code-reviewer/SKILL.md)
+- [Parallel debugging](references/parallel-debugging/SKILL.md)
+- [Git commit](references/git-commit/SKILL.md)
+- [Code review best practices](references/code-reviewer/references/code-review-best-practices.md)
+- [Security review guide](references/code-reviewer/references/security-review-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown reports with inline diffs, shell commands, and commit message text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce structured review reports, patch suggestions, test summaries, secret-scan results, and Git command guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; source skill frontmatter reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,14 @@
+interface:
+  display_name: "Domani"
+  short_description: "Operate domains and professional email"
+  default_prompt: "Use $domani to find a domain and set up professional email for this project."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "domani"
+      description: "Domani domain, DNS, mailbox, and email operations"
+      transport: "stdio"
+
+policy:
+  allow_implicit_invocation: true

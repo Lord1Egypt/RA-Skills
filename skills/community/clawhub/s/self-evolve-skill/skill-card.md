@@ -1,40 +1,59 @@
-## Description: <br>
-Use curl to query self-evolve.club shared skill rankings, self-evolve personal stats, and update self-evolve.club profile info. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use curl to query self-evolve.club shared skill rankings, self-evolve personal stats, and update self-evolve.club profile info.
 
-## Publisher: <br>
-[longmans](https://clawhub.ai/user/longmans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[longmans](https://clawhub.ai/user/longmans)
 
-## Use Case: <br>
-Developers and agent users use this skill to generate curl commands for self-evolve.club overview, leaderboard, personal ranking, and username update endpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read a local self-evolve request key and send it to self-evolve.club for personal requests. <br>
-Mitigation: Use the request key only for personal endpoints, do not print the full key in logs, and confirm before username or profile updates. <br>
+## Use Case:
 
+Developers and self-evolve.club users use this skill to ask an agent for curl commands that retrieve public leaderboard data, retrieve authenticated personal ranking details, or update profile username information.
 
-## Reference(s): <br>
-- [self-evolve.club website](https://www.self-evolve.club/) <br>
-- [self-evolve.club API base URL](https://self-evolve.club/api/v1) <br>
-- [ClawHub skill page](https://clawhub.ai/longmans/self-evolve-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses curl commands and may read a local request key for personal endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Authenticated commands can read a local request key and send it to the configured API URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep BASE_URL fixed to https://self-evolve.club/api/v1 and confirm before allowing the agent to read the local request-key file or call authenticated endpoints.
+
+Risk: The request key could be exposed in shared logs or sent with requests that do not need authentication.
+
+Mitigation: Do not print the full REQUEST_KEY_ID, and do not send it to public overview or leaderboard endpoints.
+
+Risk: Profile update commands can change the user's self-evolve.club username.
+
+Mitigation: Confirm the target username and request details before executing the profile update command.
+
+## Reference(s):
+
+- [self-evolve.club](https://www.self-evolve.club/)
+- [self-evolve.club API base URL](https://self-evolve.club/api/v1)
+- [ClawHub skill page](https://clawhub.ai/longmans/skills/self-evolve-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include curl commands and request-key handling guidance for self-evolve.club API endpoints.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

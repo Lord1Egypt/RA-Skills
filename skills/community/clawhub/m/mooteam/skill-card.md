@@ -1,42 +1,55 @@
-## Description: <br>
-MooTeam (moo.team) API v1 integration for projects, teams, tasks, drafts, comments, workflows, statuses, labels, timers, time logs, and activity logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MooTeam CRM gives an OpenClaw agent CLI access to MooTeam API v1 for projects, teams, tasks, drafts, comments, workflows, statuses, labels, timers, time logs, and activity logs.
 
-## Publisher: <br>
-[antokhin-digital](https://clawhub.ai/user/antokhin-digital) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[antokhin-digital](https://clawhub.ai/user/antokhin-digital)
 
-## Use Case: <br>
-Developers and agents use this skill to operate a MooTeam workspace from OpenClaw, including project, task, comment, workflow, label, timer, time log, and activity-log workflows. It requires a MooTeam API token and company alias. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, update, or delete live MooTeam projects, tasks, comments, workflows, statuses, labels, team mappings, timers, and time logs. <br>
-Mitigation: Use least-privileged credentials, verify target IDs before mutating commands, and supervise destructive or state-changing actions. <br>
-Risk: MooTeam credentials grant account access when exposed to the agent runtime. <br>
-Mitigation: Provide MOOTEAM_API_TOKEN and MOOTEAM_COMPANY_ALIAS through environment configuration, keep tokens out of chat and logs, and rotate credentials if exposure is suspected. <br>
+## Use Case:
 
+External developers and operational teams use this skill to let an OpenClaw agent inspect and manage MooTeam CRM and project-management data through authenticated CLI/API calls.
 
-## Reference(s): <br>
-- [MooTeam API Usage Guide](references/api_docs.md) <br>
-- [MooTeam API endpoint](https://api.moo.team/api) <br>
-- [ClawHub listing](https://clawhub.ai/antokhin-digital/mooteam) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and command-line JSON output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MOOTEAM_API_TOKEN and MOOTEAM_COMPANY_ALIAS.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can modify or delete MooTeam company project data when run with an authorized token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privileged MooTeam token and review create, update, timer, and delete commands before execution.
+
+Risk: Project deletion is documented with a --force safeguard, but the security summary says that safeguard is not actually enforced.
+
+Mitigation: Treat project deletion as unsafe until the --force check or a stronger confirmation is enforced.
+
+## Reference(s):
+
+- [MooTeam API Usage Guide](artifact/references/api_docs.md)
+- [MooTeam API endpoint](https://api.moo.team/api)
+- [ClawHub skill page](https://clawhub.ai/antokhin-digital/skills/mooteam)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; CLI invocations return JSON or terminal tables.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MOOTEAM_API_TOKEN and MOOTEAM_COMPANY_ALIAS; commands can modify or delete MooTeam business data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

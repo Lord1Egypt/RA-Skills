@@ -1,41 +1,55 @@
-## Description: <br>
-Guided Learning helps an agent teach a topic one concept at a time with material review, analogies, comprehension checks, chapter reviews, and progress tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guided learning skill - one concept at a time, gentle guidance, comprehension checks, chapter review
 
-## Publisher: <br>
-[jiangkaiqi2005](https://clawhub.ai/user/jiangkaiqi2005) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiangkaiqi2005](https://clawhub.ai/user/jiangkaiqi2005)
 
-## Use Case: <br>
-Students, self-learners, and exam-prep users use this skill to have an agent request source materials, teach in small steps, check understanding, review chapters, and track weak points across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Proprietary
 
-## Known Risks and Mitigations: <br>
-Risk: Study materials and learning-history files may include personal goals, mistakes, weak points, or other sensitive educational context. <br>
-Mitigation: Avoid confidential documents and review or delete the generated memory files when retained learning history is not desired. <br>
-Risk: Optional online lookup for clarification can introduce external information that may be inaccurate or unsuitable for the user's course material. <br>
-Mitigation: Prefer the provided course material as the teaching source and ask the agent to identify when it relies on outside context. <br>
+## Use Case:
 
+Students and self-learners use this skill for structured tutoring that studies their materials first, teaches one concept at a time, checks comprehension, and reviews weak points across sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiangkaiqi2005/guided-learning) <br>
-- [Publisher profile](https://clawhub.ai/user/jiangkaiqi2005) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, files] <br>
-**Output Format:** [Markdown tutoring responses, check questions, review summaries, and per-subject study notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update per-subject memory files with progress, mistakes, weak points, and review schedules.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server evidence and frontmatter) <br>
+Risk: The skill may retain detailed subject progress, mistakes, weak points, and session history in study records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with learning history you are comfortable storing, and ask the agent not to store progress or to delete study records when retention is not desired.
+
+Risk: The skill asks for textbooks, PDFs, notes, and other learning materials and may use online search while processing them.
+
+Mitigation: Do not provide confidential coursework, employer documents, private notes, or proprietary PDFs unless you have permission, and disable online search for sensitive material.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiangkaiqi2005/skills/guided-learning)
+- [README.md](artifact/README.md)
+- [README_CN.md](artifact/README_CN.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown and conversational text with structured tables, questions, study notes, and review summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update subject-specific study records under memory/[Subject]-study.md when the host agent allows file memory.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter, README)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

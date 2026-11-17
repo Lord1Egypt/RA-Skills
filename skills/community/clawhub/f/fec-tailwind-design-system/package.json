@@ -1,7 +1,7 @@
 {
   "name": "@bovinphang/fec-tailwind-design-system",
-  "version": "2.5.0",
-  "description": "Use when designing, implementing, or reviewing Tailwind CSS design systems, token mapping, theme extension, utility class governance, component variants, dark mode, responsive utilities, safelists, or maintainable class composition; Chinese triggers include Tailwind, 设计 Token, 组件变体, 暗色模式, class 管理.",
+  "version": "2.9.0",
+  "description": "Use when designing, implementing, or reviewing Tailwind CSS design systems, token mapping, theme extension, utility class governance, component variants, dark mode, responsive utilities, safelists, or maintainable class composition; Chinese triggers include Tailwind, design Token, component variants, dark mode, class management.",
   "type": "module",
   "license": "MIT",
   "author": {

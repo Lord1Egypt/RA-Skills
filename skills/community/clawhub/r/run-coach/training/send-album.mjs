@@ -4,14 +4,27 @@
 //   Falls back to sendDocument if image exceeds Telegram's dimension limit.
 // Multiple images: sendMediaGroup (album, up to 10 photos).
 //
-// Usage: node send-album.mjs <caption> <chatId> <botToken> <img1.png> [img2.png ...]
+// Usage: node send-album.mjs <caption> <img1.png> [img2.png ...]
+//
+// Credentials come from the skill's chmod-600 dotfile (.credentials at the
+// skill root, same pattern as garmin/.credentials) — never from argv (visible
+// in process listings) and never from environment variables.
 
 import { readFileSync } from 'fs';
 
-const [,, caption, chatId, botToken, ...pngFiles] = process.argv;
+const credsPath = new URL('../.credentials', import.meta.url).pathname;
+let chatId, botToken;
+try {
+  ({ chat_id: chatId, bot_token: botToken } = JSON.parse(readFileSync(credsPath, 'utf8')));
+} catch {
+  console.error(`Missing/invalid ${credsPath} — create it per SKILL.md Setup and chmod 600 it.`);
+  process.exit(1);
+}
+
+const [,, caption, ...pngFiles] = process.argv;
 
 if (!pngFiles.length) {
-  console.log('Usage: node send-album.mjs <caption> <chatId> <botToken> <img1.png> [img2.png ...]');
+  console.log('Usage: node send-album.mjs <caption> <img1.png> [img2.png ...]');
   process.exit(1);
 }
 

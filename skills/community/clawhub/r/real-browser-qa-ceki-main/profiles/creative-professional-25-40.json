@@ -1,0 +1,41 @@
+{
+  "id": "creative-professional-25-40",
+  "label": "Creative Professional 25-40",
+  "emoji": "🎨",
+  "demographics": {
+    "gender": "any",
+    "age_range": [25, 40],
+    "tier": "millennial"
+  },
+  "active_hours": {
+    "description": "Unstructured — bursts of inspiration, late starts",
+    "peak": [10, 13, 15, 19, 23, 2],
+    "off_peak_min": 4
+  },
+  "typing": {
+    "description": "Variable — fast when inspired, slow when formulating, high corrections",
+    "wpm": { "min": 70, "max": 115 },
+    "profile": "natural",
+    "think_prob": 0.02,
+    "think_ms": [500, 2000],
+    "backspace_freq": 0.05
+  },
+  "scroll": {
+    "passes": 3,
+    "description": "Visual browsing — lingers on images, scrolls back and forth",
+    "speed_px_per_ms": { "min": 15, "max": 45 },
+    "pause_between_passes_ms": { "min": 500, "max": 3000 },
+    "depth_per_pass": { "min": 0.3, "max": 0.8 }
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 1000, "max": 4000 },
+    "pre_click_pause_ms": { "min": 200, "max": 800 },
+    "inter_action_pause_ms": { "min": 400, "max": 2000 }
+  },
+  "mouse": {
+    "speed": 0.8,
+    "curvature": 0.25,
+    "jitter": 0.4,
+    "description": "Slower, meandering — explores UI"
+  }
+}

@@ -1,42 +1,59 @@
-## Description: <br>
-Create or update standalone single-file HTML apps and documents from user requests, then save them to fe-service without invoking an LLM directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Myapp Creator helps an agent create or update standalone single-file HTML apps and documents for Xiaodu users, then register them with fe-service.
 
-## Publisher: <br>
-[zhang6714268](https://clawhub.ai/user/zhang6714268) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhang6714268](https://clawhub.ai/user/zhang6714268)
 
-## Use Case: <br>
-Developers and agents use this skill to turn a user's app or document request into self-contained HTML, then register or update that generated content through the publisher service. It is intended for ClawHub/OpenClaw app-creation flows that need installation checks, creation, update, and lookup tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated apps, documents, and device or user identifiers are sent to the publisher service. <br>
-Mitigation: Install and use this skill only when that transfer is expected, and avoid sensitive personal or business content unless the publisher service's retention and access controls are trusted. <br>
-Risk: The local MYAPP_API_TOKEN is a long-lived credential stored in user configuration. <br>
-Mitigation: Protect local configuration files and rotate the token if the machine or configuration may have been shared. <br>
+## Use Case:
 
+Developers and agents serving Xiaodu Swan users use this skill to turn short app or document requests into self-contained HTML. The skill supports creating, updating, reading, and installation-checking app records through its configured service tools.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhang6714268/myapp-creator) <br>
-- [README](artifact/README.md) <br>
-- [Tool Schema](artifact/openai.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance, shell commands, JSON tool arguments, and single-file HTML content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated HTML is expected to be self-contained, no larger than 60KB, compatible with Android 8.1 WebView, and submitted through the skill tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.31 (source: server release metadata, clawhub.yaml, metadata.json, version.txt) <br>
+Risk: The skill stores and transmits a long-lived API token together with user and app data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in trusted local environments, protect the local token configuration, prefer short-lived or scoped tokens where available, and avoid placing secrets or private content in app prompts.
+
+Risk: A configurable MYAPP_API_BASE can direct generated app content and identifiers to an unintended service.
+
+Mitigation: Use HTTPS and a fixed, approved backend host; confirm the fe-service operator before installing or running the skill.
+
+Risk: Unpinned npx/npm install paths can resolve to a CLI version that has not been separately reviewed.
+
+Mitigation: Prefer a vetted ClawHub CLI version or separately review the resolved CLI package before using unpinned install commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhang6714268/skills/myapp-creator)
+- [Publisher profile](https://clawhub.ai/user/zhang6714268)
+- [Related Xiaodu control skill card](https://clawhub.ai/dueros-mcp/xiaodu-control-official)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with single-file HTML, JSON feature lists, and shell-backed tool calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated HTML should be self-contained, touch-friendly, no more than 60KB, and compatible with Android 8.1 WebView.]
+
+## Skill Version(s):
+
+1.0.31 (source: server release metadata, artifact metadata.json, clawhub.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

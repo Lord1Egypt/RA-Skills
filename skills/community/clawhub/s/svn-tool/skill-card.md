@@ -1,41 +1,59 @@
-## Description: <br>
-Helps agents guide Subversion (SVN) version-control workflows using the svn CLI, including checkout, update, commit, status, log, diff, branch operations, and conflict resolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Subversion (SVN) code version-control helper that uses the svn CLI for checkout, update, commit, status, log, branching, diff, cleanup, and conflict-resolution workflows.
 
-## Publisher: <br>
-[bjbook](https://clawhub.ai/user/bjbook) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bjbook](https://clawhub.ai/user/bjbook)
 
-## Use Case: <br>
-Developers and engineers use this skill when they need an agent to propose or explain SVN CLI commands for repository checkout, synchronization, commits, history review, branch management, diff inspection, and conflict handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SVN commits, deletes, reverts, cleanup with removal flags, branch changes, and credential-cache deletion can alter repository or local working-copy state. <br>
-Mitigation: Review the exact target with svn status and svn diff, then confirm the action before running state-changing commands. <br>
-Risk: Credentials and server trust options can expose secrets or weaken repository transport security. <br>
-Mitigation: Avoid passing passwords on the command line, and avoid --trust-server-cert unless the server certificate has been verified. <br>
+## Use Case:
 
+Developers and engineers use this skill when they need agent guidance for common SVN working-copy and repository tasks, including checkout, update, commit, status review, history inspection, branch operations, diffs, cleanup, and conflict resolution.
 
-## Reference(s): <br>
-- [SVN Tool Configuration](config/README.md) <br>
-- [SVN Tool Examples](examples/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces SVN command guidance and examples; users should review commands before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, release evidence) <br>
+Risk: SVN commands proposed by the skill can delete local work, remove cached credentials, or perform recursive reverts and cleanup operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before commits, deletes, recursive reverts, cleanup operations, or authentication-cache changes.
+
+Risk: The artifact includes a certificate trust bypass example using --trust-server-cert.
+
+Mitigation: Use --trust-server-cert only after the server certificate has been verified through a trusted channel.
+
+Risk: The security verdict is suspicious because the skill under-warns about destructive SVN operations and unsafe certificate handling.
+
+Mitigation: Review before installing or using the skill in an agent that can run commands automatically.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bjbook/skills/svn-tool)
+- [SVN Tool examples](artifact/examples/README.md)
+- [SVN Tool configuration notes](artifact/config/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are command-oriented guidance for SVN workflows and should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release evidence, artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-Use Peekaboo for macOS desktop GUI automation, screen understanding, and MCP-backed local app control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses Peekaboo to inspect and automate native macOS desktop apps, including window focus, UI inspection, semantic actions, typing, clicking, and permission checks.
 
-## Publisher: <br>
-[zimuoo](https://clawhub.ai/user/zimuoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zimuoo](https://clawhub.ai/user/zimuoo)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect and control native macOS applications with Peekaboo when browser automation is not appropriate. It helps agents focus apps, inspect UI state, perform semantic actions, and verify results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install a third-party desktop-control tool with Homebrew. <br>
-Mitigation: Require explicit approval before installation and verify the Peekaboo tap and package source before running install commands. <br>
-Risk: Screen Recording and Accessibility permissions can expose and control sensitive desktop content. <br>
-Mitigation: Grant permissions only when native macOS automation is intended, pause when permissions are missing, and avoid risky or irreversible actions without user confirmation. <br>
+## Use Case:
 
+Developers, operators, and macOS power users use this skill to let an agent inspect and control native macOS apps for desktop workflow automation when browser DOM tools are not applicable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zimuoo/peekaboo-macos-automation) <br>
-- [Publisher profile](https://clawhub.ai/user/zimuoo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and command-oriented guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce JSON from Peekaboo inspection commands when the agent runs local desktop automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can install a third-party desktop-control tool through Homebrew.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval for the exact Homebrew install command before installing Peekaboo.
+
+Risk: Screen Recording and Accessibility permissions enable high-impact local app control.
+
+Mitigation: Grant permissions only for specific desktop tasks the user initiated, inspect the target UI first, and verify state-changing actions with command evidence.
+
+Risk: Native UI automation can affect user data or send content through local apps if the target is wrong.
+
+Mitigation: Ask before destructive, irreversible, bulk, message-sending, or credential-related actions, and prefer semantic actions over coordinate clicks.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/zimuoo/skills/peekaboo-macos-automation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and occasional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires macOS, Homebrew for automatic install, Peekaboo, and Screen Recording and Accessibility permissions for GUI automation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

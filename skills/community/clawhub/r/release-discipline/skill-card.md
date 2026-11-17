@@ -1,40 +1,55 @@
-## Description: <br>
-Enforces release discipline for AI agents and developers by requiring quality checks, cooldown review, feedback review, documentation checks, and release logging before publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enforces release discipline by gating release, publish, deploy, and version-bump requests through cooldown, feedback, documentation, quality, kill-criteria, and self-contradiction checks.
 
-## Publisher: <br>
-[gyeuun97](https://clawhub.ai/user/gyeuun97) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gyeuun97](https://clawhub.ai/user/gyeuun97)
 
-## Use Case: <br>
-Developers and release agents use this skill to review publish, deploy, version bump, and release requests before they proceed. It helps identify premature releases, missing documentation, lack of user feedback, cooldown violations, and contradictions with stated project principles. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Release rationales, feedback summaries, or local release logs could include secrets, sensitive customer details, or private incident information. <br>
-Mitigation: Keep sensitive data out of release rationale and feedback summaries, and review memory/release-log.md before sharing or publishing. <br>
-Risk: The skill can challenge or block releases until checklist gates pass. <br>
-Mitigation: Use human review for final release decisions and document any intentional override with the release reason. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gyeuun97/release-discipline) <br>
-- [Publisher profile](https://clawhub.ai/user/gyeuun97) <br>
+## Use Case:
+
+Developers and release managers use this skill to have an agent check whether a release, deploy, publish, or version bump is ready before proceeding. It is intended to slow repeated or under-substantiated releases by requiring concrete evidence of readiness.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may block or delay urgent release, deployment, publish, or version-bump workflows because it applies a fixed 24-hour cooldown and broad release gates.
+
+Mitigation: Install it only where active release gating is desired, and define explicit opt-in and override rules before using it on urgent or production release workflows.
+
+Risk: The skill records release-decision history in a persistent release log.
+
+Mitigation: Review the release-log location and contents against team retention and sensitivity expectations before adoption.
+
+Risk: The skill checks English documentation, SOUL.md or equivalent principles files, user feedback, and user messages, which may not match every team's release process.
+
+Mitigation: Confirm these checks align with local release policy and adapt deployment instructions or review expectations before relying on its decisions.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and plain-text release review guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May append approved, blocked, or warned release entries to memory/release-log.md.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [guidance, markdown, files]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown text with checklist results and release-log entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce approval, warning, or blocking decisions for release actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

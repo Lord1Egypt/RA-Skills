@@ -1,44 +1,62 @@
-## Description: <br>
-Tracks competitors weekly across pricing page diffs, homepage positioning changes, blog and RSS posts, job postings, GitHub star velocity and releases, and critical-change alerts for pricing or funding keywords. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks competitors across pricing, positioning, content, hiring, GitHub activity, and critical-change alerts, then delivers structured competitive intelligence digests and alerts through configured chat channels.
 
-## Publisher: <br>
-[manjotpahwa](https://clawhub.ai/user/manjotpahwa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[manjotpahwa](https://clawhub.ai/user/manjotpahwa)
 
-## Use Case: <br>
-Employees and business operators use this skill to monitor named competitors and receive weekly or same-day competitive intelligence about pricing, positioning, hiring, content, and GitHub activity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill ships with active preset competitors and can create scheduled monitoring jobs. <br>
-Mitigation: Clear or deactivate bundled competitors before use and confirm the weekly digest and paid-tier daily alert cron jobs before enabling them. <br>
-Risk: The skill can persist monitoring history and sends digests through third-party services. <br>
-Mitigation: Avoid tracking internal or private URLs, and use dedicated low-scope tokens or webhooks for Slack, Telegram, Discord, WhatsApp, GitHub, and related integrations. <br>
-Risk: Paid license activation stores license identity data locally in plaintext. <br>
-Mitigation: Activate only if local plaintext storage of the license key and purchaser email is acceptable for the deployment environment. <br>
+## Use Case:
 
+External users and business teams use this skill to monitor named competitors, compare weekly market signals, and receive timely alerts about pricing, positioning, hiring, funding, or product changes.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/manjotpahwa/competitive-radar) <br>
-- [Publisher profile](https://clawhub.ai/user/manjotpahwa) <br>
-- [Paid upgrade page](https://manjotpahwa.gumroad.com/l/competitive-radar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries, status text, setup instructions, alerts, and channel-specific digest messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces weekly digests, same-day alerts for paid tiers, local snapshot and digest files, and delivery messages for configured notification channels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence; artifact frontmatter says 1.0.0) <br>
+Risk: Persistent scraping can collect and retain data from unintended or overly broad competitor URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before enabling scheduled runs, replace bundled competitors with intended public http/https targets and set clear retention or deletion rules for snapshots, jobs, digests, and alert logs.
+
+Risk: Scraped page text can be embedded into agent-facing prompt blocks and may influence later analysis.
+
+Mitigation: Disable or rewrite the agent prompt blocks so scraped content is treated as untrusted data that requires review before it shapes conclusions.
+
+Risk: License activation stores license details locally, including the key and purchaser email.
+
+Mitigation: Store the skill data directory with appropriate local permissions and remove license data when the installation is decommissioned.
+
+Risk: Digests and alerts can be sent to external Slack, Telegram, WhatsApp, or Discord channels.
+
+Mitigation: Configure only approved delivery channels and tokens, and assume digest contents are visible to those service providers and channel members.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/manjotpahwa/skills/competitive-radar)
+- [Publisher Profile](https://clawhub.ai/user/manjotpahwa)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown digests and alerts, JSON signal data, and concise command or setup guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include archived snapshots, digest files, alert logs, and delivery-ready messages for configured channels.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

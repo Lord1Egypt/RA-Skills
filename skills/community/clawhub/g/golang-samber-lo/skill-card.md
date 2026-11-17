@@ -1,51 +1,64 @@
-## Description: <br>
-Helps agents use samber/lo in Go projects, including type-safe collection transforms, package selection, standard-library tradeoffs, and performance-aware guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents work with Go code that uses samber/lo functional helpers, including package selection, API usage, performance tradeoffs, and safer alternatives.
 
-## Publisher: <br>
-[samber](https://clawhub.ai/user/samber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[samber](https://clawhub.ai/user/samber)
 
-## Use Case: <br>
-Developers and engineers use this skill when adding or maintaining samber/lo usage in Go codebases. It helps choose between core lo helpers, parallel variants, mutable operations, lazy iterators, SIMD helpers, and Go standard library alternatives. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may propose code edits, dependency changes, or go and git commands. <br>
-Mitigation: Review proposed changes to source files, go.mod, go.sum, and git state before accepting or running them. <br>
-Risk: Using lo/mutable can introduce in-place side effects and concurrency-safety issues. <br>
-Mitigation: Use mutable helpers only after profiling confirms allocation pressure and after callers confirm the original slice is no longer needed. <br>
-Risk: Using lo/parallel for small or I/O-bound workloads can add overhead and reduce control over cancellation and errors. <br>
-Mitigation: Use lo/parallel only for large CPU-bound transforms; use errgroup or similar context-aware patterns for I/O fan-out. <br>
-Risk: lo/it and lo/exp/simd have version or stability constraints. <br>
-Mitigation: Confirm the module targets Go 1.23+ before using lo/it, and benchmark and pin versions before using experimental SIMD helpers. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to read, write, refactor, and review Go code that imports github.com/samber/lo or could benefit from functional collection transforms. It helps choose between core lo helpers, stdlib alternatives, parallel or mutable variants, lazy iterators, and related samber packages.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samber/golang-samber-lo) <br>
-- [Skill collection homepage](https://github.com/samber/cc-skills-golang) <br>
-- [samber/lo GitHub repository](https://github.com/samber/lo) <br>
-- [samber/lo documentation](https://lo.samber.dev) <br>
-- [pkg.go.dev: github.com/samber/lo](https://pkg.go.dev/github.com/samber/lo) <br>
-- [Package Guide](references/package-guide.md) <br>
-- [API Reference](references/api-reference.md) <br>
-- [Advanced Patterns](references/advanced-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with Go code snippets and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose source edits, dependency updates, and go or git commands for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may suggest dependency changes or edits to Go source files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated diffs, run the project's Go tests and linters, and confirm dependency changes before merging.
+
+Risk: Mutable, parallel, lazy, and experimental samber/lo variants can change behavior, require newer Go versions, or add performance tradeoffs.
+
+Mitigation: Prefer stdlib or core lo helpers by default, check the module's Go version, and use profiling evidence before adopting lom, lop, loi, or experimental SIMD helpers.
+
+Risk: Panic-oriented helpers such as lo.Must can be unsafe in request-handling or long-running production paths.
+
+Mitigation: Use non-Must variants with explicit error handling outside tests, initialization, or intentional startup-failure paths.
+
+## Reference(s):
+
+- [Package Guide](references/package-guide.md)
+- [API Reference](references/api-reference.md)
+- [Advanced Patterns](references/advanced-patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/samber/skills/golang-samber-lo)
+- [Skill Source Homepage](https://github.com/samber/cc-skills-golang)
+- [samber/lo GitHub Repository](https://github.com/samber/lo)
+- [samber/lo Documentation](https://lo.samber.dev)
+- [pkg.go.dev github.com/samber/lo](https://pkg.go.dev/github.com/samber/lo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline Go and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose Go dependency commands and code edits; review generated changes before applying them.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

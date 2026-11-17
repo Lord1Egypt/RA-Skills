@@ -12,6 +12,8 @@ CSV 格式：日期,类型,金额,分类,描述,账户
 用法:
     python query_ledger.py /path/to/ledger.csv
     python query_ledger.py /path/to/ledger.csv --month 2026-05
+    python query_ledger.py /path/to/ledger.csv --date 2026-07-03
+    python query_ledger.py /path/to/ledger.csv --recent 10
     python query_ledger.py /path/to/ledger.csv --category
     python query_ledger.py /path/to/ledger.csv --balance
     python query_ledger.py /path/to/ledger.csv --month 2026-05 --category
@@ -293,6 +295,54 @@ def print_balance(data: dict):
     print(f"\n{'='*50}\n")
 
 
+def print_date_detail(date_str: str, entries: list):
+    """打印指定日期的交易明细。"""
+    if not entries:
+        print(f"\n  📅 {date_str} 没有交易记录。\n")
+        return
+
+    print(f"\n{'='*60}")
+    print(f"  📅 {date_str} 交易明细（{len(entries)} 笔）")
+    print(f"{'='*60}")
+    print(f"  {'类型':<6} {'金额':>10} {'分类':<8} {'描述':<16} {'账户':<10}")
+    print(f"  {'─'*52}")
+    total_expense = 0.0
+    total_income = 0.0
+    for e in entries:
+        icon = "💸" if e["type"] == "支出" else "💰"
+        print(f"  {icon}{e['type']:<4} {fmt(e['amount']):>10} {e['category']:<8} {e['description']:<16} {e['account']:<10}")
+        if e["type"] == "支出":
+            total_expense += e["amount"]
+        else:
+            total_income += e["amount"]
+    print(f"  {'─'*52}")
+    if total_expense:
+        print(f"  支出合计：{fmt(total_expense)}")
+    if total_income:
+        print(f"  收入合计：{fmt(total_income)}")
+    net = total_income - total_expense
+    ns = "🟢" if net >= 0 else "🔴"
+    print(f"  净额：    {ns}{fmt(net)}")
+    print(f"{'='*60}\n")
+
+
+def print_recent(entries: list):
+    """打印最近 N 笔交易。"""
+    if not entries:
+        print("\n  没有交易记录。\n")
+        return
+
+    print(f"\n{'='*60}")
+    print(f"  📋 最近 {len(entries)} 笔交易")
+    print(f"{'='*60}")
+    print(f"  {'日期':<12} {'类型':<6} {'金额':>10} {'分类':<8} {'描述':<16} {'账户':<10}")
+    print(f"  {'─'*56}")
+    for e in entries:
+        icon = "💸" if e["type"] == "支出" else "💰"
+        print(f"  {e['date']:<12} {icon}{e['type']:<4} {fmt(e['amount']):>10} {e['category']:<8} {e['description']:<16} {e['account']:<10}")
+    print(f"{'='*60}\n")
+
+
 # ==================== CLI ====================
 
 def main():
@@ -311,12 +361,14 @@ def main():
 
     parser.add_argument("ledger", help="账本文件路径（CSV 格式）")
     parser.add_argument("--month", metavar="YYYY-MM", help="按月份查询")
+    parser.add_argument("--date", metavar="YYYY-MM-DD", help="按日期查询")
+    parser.add_argument("--recent", type=int, metavar="N", help="显示最近 N 笔交易")
     parser.add_argument("--category", action="store_true", help="按分类统计")
     parser.add_argument("--balance", action="store_true", help="查询账户余额")
 
     args = parser.parse_args()
 
-    show_all = not (args.month or args.category or args.balance)
+    show_all = not (args.month or args.date or args.recent or args.category or args.balance)
 
     entries = read_entries(args.ledger)
     balances = read_balances(args.ledger)
@@ -326,6 +378,18 @@ def main():
         sys.exit(0)
 
     print(f"📂 已加载 {len(entries)} 条交易记录\n")
+
+    # --date: 按日期查交易明细
+    if args.date:
+        day_entries = [e for e in entries if e["date"] == args.date]
+        print_date_detail(args.date, day_entries)
+        return
+
+    # --recent: 最近 N 笔
+    if args.recent:
+        recent = entries[-args.recent:] if args.recent > 0 else []
+        print_recent(recent)
+        return
 
     if args.month or show_all:
         data = query_by_month(entries, args.month)

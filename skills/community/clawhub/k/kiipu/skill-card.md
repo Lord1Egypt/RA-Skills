@@ -1,41 +1,57 @@
-## Description: <br>
-Use when the user wants to create, delete, restore, or purge Kiipu posts, manage authentication, or check local setup through the Kiipu CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent create, delete, restore, or purge Kiipu posts, manage authentication, and check local setup through the Kiipu CLI.
 
-## Publisher: <br>
-[mycreat](https://clawhub.ai/user/mycreat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mycreat](https://clawhub.ai/user/mycreat)
 
-## Use Case: <br>
-Developers and Claude Code users use this skill to manage Kiipu posts and local Kiipu CLI setup from an agent workflow. It supports post creation, deletion, restoration, permanent purge, authentication checks, and setup diagnostics through the local Kiipu CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can trigger real Kiipu post changes, including deletion and permanent purge. <br>
-Mitigation: Verify the exact post ID before delete or purge, and treat purge as permanent. <br>
-Risk: The skill depends on the separately installed @kiipu/cli package and its local authentication state. <br>
-Mitigation: Install it only on trusted machines, verify local setup with kiipu doctor, and avoid pasting API keys into shared or logged contexts. <br>
+## Use Case:
 
+Developers and agent users use this skill to operate Kiipu posts and CLI setup from Claude Code while relying on the local Kiipu CLI for authentication, environment handling, and execution results.
 
-## Reference(s): <br>
-- [Kiipu Skill Release](https://clawhub.ai/mycreat/kiipu) <br>
-- [mycreat Publisher Profile](https://clawhub.ai/user/mycreat) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May report local CLI results and ask for explicit post IDs before destructive actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release evidence) <br>
+Risk: A purge command permanently removes a Kiipu post.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the exact post ID before running delete, restore, or purge, and treat purge as irreversible.
+
+Risk: The skill depends on installing and running a global npm CLI package.
+
+Mitigation: Install only from a trusted Kiipu CLI package source, and use a pinned version or isolated install when stricter supply-chain control is needed.
+
+Risk: Post-management commands can affect the wrong content when an ID is missing or incorrect.
+
+Mitigation: Require an explicit post ID for delete, restore, and purge actions and return the CLI result accurately.
+
+## Reference(s):
+
+- [Kiipu Skill on ClawHub](https://clawhub.ai/mycreat/skills/kiipu)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May report Kiipu CLI results and request explicit post IDs for delete, restore, or purge actions.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

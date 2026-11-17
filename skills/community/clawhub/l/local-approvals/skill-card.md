@@ -1,39 +1,56 @@
-## Description: <br>
-Local approval system for managing agent permissions, approving or denying requests, viewing history, and managing auto-approved categories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local Approvals is a local human-in-the-loop approval system for managing agent permissions, approval history, and auto-approved categories.
 
-## Publisher: <br>
-[shaiss](https://clawhub.ai/user/shaiss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[shaiss](https://clawhub.ai/user/shaiss)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add a local human-in-the-loop approval workflow around agent actions, including reviewing pending requests, approving or denying them, and managing category-based auto-approvals. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Standing auto-approvals may allow future agent actions in learned categories to proceed without human review. <br>
-Mitigation: Use learned categories only for narrow, low-risk actions, review categories and pending or history files regularly, and reset approvals after mistakes or suspicious behavior. <br>
-Risk: A governed agent with access to approval commands could approve its own requests or add new learned categories. <br>
-Mitigation: Restrict approve, approve --learn, deny, and reset commands to a trusted user or trusted wrapper; do not let governed agents run approval-management commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shaiss/local-approvals) <br>
+## Use Case:
 
+Developers and agent operators use this skill to review, approve, deny, and optionally auto-learn local agent permission requests while retaining local JSON state for pending requests and decisions.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [CLI text output and local JSON state files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains local pending request and approval state under the user's OpenClaw skill directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The approval workflow is a weak boundary if requesting agents can invoke the approval CLI or edit state files directly.
+
+Mitigation: Use it as a convenience workflow only and restrict agent access to the CLI and local state files before installation.
+
+Risk: Learned broad categories can cause future operations to be auto-approved too widely.
+
+Mitigation: Avoid learning broad categories and regularly inspect or reset auto-approved categories.
+
+Risk: Local approval state may drift from intended policy over time.
+
+Mitigation: Review approval history and reset agent categories when approval patterns look incorrect or stale.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shaiss/skills/local-approvals)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Console text, Markdown guidance, and local JSON state files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains pending request and approval state in local JSON files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

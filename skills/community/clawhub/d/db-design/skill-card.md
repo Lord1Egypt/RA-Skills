@@ -1,38 +1,49 @@
-## Description: <br>
-Deep database design workflow: entities and relationships, keys and constraints, normalization vs denormalization, indexing strategy, integrity, and operational concerns for OLTP schema design and greenfield data-model review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep database design workflow: entities and relationships, keys and constraints, normalization vs denormalization, indexing strategy, integrity, and operational concerns for designing OLTP schemas or reviewing greenfield data models.
 
-## Publisher: <br>
-[codekungfu](https://clawhub.ai/user/codekungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-Developers and engineers use this skill to structure relational OLTP schema design or review work, including domain modeling, access patterns, constraints, indexing, migrations, and multi-tenant isolation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Schema recommendations can affect production data integrity, tenant isolation, migration safety, indexing cost, and PII handling. <br>
-Mitigation: Review recommendations before applying them to production systems, especially migrations, indexes, tenant boundaries, and PII columns. <br>
+## Use Case:
 
+Developers and engineers use this skill to structure relational OLTP database design and review work across access patterns, entity modeling, constraints, normalization trade-offs, indexing, operations, and evolution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/codekungfu/db-design) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance and checklist-style review notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credential use, persistence, or hidden behavior is indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generated schema advice could affect migration safety, indexing cost, backup planning, or PII handling if applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have an engineer review schema, migration, indexing, backup, and PII-handling decisions before implementation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codekungfu/skills/db-design)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with checklists and structured review prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include database schema recommendations, indexing considerations, migration guidance, and review checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

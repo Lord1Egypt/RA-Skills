@@ -1,48 +1,59 @@
-## Description: <br>
-Helps agents discover OKX-aggregated DeFi products, compare yield opportunities, prepare invest, withdraw, collect, lending, borrowing, staking, and liquidity workflows, and route protocol-specific requests to the appropriate DApp skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OKX DeFi Invest helps agents discover OKX-aggregated DeFi products across chains and guide users through investing, withdrawing, claiming rewards, and reviewing APY, TVL, and liquidity data.
 
-## Publisher: <br>
-[ok-james-01](https://clawhub.ai/user/ok-james-01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ok-james-01](https://clawhub.ai/user/ok-james-01)
 
-## Use Case: <br>
-External users and agents use this skill to find DeFi yield products through OKX aggregation and prepare transaction steps for deposits, withdrawals, reward collection, lending, borrowing, staking, and liquidity pool actions. It is intended for DApp-agnostic DeFi requests and explicitly reroutes named-protocol requests to protocol-specific discovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can prepare invest, withdraw, collect, approve, and contract-call workflows that may move real assets if signed. <br>
-Mitigation: Require the user to review chain, protocol, wallet address, spender, amount, slippage, approval scope, and calldata before signing or broadcasting any step. <br>
-Risk: Routing rules conflict with protocol-specific examples and may send named DApp requests through the aggregated OKX flow. <br>
-Mitigation: Before any DeFi command, check the original prompt for named protocols or protocol-native tokens and reroute those requests to the DApp-discovery skill. <br>
-Risk: Wallet-dependent workflows are high impact and require account-specific addresses and balances. <br>
-Mitigation: Resolve the correct wallet address for the target chain, verify token balance before investment, and stop if the wallet is not logged in or funds are insufficient. <br>
-Risk: Stale position data can cause incorrect withdrawal or reward-collection parameters. <br>
-Mitigation: Fetch fresh position detail immediately before every withdraw or collect action and do not reuse earlier position results. <br>
-Risk: High APY products and short-lived Solana transactions can mislead users or fail unexpectedly. <br>
-Mitigation: Warn users when APY exceeds 50%, and warn that Solana transactions must be signed and broadcast within about 60 seconds. <br>
+## Use Case:
 
+External users and agent operators use this skill to find OKX-aggregated DeFi yield, lending, borrowing, staking, and liquidity products, compare product details or trend charts, and prepare transaction steps for wallet signing.
 
-## Reference(s): <br>
-- [OKX DeFi CLI Command Reference](references/cli-reference.md) <br>
-- [OKX Web3](https://web3.okx.com) <br>
-- [ClawHub Skill Listing](https://clawhub.ai/ok-james-01/okx-defi-invest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and transaction review guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes product tables, APY/TVL interpretation, wallet and address checks, calldata execution sequencing, and risk warnings before signing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.3 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill can guide users toward signing high-impact DeFi transactions generated from calldata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before signing, verify the wallet address, chain, protocol, token, amount, spender approval, destination contract, fees, and expected asset changes in a trusted wallet or independent tool.
+
+Risk: Opaque or unexpected calldata can result in unintended approvals, transfers, or position changes.
+
+Mitigation: Do not sign calldata that cannot be decoded or that does not match the intended DeFi action.
+
+Risk: Wallet addresses used with the skill may be financially identifying information.
+
+Mitigation: Share wallet addresses only when needed and handle them as sensitive financial identifiers.
+
+## Reference(s):
+
+- [OKX DeFi CLI Command Reference](references/cli-reference.md)
+- [OKX Web3 Homepage](https://web3.okx.com)
+- [ClawHub Skill Page](https://clawhub.ai/ok-james-01/skills/okx-defi-invest)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with command examples and structured transaction guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include wallet address resolution, product comparison tables, amount conversion guidance, calldata signing steps, and risk warnings.]
+
+## Skill Version(s):
+
+3.1.3 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

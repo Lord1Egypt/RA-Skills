@@ -1,49 +1,69 @@
-## Description: <br>
-Use Firecrawl API guidance to help an agent scrape, crawl, map, and search web pages while producing clean Markdown or structured data with citation, cost-control, and safety practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Instructional knowledge that teaches an AI agent when and how to use Firecrawl to scrape, crawl, map, search, cite sources, control cost, handle errors, and extract structured web data.
 
-## Publisher: <br>
-[simonpierreboucher02](https://clawhub.ai/user/simonpierreboucher02) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simonpierreboucher02](https://clawhub.ai/user/simonpierreboucher02)
 
-## Use Case: <br>
-Developers and agents use this skill to decide when and how to call Firecrawl for web scraping, crawling, URL mapping, web search, structured extraction, citations, cost control, and error handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Firecrawl use requires a third-party API key and may require paid service access. <br>
-Mitigation: Configure FIRECRAWL_API_KEY securely in the environment or MCP server configuration, reference it only by name, and never print, log, echo, hardcode, or include it in outputs. <br>
-Risk: Scraping arbitrary URLs can send private, internal, tokenized, or otherwise sensitive targets to Firecrawl and can create SSRF or compliance exposure. <br>
-Mitigation: Scrape only authorized targets, avoid internal, loopback, link-local, cloud-metadata, and tokenized URLs unless explicitly authorized, and respect site terms, robots directives, rate limits, and applicable law. <br>
-Risk: Scraped, crawled, and searched content is untrusted third-party input and may contain prompt-injection text or misleading claims. <br>
-Mitigation: Use returned content only as reference data, keep it separate from instructions, never obey page-embedded directives, corroborate important claims, and cite metadata.sourceURL. <br>
-Risk: Unbounded crawls, maps, or search-with-scrape workflows can consume credits quickly. <br>
-Mitigation: Set crawl, map, and search limits, minimize requested formats, prefer map or targeted scrape when sufficient, use caching when freshness allows, and monitor creditsUsed. <br>
+## Use Case:
 
+Developers and agents use this skill to choose and operate Firecrawl workflows for web scraping, site crawling, URL mapping, search-backed retrieval, citation, and structured extraction. It is most useful when an agent already has access to Firecrawl through MCP tools or direct HTTP calls.
 
-## Reference(s): <br>
-- [Firecrawl Documentation](https://docs.firecrawl.dev) <br>
-- [Firecrawl](https://firecrawl.dev) <br>
-- [Endpoints Reference](reference/endpoints.md) <br>
-- [Parameters Reference](reference/parameters.md) <br>
-- [Safety and Security Reference](reference/safety-and-security.md) <br>
-- [Expected Behaviors](tests/expected-behaviors.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown instructions with JSON request examples and shell-command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Firecrawl operation plans, API request shapes, citation guidance, cost controls, and error-handling steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact/skill.json) <br>
+Risk: Submitted URLs, search queries, and scraped content may be sent to a third-party Firecrawl service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill for secrets, internal hosts, private pages, personal data, or regulated content unless authorization and a compliance basis are established.
+
+Risk: Firecrawl API keys could be exposed if copied into prompts, logs, examples, or generated files.
+
+Mitigation: Keep FIRECRAWL_API_KEY in the environment only and reference it by variable name in commands and configuration.
+
+Risk: Unbounded crawl, map, or search operations can waste credits or retrieve excessive content.
+
+Mitigation: Set limits, scope paths, minimize requested formats, prefer cheaper operations, and monitor creditsUsed in responses.
+
+Risk: Scraped, crawled, or searched pages can contain prompt injection or misleading claims.
+
+Mitigation: Treat retrieved content as untrusted data, ignore embedded instructions, cite source URLs, and corroborate important claims.
+
+Risk: Server-side scraping can target internal, loopback, metadata, private, or otherwise unauthorized URLs.
+
+Mitigation: Avoid internal or sensitive targets by default and require a legitimate, explicit reason before scraping them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/simonpierreboucher02/skills/firecrawl-api-al)
+- [Firecrawl documentation](https://docs.firecrawl.dev)
+- [Firecrawl website](https://firecrawl.dev)
+- [Endpoint reference](reference/endpoints.md)
+- [Safety and security reference](reference/safety-and-security.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON examples, curl examples, citations, and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only skill; assumes Firecrawl tools or API access are configured separately.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

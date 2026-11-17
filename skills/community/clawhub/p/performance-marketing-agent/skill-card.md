@@ -1,40 +1,55 @@
-## Description: <br>
-AI performance marketing agent for paid media, PPC, SEM, and digital marketing across Google Ads, Meta Ads, LinkedIn Ads, and TikTok Ads through the Adspirer plugin. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI performance marketing agent for managing Google Ads, Meta Ads, LinkedIn Ads, and TikTok Ads campaigns with natural-language support for research, optimization, reporting, and automation.
 
-## Publisher: <br>
-[amekala](https://clawhub.ai/user/amekala) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[amekala](https://clawhub.ai/user/amekala)
 
-## Use Case: <br>
-Performance marketers, digital marketing managers, PPC specialists, media buyers, agencies, and e-commerce teams use this skill to manage campaign setup, reporting, keyword research, bid and budget optimization, creative updates, and cross-platform performance analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Ad-management actions can affect real advertising accounts and spend. <br>
-Mitigation: Install only if you trust Adspirer and the openclaw-adspirer plugin, review OAuth scopes, connect only intended ad accounts, and carefully confirm campaign, bid, budget, targeting, and creative changes before approval. <br>
+## Use Case:
 
+External performance marketers, digital marketing managers, PPC specialists, media buyers, agencies, and e-commerce brands use this skill to manage paid media workflows, including campaign setup, keyword research, bid and budget optimization, reporting, and account monitoring across major ad platforms.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/amekala/performance-marketing-agent) <br>
-- [Adspirer homepage](https://www.adspirer.com) <br>
-- [Adspirer account connections](https://adspirer.ai/connections) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, analysis] <br>
-**Output Format:** [Markdown with inline shell commands and natural-language recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or execute ad campaign, bid, budget, targeting, creative, reporting, and account-connection actions through the Adspirer plugin.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill relies on an unpinned third-party plugin that can perform high-impact advertising campaign and budget actions after authentication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the Adspirer plugin source, version, publisher provenance, requested OAuth scopes, and platform audit logs before installing; prefer a pinned reviewed plugin release.
+
+Risk: Authenticated ad-platform write access could affect live spend, targeting, bids, or campaign status.
+
+Mitigation: Grant the narrowest ad-platform permissions possible and confirm that campaign writes are paused by default and require explicit approval.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/amekala/skills/performance-marketing-agent)
+- [Adspirer Homepage](https://www.adspirer.com)
+- [Adspirer Connections](https://adspirer.ai/connections)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and natural-language recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may describe or request approval for ad-platform campaign, budget, bid, targeting, reporting, and optimization actions through the Adspirer plugin.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

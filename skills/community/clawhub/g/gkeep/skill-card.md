@@ -1,44 +1,59 @@
-## Description: <br>
-Google Keep notes via gkeepapi. List, search, create, and manage notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Keep notes via gkeepapi. List, search, create, and manage notes.
 
-## Publisher: <br>
-[VACInc](https://clawhub.ai/user/VACInc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[vacinc](https://clawhub.ai/user/vacinc)
 
-## Use Case: <br>
-Developers and agent users use this skill to interact with Google Keep notes from a CLI, including listing, searching, reading, creating, archiving, trashing, pinning, and updating notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores a reusable Google Keep authentication token at ~/.config/gkeep/token.json. <br>
-Mitigation: Use a Google App Password, restrict local file access, and delete token.json or revoke the app password when access is no longer needed. <br>
-Risk: The skill can create, archive, trash, pin, unpin, check, and append to Google Keep notes. <br>
-Mitigation: Review note IDs and command arguments before running mutation commands; use list, search, or get first to confirm target notes. <br>
-Risk: The skill depends on an unofficial Google Keep API that may break if Google changes the service. <br>
-Mitigation: Confirm behavior after dependency or service changes, ideally with a non-critical account or small test note set before broader use. <br>
+## Use Case:
 
+Developers and other agents use this skill to interact with Google Keep notes from a CLI, including listing, searching, reading, creating, archiving, trashing, pinning, and updating notes.
 
-## Reference(s): <br>
-- [ClawHub Google Keep skill page](https://clawhub.ai/VACInc/gkeep) <br>
-- [gkeepapi project](https://github.com/kiwiz/gkeepapi) <br>
-- [Google App Passwords](https://myaccount.google.com/apppasswords) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, API Calls] <br>
-**Output Format:** [Plain text CLI output and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gkeep CLI binary and a local Google Keep authentication token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: package.json and server release metadata) <br>
+Risk: The skill stores a local Google Keep token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a Google App Password, keep the token file protected, and install only where Google Keep account access is acceptable.
+
+Risk: The setup installs an unpinned Python dependency.
+
+Mitigation: Use a pinned or locked dependency setup for reproducible installs.
+
+Risk: Some commands modify notes by creating, archiving, trashing, pinning, unpinning, checking, or appending content.
+
+Mitigation: Review note-changing commands and target note IDs before running them.
+
+## Reference(s):
+
+- [gkeepapi project](https://github.com/kiwiz/gkeepapi)
+- [Google App Passwords](https://myaccount.google.com/apppasswords)
+- [VACInc publisher profile](https://clawhub.ai/user/vacinc)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text CLI output and Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create, modify, archive, trash, pin, or unpin Google Keep notes when the corresponding command is run.]
+
+## Skill Version(s):
+
+1.0.3 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

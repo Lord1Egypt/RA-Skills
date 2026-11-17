@@ -1,41 +1,54 @@
-## Description: <br>
-Security guard skill for OpenClaw that analyzes user input for harmful content, risky commands, and security threats before invoking an LLM. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security guard skill for OpenClaw - Analyzes user input for harmful content, risky commands, and security threats before invoking LLM.
 
-## Publisher: <br>
-[John-niu-07](https://clawhub.ai/user/John-niu-07) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[john-niu-07](https://clawhub.ai/user/john-niu-07)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to screen prompts, URLs, files, and command-like requests for harmful content, risky commands, security threats, and prompt injection before invoking an LLM. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence reports mismatched metadata and unclear third-party data handling. <br>
-Mitigation: Review the publisher, the actual CLI implementation, and the metadata mismatch before installing or using the skill. <br>
-Risk: Inputs may be sent to configured model or extraction providers. <br>
-Mitigation: Avoid sensitive inputs unless the configured providers and optional extraction services are approved for that data. <br>
+## Use Case:
 
+Developers and agent operators use this skill to check submitted text, URLs, PDFs, YouTube-derived content, and extracted page content for harmful content, risky commands, security threats, and prompt injection before invoking an LLM.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/John-niu-07/safety-guard-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/John-niu-07) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Text by default, JSON when requested, with shell command examples and configuration snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports output length controls, maximum output token controls, extract-only mode for URLs, and optional extraction provider fallbacks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Submitted text, URLs, PDFs, YouTube-derived content, and extracted page content may be sent to the configured model provider or optional Firecrawl and Apify services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive local documents and internal URLs unless provider policies and configuration have been reviewed.
+
+Risk: Automated installation may install PyYAML without an explicit version pin.
+
+Mitigation: Pin PyYAML to an approved version before automated installs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/john-niu-07/skills/safety-guard-skill)
+- [Publisher profile](https://clawhub.ai/user/john-niu-07)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance]
+
+**Output Format:** [Text or JSON safety analysis, depending on invocation flags.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports configurable analysis length and maximum output tokens.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Agent Readable Doc / Agent 可读文档"
+  short_description: "Convert documents into agent-readable Markdown / 将文档转换为 Agent 可读 Markdown"
+  default_prompt: |-
+    EN: Use $agent-readable-doc to convert these source documents into structure-preserving Agent-readable Markdown. Keep original wording in Details with light Markdown cleanup, skip archived or PII sources, preview archival as a dry-run, require explicit --execute for moves, and discover optional companion Skill roots instead of assuming local paths.
+    ZH-CN: 使用 $agent-readable-doc 将这些来源文档转换为保留结构的 Agent 可读 Markdown。在 Details 中保留原文并仅做轻量 Markdown 清理，跳过已归档或 PII 来源，先以 dry-run 预演归档，移动文件时要求显式 --execute，并从可用目录发现可选 companion Skill 根路径，不假设本地相邻路径。

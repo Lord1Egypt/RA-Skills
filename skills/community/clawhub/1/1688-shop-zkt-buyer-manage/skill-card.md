@@ -1,46 +1,67 @@
-## Description: <br>
-Helps authorized 1688 shop operators query inquiry customers, analyze buyer intent, generate follow-up scripts, and produce customer profile summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps 1688 shop operators query inquiry customers, analyze buyer purchase intent, review customer profiles, and generate Chinese follow-up scripts from authorized customer intelligence data.
 
-## Publisher: <br>
-[1688aiinfra](https://clawhub.ai/user/1688aiinfra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1688aiinfra](https://clawhub.ai/user/1688aiinfra)
 
-## Use Case: <br>
-External 1688 shop operators and their authorized agents use this skill to manage inquiry customers, identify buyer intent or churn risk, and draft follow-up guidance from account data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles 1688 account credentials and detailed customer data. <br>
-Mitigation: Install and run it only when authorized to use the relevant 1688 account and customer data; treat AK values, buyer identifiers, customer profiles, and purchase metrics as sensitive. <br>
-Risk: Local credential persistence and automatic usage reporting may be unacceptable in some environments. <br>
-Mitigation: Review credential storage and telemetry behavior before deployment, and use the skill only where those practices are approved. <br>
+## Use Case:
 
+External 1688 shop operators and agents use this skill to review inquiry customer lists, understand purchase intent and opportunity or churn signals, inspect customer profiles, and draft follow-up messages.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/1688aiinfra/1688-shop-zkt-buyer-manage) <br>
-- [Analyze Customer Intent capability reference](references/capabilities/analyze_customer_intent.md) <br>
-- [Configure capability reference](references/capabilities/configure.md) <br>
-- [Find Total Inquiry Customers capability reference](references/capabilities/find_total_inquiry_customers.md) <br>
-- [Get Customer Profile capability reference](references/capabilities/get_customer_profile.md) <br>
-- [Suggest Follow-Up Script capability reference](references/capabilities/suggest_follow_up_script.md) <br>
-- [Skill usage reporting notes](references/skill埋点说明.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with structured tables and Chinese-language business guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires authorized 1688 access key credentials and may query customer profiles, buyer identifiers, and purchase metrics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill requires access credentials for 1688 customer intelligence workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated, least-privilege 1688 access key and avoid pasting the key into shell commands.
+
+Risk: Credentials may be stored in local OpenClaw configuration.
+
+Mitigation: Protect the OpenClaw configuration file and rotate any access key that may already have been written there.
+
+Risk: The skill handles sensitive customer intelligence data and includes automatic usage reporting.
+
+Mitigation: Install only after confirming that the deployment accepts the customer-data access and usage-reporting behavior described by the security evidence.
+
+Risk: Gateway configuration can affect where authenticated requests are sent.
+
+Mitigation: Verify OPENCLAW_GATEWAY_URL points only to a trusted local OpenClaw gateway before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/1688aiinfra/skills/1688-shop-zkt-buyer-manage)
+- [Analyze Customer Intent](references/capabilities/analyze_customer_intent.md)
+- [Configure Access Key](references/capabilities/configure.md)
+- [Find Total Inquiry Customers](references/capabilities/find_total_inquiry_customers.md)
+- [Get Customer Profile](references/capabilities/get_customer_profile.md)
+- [Suggest Follow-up Script](references/capabilities/suggest_follow_up_script.md)
+- [Usage Reporting Notes](references/skill埋点说明.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown business summaries and tables, with command JSON used by the agent to preserve structured results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-facing responses; sensitive customer amounts, counts, risk scores, and identifiers are expected to be transformed or withheld before display.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

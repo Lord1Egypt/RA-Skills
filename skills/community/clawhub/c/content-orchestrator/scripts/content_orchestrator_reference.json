@@ -1,0 +1,61 @@
+{
+  "_comment": "content-orchestrator 扩展参考数据",
+  "platform_registry": [
+    {"platform": "抖音", "key": "douyin", "mcp": "sau-mcp", "type": "视频", "note": "upload_video"},
+    {"platform": "快手", "key": "kuaishou", "mcp": "sau-mcp", "type": "视频", "note": "upload_video"},
+    {"platform": "小红书", "key": "xiaohongshu", "mcp": "sau-mcp", "type": "视频", "note": "upload_video"},
+    {"platform": "B站", "key": "bilibili", "mcp": "sau-mcp", "type": "视频", "note": "upload_video"},
+    {"platform": "视频号", "key": "shipinhao", "mcp": "device-operations", "type": "视频", "note": "device_publish_to_shipinhao"},
+    {"platform": "小红书", "key": "xiaohongshu", "mcp": "device-operations", "type": "图文", "note": "device_publish_to_xiaohongshu"},
+    {"platform": "抖音图文", "key": "douyin_img", "mcp": "device-operations", "type": "图文", "note": "device_publish_to_douyin_img"},
+    {"platform": "百家号", "key": "baijiahao", "mcp": "device-operations", "type": "图文", "note": "device_publish_to_baijiahao"},
+    {"platform": "TikTok", "key": "tiktok", "mcp": "device-operations", "type": "视频", "note": "device_publish_to_tiktok"},
+    {"platform": "头条", "key": "toutiao", "mcp": "toutiao-publish", "type": "图文", "note": "专用Skill"},
+    {"platform": "知乎", "key": "zhihu", "mcp": "⚠️暂无", "type": "图文", "note": "需手动或wechatsync"},
+    {"platform": "微博", "key": "weibo", "mcp": "⚠️暂无", "type": "图文", "note": "需手动或wechatsync"},
+    {"platform": "YouTube", "key": "youtube", "mcp": "aitoearn-mcp", "type": "视频", "note": "aitoearn-mcp已禁用", "disabled": true},
+    {"platform": "Facebook", "key": "facebook", "mcp": "aitoearn-mcp", "type": "图文", "note": "aitoearn-mcp已禁用", "disabled": true},
+    {"platform": "Instagram", "key": "instagram", "mcp": "aitoearn-mcp", "type": "图文", "note": "aitoearn-mcp已禁用", "disabled": true}
+  ],
+  "utd_format": {
+    "pipeline": "PL-VIDEO | PL-IMAGE | PL-AUDIO | PL-LIPSYNC | PL-COMIC | PL-NOVEL | PL-DRAMA",
+    "topic": "内容主题/关键词",
+    "platform": ["douyin", "shipinhao"],
+    "agent_id": "代理ID(可选,自动注入)",
+    "style": "风格描述(可选)",
+    "duration": 60,
+    "tenant_id": "租户ID(可选,v1.1)",
+    "options": {"voice": "cosyvoice-v2", "resolution": "1080x1920", "subtitle": true, "watermark": false}
+  },
+  "upr_format": {
+    "action": "publish | schedule | preview",
+    "content": {"type": "video | image | audio", "files": [], "title": "", "description": "", "tags": []},
+    "targets": [{"platform": "douyin", "agent_id": "agent_001", "proxy": "http://proxy:port"}],
+    "schedule": "2026-05-19T18:00:00+08:00",
+    "account": "账号标识(可选)",
+    "proxy_mode": "auto | manual | direct"
+  },
+  "output_format": {
+    "success": true,
+    "data": {"task_id": "co-20260519-001", "pipeline": "PL-VIDEO", "generated": {"files": ["output/video_001.mp4"], "duration": 62, "resolution": "1080x1920"}, "published": {"douyin": {"status": "success", "url": "https://..."}, "shipinhao": {"status": "success", "url": "https://..."}}},
+    "error": null, "code": null
+  },
+  "tenant_context_injection": {
+    "flow": "UTD含tenant_id? → YES → agency-client-manager.query → tenant-style-config.get → pps-mcp.get_persona_profile → 注入UTD → 执行管道",
+    "auto_fields": "platform/agent_id/style可设为auto，由租户配置自动填充",
+    "constraints": [
+      {"constraint": "内容方向", "source": "agency-client-manager.directions", "enforce": "选题必须属于directions范围"},
+      {"constraint": "目标平台", "source": "agency-client-manager.platforms", "enforce": "仅发布到租户配置的平台"},
+      {"constraint": "视觉风格", "source": "tenant-style-config", "enforce": "prompt_prefix/frame_template/color_palette注入"},
+      {"constraint": "人设绑定", "source": "pps-mcp(agent_id含tenant_id)", "enforce": "配音/外观/文字风格统一"},
+      {"constraint": "预算限制", "source": "agency-client-manager.budget", "enforce": "路由Step4成本预算过滤"},
+      {"constraint": "钩子结尾图", "source": "pps-mcp.get_hook_ending_card", "enforce": "每条内容结尾注入租户引流图"},
+      {"constraint": "素材优先", "source": "agency-asset-manager", "enforce": "优先使用租户素材库中的图片/视频"}
+    ]
+  },
+  "examples": [
+    {"title": "自然语言调用", "input": "帮我做一条AI热点短视频发到抖音和视频号", "flow": "解析→PL-VIDEO→narrato→cosyvoice→kling→合成→发布"},
+    {"title": "UTD调用(图文)", "input": {"pipeline": "PL-IMAGE", "topic": "AI绘画工具推荐", "platform": ["xiaohongshu", "toutiao"], "style": "清新简约"}, "flow": "content-template→flux→排版→逐平台发布"},
+    {"title": "E2E日常运营", "input": "执行今日日常运营", "flow": "E2E-DAILY→热点发现→选题→生成3条→排期发布"}
+  ]
+}

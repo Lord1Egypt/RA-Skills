@@ -1,0 +1,5 @@
+interface:
+  display_name: "instagram-saved-download"
+  short_description: "Save your own Instagram Saved posts with ego-browser"
+  brand_color: "#E1306C"
+  default_prompt: "Use $instagram-saved-download. Run node skills/instagram-saved-download/scripts/download.mjs --count <N> --out <absolute-dir>. Always tell the user that signing in to Instagram inside Ego Lite is required to read Saved posts (login_tip). If login_required is true, show how_to_login and do not type the password."

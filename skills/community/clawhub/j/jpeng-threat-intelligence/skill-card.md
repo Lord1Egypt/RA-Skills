@@ -1,40 +1,58 @@
-## Description: <br>
-Get threat intelligence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gets threat intelligence for security operations and automation tasks.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Security practitioners and developers use this skill to run threat-intelligence lookups, automate intel tasks, and support security operations workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The external threat-intelligence provider and API-key handling are not clearly explained. <br>
-Mitigation: Install only when the intended provider and script are known, and use a limited or disposable INTEL_API_KEY where possible. <br>
-Risk: Threat-intelligence queries may send confidential incident data to an external service. <br>
-Mitigation: Avoid submitting confidential data unless the provider is trusted and its retention policies are acceptable. <br>
+## Use Case:
 
+Security analysts and automation engineers use this skill to request threat-intelligence results for indicators, incident details, or other security inputs during operations workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/jpeng-threat-intelligence) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires INTEL_API_KEY for the external threat-intelligence service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill is broadly scoped and unclear about which threat-intelligence script or external service handles submitted security inputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the implementation and provider before installing, especially where indicators, internal domains, incident details, or artifacts may be sent.
+
+Risk: The documented workflow requires an INTEL_API_KEY credential.
+
+Mitigation: Store the API key in an approved secret-management mechanism and avoid committing it to skill files, logs, shell history, or shared configuration.
+
+Risk: The artifact references scripts/threat_intelligence.py, but that script is not included in the provided artifact.
+
+Mitigation: Confirm the referenced script and its data-handling behavior before executing the skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jpengcheng523-netizen/skills/jpeng-threat-intelligence)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/jpengcheng523-netizen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands and JSON output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documents use of INTEL_API_KEY and JSON result output.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

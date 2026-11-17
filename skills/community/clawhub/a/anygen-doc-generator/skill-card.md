@@ -1,42 +1,60 @@
-## Description: <br>
-Doc Generator helps agents create structured documents and reports through the AnyGen CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when a user wants to create, draft, or generate a structured written document or report through the AnyGen CLI.
 
-## Publisher: <br>
-[logictortoise](https://clawhub.ai/user/logictortoise) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[logictortoise](https://clawhub.ai/user/logictortoise)
 
-## Use Case: <br>
-Developers, analysts, and other agent users use this skill to draft structured documents and reports such as competitive analyses, PRDs, technical design documents, proposals, meeting summaries, white papers, and executive summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Document prompts and source material may be sent to AnyGen for server-side generation. <br>
-Mitigation: Use the skill only with material approved for AnyGen processing, and avoid sensitive or regulated content unless the user has authorization. <br>
-Risk: The skill can ask the agent to install an additional workflow skill without a pinned source or version. <br>
-Mitigation: Review and approve the additional workflow skill from a known source and version before allowing installation. <br>
+## Use Case:
 
+Developers and agent users use this skill to route document and report generation requests to AnyGen, including market research reports, technical design documents, PRDs, proposals, meeting summaries, white papers, and executive summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/logictortoise/anygen-doc-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/logictortoise) <br>
-- [AnyGen CLI package](https://www.npmjs.com/package/@anygen/cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown documents and CLI guidance with bash command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use ANYGEN_API_KEY authentication and the AnyGen CLI to generate documents server-side.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: release evidence) <br>
+Risk: Document prompts and generated content may be sent to AnyGen for server-side processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with data your organization permits to be processed by AnyGen; avoid confidential, regulated, or customer data unless approved.
+
+Risk: The skill can install or rely on additional tooling, including the AnyGen CLI and anygen-workflow-generate skill.
+
+Mitigation: Review and pin the CLI package and dependent skill before allowing automatic installation in managed environments.
+
+Risk: Generated documents may contain incorrect, incomplete, or unsupported claims.
+
+Mitigation: Have a human reviewer verify factual, legal, financial, technical, and business-critical content before use.
+
+## Reference(s):
+
+- [Doc Generator on ClawHub](https://clawhub.ai/logictortoise/skills/anygen-doc-generator)
+- [logictortoise ClawHub profile](https://clawhub.ai/user/logictortoise)
+- [AnyGen service](https://www.anygen.io)
+- [AnyGen CLI package](npm:@anygen/cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or structured text documents, with inline shell commands and configuration guidance when setup is required.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the AnyGen CLI and an ANYGEN_API_KEY or AnyGen CLI browser login.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release evidence, released 2026-03-30)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

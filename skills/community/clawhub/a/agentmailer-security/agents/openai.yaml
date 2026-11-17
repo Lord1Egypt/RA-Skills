@@ -1,0 +1,6 @@
+interface:
+  display_name: "AgentMailer Security"
+  short_description: "Harden agent identity and communication flows"
+  default_prompt: "Use $agentmailer-security to review this AgentMailer workflow for trust-boundary, authorization, credential, retry, and webhook risks."
+policy:
+  allow_implicit_invocation: true

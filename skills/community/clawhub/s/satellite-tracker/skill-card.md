@@ -1,44 +1,58 @@
-## Description: <br>
-Real-time satellite and spacecraft tracking powered by SGP4 orbit prediction for Tiangong, ISS, Hubble, or any NORAD catalog ID, with coordinates, speed, altitude, pass predictions, and geographic region display using Celestrak TLE data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time satellite and spacecraft tracking powered by SGP4 orbit prediction, supporting Tiangong, ISS, Hubble, and arbitrary NORAD catalog IDs with position and pass-prediction output.
 
-## Publisher: <br>
-[fengyucn](https://clawhub.ai/user/fengyucn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fengyucn](https://clawhub.ai/user/fengyucn)
 
-## Use Case: <br>
-External users and developers use this skill to locate satellites or space stations, track spacecraft by name or NORAD ID, and estimate pass times from observer coordinates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches public TLE data from Celestrak and can fall back to cached orbital data if the network or upstream source is unavailable. <br>
-Mitigation: Run with network access only when live tracking is needed, refresh with --update, and check cache age before relying on coordinates or pass predictions. <br>
-Risk: The skill depends on the Python sgp4 package for orbit propagation. <br>
-Mitigation: Install sgp4 from a trusted package source and review dependency provenance before deployment. <br>
-Risk: Requests for API keys, tokens, or broader filesystem access are unexpected for this skill. <br>
-Mitigation: Deny credential requests and limit filesystem write access to the skill cache file unless a reviewed update justifies more access. <br>
+## Use Case:
 
+External users, developers, and space enthusiasts use this skill to answer where a satellite or space station is, inspect orbital details, and predict visible passes from observer coordinates.
 
-## Reference(s): <br>
-- [ClawHub Satellite Tracker release page](https://clawhub.ai/fengyucn/satellite-tracker) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/fengyucn) <br>
-- [Celestrak TLE data endpoint](https://celestrak.org/NORAD/elements/gp.php?CATNR={norad_id}&FORMAT=tle) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Terminal text or JSON from the tracking script; markdown guidance when invoked by an agent.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update tle_cache.json and depends on fresh Celestrak TLE data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill fetches public TLE data from Celestrak and writes a local cache file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Allow network access only for expected Celestrak TLE requests and review the local cache behavior before deployment.
+
+Risk: The `sgp4` dependency is installed without a pinned version.
+
+Mitigation: Pin and review the dependency version in managed environments before installing the skill.
+
+Risk: Large `--passes` values or continuous `--watch` mode can create long-running local work.
+
+Mitigation: Use reasonable pass counts and watch intervals, and stop continuous tracking when no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fengyucn/skills/satellite-tracker)
+- [Celestrak TLE data endpoint](https://celestrak.org/NORAD/elements/gp.php?CATNR={norad_id}&FORMAT=tle)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Plain text or JSON from command-line execution, with Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include current coordinates, altitude, speed, orbital parameters, geographic region, and optional pass predictions.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

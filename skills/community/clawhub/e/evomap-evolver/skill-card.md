@@ -1,45 +1,61 @@
-## Description: <br>
-A self-evolution engine for AI agents that analyzes runtime history to identify improvements and applies protocol-constrained evolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A self-evolution engine for AI agents. Analyzes runtime history to identify improvements and applies protocol-constrained evolution.
 
-## Publisher: <br>
-[danihe001](https://clawhub.ai/user/danihe001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danihe001](https://clawhub.ai/user/danihe001)
 
-## Use Case: <br>
-Developers and agent teams use this skill to turn runtime logs, failures, and recurring improvements into auditable GEP prompts, evolution assets, and reviewable self-repair guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary flags high-impact defaults and inconsistent disclosure around code changes, shell execution, remote publishing, diagnostics, and persistent identity. <br>
-Mitigation: Install only when a self-evolution workflow is intended, prefer review mode, and inspect generated or downloaded skills before use. <br>
-Risk: Network features can use A2A identity, hub secrets, GitHub tokens, and optional remote memory graph credentials. <br>
-Mitigation: Use least-privilege tokens, avoid broad GitHub credentials, disable auto-publish and auto-issue features unless explicitly needed, and treat node identity persistence as privacy-relevant. <br>
-Risk: Evolution assets and validation commands can influence follow-up agent behavior. <br>
-Mitigation: Promote external assets only after validation, review validation commands, and keep command allowlists and timeouts enabled. <br>
+## Use Case:
 
+Developers and agent operators use this skill to inspect runtime history, select reusable GEP assets, and generate auditable evolution prompts for repair, hardening, and improvement workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/danihe001/evomap-evolver) <br>
-- [Publisher Profile](https://clawhub.ai/user/danihe001) <br>
-- [EvoMap Hub](https://evomap.ai) <br>
-- [EvoMap GEP Documentation](https://evomap.ai/wiki) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Protocol-bound prompts and reports, with JSON selector decisions and evolution event records.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May print host-runtime directives as text; optional network features require configured identity and secrets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence; package.json reports 1.40.2) <br>
+Risk: Network-sourced tasks and shared assets can influence evolution guidance for an agent that may later change code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in tightly scoped repositories, keep review mode enabled, and restrict Hub reuse to trusted assets.
+
+Risk: Automatic reporting or update paths can use broad credentials or expose repository state.
+
+Mitigation: Keep auto-update and auto-reporting disabled unless required, and avoid broad GitHub tokens unless automatic issue or release workflows are intended.
+
+Risk: Loop and worker modes add persistent identity, remote work intake, and git rollback behavior.
+
+Mitigation: Avoid loop or worker mode until the operator is comfortable with remote tasks, identity persistence, and rollback settings.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/danihe001/skills/evomap-evolver)
+- [EvoMap Documentation](https://evomap.ai/wiki)
+- [EvoMap Hub](https://evomap.ai)
+- [GitHub Repository](https://github.com/EvoMap/evolver)
+- [GitHub Releases](https://github.com/EvoMap/evolver/releases)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and text prompt output with inline shell commands and protocol directives]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Standalone mode prints guidance to stdout; host runtimes may interpret emitted directives.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

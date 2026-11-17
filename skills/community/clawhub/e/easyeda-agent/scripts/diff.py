@@ -25,6 +25,11 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 LINT = os.path.join(HERE, 'lint.py')
 
+# 报告含中文:管道/重定向时 Windows 默认 cp936/cp950 会 UnicodeEncodeError,固定 utf-8。
+for _stream in (sys.stdout, sys.stderr):
+    if hasattr(_stream, 'reconfigure'):
+        _stream.reconfigure(encoding='utf-8')
+
 # Fields that define whether a primitive "changed" (geometry/identity/topology).
 FIELDS = {
     'part': ['x', 'y', 'rotation', 'mirror', 'designator', 'net'],
@@ -36,7 +41,7 @@ REASON = {'x': 'moved', 'y': 'moved', 'rotation': 'rotated', 'mirror': 'mirrored
 
 
 def load(path):
-    with open(path) as f:
+    with open(path, encoding='utf-8') as f:
         return json.load(f)
 
 
@@ -87,8 +92,9 @@ def primitive_diff(base, cur):
 
 
 def findings_of(path):
+    # utf-8 固定编码:Windows 中文环境 text=True 会走 GBK 解码崩溃(issue #133 Bug 4)
     out = subprocess.run([sys.executable, LINT, path, '--json'],
-                         capture_output=True, text=True)
+                         capture_output=True, encoding='utf-8', errors='replace')
     if out.returncode != 0:
         raise SystemExit(f"lint failed on {path}:\n{out.stderr}")
     return json.loads(out.stdout)['findings']

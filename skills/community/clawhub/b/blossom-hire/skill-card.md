@@ -1,45 +1,58 @@
-## Description: <br>
-Set up Blossom Hire, create local work opportunities, and help employers and jobseekers move through Blossom work flows in plain language. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up Blossom Hire, create local work opportunities, and help employers and jobseekers move through Blossom work flows in plain language.
 
-## Publisher: <br>
-[robbiwu](https://clawhub.ai/user/robbiwu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[robbiwu](https://clawhub.ai/user/robbiwu)
 
-## Use Case: <br>
-External employers and jobseekers use this skill to set up a Blossom Hire account, create local work opportunities, search for work, apply to roles, and manage Blossom marketplace records through the assistant. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles personal details and a permanent Blossom API key that grants full account access. <br>
-Mitigation: Collect only the data needed for the current Blossom action, keep the API key in runtime memory only, and treat the key as a secret until Blossom rotates or revokes it. <br>
-Risk: The skill can create, update, delete, post, or apply to marketplace records. <br>
-Mitigation: Summarize each mutating action and require clear user confirmation before sending the request. <br>
-Risk: Forwarding unrelated conversation content could expose private or irrelevant data to the Blossom API. <br>
-Mitigation: Send only the minimal job-related instruction or payload needed for the current action, and do not forward unrelated conversation history, prompts, documents, tokens, cookies, or keys. <br>
+## Use Case:
 
+External employers and jobseekers use this skill to register for Blossom Hire, post or manage local work opportunities, find work, apply, review candidates, and arrange PopIns through confirmed plain-language requests.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/robbiwu/blossom-hire) <br>
-- [Blossom website](https://blossomai.org) <br>
-- [Blossom API endpoint](https://hello.blossomai.org/api/v1/blossom/protocol) <br>
-- [Blossom privacy policy](https://blossomai.org/privacypolicy.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, API calls, configuration] <br>
-**Output Format:** [Plain-language responses with structured API request guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Handles personal details and a Blossom API key; requires user confirmation before mutating marketplace records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.21 (source: server release metadata) <br>
+Risk: The Blossom API key is permanent and grants account access if exposed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store the key only in secure credential storage, keep it out of source code, logs, plaintext configuration, and conversation history, and contact Blossom support to rotate or revoke exposed keys.
+
+Risk: The skill handles personal and job data and can perform account actions after confirmation.
+
+Mitigation: Send only the current confirmed Blossom-related instruction, avoid forwarding unrelated context or credentials, and require clear confirmation before creates, updates, deletions, applications, or scheduling.
+
+Risk: Conversational responses alone may not prove that a marketplace mutation was saved.
+
+Mitigation: Treat a write as complete only when the returned structured action shows successful execution for the intended target.
+
+## Reference(s):
+
+- [Blossom homepage](https://blossomai.org)
+- [Blossom protocol API](https://hello.blossomai.org/api/v1/blossom/protocol)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Configuration instructions]
+
+**Output Format:** [Markdown guidance with JSON and HTTP examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires secure storage for the returned Blossom API key and confirmation before account-changing actions.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release metadata; artifact frontmatter reports 4.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

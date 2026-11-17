@@ -1,47 +1,61 @@
-## Description: <br>
-Multi-Agent collaborative system for writing ultra-long feasibility study reports, from requirements confirmation and outline planning through parallel chapter writing, consistency review, and styled document generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-agent collaborative system for writing ultra-long feasibility study reports, from requirements confirmation and outline planning through parallel chapter drafting, consistency review, and styled DOCX output.
 
-## Publisher: <br>
-[jinqiu193](https://clawhub.ai/user/jinqiu193) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jinqiu193](https://clawhub.ai/user/jinqiu193)
 
-## Use Case: <br>
-Developers, business users, and report-writing teams use this skill to coordinate long-form feasibility reports and proposals with structured requirements gathering, outline planning, parallel chapter drafting, review, and final document assembly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can persist raw reference material and generated report content locally. <br>
-Mitigation: Use non-sensitive materials unless storage behavior has been reviewed, and back up or isolate existing output files before running the workflow. <br>
-Risk: The workflow may use Feishu or web search and send WeChat progress messages. <br>
-Mitigation: Confirm or disable external search and messaging behavior before processing confidential or regulated project information. <br>
-Risk: Automated multi-agent drafting may produce inaccurate, inconsistent, or misleading business content. <br>
-Mitigation: Require human review of outlines, chapter drafts, consistency checks, and final documents before relying on or distributing outputs. <br>
+## Use Case:
 
+Developers and document-writing agents use this skill to plan, draft, review, and assemble long feasibility studies or technical proposals with parallel sub-agent writing and document-formatting support.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jinqiu193/long-doc-agent) <br>
-- [Phase 0 Requirements Confirmation Guide](references/phase0_guide.md) <br>
-- [Phase 1 Planner Guide](references/phase1_guide.md) <br>
-- [Phase 2 Sub-Agent Writing Guide](references/phase2_guide.md) <br>
-- [Markdown Table Format Guide](references/table_format_guide.md) <br>
-- [Bug Troubleshooting and Forced Rebuild Guide](references/bug_fix_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown report drafts, styled DOCX files, progress updates, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local state files and chapter outputs under F:/agent/chapters when run as documented.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact metadata and changelog describe long-doc-agent v3.3.0) <br>
+Risk: Project status and report details may be sent to the configured openclaw-weixin notification channel.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable or explicitly approve notifications before using confidential project names, report content, or reference material.
+
+Risk: Report inputs and intermediate files are stored in a Windows-specific local workspace under F:/agent/chapters.
+
+Mitigation: Review local file retention, access controls, and cleanup procedures before processing sensitive reference materials.
+
+Risk: The workflow may spawn multiple writing agents and run local dependency checks that are not pinned by the release evidence.
+
+Mitigation: Run the skill in a controlled environment with approved dependencies and operator oversight for parallel agent activity.
+
+## Reference(s):
+
+- [Phase 0 Requirements Confirmation Guide](references/phase0_guide.md)
+- [Phase 1 Planner Guide](references/phase1_guide.md)
+- [Phase 2 Sub-Agent Writing Guide](references/phase2_guide.md)
+- [Markdown Table Format Specification](references/table_format_guide.md)
+- [Bug Troubleshooting and Forced Rebuild Guide](references/bug_fix_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with inline Python and shell commands; generated artifacts include TXT chapter drafts, JSON state files, Markdown snapshots, and styled DOCX reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local chapter, glossary, reference, progress, and cache files under the configured report workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact metadata version 3.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,56 @@
-## Description: <br>
-Free stock analysis skill that pulls live data via yfinance and analyzes a single stock ticker with valuation metrics, financial health indicators, and analyst consensus. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Free stock analysis skill that pulls live data with yfinance and analyzes a single stock ticker for valuation metrics, financial health, and analyst consensus.
 
-## Publisher: <br>
-[apex-stack-ai](https://clawhub.ai/user/apex-stack-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[apex-stack-ai](https://clawhub.ai/user/apex-stack-ai)
 
-## Use Case: <br>
-External users and developers use this skill to request a concise, single-ticker public stock analysis with price, valuation, financial health, and analyst consensus information. It is intended for informational market research, not personalized financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market data or analyst consensus may be incomplete, delayed, or unsuitable for a financial decision. <br>
-Mitigation: Treat outputs as informational and verify market data with authoritative financial sources before acting. <br>
-Risk: Users may provide private portfolio files, credentials, or personal financial details even though the skill only needs a public ticker. <br>
-Mitigation: Ask only for a public stock ticker and avoid collecting credentials, private portfolio data, or personal financial information. <br>
+## Use Case:
 
+External users and developers use this skill to request a single-ticker stock snapshot with market price, valuation ratios, financial-health indicators, and analyst consensus. It is suited for lightweight market research, not portfolio comparison or custom scoring.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/apex-stack-ai/financial-analyzer-lite) <br>
-- [Apex Stack full Financial Data Analyzer](https://apexstack.gumroad.com/l/financial-analyzer) <br>
-- [Apex Stack](https://apexstack.gumroad.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown response with stock price summary, valuation metrics, financial health indicators, analyst consensus, and optional setup command snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Single-ticker analysis only; no comparison mode, custom scoring, export workflow, or API key requirement is described.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill depends on yfinance and its transitive dependencies, which may change behavior or contain vulnerabilities if installed without version control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a virtual environment and pin yfinance and dependencies before use.
+
+Risk: Public market data and analyst consensus can be delayed, incomplete, or unsuitable as the sole basis for financial decisions.
+
+Mitigation: Verify important values against authoritative market-data sources and treat the output as informational analysis, not investment advice.
+
+## Reference(s):
+
+- [Financial Data Analyzer Lite on ClawHub](https://clawhub.ai/apex-stack-ai/skills/financial-analyzer-lite)
+- [Apex Stack Publisher Profile](https://clawhub.ai/user/apex-stack-ai)
+- [Financial Data Analyzer Full](https://apexstack.gumroad.com/l/financial-analyzer)
+- [Apex Stack](https://apexstack.gumroad.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with optional inline shell commands for installing yfinance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single-ticker analysis only; no comparison mode, custom scoring, or export functionality.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,57 @@
-## Description: <br>
-Guides an agent through publishing long-form notes on the Xiaohongshu web creator platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小红书长文发布。用于在网页版小红书创作服务平台发布长文笔记。
 
-## Publisher: <br>
-[enjoytdl](https://clawhub.ai/user/enjoytdl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[enjoytdl](https://clawhub.ai/user/enjoytdl)
 
-## Use Case: <br>
-External users use this skill to have an agent prepare, format, and publish a long-form Xiaohongshu note through the web creator platform. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish public content to a Xiaohongshu account without a clearly stated final confirmation step. <br>
-Mitigation: Confirm the active account, review the title, body, and selected template, and require explicit user approval before clicking publish. <br>
-Risk: Changes in the Xiaohongshu web interface could cause the agent to select the wrong control or publish with unintended settings. <br>
-Mitigation: Verify the current page state and visible labels before each publishing action, and stop if the interface no longer matches the expected flow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/enjoytdl/xiaohongshu-publish) <br>
-- [Xiaohongshu creator publishing page](https://creator.xiaohongshu.com/publish/publish?source=official) <br>
+## Use Case:
 
+External users use this skill when they want an agent to publish a long-form Xiaohongshu note through the web creator platform. It guides browser-based drafting, formatting, template selection, and publishing.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance] <br>
-**Output Format:** [Markdown instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only workflow for browser-based publishing.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can publish content to a real Xiaohongshu account.
+
+Mitigation: Require explicit final user confirmation before clicking the publish button.
+
+Risk: The invocation trigger is broad and may match casual requests to write or post Xiaohongshu content.
+
+Mitigation: Invoke only when the user clearly intends to publish to Xiaohongshu, and confirm the target account and post content before publishing.
+
+Risk: The Xiaohongshu web interface may change after release.
+
+Mitigation: Review the page state during execution and stop for user guidance if the browser workflow no longer matches the visible interface.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/enjoytdl/skills/xiaohongshu-publish)
+- [Xiaohongshu creator publish page](https://creator.xiaohongshu.com/publish/publish?source=official)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text]
+
+**Output Format:** [Markdown instructions for a browser-based publishing workflow]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May result in a real public account action when the publishing workflow is completed.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

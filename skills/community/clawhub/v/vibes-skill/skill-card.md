@@ -1,44 +1,62 @@
-## Description: <br>
-Cultural intelligence — track albums, podcasts, shows, films, and YouTube channels that shaped how you think. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks albums, podcasts, shows, films, and YouTube channels in local Markdown files so an agent can log culture, find past favorites, and answer questions about what the user has watched or listened to.
 
-## Publisher: <br>
-[ilyabelikin](https://clawhub.ai/user/ilyabelikin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ilyabelikin](https://clawhub.ai/user/ilyabelikin)
 
-## Use Case: <br>
-External users and agent operators use this skill to keep a local, searchable record of meaningful albums, podcasts, shows, films, and YouTube channels, including ratings, notes, tags, and social taste links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores personal culture notes, ratings, and social taste links in workspace files. <br>
-Mitigation: Keep the workspace private, avoid recording sensitive relationships or preferences unless intended, and review mind/vibes/ before sharing or committing files. <br>
-Risk: The skill can suggest recurring heartbeat or cron checks that resurface personal notes. <br>
-Mitigation: Enable recurring checks only after explicit user approval, and disable them if repeated prompts over personal notes are not wanted. <br>
-Risk: The skill includes an update path that replaces SKILL.md from a remote URL. <br>
-Mitigation: Manually review the downloaded file and diff before replacing SKILL.md, then scan the updated skill before deployment. <br>
+## Use Case:
 
+External users and developers use this skill to maintain a private, searchable culture journal for media that shaped their thinking, including albums, podcasts, shows, films, and YouTube channels. The agent can create or update Markdown records, search saved entries, surface taste patterns, and connect shared cultural references with people when companion skills are installed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ilyabelikin/vibes-skill) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files and conversational guidance with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and searches local workspace files under mind/vibes/; may optionally reference images when enabled in vibesconfig.yml.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Install and update guidance includes unpinned remote fetches or package installation paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned release or commit and verify the downloaded SKILL.md before installation or update.
+
+Risk: Heartbeat or cron reminder guidance can create recurring agent checks over personal media notes.
+
+Mitigation: Enable HEARTBEAT.md or cron reminders only when the user explicitly wants recurring checks.
+
+Risk: The skill stores personal cultural preferences and notes in local Markdown files.
+
+Mitigation: Keep the mind/vibes folder in a trusted workspace and review entries before sharing or syncing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ilyabelikin/skills/vibes-skill)
+- [Haah skill](https://github.com/haah-ing/haah-skill)
+- [Peeps skill](https://github.com/haah-ing/peeps-skill)
+- [Pages skill](https://github.com/haah-ing/pages-skill)
+- [Nooks skill](https://github.com/haah-ing/nooks-skill)
+- [Digs skill](https://github.com/haah-ing/digs-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown records and concise natural-language guidance with optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes and searches local files under mind/vibes when the user chooses to use the skill.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

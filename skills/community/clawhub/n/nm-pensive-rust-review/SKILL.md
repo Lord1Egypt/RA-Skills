@@ -1,7 +1,7 @@
 ---
 name: rust-review
 description: Audits Rust code for unsafe blocks, ownership issues, and Cargo dependency risks
-version: 1.9.8
+version: 1.10.3
 triggers:
   - rust
   - ownership
@@ -10,36 +10,12 @@ triggers:
   - traits
   - cargo
   - reviewing Rust code or before merging Rust changes
-metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/pensive", "emoji": "\ud83d\udd0d", "requires": {"config": ["night-market.pensive:shared", "night-market.imbue:proof-of-work"]}}}
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/pensive", "emoji": "\ud83d\udd0d", "requires": {"config": ["night-market.imbue:proof-of-work", "night-market.imbue:review-core", "night-market.imbue:structured-output"]}}}
 source: claude-night-market
 source_plugin: pensive
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/pensive](https://github.com/athola/claude-night-market/tree/master/plugins/pensive). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
-
-
-## Table of Contents
-
-- [Quick Start](#quick-start)
-- [When to Use](#when-to-use)
-- [Required TodoWrite Items](#required-todowrite-items)
-- [Progressive Loading](#progressive-loading)
-- [Core Workflow](#core-workflow)
-- [Rust Quality Checklist](#rust-quality-checklist)
-- [Safety](#safety)
-- [Correctness](#correctness)
-- [Performance](#performance)
-- [Idioms](#idioms)
-- [Output Format](#output-format)
-- [Summary](#summary)
-- [Ownership Analysis](#ownership-analysis)
-- [Error Handling](#error-handling)
-- [Concurrency](#concurrency)
-- [Unsafe Audit](#unsafe-audit)
-- [[U1] file:line](#[u1]-file:line)
-- [Dependencies](#dependencies)
-- [Recommendation](#recommendation)
-- [Exit Criteria](#exit-criteria)
+> **Night Market Skill**: ported from [claude-night-market/pensive](https://github.com/athola/claude-night-market/tree/master/plugins/pensive). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Rust Review Workflow
@@ -66,14 +42,26 @@ Expert-level Rust code audits with focus on safety, correctness, and idiomatic p
 - General code review without Rust - use unified-review
 - Performance profiling - use parseltongue:python-performance pattern
 
-## Required TodoWrite Items
+## Required Progress Items
 
 1. `rust-review:ownership-analysis`
 2. `rust-review:error-handling`
 3. `rust-review:concurrency`
 4. `rust-review:unsafe-audit`
 5. `rust-review:cargo-deps`
-6. `rust-review:evidence-log`
+6. `rust-review:native-modeling`
+7. `rust-review:idiomatic-elision`
+8. `rust-review:coercion-params`
+9. `rust-review:conversion-traits`
+10. `rust-review:numeric-cast-safety`
+11. `rust-review:mutable-static-audit`
+12. `rust-review:match-wildcard`
+13. `rust-review:transmute-audit`
+14. `rust-review:float-equality`
+15. `rust-review:mem-forget-audit`
+16. `rust-review:repr-packed-audit`
+17. `rust-review:evidence-log`
+18. `rust-review:findings-verified`
 
 ## Progressive Loading
 
@@ -88,12 +76,36 @@ Load modules as needed based on review scope:
 
 **Safety Audit**:
 - See `modules/unsafe-audit.md` for unsafe block documentation
+- See `modules/mutable-static-audit.md` for `static mut` globals and
+  their thread-safe replacements
+- See `modules/numeric-cast-safety.md` for truncating and
+  precision-losing `as` casts
+- See `modules/match-wildcard.md` for catch-all arms that defeat enum
+  exhaustiveness
+- See `modules/transmute-audit.md` for `mem::transmute`/`transmute_copy`
+  calls that reinterpret bytes with no layout check
+- See `modules/repr-packed-audit.md` for `#[repr(packed)]` layouts whose
+  field borrows become unaligned references
+
+**Correctness Audit**:
+
+- See `modules/float-equality.md` for `==`/`!=` against float literals
+- See `modules/mem-forget-audit.md` for `mem::forget` leaks and no-op
+  `drop(&x)` reference drops
 
 **Dependency Review**:
 - See `modules/cargo-dependencies.md` for vulnerability scanning
 
 **Idiomatic Patterns**:
 - See `modules/builtin-preference.md` for conversion traits and builtin preference
+- See `modules/native-type-modeling.md` for enums-over-primitives,
+  newtype, type-state, and derived ordering
+- See `modules/idiomatic-elision.md` for lifetime elision,
+  expression-oriented returns, and explicit `-> ()` unit returns
+- See `modules/coercion-params.md` for `&String`/`&Vec<T>`/`&PathBuf`
+  parameters that defeat deref coercion (prefer `&str`/`&[T]`/`&Path`)
+- See `modules/conversion-traits.md` for `impl Into` that should be
+  `impl From`, and discarded `try_into().unwrap()` conversion errors
 
 ## Core Workflow
 
@@ -110,12 +122,26 @@ Load modules as needed based on review scope:
 - [ ] All unsafe blocks documented with SAFETY comments
 - [ ] FFI boundaries properly wrapped
 - [ ] Memory safety invariants maintained
+- [ ] No `static mut` globals; shared state uses `OnceLock`/`LazyLock`,
+  atomics, or a `Mutex`/`RwLock`
+- [ ] No `mem::transmute`/`transmute_copy`; bytes converted with
+  `from_le_bytes`/`from_bits`/`bytemuck` or pointers with `.cast()`
+- [ ] `#[repr(packed)]` fields copied out before borrowing (no unaligned
+  references)
+- [ ] No `mem::forget` leaks (use `ManuallyDrop`/scope) and no no-op
+  `drop(&x)` reference drops
 - [ ] `mlock`/`munlock` calls: RLIMIT verified, page-aligned,
   ENOMEM handled
 
 ### Correctness
 - [ ] Error handling complete
 - [ ] Concurrency patterns sound
+- [ ] Lossy `as` casts (length truncation, `as u8`/`i8`, `as f32`)
+  replaced with `TryFrom`/`From`
+- [ ] Enum matches exhaustive; no `_ => unreachable!()`/`panic!`/`{}`
+  catch-alls
+- [ ] Floats compared with a tolerance, not exact `==`/`!=` against a
+  float literal
 - [ ] Tests cover critical paths
 
 ### Performance
@@ -126,6 +152,17 @@ Load modules as needed based on review scope:
 ### Idioms
 - [ ] Standard traits implemented
 - [ ] Conversion traits preferred over helper functions
+- [ ] Stringly-typed values and boolean flags modeled as enums
+- [ ] Domain invariants encoded with newtypes (private field +
+  validating constructor) or type-state where warranted
+- [ ] Comparison/ordering traits derived, not hand-written
+- [ ] Lifetimes elided where elision rules apply; `'_` in paths
+- [ ] Trailing `return` dropped in favor of the tail expression
+- [ ] Explicit `-> ()` unit returns dropped (default is elided)
+- [ ] Parameters take `&str`/`&[T]`/`&Path`, not `&String`/`&Vec<T>`/
+  `&PathBuf` (deref coercion accepts both, so the slice is more general)
+- [ ] Conversions implement `From`/`TryFrom`, not `Into`/`TryInto`; a
+  fallible conversion's error is propagated, not `unwrap()`ped
 - [ ] Error types well-designed
 - [ ] Documentation complete
 
@@ -147,8 +184,42 @@ Rust audit findings
 ## Unsafe Audit
 ### [U1] file:line
 - Invariants: [documented]
+- Anchor: `verbatim source text at file:line`
 - Risk: [assessment]
 - Recommendation: [action]
+
+## Native Type Modeling
+[stringly-typed comparisons, boolean blindness, newtype/type-state notes]
+
+## Idiomatic Elision
+[needless lifetimes, trailing returns, explicit `-> ()` unit returns]
+
+## Coercion Params
+[`&String`/`&Vec<T>`/`&PathBuf` params that should be borrowed slices]
+
+## Conversion Traits
+[`impl Into` over `impl From`; discarded `try_into().unwrap()` errors]
+
+## Numeric Cast Safety
+[length-truncating, byte-narrowing, and f32 precision-losing `as` casts]
+
+## Mutable Static Audit
+[`static mut` globals and their thread-safe replacements]
+
+## Match Wildcard
+[catch-all `_ =>` arms that defeat enum exhaustiveness]
+
+## Transmute Audit
+[`mem::transmute`/`transmute_copy` calls and their typed replacements]
+
+## Float Equality
+[exact `==`/`!=` comparisons against float literals]
+
+## Mem Forget Audit
+[`mem::forget` leaks and no-op `drop(&x)` reference drops]
+
+## Repr Packed Audit
+[`#[repr(packed)]` layouts whose field borrows become unaligned]
 
 ## Dependencies
 [cargo audit results]
@@ -158,10 +229,19 @@ Approve / Approve with actions / Block
 ```
 **Verification:** Run the command with `--help` flag to verify availability.
 
+## Verify Findings Are Grounded (`rust-review:findings-verified`)
+
+Write findings to `.review/findings.json`, run the citation verifier
+(`Skill(imbue:review-core)` Step 5), and drop or label `UNVERIFIED` any
+the verifier rejects.
+
 ## Exit Criteria
 
-- All unsafe blocks audited
-- Concurrency patterns verified
-- Dependencies scanned
-- Evidence logged
-- Action items assigned
+- [ ] All unsafe blocks audited
+- [ ] Concurrency patterns verified
+- [ ] Dependencies scanned
+- [ ] Evidence logged
+- [ ] Action items assigned
+- [ ] Every reported finding carries a `Location` + verbatim `Anchor` confirmed
+      by `citation_verifier.py` (exit `0`), or unverified findings were dropped
+      or labeled `UNVERIFIED`

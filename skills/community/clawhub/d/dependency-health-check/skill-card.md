@@ -1,40 +1,52 @@
-## Description: <br>
-Audits project dependencies across npm, pip, cargo, Go, Composer, and related ecosystems for outdated, vulnerable, unused, and license-incompatible packages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-ecosystem dependency audit to find outdated, vulnerable, unused, and license-incompatible packages across npm, pip, cargo, go, and composer.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to audit dependency security, freshness, license compatibility, and unused packages across common package ecosystems. The skill guides an agent to produce a prioritized upgrade plan with risk assessment.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may lead agents to download, install, or run unpinned third-party audit tools in a project environment.
+
+Mitigation: Run audits in a disposable container or virtual environment with pinned, preinstalled tools, and require approval before `npx`, `pip install`, or similar commands.
+
+Risk: Automatic dependency fixes can change the environment or introduce breaking dependency updates.
+
+Mitigation: Review proposed fixes before execution, avoid forceful automatic upgrades, and run the project's test suite after each upgrade batch.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to audit project dependencies, prioritize security and freshness updates, identify unused packages, and flag license compatibility issues. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Dependency audit and remediation commands may install tools, access package registries, or modify project dependencies. <br>
-Mitigation: Require explicit approval before package installs, npx tools, npm audit fix, pip-audit --fix, or dependency removals; prefer a branch, virtual environment, or container for scans that may touch the network or local tooling. <br>
-Risk: Upgrade recommendations can introduce breaking changes when major updates or force-fix commands are applied without review. <br>
-Mitigation: Review changelogs for major upgrades, prioritize critical fixes, batch lower-risk patch updates, and run the project test suite after each upgrade batch. <br>
+**Output Format:** [Markdown report with tables and command snippets]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/dependency-health-check) <br>
+**Other Properties Related to Output:** [Prioritized upgrade plan with dependency risk assessment.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with tables and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prioritized dependency health report covering outdated packages, vulnerabilities, unused dependencies, license flags, and upgrade sequencing.] <br>
+1.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,61 @@
-## Description: <br>
-MCP server for the DRAIN payment protocol that lets agents discover providers, open USDC payment channels on Polygon, and call paid services such as LLMs, scraping, image generation, VPN, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MCP server for the DRAIN payment protocol. Agents discover service providers, open USDC payment channels on Polygon, and call services such as LLM, scraping, image generation, VPN, and more.
 
-## Publisher: <br>
-[kimbo128](https://clawhub.ai/user/kimbo128) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kimbo128](https://clawhub.ai/user/kimbo128)
 
-## Use Case: <br>
-Developers and agent users use this skill to connect an MCP client to drain-mcp, fund a dedicated Polygon wallet, and let agents pay per request for third-party services through DRAIN channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The local MCP server uses real wallet credentials and paid network services. <br>
-Mitigation: Use only a dedicated low-value Polygon wallet, avoid main wallets, and keep deposits small. <br>
-Risk: Open payment channels can commit funds until they are closed or expire. <br>
-Mitigation: Open channels only with the amount needed for the task and close channels when work is complete. <br>
-Risk: Third-party providers receive the request content sent through paid service calls. <br>
-Mitigation: Treat selected providers as recipients of request content and send only information intended for that provider. <br>
+## Use Case:
 
+Developers and agents use this skill to discover DRAIN-compatible service providers, open Polygon USDC payment channels, send paid service requests, and reclaim unspent channel funds when work is complete.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/kimbo128/hs58) <br>
-- [Handshake58 website](https://handshake58.com) <br>
-- [Provider directory](https://handshake58.com/directory) <br>
-- [drain-mcp package](https://www.npmjs.com/package/drain-mcp) <br>
-- [Project repository](https://github.com/kimbo128/DRAIN) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires drain-mcp and a local DRAIN_PRIVATE_KEY for wallet-backed MCP actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.2 (source: frontmatter, release metadata) <br>
+Risk: The skill requires a funded wallet private key in the local MCP environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a dedicated low-value wallet for this skill and never reuse a main wallet or high-value key.
+
+Risk: The documented install command uses an unpinned global drain-mcp package.
+
+Mitigation: Verify the package and source before installation, and prefer a pinned reviewed version for repeatable deployments.
+
+Risk: The local MCP process can sign transactions and paid requests with the configured wallet key.
+
+Mitigation: Confirm payment actions before use, keep channel deposits small, monitor channel balances, and close channels promptly when work is complete.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kimbo128/skills/hs58)
+- [Handshake58 Website](https://handshake58.com)
+- [DRAIN Repository](https://github.com/kimbo128/DRAIN)
+- [drain-mcp npm Package](https://www.npmjs.com/package/drain-mcp)
+- [Provider Directory](https://handshake58.com/directory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash, JSON, and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js >= 18, internet access, drain-mcp, and a locally configured DRAIN_PRIVATE_KEY.]
+
+## Skill Version(s):
+
+4.0.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

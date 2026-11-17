@@ -1,0 +1,9 @@
+{
+  "name": "fingerprint-delivery",
+  "normalizedName": "fingerprint-delivery",
+  "description": "指纹锁定交付，用于回答「怎么证明这份文件没被改过」「怎么证明我是先做出来的」「交付物怎么防篡改」这类问题。给任何交付物（HTML 白皮书 / 报告 / 文档 / PPT）一键加上「时间戳 + SHA-256 指纹 + 版权三件套」，产出页面内嵌内容快照指纹 + 独立 .sha256 校验文件，任一环节被改都能查出来。指纹与时间戳按注册方法论登记为可被第三方核验的属性，校验链路对应证据链审计。适用对外发布、交接文档、理论 / 作品定稿、需证明「创作时间与内容完整性」的场景。触发词：时间戳、指纹、SHA256、防篡改、校验文件、版权锁定、交付物加锁、内容完整性、fingerprint、stamp、tamper-evident。本技能为通用方法论工具，非医疗器械 / 非医疗软件，无疗效或临床声明；详见包内免责声明。",
+  "author": "诺源(Arche)@SynomosAI",
+  "copyright": "SynomosAI",
+  "version": "1.0.0",
+  "license": "MIT"
+}

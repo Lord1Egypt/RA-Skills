@@ -1,42 +1,57 @@
-## Description: <br>
-门店历史基线分析工具，基于 Agent API 数据库视图为门店销售额、订单数、客单价和连带率生成多周期基线、四分位分析和异常判断。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Historical Baseline Analysis helps agents compare retail store performance against multi-period baselines and quartile statistics from Agent API database views.
 
-## Publisher: <br>
-[gwyang7](https://clawhub.ai/user/gwyang7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gwyang7](https://clawhub.ai/user/gwyang7)
 
-## Use Case: <br>
-Retail operators and analytics agents use this skill to compare a store's current performance against historical weekday, weekly, monthly, quarterly, half-year, and annual baselines. It supports anomaly review and basic variance attribution for sales amount, order count, customer unit price, and attach rate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Database access may expose sensitive store data if credentials are too broad. <br>
-Mitigation: Use only read-only, store-scoped database credentials before installation or execution. <br>
-Risk: The release depends on a local api_client module path that is not packaged with the skill. <br>
-Mitigation: Replace the local dependency with a reviewed, packaged, and declared dependency in the deployment environment. <br>
-Risk: Store IDs and date values are used in database queries and can be unsafe if accepted without controls. <br>
-Mitigation: Require parameterized queries or strict validation for store IDs and dates. <br>
+## Use Case:
 
+Retail operators, analysts, and agent developers use this skill to compare store sales, order count, unit price, and attach-rate metrics with historical weekday baselines and identify abnormal performance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gwyang7/retail-store-poscore-baseline-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [Structured Python dictionaries with human-readable baseline and variance-analysis fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires access to store POS database views; weekday baselines require at least 6 samples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact version) <br>
+Risk: Unsafe database query construction can expose real store data workflows to injection or incorrect query behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use parameterized database queries, validate store and date inputs, and run the skill with read-only least-privilege database access.
+
+Risk: A hard-coded local import path loads an external module that is not part of the reviewed artifact.
+
+Mitigation: Remove the hard-coded path and package any required client dependency through a reviewed, documented dependency path.
+
+Risk: Week and month analysis are described by the skill, but the artifact indicates those paths are not implemented yet.
+
+Mitigation: Document the current weekday-only implementation or complete and test week and month analysis before relying on those modes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gwyang7/skills/retail-store-poscore-baseline-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [JSON-like Python dictionaries and Markdown-ready analysis summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include baseline statistics, percentile ranks, outlier status, and attribution findings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact version text)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

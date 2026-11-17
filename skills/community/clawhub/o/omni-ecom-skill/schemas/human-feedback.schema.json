@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "omni-ecom://schemas/human-feedback-2.0.json",
+  "title": "Omni E-commerce Human Feedback Audit Record",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "artifact_type", "contract_name", "contract_version", "created_by_team_version", "legacy_compatibility", "role", "host", "agent_task_id", "attempt_id", "outcome", "observed_at", "reason", "source_file", "source_sha256", "terminal_event_hash"],
+  "properties": {
+    "schema_version": {"const": "2.0"},
+    "artifact_type": {"const": "human_feedback_record"},
+    "contract_name": {"const": "omni-ecom.human-feedback"},
+    "contract_version": {"const": "2.0"},
+    "created_by_team_version": {"type": "string", "minLength": 1},
+    "legacy_compatibility": {"const": {"read_only_import": ["omni-ecom.human-feedback@1.0"], "current_quality_authority": false}},
+    "role": {"type": "string", "minLength": 1},
+    "host": {"type": "string", "minLength": 1},
+    "agent_task_id": {"type": "string", "minLength": 1},
+    "attempt_id": {"type": "string", "minLength": 1},
+    "outcome": {"enum": ["corrected", "accepted"]},
+    "observed_at": {"type": "string", "format": "date-time"},
+    "reason": {"const": "explicit_human_feedback"},
+    "source_file": {"type": "string", "minLength": 1},
+    "source_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "terminal_event_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  }
+}

@@ -1,40 +1,52 @@
-## Description: <br>
-Provides UAE clinic regulatory compliance guidance for audits, accreditation, infection control, medical waste, controlled drugs, and incident reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+UAE clinic regulatory compliance, audit preparation, accreditation, and incident-reporting guidance for private healthcare clinics.
 
-## Publisher: <br>
-[dralmazrouei](https://clawhub.ai/user/dralmazrouei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dralmazrouei](https://clawhub.ai/user/dralmazrouei)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Clinic leaders, medical directors, and compliance teams use this skill to prepare UAE private clinics for DOH/DHA inspections, clinical governance audits, incident reporting, waste management, controlled-drug controls, and accreditation readiness.
+
+### Deployment Geography for Use:
+
+United Arab Emirates
+
+## Known Risks and Mitigations:
+
+Risk: Users may treat checklist-style clinic compliance guidance as legal or regulatory advice, especially for time-sensitive obligations.
+
+Mitigation: Confirm current requirements directly with DOH, DHA, MOHAP, Civil Defence, or qualified compliance counsel before acting.
+
+Risk: Compliance prompts may include patient names, Emirates IDs, incident details, or other sensitive healthcare information.
+
+Mitigation: Do not enter real patient identifiers or incident details unless the operating environment is approved for that data.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External clinic operators, compliance leads, and healthcare staff in the UAE use this skill to prepare for DOH/DHA inspections, manage clinic compliance gaps, and structure incident-reporting workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-United Arab Emirates <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Incident report outputs may contain patient identifiers or other sensitive healthcare details. <br>
-Mitigation: Use internal case IDs where possible, include full patient identifiers only when required by policy or regulator portals, restrict access to authorized staff, and share reports only through approved secure systems. <br>
-Risk: The skill is scoped to UAE clinic compliance and may be unsuitable for unrelated jurisdictions or healthcare settings. <br>
-Mitigation: Use it only for UAE clinic compliance workflows and have qualified staff review generated guidance before operational or regulatory use. <br>
+**Output Format:** [Markdown checklists, procedures, and remediation guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dralmazrouei/uae-clinic-compliance) <br>
+**Other Properties Related to Output:** [Checklist-style operational guidance; no code execution.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with checklists, remediation steps, and incident report templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include sensitive healthcare incident details when the user requests incident reporting help.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

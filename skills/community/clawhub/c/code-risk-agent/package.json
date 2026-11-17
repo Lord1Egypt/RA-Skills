@@ -1,0 +1,76 @@
+{
+  "name": "code-risk-agent",
+  "version": "1.0.4",
+  "description": "AI-powered code security analysis. 4-layer pipeline in a single tool. Cloud LLM by default, local GPU optional.",
+  "skill": {
+    "id": "code-risk-agent",
+    "category": "工具-开发",
+    "tags": [
+      "代码安全",
+      "漏洞扫描",
+      "开源工具",
+      "本地运行"
+    ],
+    "min_version": "4.2.1.8111",
+    "privacy_agreement": "静态分析、Taint追踪、CVE查询、依赖扫描完全在本地执行，不上传任何代码。AI语义分析默认关闭（enable_ai=false），用户可主动开启后调用云端LLM API（代码内容会发送至用户指定的API提供商），也可通过设置CODERISK_LLM_BACKEND=local切换为完全本地推理。",
+    "trigger": {
+      "keywords": [
+        "代码安全",
+        "漏洞扫描",
+        "代码审计",
+        "security scan",
+        "CWE",
+        "CVE",
+        "风险分析",
+        "依赖漏洞",
+        "code risk",
+        "audit code",
+        "vulnerability",
+        "security analysis"
+      ],
+      "languages": [
+        "zh",
+        "en"
+      ]
+    },
+    "permissions": [
+      "file-system-read",
+      "file-system-write",
+      "process-spawn",
+      "network-outbound"
+    ],
+    "dependencies": {
+      "mcp-servers": [
+        {
+          "name": "coderisk-agent-mcp",
+          "command": "python3",
+          "args": [
+            "${SKILL_ROOT}/mcp-server/server.py"
+          ],
+          "transport": "stdio",
+          "env": {
+            "CODERISK_LLM_BACKEND": "openai",
+            "CODERISK_API_KEY": "",
+            "CODERISK_MODEL": "gpt-4o",
+            "CODERISK_BASE_URL": "",
+            "CODERISK_LOCAL_MODEL_PATH": "",
+            "CODERISK_SSE_API_KEY": ""
+          }
+        }
+      ]
+    },
+    "resources": {
+      "gpu": "optional",
+      "memory": "4GB+ RAM",
+      "disk": "1GB for CVE DB"
+    }
+  },
+  "scripts": {
+    "post-install": "echo 'Skill is self-contained. No external installation needed.'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/a9320/code-risk-agent"
+  },
+  "license": "MIT"
+}

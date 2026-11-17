@@ -1,0 +1,44 @@
+{
+ "content": [
+  {
+   "text": "How much of Earth's water is in rivers? Put all of it in a 1-liter bottle and every river is less than a tenth of a drop.\n\nFigures: USGS Water Science School (freshwater distribution, groundwater, glaciers). Earth photo: NASA. Save this for your next quiz night.\n\n#freshwater #groundwater #glaciers #earthscience #geography",
+   "media": [
+    {
+     "type": "MEDIA_LIBRARY",
+     "mediaId": "<mediaId for slide-01.jpg>"
+    },
+    {
+     "type": "MEDIA_LIBRARY",
+     "mediaId": "<mediaId for slide-02.jpg>"
+    },
+    {
+     "type": "MEDIA_LIBRARY",
+     "mediaId": "<mediaId for slide-03.jpg>"
+    },
+    {
+     "type": "MEDIA_LIBRARY",
+     "mediaId": "<mediaId for slide-04.jpg>"
+    },
+    {
+     "type": "MEDIA_LIBRARY",
+     "mediaId": "<mediaId for slide-05.jpg>"
+    },
+    {
+     "type": "MEDIA_LIBRARY",
+     "mediaId": "<mediaId for slide-06.jpg>"
+    }
+   ]
+  }
+ ],
+ "socialAccounts": [
+  {
+   "platform": "INSTAGRAM",
+   "socialAccountId": "<id from social_accounts_list>",
+   "postType": "POST"
+  }
+ ],
+ "schedule": {
+  "type": "SCHEDULE_FOR_LATER",
+  "scheduledFor": "2026-11-16T17:30:00Z"
+ }
+}

@@ -1,43 +1,58 @@
-## Description: <br>
-Researches crypto or meme tokens by address using GMGN API data for price, liquidity, holders, traders, smart-money and KOL exposure, and security signals across Solana, BSC, Base, and Ethereum. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research crypto and meme tokens by address using GMGN API data for price, liquidity, holders, traders, smart money and KOL positions, and security signals across Solana, BNB Smart Chain, Base, and Ethereum.
 
-## Publisher: <br>
-[gmgnai](https://clawhub.ai/user/gmgnai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gmgnai](https://clawhub.ai/user/gmgnai)
 
-## Use Case: <br>
-External users, traders, and crypto researchers use this skill to run GMGN CLI token lookups and summarize due diligence before evaluating or trading a token. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores a GMGN API key in ~/.config/gmgn/.env. <br>
-Mitigation: Treat the API key as a secret, keep the file private, and install the skill only when GMGN API access through gmgn-cli is intended. <br>
-Risk: Token, wallet, holder, and trader outputs can expose sensitive or account-linked trading information. <br>
-Mitigation: Avoid sharing raw wallet or account outputs publicly and review summaries before redistribution. <br>
-Risk: The skill includes network troubleshooting commands for documented 401 or 403 connectivity issues. <br>
-Mitigation: Run IPv6 troubleshooting only when debugging the documented GMGN CLI connectivity issue. <br>
+## Use Case:
 
+External users and developers use this skill to perform token due diligence, including market, liquidity, holder, trader, and security analysis before making crypto trading or monitoring decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gmgnai/gmgn-token) <br>
-- [GMGN API key setup](https://gmgn.ai/ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with gmgn-cli shell commands, summary cards, ranked tables, and optional raw JSON from the CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires gmgn-cli and a locally configured GMGN_API_KEY. Token holder and trader outputs may include wallet-level data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.6 (source: server release evidence) <br>
+Risk: The setup path can install a global npm dependency.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Preinstall and review a pinned gmgn-cli version before enabling the skill.
+
+Risk: The skill handles GMGN API requests and persistent local API-key storage.
+
+Mitigation: Configure credentials through a trusted secret store or manual setup outside the agent when possible.
+
+Risk: First-time setup can create key material on disk.
+
+Mitigation: Review generated key files and remove temporary key material after setup.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/gmgnai/skills/gmgn-token)
+- [GMGN API key setup](https://gmgn.ai/ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured token analysis summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include raw JSON guidance when users request machine-readable GMGN CLI output.]
+
+## Skill Version(s):
+
+1.4.6 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

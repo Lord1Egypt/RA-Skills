@@ -1,43 +1,57 @@
-## Description: <br>
-Use when creating biotech pitch decks, translating scientific data for investors, preparing fundraising presentations, or developing investor Q&A. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates biotech pitch deck narratives by translating complex scientific and clinical data into investor-facing fundraising stories, presentation structures, and Q&A preparation.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-External biotech founders, executives, business development teams, and communications teams use this skill to turn scientific and clinical data into investor-facing pitch narratives, deck sections, and Q&A preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated investor claims may be scientifically inaccurate, legally unsuitable, or unsupported. <br>
-Mitigation: Have qualified scientific and legal reviewers check all claims before using outputs in fundraising, partnership, or public-market communications. <br>
-Risk: Users may treat generated narratives as financial, regulatory, or legal advice. <br>
-Mitigation: Use the output as drafting assistance only and consult appropriate financial, regulatory, and legal professionals for decisions and disclosures. <br>
-Risk: The skill may process confidential business or scientific information from local project files. <br>
-Mitigation: Scope file access to the specific project materials needed for drafting and avoid providing unrelated confidential files. <br>
+## Use Case:
 
+Biotech founders, operators, and communications teams use this skill to create or rewrite fundraising and partnership pitch materials for venture capital, pharma BD, IPO roadshows, grant applications, and investor Q&A.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/AIPOCH-AI/biotech-pitch-deck-narrative) <br>
-- [Publisher Profile](https://clawhub.ai/user/AIPOCH-AI) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with examples, CLI commands, and JSON-oriented narrative outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be reviewed for scientific accuracy, legal compliance, and investor-claim substantiation before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and tile.json) <br>
+Risk: The skill may process confidential biotech, fundraising, or non-public company information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated local workspace and avoid providing confidential information unless the agent environment is approved for that data.
+
+Risk: Generated investor narratives may include incorrect, overstated, or non-compliant scientific, financial, or regulatory claims.
+
+Mitigation: Have domain experts and legal counsel review all claims before using materials with investors, partners, regulators, or public markets.
+
+Risk: The packaged requirements include entries that are part of the Python standard library, which can create installation confusion.
+
+Mitigation: Consider removing the unnecessary requirements.txt entries or installing in an isolated environment before use.
+
+## Reference(s):
+
+- [Biotech Pitch Deck Narrative on ClawHub](https://clawhub.ai/aipoch-ai/skills/biotech-pitch-deck-narrative)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Narrative guidance, rewritten pitch text, Q&A preparation, and optional JSON output from the bundled CLI.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May process confidential biotech, fundraising, or non-public company information in the local agent workspace.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and tile.json; artifact metadata lists 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

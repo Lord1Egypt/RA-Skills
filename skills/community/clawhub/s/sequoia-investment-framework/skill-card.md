@@ -1,46 +1,56 @@
-## Description: <br>
-用红杉资本体系系统评估投资机会，包括赛道规模、创始人能力、时机把握、单位经济和生态网络效应分析。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses a Sequoia Capital-inspired framework to help agents analyze investment opportunities, financing strategy, and business decisions across market, founder, timing, unit economics, and ecosystem dimensions.
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-Investors, founders, and business analysts use this skill as a thinking aid for evaluating venture opportunities, financing strategy, and commercial decisions through a Sequoia-style framework. It is intended as a structured reference and checklist, not as a substitute for independent judgment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or parsed output may contain sensitive document text or screenshots when used across folders. <br>
-Mitigation: Review generated output before sharing it and avoid batch-processing folders that contain confidential material. <br>
-Risk: The skill provides investment analysis guidance that could be mistaken for a final decision. <br>
-Mitigation: Use the framework as a checklist and reasoning aid, then validate conclusions with current market data, due diligence, and professional judgment. <br>
-Risk: The release evidence mentions a Homebrew installation path. <br>
-Mitigation: Review the Homebrew package before installation and install only from trusted sources. <br>
+## Use Case:
 
+Investors, founders, and business analysts use this skill to structure venture-style evaluations of markets, founders, timing, unit economics, competitive position, and ecosystem effects. It is a decision-support framework and should not replace current due diligence or professional investment judgment.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xiejianjun000/sequoia-investment-framework) <br>
-- [Publisher Profile](https://clawhub.ai/user/xiejianjun000) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill Source](artifact/SKILL.md) <br>
-- [Framework Summary](artifact/07-framework-summary.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with structured checklists and investment analysis prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include investment evaluation checklists, case comparisons, and concise reasoning steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Investment conclusions may rely on stale, incomplete, or unverified business facts and market data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current market data, company facts, financials, and legal context independently before using the analysis for real investment or financing decisions.
+
+Risk: Users may treat the framework as a substitute for professional judgment.
+
+Mitigation: Use the output as decision-support guidance only, with final decisions reviewed by qualified humans and grounded in fresh due diligence.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejianjun000/skills/sequoia-investment-framework)
+- [Skill source](artifact/SKILL.md)
+- [Research summary](artifact/07-framework-summary.md)
+- [Final report](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese Markdown guidance, checklists, comparison tables, and structured analysis prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only skill; security evidence reports no hidden execution, data access, persistence, or credential handling.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

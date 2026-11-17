@@ -1,44 +1,64 @@
-## Description: <br>
-Calls a Raspberry Pi ROS2 radar warning service through rosbridge WebSocket to retrieve the nearest obstacle distance and return collision-warning status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Radar Collision Warning calls a ROS2 radar warning service on a Raspberry Pi through rosbridge WebSocket to retrieve the nearest obstacle distance and report collision warnings.
 
-## Publisher: <br>
-[33-code](https://clawhub.ai/user/33-code) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[33-code](https://clawhub.ai/user/33-code)
 
-## Use Case: <br>
-Developers and operators of a controlled Raspberry Pi ROS2 lidar setup use this skill to query or continuously monitor a radar collision-warning service and receive machine-readable distance and warning results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill connects to rosbridge over the network and depends on a Raspberry Pi ROS2 environment. <br>
-Mitigation: Use it only with a controlled Raspberry Pi and ROS2 setup, and keep rosbridge off untrusted networks. <br>
-Risk: The bundled startup script restarts ROS, lidar, and radar-warning processes. <br>
-Mitigation: Review the startup script before execution and run it only in the intended ROS workspace. <br>
-Risk: Continuous monitor mode can keep polling in the background. <br>
-Mitigation: Run monitor mode deliberately and stop the background process when monitoring is finished. <br>
+## Use Case:
 
+Developers and robotics operators use this skill to query or monitor a Raspberry Pi ROS2 radar collision-warning service from an agent environment. It supports single checks and continuous monitoring that return obstacle distance, warning status, and service errors as JSON.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/33-code/radar-collision-warning) <br>
-- [ROS2 radar warning node](artifact/references/radar_collision_warning_node.py) <br>
-- [ROS bridge startup script](artifact/references/start_radar_rosbridge.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, code] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON stdout from the Node.js helper] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18+ and a reachable rosbridge WebSocket configured through RADAR_HOST/RADAR_PORT or local workspace configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Collision warning output can be unreliable if rosbridge is exposed on an unsafe network or receives untrusted data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Deploy only in a controlled ROS/Raspberry Pi environment and use network isolation or authenticated transport for rosbridge.
+
+Risk: A non-warning result may be misread as proof that the environment is safe.
+
+Mitigation: Treat non-warning responses as advisory service output, not as a complete safety guarantee.
+
+Risk: Incorrect threshold or interval values can reduce the usefulness of monitoring.
+
+Mitigation: Validate threshold and interval values against the deployment environment before use.
+
+Risk: The startup script can stop matching ROS-related processes.
+
+Mitigation: Review the startup script before running it on a shared or production robot system.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/33-code/skills/radar-collision-warning)
+- [33-code publisher profile](https://clawhub.ai/user/33-code)
+- [radar_collision_warning_node.py](references/radar_collision_warning_node.py)
+- [start_radar_rosbridge.sh](references/start_radar_rosbridge.sh)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown instructions with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 18+ and a reachable ROS2 rosbridge endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

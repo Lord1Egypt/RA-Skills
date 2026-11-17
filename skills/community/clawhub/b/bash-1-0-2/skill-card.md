@@ -1,40 +1,48 @@
-## Description: <br>
-Write reliable Bash scripts with proper quoting, error handling, and parameter expansion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write reliable Bash scripts with proper quoting, error handling, and parameter expansion.
 
-## Publisher: <br>
-[washmore](https://clawhub.ai/user/washmore) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[washmore](https://clawhub.ai/user/washmore)
 
-## Use Case: <br>
-Developers and engineers use this skill as a Bash scripting reference for quoting, arrays, parameter expansion, conditionals, and error-handling patterns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Shell guidance may lead an agent to propose commands that modify files or system state. <br>
-Mitigation: Review generated Bash commands before running them, especially commands that write files, delete data, change permissions, or affect the environment. <br>
-Risk: Incorrect Bash examples or misuse of shell features can cause unreliable scripts. <br>
-Mitigation: Treat the skill as reference guidance and test commands or scripts in an appropriate environment before using them in production workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/washmore/bash-1-0-2) <br>
-- [Publisher profile](https://clawhub.ai/user/washmore) <br>
+## Use Case:
 
+Developers and engineers use this skill as a Bash scripting reference for safer quoting, arrays, parameter expansion, conditionals, arithmetic, subshell behavior, and error handling.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline Bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no hidden execution or credential access is reported by security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: artifact/SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Shell snippets may be adapted incorrectly or run in an unintended environment.
+
+Mitigation: Review Bash examples before execution, especially examples involving traps, pipelines, parameter expansion, and error handling.
+
+## Reference(s):
+
+- [Bash 1.0.2 ClawHub listing](https://clawhub.ai/washmore/skills/bash-1-0-2)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline Bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference guidance; examples should be reviewed before execution in a shell.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata); artifact frontmatter version is 1.0.2
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

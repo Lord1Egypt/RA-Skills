@@ -1,44 +1,57 @@
-## Description: <br>
-Use when generating lightweight talking-head portrait videos with Alibaba Cloud Model Studio LivePortrait (`liveportrait`) from a detected portrait image and speech audio. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when generating lightweight talking-head portrait videos with Alibaba Cloud Model Studio LivePortrait (`liveportrait`) from a detected portrait image and speech audio.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and content automation teams use this skill to prepare Alibaba Cloud LivePortrait detection and generation requests for talking-head videos from portrait images and speech audio. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China mainland, Beijing region <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Portrait image and speech audio URLs can expose private or consent-sensitive media. <br>
-Mitigation: Use media you have rights and consent to use, prefer short-lived or controlled URLs, avoid secrets in URL query strings, and remove output artifacts that contain private links. <br>
-Risk: The skill requires Alibaba Cloud DashScope credentials for LivePortrait requests. <br>
-Mitigation: Provide credentials through environment or local credential files, use least-privileged access, and do not embed API keys in prompts, URLs, or generated request files. <br>
+## Use Case:
 
+Developers and content teams use this skill to prepare Alibaba Cloud Model Studio LivePortrait detection and generation requests for lightweight presenter-style talking-head videos from public portrait image and speech audio URLs.
 
-## Reference(s): <br>
-- [LivePortrait source links](references/sources.md) <br>
-- [Alibaba Cloud Model Studio video generation overview](https://help.aliyun.com/zh/model-studio/use-video-generation) <br>
-- [LivePortrait image detection API reference](https://help.aliyun.com/zh/model-studio/liveportrait-detect-api) <br>
-- [LivePortrait video generation API reference](https://help.aliyun.com/zh/model-studio/liveportrait-api) <br>
-- [LivePortrait quick start](https://help.aliyun.com/zh/model-studio/liveportrait-quick-start/) <br>
+### Deployment Geography for Use:
 
+China mainland (Beijing region)
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON request payloads and concise operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes normalized request payloads and task evidence under output/aliyun-liveportrait/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The workflow sends portrait images and voice audio to Alibaba Cloud Model Studio using public HTTP/HTTPS URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use short-lived public links where possible, avoid embedding long-lived secrets in URLs, and only process media that is appropriate to share with the provider.
+
+Risk: Generated request records can include exact portrait and audio URLs.
+
+Mitigation: Clean up output/aliyun-liveportrait/ when request records contain sensitive media locations or parameters.
+
+## Reference(s):
+
+- [Alibaba Cloud Model Studio Video Generation Overview](https://help.aliyun.com/zh/model-studio/use-video-generation)
+- [LivePortrait Image Detection API Reference](https://help.aliyun.com/zh/model-studio/liveportrait-detect-api)
+- [LivePortrait Video Generation API Reference](https://help.aliyun.com/zh/model-studio/liveportrait-api)
+- [LivePortrait Quick Start](https://help.aliyun.com/zh/model-studio/liveportrait-quick-start/)
+- [ClawHub Skill Page](https://clawhub.ai/cinience/skills/aliyun-liveportrait)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with JSON request payload files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes normalized request payloads to output/aliyun-liveportrait/ by default.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

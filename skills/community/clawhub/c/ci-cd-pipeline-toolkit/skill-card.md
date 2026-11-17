@@ -1,42 +1,59 @@
-## Description: <br>
-Automates CI/CD pipeline creation and monitoring for GitHub Actions, GitLab CI, and Jenkins, including build, test, deploy workflow generation and pipeline status checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates CI/CD pipelines for GitHub Actions, GitLab CI, and Jenkins with build, test, deploy workflow creation and pipeline status monitoring.
 
-## Publisher: <br>
-[kaiyuelv](https://clawhub.ai/user/kaiyuelv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaiyuelv](https://clawhub.ai/user/kaiyuelv)
 
-## Use Case: <br>
-Developers and DevOps engineers use this skill to generate CI/CD workflow configurations, create repeatable build/test/deploy stages, and check recent pipeline status across supported platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated CI/CD files can change build, deployment, or publishing behavior in real environments. <br>
-Mitigation: Review generated workflow files before committing them, especially deployment and production-branch behavior. <br>
-Risk: Pipeline status checks may use repository or CI platform tokens. <br>
-Mitigation: Use least-privilege tokens, avoid embedding credentials in generated files, and prefer a virtual environment with pinned dependencies. <br>
+## Use Case:
 
+Developers and DevOps engineers use this skill to create GitHub Actions workflows and GitLab CI configurations, monitor CI pipeline status, and reason about deployment automation across common CI/CD platforms.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaiyuelv/ci-cd-pipeline-toolkit) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples plus generated CI/CD configuration files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create workflow files and may make pipeline status API calls when the user supplies repository, project, or token inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: Generated CI/CD files or deployment automation could affect production systems if applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect generated workflow and pipeline files before committing them, and require normal code review and environment approval for deployment changes.
+
+Risk: Pipeline monitoring can involve GitHub, GitLab, or Jenkins credentials.
+
+Mitigation: Use narrowly scoped, short-lived tokens stored in secret managers or environment variables, and avoid passing tokens directly on command lines.
+
+Risk: Untrusted or plaintext GitLab URLs can expose tokens or pipeline data.
+
+Mitigation: Use trusted HTTPS GitLab endpoints and validate URLs before calling pipeline APIs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kaiyuelv/skills/ci-cd-pipeline-toolkit)
+- [Artifact README](artifact/README.md)
+- [Artifact Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown prose with inline code, YAML configuration examples, and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated CI/CD configuration and deployment guidance should be reviewed before being committed or applied to production systems.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,55 @@
-## Description: <br>
-Guides agents in using agentOS API V3 Diary Call Group endpoints for diary search, appointment scheduling, updates, cancellation, feedback, branch lookup, allocations, and recurring appointment workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents use the agentOS API V3 Diary Call Group endpoints to search guests, inspect allocations, manage appointments, submit feedback, and retrieve branch or recurring appointment details.
 
-## Publisher: <br>
-[molexazwo](https://clawhub.ai/user/molexazwo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[molexazwo](https://clawhub.ai/user/molexazwo)
 
-## Use Case: <br>
-Developers and operators use this skill to help an agent choose agentOS diary endpoints, authenticate with an API key, and prepare diary management requests for scheduling, branch, allocation, feedback, and recurring appointment tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide requests that create, update, delete, or cancel live diary appointments. <br>
-Mitigation: Use a least-privilege API key, verify tenant, branch, and appointment identifiers, and require explicit approval before write operations. <br>
+## Use Case:
 
+Developers and operations teams use this skill to answer diary API questions and draft endpoint-specific guidance or calls for scheduling, appointment management, branch lookup, and feedback workflows in agentOS.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/molexazwo/skills/super-lap-agentos-api-v3-diary-call-group) <br>
-- [LAP](https://lap.sh) <br>
-- [agentOS API Base URL](https://live-api.letmc.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with endpoint tables, setup steps, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AGENTOS_API_V3_DIARY_CALL_GROUP_API_KEY for live API use; write operations should require explicit approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can guide actions that create, update, cancel, or delete real appointments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privileged API key and require explicit user confirmation before any appointment-changing API call.
+
+Risk: The artifact includes unpinned `npx @lap-platform/lapsh` command examples.
+
+Mitigation: Pin and trust the package version or run the commands in an isolated environment before relying on their output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/molexazwo/skills/super-lap-agentos-api-v3-diary-call-group)
+- [LAP](https://lap.sh)
+- [agentOS Diary API base URL](https://live-api.letmc.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with endpoint paths and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AGENTOS_API_V3_DIARY_CALL_GROUP_API_KEY for authenticated API use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,39 @@
+{
+  "source": "https://clawhub.ai/waylonsong/skills/headful-browser-vnc",
+  "version": "1.0.2",
+  "retrieved": "2026-11-12",
+  "files": [
+    "SKILL.md",
+    "CHANGELOG.md",
+    "README.docker.md",
+    "README.md",
+    "skill-card.md",
+    "skill.json",
+    "scripts/_env_loader.sh",
+    "scripts/export_cookies.sh",
+    "scripts/export_page.sh",
+    "scripts/setup.sh",
+    "scripts/start_chrome_debug.sh",
+    "scripts/start_vnc.sh",
+    "scripts/stop_vnc.sh",
+    "tests/smoke_test.sh",
+    "tools/playwright_export.js"
+  ],
+  "importedSha256": {
+    "SKILL.md": "bf02e1c7e22dc231c349398dcf4b5d9adf6417d9a05d3202cd792e52d8e536ac",
+    "CHANGELOG.md": "b63b09c6da7e1ec6955a1685643a92d836366f8ceb815141cbf201f6530b5adf",
+    "README.docker.md": "5ab1566e4e8081d807a5b41a1ba54ccd7ed1af25e92c77c885732db8c4d252a9",
+    "README.md": "bf02e1c7e22dc231c349398dcf4b5d9adf6417d9a05d3202cd792e52d8e536ac",
+    "skill-card.md": "2082bc13f498330bfc66434c254b156d01dd0550cfcfb59d68e677439d1cb353",
+    "skill.json": "9bf5dc5438aa4b64c0b9fc7cdd3187a05e89f6acaee5d4e353921ca5b87f11a8",
+    "scripts/_env_loader.sh": "66d12b14b3389b841707302d789bf591225e53b26032c01590c7959baba67ac8",
+    "scripts/export_cookies.sh": "49764bc86f9ca79f119a28410b73b34d80ca839fb4bb22f4fd560e9daf8d7a8c",
+    "scripts/export_page.sh": "b2c895ebb7841d22d40d7eb26505a655265e36dd05c536a5ca1d30d7f6af1223",
+    "scripts/setup.sh": "26af1579944be784b3e2866bac8713da678e1fd632bdbfa57eb6415a5d871566",
+    "scripts/start_chrome_debug.sh": "7d825158a724384599994fbc95c4790dd3fb7797dd8e5616a42a66983dd40a71",
+    "scripts/start_vnc.sh": "7c459e57ca30ea7ccea9356698e185f844c187a4a3bb98d7f50cf284cd39f53f",
+    "scripts/stop_vnc.sh": "0a198f47d726dc1850f2ff902e9f5472d33ecce32ef5f5b7f97c99ea96fb7d94",
+    "tests/smoke_test.sh": "cac93cf0bad94d4a0ecf09afe80ccc41d334b3b15e91c2f79dc12970aaab53e5",
+    "tools/playwright_export.js": "7d54257517a304e25c0a841cad624630db9040ce683ca245c0a0186df33ba549"
+  }
+}

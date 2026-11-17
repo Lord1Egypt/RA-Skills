@@ -1,43 +1,54 @@
-## Description: <br>
-Automatically record and analyze user behavior patterns from conversations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically record and analyze user behavior patterns from conversations.
 
-## Publisher: <br>
-[chefroger](https://clawhub.ai/user/chefroger) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chefroger](https://clawhub.ai/user/chefroger)
 
-## Use Case: <br>
-Users and developers use this skill to track local conversation-derived patterns such as recurring topics, project focus, active hours, and skill usage. It can produce manual or scheduled summaries for personal behavior review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Conversation-derived behavior files may contain sensitive personal or project information. <br>
-Mitigation: Review the OpenClaw workspace memory directory before use, restrict access to generated files, and delete behavior data or reports when the profile is no longer wanted. <br>
-Risk: Cron or heartbeat automation can continue analyzing local memory over time. <br>
-Mitigation: Enable scheduled tracking only with informed consent and disable cron or heartbeat automation when ongoing analysis is not desired. <br>
-Risk: Keyword-based summaries can be incomplete or misleading if used as definitive behavioral conclusions. <br>
-Mitigation: Treat reports as personal review aids and inspect the underlying local memory data before making decisions from the summaries. <br>
+## Use Case:
 
+OpenClaw users can use this skill to record conversation topics, analyze behavior patterns from local conversation memory, and generate behavior reports. It supports manual tracking and optional scheduled analysis for users who explicitly opt in.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/chefroger/behavior-tracker) <br>
-- [Publisher Profile](https://clawhub.ai/user/chefroger) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON behavior data, and terminal status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local behavior pattern data, report output, and heartbeat state under the OpenClaw workspace memory directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill profiles OpenClaw conversation memory and stores durable behavior data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this profiling is expected, inspect generated behavior files periodically, and delete them when they are no longer needed.
+
+Risk: Cron or heartbeat automation can update behavior records repeatedly without a fresh prompt each time.
+
+Mitigation: Prefer manual runs unless scheduled tracking has been explicitly enabled by the user.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chefroger/skills/behavior-tracker)
+- [Publisher profile](https://clawhub.ai/user/chefroger)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [Markdown reports, JSON behavior profile files, and shell commands for manual or scheduled runs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write behavior-patterns.json, behavior-report.md, and behavior-last-check.json under the OpenClaw workspace memory directory when run.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

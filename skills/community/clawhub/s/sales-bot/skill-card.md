@@ -1,42 +1,61 @@
-## Description: <br>
-Automates lead capture and tracking with Supabase storage and Make.com email workflows, managing conversations from new to qualified status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate lead capture and tracking with Supabase storage and Make.com email workflows, managing conversations from new to qualified status.
 
-## Publisher: <br>
-[big-roman123](https://clawhub.ai/user/big-roman123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[big-roman123](https://clawhub.ai/user/big-roman123)
 
-## Use Case: <br>
-Sales teams and Clawd agent developers use this skill to capture leads from agent conversations, trigger first-response automation, track lead status, and log conversation history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles personal lead and conversation data using a full-power Supabase Service Role Key. <br>
-Mitigation: Use a tightly scoped Supabase project or schema, protect the Service Role Key, and add privacy notice, consent or lawful-basis, retention, deletion, and audit controls before using real lead data. <br>
-Risk: Lead deletion can be irreversible without documented recovery safeguards. <br>
-Mitigation: Restrict deletion permissions and establish backup, recovery, and approval logging before production use. <br>
-Risk: Lead data may flow through Make.com automation and related email services. <br>
-Mitigation: Review Make.com and downstream email-service data handling, retention, and access controls before enabling automated replies. <br>
+## Use Case:
 
+Sales and support agents use this skill to capture lead contact details, trigger automatic email follow-up, track lifecycle status, and retrieve or update conversation history.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/big-roman123/sales-bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Configuration instructions] <br>
-**Output Format:** [JSON responses from TypeScript methods with configuration values for Supabase and Make.com workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates, retrieves, updates, lists, and deletes lead records; logs conversations; and reports automation status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, skill.json, package.json, SKILL.md) <br>
+Risk: The skill requests a powerful Supabase service-role key while handling sensitive lead and conversation data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped Supabase credential or backend RPC/API instead of a broad service-role key, and keep credentials in managed secret storage.
+
+Risk: Tenant-scoping gaps around CRM data could expose or modify records across organizations.
+
+Mitigation: Confirm organization filters and Supabase row-level security policies protect every read, update, and delete path before deployment.
+
+Risk: Lead capture and automated email replies may collect contact details or send outreach before consent is established.
+
+Mitigation: Add explicit consent checks before storing contact details or sending auto-replies, and define retention and redaction rules for conversation logs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/big-roman123/skills/sales-bot)
+- [README](artifact/README.md)
+- [Skill Documentation](artifact/SKILL.md)
+- [Lead Schema](artifact/schemas/lead.json)
+- [Conversation Schema](artifact/schemas/conversation.json)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, text, configuration]
+
+**Output Format:** [Structured JSON action results with short status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Supabase URL, Supabase service-role key, organization ID, and optional default priority.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release, package.json, skill.json, SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

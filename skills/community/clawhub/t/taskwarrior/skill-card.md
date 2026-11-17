@@ -1,45 +1,62 @@
-## Description: <br>
-Workspace-local task management powered by Taskwarrior for adding, organizing, and tracking tasks by project, tags, due dates, and priority with data stored inside the active workspace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Workspace-local task management powered by Taskwarrior for adding, organizing, and tracking tasks by project, tags, due dates, and priority with all data stored inside the active workspace.
 
-## Publisher: <br>
-[aghareza](https://clawhub.ai/user/aghareza) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aghareza](https://clawhub.ai/user/aghareza)
 
-## Use Case: <br>
-Developers and agent users use this skill to manage workspace-local Taskwarrior tasks, including adding, listing, modifying, completing, tagging, prioritizing, and annotating tasks while keeping task data inside the active workspace. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Taskwarrior confirmations are disabled for automation, so broad edits, deletes, purges, or status changes can affect multiple tasks without an interactive prompt. <br>
-Mitigation: Preview matching tasks before bulk changes, require explicit user intent for deletes or purges, and show a focused task info or filtered list after mutations. <br>
-Risk: The skill depends on the external Taskwarrior binary being available in the runtime environment. <br>
-Mitigation: Check task --version before use and ask the environment owner to install Taskwarrior in the base image if it is missing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/aghareza/taskwarrior) <br>
-- [Workspace Data Layout](references/workspace_data_layout.md) <br>
-- [Taskwarrior Cheatsheet](references/taskwarrior_cheatsheet.md) <br>
-- [Safe Command Policy](references/safe_command_policy.md) <br>
-- [Examples](references/examples.md) <br>
-- [ClawHub Notes](references/clawhub_notes.md) <br>
-- [Taskwarrior Availability](references/install.md) <br>
+## Use Case:
 
+Developers and agents use this skill to manage workspace-scoped Taskwarrior tasks without writing to global Taskwarrior configuration by default. It supports common task workflows including add, list, modify, complete, annotate, project, tag, due-date, and priority operations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses workspace-local Taskwarrior paths and environment variables; does not install system packages at runtime.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Taskwarrior may be unavailable in the runtime environment.
+
+Mitigation: Validate availability with task --version and ask the environment owner to install Taskwarrior in the runtime image if it is missing.
+
+Risk: The skill creates and updates Taskwarrior files inside .openclaw/taskwarrior in the active workspace.
+
+Mitigation: Keep TASKRC and TASKDATA scoped to the workspace-local Taskwarrior directory and show focused verification output after mutations.
+
+Risk: Deletes, purges, global Taskwarrior storage, or broad bulk changes can modify more task data than intended.
+
+Mitigation: Require explicit user wording for destructive, global, or bulk operations and preview matching tasks before broad changes.
+
+## Reference(s):
+
+- [ClawHub taskwarrior skill page](https://clawhub.ai/aghareza/skills/taskwarrior)
+- [Workspace data layout](references/workspace_data_layout.md)
+- [Taskwarrior cheatsheet](references/taskwarrior_cheatsheet.md)
+- [Safe command policy](references/safe_command_policy.md)
+- [Examples](references/examples.md)
+- [ClawHub notes](references/clawhub_notes.md)
+- [Taskwarrior availability](references/install.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown text with inline shell commands and focused Taskwarrior verification output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update Taskwarrior state under .openclaw/taskwarrior in the active workspace.]
+
+## Skill Version(s):
+
+0.1.3 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

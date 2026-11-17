@@ -1,47 +1,63 @@
-## Description: <br>
-A Laiye ADP document-processing skill that guides an agent through parsing PDFs, images, scanned documents, and Office files into structured JSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A universal document parsing skill powered by Laiye ADP that parses PDFs, images, scanned documents, and Office files into key fields and structured JSON.
 
-## Publisher: <br>
-[laiye-adp](https://clawhub.ai/user/laiye-adp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Commercial License Agreement <br>
+## Publisher:
 
+[laiye-adp](https://clawhub.ai/user/laiye-adp)
 
-## Use Case: <br>
-Developers, analysts, and automation teams use this skill to convert business documents into structured JSON for storage, retrieval, ETL pipelines, quality inspection, and cross-system integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Commercial License Agreement
 
-## Known Risks and Mitigations: <br>
-Risk: Selected documents or URLs are processed by Laiye ADP cloud services and may contain sensitive, regulated, customer, or confidential data. <br>
-Mitigation: Use the skill only when authorized for the document contents and avoid submitting contracts, IDs, invoices, secrets, regulated records, or customer data without approval. <br>
-Risk: The skill requires an ADP API key and service configuration. <br>
-Mitigation: Protect the API key, prefer environment variables or the documented encrypted configuration storage, and check configuration before parsing documents. <br>
-Risk: Optional remote installer commands pipe downloaded scripts into a shell. <br>
-Mitigation: Prefer the npm package or verified release binaries, and review remote installer scripts before execution when those alternatives are not available. <br>
-Risk: Document parsing uses credits and can incur usage-based costs, especially for batch or async workflows. <br>
-Mitigation: Check available credits before large jobs, monitor billing, and confirm batch scope before submitting many documents. <br>
+## Use Case:
 
+Developers and business automation teams use this skill to configure the Laiye ADP CLI and parse local, URL, Base64, batch, or async documents into structured JSON for storage, retrieval, data pipelines, quality inspection, and system integration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/laiye-adp/adp-pdf-to-structured-json) <br>
-- [Laiye ADP global portal](https://adp-global.laiye.com/?utm_source=clawhub) <br>
-- [Laiye ADP mainland China portal](https://adp.laiye.com/?utm_source=clawhub) <br>
-- [ADP CLI releases](https://github.com/laiye-ai/adp-cli/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with ADP CLI commands and structured JSON results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports local files, URLs, Base64 input, batch jobs, async task queries, exported result files, OCR confidence fields, and document element positions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Install instructions include unpinned global CLI installation and remote script execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, prefer a pinned package or signed release, avoid curl-to-shell and PowerShell pipe execution, and require explicit approval before an agent installs or updates the CLI.
+
+Risk: Document parsing sends user documents to Laiye ADP's cloud service.
+
+Mitigation: Submit only documents approved for that service, especially for invoices, IDs, contracts, or regulated data.
+
+Risk: The skill requires ADP API credentials.
+
+Mitigation: Keep API keys out of prompts and logs, use approved secret storage or environment variables, and clear local configuration when access is no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/laiye-adp/skills/adp-pdf-to-structured-json)
+- [ADP CLI User Guide](https://laiye-tech.feishu.cn/wiki/YIaawiK2DimisZk5KfDc8a8cnLh)
+- [Open API User Guide](https://laiye-tech.feishu.cn/wiki/S1t2wYR04ivndKkMDxxcp2SFnKd)
+- [Public Cloud Manual](https://laiye-tech.feishu.cn/wiki/OfexwgVUQiOpEek4kO7c7NEJnAe)
+- [Laiye ADP website](https://laiye.com/en/product/adp-platform)
+- [ADP Global portal](https://adp-global.laiye.com/?utm_source=clawhub)
+- [ADP Mainland China portal](https://adp.laiye.com/?utm_source=clawhub)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands; ADP parsing commands return structured JSON or exported JSON files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports local files, URLs, Base64 input, batch folders, async task queries, and exported per-file JSON results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

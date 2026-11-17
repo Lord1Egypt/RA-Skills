@@ -1,41 +1,54 @@
-## Description: <br>
-Backup and restore all agent files and configurations to fully migrate an OpenClaw agent with local packaging, path mapping, and integrity verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Soul Transfer helps an agent create and restore local backups of OpenClaw agent files, configuration, memory, credentials, sessions, and workspace data using portable archives and integrity checks.
 
-## Publisher: <br>
-[junmopho](https://clawhub.ai/user/junmopho) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junmopho](https://clawhub.ai/user/junmopho)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to create local backups of agent state, workspace files, credentials, sessions, memory, and configuration, then restore that agent state in another environment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backups may contain live API keys, login sessions, personal memory, and workspace files. <br>
-Mitigation: Store backup archives encrypted, do not share them, and inspect archive contents before restore. <br>
-Risk: Restore operations can replace current configuration and workspace state while documented safeguards may be incomplete. <br>
-Mitigation: Keep an independent backup, verify archive integrity before restore, and confirm the target environment before overwriting files. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to migrate an agent between local environments by backing up its identity, memory, skills, configuration, credentials, sessions, and workspace files, then restoring them with verification and rollback steps.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/junmopho/junmopho-soul-transfer) <br>
-- [Restore Reference](references/restore.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and backup or restore paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe archive contents, integrity checks, safety backups, path mapping, and post-restore verification steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Risk: Backup archives can contain credentials, tokens, sessions, memory, and workspace data, so a copied or shared archive may expose sensitive access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat archives like password vaults: keep them local, store them encrypted, inspect contents before restore, avoid archives from untrusted sources, and rotate credentials after migration where practical.
+
+Risk: Restore steps can overwrite current OpenClaw and workspace state and may reinstall dependencies from restored workspace content.
+
+Mitigation: Verify archive integrity, create a safety backup before restore, use dry-run behavior when available, inspect restored workspace contents before dependency installation, and confirm path mappings for the target environment.
+
+## Reference(s):
+
+- [Agent Clone - Restore Reference](references/restore.md)
+- [ClawHub Skill Page](https://clawhub.ai/junmopho/skills/junmopho-soul-transfer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe file manifests, checksums, archive paths, verification results, restore steps, and rollback guidance.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

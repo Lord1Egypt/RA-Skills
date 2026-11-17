@@ -1,39 +1,53 @@
-## Description: <br>
-Enables an agent to search, fetch, and browse the web for current information, then summarize findings in structured Chinese with sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables an AI assistant to search, fetch, browse, and summarize current web information when users ask for news, recent facts, links, or topic-specific research.
 
-## Publisher: <br>
-[332054781](https://clawhub.ai/user/332054781) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[332054781](https://clawhub.ai/user/332054781)
 
-## Use Case: <br>
-External users and developers use this skill when an agent needs current or source-backed information, such as news, weather, events, documents, and topic research beyond training data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Web searches, fetched URLs, or browser activity may be sent to external services. <br>
-Mitigation: Use the skill only with public or non-sensitive topics, and avoid confidential prompts, private URLs, and sensitive account pages. <br>
-Risk: Web results may be incomplete, unavailable, blocked, or misleading. <br>
-Mitigation: Summarize with visible source attribution, state retrieval failures, and use alternate public sources when the first source cannot be accessed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Web Learner reference resources](artifact/references/resources.md) <br>
+## Use Case:
 
+External users and developers use this skill to guide an assistant through web search, page fetching, browser fallback, and concise Chinese summaries with cited sources. It is intended for up-to-date research tasks such as news, weather, events, public links, and topics not covered by model training data.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Chinese Markdown summaries with source notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes concise bullet points, source attribution, and clear failure notes when web access is unavailable.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Web queries may disclose sensitive private information to search engines or websites.
+
+Mitigation: Avoid including sensitive private information in web queries unless the user is comfortable sending those terms to external web services.
+
+Risk: Fetched web content can be incomplete, unavailable, anti-scraping protected, or misleading.
+
+Mitigation: Use alternate sources or browser fallback when appropriate, disclose access limits, and summarize with clear source notes.
+
+## Reference(s):
+
+- [Web Learner reference resources](references/resources.md)
+- [ClawHub skill page](https://clawhub.ai/332054781/skills/web-learner-1-0-0)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands]
+
+**Output Format:** [Markdown with concise Chinese summaries and source notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose web search, web fetch, or browser-tool usage depending on tool availability.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

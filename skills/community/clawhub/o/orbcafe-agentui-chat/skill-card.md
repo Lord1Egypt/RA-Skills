@@ -1,43 +1,60 @@
-## Description: <br>
-Build ORBCAFE chat and copilot experiences with AgentPanel, StdChat, CopilotChat, ChatMessage typing flow, and AgentUICardHooks using official examples patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build ORBCAFE chat and copilot experiences with AgentPanel, StdChat, CopilotChat, ChatMessage typing flow, and AgentUICardHooks using official example patterns.
 
-## Publisher: <br>
-[SHENRUIYANG](https://clawhub.ai/user/SHENRUIYANG) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenruiyang](https://clawhub.ai/user/shenruiyang)
 
-## Use Case: <br>
-Developers and engineers use this skill to build ORBCAFE full-page chat and floating copilot interfaces with public orbcafe-ui APIs. It helps select AgentPanel, StdChat, or CopilotChat and produce minimal code, state shape, verification steps, and troubleshooting guidance for streaming replies and card actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Frontend setup commands install ORBCAFE UI and peer packages into the target React project. <br>
-Mitigation: Install only in the intended project and review package versions through the normal lockfile and version-pinning workflow before running setup commands. <br>
-Risk: Chat, streaming, card action, drag, or resize behavior can appear visible but have no effect if required state and hook contracts are not wired. <br>
-Mitigation: Follow the public API, message state, streaming completion, card hook, and copilot shell guardrails before accepting the implementation. <br>
+## Use Case:
 
+Developers use this skill to build ORBCAFE full-page chat and floating copilot interfaces using AgentPanel, StdChat, CopilotChat, streaming message state, card hooks, and public ORBCAFE APIs. It also helps troubleshoot visible chat UIs where send, streaming, card actions, drag, or resize behavior has no effect.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/SHENRUIYANG/orbcafe-agentui-chat) <br>
-- [Component Selection](references/component-selection.md) <br>
-- [AgentUI Guardrails](references/guardrails.md) <br>
-- [AgentUI Recipes](references/recipes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with TypeScript/TSX and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes component selection, minimal code, state shape, verification steps, and troubleshooting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Dependency changes may install ORBCAFE and MUI packages into the user's project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review package changes before running the listed npm install command or starting the example dev server.
+
+Risk: Chinese-language implementation guidance may be hard to review for teams that cannot validate the instructions directly.
+
+Mitigation: Use a reviewer who can read the guidance to confirm component choice, state handling, verification steps, and troubleshooting output.
+
+Risk: Copilot drag or resize behavior can appear broken if shell state and resize observer behavior are wired incorrectly.
+
+Mitigation: Keep floating button, open state, positioning, drag, snap, and resize logic in the page shell, and suspend resize observer writeback during active resizing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shenruiyang/skills/orbcafe-agentui-chat)
+- [Component Selection](references/component-selection.md)
+- [AgentUI Guardrails](references/guardrails.md)
+- [AgentUI Recipes](references/recipes.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with TypeScript/TSX and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes component choice, minimal code, state shape, verification steps, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

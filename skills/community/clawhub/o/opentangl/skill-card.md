@@ -1,42 +1,54 @@
-## Description: <br>
-OpenTangl configures an autonomous development loop for JavaScript and TypeScript projects that plans work, writes and verifies code, creates pull requests, reviews diffs, and can merge changes across one or more repositories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenTangl helps configure an autonomous development loop for JavaScript and TypeScript projects, including project detection, configuration, vision documentation, LLM setup, and first-run commands.
 
-## Publisher: <br>
-[8co](https://clawhub.ai/user/8co) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[8co](https://clawhub.ai/user/8co)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to set up OpenTangl for JavaScript and TypeScript projects, detect project metadata, create project and vision configuration, prepare LLM provider settings, and run a first autonomous development cycle. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill configures autonomous repository changes, pull requests, reviews, and merges using the user's GitHub identity. <br>
-Mitigation: Use a dedicated least-privilege GitHub identity or token where possible, test on a non-critical repository first, and keep branch protection or required human review enabled for merges. <br>
-Risk: The skill depends on external OpenTangl code and LLM provider configuration before it can operate. <br>
-Mitigation: Review and pin the external OpenTangl code before running it, and keep API keys in a gitignored .env file created by the user. <br>
-Risk: Autonomous code changes may fail verification or require human review before merge. <br>
-Mitigation: Run configured build, test, lint, or typecheck commands before committing or merging, and review generated pull requests after the first cycle. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenTangl ClawHub release](https://clawhub.ai/8co/opentangl) <br>
-- [OpenTangl GitHub repository](https://github.com/8co/opentangl) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to prepare OpenTangl for autonomous work on JavaScript and TypeScript projects. It guides project discovery, configuration file creation, product vision capture, LLM setup, and the first autopilot run.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with YAML, dotenv, and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup guidance and configuration files such as projects.yaml and product-vision.md; expects node, git, and gh to be available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.10 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill prepares an autonomous workflow that can create, review, and merge repository changes.
+
+Mitigation: Use a limited GitHub token or account, test on non-critical repositories first, and confirm whether autopilot can merge without human approval before granting access to important projects.
+
+Risk: The setup relies on mutable third-party install and runtime commands.
+
+Mitigation: Pin the OpenTangl repository to a reviewed commit and prefer lockfile-based installs before running it.
+
+## Reference(s):
+
+- [OpenTangl homepage](https://github.com/8co/opentangl)
+- [ClawHub skill page](https://clawhub.ai/8co/skills/opentangl)
+- [Publisher profile](https://clawhub.ai/user/8co)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code blocks, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create project configuration, product vision, and task queue files after gated user confirmation.]
+
+## Skill Version(s):
+
+0.1.10 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

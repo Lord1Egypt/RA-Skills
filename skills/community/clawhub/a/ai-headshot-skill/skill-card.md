@@ -1,43 +1,58 @@
-## Description: <br>
-Generate AI professional headshot images via the Neta AI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates professional headshot image URLs from text prompts through the Neta AI image generation API.
 
-## Publisher: <br>
-[blammectrappora](https://clawhub.ai/user/blammectrappora) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blammectrappora](https://clawhub.ai/user/blammectrappora)
 
-## Use Case: <br>
-External users and developers use this skill to request professional headshot image generation from text prompts, optionally choosing dimensions or providing a reference image UUID. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, user-supplied tokens, and optional reference image identifiers are sent to the external Neta/TalesOfAI service. <br>
-Mitigation: Use a scoped or trial token, avoid sensitive personal details or sensitive reference images, and review the provider's privacy terms before use. <br>
-Risk: Generated headshots may be used in identity-related contexts where image quality, consent, or policy expectations matter. <br>
-Mitigation: Review generated images before publication and ensure the prompt, reference image use, and downstream use comply with applicable consent and platform policies. <br>
+## Use Case:
 
+External users and agents use this skill to create professional headshot images from prompts and receive a direct image URL. It supports portrait, landscape, square, and tall outputs, with optional reference-image style inheritance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/blammectrappora/ai-headshot-skill) <br>
-- [Neta AI access page](https://www.neta.art/open/) <br>
-- [TalesOfAI image generation endpoint](https://api.talesofai.com/v3/make_image) <br>
-- [TalesOfAI task polling endpoint](https://api.talesofai.com/v1/artifact/task/${taskUuid}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text image URL with Markdown and inline shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-supplied Neta API token; optional size and reference image UUID parameters are supported.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence and package.json) <br>
+Risk: Prompts, optional reference IDs, and a Neta/TalesOfAI API token are sent to the external image generation service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a low-privilege, revocable token and avoid sensitive personal details or unauthorized reference images in prompts.
+
+Risk: A token passed on the command line may be exposed through shell history or process logs.
+
+Mitigation: Rotate the token if exposure is suspected and prefer short-lived or low-privilege credentials.
+
+Risk: Floating install references may not resolve to the reviewed release.
+
+Mitigation: Verify the publisher and install from a pinned commit or trusted ClawHub package.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/blammectrappora/skills/ai-headshot-skill)
+- [Neta AI API Access](https://www.neta.art/open/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prints a single generated image URL to stdout on success.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

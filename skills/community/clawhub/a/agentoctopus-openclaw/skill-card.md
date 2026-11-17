@@ -1,41 +1,58 @@
-## Description: <br>
-Routes task-oriented requests through AgentOctopus when the best downstream skill or tool is not obvious. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes task-oriented requests through AgentOctopus when the best tool is not obvious or when the request may match one of many installed skills.
 
-## Publisher: <br>
-[leiw5173](https://clawhub.ai/user/leiw5173) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leiw5173](https://clawhub.ai/user/leiw5173)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to route tool-backed tasks, such as lookups, transformations, research, weather, translation, geolocation, finance, and API-backed requests, to AgentOctopus and its downstream community skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AgentOctopus can automatically choose and run community skills, which may send prompts or task data to downstream tools or services. <br>
-Mitigation: Review the enabled skill set before use and avoid submitting secrets, private personal data, API keys, or confidential work content unless the downstream handling is understood. <br>
-Risk: The skill depends on the local octopus command and may surface setup commands when dependencies, API keys, or rate limits block execution. <br>
-Mitigation: Install AgentOctopus from the expected source, review setup commands before running them, and configure only the credentials required for trusted downstream skills. <br>
+## Use Case:
 
+Developers and agent users use this skill to route tool-backed requests to AgentOctopus when the best downstream skill is not obvious. It is intended for lookups, transformations, research, weather, translation, geolocation, search, finance, and similar task-oriented workflows.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/leiw5173/agentoctopus-openclaw) <br>
-- [awesome-openclaw-skills](https://github.com/VoltAgent/awesome-openclaw-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [String or Markdown, sometimes including inline shell commands or configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [AgentOctopus returns a single downstream result or setup guidance when a required API key, rate limit, or dependency blocks execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and server release evidence) <br>
+Risk: Delegated prompts may be routed through downstream community skills that change over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only downstream skills and AgentOctopus sources you trust, and avoid sending secrets or confidential data in routed queries.
+
+Risk: Global latest-package installation can change the installed code between reviews.
+
+Mitigation: Prefer pinned or otherwise verified installation before using the skill in sensitive environments.
+
+Risk: Automatic downstream skill execution can invoke an unexpected tool for a user request.
+
+Mitigation: Require confirmation or maintain an allowlist for downstream skill execution where possible.
+
+## Reference(s):
+
+- [Agentoctopus Openclaw on ClawHub](https://clawhub.ai/leiw5173/skills/agentoctopus-openclaw)
+- [awesome-openclaw-skills](https://github.com/VoltAgent/awesome-openclaw-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include setup commands for missing API keys, rate limits, or AgentOctopus installation.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

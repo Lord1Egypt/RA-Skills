@@ -1,43 +1,62 @@
-## Description: <br>
-Turn a shower idea into a full best-seller manuscript in one command using a multi-agent pipeline that plans, writes, edits, and packages fiction or non-fiction books for Amazon KDP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn a shower idea into a full best-seller manuscript in one command, using a multi-stage writing pipeline that produces a manuscript and Amazon KDP publishing package.
 
-## Publisher: <br>
-[PhilipStark](https://clawhub.ai/user/PhilipStark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[philipstark](https://clawhub.ai/user/philipstark)
 
-## Use Case: <br>
-External creators, authors, and publishing-focused operators use this skill to turn a book idea into a generated manuscript, editorial memo, and Amazon KDP publishing package. Developers and agent users can run the included CLI or orchestrate the documented multi-stage workflow inside OpenClaw. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run a long Anthropic-powered generation workflow that sends the book idea and manuscript context to Anthropic and may incur API costs. <br>
-Mitigation: Use non-sensitive material, provide an Anthropic API key only in an appropriate environment, and review expected model usage before running. <br>
-Risk: The workflow creates multiple local manuscript and publishing-package files. <br>
-Mitigation: Set an explicit output directory and review generated files before publishing or sharing them. <br>
-Risk: Generated manuscripts and KDP metadata may contain inaccurate, misleading, or commercially unsuitable content. <br>
-Mitigation: Fact-check and edit the manuscript, keywords, categories, pricing, and KDP package before publication. <br>
+## Use Case:
 
+External users and writers use this skill to turn a book concept into a generated manuscript, editorial memo, and Amazon KDP launch package for fiction or non-fiction projects.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PhilipStark/bestseller-writer) <br>
-- [Publisher profile](https://clawhub.ai/user/PhilipStark) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files plus CLI status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a manuscript, KDP package, plan, character or authority notes, and editorial memo to a local output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, server release metadata) <br>
+Risk: The skill can send book ideas and generated manuscript material to Anthropic.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with content that is acceptable to process under the user's Anthropic account terms, and avoid sensitive unpublished or personal material unless that sharing is acceptable.
+
+Risk: Long generation runs can spend API credits.
+
+Mitigation: Review model, chapter, and batch settings before running, and start with a smaller chapter count when cost exposure needs to be limited.
+
+Risk: The CLI creates many local files.
+
+Mitigation: Set an explicit output directory and review generated files before publishing or sharing them.
+
+Risk: Dependency installation is not pinned by a lockfile in the submitted artifact.
+
+Mitigation: Pin dependencies with a lockfile before running npm install in controlled environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/philipstark/skills/bestseller-writer)
+- [Publisher Profile](https://clawhub.ai/user/philipstark)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files, command-line output, and setup instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a manuscript, KDP package, plan, character or authority notes, and editorial memo in a local output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

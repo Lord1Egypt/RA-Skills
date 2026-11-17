@@ -1,41 +1,54 @@
-## Description: <br>
-Api Billing helps agents query account balances, subscription usage, and historical billing for Volcengine, Alibaba Cloud, DeepSeek, MiniMax, and OpenRouter. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries API account balances, subscription usage, and billing history across Volcengine, Alibaba Cloud, DeepSeek, MiniMax, and OpenRouter.
 
-## Publisher: <br>
-[yifeiwang1981](https://clawhub.ai/user/yifeiwang1981) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yifeiwang1981](https://clawhub.ai/user/yifeiwang1981)
 
-## Use Case: <br>
-Developers and operators use this skill to check API account balances, subscription usage, and billing history across supported cloud and model API providers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads sensitive cloud and API billing credentials, and the security review notes weak storage guidance around Base64-encoded credential files. <br>
-Mitigation: Use least-privilege billing or read-only keys, store secrets with a managed secret mechanism when possible, keep credential files out of source control with strict permissions, and do not treat Base64 as encryption. <br>
-Risk: The skill contacts named third-party provider billing APIs and may print account balance, usage, or billing details. <br>
-Mitigation: Run it only in trusted environments, review the configured provider endpoints before use, and avoid sharing logs or terminal output that contain billing or account data. <br>
+## Use Case:
 
+Developers and account operators use this skill to check API provider balances, recent bills, and remaining plan usage with configured billing credentials.
 
-## Reference(s): <br>
-- [API billing interface reference](references/api-reference.md) <br>
-- [ClawHub skill page](https://clawhub.ai/yifeiwang1981/api-billing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text command output and CLI guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires configured provider credentials and network access to the named billing APIs; command output may include account balance, usage, and billing amounts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Credential-looking cloud keys are present in the bundled reference material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the included credential examples, and rotate any matching or reused keys before using the skill.
+
+Risk: The skill handles sensitive billing credentials and describes Base64 storage, which is reversible encoding rather than secret protection.
+
+Mitigation: Use read-only billing credentials, store them outside source control with strict local permissions, and treat Base64 values as exposed if shared.
+
+## Reference(s):
+
+- [API billing interface reference](references/api-reference.md)
+- [ClawHub skill page](https://clawhub.ai/yifeiwang1981/skills/api-billing)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and command-line text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Queries external billing APIs and prints account balance, usage, or billing summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

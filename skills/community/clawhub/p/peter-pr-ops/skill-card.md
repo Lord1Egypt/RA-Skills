@@ -1,42 +1,52 @@
-## Description: <br>
-Automates pull request wrap-up for single PR merges and batch PR cleanup to reduce repetitive manual work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PR closeout automation for single-PR serial merges and multi-PR batch cleanup to reduce repetitive manual work.
 
-## Publisher: <br>
-[chinasilva](https://clawhub.ai/user/chinasilva) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chinasilva](https://clawhub.ai/user/chinasilva)
 
-## Use Case: <br>
-Developers use this skill when they ask an agent to merge a single pull request, clean up multiple pull requests, or enable auto-merge after checks pass. It guides the agent to prefer local repository scripts, fall back to GitHub CLI commands, and report completed, waiting, or blocked outcomes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can use the current GitHub CLI account to merge or auto-merge pull requests. <br>
-Mitigation: Require an exact PR list and explicit confirmation before batch mode, auto-merge, local workflow scripts, or repository metadata updates. <br>
-Risk: Batch defaults may allow multiple repository changes to merge after checks pass. <br>
-Mitigation: Review each PR, CI state, and repository merge policy before enabling or accepting automated merges. <br>
-Risk: Local scripts such as scripts/automerge, scripts/massageprs, or ensure-workflow-docs may change repository state. <br>
-Mitigation: Review script contents and expected file changes before allowing the agent to run them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chinasilva/peter-pr-ops) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/chinasilva) <br>
+## Use Case:
 
+Developers and maintainers use this skill to close out pull requests by checking PR status, waiting for CI, enabling appropriate merge modes, and reporting whether merges are complete, waiting, or blocked.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports whether PR work is completed, waiting on CI, blocked, or followed by a docs/SESSION-BOOTSTRAP.md refresh.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.1 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can direct an agent to perform real pull-request merge operations in trusted repositories.
+
+Mitigation: Require explicit merge confirmation, review PR state and CI results, and avoid using it on untrusted repositories or branches.
+
+Risk: The skill prioritizes local scripts such as scripts/automerge, scripts/massageprs, and ensure-workflow-docs that may change repository behavior.
+
+Mitigation: Inspect these scripts before execution and only run them when their behavior is understood and expected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chinasilva/skills/peter-pr-ops)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Markdown]
+
+**Output Format:** [Markdown with inline shell commands and concise status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include merge status, CI wait state, blocking reasons, and whether docs/SESSION-BOOTSTRAP.md was refreshed.]
+
+## Skill Version(s):
+
+1.2.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

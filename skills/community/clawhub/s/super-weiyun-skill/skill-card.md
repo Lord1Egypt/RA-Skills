@@ -1,44 +1,58 @@
-## Description: <br>
-This skill helps agents manage Tencent Weiyun cloud storage through Python CLI and SDK workflows for authentication, file operations, sharing, space usage, and recycle-bin management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps an agent manage Tencent Weiyun cloud storage, including account authentication, uploads, downloads, sharing, file operations, space management, and recycle-bin actions through a Python CLI and SDK.
 
-## Publisher: <br>
-[subaru0573](https://clawhub.ai/user/subaru0573) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[subaru0573](https://clawhub.ai/user/subaru0573)
 
-## Use Case: <br>
-Developers and operators can use this skill to automate Tencent Weiyun file management from an agent, including login, upload, download, search, sharing, capacity checks, and recycle-bin actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use Tencent Weiyun session cookies and stores them in cookies.json, which can grant account-level access if exposed. <br>
-Mitigation: Use only on a trusted machine, restrict file permissions on cookies.json, rotate or remove cookies after use, and never paste Cookie headers into shared logs or agent transcripts. <br>
-Risk: The skill supports high-impact file actions, including upload, overwrite, delete, permanent delete, share-link creation, and recycle-bin clearing. <br>
-Mitigation: Require human review before executing upload, delete, share, permanent-delete, or clear-recycle commands, and avoid autonomous public sharing or permanent deletion. <br>
-Risk: Network calls act against a live Tencent Weiyun account and may affect private cloud files. <br>
-Mitigation: Run with the least sensitive account practical, test with noncritical folders first, and verify remote paths before execution. <br>
+## Use Case:
 
+Developers and agent operators use this skill to automate Tencent Weiyun file management from an agent workflow or Python environment. Typical tasks include logging in with QR code or cookies, uploading and downloading files or folders, creating share links, checking storage usage, and managing recycle-bin recovery or deletion.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/subaru0573/super-weiyun-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/subaru0573) <br>
-- [Tencent Weiyun](https://www.weiyun.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples, plus JSON-style command results from the toolkit.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke networked Tencent Weiyun actions and produce local files such as cookies.json, downloaded files, uploaded files, and QR-code images.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: The skill handles Tencent Weiyun account cookies and can save them locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer QR login, avoid passing cookies on the command line, restrict access to cookies.json, and delete saved cookies after use.
+
+Risk: Downloads, recursive folder downloads, and overwrite options can write or replace local files.
+
+Mitigation: Download only from trusted Weiyun folders, choose explicit destination paths, and review --overwrite before running commands.
+
+Risk: Delete, permanent delete, recycle-bin clearing, and share-link operations can expose or remove cloud files.
+
+Mitigation: Review target paths, share settings, and destructive flags before execution, especially for permanent deletion and public sharing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/subaru0573/skills/super-weiyun-skill)
+- [Tencent Weiyun](https://www.weiyun.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, Python examples, and JSON-style operation results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or modify local files such as downloaded content, uploaded file manifests, QR code images, and cookies.json when the user runs the provided commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

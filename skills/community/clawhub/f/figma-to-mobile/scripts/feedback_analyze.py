@@ -8,10 +8,7 @@ identifies high-frequency issues, and generates rule candidates.
 Usage:
     python feedback_analyze.py [feedback-log.md]
 
-If no path is given, looks for:
-- ./.trae/figma-to-mobile/feedback-log.md (project-local, recommended)
-- ./feedback-log.md
-- <skill_root>/feedback-log.md
+If no path is given, looks for feedback-log.md in the parent directory.
 """
 
 import re
@@ -151,13 +148,8 @@ def main():
     if len(sys.argv) > 1:
         log_path = sys.argv[1]
     else:
-        candidates = [
-            Path.cwd() / ".trae" / "figma-to-mobile" / "feedback-log.md",
-            Path.cwd() / "feedback-log.md",
-            Path(__file__).parent.parent / "feedback-log.md",
-        ]
-        found = next((p for p in candidates if p.exists()), None)
-        log_path = str(found or candidates[0])
+        # Look in parent directory
+        log_path = str(Path(__file__).parent.parent / "feedback-log.md")
 
     if not Path(log_path).exists():
         print(f"feedback-log.md not found at: {log_path}")

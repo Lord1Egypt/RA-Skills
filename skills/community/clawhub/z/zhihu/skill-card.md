@@ -1,44 +1,55 @@
-## Description: <br>
-Manage Zhihu AI Bot actions for publishing pins, reacting to content, creating or deleting comments, and fetching ring or comment details with Zhihu API credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Zhihu AI Bot workflows for publishing ring posts, liking or unliking pins and comments, creating or deleting comments, and retrieving ring or comment details with Zhihu API credentials.
 
-## Publisher: <br>
-[keepwonder](https://clawhub.ai/user/keepwonder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[keepwonder](https://clawhub.ai/user/keepwonder)
 
-## Use Case: <br>
-Developers and external users use this skill to let an agent operate a Zhihu Bot CLI for publishing and managing Zhihu Ring content with configured API credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish, react to, comment on, and delete Zhihu content through the configured account. <br>
-Mitigation: Review target IDs and generated content before allowing commands that modify Zhihu content. <br>
-Risk: Zhihu API credentials grant account-level access to the supported operations. <br>
-Mitigation: Keep ZHIHU_APP_KEY and ZHIHU_APP_SECRET out of logs, shared configuration, and source control. <br>
+## Use Case:
 
+Developers and operators with Zhihu API access use this skill to let an agent manage ring content and engagement workflows, including publishing pins, retrieving ring and comment data, and performing comment or reaction actions.
 
-## Reference(s): <br>
-- [ClawHub Zhihu release](https://clawhub.ai/keepwonder/zhihu) <br>
-- [Zhihu Open Platform](https://open.zhihu.com/) <br>
-- [Zhihu OpenAPI base URL](https://openapi.zhihu.com/) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [Supported Zhihu Ring](https://www.zhihu.com/ring/host/2001009660925334090) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, API results, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and CLI text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ZHIHU_APP_KEY and ZHIHU_APP_SECRET; API calls may publish, react to, comment on, delete, or retrieve Zhihu content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: The skill can publish, like, comment, and delete comments through a real Zhihu integration, which can affect public account state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a restricted account or least-privilege token when possible and manually confirm publish, like, comment, and delete actions before execution.
+
+Risk: Zhihu app key and secret are sensitive credentials required by the skill.
+
+Mitigation: Store ZHIHU_APP_KEY and ZHIHU_APP_SECRET in the agent environment or OpenClaw configuration and avoid exposing them in prompts, logs, or shared files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/keepwonder/skills/zhihu)
+- [Zhihu OpenAPI endpoint](https://openapi.zhihu.com/)
+- [Supported Zhihu ring](https://www.zhihu.com/ring/host/2001009660925334090)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [When executed, the bundled CLI prints live Zhihu API responses and status messages.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

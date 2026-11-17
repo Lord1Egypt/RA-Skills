@@ -1,42 +1,57 @@
-## Description: <br>
-Automates downloading YouTube audio, launching Doubao, playing audio, and capturing translations for full video subtitle extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates downloading YouTube audio, launching Doubao, playing audio, and capturing translations for full video subtitle extraction.
 
-## Publisher: <br>
-[banner90](https://clawhub.ai/user/banner90) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[banner90](https://clawhub.ai/user/banner90)
 
-## Use Case: <br>
-Users who need full-video translation use this skill to download YouTube audio, launch Doubao, play the audio through a visible Windows desktop, and capture translated subtitles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow runs an external absolute-path Python script that is not included in the artifact for review. <br>
-Mitigation: Install only after inspecting and trusting the external workflow.py script and the helper skills it chains. <br>
-Risk: The workflow downloads YouTube audio, plays audio, and saves audio and transcript files locally. <br>
-Mitigation: Avoid private or sensitive videos unless local processing, playback, and file retention are acceptable. <br>
-Risk: The workflow depends on visible Windows desktop automation for Doubao. <br>
-Mitigation: Run it only in a controlled desktop session where GUI access, accounts, and output directories are understood. <br>
+## Use Case:
 
+Developers and external users use this skill to run an OpenClaw workflow that downloads YouTube audio, opens Doubao, plays the audio, and captures translated subtitles or text.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/banner90/banner-youtube-translate-workflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and a JSON result schema] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local audio and translation files; requires Windows GUI automation with a visible desktop.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The registered tool points to an absolute host path outside the reviewed package, so the executable implementation is missing from the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect and trust the external Python file before installation or execution.
+
+Risk: The workflow downloads YouTube audio, opens Doubao, plays audio, and writes host files.
+
+Mitigation: Confirm the user has appropriate rights for the source media and accepts the local file writes and GUI automation behavior.
+
+Risk: Windows GUI automation can fail or behave unpredictably when the desktop is unavailable.
+
+Mitigation: Run only with an active visible Windows desktop and verify output paths after completion.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/banner90/skills/banner-youtube-translate-workflow)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, files]
+
+**Output Format:** [JSON status object with local audio and translation file paths; saved translation text files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a visible Windows desktop and host-accessible audio and translation directories.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

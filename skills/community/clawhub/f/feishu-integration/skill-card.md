@@ -1,47 +1,59 @@
-## Description: <br>
-Feishu Integration helps agents work with Feishu Open Platform APIs for document and wiki operations, file uploads, Markdown imports, message parsing, OCR, token handling, and group welcome workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feishu Integration helps agents work with the Feishu Open Platform for document, wiki, file, Markdown import, message parsing, OCR, group welcome, token management, and Feishu API workflows.
 
-## Publisher: <br>
-[moxunjinmu](https://clawhub.ai/user/moxunjinmu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moxunjinmu](https://clawhub.ai/user/moxunjinmu)
 
-## Use Case: <br>
-Developers and operations teams use this skill to configure Feishu app credentials, call Feishu document, wiki, drive, import, messaging, and OCR APIs, and generate reusable shell or Python workflows for Feishu automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact ships with an exposed Feishu app secret. <br>
-Mitigation: Replace bundled credentials with your own Feishu app credentials before use and rotate any secret that was copied from the artifact. <br>
-Risk: The skill can perform live Feishu document writes, uploads, message sends, chat creation, and chat deletion. <br>
-Mitigation: Restrict the Feishu app to least-privilege scopes and require explicit confirmation before executing write, upload, messaging, chat creation, or chat deletion actions. <br>
-Risk: The group welcome workflow can send recurring automated messages if installed as a scheduled job. <br>
-Mitigation: Only enable the cron welcome bot for chats where recurring automated messages are intended, and review its schedule, cooldown, and quiet-hour settings before deployment. <br>
+## Use Case:
 
+Developers and agent operators use this skill to automate Feishu document, wiki, file, import, messaging, OCR, and group welcome workflows through documented commands and API wrappers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/moxunjinmu/feishu-integration) <br>
-- [Feishu API reference](references/api-reference.md) <br>
-- [Token management](references/token-management.md) <br>
-- [Markdown import workflow](references/import-workflow.md) <br>
-- [Message parsing guide](references/message-parsing.md) <br>
-- [Feishu Open Platform documentation](https://open.feishu.cn/document/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell, Python, JavaScript, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce Feishu API calls that read, write, upload, import, send messages, create chats, delete chats, or run recurring welcome automation when executed with valid credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The release ships a plaintext Feishu app secret and bearer-token handling needs review before use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Rotate the exposed secret, replace config/feishu.env with a template, restrict Feishu app scopes, and store cached tokens in private 0600 files or a secret store.
+
+Risk: The skill can perform authenticated Feishu API calls and run cron-based welcome automation with tenant privileges.
+
+Mitigation: Validate request destinations, review scheduled automation, update vulnerable dependencies, and test with least-privilege tenant scopes before installation.
+
+## Reference(s):
+
+- [Feishu API Reference](references/api-reference.md)
+- [Token Management](references/token-management.md)
+- [Import Workflow](references/import-workflow.md)
+- [Message Parsing](references/message-parsing.md)
+- [Feishu Open Platform Documentation](https://open.feishu.cn/document/)
+- [ClawHub Skill Page](https://clawhub.ai/moxunjinmu/skills/feishu-integration)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/moxunjinmu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, API calls, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, code snippets, JSON/API examples, and configuration values.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use Feishu tenant credentials and call Feishu Open Platform APIs when configured; review security guidance before using real tenant privileges.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

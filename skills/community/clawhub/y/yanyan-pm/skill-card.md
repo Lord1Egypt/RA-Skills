@@ -1,43 +1,50 @@
-## Description: <br>
-Provides a Chinese-language product innovation advisor for product discovery, positioning, user research, PRD drafting, roadmap planning, and go-to-market strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language product strategy skill that activates a Yanyan product innovation officer persona for product discovery, positioning, user research, roadmap planning, GTM strategy, PRD work, and business model analysis.
 
-## Publisher: <br>
-[lanxy32](https://clawhub.ai/user/lanxy32) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanxy32](https://clawhub.ai/user/lanxy32)
 
-## Use Case: <br>
-External users and product teams use this skill to structure product opportunities, user research, MVP validation, commercial logic, launch planning, and risk notes. It is intended for product strategy and planning conversations, especially Chinese-language product consulting workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can activate on broad product-related wording. <br>
-Mitigation: Disable or narrow the trigger wording when a workspace needs more precise routing. <br>
-Risk: The skill uses a Chinese-language persona and opening. <br>
-Mitigation: Edit the persona or opening if the deployment requires another working language or language mirroring. <br>
-Risk: Product strategy outputs may be incomplete or market assumptions may be wrong. <br>
-Mitigation: Review recommendations against current market data, customer research, and business constraints before execution. <br>
+## Use Case:
 
+External users and product teams use this skill for Chinese-language product strategy assistance, including opportunity discovery, user need analysis, product definition, roadmap planning, launch strategy, and structured product proposal drafting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lanxy32/yanyan-pm) <br>
-- [Publisher profile](https://clawhub.ai/user/lanxy32) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown-style product strategy guidance and structured product-plan templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language persona and templates for product opportunity scoring, user research, product briefs, MVP validation, roadmap planning, GTM planning, and risk notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill uses broad trigger language and may activate for many ordinary product discussions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when a Chinese-language product strategy assistant is desired, and review routing rules if activation scope needs to be narrow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lanxy32/skills/yanyan-pm)
+- [ClawHub publisher profile](https://clawhub.ai/user/lanxy32)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese-language Markdown or plain text with structured product strategy sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include opportunity assessment, product definition, user personas, business model notes, MVP validation plans, launch strategy, and risk prompts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

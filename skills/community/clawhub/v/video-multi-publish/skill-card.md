@@ -1,40 +1,53 @@
-## Description: <br>
-One-stop multi-platform video publishing workflow. From video clipping to multi-platform publishing, full process automation. Supports automatic clipping for platform formats, intelligent title optimization, tag recommendation, best publish time recommendation, one-click publishing to WeChat, Bilibili, Xiaohongshu, Douyin, YouTube, TikTok and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+One-stop multi-platform video publishing workflow. From video clipping to multi-platform publishing, full process automation. Supports automatic clipping for platform formats, intelligent title optimization, tag recommendation, best publish time recommendation, one-click publishing to WeChat, Bilibili, Xiaohongshu, Douyin, YouTube, TikTok and more.
 
-## Publisher: <br>
-[earthwalking](https://clawhub.ai/user/earthwalking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[earthwalking](https://clawhub.ai/user/earthwalking)
 
-## Use Case: <br>
-Content creators, social media operators, and developers can use this skill to prepare platform-specific video clips, generate platform-adapted titles and tags, and coordinate a multi-platform publishing workflow. The provided implementation should be treated as a local ffmpeg clipping and simulated publishing utility unless production publishing safeguards are added. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill advertises real multi-platform publishing and analytics, but the security summary identifies the implementation as a local ffmpeg clipping/demo utility. <br>
-Mitigation: Treat it as local clipping and simulated publishing only; do not rely on it for public posting until accurate documentation and production publishing controls are added. <br>
-Risk: Public posting workflows can expose platform credentials or publish content unintentionally if authentication, data flow, confirmation, and dry-run behavior are unclear. <br>
-Mitigation: Do not provide platform credentials; require clear authentication and data-flow disclosures, per-platform confirmation, and safe dry-run behavior before using it with real accounts. <br>
+## Use Case:
 
+Developers and content operations teams can use this skill to plan and run a local workflow for adapting video files to platform-specific formats, generating titles and tags, and reviewing simulated publish status across WeChat, Bilibili, Xiaohongshu, Douyin, YouTube, and TikTok.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/earthwalking/video-multi-publish) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance, shell command examples, Python API examples, console status text, and generated video files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local ffmpeg/ffprobe for video analysis and clipping; publishing behavior in the provided script is simulated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, target metadata, and skill frontmatter) <br>
+Risk: The release materially overstates real publishing, analytics, and automation capabilities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as a local video transcoding and publishing simulation tool, and do not rely on it for actual uploads or analytics.
+
+Risk: Users may assume the workflow is safe for real platform credentials.
+
+Mitigation: Do not provide platform credentials unless a future version clearly documents authenticated APIs, per-platform consent, and data-sharing behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/earthwalking/skills/video-multi-publish)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell and Python examples; runtime output includes local video files and console status.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local ffmpeg and ffprobe commands for video inspection and clipping; publishing and analytics behavior should be treated as simulated unless future evidence documents authenticated platform integrations.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata, artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

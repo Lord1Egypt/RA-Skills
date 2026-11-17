@@ -1,44 +1,59 @@
-## Description: <br>
-Searches for businesses such as restaurants, salons, clinics, and hotels, then helps book, cancel, reschedule, or ask merchant questions through AI phone calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches for businesses such as restaurants, salons, clinics, and hotels, then helps book, cancel, reschedule, or make merchant inquiries through AI phone calls.
 
-## Publisher: <br>
-[danielzhangreal](https://clawhub.ai/user/danielzhangreal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danielzhangreal](https://clawhub.ai/user/danielzhangreal)
 
-## Use Case: <br>
-External users and their agents use this skill to search for local businesses, retrieve details, and complete bookings or merchant inquiries through the LifeClaw API. It is also used to cancel or reschedule existing reservations when the user has confirmed the intended action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place paid outbound AI phone calls. <br>
-Mitigation: Require explicit user confirmation before each phone call and monitor token balance or revoke LIFECLAW_API_TOKEN if needed. <br>
-Risk: The skill can cancel, reschedule, or update real booking records. <br>
-Mitigation: Require explicit confirmation before cancellation, rescheduling, booking-record updates, or sharing contact details. <br>
-Risk: Booking details and contact information are sent to LifeClaw and may be disclosed to merchants to complete reservations. <br>
-Mitigation: Use the skill only when the user agrees to share the relevant booking details and contact information for the requested transaction. <br>
+## Use Case:
 
+External users and agents use this skill to search local businesses, retrieve booking details, and initiate phone-based booking, cancellation, rescheduling, or merchant inquiry workflows through the LifeClaw API.
 
-## Reference(s): <br>
-- [Book Anything ClawHub Listing](https://clawhub.ai/danielzhangreal/book-anything) <br>
-- [LifeClaw Homepage](https://lifeclaw.agentese.ai) <br>
-- [LifeClaw Skill API Reference](artifact/references/api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls, text] <br>
-**Output Format:** [Markdown guidance with REST API examples and JSON request or response bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LIFECLAW_API_TOKEN and may initiate paid outbound phone calls through the LifeClaw API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.2 (source: server release evidence and artifact metadata) <br>
+Risk: The skill can place, cancel, or reschedule real reservations through an external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation of merchant, action, date, time, party size, name, contact details, cancellation, and reschedule details before initiating a phone call or updating a booking record.
+
+Risk: The skill depends on a bearer token for authenticated LifeClaw API calls.
+
+Mitigation: Store LIFECLAW_API_TOKEN outside prompts and logs, keep it scoped to the user, and revoke or rotate it if exposure is suspected.
+
+Risk: User booking details and contact information are sent to the LifeClaw API and may be communicated to merchants.
+
+Mitigation: Share only the minimum information needed for the requested booking or inquiry and confirm user consent before sending personal details.
+
+## Reference(s):
+
+- [LifeClaw Skill API Reference](references/api.md)
+- [LifeClaw Homepage](https://lifeclaw.agentese.ai)
+- [ClawHub Skill Page](https://clawhub.ai/danielzhangreal/skills/book-anything)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration]
+
+**Output Format:** [Markdown guidance with REST API examples and JSON request or response shapes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires LIFECLAW_API_TOKEN for authenticated API calls.]
+
+## Skill Version(s):
+
+1.4.2 (source: release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

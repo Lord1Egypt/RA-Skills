@@ -1,45 +1,61 @@
-## Description: <br>
-Transform AI agents from task-followers into proactive partners that anticipate needs, preserve working context, and continuously improve with memory, heartbeat, onboarding, and security patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms AI agents from task-followers into proactive partners that anticipate needs and continuously improve with WAL Protocol, Working Buffer, Autonomous Crons, and reliability patterns.
 
-## Publisher: <br>
-[liujiang817](https://clawhub.ai/user/liujiang817) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liujiang817](https://clawhub.ai/user/liujiang817)
 
-## Use Case: <br>
-Developers and agent users use this skill to configure an AI agent with proactive workflows, persistent memory files, onboarding, heartbeat checks, self-improvement routines, and security guardrails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages persistent memory and user profiling, which can accumulate sensitive personal or third-party information. <br>
-Mitigation: Regularly review USER.md, MEMORY.md, SOUL.md, SESSION-STATE.md, daily notes, and working-buffer files; avoid storing secrets, health, financial, regulated, or third-party personal details. <br>
-Risk: Heartbeat, email/calendar monitoring, autonomous cron, isolated-agent, and automatic profiling patterns may operate without clear consent boundaries. <br>
-Mitigation: Remove these behaviors or explicitly opt into each one before use, and require human approval before any external action. <br>
-Risk: Broad local-environment authority, including cleanup or maintenance behavior, can affect files or application state. <br>
-Mitigation: Keep deletion, app cleanup, and environment changes behind explicit confirmation and run the included security audit before deployment. <br>
+## Use Case:
 
+Developers and agent operators use this skill to give an agent proactive operating patterns for onboarding, persistent memory, heartbeat checks, security prompts, and self-improvement workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/liujiang817/my-proactive-agent) <br>
-- [Onboarding Flow Reference](references/onboarding-flow.md) <br>
-- [Security Patterns Reference](references/security-patterns.md) <br>
-- [Hal 9001 profile](https://x.com/halthelobster) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown instructions with workspace file templates and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes reusable agent memory, onboarding, heartbeat, and security-audit artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 3.1.0) <br>
+Risk: The skill is designed to persist broad personal and work context, including names, preferences, decisions, URLs, and sometimes full message text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that memory behavior is desired, minimize sensitive content in memory files, and keep generated memory files out of shared repositories and backups.
+
+Risk: Heartbeat cleanup and self-healing patterns may lead to autonomous local changes with weak consent and scoping.
+
+Mitigation: Disable or rewrite those parts unless explicitly wanted, and require human approval for destructive, public, external, or security-sensitive actions.
+
+Risk: The authoritative security verdict is suspicious, even though the scan did not identify clear exfiltration or malicious code.
+
+Mitigation: Review the skill carefully before installing and run the included security audit script in the target workspace.
+
+## Reference(s):
+
+- [My Proactive Agent on ClawHub](https://clawhub.ai/liujiang817/skills/my-proactive-agent)
+- [Publisher profile](https://clawhub.ai/user/liujiang817)
+- [Onboarding Flow Reference](artifact/references/onboarding-flow.md)
+- [Security Patterns Reference](artifact/references/security-patterns.md)
+- [Hal the Lobster](https://x.com/halthelobster)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and workspace file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operating instructions, starter markdown files, reference material, and a local audit script.]
+
+## Skill Version(s):
+
+3.1.0 (source: artifact/SKILL.md frontmatter; ClawHub release version 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

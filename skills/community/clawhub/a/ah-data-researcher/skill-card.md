@@ -1,40 +1,50 @@
-## Description: <br>
-Expert data researcher specializing in discovering, collecting, and analyzing diverse data sources. Masters data mining, statistical analysis, and pattern recognition with focus on extracting meaningful insights from complex datasets to support evidence-based decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert data researcher specializing in discovering, collecting, and analyzing diverse data sources, statistical analysis, and pattern recognition to extract meaningful insights from complex datasets for evidence-based decisions.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers, analysts, and research teams use this skill to plan data collection, assess source quality, analyze datasets, identify patterns, create visualizations, and turn findings into evidence-based recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill covers broad data discovery and collection workflows, including APIs, logs, scraping targets, public datasets, and private sources, which can involve sensitive or unauthorized data. <br>
-Mitigation: Before invocation, specify approved datasets, systems, APIs, logs, and scraping targets, and require privacy, authorization, and compliance constraints for private or sensitive data. <br>
-Risk: Data research outputs may be misleading if source quality, statistical significance, or assumptions are not verified. <br>
-Mitigation: Review findings against documented sources, data-quality checks, statistical methods, and reproducibility notes before using them for decisions. <br>
+## Use Case:
 
+Employees, external users, developers, and analysts use this skill to plan data research, identify and collect relevant sources, assess data quality, perform statistical and pattern analysis, and communicate actionable findings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-data-researcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with structured findings, recommendations, and optional code or command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include data-source plans, quality checks, statistical analysis notes, visualization recommendations, and reproducibility guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may be used against private databases, logs, scraping targets, or internal sources without clear authorization or task boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and invoke it only where agent data access is already controlled, and require user authorization plus clear source and task boundaries before research begins.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mtsatryan/skills/ah-data-researcher)
+- [Publisher Profile](https://clawhub.ai/user/mtsatryan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or structured text with analysis, recommendations, visual descriptions, code snippets, shell commands, and configuration guidance as needed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include source documentation, data quality notes, statistical findings, visualization guidance, reproducibility steps, and collaboration handoffs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

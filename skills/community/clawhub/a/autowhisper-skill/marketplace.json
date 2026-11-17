@@ -1,0 +1,18 @@
+{
+  "name": "autowhisper",
+  "displayName": "AutoWhisper",
+  "description": "Never make marketing content again. Hand AutoWhisper's AI CMO one product and it runs itself — learning what you sell, watching what your rivals post, and making content that doesn't look like an ad, in every language, on every channel you've connected.",
+  "version": "0.2.3",
+  "author": "AutoWhisper",
+  "homepage": "https://autowhisper.xyz",
+  "repository": "https://github.com/xnjiang/autowhisper-skill",
+  "license": "MIT",
+  "keywords": ["autowhisper", "ai", "cmo", "marketing", "social", "ugc", "video", "scheduling", "publishing", "agent"],
+  "skills": [
+    {
+      "name": "autowhisper",
+      "path": "SKILL.md",
+      "description": "Hand the whole content job to AutoWhisper's AI CMO from your agent: add a product, and it generates, approves, schedules, and publishes on-brand content that doesn't look like an ad — in every language, on every channel."
+    }
+  ]
+}

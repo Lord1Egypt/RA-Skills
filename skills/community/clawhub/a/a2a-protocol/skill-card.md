@@ -1,41 +1,58 @@
-## Description: <br>
-Agent2Agent (A2A) Protocol implementation - communicate with other AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent2Agent (A2A) Protocol implementation for communicating with other AI agents.
 
-## Publisher: <br>
-[nantes](https://clawhub.ai/user/nantes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nantes](https://clawhub.ai/user/nantes)
 
-## Use Case: <br>
-Developers and agents use this skill to discover A2A agent cards, register agents, send messages, and submit or monitor tasks against configured remote A2A endpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, task data, and agent messages are sent to the configured remote A2A endpoint. <br>
-Mitigation: Use only trusted endpoints and avoid sending secrets or sensitive files unless the endpoint's storage and processing practices are understood. <br>
-Risk: Optional API keys or bearer tokens are used for authentication to remote services. <br>
-Mitigation: Provide credentials only for trusted registries and rotate or revoke them if endpoint trust changes. <br>
+## Use Case:
 
+Developers and agent builders use this skill to register agents, discover agent cards, send messages, submit tasks, and check task status or results through an A2A registry.
 
-## Reference(s): <br>
-- [A2A Protocol Homepage](https://a2a-protocol.org) <br>
-- [ClawHub Skill Page](https://clawhub.ai/nantes/a2a-protocol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; runtime client output is JSON responses and status text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python and requests; uses a configured A2A registry endpoint and optional bearer token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The client can send agent metadata, messages, task contents, and optional bearer tokens to a configured registry URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use HTTPS for non-local registries, avoid sending secrets in messages or tasks, and only configure registries trusted for the data being exchanged.
+
+Risk: The artifact documentation references an a2a.ps1 wrapper that is not present in the packaged files.
+
+Mitigation: Resolve the packaging or documentation mismatch before operational use, or invoke the included Python client directly.
+
+Risk: Dependencies and runtime environment are not pinned in the artifact.
+
+Mitigation: Install in a virtual environment and pin dependencies before deploying in shared or production environments.
+
+## Reference(s):
+
+- [A2A Protocol homepage](https://a2a-protocol.org)
+- [ClawHub skill page](https://clawhub.ai/nantes/skills/a2a-protocol)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands and JSON or text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python and requests; streaming examples also reference sseclient-py.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; artifact frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

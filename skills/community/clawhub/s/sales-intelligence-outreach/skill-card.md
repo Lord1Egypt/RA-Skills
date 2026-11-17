@@ -1,44 +1,60 @@
-## Description: <br>
-Helps sales and marketing users research prospects, analyze customer context, generate personalized outreach copy and assets, and prepare multi-platform customer touchpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI sales intelligence and outreach assistant that researches target customers, generates personalized sales copy and creative assets, and supports publishing to multiple social platforms.
 
-## Publisher: <br>
-[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen)
 
-## Use Case: <br>
-External sales teams, marketers, and independent sales consultants use this skill to turn prospect or industry inputs into target research, customer profiles, personalized outreach materials, and platform-specific touchpoint drafts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated outreach or published content may be inaccurate, misleading, or inconsistent with platform rules. <br>
-Mitigation: Treat all generated content as drafts and require human review before sending, posting, or reusing it. <br>
-Risk: Prospect research and outreach can involve personal, confidential, or regulated data. <br>
-Mitigation: Limit uploaded prospect data, follow applicable privacy and marketing rules, and avoid unnecessary sensitive information. <br>
-Risk: The skill describes posting to external platforms but evidence does not show clear account-scope or approval controls. <br>
-Mitigation: Use limited-scope platform accounts and enforce an explicit approval step for the exact destination and content before publication. <br>
-Risk: The workflow depends on external skills or tools for research, asset generation, and publishing. <br>
-Mitigation: Verify each dependent skill or tool before deployment and review its permissions separately. <br>
+## Use Case:
 
+B2B sales teams, export sales representatives, founders, sales consultants, and marketers use this skill to research prospects, analyze customer context, draft personalized outreach, generate supporting sales assets, and prepare or publish first-touch content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zlszhonglongshen/sales-intelligence-outreach) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with prospect summaries, outreach drafts, asset prompts, and workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include customer profiles, personalized messages, visual asset prompts, publishing guidance, and touchpoint records for supported platforms.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: workflow.json and server release evidence) <br>
+Risk: The skill can prepare or trigger public posts and customer outreach without a clearly required approval step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use draft-first mode and require explicit human approval before every post, message, or account action.
+
+Risk: Bulk outreach or use of personal and contact data may create legal, privacy, or platform compliance issues.
+
+Mitigation: Use only data with a lawful basis, avoid bulk outreach, and confirm the process complies with each target platform's rules.
+
+Risk: Generated customer profiles, pain-point analysis, and sales claims may be inaccurate or misleading.
+
+Mitigation: Verify prospect facts, target platforms, accounts, and all outbound claims before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zlszhonglongshen/skills/sales-intelligence-outreach)
+- [Artifact Skill Definition](artifact/SKILL.md)
+- [Artifact README](artifact/README.md)
+- [Artifact Workflow](artifact/workflow.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Image assets]
+
+**Output Format:** [Markdown and structured text with generated sales copy, prospect profiles, outreach guidance, and creative asset descriptions or outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include platform-specific outreach drafts, target customer profiles, sales material concepts, and publication records.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and workflow.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

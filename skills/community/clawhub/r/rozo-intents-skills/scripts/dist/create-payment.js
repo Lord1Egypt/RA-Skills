@@ -1,4 +1,4 @@
-import { getTokenAddress, getChainName, isPayoutSupported, } from "./chains.js";
+import { getTokenAddress, getChainName, isPayoutSupported, parseChain, } from "./chains.js";
 import { randomUUID } from "crypto";
 const API_BASE = "https://intentapiv4.rozo.ai/functions/v1/payment-api";
 const MIN_AMOUNT = 0.01;
@@ -94,15 +94,26 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     const destToken = get("--dest-token");
     const destAmount = get("--dest-amount");
     if (!sourceChain || !sourceToken || !destChain || !destAddress || !destToken || !destAmount) {
-        console.error("Usage: --source-chain <id> --source-token <USDC|USDT> --dest-chain <id> --dest-address <addr> --dest-token <USDC|USDT> --dest-amount <amount>");
+        console.error("Usage: --source-chain <id|name> --source-token <USDC|USDT> --dest-chain <id|name> --dest-address <addr> --dest-token <USDC|USDT> --dest-amount <amount>\n" +
+            "Chain names: ethereum, arbitrum, base, bsc, polygon, solana, stellar");
+        process.exit(1);
+    }
+    const sourceChainId = parseChain(sourceChain);
+    const destChainId = parseChain(destChain);
+    if (sourceChainId === null) {
+        console.error(`Unknown --source-chain: ${sourceChain}. Use a numeric ID (1, 8453, 1500, ...) or a name (ethereum, base, stellar, ...)`);
+        process.exit(1);
+    }
+    if (destChainId === null) {
+        console.error(`Unknown --dest-chain: ${destChain}. Use a numeric ID (1, 8453, 1500, ...) or a name (ethereum, base, stellar, ...)`);
         process.exit(1);
     }
     const result = await createPayment({
         appId: get("--app-id") ?? "rozoAgent",
         type: get("--type") ?? "exactOut",
-        sourceChain: Number(sourceChain),
+        sourceChain: sourceChainId,
         sourceToken: sourceToken.toUpperCase(),
-        destChain: Number(destChain),
+        destChain: destChainId,
         destAddress,
         destToken: destToken.toUpperCase(),
         destAmount,

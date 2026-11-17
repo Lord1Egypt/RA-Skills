@@ -1,40 +1,53 @@
-## Description: <br>
-Create user-facing App Store release notes by collecting and summarizing user-impacting changes since the last git tag or a specified ref. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create user-facing App Store release notes by collecting and summarizing all user-impacting changes since the last git tag (or a specified ref).
 
-## Publisher: <br>
-[Dimillian](https://clawhub.ai/user/Dimillian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dimillian](https://clawhub.ai/user/dimillian)
 
-## Use Case: <br>
-Developers and release managers use this skill to turn local git history into concise App Store changelog bullets that focus on user-visible additions, improvements, and fixes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Collecting changes from a private repository can expose commit subjects and touched file names from the selected git range. <br>
-Mitigation: Run the collection script only in the intended repository and pass a specific starting tag or ref when limiting history is important. <br>
-Risk: Generated App Store notes may include internal-only or overstated changes when commit history is ambiguous. <br>
-Mitigation: Review each bullet against the collected commits and files, and ask for clarification before including uncertain changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [App Store Release Notes Guidelines](artifact/references/release-notes-guidelines.md) <br>
-- [collect_release_changes.sh](artifact/scripts/collect_release_changes.sh) <br>
+## Use Case:
 
+Developers and release managers use this skill to turn local git history into concise App Store release notes that focus on user-visible changes.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown bullet list with optional title and supporting shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Release-note bullets should map to real changes in the selected git range and avoid internal-only details.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Untrusted or option-like revision arguments could affect git command behavior in the helper script.
+
+Mitigation: Use normal commit or tag references when invoking the script, and avoid untrusted revision values until revision validation and quoted git arguments are added.
+
+Risk: Generated release notes could include changes that are not actually user-visible.
+
+Mitigation: Validate each bullet against the selected git range and omit internal-only work, duplicates, and overly technical wording.
+
+## Reference(s):
+
+- [App Store Release Notes Guidelines](references/release-notes-guidelines.md)
+- [ClawHub Skill Page](https://clawhub.ai/dimillian/skills/app-store-changelog)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown bullet list with optional title and supporting shell command usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Release notes should be concise, user-facing, deduplicated, and tied back to real changes in the selected git range.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

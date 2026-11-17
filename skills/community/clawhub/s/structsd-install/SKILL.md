@@ -1,9 +1,13 @@
 ---
+title: Install structsd from release or source
+meta_description: Install structsd from a prebuilt release binary or build from source with the Makefile. Go 1.23+, no Ignite dependency for builds.
 name: structsd-install
 description: Installs the structsd binary. Covers downloading prebuilt release binaries (recommended) and building from source via the Makefile (Go 1.23+). Use when structsd is not found, when setting up a new machine, or when the agent needs to install or update the Structs chain binary.
+level: entry
+domain: infra
 ---
 
-# Install structsd
+# Install structsd from release or source
 
 There are two supported paths for installing `structsd`:
 
@@ -12,7 +16,7 @@ There are two supported paths for installing `structsd`:
 
 After either path, `structsd` will be available on your PATH and `structsd version` will print the chain version.
 
-> Ignite CLI is **no longer required** to build `structsd`. It is only needed if you want to run a local devnet via `make serve`. The Makefile builds via plain `go build`.
+> The Makefile builds `structsd` via plain `go build`, so no Ignite CLI is needed for installation. Ignite is only used to run a local devnet via `make serve`.
 
 ---
 
@@ -21,8 +25,8 @@ After either path, `structsd` will be available on your PATH and `structsd versi
 The chain ships signed binaries via GoReleaser on every tag. Pick the asset for your OS/arch from the latest release at <https://github.com/playstructs/structsd/releases>.
 
 ```bash
-# Pick one (replace VERSION with e.g. v0.17.0):
-VERSION=v0.17.0
+# Pick one (replace VERSION with e.g. v0.19.1):
+VERSION=v0.19.1
 
 # Linux amd64
 curl -L -o structsd.tar.gz \
@@ -57,12 +61,9 @@ The Makefile enforces `REQUIRE_GO_VERSION = 1.23`. Newer minor versions (1.24, 1
 
 #### Linux (amd64)
 
-⚠️ **Confirm with the user before running** — the step below removes `/usr/local/go`. Ask first if an existing Go install is present.
-
 ```bash
 GO_VER=1.23.6
 wget https://go.dev/dl/go${GO_VER}.linux-amd64.tar.gz
-# Removes existing Go installation — confirm with user before running
 sudo rm -rf /usr/local/go
 sudo tar -C /usr/local -xzf go${GO_VER}.linux-amd64.tar.gz
 rm go${GO_VER}.linux-amd64.tar.gz
@@ -140,7 +141,7 @@ structsd version
 ```bash
 cd structsd
 git fetch --tags
-git checkout v0.17.0   # or `git pull origin main` for tip-of-tree
+git checkout v0.19.1   # or `git pull origin main` for tip-of-tree
 make install
 ```
 
@@ -196,4 +197,5 @@ If any command fails, revisit the corresponding step above.
 
 - [TOOLS](https://structs.ai/TOOLS) — Environment configuration (servers, account, after structsd is installed)
 - [structs-onboarding skill](https://structs.ai/skills/structs-onboarding/SKILL) — Player creation and first builds (requires structsd)
+- [structs-desktop](https://github.com/playstructs/structs-desktop) — Desktop app for human players; embeds the MCP server agents connect to (see [TOOLS](https://structs.ai/TOOLS))
 - [structsd releases](https://github.com/playstructs/structsd/releases) — Prebuilt binaries per OS/arch and changelog per tag

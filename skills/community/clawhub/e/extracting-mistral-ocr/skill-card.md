@@ -1,46 +1,57 @@
-## Description: <br>
-Extracts text, tables, and images from PDFs, including scanned PDFs, using the Mistral OCR API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts text, tables, and images from PDFs, including scanned PDFs, using the Mistral OCR API.
 
-## Publisher: <br>
-[tristanmanchester](https://clawhub.ai/user/tristanmanchester) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tristanmanchester](https://clawhub.ai/user/tristanmanchester)
 
-## Use Case: <br>
-Developers and document-processing teams use this skill to OCR PDFs or images, convert documents to Markdown and JSON, extract tables and images, and optionally return structured document fields. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected PDFs or images are sent to Mistral for OCR processing. <br>
-Mitigation: Use only documents approved for transfer to Mistral, and avoid confidential or regulated files unless that transfer is authorized. <br>
-Risk: OCR outputs and extracted assets are written to a local output folder. <br>
-Mitigation: Choose an output directory that can be secured, reviewed, or cleaned up according to the document sensitivity. <br>
-Risk: The workflow requires a Mistral API key. <br>
-Mitigation: Store MISTRAL_API_KEY securely and avoid exposing it in logs, shell history, or shared configuration. <br>
-Risk: Uploaded files may remain available to the Mistral service after OCR if not removed. <br>
-Mitigation: Use the cleanup-upload option when local policy requires the script to attempt removal of uploaded files after processing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Mistral OCR API quick reference](references/mistral_ocr_api.md) <br>
-- [Output mapping rules](references/output_mapping.md) <br>
-- [Document annotation prompts](references/annotation_prompts.md) <br>
-- [ClawHub skill page](https://clawhub.ai/tristanmanchester/extracting-mistral-ocr) <br>
+## Use Case:
 
+Developers and document-processing teams use this skill to OCR PDFs or images, convert PDFs to Markdown and JSON, extract images and tables, and optionally produce structured document fields for downstream RAG or audit workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, files, shell commands, guidance] <br>
-**Output Format:** [Markdown and JSON files with extracted image and table assets, plus shell command guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include combined Markdown, per-page Markdown, raw OCR JSON, extracted images, extracted tables, and optional document annotation JSON or text.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A malformed OCR response could cause files to be written outside the selected output directory.
+
+Mitigation: Review before installing, use only documents that may be sent to Mistral, store outputs in a controlled directory, and fix output filename containment before use.
+
+Risk: The script depends on an unpinned mistralai package version.
+
+Mitigation: Pin mistralai to a vetted version before using the skill in controlled or repeatable environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tristanmanchester/skills/extracting-mistral-ocr)
+- [Mistral OCR API quick reference](references/mistral_ocr_api.md)
+- [Output mapping rules](references/output_mapping.md)
+- [Document annotation prompt templates](references/annotation_prompts.md)
+- [Mistral OCR endpoint](https://api.mistral.ai/v1/ocr)
+- [Mistral Files upload endpoint](https://api.mistral.ai/v1/files)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Files, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown guidance with shell commands; generated OCR outputs include Markdown, JSON, image files, and table files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access, Python 3.9+, the mistralai package, and a MISTRAL_API_KEY environment variable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

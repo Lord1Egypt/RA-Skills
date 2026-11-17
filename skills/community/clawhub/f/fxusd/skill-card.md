@@ -1,51 +1,72 @@
-## Description: <br>
-fxUSD helps agents deploy, unwind, and compare fxUSD-related yield strategies on Base across fxSAVE, Hydrex, and Morpho, producing planning outputs and Bankr-ready transaction steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+fxUSD helps agents plan and compare Base yield workflows for fxSAVE, Hydrex single-sided liquidity, and Morpho supply or borrow, emitting Bankr-ready transaction steps with protocol-specific risk controls.
 
-## Publisher: <br>
-[huwangtao123](https://clawhub.ai/user/huwangtao123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huwangtao123](https://clawhub.ai/user/huwangtao123)
 
-## Use Case: <br>
-External users, DeFi operators, and wallet agents use this skill to plan fxUSD yield actions on Base, including fxSAVE mint or redeem flows, Hydrex vault deposits and withdrawals, and Morpho supply, borrow, repay, or collateral-management workflows. It is intended to prepare human-reviewable plans and transaction steps before wallet execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill prepares executable DeFi wallet transactions using third-party data. <br>
-Mitigation: Review chain, token, spender, recipient, amount, calldata target, and slippage or minimum-output assumptions before signing. <br>
-Risk: Hydrex actions may include zero minimum output fields or withdrawal composition that differs from the entry asset. <br>
-Mitigation: Confirm the vault, expected output shape, and user acceptance of withdrawal composition risk before execution. <br>
-Risk: Morpho borrow and collateral-management flows can create liquidation exposure. <br>
-Mitigation: Require explicit collateral, market, oracle, and liquidation-buffer checks, and keep the final borrow or collateral decision with the user. <br>
-Risk: Bankr execution can submit high-impact wallet actions. <br>
-Mitigation: Use Bankr execution only after explicit human approval of the prepared transaction details. <br>
+## Use Case:
 
+External users and developers use fxUSD to compare and prepare Base DeFi yield actions across fxSAVE, Hydrex vaults, and Morpho markets. It is most useful when an agent must turn a wallet-level intent into reviewed planning output or Bankr-ready transaction steps.
 
-## Reference(s): <br>
-- [fxUSD Skill Page](https://clawhub.ai/huwangtao123/fxusd) <br>
-- [fxSAVE App](https://fxsave.up.railway.app/) <br>
-- [fxSAVE Shortcut API Reference](references/api.md) <br>
-- [Hydrex Single-Sided Liquidity](references/hydrex.md) <br>
-- [Morpho Lend / Borrow](references/morpho.md) <br>
-- [Hydrex Platform](https://hydrex.fi) <br>
-- [Morpho](https://morpho.org/) <br>
-- [Morpho GraphQL API](https://docs.morpho.org/tools/offchain/api/graphql/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON transaction plans and Bankr-ready command or request steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include executable wallet transaction details that require explicit human review before signing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill prepares real wallet transactions for DeFi protocols.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before submitting any Bankr step, verify the token, spender, destination contract, amount, chain, vault or market, and slippage or minimum-output protections.
+
+Risk: Generated plans rely on third-party services and live protocol data.
+
+Mitigation: Review API-derived routes, market availability, vault selection, balances, allowances, and protocol warnings before execution.
+
+Risk: Morpho borrow workflows can create liquidation exposure.
+
+Mitigation: Use conservative LTV buffers, run risk or alert checks first, and keep the final borrow decision with the user.
+
+Risk: Hydrex single-sided deposits can unwind into mixed-token withdrawals.
+
+Mitigation: Confirm the vault risk class and withdrawal composition risk before recommending or submitting a deposit.
+
+Risk: fxSAVE settlement may lag the source-chain confirmation.
+
+Mitigation: Explain cross-chain settlement timing and quote drift before treating a route as complete.
+
+## Reference(s):
+
+- [fxSAVE app](https://fxsave.up.railway.app/)
+- [fxSAVE Shortcut API Reference](artifact/references/api.md)
+- [Hydrex Single-Sided Liquidity](artifact/references/hydrex.md)
+- [Morpho Planning](artifact/references/morpho.md)
+- [Hydrex Platform](https://hydrex.fi)
+- [Morpho](https://morpho.org/)
+- [Morpho GraphQL API](https://docs.morpho.org/tools/offchain/api/graphql/)
+- [Morpho Blue Contract Interface](https://github.com/morpho-org/morpho-blue/blob/main/src/interfaces/IMorpho.sol)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON transaction plans, command examples, and Bankr-ready execution steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Plans may include live API-derived route, vault, market, balance, allowance, and LTV data that users should review before submitting wallet transactions.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence.json release.version and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

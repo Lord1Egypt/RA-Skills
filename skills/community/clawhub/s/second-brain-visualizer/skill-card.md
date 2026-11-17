@@ -1,51 +1,65 @@
-## Description: <br>
-Reads a raw idea stream from a local second-brain ledger, turns notes into structured atoms, clusters them by intent with an OpenClaw-routed LLM, and renders the resulting patterns in a React visualizer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unload your cognitive baggage. Drop ideas anywhere, find the signal later.
 
-## Publisher: <br>
-[highnoonoffice](https://clawhub.ai/user/highnoonoffice) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[highnoonoffice](https://clawhub.ai/user/highnoonoffice)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to parse a personal markdown idea ledger, generate intent-based clusters, and view emerging signals, tensions, and absences in a dashboard. It is intended for users who want to analyze their own private idea stream rather than maintain a traditional note taxonomy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow centralizes raw personal notes and selected private-channel content. <br>
-Mitigation: Use a dedicated low-sensitivity ledger or channel, avoid secrets and regulated data in atoms, and review the accumulated corpus before clustering. <br>
-Risk: The clusterer sends the atom corpus to the configured OpenClaw gateway and may reach a remote endpoint if the gateway host is changed. <br>
-Mitigation: Keep the gateway host set to 127.0.0.1 or localhost unless a remote endpoint is deliberately trusted, and verify OpenClaw's LLM routing before running clustering. <br>
-Risk: Slack, Telegram, and gateway credential files are stored locally under ~/.openclaw/credentials. <br>
-Mitigation: Restrict filesystem access to credential files, use dedicated credentials where possible, and rotate credentials if they are exposed. <br>
+## Use Case:
 
+Developers and knowledge workers use this skill to turn a local second-brain markdown ledger into parsed atoms, intent-based clusters, tensions, emerging signals, and a visual graph for exploring recurring ideas.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/highnoonoffice/second-brain-visualizer) <br>
-- [Publisher Profile](https://clawhub.ai/user/highnoonoffice) <br>
-- [Homepage](https://github.com/highnoonoffice/hno-skills) <br>
-- [Setup Guide](references/setup.md) <br>
-- [Install Guide](references/install.md) <br>
-- [Ingestion Guide](references/ingestion.md) <br>
-- [Parser Script](references/parser.js) <br>
-- [Clustering Script](references/cluster.js) <br>
-- [Visualizer Component](references/component.tsx) <br>
-- [Sample Atom Ledger](references/sample-ledger.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript, TypeScript React, shell commands, and JSON data schemas] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local atom JSON, cluster JSON, and a React/D3 visual graph when installed in a compatible dashboard.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.2 (source: server release metadata) <br>
+Risk: The skill handles private notes and may send the atom corpus to the configured LLM gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only notes appropriate for persistent local storage and LLM processing, and keep the gateway host set to 127.0.0.1 or localhost unless a remote endpoint is intentionally approved.
+
+Risk: Gateway and optional messaging credentials are stored locally and could expose private capture channels if mishandled.
+
+Mitigation: Protect local credential files, rotate gateway and messaging tokens, and use dedicated private Slack or Telegram channels with clear retention rules.
+
+Risk: Automated ingestion can capture more personal or third-party content than intended.
+
+Mitigation: Limit ingestion to dedicated channels or labels, review channel membership and retention settings, and avoid connecting broad inboxes or shared spaces without consent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/highnoonoffice/skills/second-brain-visualizer)
+- [Project homepage](https://github.com/highnoonoffice/hno-skills)
+- [Setup Guide](references/setup.md)
+- [Install Guide](references/install.md)
+- [Ingestion Guide](references/ingestion.md)
+- [Parser](references/parser.js)
+- [Clustering Engine](references/cluster.js)
+- [Visualizer Component](references/component.tsx)
+- [Sample Atom Ledger](references/sample-ledger.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with JavaScript, TypeScript, shell commands, and JSON schemas]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local atom JSON, cluster JSON, and a React/D3 visualizer component when the supplied scripts and component are installed by the user.]
+
+## Skill Version(s):
+
+1.6.3 (source: server release evidence; artifact frontmatter lists 1.6.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

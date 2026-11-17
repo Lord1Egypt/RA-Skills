@@ -40,6 +40,8 @@
 | `author` | 作者；可空时部分流程会回退 **`config.yaml`** 的 **`default_author`** |
 | `digest` | 摘要（微信 digest 上限 128 字） |
 | `cover_image` | 封面路径或 URL（强烈建议） |
+| `pic_crop_235_1` | 可选。2.35:1 封面裁剪框，`X1_Y1_X2_Y2` 归一化 0~1；留空由 `publish.py` 按封面尺寸自动居中计算 |
+| `pic_crop_1_1` | 可选。1:1 封面裁剪框，格式同上；两者裁出的宽高比须与目标比例一致，否则接口报 53402 |
 | `content_source` | 正文 HTML 来源，默认 **`article.html`** |
 | `need_open_comment` | 是否开启留言（与微信能力一致） |
 | `only_fans_can_comment` | 是否仅粉丝可留言 |
@@ -58,7 +60,7 @@
 | 图片模型 | `IMAGE_MODEL_API_KEY` |
 | 微信 | `NUMBER_ACCOUNTS`（与 `publish.py` 一致）、`WECHAT_{i}_NAME`、`WECHAT_{i}_APPID`、`WECHAT_{i}_APPSECRET`、可选 `WECHAT_{i}_API_BASE` |
 
-**`validate_env.py`**（环境检测）：写作、图片、微信**三组**未配齐任一组即 **`failed`**、退出码 1；**`publish_method: none`** 时跳过微信组。详见脚本 docstring。
+**`validate_env.py`**（环境检测）：微信槽位、AppID/AppSecret 缺失时 **`failed`**、退出码 1；**`publish_method: none`** 时跳过微信组。写作/图片模型与 `wechat_N_name` 缺失时仅警告。详见脚本 docstring。
 
 ---
 

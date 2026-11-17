@@ -1,44 +1,59 @@
-## Description: <br>
-Expand, compile, and write back a user's second-brain notes around a knowledge point with concept definitions, lineage, related concepts, reading recommendations, and AI-annotated note edits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expand, compile, and write back the user's second brain around a knowledge point. Use when the user gives a topic/concept and asks to 拓展, 编译, 沉淀, 扩充, 构建, enrich, research, or update their second brain with precise definitions, intellectual lineage, originators, related concepts, recommended papers/books, and AI-annotated note edits.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Developers, researchers, and knowledge workers use this skill to research a concept, connect it to existing local notes, create a bounded concept packet, and optionally write annotated additions back to a second-brain vault. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can search and modify local second-brain notes when the user asks for writeback. <br>
-Mitigation: Set SECOND_BRAIN_WIKI_ROOT or SECOND_BRAIN_ROOT to the intended vault, request a preview or diff before edits, and verify that generated additions are visibly AI-annotated. <br>
-Risk: Concept origin, reading recommendations, or lineage claims may be wrong if sources are weak or ambiguous. <br>
-Mitigation: Use primary or high-quality sources for origin and reading-list claims, and mark uncertainty directly in the generated annotation when evidence is limited. <br>
-Risk: Writeback could clutter a knowledge graph by expanding too many related concepts at once. <br>
-Mitigation: Keep the first pass bounded to one central concept, a curated related-concept set, and a short reading path; expand additional topics only when explicitly requested. <br>
+## Use Case:
 
+External users and developers use this skill to research a concept, connect it to an existing local second-brain knowledge base, and create or update concept notes with clearly marked AI annotations.
 
-## Reference(s): <br>
-- [Research Packet](references/research-packet.md) <br>
-- [Writeback Policy](references/writeback-policy.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/second-brain-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with optional shell commands and file-change summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local note files when the user explicitly asks for writeback; additions are expected to be visibly AI-annotated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill can search local note content and create or update concept files when explicitly invoked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Point it at the intended second-brain folder and review proposed writebacks before accepting changes.
+
+Risk: Research packets and reading recommendations may include uncertain origin claims or source-quality gaps.
+
+Mitigation: Require primary or high-quality sources for origin claims and mark weak evidence or uncertainty in the AI 注.
+
+Risk: AI-generated additions could be mistaken for user-authored notes.
+
+Mitigation: Keep every inserted block additive and visibly labeled with AI 注, preserving original user-authored content.
+
+## Reference(s):
+
+- [Research Packet](references/research-packet.md)
+- [Writeback Policy](references/writeback-policy.md)
+- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/skills/second-brain-builder)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown responses, concept packets, local note edits, and cited source lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [AI-generated writebacks must be additive and visibly marked with AI 注.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

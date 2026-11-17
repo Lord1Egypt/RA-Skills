@@ -1,42 +1,53 @@
-## Description: <br>
-Integrates REVEL, CADD, and PolyPhen scores to predict genetic variant pathogenicity. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Integrates REVEL, CADD, and PolyPhen scores to produce a simplified variant pathogenicity classification.
 
-## Publisher: <br>
-[EC-cyber258](https://clawhub.ai/user/EC-cyber258) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ec-cyber258](https://clawhub.ai/user/ec-cyber258)
 
-## Use Case: <br>
-Developers and bioinformatics practitioners can use this skill to run a local, score-based variant pathogenicity demonstration and inspect composite classification output. Results should be independently validated before clinical or research use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Medical genetics claims are broader than what the included code performs. <br>
-Mitigation: Treat outputs as a demonstration only, and require independent validation before using results for clinical or research decisions. <br>
-Risk: The artifact documentation describes VCF, variant, gene, ACMG, SIFT, and MutationTaster behavior that is not implemented by the included script. <br>
-Mitigation: Use only the implemented numeric REVEL, CADD, PolyPhen, and demo arguments unless the package is updated and re-reviewed. <br>
-Risk: The release is flagged suspicious by the authoritative security evidence because capability claims do not match the included code. <br>
-Mitigation: Review the skill before installation and verify that documentation, CLI behavior, and intended use match the deployed artifact. <br>
+## Use Case:
 
+Developers and bioinformatics practitioners use this skill to run a local helper that combines variant scores and reports a simplified classification with score breakdown. Outputs require independent validated interpretation before clinical, reporting, or research-triage use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/EC-cyber258/variant-pathogenicity-predictor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; the script prints plain text classification output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local Python script with no external API calls according to release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: Simplified genetic variant scoring may be mistaken for clinically validated pathogenicity or ACMG interpretation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use classifications for diagnosis, patient care, reporting, or authoritative triage without independent validated interpretation by qualified reviewers.
+
+Risk: Local script execution can read input files and may save output reports in the workspace.
+
+Mitigation: Run in a controlled workspace, review file paths before execution, and avoid processing sensitive patient data unless approved safeguards are in place.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ec-cyber258/skills/variant-pathogenicity-predictor)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, code, guidance]
+
+**Output Format:** [Plain text console output and Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports composite score, pathogenicity classification, and individual score values; no external API calls are indicated by the evidence.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

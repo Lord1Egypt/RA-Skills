@@ -1,39 +1,53 @@
-## Description: <br>
-Strategies for productive agent idle time using heartbeats and cron jobs for proactive behaviors, scheduled background tasks, and agent work during idle periods. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Strategies for productive agent idle time using heartbeats and cron jobs for proactive background work.
 
-## Publisher: <br>
-[JPaulGrayson](https://clawhub.ai/user/JPaulGrayson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jpaulgrayson](https://clawhub.ai/user/jpaulgrayson)
 
-## Use Case: <br>
-Developers and agent operators use this skill to define heartbeat checklists, cron schedules, and boundaries for proactive agent work such as inbox checks, memory maintenance, system monitoring, and recurring summaries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Recurring background checks may access private accounts, local files, system state, and git activity without enough scoping or consent controls. <br>
-Mitigation: Before enabling the skill, define exact heartbeat or cron tasks, approved accounts and folders, read/write limits, logging, expiration dates, and a clear off switch. <br>
-Risk: Scheduled agent activity could send messages, post publicly, delete or reorganize files, commit git changes, make purchases, or take other irreversible actions. <br>
-Mitigation: Require explicit approval before external communication, public posting, file deletion or reorganization, git commits, purchases, transfers, or any irreversible action. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Agent Dreams on ClawHub](https://clawhub.ai/JPaulGrayson/agent-dreams) <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure heartbeat files and scheduled tasks for background monitoring, memory maintenance, summaries, drafting, and routine workspace upkeep.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline code blocks and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes heartbeat checklist, state-file template, cron expressions, proactive work categories, quiet-hours guidance, and setup steps.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent scheduled agent runs may access private accounts, local files, memory, system state, and repositories too broadly.
+
+Mitigation: Restrict each job to specific accounts, files, repositories, and read-only actions unless broader access is explicitly approved.
+
+Risk: Automatic background actions could create unintended commits, public posts, file cleanup, or private-message checks.
+
+Mitigation: Require clear limits, user approval for higher-impact actions, and an easy way to pause or remove scheduled jobs.
+
+## Reference(s):
+
+- [Agent Dreams on ClawHub](https://clawhub.ai/jpaulgrayson/skills/agent-dreams)
+- [Publisher profile](https://clawhub.ai/user/jpaulgrayson)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with templates, cron expressions, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes heartbeat checklist guidance, state-file examples, cron patterns, and action-risk categories.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

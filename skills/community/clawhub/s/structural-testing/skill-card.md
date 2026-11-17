@@ -1,42 +1,55 @@
-## Description: <br>
-Structural Testing provides structural test domain knowledge and writing support for shaking-table testing, real-time hybrid simulation, funding proposals, and SCI papers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+结构试验领域专家 - 提供振动台试验、实时混合试验技术的专业知识与写作支持
 
-## Publisher: <br>
-[jirboy](https://clawhub.ai/user/jirboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jirboy](https://clawhub.ai/user/jirboy)
 
-## Use Case: <br>
-Researchers, engineers, and technical writers use this skill to draft and review structural testing content, explain RTHS and shaking-table concepts, and identify relevant literature for proposals and papers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated formulas, parameters, and technical claims may be inaccurate for a specific experiment or publication. <br>
-Mitigation: Verify technical content against primary sources, measured system parameters, and qualified domain experts before using it in experiments, papers, or grant applications. <br>
-Risk: Literature recommendations and journal-ranking guidance may be incomplete or stale. <br>
-Mitigation: Confirm references, rankings, and citation details with current scholarly databases and publisher pages before submission. <br>
+## Use Case:
 
+Researchers, engineers, and technical writers use this skill for Chinese-language support on shaking table substructure testing, real-time hybrid simulation, literature recommendations, and funding or SCI manuscript drafting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jirboy/structural-testing) <br>
-- [Structural Testing literature reference](artifact/references/literature.md) <br>
-- [NSFC proposal template](artifact/assets/nsfc-proposal-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and natural-language technical guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include formulas, proposal text, SCI writing outlines, literature suggestions, and technical explanations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated grant, manuscript, literature, or technical content may contain inaccurate citations, assumptions, formulas, or parameter values.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Independently verify cited literature, technical parameters, and generated text before using the output in formal submissions or engineering decisions.
+
+Risk: The skill primarily provides Chinese-language guidance, which may require translation or localization for some reviewers or deployment contexts.
+
+Mitigation: Ask the agent to translate or adapt outputs and have domain reviewers check the translated material before publication or submission.
+
+## Reference(s):
+
+- [Structural Testing skill page](https://clawhub.ai/jirboy/skills/structural-testing)
+- [结构试验技术参考文献库](references/literature.md)
+- [国家自然科学基金面上项目申请书模板](assets/nsfc-proposal-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured Chinese-language prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include formulas, literature lists, writing templates, and technical recommendations for structural testing topics.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

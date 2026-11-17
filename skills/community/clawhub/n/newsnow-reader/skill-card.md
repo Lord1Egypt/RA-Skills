@@ -1,43 +1,58 @@
-## Description: <br>
-优雅地阅读实时热门新闻。支持微博、知乎、百度、抖音、华尔街见闻、今日头条、澎湃新闻等8个主流平台。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NewsNow Reader fetches and formats real-time hot-news lists from major Chinese news and social platforms, including Weibo, Zhihu, Baidu, Douyin, Wallstreetcn, Toutiao, and The Paper.
 
-## Publisher: <br>
-[Castieler](https://clawhub.ai/user/Castieler) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[castieler](https://clawhub.ai/user/castieler)
 
-## Use Case: <br>
-External users and developers use this skill to fetch current hot-news lists from supported third-party news and social platforms, then view the results as JSON, compact text, Markdown, or an elegant terminal summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound requests to multiple third-party news and social-media domains. <br>
-Mitigation: Review the disclosed domains before running it from a sensitive network and restrict egress if needed. <br>
-Risk: The implementation includes a Jin10 source in code that is not fully documented in the visible source table. <br>
-Mitigation: Review the Jin10 endpoint and behavior before enabling or relying on that source. <br>
-Risk: Third-party platform APIs, cookies, and page structures may change or rate-limit requests. <br>
-Mitigation: Treat failed or empty results as expected operational failures and verify important news against the original linked source. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve trending news items from supported platforms and present them as JSON, compact text, Markdown, or a short summary.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Castieler/newsnow-reader) <br>
-- [newsnow implementation reference](https://github.com/ourongxing/newsnow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON arrays and Markdown or terminal-formatted text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are limited by the requested source and item count, defaulting to a single hot-news list.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: Third-party news sites receive request metadata from the runtime environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only from networks approved for these destinations and avoid use from sensitive proxies or restricted environments.
+
+Risk: The skill automatically generates or acquires cookies for some platform requests.
+
+Mitigation: Review the cookie behavior before installation and use only when that behavior is acceptable under local policy.
+
+Risk: The implementation can contact an undocumented Jin10 news endpoint.
+
+Mitigation: Avoid the Jin10 source unless that endpoint has been reviewed and approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/castieler/skills/newsnow-reader)
+- [newsnow project reference](https://github.com/ourongxing/newsnow)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands]
+
+**Output Format:** [JSON news items or formatted plain text/Markdown summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Caller selects the news source and item limit.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

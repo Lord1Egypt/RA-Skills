@@ -2,23 +2,37 @@
  * 微信文章搜索模块
  */
 const constants = require("../config/constants");
-const { requestApi } = require("../utils/request");
+const { SkillError } = require("../utils/errors");
+const { requestApi, pollTaskResult } = require("../utils/request");
+const { formatUnixSeconds } = require("../utils/time");
+
+/**
+ * @param {Array} data
+ * @returns {Array}
+ */
+function processArticleResults(data) {
+  if (!Array.isArray(data)) {
+    throw new SkillError("API_SCHEMA_CHANGED", "文章搜索结果格式异常", true);
+  }
+
+  return data.map((item) => {
+    const processedItem = { ...item };
+    if (
+      typeof item?.pubtime === "number" &&
+      item.pubtime &&
+      !item.pubtime_str
+    ) {
+      processedItem.pubtime_str = formatUnixSeconds(item.pubtime);
+    }
+    return processedItem;
+  });
+}
 
 /**
  * 创建微信文章搜索任务
- * @param {string} token - 技能令牌
- * @param {string} keyword - 搜索关键词
- * @param {number} sort - 排序, 0:综合, 1:最新, 2:最热
- * @param {number} publish_time - 发布时间, 0:不限, 1:最近一天, 2:最近七天, 3:最近半年
- * @param {number} limit - 搜索数量, 1-10000
- * @returns {Promise<Object>} 搜索任务状态
- * @throws {Error} API调用失败时抛出错误
  */
 async function createSearchTask(token, keyword, sort, publish_time, limit) {
-  const params = {
-    _: Date.now(),
-    token: token,
-  };
+  const params = { _: Date.now() };
 
   const data = {
     keyword,
@@ -32,6 +46,7 @@ async function createSearchTask(token, keyword, sort, publish_time, limit) {
     "/api/wechat/article-search/keyword",
     params,
     data,
+    token,
     constants.CREATE_MAX_ATTEMPTS,
     "创建任务",
   );
@@ -39,35 +54,24 @@ async function createSearchTask(token, keyword, sort, publish_time, limit) {
 
 /**
  * 获取微信文章搜索任务结果
- * @param {string} token - 技能令牌
- * @param {string} keyword - 搜索关键词
- * @param {number} sort - 排序, 0:综合, 1:最新, 2:最热
- * @param {number} publish_time - 发布时间, 0:不限, 1:最近一天, 2:最近七天, 3:最近半年
- * @param {number} limit - 搜索数量, 1-10000
- * @returns {Promise<Array>} 搜索结果数组
- * @throws {Error} API调用失败时抛出错误
  */
 async function getSearchTask(token, keyword, sort, publish_time, limit) {
   const params = {
-    _: Date.now(),
-    token: token,
     keyword: keyword,
     sort: sort,
     publish_time: publish_time,
     limit: limit,
   };
 
-  const response = await requestApi(
-    "GET",
+  const response = await pollTaskResult(
     "/api/wechat/article-search/info",
     params,
-    null,
-    constants.QUERY_MAX_ATTEMPTS,
+    token,
     "查询任务",
   );
 
   if (response.data) {
-    return response.data;
+    return processArticleResults(response.data);
   }
 
   return [];

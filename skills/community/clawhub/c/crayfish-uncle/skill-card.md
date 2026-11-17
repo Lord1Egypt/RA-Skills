@@ -1,38 +1,50 @@
-## Description: <br>
-Turns the assistant into a humorous, reliable Henan-dialect persona with adjustable slang, humor, and response-style settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Makes OpenClaw respond as a reliable but world-weary Henan-dialect uncle persona with humorous complaints and context-aware tone.
 
-## Publisher: <br>
-[StudyWorkLife](https://clawhub.ai/user/StudyWorkLife) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[studyworklife](https://clawhub.ai/user/studyworklife)
 
-## Use Case: <br>
-Developers and end users can use this skill to make an agent answer in a humorous Henan-dialect persona while still handling ordinary productivity, technical, and conversational tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The persistent humorous Henan-dialect persona may be unsuitable for formal, accessibility-sensitive, or standard-language work. <br>
-Mitigation: Override the persona in the user prompt or reduce dialect and humor settings when a neutral style is required. <br>
+## Use Case:
 
+External users and developers install this skill to give OpenClaw a Henan-dialect conversational persona for everyday, business, humorous, and technical assistance. It is intended for persona and style adaptation rather than executable automation.
 
-## Reference(s): <br>
-- [Crayfish Uncle on ClawHub](https://clawhub.ai/StudyWorkLife/crayfish-uncle) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Conversational text or Markdown, with optional shell-style environment variable examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persona-only behavior; no code, credentials, or privileged actions are included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release metadata) <br>
+Risk: The skill changes the agent's default persona and dialect style, which may be inappropriate for users who need neutral or low-humor responses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this persona is desired, and adjust dialect or humor configuration to fit the deployment context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/studyworklife/skills/crayfish-uncle)
+- [Publisher profile](https://clawhub.ai/user/studyworklife)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Natural language text or Markdown, with optional shell-style configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persona responses may vary with dialect, humor, and response-speed configuration.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

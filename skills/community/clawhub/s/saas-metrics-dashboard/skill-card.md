@@ -1,41 +1,54 @@
-## Description: <br>
-SaaS metrics calculator and dashboard builder for subscription businesses that computes MRR, ARR, churn rate, NRR/GRR, LTV, CAC, CAC payback period, magic number, Rule of 40, quick ratio, and cohort retention. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SaaS Metrics Dashboard calculates MRR, ARR, churn, retention, unit-economics, growth-efficiency, and cohort-retention metrics from structured subscription-business inputs and formats an investor-ready health snapshot.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
 
-## Use Case: <br>
-Founders, CFOs, analysts, and external business users use this skill to turn structured subscription data into SaaS health metrics for investor reporting, board materials, KPI monitoring, and financial planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SaaS metrics, customer counts, revenue, churn, and investor snapshots can expose confidential company information. <br>
-Mitigation: Treat inputs and outputs as confidential company data and only pass outputs to downstream skills when intended. <br>
-Risk: Incorrect or incomplete subscription inputs can produce misleading finance metrics for board or investor materials. <br>
-Mitigation: Review input completeness, validate formulas and assumptions, and check calculations before using outputs in formal reporting. <br>
+## Use Case:
 
+Founders, CFOs, analysts, and finance operators use this skill to calculate SaaS health metrics from subscription, customer, sales-and-marketing, margin, and cash-flow inputs for investor updates, board decks, and KPI monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/saas-metrics-dashboard) <br>
-- [Publisher profile](https://clawhub.ai/user/samledger67-dotcom) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown or structured JSON/CSV-style metric snapshots with formulas, grades, red flags, cohort tables, and downstream KPI thresholds.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include investor-ready summaries, board-deck metric selections, and threshold-ready values for downstream monitoring skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may process sensitive SaaS revenue, churn, CAC, margin, and burn data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use appropriately scoped inputs and avoid including unnecessary confidential customer, revenue, or investor-sensitive details.
+
+Risk: Generated SaaS metrics or benchmark grades could be inaccurate if inputs are incomplete, stale, or misclassified.
+
+Mitigation: Review the calculated metrics, assumptions, and source inputs before using the output in investor, board, or operational reporting.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/samledger67-dotcom/skills/saas-metrics-dashboard)
+- [Publisher profile](https://clawhub.ai/user/samledger67-dotcom)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown snapshot with optional structured JSON metrics for downstream KPI monitoring]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include metric grades, red-flag commentary, cohort retention tables, segment benchmarks, and investor-facing narrative summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

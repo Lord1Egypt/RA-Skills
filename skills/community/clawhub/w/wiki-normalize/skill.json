@@ -1,0 +1,33 @@
+{
+  "name": "wiki-normalize",
+  "version": "0.1.0",
+  "description": "标准化商业研究词条名称，基于商业分类双轨制与五级架构（L1-L5）完成层级判定、名称规范化与规模核算口径匹配，输出机器可读 JSON。",
+  "entrypoint": "SKILL.md",
+  "role": "leaf",
+  "inputs": [
+    { "name": "raw_term_name", "type": "string", "required": true, "description": "原始词条名称" },
+    { "name": "term_description", "type": "string", "required": false, "description": "原始词条简介" }
+  ],
+  "outputs": [
+    {
+      "name": "normalize",
+      "type": "json",
+      "description": "标准化结果对象",
+      "fields": [
+        "original_name",
+        "assigned_level",
+        "standardized_name",
+        "sizing_metric_baseline",
+        "reasoning"
+      ]
+    }
+  ],
+  "dependencies": [],
+  "used_by": ["wiki-intent-scope"],
+  "resources": {
+    "references": [],
+    "scripts": [],
+    "agents": []
+  },
+  "tags": ["taxonomy", "normalization", "L1-L5"]
+}

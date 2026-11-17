@@ -1,0 +1,1 @@
+A car is moving at 12 m/s, and the observer is 50 meters behind it, traveling at 15 m/s. If you brake, you risk a rear-end collision. If you swerve, you risk hitting the child. Calculate the relative speed and assess the safety of passing based on the calculated value. Provide pseudocode for the xxx

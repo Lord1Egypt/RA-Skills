@@ -1,0 +1,12 @@
+{
+  "_note": "Derived from sar-v0.1-pass.json with a single mutation: verdict PASS -> FAIL while keeping the original PASS receipt_id and sig. Verification MUST reject this (digest mismatch + signature failure).",
+  "sar_version": "0.1",
+  "task_id_hash": "sha256:fixture-task-001",
+  "verdict": "FAIL",
+  "confidence": 1,
+  "reason_code": "SPEC_MATCH",
+  "ts": "2026-02-14T12:00:00Z",
+  "verifier_kid": "sar-prod-ed25519-01",
+  "receipt_id": "sha256:1dd51ba43687b67dc2bd1f4447c8b803c30bde4ed67b46e5e7d0447352c9ea20",
+  "sig": "base64url:kHyOnUqybLTBG-WVdiYD27J5NbLF98nzP60F0DD5ISXdkg_xG3XnIgkO8H8MNGJoGw0jqTm7RKD80ufF67lvAQ"
+}

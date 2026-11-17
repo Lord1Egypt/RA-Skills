@@ -1,44 +1,59 @@
-## Description: <br>
-System Awakening helps an agent design staged learning skill trees, search for current learning resources, generate local talent plugin files, and support both guided learning and task execution modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+System Awakening designs structured learning skill trees, curates YouTube, Bilibili, and Google resources, generates local talent Skill files, and supports learning and execution modes.
 
-## Publisher: <br>
-[zrxparley](https://clawhub.ai/user/zrxparley) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zrxparley](https://clawhub.ai/user/zrxparley)
 
-## Use Case: <br>
-Developers and learners use this skill to turn a learning goal into a structured talent tree with staged resources, practice tasks, progress tracking, and optional execution help for tasks within learned skill boundaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can generate new local skill files and update progress memory, which may change the local agent environment. <br>
-Mitigation: Ask the agent to preview generated files and progress updates before saving them. <br>
-Risk: Broad trigger phrases may activate the skill unintentionally. <br>
-Mitigation: Use explicit activation phrases and confirm before execution-mode actions. <br>
-Risk: Execution-mode outputs can be incomplete or incorrect for the requested task. <br>
-Mitigation: Review task outputs, scripts, and commands before use, especially before running generated code or shell commands. <br>
+## Use Case:
 
+External users and developers use this skill to turn a learning goal into a staged skill tree with curated resources, practice tasks, progress tracking, and optional task execution based on learned skills.
 
-## Reference(s): <br>
-- [System Awakening ClawHub page](https://clawhub.ai/zrxparley/system-awakening) <br>
-- [Nuwa Skill inspiration project](https://github.com/alchaincyf/nuwa-skill) <br>
-- [Creator profile](https://x.com/AlchainHust) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with structured tables, resource links, generated skill-file content, and task results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or generate local skill files and progress updates; users should review generated files and execution-mode outputs before relying on them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can create persistent local Skill files and progress records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect every generated SKILL.md before allowing it to persist, load, or run, and remove generated progress records when they are no longer needed.
+
+Risk: The skill relies on web searches for learning roadmaps and resource links, which can produce outdated, low-quality, or untrusted materials.
+
+Mitigation: Review curated links before using them and prefer official documentation or well-maintained sources.
+
+Risk: Execution-mode tasks may perform broad actions using learned skill capabilities.
+
+Mitigation: Require explicit confirmation before any execution-mode task touches files, credentials, servers, external services, or agent workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zrxparley/skills/system-awakening)
+- [Nuwa Skill](https://github.com/alchaincyf/nuwa-skill)
+- [Creator profile](https://x.com/AlchainHust)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with resource links, code snippets, progress tables, and generated Skill files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create persistent local Skill files and progress records when the agent environment permits file writes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

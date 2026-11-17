@@ -1,0 +1,100 @@
+{
+  "files": [
+    {
+      "path": "LICENSE.md",
+      "sha256": "129dafa2c3484fd21fbf16b25168321b9a3aac89041b72edfb7f280c763e353b"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "61fdae5461a363cabe501dbf5a0f99b51e442ec71e588908fa7ac086f684fd33"
+    },
+    {
+      "path": "references\\GMP质量体系与验证枢纽.md",
+      "sha256": "34b44e27a4b84eb26bce716f8e2dc60d636f32414ab2422639dc35efc2c6fcd2"
+    },
+    {
+      "path": "references\\README.md",
+      "sha256": "58528a5adc419018789c0caac409cf1e1d4e4cc21ba57c5744014cf519496f12"
+    },
+    {
+      "path": "references\\UDI全球标识枢纽.md",
+      "sha256": "9379f66ce44603cbc70f3780004f161274ea466a09449f022f7e33ab465a1ce2"
+    },
+    {
+      "path": "references\\上市后监管枢纽.md",
+      "sha256": "71722a0b6eb455c4812938b8c9bc0da5072b8f4525c45102abdc73ac4dc5065c"
+    },
+    {
+      "path": "references\\临床评价枢纽.md",
+      "sha256": "a6dc2f95f6ce8573fe61af7cb364d4e66aa4abf4f07741c7d4304f2a3bc6c4b1"
+    },
+    {
+      "path": "references\\原材料供应商合规枢纽.md",
+      "sha256": "5e9ab82764735fc47431842e3aed486c5e0ac663f597a4181aa58fd6556066b8"
+    },
+    {
+      "path": "references\\变更延续管理枢纽.md",
+      "sha256": "bb79ca0a0a12f4afe620a911c1f89890241a6e799f803d4eaa61d273887d40ff"
+    },
+    {
+      "path": "references\\售后服务枢纽.md",
+      "sha256": "3752e9ddc2ecdabb21e173f842f59904de9b4c310945c708edf7631e96a83015"
+    },
+    {
+      "path": "references\\市场准入与销售枢纽.md",
+      "sha256": "72594f94c0a79da4b647d40abdaa7d153c7375782250cabbff9ffe6a97ecc20e"
+    },
+    {
+      "path": "references\\技术文件STED撰写枢纽.md",
+      "sha256": "1db181643aafebdfb69934a3d671fd43b4d8415c83938adccf56c832d0395371"
+    },
+    {
+      "path": "references\\标签与IFU枢纽.md",
+      "sha256": "f68a0d8273b531bfbb58425b28c04ce986899c2e7bcf90c7916f6bae56d2528b"
+    },
+    {
+      "path": "references\\注册周期费用有效期对比枢纽.md",
+      "sha256": "539daba2c67635b2a5572c57e8b703cf37be3178924ec4b05a6aff24c731ef45"
+    },
+    {
+      "path": "references\\注册工程师资料枢纽.md",
+      "sha256": "79c2b6ef22e95c9a31a2089e90d5a5ef8d0ebe000baf09f3a505c5f7f1fce460"
+    },
+    {
+      "path": "references\\注册检验与申报实操枢纽.md",
+      "sha256": "9f36c9f9e7cfd9d6224c5739b67d28f07795c076ccb615dc1f53fb2676749f26"
+    },
+    {
+      "path": "references\\灭菌包装验证枢纽.md",
+      "sha256": "6733dd7fb2d0e9c74af87855319cd548421d9580ae1414b3a2162e7baca23db3"
+    },
+    {
+      "path": "references\\生物相容性测试规划枢纽.md",
+      "sha256": "a9d82dde2f8db165064c701311509f9e283e18755d50893288fbf04206713fe9"
+    },
+    {
+      "path": "references\\篮钳剪线钳过线钳_全球注册路径汇编.md",
+      "sha256": "367cef6d60e5f1e3187da98edfb561c684ff4f13f0ffe66a590271f5c73f2aa5"
+    },
+    {
+      "path": "references\\设计开发控制枢纽.md",
+      "sha256": "3c3be56b3c15684850042d83450c96d82835833228f69d4c69dc777cf5bb2b77"
+    },
+    {
+      "path": "references\\软件人因枢纽.md",
+      "sha256": "5f80f78221530cc673cd1f5ab65aa216fa1e8b9a0efc31161fdcaf992af68bc5"
+    },
+    {
+      "path": "references\\需求调研与立项枢纽.md",
+      "sha256": "0dfa8244eb6210647b1cdd980cda294f9a49f434f11237ff9dbd49e06a790abd"
+    },
+    {
+      "path": "references\\风险管理枢纽.md",
+      "sha256": "71863ea41a8952c8b18d9b76f581ea4d31f7fa399241ea3f71e637e64d0d32f5"
+    }
+  ],
+  "generated_utc": "2026-08-26T06:08:12Z",
+  "license": "MIT",
+  "manifest_sha256": "6febf0499e13a861156c09dbce059e5a786e8762005779e08fe71e5e213facdd",
+  "skill": "medical-device-reg-hub"
+}

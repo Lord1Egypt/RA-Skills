@@ -1,40 +1,56 @@
-## Description: <br>
-Creates or updates AgentSkills for designing, structuring, and packaging skills with scripts, references, and assets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create or update AgentSkills for designing, structuring, validating, and packaging skills with scripts, references, and assets.
 
-## Publisher: <br>
-[rmbell09-lang](https://clawhub.ai/user/rmbell09-lang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[rmbell09-lang](https://clawhub.ai/user/rmbell09-lang)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to create, refine, validate, and package agent skills with structured instructions and optional bundled resources.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated or edited skill content could contain incomplete, inaccurate, or unsafe instructions.
+
+Mitigation: Review the generated SKILL.md and bundled resources, then validate and scan the skill before packaging or sharing it.
+
+Risk: Bundled scripts can create or edit files in directories selected by the user.
+
+Mitigation: Run the skill in a scoped workspace and avoid targeting broad home, system, or sensitive directories.
+
+Risk: Packaging may include unintended files from the selected skill directory.
+
+Mitigation: Inspect the skill directory before packaging and keep only files required for the released skill.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and skill authors use this skill to design, initialize, validate, and package AgentSkill directories for Codex-style agents. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, Files]
 
-## Known Risks and Mitigations: <br>
-Risk: Packaging the wrong directory could include secrets or unrelated private files in a .skill archive. <br>
-Mitigation: Use the packaging script only on intended skill folders and inspect generated .skill archives before publishing. <br>
-Risk: Generated skill templates may contain placeholder text or incomplete guidance. <br>
-Mitigation: Review and customize generated SKILL.md content before validation, packaging, or release. <br>
+**Output Format:** [Markdown with inline code blocks and file-oriented instructions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Lucky Skill Creator on ClawHub](https://clawhub.ai/rmbell09-lang/lucky-skill-creator) <br>
+**Other Properties Related to Output:** [May create or modify skill files and package .skill archives in directories chosen by the user.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated skill files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local skill directories and .skill archives when its bundled scripts are used.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

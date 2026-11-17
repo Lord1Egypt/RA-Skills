@@ -1,0 +1,45 @@
+{
+  "name": "@yottameta/yotta-lesson",
+  "version": "0.1.4",
+  "description": "YuanAn (yotta-lesson) — a local, deterministic lesson-plan skeleton and coverage checker for AI agents: reads a curriculum map (lesson id, knowledge points, key points, difficulties, misconceptions, standard reference) plus an optional structure config, builds a lesson skeleton whose stage minutes always sum to periods x minutes-per-period and whose objectives each carry a curriculum-standard source, and checks an existing lesson text for missing knowledge points, missing required stages, missing citations, missing time annotations and total-time mismatches. Markdown and JSON output, configurable stages, and a CI gate are included. Triggers: drafting a lesson or study-plan skeleton, verifying a lesson against a curriculum map, checking that knowledge points and stages are covered, or wiring lesson-structure checks into automation. Boundaries: structural skeleton and gap list only — no exercise content, no student comments, no replacement for the teacher's instructional design; no network access, no model calls, no upload of lesson plans or school maps; no textbook, curriculum or exam text is bundled, and citations must be verified against official sources. Fully local, zero-dependency (Python 3.8+ standard library).",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "yotta-lesson",
+    "yottaskills",
+    "lesson-plan",
+    "education"
+  ],
+  "files": [
+    "SKILL.md",
+    "LICENSE",
+    "NOTICE",
+    "README.md",
+    "README.zh-CN.md",
+    "CHANGELOG.md",
+    "install.sh",
+    "references",
+    "scripts",
+    "assets",
+    "bin",
+    "!scripts/test_*.py",
+    "!scripts/fixtures",
+    "!scripts/fixtures/**",
+    "!**/__pycache__",
+    "!**/*.pyc",
+    "!**/*.pyo"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YottaMeta/yotta-lesson.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "yotta-lesson": "bin/install.js"
+  },
+  "scripts": {
+    "test": "python scripts/test_yotta_lesson.py"
+  }
+}

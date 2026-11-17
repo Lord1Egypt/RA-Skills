@@ -1,0 +1,155 @@
+{
+  "source": "sanitized-real-figma-smoke-shape",
+  "nodes": [
+    {
+      "id": "6127:21193",
+      "name": "KsTitle",
+      "type": "INSTANCE",
+      "visible": true,
+      "absoluteBoundingBox": {
+        "x": 3858,
+        "y": 2562,
+        "width": 500,
+        "height": 56
+      },
+      "absoluteRenderBounds": {
+        "x": 3858,
+        "y": 2562,
+        "width": 500,
+        "height": 56
+      },
+      "clipsContent": false,
+      "constraints": {
+        "vertical": "TOP",
+        "horizontal": "LEFT"
+      },
+      "layoutSizingHorizontal": "FILL",
+      "layoutSizingVertical": "HUG",
+      "layoutMode": "VERTICAL",
+      "counterAxisSizingMode": "FIXED",
+      "itemSpacing": 4,
+      "layoutWrap": "NO_WRAP",
+      "fills": [],
+      "strokes": [],
+      "background": [],
+      "backgroundColor": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0
+      },
+      "blendMode": "PASS_THROUGH",
+      "strokeWeight": 1,
+      "strokeAlign": "INSIDE",
+      "effects": [],
+      "componentId": "18:13244",
+      "componentProperties": {
+        "hasDescription#52921:4": {
+          "type": "BOOLEAN",
+          "value": true
+        },
+        "size": {
+          "value": "small",
+          "type": "VARIANT",
+          "boundVariables": {}
+        }
+      },
+      "overrides": [
+        {
+          "id": "6127:21193",
+          "overriddenFields": ["boundVariables", "height", "width"]
+        }
+      ]
+    },
+    {
+      "id": "I6127:21193;51559:2731",
+      "name": "Title",
+      "type": "TEXT",
+      "visible": true,
+      "absoluteBoundingBox": {
+        "x": 3858,
+        "y": 2562,
+        "width": 163,
+        "height": 20
+      },
+      "absoluteRenderBounds": {
+        "x": 3859.134033203125,
+        "y": 2566.444091796875,
+        "width": 161.3701171875,
+        "height": 13.52392578125
+      },
+      "constraints": {
+        "vertical": "TOP",
+        "horizontal": "LEFT"
+      },
+      "layoutSizingHorizontal": "HUG",
+      "layoutSizingVertical": "HUG",
+      "characters": "Industry age restrictions",
+      "characterStyleOverrides": [],
+      "styleOverrideTable": {},
+      "style": {
+        "fontFamily": "TikTok Sans Text",
+        "fontPostScriptName": "TikTokSansText-Medium",
+        "fontStyle": "Medium",
+        "fontWeight": 500,
+        "fontSize": 14,
+        "textAlignHorizontal": "LEFT",
+        "textAlignVertical": "CENTER",
+        "letterSpacing": 0.09380000233650208,
+        "lineHeightPx": 20,
+        "lineHeightUnit": "PIXELS"
+      },
+      "fills": [
+        {
+          "type": "SOLID",
+          "visible": true,
+          "color": {
+            "r": 0.07058823853731155,
+            "g": 0.0784313753247261,
+            "b": 0.08235294371843338,
+            "a": 1
+          }
+        }
+      ],
+      "strokes": [],
+      "strokeWeight": 1,
+      "strokeAlign": "OUTSIDE",
+      "effects": []
+    },
+    {
+      "id": "6127:21194",
+      "name": "KsInlineAlert",
+      "type": "INSTANCE",
+      "visible": true,
+      "absoluteBoundingBox": {
+        "x": 3858,
+        "y": 2626,
+        "width": 500,
+        "height": 48
+      },
+      "layoutMode": "HORIZONTAL"
+    }
+  ],
+  "contextTree": {
+    "siblings": [
+      {
+        "id": "6127:21193",
+        "absoluteBoundingBox": {
+          "x": 3858,
+          "y": 2562,
+          "width": 500,
+          "height": 56
+        }
+      },
+      {
+        "id": "6127:21194",
+        "absoluteBoundingBox": {
+          "x": 3858,
+          "y": 2626,
+          "width": 500,
+          "height": 48
+        }
+      }
+    ]
+  }
+}

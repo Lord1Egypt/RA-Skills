@@ -1,51 +1,67 @@
-## Description: <br>
-Complete Miro Web SDK reference for building web plugins and desktop applications. Covers setup, core APIs (boards, shapes, text, items, selections, events), authentication, real-time collaboration, examples in TypeScript/JavaScript, best practices, and error handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete Miro Web SDK reference for building web plugins and desktop applications, covering setup, core APIs, authentication, real-time collaboration, TypeScript/JavaScript examples, best practices, and error handling.
 
-## Publisher: <br>
-[bigbubbaagent-bot](https://clawhub.ai/user/bigbubbaagent-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bigbubbaagent-bot](https://clawhub.ai/user/bigbubbaagent-bot)
 
-## Use Case: <br>
-Developers use this skill as a compact Miro Web SDK reference when building, configuring, testing, and troubleshooting Miro web plugins or desktop app integrations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Copy-paste examples may be used as production plugin code without privacy or safety review. <br>
-Mitigation: Treat the skill as reference documentation, test copied examples in a Miro Developer team, and review privacy and safety behavior before production use. <br>
-Risk: Examples may request broader Miro scopes than a specific plugin needs. <br>
-Mitigation: Request only the scopes required for the plugin workflow and verify permission errors during development testing. <br>
-Risk: Logging user data or raw stack traces can expose sensitive information. <br>
-Mitigation: Avoid logging PII or raw stack traces and keep secrets out of frontend environment variables. <br>
-Risk: Board export or delete actions can change or remove user content. <br>
-Mitigation: Add explicit user confirmation before export or delete operations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bigbubbaagent-bot/miro-sdk) <br>
-- [Miro developer documentation](https://developers.miro.com/docs) <br>
-- [Miro API reference](https://developers.miro.com/reference) <br>
-- [Setup and installation reference](references/setup-installation.md) <br>
-- [Core APIs reference](references/core-apis.md) <br>
-- [Authentication reference](references/authentication.md) <br>
-- [Examples reference](references/examples.md) <br>
-- [Best practices reference](references/best-practices.md) <br>
-- [Error handling reference](references/error-handling.md) <br>
+## Use Case:
 
+Developers and engineers use this skill as a concise reference for building Miro web plugins and desktop apps, including setup, board APIs, authentication, TypeScript/JavaScript examples, best practices, and error handling.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with TypeScript, JavaScript, JSON, shell, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only reference output; examples require review before production use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Copied examples may modify or delete Miro board content, including bulk deletion.
+
+Mitigation: Test in a Miro Developer team, confirm destructive board actions with users, and avoid bulk deletion unless intentional.
+
+Risk: Examples that export board data or send logs to a backend may expose board, user, or error data.
+
+Mitigation: Minimize exported fields, sanitize data, and avoid sending sensitive board, user, or error details unless required and protected.
+
+Risk: SDK setup commands install packages that may change over time.
+
+Mitigation: Pin dependency versions and review package manifests before production use.
+
+Risk: Over-broad Miro scopes can grant unnecessary read/write access.
+
+Mitigation: Request only the Miro scopes needed for the app and handle permission errors explicitly.
+
+## Reference(s):
+
+- [Miro Web SDK - Setup & Installation](references/setup-installation.md)
+- [Miro Web SDK - Core APIs Reference](references/core-apis.md)
+- [Miro Web SDK - Authentication](references/authentication.md)
+- [Miro Web SDK - Code Examples](references/examples.md)
+- [Miro Web SDK - Best Practices](references/best-practices.md)
+- [Miro Web SDK - Error Handling](references/error-handling.md)
+- [Miro Developer Documentation](https://developers.miro.com/docs)
+- [Miro API Reference](https://developers.miro.com/reference)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript/JavaScript, JSON, shell, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only reference; outputs should be reviewed before applying commands or board mutations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

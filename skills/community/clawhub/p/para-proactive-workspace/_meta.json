@@ -1,6 +1,48 @@
 {
-  "ownerId": "kn71b6esc149aeag58x46badbd81a6b1",
-  "slug": "para-proactive-workspace",
-  "version": "1.0.2",
-  "publishedAt": 1771312984562
+  "name": "para-proactive-workspace",
+  "version": "1.0.0",
+  "description": "Complete workspace template combining PARA Method with Proactive Agent Architecture",
+  "author": "Cocoblood9527",
+  "license": "MIT",
+  "keywords": [
+    "workspace",
+    "template",
+    "PARA",
+    "proactive-agent",
+    "organization",
+    "memory",
+    "productivity",
+    "file-organization",
+    "folder-structure",
+    "knowledge-management",
+    "second-brain",
+    "tiago-forte",
+    "openclaw",
+    "AI-agent",
+    "PKM",
+    "getting-things-done"
+  ],
+  "requires": {
+    "files": [
+      "SKILL.md",
+      "assets/templates/"
+    ]
+  },
+  "clawdbot": {
+    "emoji": "🦞📁",
+    "activates_on": [
+      "workspace setup",
+      "create workspace",
+      "PARA method",
+      "organize files",
+      "workspace template",
+      "file organization",
+      "folder structure",
+      "knowledge management",
+      "second brain",
+      "productivity",
+      "PKM",
+      "getting things done"
+    ]
+  }
 }

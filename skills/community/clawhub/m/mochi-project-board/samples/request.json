@@ -1,0 +1,6 @@
+{
+  "action": "project.upsert",
+  "id": "demo",
+  "name": "Demo project",
+  "due": "2026-12-01"
+}

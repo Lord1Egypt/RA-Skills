@@ -1,46 +1,51 @@
-## Description: <br>
-Trigger when a problem contains competing forces, unclear priorities, or no obvious entry point; use this skill to identify contradictions, isolate the principal contradiction, classify its nature, and choose the right response. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Contradiction Analysis helps agents structure complex problems by identifying competing forces, isolating the principal contradiction, classifying its nature, and choosing an appropriate response.
 
-## Publisher: <br>
-[arg0](https://clawhub.ai/user/arg0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arg0](https://clawhub.ai/user/arg0)
 
-## Use Case: <br>
-Developers, engineers, and teams use this skill to analyze complex trade-offs, unclear priorities, bottlenecks, root causes, or competing constraints before choosing a response. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording may cause the agent to apply this analysis framework when another approach would be more suitable. <br>
-Mitigation: Be explicit when you do not want contradiction analysis used for a task, and review outputs for fit before acting on them. <br>
-Risk: The artifact content is Chinese-first and may shape terminology or framing in generated analysis. <br>
-Mitigation: Specify the desired output language and terminology when using the skill in English or multilingual workflows. <br>
-Risk: The skill produces reasoning guidance and classification judgments that can be incomplete or misleading if the input facts are weak. <br>
-Mitigation: Validate the identified contradictions, priorities, and proposed response against current evidence before making decisions. <br>
+## Use Case:
 
+External users and developers use this skill to analyze complex decisions or systems where competing forces, unclear priorities, or interacting problems make the next action unclear.
 
-## Reference(s): <br>
-- [Contradiction Analysis ClawHub Page](https://clawhub.ai/arg0/contradiction-analysis) <br>
-- [Publisher Profile](https://clawhub.ai/user/arg0) <br>
-- [contradiction-mapper-prompt.md](artifact/contradiction-mapper-prompt.md) <br>
-- [contradiction-types-reference.md](artifact/contradiction-types-reference.md) <br>
-- [original-texts.md](artifact/original-texts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis report, tables, and concise recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May classify contradictions, identify the principal contradiction, and flag transition risks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The broad trigger language may cause the skill to frame many complex problems through a Chinese-first Mao contradiction-theory lens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use another analytical method or language when that framing is inappropriate, and review outputs for fit to the user's context.
+
+## Reference(s):
+
+- [Original contradiction-analysis source excerpts](artifact/original-texts.md)
+- [Contradiction types reference](artifact/contradiction-types-reference.md)
+- [ClawHub skill page](https://clawhub.ai/arg0/skills/contradiction-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown narrative and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a structured contradiction mapping report with priorities, contradiction nature, dominant aspects, relationships, and transformation risks.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

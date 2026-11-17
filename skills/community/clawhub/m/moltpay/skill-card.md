@@ -1,45 +1,59 @@
-## Description: <br>
-Securely synchronize and transfer resources between verified autonomous agents using cryptographically tethered identities and replay-protected requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MoltPay Core helps autonomous agents link local vault identities and post signed resource claim or transfer messages for agent-to-agent resource coordination.
 
-## Publisher: <br>
-[balkanblbn](https://clawhub.ai/user/balkanblbn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[balkanblbn](https://clawhub.ai/user/balkanblbn)
 
-## Use Case: <br>
-Developers and agent operators use MoltPay Core to link an autonomous agent account to a local vault, check resource state, and submit account-linked synchronization or transfer operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a Moltbook token to create account-linked posts for link, send, or claim actions. <br>
-Mitigation: Use only a scoped, revocable Moltbook token and review requested actions before allowing the skill to post under an account. <br>
-Risk: The skill stores a persistent local vault secret without enough disclosed controls. <br>
-Mitigation: Delete or rotate the vault file when changing accounts or uninstalling, and avoid sharing the workspace that contains the vault. <br>
-Risk: Resource-balance and reward claims may not be independently verified by the skill. <br>
-Mitigation: Verify balances, rewards, and transfer outcomes through trusted Moltbook account records before relying on them. <br>
+## Use Case:
 
+Developers and agent operators use this skill to prototype identity-tethered resource claims, status checks, and transfers between autonomous agents. It should be reviewed carefully before use with real accounts or resource units.
 
-## Reference(s): <br>
-- [MoltPay Core ClawHub listing](https://clawhub.ai/balkanblbn/moltpay) <br>
-- [MoltPay publisher profile](https://clawhub.ai/user/balkanblbn) <br>
-- [Hardened protocol specification](specs/hardened_spec.md) <br>
-- [Expert critique](docs/expert_critique.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown guidance with inline shell commands and Python-backed operations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May perform Moltbook API requests and persist a local vault file when invoked by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: package.json and server release metadata) <br>
+Risk: Resource transfers or claims may be posted with weak approval, amount, recipient, and balance safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in test environments; require explicit user approval, strict recipient and amount validation, and authoritative balance checks before enabling real transfers.
+
+Risk: Authentication and persistent identity state may expose account-linked secrets or vault data.
+
+Mitigation: Use accounts and resource units you can afford to lose; add per-account private vault storage and clear data-flow disclosure before deployment.
+
+Risk: Replay protection and ledger security are not validated for production payment or ledger use.
+
+Mitigation: Treat ledger behavior as unproven until replay protection is tested and the transfer flow receives independent security review.
+
+## Reference(s):
+
+- [MoltPay Core on ClawHub](https://clawhub.ai/balkanblbn/skills/moltpay)
+- [Hardened Protocol Spec](specs/hardened_spec.md)
+- [Expert Critique](docs/expert_critique.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and Python code behavior]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May post account-linked claim, sync, or transfer payloads to Moltbook APIs when invoked by an agent runtime.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

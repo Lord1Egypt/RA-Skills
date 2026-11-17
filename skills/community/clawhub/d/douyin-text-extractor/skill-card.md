@@ -1,48 +1,60 @@
-## Description: <br>
-Extracts Douyin video metadata, no-watermark download links, and AI-generated speech transcripts through CLI, Python, and MCP workflows using SiliconFlow or Aliyun transcription APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts Douyin video information and download links, then uses SiliconFlow or Alibaba Cloud DashScope speech recognition to produce video transcripts through CLI and MCP Server workflows.
 
-## Publisher: <br>
-[rfdiosuao](https://clawhub.ai/user/rfdiosuao) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rfdiosuao](https://clawhub.ai/user/rfdiosuao)
 
-## Use Case: <br>
-Content creators, social media operators, and developers use this skill to retrieve Douyin video information, download video assets, and generate transcript text for content analysis or agent workflows. Transcription requires a configured SiliconFlow or Aliyun API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The FFmpeg installer can download and run unverified binary artifacts. <br>
-Mitigation: Prefer a trusted package manager or manually verify downloaded FFmpeg binaries before running the installer. <br>
-Risk: Video URLs, downloaded media, or extracted audio may be sent to third-party transcription services. <br>
-Mitigation: Use the skill only with content you are comfortable sending to SiliconFlow or Aliyun, and review those services' terms before use. <br>
-Risk: API keys are required for transcription and MCP use. <br>
-Mitigation: Use limited-scope keys, provide them through environment variables, and rotate them if they are exposed. <br>
-Risk: MCP tools can download media and process external URLs when invoked by a connected client. <br>
-Mitigation: Configure the MCP server only for trusted clients and review requested Douyin URLs before tool execution. <br>
+## Use Case:
 
+External users, content creators, and developers use this skill to parse Douyin share links, retrieve video metadata or download links, and generate text transcripts for content review, notes, research, or MCP-enabled workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rfdiosuao/douyin-text-extractor) <br>
-- [SiliconFlow API documentation](https://docs.siliconflow.cn/) <br>
-- [SiliconFlow registration link](https://cloud.siliconflow.cn/i/84kySW0S) <br>
-- [FFmpeg downloads](https://ffmpeg.org/download.html) <br>
-- [Aliyun DashScope console](https://dashscope.console.aliyun.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Plain text tool responses, Markdown transcript files, and command/configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs can include video metadata, download links, transcript.md files, and local media file paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill can download and run FFmpeg binaries from external sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer installing FFmpeg manually from a trusted package manager or a vetted source, and avoid automatic binary installation in managed environments.
+
+Risk: Transcription uploads extracted audio or video-derived media to external speech services.
+
+Mitigation: Do not process private or sensitive videos unless the selected provider's data handling, retention, and access controls have been reviewed.
+
+Risk: The release has a suspicious security verdict and includes referral-based onboarding content.
+
+Mitigation: Review the security guidance, referral behavior, URL handling, and privacy disclosures before installation or production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rfdiosuao/skills/douyin-text-extractor)
+- [SiliconFlow API documentation](https://docs.siliconflow.cn/)
+- [SiliconFlow speech service](https://cloud.siliconflow.cn/)
+- [FFmpeg downloads](https://ffmpeg.org/download.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text, JSON strings, Markdown transcript files, and CLI or MCP configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Transcription requires a user-provided API key; video download and transcript workflows may create local media and Markdown files.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact skill.json, README, and package.json contain different version values)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -8,7 +8,9 @@ Complete setup files for running OpenClaw in Docker.
 ```yaml
 services:
   openclaw:
-    image: ghcr.io/openclaw/openclaw:v1
+    # Pin to an exact version and digest. A floating tag can change under you,
+    # and this container receives your API keys and gateway token.
+    image: ghcr.io/openclaw/openclaw:2026.10.10@sha256:REPLACE_WITH_VERIFIED_DIGEST
     container_name: openclaw_agent
     restart: unless-stopped
     environment:
@@ -39,10 +41,14 @@ services:
     ports:
       # Bind to localhost only for security; use Tailscale for remote access
       - "127.0.0.1:18789:18789"
+    # Shipped with this skill as references/start.sh. Copy it to
+    # ~/openclaw/workspace/scripts/start.sh before starting the container.
     command: ["bash", "/home/node/.openclaw/workspace/scripts/start.sh"]
 
   openclaw-cli:
-    image: ghcr.io/openclaw/openclaw:v1
+    # Pin to an exact version and digest. A floating tag can change under you,
+    # and this container receives your API keys and gateway token.
+    image: ghcr.io/openclaw/openclaw:2026.10.10@sha256:REPLACE_WITH_VERIFIED_DIGEST
     profiles: ["cli"]
     volumes:
       - ~/.openclaw:/home/node/.openclaw
@@ -54,6 +60,34 @@ services:
     entrypoint: ["node", "dist/index.js"]
 ```
 
+> **Before starting:** copy the shipped startup script into place, and
+> replace `REPLACE_WITH_VERIFIED_DIGEST` with the digest you actually verified:
+>
+> ```bash
+> mkdir -p ~/openclaw/workspace/scripts
+> cp ~/.openclaw/skills/openclaw-docker-linux/references/start.sh \
+>    ~/openclaw/workspace/scripts/start.sh
+> chmod +x ~/openclaw/workspace/scripts/start.sh
+> ```
+>
+> **Verify the digest before you trust it.** Pull the tag and read the digest
+> the registry actually served, then compare it against the upstream release
+> notes. Do not paste a digest you found in a blog post or an old issue:
+>
+> ```bash
+> # Get the real digest for the tag
+> docker pull ghcr.io/openclaw/openclaw:2026.10.10
+> docker inspect --format='{{index .RepoDigests 0}}' \
+>   ghcr.io/openclaw/openclaw:2026.10.10
+> # -> ghcr.io/openclaw/openclaw@sha256:<64-hex-chars>
+>
+> # Compare with the published upstream digest
+> skopeo inspect docker://ghcr.io/openclaw/openclaw:2026.10.10 | jq -r .Digest
+> ```
+>
+> The two must match. If they differ, stop — you are looking at a different
+> image than the one you think you are running.
+>
 > Replace `YOUR_USERNAME` with your actual Linux username throughout.
 > Remove volume mounts you don't need (e.g. Linuxbrew, npm-global, gh config).
 
@@ -142,13 +176,27 @@ The `start` command automatically:
 If you see permission errors on mounted volumes, set ownership to UID 1000 (the `node` user inside the container):
 
 ```bash
-sudo chown -R 1000:1000 ~/.openclaw ~/openclaw
+# Verify the uid first - 1000 is not your uid on every machine.
+id -u; id -g
+# Then use YOUR actual ids (shown above), not a guessed 1000:
+sudo chown -R "$(id -u):$(id -g)" ~/.openclaw ~/openclaw
 ```
 
-On macOS, permissions usually work out of the box. If not:
+On macOS, permissions usually work out of the box. If not, grant access to
+the directories themselves rather than making every file world-readable:
 ```bash
-chmod -R 755 ~/.openclaw ~/openclaw
+# Directory: owner + group only (0700)
+chmod 700 ~/.openclaw ~/openclaw
+
+# Config files: owner read/write only (0600)
+chmod 600 ~/.openclaw/openclaw.json ~/openclaw/openclaw.json
 ```
+
+Do **not** use `chmod -R 755`. That grants read and execute access to every
+user on the machine, including your gateway token, model API keys, and
+session data. Use `700` for directories and `600` for files that hold
+secrets. If you need group-shared access, use `750`/`640` and set the group
+explicitly — do not fall back to world-readable modes.
 
 ---
 
@@ -187,7 +235,7 @@ sudo apt-get update && sudo apt-get install tailscale
 sudo tailscale up
 
 # Get your IP
-tailscale ip -4
+tailscale serve status
 ```
 
 **Preferred — use MagicDNS hostname (HTTPS, no port needed):**
@@ -199,4 +247,4 @@ Then access at: `https://YOUR_MACHINE_NAME.YOUR_TAILNET.ts.net?token=YOUR_TOKEN`
 This is more secure than raw IP (HTTPS via Tailscale's TLS certs) and more stable (hostname doesn't change if your IP does).
 
 **Raw IP fallback (HTTP):**
-`http://YOUR_TAILSCALE_IP:18789?token=YOUR_TOKEN`
+`https://YOUR_MACHINE.tailnet.ts.net` — read the token from `.env` with `grep OPENCLAW_GATEWAY_TOKEN .env`

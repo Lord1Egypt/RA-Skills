@@ -1,44 +1,57 @@
-## Description: <br>
-Deploys LLMs such as Qwen or DeepSeek on GPU servers by downloading models from ModelScope and starting a vLLM inference service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when users request to deploy LLMs such as Qwen and DeepSeek on specified GPU servers, download models with ModelScope, and start a vLLM inference service.
 
-## Publisher: <br>
-[wangwei1237](https://clawhub.ai/user/wangwei1237) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangwei1237](https://clawhub.ai/user/wangwei1237)
 
-## Use Case: <br>
-Developers and engineers use this skill to deploy large language models to GPU servers, configure the vLLM runtime, and verify that an OpenAI-compatible chat completions endpoint is running. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify GPU servers over SSH and run deployment commands on a target host. <br>
-Mitigation: Use a dedicated least-privileged SSH account and confirm the target host, user, path, model, port, and command before each run. <br>
-Risk: The vLLM service may be exposed beyond the local machine if started on an unrestricted network interface. <br>
-Mitigation: Restrict access with localhost binding, firewall rules, reverse proxy authentication, or trusted source IP allowlists. <br>
-Risk: Unpinned package installation can introduce unexpected dependency changes. <br>
-Mitigation: Pin vLLM and ModelScope dependency versions in controlled deployment environments. <br>
+## Use Case:
 
+Developers and infrastructure engineers use this skill to deploy supported large language models on GPU servers, configure model storage, port, proxy, and tensor parallelism settings, and validate that the vLLM chat completions endpoint is running.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangwei1237/model-deploy) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Deployment script](artifact/scripts/deploy.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces deployment steps and commands for SSH, conda, ModelScope, and vLLM; no structured machine-readable output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can give an agent broad control over a remote GPU server through SSH deployment commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted target hosts and a dedicated least-privilege SSH account, and review commands before execution.
+
+Risk: Unvalidated model, path, proxy, port, and GPU parameters can cause incorrect downloads, unsafe paths, or unintended service exposure.
+
+Mitigation: Validate model and path parameters, review proxy and port settings, and apply firewall or authentication controls for the vLLM API.
+
+Risk: The deployment installs or upgrades runtime dependencies and starts the vLLM API on all interfaces as shipped.
+
+Mitigation: Pin dependencies where practical and avoid public exposure unless network access controls and authentication are in place.
+
+## Reference(s):
+
+- [ClawHub Model Deploy Skill](https://clawhub.ai/wangwei1237/skills/model-deploy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and deployment guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces remote deployment steps and validation commands for user-specified model and GPU server parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

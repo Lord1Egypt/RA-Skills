@@ -1,44 +1,58 @@
-## Description: <br>
-Search, preview, download, and process GIFs from Tenor and Giphy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, preview, download, and process GIFs from Tenor and Giphy.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Developers and agents use this skill to search GIF providers, preview GIF results, download selected GIFs, and extract frames or frame sheets for media workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on an external gifgrep CLI installed through Homebrew or Go. <br>
-Mitigation: Verify the CLI source and chosen install method before deployment, especially when using a moving '@latest' Go install. <br>
-Risk: Tenor and Giphy API keys may be provided to improve provider access or rate limits. <br>
-Mitigation: Use dedicated API keys with the minimum practical access and rotate them according to local credential policy. <br>
-Risk: Download and processing actions can write GIF or image files to user-provided paths. <br>
-Mitigation: Review requested output paths before execution and keep generated media inside approved workspace locations. <br>
+## Use Case:
 
+Developers and agents use this skill to search GIF providers, retrieve GIF URLs, download GIF files, and create derived image outputs such as static frames or frame sheets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/terrycarter1985-gifgrep) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/terrycarter1985) <br>
-- [GifGrep project link from skill metadata](https://github.com/steipete/gifgrep) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with command parameters and file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create GIF, PNG, or frame-sheet files at user-requested output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill sends search queries to external GIF services such as Tenor or Giphy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only queries appropriate for those services and provide only the provider API key needed for the selected provider.
+
+Risk: The skill can write downloaded or generated media files to caller-selected output paths.
+
+Mitigation: Use explicit workspace-scoped output paths and review generated files before reusing or distributing them.
+
+Risk: The skill depends on a third-party local gifgrep CLI.
+
+Mitigation: Install only a reviewed gifgrep version, and prefer a pinned version when available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/terrycarter1985-gifgrep)
+- [Publisher profile](https://clawhub.ai/user/terrycarter1985)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON examples, shell command guidance, and file path parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return GIF URLs, downloaded GIF files, extracted image frames, or generated frame sheets through the gifgrep CLI.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

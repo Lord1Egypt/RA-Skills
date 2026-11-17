@@ -1,36 +1,47 @@
-## Description: <br>
-Prometheus monitoring patterns, cardinality management, alerting best practices, and PromQL traps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prometheus monitoring patterns, cardinality management, alerting best practices, and PromQL traps.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill as a Prometheus operations reference for metrics design, alerting, PromQL, scrape configuration, Pushgateway usage, recording rules, federation, remote write, and common production issues. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Copied operational commands may affect live monitoring systems, especially the Pushgateway delete example. <br>
-Mitigation: Review commands and replace example endpoints, jobs, and labels before running them in a production environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers and infrastructure engineers use this skill for Prometheus monitoring guidance, including cardinality management, histogram and summary choices, PromQL query pitfalls, scrape configuration, alerting practices, and operational troubleshooting.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Prometheus commands or examples could remove or change operational metrics if applied directly in production.
+
+Mitigation: Review commands before execution, especially the Pushgateway DELETE example that removes metrics for the named job.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline PromQL, configuration, metric names, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only reference content; no executable code is included.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+**Output Type(s):** [Guidance, Shell commands, Configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with inline PromQL, shell command, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; no executable code is included in the skill artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

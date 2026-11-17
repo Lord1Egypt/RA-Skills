@@ -1,40 +1,50 @@
-## Description: <br>
-Guides teams in monitoring, constraining, auditing, escalating, and continuously evaluating autonomous AI agents in production. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in designing oversight practices for autonomous AI agents, including monitoring, safety constraints, audit trails, escalation, and continuous evaluation.
 
-## Publisher: <br>
-[timbohnett-farther](https://clawhub.ai/user/timbohnett-farther) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[timbohnett-farther](https://clawhub.ai/user/timbohnett-farther)
 
-## Use Case: <br>
-Developers, AI operations teams, and governance reviewers use this skill to design oversight practices for autonomous agents, including monitoring metrics, guardrails, audit trails, human escalation, and feedback loops. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Agent audit logs and monitoring data may expose sensitive operational or user information. <br>
-Mitigation: Limit audit logs to necessary data, redact sensitive information, and set retention limits. <br>
-Risk: Feedback-driven changes to agent behavior may introduce unsafe or misaligned actions if applied automatically. <br>
-Mitigation: Require human review before feedback changes agent behavior. <br>
+## Use Case:
 
+Developers, AI operations teams, and governance reviewers use this skill to plan monitoring, guardrails, auditability, escalation, and continuous evaluation for autonomous AI agent deployments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/timbohnett-farther/skill-106) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with YAML, Python, and workflow examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance; no executable install behavior found in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and package.json) <br>
+Risk: Illustrative oversight controls or API examples may be mistaken for production-ready enforcement code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Adapt examples to the organization's approval workflows, test constraints before deployment, and review production changes with responsible operators.
+
+## Reference(s):
+
+- [Skill 106 on ClawHub](https://clawhub.ai/timbohnett-farther/skills/skill-106)
+- [Publisher profile: timbohnett-farther](https://clawhub.ai/user/timbohnett-farther)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with YAML, Python, and workflow examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

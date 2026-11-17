@@ -1,0 +1,66 @@
+{
+  "total_size": 543617,
+  "total_tokens": 135904.25,
+  "sections": [
+    {
+      "class_num": "1",
+      "class_name": "党的机关、国家机关、群众团体和社会组织、企事业单位负责人",
+      "filename": "class_1_党的机关_国家机关_群众团体和社会组织_企事业单位负责人.md",
+      "size": 7921,
+      "tokens": 1980.25,
+      "path": "assets/occupation_dictionary_split/class_1_党的机关_国家机关_群众团体和社会组织_企事业单位负责人.md"
+    },
+    {
+      "class_num": "2",
+      "class_name": "专业技术人员",
+      "filename": "class_2_专业技术人员.md",
+      "size": 145955,
+      "tokens": 36488.75,
+      "path": "assets/occupation_dictionary_split/class_2_专业技术人员.md"
+    },
+    {
+      "class_num": "3",
+      "class_name": "办事人员和有关人员",
+      "filename": "class_3_办事人员和有关人员.md",
+      "size": 10756,
+      "tokens": 2689.0,
+      "path": "assets/occupation_dictionary_split/class_3_办事人员和有关人员.md"
+    },
+    {
+      "class_num": "4",
+      "class_name": "社会生产服务和生活服务人员",
+      "filename": "class_4_社会生产服务和生活服务人员.md",
+      "size": 109439,
+      "tokens": 27359.75,
+      "path": "assets/occupation_dictionary_split/class_4_社会生产服务和生活服务人员.md"
+    },
+    {
+      "class_num": "5",
+      "class_name": "农、林、牧、渔业生产及辅助人员",
+      "filename": "class_5_农林牧渔业生产及辅助人员.md",
+      "size": 18967,
+      "tokens": 4741.75,
+      "path": "assets/occupation_dictionary_split/class_5_农_林_牧_渔业生产及辅助人员.md"
+    },
+    {
+      "class_num": "6",
+      "class_name": "生产制造及有关人员",
+      "filename": "class_6_生产制造及有关人员.md",
+      "size": 248340,
+      "tokens": 62085.0,
+      "path": "assets/occupation_dictionary_split/class_6_生产制造及有关人员.md"
+    },
+     {
+      "class_num": "7",
+      "class_name": "2025年新增职业",
+      "filename": "class_7_2025年新增职业.md",
+      "size": 248340,
+      "tokens": 62085.0,
+      "path": "assets/occupation_dictionary_split/class_7_2025年新增职业.md"
+    }
+  ],
+  "notes": [
+    "每个大类只保留实际内容段（tokens较大的版本）",
+    "路径已修正为相对于skill/occupation-analysis/目录的相对路径"
+  ]
+}

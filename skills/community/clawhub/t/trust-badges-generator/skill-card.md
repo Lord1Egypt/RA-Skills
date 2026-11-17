@@ -1,39 +1,58 @@
-## Description: <br>
-Guides agents in recommending and placing trust badges, trusted-by logos, security seals, payment logos, and other social proof elements for conversion-focused sites. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents recommend and place trust badges, customer logos, security seals, payment logos, and related social proof elements for websites.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-External site builders, marketers, and developers use this skill to choose legitimate trust badges and map them to hero, product, checkout, cart, footer, and form placements without overcrowding the page. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local project context may contain partner, customer, or certification details that are not appropriate for marketing recommendations. <br>
-Mitigation: Review project context files before use and avoid using confidential or unauthorized details in public trust signals. <br>
-Risk: Suggested badges, seals, logos, or claims could mislead users if they are not real, current, or authorized for the site. <br>
-Mitigation: Verify every badge, logo, certification, and review source before publishing it, and link to verification where appropriate. <br>
+## Use Case:
 
+External designers, developers, and product teams use this skill to choose credible trust badges and place them across hero, product, cart, checkout, and footer surfaces. It focuses on practical badge recommendations, placement maps, and quantity guidance for e-commerce, SaaS, and lead-generation sites.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown recommendations and placement maps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local project context for partner and certification details when those files are present.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and frontmatter) <br>
+Risk: Broad social-proof phrasing may activate the skill for adjacent requests that are better handled by a press, testimonials, or broader landing-page skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the request is specifically about trust badges, trust seals, payment logos, customer logos, or security/social-proof placement before applying the guidance.
+
+Risk: Incorrect or unverified badges can mislead users or reduce credibility.
+
+Mitigation: Use only legitimate, verifiable badges and link to verification where appropriate.
+
+Risk: Too many badges can create visual clutter and reduce trust.
+
+Mitigation: Limit recommendations to a small set of high-quality badge types and place them near the relevant decision point.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/trust-badges-generator)
+- [Publisher profile](https://clawhub.ai/user/kostja94)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown recommendations with placement maps and concise implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code or credential access; outputs are advisory design recommendations.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

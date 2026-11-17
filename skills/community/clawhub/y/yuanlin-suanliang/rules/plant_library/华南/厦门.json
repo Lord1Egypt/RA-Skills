@@ -1,0 +1,1638 @@
+{
+ "schema": "yuanlin-suanliang/plant-library/v2",
+ "region": "华南",
+ "city": "厦门",
+ "zone": "07-区",
+ "zone_climate": "VII南亚热带常绿阔叶林区",
+ "cities": [
+  "厦门",
+  "广州",
+  "台北",
+  "柳州"
+ ],
+ "scope": "climate-zone-pool",
+ "source": "plant_library_分区苗木选型.json#07-区（按源库 01–08 区章节序列切分；区级候选池，非单城实测分布）",
+ "confidence": "medium",
+ "plants": [
+  {
+   "name": "南洋杉",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "异叶南洋杉",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "加勒比松",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "白兰花",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "黄兰",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "石栎",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "栲树（锥栗）",
+   "aliases": [
+    "锥栗"
+   ],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "钩栗（钩锥）",
+   "aliases": [
+    "钩锥"
+   ],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "青冈栎（青冈）",
+   "aliases": [
+    "青冈"
+   ],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "桃花心木",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "大叶桃花心木",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "细叶榕",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "高山榕",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "垂叶榕",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "大果榕",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "龙眼",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "人面子",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "扁桃",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "芒果",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "柚",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "柑桔",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "橙",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "海南红豆",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "台湾相思",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "南洋楹",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "铁刀木",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "中国无忧花",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "肉桂",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "阴香",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "大叶楠",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "蝴蝶果",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "石栗",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "苹婆",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "橄榄",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "华南珊瑚树（",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "大叶按",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "柠檬桉",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "赤桉",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "蒲桃",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "白千层",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "黑板树",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "旅人蕉",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "人心果",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "木麻黄",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "蒲葵",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "假槟榔",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "皇后葵(金山葵)",
+   "aliases": [
+    "金山葵"
+   ],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "大王椰子",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "鱼尾葵",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "加那利海枣",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "海枣（伊拉克蜜枣）",
+   "aliases": [
+    "伊拉克蜜枣"
+   ],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "董棕",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "丝葵（老人葵）",
+   "aliases": [
+    "老人葵"
+   ],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "桄榔（砂糖椰子）",
+   "aliases": [
+    "砂糖椰子"
+   ],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "油棕",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "红刺露兜树",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "长叶竹柏",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "苦梓",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "樟叶槭",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "假萍婆",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "番荔枝",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "水翁",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "水石榕",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "窿缘桉",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "油梨",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "水松",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "美国鹅掌楸",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "鹅掌楸（马褂木）",
+   "aliases": [
+    "马褂木"
+   ],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "玉堂春",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "八角",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "红椿",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "苦楝（楝）",
+   "aliases": [
+    "楝"
+   ],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "麻楝",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "蓝花楹",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "楹树",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "紫檀",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "刺桐",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "羊蹄甲",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "洋紫荆",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "凤凰木",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "黄槐",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "腊肠树",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "黄葛榕",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "全缘（叶）栾树（黄山栾树）",
+   "aliases": [
+    "叶"
+   ],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "大花紫薇",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "木棉",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "鸡蛋花",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "榄仁",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "金合欢",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "苏铁",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "夜合花",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "米仔兰",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "金叶榕",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "狭叶火棘",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "华南黄杨",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "红桑",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "变叶木",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "一品红",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "红背桂",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "日本桃叶珊瑚",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "洒金珊瑚",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "茉莉",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "黄花夜香树",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "二色茉莉",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "假连翘",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "五色梅",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "扶桑",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "灯笼花（吊灯扶桑）",
+   "aliases": [
+    "吊灯扶桑"
+   ],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "黄槿",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "红千层",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "希茉莉",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "龙船花",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "驳骨丹",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "福建茶",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "三药槟榔",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "短穗鱼尾葵",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "刺葵",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "美丽针葵",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "散尾葵",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "矮棕竹",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "观音竹（棕竹、筋头竹）",
+   "aliases": [
+    "棕竹",
+    "筋头竹"
+   ],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "朱蕉",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "四季米仔兰",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "鹰爪花",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "黄花夹竹逃",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "金边红桑",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "光叶决明",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "紫金牛",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "密花胡颓子",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "琼棕",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "轴榈",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "铁海棠（虎刺梅）",
+   "aliases": [
+    "虎刺梅"
+   ],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "云南黄馨",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "（赪桐）荷包花",
+   "aliases": [
+    "赪桐"
+   ],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "锦锈杜鹃",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "满山红",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "孝顺竹（观音竹）",
+   "aliases": [
+    "观音竹"
+   ],
+   "region": "华南",
+   "city": "厦门",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "青皮竹",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "钓丝单竹",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "粉单竹",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "佛肚竹",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "黄金间碧玉竹",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "淡竹(毛金竹)",
+   "aliases": [
+    "毛金竹"
+   ],
+   "region": "华南",
+   "city": "厦门",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "茶秆竹",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "麻竹",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "炮仗花",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "蒜香藤",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "多花紫藤",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "中国地锦（爬山虎）",
+   "aliases": [
+    "爬山虎"
+   ],
+   "region": "华南",
+   "city": "厦门",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "美国地锦（五叶地锦）",
+   "aliases": [
+    "五叶地锦"
+   ],
+   "region": "华南",
+   "city": "厦门",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "鹅掌藤",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "软枝黄蝉",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "使君子",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "麒麟尾",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "龟背竹",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "春羽",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "心叶蔓绿绒",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "西番莲",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "叶子花（三角花）",
+   "aliases": [
+    "三角花"
+   ],
+   "region": "华南",
+   "city": "厦门",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "鸡血藤",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "绿萝",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "香港崖角（狮子尾）藤",
+   "aliases": [
+    "狮子尾"
+   ],
+   "region": "华南",
+   "city": "厦门",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "禾雀花（白花油麻藤）",
+   "aliases": [
+    "白花油麻藤"
+   ],
+   "region": "华南",
+   "city": "厦门",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "球兰",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "大花老鸭嘴",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "地毯草（大叶油草）",
+   "aliases": [
+    "大叶油草"
+   ],
+   "region": "华南",
+   "city": "厦门",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "广东万年青",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "韭兰",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "吊竹梅",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "紫露草",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "蚌花",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "大叶仙茅",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "白蝴蝶",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "黑眼花",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "一叶兰",
+   "aliases": [],
+   "region": "华南",
+   "city": "厦门",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#07-区",
+   "confidence": "medium"
+  }
+ ]
+}

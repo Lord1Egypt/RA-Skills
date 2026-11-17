@@ -1,44 +1,55 @@
-## Description: <br>
-Simplify SQL querying and troubleshooting for MySQL, PostgreSQL, and SQLite. Use when users ask to inspect schema, convert natural language to SQL, debug SQL errors, run explain plans, lint risky SQL, or validate data with safe read-only execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simplify SQL querying and troubleshooting for MySQL, PostgreSQL, and SQLite by helping inspect schema, generate SQL from natural language, debug SQL errors, run explain plans, lint risky SQL, and validate data with read-only execution.
 
-## Publisher: <br>
-[GaussZhu](https://clawhub.ai/user/GaussZhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gausszhu](https://clawhub.ai/user/gausszhu)
 
-## Use Case: <br>
-Developers and analysts use this skill to inspect database schemas, generate or troubleshoot SQL, run lint and explain checks, and execute read-only queries against MySQL, PostgreSQL, or SQLite with summarized results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for database access, and write or lint safeguards can be bypassed with explicit flags. <br>
-Mitigation: Review before installing, use a dedicated read-only database account, and avoid --allow-write and --no-lint unless that authority is intentionally granted. <br>
-Risk: Natural-language ask mode can send schema metadata to the configured LLM provider. <br>
-Mitigation: Do not use ask mode with confidential schemas unless policy allows sharing that metadata with the configured provider. <br>
-Risk: Audit logs can contain command metadata, generated SQL, target labels, and error details. <br>
-Mitigation: Keep audit log paths private and handle generated logs according to the database environment's data-handling policy. <br>
+## Use Case:
 
+Developers, data analysts, and database operators use this skill to inspect database schemas, draft and troubleshoot SQL, lint and explain queries, and summarize read-only query results across MySQL, PostgreSQL, and SQLite.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/GaussZhu/sql-guard-copilot-zhu) <br>
-- [Query Patterns](references/query_patterns.md) <br>
-- [Chanquant Templates](references/chanquant_templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with SQL and shell command snippets; command output may be table, JSON, or CSV when executed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May connect to MySQL, PostgreSQL, or SQLite using a user-provided DSN.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: release evidence) <br>
+Risk: Write-bypass options can undermine the advertised read-only safety model.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use read-only database credentials, keep generated SQL in dry-run until manually reviewed, and avoid --allow-write, especially with ask.
+
+Risk: Schema names and natural-language questions may be sent to the configured LLM service.
+
+Mitigation: Avoid sensitive schema or business data in prompts and configure only trusted, encrypted LLM endpoints; do not set OPENAI_BASE_URL to an untrusted or plaintext service.
+
+## Reference(s):
+
+- [Query Patterns](references/query_patterns.md)
+- [Chanquant Templates](references/chanquant_templates.md)
+- [SQL Guard Copilot on ClawHub](https://clawhub.ai/gausszhu/skills/sql-guard-copilot-zhu)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with SQL and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include table, JSON, or CSV shaped query output summaries when database commands are run.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

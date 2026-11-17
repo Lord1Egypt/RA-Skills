@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn70gbyweabvgtjjd0rbpvtman81jkvj",
+  "ownerId": "tsukisama9292",
   "slug": "pdf-ocr-tool",
   "version": "1.3.0",
-  "publishedAt": 1772128146706
+  "publishedAt": 1740585000,
+  "description": "Intelligent PDF and image to Markdown converter using Ollama GLM-OCR with smart content detection for text, tables, and figures",
+  "tags": ["ocr", "pdf", "markdown", "ollama", "ai", "document-conversion", "glm-ocr"]
 }

@@ -1,43 +1,61 @@
-## Description: <br>
-Comprehensive 1Panel server management skill for AI agents. Manage Linux servers, Docker containers, databases, websites, SSL certificates, and more through 580+ API endpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive 1Panel server management skill for AI agents. Manage Linux servers, Docker containers, databases, websites, SSL certificates, and more through 580+ API endpoints.
 
-## Publisher: <br>
-[EaveLuo](https://clawhub.ai/user/EaveLuo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eaveluo](https://clawhub.ai/user/eaveluo)
 
-## Use Case: <br>
-Developers, operators, and external users use this skill to let an AI agent administer 1Panel-managed Linux servers, containers, websites, databases, files, monitoring, backups, and security settings through API calls and CLI commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad control over a 1Panel server, including command execution, deletes, disk, SSH, firewall, backup restore, and credential-changing actions. <br>
-Mitigation: Require human confirmation before high-impact actions and install only when the publisher and target server administration workflow are trusted. <br>
-Risk: The skill requires a 1Panel API key, and misconfigured transport or shell profiles can expose credentials. <br>
-Mitigation: Use a least-privileged API key where possible, prefer HTTPS, and avoid storing the key in broadly loaded shell profiles. <br>
+## Use Case:
 
+Developers, operators, and AI agents use this skill to manage 1Panel servers, including containers, websites, databases, files, monitoring, backups, security settings, and XPack features through CLI commands or the TypeScript client.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/EaveLuo/1panel-skill) <br>
-- [1Panel](https://1panel.cn/) <br>
-- [npm package](https://www.npmjs.com/package/1panel-skill) <br>
-- [Project homepage declared by skill](https://github.com/EaveLuo/1panel-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Code, Configuration] <br>
-**Output Format:** [JSON responses, TypeScript library calls, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and ONEPANEL_API_KEY; optional host, port, and protocol settings configure the target 1Panel server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, server release evidence) <br>
+Risk: The skill exposes broad server-management capabilities, including files, containers, firewall, SSH, disk, backups, and restore operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privileged 1Panel API key and require explicit human confirmation before destructive or security-sensitive actions.
+
+Risk: Weak connection defaults or untrusted networks can expose administrative API traffic.
+
+Mitigation: Configure a trusted 1Panel host over HTTPS and avoid using the skill across untrusted networks.
+
+Risk: The required ONEPANEL_API_KEY grants access to the configured 1Panel instance.
+
+Mitigation: Store the API key in a secret manager or protected environment variable and avoid logging or sharing it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/eaveluo/skills/1panel-skill)
+- [npm Package](https://www.npmjs.com/package/1panel-skill)
+- [1Panel](https://1panel.cn/)
+- [Artifact README](artifact/README.md)
+- [Artifact Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, API Calls, Shell commands, Code, Configuration instructions]
+
+**Output Format:** [JSON API responses with Markdown, shell command, and TypeScript usage examples in the skill documentation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and ONEPANEL_API_KEY; commands and client calls can perform administrative actions on the configured 1Panel host.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, package.json, and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

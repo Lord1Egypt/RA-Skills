@@ -1,0 +1,6 @@
+# ClawHub accepts text-based bundles only. Regenerate these local binary examples
+# with scripts/build_book_examples.py after installing the Python dependencies.
+assets/examples/*.png
+assets/examples/*.pdf
+scripts/__pycache__/
+*.pyc

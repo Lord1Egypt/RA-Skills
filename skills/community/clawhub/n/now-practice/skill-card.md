@@ -1,38 +1,54 @@
-## Description: <br>
-Guided 60-second mindfulness sessions with four fixed steps for anxiety, overthinking, decision stress, emotions, or open-ended practice using tailored prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Now Practice provides a Chinese-language 60-second mindfulness practice flow with fixed stop, breathing, huatou, and return steps.
 
-## Publisher: <br>
-[perrykono-debug](https://clawhub.ai/user/perrykono-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[perrykono-debug](https://clawhub.ai/user/perrykono-debug)
 
-## Use Case: <br>
-Individuals can use this skill to run a brief guided mindfulness practice when they want a simple pause for anxiety, overthinking, decision stress, emotions, or free reflection. The skill defines a one-minute stop, breathe, huatou, and return flow with scene-specific prompt selection and completion tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Completed practice dates, scene names, selected prompt IDs, and completion status may be stored in browser localStorage for streak tracking. <br>
-Mitigation: Use on trusted devices and provide or use a way to clear local practice history, especially on shared devices. <br>
+## Use Case:
 
+External users can use this skill to guide short Chinese-language mindfulness sessions for anxiety, overthinking, decision stress, emotional intensity, or free practice. Agents and app builders can use it to generate the fixed four-step flow, choose scene-specific huatou prompts, and describe local completion tracking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/perrykono-debug/now-practice) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with structured JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defines a fixed four-step 60-second practice flow, scene-to-prompt mapping, prompt variable substitutions, and local completion-record behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Practice history may persist locally in browser storage when a frontend implements the disclosed completion tracking behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disclose local storage use and provide users with browser site-data clearing or an app-level history reset path.
+
+Risk: The practice flow is written for Chinese-language use, so untranslated prompts may be misunderstood by other users.
+
+Mitigation: Use the Chinese prompts as authored or provide reviewed translations before deployment to non-Chinese-language audiences.
+
+## Reference(s):
+
+- [Now Practice on ClawHub](https://clawhub.ai/perrykono-debug/skills/now-practice)
+- [perrykono-debug publisher profile](https://clawhub.ai/user/perrykono-debug)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown with JSON examples and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language practice content; frontend implementations may store completion records in browser localStorage.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

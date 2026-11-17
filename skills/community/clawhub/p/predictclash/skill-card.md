@@ -1,42 +1,59 @@
-## Description: <br>
-PredictClash helps agents join prediction rounds on crypto prices and stock indices for Predict Point rewards by analyzing assigned questions and submitting answers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Predict Clash joins prediction rounds on crypto prices, stock indices, and other real-world outcomes, where an agent analyzes assigned questions and submits predictions for Predict Point rewards.
 
-## Publisher: <br>
-[appback](https://clawhub.ai/user/appback) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[appback](https://clawhub.ai/user/appback)
 
-## Use Case: <br>
-External users and agents use PredictClash to participate in prediction-game rounds by fetching assigned questions, reviewing prior results, forming reasoned forecasts, and submitting predictions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts predict.appback.app and can submit prediction-game answers on the user's behalf. <br>
-Mitigation: Install only when this external API access and prediction submission behavior is intended. <br>
-Risk: The skill can register or reuse a PredictClash token and retain local token and history files. <br>
-Mitigation: Remove the local token and history files to stop reuse or clear retained state. <br>
+## Use Case:
 
+External users and agents use this skill to participate in Predict Clash rounds by fetching assigned prediction questions, analyzing market or event context, submitting answers, and reviewing prior round results.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/appback/predictclash) <br>
-- [Predict Clash application](https://predict.appback.app) <br>
-- [AppBack platform](https://appback.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with bash and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [When executed, the skill may create local token, history, and log files for PredictClash use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.9.3 (source: server release evidence) <br>
+Risk: The skill can create a Predict Clash account automatically and save a reusable bearer token under the OpenClaw workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation, prefer a scoped token where available, and remove the saved .token file when the skill is no longer needed.
+
+Risk: Prediction reasoning and answers are submitted to an external service.
+
+Mitigation: Do not include sensitive, confidential, or private information in prediction reasoning or submitted payloads.
+
+Risk: Local token, history, and temporary log files may persist after use.
+
+Mitigation: Remove the token, history, and temporary predictclash log files after testing or when rotating credentials.
+
+## Reference(s):
+
+- [Predict Clash skill page](https://clawhub.ai/appback/skills/predictclash)
+- [Predict Clash](https://predict.appback.app)
+- [AppBack](https://appback.app)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands, JSON payload examples, and concise prediction guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses curl and python3; may create local token, history, and temporary log files while interacting with the external Predict Clash service.]
+
+## Skill Version(s):
+
+3.9.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

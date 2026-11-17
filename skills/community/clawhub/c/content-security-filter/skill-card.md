@@ -1,42 +1,49 @@
-## Description: <br>
-Prompt injection and malware detection filter for external content. Scans text, files, or URLs for 20+ attack patterns including instruction overrides, credential exfiltration, persona hijacking, encoded payloads, fake system messages, and invisible character injection. Returns JSON with risk level and sanitized text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prompt injection and malware detection filter for external content. Scans text, files, or URLs for 20+ attack patterns including instruction overrides, credential exfiltration, persona hijacking, encoded payloads, fake system messages, and invisible character injection. Returns JSON with risk level and sanitized text.
 
-## Publisher: <br>
-[BryanTegomoh](https://clawhub.ai/user/BryanTegomoh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bryantegomoh](https://clawhub.ai/user/bryantegomoh)
 
-## Use Case: <br>
-Developers and agent operators use this skill as a defensive pre-check before processing external text, files, stdin, or selected URLs, so potentially malicious prompt-injection and malware-like patterns can be identified and handled before downstream use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A SAFE result does not prove that content is fully harmless. <br>
-Mitigation: Use the skill as a defensive pre-check and continue applying normal review before trusting or executing external content. <br>
-Risk: Scan output can include private or sensitive source text. <br>
-Mitigation: Avoid sharing JSON reports when they contain private text, credentials, or confidential content. <br>
-Risk: URL scanning fetches remote content selected by the operator. <br>
-Mitigation: Only scan URLs that were intentionally chosen for review. <br>
+## Use Case:
 
+Developers and agents use this skill before processing external text, files, URLs, user pastes, articles, or API responses to detect prompt-injection and malicious-content patterns and decide whether to block, review, or continue.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/BryanTegomoh/content-security-filter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [JSON report with risk level, findings, sanitized text, and character count] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Exit code 0 indicates no detected threat; exit code 1 indicates a detected threat.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: URL mode can read local files or private network resources and return their contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing or using in automated workflows; only pass trusted, intended URLs and prefer a sandbox that blocks file:// URLs, localhost, private networks, link-local metadata addresses, and redirects to those destinations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bryantegomoh/skills/content-security-filter)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [JSON report with safe status, risk level, findings, sanitized text, and scanned character count.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Exit code 0 indicates safe content; exit code 1 indicates a detected threat.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

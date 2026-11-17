@@ -1,0 +1,13 @@
+{
+  "ownerId": "583963",
+  "slug": "feature-priority",
+  "version": "1.5.3",
+  "workflow": "product",
+  "focus": "priorities",
+  "outputTemplate": "ops_product",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews"
+  ],
+  "releaseWave": 3
+}

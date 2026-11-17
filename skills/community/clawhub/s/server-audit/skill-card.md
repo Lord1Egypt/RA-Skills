@@ -1,44 +1,55 @@
-## Description: <br>
-Reads server hardware, Proxmox and Linux OS information, temperatures, SMART status, ECC errors, RAID, disks, network statistics, services, and logs without making changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads server hardware, Proxmox/Linux OS information, temperatures, SMART status, ECC errors, RAID, disks, network status, services, and logs without making changes.
 
-## Publisher: <br>
-[polumish](https://clawhub.ai/user/polumish) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[polumish](https://clawhub.ai/user/polumish)
 
-## Use Case: <br>
-Developers and system administrators use this skill to guide read-oriented diagnostics for Proxmox VE and Linux servers over SSH, then review hardware, storage, network, service, log, and security findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses root SSH commands against target servers. <br>
-Mitigation: Install and use it only when you administer the target systems, verify the host before execution, and supervise each command. <br>
-Risk: Audit output can expose sensitive infrastructure, service, log, disk, network, and authentication details. <br>
-Mitigation: Treat generated output as sensitive operational data and store or share it only in approved locations. <br>
-Risk: A report-saving step can conflict with the read-only audit framing. <br>
-Mitigation: Run only the listed diagnostics unless you intentionally choose to save a report, and confirm the path, permissions, and overwrite behavior first. <br>
+## Use Case:
 
+Infrastructure operators and system administrators use this skill to ask an agent for read-only diagnostic command sets and audit summaries for Proxmox VE and Linux servers.
 
-## Reference(s): <br>
-- [Linux Audit Prompt](artifact/references/linux-audit.md) <br>
-- [Proxmox Audit Prompt](artifact/references/proxmox-audit.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/polumish/server-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with SSH command blocks and diagnostic commentary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include sensitive infrastructure details from server audit output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill asks agents to run server diagnostics over SSH as root, which can expose sensitive host, storage, network, and log data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated audit account or constrained sudo rules where possible, limit target hosts, and review command blocks before execution.
+
+Risk: Audit output and optional saved reports may contain infrastructure details such as serial numbers, IP addresses, login history, service state, and disk health.
+
+Mitigation: Confirm report destination, permissions, sanitization needs, and retention policy before saving or sharing results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/polumish/skills/server-audit)
+- [Linux Server Audit](artifact/references/linux-audit.md)
+- [Proxmox Server Audit](artifact/references/proxmox-audit.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with SSH and bash command blocks plus audit-summary sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include sensitive infrastructure diagnostics and optional report-writing instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

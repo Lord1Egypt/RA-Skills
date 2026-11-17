@@ -1,41 +1,54 @@
-## Description: <br>
-Provides QA heuristic checklists for common feature types such as forms, lists, carts, payments, import/export, approvals, notifications, and permissions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides feature-specific QA checklists for forms, lists, carts, payments, imports and exports, approvals, notifications, and permissions.
 
-## Publisher: <br>
-[kokxi](https://clawhub.ai/user/kokxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kokxi](https://clawhub.ai/user/kokxi)
 
-## Use Case: <br>
-QA engineers, testers, and product teams use this skill to identify a feature type and produce practical testing checklists for new or unfamiliar functionality. It is especially useful when a tester needs a structured starting point for common high-risk areas. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be invoked for broad testing requests where a functional checklist is too general for the user's actual need. <br>
-Mitigation: Confirm the target feature type and use specialized security, performance, or debugging skills when those domains are the primary concern. <br>
-Risk: Checklist output can omit product-specific business rules, historical defects, or environment constraints. <br>
-Mitigation: Supplement the generated checklist with project-specific requirements, known defect patterns, and reviewer judgment before relying on it for release coverage. <br>
+## Use Case:
 
+QA testers and developers use these checklists to plan feature-specific test scenarios, spot common edge cases, and identify areas that need further exploration.
 
-## Reference(s): <br>
-- [Functional heuristic checklists](references/checklists.md) <br>
-- [ClawHub skill page](https://clawhub.ai/kokxi/skills/qa-heuristic-checklist) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown checklist guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include covered areas, uncovered areas, and exploration guidance based on the requested testing context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: frontmatter and server evidence) <br>
+Risk: The optional installation command uses an unpinned external package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the referenced package before running the installation command.
+
+Risk: A generic checklist may miss business-specific rules and historical defect patterns.
+
+Mitigation: Adapt the checklist to the feature requirements and document uncovered areas.
+
+## Reference(s):
+
+- [Full feature-type checklists](artifact/references/checklists.md)
+- [ClawHub skill release](https://clawhub.ai/kokxi/skills/qa-heuristic-checklist)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text]
+
+**Output Format:** [Markdown checklist with covered and uncovered areas and exploratory testing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Coverage claims are scoped to supplied requirements; omitted areas should be identified with reasons.]
+
+## Skill Version(s):
+
+1.8.0 (source: ClawHub release and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

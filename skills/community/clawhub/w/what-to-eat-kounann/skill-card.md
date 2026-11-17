@@ -1,39 +1,52 @@
-## Description: <br>
-Can't decide what to eat at the office? Let me pick for you! Triggered when you ask "what to eat", "lunch/dinner ideas", or any food-related questions. Combines company cafeteria options with nearby highly-rated restaurants (4.1+) around the Yuan Center area for a random pick. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Can't decide what to eat at the office? Let me pick for you! Triggered when you ask "what to eat", "lunch/dinner ideas", or any food-related questions. Combines company cafeteria options with nearby highly-rated restaurants (4.1+) around the Yuan Center area for a random pick.
 
-## Publisher: <br>
-[kounann](https://clawhub.ai/user/kounann) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kounann](https://clawhub.ai/user/kounann)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees and office users use this skill to get a randomized meal recommendation from built-in cafeteria options and nearby Yuan Center restaurants.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad food-related trigger wording may activate the skill when the user is not asking for a meal-choice recommendation.
+
+Mitigation: Narrow activation wording to explicit meal-choice requests such as lunch, dinner, or what to eat.
+
+Risk: Built-in cafeteria, restaurant, and rating data can become stale between updates.
+
+Mitigation: Review and refresh the listed options on the stated monthly update cadence before relying on recommendations.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees and office diners use this skill to get a randomized meal suggestion from built-in cafeteria options and nearby Yuan Center restaurants. It is intended for quick food-choice prompts such as lunch, dinner, or general "what to eat" questions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may trigger on broad food-related questions beyond explicit meal-choice prompts. <br>
-Mitigation: Review the prompt context before using the recommendation when the user request is not clearly asking for meal selection. <br>
-Risk: Restaurant ratings and meal options may become stale because the skill relies on built-in lists. <br>
-Mitigation: Confirm current availability, ratings, and suitability before relying on a recommendation for time-sensitive or preference-sensitive decisions. <br>
+**Output Format:** [Markdown text with a randomized meal result and summarized option pool]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Uses built-in cafeteria and nearby restaurant lists; no code execution or sensitive access is requested.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style text with a randomized recommendation and option pool summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses built-in cafeteria and restaurant lists; restaurant ratings and options are static unless the publisher updates the skill.] <br>
+1.0.0 (source: frontmatter, server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

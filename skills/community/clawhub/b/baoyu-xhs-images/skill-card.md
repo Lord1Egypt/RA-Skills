@@ -1,48 +1,66 @@
-## Description: <br>
-Generates social media infographic image-card series by analyzing content, selecting styles, layouts, and palettes, writing prompt files, and routing raster image generation through an available backend. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates infographic image card series with 12 visual styles, 8 layouts, and 3 color palettes for social media engagement.
 
-## Publisher: <br>
-[jimliu](https://clawhub.ai/user/jimliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimliu](https://clawhub.ai/user/jimliu)
 
-## Use Case: <br>
-External creators, marketers, and developers use this skill to turn source material into Xiaohongshu- and social-media-oriented image-card series with confirmed style, layout, palette, and image-generation settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary says the skill embeds prompt text that pressures downstream image generators not to refuse sensitive or copyrighted figure requests. <br>
-Mitigation: Review or edit generated prompts before image generation, and avoid using the skill for real people, copyrighted characters, celebrity likenesses, or other sensitive public-figure content unless the prompt template is changed to respect downstream safety decisions. <br>
-Risk: The skill uses the selected image-generation backend or Codex session and may create local project files and optional preference files. <br>
-Mitigation: Confirm the selected backend, file paths, and saved preferences before generation; avoid storing secrets in prompts or EXTEND.md. <br>
+## Use Case:
 
+External creators, marketers, and agent users use this skill to turn long-form or complex content into a 1-10 card infographic series for Xiaohongshu, WeChat, and similar social platforms.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jimliu/baoyu-xhs-images) <br>
-- [OpenClaw homepage](https://github.com/JimLiu/baoyu-skills#baoyu-xhs-images) <br>
-- [First-time setup](references/config/first-time-setup.md) <br>
-- [Preferences schema](references/config/preferences-schema.md) <br>
-- [Confirmation policy](references/confirmation.md) <br>
-- [Codex image generation backend](references/codex-imagegen.md) <br>
-- [Xiaohongshu content analysis framework](references/workflows/analysis-framework.md) <br>
-- [Prompt assembly workflow](references/workflows/prompt-assembly.md) <br>
-- [Style presets](references/style-presets.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Configuration, Guidance, Shell commands, Files] <br>
-**Output Format:** [Markdown guidance, YAML-frontmatter files, prompt Markdown files, configuration files, and generated raster image files when a backend is available] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create EXTEND.md preferences, analysis.md, outline files, prompts/, and local image outputs; prompts are reviewed before generation unless the user explicitly skips confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The codex-imagegen fallback can run local or downloaded code before rendering images.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer native image generation or a trusted installed backend; use the codex-imagegen fallback only after reviewing the selected executable path.
+
+Risk: BAOYU_CODEX_IMAGEGEN_BIN can redirect execution to an arbitrary local target.
+
+Mitigation: Set BAOYU_CODEX_IMAGEGEN_BIN only to a reviewed and trusted file.
+
+Risk: The fallback may install and run Bun through npx.
+
+Mitigation: Require separate approval before allowing npx -y bun runtime installation.
+
+Risk: Prompt guidance for sensitive or copyrighted figures may conflict with platform safety requirements.
+
+Mitigation: Apply platform safety policy before following figure-related prompt guidance.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jimliu/skills/baoyu-xhs-images)
+- [OpenClaw Homepage](https://github.com/JimLiu/baoyu-skills#baoyu-xhs-images)
+- [Style Presets](artifact/references/style-presets.md)
+- [Prompt Assembly Guide](artifact/references/workflows/prompt-assembly.md)
+- [Xiaohongshu Outline Template](artifact/references/workflows/outline-template.md)
+- [Codex Imagegen Wrapper Invocation](artifact/references/codex-imagegen.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Configuration, Shell commands]
+
+**Output Format:** [Markdown instructions, prompt files, outline files, and backend-specific image generation commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces reproducibility prompt files before image generation and expects raster image outputs from an available backend.]
+
+## Skill Version(s):
+
+2.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

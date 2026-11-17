@@ -1,41 +1,54 @@
-## Description: <br>
-Ai Daily Briefing produces a morning briefing with overdue tasks, today's priorities, calendar overview, and recent meeting context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a morning briefing with overdue tasks, today's priorities, calendar overview, and context from recent meetings.
 
-## Publisher: <br>
-[alvisdunlop](https://clawhub.ai/user/alvisdunlop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alvisdunlop](https://clawhub.ai/user/alvisdunlop)
 
-## Use Case: <br>
-External users and productivity-focused agents use this skill to assemble a daily overview from local to-do items, recent meeting notes, memory/context files, and available calendar data so the user can start the day with clear priorities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases can cause the agent to read sensitive local task lists, recent meeting notes, memory/context files, and calendar entries without explicit per-source confirmation. <br>
-Mitigation: Invoke the skill with explicit daily-briefing prompts and enable only the local sources intended for the briefing. <br>
-Risk: The generated briefing may consolidate personal or confidential schedule, task, and meeting details into one response. <br>
-Mitigation: Use the briefing in trusted contexts and review or redact sensitive details before sharing the output. <br>
+## Use Case:
 
+External users use this skill to ask an agent for a concise daily or weekly planning briefing from local task, meeting, calendar, and memory context.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/alvisdunlop/alvis-ai-daily-briefing) <br>
-- [Creator homepage](https://jeffjhunter.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown daily briefing with task lists and short prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Single-message briefing; skips empty sections and limits most sections to five items except calendar.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: ClawHub release evidence) <br>
+Risk: A briefing request can aggregate sensitive workspace content such as private meeting notes, calendar details, persona memory, and user preference files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing and limit or remove access to sensitive memory, calendar, meeting-note, or user-profile files when that aggregation is not intended.
+
+Risk: Broad trigger phrases may cause the agent to summarize daily-work context in situations where the user did not expect sensitive sources to be included.
+
+Mitigation: Use the skill only in workspaces where these trigger phrases are appropriate, or narrow the trigger behavior before deployment.
+
+## Reference(s):
+
+- [Skill homepage](https://jeffjhunter.com)
+- [ClawHub skill page](https://clawhub.ai/alvisdunlop/skills/alvis-ai-daily-briefing)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown daily briefing with ordered sections, task lists, calendar entries, and a focus statement]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Aggregates available local context when present; skips empty sections and keeps most sections concise.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

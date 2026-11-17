@@ -1,0 +1,31 @@
+{
+  "record_type": "dcc-mcp.design-workflow-evidence.v1",
+  "experimental": true,
+  "workflow_id": null,
+  "provider": null,
+  "route": null,
+  "checked_at": null,
+  "connection_reference": null,
+  "target": {
+    "document_reference": null,
+    "page_or_node_ids": [],
+    "branch_reference": null
+  },
+  "capabilities": [],
+  "component_token_map": [],
+  "stages": {
+    "host_free_contract": {"status": "not_run", "reason": null, "evidence": []},
+    "native_read": {"status": "not_run", "reason": null, "evidence": []},
+    "native_write": {"status": "not_run", "reason": null, "evidence": []},
+    "native_save": {"status": "not_run", "reason": null, "evidence": []},
+    "native_reopen": {"status": "not_run", "reason": null, "evidence": []},
+    "native_asset_export": {"status": "not_run", "reason": null, "evidence": []},
+    "native_editable_file_export": {"status": "not_run", "reason": null, "evidence": []},
+    "frontend_build": {"status": "not_run", "reason": null, "evidence": []},
+    "frontend_preview": {"status": "not_run", "reason": null, "evidence": []}
+  },
+  "artifacts": [],
+  "blockers": [],
+  "official_sources": [],
+  "public_evidence_reviewed": false
+}

@@ -1,42 +1,57 @@
-## Description: <br>
-A Chinese A-share analysis assistant that screens stocks using technical and financial criteria, generates market summaries, and produces Markdown reports with buy ranges, targets, stop-loss levels, and position suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Stock Analyzer analyzes China A-share market indices and screens stocks using technical and financial criteria to produce markdown trading reports with buy ranges, targets, stop-loss levels, and position sizing.
 
-## Publisher: <br>
-[dxihyv](https://clawhub.ai/user/dxihyv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dxihyv](https://clawhub.ai/user/dxihyv)
 
-## Use Case: <br>
-Investors, analysts, and developers can use this skill to run A-share market screening workflows and generate daily Markdown reports for review. Its outputs should be treated as unverified screening material rather than professional financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can generate buy ranges, targets, stop-loss levels, and position sizing from default, cached, or simulated financial data. <br>
-Mitigation: Review the generated report and underlying data sources before acting on it, and do not rely on the output as professional financial advice. <br>
-Risk: Report summaries can be sent to external Feishu or DingTalk webhooks when push delivery is enabled and configured. <br>
-Mitigation: Disable push delivery unless needed, review config.json before execution, and configure webhook URLs only for trusted destinations. <br>
+## Use Case:
 
+External investors and market-analysis users can use this skill to generate China A-share market summaries, stock screens, and markdown reports with suggested buy ranges, targets, stop-loss levels, and position allocations. Users should review the generated analysis before acting on it.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dxihyv/a-stock-analyzer) <br>
-- [Publisher profile](https://clawhub.ai/user/dxihyv) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports and terminal text with optional webhook-delivered summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write timestamped reports under reports/ and use cached or simulated financial data when live data is unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release metadata) <br>
+Risk: Generated reports can contain actionable trading recommendations based on inconsistent or substituted financial data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every report and verify market and financial inputs independently before making investment decisions.
+
+Risk: Optional webhook push delivery can send report content to a configured messaging service.
+
+Mitigation: Leave push webhooks unconfigured or disabled unless outbound report sharing is intended and approved.
+
+Risk: Unpinned dependencies can change behavior over time.
+
+Mitigation: Run the skill in a pinned dependency environment and review dependency versions before deployment.
+
+## Reference(s):
+
+- [A Stock Analyzer on ClawHub](https://clawhub.ai/dxihyv/skills/a-stock-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports and terminal text with optional shell commands and JSON configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include stock recommendations, buy ranges, target prices, stop-loss levels, risk notes, and optional webhook push summaries.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

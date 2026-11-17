@@ -1,0 +1,6 @@
+interface:
+  display_name: "Omni Learning Anything"
+  short_description: "Learn from sources with lessons, light checks and guided review"
+  default_prompt: "Use $omni-learning-anything to help me start a learning course on a topic I choose."
+policy:
+  allow_implicit_invocation: true

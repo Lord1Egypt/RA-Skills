@@ -1,0 +1,46 @@
+{
+  "name": "@yottameta/yotta-compliance",
+  "version": "0.1.3",
+  "description": "YuanGui (yotta-compliance) — a local, deterministic compliance-clause review skill for AI agents: reviews UTF-8 text / Markdown against versioned JSON rule packs with deterministic matching and assertion evaluation, and produces Markdown / JSON reports in which every conclusion carries the source-text span, matched rule id, framework coverage level and official clause citation. Baseline coverage: 11 PIPL rules and 4 cross-border data-transfer rules; the GDPR / HIPAA / SOC2 / PCI-DSS / ISO27001 / China MLPS frameworks are mapping_only. Triggers: reviewing privacy policies, data-processing clauses or personal-information compliance text; checking PIPL or data-export gaps; checking framework coverage; generating reproducible compliance review reports; gating clause review in CI. Boundaries: deterministic rule-based review suggestions only — not legal advice, not a substitute for a lawyer or compliance consultant; the core path uses no LLM and no network access and does not parse PDF / docx; mapping_only frameworks produce no independent compliance conclusion; it does not judge contract validity or litigation outcomes. Fully local, zero-dependency (Python 3.8+ standard library).",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "yotta-compliance",
+    "yottaskills",
+    "compliance",
+    "pipl"
+  ],
+  "files": [
+    "SKILL.md",
+    "LICENSE",
+    "NOTICE",
+    "README.md",
+    "README.zh-CN.md",
+    "CHANGELOG.md",
+    "install.sh",
+    "references",
+    "rules",
+    "scripts",
+    "assets",
+    "bin",
+    "!scripts/test_*.py",
+    "!scripts/fixtures",
+    "!scripts/fixtures/**",
+    "!**/__pycache__",
+    "!**/*.pyc",
+    "!**/*.pyo"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YottaMeta/yotta-compliance.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "yotta-compliance": "bin/install.js"
+  },
+  "scripts": {
+    "test": "python scripts/test_yotta_compliance.py"
+  }
+}

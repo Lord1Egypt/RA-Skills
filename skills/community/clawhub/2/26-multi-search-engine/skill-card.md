@@ -1,41 +1,50 @@
-## Description: <br>
-Multi search engine integration with 17 engines (8 CN + 9 Global). Supports advanced search operators, time filters, site search, privacy engines, and WolframAlpha knowledge queries. No API keys required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi search engine integration with 17 engines (8 CN + 9 Global), advanced search operators, time filters, site search, privacy engines, and WolframAlpha knowledge queries with no API keys required.
 
-## Publisher: <br>
-[smallkeyboy](https://clawhub.ai/user/smallkeyboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smallkeyboy](https://clawhub.ai/user/smallkeyboy)
 
-## Use Case: <br>
-Developers and external users use this skill to form search-engine URLs and web_fetch calls across Chinese and global search engines, including privacy-focused engines and WolframAlpha queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries may disclose sensitive information to public search engines. <br>
-Mitigation: Do not include passwords, tokens, private URLs, confidential project names, regulated data, or other sensitive information in queries. <br>
-Risk: Advanced search operators can broaden or target searches in ways that may return misleading, stale, or sensitive public results. <br>
-Mitigation: Keep searches user-directed and review results before relying on or sharing them. <br>
+## Use Case:
 
+Developers and agents use this skill to construct web search queries across Chinese and global search engines, including advanced operators, time filters, privacy-oriented providers, DuckDuckGo Bangs, and WolframAlpha knowledge queries.
 
-## Reference(s): <br>
-- [International Search Guide](references/international-search.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/smallkeyboy/26-multi-search-engine) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands] <br>
-**Output Format:** [Markdown with URL templates and inline web_fetch examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API keys required; queries are sent to public search engines chosen by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Search queries may be sent to third-party search providers and can expose sensitive terms, personal data, credentials, confidential investigation topics, or internal identifiers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive queries unless the user is comfortable sharing them with the selected search provider, and choose the CN or global engine based on locale and privacy needs.
+
+## Reference(s):
+
+- [International Search Guide](artifact/references/international-search.md)
+- [ClawHub Skill Page](https://clawhub.ai/smallkeyboy/skills/26-multi-search-engine)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown with inline JavaScript web_fetch examples and search URL templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces search-engine URL patterns and query construction guidance; no API keys are required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

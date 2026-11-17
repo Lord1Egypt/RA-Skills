@@ -1,43 +1,54 @@
-## Description: <br>
-Nanobanana helps agents generate images, edit local images, and run multimodal chat through the Nano Banana 2 Pro API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nano Banana 2 Pro helps agents generate images, edit images from an input file, and run multimodal or text chat through the configured Nano Banana API.
 
-## Publisher: <br>
-[moxunjinmu](https://clawhub.ai/user/moxunjinmu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moxunjinmu](https://clawhub.ai/user/moxunjinmu)
 
-## Use Case: <br>
-Developers and agents use this skill to call a Nano Banana 2 Pro-compatible image service for text-to-image generation, image editing from a local input image, and text chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and input images are sent to the configured third-party API endpoint. <br>
-Mitigation: Use the skill only when the endpoint is trusted, and avoid private images or sensitive prompts unless sharing them with that service is acceptable. <br>
-Risk: A real API key placed in shared source files or published bundles could be exposed. <br>
-Mitigation: Keep credentials out of the skill bundle and use local environment or secret-management configuration for any real key. <br>
-Risk: Generated image files are saved locally and may contain sensitive or copyrighted content from the prompt or source image. <br>
-Mitigation: Review saved outputs before sharing or redistribution, and remove files that should not be retained. <br>
+## Use Case:
 
+External developers and agent users can use this skill to call a Nano Banana-compatible image API for prompt-based image generation, image editing from a local input image, and text or multimodal chat.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/moxunjinmu/nanobanana) <br>
-- [Configured Nano Banana API base URL](https://claw.cjcook.site/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [Command-line output plus locally saved JPEG image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated images are written to the skill script output directory; text responses may be printed when returned by the API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Prompts, selected images, and the configured bearer token are sent to the third-party endpoint claw.cjcook.site.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if you trust that service operator; use a dedicated, revocable token and avoid sensitive or private images unless privacy and retention practices are verified.
+
+Risk: The security verdict is suspicious because the skill lacks enough privacy and trust-boundary guidance for the external image service.
+
+Mitigation: Review the configured service, token handling, and data-sharing expectations before deploying the skill in a sensitive workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/moxunjinmu/skills/nanobanana)
+- [Nano Banana API Endpoint](https://claw.cjcook.site/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files, Shell commands, API Calls]
+
+**Output Format:** [Console text with saved JPEG image files when image responses are returned]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes generated images to an output directory and may return text content from the API response.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

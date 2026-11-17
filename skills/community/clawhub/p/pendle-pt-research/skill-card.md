@@ -1,44 +1,61 @@
-## Description: <br>
-Research Pendle PT (principal token) markets, including unlevered hold-to-par ideas, near-expiry rotations, and looped PT strategies across money markets like Morpho and Euler. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research Pendle PT markets for hold-to-par ideas, near-expiry rotations, and looped PT strategies across money markets such as Morpho and Euler.
 
-## Publisher: <br>
-[moshu](https://clawhub.ai/user/moshu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moshu](https://clawhub.ai/user/moshu)
 
-## Use Case: <br>
-External DeFi researchers and agent users use this skill to evaluate Pendle principal token markets, compare natural PT yields against practical loopability, and produce decision-oriented rankings for hold-to-par, near-expiry rotation, and looped PT strategies. Outputs should be treated as research inputs rather than financial advice or trade execution confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Rankings or loop routes may be mistaken for financial advice or executable trade instructions. <br>
-Mitigation: Treat outputs as research only and independently verify market support, liquidity, utilization, borrow rates, liquidation risk, and wallet transaction details before using capital. <br>
-Risk: Leveraged PT loops can be sensitive to borrow costs, liquidity changes, and liquidation thresholds. <br>
-Mitigation: Use conservative sizing and buffers, and re-check current market conditions before taking action. <br>
+## Use Case:
 
+External users and DeFi researchers use this skill to evaluate Pendle principal token markets, compare natural PT yield against practical loopability, and produce decision-oriented research before considering capital deployment.
 
-## Reference(s): <br>
-- [Pendle PT markets](https://app.pendle.finance/trade/markets) <br>
-- [Pendle PT ranking framework](artifact/references/ranking-framework.md) <br>
-- [Manual Contango PT comparison framework](artifact/references/manual-contango-comparison.md) <br>
-- [ClawHub skill page](https://clawhub.ai/moshu/pendle-pt-research) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/moshu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Concise Markdown or bullet-list research reports, with optional shell commands and local JSON data snapshots from the bundled scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ranked market buckets, risk tiers, liquidity notes, loop support status, borrow-market details, and practical execution guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Bundled PT rankings and market snapshots can become stale or misleading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Rerun the live scanners and independently verify market liquidity, borrow depth, and route status before relying on recommendations.
+
+Risk: Leveraged PT loop analysis may be mistaken for transaction-ready financial advice.
+
+Mitigation: Use outputs as advisory research only, keep conservative LTV buffers, and review protocol and underlying-asset risk before any wallet transaction.
+
+Risk: Manual Contango route information may not represent currently verified app support.
+
+Mitigation: Label manual routes clearly and verify exact PT and quote-asset support in Contango before using them.
+
+## Reference(s):
+
+- [Pendle PT Ranking Framework](references/ranking-framework.md)
+- [Manual Contango PT Comparison Framework](references/manual-contango-comparison.md)
+- [Pendle Markets](https://app.pendle.finance/trade/markets)
+- [Pendle Pencosystem](https://pendle.finance/pencosystem)
+- [ClawHub Skill Page](https://clawhub.ai/moshu/skills/pendle-pt-research)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or Discord-style bullet guidance, with optional local JSON snapshots and Markdown research briefs from bundled scripts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are advisory DeFi research and should be refreshed with live scans and independently verified before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

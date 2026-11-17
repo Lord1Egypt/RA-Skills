@@ -1,0 +1,37 @@
+{
+  "schema_version": 2,
+  "registry_version": "0.6.1",
+  "updated_at": "2026-07-16",
+  "default_profile_id": "ant-design",
+  "profiles": [
+    {
+      "profile_id": "ant-design",
+      "name": "Ant Design",
+      "version": "0.6.1",
+      "tier": 3,
+      "capabilities": { "tokens": true, "component_registry": true, "deep_specs": true, "templates": true, "runtime": true },
+      "type": "builtin",
+      "status": "stable",
+      "path": "ant-design",
+      "entry": "index.md",
+      "guide": "SKILL-GUIDE.md",
+      "platforms": ["web-pc", "mobile-h5"],
+      "compatibility_paths": ["design-system/standards/ant-design"],
+      "aliases": ["antd", "antd-mobile", "ant-design-mobile"]
+    },
+    {
+      "profile_id": "arco-design",
+      "name": "Arco Design",
+      "version": "0.6.1",
+      "tier": 3,
+      "capabilities": { "tokens": true, "component_registry": true, "deep_specs": true, "templates": true, "runtime": true },
+      "type": "builtin",
+      "status": "stable",
+      "path": "arco-design",
+      "entry": "index.md",
+      "guide": "SKILL-GUIDE.md",
+      "platforms": ["web-pc", "mobile-h5"],
+      "aliases": ["arco", "arco-design", "arco design", "arco-mobile"]
+    }
+  ]
+}

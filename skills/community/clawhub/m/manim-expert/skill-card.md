@@ -1,42 +1,50 @@
-## Description: <br>
-Manim Expert turns simple Manim animation requests into detailed LaTeX-rich prompts, runnable Manim Community Edition Python code, render commands, and low-quality MP4 outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns simple Manim animation requests into detailed LaTeX-rich prompts, runnable Manim Community Edition code, review notes, and rendering guidance for math education, science demonstrations, and technical documentation.
 
-## Publisher: <br>
-[Shirleyshenda](https://clawhub.ai/user/Shirleyshenda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shirleyshenda](https://clawhub.ai/user/shirleyshenda)
 
-## Use Case: <br>
-Developers, educators, and technical writers use this skill to convert math, science, or technical animation ideas into Manim Community Edition scripts and preview videos. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Python and Manim render commands execute locally and may contain mistakes. <br>
-Mitigation: Review the generated code and exact render command before running Manim. <br>
-Risk: Rendering depends on local Python, Manim, and LaTeX installations. <br>
-Mitigation: Install prerequisites from trusted sources and keep generated files and videos in the intended workspace folder. <br>
+## Use Case:
 
+Developers, educators, and technical content creators use this skill to turn a short animation idea into a detailed Manim plan, Python code, syntax checks, and local rendering commands. It is intended for creating mathematical and scientific explainer animations with Manim Community Edition.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Shirleyshenda/manim-expert) <br>
-- [Manim Community Edition Quick Reference](references/manim-quick-reference.md) <br>
-- [Mathematical Object Color Schemes](assets/color-schemes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with Python code blocks and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create Python files under workspace/annimations and render low-quality MP4 files when Python, Manim, and LaTeX are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill can direct an agent to run newly generated Python and Manim code automatically, which may execute unsafe or unintended local behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated workspace or sandbox without secrets, inspect the generated Python file, and approve the exact Manim command before rendering; consider disabling automatic execution or narrowing triggers.
+
+## Reference(s):
+
+- [Manim Community Edition Quick Reference](references/manim-quick-reference.md)
+- [Mathematical Object Color Schemes](assets/color-schemes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance, files]
+
+**Output Format:** [Markdown with Python code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create Manim Python files and low-quality MP4 render artifacts when command execution is enabled.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

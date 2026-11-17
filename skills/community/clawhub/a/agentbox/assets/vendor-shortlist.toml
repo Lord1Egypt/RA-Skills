@@ -1,0 +1,38 @@
+# Example custom template: vendor shortlist for IT procurement or competitive research.
+# Use it with:
+#   agentbox report build "Laptop shortlist" --template ./vendor-shortlist.toml --out shortlist.md --apply
+#   agentbox report check shortlist.md --template ./vendor-shortlist.toml
+name = "vendor-shortlist"
+description = "Vendor shortlist: H1 title, Requirements, Options table, Recommendation, Sources."
+title_level = 1
+min_words = 150
+max_words = 1200
+citation_style = "inline-link"
+require_sources_section = true
+sources_heading = "Sources"
+sources_level = 2
+min_sources = 3
+forbid = ["As an AI", "as a language model"]
+
+[[section]]
+heading = "Requirements"
+level = 2
+min_words = 20
+hint = "Bullet list of the must-haves from the task: budget, specs, support, deadline."
+keywords = ["requirements", "needs", "criteria"]
+
+[[section]]
+heading = "Options"
+level = 2
+table = true
+columns = ["Option", "Price", "Meets requirements", "Source"]
+require_citation = true
+hint = "One row per vendor or model. Say which requirements each one meets."
+keywords = ["option", "options", "vendor", "price", "pricing"]
+
+[[section]]
+heading = "Recommendation"
+level = 2
+min_words = 30
+hint = "Pick one option for the stated needs and say why; mention a fallback."
+keywords = ["recommendation", "verdict"]

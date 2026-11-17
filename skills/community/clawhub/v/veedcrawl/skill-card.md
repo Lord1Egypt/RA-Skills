@@ -1,43 +1,51 @@
-## Description: <br>
-Give OpenClaw the ability to access social media content by searching TikTok, Instagram, and YouTube videos, retrieving metadata and creator profiles, and extracting insights from video content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Give OpenClaw the ability to access social media content. It can search across TikTok, Instagram, and YouTube for videos, watch TikTok/Reels/YouTube, retrieve metadata, get creator profiles, and extract insights from video content across platforms.
 
-## Publisher: <br>
-[veedcrawl](https://clawhub.ai/user/veedcrawl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[veedcrawl](https://clawhub.ai/user/veedcrawl)
 
-## Use Case: <br>
-Developers and agents use this skill to discover public social video content, inspect creator profiles and video metadata, request transcripts, and produce structured research notes or analysis from supported platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Social-media search terms, usernames, video URLs, transcripts, prompts, and extraction results may be sent to the Veedcrawl external service. <br>
-Mitigation: Use the skill only when third-party processing is acceptable, and avoid confidential investigations or private content. <br>
-Risk: The skill requires a sensitive Veedcrawl API key. <br>
-Mitigation: Provide the key through the VEEDCRAWL_API_KEY environment variable and avoid exposing it in prompts, logs, examples, or committed files. <br>
+## Use Case:
 
+Developers and agents use Veed Crawl to search public social video content, inspect creator profiles, retrieve metadata and transcripts, and extract structured insights for research notes, creator briefs, comparisons, and evidence tables.
 
-## Reference(s): <br>
-- [Veedcrawl Documentation](https://docs.veedcrawl.com) <br>
-- [Veedcrawl OpenAPI Specification](https://veedcrawl.com/openapi.json) <br>
-- [Veed Crawl on ClawHub](https://clawhub.ai/veedcrawl/veedcrawl) <br>
-- [Veedcrawl Publisher Profile](https://clawhub.ai/user/veedcrawl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks, structured tables, or JSON summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should preserve video URLs, platform, creator identity, timestamps, and whether findings came from metadata, transcript, or extraction evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The optional VEEDCRAWL_BASE_URL setting can send the Veedcrawl API key to an arbitrary server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Leave VEEDCRAWL_BASE_URL unset unless the endpoint is controlled and trusted; prefer the default https://api.veedcrawl.com and rotate the API key if it may have been sent to an untrusted URL.
+
+## Reference(s):
+
+- [Veedcrawl documentation](https://docs.veedcrawl.com)
+- [Veedcrawl OpenAPI specification](https://veedcrawl.com/openapi.json)
+- [Veed Crawl on ClawHub](https://clawhub.ai/veedcrawl/skills/veedcrawl)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash/curl command examples, plus structured tables or JSON for comparisons when useful.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and VEEDCRAWL_API_KEY. VEEDCRAWL_BASE_URL is optional and should normally remain unset.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

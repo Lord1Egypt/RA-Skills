@@ -1,0 +1,49 @@
+{
+  "version": "1",
+  "global": {
+    "timezone": "America/Los_Angeles",
+    "quiet_hours": {
+      "start": "22:00",
+      "end": "07:00"
+    },
+    "paused": false,
+    "digest_time": "08:00",
+    "delivery_channel": "whatsapp",
+    "log_redact": false
+  },
+  "meds": [
+    {
+      "id": "med-001",
+      "name": "ExampleMed",
+      "type": "pill",
+      "dose": "500",
+      "unit": "mg",
+      "paused": false,
+      "start_date": null,
+      "end_date": null,
+      "schedule": {
+        "frequency": "twice_daily",
+        "times": ["08:00", "20:00"],
+        "interval_hours": null,
+        "day_of_week": null,
+        "with_food": false,
+        "notes": ""
+      },
+      "escalation": {
+        "late_threshold_minutes": 30,
+        "missed_threshold_minutes": 90,
+        "late_message": "Hey — still need to take your {name} ({dose}{unit}).",
+        "missed_message": "You missed your {name} dose. Logging it."
+      },
+      "state": {
+        "status": "pending",
+        "last_taken": null,
+        "last_reminded": null,
+        "next_due": null,
+        "confirmed_dose": null,
+        "missed_count": 0,
+        "history": []
+      }
+    }
+  ]
+}

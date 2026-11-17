@@ -1,0 +1,3 @@
+interface:
+  display_name: "证据决策报告"
+  short_description: "基于审核证据生成业务决策报告"

@@ -1,41 +1,54 @@
-## Description: <br>
-Assists product architects with bilingual Chinese-English responses to overseas customer questions about PalmAI/KYC products. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides bilingual Chinese and English presales support guidance for PalmAI/KYC Standard customer questions and reusable FAQ knowledge.
 
-## Publisher: <br>
-[zhengmengkaiZMK](https://clawhub.ai/user/zhengmengkaiZMK) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhengmengkaizmk](https://clawhub.ai/user/zhengmengkaizmk)
 
-## Use Case: <br>
-Product architects and presales teams use this skill to answer overseas customer questions about PalmAI/KYC identity-verification and access-control workflows. It produces bilingual Chinese and English guidance suitable for review before customer use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product guidance may be inaccurate or outdated if used directly in customer communications. <br>
-Mitigation: Review product facts and customer-facing wording before sending responses externally. <br>
-Risk: Customer or biometric data could be exposed if pasted into the agent workflow without approval. <br>
-Mitigation: Avoid entering confidential customer or biometric data unless the user's workflow explicitly permits it. <br>
+## Use Case:
 
+Presales architects use this skill to answer overseas customer questions about PalmAI/KYC Standard identity-verification and access-control scenarios in Chinese and English.
 
-## Reference(s): <br>
-- [PalmAI Standard KYC Product Documentation](references/kyc_standard_docs.md) <br>
-- [Palm Product Overseas FAQ Knowledge Base](references/faq.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose with bilingual Chinese and English responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only responses; no executable code or tool calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Customer replies may touch biometric data, logs, exports, remote upgrades, resets, consent, or authorization details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated responses for privacy, consent, authorization, and supportability before sharing them externally.
+
+Risk: FAQ learning could retain customer secrets, personal data, or commitments that the product team has not approved.
+
+Mitigation: Keep customer secrets and personal data out of FAQ updates, and require human approval before storing reusable answers.
+
+## Reference(s):
+
+- [Palm product overseas FAQ knowledge base](references/faq.md)
+- [PalmAI Standard product function documentation](references/kyc_standard_docs.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Bilingual Chinese and English Markdown responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include customer-ready English copy and Chinese explanatory context.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

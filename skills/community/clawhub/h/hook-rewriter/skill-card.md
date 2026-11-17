@@ -1,39 +1,54 @@
-## Description: <br>
-Rewrite weak or generic hooks into stronger, creator-native opening lines that capture attention in the first 1-3 seconds for short-form content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rewrites weak or generic short-form content hooks into stronger creator-native opening lines that capture attention in the first 1-3 seconds.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Creators, paid social teams, affiliate operators, and ecommerce brands use this skill to turn an existing opener, headline, or first line into multiple short-form hook variants for testing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated hooks may overstate a product claim, drift from the script body, or conflict with platform, legal, or brand requirements. <br>
-Mitigation: Review generated copy for truthfulness, legal claims, platform policy, and brand fit before publishing. <br>
+## Use Case:
 
+Creators, paid social teams, affiliate operators, and ecommerce brands use this skill to diagnose underperforming hooks and generate varied short-form opening lines for short-form ad and creator content testing.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/Leooooooow/hook-rewriter) <br>
-- [Output template](references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with a short diagnosis, labeled hook variants, best-use notes, optional safer wording, and top testing recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill expects a base hook or message plus audience, platform, tone, and truthfulness constraints when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated hooks may overstate product claims, imply unsupported results, or conflict with platform policy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review hooks for truthfulness, policy compliance, and legally sensitive claims before publishing.
+
+Risk: Hook variants may become clickbait if they promise more than the body of the script supports.
+
+Mitigation: Keep each selected hook aligned with the actual body, offer, and evidence available for the content.
+
+## Reference(s):
+
+- [Output Template](references/output-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/leooooooow/skills/hook-rewriter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown response with diagnosis, labeled hook variants, best-use notes, safer rewrites when needed, and testing recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Typically returns 5-10 rewritten hook options plus the top 2-3 variants to test first.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,50 @@
-## Description: <br>
-Formats agent replies for voice and audio playback through the ListenClaw voice gateway using natural spoken language without markdown, tables, lists, or formatting symbols. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Formats assistant replies for voice/audio output through the ListenClaw voice gateway, emphasizing natural spoken language without Markdown, tables, lists, or formatting symbols.
 
-## Publisher: <br>
-[tinywatermonster](https://clawhub.ai/user/tinywatermonster) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tinywatermonster](https://clawhub.ai/user/tinywatermonster)
 
-## Use Case: <br>
-External users and developers use ListenClaw when interactions are routed through a voice gateway and the agent response needs to be easy for text-to-speech playback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional installer fetches the skill file from a mutable GitHub branch, so installed content may differ from the reviewed artifact. <br>
-Mitigation: Inspect the GitHub source before running install.sh or install the reviewed artifact directly. <br>
+## Use Case:
 
+External users and developers use this skill when voice input routed through ListenClaw should receive replies that are ready for text-to-speech playback. It guides the agent to answer in short, natural spoken sentences without visual formatting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tinywatermonster/listenclaw) <br>
-- [ListenClaw homepage](https://github.com/tinywatermonster/listenclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text spoken-language responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Avoids markdown, tables, lists, URLs, and technical symbols unless the user asks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The installer downloads and overwrites the installed skill from a mutable GitHub branch without integrity verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer before use, prefer the bundled SKILL.md, or pin and verify the remote file before replacing a local skill.
+
+## Reference(s):
+
+- [ListenClaw homepage](https://github.com/tinywatermonster/listenclaw)
+- [ClawHub skill page](https://clawhub.ai/tinywatermonster/skills/listenclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Plain spoken-language text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Avoids Markdown, tables, lists, URLs, and formatting symbols unless requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

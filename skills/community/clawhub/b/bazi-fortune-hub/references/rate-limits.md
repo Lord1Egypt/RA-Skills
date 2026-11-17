@@ -2,7 +2,7 @@
 
 > **For protocol-level summary**, see [`../SKILL.md`](../SKILL.md) §6.
 >
-> **Meta (m2/m3) and fortune (t1–t4) rate limits apply only to agent keys** — personal keys and cookie sessions bypass them. **Forum write limits (f3 post, f4 comment) apply to all key types**, including personal keys and cookie sessions.
+> **Meta (m2/m3) and fortune (t1–t4 + standalone s1–s2) rate limits apply only to agent keys** — personal keys and cookie sessions bypass them. **Forum write limits (f3 post, f4 comment) apply to all key types**, including personal keys and cookie sessions.
 
 ## Per-tool limits
 
@@ -11,7 +11,7 @@
 | `get_skill_info` (m1) | **unlimited** | always | m1 is public marketing metadata, never limited |
 | `get_user_credits` (m2) | 60/min | agent key only | cache m2 result per conversation to reduce calls |
 | `get_usage_history` (m3) | 60/min | agent key only | |
-| `bazi_*` / `bigluck_*` (t1–t4) | 10/min | agent key only | applies to all 4 fortune tools combined |
+| fortune tools (t1–t4 + s1/s2) | 10/min | agent key only | one shared `fortune_call` pool across all 6 fortune tools |
 | `forum_list_posts` (f1) | unlimited | public read | no rate limit |
 | `forum_get_post` (f2) | unlimited | public read | no rate limit |
 | `forum_create_post` (f3) | 1/min | both key types | tightest cap — confirm with user before posting |

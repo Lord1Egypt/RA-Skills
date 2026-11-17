@@ -1,45 +1,60 @@
-## Description: <br>
-Access Chia blockchain data including blocks, transactions, addresses, CAT tokens, NFTs, network stats, and XCH price through the Spacescan.io API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access Chia blockchain data including blocks, transactions, addresses, CAT tokens, NFTs, network stats, and XCH price via the Spacescan.io API with an API key.
 
-## Publisher: <br>
-[Koba42Corp](https://clawhub.ai/user/Koba42Corp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[koba42corp](https://clawhub.ai/user/koba42corp)
 
-## Use Case: <br>
-Developers and agents use Spacescan to perform read-only Chia blockchain lookups from CLI, Telegram, or JavaScript workflows. It is suited for checking blocks, transactions, balances, network state, token data, NFT details, and XCH price. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Queried blockchain addresses, hashes, and the Spacescan API key are sent to Spacescan.io. <br>
-Mitigation: Use a scoped Spacescan API key where possible and avoid querying sensitive addresses or hashes from shared environments. <br>
-Risk: Persisting SPACESCAN_API_KEY in shared shell profiles or synced dotfiles can expose the credential. <br>
-Mitigation: Store the API key in a local secret manager or private environment file and avoid committing or syncing shell profiles that contain it. <br>
-Risk: npm link installs global scan and spacescan commands. <br>
-Mitigation: Skip npm link unless global commands are needed, and use local invocation for narrower exposure. <br>
+## Use Case:
 
+Developers and agent operators use this skill to query Chia blockchain data from Spacescan, including blocks, transactions, addresses, network status, CAT tokens, NFTs, and XCH price information.
 
-## Reference(s): <br>
-- [ClawHub Spacescan release](https://clawhub.ai/Koba42Corp/spacescan) <br>
-- [Spacescan](https://www.spacescan.io) <br>
-- [Spacescan API plans](https://www.spacescan.io/apis) <br>
-- [Chia Network](https://chia.net) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Plain text and Markdown-style command responses with JavaScript API examples and shell configuration commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SPACESCAN_API_KEY and sends queried addresses, hashes, and the API key to Spacescan.io.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, CHANGELOG.md) <br>
+Risk: Queried Chia addresses, transaction IDs, hashes, and search terms are sent to Spacescan.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing those identifiers with Spacescan is acceptable for the deployment context.
+
+Risk: The skill requires a Spacescan API key.
+
+Mitigation: Use a limited API key, keep it in environment variables or a secrets manager, and avoid committing shell profiles or dotfiles that contain it.
+
+Risk: The security summary recommends updating or pinning npm dependencies before sensitive use.
+
+Mitigation: Review and pin dependency versions, then run normal dependency and security checks before deployment in sensitive environments.
+
+## Reference(s):
+
+- [ClawHub Spacescan Skill Page](https://clawhub.ai/koba42corp/skills/spacescan)
+- [Spacescan](https://www.spacescan.io)
+- [Spacescan API Plans](https://www.spacescan.io/apis)
+- [Chia Network](https://chia.net)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Formatted text and Markdown with inline command and JavaScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Spacescan API key and sends requested blockchain identifiers to the Spacescan API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,60 @@
-## Description: <br>
-Guides users through a conversational strategy interview to diagnose a challenge, choose a guiding policy, and identify coherent actions for a company, product, team, career, or initiative. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Strategy Interview guides users through a structured conversation to build or think through strategy for a company, product, team, career, or initiative.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Employees, founders, product leaders, team leads, and individual users use this skill to turn vague direction-setting problems into a pressure-tested strategy kernel and optional strategy notes or drafts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The marketplace capability labels declare financial authority and purchase capabilities that are not justified by the artifact behavior. <br>
-Mitigation: Before enabling the skill, verify that those labels do not grant real permissions and rely on the documented behavior of keeping local strategy notes and creating Markdown strategy files. <br>
-Risk: The skill can write local strategy notes, drafts, and resume state that may contain sensitive business, product, or career information. <br>
-Mitigation: Use it only in workspaces where local strategy files are acceptable, and review generated files before sharing or committing them. <br>
+## Use Case:
 
+Employees, external users, and strategy practitioners use this skill to develop a grounded strategy through guided discovery, challenge framing, kernel development, and pressure-testing before producing strategy notes or a strategy draft.
 
-## Reference(s): <br>
-- [Bad Strategy: Patterns to Catch in Real Time](references/bad-strategy.md) <br>
-- [Value Innovation: When the Real Problem Is the Competitive Arena Itself](references/blue-ocean.md) <br>
-- [The Kernel of Good Strategy](references/kernel.md) <br>
-- [Output Templates](references/output-template.md) <br>
-- [The Strategic Choice Cascade](references/playing-to-win.md) <br>
-- [Pressure-test scenarios](references/pressure-tests.md) <br>
-- [Landscape Mapping: Seeing the Terrain Before Choosing the Route](references/wardley-mapping.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, files] <br>
-**Output Format:** [Conversational guidance and Markdown files such as strategy-draft.md, strategy-notes.md, and .beagle/strategy state files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Final strategy drafts are gated on a confirmed strategy kernel; provisional drafts must be labeled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: Confidential strategy, personnel, competitive, or career details may be persisted in local working notes or final Markdown files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: For sensitive discussions, use chat-only mode or require confirmation before writing .beagle state, strategy-notes.md, or strategy-draft.md files.
+
+Risk: Premature strategy drafts can present untested assumptions as confident guidance.
+
+Mitigation: Do not produce strategy-draft.md until the strategy kernel has been confirmed, unless the user explicitly requests a provisional draft with unconfirmed elements marked.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anderskev/skills/strategy-interview)
+- [The Kernel of Good Strategy](references/kernel.md)
+- [Bad Strategy: Patterns to Catch in Real Time](references/bad-strategy.md)
+- [Landscape Mapping: Seeing the Terrain Before Choosing the Route](references/wardley-mapping.md)
+- [The Strategic Choice Cascade](references/playing-to-win.md)
+- [Value Innovation: When the Real Problem Is the Competitive Arena Itself](references/blue-ocean.md)
+- [Output Templates](references/output-template.md)
+- [Pressure-test scenarios](references/pressure-tests.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Conversational guidance and Markdown files such as strategy-draft.md, strategy-notes.md, and optional .beagle strategy state files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local working notes and final Markdown strategy artifacts when the interview reaches the appropriate phase and the user confirms file output.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

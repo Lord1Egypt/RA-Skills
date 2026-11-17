@@ -1,0 +1,9 @@
+{
+  "name_zh": "保险销售合规自查顾问",
+  "desc_zh": "按监管处罚案例逐条体检保险销售全流程合规状况，输出风险分级与整改台账",
+  "desc_en": "Use when the user asks about insurance sales compliance, double-recording quality, suitability matching, or regulatory penalties for insurance selling. Breaks the review into ten groups and thirty-six checks, each with a concrete audit procedure, typical red flags, regulatory basis, and risk tier. Bundles a library of 26 real enforcement cases and a runnable self-check script that outputs risk grading and a remediation tracker CSV. Does not issue legal opinions or regulatory determinations.",
+  "tags": ["保险", "合规", "双录", "适当性", "销售管理", "自查清单"],
+  "category": "保险服务",
+  "version": "1.0.0",
+  "source": "原创方法论整理，案例与法规来自国家金融监督管理总局官网及派出机构处罚公示原文页"
+}

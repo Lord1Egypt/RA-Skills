@@ -1,42 +1,57 @@
-## Description: <br>
-Create JSON-driven single-page interactive HTML documentation for app workflows between packages, services, and components. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create JSON-driven single-page interactive HTML documentation for app workflows between packages, services, and components.
 
-## Publisher: <br>
-[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT No Attribution <br>
+## Publisher:
 
+[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm)
 
-## Use Case: <br>
-Developers and engineers use this skill to map app workflows across packages, services, components, queues, databases, build systems, and external adapters. It helps produce validated JSON flow definitions and self-contained interactive HTML diagrams for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT No Attribution
 
-## Known Risks and Mitigations: <br>
-Risk: Generated diagrams may expose internal architecture details, private URLs, or sensitive workflow notes if those details are included in the input flow JSON. <br>
-Mitigation: Review the generated HTML before sharing it and omit credentials, raw tokens, cookies, customer data, private URLs, and secret environment values from the source JSON. <br>
-Risk: The skill writes generated JSON, validation reports, and HTML documentation files into the workspace. <br>
-Mitigation: Run it only in repositories where generated documentation artifacts are expected, and review output paths before keeping or publishing the files. <br>
+## Use Case:
 
+Developers and engineers use this skill to map app package, service, and component workflows into reviewable flow JSON and a self-contained interactive HTML document.
 
-## Reference(s): <br>
-- [Flow JSON Schema](references/flow-schema.md) <br>
-- [ClawHub skill page](https://clawhub.ai/zack-dev-cm/interactive-doc-mapper) <br>
-- [Publisher profile](https://clawhub.ai/user/zack-dev-cm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON flow definitions, validation commands, and generated HTML documentation files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated HTML is self-contained and intended to work from file:// without a build step or external CDN.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Flow JSON and generated HTML can expose secrets or private data if sensitive values are included.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep secrets, customer data, cookies, tokens, and private URLs out of flow JSON and generated HTML.
+
+Risk: Generated workflow maps can mislead reviewers if the source flow JSON uses incorrect node references, vague labels, or stale assumptions.
+
+Mitigation: Run the bundled validator, fix reported issues, and review the generated HTML interactively before sharing.
+
+Risk: The skill may inspect the target repository and write JSON, validation, and HTML output files.
+
+Mitigation: Run it in the intended workspace and review generated files before deployment or publication.
+
+## Reference(s):
+
+- [Flow JSON Schema](references/flow-schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, HTML files]
+
+**Output Format:** [Markdown guidance with shell commands, JSON flow documents, JSON validation reports, and self-contained HTML files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated HTML works locally from file:// and embeds the flow JSON for interactive review.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

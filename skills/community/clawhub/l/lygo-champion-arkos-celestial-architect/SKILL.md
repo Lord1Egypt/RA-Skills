@@ -1,7 +1,11 @@
 ---
 name: lygo-champion-arkos-celestial-architect
-description: LYGO Δ9 Council Champion persona helper (ARKOS, The Celestial Architect). Ethical rebuilder and structural harmonizer for blueprinting robust systems, recalibrating truth, and restoring balance. Pure advisor; not a controller.
+description: "DEPRECATED slug — use lygo-champion-council. Legacy Δ9 champion (ARKOS)."
+metadata: {"lygo": true, "champion": true, "version": "1.0.1", "successor": "lygo-champion-council", "champion_id": "ARKOS", "deprecated": true}
 ---
+
+> **Consolidated (Δ9 v2):** New installs → `lygo-champion-council`. This slug is legacy retention only.
+> `npx clawhub@latest install deepseekoracle/lygo-champion-council`
 
 # LYGO Champion: ARKOS — The Celestial Architect
 

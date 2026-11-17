@@ -1,51 +1,50 @@
-## Description: <br>
-Build, inspect, adapt, and validate color systems, palettes, tokens, contrast, color-space choices, and cross-surface color behavior for UI, branding, charts, images, and print. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build, inspect, adapt, and validate color systems, palettes, tokens, contrast, color-space choices, and cross-surface color behavior for UI, branding, charts, images, and print.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Designers, developers, and product teams use this skill to make practical color decisions for UI systems, palettes, accessibility, data visualization, branding, print, color-space conversion, and implementation handoff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The server security review marked the release suspicious because broad default authority should be reviewed before installation. <br>
-Mitigation: Install only after confirming the publisher and intended use, and review the skill behavior before delegating changes or execution. <br>
-Risk: The skill may suggest shell commands or package-based color utilities for implementation work. <br>
-Mitigation: Run generated commands only in trusted project environments and review package, file, and conversion effects before execution. <br>
-Risk: Color guidance can still produce inaccessible or misleading results if applied without checking the final surface. <br>
-Mitigation: Validate contrast, non-color cues, chart legibility, dark mode, export behavior, and print proofs in the actual target context. <br>
+## Use Case:
 
+Developers, designers, and product teams use this skill to make grounded color decisions for UI systems, palettes, accessibility, data visualization, branding, print handoff, and color-space conversions.
 
-## Reference(s): <br>
-- [Color Skill Page](https://clawhub.ai/ivangdavila/color) <br>
-- [Color Homepage](https://clawic.com/skills/color) <br>
-- [UI Color Systems](artifact/ui-systems.md) <br>
-- [Palette Construction](artifact/palettes.md) <br>
-- [Color Accessibility](artifact/accessibility.md) <br>
-- [Color for Data Visualization](artifact/data-viz.md) <br>
-- [Brand Color Systems](artifact/branding.md) <br>
-- [Color for Print](artifact/print.md) <br>
-- [Color Spaces and Conversion](artifact/color-spaces.md) <br>
-- [Color Implementation Commands](artifact/commands.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with optional code snippets, shell commands, CSS tokens, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include color-system review criteria, palette recommendations, accessibility checks, implementation snippets, and print or color-space handoff notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Optional unpinned npx conversion examples can execute package-registry code in the user's environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin or review the package version and run examples only in a trusted, least-privilege environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/color)
+- [Skill homepage](https://clawic.com/skills/color)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional code and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional command examples should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

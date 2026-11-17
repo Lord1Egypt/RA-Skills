@@ -1,42 +1,59 @@
-## Description: <br>
-Provides flight prices with Amadeus, train itineraries and schedules with Navitia, and nearby EV charge points using Open Charge Map. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides flight prices with Amadeus, public transport and train itineraries with Navitia, and nearby EV charge point lookups through Open Charge Map.
 
-## Publisher: <br>
-[aaureli](https://clawhub.ai/user/aaureli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aaureli](https://clawhub.ai/user/aaureli)
 
-## Use Case: <br>
-Travelers, mobility planners, and supporting agents use this skill to compare flight offers, plan public transport or train journeys, and find nearby EV charging points from third-party travel APIs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Configurable API host environment variables can send live API credentials to non-default endpoints. <br>
-Mitigation: Keep host override variables unset unless the endpoint is intentionally trusted, and use low-privilege or test credentials where possible. <br>
-Risk: Travel and location queries are transmitted to third-party services. <br>
-Mitigation: Avoid submitting sensitive itinerary, place, coordinate, or account data unless sharing it with the selected travel API provider is acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aaureli/air-train-ev) <br>
-- [Open Charge Map API documentation](https://openchargemap.org/site/develop/api) <br>
-- [Open Charge Map POI endpoint](https://api.openchargemap.io/v3/poi/) <br>
-- [Navitia documentation](https://doc.navitia.io/) <br>
+## Use Case:
 
+Travelers and mobility-planning agents use this skill to compare flight offers, look up public transport journeys, and find nearby EV charging stations from command-line clients backed by external travel APIs.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, command-line examples, environment variable setup, and plain-text travel or charging summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires API credentials for Amadeus, Navitia, and Open Charge Map; route, date, place, and coordinate queries are sent to the relevant third-party APIs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Configured host overrides can send API credentials and travel or location queries to endpoints other than the documented service hosts.
+
+Mitigation: Use official HTTPS API hosts unless the endpoint is controlled and trusted, and review host environment variables before running the scripts.
+
+Risk: Flight, transit, and EV charging searches can transmit sensitive itinerary or location details to external services.
+
+Mitigation: Avoid submitting sensitive trips or precise coordinates unless external API processing is acceptable for the use case.
+
+Risk: Raw response dumping can store sensitive travel or location data locally.
+
+Mitigation: Use dump options only when needed, protect generated files, and remove them after review.
+
+## Reference(s):
+
+- [Navitia documentation](https://doc.navitia.io/)
+- [Open Charge Map API documentation](https://openchargemap.org/site/develop/api)
+- [Open Charge Map POI API endpoint](https://api.openchargemap.io/v3/poi/)
+- [ClawHub skill page](https://clawhub.ai/aaureli/skills/air-train-ev)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command-line examples and plain-text API result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided API credentials for Amadeus, Navitia, and Open Charge Map.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

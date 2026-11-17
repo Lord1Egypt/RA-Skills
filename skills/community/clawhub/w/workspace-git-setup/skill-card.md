@@ -1,41 +1,59 @@
-## Description: <br>
-Workspace Git Setup helps an agent initialize or audit local Git tracking for a workspace with a security-focused .gitignore, large-file warnings, dry-run previews, and read-only audit checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Workspace Git Setup helps agents initialize or audit local Git tracking with a security-focused .gitignore, large-file warnings, and dry-run or audit modes.
 
-## Publisher: <br>
-[songhonglei](https://clawhub.ai/user/songhonglei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[songhonglei](https://clawhub.ai/user/songhonglei)
 
-## Use Case: <br>
-Developers and agents use this skill to add safe local version tracking to a workspace, preview setup actions, or audit an existing repository for tracked secrets, untracked files, and line-ending configuration. It is most useful when a project needs an initial Git baseline or a lightweight repository health check before further work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup mode can initialize Git and create a local commit in the selected workspace. <br>
-Mitigation: Run --dry-run or --audit first, inspect the planned .gitignore and git status, and confirm the selected workspace path before running setup mode. <br>
-Risk: A local commit can still include files not covered by the generated ignore rules. <br>
-Mitigation: Review git status and the staged file list before committing, especially when the workspace may contain credentials, private keys, tokens, caches, or large files. <br>
+## Use Case:
 
+Developers and agents use this skill to add local Git version tracking to a workspace or run a read-only repository health audit. It is useful for setting a baseline .gitignore, checking for tracked sensitive files, spotting untracked files, and previewing setup changes before applying them.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/songhonglei/workspace-git-setup) <br>
-- [Git Downloads](https://git-scm.com/downloads) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and local Git status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default setup mode can mutate the selected workspace by initializing Git, writing .gitignore, setting Git config, staging files, and creating a local commit; --dry-run and --audit are read-only modes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and skill frontmatter) <br>
+Risk: The README shows a mutable main-branch curl command for obtaining the setup script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install from a pinned repository revision or audited package before running the script.
+
+Risk: The default setup path stages and commits every unignored file in the selected workspace.
+
+Mitigation: Run --dry-run or --audit first, confirm the workspace path, and inspect the files that would be committed.
+
+Risk: Normal setup can change local Git configuration and write or replace .gitignore rules.
+
+Mitigation: Review the proposed .gitignore diff and use audit mode when only repository health information is needed.
+
+## Reference(s):
+
+- [Workspace Git Setup on ClawHub](https://clawhub.ai/songhonglei/skills/workspace-git-setup)
+- [Declared source repository in artifact](https://github.com/Songhonglei/better-agent-skills)
+- [Git installation documentation](https://git-scm.com/downloads)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and local Git configuration steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce commands that mutate local Git state unless audit or dry-run mode is used.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

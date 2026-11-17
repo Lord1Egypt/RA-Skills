@@ -1,42 +1,54 @@
-## Description: <br>
-Search Bangladesh government jobs from the Teletalk AllJobs API, filter out excluded keywords, present matching jobs, and track applied job IDs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Bangladesh government jobs from the Teletalk AllJobs API, filter out excluded keywords, present matching jobs, and track applied job IDs.
 
-## Publisher: <br>
-[sazidulalam47](https://clawhub.ai/user/sazidulalam47) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sazidulalam47](https://clawhub.ai/user/sazidulalam47)
 
-## Use Case: <br>
-External users use this skill to search and shortlist Bangladesh government job listings from Teletalk AllJobs, excluding unwanted job-title keywords and tracking jobs they have applied to. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads live job data from an external Teletalk AllJobs endpoint, so results may be incomplete, unavailable, or changed after retrieval. <br>
-Mitigation: Confirm important deadlines and application details on the official application site before acting. <br>
-Risk: The skill stores search preferences and applied job IDs in local data files. <br>
-Mitigation: Review the local data files before sharing the skill folder or generated reports. <br>
+## Use Case:
 
+External users looking for Bangladesh government jobs use this skill to search Teletalk AllJobs by keyword, exclude unwanted role terms, review active openings, and track job IDs they confirm as applied.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sazidulalam47/teletalk-alljobs-govjob-search) <br>
-- [Publisher profile](https://clawhub.ai/user/sazidulalam47) <br>
-- [Teletalk AllJobs search API](https://alljobs.teletalk.com.bd/api/v1/published-jobs/search) <br>
+### Deployment Geography for Use:
 
+Bangladesh
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with JSON job-list output from the search script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The script filters out expired deadlines and excluded keywords, then returns compact job records with titles, organization names, vacancies, deadlines, application URLs, and job IDs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: The skill stores the search keyword, excluded terms, and confirmed applied job IDs inside the skill folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or clear the local data files before sharing the skill folder or running it in a shared environment.
+
+Risk: The search keyword is sent to the Teletalk AllJobs API.
+
+Mitigation: Use only search terms appropriate to send to that external service and avoid sensitive personal data.
+
+## Reference(s):
+
+- [Teletalk AllJobs published jobs search API](https://alljobs.teletalk.com.bd/api/v1/published-jobs/search)
+- [ClawHub skill page](https://clawhub.ai/sazidulalam47/skills/teletalk-alljobs-govjob-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON job lists and concise Markdown summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Filters excluded title keywords, omits past-deadline jobs, and records confirmed applied job IDs locally.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

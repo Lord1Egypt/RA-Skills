@@ -1,40 +1,48 @@
-## Description: <br>
-This skill evaluates arithmetic expressions using the Unix `bc` calculator. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill evaluates arithmetic expressions using the Unix `bc` calculator with full `bc` syntax and arbitrary-precision calculation.
 
-## Publisher: <br>
-[danstaal](https://clawhub.ai/user/danstaal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[danstaal](https://clawhub.ai/user/danstaal)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, engineers, and other users use this skill to calculate basic or advanced arithmetic expressions through an agent, including full `bc` syntax and math-library functions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Unrestricted `bc` programs from user input can hang or exhaust a worker.
+
+Mitigation: Install only in trusted environments, or add strict expression validation, input/output caps, and a subprocess timeout before using untrusted or automated inputs.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent users use this skill to evaluate basic or advanced arithmetic expressions with Unix bc syntax and arbitrary precision. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill invokes local node and bc binaries to evaluate supplied expressions. <br>
-Mitigation: Install only where local command execution for calculator requests is acceptable. <br>
-Risk: Untrusted, huge, or intentionally non-terminating bc programs may consume local resources because the wrapper does not show a timeout or input validator. <br>
-Mitigation: Avoid feeding untrusted or unbounded bc programs, and run the skill in an environment with appropriate execution controls for shared or automated use. <br>
+**Output Format:** [Plain text calculation results or `bc` error messages]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/danstaal/bc-calc) <br>
+**Other Properties Related to Output:** [Uses the `bc` math library by default.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text calculator results or bc error messages, with Markdown usage examples in documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local node and bc binaries; the bc math library is enabled by default.] <br>
+1.0.0 (source: frontmatter, package.json, server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

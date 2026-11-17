@@ -1,0 +1,113 @@
+{
+  "version": "2.0",
+  "statement": [
+    {
+      "effect": "allow",
+      "action": [
+        "name/dnspod:Describe*",
+        "name/teo:Describe*",
+        "name/lighthouse:Describe*",
+        "name/ssl:Describe*",
+        "name/tat:Describe*",
+        "name/domain:Describe*",
+        "name/lighthouse:Inquire*",
+        "name/domain:CheckDomain"
+      ],
+      "resource": [
+        "*"
+      ]
+    },
+    {
+      "effect": "allow",
+      "action": [
+        "name/dnspod:CreateRecord",
+        "name/dnspod:ModifyRecord",
+        "name/dnspod:DeleteRecord",
+        "name/dnspod:ModifyRecordStatus",
+        "name/dnspod:ModifyRecordRemark",
+        "name/dnspod:CreateRecordBatch",
+        "name/dnspod:ModifyRecordBatch",
+        "name/teo:CreateZone",
+        "name/teo:VerifyOwnership",
+        "name/teo:ModifyZone",
+        "name/teo:ModifyZoneStatus",
+        "name/teo:ModifyZoneSetting",
+        "name/teo:CreateAccelerationDomain",
+        "name/teo:ModifyAccelerationDomain",
+        "name/teo:ModifyAccelerationDomainStatuses",
+        "name/teo:ModifyHostsCertificate",
+        "name/teo:CreatePurgeTask",
+        "name/teo:CreatePrefetchTask",
+        "name/lighthouse:StartInstances",
+        "name/lighthouse:StopInstances",
+        "name/lighthouse:RebootInstances",
+        "name/lighthouse:CreateFirewallRules",
+        "name/lighthouse:DeleteFirewallRules",
+        "name/lighthouse:ModifyFirewallRules",
+        "name/lighthouse:ModifyFirewallRuleDescription",
+        "name/lighthouse:ImportKeyPair",
+        "name/lighthouse:CreateKeyPair",
+        "name/lighthouse:CreateInstanceSnapshot",
+        "name/lighthouse:ModifyInstancesAttribute",
+        "name/ssl:ApplyCertificate",
+        "name/ssl:UploadCertificate",
+        "name/ssl:DownloadCertificate",
+        "name/ssl:CompleteCertificate",
+        "name/ssl:CheckCertificateDomainVerification",
+        "name/ssl:DeployCertificateInstance",
+        "name/ssl:ModifyCertificateAlias",
+        "name/tat:RunCommand",
+        "name/tat:CancelInvocation"
+      ],
+      "resource": [
+        "*"
+      ]
+    },
+    {
+      "effect": "deny",
+      "action": [
+        "name/lighthouse:CreateInstances",
+        "name/lighthouse:CreateDisks",
+        "name/lighthouse:RenewInstances",
+        "name/lighthouse:RenewDisks",
+        "name/lighthouse:ModifyInstancesBundle",
+        "name/lighthouse:ResizeDisks",
+        "name/lighthouse:ModifyInstancesRenewFlag",
+        "name/lighthouse:ModifyDisksRenewFlag",
+        "name/lighthouse:IsolateInstances",
+        "name/lighthouse:IsolateDisks",
+        "name/lighthouse:TerminateInstances",
+        "name/lighthouse:TerminateDisks",
+        "name/lighthouse:ResetInstance",
+        "name/teo:CreatePlan",
+        "name/teo:CreatePlanForZone",
+        "name/teo:RenewPlan",
+        "name/teo:UpgradePlan",
+        "name/teo:IncreasePlanQuota",
+        "name/teo:ModifyPlan",
+        "name/teo:DestroyPlan",
+        "name/teo:DeleteZone",
+        "name/dnspod:CreateDeal",
+        "name/dnspod:CreateAndPayDeal",
+        "name/dnspod:PayOrderWithBalance",
+        "name/dnspod:ModifyPackageAutoRenew",
+        "name/dnspod:ModifyVasAutoRenewStatus",
+        "name/dnspod:ModifyDomainOwner",
+        "name/dnspod:DeleteDomain",
+        "name/ssl:CreateCertificate",
+        "name/ssl:CreateCertificateByPackage",
+        "name/ssl:CertificateOrderSubmit",
+        "name/ssl:CancelCertificateOrder",
+        "name/ssl:RevokeCertificate",
+        "name/ssl:DeleteCertificate",
+        "name/ssl:DeleteCertificates",
+        "name/domain:DescribeTemplate",
+        "name/domain:DescribeTemplateList",
+        "name/domain:DescribePhoneEmailList"
+      ],
+      "resource": [
+        "*"
+      ]
+    }
+  ]
+}

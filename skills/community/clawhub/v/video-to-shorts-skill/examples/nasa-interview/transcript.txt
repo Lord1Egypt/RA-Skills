@@ -1,0 +1,53 @@
+[00:11.5-00:25.7] One of the things that's been really interesting, I think, both for Doug and I, is having been through a lot of training flows, whether it was associated with an aircraft back in our military days, our regular military days, or inside of NASA's program
+[00:25.7-00:34.2] with space shuttle training or space station training or familiarity with the Soyuz, we've kind of seen mature kind of training programs brought to us.
+[00:34.7-00:45.7] And so it's been really exciting to see the SpaceX folks kind of go through that process as we've worked towards Demo 2 to both develop training and at the same time develop a vehicle.
+[00:46.0-00:59.1] And so you can kind of see, hey, the training is going to roughly look like this in the end and so we've got to definitely face that balance of, do you want to accept an operational challenge or a complicated interface and then just
+[00:59.1-01:10.8] deal with it with a bunch of training or try to fix those things up front that says, hey, if we just made this consistent across all the displays, the training would be much easier and so we try to strike that balance.
+[01:11.0-01:28.2] I think one of the ways to describe it for both Doug and I is that we're hopeful that future crews on Dragon vehicles headed to NASA space stations aren't cursing our names because we accepted some feature that was complicated and hard to train
+[01:28.2-01:39.9] and then in the end, hard to operate that they're like, yeah, I don't even remember why that's so easy, but it is so easy and so that they forget about us because they don't have anything to curse our names over.
+[01:43.9-01:58.5] The mission training for the Dragon vehicle and particularly the NASA mission to space station is very different from a shuttle mission in that we've had to develop the training as we've kind of moved forward.
+[01:58.8-02:13.8] It's also different because of how much more automated capability there is on board the Dragon vehicle and so our role gets to be a little bit bigger picture where we can step back and really understand is the mission progressing correctly rather than really
+[02:13.8-02:32.3] focus on the really minute details of managing a heater temperature or something along those lines that astronauts need to be good at in some situations, but having too many of those responsibilities during something dynamic like launching into space is undesirable, to say the
+[02:32.3-02:32.5] least.
+[02:32.5-02:42.1] And shuttle had a lot of things like that where you had to have somebody to just watch over the vehicle to make sure it was doing what it was supposed to do and took away from being able to see the big picture like
+[02:42.1-02:43.0] we're able to do with Dragon.
+[02:46.8-03:00.4] As we kind of go through the development of the vehicle and the training process, I would say there's probably two things that jump out to me as kind of big wins from a NASA perspective as we move forward.
+[03:01.0-03:13.2] One is associated with having a high fidelity from a training perspective that we can both Doug and I can sit in a capsule, we can put on suits and we can go through a situation or a scenario where the suits are going to
+[03:13.2-03:28.3] inflate to try to protect us from whatever situation is developing on board the vehicle and getting that level of fidelity of training hardware versus PowerPoints and virtual presentations of it is really important from an operator's perspective.
+[03:28.3-03:32.9] So that's a huge win and the SpaceX team stepped up to that and we really appreciate it.
+[03:33.0-03:46.6] I think another piece of it is kind of coming up with a concept of how for a highly automated vehicle, you don't lose sight of kind of the need for the crew to always have a safe path home.
+[03:47.0-03:54.4] You don't necessarily have to save the mission with the crew, but you need to save the crew with the crew is kind of the mindset that we've put out there.
+[03:54.4-04:09.1] And so I feel really good about kind of across the spectrum of the whole mission from pre-launch to launch to time on orbit, close to space station, all the way to splash down that we have a path out or a path to take
+[04:09.1-04:12.3] care of the crew if we needed to, if things got complicated.
+[04:12.7-04:14.9] So that's a big win for us.
+[04:19.2-04:22.1] There's absolutely moments associated with that.
+[04:22.2-04:36.9] I think one of our biggest accomplishments was a tool to be able to plan our own way out of orbit back to Earth and we had to come up with a way that didn't break the software allocation that was out there and kind
+[04:36.9-04:52.6] of fit into what SpaceX's model was to the experiences that we've had with space shuttle or Soyuz where the crew typically does have that capability and figuring out how to add it to a vehicle that's most of the way there and take advantage
+[04:52.6-04:59.2] of the way that vehicle operates versus trying to force a shuttle or a Soyuz solution on it was really important.
+[04:59.3-05:11.3] And when we got over that hump and we got the aha moment, I would really say by the SpaceX team to be able to read back that it wasn't the idea if you had to prove to them that this scenario existed.
+[05:11.8-05:16.2] We just had the big picture of, okay, how does the crew just get home if they end up in this situation?
+[05:16.4-05:18.6] How does the crew get home if they end up in this situation?
+[05:18.6-05:29.4] When they were able to flip that switch and not count how many failures it took to get there, but accept that let's figure out the easiest way to provide that capability and they got on board with it.
+[05:29.5-05:35.4] That was the aha moment was helping them understand that that was something that was going to be important to crews on board.
+[05:39.9-05:56.1] You know, I think one of the biggest challenges kind of going through this process was trying to find the sweet spot for when the contracting team or the engineers that we were working with were ready to address the specific concerns that were out
+[05:56.1-05:56.3] there.
+[05:56.5-06:07.8] And so I think that in general, we've found a place where the SpaceX team is able to kind of support us or the NASA team is able to support them in supporting us as we work through it.
+[06:08.1-06:11.7] But finding out when that sweet time was is a challenge.
+[06:11.9-06:21.1] And as you lay out a program that, you know, building a spacecraft is not something that we haven't successfully done it in short time periods.
+[06:21.1-06:31.4] And so figuring out the right window to hey, this is the this is the month where we need to push this specific issue hard because they've broken into the software code and they're editing it right now.
+[06:31.4-06:47.5] And if we can if we add the capability to just put a timer delay or for this feature in place that we can solve this other big picture problem of giving the crew some capability, finding those sweet spot so that it's not like
+[06:47.5-06:52.0] that we need the administrator's help in order to make a change to the vehicle.
+[06:52.3-06:53.1] That's not where you want to be.
+[06:53.3-06:56.5] You want to find those sweet spots and do that process efficiently.
+[06:56.8-07:03.6] And so I could they're just too numerous to mention in terms of item by item.
+[07:03.9-07:13.9] That hey, we found August of 2018 was the right time for this one or 2015, you know, October was the right time for this one.
+[07:14.0-07:25.2] We had just a lot of those when you had the right people at the right place at the right time and you could get the feature in place without kind of crushing the resource bank or calling in the you know, the the big
+[07:25.2-07:26.9] guns in order to force a solution.
+[07:30.9-07:42.1] You know, I think there's a lot of kind of this spaceflight idea that there's there's romance and surprise and you're running through the mission and you're doing it by the seat of your pants.
+[07:42.3-07:54.6] And I think there was a time in flight test that that was true, that we really trusted people with good instincts and threw them into those situations and they weren't necessarily as as prepared as they could have been.
+[07:55.2-08:08.4] I think we really do focus on trying to make spaceflight in a lot of these situations, particularly for a test mission to kind of go off as expected, you know, to really focus on what do I expect to hear at this point.
+[08:08.6-08:23.4] And the best analogy that I've been able to share with people is that I really do if folks have seen that older movie with called Groundhog Day where Bill Murray is walking through his his day and he's done that day so many times
+[08:23.4-08:29.6] that he knows, you know, when to catch the boy who falls out of the tree or when to not step in the puddle of water.
+[08:29.9-08:43.7] And so because those things have all happened to him before, our intent is to, you know, go through this mission and not not find surprises because we've we've prepared ourselves because, you know, surprise for us is just an opportunity to not help the
+[08:43.7-08:45.1] greater team be successful.
+[08:45.1-08:48.3] If we responded in an inappropriate way when we got surprised.

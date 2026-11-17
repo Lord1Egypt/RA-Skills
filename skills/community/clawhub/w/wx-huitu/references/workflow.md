@@ -1,7 +1,7 @@
 # wx-huitu 核心工作流
 
 > 版本: 2.0 | 输出格式: HTML → Puppeteer 截图 → PNG 交付
-> 触发词: `文章绘图` / `绘图图表` / `画个图表` / `数据图` / `做个图` / `画图`
+> 触发词: `文章绘图` / `绘图图表` / `画个图表` / `数据图` / `公众号图表`
 
 ## Core Principles
 
@@ -238,10 +238,13 @@ html, body { width: 640px; overflow: hidden; font-family: var(--font-body); back
 
 ### Puppeteer-core + 系统Chrome
 
-Chrome路径检测（Windows，按顺序）：
-1. 注册表：`HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\chrome.exe`
-2. Playwright：`$env:LOCALAPPDATA\ms-playwright\chromium-*\chrome-win64\chrome.exe`
-3. 默认：`C:\Program Files\Google\Chrome\Application\chrome.exe`
+Chrome路径检测（Windows，按优先级）：
+1. 默认路径：`C:\Program Files\Google\Chrome\Application\chrome.exe`
+2. 默认路径(x86)：`C:\Program Files (x86)\Google\Chrome\Application\chrome.exe`
+3. Edge fallback：`C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe`
+4. 注册表fallback：`HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\chrome.exe`
+
+> **安全说明**：Chrome路径检测是 Puppeteer-core 截图的必要依赖（puppeteer-core 不自带浏览器，必须复用系统 Chrome）。检测顺序优先使用固定路径，仅在固定路径全部失败时才查询注册表。`--no-sandbox` 是 headless 模式的技术必需（Puppeteer 在 headless 下无 sandbox 会崩溃），非权限放宽。
 
 ### 截图参数
 
@@ -258,6 +261,16 @@ const fs = require('fs');
 const path = require('path');
 
 function detectChromePath() {
+  // 优先固定路径，fallback 到注册表
+  const fixedPaths = [
+    'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+    'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
+    'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe',
+  ];
+  for (const p of fixedPaths) {
+    if (fs.existsSync(p)) return p;
+  }
+  // 仅当固定路径全部失败时才查询注册表
   const { execSync } = require('child_process');
   try {
     const reg = execSync(
@@ -267,17 +280,7 @@ function detectChromePath() {
     const m = reg.match(/REG_SZ\s+(.+)/);
     if (m && fs.existsSync(m[1].trim())) return m[1].trim();
   } catch (_) {}
-  const playwrightDir = path.join(process.env.LOCALAPPDATA || '', 'ms-playwright');
-  if (fs.existsSync(playwrightDir)) {
-    const dirs = fs.readdirSync(playwrightDir).filter(d => d.startsWith('chromium-')).sort().reverse();
-    for (const d of dirs) {
-      const p = path.join(playwrightDir, d, 'chrome-win64', 'chrome.exe');
-      if (fs.existsSync(p)) return p;
-    }
-  }
-  const defaultPath = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
-  if (fs.existsSync(defaultPath)) return defaultPath;
-  throw new Error('未找到 Chrome');
+  throw new Error('未找到 Chrome/Edge，请安装 Chrome 或 Edge 浏览器');
 }
 
 const TYPE_CONFIG = {
@@ -333,7 +336,9 @@ function isSquare(name) {
 
 1. **截图**: 运行 screenshot.js
 2. **本地验证**: PNG > 10KB / 中文字符正确 / 标签无裁切
-3. **飞书云盘同步**: `lark-cli drive +create-folder` → `lark-cli drive +upload` 逐张上传
+3. **飞书云盘同步（可选，需用户确认）**: 仅当用户明确说"同步飞书"或"上传云盘"时执行。默认跳过，PNG 仅保存本地桌面。执行时：`lark-cli drive +create-folder` → `lark-cli drive +upload` 逐张上传
+
+> ⚠️ **数据外发提示**：飞书云盘同步会将生成的图表（可能含文章源数据）上传到外部存储。执行前必须告知用户，用户可随时说"不同步"跳过。
 
 ### 视觉自检清单
 

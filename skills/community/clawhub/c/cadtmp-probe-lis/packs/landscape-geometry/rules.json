@@ -1,0 +1,235 @@
+{
+ "confidence": {
+  "direct_label": 0.95,
+  "geometry_pattern": 0.86,
+  "inferred": 0.5,
+  "pattern_match": 0.78
+ },
+ "geometry_close_tolerance": 50,
+ "green_area_filter": {
+  "max_aspect": 20,
+  "max_filtered_rings": 400,
+  "max_regions": 200,
+  "min_bbox": 500,
+  "min_rings_per_region": 2,
+  "region_gap": 2000,
+  "review_label_tpl": "{layer}|G{idx}|{rings}环"
+ },
+ "layer_rules": [
+  {
+   "category": "plant_tree_or_shrub",
+   "system": "planting",
+   "tokens": [
+    "乔木",
+    "灌木",
+    "苗木",
+    "种植",
+    "地被",
+    "PLANTED",
+    "PLANT"
+   ]
+  },
+  {
+   "category": "plant_groundcover",
+   "system": "planting",
+   "tokens": [
+    "地被层",
+    "草坪",
+    "草皮",
+    "地被"
+   ]
+  },
+  {
+   "category": "paving",
+   "system": "paving",
+   "tokens": [
+    "景观铺地",
+    "铺装",
+    "铺地",
+    "园路",
+    "波打",
+    "收边",
+    "PAVING"
+   ]
+  },
+  {
+   "category": "water_feature",
+   "system": "water_feature",
+   "tokens": [
+    "水域",
+    "水体",
+    "水景",
+    "喷泉",
+    "水池",
+    "WATER"
+   ]
+  },
+  {
+   "category": "furniture",
+   "system": "furniture",
+   "tokens": [
+    "坐凳",
+    "花钵",
+    "廊架",
+    "亭",
+    "雕塑",
+    "景墙",
+    "FURNITURE"
+   ]
+  }
+ ],
+ "max_block_plants": 500,
+ "max_green_areas": 2000,
+ "max_pdf_geometry": 2000,
+ "max_plant_legends": 2000,
+ "paving_filter": {
+  "max_aspect": 20,
+  "max_filtered_rings": 400,
+  "max_regions": 200,
+  "min_bbox": 500,
+  "min_rings_per_region": 2,
+  "region_gap": 2000,
+  "review_label_tpl": "{layer}|R{idx}|{rings}环"
+ },
+ "plant_block_aliases": {
+  "grass": "地被",
+  "ground": "地被",
+  "lawn": "地被",
+  "shrub": "灌木",
+  "soil": "地被",
+  "tree": "乔木",
+  "乔": "乔木",
+  "乔木": "乔木",
+  "地被": "地被",
+  "常绿乔木": "乔木",
+  "树": "乔木",
+  "灌": "灌木",
+  "灌木": "灌木",
+  "球": "灌木",
+  "绿篱": "灌木",
+  "草": "地被",
+  "草坪": "地被",
+  "落叶": "乔木",
+  "麦冬": "地被"
+ },
+ "plant_geom": {
+  "elongated_min_aspect": 2.5,
+  "inferred_confidence": 0.62,
+  "max_candidates": 200,
+  "min_insert_plant_layer_ratio": 0.25,
+  "min_instances": 3,
+  "min_total_length": 400,
+  "prefer_block_geometry": true,
+  "radius": 1200,
+  "required_vote_ratio": 0.6,
+  "roundish_min_aspect": 0.55,
+  "tiny_tolerance": 60,
+  "tree_min_bbox": 150
+ },
+ "plant_schedule_link": {
+  "enable": true,
+  "max_matches": 500,
+  "radius": 1500
+ },
+ "schema_version": 1,
+ "system_rules": [
+  {
+   "patterns": [
+    "种植",
+    "苗木",
+    "乔",
+    "灌",
+    "地被",
+    "绿化",
+    "PLANT"
+   ],
+   "system": "planting"
+  },
+  {
+   "patterns": [
+    "铺装",
+    "铺地",
+    "园路",
+    "波打",
+    "收边",
+    "HARDSCAPE",
+    "PAVING"
+   ],
+   "system": "paving"
+  },
+  {
+   "patterns": [
+    "水景",
+    "喷泉",
+    "水池",
+    "卵石",
+    "排水盲沟",
+    "WATERFEATURE"
+   ],
+   "system": "water_feature"
+  },
+  {
+   "patterns": [
+    "坐凳",
+    "花钵",
+    "廊架",
+    "亭",
+    "雕塑",
+    "景墙",
+    "FURNITURE"
+   ],
+   "system": "furniture"
+  }
+ ],
+ "view_rules": [
+  {
+   "patterns": [
+    "种植总平面",
+    "种植平面图",
+    "绿化种植",
+    "种植图",
+    "PLANTING PLAN"
+   ],
+   "type": "planting_plan"
+  },
+  {
+   "patterns": [
+    "苗木表",
+    "苗木数量表",
+    "植物配置表",
+    "PLANT SCHEDULE"
+   ],
+   "type": "plant_schedule"
+  },
+  {
+   "patterns": [
+    "景观施工图",
+    "景观设计",
+    "总平面图",
+    "LANDSCAPE"
+   ],
+   "type": "landscape_general"
+  },
+  {
+   "patterns": [
+    "铺装平面",
+    "铺装详图",
+    "铺装大样",
+    "硬景",
+    "PAVING DETAIL"
+   ],
+   "type": "paving_plan"
+  },
+  {
+   "patterns": [
+    "景墙详图",
+    "坐凳详图",
+    "花钵详图",
+    "廊架详图",
+    "亭详图",
+    "详图"
+   ],
+   "type": "feature_detail"
+  }
+ ]
+}

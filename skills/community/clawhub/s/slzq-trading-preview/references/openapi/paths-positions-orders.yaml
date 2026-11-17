@@ -1,0 +1,224 @@
+# 分片：与 references/api-*.md 主题一致；路径项由 references/openapi.yaml 引用。
+OpenV1Positions:
+    get:
+      operationId: get_positions
+      summary: 持仓列表
+      description: |
+        获取当前所有持仓。返回 PositionModel 数组。
+        **浮动盈亏估算**：`(lastPrice - openAveragePrice) × volumeMultiple × position`（多头）；空头取负。
+        合约乘数 volumeMultiple 从 `/open/v1/market/snapshot` 获取。
+      responses:
+        '200':
+          description: 持仓列表
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '../openapi.yaml#/components/schemas/SuccessResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '../openapi.yaml#/components/schemas/PositionModel'
+
+
+OpenV1OrdersOpen:
+    get:
+      operationId: get_open_orders
+      summary: 当前委托
+      description: |
+        获取近 3 日未完结的委托（已报、部分成交等状态）。
+        返回 RtnOrderModel 数组。保存完整回报数据，撤单时需要 instrumentId、exchangeId、orderRef、orderSysId、frontID。
+      responses:
+        '200':
+          description: 当前委托列表
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '../openapi.yaml#/components/schemas/SuccessResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '../openapi.yaml#/components/schemas/RtnOrderModel'
+
+
+OpenV1Trades:
+    get:
+      operationId: get_trades
+      summary: 成交列表
+      description: |
+        获取成交记录。live 默认近 3 日，sim 返回全部历史。
+        支持按合约、交易所、时间范围过滤。
+        平仓成交时 profit 字段有值（柜台返回的实际盈亏）；开仓成交时为 null。
+      parameters:
+        - name: instrumentId
+          in: query
+          required: false
+          schema:
+            type: string
+          description: 合约代码，如 cu2506
+        - name: exchangeId
+          in: query
+          required: false
+          schema:
+            type: string
+          description: 交易所代码，如 SHFE
+        - name: insertTimeStart
+          in: query
+          required: false
+          schema:
+            type: string
+          description: 开始时间，格式 yyyy-MM-dd HH:mm:ss
+        - name: insertTimeEnd
+          in: query
+          required: false
+          schema:
+            type: string
+          description: 结束时间，格式 yyyy-MM-dd HH:mm:ss
+      responses:
+        '200':
+          description: 成交列表
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '../openapi.yaml#/components/schemas/SuccessResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '../openapi.yaml#/components/schemas/RtnTradeModel'
+
+
+OpenV1Orders:
+    post:
+      operationId: place_order
+      summary: 下单
+      description: |
+        下达期货委托（开仓或平仓）。支持限价、市价（ANY）、最优价、最新价。
+
+        **sim 模式**：orderRef 必填，须为 1～13 位纯数字，同一连接内须唯一。
+        **live 模式**：orderRef 由服务端自动生成，客户端传入值被忽略；撤单须使用响应中的 orderRef。
+
+        **SHFE/INE 实盘平仓**：服务端可能自动拆成两笔（先平昨仓、再平今仓），可通过 positionDateType 指定只平一类仓。
+
+        **保存完整响应**：撤单时需要 instrumentId、exchangeId、orderRef、orderSysId、frontID。
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - instrumentId
+                - direction
+                - offsetFlag
+                - priceType
+                - limitPrice
+                - count
+              properties:
+                instrumentId:
+                  type: string
+                  description: 合约代码，如 cu2506、au2606（大小写敏感）
+                orderRef:
+                  type: string
+                  description: 报单引用。sim 必填（1～13位纯数字，同次请求内唯一）；live 可省（服务端自动生成）
+                direction:
+                  type: string
+                  enum: [BUY, SELL]
+                  description: 买卖方向。BUY=买入/开多/平空，SELL=卖出/开空/平多
+                offsetFlag:
+                  type: string
+                  enum: [OPEN, CLOSE, CLOSE_TODAY, CLOSE_YESTERDAY]
+                  description: 开平标志。OPEN=开仓，CLOSE=平仓（服务端自动处理 SHFE/INE 拆单），CLOSE_TODAY=平今，CLOSE_YESTERDAY=平昨
+                priceType:
+                  type: string
+                  enum: [LIMIT, ANY, BEST, LAST]
+                  description: 价格类型。LIMIT=限价，ANY=市价（任意价），BEST=最优价，LAST=最新价
+                limitPrice:
+                  type: number
+                  description: 报单价格（须符合合约 priceTick 精度；市价单也需传合理价格作参考）
+                count:
+                  type: integer
+                  description: 手数（正整数；平仓时不得超过可用持仓）
+                positionDateType:
+                  type: string
+                  enum: ["今", "昨"]
+                  description: 仅 SHFE/INE 区分今昨仓时有效。"今"=只平今仓，"昨"=只平昨仓；不传由服务端自动选择
+                timeCondition:
+                  type: string
+                  enum: [GFD, GTC]
+                  description: 有效期。GFD=当日有效（默认），GTC=撤销前有效
+      responses:
+        '200':
+          description: 下单成功，返回委托回报
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '../openapi.yaml#/components/schemas/SuccessResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '../openapi.yaml#/components/schemas/RtnOrderModel'
+
+
+OpenV1OrdersCancel:
+    post:
+      operationId: cancel_order
+      summary: 撤单
+      description: |
+        撤销一笔未成交或部分成交的委托。
+        所有必填字段均须来自下单回报（RtnOrderModel）中的对应值。
+        **实盘 live 注意**：orderRef 必须使用服务端生成的值（来自下单响应），不能使用客户端原始传入值。
+        成功时响应 data 为被撤委托的最新状态（orderStatus=CANCELED）。
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - instrumentId
+                - exchangeId
+                - orderRef
+                - orderSysId
+                - frontID
+              properties:
+                instrumentId:
+                  type: string
+                  description: 合约代码（与下单一致）
+                exchangeId:
+                  type: string
+                  description: 交易所代码，如 SHFE、DCE、CZCE、INE、CFFEX
+                orderRef:
+                  type: string
+                  description: 报单引用（从下单回报的 orderRef 取值）
+                orderSysId:
+                  type: string
+                  description: 交易所报单编号（从下单回报的 orderSysId 取值）
+                frontID:
+                  type: integer
+                  description: 前置编号（从下单回报的 frontID 取值）
+                sessionId:
+                  type: integer
+                  description: 会话编号（可选，从下单回报取值；不传则使用当前 CTP 会话）
+      responses:
+        '200':
+          description: 撤单结果
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '../openapi.yaml#/components/schemas/SuccessResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '../openapi.yaml#/components/schemas/RtnOrderModel'
+
+

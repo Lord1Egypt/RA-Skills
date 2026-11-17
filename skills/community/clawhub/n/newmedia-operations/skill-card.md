@@ -1,51 +1,66 @@
-## Description: <br>
-全链路新媒体运营技能，覆盖行业分析、竞品分析、账号养号、爆款内容创作和互动钩子设计，并结合 opencli、ima 知识库、联网搜索和违禁词检测支持抖音、视频号、小红书等平台的品牌账号运营。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an end-to-end workflow for Chinese social media operations, including industry analysis, competitor monitoring, account nurturing, viral content creation, engagement hook design, and optional data collection for Douyin, Xiaohongshu, WeChat Video, Weibo, and related channels.
 
-## Publisher: <br>
-[swcxy12315](https://clawhub.ai/user/swcxy12315) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[swcxy12315](https://clawhub.ai/user/swcxy12315)
 
-## Use Case: <br>
-Marketing operators, brand teams, and agents use this skill to plan and execute social-media operations workflows: industry research, competitor monitoring, account warm-up, content drafting, interaction hooks, data cleanup, and report generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate real logged-in social-media accounts through opencli, including publish, follow, comment, download, or upload actions. <br>
-Mitigation: Use a dedicated browser profile or test accounts, require manual approval for account-changing actions, and review commands before execution. <br>
-Risk: The workflow may scrape, store, or import business, account, client, or customer data into local files or ima. <br>
-Mitigation: Avoid confidential client data unless approved, limit collection to necessary fields, and store API keys or credentials securely. <br>
-Risk: Bundled fetch-script outputs may be synthetic sample data and can produce misleading analytics if treated as live platform evidence. <br>
-Mitigation: Label sample or synthetic outputs clearly and validate provenance before using reports for decisions or publication. <br>
+## Use Case:
 
+External operators, marketers, and developers use this skill to plan and execute social media operations for Chinese content platforms. It helps prepare industry and competitor analysis, account setup guidance, content ideas, engagement prompts, monitoring workflows, and report outputs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/swcxy12315/newmedia-operations) <br>
-- [OpenCLI Repository](https://github.com/jackwener/opencli) <br>
-- [ima Agent Interface](https://ima.qq.com/agent-interface) <br>
-- [OpenCLI 集成指南](artifact/references/OPENCLI.md) <br>
-- [ima-skill 知识库集成指南](artifact/references/IMA_KNOWLEDGE.md) <br>
-- [行业分析完整指南](artifact/references/INDUSTRY_ANALYSIS.md) <br>
-- [竞品分析完整指南](artifact/references/COMPETITOR_ANALYSIS.md) <br>
-- [账号养号操作手册](artifact/references/ACCOUNT_NURTURING.md) <br>
-- [爆款内容创作指南](artifact/references/VIRAL_CONTENT.md) <br>
-- [互动钩子设计与话术库](artifact/references/ENGAGEMENT_HOOKS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands, Python script usage, JSON configuration, and report templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce social-media strategy reports, content drafts, interaction scripts, cleaned data files, and publishing or data-collection commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Logged-in browser or account control may be delegated to external tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-privilege browser profile and require explicit approval before every live post, account action, or publishing step.
+
+Risk: Bundled collector outputs may be synthetic sample data presented as platform collection.
+
+Mitigation: Treat collector output as demo data unless real collection provenance is available and verified.
+
+Risk: External OpenCLI and ima-skill downloads are outside the artifact.
+
+Mitigation: Verify download sources and installation contents before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/swcxy12315/skills/newmedia-operations)
+- [Industry Analysis Guide](references/INDUSTRY_ANALYSIS.md)
+- [Competitor Analysis Guide](references/COMPETITOR_ANALYSIS.md)
+- [Account Nurturing Guide](references/ACCOUNT_NURTURING.md)
+- [Viral Content Guide](references/VIRAL_CONTENT.md)
+- [Engagement Hooks Guide](references/ENGAGEMENT_HOOKS.md)
+- [IMA Knowledge Integration Guide](references/IMA_KNOWLEDGE.md)
+- [OpenCLI Integration Guide](references/OPENCLI.md)
+- [OpenCLI Repository](https://github.com/jackwener/opencli)
+- [IMA Agent Interface](https://ima.qq.com/agent-interface)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON configuration snippets, and report templates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce platform-specific operating plans, content calendars, competitor summaries, data collection commands, and locally generated JSON or Markdown reports.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -31821,7 +31821,7 @@
     "question": "Does John live close to a beach or the mountains?",
     "answer": "beach",
     "category": "open-domain",
-    "evidence_text": "John said, \"Yeah, Maria. Little things like this can make a big impact in how we think. Oh, and here's a pic I got from my walk last week. It always reminds me to take a break, breathe, and appreciate nature.\" and shared ![a photo of a sunset over the ocean with a sailboat in the distance](https://get.pxhere.com/photo/beach-landscape-sea-coast-water-sand-ocean-horizon-cloud-sky-sun-sunrise-sunset-shore-wave-dawn-dusk-evening-relax-paradise-tropical-peaceful-blue-colorful-body-of-water-clouds-afterglow-sunset-beach-gulf-of-mexico-wind-wave-515918.jpg)",
+    "evidence_text": "John said, \"Yeah, Maria. Little things like this can make a big impact in how we think. Oh, and here's a pic I got from my walk last week. It always reminds me to take a break, breathe, and appreciate nature.\" and shared ![a photo of a sunset over the ocean with a sailboat in the distance](https://get.pxhere.com/photo/beach-landscape-sea-coast-water-sand-ocean-horizon-cloud-sky-sun-sunrise-sunset-shore-wave-dawn-duREDACTED-SECRET.jpg)",
     "prediction": "The context does not provide specific information about whether John lives close to a beach or the mountains.",
     "retrieved_ids": [
       "conv2-session3",

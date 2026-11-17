@@ -1,38 +1,48 @@
-## Description: <br>
-Formats and prints data with printf-style specifiers for strings, integers, floating-point values, hexadecimal output, padding, and precision. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Format and print data with precise control over output format.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to format values into predictable printf-style text with width, precision, and type specifiers.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Untrusted or extremely large format strings can trigger formatting errors or excessive local output.
+
+Mitigation: Use trusted format strings where possible, validate argument counts and types, and avoid very large width or precision values.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use this skill to produce deterministic formatted console output when they need padding, precision, or type-specific formatting. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text]
 
-## Known Risks and Mitigations: <br>
-Risk: Malformed or mismatched format strings and arguments can fail at runtime or produce unintended formatted output. <br>
-Mitigation: Review format strings and argument counts before use, especially when values originate from untrusted input. <br>
+**Output Format:** [Plain text formatted from printf-style specifiers]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dinghaibin/printf-tool) <br>
+**Other Properties Related to Output:** [Output size depends on the supplied format string and arguments.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text output and Markdown usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces formatted terminal text without trailing newline by default.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

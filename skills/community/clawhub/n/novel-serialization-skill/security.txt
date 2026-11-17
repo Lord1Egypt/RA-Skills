@@ -1,0 +1,16 @@
+# security.txt — RFC 9116
+#
+# Machine-readable contact details for security researchers. SECURITY.md is
+# written for people; this file is written for tooling that crawls repositories
+# and expects the RFC 9116 field names.
+#
+# The Expires field is mandatory and must be in the future. Refresh it whenever
+# SECURITY.md changes; CI does not check it, so it is on the maintainer.
+
+Contact: https://github.com/JohnSmithfan/github-novel-serialization-skill/security/advisories/new
+Expires: 2027-10-16T00:00:00.000Z
+Preferred-Languages: zh, en
+Canonical: https://github.com/JohnSmithfan/github-novel-serialization-skill/blob/main/security.txt
+Policy: https://github.com/JohnSmithfan/github-novel-serialization-skill/blob/main/SECURITY.md
+Acknowledgments: https://github.com/JohnSmithfan/github-novel-serialization-skill/blob/main/SECURITY.md
+Hiring: https://github.com/JohnSmithfan/github-novel-serialization-skill/discussions

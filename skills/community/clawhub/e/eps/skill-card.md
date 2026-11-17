@@ -1,41 +1,53 @@
-## Description: <br>
-Inspect EPS/PS/EPSF metadata and convert files to PNG, JPG, SVG, or PDF through the documented EPS API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Inspect EPS, PS, and EPSF metadata and convert files to PNG, JPG, SVG, or PDF through the eps.futrixdev.com API.
 
-## Publisher: <br>
-[wangqianqianjun](https://clawhub.ai/user/wangqianqianjun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangqianqianjun](https://clawhub.ai/user/wangqianqianjun)
 
-## Use Case: <br>
-Developers, designers, and automation agents use this skill to inspect metadata from EPS, PS, or EPSF files and generate conversion commands for PNG, JPG, SVG, or PDF output through the disclosed external API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected EPS, PS, or EPSF files are sent to eps.futrixdev.com for processing. <br>
-Mitigation: Do not upload confidential, regulated, proprietary, or otherwise sensitive artwork unless the external service's trust, privacy, and retention practices are acceptable. <br>
+## Use Case:
 
+Developers and designers use this skill to inspect EPS, PS, and EPSF file metadata and prepare curl-based API calls that convert artwork to PNG, JPG, SVG, or PDF.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangqianqianjun/eps) <br>
-- [EPS conversion service](https://eps.futrixdev.com) <br>
-- [Convert API endpoint](https://eps.futrixdev.com/api/convert) <br>
-- [Metadata API endpoint](https://eps.futrixdev.com/api/info) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with bash command examples and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may describe API parameters such as file, format, and DPI; converted file binaries are produced by the external service, not by the skill text itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: release evidence) <br>
+Risk: EPS, PS, and EPSF files are uploaded to eps.futrixdev.com for processing, which can expose confidential, regulated, customer, or unreleased artwork to a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when remote processing is acceptable, and avoid uploading sensitive files unless retention, privacy, and approval requirements are understood.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangqianqianjun/skills/eps)
+- [EPS web viewer](https://eps.futrixdev.com)
+- [Convert API](https://eps.futrixdev.com/api/convert)
+- [Metadata API](https://eps.futrixdev.com/api/info)
+- [Health check API](https://eps.futrixdev.com/api/health)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct EPS, PS, or EPSF files up to 20 MB to a remote conversion service.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

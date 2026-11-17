@@ -1,0 +1,4 @@
+interface:
+  display_name: "Utilia Solana Preflight"
+  short_description: "Pay safely for live Solana preflight data"
+  default_prompt: "Use $utilia-solana-preflight to inspect this Solana transaction before I broadcast it."

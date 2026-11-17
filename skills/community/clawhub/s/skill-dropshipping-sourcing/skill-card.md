@@ -1,44 +1,53 @@
-## Description: <br>
-Query CJ Dropshipping API v2.0 to source products and fetch details for catalog building. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query CJ Dropshipping API v2.0 to source products and fetch details for catalog building.
 
-## Publisher: <br>
-[Zero2Ai-hub](https://clawhub.ai/user/Zero2Ai-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zero2ai-hub](https://clawhub.ai/user/zero2ai-hub)
 
-## Use Case: <br>
-Developers and operators use this skill to refresh CJ API access tokens, search CJ Dropshipping products by keyword, and produce normalized product JSON for catalog automation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: CJ API credentials are stored in a local cj-api.json file. <br>
-Mitigation: Keep cj-api.json private, exclude it from source control, and restrict access to the local workspace where the skill runs. <br>
-Risk: A changed baseUrl could send token or product requests to an unintended endpoint. <br>
-Mitigation: Verify baseUrl points to the intended CJ API endpoint before refreshing tokens or sourcing products. <br>
-Risk: Caller-selected output paths could overwrite unintended files. <br>
-Mitigation: Use simple project-local output paths such as cj-results.json when running the sourcing script. <br>
-Risk: The scripts depend on axios at runtime. <br>
-Mitigation: Install axios from a trusted package source and review dependency provenance as part of deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Zero2Ai-hub/skill-dropshipping-sourcing) <br>
-- [CJ Dropshipping API v2.0 endpoint](https://developers.cjdropshipping.com/api2.0/v1) <br>
+## Use Case:
 
+External developers and ecommerce operators use this skill to search CJ Dropshipping products, refresh CJ access tokens, and produce normalized product JSON for catalog-building workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local cj-api.json file for CJ API credentials and writes normalized search results to a caller-selected JSON output path.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: CJ API credentials and refreshed access tokens are stored in a local configuration file.
+
+Mitigation: Use only a trusted cj-api.json, keep it out of source control and shared workspaces, and rotate the CJ API key or token if exposure is possible.
+
+Risk: The configured API base URL affects where CJ credentials and product requests are sent.
+
+Mitigation: Keep baseUrl fixed to the official CJ API endpoint before using real CJ credentials.
+
+## Reference(s):
+
+- [CJ Dropshipping API v2.0](https://developers.cjdropshipping.com/api2.0/v1)
+- [ClawHub skill page](https://clawhub.ai/zero2ai-hub/skills/skill-dropshipping-sourcing)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, JSON files, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands and normalized JSON output files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a CJ API configuration file containing credentials and token expiry data.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,64 @@
-## Description: <br>
-Zhiliao helps agents create natural-language tracking topics, aggregate related news articles from the Zhiliao service, browse cached topic articles, manage subscriptions, and set recurring update checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zhiliao helps an agent create natural-language news tracking topics, retrieve aggregated articles, manage subscriptions, and schedule recurring topic updates through shell commands.
 
-## Publisher: <br>
-[jfeng03-dev](https://clawhub.ai/user/jfeng03-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jfeng03-dev](https://clawhub.ai/user/jfeng03-dev)
 
-## Use Case: <br>
-External users and agent operators use this skill to configure a Zhiliao API key, create or subscribe to tracked topics, fetch relevant articles, review local topic caches, unsubscribe from topics, and schedule periodic article checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact includes a local agent settings file with broad allowed actions and under-disclosed permissions. <br>
-Mitigation: Review or remove .claude/settings.local.json before installing and grant only the permissions needed for the intended workflow. <br>
-Risk: Credential handling relies on ZHILIAO_API_KEY or ~/.zhiliao/config.json, and bundled or copied credentials could be reused accidentally. <br>
-Mitigation: Ignore any bundled API key, rotate exposed credentials, configure a fresh ZHILIAO_API_KEY, and restrict permissions on ~/.zhiliao/config.json. <br>
-Risk: The default API base URL shown in the artifact uses HTTP, which may expose requests if the service does not redirect or support TLS. <br>
-Mitigation: Prefer an HTTPS ZHILIAO_BASE_URL if the service supports it. <br>
-Risk: Cron examples can keep making recurring API calls after setup. <br>
-Mitigation: Add scheduled jobs deliberately, monitor API usage, and remove OpenClaw cron jobs when tracking is no longer needed. <br>
+## Use Case:
 
+Developers and agent users use this skill to track news topics, browse aggregated articles, manage topic subscriptions, and automate periodic article checks after configuring a ZHILIAO_API_KEY.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jfeng03-dev/zhiliao) <br>
-- [Zhiliao website](https://zhiliao.news/) <br>
-- [Zhiliao API key page](https://open.zhiliao.news/) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with inline shell commands and local JSON cache files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses ZHILIAO_API_KEY and stores topics, sessions, and article caches under ~/.zhiliao/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Unsafe credential handling may expose or send the ZHILIAO_API_KEY in ways the user does not expect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove bundled local agent settings, rotate any exposed key, configure a fresh key through a trusted local mechanism, and only send it to the official HTTPS Zhiliao endpoint.
+
+Risk: The included local agent-permission file is overbroad for normal use.
+
+Mitigation: Review and remove .claude/settings.local.json before installation or restrict permissions to only the commands needed for this skill.
+
+Risk: Default HTTP endpoints and configurable API origins can send credentials to an insecure or unexpected service.
+
+Mitigation: Switch defaults and configuration to HTTPS and validate the API origin before running commands that include credentials.
+
+Risk: Temporary file and topic-id handling may create avoidable local-file safety issues.
+
+Mitigation: Harden temporary-file cleanup and validate topic identifiers before using the scripts in automated workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jfeng03-dev/skills/zhiliao)
+- [Zhiliao website](https://zhiliao.news/)
+- [Zhiliao API key page](https://open.zhiliao.news/)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with inline shell commands and JSON-backed local cache files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a ZHILIAO_API_KEY and writes local configuration, topic, session, and article cache data under ~/.zhiliao.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

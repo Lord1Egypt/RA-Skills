@@ -1,21 +1,25 @@
-const { HorseRacingAPI } = require('hkjc-api');
+const { HorseRacingAPI, defaultClient } = require('hkjc-api');
+const { fetchRaceCardMeeting, fetchRaceResults } = require('./hkjc-public');
 
 // Simple in-memory cache (TTL 15 minutes)
 const cache = new Map();
+const CACHE_TTL_MS = 15 * 60 * 1000;
 // Rate limiting: timestamp of last API call (not cache read)
 let lastApiCall = 0;
 const RATE_LIMIT_MS = 60 * 1000; // 1 minute
 
-function makeCacheKey({date, classFilter, excludeHorseNos, excludeBarriers, raceNo, advancedScoring, newsBoost, lightWeightBonus, formAnalysis}) {
+function makeCacheKey({date, classFilter, excludeHorseNos, excludeBarriers, raceNo, advancedScoring, tjBonusWeight, barrierBonusWeight, newsBoost, lightWeightBonus, formAnalysis}) {
   const cf = JSON.stringify((classFilter || []).sort());
   const ehn = JSON.stringify((excludeHorseNos || []).sort());
   const eb = JSON.stringify((excludeBarriers || []).sort());
   const rn = raceNo != null ? String(raceNo) : 'all';
   const adv = advancedScoring ? '1' : '0';
+  const tj = tjBonusWeight != null ? String(tjBonusWeight) : '0.15';
+  const bb = barrierBonusWeight != null ? String(barrierBonusWeight) : '0.12';
   const news = newsBoost ? '1' : '0';
   const lwb = lightWeightBonus != null ? String(lightWeightBonus) : '0.05';
   const fa = formAnalysis ? '1' : '0';
-  return `${date}|${cf}|${ehn}|${eb}|${rn}|${adv}|${news}|${lwb}|${fa}`;
+  return `${date}|${cf}|${ehn}|${eb}|${rn}|${adv}|${tj}|${bb}|${news}|${lwb}|${fa}`;
 }
 
 function getTodayHKT() {
@@ -155,7 +159,7 @@ function computeRecommendations(horses, options = {}) {
   const withForm = horses.filter(h => h.winOdds != null && h.pastRuns && h.pastRuns.length > 0);
   const withoutForm = horses.filter(h => h.winOdds != null && (!h.pastRuns || h.pastRuns.length === 0));
   const candidates = [...withForm, ...withoutForm];
-  if (candidates.length < 2) return [];
+  if (candidates.length < 2) return { recommendations: [], qpPair: [] };
 
   // Compute implied probability from win odds (1/odds) and normalize to sum=1
   const implied = {};
@@ -488,155 +492,123 @@ function computeRecommendations(horses, options = {}) {
   };
 }
 
-async function fetchRaceCard(params = {}) {
-  const { date, classFilter = [], excludeHorseNos = [], excludeBarriers = [], raceNo, advancedScoring = false, tjBonusWeight = 0.15, barrierBonusWeight = 0.12, newsBoost = false, lightWeightBonus = 0.05,    formAnalysis = true } = params;
-  const targetDate = date || getTodayHKT();
-
-  const cacheKey = makeCacheKey({ date: targetDate, classFilter, excludeHorseNos, excludeBarriers, raceNo, advancedScoring, newsBoost, lightWeightBonus });
-  const cached = cache.get(cacheKey);
-  if (cached && (Date.now() - cached.timestamp < 15 * 60 * 1000)) {
-    return cached.data;
-  }
-
-  // Enforce rate limit on fresh fetches
+async function waitForRateLimit() {
   const now = Date.now();
   if (now - lastApiCall < RATE_LIMIT_MS) {
-    const waitMs = RATE_LIMIT_MS - (now - lastApiCall);
-    await new Promise(resolve => setTimeout(resolve, waitMs));
+    await new Promise(resolve => setTimeout(resolve, RATE_LIMIT_MS - (now - lastApiCall)));
   }
   lastApiCall = Date.now();
+}
 
-  const horseAPI = new HorseRacingAPI();
+function createOddsAPI(date, venueCode) {
+  const scopedClient = {
+    request(query, variables) {
+      return defaultClient.request(query, {
+        ...variables,
+        date,
+        venueCode
+      });
+    }
+  };
+  return new HorseRacingAPI(scopedClient);
+}
+
+async function fetchRaceCard(params = {}) {
+  const {
+    date,
+    classFilter = [],
+    excludeHorseNos = [],
+    excludeBarriers = [],
+    raceNo,
+    advancedScoring = false,
+    tjBonusWeight = 0.15,
+    barrierBonusWeight = 0.12,
+    newsBoost = false,
+    lightWeightBonus = 0.05,
+    formAnalysis = true
+  } = params;
+  const targetDate = date || getTodayHKT();
+  const cacheKey = makeCacheKey({
+    date: targetDate,
+    classFilter,
+    excludeHorseNos,
+    excludeBarriers,
+    raceNo,
+    advancedScoring,
+    tjBonusWeight,
+    barrierBonusWeight,
+    newsBoost,
+    lightWeightBonus,
+    formAnalysis
+  });
+  const cached = cache.get(`card:${cacheKey}`);
+  if (cached && Date.now() - cached.timestamp < CACHE_TTL_MS) return cached.data;
+
+  await waitForRateLimit();
 
   try {
-    const allMeetings = await horseAPI.getAllRaces();
-
-    // Filter meetings by date (API returns string date)
-    const filteredMeetings = allMeetings.filter(m => m.date === targetDate);
-
+    const { meeting, races: cardRaces } = await fetchRaceCardMeeting({ date: targetDate, raceNo });
     const result = {
-      meeting: null,
+      meeting,
       races: [],
-      source: 'hkjc-api',
+      source: 'hkjc-public-racecard-page',
+      oddsSource: 'hkjc-api',
       timestamp: new Date().toISOString()
     };
 
-    if (filteredMeetings.length === 0) {
-      cache.set(cacheKey, { data: result, timestamp: Date.now() });
+    if (!meeting) {
+      cache.set(`card:${cacheKey}`, { data: result, timestamp: Date.now() });
       return result;
     }
 
-    // Use the first meeting for overall meeting info (venue, date)
-    const firstMeeting = filteredMeetings[0];
-    const venueCode = firstMeeting.venueCode || (firstMeeting.races?.[0]?.raceCourse) || 'Unknown';
-    result.meeting = {
-      venue: venueCode,
-      date: targetDate,
-      weather: null,
-      trackCondition: null
-    };
-
-    // Collect all races from all meetings on this date
-    const allRaces = [];
-    for (const m of filteredMeetings) {
-      allRaces.push(...(m.races || []));
-    }
-
-    for (const race of allRaces) {
-      // Apply class filter if any
-      if (classFilter.length > 0) {
-        const raceClass = (race.raceClass_en || '').toLowerCase();
-        const matches = classFilter.some(cls => raceClass.includes(cls.toLowerCase()));
-        if (!matches) continue;
+    const oddsAPI = createOddsAPI(targetDate, cardRaces[0]?.venueCode);
+    const oddsSources = new Set();
+    for (const race of cardRaces) {
+      if (classFilter.length > 0 && !classFilter.some(cls => (race.class || '').toLowerCase().includes(cls.toLowerCase()))) {
+        continue;
       }
 
-      // Fetch odds for this race
-      let oddsMap = {}; // { '01': {WIN: '14', PLA: '5.8'}, ... }
+      const oddsMap = {};
+      let apiOddsAvailable = true;
       try {
-        const raceNumber = race.no ? parseInt(race.no, 10) : 1;
-        const oddsResult = await horseAPI.getRaceOdds(raceNumber, ['WIN', 'PLA']);
-        for (const oddsNode of oddsResult) {
-          const type = oddsNode.oddsType; // 'WIN' or 'PLA'
-          for (const node of oddsNode.oddsNodes) {
-            const key = node.combString; // padded horse number string
+        const oddsResult = await oddsAPI.getRaceOdds(race.raceNo, ['WIN', 'PLA']);
+        for (const oddsNode of oddsResult || []) {
+          for (const node of oddsNode.oddsNodes || []) {
+            const key = node.combString;
             if (!oddsMap[key]) oddsMap[key] = {};
-            oddsMap[key][type] = node.oddsValue;
+            oddsMap[key][oddsNode.oddsType] = node.oddsValue;
           }
         }
-      } catch (err) {
-        console.warn(`Failed to fetch odds for race ${race.no}:`, err.message);
+      } catch (error) {
+        apiOddsAvailable = false;
       }
 
-      // Map runners to horse objects (English only)
-      let horses = (race.runners || []).map(runner => {
-        const barrier = runner.barrierDrawNumber ? parseInt(runner.barrierDrawNumber, 10) : null;
-        const horseNo = runner.no ? parseInt(runner.no, 10) : null;
-        const horseName = runner.name_en || '(no English name)';
-        const horseId = runner.horse?.id || runner.id || null;
-        const handicapWeight = runner.handicapWeight ? parseInt(runner.handicapWeight, 10) : null;
-
-        let jockeyName = null;
-        if (runner.jockey) {
-          jockeyName = runner.jockey.name_en || '(no English name)';
-        }
-
-        let trainerName = null;
-        if (runner.trainer) {
-          trainerName = runner.trainer.name_en || '(no English name)';
-        }
-
-        const allowanceRaw = runner.allowance;
-        let jockeyAllowance = null;
-        if (allowanceRaw && allowanceRaw.trim() !== '') {
-          jockeyAllowance = parseInt(allowanceRaw.trim(), 10);
-          if (isNaN(jockeyAllowance)) jockeyAllowance = null;
-        }
-
-        // Past runs: last6run string like '4/1/1/2/6/6' — NEWEST first, oldest last
-        // Reverse so pastRuns[0] = oldest, pastRuns[last] = most recent
-        let pastRuns = [];
-        if (runner.last6run) {
-          pastRuns = runner.last6run.split('/').map(p => parseInt(p, 10)).filter(n => !isNaN(n)).reverse();
-        }
-
-        // Gear: gearInfo string like 'B/TT'
-        let gear = [];
-        if (runner.gearInfo) {
-          gear = runner.gearInfo.split('/').map(s => s.trim()).filter(Boolean);
-        }
-
-        // Odds lookup
-        const oddsKey = horseNo ? padNumber(horseNo) : null;
+      let usedPublicOdds = !apiOddsAvailable || Object.keys(oddsMap).length === 0;
+      let usedApiOdds = false;
+      let horses = race.horses.map(horse => {
+        const oddsKey = horse.horseNo ? padNumber(horse.horseNo) : null;
         const oddsEntry = oddsKey && oddsMap[oddsKey] ? oddsMap[oddsKey] : {};
         const winOdds = oddsEntry.WIN ? parseFloat(oddsEntry.WIN) : null;
         const placeOdds = oddsEntry.PLA ? parseFloat(oddsEntry.PLA) : null;
-
+        if (winOdds != null || placeOdds != null) usedApiOdds = true;
+        if ((winOdds == null && horse.winOdds != null) || (placeOdds == null && horse.placeOdds != null)) {
+          usedPublicOdds = true;
+        }
         return {
-          barrier,
-          horseNo,
-          horseName,
-          horseId,
-          weight: handicapWeight,
-          jockey: jockeyName,
-          jockeyAllowance,
-          trainer: trainerName,
-          pastRuns,
-          gear,
-          winOdds,
-          placeOdds
+          ...horse,
+          winOdds: winOdds ?? horse.winOdds,
+          placeOdds: placeOdds ?? horse.placeOdds
         };
       });
+      if (usedApiOdds) oddsSources.add('hkjc-api');
+      if (usedPublicOdds) oddsSources.add('hkjc-public-racecard-page');
 
-      // Apply exclusions
       if (excludeHorseNos.length > 0) {
-        horses = horses.filter(h => !excludeHorseNos.includes(h.horseNo));
+        horses = horses.filter(horse => !excludeHorseNos.includes(horse.horseNo));
       }
       if (excludeBarriers.length > 0) {
-        horses = horses.filter(h => !excludeBarriers.includes(h.barrier));
+        horses = horses.filter(horse => !excludeBarriers.includes(horse.barrier));
       }
-
-      // Filter out SB horses (missing critical data)
-      horses = horses.filter(h => h.horseNo != null && h.barrier != null);
 
       const recs = computeRecommendations(horses, {
         advancedScoring,
@@ -648,24 +620,20 @@ async function fetchRaceCard(params = {}) {
         formAnalysis
       });
 
-      // Class and going (English only)
-      const raceClass = race.raceClass_en || null;
-      const going = race.go_en || null;
-      if (!result.meeting.trackCondition && going) {
-        result.meeting.trackCondition = going;
-      }
-
       result.races.push({
-        raceNo: race.no ? parseInt(race.no, 10) : null,
-        distance: race.distance || null,
-        class: raceClass,
-        going: going,
+        raceNo: race.raceNo,
+        distance: race.distance,
+        class: race.class,
+        going: race.going,
         horses,
         ...recs
       });
     }
 
-    cache.set(cacheKey, { data: result, timestamp: Date.now() });
+    result.oddsSource = oddsSources.size > 1
+      ? 'mixed'
+      : oddsSources.values().next().value || 'hkjc-api';
+    cache.set(`card:${cacheKey}`, { data: result, timestamp: Date.now() });
     return result;
   } catch (error) {
     console.error('HKJC fetchRaceCard error:', error);
@@ -673,8 +641,31 @@ async function fetchRaceCard(params = {}) {
   }
 }
 
+async function fetchOfficialRaceResults(params = {}) {
+  const { date, raceNo } = params;
+  const cacheKey = `results:${date || 'latest'}:${raceNo == null ? 'all' : raceNo}`;
+  const cached = cache.get(cacheKey);
+  if (cached && Date.now() - cached.timestamp < CACHE_TTL_MS) return cached.data;
+
+  await waitForRateLimit();
+  try {
+    const result = await fetchRaceResults({ date, raceNo });
+    const output = {
+      ...result,
+      source: 'hkjc-public-results-page',
+      timestamp: new Date().toISOString()
+    };
+    cache.set(cacheKey, { data: output, timestamp: Date.now() });
+    return output;
+  } catch (error) {
+    console.error('HKJC fetchRaceResults error:', error);
+    throw error;
+  }
+}
+
 module.exports = {
   tools: {
-    fetchRaceCard
+    fetchRaceCard,
+    fetchRaceResults: fetchOfficialRaceResults
   }
 };

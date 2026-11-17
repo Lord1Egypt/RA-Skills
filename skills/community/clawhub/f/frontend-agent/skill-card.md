@@ -1,40 +1,58 @@
-## Description: <br>
-Frontend development helper for React, Vue, Angular, UI implementation, and performance optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Frontend Agent helps developers build modern web applications with React, Vue, Angular, Tailwind CSS, Next.js, Nuxt.js, UI implementation, and performance optimization guidance.
 
-## Publisher: <br>
-[muyanshouji](https://clawhub.ai/user/muyanshouji) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[muyanshouji](https://clawhub.ai/user/muyanshouji)
 
-## Use Case: <br>
-Developers use this skill for frontend architecture advice, reusable UI component implementation, state management guidance, performance optimization, accessibility checks, and framework-specific examples. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad frontend requests and may answer in Chinese. <br>
-Mitigation: Set agent routing and language expectations before deployment, especially for multilingual or narrowly scoped support environments. <br>
-Risk: Generated frontend code, shell commands, and configuration advice may be project-specific or incomplete. <br>
-Mitigation: Review generated changes, run linting and tests, and verify accessibility, performance, and browser behavior before production use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/muyanshouji/frontend-agent) <br>
-- [Declared project homepage](https://github.com/openclaw/openclaw) <br>
+## Use Case:
 
+Developers and engineers use this skill for frontend architecture advice, component implementation, state management, responsive design, accessibility, and web performance optimization.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code blocks and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include frontend component code, project structure advice, optimization recommendations, tests, and tool commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact SKILL.md) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated frontend code or shell commands may be incorrect for the target project or introduce unintended behavior.
+
+Mitigation: Review generated changes before applying them, inspect proposed commands before execution, and run the project's normal lint, test, and build checks.
+
+Risk: The skill is primarily Chinese-language and examples include Chinese UI text.
+
+Mitigation: Localize generated copy and UI labels when the target application is not Chinese-language.
+
+Risk: The skill may guide file edits and local development-server commands.
+
+Mitigation: Use normal code review practices and run commands in an appropriate project environment with only the required permissions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/muyanshouji/skills/frontend-agent)
+- [Publisher Profile](https://clawhub.ai/user/muyanshouji)
+- [Project Homepage](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline code examples and command suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include frontend architecture recommendations, implementation snippets, accessibility guidance, and performance review guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

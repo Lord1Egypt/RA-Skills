@@ -1,45 +1,56 @@
-## Description: <br>
-Generates and refines image prompts, estimates costs, recommends image sizes, and submits marketing image-generation jobs for agent workflows through Rynjer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and refines image prompts, estimates costs, recommends sizes, and submits business-ready marketing image jobs through Rynjer.
 
-## Publisher: <br>
-[Antipas](https://clawhub.ai/user/Antipas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[antipas](https://clawhub.ai/user/antipas)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add a short marketing-image workflow that rewrites rough prompts, estimates credit cost, chooses practical size defaults, generates images, and polls for results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode sends prompts and generation settings to Rynjer. <br>
-Mitigation: Avoid secrets and confidential business details in prompts unless the operator intends to share them with Rynjer. <br>
-Risk: Image generation can spend Rynjer credits. <br>
-Mitigation: Run estimate_image_cost before generate_image, keep count and resolution modest, and use a limited Rynjer token. <br>
+## Use Case:
 
+Agents and developers use this skill to produce usable marketing visuals for landing pages, ads, blog covers, ecommerce product images, and social posts. It supports a short workflow from rough request to rewritten prompt, cost estimate, image generation, and result polling.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/Antipas/rynjer-image-generation) <br>
-- [README](artifact/README.md) <br>
-- [Tool schema draft](artifact/SCHEMA.md) <br>
-- [Implementation notes](artifact/IMPLEMENTATION.md) <br>
-- [Tool definitions](artifact/src/tools.json) <br>
-- [Templates and size recommendations](artifact/src/templates.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON tool inputs and structured JSON tool results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Live mode can return Rynjer request IDs, cost estimates, task status, and generated image URLs; mock mode returns local test responses without credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Live generation can spend Rynjer credits without local enforcement of all declared limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Estimate cost before generation, use a minimally scoped token, and enforce count and polling limits in the surrounding runtime or server policy.
+
+Risk: Image prompts may include sensitive, regulated, or brand-sensitive content.
+
+Mitigation: Review prompts before live generation and avoid sensitive or regulated content unless the deployment has appropriate policy controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/antipas/skills/rynjer-image-generation)
+- [README](artifact/README.md)
+- [Tool schema](artifact/src/tools.json)
+- [Implementation notes](artifact/IMPLEMENTATION.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON tool responses and Markdown guidance with example shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Live generation returns request status, usage identifiers, and image URLs when available; mock mode returns local test responses.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

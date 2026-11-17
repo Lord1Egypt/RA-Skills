@@ -1,40 +1,60 @@
-## Description: <br>
-Track active Web3 grant rounds across Gitcoin, Giveth, Octant, Optimism RPGF, and other DAO funding programs with deadline alerts, QF match estimates, eligibility checks, and application guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track active Web3 grant rounds across Gitcoin, Giveth, Octant, Optimism RPGF, and other DAO funding programs with deadline alerts, QF match estimates, eligibility checks, and application guidance.
 
-## Publisher: <br>
-[mariusfit](https://clawhub.ai/user/mariusfit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mariusfit](https://clawhub.ai/user/mariusfit)
 
-## Use Case: <br>
-Builders, DAOs, researchers, and funding teams use this skill to monitor Web3 grant opportunities, track application status, receive deadline reminders, and estimate likely quadratic funding matches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches grant information from public web and API sources, so availability or accuracy may vary by platform. <br>
-Mitigation: Review grant details on the source platform before making application or funding decisions. <br>
-Risk: The skill stores project tracking data locally and does not require wallet secrets or unrelated confidential files. <br>
-Mitigation: Provide only the project, alert, and public wallet information needed for tracking; do not provide seed phrases, private keys, or sensitive unrelated files. <br>
+## Use Case:
 
+Builders, DAO operators, researchers, and Web3 funding teams use this skill to monitor grant opportunities, track applications, estimate quadratic funding outcomes, and prepare for closing deadlines.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mariusfit/web3-grant-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and CLI-oriented text with shell command examples and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May summarize public grant data, local project tracking state, deadline alerts, eligibility guidance, and QF match estimates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release metadata and artifact/skill.json) <br>
+Risk: Wallet, GitHub, and project metadata could expose sensitive project or identity information if entered carelessly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only public project details or wallet addresses needed for eligibility checks, and never provide private keys, seed phrases, or secrets.
+
+Risk: Deadline alerts and periodic refreshes may create unwanted notifications or background activity if configured without review.
+
+Mitigation: Review alert channels, advance times, and scan intervals before enabling periodic notifications.
+
+Risk: Grant round data and QF match estimates may become outdated or differ from official program rules.
+
+Mitigation: Confirm deadlines, eligibility requirements, and funding estimates against the grant platform before applying or making funding decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mariusfit/skills/web3-grant-tracker)
+- [Publisher profile](https://clawhub.ai/user/mariusfit)
+- [Artifact-declared project homepage](https://github.com/mariusfit/web3-grant-tracker)
+- [Artifact-declared issue tracker](https://github.com/mariusfit/web3-grant-tracker/issues)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with command examples, JSON configuration snippets, tabular summaries, and alert text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference locally stored project data, public grant APIs or web lookups, optional wallet addresses, and optional GitHub or project metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and artifact skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

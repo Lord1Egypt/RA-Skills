@@ -1,5 +1,20 @@
 # Changelog
 
+## [2.3.0] - 2026-08-31
+
+### Fixed
+- Corrected slash command in docs: `/personas` (derived from the `name` field). `/persona` does not exist in OpenClaw 2.0.
+- Removed `package.json`. It declared an npm package that was never published and had no `main`, dependencies, or scripts. ClawHub CLI 0.22+ refuses to publish any folder containing a `package.json` as a skill.
+
+### Changed
+- Documented how triggering works: OpenClaw 2.0 ignores the `triggers:`, `categories:`, and `personas:` frontmatter fields; matching happens on the phrases in the `description` field, and no separate trigger list registers commands.
+
+## [2.2.4] - 2026-03-03
+
+### Changed
+- Applied documentation/security wording cleanups and metadata sync.
+
+
 ## [2.2.3] - 2026-02-11
 
 ### Changed

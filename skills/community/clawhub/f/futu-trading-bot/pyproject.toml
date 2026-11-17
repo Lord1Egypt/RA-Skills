@@ -4,13 +4,13 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "futu-trade-bot-skills"
-version = "0.1.0"
+version = "1.0.9"
 description = "Futu Trade Bot Skills modules for account, trade, and quote services."
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
-  "futu-api",
-  "pydantic>=2,<3",
+  "futu-api==9.6.5608",
+  "pydantic==2.12.5",
 ]
 
 [tool.setuptools]

@@ -1,53 +1,70 @@
-## Description: <br>
-Skillboss helps agents use SkillBoss services to build and deploy full-stack apps, integrate AI generation, payments, authentication, messaging, document processing, web search, and Cloudflare Worker workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-AI gateway for fullstack apps. Build/deploy websites, React apps, SaaS, ecommerce to Cloudflare Workers. DB (D1/KV/R2), Stripe payments/subscriptions/checkout, auth (login, OAuth, OTP), AI image/audio/video/TTS generation, email, presentations/slides, web scraping/search, CEO interviews/quotes, document parsing/extraction, SMS verification, serverless deploy/API/webhook.
 
-## Publisher: <br>
-[yshuolu](https://clawhub.ai/user/yshuolu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yshuolu](https://clawhub.ai/user/yshuolu)
 
-## Use Case: <br>
-Developers and agent users use Skillboss to add AI content generation, API integrations, authentication, payments, messaging, and deployment workflows to full-stack web apps. The skill is also used to guide Cloudflare Worker, Stripe, e-commerce, Remotion, and content-generation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send prompts, files, documents, phone numbers, email recipients, deployment source, and configuration to SkillBoss or HeyBoss services. <br>
-Mitigation: Install and use it only when you trust those services with that data, and minimize sensitive inputs before running API or deployment commands. <br>
-Risk: Deployment workflows can upload environment data and deploy code. <br>
-Mitigation: Remove secrets from .env and wrangler.toml vars unless intentionally required, and review generated code and deployment commands before execution. <br>
-Risk: API keys may be stored in local credentials or skill configuration files. <br>
-Mitigation: Treat the API key as a server-side secret and avoid committing config.json or local credential files. <br>
-Risk: Messaging, email, payment, and Stripe workflows can have external side effects. <br>
-Mitigation: Confirm recipients, phone numbers, payment setup, and account actions before running the related commands. <br>
-Risk: The skill documentation describes update behavior that can run local update scripts after an API response requests it. <br>
-Mitigation: Review any update prompt and local update script before allowing it to run. <br>
+## Use Case:
 
+Developers and builders use this skill to add AI generation, search, document processing, messaging, authentication, payments, and Cloudflare Worker deployment workflows to full-stack applications.
 
-## Reference(s): <br>
-- [ClawHub Skillboss release page](https://clawhub.ai/yshuolu/skillboss-2) <br>
-- [SkillBoss website](https://www.skillboss.co) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Commands reference](artifact/commands.md) <br>
-- [API integration guide](artifact/api-integration.md) <br>
-- [Deployment guide](artifact/deployment.md) <br>
-- [Workflow guides](artifact/workflows.md) <br>
-- [Remotion extension guide](artifact/extensions/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON and TypeScript examples, and generated project or deployment artifacts when commands are run.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can trigger external API calls, content generation, messaging, payment setup, and deployments when the agent runs the documented commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release metadata) <br>
+Risk: Prompts, files, deployment bundles, emails or SMS requests, product changes, and payment setup requests may be sent to SkillBoss or HeyBoss services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for projects and recipients the user explicitly intends to modify or contact, and avoid submitting sensitive data unless the service use is acceptable.
+
+Risk: Credential persistence can expose API keys if they are copied into client-side code or committed to public repositories.
+
+Mitigation: Keep API keys in local credential storage or server-side configuration, and review generated code before publishing.
+
+Risk: The security summary notes an automatic updater path that can run an uninspected shell script.
+
+Mitigation: Review any update script before executing it and avoid automatic updates in environments where shell-script changes require approval.
+
+Risk: Deployment, product, payment, email, and SMS commands can make externally visible changes.
+
+Mitigation: Confirm target project, account, payment setup, recipient lists, and deployment destination before running those commands.
+
+## Reference(s):
+
+- [SkillBoss ClawHub release](https://clawhub.ai/yshuolu/skills/skillboss-2)
+- [SkillBoss website](https://www.skillboss.co)
+- [API Integration](api-integration.md)
+- [Commands Reference](commands.md)
+- [Deployment](deployment.md)
+- [Workflows](workflows.md)
+- [SkillBoss Reference](reference.md)
+- [Error Handling](error-handling.md)
+- [Billing](billing.md)
+- [Remotion Best Practices Extension](extensions/remotion/EXTENSION_SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, shell commands, JSON responses, generated files, and application code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save generated media, deployment artifacts, credentials, and project configuration files when the user invokes those workflows.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

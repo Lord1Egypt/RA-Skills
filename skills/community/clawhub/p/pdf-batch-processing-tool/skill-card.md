@@ -1,40 +1,58 @@
-## Description: <br>
-Batch process PDF files locally, including merge, split, page rotation, and text extraction workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch process local PDF files by merging documents, splitting pages or ranges, rotating pages, and extracting text with command-line Python scripts.
 
-## Publisher: <br>
-[potatosolo](https://clawhub.ai/user/potatosolo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[potatosolo](https://clawhub.ai/user/potatosolo)
 
-## Use Case: <br>
-Developers, automation engineers, and document operations users can use this skill to run local command-line PDF processing for repeated merge, split, rotate, and text extraction tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PDFs from untrusted sources can carry parser and resource-exhaustion risk during local processing. <br>
-Mitigation: Use an isolated Python environment, keep dependencies patched, and apply sandboxing or resource limits for untrusted PDFs. <br>
-Risk: The release advertises image extraction and compression, but the artifact does not include matching scripts for those workflows. <br>
-Mitigation: Rely on the implemented merge, split, rotate, and text extraction scripts until the publisher adds supported image extraction and compression tooling. <br>
+## Use Case:
 
+Developers, operations staff, and other document-heavy users use this skill to automate local PDF workflows without uploading files to an external service.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/potatosolo/pdf-batch-processing-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and generated local files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local PDF and text files may be written by the provided scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Unpinned Python dependency ranges can install newer dependency versions with changed behavior or vulnerabilities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated environment and pin reviewed versions of dependencies before using the skill with important or untrusted PDFs.
+
+Risk: The skill text mentions image extraction and PDF compression, but the artifact only includes merge, split, rotate, and text extraction scripts.
+
+Mitigation: Use only the implemented workflows unless image extraction or compression scripts are added and reviewed.
+
+Risk: Processing untrusted PDFs may expose the local environment to parser bugs in PDF libraries.
+
+Mitigation: Process untrusted PDFs in a sandboxed or disposable environment and keep dependency versions reviewed and patched.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/potatosolo/skills/pdf-batch-processing-tool)
+- [Publisher Profile](https://clawhub.ai/user/potatosolo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with command examples and generated local PDF or text files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs local Python scripts for merge, split, rotate, and text extraction workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

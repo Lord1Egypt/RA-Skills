@@ -1,0 +1,74 @@
+{
+  "task": "subgroup_analysis",
+  "data": {
+    "rows": [
+      {
+        "study": "1",
+        "event_exp": 45.0,
+        "n_exp": 120.0,
+        "event_ctrl": 30.0,
+        "n_ctrl": 118.0
+      },
+      {
+        "study": "2",
+        "event_exp": 50.0,
+        "n_exp": 130.0,
+        "event_ctrl": 28.0,
+        "n_ctrl": 125.0
+      },
+      {
+        "study": "3",
+        "event_exp": 38.0,
+        "n_exp": 110.0,
+        "event_ctrl": 25.0,
+        "n_ctrl": 108.0
+      },
+      {
+        "study": "4",
+        "event_exp": 48.0,
+        "n_exp": 125.0,
+        "event_ctrl": 29.0,
+        "n_ctrl": 120.0
+      },
+      {
+        "study": "5",
+        "event_exp": 20.0,
+        "n_exp": 100.0,
+        "event_ctrl": 18.0,
+        "n_ctrl": 98.0
+      },
+      {
+        "study": "6",
+        "event_exp": 22.0,
+        "n_exp": 105.0,
+        "event_ctrl": 19.0,
+        "n_ctrl": 102.0
+      },
+      {
+        "study": "7",
+        "event_exp": 25.0,
+        "n_exp": 115.0,
+        "event_ctrl": 20.0,
+        "n_ctrl": 110.0
+      }
+    ],
+    "colmap": {
+      "event_exp": "event_exp",
+      "n_exp": "n_exp",
+      "event_ctrl": "event_ctrl",
+      "n_ctrl": "n_ctrl"
+    }
+  },
+  "params": {
+    "model": "REML",
+    "common": false,
+    "random": true,
+    "sm": "OR"
+  },
+  "figure": {
+    "plots": [
+      "forest"
+    ]
+  },
+  "query_origin": "sha256:<64hex>"
+}

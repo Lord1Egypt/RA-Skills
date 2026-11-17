@@ -1,0 +1,11 @@
+interface:
+  display_name: "SocQ Rednote Research"
+  short_description: "Collect and analyze public Rednote data"
+  default_prompt: "Use $socq-rednote-research to collect and analyze this public Rednote research request."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "socq"
+      description: "Hosted SocQ Rednote data tools"
+      transport: "streamable_http"
+      url: "https://api.socq.ai/mcp?platforms=rednote"

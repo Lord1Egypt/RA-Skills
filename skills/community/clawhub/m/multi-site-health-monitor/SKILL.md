@@ -160,7 +160,7 @@ Timeout: 10 seconds
 ### Required Environment Variables
 ```bash
 # Slack notifications
-export SLACK_WEBHOOK_URL="https://hooks.slack.com/services/YOUR/WEBHOOK/URL"
+export SLACK_WEBHOOK_URL="REDACTED-SECRET"
 export SLACK_CHANNEL="#incidents"  # or #alerts, #monitoring, etc.
 
 # PagerDuty incident creation

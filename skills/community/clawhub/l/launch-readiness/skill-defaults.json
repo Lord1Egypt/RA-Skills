@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "channel": "launch-readiness",
+  "workflow": "audit",
+  "focus": "launch",
+  "outputTemplate": "ops_audit",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews"
+  ]
+}

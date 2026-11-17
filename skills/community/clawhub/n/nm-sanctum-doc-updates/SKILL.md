@@ -2,7 +2,7 @@
 name: doc-updates
 description: |
   Updates documentation after code changes with quality gates, slop detection, and accuracy checks
-version: 1.9.8
+version: 1.10.3
 triggers:
   - documentation
   - readme
@@ -12,29 +12,12 @@ triggers:
   - consolidation
   - debloat
   - code changes require corresponding doc updates
-metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/sanctum", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.sanctum:shared", "night-market.sanctum:git-workspace-review", "night-market.imbue:proof-of-work", "night-market.scribe:slop-detector", "night-market.scribe:doc-generator"]}}}
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/sanctum", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.sanctum:git-workspace-review", "night-market.imbue:proof-of-work", "night-market.scribe:slop-detector", "night-market.scribe:doc-generator"]}}}
 source: claude-night-market
 source_plugin: sanctum
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/sanctum](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
-
-
-## Table of Contents
-
-- [When to Use](#when-to-use)
-- [Required TodoWrite Items](#required-todowrite-items)
-- [Step 1: Collect Context](#step-1-collect-context-context-collected)
-- [Step 2: Identify Targets](#step-2-identify-targets-targets-identified)
-- [Step 2.5: Check for Consolidation](#step-25-check-for-consolidation-consolidation-checked)
-- [Step 3: Apply Edits](#step-3-apply-edits-edits-applied)
-- [Step 4: Enforce Guidelines](#step-4-enforce-guidelines-guidelines-verified)
-- [Step 4.25: AI Slop Detection](#step-425-ai-slop-detection-slop-scanned)
-- [Step 4.75: Sync Capabilities Documentation](#step-475-sync-capabilities-documentation-capabilities-synced)
-- [Step 5: Verify Accuracy](#step-5-verify-accuracy-accuracy-verified)
-- [Step 6: Preview Changes](#step-6-preview-changes-preview)
-- [Exit Criteria](#exit-criteria)
-- [Flags](#flags)
+> **Night Market Skill**: ported from [claude-night-market/sanctum](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Documentation Update Workflow
@@ -52,7 +35,7 @@ The documentation update workflow includes several specialized functions. It ide
 - README-specific updates - use update-readme instead
 - Complex multi-file consolidation - use doc-consolidation
 
-## Required TodoWrite Items
+## Required Progress Items
 
 1. `doc-updates:context-collected` - Git context + CHANGELOG review
 2. `doc-updates:targets-identified`
@@ -145,7 +128,7 @@ Run `Skill(scribe:slop-detector)` on edited documentation to detect AI-generated
 
 ### Scribe Integration
 
-The scribe plugin provides comprehensive AI slop detection:
+The scribe plugin provides thorough AI slop detection:
 
 ```
 Skill(scribe:slop-detector) --target [edited-files]
@@ -156,6 +139,55 @@ This detects:
 - **Phrase patterns**: "In today's fast-paced world", "cannot be overstated"
 - **Structural markers**: Excessive em dashes, bullet overuse, sentence uniformity
 - **Sycophantic phrases**: "I'd be happy to", "Great question!"
+- **Punctuation stand-ins**: spaced `--`, `+` for "and", semicolon splices
+- **Contrastive negation**: "It's not X, it's Y", "X, not Y", ", not just Y"
+- **Consequence tails**: ", so the ..." after fact after fact, with a
+  density reading above 2.0 per 1000 words
+- **Over-explained fixes and negative framing**: "in order to", "this
+  ensures that", "not uncommon", and a negation-density reading per file
+
+One command locates every finding with a file and a line, the opt-in
+and low-confidence categories included:
+
+```bash
+uv run --with pyyaml python scripts/slop_score.py --audit <edited-files>
+```
+
+Edited `.py` files belong in that list. The scorer reads a Python path
+as its comments and docstrings, keeping the line numbers, so a finding
+names the line to open. Notation is not prose: an arrow in a mapping
+table, a plus in a formula, and a character quoted because the code
+matches it are all code that happens to appear in a docstring.
+
+### Audience Fit
+
+Before rewriting a document, name its reader. Every doc under
+maintenance already has one, stated or assumed, and an edit that
+ignores it drifts the doc toward serving nobody.
+
+```
+Skill(scribe:slop-detector)   # module: audience-targeting.md
+```
+
+- Read the tier off the document if it declares one. If it does
+  not, infer the tier from where the doc sits (README and
+  getting-started are `newcomer`; plugin guides are
+  `practitioner`; ADRs and deep dives are `expert`), then state
+  the inference in the change summary so a reviewer can correct
+  it. When the placement gives no answer, **ask, do not guess**.
+- Apply the cut test per section: keep what the reader needs
+  before they can act, link what they need later, extract what
+  only a higher tier wants, delete what no tier wants.
+- Extract rather than delete. Off-tier material moves to
+  `modules/<topic>.md` for a skill or `docs/<topic>.md`
+  for a repo doc, linked from the parent's lead with one line
+  naming who it is for.
+- An update that adds `expert` detail to a `newcomer` document is
+  the common drift. It is how a getting-started page becomes a
+  reference manual one honest paragraph at a time.
+
+Skip this for creative output. `audience-targeting.md` scopes the
+`scribe:voice-*` and `session-to-post` surfaces out by name.
 
 ### Writing Style Guidelines
 
@@ -314,7 +346,7 @@ When `ENABLE_LSP_TOOL=1` is set, enhance accuracy verification with semantic ana
 
 **Default Strategy**: Documentation updates should **prefer LSP** for all verification tasks. Enable `ENABLE_LSP_TOOL=1` permanently for best results.
 
-**Non-blocking**: Warnings are informational; user decides whether to fix.
+**Non-blocking**: Warnings are informational. The user decides whether to fix.
 
 ## Step 6: Preview Changes (`preview`)
 
@@ -328,12 +360,17 @@ When `ENABLE_LSP_TOOL=1` is set, enhance accuracy verification with semantic ana
 
 ## Exit Criteria
 
-- All `TodoWrite` items are completed and documentation is updated.
-- New ADRs, if any, are in `wiki/architecture/` (or the established ADR directory) with the correct status and links to related work.
-- Directory-specific style rules are satisfied.
-- Accuracy warnings addressed or acknowledged.
-- Content does not sound AI-generated.
-- Files are staged or ready for review.
+- [ ] All progress items are completed and documentation is updated.
+- [ ] New ADRs, if any, are in `wiki/architecture/` (or the established ADR
+      directory) with the correct status and links to related work.
+- [ ] Directory-specific style rules are satisfied.
+- [ ] Each edited document has a declared or stated-inferred audience tier, and
+      no section serves a different one.
+- [ ] Off-tier content was extracted to `modules/` or `docs/` and
+      linked, never deleted to hit a tier.
+- [ ] Accuracy warnings addressed or acknowledged.
+- [ ] Content does not sound AI-generated.
+- [ ] Files are staged or ready for review.
 
 ## Flags
 
@@ -348,7 +385,8 @@ When `ENABLE_LSP_TOOL=1` is set, enhance accuracy verification with semantic ana
 ### Common Issues
 
 **Documentation out of sync**
-Run `make docs-update` to regenerate from code
+Run `make docs-sync-check` to verify the capabilities docs still
+match the plugin registrations
 
 **Build failures**
 Check that all required dependencies are installed

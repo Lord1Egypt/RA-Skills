@@ -1,41 +1,61 @@
-## Description: <br>
-Provides a Ding Lei-style product, strategy, and business decision-making perspective based on public information about NetEase and Ding Lei. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language persona and reference skill that helps agents reason about product strategy, entrepreneurship, diversified business decisions, cash-flow management, quality, and pacing through a Ding Lei-inspired lens.
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-External users and agents use this skill to frame product strategy, entrepreneurship direction, diversification decisions, cash-flow discipline, and quality-versus-speed tradeoffs through a Ding Lei-inspired lens. It is best treated as heuristic commentary rather than a source of authoritative business, financial, or historical facts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake persona-style commentary for Ding Lei's actual views or for verified business, financial, or historical claims. <br>
-Mitigation: Treat outputs as heuristic perspective-taking based on public information and verify important claims before relying on them. <br>
+## Use Case:
 
+Developers and Chinese-language agents use this skill to frame product strategy, startup direction, diversified business decisions, cash-flow management, and quality-versus-speed tradeoffs through a Ding Lei-inspired mental model.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejianjun000/ding-lei-perspective-v2) <br>
-- [CLASSIC_WORKS.md](CLASSIC_WORKS.md) <br>
-- [CONNECTIONS.md](CONNECTIONS.md) <br>
-- [VERIFICATION_TESTS.md](VERIFICATION_TESTS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text responses with strategy commentary and decision heuristics] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credentials, persistence, or external access per security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.4 (source: server release evidence) <br>
+Risk: Broad Chinese business or product-strategy trigger phrases may activate the skill when the user did not intend to use this persona lens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke the skill explicitly by name and review whether the conversation context calls for this perspective before applying it.
+
+Risk: Persona output may be mistaken for Ding Lei's actual views or for a reliable prediction of how he would respond to new situations.
+
+Mitigation: Present output as a public-information-inspired thinking lens, not as statements from or predictions about the real person.
+
+Risk: The artifact states an information cutoff of April 2026, so contemporary business facts may be stale.
+
+Mitigation: Verify current facts before using the skill's framing for time-sensitive strategy, market, or company decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejianjun000/skills/ding-lei-perspective-v2)
+- [SKILL.md](artifact/SKILL.md)
+- [CLASSIC_WORKS.md](artifact/CLASSIC_WORKS.md)
+- [CONNECTIONS.md](artifact/CONNECTIONS.md)
+- [VERIFICATION_TESTS.md](artifact/VERIFICATION_TESTS.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Chinese-language natural-language guidance, usually Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persona/reference framing; no code execution or data access described in evidence.]
+
+## Skill Version(s):
+
+2.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

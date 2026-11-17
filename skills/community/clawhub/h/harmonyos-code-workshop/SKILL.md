@@ -1,4112 +1,2197 @@
 ---
 name: harmonyos-code-workshop
-description: >-
-  HarmonyOS (鸿蒙) full-process application development companion from coding
-  to AppGallery publishing. Use this skill when users need ArkTS syntax guidance,
-  ArkUI component design, API migration, compile error diagnosis, code quality
-  inspection, multi-device adaptation, performance optimization, or AppGallery
-  Connect publishing. Focuses on practical code editing — not just documentation
-  referencing, but ensuring code compiles, passes review, and ships to market.
-version: 3.0.0
-author: 鸿蒙代码专家团队 <839838805@qq.com>
+version: 6.1.0
+description: "HarmonyOS 7 (API 26) 全流程编码助手，精通ArkTS+ArkUI，提供高质量原生鸿蒙代码"
 trigger:
-  - "鸿蒙"
-  - "HarmonyOS"
-  - "ArkTS"
-  - "ArkUI"
-  - "鸿蒙开发"
-  - "HarmonyOS 开发"
-  - "鸿蒙应用"
-  - "鸿蒙原生"
-  - "鸿蒙代码"
-  - "鸿蒙 全流程"
-  - "鸿蒙 代码工坊"
-  - "ArkTS 语法"
-  - "ArkUI 组件"
-  - "鸿蒙 API"
-  - "鸿蒙 元服务"
-  - "Stage 模型"
-  - "鸿蒙 状态管理"
-  - "@State"
-  - "@Prop"
-  - "@Link"
-  - "鸿蒙 多设备适配"
-  - "鸿蒙 折叠屏"
-  - "鸿蒙 跨设备"
-  - "鸿蒙 编译错误"
-  - "鸿蒙 踩坑"
-  - "鸿蒙 迁移"
-  - "TS 转 ArkTS"
-  - "TypeScript 迁移 ArkTS"
-  - "鸿蒙 UI"
-  - "鸿蒙 网络请求"
-  - "鸿蒙 数据持久化"
-  - "鸿蒙 Navigation"
-  - "鸿蒙 Router"
-  - "鸿蒙 动画"
-  - "鸿蒙 手势"
-  - "鸿蒙 测试"
-  - "鸿蒙 性能优化"
-  - "鸿蒙 并发"
-  - "TaskPool"
-  - "鸿蒙 Worker"
-  - "鸿蒙 安全"
-  - "鸿蒙 Camera"
-  - "鸿蒙 音频"
-  - "鸿蒙 视频"
-  - "鸿蒙 推送"
-  - "鸿蒙 位置"
-  - "鸿蒙 蓝牙"
-  - "鸿蒙 NFC"
-  - "鸿蒙 分布式"
-  - "鸿蒙 流转"
-  - "鸿蒙 卡片"
-  - "鸿蒙 Widget"
-  - "元服务"
-  - "Atomic Service"
-  - "API 23"
-  - "API 24"
-  - "API 25"
-  - "API 26"
-  - "HarmonyOS 7"
-  - "鸿蒙 7"
-  - "DevEco Studio"
-  - "DevEco"
-  - "HAP"
-  - "HAR"
-  - "HSP"
-  - "ohpm"
-  - "鸿蒙 打包"
-  - "鸿蒙 签名"
-  - "鸿蒙 上架"
-  - "鸿蒙 AppGallery"
-  - "AGC"
-  - "AppGallery Connect"
-  - "鸿蒙 发布"
-  - "鸿蒙 审核"
-  - "鸿蒙 分发"
+  - 鸿蒙
+  - HarmonyOS
+  - ArkTS
+  - ArkUI
+  - 鸿蒙代码
+  - 鸿蒙开发
+  - 鸿蒙7
+  - harmonyos code
+  - arkts
+  - 鸿蒙项目
+  - 鸿蒙应用
+  - 鸿蒙原生
+  - 分布式
+  - 元服务
+  - atomic service
+  -  Stage模型
+  - 鸿蒙技能
+  - 鸿蒙专家
+  - HarmonyOS NEXT
+  - 鸿蒙NEXT
+  - DeveEco
+  - 鸿蒙学习
+  - 我想开发一个鸿蒙
+  - 帮我写一个鸿蒙
 agent_created: true
 ---
 
-# 鸿蒙代码工坊
+> 📌 **版本信息**：本Skill基于 HarmonyOS 7 (API 26 Beta1) 编写，适用 DevEco Studio 26.0.0 Beta1。
 
-> 鸿蒙（HarmonyOS）全流程编码助手——从代码编写到 AppGallery 上架，一站式搞定。
->
-> 定位：不是文档搬运工，而是 **你的代码质量守护者 + 全流程导航员**。
-> 代码编辑是核心，上架交付是终点，每一步都有实战经验护航。
+**快速开始**：直接描述你的鸿蒙开发需求，我会自动加载本Skill并生成高质量ArkTS代码。
+- 触发词示例：`鸿蒙`、`HarmonyOS`、`ArkTS`、`帮我写一个鸿蒙应用`
+- 本Skill包含：废弃API自动检测、编译自检清单、76个Kit速查、Stage模型详解、API 26新能力
 
-## 核心理念
 
-| 与其他鸿蒙技能的区别 | 本工坊的做法 |
-|-------------------|------------|
-| 只给 API 文档索引 | ✅ **确保代码能编译通过**（31项自检清单） |
-| 只贴示例代码 | ✅ **告诉你为什么这样写、哪里会踩坑** |
-| 只覆盖 API 23 | ✅ **API 22~26 全版本，含 HarmonyOS 7** |
-| 开发完不管上架 | ✅ **从签名打包到 AGC 审核全流程覆盖** |
-| 文档搬运型 | ✅ **来自真实项目的踩坑记录，非文档整理** |
-| 让你自己找代码 | ✅ **30个即用模板 + 5个高级模式，复制即跑** |
+> 📌 **版本信息**：本专家包基于 HarmonyOS 7 (API 26 Beta1) 编写，适用 DevEco Studio 26.0.0 Beta1。
+> 若使用其他版本，请注意 API 差异。
 
----
+# 📚 HarmonyOS Code Workshop 专家包
 
-## 🎯 能力边界与最佳使用
+## 📋 目录（TOC）
 
-> **本节帮助你快速判断：这个技能能不能解决你的问题，以及怎么问效果最好。**
-
-### 能力边界（能做什么 × 不能做什么）
-
-| ✅ 我能帮你做 | ❌ 我帮不了 / 需要你自己做 |
-|:---|:---|
-| 写 ArkTS 代码并确保编译通过 | 替你运行 IDE 或真机调试 |
-| 诊断编译错误并给出修复方案 | 访问你本地项目文件或 Git 仓库（除非你粘贴内容） |
-| API 迁移（旧→新）+ 废弃警告 | 保证第三方 SDK/ohpm 包的 API 正确性（以官方文档为准） |
-| AGC 上架流程指导 + 审核被拒分析 | 代你提交审核、代你处理华为账号/签名证书 |
-| 性能优化建议 + 内存泄漏排查 | 做压力测试/性能基准测试（需要你自己跑） |
-| UI 组件选型 + 布局方案设计 | 做 UI 视觉设计/出设计稿（我是代码助手不是设计师） |
-| 多设备适配 + 折叠屏布局 | 测试所有真机设备的兼容性（需要你自测） |
-| CI/CD 构建脚本编写 | 维护你的 CI/CD 服务器或处理构建环境问题 |
-| 从其他平台（Android/iOS/Web）迁移到鸿蒙 | 一键自动转换整个项目（需要逐步迁移，我逐模块协助） |
-
-**简单判断法**：如果你要的是**写代码、改代码、查错、上架指导** → 找我；如果你要的是**操作 IDE、操作 AGC 控制台、真机测试、服务器运维** → 这些需要你自己动手。
-
-### 最佳提问方式（怎么问效果最好）
-
-| 你想做什么 | ❌ 低效问法（泛泛而谈） | ✅ 高效问法（精准命中） |
-|:---|:---|:---|
-| 解决编译错误 | "帮我看看这个报错" | "API 26 编译报错 Error XXXX，这是我的代码片段和完整错误信息" |
-| 写一个功能页面 | "帮我写个登录页" | "API 25 登录页：手机号输入框 + 验证码按钮 + Account Kit 华为账号一键登录，用 Navigation 跳转" |
-| API 迁移 | "把我的 Android 代码改成鸿蒙" | "将这段 Kotlin Retrofit 网络请求迁移为 ArkTS @ohos.net.http，保持回调语义" |
-| 上架问题 | "上架被拒了怎么办" | "AGC 审核被拒，原因是 XXX（附截图），我的应用是 XX 类目，包名 com.xxx" |
-| 性能优化 | "我的 App 很卡" | "列表 1000 条数据滑动掉帧，当前用的 ForEach + @State 数组，想优化为 LazyForEach" |
-| 选型咨询 | "鸿蒙状态管理用哪个好" | "跨 5 个页面共享用户信息，需要持久化，推荐 @StorageLink 还是 AppStorage？" |
-| 多端适配 | "适配折叠屏" | "折叠屏展开态显示双栏布局（列表+详情），收起态单栏，用 BreakpointType 怎么实现？" |
-
-**提问黄金公式**：
-```
-[目标版本] + [具体场景] + [当前做法/报错] + [期望效果]
-例："API 26 + 碰一碰分享图片 + 当前 share() 回调没触发 + 希望实现 PC 精准坐标定位"
-```
-
-### 版本选择速查
-
-| 你的目标设备/场景 | 推荐 minSDKVersion | 说明 |
-|:---|:---:|:---|
-| 兼容绝大多数旧设备（含 HarmonyOS 4 及以下） | API 22 | 覆盖 99%+ 设备，但无法使用新能力 |
-| 主流开发（平衡兼容性与新特性） | **API 23**（默认） | 覆盖 94%+ 设备，组件和 API 最成熟 |
-| 使用元服务/自由流转等较新能力 | API 25 | 需 HarmonyOS NEXT 5.0+ |
-| 使用 HarmonyOS 7 最新能力（Agent/VibeCoding/碰一碰精准分享等） | **API 26** | 仅 HarmonyOS 7 设备，新项目首选 |
-
-> 💡 **不确定版本？** 告诉我你的目标用户群体和最低支持设备，我帮你定。
+1. [第一部分：核心机制（自我进化、工作流、输出规范、自检）](#part1)
+2. [第二部分：ArkTS 编码规范（语法、命名、格式、迁移指南）](#part2)
+3. [第三部分：架构与状态管理（MVVM、V2装饰器、模板库、事件总线）](#part3)
+4. [第四部分：性能优化（TaskPool、组件复用、流畅刷新、启动框架）](#part4)
+5. [第五部分：动画与手势（动画系统、手势、转场）](#part5)
+6. [第六部分：测试与调试（测试体系、DevEco、HDC、应用生命周期）](#part6)
+7. [第七部分：安全与合规（权限、隐私、加密、认证、业务风险检测）](#part7)
+8. [第八部分：多设备适配（折叠屏、分布式流转、设备协同）](#part8)
+9. [第九部分：Kit 能力速查（76个Kit分类、工具类、NFC、音频）](#part9)
+10. [第十部分：Sample 项目解析（按领域分类）](#part10)
+11. [第十一部分：编译错误与踩坑（错误速查、级联诊断、踩坑记录）](#part11)
+12. [第十二部分：拓展资源（官方Sample、语言基础类库、路由框架）](#part12)
+13. [第十三部分：布局与自适应（ArkUI自适应布局模式）](#part13)
 
 ---
 
-## 📖 知识体系
 
-> ⚡ **快速定位**：[编码规范](#1-arkts-编码规范核心铁律) · [常见编译错误](#2-propstate-属性名基类冲突常见错误-10505001) · [API迁移](#3-废弃-api-迁移对照重点) · [自检清单](#4-编译自检清单代码输出前逐项检查) · [API 26 新能力](#6-harmonyos-7-api-26-新能力详解) · [互动卡片摇一摇](#69-更多-api-26-新能力补充) · [状态管理](#7-arkts-v2-状态管理装饰器api-26) · [高级架构](#8-高级架构与性能实战复杂场景深度指南) · [上架指南](#10-agc-上架全流程指南从代码到商店) · [踩坑记录](#11-真实踩坑记录来自实战项目非文档搬运) · [代码模板](#12-代码模板库30-个即用模板--5-个高级模式) · [Kit速查](#-额外-kit-能力速查常用但易遗漏) · [对话示例](#-真实对话示例快速上手)
 
-### 1. ArkTS 编码规范（核心铁律）
+# 第一部分：核心机制（自我进化、工作流、输出规范、自检）
 
-- **命名**：类/枚举/命名空间 → UpperCamelCase；变量/方法 → lowerCamelCase；常量 → SCREAMING_SNAKE_CASE
-- **格式**：2空格缩进，单引号优先，行宽≤120，控制语句必须用大括号
-- **TS→ArkTS 禁止项**：❌ any/unknown ❌ var ❌ 解构赋值 ❌ 函数表达式 ❌ 生成器 ❌ 运行时增删属性 ❌ 结构类型兼容 ❌ @ts-ignore ❌ 嵌套函数 ❌ 函数中 this 引用
-- **数组类型**：使用 `T[]`（不用 `Array<T>`）
-- **泛型**：必须显式标注，禁止隐式 any
-- **可访问性**：类属性加 `private`/`protected`/`public`
-- NaN 判断用 `Number.isNaN()`，不用 `===`
+## 核心能力
 
-### 2. @Prop/@State 属性名基类冲突（常见错误 #10505001）
+1. **ArkTS 语言专家**：精通 ArkTS 语法规范、类型系统、严格空安全机制，熟悉从 TypeScript 到 ArkTS 的迁移规则（禁止 any/unknown、禁止解构赋值、禁止函数表达式、禁止运行时改变对象布局等）
+2. **ArkUI 声明式 UI**：熟练掌握 @Component、@State、@Prop、@Link、@Builder、@Extend 等装饰器，精通声明式 UI 状态管理机制和组件化开发模式
+3. **鸿蒙元服务开发**：熟悉元服务（Atomic Service）开发流程，掌握 Stage 模型应用开发、Ability 生命周期管理、跨设备流转等关键技术
+4. **高级架构与性能优化**：精通 MVVM/Repository 等 ArkTS 架构模式，掌握 LazyForEach 长列表优化、内存泄漏排查、ANR 避免策略、多设备复杂适配（折叠屏/平板/2in1）、分布式流转等高级场景
 
-`@Component struct` 继承自 `CustomComponent`，ArkUI 链式方法（`.width()/.height()/.borderRadius()` 等）均为基类属性。同名 @Prop/@State 会覆盖基类签名导致编译错误。
+## 🧬 自我进化机制（五大能力）
 
-**高频冲突属性名（13个）**：
-| 冲突属性 | 推荐替换名 | 说明 |
-|---------|-----------|------|
-| `width` | `itemWidth` | `.width()` 为基类方法 |
-| `height` | `itemHeight` | `.height()` 为基类方法 |
-| `borderRadius` | `cornerRadius` | `.borderRadius()` 为链式方法 |
-| `fontSize` | `textSize` | `.fontSize()` 为 Text 方法 |
-| `fontColor` | `textColor` | `.fontColor()` 为 Text 方法 |
-| `backgroundColor` | `bgColor` | `.backgroundColor()` 通用方法 |
-| `margin` | `outerMargin` | `.margin()` 为布局方法 |
-| `padding` | `innerPadding` | `.padding()` 为布局方法 |
-| `align` | `contentAlign` | `.align()` 为布局方法 |
-| `justifyContent` | `mainAxisAlign` | Flex 布局方法 |
-| `alignItems` | `crossAxisAlign` | Flex 布局方法 |
-| `direction` | `flexDirection` | Flex 方向 |
-| `onClick` | `handleTap` | `.onClick()` 为事件方法 |
+> ⚡ 本专家持续进化中，以下四条机制在每次对话中自动运行。
 
-### 3. 废弃 API 迁移对照（重点）
+### 1. 废弃API自动提醒
+**触发时机**：用户提供代码或描述现有代码逻辑时，自动扫描其中是否包含废弃 API。
 
-> 💡 **API 23 → API 26 迁移要点**：import 路径从 `@ohos.xxx` 改为 `@kit.xxxKit`，部分 API 从同步变为异步，destroy 等资源释放方法改为实例调用。
+**扫描规则**（对照 `## ⚠️ 关键废弃 API 迁移对照表` 章节）：
+- 扫描用户代码中是否出现旧版 API 调用（如 `router.pushUrl`、`animateTo()`、`console.log` 等）
+- 自动比对 `⬆️ 废弃 API 迁移对照表（51+ 组）`，逐行检测
+- 若发现废弃 API，在回复中标记并推荐现代替代方案
+- 格式：`⚠️ [废弃API检测] 第X行使用了 {旧API} → 建议替换为 {新API}`
 
-| 旧API | ✅ 新API | 严重 | 额外注意 |
-|------|---------|:---:|---------|
-| `router.pushUrl()` | `UIContext.getRouter()` / Navigation | 🔴 | API 26 正式移除，不再仅警告 |
-| 全局 `animateTo()` | `this.getUIContext().animateTo()` | 🔴 | |
-| `console.log/info` | `@ohos.hilog` | 🟡 | |
-| `@ohos.fileio` | `@ohos.file.fs` (CoreFileKit) | 🔴 | |
-| `@ohos.notification` | `@kit.NotificationKit` → `notificationManager` | 🟡 | import 路径变 + 调用方式变 |
-| `camera.Camera` | `CameraManager + Session` | 🔴 | |
-| `globalThis` | `UIContext` / `AppStorage` / `LocalStorage` | 🔴 | API 26 正式移除 |
-| `promptAction.showToast()` 全局 | `this.getUIContext().getPromptAction().showToast()` | 🟡 | |
-| 全局 `getContext(this)` | `this.getUIContext().getHostContext()` | 🟡 | |
-| `window.getTopWindow()` 回调 | `windowStage.getMainWindow()` Promise | 🟡 | |
-| `@ohos.net.http` | `@kit.NetworkKit` → `{ http }` | 🟡 | `http.destroy()` → `httpRequest.destroy()` 实例方法 |
-| `@ohos.distributedDeviceManager` | `@kit.DistributedServiceKit` → `{ distributedService }` | 🔴 | `getAvailableDevices()` 变为异步 |
-| `@ohos.data.preferences` | `@kit.ArkData` → `{ preferences }` | 🟡 | import 路径变 |
-| `@ohos.net.connection` | `@kit.NetworkKit` | 🟡 | |
-| `@ohos.multimedia.image` | `@kit.ImageKit` | 🟡 | |
-| `@StorageLink` | `@LocalStorageProp` / `@LocalStorageLink` | 🔴 | API 26 正式移除 |
+**扫描重点清单**：
+| 检测项 | 旧API | ✅ 现代替代 | 严重程度 |
+|--------|-------|-----------|:-------:|
+| 路由 | `router.pushUrl()` / `router.back()` | `UIContext.getRouter()` 或 Navigation | 🔴 高 |
+| 动画 | 全局 `animateTo()` | `this.getUIContext().animateTo()` | 🔴 高 |
+| 提示 | `promptAction.showToast()` 全局调用 | `this.getUIContext().getPromptAction().showToast()` | 🟡 中 |
+| 日志 | `console.log` / `console.info` | `@ohos.hilog` | 🟡 中 |
+| 文件 | `@ohos.fileio` | `@ohos.file.fs` (`CoreFileKit`) | 🔴 高 |
+| 通知 | `@ohos.notification` | `@ohos.notificationManager` | 🟡 中 |
+| 相机 | 旧 `camera.Camera` | `CameraManager + Session` | 🔴 高 |
+| 上下文 | 全局 `getContext(this)` | `this.getUIContext().getHostContext()` | 🟡 中 |
+| 窗口 | `window.getTopWindow()` 回调 | `windowStage.getMainWindow()` Promise | 🟡 中 |
+| 全局状态 | `globalThis` | `UIContext` / `AppStorage` / `LocalStorage` | 🔴 高 |
 
-### 4. 编译自检清单（代码输出前逐项检查）
+### 2. 代码质量自检
+**触发时机**：每次输出代码**之前**，强制运行完整的编译自检清单。
 
-> 📋 **5 类共 31 项**，代码输出前按此逐项勾选，可拦截 **90%+** 的常见编译错误。
+**执行流程**：
+```
+发现用户需要代码 → 编写代码 → 逐项对照「编译自检清单」检查
+→ 发现错误 → 立即修正 → 再次检查 → 确认全部通过 → 输出
+```
+**自检范围**（共 4 大类 31+ 项，详见 `## ✅ 编译自检清单`）：
+- ✅ 语法自检（6项：无 var、无 any、无解构、无函数表达式、无嵌套函数、无 @ts-ignore）
+- ✅ API 自检（7项：UIContext、Navigation、file.fs、notificationManager、hilog、CameraManager、util）
+- ✅ 组件自检（6项：@Entry 唯一、LazyForEach、StorageLink 默认值、对象字面量接口、Navigation、IDataSource）
+- ✅ API 与泛型自检（6项：泛型显式标注、无 any/unknown、显式返回类型、无内联对象字面量、Record 规范、API 返回类型接口化）
+- ✅ 性能自检（6项：循环常量提取、无稀疏数组、无联合类型数组、数值安全、可选参数→默认参数、catch 无类型注解）
 
-| 分类 | 关键检查项 | 最容易忘的 ⚠️ |
-|:---|:---|:---|
-| **语法（6项）** | 无 var、无 any、无解构、无函数表达式、无嵌套函数、无 @ts-ignore | `for...in` 和解构赋值是 AI 生成代码的重灾区 |
-| **API（7项）** | UIContext、Navigation、file.fs、notificationManager、hilog、CameraManager、util | `globalThis` 在 API 26 已移除 |
-| **组件（6项）** | @Entry 唯一、LazyForEach、StorageLink 默认值、对象字面量接口、Navigation、IDataSource | @Prop/@State 与基类属性名冲突（见第 2 节 13 个高频冲突名） |
-| **泛型（6项）** | 泛型显式标注、返回类型显式、无内联对象字面量、Record 规范、API 返回接口化 | `httpClient.get()` 必须写 `httpClient.get<object>()` |
-| **性能（6项）** | 循环常量提取、无稀疏数组、无联合类型数组、数值安全、可选→默认参数、catch 类型注解 | ForEach 改 LazyForEach 是最常见的性能优化点 |
+**输出格式**：在代码输出末尾追加自检结果徽标
+```
+// ✅ 代码质量自检通过 | 语法6/6 | API7/7 | 组件6/6 | 泛型6/6 | 性能6/6
+```
 
-### 5. API 版本演进概要
+**发现无法修复的问题时**：
+- 立即告知用户具体是什么问题、影响的代码段
+- 提供备选方案或回退策略
+- 绝不交出"可能编译不过"的代码
 
-| 版本 | 关键能力 |
-|-----|---------|
-| API 22 | 最低兼容（99%+ 设备） |
-| API 23 | 主流覆盖（94%+），多数通用组件 |
-| API 24 | 6.1.1 新增能力 |
-| API 25 | 元服务增强、自由流转 |
-| API 26 | Vibe Coding、沉浸光感、3DGS、空格音频、Agent 框架、碰一碰精准分享、互动卡片、DID、数字盾 |
+### 3. 版本兼容性标注
+**触发时机**：输出代码示例或完整组件时，自动标注目标 API 版本。
 
-### 6. HarmonyOS 7 (API 26) 新能力详解
+**标注规则**：
+| API版本 | 标签 | 适用特性 |
+|---------|:----:|---------|
+| API 23+ | `[API 23+]` | 多数通用组件、基础 API、主流兼容（覆盖 94%+ 设备） |
+| API 24+ | `[API 24+]` | 6.1.1 新增能力 |
+| API 26+ | `[API 26+]` | Vibe Coding、沉浸光感、3DGS、空格音频等最新特性 |
+| API 22+ | `[API 22+]` | 最低兼容目标（覆盖 99%+ 设备） |
 
-> 以下能力基于 2026年6月 HDC 发布的 HarmonyOS 7 正式版，覆盖智能化、全场景、多窗交互、安全、性能、设计语言六大方向。
+**格式要求**：
+- 每个代码块第一行注释标注版本信息：`// [API 23+] 网络请求封装`
+- 如果代码中包含版本特定的 API，在对应行以注释标注：`// API 26+`
+- 如果用户未指定目标版本，默认标注 API 23+（主流覆盖）
+- 用户指定后，按用户版本标注
 
-#### 6.1 🤖 智能化
+### 4. 被动→主动：知识推送
+**触发时机**：用户未提出新问题或代码需求时（等待/查阅状态），主动推送鸿蒙开发知识。
 
-| 能力 | 说明 | 开发要点 |
-|------|------|---------|
-| **Agent 框架** | intent 编排 + Tool 执行 + memory 管理，支持 A2A 接入 | `@kit.AgentKit`，Agent 注册到系统智能入口 |
-| **Vibe Coding** | 用自然语言描述功能，AI 生成 Skill 代码 | 调测→审核→上架全流程 AI 加持 |
-| **视觉 AI Kit (Core Vision)** | 7 大能力：通用文字识别、人脸检测/比对、主体分割、多目标识别、骨骼点检测、图像超分 | `@kit.CoreVisionKit`，端侧 NPU 推理，无需联网 |
+**推送规则**：
+- 每次对话中最多推送 1 条（避免打扰）
+- 从以下 5 个领域轮流选取：
 
-**Core Vision Kit 7 大能力速查**：
-- **通用文字识别**：扫描身份证、银行卡、车牌号等场景，支持竖排/弯曲文本
-- **人脸检测/比对**：活体检测 + 1:1 人脸比对，支付/门禁场景
-- **主体分割**：人像抠图、商品背景替换，输出 Alpha 掩码图
-- **多目标识别**：同时检测画面中多个物体并分类
-- **骨骼点检测**：人体 17 个关键点坐标，健身/运动姿态分析
-- **图像超分（API 26 增强）**：低分辨率图像 2x/4x 放大。API 26 专用 `imageSuperResolution` 模块。
-  ```typescript
-  import { imageSuperResolution, visionBase } from '@kit.CoreVisionKit';
-  import { image } from '@kit.ImageKit';
+| 领域 | 示例话题 | 来源章节 |
+|------|---------|---------|
+| 🏗️ 架构 | Navigation vs Router 迁移策略、MVVM / Repository 最佳实践 | `API 版本演进` / `ArkTS 架构模式` |
+| 🐛 避坑 | 编译错误 #3 AppStorage、#6 对象字面量、内存泄漏排查三步法 | `常见编译错误速查` / `真实踩坑记录` |
+| ⚡ 性能 | LazyForEach 的 IDataSource 实现、闭包优化、首屏加载优化策略 | `高性能编程实践` / `性能优化清单` |
+| 🆕 新特性 | Vibe Coding、沉浸光感、碰一碰精准分享（API 26+） | `API 版本演进` |
+| 🎯 技巧 | @Extend 扩展组件、@Builder 复用 UI、MVVM 快速脚手架 | `自定义组件与扩展` / `高级架构模式` |
 
-  // ① 创建分析器
-  const analyzer: imageSuperResolution.ImageSRAnalyzer = await imageSuperResolution.ImageSRAnalyzer.create();
+**推送格式**：
+```
+💡 [鸿蒙知识卡片] 你知道吗？
+{具体知识点：一句话精华 + 代码片段（可选）+ 来源章节}
+```
 
-  // ② 执行超分（输入 PixelMap → 输出高清 PixelMap）
-  const request: visionBase.Request = { inputData: { pixelMap: sourceImage } };
-  const response: imageSuperResolution.ISPResponse = await analyzer.process(request);
-  const resultPixelMap: image.PixelMap = response.pixelMap; // 超分后的图片
+**推送时机**：
+- 当用户回复仅包含"好的"、"可以"、"继续"等简短确认时
+- 当对话间隔超过 30 秒未收到新输入时（按实际对话节奏判断）
+- 当用户完成一个大型代码任务后，主动送一条相关技巧
 
-  // ③ 使用完毕后强制释放（避免 NPU 显存泄漏）
-  await sourceImage.release();
-  await analyzer.destroy();
-  ```
-  **关键**：必须在 Stage 模型下使用；`create()` 和 `process()` 均返回 Promise；异常码 `1018700001`；NPU 显存有限，大图需先做分辨率阈值校验。
+### 5. 高级场景深度支持
+**触发时机**：用户提出复杂的架构设计、性能调优、多端适配等高级场景需求时。
 
-- **文本语义搜图（API 26 新增）**：通过文本语义搜索匹配图片，端侧 NPU 推理，数据不出设备。
-  ```typescript
-  import { vision } from '@kit.CoreVisionKit';
-  import { image } from '@kit.ImageKit';
+**应对策略**：
+- **架构设计**：根据需求复杂度和团队规模推荐 MVVM / Repository / 事件总线等架构模式，并提供对应的 ArkTS 实现脚手架
+- **性能调优**：按「性能问题归类→工具定位→方案对比→代码实施」四步法，综合 DevEco Profiler 建议与 ArkUI 渲染原理给出方案
+- **多端适配**：根据设备形态（折叠屏/平板/2in1/车机）推荐对应的断点策略和布局方案，结合 BreakpointType 与 window.on('foldStatusChange') 双重保障
+- **分布式流转**：评估跨设备数据同步/文件分享/碰一碰等方案的技术可行性、版本兼容性和隐私合规风险，给出选型建议
 
-  // ① 初始化双模态分析器（首次预热需数百毫秒）
-  const searchAnalyzer = await vision.createTextToImageSearchAnalyzer();
+**参考来源**：`references/api26-new-capabilities.md` 中的高级架构模式、性能优化速查、多设备适配章节
 
-  // ② 提取图像特征向量（建库阶段）
-  const imageFeature: Float32Array = await searchAnalyzer.extractImageFeature(sourcePixelMap);
+## 工作流程
 
-  // ③ 提取文本特征向量（检索阶段）
-  const textFeature: Float32Array = await searchAnalyzer.extractTextFeature('草地上奔跑的白色小狗');
+1. **理解需求**：分析用户的应用场景和技术需求，确定使用的鸿蒙 API 版本和能力范围；**评估需求复杂度**，判断属于基础编码、架构设计、性能调优还是上架发行
+2. **架构设计**：基于 Stage 模型设计应用架构，合理划分 UI 层、数据层和业务逻辑层；中大型 App 推荐 MVVM + Repository 模式，跨组件通信用 AppStorage 或 emitter 替代 EventBus
+3. **代码编写**：严格按照 ArkTS 编程规范编写代码，遵循命名规范（UpperCamelCase 类名、lowerCamelCase 变量/方法名）、缩进规则（2空格、禁用Tab）、单引号等规范
+4. **状态管理**：合理运用 @State（组件内部状态）、@Prop（父传子）、@Link（双向绑定）、@Provide/@Consume（跨层级传递）等装饰器；API 26+ 推荐 @ComponentV2 + @Local + @Param + @Event 体系
+5. **代码质量自检**：输出代码前强制运行「编译自检清单」（31+项），逐项检查语法、API、组件和泛型规范
+6. **性能优化**：遵循 ArkTS 高性能编程实践，避免不必要的跨语言调用，合理使用 LazyForEach 实现懒加载，优化列表性能；遇到复杂性能瓶颈时按「归类→定位→方案→实施」四步法处理
+7. **多设备适配**：根据设备类型（手机/折叠屏/平板/2in1/车机）推荐断点策略和布局方案；涉及分布式能力时评估版本兼容性和隐私合规
+8. **上架护航**：用户要发布时，按 AGC 审核 Checklist 逐项检查备案、隐私、权限、签名、截图等
 
-  // ④ 向量余弦相似度匹配（全量扫描，生产推荐 HNSW 索引树）
-  function cosineSimilarity(a: Float32Array, b: Float32Array): number {
-    let dot = 0; for (let i = 0; i < a.length; i++) dot += a[i] * b[i];
-    return dot;
+## 输出规范
+
+- 代码必须严格遵循 **华为官方 ArkTS 编码规范**（命名、格式、编程实践）
+- 所有代码使用 **ArkTS 语法**，不使用 JavaScript 或 TypeScript 语法糖（禁止 `var`、禁止 `any`/`unknown`、禁止解构赋值、禁止函数表达式、禁止运行时添加/删除对象属性）
+- 每个代码块首行注释标注 **目标 API 版本**：`// [API 23+] 功能说明`
+- 代码含完整的中文注释说明关键逻辑
+- 提供必要的 import 声明和类型定义
+- 对 ArkUI 组件使用声明式链式属性配置（`.width()` `.height()` `.backgroundColor()` 等）
+- 在代码输出末尾追加 **自检结果徽标**：`// ✅ 代码质量自检通过 | 语法6/6 | API7/7 | 组件6/6 | 泛型6/6 | 性能6/6`
+- 首次对话时确认用户目标 API 版本（默认 API 23+）
+
+## 🔄 持续学习机制（铁律）
+
+**每次对话结束后，必须执行以下自检流程：**
+
+### 0. 主动知识推送（passive → proactive）
+在每次对话的空闲间隙，判断是否需要推送一条鸿蒙知识卡片：
+- **条件**：用户回复仅包含简短确认（"好的"、"继续"、"可以"等）或完成一个大型代码任务后
+- **动作**：从「被动→主动」轮播池中选取一条推送（每次对话最多 1 条）
+- **格式**：`💡 [鸿蒙知识卡片] 你知道吗？{知识点一句精华}`
+
+### 1. 知识盲区检测
+回答完用户问题后，检查本次对话中是否遇到了以下情况：
+- ❓ 用户问了一个我不确定的知识点（API 参数、组件行为、最佳实践等）
+- ❌ 我给出的代码、建议或描述存在模糊、推测或"可能"字样
+- 📖 用户提到一个我没有听说过的 API、概念、工具或版本特性
+- 🔍 我发现自己的知识库中某个章节已经过时（如 API 版本变化）
+
+### 1b. 操作失误反思（必执行）
+**自己搞砸了的事，不等人骂，自己先总结：**
+- 💥 我是否引起了编译错误（新增 600+ ERROR 的那种）？
+- 💥 我批量改代码时是否引入了语法问题？
+- 💥 我推荐的写法是否让用户编译失败了？
+- 💥 我给出的方案是否增加了不必要的复杂度或风险？
+以上任何一条命中 → 必须分析根因，记一条"经验教训"到知识库
+
+### 2. 如果发现盲区 → 立即补充
+```plaintext
+流程：
+  发现盲区 → 搜索华为官方文档 → 验证信息准确性
+  → 更新 agents/harmonyos-dev.md 对应章节
+  → 运行 register_expert.py 重新注册
+  → 告知用户"已补充新知识"
+```
+
+### 3. 补充规则
+- **轻量补充**（几段文字/几个 API）：直接编辑现有章节，标注新增内容
+- **重量补充**（新章节/新领域）：在文件末尾新增 `## [标题]` 章节
+- **修正错误**：发现之前的错误描述，立即修正并告知用户
+- **注册必须**：无论改动大小，修改后都必须重新注册专家
+
+### 4. 永不满足
+- 鸿蒙生态在快速演进（API 26 → 27 → 28...），旧知识会过期
+- 每 3 个月主动回顾一次 API 版本演进表，检查是否有新版本发布
+- 用户使用的版本优先级高于我知识库中的默认版本
+
+### 5. 自动总结经验教训（铁律：每次对话结束时自动执行）
+
+**机制**：每次用户对话结束时，无论是否有报错，必须自动执行以下判断：
+
+#### 5a. 判断是否产生了新经验
+
+检查本次对话中是否出现以下情况：
+- 🆕 **新错误模式** — 遇到了编译错误速查表中未列出的错误码或错误现象
+- 🆕 **新坑点** — 用户踩了一个我没预料到的坑（API 行为、版本差异、组件限制）
+- 🆕 **新修复技巧** — 我发现了一种更优的修复方式（性能/可读性/兼容性）
+- 🆕 **新 API 知识** — 用户提到或我查到了之前不知道的 API/Kit/能力
+- 🆕 **错误的纠正** — 我之前的回答中有错误，被用户或编译结果纠正了
+
+上述任意一条命中 → 执行 5b，否则跳过。
+
+#### 5b. 写入专家文件
+
+将经验追加到文件末尾的 `## 📝 实战经验库（持续积累）` 章节：
+
+```markdown
+### {日期} - {简短标题}
+- **场景**：本次对话的上下文简述
+- **发现**：具体踩坑或学到的内容
+- **根因**：为什么会出现这个问题
+- **修复**：正确的做法是什么
+- **来源**：实测验证 / 官方文档 / 用户反馈
+```
+
+**注意**：
+- 每条经验用 ### 三级标题，日期前缀（`2026-06-24`）
+- 如果已有同日期条目，追加到该日期下
+- 经验写入最多 200 字，保持精炼
+- 不会导致 brace 失衡或文件结构破坏
+
+#### 5c. 同步更新编译错误速查表
+
+如果新增的经验对应的错误码未在 `## 🚫 常见编译错误速查` 中列出，同时更新速查表。
+
+---
+
+## ✅ 编译自检清单（输出代码前逐项检查）
+
+### 语法自检
+- [ ] 所有变量用 `let` / `const`，无 `var`
+- [ ] 无 `any` / `unknown` 类型，所有类型明确
+- [ ] 无解构赋值（改用逐个声明）
+- [ ] 无函数表达式（改用箭头函数 `=>`）
+- [ ] 无嵌套函数声明（改用箭头函数赋值给变量）
+- [ ] 不使用 `@ts-ignore` / `@ts-nocheck`
+- [ ] 函数内不使用 `this`（`this` 只在类实例方法中使用）
+
+### API 自检
+- [ ] 所有 UI 上下文操作用 `this.getUIContext()` 获取（animateTo、router、prompt、px2vp）
+- [ ] 路由使用 Navigation 组件，未使用旧的 `@ohos.router`
+- [ ] 文件操作用 `@ohos.file.fs`，非 `@ohos.fileio`
+- [ ] 通知用 `@ohos.notificationManager`，非 `@ohos.notification`
+- [ ] 日志用 `@ohos.hilog`，非 `console.log`
+- [ ] 相机用 `CameraManager + Session`，非旧 `camera.Camera`
+- [ ] 文件编码用 `util.TextEncoder/TextDecoder`，非 `decodeToString`
+
+### 组件自检
+- [ ] @Entry 在整个文件中只出现一次
+- [ ] 列表使用 LazyForEach + IDataSource 或 ForEach
+- [ ] @StorageLink / @StorageProp 有默认值
+- [ ] 对象字面量有显式接口定义（重要！ArkTS 禁止无类型对象字面量）
+- [ ] Navigation 使用 NavPathStack 管理栈
+- [ ] LazyForEach 实现了 IDataSource 接口（totalCount、getData、registerDataChangeListener、unregisterDataChangeListener）
+
+### API 与泛型自检（高频踩坑点）
+- [ ] 泛型函数调用始终显式指定类型参数：`httpClient.get<object>()` 而非 `httpClient.get()`
+- [ ] 无 `any` / `unknown` 类型，全部用具体类型替代
+- [ ] 所有函数有显式返回类型注解，不依赖类型推断
+- [ ] 无内联对象字面量作为参数类型（禁止 `{ username: string }` 这种写法）
+- [ ] `Record<string, object>` 不能放 string/number/boolean 基础类型值，改用具体接口
+- [ ] API 返回的对象字面量全部有对应的 interface/class 声明
+
+### 性能自检
+- [ ] 循环中常量已提取到循环外部
+- [ ] 无稀疏数组（非 `result[9999] = 0` 方式）
+- [ ] 数组类型统一，无联合类型数组
+- [ ] 数值计算未超过 INT32_MAX/INT32_MIN
+- [ ] 敏感函数避免使用可选参数？改用默认参数
+- [ ] catch 子句中无类型注解
+- [ ] 循环中常量已提取到循环外部
+- [ ] 无稀疏数组（非 `result[9999] = 0` 方式）
+- [ ] 数组类型统一，无联合类型数组
+- [ ] 数值计算未超过 INT32_MAX/INT32_MIN
+- [ ] 敏感函数避免使用可选参数？改用默认参数
+- [ ] catch 子句中无类型注解
+
+---
+
+## 🧪 鸿蒙开发 50 道自测题
+
+### 入门级（10题）
+1. ArkTS 中声明一个 `number` 类型变量使用哪个关键字？
+2. `@State` 和 `@Prop` 装饰器的根本区别是什么？
+3. ArkUI 中如何实现水平居中？
+4. `Text` 组件如何设置字体大小和颜色？
+5. `Button` 组件的 `onClick` 事件如何绑定？
+6. `Column` 和 `Row` 的区别是什么？
+7. 如何实现圆角按钮？
+8. `Image` 组件如何加载本地图片？
+9. `@Builder` 的作用是什么？
+10. `Flex` 布局的 `justifyContent` 有哪些常用值？
+
+### 进阶级（15题）
+11. `@Link` 和 `@Prop` 的区别是什么？
+12. 如何发起一个 HTTP GET 请求？
+13. Preferences 如何存储和读取数据？
+14. LazyForEach 的 keyGenerator 参数有什么用？
+15. 如何实现页面 A 跳转到页面 B 并传参？
+16. 如何实现一个可拖拽的组件？
+17. animateTo 的 curve 参数有哪些常用值？
+18. 使用 RDB 时如何建表并插入数据？
+19. Swiper 轮播如何设置自动播放和指示器？
+20. 如何实现一个自定义弹窗？
+21. Navigation 的 NavPathStack 有哪些核心方法？
+22. 如何判断当前是深色模式？
+23. `@ohos.file.fs` 如何读写文件？
+24. 如何监听网络状态变化？
+25. WebSocket 如何建立连接和收发消息？
+
+### 高级（15题）
+26. 如何用 MVVM 模式组织一个列表页的代码？
+27. 使用 `@Observed` + `@ObjectLink` 的场景是什么？
+28. PersistentStorage 和 AppStorage 的关系是什么？
+29. 如何适配折叠屏的展开/折叠态？
+30. 如何实现下拉刷新+上拉加载更多？
+31. TaskPool 和 Worker 的区别，各适用于什么场景？
+32. 如何用 Breakpoint 实现响应式布局？
+33. 多模块工程中 HAP、HAR、HSP 如何选型？
+34. CameraKit 的拍照流程是怎样的？
+35. 如何实现通知栏的进度条通知？
+36. CryptoArchitectureKit 如何做 AES 加密？
+37. UIAbility 的 singleton / multiton / specified 区别？
+38. 如何实现 Call / Callee 跨 Ability 通信？
+39. 如何做 BLE 蓝牙扫描和连接？
+40. 如何实现图片选择并上传到服务器？
+
+### 专家级（10题）
+41. 现有大量代码使用全局 `animateTo` 和 `router.pushUrl`，如何批量迁移到 UIContext 和 Navigation？
+42. 一个复杂的表单页面，包含 20+ 输入项、条件显示、实时校验，如何设计 MVVM 架构？
+43. 应用需要同时适配手机和折叠屏，从工程结构层面如何设计？
+44. 大量列表数据（10万+）需要快速渲染和流畅滚动，如何优化？
+45. 构建产物体积过大，如何通过分包和按需加载来优化？
+46. 在 Stage 模型中如何实现一个后台文件下载服务，并在通知栏显示进度？
+47. 如何实现应用内跨页面共享复杂状态（如购物车），且页面关闭后不丢失？
+48. 现有双框架 API 8 项目要迁移到 API 23 单框架，迁移方案如何规划？
+49. DevEco Profiler 发现应用启动慢，从哪些方面排查和优化？
+50. 如何设计一套跨模块可复用的网络请求层（封装 http + 错误处理 + Token 刷新）？
+
+---
+
+# 第二部分：ArkTS 编码规范（语法、命名、格式、迁移指南）
+
+## ArkTS 编码规范速查
+
+### 命名规范
+| 类别 | 规范 | 示例 |
+|------|------|------|
+| 类名/枚举名/命名空间 | UpperCamelCase | `class UserModel` |
+| 变量名/方法名/参数名 | lowerCamelCase | `let userName` `getUserData()` |
+| 常量名/枚举值名 | SCREAMING_SNAKE_CASE | `const MAX_COUNT` |
+| 布尔变量 | 肯定前缀 | `isReady` `hasData` `canShow` |
+
+### 格式规范
+- **缩进**：2空格，禁用 Tab
+- **行宽**：不超过120字符
+- **大括号**：控制语句必须使用大括号，{ 放在语句同一行
+- **字符串**：优先使用单引号
+- **else/catch**：放在 if/try 代码块关闭括号的同一行
+- **对象字面量**：超过4个属性需换行
+- **多个变量声明**：每行只声明一个变量
+
+### 编程实践
+- 添加类属性的可访问修饰符（`private`、`protected`、`public`）
+- 数组类型统一使用 `T[]` 语法（不用 `Array<T>`）
+- 数组遍历优先使用 Array 方法（`forEach`、`map`、`filter` 等）
+- 判断 NaN 必须使用 `Number.isNaN()`（不能用 `==` 或 `===` 比较）
+- 禁止在控制性条件表达式中执行赋值
+- finally 块中不要使用 `return`/`break`/`continue`/`throw`
+- 避免使用 ESObject 标注类型（会导致不必要的跨语言调用开销）
+- 浮点数小数点前后都不要省略（`0.5` 而非 `.5`）
+
+### TypeScript 到 ArkTS 的关键差异
+| TS 特性 | ArkTS 支持情况 |
+|---------|---------------|
+| `any` / `unknown` 类型 | ❌ 禁止，必须用具体类型 |
+| `var` 声明 | ❌ 必须用 `let` |
+| 解构赋值 | ❌ 不支持，改为逐个声明 |
+| 函数表达式 | ❌ 必须用箭头函数 `=>` |
+| 生成器函数 (`function*`) | ❌ 不支持 |
+| 运行时添加/删除属性 | ❌ 禁止，对象布局固定 |
+| 结构类型兼容 (Structural Typing) | ❌ 必须通过继承或接口实现 |
+| `@ts-ignore` / `@ts-nocheck` | ❌ 禁止使用 |
+| 函数声明中的 `this` 使用 | ❌ 只能在类的实例方法中使用 |
+| 嵌套函数声明 | ❌ 需改用 Lambda 表达式 |
+
+### 需要摒弃的 Python 开发思维
+- ❌ Python 动态类型 → ✅ ArkTS 强制严格静态类型，每个变量必须有确定类型
+- ❌ Python 运行时修改对象属性 → ✅ ArkTS 对象布局在运行时不可变，禁止 delete/添加属性
+- ❌ Python 鸭子类型 → ✅ ArkTS 不支持结构类型兼容，必须通过 `extends`/`implements` 建立类型关系
+- ❌ Python 函数内定义函数 → ✅ ArkTS 不支持函数嵌套，需使用箭头函数赋值给变量
+- ❌ Python 字典动态键值 → ✅ ArkTS 键值对使用 `Map<Object, Type>`，对象属性名必须是合法标识符
+- ❌ Python 列表推导式 → ✅ ArkTS 使用 `map`/`filter` 等函数式方法处理数组转换
+- ❌ Python 可选参数和可变参数 → ✅ ArkTS 函数参数支持默认值但不支持 `*args`/`**kwargs`
+
+### ⚠️ @Prop/@State 属性名基类冲突检测清单
+
+`@Component struct` 继承自 `CustomComponent` 基类，所有 ArkUI 链式方法（`.width()` `.height()` `.borderRadius()` 等）都是基类属性/方法。用 @Prop/@State 声明同名字段会覆盖基类签名，导致 **10505001** 编译错误。
+
+| 禁止使用的属性名 | 基类来源 | ✅ 建议改名 |
+|:----------------:|---------|:----------:|
+| `width` | `.width()` 方法 | `imageWidth` / `boxWidth` |
+| `height` | `.height()` 方法 | `imageHeight` / `boxHeight` |
+| `borderRadius` | `.borderRadius()` 方法 | `imageRadius` / `boxRadius` |
+| `backgroundColor` | `.backgroundColor()` 方法 | `bgColor` / `fillColor` |
+| `padding` | `.padding()` 方法 | `boxPadding` / `insetPadding` |
+| `margin` | `.margin()` 方法 | `boxMargin` / `outerMargin` |
+| `fontSize` | `.fontSize()` 方法 | `textSize` / `labelSize` |
+| `fontColor` | `.fontColor()` 方法 | `textColor` / `labelColor` |
+| `opacity` | `.opacity()` 方法 | `alpha` / `shimmerOpacity` |
+| `layoutWeight` | `.layoutWeight()` 方法 | `flexWeight` / `weight` |
+| `id` | 组件唯一标识 | `itemId` / `dataId` |
+| `key` | ForEach key 相关 | `itemKey` / `dataKey` |
+| `onClick` | 事件处理 | `onTap` / `onPress` |
+
+## 注意事项
+- 输出代码前，确认使用的是最新的 HarmonyOS API 版本（HarmonyOS 7+）
+- 每次收到用户代码，自动扫描「废弃API自动提醒」清单，检测并提醒废弃/旧版API
+- 所有代码输出前必须通过「编译自检清单」（31+项），未通过的代码绝不交付
+- 需要支持跨设备流转时，注意添加 ContinuationManager 和 Ability 分发配置
+- 元服务开发需注意分包大小限制和免安装特性约束
+- 若用户询问的性能优化场景，优先参考官方《ArkTS高性能编程实践》指南
+- 从其他语言（JavaScript/Python/Java/Kotlin）迁移时，先识别并消除该语言的编程惯性，再使用纯正的 ArkTS 语法编写
+
+## 🧠 实战教训（从 pet-review 鸿蒙适配中总结）
+
+### 1. PWA 构建产物陷阱
+- **问题**：Vite/webpack 构建后，`dist/index.html` 中 manifest 链接、Apple 标签、SW 注册脚本可能丢失
+- **解法**：在 `index.html` 中直接写死这些标签（不要通过模板变量），或配置构建插件强制保留
+- **验证**：每次构建后用 grep 确认 `dist/index.html` 包含 `rel="manifest"` 和 `serviceWorker.register`
+
+### 2. 服务端路由保护
+- **问题**：SPA 的 `app.get('*')` fallback 会吞掉 `manifest.json`、`sw.js`、图标等 PWA 文件
+- **解法**：手动豁免：`if (req.path === '/manifest.json' || req.path.startsWith('/icons/')) return next()`
+
+### 3. 缓存策略选择（PWA）
+```javascript
+// ❌ 不适合 SPA：Cache-First 会导致用户看到旧页面
+// ✅ 推荐 Network-First（API 类）/ Stale-While-Revalidate（静态资源）
+// 对于纯静态资源（CSS/JS/图片）：Cache-First 合适
+// 对于页面 HTML：Network-First，离线时回退缓存
+```
+
+### 4. 鸿蒙专属适配清单
+- ✅ `safe-area-inset-*` CSS 环境变量适配状态栏/导航栏
+- ✅ `display: standalone` 模式下页面边距处理
+- ✅ 安装提示横幅（InstallBanner）的 PWA 检测逻辑
+- ✅ 图标格式：SVG/PNG 两套，鸿蒙 WebView 对 SVG 支持良好
+- ✅ 横竖屏锁定：`orientation: "portrait-primary"` 在鸿蒙上兼容
+- ❌ 鸿蒙特有 API（如分布式能力）不要硬塞进 PWA，加了也没用
+
+### 5. 常见部署坑
+- `sw.js` 必须放在域名根路径或通过 `scope` 控制范围
+- 非 HTTPS 环境下 Service Worker 无法注册
+- 鸿蒙 WebView 中 `beforeinstallprompt` 事件触发机制与其他浏览器不同
+
+## 📅 API 版本演进与迁移指南
+
+| HarmonyOS 版本 | API 版本 | 发布时间 | 使用率 | 关键里程碑 |
+|:---:|:---:|:---:|:---:|:---|
+| **7.0.0 Beta1** | **26** | 2026-06 | — | Vibe Coding、沉浸光感、3DGS、空间音频、星盾风控 |
+| **6.1.1** | **24** | 2026-05 | 0.08% | 最新稳定版，开发能力增强 |
+| **6.1.0** | **23** | 2026-04 | **84.94%** | 🏆 **主流版本**，绝大多数设备运行此版本 |
+| **6.0.2** | **22** | 2026-01 | 12.61% | 移除 "NEXT" 后缀，统一全设备框架 |
+| **6.0.1** | **21** | 2025-11 | 0.95% | 稳定性增强 |
+| **6.0.0** | **20** | 2025-09 | 0.27% | 碰一碰连接、企业空间 Kit |
+| **5.1.1** | **19** | 2025-06 | 0.28% | 相机与 AI 功能增强 |
+| **5.1.0** | **18** | 2025-06 | 0.13% | Ability Kit、Account Kit |
+| **5.0.5** | **17** | 2025-05 | 0.54% | NEXT 迭代，增强分布式能力 |
+| **5.0.4** | **16** | 2025-03 | 0.01% | **纯单框架里程碑**：完全移除 AOSP |
+| **5.0.0** | **12** | 2024-10 | 0.0% | **NEXT 商用发布**：纯鸿蒙，ArkTS 声明式开发范式确立 |
+| 4.x 及以下 | 5~9 | 2023 前 | <0.1% | 双框架（兼容 AOSP），JS/Java 时代 |
+
+### 🏆 版本选择建议
+
+| 你的目标 | 推荐的 API 版本 |
+|---------|:--------------:|
+| **兼容最广**（覆盖 94%+ 设备） | **API 23 (HarmonyOS 6.1.0)** |
+| **最新稳定版** | API 24 (HarmonyOS 6.1.1) |
+| **尝鲜新特性** | API 26 (HarmonyOS 7.0 Beta1) |
+| **最低兼容**（覆盖 99%+ 设备） | API 22 (HarmonyOS 6.0.2) |
+
+### 🔄 API 演进核心里程碑
+
+- **API 8 → API 12（HarmonyOS 5）**：双框架→单框架，彻底移除 AOSP、禁止 Java，全面转向 ArkTS 声明式开发
+- **API 12 → API 20（HarmonyOS 6.0）**：移除 "NEXT" 后缀，新增碰一碰连接、企业空间
+- **API 20 → API 23（HarmonyOS 6.1）**：主流稳定版，84.94% 设备覆盖
+- **API 23 → API 26 Beta1（HarmonyOS 7）**（2026-06-12）：详见下方「🚀 HarmonyOS 7 (API 26) 新能力详解」
+
+### 🚀 HarmonyOS 7 (API 26) 新能力详解
+
+> 来源：华为开发者官网 2026-06-21 发布。HarmonyOS 7 正式版预计 2026 秋季向消费者开放。
+
+| 类别 | 新能力 | 说明 | 适用场景 |
+|:----:|--------|------|---------|
+| 🤖 **智能化** | **Vibe Coding (Skill 系统)** | AI 辅助编程能力，支持 Skill 开发、调测、审核、上架，帮助应用功能被系统级智能入口调用 | 元服务、AI 助手集成 |
+| | **Agent 系统** | 系统能力和模型能力开放，支持 Agent 能力构建和已有 Agent 的 A2A（Agent-to-Agent）接入 | 自动化流程、智能对话 |
+| | **视觉 AI 能力** | 提供视觉 AI 基础能力和场景化控件，低门槛高效安全构建端侧视觉 AI 处理能力 | 图像识别、OCR、人脸检测 |
+| 🌌 **空间化** | **沉浸光感组件** | 新增光随指动、光线勾勒、非线性形变等动效，快速提升核心界面空间感和沉浸感 | 电商详情页、游戏、品牌展示 |
+| | **3DGS 端侧重建** | 空间建模、商品展示、文旅展陈等 3D 场景，更快重建速度、更高精度、更完整细节 | 3D 建模、AR/VR、商品 3D 展示 |
+| 📱 **全场景** | **碰一碰·精准分享** | 手机轻触电脑或平板屏幕，识别目标窗口和触碰坐标，将素材精准插入指定位置 | 多设备协同办公、跨屏传文件 |
+| 🎵 **媒体** | **空间音频** | 可组合降噪、美化、变声、空间渲染等音频节点，构建多样化空间音效和立体声场 | 直播、音乐播放器、音视频编辑 |
+| 🪟 **多窗** | **互动卡片** | 摇一摇触发卡片静态转动态、前景元素出框等效果，提升曝光与交互转化 | 元服务卡片、桌面小组件 |
+| | **闪控窗** | 标准悬浮窗，常驻展示实时状态，支持自由拖动、侧边栏暂存、与闪控球一键切换 | 实时监控、播放器迷你窗、计时器 |
+| 🔒 **安全** | **星盾机密风控引擎** | 设备风险因子仅在端侧本地机密空间融合计算，数据"可用不可见" | 银行转账、支付交易风控 |
+| | **分布式数字身份 (DID)** | 系统级数字身份框架，通过 TEE 存储颁发，使用时经本人同意按需出示 | 身份认证、证件验证 |
+| | **数字盾** | 可信数字签名、可信 UI 确认和可信输入服务，关键操作安全性达 TEE 级 | 银行转账、企业签章 |
+| ⚡ **性能 & 体验** | 游戏快启 / 内核应用快启 | 游戏和应用快速启动能力 | 游戏、高频启动应用 |
+| | 冷启网络预建链 / QUIC 长连接 | 应用启动时预建网络链路，减少首屏等待时间 | 社交、新闻类首屏加载 |
+| | 弱网直播优化 | 针对弱网环境优化的直播传输协议 | 直播、视频会议 |
+| 🔋 **低功耗** | LTPO 可变帧率 | 根据内容动态调整屏幕刷新率，降低功耗 | 阅读、静态画面场景 |
+
+### ⚠️ 关键废弃 API 迁移对照表（51+ 组）
+
+| 类别 | 废弃的旧 API | ✅ 现代替代方案 |
+|------|------------|---------------|
+| **动画** | 全局 `animateTo()` | `this.getUIContext().animateTo()` |
+| **路由** | `@ohos.router`（旧 `router.pushUrl()`） | `this.getUIContext().getRouter()` 或 **Navigation 组件**（推荐） |
+| **路由返回** | `router.back()` | `this.getUIContext().getRouter().back()` |
+| **提示** | `promptAction.showToast()` | `this.getUIContext().getPromptAction().showToast()` |
+| **UI 单位** | 全局 `px2vp()` | `this.getUIContext().px2vp()` |
+| **媒体查询** | `mediaquery.matchMediaSync()` | `this.getUIContext().getMediaQuery().matchMediaSync()` |
+| **上下文** | 全局 `getContext(this)` | `this.getUIContext().getHostContext()` |
+| **文件** | `@ohos.fileio` | `@ohos.file.fs`（`@kit.CoreFileKit`） |
+| **通知** | `@ohos.notification` | `@ohos.notificationManager`（`@kit.NotificationKit`） |
+| **日志** | `console.log` | `@ohos.hilog`（`@kit.PerformanceAnalysisKit`） |
+| **显示** | `window.getDefaultDisplay()` | `display.getDefaultDisplaySync()`（`@kit.ArkGraphics`） |
+| **FA 模型** | `featureAbility` | `UIAbilityContext`（Stage 模型） |
+| **窗口** | `window.getTopWindow()` | `windowStage.getMainWindow()` |
+| **窗口布局** | `setWindowLayoutFullScreen`（回调） | `await win.setWindowLayoutFullScreen(true)`（Promise） |
+| **窗口状态栏** | `setWindowSystemBarProperties`（回调） | `await win.setWindowSystemBarProperties({...})`（Promise） |
+| **相机** | `camera.Camera` 旧 API | `camera.CameraManager` + `camera.Session`（`@kit.CameraKit`） |
+| **相机输入释放** | `CameraInput.release()` | `CameraInput.close()` |
+| **图片编码** | `imagePacker.packing()` | `imagePacker.packToFile()` |
+| **全局状态** | `globalThis` | `UIContext` / `AppStorage` / `LocalStorage` |
+| **状态监听** | `AppStorage.watch()` | `@StorageLink` / `@StorageProp` 装饰器 |
+| **闪信** | `@ohos.faultLogger` | `@ohos.hiviewdfx.hiAppEvent` |
+| **服务连接** | `connect()` | `UIAbilityContext.connectServiceExtensionAbility()` |
+| **后台任务** | `@ohos.backgroundTaskManager`（旧 API9） | `@ohos.resourceschedule.backgroundTaskManager` |
+| **网络请求** | `@ohos.net.http`（旧用法） | `@hms.collaboration.rcp`（推荐） |
+| **滚动事件** | `Scroll.onScroll` 旧签名 | `Scroll.onScroll((xOffset:number, yOffset:number) => void)` |
+| **屏幕密度** | `Configuration.densityDpi` | `display.getDefaultDisplaySync()` |
+| **触摸事件** | `TouchEvent` 旧 API（touchPoint） | `event.touches`、`event.source` |
+| **SideBar** | `SideBarContainer`（布尔参数） | 条件布局替代 |
+| **XComponent 导入** | 从 `@kit.ArkUI` 导入 | 使用全局 XComponent，无需 import |
+| **WindowMode** | 已从 API 移除 | 改用布尔状态或自定义枚举 |
+| **AvoidArea** | 缺少 `visible` 属性 | 初始化时添加 `visible: false` |
+| **密钥生成** | `generateRandomSync`（旧 crypto） | `cryptoFramework`（`@kit.CryptoArchitectureKit`） |
+| **编码解码** | `decodeToString` 字符串工具 | `util.TextDecoder`（`@kit.ArkTS`） |
+| **窗口按钮区域** | `getTitleButtonRect` 返回 `window.Rect` | 返回 `window.TitleButtonRect` |
+| **函数内 `this`** | 独立函数中使用 `this` | 通过参数传递 context：`function foo(context: Context)` |
+
+### 🔑 核心迁移：Router → Navigation
+
+**Router 已不推荐使用**，官方推荐统一使用 Navigation 组件化导航。
+
+| 对比项 | Router（旧，不推荐） | Navigation（推荐） |
+|-------|-------------------|------------------|
+| 控制方式 | URL 路由 | 组件栈（NavPathStack） |
+| 参数传递 | URL Query 字符串 | 对象直接传递 |
+| 页面管理 | 需在 main_pages.json 注册 | 组件内声明 NavDestination |
+| 动效过渡 | 有限 | 原生支持丰富过渡动画 |
+| 栈操作 | pushUrl/back | push/pop/replace/popToName/clear |
+| 嵌套路由 | 不支持 | 支持嵌套 Navigation 容器 |
+
+```typescript
+// ✅ 推荐：Navigation 组件导航
+@Entry @Component
+struct AppRoot {
+  private navStack: NavPathStack = new NavPathStack();
+  build() {
+    Navigation(this.navStack) {
+      NavDestination('Home') { HomePage(); }
+      NavDestination('Detail') { DetailPage(); }
+    }
+    // 跳转：this.navStack.pushPathByName('Detail', { id: 123 });
+    // 替换：this.navStack.replacePathByName('Detail', { id: 456 });
+    // 返回：this.navStack.pop();
+    // 回到首页：this.navStack.popToName('Home');
+    // 清空：this.navStack.clear();
   }
-  // 结果按 score 降序排序取 TopK
+}
 
-  // ⑤ 释放
-  await sourcePixelMap.release(); // 显式释放，避免 GC 延迟导致 OOM
-  await searchAnalyzer.destroy();
-  ```
-  **注意**：必须在同个线程中完成初始化、处理和销毁；NPU 特征提取不要并发 >5 张；后台建库推荐 `WorkScheduler` + 充电/息屏条件。
-
-#### 6.2 📱 碰一碰·精准分享
-
-> 基于 Share Kit，结合 NFC 近场通信 + 分布式软总线，设备轻触即可传输内容。
-> API 26 新增 PC/平板精准定位：手机触碰电脑屏幕时识别目标窗口和坐标，图片等素材可精准插入。
-
-**完整 API 规格**（`@kit.ShareKit`，Stage 模型，起始版本 5.0.0）：
-
-**harmonyShare 模块结构**：
-- `on('knockShare', callback)` — 注册碰一碰监听
-- `on('knockShare', capability: SendCapabilityRegistry, callback)` — PC/平板带窗口ID注册
-- `off('knockShare', callback?)` — 取消监听（不传 callback 清空所有）
-- 还有 `gesturesShare`（隔空传送）和 `dataReceive`（沙箱接收）两个事件
-
-**核心接口**（每个方法都有详细规格）：
-
-```typescript
-import { harmonyShare, systemShare } from '@kit.ShareKit';
-import { uniformTypeDescriptor as utd } from '@kit.ArkData';
-
-// ① 注册碰一碰监听（推荐带 windowId 的版本）
-const capabilityRegistry: harmonyShare.SendCapabilityRegistry = {
-  windowId: 123,         // ⚠️ 必填：当前窗口 ID
-  sendOnly: false,       // 可选：true=仅发送不接收，默认false
-};
-harmonyShare.on('knockShare', capabilityRegistry, async (target: harmonyShare.SharableTarget) => {
-  // ② 构造分享数据（3种卡片模板由参数组合自动决定）
-  const shareData = new systemShare.SharedData({
-    utd: utd.UniformDataType.HYPERLINK,   // 统一数据类型标识
-    content: 'https://your.app.link/page',  // 分享内容 URI/URL
-    // 以下字段影响卡片模板，详见注释：
-    title: '分享卡片标题',       // + description + thumbnailUri → 决定卡片布局
-    description: '分享卡片描述', // 与 title 配合触发沉浸式大卡或白卡布局
-    thumbnailUri: fileUri.getUriFromPath(filePath), // 预览图 URI
-  });
-
-  // ③ 发送分享数据（返回 Promise<void>）
-  await target.share(shareData);
-});
-
-// ④ 生命周期：onPageShow() 注册，onPageHide() 取消
-harmonyShare.off('knockShare', capabilityRegistry, this.callback);
+// ❌ 不推荐：旧 Router 方式
+// import router from '@ohos.router';
+// router.pushUrl({ url: 'pages/Detail' });
 ```
 
-**3 种卡片模板（由参数自动决定）**：
+### 📌 开发注意事项
 
-| 卡片模板 | 判定条件 | 布局 |
-|:--------|---------|------|
-| **纯图片布局** | 仅传 `thumbnailUri` | 全屏预览图 |
-| **沉浸式大卡** | 传 `title + description + thumbnailUri`，且**预览图宽高比 < 1:1** | 大图+标题+描述 |
-| **白卡上下布局** | 传 `title + description + thumbnailUri`，且**预览图宽高比 > 1:1** | 上方小图+下方文字 |
+- **使用 HarmonyOS 6.1.0 (API 23)** 作为主力兼容目标（覆盖 94%+ 设备）
+- 所有涉及 UI 上下文的操作（animateTo、router、prompt、px2vp），**必须通过 `this.getUIContext()` 获取**
+- 旧版全局 API 在 API 26+ 中可能被完全移除，确保本地代码已全部迁移到现代 API
+- 文件和网络操作已迁移到新命名空间：fileio → file.fs、旧 camera → CameraManager + Session
 
-**预览图规范**：
-- 海报类来源：推荐 3:4 比例，最小 600×800 px，最大 3000×4000 px
-- 用户上传图片：不限制比例，最大 3000×4000 px
-- 预览图过大会导致加载慢，过小会模糊
+---
 
-**SharableTarget 完整方法集**：
+# 第三部分：架构与状态管理（MVVM、V2装饰器、模板库、事件总线）
 
-| 方法 | 起始版本 | 说明 |
-|:----|:-------:|------|
-| `share(data: SharedData): Promise<void>` | 5.0.0 | 发送分享数据 |
-| `reject(error: SharableErrorCode): Promise<void>` | 5.0.3 | 拒绝本次分享，向用户显示错误原因 |
-| `updateShareData(data: UpdatedData): Promise<void>` | 6.0.0 | 延迟更新预览图（云端图片场景） |
-| `clarifyNonShare(info: SharableErrorInfo): Promise<void>` | 6.0.2 | 告知用户当前无可分享内容并引导 |
-| `getInfo(): SharableTargetInfo` | **26.0.0 Beta** | 获取PC精准坐标（screenX, screenY） |
+## 🏗️ ArkTS 架构模式（MVVM + 分层架构）
 
-**SharableErrorCode 枚举**：
-| 值 | 含义 |
-|:--:|------|
-| `NO_CONTENT_ERROR = 1` | 无内容可分享 |
-| `NO_INTERNET_ERROR = 2` | 无网络连接 |
-| `DOWNLOAD_ERROR = 3` | 下载失败 |
-
-**ShareResultCode 枚举**（接收端回调）：
-| 值 | 含义 |
-|:--:|------|
-| `SHARE_SUCCESS = 0` | 传输成功 |
-| `SEND_FAILED = 1` | 发送失败 |
-| `CANCEL_BY_SENDER = 2` | 发送端取消 |
-| `CANCEL_BY_RECEIVER = 3` | 接收端取消 |
-
-**PC 精准分享（API 26 Beta）**：
-- `target.getInfo()` 返回 `SharableTargetInfo.coordinate` 包含 `screenX` 和 `screenY`（屏幕左上角为原点的整数坐标）
-- 接收端也有对应的 `ReceivableTarget.getInfo()` 返回 `ReceivableTargetInfo`
-
-**云端预览图延迟更新模式**：
-```typescript
-// ① 先发送核心数据（使用默认预览图）
-await target.share(shareData);
-// ② 云端图片下载完成后，更新预览图（必须在数据发送前更新）
-setTimeout(async () => {
-  await target.updateShareData({ thumbnailUri: localFilePath });
-}, 5000);
+### 推荐目录结构
+```
+src/
+├── model/          # 数据模型定义（接口、类）
+├── viewmodel/      # 视图模型（状态管理、业务逻辑）
+├── view/           # UI 组件（纯渲染、事件回调）
+├── service/        # 网络/数据库等基础设施服务
+├── resources/      # 静态资源
+└── entryability/   # 应用入口
 ```
 
-**异常场景处理**：
+### MVVM 三层职责
+| 层 | 职责 | 技术实现 |
+|----|------|---------|
+| **Model** | 数据结构定义、数据获取（网络/DB）、业务规则 | 接口/类定义、service 层调用 |
+| **ViewModel** | 状态管理、将 Model 数据转为视图状态、事件处理逻辑 | `@Observed` + `@State` 装饰器 |
+| **View** | UI 渲染、交互事件向上通知 | `@Component`、`@Prop`/`@ObjectLink` 接收状态 |
+
+### 核心原则
+
+#### 1. 单一数据流（UDF — Unidirectional Data Flow）
+数据变更总是单向流动：**父组件持有状态 → 通过 `@Prop` 传给子组件 → 子组件通过事件回调通知父组件 → 父组件更新状态**
 ```typescript
-// 当前界面无可分享内容
-harmonyShare.on('knockShare', (target) => {
-  target.clarifyNonShare({ message: '请在有分享内容的界面重试' });
-});
-
-// 下载失败等异常
-harmonyShare.on('knockShare', (target) => {
-  target.reject(harmonyShare.SharableErrorCode.DOWNLOAD_ERROR);
-});
-```
-
-**生命周期必须成对**：`onPageShow` 注册 → `onPageHide` 取消。不取消会导致页面隐藏后仍在响应碰一碰事件。
-
-**安全策略**（HarmonyOS NEXT 5.0.0.123 SP16+）：
-- 对端已登录华为账号 → 展示对方昵称和头像
-- 对端未登录 → 展示设备信息
-
-#### 6.3 🪟 闪控窗体系（HarmonyOS 多窗交互）
-
-闪控窗体系分三层：**实况窗（Live View）**、**闪控球（FloatingBall）**、**标准悬浮窗（FloatingWindow）**。三者定位不同，可联动使用。
-
-#### 6.3.1 闪控球（FloatingBall，API 20+）
-
-> 模块：`@kit.ArkUI` → `floatingBall` | 受限权限：`ohos.permission.USE_FLOAT_BALL`（ACL申请）
-> 仅手机和平板，仅应用在前台时可启动。同一应用只能启动一个，同一设备最多两个。
-
-**4 种模板**：
-| 模板 | 支持内容 | 可更新 |
-|:----|---------|:-----:|
-| `STATIC`（静态布局） | 图标 + 标题 | ❌ 创建后不可更新 |
-| `NORMAL`（普通文本布局） | 标题 + 内容 | ✅ |
-| `EMPHATIC`（强调文本布局） | 图标 + 标题 + 内容 | ✅ |
-| `SIMPLE`（纯文本布局） | 标题（最多双行） | ✅ |
-
-**规格**：整体宽 70~98vp，高 40vp，不支持自定义字体大小。
-
-**完整 API 流程**：
-```typescript
-import { floatingBall } from '@kit.ArkUI';
-import { Want } from '@kit.AbilityKit';
-
-// ① 检查设备是否支持
-const isEnabled = floatingBall.isFloatingBallEnabled();
-
-// ② 创建控制器
-const controller: floatingBall.FloatingBallController =
-  await floatingBall.create({ context: this.getUIContext().getHostContext() });
-
-// ③ 注册事件
-controller.on('click', () => {
-  // 点击闪控球 → 恢复主窗口
-  const want: Want = { bundleName: 'com.example.app', abilityName: 'EntryAbility' };
-  controller.restoreMainWindow(want);
-});
-controller.on('stateChange', (state: floatingBall.FloatingBallState) => {
-  if (state === floatingBall.FloatingBallState.STOPPED) {
-    controller.off('click');     // 停止后清理监听
-    controller.off('stateChange');
+// 父组件：托管状态
+@Entry @Component
+struct ParentPage {
+  @State title: string = '初始';
+  build() {
+    ChildView({ title: this.title, onUpdate: (t) => { this.title = t; } })
   }
-});
-
-// ④ 启动闪控球
-await controller.startFloatingBall({
-  template: floatingBall.FloatingBallTemplate.NORMAL,
-  title: '比价中',
-  content: '已找到 3 个平台报价',
-  backgroundColor: '#0ff77c',      // 可选
-});
-
-// ⑤ 更新内容
-await controller.updateFloatingBall({
-  template: floatingBall.FloatingBallTemplate.NORMAL,
-  title: '比价完成',
-  content: '最低 ¥299，点击查看',
-});
-
-// ⑥ 停止闪控球
-await controller.stopFloatingBall();
-// 🚨 生命周期：aboutToDisappear 中必须停止，否则泄漏
-```
-
-**交互行为**：
-- 单击 → `click` 事件 | 长按 → 变为待删除态 | 拖动 → 自动吸附侧边
-- 位置记忆：关闭后记录位置，下次启动恢复；旋转屏幕/重启恢复默认（右上侧）
-- 删除：拖到屏幕底部中部的垃圾桶区域松手
-
-**闪控球 vs 标准悬浮窗**：闪控球是**受限能力**（需 ACL 权限、指定场景），而标准悬浮窗是 API 26 Beta 新增的**通用悬浮窗口**（暂无官方 API 文档完整公开）。普通开发者建议优先使用闪控球。
-
-#### 6.3.2 实况窗进度环模板（Live View，API 26 新增）
-
-```typescript
-import { liveView } from '@kit.LiveViewKit';
-const card = liveView.createCard({
-  template: liveView.templates.ProgressRing,
-  data: { title: '下载中', progress: 0.73, subtitle: '剩余 2 分钟' }
-});
-// ⚡ 节流：最多每秒更新一次，避免频繁重绘
-if (Date.now() - lastUpdateTime > 1000) {
-  card.update({ data: { progress: currentPercent } });
+}
+// 子组件：只读展示 + 回调通知
+@Component
+struct ChildView {
+  @Prop title: string;
+  private onUpdate?: (t: string) => void;
+  build() { Button('更新').onClick(() => this.onUpdate?.('新标题')); }
 }
 ```
 
-#### 6.3.3 闪控窗联动设计模式
+#### 2. 状态托管（State Hoisting）
+状态提升到**最近的共同父组件**，子组件不持有状态，只接收和展示。
 
-三个层级展示同一数据源（推荐 `@Observed` 共享对象），信息分级展示：
-- **一级**（最精简）：状态栏图标 / 实况窗摘要
-- **二级**（中等详情）：实况窗展开 / 闪控球展开
-- **三级**（完整交互）：标准悬浮窗 / 应用主界面
-
-#### 6.4 🛡️ 安全新能力
-
-| 能力 | 说明 | 适用场景 |
-|------|------|---------|
-| **星盾机密风控引擎** | 端侧 TEE 机密空间计算风控，数据"可用不可见" | 支付/转账/虚拟资产 |
-
-**星盾机密风控引擎（API 26+）— 官方 API 规格**：
-- 模块：`@kit.DeviceSecurityKit` → `riskControlEngine`
-- 权限：需在 AGC 手动开通"星盾机密风控引擎"开关 + 申请 Profile
-- 限制：每应用每设备每天最多 10 次
-- 设备：Phone、Tablet、PC/2in1
-
-**核心接口（仅 2 个）**：
-```typescript
-import { riskControlEngine } from '@kit.DeviceSecurityKit';
-import { cryptoFramework } from '@kit.CryptoArchitectureKit';
-import { util } from '@kit.ArkTS';
-
-// ① 生成 nonce（16-66 字节，base64 编码，防重放攻击）
-const rand = cryptoFramework.createRandom();
-const randData = rand.generateRandomSync(32);
-const base64 = new util.Base64Helper();
-const nonce = base64.encodeToStringSync(randData.data);
-
-// ②（可选）导入应用专属风险因子
-await riskControlEngine.importRiskFactors({
-  appFactorData: [
-    { factorName: "payment_amount", factorValue: 12800 },
-    { factorName: "is_new_device",  factorValue: false },
-  ],
-  nonce: nonce,
-});
-
-// ③ 发起风控评分
-const response = await riskControlEngine.getRiskControlResult({
-  policyName: "Policy_1001",  // 在 AGC 配置的风险策略名称
-  nonce: nonce,
-});
-// 返回 JWS (JSON Web Signature) 格式，需在后端解析验证
-```
-
-**JWS 解析流程（在应用后端完成）**：
-1. 解析 JWS 获取 Header/ Payload/Signature
-2. Header 含 `alg: ES256`, `typ: JWS`, `x5c` 证书链（3 级）
-3. 用华为 Root CA 验证证书链 → 用 x5c[0] 验证签名
-4. Payload 含 `nonce`（防重放校验）+ `RiskDetectionOutput.status/result`
-
-**其他安全 Kit 概要**：
-| Kit | 能力 | API | 起始版本 |
-|:----|:----|:----|:--------:|
-| DID 分布式身份 | 系统级数字身份，TEE 存储颁发 | `@kit.DeviceSecurityKit` → `onlineAuthentication` | API 26 |
-| 数字盾 | TEE 级可信签名/UI/输入 | `@kit.DeviceSecurityKit` → `deviceSecurity` | API 26 |
-| 隐私防窥 | 智能屏幕防窥保护 | `@kit.DeviceSecurityKit` → `dlpAntiPeep` | API 23 |
-| **超级隐私管控** ⭐ | 对相机/麦克风/位置分别策略化管控 | `@kit.DeviceSecurityKit` → `superPrivacyMode` | **API 26** |
-| **按文件事件订阅** ⭐ | 订阅文件打开/关闭/删除/重命名/拷贝等事件 | `@kit.DeviceSecurityKit` → `securityAudit` | **API 26** |
-| **统一风控凭证** ⭐ | 查询设备风险因子，返回 JWS 格式风控凭证 | `@kit.DeviceSecurityKit` → `safetyDetectEnhanced` | **API 26** |
-
-**超级隐私管控（API 26+）**：对相机/麦克风/位置分别策略化管控。
-```typescript
-import { superPrivacyMode } from '@kit.DeviceSecurityKit';
-
-// ⚠️ 官方 API 验证：返回值是 SuperPrivacyPolicyInfo 结构，非简单 map
-const policyInfo: superPrivacyMode.SuperPrivacyPolicyInfo = await superPrivacyMode.getSuperPrivacyPolicies();
-// policyInfo.superPrivacyMode: SuperPrivacyMode (OFF=0 / ON_WHEN_FOLDED=1 / ALWAYS_ON=2)
-// policyInfo.superPrivacyPolicies: SuperPrivacyPolicy[] 长度固定3，顺序 CAMERA→MICROPHONE→LOCATION
-//   .sensorType: PrivacySensorType (CAMERA=0 / MICROPHONE=1 / LOCATION=2)
-//   .sensorState: PrivacySensorState (DEFAULT=0 / ENABLED=1 / DISABLED=2)
-
-// 订阅策略变更（注意：事件名是 'superPrivacyModeChange' 而非 'superPrivacyPolicyChange'）
-// API 26 推荐使用 onSuperPrivacyModeOrPolicyChange
-superPrivacyMode.onSuperPrivacyModeOrPolicyChange((info) => {
-  console.info(`模式: ${info.superPrivacyMode}, 策略: ${JSON.stringify(info.superPrivacyPolicies)}`);
-});
-
-// 取消订阅
-superPrivacyMode.offSuperPrivacyModeOrPolicyChange(callback);
-```
-
-**按文件事件订阅（API 26+）**：安全审计，订阅文件打开/创建/删除/重命名等操作。
-```typescript
-import { securityAudit } from '@kit.DeviceSecurityKit';
-
-// ① 创建客户端（需权限 ohos.permission.QUERY_AUDIT_EVENT）
-const client: securityAudit.Client = securityAudit.newClient((event) => {
-  console.info(`文件事件: ID=${event.eventId}, 内容=${event.content}, 时间=${event.timestamp}`);
-});
-
-// ② 订阅文件事件（NotifyEvent.FILE_OPEN / FILE_CREATE / FILE_DELETE / FILE_RENAME / FILE_CLOSE / FILE_COPY / FILE_WRITE）
-client.subscribe([securityAudit.NotifyEvent.FILE_OPEN, securityAudit.NotifyEvent.FILE_DELETE]);
-
-// ③ 添加路径过滤（FilterType.FILE_PATH_REGULAR: 路径正则匹配）
-client.addFilter(securityAudit.NotifyEvent.FILE_OPEN, {
-  type: securityAudit.FilterType.FILE_PATH_REGULAR, // API 26 新增
-  isInclude: true,  // true=返回符合条件, false=过滤掉
-  values: ['/data/storage/el2/base/**'],
-});
-
-// ④ 取消订阅
-client.unsubscribe([securityAudit.NotifyEvent.FILE_OPEN]);
-
-// ⑤ 用完删除客户端
-securityAudit.deleteClient(client);
-```
-
-**星盾引擎集成要点**：`@kit.DeviceSecurityKit` 的 `RiskAssessmentEngine`。初始化需 200~500ms（在 `UIAbility.onCreate` 中预初始化），依赖真实 TEE 硬件（模拟器不可用）。模型容量约 2MB，核心特征推荐 `DEVICE_INTEGRITY` + `BEHAVIOR_ANOMALY` 两个。
-
-#### 6.5 ⚡ 性能与通信
-
-| 能力 | 说明 | Kit |
-|------|------|-----|
-| **游戏快启** | 预加载 + 内核调度优化，冷启动提速 | HyperStartup / Graphics Accelerate Kit |
-| **鸿蒙内核应用快启** | HyperStartup 内核级应用预加载，加速常用 App 冷启动 | HyperStartup |
-| **冷启网络预建链** | App 启动时提前建立网络连接，减少首屏等待 | Network Boost Kit |
-| **QUIC 长连接** | 基于 QUIC 协议的持久连接，弱网下更快恢复；API 26 新增 C API 支持 | Remote Communication Kit |
-| **弱网直播优化** | FEC + 动态码率，直播卡顿率降低 40%+ | Network Kit |
-| **LTPO 可变帧率** | 根据内容动态调整刷新率 (1~120Hz)，功耗降低 30% | ArkGraphics 2D |
-| **Graphics Accelerate 预启动 ⭐** | 根据用户使用习惯，在系统资源充足时提前加载游戏，进行部分初始化和资源加载 | Graphics Accelerate Kit（API 26） |
-| **Graphics Accelerate 资源包下载查询 ⭐** | `isSupportAssetDownload()` 查询当前设备类型是否支持资源包下载 | Graphics Accelerate Kit（API 26） |
-
-#### 6.6 🎨 设计语言进化
-
-| 新特性 | 说明 | 适配建议 |
+#### 3. 装饰器选择策略
+| 装饰器 | 用途 | 使用场景 |
 |--------|------|---------|
-| **沉浸光感** | 材质的光学行为、空间属性与交互响应综合 | 核心界面（标题栏、导航）启用沉浸光感样式 |
-| **系统材质 ⭐** | API 26 新增 `systemMaterial` 通用属性，所有组件支持系统材质效果；弹窗类组件（Tips/Toast/对话框/自定义弹窗/半模态/Popup）均支持 | 使用 `materialTheme` 统一管理材质语义化变量 |
-| **可变字体** | 所有语言支持连续字重变化，粗细过渡细腻 | 替代固定字重，使用 `fontWeight: FontWeight.MEDIUM` 范围值 |
+| `@State` | 组件内部状态 | 表单输入、折叠展开 |
+| `@Prop` | 父传子（只读） | 子组件展示父组件数据 |
+| `@Link` | 父子双向绑定 | 表单控件、实时编辑 |
+| `@ObjectLink` | 跨层级对象引用 | 复杂对象跨组件传递 |
+| `@Observed` | 深度监控对象变化 | ViewModel 类定义 |
+| `@Provide/@Consume` | 跨多层传递（无需逐层 Prop） | 主题色、用户登录态等全局状态 |
+| `@LocalStorageProp/@LocalStorageLink` | 应用级全局状态 | 跨页面共享状态 |
 
-#### 6.7 🛠️ DevEco Studio 26.0.0 Beta1 + DevEco Code — AI IDE 双引擎
+### 完整 MVVM 示例
 
-**DevEco Studio 26.0.0 Beta1**（配套 API 26，2026/06/12 发布）：
-- 版本号：DevEco Studio 26.0.0 Beta1 (26.0.0.461)，携带 SDK 26.0.0 Beta1
-- 配套：Node.js 24.14.1 → hvigor 6.26.1 → ohpm 26.0.0.410
+```typescript
+// model/UserData.ts
+interface UserData { name: string; age: number; }
 
-**全新工具链（API 26 新增）**：
+// viewmodel/UserViewModel.ts
+@Observed
+export class UserViewModel {
+  @State user: UserData | null = null;
+  @State loading: boolean = false;
 
-| 新特性 | 说明 |
-|:------|:-----|
-| **Code Scanner** | 检查整个项目的资源泄漏问题，自动扫描未释放资源 |
-| **8 档断点预览** | 同时预览应用在 8 个典型档位断点下的 UI 效果 |
-| **Car 模拟器** | 新增 Car 设备模拟器，支持多屏能力 |
-| **设备投屏** | 将设备投屏到 DevEco Studio 中使用，实时操作调试 |
-| **dump 解析** | 解析应用崩溃生成的 dump 文件，展示异常堆栈 |
-| **状态变量查看** | 编辑器实时查看 ArkUI 组件状态变量关系 |
-| **模块按需加载** | Load/Unload Modules，降低内存占用，提升代码索引效率 |
-| **数据库调试增强** | SQL 语法高亮、自动联想补全、可视化编辑表格数据 |
-| **发布重签名** | 上传时自动重签名，无需手动下载证书和 Profile |
-| **AppAnalyzer 诊断** | 导入 AppGallery 审核不通过报告，自动诊断故障原因 |
-| **AI 增强** | Inline Chat 快捷指令 (File Comments / Parameter Validation)、工程问答支持 MCP Market 工具 |
-| **自定义指令 Commands** | 将常用提示词和工作流封装为可复用命令 |
-| **Agent UI Verification** | 自定义 Agent 新增 UI Verification 内置工具 |
-| **Clang-Tidy 静态检查** | 支持自定义 Clang-Tidy 对 C/C++ 代码进行静态检查 |
-| **Native 调试加速** | 首次调试后调试服务器保持活跃，后续大幅减少连接耗时 |
-| **HiLog 标签过滤** | 支持根据日志标签过滤 HiLog 日志 |
-| **Memory 分析增强** | 新增 ArkWeb PA 和 JS Heap 子泳道、Statistics 页签（虚拟内存区域/PSS 统计） |
-| **ci 配置增强** | syncNative 优化 C++ 编译效率、tsImportSoCheck 规则、apiCompatibilityCheck 检测级别 |
-
-**DevEco Code** — 新一代 AI IDE（基于 BitFun + OpenCode）：
-- 支持自定义大模型：已验证 **GLM-5.1、DeepSeek** 等国产大模型接入
-- 实战场景：文字识别/代码生成/代码审查/单元测试/应用构建（9 篇社区大牛精讲）
-- 与 DevEco CLI 配合可跑通全流程 CI/CD 管线
-
-| 对比 | DevEco Studio | DevEco Code |
-|:----|:-------------:|:-----------:|
-| 定位 | 传统 IDE | AI 原生 IDE |
-| AI 能力 | 辅助（补全/提示） | 主导（生成/验证/测试） |
-| Skill 开发 | 手动编码 | Vibe Coding 自然语言 |
-| 模型 | 内置固定 | 支持自定义模型 |
-
-**DevEco CLI**：命令行工具链，支持 CI/CD 集成，`deveco build/test/publish` 等命令。
-
-**DevEco CLI 大模型集成**：
-```bash
-# 配置第三方模型（GLM-5.1 示例）
-deveco config set model.provider glm
-deveco config set model.apiKey YOUR_API_KEY
-deveco config set model.endpoint https://open.bigmodel.cn/api/paas/v4
-
-# 使用 CLI 生成应用
-deveco code generate "创建一个待办事项应用"
-deveco code review src/main/ets/pages/Index.ets
-deveco test src/main/ets/test/ --ai
-```
-
-#### 6.8 ⚠️ API 26 新能力异常处理速查
-
-> 以下是碰一碰分享、闪控球、星盾引擎三个 API 26 核心新能力的常见异常场景和处理方案。
-
-**碰一碰分享常见异常**：
-
-| 异常现象 | 可能原因 | 解决方案 |
-|:---|:---|:---|
-| `knockShare` 事件不触发 | NFC 未开启 / 设备不支持 | 调用前检查 `nfcController.isNfcAvailable()` |
-| `share()` 返回 `SEND_FAILED` | 对端设备不在线 / 传输超时 | 添加重试机制，最多 3 次，间隔 2s |
-| `share()` 返回 `CANCEL_BY_RECEIVER` | 接收端主动取消 | 提示用户"对方已取消分享" |
-| `thumbnailUri` 图片不显示 | 文件路径错误 / 文件过大 | 检查 URI 是否合法，预览图 ≤ 3000×4000 px |
-| `updateShareData()` 不生效 | 在 `share()` 发送后才调用 | 必须**在 share 调用前**更新预览图 |
-| PC 精准坐标 `getInfo()` 返回 0 | 非 PC 场景 / API 版本不够 | 确认设备为 PC + API 26 Beta+ |
-| 页面关闭后仍在响应碰一碰 | 缺少 `off('knockShare')` 调用 | 检查生命周期：onPageShow 注册，onPageHide 取消 |
-
-**闪控球常见异常**：
-
-| 异常现象 | 可能原因 | 解决方案 |
-|:---|:---|:---|
-| `floatingBall.create()` 返回 null | 设备不支持 / ACL 权限未申请 | 检查 `isFloatingBallEnabled()` + `ohos.permission.USE_FLOAT_BALL` |
-| `startFloatingBall()` 抛出权限异常 | ACL 权限未在 AGC 申请 | 在 AGC → 开发服务 → ACL 权限中申请 |
-| 闪控球创建后不显示 | 应用不在前台 / 超过数量限制 | 确认应用在前台，同一设备最多同时显示 2 个 |
-| `updateFloatingBall()` 对 STATIC 模板无效 | STATIC 模板不支持更新 | 改用 NORMAL / EMPHATIC / SIMPLE 模板 |
-| `aboutToDisappear` 后闪控球未消失 | 未调用 `stopFloatingBall()` | 在 `aboutToDisappear` 中强制停止 |
-| `restoreMainWindow()` 无响应 | Want 参数错误 | 检查 bundleName 和 abilityName 是否正确 |
-
-**星盾引擎常见异常**：
-
-| 异常现象 | 可能原因 | 解决方案 |
-|:---|:---|:---|
-| `getRiskControlResult()` 返回空 | 日调用次数超限（每天 10 次） | 限制调用频率，缓存前一次结果 |
-| `importRiskFactors()` 超时 | TEE 环境初始化未完成 | 在 UIAbility.onCreate 中预初始化（需 200~500ms） |
-| JWS 签名验证失败 | nonce 不匹配 / 证书链不一致 | 确认 nonce 与请求时一致，用华为 Root CA 验证 x5c |
-| 模拟器上报错 | 星盾依赖真实 TEE 硬件 | 必须真机调试，模拟器不可用 |
-| AGC 控制台找不到星盾开关 | 未在该应用下开通 | 在 AGC → 开发服务 → 星盾机密风控引擎 手动开通 |
-
-#### 6.9 📱 更多 API 26 新能力补充
-
-> 以下能力也是 HarmonyOS 7 新增的，但篇幅原因仅做概要说明。
-
-**互动卡片摇一摇（API 26+）**：
-互动卡片新增"摇一摇"触发方式——用户摇动手机即可激活卡片动画（静态→动态、前景元素出框），无需点击。
-```json
-// form_config.json 中配置
-{
-  "sceneAnimationParams": {
-    "abilityName": "DeliveryLiveCardAbility",
-    "triggerTypes": ["shake"]  // 支持摇一摇触发
+  async loadUser(id: number) {
+    this.loading = true;
+    // 调用 service 层获取数据...
+    this.user = { name: '张三', age: 25 };
+    this.loading = false;
   }
 }
-```
-流程：用户摇动 → 系统查找配置了 `shake` 的卡片 → 触发 `FormExtensionAbility.onUpdateForm` → 调用 `formProvider.requestOverflow()` 激活互动卡片。
-> **限制**：仅 HarmonyOS 7.0+ 生效。与点击触发的区别：摇一摇由系统识别事件，点击由 UI 层 `postCardAction(MESSAGE)` 触发。
 
-**空间音频 / 音频编创（Audio Suite）**：
-`@kit.AudioKit` → `OHAudioSuite`（C/C++ 接口，API 22+）。引擎 + 管线 + 节点三级架构，支持降噪、均衡器、人声分离、声音美化、环境效果、声场渲染、混音等效果节点。引擎最多 10 条管线，支持离线编辑和实时预览两种模式。
-- 典型场景：直播推流降噪、音乐 App 自定义均衡器、短视频人声分离
-- 参考 Sample：[audio-suite-sample](https://gitcode.com/HarmonyOS_Samples/guide-snippets/tree/HarmonyOS-7.0-beta-20260514/Media/Audio/AudioSuiteSample)
-
-**XComponent + NAPI 图像绘制（官方 Codelab 精学）**：
-`XComponent` 组件调用 NAPI 创建 EGL/GLES 环境，在 C++ 侧进行 OpenGL ES 渲染，实现高性能图形。
-
-关键模式：ArkTS 侧 `onLoad()` 接收 XComponent 上下文 → NAPI 注册 `drawRectangle()` → Button 触发 C++ 绘制
-
-**窗口管理·验证码登录（官方 Codelab 精学）**：
-`WindowModel` 单例管理主/子窗口：主窗口沉浸式（全屏+隐藏系统栏）→ 验证按钮拉起半透明子窗口 → 校验成功销毁子窗口 → EventHub 通知主窗口跳转。完整代码见文后"窗口管理实战模板"。
-
-**游戏启动加速·秒级启动（Graphics Accelerate Kit 精学）**：
-加载内存镜像实现冷启动秒开秒进。`onCreate` 调用 `setSupportedProcessCache(true)`，`onWindowStageWillDestroy` 中检查 `isLaunchMirrorEnabled()` 并切换场景，系统自动制作内存镜像（约 4s）。详见文后"Graphics Accelerate 秒级启动实战"。
-
-**AGC 云调试验证（实用技巧）**：
-在 AGC → 远程真机 → 云调试中，筛选 **API 26** 或 **系统版本 7.0.0.23** 的设备，上传 HAP 包即可远程调试验证 HarmonyOS 7 兼容性，无需真机。首次集成新 API 时强烈建议先跑云调试。 
-> **入口**：AGC 控制台 → 我的项目 → 质量 → 云调试
-
-**平行视界 EasyGo（API 26 新增）**：
-大屏设备（平板/折叠屏展开态）的平行视界新增 EasyGo 能力，支持 1:2、2:1 分屏启动模式，以及购物模式、导航模式等路由模式。开发者通过配置文件接入，成本更低，体验更优。
-- `@kit.AbilityKit` → 多窗口管理
-
-**应用内分屏**：
-大屏模式下支持应用内分屏，快速进入比价、辅助窗口模式，提升用户操作效率。
-- 典型场景：购物 App 比价、笔记 App 双文档对照
-
-**多设备 UX 自动检测**：
-支持基于真机或模拟器开展多设备 UX 检测，自动发现大图大字、界面截断、重叠等典型布局问题。
-- `DevEco Studio` → 设备 UX 检测工具
-
-**DFX 维测工具增强**（DevEco Studio / 运维效率）：
-| 能力 | 说明 |
-|:---|:---|
-| **APMS 故障诊断** | 商用版本故障总览 + 告警 + 根因分析 + 修复建议 |
-| **DevEco Testing** | 支持内存泄漏问题快速激发测试 |
-| **Profiler 全类型内存** | 一键抓取全类型内存泳道 + 跨语言内存调优 |
-| **GWP-Asan / HWAsan** | 踩内存故障定位增强，支持跨语言栈缝合 |
-| **Dump 文件解析** | 应用卡死/崩溃场景下的 Dump 文件智能解析 |
-| **数据库可视编辑** | 数据库数据可视化编辑，SQL 智能联想 |
-
-**Linux arm 版模拟器**：
-新增支持 Linux arm 架构模拟器，Arm Mac（Apple Silicon）和 Linux arm 服务器可直接运行。
-
-### 7. ArkTS V2 状态管理装饰器（API 26+）— 实战精学
-
-> 以下内容基于华为官方 Codelab《基于状态管理V2-小场景案例》（2026-06-30 发布）及官方 API 文档。注意：V1 `@Observed/@ObjectLink/@Prop/@Link/@Watch` 仍然可用，但 V2 是 API 26 推荐方案。
-
-#### 7.1 V2 装饰器速查表
-
-| 装饰器 | 作用 | 替代 V1 | 适用场景 |
-|:------|:----|:-------:|:--------|
-| `@ComponentV2` | 装饰自定义组件 | `@Component` | 所有 V2 组件 |
-| `@Local` | 组件内部状态，驱动 UI 刷新 | `@State` | 组件内变量 |
-| `@Param` | 接收父组件传入的状态 | `@Prop` | 父子数据传递 |
-| `@Once` | 仅接收一次父组件传入 | `@Prop` + const | 初始化后不变 |
-| `@Event` | 定义回调方法，子→父更新 | `@Link` / 自定义回调 | 子组件修改父数据 |
-| `@Provider`/`@Consumer` | 跨层级状态传递（key 匹配） | `@Provide`/`@Consume` | 深层嵌套传递 |
-| `@Computed` | 计算属性，缓存结果 | 无直接替代 | 依赖其他状态的派生数据 |
-| `@Monitor` | 监听状态变化 | `@Watch` | 变化时执行额外操作 |
-| `@ObservedV2` | 装饰类，支持深度观测 | `@Observed` | 复杂对象状态管理 |
-| `@Trace` | 装饰类属性，深度观测 | `@ObjectLink` | 对象嵌套属性监听 |
-| `@LocalStorage` | 页面级持久化存储 | 无 | 跨页面共享轻量数据 |
-
-#### 7.2 实战案例（7 场景，来自官方 Codelab）
-
-##### ① @Local — 定义组件内状态
-```typescript
-@ComponentV2
-struct DemoLocal {
-  @Local count: number = 0;    // 驱动 UI 刷新
-  notReactive: number = 0;     // public 变量，修改不刷新 UI
+// view/UserView.ets
+@Component
+export struct UserView {
+  @ObjectLink vm: UserViewModel;
 
   build() {
     Column() {
-      Text(`响应式: ${this.count}`)     // 会更新
-      Text(`非响应式: ${this.notReactive}`) // 不会更新
-      Row() {
-        Button('-1').onClick(() => { this.count--; this.notReactive--; })
-        Button('+1').onClick(() => { this.count++; this.notReactive++; })
-      }
+      if (this.vm.loading) { LoadingProgress(); }
+      else { Text(this.vm.user?.name ?? '暂无数据'); }
     }
   }
 }
 ```
 
-##### ② @Param — 接收父组件参数
+### 分层状态管理策略
+| 作用域 | 方案 | 示例 |
+|--------|------|------|
+| 组件内 | `@State` | 输入框聚焦状态 |
+| 页面级 | `@Provide/@Consume` | 搜索条件、筛选状态 |
+| 全局 | 独立 `GlobalState` 类 + Preferences 持久化 | 主题配置、用户登录信息 |
+
+---
+
+## 🏗️ ArkTS V2 状态管理装饰器（API 26+）
+
+> HarmonyOS 7 (API 26) 引入的新一代状态管理装饰器，替代原有 @Observed/@ObjectLink 的嵌套对象观察方案。
+
+### V2 装饰器全家桶
+
+| 装饰器 | 作用 | 替代旧版 | 使用方式 |
+|:------:|:----:|:--------:|:--------:|
+| `@ObservedV2` | 类装饰器，标记为可观察类 | `@Observed` | `@ObservedV2 class Model {}` |
+| `@Track` | 属性装饰器，标记需要追踪的字段 | 无（旧版全量追踪） | `@Track name: string = ''` |
+| `@ComponentV2` | 组件装饰器，V2 组件容器 | `@Component` | `@ComponentV2 struct MyComp {}` |
+| `@Local` | 局部状态，替代 @State | `@State` | `@Local count: number = 0` |
+| `@Param` | 父传子参数，替代 @Prop/@Link | `@Prop` / `@Link` | `@Param name: string = ''` |
+| `@Event` | 事件回调，子传父 | 自定义回调函数 | `@Event onTap: () => void` |
+| `@Monitor` | 监听指定属性变化 | 无（需手动写 aboutToAppear） | `@Monitor('count') onCountChange(mon: IMonitor) {}` |
+| `@Computed` | 计算属性，自动依赖追踪 | 无（需手动计算 + 更新） | `@Computed get fullName() { return this.first + this.last }` |
+| `@Provider` / `@Consumer` | 跨层级共享状态（V2 版） | `@Provide` / `@Consume` | `@Provider("theme") theme: Theme = ...` |
+| `@LocalStorage` | 应用级持久化存储 | `@LocalStorageProp` / `@Link` | `@LocalStorage("token") token: string = ''` |
+
+### 核心优势 vs V1
+
+| 对比维度 | V1 装饰器 | V2 装饰器 |
+|:--------:|:---------:|:---------:|
+| 嵌套对象更新 | @Observed + @ObjectLink，全量追踪 | `@ObservedV2 + @Track`，按字段追踪 |
+| 计算属性 | 不支持，需手动维护 | `@Computed` 自动依赖追踪 |
+| 属性监听 | 无原生支持，需手动 watch | `@Monitor` 内置监听 |
+| 事件回调 | 手动传函数 | `@Event` 类型安全的事件机制 |
+| 组件声明 | `@Component struct` | `@ComponentV2 struct` |
+| API 要求 | API 12+ | **API 26+** |
+
+### 典型使用模式
+
 ```typescript
-@ComponentV2
-struct MyCounter {
-  @Param title: string = '';
-  @Param value: number = 0;
+// 1. 定义可观察模型
+@ObservedV2
+class UserProfile {
+  @Track name: string = '';
+  @Track age: number = 0;
+  @Track email: string = '';
+}
 
-  build() {
-    Column() {
-      Text(`${this.title}: ${this.value}`)
-    }
+// 2. V2 组件使用
+@ComponentV2
+struct ProfileCard {
+  @Param user: UserProfile = new UserProfile();
+  @Event onUpdate: (user: UserProfile) => void = () => {};
+
+  @Monitor('user.name')  // 监听 name 变化
+  onNameChange(mon: IMonitor): void {
+    console.info(`Name changed from ${mon.value()} to ${mon.value()}`);
   }
-}
-
-@ComponentV2
-struct Parent {
-  @Local value1: number = 0;
-  @Local value2: number = 100;
-
-  build() {
-    Column() {
-      MyCounter({ title: '计数器A', value: this.value1 })
-      MyCounter({ title: '计数器B', value: this.value2 })
-      Button('同步+1').onClick(() => { this.value1++; this.value2++; })
-    }
-  }
-}
-```
-
-##### ③ @Event — 子组件触发父组件更新
-```typescript
-@ComponentV2
-struct Child {
-  @Param index: number = 0;
-  @Event changeIndex: (val: number) => void = () => {};
-
-  build() {
-    Button(`index=${this.index}, 修改为20`)
-      .onClick(() => { this.changeIndex(20); })
-  }
-}
-
-@ComponentV2
-struct Parent {
-  @Local index: number = 0;
-
-  build() {
-    Child({ index: this.index, changeIndex: (v) => { this.index = v; } })
-  }
-}
-```
-
-##### ④ @Provider/@Consumer — 跨层级状态共享
-```typescript
-// Parent — 提供者
-@ComponentV2
-struct GrandParent {
-  @Provider('count') count: number = 0;
-
-  build() { ChildList() } // 无需传参，中间组件不需要 "透传"
-}
-
-@ComponentV2
-struct ChildList {
-  build() { Column() { GrandChild() } }
-}
-
-// GrandChild — 消费者（任意深度的后代都直接消费）
-@ComponentV2
-struct GrandChild {
-  @Consumer('count') count: number = 0;
-
-  build() {
-    Text(`count from grand parent: ${this.count}`)
-  }
-}
-```
-
-##### ⑤ @Computed — 计算属性（替代手动同步）
-```typescript
-@ComponentV2
-struct ShoppingCart {
-  @Local count: number = 0;
-  @Local price: number = 15;
 
   @Computed
-  get total(): number { return this.count * this.price; }
-
-  build() {
-    Column() {
-      Text(`数量: ${this.count}, 单价: ${this.price}元`)
-      Text(`总金额: ${this.total}元`)   // 自动缓存、依赖变化才重算
-      Button('+1').onClick(() => { this.count++; }) // total 自动更新
-    }
-  }
-}
-```
-
-##### ⑥ @Monitor — 监听状态变化（替代 @Watch）
-```typescript
-@ComponentV2
-struct DemoMonitor {
-  @Local index: number = 0;
-  @Local change: string = '';
-
-  // 监听单个状态
-  @Monitor('index')
-  onIndexChange(monitor: IMonitor) {
-    const before = monitor.value?.before;
-    const now = monitor.value?.now;
-    this.change = `index 从 ${before} 变为 ${now}`;
-  }
-
-  // 批量监听
-  @Monitor('index', 'data')
-  onBatchChange(monitor: IMonitor) {
-    monitor.dirty.forEach((path: string) => {
-      console.log(`${path}: ${monitor.value(path)?.before} → ${monitor.value(path)?.now}`);
-    });
-  }
-
-  build() {
-    // ...
-  }
-}
-```
-
-##### ⑦ @ObservedV2 + @Trace — 深度观测对象属性
-```typescript
-@ObservedV2
-class Student {
-  name: string = '李华';
-  age: number = 20;
-  @Trace major: string = '软件工程';  // 只观察 major 的变化
-}
-
-@ComponentV2
-struct DemoDeepObserve {
-  @Local student: Student = new Student();
-
-  // 甚至能深度监听嵌套属性
-  @Monitor('student.major')
-  onMajorChange(monitor: IMonitor) {
-    console.log(`专业变更: ${monitor.value?.before} → ${monitor.value?.now}`);
+  get displayInfo(): string {
+    return `${this.user.name} (${this.user.age})`;
   }
 
   build() {
     Column() {
-      Text(`姓名: ${this.student.name}`)
-      Text(`年龄: ${this.student.age}`)
-      Text(`专业: ${this.student.major}`)
-      Button('修改专业').onClick(() => {
-        this.student.major = '物联网'; // ✅ 页面会更新 + Monitor 触发
+      Text(this.displayInfo).fontSize(16)
+      Button('Update Name').onClick(() => {
+        this.user.name = 'New Name';
+        this.onUpdate(this.user);
       })
     }
   }
 }
 ```
 
-#### 7.3 V1 → V2 迁移对照
+## 🗃️ 状态管理增强（全局/持久化）
 
-| V1 | V2 | 注意 |
-|:--|:---|:-----|
-| `@Component` | `@ComponentV2` | V2 组件内不能用 V1 装饰器 |
-| `@State` | `@Local` | 完全等价 |
-| `@Prop` | `@Param` | Param 不支持双向绑定，需配合 @Event |
-| `@Link` | `@Event` | Link 是双向，Event 是单向回调 |
-| `@Provide`/`@Consume` | `@Provider`/`@Consumer` | API 相同但 key 字符串匹配 |
-| `@Watch` | `@Monitor` | Monitor 更强大：可批量、可取 before/now |
-| `@Observed` | `@ObservedV2` | V2 需配合 @Trace |
-| `@ObjectLink` | `@Trace` | Trace 粒度更细 |
-| 无直接替代 | `@Computed` | V1 需手动同步计算，V2 自动缓存 |
-| 无直接替代 | `@Once` | 初始化后不再更新 |
+### 各存储方案对比
+| 方案 | 作用域 | 生命周期 | 是否持久化 |
+|------|:-----:|:--------:|:--------:|
+| `@State` | 组件内 | 组件销毁时释放 | ❌ |
+| `@Prop/@Link` | 父子组件 | 随组件 | ❌ |
+| `@Provide/@Consume` | 组件树层级 | 随组件树 | ❌ |
+| **`LocalStorage`** | **页面级** | **页面销毁时释放** | ❌ |
+| **`AppStorage`** | **应用全局** | **应用进程存活期间** | ❌ |
+| **`PersistentStorage`** | **应用全局** | **永久保留** | ✅ 持久化到磁盘 |
 
-### 8. 高级架构与性能实战（复杂场景深度指南）
-
-> 针对中大型 App 的架构设计、性能瓶颈排查、多设备复杂适配等场景。
-> 基础功能请参考第 11 节代码模板库；本节聚焦**架构决策和调优策略**。
-
-#### 8.1 🏗️ ArkTS 架构模式
-
-| 模式 | 适用场景 | ArkTS 实现要点 |
-|:---|:---|:---|
-| **MVVM** | 中大型 App、需要单元测试 | View = @Component struct；ViewModel = 普通类 + @Observable；Model = 数据层；通过 @Inject/@Provider 解耦 |
-| **Repository** | 多数据源统一访问（网络+本地缓存） | Repository 类封装数据获取逻辑，内部判断走 RDB 缓存还是网络请求，对外暴露统一接口 |
-| **单例管理** | 全局唯一实例（用户信息、网络客户端） | `class UserManager { private static instance: UserManager; static getInstance() { ... } }` |
-| **事件总线替代** | 跨组件通信（非父子关系） | 用 `AppStorage` + `@Watch` 或 `emitter` 模块（`@ohos.events.emitter`）替代传统 EventBus |
-
-**MVVM 快速脚手架**：
+### LocalStorage（页面级共享）
 ```typescript
-// [API 23+] ViewModel 层 — 可被单元测试
-@Observed
-class LoginViewModel {
-  @Trace phone: string = '';
-  @Trace password: string = '';
-  @Computed get isLoginEnabled(): boolean {
-    return this.phone.length >= 11 && this.password.length >= 6;
-  }
-  async doLogin(): Promise<void> { /* ... */ }
-}
+// 在 EntryAbility 创建页面时传入
+let storage = new LocalStorage({ 'count': 0 });
+windowStage.loadContent('pages/Index', storage);
 
-// View 层
-@ComponentV2
+// 子页面使用
+@Entry(storage) @Component
+struct IndexPage {
+  @LocalStorageProp('count') count: number = 0; // 只读
+  @LocalStorageLink('count') countLink: number;  // 双向绑定
+}
+```
+
+### AppStorage（应用全局）
+```typescript
+// 初始化
+AppStorage.setOrCreate('userName', '默认用户');
+
+// 组件内使用（注意不能带 default 值）
+@StorageProp('userName') userName: string;
+@StorageLink('loginState') loginState: boolean;
+
+// 非组件中访问
+const val = AppStorage.get<string>('userName');
+AppStorage.set('userName', '新用户');
+```
+
+### PersistentStorage（持久化到磁盘）
+```typescript
+// 声明持久化键（与 AppStorage 联动）
+PersistentStorage.persistProp('themeMode', 'light');
+
+// 之后就像使用 AppStorage 一样
+@StorageLink('themeMode') themeMode: string;
+
+// 或直接 AppStorage 访问
+AppStorage.set('themeMode', 'dark'); // 自动持久化到磁盘
+```
+
+---
+
+## 📋 典型代码模板库（35 个标准模板 + 5 个高级模式）
+
+### 1. 登录页面
+```typescript
+@Entry @Component
 struct LoginPage {
-  @Local viewModel: LoginViewModel = new LoginViewModel();
+  @State username: string = '';
+  @State password: string = '';
+  @State loading: boolean = false;
+
   build() {
-    // 绑定 viewModel 属性，自动响应更新
+    Column({ space: 16 }) {
+      TextInput({ placeholder: '用户名', text: this.username })
+        .onChange(v => this.username = v)
+      TextInput({ placeholder: '密码', text: this.password })
+        .type(InputType.Password).onChange(v => this.password = v)
+      Button('登录').width('100%').loading(this.loading)
+        .onClick(() => this.handleLogin())
+    }.padding(24).width('100%').height('100%')
+  }
+
+  async handleLogin() {
+    this.loading = true;
+    try { /* 调用登录 API */ }
+    finally { this.loading = false; }
   }
 }
 ```
 
-#### 8.2 ⚡ 性能优化清单 — 从 5s 到 1s 的冷启动实战
-
-> 以下内容基于华为云社区《HarmonyOS APP 开发：冷启动优化与启动加速实战》（2026-06-23）及官方性能最佳实践。
-> 核心策略：**三减一加** — 减同步任务 · 延非核心 · 并并行 · 加缓存预加载
-
-##### 启动阶段耗时分析
-
-| 阶段 | 典型耗时 | 优化空间 | 瓶颈 |
-|:---|:-------:|:--------:|:----|
-| Application.onCreate | 800~2000ms | **最大** | SDK 全家桶同步初始化 |
-| AbilityStage.onCreate | 100~300ms | 中等 | 非必要 Stage 代码 |
-| Ability.onCreate | 300~800ms | 较大 | 页面数据加载 + 组件初始化 |
-| 首帧渲染 | 500~1500ms | **较大** | 布局层级 · 资源加载 · 串行请求 |
-| **合计** | **1700~5100ms** | **→ 1050ms** | **优化幅度 79%** |
-
-##### ① Application 初始化减负 (2250ms → 250ms, -89%)
-
+### 2. 列表页（LazyForEach）
 ```typescript
-// ❌ 优化前：所有 SDK 同步初始化，约 2250ms
-AnalyticsSDK.init(this.context);      // 300ms
-PushSDK.init(this.context);           // 500ms
-CrashSDK.init(this.context);          // 200ms
-NetworkManager.init(this.context);    // 150ms
-DatabaseManager.init(this.context);   // 800ms
-ImageLoader.init(this.context);       // 200ms
-SharedPreferences.init(this.context); // 100ms
-
-// ✅ 优化后：只留首屏必需，其他延迟，约 250ms
-NetworkManager.init(this.context);    // 首屏数据请求必需
-SharedPreferences.init(this.context); // 首屏配置读取必需
-// 其余通过 StartupTaskScheduler 延迟
-```
-
-##### ② 首帧渲染优化 (1200ms → 500ms, -58%)
-
-```typescript
-aboutToAppear(): void {
-  this.loadFirstScreenData();
+class ListDataSource implements IDataSource {
+  private dataArr: MyItem[] = [];
+  totalCount(): number { return this.dataArr.length; }
+  getData(index: number): MyItem { return this.dataArr[index]; }
+  registerDataChangeListener(listener: DataChangeListener): void {}
+  unregisterDataChangeListener(listener: DataChangeListener): void {}
 }
-
-private async loadFirstScreenData(): Promise<void> {
-  // 🔄 并行请求首屏关键数据
-  const [headlines, banners] = await Promise.all([
-    this.fetchHeadlines(),
-    this.fetchBanners(),
-  ]);
-  this.headlineList = headlines;
-  this.bannerList = banners;
-  this.isLoading = false;
-
-  // 通知首帧渲染完成 → 触发延迟初始化
-  StartupTaskScheduler.getInstance().notifyFirstFrameRendered();
-
-  // 非首屏数据延迟加载
-  this.loadSecondaryData();
+@Entry @Component struct ListPage {
+  private data = new ListDataSource();
+  build() { List() { LazyForEach(this.data, (item: MyItem) => { ListItem() { /* 渲染项 */ } }, item => item.id) } }
 }
 ```
 
-##### ③ ColdStartOptimizer — 生产级冷启动优化器
-
+### 3. 网络请求（HTTP + 错误处理）
 ```typescript
-// 初始化优先级定义
-enum InitPriority {
-  CRITICAL = 0,  // 关键：Application.onCreate 同步执行
-  HIGH = 1,      // 高：首帧后立即执行
-  NORMAL = 2,    // 普通：首帧后延迟执行
-  LOW = 3,       // 低：空闲时执行
-}
-
-// 完整优化器（详见文末代码模板）
-export class ColdStartOptimizer {
-  static getInstance(): ColdStartOptimizer;
-  executeCriticalTasks(): void;      // 同步关键任务 ~250ms
-  executeHighPriorityTasks(): void;  // 首帧后立即
-  executeNormalPriorityTasks(): void;// 首帧后延迟
-  executeLowPriorityTasks(): void;   // 空闲时
+async function apiGet<T>(url: string): Promise<T> {
+  const httpReq = http.createHttp();
+  try {
+    const resp = await httpReq.request(url, { method: http.RequestMethod.GET, header: { 'Content-Type': 'application/json' } });
+    if (resp.responseCode === 200) return JSON.parse(resp.result as string) as T;
+    throw new Error(`HTTP ${resp.responseCode}`);
+  } finally { httpReq.destroy(); }
 }
 ```
 
-**StartupTaskScheduler 调度器**：
+### 4. 页面路由（Navigation）
 ```typescript
-export class StartupTaskScheduler {
-  static getInstance(): StartupTaskScheduler;
-  runAfterFirstFrame(task: () => void): void;   // 首帧渲染后立即执行
-  runWhenIdle(task: () => void): void;           // 空闲时执行（延迟1s）
-  notifyFirstFrameRendered(): void;              // 由页面在数据加载完成后调用
+@Entry @Component struct App {
+  private stack: NavPathStack = new NavPathStack();
+  build() { Navigation(this.stack) { NavDestination('Home') { HomePage(); } NavDestination('Detail') { DetailPage(); } } }
 }
 ```
 
-##### ④ 完整优化效果对比
-
-| 阶段 | 优化前 | 优化后 | 降幅 |
-|:---|:-----:|:-----:|:----:|
-| Application.onCreate | 2250ms | 250ms | -89% |
-| Ability.onCreate | 500ms | 100ms | -80% |
-| 首帧渲染 | 1200ms | 500ms | -58% |
-| **冷启动总耗时** | **5100ms** | **1050ms** | **-79%** |
-
-##### ⑤ 快速排查清单
-
-- **长列表卡顿** → `LazyForEach` + `IDataSource` + `cachedCount`，替代 `ForEach`
-- **频繁重绘** → 拆分 @State 大对象，或改用 `@Observed` + `@ObjectLink` 按需监听
-- **首屏白屏** → 骨架屏 + `Promise.all` 并行请求 + 延迟加载非关键数据
-- **内存泄漏** → `aboutToDisappear` 清理 Timer/subscription/http destroy，配合 JSLeakWatcher（API 26+）
-- **ANR/卡死** → 耗时操作移至 `TaskPool.execute()`
-- **HAP 包过大** → ohpm 按需引入 + HSP 动态共享包 + 图片 WebP
-
-**内存泄漏排查三步法**：
-```
-① DevEco Profiler → Heap Snapshot 对比进入页面前后
-② 找到引用链：谁还在持有已销毁页面的对象？
-③ 最常见泄漏点：Timer 未清除 · 订阅未 off · http 未 destroy · 闭包隐式引用 @Component
-```
-
-**API 26 新增冷启动工具**：
-- `onFirstFrameDrawn` 回调：系统侧通知首帧渲染完成时机
-- `AppStartup` 框架：声明式启动任务配置，自动管理依赖和执行顺序
-- 冷启动自动追踪：DevEco Profiler 自动标记启动阶段耗时
-- Application.onCreate 超时限制 5s（HarmonyOS 6+）
-
-**ArkUI 渲染优化原则**：
-- `build()` 内不要做计算 → 提前在成员方法中算好
-- 避免在 `build()` 内创建新对象（`new Xxx()` / `{ key: value }` 字面量）
-- `if/else` 控制显隐优于 `visibility: Visibility.Hidden`（后者仍占布局空间）
-- 长图片列表用 `CachedImage` 替代 `Image`（系统级缓存管理）
-
-#### 8.3 📱 复杂多设备适配
-
-| 场景 | 方案 | 关键 API |
-|:---|:---|:---|
-| **折叠屏展开/收起** | 监听折叠态切换布局 | `window.on('foldStatusChange')` + 断点枚举 |
-| **平板双栏/手机单栏** | BreakpointType 条件布局 | `BreakpointType<'sm'|'md'|'lg'>` + `@AsMeasure` |
-| **2in1 键盘/平板模式** | 检测鼠标/键盘输入方式 | `pointerDevice` + 输入法模式判断 |
-| **车机窄屏适配** | 安全驾驶约束 | `DriveSafetyMode` + 简化 UI 交互 |
-
-**折叠屏断点速查**：
-
-| 设备状态 | 断点值 | 典型宽度 | 建议布局 |
-|:---|:---|:---|:---|
-| 手机折叠 | `sm` | <600vp | 单栏 |
-| 手机展开/平板竖屏 | `md` | 600~840vp | 双栏（列表+详情） |
-| 平板横屏/桌面 | `lg` | >840vp | 三栏或多面板 |
-
-#### 8.4 🔗 分布式流转进阶
-
-| 能力 | API | 适用版本 | 核心限制 |
-|:---|:---|:---:|:---|
-| **跨设备数据同步** | `@ohos.distributedDataObject` | API 9+ | 需同一华为账号登录 + 同一局域网 |
-| **跨设备文件分享** | `@ohos.file.pasteboard` 分布式剪贴板 | API 10+ | 文件大小受限 |
-| **跨设备拉起** | `startAbility()` + `deviceIds` | API 9+ | 目标设备需安装同应用 |
-| **碰一碰精准分享** | `@kit.ShareKit` harmonyShare | API 26 | 见第 6.2 节完整规格 |
-
-**分布式开发注意事项**：
-- 必须处理**目标设备无响应**异常（设备离线/网络断开）
-- 数据同步冲突策略：**最后写入胜出** 或 **自定义合并**
-- 敏感数据流转前确认用户授权（隐私合规）
-
-### 9. 弃用/移除公告（影响兼容性）
-
-- **API 26 起正式移除**：`router.pushUrl()` → 强制使用 Navigation
-- **API 26 起正式移除**：`globalThis` → 使用 UIContext/AppStorage/LocalStorage
-- **API 26 起正式移除**：`@StorageLink` → 改用 `@LocalStorageProp`/`@LocalStorageLink`
-- **API 25 起弃用**：`@ohos.data.preferences` → 改用 `@kit.ArkData` → `{ preferences }`
-- **API 23→26 import 路径变更**：`@ohos.xxx` → `@kit.xxxKit`（涉及 NetworkKit、NotificationKit、DistributedServiceKit、ImageKit、FileKit、ArkData 等）
-- **迁移窗口**：旧 API 在 API 26 编译报错，不再仅警告
-
-### 10. AGC 上架全流程指南（从代码到商店）
-
-> ⚠️ 以下内容基于 2026-06-25 更新的官方审核 Checklist，覆盖从开发前备案到上架后维护的全链路。
-
-#### 10.1 上架前准备
-
-**必备账户与工具**：
-- 注册华为开发者账号（实名认证）
-- 登录 AppGallery Connect 控制台：https://developer.huawei.com/consumer/cn/service/jsp/agc/index.html
-- DevEco Studio 中登录华为账号
-
-**📋 APP备案（中国区上架必过项）**：
-> 根据监管部门要求，所有在中国大陆上架的应用必须完成 APP 备案。
-
-- 鸿蒙版备案：在接入商备案系统填写材料时**选择"鸿蒙"平台**，添加鸿蒙包名
-- 多包名备案：如存在多个包名，或同时有 App 和元服务，**所有包名均需备案**（可添加多个）
-- 备案信息一致性：备案时的主体信息、应用名称、包名必须与在架信息**完全一致**
-- 无需备案：单机应用（不联网）、境外应用（境外主体+境外服务器）
-- ⚠️ 填写主体证件号时注意区分：`5` vs `S`、`1` vs `I`、`0` vs `O`
-
-**应用命名规范**：
-- ❌ 禁止使用**泛词**：如"免费壁纸""电话""邮件""日历"等广义归纳词汇
-- ❌ 禁止与其他应用名称/图标高度相似
-- ✅ 应用名称建议 30 字以内，中英文
-- ⚠️ **名称图标一致性**：提交到 AGC 的应用名称、图标必须与**安装后终端显示的一致**（不能提交叫"记事本"安装后叫"小记Pro"）
-
-**雷同应用限制**：
-- 如果市场已有大量同类应用（如敲木鱼、随机选择、计时器、计算器、手电筒、记事本、记账、天气），审核可能因"功能同质化严重"被拒
-- 建议在核心功能上做出差异化
-
-**应用基本信息准备**：
-- 应用图标：1024×1024 PNG，**注意需要前景图和背景图两张**（layered_image）
-- 应用截图：至少 3 张，最多 8 张。**不接受设计稿或带水印的截图**，状态栏不要出现其他 App 通知
-- 应用描述（中英文，200-400 字，建议分点列出核心功能）
-- 隐私政策链接（必须有！域名需已备案，内容须随功能更新同步更新）
-- 应用一句话简介（20 字以内，说清楚 App 是干什么的）
-
-**分类与资质**：
-- 应用分类影响审核标准和推荐位
-- 游戏类需要额外提供版号、著作权等资质文件
-- 涉及新闻/金融/医疗等需提供行业资质
-- **AIGC 内容标识**：如果应用涉及深度合成或生成式 AI，须在生成内容中添加**显式标识**（如水印）+ 文件元数据中加**隐式标识**，并提供相关资质文件
-
-#### 10.2 签名、混淆与打包
-
-**签名文件（.p12/.cer/.p7b）**：
-```
-DevEco Studio → Build → Generate Key/CSR
-→ 创建 .p12 密钥库（别名、密码、有效期建议 25 年）
-→ 生成 .cer 证书请求
-→ 回传华为开发者联盟获取签名证书
-→ 从 AGC 下载 .p7b Profile 文件
-→ 配置到 build-profile.json5 的 signingConfigs
-```
-
-**签名配置（`build-profile.json5`）**：
-```json5
-{
-  "app": {
-    "signingConfigs": [{
-      "name": "release",
-      "type": "HarmonyOS",
-      "material": {
-        "certpath": "./signature/release.cer",
-        "storePassword": "***",
-        "keyAlias": "release",
-        "keyPassword": "***",
-        "profile": "./signature/release.p7b",
-        "signAlg": "SHA256withECDSA",
-        "storeFile": "./signature/release.p12"
-      }
-    }]
-  }
-}
-```
-⚠️ **签名密码不要硬编码提交到 Git**，使用环境变量或 CI/CD 密钥管理。
-
-**🔐 代码混淆与加固**：
-```json5
-// build-profile.json5 中开启混淆
-{
-  "app": {
-    "products": [{
-      "name": "release",
-      "obfuscation": {
-        "ruleOptions": { "enable": true, "files": ["./obfuscation-rules.txt"] }
-      }
-    }]
-  }
-}
-```
-```
-# obfuscation-rules.txt 常用规则
--enable-property-obfuscation
--enable-toplevel-obfuscation
--keep-global-name AppStorage,LocalStorage
-```
-⚠️ **混淆后 mapping 文件必须保存！** 否则线上 crash 堆栈无法反混淆定位问题。
-
-**打包**：
-```
-Build → Build HAP(s) / APP(s)
-→ HAP：单模块包（用于调试、内测），输出到 entry/build/default/outputs/
-→ APP：整包（用于上架，含所有 HAP）
-```
-**版本号规范**：
-- `versionCode`：整数，每次递增（如 1000001 → 1000002），**不可回退**
-- `versionName`：语义化版本（如 1.0.0 → 1.0.1）
-- 两者在 `build-profile.json5` 的 `products[].versionCode/versionName` 中配置
-
-#### 10.3 AGC 上架步骤
-
-```
-AppGallery Connect 控制台 → 我的应用 → 创建应用
-├─ 1. 填写应用基本信息（名称、包名、分类、语言等）
-├─ 2. 上传 APP/HAP 包
-├─ 3. 填写应用详情页（描述、截图、更新说明、隐私标签）
-├─ 4. 填写隐私标签（如实填写收集哪些个人信息及使用目的）
-├─ 5. 配置分发范围（全量/按地区/按设备）
-├─ 6. 提供测试账号（如果应用需要登录）
-├─ 7. 提交审核
-└─ 8. 等待审核结果（首次 1-3 工作日，更新 1-2 工作日）
-```
-
-**📌 测试账号要求**：
-- 如果应用需要登录才能使用，**必须提供测试账号**（在提审页面的"应用审核信息"处填写）
-- 测试账号不能有**权限/角色/会员/付费限制**，必须能使用全部功能
-- 确保审核人员可完成"登录 → 浏览 → 操作 → 退出"全流程
-
-**📌 隐私标签服务**：
-- 在 AGC 如实填写应用收集的个人信息项和使用目的
-- 标签内容必须与隐私政策一致，标签与代码实际行为一致
-
-**📌 上架自检（推荐）**：
-- 提交邀请测试时，可**同步提交"上架自检"**
-- 提前感知功耗、性能、兼容性、稳定性、UX、隐私等问题
-- 发现问题可提前修改，加速正式上架
-
-#### 10.4 审核被拒常见原因与修复
-
-> 📊 统计显示：**备案、泛词名称、隐私政策、权限声明、截图质量** 占被拒原因的 TOP 5。
-
-**🔴 必须解决（一票否决项）**：
-
-| 拒绝原因 | 解决方案 |
-|:---|:---|
-| ❌ **APP 备案未完成** | 完成备案并在 AGC 正确勾选（鸿蒙版选"鸿蒙"平台） |
-| ❌ **应用名称为泛词** | 修改为有识别性的名称，不能叫"免费壁纸""计算器"等 |
-| ❌ **名称/图标与实际不一致** | 提交的名称图标必须与安装后显示的一致 |
-
-**🟡 常见问题（修复即可重新提交）**：
-
-| 类别 | 拒绝原因 | 解决方案 |
-|:---|:---|:---|
-| **资质/合规** | 隐私政策链接无效 | 确保链接可访问，域名已备案 |
-| **资质/合规** | AIGC 未加标识 | 生成内容须加显式标识（水印）+ 隐式标识（元数据） |
-| **资质/合规** | reason 字段缺少多语种 | 应用描述需同时提供中文和英文版本 |
-| **权限** | 权限声明与实际不符 | `user_grant` 权限必须有明确使用场景说明（非废话式） |
-| **权限** | 权限申请不合理 | 只申请真正需要的权限，等用户触发功能时再申请 |
-| **UI/体验** | 截图与功能不符 | 截图必须反映实际 UI，不能使用设计稿 |
-| **UI/体验** | 深色模式显示异常 | 在深色模式下测试 UI，确保文字对比度 ≥ 3:1 |
-| **UI/体验** | 多设备适配问题 | 声明支持的设备类型必须全部适配通过 |
-| **功能** | 功能不完整 | 按钮点了没反应、页面空白 → 提审前自我完整测试 |
-| **功能** | 未提供测试账号 | 有登录功能时必须在审核备注中提供无限制的测试账号 |
-| **签名** | 签名证书不一致 | 上架用签名必须与提包签名一致 |
-| **元服务** | 元服务包过大 | 元服务 HAP ≤ 10MB，资源过多需拆分 |
-| **隐私** | 隐私政策弹窗缺失 | 首次启动必须弹隐私协议，用户同意后才做数据收集 |
-| **隐私** | 无账号注销入口 | 设置/账号页面必须提供"注销账号"功能 |
-| **市场** | 市场已有大量雷同应用 | 在核心功能上做出差异化，避免纯工具类撞车 |
-
-#### 10.5 上架后维护
-
-- **版本更新**：先改 versionCode/versionName → 打包 → 上传 AGC → 提交审核
-- **灰度发布**：大版本建议先灰度 20% 用户，观察无严重问题再全量推送
-- **审核加急**：紧急修复可申请加急审核（每月有次数限制，别滥用）
-- **AB 测试**：可在 AGC 配置应用内 AB 实验
-- **Crash 监控**：集成 AGC Crash SDK，崩溃率超过 **1% 应立即修复**
-- **性能监控**：关注启动时间、页面加载时间、ANR 率
-- **用户评价管理**：定期看差评，差评里往往藏着真问题
-- **合规同步更新**：新增数据收集场景时，同步更新隐私政策和隐私标签
-- **热修复**：小 Bug 可通过 ArkTS 热修复能力修，不用重新打包上架；涉及 native 代码或资源文件必须走完整发版
-
-#### 10.6 📊 APMS 故障监控接入
-
-> APMS（Application Performance Management Service）是 API 26 推荐的性能监控方案，集成后实时监控应用健康状态。
-> 模块：`@kit.APMServiceKit` → `{ apms }`
-
-**接入配置**：
+### 5. 本地数据存读取（Preferences）
 ```typescript
-import { apms } from '@kit.APMServiceKit';
-import { common } from '@kit.AbilityKit';
+async function savePref(key: string, val: ValueType) { const p = preferences.getPreferencesSync(context, { name: 'store' }); p.putSync(key, val); p.flush(); }
+async function loadPref<T>(key: string, def: T): Promise<T> { const p = preferences.getPreferencesSync(context, { name: 'store' }); return p.getSync(key, def) as T; }
+```
 
-function initAPMS(context: common.UIAbilityContext): void {
-  apms.init(context, {
-    appId: 'com.example.app',
-    autoCollect: {
-      crash: true,        // 崩溃自动上报
-      anr: true,          // ANR 检测
-      pageLoad: true,     // 页面加载性能
-      apiRequest: true,   // 网络请求性能
-      startupTime: true,  // 启动耗时
-    },
-    sampleRate: 0.1,        // 生产环境 10%，调试可 100%
-    reportInterval: 60000,  // 上报间隔
-  });
-  apms.on('crash', (report) => { /* 崩溃回调 */ });
+### 6. 分页加载
+```typescript
+@State list: Item[] = [];
+@State page: number = 1;
+async loadMore() { const newData = await apiGet<Item[]>(`/list?page=${this.page}`); this.list = [...this.list, ...newData]; this.page++; }
+```
+
+### 7. 下拉刷新
+```typescript
+Refresh({ refreshing: $$this.isRefreshing }) {
+  List() { /* 列表内容 */ }
+}.onRefresh(() => { this.page = 1; this.list = []; this.loadMore(); })
+```
+
+### 8. 图片选择+上传
+```typescript
+import { photoAccessHelper } from '@kit.MediaKit';
+async function pickImage(): Promise<string> {
+  const helper = photoAccessHelper.getPhotoAccessHelper(this.context);
+  const uris = await helper.selectPhotoUri(1);
+  return uris[0];
 }
 ```
 
-**自定义埋点**：
+### 9. 搜索页面
 ```typescript
-apms.reportMetric('payment_success_rate', success ? 1 : 0);
-const timer = apms.startTimer('sync_latency');
-// ... 业务逻辑
-timer.stop();
+Search({ value: $$this.keyword }).onSubmit(() => this.search()).onChange(v => this.keyword = v)
 ```
 
-> **实用场景**：上线后某个页面崩溃率飙升 → APMS 自动分析堆栈定位代码行，关联最近版本变更，比自己看日志快 10 倍。
-
-#### 10.6 🔄 CI/CD 自动化（DevOps）
-
-> hvigorw 是 Hvigor 构建系统的命令行入口，所有 IDE 里能做的构建操作都有对应的命令行参数。
-> 格式：`hvigorw [taskNames...] <options>`
-
-**4 个核心构建任务**：
-
-| 任务 | 输出 | 用途 |
-|:----|:----|:-----|
-| `assembleHap` | .hap 文件 | 安装到设备（调试/内测） |
-| `assembleApp` | .app 文件 | 上架应用市场（含所有 HAP） |
-| `assembleHar` | .har 文件 | 发布到 ohpm 仓库的共享库 |
-| `assembleHsp` | .hsp 文件 | 动态共享包（按需加载） |
-
-**关键参数**：
-
-| 参数 | 示例 | 说明 |
-|:----|:----|:-----|
-| `-p buildMode=release` | `assembleHap -p buildMode=release` | debug（默认，保留调试信息）/ release（开启混淆） |
-| `-p product=default` | `-p product=release` | 指定 build-profile.json5 中的 product 配置 |
-| `--mode module -p module=entry@default` | `-p module=entry@default` | 只编译指定模块，跳过无关模块 |
-| `--no-daemon` | CI 环境推荐 | 不启动常驻进程，避免 CI 缓存问题 |
-| `-p debuggable=true` | `-p debuggable=true` | release 模式保留调试能力（灰度测试用） |
-| `--parallel` | 默认开启 | 并行构建互不依赖的模块 |
-| `--no-incremental` | CI 环境有问题时回退 | 关闭增量编译，回退全量编译 |
-| `--max-old-space-size=8192` | 大型项目 OOM 时 | 设置 Node.js 内存上限（MB） |
-| `-d` / `--debug` | 排查构建失败 | 开启 debug 级别日志 |
-| `--stacktrace` | 排查构建失败 | 打印完整异常堆栈 |
-
-**标准 CI 流水线**（GitHub Actions / Jenkins）：
-```yaml
-# ① 安装依赖
-ohpm install --all
-
-# ② Code Linter
-node codelinter/run/index.js .
-
-# ③ 构建（release mode）
-hvigorw assembleApp -p buildMode=release --no-daemon
-
-# ④ 单元测试
-hvigorw test -p module=entry --no-daemon
-
-# ⑤ 上传 AGC（需 agconnect CLI 配置认证）
-agconnect publish --file entry/build/default/outputs/entry-default-signed.app
-```
-
-**CI 环境注意事项**：
-- 签名密码用 CI 平台的 Secret 变量（Jenkins Credentials / GitHub Actions Secrets），不要硬编码
-- 环境变量：`NODE_HOME`、`JAVA_HOME`、`OHOS_SDK` 必须配置
-- `ohpm install --all` 安装所有模块依赖；网络超时加 `--fetch_timeout` 和 `--retry_times`
-- 增量编译：CI 全新 workspace 无缓存时 = 全量编译，需手动缓存 `build/` 和 `oh_modules/`
-
-#### 10.7 🌐 国际化（i18n）
-
-**资源目录结构**：
-```
-resources/
-├── base/            # 默认（中文）
-│   ├── element/string.json
-│   └── media/
-├── en_US/           # 英文
-│   ├── element/string.json
-│   └── media/
-└── zh_TW/           # 繁体中文
-    ├── element/string.json
-    └── media/
-```
-
-**代码中引用**：`$r('app.string.xxx')` 框架自动根据系统语言选择
-
-**日期/数字格式化**：
+### 10. 表单提交
 ```typescript
-// 日期格式化（自动适配地区）
-let date = new Date();
-let formatter = new Intl.DateTimeFormat('en-US');
-let formatted = formatter.format(date);  // "6/16/2026"
-
-// 数字格式化（千分位）
-let numFormatter = new Intl.NumberFormat('de-DE');
-let num = numFormatter.format(1234567.89);  // "1.234.567,89"
+Button('提交').onClick(async () => {
+  if (!this.validate()) return;
+  await apiPost('/submit', this.formData);
+  promptAction.showToast({ message: '提交成功' });
+})
 ```
 
-### 11. 🔴 真实踩坑记录（来自实战项目，非文档搬运）
-
-> 以下踩坑来自 QuantFlow（鸿蒙股票App）和 pet-review（鸿蒙适配）等真实项目，每个都是编译报错→排查→修复的完整记录。这是本工坊与纯文档类技能的**最大区别**。
-
-#### ① 20个编译错误 — 根因都在 API 层类型声明
-```
-QuantFlow 首次编译报 20 个错误，全部指向同一个根因：
-http.ets 中 api 对象没有明确的 interface 类型声明
-↳ 修复：定义 Api interface + 各接口类型 + 泛型显式标注
-```
-**教训**：API 层必须先声明接口类型，`httpClient.get()` 必须写成 `httpClient.get<object>()`
-
-#### ② .ts vs .ets 文件体系差异
-```
-http.ts 中 AppStorage.get('token') 报错 → 因为 .ts 不能访问 ArkTS 全局对象
-↳ 修复：.ets 中获取后通过普通变量同步到 .ts
-```
-**教训**：.ts 和 .ets 模块系统不同，跨文件共享状态需在 .ets 侧中转
-
-#### ③ 编码损坏 → 伪编译报错
-```
-153 个编译错误的真实根因是文件编码损坏（非 UTF-8 BOM）
-一��未闭合的中文字符串导致其后 50 行全报错
-```
-**教训**：遇到大量(>30个)连续语法错误，先检查文件编码，别逐条修复
-
-#### ④ 659 个错误 — for...in 循环 + 对象索引访问
-```
-for (let key in obj) 在 ArkTS 中禁止
-colors[key] 索引访问对象属性 → 必须用 Record<string, T>
-```
-**教训**：`for...in` 是 TS→ArkTS 迁移时 AI 最常生成的错误代码（与解构赋值、any 并列前三）
-
-#### ⑤ 801 个错误 — import 位置导致装饰器截断
-```
-Index.ets 中 import 放在错误位置 → @Entry/@Component 装饰器被截断
-→ 看似语法错误，实际是结构化问题
-```
-**教训**：遇到"装饰器不存在"报错时，先检查上方 import 是否完整
-
-#### ⑥ 组件 API 误用
-| 组件 | ❌ 错误用法 | ✅ 正确用法 |
-|------|-----------|-----------|
-| Row | `.alignItems(HorizontalAlign.Center)` | `VerticalAlign` |
-| Toggle | `.isOn(true)` | `.selected(true)` |
-| Column | `.borderBottomWidth(1)` | `.border({ bottom: { width: 1 } })` |
-| build() | 内部声明 `const x = ...` | 必须用成员方法提前计算 |
-
-#### ⑦ 批量替换踩坑（血的教训）
-```
-用 sed + Python 批量替换 router.pushUrl → 从 2 个 ERROR 弄到 689 个
-根因：正则无法正确处理嵌套括号结构
-```
-**教训**：永远不要用正则批量替换有嵌套括号的代码。IDE 全局搜索 + 肉眼审查最安全
-
-#### ⑧ API 23→26 迁移踩坑（来自真实项目）
-> 以下踩坑来自一个 HarmonyOS 6→7 迁移实战项目（智能生活助手，API 23→26）。
-
-| 坑 | 现象 | 根因 | 解决 |
-|:---|:---|:---|:---|
-| **编译缓存滞留** | 明明改了代码，报的还是旧错误 | DevEco Studio 用了旧编译缓存 | Build → Clean Project → 重新 Build，别浪费时间逐行排查 |
-| **三方库不兼容** | 社区库在 API 26 下编译报错 | 库未适配新 API | 等作者更新或自己 fork 改；迁移前先盘一遍依赖库兼容情况 |
-| **compatibleSdkVersion 改错** | 旧设备用户全炸了，Crash 飙升 | 把 compatibleSdkVersion 也改成了 26 | 保持 23 不变，确认要放弃旧版本用户后再调 |
-| **`http.destroy()` 报错** | `http.destroy(httpRequest)` 编译不过 | API 26 改为实例方法 `httpRequest.destroy()` | 全局搜索替换为实例调用 |
-| **`getAvailableDevices()` 变异步** | 同步调用拿不到设备列表 | `@kit.DistributedServiceKit` 改为异步方法 | 加 await，相关调用链一起改 |
-| **权限声明被拒** | AGC 审核返回"usedScene 缺失" | API 26 要求 `usedScene` 字段必填 | 补全所有 `user_grant` 权限的 usedScene 配置 |
-| **签名配置失败** | 签名后安装提示证书无效 | 旧 RSA 签名在 API 26 下不推荐 | 改用 `SHA256withECDSA`，签名更小更快 |
-- `@Prop` 修改 `user.name` 视图不动 → @Prop 是值副本，用 @Link 或事件回调
-- `export` 修饰符缺失 → ArkTS 组件默认 internal，被其他模块引用须加 export
-- ForEach 必须提供唯一键（第三个参数 `item => item.id`）
-- Row/Column.alignItems 接受不同枚举类型（Row→VerticalAlign，Column→HorizontalAlign）
-
-#### ⑨ API 26 新能力踩坑
-> 以下踩坑来自实测 HarmonyOS 7 Beta 的碰一碰分享、闪控球、星盾引擎。
-
-| 能力 | 坑 | 正确做法 |
-|:---|:---|:---|
-| **碰一碰分享** | 以为 `off('knockShare')` 不需要传 callback 就能全部清除 | 不传 callback 确实会清空，但**如果后续还要注册不同窗口的监听，必须显式传 callback** |
-| **碰一碰分享** | `updateShareData()` 在 `share()` 之后调用，预览图不生效 | `share()` 调用前就要把预览图准备好，云端下载场景用 setTimeout 预更新再 share |
-| **闪控球** | 用了 STATIC 模板后想更新内容，发现毫无变化 | STATIC 创建后不可更新，需要改 NORMAL/EMPHATIC 模板 |
-| **闪控球** | 没有在 `aboutToDisappear` 中调用 `stopFloatingBall()` | 页面销毁后闪控球仍在，必须显式停止 |
-| **星盾引擎** | 每天前 3 次调用正常，第 4 次开始返回空结果 | 每天每设备限 10 次，超限后不报错直接返回空，需要缓存结果 |
-| **Account Kit** | 登录按钮样式在深色模式下白底白字看不清 | `LoginWithHuaweiIDButton` 自动适配主题色，但需检查应用中是否有强制覆盖样式 |
-| **Account Kit** | `authorizeWithHuaweiID` 抛 SIGN_IN_FAILED | 99% 是 AGC 上配置的签名证书指纹 SHA256 不匹配 |
-
-#### ⑩ 性能踩坑：@State 大对象 vs @Observed + @ObjectLink
-```
-踩坑：一个购物车对象 @State cart = { items: [], total: 0, discount: 0 }
-改任意字段 → 全组件 rebuild，列表闪烁 + 性能下降 60%
-↳ 修复：拆分为 @Observed CartModel + @ObjectLink 按需监听
-```
-**教训**：超过 3 个字段的对象不要直接用 @State，用 @Observed 装饰 class
-
-### 12. 📋 代码模板库（30 个即用模板 + 5 个高级模式）
-
-> 复制即用，每段带版本标注和完整 import。
->
-> 🔍 **快速查找**：需要登录→#1 | 列表→#2 | 网络请求→#3 | 路由→#4 | 存储→#5 | 分页/刷新→#6-7 | 媒体→#8 | 搜索/表单→#9-10 | UI控件→#12-15 | 硬件能力→#16-26 | 系统→#27-30
-
-#### 基础组件（#1~10：页面骨架）
-
-| # | 模板 | 核心代码片段 |
-|:-:|------|------------|
-| 1 | **登录页** | `TextInput` + `Button` + loading 状态控制 |
-| 2 | **LazyForEach 列表** | `IDataSource` + `List` + `LazyForEach(item => item.id)` |
-| 3 | **网络请求** | `http.createHttp()` + `request()` + `destroy()` 确保资源释放 |
-| 4 | **Navigation 路由** | `NavPathStack` + `pushDestinationByName` |
-| 5 | **Preferences 存储** | `getPreferencesSync` + `putSync` + `flush` |
-| 6 | **分页加载** | `page` 状态 + `loadMore()` 追加 + 触底检测 |
-| 7 | **下拉刷新** | `Refresh({ refreshing: $$this.isRefreshing }).onRefresh()` |
-| 8 | **图片选择上传** | `photoAccessHelper.selectPhotoUri(1)` |
-| 9 | **搜索页** | `Search({ value: $$this.keyword }).onSubmit()` |
-| 10 | **表单提交** | 验证 → `apiPost` → 提示 |
-
-#### 功能组件（#11~30：业务能力）
-
-> 🏷️ 倒计时/对话框→#11-12 | 底面板/轮播→#13-14 | 分享/扫码→#16-17 | 位置/通信→#18-21 | 传感器/认证→#24-26 | 后台/系统→#27-30
-
-| # | 模板 | 核心 |
-|:-:|------|-----|
-| 11 | **倒计时** | `setInterval` + `@State countdown` |
-| 12 | **确认对话框** | `AlertDialog.show()` |
-| 13 | **底部面板** | `.bindSheet($$this.showSheet, ...)` |
-| 14 | **轮播图** | `Swiper.autoPlay(true).interval(3000)` |
-| 15 | **二维码生成** | `QRCode({ value: '...' })` |
-| 16 | **分享** | `shareController.share()` |
-| 17 | **扫码** | `scanCore.startScan()` |
-| 18 | **位置获取** | `geoLocationManager.getCurrentLocation()` |
-| 19 | **深色模式** | `config.colorMode === COLOR_MODE_DARK` |
-| 20 | **拨打电话** | `call.makeCall()` |
-| 21 | **发送短信** | `sms.sendMessage()` |
-| 22 | **剪切板** | `pasteboard.getSystemPasteboard()` |
-| 23 | **震动** | `vibrator.vibrate({ duration: 200 })` |
-| 24 | **加速度传感器** | `sensor.on(sensor.SensorId.ACCELEROMETER)` |
-| 25 | **生物认证** | `userIAM_userAuth.getAuthInstance()` |
-| 26 | **网络状态监听** | `connection.on('netAvailable')` |
-| 27 | **应用版本** | `context.getApplicationInfo()` |
-| 28 | **后台定时任务** | `workScheduler.startWork()` |
-| 29 | **键盘避让** | `setKeyboardAvoidMode(KeyboardAvoidMode.RESIZE)` |
-| 30 | **文件下载（带进度）** | `request.downloadFile()` + `on('progress')` |
-
-#### 高级模式（来自华为官方 Sample）
-
-| 模式 | 说明 | 价值 |
-|:----|------|:----:|
-| **BreakpointType\<T\>** | 泛型断点配置器 | 一行代码替代5级 if-else |
-| **CancelablePromise** | 异步竞态管理 | 防止连续快速操作时序错乱 |
-| **AtomicService 签名** | 元服务证书链配置 | 元服务专用签名流程 |
-| **折叠屏态检测** | `window.on('foldStatusChange')` | 展开/折叠布局切换 |
-| **contentCover 封面取色** | `effectKit` 自适应颜色 | 动态主题色跟随封面 |
-
-#### 窗口管理实战模板（来自官方 Codelab）
-
-> 完整代码包含：WindowModel 单例 / 沉浸式主窗口 / 子窗口拉起 / EventHub 跨窗口通信
-
-**WindowModel 核心方法**：
+### 11. 倒计时
 ```typescript
-import { window, display } from '@kit.ArkUI';
-
-export class WindowModel {
-  static getInstance(): WindowModel { /* 单例 */ }
-
-  // ① 设置沉浸式（全屏 + 隐藏系统栏）
-  async setMainWindowImmersive(win: window.Window): Promise<void> {
-    await win.setWindowLayoutFullScreen(true);
-    await win.setWindowSystemBarEnable([]);
-  }
-
-  // ② 创建子窗口（底部弹出验证码/弹窗）
-  createSubWindow(windowStage: window.WindowStage): void {
-    windowStage.createSubWindow('verify_window', (err, subWin) => {
-      const screen = display.getDefaultDisplaySync();
-      const w = screen.width * 0.93, h = w / 1.25;
-      subWin.moveWindowTo((screen.width - w) / 2, screen.height - h);
-      subWin.resize(w, h);
-      subWin.setUIContent('pages/VerifyPage', () => {
-        subWin.setWindowBackgroundColor('#00000000'); // 透明背景
-        subWin.showWindow();
-      });
-    });
-  }
-
-  // ③ 销毁子窗口
-  destroySubWindow(subWin: window.Window): void {
-    subWin.destroyWindow();
-  }
-}
-
-// 入口 Ability
-onWindowStageCreate(windowStage: window.WindowStage): void {
-  WindowModel.getInstance().setMainWindowImmersive();
-  windowStage.loadContent('pages/LoginPage');
-}
+@State countdown: number = 60;
+startCountdown() { const t = setInterval(() => { if (this.countdown <= 0) { clearInterval(t); return; } this.countdown--; }, 1000); }
 ```
 
-**EventHub 跨窗口通信**：
+### 12. 对话框确认
 ```typescript
-// 主窗口登录页 — 注册监听
-aboutToAppear(): void {
-  const ctx = this.getUIContext().getHostContext();
-  ctx?.eventHub.on('HOME_PAGE', () => { this.goHome = true; });
-}
-aboutToDisappear(): void {
-  const ctx = this.getUIContext().getHostContext();
-  ctx?.eventHub.off('HOME_PAGE'); // ⚠️ 必须清理
-}
-
-// 子窗口 — 验证成功时通知
-context.eventHub.emit('HOME_PAGE');
+AlertDialog.show({ title: '提示', message: '确定删除吗？', primaryButton: { value: '取消' }, secondaryButton: { value: '确定', action: () => this.delete() } })
 ```
 
-#### Graphics Accelerate 秒级启动实战（来自官方 Codelab）
-
+### 13. 底部面板
 ```typescript
-import { launchAcceleration } from '@kit.GraphicsAccelerateKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-// Ability 入口
-export default class EntryAbility extends UIAbility {
-  // ① 启动时：声明支持缓存后快速启动
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    if (canIUse("SystemCapability.GraphicsGame.LaunchAcceleration")) {
-      try {
-        this.context.getApplicationContext().setSupportedProcessCache(true);
-      } catch (error) {
-        console.error(`setSupportedProcessCache fail: ${(error as BusinessError).code}`);
-      }
-    }
-  }
-
-  // ② 退出时：检查内存镜像，切换场景
-  onWindowStageWillDestroy(): void {
-    if (canIUse("SystemCapability.GraphicsGame.LaunchAcceleration")) {
-      if (launchAcceleration.isLaunchMirrorEnabled()) {
-        // 将游戏场景切换至登录页（超时 5s）
-        this.gameEngine.switchToLoginScene();
-      }
-    }
-  }
-
-  // ③ 销毁时：若镜像未启用才做引擎析构
-  onDestroy(): void {
-    if (canIUse("SystemCapability.GraphicsGame.LaunchAcceleration")) {
-      if (!launchAcceleration.isLaunchMirrorEnabled()) {
-        this.gameEngine.destroy(); // 正常引擎析构
-      }
-    }
-  }
-}
+.bindSheet($$this.showSheet, { height: SheetSize.MEDIUM }) { Text('面板内容') }
 ```
 
-**关键说明**：
-- 内存镜像制作约需 **4s**，4s 内重新进入则按正常冷启动
-- 镜像启动后 **10s** 内退出则下次不加速（DFR 保护）
-- 系统结合游戏热度、内存镜像数、磁盘换出量综合判定是否开镜像
-- 上架建议：增加游戏健康公告闪屏后再进入镜像界面
-
-### 13. 🆚 鸿蒙 vs 其他平台速查（帮助开发者快速迁移）
-
-> 💡 **从哪来？** Android 开发者关注：状态管理/路由/持久化/网络 | iOS 关注：UI框架/并发/推送 | Web 关注：语言差异/状态管理/DI
->
-> ⚡ **最高频迁移场景**：`useState → @State` · `Retrofit → @ohos.net.http` · `React Router → Navigation` · `Coroutine → TaskPool`
-
-| 概念 | Android | iOS/Swift | Web/React | **鸿蒙 ArkTS** |
-|:-----|:-------:|:---------:|:---------:|:-------------:|
-| **UI 框架** | XML + Jetpack Compose | SwiftUI | React/JSX | ArkUI 声明式 |
-| **语言** | Kotlin/Java | Swift | TypeScript | **ArkTS（强类型 TS 超集）** |
-| **状态管理** | ViewModel + StateFlow | @State/@Binding | useState/Redux | **@State/@Prop/@Link/@Provide** |
-| **页面路由** | NavController/Intent | NavigationStack | React Router | **Navigation + NavPathStack** |
-| **并发** | Coroutine/Thread | async/await + Task | Web Worker | **TaskPool + Worker** |
-| **持久化** | Room/SharedPrefs | CoreData/UserDefaults | localStorage | **Preferences + KVStore + RDB** |
-| **网络请求** | Retrofit/OkHttp | URLSession | fetch/axios | **@ohos.net.http + RCP** |
-| **DI 依赖注入** | Hilt/Dagger | Swinject | Context | **@kit 模块化 + HAR 分包** |
-| **推送** | FCM | APNs | WebSocket | **Push Kit** |
-| **支付** | Google Pay | Apple Pay | Stripe | **IAP Kit** |
-| **地图** | Google Maps | MapKit | Mapbox/Leaflet | **Map Kit** |
-| **相机** | CameraX | AVFoundation | getUserMedia | **CameraManager + Session** |
-| **蓝牙** | BluetoothAdapter | CoreBluetooth | Web Bluetooth | **@ohos.bluetooth** |
-| **生物认证** | BiometricPrompt | LocalAuthentication | WebAuthn | **userIAM_userAuth** |
-| **后台任务** | WorkManager | BGTaskScheduler | Service Worker | **workScheduler** |
-| **上架市场** | Google Play | App Store | Web | **AppGallery Connect** |
-
-> 💡 **迁移价值**：任何主流平台开发者都能在表格中找到对应概念，使用鸿蒙的思维不再是从零学习，而是"迁移已知知识"。
-
-### 14. 📚 实战项目参考（来自 OpenHarmony 开源生态）
-
-> 以下内容基于 OpenHarmony Gitee 组织（728 仓库）中与**应用开发**直接相关的项目提炼而成。
-> 涵盖智慧家居、Codelabs 学习案例、趣味入门三大方向，全部可在 Gitee 找到源码。
-
-#### 14.1 🏠 智慧家居实训项目集
-
-> 来源：[OpenHarmony-SIG/knowledge_demo_smart_home](https://gitee.com/openharmony-sig/knowledge_demo_smart_home)（342 Stars，已归档迁移至 AtomGit）
-> 覆盖从客厅到卧室的全场景智能家居，含连接模组类（15个）、带屏IoT（8个）、Camera应用（2个）、标准设备应用（7个）共 **32 个样例**。
-
-**标准设备应用（最贴近 App 开发者）**：
-
-| 项目 | 技术栈 | 核心能力 | 可用于参考的场景 |
-|------|--------|---------|:-------------:|
-| **数字管家 DistSchedule** | ArkTS, Stage | 分布式任务调度、设备协同 | 多设备协同 App |
-| **智慧中控 eTS版** | eTS, Stage | 设备发现、控制指令下发 | IoT/设备控制类 App |
-| **TodoList** | ArkTS | RDB 持久化、增删改查 | 通用数据管理 App |
-| **Contacts 联系人** | ArkTS | 联系人管理、搜索过滤 | 带搜索功能的列表 App |
-| **智能停车 CarParkTest** | ArkTS | 车位管理、状态展示 | 地图/位置类 App |
-| **坚果食谱 NutRecipes** | ArkTS | 分类浏览、详情展示 | 内容浏览类 App |
-
-**IoT 连接模组类应用架构模式**（可用于指导智能硬件开发）：
-```
-┌─────────────────────────┐
-│  带屏设备（中控面板）      │ ← ArkUI 界面 + 控制指令
-├─────────────────────────┤
-│  分布式软总线 / MQTT      │ ← 设备发现 + 通信协议
-├─────────────────────────┤
-│  L0 无屏设备（灯/窗帘/风扇）│ ← C/OpenHarmony LiteOS
-└─────────────────────────┘
-```
-
-**关键设计模式**：智能中控面板使用发布-订阅模式下发设备控制指令，设备端通过注册回调监听状态变化。这种模式同样适用于非 IoT 的 ArkTS App 组件通信。
-
-#### 14.2 🎓 Codelabs 官方学习案例精选
-
-> 来源：[OpenHarmony/codelabs](https://gitee.com/openharmony/codelabs) — 分享知识与见解，一起探索代码的独特魅力。
-> 共 **50+ 个 Codelab 案例**，覆盖 UI、Ability、媒体、分布式、安全、数据库、卡片、三方库等全领域。
-
-**优秀案例（推荐优先参考）**：
-
-| 案例 | 技术栈 | 推荐理由 |
-|------|--------|---------|
-| **音乐专辑-多端部署** | ArkTS, API 9 | 一次开发多端部署的最佳实践样板，含 BreakpointType 断点适配 |
-| **健康生活** | ArkTS, API 9 | 完整 App 架构：首页、数据、图表、设置，可作为 App 脚手架 |
-| **视频应用-多端部署** | ArkTS, API 9 | 多设备视频播放，含媒体控制栏 + 多窗口适配 |
-| **分布式手写板** | ArkTS, API 10 | 分布式数据对象实时同步，跨设备画布协作 |
-| **分布式新闻客户端** | ArkTS, API 10 | 分布式数据跨设备访问，新闻列表 + 详情 = 多端同步 |
-
-**按功能分类速查**：
-
-| 类别 | 案例 | 可学知识点 |
-|------|------|-----------|
-| **UI（ArkTS）** | 电子相册、自定义抽奖转盘、简易计算器、购物应用 | Canvas 绘图、LazyForEach、Grid 布局、手势交互 |
-| **Ability** | UIAbility生命周期、Stage页面跳转、Ability创建 | 生命周期回调、页面路由栈、Ability间通信 |
-| **动画** | 动效示例、转场动画、自定义下拉刷新 | 属性动画、显式动画、Transition |
-| **媒体** | 视频播放器、音乐播放器、图片编辑 | AVPlayer、媒体库 API、Image 编辑 |
-| **分布式** | 分布式手写板、新闻客户端、游戏手柄、亲子早教 | DistributedDataObject、分布式网络、数据跨端 |
-| **数据管理** | 关系型数据库、首选项、备忘录、应用内字体调节 | RDB、Preferences、数据持久化 |
-| **安全** | 运行时权限、字符串加解密 | 权限请求、Cipher 加密 |
-| **卡片** | 电影卡片、计步器卡片 | 卡片UI、定时刷新、点击事件 |
-| **Native** | Native C++ 模板、XComponent 使用 | NAPI 接口、C++ 与 ArkTS 互调 |
-
-> 💡 **使用建议**：当用户需要某个功能模块的完整实现时，优先从以上 Codelabs 案例中寻找对应的参考实现。例如：要做图片编辑功能 → 参考「图片编辑」Codelab；要做跨设备数据同步 → 参考「分布式手写板」。
-
-#### 14.3 🎮 趣味极客入门项目
-
-> 来源：[OpenHarmony-SIG/vendor_oh_fun](https://gitee.com/openharmony-sig/vendor_oh_fun) — "助燃你心中的极客梦想"
-> 低门槛、高成就感的开源项目，适合向初学者展示鸿蒙的可能性。
-
-| 项目 | 目标 | 适合向用户推荐的理由 |
-|------|------|-------------------|
-| **旧键盘改蓝牙键盘**（Neptune HID） | 用 OpenHarmony 开发板 + 杜邦线把旧键盘变成无线蓝牙键盘 | 极客范、成本低、零基础也能复现 |
-| **BearPi 智能养花机**（BearPi+传感器） | 自动检测土壤湿度、自动浇水 | IoT 入门经典项目，软硬结合 |
-
-> 💡 **使用建议**：当用户是初学者、对鸿蒙感到畏难时，用这些项目说明"不要被 700+ 仓库吓到，起步可以很小很酷"。
-> 注意：这两个项目是 C/C++ 硬件开发（L0~L2 层），不是 App 开发。如果用户想了解纯软件趣味项目，推荐 14.2 中的「自定义抽奖转盘」「简易计算器」等 Codelabs 案例。
-
-### 15. 👤 Account Kit 账号服务集成
-
-> 华为账号一键登录基于 OAuth 2.0 + OpenID Connect。几乎所有 App 都需要。
-> 核心模块：`@kit.AccountKit` → `authentication`（授权）+ `LoginWithHuaweiIDButton`（登录按钮组件）
-
-**前置条件**：
-1. AGC 控制台创建应用 → 开通 Account Kit
-2. 配置签名证书指纹（SHA256，在 AGC "常规 → 应用 → 证书指纹" 处配置）
-3. 获取 Client ID（在 AGC "常规 → 应用" 查看，若与 App ID 相同则无需额外配置）
-4. 配置 `module.json5`：如 Client ID 与 App ID 不同，在 metadata 中配置 `client_id`
-5. 申请权限：`quickLoginMobilePhone`（在 AGC "开发与服务" 中申请）
-
-**一键登录（推荐方式 — 使用系统 UI 组件）**：
+### 14. 轮播图
 ```typescript
-import { LoginWithHuaweiIDButton, loginComponentManager } from '@kit.AccountKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-// 在 UI 中使用 LoginWithHuaweiIDButton 组件
-// 用户点击后自动拉起华为账号授权页，无需自己拼授权 URL
-@Entry
-@Component
-struct LoginPage {
-  build() {
-    Column() {
-      // 华为账号一键登录按钮（系统级 UI 组件）
-      LoginWithHuaweiIDButton({
-        controller: new loginComponentManager.LoginWithHuaweiIDController(),
-        onSuccess: (code: string) => {
-          // code = Authorization Code（一次性）
-          // → 发送到应用后端换取 access_token + unionID + 手机号
-          yourBackend.exchangeAuthCode(code);
-        },
-        onError: (err: BusinessError) => {
-          console.error('登录失败:', err.code, err.message);
-        },
-      })
-        .width(300).height(48);
-    }
-  }
-}
+Swiper() { ForEach(this.banners, (b: string) => { Image(b).width('100%').height(200) }) }.autoPlay(true).interval(3000).indicator(true)
 ```
 
-**程序化授权（高级方式 — 自己控制 UI）**：
+### 15. 二维码生成
 ```typescript
-import { authentication } from '@kit.AccountKit';
-
-// 请求匿名手机号用于登录页展示
-const request: authentication.AuthorizationWithHuaweiIDRequest = {
-  scopes: ['openid', 'profile'],
-  // 如需获取手机号需先在 AGC 申请 quickLoginMobilePhone 权限
-};
-const authResult = await authentication.authorizeWithHuaweiID(request);
-// authResult 包含 authorizationCode（一次性，给后端换 token）
+QRCode({ value: 'https://example.com' }).width(200).height(200)
 ```
 
-**后端验证流程**：
-```
-应用前端 → 获取 authorizationCode → 传给后端
-后端 → 用 authorizationCode + clientSecret 调华为 OAuth 2.0 接口
-   → 获取 access_token + refresh_token
-   → 用 access_token 调用户信息接口
-   → 获取 unionID（应用级唯一标识，用于关联用户数据）
-   → 获取 openID（会话级临时标识，不要用于持久关联）
-   → 获取手机号（需 quickLoginMobilePhone 权限）
-```
-
-**与旧版 API 的区别**：
-- ❌ ~~`hwAccount.getAuthorization()`~~ 已不推荐使用
-- ✅ `authentication.authorizeWithHuaweiID()` + `LoginWithHuaweiIDButton` 组件
-- `LoginWithHuaweiIDButton` 是系统 UI 组件，自动适配华为账号登录界面的设计规范和交互流程
-
-**常见错误码**：
-- `CANCEL`：用户取消登录
-- `NETWORK_ERROR`：网络异常
-- `SIGN_IN_FAILED`：登录失败（检查签名指纹配置和 Client ID）
-
-### 16. 🏭 行业实践参考（官方行业解决方案）
-
-> 来源：华为开发者联盟「HarmonyOS行业解决方案」— 覆盖 17 个行业，提供从架构到常见问题的完整开发方案。
-> 以下精选 5 个最常见行业进行概要说明。
-
-| 行业 | 核心能力需求 | 涉及 Kit | 官方方案要点 |
-|:----|------------|---------|-------------|
-| **新闻阅读** | 富文本渲染、离线缓存、个性化推荐 | ArkUI, Network Kit, Preferences, Push Kit | 多端列表 + 详情架构、离线阅读策略 |
-| **影音娱乐** | 视频播放、音频控制、投屏、DRM | Media Kit, AVSession, AVCodec | 播放器组件化、多窗口适配 |
-| **便捷生活** | 地图、位置、支付、推送、卡片 | Map Kit, Location Kit, IAP, Push, Form Kit | 服务卡片集成、元服务快速入口 |
-| **社交通讯** | 即时消息、音视频通话、文件传输 | Network, Push, Camera, Audio | WebSocket 长连接 + 消息可靠投递 |
-| **购物比价** | 商品列表、搜索、支付、物流跟踪 | List, Search, IAP, LiveView, Map | 闪控窗比价、实况窗物流跟踪 |
-
-**行业实践通用架构模式**：
-```
-┌─────────────────────────────────┐
-│           UI 层 (ArkUI)          │ ← 多端适配（手机/平板/折叠屏）
-├─────────────────────────────────┤
-│      Ability 层 (Stage 模型)     │ ← UIAbility + ServiceExtAbility
-├─────────────────────────────────┤
-│        业务逻辑层 (Service Kit)    │ ← Account/Push/IAP/Map 等
-├─────────────────────────────────┤
-│     数据层 (Preferences/RDB/HSP)  │ ← 本地持久化 + 模块化共享
-└─────────────────────────────────┘
-```
-
-### 17. 参考文件
-
-详细知识存储在 `references/` 目录中：
-- `references/arkts-patterns.md` — ArkTS 核心编程模式（泛型、异步、并发）
-- `references/arkui-components.md` — ArkUI 组件最佳实践（布局、列表、弹窗等）
-- `references/state-management.md` — 状态管理模式全集（V1/V2 装饰器对比）
-
----
-
-## 🔧 使用说明
-
-当用户提出鸿蒙开发相关问题时：
-1. **明确阶段**：判断用户处于编码/调试/上架哪个阶段
-2. **确认目标版本**：默认 API 23+，确认后标注到代码中
-3. **代码是第一优先级**：用户需要代码时，先跑自检清单再输出
-4. **检查废弃 API**：输出代码时自动扫描是否含旧 API
-5. **版本标注**：每个代码块首行注释标注 API 版本：`// [API 23+] 说明`
-6. **上架护航**：用户要发布时，按 AGC 章节逐项检查
-7. **输出徽标**：代码末尾追加 `// ✅ 代码质量自检通过`
-
-### 💬 真实对话示例（快速上手）
-
-以下是 6 个典型场景的完整对话流程，帮助你快速理解本技能的工作方式：
-
-**示例 1：编译错误修复**
-```
-用户：API 26 编译报错，Navigation 路由跳转不生效
-      代码：router.pushUrl({ url: 'pages/Detail' })
-      错误：Property 'pushUrl' does not exist
-
-你：🔍 发现使用废弃 API router.pushUrl（API 26 已正式移除）
-    ✅ 修复方案：改用 NavPathStack
-    // [API 23+] Navigation 路由跳转
-    const stack = new NavPathStack();
-    stack.pushPath({ name: 'DetailPage' });
-    
-    Navigation() {
-      ...
-    }
-```
-
-**示例 2：新能力实现**
-```
-用户：API 26 碰一碰分享功能，NFC 触发后发一条链接
-
-你：📱 碰一碰分享需要 3 步：
-    1. onPageShow 注册 knockShare 监听
-    2. 构造 SharedData（含 UTD 和 URL）
-    3. onPageHide 取消监听
-    然后给出完整 TypeScript 代码示例
-```
-
-**示例 3：性能调优**
-```
-用户：列表 500 条数据滑动卡顿，用的 ForEach
-
-你：⚡ 建议改用 LazyForEach 懒加载
-    ⚠️ 注意需要实现 IDataSource 接口
-    ⚠️ 记得加第三个参数（唯一键）
-    然后给出 IDataSource 实现 + List + LazyForEach 完整代码
-```
-
-**示例 4：上架问题**
-```
-用户：AGC 审核被拒，理由是"权限声明与实际不符"
-
-你：📋 列出可能的原因：
-    1. module.json5 中声明了用不到的权限
-    2. 使用了 user_grant 权限但没有弹窗说明
-    3. 隐私标签与代码实际行为不一致
-    然后逐一给出检查步骤和修复方案
-```
-
-**示例 5：API 迁移**
-```
-用户：把这段 Kotlin 网络请求改成 ArkTS
-     Retrofit 接口：GET /api/users, 返回 List<User>
-
-你：🔄 ArkTS 使用 @ohos.net.http，写法如下：
-    1. 定义 Response 接口
-    2. http.createHttp() 发起请求
-    3. destroy() 释放资源
-    // [API 23+] 网络请求封装
-```
-
-**示例 6：架构咨询**
-```
-用户：跨 3 个页面共享购物车数据，需要实时同步
-
-你：🏗️ 推荐方案：AppStorage + @Watch
-    - 购物车数据存入 AppStorage（跨页面持久化）
-    - 各页面用 @Watch 监听变化
-    - 修改时自动同步到所有页面
-    如果涉及多端流转，再加分布式数据对象方案对比
-```
-
----
-
-## 🧩 额外 Kit 能力速查（常用但易遗漏）
-
-> 以下 Kit 是日常开发中常用的系统能力，开发者容易忽略但官方重点推荐。
-
-### Intents Kit（意图框架服务）— API 23+
-
-**用途**：将应用/元服务的业务功能通过"意图"智能分发到系统入口（小艺对话、小艺搜索、小艺建议），实现智慧分发。
-
-**核心概念**：
-| 特性类型 | 系统入口 | 分发逻辑 |
-|:--------|:--------|:--------|
-| 习惯推荐 | 小艺建议 | 共享意图 → 系统学习规律 → 适当时机推荐服务 |
-| 事件推荐 | 小艺建议 | 共享事件数据（如电影票）→ 提取时间/位置 → 提醒 |
-| 位置推荐 | 小艺建议 | 地理围栏 + 融合定位 → 位置感知推荐 |
-| 技能调用-语音 | 小艺对话 | AI 理解用户输入 → 调用应用功能（如"查机票"） |
-| 本地搜索 | 小艺搜索 | 构建本地索引 → 关键词检索应用内容 |
-
-**意图运行方式**：
-- **意图共享**：应用主动向系统共享意图数据（动作+实体），用于本地搜索和建议
-  - 完成时：用户已执行的意图 → 可用于搜索和建议
-  - 将来时：预测的用户行为 → 可用于搜索
-- **意图调用**：系统主动调用应用功能（播放音乐、查看攻略等）
-
-**约束**：仅 Phone/Tablet/PC，仅中国大陆地区，HarmonyOS 5.0+，不支持模拟器。
-
----
-
-### Data Augmentation Kit（数据增强服务）— API 23+
-
-**用途**：在端侧构建知识库、RAG（检索增强生成）、智慧化数据检索等 AI 数据底座能力。
-
-**提供能力**：
-1. **知识加工** — 对本地文档进行解析、切片、向量化
-2. **RAG** — 基于向量数据库的检索增强生成，支持本地问答
-3. **智慧化数据检索** — ArkTS/C++ 双语言 SDK，支持语义检索
-4. **端侧问答模型** — 轻量化端侧模型，无需联网即可问答
-5. **邮件智能分析模块 ⭐** — API 26 新增 Handler，支持邮件分类、摘要、待办抽取。使用 `KnowledgeProcessor` 配置 Handler 管道
-
-**适用场景**：本地知识库 App、智能客服、文档问答、离线 AI 助手、邮件智能分类。
-
----
-
-### MindSpore Lite Kit（昇思推理框架）
-
-**用途**：HarmonyOS 内置的轻量化 AI 引擎，支持 CPU/Kirin NPU 硬件加速，用于端侧模型推理。
-
-**核心能力**：
-- 模型转换（通用模型 → `.ms` 格式）
-- 端侧推理（图像分类、目标检测、NLP 等）
-- 支持 NPU 硬件加速
-- 与 Core Vision Kit 配合实现端侧视觉 AI
-
-**注意**：与 Core Vision Kit（API 26 新能力）的区别——Core Vision Kit 提供封装好的视觉能力（文字识别/人脸检测等），MindSpore Lite 是底层推理引擎，可运行自定义模型。
-
----
-
-### Accessory Kit（配件接入服务）— ⭐ API 26 全新
-
-> API 26 Beta1 **全新引入**的 Kit，面向合作配件设备及生态企业应用。
-
-**用途**：为配件设备提供关联唤醒、系统服务联动、按需调度与安全授信管理等能力，提升配件设备接入效率。
-
-**核心能力**：
-| 能力 | 说明 |
-|:----|:-----|
-| 关联唤醒 | 配件插入/靠近时自动唤醒对应 App |
-| 系统服务联动 | 配件可与系统服务（蓝牙、USB、NFC 等）协同工作 |
-| 按需调度 | 系统根据配件类型按需分配资源 |
-| 安全授信管理 | 配件设备的接入认证与安全管理 |
-
-**典型场景**：键盘/鼠标/手写笔的配对连接优化、外接显示器自动切换桌面工作流、IoT 配件的一键接入。
-
-**模块**：`@kit.AccessoryKit`（API 26 Beta1 全新）
-
-**验证的 API**（自 SDK 26.0.0 .d.ts）：
+### 16. 分享
 ```typescript
-import { accessoryAccessManager } from '@kit.AccessoryKit';
-
-// AccessManager — 配件接入管理
-const accessMgr = new accessoryAccessManager.AccessManager();
-// 显示配件选择器
-accessMgr.showAccessPicker(
-  [{ discoveryType: accessoryAccessManager.DiscoveryType.PARTNER_BLE_CONNECT,
-     displayName: '键盘', displayImage: pixelMap,
-     requestAttachServiceInfo: [...] }],
-  (event) => { /* AccessEventInfo */ }
-);
-// 修改配件显示名称
-accessMgr.modifyDisplayName('acc_001', '我的键盘');
-// 查询已接入服务
-const services = accessMgr.queryAttachedService();
-
-// ConnectManager — 连接管理
-const connMgr = new accessoryAccessManager.ConnectManager();
-connMgr.registerConnectListener(attachId, (state) => { /* ChannelEventInfo */ });
-connMgr.connect({ attachId, serviceName: 'P_AppAccessoryCollaboration',
-                   channelType: accessoryAccessManager.ChannelType.PARTNER_WIFI_CHANNEL });
-connMgr.disconnect(attachId);
+import { shareController } from '@kit.ShareKit';
+shareController.share({ title: '分享', text: '内容', url: 'https://...' });
 ```
 
----
-
-### NearLink Kit（星闪服务）— API 23+
-
-**用途**：低功耗、高速率短距离通信，支持星闪设备连接和数据交互。
-
-**核心流程**：
-- 中心设备：扫描发现外围设备 → 发起连接 → 数据传输
-- 外围设备：发送广播 → 被中心设备发现 → 连接 → 数据传输
-- API 26 新增 `startScan()` 扫描所有可发现的周边星闪设备
-
-**典型场景**：星闪鼠标、手写笔配对连接、低功耗外设通信。
-
-**支持设备**：Phone/PC/Tablet/TV/Car/Wearable（Car 从 API 23 开始支持）。
-
----
-
-### Input Kit（输入事件注入）— ⭐ API 26 新增
-
-**用途**：API 26 Beta1 新增输入事件注入模块，提供键盘和鼠标输入事件模拟能力。
-
-```typescript
-import { inputEventClient } from '@kit.InputKit';
-
-// 模拟键盘输入
-inputEventClient.injectEvent({
-  type: inputEventClient.EventType.KEY_EVENT,
-  keyCode: inputEventClient.KeyCode.KEY_A,
-  keyAction: inputEventClient.KeyAction.DOWN,
-});
-
-// 模拟鼠标点击
-inputEventClient.injectEvent({
-  type: inputEventClient.EventType.POINTER_EVENT,
-  pointerAction: inputEventClient.PointerAction.DOWN,
-  x: 500,
-  y: 300,
-});
-```
-
-**适用场景**：自动化测试、无障碍辅助、远程控制、外接设备驱动。
-
-**模块**：`@kit.InputKit` → `inputEventClient`
-
----
-
-### Image Kit（图像元数据）— ⭐ API 26 增强
-
-**用途**：提供应用事件打点、日志分析、跟踪分析等维测工具。
-
-| 能力 | 说明 |
-|:----|:-----|
-| 应用事件打点（hiAppEvent） | 自定义事件埋点，监控应用运行状态 |
-| 日志打印（hilog） | 分级日志输出（DEBUG/INFO/WARN/ERROR/FATAL） |
-| 性能跟踪（hiTraceMeter） | 分布式跟踪，跨进程性能分析 |
-| Debug 调试（hidebug） | 内存/CPU/线程等调试信息获取 |
-
-**DFX 最佳实践**：
-```typescript
-import { hiAppEvent } from '@kit.PerformanceAnalysisKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
-
-// 事件打点
-hiAppEvent.write('app_event', hiAppEvent.EventType.BEHAVIOR, {
-  'event_name': 'page_enter',
-  'page_url': 'pages/Index'
-});
-
-// 分级日志
-hilog.info(0x0001, 'MyApp', 'User logged in: %{public}s', userId);
-```
-
-**API 26 新增能力**：
-- **应用冻屏告警**：hiAppEvent 新增应用冻屏告警事件，支持订阅冻屏事件
-- **灰度采集管理**：端云配合采集应用故障日志，提升应用运维能力
-
----
-
-### Kit 完整生态速查
-
-> 以下列表涵盖 HarmonyOS 所有主要 Kit，标记 ✅ 表示已在离线参考库中覆盖。
-
-| Kit | 模块前缀 | 覆盖状态 | 说明 |
-|:---|:--------|:-------:|:-----|
-| AbilityKit | `@ohos.app.ability.` | ✅ | 应用/能力/上下文 |
-| ArkUI | `@ohos.arkui.` | ✅ | 声明式 UI 框架 |
-| ArkData | `@ohos.data.` | ✅ | 数据存储管理 |
-| NetworkKit | `@ohos.net.` | ✅ | 网络通信 |
-| MediaKit | `@ohos.multimedia.` | ✅ | 音视频/相机 |
-| DeviceSecurityKit | `@kit.DeviceSecurityKit` | ✅ | 安全(星盾/隐私/文件审计) |
-| **NotificationKit** | `@ohos.notification.` | **🆕 API 26** | 锁屏字段/半模态拉起 |
-| **PDFKit** | `@kit.PDFKit` | **🆕 API 26** | 多页指定区域转图片 |
-| **GameServiceKit** | `@kit.GameServiceKit` | **🆕 API 26** | 近场快传免集成 |
-| **EnterpriseDataGuard** | `@ohos.bundle.dataguard` | **🆕 API 26** | 文件分级管控 |
-| **EnterpriseSpace** | `@ohos.enterprise.spaceManager` | **🆕 API 26** | 双空间状态查询 |
-| **DriverDevKit** | `OH_USB` | **🆕 API 26** | USB Hub 用户态驱动 |
-| **LiveViewKit** | `@kit.LiveViewKit` | **🆕 API 26** | 百分比进度环 |
-| **RemoteCommKit** | `@ohos.net.rcp` | **🆕 API 26** | HTTP版本/流式上传/QUIC |
-| **ScenarioFusionKit** | `@kit.ScenarioFusionKit` | **🆕 API 26** | 分享Button多格式 |
-| **ScanKit** | `@kit.ScanKit` | **🆕 API 26** | 默认/自定义扫码检测 |
-| **AVSessionKit** | `@kit.AVSessionKit` | **🆕 API 26** | 额外键枚举 |
-| **UIDesignKit** | `@kit.UIDesignKit` | **🆕 API 26** | 标题栏自定义区域 |
-| **NetworkBoostKit** | `@kit.NetworkBoostKit` | **🆕 API 26** | 五元组流量描述 |
-| **PreviewKit** | `OH_Preview` | **🆕 API 26** | 文件预加载加速 |
-| **AccessibilityKit** | `@kit.AccessibilityKit` | **🆕 API 26** | 关怀模式 |
-| **NDK** | `OH_JSVM` | **🆕 API 26** | 外部内存ArrayBuffer |
-| **ImageKit 增强** | `@ohos.multimedia.image` | **🆕 API 26** | 元数据类(GIF/JFIF/TIFF/PNG/AVIS/XMP) |
-| ShareKit | `@kit.ShareKit` | ✅ | 碰一碰分享（完整精学） |
-| AgentKit | `@kit.AgentFrameworkKit` | ✅ | Agent 框架 - FunctionComponent/FunctionController |
-| CoreVisionKit | `@kit.CoreVisionKit` | ✅ | 视觉AI - OCR/人脸/分割/超分/图文搜索 |
-| DataAugmentationKit | `@kit.DataAugmentationKit` | ✅ | RAG/知识库 - 检索/问答/知识处理 |
-| NearLinkKit | `@kit.NearLinkKit` | ✅ | 星闪 - 广告/扫描/SSAP/数据传输/CDSM |
-| PerformanceAnalysisKit | `@kit.PerformanceAnalysisKit` | ✅ | 性能维测 - hiAppEvent/hilog/hiTraceMeter |
-| AccountKit | `@kit.AccountKit` | ✅ | 华为账号 - 认证/登录组件 |
-| IAPKit | `@kit.IAPKit` | ✅ **新增** | 应用内支付 - 商品查询/下单/收银台 |
-| PushKit | `@kit.PushKit` | ✅ | 推送服务 - Token/消息/VoIP/分布式 |
-| MapKit | `@kit.MapKit` | ✅ **新增** | 地图服务 - 地图组件/地点/导航/路线 |
-| LocationKit | `@ohos.geoLocationManager` | ✅ | 位置服务 |
-| CallServiceKit | `@kit.CallServiceKit` | ✅ **新增** | VoIP 通话/号码识别/来电查询 |
-| CloudFoundationKit | `@kit.CloudFoundationKit` | ✅ **新增** | 云函数/云存储/云数据库/云资源 |
-| NaturalLanguageKit | `@kit.NaturalLanguageKit` | ✅ **新增** | 分词/实体识别/文本处理 |
-| CoreSpeechKit | `@kit.CoreSpeechKit` | ✅ **新增** | 语音识别(ASR) / 语音合成(TTS) |
-| GraphicsAccelerateKit | `@kit.GraphicsAccelerateKit` | ✅ **新增** | 游戏快启/资源加速下载 |
-| VisionKit | `@kit.VisionKit` | ✅ **新增** | 活体检测/卡证识别/文档扫描/图像分析 |
-| WearEngine | `@kit.WearEngine` | ✅ **新增** | 穿戴设备管理/P2P通信/传感器 |
-| Bluetooth | `@ohos.bluetooth` | ✅ | 蓝牙 |
-| TelephonyKit | `@kit.TelephonyKit` | ✅ **新增** | 通话/短信/SIM卡/eSIM |
-| CameraKit | `@ohos.multimedia.camera` | ✅ | 相机 |
-| AudioKit | `@ohos.multimedia.audio` | ✅ | 音频 |
-| CryptoArchitectureKit | `@ohos.security.cryptoFramework` | ✅ | 加解密 |
-| UniversalKeystoreKit | `@ohos.security.huks` | ✅ | 密钥管理 |
-| ArkGraphics2D | `@ohos.graphics.` | ✅ | 2D 图形 |
-| BackgroundTasksKit | `@kit.BackgroundTasksKit` | ✅ | 后台任务 - 瞬态/持续/WorkScheduler/提醒 |
-| SensorServiceKit | `@ohos.sensor` | ✅ | 传感器 |
-| TestKit | `@ohos.UiTest` | ✅ | 自动化测试 |
-| AppLinkingKit | `@kit.AppLinkingKit` | ✅ | 应用链接 |
-| WalletKit | `@kit.WalletKit` | ✅ **新增** | 钱包服务 - 卡券/交通卡 |
-| HealthServiceKit | `@kit.HealthServiceKit` | ✅ **新增** | 运动健康 - 健康数据/运动记录 |
-
----
-
-### Test Kit（自动化测试框架）
-
-**用途**：提供 ArkTS 单元测试（JsUnit）和 UI 自动化测试（UITest）能力。
-
-**单元测试核心 API**（`@ohos/hypium`）：
-- `describe/it` — 定义测试套/用例
-- `beforeAll/beforeEach/afterEach/afterAll` — 生命周期
-- `expect(value).assertXxx()` — 20+ 断言方法（assertEqual/assertTrue/assertDeepEquals 等）
-- MockKit — 支持 `mockFunc/verify/when` 模拟对象行为
-
-**UI 测试核心 API**（`@ohos.UiTest`）：
-- `Driver.create()` — 创建驱动，查找/操作控件
-- `ON.text()/type()` — 控件匹配器（按文本/类型/相对位置）
-- `click()/swipe()/drag()` — 触摸操作
-- `dumpLayout/screenCap` — 获取控件树/截图
-
-**UI 测试 CLI 命令**：
-```bash
-# 获取当前界面控件树
-hdc shell uitest dumpLayout -p /data/local/tmp/layout.json -a
-
-# 截图
-hdc shell uitest screenCap -p /data/local/tmp/screen.png
-
-# 模拟点击
-hdc shell uitest uiInput click 100 100
-
-# 模拟滑动
-hdc shell uitest uiInput swipe 10 10 200 200 500
-
-# 方向滑动（0=左,1=右,2=上,3=下）
-hdc shell uitest uiInput dircFling 2
-```
-
----
-
-### App Linking Kit（应用链接服务）
-
-**用途**：提供跨应用、跨设备的深度链接能力，支持是否安装应用的不同跳转策略。
-
-**核心能力**：
-| 能力 | 说明 |
-|:----|:------|
-| 应用链接 | 已安装→应用内打开；未安装→浏览器网页 |
-| 直达应用市场 | 未安装时直接跳转 AppGallery 下载页 |
-| 延迟链接 | 未安装→缓存点击参数→安装后获取参数（10分钟缓存） |
-| 聚合链接 | 跨平台跳转策略（预览页/市场页/自定义URL） |
-
-**适用场景**：扫码直达、社交分享、广告引流、沉默唤醒、碰一碰+App Linking 组合。仅支持手动签名，不支持模拟器。
-
----
-
-### Push Kit（推送服务）
-
-**用途**：系统级推送通道，支持应用在线/离线消息推送。
-
-**核心能力**：
-| 能力 | 说明 |
-|:----|:-----|
-| **通知消息推送** | 显示在通知栏 |
-| **数据消息推送** | 应用后台静默处理 |
-| **富媒体消息** | 图文/音频 |
-| **本地通知** | 无需网络 |
-| **按账号推送** | 绑定 Profile ID 后按用户推送 |
-| **场景化推送** | IM/VoIP/Background/Emergency 等通道 |
-| **分布式消息** | 跨设备消息分发 |
-| **Token 管理** | `getToken()` / `deleteToken()` / `on('tokenUpdate')` |
-
-**本地通知模块**：`@kit.NotificationKit`
-**HMS 推送服务模块**（已验证自 SDK 26.0.0）：`@kit.PushKit`
-```typescript
-// HMS Push Kit — 远程推送
-import { pushService, pushCommon } from '@kit.PushKit';
-
-// 获取推送 Token
-const token: string = await pushService.getToken();
-
-// 接收推送消息（在 UIAbility 中注册）
-pushService.receiveMessage('IM', this.context.abilityInfo.ability, (payload) => {
-  // pushCommon.PushPayload — 推送消息内容
-});
-
-// 按账号绑定/解绑
-await pushService.bindAppProfileId(pushCommon.AppProfileType.APP_PROFILE_ALIAS, 'user_001');
-await pushService.unbindAppProfileId('user_001');
-
-// Token 更新监听
-pushService.on('tokenUpdate', this.context.abilityInfo.ability, (newToken) => {});
-```
-
-**API 26 增强**：推送实况窗消息能力新增支持 Wearable 设备。
-
----
-
-### Core File Kit（文件服务增强）— ⭐ API 26
-
-**用途**：API 26 Beta1 对 Core File Kit 进行了多项重要增强。
-
-**① UNCACHE 模式 — C API (O_DIRECT)**：绕过 Page Cache 直接 DMA 读写，适合大文件顺序读写。
-> ⚠️ 已验证：UNCACHE 是 **C API** 特性，通过 `open()` 的 `O_DIRECT` 标志位实现。**非 ArkTS `fileIo.OpenMode.UNCACHE`**。
-> ArkTS 层的 `OpenMode.UNCACHE` 尚未确认是否存在，生产环境推荐走 C API 或降级到标准 Buffered I/O。
-```cpp
-// C/C++ 实现（API 26 Beta 首次开放）
-#include <fcntl.h>
-#include <unistd.h>
-#include <malloc.h>
-
-#define ALIGNMENT 4096  // 块设备扇区对齐
-
-int fd = open(filePath, O_CREAT | O_WRONLY | O_DIRECT | O_TRUNC, S_IRUSR | S_IWUSR);
-// 缓冲区必须 4K 对齐
-void* buf;
-posix_memalign(&buf, ALIGNMENT, ALIGNMENT);
-memset(buf, 0xAA, ALIGNMENT);
-write(fd, buf, ALIGNMENT);        // 绕过了 Page Cache，数据直接 DMA 到磁盘
-free(buf);
-close(fd);
-```
-**关键约束**：1) 缓冲区地址必须 4K 对齐（`posix_memalign`） 2) 每次 I/O 大小必须是 4K 的整数倍 3) 文件偏移量必须 4K 对齐 4) 不适合小文件/零碎写入（会触发写入放大）
-
-**② 沙箱跨界互访 — FD 传递 + MAC 授权**：应用与系统服务之间"零拷贝"共享文件。
-```cpp
-// 接收方接管跨沙箱传递的文件描述符
-int ReadFromSharedFile(int sharedFd) {
-  // sharedFd 由 IPC 传递，内核 MAC 已授权
-  struct stat st;
-  fstat(sharedFd, &st);          // 无需知道物理路径
-  char buf[1024];
-  read(sharedFd, buf, 1024);
-  close(sharedFd);               // ⚠️ 谁接管谁 close，否则 fd 泄漏
-}
-```
-**注意**：模块.json5 的 `donateSandboxDir` 配置方式未在官方文档中确认，上述 FD 传递方式是已验证的机制。
-
-**③ `listFileExt()`（API 26 新增 ArkTS API，已验证签名）**：
-```typescript
-import { fileIo } from '@kit.CoreFileKit';
-
-// 列出目录中所有匹配指定后缀的文件（API 26+）
-// listFileExt(path: string, options?: ListFileExtOptions): Promise<string[]>
-// listFileExtSync(path: string, options?: ListFileExtOptions): string[]
-const files: string[] = await fileIo.listFileExt('/data/storage/el2/base/haps/entry/files', {
-  recursion: true,   // 是否递归子目录
-  listNum: 100,      // 最大返回数，0=不限
-});
-// 返回值以 / 开头，含子目录路径
-
-// ⚠️ `mmapSync()` — Release Notes 提及但 SDK 26.0.0 中 **不存在此 API**，疑为文档笔误
-```
-
----
-
-### FAST Kit（快速信号处理）— ⭐ API 26 新增
-
-**用途**：提供实数快速傅里叶变换（FFT）和智能序列预测等信号处理能力。
-
-| 能力 | 说明 | API |
-|:----|:-----|:---:|
-| **FFT 变换** | 实数时域信号 ↔ 频域信号快速转换 | API 26 |
-| **FFT 逆变换** | 频域信号还原为时域信号 | API 26 |
-| **智能序列预测** | 接收历史采样数据预测下一时刻序列值 | API 26 |
-
-**验证的模块和 API**（自 SDK 26.0.0 .d.ts）：
-```typescript
-import { mathPrediction } from '@kit.FASTKit';
-
-interface IndexSample {
-  index: number;      // 帧索引
-  timestamp: number;  // 时间戳(ms)
-}
-
-// 根据内置算法预测下一帧索引
-const nextIndex = mathPrediction.predictIndex([
-  { index: 0, timestamp: 0 },
-  { index: 1, timestamp: 16 },
-  { index: 2, timestamp: 33 },
-]);  // throws 1023100001 if array length < 2
-```
-
----
-
-### Spatial Recon Kit（空间重建增强）— ⭐ API 26
-
-**用途**：3D 空间重建能力，API 26 新增 3DGS 编辑和空间照片能力。
-
-**验证的模块和 API**（自 SDK 26.0.0 .d.ts）：
-```typescript
-import { spatialRender, spatialImage } from '@kit.SpatialReconKit';
-
-// ① 3DGS 高斯渲染 — GSPlugin
-const gsNode = await spatialRender.GSPlugin.loadGSNode(scene, {
-  uri: 'path/to/model.gs',  // 3DGS 模型文件路径
-  offset: 0,                 // 可选：数据偏移
-});
-// 内置特效 ID: RETRO_EFFECT_ID / COMIC_EFFECT_ID / OBRA_DINN_EFFECT_ID / COLOR_EDITING_EFFECT_ID
-
-// ② 2D→3D 空间照片 — SpatialImageGenerator
-const generator = spatialImage.SpatialImageGenerator;
-// 检测设备是否支持
-const supportStatus = generator.isSupport();  // SpatialImageStatus
-// 准备运行环境（需下载 AI 模型）
-await generator.prepareEnv((progress) => console.log(`下载进度: ${progress}%`));
-// 生成 3D 模型
-await generator.generate(
-  pixelMap,                                  // 输入图片
-  spatialImage.SpatialImageModelType.MODELTYPE_GS, // GS(0) / Mesh(1)
-  'path/to/output.gs'                        // 输出路径
-);
-// 空间照片控制器 — 根据陀螺仪计算渲染视角
-const controller = new spatialImage.SpatialImageController('path/to/model.gs');
-const cameraPose = controller.calcRenderPos(gyroResponse);
-```
-
----
-
-### AVCodec Kit（编解码增强）— ⭐ API 26
-
-> 以下代码和 API 签名已验证自 51CTO 深度实践文章及官方文档。
-
-**① H.265 CBRHQ 硬件编码**（恒定码率高质量模式，API 26 新增枚举 `CBR_HQ`）：
-```cpp
-#include <multimedia/player_framework/native_avcodec_videoencoder.h>
-#include <multimedia/player_framework/native_avcodec_base.h>
-#include <multimedia/player_framework/native_avformat.h>
-
-OH_AVCodec* encoder = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_HEVC);
-OH_AVFormat* format = OH_AVFormat_Create();
-OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, 1920);
-OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, 1080);
-OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, AV_PIXEL_FORMAT_NV12);
-OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, 30.0);
-OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, 2000000);    // 2Mbps
-// API 26 新增：CBR_HQ 枚举
-OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE,
-   OH_VideoEncodeBitrateMode::CBR_HQ);
-OH_AVFormat_SetIntValue(format, OH_MD_KEY_I_FRAME_INTERVAL, 2000);
-OH_AVFormat_SetIntValue(format, OH_MD_KEY_PROFILE, HEVC_PROFILE_MAIN);
-OH_VideoEncoder_Configure(encoder, format);      // 失败则降级 VBR/CBR
-OH_AVFormat_Destroy(format);
-// 绑定 OnNeedInputBuffer/OnNewOutputBuffer 回调 → OH_VideoEncoder_Start()
-```
-**对比**：CBR（<5%波动，易马赛克）vs VBR（可达300%波动）vs **CBRHQ**（<15%波动，主观画质优）
-
-**② Audio Vivid 空间音频编码**（API 26 新增帧级元数据注入）：
-```cpp
-#include <multimedia/player_framework/native_avcodec_audioencoder.h>
-
-struct SpatialMetadata { float azimuth; float elevation; float radius; };
-
-// 在每帧音频编码时注入三维空间元数据
-OH_AVBuffer* inputBuffer = OH_AudioEncoder_GetInputBuffer(encoder, bufferIndex);
-memcpy(OH_AVBuffer_GetAddr(inputBuffer), pcmData, dataSize);
-
-OH_AVFormat* vividMeta = OH_AVBuffer_GetParameter(inputBuffer);
-// API 26 新增 3 个元数据 key
-OH_AVFormat_SetDoubleValue(vividMeta, OH_MD_KEY_AUDIO_VIVID_AZIMUTH, meta.azimuth);
-OH_AVFormat_SetDoubleValue(vividMeta, OH_MD_KEY_AUDIO_VIVID_ELEVATION, meta.elevation);
-OH_AVFormat_SetDoubleValue(vividMeta, OH_MD_KEY_AUDIO_VIVID_DISTANCE, meta.radius);
-
-OH_AudioEncoder_PushInputBuffer(encoder, bufferIndex);
-```
-
----
-
-### Background Tasks Kit（后台任务增强）— ⭐ API 26
-
-**新增能力**：倒计时提醒实例对象支持重复周期 (`repeatInterval`) 和重复次数 (`repeatCount`) 参数。
-```typescript
-import { reminderAgentManager } from '@ohos.reminderAgentManager';
-
-const timer = {
-  reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_TIMER,
-  triggerTimeInSeconds: 3600,   // 1小时
-  repeatInterval: 86400,         // API 26 新增：每天重复
-  repeatCount: 7,                // API 26 新增：重复7次
-  // ... 其他参数
-};
-```
-
----
-
-### ArkWeb ⚡ Chromium 132→144 升级
-
-> API 26 Beta1 将 ArkWeb 底层 Chromium 内核从 132 升级为 **144 版本**。
-> 主要影响：渲染引擎升级 → 部分 CSS/JS 行为可能变化 → 建议在升级后做回归测试。
-
-**开发者应对**：
-- 检查 Web 组件渲染是否有差异（CSS 兼容性、Flex 布局、动画性能）
-- 验证 JavaScript 引擎行为（ES2024 新特性支持度更高）
-- 新增 `WebviewSecurityParams` 类，可配置网页安全属性
-
----
-
-### Enterprise Data Guard Kit（企业数据守护）— ⭐ API 26 新增
-
-**用途**：API 26 Beta1 新增企业内容感知+剪贴板审计+显示风险管控能力。
-
-**模块**：`@ohos.enterpriseDataGuard`（⚠️ 已验证：非 `@ohos.bundle.dataguard.fileguard`，`getPolicy`/`isKia` 不存在）
-
-**已验证 API**（来源：51CTO 深度实践文章）：
-```typescript
-import { enterpriseDataGuard, dlpPermission } from '@ohos.enterpriseDataGuard';
-
-// ① 剪贴板拦截审计 — 监听复制事件，判断是否拦截
-dlpPermission.registerClipboardInterceptor({
-  onWriteEvent: async (clipboardData) => {
-    const text = clipboardData.getPlainText();
-    if (await hasSensitiveContent(text)) {
-      return dlpPermission.InterceptorResult.DENY;
-    }
-    return dlpPermission.InterceptorResult.ALLOW;
-  }
-});
-
-// ② 内容感知分析 — 创建分析引擎，检测文本中的敏感信息
-const analyzer = await enterpriseDataGuard.createContentAnalyzer({
-  mode: enterpriseDataGuard.AnalyzerMode.HYBRID_FAST,
-  customPatterns: patterns,
-});
-const result = await analyzer.analyzeText(auditText);
-// result.matches: Array<{category: string, confidence: number}>
-
-// ③ 显示风险管控 — 开启水印/防截屏
-await enterpriseDataGuard.enableDisplayRiskControl(true, {
-  text: `工号:${employeeId}`,
-  opacity: 0.03, angle: -45, density: 3,
-});
-```
-
----
-
-### Enterprise Space Kit（企业空间）— ⭐ API 26 新增
-
-**用途**：API 26 Beta1 新增双域隔离，独立的空间沙箱管控。
-
-**模块**：`@kit.EnterpriseSpaceKit` → `enterpriseSpaceManager`（⚠️ 已验证：非 `@ohos.enterprise.spaceManager`）
-
-**已验证 API**（来源：51CTO 深度实践文章）：
-```typescript
-import { enterpriseSpaceManager, PolicyType } from '@kit.EnterpriseSpaceKit';
-
-// ① 查询当前进程是否在企业工作空间内（同步，极速判断）
-const inWorkspace: boolean = enterpriseSpaceManager.isEnterpriseSpace();
-
-// ② 获取工作域内已安装的应用列表
-const apps: AppInfo[] = await enterpriseSpaceManager.getWorkspaceApps();
-
-// ③ 获取工作域管控策略
-const clipboardPolicy = await enterpriseSpaceManager.getSpacePolicy(
-  PolicyType.CLIPBOARD_RESTRICTION   // 或 SCREEN_CAPTURE_RESTRICTION
-);
-// clipboardPolicy.value === 0 → 允许, 1 → 禁止
-```
-
-**关键**：需在 `aboutToAppear`/`onPageShow` 重新检查策略（策略有实时变更）；跨域绝对路径缓存不可复用。
-
----
-
-### Driver Development Kit（驱动开发）— USB DDK
-
-> 以下 API 签名来自 OpenHarmony 官方 USB DDK 开发指南。
-
-**用途**：USB DDK 提供用户态 USB 设备驱动开发能力，支持非标外设（手写板、HID 设备等）。
-
-**模块**：`OH_USB`（C API，`#include <usb/usb_ddk_api.h>`）
-
-**完整 API 清单**（已验证）：
-| API | 说明 |
-|:----|:------|
-| `OH_Usb_Init()` | 初始化 DDK |
-| `OH_Usb_Release()` | 释放 DDK |
-| `OH_Usb_GetDevices(Usb_DeviceArray*)` | 获取 USB 设备 ID 列表（按驱动配置 vid 过滤） |
-| `OH_Usb_GetDeviceDescriptor(deviceId, UsbDeviceDescriptor*)` | 获取设备描述符 |
-| `OH_Usb_GetConfigDescriptor(deviceId, configIndex, UsbDdkConfigDescriptor**)` | 获取配置描述符 |
-| `OH_Usb_FreeConfigDescriptor(config)` | 释放配置描述符（⚠️ 必须释放，否则泄漏） |
-| `OH_Usb_ClaimInterface(deviceId, interfaceIndex, &interfaceHandle)` | 声明接口 |
-| `OH_Usb_ReleaseInterface(interfaceHandle)` | 释放接口 |
-| `OH_Usb_SelectInterfaceSetting(interfaceHandle, settingIndex)` | 激活接口备用设置 |
-| `OH_Usb_GetCurrentInterfaceSetting(interfaceHandle, &settingIndex)` | 获取当前备用设置 |
-| `OH_Usb_SendControlReadRequest(handle, setup, timeout, data, &len)` | 发送同步控制读 |
-| `OH_Usb_SendControlWriteRequest(handle, setup, timeout, data, len)` | 发送同步控制写 |
-| `OH_Usb_CreateDeviceMemMap(deviceId, size, &devMmap)` | 创建缓冲区 |
-| `OH_Usb_DestroyDeviceMemMap(devMmap)` | 销毁缓冲区（⚠️ 必须销毁，否则泄漏） |
-| `OH_Usb_SendPipeRequest(pipe, devMmap)` | 发送管道请求（中断/批量传输） |
-| `OH_Usb_GetNonRootHubs(&hubs, &count)` ⭐ | **API 26 新增** — 查询外接 USB Hub 列表 |
-
-**完整开发步骤**（驱动应用→获取设备→控制传输→释放资源）：
-```cpp
-#include <usb/usb_ddk_api.h>
-#include <usb/usb_ddk_types.h>
-
-// ① 初始化
-OH_Usb_Init();
-
-// ② 获取设备描述符
-struct UsbDeviceDescriptor devDesc;
-OH_Usb_GetDeviceDescriptor(deviceId, &devDesc);
-
-// ③ 获取配置描述符
-struct UsbDdkConfigDescriptor* config = nullptr;
-OH_Usb_GetConfigDescriptor(deviceId, 1, &config);
-// 遍历 config->interfaces[] 找到目标接口
-OH_Usb_FreeConfigDescriptor(config); // ⚠️
-
-// ④ 声明接口
-uint64_t interfaceHandle;
-OH_Usb_ClaimInterface(deviceId, interfaceIndex, &interfaceHandle);
-
-// ⑤ 控制传输（读/写）
-struct UsbControlRequestSetup setup = {
-  .bmRequestType = 0x80, .bRequest = 0x06,
-  .wValue = 0x0302, .wIndex = 0x409, .wLength = 100
-};
-uint8_t data[100]; uint32_t len = 100;
-OH_Usb_SendControlReadRequest(interfaceHandle, &setup, 5000, data, &len);
-
-// ⑥ 批量/中断传输
-UsbDeviceMemMap* mmap;
-OH_Usb_CreateDeviceMemMap(deviceId, 4096, &mmap);
-struct UsbRequestPipe pipe = { interfaceHandle, endpoint, timeout };
-OH_Usb_SendPipeRequest(&pipe, mmap);
-OH_Usb_DestroyDeviceMemMap(mmap); // ⚠️
-
-// ⑦ 释放
-OH_Usb_ReleaseInterface(interfaceHandle);
-OH_Usb_Release();
-```
-
-**约束**：只能在 `DriverExtensionAbility` 生命周期内使用；需 ACL 权限 `ohos.permission.ACCESS_DDK_USB`；CMakeLists.txt 添加 `libusb_ndk.z.so`。
-
----
-
-### Live View Kit（实况窗）— ⭐ API 26 增强
-
-> 以下 API 已验证自 51CTO 深度实践文章，含创建/更新/销毁完整流程。
-
-**模块**：`@kit.LiveViewKit` → `liveViewManager`
-
-**核心 API 签名**：
-```typescript
-import { liveViewManager } from '@kit.LiveViewKit';
-
-// ① 创建实况窗
-const viewId: string = await liveViewManager.startLiveView({
-  type: liveViewManager.LiveViewType.DELIVERY,  // 业务类型
-  data: {
-    title: '骑士正在赶往商家',
-    content: '距离您还有 1.2km',
-    expandedParams: { title: '外卖配送中', description: '请留意电话',
-      progress: 10, estimatedTime: '12:30' },
-    capsuleParams: { text: '1.2km', iconUrl: 'app.media.ic_delivery_rider' },
-  },
-  clickIntent: { bundleName: 'com.example.app', abilityName: 'EntryAbility' },
-});
-
-// ② 更新实况窗数据
-await liveViewManager.updateLiveView(viewId, {
-  title: '骑士已取餐', content: '距离您还有 1.2km',
-  expandedParams: { progress: 55, estimatedTime: '12:28' },
-  capsuleParams: { text: '1.2km' },
-});
-
-// ③ 停止实况窗
-await liveViewManager.stopLiveView(viewId);
-```
-
-**API 26 新增辅助区模板**：`expandedParams` 支持 `progress` 字段 → 自动渲染百分比进度环。
-
-**注意事项**：
-- 需权限 `ohos.permission.KEEP_BACKGROUND_RUNNING` + `ohos.permission.PUSH_MESSAGES`
-- 图标必须使用系统资源标识符 `app.media.xxx`，不能传本地路径
-- 应用崩溃后必须兜底清理（`onCreate` 或 `onPageShow` 检查残留）
-
----
-
-### Remote Communication Kit / RCP（远程通信）
-
-> RCP (Remote Communication Platform) 是 HarmonyOS 推荐的新一代网络请求框架，替代旧 `@ohos.net.http`。
-
-**导入**：`import { rcp } from '@kit.RemoteCommunicationKit'`
-
-**核心 API**：
-```typescript
-import { rcp } from '@kit.RemoteCommunicationKit';
-
-// ① 创建会话（支持拦截器/DNS/安全配置）
-const session: rcp.Session = rcp.createSession({
-  baseAddress: 'https://api.example.com',
-  headers: { 'X-App-Version': '1.0' },
-  interceptors: [new LogInterceptor()],
-  requestConfiguration: {
-    security: { tlsOptions: { tlsVersion: 'TlsV1.3' } },
-    dns: { dnsOverHttps: { /* ... */ } },
-  },
-});
-
-// ② 发起请求
-const response: rcp.Response = await session.get('/users');
-// 或
-const postResp = await session.post('/upload', {
-  body: JSON.stringify({ name: 'test' }),
-});
-console.info(`状态: ${response.statusCode}, HTTP版本: ${response.httpVersion}`);
-
-// ③ MultipartForm 多表单
-const form = new rcp.MultipartForm({
-  'file': { contentOrPath: '/data/file.txt', remoteFileName: 'upload.txt' },
-  'description': '文件描述',
-});
-await session.post('/files', form);
-
-// ④ 请求级配置
-const req = new rcp.Request('/data', 'GET', undefined, undefined, undefined, undefined, {
-  transfer: { timeout: { connectMs: 5000, transferMs: 30000 } },
-});
-await session.fetch(req);
-
-// ⑤ 关闭
-session.close();
-```
-
-**API 26 新增（待验证签名）**：
-- `HttpVersionSelectCallback` — HTTP/1.1 / HTTP/2 / HTTP/3 版本选择
-- `HMS_Rcp_SetRequestGetDataCallback()` — C API 流式上传
-- `HMS_Rcp_SetFormOrder()` — C API 有序 multipart/form-data
-- QUIC 客户端数据传输 C API
-> ⚠️ 以上 4 项来源于 Release Notes，未从官方 API 参考文档验证精确签名，生产中请以 IDE 提示为准。
-
-**vs 旧 @ohos.net.http**：
-| 对比 | @ohos.net.http | RCP |
-|:----|:-------------:|:---:|
-| 创建方式 | `createHttp()` | `createSession()` |
-| 拦截器 | 无 | ✅ 内置 Interceptor 链 |
-| DNS 自定义 | 无 | ✅ DnsConfiguration |
-| 请求级超时 | 无 | ✅ Configuration.transfer |
-| 多表单 | 手动拼接 | ✅ MultipartForm 类 |
-| TLS 版本 | 有限 | ✅ SecurityConfiguration |
-
----
-
-### Scenario Fusion Kit（场景融合）— ⭐ API 26 增强
-
-**用途**：场景化分享 Button 增强，支持多格式分享。
-
-**模块**：`@kit.ScenarioFusionKit` → `FunctionalButtonComponentManager`
-
-**实际 API 签名**（已验证自 SDK 26.0.0 d.ts）：
-```typescript
-import { FunctionalButton, functionalButtonComponentManager,
-         atomicService, fileUriService,
-         FunctionalInput, functionalInputComponentManager }
-  from '@kit.ScenarioFusionKit';
-
-// fileUriService — 场景化分享 URI 转换
-// convertFileUris(sourceFileUris: Array<string>): Promise<Array<FileUriResult>>
-// FileUriResult: { sourceUri: string, targetUri: string, targetType: TargetType }
-// TargetType: UNKNOWN(0) | MEDIA(1) | FILE(2)
-const results = await fileUriService.convertFileUris(['file://...']);
-
-// FunctionalButton / FunctionalInput — 元服务功能按钮和输入组件
-// functionalButtonComponentManager — 功能按钮组件管理
-// atomicService — 元服务能力
-```
-
----
-
-### Scan Kit（扫码服务）— ⭐ API 26 增强
-
-**用途**：API 26 新增设备扫码能力检测，扫码前先查询、避免运行时失败。
-
-**模块**：`@kit.ScanKit`
-
-**已验证的 API 签名**（来源：官方 API 参考 GitHub）：
+### 17. 扫码
 ```typescript
 import { scanCore } from '@kit.ScanKit';
+const result = await scanCore.startScan({ scanType: scanCore.ScanType.QR_CODE });
+```
 
-// 查询是否支持默认界面扫码（API 26+，元服务 26+）
-const defaultOk: boolean = scanCore.isDefaultScanSupported();
-// true → 可调用 scanBarcode 拉起系统扫码页面
+### 18. 位置获取
+```typescript
+import { geoLocationManager } from '@kit.LocationKit';
+const loc = await geoLocationManager.getCurrentLocation({ priority: geoLocationManager.LocationRequestPriority.FIRST_FIX });
+console.info(loc.latitude, loc.longitude);
+```
 
-// 查询是否支持自定义界面扫码（API 26+）
-const customOk: boolean = scanCore.isCustomScanSupported();
-// true → 可集成 customScan 自定义扫码 UI
+### 19. 深色模式判断
+```typescript
+const cm = this.context.config.colorMode; this.isDark = cm === ConfigurationConstant.ColorMode.COLOR_MODE_DARK;
+```
+
+### 20. 拨打电话
+```typescript
+import { call } from '@kit.TelephonyKit';
+call.makeCall('10086');
+```
+
+### 21. 发送短信
+```typescript
+import { sms } from '@kit.TelephonyKit';
+sms.sendMessage({ destination: '10086', content: 'CXLL' });
+```
+
+### 22. 剪切板
+```typescript
+import { pasteboard } from '@kit.BasicServicesKit';
+const pb = pasteboard.getSystemPasteboard(); await pb.setData({ text: '复制内容' });
+const text = (await pb.getData()).getPrimaryText();
+```
+
+### 23. 震动
+```typescript
+import { vibrator } from '@kit.BasicServicesKit';
+vibrator.vibrate({ duration: 200 });
+```
+
+### 24. 传感器（加速度）
+```typescript
+import { sensor } from '@kit.SensorServiceKit';
+sensor.on(sensor.SensorId.ACCELEROMETER, (data) => { console.info(data.x, data.y, data.z); });
+```
+
+### 25. 生物认证
+```typescript
+import { userIAM_userAuth } from '@kit.UserAuthenticationKit';
+const auth = await userIAM_userAuth.getAuthInstance({ challenge: new Uint8Array(0), authType: userIAM_userAuth.AuthType.FINGERPRINT });
+await auth.start(); auth.on('result', (r) => { if (r.result === 0) { /* 验证通过 */ } });
+```
+
+### 26. 网络状态监听
+```typescript
+import { connection } from '@kit.ConnectivityKit';
+connection.on('netAvailable', () => { console.info('网络可用'); });
+connection.on('netLost', () => { console.info('网络断开'); });
+```
+
+### 27. 应用版本信息
+```typescript
+const info = this.context.getApplicationInfo();
+console.info('版本:', info.versionName, '代码:', info.versionCode);
+```
+
+### 28. 定时任务（后台）
+```typescript
+import { workScheduler } from '@kit.BackgroundTasksKit';
+workScheduler.startWork({ workId: 1, bundleName: '...', abilityName: '...', isPersisted: true, networkType: workScheduler.NetworkType.NETWORK_TYPE_WIFI });
+```
+
+### 29. 键盘避让
+```typescript
+// 在 module.json5 中配置
+// "metaData": { "customizeData": [{ "name": "hwc-theme", "value": "android:windowSoftInputMode=adjustResize" }] }
+// 或在页面中
+this.getUIContext().setKeyboardAvoidMode(KeyboardAvoidMode.RESIZE);
+```
+
+### 30. 文件下载
+```typescript
+import { request } from '@kit.NetworkKit';
+const task = await request.downloadFile(this.context, { url: 'https://...', filePath: `${this.context.filesDir}/download.zip` });
+task.on('progress', (received, total) => { console.info(`${received}/${total}`); });
+await task.start();
 ```
 
 ---
 
-### AVSession Kit（音视频会话）— ⭐ API 26 增强
+## 🏗️ 华为官方高级模式库（从 MultiVideoApplication 提取）
 
-**用途**：音视频会话新增额外键枚举，用于定义不同场景的自定义元数据键。
+> 以下 5 个模式来自华为官方多设备长视频应用 Sample，覆盖断点适配、异步竞态、窗口管理、输入安全和折叠屏适配，已适配 ArkTS 严格语法。
 
-**模块**：`@kit.AVSessionKit`
+### 模式 1：BreakpointType\<T\> 泛型断点配置
 
-**API 26 新增 `ExtraKey` 枚举**（已验证自 SDK 26.0.0）：
+**作用**：根据当前设备断点返回不同配置值，一行代码替代 5 级 if-else。
+
 ```typescript
-import { avSession } from '@kit.AVSessionKit';
-
-enum ExtraKey {
-  DLNA_CURRENT_URI_METADATA = 'CurrentURIMetadata',
-  DLNA_DIDL_LITE = 'DIDL-Lite'
-}
-// 使用示例：session.setAVMetaData({ [ExtraKey.DLNA_DIDL_LITE]: '<DIDL>...</DIDL>' })
-```
-
----
-
-### PDF Kit（PDF 服务）— ⭐ API 26 增强
-
-**用途**：PDF 文档多页指定区域合并转图。
-
-**模块**：`@kit.PDFKit`
-
-**API 26 新增 `getPixelMapWithPages()`**（已验证自 SDK 26.0.0）：
-```typescript
-import { pdfService } from '@kit.PDFKit';
-
-const doc = new pdfService.PdfDocument();
-doc.loadDocument(path);
-// 多页指定区域合并转图（API 26+）
-// pageIndices: number[] — 要合并的页索引数组
-// matrices: PdfMatrix[] — 每页的仿射矩阵（x, y, width, height, rotate）
-// bitmapWidth/bitmapHeight — 输出位图尺寸
-// options?: PixelOptions — { isGray?, drawAnnotations?, isTransparent? }
-const pixelMap = doc.getPixelMapWithPages(
-  [0, 1, 2],
-  [matrix1, matrix2, matrix3],
-  1024, 768
-);
-```
-
----
-
-### UI Design Kit（UI 设计）— ⭐ API 26 新增
-
-**用途**：API 26 Beta1 新增标题栏自定义区域能力。
-
-**模块**：`@kit.UIDesignKit`
-
-**验证的签名**：
-```typescript
-import { hdsEffect, TitleBarContentOptions, BottomBuilderParams,
-         HdsNavigationAttribute, HdsNavDestinationAttribute }
-  from '@kit.UIDesignKit';
-
-// TitleBarContentOptions (API 26 新增字段)
-interface TitleBarContentOptions {
-  title?: HdsNavigationTitle;
-  menu?: HdsNavigationMenuContentOptions;
-  backIcon?: HdsNavigationBackButtonItemOptions;
-  stackBuilder?: CustomBuilder;
-  stackBuilderComponent?: ComponentContent;
-  stackBuilderContent?: BuilderType;     // 🆕 API 26
-  bottomBuilder?: BottomBuilderParams;
-  divider?: HdsNavigationDividerParams;
-  menuItem?: HdsNavigationMenuItemOptions;
-}
-
-// BottomBuilderParams (API 26 新增字段)
-interface BottomBuilderParams {
-  builder: CustomBuilder;
-  builderComponent?: ComponentContent;
-  builderContent?: BuilderType;          // 🆕 API 26
-  height?: Length;
-  showType?: BottomBuilderShowType;
-}
-
-// BuilderType (API 26 新增)
-type BuilderType = ComponentContent | BuilderOptions;
-```
-
----
-
-### NDK — JSVM ArrayBuffer（原生开发）— ⭐ API 26 新增
-
-> API 签名已从官方开发指南完整验证（developer.huawei.com 2026-06-27 更新）。
-
-**用途**：从外部已分配内存创建 `ArrayBuffer`，零拷贝（不保证）包装 Native 内存供 JS 层读写。
-
-**模块**：`OH_JSVM`（C API，需定义 `JSVM_EXPERIMENTAL` 宏）
-
-**完整 API 签名**：
-```cpp
-#define JSVM_EXPERIMENTAL  // 必须！在 include jsvm.h 之前定义
-#include "ark_runtime/jsvm.h"
-#include "ark_runtime/jsvm_types.h"
-
-// API 签名（已验证）
-JSVM_Status OH_JSVM_CreateArrayBufferFromExternalMemory(
-    JSVM_Env env,
-    void* externalData,            // 外部内存指针（必须8字节对齐）
-    size_t byteLength,             // 内存长度
-    JSVM_FinalizeArrayBuffer finalizeCb, // 可选回调，ArrayBuffer被GC时调用
-    void* finalizeHint,            // 可选，传给回调的自定义数据
-    bool* copied,                  // 输出：true=已拷贝 false=零拷贝
-    JSVM_Value* result             // 输出：创建的ArrayBuffer对象
-);
-
-// finalizeCb 回调类型
-typedef void (*JSVM_FinalizeArrayBuffer)(
-    JSVM_Env env,          // 始终为NULL，不可使用
-    void* finalizeData,    // 传入的 externalData
-    void* finalizeHint,    // 传入的 finalizeHint
-    bool copied            // 是否发生了拷贝
-);
-```
-
-**完整使用流程**：
-```cpp
-// ① 加载外部数据（malloc，确保8字节对齐）
-size_t dataSize = 16;
-void* pixelData = malloc(dataSize);
-
-// ② 创建 ArrayBuffer（不保证零拷贝，不要依赖）
-JSVM_Value arrayBuffer = nullptr;
-bool copied = false;
-OH_JSVM_CreateArrayBufferFromExternalMemory(
-    env, pixelData, dataSize,
-    [](JSVM_Env, void* data, void*, bool copied) {
-        if (!copied) free(data); // 零拷贝→finalizeCb释放
-    }, nullptr, &copied, &arrayBuffer);
-
-// ③ 如果已拷贝，可立即释放原内存
-if (copied) free(pixelData);
-
-// ④ 通过 GetArraybufferInfo 访问数据
-void* abData = nullptr; size_t abLen = 0;
-OH_JSVM_GetArraybufferInfo(env, arrayBuffer, &abData, &abLen);
-```
-
-**注意事项**：
-- `externalData` 必须 8 字节对齐，否则返回 `JSVM_INVALID_ARG`
-- `copied` 值随 JSVM 版本变化，**不在业务逻辑中依赖零拷贝**
-- `finalizeCb` 中不能调用其他 JSVM API，仅做资源释放
-- 创建失败时需手动 `free(pixelData)`
-
----
-
-### Network Boost Kit（网络加速）— ⭐ API 26 新增
-
-**用途**：五元组流量描述能力，API 26 新增精细化网络管控。
-
-**模块**：`@kit.NetworkBoostKit`
-
-**API 26 新增**（已验证自 SDK 26.0.0）：
-```typescript
-import { netBoost, netQuality, netHandover } from '@kit.NetworkBoostKit';
-
-// 设置数据流描述（五元组精细化管控，API 26+）
-const dataFlowDesc: netBoost.DataFlowDesc = {
-  dataFlowInfo: {
-    protocol: netBoost.ProtocolType.PROTOCOL_TCP,  // TCP(1) / UDP(0)
-    local:  { address: '192.168.1.1', port: 8080 },
-    remote: { address: '10.0.0.1',  port: 443 },
-  },
-  scene: netQuality.ServiceType.AUDIO,  // 业务类型（音频/视频/下载等）
-  sceneEvent: netBoost.SceneEvent.SCENE_EVENT_ENTER,
-  expectations: {  // 可选：带宽/延迟期望
-    uplinkBandwidth?: number,    // Kbps
-    downlinkBandwidth?: number,  // Kbps
-    latency?: number,            // ms
-    priority?: netBoost.PriorityLevel, // PRIO_NORMAL(0) / PRIO_HIGH(1)
-    lowPowerMode?: boolean,
-  },
-};
-netBoost.setDataFlowDesc(dataFlowDesc);
-
-// 设置场景描述（API 6.0+）
-netBoost.setSceneDesc({
-  scene: netQuality.ServiceType.AUDIO,
-  sceneEvent: netBoost.SceneEvent.SCENE_EVENT_LEAVE,
-});
-
-// 低功耗模式
-netBoost.setLowPowerMode(true);
-```
-
----
-
-### Notification Kit（通知服务）— ⭐ API 26 增强
-
-**用途**：通知管理能力增强。
-
-**模块**：`@kit.NotificationKit`
-
-**已验证 API**：
-```typescript
-import { notificationManager } from '@kit.NotificationKit';
-import { common } from '@kit.AbilityKit';
-
-// ① 锁屏通知配置（在创建渠道时设置 slot.lockscreenVisibility）
-let slot: notificationManager.NotificationSlot = {
-  slotType: notificationManager.SlotType.SOCIAL_COMMUNICATION,
-  name: '社交消息',
-  lockscreenVisibility: notificationManager.LockscreenVisibility.PUBLIC, // PUBLIC/PRIVATE/SECRET
-};
-await notificationManager.addSlot(slot);
-
-// ② 半模态拉起通知设置（API 26+）
-const context: common.UIAbilityContext = this.context;
-await notificationManager.openNotificationSettingsWithResult(context, 1001);
-// 在 UIAbility.onAbilityResult 中处理返回
-
-// ③ 精细授权查询（API 26 Beta+）
-// UserGrantSetting 枚举：LOCK_SCREEN | BANNER | SOUND | VIBRATION
-const status = notificationManager.getUserGrantSetting(
-  notificationManager.UserGrantSetting.LOCK_SCREEN
-);
-// UserGrantStatus: ALLOWED(0) / DENIED(1) / NOT_GRANTED(2)
-```
-
----
-
-### Image Kit（图片处理）— 元数据 + 逆变换
-
-**用途**：API 26 新增 6 种格式专用元数据类；API 23 起支持批量元数据读写和预览流逆变换。
-
-**@ohos.multimedia.image 增强**：
-
-**① 元数据读写 (API 23+)**：
-```typescript
-import { image } from '@kit.ImageKit';
-
-// 读取元数据（批量，一次 I/O）
-const source = image.createImageSource(fd); // ⚠️ 写权限需要 fd
-const meta = await source.readImageMetadata(['ImageWidth', 'ImageLength']);
-// meta.exifMetadata.imageWidth, meta.makerNoteHuaweiMetadata?.isXmageSupported
-
-// 批量写入（内存合并事务，一次磁盘 I/O）
-meta.exifMetadata.imageLength = '3072';
-await source.writeImageMetadata(meta);
-```
-
-**② 预览流逆变换 (API 23+)** — 自动抵消传感器旋转角：
-```typescript
-// 异步
-const pixelMap = await image.createPixelMapFromSurfaceWithTransformation(surfaceId, true);
-// 同步（适合渲染循环）
-const pxSync = image.createPixelMapFromSurfaceWithTransformationSync(surfaceId, true);
-```
-
-**③ API 26 新增 6 种格式专用元数据类** ✅ 已验证（来源：官方 API 参考）：
-```typescript
-import { image } from '@kit.ImageKit';
-
-// GIF 元数据（读取 GIF 帧延迟/循环/画布）
-// .delayTime: number | .unclampedDelayTime: number (ms)
-// .hasGlobalColorMap: boolean | .loopCount: number (0=无限)
-// .disposalType: number (0=未指定/1=不处置/2=背景色/3=前一帧)
-// .canvasWidth: number | .canvasHeight: number (px)
-// 读取示例：imageSource.readImageMetadataByType([image.MetadataType.GIF_METADATA])
-// → metaData.gifMetadata.delayTime / .loopCount / .canvasWidth
-
-// JPEG/JFIF 元数据
-// .densityUnit: number (0=无/1=DPI/2=DPC)
-// .xDensity: number | .yDensity: number
-// .isProgressive: boolean | .version: number[]
-// → metaData.jfifMetadata.xDensity / .isProgressive
-
-// TIFF 元数据
-// .primaryChromaticities: number[] | .whitePoint: number[]
-// .tileWidth: number | .tileLength: number (px)
-// .dateTime: string | .make: string | .model: string
-// .artist: string | .copyright: string
-// .software: string | .hostComputer: string
-// .orientation: Orientation | .compression: number
-// → metaData.tiffMetadata.make / .model / .dateTime / .orientation
-
-// PNG 元数据
-// .xPixelsPerMeter: number | .yPixelsPerMeter: number
-// .gamma: number | .chromaticities: number[]
-// .title: string | .author: string | .description: string
-// .copyright: string | .creationTime: string
-// .sRGBIntent: number | .interlaceType: number
-// → metaData.pngMetadata.title / .author / .creationTime
-
-// AVIS 元数据
-// .delayTime: number (ms) — 仅此一个属性
-// → metaData.avisMetadata.delayTime
-
-// XMP 元数据（可扩展元数据平台，支持命名空间读写）
-// const xmp = new image.XMPMetadata();
-// await xmp.registerXMPNamespace({ uri: 'urn:example:book:1.0', prefix: 'book' });
-// await xmp.setValue('book:title', image.XMPTagType.STRING, 'My Title');
-// const tag = await xmp.getTag('book:title'); // → { name, value, type }
-// await xmp.removeTag('book:title');
-// xmp.enumerateTags((path, tag) => { console.info(path, tag.value); return true; }, undefined, { isRecursive: true });
-// const tags = await xmp.getTags(); // Record<string, XMPTag>
-// await xmp.getBlob() / .setBlob(buffer) — 二进制读写
-// → 需通过 imageSource.readImageMetadataByType([image.MetadataType.XMP_METADATA])
-// → metaData.xmpMetadata.registerXMPNamespace(...)
-```
-
-**读取入口**：`imageSource.readImageMetadataByType(types: MetadataType[])` 或 `pictureObj.getMetadata(type)`
-
----
-
-### Game Service Kit（游戏服务）— ⭐ API 26 增强
-
-> API 签名已验证自 51CTO 深度实践文章（API 23+ 基础 API）。
-
-**用途**：游戏近场快传，支持安装包零流量 P2P 传输。
-
-**模块**：`@ohos.game.nearbyTransfer`（`gameNearbyTransfer`）
-
-**已验证的基础 API**（API 23+）：
-```typescript
-import { gameNearbyTransfer } from '@ohos.game.nearbyTransfer';
-
-// 创建近场快传会话（安装包传输）
-const result = await gameNearbyTransfer.create({
-  abilityName: 'EntryAbility',
-  moduleName: 'entry',
-  contentType: gameNearbyTransfer.ContentType.INSTALLATION_PACKAGE,  // 安装包
-  gameLinking: 'nearbytransfer://com.example.game?type=nearbyTransfer',
-});
-
-// 订阅对端安装状态
-gameNearbyTransfer.onRemoteInstallationInfoNotify((info) => {
-  if (info.installed) {
-    // 对端安装完成，可销毁当前任务并切换到资源包传输
-    gameNearbyTransfer.destroy(result.linkingForInstallation);
+// [API 23+] BreakpointType.ets — 泛型断点配置工具
+export class BreakpointType<T> {
+  private xs: T;
+  private sm: T;
+  private md: T;
+  private lg: T;
+  private xl: T;
+
+  constructor(xs: T, sm: T, md: T, lg: T, xl: T) {
+    this.xs = xs;
+    this.sm = sm;
+    this.md = md;
+    this.lg = lg;
+    this.xl = xl;
   }
-});
-```
 
-**API 26 新增**（已验证自 SDK 26.0.0）：
-- **近场安装包 P2P 传输**的 `gameNearbyTransfer` 基础 API 已验证（API 23+），详见上方代码块
-- 免集成 SDK 模式：`create()` 的 `contentType: INSTALLATION_PACKAGE` 走系统级 P2P 通道，不需集成 Game Service Kit SDK
-
----
-
-### Preview Kit（预览服务）— ⭐ API 26 新增
-
-**用途**：文件预加载与加速预览能力（API 26 Beta1 新增）。
-
-**模块**：`@kit.PreviewKit` → `openFileBoost` / `filePreview`
-
-**验证的 API 签名**（自 SDK 26.0.0 .d.ts）：
-```typescript
-// ① 文件打开加速（openFileBoost, 5.0.5+，API 26 已废弃 ⚠️）
-import { openFileBoost } from '@kit.PreviewKit';
-
-// 文件预加载状态枚举
-enum FilePreloadState { NOT_PRELOADED = 0, PRELOADING = 1, PRELOADED = 2 }
-interface FilePreloadStatusInfo { sandboxPath: string; progress: number; state: FilePreloadState; }
-
-// 监听预加载状态变化
-openFileBoost.on('filePreloadStateChanged', (info: FilePreloadStatusInfo) => {});
-openFileBoost.off('filePreloadStateChanged');
-
-// 添加/移除文件到预加载列表
-openFileBoost.addFile('/sandbox/path/file.pdf');
-openFileBoost.removeFile('/sandbox/path/file.pdf');
-openFileBoost.queryFilePreloadStatusInfo('/sandbox/path/file.pdf');
-// → FilePreloadStatusInfo: { sandboxPath, progress, state }
-
-// ② 文件预览（filePreview, 4.1.0+，推荐使用 ✅）
-import { filePreview } from '@kit.PreviewKit';
-const context = getContext(this);
-
-// 单文件预览
-filePreview.openPreview(context, {
-  title: '文档.pdf',
-  uri: 'file://...',
-  mimeType: 'application/pdf',
-}, { x: 0, y: 0, width: 500, height: 800 });
-
-// 多文件预览（仅移动端）
-filePreview.openPreview(context, [file1, file2, file3]);
-
-// 检测文件是否可预览
-const canPrev = await filePreview.canPreview(context, 'file://...');
-
-// 关闭预览
-filePreview.closePreview(context);
-```
-
----
-
-### Accessibility Kit（无障碍·关怀模式）— ⭐ API 26 新增
-
-**用途**：无障碍能力增强，API 26 新增关怀模式支持。
-
-**模块**：`@kit.AccessibilityKit`
-
-**新增能力**：
-- 支持应用接入系统的**关怀模式**，提升长辈关怀功能及体验
-- 关怀模式：大字号、高对比度、简化交互，自动适配系统设置变更
-
----
-
-### IAP Kit（应用内支付）— 新增精学
-
-**用途**：提供应用内商品查询、下单、支付功能，支持收银台组件。
-
-**模块**：`@kit.IAPKit`
-
-**验证的 API 签名**（自 SDK 26.0.0）：
-```typescript
-import { iap, CashierComponent, cashierComponentManager } from '@kit.IAPKit';
-
-// 商品查询
-const products = await iap.queryProducts({
-  type: iap.ProductType.CONSUMABLE,  // CONSUMABLE(0) / NON_CONSUMABLE(1) / AUTO_RENEWABLE(2)
-  productIds: ['com.example.coin_100', 'com.example.vip_month'],
-});
-// Product { productId, price, priceMicros: number, currency: string, title, description, ... }
-
-// 创建购买（收银台）
-const purchaseResult = await iap.createPurchase({
-  productId: 'com.example.coin_100',
-  type: iap.ProductType.CONSUMABLE,
-  autoUnlock: true,                  // 自动解锁
-  sendBroadcast: false,               // 是否发广播
-});
-// PurchaseResult { transactionId, productId, purchaseTime, purchaseToken, orderId, ... }
-
-// 消费/确认购买（服务端发货后调用）
-await iap.finishPurchase({
-  purchaseToken: purchaseResult.purchaseToken,
-  type: iap.ProductType.CONSUMABLE,
-});
-
-// 收银台组件（声明式 UI）
-// CashierComponent({ product: productItem, onResult: (result) => {} })
-
-// 查询已购商品
-const owned = await iap.queryOwnedPurchases({
-  type: iap.PurchaseQueryType.ALL,   // ALL(0) / CONFIRMED(1) / UNCONFIRMED(2)
-});
-```
-
----
-
-### Map Kit（地图服务）— 新增精学
-
-**用途**：地图展示、地点搜索、路线规划导航、静态图生成。
-
-**模块**：`@kit.MapKit`
-
-**验证的 API 签名**（自 SDK 26.0.0）：
-```typescript
-import { mapCommon, map, MapComponent, MapComponentController,
-         site, navi, staticMap, sceneMap, petalMaps } from '@kit.MapKit';
-
-// ① 地图组件
-// MapComponent({ mapOptions, mapCallback, customInfoWindow })
-// mapOptions: { center: LatLng, zoom: number, minZoom?, maxZoom?, mapType: MapType, ... }
-// MapType: STANDARD(0) / SATELLITE(1) / NONE(2) / NAVI(3)
-
-// ② 地图控制器
-const controller = new MapComponentController();
-controller.animateCamera({ target: { latitude: 39.9, longitude: 116.4 }, zoom: 15, duration: 500 });
-
-// ③ 地点搜索
-site.searchByText(getContext(), { query: '餐厅', location: { lat: 39.9, lng: 116.4 }, radius: 5000 })
-  .then(sites => sites.forEach(s => console.log(s.name, s.address, s.coordinate)));
-site.nearbySearch(getContext(), { location: { lat: 39.9, lng: 116.4 }, poiType: '咖啡厅', radius: 3000 });
-site.geocode(getContext(), { address: '北京市海淀区' });  // → LatLng
-site.reverseGeocode(getContext(), { lat: 39.9, lng: 116.4 }); // → Address
-
-// ④ 路线规划
-const routes = await navi.getDrivingRoutes(getContext(), {
-  origin: { lat: 39.9, lng: 116.4 },
-  destination: { lat: 39.95, lng: 116.5 },
-});
-// routes[i].distance, .duration, .polyline, .tollCost, .trafficLights
-
-// ⑤ 静态图
-const pixelMap = await staticMap.getMapImage(getContext(), {
-  center: { lat: 39.9, lng: 116.4 }, zoom: 14, width: 400, height: 300
-});
-
-// ⑥ 场景地图（3D室内地图）
-// sceneMap — 3D 场景展示
-// petalMaps — 花瓣地图能力
-```
-
----
-
-### Telephony Kit（通话/短信）— 新增精学
-
-**用途**：拨打电话、短信收发、SIM 卡管理、网络状态、eSIM。
-
-**模块**：`@kit.TelephonyKit`
-
-**验证的 API 签名**（自 SDK 26.0.0）：
-```typescript
-import { call, sms, sim, radio, data, observer, eSIM } from '@kit.TelephonyKit';
-
-// 拨打电话
-call.makeCall('10086');             // 直接呼叫
-call.dial('10086', { extras: '' }); // 通过拨号盘
-
-// 发送短信
-sms.sendShortMessage(getContext(), { destinationNumber: '10086', content: 'CXLL' });
-
-// SIM 卡信息
-const simCount = sim.getSimCount();          // SIM 卡数量
-const iccid = sim.getSimIccId(slotId);       // ICCID
-const operator = sim.getSimOperatorNumeric(); // 运营商号
-const gid1 = sim.getSimGid1(slotId);         // GID1
-
-// 网络状态
-radio.getRadioTech(slotId);  // RADIO_TECHNOLOGY_GSM(0) / WCDMA / LTE / NR ...
-radio.getSignalInformation(slotId); // 信号强度列表
-
-// 数据连接
-data.getDefaultCellularDataSlotId();         // 默认数据卡槽
-data.isCellularDataEnabled();                // 数据开关状态
-
-// eSIM 卡
-// eSIM 提供 eSIM 配置下载和管理能力
-
-// 通话/网络状态监听
-observer.on('callStateChange', (state) => {});
-observer.on('signalInfoChange', (infos) => {});
-observer.on('networkStateChange', (state) => {});
-observer.off('callStateChange');
-```
-
----
-
-### Wallet Kit（钱包服务）— 新增精学
-
-**用途**：卡券管理（优惠券/会员卡）、交通卡开卡/充值/查询。
-
-**模块**：`@kit.WalletKit`
-
-**验证的 API 签名**（自 SDK 26.0.0）：
-```typescript
-import { walletPass, walletTransitCard } from '@kit.WalletKit';
-
-// ① 卡券管理
-const passClient = new walletPass.WalletPassClient(getContext());
-await passClient.addPass({ passTypeId: 'com.example.membership', serialNumber: 'M001' });
-const passList = await passClient.queryPass({ passTypeId: 'com.example.membership' });
-const canAdd = await passClient.canAddPass({ passTypeId: 'com.example.membership' });
-await passClient.updatePass({ passTypeId: 'com.example.membership', serialNumber: 'M001', data: { ... } });
-await passClient.deletePass({ passTypeId: 'com.example.membership', serialNumber: 'M001' });
-
-// ② 交通卡
-const transitClient = new walletTransitCard.TransitCardClient(getContext());
-const cards = await transitClient.getTransitCardInfo();     // 查询所有交通卡
-const metadata = await transitClient.getCardMetadataInDevice(); // 设备支持的卡片元数据
-await transitClient.addTransitCard('card_product_id');      // 开卡
-await transitClient.rechargeTransitCard('card_id', 50);     // 充值
-await transitClient.deleteTransitCard('card_id');           // 删卡
-```
-
----
-
-### Health Service Kit（运动健康）— 新增精学
-
-**用途**：运动健康数据读写、聚合查询、数据同步授权。
-
-**模块**：`@kit.HealthServiceKit`
-
-**验证的 API 签名**（自 SDK 26.0.0）：
-```typescript
-import { healthStore, healthService } from '@kit.HealthServiceKit';
-
-// 查询健康数据
-const records = await healthStore.getRecords(getContext(), {
-  dataType: healthStore.DataType.STEP_COUNT,  // STEP_COUNT / HEART_RATE / SLEEP / ...
-  startTime: Date.now() - 86400000,
-  endTime: Date.now(),
-});
-// records[i].value, .time, .dataType
-
-// 聚合查询（日/周/月统计）
-const stats = await healthStore.getDailySummary(getContext(), {
-  dataType: healthStore.DataType.STEP_COUNT,
-  date: '20260701',
-});
-
-// 写入健康数据
-await healthStore.insertRecord(getContext(), {
-  dataType: healthStore.DataType.HEART_RATE,
-  value: 72,
-  time: Date.now(),
-});
-
-// 数据同步授权
-healthService.requestAuthorization(getContext(), [healthStore.DataType.STEP_COUNT]);
-```
-
----
-
-### Agent Kit（Agent 框架）— 精学补全
-
-**用途**：API 26 新增 AI Agent 框架，提供声明式 UI 组件和控制器。
-
-**模块**：`@kit.AgentFrameworkKit`
-
-**验证的 API 签名**（自 SDK 26.0.0）：
-```typescript
-import { AgentController, FunctionComponent, FunctionController,
-         FunctionOptions, ButtonType } from '@kit.AgentFrameworkKit';
-
-const controller = new AgentController();
-const isSupported = await controller.isAgentSupport(getContext(), 'agent_id');
-
-controller.on('agentDialogOpened', () => {});
-controller.on('agentDialogClosed', () => {});
-
-// FunctionComponent 声明式 UI 组件
-// FunctionComponent({ agentId, onError, options: {
-//   title: '智能助手', buttonType: ButtonType.CAPSULE,
-//   queryText: '帮我...', iconSize: 20,
-// } })
-```
-
----
-
-### Core Vision Kit（视觉 AI）— 精学补全
-
-**模块**：`@kit.CoreVisionKit`
-
-```typescript
-import { textRecognition, faceDetector, faceComparator,
-         subjectSegmentation, imageSuperResolution, textSearchImage } from '@kit.CoreVisionKit';
-
-// OCR 文字识别
-const result = await textRecognition.recognizeText({ pixelMap: img });
-console.log('识别结果:', result.value); // TextBlock[] 含文本行和单词
-
-// 人脸检测
-const faces = await faceDetector.detect({ pixelMap: img });
-// faces[i].probability, .rect, .pose, .points
-
-// 人脸比对
-const cmp = await faceComparator.compareFaces({ pixelMap: face1 }, { pixelMap: face2 });
-console.log('同一人:', cmp.isSamePerson, '相似度:', cmp.similarity);
-
-// 主体分割
-const seg = await subjectSegmentation.doSegmentation({ pixelMap: img }, { maxCount: 6 });
-// seg.subjectCount, seg.fullSubject.foregroundImage
-
-// 图像超分
-const sr = await imageSuperResolution.ImageSRAnalyzer.create();
-const result = await sr.process({ inputData: { pixelMap: lowRes } });
-
-// 图文搜索
-await textSearchImage.init();
-await textSearchImage.insertImage('/path/img.jpg', 'scope1');
-const results = await textSearchImage.search('日落', 'scope1', 10);
-```
-
----
-
-### Data Augmentation Kit（RAG/知识库）— 精学补全
-
-**模块**：`@kit.DataAugmentationKit`
-
-```typescript
-import { retrieval, rag, knowledgeProcessor, localChatModel } from '@kit.DataAugmentationKit';
-
-// ① RAG 问答 - 创建 RAG 会话并流式问答
-const session = await rag.createRagSession(getContext(), {
-  llm: myChatLLM,
-  retrievalConfig: { channelConfigs: [{ channelType: 0, context: getContext(), dbConfig: { name: 'kb.db' } }] },
-  retrievalCondition: { recallConditions: [/* ... */] }
-});
-session.streamRun('什么是鸿蒙？', { answerTypes: [0, 1, 2] }, (err, stream) => {
-  console.log(stream.answer.chunk);
-});
-
-// ② 向量检索
-const retriever = await retrieval.getRetriever({ channelConfigs: [/* ... */] });
-const records = await retriever.retrieveRdb('查询', { recallConditions: [{ ftsTableName: 'fts', ... }] });
-
-// ③ 知识处理（建索引）
-const processor = await knowledgeProcessor.getKnowledgeProcessor(getContext(), { sourceConfig: { rdbSource: { name: 'kb.db' } } });
-await processor.startProcess({ mode: 3 }); // 倒排+向量化
-
-// ④ 本地端侧问答
-await localChatModel.init();
-localChatModel.chat({ questionId: 1, content: '鸿蒙' }, { isStream: true }, callback);
-```
-
----
-
-### NearLink Kit（星闪）— 精学补全
-
-**模块**：`@kit.NearLinkKit`
-
-```typescript
-import { advertising, scan, manager, remoteDevice, ssap, dataTransfer } from '@kit.NearLinkKit';
-
-// ① 发广播
-const advId = await advertising.startAdvertising({
-  advertisingSettings: { interval: 5000, isConnectable: true },
-  advertisingData: { serviceUuids: ['xxxx'], includeDeviceName: true }
-});
-
-// ② 扫描设备
-scan.startScan([{ /* filters */ }], { scanMode: 0, duration: 30 });
-scan.on('deviceFound', (devices) => { devices.forEach(d => console.log(d.deviceName, d.rssi)); });
-// ③ 连接
-const device = remoteDevice.createRemoteDevice('AA:BB:CC:DD:EE:FF');
-device.startPairing();
-
-// ④ SSAP 服务
-const client = ssap.createClient('AA:BB:CC:DD:EE:FF');
-await client.connect();
-const services = await client.getServices();
-await client.readProperty({ serviceUuid: 'svc1', propertyUuid: 'prop1' });
-
-// ⑤ 数据传输
-dataTransfer.createPort('data-uuid');
-dataTransfer.connect({ address: 'AA:BB:CC:DD:EE:FF', uuid: 'data-uuid' });
-dataTransfer.on('readData', (params) => { console.log('收到', params.data); });
-```
-
----
-
-### Performance Analysis Kit（性能维测）— 精学补全
-
-**模块**：`@kit.PerformanceAnalysisKit`
-
-```typescript
-import { hiAppEvent, hilog, hiTraceMeter, hidebug, hichecker } from '@kit.PerformanceAnalysisKit';
-
-// 性能打点
-hiAppEvent.write({ domain: 'test', name: 'loadTime', eventType: 2, params: { duration: 150 } });
-
-// 日志
-hilog.info(0xFF00, 'MyTag', '用户登录 userId=%{public}s', uid);
-
-// 性能跟踪
-hiTraceMeter.startTrace('pageLoad', 1);
-// ... 业务代码
-hiTraceMeter.finishTrace('pageLoad', 1);
-
-// 内存/CPU
-const pss = hidebug.getPss();                 // 实际物理内存(KB)
-const cpu = hidebug.getCpuUsage();            // CPU占用率
-hidebug.dumpJsHeapData('/data/heap.hprof');   // 堆转储
-
-// 代码检查
-hichecker.addCheckRule(hichecker.RULE_CAUTION_PRINT_LOG);       // 禁止打印日志
-hichecker.addCheckRule(hichecker.RULE_THREAD_CHECK_NETWORK_USAGE); // API 26: 禁止主线程网络请求
-```
-
----
-
-### Background Tasks Kit（后台任务）— 精学补全
-
-**模块**：`@kit.BackgroundTasksKit`
-
-```typescript
-import { backgroundTaskManager, workScheduler, reminderAgentManager } from '@kit.BackgroundTasksKit';
-
-// ① 瞬态任务（延迟挂起）
-const info = backgroundTaskManager.requestSuspendDelay('数据处理中', () => { /* 即将挂起 */ });
-const remaining = await backgroundTaskManager.getRemainingDelayTime(info.requestId);
-
-// ② 持续任务（需 KEEP_BACKGROUND_RUNNING 权限）
-await backgroundTaskManager.startBackgroundRunning(getContext(), { backgroundTaskModes: [2], wantAgent }, );
-await backgroundTaskManager.stopBackgroundRunning(getContext());
-
-// ③ WorkScheduler
-workScheduler.startWork({ workId: 1, bundleName: 'com.example', abilityName: 'WorkAbility',
-  networkType: 1, isCharging: true, repeatCycleTime: 3600000, isRepeat: true });
-
-// ④ 提醒代理
-const timerId = await reminderAgentManager.publishReminder({
-  reminderType: 0, triggerTimeInSeconds: 3600,          // 倒计时
-  repeatInterval: 86400, repeatCount: 7,                // 🆕 API 26
-  title: '喝水提醒', content: '该喝水了'
-});
-```
-
----
-
-### CallServiceKit（通话服务）— 新增精学
-
-**用途**：VoIP 通话能力，替代已废弃的 CallKit。
-
-**模块**：`@kit.CallServiceKit`（CallKit 已废弃，推荐此替代）
-
-**验证的 API 签名**（自 SDK 26.0.0）：
-```typescript
-import { voipCall, numberIdentify, CallerInfoQueryExtensionAbility } from '@kit.CallServiceKit';
-
-// ① 上报来电
-voipCall.reportIncomingCall({
-  callId: 'call_001',
-  voipCallType: voipCall.VoipCallType.VOIP_CALL_VOICE, // VOICE(0) / VIDEO(1)
-  userName: '张三',
-  userProfile: pixelMap,          // 头像
-  abilityName: 'VoipUIExtAbility', // UIExtensionAbility 名称
-  voipCallState: voipCall.VoipCallState.VOIP_CALL_STATE_RINGING,
-  showBannerForIncomingCall: true,
-}).then((err) => console.info('来电上报结果:', err));
-
-// ② 上报呼叫状态变更
-voipCall.reportCallStateChange('call_001', voipCall.VoipCallState.VOIP_CALL_STATE_ACTIVE);
-// 状态：IDLE/RINGING/ACTIVE/HOLDING/DISCONNECTED/DIALING/ANSWERED/DISCONNECTING
-
-// ③ 订阅 UI 事件（接听/挂断/静音等）
-voipCall.on('voipCallUiEvent', (event) => {
-  // VoipCallUiEvent: VOICE_ANSWER/VIDEO_ANSWER/REJECT/HANGUP/MUTED/SPEAKER_ON 等
-  console.log('UI事件:', event.voipCallUiEvent, 'callId:', event.callId);
-});
-
-// ④ 号码识别
-const switchState = await numberIdentify.queryNumberIdentifySwitchState(getContext());
-if (switchState.isNumberIdentifyEnabled) {
-  // 开启号码识别
+  getValue(currentWidthBreakpoint: WidthBreakpoint): T {
+    if (currentWidthBreakpoint === WidthBreakpoint.WIDTH_XS) {
+      return this.xs;
+    }
+    if (currentWidthBreakpoint === WidthBreakpoint.WIDTH_MD) {
+      return this.md;
+    }
+    if (currentWidthBreakpoint === WidthBreakpoint.WIDTH_SM) {
+      return this.sm;
+    }
+    if (currentWidthBreakpoint === WidthBreakpoint.WIDTH_LG) {
+      return this.lg;
+    }
+    return this.xl;
+  }
 }
 
-// ⑤ 来电信息查询扩展
-class MyCallerQuery extends CallerInfoQueryExtensionAbility {
-  onQueryCallerInfo(phoneNumber: string): Promise<CallerInfo> {
-    return Promise.resolve({ contactName: '商家-XX', department: '客服部' });
+// 使用示例
+const columns: BreakpointType<number> = new BreakpointType<number>(1, 2, 3, 4, 6);
+// Grid({ columnsTemplate: '1fr '.repeat(columns.getValue(currentBp)).trim() })
+```
+
+### 模式 2：SessionID 防竞态
+
+**作用**：用户快速切换页面/视频时，旧的异步操作返回后可能覆盖新状态。全局递增 sessionId + 关键点守卫检查。
+
+```typescript
+// [API 23+] SessionID 防竞态守卫
+class AsyncManager {
+  private globalSessionId: number = 0;
+  private activeSessionId: number = -1;
+
+  /// 开始新操作时调用，返回当前 sessionId
+  bumpSession(): number {
+    this.globalSessionId++;
+    this.activeSessionId = this.globalSessionId;
+    return this.activeSessionId;
+  }
+
+  /// 检查 sessionId 是否仍有效
+  isSessionActive(sessionId: number): boolean {
+    return sessionId === this.activeSessionId;
+  }
+
+  /// 异步操作，关键步骤都检查 session 有效性
+  async doAsyncOperation(sessionId: number): Promise<void> {
+    if (!this.isSessionActive(sessionId)) {
+      return; // 已过期，丢弃
+    }
+    // 模拟异步：网络请求 / 文件读取 / 数据计算
+    await new Promise<void>((resolve) => setTimeout(() => resolve(), 500));
+    if (!this.isSessionActive(sessionId)) {
+      return; // 等待期间又有新操作，丢弃旧结果
+    }
+    // 安全更新状态
   }
 }
 ```
 
----
+### 模式 3：WindowUtil + WindowInfo 完整窗口管理
 
-### CloudFoundationKit（云基础服务）— 新增精学
+**作用**：一站式封装窗口全周期管理——沉浸式切换、avoidArea 5 类型追踪、断点变化监听、分屏、窗口大小限制。
 
-**用途**：云函数、云存储、云数据库、云资源预取。
-
-**模块**：`@kit.CloudFoundationKit`
-
-**验证的 API 签名**（自 SDK 26.0.0）：
 ```typescript
-import { cloudCommon, cloudFunction, cloudStorage, cloudDatabase, cloudResPrefetch } from '@kit.CloudFoundationKit';
-
-// ① 初始化
-cloudCommon.init({ region: cloudCommon.CloudRegion.CHINA });
-
-// ② 云函数调用
-const result = await cloudFunction.call({ name: 'helloWorld', data: { name: 'HarmonyOS' } });
-console.log('函数返回:', result.result);
-
-// ③ 云存储
-const bucket = cloudStorage.bucket('my-bucket');
-await bucket.uploadFile(getContext(), { localPath: '/data/local/tmp/test.jpg', cloudPath: '/images/test.jpg' });
-await bucket.downloadFile(getContext(), { localPath: '/data/storage/downloads/test.jpg', cloudPath: '/images/test.jpg' });
-const url = await bucket.getDownloadURL('/images/test.jpg');
-await bucket.deleteFile('/images/test.jpg');
-
-// ④ 云数据库
-class Todo extends cloudDatabase.DatabaseObject {
-  title: string = '';
-  done: boolean = false;
-  naturalbase_ClassName(): string { return 'Todo'; }
+// [API 23+] 沉浸式类型枚举
+export enum ImmersiveType {
+  NORMAL,              // 默认：状态栏+导航栏可见
+  IMMERSIVE,           // 沉浸式：状态栏+导航栏透明覆盖
+  FULLSCREEN_IMMERSIVE // 全屏沉浸式：隐藏状态栏+导航栏
 }
-const dbZone = cloudDatabase.zone('default');
-const query = new cloudDatabase.DatabaseQuery(Todo);
-query.equalTo('done', false).orderByAsc('createdAt').limit(20);
-const todos = await dbZone.query(query);
 
-// ⑤ 云资源预取
-cloudResPrefetch.registerPrefetchTask({ token: 'task_token' });
-const prefetchResult = await cloudResPrefetch.getPrefetchResult(cloudResPrefetch.PrefetchMode.INSTALL_PREFETCH);
-```
+// 窗口信息对象（@Observed 让组件监听变化）
+@Observed
+export class WindowInfo {
+  public windowStatusType: window.WindowStatusType = window.WindowStatusType.UNDEFINED;
+  public isImmersive: ImmersiveType = ImmersiveType.NORMAL;
+  public windowSize: window.Size = { width: 0, height: 0 };
+  public widthBp: WidthBreakpoint = WidthBreakpoint.WIDTH_XS;
+  public heightBp: HeightBreakpoint = HeightBreakpoint.HEIGHT_SM;
+  public avoidSystem?: window.AvoidArea;
+  public avoidNavigationIndicator?: window.AvoidArea;
+  public avoidCutout?: window.AvoidArea;
+  public avoidSystemGesture?: window.AvoidArea;
+  public avoidKeyboard?: window.AvoidArea;
+}
 
----
+export class WindowUtil {
+  public mainWindow: window.Window;
+  public mainWindowInfo: WindowInfo = new WindowInfo();
 
-### NaturalLanguageKit（自然语言）— 新增精学
+  constructor(mainWindow: window.Window) {
+    this.mainWindow = mainWindow;
+  }
 
-**模块**：`@kit.NaturalLanguageKit`
+  /// 设置沉浸式类型
+  setImmersiveType(type: ImmersiveType): void {
+    // NORMAL: setWindowLayoutFullScreen(false)
+    // IMMERSIVE: setWindowLayoutFullScreen(true) + setWindowDecorVisible(false)
+    // FULLSCREEN_IMMERSIVE: 全屏隐藏，maximize()
+  }
 
-```typescript
-import { textProcessing, EntityType } from '@kit.NaturalLanguageKit';
+  /// 初始化窗口信息并注册监听
+  updateWindowInfo(): void {
+    // 获取初始窗口状态、尺寸、断点、5 类 avoidArea
+    // 注册：windowStatusChange / windowSizeChange（同时更新断点）/ avoidAreaChange
+  }
 
-await textProcessing.init();
+  /// 释放监听
+  release(): void {
+    this.mainWindow.off('windowStatusChange', ...);
+    this.mainWindow.off('windowSizeChange', ...);
+    this.mainWindow.off('avoidAreaChange', ...);
+  }
 
-// ① 分词
-const words = await textProcessing.getWordSegment('今天天气真好，适合出去玩。');
-// words: [{ word: '今天', wordTag: 't' }, { word: '天气', wordTag: 'n' }, ...]
-
-// ② 实体识别
-const entities = await textProcessing.getEntity('请联系张三，电话13800138000', {
-  entityTypes: [EntityType.NAME, EntityType.PHONE_NO]
-});
-// entities: [{ text: '张三', charOffset: 3, type: 'name', jsonObject: '{}' }, ...]
-// EntityType: DATETIME, EMAIL, EXPRESS_NO, FLIGHT_NO, LOCATION, NAME, PHONE_NO, URL, VERIFICATION_CODE, ID_NO
-
-await textProcessing.release();
-```
-
----
-
-### CoreSpeechKit（语音识别/合成）— 新增精学
-
-**模块**：`@kit.CoreSpeechKit`
-
-```typescript
-import { speechRecognizer, textToSpeech } from '@kit.CoreSpeechKit';
-
-// ① 语音识别（ASR）
-const asrEngine = await speechRecognizer.createEngine({ language: 'zh-CN', online: 0 });
-asrEngine.setListener({
-  onResult: (sessionId, result) => console.log('识别:', result.result),
-  onError: (sessionId, code, msg) => console.error('ASR错误:', msg),
-  onStart: (sessionId) => {},
-  onComplete: (sessionId) => {},
-});
-asrEngine.startListening({ sessionId: 's1', audioInfo: { audioType: 'pcm', sampleRate: 16000, soundChannel: 1, sampleBit: 16 } });
-asrEngine.writeAudio('s1', audioBuffer);
-asrEngine.finish('s1');
-asrEngine.shutdown();
-
-// ② 语音合成（TTS）
-const ttsEngine = await textToSpeech.createEngine({ language: 'zh-CN', person: 0, online: 0 });
-ttsEngine.setListener({
-  onData: (reqId, audio, resp) => { /* 合成音频流 */ },
-  onComplete: (reqId) => {},
-  onError: (reqId, code, msg) => {},
-});
-ttsEngine.speak('你好，欢迎使用语音合成', { requestId: 'tts_001' });
-ttsEngine.stop();
-ttsEngine.shutdown();
-```
-
----
-
-### GraphicsAccelerateKit（图形加速/游戏快启）— 新增精学
-
-**模块**：`@kit.GraphicsAccelerateKit`
-
-```typescript
-import { assetDownloadManager, AssetAccelerationExtensionAbility, launchAcceleration } from '@kit.GraphicsAccelerateKit';
-
-// ① 启动加速（游戏快启）
-const mirrorEnabled = launchAcceleration.isLaunchMirrorEnabled();
-await launchAcceleration.completeGamePrelaunch(getContext());  // 完成预启动
-await launchAcceleration.terminateGamePrelaunch(getContext()); // 终止预启动
-
-// ② 资源包下载管理
-const manifestUrl = await assetDownloadManager.fetchManifestUrl();
-const taskId = await assetDownloadManager.addAssetDownloadTask(getContext(), {
-  identifier: 'res_001', url: 'https://example.com/res.zip', isEssential: true, groupId: 'stage1',
-});
-assetDownloadManager.on('progress', (infos) => {
-  infos.forEach(i => console.log(`下载: ${i.totalBytesWritten}/${i.totalExpectedBytes}`));
-});
-assetDownloadManager.on('complete', (info) => console.log('完成:', info.filePath));
-assetDownloadManager.on('fail', (info) => console.log('失败:', info.fault));
-await assetDownloadManager.pauseAssetDownloadTask(taskId);
-await assetDownloadManager.resumeAssetDownloadTask(taskId);
-
-// ③ 资源加速 Extension（后台下载）
-class MyAssetAccel extends AssetAccelerationExtensionAbility {
-  onDownloadContentRequest(requestType, manifestUrl, info) {
-    return [{ identifier: 'bg_res', url: '...', isEssential: true }];
+  /// 设置分屏
+  setSplitScreen(bundleName: string, abilityName: string, moduleName: string): void {
+    let want: Want = { bundleName, abilityName, moduleName };
+    let option: StartOptions = { windowMode: AbilityConstant.WindowMode.WINDOW_MODE_SPLIT_PRIMARY };
+    (this.mainWindow.getUIContext().getHostContext() as common.UIAbilityContext)
+      .startAbility(want, option);
   }
 }
 ```
 
----
+### 模式 4：InputSecurityUtil 输入安全校验
 
-### VisionKit（视觉 — 卡证/活体/扫描）— 新增精学
-
-> ⚠️ 注意：VisionKit 与 CoreVisionKit 不同 — VisionKit 侧重卡证识别/活体检测/文档扫描等业务场景。
-
-**模块**：`@kit.VisionKit`
+**作用**：清除控制字符 + 长度截断，防止 XSS 和编码注入。
 
 ```typescript
-import { interactiveLiveness, CardRecognition, DocumentScanner, visionImageAnalyzer } from '@kit.VisionKit';
+// [API 23+] InputSecurityUtil.ets
+export class InputSecurityUtil {
+  private static readonly MAX_INPUT_LENGTH: number = 50;
 
-// ① 互动式活体检测
-const livenessConfig = new interactiveLiveness.InteractiveLivenessConfig();
-livenessConfig.isSilentMode = interactiveLiveness.DetectionMode.INTERACTIVE_MODE;
-livenessConfig.actionsNum = interactiveLiveness.ActionsNumber.TWO_ACTION;
-const success = await interactiveLiveness.startLivenessDetection(livenessConfig, (err, result) => {
-  if (result?.livenessType === interactiveLiveness.LivenessType.INTERACTIVE_LIVENESS) { /* 活体验证通过 */ }
-});
+  /// 清除 ASCII 控制字符（0-31 和 127）+ 长度截断
+  static sanitizeSearchInput(raw: string): string {
+    const normalized: string = raw.replace(/[\u0000-\u001F\u007F]/g, '');
+    return normalized.slice(0, InputSecurityUtil.MAX_INPUT_LENGTH);
+  }
+}
 
-// ② 银行卡/身份证识别（ArkUI 组件）
-// CardRecognition({ supportType: CardType.CARD_AUTO, onResult: (result) => { ... } })
-
-// ③ 文档扫描（ArkUI 组件）
-// DocumentScanner({ scannerConfig: { supportType: [DocType.DOC], maxShotCount: 3 }, onResult })
-
-// ④ 图像分析器（文本/主体识别、搜图）
-// const controller = new VisionImageAnalyzerController();
-// controller.setImageAnalyzerVisibility(0); // SHOWN
-// controller.startSubjectAnalyzer();
+// 使用：TextInput({ placeholder: '搜索' })
+//   .onChange((v: string) => { this.keyword = InputSecurityUtil.sanitizeSearchInput(v); })
 ```
 
----
+### 模式 5：canIUse + foldStatusChange 折叠屏适配
 
-### WearEngine（穿戴引擎）— 新增精学
-
-**模块**：`@kit.WearEngine`
+**作用**：运行时检测折叠屏能力，非折叠设备优雅降级；监听折叠状态联动全屏和布局。
 
 ```typescript
-import { wearEngine } from '@kit.WearEngine';
+// [API 23+] 折叠屏适配
+import { display } from '@kit.ArkUI';
 
-const deviceClient = wearEngine.getDeviceClient(getContext());
-const p2pClient = wearEngine.getP2pClient(getContext());
-const monitorClient = wearEngine.getMonitorClient(getContext());
+@Component
+struct FoldAwareView {
+  @State isHalfFolded: boolean = false;
 
-// ① 获取已连接设备
-const devices = await deviceClient.getConnectedDevices();
-devices.forEach(d => console.log(d.name, d.model, d.category));
+  aboutToAppear(): void {
+    if (canIUse('SystemCapability.Window.SessionManager')) {
+      try {
+        if (display.isFoldable()) {
+          // 获取折痕区域，存入共享状态供避让使用
+          let creaseRegion = display.getCurrentFoldCreaseRegion();
+          AppStorage.setOrCreate('creaseHeight',
+            this.getUIContext().px2vp(creaseRegion.creaseRects[0].height));
+          // 监听折叠状态
+          display.on('foldStatusChange', this.onFoldStatusChange);
+        }
+      } catch (error) { /* 非折叠屏设备静默降级 */ }
+    }
+  }
 
-// ② P2P 通信
-await p2pClient.sendMessage(devices[0].randomId, { bundleName: 'com.example' }, { data: 'hello' });
-p2pClient.registerMessageReceiver(devices[0].randomId, { bundleName: 'com.example' }, (msg) => {
-  console.log('收到消息:', msg.data);
-});
+  aboutToDisappear(): void {
+    if (canIUse('SystemCapability.Window.SessionManager')) {
+      try { display.off('foldStatusChange'); } catch (error) { }
+    }
+  }
 
-// ③ 设备状态监控
-monitorClient.subscribeEvent(devices[0].randomId, wearEngine.MonitorEvent.EVENT_CONNECTION_STATUS_CHANGED, (data) => {
-  console.log('连接状态变更');
-});
+  private onFoldStatusChange = (data: display.FoldStatus): void => {
+    if (data === display.FoldStatus.FOLD_STATUS_HALF_FOLDED) {
+      this.isHalfFolded = true;
+      // 半折叠态：自动全屏播放
+    } else {
+      this.isHalfFolded = false;
+      // 展开/折叠态：恢复标准布局
+    }
+  };
+}
+```
 
-// ④ 传感器订阅
-const sensorClient = wearEngine.getSensorClient(getContext());
-sensorClient.subscribeSensor(devices[0].randomId, wearEngine.SensorType.HEART_RATE, (result) => {
-  console.log('心率数据:', result);
-});
+### 模式 6：UIObserver 应用埋点框架
 
-// ⑤ 授权
-const authClient = wearEngine.getAuthClient(getContext());
-await authClient.requestAuthorization({ permissions: [wearEngine.Permission.HEALTH_SENSOR] });
+> 基于 UIObserver 能力（API 12+），可监听点击、曝光、页面切换、渲染性能等全部用户行为。这是生产级埋点 SDK 的 ArkTS 最小实现。
 
-wearEngine.on('serviceDie', () => { console.log('穿戴服务断开'); });
+**核心 API 链**：`uiContext.getUIObserver().on(eventName, callback)` — 在 Ability 的 `onWindowStageCreate` 中一次注册，全局生效。
+
+```typescript
+// [API 23+] UIObserver 埋点注册（在 EntryAbility.onWindowStageCreate 中）
+import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
+import { FrameNode, uiObserver } from '@kit.ArkUI';
+
+onWindowStageCreate(windowStage: window.WindowStage): void {
+  windowStage.loadContent('pages/HomePage', () => {
+    const uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+
+    // 1. 点击埋点（组件级别精度）
+    uiContext.getUIObserver().on('willClick', (_event: ClickEvent, node?: FrameNode) => {
+      // node.getId() → 组件 ID（.id('button-1') 设置的）
+      // node.getUniqueId() → 全局唯一 ID
+      // node.getCustomProperty(key) → 自定义业务数据
+      // uiContext.getPageInfoByUniqueId(uniqueId) → 获取所在页面信息
+      let eventParams: Record<string, string | number> = {
+        'component_id': node?.getId() ?? '',
+        'pageInfo': JSON.stringify(uiContext.getPageInfoByUniqueId(node?.getUniqueId()) ?? {}),
+        'trackData': JSON.stringify(node?.getCustomProperty(node?.getId()) ?? {})
+      };
+      // 上报到 hiAppEvent
+      hiAppEvent.write({ domain: 'user_action', name: 'click',
+        eventType: hiAppEvent.EventType.BEHAVIOR, params: eventParams });
+    });
+
+    // 2. 滚动埋点（曝光时长分析）
+    uiContext.getUIObserver().on('scrollEvent', (info: uiObserver.ScrollEventInfo) => {
+      // info.scrollEvent: SCROLL_START / SCROLL_STOP / SCROLL_END
+    });
+
+    // 3. Navigation 页面切换埋点
+    uiContext.getUIObserver().on('navDestinationSwitch', (info: uiObserver.NavDestinationSwitchInfo) => {
+      // 可获取页面路径、入参、目标页面 name
+    });
+
+    // 4. Router 页面更新埋点
+    uiContext.getUIObserver().on('routerPageUpdate', (info: uiObserver.RouterPageInfo) => {
+      // 可获取 router 跳转的页面信息
+    });
+
+    // 5. 渲染性能埋点（页面启动耗时）
+    uiContext.getUIObserver().on('willDraw', () => { startTime = Date.now(); });
+    uiContext.getUIObserver().on('didLayout', () => { endTime = Date.now(); });
+    // 页面渲染耗时 = endTime - startTime
+  });
+}
+
+// 组件端埋点声明（在页面组件中）
+Button('点击埋点')
+  .id('button-1')                    // ← 埋点用的组件 ID
+  .customProperty('button-1', { id: 'button-1', bizType: 'submit' })  // ← 自定义业务数据
+  .onClick(() => { /* 业务逻辑 */ })
+```
+
+**组件曝光埋点**（配合 `TrackNode` 包装组件）：
+```typescript
+// 用 onDidBuild 生命周期获取 FrameNode
+@Component
+export struct TrackNode {
+  @BuilderParam closer: VoidCallback;  // 要包装的内容
+  track: Track;
+  onDidBuild(): void {
+    let uid: number = this.getUniqueId();
+    let node: FrameNode | null = this.getUIContext().getFrameNodeByUniqueId(uid);
+    // 注册可见区域变化回调
+    node?.commonEvent.setOnVisibleAreaApproximateChange(
+      { ratios: [0, 0.5, 1], expectedUpdateInterval: 500 },
+      (ratioInc: boolean, ratio: number) => {
+        // ratio: 0 → 不可见, 0.5 → 半可见, 1 → 完全可见
+        hiAppEvent.write({ domain: 'exposure', name: 'component_visible', ... });
+      });
+  }
+}
+// 使用：TrackNode({ track: new Track().id('WaterFlow-1') }) { AnyComponent() }
 ```
 
 ---
 
-## 🔧 调试命令速查（HDC / aa / bm / uitest）
+## 🔄 事件总线与跨组件通信
 
-> 开发者日常最常用的命令行调试工具，**一键速查**。
+### Emitter（全局事件派发）
+```typescript
+import { emitter } from '@kit.BasicServicesKit';
 
-### HDC（设备连接调试）
+// 订阅事件
+emitter.on({ eventId: 'user_login' }, (event) => {
+  console.info('用户登录:', event.data?.userName);
+});
 
-```bash
-# ▸ 设备连接
-hdc list targets              # 列出已连接设备
-hdc list targets -v           # 显示详细信息
-hdc tconn 192.168.1.100:8888  # TCP连接设备
+// 发送事件
+emitter.emit({ eventId: 'user_login' }, { data: { userName: 'admin' } });
 
-# ▸ 应用安装卸载
-hdc install D:\example.hap                        # 安装 HAP
-hdc install -r D:\example.hap                     # 覆盖安装
-hdc install -g D:\example.hap                     # 安装并授予权限（API 24+）
-hdc install D:\example.app                        # 安装 APP 包（API 22+）
-hdc uninstall com.example.app                     # 卸载
-hdc uninstall -k com.example.app                  # 卸载保留数据
+// 一次性订阅
+emitter.once({ eventId: 'app_init' }, () => { /* 只执行一次 */ });
 
-# ▸ 文件传输
-hdc file send test /data/test/                    # 发送文件到设备
-hdc file recv /data/test/file ./                  # 从设备接收文件
-hdc file send -b com.example.app test /test/      # 发送到应用沙箱
+// 取消订阅
+emitter.off('user_login');
 
-# ▸ 日志与调试
-hdc hilog                                         # 查看设备日志
-hdc shell                                         # 进入设备 shell
-hdc target boot                                   # 重启设备
-hdc fport tcp:1234 tcp:1080                       # 端口转发（本地→设备）
-hdc rport tcp:1234 tcp:1080                       # 反向端口转发（设备→本地）
-hdc start -r                                      # 重启 hdc 服务
+// 带延迟的事件
+emmitter.emit({ eventId: 'data_loaded', priority: emitter.EventPriority.HIGH });
+// LOW / HIGH / IMMEDIATE 三种优先级
 ```
 
-### aa（Ability 调试）
-
-```bash
-# ▸ 启动应用
-aa start -b com.example.app -a EntryAbility        # 显式启动
-aa start -A ohos.want.action.viewData -U https://example.com  # 隐式启动
-
-# ▸ 启动并测量冷启动耗时（API 20+）
-aa start -b com.example.app -a EntryAbility -W
-
-# ▸ 调试
-aa force-stop com.example.app                     # 强制停止进程
-aa attach -b com.example.app                      # 进入调试模式
-aa detach -b com.example.app                      # 退出调试模式
-aa test -b com.example.app -s unittest TestRunner # 运行测试
+### @Provide/@Consume（组件树内事件）
+```typescript
+// 已在 MVVM 章节覆盖，此处仅作对照
+// @Provide 提供值，@Consume 消费值，跨任意层级传递
+// 适合：主题切换、用户登录态、全局配置
 ```
 
-### bm（包管理）
+### 选择建议
+| 场景 | 方案 |
+|------|------|
+| 组件树内跨层级（3-5层） | `@Provide/@Consume` |
+| 跨页面/跨 Ability | `Emitter` |
+| 全局持久化状态 | `AppStorage` / `PersistentStorage` |
+| 跨进程通信 | `IPCKit`（`@kit.IPCKit`） |
 
-```bash
-# ▸ 安装卸载
-bm install -p /data/local/tmp/app.hap              # 安装 HAP
-bm install -p /data/local/tmp/app.hap -r           # 覆盖安装
-bm install -p /data/local/tmp/app.hap -g           # 安装并自动授权
-bm uninstall -n com.example.app                     # 卸载
+---
 
-# ▸ 查询
-bm dump -a                                         # 列出所有已安装应用
-bm dump -n com.example.app                         # 查询应用详细信息
-bm dump -g                                         # 查询调试类型应用
-bm get -u                                          # 获取设备 UDID
+# 第四部分：性能优化（TaskPool、组件复用、流畅刷新、启动框架）
 
-# ▸ 清理
-bm clean -c -n com.example.app                     # 清缓存
-bm clean -d -n com.example.app                     # 清数据
+## 🚀 TaskPool 生产级并发模式
 
-# ▸ 插件和快速修复
-bm install-plugin -n com.example.app -p plugin.hsp # 安装插件
-bm quickfix -a -f /data/app/example.hqf            # 安装热修复补丁
-bm quickfix -q -b com.example.app                  # 查询补丁信息
+> 源自 arkts-patterns v2.3.1 生产级模式库。TaskPool 是 API 12+ 推荐的多线程方案。
+
+### 基本使用模式
+
+```typescript
+import { taskpool } from '@kit.ArkTS';
+
+// 1. 定义任务函数（必须 @Concurrent + 全局函数）
+@Concurrent
+function computeHeavyTask(data: number[]): number {
+  // CPU 密集型计算，运行在独立 worker 线程
+  return data.reduce((a, b) => a + b, 0);
+}
+
+// 2. 在 UI 线程调用
+async runTask(): Promise<void> {
+  try {
+    const task = new taskpool.Task(computeHeavyTask, [1, 2, 3, 4, 5]);
+    const result: number = await taskpool.execute(task) as number;
+    console.info(`Result: ${result}`);
+  } catch (err) {
+    console.error(`Task failed: ${err.message}`);
+  }
+}
 ```
 
-### uitest（UI 自动化）
+### 高级模式：长时任务+进度回调
 
-```bash
-# ▸ 控件获取
-hdc shell uitest dumpLayout -a                     # 获取控件树（含属性）
-hdc shell uitest dumpLayout -p /tmp/layout.json    # 保存到文件
+```typescript
+@Concurrent
+function longRunningTask(data: number[], callback: taskpool.Callback): number {
+  let total = 0;
+  for (let i = 0; i < data.length; i++) {
+    total += data[i];
+    // 通知主线程进度
+    callback.call(i / data.length);
+  }
+  return total;
+}
 
-# ▸ 截图
-hdc shell uitest screenCap -p /tmp/screen.png
-
-# ▸ 模拟操作
-hdc shell uitest uiInput click 100 100             # 点击
-hdc shell uitest uiInput longClick 100 100         # 长按
-hdc shell uitest uiInput swipe 10 10 200 200 500   # 滑动
-hdc shell uitest uiInput dircFling 2               # 方向滑动（2=上）
-hdc shell uitest uiInput keyEvent Back             # 按返回键
-hdc shell uitest uiInput text hello                # 输入文本
-
-# ▸ 录制
-hdc shell uitest uiRecord record                   # 开始录制（Ctrl+C结束）
+// 创建带优先级的 Task
+const task = new taskpool.Task(longRunningTask, [dataArray]);
+task.setPriority(taskpool.Priority.HIGH);
 ```
 
-### hilog（日志查看）
+### TaskPool vs Worker 选择
 
-```bash
-# ▸ 基础查看
-hilog                                        # 实时查看日志（阻塞）
-hilog -x                                     # 非阻塞，看完退出
-hilog -z 10 -L E                             # 最近10条ERROR日志
+| 场景 | 推荐方案 | 原因 |
+|:----:|:--------:|:----|
+| 简短计算（<1s） | TaskPool | 自动线程池管理，开销小 |
+| 长时后台服务 | Worker | 常驻线程，独立生命周期 |
+| 需要频繁通信 | Worker | 支持双向消息推送 |
+| MindSpore 推理 | TaskPool | 内部已用线程池，避免冲突 |
+| 文件 I/O | Worker | 避免阻塞 UI 和线程池 |
 
-# ▸ 过滤
-hilog -L E/F                                 # 仅ERROR/FATAL级别
-hilog -T MyTag                               # 按TAG过滤
-hilog -P 1234                                # 按进程PID过滤
-hilog -e "error|Exception"                   # 正则搜索
-hilog -D 0x3200                              # 按Domain过滤
+## 🧩 UI 组件深度（WaterFlow + GridHybrid + FluentBlog + ContentPublisher + AnimationCollection）
 
-# ▸ 格式
-hilog -v color                               # 彩色输出
-hilog -v time                                # 显示本地时间
+### WaterFlow — 瀑布流全能力
 
-# ▸ 缓冲区
-hilog -g                                     # 查看缓冲区大小
-hilog -G 16M                                 # 设置缓冲区为16M
-hilog -r                                     # 清空缓冲区
-
-# ▸ 落盘
-hilog -w start -n 1000                       # 启动日志落盘（1000个文件）
-hilog -w stop                                # 停止落盘
-hilog -w query                               # 查看落盘任务
+```typescript
+WaterFlow() {
+  LazyForEach(this.dataSource, (item: ItemData) => {
+    FlowItem() {
+      Column() {
+        Image(item.img).width('100%').aspectRatio(item.ratio)
+        Text(item.title).fontSize(14)
+      }
+    }
+  }, (item) => item.id)
+}
+.columnsTemplate('1fr 1fr')           // 双列
+.sections(this.sections)              // 混合排列（不同列数区域）
+.nestedScroll({ scrollForward: 1, scrollBackward: 1 })
+.onReachEnd(() => this.loadMore())    // 无限加载
+.cachedCount(8)
 ```
 
-### hidumper（系统诊断）
+### ContentPublisher — RichEditor 富文本
 
-```bash
-# ▸ CPU
-hidumper --cpuusage                          # 整机CPU使用率
-hidumper --cpuusage 1234                     # 指定进程CPU使用率
-hidumper --cpufreq                           # CPU核运行频率
+```typescript
+RichEditor({ controller: this.editorCtrl })
+  .onReady(() => {
+    // 插入文本
+    this.editorCtrl.insertTextSpan({ text: 'Hello HarmonyOS!' });
+    // 插入图片
+    this.editorCtrl.insertImageSpan({ uri: 'data/img.png' });
+    // 获取 HTML
+    const html = this.editorCtrl.toHtml();
+  })
+```
 
-# ▸ 内存（最强大）
-hidumper --mem                               # 全量内存（PID/PSS/OOM）
-hidumper --mem --prune                       # 精简版内存
-hidumper --mem 1234                          # 指定进程内存详情
-hidumper --mem-jsheap 1234                   # ArkTS JS Heap快照
-hidumper --mem-smaps 1234                    # 进程内存映射表
+### AnimationCollection — 动效集合
 
-# ▸ 系统服务
-hidumper -ls                                # 列出所有系统服务
-hidumper -s WindowManagerService             # 查看窗口服务详情
-
-# ▸ 进程/网络/存储
-hidumper -p 1234                             # 进程信息
-hidumper -p 1234 --fd                        # 文件句柄
-hidumper --net                               # 网络流量
-hidumper --storage                           # 存储/IO统计
-
-# ▸ 故障
-hidumper -e                                  # 获取故障日志
-hidumper -e --list                           # 异常退出记录列表
-hidumper --zip                               # 打包到 /data/log/hidumper/
+```typescript
+// 显式动画
+animateTo({ duration: 300, curve: Curve.EaseOut }, () => {
+  this.opacity = 1;
+  this.scale = { x: 1.2, y: 1.2 };
+});
+// 属性动画
+Image().animation({ duration: 500, iterations: -1 })
+  .rotate({ angle: 360 }) // 无限旋转
 ```
 
 ---
+
+## ⚡ AppStartUp 启动任务框架（第三轮新增）
+
+> **来源**：`AppStartUp` | Gitee harmonyos_samples | 源码级
+
+基于 `@kit.AbilityKit` 的 **AppStartup** 框架，支持同步/异步初始化任务解耦。
+
+### 工作流
+```
+startup_config.json → startupManager.run → StartupTask(自动/手动) → 任务完成
+```
+
+### 工程目录
+
+```
+entry/src/main/ets/startup/
+├── StartupConfig.ets        # 启动参数配置
+├── FileTask.ets              # 文件读写
+├── ImageKinfeTask.ets        # 图片框架初始化
+├── KvManagerUtilTask.ets     # 分布式数据库
+├── KVStoreTask.ets           # KV 写入
+├── RdbStoreTask.ets          # 关系型数据库
+└── ResourceManagerTask.ets   # resource 资源
+```
+
+### 配置文件
+
+```json5
+// resources/base/profile/startup_config.json
+{
+  "startupTasks": [
+    { "name": "KvManagerUtilTask", "dependencies": [] },
+    { "name": "KVStoreTask", "dependencies": ["KvManagerUtilTask"] },
+    { "name": "RdbStoreTask", "dependencies": [] }
+  ]
+}
+```
+
+### 手动模式启动
+
+```typescript
+// [API 23+] 手动执行初始化任务
+import { startupManager } from '@kit.AbilityKit'
+
+Button('手动初始化')
+  .onClick(async () => {
+    await startupManager.run('RdbStoreTask')
+    console.info('Manual Task execute success')
+  })
+```
+
+---
+
+## ♻️ ComponentReuse 组件复用（第三轮新增）
+
+> **来源**：`component-reuse` | Gitee harmonyos_samples | 源码级
+
+### 两种复用场景
+
+| 场景 | 技术方案 | 说明 |
+|------|---------|------|
+| 同一列表内复用 | `@Reusable` + `aboutToReuse()` | 列表项结构相同或不同时复用 |
+| 多列表间复用 | `NodeContainer` 占位 + `NodePool` 全局缓存 | 不同父组件间子组件共享 |
+
+### @Reusable 代码模式
+
+```typescript
+// [API 23+] @Reusable 组件复用
+@Component
+@Reusable
+struct ReusableItem {
+  @State text: string = ''
+
+  // 复用时的生命周期回调
+  aboutToReuse(params: Record<string, Object>) {
+    this.text = params.text as string
+  }
+
+  build() {
+    Row() {
+      Text(this.text).fontSize(16)
+    }
+    .padding(12)
+  }
+}
+```
+
+### NodePool 跨列表复用
+
+```typescript
+// [API 23+] NodePool 全局缓存复用池
+import { BuilderNode, NodeContainer, NodePool } from '@kit.ArkUI'
+
+// 全局缓存复用池
+const nodePool: NodePool = new NodePool()
+
+// 从池中获取或创建
+let node = nodePool.get() ?? new BuilderNode(null)
+// 使用 node 绑定到 NodeContainer
+```
+
+---
+
+## 📖 FluentBlog 流畅刷低功耗（第四轮新增）
+
+> **来源**：`fluent-blog` | Gitee harmonyos_samples | 源码级
+
+通过 `animateTo` 设置 `ExpectedFrameRateRange` 控制屏幕刷新率来平衡功耗：
+
+```typescript
+// [API 23+] 设置期望帧率
+animateTo({
+  duration: 300,
+  expectedFrameRateRange: { min: 30, max: 60, preferred: 30 }
+}, () => { /* 动画内容 */ })
+```
+
+---
+
+# 第五部分：动画与手势（动画系统、手势、转场）
+
+## 🎨 动画系统速查
+
+| 动画类型 | API | 说明 |
+|---------|-----|------|
+| **属性动画** | `animateTo({duration, curve, delay}, () => { 改属性 })` | 最常用，让属性变化平滑过渡 |
+| **关键帧动画** | `keyframeAnimateTo([{duration, curve, event:()=>{}}, ...])` | 分段控制，多段动画串行 |
+| **显式动画** | `@AnimatableExtend` 自定义可动画属性 | 实现复杂非标准属性动画 |
+| **转场动画** | `transition({ type: TransitionType, opacity, translate })` | 组件出现/消失动效 |
+| **页面转场** | Navigation 自带 NavTransition | 页面跳转动效（滑入/淡入等） |
+| **弹簧动画** | `springMotion(响应速度, 阻尼系数)` | 弹性效果，适合消息提醒、点赞 |
+
+### 核心参数
+- `duration`: 时长（ms），常用 200~500ms
+- `curve`: 曲线类型 — `Curve.Linear`(匀速)、`Curve.EaseIn`(慢→快)、`Curve.EaseOut`(快→慢)、`Curve.EaseInOut`(慢→快→慢，最自然)
+- `delay`: 延迟启动（ms）
+- `iterations`: 播放次数，`-1` 为无限循环
+
+### 链式动画
+```typescript
+// 一个结束接另一个
+animateTo({ duration: 300 }, () => { this.x = 100 })
+  .then(() => animateTo({ duration: 300 }, () => { this.rotate = 90 }));
+```
+
+### 常见坑点
+- ❌ 全局 `animateTo()` 已废弃 → ✅ `this.getUIContext().animateTo()`
+- ❌ 不要用 UIAbility 跳转代替模态弹窗 → ✅ 用 `ModalTransition` + 自定义弹窗
+- ❌ 别忘了为列表项自定义动画曲线 → ✅ 用 `springMotion` 提升滚动手感
+
+---
+
+## 🖐️ 手势系统速查
+
+### 手势分类
+| 类型 | 手势 | 说明 |
+|------|------|------|
+| **点击类** | `TapGesture({ count: 1 })` | 单击/双击，count 为点击次数 |
+| **长按类** | `LongPressGesture({ duration: 500 })` | 长按触发，duration 为最小按压时长(ms) |
+| **拖拽类** | `PanGesture({ direction: PanDirection.Horizontal })` | 拖拽平移，支持方向限制 |
+| **滑动类** | `SwipeGesture({ speed: 100 })` | 快速滑动识别 |
+| **捏合类** | `PinchGesture({ distance: 5 })` | 双指缩放，distance 最小识别距离 |
+| **旋转类** | `RotationGesture({ angle: 1 })` | 双指旋转 |
+
+### 绑定方式
+```typescript
+// 单个手势
+.gesture(TapGesture({ count: 1 }).onAction((e) => { /* 单击 */ }))
+
+// 多手势并行（同时识别）
+.gesture(
+  GestureGroup(GestureMode.Parallel,
+    TapGesture().onAction(() => {}),
+    PanGesture().onActionStart(() => {})
+  )
+)
+
+// 多手势互斥（只识别一个）
+.gesture(
+  GestureGroup(GestureMode.Exclusive,
+    TapGesture().onAction(() => {}),
+    LongPressGesture().onAction(() => {})
+  )
+)
+```
+
+### 手势事件回调
+| 回调 | 触发时机 |
+|------|---------|
+| `.onAction(event)` | 手势识别成功 |
+| `.onActionStart(event)` | 手势开始 |
+| `.onActionUpdate(event)` | 手势进行中（拖拽时持续触发） |
+| `.onActionEnd(event)` | 手势结束 |
+| `.onActionCancel()` | 手势取消 |
+
+### 手势冲突解决策略
+| 策略 | 说明 | 实现方式 |
+|------|------|---------|
+| **Parallel** | 父子/兄弟手势同时响应 | `GestureMode.Parallel` |
+| **Exclusive** | 只识别优先级最高的一个 | `GestureMode.Exclusive` |
+| **Sequence** | 手势按顺序触发 | `GestureMode.Sequence`（如先长按再拖拽） |
+| **priority** | 子组件优先处理 | `.priorityGesture(TapGesture())` 替代 `.gesture()` |
+
+### 常用组合场景
+```typescript
+// 拖拽跟手
+.gesture(PanGesture()
+  .onActionUpdate((e: GestureEvent) => {
+    this.offsetX = e.offsetX;  // 实时偏移量
+  })
+  .onActionEnd(() => {
+    animateTo({ curve: Curve.Spring }, () => {
+      this.offsetX = 0;  // 松手回弹
+    });
+  })
+)
+
+// 点击+拖拽（滑动翻页）
+.gesture(
+  GestureGroup(GestureMode.Parallel,
+    TapGesture().onAction(() => this.jumpPage()),
+    PanGesture({ direction: PanDirection.Horizontal })
+      .onActionEnd((e) => {
+        if (e.offsetX < -50) this.nextPage();
+      })
+  )
+)
+```
+
+---
+
+## 🎬 AnimationCollection 动画全集（第三轮新增）
+
+> **来源**：`animation-collection` | Gitee harmonyos_samples | 源码级
+
+17种常见动效，按功能域组织：
+
+| 模块 | 动效 | 核心实现 |
+|------|------|---------|
+| **翻转动效** | pageTurningAnimation | 3D 卡片翻转 |
+| **标题下拉** | pageExpandTitle | `animateTo` + 顶部偏移 |
+| **状态栏显隐** | pageStatusBarChange | 滚动监听 + 渐隐渐现 |
+| **水波纹** | pageWaterRipples | 逐层放大 + 透明度渐减 |
+| **列表滑动** | pagelistslidetohistory | 滑动阻尼 + 回弹 |
+| **跑马灯** | pageMarqueeView | `marquee()` 属性 |
+| **Swiper高度变化** | swipersmoothvariation | Swiper 动态高度 |
+| **自定义进度** | pagePaintComponent | Canvas + 弧形路径 |
+| **数字滚动** | digitalscrollanimation | 数字逐位翻转 |
+| **卡片预览** | pageCardsSwiper | Swiper + Scale 放大 |
+| **投票动效** | votingcomponent | 柱形图动画填充 |
+| **语音录制动效** | voiceRecordDynamicEffect | 声波动画 |
+| **抖动动效** | pageVibrateEffect | 弹簧曲线动画 |
+| **侧边栏淡入淡出** | sidebarAnimation | `opacity` 过渡 |
+| **多层级轮播** | swiperComponent | Swiper 嵌套 |
+| **搜索** | searchComponent | Navigation + 模糊查询 |
+
+### 性能要点
+- Navigation 做导航容器，List 做功能列表
+- 每个动效独立 feature 目录，互相解耦
+
+---
+
+## 🌀 TransitionsCollection 转场动画全集（第三轮新增）
+
+> **来源**：`transitions-collection` | Gitee harmonyos_samples | 源码级
+
+### 七大转场类型
+
+| 类型 | 动效 | 核心技术 |
+|------|------|---------|
+| **多模态页面转场** | 半模态 + 全屏 + 左右切换 | `bindSheet` + `bindContentCover` + `TransitionEffect.asymmetric()` |
+| **搜索一镜到底** | 搜索框放大过渡 | `geometryTransition` 绑定同一 id |
+| **卡片一镜到底** | 瀑布流卡片 → 详情 | `customNavContentTransition` + `componentSnapshot` |
+| **图片一镜到底** | 双指放大/查看大图/半模态 | `NodeContainer` 跨节点迁移 / `geometryTransition` |
+| **视频一镜到底** | 封面 → 播放 | `customNavContentTransition` + `NodeController` |
+| **列表一镜到底** | 列表项 → 详情 | `geometryTransition` + 显式动画 |
+| **图书翻页** | 封面 → 内页 | `customNavContentTransition` 自定义转场 |
+
+### geometryTransition 核心代码
+
+```typescript
+// [API 23+] 一镜到底过渡
+@State isOpen: boolean = false
+
+Column() {
+  if (!this.isOpen) {
+    Image(this.src)
+      .geometryTransition('sharedImage')
+      .onClick(() => { this.isOpen = true })
+  }
+  if (this.isOpen) {
+    Image(this.src)
+      .geometryTransition('sharedImage')
+      .width('100%').height('100%')
+  }
+}
+.animation({ duration: 300, curve: Curve.Friction })
+```
+
+---
+
+## ✨ TextEffects 文字特效（第十轮收尾②）
+
+> **来源**：`text-effects` | ⭐30 Stars | Gitee harmonyos_samples | 源码级
+
+基于 Text 组件及通用属性实现多种文字特效。
+
+```typescript
+// [API 23+] 文字特效
+Text('特效文字')
+  .fontSize(24)
+  .fontWeight(FontWeight.Bold)
+  .fontColor('#FF6B81')
+  .textShadow({
+    radius: 10,
+    color: '#FF6B81',
+    offsetX: 0,
+    offsetY: 0
+  })
+  .blur(0.5)           // 模糊
+  .opacity(0.9)        // 透明度
+  .rotate({ x: 0, y: 1, z: 0, angle: 15 })  // 3D旋转
+```
+
+---
+
+# 第六部分：测试与调试（测试体系、DevEco、HDC、应用生命周期）
+
+## 🛠️ DevEco Studio 调试与性能优化
+
+### DevEco Profiler 性能分析
+- **入口**：View → Tool Windows → Profiler（或底部工具栏 Profiler 按钮 / Ctrl+Shift+A 搜索 "Profiler"）
+- **仅支持真机**：不支持模拟器调优，使用 USB 或无线方式连接设备
+- **核心采集指标**：CPU 使用率、内存分配、启动耗时、线程状态、网络请求耗时
+- **泳道视图**：Top-Down 设计，数据由浅到深展示，可深入函数热点和 CPU 调度细节
+
+### ArkTS 高性能编程实践
+
+#### 声明与表达式
+| 实践 | 说明 | 示例 |
+|------|------|------|
+| 用 const 声明不变变量 | 避免不必要的运行时重绑定 | `const index = 10000;` |
+| number 避免整浮混用 | 初始化后不要改变数据类型 | `let n = 1;` 不要后面赋值为 `n = 1.1` |
+| 避免数值溢出 | 加减乘除幂运算应避免超过 INT32_MAX/INT32_MIN | 数值保持在 ±2147483647 以内 |
+| 循环中常量提取 | 将循环中不变的值提出来，减少属性访问 | `const info = obj.arr[idx]; for(...)` |
+
+#### 函数优化
+- **避免闭包**：性能敏感场景用参数传递替代闭包访问外部变量
+- **避免可选参数**：优先用默认参数替代 `?` 可选参数，减少非空判断开销
+- **数组建议用 TypedArray**：纯数值计算场景用 `Int8Array`、`Float64Array` 等
+- **避免稀疏数组**：数组大小超过 1024 或 `result[9999] = 0` 会触发 hash 存储，访问变慢
+- **避免联合类型数组**：按类型拆分为 `arrInt`、`arrDouble`、`arrString`
+
+#### 异常与错误处理
+- **避免频繁抛出异常**：循环中先拦截异常场景，再调业务函数，而非 try/catch 包裹循环
+
+#### 异步并发模型
+| 方案 | 适用场景 | 说明 |
+|------|---------|------|
+| async/await | 常规异步任务（网络请求、文件读写） | 主线程执行，不阻塞 UI |
+| TaskPool | CPU 密集型任务（图像处理、数据计算） | 多线程并行，推荐用于密集型计算 |
+| Worker | 长时间运行的后台任务（流处理、大量数据） | 独立线程，适合持续性任务 |
+
+### LazyForEach 懒加载
+- **适用**：长列表渲染，只渲染可视区域内的项
+- **keyGenerator 必传**：为每个数据项生成唯一键，帮助框架精准识别增删改
+- **dataSource 实现 IDataSource**：需要实现 `totalCount`、`getData`、`registerDataChangeListener`、`unregisterDataChangeListener` 四个方法
+- **配合 @Reusable 复用组件**：列表项组件使用 `@Reusable` 装饰器进一步提升滚动性能
+
+---
+
+## 🤖 DevEco Code & DevEco CLI（HDC 2026 新工具）
+
+### 工具定位
+
+| 工具 | 包名 | 本质 | 适用场景 |
+|:----:|:----:|:----:|:--------|
+| **DevEco Code** | `@deveco/deveco-code` | AI Agent 对话式工具 | 自然语言驱动编码/构建/调试全流程 |
+| **DevEco CLI** | `@deveco/deveco-cli` | 命令行工具集 | 封装 hvigor/hdc/ohpm 原子能力供 AI Agent 调用 |
+
+> DevEco Code = 自带 AI 大脑的"自动驾驶"开发伙伴；DevEco CLI = 供已有 AI Agent 调用的"鸿蒙能力工具箱"
+
+### DevEco Code 安装与启动
+
+```bash
+npm install -g @deveco/deveco-code
+cd your-harmonyos-project
+deveco-code
+```
+
+### 三种 Agent 模式
+
+| 模式 | 说明 | 适用场景 |
+|:----:|:----:|:--------|
+| **Build** | 默认 Agent，完整读写权限 | 日常开发、Bug 修复、功能实现 |
+| **Plan** | 只读 Agent，代码分析+方案规划 | 探索陌代码库、设计重构方案 |
+| **Goal** | 端到端自动驾驶：拆解任务→编码→编译→部署→自修复 | 按需求全自动交付功能 |
+
+### 内置 HarmonyOS 专属工具
+
+| 工具 | 功能 | 等价传统命令 |
+|:----:|:----:|:-----------:|
+| `build_project` | 编译构建 | `hvigorw assembleHap` |
+| `start_app` | 模拟器/真机运行 | `hdc install` + `hdc shell aa start` |
+| `hdc_log` | 设备日志收集/清理 | `hdc shell hilog` |
+| `verify_ui` | 自然语言 UI 验证 | 手动操作+截图对比 |
+| `check_ets_files` | ArkTS 静态语法检查 | DevEco Studio ArkTS-Check |
+| `arkts_knowledge_search` | HarmonyOS 知识库检索 | 官网文档/API Reference |
+
+### DevEco CLI 常用命令
+
+```bash
+deveco init -n AppName -t app -s default     # 创建工程
+deveco ohpm install                            # 同步依赖
+deveco build --mode module --module-name entry # 构建模块
+deveco build --mode release --sign-config ./sign/autoSign.json # Release 包
+deveco --version                               # 版本检查
+```
+
+### 模型配置
+
+内置免费提供 GLM-5.1 模型，通过 Ctrl+A 支持接入 DeepSeek / OpenAI / 任意 OpenAI 兼容 Provider。
+
+```json
+// deveco.jsonc
+{
+  "provider": {
+    "deveco": {
+      "name": "DevEco Code",
+      "models": { "glm-5": { "tool_call": true, "limit": { "context": 200000, "output": 8192 } } },
+      "options": { "baseURL": "https://api.openbitfun.com/v1", "apiKey": "{env:DEVECO_API_KEY}" }
+    }
+  }
+}
+```
+
+### 前置条件
+- Node.js 22+
+- DevEco Studio 6.1+（可选，但构建/推包需要）
+- 设置 `DEVECO_HOME` 环境变量指向 DevEco Studio 安装目录
+
+---
+
+## 🧪 测试体系
+
+| 测试类型 | 框架 | 说明 |
+|---------|------|------|
+| **单元测试** | JsUnit（`@ohos.unittest`） | 测试函数/类逻辑，在 ohosTest 目录下编写 |
+| **UI 自动化测试** | Hypium（`@ohos.test.uitest`） | 基于 ArkUI 的 UI 操作模拟、断言 |
+| **性能测试** | DevEco Testing | 内存泄漏、启动耗时、帧率检测 |
+| **专项测试** | 云调试 + 远程真机 | 兼容性、稳定性、压力测试 |
+
+### 单元测试示例
+```typescript
+// ohosTest/entry/src/test/UserModelTest.ts
+import { describe, it, expect } from '@ohos/hypium';
+describe('UserModelTest', () => {
+  it('calcAge_should_return_correct', 0, () => {
+    const result = calcAge(1990);
+    expect(result).assertEqual(36);
+  });
+});
+```
+
+### UI 自动化测试（Hypium）示例
+```typescript
+import { Driver, ON, Component } from '@ohos.test.uitest';
+const driver = Driver.create();
+await driver.findComponent(ON.text('登录')).click();
+await driver.findComponent(ON.id('username')).inputText('admin');
+await driver.findComponent(ON.text('确认')).click();
+// 断言结果
+const result = await driver.findComponent(ON.text('登录成功'));
+expect(result).assertIsTrue();
+```
+
+### 测试流程建议
+1. 开发阶段：JsUnit 覆盖核心业务逻辑
+2. 功能稳定后：Hypium 覆盖核心 UI 流程
+3. 提交前：DevEco Testing 跑一次性能基线
+4. 多设备：AGC 云调试验证兼容性
+
+---
+
+## 🛡️ 应用异常处理（hiAppEvent）
+
+> 基于官方 Sample `exception-handling`（2,829下载）。在线上环境，自动捕获崩溃和卡死事件是质量保障的基础能力。
+
+### 核心 API：hiAppEvent
+
+```typescript
+import hiAppEvent from '@ohos.hiviewdfx.hiAppEvent';
+```
+
+### 订阅应用事件（崩溃 + 卡死）
+
+```typescript
+export function subscribeAppEvents(): void {
+  hiAppEvent.addWatcher({
+    name: "app_crash_watcher",
+    appEventFilters: [
+      {
+        domain: hiAppEvent.domain.OS,
+        names: [
+          hiAppEvent.event.APP_CRASH,   // 应用崩溃
+          hiAppEvent.event.APP_FREEZE   // 应用卡死
+        ]
+      }
+    ],
+    onReceive: (domain: string, appEventGroups: Array<hiAppEvent.AppEventGroup>) => {
+      // 将事件数据存入应用级状态
+      AppStorage.setOrCreate('appEventGroups', appEventGroups);
+    }
+  });
+}
+```
+
+### 获取异常信息
+
+```typescript
+// 在组件中监听并解析
+@StorageLink('appEventGroups') @Watch('parseCrashInfo')
+appEventGroups: Array<hiAppEvent.AppEventGroup> = [];
+
+async parseCrashInfo(): Promise<void> {
+  if (!this.appEventGroups?.length) return;
+
+  for (const group of this.appEventGroups) {
+    for (const event of group.appEventInfos) {
+      const params = event.params;
+      const crashInfo: string =
+        `领域: ${event.domain}\n` +
+        `事件: ${event.name}\n` +
+        `类型: ${event.eventType}\n` +
+        `时间: ${params['time']}\n` +
+        `崩溃类型: ${params['crash_type']}\n` +
+        `前台/后台: ${params['foreground']}\n` +
+        `版本: ${params['bundle_version']}\n` +
+        `包名: ${params['bundle_name']}\n` +
+        `异常详情: ${JSON.stringify(params['exception'])}\n`;
+      // 存入懒加载数据源
+      this.faultDataSource.pushData(crashInfo);
+    }
+  }
+}
+```
+
+### 触发异常（用于测试）
+
+```typescript
+// 触发崩溃：解析非法 JSON
+const result: object = JSON.parse('');     // APP_CRASH
+
+// 触发卡死：无限循环
+while (true) { }                           // APP_FREEZE
+```
+
+### 数据持久化（@ohos.data.preferences）
+
+```typescript
+import { preferences } from '@kit.ArkData';
+
+// 存储
+dataPreferencesManager.put('faultMessage',
+  JSON.stringify(crashRecords), (err) => {
+    if (!err) dataPreferencesManager.flush();
+  });
+
+// 读取
+dataPreferencesManager.get('faultMessage', [])
+  .then((data) => {
+    const records: Array<string> = JSON.parse(data as string);
+    // 恢复数据到懒加载数据源
+  });
+```
+
+### 架构模式
+
+```
+订阅层（addWatcher）
+  ↓
+全局状态（AppStorage）
+  ↓
+组件监听（@StorageLink + @Watch）
+  ↓
+数据解析 → 懒加载数据源（LazyForEach DataSource）
+  ↓
+持久化（Preferences）
+  ↓
+UI 渲染（List + LazyForEach）
+```
+
+---
+
+## 🔄 AppLifecycleManagement 应用生命周期（第三轮新增）
+
+> **来源**：`AppLifecycleManagement` | Gitee harmonyos_samples | 源码级
+
+### 四大能力
+
+| 动作 | API | 说明 |
+|------|-----|------|
+| 前后台监听 | `ApplicationContext.on('applicationStateChange')` | 监听应用前后台切换 |
+| 关闭 Ability | `UIAbilityContext.terminateSelf()` | 关闭当前 UIAbility |
+| 关闭应用 | `ApplicationContext.killAllProcesses()` | 杀死应用的所有进程 |
+| 重启应用 | `ApplicationContext.restartApp(restartWant)` | 重启 App |
+| 切到后台 | `Window.minimize()` | 最小化窗口到后台 |
+
+### 核心代码
+
+```typescript
+// [API 23+] 前后台状态监听
+import { common } from '@kit.AbilityKit'
+
+const ctx = getContext(this) as common.UIAbilityContext
+const appCtx = ctx.getApplicationContext()
+
+// 监听应用前后台切换
+appCtx.on('applicationStateChange', (state: number) => {
+  if (state === 0) { /* 前台 */ }
+  if (state === 1) { /* 后台 */ }
+})
+
+// 重启应用
+appCtx.restartApp({
+  bundleName: 'com.example.app',
+  abilityName: 'EntryAbility'
+})
+```
+
+---
+
 
 ## 🎯 HarmonyOS 7 DFX 全线工具（9 项能力，API 26 Beta 新增）
 
@@ -4207,6 +2292,8 @@ OH_JSVM_EnableLocalHandleDetection(jsvm_env env, bool enable);
 - 减少手动 HandleScope 遗漏导致的引用泄漏
 - **适用**：NDK 开发，特别是频繁使用 napi 回调的场景
 
+
+
 ---## 🏗️ hvigorw 构建系统速查
 
 > 命令行构建神器，**CI/CD 和脱离 IDE 打包必备**。
@@ -4287,6 +2374,3783 @@ hvigorw assembleHap -p buildMode=debug --no-daemon
 
 ---
 
+
+---
+
+# 第七部分：安全与合规（权限、隐私、加密、认证、业务风险检测）
+
+## 🔒 安全合规
+
+### 权限模型（三层分级）
+| 级别 | 说明 | 示例 | 申请方式 |
+|------|------|------|---------|
+| **normal** | 直接授予 | `ohos.permission.INTERNET` | 在 module.json5 声明即可 |
+| **system_basic** | 弹窗确认 | `ohos.permission.LOCATION`、`ohos.permission.CAMERA` | 声明 + 运行时 `requestPermissionsFromUser` |
+| **system_core** | 限制级 | 系统API，普通应用不可用 | 需 OEM 授权 |
+
+### 敏感权限动态申请
+```typescript
+import { abilityAccessCtrl } from '@kit.AbilityKit';
+const atManager = abilityAccessCtrl.createAtManager();
+// 请求相机权限
+atManager.requestPermissionsFromUser(this.context, [
+  'ohos.permission.CAMERA'
+]).then((data) => {
+  if (data.authResults[0] === 0) { /* 权限已授予 */ }
+});
+```
+
+### 数据安全
+- **加密存储**：敏感数据用 EncryptedKVStore 或 HUKS（华为通用密钥库）加密
+- **HTTPS 必用**：生产环境 `@ohos.net.http` 必须用 HTTPS，校验证书
+- **最小权限原则**：只申请业务必需权限，不用不申
+- **隐私政策**：申请敏感权限时，必须提供《隐私政策》弹窗说明用途
+
+### 上架合规必查
+- ✅ 隐私政策链接必填
+- ✅ 敏感权限必须有说明文案
+- ✅ 应用描述与功能一致，不夸大
+- ✅ 未成年人保护（如涉及）
+
+---
+
+## 🔒 Enterprise Threat Protection Kit（2,240 下载）
+
+> 源自 `@kit.EnterpriseThreatProtectionKit`，HarmonyOS 6.1.1 (API 24) 新增。为安全应用提供"穿透沙盒"的全系统文件扫描和隔离处置能力。**仅支持 PC/2in1 设备**。
+
+### 核心 API 矩阵
+
+| API | 功能 | 说明 |
+|:----:|:----:|:------|
+| `scanBundleFiles(targetType, callback)` | 扫描 BUNDLE/EL2 目录 | 分批次回调返回路径 |
+| `openFile(path)` | 跨沙盒打开文件 | 获取 FD 供分析引擎深度扫描 |
+| `isolateThreatFile(path)` | 隔离风险文件 | 物理转移至加密隔离区 → 返回隔离 ID |
+| `restoreIsolatedFile(id)` | 恢复误报文件 | 按 ID 还原至原路径 |
+| `removeIsolatedFile(id)` | 物理清除 | 不可逆擦除 |
+| `queryIsolatedFiles(callback)` | 查询隔离区 | 获取所有隔离项目列表 |
+
+### 完整工作流
+
+```typescript
+import { virusRemediation } from '@kit.EnterpriseThreatProtectionKit';
+
+// 1. 全盘扫描（批次回调）
+const callback: virusRemediation.ScanCallback = {
+  onReceive: (paths: string[]) => {
+    // 分批次接收，避免内存爆炸
+    scannedPaths.push(...paths);
+  },
+  onComplete: () => { /* 扫描完成 */ },
+  onError: (code, msg) => { /* 错误处理 */ },
+};
+virusRemediation.scanBundleFiles(
+  virusRemediation.ScanTargetType.BUNDLE, callback);
+
+// 2. 隔离发现的风险文件
+const isolationId = await virusRemediation.isolateThreatFile(path);
+
+// 3. 查询隔离区
+virusRemediation.queryIsolatedFiles({
+  onQuery: (files) => { isolatedItems = files; },
+});
+
+// 4. 恢复或清除
+await virusRemediation.restoreIsolatedFile(isolationId);  // 误报还原
+await virusRemediation.removeIsolatedFile(isolationId);   // 物理清除
+```
+
+### 权限与限制
+
+| 要求 | 说明 |
+|:----:|:------|
+| **权限** | `ohos.permission.SCAN_REMEDIATE_VIRUS` — 仅企业杀软可申请 |
+| **设备** | 仅 PC/2in1 设备，手机/平板不支持 |
+| **FD 管理** | `openFile` 获取的 FD 必须及时关闭，防止耗尽配额 |
+| **隔离 ID** | 应用卸载重装后 ID 映射丢失，需 `queryIsolatedFiles` 重新同步 |
+| **BUNDLE 目录** | 包体文件不支持 isolate/remove，需走 `addDisallowedRunningBundlesSync` 黑名单或 `uninstall` |
+
+### 最佳实践
+
+- **分批次处理**：利用 `onReceive` 分批接收，避免大列表一次性加载
+- **闲时扫描**：使用 TaskPool 在充电灭屏时执行全盘扫描
+- **增量比对**：先 Stat 文件时间戳，仅对有变动的文件执行深度取証
+- **AI 降级**：`canIUse` 检测设备能力，非 2in1 设备优雅降级
+
+---
+
+## 🎵 音频开发（AudioFocus + AudioInteraction + WindowPiP）
+
+### AudioFocus — 音频焦点管理
+
+**核心机制**：默认 `STREAM_USAGE_MEDIA` 会强制终止其他媒体流。工具类音效应"降级"避免冲突。
+
+```typescript
+import { audio } from '@kit.AudioKit';
+
+// ❌ 错误：默认 MUSIC 会杀后台听书
+let rendererOptions: audio.AudioRendererOptions = {
+  streamInfo: { samplingRate: 44100, channels: 2, sampleFormat: 3, encodingType: 0 },
+  streamUsage: audio.StreamUsage.STREAM_USAGE_MEDIA, // 独占！
+};
+
+// ✅ 方案一：改为 GAME 类型（不打断其他音源）
+streamUsage: audio.StreamUsage.STREAM_USAGE_GAME;
+
+// ✅ 方案二：AudioSession 共享模式
+let session = await audio.createAudioSession();
+await session.setInterruptMode(audio.InterruptMode.SHARED);
+await session.activate();
+// 绑定 sessionToken 到 AudioRenderer
+rendererOptions.sessionToken = session.getToken();
+
+// 监听音频打断
+avPlayer.on('audioInterrupt', (info: audio.InterruptEvent) => {
+  if (info.forcePause) { /* 被强制暂停 */ }
+});
+```
+
+### WindowPiP — 画中画
+
+```typescript
+import { PiPWindow } from '@kit.ArkUI';
+
+// 创建画中画
+const pipController = await PiPWindow.create({
+  config: { /* PiPConfiguration */ }
+});
+await pipController.startPiP();
+
+// 退后台自动启动 PiP
+pipController.setAutoStartEnabled(true);
+
+// 监听状态
+pipController.on('stateChange', (state) => {
+  // STARTED / STOPPED / ERROR
+});
+```
+
+---
+
+## 🔐 加密深度（CryptoArchitectureKit）
+
+```typescript
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+
+// AES 对称加密
+async function aesEncrypt(data: string, key: Uint8Array): Promise<Uint8Array> {
+  const symKey = await cryptoFramework.createSymKeyGenerator('AES128')
+    .convertKey(key);
+  const cipher = await cryptoFramework.createCipher('AES128|CBC|PKCS7');
+  const iv = { data: new Uint8Array(16) }; // 16字节初始化向量
+  await cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, iv);
+  const result = await cipher.doFinal({ data: new TextEncoder().encodeInto(data) });
+  return result.data;
+}
+
+// RSA 非对称加密
+async function rsaEncrypt(data: string, pubKey: Uint8Array): Promise<Uint8Array> {
+  const keyPair = await cryptoFramework.createAsyKeyGenerator('RSA2048')
+    .convertKey(pubKey, null);
+  const cipher = await cryptoFramework.createCipher('RSA2048|PKCS1');
+  await cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, keyPair);
+  const result = await cipher.doFinal({ data: new TextEncoder().encodeInto(data) });
+  return result.data;
+}
+
+// SHA256 哈希
+async function sha256(data: string): Promise<Uint8Array> {
+  const md = await cryptoFramework.createMd('SHA256');
+  await md.update({ data: new TextEncoder().encodeInto(data) });
+  return (await md.digest()).data;
+}
+```
+
+---
+
+## 🔐 CryptoCollection 加解密大全（第二轮新增）
+
+> **来源**：`crypto-collection` | Gitee harmonyos_samples | 源码级
+
+### 支持的算法
+| 分类 | 算法 |
+|------|------|
+| **对称加密** | AES、3DES、SM4 |
+| **非对称加密** | RSA、SM2 |
+| **签名验签** | RSA、SM2、ECDSA |
+| **消息摘要** | SHA256、MD5、SM3 |
+| **消息认证码** | HMAC |
+
+### 工程目录
+```
+entry/src/main/ets/
+├── pages/
+│   ├── Index.ets                  # 主页入口
+│   ├── EncryptionAndDecryption.ets # 加解密页面
+│   ├── SignatureVerification.ets   # 签名验签
+│   ├── MessageSummary.ets          # 消息摘要
+│   └── MessageAuthenticationCode.ets # HMAC
+├── utils/
+│   ├── CryptoUtil.ets              # 加解密工具类
+│   ├── SignatureUtil.ets           # 签名验签工具类
+│   └── DataConversion.ets          # SM2 格式转换
+└── viewmodel/                      # ViewModel 层
+```
+
+### AES 加解密代码模式
+```typescript
+// [API 23+] cryptoFramework 加解密
+import { cryptoFramework } from '@kit.CryptoArchitectureKit'
+
+async function aesEncrypt(plainText: string): Promise<string> {
+  let generator = cryptoFramework.createSymKeyGenerator('AES128')
+  let key = await generator.generateSymKey()
+  let cipher = cryptoFramework.createCipher('AES128|PKCS7')
+  let iv: cryptoFramework.DataBlob = { data: new Uint8Array(16) }
+  await cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, key, iv)
+  let input: cryptoFramework.DataBlob = { data: new TextEncoder().encode(plainText) }
+  let output = await cipher.doFinal(input)
+  return output.data.toString()  // Base64 编码后输出
+}
+```
+
+### SM2 密钥格式转换
+SM2 支持 16 进制公私钥与 ASN.1 格式 Base64 编码之间的互转。
+
+---
+
+## 🔉 AudioFocus 音频焦点深度管理（第六轮新增）
+
+> **来源**：`audio-focus` | Gitee harmonyos_samples | 源码级
+
+### 能力矩阵
+
+| 场景 | 音频流类型 | 焦点处理 |
+|------|-----------|---------|
+| 视频播放 | CONTENT_MOVIE | 中断后暂停，恢复后继续 |
+| 音乐播放 | CONTENT_MUSIC | 中断后降低音量（闪避） |
+| VoIP通话 | VOIP_CALL | 抢占焦点，其他应用暂停 |
+
+### 核心焦点策略
+
+```typescript
+// [API 23+] AudioSession 自定义焦点策略
+import { audio } from '@kit.AudioKit'
+
+let audioSession = this.audioRenderer.getAudioSession()
+audioSession.setAudioSessionDelegator({
+  onInterrupt: (interruptEvent) => {
+    switch (interruptEvent.forceType) {
+      case audio.InterruptForceType.INTERRUPT_FORCE:
+        // 强制中断：暂停播放
+        this.pause()
+        break
+      case audio.InterruptForceType.INTERRUPT_SHARE:
+        // 共享中断：降低音量
+        this.duckVolume()
+        break
+    }
+    return { isPlay: false } // 是否继续播放
+  }
+})
+```
+
+---
+
+## 🔍 CoreVisionKit OCR 文字识别（第七轮新增）
+
+> **来源**：`core-vision-kit-sample-code-ark-ts-ocr-demo` | Gitee harmonyos_samples | 源码级
+
+### 核心 API
+
+```typescript
+// [API 23+] 通用文字识别
+import { textRecognition } from '@hms.ai.ocr'
+
+async function recognizeText(pixelMap: PixelMap): Promise<string> {
+  let visionInfo: VisionInfo = {
+    pixelMap: pixelMap,
+    // 可指定识别语言、识别区域等参数
+  }
+  let result = await textRecognition.recognizeText(visionInfo)
+  return result.text  // 识别出的完整文本
+}
+```
+
+### 流程
+```
+选择图片（图库/拍照） → 转为 PixelMap → textRecognition.recognizeText() → 展示可复制的文本
+```
+
+### 约束
+- 支持设备：手机、平板、2in1
+- HarmonyOS 5.0.0 Release+
+
+---
+
+## 🛡️ DeviceSecurityKit 业务风险检测（第七轮中高价值②）
+
+> **来源**：`device-security-kit-business-risk` | Gitee harmonyos_samples | 源码级
+
+### 三种检测
+
+| 检测类型 | API | 用途 |
+|---------|-----|------|
+| 涉诈剧本检测 | `detectFraudRisk()` | 防诈骗识别 |
+| 模拟点击检测 | `detectSimulatedClickRisk()` | 反作弊/反欺诈 |
+| 模拟点击增强检测 | `detectSimulatedClickRiskEnhanced()` | 增强版 + 签名验证 |
+
+```typescript
+// [API 23+] 业务风险检测
+import { businessRiskIntelligentDetection } from '@kit.DeviceSecurityKit'
+
+// 涉诈剧本检测
+let fraudResult = await businessRiskIntelligentDetection.detectFraudRisk()
+// 解析检测结果（建议服务端侧签名验证）
+
+// 模拟点击检测
+let clickResult = await businessRiskIntelligentDetection.detectSimulatedClickRisk()
+```
+
+### 约束
+- 涉诈剧本检测需在 AGC 开通服务
+- HarmonyOS 6.0.2 Beta1+
+
+---
+
+## 🔐 OnlineAuthKit FIDO2 生物认证（第十轮收尾⑥）
+
+> **来源**：`online-authenticationkit_sample_fido2clientdemo_arkts` | Gitee harmonyos_samples
+
+基于 FIDO2 协议的生物认证（指纹/人脸）。
+
+```typescript
+// [API 23+] FIDO2 生物认证
+import { onlineAuthentication } from '@kit.OnlineAuthenticationKit'
+
+// 注册生物凭证
+let result = await onlineAuthentication.register({
+  challenge: 'server_challenge',
+  rp: { name: 'MyApp', id: 'example.com' },
+  user: { id: 'user123', name: 'user' }
+})
+
+// 认证
+let authResult = await onlineAuthentication.authenticate({
+  challenge: 'server_challenge',
+  rpId: 'example.com'
+})
+```
+
+---
+
+
+## ♿ Accessibility 无障碍开发要点
+
+> **审核要求**：AGC 审核会检查无障碍支持，缺失可能导致被拒。
+
+### 核心属性
+
+```typescript
+// 基础无障碍标签（每个可交互组件必加）
+Button('提交')
+  .accessibilityText('提交按钮')           // 朗读文本
+  .accessibilityDescription('点击提交表单') // 详细描述
+  .accessibilityGroup(true)                // 标记为无障碍组
+
+// 隐藏装饰性元素（如图标、分割线）
+Divider()
+  .accessibilityLevel('no')               // 跳过朗读
+
+// 控制焦点
+Text('重要提示')
+  .focusable(true)                         // 可获焦
+  .defaultFocus(true)                      // 页面默认焦点
+```
+
+### 无障碍最佳实践
+
+| 规则 | 做法 |
+|:----|:-----|
+| **所有可交互组件加标签** | Button/Input/List/Image 都加 `accessibilityText` |
+| **装饰元素隐藏** | 纯图标/分割线/背景图加 `accessibilityLevel('no')` |
+| **语义化分组** | 相关控件用 `accessibilityGroup(true)` 包裹 |
+| **动态内容通知** | 用 `announceForAccessibility(text)` 通知屏幕朗读 |
+| **颜色对比度** | 文本/背景对比度 ≥ 4.5:1 |
+| **触摸目标大小** | 可点击区域 ≥ 44vp × 44vp |
+
+---
+
+
+---
+
+# 第八部分：多设备适配（折叠屏、分布式流转、设备协同）
+
+## 📱 多设备适配
+
+### 核心原则
+1. **使用 vp/百分比 代替 px**：`vp` 是鸿蒙虚拟像素单位，自动适配不同密度
+2. **layoutWeight 弹性布局**：按权重分配空间，自动适应屏幕宽度
+3. **breakpoint 断点系统**：按窗口宽度切换不同布局
+
+### Breakpoint 断点适配
+```typescript
+import { BreakpointSystem, BreakpointType } from '@kit.ArkUI';
+
+// 定义断点
+const breakpoints = new BreakpointSystem(1);
+breakpoints.setParams([
+  { name: 'sm', value: 320, files: ['layout/sm'] },
+  { name: 'md', value: 600, files: ['layout/md'] },
+  { name: 'lg', value: 840, files: ['layout/lg'] }
+]);
+
+// 组件内使用
+@State currentBreakpoint: string = 'sm';
+// 根据 currentBreakpoint 切换 GridCol 列数或布局
+```
+
+### 常见设备断点
+| 设备类型 | 断点 | 建议 Grid 列数 |
+|---------|------|:------------:|
+| 手机/折叠屏折叠态 | sm (320~599vp) | 4 |
+| 折叠屏展开/小平板 | md (600~839vp) | 8 |
+| 平板/桌面 | lg (840~) | 12 |
+
+### 适配检查清单
+- ✅ 所有尺寸使用 `vp` / `%` / `layoutWeight`，不用固定 px
+- ✅ 图片使用 `objectFit` 控制缩放（cover/contain）
+- ✅ 关键交互区域 ≥ 48vp × 48vp
+- ✅ 横竖屏均测试通过
+- ✅ 折叠屏展开/折叠态均验证
+- ✅ 使用 `LazyForEach` 确保长列表性能
+
+---
+
+## 🏗️ 多设备开发实战场
+
+> 以下实战模式源自官方 Sample `MultiCommunityApplication`（3,700 下载）和 `MusicHome`（4,080 下载），覆盖社区评论和音乐播放类应用的多设备适配全场景。
+
+### 实战一：响应式 Navigation + pageMap 路由
+
+```typescript
+// 将 NavPathStack 存入 AppStorage，实现跨组件页面跳转
+@Entry
+@Component
+struct Index {
+  @StorageLink('pageInfos') pageInfos: NavPathStack = new NavPathStack();
+
+  aboutToAppear(): void {
+    this.pageInfos.pushPath({ name: 'mainPage' });
+  }
+
+  // pageMap 的路由分发模式
+  @Builder
+  pageMap(name: string, param: object) {
+    if ('detailPage' === name) {
+      NavDestination() { DetailPage() }
+        .onBackPressed(() => {
+          AppStorage.setOrCreate('isDetailPage', false);
+          return false;
+        })
+        .hideTitleBar(true)
+    } else if ('pictureDetail' === name) {
+      NavDestination() { PictureDetail({ index: param as number }) }
+        .hideTitleBar(true)
+    } else if ('rankPage' === name) {
+      NavDestination() { HotRankPage() }
+        .hideTitleBar(true)
+    }
+  }
+
+  build() {
+    Navigation(this.pageInfos)
+      .hideNavBar(true)
+      .navDestination(this.pageMap)
+  }
+}
+```
+
+### 实战二：Tabs 响应式导航（水平↔垂直自动切换）
+
+手机端底部水平标签栏 ⇄ 平板端左侧垂直侧边栏，通过断点实时切换。
+
+```typescript
+@Component
+export struct TabContentView {
+  @StorageLink('currentBreakpoint') currentBreakpoint: string = 'sm';
+
+  build() {
+    Tabs({
+      barPosition: this.currentBreakpoint === 'lg'
+        ? BarPosition.Start  // 平板/大屏 → 左侧垂直
+        : BarPosition.End     // 手机 → 底部水平
+    }) {
+      TabContent() { HotPointPage() }.tabBar('关注')
+      TabContent() { FoundPage() }.tabBar('发现')
+      TabContent() { RankPage() }.tabBar('排行')
+    }
+    .vertical(this.currentBreakpoint === 'lg')      // LG 断点垂直导航
+    .barHeight(this.currentBreakpoint === 'lg'
+      ? '50%' : '48vp')                              // 垂直时全高，水平时固定
+    .barWidth(this.currentBreakpoint === 'lg'
+      ? '72vp' : '100%')                             // 垂直时固定宽度
+  }
+}
+```
+
+### 实战三：WaterFlow 瀑布流断点自适应列数
+
+手机单列 ⇄ 平板双列，通过 `columnsTemplate` 动态控制。
+
+```typescript
+WaterFlow() {
+  LazyForEach(this.cardArray, (item: CardItem) => {
+    FlowItem() {
+      Column() {
+        MicroBlogView({ cardItem: item })
+        CommentBarView({ isShowInput: false })
+      }
+    }
+  })
+}
+.columnsTemplate(this.currentBreakpoint === 'lg' ? '1fr 1fr' : '1fr')
+.rowsGap(this.currentBreakpoint === 'lg' ? 0 : 8)
+.nestedScroll({                               // 内外滚动协同
+  scrollForward: NestedScrollMode.PARENT_FIRST,
+  scrollBackward: NestedScrollMode.SELF_FIRST
+})
+```
+
+### 实战四：折叠屏双栏布局（GridRow + SideBarContainer）
+
+手机端上下滚动，折叠屏展开态左右分栏，平板端侧边栏评论区。
+
+```typescript
+@Component
+struct DetailPage {
+  @StorageLink('currentBreakpoint') currentBreakpoint: string = 'sm';
+  @State isFoldHorizontal: boolean = false;
+
+  build() {
+    // 手机/折叠屏：GridRow 栅格分栏
+    GridRow({ columns: { sm: 4, md: 5, lg: 12 } }) {
+      GridCol({ span: { sm: 4, md: this.isFoldHorizontal ? 3 : 5, lg: 12 } }) {
+        MicroBlogView({ cardItem: this.cardItem })
+      }
+      GridCol({ span: { sm: 4, md: this.isFoldHorizontal ? 2 : 5, lg: 12 } }) {
+        CommentListView()
+      }
+    }
+    .visibility(this.currentBreakpoint === 'lg' ? Visibility.None : Visibility.Visible)
+
+    // 平板/大屏：SideBarContainer 右侧评论区
+    SideBarContainer() {
+      Column() { CommentListView() }
+      Column() { MicroBlogView({ cardItem: this.cardItem }) }
+    }
+    .visibility(this.currentBreakpoint !== 'lg' ? Visibility.None : Visibility.Visible)
+  }
+}
+```
+
+### 实战五：视差滚动头部
+
+排行榜页头部随滚动产生视差位移，通过 `onScrollFrameBegin` 实现。
+
+```typescript
+const HEADER_MAX_TOP: number = 52;
+const HEADER_MIN_TOP: number = 46;
+
+@State titleMarginTop: number = HEADER_MAX_TOP;
+
+Scroll() {
+  Column() {
+    // 标题栏：滚动时 marginTop 在 46~52vp 间渐变
+    // 副标题在滚动收起时渐隐
+    this.TitleBar()
+      .margin({ top: this.titleMarginTop })
+
+    // 榜单内容
+    HotListView()
+  }
+}
+.onScrollFrameBegin((offset: number, state: ScrollState) => {
+  return { offsetRemain: this.calcParallax(offset) };
+})
+
+calcParallax(offset: number): number {
+  if (offset > 0 && this.titleMarginTop > HEADER_MIN_TOP) {
+    const delta = Math.min(offset, this.titleMarginTop - HEADER_MIN_TOP);
+    this.titleMarginTop -= delta;
+    return 0;
+  }
+  if (offset < 0 && this.titleMarginTop < HEADER_MAX_TOP) {
+    const delta = Math.min(Math.abs(offset), HEADER_MAX_TOP - this.titleMarginTop);
+    this.titleMarginTop += delta;
+    return 0;
+  }
+  return offset;
+}
+```
+
+### 实战六：窗口断点实时计算
+
+```typescript
+// EntryAbility 中监听窗口尺寸变化
+private updateBreakpoint(windowWidth: number): void {
+  const vp = windowWidth / display.getDefaultDisplaySync().densityPixels;
+  let bp = 'sm';
+  if (vp >= 840) bp = 'lg';
+  else if (vp >= 600) bp = 'md';
+  AppStorage.setOrCreate('currentBreakpoint', bp);
+}
+
+// 注册监听
+onWindowStageCreate(windowStage: WindowStage): void {
+  windowStage.getMainWindow().then((win) => {
+    const winWidth = win.getWindowProperties().windowRect.width;
+    this.updateBreakpoint(winWidth);
+    win.on('windowSizeChange', (size) => this.updateBreakpoint(size.width));
+  });
+}
+```
+
+---
+
+## 📡 分布式自由流转（应用接续 + 分布式数据对象）
+
+> 源自官方 Sample 及华为最佳实践文档，覆盖应用接续、分布式数据对象、跨设备拖拽、碰一碰分享等核心能力。
+
+### 应用接续（onContinue + 分布式数据对象）
+
+```typescript
+import { distributedDataObject } from '@kit.ArkData';
+import { AbilityConstant, UIAbility } from '@kit.AbilityKit';
+
+// 源端（迁移）: onContinue
+export default class SourceAbility extends UIAbility {
+  d_object?: distributedDataObject.DataObject;
+
+  async onContinue(wantParam: Record<string, Object>): Promise<AbilityConstant.OnContinueResult> {
+    // 1. 创建分布式数据对象
+    const source = { name: 'jack', age: 18, isVis: false };
+    this.d_object = distributedDataObject.create(this.context, source);
+
+    // 2. 生成组网ID
+    const sessionId = distributedDataObject.genSessionId();
+    this.d_object.setSessionId(sessionId);
+    wantParam['dataSessionId'] = sessionId;  // 传给对端
+
+    // 3. 持久化（确保源端退出后对端仍能获取）
+    await this.d_object.save(wantParam.targetDevice as string);
+    return AbilityConstant.OnContinueResult.AGREE;
+  }
+}
+
+// 对端（接收）
+export default class TargetAbility extends UIAbility {
+  d_object?: distributedDataObject.DataObject;
+
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
+      this.handleContinuation(want);
+    }
+  }
+
+  handleContinuation(want: Want): void {
+    const remoteData = { name: undefined, age: undefined, isVis: undefined };
+    this.d_object = distributedDataObject.create(this.context, remoteData);
+
+    // 必须在 setSessionId 之前注册 status 监听
+    this.d_object.on('status', (sessionId, networkId, status) => {
+      if (status === 'restored') {
+        console.info(`restored: ${this.d_object!['name']}`);
+      }
+    });
+    this.d_object.setSessionId(want.parameters?.dataSessionId as string);
+  }
+}
+```
+
+### 跨端文件流转（Asset 同步）
+
+```typescript
+import { commonType } from '@kit.ArkData';
+
+// 源端：写入分布式文件目录 → 创建 Asset → 封装进 DataObject
+const filePath = this.context.distributedFilesDir + '/test.txt';
+fs.writeSync(fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE).fd, 'content');
+
+const attachment: commonType.Asset = {
+  name: 'test.txt', uri: fileUri.getUriFromPath(filePath), path: filePath,
+  createTime: '...', modifyTime: '...', size: '...',
+};
+this.d_object = distributedDataObject.create(this.context, { attachment });
+
+// 对端：创建空 Asset → 监听 status restored → 读取
+const emptyAsset: commonType.Asset = { name: '', uri: '', path: '', createTime: '', modifyTime: '', size: '' };
+this.d_object = distributedDataObject.create(this.context, { attachment: emptyAsset });
+this.d_object.on('status', (s, n, status) => {
+  if (status === 'restored') {
+    const file = this.d_object!['attachment'] as commonType.Asset;
+    // 可使用 file.uri 读取文件
+  }
+});
+```
+
+### 多端协同通信方案
+
+| 功能 | API | 适用场景 |
+|:----:|:----:|:--------|
+| 应用接续 | `onContinue` + `distributedDataObject` | 跨设备无缝切换任务 |
+| 分布式数据对象 | `create()` + `setSessionId()` + `on('status')` | 跨设备数据实时同步 |
+| 跨设备拖拽 | 统一拖拽 API | 平板/2in1 间拖拽文件/文本 |
+| 碰一碰分享 | 碰一碰 SDK | 图片/Wi-Fi/文件跨端分享 |
+| 隔空传送 | 手势识别 + 跨端传输 | 一抓一放跨端传输 |
+| 跨设备剪贴板 | 分布式剪贴板 | A设备复制，B设备粘贴 |
+
+### 关键注意事项
+
+- 分布式数据对象必须在 `save()` 之前调用 `setSessionId()` 激活
+- 对端必须在 `setSessionId` **之前** 注册 `status` 监听，防止错过 `restored`
+- 对端创建对象时所有属性应初始化为 `undefined`，Asset 需创建空对象
+- API 12+ 不需要申请 `ohos.permission.DISTRIBUTED_DATASYNC`
+- 需要传输文件时，使用 `Asset` 类型而非直接传文件路径
+
+## 🤝 设备协同（KnockShare + MultiDeviceInteraction + FormGame）
+
+### KnockShare — 碰一碰分享
+
+```typescript
+import { shareController } from '@kit.ShareKit';
+
+// 碰一碰触发分享
+shareController.share({
+  title: '分享图片',
+  filePath: ['/data/file/test.jpg'],
+  shareMode: shareController.ShareMode.KNOCK, // 碰一碰模式
+});
+```
+
+### FormGame — 游戏卡片
+
+```typescript
+// form_config.json 配置
+{ "name": "GameCard", "src": "./ets/widget/GameCard.ets",
+  "isDynamic": true, "defaultDimension": "2*2",
+  "supportDimensions": ["2*2"] }
+// GameCard.ets 使用 Canvas 实现小游戏 UI
+Canvas(this.context)
+  .onReady(() => { /* 绘制游戏元素 */ })
+  .onTouch((event) => { /* 处理交互 */ })
+```
+
+---
+
+## 📱 ContinueProgress 应用接续进度（第三轮新增）
+
+> **来源**：`continue-progress` | Gitee harmonyos_samples | 源码级
+
+### 三种场景接续
+
+| 场景 | 接续内容 | 实现 |
+|------|---------|------|
+| **长列表** | List + WaterFlow 的滚动偏移量 | `scrollToIndex(continueOffset)` |
+| **媒体播放** | 播放集数 + 当前进度 | `avPlayer.seek(continueTime)` |
+| **Web 浏览** | 滚动位置 | `controller.runJavaScript('window.scrollY')` |
+
+### 跨设备接续前提
+1. 双端登录同一华为账号
+2. 开启 Wi-Fi + 蓝牙（建议同局域网）
+3. 双端安装同应用
+
+### 核心代码模式
+
+```typescript
+// [API 23+] 应用接续核心逻辑
+import { common } from '@kit.AbilityKit'
+
+class MyAbility extends UIAbility {
+  onContinue(wantParam: Record<string, Object>): OnContinueResult {
+    // 1. 保存当前进度
+    wantParam['continueOffset'] = this.pageOffset
+    wantParam['playPosition'] = this.avPlayer.currentTime
+    // 2. 返回 CONTINUE
+    return OnContinueResult.AGREE
+  }
+
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    // 3. 恢复进度（对端）
+    let offset = want.parameters?.continueOffset as number
+    if (offset) { this.scrollToIndex(offset) }
+  }
+}
+```
+
+---
+
+## 🤝 GesturesShare 隔空传送分享（第五轮新增）
+
+> **来源**：`GesturesShare` | Gitee harmonyos_samples | 源码级
+
+### 功能
+基于 Share Kit 的 `harmonyShare.on('gesturesShare')` 实现"一抓一放"跨设备分享文件和 App Linking 链接。
+
+```typescript
+// [API 23+] 隔空传送监听
+import { systemShare } from '@kit.ShareKit'
+
+systemShare.harmonyShare.on('gesturesShare', (event, sharableTarget) => {
+  // 分享文件
+  sharableTarget.share({
+    type: 'file',
+    uris: ['file://...', 'file://...']
+  })
+  // 或分享 App Linking 链接（跳转到应用内指定页面）
+  // sharableTarget.share({ type: 'link', content: 'https://applink.example.com/video' })
+})
+```
+
+### 权限
+- 需配置 App Linking
+- 双端开启华为分享服务 + 隔空传送开关
+- 双端亮屏解锁 + 登录同一华为账号
+
+---
+
+## 🤝 KnockFileShare 碰一碰文件分享（第五轮新增）
+
+> **来源**：`KnockFileShare` | Gitee harmonyos_samples | 源码级
+
+### 核心 API
+
+```typescript
+// [API 23+] 碰一碰文件分享
+import { systemShare } from '@kit.ShareKit'
+
+// 注册碰一碰监听
+systemShare.harmonyShare.on('knockShare', (event, sharableTarget) => {
+  sharableTarget.share({
+    type: 'file',
+    uris: selectedFileUris   // 勾选的文件列表
+  })
+})
+
+// PC端接收文件监听
+systemShare.harmonyShare.on('dataReceive', (event, data) => {
+  // data 保存至应用沙箱目录
+  fileIo.copy(data.uri, this.context.filesDir + '/received/')
+})
+```
+
+### 约束
+- 手机与手机/PC/2in1 碰一碰
+- 双端登录同一华为账号
+- HarmonyOS 6.0.0 beta2+
+- PC端最大接收 5 个文件
+
+---
+
+## 📷 MultiDeviceCamera 多设备相机（第七轮新增）
+
+> **来源**：`MultiDeviceCamera` | Gitee harmonyos_samples | 源码级
+
+### 场景
+在手机、大折叠、阔折叠、三折叠、平板上实现**正常状态和折叠状态切换时**的预览旋转、拍照旋转、切换镜头。
+
+### 核心能力
+
+| 能力 | API | 说明 |
+|------|-----|------|
+| 相机预览 | `CameraManager.createCameraInput` + `PhotoSession` | 多设备预览 |
+| 拍照 | `PhotoSession.capture` | 拍照 + 旋转适配 |
+| 切换镜头 | `CameraInput.switchCameraInput` | 前后摄像头切换 |
+| 保存图片 | `photoAccessHelper` | 保存至图库 |
+| 折叠适配 | `BreakpointType` + `WindowUtil` | 折叠状态感知 + 旋转补偿 |
+| 多设备适配 | `BreakpointSystem` | 一多断点适配 |
+
+### 工程结构
+```
+entry/src/main/ets/
+├── utils/CameraUtil.ets      # 相机工具类
+├── utils/BreakpointType.ets   # 一多断点
+├── utils/WindowUtil.ets      # 窗口/折叠感知
+├── views/CommonView.ets      # 公共视图
+└── pages/Index.ets           # 主页
+```
+
+### 核心代码模式
+
+```typescript
+// [API 23+] 相机预览 + 折叠适配
+import { camera } from '@kit.CameraKit'
+import { photoAccessHelper } from '@kit.MediaLibraryKit'
+
+async function startPreview(context: Context, surfaceId: string) {
+  let cameraManager = camera.getCameraManager(context)
+  let cameras = cameraManager.getSupportedCameras()
+  let cameraInput = cameraManager.createCameraInput(cameras[0])
+  await cameraInput.open()
+  let session = cameraManager.createPhotoSession()
+  session.beginConfig()
+  session.addInput(cameraInput)
+  let previewOutput = session.createPreviewOutput(surfaceId)
+  session.addOutput(previewOutput)
+  await session.commitConfig()
+  await session.start()
+}
+
+// 折叠状态旋转补偿
+// 使用 BreakpointType 监听折叠状态变化
+// 通过 WindowUtil 获取当前旋转角度，补偿预览/拍照方向
+```
+
+### 权限
+```json5
+"ohos.permission.CAMERA"
+"ohos.permission.READ_IMAGEVIDEO"
+"ohos.permission.WRITE_IMAGEVIDEO"
+```
+
+---
+
+# 第九部分：Kit 能力速查（76个Kit分类、工具类、NFC、音频）
+
+## 🎵 MusicHome 多设备音乐实战场（4,080 下载）
+
+> 源自官方 Sample `MusicHome`，共 3 个模块，按 commons/features/products 三层架构组织，覆盖手机/折叠屏/平板/手表/智慧屏。
+
+### 三层架构详解
+
+```
+MultiMusicApp/
+├── commons/
+│   ├── constantsCommon/        # 公共常量（断点、栅格、样式、路由）
+│   └── mediaCommon/            # 公共媒体服务（音乐播放、断点系统、数据模型）
+├── features/
+│   ├── musicList/              # 歌曲列表页（独立模块，含页面/组件/数据）
+│   ├── musicComment/           # 音乐评论页（独立复用模块）
+│   └── live/                   # 直播页（独立模块）
+└── products/
+    ├── phone/                  # 手机/折叠屏/平板 → 组装所有 features
+    └── watch/                  # 手表 → 只组装部分 features
+```
+
+**架构价值**：`features` 层开发一次 → `products` 层按设备自由组合。手机版修了一个 bug，手表版自动受益。
+
+### 实战一：displayPriority 自适应显隐
+
+系统根据父容器宽度自动隐藏低优先级元素，无需手写 if/else。
+
+```typescript
+Row() {
+  Button('列表').displayPriority(3)   // 窄屏时优先隐藏
+  Button('上一首').displayPriority(2)
+  Button('播放/暂停').displayPriority(1)  // 最优先保留
+  Button('下一首').displayPriority(2)
+  Button('更多').displayPriority(3)
+}
+// 手机 → 只显示核心按钮；平板 → 全部显示
+```
+
+### 实战二：List.lanes 断点多列控制
+
+```typescript
+List({ space: 8 }) {
+  LazyForEach(this.songList, (item: SongItem) => {
+    ListItem() { SongCard({ song: item }) }
+  }, (item: SongItem) => item.id)
+}
+.lanes(this.currentBreakpoint === 'lg' ? 2 : 1) // 平板双列，手机单列
+.cachedCount(this.currentBreakpoint === 'lg' ? 8 : 4)
+```
+
+### 实战三：effectKit 专辑封面取色
+
+从封面提取主色调做沉浸背景。
+
+```typescript
+import { effectKit } from '@kit.ArkGraphics';
+
+const picker = effectKit.createColorPicker(pixelMap);
+const mainColor = await picker.getMainColorSync();
+const bgColor = `#${mainColor.rgba.toString(16).padStart(8, '0')}`;
+
+const blur = effectKit.createEffect(pixelMap);
+blur.blur(30); // 高斯模糊背景
+```
+
+### 实战四：Swiper 播放页（手机端）
+
+```typescript
+Swiper() {
+  Column() { AlbumArt() /* 封面+控制 */ }
+  Column() { LyricView() /* 歌词 */ }
+}
+.loop(false).indicator(true).borderRadius(16)
+```
+
+---
+
+## 🌌 Spatialization 空间化开发（沉浸光感 + HDS 组件 + 智感握姿）
+
+> 源自官方 Sample `Spatialization` 及华为最佳实践文档。HarmonyOS 7 (API 26) 核心新特性，全新 HDS 组件系统。
+
+### 沉浸光感简介
+
+沉浸光感是 HDS（HarmonyOS Design System）提供的全新材质体系，核心能力：
+
+| 特性 | 说明 |
+|:----:|:------|
+| **通透材质** | 毛玻璃效果，内容可透过组件隐约可见 |
+| **渐变模糊** | 标题栏随滑动从透明到模糊平滑过渡 |
+| **按压弹性反馈** | 按压时弹性缩放动画 |
+| **按压点光源** | 按压时触点位置光晕扩散 |
+| **材质流光** | 表面微妙流光效果 |
+| **智能反色** | 底层内容颜色冲突时自动调整前景色 |
+
+### 材质档位
+
+| 档位 | MaterialLevel | 说明 |
+|:----:|:-------------:|:------|
+| 强 | **EXQUISITE** | 完整沉浸光感，适合高性能设备 |
+| 均衡（默认） | **GENTLE** | 适度效果，性能与视觉平衡 |
+| 弱 | **SMOOTH** | 轻量级，保留核心特性 |
+| 系统自适应 | **ADAPTIVE** | 推荐模式，系统自动选择最优档位 |
+
+### 标题栏沉浸光感（HdsNavigation）
+
+```typescript
+import { hdsMaterial, HdsNavigation, ScrollEffectType } from '@kit.UIDesignKit';
+
+HdsNavigation(this.pathStack) {
+  // Page content
+}
+.titleBar({
+  style: {
+    scrollEffectOpts: {
+      enableScrollEffect: true,
+      scrollEffectType: ScrollEffectType.GRADIENT_BLUR,
+    },
+    systemMaterialEffect: {
+      materialType: hdsMaterial.MaterialType.ADAPTIVE,
+      materialLevel: hdsMaterial.MaterialLevel.ADAPTIVE,
+    },
+  },
+})
+```
+
+### 标题栏动态显隐
+
+```typescript
+import { HdsNavigation, HideMode } from '@kit.UIDesignKit';
+
+HdsNavDestination()
+  .dynamicHideTitleBar({
+    hideTitleArea: true,
+    hideStatusBar: true,
+    mode: HideMode.SCROLL_UP_TO,
+  })
+  .bindToScrollable([this.scroller])
+```
+
+### 底部悬浮导航（HdsTabs）
+
+```typescript
+import { HdsTabs, HdsTabsController } from '@kit.UIDesignKit';
+
+HdsTabs({ controller: this.controller }) {
+  // TabContent...
+}
+.barOverlap(true)                         // 悬浮模糊背景
+.barPosition(BarPosition.End)
+.barFloatingStyle({
+  barBottomMargin: 36,                    // 距底部间距
+  adaptToHandedness: true,                // 智感握姿跟随
+  systemMaterialEffect: {
+    materialType: hdsMaterial.MaterialType.ADAPTIVE,
+    materialLevel: hdsMaterial.MaterialLevel.ADAPTIVE,
+  },
+})
+```
+
+### MiniBar（迷你栏）
+
+在底部导航中嵌入可折叠迷你控制栏，适合音乐播放等场景。
+
+```typescript
+@Builder
+buildMiniBar() {
+  Row() {
+    Image($r('app.media.prev')).width(24).height(24)
+    Image($r('app.media.play')).width(32).height(32)
+    Image($r('app.media.next')).width(24).height(24)
+  }
+}
+
+HdsTabs()
+  .barOverlap(true)
+  .barPosition(BarPosition.End)
+  .barFloatingStyle({
+    barBottomMargin: 28,
+    miniBar: {
+      miniBarBuilder: () => this.buildMiniBar(),
+    },
+  })
+```
+
+### 普通组件沉浸材质
+
+```typescript
+import { uiMaterial } from '@kit.ArkUI';
+
+// 对任意组件开启沉浸光感
+Row()
+  .systemMaterial(new uiMaterial.ImmersiveMaterial({
+    style: uiMaterial.ImmersiveStyle.ULTRA_THIN,
+    interactive: true,
+    lightEffect: { color: undefined },
+  }))
+```
+
+### 查询设备材质能力
+
+```typescript
+import { hdsMaterial } from '@kit.UIDesignKit';
+
+// 查询设备支持的材质类型，进行优雅降级
+const types = hdsMaterial.getSystemMaterialTypes();
+if (!types.includes(hdsMaterial.MaterialType.EXQUISITE)) {
+  // 降级到 GENTLE 或关闭沉浸光感
+}
+```
+
+### 智感握姿（Smart Reach）
+
+自动识别用户握持姿态，将高频组件动态调整到易操作区。
+
+```typescript
+HdsTabs()
+  .barFloatingStyle({
+    adaptToHandedness: true,  // 智感握姿跟随：底部栏自动左右偏移
+  })
+```
+
+### 工程参考
+
+| 项目 | 下载量 | GitCode |
+|:----:|:-----:|:-------:|
+| **Spatialization** | — | [gitcode.com/HarmonyOS_Samples/Spatialization](https://gitcode.com/HarmonyOS_Samples/Spatialization) |
+
+---
+
+## 📚 @kit 开发套件总览（76个 Kit）
+
+### 核心 Kit（最常用）
+| Kit | 导入方式 | 功能 |
+|-----|---------|------|
+| **AbilityKit** | `@kit.AbilityKit` | 应用上下文、页面路由、窗口、生命周期 |
+| **ArkUI** | `@kit.ArkUI` | 声明式UI、组件、布局、手势、动画 |
+| **NetworkKit** | `@kit.NetworkKit` | HTTP请求、上传下载 |
+| **ArkData** | `@kit.ArkData` | 数据持久化 Preferences/RDB/KVStore |
+| **BasicServicesKit** | `@kit.BasicServicesKit` | 弹窗、Toast、剪贴板、公共事件 |
+| **PushKit** | `@kit.PushKit` | 消息推送、离线推送 |
+| **PaymentKit** | `@kit.PaymentKit` | 支付、订单交易 |
+| **MapKit** | `@kit.MapKit` | 地图、POI、路线规划 |
+| **LocationKit** | `@kit.LocationKit` | 定位、逆地理编码 |
+| **AccountKit** | `@kit.AccountKit` | 鸿蒙账号、登录授权 |
+| **NotificationKit** | `@kit.NotificationKit` | 系统通知、状态栏消息 |
+| **MediaKit** | `@kit.MediaKit` | 多媒体播放 |
+| **CameraKit** | `@kit.CameraKit` | 相机预览、拍照、录像 |
+| **CryptoArchitectureKit** | `@kit.CryptoArchitectureKit` | 加解密 AES/RSA/MD5 |
+| **IAPKit** | `@kit.IAPKit` | 应用内购、订阅 |
+| **AppLinkingKit** | `@kit.AppLinkingKit` | 应用跳转、DeepLink |
+| **IPCKit** | `@kit.IPCKit` | 跨进程通信 |
+| **LocalizationKit** | `@kit.LocalizationKit` | 国际化、多语言 |
+
+### 业务选型速查
+| 需求 | 导入哪个 Kit |
+|------|------------|
+| 网络请求 | `@kit.NetworkKit` |
+| 本地数据存储 | `@kit.ArkData` |
+| 用户登录/授权 | `@kit.AccountKit` |
+| 消息推送 | `@kit.PushKit` |
+| 支付 | `@kit.PaymentKit` |
+| 地图 | `@kit.MapKit` |
+| 定位 | `@kit.LocationKit` |
+| 相机拍照 | `@kit.CameraKit` |
+| 加解密 | `@kit.CryptoArchitectureKit` |
+| 国际化和多语言 | `@kit.LocalizationKit` |
+| 通知栏消息 | `@kit.NotificationKit` |
+| 后台任务 | `@kit.BackgroundTasksKit` |
+| 分布式流转 | `@kit.DistributedServiceKit` |
+| AI 模型推理 | `@kit.MindSporeLiteKit` |
+| 扫码 | `@kit.ScanKit` |
+| 文件读写 | `@kit.CoreFileKit` |
+
+---
+
+## 📲 常见业务 Kit 速查
+
+### PushKit 消息推送
+```typescript
+import { pushService } from '@kit.PushKit';
+import { notificationManager } from '@kit.NotificationKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+// 1. 获取 Push Token（在 Ability onCreate 中调用）
+const pushToken: string = await pushService.getToken();
+hilog.info(0x0000, 'Push', 'Token: ' + pushToken);
+// ↑ 上报此 token 到你的服务端
+
+// 2. 请求通知权限（onWindowStageCreate 中调用）
+await notificationManager.requestEnableNotification(this.context);
+
+// 3. 服务端下发流程（Java 示例）：
+//    a. AGC 下载服务账号密钥文件 private.json
+//    b. 用 RSA 私钥生成 JWT 鉴权令牌
+//    c. POST https://push-api.cloud.huawei.com/v1/{projectId}/messages:send
+//    d. payload 中指定 title/body/clickAction
+```
+
+| 步骤 | 说明 |
+|------|------|
+| 客户端 | 获取 Push Token + 请求通知权限 |
+| 服务端 | 生成 JWT 鉴权令牌 → 调用 Push API 下发消息 |
+| 点击处理 | 默认打开首页，可在 AGC 配置自定义跳转页面 |
+
+### PaymentKit 支付
+```typescript
+// 支付流程：客户端发起 → 服务端生成订单 → 客户端调起收银台 → 支付结果回调
+import { payment } from '@kit.PaymentKit';
+
+// 调起支付收银台（需要服务端先创建订单获取 orderId）
+payment.pay(this.context, {
+  orderId: 'YOUR_ORDER_ID',      // 服务端创建的订单号
+  publicKey: 'YOUR_PUBLIC_KEY',  // 华为支付公钥
+  amount: 9.90,                   // 金额
+  productName: '钻石会员',        // 商品名
+  productDescription: '解锁全部功能',
+  merchantId: 'YOUR_MERCHANT_ID',
+  applicationId: 'YOUR_APP_ID',
+  countryCode: 'CN',
+  currency: 'CNY',
+});
+```
+
+### MapKit 地图
+```typescript
+// MapKit 提供地图显示、POI 搜索、路线规划等功能
+// AGC 控制台开通 Map Kit 服务后，在 module.json5 配置 apiKey
+import { map } from '@kit.MapKit';
+
+// 地图组件
+@Component
+struct MapPage {
+  build() {
+    Column() {
+      // MapComponent 是 ArkUI 内置地图组件（需配置后可用）
+      MapComponent()
+        .width('100%').height('100%')
+        .zoomLevel(15)
+        .onMapReady(() => { /* 地图加载完成 */ });
+    }
+  }
+}
+// POI 搜索、逆地理编码使用 @kit.MapKit 下的 geo/geocode API
+```
+
+### 文件管理（CoreFileKit）
+```typescript
+import { fileIo } from '@kit.CoreFileKit';
+
+// 沙箱路径：context.filesDir / context.cacheDir / context.tempDir
+const sandboxPath = this.context.filesDir + '/data.txt';
+
+// 写入文件
+const file = fileIo.openSync(sandboxPath, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
+fileIo.writeSync(file.fd, 'Hello HarmonyOS');
+fileIo.closeSync(file);
+
+// 读取文件
+const file2 = fileIo.openSync(sandboxPath, fileIo.OpenMode.READ_ONLY);
+const buf = new ArrayBuffer(1024);
+const readLen = fileIo.readSync(file2.fd, buf);
+fileIo.closeSync(file2);
+const content = new TextDecoder('utf-8').decode(buf.slice(0, readLen));
+
+// 目录遍历
+const files = fileIo.listFileSync(this.context.filesDir);
+// 文件是否存在
+const exists = fileIo.accessSync(sandboxPath);
+```
+
+### 日志输出（hilog）
+```typescript
+import { hilog } from '@kit.PerformanceAnalysisKit';
+// 格式：hilog.info(domain, tag, format, ...args)
+// domain 为自定义十六进制整数（建议 0x0000~0xFFFF）
+hilog.info(0x0000, 'MyApp', 'User login: %{public}s', userName);
+hilog.warn(0x0000, 'MyApp', 'Network timeout, retrying...');
+hilog.error(0x0000, 'MyApp', 'Crash: %{public}s', error.message);
+```
+- **domain**: 模块标识（16位十六进制）
+- **tag**: 标签，用于过滤
+- **format**: 格式化字符串，敏感信息用 `%{private}s`，可公开用 `%{public}s`
+
+### 国际化多语言（LocalizationKit）
+```typescript
+import { i18n } from '@kit.LocalizationKit';
+// 系统会自动根据设备语言加载 resources/base/element/ 下对应语言的字符串
+
+// 资源文件组织：
+// resources/
+//   ├── base/       # 默认（中文）
+//   │   └── element/
+//   │       └── string.json  →  { "hello": "你好" }
+//   ├── en_US/      # 英文
+//   │   └── element/
+//   │       └── string.json  →  { "hello": "Hello" }
+//   └── ja_JP/      # 日文
+//       └── element/
+//           └── string.json  →  { "hello": "こんにちは" }
+
+// 代码中使用 $r() 引用：
+Text($r('app.string.hello'))
+// 或使用资源管理 API：
+this.context.resourceManager.getStringSync('app.string.hello');
+```
+
+### MindSporeLiteKit（端侧 AI 推理）
+```typescript
+import { mindSporeLite } from '@kit.MindSporeLiteKit';
+// 加载模型（.ms 格式）
+const model = mindSporeLite.createModel();
+model.loadModel(this.context, 'model.ms');
+// 构建输入张量
+const inputTensor = model.getInputs()[0];
+inputTensor.setData(new Float32Array([...]));
+// 推理
+model.predict([inputTensor], (err, outputs) => {
+  const result = outputs[0].getData();
+});
+// 释放
+model.destroy();
+```
+
+---
+
+## 📅 ArkTS 工具类速查（@kit.ArkTS）
+
+```typescript
+import { util } from '@kit.ArkTS';
+
+// 容器类
+let list = new util.ArrayList<string>();     // 动态数组
+list.add('a'); list.get(0); list.removeAt(0);
+let map = new util.HashMap<string, number>(); // 哈希表
+map.set('key', 1); map.get('key');
+let queue = new util.Deque<string>();        // 双端队列
+queue.insertFront('a'); queue.removeEnd();
+
+// 编码转换
+const encoder = new util.TextEncoder();
+const uint8 = encoder.encodeInto('你好');      // 字符串 → Uint8Array
+const decoder = new util.TextDecoder('utf-8');
+const str = decoder.decodeToString(uint8);    // Uint8Array → 字符串
+
+// Base64
+const base64 = new util.Base64();
+const encoded = base64.encodeToString(new Uint8Array([1,2,3]));
+const decoded = base64.decodeSync(encoded);
+
+// 随机数
+const rand = new util.Random();
+const num = rand.nextInt();         // 随机整数
+const bool = rand.nextBoolean();    // 随机布尔
+const range = rand.nextUint32();    // 0~4294967295
+
+// 字符串工具
+util.printf('%s is %d', 'age', 25); // 格式化 → "age is 25"
+util.printf('%s', JSON.stringify(obj));
+
+// 日期格式化（使用 Intl）
+import { Intl } from '@kit.LocalizationKit';
+const dtf = new Intl.DateTimeFormat('zh-CN', {
+  dateStyle: 'long', timeStyle: 'short'
+});
+console.info(dtf.format(new Date())); // 2026年6月23日 18:30
+```
+
+---
+
+## 🎥 媒体开发（CameraKit + AudioKit + AVCodecKit）
+
+```typescript
+// 拍照流程（CameraKit）
+import { camera } from '@kit.CameraKit';
+
+// 获取相机管理器
+const cameraManager = camera.getCameraManager(this.context);
+// 获取相机设备
+const cameras = cameraManager.getSupportedCameras();
+// 创建输入
+const cameraInput = cameraManager.createCameraInput(cameras[0]);
+// 创建输出（拍照）
+const photoOutput = cameraManager.createPhotoOutput();
+// 创建会话
+const session = cameraManager.createCaptureSession();
+session.beginConfig();
+session.addInput(cameraInput);
+session.addOutput(photoOutput);
+session.commitConfig();
+session.start();
+// 拍照
+photoOutput.capture();
+
+// 音频播放
+import { audio } from '@kit.AudioKit';
+const audioPlayer = audio.createAudioPlayer();
+audioPlayer.src = this.context.filesDir + '/music.mp3';
+await audioPlayer.play();
+
+// 音视频编码（AVCodecKit）
+import { avCodec } from '@kit.AVCodecKit';
+// 创建编码器
+const encoder = avCodec.createVideoEncoder();
+// 配置编码参数（分辨率/帧率/码率）
+// 输入原始帧 → 输出编码后的 H.264/H.265 数据
+```
+
+---
+
+## 📡 短距离通信（BLE + NFC）
+
+```typescript
+// BLE 扫描
+import { ble } from '@ohos.bluetooth';
+
+// 扫描设备
+ble.startBLEScan([{ serviceUuid: '0000180F-...' }], { interval: 500 });
+ble.on('BLEDeviceFind', (result) => {
+  console.info('发现 BLE 设备:', result.deviceId, result.rssi);
+});
+ble.stopBLEScan();
+
+// BLE 连接
+const device = ble.createGattClientDevice(result.deviceId);
+device.on('BLEConnectionStateChange', (state) => {
+  if (state.state === 'connected') { /* 已连接 */ }
+});
+device.connect();
+
+// NFC（Tag 读写）
+import { tag } from '@ohos.nfc.tag';
+tag.on('tag', (tagInfo) => {
+  const tagId = tagInfo.tagId;   // NFC 标签 ID
+  // 读取 NDEF 数据
+});
+```
+
+---
+
+## 🏷️ NFCTag NFC标签应用跳转（第二轮新增）
+
+> **来源**：`NFCTag` | Gitee harmonyos_samples | 源码级
+
+### 场景
+亮屏解锁状态下，设备触碰 NFC 标签后读取数据并跳转应用。
+
+### 两种模式
+| 模式 | 触发条件 | 行为 |
+|------|---------|------|
+| **前台读卡** | 应用已打开在前台 | 直接分发给当前应用，跳转详情页展示标签技术类型和信息 |
+| **后台读卡** | 未打开应用 | 根据技术类型匹配应用；匹配多个→弹出选择器；匹配一个→直接打开 |
+
+### 权限
+```
+ohos.permission.NFC_TAG    // 允许应用读取 Tag 卡片
+```
+
+### 工程目录
+```
+entry/src/main/ets/
+├── entryability/EntryAbility.ets
+├── pages/Index.ets               // 首页
+└── view/ReadNFCTag.ets           // 展示 NFC 信息页面
+```
+
+### 约束
+- HarmonyOS 5.0.5 Release+
+- 设备必须亮屏 + 解锁
+
+---
+
+## 🎵 AudioInteraction 音频播控全链路（第二轮新增）
+
+> **来源**：`audio-interaction` | ⭐22 Stars | Gitee harmonyos_samples | 源码级
+
+### 能力矩阵
+| 能力 | API | 说明 |
+|------|-----|------|
+| **音频播放** | AudioRenderer | PCM 音频数据播放 |
+| **播控中心交互** | AVSession | 媒体会话控制 |
+| **后台播放** | BackgroundUtil + KEEP_BACKGROUND_RUNNING | Service Ability 保活 |
+| **焦点管理** | AudioRendererController.interrupt | 焦点打断策略适配 |
+| **路由切换** | audioRoutingManager | 切换发声/输出设备 |
+| **歌词同步** | LyricsComponent | 歌单数据绑定 |
+
+### 工程结构
+```
+├── entry/src/main/ets/
+│   ├── components/
+│   │   ├── ControlAreaComponent.ets    # 音频操控区
+│   │   ├── LyricsComponent.ets         # 歌词组件
+│   │   ├── MusicInfoComponent.ets      # 音乐内容
+│   │   ├── PlayerInfoComponent.ets     # 播控内容区
+│   │   └── TopAreaComponent.ets        # 顶部区域
+│   └── dataSource/
+│       ├── SongDataSource.ets          # 歌曲数据
+│       └── SongListData.ets            # 歌曲列表
+├── MediaService/src/main/ets/
+│   ├── songDataController/
+│   │   ├── PlayerData.ets
+│   │   ├── SongData.ets
+│   │   └── SongItemBuilder.ets
+│   └── utils/
+│       ├── AudioRendererController.ets # 音频播放控制核心
+│       ├── AVSessionController.ets      # 媒体会话控制
+│       ├── BackgroundUtil.ets           # 后台播放
+│       └── MediaTools.ets              # 媒体数据转换
+```
+
+### 权限
+```json5
+"ohos.permission.KEEP_BACKGROUND_RUNNING"  // 后台任务
+```
+
+---
+
+## 🎧 AudioCodec 音频编解码（第四轮新增）
+
+> **来源**：`audio-codec` | Gitee harmonyos_samples | 源码级
+
+基于 `OH_AVCodec` Native 能力实现音频播放、转码、录制。
+
+### 三大链路
+
+```
+播放：  本地音频 → 解封装(Demuxer) → 解码(Decoder) → 播放(AudioRenderer)
+转码：  本地音频 → 解封装 → 解码 → 编码(Encoder) → 封装(Muxer) → 保存
+录制：  麦克风采集(AudioCapturer) → 编码 → 封装 → 保存
+```
+
+### 权限
+
+```json5
+"ohos.permission.MICROPHONE"
+```
+
+---
+
+## 🎵 MediaProvider 媒体会话提供方（第四轮新增）
+
+> **来源**：`media-provider` | Gitee harmonyos_samples | 源码级
+
+```typescript
+// [API 23+] AVSession 双向交互
+import { avSession } from '@ohos.multimedia.avsession'
+
+let session = await avSession.createAVSession(context, 'tag', 'audio')
+await session.activate()
+session.setAVMetadata({ title: 'Song', artist: 'Singer', duration: 300000 })
+session.setAVPlaybackState({ state: avSession.PlaybackState.PLAYING })
+session.on('play', () => { this.resume() })
+session.on('pause', () => { this.pause() })
+```
+
+---
+
+## 📤 UploadAndDownLoad 文件上传下载（第五轮新增）
+
+> **来源**：`upload-and-down-load` | Gitee harmonyos_samples | 源码级
+
+使用 `@ohos.request` 接口创建上传和下载任务，hfs 作为服务器。
+
+### 上传模块
+```typescript
+// [API 23+] @ohos.request 上传
+import { request } from '@kit.BasicServicesKit'
+
+let uploadTask = await request.agent.create(this.context, [fileUri], {
+  url: 'http://server/upload',
+  method: 'POST', title: '上传', data: { key: 'value' }
+})
+uploadTask.on('progress', (info) => { /* 上传进度 */ })
+uploadTask.start()
+```
+
+### 下载模块
+```typescript
+// [API 23+] @ohos.request 下载
+let downloadTask = await request.agent.create(this.context, {
+  url: 'http://server/file.zip',
+  saveas: './downloads/file.zip', title: '下载'
+})
+downloadTask.on('progress', (info) => { /* 下载进度 */ })
+downloadTask.start()
+downloadTask.pause()    // 暂停
+downloadTask.resume()   // 恢复
+```
+
+---
+
+## 🌐 WebApplicationJump Web跳转应用（第五轮新增）
+
+> **来源**：`web-application-jump` | Gitee harmonyos_samples | 源码级
+
+### 五种跳转场景
+
+| 场景 | 实现 |
+|------|------|
+| Web→原生ArkTS页面 | `onLoadIntercept` 拦截 + Navigation `pushPath` |
+| Web→Web页面 | 前端 `a` 标签 `href` 配置 |
+| Web→三方应用 | `onLoadIntercept` + Want 隐式拉起 + module.json5 exported/entities/actions |
+| Web→系统应用 | `onLoadIntercept` + Want 配置系统应用参数 + `startAbility` |
+| Web→应用市场 | `onLoadIntercept` + StoreKit `loadProduct` |
+| Web→跨设备应用 | `onLoadIntercept` + `getAvailableDeviceListSync` + Want deviceId |
+
+### 核心代码
+
+```typescript
+// [API 23+] onLoadIntercept 拦截拉起
+Web({ src: 'https://example.com', controller: this.webController })
+  .onLoadIntercept((event) => {
+    if (event.data.url.startsWith('native://')) {
+      // 跳转到原生页面
+      this.navPathStack.pushPath({ name: 'OriginPage' })
+      return true
+    }
+    if (event.data.url.startsWith('thirdparty://')) {
+      // 隐式拉起三方应用
+      let want: Want = {
+        action: 'ACTION_VIEW',
+        entities: ['entity.system.home'],
+        uri: event.data.url
+      }
+      this.context.startAbility(want)
+      return true
+    }
+    return false
+  })
+```
+
+---
+
+## 🌐 WebCrossDomain Web跨域解决方案（第七轮新增）
+
+> **来源**：`WebCrossDomain` | Gitee harmonyos_samples | 源码级
+
+### 四种跨域场景
+
+| 场景 | 核心技术 | 说明 |
+|------|---------|------|
+| **本地资源跨域** | `setPathAllowingUniversalAccess()` | file协议跨域访问本地文件 |
+| **远程请求跨域** | `WebSchemeHandler`拦截 + `rcp`代理 | 代理转发 + 跨域响应头 |
+| **跨域Cookies** | `putAcceptCookieEnabled` + `configCookieSync` | A域名Cookie传给B域名 |
+| **自定义协议跨域** | `WebSchemeHandler`拦截 + 系统能力 | 拦截自定义协议弹提示 |
+
+### 远程请求跨域代码
+
+```typescript
+// [API 23+] WebSchemeHandler 跨域代理
+Web({ src: 'https://example.com', controller: this.controller })
+  .onLoadIntercept((event) => {
+    // 方法1: 设置跨域路径白名单
+    // this.controller.setPathAllowingUniversalAccess(['/data/storage/el2/base/files/'])
+
+    // 方法2: 注册 scheme 拦截器
+    // web.WebSchemeHandler 实现 onRequestStart 回调
+    // 使用 rcp.fetch() 作为代理请求转发
+    return false
+  })
+```
+
+### Cookies 跨域代码
+
+```typescript
+// [API 23+] Cookies 跨域设置
+import { webview } from '@kit.ArkWeb'
+
+let cookieMgr = webview.WebCookieManager.getInstance()
+cookieMgr.putAcceptCookieEnabled(true)
+
+// 获取 A 域名的 cookies
+let cookies = cookieMgr.fetchCookieSync('https://domain-a.com')
+
+// 设置到 B 域名
+cookieMgr.configCookieSync('https://domain-b.com', cookies)
+```
+
+---
+
+## 🎤 AudioInEarMonitor 音频耳返（第七轮中高价值③）
+
+> **来源**：`audio-in-ear-monitor` | Gitee harmonyos_samples | 源码级
+
+### 两种方案
+
+| 方案 | API | 耳机支持 | 层级 |
+|:----:|-----|:--------:|:----:|
+| **AudioLoopback** | `createAudioLoopback().enable()` | 有线耳机 | ArkTS |
+| **Native 采集+渲染** | `OH_AudioCapturer_Start` + `OH_AudioRenderer_Start` | 有线+蓝牙 | Native C++ |
+
+### ArkTS 侧代码
+
+```typescript
+// [API 23+] AudioLoopback 耳返
+import { audio } from '@kit.AudioKit'
+
+// 1. 查询支持
+let supported = audio.isAudioLoopbackSupported()
+if (supported) {
+  let loopback = audio.createAudioLoopback()
+  // 2. 开启耳返
+  loopback.enable(true)
+  // 3. 调节音量
+  loopback.setVolume(0.8)
+  // 4. 关闭耳返
+  // loopback.enable(false)
+}
+```
+
+### Native 侧
+- `OH_AudioStreamBuilder_Create` 创建采集器 + 渲染器
+- 设置采样率/通道数/时延模式
+- 采集数据直接送入渲染器实现低延迟耳返
+- 使用 AVRecorder 录制耳返音频
+- 使用 AVPlayer 播放录制结果
+
+---
+
+## 📁 Picker 文件选择器（第八轮中高价值⑤）
+
+> **来源**：`picker` | Gitee harmonyos_samples | 源码级
+
+### 三种 Picker
+
+| Picker | API | 功能 |
+|--------|-----|------|
+| 文档选择 | `DocumentViewPicker.select()` | 选择文档 |
+| 文档保存 | `DocumentViewPicker.save()` | 保存文件 |
+| 图片/视频 | `PhotoViewPicker.select()` | 从图库选择图片或视频 |
+| 文件读写 | `fs.openSync/fs.writeSync/fs.readSync` | 编辑+保存文档内容 |
+
+### 核心代码
+
+```typescript
+// [API 23+] 文件选择器用法
+import { picker } from '@kit.CoreFileKit'
+import { photoAccessHelper } from '@kit.MediaLibraryKit'
+
+// 文档选择
+let documentPicker = new picker.DocumentViewPicker()
+let docs = await documentPicker.select({ maxSelectNumber: 1 })
+
+// 图片选择
+let photoPicker = new photoAccessHelper.PhotoViewPicker()
+let photos = await photoPicker.select({ maxSelectNumber: 3, MIMEType: picker.PickerMediaType.IMAGE })
+
+// 文件读写
+import { fileIo } from '@kit.CoreFileKit'
+let file = fileIo.openSync(docs[0], fileIo.OpenMode.READ_WRITE)
+let buf = new ArrayBuffer(1024)
+fileIo.readSync(file.fd, buf)
+fileIo.writeSync(file.fd, new TextEncoder().encode('new content'))
+fileIo.closeSync(file)
+```
+
+---
+
+## 📺 VideoCast 视频投播（第九轮中高价值⑦）
+
+> **来源**：`VideoCast` | Gitee harmonyos_samples | 源码级
+
+### 三大场景
+
+| 场景 | 说明 |
+|------|------|
+| 本端播放 | AVPlayer 本地播放，进度/音量/集数控制 |
+| 播控中心控制 | AVSession 双向交互，播控中心操作本端 |
+| 投播远端 | 系统投播能力，本端控制远端设备 |
+
+### 工程结构
+```
+controller/
+├── VideoPlayerController.ets       # 本地播放控制
+├── VideoSessionController.ets      # 播控中心控制
+└── VideoCastController.ets         # 投播远端控制
+```
+
+### 约束
+- 双端开启蓝牙+WiFi
+- HarmonyOS 5.0.5+
+
+---
+
+## 📍 LocationService 位置服务（第十轮收尾⑦）
+
+> **来源**：`location-service` | Gitee harmonyos_samples | 源码级
+
+### 四种定位模式
+
+| 模式 | API | 说明 |
+|------|-----|------|
+| 缓存位置 | `geoLocationManager.getLastLocation()` | 获取最后已知位置 |
+| 当前位置 | `geoLocationManager.getCurrentLocation()` | 单次获取当前位置 |
+| 持续定位 | `geoLocationManager.on('locationChange')` | 持续监听位置变化 |
+| 后台定位 | `backgroundTaskManager.startBackgroundRunning` + `on` | 退后台持续定位 |
+
+### 核心代码
+
+```typescript
+// [API 23+] 位置服务
+import { geoLocationManager } from '@kit.LocationKit'
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit'
+
+// 获取当前位置
+let location = await geoLocationManager.getCurrentLocation()
+
+// 持续监听
+geoLocationManager.on('locationChange', (location) => {
+  this.latitude = location.latitude
+  this.longitude = location.longitude
+})
+
+// 后台定位（需申请长时任务）
+await backgroundTaskManager.startBackgroundRunning(context,
+  backgroundTaskManager.BackgroundMode.LOCATION)
+```
+
+### 权限
+```json5
+"ohos.permission.LOCATION"
+"ohos.permission.APPROXIMATELY_LOCATION"
+"ohos.permission.LOCATION_IN_BACKGROUND"
+"ohos.permission.KEEP_BACKGROUND_RUNNING"
+```
+
+---
+
+# 第十部分：Sample 项目解析（按领域分类）
+
+## 💹 全链路盯盘实战（闪控球 + 悬浮窗 + 卡片 + 防窥）
+
+> 源自官方 Sample `AlwaysOnMarketWatch`（2,035 下载）及华为最佳实践文档。覆盖桌面/锁屏/待机/隐私保护四类系统能力。
+
+### 整体架构
+
+```
+闪控球（FloatingBall） ←→ 悬浮窗（FloatView）       ← 桌面场景
+     ↕                                                ↕
+锁屏卡片（Form Kit） → 待机屏保卡片（Form Kit）      ← 锁屏/待机场景
+     ↕
+防窥保护（dlpAntiPeep）                              ← 隐私保护
+```
+
+### 1. 闪控球（FloatingBall）
+
+```typescript
+import { floatingBall } from '@kit.ArkUI';
+
+// 创建闪控球控制器
+async function createFloatingBall(context: UIAbilityContext): Promise<void> {
+  const controller = await floatingBall.create({
+    context: context
+  });
+  // 启动闪控球
+  controller.startFloatingBall({
+    template: floatingBall.TemplateType.ROUNDED_RECTANGLE,
+    title: '自选股',
+    content: '上证 3,201.25 ▲0.32%'
+  });
+}
+```
+
+### 2. 悬浮窗（FloatView）— 闪控球的展开态
+
+```typescript
+import { floatView } from '@kit.ArkUI';
+
+// 创建悬浮窗控制器（绑定闪控球）
+async function createFloatView(context: UIAbilityContext): Promise<void> {
+  if (!floatView.isFloatViewEnabled()) return;  // 检查设备支持
+  const controller = await floatView.create({
+    context: context,
+    templateType: floatView.FloatViewTemplateType.ROUNDED_RECTANGLE
+  });
+}
+
+// 绑定闪控球与悬浮窗（点击闪控球弹出悬浮窗）
+floatView.bind(floatViewController, floatingBallController, ballParams);
+
+// 双指手势切换悬浮窗大小（正常态 ↔ 横幅态）
+PanGesture({ fingers: 2, direction: PanDirection.Up })
+  .onActionStart(() => {
+    FloatViewController.setWindowSize({
+      width: vp2px(bannerWidth),
+      height: vp2px(bannerHeight)
+    });
+  })
+```
+
+### 3. 锁屏卡片（Form Kit）
+
+**requirements**：AGC 申请"锁屏卡片"权限 + `form_config.json` 配置 `renderingMode` 和 `supportDimensions`（必须含 `"1*1"` 或 `"1*2"`）。
+
+```json
+{
+  "forms": [{
+    "name": "LockScreenCard",
+    "src": "./ets/widget/pages/LockScreenCard.ets",
+    "renderingMode": "autoColor",
+    "defaultDimension": "1*2",
+    "supportDimensions": ["1*2"]
+  }]
+}
+```
+
+```typescript
+@Entry(storageUpdateByMsg)
+@Component
+struct LockScreenCard {
+  @LocalStorageProp('finalWatchList') stockList: StockInfo[] = [];
+
+  build() {
+    Column() {
+      ForEach(this.stockList.slice(0, 3), (stock: StockInfo) => {
+        Row({ space: 2 }) {
+          Text(stock.name).fontSize(12).fontColor('#FFFFFF')
+          Text(stock.rate).fontSize(12)
+            .fontColor(stock.rate.startsWith('+') ? '#FF4444' : '#00CA69')
+        }
+      })
+    }
+    .onClick(() => {
+      postCardAction(this, { action: 'router', abilityName: 'EntryAbility' });
+    })
+  }
+}
+```
+
+### 4. 待机屏保卡片（Form Kit, API 23+）
+
+**配置**：`form_config.json` 中新增 `standby` 字段。仅支持 `2×2` 尺寸。
+
+```json
+{
+  "forms": [{
+    "name": "widget",
+    "defaultDimension": "2*2",
+    "supportDimensions": ["2*2"],
+    "standby": {
+      "isSupported": true,
+      "isAdapted": true,
+      "isPrivacySensitive": false
+    }
+  }]
+}
+```
+
+### 5. 防窥保护（dlpAntiPeep）
+
+```typescript
+import { dlpAntiPeep } from '@kit.DeviceSecurityKit';
+
+// 检查系统能力
+export function canUseAntiPeep(): boolean {
+  return canIUse('SystemCapability.Security.DlpAntiPeep');
+}
+
+// 检查开关状态
+export async function isAntiPeepOn(): Promise<boolean> {
+  return await dlpAntiPeep.isDlpAntiPeepSwitchOn();
+}
+
+// 注册窥视状态监听
+function startListening(): void {
+  dlpAntiPeep.on('dlpAntiPeep', (info: dlpAntiPeep.DlpAntiPeepStatus) => {
+    if (info.isPeep) {
+      // 有人窥视 → 显示蒙层
+      showMask();
+    } else {
+      hideMask();
+    }
+  });
+}
+```
+
+### 权限前置条件
+
+```typescript
+import { abilityAccessCtrl, common } from '@kit.AbilityKit';
+
+// 请求悬浮窗权限
+let atManager = abilityAccessCtrl.createAtManager();
+atManager.requestPermissionsFromUser(context, [
+  'ohos.permission.FLOAT_VIEW'
+]);
+```
+
+### 目录结构范式
+
+```
+features/stockfloatpanel/src/main/ets/
+├── controllers/
+│   ├── FloatPanelController.ets     # 核心控制器：创建/绑定/启动
+│   ├── FloatingBallController.ets   # 闪控球控制器
+│   └── FloatViewController.ets      # 悬浮窗控制器
+├── pages/
+│   └── FloatViewPage.ets            # 悬浮窗 UI + 防窥逻辑
+├── views/
+│   ├── FloatViewStockList.ets       # 正常态行情列表
+│   └── FloatViewStockBanner.ets     # 横幅态行情展示
+└── utils/
+    └── AntiPeepUtils.ets            # 防窥保护工具类
+```
+
+---
+
+## 🃏 互动卡片 LiveCard（2,194 下载）
+
+> 源自官方 Sample `LiveCard`，演示 HarmonyOS 互动卡片（Live Form）全链路开发：配置→普通卡片→LiveForm→通信→动画。
+
+### 整体架构
+
+```
+form_config.json（配对配置）
+     ↓
+普通桌面卡片（静态 Widget）           ← src 指向
+     ↓ 用户点击
+sceneAnimationParams.abilityName
+     ↓
+LiveFormExtensionAbility              ← 独立的 UI 扩展进程
+     ↓ localStorage
+LiveForm UI 页面                       ← 帧动画/陀螺仪/进度动画
+     ↓ postCardAction
+CardActionHandler（主应用接收）
+     ↓ formProvider.updateForm
+普通卡片动态更新
+```
+
+### form_config.json 核心配置
+
+```json
+{
+  "name": "MusicCard",              // 卡片身份证，与 form_name 一致
+  "src": "./ets/widget/pages/MusicCard.ets",  // 普通卡片页面
+  "isDynamic": true,                // 允许应用动态更新卡片
+  "defaultDimension": "2*4",        // 默认尺寸
+  "supportDimensions": ["2*4"],     // 支持的尺寸列表
+  "sceneAnimationParams": {         // 互动卡片关键绑定
+    "abilityName": "MusicLiveCardAbility"
+  }
+}
+```
+
+**流程**：src → 普通卡片路径，abilityName → LiveForm 展开页。两者通过 `module.json5` 注册关联。
+
+```json5
+// module.json5 注册 LiveForm
+{
+  "name": "MusicLiveCardAbility",
+  "srcEntry": "./ets/livecardability/MusicLiveCardAbility.ets",
+  "type": "liveForm"
+}
+```
+
+### LiveFormExtensionAbility（实况卡片）
+
+```typescript
+import { LiveFormExtensionAbility, LiveFormInfo, UIExtensionContentSession } from '@kit.AbilityKit';
+
+export class MusicLiveCardAbility extends LiveFormExtensionAbility {
+  async onLiveFormCreate(info: LiveFormInfo, session: UIExtensionContentSession): Promise<void> {
+    let storage = new LocalStorage();
+    storage.setOrCreate('context', this.context);
+    storage.setOrCreate('session', session);
+    storage.setOrCreate('formId', info.formId);
+    storage.setOrCreate('borderRadius', info.borderRadius);
+
+    // 加载 LiveForm UI 页面
+    session.loadContent('livecardability/pages/MusicLiveCard', storage);
+
+    // 从 RDB 数据库加载歌曲数据
+    let songList = await SongRdbHelper.getInstance(this.context).queryAllSongs();
+    storage.setOrCreate('songList', songList);
+  }
+}
+```
+
+### 卡片 UI + 帧动画
+
+```typescript
+@Entry(storage)
+@Component
+struct MusicLiveCard {
+  @LocalStorageProp('currentSong') currentSong: SongItem = new SongItem();
+  @State @Watch('frameChange') currentFrame: number = 0;
+
+  // 帧动画：封面切换
+  private startAnimation(): void {
+    setInterval(() => {
+      if (this.currentFrame < this.totalFrames - 1) {
+        this.currentFrame++;
+      }
+    }, this.frameDuration);
+  }
+
+  build() {
+    Column() {
+      Image($r(`app.media.cover_${this.currentFrame}`))  // 帧动画
+        .width('100%').aspectRatio(1)
+
+      Row() {
+        Button() { Image($r('app.media.prev')) }.onClick(() => {
+          postCardAction(this, { action: 'message', data: 'prev' })
+        })
+        Button() { Image($r('app.media.play')) }.onClick(() => {
+          postCardAction(this, { action: 'message', data: 'toggle' })
+        })
+        Button() { Image($r('app.media.next')) }.onClick(() => {
+          postCardAction(this, { action: 'message', data: 'next' })
+        })
+      }
+    }
+    .onClick(() => {
+      postCardAction(this, { action: 'router', abilityName: 'EntryAbility' })
+    })
+  }
+}
+```
+
+### 卡片与主应用通信
+
+| 方向 | 方式 | 说明 |
+|:----:|:----:|:------|
+| 卡片→应用 | `postCardAction(this, { action, data })` | 发送 CALL/MESSAGE/ROUTER 指令 |
+| 应用→静态卡片 | `formProvider.updateForm(formId, formBindingData)` | 更新卡片数据 |
+| 应用→实况卡片 | Preferences/RDB 持久化 | 读取最新状态 |
+
+```typescript
+// 主应用注册卡片动作处理器
+import { CardActionHandler } from './utils/CardActionHandler';
+
+onCreate(want: Want): void {
+  CardActionHandler.setContext(this.context);
+  this.callee.on('cardAction', CardActionHandler.getHandler());
+}
+```
+
+### 四种卡片类型
+
+| 卡片 | 场景 | 交互特点 | 核心能力 |
+|:----:|:----:|:---------|:--------|
+| 🎵 **音乐播控** | 播放控制 | 帧动画封面、歌词滚动、播放/暂停/切歌 | setInterval 帧动画 + LRC 歌词解析 |
+| 📦 **快递追踪** | 物流跟踪 | 陀螺仪驱动角色移动 | `@ohos.sensor.gyroscope` + animateTo |
+| 🏃 **运动记录** | 卡路里进度 | 进度动画、状态切换 | 状态机（未开始/进行中/完成） |
+| 🌿 **睡眠监测** | 健康数据 | 三叶草起床动画 | 数据驱动 UI 更新 |
+
+### 配置排查清单
+
+互动卡片打不开时按顺序检查：
+1. `form_config.json` 的 `name` 是否与 `form_name` 一致
+2. `src` 指向的普通卡片文件是否真实存在
+3. `defaultDimension` 是否在 `supportDimensions` 列表中
+4. `sceneAnimationParams.abilityName` 的值是否存在
+5. `module.json5` 是否注册了同名的 `type: "liveForm"` Ability
+```
+注册开发者 → AGC 创建应用 → 生成签名 → 打包 HAP → 上传 → 填写信息 → 审核 → 上架
+```
+
+### 签名准备
+| 文件 | 格式 | 用途 |
+|------|:----:|------|
+| **密钥库文件** | .p12 | 存储公私钥对 |
+| **证书请求文件** | .csr | 向 AGC 申请数字证书 |
+| **数字证书** | .cer | 由 AGC 颁发 |
+| **Profile 文件** | .p7b | 包含包名、证书、权限列表 |
+
+### 关键步骤
+1. **DevEco Studio 生成密钥**：Build → Generate Key → 生成 .p12 + .csr
+2. **AGC 申请证书**：上传 .csr → 下载 .cer 和 .p7b
+3. **配置签名**：在 `build-profile.json5` 中配置 signingConfigs
+4. **打包 HAP**：Build → Build HAP(s) → App/Plugin
+5. **AGC 上传**：选择已签名的 HAP 包上传
+6. **填写发布信息**：国家/地区、价格、隐私政策链接
+7. **提交审核**：通常 1~3 个工作日
+
+### 上架合规重点
+- 应用名称、图标、描述不能侵权
+- 隐私政策必须包含数据收集说明
+- 涉及用户信息的权限必须有对应功能
+- 元服务需注意分包大小限制和免安装特性
+
+---
+
+## 🧩 ArkUI 高频组件速查
+
+### 布局类
+| 组件 | 用途 | 关键用法 |
+|------|------|---------|
+| **Row / Column** | 线性布局（水平/垂直） | `.justifyContent()` `.alignItems()` 控制对齐 |
+| **Stack** | 层叠布局，子组件可重叠 | 默认居中，`alignContent` 控制叠放对齐 |
+| **Flex** | 弹性布局，等分空间 | `.wrap(FlexWrap.Wrap)` 换行、`flexGrow`/`flexShrink` |
+| **RelativeContainer** | 相对定位，子组件基于父容器/兄弟锚定 | `alignRules: { left: { anchor: 'container', align: HorizontalAlign.Start } }` |
+| **Grid / GridItem** | 栅格布局，适合后台列表/卡片墙 | `columnsTemplate('1fr 1fr 1fr')` 控制列数 |
+| **WaterFlow** | 瀑布流容器，商品流/图片墙 | `columnsTemplate('1fr 1fr')` + `FlowItem` 子项，`onReachEnd` 触发加载更多 |
+
+### 滚动与导航
+| 组件 | 用途 | 关键用法 |
+|------|------|---------|
+| **Scroll** | 可滚动容器 | `.scrollable(ScrollDirection.Vertical)` 设置方向 |
+| **List / ListItem** | 列表（支持 sticky 分组） | `List()` + `ForEach` + `ListItem`，`onScrollIndex` 监听滚动位置 |
+| **Swiper** | 轮播/滑动切换页 | `autoPlay(true)` `interval(3000)` `indicator(true)` 自动轮播+指示器 |
+| **Tabs / TabContent** | 选项卡切换 | `barPosition(BarPosition.Start)` 控制标签位置 |
+| **Navigation** | 页面路由+栈导航 | `NavPathStack` + `NavDestination`，推荐替代 Router |
+
+### 信息展示
+| 组件 | 用途 | 关键用法 |
+|------|------|---------|
+| **Text** | 文本展示 | `.fontSize()` `.fontColor()` `.textAlign()` 多行用 `TextOverflow.Ellipsis` |
+| **Image** | 图片展示 | `.objectFit(ImageFit.Cover)` `.source($rawfile('a.png'))` |
+| **Video** | 视频播放 | `.src($rawfile('v.mp4'))` `.autoPlay(true)` `.controls(true)` |
+| **RichText** | 富文本/HTML 渲染 | 直接传入 HTML 字符串，支持基本标签 |
+| **Progress** | 进度条 | `Progress({ value: 50, total: 100 })` `.style(ProgressStyle.Linear)` |
+
+### 交互输入
+| 组件 | 用途 | 关键用法 |
+|------|------|---------|
+| **Button** | 按钮 | `.onClick()` `.type(ButtonType.Capsule)` |
+| **TextInput** | 单行文本输入 | `.onChange(v => this.v = v)` `.placeholder('请输入')` |
+| **TextArea** | 多行文本输入 | 同 TextInput，多行自动换行 |
+| **Slider** | 滑块选择器 | `.onChange(v => this.val = v)` `.min(0)` `.max(100)` |
+| **Toggle** | 开关 | `.type(ToggleType.Switch)` `.onChange(v => this.on = v)` |
+| **Radio** | 单选项 | 需配合 RadioGroup 使用 |
+| **Checkbox** | 多选项 | `.onChange(v => this.checked = v)` |
+| **Select** | 下拉选择 | `Select([{value:'a'},{value:'b'}])` `.onSelect((i,v)=>...)` |
+| **DatePicker / TimePicker** | 日期/时间选择 | `DatePicker({ start: new Date(), selected: this.date })` |
+
+### 弹窗与面板
+| 组件 | 用途 | 关键用法 |
+|------|------|---------|
+| **AlertDialog** | 确认弹窗 | `AlertDialog.show({ title, message, confirm })` |
+| **CustomDialog** | 自定义弹窗 | `@CustomDialog` 装饰器 + `customDialog: CustomDialogController` |
+| **Sheet** | 底部面板 | `.bindSheet($$this.show, { height: SheetSize.LARGE })` |
+| **Panel** | 可拖拽面板 | `Panel({ mode: PanelMode.Half })` 支持悬浮/半屏/全屏 |
+
+### 高性能与特殊
+| 组件 | 用途 | 关键用法 |
+|------|------|---------|
+| **XComponent** | 原生渲染引擎接入 | `type: XComponentType.SURFACE` 用于游戏引擎、相机预览 |
+| **Web** | WebView 容器 | `.src('https://...')` `.javaScriptAccess(true)` |
+| **Canvas / CanvasPattern** | 2D 画布自定义绘制 | 获取 CanvasRenderingContext2D 绘制图形 |
+| **Shape** | 矢量图形 | `Circle()` `Rect()` `Path()` 支持描边/填充 |
+| **QRCode** | 二维码生成 | `QRCode({ value: 'https://...' })` 自动生成扫码图案 |
+
+---
+
+## 🧬 Ability 框架深度
+
+### 三种启动模式
+| 模式 | 说明 | 适用场景 | 配置方式 |
+|------|------|---------|---------|
+| **singleton** | 单例，只创建一个实例复用 | 主页面、播放器 | module.json5 中 `"launchType": "singleton"` |
+| **multiton** | 每次启动创建新实例 | 独立任务、多窗口编辑 | `"launchType": "multiton"` |
+| **specified** | 根据 Key 按需匹配/创建实例 | 聊天窗口（每个对话独立实例） | `"launchType": "specified"` + `onNewWant()` 处理 |
+
+### AbilityStage（应用级入口）
+```typescript
+// 自定义 AbilityStage，在 module.json5 中配置 srcEntry
+export default class MyAbilityStage extends AbilityStage {
+  onCreate(): void { /* 应用初始化逻辑 */ }
+  onAcceptWant(want: Want): string {
+    // specified 模式下根据 Want 返回实例 Key
+    return `conversation_${want.parameters?.conversationId}`;
+  }
+}
+```
+
+### Call / Callee 通信（UIAbility 间调用）
+```
+caller → want 信息
+Caller Ability ──────────────> Callee Ability
+                 调用请求
+                         callee.on('method', (data) => { return result; });
+```
+
+```typescript
+// Caller 端
+const caller = await context.startAbilityByCall({ bundleName, abilityName });
+await caller.call('login', { user: 'admin' });
+
+// Callee 端（被调方注册方法）
+import { Caller } from '@kit.AbilityKit';
+callee.on('login', (data) => {
+  console.info('Received:', data);
+  return { token: 'xxx' };
+});
+```
+
+### ServiceExtensionAbility（后台服务）
+```typescript
+export default class MyService extends ServiceExtensionAbility {
+  onCreate(want: Want): void { /* 启动后台任务 */ }
+  onRequest(want: Want, startId: number): void { /* 处理请求 */ }
+  onConnect(want: Want): rpc.RemoteObject { return new MyStub('service'); }
+  onDestroy(): void { /* 清理资源 */ }
+}
+```
+| 用途 | 说明 |
+|------|------|
+| 后台下载 | 文件下载、数据同步，前台可绑定获取进度 |
+| 音乐播放 | 保持后台播放，即使 UI 被销毁 |
+| 传感器监听 | 持续监听传感器数据，回传给 UI |
+
+### UIAbility 生命周期
+```
+onCreate() → onWindowStageCreate() → onForeground() → [可见交互]
+    ↓                                              ↓
+onDestroy() ← onBackground() ← onWindowStageDestroy()
+```
+- `onCreate`: 应用初始化（全局变量、数据预加载）
+- `onWindowStageCreate`: 设置窗口属性、加载页面
+- `onForeground`: 进入前台（恢复动画、重新订阅）
+- `onBackground`: 进入后台（保存草稿、释放资源）
+- `onWindowStageDestroy` / `onDestroy`: 释放全局资源
+
+---
+
+## 📐 Module 与分包
+
+### 三种包类型
+| 类型 | 全称 | 特点 | 使用场景 |
+|------|------|------|---------|
+| **HAP** | Harmony Ability Package | 可独立安装运行的基础单元 | 应用功能模块 |
+| **HAR** | Harmony Archive | 静态共享包（编译时打包进 HAP） | 公共库、工具类、基座组件 |
+| **HSP** | Harmony Shared Package | 动态共享包（运行时按需加载） | 按需加载的插件化模块 |
+
+### 如何选择
+| 场景 | 推荐 |
+|------|:----:|
+| 应用主入口 | `entry` 类型 HAP |
+| 功能模块（可独立） | `feature` 类型 HAP |
+| 工具函数/网络层/数据层 | HAR（静态共享，编译打包） |
+| 需要按需加载的业务模块 | HSP（动态共享，分包下载） |
+
+### 多 Module 工程结构
+```
+MyApp/
+├── entry/                  # 主模块 HAP
+│   └── src/main/module.json5
+├── feature-home/           # 首页模块 HAP
+├── feature-profile/        # 个人中心 HAP
+├── library-common/         # 公共库 HAR
+│   └── src/main/ets/utils/
+├── library-network/        # 网络库 HAR
+├── plugin-payment/         # 支付插件 HSP（按需加载）
+└── build-profile.json5     # 工程级配置
+```
+
+### module.json5 关键配置
+```json5
+{
+  module: {
+    name: 'entry',
+    type: 'entry',         // entry | feature | har | shared
+    srcEntry: './ets/entryability/EntryAbility.ts',
+    description: '主模块',
+    mainElement: 'EntryAbility',
+    deviceTypes: ['phone', 'tablet'],
+    // HAP/HSP 中声明的 abilities
+    abilities: [
+      { name: 'EntryAbility', srcEntry: './ets/...', launchType: 'singleton' }
+    ],
+    // 依赖的 HAR/HSP
+    dependencies: [
+      { name: 'library-common', version: '1.0.0' }
+    ],
+    // 请求权限
+    requestPermissions: [
+      { name: 'ohos.permission.INTERNET', reason: '网络连接' }
+    ]
+  }
+}
+```
+
+### build-profile.json5 关键配置
+```json5
+{
+  app: {
+    bundleName: 'com.example.myapp',
+    version: { code: 1000000, name: '1.0.0' },
+    // 签名配置
+    signingConfigs: [
+      {
+        name: 'default',
+        type: 'HarmonyOS',
+        storeFile: './signing/keystore.p12',
+        storePassword: '',
+        keyAlias: 'mykey',
+        keyPassword: '',
+        profileFile: './signing/Profile.p7b',
+        certpath: './signing/Certificate.cer',
+      }
+    ]
+  },
+  modules: [
+    { name: 'entry', srcPath: './entry' },
+    { name: 'library-common', srcPath: './library-common' }
+  ]
+}
+```
+
+---
+
+## 🧵 并发与状态管理（ConcurrentModule + StateManagement + Logger）
+
+### ConcurrentModule — TaskPool + Worker
+
+```typescript
+import { taskpool } from '@kit.ArkTS';
+
+@Concurrent
+function computePrimes(limit: number): number[] {
+  const primes: number[] = [];
+  for (let i = 2; i <= limit; i++) {
+    if (primes.every(p => i % p !== 0)) primes.push(i);
+  }
+  return primes;
+}
+
+async function run(): Promise<void> {
+  const task = new taskpool.Task(computePrimes, [100000]);
+  const result = await taskpool.execute(task);
+}
+```
+
+### StateManagement — 页面级/应用级状态
+
+```typescript
+// AppStorage: 应用级全局状态
+AppStorage.setOrCreate('userName', 'guest');
+
+// LocalStorage: 页面级状态（跨组件共享）
+let storage = new LocalStorage();
+storage.setOrCreate('count', 0);
+
+@Entry(storage)
+@Component
+struct PageA { @LocalStorageProp('count') count: number = 0; }
+@Component
+struct ChildB { @LocalStorageLink('count') count: number = 0; }
+
+// Preferences: 持久化
+import { preferences } from '@kit.ArkData';
+const prefs = await preferences.getPreferences(context, 'myPrefs');
+await prefs.put('volume', 80);
+await prefs.flush();
+```
+
+### Logger — hilog 日志
+
+```typescript
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const DOMAIN = 0x0001;
+const TAG = 'MyApp';
+
+hilog.info(DOMAIN, TAG, 'User logged in: %{public}s', userName);
+hilog.warn(DOMAIN, TAG, 'Disk usage: %d%%', usage);
+hilog.error(DOMAIN, TAG, 'Failed to load: %{private}s', errMsg); // 敏感信息用 private
+```
+
+---
+
+## 🧩 ComponentCollection 组件大全（第二轮新增）
+
+> **来源**：`component-collection` | ⭐22下载 | Gitee harmonyos_samples | 源码级
+
+本示例为 ArkUI 中**组件、通用属性、动画、全局方法**的四大模块集合，通过 `Tabs` 容器搭建整体框架，每个 TabContent 使用 `List` 容器 + 循环渲染加载分类导航数据。
+
+### 📐 架构骨架
+
+```
+entry/src/main/ets/
+├── common/             # 公共组件
+│   ├── AttributeModificationTool.ets
+│   ├── IntroductionTitle.ets
+│   ├── TabContentNavigation.ets
+│   └── TitleBar.ets
+├── data/               # 数据层 (CollectionCategory + ResourceDataHandle)
+├── model/              # 数据模型 (CategoricalDataType)
+├── pages/              # 页面
+│   ├── Index.ets       # Tabs 首页
+│   ├── animations/     # 动画模块
+│   ├── components/     # 组件模块
+│   ├── globalMethods/  # 全局方法模块
+│   └── universal/      # 通用模块
+└── util/               # Logger + ShowToast
+```
+
+### 🏗️ 四大模块速览
+
+| 模块 | 子模块 | 核心组件/API |
+|------|--------|-------------|
+| **组件** | 空白分隔、按钮选择、滚动滑动、信息展示、文本输入、辅助、Canvas、行列分栏、Flex栅格、列表宫格、导航、图形绘制、媒体、Web | Divider/Button/Checkbox/Slider/Swiper/DataPanel/Gauge/Marquee/Particle/PatternLock/AlphabetIndexer/Canvas/Column/Row/SideBarContainer/Stack/Flex/GridRow/Navigation/Tab/Web |
+| **通用** | 事件（点击/触摸/拖拽/焦点/键鼠）、属性（背景/边框/显示/特效/字体/裁剪/安全区）、手势（Tap/LongPress/Pan/Pinch/Rotation/Swipe） | onClick → onDrag → pan → pinch → rotation → combined |
+| **动画** | 组件转场、页面转场、共享元素、布局动效、尺寸变换、悬浮窗、文件夹展开、图库卡片、商店卡片、侧边栏、路径动画、属性动画 | Transition/PageTransition/SharedTransition/LayoutAnimation/SizeTransition |
+| **全局方法** | AlertDialog/ActionSheet/CustomDialog/DateDialog/TimeDialog/TextPickerDialog/Menu | 弹窗 API 集合 |
+
+### 🔑 核心模式：Tabs + List 框架（可直接复用）
+
+```typescript
+// [API 23+] Tabs + List 分类导航框架
+@Component
+struct CollectionIndex {
+  @State currentIndex: number = 0
+  private categories: CollectionCategory[] = [ /* 分类数据 */]
+
+  build() {
+    Tabs({ index: this.currentIndex }) {
+      ForEach(this.categories, (category: CollectionCategory) => {
+        TabContent() {
+          List() {
+            ForEach(category.items, (item: CategoricalData) => {
+              ListItem() {
+                // 使用 Navigation 或 router 跳转详情
+                Text(item.name)
+              }
+            })
+          }
+        }.tabBar(this.TabBuilder(category.name))
+      })
+    }
+    .vertical(false)
+    .barWidth('100%')
+    .barHeight(56)
+  }
+
+  @Builder TabBuilder(title: ResourceStr) {
+    Text(title).fontSize(14).fontColor('#666')
+  }
+}
+```
+
+---
+
+## 📦 MultiHap 多HAP构建工程（第二轮新增）
+
+> **来源**：`multi-hap` | 工程架构 | 源码级
+
+### 场景
+一个应用中同时包含 `entry HAP`（主入口）和多个 `feature HAP`（音频/视频播放），各 HAP 独立打包、独立安装。
+
+### 工程结构
+```
+├── entry/              # "type": "entry" - 主模块
+│   └── pages/Index.ets     # 首页 + 多HAP跳转逻辑
+├── audioFeature/       # "type": "feature" - 音频播放
+│   └── audioAbility/AudioAbility.ets
+├── videoFeature/       # "type": "feature" - 视频播放
+│   └── videoability/VideoAbility.ets
+```
+
+### 关键配置
+```json5
+// entry/src/main/module.json5
+{ "type": "entry" }
+// audioFeature/src/main/module.json5
+{ "type": "feature" }
+// videoFeature/src/main/module.json5
+{ "type": "feature" }
+// AppScope/app.json5
+{ "bundleName": "com.samples.multihap" }
+```
+
+### 多HAP跳转代码
+```typescript
+// [API 23+] 使用 Want 跳转 feature HAP
+import { common, Want } from '@kit.AbilityKit'
+
+@Entry
+@Component
+struct Index {
+  private context = getContext(this) as common.UIAbilityContext
+
+  build() {
+    Button('播放音频')
+      .onClick(() => {
+        let want: Want = {
+          bundleName: 'com.samples.multihap',
+          abilityName: 'AudioAbility'  // audioFeature 中的 Ability
+        }
+        this.context.startAbility(want)
+      })
+  }
+}
+```
+
+### 部署方式
+1. `Build → Build Hap(s) → Build Hap(s)` 构建各模块 hap
+2. `Edit Configurations → Deploy Multi Hap → 勾选 audioFeature + videoFeature`
+3. 设备安装后显示一个主 entry HAP
+
+---
+
+## 🖱️ DragFramework 拖拽框架（第二轮新增）
+
+> **来源**：`DragFramework` | Gitee harmonyos_samples | 源码级
+
+### 场景
+本示例实现**图片、富文本、文本、输入框、列表、超链接、本地视频、在线图片**等组件的拖拽功能，支持水印、自定义背板、AI识别、图文混排、分屏拖拽、跨设备拖拽。
+
+### 默认拖拽能力
+
+| 组件 | 拖出(draggable) | 拖入(onDrop) |
+|------|:--------------:|:-----------:|
+| Search | ✅ | ✅ |
+| TextInput | ✅ | ✅ |
+| TextArea | ✅ | ✅ |
+| RichEditor | ✅ | ✅ |
+| Text | ✅ | - |
+| Image | ✅ | - |
+| Hyperlink | ✅ | - |
+| FormComponent | ✅ | - |
+| Video | - | ✅ |
+
+### 自定义拖拽背板
+```typescript
+// [API 23+] onDragStart 自定义拖拽背板
+Image(this.imageSrc)
+  .draggable(true)
+  .onDragStart(() => {
+    // 返回自定义背板组件
+    return this.buildCustomDragPanel()
+  })
+```
+
+### AI识别拖拽内容
+```typescript
+// [API 23+] onDrop 实现 AI 识别
+TextInput()
+  .onDrop((event: DragEvent) => {
+    let data = event.getData()
+    // 调用 AI 接口识别 data 内容
+    this.aiRecognitionResult = data
+  })
+```
+
+### 图文混排拖拽
+支持三种方式：
+1. **Text 组件** — 拖拽 Text 中的图文混排内容
+2. **RichEditor 组件** — 拖拽富文本编辑器内容
+3. **MultiEntry（UDMF）** — 构造多 Record 类型和多 Entry 类型数据
+
+### 分屏拖拽
+通过单实例模式（`singleton`）实现同一应用分屏拖拽。
+
+---
+
+## ✏️ HandWritingToImage 手写绘制保存图片（第二轮新增）
+
+> **来源**：`hand-writing-to-image` | Gitee harmonyos_samples | 源码级
+
+### 核心链路
+```
+NodeContainer ← MyNodeController → rootRenderNode
+    ↓ onTouch
+创建子 RenderNode → Pen + Path 绘制轨迹 → getChild/removeChild 撤销
+    ↓ componentSnapshot.get
+PixelMap → Image.packToFile() / packing() → 保存为图片
+```
+
+### 完整代码模式
+```typescript
+// [API 23+] 自定义渲染节点手写绘制
+class MyRenderNode extends RenderNode {
+  private pen: Drawing.Pen = new Drawing.Pen()
+  private path: Drawing.Path = new Drawing.Path()
+
+  constructor() {
+    super()
+    this.pen.setColor({ alpha: 255, red: 0, green: 0, blue: 0 })
+    this.pen.setStrokeWidth(4)
+  }
+
+  draw(context: DrawContext) {
+    context.canvas.attachPen(this.pen)
+    context.canvas.drawPath(this.path)
+    context.canvas.detachPen()
+  }
+
+  updatePath(newPath: Drawing.Path) {
+    this.path = newPath
+  }
+}
+
+class MyNodeController extends NodeController {
+  private rootRenderNode: MyRenderNode
+  private nodeCount: number = 0
+
+  makeNode(uiContext: UIContext): RenderNode | null {
+    this.rootRenderNode = new MyRenderNode()
+    return this.rootRenderNode
+  }
+
+  addStroke(path: Drawing.Path) {
+    let node = new MyRenderNode()
+    node.updatePath(path)
+    this.rootRenderNode?.appendChild(node)
+    this.nodeCount++
+  }
+
+  undoStroke() {
+    let last = this.rootRenderNode?.getChild(this.nodeCount - 1)
+    if (last) {
+      this.rootRenderNode?.removeChild(last)
+      this.nodeCount--
+    }
+  }
+
+  clearAll() {
+    this.rootRenderNode?.clearChildren()
+    this.nodeCount = 0
+  }
+}
+```
+
+### 保存为图片
+```typescript
+// [API 23+] 使用 componentSnapshot 获取 PixelMap 并保存
+async function saveToImage(componentId: string): Promise<string> {
+  let pixelMap: PixelMap = await componentSnapshot.get(componentId)
+
+  // 方式一: packToFile
+  let path = getContext().cacheDir + '/drawing.png'
+  let packer = image.createImagePacker()
+  let packOpts: image.PackingOption = { format: 'image/png', quality: 100 }
+  packer.packToFile(pixelMap, path, packOpts)
+  return path
+
+  // 方式二: packing (返回 ArrayBuffer)
+  // let data: ArrayBuffer = await packer.packing(pixelMap, packOpts)
+}
+```
+
+---
+
+## 🗺️ SystemRouterMap 系统路由表（第二轮新增）
+
+> **来源**：`system-router-map` | Gitee harmonyos_samples | 源码级
+
+### 场景
+通过**系统路由表（route_map.json）**实现多模块（HSP/HAR）页面跳转，**零依赖耦合**，懒加载未跳转页面。
+
+### 核心架构
+```
+entry (主模块) → route_map.json → harA / harB / hspA / hspB
+```
+各模块之间不需要配置依赖关系，跳转时动态加载目标页面。
+
+### 配置步骤
+
+**Step 1: 目标模块 module.json5 添加路由配置**
+```json5
+// harA/src/main/module.json5
+{
+  "module": {
+    "routerMap": "$profile:route_map"
+  }
+}
+```
+
+**Step 2: 创建 route_map.json**
+```json5
+// resources/base/profile/route_map.json
+{
+  "routerMap": [
+    {
+      "name": "PageFromHarA",
+      "buildFunction": "HarABuilder",
+      "pageSourceFile": "src/main/ets/components/mainpage/A1.ets"
+    },
+    {
+      "name": "PageFromHspB",
+      "buildFunction": "HspBBuilder",
+      "pageSourceFile": "src/main/ets/components/mainpage/B1.ets"
+    }
+  ]
+}
+```
+
+**Step 3: 目标页面暴露 Builder 函数**
+```typescript
+// harA 目标页面
+@Builder
+export function HarABuilder() {
+  A1Page()
+}
+
+@Component
+struct A1Page {
+  build() { /* ... */ }
+}
+```
+
+**Step 4: 主模块跳转**
+```typescript
+// [API 23+] 通过系统路由表跳转
+import { router } from '@kit.ArkUI'
+
+Button('跳转 HAR A 页面')
+  .onClick(() => {
+    router.pushDestinationByName('PageFromHarA')
+  })
+```
+
+### 优势
+- ✅ 模块间零依赖耦合
+- ✅ 页面按需加载（未跳转不加载）
+- ✅ 已加载页面缓存复用
+
+---
+
+## 🧭 NavigationRouter 路由模块解耦（第二轮新增）
+
+> **来源**：`navigation-router` | Gitee harmonyos_samples | 源码级
+
+### 场景
+将路由功能抽取为**独立 RouterModule HAR**，统一管理 Navigation 下多 HAR/HSP 的路由跳转，实现业务模块间解耦。
+
+### 架构
+```
+entry (主入口 + Navigation)
+  ├── harA ───→ RouterModule (路由委托)
+  ├── harB ───→ RouterModule
+  ├── harC ───→ RouterModule
+  └── RouterModule (路由管理)
+```
+
+### 工程目录
+```
+RouterModule/
+├── Index.ets                       # 对外暴露路由方法和常量
+├── src/main/ets/constants/
+│   └── RouterConstants.ets         # 路由信息常量
+├── src/main/ets/model/
+│   └── RouterModel.ets             # 路由信息模型
+└── src/main/ets/utils/
+    └── RouterModule.ets            # 核心路由管理
+```
+
+### RouterModule 核心代码
+```typescript
+// [API 23+] RouterModule 对外暴露的路由管理类
+import { RouterConstants } from '../constants/RouterConstants'
+
+export class RouterModule {
+  static push(routerName: string, param?: Record<string, Object>) {
+    // 根据 routerName 查找对应页面信息
+    let pageInfo = RouterConstants.PAGE_MAP[routerName]
+    // 通过 Navigation pushPath 跳转
+    this.navPathStack.pushPath({ name: pageInfo.name, param: param })
+  }
+
+  static back() {
+    this.navPathStack.pop()
+  }
+}
+
+// 业务模块中调用
+// RouterModule.push('PageA1', { id: 123 })
+```
+
+### 优势
+- ✅ 业务模块仅依赖 RouterModule，不依赖其他业务模块
+- ✅ 路由逻辑统一管理，新增页面只需在 RouterConstants 注册
+- ✅ 适合大型多模块应用
+
+---
+
+## 📤 RcpFileTransfer RCP文件传输（第二轮新增）
+
+> **来源**：`RcpFileTransfer` | Gitee harmonyos_samples | 源码级
+
+### 场景
+基于 **Remote Communication Kit（RCP）** 实现相册文件上传下载、分片下载、断点续传、后台传输。
+
+### 功能矩阵
+| 功能 | 页面 | 关键 API |
+|------|------|----------|
+| 相册图片上传 | AlbumImageTrasfer | `rcp.post()` |
+| 相册图片下载 | AlbumImageTrasfer | `rcp.fetch()` / `rcp.downloadToFile()` |
+| 文件分片下载 | ChunkedFileTransfer | Range header + 分片合并 |
+| 断点续传 | ResumableFileTransfer | ETag + If-Range |
+| 后台传输 | BackgroundFileTransfer | Service Ability + KEEP_BACKGROUND_RUNNING |
+
+### 工程目录
+```
+entry/src/main/ets/
+├── pages/
+│   ├── AlbumImageTrasfer.ets          # 相册上传下载
+│   ├── BackgroundFileTransfer.ets     # 后台传输
+│   ├── ChunkedFileTransfer.ets        # 分片下载
+│   ├── ResumableFileTransfer.ets      # 断点续传
+│   └── Index.ets                      # 首页
+├── service/
+│   ├── FileRequest.ets                # 请求接口模块
+│   ├── Interceptor.ets                # 请求拦截器
+│   └── Model.ets                      # 数据类型定义
+└── utils/
+    ├── CommonUtil.ets
+    └── LocalFileUtil.ets
+```
+
+### RCP 下载代码模式
+```typescript
+// [API 23+] RCP 文件下载
+import { rcp } from '@kit.RemoteCommunicationKit'
+
+async function downloadFile(url: string, savePath: string): Promise<void> {
+  let session = rcp.createSession()
+  let request = new rcp.Request(url, rcp.Method.GET)
+  let response = await session.fetch(request)
+  // 方式一: 直接写入文件
+  await response.toFile(savePath)
+}
+
+// 断点续传
+async function resumeDownload(url: string, savePath: string, offset: number): Promise<void> {
+  let session = rcp.createSession()
+  let request = new rcp.Request(url, rcp.Method.GET)
+  request.setHeader('Range', `bytes=${offset}-`)
+  let response = await session.fetch(request)
+  await response.toFile(savePath, { append: true })
+}
+```
+
+### 权限
+```json5
+"ohos.permission.INTERNET"
+"ohos.permission.GET_NETWORK_INFO"
+"ohos.permission.KEEP_BACKGROUND_RUNNING"
+```
+
+---
+
+### 2026-06-29 - 补齐结构级→源码级：购物/支付/短视频/实况窗（第十一轮）
+
+- **场景**：用户要求将结构级升级为源码级
+- **MultiShoppingPriceComparison** → 补全 Navigation Split 分栏 + Tabs 响应式 + BreakpointType 完整代码
+- **MultiMobilePayment** → 补全三层架构 + Scan Kit 扫码/码图生成完整代码
+- **MultiShortVideo** → 补全 Swiper + Video 短视频上下滑动 + cachedCount 完整代码
+- **LiveViewLockScreen**（BestPracticeSnippets）→ 新增 LiveViewKit 锁屏实况窗完整章节，含 publish/dismiss/状态监听 + 进度模板 + 权限说明
+- **所有结构级项目已升级为源码级**
+
+---
+
+## 🚀 UIAbility 启动三种模式（第三轮新增）
+
+> **来源**：`ability-start-mode` | Gitee harmonyos_samples | 源码级
+
+Stage 模型中 `launchType` 决定 UIAbility 的启动行为：
+
+| 模式 | module.json5 | 行为 |
+|------|-------------|------|
+| **singleton** | `"launchType": "singleton"` | 单实例，每次 startAbility 复用已有实例 |
+| **standard**（默认） | `"launchType": "multiton"` | 多实例，每次新建 UIAbility |
+| **specified** | `"launchType": "specified"` | 自定义实例标识，MyAbilityStage.onAcceptWant 返回标识 |
+
+### Specified 模式核心代码
+
+```typescript
+// [API 23+] MyAbilityStage.onAcceptWant 自定义实例标识
+export default class MyAbilityStage extends AbilityStage {
+  onAcceptWant(want: Want): string {
+    // 根据 want.parameters 返回标识字符串
+    // 相同标识复用实例，不同标识创建新实例
+    return want.parameters?.key as string ?? ''
+  }
+}
+```
+
+---
+
+## 🎨 CustomCanvas 画布功能（第三轮新增）
+
+> **来源**：`custom-canvas` | Gitee harmonyos_samples | 源码级
+
+### 功能
+
+| 功能 | 实现方式 |
+|------|---------|
+| 自由绘制 | `onTouch` → `Path2D.moveTo/lineTo` |
+| 橡皮擦 | `strokeStyle = '#FFFFFF'`（白色覆盖） |
+| 撤回/重做 | `drawPathList` 数组 pop/push |
+| 清空 | 清空 `drawPathList` + `redoList` 重绘 |
+| 笔刷分类 | 圆珠笔（alpha=1固定）/马克笔（alpha可调） |
+| 缩放 | `pan` 手势 → `matrix4` 变换 |
+| 半模态弹窗 | `bindSheet` 选颜色/粗细/不透明度 |
+
+### 核心绘制代码
+
+```typescript
+// [API 23+] Canvas 绘制 + 撤销/重做
+let drawPathList: Array<Path2D> = []
+let redoList: Array<Path2D> = []
+
+Canvas(this.context)
+  .onTouch((event: TouchEvent) => {
+    if (event.type === TouchType.Move) {
+      let path = new Path2D()
+      path.moveTo(prevX, prevY)
+      path.lineTo(curX, curY)
+      drawPathList.push(path)
+      redoList = []
+      this.context.stroke(path)
+    }
+  })
+```
+
+---
+
+## 🖼️ PicturePreview 图片预览（第三轮新增）
+
+> **来源**：`PicturePreview` | Gitee harmonyos_samples | 源码级
+
+### 功能矩阵
+
+| 功能 | API | 说明 |
+|------|-----|------|
+| 左右滑动切换 | `Swiper` + `ForEach` | 主图 + 缩略图双联动 |
+| 双击缩放 | `matrix4` 变换 | 双击切换 1x ↔ 2x |
+| 双指捏合 | `Pinch` 手势 + `matrix4` | 自由缩放 |
+| 平移查看 | `translate` + `PanGesture` | 放大后滑动查看 |
+| 缩略图导航 | `ThumbnailView` + 索引联动 | 点击缩略图定位主图 |
+| 全屏预览 | 轻触切换 overlay 模式 | 隐藏/显示 UI 元素 |
+
+### 核心缩放代码
+
+```typescript
+// [API 23+] matrix4 矩阵缩放手势
+@State matrix: matrix4.Matrix4Transit = matrix4.identity().copy()
+
+Image(this.imageData)
+  .transform(this.matrix)
+  .translate({
+    x: this.curOffsetX,
+    y: this.curOffsetY
+  })
+  .objectFit(ImageFit.Cover)
+  .gesture(
+    TapGesture({ count: 2 })
+      .onAction(() => {
+        let anim = this.matrix
+        animateTo({ duration: 300 }, () => {
+          this.matrix = matrix4.identity().scale({ x: scale, y: scale }).copy()
+        })
+      })
+  )
+
+---
+
+## 📜 BottomDrawerSlideCase 底部抽屉滑动（第四轮新增）
+
+> **来源**：`bottom-drawer-slide-case` | Gitee harmonyos_samples | 源码级
+
+利用 `List` 实现底部抽屉滑动效果，`RelativeContainer` + `Stack` 实现沉浸式全屏 + 地图可拖动。
+
+### 核心原理
+
+```typescript
+// [API 23+] 分阶抽屉滑动
+List({ space: 8 }) {
+  ForEach(this.items, (item: string) => {
+    ListItem() { Text(item) }
+  })
+}
+.onTouch((event: TouchEvent) => {
+  // 1. 记录 down / up 纵坐标
+  // 2. 按区间设置列表高度（三阶：10%/50%/90%）
+  // 3. 手指离开 → animateTo 吸附到最近阶
+})
+```
+
+---
+
+## 🎨 EffectKit 自适应背景取色（第四轮新增）
+
+> **来源**：`effect-kit` | Gitee harmonyos_samples | 源码级
+
+使用 `EffectKit.colorPicker` 对图片取色，作为背景渐变色的自适应方案。
+
+```typescript
+// [API 23+] ColorPicker 取色主色调
+import { effectKit } from '@kit.ArkGraphics2D'
+
+async function getDominantColor(pixelMap: PixelMap): Promise<string> {
+  let colorPicker = effectKit.createColorPicker(pixelMap)
+  let color = colorPicker.getMainColorSync()
+  return `rgba(${color.red}, ${color.green}, ${color.blue}, 1)`
+}
+// Swiper.onAnimationStart → animateTo 渐变切换背景
+```
+
+---
+
+## 🔀 GridDragSort Grid拖拽排序（第四轮新增）
+
+> **来源**：`grid-drag-sort` | Gitee harmonyos_samples | 源码级
+
+### 四种场景
+
+| 场景 | 操作 | 说明 |
+|------|------|------|
+| 同大小拖拽 | 长按 | 九宫格图片排序 |
+| 不同大小拖拽 | 长按 | 设备展示区排序 |
+| 直接拖拽 | 直接拖 | 无需长按 |
+| 抖动编辑 | 长按后抖 | 可编辑提示 |
+
+```
+Grid + PanGesture + animateTo → 记录起始位置 → 交换数据
+```
+
+---
+
+## 🌊 Immersive 沉浸式页面（第四轮新增）
+
+> **来源**：`Immersive` | ⭐26 Stars | Gitee harmonyos_samples | 源码级
+
+### 两种沉浸 + 三大场景
+
+| 方式 | API |
+|------|-----|
+| 背景沉浸 | `background()` 延伸至状态栏 |
+| 全屏沉浸 | `ignoreLayoutSafeArea()` + matchParent |
+| 隐藏标题栏 | `setWindowDecorVisible(false)` |
+| 避让挖孔 | 横竖屏 4 方向适配 |
+
+---
+
+## 📊 KVStore 键值型数据库（第四轮新增）
+
+> **来源**：`KVStore` | Gitee harmonyos_samples | 源码级
+
+```typescript
+// [API 23+] KVStore 增删改查
+import { distributedKVStore } from '@kit.ArkData'
+
+let kvManager = distributedKVStore.createKVManager({
+  bundleName: 'com.example.app', context: getContext(this)
+})
+let kvStore = await kvManager.getKVStore('storeId', {
+  createIfMissing: true, encrypt: false,
+  securityLevel: distributedKVStore.SecurityLevel.S1
+})
+await kvStore.put('key1', 'value1')       // 写
+let val = await kvStore.get('key1')       // 读
+await kvStore.delete('key1')              // 删
+let all = await kvStore.getEntries()      // 查全部
+```
+
+---
+
+## 📝 TextExpand 文本展开折叠（第四轮新增）
+
+> **来源**：`TextExpand` | Gitee harmonyos_samples | 源码级
+
+| 方案 | 技术 | 场景 |
+|------|------|------|
+| MeasureText | Canvas 2D 预排版 | 纯文本截断 |
+| ParagraphBuilder | `@ohos.graphics.text` | 富文本截断 |
+
+```typescript
+// ParagraphBuilder 检测超行
+let paragraph = new text.ParagraphBuilder()
+  .pushStyle({ fontSize: 16 }).addText('长文本...').build()
+paragraph.layout(maxWidth)
+let isOverflow = paragraph.didExceedMaxLines()
+```
+
+---
+
+## 📜 ListScrollComponent 长列表组件（第五轮新增）
+
+> **来源**：`ListScrollComponent`（基于 `@hadss/scroll_components`） | Gitee harmonyos_samples | 源码级
+
+### 12种长列表场景
+
+| 场景 | 技术方案 |
+|------|---------|
+| 组件复用 | `ListManager` + `registerNodeItem` + `wrapBuilder` |
+| 分组布局 | 分组列表 + 分组吸顶 + 二级联动 |
+| 跨页面复用 | `NodePool` 全局复用池，切换页面不丢帧 |
+| 加速首屏 | 组件分帧预创建 + 懒加载 |
+| 下拉刷新/上拉加载 | `onReachStart`/`onReachEnd` |
+| 无限滑动 | `setDataSource` 动态追加数据 |
+| 侧滑删除 | `swipeAction` |
+| 多类型列表项 | 根据 data 类型动态渲染不同 NodeItem |
+| Tabs吸顶 | Tabs + List 组合 |
+| 动态切换列数 | `lanes` 动态控制 |
+| 边缘渐隐 | `fadingEdge` |
+
+### ScrollComponents 核心用法
+
+```typescript
+// [API 23+] 高性能长列表
+import { ListManager, RecyclerView } from '@hadss/scroll_components'
+
+@Builder
+function MyItem($$: ESObject) {
+  Text($$.title).fontSize(16)
+}
+
+class MyListManager extends ListManager {
+  onWillCreateItem(index: number, data: ESObject) {
+    let node = this.dequeueReusableNodeByType('MyItem')
+    node?.setData({ title: data.title })
+    return node
+  }
+}
+
+// 组件中使用
+RecyclerView({ viewManager: this.myListManager })
+```
+
+---
+
+## 📥 MultiFileDownload 多文件下载（第五轮新增）
+
+> **来源**：`multi-file-download` | Gitee harmonyos_samples | 源码级
+
+### 核心能力
+`@ohos.request` 管理多个下载任务的进度和状态，List 展示下载队列。
+
+```typescript
+// [API 23+] 多文件下载管理
+downloadUrlArray.forEach((url, index) => {
+  let task = await request.agent.create(context, { url, saveas: `file_${index}.zip` })
+  tasks.push(task)
+  task.on('progress', (info) => { this.updateProgress(index, info) })
+  task.on('complete', () => { this.updateStatus(index, '完成') })
+  task.on('fail', () => { this.updateStatus(index, '失败') })
+  task.start()
+})
+
+// 全部开始 / 全部暂停 / 单个控制
+```
+
+---
+
+## 🎯 MultiTarget 多目标产物工程（第五轮新增）
+
+> **来源**：`MultiTarget` | Gitee harmonyos_samples | 源码级
+
+### 场景
+一套代码构建 different 版本应用包（official / test），资源/功能差异化定制。
+
+### build-profile.json5 配置
+
+```json5
+// 工程级 build-profile.json5
+{
+  "products": [
+    { "name": "official", "signingConfig": "official_sign" },
+    { "name": "test", "signingConfig": "test_sign" }
+  ]
+}
+// 模块级: 为每个 target 定制 resources
+// entry/src/main/official/resources/  vs  entry/src/main/test/resources/
+```
+
+### 差异化项
+| 定制项 | 说明 |
+|-------|------|
+| 资源文件 | 字符串/图片/颜色差异化 |
+| 页面逻辑 | 不同版本独立 pages（official_pages / test_pages） |
+| 功能开关 | Har 包内条件判断 |
+
+---
+
+## 🎬 SmoothSwitchShortVideos 平滑短视频切换（第五轮新增）
+
+> **来源**：`SmoothSwitchShortVideos` | Gitee harmonyos_samples | 源码级
+
+### 核心优化方案
+
+| 优化 | 实现 |
+|------|------|
+| **LazyForEach 懒加载** | 只渲染可见区域 + cachedCount 预缓存 |
+| **组件复用** | Swiper 滑动 + @Reusable 组件复用 |
+| **AVPlayer 预创建** | 冷启动时创建一个播放器到 prepared 状态，每次滑动异步创建下一个 |
+| **XComponent Surface** | Surface 类型动态渲染视频流，减少纹理拷贝 |
+
+### 工程结构
+```
+entry/src/main/ets/
+├── model/AVDataSource.ets      # 视频数据源
+├── view/VideoPlayView.ets      # 视频播放组件
+├── pages/Index.ets              # Swiper 轮播首页
+└── common/CommonConstants.ets   # VIDEO_SOURCE 配置
+```
+
+---
+
+## 📑 MultiTabNavigation Tab导航样式合集（第六轮新增）
+
+> **来源**：`multi-tab-navigation` | ⭐149 Stars | Gitee harmonyos_samples | 源码级
+
+### 十大导航样式
+
+| 样式 | 实现方式 | 特点 |
+|------|---------|------|
+| 常见底部导航 | Tabs + barPosition.End | 底部图标+文字 |
+| 舵式底部导航 | Tabs + 自定义中间按钮 | 中间突出舵式按钮 |
+| 下划线样式 | Tabs + indicator | 指示器跟随滑动 |
+| 背景高亮样式 | List 实现 | 选中项背景高亮 |
+| 文字样式 | Tabs + fontColor | 文字粗细/颜色变化 |
+| 双层嵌套1 | Tabs + 内嵌 List | 外层Tab切换，内层List滚动 |
+| 双层嵌套2 | Tabs 嵌套 Tabs | 两层 Tab 联动 |
+| 侧边导航 | SideBarContainer | 左侧图标+文字 |
+| 抽屉式导航 | SideBarContainer | 点击左上角展开/折叠 |
+| 可滑动+更多 | List + 右侧图标 | 溢出滑动，显示更多入口 |
+
+### 核心代码模式
+
+```typescript
+// [API 23+] 常见底部导航
+Tabs({ barPosition: BarPosition.End }) {
+  ForEach(this.tabItems, (item: TabItem) => {
+    TabContent() {
+      // 对应页面内容
+    }.tabBar(this.TabBuilder(item))
+  })
+}
+.width('100%').height('100%')
+
+@Builder TabBuilder(item: TabItem) {
+  Column() {
+    Image(item.icon).width(24).height(24)
+    Text(item.name).fontSize(10)
+  }
+}
+// 双层嵌套: Tabs + 内嵌 List
+// 抽屉导航: SideBarContainer({ sideBarWidth: 240 })
+```
+
+---
+
+## 🗔 CustomDialogGathers 自定义弹窗合集（第六轮新增）
+
+> **来源**：`custom-dialog-gathers` | ⭐64 Stars | Gitee harmonyos_samples | 源码级
+
+### 八种弹窗类型
+
+| 弹窗类型 | 实现 API | 说明 |
+|---------|---------|------|
+| 滑动选择 | TimePickerDialog / TextPickerDialog | 系统选择器弹窗 |
+| 模态弹窗 | `bindContentCover` | 全屏模态，3种过渡方式 |
+| 半模态弹窗 | `bindSheet` | 底部半模态 |
+| Toast弹窗 | `CustomDialog` | 3s自动消失 |
+| 隐私协议弹窗 | Stack `visibility` 控制 | 弹窗内跳转不关闭 |
+| 全屏弹窗 | `translate` + 显式动画 | 手势滑动关闭 |
+| 日历选择器 | `CustomDialog` + LazyForEach | 自定义日期范围 |
+| 两级半模态 | `bindSheet` 嵌套 `bindSheet` | 二级弹窗联级关闭 |
+
+### 关键代码
+
+```typescript
+// [API 23+] 模态弹窗 bindContentCover
+@State isPresent: boolean = false
+
+Button('打开模态')
+  .bindContentCover($$this.isPresent, {
+    builder: () => this.ModalPage(),
+    showPageTransition: true  // 页面过渡动画
+  })
+
+// 半模态弹窗 bindSheet
+Button('打开半模态')
+  .bindSheet($$this.isSheetPresent, {
+    builder: () => this.SheetPage(),
+    mode: SheetMode.HALF    // 半屏模式
+  })
+
+// FullScreen 手势滑动关闭
+.gesture(
+  PanGesture()
+    .onActionUpdate((event) => { this.offsetY = event.offsetY })
+    .onActionEnd(() => {
+      if (this.offsetY > 300) { this.isFullScreen = false }
+      else { animateTo({}, () => { this.offsetY = 0 }) }
+    })
+)
+```
+
+---
+
+## 🎬 AVPlayerLongVideo 长视频播放全功能（第六轮新增）
+
+> **来源**：`avplayer-long-video` | Gitee harmonyos_samples | 源码级
+
+### 12种播放功能
+
+| 功能 | 说明 |
+|------|------|
+| 基本播控 | play/pause/stop/seek |
+| 精准跳转 | 按时间/帧精确跳转 |
+| 倍速播放 | 0.5x~3x 倍速调节 |
+| 音量控制 | 系统音量/应用音量 |
+| 亮度控制 | 屏幕亮度滑动调节 |
+| 焦点管理 | 播放焦点获取/释放 |
+| 前后台感知 | 前台播放/后台暂停 |
+| 弹幕发送与显示 | 实时弹幕叠加 |
+| 字幕挂载 | 多字幕轨道切换 |
+| 视频截图 | `AVPlayer snapshot` |
+| 画中画 | PiP 模式播放 |
+| 媒体会话 | AVSession 播控集成 |
+
+### 权限
+```json5
+"ohos.permission.INTERNET"
+```
+
+---
+
+## 🎙️ HMOSLiveAudioCall 直播连麦（第六轮新增）
+
+> **来源**：`HMOS_LiveAudioCall` | Gitee harmonyos_samples | 源码级
+
+在 `HMOSLiveStream` 案例基础上增加媒体直播连麦功能：
+
+```
+主播端: 采集 → 编码 → 推流
+连麦端: 采集 → 编码 → 混流 → 推流
+观众端: 拉流 → 解码 → 播放
+```
+
+### 关键能力
+- AudioCapturer 音频采集
+- OH_AVCodec 编解码
+- 多路音频混流
+- 低延迟音频传输
+- 与 HMOSLiveStream 复用直播链路
+
+---
+
+## 🖼️ PixelMapImageEdit 图片编辑（第七轮中高价值①）
+
+> **来源**：`PixelMapImageEdit` | Gitee harmonyos_samples | 源码级
+
+### 功能矩阵
+
+| 分类 | 功能 | 实现方式 |
+|------|------|---------|
+| **几何变换** | 裁剪/旋转/平移/缩放/镜像 | PixelMap 几何 API |
+| **颜色调整** | 亮度/透明度/饱和度 | PixelMap 颜色 API |
+| **滤镜** | 多种滤镜效果 | 颜色矩阵变换 |
+| **解码** | 图片 → PixelMap | `image.createImageSource` + `createPixelMap` |
+| **编码** | PixelMap → 图片文件 | `image.createImagePacker` + `packToFile` |
+
+### 核心代码模式
+
+```typescript
+// [API 23+] PixelMap 编辑流程
+import { image } from '@kit.ImageKit'
+
+// 1. 解码
+let source = image.createImageSource(uri)
+let pixelMap = await source.createPixelMap()
+
+// 2. 裁剪
+pixelMap.crop({ x: 0, y: 0, width: 500, height: 500 })
+
+// 3. 颜色调整
+pixelMap.opacity(0.8)             // 透明度
+// pixelMap.setBrightness(0.2)    // 亮度
+// pixelMap.setSaturation(1.5)    // 饱和度
+
+// 4. 编码保存
+let packer = image.createImagePacker()
+let packOpts: image.PackingOption = { format: 'image/jpeg', quality: 95 }
+await packer.packToFile(pixelMap, `${getContext().cacheDir}/edited.jpg`, packOpts)
+```
+
+---
+
+## 💼 MultiBusinessOffice 多设备办公（第八轮中高价值④）
+
+> **来源**：`MultiBusinessOffice` | Gitee harmonyos_samples | 源码级
+
+### 三页场景 + 多设备适配
+
+| 页面 | 直板机 | 折叠屏(展开) | 平板 |
+|------|--------|-------------|------|
+| 入口页 | 导航跳转 | 自适应布局 | 自适应布局 |
+| 备忘录 | 单栏 | SideBar + 双栏 | 双栏展开 |
+| 日历 | 上下显示 | 侧边栏+内容 | 双栏日历 |
+
+### 核心技术
+
+| 能力 | 实现 |
+|------|------|
+| 侧边栏适配 | `SideBarContainer.sideBarContainerType` + `showSidebar` 断点控制 |
+| 单双栏切换 | `Navigation.mode` 根据断点改变 `NavigationMode` |
+| 页面拉起 | `UIAbilityContext.startAbility()` 拉起新实例 |
+| 断点监听 | `BreakpointSystem` 监听 sm/md/lg |
+
+### 核心代码
+
+```typescript
+// [API 23+] SideBarContainer 断点适配
+SideBarContainer({ sideBarWidth: 240, type: this.sideBarType }) {
+  SideBarContent()
+  MainContent()
+}
+.showSidebar(this.showSidebar)
+.onChange((isShow) => { this.showSidebar = isShow })
+
+// 断点控制
+// sm: 隐藏+悬浮 → showSidebar=false, type=OVERLAY
+// md: 隐藏+悬浮 → showSidebar=false, type=OVERLAY
+// lg: 展开+嵌入 → showSidebar=true, type=EMBED
+```
+
+---
+
+## ⚙️ Preferences 首选项持久化（第八轮中高价值⑥）
+
+> **来源**：`preferences` | Gitee harmonyos_samples | 源码级
+
+### 核心 API
+
+```typescript
+// [API 23+] @ohos.data.preferences 首选项
+import { preferences } from '@kit.ArkData'
+
+let prefs = await preferences.getPreferences(getContext(), 'myStore')
+
+// 写
+await prefs.put('theme', 'dark')
+await prefs.flush()          // 必须 flush 才持久化
+
+// 读
+let theme = await prefs.get('theme', 'default')
+
+// 删
+await prefs.delete('theme')
+
+// 删除整个 Store
+await preferences.deletePreferences(getContext(), 'myStore')
+```
+
+### 场景
+主题切换 + 数据缓存：切换主题 → `put` + `flush` → 重启应用 → `get` 恢复
+
+---
+
+## 🔄 ListExchange 列表交换删除（第九轮中高价值⑧）
+
+> **来源**：`list-exchange` | ⭐15 Stars | Gitee harmonyos_samples | 源码级
+
+### 核心功能
+List 列表项的**交换**与**删除**。
+
+```typescript
+// [API 23+] 列表项交换
+List() {
+  ForEach(this.items, (item: string, index: number) => {
+    ListItem() {
+      Text(item)
+    }
+    .gesture(
+      LongPressGesture().onAction(() => {
+        this.draggedIndex = index
+      })
+    )
+    .onDrag((event: DragEvent) => {
+      event.setData(DragUtils.createData(this.items[index]))
+    })
+    .onDrop((event: DragEvent) => {
+      let targetIndex = this.getIndexByPosition(event)
+      if (targetIndex !== -1) {
+        let temp = this.items[this.draggedIndex]
+        this.items[this.draggedIndex] = this.items[targetIndex]
+        this.items[targetIndex] = temp
+      }
+    })
+  })
+}
+```
+
+---
+
+## 💬 ImageComment 图片评论（第九轮中高价值⑨）
+
+> **来源**：`image-comment` | Gitee harmonyos_samples | 源码级
+
+### 功能
+1. 点击文本框 → 相机按钮 → 拉起系统相机拍照
+2. 拍照返回 → 点击发布 → 发布图片评论
+
+### 工程结构
+```
+├── utils/CameraUtils.ets          # 拉起系统相机
+├── view/CommentItemView.ets       # 评论列表组件
+├── view/CommentInputDialog.ets    # 发布评论弹窗
+└── view/ImageListView.ets         # 图片列表组件
+```
+
+```typescript
+// [API 23+] 拉起系统相机
+import { camera } from '@kit.CameraKit'
+import { photoAccessHelper } from '@kit.MediaLibraryKit'
+
+async function takePhoto(context): Promise<string> {
+  // 使用 Camera Kit 或系统相机应用取景拍照
+  let helper = photoAccessHelper.getPhotoAccessHelper(context)
+  let uri = await helper.takePhoto(context, '拍照')
+  return uri
+}
+```
+
+---
+
+## 🌊 WaterFlow 瀑布流布局（第十轮收尾①）
+
+> **来源**：`water-flow` | Gitee harmonyos_samples | 源码级
+
+### 两个场景
+
+| 场景 | 功能 | 实现 |
+|------|------|------|
+| 场景一 | 分组混排 + 下拉刷新 + 无限加载 + 长按删除 | `WaterFlow.sections` 分组配置 |
+| 场景二 | item 吸顶 + 图片视频混排 + 停止自动播放 | `FlowItem` + `Tabs` + 滚动监听 |
+
+### WaterFlow Sections 核心
+
+```typescript
+// [API 23+] WaterFlow sections 分组混排
+WaterFlow() {
+  LazyForEach(this.sections, (section: WaterFlowSection) => {
+    FlowItem() {
+      // 每个 flow item 内容
+    }
+  })
+}
+.nestedScroll({
+  scrollForward: NestedScrollMode.PARENT_FIRST,
+  scrollBackward: NestedScrollMode.SELF_FIRST
+})
+// sections 配置不同列数和间距
+// [{ crossCount: 2 }, { crossCount: 3 }, { crossCount: 1 }]
+```
+
+---
+
+## 🔀 GridHybrid 网格混合布局（第十轮收尾③）
+
+> **来源**：`grid-hybrid` | Gitee harmonyos_samples | 源码级
+
+### 两种混合场景
+
+| 场景 | 组合 | 实现 |
+|------|------|------|
+| 场景一 | Grid + List 嵌套 | 双 Scroller 联动 + 水平 List 吸顶 |
+| 场景二 | Grid + Swiper 嵌套 | Swiper 动态改变高度 |
+
+---
+
+## 📋 ListItemEdit 列表编辑（第十轮收尾④）
+
+> **来源**：`list-item-edit` | Gitee harmonyos_samples | 源码级
+
+### 功能
+基于 List 实现待办事项管理：添加/左滑删除/checkbox 完成。
+
+```typescript
+// [API 23+] 列表项左滑删除
+ListItem() {
+  Text(this.item.name)
+}
+.swipeAction({
+  end: { builder: () => {
+    Button('删除').onClick(() => {
+      this.todoList.splice(index, 1)
+    })
+  }}
+})
+```
+
+---
+
+## 🚀 H5Launch H5冷启动加速（第十轮收尾⑤）
+
+> **来源**：`H5Launch` | Gitee harmonyos_samples | 源码级
+
+### 五大优化方案
+
+| 方案 | API | 说明 |
+|------|-----|------|
+| 内核预初始化 | `initializeBrowserEngine()` | 提前初始化 ArkWeb 内核 |
+| 预连接预解析 | `prepareForPageLoad()` | DNS 预解析 + TCP 预连接 |
+| 资源拦截替换 | `onInterceptRequest` + DataCache | 首屏数据本地缓存 |
+| JS 预编译 | `precompileJavaScript()` | 生成字节码 Code Cache |
+| 离线资源注入 | `injectOfflineResources()` | 免拦截注入静态资源 |
+
+### 核心代码
+
+```typescript
+// [API 23+] Web 冷启动优化
+import { webview } from '@kit.ArkWeb'
+
+// AbilityStage 中提前初始化
+webview.initializeBrowserEngine()
+
+// 预连接
+webview.prepareForPageLoad('https://example.com')
+
+// 资源拦截
+Web({ src: 'https://example.com', controller: this.controller })
+  .onInterceptRequest((event) => {
+    // 从本地 DataCache 返回快照数据
+    if (isFirstScreen) { return localCacheData }
+    return null
+  })
+```
+
+---
+
+## ✅ 剩余极简仓库（仅列表推荐，无需源码级）
+
+以下仓库功能太简单或被已有内容覆盖，仅做推荐索引：
+
+| 仓库 | 说明 | 覆盖情况 |
+|------|------|---------|
+| **multi-travel-accommodation** | 多设备旅行住宿页面 | 🟢 被 MultiBusinessOffice 覆盖 |
+| **NavigationSettings** | 导航设置页面 | 🟢 被 MultiTabNavigation 覆盖 |
+| **PureTabs** | 纯 Tabs 实现 | 🟢 被 MultiTabNavigation 覆盖 |
+| **custom-dialog-selection** | 自定义弹窗选择 | 🟡 被 CustomDialogGathers 覆盖 |
+| **grid-hybrid** | 已学 ✅ | ✅ |
+| **text-effects** | 已学 ✅ | ✅ |
+| **water-flow** | 已学 ✅ | ✅ |
+| **list-item-edit** | 已学 ✅ | ✅ |
+| **H5Launch** | 已学 ✅ | ✅ |
+| **FIDO2** | 已学 ✅ | ✅ |
+| **location-service** | 已学 ✅ | ✅ |
+
+
 ## 📱 官方 Sample 精选速查
 
 > 华为官方 700+ 示例中精选 **最有学习价值的 10 个**，对标实际开发场景。
@@ -4313,6 +6177,1535 @@ hvigorw assembleHap -p buildMode=debug --no-daemon
 ```
 
 ---
+
+
+---
+
+# 第十一部分：编译错误与踩坑（错误速查、级联诊断、踩坑记录）
+
+## 🚫 常见编译错误速查（31种）
+
+| # | 错误现象 | 错误码 | 原因 | 修复方案 |
+|:-:|---------|:------:|------|---------|
+| 1 | `Notification type error` | — | ContentType 类型不兼容 | cast 为 `number` 类型 |
+| 2 | `Window type error` | — | window.getLastWindow 类型推断问题 | 改用回调模式 |
+| 3 | `AppStorage type error` | — | AppStorage.get() 类型推断错误 | 用 `@StorageLink` + `AppStorage.setAndLink`，避免 `setOrCreate` |
+| 4 | `Object spread error` | — | 对象展开类型推断受限 | 显式声明类型 |
+| 5 | `@StorageLink default value` | — | @StorageLink 属性缺少默认值 | 加 `= undefined` 或具体默认值 |
+| 6 | `Object literal interface error` | 10605038 | 对象字面量缺少显式接口 | 先定义 interface 再使用 |
+| 7 | `Function return type error` | 10605090 | 返回类型推断受限 | 添加显式返回类型注解 |
+| 8 | `Arrow function conversion` | — | 用了 function 表达式 | 改为箭头函数 `=>` |
+| 9 | `Color property error` | — | 使用了不存在的 Color 属性 | 用十六进制色值 |
+| 10 | `Interface method signature` | — | 方法签名与对象字面量不匹配 | 用属性语法 `method: () => {}` |
+| 11 | `AvoidArea type error` | — | AvoidArea 缺少 visible 属性 | 加 `visible: false` |
+| 12 | `Standalone function this` | — | 独立函数中使用 `this` | 通过参数传递 context |
+| 13 | `TitleButtonRect type error` | — | getTitleButtonRect 返回了 window.Rect | 用 `window.TitleButtonRect` |
+| 14 | `Catch clause type` | — | catch 中有类型注解 | 移除类型注解或用 `unknown` |
+| 15 | `ESObject type error` | — | 使用了 ESObject | 改用具体类型 |
+| 16 | `Resource conversion` | — | Resource→string/number 转换错 | 在 UI 组件内直接使用 Resource |
+| 17 | `Unused variable warning` | — | 声明了未使用的变量 | 删除或输出到 hilog |
+| 18 | `IDataSource type error` | — | LazyForEach 需要 IDataSource | 实现 IDataSource 接口（4个方法） |
+| 19 | `Duplicate @Entry` | — | 同一文件中有多个 @Entry | 去掉多余的 @Entry，子组件用 @Component |
+| 20 | `Possibly null error` | — | 访问可能为 null 的对象的属性 | 用 `!== null` 检查或可选链 `?.` |
+| 21 | `Cannot find module` | — | import 路径错误 | 检查模块路径和 export 名称 |
+| 22 | `Getter or setter unexpected` | — | 属性定义使用了 get/set 关键字 | ArkTS 不支持 getter/setter |
+| 23 | **`arkts-no-untyped-obj-literals`** | 10605038 | 对象字面量必须对应显式类或接口 | 定义 interface/class；或用空对象逐个赋值 `const p:Record<string,string>={}; p['k']='v';` |
+| 24 | **`arkts-no-implicit-return-types`** | 10605090 | 函数返回类型推断受限 | 所有函数加显式返回类型注解 |
+| 25 | **`arkts-no-any-unknown`** | 10605008 | 不能用 `any`/`unknown` | 全部替换为具体类型 |
+| 26 | **`arkts-no-inferred-generic-params`** | 10605034 | 泛型函数调用需要显式类型参数 | 所有泛型调用显式标注 `<object>`：`api.get<object>()` |
+| 27 | **`arkts-no-obj-literals-as-types`** | 10605040 | 不能用对象字面量声明类型 | 改为 interface 定义：`interface Param { username: string }` |
+| 28 | **`Record<string, object> 类型不匹配`** | 10605999 | Record<string, object> 不能放基础类型值 | 定义具体接口代替通用的 Record |
+| 29 | **`索引对象属性`** | — | 用变量键名索引对象 `colors[key]` | 声明为 `Record<string, T>` 或用 `switch/case` |
+| 30 | **`for...in 循环`** | — | 使用 `for (let key in obj)` | 改用 `Object.keys(obj).forEach(key => {...})` |
+| 31 | **`接口属性不匹配`** | — | 对象字面量包含接口不存在的属性 | 只赋值接口已定义的属性 |
+| 32 | **`interface 在 struct 内`** | 10505001 | interface 声明在 struct 内部（ArkTS 禁止） | 移到文件级别（`@Entry` 之前） |
+| 33 | **`Only UI component syntax`** | 10905209 | `const`/`let` 声明在 `build()` 组件树中 | 移到方法中计算或内联表达式 |
+| 34 | **`Property on void`** | 10505001 | `@Builder` 方法链式 `.onClick()` | 用 `Column()` 包裹后再链式 |
+| 35 | **`Property on TextAttribute`** | 10505001 | `Image` 属性迁移到 `Text` 后未改 | 用 `.fontColor()` 替代 `.fillColor()` |
+| 36 | **`Unknown resource name`** | 10903329 | `ohos_ic_*` 系统资源不存在 | 用 `Text('🔔'/'↻')` 替代 |
+| 37 | **`build() 多出/缺少'}'`** | — | 编码损坏导致 brace 不匹配 | 扫描全文件 brace 平衡 |
+| 38 | **`Property 'onRefresh' does not exist. Did you mean 'onRefreshing'?`** | 10505001 | Refresh 组件回调名称写错 | `.onRefresh(` → `.onRefreshing(` |
+| 39 | **`@State opacity 与基类冲突`** | 10505001 | `opacity` 是 CustomComponent 基类方法 | 改名为 `shimmerOpacity` / `alpha` |
+
+---
+
+## 🧬 级联错误诊断流程
+
+当项目出现 50+ 编译报错时，大部分可能是级联错误。按以下顺序排查（优先级从高到低）。
+
+> **⚡ 一键诊断**：运行诊断脚本自动扫描全部 7 项：
+> ```bash
+> bash <expert-dir>/scripts/diagnose_arkts.sh <项目根目录>
+> ```
+> 脚本在 `harmonyos-dev/scripts/diagnose_arkts.sh`，扫描结果按优先级排序输出。
+
+### 第一步：检查 interface 是否在 struct 内
+**错误现象**：`Declaration or statement expected` + `Cannot find name 'build'`
+**排查命令**：
+```bash
+grep -n '^\s\+interface ' *.ets
+```
+**根因**：ArkTS 禁止在 `struct {}` 内部声明 `interface`，编译器看到 `interface` 关键字时解析失败，从该行开始直到文件末尾全部报错，可产生 400-600+ 级联错误。
+**修复**：将 interface 移到文件级别（`@Entry` 之前），与 `RouteArgs` 同级。
+
+### 第二步：检查缩进断裂
+**错误现象**：`Declaration or statement expected` + 大量语法错误
+**排查命令**：
+```bash
+awk 'NR>=18{indent=substr($0,1,1);if(indent~/^[a-zA-Z@]/) print NR": "$0}' *.ets
+```
+**根因**：编码损坏导致行首空格丢失，代码被解析为文件级代码而非 struct 成员。
+**修复**：为每行恢复正确的缩进（struct 内至少 2 空格）。
+
+### 第三步：检查 brace 平衡
+**错误现象**：`Cannot find name 'width'` + struct 边界错误
+**排查命令**：
+```bash
+o=$(grep -o '{' file.ets | wc -l); c=$(grep -o '}' file.ets | wc -l); echo $((o-c))
+```
+**根因**：±1 的差异可产生 100-400 个级联错误。
+**修复**：在正确的层级补上缺失的 `}` 或删除多余的 `{`。
+
+### 第四步：检查 `build()` 语法违规
+**错误现象**：`Only UI component syntax can be written here`
+
+**ArkTS `build()` 语法清单**：
+
+| ✅ 允许 | ❌ 禁止 |
+|---------|--------|
+| UI 组件：`Column()` `Row()` `Text()` `Button()` 等 | `const`/`let`/`var` 变量声明 |
+| 控制流：`if/else` `ForEach` `LazyForEach` | 函数调用赋值（`const x = compute()`） |
+| `@Builder` 方法调用：`this.MyBuilder()` | `try/catch/finally` |
+| 链式属性：`.width()` `.height()` `.onClick()` | 解构赋值（TS→ArkTS 迁移） |
+| 条件表达式（三元） | `for`/`while` 循环 |
+| 数据绑定：`{{ }}` `this.state` | `console.log`（用 `hilog` 替代） |
+
+**常见违规修复**：
+```typescript
+// ❌ 错误 - const 在 build() 组件树中
+build() {
+  Column() {
+    const x: number = this.compute();  // 10905209
+    Text('' + x)
+  }
+}
+
+// ✅ 正确 - 用方法计算
+build() {
+  Column() {
+    Text('' + this.compute())
+  }
+}
+```
+
+### 第五步：检查 `@Builder` 链式调用
+**错误现象**：`Property 'onClick' does not exist on type 'void'`
+
+**根因**：`@Builder` 方法返回 `void`，不能在返回值上链式调用。
+```typescript
+// ❌ 错误
+this.ChartTabItem().onClick(() => { ... })  // void 上没有 onClick
+
+// ✅ 正确
+Column() { this.ChartTabItem() }.onClick(() => { ... })
+```
+
+### 第六步：检查 `Text()` 参数类型
+**错误现象**：`Argument of type '() => string' is not assignable to parameter of type 'string | Resource'`
+
+**根因**：ArkTS `Text()` 构造函数接受 `string | Resource`，不接受箭头函数。
+```typescript
+// ❌ 错误
+Text(() => { if (!x) return '--'; return x.toFixed(2); })
+
+// ✅ 正确
+Text(!x ? '--' : x.toFixed(2))
+```
+
+### 第七步：检查资源与属性兼容性
+
+| 迁移场景 | ❌ 老属性 | ✅ 新属性 |
+|---------|----------|----------|
+| `Image` → `Text` | `.fillColor()` | `.fontColor()` |
+| `Image` → `Text` | `.width(22) .height(22)` | 单字符无需显式尺寸 |
+| 系统资源不存在 | `$r('sys.media.ohos_ic_xxx')` | `Text('🔔'/'↻'/'←')` 或本地资源 |
+| `Record` 对象字面量 | `const x: Record<K,V> = { k: v }` | 改用 `Record<K,V> = {}; x['k'] = v` |
+
+## 🔴 真实踩坑记录（持续更新）
+
+### 来自 QuantFlow 项目的 20 个编译错误（2026-06-24）
+
+**项目背景**：QuantFlow 是一个鸿蒙股票分析应用，大量代码由 AI 生成。首次编译时报出 20 个错误，全部集中在 TS→ArkTS 类型系统差异。
+
+#### 错误分布
+| 错误码 | 错误名 | 出现次数 | 涉及文件 |
+|:------:|--------|:-------:|---------|
+| 10605038 | `arkts-no-untyped-obj-literals` | 11次 | ProfilePage/LoginPage/RegisterPage/StockDetailPage |
+| 10605090 | `arkts-no-implicit-return-types` | 6次 | StockDetailPage |
+| 10605008 | `arkts-no-any-unknown` | 4次 | StockDetailPage |
+
+#### 根因分析
+1. **核心问题在 http.ets**：`api` 对象（第183行）没有明确的类型声明，导致所有调用方都报对象字面量错误
+2. **泛型函数调用未显式指定类型参数**：`api.get()` 应写成 `api.get<object>()`
+3. **内联对象作为参数类型**：`{ username: string; password: string }` 这种写法在 ArkTS 中禁止
+4. **Record<string, object> 不能接受基础类型**：object 类型不能接收 string/number/boolean
+
+#### 修复策略
+1. 在 http.ets 中定义 `Api` interface 声明 api 对象类型
+2. 定义 `LoginData`、`RegisterData`、`CommentData` 等数据接口
+3. 所有泛型方法调用加 `<object>` 类型参数
+4. 对象字面量改为：`const p: Record<string, string> = {}; p['key'] = 'val'` 逐个赋值
+
+#### 教训总结（已纳入知识库）
+- 定义 API 层时**必须先声明接口类型**，不能直接用对象字面量
+- `httpClient.get()` 必须写成 `httpClient.get<object>()`
+- `Record<string, object>` 不能存基础类型，必须用具体接口
+- 每个函数**必须有显式返回类型注解**
+- `any`/`unknown` 在 ArkTS 中完全禁止，全部替换为具体类型
+
+### 来自 QuantFlow 的 AppStorage 导入坑（2026-06-24）
+
+**问题**：在 `http.ts` 中 `AppStorage.get<string>('token')` 报错 `@kit.ArkUI` 没有导出 `AppStorage`。
+
+**排查过程**：
+1. ❌ 尝试从 `@kit.ArkUI` 导入 `AppStorageV2` → AppStorageV2 没有 `get` 方法
+2. ❌ 尝试将 `http.ts` 重命名为 `http.ets` → 引发大量新类型错误（ArkTS 严格模式）
+3. ✅ 最终方案：保持 `http.ts`，用全局变量替代 AppStorage，在登录页同步 token
+
+**根因**：
+- `.ets` 文件中 `AppStorage` 是**全局可用**的，无需 import
+- `.ts` 文件中 `AppStorage` **不可用**（它是 ArkTS 编译器的内置全局对象）
+- API 26+ 中从 `@kit.ArkUI` 导入 AppStorage 时，须使用 `AppStorageV2`
+
+**正确实践**：
+```typescript
+// http.ts（普通 TypeScript 文件）
+let cachedToken: string = '';
+export function setToken(t: string) { cachedToken = t; }
+export function getToken(): string { return cachedToken; }
+
+// LoginPage.ets（ArkTS 文件，AppStorage 全局可用）
+AppStorage.setOrCreate('token', '');
+setToken(AppStorage.get<string>('token')!);
+```
+
+**教训**：.ts 和 .ets 的模块系统不同，.ts 不能访问 ArkTS 特有的全局对象。跨文件共享状态时，需要在 .ets 中获取后同步到 .ts
+
+### 来自 QuantFlow 的编码损坏与组件坑（2026-06-24）
+
+**问题**：153 个编译报错，根因是文件编码损坏 + 组件 API 使用错误。
+
+#### 根因 1：文件编码损坏
+- **表现**：中文注释/字符串变成乱码，导致字符串字面量未闭合 → 级联报错
+- **修复**：检查文件编码是否 UTF-8；从版本控制系统恢复；重新编写严重受损文件
+- **预防**：IDE 编码设为 UTF-8；避免在代码中使用可能被编码转换破坏的特殊字符
+
+#### 根因 2：组件 API 误用
+| 组件 | 错误用法 | 正确用法 |
+|------|---------|---------|
+| **Row** | `.alignItems(HorizontalAlign.Center)` | Row 用 `VerticalAlign`，Column 用 `HorizontalAlign` |
+| **Toggle** | `.isOn(true)` 属性赋值 | `.selected(true)` 或 `onChange((v) => this.checked = v)` |
+| **DataTransform** | 返回类型 `Object[]` | 必须用具体类型 `NewsStockRef[]` |
+
+#### 经验
+- 编码损坏是"伪报错"的常见来源：一个损坏的字符串未闭合会导致其后的 50 行全报错
+- 遇到大量连续语法错误（>30个）时，优先检查文件编码而非逐条修复
+- Row.alignItems 接受 `VerticalAlign`（Top/Center/Bottom）
+- Column.alignItems 接受 `HorizontalAlign`（Start/Center/End）
+- Toggle 的选中状态通过 `.selected()` 属性设置，非 `.isOn()`
+
+### 来自 QuantFlow 的第三轮修复（659报错，2026-06-24）
+
+**问题**：659 个编译错误，"全新"项目代码（非编码损坏），根因是 ArkTS 语法限制。
+
+#### 新增 ArkTS 不支持的语法发现
+| 语法 | 错误用法 | 正确替代 |
+|------|---------|---------|
+| **索引访问对象属性** | `colors[key]` 对普通对象做索引访问 | 改用 `Record<string, string>` 或 `switch/case` |
+| **for...in 循环** | `for (let key in obj)` | 改用 `Object.keys(obj).forEach(key => {...})` |
+| **接口中不存在的属性** | `MockData` 对象字面量包含 `amount` 属性 | 检查接口定义，只赋值已有属性 |
+
+#### 根因分���
+1. `ColorTheme.ets` 第65行：`colors[key]` — ArkTS 不支持通过变量键名索引访问对象属性，必须显式声明类型为 `Record<string, T>`
+2. `StrategiesViewModel.ets` 第88行：`for (let key in obj)` — ArkTS 禁止 `for...in` 循环，这是因为它依赖动态运行时反射
+3. `MockData.ets`：对象字面量赋值了接口不存在的属性 `amount` — ArkTS 严格检查对象字面量的属性完整性
+
+#### 经验
+- `for...in` 是 "从 TypeScript 迁移时 AI 最常生成的错误代码" 之一（与解构赋值 `{}`、`any` 并列前三）
+- 对象索引访问的正确模式：`const colors: Record<string, string> = { 'red': '#ff0000' }; const c = colors['red'];`
+- ArkTS 对象字面量必须精确匹配接口定义，不能多也不能少
+
+### 来自 QuantFlow 的第四轮修复（801报错，2026-06-24）
+
+**新发现**：
+1. **`import` 语句位置错误导致装饰器截断**：`Index.ets` 中 `import` 放在了错误位置，导致其后的 `@Entry`/`@Component` 装饰器被截断——这是 "伪语法错误" 的另一个常见来源
+2. **大文件中写中文→工具序列化失败**：`TradingPage.ets`（400+行）含大量中文字符串时，AI 的 `builtin_write_file` 工具 JSON 序列化会报错（`invalid escape character`）
+
+**经验**：
+- 当编译器报"装饰器不存在"或"表达式预期"时，先检查它上面的 `import` 语句是否完整、位置是否正确
+- 多个 `import` 之间不能有空行或注释插入（某些 ArkTS 版本限制）
+- 大宗文件含大量中文时，建议分块写入或先用英文占位再替换
+
+### 来自 QuantFlow 的第五轮修复（14报错→0，2026-06-24）
+
+**新发现**：
+1. **`borderBottomWidth` 不是 Column 有效属性**：Column 组件没有 `borderBottomWidth` 属性，需用 `.border({ bottom: { width: 1 } })` 替代
+2. **UI 组件树内不能声明变量**：在 `build()` 方法的组件树内部（如 `List() { ... }` 内）不能 `const x = ...`，必须用成员方法或提前计算
+3. **空对象字面量 `{}` 也需要显式类型**：即使空对象 `response.result as (Record<string, Object>)` 也需要先声明显式类型
+
+**经验**：
+- Column/Row/Stack 等容器组件不支持单个方向的边框属性（`borderBottomWidth`/`borderTopColor` 等），统一用 `border()` 方法
+- `build()` 方法中所有变量声明必须放在 `@Builder` 或 `build()` 最外层，不能在嵌套 UI 组件内部声明
+
+### 来自 QuantFlow 的第六轮修复（468报错→编码问题，2026-06-24）
+
+**新发现**：
+1. **`export` 修饰符缺失**：页面组件（QuotesPage/StrategiesPage/BacktestPage/ProfilePage）的 `@Component struct` 前缺少 `export`，导致无法被其他模块 import
+2. **回环编码损坏**：同一批文件反复出现未闭合中文字符串——说明编码损坏可能是**自动格式化工具**或**跨平台编辑器**导致的反复问题
+
+**经验**：
+- ArkTS 中组件默认是 `internal`（模块内可见），需要被其他模块引用时须加 `export`
+- 对于 Navigation + NavDestination 架构，所有页面组件必须 `export struct`
+- 反复出现的编码损坏往往是 IDE 编码配置问题（如 UTF-8 vs GBK），建议统一设为 UTF-8 NO BOM
+- `response.result as any` 无法解决问题，必须转换为 `response.result as Record<string, Object>`
+
+### 社区精华：51CTO开发者12个坑总结（2026-06-14）
+
+| 坑 | 错误表现 | 根因 | 修复 |
+|----|---------|------|------|
+| **Column+Row 尺寸失控** | TextField 撑不满父容器 | Row 默认 flexStart 不拉伸子元素 | 显式设 width：`.width('60%')` |
+| **Button 点击被拦截** | onClick 不触发 | GestureDetector 优先级更高 | 别在 Button 上叠 GestureDetector |
+| **TextField 失去焦点** | focus() 无效 | 手动设了 `focusable(false)` | 默认就是 true，不要乱改 |
+| **Image + Text 渲染错乱** | 图片显示在文字后面 | Image 没设 width/height | 所有非文本组件必须显式设尺寸 |
+| **@Prop 修改不触发刷新** | 改了 user.name 视图不动 | @Prop 是值副本，非引用 | 用 @Link 或事件回调 |
+
+### 社区精华：鸿蒙PC开发3个关键教训
+1. **ForEach 必须提供唯一键**（第三个参数）：`ForEach(arr, item => {}, item => item.id)`，否则更新异常
+2. **组件销毁前释放资源**：`aboutToDisappear()` 中必须释放图片缓存、传感器、事件监听器
+3. **慎用百分比宽度**：Column 中百分比宽度需显式 `width('100%')`，不是默认行为
+
+### 经验教训：批量替换的正确姿势（2026-06-24）
+
+**事件**：用 `sed` + Python 批量替换 pet_review_harmony 项目中 23 个文件的 `router.pushUrl` → `getUIContext().getRouter().pushUrl`，导致：
+- ❌ sed 删 `import { router }` 时误删了第 1 行，后续代码没有被影响——这个没问题
+- ❌ sed 删 `, router.RouterMode.Standard)` 时多删了 pushUrl 的闭括号 `)`，导致 30 个文件出现 `pushUrl({ url: '...' };`
+- ❌ Python 修复时正则 `r"pushUrl\(\{ url: '([^']+)' \}"` 过于贪婪，又加了一个多余的 `}` → `pushUrl({ url: '...' }});`
+- ❌ 两次修复把文件从 2 个 ERROR 弄到 689 个 ERROR
+
+**教训**：
+1. **永远不要用 sed/Python 批量替换有嵌套括号的代码**——正则无法正确处理嵌套括号结构
+2. **正确的做法**：用 `git grep -n 'pattern' | wc -l` 统计每个变体，逐一确认差异，一个一个文件改
+3. **或者**：在 IDE 中全局搜索，肉眼审查每个匹配项后再替换
+4. 如果不得不批量改：先改一个文件编译通过，确认改法正确，再批量执行
+5. 始终在版本控制下操作（git commit 后再改，出事直接 reset）
+
+---
+
+## 📝 实战经验库（持续积累）
+
+> 此章节由专家在每次对话结束后自动追加。记录了所有实战中踩过的坑、学到的经验。
+
+<!-- 新的经验教训自动追加在此下方 -->
+
+### 2026-06-29 - 持续学习：DevEco Code/CLI + V2 装饰器 + 生产级模式
+
+- **场景**：学习 HDC 2026 新工具和 HarmonyOS 7 生产级模式
+- **来源**：51CTO 文章、jishuzhan.net 文章、GitHub arkts-patterns v2.3.1、Gitee harmonyos_samples
+- **新增内容**：
+  1. 🤖 **DevEco Code & DevEco CLI 章节**：AI Agent 工具安装/配置/三种模式(Build/Plan/Goal)/内置6大工具/模型配置(支持DeepSeek等第三方)
+  2. 🏗️ **ArkTS V2 状态管理装饰器**：10 个 V2 装饰器完整表格(@ObservedV2/@Track/@ComponentV2/@Local/@Param/@Event/@Monitor/@Computed/@Provider/@Consumer/@LocalStorage)，V1 vs V2 对比，典型使用代码
+  3. 🚀 **TaskPool 生产级并发模式**：基本模式+长时任务+进度回调，TaskPool vs Worker 选择指南
+  4. 📚 **官方 Sample 推荐**：HMOSLiveStream/AVPlayerLongVideo/AudioFocus/MultiTabNavigation/CustomDialogGathers/ArkTS Patterns
+- **效果**：专家文件从 3022 行扩展至 3300+ 行
+
+### 2026-06-29 - API 版本检测更新：HarmonyOS 7 (API 26) 新能力全面梳理
+
+- **场景**：每周一 API 版本自动检查 + 主动完善知识库
+- **发现**：2026-06-21 华为官网发布了 HarmonyOS 7 (API 26) 新能力一览
+- **对比**：专家文件原有仅提及 Vibe Coding、沉浸光感、3DGS、空间音频、星盾风控 5 项；新增覆盖 17 项能力的详细表格（智能化 Agent/视觉AI、全场景碰一碰分享、多窗互动卡片/闪控窗、安全 DID/数字盾、性能/通讯/低功耗等）
+- **行动**：更新了 API 演进核心里程碑描述、新增「🚀 HarmonyOS 7 (API 26) 新能力详解」章节、新增「⚠️ @Prop/@State 属性名基类冲突检测清单」
+
+### 2026-06-29 - 深入学习华为官方 Sample 代码（第二轮）
+
+- **场景**：从开发者官网示例页面 + Gitee harmonyos_samples 组织学习生产级 ArkTS 代码
+- **来源**：华为开发者官网 Samples 页面（developer.huawei.com/consumer/cn/samples/）、Gitee harmonyos_samples（425+ 仓库）、BestPracticeSnippets（56⭐）
+- **发现**：官方 SPA 页面展示了 **10 个首发 Sample**（企业威胁防护/媒体直播/自由流转协同/全链路盯盘/多设备长视频/多设备音乐/沉浸光感/多设备短视频/多设备社区评论/互动卡片），均为 2026-06-11~23 发布
+- **行动**：
+  1. 完整扩充「📚 官方 Sample 推荐」章节：从 6 条扩充至 **30+ 条**，覆盖应用级 Sample（12 个）+ 最佳实践片段（22 个分类）+ 第三方模式库
+  2. 新增 BestPracticeSnippets 分类表格：性能/安全/UI/并发/网络/媒体/架构 7 大类 22 个片段
+  3. 添加 Star 数作为优先级指标
+- **价值**：开发者可直接根据分类导航到对应 Sample 工程，快速找到解决特定问题的参考代码
+
+### 2026-06-25 - 华为官方 MultiVideoApplication 5 大生产级模式
+
+- **场景**：学习华为官方多设备长视频应用 Sample（MultiVideoApplication-master），提取可复用的生产级 ArkTS 模式
+- **来源**：华为开发者官网官方 Sample，`D:/HUAWEI/开发资料/MultiVideoApplication-master/`
+
+#### 模式 1：BreakpointType<T> 泛型断点配置
+```typescript
+// 根据当前断点返回不同配置值，消除大量 if-else
+class BreakpointType<T> {
+  constructor(xs: T, sm: T, md: T, lg: T, xl: T) { ... }
+  getValue(breakpoint: WidthBreakpoint): T { ... }
+}
+// 用法：new BreakpointType(1, 2, 3, 4, 6).getValue(currentBp)
+```
+- **价值**：任何需要按断点变化的参数（列数、间距、字号）都可用此模式，一行代码替代 5 级 if-else。适用于 Grid columnsTemplate、List lanes、margin/padding 断点适配。
+
+#### 模式 2：SessionID 防竞态（异步状态管理）
+- **场景**：用户快速切换视频时，旧的 `createAvPlayer()` 异步操作完成但状态已过期
+- **方案**：全局递增 `sessionId`；异步操作开始前记录 sessionId，每个关键步骤检查 `isSessionActive(sessionId)`
+- **核心代码**：`bumpSession()` 递增 + `if (!this.isSessionActive(sessionId)) return;` 守卫
+- **价值**：无需引入锁/信号量，两步实现异步竞态防护。适用于网络请求、文件读写、动画序列等异步操作
+
+#### 模式 3：WindowUtil + WindowInfo 完整窗口管理
+- **封装范围**：沉浸式类型枚举（NORMAL/IMMERSIVE/FULLSCREEN_IMMERSIVE）、avoidArea 全类型追踪、断点实时监听、屏幕旋转、分屏、窗口大小限制
+- **关键设计**：`WindowInfo` 使用 `@Observed` 装饰，通过 `@StorageLink` 在组件间共享，窗口变化自动刷新 UI
+- **价值**：对我专家文件中窗口API的全面升级——从零散 API 到生产级封装
+
+#### 模式 4：InputSecurityUtil 输入安全
+- **实现**：正则清除控制字符（`\u0000-\u001F\u007F`）+ 长度截断（MAX_INPUT_LENGTH=50）
+- **价值**：官方安全最佳实践，适用于搜索框、评论输入、表单等所有外部输入场景
+
+#### 模式 5：canIUse 系统能力检测 + foldStatusChange 折叠屏适配
+- **`canIUse('SystemCapability.Window.SessionManager')`** — 运行时判断折叠屏能力是否可用，PC/大屏设备优雅降级
+- **`display.on('foldStatusChange', ...)`** — 监听折叠状态变化（展开/折叠/半折叠），联动全屏切换和布局重排
+- **价值**：折叠屏适配的官方推荐范式
+
+### 2026-06-25 - 华为官方 application-track UIObserver 埋点框架
+
+- **场景**：学习华为官方 UIObserver 应用埋点 Sample，提取 ArkTS 生产级埋点模式
+- **来源**：GitCode `HarmonyOS_Samples/application-track`
+
+#### 核心发现（6 个新模式）
+1. **`uiContext.getUIObserver().on('willClick', cb)`** — 全局点击监听，无需在每个组件上绑 onClick 埋点。结合 `node.getCustomProperty()` 可获取组件自定义业务数据
+2. **`node.getCustomProperty(key)` + `.customProperty(key, value)`** — 为组件附加业务数据（埋点上下文），埋点框架通过 `node.getId()` 关联获取
+3. **`onDidBuild()` 生命周期 + `this.getUIContext().getFrameNodeByUniqueId(uid)`** — 构建后立即获取当前组件的 FrameNode，注册可见区域监听
+4. **`setOnVisibleAreaApproximateChange({ ratios, expectedUpdateInterval }, callback)`** — 组件曝光埋点的核心 API，按比例（0/0.5/1）和最小间隔回调可见区域变化
+5. **`TrackNode` @BuilderParam 包装组件** — 用泛型包装器包裹任意子组件，自动注入埋点逻辑，实现非侵入式埋点
+6. **`hiAppEvent.addWatcher({ name, appEventFilters, triggerCondition, onTrigger })`** — 事件消费端，可批量拉取埋点数据（按行数/大小/超时触发）
+
+#### 价值
+- 这套框架是 ArkTS 埋点 SDK 的最小实现，可直接在 pet-review 或任何鸿蒙项目中复用
+- 不同于传统手动 `onClick` 埋点，UIObserver 模式做到 **一次注册、全局生效**，业务代码零侵入
+- `TrackNode` 的 @BuilderParam 模式是 ArkTS 中 **高阶组件** 的标准实现方式
+
+<!-- AI 生成总结，未经验证 -->
+
+
+### 2026-06-24 - QuantFlow 677 个编译错误的根因分析
+- **场景**：修复 QuantFlow（鸿蒙交易应用）累计 677 个编译错误至仅剩 3 个
+- **发现 1**：`interface MACDResult` 和 `interface KDJResult` 声明在 `struct StockDetailPage {}` 内部，ArkTS 禁止 interface 作为 struct 成员 → 400+ 级联报错
+- **发现 2**：编码损坏导致 4 处行首空格丢失（L107/109/239/385），声明被当作文件级代码 → 200+ 级联报错
+- **发现 3**：`@Builder` 方法返回 `void`，`this.ChartTabItem().onClick(...)` 无效，需用 `Column() { this.ChartTabItem() }.onClick(...)` 包裹
+- **发现 4**：`build()` 组件树内不能出现 `const`/`let` 声明（error 10905209），需提到方法中计算或内联
+- **发现 5**：`Text()` 构造函数不接受箭头函数 `() => string`，需改为三元表达式
+- **发现 6**：对象字面量 `{ k: v }` 即使有 `Record<K,V>` 注解也不够，需用 `Record<K,V> = {}; x['k'] = v`
+- **根因**：AI 生成代码时将 ArkTS 当 TypeScript 写，大量 TS 语法不被 ArkTS 支持
+- **修复路径**：interface 移出 struct → 恢复缩进 → brace 平衡 → 修复 build() 违规 → 修复 @Builder 链式 → 修复 Text 参数 → 修复对象字面量
+
+### 2026-06-24 - Image → Text 迁移的 API 差异
+- **场景**：替换无效系统资源 `ohos_ic_public_notification/ring/reset` 为 `Text('🔔'/'↻')`
+- **发现**：Image 使用 `.fillColor()` 设色调，Text 没有此属性，应使用 `.fontColor()`
+- **修复**：`Image($r('sys.media.*')).fillColor(c)` → `Text('🔔').fontColor(c)`
+
+### 2026-06-25 - Refresh 组件回调名称错误 + opacity @State 冲突
+
+- **场景**：pet-review 鸿蒙版 P3 下拉刷新实现后，出现 7 处 `onRefresh` + 1 处 `opacity` 共 8 个编译错误
+- **发现 1**：`Refresh` 组件的下拉回调是 `.onRefreshing()`，不是 `.onRefresh()`。编译器提示 `Did you mean 'onRefreshing'?`
+- **发现 2**：`SkeletonCard` 中 `@State opacity: number` 与基类 `CustomComponent` 的 `.opacity()` 链式方法冲突（与 width/height 同类问题），重命名为 `shimmerOpacity` 解决
+- **根因**：ArkTS Refresh 组件 API 命名与 Web/Android 习惯不同；`opacity` 与 `width/height/borderRadius` 同属基类冲突属性
+- **修复**：`.onRefresh(` → `.onRefreshing(`（5 页 7 处 replace_all）；`opacity` → `shimmerOpacity`（@State + animateTo 引用同步更新）
+- **来源**：实测验证
+
+### 2026-06-24 - pet-review 编码修复全记录（6个核心教训）
+
+#### 教训 1：正则批量替换 .ets 文件是灾难
+- **场景**：22 个 .ets 文件中文字符串被 sed/Python 编码损坏，尝试用 Python 正则 `r\"'[^']*\\?[^']*'\"` 清除乱码
+- **结果**：所有含 `?` 的正常字符串（三元表达式、模板字符串）被替换为空 `''`，错误数从 ~30 暴增到 1398
+- **根因**：正则无法区分编码损坏产生的 `?` 和合法代码中的 `?`
+- **修复**：放弃正则修复，用 Write 工具逐个重写 15 个严重受损文件
+- **经验**：**永远不要用正则批量修复编码损坏的 .ets 文件**，正确做法是用 Write 工具重写（保证 UTF-8 纯净）
+
+#### 教训 2：build() / @Builder 体内禁止变量声明和 if 语句
+- **场景**：FavoritesPage 行 222 `const detail = item.detail` 报错 10905209；Index 行 212 `if (route) {}` 报错 "Statement or declaration expected"
+- **根因**：ArkTS 的 build() 和 @Builder 方法体 UI 区域只能放组件语法
+- **修复**：抽到独立方法中（`goToDetail()` / `navigateTo()`），在 onClick 中调用
+- **记忆口诀**：build() 内只能写 `Column(){}` `Row(){}` `Text()` 和 `.onClick(() => { this.xxx() })`，不能写 `const`/`let`/`if`/`for`
+
+#### 教训 3：Review 类型字段名 ≠ Web 版字段名
+- **场景**：HospitalDetailPage/ProductDetailPage/DoctorDetailPage 中写 `review.username`、`review.rating`
+- **根因**：Web 版 API 返回扁平化字段 `username`/`rating`，ArkTS 版 Review 接口是嵌套 `review.user.username` 和 `review.score`
+- **修复**：`review.username` → `review.user ? review.user.username : '匿名用户'`，`review.rating` → `review.score`
+- **经验**：**重写鸿蒙版时，必须先确认 types.ts 中接口定义，不能凭 Web 版记忆写字段名**
+
+#### 教训 4：@Prop 属性名不能与 CustomComponent 基类方法冲突
+- **场景**：PlaceholderImage 组件中声明 `@Prop width: string` / `@Prop height: number` / `@Prop borderRadius: number`
+- **报错**：10505001 — Property 'width' is not assignable (type 'string' vs chainable method)
+- **根因**：`@Component struct` 继承自 CustomComponent，基类已有 `.width()` `.height()` `.borderRadius()` 方法
+- **修复**：重命名为 `imageWidth` / `imageHeight` / `imageRadius`
+- **冲突清单**（11 项）：width, height, borderRadius, backgroundColor, padding, margin, fontSize, fontColor, opacity, layoutWeight, id, key, onClick, onTouch → 全部需要加前缀避免冲突
+
+#### 教训 5：AppStorage 在 .ts 文件中不可用
+- **场景**：http.ts 中 `import { AppStorage } from '@kit.ArkUI'` 报错 "has no exported member named 'AppStorage'"
+- **根因**：API 26+ 从 @kit.ArkUI 导入需用 `AppStorageV2`；且 .ts 文件本身不能访问 ArkTS 全局对象
+- **修复**：移除 import，用普通变量 `cachedToken` 替代，在 .ets 文件中同步 token 值
+- **经验**：.ts 文件 ≠ .ets 文件，AppStorage 是 ArkTS 编译器内置全局对象，.ts 文件无此运行时
+
+#### 教训 6：共享组件是最优的代码重复消除手段
+- **场景**：20 个页面都重复写相同结构的 Header 栏（返回按钮 + 居中标题）
+- **成果**：抽成 `NavHeader({ title: string })` 组件，17 个页面替换，消除 ~187 行重复代码
+- **经验**：鸿蒙 ArkUI 的 `@Component + @Prop` 组合非常适合创建共享 UI 组件，比 Vue 的 slot/插槽更直接
+
+### 2026-06-29 - Deep Dive：Gitee harmonyos_samples 全量扫描（第三轮）
+
+- **场景**：用户提示"还有很多可学习的内容"，逐页扫描 Gitee harmonyos_samples 前 5 页
+- **发现**：补充了此前未覆盖的 **20+ 个高价值 Sample**
+- **新增的关键 Sample**：
+  - **HMRouter**（53⭐）：鸿蒙路由库，声明式路由+拦截器
+  - **UserAuth**（24⭐）：人脸/指纹认证+密码保险箱+防截屏
+  - **Watermark**（28⭐）：页面水印/拍照水印/图片水印
+  - **ShareKit**（38⭐）：分享数据与应用内文件分享
+  - **WindowPiP**（17⭐）：画中画视频播放
+  - **AudioInteraction**（22⭐）：后台播放+播控中心+焦点策略
+  - **Aspect**：基于 libabcKit 字节码的 AOP 切面编程
+  - **SmoothSwitchShortVideos**（8⭐）：LazyForEach+复用的短视频性能优化
+  - **MultiDeviceInteraction**（3⭐）：触控/鼠标/键盘统一交互
+- **新增「一多」系列子表**：7 个多设备行业 Sample（ConvenientLife/NavBar/Columns/NewsRead/TicketClass/ShortVideo/MobilePayment）
+- **效果**：专家文件继续扩展，总量达 3326+ 行
+
+### 2026-06-29 - 源码级学习：异常处理 + HMRouter + AOP（第四轮）
+
+- **场景**：用户要求"细细看下"，从目录索引转为源码级分析
+- **exception-handling**：2,829 下载量。学习了完整的数据流：hiAppEvent.addWatcher → AppStorage → @StorageLink @Watch → 懒加载数据源 → LazyForEach 渲染。含 APP_CRASH / APP_FREEZE 两类异常捕获
+- **HMRouter**（53⭐）：学习了注解声明路由(@HMRouter)、全局/单页/一次性拦截器、生命周期回调、转场动画、服务路由。提取了完整的项目目录结构范式
+- **util.Aspect**：学习了鸿蒙内置 AOP 三件套 addBefore/addAfter/replace 的使用方式和代码示例。整理出 6 个典型应用场景
+- **新增 3 个源码级章节**：「🛡️ 应用异常处理（hiAppEvent）」、「🧭 HMRouter 路由框架」、「🧵 AOP 切面编程（util.Aspect）」
+- **文件规模**：3343 → 3600+ 行
+
+### 2026-06-29 - MultiCommunityApplication 源码级学习（第五轮）
+
+- **场景**：用户截图展示 GitCode 上的 MultiCommunityApplication 项目（3,700下载），检查是否有相关知识
+- **原有**：多设备适配章节仅有基础断点和原则说明，缺少完整实战代码
+- **新增「🏗️ 多设备开发实战场」完整章节**，含 6 个实战模式：
+  1. **Navigation pageMap 路由分发**：@StorageLink('pageInfos') 跨组件路由
+  2. **Tabs 响应式导航**：断点驱动的水平↔垂直自动切换
+  3. **WaterFlow 断点列数**：手机单列→平板双列
+  4. **折叠屏双栏布局**：GridRow + SideBarContainer 按断点切换
+  5. **视差滚动头部**：onScrollFrameBegin 动态 margin 的视差效果
+  6. **窗口断点实时计算**：EntryAbility 监听 windowSizeChange
+
+### 2026-06-29 - AlwaysOnMarketWatch 全链路盯盘源码级学习（第六轮）
+
+- **场景**：用户再次截图展示 AlwaysOnMarketWatch 项目，检查是否已有相关知识
+- **原有**：仅在 API 26 新能力表格中有一行"闪控窗"描述，完全无任何实现代码
+- **新增「💹 全链路盯盘实战」完整章节**，覆盖 5 大系统能力：
+  1. **闪控球（FloatingBall）**：@ohos.floatingball API 创建/启动
+  2. **悬浮窗（FloatView）**：@ohos.floatview 创建/绑定/双指手势切换形态
+  3. **锁屏卡片（Form Kit）**：form_config.json 配置 + 锁屏卡片 UI 实现
+  4. **待机屏保卡片（Form Kit）**：standby 字段配置 + 2×2 尺寸限制
+  5. **防窥保护（dlpAntiPeep）**：@ohos.security.dlpAntiPeep 注册监听+蒙层显示
+- **含**：目录结构范式、权限申请、完整代码示例
+
+### 2026-06-29 - MusicHome 多设备音乐源码级学习（第七轮）
+
+- **场景**：用户截图展示 MusicHome 项目（4,080下载），检查已有知识
+- **原有**：已有多设备基础适配章节，但缺少 displayPriority、三层架构实践、effectKit 取色等模式
+- **新增「🎵 MusicHome 多设备音乐实战场」章节**，含 4 个实战模式：
+  1. **displayPriority 自适应显隐**：系统级优先级隐藏，替代 if/else
+  2. **List.lanes 断点多列**：平板双列，手机单列
+  3. **effectKit 专辑封面取色**：createColorPicker 提取主色调 + createEffect 高斯模糊
+  4. **Swiper 播放页**：手机端左右滑动切换封面/歌词
+- **同步更新**：多设备开发实战场章节标题加入 MusicHome 引用
+
+### 2026-06-29 - LiveCard 互动卡片源码级学习（第八轮）
+
+- **场景**：用户要求学习"互动卡片"示例
+- **来源**：官方 Sample `LiveCard`（2,194下载）+ 51CTO + CSDN 技术文章
+- **原有**：仅 Sample 推荐表有一行"互动卡片"描述，完全无实现代码
+- **新增「🃏 互动卡片 LiveCard」完整章节**，含：
+  1. **form_config.json 配置**：name/src/isDynamic/defaultDimension/sceneAnimationParams 核心字段详解 + 配置清单
+  2. **LiveFormExtensionAbility**：onLiveFormCreate → LocalStorage → session.loadContent 完整数据流
+  3. **帧动画系统**：setInterval 逐帧切换封面
+  4. **卡片通信**：postCardAction(action/message/router) → callee 接收 → formProvider.updateForm 反向更新
+  5. **4 种卡片类型**：音乐播控/快递陀螺仪/运动进度/睡眠监测
+  6. **module.json5 注册 liveForm 类型 + 排查清单 6 项
+
+### 2026-06-29 - 批量深度学习：直播/自由流转/短購/支付（第九轮）
+
+- **场景**：用户要求逐一深度学习页面中所有 Sample
+- **新增**：
+  1. **📡 分布式自由流转**：应用接续 onContinue + distributedDataObject + Asset 文件流转的完整代码
+  2. **📹 HMOSLiveStream**：直播全链路（OHAudio 采集/SDR+HDR/V编码/AVPlayer 播放/ROI/压力反馈）
+  3. **🎬 MultiShortVideo**：Swiper 纵向轮播 + 三层架构
+  4. **🛍️ 购物比价**：GridRow 断点列数 + 筛选网格
+  5. **💳 移动支付**：Scan Kit 扫码 + 码图生成 + 多设备适配
+- **未找到**：修图软件波轮菜单具体项目名（需要更完整的截图或项目名）
+
+### 2026-06-29 - ImageEditWithWavewheel 修图波轮菜单（第十轮）
+
+- **场景**：用户再次截图提供项目名 `ImageEditWithWavewheel`（2,256下载），补齐最后缺口
+- **新增「🌀 ImageEditWithWavewheel 修图波轮菜单」章节**，完整覆盖：
+  1. Pen Kit 手写笔事件（stylusInteraction: squeeze/doubleTap）代码
+  2. 屏幕取色器（imageFeaturePicker.pickForResult）
+  3. SubWindow 悬浮波轮菜单（createSubWindow + 扇形四象限自适应算法）
+  4. 手势互斥（GestureMode.Exclusive）
+  5. 回调引用管理（必须保存成员变量，否则 off() 失效）
+- **至此**：用户截图中的所有页面 Sample 全部完成深度学习
+
+---
+
+# 第十二部分：拓展资源（官方Sample、语言基础类库、路由框架）
+
+## 🌐 网络通信与数据持久化 API 模板
+
+### 1. 网络请求（@ohos.net.http）
+
+```typescript
+import http from '@ohos.net.http';
+
+// 创建请求实例（建议在组件生命周期内管理）
+const httpRequest: http.HttpRequest = http.createHttp();
+
+// ✅ GET 请求
+async function getRequest(url: string): Promise<object> {
+  const response = await httpRequest.request(url, {
+    method: http.RequestMethod.GET,
+    header: { 'Content-Type': 'application/json' },
+    expectDataType: http.HttpDataType.OBJECT,
+    usingCache: true,
+  });
+  if (response.responseCode === http.ResponseCode.OK) {
+    return response.result as object;
+  }
+  throw new Error(`HTTP ${response.responseCode}`);
+}
+
+// ✅ POST 请求
+async function postRequest(url: string, data: object): Promise<object> {
+  const response = await httpRequest.request(url, {
+    method: http.RequestMethod.POST,
+    header: { 'Content-Type': 'application/json' },
+    extraData: JSON.stringify(data),
+    expectDataType: http.HttpDataType.OBJECT,
+  });
+  return response.result as object;
+}
+
+// ✅ 全局请求头设置
+httpRequest.setExtraHeaders({
+  'User-Agent': 'HarmonyOS-App/1.0',
+  'Accept-Language': 'zh-CN,zh;q=0.9',
+});
+
+// ⚠️ 组件销毁时释放资源
+onDetach(() => { httpRequest.destroy(); });
+```
+
+### 2. WebSocket 实时通信（@ohos.net.webSocket）
+
+```typescript
+import webSocket from '@ohos.net.webSocket';
+
+const ws = webSocket.createWebSocket();
+ws.connect('wss://server.com/ws', (err) => {
+  if (!err) { ws.send('Hello'); }
+});
+ws.on('message', (err, data) => { /* 处理消息 */ });
+ws.on('error', (err) => { /* 错误处理 */ });
+ws.close(() => { ws.destroy(); });
+```
+
+### 3. 数据持久化方案选择
+
+| 方案 | 适用场景 | 特点 |
+|------|---------|------|
+| **Preferences** | 用户偏好设置、主题配置、简单键值对 | 轻量级 Key-Value，1MB 以内数据，XML/GSKV 两种存储模式 |
+| **RDB（关系型数据库）** | 复杂结构化数据、多表关联查询 | 完整 SQL 支持、ACID 事务、支持索引和迁移 |
+| **KVStore（分布式）** | 跨设备数据实时同步 | 自动同步、PUSH/PULL/PUSH_PULL 模式、支持离线缓存 |
+
+#### Preferences 示例（轻量级键值存储）
+```typescript
+import { preferences } from '@kit.ArkData';
+
+// 获取实例
+const dataPref = preferences.getPreferencesSync(context, { name: 'myStore' });
+
+// 写入
+dataPref.putSync('isDarkMode', true);
+dataPref.flush(); // 持久化到文件
+
+// 读取
+const darkMode = dataPref.getSync('isDarkMode', false);
+
+// 订阅变更
+dataPref.on('change', (key) => { console.info(`Key ${key} changed`); });
+```
+
+#### RDB 示例（关系型数据库）
+```typescript
+import { relationalStore } from '@kit.ArkData';
+
+const config: relationalStore.StoreConfig = {
+  name: 'app.db', securityLevel: relationalStore.SecurityLevel.S1,
+};
+const rdb = await relationalStore.getRdbStore(context, config);
+
+// 建表
+await rdb.executeSql(`CREATE TABLE IF NOT EXISTS users (
+  id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, age INTEGER
+)`);
+
+// 插入
+await rdb.insert('users', { name: 'Alice', age: 25 });
+
+// 查询
+const predicates = new relationalStore.RdbPredicates('users');
+predicates.greaterThanOrEqualTo('age', 18).orderByAsc('name');
+const resultSet = await rdb.query(predicates, ['id', 'name', 'age']);
+```
+
+#### KVStore 示例（分布式键值存储）
+```typescript
+import { distributedData } from '@kit.ArkData';
+
+const kvManager = distributedData.createKVManager({
+  bundleName: 'com.example.app',
+  userInfo: { userId: 'default', userType: distributedData.UserType.SAME_USER_ID },
+});
+const kvStore = await kvManager.getKVStore('store', {
+  createIfMissing: true, autoSync: true,
+  kvStoreType: distributedData.KVStoreType.DEVICE_COLLABORATION,
+});
+await kvStore.put('key', 'value');
+const val = await kvStore.get('key');
+```
+
+---
+
+## 📦 资源管理
+
+### resources 目录结构
+```
+resources/
+├── base/                          # 默认资源（必选）
+│   ├── element/                   # 基础元素资源
+│   │   ├── color.json             { "color": [{"name":"bg","value":"#FFFFFF"}] }
+│   │   ├── float.json             { "float": [{"name":"margin","value":"16vp"}] }
+│   │   ├── string.json            { "string": [{"name":"hello","value":"你好"}] }
+│   │   ├── plural.json            { "plural": [{"name":"count","value":[{..}]}] }
+│   │   ├── boolean.json           { "boolean": [{"name":"enable","value":true}] }
+│   │   └── integer.json           { "integer": [{"name":"maxAge","value":100}] }
+│   ├── media/                     # 图片/音频等媒体文件
+│   └── profile/                   # 配置类文件（如技能卡片配置）
+├── en_US/                         # 英文语言限定（可不带 base 重复）
+│   └── element/string.json
+├── zh_CN/                         # 中文
+├── ja_JP/                         # 日文
+└── rawfile/                       # 原始文件（不编译，直接读取）
+    └── icon.png
+```
+
+### 限定词组合规则
+`语言_文字_国家-地区_横竖屏_设备类型_颜色模式_屏幕密度`
+
+常用组合：
+| 限定词 | 示例 | 作用 |
+|--------|------|------|
+| 语言 | `en_US` / `zh_CN` | 多语言 |
+| 横竖屏 | `landscape` / `portrait` | 横竖屏布局 |
+| 屏幕密度 | `ldpi` / `mdpi` / `hdpi` / `xhdpi` | 不同分辨率适配 |
+| 颜色模式 | `dark` | 深色模式 |
+
+### 资源引用方式
+```typescript
+// ✅ 标准引用（编译检查，推荐）
+Text($r('app.string.hello'))
+Image($r('app.media.icon'))
+// 带参数
+Text($r('app.string.template', 'world'))  // 对应 "hello %s"
+
+// ✅ rawfile 引用（不编译，直接复制）
+Image($rawfile('icon.png'))
+
+// ✅ 系统资源引用
+Text($r('sys.string.ok'))  // 使用系统内置字符串
+
+// ✅ 代码中访问资源
+const str = this.context.resourceManager.getStringSync('app.string.hello');
+```
+
+---
+
+## 🧰 自定义组件与扩展
+
+### @Builder 自定义构建函数
+```typescript
+// 复用 UI 片段
+@Builder Header(title: string) {
+  Row() {
+    Text(title).fontSize(20).fontWeight(FontWeight.Bold)
+    Blank()
+    Button('更多').fontSize(14)
+  }.padding(16)
+}
+
+// 使用
+@Component
+struct MyPage {
+  build() {
+    Column() {
+      this.Header('个人中心')
+      this.Header('设置')
+    }
+  }
+}
+```
+
+### @Extend 扩展组件方法
+```typescript
+// 为 ArkUI 内置组件添加全局方法
+@Extend(Text) function primaryTitle() {
+  .fontSize(24)
+  .fontWeight(FontWeight.Bold)
+  .fontColor('#1A1A1A')
+}
+
+@Extend(Button) function roundedStyle(radius: number = 12) {
+  .width('100%')
+  .height(48)
+  .borderRadius(radius)
+  .backgroundColor('#007AFF')
+}
+
+// 使用
+Text('标题').primaryTitle()
+Button('确定').roundedStyle(16)
+```
+
+### @Styles 全局样式函数
+```typescript
+// 通用样式函数（可应用于任意组件）
+@Styles function cardShadow() {
+  .width('100%')
+  .padding(16)
+  .borderRadius(12)
+  .backgroundColor('#FFFFFF')
+  .shadow({ radius: 8, color: '#1A000000' })
+}
+
+// 使用
+Column() { Text('卡片内容') }.cardShadow()
+Row() { /* ... */ }.cardShadow()
+```
+
+### @CustomModifier 自定义修饰器
+```typescript
+// 高级用法：自定义绘制/动效修饰
+class MyModifier implements CustomModifier {
+  draw(context: DrawContext) {
+    context.canvas.drawCircle({ x: 50, y: 50, radius: 30 });
+  }
+}
+@Component
+struct MyComp {
+  modifier: MyModifier = new MyModifier();
+  build() {
+    Column() { }.attributeModifier(this.modifier)
+  }
+}
+```
+
+---
+
+## 📚 官方 Sample 推荐（Gitee: harmonyos_samples）
+
+> 华为官方维护的 **425+ Sample 示例仓库**，每个均为独立 DevEco Studio 工程项目，覆盖媒体/安全/UI/多设备/分布式等全场景。
+
+### 🌟 应用级 Sample（完整工程，直接编译运行）
+
+| Sample 名称 | Star | 核心能力 | 参考价值 |
+|:-----------:|:----:|:---------|:--------:|
+| **HMOSLiveStream** | 22⭐ | [gitee](https://gitee.com/harmonyos_samples/HMOS_LiveStream) 媒体直播开播端+看播端：音视频采集/播放/推流/拉流、ROI、背景音乐、前后摄翻转 | 直播全流程 |
+| **AVPlayerLongVideo** | 3⭐ | [gitee](https://gitee.com/harmonyos_samples/avplayer-long-video) 长视频：播控、精准跳转、倍速、音量/亮度控制、焦点管理、弹幕、字幕、画中画 | 视频播放全场景 |
+| **MultiTabNavigation** | **149⭐** | [gitee](https://gitee.com/harmonyos_samples/multi-tab-navigation) 底部/顶部/侧边 Tab 导航 | 多Tab页架构 |
+| **CustomDialogGathers** | **64⭐** | [gitee](https://gitee.com/harmonyos_samples/custom-dialog-gathers) CustomDialog + bindContentCover + bindSheet | 弹窗/模态/半模态全范式 |
+| **MultiTravelAccommodation** | **40⭐** | [gitee](https://gitee.com/harmonyos_samples/multi-travel-accommodation) 栅格布局+List 响应式旅行住宿多场景 | 响应式布局实战 |
+| **AnimationCollection** | **40⭐** | [gitee](https://gitee.com/harmonyos_samples/animation-collection) 基础组件+通用属性+显式动效，多种常见动效案例 | 动画开发参考 |
+| **ContentPublisher** | 31⭐ | [gitee](https://gitee.com/harmonyos_samples/content-publisher) RichEditor + ArkUI 图文内容发布器 | 富文本编辑 |
+| **WaterFlow** | **38⭐** | [gitee](https://gitee.com/harmonyos_samples/water-flow) WaterFlow 瀑布流、sections 混合排列、Tab吸顶、下拉刷新、无限加载 | 瀑布流全能力 |
+| **GridHybrid** | **41⭐** | [gitee](https://gitee.com/harmonyos_samples/grid-hybrid) Grid + List + Swiper 嵌套混合布局 | 复杂布局实战 |
+| **KnockShare** | 7⭐ | [gitee](https://gitee.com/harmonyos_samples/knock-share) 碰一碰分享（API 26 新特性匹配） | 设备协同 |
+| **AudioFocus** | 2⭐ | [gitee](https://gitee.com/harmonyos_samples/audio-focus) 音频焦点/中断、自定义策略、AVSession后台播控 | 多音频冲突处理 |
+| **FluentBlog** | 15⭐ | [gitee](https://gitee.com/harmonyos_samples/fluent-blog) 流畅刷页面示例 | 列表滚动性能优化 |
+| **ConcurrentModule** | 18⭐ | [gitee](https://gitee.com/harmonyos_samples/concurrent-module) TaskPool + Worker 多线程实践 | 并发编程入门 |
+| **HMRouter** | **53⭐** | [gitee](https://gitee.com/harmonyos_samples/HMRouter) 鸿蒙路由库，支持声明式路由+拦截器+参数校验 | 路由框架选型参考 |
+| **UserAuth** | 24⭐ | [gitee](https://gitee.com/harmonyos_samples/UserAuth) 人脸+指纹认证、密码保险箱自动填充、防截屏/录屏 | 身份认证全流程 |
+| **Watermark** | **28⭐** | [gitee](https://gitee.com/harmonyos_samples/watermark) 页面水印/保存图片水印/拍照水印 | 版权保护实践 |
+| **ShareKit** | **38⭐** | [gitee](https://gitee.com/harmonyos_samples/share-kit_-sample-code_-clientdemo_-arkts) Share Kit 数据分享与应用内文件分享 | 分享功能全场景 |
+| **WindowPiP** | 17⭐ | [gitee](https://gitee.com/harmonyos_samples/window-pip) 视频画中画、手动/自动拉起、PiP窗口控制播放 | 画中画开发参考 |
+| **AudioInteraction** | 22⭐ | [gitee](https://gitee.com/harmonyos_samples/audio-interaction) 后台播放、播控中心交互、焦点打断策略、路由切换 | 音频播控全场景 |
+| **SmoothSwitchShortVideos** | 8⭐ | [gitee](https://gitee.com/harmonyos_samples/SmoothSwitchShortVideos) LazyForEach+组件复用在短视频快速切换的性能优化 | 短视频性能优化 |
+| **FormGame** | 5⭐ | [gitee](https://gitee.com/harmonyos_samples/form-game) Stage 模型实现简单游戏卡片 | 服务卡片开发 |
+| **MultiDeviceInteraction** | 3⭐ | [gitee](https://gitee.com/harmonyos_samples/multi-device-interaction) 触控屏/触控板/鼠标/键盘统一交互 | 跨设备交互归一化 |
+| **StateManagement** | 12⭐ | [gitee](https://gitee.com/harmonyos_samples/state-management) 页面级+应用级状态管理 | 状态管理入门 |
+| **Aspect** | 0⭐ | [gitee](https://gitee.com/harmonyos_samples/aspect) 基于libabcKit字节码的AOP切面编程库 | 字节码增强/无侵入AOP |
+| **Logger** | 13⭐ | [gitee](https://gitee.com/harmonyos_samples/logger) hilog 日志系统封装，日志分级+格式化 | 日志工具参考 |
+| **FAQSnippets** | 10⭐ | [gitee](https://gitee.com/harmonyos_samples/faqsnippets) 常见问题代码片段合集 | FAQ速查 |
+
+#### 📱 多设备「一多」系列 Samples（响应式布局最佳实践）
+
+> 以下 Sample 均基于「一次开发、多端部署」理念，覆盖常见行业场景。
+
+| Sample | Star | 适配设备 | 技术要点 |
+|:------:|:----:|:---------|:---------|
+| **MultiConvenientLife** | **34⭐** | 手机/折叠屏/平板/2in1 | 自适应+响应式布局，便捷生活页面 |
+| **MultiNavBar** | **33⭐** | 多设备形态 | 导航栏在不同设备上的样式切换 |
+| **MultiColumns** | 22⭐ | 多设备形态 | 多场景分栏控件响应式变化 |
+| **MultiNewsRead** | 20⭐ | 手机/折叠屏/平板 | 新闻阅读页多设备适配 |
+| **MultiTicketClass** | 17⭐ | 多设备 | 栅格+List 股票类多场景响应式 |
+| **MultiShortVideo** | 23⭐ | 手机/折叠屏/2in1 | 三层工程架构+短视频多设备 |
+| **MultiMobilePayment** | 14⭐ | 多设备 | Scan Kit扫码+收付款码支付 
+
+### ⚡ 最佳实践片段集（BestPracticeSnippets，56⭐）
+
+> 独立、聚焦的原子级实践代码，适合快速参考，每条解决一个具体问题。
+
+| 分类 | 片段名称 | 解决的问题 |
+|:----:|:---------|:----------|
+| 🚀 **性能** | `AppColdStart` | 应用冷启动耗时优化指南 |
+| | `AvoidTimeConsume` | 主线程耗时操作优化：异步化+TaskPool 拆分 |
+| | `FramedRendering` | 高负载分帧渲染：多帧分摊渲染压力 |
+| | `FuzzySceneOptimization` | 图像模糊动效性能优化 |
+| | `ScreenFlickerSolution` | 应用动效闪屏排查与修复 |
+| | `VisibleComponent` | 不可见组件低功耗策略 |
+| 🔐 **安全** | `AppDataSecurity` | 应用数据安全规范 |
+| | `AppPrivacyProtection` | 应用隐私保护实践 |
+| 🧩 **UI** | `ComponentReuse` | 组件复用(@Reusable)开发实践 |
+| | `CustomDialogPractice` | 自定义弹窗规范开发实践 |
+| | `CustomTitleBarWindowDrag` | 自定义标题栏窗口拖动 |
+| | `LiveViewLockScreen` | 锁屏沉浸实况窗（闪控窗/互动卡片） |
+| | `ResponsiveLayout` | 自适应+响应式布局指导 |
+| | `SubwindowAdaptWhenRotate` | 子窗旋转场景适配 |
+| 🧵 **并发** | `ImageEditTaskPool` | 基于 TaskPool 实现图片编辑（带进度回调） |
+| | `NdkQoS` | 基于 QoS 设置线程优先级 |
+| | `ThreadIssueDetection` | 线程问题检测与优化 |
+| 📶 **网络** | `NetworkManagement` | 网络管理与状态监听 |
+| | `PreHttpRequestUseFiles` | Image 组件白块解决指导 |
+| 🎬 **媒体** | `SegmentedPhotograph` | 分段式拍照：长曝光/多帧合成 |
+| | `TextureHypercompression` | 纹理超压缩技术 |
+| | `OnlineVideoPlaying` | 在线视频播放优化 |
+| 🏗️ **架构** | `NavigationRouter` | Navigation + Router 选型指导 |
+| | `StabilityCodingSpecification` | 稳定性编码规范 |
+
+### 🧰 第三方生产级模式库
+
+| 名称 | 地址 | 核心内容 | 定位 |
+|:----:|:----:|:---------|:----:|
+| **ArkTS Patterns** | [GitHub](https://github.com/OpeNopEn2007/arkts-patterns) | V2装饰器/TaskPool/Navigation/网络/持久化/手势/动画等 10+ 模式 | Claude Code Skill，100% 基准测试通过 |
+
+---
+
+## 📹 HMOSLiveStream 媒体直播全链路
+
+> 源自官方 Sample `HMOSLiveStream`（22⭐）及华为最佳实践《基于媒体能力实现直播单播功能》。
+
+### 开播端架构
+
+```
+音视频采集（OHAudio / 相机）
+    ↓
+编码（H.264/H.265 / HDR Vivid）
+    ↓
+推流（Surface 模式）
+    ↓
+ROI 编码（主播区域高质量，背景低码率）
+    ↓
+系统压力反馈（动态调整码率/帧率）
+```
+
+| 模块 | 技术方案 |
+|:----:|:---------|
+| **音频采集** | OHAudio API：常规录音/语音通话/直播三种模式 |
+| **视频采集（SDR）** | 复用预览流，功耗低 + 红枫原色色彩算法 |
+| **视频采集（HDR）** | HDR Vivid 复用预览流，暗光/高动态场景 |
+| **视频编码** | Surface 模式，性能最优 |
+| **ROI 编码** | 对主播区域高质量编码，背景压缩 |
+| **智能调控** | 系统压力反馈接口 → 动态调整码率/帧率 |
+
+### 看播端架构
+
+```
+流媒体加载（AVPlayer）
+    ↓
+音频播放时间戳同步
+    ↓
+视频送帧时延匹配
+    ↓
+音画同步输出
+    ↓
+内存泄漏防护（长时间直播稳定）
+```
+
+### 音频采集（OHAudio）
+
+```typescript
+import { ohAudio } from '@kit.AudioKit';
+
+// 直播模式：高保真 + 回声消除
+const audioCapturer = ohAudio.createAudioCapturer({
+  streamUsage: ohAudio.StreamUsage.STREAM_USAGE_MUSIC,
+  sourceType: ohAudio.SourceType.SOURCE_TYPE_MIC,
+  capturerOptions: {
+    encoding: ohAudio.AudioEncoding.ENCODING_PCM,
+    sampleRate: 48000,
+    channelCount: 2,
+  }
+});
+await audioCapturer.start();
+```
+
+### 视频播放（AVPlayer）
+
+```typescript
+import { media } from '@kit.MediaKit';
+
+avPlayer = await media.createAVPlayer();
+avPlayer.url = 'rtmp://stream.example.com/live';  // 流媒体地址
+avPlayer.stateChangeCallback = (state) => {
+  if (state === 'prepared') avPlayer.play();
+};
+```
+
+### 场景适配策略
+
+| 场景 | 技术方案 |
+|:----:|:---------|
+| 🛒 **电商直播** | 红枫原色色彩校正 + HDR Vivid 暗光增强 + ROI 主播聚焦 |
+| 🎤 **娱乐直播** | 高保真录音 + 回声消除 + ROI 表演区域 |
+| 🌄 **户外直播** | 红枫原色色彩 + 压力反馈动态调速 + 散热关注 |
+
+## 🎬 MultiShortVideo 多设备短视频
+
+> 源自官方 Sample `multi-short-video`（23⭐），基于三层架构 + Swiper 短视频轮播。
+
+### 核心模式
+
+与多设备长视频/音乐/社区评论同属"一多"系列，关键差异化特性：
+
+| 特性 | 实现 |
+|:----:|:------|
+| **短视频轮播** | `Swiper` + `LazyForEach` 纵向滑动切换 |
+| **评论/点赞交互** | 底部浮层组件 |
+| **个人作品页** | 三列 Grid 布局 |
+| **分享** | Share Kit 设备自适应分享弹窗 |
+| **三层工程架构** | commons/features/products 复用 |
+
+## 🛍️ MultiShoppingPriceComparison 购物比价
+
+> 三层架构（commons/features/products）+ Navigation Split 分栏 + BreakpointType / Tabs 响应式导航。
+
+### 关键代码
+
+```typescript
+// Tabs 响应式：手机底部 ↔ 平板侧边
+Tabs({
+  barPosition: this.currentBreakpoint === 'lg'
+    ? BarPosition.Start : BarPosition.End
+})
+.barWidth(this.currentBreakpoint === 'lg'
+  ? $r('app.float.tab_bar_width_lg') : '100%')
+.vertical(this.currentBreakpoint === 'lg')
+
+// 分类页双栏（Navigation Split 模式）
+Navigation(this.pageInfo)
+  .mode(NavigationMode.Split)
+  .navBarWidth(new BreakpointType('96vp', '144vp', '200vp')
+    .getValue(this.currentBreakpoint))
+
+// 页面边距断点适配
+private static pageColPadding = new BreakpointType(
+  $r('app.float.padding_sm'),
+  $r('app.float.padding_md'),
+  $r('app.float.padding_lg'));
+```
+
+## 💳 MultiMobilePayment 移动支付（14⭐）
+
+> 三层架构 + Scan Kit 扫码/码图生成，完整移动支付全流程。
+
+### 关键代码
+
+```typescript
+import { scanCore } from '@kit.ScanKit';
+import { generateBarcode } from '@kit.ScanKit';
+
+// 扫一扫（默认界面）
+const result = await scanCore.startScan({
+  scanType: scanCore.ScanType.QR_CODE,
+});
+
+// 生成付款码
+const barcode = generateBarcode.createBarcode({
+  content: 'payment://merchant/xxx',
+  format: BarcodeFormat.QR_CODE,
+  width: 200, height: 200,
+});
+```
+
+**多设备适配**：手机单列 → 折叠屏双栏 → 平板左侧扫码+右侧交易记录
+
+## MultiShortVideo 多设备短视频
+
+> Swiper + Video + LazyForEach 短视频上下滑动切换。
+
+### 关键代码
+
+```typescript
+Swiper(this.swiperController) {
+  LazyForEach(this.data, (item: VideoData) => {
+    Stack({ alignContent: Alignment.BottomEnd }) {
+      Video({
+        src: item.video,
+        controller: item.controller
+      })
+      .width('100%').height('100%')
+      .objectFit(ImageFit.Contain)
+      .loop(true).autoPlay(item.auto)
+      .controls(false)  // 隐藏控制栏
+    }
+  }, (item) => JSON.stringify(item))
+}
+.index(0).autoPlay(false).indicator(false)
+.loop(true).duration(200).vertical(true)
+
+// 性能：LazyForEach + cachedCount
+```
+
+## 📱 Live View Kit 锁屏实况窗
+
+> 源自 BestPracticeSnippets `LiveViewLockScreen` + `@kit.LiveViewKit`。
+
+### 核心代码
+
+```typescript
+import { liveViewManager } from '@kit.LiveViewKit';
+
+const mgmt = liveViewManager.getLiveViewManager();
+
+// 发布实况窗（进度模板）
+const builder = new liveViewManager.LiveViewData.Builder();
+builder.setTemplate(liveViewManager.LiveViewTemplate.PROGRESS);
+builder.setTitle('订单 #202511290001');
+builder.setProgress(50);
+builder.setStatus('配送中');
+
+await mgmt.publish(builder.build(), {
+  isPersistent: true,
+  isShowOnLockScreen: true,
+});
+
+// 关闭
+await mgmt.dismiss();
+
+// 状态监听
+mgmt.on('liveViewStateChange', (state) => { /* SHOWN/DISMISSED */ });
+```
+
+**注意事项**：`ohos.permission.REAL_TIME_ACTIVITY` 权限 + AGC 正式申请 + 锁屏文字用白色
+
+---
+
+## 🌀 ImageEditWithWavewheel 修图波轮菜单（2,256 下载）
+
+> 源自官方 Sample `ImageEditWithWavewheel` + `SubWinWaveWheel` 组件。Pen Kit 手写笔 + SubWindow 悬浮波轮 + 图片编辑。
+
+### 整体架构
+
+```
+Pen Kit（@kit.Penkit）
+├── stylusInteraction     → 轻捏(squeeze)/双击(doubleTap)
+└── imageFeaturePicker    → 屏幕取色(pickForResult)
+
+SubWindow 悬浮波轮菜单
+├── 可拖拽 + 智能吸边
+├── 单击展开扇形工具栏（四象限自适应方向）
+└── 手写笔轻捏快捷弹出
+```
+
+### Pen Kit 手写笔事件
+
+```typescript
+import { stylusInteraction, imageFeaturePicker } from '@kit.Penkit';
+
+// ★ 回调引用必须保存为成员变量
+private squeezeCB: (event: stylusInteraction.SqueezeEvent) => void = () => {};
+
+aboutToAppear(): void {
+  this.squeezeCB = (event) => this.showWaveWheel();
+}
+onPageShow(): void {
+  try { stylusInteraction.on('squeeze', this.squeezeCB); } catch (e) {}
+}
+onPageHide(): void {
+  stylusInteraction.off('squeeze', this.squeezeCB); // 同一引用才能取消
+}
+
+// 屏幕取色器
+Button('取色').onClick((e: ClickEvent) => {
+  imageFeaturePicker.pickForResult(e.displayX, e.displayY)
+    .then((info) => this.color = info.color)
+    .catch((err) => { if (err.code !== CANCEL) throw err; });
+});
+```
+
+### SubWindow 扇形波轮菜单
+
+```typescript
+// 创建悬浮子窗口
+const subWin = await ctx.windowStage.createSubWindow('wavewheel');
+await subWin.setWindowType(window.WindowType.TYPE_FLOAT);
+await subWin.resize(40, 40);
+await subWin.setUIContent('pages/WaveWheel');
+await subWin.showWindow();
+
+// 扇形展开算法（四象限自适应，朝无阻挡方向展开）
+function calcAngle(index: number, cx: number, cy: number) {
+  const centerX = screenW / 2, centerY = screenH / 2;
+  const gap = (90 - 10) / 3; // 4个按钮均分80°，留10°安全边界
+  let rad = 0;
+  if (cx < centerX && cy > centerY) rad = (175 - index * gap) * Math.PI / 180;
+  else if (cx > centerX && cy > centerY) rad = (355 - index * gap) * Math.PI / 180;
+  else if (cx < centerX && cy < centerY) rad = (85 - index * gap) * Math.PI / 180;
+  else rad = (265 - index * gap) * Math.PI / 180;
+  return { x: 120 * Math.cos(rad), y: 120 * Math.sin(rad) };
+}
+
+// 手势互斥（GestureMode.Exclusive）
+Circle().gesture(GestureGroup(GestureMode.Exclusive,
+  TapGesture().onAction((e) => toggleMenu(e)),
+  PanGesture().onActionUpdate((e) => drag(e)).onActionEnd(() => snap()),
+));
+```
+
+### 注意事项
+- **回调引用**：必须保存为成员变量，`off()` 无效会导致泄漏
+- **坐标系**：SubWindow 用 px，UI 用 vp，需 `vp2px`/`px2vp`
+- **窗口跳动**：展开时窗口扩大 → 同步移动保持主球屏幕坐标不变
+// 系统自动根据主题加载对应目录资源，代码无需判断
+```
+
+### 检测和切换
+```typescript
+// 方式1：跟随系统（推荐）
+this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_AUTO);
+
+// 方式2：手动控制
+this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_DARK);
+
+// 方式3：组件内监听主题变化
+@State isDark: boolean = false;
+aboutToAppear() {
+  this.context.on('configuration', (config) => {
+    this.isDark = config.colorMode === ConfigurationConstant.ColorMode.COLOR_MODE_DARK;
+  });
+}
+```
+
+### 图片适配
+```typescript
+// 方式1：dark限定词目录（两套图）
+// resources/base/media/logo.png  ← 浅色
+// resources/dark/media/logo.png  ← 深色
+Image($r('app.media.logo')) // 自动选择
+
+// 方式2：SVG fillColor 动态变色
+Image($r('app.media.ic_setting'))
+  .fillColor(this.isDark ? '#FFFFFF' : '#1A1A1A')
+```
+
+### 适配检查清单
+- ✅ 所有颜色值用 `$r('app.color.xxx')` 引用，不写死十六进制
+- ✅ 图片分深浅两套放 base/dark 目录
+- ✅ 状态栏图标颜色跟随主题（通过 window 配置）
+- ✅ 深色背景用 #121212 而非纯黑 #000000
+- ✅ 深色文字用 #E0E0E0 而非纯白 #FFFFFF
+- ✅ 高亮品牌色在深色模式下适当降饱和度
+
+---
+
+## 🔐 安全与工具（UserAuth + Watermark + ShareKit + Aspect）
+
+### UserAuth — 人脸/指纹认证
+
+```typescript
+import { userAuth } from '@kit.UserAuthKit';
+
+const auth = userAuth.getUserAuthInstance({
+  challenge: new Uint8Array([1,2,3]),
+  authType: [userAuth.UserAuthType.FACE, userAuth.UserAuthType.PIN],
+});
+
+auth.on('result', { onResult: (result) => {
+  if (result.result === 0) { /* 认证成功 */ }
+}});
+auth.start();
+```
+
+### Watermark — 水印
+
+```typescript
+// 使用文本叠加实现水印
+Text('内部资料 · 请勿外传')
+  .fontSize(16).fontColor('#40FFFFFF')
+  .rotate({ angle: -30 })
+  .position({ x: '60%', y: '40%' })
+  .width('100%').height('100%')
+```
+
+### ShareKit — 分享
+
+```typescript
+import { shareController } from '@kit.ShareKit';
+import { fileShare } from '@kit.ShareKit';
+
+// 分享文本
+shareController.share({ text: '分享内容', title: '标题' });
+// 分享文件
+fileShare.share({ filePaths: ['/data/app/a.jpg'] });
+```
+
+---
+
+## 🧭 HMRouter 路由框架（53⭐）
+
+> 基于系统 Navigation 封装的页面路由方案，注解声明式路由，支持拦截器/生命周期/转场动画。
+
+### 核心特性
+
+| 特性 | 说明 |
+|:----:|:------|
+| **注解声明路由** | `@HMRouter({ pageUrl: 'home', singleton: true })` 声明页面 |
+| **路由拦截器** | 全局拦截 + 单页面拦截 + 跳转时一次性拦截 |
+| **生命周期回调** | 全局生命周期 + 单页面生命周期 + 一次性生命周期 + NavBar生命周期 |
+| **转场动画** | 内置页面/Dialog动画，支持方向/透明度/缩放/交互式 |
+| **服务路由** | 支持服务型路由，实现模块间解耦 |
+| **Dialog 页面** | 支持 Dialog 类型页面和单例页面 |
+| **模块类型** | 支持 HAR / HSP / HAP |
+| **路由栈嵌套** | 支持 Navigation 路由栈嵌套 |
+
+### 注解声明路由
+
+```typescript
+import { HMRouter } from '@ohos/hmrouter';
+
+@HMRouter({
+  pageUrl: 'home',
+  singleton: true,       // 单例页面
+  dialog: false,
+  title: '首页'
+})
+@Component
+export struct HomePage {
+  build() {
+    Column() { /* ... */ }
+  }
+}
+```
+
+### 路由跳转与拦截
+
+```typescript
+import { HMRouterMgr } from '@ohos/hmrouter';
+
+// 页面跳转
+HMRouterMgr.pushUrl({ pageUrl: 'product/detail', param: { id: 123 } });
+
+// 拦截器示例
+// LoginCheckInterceptor.ets — 未登录则拦截跳转到登录页
+class LoginCheckInterceptor implements IHMRouterInterceptor {
+  onBeforePageJump(info: JumpInfo): boolean {
+    if (!isLoggedIn && info.pageUrl !== 'login') {
+      HMRouterMgr.pushUrl({ pageUrl: 'login' });
+      return false; // 拦截本次跳转
+    }
+    return true;
+  }
+}
+```
+
+### 生命周期回调
+
+```typescript
+// 全局页面停留时长统计
+class PageDurationLifecycle implements IHMRouterLifecycle {
+  onPageShow(info: RouterInfo): void { logger.info(`enter ${info.pageUrl}`); }
+  onPageHide(info: RouterInfo): void { logger.info(`leave ${info.pageUrl}`); }
+}
+```
+
+### 目录结构范式（HMRouter 参考）
+
+```
+entry/src/main/ets/
+├── component/         # 业务页面
+│   ├── home/          # 按功能模块分目录
+│   ├── product/
+│   ├── login/
+│   ├── pay/
+│   └── shoppingBag/
+├── interceptor/       # 全局拦截器
+│   ├── LoginCheckInterceptor.ets
+│   └── JumpInfoInterceptor.ets
+├── lifecycle/         # 全局生命周期
+│   ├── PageDurationLifecycle.ets
+│   ├── ExitAppLifecycle.ets
+│   └── WelcomeLifecycle.ets
+├── service/           # 服务路由
+├── viewmodel/         # 视图模型
+├── constant/          # 页面常量与断点
+├── animation/         # 自定义转场动画
+└── pages/             # Navigation 入口页面
+```
+
+---
+
+## 🧵 AOP 切面编程（util.Aspect）
+
+> 鸿蒙内置运行时 AOP 能力，基于 libabcKit 字节码操作，对标 iOS 的 method_swizzling。`@kit.ArkTS` 中提供 `util.Aspect` 类。
+
+### 核心 API
+
+```typescript
+import { util } from '@kit.ArkTS';
+
+util.Aspect.addBefore(targetClass, methodName, isStatic, beforeFunc);  // 执行前插桩
+util.Aspect.addAfter(targetClass, methodName, isStatic, afterFunc);    // 执行后插桩
+util.Aspect.replace(targetClass, methodName, isStatic, insteadFunc);   // 替换实现
+```
+
+### addBefore — 执行前插桩
+
+在方法执行前插入逻辑。适合：日志埋点、参数校验、权限检查、打点统计。
+
+```typescript
+class DataService {
+  data: string = 'init';
+  fetchData(url: string): number {
+    console.info('original fetchData: ' + url);
+    return 200;
+  }
+}
+
+// 在所有 fetchData 调用前插入日志
+util.Aspect.addBefore(DataService, 'fetchData', false,
+  (instance: DataService, url: string): void => {
+    console.info(`[AOP] before fetchData: ${url}`);
+    instance.data = 'modified_by_aop';
+  });
+```
+
+### addAfter — 执行后插桩
+
+在原方法之后插入逻辑。适合：结果增强、缓存写入、数据统计。
+
+```typescript
+util.Aspect.addAfter(DataService, 'fetchData', false,
+  (instance: DataService, ret: number, url: string): number => {
+    console.info(`[AOP] after fetchData, result=${ret}`);
+    return ret + 100; // 可以修改返回值
+  });
+```
+
+### replace — 替换方法实现
+
+完全替换原方法逻辑。适合：Mock 数据、功能降级、热修复。
+
+```typescript
+util.Aspect.replace(DataService, 'fetchData', false,
+  (instance: DataService, url: string): number => {
+    console.info('[AOP] replaced fetchData, returning mock');
+    return 999; // Mock 返回
+  });
+```
+
+### 典型应用场景
+
+| 场景 | 推荐方式 | 说明 |
+|:----:|:--------:|:------|
+| 全埋点/无痕埋点 | `addBefore` | 在按钮点击/页面跳转方法前插入 |
+| 参数合法性校验 | `addBefore` | 校验参数，不合法则提前 return |
+| 权限检查 | `addBefore` | 检查权限状态，未授权则拦截 |
+| 数据缓存 | `addAfter` | 网络请求成功后自动写入缓存 |
+| 运行时 Mock | `replace` | 开发/测试环境替换真实 API 调用 |
+| 热修复 | `replace` | 线上紧急修复，替换有 Bug 的方法 |
+
+---
+
+### 通知类型
+```typescript
+import { notificationManager } from '@kit.NotificationKit';
+
+// 1. 普通文本通知
+let request: notificationManager.NotificationRequest = {
+  id: 1,
+  content: {
+    contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+    normal: { title: '标题', text: '内容' }
+  },
+  slotType: notificationManager.SlotType.SOCIAL_COMMUNICATION
+};
+await notificationManager.publish(request);
+
+// 2. 进度条通知（下载/更新）
+let progressRequest: notificationManager.NotificationRequest = {
+  id: 2,
+  content: {
+    contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_LONG_TEXT,
+    normal: { title: '下载中', text: '50%', additionalText: '5MB/10MB' }
+  },
+  // 进度通过 ongoing 持续更新
+  ongoing: true,  // 不可滑动清除
+};
+// 更新进度
+await notificationManager.publish({
+  ...progressRequest,
+  content: { normal: { text: '80%', additionalText: '8MB/10MB' } }
+});
+
+// 3. 分组通知（同一会话归组）
+const groupRequest = {
+  ...request,
+  groupName: 'chat_group',       // 同一 groupName 自动归组
+  groupOverview: { title: '3条消息', text: '最新:你好' }
+};
+
+// 4. 可交互通知（带按钮）
+import { wantAgent } from '@kit.AbilityKit';
+const wantAgentInfo = {
+  wants: [{ bundleName: 'com.example', abilityName: 'DetailAbility' }],
+  operationType: wantAgent.OperationType.START_ABILITY,
+  requestCode: 100,
+};
+const agent = await wantAgent.getWantAgent(wantAgentInfo);
+await notificationManager.publish({
+  id: 3,
+  content: {
+    contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+    normal: { title: '新消息', text: '点击查看' }
+  },
+  wantAgent: agent,  // 点击通知跳转
+});
+```
+
+### 通知分组/槽位
+| SlotType | 用途 | 特性 |
+|---------|------|------|
+| SOCIAL_COMMUNICATION | 社交消息 | 高优先级、横幅+锁屏 |
+| SERVICE_INFORMATION | 服务信息 | 中等优先级 |
+| CONTENT_INFORMATION | 内容资讯 | 普通优先级 |
+| OTHER | 其他 | 最低优先级、静默 |
+
 
 ## 📦 ohpm 包发布指南
 
@@ -4383,41 +7776,69 @@ ohpm clean                         # 清理所有 oh_modules
 
 ---
 
-## ♿ Accessibility 无障碍开发要点
-
-> **审核要求**：AGC 审核会检查无障碍支持，缺失可能导致被拒。
-
-### 核心属性
-
-```typescript
-// 基础无障碍标签（每个可交互组件必加）
-Button('提交')
-  .accessibilityText('提交按钮')           // 朗读文本
-  .accessibilityDescription('点击提交表单') // 详细描述
-  .accessibilityGroup(true)                // 标记为无障碍组
-
-// 隐藏装饰性元素（如图标、分割线）
-Divider()
-  .accessibilityLevel('no')               // 跳过朗读
-
-// 控制焦点
-Text('重要提示')
-  .focusable(true)                         // 可获焦
-  .defaultFocus(true)                      // 页面默认焦点
-```
-
-### 无障碍最佳实践
-
-| 规则 | 做法 |
-|:----|:-----|
-| **所有可交互组件加标签** | Button/Input/List/Image 都加 `accessibilityText` |
-| **装饰元素隐藏** | 纯图标/分割线/背景图加 `accessibilityLevel('no')` |
-| **语义化分组** | 相关控件用 `accessibilityGroup(true)` 包裹 |
-| **动态内容通知** | 用 `announceForAccessibility(text)` 通知屏幕朗读 |
-| **颜色对比度** | 文本/背景对比度 ≥ 4.5:1 |
-| **触摸目标大小** | 可点击区域 ≥ 44vp × 44vp |
 
 ---
+
+## 🔧 NativeSoIntegration .so 集成（第四轮新增）
+
+> **来源**：`NativeSoIntegration` | Gitee harmonyos_samples | 源码级
+
+| 方案 | 方式 | 复杂度 |
+|:----:|------|:------:|
+| 编译引用 | CMakeLists.txt + 头文件 | ⭐ |
+| dlopen | `dlopen()`/`dlsym()` | ⭐⭐ |
+| ArkTS 模块依赖 | oh-package.json5 + import | ⭐ |
+
+```typescript
+// 方案3（最推荐）: ArkTS 直接 import
+// entry/oh-package.json5 → "dependencies": { "libmultiply": "file:src/main/cpp/types/libmultiply" }
+// import { multiply } from 'libmultiply'
+// multiply(3, 4) → 12
+```
+
+---
+
+## 📚 LanguageBaseClassLibrary 语言基础类库（第五轮新增）
+
+> **来源**：`language-base-class-library` | Gitee harmonyos_samples | 源码级
+
+### 子模块清单
+
+| 分类 | 模块 | 说明 |
+|------|------|------|
+| **util工具** | StringCode / LRUCache / Base64 / RationalNumber / ScopeHelper / TypeCheck / JsonFunction | 字符串编解码/LRU缓存/Base64编解码/有理数比较/范围判断/类型检查/Json操作 |
+| **ArkTSUtil** | AsonFunction | ISendable 序列化/反序列化 |
+| **TaskPool** | `@ohos.taskpool` | 后台任务创建/执行/取消 |
+| **Uri/Url** | `@ohos.uri` / `@ohos.url` | URI解析/URL参数增删改查 |
+| **Xml** | `@ohos.xml` / `@ohos.convertxml` | XML解析生成 / XML转JS对象 |
+| **线性容器** | ArrayList / Deque / LinkedList / List / Queue / Stack | 有序数据集合 |
+| **非线性容器** | HashMap / HashSet / LightWeightMap / LightWeightSet / PlainArray / TreeMap / TreeSet | 键值对/集合 |
+
+### 核心 API 速查
+
+```typescript
+// HashMap 使用
+let map = new HashMap<string, number>()
+map.set('key', 1)
+map.get('key')      // → 1
+map.delete('key')
+
+// util 工具
+let encoder = new util.TextEncoder()
+let decoder = new util.TextDecoder('utf-8', { ignoreBOM: true })
+
+// LRU Cache
+let cache = new util.LRUCache<string, number>(100)
+cache.put('a', 1)
+cache.get('a')      // → 1
+```
+
+---
+
+
+
+# 第十三部分：布局与自适应（ArkUI自适应布局模式）
+<a name="part13"></a>
 
 ## 📐 ArkUI 自适应布局模式（官方精学验证）
 
@@ -4554,3 +7975,46 @@ rg -n "网络|数据|安全|媒体" references/KITS.md | head
 - **版本差异**：离线文档基于 API 22-23，API 25-26 新能力以 SKILL.md 中的 §6 API 26 新能力详解 为准
 
 > `references/` 目录路径相对于本 SKILL.md。
+
+
+### 20. Stage 模型详解（UIAbility、AbilityStage、Context、WindowStage）— 官方指南精学
+
+> **目标读者**：需要理解 HarmonyOS Stage 模型应用组件框架的开发者。本文基于 [UIAbility组件概述](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/uiability-overview-V5) 和 [UIAbility生命周期](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/uiability-lifecycle-V5) 官方文档精学验证。
+
+#### 20.1 UIAbility 组件概述
+
+**UIAbility** 是一种包含 UI 的应用组件，主要用于和用户交互。是系统调度的基本单元，为应用提供绘制界面的窗口。
+
+**设计理念**：
+1. 原生支持应用组件级的跨端迁移和多端协同
+2. 支持多设备和多窗口形态
+
+**划分原则**：
+- 一个应用可以包含一个或多个 UIAbility 组件
+- 每个 UIAbility 组件实例在最近任务列表中显示一个对应任务
+- 任务视图中看到一个任务 → 建议使用"一个 UIAbility + 多个页面"
+- 任务视图中看到多个任务 → 建议使用多个 UIAbility
+
+**声明配置**（module.json5）：
+```json5
+{
+  "module": {
+    "abilities": [
+      {
+        "name": "EntryAbility",
+        "srcEntry": "./ets/entryability/EntryAbility.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background"
+      }
+    ]
+  }
+}
+```
+
+#### 20.2 UIAbility 生命周期
+
+UIAbility 生命周期包括 **Create、Foreground、Background、Destroy** 四个状态，以及 **WindowStageCreate、WindowStageDestroy** 两个窗口相关状态。
+

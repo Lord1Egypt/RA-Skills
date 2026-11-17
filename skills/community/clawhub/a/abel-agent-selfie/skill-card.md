@@ -1,44 +1,61 @@
-## Description: <br>
-AI agent self-portrait generator. Create avatars, profile pictures, and visual identity using SkillBoss API Hub image generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Selfie generates AI agent avatars, profile pictures, and visual identity assets using SkillBoss API Hub image generation.
 
-## Publisher: <br>
-[abeltennyson](https://clawhub.ai/user/abeltennyson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abeltennyson](https://clawhub.ai/user/abeltennyson)
 
-## Use Case: <br>
-External users and agent developers use this skill to generate agent avatars, profile pictures, banners, and visual identity assets from personality, mood, theme, and format inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Avatar prompts and personality details are sent to the SkillBoss API. <br>
-Mitigation: Use only personality details and visual prompts that are acceptable to share with that API service. <br>
-Risk: The skill requires SKILLBOSS_API_KEY. <br>
-Mitigation: Use a revocable key and keep it out of repositories, shared dotfiles, logs, and public examples. <br>
-Risk: Heartbeat guidance can lead to public avatar changes on Discord, Twitter/X, AgentGram, or similar services. <br>
-Mitigation: Require explicit user approval for each target account and each profile update before publishing changes. <br>
+## Use Case:
 
+External users and developers use this skill to generate personality-driven agent portraits, avatars, banners, and profile identity assets from mood, theme, format, and personality inputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abeltennyson/abel-agent-selfie) <br>
-- [OpenClaw](https://openclaw.org) <br>
-- [SkillBoss API Hub endpoint](https://api.heybossai.com/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration instructions] <br>
-**Output Format:** [PNG image files, prompts.json metadata, an HTML gallery, and markdown setup examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and sends image prompts and personality details to the SkillBoss API Hub.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: target metadata and SKILL.md frontmatter; artifact package.json reports 1.2.1) <br>
+Risk: Personality and style prompts may be sent to SkillBoss and stored locally in generated prompt metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including secrets, private user data, or sensitive operational details in personality, style, or vibe inputs.
+
+Risk: The skill can guide agents toward Discord, Twitter/X, or AgentGram profile and avatar changes.
+
+Mitigation: Require explicit human approval before applying generated images to public accounts or profiles.
+
+Risk: Security evidence flags unsafe handling of remote image URLs.
+
+Mitigation: Review generated image URLs and avoid running the skill from sensitive networks until URL validation is fixed.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/abeltennyson/skills/abel-agent-selfie)
+- [OpenClaw](https://openclaw.org)
+- [AgentGram related skill](https://clawhub.org/skills/agentgram)
+- [gemini-image-gen related skill](https://clawhub.org/skills/gemini-image-gen)
+- [opencode-omo related skill](https://clawhub.org/skills/opencode-omo)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [PNG image files with prompts.json, an HTML gallery, and Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY; supports avatar, banner, and full image formats plus mood, theme, count, and output directory options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release, target metadata, and artifact frontmatter; artifact package.json and changelog mention 1.2.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

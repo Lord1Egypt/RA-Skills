@@ -1,41 +1,52 @@
-## Description: <br>
-Douyin Creator Assistant - Tag recommendations, best posting times, title optimization, and competitor analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Douyin Creator Assistant - Tag recommendations, best posting times, title optimization, and competitor analysis.
 
-## Publisher: <br>
-[guohongbin-git](https://clawhub.ai/user/guohongbin-git) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[guohongbin-git](https://clawhub.ai/user/guohongbin-git)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+External Douyin creators use this skill for Chinese-language guidance on hashtags, posting times, title optimization, and competitor account review.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Competitor metrics and timing recommendations may be mistaken for live platform analytics.
+
+Mitigation: Treat the outputs as static guidance and verify decisions against current Douyin analytics before acting.
+
+Risk: The skill is Douyin-specific and Chinese-language, which can make it unsuitable for other platforms or audiences.
+
+Mitigation: Use it only for Douyin creator planning where Chinese-language static guidance is appropriate.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External Douyin content creators use this skill to generate hashtag suggestions, posting-time guidance, title optimization ideas, and competitor-analysis checklists for content planning. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill's analytics and competitor examples are generic and simulated, so recommendations may not reflect live Douyin performance data. <br>
-Mitigation: Confirm important content decisions with current platform analytics and treat the output as planning guidance rather than verified measurement. <br>
-Risk: Content optimization and competitor research could encourage copying or platform-rule violations if used without review. <br>
-Mitigation: Review outputs against Douyin platform rules and adapt strategies to original content before publishing. <br>
+**Output Format:** [Plain text command output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guohongbin-git/douyin-creator-cn) <br>
-- [README](README.md) <br>
+**Other Properties Related to Output:** [Chinese-language static guidance; no live Douyin analytics are fetched.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text guidance from shell scripts with command examples in Markdown documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations are generic and simulated rather than live Douyin analytics.] <br>
+1.0.0 (source: frontmatter, package.json, release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

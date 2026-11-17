@@ -1,41 +1,59 @@
-## Description: <br>
-Hardens an OpenClaw Linux server with SSH key-only authentication, UFW firewall rules, fail2ban protection, credential permissions, and an optional gateway service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Harden an OpenClaw Linux server with SSH key-only authentication, UFW firewall rules, fail2ban brute-force protection, and credential permission checks.
 
-## Publisher: <br>
-[ppiankov](https://clawhub.ai/user/ppiankov) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ppiankov](https://clawhub.ai/user/ppiankov)
 
-## Use Case: <br>
-Developers and operators use this skill when setting up or auditing an OpenClaw Linux host that needs SSH, firewall, brute-force protection, credential permission, and optional gateway service guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SSH and firewall changes can lock administrators out or disrupt access if applied without preparation. <br>
-Mitigation: Verify key-based SSH access, review each command before execution, and keep rollback access before disabling password auth or enabling restrictive firewall rules. <br>
-Risk: The optional OpenClaw gateway service creates a persistent boot-time systemd service that runs as root. <br>
-Mitigation: Review the systemd unit before enabling it, avoid running the gateway as root when possible, and confirm boot-time enablement is intentional. <br>
+## Use Case:
 
+Developers and operators use this skill when setting up, auditing, or recovering an OpenClaw Linux server that needs baseline host-hardening steps. It provides command-oriented guidance for SSH configuration, firewall defaults, fail2ban setup, credential permissions, and an optional gateway service.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ppiankov/host-hardening) <br>
-- [Agent-Native CLI Convention](https://ancc.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user review and approval before executing host-level commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: Administrative hardening commands can lock out server access or disrupt network connectivity if applied without preparation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm working SSH key-based access, review each command, and approve each administrative section before execution.
+
+Risk: The optional OpenClaw gateway service is persistent and runs as root.
+
+Mitigation: Enable it only when needed, review the executable path and configuration, and add least-privilege systemd hardening before production use.
+
+Risk: The optional validator install command may execute third-party tooling.
+
+Mitigation: Run validation as an unprivileged user and pin or review the tool before executing it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ppiankov/skills/host-hardening)
+- [Publisher profile](https://clawhub.ai/user/ppiankov)
+- [Agent-Native CLI Convention](https://ancc.dev)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit user approval before administrative commands are run.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

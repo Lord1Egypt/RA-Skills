@@ -1,41 +1,53 @@
-## Description: <br>
-Analyzes an existing Claude Code skill and designs an optimal rules/ file structure for lossless compression, conditional encapsulation, enrichment with templates or resources, and hardening of vague instructions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Claude Code skills and designs lossless restructuring plans for rules files, optional modules, templates, and clearer instructions.
 
-## Publisher: <br>
-[VincentJiang06](https://clawhub.ai/user/VincentJiang06) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vincentjiang06](https://clawhub.ai/user/vincentjiang06)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to plan and apply lossless restructuring of Claude Code skills, including moving content into rules modules, adding reusable resources, and clarifying ambiguous instructions. It can also run A/B comparisons to evaluate quality, token use, and timing between skill versions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can propose and apply file changes to another skill, which could introduce incorrect instructions if accepted without review. <br>
-Mitigation: Use version control or backups, review the restructuring plan before approval, and scan the updated skill before deployment. <br>
-Risk: The optional A/B comparison workflow can create benchmark files and spawn evaluation subagents for provided skill directories. <br>
-Mitigation: Run comparison workflows only for directories you intend to evaluate and review generated benchmark, grading, and timing artifacts before relying on results. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to restructure Claude Code skills into clearer, more modular rule files while preserving original content. It also supports A/B evaluation workflows for comparing skill versions and reviewing quality tradeoffs.
 
-## Reference(s): <br>
-- [Skill source on ClawHub](https://clawhub.ai/VincentJiang06/skill-rules-designer) <br>
-- [JSON Schemas](references/schemas.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown plans and summaries with optional JSON benchmark files, rules files, templates, and shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update skill files after user approval and may generate benchmark, timing, grading, comparison, or analysis JSON files during optional A/B evaluation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: ClawHub release evidence; SKILL.md frontmatter lists v1.2) <br>
+Risk: The skill can guide an agent to inspect and edit skill instruction files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the proposed restructuring plan before approving writes, and keep backups or version control for skills being changed.
+
+Risk: A/B evaluation mode can create additional workspace files and trigger multiple subagent runs.
+
+Mitigation: Use evaluation mode only in workspaces where the extra artifacts and execution cost are acceptable.
+
+## Reference(s):
+
+- [JSON Schemas](references/schemas.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown plans and summaries, with optional JSON evaluation artifacts and file edits.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update skill files only after user confirmation; A/B evaluation mode can create extra workspace artifacts and run multiple subagents.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

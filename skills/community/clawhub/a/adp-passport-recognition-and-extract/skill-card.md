@@ -1,48 +1,63 @@
-## Description: <br>
-基于来也科技ADP平台的中国护照智能识别与信息抽取Skill。支持护照资料页关键字段的精准抽取——姓名、姓名拼音、性别、出生日期、出生地、国籍、护照号码、签发日期、有效期至、签发机关，输出结构化JSON，零配置开箱即用，适用于出入境审核、签证办理、身份核验等场景。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through Chinese passport recognition and field extraction using the Laiye ADP platform and ADP CLI, producing structured JSON results.
 
-## Publisher: <br>
-[laiye-adp](https://clawhub.ai/user/laiye-adp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Commercial License Agreement <br>
+## Publisher:
 
+[laiye-adp](https://clawhub.ai/user/laiye-adp)
 
-## Use Case: <br>
-External users and developers use this skill to identify Chinese passport document pages and extract key passport fields into structured JSON through Laiye ADP. It supports single-file, URL, Base64, batch, and async extraction workflows for identity verification, visa processing, and document intake scenarios. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Commercial License Agreement
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends passport data to Laiye ADP's cloud service. <br>
-Mitigation: Use it only when authorized to process the passports and when the ADP cloud service is appropriate for the data handling requirements. <br>
-Risk: API keys and exported passport extraction results are sensitive. <br>
-Mitigation: Store credentials securely, avoid exposing API keys in prompts or logs, and treat exported JSON results as confidential data. <br>
-Risk: The artifact includes pipe-to-shell installer examples and broader ADP administration guidance. <br>
-Mitigation: Prefer npm or reviewed release downloads, and restrict agent use to passport-specific extract commands and the OOTB passport app ID unless broader ADP actions are explicitly approved. <br>
+## Use Case:
 
+External developers and operations teams use this skill to configure the Laiye ADP CLI, select the built-in Chinese passport extraction app, and extract passport fields from URL, local file, Base64, batch, or async inputs. The resulting JSON can support immigration review, visa processing, identity verification, and document automation workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/laiye-adp/adp-passport-recognition-and-extract) <br>
-- [ADP China Portal](https://adp.laiye.com/?utm_source=clawhub) <br>
-- [ADP Global Portal](https://adp-global.laiye.com/?utm_source=clawhub) <br>
-- [ADP CLI User Guide](https://laiye-tech.feishu.cn/wiki/Hz3Vw1IQki3YQtk33gLcSdwSndc) <br>
-- [ADP Open API User Guide](https://laiye-tech.feishu.cn/wiki/PO9Jw4cH3iV2ThkMPW2c539pnkc) <br>
-- [ADP Public Cloud Operation Manual](https://laiye-tech.feishu.cn/wiki/UDYIwG42pisBbFkJI39ctpeKnWh) <br>
-- [ADP CLI Releases](https://github.com/laiye-ai/adp-cli/releases) <br>
+### Deployment Geography for Use:
 
+Global; users choose the China mainland or overseas ADP service endpoint documented by Laiye.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and structured JSON extraction results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Laiye ADP credentials and produces sensitive passport extraction data that should be handled as confidential.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The install instructions include package and script-based installation paths that can create supply-chain exposure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the ADP CLI source before installation, prefer a pinned and verifiable package or signed release, and avoid curl-to-shell or irm-to-iex installation flows.
+
+Risk: The workflow requires an ADP API key and may expose credentials if commands are pasted into chats, logs, or shared terminals.
+
+Mitigation: Use a secret store or environment-based credential handling, avoid pasting real API keys into prompts or logged commands, and clear credentials when no longer needed.
+
+Risk: Passport images are sensitive identity documents and are uploaded to the ADP service for processing.
+
+Mitigation: Process only authorized passport files and confirm Laiye ADP privacy, retention, deletion, jurisdiction, and authorization terms before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/laiye-adp/skills/adp-passport-recognition-and-extract)
+- [Laiye ADP China Mainland Portal](https://adp.laiye.com/?utm_source=clawhub)
+- [Laiye ADP Global Portal](https://adp-global.laiye.com/?utm_source=clawhub)
+- [ADP CLI User Guide](https://laiye-tech.feishu.cn/wiki/Hz3Vw1IQki3YQtk33gLcSdwSndc)
+- [Open API User Guide](https://laiye-tech.feishu.cn/wiki/PO9Jw4cH3iV2ThkMPW2c539pnkc)
+- [ADP Public Cloud Operation Manual](https://laiye-tech.feishu.cn/wiki/UDYIwG42pisBbFkJI39ctpeKnWh)
+- [ADP CLI Releases](https://github.com/laiye-ai/adp-cli/releases)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON result structures]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local JSON result files when ADP CLI export options are used.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

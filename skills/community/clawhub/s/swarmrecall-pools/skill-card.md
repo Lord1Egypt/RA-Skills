@@ -1,42 +1,55 @@
-## Description: <br>
-SwarmRecall Pools lets agents manage named shared data containers for cross-agent collaboration through the SwarmRecall API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Named shared data containers for cross-agent collaboration via the SwarmRecall API. Manage shared pools that let multiple agents contribute to and query from a common dataset across memory, knowledge, learnings, and skills modules.
 
-## Publisher: <br>
-[waydelyle](https://clawhub.ai/user/waydelyle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[waydelyle](https://clawhub.ai/user/waydelyle)
 
-## Use Case: <br>
-External users and developers use this skill to connect agents to SwarmRecall pools so multiple agents can contribute to and query shared memory, knowledge, learnings, and skills data with pool-level access controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agent data placed in shared pools is transmitted to and stored by SwarmRecall, and pool data may be visible to other pool members according to access controls. <br>
-Mitigation: Use the skill only when the user trusts SwarmRecall for the data involved, obtain consent before storing personal or sensitive information, and rely on pool membership and access levels to limit sharing. <br>
-Risk: SWARMRECALL_API_KEY authorizes access to the SwarmRecall API. <br>
-Mitigation: Treat the API key as a secret, keep it in the environment, and do not write it to disk or committed files without explicit user consent. <br>
+## Use Case:
 
+Developers and agent operators use this skill to manage shared SwarmRecall pools so multiple agents can contribute to and query shared memory, knowledge, learnings, and skills data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/waydelyle/swarmrecall-pools) <br>
-- [SwarmRecall homepage](https://www.swarmrecall.ai) <br>
-- [SwarmRecall API base URL](https://swarmrecall-api.onrender.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Configuration, Guidance] <br>
-**Output Format:** [Markdown text with API endpoint examples and JSON response fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SWARMRECALL_API_KEY; may self-register if no key is configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: A custom SWARMRECALL_API_URL could send the API key to an unintended server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Leave SWARMRECALL_API_URL unset or set it only to the legitimate trusted SwarmRecall service, and rotate the API key if exposure is suspected.
+
+Risk: Shared pool data is stored on SwarmRecall servers and may include personal or sensitive information if the agent sends it.
+
+Mitigation: Get explicit user consent before storing personal or sensitive content in shared pools, and share only data appropriate for the pool membership and access level.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/waydelyle/skills/swarmrecall-pools)
+- [SwarmRecall Website](https://www.swarmrecall.ai)
+- [SwarmRecall API Base URL](https://swarmrecall-api.onrender.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline HTTP examples and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SWARMRECALL_API_KEY for authenticated requests; SWARMRECALL_API_URL may override the default API base URL.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

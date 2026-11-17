@@ -1,40 +1,53 @@
-## Description: <br>
-Grow on X with strategic replies. Use when choosing accounts to reply to, writing high-signal replies, or turning replies into profile clicks and follows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Grow on X with strategic replies. Use when choosing accounts to reply to, writing high-signal replies, or turning replies into profile clicks and follows.
 
-## Publisher: <br>
-[mikaelaldy](https://clawhub.ai/user/mikaelaldy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikaelaldy](https://clawhub.ai/user/mikaelaldy)
 
-## Use Case: <br>
-External users and creators use this skill to identify reply opportunities on X, choose useful reply angles, and draft strategic replies that can lead to profile visits and follows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated replies may affect public social media content and growth tactics. <br>
-Mitigation: Review and edit drafts before posting, ensuring each reply is accurate, useful, and appropriate for the account's voice. <br>
-Risk: Engagement-focused guidance can encourage low-value or promotional replies if applied mechanically. <br>
-Mitigation: Use the skill as a drafting aid and follow its stated rules to avoid self-promotion, thread hijacking, and empty praise. <br>
+## Use Case:
 
+Creators, social-media operators, and agents use this skill to identify reply targets, choose a useful reply angle, draft high-signal X replies, and turn strong replies into profile visits, follows, and follow-up posts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mikaelaldy/x-reply-growth) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with target account guidance, reply angle, reply drafts, profile-click bridge, and follow-up post suggestion] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated replies should be reviewed and edited before public posting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Drafted public replies may be inaccurate, off-tone, or inconsistent with platform rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review reply drafts for factual accuracy, tone, audience fit, and X rules before posting.
+
+Risk: Growth-focused replies can become self-promotional or low-value if used mechanically.
+
+Mitigation: Keep each reply useful on its own, avoid thread hijacking, and make one clear contribution.
+
+## Reference(s):
+
+- [X Reply Growth on ClawHub](https://clawhub.ai/mikaelaldy/skills/x-reply-growth)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with structured bullets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes target-account criteria, a reply angle, three reply drafts, a profile-click bridge, and a follow-up post idea.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

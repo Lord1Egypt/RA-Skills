@@ -1,45 +1,57 @@
-## Description: <br>
-Parse UI screenshots into structured element JSON (type, OCR text, bbox) and operate desktop UI from parsed elements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parse UI screenshots into structured element JSON with type, OCR text, and bounding boxes, and operate desktop UI from parsed elements for locating controls, clicking, typing, taking screenshots, waiting for UI state, and calibrating coordinates.
 
-## Publisher: <br>
-[murongg](https://clawhub.ai/user/murongg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[murongg](https://clawhub.ai/user/murongg)
 
-## Use Case: <br>
-Developers and automation users use this skill to parse screenshots into UI element data, find or wait for elements, and perform desktop actions such as clicks, typing, key presses, screenshots, and coordinate calibration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can inspect screenshots and control the desktop, so unintended clicks, typed text, hotkeys, or screenshots could affect sensitive workflows. <br>
-Mitigation: Install and use it only when desktop inspection and control are intended; avoid sensitive screens and workflows where accidental UI actions or screenshots would be harmful. <br>
-Risk: The security summary flags an overbroad shell-command hook around wait refresh behavior. <br>
-Mitigation: Avoid wait refresh commands unless the exact command is fully controlled and reviewed. <br>
-Risk: The skill installs and uses external PyPI, GitHub, and Hugging Face dependencies. <br>
-Mitigation: Review external dependencies and keep PyAutoGUI failsafe enabled before allowing UI operation. <br>
-Risk: Parsing and capture-and-parse commands are compute-heavy and can be slow, especially on CPU-only machines. <br>
-Mitigation: Avoid tight parsing loops and reuse recent elements JSON outputs when they are still valid. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [UI Element Ops ClawHub Release](https://clawhub.ai/murongg/ui-element-ops) <br>
-- [Microsoft OmniParser](https://github.com/microsoft/OmniParser) <br>
-- [Type Rules Example](references/type_rules.example.json) <br>
+## Use Case:
 
+Developers and agents use this skill to inspect screenshots, identify UI elements by type, text, and coordinates, and perform requested desktop actions against parsed UI elements. It is useful for GUI automation workflows that need element JSON, overlay images, screenshots, click/type/key actions, waits, and coordinate calibration.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON element files, overlay PNG files, and optional desktop action results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create elements JSON, overlay images, screenshots, and coordinate calibration profiles.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can capture the screen and operate the active desktop session, including clicks, typing, keys, hotkeys, and screenshots.
+
+Mitigation: Use dry-run, list, find, and wait operations before actions; avoid running it around sensitive windows and keep GUI actions under user review.
+
+Risk: The wait command supports a refresh shell hook that can run under-scoped commands during polling.
+
+Mitigation: Review or remove refresh command usage and allow only explicitly approved, narrowly scoped refresh commands.
+
+Risk: Bootstrap installs mutable third-party dependencies, clones OmniParser, and downloads model files.
+
+Mitigation: Pin or verify the OmniParser repository, model files, and Python dependencies before running bootstrap.
+
+## Reference(s):
+
+- [Microsoft OmniParser](https://github.com/microsoft/OmniParser)
+- [UI Element Ops ClawHub release page](https://clawhub.ai/murongg/skills/ui-element-ops)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; generated artifacts include JSON element files and PNG overlay images.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute desktop actions in an active GUI session; parsing can be slow on CPU-only machines and should reuse recent elements.json outputs when practical.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Todo list and task management for AI agents. Add, track, and complete tasks with autonomy levels — agents propose work, humans approve. Works in heartbeats, cron, and conversations. Persistent SQLite CLI with structured JSON output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Todo list and task management for AI agents. Add, track, and complete tasks with autonomy levels; agents propose work and humans approve.
 
-## Publisher: <br>
-[LePetitPince](https://clawhub.ai/user/LePetitPince) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lepetitpince](https://clawhub.ai/user/lepetitpince)
 
-## Use Case: <br>
-Developers and agent operators use this skill to maintain a persistent task queue that agents can inspect, propose to, and execute from conversations, heartbeat loops, cron jobs, or sub-agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Unattended heartbeat or cron use could cause agents to act on tasks without enough human oversight. <br>
-Mitigation: Limit unattended use to clearly scoped, pre-approved, low-risk work and require human review before tasks involving accounts, money, public content, production systems, credentials, or private data. <br>
-Risk: The skill depends on a globally installed npm CLI that maintains a persistent task queue. <br>
-Mitigation: Install only in environments where the global clawdo CLI and its persistent queue are acceptable, and keep CLI usage visible to operators. <br>
+## Use Case:
 
+Developers and agent operators use this skill to maintain a persistent task queue for AI agents across conversations, heartbeat loops, cron jobs, and sub-agent workflows. It supports human approval of agent-proposed tasks and structured task status updates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/LePetitPince/clawdo) <br>
-- [npm package](https://www.npmjs.com/package/clawdo) <br>
-- [Release notes](https://github.com/LePetitPince/clawdo/releases/tag/v1.1.4) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-oriented CLI examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent-facing guidance expects the external clawdo CLI binary and structured JSON CLI output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.4 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill installs an unpinned global npm CLI whose reviewed code is not included in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or pin the exact npm package version before installing and prefer an isolated or project-local environment over a global install.
+
+Risk: Heartbeat or cron workflows may let agents process auto tasks without immediate human review.
+
+Mitigation: Use the documented human approval flow for proposed tasks and be cautious before enabling unattended auto-task processing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lepetitpince/skills/clawdo)
+- [npm package: clawdo](https://www.npmjs.com/package/clawdo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON-oriented CLI usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the clawdo CLI binary; examples prefer structured JSON command output for agent parsing.]
+
+## Skill Version(s):
+
+1.1.4 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

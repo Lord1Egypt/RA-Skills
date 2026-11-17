@@ -1,45 +1,65 @@
-## Description: <br>
-A Markdown rewriting skill that preserves document structure while using selectable AI providers to rewrite content and optionally generate images, video, or music. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rewrites existing Markdown with AI while preserving document structure, with optional image, video, and music generation.
 
-## Publisher: <br>
-[sipingme](https://clawhub.ai/user/sipingme) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sipingme](https://clawhub.ai/user/sipingme)
 
-## Use Case: <br>
-Developers, content operators, and writers use this skill to rewrite existing Markdown while preserving headings, code blocks, tables, and media placement. It supports publishing workflows that need provider choice, controlled cost, and optional image, video, or music generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Provider API keys and input Markdown may be sent to selected third-party model services. <br>
-Mitigation: Configure only the provider API key needed for the task and avoid confidential Markdown unless the selected provider is approved for that data. <br>
-Risk: Automatic activation and package loading are broader than the documentation clearly scopes. <br>
-Mitigation: Review before installing, use trusted project directories, and require confirmation before rewrites or media generation where possible. <br>
-Risk: The skill depends on a third-party npm package loaded from the local Node.js environment. <br>
-Mitigation: Install the pinned package from a trusted source, keep automatic install and update disabled, and audit the referenced package source before deployment. <br>
+## Use Case:
 
+Developers and content teams use this skill to rewrite, polish, de-duplicate, and restyle existing Markdown while preserving headings, code blocks, tables, and images. It can also request provider-backed image, video, or music generation for Markdown publishing workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sipingme/markdown-ai-rewriter) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [npm package](https://www.npmjs.com/package/markdown-ai-rewriter) <br>
-- [Source repository](https://github.com/sipingme/markdown-ai-rewriter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and CLI-oriented text; generated media files may be created when image, video, or music options are enabled.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires provider API credentials and writes rewritten Markdown or generated media to user-selected output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.5 (source: evidence release, SKILL.md frontmatter, config.json) <br>
+Risk: Markdown content may be sent to externally configured AI provider endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved providers and endpoints, and avoid confidential Markdown unless the selected provider is approved for that data.
+
+Risk: Custom base URLs may receive full document content.
+
+Mitigation: Treat custom endpoints as sensitive destinations and approve them before use.
+
+Risk: The skill loads the pinned npm package in-process from local node_modules locations.
+
+Mitigation: Review the npm package and launcher behavior, pin dependencies exactly, and avoid running from untrusted project directories.
+
+Risk: Auto-invocation could send documents to providers sooner than intended.
+
+Mitigation: Disable or tightly scope auto-invocation for projects that contain sensitive or unreviewed Markdown.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sipingme/skills/markdown-ai-rewriter)
+- [markdown-ai-rewriter npm package](https://www.npmjs.com/package/markdown-ai-rewriter)
+- [markdown-ai-rewriter source repository](https://github.com/sipingme/markdown-ai-rewriter)
+- [markdown-ai-rewriter skill repository](https://github.com/sipingme/markdown-ai-rewriter-skill.git)
+- [Source audit reference](https://github.com/sipingme/markdown-ai-rewriter/blob/main/src/index.ts)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files, CLI status text, and command-oriented guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit feature flags such as --rewrite, --process-images, or --generate-video; output quality and structure preservation depend on the selected provider and prompt.]
+
+## Skill Version(s):
+
+1.2.5 (source: server release metadata, target metadata, and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

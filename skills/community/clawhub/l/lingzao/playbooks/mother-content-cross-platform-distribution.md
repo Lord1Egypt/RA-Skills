@@ -95,6 +95,15 @@ Output separated fields. Do not merge them into one block:
 - 评论区引导
 - 发布前检查点
 
+Before returning this Xiaohongshu section, run
+`xhs-platform-management-risk-baseline.md` and
+`xhs-content-compliance-risk-gate.md`. The Xiaohongshu package must not carry
+CTAs copied from WeChat, Moments, private-domain, sales, or course sections if
+they create off-platform diversion, WeChat/private-contact guidance, or
+comment-gated resources. Keep external-channel CTAs only in their own platform
+sections. If the topic is commercial, make the Xiaohongshu section public-value
+first, product-name later, and no diversion action.
+
 If the user asks for image generation, continue to:
 
 - `reference-image-graphic-note-workflow.md`
@@ -147,7 +156,7 @@ Optional outputs:
 ### Knowledge Planet
 
 - 星球帖标题
-- 内部判断
+- 判断依据
 - 案例拆解
 - 产品化价值
 - 下一步动作
@@ -204,7 +213,7 @@ Before generating too much, quickly judge fit:
 - Xiaohongshu: practical, visual, saveable, emotional, or clickable
 - Moments: personal discovery, lightweight update, trust building
 - WeChat public account: complete logic, method, case, reflection
-- Knowledge Planet: internal review, paid-user teaching, homework
+- Knowledge Planet: member-only review, paid-user teaching, homework
 - X: sharp product/tech/creator-operation judgment
 - Bilibili: tutorial, screen recording, long explanation, public teaching
 - Douyin / video account: short result, strong opening, easy-to-understand
@@ -222,10 +231,10 @@ Before generating too much, quickly judge fit:
 - If the package becomes long, offer Word / HTML webpage / knowledge-base
   packaging using `retention-and-follow-up-loop.md`.
 - Keep the platform tone different:
-  - Xiaohongshu: click, save, comment, keywords
+  - Xiaohongshu: click, save reason, keywords, compliance-safe interaction
   - Moments: human, light, personal
   - WeChat: logical, complete, readable
-  - Knowledge Planet: internal, productized, teachable
+  - Knowledge Planet: member-only, productized, teachable
   - X: sharp, compressed, discussion-worthy
   - Bilibili: searchable, tutorial-like, clear promise
 

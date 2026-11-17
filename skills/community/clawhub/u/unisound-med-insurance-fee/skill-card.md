@@ -1,46 +1,58 @@
-## Description: <br>
-Applies medical insurance claim compliance review and medical insurance fee calculation rules through a configurable LLM-backed command-line wrapper. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+医保理赔单据合规审核与医保费用核算规则应用；仅含 `scripts/run.py`，可独立拷贝部署。
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Developers and healthcare insurance workflow integrators use this skill to submit medical-insurance questions or claim records for fee calculation and claim compliance review through a configured model endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Medical-insurance questions or claim records may contain patient identifiers or sensitive claim details. <br>
-Mitigation: Remove patient identifiers and sensitive claim details unless the organization has approved sending that data to the documented or configured model endpoint. <br>
-Risk: API keys may be exposed when passed directly in shell commands. <br>
-Mitigation: Use safer secret handling appropriate to the deployment environment instead of embedding keys in command history or shared scripts. <br>
-Risk: Saved outputs may contain the original question, metadata, and model-generated answer. <br>
-Mitigation: Store outputs only in approved locations and apply the same handling controls used for the underlying insurance or medical data. <br>
-Risk: Model output is assistive and may be unsuitable as a final medical or claims decision. <br>
-Mitigation: Route outputs through the organization's clinical, compliance, or claims-review process before operational use. <br>
+## Use Case:
 
+Developers and healthcare operations teams use this skill to submit de-identified medical insurance questions to a configured medical LLM for claim compliance checks or fee calculations. Its output is model-assisted information and should not be treated as a formal clinical or reimbursement decision.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-med-insurance-fee) <br>
-- [Publisher profile](https://clawhub.ai/user/unisound-llm) <br>
-- [Configured model API endpoint](https://maas-api.hivoice.cn/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON by default, plain text when text-only output is requested, and NDJSON for batch output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include task metadata, input metadata, model name, question text, and generated answer; dry-run mode returns parsed input without calling the model.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can send sensitive medical insurance questions to a configurable external HTTPS API endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only de-identified data unless external API processing has been approved by the organization.
+
+Risk: The skill sends a bearer key when invoking the configured API.
+
+Mitigation: Avoid passing production secrets on the command line, restrict use to vetted endpoints, and rotate any key that may have been sent to an untrusted endpoint.
+
+Risk: The generated answer is model-assisted medical insurance guidance and may be incomplete or incorrect.
+
+Mitigation: Review outputs under applicable clinical, reimbursement, and organizational workflows before using them for decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-med-insurance-fee)
+- [Default medical LLM chat completions endpoint](https://maas-api.hivoice.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, files, guidance]
+
+**Output Format:** [JSON by default, optional plain text answer, or NDJSON for batch output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write UTF-8 JSON or NDJSON output files when an output path is provided.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata, created 2026-07-16)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

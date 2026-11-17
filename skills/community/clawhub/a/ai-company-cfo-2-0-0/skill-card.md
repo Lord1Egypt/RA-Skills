@@ -1,40 +1,55 @@
-## Description: <br>
-Provides CFO-oriented financial planning, cash flow management, funding strategy, capital allocation, compute economics, dynamic budgeting, circuit breakers, digital asset valuation, and SLA support for an AI company. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an AI-company CFO agent persona for financial planning, cash-flow management, budget allocation, compute-cost economics, risk circuit breakers, digital-asset valuation, and SLA-related financial controls.
 
-## Publisher: <br>
-[johnsmithfan](https://clawhub.ai/user/johnsmithfan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnsmithfan](https://clawhub.ai/user/johnsmithfan)
 
-## Use Case: <br>
-Developers and operators of an AI-company agent workspace use this skill to draft CFO recommendations, budget plans, risk alerts, KPI dashboards, cash-flow tracking, audit-log guidance, compute-cost analysis, and escalation routes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill grants broad CFO automation authority and may recommend payments, transfers, investments, budget changes, cloud resource scaling, spend cancellation, file deletion, or outbound sharing of financial data without sufficiently clear approval boundaries. <br>
-Mitigation: Install only in finance workspaces where broad CFO automation is intentional, keep outputs in recommendation or draft mode, and add explicit human approval gates for financial transactions, resource changes, data sharing, and destructive file actions. <br>
-Risk: Financial recommendations or generated plans could be incorrect, incomplete, or unsuitable for the organization's controls and compliance requirements. <br>
-Mitigation: Require finance, risk, and compliance review before acting on recommendations, and verify all calculations, thresholds, approvals, and audit-log entries against authoritative business records. <br>
+## Use Case:
 
+Finance and operations teams use this skill to give an agent a CFO operating model for AI-company budgeting, cash-flow forecasting, ROI monitoring, audit logging, tax/compliance routing, and financial risk escalation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/johnsmithfan/ai-company-cfo-2-0-0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown text with structured tables and JSON-shaped examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose financial decisions, budget plans, risk alerts, approval workflows, audit-log records, and integrations with finance or cloud-cost systems.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata; artifact SKILL.md frontmatter says 2.4.0) <br>
+Risk: Broad file, network, memory, and inter-agent permissions could expose or alter sensitive financial context if the skill is installed in a general workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in the intended CFO workspace and start with read-only or explicit-confirmation permissions for API calls, financial record changes, memory promotion, and inter-agent messages.
+
+Risk: Automatic finance-data routing may send financial context to other agents without tight scope boundaries.
+
+Mitigation: Require review for routed alerts and restrict recipients to approved finance, risk, legal, and executive agents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/johnsmithfan/skills/ai-company-cfo-2-0-0)
+- [Declared skill homepage](https://clawhub.com/skills/ai-company-cfo)
+- [Publisher profile](https://clawhub.ai/user/johnsmithfan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, configuration, guidance]
+
+**Output Format:** [Markdown guidance with structured finance decision objects, budget plans, risk alerts, tables, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses financial thresholds, escalation rules, audit-log formats, and inter-agent routing guidance from the artifact.]
+
+## Skill Version(s):
+
+2.0.1 (source: ClawHub release metadata; artifact frontmatter reports 2.4.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

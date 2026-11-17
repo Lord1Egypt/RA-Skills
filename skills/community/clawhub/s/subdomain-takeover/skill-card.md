@@ -1,43 +1,54 @@
-## Description: <br>
-Check subdomains for potential takeover vulnerabilities by detecting dangling DNS records pointing to unclaimed services such as GitHub Pages, Heroku, and AWS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check subdomains for potential takeover vulnerabilities by detecting dangling DNS records pointing to unclaimed services such as GitHub Pages, Heroku, and AWS.
 
-## Publisher: <br>
-[hostilespider](https://clawhub.ai/user/hostilespider) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hostilespider](https://clawhub.ai/user/hostilespider)
 
-## Use Case: <br>
-Developers and security engineers use this skill to check owned or authorized subdomains for dangling DNS records and optionally verify potential takeover exposure with HTTP status checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill performs DNS lookups and, unless run with --passive, HTTP requests against supplied domains. <br>
-Mitigation: Use it only on domains you own or are authorized to test, and use --passive when HTTP verification is not appropriate. <br>
-Risk: Takeover checks can produce false positives. <br>
-Mitigation: Treat results as advisory and manually confirm ownership and service state before remediation. <br>
-Risk: The security guidance notes curl is needed for active HTTP checks even though it is not listed in declared requirements. <br>
-Mitigation: Ensure bash, dig, and curl are available before running non-passive scans. <br>
+## Use Case:
 
+Developers and security teams use this skill to check authorized subdomain lists for DNS records that may point to unclaimed third-party services. It supports passive DNS-only review and active verification that can produce network requests.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hostilespider/subdomain-takeover) <br>
-- [Publisher profile](https://clawhub.ai/user/hostilespider) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text scan summary or JSON counts from shell execution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write detailed findings to a file and exits nonzero when potential vulnerabilities are found.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Active scans make DNS and HTTP requests against supplied domains.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run active mode only for domains you control or are permitted to test; use --passive for untrusted lists.
+
+Risk: The release metadata lists bash and dig but the script also uses curl for active HTTP checks.
+
+Mitigation: Confirm curl is available before active scans or use --passive when curl is unavailable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hostilespider/skills/subdomain-takeover)
+- [Publisher profile](https://clawhub.ai/user/hostilespider)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands; the checker can also emit JSON scan summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write scan findings to an output file when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

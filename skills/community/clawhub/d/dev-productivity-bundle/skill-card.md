@@ -1,43 +1,59 @@
-## Description: <br>
-Dev Productivity Bundle helps developers and technical teams with AI-assisted code review, bug tracking, documentation generation, and deployment monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dev Productivity Bundle helps software teams use AI-assisted workflows for code review, bug tracking, documentation generation, and deployment monitoring.
 
-## Publisher: <br>
-[daimingvip-a11y](https://clawhub.ai/user/daimingvip-a11y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daimingvip-a11y](https://clawhub.ai/user/daimingvip-a11y)
 
-## Use Case: <br>
-Developers and engineering teams use this skill bundle to request code reviews, bug summaries, API documentation drafts, code-quality analysis, and service health summaries during normal development workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release asks users to run an external PowerShell installer before its behavior has been reviewed. <br>
-Mitigation: Inspect the repository and installer script before execution, and run installation steps in a least-privilege environment. <br>
-Risk: GitHub automation can change repository workflow state through labels, assignments, PR comments, webhook handling, or scheduled monitoring. <br>
-Mitigation: Use a least-privilege GitHub token scoped to intended repositories and disable automatic labels, assignments, PR comments, and cron monitoring unless those actions are explicitly desired. <br>
+## Use Case:
 
+Developers, engineering teams, and technical leads use this skill to coordinate code review, bug triage, technical documentation, and deployment monitoring workflows.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/daimingvip-a11y/dev-productivity-bundle) <br>
-- [Publisher profile](https://clawhub.ai/user/daimingvip-a11y) <br>
-- [README.md](README.md) <br>
-- [Code review flow example](examples/code-review-flow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with code blocks, shell commands, configuration snippets, and generated documentation drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce GitHub-oriented review comments, issue summaries, documentation files, and monitoring summaries based on user-provided repository or service context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Setup may involve running an unreviewed remote installer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the remote repository and install.ps1 before execution, and prefer a pinned signed release or checksum.
+
+Risk: The bundle installs dependency skills that may change independently.
+
+Mitigation: Install only trusted dependency skills at reviewed versions.
+
+Risk: GitHub tokens, webhook secrets, and monitoring targets can expose sensitive systems if configured broadly.
+
+Mitigation: Use narrowly scoped GitHub credentials, keep secrets out of source control, and monitor only services you own or are authorized to check.
+
+## Reference(s):
+
+- [Quick Start Guide](artifact/README.md)
+- [Code Review Flow Example](artifact/examples/code-review-flow.md)
+- [ClawHub Skill Page](https://clawhub.ai/daimingvip-a11y/skills/dev-productivity-bundle)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with code blocks, command snippets, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference user-supplied repository settings, GitHub tokens, webhook secrets, and service health endpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

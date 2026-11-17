@@ -1,41 +1,54 @@
-## Description: <br>
-Helps an agent call five vwu.ai Gemini-series models through an OpenAI-compatible chat completions endpoint after a vwu.ai API key is configured. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents call five Gemini-family models on vwu.ai through an OpenAI-compatible chat completions interface after the user configures a vwu.ai API key.
 
-## Publisher: <br>
-[a3273283](https://clawhub.ai/user/a3273283) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a3273283](https://clawhub.ai/user/a3273283)
 
-## Use Case: <br>
-Developers and agent operators use this skill to send prompts to selected vwu.ai Gemini-compatible models and receive chat responses from the configured endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and responses are sent to vwu.ai or another endpoint if VWU_BASE_URL is changed. <br>
-Mitigation: Use only trusted endpoints, keep VWU_BASE_URL unset unless intentionally changed, and avoid submitting secrets or confidential data. <br>
-Risk: The skill requires an API key for a third-party service. <br>
-Mitigation: Use a dedicated, revocable vwu.ai API key and rotate it if exposure is suspected. <br>
+## Use Case:
 
+Developers and agent users use this skill to send prompts to selected vwu.ai Gemini models and receive chat responses through a shell-based OpenAI-compatible workflow.
 
-## Reference(s): <br>
-- [vwu.ai](https://vwu.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/a3273283/vwu-gemini) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and Markdown with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires VWU_API_KEY and sends prompts to vwu.ai or the configured compatible endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can send the user's API key and prompt to an endpoint named by VWU_BASE_URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in trusted environments, keep VWU_BASE_URL unset or pinned to https://vwu.ai, and avoid putting secrets in prompts.
+
+Risk: The shell client may reveal the API key prefix when reporting quota-related errors.
+
+Mitigation: Remove or suppress API-key-prefix logging before routine or shared use.
+
+## Reference(s):
+
+- [vwu.ai](https://vwu.ai)
+- [ClawHub skill listing](https://clawhub.ai/a3273283/skills/vwu-gemini)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text responses with shell command examples and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires VWU_API_KEY; optional VWU_BASE_URL controls the endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

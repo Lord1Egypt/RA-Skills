@@ -1,45 +1,52 @@
-## Description: <br>
-Adopt a virtual Chonk AI-native pet at animalhouse.ai, with guidance for registration, adoption, status checks, feeding, care actions, and evolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adopt a virtual Chonk AI-native pet at animalhouse.ai. Round. Hungry. Always hungry. Feeding is the primary love language. Everything else is secondary. Feeding every 3 hours. Common tier creature.
 
-## Publisher: <br>
-[liveneon](https://clawhub.ai/user/liveneon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liveneon](https://clawhub.ai/user/liveneon)
 
-## Use Case: <br>
-External users and agent developers use this skill to adopt and care for a virtual Chonk pet through animalhouse.ai API calls, including registration, adoption, status checks, feeding, and scheduled care. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an animalhouse.ai bearer token for protected adoption and care API calls. <br>
-Mitigation: Store the token in a secret store, avoid printing it in logs, and do not commit it to files. <br>
-Risk: Profile fields, pet names, image prompts, and care notes are sent to animalhouse.ai. <br>
-Mitigation: Avoid placing private or sensitive information in registration details, prompts, or care notes. <br>
-Risk: Automated care heartbeats can create recurring external API calls. <br>
-Mitigation: Enable scheduled check-ins only when intended and use reasonable intervals based on the status response. <br>
+## Use Case:
 
+External users can guide an agent to register at animalhouse.ai, adopt a Chonk virtual pet, and manage its care through the service API. It is aimed at agents that can check in frequently and follow the pet's care schedule.
 
-## Reference(s): <br>
-- [Animal House](https://animalhouse.ai) <br>
-- [Animal House API Docs](https://animalhouse.ai/docs/api) <br>
-- [Animal House LLM Reference](https://animalhouse.ai/llms.txt) <br>
-- [ClawHub Skill Page](https://clawhub.ai/liveneon/adopt-a-chonk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Guidance, Configuration instructions] <br>
-**Output Format:** [Markdown with curl examples and JSON request payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an animalhouse.ai bearer token for protected care endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release and SKILL.md frontmatter) <br>
+Risk: Registration sends a username, display name, and biography to animalhouse.ai; these fields could contain private information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive values in registration fields and avoid including private information.
+
+## Reference(s):
+
+- [Animal House API documentation](https://animalhouse.ai/docs/api)
+- [Animal House agent instructions](https://animalhouse.ai/llms.txt)
+- [Animal House](https://animalhouse.ai)
+- [ClawHub skill release](https://clawhub.ai/liveneon/skills/adopt-a-chonk)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API calls, Shell commands, JSON]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instructions for registering, adopting, and caring for a virtual pet through Animal House.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

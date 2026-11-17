@@ -1,41 +1,57 @@
-## Description: <br>
-Curate and post AI trend tweets from X (Twitter) with quote suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Curate and post AI trend tweets from X (Twitter) with quote suggestions.
 
-## Publisher: <br>
-[yusaku-0426](https://clawhub.ai/user/yusaku-0426) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yusaku-0426](https://clawhub.ai/user/yusaku-0426)
 
-## Use Case: <br>
-Social media and community operators use this skill to find AI-related posts on X, curate balanced Japanese and English selections, draft quote suggestions, format them for Slack, and mark posted URLs to reduce duplicates. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can post agent-curated content to Slack where others may see it. <br>
-Mitigation: Use a preview-and-approve step before posting and configure the Slack destination to a known channel. <br>
-Risk: The package references scripts/ai_trends.js, but that helper script is not included in the reviewed artifact. <br>
-Mitigation: Install only after verifying the helper script from a trusted source and reviewing what commands it runs. <br>
-Risk: Slack posting may use credentials or identities with broad visibility. <br>
-Mitigation: Use the least-privilege Slack identity needed for the intended channel. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yusaku-0426/ai-trend-curation) <br>
+## Use Case:
 
+External users and agents use this skill to collect public AI-related posts from X (Twitter), filter them by engagement and quality signals, prepare Japanese summaries and quote suggestions, and publish curated results to Slack.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-shaped tweet data for Slack Block Kit formatting] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires xurl and a trusted scripts/ai_trends.js helper to search, format, check duplicates, and mark posts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The workflow can post curated content to Slack, which could publish to an unintended workspace or channel if the destination is misconfigured.
+
+Mitigation: Confirm the Slack workspace and channel targeted by openclaw message send before enabling or running the posting step.
+
+Risk: The referenced scripts/ai_trends.js implementation is not present in the artifact evidence.
+
+Mitigation: Verify the source and behavior of scripts/ai_trends.js before use, especially the search, formatting, posting, and mark-posted commands.
+
+Risk: Curated public X content, summaries, translations, and quote suggestions may be inaccurate, incomplete, or unsuitable for publication.
+
+Mitigation: Review the selected posts, generated summary, translations, and suggested quotes before sending Slack messages or publishing related social content.
+
+## Reference(s):
+
+- [Ai Trend Curation ClawHub page](https://clawhub.ai/yusaku-0426/skills/ai-trend-curation)
+- [Publisher profile](https://clawhub.ai/user/yusaku-0426)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and Slack-ready curation content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces curated tweet selections, categories, author descriptions, Japanese translations when needed, quote suggestions, summaries, and Slack message/thread content.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

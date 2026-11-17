@@ -1,0 +1,90 @@
+{
+  "meta": {
+    "name": "九重阙",
+    "tone_family": "court-intrigue",
+    "tone_variant": "朝堂博弈",
+    "version": 1
+  },
+  "continents": [
+    {
+      "id": "continent_jingji",
+      "name": "京畿",
+      "summary": "皇城与畿辅之地：内廷（后宫、宦官）与外朝（内阁、六部）仅一墙之隔，五派在龙椅的阴影里互算生死；司晨楼的晨钟是各方信使每日必至的信号。"
+    }
+  ],
+  "nations": [
+    {
+      "id": "nation_fengyi",
+      "name": "凤仪宫",
+      "continent": "continent_jingji",
+      "summary": "中宫皇后母族与嫡统法理的化身，以'正统'压人，最恨宠妃系分薄圣心。",
+      "tension_seeds": [
+        "皇后无子，中宫与储英堂名为同气连枝，实则暗防对方借嫡统之名夺权",
+        "凤仪宫查出承欢殿贵妃之兄私通外藩的证据，却按兵不动、留作要价"
+      ]
+    },
+    {
+      "id": "nation_chenghuan",
+      "name": "承欢殿",
+      "continent": "continent_jingji",
+      "summary": "以恩宠上位、最怕圣心一朝转凉的宠妃系，其兄以外戚之姿伸手兵部。",
+      "tension_seeds": [
+        "贵妃之兄私通外藩的把柄被凤仪宫握在手里，承欢殿急于反制",
+        "圣眷正值鼎盛，贵妃催皇帝易储，却不知辅政阁已联名上疏弹劾外戚"
+      ]
+    },
+    {
+      "id": "nation_fuzheng",
+      "name": "辅政阁",
+      "continent": "continent_jingji",
+      "summary": "握政务实权、暗惧宦官窃取内廷的权臣党，首辅老谋、六部盘根错节。",
+      "tension_seeds": [
+        "首辅查得掌印司截留密折、私通外使，欲联清流扳倒内廷",
+        "辅政阁内部（首辅与兵部尚书）就'是否易储'分裂，政令两出"
+      ]
+    },
+    {
+      "id": "nation_zhangyin",
+      "name": "掌印司",
+      "continent": "continent_jingji",
+      "summary": "无根之人握有最多秘密的宦官衙门，是所有人的刀，也是所有人的把柄。",
+      "tension_seeds": [
+        "掌印司截留并私拆密折、替外藩递话，秘密越攒越多也越危险",
+        "掌印太监与储英堂某属官暗通、两头下注，随时可能被两边同时清算"
+      ]
+    },
+    {
+      "id": "nation_chuying",
+      "name": "储英堂",
+      "continent": "continent_jingji",
+      "summary": "押注未来、却最可能被今日圣心碾碎的储君党，太子之位风雨飘摇。",
+      "tension_seeds": [
+        "太子之位遭贵妃催易，储英堂急于借清流上疏固位",
+        "储英堂属官暗中结交掌印司求自保，被首辅察觉、疑其通内廷"
+      ]
+    }
+  ],
+  "neutral_port": {
+    "id": "port_sichen",
+    "name": "司晨楼",
+    "continent": "continent_jingji",
+    "summary": "皇城中的黎明朝会鼓楼，五派信使在此交汇、递话、试探；楼内动刀兵即犯众怒，是各方唯一都肯踏足的公共场域。"
+  },
+  "faction_matrix": {
+    "nation_chenghuan|nation_chuying": { "relation": -58, "note": "宠妃系催易储、储君党固位，是夺嫡死敌，一进一退皆见血。" },
+    "nation_chenghuan|nation_fengyi": { "relation": -66, "note": "贵妃系与中宫后党争圣心、争嫡统，水火不容，后宫无一日安宁。" },
+    "nation_chenghuan|nation_fuzheng": { "relation": -30, "note": "辅政阁联名弹劾外戚、压承欢殿气焰，贵妃系记恨在心。" },
+    "nation_chenghuan|nation_zhangyin": { "relation": 35, "note": "贵妃系以重金结好掌印司、借内廷打探圣心；裂缝在于掌印司同时把贵妃的把柄卖给辅政阁。" },
+    "nation_chenghuan|port_sichen": { "relation": 12, "note": "承欢殿信使在司晨楼递话试探，往来频繁而各留一手。" },
+    "nation_chuying|nation_fengyi": { "relation": 55, "note": "中宫与储英堂名为同气连枝、共扶嫡统；裂缝在于皇后无子，暗防对方借嫡统之名架空自己。" },
+    "nation_chuying|nation_fuzheng": { "relation": 48, "note": "储英堂借清流与辅政阁文官联名上疏固太子位；裂缝在于首辅疑储英堂暗通内廷。" },
+    "nation_chuying|nation_zhangyin": { "relation": -5, "note": "储英堂属官暗中结交掌印司求自保，两头下注、关系微妙。" },
+    "nation_chuying|port_sichen": { "relation": 28, "note": "储君党在司晨楼借清流之口造势，占朝议先声。" },
+    "nation_fengyi|nation_fuzheng": { "relation": 20, "note": "中宫后党与权臣党在'正统'上偶有共识，联手压宠妃系。" },
+    "nation_fengyi|nation_zhangyin": { "relation": -40, "note": "后党深恶宦官窃权，屡请皇帝裁抑内廷，与掌印司积怨。" },
+    "nation_fengyi|port_sichen": { "relation": 30, "note": "凤仪宫信使每日必至司晨楼，占尽先声、探听各方动向。" },
+    "nation_fuzheng|nation_zhangyin": { "relation": -62, "note": "首辅查得掌印司截留密折、私通外使，欲联清流扳倒内廷，内外朝势不两立。" },
+    "nation_fuzheng|port_sichen": { "relation": 25, "note": "辅政阁借司晨楼传递政令、笼络朝议。" },
+    "nation_zhangyin|port_sichen": { "relation": -12, "note": "掌印司借司晨楼探听外朝动静，楼内各派皆防其耳目。" }
+  }
+}

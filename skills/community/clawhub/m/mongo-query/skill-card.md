@@ -1,40 +1,57 @@
-## Description: <br>
-Query MongoDB databases for debugging and troubleshooting, including listing databases and collections, running JSON queries, checking connectivity, and connecting directly or through Kubernetes port-forwarding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MongoDB Query helps agents inspect MongoDB databases for troubleshooting by listing databases and collections, running JSON queries, and checking connectivity over direct or Kubernetes service connections.
 
-## Publisher: <br>
-[peintune](https://clawhub.ai/user/peintune) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[peintune](https://clawhub.ai/user/peintune)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect MongoDB state during debugging and troubleshooting. It helps an authorized agent list databases and collections, run bounded MongoDB queries, and connect through direct hosts or Kubernetes services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill needs credential-bearing MongoDB connection strings, and the security summary warns against storing full connection strings in project notes or source control. <br>
-Mitigation: Use a least-privilege, preferably read-only database account; provide credentials only at runtime; and keep full connection strings out of TOOLS.md and version-controlled files. <br>
-Risk: Kubernetes port-forward mode can connect the agent to the wrong service or namespace if the active context is incorrect. <br>
-Mitigation: Confirm the Kubernetes context, namespace, and service name before running port-forward mode, especially against production clusters. <br>
+## Use Case:
 
+Developers and operators use this skill to troubleshoot MongoDB deployments by asking an agent to list databases or collections, run targeted read queries, and return formatted results. It is intended for environments where users can provide approved MongoDB credentials and, when needed, Kubernetes namespace context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/peintune/mongo-query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Terminal text or JSON returned from MongoDB queries, with Markdown guidance and shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a MongoDB URI; --json returns raw JSON; the default query limit is 10.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: MongoDB connection strings can contain credentials, and the security evidence warns against storing passwords in TOOLS.md or command history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege MongoDB credentials from a protected secret source, and avoid recording credentials in repository files, prompts, or shell history.
+
+Risk: Kubernetes service-name connections can create port-forwards to services reachable by the active kubectl context.
+
+Mitigation: Confirm the cluster context and namespace before use, restrict kubectl access to required services, and close port-forwards after the query completes.
+
+Risk: Troubleshooting queries may return sensitive database records.
+
+Mitigation: Query only approved databases and collections, keep result limits low, and avoid sharing returned records outside the authorized troubleshooting workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/peintune/skills/mongo-query)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with bash command examples; query results are plain text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Query output is limited by a configurable result limit, with a default of 10 documents.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

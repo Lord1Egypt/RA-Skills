@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7ce7dbrpdq4a767zqz0mp9a1822n0p",
-  "slug": "openclaw-self-hosted-whisper",
-  "version": "0.1.0",
-  "publishedAt": 1772369257985
+  "name": "self-hosted-whisper-api",
+  "description": "Transcribe audio via a self-hosted Whisper instance (OpenAI-compatible API).",
+  "version": "1.0.0",
+  "author": "c5ai",
+  "license": "MIT",
+  "upstream": "steipete/openai-whisper-api"
 }

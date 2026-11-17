@@ -1,47 +1,64 @@
-## Description: <br>
-三件套闭环引擎 v2 links Nuwa, Darwin, and workflow-engine automation with whitelist exclusion, human confirmation, task validation, and retirement checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Evolution Loop scans recent agent session history for repeated tool-backed tasks, proposes or distills reusable skills, scores and improves them, and can generate workflow files and cleanup reports.
 
-## Publisher: <br>
-[lgx281227231](https://clawhub.ai/user/lgx281227231) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lgx281227231](https://clawhub.ai/user/lgx281227231)
 
-## Use Case: <br>
-Developers and automation maintainers use this skill to scan recent Hermes session logs for repeated tool-backed tasks, generate skill candidates, evolve generated skills, orchestrate workflows, and identify stale auto-generated skills for review or removal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can scan local Hermes session logs, which may expose local task history. <br>
-Mitigation: Run it only in an environment where the agent is permitted to read those logs, and review detected candidates before acting on them. <br>
-Risk: Manual run modes can create or alter skills and workflow files under the local Hermes directories. <br>
-Mitigation: Start with detect or run --auto, then review the generated candidate report before executing the full run path. <br>
-Risk: The gc command can delete auto-generated skill directories when not run in dry-run mode. <br>
-Mitigation: Use gc --dry-run first and approve the exact removal targets before running gc without dry-run. <br>
-Risk: The skill documentation includes external publishing and synchronization commands. <br>
-Mitigation: Approve exact git push, clawhub publish, and scp targets before allowing an agent to run those commands. <br>
+## Use Case:
 
+Developers and agent operators use this skill to identify repeated tool-backed work, draft reusable skills from observed patterns, improve skill documentation quality, orchestrate workflow files, and review stale auto-generated skills for cleanup.
 
-## Reference(s): <br>
-- [Whitelist Domains](references/whitelist-domains.md) <br>
-- [Protected Cron Jobs](references/protected-cron-jobs.md) <br>
-- [ClawHub Competitive Intel](references/clawhub-competitive-intel.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/lgx281227231/skill-evolution-loop) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown reports, generated SKILL.md files, workflow YAML, JSON state, and terminal status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes and updates files under the local Hermes skills and workflow directories when run outside dry-run or auto modes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: ClawHub release evidence) <br>
+Risk: The skill scans private local session history to identify automation candidates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in environments where the operator has approved local session-history scanning and understands what data may be reviewed.
+
+Risk: The skill can create persistent skills from chat-derived task patterns.
+
+Mitigation: Treat generated skills as drafts and inspect their instructions, commands, and boundaries before activation or publication.
+
+Risk: The cleanup command can delete auto-generated skill directories when run outside dry-run mode.
+
+Mitigation: Use dry-run cleanup first and require explicit confirmation or quarantine before deletion.
+
+Risk: The documented protected cron-job safeguard may not be fully enforced.
+
+Mitigation: Do not rely on protected-job documentation alone; verify enforcement before allowing automated cron-job changes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lgx281227231/skills/skill-evolution-loop)
+- [Whitelist Domain Configuration](references/whitelist-domains.md)
+- [Protected Cron Jobs](references/protected-cron-jobs.md)
+- [ClawHub Workflow Competitive Analysis](references/clawhub-competitive-intel.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, generated SKILL.md files, workflow YAML, and command-line status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local skill files, workflow configuration, state files, logs, candidate reports, and cleanup reports when its commands are run.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

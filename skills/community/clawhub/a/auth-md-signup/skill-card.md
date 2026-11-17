@@ -1,47 +1,59 @@
-## Description: <br>
-Complete an auth.md USER-CLAIMED signup (OTP flow) against any service that publishes the auth.md protocol, with the human confirming the OTP instead of the agent auto-confirming. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete a consent-preserving auth.md USER-CLAIMED signup OTP flow against any service that publishes the auth.md protocol, with the human confirming the OTP and the agent never auto-confirming.
 
-## Publisher: <br>
-[webface](https://clawhub.ai/user/webface) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[webface](https://clawhub.ai/user/webface)
 
-## Use Case: <br>
-Developers and external users use this skill to let an agent complete consent-preserving auth.md user-claimed signup, obtain a scoped service credential, store it for later use, and revoke it when requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles scoped service tokens and can persist them when AUTH_MD_TOKEN_STORE is configured. <br>
-Mitigation: Use persistent token storage only when acceptable for the deployment, keep the token store protected, and rely on session-only storage when persistence is not needed. <br>
-Risk: The signup flow asks the user for an email address and OTP to bind an account. <br>
-Mitigation: Require explicit user confirmation before registration, never auto-confirm the OTP, and stop when the human is not present to provide the code. <br>
-Risk: The skill follows service-published auth.md metadata and posts to discovered endpoints. <br>
-Mitigation: Validate fetched endpoints against the expected service domain or NoForm host before posting claim data or credentials. <br>
+## Use Case:
 
+Developers and external users use this skill to let an agent complete consent-preserving auth.md user-claimed signup flows, including NoForm reference flows and compatible services that publish auth.md metadata. The skill guides discovery, anonymous registration, email OTP confirmation, scoped token storage, and token revocation.
 
-## Reference(s): <br>
-- [NoForm homepage](https://noform.dev) <br>
-- [auth.md protocol overview](https://workos.com/auth-md) <br>
-- [auth.md specification](https://github.com/workos/auth.md) <br>
-- [OAuth 2.0 Protected Resource Metadata (RFC 9728)](https://datatracker.ietf.org/doc/html/rfc9728) <br>
-- [WorkOS auth.md documentation](https://workos.com/auth-md/docs) <br>
-- [ClawHub skill page](https://clawhub.ai/webface/auth-md-signup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown instructions with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May request user email and OTP in-channel; may persist scoped service tokens when AUTH_MD_TOKEN_STORE is configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and ClawHub release metadata) <br>
+Risk: Optional persistent token storage can save active bearer tokens and email addresses without mandatory local file protections.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Leave AUTH_MD_TOKEN_STORE unset for session-only storage, or use a private file or secret store with strict permissions and revoke tokens if the file may have been exposed.
+
+Risk: Signup binds an account to a human email address and can create scoped service credentials.
+
+Mitigation: Require explicit user consent before registration, collect the email in-channel from the user, and wait for the user to provide the OTP before completing the claim.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/webface/skills/auth-md-signup)
+- [Publisher profile](https://clawhub.ai/user/webface)
+- [NoForm](https://noform.dev)
+- [auth.md overview](https://workos.com/auth-md)
+- [auth.md protocol](https://github.com/workos/auth.md)
+- [OAuth 2.0 Protected Resource Metadata](https://datatracker.ietf.org/doc/html/rfc9728)
+- [WorkOS auth.md docs](https://workos.com/auth-md/docs)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires human confirmation for consent and OTP completion; may use AUTH_MD_TOKEN_STORE for optional persistent scoped token storage.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

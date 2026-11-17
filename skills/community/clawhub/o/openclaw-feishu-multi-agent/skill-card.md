@@ -1,46 +1,60 @@
-## Description: <br>
-Build and troubleshoot OpenClaw multi-agent workflows on Feishu by combining visible `<at>` mentions with `sessions_send` for reliable delegation, handoffs, and multi-hop group discussions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and troubleshoot OpenClaw multi-agent workflows on Feishu by combining visible `<at>` mentions with `sessions_send` delivery for reliable delegation, handoffs, and multi-hop group-chat discussions.
 
-## Publisher: <br>
-[CCharlesMeng](https://clawhub.ai/user/CCharlesMeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ccharlesmeng](https://clawhub.ai/user/ccharlesmeng)
 
-## Use Case: <br>
-Developers, engineers, and teams use this skill to build or repair OpenClaw multi-agent collaboration in Feishu groups. It helps define coordinator and specialist roles, generate OpenClaw configuration artifacts, audit existing setups, and repair Feishu group session metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Role files and generated OpenClaw configs may contain Feishu bot secrets or account identifiers. <br>
-Mitigation: Use placeholders in shared examples, keep real appSecret values out of repositories and chat logs, and restrict access to generated configuration files. <br>
-Risk: Write or fix modes can modify OpenClaw configuration, protocol files, identity files, or Feishu group session metadata. <br>
-Mitigation: Run dry-run or audit mode first, review planned changes, and use backups before enabling --write or --fix. <br>
-Risk: Incorrect role, binding, or session metadata can disrupt agent-to-agent handoffs in Feishu groups. <br>
-Mitigation: Validate the roles file, audit openclaw.json against the intended roster, and test a minimal coordinator-to-specialist handoff before broader rollout. <br>
+## Use Case:
 
+Developers and teams use this skill to design, scaffold, audit, and repair OpenClaw coordinator and specialist agent workflows for Feishu group chats. It helps users produce role-driven configuration, identity, protocol, and troubleshooting artifacts for reliable agent-to-agent handoffs.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/CCharlesMeng/openclaw-feishu-multi-agent) <br>
-- [README](artifact/README.md) <br>
-- [Reference guide](artifact/reference.md) <br>
-- [Templates](artifact/templates.md) <br>
-- [Role example](artifact/roles.example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, JSON configuration, generated markdown files, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The utility scripts default to dry-run behavior unless explicit write or fix flags are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence release.version and clawhub.json) <br>
+Risk: The skill can make broad persistent changes to OpenClaw routing, identity, protocol, and session files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run mode first, inspect every planned path and diff, and enable write mode only after confirming the target OpenClaw state directory and role mapping.
+
+Risk: Roles files may contain Feishu app secrets, account bindings, workspaces, and agent directories.
+
+Mitigation: Keep roles files trusted, use placeholders in shared artifacts, and remove real `appSecret` values from generated or published files.
+
+Risk: Repairing session metadata for the wrong Feishu group or agent can disrupt unrelated OpenClaw sessions.
+
+Mitigation: Provide the exact group ID, isolate this setup from unrelated sessions where possible, and create backups before applying repair operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ccharlesmeng/skills/openclaw-feishu-multi-agent)
+- [OpenClaw + Feishu multi-agent reference](reference.md)
+- [Reusable templates](templates.md)
+- [Example role definition](roles.example.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration, generated files, and reusable role templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Dry-run-first workflows are documented for configuration application and session repair.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

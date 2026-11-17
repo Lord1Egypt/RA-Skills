@@ -19,7 +19,7 @@
 ### ✅ Correct: Create Service
 
 ```bash
-aliyun eas create-service --region cn-hangzhou --body "$(cat service.json)" --user-agent AlibabaCloud-Agent-Skills
+aliyun eas create-service --region cn-hangzhou --body "$(cat service.json)" --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy
 ```
 
 ### ❌ Wrong: Missing --user-agent
@@ -39,13 +39,13 @@ aliyun eas create-service --region cn-hangzhou --body "$(cat service.json)"
 ### ✅ Correct: List Images
 
 ```bash
-aliyun aiworkspace list-images --verbose true --labels 'system.official=true,system.supported.eas=true' --page-size 50 --user-agent AlibabaCloud-Agent-Skills
+aliyun aiworkspace list-images --verbose true --labels 'system.official=true,system.supported.eas=true' --page-size 50 --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy
 ```
 
 ### ❌ Wrong: Labels format error
 
 ```bash
-aliyun aiworkspace list-images --verbose true --labels 'system.official=true' --user-agent AlibabaCloud-Agent-Skills
+aliyun aiworkspace list-images --verbose true --labels 'system.official=true' --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy
 ```
 
 ## 3. OSS Operations
@@ -73,7 +73,7 @@ ossutil ls bucket-name/path/
 ### ✅ Correct: Query VPC
 
 ```bash
-aliyun vpc describe-vpcs --biz-region-id cn-hangzhou --vpc-id vpc-xxx --user-agent AlibabaCloud-Agent-Skills
+aliyun vpc describe-vpcs --biz-region-id cn-hangzhou --vpc-id vpc-xxx --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy
 ```
 
 ### ❌ Wrong: Missing user-agent
@@ -331,7 +331,7 @@ aliyun eas create-service --region cn-hangzhou ...
 aliyun eas delete-service \
   --cluster-id cn-hangzhou \
   --service-name <service-name> \
-  --user-agent AlibabaCloud-Agent-Skills
+  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy
 ```
 
 ## ❌ Wrong: Not cleaning up failed services

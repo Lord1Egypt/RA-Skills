@@ -1,108 +1,108 @@
 ---
 name: fec-ui-design
-description: Use when building, reviewing, or improving frontend UI that needs product-specific design direction, design-system generation, Master/Page overrides, distinctive visual identity, anti-generic interface choices, first-screen hierarchy, UI polish, chart UX, interaction states, responsive behavior, or visual QA. When an external design file is authoritative, implement from that source instead of inventing direction; Chinese triggers include UI 设计, 设计系统, 视觉风格, 不要模板化, 高级感, 界面打磨, 交互状态.
+description: Use when building, reviewing, or improving frontend UI that needs product-specific design direction, design-system generation, Master/Page overrides, distinctive visual identity, anti-generic interface choices, first-screen hierarchy, UI polish, chart UX, interaction states, responsive behavior, or visual QA. Interface polishing, interactive state.
 ---
 
-# UI 设计
+#UI design
 
-适用于需要把前端界面推进到“符合产品语境、可扫描、可信赖、有辨识度，并且细节稳定”的 UI 任务。需要系统化设计建议时，加载 [design-intelligence.md](references/design-intelligence.md)；需要长期沉淀设计系统时，加载 [master-page-overrides.md](references/master-page-overrides.md)；上线前做 UI/UX QA 时，加载 [pre-delivery-checklist.md](references/pre-delivery-checklist.md)。
+Suitable for UI tasks that require advancing the front-end interface to be "in line with the product context, scannable, trustworthy, recognizable, and stable in details". When systematic design suggestions are needed, load [design-intelligence.md](references/design-intelligence.md); when long-term precipitation of the design system is required, load [master-page-overrides.md](references/master-page-overrides.md); when doing UI/UX QA before going online, load [pre-delivery-checklist.md](references/pre-delivery-checklist.md).
 
-可执行设计系统生成器位于 [design-system.mjs](scripts/design-system.mjs)，其原创知识包包括 [product-rules.json](data/product-rules.json)、[style-archetypes.json](data/style-archetypes.json)、[ux-quality-rules.json](data/ux-quality-rules.json) 和 [stack-ui-rules.json](data/stack-ui-rules.json)。
+The executable design system generator is located at [design-system.mjs](scripts/design-system.mjs), and its original knowledge package includes [product-rules.json](data/product-rules.json), [style-archetypes.json](data/style-archetypes.json), [ux-quality-rules.json](data/ux-quality-rules.json) and [stack-ui-rules.json](data/stack-ui-rules.json).
 
 ## Purpose
 
-为页面、组件、仪表盘和工具界面建立设计方向，并完成可落地的视觉与交互 polish。
+Establish design direction for pages, components, dashboards and tool interfaces, and complete implementable visual and interactive polish.
 
 ## Procedure
 
-1. 明确界面的工作
-   - 先说清它帮助用户完成什么任务，而不是先选颜色或布局。
-   - 判断这是日常高频工具、营销展示、内容阅读、可视化探索、游戏，还是配置/管理后台。
-   - 如果已有 Figma、Sketch、MasterGo、Pixso、墨刀、摹客或截图是事实来源，优先还原设计上下文，不自行发明方向。
+1. Clarify the work of the interface
+   - Start by saying what task it helps the user accomplish, rather than choosing a color or layout first.
+   - Determine whether this is a daily high-frequency tool, marketing display, content reading, visual exploration, game, or configuration/management backend.
+   - If Figma, Sketch, MasterGo, Pixso, Ink Knife, Mockup or screenshots are the source of truth, give priority to restoring the design context and do not invent your own direction.
 
-2. 读取设计语境
-   - 在决定布局、色彩、字体或动效前，先写出一行设计读取：页面类型、目标受众、主要任务、品牌约束和可信赖感来源。
-   - 判断当前界面是视觉型网站、作品/品牌展示、产品营销、工具工作区、数据密集界面、移动原生流程，还是设计稿还原任务。
-   - 如果 brief 有明显分歧，例如“极简但强烈实验性”，只问一个会改变方向的问题；否则基于上下文做出明确选择。
-   - 受监管、公共服务、医疗、金融、儿童或强可访问性场景优先稳定、清晰和可恢复，不为审美冒险牺牲可用性。
+2. Read the design context
+   - Before deciding on layout, colors, fonts, or motion, write out a line of design that reads: page type, target audience, primary mission, brand constraints, and sources of trustworthiness.
+   - Determine whether the current interface is a visual website, work/brand display, product marketing, tool workspace, data-intensive interface, mobile native process, or design draft restoration task.
+   - If the brief is clearly divergent, e.g. "minimalist yet intensely experimental", only ask a question that will change direction; otherwise make clear choices based on context.
+   - Regulated, public service, medical, financial, children, or strong accessibility scenarios prioritize stability, clarity, and recoverability without sacrificing usability for aesthetic adventures.
 
-3. 定义审美主张
-   - 写出目标用户、使用场景、可信赖感来源和一个可被记住的视觉锚点。
-   - 视觉锚点可以来自信息结构、真实媒体、数据形态、行业材质、字体性格、交互节奏或空间组织，而不是空泛装饰。
-   - 表现力必须服务业务语境：工具型界面重效率和稳定，展示型页面重主体识别和记忆点。
-   - 为页面类型设定设计拨盘：视觉张力、动效强度、信息密度、媒体真实性和内容说服力；这些拨盘必须随任务变化，而不是沿用同一套模板。
-   - 工具型和数据型界面默认提高信息密度、降低装饰动效；营销、作品集和品牌页可以提高视觉张力，但仍要保证首屏任务、主体和 CTA 可见。
-   - 设计拨盘用于约束实现选择：高视觉张力不等于混乱排版，高动效强度不等于滚动劫持，高媒体真实性不等于堆 stock 氛围图。
+3. Define aesthetic proposition
+   - Write out the target users, usage scenarios, sources of trustworthiness, and a visual anchor that will be remembered.
+   - Visual anchors can come from information structure, real media, data form, industry materials, font character, interaction rhythm or spatial organization, rather than empty decoration.
+   - Expression must serve the business context: tool-based interfaces focus on efficiency and stability, while display-based pages focus on subject recognition and memory points.
+   - Set design dials for page types: visual intensity, motion intensity, information density, media authenticity and content persuasiveness; these dials must change with the task, rather than sticking to the same set of templates.
+   - Tool-type and data-type interfaces increase information density and reduce decorative animation by default; marketing, portfolio and brand pages can increase visual tension, but still ensure that the first screen task, main body and CTA are visible.
+   - The design dial is used to constrain implementation choices: high visual tension does not equal chaotic typography, high dynamic intensity does not equal scroll hijacking, and high media authenticity does not equal piles of stock atmosphere images.
 
-4. 生成或读取设计系统
-   - 若项目还没有设计系统，可运行 `node skills/fec-ui-design/scripts/design-system.mjs "<product audience tone>" --project "<name>"` 生成建议。
-   - 若需要跨会话复用，使用 `--persist` 生成 `design-system/<project>/MASTER.md`；页面差异用 `--page <page>` 写入 `pages/<page>.md`。
-   - 构建具体页面时先读页面 override，再读 Master；页面规则只覆盖差异，不复制全量设计系统。
+4. Generate or read design system
+   - If the project does not yet have a design system, you can run `node skills/fec-ui-design/scripts/design-system.mjs "<product audience tone>" --project "<name>"` to generate suggestions.
+   - If reuse across sessions is required, use `--persist` to generate `design-system/<project>/MASTER.md`; use `--page <page>` to write page differences into `pages/<page>.md`.
+   - When building a specific page, read the page override first, and then read the Master; the page rules only cover the differences and do not copy the full design system.
 
-5. 建立首屏与视觉层级
-   - 工具型界面：首屏直接呈现核心工作区、列表、表格、画布或编辑器。
-   - 落地页：H1 使用品牌、产品、地点、人名或明确品类，价值说明放在辅助文案。
-   - 产品/对象页：首屏必须可见真实产品、对象、状态或可检查媒体。
-   - 首屏应留下一个明确记忆点，但不能遮挡核心任务、导航和状态反馈。
-   - 营销和产品页需要先写清受众、痛点、承诺、证据和行动入口；文案结构服务转化，但不使用夸张、空泛或不可验证的声明。
-   - 视觉型页面的首屏不能只是文字、渐变和装饰物；需要真实产品、人物、空间、品牌应用、数据状态或可检查的生成资产承担主体信息。
-   - 导航在桌面端应保持单行且高度克制；CTA 文案保持短而清楚，桌面端不应换成多行按钮。
+5. Establish above-the-fold and visual hierarchy
+   - Tool-based interface: The core workspace, list, table, canvas or editor is directly displayed on the first screen.
+   - Landing page: H1 uses the brand, product, place, name or clear category, and the value description is placed in the auxiliary copy.
+   - Product/Object page: The real product, object, status or checkable media must be visible on the first screen.
+   - The first screen should leave a clear memory point, but should not obscure core tasks, navigation and status feedback.
+   - Marketing and product pages need to clearly define the audience, pain points, commitments, evidence and action entry points; the copywriting structure serves conversion, but does not use exaggerated, empty or unverifiable claims.
+   - The first screen of a visual page cannot be just text, gradients and decorations; it needs real products, people, spaces, brand applications, data status or checkable generated assets to bear the main information.
+   - Navigation should remain single-line and highly restrained on desktop; CTA copy should be kept short and clear, and should not be replaced with multi-line buttons on desktop.
 
-6. 组织视觉语言
-   - 字体：优先沿用项目字体体系；若任务允许建立新方向，选择能表达产品性格的标题/正文字体组合，并保证可读性。
-   - 色彩：明确主色、功能色、中性色和强调色的角色，避免所有元素平均用力。
-   - 空间：根据任务选择高密度、留白、非对称、分栏、画布式或编辑器式布局，不套用固定卡片模板。
-   - 动效：只为页面入场、层级展开、状态确认、错误反馈和重点引导建立节奏，并尊重 `prefers-reduced-motion`。
-   - 媒体：优先使用真实产品、真实状态、真实图表、可检查截图或本地生成资产；不要用模糊氛围图、占位 URL 或无关插画替代主体信息。
-   - 图表：先判断数据任务是趋势、比较、构成、分布还是流程，再选择图表，不把所有数据都做成卡片或饼图。
-   - 视觉参考：没有权威设计稿且页面视觉质量是核心目标时，可先生成或收集分区级参考图，再从图中提取布局、层级、色彩和媒体策略；不要把整站压成一个不可读长图。
+6. Organize visual language
+   - Font: Give priority to using the project font system; if the task allows the establishment of a new direction, choose a title/text font combination that can express the character of the product and ensure readability.
+   - Color: Clarify the roles of primary, functional, neutral and accent colors to avoid using equal force on all elements.
+   - Space: Choose high-density, blank, asymmetric, column, canvas or editor layout according to the task, and do not apply fixed card templates.
+   - Motion effects: Only establish rhythm for page entry, hierarchical expansion, status confirmation, error feedback and key guidance, and respect `prefers-reduced-motion`.
+   - Media: Prioritize the use of real products, real states, real diagrams, checkable screenshots or locally generated assets; do not replace the main information with vague atmosphere images, placeholder URLs or irrelevant illustrations.
+   - Charts: First determine whether the data task is trend, comparison, composition, distribution or process, and then choose charts. Do not make all data into cards or pie charts.
+   - Visual reference: When there is no authoritative design draft and the visual quality of the page is the core goal, you can first generate or collect section-level reference images, and then extract the layout, hierarchy, color and media strategy from the images; do not compress the entire site into an unreadable long image.
 
-7. 对齐设计系统、组件与 token
-   - 先复用项目已有组件、token、图标库、路由和布局约定。
-   - 缺少 token 时集中补齐或明确记录，不要在多个组件里散落硬编码。
-   - 复杂 UI 在实现前写出复用组件、新建组件、响应式策略和状态覆盖。
-   - 设计系统先定义语义 token、组件 API、状态矩阵和使用边界，再落到 Tailwind、CSS Modules、组件库或 CSS 变量实现。
-   - Tailwind 专项 token、variant、dark mode 和 class 治理分流到 Tailwind 设计系统工作流；跨设备布局、容器查询和触摸目标分流到响应式布局工作流。
-   - 组件 API 应区分基础组件、业务组件和页面私有组件；避免让单个 `variant` 同时承担语义、尺寸、密度和权限含义。
+7. Align design systems, components and tokens
+   - First reuse the existing components, tokens, icon libraries, routing and layout conventions of the project.
+   - When tokens are missing, centrally complete them or record them clearly. Do not scatter hard coding in multiple components.
+   - Write out reused components, new components, responsive strategies and state overrides before implementing complex UI.
+   - The design system first defines semantic tokens, component APIs, state matrices and usage boundaries, and then falls to Tailwind, CSS Modules, component libraries or CSS variable implementations.
+   - Tailwind's special token, variant, dark mode and class management are offloaded to the Tailwind design system workflow; cross-device layout, container query and touch target are offloaded to the responsive layout workflow.
+   - The component API should distinguish between basic components, business components and page-private components; avoid letting a single `variant` bear semantic, size, density and permission implications at the same time.
 
-8. 打磨几何、文本和状态
-   - 嵌套圆角遵循“外层圆角约等于内层圆角 + 间距”的光学关系。
-   - 非对称图标、播放三角、箭头、星标等需要按视觉中心微调。
-   - 标题和短文本可使用 `text-wrap: balance` 或 `text-wrap: pretty`。
-   - 表格、价格、计数器、计时器使用 `font-variant-numeric: tabular-nums`。
-   - 小控件点击区域至少 40x40px，空间允许时优先 44x44px。
-   - focus ring 用于键盘定位，hover/active 用于鼠标反馈，disabled 不只靠透明度表达。
-   - 不在连续多个区块重复同一种三卡片、左右交错或大标题加右侧说明段落；每个区块的布局服务该区块的具体信息任务。
-   - Bento 和 feature grid 的格子数量必须由真实内容决定，不用空格子补构图；多格网格至少有明确主次、媒体或状态差异。
-   - 小型 uppercase eyebrow 要克制使用，不能成为每个区块的节奏拐杖。
+8. Polish geometry, text and states
+   - Nested fillets follow the optical relationship of "the outer fillet is approximately equal to the inner fillet + spacing".
+   - Asymmetric icons, play triangles, arrows, stars, etc. need to be fine-tuned according to the visual center.
+   - Titles and short text can use `text-wrap: balance` or `text-wrap: pretty`.
+   - Tables, prices, counters, and timers use `font-variant-numeric: tabular-nums`.
+   - The clickable area of the small control should be at least 40x40px, and 44x44px is preferred if space allows.
+   - focus ring is used for keyboard positioning, hover/active is used for mouse feedback, and disabled is not only expressed by transparency.
+   - Do not repeat the same three cards, stagger left and right, or have a large title with an explanatory paragraph on the right in multiple consecutive blocks; the layout of each block serves the specific information task of that block.
+   - The number of cells in the Bento and feature grid must be determined by the real content, and no empty cells are used to supplement the composition; multi-cell grids must at least have clear distinctions in primary and secondary, media or status.
+   - The small uppercase eyebrow should be used with restraint and not become a rhythm crutch for each block.
 
-9. 验证设计结果
-   - 检查 loading、empty、error、disabled、hover、focus、selected 状态。
-   - 在 mobile(375px)、tablet(768px)、desktop(1440px) 检查文案是否溢出或遮挡。
-   - 对依赖图片、图表、画布或 3D 的界面，确认资源真实渲染且承担主体信息。
-   - 复核是否存在默认紫色渐变、空泛 hero、卡片堆叠、单一色相或无语境字体等模板化痕迹。
-   - 检查首屏是否同时具备任务入口、主体识别、可信证据和下一屏内容线索；若只剩装饰，应回到信息架构重做。
-   - 对生产级控件补齐 hover、active、focus-visible、disabled、loading、selected、invalid 和 skeleton 状态。
-   - 对仪表盘、表格、编辑器和配置台检查扫描路径、密度、固定尺寸和重复使用时的疲劳感。
-   - 对营销页、作品集和品牌页检查首屏是否适配常见小笔记本高度，导航是否单行，CTA 是否对比合格且不换行。
-   - 复核是否存在连续三段以上相同 section 结构、重复 zigzag、重复三卡片、卡片套卡片、假截图或没有主体信息的视觉资产。
+9. Verify design results
+   - Check loading, empty, error, disabled, hover, focus, selected status.
+   - Check whether the copy text overflows or is blocked in mobile(375px), tablet(768px), desktop(1440px).
+   - For interfaces that rely on pictures, charts, canvases or 3D, confirm that the resources are truly rendered and bear the main information.
+   - Review whether there are traces of templates such as default purple gradients, empty heroes, card stacks, single hues, or non-contextual fonts.
+   - Check whether the first screen has task entrance, subject identification, credible evidence and content clues for the next screen; if only decoration is left, return to the information architecture and redo it.
+   - Complete hover, active, focus-visible, disabled, loading, selected, invalid and skeleton states for production-grade controls.
+   - Fatigue when checking scan paths, density, fixed sizes, and reuse for dashboards, tables, editors, and configuration tables.
+   - For marketing pages, portfolios and brand pages, check whether the first screen adapts to the height of common small notebooks, whether the navigation is single-line, and whether the CTA is qualified and does not wrap.
+   - Review whether there are more than three consecutive paragraphs with the same section structure, repeated zigzag, repeated three cards, cards within a card set, fake screenshots, or visual assets without main information.
 
 ## Constraints
 
-- 不把工具型应用做成营销落地页；首屏应是可用工作区。
-- 不用通用紫色渐变、装饰光斑、堆叠卡片或空泛 hero 作为默认方案。
-- 不用三等分 feature cards、连续 zigzag、重复 eyebrow、假产品截图或不可检查媒体作为默认页面节奏。
-- 不使用无语境默认字体、均匀无重点配色、重复圆角卡片和模板化双栏 hero 来替代真实设计判断。
-- 不在卡片里再套大卡片；页面分区优先用全宽区域或无框布局。
-- 不用可见文案解释控件本该表达的功能，常见动作优先用图标和 tooltip。
-- 不为了质感添加大面积装饰、模糊光斑、无语义渐变或无关重写。
-- 不为了统一风格让整个界面落入单一色相；颜色应有层次和语义区分。
-- 不把生成器输出当成不可修改的设计稿；它是决策起点，必须结合项目已有组件、token、用户任务和真实数据校正。
-- 不用不可检查的远程占位图、通用 stock 氛围图或 lorem 文案作为交付主体；缺素材时明确生成、制作或降级为真实结构化内容。
-- 不让视觉 polish 破坏键盘路径、触摸目标、文本可读性或低端设备性能。
-- 不把 Tailwind、组件库或 Storybook 文档等实现载体当成设计方向本身；它们应承接已经明确的产品语境和 token 边界。
-- 不因参考系统偏好而强制某个框架、图标库、动效库或 CSS 工具；始终优先遵循当前项目依赖和设计系统。
+- Do not turn tool-based applications into marketing landing pages; the home screen should be the available workspace.
+- No generic purple gradients, decorative flares, stacked cards, or empty heroes as the default scheme.
+- Don’t use thirds of feature cards, continuous zigzags, repeating eyebrows, fake product screenshots, or uncheckable media as the default page rhythm.
+- Don’t use context-free default fonts, uniform unfocused color palettes, repetitive rounded-corner cards, and templated two-column heroes as a substitute for real design judgment.
+- Do not put large cards inside cards; give priority to using full-width area or frameless layout for page partitions.
+- No visible copy is used to explain the functions that controls should express. Use icons and tooltips first for common actions.
+- Do not add large-area decorations, blurry spots, semantic-less gradients or irrelevant rewriting for the sake of texture.
+- Do not make the entire interface fall into a single hue in order to unify the style; colors should be hierarchical and semantically differentiated.
+- Do not regard the generator output as an unmodifiable design draft; it is the starting point for decision-making and must be corrected based on the existing components, tokens, user tasks and real data of the project.
+- No uncheckable remote placeholder images, generic stock mood images, or lorem copy as the delivery body; explicitly generate, produce, or degrade to real structured content when material is lacking.
+- Don't let visual polish ruin keyboard paths, touch targets, text readability, or low-end device performance.
+- Do not regard implementation vehicles such as Tailwind, component libraries, or Storybook documents as the design direction itself; they should inherit the already clear product context and token boundaries.
+- Do not force a framework, icon library, animation library or CSS tool to reference system preferences; always prioritize current project dependencies and design systems.
 
 ## Expected Output
 
-输出应包含明确的设计方向、首屏记忆点、视觉语言策略、组件/布局边界、状态覆盖、响应式策略和验证结果。复核时界面应符合业务语境、视觉层级支持快速扫描、交互状态完整，并避免泛化模板感。
+The output should include clear design direction, above-the-fold memo, visual language strategy, component/layout boundaries, state overrides, responsiveness strategy, and validation results. When reviewing, the interface should conform to the business context, the visual hierarchy should support fast scanning, the interaction status should be complete, and a generalized template feeling should be avoided.

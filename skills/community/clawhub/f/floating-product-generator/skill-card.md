@@ -1,42 +1,59 @@
-## Description: <br>
-Generate cinematic floating product shots, levitating product photography, and hovering e-commerce images with dramatic studio lighting via the Neta AI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate cinematic floating product shots, levitating product photography, and hovering e-commerce images with dramatic studio lighting for e-commerce, advertising, luxury brand marketing, creator content, and commercial product photography via the Neta AI image generation API.
 
-## Publisher: <br>
-[blammectrappora](https://clawhub.ai/user/blammectrappora) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blammectrappora](https://clawhub.ai/user/blammectrappora)
 
-## Use Case: <br>
-External users, e-commerce teams, marketers, creators, and developers use this skill to generate floating product photography from short text prompts for listings, ads, catalogs, and brand content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product prompts and related request data are sent to the external Neta/TalesOfAI service. <br>
-Mitigation: Do not submit confidential product information, unreleased campaign details, or sensitive customer data unless external service use is approved. <br>
-Risk: The API token is accepted through a command-line flag and included in outbound API headers. <br>
-Mitigation: Prefer a secure shell variable or secret manager when invoking the command, and avoid sharing command histories or logs that may contain tokens. <br>
+## Use Case:
 
+External users and developers use this skill to generate floating product photography from text prompts for commerce listings, ads, brand marketing, and creator content.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/blammectrappora/floating-product-generator) <br>
-- [Neta API Access](https://www.neta.art/open/) <br>
-- [TalesOfAI API Service](https://api.talesofai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text URL printed to stdout, with command-line usage guidance in Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Neta API token and sends prompts, token-bearing API requests, and optional reference image identifiers to the external Neta/TalesOfAI service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill requires users to pass a Neta API token on the command line.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a low-privilege, revocable token and avoid exposing tokens in shell history, logs, or shared terminals.
+
+Risk: Prompts and optional reference identifiers are sent to an external image generation service.
+
+Mitigation: Avoid submitting sensitive product plans, personal data, confidential images, or regulated content unless the service terms and data handling are approved.
+
+Risk: The install command may resolve mutable package content if not pinned or reviewed.
+
+Mitigation: Install through a trusted, pinned, or reviewed channel before use in controlled environments.
+
+## Reference(s):
+
+- [Floating Product Generator on ClawHub](https://clawhub.ai/blammectrappora/skills/floating-product-generator)
+- [Neta API access](https://www.neta.art/open/)
+- [Neta image API endpoint](https://api.talesofai.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text image URL with command-line status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Neta API token and supports square, portrait, landscape, and tall image sizes plus an optional reference image UUID.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

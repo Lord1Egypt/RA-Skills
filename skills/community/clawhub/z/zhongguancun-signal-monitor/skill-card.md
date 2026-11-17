@@ -1,40 +1,55 @@
-## Description: <br>
-Monitors public company signals such as financing, procurement, product launches, publications, and partnerships to identify and rank potential industry-academia-research collaboration opportunities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors public company signals for industry-academia collaboration opportunities, infers likely needs from financing, procurement, product, hiring, publication, and partnership signals, and returns ranked outreach recommendations.
 
-## Publisher: <br>
-[zhangxiaopeng-zgci](https://clawhub.ai/user/zhangxiaopeng-zgci) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangxiaopeng-zgci](https://clawhub.ai/user/zhangxiaopeng-zgci)
 
-## Use Case: <br>
-External users and partnership teams use this skill to scan public company activity and rank potential collaboration leads for follow-up. It is suited to weekly or daily monitoring of target companies and industries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public web research can miss relevant signals or surface outdated company information, leading to weak collaboration recommendations. <br>
-Mitigation: Provide a company list, time window, industry scope, and Top N count, then confirm findings before deeper follow-up research. <br>
+## Use Case:
 
+Collaboration and research partnership teams use this skill to scan Chinese AI and technology companies for timely industry-academia collaboration leads and decide which organizations merit follow-up research or outreach.
 
-## Reference(s): <br>
-- [Our Research Directions](references/our-research.md) <br>
-- [Scoring Standard](references/scoring.md) <br>
-- [Monitoring Seed List](references/seed-list.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown report with ranked company recommendations and rationale] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Top N company lists, signal summaries, inferred needs, scoring, and next-step recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Public web search results and recent company signals may be stale, incomplete, or ambiguous.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check source dates and corroborate material claims before treating a ranked lead as outreach-ready.
+
+Risk: The seed company list and scoring assumptions may not match every user's organization or partnership strategy.
+
+Mitigation: Review and tune the seed list, research directions, and scoring thresholds before routine operational use.
+
+## Reference(s):
+
+- [Our Research Directions Quick Reference](references/our-research.md)
+- [Fit Scoring Standard](references/scoring.md)
+- [Monitoring Seed List](references/seed-list.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown report with ranked recommendations and concise rationale]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces YES, MAYBE, and NO opportunity groupings with signal summaries, inferred needs, fit scores, recommended contact path, and next-step guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

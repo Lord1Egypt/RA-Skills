@@ -74,10 +74,10 @@ import argparse
 import json
 import os
 import sys
-from mps_auto_upgrade import check_sdk_version
 
 _SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, _SCRIPT_DIR)
+from mps_auto_upgrade import check_sdk_version
 
 try:
     from mps_load_env import ensure_env_loaded as _ensure_env_loaded
@@ -120,10 +120,11 @@ DEFAULT_TIMEOUT = 600
 # =============================================================================
 
 def get_credentials():
-    """从环境变量获取腾讯云凭证，若缺失则尝试自动加载。"""
+    """从环境变量获取腾讯云凭证。若缺失则尝试从 dotenv 文件自动加载后重试。"""
     secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID", "")
     secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY", "")
     if not secret_id or not secret_key:
+        # 凭证可能写在 ~/.env 等 dotenv 文件中而未导出，先尝试加载再重试
         if _LOAD_ENV_AVAILABLE:
             print("[load_env] 环境变量未设置，尝试从系统文件自动加载...", file=sys.stderr)
             _ensure_env_loaded(verbose=True)
@@ -136,7 +137,7 @@ def get_credentials():
             else:
                 print(
                     "\n错误：TENCENTCLOUD_SECRET_ID / TENCENTCLOUD_SECRET_KEY 未设置。\n"
-                    "请在 ~/.env、~/.profile 等文件中添加这些变量。\n",
+                    "请在 ~/.env、~/.bashrc、~/.profile 或 <SKILL_DIR>/.env 中添加这些变量。\n",
                     file=sys.stderr,
                 )
             sys.exit(1)
@@ -157,6 +158,7 @@ def create_mps_client(cred, region):
     """创建 MPS 客户端。"""
     http_profile = HttpProfile()
     http_profile.endpoint = os.environ.get("TENCENTCLOUD_MPS_ENDPOINT", "mps.tencentcloudapi.com")
+    http_profile.reqMethod = "POST"
     client_profile = ClientProfile()
     client_profile.httpProfile = http_profile
     return mps_client.MpsClient(cred, region, client_profile)
@@ -387,6 +389,10 @@ def parse_args():
     # 任务控制
     task_group = parser.add_argument_group("任务控制")
     task_group.add_argument(
+        "--dry-run", action="store_true",
+        help="仅打印请求参数 JSON，不实际调用 API（不需要密钥）",
+    )
+    task_group.add_argument(
         "--no-wait", action="store_true",
         help="只提交任务，不等待结果（返回 TaskId 后退出）",
     )
@@ -406,15 +412,6 @@ def parse_args():
         default=os.environ.get("TENCENTCLOUD_API_REGION", ""),
         help="MPS API 接入地域（默认读取 TENCENTCLOUD_API_REGION，否则 ap-guangzhou）",
     )
-    auth_group.add_argument(
-        "--secret-id",
-        help="腾讯云 SecretId（不传则读取环境变量 TENCENTCLOUD_SECRET_ID）",
-    )
-    auth_group.add_argument(
-        "--secret-key",
-        help="腾讯云 SecretKey（不传则读取环境变量 TENCENTCLOUD_SECRET_KEY）",
-    )
-
     args = parser.parse_args()
 
     # 背景生成模式下必须提供 prompt
@@ -438,21 +435,36 @@ def main():
             pass
     args = parse_args()
 
-    # 命令行传入的 secret 覆盖环境变量
-    if args.secret_id:
-        os.environ["TENCENTCLOUD_SECRET_ID"] = args.secret_id
-    if args.secret_key:
-        os.environ["TENCENTCLOUD_SECRET_KEY"] = args.secret_key
-
-    cred = get_credentials()
-    region = args.region
-    client = create_mps_client(cred, region)
-
     payload = build_request_payload(args)
+    region = args.region
 
     # 判断模式
     has_bg = bool(args.bg_url or args.bg_cos_key)
     mode = "背景融合" if has_bg else "背景生成"
+
+    if args.dry_run:
+        print("=" * 60)
+        print("【Dry Run 模式】仅打印请求参数，不实际调用 API")
+        print("=" * 60)
+        print(f"模式: {mode}（ScheduleId={SCHEDULE_ID}）")
+        if args.subject_url:
+            print(f"主图: {args.subject_url}")
+        else:
+            print(f"主图: COS - {args.subject_cos_key}")
+        if has_bg:
+            if args.bg_url:
+                print(f"背景图: {args.bg_url}")
+            else:
+                print(f"背景图: COS - {args.bg_cos_key}")
+        if args.prompt:
+            print(f"Prompt: {args.prompt}")
+        print("-" * 60)
+        print(json.dumps(payload, ensure_ascii=False, indent=2))
+        return
+
+    # 正常执行：需要密钥
+    cred = get_credentials()
+    client = create_mps_client(cred, region)
 
     print(f"🚀 提交{mode}任务...")
     # 打印主图来源

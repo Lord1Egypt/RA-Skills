@@ -1,44 +1,59 @@
-## Description: <br>
-Provides LAC POWER brand design rules for colors, logo use, platform specifications, copy style, and marketing-material compliance checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LAC CreativeRules provides LAC POWER brand and marketing design guidance for colors, logo usage, platform formats, copy tone, and compliance checks.
 
-## Publisher: <br>
-[wallacelacpower-source](https://clawhub.ai/user/wallacelacpower-source) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wallacelacpower-source](https://clawhub.ai/user/wallacelacpower-source)
 
-## Use Case: <br>
-Designers, marketers, and agents use this skill to apply LAC POWER brand guidance when creating or reviewing ecommerce, social media, and offline marketing materials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Brand-specific guidance may influence unrelated design requests if broad trigger phrases activate the skill too often. <br>
-Mitigation: Use narrower activation rules and apply the skill only to LAC POWER brand or marketing-material work. <br>
-Risk: Referenced logos, product images, wiring diagrams, and product-spec files may be missing or come from an untrusted source. <br>
-Mitigation: Verify referenced assets and product-spec files from a trusted LAC POWER source before using them in deliverables. <br>
-Risk: Marketing visuals or copy can misstate product specifications or depict unsafe wiring when product references are not checked. <br>
-Mitigation: Validate power, capacity, connection, and DC-port details against the product specification and wiring references before publishing. <br>
+## Use Case:
 
+Marketing designers, content creators, and brand reviewers use this skill to create or evaluate LAC POWER marketing materials for visual identity, platform sizing, audience tone, product presentation, and brand compliance.
 
-## Reference(s): <br>
-- [LAC POWER Brand Design Guide v2.0](GUIDE.md) <br>
-- [LAC POWER Design Guide Reference](references/design-guide.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/wallacelacpower-source/lac-creativerules) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance and design-rule checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no tools, API calls, or shell commands detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release metadata) <br>
+Risk: Broad brand or design triggers may apply LAC POWER rules to unrelated creative requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the user wants LAC POWER-specific guidance before applying brand rules.
+
+Risk: Final materials may use unauthorized logos, product images, fonts, or other assets.
+
+Mitigation: Require authorized brand and product assets before producing or approving final marketing materials.
+
+Risk: Marketing copy or product visuals may include inaccurate product parameters or unsafe port and wiring depictions.
+
+Mitigation: Check product specifications, DC port references, and wiring diagrams before using technical claims or connected-product imagery.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wallacelacpower-source/skills/lac-creativerules)
+- [LAC POWER brand design guide](artifact/GUIDE.md)
+- [LAC POWER design guide reference](artifact/references/design-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown or plain-text design guidance and compliance feedback]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior; outputs should be adapted to the requested audience, channel, and authorized brand assets.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,58 @@
-## Description: <br>
-Parallel Orchestrate turns a gstack implementation plan into wave-based parallel Claude Code subagent work, using isolated git worktrees, wave verification, cherry-pick integration, and handoff to review and ship. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parallel Orchestrate shreds a finished gstack implementation plan into wave-based subtasks, dispatches parallel Claude Code subagents in isolated git worktrees, verifies each wave, and hands off to review and shipping skills.
 
-## Publisher: <br>
-[kaicianflone](https://clawhub.ai/user/kaicianflone) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaicianflone](https://clawhub.ai/user/kaicianflone)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to execute a completed implementation plan through coordinated parallel subagents, isolated worktrees, wave-level verification, and review and shipping handoff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill coordinates substantial repository changes and can create local commits and run records. <br>
-Mitigation: Review the generated task plan before approving dispatch and run it from a clean feature branch. <br>
-Risk: State files may retain plan names, branch names, result metadata, and analytics records. <br>
-Mitigation: Clear local gstack state when plan names, branch names, or result metadata are sensitive. <br>
-Risk: The workflow depends on gstack and superpowers sub-skills for review, shipping, worktree isolation, and parallel dispatch. <br>
-Mitigation: Verify the referenced gstack and superpowers dependencies before use. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to execute an approved implementation plan by decomposing work into parallel tasks, coordinating isolated subagents, validating each wave, and preparing the branch for review and shipping.
 
-## Reference(s): <br>
-- [Parallel Orchestrate repository](https://github.com/kaicianflone/parallel-orchestrate) <br>
-- [ClawHub skill page](https://clawhub.ai/kaicianflone/parallel-orchestrate) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/kaicianflone) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with shell command blocks and JSON run records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces orchestration plans, task state, local commits, run records, and handoff guidance for agent execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill has high-impact repository mutation authority because it can spawn parallel coding agents, run repository test and lint commands, and cherry-pick subagent commits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in trusted repositories, review the generated TASKS.md before approving dispatch, and inspect diffs before shipping.
+
+Risk: Custom test or lint commands and unusual branch names can increase execution and state-handling risk.
+
+Mitigation: Approve only expected commands, avoid unusual branch names for orchestration runs, and review command output at each wave gate.
+
+Risk: Telemetry is local-first but may send remote telemetry through the existing gstack telemetry binary when the user has opted in.
+
+Mitigation: Keep telemetry disabled unless the repository owner accepts that behavior, and review gstack telemetry settings before use.
+
+## Reference(s):
+
+- [Parallel Orchestrate GitHub Repository](https://github.com/kaicianflone/parallel-orchestrate)
+- [Parallel Orchestrate ClawHub Skill Page](https://clawhub.ai/kaicianflone/skills/parallel-orchestrate)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with bash command blocks and JSONL orchestration state]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces task breakdowns, wave verification guidance, subagent dispatch prompts, state files, and final handoff reports.]
+
+## Skill Version(s):
+
+1.6.0 (source: frontmatter and ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

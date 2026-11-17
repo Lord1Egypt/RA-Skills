@@ -1,0 +1,26 @@
+{
+  "slug": "wenchang-router",
+  "title": "Wenchang Router",
+  "category": "content",
+  "summary": "Routes content across research, review, illustration, card authoring, card rendering, human confirmation, URL, and publish stages.",
+  "keywords": [
+    "content routing",
+    "writing workflow",
+    "router",
+    "brief",
+    "publishing workflow",
+    "cards-to-images"
+  ],
+  "user_needs": [
+    "know which writing workflow step comes next",
+    "turn a vague content request into an executable brief",
+    "avoid jumping straight to a final draft",
+    "route reviewed platform artifacts through image and release gates",
+    "send publish-ready card packages to rendering and visual QA"
+  ],
+  "source_dir": "skills/content/wenchang-router",
+  "entry": "SKILL.md",
+  "package_strategy": "on-demand",
+  "package_format": "skill",
+  "status": "ready"
+}

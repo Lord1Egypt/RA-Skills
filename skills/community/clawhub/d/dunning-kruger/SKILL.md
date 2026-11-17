@@ -1,6 +1,6 @@
 ---
 name: dunning-kruger
-description: "Activate when: someone says 'how hard could it be' about an unfamiliar domain; a novice dismisses expert opinion or says 'I could do that'; someone's self-assessed confidence seems disconnected from their actual track record; a hiring or promotion decision is driven by self-presentation; feedback loops are absent and someone is operating on gut confidence alone. Do NOT activate when: the person is a known expert with an established external track record; the confidence claim is in a domain with tight, recent feedback loops that already calibrate performance."
+description: "Activate when: someone says 'how hard could it be' about an unfamiliar domain; a novice dismisses expert opinion or says 'I could do that'; someone's self-assessed confidence seems disconnected from their actual track record; a hiring or promotion decision is driven by self-presentation; feedback loops are absent and someone is operating on gut confidence alone. Do NOT activate when: the person is a known expert with an established external track record; the confidence claim is in a domain with tight, recent feedback loops that already calibrate performance. More: deciqai.com/c/dunning-kruger"
 ---
 
 # Dunning-Kruger Effect
@@ -9,7 +9,7 @@ description: "Activate when: someone says 'how hard could it be' about an unfami
 
 The **Dunning-Kruger effect** is the systematic self-assessment asymmetry demonstrated by Kruger & Dunning (1999): bottom-quartile performers overestimate rank by ~50 percentile points; top-quartile performers underestimate by ~5 points. Mechanism: the cognitive skills needed to *perform* a task are the same ones needed to *evaluate* performance — so novices lack the metacognition to see their own gap. The corrective is external measurement and feedback, not internal vigilance.
 
-Composes with [`metacognition`](../metacognition/SKILL.md), [`probabilistic-thinking`](../probabilistic-thinking/SKILL.md), [`critical-thinking`](../critical-thinking/SKILL.md), and [`confirmation-bias`](../confirmation-bias/SKILL.md).
+Composes with `metacognition`, `probabilistic-thinking`, `critical-thinking`, and `confirmation-bias`.
 
 ## When to Use
 
@@ -18,6 +18,7 @@ Composes with [`metacognition`](../metacognition/SKILL.md), [`probabilistic-thin
 - "How hard could it be?" asked about a domain the asker hasn't worked in
 - Feedback loops are absent; self-assessment is contradicted by external data and rejected
 - Someone mentions "overconfident," "doesn't know what they don't know," or "imposter syndrome" (the inverse)
+- Confidence about AI capabilities/limits, AI capex or valuations, or AI adoption after light exposure ("I built a demo, so I understand production AI"; "we can ship this AI feature in a quarter")
 
 **Not when:** person is a known expert with an external track record; domain has tight, recent feedback loops that already calibrate performance; high-confidence claim is self-deprecating (actual metacognition signal).
 
@@ -62,7 +63,8 @@ Quartile diagnosis: self=X | external=Y | gap=Z pts | pattern=<novice-OC/calibra
 Intervention: <method> | Owner: | Re-measure:
 ```
 
-*→ Method in Action: [Kruger and Dunning's 1999 Cornell Studies](examples/kruger-and-dunnings-1999-cornell-studies.md)*
+*→ Method in Action: [Kruger and Dunning's 1999 Cornell Studies](examples/kruger-and-dunnings-1999-cornell-studies.md) · [Cost Forecasts in Public Works Projects](examples/cost-forecasts-in-public-works-projects.md)*
+*→ 2026 lens: ["I Built a Demo, So I Understand Production AI" (2023–2026)](examples/llm-overconfidence-in-the-ai-wave-2023-2026.md)*
 
 ## Pack: Common Novice Overestimation Patterns
 
@@ -108,4 +110,6 @@ Intervention: <method> | Owner: | Re-measure:
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/dunning-kruger** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/dunning-kruger.json*

@@ -1,38 +1,49 @@
-## Description: <br>
-Connects a Weibo channel to OpenClaw by collecting a Weibo AppId and AppSecret and configuring them with the OpenClaw CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents connect a Weibo channel to OpenClaw by collecting Weibo AppId and AppSecret credentials and setting them with OpenClaw CLI configuration commands.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Developers and operators use this skill to configure Weibo channel credentials for an OpenClaw deployment. It asks for the required AppId and AppSecret, applies them through OpenClaw configuration commands, and verifies the channel configuration when possible. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Weibo AppSecret is stored persistently in OpenClaw configuration. <br>
-Mitigation: Use least-privileged or test credentials where possible, avoid exposing the AppSecret in logs or transcripts, and rotate it if disclosure is suspected. <br>
+## Use Case:
 
+Developers and operators use this skill to configure Weibo channel credentials for an OpenClaw installation. It guides the agent to request missing credentials, apply them with OpenClaw CLI commands, and verify the resulting channel configuration when possible.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jpengcheng523-netizen/jpeng-weibo-config) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Handles user-provided Weibo AppId and AppSecret values for OpenClaw configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill handles a Weibo AppSecret through plain CLI commands, which can expose the secret in shared chats, terminal history, transcripts, logs, or command output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a trusted environment, avoid pasting AppSecret values into shared contexts, verify configuration without printing full secret-bearing values, and rotate the AppSecret if exposure occurs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/jpeng-weibo-config)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include credential-handling guidance and verification steps for OpenClaw channel configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,54 @@
-## Description: <br>
-Hermes Learning syncs self-updated learning materials from Hermes Agent into WorkBuddy, including persistent evolution.db memory entries, concept links, and a feedback loop. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hermes learning-material synchronization skill that imports self-updated learning materials from Hermes Agent to help WorkBuddy Agent optimize itself, with evolution.db persistence, concept links, and a bidirectional feedback loop.
 
-## Publisher: <br>
-[liuboacean](https://clawhub.ai/user/liuboacean) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuboacean](https://clawhub.ai/user/liuboacean)
 
-## Use Case: <br>
-Developers and agent operators use this skill to transfer Hermes learning summaries into WorkBuddy so WorkBuddy can maintain strategy patterns, optimization notes, concept links, and feedback reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persistently change WorkBuddy memory by importing Hermes learning summaries and writing to evolution.db. <br>
-Mitigation: Review ~/.hermes/shared/memory_summary.json and workbuddy_feedback.json before applying, back up ~/.workbuddy/memory/evolution.db when it matters, and avoid automatic scheduled use unless ongoing memory updates are intended. <br>
+## Use Case:
 
+Developers and agent operators use this skill to synchronize Hermes Agent learning summaries, strategy data, and feedback reports into WorkBuddy Agent's persistent learning stores. It supports reviewing status, applying learning materials, listing strategies, checking content against avoid patterns, and inspecting feedback analysis.
 
-## Reference(s): <br>
-- [Hermes Learning on ClawHub](https://clawhub.ai/liuboacean/hermes-learning) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [CLI text output, JSON state files, and SQLite memory updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads Hermes shared JSON files and can persist WorkBuddy memory updates in evolution.db.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.1.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill can import Hermes learning text into WorkBuddy's persistent global memory without enough review, validation, or containment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that memory sharing is intended, review ~/.hermes/shared/memory_summary.json before applying learning materials, and avoid unattended daily imports.
+
+Risk: Incorrect or low-quality imported guidance may persist in ~/.workbuddy/memory/evolution.db.
+
+Mitigation: Inspect or delete affected entries from ~/.workbuddy/memory/evolution.db if bad guidance is imported.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/liuboacean/skills/hermes-learning)
+- [Publisher profile](https://clawhub.ai/user/liuboacean)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and local JSON or SQLite side effects when the bundled script is run]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read Hermes shared memory files and write WorkBuddy strategy, effect, feedback, and evolution.db entries.]
+
+## Skill Version(s):
+
+4.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-Self-healing monitor for OpenClaw gateways, crons, and agent sessions. Use when you need to watch if OpenClaw is running, get Telegram alerts on failures, auto-restart the gateway, detect missed crons or stuck sessions, or monitor token costs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-healing monitor for OpenClaw gateways, crons, agent sessions, auth, budgets, and token costs that sends Telegram alerts and can auto-fix supported failures.
 
-## Publisher: <br>
-[RelayPlane](https://clawhub.ai/user/RelayPlane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[relayplane](https://clawhub.ai/user/relayplane)
 
-## Use Case: <br>
-Developers and teams running OpenClaw agents use ClawDoctor to monitor gateway, cron, session, auth, budget, and cost health, receive Telegram alerts, and apply configured recovery actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A local daemon can take disruptive actions against OpenClaw operations when healing is enabled. <br>
-Mitigation: Run in dry-run mode first and enable automatic healing only after confirming the configured actions are appropriate for the target environment. <br>
-Risk: Telegram approval callbacks can trigger disruptive actions without verifying the Telegram user or chat that clicked them. <br>
-Mitigation: Keep Telegram bot tokens private, restrict who can access approval messages, and avoid enabling Heal auto-fix on production systems until callback authorization is addressed. <br>
-Risk: Alerting depends on Telegram credentials and local configuration stored on the host. <br>
-Mitigation: Limit access to the host configuration directory and rotate credentials if the Telegram token or chat configuration may have been exposed. <br>
+## Use Case:
 
+Developers and teams running OpenClaw in production use this skill to monitor gateway, cron, session, auth, budget, and token-cost health, receive Telegram alerts, and run or configure supported remedial actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/RelayPlane/turleydesigns-clawdoctor) <br>
-- [ClawDoctor website](https://clawdoctor.dev) <br>
-- [ClawDoctor docs](https://clawdoctor.dev/docs) <br>
-- [npm package](https://www.npmjs.com/package/clawdoctor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may include local daemon commands, dry-run usage, alert setup, service installation, status checks, logs, and remediation steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.13 (source: package.json and server release metadata) <br>
+Risk: Telegram approval callbacks can trigger disruptive administrative actions without verifying who pressed the button.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep approvals in a private/admin-only chat, avoid callback buttons in shared groups until sender and chat authorization is fixed, and prefer dry-run or manual CLI review for sensitive actions.
+
+Risk: Heal-tier operation can restart services, run or disable crons, refresh auth, and kill sessions.
+
+Mitigation: Start with `clawdoctor start --dry-run`, review configuration before enabling auto-fix, and rely on snapshots and audit logs when taking healing actions.
+
+Risk: License activation sends the license key to clawdoctor.dev, and systemd installation adds persistence.
+
+Mitigation: Activate licenses only when that external validation is acceptable, and enable the systemd service only when persistent monitoring is intended.
+
+## Reference(s):
+
+- [ClawDoctor homepage](https://clawdoctor.dev)
+- [ClawDoctor documentation](https://clawdoctor.dev/docs)
+- [ClawDoctor npm package](https://www.npmjs.com/package/clawdoctor)
+- [ClawDoctor GitHub project link from artifact](https://github.com/turleydesigns/clawdoctor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include OpenClaw-specific operational commands; dry-run and approval review are recommended before enabling healing actions.]
+
+## Skill Version(s):
+
+0.4.13 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

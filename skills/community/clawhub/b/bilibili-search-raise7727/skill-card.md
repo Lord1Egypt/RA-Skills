@@ -1,41 +1,54 @@
-## Description: <br>
-Real-time Bilibili video search and structured extraction of trending video titles through a local Playwright-backed API for AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Bilibili by keyword through a companion local service and returns current video search results for agent analysis.
 
-## Publisher: <br>
-[raise7727](https://clawhub.ai/user/raise7727) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raise7727](https://clawhub.ai/user/raise7727)
 
-## Use Case: <br>
-Developers and AI-agent users use this skill to search Bilibili by keyword, retrieve current video results, and support follow-on summarization, trend tracking, or competitive analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user-provided search keywords to a local service automatically. <br>
-Mitigation: Review search terms before use when they may contain sensitive information. <br>
-Risk: The local FastAPI and Playwright service performs the actual browser automation and Bilibili access. <br>
-Mitigation: Install and run only a trusted local service, and verify it is listening on the expected localhost port before enabling the skill. <br>
+## Use Case:
 
+Developers and AI-agent users use this skill to search Bilibili by keyword and retrieve current video results for trend tracking, creator monitoring, and competitive research. Use requires an intentionally trusted local service on 127.0.0.1:8000.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/raise7727/bilibili-search-raise7727) <br>
-- [Publisher profile](https://clawhub.ai/user/raise7727) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON] <br>
-**Output Format:** [Text returned from a local API, intended to contain structured Bilibili search results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a trusted local FastAPI and Playwright service on port 8000.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill forwards user-provided keywords to a trusted local service, which may browse Bilibili or log requests depending on that service's implementation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use only when intentionally running and trusting the companion FastAPI service on 127.0.0.1:8000; avoid sensitive search keywords.
+
+Risk: The skill depends on the companion local FastAPI and Playwright/Chromium setup being available and correctly configured.
+
+Mitigation: Start the expected local service and verify its browser automation dependencies before relying on search results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/raise7727/skills/bilibili-search-raise7727)
+- [Publisher profile](https://clawhub.ai/user/raise7727)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [Text response, typically JSON-formatted search results from the local service]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns the local service response for the supplied keyword; no additional post-processing is evidenced.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

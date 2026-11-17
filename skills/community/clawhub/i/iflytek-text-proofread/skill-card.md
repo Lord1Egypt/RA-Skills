@@ -1,43 +1,61 @@
-## Description: <br>
-Iflytek Text Proofread uses iFlytek's Official Document Proofreading API to detect and suggest corrections for Chinese text, including typos, punctuation, word order, factual issues, sensitive content, and related official-document proofreading errors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+iFlytek Official Document Proofreading detects and corrects Chinese text issues including typos, punctuation, word order, factual mistakes, sensitive content, and other supported proofreading categories.
 
-## Publisher: <br>
-[iflytek.skills](https://clawhub.ai/user/iflytek.skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iflytek.skills](https://clawhub.ai/user/iflytek.skills)
 
-## Use Case: <br>
-Developers and agents use this skill to proofread Chinese text, especially official documents, by submitting user-provided text to iFlytek's proofreading service and returning readable correction findings or decoded JSON. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided text is sent to iFlytek's third-party proofreading API. <br>
-Mitigation: Use the skill only when the user or organization permits that data transfer, and avoid confidential, regulated, personal, or secret material unless approved. <br>
-Risk: The skill requires iFlytek API credentials to call the service. <br>
-Mitigation: Provide credentials through environment variables and keep them out of prompts, shared files, logs, and rendered responses. <br>
+## Use Case:
 
+Developers and content teams use this skill to proofread Chinese text, especially official documents, through the iFlytek proofreading API. It can check direct text input, standard input, or a local text file and return readable findings or decoded JSON.
 
-## Reference(s): <br>
-- [iFlytek Text Proofread service](https://www.xfyun.cn/services/text_proofread) <br>
-- [iFlytek Official Document Proofreading documentation](https://www.xfyun.cn/services/textCorrectionOfficial) <br>
-- [iFlytek console service setup](https://console.xfyun.cn/services/s37b42a45) <br>
-- [ClawHub skill page](https://clawhub.ai/iflytek.skills/iflytek-text-proofread) <br>
+### Deployment Geography for Use:
 
+Global, subject to iFlytek service availability and organizational approval for sending text to the external service.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [Human-readable command-line text, or decoded JSON when --raw is used] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and iFlytek credentials in IFLY_APP_ID, IFLY_API_KEY, and IFLY_API_SECRET; input text is truncated at 220,000 characters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: User-provided text is sent to iFlytek's external proofreading service using the user's iFlytek API credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for text approved for that data flow, and avoid confidential, regulated, or sensitive documents unless the organization has approved submission to iFlytek.
+
+Risk: The API request requires IFLY_APP_ID, IFLY_API_KEY, and IFLY_API_SECRET credentials in the runtime environment.
+
+Mitigation: Store credentials in environment variables or an approved secret manager, rotate them according to policy, and avoid placing them in prompts, files, or logs.
+
+Risk: Texts longer than 220,000 characters are truncated before proofreading, so omitted text will not be checked.
+
+Mitigation: Split long documents into approved chunks and review combined results before relying on the proofreading output.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/iflytek.skills/skills/iflytek-text-proofread)
+- [iFlytek text proofreading service](https://www.xfyun.cn/services/text_proofread)
+- [iFlytek official document proofreading documentation](https://www.xfyun.cn/services/textCorrectionOfficial)
+- [iFlytek service console](https://console.xfyun.cn/services/s37b42a45)
+- [iFlytek pricing information](https://www.xfyun.cn/services/textCorrectionOfficial?target=price)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, JSON]
+
+**Output Format:** [Human-readable terminal text or decoded JSON response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processes one text input stream per invocation and truncates inputs above 220,000 characters.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

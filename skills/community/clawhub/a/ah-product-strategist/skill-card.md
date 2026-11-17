@@ -1,37 +1,48 @@
-## Description: <br>
-Product Strategist helps agents produce product strategy, market research, product development, metrics, analytics, and strategy framework guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+You are a product strategist specializing in product development and go-to-market strategies.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Product managers, founders, and strategy teams use this skill to develop product strategy, market research, prioritization, roadmap, launch, pricing, and metrics guidance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Product, pricing, launch, or market guidance may be incorrect, incomplete, or misleading if used without validation.
+
+Mitigation: Review outputs with relevant product, business, and market stakeholders before using them for decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Product managers, founders, operators, and strategy teams use this skill to draft product strategy documents, PRDs, roadmaps, market analyses, launch plans, pricing approaches, and success metrics. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Market sizing, competitor analysis, pricing, and launch recommendations may be outdated or incomplete. <br>
-Mitigation: Treat outputs as drafts and review them with current market data and human business judgment before making product decisions. <br>
+**Output Format:** [Markdown product strategy document with structured sections]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May include product strategy, market opportunity, roadmap, success metrics, and risk mitigation sections.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include structured product strategy documents, PRDs, roadmaps, competitive analysis tables, launch plans, pricing notes, metrics, and risk summaries.] <br>
+1.0.0 (source: ClawHub release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

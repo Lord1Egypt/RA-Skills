@@ -1,44 +1,61 @@
-## Description: <br>
-Provides legal compliance review support for China's food and beverage industry, including food safety law, labeling, beverage standards, import/export rules, food additives, nutrition facts, advertising, HACCP guidance, production licensing, and recall risk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews China food and beverage compliance for labels, advertising, standards, import/export requirements, additives, nutrition facts, production licensing, HACCP guidance, and related legal risk.
 
-## Publisher: <br>
-[mbinge](https://clawhub.ai/user/mbinge) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mbinge](https://clawhub.ai/user/mbinge)
 
-## Use Case: <br>
-External users, compliance reviewers, and food business operators use this skill to review Chinese food and beverage product labels, advertising copy, additives, import/export materials, and production-license requirements. It produces structured compliance findings, legal-risk analysis, and corrective recommendations that should be verified against current regulations or qualified legal advice. <br>
-
-### Deployment Geography for Use: <br>
-China <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Food-safety legal conclusions may be incomplete or outdated for a specific product, claim, or jurisdiction. <br>
-Mitigation: Confirm target jurisdiction and verify important conclusions against current regulations or a qualified legal professional. <br>
-Risk: Sharing unnecessary product or business materials can expose sensitive commercial information. <br>
-Mitigation: Provide only the materials needed for the requested compliance review. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Advertising Compliance Guide](references/advertising-compliance.md) <br>
-- [Food Additives Usage Standards](references/food-additives.md) <br>
-- [Import and Export Food Regulations](references/import-export-regs.md) <br>
-- [Key Regulations Summary](references/key-regulations.md) <br>
-- [Food Labeling Standards](references/labeling-standards.md) <br>
-- [Food Production License Management](references/production-license.md) <br>
+## Use Case:
 
+Food and beverage operators, reviewers, and compliance teams use this skill to check China-focused food safety legal requirements, identify compliance gaps, and prepare structured audit reports with cited regulatory bases.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown audit report with compliance findings, risk analysis, corrective recommendations, and cited regulatory bases] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask for product labels, ingredient lists, nutrition facts, advertising copy, target market, HS codes, and license materials before producing a review.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+China
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: China food safety laws, standards, and enforcement practices may change, and outdated guidance could lead to incorrect compliance decisions.
+
+Mitigation: Verify current regulations and consult qualified legal counsel for high-stakes or final compliance decisions.
+
+Risk: Users may provide proprietary product, label, advertising, producer, or trade details during review.
+
+Mitigation: Redact nonessential personal, confidential, and commercially sensitive information before using the skill.
+
+Risk: The skill can produce legal compliance analysis but does not replace authoritative regulatory advice.
+
+Mitigation: Treat outputs as review support and validate final actions against primary regulations and qualified counsel.
+
+## Reference(s):
+
+- [Food labeling standards](references/labeling-standards.md)
+- [Advertising compliance guide](references/advertising-compliance.md)
+- [Food additive usage rules](references/food-additives.md)
+- [Import and export food regulations](references/import-export-regs.md)
+- [Food production license management](references/production-license.md)
+- [Core regulation summaries](references/key-regulations.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown audit reports with checklists, risk analysis, recommendations, and regulatory citations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask for product, label, advertising, producer, or trade details before producing a review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

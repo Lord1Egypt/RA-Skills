@@ -1,42 +1,56 @@
-## Description: <br>
-Creates formal Japanese corporate-style HTML and PDF reports from source material for business, compliance, product, or security documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a formal Japanese corporate-style HTML document and PDF from source material for business reports, compliance documents, security overviews, or Japanese-language reports.
 
-## Publisher: <br>
-[ken-chy129](https://clawhub.ai/user/ken-chy129) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ken-chy129](https://clawhub.ai/user/ken-chy129)
 
-## Use Case: <br>
-Employees, consultants, and developers use this skill to turn source material into formal Japanese business reports with structured chapters, A4 pagination, and PDF export. It is especially suited for compliance, security overview, product explanation, and corporate reporting workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Source material and generated reports may contain confidential business information written to local files. <br>
-Mitigation: Use an appropriate local machine and output location, and avoid providing confidential source files unless that environment is approved for the data. <br>
-Risk: Generated HTML and PDF reports may misrepresent source material if translation, summarization, or pagination choices are not reviewed. <br>
-Mitigation: Review the generated report against the source material before sharing or relying on it. <br>
+## Use Case:
 
+Employees, external business users, and developers use this skill to turn source material into formal Japanese corporate HTML and PDF reports with structured chapters, cover page, table of contents, and A4 pagination.
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [Design Rules](docs/design-rules.md) <br>
-- [HTML Components](docs/components.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands, Files] <br>
-**Output Format:** [Self-contained HTML and PDF files with brief Markdown status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes generated files to the selected output folder; PDF export requires local Python and Chrome.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill renders source material into HTML and PDF, so untrusted HTML or attacker-supplied markup could affect generated output or local rendering behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted source material, sanitize or review pasted markup before generation, and run PDF rendering in a hardened or network-restricted environment for sensitive workflows.
+
+Risk: The PDF export depends on local headless Chrome execution.
+
+Mitigation: Confirm Chrome is installed and patched before use, and review the generated HTML before invoking PDF export when handling confidential reports.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ken-chy129/skills/jp-report)
+- [README](README.md)
+- [HTML Components](docs/components.md)
+- [Design Rules](docs/design-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance plus generated self-contained HTML files, PDF files, and shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a paginated A4 HTML report and invokes the bundled PDF export script when Chrome is available.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

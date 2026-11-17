@@ -76,6 +76,8 @@ const DEFAULT_CONFIG = {
 // 工具函数
 // ═══════════════════════════════════════════════════════════════════════════════
 
+// [REFACTOR] TODO: _safeText (781行) — 建议拆分为独立子函数
+
 function _safeText(text) {
   return (typeof text === 'string') ? text : '';
 }
@@ -254,10 +256,10 @@ class PatternDetector {
 
     const entries = Object.entries(byDay).sort((a, b) => b[1] - a[1]);
     const best = entries[0];
-    const bestDay = _getDayName(parseInt(best[0]));
+    const bestDay = _getDayName(parseInt(best[0], 10));
     const distribution = {};
     for (const [dayIdx, cnt] of entries) {
-      distribution[_getDayName(parseInt(dayIdx))] = cnt;
+      distribution[_getDayName(parseInt(dayIdx, 10))] = cnt;
     }
 
     // 置信度计算
@@ -319,8 +321,8 @@ class PatternDetector {
 
     if (!firstBest || !secondBest) return null;
 
-    const firstDay = _getDayName(parseInt(firstBest[0]));
-    const secondDay = _getDayName(parseInt(secondBest[0]));
+    const firstDay = _getDayName(parseInt(firstBest[0], 10));
+    const secondDay = _getDayName(parseInt(secondBest[0], 10));
 
     if (firstDay === secondDay) return { direction: TrendDirection.STABLE, firstDay, secondDay };
     return { direction: TrendDirection.RISING, firstDay, secondDay, note: `从 ${firstDay} 转向 ${secondDay}` };

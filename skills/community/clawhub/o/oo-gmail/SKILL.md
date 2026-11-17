@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Gmail"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.8"
   services: ["gmail"]
   icon: "https://static.oomol.com/logo/third-party/Gmail.svg"
 ---
@@ -39,13 +39,14 @@ Each action is listed below with a one-line description; actions that change sta
 
 - `add_label_to_email` — Add and/or remove labels on a single Gmail message. Provide at least one label mutation and use label IDs from `list_labels`. [write]
 - `batch_modify_messages` — Add and/or remove labels on up to 1,000 Gmail messages in one request. Use this for bulk archive, mark-as-read, or custom label workflows. [write]
-- `create_draft` — Create a Gmail draft with a simplified input and output shape. This compatibility action returns only the created `draftId`. [write]
-- `create_email_draft` — Create a Gmail draft with recipients, subject, body, and optional threading. Use `threadId` to draft a reply in an existing conversation. [write]
+- `create_draft` — Create a Gmail draft with a simplified input and output shape. Returns the stable draft ID and current message and thread IDs. [write]
+- `create_email_draft` — Create a Gmail draft with recipients, subject, body, and optional threading. Supply replyToMessageId or threadId to draft a reply; this requires mailbox read access. Omitted subject and recipients are inherited from the reply target. [write]
 - `create_filter` — Create a Gmail filter with matching criteria and resulting actions. Use this to automatically organize incoming mail. [write]
 - `create_label` — Create a new Gmail label and return its internal label ID. Use the returned ID in downstream label modification actions. [write]
 - `delete_draft` — Permanently delete a Gmail draft by draft ID instead of sending it. [destructive]
 - `delete_filter` — Permanently delete a Gmail filter by filter ID. [destructive]
 - `delete_label` — Permanently delete a user-created Gmail label from the mailbox. This removes the label definition itself rather than just detaching it from one message. [destructive]
+- `download_attachment` — Download a Gmail message attachment using metadata returned by a message action and upload it to Connector file transit storage.
 - `fetch_emails` — List Gmail messages with optional query, label, and pagination filters. Use `detail` to choose between identifiers only, lightweight summaries, or full normalized messages.
 - `fetch_message_by_message_id` — Fetch a Gmail message by message ID with a controllable response format. Use this when you need the normalized full message payload instead of the simplified `get_message` output.
 - `fetch_message_by_thread_id` — Fetch all messages in a Gmail thread. Use this to inspect the full conversation payload for a known `threadId`.
@@ -63,21 +64,21 @@ Each action is listed below with a one-line description; actions that change sta
 - `list_history` — List Gmail mailbox change history after a known `startHistoryId`. Use this for incremental sync and checkpoint the latest returned `historyId`.
 - `list_labels` — List all system and user-created Gmail labels. Use this to discover the internal label IDs required by label mutation actions.
 - `list_threads` — List Gmail threads with optional query filtering and pagination. Spam and trash stay excluded unless you explicitly target them in the query.
-- `modify_thread_labels` — Add and/or remove labels on every message in a Gmail thread. Use this when the label change should apply to the whole conversation. [write]
+- `modify_thread_labels` — Add and/or remove labels on every message in a Gmail thread. Use this when the label change should apply to the whole conversation. [destructive]
 - `move_thread_to_trash` — Move an entire Gmail thread to trash, including all messages in that conversation. [destructive]
 - `move_to_trash` — Move a Gmail message to trash. The message remains recoverable until it is permanently deleted by Gmail. [destructive]
 - `patch_label` — Patch a user-created Gmail label. Use this for partial updates to the label name, visibility settings, or color. [write]
-- `reply_email` — Reply to an existing Gmail thread using the original message's reply headers. This compatibility action returns only the new `messageId`. [write]
+- `reply_email` — Reply to an existing Gmail thread using the original message's reply headers. Supply to to override the original Reply-To or From recipient. [write]
 - `reply_to_thread` — Reply to an existing Gmail thread while preserving Gmail threading. Use this when you want the reply to stay in the same conversation and optionally override recipients. [write]
 - `search_threads` — Search Gmail threads by query and return lightweight thread summaries. Spam and trash stay excluded unless you explicitly target them in the query.
 - `send_draft` — Send an existing Gmail draft as-is using the recipients already stored in the draft. Sending is immediate and cannot be scheduled by this action. [write]
 - `send_email` — Send an email from the connected Gmail account. At least one recipient and one of subject or body are required. [write]
 - `settings_get_imap` — Get the Gmail IMAP settings, including whether IMAP is enabled and how expunge or folder size settings are configured.
 - `settings_get_pop` — Get the Gmail POP settings, including access window and message disposition.
-- `stop_watch` — Stop Gmail push watch notifications for the mailbox. Use this to disable notifications that were previously created via the watch endpoint. [write]
-- `untrash_message` — Restore a previously trashed Gmail message back to the mailbox.
-- `untrash_thread` — Restore a previously trashed Gmail thread and its messages.
-- `update_draft` — Update an existing Gmail draft in place. Omitted fields fall back to the current draft content, so you can replace only the parts you want to change. [write]
+- `stop_watch` — Stop Gmail push watch notifications for the mailbox. Use this to disable notifications that were previously created via the watch endpoint. [destructive]
+- `untrash_message` — Restore a previously trashed Gmail message back to the mailbox. [write]
+- `untrash_thread` — Restore a previously trashed Gmail thread and its messages. [write]
+- `update_draft` — Update a Gmail draft. Supply replyToMessageId or a different threadId to rebuild its reply association; this requires mailbox read access. The subject must match the reply target. Header-only edits preserve the MIME body. Omit attachments to preserve them, supply a list to replace them, or [] to remove them. Empty strings clear fields. Content edits of unsupported MIME structures are rejected. [write]
 - `update_imap_settings` — Update the Gmail IMAP settings, including enablement, auto-expunge behavior, expunge behavior, or max folder size. [write]
 - `update_label` — Update an existing Gmail label's properties, including name, visibility settings, or color. [write]
 - `update_language_settings` — Update the Gmail display language settings for the connected account. [write]
@@ -113,11 +114,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Gmail is not connected, or the connection expired or lacks a scope. Connect once (auth type: OAuth2) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=gmail
+  https://console.oomol.com/connections/gmail
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Gmail homepage: https://workspace.google.com/gmail/
+- API documentation: https://developers.google.com/workspace/gmail/api/guides

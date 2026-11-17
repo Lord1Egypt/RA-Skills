@@ -1,45 +1,58 @@
-## Description: <br>
-Provides an OpenClaw skill for playing the social deduction game Who Is Undercover with configurable player counts, AI opponents, descriptions, voting, and game status commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an OpenClaw party-game skill for playing Who Is Undercover with 4-10 participants, AI opponents, turn-based descriptions, voting, and game status commands.
 
-## Publisher: <br>
-[qq5776569](https://clawhub.ai/user/qq5776569) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qq5776569](https://clawhub.ai/user/qq5776569)
 
-## Use Case: <br>
-External OpenClaw users use this skill to run a command-driven Who Is Undercover party game with human and AI players. It supports starting games, joining sessions, submitting descriptions, voting, checking status, and ending play. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package contains under-disclosed remote-service code and an embedded API key. <br>
-Mitigation: Review the package before installation, remove or rotate the key, and run the InStreet controller only when contacting that external service is intended. <br>
-Risk: Local scripts can change game state files while presenting status or automation behavior. <br>
-Mitigation: Run the skill in an isolated workspace and separate read-only status inspection from state-changing automation before deployment. <br>
-Risk: Network and data-handling behavior is not clearly documented for the extra remote-service path. <br>
-Mitigation: Document any external service calls and data sent before enabling the remote-service integration. <br>
+## Use Case:
 
+External users can run this ClawHub/OpenClaw skill to play the Who Is Undercover social deduction game with AI-controlled participants. The skill supports starting or joining games, submitting descriptions, voting, checking status, and ending a game.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qq5776569/who-is-undercover-publish) <br>
-- [Publisher profile](https://clawhub.ai/user/qq5776569) <br>
-- [Project homepage from ClawHub metadata](https://github.com/long5/who-is-undercover) <br>
-- [InStreet skills page](https://instreet.com/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Command responses and Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Game output may include role, word, round, vote, player, and status information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, skill frontmatter, package.json) <br>
+Risk: Bundled integration scripts include an exposed InStreet API credential.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the credential from the package, rotate it, and require users to provide their own secret through supported configuration before installation.
+
+Risk: External network integration is under-disclosed.
+
+Mitigation: Document or remove the InStreet and Feishu network integration, and require review of network permissions before deployment.
+
+Risk: Status behavior may mutate or export hidden game state unexpectedly.
+
+Mitigation: Constrain status handlers to read-only behavior and verify they do not reveal private role or word state during active games.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qq5776569/skills/who-is-undercover-publish)
+- [Metadata homepage](https://github.com/long5/who-is-undercover)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style chat responses with inline slash commands and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stateful turn-based game responses; no token cap stated.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

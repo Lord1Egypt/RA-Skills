@@ -1,48 +1,68 @@
-## Description: <br>
-Helps an agent answer Overwatch esports questions by querying Liquipedia and OWTV.gg, normalizing results into structured data, and presenting concise summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Looks up Overwatch esports data from Liquipedia and OWTV.gg, using local cache files and optional MPS player-stat summaries.
 
-## Publisher: <br>
-[ZEROTWICE](https://clawhub.ai/user/ZEROTWICE) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zerotwice](https://clawhub.ai/user/zerotwice)
 
-## Use Case: <br>
-External users and agent developers use this skill to retrieve Overwatch tournament, team, player, match, earnings, hero-pick, and player-stat information from esports sources. It is useful for answering current or historical Overwatch competitive questions with cached structured JSON and human-readable Markdown-style summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports that the cache helper can write outside the intended cache folder if given a crafted ID. <br>
-Mitigation: Use only trusted cache IDs, inspect cache paths before shared use, and require path validation that keeps writes under /workspace/liquipedia-cache before deploying in sensitive workspaces. <br>
-Risk: The skill can rely on public esports scraping, third-party fallback searches, and locally cached data. <br>
-Mitigation: Treat fetched and fallback content as untrusted, cite source URLs and timestamps in responses, and refresh or discard stale cached records for current matches, rosters, and transfers. <br>
+## Use Case:
 
+External users and agents use this skill to answer Overwatch esports questions about tournaments, teams, players, matches, rosters, hero picks, earnings, and player performance from Liquipedia and OWTV.gg data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ZEROTWICE/liquipedia-overwatch) <br>
-- [Publisher profile](https://clawhub.ai/user/ZEROTWICE) <br>
-- [Liquipedia Overwatch](https://liquipedia.net/overwatch/Overwatch_Champions_Series) <br>
-- [OWTV.gg](https://owtv.gg) <br>
-- [Schema reference](references/schema.md) <br>
-- [Site structure reference](references/site-structure.md) <br>
-- [OWTV tournament IDs](references/owtv-tournament-ids.md) <br>
-- [Cache manager](references/cache_manager.py) <br>
-- [Player stats summarizer](references/player_stats_summarizer.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summaries with source URLs and timestamps, plus structured JSON cache records when saving or loading data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute scraping and cache-management commands; successful fetches are stored under the local Liquipedia cache.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.8.0 (source: server release evidence) <br>
+Risk: The skill runs local Python and Node commands and may pass scraped or user-provided values through command strings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution, avoid untrusted shell interpolation, and keep scraping inputs constrained to expected Liquipedia and OWTV URLs.
+
+Risk: The skill writes persistent cache files and the security evidence flags cache path handling for review.
+
+Mitigation: Use a dedicated cache directory, review path handling before installation, and avoid running the skill with broader filesystem privileges than needed.
+
+Risk: The skill scrapes external sites and may suggest using browser profiles or cookies when scraping fails.
+
+Mitigation: Do not use personal Chrome profiles or cookies for scraping; use disposable profiles and comply with source-site access rules.
+
+Risk: The security guidance flags the optional multi-search-engine dependency for pinning or avoidance.
+
+Mitigation: Pin any additional search dependency to a reviewed version, or skip the extra install when it is not required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zerotwice/skills/liquipedia-overwatch)
+- [Liquipedia Overwatch](https://liquipedia.net/overwatch/)
+- [OWTV.gg](https://owtv.gg/)
+- [Cache data schema](references/schema.md)
+- [Liquipedia site structure reference](references/site-structure.md)
+- [OWTV tournament ID reference](references/owtv-tournament-ids.md)
+- [Cache manager helper](references/cache_manager.py)
+- [Player stats summarizer](references/player_stats_summarizer.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and text responses with JSON cache files and inline shell commands when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write persistent local cache files under the configured Liquipedia cache directory.]
+
+## Skill Version(s):
+
+2.8.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

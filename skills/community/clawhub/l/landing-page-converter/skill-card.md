@@ -1,41 +1,50 @@
-## Description: <br>
-Build high-converting landing pages and product sales pages using proven 10-section conversion frameworks for lead capture and e-commerce pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build high-converting landing pages and product sales pages using proven 10-section conversion frameworks, including Hero to Social Proof to Benefits to CTA flows for lead capture and e-commerce pages.
 
-## Publisher: <br>
-[cameron-jovan](https://clawhub.ai/user/cameron-jovan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cameron-jovan](https://clawhub.ai/user/cameron-jovan)
 
-## Use Case: <br>
-Marketing teams, founders, e-commerce operators, and agents use this skill to turn an offer into a lead-capture landing page or product sales page with structured copy, section sequencing, and HTML/template guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing pages may include placeholder or unverified claims about testimonials, prices, guarantees, customer counts, scarcity, or competitor comparisons. <br>
-Mitigation: Verify all claims against approved business evidence before publishing generated pages. <br>
-Risk: User-supplied HTML or URLs inserted into templates may create unsafe or misleading page content. <br>
-Mitigation: Sanitize user-provided HTML and URLs before placing them into the templates. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cameron-jovan/landing-page-converter) <br>
-- [Landing page HTML template](artifact/templates/landing-page.html) <br>
-- [Product page HTML template](artifact/templates/product-page.html) <br>
+## Use Case:
 
+External creators, marketers, founders, and developers use this skill to turn an offer into a landing page, product sales page, copy document, Figma-ready specification, or HTML structure using predefined conversion sections.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown, semantic HTML, or copy/spec text with placeholders] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include placeholder marketing copy, image needs, colors, and HTML template variables.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated pages may include unsupported testimonials, customer counts, guarantees, scarcity language, pricing, or legal links.
+
+Mitigation: Review and replace those fields with verified business facts before publishing, and confirm guarantees, pricing, compliance links, and claim substantiation with the product owner or counsel.
+
+## Reference(s):
+
+- [Landing Page Converter ClawHub release](https://clawhub.ai/cameron-jovan/skills/landing-page-converter)
+- [Landing page HTML template](artifact/templates/landing-page.html)
+- [Product page HTML template](artifact/templates/product-page.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with optional HTML and CSS template structure]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Figma-ready specs, semantic HTML structure, and copy documents with placeholders.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

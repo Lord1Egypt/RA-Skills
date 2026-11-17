@@ -1,43 +1,54 @@
-## Description: <br>
-Provides Chinese prompt-engineering checklists, templates, and evaluation methods for improving large language model answer quality. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quality Boost provides Chinese-language prompt-quality templates, evaluation criteria, and usage patterns that help agents avoid unsupported additions, hallucinations, missed constraints, and verbose answers.
 
-## Publisher: <br>
-[jx-76](https://clawhub.ai/user/jx-76) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jx-76](https://clawhub.ai/user/jx-76)
 
-## Use Case: <br>
-External users and developers use this skill to apply quality rules, prompt templates, and self-check workflows that reduce hallucination, drift, verbosity, omissions, and unwanted additions in model responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Global auto-apply or systemPrompt prepend configuration can change the style and flow of all future agent responses. <br>
-Mitigation: Review the prompt first, note or back up the OpenClaw configuration, and test the manual quick-apply templates before enabling global behavior. <br>
-Risk: Strict quality rules may constrain tasks that intentionally need creative freedom, brainstorming, or role-play. <br>
-Mitigation: Use manual application for those tasks or disable the skill when the artifact's stated non-applicable scenarios match the user workflow. <br>
+## Use Case:
 
+External users, developers, and prompt authors use this skill to apply Chinese-language prompt-quality rules, reusable templates, and evaluation checklists to improve answer accuracy, constraint following, brevity, and self-checking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jx-76/quality-boost) <br>
-- [Primary skill documentation](artifact/SKILL.md) <br>
-- [Quick-apply templates](artifact/quick-apply.md) <br>
-- [System prompt template](artifact/system-inject.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with prompt templates and inline code/configuration blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only; may optionally be applied globally through OpenClaw configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Optional auto-apply and system-prompt snippets can change the assistant's style across conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the global configuration snippets before use, or apply the prompt-quality rules manually when persistent style changes are not desired.
+
+Risk: The strict quality rules can be a poor fit for creative writing, brainstorming, or role-play tasks that need more freedom.
+
+Mitigation: Use the skill for quality-sensitive tasks such as rewriting, fact-oriented answers, code review, translation, and summarization; disable it for intentionally open-ended work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jx-76/skills/quality-boost)
+- [Publisher profile](https://clawhub.ai/user/jx-76)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with prompt templates, JSON snippets, and JavaScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces reusable prompt templates, quality checklists, scoring rubrics, and optional OpenClaw configuration guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

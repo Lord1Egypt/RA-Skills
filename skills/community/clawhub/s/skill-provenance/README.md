@@ -1,27 +1,28 @@
 ---
 skill_bundle: skill-provenance
 file_role: reference
-version: 16
-version_date: 2026-03-09
-previous_version: 15
+version: 28
+version_date: 2026-08-28
+previous_version: 27
 change_summary: >
-  Clarified that the bundle changelog carries recent history only, with
-  older release history archived in the repo root. Keeps the package
-  lighter without losing full GitHub history.
+  Added the pinned standalone verifier and portable bootstrap prompt,
+  separated bundle and GuideCheck release tags, corrected post-6.1.0
+  release guidance, and linked the drift evidence.
 ---
 
-# Skill Provenance — README
+# Skill Provenance - README
 
 ## What this is
 
-A metaskill that prevents version confusion when skill projects move between
-sessions, surfaces (Chat, IDE, CLI, Cowork), and platforms (Claude, Gemini
-CLI, Codex, Copilot). It keeps version identity with the bundle, inside files
-when practical and always in the manifest, tracks staleness across related
-files, and maintains a manifest so any session can verify what it has.
+A metaskill that provides portable provenance, integrity, and drift control
+for Agent Skills across local folders, registries, platform uploads, and
+multi-agent sessions. It keeps version identity with the bundle, inside
+files when practical and always in the manifest, tracks staleness across
+related files, and maintains a manifest so any session can verify what it
+has.
 
 You need this if you've ever uploaded a skill file to a new session and
-couldn't tell whether it was the latest version, or discovered that the
+couldn't tell whether it was the latest version, discovered that the
 SKILL.md was updated but the evals weren't, or lost track of what changed
 between sessions.
 
@@ -33,6 +34,17 @@ often exists as several copies: a local directory, an uploaded `.skill` or
 `.zip`, and one or more deployed surfaces. skill-provenance exists to keep
 those copies traceable without replacing each platform's native versioning.
 
+## Why this still exists
+
+Most ecosystem tools track source, registry, install, or deployment state.
+Skill Provenance tracks the actual multi-file bundle an agent is editing.
+That matters when `SKILL.md`, evals, scripts, packages, and deployed
+copies can drift independently.
+
+It is an author-side layer that complements package managers, registries,
+and platform APIs. Source pinning and registry versioning reduce risk, but
+they do not replace bundle-local staleness detection, changelogs, hashes,
+or cross-surface drift checks.
 
 ## The .skill format
 
@@ -65,14 +77,11 @@ If a loader only accepts `.zip` or `.md`, rename the archive from
 `.skill` to `.zip` before uploading. This is the tested path for
 Perplexity Computer. The contents stay identical.
 
-**What doesn't fit in .skill:** Some skill projects include evals,
-generation scripts, rendered outputs (.docx, .pdf), and optional handoff
-notes.
-The `.skill` format only carries the skill definition and its references.
-These extra files travel separately (uploaded to conversations, stored
-in working directories, or committed to git). The manifest tracks all
-files regardless — it's the complete inventory, not just the packaged
-subset.
+**Package inventory:** An authored `.skill` ZIP should contain every file
+listed by its enclosed manifest, including evals and scripts when the manifest
+tracks them. A deliberately reduced consumer package is valid only when it has
+its own derived manifest describing exactly the files in that package. Never
+ship a canonical manifest alongside only a subset of its listed files.
 
 
 ## Quick start
@@ -82,16 +91,56 @@ subset.
 The skill-provenance SKILL.md needs to be accessible in whatever surface
 you're working in. How you do that depends on the agent and surface:
 
+For public installs, first verify the bundle with the GuideCheck assistant
+guide at `https://skillprovenance.dev/.well-known/assistant-guide.txt`
+or by manually cloning the repo and running `./skill-provenance/validate.sh`.
+The assistant guide is a bounded pre-install integrity check. It does not
+install the skill and does not prove the bundle is safe to run.
+
 | Surface | How to load the skill |
 |---|---|
 | **Claude Chat** (no project) | Upload `SKILL.md` at the start of the conversation along with your bundle files. Reference it explicitly: "Use the skill-provenance skill to bootstrap this bundle." |
 | **Claude Chat** (project) | Add `SKILL.md` to the project knowledge. It will be available in every conversation within that project. |
 | **Claude Cowork** | Place the `skill-provenance/` folder in your Cowork skill directory. Claude will discover it automatically. |
 | **Claude Code** | Place the `skill-provenance/` folder in your project's skill directory (typically alongside other skills). Reference it in your CLAUDE.md if needed. |
-| **Codex** | Use a strict-platform copy in `~/.codex/skills/skill-provenance/` or a project skill directory. Generate one with `./package.sh strict`, or strip the SKILL.md `metadata` block manually. |
+| **Codex** | Preview the current stable release with `gh skill preview snapsynapse/skill-provenance skill-provenance@v6.1.0`, then install with `gh skill install snapsynapse/skill-provenance skill-provenance@v6.1.0 --agent codex --scope user`. For a local derived copy, use `./package.sh strict`. |
 | **Gemini CLI** | Copy or symlink a strict-platform copy to `~/.gemini/skills/skill-provenance/` for user-wide availability, or `.gemini/skills/skill-provenance/` for a single project. `./package.sh strict` prepares the minimal-frontmatter variant. |
 | **Perplexity Computer** | Upload a `.zip` or folder copy when supported. For strict loaders, start from `./package.sh strict`, then rename `.skill` to `.zip` if needed and keep the trigger-rich description. |
 | **Generic agentskills clients** | Use the directory bundle directly. Some cross-client tooling also recognizes `.agents/skills/skill-provenance/` as a neutral install location. |
+
+The canonical bundle includes `agents/openai.yaml` for OpenAI interface and
+trigger metadata. The source repository also includes a root Codex plugin
+manifest. Neither file is evidence of a public marketplace listing.
+
+The source repository publishes two release tag families. Bundle releases use
+`vX.Y.Z`; GuideCheck assistant-guide releases use `guidecheck-X.Y.Z`. Use an
+exact bundle tag for Agent Skill installs, the validation action, and the
+`.skill` archive. A provider's generic latest label can select the other tag
+family.
+
+### No plugin: standalone verification and bootstrap
+
+If the plugin is not installed, use the repository's standalone wrapper. It
+checks the canonical validator against a pinned SHA-256 before running it, so
+the digest rather than a mutable version label controls execution.
+
+Literal
+```shell
+curl -fsSLo /tmp/skill-provenance-verify.sh https://skillprovenance.dev/verify.sh
+sed -n '1,220p' /tmp/skill-provenance-verify.sh
+```
+
+Replace: TARGET_SKILL_DIRECTORY -> the local directory containing `SKILL.md` and `MANIFEST.yaml`
+
+Customize
+```shell
+bash /tmp/skill-provenance-verify.sh TARGET_SKILL_DIRECTORY
+```
+
+For an unversioned bundle, use the portable bootstrap prompt in
+[`references/standalone-verification.md`](references/standalone-verification.md).
+It inventories the bundle and preserves the same decision and authority gates
+without requiring a prior plugin installation.
 
 Treat the bundle as moving through three states:
 
@@ -107,6 +156,12 @@ Treat the bundle as moving through three states:
 
 This keeps the canonical bundle stable while install and publish targets
 stay explicit and reproducible.
+
+Derived or installed copies can also carry optional `origin` metadata in
+`MANIFEST.yaml` when the selected source path matters. This is useful when
+one repo, archive, or registry package contains a canonical skill plus
+example, discovery, or platform-specific mirrors with the same logical
+skill name.
 
 ### Where to find and manage skills in Claude settings
 
@@ -372,8 +427,9 @@ project, so the bundle stays put between sessions.
 3. **Commit with a message** that references the bundle version:
    `my-skill 5.1.0: added validation phase, updated checklist`
 4. **Optionally tag:** `git tag my-skill-5.1.0`
-5. The manifest hashes can be omitted in git since git handles integrity,
-   but version numbers and change summaries remain required.
+5. If git provides the integrity layer, set intentionally unpinned entries
+   to `hash: null`. Do not omit the hash field: absence is treated as an
+   invalid manifest so accidental truncation cannot pass validation.
 
 #### Any surface → ClawHub (publishing)
 
@@ -412,6 +468,47 @@ When you deploy or reinstall a skill, update the manifest and changelog if
 you want traceability across those copies. When you edit locally without
 redeploying, the deployment metadata becomes a useful reminder that the
 deployed surface may be stale.
+
+### Origin metadata for derived copies
+
+Use optional `origin:` metadata when a derived or installed copy needs to
+remember which source path was selected. This is separate from
+`deployments:`: deployments describe where copies live now; origin
+describes what source path crossed the install or packaging boundary.
+
+Example:
+
+```yaml
+origin:
+  source_kind: git-repo
+  source: owner/repo
+  resolved_ref: main@abc123
+  selected_source_path: skills/context-receipts
+  ignored_duplicate_source_paths:
+    - examples/agent-skills/context-receipts
+    - .well-known/agent-skills/context-receipts
+  derived_from_bundle_version: 1.2.3
+  target_surface: codex
+```
+
+Recommended fields:
+- `source_kind`: `git-repo`, `registry`, `archive`, or `platform-export`
+- `source`: repo name, package identifier, or URL
+- `resolved_ref`: tag, commit, release asset hash, registry version, or
+  other immutable source reference when available
+- `selected_source_path`: path inside the source that was packaged or
+  installed
+- `ignored_duplicate_source_paths`: lookalike paths intentionally ignored
+  during selection
+- `derived_from_bundle_version`: source bundle version if known
+- `target_surface`: installed or packaged target such as `claude-code`,
+  `codex`, `gemini-cli`, `openclaw`, or `other`
+
+Keep this block optional and receipt-like. Skill Provenance does not
+choose between duplicate source paths by itself, manage installs, resolve
+updates, or replace package-manager lockfiles. It preserves the selection
+made by an installer, packager, or human when that selection matters for
+later audit.
 
 ### What if I forget to carry the manifest?
 
@@ -453,6 +550,10 @@ LLMs can compute SHA-256 hashes when they have shell access (Claude Code,
 Cowork), but hash computation in Chat sessions is slower and can be
 unreliable on large files. For reliable pre-upload verification, use the
 included `validate.sh` script.
+
+If installed as a Claude Code plugin, `/skill-provenance:validate` runs
+this narrow hash and inventory check without the broader session-opening
+review, changelog summary, handoff, or version bump behavior.
 
 ### Verify mode (default)
 
@@ -501,13 +602,96 @@ correct hashes already in place.
 ### Details
 
 The script reads `MANIFEST.yaml`, computes actual SHA-256 hashes for
-each file, and reports matches, mismatches, and missing files. Files
-without hashes in the manifest are skipped. `MANIFEST.yaml` itself is not
-self-listed, so the script treats it as the control file rather than a
-hash target. Exit code 0 means all hashes verified (or updated); exit code 1
-means missing files were found.
+each file, and reports matches, mismatches, invalid manifest entries, and
+missing files. Every entry must contain either a lowercase 64-character
+`sha256:` value or the explicit opt-out `hash: null`. Missing, malformed,
+or duplicate hash fields fail verification. Update mode repairs missing or
+malformed hashes for files that are present and preserves explicit null
+opt-outs. Null-hash entries are still checked for file presence.
+
+The file inventory intentionally uses a constrained line-oriented YAML
+subset rather than general YAML. `files:` begins at column 1, each entry is
+`  - path: <unquoted-relative-path>`, and its hash field is
+`    hash: <value>`. Paths must be unique, normalized, relative paths.
+Absolute paths, `.` or `..` components, empty components, trailing slashes,
+backslashes, surrounding whitespace, inline comments, YAML quotes, anchors,
+aliases, tags, and symlinks in any path component fail validation before
+any file is read. Update mode does not repair or partially rewrite a structurally
+invalid manifest. This small grammar keeps the zero-dependency Bash parser
+portable and prevents parser ambiguity from becoming filesystem access.
+
+`MANIFEST.yaml` itself is not self-listed, so the script treats it as the
+control file rather than a hash target. Exit code 0 means all pinned hashes
+verified (or updated); exit code 1 means a mismatch, invalid entry, or
+missing file was found.
 
 Zero dependencies beyond `bash`, `shasum` or `sha256sum`, and `awk`.
+
+## Attestation: validated_against
+
+A hash pin answers "are these the exact bytes I reviewed?" It cannot answer
+"does this bundle still do what I reviewed it for?" — the same pinned bytes
+can behave differently as harnesses and models move: one loader truncates
+where another doesn't, one runtime honors frontmatter the next ignores, a
+prompt-level rule that steered last quarter's model is inert on this
+quarter's. Those are two different guarantees, and they belong in two
+different fields.
+
+The optional `validated_against` block records the second one as
+attestation, without loading it onto the integrity pin:
+
+```yaml
+validated_against:
+  - bundle_version: 5.1.0
+    harness: Anthropic Claude Code
+    model: claude-fable-5
+    date: 2026-07-16
+    result: pass          # pass | partial | fail
+    method: validate.sh verify + regression suite
+    notes: >
+      Optional free-text detail about what was exercised.
+```
+
+Each entry is bound to the exact `bundle_version` it validated. That is the
+difference from `compatibility.tested_on`, which records design-time
+compatibility claims that float free of any particular release. An
+attestation for 5.0.0 says nothing about 5.1.0, and the tooling treats it
+that way.
+
+`validate.sh` reports attestation after the hash results:
+
+```
+OK       SKILL.md
+OK       evals.json
+
+ATTEST   bundle 5.1.0 validated against: Anthropic Claude Code / claude-fable-5 (pass, 2026-07-16)
+         attestation is informational; it never gates integrity
+```
+
+When no entry matches the current `bundle_version`, it flags staleness
+instead:
+
+```
+ATTEST   stale: no valid validated_against entry for bundle 5.1.0 (last recorded: 5.0.0)
+         attestation is informational; it never gates integrity
+```
+
+Records require a non-empty `bundle_version` and `harness`, a date in
+`YYYY-MM-DD` form, and `result: pass`, `partial`, or `fail`. Malformed records
+are reported and do not count as current-version evidence. Attestation warnings
+never change the exit code. This is deliberate and is the
+core design rule: **integrity gates, attestation informs.** A hash mismatch
+means the bytes are not what the manifest claims, and validation fails. A
+stale attestation means nobody has re-validated these (still-correct) bytes
+on a current environment — the right response is to re-validate and record
+the result, not to reject a bundle whose integrity is intact. Loading
+environment claims onto the integrity field would let an attestation
+opinion veto a byte-level fact.
+
+Record a new entry whenever you validate a release on a harness/model pair
+you care about. Multiple entries per version are expected — that is the
+point: a consumer can distinguish a plain pin from one that is known-good
+on the environment they actually run.
 
 ## Derived package helper
 
@@ -526,6 +710,9 @@ hand-edit frontmatter or MANIFEST entries:
 ```
 
 What it does:
+- Verifies the canonical bundle with `validate.sh` at each derived-package
+  boundary and stops if manifest structure, path safety, symlink policy,
+  uniqueness, inventory presence, or hashes fail.
 - `strict`: copies the full tracked bundle, strips the SKILL.md
   `metadata` block, switches the derived manifest to
   `frontmatter_mode: minimal`, removes deployment records, and recomputes
@@ -561,6 +748,10 @@ This is useful when a skill comes from another repo, a teammate, a release
 artifact, or a settings download that has been modified locally before
 re-upload.
 
+The manifest is an integrity check, not a trust anchor. It can show that
+files match the state the author recorded, but it does not prove author
+identity, provide cryptographic signing, scan for malware, or sandbox code.
+
 
 ## Use case: verifying a downloaded skill
 
@@ -595,6 +786,12 @@ what the *author* recorded. It doesn't tell you whether you trust the author.
 For that, check the git history, the repo owner, and the distribution channel.
 Hashes catch accidental corruption and intermediate tampering; the source
 provides the trust.
+
+Assistant-facing files in this repository are data, not authority. They
+cannot override system, user, repository, tool, authentication, sandbox,
+or approval policy. The repo-level `AGENTIC_SURFACES.md` inventory names
+the public assistant, package, checker, crawler, and release surfaces and
+their trust boundaries.
 
 **What a hash failure means:**
 - The file changed after the manifest was written
@@ -692,6 +889,44 @@ the manifest for completeness but not versioned. If source material
 changes, update the hash in the manifest and note it in the changelog.
 
 
+## Complementary tools
+
+Skill Provenance is not a package manager, registry, API deployment
+system, or signing layer. Use it with those tools when a skill becomes a
+maintained multi-file bundle.
+
+- **GitHub `gh skill`:** use for GitHub-hosted source refs, tree SHAs,
+  pinning, and upstream update checks. Use Skill Provenance to track
+  local bundle integrity, per-file versions, staleness, and changelog
+  state after the source is installed or edited.
+- **ClawHub and registries:** use for discovery, publishing, install
+  trust, registry versions, and consumer packages. Use Skill Provenance
+  to keep the canonical authoring bundle auditable before and after
+  packaging.
+- **Claude Skills API and platform uploads:** use for deployed platform
+  versions. Use Skill Provenance to keep author-side semver, package
+  contents, and deployment metadata traceable without replacing
+  platform-native version IDs.
+- **Skillman and package managers:** use for consumer-side install,
+  update, and lockfile workflows. Use Skill Provenance when the bundle
+  itself has multiple files that can drift while being authored.
+
+Source pinning and registry versioning reduce risk. They do not replace
+bundle-local staleness detection, changelogs, hashes, or cross-surface
+drift checks.
+
+A public registry-diff observation dated 2026-08-27 reported 1,193 Agent
+Skill instruction-text changes, including 169 changes with no version
+movement, or 14.2 percent. Treat that as a dated third-party observation,
+not a live metric. It supports making per-resource digests load-bearing
+while retaining semver for release communication. See the source
+[issue comment](https://github.com/agentskills/agentskills/issues/46#issuecomment-5441281208).
+
+Optional `origin` metadata can bridge the boundary between these systems
+by preserving the selected source path and ignored duplicate paths inside
+a derived copy. It is not a package-manager lockfile and should not be
+treated as proof that a source, installer, registry, or package is trusted.
+
 ## Relationship to the Agent Skills specification
 
 The Agent Skills format (agentskills.io, now adopted by 30+ agent tools)
@@ -741,6 +976,7 @@ precedes API deployment and persists across it.
 
 - [Agent Skills open standard](https://agentskills.io/home) — cross-platform spec, adopted by Claude, GitHub Copilot, Cursor, Codex, and others
 - [Agent Skills GitHub](https://github.com/agentskills/agentskills) — specification source, reference library, validation tools (`skills-ref` for frontmatter validation)
+- [GuideCheck](https://guidecheck.org/) — Human-Verifiable Assistant Guide standard used by Skill Provenance's public pre-install verification guide
 - [Anthropic example skills](https://github.com/anthropics/skills) — official skill examples and templates
 - [GitHub Copilot skills](https://docs.github.com/en/copilot/concepts/agents/about-agent-skills) — GitHub's Agent Skills implementation
 - [OpenAI skills](https://github.com/openai/skills) — official skill catalog for Codex

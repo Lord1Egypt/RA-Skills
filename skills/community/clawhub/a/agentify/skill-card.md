@@ -1,48 +1,62 @@
-## Description: <br>
-Agentify analyzes web pages and code for agent-friendliness, rewrites web templates with semantic and automation-friendly markup, and generates design specs for agent-friendly web development. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agentify helps agents analyze and improve web pages so they are easier for AI agents, crawlers, and automation tools to understand, navigate, and operate.
 
-## Publisher: <br>
-[chartgen-ai](https://clawhub.ai/user/chartgen-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chartgen-ai](https://clawhub.ai/user/chartgen-ai)
 
-## Use Case: <br>
-Developers and web teams use this skill to audit pages, HTML, and component templates for accessibility, structured data, stable selectors, and machine-readable signals, then apply or specify improvements for agents, crawlers, and automation tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad file globs or URL fetching can expose more site or repository content than intended. <br>
-Mitigation: Provide specific URLs or file paths and avoid broad globs over sensitive repositories. <br>
-Risk: Generated markup, JSON-LD, ARIA, or data-testid changes may be incorrect for a site's semantics or workflow. <br>
-Mitigation: Review generated diffs and confirm structured data and selectors before deployment. <br>
+## Use Case:
 
+Developers and web teams use Agentify to audit pages for accessibility, structured data, stable selectors, and automation readiness; rewrite HTML, JSX, Vue, or Svelte templates with safer machine-readable markup; and generate team-ready agent-friendly design specifications.
 
-## Reference(s): <br>
-- [Agentify README](README.md) <br>
-- [Agent-Friendliness Checklist](references/checklist.md) <br>
-- [Framework Adapters](references/frameworks.md) <br>
-- [Agent-Friendliness Knowledge Base](references/knowledge-base.md) <br>
-- [Agent-Friendly Patterns](references/patterns.md) <br>
-- [Agent-Friendliness Scoring](references/scoring.md) <br>
-- [Agent-Friendly Spec Template](references/spec-template.md) <br>
-- [schema.org](https://schema.org) <br>
-- [OpenClaw Skills Documentation](https://docs.openclaw.ai/skills/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Files, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown reports, code edits or examples, and generated specification files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or write agent-friendly-spec.md and may recommend HTML, JSX, Vue, or Svelte markup changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Proposed page rewrites could introduce incorrect accessibility, structured-data, or selector changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed code edits before applying them and verify that behavior, visual appearance, and framework syntax are preserved.
+
+Risk: Generated design specifications may not match a team's current standards or intended project scope.
+
+Mitigation: Ask the agent to show or confirm the spec content and target file before writing when tighter control is required.
+
+## Reference(s):
+
+- [Agentify Skill Page](https://clawhub.ai/chartgen-ai/skills/agentify)
+- [Agent-Friendliness Checklist](references/checklist.md)
+- [Framework Adapters](references/frameworks.md)
+- [Agent-Friendly Web Reference](references/knowledge-base.md)
+- [Transformation Patterns](references/patterns.md)
+- [Scoring Rubric](references/scoring.md)
+- [Spec Template](references/spec-template.md)
+- [Spec Example](references/spec-example.md)
+- [Schema.org](https://schema.org)
+- [OpenClaw Skills Documentation](https://docs.openclaw.ai/skills/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown reports, code snippets or edits, and generated markdown specification files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce scored audits, proposed web template changes, follow-up recommendations, and an agent-friendly-spec.md file when asked to generate a design spec.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

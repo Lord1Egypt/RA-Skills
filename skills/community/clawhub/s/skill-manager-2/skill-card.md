@@ -1,40 +1,58 @@
-## Description: <br>
-Install and manage OpenClaw agent skills. Learn how to find, install, and configure new capabilities from ClawHub and GitHub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install and manage OpenClaw agent skills. Learn how to find, install, and configure new capabilities from ClawHub and GitHub.
 
-## Publisher: <br>
-[Xu-FengXie](https://clawhub.ai/user/Xu-FengXie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xu-fengxie](https://clawhub.ai/user/xu-fengxie)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill as a concise guide for finding, installing, configuring, and verifying agent skills from ClawHub, Vercel Skills, and direct GitHub sources. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Third-party skill or npm package installation can introduce untrusted code into an agent environment. <br>
-Mitigation: Install only from maintainers the user trusts, inspect each target skill's SKILL.md and setup scripts before installation, and scan skills before deployment. <br>
-Risk: Some recommended integrations may require API keys or additional dependencies. <br>
-Mitigation: Provide API keys only to integrations intentionally selected by the user, and verify any extra dependencies before installation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Xu-FengXie/skill-manager-2) <br>
-- [Bilibili Tutorial Video](https://www.bilibili.com/video/BV1PbFUzZEvN) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to find, install, verify, and configure agent skills from ClawHub, Vercel Skills, and GitHub.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides installation examples, skill recommendations, storage path guidance, and verification commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Unpinned npm or npx installation commands can install code that changes after the skill is published.
+
+Mitigation: Pin exact package versions before use and avoid elevated privileges when running installation commands.
+
+Risk: Direct GitHub installs can place unreviewed repositories into the active OpenClaw skills directory.
+
+Mitigation: Stage GitHub-sourced skills outside the active skill directory, review their contents, and scan them before enabling them.
+
+Risk: The skill does not provide detailed rollback steps for removing untrusted installed tools or skills.
+
+Mitigation: Track installed global CLIs and skill directories during setup so they can be removed if trust or behavior is unclear.
+
+## Reference(s):
+
+- [Source tutorial video](https://www.bilibili.com/video/BV1PbFUzZEvN)
+- [ClawHub skill page](https://clawhub.ai/xu-fengxie/skills/skill-manager-2)
+- [Publisher profile](https://clawhub.ai/user/xu-fengxie)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes command examples for installing, listing, and verifying OpenClaw skills.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

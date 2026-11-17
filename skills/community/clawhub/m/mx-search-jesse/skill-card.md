@@ -1,41 +1,54 @@
-## Description: <br>
-Mx Search uses Eastmoney Miaoxiang search to retrieve current financial information such as news, announcements, research reports, policy items, trading rules, event details, and impact analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mx Search helps agents retrieve timely Eastmoney financial information, including news, announcements, research reports, policy items, trading rules, event context, and impact analysis.
 
-## Publisher: <br>
-[jessecq1995](https://clawhub.ai/user/jessecq1995) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jessecq1995](https://clawhub.ai/user/jessecq1995)
 
-## Use Case: <br>
-Financial analysts, developers, and agents use Mx Search to retrieve timely financial news, announcements, research reports, policy items, trading rules, and event information from Eastmoney Miaoxiang for review or downstream processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial search queries and API key use are sent to Eastmoney Miaoxiang. <br>
-Mitigation: Install only if you trust Eastmoney/Miaoxiang, set MX_APIKEY in a trusted environment, and avoid including sensitive non-query data in prompts. <br>
-Risk: Search results are saved locally as text and raw JSON files. <br>
-Mitigation: Direct output to a dedicated workspace directory and review generated files before sharing or relying on them. <br>
+## Use Case:
 
+External users and developers use this skill to query Eastmoney's financial search API for current market-related information and save both readable text and raw JSON results for follow-up analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jessecq1995/mx-search-jesse) <br>
-- [Eastmoney Miaoxiang news search API](https://mkapi2.dfcfs.com/finskillshub/api/claw/news-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files] <br>
-**Output Format:** [Terminal text plus saved .txt and .json files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MX_APIKEY; saves extracted text and raw JSON using an mx_search_ filename prefix.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata and artifact _meta.json) <br>
+Risk: Financial search queries are sent to Eastmoney's external API using the configured MX_APIKEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting confidential internal research, account data, or other sensitive financial information in search queries.
+
+Risk: Search results are saved locally as text and JSON files and may contain sensitive query context or retrieved financial information.
+
+Mitigation: Review and periodically remove local mx_search output files when results should not be retained.
+
+## Reference(s):
+
+- [Mx Search ClawHub page](https://clawhub.ai/jessecq1995/skills/mx-search-jesse)
+- [Eastmoney financial search API endpoint](https://mkapi2.dfcfs.com/finskillshub/api/claw/news-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text, JSON, and terminal output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Saves extracted text and raw JSON search results to local files when run as a command-line helper.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

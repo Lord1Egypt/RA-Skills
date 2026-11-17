@@ -1,49 +1,83 @@
-## Description: <br>
-FluxA Agent Wallet allows AI agents to use a user's wallet within an approved scope for x402 payments, USDC transfers, agent-to-agent transfers, payment links, AI social gifting, x402 resource discovery and calls, and payment-related one-shot skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FluxA Agent Wallet lets AI agents use a linked user wallet, within approved scope, for x402 payments, USDC transfers, payment links, prepaid cards, agent identity credentials, and payment-enabled services.
 
-## Publisher: <br>
-[cpppppp7](https://clawhub.ai/user/cpppppp7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cpppppp7](https://clawhub.ai/user/cpppppp7)
 
-## Use Case: <br>
-External users and agents use this skill to connect an agent to a user-approved FluxA wallet, prepare payment mandates, pay x402 resources, send or receive USDC, create payment links, issue agent identity credentials, and manage payment-related workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can move funds and make purchases under user-approved wallet mandates. <br>
-Mitigation: Keep mandates narrow, short-lived, and purpose-specific; verify every recipient, amount, currency, and service before signing. <br>
-Risk: Wallet configuration, agent tokens, JWTs, payer emails, wallet records, and card details are sensitive. <br>
-Mitigation: Protect the FluxA wallet data directory, avoid revealing card details or tokens in chat, and disclose only the minimum information needed for the payment task. <br>
-Risk: Scheduled wallet checks can create recurring wallet monitoring and may use unpinned latest CLI commands. <br>
-Mitigation: Enable scheduled checks only when the user explicitly wants them and pin the CLI version for recurring tasks. <br>
+## Use Case:
 
+External users and developers use this skill to let an AI agent set up a FluxA wallet identity, request user-approved spending mandates, make or receive payments, and integrate FluxA payment flows.
 
-## Reference(s): <br>
-- [FluxA Agent Wallet Skill](SKILL.md) <br>
-- [Mandate Planning Policy](MANDATE-PLANNING.md) <br>
-- [x402 Payment Reference](X402-PAYMENT.md) <br>
-- [Payout CLI Reference](PAYOUT.md) <br>
-- [Payment Link CLI Reference](PAYMENT-LINK.md) <br>
-- [Agent Verifiable Credential Reference](VC-ISSUE.md) <br>
-- [Scheduled Wallet Check Setup](SCHEDULED-CHECKIN.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/cpppppp7/fluxa-agent-wallet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include authorization URLs, wallet status summaries, payment identifiers, transaction status, and local configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.5 (source: server evidence release.version) <br>
+Risk: The skill is payment-related and can link an agent to a user wallet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the user accepts wallet linkage, and require confirmation before transfers, paid API calls, reward claims, social actions, or card-detail display.
+
+Risk: Reusable spending mandates can authorize repeated payments within an approved scope.
+
+Mitigation: Use narrow mandate purpose, amount, and duration limits, verify remaining budget before reuse, and review or delete stored mandates when they are no longer needed.
+
+Risk: The scheduled wallet check creates recurring wallet access and received-payment inspection.
+
+Mitigation: Enable the scheduled task only after explicit user opt-in and make clear that it runs twice daily.
+
+Risk: Unpinned or latest CLI usage can change behavior after installation.
+
+Mitigation: Pin CLI versions where possible and review release notes or fetched skill updates before relying on changed commands.
+
+Risk: Wallet records and prepaid card details may expose sensitive financial information.
+
+Mitigation: Ask for confirmation before displaying received-payment records or full card details, and avoid retaining sensitive output beyond the active task.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cpppppp7/skills/fluxa-agent-wallet)
+- [SKILL.md](artifact/SKILL.md)
+- [Mandate Planning Policy](artifact/MANDATE-PLANNING.md)
+- [x402 Payment Reference](artifact/X402-PAYMENT.md)
+- [Payout CLI Reference](artifact/PAYOUT.md)
+- [Payment Link CLI Reference](artifact/PAYMENT-LINK.md)
+- [Transfer to Agent](artifact/TRANSFER-TO-AGENT.md)
+- [Agent Verifiable Credential CLI Reference](artifact/VC-ISSUE.md)
+- [FluxA Wallet Daily Check Scheduled Task Setup](artifact/SCHEDULED-CHECKIN.md)
+- [Agent ID Integration Guide](artifact/INTEGRATION-GUIDE-AGENTID.md)
+- [Pay to Agent Integration Guide](artifact/INTEGRATION-GUIDE-PAY-TO-AGENT.md)
+- [Charge Agent Integration Guide](artifact/INTEGRATION-GUIDE-CHARGE-AGENT.md)
+- [Payout Integration Guide](artifact/INTEGRATION-GUIDE-PAYOUT.md)
+- [ClawPI Reference](artifact/CLAWPI.md)
+- [Oneshot API Trial Guide](artifact/TRY-ONESHOT-API.md)
+- [x402 Services Reference](artifact/x402-SERVICES.md)
+- [FluxA Agent ID JWT Verification Documentation](https://docs.fluxapay.xyz/wallet/agent-guide-jwt-verification.html)
+- [FluxA Skill Source](https://fluxapay.xyz/skill.md)
+- [FluxA Oneshot API Discovery](https://monetize.fluxapay.xyz/api/discover?type=api)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with CLI commands, JSON examples, and configuration steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct an agent to install and run the FluxA CLI, create local wallet and mandate state, open user authorization URLs, and call external FluxA services.]
+
+## Skill Version(s):
+
+1.4.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,6 @@
 {
   "profile": {
-    "timezone": "Asia/Shanghai",
+    "timezone": "",
     "language": ""
   },
   "check_interval_minutes": 10,
@@ -28,5 +28,8 @@
   },
   "baseline": {
     "cleanup_after_expiry_days": 90
+  },
+  "schedule": {
+    "auto_enable": null
   }
 }

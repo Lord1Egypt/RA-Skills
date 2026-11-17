@@ -1,40 +1,48 @@
-## Description: <br>
-Map industry value chain to understand where value is created and captured. Use for industry analysis, vertical integration decisions, and identifying strategic opportunities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Map industry value chain to understand where value is created and captured. Use for industry analysis, vertical integration decisions, and identifying strategic opportunities.
 
-## Publisher: <br>
-[linuszz](https://clawhub.ai/user/linuszz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[linuszz](https://clawhub.ai/user/linuszz)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Business strategists, analysts, and operators use this skill to map industry value chains, compare value creation and capture across stages, and identify strategic opportunities such as vertical integration or partnerships.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Market share, margin, pricing, or player data used in the analysis may be incomplete or outdated.
+
+Mitigation: Verify quantitative inputs and strategic assumptions against current authoritative sources before making business decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Strategy teams, analysts, and business planners use this skill to map an industry's value chain, compare value capture across stages, and identify vertical integration, partnership, competitive threat, and margin opportunities. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad business terms such as value chain or vertical integration. <br>
-Mitigation: Review whether the skill is appropriate for the current request before relying on its analysis. <br>
-Risk: Generated market-share, margin, or company claims may be incorrect or outdated. <br>
-Mitigation: Verify quantitative and company-specific claims against reliable sources before using them for business decisions. <br>
+**Output Format:** [Markdown analysis with value-chain maps, tables, and strategic implications]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/linuszz/value-chain) <br>
+**Other Properties Related to Output:** [Requires user-supplied industry or company context; market share, margin, pricing, and player data should be independently verified before business decisions.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with value chain maps, tables, and strategic insights] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only business analysis template; users should verify market-share, margin, and company claims against reliable sources before making decisions.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

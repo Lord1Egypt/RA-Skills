@@ -1,49 +1,59 @@
-## Description: <br>
-Analyze a user's MBTI from authorized OpenClaw memory, session history, and workspace notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze a user's MBTI from authorized OpenClaw memory, session history, and workspace notes.
 
-## Publisher: <br>
-[kingofsoysauce](https://clawhub.ai/user/kingofsoysauce) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kingofsoysauce](https://clawhub.ai/user/kingofsoysauce)
 
-## Use Case: <br>
-External OpenClaw users use this skill to generate a local, evidence-backed MBTI type hypothesis from authorized memory, session history, and workspace notes without taking a questionnaire. It is intended for personality reflection reports, not clinical diagnosis or mental-health assessment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can inspect broad private OpenClaw history and workspace memory. <br>
-Mitigation: Approve only the narrowest source categories needed before ingestion. <br>
-Risk: Generated reports and raw records may persist sensitive material in the local .mbti-reports directory. <br>
-Mitigation: Use quote-mode none when excerpts are not desired and delete the generated .mbti-reports directory after use if it contains sensitive material. <br>
-Risk: Task or cron metadata may expose operational history that is unnecessary for many personality analyses. <br>
-Mitigation: Avoid authorizing task or cron metadata unless that operational history is explicitly needed. <br>
+## Use Case:
 
+OpenClaw users and agents use this skill to infer a best-fit MBTI hypothesis from authorized conversation history, memory, and workspace notes, then generate traceable HTML, Markdown, and JSON reports.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/kingofsoysauce/mbti-analyzer) <br>
-- [Publisher profile](https://clawhub.ai/user/kingofsoysauce) <br>
-- [OpenClaw](https://openclaw.ai/) <br>
-- [Interactive demo](https://kingofsoysauce.github.io/mbti-skill/) <br>
-- [Analysis Framework](references/analysis_framework.md) <br>
-- [Evidence Rubric](references/evidence_rubric.md) <br>
-- [Report Copy Contract](references/report_copy_contract.md) <br>
-- [Report Structure](references/report_structure.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [HTML report, Markdown summary, JSON analysis artifacts, and local shell command workflow] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces report.html, report.md, analysis_result.json, evidence_pool.json, raw_records.jsonl, and source_summary.json in a local .mbti-reports directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill processes and stores broad OpenClaw history and workspace memory during MBTI analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Approve only the source categories needed for the run, prefer workspace memory and sessions, and delete the .mbti-reports output directory after use.
+
+Risk: Sensitive-path exclusion is reported as incomplete in the security evidence.
+
+Mitigation: Review the discovered source manifest before ingestion, avoid memory-index, task-run, and cron-run categories unless explicitly needed, and use quote-mode none for sensitive histories.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kingofsoysauce/skills/mbti-analyzer)
+- [OpenClaw](https://openclaw.ai/)
+- [Interactive Report Demo](https://kingofsoysauce.github.io/mbti-skill/)
+- [Analysis Framework](references/analysis_framework.md)
+- [Evidence Rubric](references/evidence_rubric.md)
+- [Report Copy Contract](references/report_copy_contract.md)
+- [Report Structure](references/report_structure.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, html, shell commands, guidance]
+
+**Output Format:** [HTML report, Markdown summary, JSON analysis artifacts, and concise chat guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Primary deliverable is report.html; supporting outputs include report.md, analysis_result.json, and evidence_pool.json.]
+
+## Skill Version(s):
+
+0.4.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

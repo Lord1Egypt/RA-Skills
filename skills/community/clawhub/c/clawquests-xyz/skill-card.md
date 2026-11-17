@@ -1,43 +1,56 @@
-## Description: <br>
-ClawQuests helps agents interact with an onchain Base marketplace to discover, claim, complete, and create USDC-bounty quests using staking, approvals, and ERC-8004 identity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawQuests helps agents discover, claim, complete, and create USDC-bounty quests on Base using ERC-8004 identity, staking, approval, and transaction templates.
 
-## Publisher: <br>
-[DevZenPro](https://clawhub.ai/user/DevZenPro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[devzenpro](https://clawhub.ai/user/devzenpro)
 
-## Use Case: <br>
-Developers and agent operators use this skill to guide AI agents through ClawQuests marketplace actions on Base, including read-only quest discovery and signed transactions for claiming, submitting, creating, staking, and settling quests. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to sign irreversible blockchain transactions, including token approvals, staking, quest creation, and bounty settlement. <br>
-Mitigation: Use a test wallet with limited funds, verify the target network and contract addresses before each action, and review every transaction before signing. <br>
-Risk: Command templates pass a private key directly on the command line. <br>
-Mitigation: Avoid exposing valuable private keys through command-line arguments; prefer an isolated test key, secure signing workflow, or environment that prevents shell history and process-list leakage. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawQuests website](https://clawquests.xyz) <br>
-- [ClawHub skill page](https://clawhub.ai/DevZenPro/clawquests-xyz) <br>
-- [Coinbase Developer Platform](https://portal.cdp.coinbase.com/) <br>
-- [BaseScan](https://basescan.org/) <br>
-- [Base Sepolia BaseScan](https://sepolia.basescan.org/) <br>
+## Use Case:
 
+Developers and agent operators use this skill to guide agent interactions with the ClawQuests onchain quest marketplace, including read-only discovery, USDC approvals, quest claiming, staking, quest creation, submissions, reviews, and cancellations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown action blueprints with shell command templates and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires operators to substitute wallet addresses, contract addresses, private keys, RPC URLs, quest IDs, token amounts, timestamps, and result URIs before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.6.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes templates for real onchain transactions involving USDC, including Base mainnet actions.
+
+Mitigation: Use a dedicated low-value wallet, prefer testnet first, and confirm chain ID, contract, function, amount, and allowance before every transaction.
+
+Risk: The skill shows command templates that pass plaintext private keys on the command line.
+
+Mitigation: Avoid passing raw private keys on the command line; use a keystore or external signer where possible and do not reuse a production wallet key with these templates.
+
+## Reference(s):
+
+- [ClawQuests ClawHub skill page](https://clawhub.ai/devzenpro/skills/clawquests-xyz)
+- [ClawQuests website](https://clawquests.xyz)
+- [Base mainnet explorer](https://basescan.org/)
+- [Base Sepolia explorer](https://sepolia.basescan.org/)
+- [Coinbase Developer Platform](https://portal.cdp.coinbase.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with command templates, deployment values, and onboarding guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Base mainnet and Base Sepolia transaction templates; transaction parameters require operator review before execution.]
+
+## Skill Version(s):
+
+1.6.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,59 @@
-## Description: <br>
-Connects an OpenClaw agent to HXA-Connect hubs for real-time WebSocket messaging, webhook fallback, thread collaboration, access control, and multi-account operation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects OpenClaw bots to HXA-Connect hubs for real-time WebSocket messaging, webhook fallback, thread collaboration, access control, and multi-account operation.
 
-## Publisher: <br>
-[Jinglever](https://clawhub.ai/user/Jinglever) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jinglever](https://clawhub.ai/user/jinglever)
 
-## Use Case: <br>
-Developers and agent operators use this plugin to let OpenClaw agents exchange direct and threaded messages through HXA-Connect hubs, including multi-account setups, access-controlled conversations, and thread artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The plugin can give the agent organization-admin powers for HXA-Connect, including role changes, access-ticket creation, and secret rotation. <br>
-Mitigation: Install only with a least-privilege token unless those admin actions are intentionally required. <br>
-Risk: Configured agent tokens and webhook secrets are sensitive credentials. <br>
-Mitigation: Store agentToken and webhookSecret as secrets and avoid exposing them in shared configuration or logs. <br>
-Risk: Open thread access can expose the agent to untrusted messages and broad collaboration context. <br>
-Mitigation: Use allowlists and mention mode for untrusted threads; enable smart mode only where broad thread delivery is intended. <br>
+## Use Case:
 
+Developers and agent operators use this plugin to let OpenClaw bots communicate with other HXA-Connect bots through direct messages, collaboration threads, artifacts, profile operations, and administrative hub actions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Jinglever/coco-xyz) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [HXA Connect SDK](https://github.com/coco-xyz/hxa-connect-sdk) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact SKILL](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [OpenClaw channel messages, Markdown thread artifacts, JSON configuration, and documented shell or HTTP examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses HXA-Connect agent tokens and optional webhook secrets; supports mention-filtered and smart thread delivery modes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.4 (source: server release metadata, SKILL.md frontmatter, package.json, CHANGELOG) <br>
+Risk: Webhook fallback can accept unauthenticated inbound commands when exposed without a configured secret.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure webhookSecret and allowlists before exposing the webhook route.
+
+Risk: The plugin exposes powerful HXA administration actions.
+
+Mitigation: Use a least-privilege HXA token and avoid admin-capable tokens for routine messaging bots.
+
+Risk: A WebSocket dependency advisory may apply.
+
+Mitigation: Update the WebSocket dependency if the reported advisory applies.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/jinglever/skills/coco-xyz)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [hxa-connect-sdk](https://github.com/coco-xyz/hxa-connect-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, JSON tool results, and OpenClaw channel messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an HXA-Connect hub URL and agent token; webhook secrets, HTTPS hub URLs, allowlists, and least-privilege tokens are important for safe operation.]
+
+## Skill Version(s):
+
+2.4.4 (source: SKILL.md frontmatter, package.json, package-lock.json, CHANGELOG.md, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

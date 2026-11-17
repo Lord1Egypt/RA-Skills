@@ -1,42 +1,51 @@
-## Description: <br>
-Builds high-performing OpenClaw agents end-to-end by guiding persona, operating rules, guardrails, autonomy, memory, and workspace file generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds OpenClaw agent workspaces end-to-end, including persona, operating rules, guardrails, heartbeat behavior, memory options, skill roster guidance, and iteration support for existing agents.
 
-## Publisher: <br>
-[plgonzalezrx8](https://clawhub.ai/user/plgonzalezrx8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[plgonzalezrx8](https://clawhub.ai/user/plgonzalezrx8)
 
-## Use Case: <br>
-Developers and advanced users use this skill to design new OpenClaw agent workspaces or improve existing agents. It helps generate tailored workspace files, guardrails, heartbeat guidance, memory posture, and acceptance test scenarios. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated agent instructions may grant broader autonomy than intended or omit needed safety boundaries. <br>
-Mitigation: Review AGENTS.md and SOUL.md before use, retain ask-before-destructive and ask-before-outbound-message rules, and choose conservative autonomy unless broader autonomy is intentional. <br>
-Risk: Generated memory and heartbeat files may capture sensitive information or trigger unnecessary recurring work. <br>
-Mitigation: Keep memory free of secrets, review MEMORY.md and daily memory entries before use, and leave HEARTBEAT.md empty until heartbeat behavior is explicitly needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Agent Builder ClawHub page](https://clawhub.ai/plgonzalezrx8/agent-builder) <br>
-- [OpenClaw agent workspace](references/openclaw-workspace.md) <br>
-- [OpenClaw agent file templates](references/templates.md) <br>
-- [Agent Architecture Patterns](references/architecture.md) <br>
+## Use Case:
 
+Developers and agent builders use this skill to design new OpenClaw agents or refine existing ones. It helps produce tailored workspace files, operating rules, guardrails, memory guidance, heartbeat behavior, and acceptance test scenarios.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown with generated workspace file content, checklists, and scenario prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include proposed file contents for IDENTITY.md, SOUL.md, AGENTS.md, USER.md, HEARTBEAT.md, optional MEMORY.md, memory entries, and TOOLS.md.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated workspace, memory, heartbeat, operating rule, and skill roster changes can shape future agent behavior and may persist across sessions.
+
+Mitigation: Review generated MEMORY.md, HEARTBEAT.md, AGENTS.md, and skill roster changes before use.
+
+## Reference(s):
+
+- [Agent Builder on ClawHub](https://clawhub.ai/plgonzalezrx8/skills/agent-builder)
+- [OpenClaw agent workspace (cheat sheet)](references/openclaw-workspace.md)
+- [OpenClaw agent file templates (snippets)](references/templates.md)
+- [Agent Architecture Patterns](references/architecture.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with generated file contents and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include proposed contents for IDENTITY.md, SOUL.md, AGENTS.md, USER.md, HEARTBEAT.md, optional memory files, skill roster changes, and acceptance test prompts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

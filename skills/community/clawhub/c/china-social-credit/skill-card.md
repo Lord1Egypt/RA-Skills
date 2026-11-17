@@ -1,43 +1,53 @@
-## Description: <br>
-Parses and validates Chinese Unified Social Credit Codes, checks the checksum, and identifies registration authority, organization type, and registered location from GB 32100-2015 code structure without network access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validates and parses Chinese Unified Social Credit Codes (统一社会信用代码) offline, including checksum, registration authority, organization type, and registered location according to GB 32100-2015.
 
-## Publisher: <br>
-[ToBeWin](https://clawhub.ai/user/ToBeWin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to validate and explain a Chinese Unified Social Credit Code during contract review, supplier checks, or business-data entry. It provides offline syntactic validation and parsed code components, not live company verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A valid checksum can be mistaken for proof that an organization exists, is legitimate, or is currently in good standing. <br>
-Mitigation: Treat results as syntactic validation only and verify business status through authoritative registries when that assurance is needed. <br>
-Risk: Parsed administrative region codes can be interpreted as the operating address rather than the registration authority location. <br>
-Mitigation: Present region output as registration-location information and avoid using it as evidence of actual business operations. <br>
-Risk: Historical or nonstandard license and registration numbers may not fit the GB 32100-2015 unified-code rules. <br>
-Mitigation: Report unsupported formats clearly and ask the user to check the original business-license record before relying on the result. <br>
+## Use Case:
 
+Developers, analysts, and operations teams use this skill to validate Chinese business or organization identification codes during contract review, supplier checks, or enterprise data entry. It reports format, checksum, registration authority, organization type, registered location, and likely input errors without querying live registries.
 
-## Reference(s): <br>
-- [ClawHub skill page: China Social Credit](https://clawhub.ai/ToBeWin/china-social-credit) <br>
-- [ClawHub publisher profile: ToBeWin](https://clawhub.ai/user/ToBeWin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with validation status, parsed fields, error reasons, and suggested next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Offline output only; no API key, network lookup, or real-time business-status verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: A valid checksum may be mistaken for proof that an organization exists or is in good standing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the result as offline format validation only and confirm legal or operational status through an authoritative registry when needed.
+
+Risk: Historical or non-standard license numbers may be outside the GB 32100-2015 parsing assumptions.
+
+Mitigation: Treat unsupported formats as out of scope and verify them through original documents or an official source.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobewin/skills/china-social-credit)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style structured text with validation status, parsed fields, error reasons, and suggestions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Offline; no network calls or API keys required; validates format and checksum only, not company existence or good standing.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

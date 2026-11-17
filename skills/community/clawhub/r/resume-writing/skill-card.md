@@ -1,40 +1,52 @@
-## Description: <br>
-Guides an agent through a deep resume workflow covering target role, positioning, impact bullets with metrics, keyword alignment, ATS hygiene, proofreading, and application tailoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a deep resume-writing workflow for target role positioning, impact bullets with metrics, keyword alignment, ATS hygiene, proofreading, and tailoring.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mike47512](https://clawhub.ai/user/mike47512)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and career-support agents use this skill to rewrite, review, and tailor technical resumes for target roles while keeping claims honest and interview-defensible.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Resumes and job descriptions may contain sensitive personal information.
+
+Mitigation: Review inputs before sharing and avoid unnecessary disclosure of personal, employment, or compensation details.
+
+Risk: Resume guidance can encourage overstated or unsupported claims if not reviewed carefully.
+
+Mitigation: Keep bullets evidence-based, use only defensible metrics, and review final wording for accuracy before use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users, career coaches, and job seekers use this skill to rewrite or tailor technical resumes for a target role. It helps produce honest, ATS-friendly resume guidance that emphasizes measurable impact, defensible skills, and final review. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated resume content may include inaccurate, exaggerated, or non-defensible claims if user input is not checked. <br>
-Mitigation: Review metrics, skills, and statements for accuracy and interview defensibility before using the resume. <br>
-Risk: Resume writing may involve personal or sensitive career details. <br>
-Mitigation: Share only the details needed for the task and remove unnecessary personal information from generated drafts. <br>
+**Output Format:** [Markdown guidance, checklists, and resume-writing recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mike47512/resume-writing) <br>
+**Other Properties Related to Output:** [Does not execute code or access data automatically.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown resume-writing guidance, checklists, and revision suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code or shell commands; generated resume content should be reviewed for accuracy, privacy, and interview defensibility.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,63 @@
-## Description: <br>
-Read, search, and manage Outlook emails and calendar via Microsoft Graph API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read, search, and manage Outlook email and calendar data via Microsoft Graph API.
 
-## Publisher: <br>
-[jotamed](https://clawhub.ai/user/jotamed) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jotamed](https://clawhub.ai/user/jotamed)
 
-## Use Case: <br>
-Developers, employees, and personal users can use this skill to let an agent inspect Outlook mail, send or organize messages, and manage calendar events through Microsoft Graph after OAuth setup. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and modify Outlook mail, send messages, and create, update, or delete calendar events. <br>
-Mitigation: Review every send, delete, bulk mail, and calendar-changing action before execution. <br>
-Risk: OAuth credentials and refresh tokens are stored under ~/.outlook-mcp, and the token helper can print an access token. <br>
-Mitigation: Treat ~/.outlook-mcp as sensitive credential storage, keep file permissions restrictive, and avoid printing tokens unless necessary. <br>
-Risk: The security summary reports an attachment download flaw that can write files outside the expected download location. <br>
-Mitigation: Avoid downloading suspicious attachments or writing to sensitive directories until download path handling is fixed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Outlook Manual Setup Guide](references/setup.md) <br>
-- [Outlook ClawHub Release](https://clawhub.ai/jotamed/outlook) <br>
-- [Azure Portal](https://portal.azure.com) <br>
-- [Microsoft Graph API Endpoint](https://graph.microsoft.com/v1.0/me) <br>
+## Use Case:
 
+Employees, external users, developers, and agents use this skill to inspect Outlook inboxes, search and manage messages, send or reply to mail, and view or update calendar events through Microsoft Graph.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Microsoft Graph OAuth credentials stored under ~/.outlook-mcp and returns mailbox or calendar data from command-line scripts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.0 (source: evidence release and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requests durable read/write/send access to Outlook mail and read/write access to calendar data.
+
+Mitigation: Install only when that access is acceptable, use the narrowest suitable Microsoft account, and revoke the app registration or tokens when no longer needed.
+
+Risk: Mail, calendar, folder, draft, send, delete, and bulk operations can mutate or disclose user data.
+
+Mitigation: Require explicit confirmation before send, delete, bulk, folder, or calendar mutation commands.
+
+Risk: The token command can print an access token and tokens are persisted for refresh.
+
+Mitigation: Avoid token-printing commands in logged sessions and protect files under ~/.outlook-mcp with user-only permissions.
+
+Risk: Attachment downloads can overwrite local files at the selected output path.
+
+Mitigation: Download attachments only into a safe empty directory and inspect files before opening or moving them.
+
+## Reference(s):
+
+- [Outlook Manual Setup Guide](references/setup.md)
+- [ClawHub Skill Page](https://clawhub.ai/jotamed/skills/outlook)
+- [Azure Portal](https://portal.azure.com)
+- [Microsoft Graph API](https://graph.microsoft.com/v1.0/me)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may read or mutate Outlook mail and calendar data after OAuth setup.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,53 @@
-## Description: <br>
-Full-process Chinese-language novel creation workflow that helps an agent plan, manage, draft, and validate long-form fiction with stable characters, coherent plots, and structured project files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A structured Chinese-language novel-writing assistant that helps agents plan story foundations, maintain continuity files, draft chapters, and coordinate user confirmation through a full writing workflow.
 
-## Publisher: <br>
-[Thincher](https://clawhub.ai/user/Thincher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[thincher](https://clawhub.ai/user/thincher)
 
-## Use Case: <br>
-External writers and creators use this skill to structure a novel project, create and maintain Markdown planning files, draft one chapter at a time, and check continuity before progressing. It is suited for Chinese-language fiction workflows that require explicit user confirmation before major project or story-state changes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated planning or chapter content may change local Markdown project files in ways that affect story continuity or user intent. <br>
-Mitigation: Use the skill in a dedicated project folder and review proposed file changes before confirming them. <br>
-Risk: Story details used in web-search queries may disclose private plot, character, or project information to a search provider. <br>
-Mitigation: Avoid placing private story details into web-search queries unless that disclosure is acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users and writing agents use this skill to create and manage long-form Chinese fiction through structured planning files, character and setting records, chapter outlines, progress tracking, and chapter drafts.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown narrative, planning notes, project-file content, and review guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill may propose or update local Markdown project files under the book-writing references structure after user confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill directs agents to create and update a structured set of novel-planning and chapter files, which may not match a user's preferred project structure.
+
+Mitigation: Review the proposed file structure and confirmation steps before use, and align the workflow with the user's desired language, scope, and writing process.
+
+Risk: Strict workflow rules can produce heavier process overhead than needed for lightweight story drafting.
+
+Mitigation: Use the workflow when continuity and long-form planning are important, and confirm with the user before each major planning or chapter update.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/thincher/skills/book-write)
+- [Publisher profile](https://clawhub.ai/user/thincher)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown and prose instructions for planning files, chapter outlines, progress records, and chapter drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The workflow is oriented around one chapter at a time and asks for user confirmation before advancing or updating progress files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

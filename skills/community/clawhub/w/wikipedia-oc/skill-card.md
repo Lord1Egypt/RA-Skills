@@ -1,45 +1,57 @@
-## Description: <br>
-Searches, retrieves, and summarizes English Wikipedia content using the `wikipedia` Python module. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches, retrieves, and summarizes content from English Wikipedia using the `wikipedia` Python module.
 
-## Publisher: <br>
-[rachmann-alexander](https://clawhub.ai/user/rachmann-alexander) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rachmann-alexander](https://clawhub.ai/user/rachmann-alexander)
 
-## Use Case: <br>
-External users and developers use this skill to search English Wikipedia, retrieve candidate pages, and return concise summaries or structured page data with attribution. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Wikipedia content can be inaccurate, incomplete, or insufficient for legal, medical, local, or time-sensitive topics. <br>
-Mitigation: Verify the source article and important facts independently before relying on the answer for sensitive or current decisions. <br>
-Risk: The skill deliberately searches English Wikipedia, even when the user asks in another language. <br>
-Mitigation: Retrieve from English Wikipedia first, then translate only as post-processing while preserving the original meaning and source attribution. <br>
-Risk: Ambiguous queries or missing pages can produce the wrong article or no useful result. <br>
-Mitigation: Limit and inspect candidate results, handle disambiguation and page errors explicitly, and refine the query when needed. <br>
-Risk: The public Wikipedia API may time out or rate-limit requests. <br>
-Mitigation: Handle timeout errors, keep requests focused, and retry or defer work when the API is unavailable. <br>
-Risk: An outdated `wikipedia` module can miss fixes or security improvements. <br>
-Mitigation: Check whether a newer module version is available and disclose the current and latest versions to the user when an update is found. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [wikipedia Python package](https://pypi.org/project/wikipedia/) <br>
+## Use Case:
 
+External users and agents use this skill to search English Wikipedia, retrieve a relevant page, and return concise structured information with attribution.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or JSON-like structured text with title, summary, URL, or error details.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should disclose Wikipedia as the source, include a page URL when content is fetched, prefer summaries by default, and avoid excessive raw page content unless explicitly required.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.4 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill retrieves from English Wikipedia even when the user's question is in another language, so translated answers may miss local-language article details.
+
+Mitigation: Disclose Wikipedia as the source, preserve factual accuracy during translation, and tell users that lookup was performed against English Wikipedia.
+
+Risk: The `wikipedia` Python dependency is installed from PyPI and may change over time.
+
+Mitigation: Install it in a virtual environment and pin a reviewed version before deployment.
+
+Risk: Wikipedia content can be incomplete, rate-limited, or ambiguous for broad queries.
+
+Mitigation: Prefer concise summaries, include the page URL, limit search candidates, and handle disambiguation or page-not-found errors explicitly.
+
+## Reference(s):
+
+- [wikipedia Python module](https://pypi.org/project/wikipedia/)
+- [ClawHub skill page](https://clawhub.ai/rachmann-alexander/skills/wikipedia-oc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline Python and shell code blocks; retrieved results are structured as title, summary, and URL fields.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses English Wikipedia for lookup and instructs agents to disclose Wikipedia as the source.]
+
+## Skill Version(s):
+
+0.1.4 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -374,15 +374,27 @@ if (process.argv[1] && process.argv[1].includes('handle-button.mjs')) {
   (async () => {
     const channelArg = process.argv[3] || '';
     const targetArg = process.argv[4] || '';
-    if (channelArg) {
+    if (channelArg === 'webchat') {
+      ct.setRuntimeChannel('webchat', null);
+    } else if (channelArg) {
       ct.setRuntimeChannel(channelArg, targetArg || null);
     } else {
       const detected = await ct.detectChannelFromSessions();
       if (detected) ct.setRuntimeChannel(detected.channel, detected.target);
     }
     const r = await main(process.argv[2] || '');
-    // 所有消息已通过 sendText/sendCard 发送，输出固定回复堵死 LLM
-    console.log('OUTPUT_AS_REPLY:✅ 收到');
+    // webchat 模式：从缓冲区取内容输出
+    const isWebchat = channelArg === 'webchat';
+    if (isWebchat) {
+      const wcOutput = ct.webchatFlush();
+      if (wcOutput.trim()) {
+        console.log('OUTPUT_AS_REPLY:' + wcOutput);
+      } else {
+        console.log('OUTPUT_AS_REPLY:✅ 收到');
+      }
+    } else {
+      console.log('OUTPUT_AS_REPLY:✅ 收到');
+    }
     process.exit(0);
   })().catch(e => {
     console.log('OUTPUT_AS_REPLY:⚠️ 执行异常，请稍后重试。');

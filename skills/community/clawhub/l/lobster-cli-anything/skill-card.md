@@ -1,37 +1,52 @@
-## Description: <br>
-Use when the user wants OpenClaw to build, refine, test, or validate a CLI-Anything harness for a GUI application or source repository. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user wants OpenClaw to build, refine, test, or validate a CLI-Anything harness for a GUI application or source repository.
 
-## Publisher: <br>
-[wangxiaofei860208-source](https://clawhub.ai/user/wangxiaofei860208-source) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wangxiaofei860208-source](https://clawhub.ai/user/wangxiaofei860208-source)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to build, refine, test, and validate CLI-Anything style Python harnesses for GUI applications or source repositories.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may direct an agent to read a user-provided source tree or clone a GitHub repository.
+
+Mitigation: Use trusted repository sources and review the target path or URL before allowing the agent to inspect or clone it.
+
+Risk: Generated harness validation may run tests and perform a local editable Python install.
+
+Mitigation: Run generated harness tests inside a virtual environment or other isolated workspace.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to have OpenClaw build, refine, test, or validate CLI-Anything harnesses for GUI software or source repositories. It guides harness structure, packaging, backend integration, tests, validation, and final reporting. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to create or change CLI harness files and run local validation commands in a target project. <br>
-Mitigation: Review generated code and tests before using them on important repositories, especially when wrapping real software backends. <br>
+**Output Format:** [Markdown guidance with code, shell commands, and file plans]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Produces agent-facing implementation guidance and generated harness files when applied to a target repository or application.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with code, file changes, and validation commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports target software, source path, files changed, validation commands run, and open backend risks or limitations.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

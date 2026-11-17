@@ -1,0 +1,90 @@
+[
+  {
+    "card": "speed-ramp-freeze",
+    "styles": ["freeze-annotate"],
+    "semanticSignals": ["教学重点", "步骤拆解", "需要停住标注"],
+    "allowedStates": ["B-roll", "外部MG"],
+    "blockedConditions": ["无真实画面可标注", "标注内容未经核验"],
+    "maxUsesPerMinute": 1,
+    "renderMode": "full-frame-or-alpha",
+    "compositionOwner": "external-mg",
+    "fallback": "静态真实截图加箭头标注"
+  },
+  {
+    "card": "title-demote-to-label",
+    "styles": ["title-demote-to-label"],
+    "semanticSignals": ["章节进入", "标题需要保留为方位标签"],
+    "allowedStates": ["外部MG"],
+    "blockedConditions": ["标题不是原话或授权改写", "短信息流中停留超过阅读所需"],
+    "maxUsesPerMinute": 1,
+    "renderMode": "full-frame-or-alpha",
+    "compositionOwner": "external-mg",
+    "fallback": "ChatCut 静态章节标签"
+  },
+  {
+    "card": "chart-live-moves",
+    "styles": ["oscilloscope-stream", "unit-dot-swarm-regroup", "axis-rescale-shock"],
+    "semanticSignals": ["真实数据变化", "实时监控", "构成或增长"],
+    "allowedStates": ["外部MG"],
+    "blockedConditions": ["没有可追溯真实数据", "动画夸大数据关系", "生成图冒充证据"],
+    "maxUsesPerMinute": 1,
+    "renderMode": "full-frame",
+    "compositionOwner": "external-mg",
+    "fallback": "静态真图表加简单高亮"
+  },
+  {
+    "card": "type-rhythm-sync",
+    "styles": ["karaoke-fill-sync"],
+    "semanticSignals": ["逐词强调", "短标语跟读", "声音与文字需要同步"],
+    "allowedStates": ["外部MG"],
+    "blockedConditions": ["用于替代正式字幕", "逐字时间未绑定剪后音频", "强音乐压过人声"],
+    "maxUsesPerMinute": 1,
+    "renderMode": "alpha",
+    "compositionOwner": "external-mg",
+    "fallback": "ChatCut 关键词静态强调"
+  },
+  {
+    "card": "before-after-slider-scrub",
+    "styles": ["before-after-slider-scrub"],
+    "semanticSignals": ["同一对象前后对比", "处理效果证明"],
+    "allowedStates": ["外部MG"],
+    "blockedConditions": ["前后对象或尺度不一致", "素材不能证明主张"],
+    "maxUsesPerMinute": 1,
+    "renderMode": "full-frame",
+    "compositionOwner": "external-mg",
+    "fallback": "并排真实前后图"
+  },
+  {
+    "card": "ai-stream-response",
+    "styles": ["ai-stream-response"],
+    "semanticSignals": ["AI 结果生成", "摘要后补证据", "任务完成态"],
+    "allowedStates": ["外部MG"],
+    "blockedConditions": ["虚构产品响应", "虚构证据行", "代替真实产品录屏"],
+    "maxUsesPerMinute": 1,
+    "renderMode": "full-frame",
+    "compositionOwner": "external-mg",
+    "fallback": "真实产品录屏或普通信息卡"
+  },
+  {
+    "card": "voice-waveform-live",
+    "styles": ["voice-waveform-live"],
+    "semanticSignals": ["语音输入", "正在监听", "录音状态"],
+    "allowedStates": ["外部MG"],
+    "blockedConditions": ["冒充真实录音证据", "波形与状态语义不一致"],
+    "maxUsesPerMinute": 1,
+    "renderMode": "alpha-or-full-frame",
+    "compositionOwner": "external-mg",
+    "fallback": "静态录音状态图标"
+  },
+  {
+    "card": "paper-title-card",
+    "styles": ["paper-title-card"],
+    "semanticSignals": ["章节呼吸位", "价值主张字卡"],
+    "allowedStates": ["外部MG"],
+    "blockedConditions": ["高频重复", "字卡遮断语义连续性", "文字不是原话或授权改写"],
+    "maxUsesPerMinute": 1,
+    "renderMode": "full-frame",
+    "compositionOwner": "external-mg",
+    "fallback": "ChatCut 简洁章节卡"
+  }
+]

@@ -1,43 +1,58 @@
-## Description: <br>
-Converts KittenTTS speech output into WhatsApp-compatible OGG Opus voice notes and optionally transcribes incoming WhatsApp audio with Whisper. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WhatsApp voice notes via KittenTTS; it converts KittenTTS 24 kHz WAV output to WhatsApp-compatible 16 kHz OGG Opus using ffmpeg.
 
-## Publisher: <br>
-[lakshibro](https://clawhub.ai/user/lakshibro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lakshibro](https://clawhub.ai/user/lakshibro)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to generate WhatsApp-ready voice note files from text with KittenTTS and to optionally transcribe incoming WhatsApp audio during voice-to-voice workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crafted TTS input, voice names, or speed values may lead to local Python code execution. <br>
-Mitigation: Run the skill only in an isolated environment and pass untrusted values through safe argument, environment, or JSON handling before using external WhatsApp content. <br>
-Risk: Setup commands install system packages and use --break-system-packages. <br>
-Mitigation: Review install commands before running them, prefer a container or virtual environment, and avoid these commands on managed systems unless approved. <br>
-Risk: Fixed temporary audio paths can expose or overwrite local audio data. <br>
-Mitigation: Use private mktemp directories for all intermediate audio files and clean up temporary WAV files after conversion or transcription. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate WhatsApp-ready voice note audio from text with KittenTTS and ffmpeg. It also includes an optional transcription helper for incoming WhatsApp audio when Whisper is installed.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lakshibro/kittentts-whatsapp) <br>
-- [KittenML Hugging Face Models](https://huggingface.co/KittenML) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; runtime scripts produce OGG Opus audio files and transcription text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The TTS script writes audio under /tmp/kittentts-walkie and may download a KittenTTS model from Hugging Face on first run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Installation guidance can modify the system Python and package environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a virtual environment where possible, pin and verify dependencies, and avoid --break-system-packages on managed systems.
+
+Risk: Runtime scripts may be unsafe for untrusted text or audio inputs until input handling and temporary-file behavior are reviewed.
+
+Mitigation: Do not run the scripts as root, process trusted inputs only, and review the heredoc and temporary-file handling before broader deployment.
+
+Risk: The first TTS run downloads a model from Hugging Face, which can fail or expose token-handling choices.
+
+Mitigation: Pre-fetch approved models in controlled environments and avoid persisting HF_TOKEN in shell startup files unless that persistence is acceptable.
+
+## Reference(s):
+
+- [KittenTTS WhatsApp ClawHub page](https://clawhub.ai/lakshibro/skills/kittentts-whatsapp)
+- [KittenML models on Hugging Face](https://huggingface.co/KittenML)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and script-driven audio file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates an OGG Opus voice note at /tmp/kittentts-walkie/walkie_reply.ogg and may print transcription text when the optional Whisper helper is used.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

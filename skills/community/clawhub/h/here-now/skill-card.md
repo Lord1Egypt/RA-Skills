@@ -1,42 +1,54 @@
-## Description: <br>
-here.now lets agents publish websites and store private files in cloud Drives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publishes websites and files to live here.now URLs and helps manage site access, workspaces, and domains.
 
-## Publisher: <br>
-[adamludwin](https://clawhub.ai/user/adamludwin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adamludwin](https://clawhub.ai/user/adamludwin)
 
-## Use Case: <br>
-Developers and agents use this skill to publish websites, static files, and media to live here.now URLs, and to store or share private cloud Drive files across sessions and tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send files, private context, code, or credentials-related content to here.now for persistent cloud storage or web publishing. <br>
-Mitigation: Use it only for content the user intentionally wants uploaded, stored remotely, shared with agents, or published on the web. <br>
-Risk: API keys and publish state may persist locally, and shared Drive tokens may grant access beyond the intended task. <br>
-Mitigation: Store credentials with restrictive permissions, avoid command-line API key flags in interactive use, prefer narrow Drive token path prefixes and short TTLs, and revoke tokens when no longer needed. <br>
+## Use Case:
 
+Agents use this skill to publish user-provided websites or files to live URLs and manage access, team workspaces, and domains.
 
-## Reference(s): <br>
-- [here.now documentation](https://here.now/docs) <br>
-- [Site access control documentation](https://here.now/docs#access-control) <br>
-- [ClawHub skill page](https://clawhub.ai/adamludwin/here-now) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with shell commands, API responses, live URLs, and local or cloud file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update remote hosted Sites, private Drive files, scoped Drive share tokens, and local here.now credential or state files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.16.0 (source: server evidence and SKILL.md) <br>
+Risk: A path-handling bug may expose saved site-control tokens, and some credential safeguards are incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a corrected version that normalizes paths and excludes private state. Until then, publish only a clean output directory without credentials, .herenow state, or other private files.
+
+Risk: Publishing, API access, and Drive sharing can expose files or grant broader access than intended.
+
+Mitigation: Choose publication and access settings explicitly, restrict API destinations to the documented service, and give Drive shares narrow paths, minimal permissions, and short expirations. Pin installation versions where possible.
+
+## Reference(s):
+
+- [here.now documentation](https://here.now/docs)
+- [here.now API specification](https://here.now/openapi.json)
+
+## Skill Output:
+
+**Output Type(s):** [Files, URLs, Guidance]
+
+**Output Format:** [Published website or file URLs with Markdown status guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Site access settings depend on the user's publication choices.]
+
+## Skill Version(s):
+
+1.35.1 (source: artifact SKILL.md and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,18 @@
+{
+  "st_pure_trend": {
+    "st_mult": 2.0,
+    "tp_pct": 0.02,
+    "sl_pct": 0.01,
+    "size_mult": 0.5,
+    "volume_ratio_min": 1.0,
+    "acf_pacf_filter": false
+  },
+  "bb20_range": {
+    "tp_atr_ratio": 2.0,
+    "sl_atr_ratio": 1.5,
+    "rsi_bb_oversold": 30,
+    "rsi_bb_overbought": 70,
+    "bb_short_pullback": false
+  },
+  "_comment": "演示参数（非实盘调优值）。付费订阅版提供回测调优的真实参数，覆盖为 strategy_params.json 使用。"
+}

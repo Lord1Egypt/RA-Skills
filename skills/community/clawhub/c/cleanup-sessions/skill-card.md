@@ -1,42 +1,57 @@
-## Description: <br>
-Helps an agent identify and clean aborted OpenClaw sub-agent session files and stale backup files to reclaim disk space. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cleans aborted OpenClaw sub-agent session files and aged backup files while preserving recently updated sessions.
 
-## Publisher: <br>
-[phenixMiao](https://clawhub.ai/user/phenixMiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phenixmiao](https://clawhub.ai/user/phenixmiao)
 
-## Use Case: <br>
-Developers and OpenClaw users can use this skill to inspect aborted sub-agent sessions, preview cleanup candidates, remove confirmed stale session files, and keep session indexes consistent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cleanup guidance may include destructive deletion commands that do not themselves enforce the documented safety checks. <br>
-Mitigation: Review commands before use, prefer dry-run or interactive deletion, verify the exact backup directory and file list, and confirm the command enforces the intended age-based safeguards. <br>
-Risk: Deleting session files or stale backups can remove recoverable session history or leave session metadata inconsistent. <br>
-Mitigation: Preview candidate files with sizes and timestamps, require user confirmation, preserve recent sessions, and update the session index only after confirmed file deletion. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to preview and clean stale aborted sub-agent sessions and backup files, reclaiming disk space while keeping the session index consistent.
 
-## Reference(s): <br>
-- [Cleanup Sessions skill page](https://clawhub.ai/phenixMiao/cleanup-sessions) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code] <br>
-**Output Format:** [Markdown with command examples and cleanup workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include file lists, deletion previews, and confirmation prompts before cleanup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Broad deletion commands in the README can delete unintended session backup files if run directly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid the raw rm/find commands; require a dry-run or explicit file list in the verified OpenClaw sessions directory before deletion.
+
+Risk: The README references cleanup.sh, but the release artifact does not include that script.
+
+Mitigation: Do not rely on the missing script path; use the documented preview-and-confirm workflow based on session metadata.
+
+Risk: Cleaning session files can remove OpenClaw session history and backups.
+
+Mitigation: Delete only confirmed aborted sub-agent sessions older than 48 hours and preserve recent reset backups according to the documented retention window.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phenixmiao/skills/cleanup-sessions)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code]
+
+**Output Format:** [Markdown guidance with JavaScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit user confirmation before deletion and should present a file list before cleanup.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

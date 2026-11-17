@@ -1,41 +1,54 @@
-## Description: <br>
-Generate a comprehensive job search progress report by analyzing sent applications and received replies from Gmail. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a comprehensive job search progress report by analyzing sent applications and received replies from Gmail and producing a structured markdown report.
 
-## Publisher: <br>
-[xiaoxty](https://clawhub.ai/user/xiaoxty) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoxty](https://clawhub.ai/user/xiaoxty)
 
-## Use Case: <br>
-Job seekers and career support agents use this skill to summarize Gmail-based application history, recruiter replies, current statuses, follow-up actions, and search metrics in one report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads job-search-related Gmail messages, which may include private application details, recruiter contacts, and quoted email text. <br>
-Mitigation: Confirm the Gmail account and date range before use, review the generated report for sensitive content, and save or share it only when that storage or disclosure is acceptable. <br>
-Risk: The report can guide follow-up actions based on inferred application status and email matching. <br>
-Mitigation: Review company matches, statuses, and suggested next actions against the underlying messages before sending replies or making decisions. <br>
+## Use Case:
 
+External users use this skill to review their job-search activity from Gmail in one structured report, including application counts, recruiter replies, status categories, action items, and weekly updates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaoxty/job-search-report) <br>
-- [Publisher profile](https://clawhub.ai/user/xiaoxty) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with tables, categorized opportunity sections, timeline, action items, insights, and optional save/export commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an authenticated gog Gmail setup and user review before saving or sharing private job-search information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill searches authenticated Gmail for recent job applications and recruiter messages, which may expose sensitive personal and employment information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only when that Gmail access is intended, and review the generated report before saving or sharing it.
+
+Risk: The optional Google Docs saving path may place job-search data into another Google service.
+
+Mitigation: Use the Google Docs option only when the user explicitly wants the report handled through Google Docs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaoxty/skills/job-search-report)
+- [ClawHub publisher profile](https://clawhub.ai/user/xiaoxty)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires authenticated Gmail access through gog; optionally saves the report as a local Markdown file or Google Doc.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

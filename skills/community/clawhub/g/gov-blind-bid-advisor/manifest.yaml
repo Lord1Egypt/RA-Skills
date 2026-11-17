@@ -1,0 +1,38 @@
+name: gov-blind-bid-advisor
+slug: gov-blind-bid-advisor
+display_name: "政府采购盲投参谋"
+emoji: "⚖️"
+version: 1.0.1
+version_stage: "GA"
+author: "一线评标专家&ChesaraM"
+license: "MIT-0"
+agent_created: true
+description: '投标人侧政府采购盲投参谋：基于公开数据做商机发现（采购公告采集+企业画像匹配排序）与投标决策（资格/能力/利润/风险 go-no-go 结构化判断），内置投标人防御视角风险自查（废标雷区+排他性/萝卜坑条款扫描）。纯本地+公开数据采集，零 API Key；可选挂载 IMA 知识库做检索增强。'
+changelog:
+  - version: "1.0.1"
+    date: "2026-07-28"
+    change: "修复 NVIDIA SkillSpector 审查发现的 5 项问题：声明最小权限/能力边界、robots.txt 改为 fail-closed、移除围标检测规则库矛盾、--url 限定 ccgp 域防 SSRF、署名改为仅元数据/说明页展示"
+  - version: "1.0.0"
+    date: "2026-07-28"
+    change: "初始发布"
+feedback:
+  channel: "GitHub Issues"
+  account: "项目仓库"
+  note: "使用问题、误报反馈、实务建议，欢迎通过项目仓库提交 Issue 反馈。"
+# === 能力与权限声明（最小权限 / 信任边界，供宿主授予与校验） ===
+permissions:
+  filesystem:
+    read:
+      - "references/**"
+      - "scripts/**"
+    write:
+      - "enterprise.json"                 # 用户本地企业画像，仅本地落盘
+      - "collected_announcements.json"    # 采集结果，仅本地落盘
+    note: "仅读取技能自带参考/脚本；用户画像与采集结果仅在用户本地文件写入，无任何上传/外发逻辑。"
+  network:
+    allowed_hosts:
+      - "www.ccgp.gov.cn"
+    methods: ["GET"]
+    note: "唯一对外网络：仅向中国政府采购网中央站（ccgp.gov.cn）发起只读 GET 请求，不访问任何其他主机（含内网），杜绝 SSRF。"
+  mcp_tools: []
+  data_egress: "none"

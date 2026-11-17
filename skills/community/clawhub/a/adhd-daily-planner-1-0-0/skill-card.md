@@ -1,40 +1,51 @@
-## Description: <br>
-Time-blind friendly planning, executive function support, and daily structure for ADHD brains. Specializes in realistic time estimation, dopamine-aware task design, and building systems that actually work for neurodivergent minds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Time-blind friendly planning, executive function support, and daily structure for ADHD brains.
 
-## Publisher: <br>
-[Loui1979](https://clawhub.ai/user/Loui1979) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[loui1979](https://clawhub.ai/user/loui1979)
 
-## Use Case: <br>
-External users and agents use this skill to create ADHD-aware daily and weekly plans, choose realistic next actions, estimate time with buffers, and apply executive-function supports without shame-based productivity framing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat ADHD planning templates or medication-related notes as medical advice. <br>
-Mitigation: Use the skill as an educational planning aid only; medication questions, dosage changes, worsening symptoms, or side effects should be handled with a licensed clinician or prescriber. <br>
+## Use Case:
 
+People using an agent for ADHD-friendly planning can use this skill to create flexible daily and weekly structure, estimate time more realistically, manage task initiation, and choose dopamine-aware supports. It is best suited for practical planning guidance rather than clinical decision-making.
 
-## Reference(s): <br>
-- [The Dopamine Menu](references/dopamine-menu.md) <br>
-- [Executive Function Toolkit](references/executive-function-toolkit.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Loui1979/adhd-daily-planner-1-0-0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown planning guidance with templates, checklists, and decision trees] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only planning aid; no code execution, persistence, data access, or hidden behavior indicated by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The medication-tracking template could be mistaken for medical advice about starting, stopping, skipping, or changing medication or dose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only to record observations for discussion with a licensed clinician or pharmacist, and seek urgent help for severe side effects or crisis symptoms.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/loui1979/skills/adhd-daily-planner-1-0-0)
+- [Dopamine Menu](artifact/references/dopamine-menu.md)
+- [Executive Function Toolkit](artifact/references/executive-function-toolkit.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown planning guidance and templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only skill; no executable scripts or generated files are included in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

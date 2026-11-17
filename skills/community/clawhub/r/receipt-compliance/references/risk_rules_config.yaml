@@ -1,0 +1,84 @@
+# 风险检测规则配置文件
+# 可根据最新税务稽查重点动态更新
+# 支持热加载：修改本文件后无需重启，下次检测自动生效
+# 说明：YAML 解析优先使用 PyYAML，缺失时自动降级到内置解析器
+
+version: "2.0"
+last_updated: "2026-09-08"
+
+# ============ 连号检测 ============
+consecutive_number_check:
+  enabled: true
+  threshold: 3  # 同一供应商连续 N 张发票触发
+
+# ============ 大额整数金额检测 ============
+round_amount_check:
+  enabled: true
+  threshold: 10000  # 金额 >= 此值
+  min_digits: 5     # 整数位数 >= 此值
+
+# ============ 频繁开票检测 ============
+frequent_invoicing_check:
+  enabled: true
+  threshold: 10    # N 天内开具 M 张
+  window_days: 30  # 时间窗口（天）
+
+# ============ 品名异常检测 ============
+scope_anomaly_check:
+  enabled: true
+  use_external_api: false
+  # 行业识别关键词（会与内置表合并）
+  scope_keywords:
+    餐饮: [餐饮, 饭店, 酒楼, 餐厅, 食品]
+    技术服务: [技术, 软件, 信息, 网络, 科技]
+    建筑: [建筑, 工程, 施工, 装修, 建材]
+    零售: [百货, 超市, 零售, 商店, 商贸]
+    运输: [运输, 物流, 快递, 货运]
+  # 品名关键词黑名单：品名中出现即预警
+  anomaly_keywords_blacklist: [咨询费, 服务费, 推广费, 会务费]
+
+# ============ 进销项匹配检测 ============
+input_output_match_check:
+  enabled: true
+  similarity_threshold: 0.1  # Jaccard 相似度低于此值触发
+
+# ============ 白名单（v4.4.0 新增）============
+# 命中白名单的票据不参与规则检测，避免「房租天然是整数金额」这类误报
+whitelist:
+  # 销售方名称含以下关键词 → 全部规则豁免
+  sellers: []
+  # 费用类型命中 → 全部规则豁免
+  categories: [房租, 物业费, 房屋租赁, 不动产租赁]
+  # 规则级豁免：仅跳过指定规则（关键词匹配销售方 / 费用类型 / 原始文本）
+  rules:
+    round_amount: [房租, 物业, 不动产租赁]
+    consecutive_numbers: []
+    frequent_invoicing: []
+
+# ============ 异常检测参数（v4.4.0 新增）============
+anomaly_detection:
+  enabled: true
+  n_trees: 100        # 随机切割树数量
+  sample_size: 256    # 每棵树的抽样量
+  max_samples: 5000   # 样本上限，超出自动采样
+  warn_score: 0.65    # 二级预警阈值
+  high_score: 0.75    # 高优先级阈值
+
+# ============ 认证期限参数（v4.4.0 新增）============
+# 注意：自 2020-03-01 起增值税专用发票已取消 360 天认证确认期限，
+# 此处窗口仅作企业内部「勾选所属期」管理提醒，可自行调整
+certification:
+  window_days: 360
+  warn_days: [30, 7]
+
+# ============ 预警级别定义 ============
+risk_levels:
+  提示:
+    priority: 1
+    action: 建议关注
+  关注:
+    priority: 2
+    action: 建议核实
+  严重:
+    priority: 3
+    action: 建议立即处理

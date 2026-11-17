@@ -1,45 +1,60 @@
-## Description: <br>
-Deploys and manages an AI agent's onchain identity, reputation, task prices, metadata, and task-agent contracts on Avalanche using ERC-8004. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy and manage an AI agent's onchain identity, reputation, and task capabilities on Avalanche using the ERC-8004 NFT standard.
 
-## Publisher: <br>
-[iJaack](https://clawhub.ai/user/iJaack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ijaack](https://clawhub.ai/user/ijaack)
 
-## Use Case: <br>
-Developers and agent operators use this skill to register an AI agent identity on Avalanche, deploy supporting ValidationRegistry and TaskAgent contracts, and update agent metadata, URI, and task pricing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a raw wallet private key and can spend real AVAX on Avalanche mainnet. <br>
-Mitigation: Use a dedicated low-balance wallet and keep PRIVATE_KEY out of commits, logs, screenshots, and shell history. <br>
-Risk: Deploy, metadata, URI, and price commands can make persistent public blockchain changes without an in-tool confirmation step. <br>
-Mitigation: Verify the RPC network, chain ID, contract addresses, task prices, and agent metadata before running write commands. <br>
-Risk: Deployment and update commands depend on external Avalanche RPC and explorer infrastructure. <br>
-Mitigation: Confirm network availability and independently inspect resulting contract addresses and transaction hashes after execution. <br>
+## Use Case:
 
+Developers and agent operators use this skill to initialize configuration and run CLI commands that register an ERC-8004 agent identity, deploy validation and task contracts, set agent metadata, set task prices, and check deployment status on Avalanche.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/iJaack/erc8004-identity) <br>
-- [ERC-8004 Spec](https://github.com/ava-labs/ERC-8004) <br>
-- [Avalanche Docs](https://docs.avax.network) <br>
-- [Publisher profile](https://clawhub.ai/user/iJaack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Blockchain transactions] <br>
-**Output Format:** [Markdown guidance with CLI commands, JavaScript configuration, JSON deployment records, and onchain transaction output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may write config/agent.config.js and deployment.json, deploy contracts, and submit persistent Avalanche mainnet transactions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: The skill handles wallet private keys and may lead users to store valuable keys in a plaintext .env file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a low-funds deployment wallet, prefer keychain or environment injection, and avoid storing a valuable private key in plaintext.
+
+Risk: Deploy, metadata, and price commands can submit irreversible Avalanche mainnet transactions without sufficient confirmation or dry-run guardrails.
+
+Mitigation: Verify the target chain, balances, contract constructor arguments, and agent configuration before running transaction commands; do not run deploy or update commands until confirmation and dry-run gaps are addressed.
+
+Risk: Security evidence reports a deploy bug involving a missing ValidationRegistry constructor argument that can leave users with a paid partial setup.
+
+Mitigation: Fix and review the ValidationRegistry deployment path before use, then test with a low-funds wallet before any mainnet deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ijaack/skills/erc8004-identity)
+- [ERC-8004 Spec](https://github.com/ava-labs/ERC-8004)
+- [Avalanche Docs](https://docs.avax.network)
+- [Example ERC-8004 agent on Snowtrace](https://snowtrace.io/nft/0x8004A169FB4a3325136EB29fA0ceB6D2e539a432/1599)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides use of a Node.js CLI that can write local configuration and deployment files and submit Avalanche transactions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,61 @@
-## Description: <br>
-Auto-generated skill for brave-search tools via OneKey Gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-generated skill for brave-search tools via OneKey Gateway.
 
-## Publisher: <br>
-[AI-Hub-Admin](https://clawhub.ai/user/AI-Hub-Admin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ai-hub-admin](https://clawhub.ai/user/ai-hub-admin)
 
-## Use Case: <br>
-Developers and agents use this skill to run Brave web searches and local business or place searches through OneKey Gateway. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill embeds and documents a shared fallback credential path for search requests. <br>
-Mitigation: Configure a user-controlled DEEPNLP_ONEKEY_ROUTER_ACCESS key before use and prefer a release that removes the hardcoded fallback credential. <br>
-Risk: Search queries may be sent through a shared or default credential path. <br>
-Mitigation: Avoid submitting sensitive search terms unless the credential path and receiving service are understood and acceptable. <br>
+## Use Case:
 
+Developers and agents use this skill to run Brave web search and local place search through the OneKey Gateway. It supports general web queries, recent information gathering, and local business lookup with JSON payloads.
 
-## Reference(s): <br>
-- [OneKey Gateway Keys](https://www.deepnlp.org/workspace/keys) <br>
-- [OneKey MCP Router Documentation](https://www.deepnlp.org/doc/onekey_mcp_router) <br>
-- [OneKey Gateway Documentation](https://deepnlp.org/doc/onekey_agent_router) <br>
-- [AI Agent Marketplace](https://www.deepnlp.org/store/ai-agent) <br>
-- [Skills Marketplace](https://www.deepnlp.org/store/skills) <br>
-- [AI Agent Marketplace GitHub Repository](https://github.com/aiagenta2z/ai-agent-marketplace) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON search results and Markdown usage guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results depend on the OneKey Gateway and the Brave Search tool invoked.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Search queries are sent through the OneKey Gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that routing is acceptable for the intended data, and avoid sending sensitive queries unless the gateway is approved for them.
+
+Risk: The scripts automatically fall back to a shared demo gateway key when DEEPNLP_ONEKEY_ROUTER_ACCESS is unset.
+
+Mitigation: Set a dedicated DEEPNLP_ONEKEY_ROUTER_ACCESS key before use and avoid relying on the shared demo key.
+
+Risk: The release relies on unpinned npm, pip, or npx package execution.
+
+Mitigation: Pin and verify dependency versions before installation or execution, and run the skill in a restricted environment where possible.
+
+## Reference(s):
+
+- [OneKey MCP Router Doc](https://www.deepnlp.org/doc/onekey_mcp_router)
+- [OneKey Gateway Doc](https://deepnlp.org/doc/onekey_agent_router)
+- [AI Agent Marketplace](https://www.deepnlp.org/store/ai-agent)
+- [Skills Marketplace](https://www.deepnlp.org/store/skills)
+- [GitHub AI Agent Marketplace](https://github.com/aiagenta2z/ai-agent-marketplace)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [JSON search results with Markdown usage guidance and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Web search supports count and offset controls; local search supports count and may fall back to web search when local results are unavailable.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

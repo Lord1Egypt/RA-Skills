@@ -1,44 +1,56 @@
-## Description: <br>
-Self-Track helps an agent track autonomous growth by logging learning, capability gaps, self-review prompts, memory updates, and skill-building tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-Track is Sig Botti's self-improvement tracking system for logging learning, capability gaps, weekly reviews, and skill-building progress.
 
-## Publisher: <br>
-[louch84](https://clawhub.ai/user/louch84) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[louch84](https://clawhub.ai/user/louch84)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use Self-Track to help an agent maintain a personal learning loop: record capability gaps, log lessons, review progress, and outline skill-building steps.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad self-tracking triggers may cause persistent memory writes or vector-memory additions without enough user review.
+
+Mitigation: Require explicit confirmation before writing memory files, adding vector-memory entries, or updating long-term memory.
+
+Risk: Skill-building steps may create, validate, commit, or push new skills.
+
+Mitigation: Require review and approval before creating new skills, committing changes, or pushing to remotes.
+
+Risk: Learning records may capture sensitive personal, project, or operational information.
+
+Mitigation: Limit logged content to non-sensitive information and review records before sharing or publishing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use this skill to maintain a structured self-improvement loop for tracking learning, capability gaps, weekly reviews, and memory updates. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can encourage persistent long-term memory writes, including vector-memory updates. <br>
-Mitigation: Require explicit user confirmation before writing to memory files or adding vector-memory entries. <br>
-Risk: The skill includes broad self-improvement triggers that may activate outside a narrow task scope. <br>
-Mitigation: Use it only when long-term self-improvement tracking is intended, and confirm the scope before logging or updating state. <br>
-Risk: The skill includes skill creation, commit, and push instructions. <br>
-Mitigation: Require explicit confirmation before creating new skills, committing changes, or pushing to a remote repository. <br>
-Risk: The skill references local scripts for memory and skill workflows. <br>
-Mitigation: Inspect referenced local scripts before allowing them to run. <br>
+**Output Format:** [Markdown guidance with inline shell commands and file-update instructions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/louch84/self-track) <br>
+**Other Properties Related to Output:** [May direct persistent memory/file updates and vector-memory additions.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and file path references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose persistent memory updates, skill creation steps, and commit or push actions that should be reviewed before execution.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,5 +1,7 @@
 ---
 name: pressure-test
+version: 0.1.0
+license: MIT
 description: Use when an idea, plan, design, or scope needs to be stress-tested before anyone builds it, when the user says "pressure test this", "poke holes in this", or wants the fuzzy parts made concrete. Also use in sous mode when the user hands off and says to answer the open questions yourself, figure it out, or that they are going AFK.
 ---
 

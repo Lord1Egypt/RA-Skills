@@ -1,45 +1,57 @@
-## Description: <br>
-Reviews and verifies code changes for scope, correctness, security, testing, secrets, and risks before commits, pull requests, or deployments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews and verifies code changes for scope, correctness, security, testing, secrets, and risks before commits, PRs, or deployments.
 
-## Publisher: <br>
-[mindbomber](https://clawhub.ai/user/mindbomber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mindbomber](https://clawhub.ai/user/mindbomber)
 
-## Use Case: <br>
-Developers and code-writing agents use this skill to review planned or completed repository changes before edits, commits, pull requests, releases, or deployments. It helps keep changes scoped, test claims truthful, secrets out of artifacts, and destructive actions gated on approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Marketplace capability tags request wallet, purchase, transaction signing, and sensitive credential access that the instruction-only artifact does not need. <br>
-Mitigation: Install and run the skill without wallet, signing, purchase, or sensitive credential permissions. <br>
-Risk: Review payloads can expose secrets or private data if full logs, full diffs, or private records are included. <br>
-Mitigation: Use redacted summaries and omit raw secrets, private records, full logs, full diffs, and unrelated files. <br>
-Risk: The skill guides review decisions but does not verify repositories, run checks, or approve code changes on its own. <br>
-Mitigation: Run actual tests, scans, and human or verified review paths separately, and report only observed results. <br>
+## Use Case:
 
+Developers and code-editing agents use this skill to keep code changes scoped, reviewable, honestly tested, secret-free, and reversible before commits, pull requests, releases, or deployments.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mindbomber/aana-code-change-review) <br>
-- [README.md](artifact/README.md) <br>
-- [Review Payload Schema](artifact/schemas/code-change-review.schema.json) <br>
-- [Redacted Review Payload Example](artifact/examples/redacted-code-change-review.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown or structured JSON review summaries, depending on the configured review workflow.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The artifact is instruction-only and does not execute commands, write files, call services, or persist memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Optional checker payloads could expose secrets, private records, full logs, full diffs, or unrelated repository files if sent without redaction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use redacted summaries only, and send payloads only through a user- or administrator-approved checker or manual review path.
+
+Risk: High-risk code changes, destructive commands, commits, pull requests, publishing, or deployments may need explicit approval or human review.
+
+Mitigation: Require approval before destructive actions and defer security-sensitive, migration, deploy, release, or broad refactor changes to a verified review path.
+
+## Reference(s):
+
+- [AANA Code Change Review Skill on ClawHub](https://clawhub.ai/mindbomber/skills/aana-code-change-review)
+- [Skill Instructions](artifact/SKILL.md)
+- [Artifact README](artifact/README.md)
+- [Review Payload Schema](artifact/schemas/code-change-review.schema.json)
+- [Redacted Review Payload Example](artifact/examples/redacted-code-change-review.json)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with an optional redacted JSON review payload shape]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only skill; it does not execute commands, install dependencies, persist memory, or write files on its own.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

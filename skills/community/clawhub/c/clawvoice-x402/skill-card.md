@@ -1,48 +1,74 @@
-## Description: <br>
-Voice and TTS for OpenClaw agents, with spoken replies, optional push-to-talk input, and a local Base wallet for x402 paid calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Voice and TTS for OpenClaw agents, with spoken replies, optional push-to-talk input, and a local Base wallet for x402 paid calls.
 
-## Publisher: <br>
-[forgemeshlabs](https://clawhub.ai/user/forgemeshlabs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[forgemeshlabs](https://clawhub.ai/user/forgemeshlabs)
 
-## Use Case: <br>
-Developers and OpenClaw users use ClawVoice to add local or hosted agent speech, optional push-to-talk input, and x402 wallet-backed paid voice calls with spend controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create and use a local Base USDC hot wallet for x402 payments. <br>
-Mitigation: Fund only a small working balance, keep wallet.json private, and use the documented withdrawal path for leftover funds. <br>
-Risk: Hosted x402 voice calls can spend wallet funds when automation approves calls. <br>
-Mitigation: Keep approval prompts enabled, avoid --approve unless the automation is trusted, and enforce per-call, session, and daily spend caps. <br>
-Risk: The push-to-talk conversation mode can pass transcribed speech to a configured agent command. <br>
-Mitigation: Configure only agent commands the user would run directly and keep microphone functionality opt-in. <br>
+## Use Case:
 
+Developers and OpenClaw users use ClawVoice to add local, hosted, or hybrid voice output, optional push-to-talk input, and x402 wallet controls to an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/forgemeshlabs/skills/clawvoice-x402) <br>
-- [ForgeMesh Homepage](https://forgemesh.io) <br>
-- [Pricing](references/pricing.md) <br>
-- [Security](references/security.md) <br>
-- [Requirements](references/requirements.md) <br>
-- [AgentCash / Poncho Discovery](references/discovery.md) <br>
-- [Third-Party Notices](references/third-party-notices.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local CLI-driven configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can trigger local audio playback, optional local speech-to-text setup, hosted x402 voice calls, and wallet operations under user-controlled approval and spend caps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.18 (source: SKILL.md frontmatter, package.json, server release evidence) <br>
+Risk: Hosted voice mode can send spoken reply text to a hosted service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer local mode for confidential content and do not put secrets or private data into text that may be spoken.
+
+Risk: The skill keeps a spend-capable local hot wallet.
+
+Mitigation: Use only small working balances, keep private keys local, and withdraw leftover funds through the explicit withdrawal command.
+
+Risk: Noninteractive approval flags can bypass normal payment or withdrawal prompts.
+
+Mitigation: Avoid --approve and withdrawal --yes unless the automation and destination are fully trusted.
+
+Risk: Voice and microphone installers may install third-party runtime components.
+
+Mitigation: Review install-voice and install-mic before execution and use dry-run or explicit approval flows where possible.
+
+Risk: The configured talk command is executed as a shell command.
+
+Mitigation: Inspect ~/.x402-agent-voice/config.json before using talk and keep agentCommand limited to trusted commands.
+
+## Reference(s):
+
+- [ClawVoice skill page](https://clawhub.ai/forgemeshlabs/skills/clawvoice-x402)
+- [ForgeMesh homepage](https://forgemesh.io)
+- [Pricing](references/pricing.md)
+- [Security](references/security.md)
+- [Requirements](references/requirements.md)
+- [AgentCash / Poncho Discovery](references/discovery.md)
+- [Pyrimid](references/pyrimid.md)
+- [Third-Party Notices](references/third-party-notices.md)
+- [Supertonic repository](https://github.com/supertone-inc/supertonic)
+- [Supertonic 3 model weights](https://huggingface.co/Supertone/supertonic-3)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance, audio]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional generated audio output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local voice, microphone, wallet, config, receipt, and audio files under the user's local profile.]
+
+## Skill Version(s):
+
+0.3.18 (source: SKILL.md frontmatter, package.json, skill.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

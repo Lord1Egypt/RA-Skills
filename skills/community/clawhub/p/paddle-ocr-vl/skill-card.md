@@ -1,46 +1,57 @@
-## Description: <br>
-GPU-accelerated document parsing and OCR via PaddleOCR-VL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PaddleOCR-VL provides GPU-accelerated document parsing and OCR that detects layout and recognizes Chinese and English text, tables, charts, seals, vertical classical Chinese text, modern newspaper layouts, and mixed-content documents.
 
-## Publisher: <br>
-[jessy-huang](https://clawhub.ai/user/jessy-huang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jessy-huang](https://clawhub.ai/user/jessy-huang)
 
-## Use Case: <br>
-Developers and agent users use this skill to OCR image files, parse screenshots and document images, and extract text or layout-aware document content through a local MCP server backed by PaddleOCR-VL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Docker container receives broad local and network access. <br>
-Mitigation: Review before installing and prefer a revised version that disables host networking, avoids root, and mounts only the target file read-only. <br>
-Risk: OCR runs on user-provided local file paths. <br>
-Mitigation: Use only trusted file paths and avoid files with unusual or attacker-controlled filenames. <br>
-Risk: The skill depends on external Docker images for local execution. <br>
-Mitigation: Use only trusted images and verify the pulled image before processing sensitive documents. <br>
+## Use Case:
 
+Developers and document-processing users use this skill to run OCR on local images, screenshots, newspaper pages, classical text, and mixed-content documents through a PaddleOCR-VL MCP server.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jessy-huang/paddle-ocr-vl) <br>
-- [Publisher profile](https://clawhub.ai/user/jessy-huang) <br>
-- [Homepage](https://github.com/user/paddle-ocr-vl-skill) <br>
-- [PaddleOCR-VL documentation](https://www.paddleocr.ai/latest/version3.x/pipeline_usage/PaddleOCR-VL.html) <br>
-- [PaddleOCR-VL Blackwell documentation](https://www.paddleocr.ai/latest/version3.x/pipeline_usage/PaddleOCR-VL-NVIDIA-Blackwell.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown setup guidance and JSON-formatted OCR results from MCP tool calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs local Docker-based OCR and returns environment checks, setup guidance, demo results, or extracted text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+Risk: The skill runs unverified Docker images with broad local-file access and host networking.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive files and only when the container publisher and registry are trusted; prefer pinned image digests, no host networking, non-root execution, and a read-only staged input mount.
+
+Risk: The security evidence reports a filename injection bug.
+
+Mitigation: Use controlled filenames until the issue is fixed; update the skill to pass image paths safely instead of embedding filenames into executable Python source.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jessy-huang/skills/paddle-ocr-vl)
+- [Publisher Profile](https://clawhub.ai/user/jessy-huang)
+- [Project Homepage](https://github.com/user/paddle-ocr-vl-skill)
+- [PaddleOCR-VL Documentation](https://www.paddleocr.ai/latest/version3.x/pipeline_usage/PaddleOCR-VL.html)
+- [PaddleOCR-VL NVIDIA Blackwell Documentation](https://www.paddleocr.ai/latest/version3.x/pipeline_usage/PaddleOCR-VL-NVIDIA-Blackwell.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown setup guidance and JSON-formatted OCR or environment-check results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Docker, python3, nvidia-smi, NVIDIA GPU drivers, and local image paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

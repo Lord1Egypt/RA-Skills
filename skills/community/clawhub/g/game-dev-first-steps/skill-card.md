@@ -1,45 +1,54 @@
-## Description: <br>
-Helps beginners and early-stage indie teams turn a game idea into a practical starting plan with development order, scope guidance, risks, postponements, and next steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps beginners and early-stage indie game teams turn a rough game idea into a practical first development plan with scoped milestones, build order, risks, postponements, and next steps.
 
-## Publisher: <br>
-[stanestane](https://clawhub.ai/user/stanestane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stanestane](https://clawhub.ai/user/stanestane)
 
-## Use Case: <br>
-External creators, beginner game developers, and early-stage indie teams use this skill to scope a game concept, pick the right first milestone, and decide what to prototype before expanding content or polish. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Planning guidance may be too general for a specific engine, platform, funding model, or production constraint. <br>
-Mitigation: Treat the output as early planning advice and validate it against the team's engine choice, platform requirements, budget, schedule, and production experience. <br>
-Risk: Users may share confidential game concepts, business plans, or unreleased production details while seeking advice. <br>
-Mitigation: Avoid sharing confidential project details unless comfortable doing so, and use sanitized summaries when discussing sensitive ideas. <br>
-Risk: The skill can help scope and sequence a project, but it is not legal, business, platform certification, or engine-specific technical advice. <br>
-Mitigation: Use appropriate domain experts and official platform or engine documentation before making legal, commercial, release, or implementation decisions. <br>
+## Use Case:
 
+External users and developers use this skill to turn early game concepts into beginner-safe prototype, vertical-slice, or first-release planning guidance. It asks for core concept and team constraints, then recommends a concise development order, scope reductions, risks, deferred work, and next steps.
 
-## Reference(s): <br>
-- [Development Order](references/development-order.md) <br>
-- [Team Size Guidance](references/team-size-guidance.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/stanestane/game-dev-first-steps) <br>
-- [Publisher Profile](https://clawhub.ai/user/stanestane) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces concise planning advice, recommended build order, risks, postponements, and next steps; it does not execute code or access external systems.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may activate on broad questions about starting a game or what to build first.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user's milestone, team size, skills, platform, scope, and constraints before giving planning guidance.
+
+Risk: Directional planning advice can be misleading if treated as a full production plan.
+
+Mitigation: Frame recommendations as early planning guidance and keep the focus on prototype validation, scope reduction, and concrete next steps.
+
+## Reference(s):
+
+- [Development Order](artifact/references/development-order.md)
+- [Team Size Guidance](artifact/references/team-size-guidance.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-formatted advisory plan]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured sections for idea snapshot, team reality, recommended development order, postponed work, biggest risks, and best next steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

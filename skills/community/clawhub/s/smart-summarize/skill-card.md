@@ -1,48 +1,61 @@
-## Description: <br>
-Summarize URLs or files with the summarize CLI and access SkillBoss models for generation, transcription, search, document processing, email, and SMS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarize URLs or files with the summarize CLI for web pages, PDFs, images, audio, and YouTube, and provide guidance for using SkillBoss models across chat, image, video, audio, search, document, email, and SMS tasks.
 
-## Publisher: <br>
-[QuincyGunter](https://clawhub.ai/user/QuincyGunter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quincygunter](https://clawhub.ai/user/quincygunter)
 
-## Use Case: <br>
-Developers and external users use this skill to summarize web pages, files, PDFs, images, audio, and YouTube content, and to call SkillBoss-hosted AI models across multiple providers. It also exposes broader generation, search, document, email, SMS, and smart-routing workflows through API examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review describes this as a broad external API gateway under a summarization name, including email, SMS and OTP, scraping, and smart-routing actions. <br>
-Mitigation: Install only when that broad SkillBoss API access is intended, use a restricted API key when available, monitor usage and billing, and require explicit approval before email, SMS, OTP, scraping, or smart-routed actions. <br>
-Risk: Inputs and generated outputs may be processed by external providers through SkillBoss. <br>
-Mitigation: Avoid sensitive or regulated data unless external processing is acceptable for the deployment context. <br>
+## Use Case:
 
+Developers and external users use this skill to summarize URLs or files and to choose SkillBoss model calls for multimodal generation, search, document processing, email, and SMS workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/QuincyGunter/smart-summarize) <br>
-- [SkillBoss API Base](https://api.heybossai.com/v1) <br>
-- [SkillBoss](https://www.skillboss.co) <br>
-- [Chat Models](chat-models.md) <br>
-- [Image Models](image-models.md) <br>
-- [Audio Models](audio-models.md) <br>
-- [Search & Scraping Models](search-models.md) <br>
-- [Tool Models](tools-models.md) <br>
-- [Video Models](video-models.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY for API-backed workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Prompts, file URLs, audio data, document URLs, search queries, and generated content may be sent to the SkillBoss or HeyBoss API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when an external model gateway is intended, and avoid sending sensitive data unless the use case and data handling requirements allow it.
+
+Risk: Email and SMS examples can initiate outbound communications.
+
+Mitigation: Require explicit user confirmation before running email or SMS actions, including recipient addresses, phone numbers, subjects, and message bodies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/quincygunter/skills/smart-summarize)
+- [SkillBoss](https://www.skillboss.co)
+- [HeyBoss API base](https://api.heybossai.com/v1)
+- [Chat Models](artifact/chat-models.md)
+- [Image Models](artifact/image-models.md)
+- [Video Models](artifact/video-models.md)
+- [Audio Models](artifact/audio-models.md)
+- [Search & Scraping Models](artifact/search-models.md)
+- [Tool Models](artifact/tools-models.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands, API request examples, configuration notes, and model guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY for live SkillBoss or HeyBoss API calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,10 +1,13 @@
 #!/usr/bin/env node
 
+const { emitError } = require('./shareone_client');
 const fs = require('fs');
 const path = require('path');
 const {
     CREDENTIAL_MODE_SUDOWORK_PROXY,
     detectCredentialMode,
+    extractShareRef,
+    printShareOneScriptError,
     requestShareOneBuffer,
     resolveDirectApiKey,
 } = require('./shareone_client');
@@ -19,13 +22,28 @@ let publicOnly = false;
 let save = false;
 let taskAnchor = false;
 
+function usage() {
+    console.error("Usage: node download_share.js <ref> [--password <password>] [--api-key <key>] [--public-only] [--save] [--task-anchor]");
+}
+
+function nextValue(index, flag) {
+    const value = args[index + 1];
+    if (value === undefined || value.startsWith('--')) {
+        emitError(`ERROR:MISSING_VALUE:${flag}`);
+    }
+    return value;
+}
+
 for (let i = 0; i < args.length; i++) {
     if (args[i] === '--ref') {
-        ref = args[++i];
+        ref = nextValue(i, args[i]);
+        i += 1;
     } else if (args[i] === '--password') {
-        password = args[++i];
+        password = nextValue(i, args[i]);
+        i += 1;
     } else if (args[i] === '--api-key') {
-        apiKey = args[++i];
+        apiKey = nextValue(i, args[i]);
+        i += 1;
     } else if (args[i] === '--public-only') {
         publicOnly = true;
     } else if (args[i] === '--save') {
@@ -35,31 +53,14 @@ for (let i = 0; i < args.length; i++) {
         save = true;
     } else if (!args[i].startsWith('--') && !ref) {
         ref = args[i];
+    } else {
+        emitError(`ERROR:UNKNOWN_ARGUMENT:${args[i]}`);
     }
 }
 
 if (!ref) {
-    console.error("Usage: node download_share.js <ref> [--password <password>] [--api-key <key>] [--public-only] [--save] [--task-anchor]");
-    process.exit(1);
-}
-
-function extractShareRef(value) {
-    const raw = String(value || '').trim();
-    if (!raw) return null;
-    try {
-        const parsed = raw.includes('://') ? new URL(raw) : null;
-        const path = parsed ? parsed.pathname : raw.split('?')[0].split('#')[0];
-        const parts = path.split('/').filter(Boolean);
-        if (parts.length === 0) return raw;
-        if (parts[0] === 'file' && parts.length >= 2) return parts[1];
-        if (parts[0] === 'api' && parts.includes('shares')) {
-            const index = parts.indexOf('shares');
-            return parts[index + 1] || raw;
-        }
-        return parts[parts.length - 1] || raw;
-    } catch (_) {
-        return raw;
-    }
+    usage();
+    emitError('BAD_ARGS', 'Required arguments are missing.');
 }
 
 async function tryOwnerDownload(credentialMode) {
@@ -117,7 +118,15 @@ function parseFilenameFromDisposition(disposition) {
 function emitDownloadInfo(headers) {
     const filename = parseFilenameFromDisposition(headers['content-disposition']);
     if (filename) console.error(`INFO:FILENAME:${filename}`);
-    if (headers['content-type']) console.error(`INFO:CONTENT_TYPE:${headers['content-type']}`);
+    // Downloads of HTML are served as octet-stream so no HTML-rewriting proxy
+    // edits the bytes in transit; the real type travels in its own header.
+    const contentType = headers['x-shareone-content-type'] || headers['content-type'];
+    if (contentType) console.error(`INFO:CONTENT_TYPE:${contentType}`);
+    const remoteSource = headers['x-remote-source-url'];
+    if (remoteSource) {
+        console.error(`INFO:REMOTE_SOURCE:${remoteSource}`);
+        console.error('HINT:EDIT_AT_SOURCE');
+    }
 }
 
 function sanitizeFilename(name) {
@@ -158,9 +167,7 @@ function saveDownload(result) {
 (async () => {
     const credentialMode = await detectCredentialMode();
     if (credentialMode.mode === CREDENTIAL_MODE_SUDOWORK_PROXY && apiKey && !publicOnly) {
-        console.error("ERROR:SUDOWORK_MANAGED_KEY");
-        console.error("Sudowork 模式下不要传 --api-key；请通过本 skill 的 save_api_key.js 或 create_guest_key.js 设置 ShareOne API Key。");
-        process.exit(1);
+        emitError("ERROR:SUDOWORK_MANAGED_KEY", ["Sudowork 模式下不要传 --api-key；请通过本 skill 的 save_api_key.js 或 create_guest_key.js 设置 ShareOne API Key。"].join('\n'));
     }
 
     const ownerResult = await tryOwnerDownload(credentialMode);
@@ -172,18 +179,5 @@ function saveDownload(result) {
         process.stdout.write(result.data);
     }
 })().catch((error) => {
-    let code = null;
-    try {
-        const parsed = JSON.parse(error.responseText || '{}');
-        const detail = parsed.detail || {};
-        code = typeof detail === 'string' ? detail : detail.code;
-    } catch (_) {
-        // Keep the original HTTP error if the response is not JSON.
-    }
-    if (code) {
-        console.error(`ERROR:${code}`);
-    } else {
-        console.error(`ERROR:${error.message}`);
-    }
-    process.exit(1);
+    process.exit(printShareOneScriptError(error));
 });

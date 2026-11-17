@@ -1,44 +1,59 @@
-## Description: <br>
-Aion Skill Builder generates complete AION trading skill templates from natural-language strategy descriptions, including metadata, ClawHub configuration, and Python trading code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AION Skill Builder helps agents generate AION and ClawHub trading skill projects from natural language strategy descriptions.
 
-## Publisher: <br>
-[ssj124](https://clawhub.ai/user/ssj124) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ssj124](https://clawhub.ai/user/ssj124)
 
-## Use Case: <br>
-Developers and trading-skill authors use this skill to turn a plain-language prediction-market strategy into a starter ClawHub skill folder with AION SDK integration, environment declarations, and generated Python code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for sensitive credentials, including API keys and an optional wallet private key. <br>
-Mitigation: Use limited or test credentials, avoid providing a real wallet private key, and keep generated skills in dry-run mode until reviewed. <br>
-Risk: Strategy descriptions are processed with OpenAI for metadata and code generation. <br>
-Mitigation: Do not enter confidential strategies or secrets in prompts, and assume strategy text may be sent to OpenAI. <br>
-Risk: Generated trading files may contain incorrect or unsafe trading logic. <br>
-Mitigation: Manually review generated skill.py and clawhub.json before running, publishing, or enabling recurring automation. <br>
+## Use Case:
 
+Developers and trading-skill authors use this skill to scaffold AION-powered prediction-market trading skills, including metadata, ClawHub configuration, and Python trading logic that they can review, customize, test, and publish.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ssj124/aion-skill-builder) <br>
-- [AION agents API key page](https://www.aionmarket.com/agents) <br>
-- [AION building skills documentation](https://docs.aion.market/essentials/building-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, shell commands] <br>
-**Output Format:** [Generated skill folder files plus conversational prompts and status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated skills declare required environment variables and default generated trading logic to dry-run behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: Generated trading skills may contain unreviewed model-generated Python that can later be run or scheduled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Generate into an empty disposable directory, inspect generated skill.py and configuration before execution, and disable any generated schedule until reviewed.
+
+Risk: Trading execution can require AION credentials and may optionally use a wallet private key.
+
+Mitigation: Use test credentials when evaluating, avoid providing wallet private keys unless necessary, and keep generated skills in dry-run mode until audited.
+
+Risk: The release security verdict is suspicious because packaging partly describes the skill as a trader while it acts as a generator.
+
+Mitigation: Review generated output and advertised behavior before publishing or deploying derived skills.
+
+## Reference(s):
+
+- [AION Skill Builder on ClawHub](https://clawhub.ai/ssj124/skills/aion-skill-builder)
+- [AION agents API credentials](https://www.aionmarket.com/agents)
+- [AION building skills documentation](https://docs.aion.market/essentials/building-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Files, Shell commands, Configuration]
+
+**Output Format:** [Markdown, JSON configuration, Python code, and shell commands written into a generated skill folder]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates a complete skill folder; artifact documentation says generated trading logic should default to dry-run.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

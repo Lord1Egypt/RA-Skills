@@ -1,41 +1,54 @@
-## Description: <br>
-Generates hyper-detailed AI portraits through the ComfyDeploy Morfeo Portrait workflow with structured controls for facial features, skin, hair, and expression. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates hyper-detailed AI portraits through the ComfyDeploy Morfeo Portrait workflow with structured control over facial features such as eyes, nose, lips, jawline, skin, hair, and expression.
 
-## Publisher: <br>
-[PauldeLavallaz](https://clawhub.ai/user/PauldeLavallaz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pauldelavallaz](https://clawhub.ai/user/pauldelavallaz)
 
-## Use Case: <br>
-External users and agents use this skill to convert natural-language portrait requests into structured facial parameters, queue a ComfyDeploy Morfeo Portrait run, and retrieve the resulting portrait image URL. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Portrait prompts, facial traits, run IDs, and output links are sent to ComfyDeploy. <br>
-Mitigation: Use only authorized portrait inputs, avoid private likenesses or sensitive identity details unless authorized, and prefer a limited ComfyDeploy API key when available. <br>
-Risk: Remote execution requires a ComfyDeploy bearer token. <br>
-Mitigation: Keep API keys out of prompts and shared transcripts, and restrict or rotate the key according to the account's available controls. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Portrait Generator Skill Page](https://clawhub.ai/PauldeLavallaz/portrait-generator) <br>
-- [ComfyDeploy Queue Endpoint](https://api.comfydeploy.com/api/run/deployment/queue) <br>
-- [ComfyDeploy Run Status Endpoint](https://api.comfydeploy.com/api/run/{run_id}) <br>
+## Use Case:
 
+Content creators, campaign teams, and agent users use this skill to turn natural-language portrait requests into structured ComfyDeploy Morfeo Portrait parameters and retrieve generated portrait outputs.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, API Calls] <br>
-**Output Format:** [Markdown guidance with JSON request bodies and API polling instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Queues a ComfyDeploy run and returns an output image URL after successful polling.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Portrait descriptions and structured facial attributes are sent to ComfyDeploy.
+
+Mitigation: Avoid using the skill for real people or sensitive personal traits unless consent and the external service's privacy, retention, and access controls have been reviewed.
+
+Risk: The skill depends on an external ComfyDeploy API service to generate and retrieve portrait outputs.
+
+Mitigation: Confirm the service is available and that API credentials are handled through approved secret-management practices before use.
+
+## Reference(s):
+
+- [ClawHub Portrait Generator skill page](https://clawhub.ai/pauldelavallaz/skills/portrait-generator)
+- [Publisher profile](https://clawhub.ai/user/pauldelavallaz)
+- [ComfyDeploy queue endpoint](https://api.comfydeploy.com/api/run/deployment/queue)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Image URL]
+
+**Output Format:** [Structured JSON request parameters followed by a generated portrait image URL when the external run succeeds]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses predefined portrait attribute values where available and free-text brief details for unmapped attributes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

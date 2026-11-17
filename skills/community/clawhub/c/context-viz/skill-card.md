@@ -1,38 +1,47 @@
-## Description: <br>
-Visualize the current context window usage - token estimates per component (system prompt, tools, workspace files, messages, free space). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Visualize the current context window usage by estimating token use across the system prompt, tools, workspace files, messages, and free space.
 
-## Publisher: <br>
-[furukama](https://clawhub.ai/user/furukama) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[furukama](https://clawhub.ai/user/furukama)
 
-## Use Case: <br>
-Developers and agent users use this skill to inspect current context usage, estimate token consumption by workspace files and messages, and see remaining context capacity. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The bundled helper reads standard context files and the memory/ directory from the workspace selected by the user. <br>
-Mitigation: Run it only against the intended workspace and avoid unrelated or highly sensitive directories. <br>
-Risk: Token totals are approximate and may not exactly match model tokenization. <br>
-Mitigation: Use the visualization as an operational estimate and rely on session-reported context totals when exact capacity matters. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers and agent users use this skill to inspect how much of the current context window is occupied and which components contribute to token use.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill inspects local workspace and memory files to estimate token usage, which may expose sensitive local file names or content-derived estimates in the response.
+
+Mitigation: Review before installing or running in workspaces whose memory directory may contain private notes or sensitive records, and use only where local inspection is acceptable.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with monospace text charts and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Token counts are estimates based on local workspace files and session context status.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with monospace charts and optional JSON from the bundled token-estimation script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Token counts are estimates based on approximately four characters per token and local workspace inspection.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

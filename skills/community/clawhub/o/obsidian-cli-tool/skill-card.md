@@ -1,42 +1,55 @@
-## Description: <br>
-Interact with Obsidian vaults through the Obsidian CLI to read, create, search, and manage notes, tasks, frontmatter, plugin reloads, JavaScript evaluation, screenshots, errors, and DOM inspection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with Obsidian vaults through the Obsidian CLI to read, create, search, and manage notes, tasks, frontmatter properties, and plugin-development workflows.
 
-## Publisher: <br>
-[sadlay](https://clawhub.ai/user/sadlay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sadlay](https://clawhub.ai/user/sadlay)
 
-## Use Case: <br>
-Developers, writers, and knowledge workers use this skill to operate an Obsidian vault from an agent, including note management, vault search, frontmatter updates, and plugin or theme debugging. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Live vault operations can delete, move, or change notes and frontmatter. <br>
-Mitigation: Ask for confirmation before delete, move, or frontmatter-changing commands. <br>
-Risk: Plugin JavaScript evaluation can run code inside Obsidian. <br>
-Mitigation: Use plugin evaluation only with code the user trusts and after explicit confirmation. <br>
-Risk: Screenshots and DOM inspection can expose vault or workspace information. <br>
-Mitigation: Ask for confirmation before screenshots or DOM inspection and avoid exposing sensitive content. <br>
-Risk: The workflow depends on a separate Obsidian CLI/plugin and a running Obsidian instance. <br>
-Mitigation: Verify the Obsidian CLI/plugin installation and the active Obsidian instance before relying on commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+External users and developers use this skill when they want an agent to operate an Obsidian vault from the command line, including note management, vault search, frontmatter updates, and plugin or theme debugging.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Commands that delete, move, or remove frontmatter can change or remove Obsidian notes.
+
+Mitigation: Confirm the target vault, note path, and intended change before running destructive or modifying commands.
+
+Risk: Screenshot, DOM inspection, note printing, and vault search commands can expose private vault content.
+
+Mitigation: Use these commands only when the user has explicitly identified the vault or note content to inspect.
+
+Risk: Plugin evaluation commands run JavaScript inside Obsidian.
+
+Mitigation: Review the code and confirm the plugin-development context before running evaluation commands.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands target a running Obsidian instance and require the Obsidian CLI plugin.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline shell commands and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a running Obsidian instance and the Obsidian CLI plugin.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

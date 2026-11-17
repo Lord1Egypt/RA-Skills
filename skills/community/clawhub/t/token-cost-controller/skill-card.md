@@ -1,43 +1,52 @@
-## Description: <br>
-OpenClaw Token省钱管家 helps agents control token costs with intelligent caching, dynamic model routing, real-time cost monitoring, and local budget controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Token省钱管家 helps OpenClaw users reduce token spending with intelligent caching, dynamic model routing, cost reporting, anomaly alerts, and budget controls.
 
-## Publisher: <br>
-[e2e5g](https://clawhub.ai/user/e2e5g) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[e2e5g](https://clawhub.ai/user/e2e5g)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and OpenClaw users use this skill to monitor token costs, review high-cost skills, route tasks to lower-cost models where appropriate, reuse cached results, and enforce budget controls.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Local cache, cost history, alerts, and control settings can persist sensitive prompts, outputs, or workflow details.
+
+Mitigation: Avoid caching sensitive prompts or outputs unless the storage location and file permissions are acceptable for the deployment environment.
+
+Risk: Disabled-skill and budget controls can block workflows when the host honors those controls.
+
+Mitigation: Review control settings before deployment and keep an operator path for restoring disabled skills or adjusting budget limits.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use this skill to monitor skill-level token spend, route simpler tasks to lower-cost models, cache repeated work, and apply local controls when spend exceeds configured limits. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill keeps cache, history, and control-state files locally in plaintext. <br>
-Mitigation: Avoid caching sensitive prompts or responses on shared machines and review .openclaw/data periodically. <br>
-Risk: Disable and budget controls can block or change agent behavior if configured too aggressively. <br>
-Mitigation: Use disable and budget controls deliberately, and review current controls before relying on cost reports or routing decisions. <br>
+**Output Format:** [Markdown and CLI-oriented text with JSON reports]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/e2e5g/token-cost-controller) <br>
-- [Publisher profile](https://clawhub.ai/user/e2e5g) <br>
-- [README](artifact/README.md) <br>
-- [Configuration example](artifact/config.example.json) <br>
+**Other Properties Related to Output:** [May write local JSON data for cache, cost history, alerts, and control settings.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text and JSON reports, Node.js module return values, and configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local .openclaw/data cache, history, and control-state files.] <br>
+2.2.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-2.2.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,53 @@
-## Description: <br>
-Discover and send tasks to A2A agents via the A2A API Gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover and send tasks to A2A agents through an A2A API Gateway, including finding agents or providers, delegating tasks, checking task status, and routing work to a specific agent.
 
-## Publisher: <br>
-[thearchitectit](https://clawhub.ai/user/thearchitectit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thearchitectit](https://clawhub.ai/user/thearchitectit)
 
-## Use Case: <br>
-Developers and agent operators use this skill to discover available A2A agents or providers, delegate tasks through an A2A API Gateway, and retrieve task status or results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automatically uses admin-level gateway authentication for ordinary discovery and task operations. <br>
-Mitigation: Install only when you control and trust the configured A2A gateway, and prefer a future version that uses least-privilege task and discovery tokens. <br>
-Risk: Task prompts and results may contain sensitive information that is sent through the gateway and downstream providers. <br>
-Mitigation: Avoid sending sensitive prompts or results unless the gateway and downstream providers are approved for that data. <br>
-Risk: Gateway URLs and API keys are required for use. <br>
-Mitigation: Keep gateway configuration and API keys out of shared logs and source-controlled configuration files. <br>
+## Use Case:
 
+Developers and engineers use this skill to discover available A2A agents or LLM providers, delegate work through an A2A API Gateway, and retrieve task status or results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/thearchitectit/a2a-client) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and Markdown with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and python3 on Linux or Darwin; outputs can include gateway discovery results, task identifiers, task metadata, token usage, and LLM responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+Risk: Normal task actions use administrator-level gateway tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a trusted test environment or change the scripts to use scoped credentials instead of admin bootstrap before broader deployment.
+
+Risk: Unsafe input handling can expose task routing to unintended targets or data handling.
+
+Mitigation: Validate agent slugs, require HTTPS for non-local gateways, and avoid sending secrets or confidential work through external agents or providers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/thearchitectit/skills/a2a-client)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and terminal text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and python3 on linux or darwin, plus an A2A gateway URL and optional API key.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

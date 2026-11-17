@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 800" font-family="'PingFang SC','Microsoft YaHei',sans-serif">
+  <rect width="680" height="800" fill="#F7F8FA"/>
+
+  <!-- Title -->
+  <text x="340" y="42" text-anchor="middle" font-size="22" font-weight="700" fill="#111827">统一凭据体系 · 一图看懂：槽点 vs 我们的方案</text>
+  <text x="340" y="70" text-anchor="middle" font-size="13" fill="#5B6B7B">全生态含华为 · 零知识加密 · 可恢复 · 分级授权 · 专家全程负责</text>
+
+  <!-- Column headers -->
+  <rect x="20" y="92" width="310" height="32" rx="8" fill="#FDECEC" stroke="#F5C2C2"/>
+  <text x="175" y="113" text-anchor="middle" font-size="15" font-weight="700" fill="#E5484D">❌ 当前槽点（旧做法）</text>
+  <rect x="350" y="92" width="310" height="32" rx="8" fill="#E9F7EF" stroke="#B7E4C7"/>
+  <text x="505" y="113" text-anchor="middle" font-size="15" font-weight="700" fill="#15A05A">✅ 我们的方案（A 版）</text>
+
+  <!-- ===== LEFT cards (pain points) ===== -->
+  <!-- Card 1 -->
+  <rect x="20" y="140" width="310" height="96" rx="10" fill="#FFFFFF" stroke="#E3E8EF"/>
+  <rect x="26" y="150" width="5" height="76" rx="2.5" fill="#E5484D"/>
+  <circle cx="50" cy="170" r="13" fill="#E5484D"/>
+  <text x="50" y="175" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">1</text>
+  <text x="72" y="175" font-size="15" font-weight="700" fill="#1F2933">口令满天飞</text>
+  <text x="44" y="202" font-size="12" fill="#5B6B7B">公众号·小程序·支付·SynomosAI</text>
+  <text x="44" y="222" font-size="12" fill="#5B6B7B">各类 API 各记各的，脑容量告急</text>
+
+  <!-- Card 2 -->
+  <rect x="20" y="248" width="310" height="96" rx="10" fill="#FFFFFF" stroke="#E3E8EF"/>
+  <rect x="26" y="258" width="5" height="76" rx="2.5" fill="#E5484D"/>
+  <circle cx="50" cy="278" r="13" fill="#E5484D"/>
+  <text x="50" y="283" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">2</text>
+  <text x="72" y="283" font-size="15" font-weight="700" fill="#1F2933">微信 ≠ 运行时鉴权</text>
+  <text x="44" y="310" font-size="12" fill="#5B6B7B">AI 助手平台 无原生「扫码下发密钥」</text>
+  <text x="44" y="330" font-size="12" fill="#5B6B7B">微信只能做一次性安全投递通道</text>
+
+  <!-- Card 3 -->
+  <rect x="20" y="356" width="310" height="96" rx="10" fill="#FFFFFF" stroke="#E3E8EF"/>
+  <rect x="26" y="366" width="5" height="76" rx="2.5" fill="#E5484D"/>
+  <circle cx="50" cy="386" r="13" fill="#E5484D"/>
+  <text x="50" y="391" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">3</text>
+  <text x="72" y="391" font-size="15" font-weight="700" fill="#1F2933">硬件密钥换机即死</text>
+  <text x="44" y="418" font-size="12" fill="#5B6B7B">DPAPI/Keychain/HUKS 绑定设备</text>
+  <text x="44" y="438" font-size="12" fill="#5B6B7B">换机/重装 = 整库锁死</text>
+
+  <!-- Card 4 -->
+  <rect x="20" y="464" width="310" height="96" rx="10" fill="#FFFFFF" stroke="#E3E8EF"/>
+  <rect x="26" y="474" width="5" height="76" rx="2.5" fill="#E5484D"/>
+  <circle cx="50" cy="494" r="13" fill="#E5484D"/>
+  <text x="50" y="499" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">4</text>
+  <text x="72" y="499" font-size="15" font-weight="700" fill="#1F2933">华为鸿蒙盲区</text>
+  <text x="44" y="526" font-size="12" fill="#5B6B7B">自研 Python 脚本跑不了鸿蒙原生</text>
+  <text x="44" y="546" font-size="12" fill="#5B6B7B">手机端拿不到硬件级安全</text>
+
+  <!-- Card 5 -->
+  <rect x="20" y="572" width="310" height="96" rx="10" fill="#FFFFFF" stroke="#E3E8EF"/>
+  <rect x="26" y="582" width="5" height="76" rx="2.5" fill="#E5484D"/>
+  <circle cx="50" cy="602" r="13" fill="#E5484D"/>
+  <text x="50" y="607" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">5</text>
+  <text x="72" y="607" font-size="15" font-weight="700" fill="#1F2933">明文上云 = 高危泄露</text>
+  <text x="44" y="634" font-size="12" fill="#5B6B7B">口令进对话·云·日志即泄露</text>
+  <text x="44" y="654" font-size="12" fill="#5B6B7B">触发泄露排查告警</text>
+
+  <!-- ===== RIGHT cards (our solution) ===== -->
+  <!-- Card 1 -->
+  <rect x="350" y="140" width="310" height="96" rx="10" fill="#FFFFFF" stroke="#E3E8EF"/>
+  <rect x="356" y="150" width="5" height="76" rx="2.5" fill="#15A05A"/>
+  <circle cx="380" cy="170" r="13" fill="#15A05A"/>
+  <text x="380" y="175" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">1</text>
+  <text x="402" y="175" font-size="15" font-weight="700" fill="#1F2933">全生态打通</text>
+  <text x="374" y="202" font-size="12" fill="#5B6B7B">Win/Mac/Linux/鸿蒙/安卓/iOS</text>
+  <text x="374" y="222" font-size="12" fill="#5B6B7B">浏览器 同一 .kdbx 文件通用</text>
+
+  <!-- Card 2 -->
+  <rect x="350" y="248" width="310" height="96" rx="10" fill="#FFFFFF" stroke="#E3E8EF"/>
+  <rect x="356" y="258" width="5" height="76" rx="2.5" fill="#15A05A"/>
+  <circle cx="380" cy="278" r="13" fill="#15A05A"/>
+  <text x="380" y="283" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">2</text>
+  <text x="402" y="283" font-size="15" font-weight="700" fill="#1F2933">零知识信封加密</text>
+  <text x="374" y="310" font-size="12" fill="#5B6B7B">Argon2id 派生 256 位 Vault Key</text>
+  <text x="374" y="330" font-size="12" fill="#5B6B7B">AES-256-GCM，blob 仅进自己云盘</text>
+
+  <!-- Card 3 -->
+  <rect x="350" y="356" width="310" height="96" rx="10" fill="#FFFFFF" stroke="#E3E8EF"/>
+  <rect x="356" y="366" width="5" height="76" rx="2.5" fill="#15A05A"/>
+  <circle cx="380" cy="386" r="13" fill="#15A05A"/>
+  <text x="380" y="391" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">3</text>
+  <text x="402" y="391" font-size="15" font-weight="700" fill="#1F2933">可恢复不锁死</text>
+  <text x="374" y="418" font-size="12" fill="#5B6B7B">主密码忘 → SSS 密钥分片</text>
+  <text x="374" y="438" font-size="12" fill="#5B6B7B">3 分片给 3 处/3 人 break-glass</text>
+
+  <!-- Card 4 -->
+  <rect x="350" y="464" width="310" height="96" rx="10" fill="#FFFFFF" stroke="#E3E8EF"/>
+  <rect x="356" y="474" width="5" height="76" rx="2.5" fill="#15A05A"/>
+  <circle cx="380" cy="494" r="13" fill="#15A05A"/>
+  <text x="380" y="499" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">4</text>
+  <text x="402" y="499" font-size="15" font-weight="700" fill="#1F2933">分级授权</text>
+  <text x="374" y="526" font-size="12" fill="#5B6B7B">1 个根口令 → 业务授权码分级</text>
+  <text x="374" y="546" font-size="12" fill="#5B6B7B">专家只读台账，绝不碰明文</text>
+
+  <!-- Card 5 -->
+  <rect x="350" y="572" width="310" height="96" rx="10" fill="#FFFFFF" stroke="#E3E8EF"/>
+  <rect x="356" y="582" width="5" height="76" rx="2.5" fill="#15A05A"/>
+  <circle cx="380" cy="602" r="13" fill="#15A05A"/>
+  <text x="380" y="607" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">5</text>
+  <text x="402" y="607" font-size="15" font-weight="700" fill="#1F2933">专家全程负责</text>
+  <text x="374" y="634" font-size="12" fill="#5B6B7B">统一凭据安全专家记录维护</text>
+  <text x="374" y="654" font-size="12" fill="#5B6B7B">台账 + 恢复预案，忘密也能解</text>
+
+  <!-- ===== Bottom architecture banner ===== -->
+  <rect x="20" y="688" width="640" height="96" rx="12" fill="#EEF4FF" stroke="#3B82F6"/>
+  <text x="36" y="712" font-size="13" font-weight="700" fill="#1E40AF">核心架构 · 零知识信封加密（真相源 = 可移植加密 blob，本机硬件库仅为登录缓存）</text>
+  <text x="36" y="738" font-size="12" fill="#334155">① 核心根口令 → ② Argon2id 派生 256 位 Vault Key → ③ AES-256-GCM 信封加密</text>
+  <text x="36" y="760" font-size="12" fill="#334155">④ 加密 blob 仅进你自己的云盘（零知识，厂商只见密文）→ ⑤ 各端客户端（含鸿蒙 KeePassHO）解封即用</text>
+  <text x="36" y="780" font-size="11" fill="#475569">负责专家：credential-vault-steward（统一凭据安全专家）全程记录维护 + 应急恢复</text>
+</svg>

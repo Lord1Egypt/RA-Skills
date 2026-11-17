@@ -1,44 +1,56 @@
-## Description: <br>
-Build Shopify-ready product descriptions that turn raw product facts into clearer PDP copy with stronger benefits, objections handling, and conversion intent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build Shopify-ready product descriptions that turn raw product facts into clearer PDP copy with stronger benefits, objections handling, and conversion intent.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Shopify merchants, ecommerce teams, and copywriters use this skill to turn product notes, specs, proof points, audience context, and SEO keywords into conversion-focused product detail page copy. It produces buyer analysis, feature-benefit-proof mapping, objection handling, Shopify-ready HTML, SEO notes, and review flags for claims that need merchant verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated product copy may include reviews, certifications, guarantees, scarcity, health, safety, environmental, or performance claims that are not supported by merchant data. <br>
-Mitigation: Verify all claims against real product records, customer evidence, policies, and applicable platform or legal requirements before publishing. <br>
-Risk: The skill is not a regulated-claim, legal, or compliance review process for categories such as supplements or medical devices. <br>
-Mitigation: Use it as a drafting aid only and route regulated or high-impact claims to qualified legal, compliance, or domain review. <br>
+## Use Case:
 
+Shopify merchants, ecommerce teams, and copywriters use this skill to turn product notes, specs, audience details, proof points, brand voice, and SEO inputs into conversion-focused product detail page copy. It is suited for drafting new descriptions, improving feature-heavy PDPs, rewriting supplier copy, and preparing A/B test angles.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/leooooooow/shopify-product-description-generator) <br>
-- [Buyer Psychology Guide for Product Descriptions](references/buyer-psychology-guide.md) <br>
-- [Objection Handling Templates by Product Category](references/objection-handling-templates.md) <br>
-- [Shopify Product Description Output Template](references/output-template.md) <br>
-- [PDP Quality Checklist](assets/pdp-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown package with tables, review notes, and Shopify-ready HTML] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes manual review flags for assumptions and claims that require merchant verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Product data, customer proof, unreleased positioning, and competitor research may be business-sensitive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only information approved for use in generated product copy, and avoid confidential or non-public details unless they are acceptable for the drafting context.
+
+Risk: Generated product claims can be inaccurate, unsupported, or inappropriate for regulated categories.
+
+Mitigation: Verify proof points, avoid fabricated claims, and route regulated categories such as supplements or medical devices through legal or compliance review before publishing.
+
+## Reference(s):
+
+- [Buyer Psychology Guide for Product Descriptions](references/buyer-psychology-guide.md)
+- [Objection Handling Templates by Product Category](references/objection-handling-templates.md)
+- [Shopify Product Description Output Template](references/output-template.md)
+- [PDP Quality Checklist](assets/pdp-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown package with Shopify-ready HTML code blocks, tables, SEO notes, and review notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes buyer analysis, feature-benefit-proof mapping, objection handling, product description HTML, SEO notes, assumptions, A/B test suggestions, and manual review flags.]
+
+## Skill Version(s):
+
+1.1.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

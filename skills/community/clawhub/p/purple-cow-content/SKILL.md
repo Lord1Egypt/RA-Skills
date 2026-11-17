@@ -1,32 +1,27 @@
 ---
 name: purple-cow-content
-description: >
-  Trigger this skill for ANY of these situations — writing OR conversation:
-  WRITING: blog posts, articles, social media captions, LinkedIn, Twitter/X threads, Instagram,
-  YouTube scripts, TikTok hooks, newsletters, ad copy, landing pages, pitch decks, email campaigns,
-  product descriptions, taglines, or any content meant to attract attention.
-  CONVERSATION: When the user is brainstorming ideas, discussing why content isn't performing,
-  evaluating a marketing angle, planning a campaign, asking "what should I post about", comparing
-  their idea to competitors, talking about engagement or virality, or thinking out loud about any
-  creative or communication challenge. If a conversation touches on attention, differentiation,
-  standing out, audiences, or messaging — this skill is relevant. Speak up proactively as a
-  strategic advisor using the Purple Cow lens (Seth Godin + MrBeast framework), even if the user
-  hasn't asked for content to be written yet. Never stay silent when a Purple Cow insight would
-  sharpen the discussion.
-tags:
-  - content
-  - writing
-  - social-media
-  - blog
-  - viral
-  - marketing
-  - copywriting
-  - strategy
-  - brainstorming
-  - conversation
-  - advisor
-version: 3.0.0
-author: adelpro
+description: "Write and review distinctive, opinionated content that stands out instead of blending in — blog posts, articles, social media captions, LinkedIn posts, threads, newsletters, ad copy, landing pages and scripts — using the Purple Cow lens (Seth Godin + MrBeast framework). Trigger whenever you are writing content meant to attract attention, or discussing content performance, engagement, virality or a marketing angle."
+license: MIT
+allowed-tools: web_search web_extract
+metadata:
+  version: 3.0.1
+  author: Adel Ben Yahia
+  platforms: [linux, macos, windows]
+  tags:
+    - content
+    - writing
+    - social-media
+    - blog
+    - viral
+    - marketing
+    - copywriting
+    - strategy
+    - brainstorming
+    - conversation
+    - advisor
+  hermes:
+    tags: [content, writing, social-media, blog, viral, marketing, copywriting, strategy, advisor]
+    related_skills: [skill-engineer, humanizer]
 ---
 
 # 🐄 Purple Cow Content Skill
@@ -179,49 +174,9 @@ Make the reader feel NOT sharing would be a loss:
 
 ## Step 3 — Platform Rules (Mode B)
 
-### 📝 Blog Post
-- Title: [Timeframe/Number] + [Unexpected action] + [Surprising result]
-- Intro: Make a claim most people would disagree with
-- Depth over breadth: one idea, deeply explored
-- Subheadings: each one interesting enough to stand alone as a tweet
-
-### 📰 Medium
-- Title: Hook with a specific number or bold claim
-- Subtitle: The "so what" — why should they care?
-- Tags: 3-5 relevant tags (adds discoverability)
-- Structure: Short paragraphs, clear sections, one idea deeply
-- End: Ask readers to follow or share
-- Diffs: No emoji, professional tone, quality over clickbait
-
-### 📱 LinkedIn
-- Title: [Timeframe/Number] + [Unexpected action] + [Surprising result]
-- Intro: Make a claim most people would disagree with
-- Depth over breadth: one idea, deeply explored
-- Subheadings: each one interesting enough to stand alone as a tweet
-
-### 📱 LinkedIn
-- Line 1: Stop the scroll — never "I'm excited to share..."
-- Format: Short punchy lines, max 2 sentences, lots of white space
-- End: Always a question
-
-### 🐦 Twitter / X Thread
-- Tweet 1: Purple cow hook — force the "show more" click
-- Middle tweets: One insight per tweet, real numbers
-- Last tweet: Most surprising insight + retweet CTA
-
-### 📸 Instagram
-- Line 1 (before "more"): Pattern interrupt
-- Tell a micro-story — 3 sentences beats 10 bullets
-- Hashtags: End only, never interrupt the story
-
-### 🎬 YouTube / Video Script
-- Open IN the action — never introduce yourself first
-- State highest-stakes version of what's about to happen
-
-### 📧 Newsletter / Email
-- Subject: A secret or confession, not a topic
-- First sentence: Specific and timely
-- One big idea, deeply — never 5 ideas shallowly
+Platform-specific layout, formatting, and hook rules per platform live in
+[`references/platform-rules.md`](references/platform-rules.md). Apply the block
+for the target platform.
 
 ---
 

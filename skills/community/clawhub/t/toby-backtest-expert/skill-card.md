@@ -1,43 +1,56 @@
-## Description: <br>
-Provides expert guidance for systematic backtesting of trading strategies, including robustness testing, slippage modeling, bias prevention, and interpretation of backtest results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides expert guidance for developing, testing, stress-testing, and validating systematic trading strategies with emphasis on robustness, realistic friction modeling, bias prevention, and backtest interpretation.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Developers, quantitative researchers, and trading-system builders use this skill to evaluate whether systematic trading strategies are robust enough for further testing or live consideration. It helps structure hypotheses, codify rules, stress test assumptions, avoid common backtesting biases, and interpret failure patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake educational backtesting methodology for financial advice or rely on it directly for live trading decisions. <br>
-Mitigation: Treat the output as educational guidance and require independent review, validation, and risk controls before any trading use. <br>
-Risk: The external setup link may contain instructions outside the reviewed artifact. <br>
-Mitigation: Review the external setup page before following it and avoid providing credentials or private datasets unless a future version clearly explains why they are needed. <br>
+## Use Case:
 
+External users, developers, and quantitative trading practitioners use this skill to structure systematic backtests, stress test assumptions, evaluate parameter sensitivity, and assess whether strategies are robust enough for live consideration. It supports educational methodology and validation guidance, not financial advice or trade execution.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tobeyrebecca/toby-backtest-expert) <br>
-- [Complete Setup Guide](https://skillboss.co/skill.md) <br>
-- [Backtesting Methodology Reference](references/methodology.md) <br>
-- [Learning from Failed Backtests](references/failed_tests.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown guidance with structured checklists and methodology notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational trading methodology; does not execute commands, request credentials, or access trading accounts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may mistake educational backtesting methodology for financial advice or proof that a strategy is ready for live trading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as methodology guidance only, independently validate all assumptions, and remind users that backtest results do not guarantee future performance and real-money trading can lose capital.
+
+Risk: Backtest conclusions can be misleading when strategy rules, data alignment, slippage, or sample size are not audited.
+
+Mitigation: Use the skill's stress-testing workflow, pessimistic friction modeling, bias checks, and out-of-sample validation before considering any live deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/toby-backtest-expert)
+- [Backtesting Methodology Reference](references/methodology.md)
+- [Learning from Failed Backtests](references/failed_tests.md)
+- [SkillBoss setup guide](https://skillboss.co/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown prose with checklists and occasional shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Educational backtesting methodology; no trade execution, credential handling, persistence, or hidden behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

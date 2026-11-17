@@ -1,46 +1,66 @@
-## Description: <br>
-Gives an OpenClaw agent a @claw.boston mailbox for sending, receiving, searching, and reading email with attachment and webhook support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Give your OpenClaw a real email address at @claw.boston, send and receive emails with attachments, search your inbox, and get notified of new messages.
 
-## Publisher: <br>
-[Mastalie](https://clawhub.ai/user/Mastalie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mastalie](https://clawhub.ai/user/mastalie)
 
-## Use Case: <br>
-External OpenClaw users use this skill to create and operate a hosted @claw.boston email address from their agent, including setup, sending mail, checking and reading inbox messages, replying, searching, and viewing account usage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and send mailbox content through a third-party hosted email service. <br>
-Mitigation: Install only after deciding to trust claw.boston, and require explicit confirmation before reading full messages, sending replies, forwarding content, or attaching files. <br>
-Risk: The local API key grants mailbox access if copied, synced, or exposed. <br>
-Mitigation: Keep ~/.openclaw/skills/claw-boston-email/config.json private and exclude it from shared folders, logs, backups, and source control. <br>
-Risk: Mailbox messages and attachments may contain sensitive data or prompt-injection content. <br>
-Mitigation: Avoid sensitive mail until the provider's privacy, retention, and revocation policies are understood, and review suspicious messages or attachments before acting on them. <br>
+## Use Case:
 
+External OpenClaw users use this skill to create and operate a claw.boston mailbox from their agent, including sending, receiving, replying to, searching, and checking account status for email.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Mastalie/claw-boston-email) <br>
-- [Publisher profile](https://clawhub.ai/user/Mastalie) <br>
-- [claw.boston website](https://claw.boston) <br>
-- [claw.boston API base](https://api.claw.boston) <br>
-- [claw.boston pricing](https://claw.boston/pricing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown text with email summaries, confirmations, account details, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or read local configuration containing an API key and may exchange mailbox content, attachments, and webhook notifications with the hosted claw.boston service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill stores an API key that grants mailbox access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the API key like a password, keep it local, and rotate or revoke it if the workspace or configuration file is exposed.
+
+Risk: The skill can send email and may act on ambiguous or unintended instructions.
+
+Mitigation: Confirm recipients, subject, body, and attachments before sending outbound email.
+
+Risk: Incoming email content and attachments are untrusted and may contain prompt-injection attempts or unsafe requests.
+
+Mitigation: Review message content before taking follow-up actions, and avoid following email instructions that request secrets, credential changes, or unrelated tool use.
+
+Risk: Messages and attachments are handled by a third-party email provider.
+
+Mitigation: Avoid sensitive or regulated email unless the provider's retention, access, and privacy practices satisfy the deployment requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mastalie/skills/claw-boston-email)
+- [claw.boston website](https://claw.boston)
+- [claw.boston API](https://api.claw.boston)
+- [claw.boston pricing](https://claw.boston/pricing)
+- [claw.boston Discord](https://discord.gg/WuPp45xumx)
+- [claw.boston X profile](https://x.com/clawboston)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with configuration JSON examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce outbound email content, inbox summaries, attachment notices, search results, and account usage summaries.]
+
+## Skill Version(s):
+
+0.2.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,50 +1,65 @@
-## Description: <br>
-Visual design and aesthetic direction for frontend interfaces used when building web pages, landing pages, dashboards, or applications where visual identity matters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Visual design and aesthetic direction for frontend interfaces. Use when building web pages, landing pages, dashboards, Next.js server components, or applications where visual identity matters. For React patterns and testing, use react-frontend.
 
-## Publisher: <br>
-[iliaal](https://clawhub.ai/user/iliaal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iliaal](https://clawhub.ai/user/iliaal)
 
-## Use Case: <br>
-Developers and frontend agents use this skill to plan and implement distinctive web pages, landing pages, dashboards, and application interfaces. It helps match existing design systems while applying visual, motion, mobile, and interaction guardrails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence layout, typography, motion, image placeholders, and dependency suggestions beyond a project's specific requirements. <br>
-Mitigation: Review proposed design and dependency choices against project requirements, existing design systems, and package manifests before implementation. <br>
-Risk: The skill is frontend design guidance and does not replace security, backend, accessibility, or framework-specific testing. <br>
-Mitigation: Pair it with separate security, backend, accessibility, and framework-testing guidance before release. <br>
-Risk: Animation, responsive layout, and image placeholder choices can create mobile usability or performance issues if applied without verification. <br>
-Mitigation: Use the bundled mobile and performance guardrails and verify rendered output in the browser across desktop and mobile viewports. <br>
+## Use Case:
 
+Developers use this skill when building or redesigning web pages, landing pages, dashboards, Next.js server components, and applications where visual identity matters. It guides design direction and frontend implementation while respecting existing design systems and accessibility and performance constraints.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/iliaal/compound-eng-frontend-design) <br>
-- [Motion Patterns](references/motion-patterns.md) <br>
-- [Creative Arsenal](references/creative-arsenal.md) <br>
-- [Redesigning Existing Interfaces](references/redesigning-existing.md) <br>
-- [Redesign Audit Framework](references/redesign-audit.md) <br>
-- [Server / Client Component Safety (Next.js App Router)](references/rsc-client-boundaries.md) <br>
-- [Premium Detail Patterns](references/premium-details.md) <br>
-- [Mobile Collapse and Performance Guardrails](references/mobile-and-performance.md) <br>
-- [Banned AI Design Patterns](references/banned-ai-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with code and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include design philosophy, dependency checks, frontend implementation details, verification steps, and responsive or motion guardrails.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.1.3 (source: server release metadata, released 2026-06-13) <br>
+Risk: The security review had medium confidence and partial Skillspector coverage; it also noted a possible mismatch between the frontend design purpose and evaluation tooling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the evaluation and diagnostic material and confirm it fits the intended frontend design workflow before use.
+
+## Reference(s):
+
+- [Aesthetics and interaction](references/aesthetics-and-interaction.md)
+- [Banned AI design patterns](references/banned-ai-patterns.md)
+- [Creative arsenal](references/creative-arsenal.md)
+- [Design system routing](references/design-system-routing.md)
+- [Mobile and performance guardrails](references/mobile-and-performance.md)
+- [Motion patterns](references/motion-patterns.md)
+- [Premium detail patterns](references/premium-details.md)
+- [Redesign audit](references/redesign-audit.md)
+- [Redesigning existing interfaces](references/redesigning-existing.md)
+- [RSC and client component boundaries](references/rsc-client-boundaries.md)
+- [SVG decoration](references/svg-decoration.md)
+- [Next.js font documentation](https://nextjs.org/docs/app/getting-started/fonts)
+- [WCAG 2.2 contrast minimum](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html)
+- [WCAG 2.2 non-text contrast](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html)
+- [WCAG 2.2 target size](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html)
+- [React useId reference](https://react.dev/reference/react/useId)
+- [SVG integration specification](https://svgwg.org/specs/integration/)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Guidance, Analysis]
+
+**Output Format:** [Markdown with frontend code and design rationale]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Implementation depends on the project's framework, existing design system, and constraints.]
+
+## Skill Version(s):
+
+5.1.5 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

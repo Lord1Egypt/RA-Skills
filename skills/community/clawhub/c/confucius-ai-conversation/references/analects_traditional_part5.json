@@ -1,0 +1,430 @@
+{
+  "meta": {
+    "title": "孔子語錄三語資料庫（Part 5 弟子對話篇・擴充）",
+    "title_en": "Confucius Quotes Trilingual Database (Part 5: Dialogues with Disciples)",
+    "version": "1.1",
+    "languages": [
+      "zh_tw",
+      "zh_cn",
+      "en"
+    ],
+    "built": "2026-08-09",
+    "source": "《論語》通行本",
+    "structure": "每則含原文/出處/對話雙方/語境/譯文/詳解/現代應用，三語並列"
+  },
+  "category": {
+    "id": "disciples",
+    "name": {
+      "zh_tw": "弟子對話",
+      "zh_cn": "弟子对话",
+      "en": "Dialogues with Disciples"
+    }
+  },
+  "quotes": [
+    {
+      "id": "dz-001",
+      "original": "子路問聞斯行諸。子曰：「有父兄在，如之何其聞斯行之？」冉有問聞斯行諸。子曰：「聞斯行之。」公西華曰：「由也問聞斯行諸，子曰『有父兄在』；求也問聞斯行諸，子曰『聞斯行之』。赤也惑，敢問。」子曰：「求也退，故進之；由也兼人，故退之。」",
+      "source": "論語·先進第十一",
+      "speaker": "孔子",
+      "audience": "子路、冉有、公西華",
+      "context": {
+        "zh_tw": "子路與冉有問同一個問題，孔子給出相反答案。公西華不解，孔子解釋：因材施教。這是「因材施教」最經典的範例。",
+        "zh_cn": "子路与冉有问同一个问题，孔子给出相反答案。公西华不解，孔子解释：因材施教。这是「因材施教」最经典的范例。",
+        "en": "Zilu and Ran You ask the same question; Confucius gives opposite answers. Gongxi Hua is puzzled, and Confucius explains: teach according to the student. The classic example of differentiated teaching."
+      },
+      "translation": {
+        "zh_tw": "子路問：聽到該做的事就馬上去做嗎？孔子說：有父兄在，怎麼能聽到就做呢？冉有問同樣的問題。孔子說：聽到就去做。公西華說：子路問您說「有父兄在」，冉有問您說「聽到就去做」，我糊塗了，請問為什麼？孔子說：冉有膽小退縮，所以鼓勵他前進；子路好勝冒進，所以讓他後退。",
+        "zh_cn": "子路问：听到该做的事就马上去做吗？孔子说：有父兄在，怎么能听到就做呢？冉有问同样的问题。孔子说：听到就去做。公西华说：子路问您说「有父兄在」，冉有问您说「听到就去做」，我糊涂了，请问为什么？孔子说：冉有胆小退缩，所以鼓励他前进；子路好胜冒进，所以让他后退。",
+        "en": "Zilu asked: “Should I act at once upon hearing what is right?” Confucius said: “With father and elder brother alive, how can you act at once upon hearing?” Ran You asked the same. Confucius said: “Act at once upon hearing.” Gongxi Hua said: “Zilu asked and you said 'father and elder brother alive'; Ran You asked and you said 'act at once'. I am perplexed — may I ask why?” Confucius said: “Ran You is timid and holds back, so I urged him forward; Zilu is bold and overbearing, so I held him back.”"
+      },
+      "explanation": {
+        "zh_tw": "這是「因材施教」的活教材：同一個問題，因學生的性格不同而給出不同答案。冉求退縮，需要推一把；子路冒進，需要拉一把。教育的藝術不在標準答案，在了解每一個具體的人。",
+        "zh_cn": "这是「因材施教」的活教材：同一个问题，因学生的性格不同而给出不同答案。冉求退缩，需要推一把；子路冒进，需要拉一把。教育的艺术不在标准答案，在了解每一个具体的人。",
+        "en": "A living lesson in differentiated teaching: the same question, different answers for different temperaments. Ran You draws back, so push him; Zilu charges ahead, so hold him. The art of education lies not in a standard answer but in knowing each particular person."
+      },
+      "application": {
+        "zh_tw": "帶團隊、教孩子、做管理都一樣：同樣的指導，對不同人要給不同的方式。內向的員工多鼓勵，冒進的員工多設限；一刀切的管理，註定教不出人才。",
+        "zh_cn": "带团队、教孩子、做管理都一样：同样的指导，对不同人要给不同的方式。内向的员工多鼓励，冒进的员工多设限；一刀切的管理，注定教不出人才。",
+        "en": "In managing teams, raising children, and leading: give different guidance to different temperaments. Encourage the timid, restrain the reckless. One-size-fits-all management breeds no talent."
+      }
+    },
+    {
+      "id": "dz-002",
+      "original": "顏淵喟然歎曰：「仰之彌高，鑽之彌堅，瞻之在前，忽焉在後。夫子循循然善誘人，博我以文，約我以禮，欲罷不能。」",
+      "source": "論語·子罕第九",
+      "speaker": "顏回（顏淵）",
+      "audience": null,
+      "context": {
+        "zh_tw": "顏回讚嘆夫子的學問與教學：越仰望越高，越鑽研越堅，夫子循循善誘，讓人想停都停不下來。",
+        "zh_cn": "颜回赞叹夫子的学问与教学：越仰望越高，越钻研越坚，夫子循循善诱，让人想停都停不下来。",
+        "en": "Yan Hui marvels at the Master's learning and teaching: the more he looks up, the higher it is; the deeper he delves, the harder it is; the Master draws one on step by step, so that one cannot stop even if one would."
+      },
+      "translation": {
+        "zh_tw": "顏淵感嘆說：越仰望越覺得高遠，越鑽研越覺得堅深；看看好像在眼前，忽然又跑到後面去了。夫子善於一步步引導人，用文獻來豐富我，用禮節來約束我，讓我想停下來都不可能。",
+        "zh_cn": "颜渊感叹说：越仰望越觉得高远，越钻研越觉得坚深；看看好像在眼前，忽然又跑到后面去了。夫子善于一步步引导人，用文献来丰富我，用礼节来约束我，让我想停下来都不可能。",
+        "en": "Yan Yuan sighed: “The more I look up, the higher it seems; the more I delve, the harder it grows. I see it before me; suddenly it is behind. The Master draws me on, step by step, enriching me with learning and restraining me with ritual, so that I cannot stop even if I would.”"
+      },
+      "explanation": {
+        "zh_tw": "「循循善誘」的成語就出自這裡。顏回說出了孔子教學的兩個特點：一是引導（循循善誘，不是灌輸），二是張弛有度（博文約禮，既開闊又收束）。最動人的是「欲罷不能」——最好的老師讓學生自己不想停。",
+        "zh_cn": "「循循善诱」的成语就出自这里。颜回说出了孔子教学的两个特点：一是引导（循循善诱，不是灌输），二是张弛有度（博文约礼，既开阔又收束）。最动人的是「欲罢不能」——最好的老师让学生自己不想停。",
+        "en": "The idiom “drawing on step by step” comes from here. Yan Hui names two traits of the Master's teaching: guidance rather than pouring in, and a balance of breadth and restraint. The most moving phrase is “cannot stop even if I would” — the best teacher makes students unwilling to stop."
+      },
+      "application": {
+        "zh_tw": "好老師、好主管的標準：讓對方「欲罷不能」。方法很簡單——引導他自己發現，而不是直接給答案；給足夠的視野，也給清晰的邊界。",
+        "zh_cn": "好老师、好主管的标准：让对方「欲罢不能」。方法很简单——引导他自己发现，而不是直接给答案；给足够的视野，也给清晰的边界。",
+        "en": "The mark of a great teacher or manager: making the other “unable to stop.” The method is simple — guide them to discover for themselves rather than handing out answers; give ample horizons and clear boundaries."
+      }
+    },
+    {
+      "id": "dz-003",
+      "original": "宰予晝寢。子曰：「朽木不可雕也，糞土之牆不可圬也。於予與何誅？」子曰：「始吾於人也，聽其言而信其行；今吾於人也，聽其言而觀其行。於予與改是。」",
+      "source": "論語·公冶長第五",
+      "speaker": "孔子",
+      "audience": "宰予",
+      "context": {
+        "zh_tw": "宰予白天睡覺，孔子大怒——這是《論語》裡孔子最動怒的一次，也引出「聽其言觀其行」的著名原則。",
+        "zh_cn": "宰予白天睡觉，孔子大怒——这是《论语》里孔子最动怒的一次，也引出「听其言观其行」的著名原则。",
+        "en": "Zai Yu sleeps by day, and Confucius is furious — his angriest moment in the Analects, which also yields the famous principle of judging by deeds, not words."
+      },
+      "translation": {
+        "zh_tw": "宰予白天睡覺。孔子說：腐朽的木頭不能雕刻，糞土做的牆不能粉刷。對宰予，我還責備什麼呢？孔子又說：起初我對人，聽了他的話就相信他的行為；現在我對人，聽了他的話還要觀察他的行為。是宰予讓我改變了這一點。",
+        "zh_cn": "宰予白天睡觉。孔子说：腐朽的木头不能雕刻，粪土做的墙不能粉刷。对宰予，我还责备什么呢？孔子又说：起初我对人，听了他 的话就相信他的行为；现在我对人，听了他 的话还要观察他的行为。是宰予让我改变了这一点。",
+        "en": "Zai Yu slept by day. Confucius said: “Rotten wood cannot be carved; a wall of dung cannot be plastered. As for Zai Yu, what is the use of reproach?” Again he said: “At first, toward men, I believed their deeds upon their words. Now I listen to their words and watch their deeds. It was Zai Yu who changed me.”"
+      },
+      "explanation": {
+        "zh_tw": "宰予是言語科高徒，能言善辯卻懶散。孔子罵得兇，是因為愛之深責之切；更重要的是他從中反省出「聽其言觀其行」——不要輕信漂亮話，要看實際行動。罵人是為人好，這是孔子真實的一面。",
+        "zh_cn": "宰予是言语科高徒，能言善辩却懒散。孔子骂得凶，是因为爱之深责之切；更重要的是他从中反省出「听其言观其行」——不要轻信漂亮话，要看实际行动。骂人是为人好，这是孔子真实的一面。",
+        "en": "Zai Yu, a star of the Speech class, was eloquent yet indolent. Confucius's fury came from deep care; more importantly, he drew from it the principle “listen to words, watch deeds” — do not trust fine speech, look at real action. Scolding out of love is part of the real Confucius."
+      },
+      "application": {
+        "zh_tw": "面試、合作、交朋友都要記住：看行動，不聽口頭承諾。一個人口若懸河卻從不兌現，說得再好也是朽木；承諾再多，不如一件事做到。",
+        "zh_cn": "面试、合作、交朋友都要记住：看行动，不听口头承诺。一个人口若悬河却从不兑现，说得再好也是朽木；承诺再多，不如一件事做到。",
+        "en": "In interviews, partnerships, and friendship: judge by deeds, not promises. One who talks fluently but never delivers is rotten wood however eloquent; a hundred promises weigh less than one thing done."
+      }
+    },
+    {
+      "id": "dz-004",
+      "original": "子謂顏淵曰：「用之則行，舍之則藏，惟我與爾有是夫！」子路曰：「子行三軍，則誰與？」子曰：「暴虎馮河，死而無悔者，吾不與也。必也臨事而懼，好謀而成者也。」",
+      "source": "論語·述而第七",
+      "speaker": "孔子",
+      "audience": "顏淵、子路",
+      "context": {
+        "zh_tw": "孔子誇顏回能「用之則行，舍之則藏」，子路不服氣問帶兵打仗會帶誰，孔子藉機教訓他：我不用逞血氣之勇的人。",
+        "zh_cn": "孔子夸颜回能「用之则行，舍之则藏」，子路不服气问带兵打仗会带谁，孔子借机教训他：我不用逞血气之勇的人。",
+        "en": "Confucius praises Yan Hui for being able to act when employed and stay hidden when set aside. Zilu, miffed, asks whom the Master would take to command an army; Confucius seizes the chance to teach him: I would not take a man of mere brute courage."
+      },
+      "translation": {
+        "zh_tw": "孔子對顏淵說：用我，我就施展抱負；不用我，我就隱藏起來。只有我和你做到這一點吧！子路說：老師您如果率領三軍，會帶誰一起去？孔子說：空手打老虎、徒步過黃河，死了也不後悔的人，我不帶。一定要帶遇到事情小心謹慎、善於謀劃而能成功的人。",
+        "zh_cn": "孔子对颜渊说：用我，我就施展抱负；不用我，我就隐藏起来。只有我和你做到这一点吧！子路说：老师您如果率领三军，会带谁一起去？孔子说：空手打老虎、徒步过黄河，死了也不后悔的人，我不带。一定要带遇到事情小心谨慎、善于谋划而能成功的人。",
+        "en": "Confucius said to Yan Yuan: “When employed, to act; when set aside, to keep hidden — this only you and I have attained!” Zilu said: “If you commanded the three armies, whom would you take?” Confucius said: “One who would fight a tiger barehanded or wade a river on foot, dying without regret — I would not take him. I would surely take one who faces affairs with caution and loves planning, to achieve success.”"
+      },
+      "explanation": {
+        "zh_tw": "子路好勇，孔子欣賞他的勇氣，但提醒他：真正的勇不是逞強，是「臨事而懼，好謀而成」——敬畏事情、善於謀劃。這與他讚許的「勇」相輔相成：有勇還要有謀、有敬。",
+        "zh_cn": "子路好勇，孔子欣赏他的勇气，但提醒他：真正的勇不是逞强，是「临事而惧，好谋而成」——敬畏事情、善于谋划。这与他赞许的「勇」相辅相成：有勇还要有谋、有敬。",
+        "en": "Zilu loves courage; Confucius values his bravery but reminds him: true courage is not showing off strength but “facing affairs with caution and planning for success” — reverence for the task, skill in strategy. Courage must be paired with prudence and reverence."
+      },
+      "application": {
+        "zh_tw": "勇敢不是莽撞。風險管理、重大決策前，多問幾句「還有什麼風險」「還有什麼方案」——敢做是勇，想清楚再做是智。真正的強者是謹慎的謀劃者，不是逞強的莽夫。",
+        "zh_cn": "勇敢不是莽撞。风险管理、重大决策前，多问几句「还有什么风险」「还有什么方案」——敢做是勇，想清楚再做是智。真正的强者是谨慎的谋划者，不是逞强的莽夫。",
+        "en": "Courage is not recklessness. In risk management and major decisions, ask more: “what other risks? what other plans?” Daring to act is courage; thinking it through is wisdom. The truly strong are careful planners, not bravado."
+      }
+    },
+    {
+      "id": "dz-005",
+      "original": "子貢曰：「貧而無諂，富而無驕，何如？」子曰：「可也。未若貧而樂，富而好禮者也。」子貢曰：「《詩》云：『如切如磋，如琢如磨』，其斯之謂與？」子曰：「賜也，始可與言《詩》已矣！告諸往而知來者。」",
+      "source": "論語·學而第一",
+      "speaker": "孔子",
+      "audience": "子貢（端木賜）",
+      "context": {
+        "zh_tw": "子貢談貧富的修養境界，孔子指點他更上一層；子貢隨即聯想到《詩經》，孔子大為讚賞——這是「舉一反三」的經典場景。",
+        "zh_cn": "子贡谈贫富的修养境界，孔子指点他更上一层；子贡随即联想到《诗经》，孔子大为赞赏——这是「举一反三」的经典场景。",
+        "en": "Zigong speaks of the level of cultivation in poverty and wealth; Confucius points him one step higher, and Zigong at once recalls the Odes. The Master praises him warmly — the classic scene of drawing inferences."
+      },
+      "translation": {
+        "zh_tw": "子貢說：貧窮而不諂媚，富有而不驕傲，怎麼樣？孔子說：可以了。但還不如貧窮而樂道、富有而好禮的人。子貢說：《詩經》說「如切如磋，如琢如磨」（像加工骨角玉石一樣精益求精），說的就是這個意思吧？孔子說：賜啊，現在可以和你談《詩》了！告訴你過去的，你能推知未來的。",
+        "zh_cn": "子贡说：贫穷而不谄媚，富有而不骄傲，怎么样？孔子说：可以了。但还不如贫穷而乐道、富有而好礼的人。子贡说：《诗经》说「如切如磋，如琢如磨」（像加工骨角玉石一样精益求精），说的就是这个意思吧？孔子说：赐啊，现在可以和你谈《诗》了！告诉你过去的，你能推知未来的。",
+        "en": "Zigong said: “Poor without flattery, rich without arrogance — what of this?” Confucius said: “Acceptable, but not as good as one poor yet joyful, rich yet fond of ritual.” Zigong said: “The Odes say, 'As cut, as filed, as carved, as polished' — is this not what you mean?” Confucius said: “Ci, now I can speak of the Odes with you! Told of what is past, you know what is to come.”"
+      },
+      "explanation": {
+        "zh_tw": "這一章有兩層教學：第一層是境界的遞進——「貧而無諂」是克制，「貧而樂」是自足；「富而無驕」是克制，「富而好禮」是修養。第二層是教學的喜悅——子貢能從一句話聯想到《詩經》，孔子高興地誇他「告諸往而知來者」。",
+        "zh_cn": "这一章有两层教学：第一层是境界的递进——「贫而无谄」是克制，「贫而乐」是自足；「富而无骄」是克制，「富而好礼」是修养。第二层是教学的喜悦——子贡能从一句话联想到《诗经》，孔子高兴地夸他「告诸往而知来者」。",
+        "en": "Two lessons here: first, ascending levels of cultivation — “poor without flattery” is restraint, “poor yet joyful” is sufficiency; “rich without arrogance” is restraint, “rich yet fond of ritual” is cultivation. Second, the joy of teaching: Zigong leaps from one remark to the Odes, and the Master joyfully praises him for knowing what is to come from what is past."
+      },
+      "application": {
+        "zh_tw": "對自己：別滿足於「不犯錯」，要追求「樂在其中」——不諂媚只是及格，安貧樂道才是境界。對他人：遇到能舉一反三的人，值得好好栽培；教育的成就感就在這一刻。",
+        "zh_cn": "对自己：别满足于「不犯错」，要追求「乐在其中」——不谄媚只是及格，安贫乐道才是境界。对他人：遇到能举一反三的人，值得好好栽培；教育的成就感就在这一刻。",
+        "en": "For yourself: do not settle for “not erring”; pursue “delighting in the way” — freedom from flattery is merely passing; joy in sufficiency is the level. For others: one who draws inferences is worth cultivating; the joy of education lives in such moments."
+      }
+    },
+    {
+      "id": "dz-006",
+      "original": "顏淵問仁。子曰：「克己復禮為仁。一日克己復禮，天下歸仁焉。為仁由己，而由人乎哉？」顏淵曰：「請問其目。」子曰：「非禮勿視，非禮勿聽，非禮勿言，非禮勿動。」顏淵曰：「回雖不敏，請事斯語矣。」",
+      "source": "論語·顏淵第十二",
+      "speaker": "孔子",
+      "audience": "顏淵（顏回）",
+      "context": {
+        "zh_tw": "顏回問仁，孔子給出最完整的答覆，並提出「四勿」具體功夫。這是《論語》裡對仁最系統的一段師生對話。",
+        "zh_cn": "颜回问仁，孔子给出最完整的答复，并提出「四勿」具体功夫。这是《论语》里对仁最系统的一段师生对话。",
+        "en": "Yan Hui asks about benevolence; Confucius gives his most complete answer and the four concrete precepts. The most systematic master-disciple exchange on benevolence in the Analects."
+      },
+      "translation": {
+        "zh_tw": "顏淵問什麼是仁。孔子說：克制自己，使言行合乎禮，就是仁。一旦做到，天下人心都歸向仁。實行仁靠的是自己，難道靠別人嗎？顏淵說：請問具體的條目。孔子說：不合禮的不看，不合禮的不聽，不合禮的不說，不合禮的不做。顏淵說：我雖然不聰敏，請讓我照著這些話去做。",
+        "zh_cn": "颜渊问什么是仁。孔子说：克制自己，使言行合乎礼，就是仁。一旦做到，天下人心都归向仁。实行仁靠的是自己，难道靠别人吗？颜渊说：请问具体的条目。孔子说：不合礼的不看，不合礼的不听，不合礼的不说，不合礼的不做。颜渊说：我虽然不聪敏，请让我照着这些话去做。",
+        "en": "Yan Yuan asked about benevolence. Confucius said: “To master the self and return to ritual is benevolence. If for one day you master the self and return to ritual, all under heaven will turn to benevolence. Does benevolence come from oneself, or from others?” Yan Yuan said: “May I ask the details?” Confucius said: “See nothing contrary to ritual, hear nothing contrary to ritual, speak nothing contrary to ritual, do nothing contrary to ritual.” Yan Yuan said: “Though I am not quick, allow me to practice these words.”"
+      },
+      "explanation": {
+        "zh_tw": "「四勿」把抽象的仁變成每天可做的功夫：管住眼睛、耳朵、嘴巴、行動。「為仁由己」是關鍵——道德是自主的選擇，不是環境的結果。顏回的「請事斯語」則是弟子最好的回應：懂了就去做。",
+        "zh_cn": "「四勿」把抽象的仁变成每天可做的功夫：管住眼睛、耳朵、嘴巴、行动。「为仁由己」是关键——道德是自主的选择，不是环境的结果。颜回的「请事斯语」则是弟子最好的回应：懂了就去做。",
+        "en": "The four precepts turn abstract benevolence into daily discipline: govern the eyes, ears, speech, and deeds. “From oneself” is the key — morality is a free choice, not a product of circumstance. Yan Hui's “allow me to practice these words” is the best student's reply: understand, then act."
+      },
+      "application": {
+        "zh_tw": "現代版「四勿」：不看無益的內容，不聽閒言碎語，不說傷人的話，不做違心的事。每天給自己設四個小檢查，就是最樸素的修身。",
+        "zh_cn": "现代版「四勿」：不看无益的内容，不听闲言碎语，不说伤人的话，不做违心的事。每天给自己设四个小检查，就是最朴素的修身。",
+        "en": "A modern version of the four precepts: do not consume harmful content, do not heed gossip, do not speak hurtful words, do not act against conscience. Four small daily checks are the plainest self-cultivation."
+      }
+    },
+    {
+      "id": "dz-007",
+      "original": "子路、曾皙、冉有、公西華侍坐。子曰：「以吾一日長乎爾，毋吾以也。居則曰：『不吾知也！』如或知爾，則何以哉？」……（曾皙）曰：「莫春者，春服既成，冠者五六人，童子六七人，浴乎沂，風乎舞雩，詠而歸。」夫子喟然歎曰：「吾與點也！」",
+      "source": "論語·先進第十一",
+      "speaker": "孔子",
+      "audience": "子路、曾皙、冉有、公西華",
+      "context": {
+        "zh_tw": "孔子讓四位弟子各言其志：子路要治大國，冉有要治小國，公西華要當小司儀，曾皙卻說春天裡和友人孩子去沂水洗澡、在舞雩台上吹風、唱歌回家。孔子獨獨讚賞曾皙。",
+        "zh_cn": "孔子让四位弟子各言其志：子路要治大国，冉有要治小国，公西华要当小司仪，曾皙却说春天里和友人孩子去沂水洗澡、在舞雩台上吹风、唱歌回家。孔子独独赞赏曾皙。",
+        "en": "Confucius asks four disciples to state their aspirations: Zilu wants to govern a great state, Ran You a small one, Gongxi Hua to serve as a minor ritualist; but Zeng Xi speaks of bathing in the Yi River in spring, enjoying the breeze on the Rain Altar, and going home singing. Only Zeng Xi earns the Master's sigh of approval."
+      },
+      "translation": {
+        "zh_tw": "（孔子問志後）曾皙說：暮春時節，春裝穿好了，和五六位成年人、六七個少年，在沂水邊洗澡，在舞雩台上吹風，一路唱歌回來。孔子長嘆一聲說：我贊成曾皙啊！",
+        "zh_cn": "（孔子问志后）曾皙说：暮春时节，春装穿好了，和五六位成年人、六七个少年，在沂水边洗澡，在舞雩台上吹风，一路唱歌回来。孔子长叹一声说：我赞成曾皙啊！",
+        "en": "Zeng Xi said: “In late spring, in spring clothes, with five or six grown men and six or seven boys, bathe in the Yi River, enjoy the breeze among the rain altars, and return home singing.” The Master heaved a sigh and said: “I am with Dian (Zeng Xi)!”"
+      },
+      "explanation": {
+        "zh_tw": "這一章是《論語》最美的一章，也是孔子內心的另一面：四位弟子談的都是「用世」，只有曾皙談的是「生活本身」。孔子讚賞他，是因為在曾皙的描述裡，看到了天下太平之後人該有的樣子——各安其位，從容自在。政治的最終目的，不就是讓人人能這樣生活嗎？",
+        "zh_cn": "这一章是《论语》最美的一章，也是孔子内心的另一面：四位弟子谈的都是「用世」，只有曾皙谈的是「生活本身」。孔子赞赏他，是因为在曾皙的描述里，看到了天下太平之后人该有的样子——各安其位，从容自在。政治的最终目的，不就是让人人都能这样生活吗？",
+        "en": "One of the loveliest chapters of the Analects, and the other side of Confucius's heart: three disciples speak of serving the world; only Zeng Xi speaks of life itself. The Master approves because Zeng Xi's vision shows what people should look like once the world is at peace — each in place, at ease. Is not the final end of politics precisely that everyone may live so?"
+      },
+      "application": {
+        "zh_tw": "拼命工作之餘，別忘了問自己：我追求的終點是什麼？事業是手段，生活才是目的。偶爾停下來，和朋友、家人去郊外走走、吹吹風，不是浪費時間，是提醒自己為什麼出發。",
+        "zh_cn": "拼命工作之余，别忘了问自己：我追求的终点是什么？事业是手段，生活才是目的。偶尔停下来，和朋友、家人去郊外走走、吹吹风，不是浪费时间，是提醒自己为什么出发。",
+        "en": "Amid relentless work, ask yourself: what is the end I pursue? Career is a means; life is the end. Pausing now and then — a walk in the countryside with friends and family — is not wasted time; it reminds you why you set out."
+      }
+    },
+    {
+      "id": "dz-008",
+      "original": "子曰：「由也，女聞六言六蔽矣乎？」對曰：「未也。」「居！吾語女。好仁不好學，其蔽也愚；好知不好學，其蔽也蕩；好信不好學，其蔽也賊；好直不好學，其蔽也絞；好勇不好學，其蔽也亂；好剛不好學，其蔽也狂。」",
+      "source": "論語·陽貨第十七",
+      "speaker": "孔子",
+      "audience": "子路（仲由）",
+      "context": {
+        "zh_tw": "孔子教子路：六種美德若沒有學問支撐，各有其弊——這是有關「美德需要學習」最深刻的教導。",
+        "zh_cn": "孔子教子路：六种美德若没有学问支撑，各有其弊——这是有关「美德需要学习」最深刻的教导。",
+        "en": "Confucius teaches Zilu: six virtues, without learning to support them, each bring their own harm — the profoundest lesson that virtue itself needs cultivation."
+      },
+      "translation": {
+        "zh_tw": "孔子說：由啊，你聽說過六種品德和六種弊病嗎？子路回答：沒有。孔子說：坐下！我告訴你。愛好仁德卻不好學，弊病是愚昧；愛好聰明卻不好學，弊病是放蕩；愛好誠信卻不好學，弊病是害人；愛好直率卻不好學，弊病是尖刻；愛好勇敢卻不好學，弊病是作亂；愛好剛強卻不好學，弊病是狂妄。",
+        "zh_cn": "孔子说：由啊，你听说过六种品德和六种弊病吗？子路回答：没有。孔子说：坐下！我告诉你。爱好仁德却不好学，弊病是愚昧；爱好聪明却不好学，弊病是放荡；爱好诚信却不好学，弊病是害人；爱好直率却不好学，弊病是尖刻；爱好勇敢却不好学，弊病是作乱；爱好刚强却不好学，弊病是狂妄。",
+        "en": "Confucius said: “You, have you heard of the six virtues and their six coverings?” Zilu replied: “I have not.” “Sit down, and I will tell you. Loving benevolence without learning — its harm is foolishness. Loving wisdom without learning — its harm is waywardness. Loving trust without learning — its harm is injury. Loving uprightness without learning — its harm is harshness. Loving courage without learning — its harm is disorder. Loving firmness without learning — its harm is arrogance.”"
+      },
+      "explanation": {
+        "zh_tw": "這是孔子對「美德也需要學習」最深刻的教導：美德本身不是終點，沒有學問（判斷力）支撐的美德會走向反面——仁會變愚，勇會變亂。學，是讓美德恰到好處的關鍵。",
+        "zh_cn": "这是孔子对「美德也需要学习」最深刻的教导：美德本身不是终点，没有学问（判断力）支撑的美德会走向反面——仁会变愚，勇会变乱。学，是让美德恰到好处的关键。",
+        "en": "Confucius's deepest lesson that virtue itself needs learning: virtue is not the terminus; unsupported by learning (judgment), it reverses into its opposite — benevolence turns to folly, courage to disorder. Learning is what keeps virtue measured."
+      },
+      "application": {
+        "zh_tw": "光有善意不夠，還要有判斷力。好心辦壞事、勇於任事卻闖禍、講義氣卻害人——都是「有德無學」。持續學習、增長見識，是讓善良不變質的唯一方法。",
+        "zh_cn": "光有善意不够，还要有判断力。好心办坏事、勇于任事却闯祸、讲义气却害人——都是「有德无学」。持续学习、增长见识，是让善良不变质的唯一方法。",
+        "en": "Goodwill alone is not enough; judgment is required. Good intentions gone wrong, bold action causing harm, loyalty that hurts — all are “virtue without learning.” Continuous learning and breadth of view are the only way to keep goodness from souring."
+      }
+    },
+    {
+      "id": "dz-009",
+      "original": "子夏曰：「賢賢易色；事父母，能竭其力；事君，能致其身；與朋友交，言而有信。雖曰未學，吾必謂之學矣。」",
+      "source": "論語·學而第一",
+      "speaker": "子夏（卜商）",
+      "audience": null,
+      "context": {
+        "zh_tw": "子夏論學習的本質：真正的學問不在書本，而在德行實踐——這是孔子師門一脈相承的知行觀。",
+        "zh_cn": "子夏论学习的本质：真正的学问不在书本，而在德行实践——这是孔子师门一脉相承的知行观。",
+        "en": "Zixia on the essence of learning: true learning lies not in books but in the practice of virtue — the master-disciple tradition of knowing and doing as one."
+      },
+      "translation": {
+        "zh_tw": "子夏說：尊敬賢德的人而輕視美色；侍奉父母能竭盡全力；事奉君主能獻出自身；與朋友交往說話守信。這樣的人即使說自己沒學過，我也一定說他學過了。",
+        "zh_cn": "子夏说：尊敬贤德的人而轻视美色；侍奉父母能竭尽全力；事奉君主能献出自身；与朋友交往说话守信。这样的人即使说自己没学过，我也一定说他学过了。",
+        "en": "Zixia said: “One who esteems worth over looks; serves parents with utmost strength; serves the ruler with his very person; and is trustworthy in word with friends — though one say he has not learned, I must call him learned.”"
+      },
+      "explanation": {
+        "zh_tw": "子夏把「學」重新定義：學問的檢驗標準是行為，不是文憑。對賢者敬重、對父母盡力、對職責盡忠、對朋友守信——做到這四件事，就是真學問。",
+        "zh_cn": "子夏把「学」重新定义：学问的检验标准是行为，不是文凭。对贤者敬重、对父母尽力、对职责尽忠、对朋友守信——做到这四件事，就是真学问。",
+        "en": "Zixia redefines learning: its test is conduct, not credentials. To respect the worthy, serve parents with strength, give oneself to duty, and keep faith with friends — do these four things, and you have real learning."
+      },
+      "application": {
+        "zh_tw": "學歷、證書、頭銜都不是學問的證明。一個人對家人負責、對工作盡心、對朋友守信，就是有教養的人。面試看人品，勝過看成績單。",
+        "zh_cn": "学历、证书、头衔都不是学问的证明。一个人对家人负责、对工作尽心、对朋友守信，就是有教养的人。面试看人品，胜过看成绩单。",
+        "en": "Degrees, certificates, and titles prove nothing of learning. One who is responsible to family, devoted to work, and faithful to friends is a cultivated person. In hiring, character outweighs transcripts."
+      }
+    },
+    {
+      "id": "dz-010",
+      "original": "子曰：「二三子以我為隱乎？吾無隱乎爾。吾無行而不與二三子者，是丘也。」",
+      "source": "論語·述而第七",
+      "speaker": "孔子",
+      "audience": "眾弟子",
+      "context": {
+        "zh_tw": "弟子們懷疑孔子有所保留，孔子鄭重聲明：我沒有隱瞞你們任何東西，我的行為就是我的教學。",
+        "zh_cn": "弟子们怀疑孔子有所保留，孔子郑重声明：我没有隐瞒你们任何东西，我的行为就是我的教学。",
+        "en": "The disciples suspect the Master of holding something back; he declares solemnly: I hide nothing from you — my conduct itself is my teaching."
+      },
+      "translation": {
+        "zh_tw": "孔子說：你們這些學生以為我對你們有所隱瞞嗎？我沒有什麼隱瞞你們的。我沒有哪一樁行為不是和你們一起的，這就是我孔丘啊。",
+        "zh_cn": "孔子说：你们这些学生以为我对你们有所隐瞒吗？我没有什么隐瞒你们的。我没有哪一桩行为不是和你们一起的，这就是我孔丘啊。",
+        "en": "Confucius said: “Do you, my disciples, think I keep anything from you? I hide nothing from you. There is no act of mine that is not shared with you — that is I, Qiu.”"
+      },
+      "explanation": {
+        "zh_tw": "孔子最坦誠的自白：教學不只在講堂上，更在日常生活的一舉一動裡。他對弟子是透明的——沒有藏私，沒有保留。這種坦蕩，正是「君子坦蕩蕩」的註腳。",
+        "zh_cn": "孔子最坦诚的自白：教学不只在讲堂上，更在日常生活的一举一动里。他对弟子是透明的——没有藏私，没有保留。这种坦荡，正是「君子坦荡荡」的注脚。",
+        "en": "The Master's most candid self-disclosure: teaching happens not only in the lecture hall but in every act of daily life. He is transparent before his disciples — nothing hoarded, nothing withheld. This openness is the footnote to “the noble man is calm and at ease.”"
+      },
+      "application": {
+        "zh_tw": "帶人、教人、做主管：你的人品、你的行為，弟子和下屬都看在眼裡。說一套做一套，再好的課也白教；言行一致，不用多說，學生自然跟隨。",
+        "zh_cn": "带人、教人、做主管：你的人品、你的行为，弟子和下属都看在眼里。说一套做一套，再好的课也白教；言行一致，不用多说，学生自然跟随。",
+        "en": "In leading and teaching: your character and conduct are always on display. Preaching one thing and practicing another voids every lesson; be consistent in word and deed, and students follow without much instruction."
+      }
+    },
+    {
+      "id": "dz-011",
+      "original": "子貢問曰：「賜也何如？」子曰：「女，器也。」曰：「何器也？」曰：「瑚璉也。」",
+      "source": "論語·公冶長第五",
+      "speaker": "孔子",
+      "audience": "子貢",
+      "context": {
+        "zh_tw": "子貢（名賜）問孔子對自己的評價，孔子答以「瑚璉」——宗廟貴器。",
+        "zh_cn": "子贡（名赐）问孔子对自己的评价，孔子答以「瑚琏」——宗庙贵器。",
+        "en": "Zigong (named Ci) asked how Confucius rated him; the answer was a “hulian” — a precious vessel of the ancestral temple."
+      },
+      "translation": {
+        "zh_tw": "子貢問：「我這個人怎麼樣？」孔子說：「你是個器物。」問：「什麼器物？」說：「是宗廟裡盛黍稷的瑚璉。」",
+        "zh_cn": "子贡问：「我这个人怎么样？」孔子说：「你是个器物。」问：「什么器物？」说：「是宗庙里盛黍稷的瑚琏。」",
+        "en": "Zigong asked, “What of me?” Confucius said, “You are a vessel.” “What vessel?” “A hulian — the precious jade vessel of the ancestral temple.”"
+      },
+      "explanation": {
+        "zh_tw": "孔子先說子貢是「器」——能幹之才；但「君子不器」，器再貴也只是有特定用途的用具，暗示子貢：才能雖高，離「不器」的通達境界還差一層。既是讚許，也是點撥。",
+        "zh_cn": "孔子先说子贡是「器」——能干之才；但「君子不器」，器再贵也只是有特定用途的用具，暗示子贡：才能虽高，离「不器」的通达境界还差一层。既是赞许，也是点拨。",
+        "en": "Confucius first calls Zigong a vessel — a capable talent; yet “the noble man is no vessel”: however precious, a vessel serves but one purpose. A compliment, and at the same time a nudge: ability is high, but the all-round reach of the “non-vessel” remains a step beyond."
+      },
+      "application": {
+        "zh_tw": "被誇「你是個人才」時，想一想：我是不是只是某方面好用的「器」？除了專業，有沒有在德行、視野、待人上同時成長？",
+        "zh_cn": "被夸「你是个人才」时，想一想：我是不是只是某方面好用的「器」？除了专业，有没有在德行、视野、待人上同时成长？",
+        "en": "When praised as a “talent,” ask: am I merely a handy vessel in one respect? Besides expertise, am I also growing in character, vision, and the way I treat people?"
+      }
+    },
+    {
+      "id": "dz-012",
+      "original": "子曰：「吾與回言終日，不違，如愚。退而省其私，亦足以發，回也不愚。」",
+      "source": "論語·為政第二",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "孔子觀察顏回：聽講時不發問像個笨人，退下後卻能發揮所學——其實一點不笨。",
+        "zh_cn": "孔子观察颜回：听讲时不发问像个笨人，退下后却能发挥所学——其实一点不笨。",
+        "en": "Confucius on observing Yan Hui: silent in class like a simpleton, yet able to develop and apply all he heard — anything but simple."
+      },
+      "translation": {
+        "zh_tw": "我和顏回談論一整天，他從不反駁，像是個愚笨的人。等他退下，我觀察他私下的言行，卻很能發揮所學——顏回並不愚笨啊。",
+        "zh_cn": "我和颜回谈论一整天，他从不反驳，像是个愚笨的人。等他退下，我观察他私下的言行，却很能发挥所学——颜回并不愚笨啊。",
+        "en": "“I spoke with Hui all day; he never demurred, as if dull. When he withdrew and I observed his private conduct, he could indeed develop all that was taught — Hui is not dull.”"
+      },
+      "explanation": {
+        "zh_tw": "顏回的「不違」不是沒想法，是當下用心領會、回去身體力行。孔子看人不止看課堂表現，更看重課後實踐——「聽懂」不算數，「做到」才算。",
+        "zh_cn": "颜回的「不违」不是没想法，是当下用心领会、回去身体力行。孔子看人不止看课堂表现，更看重课后实践——「听懂」不算数，「做到」才算。",
+        "en": "Hui's “no demur” was not passivity but wholehearted absorption, carried into practice afterward. Confucius judged by more than classroom performance — “understanding” does not count; “doing” does."
+      },
+      "application": {
+        "zh_tw": "上課、開會時話最少的人，未必沒在聽。評估學習效果，別看他當場反應，看他事後做不做得出來。",
+        "zh_cn": "上课、开会时话最少的人，未必没在听。评估学习效果，别看他当场反应，看他事后做不做得出来。",
+        "en": "The quietest person in class or meeting is not necessarily not listening. Judge learning by what one later does, not by the immediate reaction."
+      }
+    },
+    {
+      "id": "dz-013",
+      "original": "子曰：「歲寒，然後知松柏之後凋也。」",
+      "source": "論語·子罕第九",
+      "speaker": "孔子",
+      "audience": "弟子",
+      "context": {
+        "zh_tw": "子罕篇，孔子以松柏喻節操——嚴冬方見其不凋。",
+        "zh_cn": "子罕篇，孔子以松柏喻节操——严冬方见其不凋。",
+        "en": "From Zihan — the pine and cypress as emblems of integrity: only in winter is seen that they do not wither."
+      },
+      "translation": {
+        "zh_tw": "天氣冷了，才知道松柏是最後凋零的。",
+        "zh_cn": "天气冷了，才知道松柏是最后凋零的。",
+        "en": "Only when the year turns cold do we see that the pine and cypress are the last to fade."
+      },
+      "explanation": {
+        "zh_tw": "松柏常青，但要到歲寒才顯出可貴——平時誰都綠，逆境見真章。這是孔子在亂世中對弟子也是對自己的勉勵：風霜之後，才見誰站得住。",
+        "zh_cn": "松柏常青，但要到岁寒才显出可贵——平时谁都绿，逆境见真章。这是孔子在乱世中对弟子也是对自己的勉励：风霜之后，才见谁站得住。",
+        "en": "The pine is green all year, yet its worth appears only in winter — in fair weather all is green; adversity reveals the truth. In a chaotic age this was Confucius's encouragement to his disciples and himself: after the frost, we see who still stands."
+      },
+      "application": {
+        "zh_tw": "行情好時人人都是高手，退潮時才見真本事。低谷、困境、行業寒冬——正是分辨誰是松柏的時候。",
+        "zh_cn": "行情好时人人都是高手，退潮时才见真本事。低谷、困境、行业寒冬——正是分辨谁是松柏的时候。",
+        "en": "In a rising tide everyone looks skilled; at ebb the real ones show. Downturns, hardship, an industry winter — that is when pines are told from willows."
+      }
+    },
+    {
+      "id": "dz-014",
+      "original": "子貢曰：「夫子之文章，可得而聞也；夫子之言性與天道，不可得而聞也。」",
+      "source": "論語·公冶長第五",
+      "speaker": "子貢",
+      "audience": null,
+      "context": {
+        "zh_tw": "子貢感言：老師的學問可以聽到，但關於人性與天道的深論，卻不容易聽到。",
+        "zh_cn": "子贡感言：老师的学问可以听到，但关于人性与天道的深论，却不容易听到。",
+        "en": "Zigong's reflection: the Master's learning one may hear, but his discourse on human nature and the Way of Heaven one rarely gets to hear."
+      },
+      "translation": {
+        "zh_tw": "老師的學問文章，我們可以聽得到；老師談論人性和天道，我們卻不容易聽得到。",
+        "zh_cn": "老师的学问文章，我们可以听得到；老师谈论人性和天道，我们却不容易听得到。",
+        "en": "“The Master's cultural attainments we may hear; his words on human nature and the Way of Heaven we cannot hear.”"
+      },
+      "explanation": {
+        "zh_tw": "孔子「不語怪力亂神」，很少空談抽象的天道，而把道理落實在日常的禮、義、學、行之中。子貢的感嘆正是孔門教學的特色：不談高懸的玄理，只教當下可行的工夫。",
+        "zh_cn": "孔子「不语怪力乱神」，很少空谈抽象的天道，而把道理落实在日常的礼、义、学、行之中。子贡的感叹正是孔门教学的特点：不谈高悬的玄理，只教当下可行的功夫。",
+        "en": "Confucius did not speak of prodigies or spirits and rarely discoursed on abstract Heaven; he grounded every principle in daily ritual, rightness, learning, and conduct. Zigong's remark captures the school's hallmark: no lofty metaphysics, only workable practice now."
+      },
+      "application": {
+        "zh_tw": "與人分享道理，與其空談大詞，不如落到具體做法。真正的深度不在抽象，在於能把高處的道理變成腳下的工夫。",
+        "zh_cn": "与人分享道理，与其空谈大词，不如落到具体做法。真正的深度不在抽象，在于能把高处的道理变成脚下的功夫。",
+        "en": "When sharing wisdom, prefer concrete practice to grand abstractions. Real depth lies not in the abstract but in bringing high principles down to workable steps."
+      }
+    },
+    {
+      "id": "dz-015",
+      "original": "子路問事君。子曰：「勿欺也，而犯之。」",
+      "source": "論語·憲問第十四",
+      "speaker": "孔子",
+      "audience": "子路",
+      "context": {
+        "zh_tw": "子路問如何侍奉君主，孔子答：不欺騙，但敢犯顏直諫。",
+        "zh_cn": "子路问如何侍奉君主，孔子答：不欺骗，但敢犯颜直谏。",
+        "en": "Zilu asked how to serve a ruler; the answer: do not deceive him, yet dare to oppose him to his face."
+      },
+      "translation": {
+        "zh_tw": "子路問怎樣侍奉君主。孔子說：「不要欺騙他，但可以犯顏直諫。」",
+        "zh_cn": "子路问怎样侍奉君主。孔子说：「不要欺骗他，但可以犯颜直谏。」",
+        "en": "Zilu asked about serving a ruler. Confucius said, “Do not deceive him, but stand up to him.”"
+      },
+      "explanation": {
+        "zh_tw": "兩個字概括事上之道：「勿欺」是忠——絕不說謊迎合；「犯之」是直——該說的話敢說，不怕得罪。媚上與瞞上都是小人，忠而能犯顏，才是難得的臣道。",
+        "zh_cn": "两个字概括事上之道：「勿欺」是忠——绝不说谎迎合；「犯之」是直——该说的话敢说，不怕得罪。媚上与瞒上都是小人，忠而能犯颜，才是难得的臣道。",
+        "en": "Two words sum up serving superiors: “do not deceive” — loyalty, never flattering lies; “stand up to him” — uprightness, daring to speak truth at cost. To fawn and to conceal are both petty; loyalty that dares to oppose is the rare excellence."
+      },
+      "application": {
+        "zh_tw": "對上司、對客戶：不欺騙是底線，敢說逆耳真話是價值。一味順從是幫對方犯錯，直言相諫才是真負責。",
+        "zh_cn": "对上司、对客户：不欺骗是底线，敢说逆耳真话是价值。一味顺从是帮对方犯错，直言相谏才是真负责。",
+        "en": "With bosses and clients: never deceive — that is the floor; speak unwelcome truths — that is the value. Obsequiousness abets their errors; plain counsel is true responsibility."
+      }
+    }
+  ]
+}

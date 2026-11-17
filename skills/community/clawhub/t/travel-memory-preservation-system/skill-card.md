@@ -1,43 +1,53 @@
-## Description: <br>
-Systematic approach to preserving travel memories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Systematic approach to preserving travel memories.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users use this skill to organize and preserve travel memories through structured photo organization, journaling, reflection, memory-book planning, and sharing workflows. It is intended for informational memory-preservation guidance, not bookings, live travel data, destination research, weather, or professional advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be selected for broader travel-planning requests even though it is scoped to memory preservation. <br>
-Mitigation: Use it only for photos, notes, journals, keepsakes, memory books, reflection, and sharing workflows; route bookings, prices, weather, destination research, and professional advice to other sources. <br>
-Risk: Memory-preservation suggestions may be incomplete or unsuitable for a user's location, culture, budget, or personal circumstances. <br>
-Mitigation: Treat outputs as informational planning guidance and verify important travel, legal, financial, medical, and cultural details with official or professional sources. <br>
+## Use Case:
 
+Travelers and travel-planning agents use this skill to organize photos, notes, mementos, journal prompts, and narrative structures into durable travel-memory preservation plans.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/travel-memory-preservation-system) <br>
-- [Publisher profile](https://clawhub.ai/user/harrylabsj) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text] <br>
-**Output Format:** [JSON string containing input analysis, recommendations, frameworks, checklists, considerations, next steps, and a disclaimer.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external APIs, network requests, bookings, real-time data, or code execution are performed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter lists 1.1.0) <br>
+Risk: Users may mistake descriptive memory-preservation guidance for live travel data, bookings, or professional advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational planning guidance and verify real-world travel, legal, medical, financial, weather, price, and availability details with official sources.
+
+Risk: Broad trigger wording may produce general travel-planning guidance when the user intended a narrower memory-preservation workflow.
+
+Mitigation: Review generated plans for fit and ask for a narrower photo organization, journaling, memento preservation, or storytelling workflow when needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/travel-memory-preservation-system)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [JSON-formatted descriptive travel-memory planning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external API calls, network requests, bookings, real-time data access, file access, credential access, or persistent state.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

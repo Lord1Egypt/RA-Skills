@@ -1,44 +1,57 @@
-## Description: <br>
-Send text as voice-message audio across chat channels using edge-tts for speech synthesis and ffmpeg for audio conversion, with channel-specific handling for Feishu/Lark and Discord. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send text as voice messages across chat channels using text-to-speech, audio conversion, and platform-specific delivery guidance.
 
-## Publisher: <br>
-[xmanrui](https://clawhub.ai/user/xmanrui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xmanrui](https://clawhub.ai/user/xmanrui)
 
-## Use Case: <br>
-Developers and teams use this skill to generate OGG/Opus voice files from text and prepare or send them as chat voice messages. It is especially useful when a platform needs channel-specific handling, such as Feishu/Lark audio-message uploads or Discord waveform metadata. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Voice text is sent to an external text-to-speech service when generating audio. <br>
-Mitigation: Avoid using sensitive text unless the external service is approved for that data. <br>
-Risk: Generated audio and message metadata may be uploaded to Feishu/Lark or other chat platforms. <br>
-Mitigation: Confirm that the destination platform and recipient are appropriate before sending generated voice messages. <br>
-Risk: Feishu/Lark sending requires a tenant access token. <br>
-Mitigation: Use short-lived tokens where possible and avoid placing long-lived tokens in shared transcripts, logs, or shell history. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Voice Reference](references/voices.md) <br>
-- [Feishu Open API](https://open.feishu.cn/open-apis) <br>
-- [ClawHub skill page](https://clawhub.ai/xmanrui/voice-message) <br>
-- [Publisher profile](https://clawhub.ai/user/xmanrui) <br>
+## Use Case:
 
+Developers and external users use this skill to generate Ogg/Opus voice files from text and send them as chat voice messages. It provides channel-specific guidance for Feishu/Lark, Discord, Telegram, Signal, WhatsApp, and similar platforms.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates or describes OGG/Opus audio files, Discord waveform metadata, and Feishu/Lark API calls when the bundled scripts are run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Chat credentials may be exposed if Feishu tenant tokens are passed on the command line.
+
+Mitigation: Use environment variables or a secret manager for tokens and avoid logging commands that include credentials.
+
+Risk: Private message text may be sent to text-to-speech or chat platform APIs.
+
+Mitigation: Convert only content approved for those services and avoid sensitive text unless that disclosure is acceptable.
+
+Risk: Voice messages may be sent to the wrong recipient or platform.
+
+Mitigation: Verify the recipient identifier, receive_id_type, and channel before sending.
+
+## Reference(s):
+
+- [Voice Reference](references/voices.md)
+- [Feishu Open API](https://open.feishu.cn/open-apis)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with command examples and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance for generating voice files, Discord waveform metadata, and platform-specific send requests.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

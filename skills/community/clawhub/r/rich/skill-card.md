@@ -1,42 +1,57 @@
-## Description: <br>
-Rich helps agents guide Python developers in installing and using the Rich library for styled terminal text, tables, progress bars, Markdown rendering, syntax highlighting, logging, and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rich helps agents guide developers in adding styled terminal output, tables, progress indicators, Markdown rendering, syntax highlighting, logging, tracebacks, object inspection, and HTML/SVG exports to Python programs.
 
-## Publisher: <br>
-[cn-big-cabbage](https://clawhub.ai/user/cn-big-cabbage) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cn-big-cabbage](https://clawhub.ai/user/cn-big-cabbage)
 
-## Use Case: <br>
-Developers and engineers use this skill to get practical guidance, examples, and troubleshooting help for adding Rich-powered terminal output to Python projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Package installation commands can modify the user's Python environment. <br>
-Mitigation: Review install commands before execution and prefer a project-specific virtual environment. <br>
-Risk: Examples that display traceback locals, logs, or exported output can expose sensitive project data. <br>
-Mitigation: Disable local-variable display and sanitize logs or exported output when working with sensitive data. <br>
+## Use Case:
 
+Developers and engineers use this skill to ask an agent for Rich installation guidance, Python code snippets, terminal UI patterns, and troubleshooting support for styled command-line output.
 
-## Reference(s): <br>
-- [Rich documentation](https://rich.readthedocs.io) <br>
-- [ClawHub Rich skill page](https://clawhub.ai/cn-big-cabbage/rich) <br>
-- [Rich PyPI package](https://pypi.org/project/rich/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown guidance with Python, shell, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Examples may include package installation commands, terminal capability checks, Rich code snippets, logging configuration, and troubleshooting steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: frontmatter and server release evidence) <br>
+Risk: Package installation guidance could alter a user's Python environment or project dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a virtual environment when possible, prefer pinned PyPI releases, and review dependency file changes before applying them.
+
+Risk: Rich traceback examples that show local variables can expose secrets in logs, CI output, or shared terminals.
+
+Mitigation: Avoid show_locals=True and traceback-local logging in production, CI, shared terminals, and any context that may contain credentials or sensitive data.
+
+## Reference(s):
+
+- [Rich documentation](https://rich.readthedocs.io)
+- [Rich GitHub repository](https://github.com/Textualize/rich)
+- [Rich PyPI package](https://pypi.org/project/rich/)
+- [Rich examples](https://github.com/Textualize/rich/tree/master/examples)
+- [ClawHub skill page](https://clawhub.ai/cn-big-cabbage/skills/rich)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python, shell, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include installation commands, requirements or pyproject dependency entries, Python examples, terminal compatibility checks, and troubleshooting steps.]
+
+## Skill Version(s):
+
+0.1.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

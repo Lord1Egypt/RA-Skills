@@ -1,44 +1,55 @@
-## Description: <br>
-Manage Eventbrite events, attendees, organizations, venues, orders, and ticketing data - powered by ClawLink. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Eventbrite events, attendees, organizations, venues, orders, and ticketing data - powered by ClawLink.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-External users and developers use this skill to connect an Eventbrite account through ClawLink, then manage events, ticketing, attendees, orders, venues, organizers, discounts, webhooks, and reports from chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires ClawLink OAuth access to an Eventbrite account. <br>
-Mitigation: Install only when the user is comfortable granting Eventbrite access, and review the Eventbrite permissions during OAuth before approving the connection. <br>
-Risk: Event, ticketing, discount, webhook, and buyer-setting actions can publish, cancel, delete, or otherwise modify live Eventbrite resources. <br>
-Mitigation: Confirm destructive or public-facing actions with the user before execution and prefer previewing affected event, ticket, order, or webhook details first. <br>
-Risk: Attendee, order, sales, organization-member, and user tools can expose sensitive account or customer data. <br>
-Mitigation: Limit requests to the minimum needed scope and avoid sharing retrieved attendee or order data outside the active task. <br>
+## Use Case:
 
+External users and operators use this skill to manage Eventbrite events, attendees, venues, orders, ticketing, promotions, and related organization data through ClawLink-connected OpenClaw tools.
 
-## Reference(s): <br>
-- [ClawHub Eventbrite Skill](https://clawhub.ai/hith3sh/eventbrite-events) <br>
-- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=eventbrite-events) <br>
-- [ClawLink Eventbrite Connection](https://claw-link.dev/dashboard?add=eventbrite) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown instructions with shell commands and JavaScript tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ClawLink pairing and Eventbrite OAuth; tool calls operate on the user's connected Eventbrite account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: ClawLink receives OAuth-based access that can read and change Eventbrite data for the connected account or organization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Connect only Eventbrite accounts with the minimum roles needed and review the OAuth consent screen before authorizing access.
+
+Risk: Some available operations can publish, cancel, delete, or materially change events, ticketing, webhooks, tracking, and buyer settings.
+
+Mitigation: Require explicit review before high-impact Eventbrite changes and prefer lower-impact actions such as unpublishing when deletion or cancellation is not necessary.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hith3sh/skills/eventbrite-events)
+- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=eventbrite-events)
+- [ClawLink Eventbrite Connection](https://claw-link.dev/dashboard?add=eventbrite)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, API calls]
+
+**Output Format:** [Markdown with inline shell and JavaScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent-facing setup steps, tool-selection guidance, and example ClawLink tool calls.]
+
+## Skill Version(s):
+
+1.0.5 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,61 @@
-## Description: <br>
-Crab Catch is a Web3 research skill that automatically collects and organizes project data and potential risks from social media, websites, code, and on-chain data, and produces a complete and objective research report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crab Catch is a Web3 research skill that collects and organizes project data and potential risks from social media, websites, code, and on-chain sources, then produces a research report.
 
-## Publisher: <br>
-[NotevenDe](https://clawhub.ai/user/NotevenDe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[notevende](https://clawhub.ai/user/notevende)
 
-## Use Case: <br>
-Developers, researchers, and Web3 analysts use this skill to investigate projects by collecting website, social, GitHub, and on-chain evidence, then producing a concise risk-focused research report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and uses a global browser automation tool. <br>
-Mitigation: Review the install step before use and run the skill in an isolated environment when possible. <br>
-Risk: The skill stores reusable Crab credentials under ~/.config/crab and report artifacts under ~/.crab-catch/reports. <br>
-Mitigation: Protect or periodically remove local credential and report files, especially on shared machines. <br>
-Risk: Research targets and investigation details may be sent to Crab, Grok, GitHub, and on-chain services. <br>
-Mitigation: Avoid confidential, authenticated wallet, exchange, account, or private investigation targets unless explicitly authorized. <br>
+## Use Case:
 
+Developers, analysts, and external Web3 researchers use this skill to investigate projects by cross-checking social, website, repository, and on-chain evidence and producing a concise risk-oriented report.
 
-## Reference(s): <br>
-- [Crab ClawHub listing](https://clawhub.ai/NotevenDe/crab) <br>
-- [API Explorer documentation](API_EXPLORER.md) <br>
-- [Architecture documentation](ARCHITECTURE.md) <br>
-- [Report template](REPORT_TEMPLATE.md) <br>
-- [Crab API base URL](https://crab-skill.opsat.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown research report with cited findings and optional saved PDF report artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Output language follows the user's input language, with Chinese as the documented default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata; artifact metadata says 2.1.0) <br>
+Risk: The security review says the skill makes broad host, browser, API, credential, and persistence changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before deployment and run it in a disposable or sandboxed environment where global package installation, browser automation, API calls, and local file writes are acceptable.
+
+Risk: Research targets and prompts may be sent to the Crab service and upstream providers.
+
+Mitigation: Avoid sensitive or private investigation targets unless the service and upstream data handling are acceptable for the use case.
+
+Risk: The skill can store generated API credentials and reports under the user's home directory.
+
+Mitigation: Rotate or delete ~/.config/crab/credentials.json and remove ~/.crab-catch/reports when the investigation is complete.
+
+## Reference(s):
+
+- [Crab ClawHub Skill Page](https://clawhub.ai/notevende/skills/crab)
+- [Crab API Explorer Documentation](artifact/API_EXPLORER.md)
+- [Crab Catch Architecture](artifact/ARCHITECTURE.md)
+- [Crab Catch Report Template](artifact/REPORT_TEMPLATE.md)
+- [Crab API Service](https://crab-skill.opsat.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown research report with citations, tables, and concise risk findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate local report files and uses signed API requests for Crab service calls.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata; artifact metadata lists 2.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

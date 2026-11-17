@@ -1,45 +1,56 @@
-## Description: <br>
-Convert currencies using frankfurter.app free API. Use when converting amounts, checking exchange rates, or viewing rate history. Requires curl. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert currencies using the frankfurter.app free API for amount conversion, exchange-rate lookup, and rate history.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-External users, developers, and agents use Currconv to convert amounts, inspect current exchange rates, list supported currencies, and compare historical exchange rates from a public currency API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Currency requests are sent to the public frankfurter.app service. <br>
-Mitigation: Avoid entering sensitive transaction details and confirm that public API calls are acceptable for the deployment environment. <br>
-Risk: Exchange-rate output may be unsuitable as sole authority for high-stakes financial decisions. <br>
-Mitigation: Confirm rates against an approved financial data source before using the output for trading, accounting, or regulated workflows. <br>
-Risk: The skill depends on curl, python3, and network availability. <br>
-Mitigation: Install required dependencies, allow outbound access to frankfurter.app, and handle network or API failures before relying on the skill operationally. <br>
+## Use Case:
 
+Developers, agents, and end users can use this skill to convert currency amounts, inspect current exchange rates, list supported currencies, and retrieve historical exchange rates. It requires curl, python3, and network access to frankfurter.app.
 
-## Reference(s): <br>
-- [Currconv on ClawHub](https://clawhub.ai/bytesagain-lab/currconv) <br>
-- [BytesAgain](https://bytesagain.com) <br>
-- [frankfurter.app](https://frankfurter.app) <br>
-- [European Central Bank Euro foreign exchange reference rates](https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text CLI output with formatted currency tables and inline command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, python3, and network access; uses frankfurter.app and may cache rate data under ~/.local/share/currconv/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Release security evidence reports an unsafe code-construction bug where live API data can be inserted into locally executed Python code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing; pass API values to Python as data, validate rates as finite positive numbers, and avoid building executable code from remote responses.
+
+Risk: The bundled shell script reports VERSION="3.0.0" while server release metadata and SKILL.md report version 3.0.1.
+
+Mitigation: Confirm the installed script version matches the release before publishing or running it in production workflows.
+
+## Reference(s):
+
+- [Currconv on ClawHub](https://clawhub.ai/bytesagain-lab/skills/currconv)
+- [BytesAgain](https://bytesagain.com)
+- [frankfurter.app](https://frankfurter.app)
+- [European Central Bank euro foreign exchange reference rates](https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and terminal text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The generated shell workflow calls frankfurter.app and may cache rate data under ~/.local/share/currconv/.]
+
+## Skill Version(s):
+
+3.0.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,496 @@
+{
+  "version": "2026-09-10",
+  "description": "need_tool 执行卡 → 本地技能执行映射表。params 键对齐各技能 CLI 的 argparse 参数；布尔参数 true 才加 flag。2026-08-23 四技能联调新增字段：result_files（stdout 无结构化数值时回读产物文件，支持沙箱 _unsaved/ 回退）、prep_hint（多技能命中时只执行主判，其余技能用此文案提示用户先准备数据）。2026-09-10 新增顶层 tiers：ct 系列 A/B 档登记，驱动「检查安装 / 提示安装 / 提示不对外发布」门控。2026-11-09 新增顶层 handoff：客户端已可直接调用本机注册技能，need_tool 默认产出 @skill 卡片而非代跑 CLI；tiers.published 降级为「分发状态」，本机可得性由 sibling_registry.json 判定。",
+  "skills": {
+    "ct-registry": {
+      "skill": "ct-registry",
+      "engine": "local",
+      "cmd": "python",
+      "args": [
+        "{SKILLS_DIR}/ct-registry/scripts/ct_registry.py"
+      ],
+      "params": {
+        "cond": {
+          "flag": "--cond",
+          "type": "str",
+          "default": null,
+          "required": false
+        },
+        "intr": {
+          "flag": "--intr",
+          "type": "str",
+          "default": null,
+          "required": false
+        },
+        "sponsor": {
+          "flag": "--sponsor",
+          "type": "str",
+          "default": null,
+          "required": false
+        },
+        "status": {
+          "flag": "--status",
+          "type": "str",
+          "default": null,
+          "required": false
+        },
+        "max": {
+          "flag": "--max",
+          "type": "int",
+          "default": 20,
+          "required": false
+        },
+        "drug": {
+          "flag": "--drug",
+          "type": "str",
+          "default": null,
+          "required": false
+        },
+        "with_cde": {
+          "flag": "--with-cde",
+          "type": "bool",
+          "default": false,
+          "required": false
+        },
+        "cde_keyword": {
+          "flag": "--cde-keyword",
+          "type": "str",
+          "default": null,
+          "required": false
+        }
+      },
+      "output": "json",
+      "timeout": 120,
+      "required_params": [
+        "cond"
+      ],
+      "extra_args": [
+        "--auto-confirm",
+        "--run",
+        "--print-summary",
+        "--kw-adopt"
+      ],
+      "prep_hint": "试验格局检索：需确认检索主词（适应症 / 靶点 / 药物名，中英文均可）、可选期别与申办方范围",
+      "note": "联网检索 ClinicalTrials.gov v2 / CDE / ChiCTR；WAF/浏览器/token 均在本地环境。--auto-confirm: kw 术语确认门在 translation miss 时直接用中文原文检索 CT.gov（可能漏检英文术语，属已知权衡；入口预判调用时避免 sys.exit(2) 卡死）。--run: 2026-08-20 修复——执行卡路径此前停在 ct_registry PREVIEW 安全门（只提示 add --run、不发网络请求），README 示例 2「自动返回实时 landscape」不成立；ct-registry 默认 PREVIEW 是面向交互式 CLI 的确认门，经编排器执行卡调用时用户提问本身即检索指令，无条件联网（对齐 ct-safety 的 run=true 行为）。"
+    },
+    "ct-safety": {
+      "skill": "ct-safety",
+      "engine": "local",
+      "cmd": "python",
+      "args": [
+        "{SKILLS_DIR}/ct-safety/scripts/ct_safety.py"
+      ],
+      "params": {
+        "drug": {
+          "flag": "--drug",
+          "type": "str",
+          "default": null,
+          "required": true
+        },
+        "event": {
+          "flag": "--event",
+          "type": "str",
+          "default": null,
+          "required": false
+        },
+        "top": {
+          "flag": "--top",
+          "type": "int",
+          "default": 10,
+          "required": false
+        },
+        "date_from": {
+          "flag": "--date-from",
+          "type": "str",
+          "default": null,
+          "required": false
+        },
+        "date_to": {
+          "flag": "--date-to",
+          "type": "str",
+          "default": null,
+          "required": false
+        },
+        "run": {
+          "flag": "--run",
+          "type": "bool",
+          "default": true,
+          "required": false
+        }
+      },
+      "output": "json",
+      "timeout": 180,
+      "required_params": [
+        "drug"
+      ],
+      "extra_args": [
+        "--run"
+      ],
+      "conditional_args": [
+        {
+          "when_absent": "event",
+          "args": [
+            "--top-events-signal",
+            "6"
+          ],
+          "why": "2026-08-23 联调发现的能力落差：ct-safety 不带 --event 时**只列高频 AE、不做 disproportionality**（实测产物无 PRR/ROR/EBGM 任一字段），而 tool_router 的触发词恰是 prr/ror/ebgm/安全性信号 → 用户问『某药有什么安全信号』会拿到无信号统计的计数表。ct-safety 已有 R13 能力（--top-events-signal N：对 top N 事件跑信号检测），此处在缺 event 时自动补上，无需改动 ct-safety 本体。"
+        }
+      ],
+      "result_files": [
+        "faers_fetch.json",
+        "faers_report.md"
+      ],
+      "prep_hint": "FAERS 信号检测：需确认药物通用名（openFDA 用英文通用名，如 semaglutide）、目标不良事件术语（MedDRA PT，可选）、检索起止时间（可选）",
+      "note": "openFDA FAERS disproportionality 信号检测（PRR/ROR/EBGM + 95%CI）。2026-08-23 联调修复：①显式加 --run 进 extra_args——原实现只靠 params.run 的 default:true，而 _build_cmd 仅遍历 params 里**实际存在**的键，Coze 执行卡不带 run 键时 --run 不会被拼上，静默停在 PREVIEW；②新增 result_files——stdout 只打印产物路径、无 PRR/ROR 数值，缝合层无据可依。"
+    },
+    "ct-literature": {
+      "skill": "ct-literature",
+      "engine": "local",
+      "cmd": "python",
+      "args": [
+        "{SKILLS_DIR}/ct-literature/scripts/ct_literature.py"
+      ],
+      "params": {
+        "topic": {
+          "flag": "--topic",
+          "type": "str",
+          "default": null,
+          "required": true
+        },
+        "year_from": {
+          "flag": "--year-from",
+          "type": "int",
+          "default": null,
+          "required": false
+        },
+        "year_to": {
+          "flag": "--year-to",
+          "type": "int",
+          "default": null,
+          "required": false
+        },
+        "safety": {
+          "flag": "--safety",
+          "type": "bool",
+          "default": false,
+          "required": false
+        },
+        "max": {
+          "flag": "--max",
+          "type": "int",
+          "default": 20,
+          "required": false
+        },
+        "with_europepmc": {
+          "flag": "--with-europepmc",
+          "type": "bool",
+          "default": true,
+          "required": false
+        }
+      },
+      "output": "json",
+      "timeout": 240,
+      "required_params": [
+        "topic"
+      ],
+      "extra_args": [
+        "--run"
+      ],
+      "result_files": [
+        ".merged.json",
+        "references_apa.md"
+      ],
+      "prep_hint": "文献检索：需确认检索主题（药物 / 靶点 + 适应症）、年份范围、是否限定安全性文献（病例报告 / 药物警戒）",
+      "note": "OpenAlex / Europe PMC / Semantic Scholar 文献检索（公开源）。2026-08-23 联调修复：补 --run——原执行卡停在 PREVIEW 安全门，stdout 返回 '[PREVIEW] would run literature pipeline …' 却仍被判 status=ok，属**假成功**（缝合层拿到零文献仍照常作答）。对齐 ct-registry/ct-safety：经编排器执行卡调用时用户提问本身即检索指令。"
+    },
+    "ct-samplesize": {
+      "skill": "ct-samplesize",
+      "engine": "coze",
+      "cmd": "python",
+      "args": [
+        "{SKILLS_DIR}/ct-samplesize/scripts/samplesize_power.py"
+      ],
+      "extra_args": [],
+      "params": {
+        "test": {
+          "flag": "--test",
+          "type": "str",
+          "default": null,
+          "required": false
+        },
+        "alpha": {
+          "flag": "--alpha",
+          "type": "float",
+          "default": 0.05,
+          "required": false
+        },
+        "power": {
+          "flag": "--power",
+          "type": "float",
+          "default": 0.8,
+          "required": false
+        },
+        "nobs": {
+          "flag": "--nobs",
+          "type": "int",
+          "default": null,
+          "required": false
+        },
+        "effect": {
+          "flag": "--effect",
+          "type": "float",
+          "default": null,
+          "required": false
+        },
+        "k_groups": {
+          "flag": "--k_groups",
+          "type": "int",
+          "default": 2,
+          "required": false
+        },
+        "side": {
+          "flag": "--side",
+          "type": "str",
+          "default": "two",
+          "required": false
+        },
+        "sd": {
+          "flag": "--sd",
+          "type": "float",
+          "default": null,
+          "required": false
+        },
+        "margin": {
+          "flag": "--margin",
+          "type": "float",
+          "default": null,
+          "required": false
+        },
+        "p1": {
+          "flag": "--p1",
+          "type": "float",
+          "default": null,
+          "required": false
+        },
+        "p2": {
+          "flag": "--p2",
+          "type": "float",
+          "default": null,
+          "required": false
+        }
+      },
+      "output": "text",
+      "timeout": 60,
+      "required_params": [
+        "test"
+      ],
+      "effect_params": [
+        "p1",
+        "p2",
+        "effect",
+        "sd",
+        "margin"
+      ],
+      "test_hints": {
+        "率|比例|有效率|缓解率|应答率|ORR|响应率|百分比": "proportion_two",
+        "均值|平均|连续|评分|量表|血压|HbA1c": "ttest_ind",
+        "生存|OS|PFS|时间|死亡|总生存|无进展": "survival",
+        "配对|前后|自身对照": "ttest_paired",
+        "非劣效|non-inferiority": "non_inferiority",
+        "等效|equivalence|BE|生物等效": "equivalence",
+        "单组|单臂|单样本": "proportion_one"
+      },
+      "prep_hint": "样本量/效能计算：需确认检验类型（率比较 / 均值比较 / 生存等）与效应量假设（p1+p2 / effect+sd / HR），以及 α、power、单双侧",
+      "note": "样本量/效能计算；引擎=coze 远程 R 服务（v5 唯一后端，无本地回退）。SAFE PREVIEW 按 ct-base §5 双语义：coze 引擎无 --yes 闸门，请求信封由执行卡触发直接发送，故 extra_args 不携 --yes（§5 规定 coze 引擎 --yes 不适用）；本地引擎技能（ct-registry/ct-safety/ct-literature）才用 --run/--auto-confirm 跳过交互确认门。locale 由 ct-advisor 经 CTSS_LOCALE 环境变量透传（内容级检测用户语言），对齐 coze 端 user_language。2026-08-23 联调：stdout 含 __FIGURE__ / __SVG_WIDGET__ 内联图（单次可达数万字符），由 handle_need_tool._sanitize_result 剥离后再交缝合层，避免上下文爆炸。"
+    }
+  },
+  "handoff": {
+    "version": "2026-11-09",
+    "env": "CT_ADVISOR_HANDOFF",
+    "default": true,
+    "status": "handoff",
+    "mode": "client_handoff",
+    "mention_format": "@skill:<slug>",
+    "authority": "scripts/sibling_registry.json（skills[*].installed）与 <SKILLS_DIR>/<slug>/SKILL.md 双判据，由 handle_need_tool._client_callable() 实现；任一成立即视为客户端可直接调用。",
+    "note": "2026-11-09 用户裁定：客户端已解决调用 ct-safety / ct-registry 等兄弟技能的问题，可直接调用。故 need_tool 默认主路径改为「代码产出结构化 handoff 卡片」——含 @skill mention、已识别参数、缺失参数、技能本体交付物说明与 B 档保密提醒——把执行权交回技能本体，用户拿到完整交付物而非 advisor 缝合的纯文本摘要。卡片由代码生成并经 entry.py 单一出口输出，本地 LLM 不参与决策（SKILL.md HARD GATE 不变）。设 CT_ADVISOR_HANDOFF=0 可整条关回原执行卡（ct-base §20.19.7 红线 2 兜底）。",
+    "boundary": "tier 仍是唯一保密边界：B 档能调用 ≠ 可把方案 / 受试者数据发往公共检索端点（F33）。published 只描述 SkillHub 上架状态，不再决定能否调用。"
+  },
+  "cloud_brief": {
+    "version": "2026-11-09.2",
+    "contract": "config/brief_contract.json",
+    "module": "scripts/cloud_brief.py",
+    "enabled_env": "CT_ADVISOR_CLOUD_BRIEF",
+    "default": false,
+    "note": "2026-11-09 晚间架构重评：客户端已可直接调用兄弟技能，brief（非审计级速览、不产文件）从「默认主链路」降为 **opt-in 降级路径**，默认关闭。仅当用户显式设 CT_ADVISOR_CLOUD_BRIEF=1（或明确要速览）时，handle_need_tool 分流与 orchestrate._fire_prefetch 才走 scripts/cloud_brief.py 直连；任何失败仍回落 need_tool 执行卡/handoff（§20.19.7 红线 2）。共享凭据与全部调用点只在本地技能/工作台，Coze 云端包内零凭据不变。参数白名单与三护栏真相源是 config/brief_contract.json。",
+    "skill_sources": {
+      "ct-registry": "advisor_registry_brief",
+      "ct-safety": "advisor_safety_brief",
+      "ct-literature": "advisor_literature_brief"
+    },
+    "deferred_note": "凭据只在本地，轮换凭据**无需重发 Coze 包**；给代码维护者的轮换 SOP 见 config/brief_contract.json 的 credential_governance 段与 adapters/coze_token_embedded.py 源码注释。"
+  },
+  "tiers": {
+    "version": "2026-09-10 / 2026-11-09",
+    "authority": "tier 分类：ct-base docs/05-version-build.md §11（唯一分类轴 input_sensitivity）+ docs/06-readme-brand.md §13.1（保密声明）。A 档 = 输入非涉密；B 档 = 输入涉密 · 不经公共市场分发。published 判据：**SkillHub（skillhub.cn）上架状态**——见下方 note。2026-11-09：tier 仍是唯一保密边界，但 published 与本机可得性正交，见 tiers.availability。",
+    "availability": {
+      "version": "2026-11-09",
+      "note": "客户端已解决调用 ct-safety / ct-registry 等兄弟技能的问题，本机注册的技能可直接调用。故「能否调用」不再由 published 决定，改由下列双判据任一成立即真；三者语义彼此正交，禁止合并。",
+      "primary": "scripts/sibling_registry.json::skills[*].installed（discover_siblings 扫描，超过 24h 自动刷新）",
+      "secondary": "<SKILLS_DIR>/<slug>/SKILL.md 是否落盘",
+      "implementation": "scripts/handle_need_tool.py::_client_callable()",
+      "orthogonal": "published = SkillHub 上架（分发状态）；tier = §11 input_sensitivity（保密边界）；locally_available = 本机已注册（可调用性）。",
+      "observed": "2026-11-05 注册表实测 22/22 installed=true，含全部 B 档与 ct-pipeline / ct-synthdata。"
+    },
+    "note": "tier 由 ct-base §11 的 input_sensitivity 决定（A = 输入非涉密 / B = 输入涉密），published 是与之正交的「SkillHub 分发状态」事实（**不是可得性**——2026-11-09 起本机可得性见 `tiers.availability`）。**published 的权威判据 = SkillHub 上架**（search api.skillhub.cn 按 publicSlug 精确命中），**不是 GitHub**——GitHub 上「已建但从未推送」的空占位仓库同样返回 HTTP 200，会得出「已发布」的假结论（2026-09-10 ct-pipeline 事故即由此而来）。复核命令：`python adapters/probe_publication.py`（SkillHub 为判据、GitHub 仅作诊断；`--fix` 可回写本表）。handle_need_tool 仅在技能**本机未注册**（或 `CT_ADVISOR_HANDOFF=0` 回滚）时依据本表决定四分支：B 档 / 未登记 → unreleased_b（说明本机未注册后本地作答）；A 档且未安装且未发布 → unpublished_a（尚不可安装，本地作答 + 未取数标注）；A 档未安装且已发布 → install_required（**给安装建议**：默认 install_mode=suggest，只把命令交给用户、不代为执行；仅当用户明确授权（install_consent=approved）才转 authorized 由 agent 代办——安装会写入本地技能目录，可能触发本机安全提示，故绝不自动安装）；A 档已安装 → 正常执行。本表是「tier（保密边界）+ SkillHub 分发状态 + 安装地址」的单一事实来源，check_deps.py 亦从此读取；**本机可得性/客户端可调用性不在此表**，由 sibling_registry.json 与 _client_callable() 判定（见顶层 handoff 段与 tiers.availability）。2026-11-09 起 B 档与未上架 A 档只要已在本机注册就走 handoff，不再回「不对外发布 / 尚未上架」文案；档位门与安装门只在技能确未落盘（或 CT_ADVISOR_HANDOFF=0 回滚）时生效。",
+    "default_tier": "B",
+    "default_rationale": "未登记技能一律保守按 B 档处理：不尝试安装未知技能、不硬错卡死整条应答，改为提示后本地作答。",
+    "install": {
+      "authority": "SkillHub（skillhub.cn）。2026-09-10 实测：WorkBuddy 自带推荐市场（BuiltinMarket）搜索 ct-* 返回 total=0，当时 SkillHub 是 A 档兄弟技能唯一可用的安装通道。2026-11-09 更新：客户端已能直接调用本机注册的 ct-* 技能，SkillHub 不再是唯一可得通道；安装门控只在技能确未落盘时触发，且文案优先提示 @skill 直调。",
+      "namespace": "user_ff7413f5",
+      "namespace_note": "SkillHub 发布者 handle，2026-09-10 由 search API 逐条核定（ct-registry / ct-safety / ct-literature / ct-samplesize 四者一致）。canonicalName 形如 @user_ff7413f5/<slug>。",
+      "cli_candidates": [
+        "~/.skillhub/skills_store_cli.py"
+      ],
+      "cli_env": "SKILLHUB_CLI",
+      "cli_note": "本机若并存多份不同构建，**必须挑完整版**（_skillhub_cli 按 `--skip-self-upgrade` 是否存在于源码离线探测，优先完整版）：完整版走公网 api.skillhub.cn（实测安装成功）；精简版无 --skip-self-upgrade、--dir 仅顶层，且索引/下载端点可能指向内网 LB，实测返回非 zip → 「Downloaded file is not a valid zip archive」，**装不了**。",
+      "command_template": "<python> <cli> [--skip-self-upgrade] --dir <skills_dir> install <slug>",
+      "command_note": "2026-09-10 实测可用（Anaconda base python 3.14.6 + 完整版 CLI v2026.8.5，装 ct-registry / ct-safety / ct-literature 到临时目录，产物为含 SKILL.md + scripts/ 的标准技能包）。五个实测要点：① **--dir 必须放在子命令之前**——顶层 --dir 两版 CLI 都有，子命令级 --dir 只有完整版有，前置是唯一对两版都可移植的位置（实测把它放子命令后会 unrecognized arguments）；② **必须显式给 --dir**，CLI 默认 ./skills（相对 cwd），不指技能根目录——漏了会装到别处，_skill_installed 仍为 False，形成「装了但代码找不到」的死循环；③ **--skip-self-upgrade 需按 CLI 能力条件添加**，精简版无此 flag，硬加会 argparse 报错；④ **--namespace 非必需**（按 slug 远程精确匹配，实测不带亦可）；⑤ 裸命令 `skillhub install <slug>` **不可用**——PATH 中无 skillhub（~/.local/bin/skillhub 本机不存在，且 skill-publish 记载该 bash 启动器有 Windows 路径 bug），故命令一律写完整解释器 + CLI 绝对路径。",
+      "verify_url": "https://api.skillhub.cn/api/v1/search?q=<slug>&limit=20",
+      "verify_note": "复核上架状态：results[*] 的 slug 或 namespace.publicSlug 精确等于 <slug> 即已上架。注意 GitHub 与 SkillHub 的网页详情页均为 SPA（任意路径含不存在的 slug 都返回 HTTP 200、字节数几乎相同），**不可用 HTTP 状态码判定页面或仓库是否存在**。"
+    },
+    "registry": {
+      "ct-registry": {
+        "tier": "A",
+        "published": true,
+        "github": "https://github.com/medstatstar/ct-registry",
+        "purpose": "试验格局检索（CT.gov / CDE / WHO ICTRP 等）"
+      },
+      "ct-safety": {
+        "tier": "A",
+        "published": true,
+        "github": "https://github.com/medstatstar/ct-safety",
+        "purpose": "FAERS 安全信号（PRR / ROR / IC）"
+      },
+      "ct-literature": {
+        "tier": "A",
+        "published": true,
+        "github": "https://github.com/medstatstar/ct-literature",
+        "purpose": "公开文献检索（OpenAlex / Europe PMC / Semantic Scholar）"
+      },
+      "ct-samplesize": {
+        "tier": "A",
+        "published": true,
+        "github": "https://github.com/medstatstar/ct-samplesize",
+        "purpose": "样本量 / 检验效能计算"
+      },
+      "ct-pipeline": {
+        "tier": "A",
+        "published": false,
+        "github": "https://github.com/medstatstar/ct-pipeline",
+        "purpose": "公开情报编排（intel / surveillance）",
+        "note": "尚未发布：**SkillHub 上未上架**（2026-09-10 api.skillhub.cn 按 publicSlug 搜索无结果），GitHub 上的 medstatstar/ct-pipeline 只是空占位仓库（API size=0、contents 返回「This repository is empty」、created_at=pushed_at=2026-08-07）。tier 仍为 A（输入=公开情报 / 竞品监测，非涉密），但因未上架而不可安装——`git clone` 只会得到空目录，故路由命中时走 unpublished_a，不向用户提供安装地址。"
+      },
+      "ct-synthdata": {
+        "tier": "A",
+        "published": false,
+        "github": "https://github.com/medstatstar/ct-synthdata",
+        "purpose": "合成 CDISC 测试数据生成（库内夹具，非用户侧入口）"
+      },
+      "meta-analysis": {
+        "tier": "A",
+        "published": true,
+        "github": "https://github.com/medstatstar/meta-analysis",
+        "purpose": "医学 Meta 分析（referral-only）"
+      },
+      "statsoft-cli": {
+        "tier": "A",
+        "published": true,
+        "github": "https://github.com/medstatstar/statsoft-cli",
+        "purpose": "统计软件 CLI 接入"
+      },
+      "statdata-transfer": {
+        "tier": "A",
+        "published": true,
+        "github": "https://github.com/medstatstar/statdata-transfer",
+        "purpose": "统计数据格式转换"
+      },
+      "ct-protocol": {
+        "tier": "B",
+        "published": false,
+        "purpose": "方案深度审阅（多角色评审 / 立论与逻辑一致性 D1–D9 / 修订风险 / 批注版输出；B 档本地离线，仅作软建议不自动调用）"
+      },
+      "ct-ecrf": {
+        "tier": "B",
+        "published": false,
+        "purpose": "本地 CRF 设计（方案 → CRF 字段 + 编辑检查）"
+      },
+      "ct-datacheck": {
+        "tier": "B",
+        "published": false,
+        "purpose": "本地数据质控（DC 规则）"
+      },
+      "ct-statrev": {
+        "tier": "B",
+        "published": false,
+        "purpose": "统计审阅（人群一致性 / 终点复现）"
+      },
+      "ct-sdtm": {
+        "tier": "B",
+        "published": false,
+        "purpose": "本地 SDTM 转换"
+      },
+      "ct-adam": {
+        "tier": "B",
+        "published": false,
+        "purpose": "本地 ADaM 转换"
+      },
+      "ct-analysis": {
+        "tier": "B",
+        "published": false,
+        "purpose": "试验内统计分析"
+      },
+      "ct-tlf": {
+        "tier": "B",
+        "published": false,
+        "purpose": "本地三线表 / 图"
+      },
+      "ct-csr": {
+        "tier": "B",
+        "published": false,
+        "purpose": "本地 CSR 报告（ICH E3 / NMPA）"
+      },
+      "ct-submission": {
+        "tier": "B",
+        "published": false,
+        "purpose": "CTD / eCTD 申报资料组装"
+      },
+      "ct-eligibility": {
+        "tier": "B",
+        "published": false,
+        "purpose": "受试者↔方案入组匹配"
+      },
+      "ct-congress": {
+        "tier": "B",
+        "published": false,
+        "purpose": "会议疗效情报（由 ct-pipeline 调度）"
+      },
+      "ct-base": {
+        "tier": "meta",
+        "published": false,
+        "purpose": "技能库统一底座（元层，永不发布）"
+      },
+      "ct-update": {
+        "tier": "meta",
+        "published": false,
+        "purpose": "对标升级工具（元层，不对外发布）"
+      }
+    }
+  },
+  "referrals": {
+    "meta-analysis": {
+      "mention": "@skill:meta-analysis",
+      "reason": "meta-analysis 需数据抽取 + 重型 R 管线，不经 need_tool 自动调用；请用户显式调用并附数据集 / 效应量矩阵。",
+      "github": "https://github.com/medstatstar/meta-analysis"
+    }
+  }
+}

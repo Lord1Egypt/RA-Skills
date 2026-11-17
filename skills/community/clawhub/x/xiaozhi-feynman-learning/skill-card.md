@@ -1,41 +1,55 @@
-## Description: <br>
-A Feynman-learning tutoring skill that asks students to explain, answer follow-up questions, transfer concepts to new situations, verify AI-assisted answers, and record learning-depth progress. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通过让学生用自己的话解释概念、举例并迁移到新情境，检验理解深度并定位卡点。
 
-## Publisher: <br>
-[qizhitang](https://clawhub.ai/user/qizhitang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qizhitang](https://clawhub.ai/user/qizhitang)
 
-## Use Case: <br>
-Students, parents, and tutoring agents use this skill to check whether a learner truly understands a topic by having the learner explain it, give examples, answer why questions, transfer the idea, and complete critical verification. The skill also produces a learning-depth assessment and next-step study guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill records learning progress and assessment results in a learner profile. <br>
-Mitigation: Before using it with children or classroom data, tell users what may be saved and provide a way to review, correct, or delete those records. <br>
-Risk: Tutoring assessments can misclassify a student's understanding or produce misleading next-step guidance. <br>
-Mitigation: Use the assessment report as instructional support and have a teacher, parent, or responsible adult review important learning decisions. <br>
+## Use Case:
 
+学生可用此技能检验对已学概念的理解，找出解释、举例、说明理由或迁移应用时的卡点。小学阶段应由家长或老师陪同；进行跨会话记录或复测提醒须符合技能中的同意条件。
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qizhitang/xiaozhi-feynman-learning) <br>
-- [Publisher profile](https://clawhub.ai/user/qizhitang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style tutoring dialogue, assessment report, learning-depth record, and next-step recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include structured ratings, blind spots, learning-depth status, and suggested follow-up actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: A simple acknowledgment may be treated as readiness to begin an assessment or reteaching.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the student whether they want to start, make the next step clear, and let them decline or stop.
+
+Risk: Understanding records and safety disclosures can involve sensitive student information.
+
+Mitigation: Keep results in the current session unless the student explicitly asks to save them and sharing is enabled; follow the documented crisis referral process for safety concerns.
+
+## Reference(s):
+
+- [费曼对话话术参考](references/feynman-dialogue-patterns.md)
+- [费曼四加一跳状态机](references/feynman-5jump-statemachine.md)
+- [ClawHub 技能页面](https://clawhub.ai/qizhitang/skills/xiaozhi-feynman-learning)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [中文对话式反馈与掌握度判定，含卡点和下一步建议]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [按学段调整验证步骤；默认仅在当前会话工作。跨技能档案写回和复测提醒均为可选，并需满足明确同意条件。]
+
+## Skill Version(s):
+
+2.12.7 (source: server-resolved ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

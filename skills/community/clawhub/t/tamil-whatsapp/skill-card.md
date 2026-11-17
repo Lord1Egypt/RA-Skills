@@ -1,37 +1,50 @@
-## Description: <br>
-Handle Tamil language messages on WhatsApp, including transliteration, cultural greetings, and bilingual responses for Tamil Nadu users. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Handle Tamil, Tanglish and code-mixed text messages - spoken-register replies, spelling-tolerant matching, plain-text formatting, and cultural greetings for Tamil Nadu users.
 
-## Publisher: <br>
-[vigneshpy](https://clawhub.ai/user/vigneshpy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vigneshpy](https://clawhub.ai/user/vigneshpy)
 
-## Use Case: <br>
-External users and agents use this skill to draft or translate Tamil-script and Tanglish WhatsApp replies with polite Tamil phrasing, common phrases, and festival greetings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vigneshpy/tamil-whatsapp) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/vigneshpy) <br>
+External users and agents use this skill to draft short Tamil, Tanglish, and code-mixed replies for SMS, WhatsApp, Telegram, RCS, and in-app chat while matching the user's script, tone, and channel constraints.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown and plain text conversational examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review generated messages before sending them in personal or sensitive conversations.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: SMS replies in Tamil script can use UCS-2 encoding and increase message segments and cost.
+
+Mitigation: For SMS, prefer Tanglish unless the user wrote in Tamil script first, or override this preference when preserving Tamil script matters more than segment count.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vigneshpy/skills/tamil-messaging)
+- [Publisher profile](https://clawhub.ai/user/vigneshpy)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain text or Markdown guidance for short-message replies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution; replies may use Tamil script, Tanglish, or code-mixed English depending on the user's message and channel.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

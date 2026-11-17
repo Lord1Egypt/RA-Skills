@@ -1,0 +1,154 @@
+# 三种部署形态定义（Phase 11 · 已去厂商窄化）
+# 核心前提：本体论规范层（references/ 下的语义/逻辑/决策/动作库/部门/行业包/私有定制）是厂商中立数据，
+# 三种形态 = 同一套规范 + 不同"运行时外壳"。换壳即用，业务大脑不丢、不重写。
+#
+# 重要：本文件只描述"部署模式（pattern）"与"运行时能力契约"，并列出每类模式的多个参考实现产品。
+# EdgeClaw / JoyAgent 等只是"参考实现样例"，不是唯一答案；任何满足能力契约的产品都能接入。
+
+# ── 三档部署形态（对外呈现维度对比）──
+# 说明：cloud_edge / pure_private 仅引用下方 patterns 的模式定义，不在本段绑定单一厂商。
+modes:
+  skill_package:                # Mode A · 当前形态
+    name: 技能包（当前形态 · WorkBuddy 运行时）
+    essence: 本体论跑在 WorkBuddy 云端 SaaS；WorkBuddy = 本体论运行时内核（LLM/外脑/编排/资料库/持久化全包）
+    data_location: 实例 instance.yaml 本地磁盘；资料库 4 表在 WorkBuddy 云空间
+    offline: 依赖在线
+    ops_burden: 零
+    cost: 订阅费
+    external_capability: 最强（云生态全开）
+    compliance: 中（数据出域）
+    fit: 中小/OPC/快速验证
+    barrier: 最低
+    note: 技能"外壳"今天为 WorkBuddy 格式；规范本身厂商中立，可 port 到其他宿主平台（见 host_platforms）
+
+  cloud_edge:                   # Mode B · 云端协同（引用 edge_cloud 模式）
+    name: 云端协同（端主内·云主外）
+    pattern_ref: edge_cloud
+    essence: 端（本地/内网）主内 + 云（公有/私有云）主外；敏感内部决策/数据留端，外部检索/重算力上云
+    data_location: 敏感（PII/合同/票据/财务）留端；公开情报/监测信号/复杂推理请求上云
+    offline: 断网核心仍转
+    ops_burden: 中（管两端+同步+鉴权）
+    cost: 设备 + 少量云算力
+    external_capability: 强（云外脑）
+    compliance: 强（敏感不出）
+    fit: 制造/受监管/有车间
+    barrier: 中（一台设备 / 一个轻运行时）
+    reference_products:
+      - 面壁 EdgeClaw Box（断网也能跑 Agent，端侧 MiniCPM + 可切云端大模型）
+      - 华为 / 联想 边缘智能一体机
+      - 各云厂商边缘 Agent 网关（阿里 / 腾讯 / 百度 边缘节点）
+      - 自建：端侧轻运行时（MiniCPM 等）+ 云端 API 外脑
+
+  pure_private:                 # Mode C · 纯私有化（引用 on_prem 模式）
+    name: 纯私有化（air-gapped 自托管）
+    pattern_ref: on_prem
+    essence: 整套本体论（语义+逻辑+决策+运行时）全跑在自有机房/私有云，完全离线
+    data_location: 全留本地，颗粒不外流
+    offline: 完全离线
+    ops_burden: 重（GPU/模型/升级自管）
+    cost: 一次买断 + 自运维
+    external_capability: 弱（需自接检索）
+    compliance: 最强（不出门）
+    fit: 军工/政务/强合规核心
+    barrier: 高（技术团队）
+    reference_products:
+      - 京东 JoyAgent-JDGenie（100% 开源、Docker/K8s 本地独立部署、可接本地模型）
+      - Dify（私有化部署）
+      - CrewAI / LangGraph（自建多智能体）
+      - n8n（自建编排）
+      - Coze 企业私有化版
+      - 智谱 / 通义 / 文心 私有化部署
+      - 百度千帆 / 阿里百炼 私有化
+
+# ── 部署模式（pattern）：厂商中立的"运行时能力契约" ──
+# 任何产品只要满足 required_runtime_capabilities，即可作为该模式的参考实现。
+# adapters.py 的 --pattern 产出即基于此段的厂商中立 runtime_manifest.yaml。
+patterns:
+  edge_cloud:                   # 端云协同模式
+    display: 端云协同（端主内·云主外）
+    essence: 敏感内部决策/数据留端，外部检索/重算力上云；断网核心仍转
+    required_runtime_capabilities:
+      - 端侧可独立运行本体论语义/逻辑/决策（离线可用）
+      - 端侧可承载敏感部门 Agent（PII/合同/钱/法 不出域）
+      - 云侧可切换外脑（复杂推理/外部检索后端）
+      - 支持同步边界声明与鉴权（哪些上云显式声明）
+    reference_products:
+      - 面壁 EdgeClaw Box
+      - 华为 / 联想 边缘智能一体机
+      - 各云厂商边缘 Agent 网关
+      - 自建（端 MiniCPM + 云 API）
+
+  on_prem:                      # 纯私有化模式
+    display: 纯私有化（air-gapped 自托管）
+    essence: 整套本体论 + 运行时全跑自有机房/私有云，完全离线、可审计
+    required_runtime_capabilities:
+      - 本地独立部署（Docker/K8s/裸机），不绑云
+      - 可接本地大模型（qwen/glm/deepseek/信创底座）
+      - 直接加载厂商中立规范（references/*.yaml 零改写）
+      - 可选 ERP/MES/OA 写回钩子（Action 层 writeback）
+      - air-gapped 运行 + 操作审计
+    reference_products:
+      - 京东 JoyAgent-JDGenie
+      - Dify（私有化）
+      - CrewAI / LangGraph（自建）
+      - n8n（自建编排）
+      - Coze 企业私有化版
+      - 智谱 / 通义 / 文心 私有化
+      - 千帆 / 百炼 私有化
+
+# ── 宿主平台（Host Platforms）：技能"外壳"可 port 到哪些平台 ──
+# 回答"是不是只适用于 WorkBuddy"：今天外壳是 WorkBuddy 格式，但规范厂商中立，
+# 可经 adapters.py 生成各宿主平台的"包装脚手架"（指向同一份 references/，规范零改写）。
+host_platforms:
+  note: >
+    技能"外壳"当前为 WorkBuddy 格式，故今天直接跑在 WorkBuddy 上；Coze / Dify / Claude / 元器 / 千帆
+    等竞品的插件/技能格式不同，不能直接加载。但那层"厂商中立的本体论规范"不依赖任何平台——
+    经 adapters.py --target <platform> 生成该平台的"包装脚手架"，即可把同一套规范 port 过去，规范零改写。
+  targets:
+    - workbuddy   # 原生平台：SKILL.md 即 WorkBuddy 技能格式，直接加载 references/
+    - coze        # 扣子：references/ 作知识库 + 主理人 Bot 调 action_specs
+    - dify        # Dify：references/ 作知识库 + 工作流节点；企业版可私有化接 Mode C
+    - claude      # Anthropic Claude：references/ 暴露为 MCP server，Agent SDK 调用
+    - yuanqi      # 腾讯元器：references/ 作智能体知识库 + 工具
+    - qianfan     # 百度千帆 AgentBuilder：references/ 作知识库 + 自定义工具
+  packaging_adapters: "scripts/adapters.py --target <platform>  -> 产出 host_<platform>_manifest.yaml（porting scaffold）"
+
+# 同步边界（Mode B 的命门）：哪些数据上云必须显式声明，默认"敏感不出域"
+sync_boundary:
+  edge_local:                   # 端侧闭环，不出域
+    - PII
+    - contracts
+    - finance
+    - internal_docs
+  cloud_sync:                   # 上云外脑
+    - monitoring_signals
+    - public_intel
+    - heavy_reasoning
+
+# 接入流程（完美自洽接入）
+# 落地件：scripts/export_spec.py（规范导出器）+ scripts/adapters.py（对接配置生成器），详见 references/portability.md
+# 注意：以下流程均以"模式(pattern)"为对象，具体产品只是该模式的参考实现之一。
+integration:
+  cloud_edge_flow:
+    - 定义同步边界（instance.yaml / deployment.yaml 标注 edge_local / cloud_sync）
+    - 端侧装轻量运行时（满足 edge_cloud 能力契约的产品，如 EdgeClaw Box 或自建小服务器，加载规范端侧子集）
+    - 云侧接外脑（WorkBuddy / 公开 API 作复杂推理 + 外部检索后端）
+    - 跑通双循环（端内循环处理敏感高频 + 云外循环处理复杂外部）
+    - 持续进化（云端下发优化模型/策略回写端侧）
+  pure_private_flow:
+    - 选自托管运行时（满足 on_prem 能力契约的产品，如 JoyAgent 类开源 / 自写轻运行时）
+    - 部署本地模型（qwen / glm / deepseek 或信创底座）
+    - 加载本体论规范（references/*.yaml 直接喂，厂商中立数据零改写）
+    - 接企业系统（ERP / MES / OA 写回接口，Action 层 writeback）
+    - air-gapped 跑（断网靠本地 Ontology 语义锚定 + 操作执行，可审计）
+  host_porting_flow:            # 回答"是否只适用于 WorkBuddy"：port 到竞品宿主平台
+    - 用 export_spec.py 导出厂商中立 bundle（含 references/ + 实例）
+    - 用 adapters.py --target <platform> 生成该宿主平台的"包装脚手架"
+    - 脚手架把同一份 references/ 包成目标平台可加载的 skill/plugin 格式，规范零改写
+    - 真实落地对接该平台 SDK/API 属后续独立阶段（脚手架已把地基与差异点讲清）
+
+# 红线贯穿三模式：decision.yaml 的 PII / 合同 / 票据 约束在 B/C 形态同样生效（规范层一致）
+invariants_across_modes:
+  - PII 不写明文（贯穿 A/B/C）
+  - 越权动作一律草拟 + 等确认（proactive.yaml L2 默认档）
+  - 语义/逻辑/决策规范一致，不重写

@@ -1,41 +1,56 @@
-## Description: <br>
-Reviews pytest test code for async patterns, fixtures, parametrize, and mocking. Use when reviewing test_*.py files, checking async test functions, fixture usage, or mock patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews pytest test code for async patterns, fixtures, parametrize, and mocking.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill to review pytest test code for async testing, fixtures, parametrization, and mocking practices. It guides reviewers toward concrete findings with scoped files, line references, or test node IDs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unsupported crypto/payment capability labels may misrepresent the skill's actual behavior. <br>
-Mitigation: Evaluate fit using the scanner summary and the instruction-only skill content; do not treat those labels as evidence that the skill performs crypto or purchasing actions. <br>
+## Use Case:
 
+Developers and engineers use this skill to review pytest test files and conftest fixtures for async testing, fixture design, parametrization, mocks, and line-specific findings.
 
-## Reference(s): <br>
-- [Async Testing](references/async-testing.md) <br>
-- [Fixtures](references/fixtures.md) <br>
-- [Mocking](references/mocking.md) <br>
-- [Parametrize](references/parametrize.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown review findings, checklist notes, and targeted code suggestions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings should cite concrete files, lines, or test node IDs; no executable runtime output is produced by the skill itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: Normal review use may involve reading pytest files selected by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Scope review to the requested test files and conftest files, and cite specific file paths, lines, or pytest node IDs for findings.
+
+Risk: Generic pytest guidance could be mistaken for a finding if the review gates are skipped.
+
+Mitigation: Apply the skill's review gates before asserting pytest-specific issues, including async, fixture, mocking, and finding-specific evidence checks.
+
+## Reference(s):
+
+- [Async Testing](references/async-testing.md)
+- [Fixtures](references/fixtures.md)
+- [Mocking](references/mocking.md)
+- [Parametrize](references/parametrize.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown review findings with cited file paths, line references, or pytest node IDs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Normal use involves reading the pytest files selected for review; the skill itself does not run commands or modify files.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

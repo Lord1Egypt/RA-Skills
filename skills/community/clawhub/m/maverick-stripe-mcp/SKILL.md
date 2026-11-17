@@ -4,7 +4,7 @@ description: Search, read, and manage Stripe account data through Stripe's hoste
 homepage: https://docs.stripe.com/mcp
 metadata:
   openclaw:
-    emoji: "💳"
+    emoji: '💳'
     requires:
       bins:
         - mcporter
@@ -14,7 +14,7 @@ metadata:
     install:
       - id: node
         kind: node
-        package: mcporter
+        package: mcporter@0.13.10
         bins:
           - mcporter
         label: Install mcporter (node)

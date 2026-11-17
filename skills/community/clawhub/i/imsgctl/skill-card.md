@@ -1,41 +1,50 @@
-## Description: <br>
-Read Apple Messages data with imsgctl: check access, list chats, inspect message history, filter by time, include attachment metadata, and watch new activity from the local data available to imsgctl. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read Apple Messages data with imsgctl: check access, list chats, inspect message history, filter by time, include attachment metadata, and watch new activity from the local data available to imsgctl.
 
-## Publisher: <br>
-[jpreagan](https://clawhub.ai/user/jpreagan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpreagan](https://clawhub.ai/user/jpreagan)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect local Apple Messages chats, message history, attachment metadata, and live activity with imsgctl when the user has authorized access to the local data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose private Apple Messages chats and attachment metadata from the local machine or an imsgkit replica. <br>
-Mitigation: Install and use it only when message inspection is intended; prefer specific chat IDs, small limits, and time windows. <br>
-Risk: Direct access to the macOS Messages database may require broad local file permissions. <br>
-Mitigation: Grant Full Disk Access only when necessary, avoid attachment access unless needed, and stop watch mode when live monitoring is no longer needed. <br>
+## Use Case:
 
+Employees, external users, developers, and support agents use this skill to inspect local Apple Messages chats, history, attachments, and live activity when the user has authorized access to that data.
 
-## Reference(s): <br>
-- [imsgkit project homepage](https://github.com/jpreagan/imsgkit) <br>
-- [ClawHub skill page](https://clawhub.ai/jpreagan/imsgctl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON or JSONL command-output expectations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prefers read-only imsgctl commands with JSON output, scoped chat IDs, limits, and time windows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can expose privacy-sensitive Apple Messages history, attachments, and live activity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with explicit user scope such as chat, date range, attachment access, and whether live monitoring is allowed; avoid broad history reads unless the user intends to expose that content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpreagan/skills/imsgctl)
+- [imsgkit homepage](https://github.com/jpreagan/imsgkit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON or JSONL command output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide live monitoring commands and attachment metadata inspection when explicitly requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

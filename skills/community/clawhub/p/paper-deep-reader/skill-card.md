@@ -1,50 +1,59 @@
-## Description: <br>
-Paper Deep Reader helps agents deeply read one selected research paper or technical report and produce a rigorous markdown reading note, technical summary, critique, or implementation memo. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Paper Deep Reader helps agents deeply analyze one selected research paper and produce an evidence-based markdown note, technical summary, critique, or implementation memo.
 
-## Publisher: <br>
-[soymilkwinsagain](https://clawhub.ai/user/soymilkwinsagain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[soymilkwinsagain](https://clawhub.ai/user/soymilkwinsagain)
 
-## Use Case: <br>
-Researchers, students, engineers, and technical readers use this skill to reconstruct the structure, evidence, assumptions, limitations, and reusable ideas in one selected research paper. It is intended for deep paper notes, critiques, technical summaries, and implementation or reproduction memos rather than shallow abstract rewrites. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated notes or helper artifacts may overwrite existing local files if output paths are chosen carelessly. <br>
-Mitigation: Choose explicit output paths, review the destination before running scripts, and keep separate artifact directories for draft paper maps, notation tables, claim matrices, and final notes. <br>
-Risk: Generated reading notes can contain sensitive paper excerpts, private commentary, or unpublished research analysis. <br>
-Mitigation: Keep generated notes private when the source paper, comments, or analysis are sensitive, and review content before sharing outside the intended audience. <br>
-Risk: The optional scripts are heuristic drafting aids and can create incomplete or misleading intermediate structures if their output is treated as final. <br>
-Mitigation: Review paper maps, notation tables, claim matrices, and limitation ledgers against the source paper before using them in a final note. <br>
-Risk: The optional Python scripts import a shared _common helper that is not included in this artifact listing. <br>
-Mitigation: Verify that any installed package includes the trusted _common helper before running scripts, and do not substitute an untrusted helper file. <br>
+## Use Case:
 
+Developers, researchers, and technical readers use this skill to guide an agent through deep analysis of a single selected paper and produce reusable notes that reconstruct the paper's technical mechanism, evidence, assumptions, and limitations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/soymilkwinsagain/paper-deep-reader) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Reading workflow](artifact/references/reading-workflow.md) <br>
-- [Routing rules](artifact/references/routing-rules.md) <br>
-- [Paper taxonomy](artifact/references/paper-taxonomy.md) <br>
-- [Output contract](artifact/references/output-contract.md) <br>
-- [Scripts README](artifact/scripts/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance, files] <br>
-**Output Format:** [Markdown reading notes, technical summaries, critique memos, implementation notes, and optional local markdown or JSON helper artifacts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill uses structured reading passes, adapter routing, evidence checklists, and optional standard-library Python scripts to scaffold notes, paper maps, notation tables, claim matrices, limitation ledgers, and final markdown notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Script-generated paper maps, notation tables, claim matrices, and limitation ledgers are heuristic drafts and can misstate a paper if not checked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated artifacts against the source paper before using them in a final note.
+
+Risk: The release security guidance reports a missing shared script module and inconsistent reference paths, which may make the scripted workflow unreliable.
+
+Mitigation: Confirm helper modules and reference paths before relying on local scripts; fall back to the manual reading workflow if scripts fail.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/soymilkwinsagain/skills/paper-deep-reader)
+- [Reading workflow](references/reading-workflow.md)
+- [Routing rules](references/routing-rules.md)
+- [Output contract](references/output-contract.md)
+- [Paper taxonomy](references/paper-taxonomy.md)
+- [Base note template](references/note-template-base.md)
+- [Script workflow](scripts/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown reading notes with YAML frontmatter, markdown tables, and optional script-generated draft artifacts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Designed for one selected paper at a time; script-generated tables are heuristic drafts that require review.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

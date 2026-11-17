@@ -1,44 +1,59 @@
-## Description: <br>
-Deploy NFT collections permanently on MegaETH blockchain with on-chain image storage via SSTORE2, royalties, minting, and management pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy NFT collections permanently on MegaETH blockchain with images stored on-chain via SSTORE2, supporting collection creation, royalties, minting, and management pages.
 
-## Publisher: <br>
-[planetai87](https://clawhub.ai/user/planetai87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[planetai87](https://clawhub.ai/user/planetai87)
 
-## Use Case: <br>
-External developers and NFT creators use this skill to set up and run a Node.js workflow that deploys MegaETH testnet NFT collections from image folders or generated SVG art. It helps configure collection metadata, minting limits, pricing, royalties, and post-deployment management links. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflow asks for wallet-signing authority and can spend testnet funds or deploy contracts from the configured wallet. <br>
-Mitigation: Use only a fresh MegaETH testnet wallet with no mainnet funds or valuable assets, and avoid passing private keys inline or through command history. <br>
-Risk: Deployed images, metadata, contract addresses, and wallet addresses are public and difficult to undo once written on-chain. <br>
-Mitigation: Review all images, collection names, supply limits, prices, royalties, and wallet settings before running the deployment command. <br>
-Risk: The security evidence flags the skill as suspicious because irreversible blockchain actions have limited guardrails. <br>
-Mitigation: Review the skill before installing and execute it only in the intended MegaETH testnet environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [MegaWarren homepage](https://megawarren.xyz) <br>
-- [MegaETH faucet documentation](https://docs.megaeth.com/faucet) <br>
-- [MegaETH testnet explorer](https://megaeth-testnet-v2.blockscout.com) <br>
-- [ClawHub skill page](https://clawhub.ai/planetai87/warren-nft) <br>
+## Use Case:
 
+Developers and NFT creators use this skill to deploy on-chain NFT collections to the MegaETH testnet from an image folder or generated SVG artwork, then obtain contract, management, and mint page outputs.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JavaScript CLI usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce blockchain transaction details, NFT contract addresses, container IDs, image counts, and MegaWarren management or mint page links after execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses wallet signing authority to deploy contracts and store NFT assets on-chain.
+
+Mitigation: Use a dedicated testnet wallet with limited funds and verify all transaction details before signing.
+
+Risk: The deployment script includes embedded contract bytecode and default treasury and registration endpoints.
+
+Mitigation: Review the default TREASURY_ADDRESS and REGISTER_API settings, and treat the bytecode as unaudited unless matching source and build verification are provided.
+
+Risk: Private keys may be supplied through the environment or command-line arguments.
+
+Mitigation: Prefer environment or wallet tooling that avoids shell history exposure, and do not reuse wallets containing valuable assets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/planetai87/skills/warren-nft)
+- [MegaWarren homepage](https://megawarren.xyz)
+- [MegaETH faucet](https://docs.megaeth.com/faucet)
+- [MegaETH testnet explorer](https://megaeth-testnet-v2.blockscout.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and deployment result text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces transaction-facing deployment instructions and reports NFT contract address, container ID, image count, management URL, and mint URL after execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

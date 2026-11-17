@@ -1,40 +1,54 @@
-## Description: <br>
-Local-first chart generation engine for trends, comparisons, distributions, and quick visual explanations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local-first chart generation engine for trends, comparisons, distributions, and quick visual explanations.
 
-## Publisher: <br>
-[panchenbo](https://clawhub.ai/user/panchenbo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[panchenbo](https://clawhub.ai/user/panchenbo)
 
-## Use Case: <br>
-Developers, analysts, and other ClawHub users use this skill to choose simple chart types and generate local chart images from inline data for comparisons, trends, distributions, and reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read or visualize sensitive local data if pointed at files the user did not intend to share with the agent. <br>
-Mitigation: Use it only with data files the user explicitly intends the agent to read. <br>
-Risk: Chart generation writes PNG outputs and updates local chart history. <br>
-Mitigation: Ask before writing or overwriting chart outputs in the workspace, and review generated files before relying on them. <br>
+## Use Case:
 
+Developers and external users use this skill to turn inline data, CSV, or JSON into local bar, line, pie, and scatter chart images, suggest an appropriate chart type, and review previously generated chart history.
 
-## Reference(s): <br>
-- [Chart Philosophy](references/philosophy.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Files] <br>
-**Output Format:** [Markdown guidance with shell commands; generated PNG chart files and local JSON history when scripts are run.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local Python scripts and matplotlib; stores chart history and outputs under ~/.openclaw/workspace/memory/chart/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact skill.json) <br>
+Risk: Chart titles, labels, numeric values, and output paths are saved in local chart history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid highly sensitive datasets unless local history storage is acceptable, and clear or protect ~/.openclaw/workspace/memory/chart when needed.
+
+Risk: Temporary-file based local saves may need additional hardening for shared or multi-user deployments.
+
+Mitigation: Review and harden the temporary-file save behavior before deploying in shared environments.
+
+## Reference(s):
+
+- [Chart Philosophy](references/philosophy.md)
+- [ClawHub skill page](https://clawhub.ai/panchenbo/skills/chart-data-viz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and local chart image file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated PNG charts and chart history are stored locally under ~/.openclaw/workspace/memory/chart.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

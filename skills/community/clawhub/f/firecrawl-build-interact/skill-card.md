@@ -1,48 +1,63 @@
-## Description: <br>
-Integrate Firecrawl `/interact` into product code for dynamic pages and browser actions after scraping when a feature needs clicks, form fills, pagination, authentication-aware flows, or other multi-step interactions that plain `/scrape` cannot complete. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrate Firecrawl `/interact` into product code for dynamic pages and browser actions after scraping.
 
-## Publisher: <br>
-[eohmig](https://clawhub.ai/user/eohmig) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eohmig](https://clawhub.ai/user/eohmig)
 
-## Use Case: <br>
-Developers and engineers use this skill to decide when to add Firecrawl `/interact` to product integrations and to draft implementation guidance for dynamic pages that require page actions after scraping. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Firecrawl API key, which is a sensitive credential. <br>
-Mitigation: Treat FIRECRAWL_API_KEY as a secret and only configure it in trusted environments. <br>
-Risk: Generated browser actions may interact with authenticated sites or modify page state. <br>
-Mitigation: Review code before running browser actions against authenticated pages and keep workflows scoped to the smallest necessary interaction. <br>
-Risk: Persistent browser profiles may retain login state longer than intended. <br>
-Mitigation: Avoid persistent profiles unless the workflow clearly requires saved authenticated state. <br>
+## Use Case:
 
+Developers and engineers use this skill to integrate Firecrawl browser interaction workflows when scraping requires clicks, form fills, pagination, filters, or authenticated multi-step page actions.
 
-## Reference(s): <br>
-- [Firecrawl Homepage](https://www.firecrawl.dev) <br>
-- [Firecrawl Node / TypeScript Source of Truth](https://docs.firecrawl.dev/agent-source-of-truth/node) <br>
-- [Firecrawl Python Source of Truth](https://docs.firecrawl.dev/agent-source-of-truth/python) <br>
-- [Firecrawl Rust Source of Truth](https://docs.firecrawl.dev/agent-source-of-truth/rust) <br>
-- [Firecrawl Java Source of Truth](https://docs.firecrawl.dev/agent-source-of-truth/java) <br>
-- [Firecrawl Elixir Source of Truth](https://docs.firecrawl.dev/agent-source-of-truth/elixir) <br>
-- [Firecrawl cURL / REST Source of Truth](https://docs.firecrawl.dev/agent-source-of-truth/curl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with language-specific code and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference FIRECRAWL_API_KEY and optional FIRECRAWL_API_URL configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Interact workflows may send page content, form data, or authenticated-session-derived data to Firecrawl or a configured backend.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the narrowest workflow possible, avoid highly sensitive sites without approval, and prefer self-hosted or tightly scoped deployments where appropriate.
+
+Risk: Persistent profiles can retain authenticated state across sessions.
+
+Mitigation: Use persistent profiles only when authenticated state is required and review the workflow scope before deployment.
+
+Risk: Open-ended browser automation may exceed the intended product workflow.
+
+Mitigation: Keep action prompts or code specific to the product flow and evaluate a browser sandbox for fully open-ended automation.
+
+## Reference(s):
+
+- [Firecrawl Homepage](https://www.firecrawl.dev)
+- [Firecrawl Node / TypeScript Source of Truth](https://docs.firecrawl.dev/agent-source-of-truth/node)
+- [Firecrawl Python Source of Truth](https://docs.firecrawl.dev/agent-source-of-truth/python)
+- [Firecrawl Rust Source of Truth](https://docs.firecrawl.dev/agent-source-of-truth/rust)
+- [Firecrawl Java Source of Truth](https://docs.firecrawl.dev/agent-source-of-truth/java)
+- [Firecrawl Elixir Source of Truth](https://docs.firecrawl.dev/agent-source-of-truth/elixir)
+- [Firecrawl cURL / REST Source of Truth](https://docs.firecrawl.dev/agent-source-of-truth/curl)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with code and command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require FIRECRAWL_API_KEY and optionally FIRECRAWL_API_URL for hosted or self-hosted Firecrawl integrations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

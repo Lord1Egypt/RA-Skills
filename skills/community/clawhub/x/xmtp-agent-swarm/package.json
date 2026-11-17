@@ -1,6 +1,6 @@
 {
   "name": "agent-swarm",
-  "version": "1.0.0",
+  "version": "3.1.0",
   "description": "",
   "type": "module",
   "main": "src/agent.js",
@@ -21,10 +21,5 @@
     "ethers": "^6.16.0",
     "express": "^5.2.1",
     "uuid": "^13.0.0"
-  },
-  "devDependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^6.1.0",
-    "@openzeppelin/contracts": "^5.4.0",
-    "hardhat": "^3.1.9"
   }
 }

@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn73y2agc9jxy1my4zsdrs9j9x81y5wf",
-  "slug": "ai-humanizer-disabled",
-  "version": "1.0.0",
-  "publishedAt": 1774650748807
+  "ownerId": "kn7bwyhgbjvz45c09m37dnyby580b7g3",
+  "slug": "ai-humanizer",
+  "version": "2.2.0",
+  "publishedAt": 1742899200000,
+  "source": "github:brandonwise/humanizer"
 }

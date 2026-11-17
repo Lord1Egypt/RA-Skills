@@ -1,4 +1,4 @@
-# 安装与配置
+﻿# 安装与配置
 
 ## 前置条件
 
@@ -91,9 +91,7 @@ siluzan-tso login --phone 13800138000 --code 123456 \
 | `--verbose`    | 两个命令都支持 | 输出每次 HTTP 请求的 URL，便于排错                                                                                                 | 关闭                              |
 
 > **未注册手机号**：`login` 第 2 步会返回 `❌ 登录失败：手机未注册` 并附带网页注册地址，引导用户先去网页注册再回来重试两段式。
->
 > **验证码错误/过期**：返回明确提示，让用户重新跑 `send-login-code` 拿新验证码。
->
 > **AI 助手用法**：先调 `send-login-code` 发码、立即返回继续对话；等用户报出收到的验证码后，再调 `login --phone xxx --code xxx` 完成登录。**永远不要在没拿到 `--code` 的情况下调用 `login --phone xxx`，那会直接报错。**（人类在本地终端可直接运行无参 `siluzan-tso login` 选 3，由 CLI 发码并读验证码，无需先记 `send-login-code`。）
 
 ### 通过环境变量传入凭据（CI/CD 推荐）
@@ -142,6 +140,7 @@ siluzan-tso config show
 ## 使用 webUrl 进行网页操作
 
 - 涉及充值、账户激活、首页看板等**必须在网页完成**的操作时，应先通过 `siluzan-tso config show` 获取 `webUrl` 值，再按各业务文档提供的相对路径拼接完整链接，引导用户在浏览器中完成后续步骤。
+- **硬约束**：`webUrl` **必须**来自当轮 `config show` 输出；路径**必须**来自已 Read 的业务文档路径表。**禁止**凭记忆写出完整平台 URL，**禁止**把 `apiBaseUrl` / `googleApiUrl` 当作浏览器地址发给用户。文档未给出相对路径时不要拼接。详见 `agent-conventions.md` §四。
 
 ## 更新
 

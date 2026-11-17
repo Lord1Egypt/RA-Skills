@@ -1,0 +1,4 @@
+interface:
+  display_name: "Morpho market diligence"
+  short_description: "Morpho market diligence workflow and evidence"
+  default_prompt: "Use $galleon-morpho-market to perform the requested protocol workflow and return its decision record."

@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "lunheng"
+version = "3.0.0"
+description = "AI-assisted judgment drafting tool with syllogistic reasoning (三段论) and 74+ cause templates"
+readme = "README.md"
+license = { text = "Apache-2.0" }
+authors = [
+    { name = "Lunheng Authors" },
+]
+keywords = [
+    "legal-tech", "judgment", "court", "chinese-law",
+    "legal-document", "ai-writing", "legal-ai",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Legal Industry",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Office/Business :: Legal",
+]
+requires-python = ">=3.10"
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/LawrencePage/lunheng"
+Documentation = "https://github.com/LawrencePage/lunheng#readme"
+Source = "https://github.com/LawrencePage/lunheng"
+
+[project.scripts]
+jd = "scripts.__main__:main"
+lunheng = "scripts.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["scripts*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

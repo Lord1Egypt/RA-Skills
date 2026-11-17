@@ -1,44 +1,59 @@
-## Description: <br>
-Connect to Civic MCP for 100+ integrations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect to Civic MCP for 100+ integrations.
 
-## Publisher: <br>
-[civictechuser](https://clawhub.ai/user/civictechuser) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[civictechuser](https://clawhub.ai/user/civictechuser)
 
-## Use Case: <br>
-Agents and developers use this skill to discover and call Civic MCP tools for connected services such as email, databases, storage, and other integrations from an OpenClaw workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad token-backed access to connected services. <br>
-Mitigation: Use a least-privilege Civic profile, verify CIVIC_URL before use, and protect and rotate CIVIC_TOKEN. <br>
-Risk: Tool calls may send messages, modify files, write or delete records, run SQL, or change connected services. <br>
-Mitigation: Inspect tool schemas and require explicit user approval before any operation that changes data or external services. <br>
-Risk: Some tools require OAuth authorization flows before execution can continue. <br>
-Mitigation: Show the authorization URL to the user and continue only after the user completes the expected authorization step. <br>
+## Use Case:
 
+Developers and external users use this skill to let an agent discover and call Civic MCP tools for connected services such as Gmail, PostgreSQL, MongoDB, and Box. It supports setup guidance, tool listing, schema lookup, OAuth continuation steps, and tool calls through mcporter or the bundled TypeScript runner.
 
-## Reference(s): <br>
-- [Civic documentation](https://docs.civic.com) <br>
-- [Civic Nexus](https://nexus.civic.com) <br>
-- [ClawHub release page](https://clawhub.ai/civictechuser/openclaw-civic-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with inline JSON and bash examples; Civic tool calls may return plain text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CIVIC_URL and CIVIC_TOKEN, plus mcporter or npx/tsx for execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: The configured Civic token may let the agent access connected services such as email, databases, and storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Civic profile and confirm sensitive or mutating actions before allowing the agent to run Civic tools.
+
+Risk: A misconfigured or untrusted CIVIC_URL could send the token to an unintended MCP endpoint.
+
+Mitigation: Keep CIVIC_URL on the official HTTPS Civic endpoint and review the configured URL before use.
+
+Risk: Tool arguments may contain sensitive data that appears in logs or command output.
+
+Mitigation: Avoid passing secrets in tool arguments and review logs or command transcripts for sensitive content.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/civictechuser/skills/openclaw-civic-skill)
+- [Civic Documentation](https://docs.civic.com)
+- [Civic Nexus](https://nexus.civic.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent-facing setup and execution guidance may include command output from remote Civic MCP tools.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

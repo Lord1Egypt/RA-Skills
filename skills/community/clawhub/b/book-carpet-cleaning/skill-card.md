@@ -1,38 +1,49 @@
-## Description: <br>
-Book carpet-cleaning services through Lokuli MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book carpet-cleaning services through Lokuli by searching providers, checking availability, and creating appointments.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users use this skill to search for carpet-cleaning providers, check availability, and create a booking through Lokuli. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send personal contact and booking details to a third-party booking endpoint. <br>
-Mitigation: Ask the user to explicitly confirm the provider, service, time slot, name, email, and phone number before creating a booking. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
-- [ClawHub skill page](https://clawhub.ai/edwardrodriguez703-design/book-carpet-cleaning) <br>
+## Use Case:
 
+External users can use this skill to find carpet-cleaning providers, check appointment availability, and request a booking through Lokuli.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API Calls] <br>
-**Output Format:** [Text and JSON-RPC tool call arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Lokuli MCP search, availability, and booking tools with booking details supplied by the user.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can create an external appointment and transmit personal contact details without a clear final confirmation step.
+
+Mitigation: Require the agent to show the provider, service, appointment time, price or fees if available, and all contact fields before the user gives explicit booking approval.
+
+## Reference(s):
+
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+- [ClawHub skill page](https://clawhub.ai/edwardrodriguez703-design/skills/book-carpet-cleaning)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Guidance]
+
+**Output Format:** [Markdown with structured tool-call arguments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include provider, service, appointment time, and customer contact details for user review before booking.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,52 @@
-## Description: <br>
-Writes structured product requirements documents and can generate interactive HTML feature explainers with code samples and configuration notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Writes structured PRDs with interactive HTML feature demos that include code samples and configuration for visual walkthroughs, interactive explanations, and enhanced requirement documents.
 
-## Publisher: <br>
-[paudyyin](https://clawhub.ai/user/paudyyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[paudyyin](https://clawhub.ai/user/paudyyin)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Product managers and product teams use this skill to draft PRDs with problem statements, user stories, requirements, success metrics, and optional interactive HTML feature explainers for engineering walkthroughs.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated PRDs and feature explainers may contain incorrect or incomplete product assumptions.
+
+Mitigation: Have product and engineering reviewers validate problem statements, requirements, code samples, and configuration before relying on the generated documents.
+
+Risk: The skill may produce Chinese-language HTML explainers when a different audience language is expected.
+
+Mitigation: Specify the desired output language before generation and review shared explainers for audience fit.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Product managers, developers, and engineering teams use this skill to draft PRDs with problem statements, goals, user stories, requirements, success metrics, and open questions. Teams can also use it to turn feature specifications into self-contained HTML explainers for engineering review. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated PRDs or feature explainers may include proprietary code, product plans, or business details supplied by the user. <br>
-Mitigation: Review and redact sensitive details before sharing generated documents outside the intended audience. <br>
-Risk: Generated requirements or implementation explainers may be incomplete or misleading if the input evidence is incomplete. <br>
-Mitigation: Have product and engineering reviewers validate the PRD, examples, configuration notes, and success metrics before using them for delivery decisions. <br>
+**Output Format:** [Markdown PRD content and optional self-contained HTML feature explainer]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Feature Spec Enhanced on ClawHub](https://clawhub.ai/paudyyin/feature-spec-enhanced) <br>
+**Other Properties Related to Output:** [May produce Chinese-language HTML explainers unless the requested output language is adapted by the user or agent.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown PRD sections or a self-contained HTML feature explainer] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include code samples, configuration tables, Before/After comparisons, file walkthroughs, and success metrics.] <br>
+1.0.2 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

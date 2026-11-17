@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0.1",
+  "view_id": "view-001",
+  "subject": {
+    "type": "person",
+    "id": "user-controlled-id"
+  },
+  "principal": {
+    "type": "agent",
+    "id": "current-agent"
+  },
+  "audience": [
+    {
+      "type": "agent",
+      "id": "current-agent"
+    }
+  ],
+  "purpose": "current-task",
+  "task": "task-id",
+  "source_revision": 1,
+  "created_at": "",
+  "expires_at": "",
+  "claims": [],
+  "tensions": [],
+  "relevant_unknowns": [],
+  "exclusions": [],
+  "permission": {
+    "allowed_use": "current task only",
+    "archive_in_personal_store": false,
+    "allow_downstream_persistence": false
+  }
+}

@@ -1,40 +1,49 @@
-## Description: <br>
-Calculate UK freelancer tax liability for 2025/26, including Income Tax, Class 4 NI, Class 2 NI, VAT threshold tracking, and MTD quarterly summaries from income and expense data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculate UK freelancer tax liability for 2025/26, including Income Tax, Class 4 and Class 2 National Insurance, VAT threshold tracking, and MTD quarterly summaries from income and expense data.
 
-## Publisher: <br>
-[jamespatrickthom2003-star](https://clawhub.ai/user/jamespatrickthom2003-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jamespatrickthom2003-star](https://clawhub.ai/user/jamespatrickthom2003-star)
 
-## Use Case: <br>
-External UK freelancers, sole traders, and self-employed contractors use this skill to estimate 2025/26 self-assessment liabilities, VAT threshold status, payment-on-account considerations, and Making Tax Digital preparation needs. It is an estimator and does not file returns or replace HMRC or accountant review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United Kingdom <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may rely on estimated UK tax, VAT, MTD, or filing guidance without checking current rules. <br>
-Mitigation: Present outputs as estimates and instruct users to verify HMRC rates, thresholds, deadlines, and filing decisions with HMRC or a qualified accountant before acting. <br>
-Risk: Users may provide sensitive personal, tax, payment, or identity information while seeking a calculation. <br>
-Mitigation: Ask only for the income and expense details needed for estimation and avoid requesting bank details, login credentials, National Insurance numbers, identity documents, wallet data, or payment authority. <br>
+## Use Case:
 
+External UK sole traders, freelancers, and self-employed contractors use this skill to estimate 2025/26 tax liability, categorize expenses, track VAT registration exposure, and prepare for Making Tax Digital quarterly obligations.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/jamespatrickthom2003-star/uk-tax-calculator) <br>
+### Deployment Geography for Use:
 
+United Kingdom
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown tables with explanatory text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes tax calculations, expense categorisation, threshold warnings, and an estimate disclaimer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Tax estimates, thresholds, filing obligations, or payment timing may be inaccurate or incomplete for a user's circumstances.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as planning estimates and verify rates, thresholds, edge cases, and filing obligations with HMRC or a qualified accountant before filing, registering for VAT, making MTD submissions, or scheduling payments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jamespatrickthom2003-star/skills/uk-tax-calculator)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown tax estimate with calculation tables, status notes, and disclaimer text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-provided income and expense figures; outputs are planning estimates, not tax advice or filing submissions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

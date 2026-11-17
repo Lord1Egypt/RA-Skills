@@ -1,40 +1,53 @@
-## Description: <br>
-Processes uploaded documents across common formats, retains parsed files for multi-turn work, and waits for a clear user task before analyzing, editing, extracting, translating, or converting content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Universal Doc Processor helps agents receive, parse, and manage user-supplied documents across common formats, then wait for explicit instructions before analyzing, modifying, extracting, translating, or converting content.
 
-## Publisher: <br>
-[cyril-ruidong](https://clawhub.ai/user/cyril-ruidong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyril-ruidong](https://clawhub.ai/user/cyril-ruidong)
 
-## Use Case: <br>
-External users and agents use this skill to receive uploaded documents, keep them available during a session, ask for missing task details, and produce document analysis, edits, extraction, translation, conversion guidance, or processed files on demand. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Uploaded documents may be parsed and retained during multi-turn work, potentially until the stated 72-hour inactivity cleanup. <br>
-Mitigation: Use the skill only in environments with acceptable upload controls and a clear deletion or reset process; avoid highly sensitive documents unless those controls are in place. <br>
-Risk: Document processing can produce incorrect summaries, edits, translations, or extracted data. <br>
-Mitigation: Review generated outputs before relying on them, especially for business, legal, financial, medical, or compliance-sensitive documents. <br>
+## Use Case:
 
+External users and developers use this skill to stage uploaded documents, request analysis or transformation tasks, and receive clarifying questions when the requested document operation is underspecified.
 
-## Reference(s): <br>
-- [Universal Doc Processor on ClawHub](https://clawhub.ai/cyril-ruidong/universal-doc-processor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Plain text or Markdown messages, with processed document files when the task requires file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May retain uploaded document content for multi-turn tasks until session cleanup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: release evidence) <br>
+Risk: The skill trusts supplied file paths and could read files outside the intended upload area.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a sandbox or constrain uploads to a trusted directory, and avoid granting access to directories containing credentials, private workspace files, or other users' documents.
+
+Risk: The release has a suspicious security verdict and low trust tier in the provided server evidence.
+
+Mitigation: Review the skill before installing and require publisher fixes for path validation, size limits, and retention controls before broader use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cyril-ruidong/skills/universal-doc-processor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown or plain text responses with optional processed document files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains per-session file state for multi-turn document tasks.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

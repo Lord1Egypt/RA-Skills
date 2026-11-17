@@ -1,49 +1,60 @@
-## Description: <br>
-Gangtise 数据库 retrieves structured financial data from the Gangtise Open API, including daily market quotes, financial statements, business composition, shareholder data, valuation metrics, and earnings forecasts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieves structured quantitative financial data from the Gangtise Open API, including daily K-line market data, financial statements, business composition, shareholder data, earnings forecasts, and valuation percentiles, and saves tabular results for analysis.
 
-## Publisher: <br>
-[gangtisegts](https://clawhub.ai/user/gangtisegts) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gangtisegts](https://clawhub.ai/user/gangtisegts)
 
-## Use Case: <br>
-Financial analysts, researchers, and agents use this skill to fetch table-ready securities, valuation, shareholder, forecast, and financial statement data for downstream analysis or charting. It is intended for users who already have Gangtise credentials and complete security codes such as 600519.SH. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shareholder queries can send the authorization token to a URL selected through GANGTISE_DOMAIN. <br>
-Mitigation: Before running shareholder queries, leave GANGTISE_DOMAIN unset or set it only to the legitimate Gangtise HTTPS service. <br>
-Risk: The skill requires sensitive Gangtise access credentials. <br>
-Mitigation: Install only when the publisher is trusted, provide credentials through controlled environment variables or the documented local authorization file, and do not commit credential files. <br>
-Risk: Financial research outputs may be saved under workspace/gangtise. <br>
-Mitigation: Review and delete generated files when they contain sensitive research, business, or portfolio data. <br>
+## Use Case:
 
+External users and developers use this skill to query Gangtise financial APIs for complete security-code-based market, financial statement, business composition, shareholder, earnings forecast, and valuation data. It is intended for workflows that need precise numeric time series or wide tables saved as CSV for downstream analysis or charting.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/gangtisegts/gangtise-data) <br>
-- [Earnings Forecast API](https://open.gangtise.com/application/open-fundamental/earning_forecast) <br>
-- [Valuation usage reference](references/valuation.md) <br>
-- [Quote usage reference](references/quote.md) <br>
-- [Financial statements usage reference](references/financial.md) <br>
-- [Main business usage reference](references/main_business.md) <br>
-- [Shareholder usage reference](references/shareholder.md) <br>
-- [Earnings forecast usage reference](references/earning_forecast.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands and CSV file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated CSV files are written under workspace/gangtise by data category.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.3 (source: frontmatter and release evidence) <br>
+Risk: Authenticated Gangtise requests may be redirected to an environment-controlled server through GANGTISE_DOMAIN.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or tightly control GANGTISE_DOMAIN before use, and prefer a version that validates the shareholder API host before sending the Authorization header.
+
+Risk: The skill requires Gangtise credentials and writes query results plus usage records under workspace/gangtise.
+
+Mitigation: Install only in trusted workspaces, protect GTS_ACCESS_KEY and GTS_SECRET_KEY or scripts/.authorization, and review generated files before sharing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gangtisegts/skills/gangtise-data)
+- [Gangtise earning forecast Open API](https://open.gangtise.com/application/open-fundamental/earning_forecast)
+- [Earning forecast data guide](references/earning_forecast.md)
+- [Financial statement data guide](references/financial.md)
+- [Main business data guide](references/main_business.md)
+- [Quote data guide](references/quote.md)
+- [Shareholder data guide](references/shareholder.md)
+- [Valuation data guide](references/valuation.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with shell commands and CSV file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Successful script runs write CSV query results and usage records under workspace/gangtise.]
+
+## Skill Version(s):
+
+1.4.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

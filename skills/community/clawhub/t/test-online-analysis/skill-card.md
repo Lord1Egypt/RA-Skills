@@ -1,44 +1,59 @@
-## Description: <br>
-Online (real-time) data analysis, rule extraction, and pattern recognition for testing scenarios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Online (real-time) data analysis, rule extraction, and pattern recognition for testing scenarios.
 
-## Publisher: <br>
-[shineniefei](https://clawhub.ai/user/shineniefei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shineniefei](https://clawhub.ai/user/shineniefei)
 
-## Use Case: <br>
-Developers and QA engineers use this skill to analyze logs, API responses, streams, or database exports, extract business rules, identify testing patterns, and produce anomaly reports for test design. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports may include business data, personal data, tokens, or other sensitive values from logs, API responses, or database exports. <br>
-Mitigation: Sanitize or redact inputs before analysis and handle generated reports as sensitive artifacts. <br>
-Risk: The skill runs local Python scripts against user-selected files and depends on numpy. <br>
-Mitigation: Run it in a trusted Python environment and only execute the scripts on files you intend to analyze. <br>
-Risk: Automatically extracted rules, test suggestions, and anomaly classifications can be incomplete or misleading. <br>
-Mitigation: Review extracted findings before using them for test coverage, business-rule documentation, or release decisions. <br>
+## Use Case:
 
+Developers and QA engineers use this skill to analyze logs, API responses, streams, or database-derived data, extract business and technical rules, identify testing patterns, and produce anomaly reports or test case suggestions.
 
-## Reference(s): <br>
-- [Rule Extraction Standards](references/rule_extraction_standards.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/shineniefei/test-online-analysis) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown reports and concise text guidance, with optional shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may include extracted rules, test case suggestions, anomaly severity, and values copied from analyzed input data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and _meta.json) <br>
+Risk: The skill may analyze sensitive logs, API responses, streams, or database outputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use sanitized test data where possible, avoid production secrets or regulated data, and confirm the scope of any live-source access before running analysis.
+
+Risk: Extracted rules, test suggestions, and anomaly reports may be incorrect or incomplete if the input data is narrow, noisy, or unrepresentative.
+
+Mitigation: Review generated findings against source systems, test requirements, and counterexamples before using them for test coverage decisions.
+
+Risk: The skill depends on local Python execution and numpy for included analysis scripts.
+
+Mitigation: Install pinned dependencies in an isolated environment before running the scripts.
+
+## Reference(s):
+
+- [Rule Extraction Standards](references/rule_extraction_standards.md)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [ClawHub Skill Page](https://clawhub.ai/shineniefei/skills/test-online-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with command examples and structured rule, test case, or anomaly findings.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May summarize findings in chat and offer exportable analysis files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

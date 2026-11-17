@@ -1,42 +1,56 @@
-## Description: <br>
-Call GET /api/v1/google/patents/search for Google SERP Patents Search through Just Serp API with query. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/v1/google/patents/search for Google SERP Patents Search through Just Serp API with query.
 
-## Publisher: <br>
-[justserpapi](https://clawhub.ai/user/justserpapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justserpapi](https://clawhub.ai/user/justserpapi)
 
-## Use Case: <br>
-Developers and patent researchers use this skill to query Google patent search data through Just Serp API, including filters for patent discovery and portfolio monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Patent search queries, filters, and API key use are sent to Just Serp API. <br>
-Mitigation: Use only intended search terms and filters, avoid unrelated private data, and pass JUST_SERP_API_KEY through the environment or CLI rather than chat messages or logs. <br>
-Risk: Authenticated requests can fail because of invalid credentials, insufficient credits, quota limits, or upstream service errors. <br>
-Mitigation: Surface the returned status, payload, and operation ID, then verify the API key and account quota before retrying. <br>
+## Use Case:
 
+Developers and agents use this skill to call the Just Serp API Google patents search endpoint for patent discovery and portfolio monitoring. It supports a required patent query plus optional pagination, sorting, localization, date, inventor, assignee, status, type, and litigation filters.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/justserpapi/justserpapi-google-patents-search) <br>
-- [Just Serp API](https://justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_patents_search&utm_content=project_link) <br>
-- [Just Serp API Docs](https://docs.justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_patents_search&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUST_SERP_API_KEY; preserves user-provided query and filter parameters; summarizes results before raw JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The Just Serp API key can be exposed locally when passed as a command-line argument.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a scoped key, avoid pasting key values into chat or logs, and prefer a version that reads the key from the environment or a secret manager.
+
+Risk: The skill makes authenticated calls to api.justserpapi.com.
+
+Mitigation: Install and use it only when you are comfortable granting access to a Just Serp API key for that service.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/justserpapi/skills/justserpapi-google-patents-search)
+- [Just Serp API](https://justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_patents_search&utm_content=project_link)
+- [Just Serp API Docs](https://docs.justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_patents_search&utm_content=project_link)
+- [Just Serp API Base URL](https://api.justserpapi.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, JSON]
+
+**Output Format:** [Markdown guidance with an inline Node.js command and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JUST_SERP_API_KEY and a query parameter; the helper sends query parameters to /api/v1/google/patents/search.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

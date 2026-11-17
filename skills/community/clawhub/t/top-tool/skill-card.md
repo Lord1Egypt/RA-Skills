@@ -1,40 +1,54 @@
-## Description: <br>
-Display real-time view of running processes. Use for system monitoring, performance debugging, and resource management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Display real-time view of running processes. Use for system monitoring, performance debugging, and resource management.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers, operators, and support engineers use this skill to inspect local process activity while diagnosing system performance or resource usage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Process command-line arguments may expose sensitive details when displayed or shared. <br>
-Mitigation: Use the skill for local inspection and review output before copying logs, screenshots, or process listings outside the trusted environment. <br>
-Risk: Documented filtering, sorting, and live-update options may not match the bundled script behavior. <br>
-Mitigation: Verify the installed script behavior before relying on those options for monitoring, automation, or incident response. <br>
+## Use Case:
 
+Developers and system operators use this skill to inspect running processes while monitoring performance or investigating resource usage.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dinghaibin/top-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with bash examples; script output is a plain text process table.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled script reads local /proc process data and truncates command lines to 20 characters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Local process command lines may contain sensitive arguments and can be displayed by the tool.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in environments where exposing process command lines is acceptable, and avoid running it where secrets are passed as command arguments.
+
+Risk: The documented filtering, sorting, batch, and resource-percentage options are not implemented by the bundled script.
+
+Mitigation: Validate observed behavior before relying on the tool for filtered monitoring, sorted output, or CPU and memory percentage reporting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/top-tool)
+- [Publisher profile](https://clawhub.ai/user/dinghaibin)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text process listing and markdown usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled script prints PID and command data from local /proc entries.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Production blueprint for orchestrating multiple OpenClaw agents via Feishu with file-driven task queues, cron scheduling, and workspace sandbox workarounds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Production blueprint for orchestrating multiple OpenClaw agents via Feishu with file-driven task queues, cron scheduling, and workspace sandbox workarounds.
 
-## Publisher: <br>
-[evan966890](https://clawhub.ai/user/evan966890) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[evan966890](https://clawhub.ai/user/evan966890)
 
-## Use Case: <br>
-Developers and operators use this skill to set up and maintain a Feishu-connected OpenClaw multi-agent workflow with a lead agent, task queues, recurring cron jobs, and operational troubleshooting guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent Feishu-connected agents may act across workspaces, run recurring jobs, modify repositories, or send messages without enough safety controls. <br>
-Mitigation: Use dedicated non-sensitive workspaces and repositories, least-privilege Feishu bots, strict task-queue paths, and manual review before git push or public messaging. <br>
-Risk: Recurring cron jobs can keep agents running after the initial setup and may trigger unintended actions. <br>
-Mitigation: Review every cron job before enabling it, disable jobs that are not needed, and periodically audit active sessions and task queues. <br>
+## Use Case:
 
+Developers and operators use this skill to configure an OpenClaw multi-agent workflow through Feishu bots, file-based task queues, cron-driven activity, and troubleshooting guidance.
 
-## Reference(s): <br>
-- [Feishu Open Platform](https://open.feishu.cn) <br>
-- [ClawHub skill page](https://clawhub.ai/evan966890/feishu-multi-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guide with JSON examples and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes setup steps, operational checklists, cron recipes, and troubleshooting notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Persistent cron jobs can continue running agents and sending Feishu-connected actions after initial setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each cron job before enabling it, set narrow schedules and timeouts, and document who can approve or disable recurring jobs.
+
+Risk: The workflow uses shell commands to reach managed agent workspaces, which can bypass normal workspace isolation expectations.
+
+Mitigation: Use a dedicated shared queue or broker with validation, producer identity, audit logs, and least-privilege filesystem permissions before production use.
+
+Risk: Proactive user-facing Feishu messages may create consent, frequency, or content-control issues.
+
+Mitigation: Define explicit consent, recipient scope, rate limits, and escalation rules for automated messages.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/evan966890/skills/feishu-multi-agent)
+- [Feishu Open Platform](https://open.feishu.cn)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with JSON, shell, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes operational checklists, troubleshooting guidance, and reusable SOUL.md and HEARTBEAT.md templates.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

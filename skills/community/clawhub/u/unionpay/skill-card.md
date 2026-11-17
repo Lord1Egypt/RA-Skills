@@ -1,40 +1,53 @@
-## Description: <br>
-提供银联扫码支付、转账及银行卡优惠汇总指引。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance for UnionPay QR-code payments, transfers, and bank-card offers.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-External users can use this skill for general UnionPay and Yunshanfu guidance around QR-code payments, transfers, bank-card offers, account summaries, transaction records, and investment-related fields. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill covers sensitive financial account, transfer, statement, tax, and investment topics without documented scope or controls. <br>
-Mitigation: Use it only for general guidance, avoid sharing credentials or detailed financial records, and verify transfers or financial information in the official UnionPay or 云闪付 app. <br>
-Risk: The release evidence marks the security verdict as suspicious. <br>
-Mitigation: Review the skill before installation and require the publisher to document consent, data sources, and limits before relying on it for financial workflows. <br>
+## Use Case:
 
+Consumers and financial-assistant agents use this skill to summarize UnionPay and Cloud QuickPass payment, transfer, card-offer, asset, statement, and portfolio guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CodeKungfu/unionpay) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only financial guidance; does not define tools, APIs, or credential handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The skill broadens payment and card-offer guidance into personal investment, statement, tax, and portfolio-allocation topics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when that broader financial scope is intended, and avoid sharing account statements, tax records, holdings, or bill data unless the workflow and data handling are trusted.
+
+Risk: Investment and large-transfer guidance can affect financial decisions or account security.
+
+Mitigation: Treat outputs as informational, require user verification for financial decisions, and use strong identity verification before any large transfer.
+
+## Reference(s):
+
+- [UnionPay ClawHub skill page](https://clawhub.ai/codekungfu/skills/unionpay)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance and structured financial summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include asset totals, daily profit or loss, yield references, transaction records, statements, tax details, risk status, holdings analysis, and allocation suggestions.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

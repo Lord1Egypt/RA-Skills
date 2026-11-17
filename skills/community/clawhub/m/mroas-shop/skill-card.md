@@ -1,43 +1,60 @@
-## Description: <br>
-Personal Agent shopping skill for OpenClaw and agentic commerce hosts that converts shopping or gifting intent plus summarized local preference context into SellToAI product recommendation cards with creator evidence and attribution-tracked buy links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal Agent shopping skill for OpenClaw and agentic commerce hosts that converts shopping or gifting intent plus local preference context into SellToAI A2A2A product cards with creator videos, personalization and understanding traces, community evidence, and attribution-tracked buy links.
 
-## Publisher: <br>
-[zxlie](https://clawhub.ai/user/zxlie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zxlie](https://clawhub.ai/user/zxlie)
 
-## Use Case: <br>
-Developers and agent operators use this skill to let personal agents respond to shopping and gifting requests by calling SellToAI and rendering concise product cards with price, creator proof, personalization rationale, and buy or video actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shopping intent and summarized preference or recipient context may be sent to SellToAI. <br>
-Mitigation: Send only compact preference and constraint summaries that the host already permits, and do not send raw notes, chat history, private profile text, or full memory documents. <br>
-Risk: The installer can persistently install remote skill instructions into multiple local agent environments. <br>
-Mitigation: Prefer manually installing a reviewed SKILL.md into the single agent environment intended for use. <br>
-Risk: Buy and video links intentionally preserve attribution query parameters. <br>
-Mitigation: Review returned commerce links before use and preserve the original URLs when showing them so attribution and creator credit remain intact. <br>
+## Use Case:
 
+External users and agentic commerce hosts use this skill to turn shopping or gifting requests into SellToAI product recommendations with creator video proof, personalization rationale, and attribution-preserving purchase links.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/zxlie/mroas-shop) <br>
-- [SellToAI Homepage](https://selltoai.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline curl commands, JSON request shapes, and product-card rendering instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use summarized personal-agent context, never raw memory; preserves returned attribution URLs and can guide A2UI JSONL rendering when supported by the host.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: Shopping intent, budget, recipient details, preferences, and memory-derived summaries may be sent to SellToAI or a configured gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Send only compact preference and constraint summaries, avoid raw notes or chat history, and disable memory sharing unless personalization is intended.
+
+Risk: The installer can download remote content and install the skill into several local agent applications.
+
+Mitigation: Prefer manual installation from reviewed artifact files and avoid curl-to-bash installation for sensitive environments.
+
+Risk: Returned purchase links may include commercial attribution or tracking.
+
+Mitigation: Treat buy links as commercially attributed links and preserve them exactly only when the user wants shopping recommendations.
+
+## Reference(s):
+
+- [SellToAI homepage](https://selltoai.ai)
+- [ClawHub skill page](https://clawhub.ai/zxlie/skills/mroas-shop)
+- [Recommend by intent example](examples/recommend.md)
+- [Creator showcase example](examples/creator.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and structured product-card rendering instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to render returned cards or A2UI JSONL surfaces; returned buy and video URLs must be preserved exactly.]
+
+## Skill Version(s):
+
+0.1.4 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

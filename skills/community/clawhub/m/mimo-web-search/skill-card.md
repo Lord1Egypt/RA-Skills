@@ -1,45 +1,58 @@
-## Description: <br>
-Uses Xiaomi MiMo's web search-enabled model to retrieve current web information for user queries with a configured API key and paid API usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses Xiaomi MiMo models' web search capability to answer real-time information queries.
 
-## Publisher: <br>
-[EnderXiao](https://clawhub.ai/user/EnderXiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[enderxiao](https://clawhub.ai/user/enderxiao)
 
-## Use Case: <br>
-Developers and agent users use this skill to answer time-sensitive questions and cross-check information by sending search queries to Xiaomi MiMo's web search API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A crafted search query could exploit the shell-based curl implementation to run local commands. <br>
-Mitigation: Do not use on sensitive machines until the implementation uses a safe HTTPS client or argument-based subprocess calls; keep the MiMo API key limited. <br>
-Risk: Search queries and results are sent to Xiaomi's MiMo service and may be billed. <br>
-Mitigation: Avoid sensitive queries, monitor paid usage, and cache repeated searches where appropriate. <br>
-Risk: Raw prompts, search results, or API errors could expose sensitive information through logs. <br>
-Mitigation: Avoid logging raw queries or results and redact operational logs before sharing them. <br>
+## Use Case:
 
+Developers and agents use this skill to send current-information, news, documentation, and fact-checking queries to Xiaomi MiMo web search when a MIMO_API_KEY and supported model are configured.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/EnderXiao/mimo-web-search) <br>
-- [README.md](artifact/README.md) <br>
-- [USAGE.md](artifact/USAGE.md) <br>
-- [MiMo Chat Completions API Endpoint](https://api.xiaomimimo.com/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown search summaries or JSON-like result objects with content, usage, citations, and errors.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MIMO_API_KEY, sends queries to Xiaomi MiMo, and may incur paid API charges.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: User-controlled search text is executed through a shell-based curl command, creating command-injection risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a constrained environment and avoid untrusted input until shell command construction is replaced with a native HTTP client or spawn/execFile argument array.
+
+Risk: Search queries and returned content are sent to Xiaomi MiMo and could expose sensitive, personal, or proprietary data.
+
+Mitigation: Avoid sensitive queries and avoid raw logging of secrets, personal data, or proprietary content.
+
+Risk: The MiMo web-search API is paid, so uncontrolled calls can create unexpected costs.
+
+Mitigation: Configure usage limits, cache repeated queries, and monitor API usage before enabling broad access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/enderxiao/skills/mimo-web-search)
+- [Xiaomi MiMo chat completions API endpoint](https://api.xiaomimimo.com/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON helper results or Markdown-formatted search responses with citation links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include success status, response content, usage metadata, errors, and citations; requires MIMO_API_KEY and paid MiMo API access.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

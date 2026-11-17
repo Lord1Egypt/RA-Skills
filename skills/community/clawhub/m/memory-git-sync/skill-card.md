@@ -1,40 +1,57 @@
-## Description: <br>
-Automates the backup of the OpenClaw workspace to a remote Git repository by validating Git configuration, excluding large files, and syncing local changes with conflict handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates backup of the OpenClaw workspace to a remote Git repository, with large-file exclusions, Git configuration validation, and sync conflict handling.
 
-## Publisher: <br>
-[vemec](https://clawhub.ai/user/vemec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vemec](https://clawhub.ai/user/vemec)
 
-## Use Case: <br>
-Developers and operators use this skill to back up an OpenClaw workspace or repository to its configured Git remote with preflight checks, large-file exclusions, commits, pulls, and pushes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can stage, commit, and push repository contents to the configured origin, which may publish unintended files or secrets. <br>
-Mitigation: Review git status and git diff before running, keep secrets ignored, and confirm the remote repository is private and trusted. <br>
-Risk: A remote URL that embeds credentials or points to an untrusted destination can expose sensitive access or repository data. <br>
-Mitigation: Use SSH keys or a credential helper and verify the origin URL before syncing. <br>
-Risk: Remote divergence or pull conflicts can interrupt synchronization. <br>
-Mitigation: Run from the intended repository and branch, then resolve any reported conflicts manually before rerunning the sync. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to back up and synchronize a Git working tree with a configured origin remote by staging, committing, pulling, and pushing changes through a Bash script.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and structured log examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured status messages use INFO, SUCCESS, WARNING, and ERROR prefixes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The sync script can stage, commit, and push the current Git working tree to origin without an explicit confirmation prompt.
+
+Mitigation: Run `git status` before execution, confirm secrets and private files are ignored, and add a preview plus confirmation step before use in sensitive repositories.
+
+Risk: The skill requires write access to the repository and credentials for the configured origin remote.
+
+Mitigation: Confirm the origin URL, use a credential helper or SSH key with appropriate scope, and run it only in repositories intended for backup.
+
+Risk: Automatic pull behavior can stop on conflicts or merge remote changes before pushing.
+
+Mitigation: Review branch state before syncing and resolve conflicts manually before rerunning the script.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/vemec/skills/memory-git-sync)
+- [Publisher profile](https://clawhub.ai/user/vemec)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and structured shell log output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires bash and git; the script can commit and push repository changes to origin.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

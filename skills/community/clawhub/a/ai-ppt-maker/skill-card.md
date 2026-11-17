@@ -1,39 +1,53 @@
-## Description: <br>
-This skill helps users turn annual work achievements and next-year plans into a structured PPTX work-summary presentation and share a download link. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a structured annual work-summary PowerPoint from user-provided accomplishments, highlights, and next-year plans, then shares the .pptx through Feishu or a download link.
 
-## Publisher: <br>
-[lixiaojie-1012](https://clawhub.ai/user/lixiaojie-1012) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lixiaojie-1012](https://clawhub.ai/user/lixiaojie-1012)
 
-## Use Case: <br>
-Employees and professionals use this skill to gather annual-review details, organize accomplishments into categories, and generate a polished work-summary presentation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated Node code may create files, install dependencies, and run without a clear approval checkpoint. <br>
-Mitigation: Review the generated script and shell commands before execution, require explicit approval, and sanitize filenames and presentation content. <br>
-Risk: Annual work summaries may contain confidential personnel or business information that could be uploaded and shared by link. <br>
-Mitigation: Confirm the recipient and channel before delivery, and avoid confidential data unless the organization permits this workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lixiaojie-1012/ai-ppt-maker) <br>
+## Use Case:
 
+Employees and professionals use this skill to turn annual achievements, work highlights, and next-year plans into a 6-8 page work-summary PPT for year-end reporting.
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, files, guidance] <br>
-**Output Format:** [Markdown response with a generated PPTX file link and Node.js generation steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node and pptxgenjs; may save a local PPTX file, upload it, and share a download link.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated PPT files may contain sensitive work-summary information and are uploaded to an unspecified CDN before being shared by link.
+
+Mitigation: Use only approved data and delivery paths, avoid secrets or highly confidential company information, and prefer a local-only or user-confirmed upload flow.
+
+Risk: The skill asks the agent to generate and run Node.js code and install pptxgenjs if it is missing.
+
+Mitigation: Review generated scripts before execution and install dependencies only from approved sources or a pinned, trusted package setup.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lixiaojie-1012/skills/ai-ppt-maker)
+- [ClawHub publisher profile](https://clawhub.ai/user/lixiaojie-1012)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with Node.js code and shell commands, plus a generated .pptx file and download link.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and pptxgenjs; artifact behavior includes uploading generated PPT files to a CDN and sharing a link.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

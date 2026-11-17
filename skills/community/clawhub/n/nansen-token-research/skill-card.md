@@ -1,40 +1,54 @@
-## Description: <br>
-Token deep dive for Nansen research commands covering token info, OHLCV, holders, flows, DEX trades, PnL, and perp market views. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Token deep dive — info, OHLCV, holders, flows, flow intelligence, who bought/sold, DEX trades, PnL, perp trades, perp positions, perp PnL leaderboard. Use when researching a specific token in depth.
 
-## Publisher: <br>
-[nansen-devops](https://clawhub.ai/user/nansen-devops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nansen-devops](https://clawhub.ai/user/nansen-devops)
 
-## Use Case: <br>
-Developers, analysts, and OpenClaw users use this skill to research a specific token through Nansen CLI token endpoints, including price history, holders, wallet flows, DEX trades, PnL, and perp leaderboards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill allows the agent to run any nansen command, not only token research commands. <br>
-Mitigation: Install only in environments where broad Nansen CLI access is acceptable, and prefer a version scoped to nansen research token commands for routine research. <br>
-Risk: The skill requires a NANSEN_API_KEY and may expose broader Nansen account access than needed. <br>
-Mitigation: Use a limited Nansen API key and avoid sharing wallet secrets or funded wallet context unless trading or payment actions are intended. <br>
+## Use Case:
 
+Developers and analysts use this skill to research a specific crypto token by examining its market data, holders, wallet flows, DEX trades, profit and loss, and perpetual futures activity.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nansen-devops/nansen-token-research) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline Nansen CLI commands, command options, and natural-language guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include token research command suggestions, endpoint usage notes, table or CSV export guidance, and warnings for unsupported filters or all-zero flow results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Research calls can trigger x402 payments from the configured wallet, and calls in loops can each incur a payment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check wallet authorization, payment policy, and spending limits before running calls or loops; use anonymous x402 only with explicit user intent and payment setup.
+
+Risk: API keys and browser sessions provide account access, and authentication renewal can fail.
+
+Mitigation: Use an explicitly selected key or saved session, check `nansen auth status` before research, protect credentials, and stop if authentication or renewal fails.
+
+## Reference(s):
+
+- [Nansen CLI browser login platform scope](https://github.com/nansen-ai/nansen-cli/blob/main/docs/browser-login.md#preview-platform-scope)
+- [ClawHub skill release](https://clawhub.ai/nansen-devops/skills/nansen-token-research)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Text, Markdown, Shell commands]
+
+**Output Format:** [Markdown research summaries and shell command examples; CLI results may be presented as tables or CSV.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Research is scoped to the selected token and chain; perpetual futures queries use a symbol.]
+
+## Skill Version(s):
+
+0.1.4 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

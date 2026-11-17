@@ -1,44 +1,61 @@
-## Description: <br>
-Perform privacy-focused metasearch using local or remote SearXNG instances with retries, timeouts, category, time, safe-search, and engine-specific filters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perform privacy-focused metasearch through local or remote SearXNG instances with retries, timeouts, category filters, time filters, engine-specific queries, autocomplete, health checks, and result export helpers.
 
-## Publisher: <br>
-[elmaslouhymouaad](https://clawhub.ai/user/elmaslouhymouaad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[elmaslouhymouaad](https://clawhub.ai/user/elmaslouhymouaad)
 
-## Use Case: <br>
-Developers and agents use this skill to query configured SearXNG instances, retrieve structured web, image, video, news, science, and file search results, and apply common filters such as category, time range, safe search, language, and search engine. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and request metadata are sent to the configured SearXNG instance. <br>
-Mitigation: Use a local or otherwise trusted SearXNG instance for private queries. <br>
-Risk: Untrusted prompts could try to choose an unsafe instance URL or export path. <br>
-Mitigation: Keep instance URLs and export file paths under operator control and validate them before use. <br>
-Risk: Disabling SSL verification can expose traffic to interception on remote endpoints. <br>
-Mitigation: Keep SSL verification enabled except for controlled local development. <br>
-Risk: Unpinned or unaudited dependencies can introduce supply-chain risk. <br>
-Mitigation: Pin and audit dependencies before production deployment. <br>
+## Use Case:
 
+Developers and agents use this skill to query configured SearXNG instances, collect web, image, video, news, science, file, and social-media search results, and return either raw dictionaries or structured result objects for downstream research workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/elmaslouhymouaad/searxng-search-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples, shell commands, configuration snippets, and structured SearXNG result data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return dictionaries or structured result objects from SearXNG responses and may export results to JSON or CSV when explicitly invoked.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata; artifact package metadata says 1.0.0) <br>
+Risk: Installing an unaudited package or relying on unresolved package ownership can introduce supply-chain exposure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the release before installing and prefer installation from the audited local source until publisher identity and package ownership are verified.
+
+Risk: Search queries sent to public or untrusted SearXNG instances may expose sensitive research intent or user data.
+
+Mitigation: Use a self-hosted or explicitly trusted SearXNG instance and avoid public fallback instances for sensitive searches.
+
+Risk: Disabling TLS certificate verification can weaken transport security outside local testing.
+
+Mitigation: Keep SSL verification enabled except for strictly local development or test instances.
+
+Risk: CSV exports may carry spreadsheet formula-execution risk when opened in spreadsheet software.
+
+Mitigation: Avoid opening exported CSV files in spreadsheet software with formula execution enabled.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/elmaslouhymouaad/skills/searxng-search-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell examples; runtime helpers return JSON-like dictionaries, structured Python objects, text responses, and optional JSON or CSV files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search behavior depends on the configured SearXNG instance, enabled engines, timeout, retry, safe-search, category, language, and output-format settings.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence; artifact package files report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

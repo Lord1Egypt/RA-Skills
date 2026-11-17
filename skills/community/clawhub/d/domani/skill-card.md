@@ -1,44 +1,57 @@
-## Description: <br>
-Domains and emails for AI agents: search, register, and manage domains; create mailboxes; and send and receive email. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate internet identity with Domani: search and acquire domains, configure DNS and hosting, create professional mailboxes, read or send email, inspect deliverability, manage webhooks, and grant scoped access to humans or agents.
 
-## Publisher: <br>
-[gwendall](https://clawhub.ai/user/gwendall) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gwendall](https://clawhub.ai/user/gwendall)
 
-## Use Case: <br>
-Developers and external users use this skill to let an agent search and purchase domains, configure DNS and hosting records, transfer or renew domains, and manage Domani mailboxes and messages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad authority over a Domani account, including DNS, billing, tokens, and email. <br>
-Mitigation: Install only when the agent should manage the account, keep the token private, and use a least-privilege token where possible. <br>
-Risk: Domain purchases, transfers, renewals, DNS or nameserver changes, mailbox deletion, email forwarding, inbound webhooks, token changes, and account deletion can have financial or operational impact. <br>
-Mitigation: Require explicit user confirmation before performing those sensitive actions. <br>
+## Use Case:
 
+Developers, operators, and agents use this skill to manage domains, DNS, professional mailboxes, email delivery, inbound webhooks, and scoped access through Domani workflows.
 
-## Reference(s): <br>
-- [Domani homepage](https://domani.run) <br>
-- [Domani ClawHub listing](https://clawhub.ai/gwendall/domani) <br>
-- [Email Reference](references/email.md) <br>
-- [Recipes Reference](references/recipes.md) <br>
-- [Transfer Reference](references/transfer.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline curl commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses DOMANI_API_KEY for authenticated account actions and public API calls for read-only discovery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The server security summary flags use of an unpinned runtime authentication CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before authentication, review the package source and prefer a pinned Domani CLI version instead of an @latest command.
+
+Risk: The server security summary says newly authenticated users can be steered into provider activation before their original task.
+
+Mitigation: Require clear, current user authorization before mailbox creation, webhook configuration, purchases, DNS changes, email sends, or permission grants.
+
+## Reference(s):
+
+- [Domani Skill Page](https://clawhub.ai/gwendall/skills/domani)
+- [Domain workflows](references/domains.md)
+- [Professional email workflows](references/email.md)
+- [Safety and authorization](references/safety.md)
+- [Trust, ownership, privacy, and pricing](references/trust.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Text]
+
+**Output Format:** [Markdown with inline shell commands and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose domain, DNS, mailbox, webhook, and email actions that require live tool results and explicit user authorization before execution.]
+
+## Skill Version(s):
+
+1.3.0 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

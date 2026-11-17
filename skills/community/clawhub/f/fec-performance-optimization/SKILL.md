@@ -1,80 +1,80 @@
 ---
 name: fec-performance-optimization
-description: Use when diagnosing or improving frontend performance, Core Web Vitals, bundle size, runtime rendering cost, network waterfalls, memory leaks, long tasks, Lighthouse findings, or performance budgets; Chinese triggers include 性能优化, 页面卡顿, 首屏慢, 包体积, Web Vitals.
+description: Use when diagnosing or improving frontend performance, Core Web Vitals, bundle size, runtime rendering cost, network waterfalls, memory leaks, long tasks, Lighthouse findings, or performance budgets; Chinese triggers include performance optimization, page freeze, slow first screen, bundle volume, Web Vitals.
 ---
 
-# 前端性能优化
+# Front-end performance optimization
 
 ## Purpose
 
-用可度量的方式定位前端性能瓶颈，并把优化建议收敛到用户主路径、构建产物和运行时证据。
+Use measurable methods to locate front-end performance bottlenecks, and converge optimization suggestions to the user's main path, build products, and runtime evidence.
 
 ## Procedure
 
-1. 锁定体验目标
-   - 明确问题属于首屏加载、交互延迟、滚动卡顿、内存上涨、网络瀑布、包体积，还是视觉稳定性。
-   - 记录路由、设备、网络条件、浏览器、复现步骤和当前可用指标。
-   - 没有指标时先建立基线，不直接给出“优化一切”的泛化建议。
+1. Lock in experience goals
+   - Clarify whether the problem is first screen loading, interaction delay, scrolling lag, memory increase, network waterfall, packet size, or visual stability.
+   - Document routes, devices, network conditions, browsers, replication steps, and currently available metrics.
+   - When there are no indicators, establish a baseline first and do not directly give generalized suggestions of "optimizing everything".
 
-2. 建立度量基线
-   - 读取项目脚本、构建配置、依赖和已有性能报告。
-   - 对页面体验优先使用 Lighthouse、Performance trace、React Profiler、Vue Devtools、Memory snapshot 或 RUM 数据。
-   - 对包体优先看构建产物、source map、依赖重复、首屏 chunk 和动态 import 边界。
-   - 对运行时卡顿优先看长任务、重复渲染、昂贵计算、同步循环、布局抖动和大列表。
-   - 如果已有线上监控、平台指标或 CI 产物，先用它们确认受影响路由、设备、时间窗和用户主路径，再决定读哪些源码。
+2. Establish a measurement baseline
+   - Read project scripts, build configurations, dependencies and existing performance reports.
+   - Prioritize the use of Lighthouse, Performance trace, React Profiler, Vue Devtools, Memory snapshot or RUM data for page experience.
+   - Prioritize build products, source maps, dependency duplication, first-screen chunks and dynamic import boundaries for package bodies.
+   - Prioritize long tasks, repeated renderings, expensive calculations, synchronized loops, layout jitters and large lists for runtime lags.
+   - If there are online monitoring, platform indicators or CI products, first use them to confirm the affected routes, devices, time windows and user main paths, and then decide which source code to read.
 
-3. 分层定位
-   - 加载层：关键 CSS、字体、图片、脚本阻塞、预加载和缓存。
-   - 渲染层：不稳定 key、过宽 Context、无意义 effect、重复计算、组件树过大。
-   - 数据层：串行请求、重复请求、过大 payload、缺少分页或缓存策略。
-   - 主线程：JSON/CSV 解析、图片处理、复杂排序过滤、同步压缩和大对象深拷贝。
-   - 资源层：事件监听、定时器、订阅、WebGL/Canvas 资源和对象 URL 未释放。
+3. Hierarchical positioning
+   - Loading layers: critical CSS, fonts, images, script blocking, preloading and caching.
+   - Rendering layer: unstable keys, too wide Context, meaningless effects, repeated calculations, and component trees that are too large.
+   - Data layer: serial requests, repeated requests, too large payload, lack of paging or caching strategy.
+   - Main thread: JSON/CSV parsing, image processing, complex sorting and filtering, synchronous compression and large object deep copy.
+   - Resource layer: event listeners, timers, subscriptions, WebGL/Canvas resources and object URLs are not released.
 
-4. 形成优化方案
-   - 每个建议必须绑定位置、影响、改法和验证方式。
-   - 优先处理高频主路径和 P95 体验；低频后台任务不抢占首屏预算。
-   - 先做低风险高收益改动，如懒加载、去重、缓存、尺寸预留、虚拟列表、稳定引用和释放资源。
-   - 对会牺牲可维护性的技巧，必须说明收益证据和替代方案。
-   - 建议进入实现前先过候选门禁：是否有指标支撑、能否定位到路由/组件/chunk/请求、是否可由前端验证、是否存在更小改动。
+4. Form an optimization plan
+   - Each suggestion must be bound to location, impact, modification and verification method.
+   - Prioritize the high-frequency main path and P95 experience; low-frequency background tasks do not occupy the first screen budget.
+   - Make low-risk, high-yield changes first, such as lazy loading, deduplication, caching, size reservation, virtual lists, stable references and releasing resources.
+   - For techniques that sacrifice maintainability, evidence of benefits and alternatives must be stated.
+   - It is recommended to go through the candidate access control before entering the implementation: whether there is indicator support, whether the route/component/chunk/request can be located, whether it can be verified by the front end, and whether there are smaller changes.
 
-5. 验证回归
-   - 重新运行受影响构建、测试和性能采集命令。
-   - 对比优化前后指标或产物体积。
-   - 确认 loading、empty、error、offline、reduced-motion 和移动端状态未被优化破坏。
+5. Verify regression
+   - Rerun affected build, test, and performance collection commands.
+   - Compare indicators or product volumes before and after optimization.
+   - Confirm that loading, empty, error, offline, reduced-motion and mobile state are not destroyed by optimization.
 
 ## Budgets
 
 | Area | Default Target | Notes |
 | ---- | -------------- | ----- |
-| LCP | 约 2.5s 内 | 以核心页面、目标地区网络和真实设备为准 |
-| CLS | 低于 0.1 | 媒体、广告、异步内容需要预留空间 |
-| INP | 约 200ms 内 | 优先拆分长任务和降低交互路径重渲染 |
-| Initial JS | 遵循项目预算 | 没有预算时先报告当前 gzip / brotli 体积 |
-| Main thread | 避免连续长任务 | 大计算考虑分片、缓存或 Worker |
+| LCP | Within about 2.5s | Subject to core page, target area network and real device |
+| CLS | Less than 0.1 | Media, advertising, and asynchronous content require reserved space |
+| INP | Within about 200ms | Prioritize splitting long tasks and reduce interaction path re-rendering |
+| Initial JS | Follow project budget | Report current gzip / brotli size first if there is no budget |
+| Main thread | Avoid continuous long tasks | Consider sharding, caching or Worker for large calculations |
 
 ## Checks
 
-- 首屏资源是否包含非首屏组件、图表、编辑器、地图或全量图标库。
-- 图片是否有明确尺寸、合适格式、懒加载和首屏优先级。
-- 列表、表格、时间线是否需要虚拟化或分页。
-- 搜索、筛选、排序是否在热路径重复 O(n*m) 扫描。
-- 请求是否可并行、可缓存、可取消、可复用。
-- 监听、订阅、定时器、AbortController、Object URL、Canvas/WebGL 资源是否对称清理。
+- Whether the above-the-fold resources include non-above-the-fold components, charts, editors, maps, or full icon libraries.
+- Whether the image has clear size, appropriate format, lazy loading and first screen priority.
+- Whether lists, tables, and timelines require virtualization or paging.
+- Whether searching, filtering, and sorting repeat O(n*m) scans on the hot path.
+- Whether the request can be parallelized, cached, cancelled, and reusable.
+- Whether listening, subscription, timer, AbortController, Object URL, Canvas/WebGL resources are cleaned symmetrically.
 
 ## Constraints
 
-- 不做没有目标和证据的过早优化。
-- 不靠关闭功能、删除状态反馈或降低可访问性来换性能分数。
-- 不为一次 Lighthouse 分数牺牲真实用户主路径。
-- 不引入大型新依赖解决小问题；先利用项目已有工具和浏览器能力。
-- 不把后端、网络和浏览器侧问题混为一谈；前端能验证的部分要单独列证据。
-- 不从 repo-wide grep 直接跳到优化结论；先用指标或复现路径收窄候选，再读相关源码。
+- Don’t do premature optimization without goals and evidence.
+- Don’t trade off features, remove status feedback, or reduce accessibility in exchange for performance points.
+- Do not sacrifice real user home paths for a single Lighthouse score.
+- Solve small problems without introducing large new dependencies; first use the existing tools and browser capabilities of the project.
+- Do not confuse back-end, network and browser-side issues; the parts that can be verified on the front-end should be separately documented.
+- Do not jump directly from repo-wide grep to the optimization conclusion; first use indicators or recurrence paths to narrow down candidates, and then read the relevant source code.
 
-## 详细参考
+## Detailed reference
 
-撰写性能分析报告时，加载 [references/report-template.md](references/report-template.md)。
-需要按 React、Vue、Next.js 或 Nuxt 分类定位框架专项性能风险时，加载 [references/framework-performance-patterns.md](references/framework-performance-patterns.md)。
+When writing a performance analysis report, load [references/report-template.md](references/report-template.md).
+When you need to locate framework-specific performance risks classified by React, Vue, Next.js or Nuxt, load [references/framework-performance-patterns.md](references/framework-performance-patterns.md).
 
 ## Expected Output
 
-输出有证据链的性能分析报告，说明基线、候选门禁、瓶颈、优化建议、验证方式和剩余风险。报告保存为 `reports/performance-review-YYYY-MM-DD-HHmmss.md`。
+Output a performance analysis report with an evidence chain, describing the baseline, candidate access control, bottlenecks, optimization suggestions, verification methods and remaining risks. The report is saved as `reports/performance-review-YYYY-MM-DD-HHmmss.md`.

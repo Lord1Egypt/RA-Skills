@@ -1,0 +1,29 @@
+{
+ "about": "Up to 4 words; the spoken word sits on a coloured pill. Clean and modern, easy to brand: change active_box.color.",
+ "font": "Poppins-Bold.ttf",
+ "size": 78,
+ "color": "#FFFFFF",
+ "active_box": {
+  "color": "#7C3AED",
+  "radius": 18,
+  "pad": [
+   16,
+   6
+  ],
+  "text": "#FFFFFF"
+ },
+ "keyword": "#FFD43B",
+ "stroke": 5,
+ "shadow": {
+  "dx": 0,
+  "dy": 4,
+  "alpha": 0.55,
+  "blur": 6
+ },
+ "words": 4,
+ "chars": 22,
+ "lines": 1,
+ "pause": 0.3,
+ "position": 0.62,
+ "stroke_color": "#000000"
+}

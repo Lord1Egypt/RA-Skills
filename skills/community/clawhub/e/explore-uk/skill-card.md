@@ -1,47 +1,59 @@
-## Description: <br>
-Helps agents search UK flight options using flyai/Fliggy CLI output and return bookable results for routes involving London, Edinburgh, Manchester, and other UK destinations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book flights to the UK including London, Edinburgh, and Manchester, with support for flight booking, hotel reservations, train tickets, attraction tickets, itinerary planning, visa information, travel insurance, car rental, and related travel tasks powered by Fliggy.
 
-## Publisher: <br>
-[palexu](https://clawhub.ai/user/palexu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[palexu](https://clawhub.ai/user/palexu)
 
-## Use Case: <br>
-Developers and agent users can use this skill to collect flight-search parameters, run flyai searches, compare recommended, cheapest, fastest, direct, or flexible-date UK routes, and format bookable Markdown results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to install a global third-party CLI when flyai is missing. <br>
-Mitigation: Require explicit approval before any global npm install and prefer running the skill in an isolated environment. <br>
-Risk: Travel wording is broader than the flight-search workflow supported by the artifact. <br>
-Mitigation: Treat the skill as flight-search only unless separate evidence supports hotels, trains, attractions, insurance, or car rental behavior. <br>
-Risk: Flight recommendations and booking links depend on live flyai output and may be unavailable or incomplete. <br>
-Mitigation: Verify every result includes a detailUrl booking link, retry once on failures, and ask for alternate dates or routes when no valid results are returned. <br>
+## Use Case:
 
+Travel agents, developers, and end users can use this skill to search UK travel options through the flyai CLI and format real-time flight results with booking links. It is intended for UK-related flight searches and adjacent travel planning tasks such as hotels, trains, attractions, insurance, and car rental.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/palexu/explore-uk) <br>
-- [Parameter collection and output templates](artifact/references/templates.md) <br>
-- [Scenario playbooks](artifact/references/playbooks.md) <br>
-- [Failure recovery](artifact/references/fallbacks.md) <br>
-- [Execution runbook](artifact/references/runbook.md) <br>
-- [Node.js installation](https://nodejs.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown flight-search summaries with comparison tables, booking links, and inline shell commands for flyai execution.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai CLI output for results; each included flight result must contain a booking link.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server evidence) <br>
+Risk: The skill may require installing and running an unpinned global npm package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a trusted or isolated environment, review and pin the flyai CLI package before use, and approve global package installation deliberately.
+
+Risk: Unsafe shell-style command templates or untrusted travel data can produce misleading booking guidance.
+
+Mitigation: Use the scanner guidance: verify CLI output, booking URLs, and provider branding before relying on results or entering payment or sensitive travel details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/palexu/skills/explore-uk)
+- [Provenance](unavailable: No server-resolved GitHub import provenance is stored for this version.)
+- [Parameter Collection & Output Templates](references/templates.md)
+- [Scenario Playbooks](references/playbooks.md)
+- [Failure Recovery](references/fallbacks.md)
+- [Execution Runbook](references/runbook.md)
+- [Node.js](https://nodejs.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and comparison tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires flyai CLI output and booking links for included travel results.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,60 @@
-## Description: <br>
-Act as a professional tarot reader with multiple spreads, card meanings, spread selection by question, energy guidance, interpretation, and follow-up dialogue. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Act as a professional tarot reader with multiple spreads, full card meanings, spread selection by question, energy guidance, interpretation, and follow-up dialogue.
 
-## Publisher: <br>
-[Superone77](https://clawhub.ai/user/Superone77) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[superone77](https://clawhub.ai/user/superone77)
 
-## Use Case: <br>
-External users and agent operators use this skill to conduct tarot-style readings, choose an appropriate spread for a question, generate a spread result, and provide supportive interpretation and follow-up prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run local Python and write generated image or cache files. <br>
-Mitigation: Run it with normal user permissions and review generated file paths before use. <br>
-Risk: The image workflow can make outbound requests for tarot card art. <br>
-Mitigation: Provide a local card image directory when possible to reduce network exposure. <br>
-Risk: Custom reading JSON is consumed by the image generator. <br>
-Mitigation: Use reading JSON produced by the skill and avoid passing untrusted custom reading JSON. <br>
+## Use Case:
 
+External users and agents use this skill to conduct tarot-style readings, select an appropriate spread for a question, generate card draws and spread imagery, and provide reflective follow-up guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Superone77/vincitarot) <br>
-- [Publisher profile](https://clawhub.ai/user/Superone77) <br>
-- [README](artifact/README.md) <br>
-- [Install guide](artifact/INSTALL.md) <br>
-- [The Pictorial Key to the Tarot](https://www.sacred-texts.com/tarot/pkt/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown or plain-text tarot interpretation, optional JSON reading data, and optional PNG spread image files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The image workflow can write generated spread images and cached card-art files, and can use local card images to avoid outbound image requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved ClawHub release metadata) <br>
+Risk: The image renderer may fetch URLs or read local image paths from reading JSON.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a vetted local --images-dir, avoid user-supplied or edited reading JSON, and run the skill with restricted filesystem and network access.
+
+Risk: The skill runs local Python and may make network requests for card art.
+
+Mitigation: Install and execute it only in a sandboxed environment with reviewed dependencies and controlled network permissions.
+
+Risk: Re-exporting card data uses npm tooling.
+
+Mitigation: Prefer pinned local npm tooling and review package metadata before running export commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/superone77/skills/vincitarot)
+- [Publisher profile](https://clawhub.ai/user/superone77)
+- [Pictorial Key to the Tarot](https://www.sacred-texts.com/tarot/pkt/)
+- [Pictorial Key tarot images](https://www.sacred-texts.com/tarot/pkt/img/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with optional JSON reading results and PNG spread images]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate local files such as reading JSON and spread PNG images when the Python implementation is used.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

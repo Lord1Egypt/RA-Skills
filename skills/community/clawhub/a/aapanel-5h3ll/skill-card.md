@@ -1,45 +1,60 @@
-## Description: <br>
-aaPanel/BT-Panel server monitoring and administration skill for OpenClaw, covering system resources, sites, services, SSL certificates, SSH logs, cron jobs, files, databases, firewall rules, FTP, and PHP version switching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+aaPanel/BT-Panel server monitoring and file management skill for system resources, site status, service status, SSH logs, cron jobs, log reading, and remote file operations.
 
-## Publisher: <br>
-[social5h3ll](https://clawhub.ai/user/social5h3ll) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[social5h3ll](https://clawhub.ai/user/social5h3ll)
 
-## Use Case: <br>
-External developers, sysadmins, and homelab operators use this skill to connect OpenClaw to aaPanel/BT-Panel servers and run monitoring, configuration, and administrative CLI workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive aaPanel credentials and stores server tokens in a local OpenClaw configuration file. <br>
-Mitigation: Use dedicated least-privilege aaPanel tokens where possible, restrict permissions on ~/.openclaw/bt-skills.yaml, and avoid exposing config output in shared logs. <br>
-Risk: The skill can perform destructive or high-impact production-server actions such as deleting sites or databases, changing firewall rules, revoking certificates, changing passwords, downloading remote URLs, overwriting files, and applying recursive permissions. <br>
-Mitigation: Manually review proposed commands before execution and run high-impact actions only against the intended server and path. <br>
-Risk: SSL verification can be disabled for self-signed panels, increasing exposure to man-in-the-middle attacks. <br>
-Mitigation: Keep SSL verification enabled whenever possible and disable it only for controlled environments where the panel endpoint is otherwise trusted. <br>
+## Use Case:
 
+External developers, system administrators, and homelab operators use this skill to monitor and administer one or more aaPanel/BT-Panel servers from OpenClaw. It supports health checks, log review, site and SSL management, database and FTP administration, firewall changes, PHP version switching, and remote file operations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/social5h3ll/aapanel-5h3ll) <br>
-- [aaPanel GitHub](https://github.com/aaPanel) <br>
-- [OpenClaw Project](https://github.com/openclaw/openclaw) <br>
-- [Publisher Profile](https://clawhub.ai/user/social5h3ll) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with CLI commands; scripts emit JSON, tables, and status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3.10+ and configured aaPanel API tokens.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release evidence, artifact metadata, README, and SKILL.md) <br>
+Risk: The skill exposes broad aaPanel administrative control, including destructive file, site, database, SSL, firewall, FTP, download, unzip, and recursive permission operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that level of administration is intended, and manually confirm destructive operations before running them.
+
+Risk: aaPanel API tokens are required and may be stored in the local OpenClaw configuration file or passed to commands.
+
+Mitigation: Use a dedicated least-privilege aaPanel token when possible, keep the configuration file owner-only, and avoid exposing real tokens or passwords in command-line history or logged environments.
+
+Risk: Disabling TLS verification for self-signed panels can weaken connection security.
+
+Mitigation: Keep TLS verification enabled unless there is a deliberate exception for a trusted self-signed deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/social5h3ll/skills/aapanel-5h3ll)
+- [aaPanel GitHub](https://github.com/aaPanel)
+- [aaPanel Website](https://www.aapanel.com)
+- [OpenClaw Project](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and CLI-oriented text, often with inline shell commands and JSON or table command output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can read, report, and propose or execute aaPanel administrative operations through local Python scripts.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata, artifact metadata, README changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,164 +1,22 @@
 ---
 name: jep-guard-audit
-version: 1.0.0
-description: JEP-Guard Audit Skill — Strict JEP-04/JAC-01 Compliant Audit Chain with Friendly API Layer
-author: Cognitive Emergence Lab <yuqiang@humanjudgment.org>
-license: MIT
-protocol: JEP
-tags:
-  - jep
-  - jac
-  - audit
-  - compliance
-  - ai-act
-  - guard
-  - accountability
-entrypoint: skill.api:app
-host_targets:
-  - mcp
-  - api
-  - python
-skills:
-  - name: audit_ingest
-    description: Ingest developer-friendly events; internally converts to strict JEP-04/JAC-01
-    input_schema:
-      type: object
-      properties:
-        session_id:
-          type: string
-        events:
-          type: array
-          items:
-            type: object
-            properties:
-              event_id:
-                type: string
-              primitive:
-                type: string
-                enum: [J, D, T, V]
-              issuer:
-                type: string
-              timestamp:
-                type: string
-              target:
-                type: string
-              assertion:
-                type: object
-              delegate_to:
-                type: string
-              terminate_of:
-                type: string
-              verify_of:
-                type: array
-                items:
-                  type: string
-              verification_result:
-                type: string
-              confidence:
-                type: number
-              prev_event_id:
-                type: string
-              parent_task_hash:
-                type: string
-              signature:
-                type: string
-      required: [session_id, events]
-    output_schema:
-      type: object
-      properties:
-        session_id:
-          type: string
-        events_ingested:
-          type: integer
-        status:
-          type: string
-  - name: audit_chain
-    description: Retrieve strict JEP-04 audit chain with integrity verification
-    input_schema:
-      type: object
-      properties:
-        session_id:
-          type: string
-      required: [session_id]
-    output_schema:
-      type: object
-      properties:
-        session_id:
-          type: string
-        chain_valid:
-          type: boolean
-        total_events:
-          type: integer
-        violation_count:
-          type: integer
-        warning_count:
-          type: integer
-        links:
-          type: array
-          items:
-            type: object
-  - name: audit_export
-    description: Export regulatory compliance report (eu_ai_act, us_california, us_colorado, generic)
-    input_schema:
-      type: object
-      properties:
-        session_id:
-          type: string
-        standard:
-          type: string
-          enum: [generic, eu_ai_act, us_california, us_colorado]
-      required: [session_id, standard]
-    output_schema:
-      type: object
-      properties:
-        report_id:
-          type: string
-        standard:
-          type: string
-        chain_summary:
-          type: object
-        findings:
-          type: array
-        recommendations:
-          type: array
-        raw_data:
-          type: string
+metadata:
+  version: "2.0.1"
+description: Verify signed audit evidence and inspect tenant-scoped event references.
 ---
 
-# JEP-Guard Audit Skill
+# jep-guard-audit
 
-**Strict JEP-04 / JAC-01 Compliant Audit Chain**
+Use only when the user requests this specific operation. Review SECURITY.md before running the service.
 
-## Architecture
+## Audit behavior
 
-Three-layer design:
-1. **GuardSkill** — Friendly API (`issuer`, `assertion`, `target`)
-2. **JEPAdapter** — Maps friendly fields to strict JEP-04
-3. **JEPCodec** — Strict protocol implementation (`jep`, `verb`, `who`, `when`, `what`, `nonce`, `aud`, `ref`, `sig`)
+SQLite stores signed input, the ingestion digest and replay identifiers in a private directory. Default path: `~/.jep-audit/events.sqlite3`; override with `JEP_AUDIT_DB`. The directory must be mode 0700 and file mode 0600. Back up the database securely. No remote persistence or automatic deletion occurs. Capacity limits are 128 events per batch and 1,000 per session. Operator-configured tenant reservations additionally bound each tenant across all sessions by event count and stored UTF-8 body bytes. The sum of all reservations cannot exceed 100,000 events or 256 MiB of event bodies. A full tenant cannot borrow another tenant's reservation. Quota checks and batch writes are one SQLite transaction; rejected batches consume no capacity. No records or replay identifiers are automatically deleted.
 
-## Protocol Alignment
+IDs must be canonical UUIDv4. Timestamps must include a timezone and arrive within ±300 seconds. Batches are atomic. Reading a chain is deterministic; historical timestamps are not reclassified as expired. References resolve to earlier records, parent hashes use `sha256:` plus the complete projected event digest. Client fault extensions cannot waive missing parents. Empty sessions are not valid chains. R001 checks subsequent signed verification; warnings do not establish action success.
 
-| JEP-04 Field | API Field | Notes |
-|--------------|-----------|-------|
-| `jep` | (auto) | Fixed to "1" |
-| `verb` | `primitive` | J/D/T/V |
-| `who` | `issuer` | Actor DID |
-| `when` | `timestamp` | ISO → Unix seconds |
-| `what` | `assertion` | SHA-256 multihash |
-| `nonce` | (auto) | UUIDv4 |
-| `aud` | `target` | Recipient |
-| `ref` | `prev_event_id` / `verify_of` | Chain link |
-| `sig` | `signature` | JWS |
-| `task_based_on` | `parent_task_hash` | JAC-01 causality |
+A same-issuer prior judgment is required for delegation/termination authority in this profile. Signed verification statements do not prove an external execution happened. Export labels are legacy categories, not statutory certification or prescribed retention periods. Raw exports are redacted technical summaries and need `audit:export`. External anchoring is required to detect database deletion, rollback or truncation by the host owner.
 
-## Compliance Standards
+## Setup
 
-- **EU AI Act** — Article 12 record-keeping, 6-year retention
-- **California SB 1047** — 72-hour critical incident reporting
-- **Colorado SB 205** — Algorithmic impact assessment + appeal logs
-- **Generic JEP-01** — Baseline accountability tracing
-
----
-
-Cognitive Emergence Lab  
-yuqiang@humanjudgment.org
+Work from the package directory containing `skill/` and `requirements.txt`. Install locked dependencies with `pip install --require-hashes -r requirements.txt`, provision authentication and JEP_AUDIT_TENANT_QUOTAS as documented in SECURITY.md, and run on 127.0.0.1. This package never starts a daemon or changes another runtime automatically.

@@ -1,43 +1,55 @@
-## Description: <br>
-在百度/Google 坐标系下做经纬度与地址互转。当用户说：把这个地址转成经纬度、这两个坐标是什么地方？或类似地图坐标问题时，使用本技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts between street addresses and latitude/longitude coordinates using JisuAPI with Baidu or Google coordinate modes.
 
-## Publisher: <br>
-[jisuapi](https://clawhub.ai/user/jisuapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jisuapi](https://clawhub.ai/user/jisuapi)
 
-## Use Case: <br>
-Developers and agents use this skill to convert addresses to coordinates or coordinates to addresses through JisuAPI. It supports Baidu and Google coordinate types for location lookup workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Addresses and coordinates submitted to the skill are sent to JisuAPI for conversion. <br>
-Mitigation: Use a dedicated JISU_API_KEY, monitor quota, and avoid submitting sensitive private locations unless third-party processing is acceptable. <br>
+## Use Case:
 
+Developers and agents use this skill to answer address lookup, reverse geocoding, and map-coordinate questions by calling JisuAPI with a configured JISU_API_KEY.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jisuapi/geoconvert) <br>
-- [JisuAPI profile](https://clawhub.ai/user/jisuapi) <br>
-- [JisuAPI](https://www.jisuapi.com/) <br>
-- [JisuAPI geoconvert documentation](https://www.jisuapi.com/api/geoconvert/) <br>
-- [JisuAPI coord2addr endpoint](https://api.jisuapi.com/geoconvert/coord2addr) <br>
-- [JisuAPI addr2coord endpoint](https://api.jisuapi.com/geoconvert/addr2coord) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [JSON from the geoconvert script, with human-facing guidance from the agent] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and JISU_API_KEY; sends submitted addresses or coordinates to JisuAPI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata, released 2026-04-03) <br>
+Risk: Addresses, coordinates, and the API key are sent to JisuAPI for geocoding requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated JisuAPI key with quotas or restrictions, avoid sensitive home or work locations unless necessary, and rotate the key if request URLs or logs may have exposed it.
+
+Risk: Geocoding results may be incomplete, imprecise, or unavailable for some inputs.
+
+Mitigation: Review returned address details, precision, confidence, and error fields before relying on results for decisions or downstream location workflows.
+
+## Reference(s):
+
+- [JisuAPI GeoConvert API Documentation](https://www.jisuapi.com/api/geoconvert/)
+- [JisuAPI](https://www.jisuapi.com/)
+- [ClawHub Skill Page](https://clawhub.ai/jisuapi/skills/geoconvert)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON responses and concise text guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, the requests package, and JISU_API_KEY; sends address or coordinate queries to JisuAPI.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,43 @@
+# ShotGraph 示例：双镜 + 字幕桥（caption_from: ledger）。
+#
+# 与 demo.yaml 的区别只有 overlay.caption_from —— 字幕内容全部由账本事件流
+# 实时生成（谁在做什么行动、和谁交互、谁的哪个需求最匮乏），不写死任何剧情。
+#
+# 只有摄像机可写；任何行为指令字段（action / set_needs / move_agent /
+# force_event / spawn / kill / teleport / script / dialogue）都会被
+# shot_graph._validate_shot 拒绝（no_scripted_plot）。
+shots:
+  - id: wide-static
+    tick_from: 0
+    tick_to: 300
+    camera:
+      mode: static
+      origin: [0.0, 0.0]
+      zoom: 3.0
+    framing:
+      aspect: "16:9"
+      resolution: [1280, 720]
+      fps: 30
+    tier: R1
+    overlay:
+      hud: false
+      state_panel: false
+      caption_from: ledger
+
+  - id: orbit-auto
+    tick_from: 301
+    tick_to: 1200
+    camera:
+      mode: orbit
+      target_soul: auto
+      period_ticks: 240
+      zoom: 4.0
+    framing:
+      aspect: "16:9"
+      resolution: [1280, 720]
+      fps: 30
+    tier: R1
+    overlay:
+      hud: false
+      state_panel: false
+      caption_from: ledger

@@ -1,45 +1,58 @@
-## Description: <br>
-Cognition gives OpenClaw agents a practical memory architecture for commitments, prior context, repeat-mistake prevention, staged durable-memory updates, reusable procedures, and memory hygiene. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cognition provides a practical memory architecture for OpenClaw agents that need durable commitments, retrievable context, safer staged updates, reusable procedures, and memory hygiene across Core, Recommended, and Advanced adoption tiers.
 
-## Publisher: <br>
-[zurbrick](https://clawhub.ai/user/zurbrick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zurbrick](https://clawhub.ai/user/zurbrick)
 
-## Use Case: <br>
-Developers and agent operators use Cognition to add local persistent memory practices to OpenClaw agents, including session logs, durable knowledge, commitments, reusable procedures, and staged consolidation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory files may capture secrets or sensitive personal data if users store them there. <br>
-Mitigation: Do not store secrets or sensitive personal data in memory files, and periodically review durable memory and FUTURE_INTENTS entries. <br>
-Risk: Scheduled consolidation or reflection can create ongoing local reports that may include incorrect or stale proposals. <br>
-Mitigation: Keep consolidation staged and append-only, require review before durable memory changes, and tag uncertain entries for review. <br>
+## Use Case:
 
+Developers and agent operators use Cognition to add durable local memory practices to OpenClaw agents, including daily logs, compact durable knowledge, commitment tracking, staged consolidation, procedure capture, and retrieval hygiene.
 
-## Reference(s): <br>
-- [Cognition Architecture Notes](references/architecture.md) <br>
-- [Cognition Protocol Blocks for AGENTS.md](references/protocols.md) <br>
-- [Nightly Consolidation - Safe Staging Prompt](references/consolidation-prompt.md) <br>
-- [Weekly Reflection - Memory Hygiene Prompt](references/weekly-reflection-prompt.md) <br>
-- [Cognition - Tier 2 Retrieval Configuration](references/config.md) <br>
-- [Cognitive Science Appendix](references/cognitive-science.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with bash commands, JSON and YAML templates, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local workspace memory files; staged consolidation and reflection reports are append-only unless a reviewed workflow applies changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+Risk: Persistent future-intent behavior can execute broad deferred actions later without a clear approval gate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before enabling future intents, require explicit approval, narrow triggers, expiration, and audit logging for deferred actions.
+
+Risk: Durable memory updates can preserve incorrect or stale information if proposals are accepted without review.
+
+Mitigation: Use the skill's staged consolidation flow, keep raw logs append-only, preserve provenance, and require review for uncertain items.
+
+## Reference(s):
+
+- [Cognition - Architecture Notes](references/architecture.md)
+- [Cognition - Protocol Blocks for AGENTS.md](references/protocols.md)
+- [Nightly Consolidation - Safe Staging Prompt](references/consolidation-prompt.md)
+- [Weekly Reflection - Analysis and Recommendations Only](references/weekly-reflection-prompt.md)
+- [Cognition - Tier 2 Retrieval Configuration](references/config.md)
+- [Cognitive Science Appendix](references/cognitive-science.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, configuration snippets, prompt templates, and local memory file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can scaffold local memory directories and templates; scheduled workflows produce staged Markdown reports and recommendations.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

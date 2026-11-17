@@ -1,38 +1,53 @@
-## Description: <br>
-Advanced techniques for minimizing token consumption in OpenClaw operations while maintaining or improving response quality. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advanced techniques for minimizing token consumption in OpenClaw operations while maintaining or improving response quality.
 
-## Publisher: <br>
-[Foinbo](https://clawhub.ai/user/Foinbo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[foinbo](https://clawhub.ai/user/foinbo)
 
-## Use Case: <br>
-Developers and agents using OpenClaw use this skill to reduce token usage during memory retrieval, document processing, tool calls, and context management while preserving useful answer quality. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Predictive preloading and pattern learning may use personal context without clear consent or privacy boundaries. <br>
-Mitigation: Enable those behaviors only with explicit opt-in, limit them to approved current-session context or approved memories, and provide a way to disable or clear learned patterns. <br>
+## Use Case:
 
+Developers and agent operators use this skill to guide OpenClaw agents toward lower-token workflows for memory retrieval, document processing, tool calls, context summarization, and session pruning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Foinbo/token-efficient-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown guidance with inline code-style examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Focuses on minimizing memory, document, tool result, and session context tokens.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Predictive preloading and heartbeat learning may lead an agent to access personal memories, documents, calendar context, or behavior patterns without explicit opt-in or task boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable or rewrite those behaviors unless the deployment provides explicit opt-in, scoped source limits, user visibility, and short-lived task-scoped caching.
+
+Risk: Token-minimization workflows can omit relevant context when a request requires comprehensive analysis, legal review, compliance review, or broad evidence gathering.
+
+Mitigation: Require agents to surface the trade-off and get user consent before applying aggressive minimization to comprehensive or high-stakes review tasks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/foinbo/skills/token-efficient-agent)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands]
+
+**Output Format:** [Markdown guidance with inline code and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focuses on minimizing retrieved context, tool results, and session history while preserving task-relevant information.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

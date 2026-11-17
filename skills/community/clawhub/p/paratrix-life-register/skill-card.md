@@ -1,45 +1,65 @@
-## Description: <br>
-Automates Paratrix Life registration and Soulbound Token minting on the Karpak Living Map through a local browser-wallet bridge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Karpak Life registration and Soulbound Token minting on the Karpak Living Map when a user asks to register or mint an SBT.
 
-## Publisher: <br>
-[karpak-developer](https://clawhub.ai/user/karpak-developer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[karpak-developer](https://clawhub.ai/user/karpak-developer)
 
-## Use Case: <br>
-External users and developers use this skill to register a wallet profile with Paratrix Life and mint a Karpak Living Map SBT. It is intended for wallet-mediated registration flows where the user can review each wallet signature and transaction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can initiate wallet signatures and blockchain transactions, including on mainnet. <br>
-Mitigation: Explicitly choose testnet or mainnet, verify the wallet popup chain ID and contract, and use a wallet with limited funds. <br>
-Risk: Bundled local agent permission files grant broad command and wallet-automation authority. <br>
-Mitigation: Review or remove bundled .claude permission files before enabling the skill in an agent workspace. <br>
-Risk: Security evidence marks the release as suspicious because behavior can differ from testnet-default documentation. <br>
-Mitigation: Confirm the selected environment before execution and require user approval for every signature and transaction prompt. <br>
+## Use Case:
 
+External users and developers use this skill to guide an agent through Karpak Life wallet registration and Soulbound Token minting on BSC testnet or mainnet with MetaMask-compatible wallet approval.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/karpak-developer/paratrix-life-register) <br>
-- [Publisher profile](https://clawhub.ai/user/karpak-developer) <br>
-- [Karpak Life API](https://lifestyle-api.karpak.xyz) <br>
-- [Paratrix SBT service](https://sbt.karpak.xyz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands, status summaries, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, a compatible Web3 wallet, BNB for gas, and user confirmation for wallet signatures and transactions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: frontmatter and server release metadata) <br>
+Risk: The skill connects a browser wallet and requests a signature.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm wallet prompts manually and reject unexpected signature requests; verify the selected environment before signing.
+
+Risk: The skill may request a gas-spending BSC mainnet mint transaction.
+
+Mitigation: Choose testnet or mainnet explicitly and review transaction details, destination, and gas before confirming.
+
+Risk: The local wallet bridge is unauthenticated and allows cross-origin requests.
+
+Mitigation: Run only in a trusted local browser session, close the bridge after use, and prefer a release with per-session bridge token and origin checks.
+
+Risk: Wallet and profile data is sent to Karpak and SBT services.
+
+Mitigation: Use wallet and profile details appropriate for registration and avoid sharing unnecessary personal information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/karpak-developer/skills/karpak-life-register)
+- [Karpak Life API mainnet endpoint](https://lifestyle-api.karpak.xyz)
+- [Karpak SBT mainnet endpoint](https://sbt.karpak.xyz)
+- [Karpak Life API testnet endpoint](https://devnet-lifestyle-api.karpak.xyz)
+- [Karpak SBT testnet endpoint](https://devnet.paratrix-sbt.pages.dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include wallet address, registration status, credential state, transaction hash, and explorer URL.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

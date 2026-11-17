@@ -169,7 +169,30 @@ class DataParser:
             self._transaction_cur = self.db.get_cursor()
         return self._transaction_cur
 
-    
+
+    @staticmethod
+    def _to_sek_price(row: tuple) -> float:
+        """Compute the SEK per-share price from a transaction row.
+
+        The Avanza CSV stores `total` and `courtage` in SEK (already
+        FX-converted), while `price` is in the instrument's native currency.
+        For buy/sell (total != 0) we derive the SEK market price from the
+        total, correcting for courtage:
+            sell (total > 0): sek_price = (total + courtage) / abs(amount)
+            buy  (total < 0): sek_price = (abs(total) - courtage) / abs(amount)
+        For total == 0 (Tillgångsinsättning) the SEK price cannot be derived
+        from the row alone — the native price is returned and will be
+        corrected by the next update_prices run for non-SEK instruments.
+        """
+        amount = row[4]
+        price = row[5]
+        total = row[6]
+        courtage = row[7] if row[7] is not None else 0.0
+        if abs(amount) < 0.0001 or abs(total) < 0.0001:
+            return price
+        sek_market_value = abs(total) + (courtage if total > 0 else -courtage)
+        return sek_market_value / abs(amount)
+
     def convert_number(self,number_string : str) -> float:
         """
         Takes a number as a string and converts it to a float, also converts comma to dot as decimal separator and '-' to 0.
@@ -182,7 +205,25 @@ class DataParser:
         """
         return 0.0 if number_string in ("-", "") else float(number_string.replace(",","."))
     
-    def add_data(self, file_path: str) -> int:
+    def _is_unsettled_trade(self, transaction) -> bool:
+        """Heuristic for an unsettled trade (pending nota) in new-format CSV.
+
+        Avanza includes preliminary same-day buys/sells whose brokerage and FX
+        conversion are not yet finalized; they appear with empty Courtage and
+        empty Valutakurs for non-SEK instruments. Restricted to non-SEK so that
+        legitimate SEK zero-courtage trades are never flagged (issue #78).
+        """
+        if len(transaction) < 10:
+            return False
+        if transaction[2] not in ('Köp', 'Sälj'):
+            return False
+        if transaction[7] == 'SEK':
+            return False
+        courtage_unset = self.convert_number(transaction[8]) == 0.0
+        valutakurs_unset = str(transaction[9]).strip() in ('', '-')
+        return courtage_unset and valutakurs_unset
+
+    def add_data(self, file_path: str, allow_unsettled: bool = False) -> int:
         """
         Takes a path to a csv file downloaded from Avanza and adds the data to the database.
         Uses group-level deduplication to match split/combined transactions.
@@ -214,31 +255,53 @@ class DataParser:
         self.db.connect()
         cur = self.db.conn.cursor()
 
-        # 1. Fetch existing transactions in the date range
+        # Virtual accounts map onto their parent for dedup matching, so that a
+        # transaction allocated to a virtual portfolio is still recognised as
+        # "already imported" when the source CSV is re-imported on the parent
+        # account. (See issue #74 prestudy #2 — parent-remap, not account-agnostic.)
+        virtual_map = self.db.get_virtual_map()
+
+        # 1. Fetch existing REAL transactions in the date range. Synthetic rows
+        #    (origin = 'virtual') are excluded: they are never re-imported from
+        #    CSV and must not shadow or be shadowed by real re-imports.
         existing_transactions = cur.execute(
-            "SELECT date, account, transaction_type, asset_name, amount, price, isin FROM transactions WHERE date >= ? and date <= ?",
+            "SELECT date, account, transaction_type, asset_name, amount, price, isin "
+            "FROM transactions "
+            "WHERE date >= ? AND date <= ? AND (origin = 'avanza' OR origin IS NULL)",
             (min_date, max_date)
         ).fetchall()
 
-        # 2. Group existing transactions in DB
+        # 2. Group existing transactions in DB, remapping each virtual account
+        #    back to its parent so allocated rows collapse onto the parent key
+        #    that the proposed CSV groups use.
         existing_groups = {}
         for tx in existing_transactions:
             # tx: (date, account, transaction_type, asset_name, amount, price, isin)
-            # key: (date, account, transaction_type, isin_or_asset_name)
+            # key: (date, account_for_key, transaction_type, isin_or_asset_name)
             isin_val = tx[6]
             asset_name = tx[3]
-            key = (tx[0], tx[1], tx[2], isin_val if (isin_val and isin_val.strip()) else asset_name)
+            account_for_key = virtual_map.get(tx[1], tx[1])
+            key = (tx[0], account_for_key, tx[2], isin_val if (isin_val and isin_val.strip()) else asset_name)
             if key not in existing_groups:
                 existing_groups[key] = []
             existing_groups[key].append(tx)
 
         # 3. Parse and group proposed CSV transactions
         proposed_groups = {}
+        unsettled_skipped = []
         for transaction in avanza_data:
+            # Defer unsettled trades (pending nota): same-day exports of non-SEK
+            # buys/sells can have empty Courtage and Valutakurs because brokerage
+            # and FX conversion are not yet finalized. Ingesting them would store
+            # rows with zero courtage and incomplete totals. Skip and warn so the
+            # user re-exports after settlement and re-imports (issue #78).
+            if new_format and not allow_unsettled and self._is_unsettled_trade(transaction):
+                unsettled_skipped.append(transaction)
+                continue
             if new_format:
                 row = (
                     datetime.strptime(transaction[0], "%Y-%m-%d").date(),
-                    transaction[1], transaction[2], transaction[3],
+                    transaction[1], transaction[2], transaction[3].strip(),
                     self.convert_number(transaction[4]), self.convert_number(transaction[5]),
                     self.convert_number(transaction[6]), self.convert_number(transaction[8]),
                     transaction[7], transaction[11]
@@ -246,7 +309,7 @@ class DataParser:
             else:
                 row = (
                     datetime.strptime(transaction[0], "%Y-%m-%d").date(),
-                    transaction[1], transaction[2], transaction[3],
+                    transaction[1], transaction[2], transaction[3].strip(),
                     self.convert_number(transaction[4]), self.convert_number(transaction[5]),
                     self.convert_number(transaction[6]), self.convert_number(transaction[7]),
                     transaction[8], transaction[9]
@@ -262,6 +325,15 @@ class DataParser:
             if key not in proposed_groups:
                 proposed_groups[key] = []
             proposed_groups[key].append(row)
+
+        if unsettled_skipped:
+            logging.warning(
+                f"Skipping {len(unsettled_skipped)} unsettled trade(s) with pending nota "
+                f"(empty Courtage/Valutakurs on non-SEK buy/sell). "
+                f"Re-export after settlement and re-import:"
+            )
+            for tx in unsettled_skipped:
+                logging.warning(f"  skipped: {tx[0]} {tx[1]} {tx[2]} '{tx[3]}'")
 
         # 4. Perform group-level matching and insertion
         for key, proposed_rows in proposed_groups.items():
@@ -303,7 +375,24 @@ class DataParser:
     
     def reset_processed_transactions(self) -> None:
         """
-        Resets the processed flag for all transactions in the database. Also resets cohort_data, cohort_assets, assets and cohort_cash_flows tables.
+        Resets the processed flag for all transactions in the database. Also resets cohort_data, cohort_assets, assets, cohort_cash_flows and asset_prices tables.
+        """
+        self.data_cur.execute("UPDATE transactions SET processed = 0")
+        self.db.reset_table("cohort_data")
+        self.db.reset_table("cohort_assets")
+        self.db.reset_table("assets")
+        self.db.reset_table("cohort_cash_flows")
+        self.db.reset_table("asset_prices")
+        self.db.commit()
+
+    def reset_for_reprocessing(self) -> None:
+        """
+        Reset cohort tables and the processed flag so the next
+        ``process_transactions`` call performs a full clean rebuild.
+
+        Unlike ``reset_processed_transactions`` this preserves the
+        ``asset_prices`` table so that externally-fetched historical prices
+        are not wiped out on every import.
         """
         self.data_cur.execute("UPDATE transactions SET processed = 0")
         self.db.reset_table("cohort_data")
@@ -312,7 +401,8 @@ class DataParser:
         self.db.reset_table("cohort_cash_flows")
         self.db.commit()
 
-    def allocate_to_month(self, transaction_date: date) -> date:
+    @staticmethod
+    def allocate_to_month(transaction_date: date) -> date:
         """
         Takes a date and returns which month the transaction should be allocated to.
         If the transaction is made within the first cutoff_days of the month, allocate it to the previous month.
@@ -338,15 +428,16 @@ class DataParser:
         day = calendar.monthrange(year,month)[1]
         return date(year,month,day)
 
-    def cohort_value(self, cohort_month, account: str) -> float:
+    def cohort_value(self, cohort_month, account: str, as_of_date = None) -> float:
         """
-        Calculate the estimated current value of a cohort (month + account).
-        Value = cash (capital) + sum(asset_amount * last_seen_price).
-        Uses latest_price from the assets table as the last seen transaction price.
+        Calculate the estimated value of a cohort (month + account).
+        Value = cash (capital) + sum(asset_amount * price).
+        Uses asset_prices history if as_of_date is provided, otherwise latest_price.
 
         Parameters:
         cohort_month: The cohort month date.
         account (str): The account name.
+        as_of_date: Resolve prices as of this date.
 
         Returns:
         float: Estimated cohort value.
@@ -358,13 +449,26 @@ class DataParser:
         ).fetchone()
         cash = row[0] if row else 0.0
 
-        # Get asset values for this cohort using latest_price from assets table
-        asset_value = self.data_cur.execute("""
-            SELECT COALESCE(SUM(ma.amount * COALESCE(a.latest_price, ma.average_price)), 0)
+        # Get asset holdings for this cohort
+        cursor = self.data_cur.execute("""
+            SELECT ma.asset_id, ma.amount, ma.average_price, a.latest_price
             FROM cohort_assets ma
             JOIN assets a ON ma.asset_id = a.asset_id
             WHERE ma.month = ? AND ma.account = ? AND ma.amount > 0
-        """, (cohort_month, account)).fetchone()[0]
+        """, (cohort_month, account))
+        holdings = cursor.fetchall()
+
+        asset_value = 0.0
+        for asset_id, amount, avg_price, latest_price in holdings:
+            if as_of_date is not None:
+                price, _, _, _ = self.db.get_price(asset_id, as_of_date)
+            else:
+                price, _, _, _ = self.db.get_price(asset_id, None)
+
+            if price <= 0.0001:
+                price = avg_price if avg_price is not None else 0.0
+
+            asset_value += amount * price
 
         return cash + asset_value
 
@@ -447,7 +551,7 @@ class DataParser:
                 month_amount = min(remaining_amount,capital)
 
                 # Calculate withdrawal fraction R and reduce active_base proportionally
-                cv = self.cohort_value(oldest_available, account)
+                cv = self.cohort_value(oldest_available, account, as_of_date=transaction_date)
                 if cv > 1e-4:
                     r = month_amount / cv
                     r = min(r, 1.0)  # Cap at 100%
@@ -495,10 +599,12 @@ class DataParser:
         self.data_cur.execute("INSERT OR IGNORE INTO assets (asset) VALUES (?) ",(asset,))
         asset_id = self.data_cur.execute("SELECT asset_id FROM assets WHERE asset = ?",(asset,)).fetchone()[0]
         asset_amount = row[4]
-        price = row[5]
+        price = self._to_sek_price(row)
         total_amount = -row[6]
         date = row[0]
-        self.data_cur.execute("UPDATE assets SET latest_price = ?, latest_price_date = ? WHERE asset_id = ?", (price, date, asset_id))
+        if price > 0:
+            self.data_cur.execute("UPDATE assets SET latest_price = ?, latest_price_date = ? WHERE asset_id = ?", (price, date, asset_id))
+            self.data_cur.execute("INSERT OR REPLACE INTO asset_prices (asset_id, price_date, price, source) VALUES (?, ?, ?, 'transaction')", (asset_id, date, price))
         remaining_amount = total_amount
         month_capital = self.available_capital(account)
         total_capital = sum(e[1] for e in month_capital)
@@ -534,10 +640,12 @@ class DataParser:
         self.data_cur.execute("INSERT OR IGNORE INTO assets (asset) VALUES (?) ",(asset,))
         asset_id = self.data_cur.execute("SELECT asset_id FROM assets WHERE asset = ?",(asset,)).fetchone()[0]
         asset_amount = -row[4]
-        price = row[5]
+        price = self._to_sek_price(row)
         total_amount = row[6]
         date = row[0]
-        self.data_cur.execute("UPDATE assets SET latest_price = ?, latest_price_date = ? WHERE asset_id = ?", (price, date, asset_id))
+        if price > 0:
+            self.data_cur.execute("UPDATE assets SET latest_price = ?, latest_price_date = ? WHERE asset_id = ?", (price, date, asset_id))
+            self.data_cur.execute("INSERT OR REPLACE INTO asset_prices (asset_id, price_date, price, source) VALUES (?, ?, ?, 'transaction')", (asset_id, date, price))
         remaining_amount = asset_amount
         month_asset_amounts = self.available_asset(asset_id, account)
 
@@ -600,7 +708,16 @@ class DataParser:
             result = self.data_cur.execute("SELECT asset_id FROM assets WHERE asset = ?",(asset,)).fetchone()
         asset_id = result[0]
         remaining_amount = row[4]
-        dividend_per_asset = row[5]
+        # Per-share rate used to credit capital. The price column (row[5]) is
+        # in the instrument's native currency while `total` (row[6]) is in
+        # SEK, so crediting shares * price silently mixes currencies for
+        # foreign-currency dividends (issue #85). Derive the SEK per-share
+        # rate from the SEK total instead; fall back to the price column only
+        # when the amount is zero or missing.
+        if abs(row[4]) > 1e-6 and abs(row[6]) > 1e-6:
+            dividend_per_asset = abs(row[6]) / abs(row[4])
+        else:
+            dividend_per_asset = row[5]
         month_asset_amounts = self.available_asset(asset_id, account)
         for (month,asset_amount) in month_asset_amounts:
                 self.data_cur.execute("INSERT OR IGNORE INTO cohort_data(month, account) VALUES(?,?)", (month, account))
@@ -714,11 +831,27 @@ class DataParser:
         account = row[1]
         asset = row[3]
         amount = row[4]
-        price = row[5]
+        price = self._to_sek_price(row)
         self.data_cur.execute("INSERT OR IGNORE INTO assets (asset) VALUES (?) ",(asset,))
         asset_id = self.data_cur.execute("SELECT asset_id FROM assets WHERE asset = ?",(asset,)).fetchone()[0]
         date = row[0]
-        self.data_cur.execute("UPDATE assets SET latest_price = ?, latest_price_date = ? WHERE asset_id = ?", (price, date, asset_id))
+        
+        # Historical price lookup for transactions lacking price
+        if price <= 0.0001:
+            res_price, is_interp, gap, res_date = self.db.get_price(asset_id, date)
+            if res_price > 0.0001:
+                price = res_price
+                desc = "interpolated" if is_interp else f"as of {res_date}"
+                logging.info(f"Resolved missing price for {asset} on {date} using get_price ({price} {desc})")
+                self.data_cur.execute("UPDATE transactions SET price = ? WHERE rowid = ?", (price, row[-1]))
+
+        # Only record a price point if we have a usable (> 0) price, so that
+        # an unresolved deposit does not poison asset_prices / latest_price
+        # with a literal 0.0 that would cause the asset to be silently valued
+        # at zero until a real price appears.
+        if price > 0:
+            self.data_cur.execute("UPDATE assets SET latest_price = ?, latest_price_date = ? WHERE asset_id = ?", (price, date, asset_id))
+            self.data_cur.execute("INSERT OR REPLACE INTO asset_prices (asset_id, price_date, price, source) VALUES (?, ?, ?, 'transaction')", (asset_id, date, price))
         self.data_cur.execute("INSERT OR IGNORE INTO cohort_assets(month,asset_id,account) VALUES (?,?,?)",(month,asset_id,account))
         # Update average price and average purchase price
         self.data_cur.execute("UPDATE cohort_assets SET average_price = (? * ? + amount * average_price) / (amount + ?) WHERE month = ? AND asset_id = ? AND account = ?", (amount, price, amount, month, asset_id, account))
@@ -793,7 +926,17 @@ class DataParser:
             in_amount = self.pending_transfer["amount"]
             in_date = self.pending_transfer["date"]
             in_rowid = self.pending_transfer["rowid"]
-        
+
+        # Issue #82: parent->virtual transfers shift the deposit column (so the
+        # virtual inherits real deposit attribution for APY/display) instead of
+        # transfer_net. Physical-to-physical transfers keep transfer_net.
+        vr = self.data_cur.execute(
+            "SELECT is_virtual, parent_account FROM accounts WHERE account_id = ?",
+            (in_account,),
+        ).fetchone()
+        parent_to_virtual = bool(vr and vr[0] and vr[1] == out_account)
+        shift_col = "deposit" if parent_to_virtual else "transfer_net"
+
         # Get FIFO allocations from OUT account (following withdrawal pattern)
         month_capital = self.available_capital(out_account)
         total_capital = sum(e[1] for e in month_capital)
@@ -811,7 +954,7 @@ class DataParser:
                 allocations.append((oldest_available, month_amount))
                 
                 # Calculate withdrawal fraction R and reduce active_base for OUT account
-                cv = self.cohort_value(oldest_available, out_account)
+                cv = self.cohort_value(oldest_available, out_account, as_of_date=out_date)
                 if cv > 1e-4:
                     r = month_amount / cv
                     r = min(r, 1.0)
@@ -819,18 +962,23 @@ class DataParser:
                         "UPDATE cohort_data SET active_base = active_base * (1 - ?) WHERE month = ? AND account = ?",
                         (r, oldest_available, out_account))
 
-                # Remove from OUT account (transfer_net decreases for OUT side)
+                # Remove from OUT account. shift_col is 'deposit' for
+                # parent->virtual (issue #82) and 'transfer_net' otherwise.
                 self.data_cur.execute(
-                    "UPDATE cohort_data SET capital = capital - ?, transfer_net = transfer_net - ? WHERE month = ? AND account = ?",
+                    f"UPDATE cohort_data SET capital = capital - ?, {shift_col} = {shift_col} - ? WHERE month = ? AND account = ?",
                     (month_amount, month_amount, oldest_available, out_account)
                 )
-                
-                self.data_cur.execute("""
-                    INSERT INTO cohort_cash_flows (cohort_month, account, transaction_month, amount)
-                    VALUES (?, ?, ?, ?)
-                    ON CONFLICT(cohort_month, account, transaction_month)
-                    DO UPDATE SET amount = amount + excluded.amount
-                """, (oldest_available, out_account, out_transaction_month, -month_amount))
+
+                # Deposits do not produce cohort_cash_flows (only withdrawals do),
+                # so skip the cash-flow row on the deposit-shift path; otherwise
+                # the Modified Dietz denominator (deposit + sum_w_cf) double-counts.
+                if not parent_to_virtual:
+                    self.data_cur.execute("""
+                        INSERT INTO cohort_cash_flows (cohort_month, account, transaction_month, amount)
+                        VALUES (?, ?, ?, ?)
+                        ON CONFLICT(cohort_month, account, transaction_month)
+                        DO UPDATE SET amount = amount + excluded.amount
+                    """, (oldest_available, out_account, out_transaction_month, -month_amount))
                 
                 remaining -= month_amount
                 i += 1
@@ -842,18 +990,20 @@ class DataParser:
                     "INSERT OR IGNORE INTO cohort_data(month, account) VALUES(?,?)",
                     (oldest_available, in_account)
                 )
-                # Add to IN account (transfer_net increases for IN side)
+                # Add to IN account. shift_col is 'deposit' for parent->virtual
+                # (issue #82) and 'transfer_net' otherwise.
                 self.data_cur.execute(
-                    "UPDATE cohort_data SET capital = capital + ?, active_base = active_base + ?, transfer_net = transfer_net + ? WHERE month = ? AND account = ?",
+                    f"UPDATE cohort_data SET capital = capital + ?, active_base = active_base + ?, {shift_col} = {shift_col} + ? WHERE month = ? AND account = ?",
                     (amount, amount, amount, oldest_available, in_account)
                 )
-                
-                self.data_cur.execute("""
-                    INSERT INTO cohort_cash_flows (cohort_month, account, transaction_month, amount)
-                    VALUES (?, ?, ?, ?)
-                    ON CONFLICT(cohort_month, account, transaction_month)
-                    DO UPDATE SET amount = amount + excluded.amount
-                """, (oldest_available, in_account, in_transaction_month, amount))
+
+                if not parent_to_virtual:
+                    self.data_cur.execute("""
+                        INSERT INTO cohort_cash_flows (cohort_month, account, transaction_month, amount)
+                        VALUES (?, ?, ?, ?)
+                        ON CONFLICT(cohort_month, account, transaction_month)
+                        DO UPDATE SET amount = amount + excluded.amount
+                    """, (oldest_available, in_account, in_transaction_month, amount))
             
             # Mark BOTH processed
             self.transaction_cur.execute(
@@ -915,7 +1065,15 @@ class DataParser:
             logging.warning(f"Not enough shares to remove for {asset}: have {total_asset_amount}, need {asset_amount}")
             raise AssetDeficit(f"Not enough shares to remove for {asset}", self)
 
-    def process_transactions(self) -> None:
+    def _on_transaction_processed(self, row: tuple) -> None:
+        """
+        Hook invoked after each transaction is processed (after dispatch,
+        before the next unprocessed row is fetched). Override to track
+        per-transaction state. The default implementation is a no-op.
+        """
+        pass
+
+    def process_transactions(self, raise_on_unprocessed: bool = True) -> None:
         """
         Process transactions all transactions in the database that have not been processed yet.
         After attempting to processing all transactions, the function checks if there are any unprocessed transactions left.
@@ -925,6 +1083,37 @@ class DataParser:
         row = unprocessed_lines.fetchone()
         #Consider upgrading to python3.8 to make this more elegant with := statment
         while row is not None:
+            # Re-apply special cases if defined
+            if self.special_cases is not None:
+                row_data = row[:10]
+                updated_row_data = self.special_cases.handle_special_cases(row_data)
+                
+                # Convert string representation of numbers (from special cases json) back to float
+                final_row_data = list(updated_row_data)
+                for idx in (4, 5, 6, 7):
+                    if isinstance(final_row_data[idx], str) and final_row_data[idx] not in ('-', ''):
+                        try:
+                            final_row_data[idx] = float(final_row_data[idx].replace(',', '.'))
+                        except ValueError:
+                            pass
+                updated_row_data = tuple(final_row_data)
+                
+                if updated_row_data != row_data:
+                    # row layout: (date..isin[0-9], processed[10], origin[11], rowid[12]).
+                    # Use row[-1] for rowid and preserve origin so the in-memory row
+                    # stays aligned with the actual column order after the origin
+                    # column was added (issue #74).
+                    rowid = row[-1]
+                    origin_val = row[-2]
+                    logging.info(f"Re-applying special case change for transaction on {row[0]}: {row_data} -> {updated_row_data}")
+                    self.data_cur.execute("""
+                        UPDATE transactions
+                        SET date = ?, account = ?, transaction_type = ?, asset_name = ?,
+                            amount = ?, price = ?, total = ?, courtage = ?, currency = ?, isin = ?
+                        WHERE rowid = ?
+                    """, updated_row_data + (rowid,))
+                    row = updated_row_data + (0, origin_val, rowid)
+
             month = self.allocate_to_month(row[0])
             if row[2] == "Insättning" or row[2] == "Autogiroinsättning":
                 self.handle_deposit(row)
@@ -967,11 +1156,15 @@ class DataParser:
                     self.handle_ignore(row)
             else:
                 raise(ValueError)
+            self._on_transaction_processed(row)
             row = unprocessed_lines.fetchone()
 
         unprocessed_count = self.transaction_cur.execute("SELECT COUNT(*) FROM transactions WHERE processed == 0").fetchone()[0]
         if unprocessed_count > 0:
-            raise AssetDeficit("There are {} transaction(s) that could not be processed due to a missmatch of assets in the database".format(unprocessed_count),self)
+            if raise_on_unprocessed:
+                raise AssetDeficit("There are {} transaction(s) that could not be processed due to a missmatch of assets in the database".format(unprocessed_count),self)
+            else:
+                logging.warning("There are {} transaction(s) left unprocessed (normal for temporary historical snapshots)".format(unprocessed_count))
         else:
             #Calculate summary data and put it in asset table
             asset_ids = self.data_cur.execute("SELECT asset_id FROM assets").fetchall()

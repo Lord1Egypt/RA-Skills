@@ -1,4 +1,4 @@
-# 公众号黑马账号推荐 API 接口规范
+# 公众号阅读增长榜 API 接口规范
 
 ## 接口信息
 
@@ -35,12 +35,12 @@
 
 ### 示例1：获取昨日增长榜
 ```
-GET https://redfox.hk/story/api/cozeSkill/getGzhCozeSkillDataRaise?rankDate=2026-04-15&source=公众号阅读增长榜-ClawHub
+GET https://redfox.hk/story/api/cozeSkill/getGzhCozeSkillDataRaise?rankDate=2026-04-15&source=公众号阅读增长榜-GitHub
 ```
 
 ### 示例2：获取指定日期增长榜
 ```
-GET https://redfox.hk/story/api/cozeSkill/getGzhCozeSkillDataRaise?rankDate=2026-04-01&source=公众号阅读增长榜-ClawHub
+GET https://redfox.hk/story/api/cozeSkill/getGzhCozeSkillDataRaise?rankDate=2026-04-01&source=公众号阅读增长榜-GitHub
 ```
 
 ## 返回数据

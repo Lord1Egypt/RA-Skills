@@ -1,47 +1,63 @@
-## Description: <br>
-Book flights for sabbatical and long-break travel, with related travel-booking guidance powered by Fliggy (Alibaba Group). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book flights for sabbatical and long-break travel using flyai CLI results, with support for related travel booking workflows such as hotels, trains, attractions, visas, insurance, and car rentals.
 
-## Publisher: <br>
-[ivan97](https://clawhub.ai/user/ivan97) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivan97](https://clawhub.ai/user/ivan97)
 
-## Use Case: <br>
-External users and travel-support agents use this skill to search sabbatical, career-break, and long-break flight options through the flyai CLI, then present bookable results with real-time pricing links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to install and run the unpinned third-party @fly-ai/flyai-cli package globally. <br>
-Mitigation: Preinstall or approve a trusted pinned CLI version before use, and review CLI execution before allowing the agent to proceed. <br>
-Risk: Travel searches are processed through the external flyai/Fliggy service and may include itinerary details. <br>
-Mitigation: Share only the minimum itinerary information needed for the search and avoid unnecessary personal or sensitive travel details. <br>
-Risk: The security review recommends limiting use to flight searches. <br>
-Mitigation: Use this release for flight-search workflows unless a separate review approves broader hotel, train, attraction, visa, insurance, or car-rental behavior. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to collect route and date details, run flyai travel searches, and return concise Markdown results with booking links. It is intended for sabbatical, career-break, long-break, and gap-year travel planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivan97/sabbatical-travel) <br>
-- [Parameter Collection & Output Templates](references/templates.md) <br>
-- [Scenario Playbooks](references/playbooks.md) <br>
-- [Failure Recovery](references/fallbacks.md) <br>
-- [Execution Runbook](references/runbook.md) <br>
-- [Node.js](https://nodejs.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands, comparison tables, and booking links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses flyai CLI output as the travel data source; final responses should include booking links and avoid raw JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may install a third-party travel CLI globally without a pinned package version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for approval before installing software, pin and verify the package, and prefer an isolated installation over a global install.
+
+Risk: User-derived travel parameters are inserted into command templates with weak safeguards.
+
+Mitigation: Validate origin, destination, dates, and supported flags before execution, and reject unsupported CLI parameters.
+
+Risk: Rendered booking links could direct users to provider-controlled destinations.
+
+Mitigation: Check booking-link domains before rendering links and clearly label provider booking actions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivan97/skills/sabbatical-travel)
+- [Publisher Profile](https://clawhub.ai/user/ivan97)
+- [Parameter Collection and Output Templates](references/templates.md)
+- [Scenario Playbooks](references/playbooks.md)
+- [Failure Recovery](references/fallbacks.md)
+- [Execution Runbook](references/runbook.md)
+- [Node.js](https://nodejs.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with booking links and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires flyai CLI output as the data source and includes provider booking links when results are available.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

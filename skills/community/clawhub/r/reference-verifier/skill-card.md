@@ -1,41 +1,54 @@
-## Description: <br>
-Checks academic references in AI-generated content by validating citation authenticity, assessing topical relevance, generating corrected BibTeX and APA citations, recommending replacement literature, and optionally matching uploaded PDFs against in-text citations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically checks academic references in AI-generated content, validates citation authenticity across academic databases, assesses topical relevance, generates corrected BibTeX and APA citations, recommends replacement sources, and supports PDF citation matching.
 
-## Publisher: <br>
-[793943403](https://clawhub.ai/user/793943403) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[793943403](https://clawhub.ai/user/793943403)
 
-## Use Case: <br>
-Researchers, students, and technical writers use this skill to audit generated bibliographies, identify hallucinated or questionable academic references, repair citation formatting, and find credible replacement papers. When a PDF is available, it can guide an agent to compare in-text citations with the reference list and produce a mismatch report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide an agent to query external academic services or process uploaded PDF content. <br>
-Mitigation: Avoid confidential, unpublished, regulated, or student-identifiable documents unless external lookup and PDF-processing exposure is acceptable. <br>
-Risk: Academic metadata lookup results can be incomplete, unavailable, or mismatched to malformed references. <br>
-Mitigation: Review final citation decisions against DOI records or publisher pages before using them in submitted work. <br>
-Risk: PDF parsing can fail or miss citation markers in complex documents. <br>
-Mitigation: Provide a text version or key page ranges when PDF matching is incomplete, and treat the generated report as review guidance. <br>
+## Use Case:
 
+Researchers, students, and research-writing teams use this skill to verify bibliography entries, identify hallucinated or questionable citations, repair citation formats, and compare PDF body citations with reference lists.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown tables, citation text, BibTeX entries, APA 7th citations, replacement recommendations, and PDF citation-match reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include verification status, DOI, author, year, abbreviated title, relevance rating, core abstract, action recommendation, and batch-processing notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: Uploaded manuscripts or citation lists may expose confidential, unpublished, or proprietary research details during external academic database verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only material suitable for external metadata checks, or remove sensitive content before requesting verification.
+
+Risk: Academic database lookups can fail, disagree, or miss valid references, leading to uncertain citation classifications.
+
+Mitigation: Treat questionable or hallucinated labels as review prompts and manually confirm important citations against primary publisher records or DOI resolvers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/793943403/skills/reference-verifier)
+- [Publisher profile](https://clawhub.ai/user/793943403)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Text, Markdown, Guidance]
+
+**Output Format:** [Markdown reports with tables, citation-status labels, BibTeX and APA citation text, replacement-source recommendations, and PDF matching summaries when provided.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May rely on external academic database verification and should avoid confidential, unpublished, or proprietary manuscripts unless that processing is acceptable.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

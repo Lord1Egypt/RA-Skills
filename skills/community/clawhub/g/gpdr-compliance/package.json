@@ -1,8 +1,8 @@
 {
   "name": "gdpr-compliance",
-  "version": "1.0.3",
-  "description": "欧盟通用数据保护条例（GDPR）合规检查、风险评估和文档生成工具。为欧盟市场提供全面的GDPR合规解决方案。",
-  "author": "OpenClaw Community",
+  "version": "1.1.0",
+  "description": "欧盟通用数据保护条例（GDPR）合规检查、风险评估和文档生成工具。为欧盟市场提供全面的GDPR合规解决方案。🎉 v1.1.0: 由 wwumit 全新发布，统一化CLI接口，多格式报告输出。",
+  "author": "Wei Wu (wwumit)",
   "license": "MIT",
   "keywords": [
     "GDPR",
@@ -21,7 +21,7 @@
   "homepage": "https://clawhub.ai/wwumit/gdpr-compliance",
   "skills": {
     "gdpr-compliance": {
-      "version": "1.0.3",
+      "version": "1.1.0",
       "description": "欧盟GDPR合规专用技能",
       "main": "SKILL.md"
     }

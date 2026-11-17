@@ -1,40 +1,50 @@
-## Description: <br>
-Harden OpenClaw browser extension relay behavior by eliminating blank-target tab churn, fixing download behavior forwarding, and standardizing download paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Harden OpenClaw browser extension relay behavior by eliminating blank-target tab churn, fixing download behavior forwarding, and standardizing download paths.
 
-## Publisher: <br>
-[danielsinewe](https://clawhub.ai/user/danielsinewe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danielsinewe](https://clawhub.ai/user/danielsinewe)
 
-## Use Case: <br>
-Developers and engineers use this skill when hardening or debugging OpenClaw extension-relay browser sessions, especially flaky target creation, missing download behavior, and inconsistent download locations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Relay-mode downloads are standardized to ~/Downloads/OpenClaw, which may be unsuitable when sessions handle sensitive downloaded files. <br>
-Mitigation: Confirm that path is acceptable for the workflow and manage or clear downloaded files according to the user's data-handling requirements. <br>
-Risk: Reusing blank browser targets can interact with existing browser session state during extension-relay testing. <br>
-Mitigation: Use isolated browser profiles or test sessions when sensitive tabs may be open, then verify that blank target reuse behaves as expected before broader use. <br>
+## Use Case:
 
+Developers and maintainers use this skill to harden OpenClaw browser automation relay behavior when target creation is flaky, download behavior forwarding is missing, or download locations are inconsistent.
 
-## Reference(s): <br>
-- [OpenClaw Browser Relay Reliability release](https://clawhub.ai/danielsinewe/openclaw-browser-relay-reliability) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands] <br>
-**Output Format:** [Markdown guidance with file paths, implementation direction, and verification steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires rg for repository search. Guidance is instruction-only and produces no executable payload by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill may lead an agent to modify browser extension relay and download-path code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review resulting code changes before merging or running them, with attention to relay behavior and download path handling.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/danielsinewe/skills/openclaw-browser-relay-reliability)
+- [Publisher profile](https://clawhub.ai/user/danielsinewe)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with file references and verification steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires rg for repository search.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

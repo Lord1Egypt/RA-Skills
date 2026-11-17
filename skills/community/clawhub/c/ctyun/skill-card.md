@@ -1,44 +1,55 @@
-## Description: <br>
-天翼云CLI工具 - 企业级命令行工具，帮助您轻松管理天翼云资源。支持ECS、VPC、EBS、ELB、CCE、Redis、Kafka、CSS、EMR、监控、账务、IAM、Aone、CloudPC、AIServer、Audit、IMS、LTS、SFS、OceanFS、ZOS、DPS物理机等26+服务模块，覆盖510+个API，478+个命令。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+天翼云 CLI 工具指南，帮助代理使用 ctyun-cli 安装、配置和管理天翼云资源，覆盖 ECS、VPC、EBS、ELB、CCE、Redis、MySQL、Kafka、监控、IAM 等 32+ 个服务模块、943+ 个 API 和 898+ 个命令。
 
-## Publisher: <br>
-[fengyucn](https://clawhub.ai/user/fengyucn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fengyucn](https://clawhub.ai/user/fengyucn)
 
-## Use Case: <br>
-Developers, operators, and cloud administrators use this skill to install and operate the ctyun-cli command-line tool for managing Tianyi Cloud resources across compute, networking, storage, monitoring, billing, IAM, and related services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Credential exposure while configuring Tianyi Cloud access keys. <br>
-Mitigation: Prefer environment variables or a protected configuration file, and avoid placing real secrets directly in shell history or shared command transcripts. <br>
-Risk: Commands may modify or delete live cloud resources when resource IDs, regions, or profiles are incorrect. <br>
-Mitigation: Review generated commands before execution, double-check IDs and selected profiles, and use read-only list/detail commands first when possible. <br>
-Risk: Installing the CLI adds a cloud-management tool capable of authenticated actions on the local machine. <br>
-Mitigation: Install only on machines intended to manage Tianyi Cloud resources and limit credentials to the minimum required account permissions. <br>
+## Use Case:
 
+Developers, operators, and agents use this skill to generate ctyun-cli installation, authentication, query, and cloud-resource management guidance for CTYUN environments. It is intended for managing live cloud resources and should be used with reviewed credentials and explicit confirmation for production-impacting commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fengyucn/skills/ctyun) <br>
-- [PyPI package](https://pypi.org/project/ctyun-cli/) <br>
-- [Project homepage](https://github.com/fengyucn/ctyun-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide credential configuration and cloud-resource operations that require user review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.22.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill can guide use of powerful CTYUN credentials and commands against live cloud infrastructure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated environment, pin and verify the ctyun-cli package or source commit, use least-privilege credentials, and require explicit confirmation before kubeconfig retrieval, deletion, or production-impacting operations.
+
+Risk: Long-lived CTYUN secrets may be exposed through shell startup files or command history.
+
+Mitigation: Avoid storing long-lived secrets in shell profiles or history, rotate any exposed credentials, and prefer short-lived or tightly scoped credentials when available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fengyucn/skills/ctyun)
+- [PyPI package: ctyun-cli](https://pypi.org/project/ctyun-cli/)
+- [Homepage listed in artifact](https://github.com/fengyucn/ctyun-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command examples may target live CTYUN resources and can emit table, JSON, or YAML CLI output.]
+
+## Skill Version(s):
+
+1.30.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

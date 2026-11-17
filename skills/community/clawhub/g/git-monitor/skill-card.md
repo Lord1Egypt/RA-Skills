@@ -1,43 +1,62 @@
-## Description: <br>
-Git Monitor helps agents track Git repositories across GitHub, GitLab, Gitee, and other Git platforms, pull updates, and summarize code changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Git Monitor helps agents add, list, check, and remove monitored Git repositories, pull updates, and summarize changes across GitHub, GitLab, Gitee, and other Git platforms.
 
-## Publisher: <br>
-[gushenjie](https://clawhub.ai/user/gushenjie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gushenjie](https://clawhub.ai/user/gushenjie)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to add, list, remove, and check monitored Git repositories, then receive concise update summaries through the agent and optional Feishu notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run broad Git operations, including cloning, fetching, and resetting local repositories. <br>
-Mitigation: Use it only with repositories intentionally selected for monitoring, review the repository list before checks, and avoid paths where uncommitted local work could be overwritten. <br>
-Risk: The skill can reuse Feishu credentials and send repository update summaries outside the local environment. <br>
-Mitigation: Confirm the Feishu app, chat target, and least-privilege credentials before enabling notifications. <br>
-Risk: Untrusted branch names or unusual repository inputs can affect command execution behavior. <br>
-Mitigation: Use trusted repository URLs and ordinary branch names, and review configured entries before scheduled or repeated checks. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to track updates across Git repositories, synchronize local copies, and receive concise change summaries or Feishu notifications.
 
-## Reference(s): <br>
-- [ClawHub Git Monitor page](https://clawhub.ai/gushenjie/git-monitor) <br>
-- [Feishu Open Platform](https://open.feishu.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with optional JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May clone or update configured repositories and may send update summaries to Feishu when credentials are configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: Unsafe Git command execution can expose users to command-injection or unintended command behavior when repository inputs are not trusted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted repository URLs and review command proposals before execution; publisher should replace shell-string Git commands with argument-safe process calls.
+
+Risk: Repository checks can overwrite local work when hard resets are used during synchronization.
+
+Mitigation: Avoid monitoring repositories that contain uncommitted local work, and require explicit confirmation before destructive Git operations.
+
+Risk: Feishu notifications can disclose commit and changed-file metadata to an external chat service.
+
+Mitigation: Enable notifications only for repositories whose metadata may be shared with that chat, and require explicit consent before credential lookup or outbound messages.
+
+Risk: Bundled configuration includes example monitored repositories and local paths.
+
+Mitigation: Start releases from an empty configuration and let users add repositories intentionally after installation.
+
+## Reference(s):
+
+- [ClawHub Git Monitor Skill Page](https://clawhub.ai/gushenjie/skills/git-monitor)
+- [Feishu Open Platform](https://open.feishu.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include repository status, commit summaries, changed-file statistics, local path details, and notification setup guidance.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

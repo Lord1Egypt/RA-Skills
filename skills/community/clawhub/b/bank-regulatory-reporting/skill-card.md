@@ -1,44 +1,59 @@
-## Description: <br>
-Generates Chinese banking regulatory reporting guidance and report templates for NFRA/PBOC/SAFE submissions, Basel III capital reports, AML reports, and compliance documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered banking regulatory reporting assistant for drafting NFRA/PBOC/SAFE reports, 1104 statistical submissions, Basel III capital reports, and compliance documentation.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-Bank compliance officers, data analysts, IT systems teams, and regulatory affairs teams use this skill to prepare Chinese commercial bank regulatory reports, collect required inputs, and draft compliance documentation for human review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be used with sensitive customer, transaction, or bank operating data. <br>
-Mitigation: Use only in an approved banking or compliance environment and minimize or omit real customer and transaction data unless authorized. <br>
-Risk: Generated reports or regulatory interpretations may be incomplete, outdated, or unsuitable for filing as-is. <br>
-Mitigation: Require human compliance review and verification against official regulator requirements before any submission. <br>
-Risk: The artifact includes credit-policy guidance beyond its stated regulatory reporting purpose. <br>
-Mitigation: Do not use appended credit-policy sections for underwriting, lending approvals, or operational credit decisions. <br>
+## Use Case:
 
+Bank compliance officers, data analysts, IT systems teams, and regulatory affairs staff use the skill to organize data checks and draft regulatory reports, compliance assessments, and supporting documentation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gechengling/skills/bank-regulatory-reporting) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Conversational guidance and markdown report templates/checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires human compliance review before filing; avoid unauthorized sensitive financial data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.1.0 (source: server release and SKILL.md frontmatter) <br>
+Risk: Drafts may contain inaccurate or outdated regulatory guidance or reporting data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify policy references and data against official sources, and have an authorized compliance officer review and approve each report before submission.
+
+Risk: The security review is incomplete: only half of components were scanned, so the benign verdict provides limited assurance.
+
+Mitigation: Treat the verdict as a limited signal and complete review of the unresolved skill manifest and local reference before deployment.
+
+Risk: The workflow may involve confidential customer compliance information or regulatory communications.
+
+Mitigation: Keep those materials confidential and handle them under the organization’s approved data-protection practices.
+
+## Reference(s):
+
+- [Server-resolved GitHub source repository](https://github.com/gechengling/bank-regulatory-reporting)
+- [Server-resolved source commit](https://github.com/gechengling/bank-regulatory-reporting/commit/9a4b1b6a3f32670e6c4821f5bee1356d402b8ec9)
+- [ClawHub skill release](https://clawhub.ai/gechengling/skills/bank-regulatory-reporting)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Markdown reports, checklists, tables, and narrative guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Drafts and analyses require verification against current official requirements and approval by authorized compliance officers before submission.]
+
+## Skill Version(s):
+
+5.2.6 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

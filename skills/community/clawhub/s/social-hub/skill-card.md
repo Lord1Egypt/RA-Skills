@@ -1,42 +1,56 @@
-## Description: <br>
-Social Hub is a local relationship-matching assistant that converses with users through WeChat Work, builds a private user profile, shares profile tag summaries for matching, and helps deliver introductions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Social Hub is a personal relationship-matching agent that chats with users, builds local profile data, shares profile summaries for matching, and helps deliver introductions.
 
-## Publisher: <br>
-[FreeAI-io](https://clawhub.ai/user/FreeAI-io) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[freeai-io](https://clawhub.ai/user/freeai-io)
 
-## Use Case: <br>
-Individual users and their local agents use this skill to collect relationship-matching preferences through natural conversation, maintain a local profile, and coordinate introductions through a matching group channel. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The release combines a matchmaking assistant with under-disclosed Claw Club social-bot scripts that can use credentials to post or reply through an external API. <br>
-Mitigation: Install only when both behaviors are intended, review the bundled scripts before use, and require the publisher to document or remove the Claw Club endpoints and posting authority. <br>
-Risk: The skill handles personal conversation history, profile data, embeddings, and disclosure preferences for social matching. <br>
-Mitigation: Confirm consent, retention, deletion, disclosure, and embedding-provider controls before trusting the skill with personal conversations. <br>
-Risk: Credential storage and bot registration behavior may create persistent access to external social actions. <br>
-Mitigation: Use scoped credentials, store API keys securely, rotate keys when needed, and verify what actions the API key permits before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Social Hub on ClawHub](https://clawhub.ai/FreeAI-io/social-hub) <br>
-- [FreeAI-io ClawHub profile](https://clawhub.ai/user/FreeAI-io) <br>
+## Use Case:
 
+External users use this agent to support relationship discovery through conversational profile collection, local profile storage, matching coordination, and guided introductions.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Conversational text and markdown with optional shell command usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local profile storage, API credentials, and external social posting or reply actions when the bundled scripts are used.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Declared matchmaking behavior differs from bundled Claw Club bot scripts.
+
+Mitigation: Review the package before installation and ask the publisher to explain which behavior is intended.
+
+Risk: The skill collects relationship-profile information and shares summaries with a group channel.
+
+Mitigation: Use only with explicit user consent and avoid real personal data until consent, disclosure, and recipient controls are verified.
+
+Risk: Bundled scripts use API keys for registering, posting, checking, and replying.
+
+Mitigation: Use scoped test credentials, keep keys out of shared logs, and verify secret storage before running the scripts.
+
+## Reference(s):
+
+- [Social Hub ClawHub listing](https://clawhub.ai/freeai-io/skills/social-hub)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Bash command examples and local data paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide local profile/state updates and authenticated social-bot API interactions when scripts are used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,60 @@
-## Description: <br>
-管理优云智算CompShare平台的GPU实例全生命周期，包括创建、查询、启动、停止、重启、重置密码和删除实例；当用户需要创建GPU云服务器、查询实例状态、管理实例启停、重置实例密码或删除实例时使用 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages the full lifecycle of GPU instances on the 优云智算 CompShare platform, including create, query, start, stop, reboot, password reset, delete, and SSH administration workflows.
 
-## Publisher: <br>
-[chsengni](https://clawhub.ai/user/chsengni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chsengni](https://clawhub.ai/user/chsengni)
 
-## Use Case: <br>
-Developers and operators use this skill to manage CompShare GPU cloud instances and administer the resulting servers over SSH. It supports instance lifecycle actions, credential-based API setup, remote command execution, and file transfer workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China CompShare regions referenced by the artifact, primarily cn-wlcb/cn-wlcb-01. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can manage a CompShare account and administer GPU servers over SSH. <br>
-Mitigation: Install only for workflows where agent-managed CompShare resources and SSH administration are intended, and use least-privilege API keys. <br>
-Risk: Destructive or high-impact actions include delete, reset-password, remote exec, file deletion, chmod, upload/download, and interactive shell use. <br>
-Mitigation: Require explicit approval and verify the instance ID, SSH target, command, and path before each high-impact action. <br>
-Risk: API keys and SSH passwords may be exposed through shell history, shared logs, or copied command examples. <br>
-Mitigation: Avoid placing secrets directly in shell commands or shared logs; store credentials in protected configuration and rotate them if exposure is suspected. <br>
+## Use Case:
 
+Developers and infrastructure operators use this skill to provision and administer CompShare GPU cloud instances, manage lifecycle actions, reset passwords, and perform SSH-based remote administration.
 
-## Reference(s): <br>
-- [CompShare API Reference](references/api_reference.md) <br>
-- [CompShare Skill Page](https://clawhub.ai/chsengni/compshare-api) <br>
-- [CompShare Console](https://console.compshare.cn/) <br>
-- [CompShare API Management](https://console.compshare.cn/uaccount/api_manage) <br>
-- [CompShare Image Community](https://www.compshare.cn/image-community) <br>
+### Deployment Geography for Use:
 
+China regions supported by CompShare, including cn-wlcb and cn-sh2.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples, configuration snippets, and JSON-style command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses CompShare API credentials and SSH passwords supplied by the user; API and SSH operations can affect live cloud resources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill can manage GPU instances and perform broad SSH administration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use credentials scoped only to CompShare resources the agent is allowed to manage, and review lifecycle and SSH actions before execution.
+
+Risk: Passwords and instance login material may be passed through command-line arguments, command output, or logs.
+
+Mitigation: Avoid passing passwords on the command line where possible, limit log retention, and treat list output and SSH connection details as sensitive.
+
+Risk: SSH shell and file operations provide full remote administration authority on target instances.
+
+Mitigation: Verify SSH host keys independently and restrict remote commands, uploads, downloads, permission changes, and deletions to approved tasks.
+
+## Reference(s):
+
+- [CompShare API Reference](artifact/references/api_reference.md)
+- [CompShare API Endpoint](https://api.compshare.cn/)
+- [CompShare API Management Console](https://console.compshare.cn/uaccount/api_manage)
+- [ClawHub Skill Page](https://clawhub.ai/chsengni/skills/compshare-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, and command output summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call CompShare APIs and SSH commands when the agent has configured credentials and user authorization.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

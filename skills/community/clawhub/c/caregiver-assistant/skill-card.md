@@ -1,45 +1,65 @@
-## Description: <br>
-护工助手 helps caregiving teams manage patient profiles, care logs, medication, vital signs, diet records, family reports, emergency handling, multi-patient workflows, and shift handoffs through an interactive HTML dashboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+护工助手 generates a single-file interactive HTML caregiving dashboard for patient records, care logs, medication, vital signs, diet, family reports, emergency handling, multi-patient management, and shift handoff workflows.
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-External caregiving teams, elder-care organizations, and home-care coordinators use this skill to generate and operate a local browser-based dashboard for tracking patient care activities, medications, vital signs, reports, emergency contacts, and shift handoffs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive care records may be stored in browser localStorage and exported as JSON backups. <br>
-Mitigation: Use only trusted devices and browser profiles, avoid entering real patient or protected health information unless local storage meets the user's privacy requirements, and protect exported backup files as sensitive medical records. <br>
-Risk: Imported backup files can replace local dashboard data. <br>
-Mitigation: Import only trusted JSON backups, keep a current export before importing, and review imported records before relying on them for care coordination. <br>
-Risk: The skill requests broader agent authority than the local dashboard requires. <br>
-Mitigation: Deploy with the minimum required tool permissions and remove Bash access unless a reviewed workflow explicitly needs it. <br>
+## Use Case:
 
+External caregiving teams, elder-care facilities, and home-care coordinators use this skill to produce a browser-based dashboard for tracking patient care, medication status, vital signs, reports, emergency procedures, and team handoffs. It is appropriate for lightweight local coordination, but should not be used as a regulated medical record or operational care system without additional privacy, access-control, validation, audit, and storage protections.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/bettermen/caregiver-assistant) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Caregiver HTML dashboard](artifact/assets/caregiver.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Files, Guidance] <br>
-**Output Format:** [Markdown guidance that produces or opens a single-file interactive HTML dashboard] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dashboard data is stored in browser localStorage and can be imported or exported as JSON backups.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill handles sensitive patient and caregiving information using weak local browser storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid real patient information unless the deployment adds privacy controls, protected storage, access control, audit logging, and a clear data-retention process.
+
+Risk: Exported JSON backups may contain sensitive patient information.
+
+Mitigation: Protect exported files, limit sharing, and treat backups as confidential healthcare-adjacent data.
+
+Risk: Importing untrusted backup files can introduce unsafe or misleading data into the dashboard.
+
+Mitigation: Import only trusted backups and review imported records before using them for care coordination.
+
+Risk: The dashboard includes healthcare workflow prompts and emergency guidance but is not validated as a regulated care system.
+
+Mitigation: Do not rely on it for regulated healthcare records or operational care decisions without clinical, legal, security, and compliance review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/caregiver-assistant)
+- [Publisher profile](https://clawhub.ai/user/bettermen)
+- [README](README.md)
+- [Skill definition](SKILL.md)
+- [Caregiver HTML app](assets/caregiver.html)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance that points to a single-file HTML caregiving dashboard]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The generated dashboard stores data in browser localStorage and supports JSON import and export backups.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

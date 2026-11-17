@@ -1,44 +1,58 @@
-## Description: <br>
-Control the PomoClaw pomodoro timer on macOS by starting, pausing, stopping, configuring, and checking timer status through documented URL-scheme commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls the PomoClaw macOS menu bar pomodoro timer through URL-scheme commands for starting, stopping, pausing, configuring, and checking timers.
 
-## Publisher: <br>
-[vkozlovskyi](https://clawhub.ai/user/vkozlovskyi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vkozlovskyi](https://clawhub.ai/user/vkozlovskyi)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent control a local PomoClaw menu bar timer on Mac for focus sessions, breaks, status checks, and timer configuration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can direct an agent to open local pomoclaw:// URLs that control a Mac timer app. <br>
-Mitigation: Install it only when agent control of PomoClaw is desired, and keep use scoped to the documented timer, status, break, and configuration commands. <br>
-Risk: The linked Mac app is a separate dependency that must be trusted by the user. <br>
-Mitigation: Verify the linked PomoClaw app or release before installing or using the skill. <br>
-Risk: The configuration command can enable launch at login. <br>
-Mitigation: Enable launch at login only when the user explicitly wants the timer app to start automatically. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [PomoClaw ClawHub page](https://clawhub.ai/vkozlovskyi/pomoclaw) <br>
-- [Publisher profile](https://clawhub.ai/user/vkozlovskyi) <br>
-- [PomoClaw GitHub repository](https://github.com/vkozlovskyi/PomoClaw) <br>
-- [PomoClaw latest release](https://github.com/vkozlovskyi/PomoClaw/releases/latest) <br>
+## Use Case:
 
+External users and automation developers use this skill to control a local PomoClaw timer on macOS from an agent, including timer commands, configuration, status checks, and pomodoro completion events.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and URL-scheme examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May instruct the agent to read a local JSON status file written by the PomoClaw app.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill instructs the agent to run macOS shell commands that open PomoClaw URL-scheme commands.
+
+Mitigation: Use only documented PomoClaw URL commands, quote command inputs, and reject malformed or unexpected text instead of placing it into a shell command.
+
+Risk: Timer configuration values and sound names could be invalid or outside the supported ranges.
+
+Mitigation: Limit timer durations to documented numeric ranges and restrict sounds to the documented allowed names before issuing configuration commands.
+
+Risk: The skill depends on local macOS app state and a status file under the user's home directory.
+
+Mitigation: Confirm PomoClaw is running before control commands and read status only from the expected ~/.pomoclaw/status.json path.
+
+## Reference(s):
+
+- [PomoClaw ClawHub skill page](https://clawhub.ai/vkozlovskyi/skills/pomoclaw)
+- [PomoClaw GitHub repository](https://github.com/vkozlovskyi/PomoClaw)
+- [PomoClaw latest release](https://github.com/vkozlovskyi/PomoClaw/releases/latest)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and URL examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands target the PomoClaw URL scheme and may read JSON timer status from ~/.pomoclaw/status.json.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

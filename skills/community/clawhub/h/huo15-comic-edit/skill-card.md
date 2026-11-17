@@ -1,42 +1,55 @@
-## Description: <br>
-Uses FFmpeg to concatenate lipsync comic video scenes, mix background music, burn subtitles, apply short fades, and write final.mp4. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Huo15 Comic Edit helps an agent assemble ordered lipsync or video clips into a final MP4 with BGM mixing, generated subtitles, and FFmpeg-based encoding.
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
 
-## Use Case: <br>
-Content creators and developers use this skill to assemble pre-generated comic video scenes into a finished video with subtitles and optional background music. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package includes cloud AI helper code that can use ARK_API_KEY and send prompts or media to external services if invoked. <br>
-Mitigation: Use the documented edit.py workflow for local FFmpeg editing and leave ARK_API_KEY unset unless external cloud helpers are intentionally needed. <br>
-Risk: The FFmpeg editor reads and writes media files inside the selected project directory. <br>
-Mitigation: Run the command only against intended project directories and review generated media and subtitles before distribution. <br>
+## Use Case:
 
+External developers and media-production agents use this skill to compose short comic-style video projects from prepared scene clips, dialogue audio, background music, and script metadata into final.mp4.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zhaobod1/huo15-comic-edit) <br>
-- [Volcengine Seedance documentation](https://www.volcengine.com/docs/82379/1520757) <br>
-- [Volcengine TTS documentation](https://www.volcengine.com/docs/6561/97465) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands; execution writes local media and subtitle files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The documented workflow writes final.mp4 under the selected project directory and may also create concat.mp4, concat.txt, and subtitle.srt.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Bundled cloud API helpers can transmit prompts, text, and selected local media to external services if invoked by another workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review, remove, or disable the shared Ark helper before installation when a strictly local FFmpeg-only tool is required, and do not set ARK_API_KEY unless that cloud behavior is intended.
+
+Risk: The editing workflow writes derived media and subtitle files into the selected project directory.
+
+Mitigation: Run the skill against a prepared project workspace and review generated files before reusing or publishing the final video.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaobod1/skills/huo15-comic-edit)
+- [VolcEngine Seedance documentation](https://www.volcengine.com/docs/82379/1520757)
+- [VolcEngine TTS documentation](https://www.volcengine.com/docs/6561/97465)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands; generated local files include final.mp4, subtitle.srt, concat.mp4, and concat.txt.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a project directory with script.json, scene media, optional bgm.mp3, FFmpeg 5.0 or newer, and Source Han Serif SC for the documented subtitle style.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

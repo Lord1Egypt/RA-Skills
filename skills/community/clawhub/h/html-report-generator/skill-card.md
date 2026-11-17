@@ -1,50 +1,67 @@
-## Description: <br>
-Html Report turns user-provided content into 5-15 fixed-size HTML report pages for PPT-style canvases, with each page organized around concise analytical dimensions and supporting charts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates 5-15 fixed-size HTML report pages from arbitrary input, decomposing each page into focused dimensions with concise Chinese-first narrative and supporting charts.
 
-## Publisher: <br>
-[panhongwei](https://clawhub.ai/user/panhongwei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[panhongwei](https://clawhub.ai/user/panhongwei)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to convert report topics or source material into structured HTML slide pages with consistent layout, charts, and final rendering checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unsupported diagram requests may trigger web search, which can expose sensitive report context. <br>
-Mitigation: Avoid confidential report text, or explicitly restrict external lookup to generic diagram terminology before use. <br>
-Risk: Generated report summaries, charts, or page layouts may be incorrect or misleading if the source material is ambiguous. <br>
-Mitigation: Review the generated HTML pages, chart labels, and rendering checks before sharing or relying on the report. <br>
+## Use Case:
 
+Developers, analysts, and report authors use this skill to convert source material into PPT-sized HTML report pages with structured sections, SVG charts, visual templates, and screenshot validation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/panhongwei/html-report-generator) <br>
-- [01 - Canvas and structure rules](references/01-canvas.md) <br>
-- [02 - Design system and visual templates](references/02-design-system.md) <br>
-- [03 - Layout system](references/03-layout.md) <br>
-- [04 - Color and font rules](references/04-color-font.md) <br>
-- [05 - Content and base chart guidance](references/05-content.md) <br>
-- [06 - Workflow and quality checks](references/06-workflow.md) <br>
-- [07 - Special page templates](references/07-special-pages.md) <br>
-- [08 - Extended SVG chart library](references/08-svg-extended.md) <br>
-- [09 - Components](references/09-components.md) <br>
-- [10 - Business diagram library](references/10-diagram-types.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Shell commands, Guidance] <br>
-**Output Format:** [HTML files with CSS and SVG charts, plus concise text summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces 5-15 pages sized 1017x720px for PPT-compatible report rendering.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may use web search for unfamiliar diagram types, which can create unwanted network exposure when working with confidential material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with approved web access, remove sensitive details from diagram queries, or disable web-dependent behavior for confidential reports.
+
+Risk: Some visual templates may load Google Fonts from a remote URL.
+
+Mitigation: Use local or system fonts, or remove remote font imports before using generated HTML in restricted or offline environments.
+
+Risk: The skill is Chinese-first, so generated narrative and labels may need localization for other audiences.
+
+Mitigation: Review and localize report text, chart labels, and page metadata before publishing externally.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/panhongwei/skills/html-report-generator)
+- [01 - Canvas and Structure Rules](artifact/references/01-canvas.md)
+- [02 - Design System and Visual Templates](artifact/references/02-design-system.md)
+- [03 - Layout System](artifact/references/03-layout.md)
+- [04 - Color and Font System](artifact/references/04-color-font.md)
+- [05 - Content Rules and Chart Library](artifact/references/05-content.md)
+- [06 - Workflow and Quality Checks](artifact/references/06-workflow.md)
+- [07 - Special Page Specifications](artifact/references/07-special-pages.md)
+- [08 - Extended SVG Chart Library](artifact/references/08-svg-extended.md)
+- [09 - Component Library](artifact/references/09-components.md)
+- [10 - Business Diagram Library](artifact/references/10-diagram-types.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [HTML report pages with Markdown-style summaries, inline HTML/CSS/SVG code, and validation commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces multiple 1017x720 report pages and a concise validation summary covering page count, visual templates, layout variants, overflow checks, and color consistency.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

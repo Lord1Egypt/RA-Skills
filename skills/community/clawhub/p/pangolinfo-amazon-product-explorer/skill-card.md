@@ -1,43 +1,55 @@
-## Description: <br>
-Helps agents research Amazon product opportunities by scouting demand, filtering niches, benchmarking products, mining review pain points, checking IP signals, and producing a go/no-go report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through Amazon product-market scouting with Pangolinfo tools for demand analysis, niche filtering, benchmark product review, review-pain mining, IP checks, and go/no-go recommendations.
 
-## Publisher: <br>
-[pangolinfo](https://clawhub.ai/user/pangolinfo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pangolinfo](https://clawhub.ai/user/pangolinfo)
 
-## Use Case: <br>
-External sellers, product teams, and e-commerce researchers use this skill to evaluate Amazon product categories and niches before launching a new product. It guides an agent through fast and full research modes that combine demand signals, benchmark products, review themes, IP checks, and investment recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Pangolinfo API key in the runtime environment. <br>
-Mitigation: Treat the API key as a secret, provide it through the supported environment or MCP configuration path, avoid pasting it into prompts or logs, and rotate it if exposure is suspected. <br>
-Risk: Full-mode and review-scraping workflows can consume additional Pangolinfo credits. <br>
-Mitigation: Use the fast mode by default, confirm budget before review scraping or full reports, and monitor quota usage. <br>
-Risk: Amazon market and IP signals may be incomplete or time-sensitive. <br>
-Mitigation: Use the report as decision support, review source-labeled findings before acting, and obtain professional IP review before product launch or large inventory commitments. <br>
+## Use Case:
 
+External sellers, marketplace operators, and agent users use this skill to evaluate Amazon categories or product ideas and produce concise go/no-go product exploration reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pangolinfo/pangolinfo-amazon-product-explorer) <br>
-- [Pangolinfo](https://www.pangolinfo.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports with tables, concise recommendations, and red/yellow/green go/no-go decisions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include source-labeled market metrics, benchmark product comparisons, review themes, IP-risk notes, budget prompts, and next-step recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: server release metadata; artifact frontmatter says 3.1.0) <br>
+Risk: The skill requires access to Pangolinfo-authenticated tools and the security evidence flags direct API key handling for review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure credentials through protected MCP or secret-management paths, avoid placing API keys in prompts, URLs, tickets, or shared config, and rotate any exposed key.
+
+Risk: Authentication or quota failures can stop the workflow and repeated retries with the same invalid key will not resolve the issue.
+
+Mitigation: Stop on AUTH or QUOTA failures, ask the user to configure or renew credentials, and continue only after the tool connection has been restarted or reconnected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pangolinfo/skills/pangolinfo-amazon-product-explorer)
+- [Pangolinfo publisher profile](https://clawhub.ai/user/pangolinfo)
+- [Pangolinfo website](https://www.pangolinfo.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports with tables, short recommendations, and setup commands when authentication is missing.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Pangolinfo-authenticated tools and includes clientSource="skill" in tool-call arguments.]
+
+## Skill Version(s):
+
+4.0.0 (source: server release metadata and changelog; artifact frontmatter states 3.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

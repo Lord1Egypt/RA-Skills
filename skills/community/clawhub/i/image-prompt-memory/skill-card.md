@@ -1,38 +1,50 @@
-## Description: <br>
-Stores and retrieves successful image generation prompts by category, style, and keywords for quick reuse and recommendation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stores and retrieves successful image generation prompts by category, style, and keywords for quick reuse and recommendation.
 
-## Publisher: <br>
-[acilgit](https://clawhub.ai/user/acilgit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[acilgit](https://clawhub.ai/user/acilgit)
 
-## Use Case: <br>
-Image creators and agent users use this skill to preserve successful image generation prompts, search them by category, style, or keywords, and reuse prompt patterns in later image workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved prompt text and feedback may include sensitive, customer, or confidential details if users place them in image prompts. <br>
-Mitigation: Avoid putting secrets or confidential data in prompts, and review or delete the local prompt_library.json file when prompt history should not be retained. <br>
+## Use Case:
 
+External users and image-generation workflow builders use this skill to save satisfactory image prompts, search them by category, style, or description, and reuse recommendations in later image creation workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/acilgit/image-prompt-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance and structured JSON prompt-library entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update a local prompt_library.json file containing prompt text, style metadata, and user feedback.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Successful prompts, feedback, and related metadata may persist sensitive personal, business, or confidential details in the local prompt-library JSON file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid saving sensitive prompt text, and periodically review or remove entries from the disclosed local JSON database.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/acilgit/skills/image-prompt-memory)
+- [Source skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Markdown guidance and structured JSON prompt records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains a local prompt-library JSON file at /root/.openclaw/workspace/data/prompt_library.json.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

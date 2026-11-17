@@ -1,43 +1,59 @@
-## Description: <br>
-Complete AI voice agent system for eCommerce order confirmation, customer support, and outbound campaigns with 12 n8n workflows for Vapi AI voice, Twilio SMS, Shopify/WooCommerce integration, and Google Sheets CRM. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete AI voice agent system for eCommerce order confirmation, customer support, and outbound campaigns. 12 production-ready n8n workflows with Vapi AI voice, Twilio SMS, Shopify/WooCommerce integration, and Google Sheets CRM.
 
-## Publisher: <br>
-[mhmalvi](https://clawhub.ai/user/mhmalvi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-CC BY-NC-SA 4.0 <br>
+## Publisher:
 
+[mhmalvi](https://clawhub.ai/user/mhmalvi)
 
-## Use Case: <br>
-External ecommerce teams and developers use this skill to deploy automated order confirmation, customer support, retry, fallback messaging, status update, CRM logging, reporting, and callback workflows for online stores. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC BY-NC-SA 4.0
 
-## Known Risks and Mitigations: <br>
-Risk: Customer-contact and order-update workflows may be invoked through webhooks without visible authentication or signature checks. <br>
-Mitigation: Add webhook authentication or signature checks, schema validation, and rate limits before production use. <br>
-Risk: Provider tokens and Sheets or CRM credentials can grant access to customer and order records. <br>
-Mitigation: Use least-privilege provider tokens, restricted Sheet and CRM access, sandbox credentials first, retention rules, and audit logging. <br>
-Risk: Automated calls and messages can contact customers repeatedly or without appropriate consent controls. <br>
-Mitigation: Implement opt-in, opt-out, do-not-call controls, retry limits, and manual review for high-value or destructive order changes. <br>
+## Use Case:
 
+Store owners, support teams, and automation engineers use this skill to import n8n workflows that automate eCommerce order confirmation, customer callbacks, return and FAQ routing, retry handling, outbound campaigns, status updates, CRM logging, and daily reporting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mhmalvi/ecomm-ai-voice-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/mhmalvi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with n8n JSON workflow definitions and environment-variable configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes 12 n8n workflow definitions and requires provider credentials and environment variables for voice, SMS, messaging, ecommerce, CRM, spreadsheet, AI, and email integrations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: server release metadata; artifact frontmatter and _meta.json report 1.2.0) <br>
+Risk: Unauthenticated workflow endpoints can trigger calls, messages, or order-record changes using the operator's credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Deploy the workflows only behind authenticated, signed, and rate-limited webhooks, and validate order IDs, phone numbers, statuses, and state transitions server-side.
+
+Risk: Request-controlled confirmation URLs and broad provider credentials can increase abuse or data-exposure impact.
+
+Mitigation: Remove request-controlled confirmation URLs and use least-privilege credentials for voice, messaging, spreadsheet, store, CRM, and email providers.
+
+Risk: Outbound calls, messages, transcripts, and customer records can create privacy, consent, retention, and telecom compliance obligations.
+
+Mitigation: Document customer consent, privacy notices, transcript retention, spreadsheet access controls, and applicable telecom rules before enabling outbound communications.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mhmalvi/skills/ecomm-ai-voice-agent)
+- [Vapi API endpoint](https://api.vapi.ai)
+- [Twilio API endpoint](https://api.twilio.com/2010-04-01)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, configuration, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with n8n workflow JSON files and environment-variable configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires n8n credentials and environment variables for Vapi, Twilio, Google Sheets, store and CRM providers, messaging, and email.]
+
+## Skill Version(s):
+
+1.2.2 (source: server release metadata; artifact frontmatter and _meta.json report 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

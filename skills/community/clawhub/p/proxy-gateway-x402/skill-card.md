@@ -1,45 +1,61 @@
-## Description: <br>
-Proxy Gateway X402 provides pay-per-use HTTP proxy access for agents using x402-style USDC payments and optional self-hosted server components. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Proxy Gateway X402 enables pay-per-use HTTP proxy access for AI agents through the x402 protocol with USDC payments.
 
-## Publisher: <br>
-[kehongpeng](https://clawhub.ai/user/kehongpeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kehongpeng](https://clawhub.ai/user/kehongpeng)
 
-## Use Case: <br>
-External developers and agent builders use this skill to route agent HTTP requests through a paid proxy or to self-host a gateway with x402/USDC payment handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The hosted proxy can see proxied URLs, headers, request bodies, and responses. <br>
-Mitigation: Do not send bearer tokens, passwords, private keys, personal data, or internal network URLs through the hosted service; self-host when privacy is required. <br>
-Risk: Automatic wallet-payment flows can expose or misuse funds if configured with sensitive wallets. <br>
-Mitigation: Use a dedicated low-balance wallet, avoid exposing USER_EVM_PRIVATE_KEY on public servers, and review payment verification before production use. <br>
-Risk: The release was flagged suspicious by the authoritative security scan because it combines arbitrary traffic forwarding with wallet-payment automation and weak safety controls. <br>
-Mitigation: Review the scan guidance, open-proxy controls, and payment verification behavior before installing or operating the service. <br>
+## Use Case:
 
+Developers and agent builders use this skill to route web requests through a pay-per-use proxy, configure x402 payment handling, or self-host the proxy gateway.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kehongpeng/proxy-gateway-x402) <br>
-- [X402 Integration Guide](docs/X402_INTEGRATION.md) <br>
-- [x402 Protocol](https://x402.org) <br>
-- [Proxy Gateway Service](https://proxy.easky.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python, JSON, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API request examples, environment variable setup, and self-hosting commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.6 (source: server release metadata and artifact skill.yaml) <br>
+Risk: Broad request forwarding can expose sensitive headers, bodies, or internal URLs to a proxy operator.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid proxying secrets or internal/private URLs; self-host only in an isolated environment with SSRF protections and restrictive CORS.
+
+Risk: Automatic wallet spending can create financial exposure if USER_EVM_PRIVATE_KEY is placed on an untrusted or public server.
+
+Mitigation: Do not set USER_EVM_PRIVATE_KEY on public servers; use a dedicated low-balance wallet with spending limits for experiments.
+
+Risk: Payment validation and dependency drift can affect a self-hosted payment gateway.
+
+Mitigation: Review before deployment, add payment validation, and pin dependencies before self-hosting.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kehongpeng/skills/proxy-gateway-x402)
+- [x402 Protocol](https://x402.org)
+- [Base Network](https://base.org)
+- [Polygon Network](https://polygon.technology)
+- [Proxy Gateway Documentation](https://docs.proxy.easky.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python, shell, JSON, and environment variable examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include payment headers, proxy request examples, wallet configuration notes, and self-hosting steps.]
+
+## Skill Version(s):
+
+0.1.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

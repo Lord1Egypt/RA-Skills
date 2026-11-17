@@ -1,43 +1,54 @@
-## Description: <br>
-Generic email reporting tool for OpenClaw agents that auto-converts Markdown reports to PDF and sends them as attachments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Email Reporter helps OpenClaw agents send Markdown reports by email and converts image-heavy or large reports to PDF attachments.
 
-## Publisher: <br>
-[dirkcaiusa](https://clawhub.ai/user/dirkcaiusa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dirkcaiusa](https://clawhub.ai/user/dirkcaiusa)
 
-## Use Case: <br>
-Developers and OpenClaw agent users use this skill to send generated reports by email, with Markdown reports converted to PDF when images or large files make attachment delivery more appropriate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Unsafe command execution may affect the msmtp email path. <br>
-Mitigation: Avoid msmtp mode until reviewed or patched; prefer the SMTP backend with validated recipient and subject values. <br>
-Risk: SMTP credentials can be handled through local configuration. <br>
-Mitigation: Prefer environment variables or a secret manager, use app-specific SMTP credentials, and avoid storing long-lived secrets in plaintext config files. <br>
-Risk: The skill can email generated report contents to a configured recipient. <br>
-Mitigation: Check the recipient, subject, and report contents before execution, especially for sensitive reports or attachments. <br>
+## Use Case:
 
+Developers and external users can use this skill to email generated reports from OpenClaw agents, with support for Markdown delivery, PDF conversion, and SMTP configuration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dirkcaiusa/email-reporter) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, PDF, Files, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown report files, generated PDF files, and email attachments configured through environment variables, config file values, or command-line arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3; optional Python packages include markdown and weasyprint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The msmtp backend can expose reports or allow command execution through unsafe command and temporary-file handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the SMTP backend only and keep msmtp disabled until command construction and temporary-file handling are fixed.
+
+Risk: SMTP credentials and emailed reports may be exposed if plaintext configuration files or unreviewed report content are used.
+
+Mitigation: Prefer environment variables or locked-down config-file permissions, use limited app passwords, and review report content before sending.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dirkcaiusa/skills/email-reporter)
+- [README.md](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown or PDF email attachments, plain-text status messages, and Markdown documentation examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May convert Markdown reports to PDF when images are present or files are larger than 500KB.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter and README state 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

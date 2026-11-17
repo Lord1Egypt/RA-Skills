@@ -1,48 +1,58 @@
-## Description: <br>
-Secure, per-user-isolated email reasoning and analysis via the iGPT Context Engine API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Secure, per-user-isolated email reasoning and analysis via the iGPT Context Engine API for summaries, task and decision extraction, sentiment detection, and structured answers over connected email context.
 
-## Publisher: <br>
-[Sammy-spk](https://clawhub.ai/user/Sammy-spk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sammy-spk](https://clawhub.ai/user/sammy-spk)
 
-## Use Case: <br>
-External users and developers use this skill to ask questions over connected email context, summarize threads, extract action items and decisions, assess sentiment or risk, and produce text or structured JSON answers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to sensitive connected email data and an iGPT API key. <br>
-Mitigation: Install only when the user trusts iGPT for the connected mailbox, use the intended API key, and revoke the datasource when access is no longer needed. <br>
-Risk: Email summaries, action items, and sentiment or risk assessments may be incomplete or misleading. <br>
-Mitigation: Verify important conclusions against the original emails before acting on them. <br>
-Risk: The required SDK adds a local Python dependency. <br>
-Mitigation: Install the SDK in an isolated Python environment. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to ask questions about connected email, summarize threads, extract action items and decisions, assess sentiment or risk, and produce text or structured JSON answers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Sammy-spk/igpt-email-ask) <br>
-- [iGPT Playground](https://igpt.ai/hub/playground/) <br>
-- [iGPT API keys](https://igpt.ai/hub/apikeys/) <br>
-- [iGPT documentation](https://docs.igpt.ai) <br>
-- [iGPT Ask API reference](https://docs.igpt.ai/docs/api-reference/ask) <br>
-- [iGPT security model](https://docs.igpt.ai/docs/security/model) <br>
-- [igptai Python SDK](https://pypi.org/project/igptai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python examples, shell setup commands, text responses, JSON, schema-validated JSON, and streaming SSE chunks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires IGPT_API_KEY and a connected email datasource; supports quality tiers and normalized error objects.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Connected mailbox data and user questions are sent to iGPT for analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where iGPT is trusted and approved to process the connected mailbox data.
+
+Risk: API keys and OAuth consent can grant access to sensitive email context.
+
+Mitigation: Use a least-privileged or approved email account where possible, review OAuth consent before authorizing, keep IGPT_API_KEY protected, and prefer a pinned reviewed igptai version in managed environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sammy-spk/skills/igpt-email-ask)
+- [iGPT Playground](https://igpt.ai/hub/playground/)
+- [iGPT Documentation](https://docs.igpt.ai)
+- [iGPT Ask API Reference](https://docs.igpt.ai/docs/api-reference/ask)
+- [iGPT Security Model](https://docs.igpt.ai/docs/security/model)
+- [igptai Python SDK](https://pypi.org/project/igptai/)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [Markdown guidance with Python examples; runtime answers may be text, JSON, or schema-validated JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports streaming SSE responses; requires IGPT_API_KEY and a connected email datasource.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

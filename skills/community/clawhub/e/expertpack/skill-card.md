@@ -1,43 +1,58 @@
-## Description: <br>
-ExpertPack guides agents through loading, creating, hydrating, and configuring structured knowledge packs for AI context and RAG workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ExpertPack helps agents load, create, hydrate, and configure retrieval for structured knowledge packs that also work as Obsidian vaults.
 
-## Publisher: <br>
-[brianhearn](https://clawhub.ai/user/brianhearn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brianhearn](https://clawhub.ai/user/brianhearn)
 
-## Use Case: <br>
-Developers and agent operators use this skill to consume or author ExpertPacks, configure RAG over pack content, and work with Obsidian-compatible knowledge vaults. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unreviewed pack content may be indexed into RAG or shared unintentionally. <br>
-Mitigation: Review pack content before adding it to RAG or sharing it, and only point memorySearch.extraPaths at directories intended for indexing. <br>
-Risk: Time-bound knowledge in volatile pack files may become stale. <br>
-Mitigation: Check volatile file staleness at session start and refresh only when the user initiates or approves the update. <br>
+## Use Case:
 
+Developers and external agent builders use this skill to consume ExpertPacks as agent context, create or hydrate new packs, configure RAG over pack directories, and work with packs in Obsidian-compatible workflows.
 
-## Reference(s): <br>
-- [ExpertPack homepage](https://expertpack.ai) <br>
-- [Consumption Reference](references/consumption.md) <br>
-- [Hydration Reference](references/hydration.md) <br>
-- [ExpertPack Schemas Reference](references/schemas.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration, shell commands] <br>
-**Output Format:** [Markdown guidance with inline JSON, YAML, and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No hidden execution or credential behavior found in server security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.1 (source: server release evidence) <br>
+Risk: An agent could read or index ExpertPack directories that the user did not intend to expose as context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Point RAG only at approved pack directories and review pack contents before adding them to agent memory paths.
+
+Risk: Optional companion tools or Obsidian plugins can add behavior outside this Markdown guidance package.
+
+Mitigation: Review companion tools and Obsidian plugins separately before installing or enabling them.
+
+## Reference(s):
+
+- [ExpertPack Homepage](https://expertpack.ai)
+- [Consumption Reference](references/consumption.md)
+- [Hydration Reference](references/hydration.md)
+- [ExpertPack Schemas Reference](references/schemas.md)
+- [ExpertPack Schema Docs](https://expertpack.ai/#schemas)
+- [Obsidian Compatibility](https://expertpack.ai/#obsidian)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with configuration snippets and shell command references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance for ExpertPack consumption, hydration, RAG setup, Obsidian workflows, and companion-tool selection.]
+
+## Skill Version(s):
+
+1.4.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

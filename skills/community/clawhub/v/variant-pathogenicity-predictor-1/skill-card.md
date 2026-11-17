@@ -1,39 +1,52 @@
-## Description: <br>
-Integrate REVEL, CADD, PolyPhen scores to predict variant pathogenicity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrate REVEL, CADD, PolyPhen scores to predict variant pathogenicity.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and genomics analysts use this skill to run a bounded pathogenicity scoring workflow that combines REVEL, CADD, and PolyPhen-style inputs into a classification and score breakdown. Its outputs should be reviewed as rough research heuristics, not clinical or diagnostic interpretations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill presents medically meaningful pathogenicity labels from a simple heuristic with unsupported capability claims.
+
+Mitigation: Treat results as rough research heuristics only; require domain validation, explicit medical disclaimers, and documented data sources before any clinical or diagnostic use.
+
+Risk: Weak input handling may make variant or file-based results unreliable when inputs are incomplete, malformed, or outside the documented score assumptions.
+
+Mitigation: Validate input formats and score ranges before execution, review generated classifications manually, and report missing or unsupported evidence instead of relying on defaults.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users, developers, and analysts can use this skill to run a local heuristic workflow that combines variant scoring signals into a pathogenicity classification and score breakdown. Results should support review, not replace clinical or diagnostic judgment. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Variant pathogenicity output may be mistaken for medical or diagnostic advice. <br>
-Mitigation: Treat results as a basic heuristic and require qualified clinical or genomic review before using them in decisions. <br>
-Risk: Genomic or clinical inputs can be sensitive if placed in shared, synced, or retained workspaces. <br>
-Mitigation: Run the script in a controlled local workspace and avoid identifiable genomic or clinical data unless appropriate access controls are in place. <br>
+**Output Format:** [Markdown or terminal text with score summaries and execution guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May include pathogenicity classification, composite score, individual score breakdown, assumptions, risks, and validation needs.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text results and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The local Python helper prints a composite score, classification, and individual score breakdown; outputs should be treated as heuristic and non-diagnostic.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,53 @@
-## Description: <br>
-Helps developers design and build autonomous AI agents, including architecture, tool integration, memory systems, planning strategies, and multi-agent orchestration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert in designing and building autonomous AI agents. Helps with agent architecture, tool integration, memory systems, planning strategies, and multi-agent orchestration.
 
-## Publisher: <br>
-[ericn26-star](https://clawhub.ai/user/ericn26-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ericn26-star](https://clawhub.ai/user/ericn26-star)
 
-## Use Case: <br>
-Developers and engineers use this skill to design, implement, and review autonomous AI agent workflows with practical architecture patterns, tool schemas, memory strategies, safety rails, and debugging guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated agent designs or code may introduce unsafe tool permissions, persistent memory, logging exposure, external API calls, or weak approval flows if used without review. <br>
-Mitigation: Review tool permissions, memory persistence, logging, external API calls, and approval flows before running agent code generated with this skill. <br>
+## Use Case:
 
+Developers and engineers use this skill to design, prototype, and review autonomous agent systems, including tool integration, memory strategy, planning loops, and multi-agent orchestration. It is suited for implementation guidance where safety rails such as iteration limits, error handling, logging, and graceful fallback are needed.
 
-## Reference(s): <br>
-- [Ai Agents Architect on ClawHub](https://clawhub.ai/ericn26-star/eric-ai-agents-architect-v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown with Python and JSON code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact _meta.json) <br>
+Risk: The skill may activate for a wide range of AI-agent design topics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review whether its architecture guidance is appropriate for the target use case before applying recommendations.
+
+Risk: Agent architecture proposals can introduce unsafe autonomy if implemented without bounds.
+
+Mitigation: Apply the skill's recommended safety rails, including iteration limits, explicit error handling, logging, tracing, and graceful fallbacks.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ericn26-star/skills/eric-ai-agents-architect-v2)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; no executable behavior is bundled in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

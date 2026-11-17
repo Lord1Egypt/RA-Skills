@@ -1,52 +1,70 @@
-## Description: <br>
-Comprehensive skill for Obsidian plugin development with TypeScript, including plugin lifecycle, CodeMirror 6 editor extensions, framework integration, Vault API patterns, settings migrations, security, accessibility, testing, CI/CD, and community submission guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive skill for Obsidian plugin development with TypeScript, covering lifecycle, CodeMirror 6 editor extensions, UI frameworks, Vault APIs, settings, security, testing, CI/CD, and community submission.
 
-## Publisher: <br>
-[yungho](https://clawhub.ai/user/yungho) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yungho](https://clawhub.ai/user/yungho)
 
-## Use Case: <br>
-Developers and AI coding agents use this skill to create, debug, test, release, and prepare Obsidian community plugins written in TypeScript. It provides patterns and checklists for lifecycle management, editor extensions, settings, accessibility, security, and submission review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Plugin authors could copy API-key examples or store long-lived credentials in synced or plaintext settings. <br>
-Mitigation: Use Obsidian SecretStorage where available, avoid persisting long-lived keys in plaintext settings, and redact tokens from logs and errors. <br>
-Risk: Plugins generated from the guidance may call external HTTPS endpoints without clearly explaining user data transfer. <br>
-Mitigation: Validate HTTPS endpoints and disclose any external data transfer to users before release. <br>
+## Use Case:
 
+Developers and coding agents use this skill to create, debug, test, package, and prepare Obsidian community plugins written in TypeScript.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yungho/obsidian-plugin-dev-skill) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Lifecycle and core API](artifact/reference/lifecycle.md) <br>
-- [CodeMirror 6 editor extensions](artifact/reference/editor-extensions.md) <br>
-- [Framework integration](artifact/reference/frameworks.md) <br>
-- [Vault operations](artifact/reference/vault-operations.md) <br>
-- [Settings migration](artifact/reference/settings-migration.md) <br>
-- [Security and SecretStorage](artifact/reference/security.md) <br>
-- [Accessibility](artifact/reference/accessibility.md) <br>
-- [Testing](artifact/reference/testing.md) <br>
-- [CI/CD and release](artifact/reference/cicd-release.md) <br>
-- [Obsidian ESLint plugin](https://github.com/obsidianmd/eslint-plugin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript, JSON, CSS, YAML, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Topic-specific reference files are loaded as needed for plugin lifecycle, security, accessibility, testing, and release workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Generated plugin guidance could lead to reversible Base64 storage for API keys or other secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require Obsidian SecretStorage or another real secure storage mechanism, and review any generated credential-handling code before use.
+
+Risk: Generated commands or workflows may modify vault files, delete files, copy builds into a live plugin folder, send network requests, or push release tags.
+
+Mitigation: Review generated code and shell commands before execution, especially file operations, network requests, release automation, and live-vault deployment steps.
+
+Risk: Unpinned one-off developer tool execution can change behavior over time.
+
+Mitigation: Pin tool versions or install developer tools locally before running linting, build, or release commands.
+
+## Reference(s):
+
+- [Skill overview](SKILL.md)
+- [README](README.md)
+- [Lifecycle & Core API](reference/lifecycle.md)
+- [CodeMirror 6 Editor Extensions](reference/editor-extensions.md)
+- [React / Svelte / Vue Integration](reference/frameworks.md)
+- [Vault & File Operations](reference/vault-operations.md)
+- [Settings & Data Migration](reference/settings-migration.md)
+- [Security & SecretStorage](reference/security.md)
+- [Accessibility](reference/accessibility.md)
+- [CSS Styling](reference/css-accessibility.md)
+- [Dev Workflow & CLI](reference/dev-workflow.md)
+- [Testing](reference/testing.md)
+- [ESLint Rules](reference/eslint-rules.md)
+- [CI/CD & Release](reference/cicd-release.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript, JavaScript, JSON, CSS, YAML, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are advisory agent responses that should be reviewed before applying to plugin source code, release workflows, or vault files.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

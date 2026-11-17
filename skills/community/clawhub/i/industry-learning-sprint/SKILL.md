@@ -1,6 +1,6 @@
 ---
 name: industry-learning-sprint
-description: "Activate when: user is entering an unfamiliar industry and needs a working mental model fast; user says 'I need to understand this sector before a meeting next week'; user is evaluating an acquisition or investment in a domain they don't know; user is preparing for a high-stakes expert conversation with limited time; user needs to produce an investment thesis or market entry recommendation under time pressure. Do NOT activate when: user already has deep domain expertise in the target industry; user needs regulatory or legal precision — engage domain-specific counsel instead."
+description: "Activate when: user is entering an unfamiliar industry and needs a working mental model fast; user says 'I need to understand this sector before a meeting next week'; user is evaluating an acquisition or investment in a domain they don't know; user is preparing for a high-stakes expert conversation with limited time; user needs to produce an investment thesis or market entry recommendation under time pressure. Do NOT activate when: user already has deep domain expertise in the target industry; user needs regulatory or legal precision — engage domain-specific counsel instead. More: deciqai.com/c/industry-learning-sprint"
 ---
 
 # Industry Learning Sprint
@@ -9,7 +9,7 @@ description: "Activate when: user is entering an unfamiliar industry and needs a
 
 A structured 3-step process (financial reports → expert dialogue → unique view) for building a working industry mental model in approximately one week. The sequence is strict: financials before experts, experts before view formation. Financial reports reveal how an industry actually works stripped of marketing narrative; gross margin, capex pattern, and disclosed risk factors encode economic reality.
 
-**Neighbors:** [`probabilistic-thinking`](../../probabilistic-thinking/SKILL.md) (assign confidence intervals before expert conversations) · [`first-principles`](../../first-principles/SKILL.md) (stress-test the view after Step 3) · [`confirmation-bias`](../../confirmation-bias/SKILL.md) (audit Step 3) · [`non-consensus-thinking`](../non-consensus-thinking/SKILL.md) (evaluate if the view is truly non-consensus) · [`narrow-gate-strategy`](../narrow-gate-strategy/SKILL.md) (identify the leverage point for focused entry).
+**Neighbors:** [`probabilistic-thinking`](../../probabilistic-thinking/SKILL.md) (assign confidence intervals before expert conversations) · [`first-principles`](../../first-principles/SKILL.md) (stress-test the view after Step 3) · [`confirmation-bias`](../../confirmation-bias/SKILL.md) (audit Step 3) · `non-consensus-thinking` (evaluate if the view is truly non-consensus) · `narrow-gate-strategy` (identify the leverage point for focused entry).
 
 ---
 ## When to Use
@@ -115,4 +115,6 @@ In Coach mode, respond one step at a time. Each [WAIT] is a hard stop — output
 - [ ] Known gaps explicitly documented. Sprint completed within approximately one week.
 
 ---
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/industry-learning-sprint** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/industry-learning-sprint.json*

@@ -1,44 +1,55 @@
-## Description: <br>
-Research dropshipping products and stores using TikTok and Facebook ad signals, product detail, and store intelligence from PipiAds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research dropshipping products and stores using TikTok and Facebook ad signals, product detail, and store intelligence from PipiAds.
 
-## Publisher: <br>
-[fanyanggod](https://clawhub.ai/user/fanyanggod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fanyanggod](https://clawhub.ai/user/fanyanggod)
 
-## Use Case: <br>
-External users, developers, and commerce operators use this skill to research dropshipping products, ad creatives, stores, and competitor patterns using PipiAds data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local MCP server uses the user's PipiAds/PipiSpy API key. <br>
-Mitigation: Store PIPIADS_API_KEY as a secret environment variable, avoid sharing logs or configuration that expose it, and rotate the key if it is disclosed. <br>
-Risk: The skill installs a pinned npm package that runs locally as an MCP server. <br>
-Mitigation: Verify the pinned pipiads-mcp-server package and version before installation, and install it only in environments where the package is trusted. <br>
-Risk: PipiAds API calls can consume paid account credits. <br>
-Mitigation: Use tightly scoped searches, monitor credit usage and billing, and avoid broad exploratory queries unless the cost is acceptable. <br>
+## Use Case:
 
+External users and developers use this skill to research dropshipping-style products, paid ad patterns, competing stores, creative angles, saturation, and repeatable niche signals from PipiAds data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fanyanggod/pipiads-dropshipping-product-research) <br>
-- [PipiAds homepage](https://www.pipiads.com) <br>
-- [PipiSpy account and API key portal](https://www.pipispy.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown research guidance with setup commands and API-derived findings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local PipiAds MCP server and the user's PIPIADS_API_KEY; API calls may consume account credits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: The globally installed pipiads-mcp-server npm package receives PIPIADS_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if you trust the package and use a limited, revocable API key.
+
+Risk: API calls can consume PipiAds account credits and may touch account data with meaningful spend or sensitivity.
+
+Mitigation: Monitor credit usage, scope searches tightly, and run the MCP server in an isolated environment when account exposure matters.
+
+## Reference(s):
+
+- [PipiAds](https://www.pipiads.com)
+- [PipiSpy](https://www.pipispy.com/)
+- [ClawHub skill listing](https://clawhub.ai/fanyanggod/skills/pipiads-dropshipping-product-research)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown research summaries and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include product, ad, store, competitor, saturation, and credit-use observations based on PipiAds account data.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

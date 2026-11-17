@@ -1,0 +1,11 @@
+{
+  "model": "doubao-seedance-2-5-260628",
+  "prompt": "Edit video 1: replace the background with a quiet wood-furnished study, preserving the person's actions and original audio.",
+  "duration_seconds": -1,
+  "resolution": "720p",
+  "aspect_ratio": "adaptive",
+  "omni_reference_task_type": "edit",
+  "reference_video_urls": [
+    "https://example.com/source.mp4"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "omni-ecom://schemas/connector-capability-1.0.json",
+  "title": "Omni E-commerce Connector Capability",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "connector_id", "platform", "connector_version", "mode", "status", "read_actions", "write_actions", "auth_type", "verified_at"],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "connector_id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{2,80}$" },
+    "platform": { "type": "string", "minLength": 1 },
+    "connector_version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "mode": { "enum": ["mock", "api", "file", "browser_assisted"] },
+    "status": { "enum": ["unverified", "sandbox_verified", "read_only_verified", "write_ready", "disabled"] },
+    "read_actions": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "write_actions": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "auth_type": { "enum": ["none", "oauth", "api_key_ref", "browser_session_ref"] },
+    "rate_limit": { "type": "object" },
+    "verified_at": { "type": ["string", "null"], "format": "date-time" }
+  }
+}

@@ -1,44 +1,59 @@
-## Description: <br>
-Transcribe and organize voice memos with automatic categorization and information extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribe and organize voice memos with automatic categorization and information extraction.
 
-## Publisher: <br>
-[scikkk](https://clawhub.ai/user/scikkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scikkk](https://clawhub.ai/user/scikkk)
 
-## Use Case: <br>
-External users and developers use this skill to turn voice notes, audio memos, or spoken notes into structured text, summaries, action items, and searchable memo records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audio files may be sent to a third-party transcription service. <br>
-Mitigation: Use the skill only when SenseAudio retention, security, and compliance terms are acceptable, and prefer an explicit confirmation step before upload. <br>
-Risk: The transcribed text, extracted dates, tasks, contacts, categories, or summaries may be incomplete or incorrect. <br>
-Mitigation: Review and edit extracted information before using it for planning, records, or downstream automation. <br>
-Risk: The skill requires an external API key. <br>
-Mitigation: Store SENSEAUDIO_API_KEY in the environment and avoid embedding it in prompts, code snippets, logs, or shared files. <br>
+## Use Case:
 
+External users and developers use this skill to turn voice notes or spoken memos into organized text, structured memo data, summaries, categories, and action items.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/scikkk/memo) <br>
-- [SenseAudio homepage](https://senseaudio.cn) <br>
-- [SenseAudio ASR API](https://senseaudio.cn/docs/speech_recognition/http_api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code snippets and JSON or Markdown output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SENSEAUDIO_API_KEY and may send audio files to SenseAudio for transcription.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Voice memo audio is sent to the SenseAudio third-party API for transcription.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for recordings you are comfortable uploading, and check SenseAudio data handling terms before processing confidential, regulated, or highly personal audio.
+
+Risk: The SenseAudio API key is required for use and could be exposed if handled directly in prompts or files.
+
+Mitigation: Store the key in the SENSEAUDIO_API_KEY environment variable and avoid embedding it in shared code, transcripts, or logs.
+
+Risk: A mistaken file path could upload unintended local audio.
+
+Mitigation: Confirm each audio file path before sending it to the transcription API.
+
+## Reference(s):
+
+- [SenseAudio Platform](https://senseaudio.cn)
+- [SenseAudio API Key](https://senseaudio.cn/platform/api-key)
+- [SenseAudio ASR API](https://senseaudio.cn/docs/speech_recognition/http_api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell code blocks plus structured JSON memo examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include cleaned transcription text, structured memo JSON, extracted dates, tasks, contacts, category classification, summaries, and Markdown exports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

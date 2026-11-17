@@ -1,48 +1,61 @@
-## Description: <br>
-Provides MASA Blazor development reference guidance for using components, styles, configuration, and best practices in Blazor applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides MASA Blazor development reference guidance for components, styles, configuration, and best practices, including the official documentation URL pattern.
 
-## Publisher: <br>
-[luubing](https://clawhub.ai/user/luubing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luubing](https://clawhub.ai/user/luubing)
 
-## Use Case: <br>
-Developers building Blazor applications use this skill to find MASA Blazor documentation paths, component usage examples, setup steps, theme guidance, and UI implementation patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated coding snippets may add packages, scripts, media players, map components, file inputs, uploads, or third-party URLs. <br>
-Mitigation: Review generated snippets and dependency changes before applying them to a Blazor project. <br>
-Risk: Documentation-helper output can become stale as MASA Blazor APIs and component behavior change. <br>
-Mitigation: Confirm critical implementation details against the linked MASA Blazor documentation before production use. <br>
+## Use Case:
 
+Developers and engineers use this skill when building Blazor applications with MASA Blazor and need component usage examples, setup snippets, styling guidance, theming details, or links into the MASA documentation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/luubing/masa-blazor) <br>
-- [MASA Blazor documentation](https://docs.masastack.com/blazor) <br>
-- [MASA Blazor GitHub repository](https://github.com/masastack/MASA.Blazor) <br>
-- [MASA Blazor demo site](https://blazor-pro.masastack.com) <br>
-- [Component reference index](references/components.md) <br>
-- [Styles reference](references/styles.md) <br>
-- [Theme reference](references/theme.md) <br>
-- [Form inputs reference](references/form-inputs.md) <br>
-- [Mobile components reference](references/mobiles.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with Razor, C#, HTML, CSS, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include MASA Blazor documentation URLs and component examples for developer review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill may provide setup snippets that add the MASA.Blazor dependency to a Blazor project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review dependency changes and package installation commands before applying them to a project.
+
+Risk: The documentation and examples are primarily in Chinese, which can lead to misunderstanding for readers who do not read Chinese.
+
+Mitigation: Ask the agent to translate or explain generated guidance before implementation when the reader is not comfortable with Chinese.
+
+## Reference(s):
+
+- [MASA Blazor Documentation](https://docs.masastack.com/blazor)
+- [MASA Blazor GitHub Repository](https://github.com/masastack/MASA.Blazor)
+- [MASA Blazor Pro Example](https://blazor-pro.masastack.com)
+- [components.md](references/components.md)
+- [styles.md](references/styles.md)
+- [theme.md](references/theme.md)
+- [form-inputs.md](references/form-inputs.md)
+- [mobiles.md](references/mobiles.md)
+- [supplementary.md](references/supplementary.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Razor, C#, HTML, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Primarily Chinese-language MASA Blazor reference material with links to official documentation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

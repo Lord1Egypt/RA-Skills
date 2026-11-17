@@ -1,42 +1,57 @@
-## Description: <br>
-Use when documents must be read from or maintained in a WizNote or 为知笔记 server, mirrored into a local repository, or organized under a configurable note category root. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when documents must be read from or maintained in a WizNote or 为知笔记 server, mirrored into a local repository, or organized under a configurable note category root.
 
-## Publisher: <br>
-[735140144](https://clawhub.ai/user/735140144) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[735140144](https://clawhub.ai/user/735140144)
 
-## Use Case: <br>
-Developers and small teams use this skill to connect an agent to a user-supplied WizNote server, list and fetch notes, create or update HTML notes, and keep repository-local document mirrors under a configured category root. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can enable agent or script access to private WizNote notes, including read and write operations. <br>
-Mitigation: Install only for intended WizNote workflows, use a trusted HTTPS server URL, test note listing before writes, and verify updates in WizNote after write operations. <br>
-Risk: WizNote credentials and mirrored private notes could be exposed if placed in shared files or repositories. <br>
-Mitigation: Avoid hardcoding real passwords, prefer environment variables or explicit runtime secrets, consider a least-privileged account, and keep mirrored private notes out of shared repositories unless intended. <br>
+## Use Case:
 
+External developers and small teams use this skill to connect an agent workflow to a user-supplied WizNote server, read or maintain notes, and mirror selected documentation into a local repository.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/735140144/wiznote-docs) <br>
-- [README](artifact/README.md) <br>
-- [README zh-CN](artifact/README.zh-CN.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent guidance and helper usage patterns for user-configured WizNote read, write, and mirror workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles WizNote passwords, tokens, and note content without enough transport and endpoint safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted WizNote server over HTTPS, avoid plaintext HTTP, and add same-origin or allowlist checks for kbServer before using sensitive notes.
+
+Risk: Create and save helpers perform real remote writes to the configured WizNote server.
+
+Mitigation: Require explicit confirmation before write operations, list existing notes before changes, and re-list the category afterward to verify the result.
+
+## Reference(s):
+
+- [Skill Definition](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [README.zh-CN](artifact/README.zh-CN.md)
+- [ClawHub Skill Page](https://clawhub.ai/735140144/skills/wiznote-docs)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/735140144)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell snippets; helper calls may also create or update remote WizNote notes and local mirror files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-supplied WizNote base URL, credentials, category root, and repository root; create and save helpers perform remote writes.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

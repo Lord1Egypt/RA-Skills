@@ -1,37 +1,55 @@
-## Description: <br>
-Agent Hand helps users manage and monitor multiple AI agent terminal sessions from a unified dashboard with session switching, sorting, and hook-based detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Hand helps users monitor and manage multiple AI agent sessions from a unified terminal dashboard.
 
-## Publisher: <br>
-[weykon](https://clawhub.ai/user/weykon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weykon](https://clawhub.ai/user/weykon)
 
-## Use Case: <br>
-Solo developers and OPC founders use Agent Hand to monitor, prioritize, switch between, and manage multiple AI agent sessions from one terminal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installation and hook setup are broad enough that users should review them before installing. <br>
-Mitigation: Inspect the install script, prefer a pinned release or verified package, and run hook installation only after confirming changed files, session data access, data egress, and removal steps. <br>
+## Use Case:
 
+Solo developers, founders, and other users running multiple AI coding agents use this skill to understand, install, and operate Agent Hand as a terminal command center for session monitoring, switching, and hook-based detection.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes install, launch, and hook setup commands for terminal-based AI agent session management.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.8 (source: server release metadata) <br>
+Risk: The one-line installer downloads and runs mutable remote code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned release or installer, inspect it before execution, and verify a checksum when available.
+
+Risk: Hook installation may make broad persistent changes across multiple agent configurations.
+
+Mitigation: Review what `agent-hand hooks install` changes before enabling it and confirm there is a clear uninstall path.
+
+## Reference(s):
+
+- [ClawHub Agent Hand Skill Page](https://clawhub.ai/weykon/skills/agent-hand)
+- [Agent Hand Website](https://agent-hand.dev)
+- [Agent Hand GitHub Repository](https://github.com/weykon/agent-hand)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include installation commands, key bindings, pricing notes, and operational guidance for a terminal dashboard.]
+
+## Skill Version(s):
+
+0.3.8 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

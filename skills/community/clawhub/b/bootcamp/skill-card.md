@@ -1,43 +1,54 @@
-## Description: <br>
-Auto-generates a CLI reference doc so your agent stops guessing OpenClaw commands and starts working. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-generates a CLI reference doc so your agent stops guessing OpenClaw commands and starts working. Discovers all commands, subcommands, and flags from your installed version.
 
-## Publisher: <br>
-[dank-varley](https://clawhub.ai/user/dank-varley) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dank-varley](https://clawhub.ai/user/dank-varley)
 
-## Use Case: <br>
-Developers and agents use this skill to generate a local OpenClaw CLI reference for the installed OpenClaw version, including commands, subcommands, flags, JSON support, and optional documentation links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The script invokes the locally installed OpenClaw CLI and writes generated reference files under ~/.openclaw by default. <br>
-Mitigation: Review the script before execution and use --output=PATH when you want the generated file written somewhere other than the default OpenClaw workspace notes directory. <br>
-Risk: Enrich mode can fetch documentation from docs.openclaw.ai and incorporate retrieved material into the generated note. <br>
-Mitigation: Use local-only mode when network access is not desired, and review enriched output before relying on it. <br>
-Risk: Non-interactive mode can overwrite an existing openclaw-cli-reference.md file. <br>
-Mitigation: Back up the existing reference or run without --yes to choose whether to overwrite, keep both versions, or cancel. <br>
+## Use Case:
 
+Developers and OpenClaw agent users run this skill to generate a local Markdown reference for the installed OpenClaw CLI, including commands, subcommands, flags, JSON support, and selected usage notes.
 
-## Reference(s): <br>
-- [OpenClaw Boot Camp release page](https://clawhub.ai/dank-varley/bootcamp) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown file with CLI reference content and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes the generated reference to the OpenClaw workspace notes directory by default; optional enrich mode adds documentation links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence) <br>
+Risk: The skill writes a persistent CLI reference file into the OpenClaw workspace notes directory, or to a custom output path when provided.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the target output path before running, use the interactive prompt to keep or overwrite existing references, and inspect the generated Markdown before relying on it.
+
+Risk: Enrich mode fetches documentation from docs.openclaw.ai and appends fetched content to the generated reference.
+
+Mitigation: Use local-only mode when network access is not desired, and use enrich mode only when documentation-derived additions are acceptable for the agent's workspace.
+
+## Reference(s):
+
+- [OpenClaw Boot Camp ClawHub page](https://clawhub.ai/dank-varley/skills/bootcamp)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown reference file with CLI commands, flags, subcommands, and usage notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes openclaw-cli-reference.md to the OpenClaw workspace notes directory by default; optional enrich mode can add documentation-derived flag details.]
+
+## Skill Version(s):
+
+1.2.1 (source: server-resolved release metadata and script header)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

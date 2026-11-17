@@ -1,45 +1,55 @@
-## Description: <br>
-Operates an OOMOL-connected Amara account for reading, creating, updating, and deleting Amara data through the oo CLI connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Amara through an OOMOL-connected account to read, create, update, and delete Amara data.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent inspect Amara schemas and run Amara read, write, and subtitle workflow actions through a connected OOMOL account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, update, or delete Amara data when write or destructive actions are used. <br>
-Mitigation: Require explicit user intent and confirm the exact payload, target, and expected effect before running write or destructive actions. <br>
-Risk: The skill operates through a connected Amara account and requires sensitive account credentials. <br>
-Mitigation: Install it only for intended Amara account operation, rely on the connected credential flow, and avoid exposing raw tokens in prompts, logs, or files. <br>
-Risk: Running setup or connection commands unnecessarily can alter authentication or connection state. <br>
-Mitigation: Use first-time setup steps only after an oo CLI, authentication, connection, scope, or billing error requires them. <br>
+## Use Case:
 
+People managing Amara videos, subtitles, teams, languages, and activity use this skill to retrieve information or carry out requested changes through their connected account.
 
-## Reference(s): <br>
-- [ClawHub Amara Skill](https://clawhub.ai/oomol/oo-amara) <br>
-- [OOMOL Publisher Profile](https://clawhub.ai/user/oomol) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [Amara](https://amara.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands should inspect the live connector schema before constructing action payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: The CLI dependency can change other agents’ installed skills, an effect the skill does not explain.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI’s installation effects first. Prefer a reviewed, preinstalled CLI, or set OO_SKILLS_SYNC_DISABLED=1 when only Amara access is needed.
+
+Risk: Actions performed through the connected account can change or delete Amara data.
+
+Mitigation: Check the connected account’s permissions and retain the required approvals for changes.
+
+## Reference(s):
+
+- [Amara API documentation](https://apidocs.amara.org/)
+- [Amara](https://amara.org)
+- [Amara skill release on ClawHub](https://clawhub.ai/oomol/skills/oo-amara)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Text]
+
+**Output Format:** [oo CLI commands with JSON payloads and Amara action results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Action results depend on the selected Amara operation.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

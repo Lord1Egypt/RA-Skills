@@ -1,40 +1,53 @@
-## Description: <br>
-Detects a user's donation, tipping, reward, or gift intent; collects and validates the amount; confirms with the user; then calls a payment skill to create the payment flow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recognizes a user's intent to send a tip, collects and validates the amount, confirms it with the user, and invokes a payment skill to create a tip order and display payment information.
 
-## Publisher: <br>
-[sayxxx](https://clawhub.ai/user/sayxxx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sayxxx](https://clawhub.ai/user/sayxxx)
 
-## Use Case: <br>
-External assistants can use this skill to handle donation or tipping flows by collecting a positive amount, enforcing the single-payment limit, confirming user intent, and passing the request to a payment skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can initiate real payment creation while ignoring recipient information from the user's message. <br>
-Mitigation: Install only where the payment skill, recipient, and merchant identity are verified, and show the recipient or merchant identity to the user before any payment link is opened. <br>
-Risk: Users may be asked to open or copy payment links returned from another skill. <br>
-Mitigation: Review the payment skill integration and payment-link domain before deployment, and require user confirmation before handing off to payment. <br>
+## Use Case:
 
+External users and agents use this skill to handle tipping flows: identify tip intent, ask for or validate the amount, confirm the transaction, and hand the payment request to a payment skill.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sayxxx/donate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Conversational text or Markdown prompts, plus a payment-skill call with amount, order_type, and description parameters.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Collects an amount, confirms with the user, relays payment results, and does not collect a recipient.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Tip payment orders may be created without verifying the intended recipient or merchant.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only where the payment skill is already bound to one known recipient or merchant; add recipient verification before supporting named recipients.
+
+Risk: Users may see an external payment link without a clear distinction between order creation and completed payment.
+
+Mitigation: Clearly label payment links as external and make the pending-versus-paid status explicit before treating a tip as complete.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sayxxx/skills/donate)
+
+## Skill Output:
+
+**Output Type(s):** [Text, API calls, Guidance]
+
+**Output Format:** [Conversational text with payment parameters and returned payment information]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Validates that the tip amount is greater than 0 and no more than 10000; recipient information is not collected.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,55 @@
-## Description: <br>
-Agentsec audits AI agent skills for security vulnerabilities against the OWASP Agentic Skills Top 10 and can generate text, JSON, SARIF, or HTML audit reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit AI agent skills for security vulnerabilities when scanning installed skills against the OWASP Agentic Skills Top 10, checking skills before running them, gating CI/CD on skill safety, or generating audit reports for stakeholders.
 
-## Publisher: <br>
-[markeljan](https://clawhub.ai/user/markeljan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[markeljan](https://clawhub.ai/user/markeljan)
 
-## Use Case: <br>
-Developers, security reviewers, and release engineers use Agentsec to scan installed agent skills before running them, check OWASP Agentic Skills Top 10 coverage, gate CI/CD, and produce audit reports for stakeholders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Default scan scope may read more local skill files than expected. <br>
-Mitigation: Review the directories Agentsec will scan and prefer a path-scoped command such as scanning a specific skill directory in sensitive environments. <br>
+## Use Case:
 
+Developers and engineers use Agentsec to audit installed agent skills, check OWASP Agentic Skills Top 10 coverage, gate CI/CD workflows, and generate security reports for stakeholders.
 
-## Reference(s): <br>
-- [Agentsec homepage](https://agentsec.sh) <br>
-- [Agent Skills specification](https://agentskills.io/specification) <br>
-- [ClawHub skill page](https://clawhub.ai/markeljan/skills/agentsec) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; Agentsec itself can emit text, JSON, SARIF, or HTML reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill may prompt scans over local skill directories; path-scoped scans are available for narrower review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill recommends executing an npm-distributed CLI, including global installation options, to scan local skill directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing in sensitive environments and prefer a pinned version, lockfile-managed local install, or internally vetted package mirror.
+
+Risk: Default scans inspect multiple known skill directories and may cover more local content than intended.
+
+Mitigation: Use targeted scans with --path or --platform when only selected skill directories should be inspected.
+
+## Reference(s):
+
+- [Agentsec homepage](https://agentsec.sh)
+- [Agent Skills specification](https://agentskills.io/specification)
+- [Skills.sh](https://skills.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; generated audit reports may be text, JSON, SARIF, or HTML.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can guide scans across default skill directories or targeted paths and platforms.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

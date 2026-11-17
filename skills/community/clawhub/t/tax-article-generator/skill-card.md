@@ -1,40 +1,51 @@
-## Description: <br>
-Generate South African tax/VAT/SARS compliance articles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate South African tax/VAT/SARS compliance articles.
 
-## Publisher: <br>
-[wespeakallday](https://clawhub.ai/user/wespeakallday) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wespeakallday](https://clawhub.ai/user/wespeakallday)
 
-## Use Case: <br>
-External content teams and tax-service operators use this skill to draft South African SARS, VAT, PAYE, and provisional-tax compliance articles with structured SEO metadata. Generated deadlines, rates, penalties, and compliance claims should be checked against official or professional sources before publication. <br>
-
-### Deployment Geography for Use: <br>
-South Africa <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated tax deadlines, rates, penalties, or compliance statements may be inaccurate or stale. <br>
-Mitigation: Review generated content against official SARS guidance or qualified professional advice before publishing. <br>
-Risk: Optional WordPress or webhook publishing could expose generated content to an external system if added later. <br>
-Mitigation: Treat publishing as a separate integration with its own authentication, authorization, review, and access-control checks. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wespeakallday/tax-article-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/wespeakallday) <br>
+## Use Case:
+
+External publishers, tax practices, and content teams use this skill to draft South African SARS, VAT, PAYE, and provisional tax compliance articles with structured JSON metadata.
+
+### Deployment Geography for Use:
+
+South Africa
+
+## Known Risks and Mitigations:
+
+Risk: Generated tax deadlines, penalty rates, or legal compliance statements may be inaccurate if source variables or template assumptions are stale.
+
+Mitigation: Review all SARS, VAT, PAYE, provisional-tax deadlines, penalty rates, and compliance statements before publishing.
+
+Risk: A future WordPress publishing integration could introduce credential handling or unintended posting risks.
+
+Mitigation: Require separate credential controls, permission scoping, and publishing approval checks before enabling any WordPress REST API workflow.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [JSON file containing Markdown article content and SEO metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes generated article JSON to a local output directory when run as a CLI.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+**Output Type(s):** [text, markdown, configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [JSON file containing Markdown article content and SEO metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated article fields include title, author, date, year, article type, content, and SEO metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

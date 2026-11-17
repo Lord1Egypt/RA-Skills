@@ -1,46 +1,57 @@
-## Description: <br>
-Configure Claude Code to work with custom model providers (like MiniMax, OpenAI-compatible APIs). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configure Claude Code to use OpenAI-compatible custom model providers through a local Anthropic-to-OpenAI API proxy.
 
-## Publisher: <br>
-[mark-heartflow](https://clawhub.ai/user/mark-heartflow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mark-heartflow](https://clawhub.ai/user/mark-heartflow)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure Claude Code for OpenAI-compatible custom model providers through a local Anthropic-to-OpenAI proxy, and to troubleshoot model validation, streaming, encoding, and connection issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The proxy includes a hardcoded third-party endpoint and API key. <br>
-Mitigation: Remove the embedded key, configure a trusted upstream endpoint explicitly, and supply credentials through a safer secret mechanism before use. <br>
-Risk: Prompt or repository content may be logged by the proxy. <br>
-Mitigation: Disable request-body logging and avoid using the proxy with sensitive repositories or prompts unless logging and retention are controlled. <br>
-Risk: Claude Code traffic can remain redirected through the local proxy after setup. <br>
-Mitigation: Stop the proxy and revert the Claude Code base URL or environment configuration when the custom provider workflow is no longer needed. <br>
-Risk: Local proxy access and permissive CORS can broaden exposure on the host. <br>
-Mitigation: Bind only to localhost, restrict local access and CORS where possible, and run the proxy only for the duration needed. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure Claude Code with non-Anthropic or OpenAI-compatible model providers, including setting up a local proxy and troubleshooting model validation, streaming, and connection issues.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mark-heartflow/claude-code-custom-model-proxy) <br>
-- [Skill Instructions](artifact/SKILL.md) <br>
-- [Proxy Script](artifact/scripts/claude_code_proxy.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON, Bash, and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local proxy settings, environment variables, and troubleshooting commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and release evidence) <br>
+Risk: The artifact ships with a hardcoded third-party upstream endpoint and API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace the upstream host, model, and credential with trusted configuration before use, and revoke the embedded key if you control it.
+
+Risk: The proxy logs request bodies, which can expose prompts or project content.
+
+Mitigation: Remove or sanitize prompt-body logging before using the skill with confidential work.
+
+Risk: Claude Code traffic can be redirected through persistent local settings.
+
+Mitigation: Prefer temporary environment variables, review Claude Code settings before use, and restrict local proxy access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mark-heartflow/skills/claude-code-custom-model-proxy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code snippets, shell commands, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance centers on configuring and running a local Python proxy for Claude Code.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

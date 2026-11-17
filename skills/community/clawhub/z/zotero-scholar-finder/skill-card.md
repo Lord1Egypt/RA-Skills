@@ -1,41 +1,54 @@
-## Description: <br>
-Saves paper metadata, links, optional abstracts, AI-generated summaries, tags, and arXiv PDF attachments to a user's Zotero library. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Saves paper metadata, links, tags, abstracts, optional AI summaries, and arXiv PDF attachments to a user's Zotero library.
 
-## Publisher: <br>
-[justin18chan](https://clawhub.ai/user/justin18chan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justin18chan](https://clawhub.ai/user/justin18chan)
 
-## Use Case: <br>
-Researchers, students, and developers use this skill to add paper records and optional AI-generated notes to a Zotero library from command-line paper details. It is suited for literature collection workflows where an agent can gather citation metadata and then call the provided save script. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Zotero API key and can write new items to the user's Zotero library. <br>
-Mitigation: Use the narrowest practical Zotero API permissions, keep ZOTERO_CREDENTIALS out of shared files and logs, and review the paper metadata before running the script. <br>
-Risk: arXiv URLs may trigger automatic PDF download and upload as a Zotero attachment. <br>
-Mitigation: Run the skill only for papers whose PDF attachment behavior is desired, and verify that the Zotero library has appropriate storage and sharing settings. <br>
+## Use Case:
 
+Developers, researchers, and agent users use this skill to add paper records to Zotero from command-line paper metadata. It is useful when an agent has identified a paper and needs to persist the title, authors, URL, abstract, summary, tags, and available arXiv PDF in a Zotero library.
 
-## Reference(s): <br>
-- [Zotero](https://www.zotero.org) <br>
-- [ClawHub skill release](https://clawhub.ai/justin18chan/zotero-scholar-finder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command-line examples and script status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The script writes Zotero items through the Zotero API and may attach arXiv PDFs when the supplied URL is an arXiv abstract page.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill uses Zotero credentials to create items, notes, and attachments in a user's library.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Zotero API key, keep ZOTERO_CREDENTIALS secret, and review paper metadata before running the command.
+
+Risk: The security evidence reports that the PDF download path is under-scoped and can fetch non-arXiv or local/internal resources before uploading them to Zotero.
+
+Mitigation: Run it only on trusted paper URLs until arXiv URL validation, download limits, and dependency pinning are tightened.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/justin18chan/skills/zotero-scholar-finder)
+- [Zotero](https://www.zotero.org)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with shell command examples and parameter guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires uv and ZOTERO_CREDENTIALS in userid:apiKey format; creates Zotero items and may attach arXiv PDFs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

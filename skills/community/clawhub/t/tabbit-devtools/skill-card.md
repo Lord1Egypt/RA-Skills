@@ -1,47 +1,56 @@
-## Description: <br>
-Use Tabbit with agent-browser by reading Tabbit's live DevToolsActivePort file, deriving the browser wsEndpoint, and routing browser actions through agent-browser --cdp. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Tabbit with agent-browser by reading Tabbit's live DevToolsActivePort file, deriving the browser wsEndpoint, and routing browser actions through agent-browser --cdp.
 
-## Publisher: <br>
-[carri1sun](https://clawhub.ai/user/carri1sun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[carri1sun](https://clawhub.ai/user/carri1sun)
 
-## Use Case: <br>
-Developers and agents use this skill to connect browser automation workflows to a user's active Tabbit browser session. It discovers Tabbit's Chromium DevTools endpoint and routes page operations through agent-browser. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can allow an agent to inspect and interact with pages in the user's active Tabbit browser session. <br>
-Mitigation: Install and use it only when browser-session inspection and interaction are intended, and review browser actions before execution. <br>
-Risk: The wrapper can launch agent-browser through a configured command or npx fallback. <br>
-Mitigation: Prefer installing agent-browser yourself and avoid setting AGENT_BROWSER_BIN to untrusted commands. <br>
-Risk: A custom DevToolsActivePort path can redirect discovery to an unintended browser endpoint. <br>
-Mitigation: Set TABBIT_DEVTOOLS_ACTIVE_PORT_FILE only to trusted local Tabbit DevToolsActivePort files. <br>
+## Use Case:
 
+Developers and agents use this skill to connect browser automation to an active local Tabbit browser session by discovering its DevTools WebSocket endpoint and passing it to agent-browser. It is intended for Tabbit-specific browser inspection and interaction workflows.
 
-## Reference(s): <br>
-- [Tabbit Endpoint Discovery](references/discovery.md) <br>
-- [Tabbit Devtools Setup](references/setup.md) <br>
-- [Endpoint discovery helper](scripts/discover_tabbit_cdp.py) <br>
-- [agent-browser wrapper](scripts/run_agent_browser_on_tabbit.py) <br>
-- [agent-browser upstream docs](https://github.com/vercel-labs/agent-browser) <br>
-- [ClawHub skill page](https://clawhub.ai/carri1sun/tabbit-devtools) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-style connection facts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May report activePortFile, port, browserPath, browserUrl, and wsEndpoint for the active Tabbit session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill enables high-privilege browser control over a local Tabbit session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for trusted local Tabbit sessions, keep DevTools debugging limited to localhost, and disable Tabbit remote debugging when finished.
+
+Risk: The wrapper can automatically run an unpinned npm package when agent-browser is not already installed.
+
+Mitigation: Prefer a preinstalled, trusted, pinned agent-browser binary and set AGENT_BROWSER_BIN when needed.
+
+## Reference(s):
+
+- [Tabbit Devtools Setup](references/setup.md)
+- [Tabbit Endpoint Discovery](references/discovery.md)
+- [agent-browser upstream docs](https://github.com/vercel-labs/agent-browser)
+- [ClawHub skill page](https://clawhub.ai/carri1sun/skills/tabbit-devtools)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Text]
+
+**Output Format:** [Markdown guidance with inline shell commands and structured connection facts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Tabbit connection fields such as activePortFile, port, browserPath, browserUrl, and wsEndpoint.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

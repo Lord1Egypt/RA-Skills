@@ -1,44 +1,59 @@
-## Description: <br>
-Publishes or schedules Instagram photos, carousels, and Reels through Boring for connected Instagram Business or Creator accounts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish posts to Instagram using Boring for photos, carousels, Reels, and scheduled Instagram posts.
 
-## Publisher: <br>
-[snoopyrain](https://clawhub.ai/user/snoopyrain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snoopyrain](https://clawhub.ai/user/snoopyrain)
 
-## Use Case: <br>
-External users and social media operators use this skill to prepare, publish, schedule, list, and cancel Instagram posts through a Boring MCP connector. It is intended for workflows where the user has connected an Instagram Business or Creator account and has media ready for publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The MCP Connector link contains an embedded authentication token that can authorize Instagram publishing actions. <br>
-Mitigation: Keep the connector link private, treat it like a password, and regenerate it if exposed. <br>
-Risk: The skill can publish, schedule, or cancel public Instagram content through Boring. <br>
-Mitigation: Confirm the Instagram account, media, caption, and scheduled time before taking publishing or cancellation actions. <br>
-Risk: Local files or external media may be uploaded to Boring-hosted storage so Instagram can access them. <br>
-Mitigation: Use only media intended for publication and avoid uploading private or sensitive files. <br>
+## Use Case:
 
+External users and creators use this skill to publish or schedule Instagram Business or Creator account content through Boring's MCP connector. It helps an agent collect account, caption, media, and schedule details before calling the publishing tools.
 
-## Reference(s): <br>
-- [Boring MCP setup documentation](https://boring-doc.aiagent-me.com/getting-started/mcp.html) <br>
-- [Boring documentation](https://boring-doc.aiagent-me.com) <br>
-- [Boring application](https://boring.aiagent-me.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration instructions, API Calls] <br>
-**Output Format:** [Markdown with tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce Instagram post IDs, scheduled times, and confirmation or error-handling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: The MCP connector URL contains an embedded authentication token that can grant access to Boring-backed Instagram publishing actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the connector URL private, treat it like a password, and regenerate it if it is exposed.
+
+Risk: Captions and media are sent to Boring and then to Instagram for publishing or scheduling on the user's behalf.
+
+Mitigation: Install only if the user trusts Boring with Instagram publishing access and the provided media and captions.
+
+Risk: The skill can create public Instagram content or scheduled posts through the connected account.
+
+Mitigation: Review account selection, media, captions, and schedule details before publishing or scheduling.
+
+## Reference(s):
+
+- [Boring MCP setup documentation](https://boring-doc.aiagent-me.com/getting-started/mcp.html)
+- [Boring documentation](https://boring-doc.aiagent-me.com)
+- [ClawHub skill page](https://clawhub.ai/snoopyrain/skills/boring-instagram-publisher)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API calls, text]
+
+**Output Format:** [Markdown guidance with MCP tool calls and confirmation text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May upload or re-host media files before publishing or scheduling Instagram content.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

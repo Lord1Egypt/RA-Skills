@@ -1,39 +1,54 @@
-## Description: <br>
-Guides exercise bike buyers through bike type, resistance, flywheel, adjustability, noise, and connectivity questions to determine the exact specs they need, using brand-neutral advice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides exercise bike buyers through bike type, resistance, flywheel, adjustability, noise, and connectivity questions to determine the exact specs they need.
 
-## Publisher: <br>
-[arbazex](https://clawhub.ai/user/arbazex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arbazex](https://clawhub.ai/user/arbazex)
 
-## Use Case: <br>
-External users shopping for a first or replacement exercise bike use this skill to complete a structured consultation and receive prioritized specification requirements before comparing products. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product suggestions may be mistaken for endorsements or authorization for an agent to buy an item. <br>
-Mitigation: Treat suggestions as research starting points, verify current availability and specifications, and require explicit user approval before any purchase action. <br>
+## Use Case:
 
+External users use this skill when buying or replacing an exercise bike and need a structured, brand-neutral consultation that turns their goals, body fit, space, noise, connectivity, and region into concrete buying specs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arbazex/exercise-bike-buying-consultant) <br>
-- [Project homepage](https://github.com/arbazex/fitness-equipment-buying-consultants/tree/master/exercise-bike-buying-consultant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Conversational questions followed by structured Markdown spec lists and up to five product suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external APIs, environment variables, runtime dependencies, hidden execution, credential use, or persistence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The consultation asks for personal context such as height, approximate weight capacity needs, injuries, home setup, and coarse location.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Users should share only the detail needed for the recommendation, such as a broad region when localized warranty or availability advice is not required.
+
+Risk: Product suggestions and availability can become inaccurate if model specifications or regional availability change.
+
+Mitigation: Treat suggested products as research starting points and verify current specifications, warranty coverage, and availability before purchase.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arbazex/skills/exercise-bike-buying-consultant)
+- [Publisher profile](https://clawhub.ai/user/arbazex)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Conversational questions followed by structured Markdown recommendation lists and up to five product research starting points]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; recommendations depend on user-provided buying context and current product verification.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

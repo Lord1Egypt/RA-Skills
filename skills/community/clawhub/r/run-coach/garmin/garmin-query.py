@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Garmin data query for run-coach bot.
-Pure stdlib — no third-party deps.
-Reads JSON files written by garmin-sync.py.
+"""Garmin data query for marathon bot.
+Runs INSIDE OC container — pure stdlib, no third-party deps.
+Reads JSON files written by garmin-sync.py on the NAS host.
 """
 
 import json
@@ -9,8 +9,9 @@ import sys
 from datetime import date, timedelta
 from pathlib import Path
 
-# Workspace is the parent of this script's directory
-GARMIN_DIR = Path(__file__).parent
+# Data lives next to this script; override with GARMIN_DATA_DIR.
+import os
+GARMIN_DIR = Path(os.environ.get("GARMIN_DATA_DIR", Path(__file__).resolve().parent))
 SUMMARY_FILE = GARMIN_DIR / "summary.json"
 ACTIVITIES_DIR = GARMIN_DIR / "activities"
 
@@ -163,13 +164,27 @@ def cmd_activity(activity_date):
         print()
 
 
-def cmd_json():
-    """Output raw summary as JSON (for bot parsing)."""
+def cmd_json(full=False):
+    """Output summary as JSON (for bot parsing).
+
+    Default output is minimized to coaching-operational fields only:
+    activities and training metrics. Daily health metrics (resting HR,
+    stress, Body Battery) are the most privacy-sensitive category and are
+    excluded unless explicitly requested with --full.
+    """
     summary = load_summary()
-    if summary:
-        print(json.dumps(summary, ensure_ascii=False, indent=2))
-    else:
+    if not summary:
         print("{}")
+        return
+    if full:
+        print(json.dumps(summary, ensure_ascii=False, indent=2))
+        return
+    minimized = {
+        "last_sync": summary.get("last_sync"),
+        "recent_activities": summary.get("recent_activities", []),
+        "training_metrics": summary.get("training_metrics", {}),
+    }
+    print(json.dumps(minimized, ensure_ascii=False, indent=2))
 
 
 def format_pace(distance_m, duration_s):
@@ -190,7 +205,7 @@ def main():
         print("  weekly         - Weekly training summary")
         print("  stats          - Daily stats + training metrics")
         print("  activity DATE  - Detailed activity (e.g. 2026-03-18)")
-        print("  json           - Raw summary JSON")
+        print("  json [--full]  - Summary JSON (minimized by default; --full adds daily health metrics)")
         return
 
     cmd = sys.argv[1]
@@ -208,7 +223,7 @@ def main():
             return
         cmd_activity(sys.argv[2])
     elif cmd == "json":
-        cmd_json()
+        cmd_json(full="--full" in sys.argv)
     else:
         print(f"Unknown command: {cmd}")
 

@@ -1,41 +1,57 @@
-## Description: <br>
-This skill helps teachers turn one-way lectures into thinking-driven interactive classrooms by designing Socratic question chains, group activities, cold-room recovery strategies, instant feedback, and post-class observation notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+把单向讲授变成有追问、有参与路径的课堂。
 
-## Publisher: <br>
-[qizhitang](https://clawhub.ai/user/qizhitang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qizhitang](https://clawhub.ai/user/qizhitang)
 
-## Use Case: <br>
-Teachers use this skill to plan classroom interaction, questioning, group work, cold-call alternatives, and feedback routines from lesson objectives, class size, room conditions, and student-level profiles. It keeps teachers in control of classroom decisions and does not automate observation, recording, or student calling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation triggers or stigmatizing wording could lead to inappropriate classroom guidance in a school setting. <br>
-Mitigation: Review and localize the trigger language and student descriptors before use, and require teacher judgment for all classroom participation decisions. <br>
-Risk: Classroom notes could expose individual student information if names or individualized observations are recorded. <br>
-Mitigation: Keep observation notes aggregated, avoid naming individual students, and follow the skill boundary that classroom observation is teacher-entered after class rather than automated. <br>
+## Use Case:
 
+Teachers use this skill to prepare differentiated classroom interaction, follow-up prompts, group activities, cold-start responses, and post-class observation notes. The teacher remains responsible for choosing participation and reviewing material before classroom use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qizhitang/xiaozhi-teach-classroom-coach) <br>
-- [Questioning Strategies and Interaction Scripts](artifact/references/questioning-strategies.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with classroom planning templates and structured text outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include interaction modes, Socratic question chains, group activity task cards, cold-room response steps, feedback scripts, and aggregated post-class observation fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The release security summary notes a possible scope mismatch: the skill summary excludes question-chain drafting while parts of the skill describe designing question chains.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended scope before installation and review any generated question chain before using it in class.
+
+Risk: Classroom guidance and observation notes can affect students if applied without teacher judgment or include identifying details.
+
+Mitigation: Have the teacher review drafts, retain teacher control over participation, and record class-level observations without student names or sensitive disclosures.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/qizhitang/skills/xiaozhi-teach-classroom-coach)
+- [Questioning strategies and interaction prompts](artifact/references/questioning-strategies.md)
+- [Group activity templates](artifact/references/group-task-card-and-scripts.md)
+- [Post-class observation record template](artifact/references/post-class-record-template.md)
+- [Crisis exception guidance](artifact/shared/crisis-exception.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Chinese text and Markdown templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Teacher-facing drafts; classroom records should omit student identities and sensitive personal details.]
+
+## Skill Version(s):
+
+2.12.7 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

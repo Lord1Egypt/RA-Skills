@@ -1,0 +1,58 @@
+{
+  "hearthbound": {
+    "zh": "守炉派",
+    "en": "Hearthbound",
+    "support": 35,
+    "hostility": 25,
+    "zh_blurb": "认为离开地球是对地球危机的背叛。会争预算，也会堵发射场的门。",
+    "en_blurb": "Leaving Earth is a betrayal of Earth's crises. They fight the budget and sometimes the gate."
+  },
+  "ember_covenant": {
+    "zh": "火种盟",
+    "en": "Ember Covenant",
+    "support": 60,
+    "hostility": 5,
+    "zh_blurb": "你的天然盟友。他们有时太急，会逼你跳过模拟和机器人，直接把人扔向火星。",
+    "en_blurb": "Natural allies. They are sometimes too eager, and will push you to skip analogs and robots and throw a crew at Mars."
+  },
+  "concord": {
+    "zh": "协和",
+    "en": "Concord",
+    "support": 55,
+    "hostility": 10,
+    "zh_blurb": "你试图维持的多边框架。它给发射来源多样化，也给你的日程添上外交延迟。",
+    "en_blurb": "The multilateral frame you are trying to hold. It diversifies launch and adds diplomatic delay."
+  },
+  "meridian": {
+    "zh": "子午线局",
+    "en": "Meridian Directorate",
+    "support": 40,
+    "hostility": 30,
+    "zh_blurb": "另一个空间工业集团。竞争、间谍、偶尔可以变成第二发射来源。不是某个现实国家的化名。",
+    "en_blurb": "Another spacefaring industrial bloc. Rivalry, espionage, and sometimes a second launch source. Not a mask for a real country."
+  },
+  "closed_sky": {
+    "zh": "闭天会",
+    "en": "Closed Sky",
+    "support": 15,
+    "hostility": 45,
+    "zh_blurb": "他们认为一个可见的多行星文明会招来更大的风险，所以安静地拆计划。灵感来自‘反对暴露’的派系思想，角色与情节都是原创的。",
+    "en_blurb": "They hold that a visible multi-planetary civilization invites a greater risk, so they take the plan apart quietly. Inspired by the idea of a faction that opposes exposure. Characters and plot are original."
+  },
+  "launch_guild": {
+    "zh": "发射行会",
+    "en": "Launch Guild",
+    "support": 50,
+    "hostility": 15,
+    "zh_blurb": "掌握火箭产能的商业联盟。可以帮你提高班次，也可以在你没有第二来源时涨价。",
+    "en_blurb": "The commercial alliance that owns launch cadence. They can raise your flight rate, and your prices if you have no second source."
+  },
+  "crew_guild": {
+    "zh": "乘员公会",
+    "en": "Crew Guild",
+    "support": 48,
+    "hostility": 12,
+    "zh_blurb": "宇航员、医生和模拟舱运行人员。安全文化低的时候他们会停飞。",
+    "en_blurb": "Astronauts, physicians, analog operators. When safety culture drops, they stop flying."
+  }
+}

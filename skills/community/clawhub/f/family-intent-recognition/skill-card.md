@@ -1,41 +1,54 @@
-## Description: <br>
-家庭消费意图识别 - 从家庭聊天文本中识别消费意图，输出结构化JSON <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+家庭消费意图识别 - 从家庭聊天文本中识别消费意图，输出结构化JSON
 
-## Publisher: <br>
-[wuhaichao87](https://clawhub.ai/user/wuhaichao87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuhaichao87](https://clawhub.ai/user/wuhaichao87)
 
-## Use Case: <br>
-External users and developers use this skill to classify Chinese household chat messages for purchase intent, intent category, stage, strength, triggering keywords, and a short reason. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional Flask API can expose household chat text if it is reachable beyond the local machine or used with broad CORS settings. <br>
-Mitigation: Bind the API to localhost or otherwise restrict network access and CORS, and avoid sending sensitive family chat text to exposed services. <br>
-Risk: The rule-based keyword classifier can misclassify ambiguous messages or miss intents outside its configured categories and keywords. <br>
-Mitigation: Review classifications before using them for consequential decisions and tune the keyword lists with representative household chat examples. <br>
+## Use Case:
 
+Developers and agents use this skill to classify household chat text for consumer purchase intent and return a structured result with category, intent stage, strength, keywords, and reason.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wuhaichao87/family-intent-recognition) <br>
-- [Publisher profile](https://clawhub.ai/user/wuhaichao87) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, code, shell commands] <br>
-**Output Format:** [JSON object with intent fields; CLI and API examples are provided as shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The classifier returns has_intent, intent_category, intent_stage, intent_strength, up to five keywords, and reason.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The optional API can expose household chat classification over the network more broadly than expected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the CLI or Python function for local use; if the API is used, bind it to 127.0.0.1, restrict CORS, and add authentication for any shared deployment.
+
+Risk: Household chat snippets may contain private family conversations or other sensitive personal context.
+
+Mitigation: Minimize or redact input text before classification and avoid sending private conversations to shared deployments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wuhaichao87/skills/family-intent-recognition)
+- [Declared homepage](https://github.com/openclaw/skills)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text]
+
+**Output Format:** [Structured JSON object with has_intent, intent_category, intent_stage, intent_strength, keywords, and reason fields.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports CLI, Python function, and optional HTTP API usage.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

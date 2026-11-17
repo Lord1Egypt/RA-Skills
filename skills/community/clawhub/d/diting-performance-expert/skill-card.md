@@ -1,41 +1,54 @@
-## Description: <br>
-Diting Performance Expert helps agents analyze performance-management systems, goal setting, KPI/OKR design, PIP structure, performance conversations, organizational health, and fairness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language performance-management advisory skill for performance system design, goal management, KPI/OKR design, performance improvement planning, performance conversations, organizational health assessment, and fairness analysis.
 
-## Publisher: <br>
-[tuobadaidai](https://clawhub.ai/user/tuobadaidai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tuobadaidai](https://clawhub.ai/user/tuobadaidai)
 
-## Use Case: <br>
-HR leaders, managers, and business operators use this skill through an agent to structure performance-management analysis, goal calibration, KPI/OKR design, PIP coaching frameworks, and performance fairness reviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may touch compensation-adjacent or PIP-related topics where poor advice could affect employment decisions. <br>
-Mitigation: Use it for performance-management structure and coaching analysis, but route pay-plan design, salary changes, dismissals, labor-law compliance, and employee-rights decisions to qualified specialists. <br>
-Risk: Performance-management recommendations can be misleading when based on incomplete historical targets, market data, or team context. <br>
-Mitigation: Review outputs against current business data and manager judgment before applying them to employee evaluations or organizational processes. <br>
+## Use Case:
 
+HR, people operations, and leadership teams use this skill as Chinese-language decision support for designing performance systems, setting goals, improving performance, and assessing organizational health and performance fairness.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tuobadaidai/diting-performance-expert) <br>
-- [classic-books.md](references/classic-books.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown advisory analysis with structured findings, recommendations, risk notes, and confidence labels] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable HR performance-management guidance; no hidden, persistent, or data-accessing behavior was reported by the authoritative security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release metadata and skill frontmatter) <br>
+Risk: Performance, PIP, promotion, compensation-adjacent, or termination-adjacent recommendations could affect real employees if used without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use as decision support only; qualified HR, legal, or leadership stakeholders should review outputs before real employee decisions.
+
+Risk: The skill is scoped to performance management and may be unsuitable for compensation structure, labor-law compliance, training design, talent review, or manager assessment questions.
+
+Mitigation: Route out-of-scope requests to the appropriate specialist or human expert before acting.
+
+## Reference(s):
+
+- [Classic Books Reference](references/classic-books.md)
+- [ClawHub Skill Page](https://clawhub.ai/tuobadaidai/skills/diting-performance-expert)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured findings, recommendations, risk notes, and confidence labels]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language advisory output scoped to performance management.]
+
+## Skill Version(s):
+
+2.0.3 (source: server release evidence; artifact frontmatter reports 2.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

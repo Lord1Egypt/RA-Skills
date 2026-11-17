@@ -1,0 +1,28 @@
+{
+  "signature": "Δ9Φ963-SDA-FIRMWARE-SEAL-v1.1",
+  "name": "LYGO SMART DISK AGENT",
+  "ethical_chip_ref": [
+    "https://deepseekoracle.github.io/Excavationpro/LYGO-Network/Ethical-Chip-Firmware.html",
+    "https://deepseekoracle.github.io/Excavationpro/LYGO-Network/Ethical-Chip-FirmwareV2.html"
+  ],
+  "guardian_ref": "https://deepseekoracle.github.io/Excavationpro/LYGO-Network/LYGOGUARDIAN.html",
+  "usb_lineage": "LYGO CLAW USB / Smart Disk lean prototype",
+  "policy": {
+    "local_open_ui": true,
+    "bind_loopback_only": true,
+    "password_gate": false,
+    "local_token_auth": true,
+    "http_memory_export": false,
+    "auto_publish": false,
+    "p0_required": true,
+    "consent_for_plant": true
+  },
+  "ports": {
+    "agent": 9631,
+    "ollama": 11434
+  },
+  "models": {
+    "primary": "qwen2.5:3b",
+    "fallback": ["llama3.2:1b"]
+  }
+}

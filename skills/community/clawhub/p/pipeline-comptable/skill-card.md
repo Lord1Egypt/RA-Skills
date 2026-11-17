@@ -1,42 +1,56 @@
-## Description: <br>
-Pipeline comptable orchestrates a local accounting-document workflow from incoming mail or document batches through analysis, client identification, filing, and payment reconciliation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pipeline comptable orchestrates incoming accounting documents from email or inbox through sorting, analysis, client identification, filing, and payment reconciliation, returning one consolidated report with accountant-facing questions.
 
-## Publisher: <br>
-[trendex](https://clawhub.ai/user/trendex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[trendex](https://clawhub.ai/user/trendex)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Accounting teams and their agents use this skill to process batches of incoming invoices, bank statements, and expense receipts end to end while preserving accountant review for ambiguous client identification or filing decisions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill processes sensitive financial documents and can file or reconcile accounting records in ways that may affect business records.
+
+Mitigation: Require explicit user review before filing or reconciling documents, and run the skill with access only to the intended inbox and client folders.
+
+Risk: The workflow executes sibling local component scripts, so spoofed or unverified components could change processing outcomes.
+
+Mitigation: Install only in a trusted, locked-down OpenClaw skills directory, pin or verify the sibling component scripts, and use a dedicated low-privilege account.
+
+Risk: The included convenience runner uses fixed root-owned workspace paths and is not suitable as-is for routine execution.
+
+Mitigation: Avoid using run_pipeline.py as written and do not run the workflow as root.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Accounting teams and their agents use this skill to process incoming invoices, bank statements, and expense reports into client folders while surfacing ambiguous items for accountant review. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, JSON, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads and files local accounting documents from the selected email or inbox path. <br>
-Mitigation: Run it only on the intended client directory or email file and keep normal access controls around financial documents. <br>
-Risk: Automatic payment reconciliation runs after filing unless disabled. <br>
-Mitigation: Use --no-rapprochement when payment reconciliation should not run for a batch. <br>
-Risk: Ambiguous client identification can require accountant judgment. <br>
-Mitigation: Review the surfaced questions and summary before relying on filed documents or reconciled results. <br>
+**Output Format:** [JSON report plus readable text summary]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Pipeline comptable on ClawHub](https://clawhub.ai/trendex/pipeline-comptable) <br>
+**Other Properties Related to Output:** [Produces consolidated per-document status, filing outcomes, payment-reconciliation summary, and questions that require accountant review.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Text, Shell commands, Guidance] <br>
-**Output Format:** [JSON report on stdout with a human-readable summary on stderr; agent-facing instructions in Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes a local email JSON file or inbox directory and can optionally skip payment reconciliation with --no-rapprochement.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

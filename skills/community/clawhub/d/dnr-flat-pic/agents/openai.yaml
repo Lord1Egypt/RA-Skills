@@ -1,0 +1,12 @@
+interface:
+  display_name: "DnR FlatPic"
+  short_description: "Turn photos into high-saturation flat-vector-style art"
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/icon.svg"
+policy:
+  products:
+  - "chatgpt"
+  - "codex"
+  - "api"
+  - "atlas"
+  allow_implicit_invocation: true

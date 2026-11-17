@@ -1,42 +1,60 @@
-## Description: <br>
-Finds CRM leads for hospitality and B2B travel segments, converts user requests into structured search criteria, and imports confirmed contacts into CRM. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds target travel and B2B customer contacts from structured search criteria and helps import confirmed records into a CRM.
 
-## Publisher: <br>
-[tourmind](https://clawhub.ai/user/tourmind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tourmind](https://clawhub.ai/user/tourmind)
 
-## Use Case: <br>
-Sales and business development teams use this skill to search for potential hotel, travel, OTA, distribution, corporate travel, and DMC contacts, review results, and import approved contacts into CRM. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends credentials and contact data to an unencrypted raw-IP service. <br>
-Mitigation: Install only if the publisher and service are trusted; use a limited, revocable key and avoid processing contact data without a lawful basis. <br>
-Risk: The skill can add records to a CRM. <br>
-Mitigation: Confirm the target CRM account and review every batch before approving import. <br>
-Risk: A compromised or stale user_key could allow unauthorized use. <br>
-Mitigation: Use a revocable key, remove it after unauthorized responses, and rotate it when access changes. <br>
+## Use Case:
 
+Sales, business development, and CRM operators use this skill to translate natural-language target-customer requests into structured lead searches, review matching travel and B2B contacts, and import confirmed contacts into a CRM.
 
-## Reference(s): <br>
-- [Target Contact Finder on ClawHub](https://clawhub.ai/tourmind/target-contact-finder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Guidance, Configuration] <br>
-**Output Format:** [Markdown text with JSON API request and response details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user_key and human confirmation before CRM import.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Credentials and CRM lead or contact data are sent to a raw IP address over unencrypted HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only after trusting the service operator, and prefer an HTTPS endpoint before sending sensitive or regulated CRM data.
+
+Risk: Broad activation language can cause the skill to engage for many lead-search or customer-search requests.
+
+Mitigation: Review and narrow the trigger scope before deployment in shared or high-volume environments.
+
+Risk: Batch CRM import can create business records containing personal contact data.
+
+Mitigation: Require explicit user confirmation before import and verify privacy, consent, and compliance responsibilities for the target market.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tourmind/skills/target-contact-finder)
+- [Publisher profile](https://clawhub.ai/user/tourmind)
+- [Customer profile search API endpoint](http://39.108.114.224:9059/skill/search_customer_profile)
+- [Batch customer import API endpoint](http://39.108.114.224:9059/skill/batch_import_customer)
+
+## Skill Output:
+
+**Output Type(s):** [text, API calls, JSON, guidance]
+
+**Output Format:** [Markdown text with JSON request and response data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user_key before API calls; search results should be shown for user confirmation before CRM import.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

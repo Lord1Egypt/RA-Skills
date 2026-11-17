@@ -395,8 +395,8 @@ tail -f ~/.openclaw/logs/wecom-task-manager.log
 ## 📚 更多文档
 
 - **完整技能文档**: `SKILL.md`
-- **配置指南**: `workspace/docs/wecom-task-manager-config-guide.md`
-- **API 参考**: `workspace/docs/wecom-task-manager-access-control-complete.md`
+- **配置指南**: `workspace/docs/wecom-taREDACTED-SECRET.md`
+- **API 参考**: `workspace/docs/wecom-taREDACTED-SECRET.md`
 - **调用流程**: `workspace/docs/wecom-task-manager-call-flow.md`
 
 ---

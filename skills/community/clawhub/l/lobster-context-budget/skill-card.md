@@ -1,37 +1,54 @@
-## Description: <br>
-Audits Claude Code context window consumption across agents, skills, MCP servers, and rules. Identifies bloat, redundant components, and produces prioritized token-savings recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits Claude Code context window consumption across agents, skills, MCP servers, and rules. Identifies bloat, redundant components, and produces prioritized token-savings recommendations.
 
-## Publisher: <br>
-[wangxiaofei860208-source](https://clawhub.ai/user/wangxiaofei860208-source) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangxiaofei860208-source](https://clawhub.ai/user/wangxiaofei860208-source)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit Claude Code context usage across agents, skills, rules, MCP servers, and CLAUDE.md files, then prioritize token-saving cleanup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read workspace instruction and configuration files, including .mcp.json, while estimating context usage. <br>
-Mitigation: Review configuration files for secrets or sensitive service details before running the audit. <br>
+## Use Case:
 
+Developers and engineers use this skill to audit Claude Code context usage across agents, skills, rules, MCP servers, and CLAUDE.md files. It helps identify context bloat, redundant components, and prioritized token-saving changes before expanding a local agent setup.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown report with token estimates, component breakdowns, issue rankings, and prioritized recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Verbose mode may include per-file token counts, overlap findings, MCP tool details, and estimated savings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The generated report may expose details from local agent, skill, rule, MCP, or CLAUDE.md configuration files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the report before sharing it outside the local environment and redact sensitive setup details.
+
+Risk: Token counts and savings estimates are approximate and may not match the exact model tokenizer or runtime context assembly.
+
+Mitigation: Treat recommendations as planning guidance and verify high-impact changes against actual session behavior before removing components.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangxiaofei860208-source/skills/lobster-context-budget)
+- [Publisher profile](https://clawhub.ai/user/wangxiaofei860208-source)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with context estimates, issue flags, prioritized recommendations, and optional verbose per-file breakdowns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include estimated token counts, component counts, ranked savings opportunities, and local configuration details surfaced from scanned setup files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

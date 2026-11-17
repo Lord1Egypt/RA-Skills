@@ -65,8 +65,8 @@ func (a *App) runRollupDaily(cmd *cobra.Command, typeName, date string, days int
 	}
 	if !dt.Supports("dailyRollUp") {
 		return withCode(ExitUsage, fmt.Errorf(
-			"data type %q does not support dailyRollUp (supported: %v); run `google-health-cli data list %s` instead",
-			dt.EndpointName, dt.Operations, dt.EndpointName,
+			"data type %q does not support dailyRollUp (supported: %v); %s",
+			dt.EndpointName, dt.Operations, readHint(dt),
 		))
 	}
 

@@ -1,42 +1,61 @@
-## Description: <br>
-A local password manager for storing, searching, updating, deleting, importing, and exporting account passwords with Fernet encryption when cryptography is installed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A local password manager skill for storing, searching, updating, deleting, importing, and exporting account credentials in a local vault.
 
-## Publisher: <br>
-[wangyieleven11](https://clawhub.ai/user/wangyieleven11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangyieleven11](https://clawhub.ai/user/wangyieleven11)
 
-## Use Case: <br>
-Developers and agent users use this skill to manage account credentials in a local OpenClaw workspace, including lookup, update, tagging, CSV import, and CSV export workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Passwords may be stored in plaintext if the cryptography dependency is unavailable. <br>
-Mitigation: Verify cryptography is installed before saving credentials and inspect existing local password data before relying on encryption. <br>
-Risk: CSV export creates plaintext credential dumps. <br>
-Mitigation: Require explicit confirmation before export, store exports only temporarily, and delete exported files immediately after use. <br>
-Risk: Service-wide or bulk deletion can remove many credential records. <br>
-Mitigation: Require explicit confirmation before service-wide or bulk delete actions and keep a backup process appropriate for the user's environment. <br>
+## Use Case:
 
+Developers and end users use this skill to manage local account credentials through an agent-accessible command-line password manager. It supports adding, querying, searching, updating, deleting, tagging, importing, and exporting password records.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wangyieleven11/local-passwords-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Command-line text output with inline shell commands and local file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write encrypted password data, local key material, and plaintext CSV exports in the user's local filesystem.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill stores and retrieves real local credentials and the authoritative security verdict is suspicious.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after accepting local credential storage limitations, and review the vault, key, and export file handling before using real secrets.
+
+Risk: Passwords may be exposed through command-line arguments, terminal output, shell history, or CSV export files.
+
+Mitigation: Avoid entering real passwords as command-line arguments where history may persist, limit display/export operations, and protect and delete CSV exports securely.
+
+Risk: If the cryptography dependency is unavailable, the artifact behavior falls back to plaintext password storage.
+
+Mitigation: Verify cryptography is installed before adding secrets and test the workflow with non-sensitive data first.
+
+Risk: The encryption key and password vault are both stored locally under the same workspace directory.
+
+Mitigation: Restrict local file permissions for the vault and key, and avoid syncing or sharing the workspace directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangyieleven11/skills/local-passwords-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, configuration]
+
+**Output Format:** [Plain text CLI output, local JSON vault data, and CSV import/export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local password data to ~/.openclaw/workspace/passwords.json and uses ~/.openclaw/workspace/.password_key when encryption is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

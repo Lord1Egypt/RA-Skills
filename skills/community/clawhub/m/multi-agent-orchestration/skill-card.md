@@ -1,46 +1,57 @@
-## Description: <br>
-Orchestrates multi-agent task delegation and workflows with audit logging, checkpoint approvals, and agent learning for coordinated project execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates multi-agent task delegation and workflows with audit logging, checkpoint approvals, and agent learning for coordinated project execution.
 
-## Publisher: <br>
-[dabruhce](https://clawhub.ai/user/dabruhce) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dabruhce](https://clawhub.ai/user/dabruhce)
 
-## Use Case: <br>
-Developers and operators use Colony to route work to specialized OpenClaw agents, run multi-stage workflows, pause at checkpoints for review, and collect audit and learning records across tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Background agents can perform broad coding, file, deployment, and operational work. <br>
-Mitigation: Use the skill only in repositories and environments where those actions are acceptable, and add human approval gates before deploy, delete, git, SSH, Docker, install, or publish actions. <br>
-Risk: Prompts, feedback, global context, audit logs, and memory files may persist sensitive project information. <br>
-Mitigation: Avoid entering secrets, regulated data, or sensitive business information into Colony context, feedback, prompts, or memory. <br>
-Risk: Notifications can send process status outside the local workspace. <br>
-Mitigation: Disable notifications unless needed and configure notification targets deliberately before use. <br>
+## Use Case:
 
+Developers and teams use Colony to route tasks to specialized agents and run multi-stage workflows for research, product planning, coding, content, QA, audit, and process retrospectives. It is useful when work benefits from coordinated handoffs, checkpoints, audit trails, and persistent agent learning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dabruhce/multi-agent-orchestration) <br>
-- [Colony skill instructions](artifact/SKILL.md) <br>
-- [Colony documentation](artifact/COLONY-DOCS.md) <br>
-- [Process definitions](artifact/colony/processes.yaml) <br>
-- [Agent registry](artifact/colony/agents.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown task results, generated files, CLI status output, audit records, memory updates, and configured process artifacts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May spawn background OpenClaw agents and write persistent task, audit, context, and memory files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Unsafe shell command construction could let crafted configuration or workflow metadata execute unintended commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from trusted sources, review process definitions and notification settings before use, and avoid shared or untrusted repositories until shell command handling is fixed.
+
+Risk: Path containment issues could let crafted inputs write files outside the intended Colony area.
+
+Mitigation: Run in a controlled workspace, review generated paths before approval, and avoid using the skill around sensitive files or credentials until path containment is fixed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dabruhce/skills/multi-agent-orchestration)
+- [Colony Skill Instructions](artifact/SKILL.md)
+- [Colony Documentation](artifact/COLONY-DOCS.md)
+- [Agent Registry](artifact/colony/agents.yaml)
+- [Process Definitions](artifact/colony/processes.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, command-line output, JSON/YAML configuration, code changes, and workspace files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update task, run, audit, memory, and process state files in the Colony workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

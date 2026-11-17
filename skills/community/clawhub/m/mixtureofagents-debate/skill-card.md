@@ -1,41 +1,53 @@
-## Description: <br>
-Run an Oxford Union-style multi-agent debate on any motion using Mixture of Agents architecture. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run an Oxford Union-style multi-agent debate on any motion using Mixture of Agents architecture.
 
-## Publisher: <br>
-[markoxmobs](https://clawhub.ai/user/markoxmobs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[markoxmobs](https://clawhub.ai/user/markoxmobs)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to run structured Oxford Union-style debates that stress-test a motion, prepare arguments, and produce a balanced debate brief. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A debate run can make many sequential model calls and consume time or tokens. <br>
-Mitigation: Set an appropriate hard round cap and completeness threshold before starting. <br>
-Risk: Motions may include sensitive or confidential material that is sent to the configured LLM provider. <br>
-Mitigation: Avoid confidential motions unless the provider and workspace are approved for that data. <br>
-Risk: Debate outputs can sound persuasive even when arguments or evidence are incomplete. <br>
-Mitigation: Treat the final brief as preparation material and verify factual claims before relying on it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Oxford Union Debate - Reference Guide](references/DEBATE_FORMAT.md) <br>
+## Use Case:
 
+External users and developers use this skill to run structured Oxford Union-style debate simulations for motion analysis, argument stress-testing, and formal debate preparation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown debate transcript and structured brief; the brief generation step asks the model for JSON before presentation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-selected completeness threshold and hard round cap; normal runs may make many sequential LLM calls.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad debate or argument stress-testing requests can trigger a full multi-round workflow and consume more model calls than a short critique.
+
+Mitigation: Specify a low hard round cap or ask for lighter analysis when a brief critique is sufficient.
+
+Risk: Generated debate material can be rhetorically persuasive without independently verifying every factual claim.
+
+Mitigation: Review evidence and claims before using the final brief for formal debate preparation or decision support.
+
+## Reference(s):
+
+- [Oxford Union Debate - Reference Guide](references/DEBATE_FORMAT.md)
+- [MOA-Debate ClawHub Skill Page](https://clawhub.ai/markoxmobs/skills/mixtureofagents-debate)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown debate transcript and structured debate brief, with JSON used internally for the final brief schema.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes configurable completeness threshold and hard round cap; normal runs may produce multiple debate rounds before closing rebuttals and a final brief.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

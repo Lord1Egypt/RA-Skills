@@ -1,47 +1,54 @@
-## Description: <br>
-获取抖音博主的视频列表 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+获取抖音博主的视频列表。
 
-## Publisher: <br>
-[tanshiyang](https://clawhub.ai/user/tanshiyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tanshiyang](https://clawhub.ai/user/tanshiyang)
 
-## Use Case: <br>
-External users and agents use this skill to fetch a Douyin creator's public profile video list from a Douyin user homepage URL, including descriptions and publish times. It is intended for workflows that need structured video-list retrieval after the user configures the required API key and Douyin cookie. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends the configured Douyin login cookie and API key to xueai.szzy.top. <br>
-Mitigation: Install only if the user trusts the publisher and xueai.szzy.top with those credentials; use a separate low-risk Douyin session where possible. <br>
-Risk: A Douyin logged-in cookie can expose account session access if mishandled. <br>
-Mitigation: Rotate or remove the cookie after use and avoid using a high-value account session. <br>
-Risk: The API key is used for identity and billing with the third-party service. <br>
-Mitigation: Scope the key to this skill configuration, monitor usage, and remove it when the skill is no longer needed. <br>
-Risk: The security evidence recommends review before installing and warns against broad automatic activation. <br>
-Mitigation: Review the skill and keep activation narrow until credential handling and protection are clear enough for the deployment environment. <br>
+## Use Case:
 
+External users and operators use this skill to retrieve a Douyin creator's profile video list from a homepage URL, including video descriptions and publish times.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tanshiyang/douyin-user-videos) <br>
-- [Publisher profile](https://clawhub.ai/user/tanshiyang) <br>
-- [Credential setup notes](https://my.feishu.cn/wiki/HbTpwSDMMiu4mUkCsjwcXgCWn7Z) <br>
-- [Third-party Douyin video API endpoint](https://xueai.szzy.top/api/agi/douyin/user-home-videos) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, configuration, guidance] <br>
-**Output Format:** [JSON tool response with fields for success, message, data, and count; agents may format the returned video list as text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns video descriptions and publish times when the upstream service succeeds; errors report invalid URLs, missing API keys, invalid cookies, insufficient balance, or network/API failures.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, server release evidence) <br>
+Risk: The skill forwards a Douyin login cookie and API key to a third-party service endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the publisher and xueai-portal service are trusted with those credentials, and rotate or revoke the cookie and API key if exposure is suspected.
+
+Risk: The DOUYIN_API_URL environment variable can redirect requests to another endpoint.
+
+Mitigation: Set DOUYIN_API_URL only to destinations the user controls or explicitly trusts; otherwise leave the default endpoint unchanged.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tanshiyang/skills/douyin-user-videos)
+- [Douyin cookie and API key setup guide](https://my.feishu.cn/wiki/HbTpwSDMMiu4mUkCsjwcXgCWn7Z)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [JSON tool result with success status, message, count, and video records that agents can summarize as text or markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Douyin profile URL and configured DOUYIN_API_KEY; DOUYIN_COOKIE is optional but may be needed for authenticated access.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, package.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,49 @@
-## Description: <br>
-Generate 60-90 second TikTok scripts about soccer/football news using free RSS feeds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate daily soccer/football news content and TikTok scripts using free sports news sources.
 
-## Publisher: <br>
-[ahmed181283](https://clawhub.ai/user/ahmed181283) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ahmed181283](https://clawhub.ai/user/ahmed181283)
 
-## Use Case: <br>
-Social media creators and content teams use this skill to draft daily soccer and football scripts, match summaries, transfer updates, and hashtag-ready TikTok content from current sports news. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Soccer news, match details, transfer claims, and player updates may become outdated or inaccurate if drafted without checking current sources. <br>
-Mitigation: Verify facts against current public sports news sources before publishing any generated content. <br>
-Risk: Future automation, configuration, template, or helper files could change the skill's security posture. <br>
-Mitigation: Review and scan any newly added files separately before installing or using a future version. <br>
+## Use Case:
 
+External content creators and social media teams use this skill to generate daily soccer news summaries, match updates, transfer coverage, and 60-90 second TikTok scripts from free sports news sources.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ahmed181283/daily-soccer) <br>
-- [Publisher profile](https://clawhub.ai/user/ahmed181283) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown scripts, summaries, hashtag blocks, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended for human review before social media publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and clawhub.json) <br>
+Risk: Several referenced configuration, template, and help files are absent from the artifact, so customization and detailed setup workflows may be unavailable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the referenced support files are present before relying on configuration, templates, scheduling, or detailed help workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ahmed181283/skills/daily-soccer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured short-form soccer content may include hooks, context, news summaries, impact notes, next steps, and hashtags.]
+
+## Skill Version(s):
+
+1.1.0 (source: evidence.release.version and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

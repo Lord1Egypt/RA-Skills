@@ -1,43 +1,57 @@
-## Description: <br>
-Monitors DingTalk Wukong invitation-code image version changes with local Tesseract OCR and heartbeat notifications without routine token use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+钉钉悟空邀请码监控，零 token 消耗。自动监控邀请码图片版本变化，支持本地 Tesseract OCR 识别和心跳推送通知。
 
-## Publisher: <br>
-[teenyboy](https://clawhub.ai/user/teenyboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teenyboy](https://clawhub.ai/user/teenyboy)
 
-## Use Case: <br>
-Developers and operators use this skill to set up and run a lightweight monitor for DingTalk Wukong invitation-code image updates, local OCR extraction, logs, and optional heartbeat notification checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring cron jobs can continue network checks and local log or state writes after installation. <br>
-Mitigation: Review cron commands before installing, preserve the existing crontab, and remove wukong cron lines when monitoring is no longer needed. <br>
-Risk: Crontab setup guidance can replace or alter scheduled tasks if applied without review. <br>
-Mitigation: Inspect generated cron content before applying it and keep a backup of the previous crontab. <br>
+## Use Case:
 
+External users and developers use this skill to monitor DingTalk Wukong invite-code image updates, run local OCR on downloaded invite images, and receive heartbeat notifications when new invite content appears.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/teenyboy/wukong-invite-monitor) <br>
-- [README.md](README.md) <br>
-- [QUICKSTART.md](QUICKSTART.md) <br>
-- [HEARTBEAT.md](HEARTBEAT.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, status text, log output, and JSON notification payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local cron entries, logs, state files, downloaded images, and notification files during use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: release evidence and _meta.json) <br>
+Risk: Cron setup can overwrite or inject persistent scheduled tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review cron entries before installation, do not run setup as root, back up the existing crontab, validate the requested interval, and remove only entries owned by this skill.
+
+Risk: Heartbeat cron instructions can replace an existing crontab when applied from a temporary file.
+
+Mitigation: Merge heartbeat jobs with the current crontab instead of replacing it, preserve unrelated jobs, and use private state and notification files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/teenyboy/skills/wukong-invite-monitor)
+- [README.md](artifact/README.md)
+- [QUICKSTART.md](artifact/QUICKSTART.md)
+- [HEARTBEAT.md](artifact/HEARTBEAT.md)
+- [Monitored invite image endpoint](https://gw.alicdn.com/imgextra/i4/O1CN010crKwF1CwSYiUnOMc_!!6000000000145-2-tps-1974-540.png?v={version})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON, files]
+
+**Output Format:** [Markdown guidance with shell commands; runtime scripts emit terminal text, JSON notification payloads, logs, state files, and downloaded PNG images.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local Tesseract OCR when available; scheduled monitoring writes state and log files under the skill directory and /tmp.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,207 +1,207 @@
 # Beaches — Spain
 
-## Mediterráneo
+## Mediterranean
 
 ### Costa Brava (Girona)
 
-| Playa/Cala | Tipo | Acceso | Nota |
+| Beach/Cove | Type | Access | Note |
 |------------|------|--------|------|
-| Cala Montjoi | Remota | Coche+caminar | Cerca de elBulli (cerrado) |
-| Cala Sa Tuna | Pueblo pesquero | Coche | Begur, bonita |
-| Platja de Pals | Grande, dunas | Fácil | Familiar |
-| Cala Pedrosa | Aislada | Solo barco/kayak | Virgen |
-| Tossa de Mar | Pueblo | Fácil | Murallas, turístico |
-| Cadaqués | Pueblo Dalí | Coche | Guijarros, paisaje |
+| Cala Montjoi | Remote | Car + walk | Near elBulli (closed) |
+| Cala Sa Tuna | Fishing village | Car | Begur, pretty |
+| Platja de Pals | Large, dunes | Easy | Family-friendly |
+| Cala Pedrosa | Isolated | Boat/kayak only | Unspoiled |
+| Tossa de Mar | Town | Easy | Walls, touristy |
+| Cadaqués | Dalí's town | Car | Pebbles, scenery |
 
 ### Costa Dorada (Tarragona)
 
-| Playa | Tipo | Nota |
+| Beach | Type | Note |
 |-------|------|------|
-| Altafulla | Pueblo | Castillo, tranquila |
-| La Mora | Local | Poco turismo |
-| Salou | Familiar | PortAventura cerca, masificado |
-| Cambrils | Pesquero | Buen marisco |
+| Altafulla | Town | Castle, quiet |
+| La Mora | Local | Little tourism |
+| Salou | Family | PortAventura nearby, packed |
+| Cambrils | Fishing | Good seafood |
 
 ### Valencia
 
-| Playa | Acceso | Nota |
+| Beach | Access | Note |
 |-------|--------|------|
-| Malvarrosa | Metro | Valencia ciudad, ancha |
-| El Saler | Coche/bus | Parque natural, mejor |
-| Cullera | Coche | Menos turismo |
+| Malvarrosa | Metro | Valencia city, wide |
+| El Saler | Car/bus | Nature park, better |
+| Cullera | Car | Less tourism |
 
 ### Costa Blanca (Alicante)
 
-| Playa | Tipo | Nota |
+| Beach | Type | Note |
 |-------|------|------|
-| Postiguet | Urbana | Alicante centro |
-| San Juan | Grande | Familiar, servicios |
-| Cala Granadella | Cala | Jávea, snorkel, reservar parking |
-| Cala Moraig | Espectacular | Acantilados, cueva |
-| Isla Tabarca | Isla | Ferry Alicante, snorkel |
+| Postiguet | Urban | Alicante center |
+| San Juan | Large | Family, amenities |
+| Cala Granadella | Cove | Jávea, snorkeling, book parking |
+| Cala Moraig | Spectacular | Cliffs, cave |
+| Isla Tabarca | Island | Ferry from Alicante, snorkeling |
 
 ### Costa Cálida (Murcia)
 
-| Playa | Nota |
+| Beach | Note |
 |-------|------|
-| Calblanque | Parque natural, virgen |
-| Bolnuevo | Erosiones curiosas |
-| La Manga | Mar Menor, aguas calmadas |
+| Calblanque | Nature park, unspoiled |
+| Bolnuevo | Curious rock formations |
+| La Manga | Mar Menor, calm waters |
 
-## Andalucía
+## Andalusia
 
 ### Costa del Sol (Málaga)
 
-| Playa | Realidad |
+| Beach | Reality |
 |-------|----------|
-| Marbella centro | Turismo masivo, caro |
-| Nerja (Burriana) | Mejor de la zona, calas |
-| Maro | Cala pequeña, bonita |
-| Torrox | Menos turístico |
+| Marbella center | Mass tourism, expensive |
+| Nerja (Burriana) | Best in the area, coves |
+| Maro | Small cove, pretty |
+| Torrox | Less touristy |
 
-**Evitar:** Torremolinos, Benalmádena (muy construido).
+**Avoid:** Torremolinos, Benalmádena (very built up).
 
 ### Cádiz
 
-| Playa | Tipo | Nota |
+| Beach | Type | Note |
 |-------|------|------|
-| La Caleta | Urbana | Cádiz ciudad, pequeña |
-| Bolonia | Duna enorme | Ruinas romanas, viento |
-| Los Caños de Meca | Hippie | Nudista parcial, tranquila |
-| Zahara de los Atunes | Pueblo | Atún almadraba |
-| Tarifa | Kite/wind | Viento siempre, no para relax |
-| El Palmar | Surf | Olas, chiringuitos |
+| La Caleta | Urban | Cádiz city, small |
+| Bolonia | Huge dune | Roman ruins, windy |
+| Los Caños de Meca | Hippie | Partly nudist, quiet |
+| Zahara de los Atunes | Town | Almadraba tuna |
+| Tarifa | Kite/wind | Always windy, not for relaxing |
+| El Palmar | Surf | Waves, beach bars |
 
 ### Costa de la Luz (Huelva)
 
-| Playa | Nota |
+| Beach | Note |
 |-------|------|
-| Matalascañas | Familiar, Doñana cerca |
-| Mazagón | Kilométrica, menos turismo |
-| Islantilla | Tranquila |
+| Matalascañas | Family, Doñana nearby |
+| Mazagón | Miles long, less tourism |
+| Islantilla | Quiet |
 
-## Atlántico Norte
+## North Atlantic
 
 ### Galicia
 
-| Playa | Zona | Nota |
+| Beach | Area | Note |
 |-------|------|------|
-| Islas Cíes | Vigo | Reservar autorización, paradisíaca |
-| Praia de Rodas | Cíes | "Mejor playa del mundo" |
-| Playa de las Catedrales | Ribadeo | Arcos naturales, reservar |
-| A Lanzada | Pontevedra | Grande, olas, nudista |
-| Carnota | Costa Morte | Enorme, salvaje |
+| Cíes Islands | Vigo | Book a permit, paradise |
+| Praia de Rodas | Cíes | "Best beach in the world" |
+| Playa de las Catedrales | Ribadeo | Natural arches, book ahead |
+| A Lanzada | Pontevedra | Large, waves, nudist |
+| Carnota | Costa da Morte | Huge, wild |
 
-**Agua:** FRÍA. 16-18°C en verano. Neopreno recomendado.
+**Water:** COLD. 16-18°C in summer. Wetsuit recommended.
 
 ### Asturias
 
-| Playa | Nota |
+| Beach | Note |
 |-------|------|
-| Playa de Gulpiyuri | Interior, agua de mar |
-| Playa del Silencio | Impresionante, acceso difícil |
-| Torimbia | Nudista, preciosa |
-| San Lorenzo (Gijón) | Urbana, grande |
+| Playa de Gulpiyuri | Inland, seawater |
+| Playa del Silencio | Stunning, tricky access |
+| Torimbia | Nudist, gorgeous |
+| San Lorenzo (Gijón) | Urban, large |
 
 ### Cantabria
 
-| Playa | Nota |
+| Beach | Note |
 |-------|------|
-| El Sardinero | Santander, clásica |
-| Langre | Salvaje, acantilados |
-| Playa de Oyambre | Parque natural |
+| El Sardinero | Santander, classic |
+| Langre | Wild, cliffs |
+| Playa de Oyambre | Nature park |
 
-### País Vasco
+### Basque Country
 
-| Playa | Nota |
+| Beach | Note |
 |-------|------|
-| La Concha | San Sebastián, icónica |
+| La Concha | San Sebastián, iconic |
 | Zurriola | Surf |
 | Laga | Mundaka, surf |
-| Sopelana | Cerca Bilbao, acantilados |
+| Sopelana | Near Bilbao, cliffs |
 
-## Islas Baleares
+## Balearic Islands
 
 ### Mallorca
 
-| Cala | Zona | Tipo |
+| Cove | Area | Type |
 |------|------|------|
-| Cala Varques | Este | Virgen, caminar |
-| Cala Mondragó | Sureste | Parque natural, familias |
-| Es Trenc | Sur | Grande, nudista parcial |
-| Cala Figuera | Noreste | Pueblo pesquero |
-| Formentor | Norte | Espectacular, llena |
+| Cala Varques | East | Unspoiled, walk in |
+| Cala Mondragó | Southeast | Nature park, families |
+| Es Trenc | South | Large, partly nudist |
+| Cala Figuera | Northeast | Fishing village |
+| Formentor | North | Spectacular, crowded |
 
 ### Menorca
 
-| Cala | Nota |
+| Cove | Note |
 |------|------|
-| Cala Macarella/Macarelleta | Las famosas, llenas en verano |
-| Cala Turqueta | Virgen, parking limitado |
-| Cala Pregonda | Roja, diferente |
-| Son Bou | Grande, familiar |
-| Cala Mitjana | Pequeña, bonita |
+| Cala Macarella/Macarelleta | The famous ones, packed in summer |
+| Cala Turqueta | Unspoiled, limited parking |
+| Cala Pregonda | Red sand, different |
+| Son Bou | Large, family |
+| Cala Mitjana | Small, pretty |
 
-**Menorca:** Menos construcción, calas vírgenes. Agosto lleno igual.
+**Menorca:** Less development, unspoiled coves. Still crowded in August.
 
 ### Ibiza
 
-| Playa | Tipo |
+| Beach | Type |
 |-------|------|
-| Cala Comte | Atardeceres famosos |
-| Cala d'Hort | Vista Es Vedrà |
-| Las Salinas | Ver y ser visto |
-| Cala Xarraca | Norte, tranquila |
-| Aigües Blanques | Nudista, hippie |
+| Cala Comte | Famous sunsets |
+| Cala d'Hort | View of Es Vedrà |
+| Las Salinas | See and be seen |
+| Cala Xarraca | North, quiet |
+| Aigües Blanques | Nudist, hippie |
 
 ### Formentera
 
-| Playa | Nota |
+| Beach | Note |
 |-------|------|
-| Ses Illetes | Caribeña, cara |
-| Platja de Migjorn | Larga, chiringuitos |
-| Cala Saona | Atardecer |
+| Ses Illetes | Caribbean-like, expensive |
+| Platja de Migjorn | Long, beach bars |
+| Cala Saona | Sunset |
 
-**Formentera:** Ferry desde Ibiza. Caro. Vale la pena.
+**Formentera:** Ferry from Ibiza. Expensive. Worth it.
 
-## Islas Canarias
+## Canary Islands
 
 ### Tenerife
 
-| Playa | Nota |
+| Beach | Note |
 |-------|------|
-| Las Teresitas | Arena sahariana importada |
-| El Médano | Kite y windsurf |
-| Playa de las Américas | Turismo masivo, evitar |
+| Las Teresitas | Imported Saharan sand |
+| El Médano | Kite and windsurf |
+| Playa de las Américas | Mass tourism, avoid |
 
 ### Gran Canaria
 
-| Playa | Nota |
+| Beach | Note |
 |-------|------|
-| Maspalomas | Dunas, nudista zona |
-| Las Canteras | Las Palmas, urbana top |
-| Güi Güi | Remota, solo andando |
+| Maspalomas | Dunes, nudist area |
+| Las Canteras | Las Palmas, top urban beach |
+| Güi Güi | Remote, walk-in only |
 
 ### Fuerteventura
 
-| Playa | Nota |
+| Beach | Note |
 |-------|------|
-| Corralejo | Dunas, grande |
-| Cofete | Salvaje, viento |
-| Sotavento | Kite mundial |
+| Corralejo | Dunes, large |
+| Cofete | Wild, windy |
+| Sotavento | World-class kite |
 
 ### Lanzarote
 
-| Playa | Nota |
+| Beach | Note |
 |-------|------|
-| Papagayo | Calas protegidas |
-| Famara | Surf, paisaje lunar |
-| Playa Blanca | Tranquila |
+| Papagayo | Sheltered coves |
+| Famara | Surf, lunar landscape |
+| Playa Blanca | Quiet |
 
 ## Tips
 
-1. **Agosto:** Todas llenas. Ir temprano (antes 10am) o tarde (después 17h)
-2. **Parking calas:** Llegar 9am o olvidar
-3. **Chiringuitos:** Caros pero cómodos
-4. **Nudismo:** Legal en todas, pero hay zonas específicas
-5. **Banderas:** Roja = prohibido bañarse
+1. **August:** All packed. Go early (before 10am) or late (after 5pm)
+2. **Cove parking:** Arrive at 9am or forget it
+3. **Beach bars (chiringuitos):** Expensive but convenient
+4. **Nudism:** Legal on all beaches, but there are specific areas
+5. **Flags:** Red = swimming forbidden

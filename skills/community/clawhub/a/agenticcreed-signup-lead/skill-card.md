@@ -1,38 +1,53 @@
-## Description: <br>
-Create a new signup lead in AgenticCreed by submitting contact and personal details via the public HTTP API endpoint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a new signup lead in AgenticCreed by submitting contact and personal details to its public HTTP API endpoint.
 
-## Publisher: <br>
-[waqas-orcalo](https://clawhub.ai/user/waqas-orcalo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[waqas-orcalo](https://clawhub.ai/user/waqas-orcalo)
 
-## Use Case: <br>
-Agents and operators use this skill to create AgenticCreed signup leads after the user confirms the lead details to submit. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill submits personal signup lead details, including contact information and optional sensitive fields, to AgenticCreed. <br>
-Mitigation: Confirm the user wants to send the listed fields before each use, omit optional sensitive fields unless needed, and use a protected, least-privilege API key. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/waqas-orcalo/agenticcreed-signup-lead) <br>
-- [AgenticCreed Signup Leads API Endpoint](https://gateway.agenticcreed.ai/signup-leads) <br>
+## Use Case:
 
+Agents and operators use this skill to submit consented signup lead records to AgenticCreed with required contact details and optional personal or employment details.
 
-## Skill Output: <br>
-**Output Type(s):** [API call, JSON response, Configuration] <br>
-**Output Format:** [HTTP POST request with JSON response mapping] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AGENTICCREED_API_KEY and user-confirmed lead fields before submission.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles personal data such as contact details, address, date of birth, WhatsApp number, and employment details.
+
+Mitigation: Use it only with clear consent from the person whose details are submitted, and avoid sending optional personal fields unless they are required.
+
+Risk: The skill requires an AgenticCreed API key to submit signup leads.
+
+Mitigation: Set AGENTICCREED_API_KEY only in environments where lead submission is intended and authorized.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/waqas-orcalo/skills/agenticcreed-signup-lead)
+- [AgenticCreed signup leads endpoint](https://gateway.agenticcreed.ai/signup-leads)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON]
+
+**Output Format:** [JSON API response exposed to the agent]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AGENTICCREED_API_KEY and lead fields supplied by the agent or user.]
+
+## Skill Version(s):
+
+1.0.1 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,55 @@
-## Description: <br>
-ClickHouse (clickhouse.com). Use this skill for ANY ClickHouse request -- searching and reading data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the oo CLI to inspect ClickHouse schemas and execute SQL through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers, analysts, and operators use this skill to inspect ClickHouse database structure and run SQL against an OOMOL-connected ClickHouse account through the oo CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The execute_query action may be able to change or delete ClickHouse data. <br>
-Mitigation: Require explicit review of execute_query payloads before execution unless the connected account or backend is known to enforce read-only queries. <br>
-Risk: The skill operates through a connected OOMOL account with server-side credentials. <br>
-Mitigation: Install and use it only with ClickHouse accounts where agent-run SQL is acceptable, and prefer least-privilege or read-only database access when possible. <br>
+## Use Case:
 
+Developers and data practitioners use this skill to inspect ClickHouse databases, review schemas, and run SQL through an existing OOMOL connection.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/oomol/skills/oo-clickhouse) <br>
-- [OOMOL Publisher Profile](https://clawhub.ai/user/oomol) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClickHouse](https://clickhouse.com) <br>
-- [oo CLI Install Guide](https://cli.oomol.com/install-guide.md) <br>
-- [ClickHouse Service Icon](https://static.oomol.com/logo/third-party/clickhouse.svg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, SQL, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline bash, PowerShell, text, and JSON-oriented command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector responses include data and meta.executionId when actions are run with --json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and skill metadata) <br>
+Risk: Setup runs a remote CLI installer, and the dependency's persistent managed-skill behavior has not been fully verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the CLI release before installation, review its managed-skill behavior, and set OO_SKILLS_SYNC_DISABLED=1 if startup synchronization is unwanted.
+
+Risk: SQL execution may affect ClickHouse data.
+
+Mitigation: Use a connection with only the needed permissions and approve the exact SQL targets before execution.
+
+## Reference(s):
+
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+- [ClickHouse documentation: HTTP interface](https://clickhouse.com/docs/interfaces/http)
+- [ClickHouse](https://clickhouse.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance, shell commands, and JSON query results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the selected action and connected ClickHouse database.]
+
+## Skill Version(s):
+
+1.0.6 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

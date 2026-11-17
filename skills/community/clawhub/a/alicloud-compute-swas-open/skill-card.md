@@ -1,48 +1,59 @@
-## Description: <br>
-Manage Alibaba Cloud Simple Application Server resources through SWAS OpenAPI workflows for instance inventory, lifecycle operations, command execution, firewall rules, storage, images, tags, monitoring, and lightweight database tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Alibaba Cloud Simple Application Server (SWAS OpenAPI 2020-06-01) resources end-to-end for querying instances, starting, stopping, rebooting, executing commands, and managing disks, snapshots, images, firewall rules, key pairs, tags, monitoring, and lightweight database operations.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to inspect and administer Alibaba Cloud Simple Application Server resources with bounded, region-aware workflows. It is suited for inventory, status summaries, controlled lifecycle changes, Cloud Assistant command execution, and SSH access repair when credentials and target resources are explicitly provided. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can administer real Alibaba Cloud SWAS resources using the user's credentials. <br>
-Mitigation: Use a least-privilege RAM role or short-lived credentials, require explicit confirmation for every mutating operation, and verify target region and resource identifiers before execution. <br>
-Risk: The SSH repair helper can persistently enable privileged SSH access on a cloud instance. <br>
-Mitigation: Review scripts/fix_ssh_access.py before use and confirm the target instance, target user, public-key fingerprint, SSH port, and whether root SSH login should be enabled. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to administer Alibaba Cloud SWAS resources, inventory instances, run Cloud Assistant commands, and manage related server assets with region-aware workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cinience/alicloud-compute-swas-open) <br>
-- [Publisher profile](https://clawhub.ai/user/cinience) <br>
-- [API overview](references/api_overview.md) <br>
-- [Endpoints](references/endpoints.md) <br>
-- [Command Assistant](references/command-assistant.md) <br>
-- [Official source list](references/sources.md) <br>
-- [Alibaba Cloud SWAS OpenAPI overview](https://help.aliyun.com/zh/simple-application-server/developer-reference/api-swas-open-2020-06-01-overview) <br>
-- [Alibaba Cloud SWAS InvokeCommand API](https://help.aliyun.com/zh/simple-application-server/developer-reference/api-swas-open-2020-06-01-invokecommand) <br>
-- [Alibaba Cloud SWAS service endpoints](https://help.aliyun.com/zh/simple-application-server/developer-reference/service-endpoints) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell and Python examples, plus optional TSV or JSON command output from bundled helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write operational evidence and API response summaries under output/alicloud-compute-swas-open/ when the user asks to save results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact SKILL.md frontmatter says 1.0.0) <br>
+Risk: The SSH repair workflow can persistently grant root SSH access and change SSH policy on a target instance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only as break-glass tooling after reviewing the target instance, account, key fingerprint, and SSH policy; avoid root where possible.
+
+Risk: Untrusted user, port, or public-key input can make the SSH repair workflow unsafe.
+
+Mitigation: Provide only trusted --user, --port, and --pubkey values, and restrict Alibaba Cloud credentials to the specific resources involved.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/cinience/skills/alicloud-compute-swas-open)
+- [SWAS OpenAPI overview](https://help.aliyun.com/zh/simple-application-server/developer-reference/api-swas-open-2020-06-01-overview)
+- [SWAS service endpoints](https://help.aliyun.com/zh/simple-application-server/developer-reference/service-endpoints)
+- [SWAS InvokeCommand reference](https://help.aliyun.com/zh/simple-application-server/developer-reference/api-swas-open-2020-06-01-invokecommand)
+- [Artifact API overview](references/api_overview.md)
+- [Artifact command assistant notes](references/command-assistant.md)
+- [Artifact endpoints notes](references/endpoints.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code, shell commands, and optional TSV or JSON script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local evidence files under output/alicloud-compute-swas-open when the workflow saves command outputs or API response summaries.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

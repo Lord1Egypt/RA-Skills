@@ -18,7 +18,7 @@ description: >
 
 # hello-env
 
-- **Version**: 1.0.2
+- **Version**: 1.0.3
 - **License**: MIT
 - **Author**: Evan Song · [github.com/Songhonglei](https://github.com/Songhonglei)
 - **Repository**: https://github.com/Songhonglei/better-agent-skills
@@ -34,7 +34,7 @@ Pure `bash`. No Python, no npm, no third-party packages. Works on macOS, Linux, 
 | Platform | Status |
 |---|---|
 | Linux (any distro) | ✅ Full |
-| macOS (bash 3.2.57+ default) | ✅ Full — uses `eval`-based indirect var expansion for bash 3.x |
+| macOS (bash 3.2.57+ default) | ✅ Full — uses `${!var}` indirect expansion (no eval; bash 2.0+) |
 | Windows (WSL / WSL2) | ✅ Full (effectively Linux) |
 | Windows (Git Bash / MSYS / Cygwin) | ⚠️ Partial — OS/user/tools/network checks work; cgroup container detection and PVC monitoring are skipped (Linux-only kernel features) |
 | Windows (PowerShell / cmd) | ❌ Not supported by design (bash script) |

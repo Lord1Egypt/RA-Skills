@@ -1,46 +1,61 @@
-## Description: <br>
-Explores new planets and manages fleet movement in Structs. Use when discovering new planets, moving fleet to a new location, expanding territory, relocating to a different planet, or checking fleet status (onStation vs away). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explores new planets and manages fleet movement in Structs. Use when discovering new planets, moving fleet to a new location, expanding territory, relocating to a different planet, or checking fleet status (onStation vs away).
 
-## Publisher: <br>
-[abstrct](https://clawhub.ai/user/abstrct) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abstrct](https://clawhub.ai/user/abstrct)
 
-## Use Case: <br>
-Structs players and operators use this skill to check exploration eligibility, move fleets, and run safe structsd commands for first-time and subsequent planet exploration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Subsequent planet exploration can destroy the old planet and any remaining structs. <br>
-Mitigation: Before signing, verify currentOre is 0, the fleet is onStation, and all valued structs were moved or the loss is accepted. <br>
-Risk: Fleet movement to unscouted or hostile space can strand the fleet in enemy range. <br>
-Mitigation: Query planet and fleet state for nearby hostiles and verify the destination location ID before confirming the transaction. <br>
-Risk: Using -y suppresses the CLI confirmation prompt for transactions. <br>
-Mitigation: Default to interactive commands and use -y only after intentional commander approval. <br>
+## Use Case:
 
+External Structs players and operators use this skill to plan planet exploration, fleet relocation, and status checks while preserving transaction confirmation safeguards.
 
-## Reference(s): <br>
-- [Structs Safety](https://structs.ai/SAFETY) <br>
-- [structsd Install Skill](https://structs.ai/skills/structsd-install/SKILL) <br>
-- [Planet Mechanics](https://structs.ai/knowledge/mechanics/planet) <br>
-- [Fleet Mechanics](https://structs.ai/knowledge/mechanics/fleet) <br>
-- [Entity Relationships](https://structs.ai/knowledge/entities/entity-relationships) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires structsd on PATH and a configured signing key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata) <br>
+Risk: Signed Structs transactions can move fleets or explore planets using player, fleet, planet, and destination IDs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify every ID before signing and prefer the interactive CLI confirmation flow for transaction commands.
+
+Risk: Subsequent planet exploration can release the old planet, destroy remaining structs, and scatter fleets.
+
+Mitigation: Confirm currentOre is 0, the fleet is onStation, and all valued structs have been moved or intentionally abandoned before exploring.
+
+Risk: Fleet movement to unscouted or hostile space can strand assets in enemy range.
+
+Mitigation: Scout destination and nearby hostile state with planet and fleet queries before moving to uncertain locations.
+
+## Reference(s):
+
+- [Structs Safety](https://structs.ai/SAFETY)
+- [structsd install skill](https://structs.ai/skills/structsd-install/SKILL)
+- [Planet mechanics](https://structs.ai/knowledge/mechanics/planet)
+- [Fleet mechanics](https://structs.ai/knowledge/mechanics/fleet)
+- [Entity relationships](https://structs.ai/knowledge/entities/entity-relationships)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Markdown]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes transaction commands, verification queries, and approval checkpoints; no files are produced.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

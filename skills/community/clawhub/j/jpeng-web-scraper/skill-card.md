@@ -1,43 +1,58 @@
-## Description: <br>
-Web scraping skill with JavaScript rendering support. Extract data from websites using CSS selectors, XPath, or AI-powered extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web scraping skill with JavaScript rendering support that extracts data from websites using CSS selectors, XPath, regex, or AI-powered extraction.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Developers and agents use this skill to plan web scraping workflows for static or JavaScript-rendered sites, choose extraction methods, and produce command examples for collecting structured data from authorized pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scraping pages without authorization or outside site policies can create legal, privacy, or operational risk. <br>
-Mitigation: Use the skill only for public or authorized pages, respect robots.txt and site terms, and keep crawl scope and request rates conservative. <br>
-Risk: Collected data may include personal, confidential, login-protected, or regulated information. <br>
-Mitigation: Avoid collecting sensitive data unless there is clear permission and an appropriate review process for the data category. <br>
-Risk: The artifact describes command examples for a scraper script, but the release evidence only includes the skill instructions. <br>
-Mitigation: Verify any runtime script or dependencies from a trusted source before executing generated scraping commands. <br>
+## Use Case:
 
+External developers and agents use this skill to plan scraping workflows for static or JavaScript-rendered pages, extract structured website data, and crawl multiple pages with rate limiting and robots.txt awareness.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/jpeng-web-scraper) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash command examples and JSON output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include selector, crawl, rendering, rate-limit, robots.txt, and AI extraction guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill supports network scraping and crawling, which can reach unintended or unauthorized targets if scope is too broad.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit use to authorized targets, set small page limits, respect robots.txt, and keep rate limits enabled.
+
+Risk: The skill can write scraped data to a local output path.
+
+Mitigation: Verify any --output path before execution and review scraped data handling requirements before writing locally.
+
+Risk: JavaScript rendering and multi-page crawling can increase traffic volume compared with a single static page request.
+
+Mitigation: Use conservative wait times, crawl selectors, max-page limits, user-agent settings, and request delays.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/jpeng-web-scraper)
+- [Publisher profile](https://clawhub.ai/user/jpengcheng523-netizen)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown with bash command examples and JSON output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may describe network scraping scope, selector fields, crawl limits, rendering options, rate limiting, robots.txt handling, and optional local JSON output paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

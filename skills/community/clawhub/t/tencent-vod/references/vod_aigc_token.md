@@ -79,24 +79,24 @@
 
 #### 创建 Token（首次使用）
 ```bash
-python scripts/vod_aigc_token.py create
+python3 scripts/vod_aigc_token.py create
 # 若已有 Token，会提示是否覆盖，输入 y 或 yes 继续，回车取消
 ```
 
 #### 查询 Token 列表
 ```bash
-python scripts/vod_aigc_token.py list
+python3 scripts/vod_aigc_token.py list
 ```
 
 #### 删除指定 Token
 ```bash
-python scripts/vod_aigc_token.py delete --api-token tok_abc123
+python3 scripts/vod_aigc_token.py delete --api-token tok_abc123
 ```
 
 #### 指定子应用 ID（2023年12月后开通的用户必须填写）
 ```bash
-python scripts/vod_aigc_token.py create --sub-app-id 1500000001
-python scripts/vod_aigc_token.py list   --sub-app-id 1500000001
+python3 scripts/vod_aigc_token.py create --sub-app-id 1500000001
+python3 scripts/vod_aigc_token.py list   --sub-app-id 1500000001
 ```
 
 ---
@@ -105,7 +105,7 @@ python scripts/vod_aigc_token.py list   --sub-app-id 1500000001
 
 #### 查询文本生成用量（本月）
 ```bash
-python scripts/vod_aigc_token.py usage \
+python3 scripts/vod_aigc_token.py usage \
     --type Text \
     --start 2026-03-01 \
     --end 2026-03-31
@@ -113,7 +113,7 @@ python scripts/vod_aigc_token.py usage \
 
 #### 查询视频生成用量
 ```bash
-python scripts/vod_aigc_token.py usage \
+python3 scripts/vod_aigc_token.py usage \
     --type Video \
     --start 2026-03-01 \
     --end 2026-03-31
@@ -121,7 +121,7 @@ python scripts/vod_aigc_token.py usage \
 
 #### 查询图片生成用量（JSON 格式）
 ```bash
-python scripts/vod_aigc_token.py usage \
+python3 scripts/vod_aigc_token.py usage \
     --type Image \
     --start 2026-03-01 \
     --end 2026-03-31 \
@@ -130,7 +130,7 @@ python scripts/vod_aigc_token.py usage \
 
 #### dry-run 预览参数
 ```bash
-python scripts/vod_aigc_token.py --dry-run usage \
+python3 scripts/vod_aigc_token.py --dry-run usage \
     --type Text \
     --start 2026-03-01 \
     --end 2026-03-31

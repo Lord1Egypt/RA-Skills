@@ -1,44 +1,60 @@
-## Description: <br>
-Generate or edit images using OpenAI-compatible API. Supports multi-image input, fine-tuned models, and multiple configuration sources (env vars, openclaw.json, config.json). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate or edit images using an OpenAI-compatible image API, with support for multi-image input, fine-tuned models, and configuration through CLI options, environment variables, OpenClaw config, or a skill config file.
 
-## Publisher: <br>
-[CHENXCHEN](https://clawhub.ai/user/CHENXCHEN) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenxchen](https://clawhub.ai/user/chenxchen)
 
-## Use Case: <br>
-Developers and agents use this skill to generate new images, edit images, or compose multiple input images through a configured OpenAI-compatible image API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and selected input images are sent to the configured OpenAI-compatible API provider. <br>
-Mitigation: Use a trusted provider and avoid sending sensitive personal or proprietary images unless that provider's data practices are acceptable. <br>
-Risk: API keys may be exposed if configuration files or environment values are committed or shared. <br>
-Mitigation: Use a dedicated or limited API key and keep config files containing secrets out of version control. <br>
+## Use Case:
 
+Developers and agent users use this skill to generate new images, edit existing images, or compose multiple images through a configured OpenAI-compatible image API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CHENXCHEN/nano-banana-pro-custom) <br>
-- [Publisher profile](https://clawhub.ai/user/CHENXCHEN) <br>
-- [OpenAI-compatible API base URL example](https://api.openai.com/v1) <br>
-- [OpenRouter API base URL example](https://openrouter.ai/api/v1) <br>
-- [Azure OpenAI deployment URL example](https://your-resource.openai.azure.com/openai/deployments/your-deployment) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, API Calls, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; the script saves PNG image files and prints MEDIA paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires uv, Python >=3.10, NANO_API_KEY, a configured OpenAI-compatible base URL, and a compatible image model.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Prompts and selected input images may be sent to the configured API provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only with an approved provider and avoid submitting sensitive prompts or images unless that provider is authorized for the data.
+
+Risk: The skill can target any configured OpenAI-compatible API endpoint.
+
+Mitigation: Review the configured NANO_BASE_URL or OpenClaw configuration before use and restrict it to trusted endpoints.
+
+Risk: Credential diagnostics can reveal whether API keys are set and plaintext config files may contain secrets.
+
+Mitigation: Prefer environment variables or managed OpenClaw configuration, keep extra secrets out of skill config files, and avoid logging --show-config output.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chenxchen/skills/nano-banana-pro-custom)
+- [Publisher Profile](https://clawhub.ai/user/chenxchen)
+- [OpenAI-Compatible API Base URL Example](https://api.openai.com/v1)
+- [OpenRouter API Base URL Example](https://openrouter.ai/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell command examples; runtime script output includes saved PNG file paths and MEDIA markers.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated images are saved as PNG files; multiple outputs are numbered when more than one image is requested.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

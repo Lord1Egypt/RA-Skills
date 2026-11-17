@@ -580,15 +580,24 @@ Examples:
     })
 
     # ── 计算时间参数 ──
+    today = datetime.now()
     start_time = args.start_time
     end_time = args.end_time
-    if not start_time and not end_time and args.date:
+    if not start_time and not end_time:
+        # 用户未指定时间时，根据当前小时自动判断有效日期
+        if args.date == today.strftime("%Y-%m-%d"):
+            if today.hour >= 16:
+                args.date = (today - timedelta(days=1)).strftime("%Y-%m-%d")
+            else:
+                args.date = (today - timedelta(days=2)).strftime("%Y-%m-%d")
         start_time = args.date
         try:
             dt = datetime.strptime(args.date, "%Y-%m-%d")
             end_time = (dt + timedelta(days=1)).strftime("%Y-%m-%d")
         except ValueError:
             pass
+    step(f"数据日期: {args.date}")
+    print()
 
     # ── 获取作品（单次接口调用）──
     keyword = args.keyword.strip()
@@ -614,7 +623,8 @@ Examples:
     for c in clusters[:10]:
         print(f"    {c['category']}: {c['count']} 篇")
 
-    # ── 终端表格展示 ──
+    # ── 终端表格 ──
+    print(f"{CYAN}📌 数据说明：每日16点更新前一天数据{RESET}\n")
     print_article_table(clusters)
 
     # ── 生成报告 ──
@@ -643,6 +653,14 @@ Examples:
     print(f"  分类: {len(clusters)} 个")
     print(f"  作品: {len(articles)} 篇")
     print(f"\n{CYAN}💡 需要每日下午4点自动推送最新研究数据吗？{RESET}")
+
+    # ── 红狐引流 ──
+    print(f"\n{YELLOW}{BOLD}🔥 想深挖单平台爆款？红狐已为你准备好更专业的单平台作品查询 skill，数据维度更全、挖掘更深：{RESET}")
+    print("  - 📕 小红书爆款笔记查询（https://redfox.hk/skills/no/QrzKkyDF?source=clawhub） → 看透爆款选题与种草逻辑")
+    print("  - 📰 公众号热门文章查询（https://redfox.hk/skills/no/8dAG7qks?source=clawhub） → 追踪文旅深度长文与10w+爆文")
+    print("  - 🎵 抖音作品查询 （https://redfox.hk/skills/no/d2KQPmuv?source=clawhub）→ 拆解高赞短视频与带货玩法")
+    print("  - 📺 B站作品查询（https://redfox.hk/skills/no/h4xt6BB2?source=clawhub） → 挖掘中长视频与UP主内容力")
+    print(f"\n{CYAN}红狐（https://redfox.hk?source=clawhub）还有更多文旅 / 创作 / 运营类 skill，等你来探索 ✨{RESET}")
 
 
 if __name__ == "__main__":

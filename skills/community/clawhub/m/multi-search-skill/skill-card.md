@@ -1,41 +1,61 @@
-## Description: <br>
-Search 8 knowledge domains in one query: live web, academic papers, scholarly works, arXiv preprints, biomedical literature, chemical compounds, government datasets, and dictionary results via x402. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search 8 knowledge domains in one query: live web, academic papers, scholarly works, arXiv preprints, biomedical papers, chemical compounds, government datasets, and dictionary resources via x402.
 
-## Publisher: <br>
-[plagtech](https://clawhub.ai/user/plagtech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[plagtech](https://clawhub.ai/user/plagtech)
 
-## Use Case: <br>
-External users and developers use this skill to route research questions across live web, academic, biomedical, chemistry, government data, and dictionary sources, then synthesize cited results from the selected domains. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms and extracted URLs are sent to the configured external research gateway. <br>
-Mitigation: Avoid submitting secrets, proprietary text, regulated personal data, or sensitive investigations unless the gateway and its billing setup have been reviewed. <br>
-Risk: The skill uses paid x402 or subscription-backed endpoints and may incur per-call costs. <br>
-Mitigation: Review endpoint pricing and configure RESEARCH_API_KEY or wallet access only for users authorized to spend on searches. <br>
+## Use Case:
 
+External users, developers, and research-oriented agents use this skill to select relevant search domains, call paid gateway endpoints, and synthesize cited results from web, academic, scientific, government, chemistry, biomedical, and dictionary sources.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/plagtech/multi-search-skill) <br>
-- [Research Gateway](https://gateway.spraay.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and cited search results returned as gateway responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires RESEARCH_API_KEY for authenticated or subscription access; RESEARCH_GATEWAY_URL can override the default gateway.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Search queries, article URLs, and research parameters are sent to the configured gateway and downstream data providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting sensitive data and use the default or another trusted HTTPS gateway only after reviewing its data-handling expectations.
+
+Risk: Broad multi-domain searches can trigger paid x402 or API usage.
+
+Mitigation: Limit searches to relevant domains, monitor account usage, and keep the API key or subscription credential scoped and protected.
+
+Risk: Setting RESEARCH_GATEWAY_URL changes where requests and credentials are sent.
+
+Mitigation: Leave RESEARCH_GATEWAY_URL unset unless intentionally using a trusted HTTPS gateway.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/plagtech/skills/multi-search-skill)
+- [Publisher profile](https://clawhub.ai/user/plagtech)
+- [OpenClaw](https://openclaw.ai)
+- [ClawHub](https://clawhub.ai)
+- [Default research gateway](https://gateway.spraay.app)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses from gateway calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search outputs should identify which domains were queried and cite returned URLs, DOIs, PMIDs, or arXiv IDs when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

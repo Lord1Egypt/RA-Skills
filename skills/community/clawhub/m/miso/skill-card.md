@@ -1,46 +1,62 @@
-## Description: <br>
-MISO provides Telegram-native mission-control templates and helper commands for tracking OpenClaw multi-agent workflow progress, approvals, and completion status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MISO provides Telegram-native mission control templates and helper commands for tracking OpenClaw multi-agent workflows.
 
-## Publisher: <br>
-[ShunsukeHayashi](https://clawhub.ai/user/ShunsukeHayashi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[shunsukehayashi](https://clawhub.ai/user/shunsukehayashi)
 
-## Use Case: <br>
-Developers and operators use this skill to make autonomous and multi-agent work visible in Telegram through standard mission states, progress messages, reactions, and approval gates. It is useful when parallel agent work needs concise status updates from the chat list and repeatable start, plan, status, and close workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Mission details may be automatically posted to a fixed Telegram channel. <br>
-Mitigation: Enable channel posting only for workspaces where mission names, agent counts, and key insights are safe for every channel member to see. <br>
-Risk: The Telegram helper uses a hardcoded local bot-token configuration path and fixed chat identifiers. <br>
-Mitigation: Replace these values with workspace-specific configuration before installation, and use a dedicated Telegram bot with only the permissions required. <br>
-Risk: Local mission state stored in .miso-state.json may not match workspace retention or backup expectations. <br>
-Mitigation: Define retention, backup, and cleanup behavior for local mission state before using the skill for sensitive workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ShunsukeHayashi/miso) <br>
-- [README](artifact/README.md) <br>
-- [Mission Control specification](artifact/SKILL.md) <br>
-- [Channel integration](artifact/CHANNEL-INTEGRATION.md) <br>
-- [Design system](artifact/DESIGN-SYSTEM.md) <br>
-- [Examples](artifact/examples/EXAMPLES.md) <br>
+## Use Case:
 
+Developers and operators use this skill to standardize Telegram mission-control updates for OpenClaw multi-agent work, including progress, approval gates, completion, and error states.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and Markdown templates with optional JSON configuration and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Designed for Telegram mission status messages, slash-command workflows, channel notifications, and bot helper commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.3 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Mission details may be shared automatically to fixed Telegram chats.
+
+Mitigation: Review and replace channel destinations before use, and disable or gate channel auto-posting for confidential work.
+
+Risk: Telegram bot credentials are used from local configuration.
+
+Mitigation: Use a narrowly scoped Telegram bot credential, protect the local configuration file, and rotate the credential if it is exposed.
+
+Risk: Mission state can persist locally in .miso-state.json.
+
+Mitigation: Confirm retention expectations before deployment and clear the local state file when missions should no longer be retained.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shunsukehayashi/skills/miso)
+- [SKILL.md](artifact/SKILL.md)
+- [README.md](artifact/README.md)
+- [Design system](artifact/DESIGN-SYSTEM.md)
+- [Channel integration](artifact/CHANNEL-INTEGRATION.md)
+- [Spawn integration](artifact/SPAWN-INTEGRATION.md)
+- [Master ticket state management](artifact/MASTER-TICKET.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown templates with inline command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Telegram-oriented mission status templates, slash-command mappings, and bot helper command output.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

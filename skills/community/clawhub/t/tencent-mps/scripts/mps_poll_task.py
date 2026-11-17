@@ -13,7 +13,6 @@
     result = poll_image_task(task_id, region="ap-guangzhou", interval=5, max_wait=300)
 """
 
-from mps_auto_upgrade import check_sdk_version  # noqa: F401 (import triggers urllib3 warning filter)
 import json
 import os
 import sys
@@ -23,11 +22,15 @@ import time
 _SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 if _SCRIPT_DIR not in sys.path:
     sys.path.insert(0, _SCRIPT_DIR)
+from mps_auto_upgrade import check_sdk_version  # noqa: F401 (import triggers urllib3 warning filter)
 try:
     from mps_load_env import ensure_env_loaded as _ensure_env_loaded
     _LOAD_ENV_AVAILABLE = True
 except ImportError:
     _LOAD_ENV_AVAILABLE = False
+
+# 依赖检查/自动安装：必须在第三方包首次 import 之前调用
+check_sdk_version()
 
 try:
     from tencentcloud.common import credential
@@ -56,11 +59,31 @@ STATUS_MAP = {
 
 
 def _get_credentials():
+    """从环境变量获取腾讯云凭证。若缺失则尝试从 dotenv 文件自动加载后重试。
+
+    行为与各业务脚本的 get_credentials() 保持一致：凭证可能只写在 ~/.env 等
+    dotenv 文件中而未 export，此时直接退出会让调用方拿不到本可用的凭证。
+    保留下划线前缀，表明这是模块私有函数，不作为对外 API 导出。
+    """
     secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID", "")
     secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY", "")
     if not secret_id or not secret_key:
-        print("错误：请设置环境变量 TENCENTCLOUD_SECRET_ID 和 TENCENTCLOUD_SECRET_KEY", file=sys.stderr)
-        sys.exit(1)
+        if _LOAD_ENV_AVAILABLE:
+            print("[load_env] 环境变量未设置，尝试从系统文件自动加载...", file=sys.stderr)
+            _ensure_env_loaded(verbose=True)
+            secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID", "")
+            secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY", "")
+        if not secret_id or not secret_key:
+            if _LOAD_ENV_AVAILABLE:
+                from mps_load_env import _print_setup_hint
+                _print_setup_hint(["TENCENTCLOUD_SECRET_ID", "TENCENTCLOUD_SECRET_KEY"])
+            else:
+                print(
+                    "\n错误：TENCENTCLOUD_SECRET_ID / TENCENTCLOUD_SECRET_KEY 未设置。\n"
+                    "请在 ~/.env、~/.bashrc、~/.profile 或 <SKILL_DIR>/.env 中添加这些变量。\n",
+                    file=sys.stderr,
+                )
+            sys.exit(1)
     return credential.Credential(secret_id, secret_key)
 
 
@@ -480,6 +503,12 @@ def extract_output_files(task_result):
             speaker_path = output.get("SpeakerPath", "")
             if speaker_path:
                 _add_cos_output(output.get("OutputStorage"), speaker_path)
+
+        # HorizontalToVerticalTask（智能横竖互转，AiAnalysisTask.Definition=28）
+        h2v_task = item.get("HorizontalToVerticalTask") or {}
+        if h2v_task:
+            output = h2v_task.get("Output") or {}
+            _add_cos_output(output.get("OutputStorage"), output.get("Path", ""))
 
     # SmartEraseTaskResult（智能擦除任务）
     smart_erase = workflow_task.get("SmartEraseTaskResult") or {}

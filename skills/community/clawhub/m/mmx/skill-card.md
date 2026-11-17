@@ -1,43 +1,53 @@
-## Description: <br>
-Full multimodal generation via MiniMax CLI (mmx), covering text chat, image generation, video synthesis, TTS speech, music composition, vision analysis, and web search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mmx helps agents use the MiniMax CLI for text chat, image and video generation, speech synthesis, music composition, vision analysis, web search, and related configuration.
 
-## Publisher: <br>
-[ariffazil](https://clawhub.ai/user/ariffazil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ariffazil](https://clawhub.ai/user/ariffazil)
 
-## Use Case: <br>
-Developers and creators use this skill as a command reference for generating and analyzing multimodal content with the MiniMax mmx CLI. It helps agents prepare shell commands for text, image, video, speech, music, vision, web search, configuration, and quota workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, images, audio, files, and search queries may be sent to MiniMax services when using the mmx CLI. <br>
-Mitigation: Avoid submitting secrets, sensitive personal data, or proprietary content unless the deployment has approved that data flow. <br>
-Risk: Generated or downloaded media can write files to user-selected paths. <br>
-Mitigation: Choose output paths deliberately and review generated files before using or publishing them. <br>
-Risk: API-key use can affect account security, quota, or billing. <br>
-Mitigation: Protect the MiniMax API key, check authentication status, and monitor quota before high-volume generation. <br>
+## Use Case:
 
+Developers and agent users use Mmx to generate and analyze multimodal content with the MiniMax CLI after authenticating with a MiniMax API key.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ariffazil/mmx) <br>
-- [Publisher profile](https://clawhub.ai/user/ariffazil) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local file paths, output directories, API authentication, model names, and generated media files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Sensitive prompts, private media, or paid API credentials may be sent through MiniMax workflows if users run commands without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review prompts and media before use, prefer secret-safe authentication instead of putting API keys in shell commands, and avoid sending private content unless approved.
+
+Risk: Generated media outputs may overwrite or mix with existing local files when output paths are reused.
+
+Mitigation: Direct generated media to a dedicated output folder and use unique filenames for image, video, speech, and music commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ariffazil/skills/mmx)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the mmx CLI and MiniMax authentication; generated media and files are written by the CLI according to command options.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

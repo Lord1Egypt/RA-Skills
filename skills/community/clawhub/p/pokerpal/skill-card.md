@@ -1,39 +1,53 @@
-## Description: <br>
-Query PokerPal poker game data, including games, players, buy-ins, and settlements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query PokerPal poker game data - games, players, buy-ins, settlements.
 
-## Publisher: <br>
-[vvardhan14](https://clawhub.ai/user/vvardhan14) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vvardhan14](https://clawhub.ai/user/vvardhan14)
 
-## Use Case: <br>
-PokerPal users and agents use this skill to look up live poker group, game, player, buy-in, chip count, and settlement information through configured PokerPal API access. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The agent can access poker group, player, buy-in, chip count, and net result information available to the configured bot key. <br>
-Mitigation: Use a read-only, least-privilege PokerPal bot key and rotate it if the endpoint or installation source is no longer trusted. <br>
-Risk: The configured PokerPal API URL determines where the bot key is sent. <br>
-Mitigation: Install only with a trusted PokerPal API URL and verify the endpoint before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vvardhan14/pokerpal) <br>
+## Use Case:
 
+External users and agents use this skill to query live PokerPal groups, games, player buy-ins, chip counts, and settlement-related results through configured PokerPal bot access.
 
-## Skill Output: <br>
-**Output Type(s):** [text, API calls, guidance] <br>
-**Output Format:** [Markdown or plain text responses based on JSON API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires POKERPAL_API_URL and POKERPAL_BOT_API_KEY environment variables.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Poker buy-ins, chip counts, player statistics, and settlement results may expose private group financial information.
+
+Mitigation: Install only for authorized users and treat retrieved PokerPal data as private unless the poker group has agreed it may be disclosed.
+
+Risk: The skill sends the bot API key to a configurable PokerPal API endpoint.
+
+Mitigation: Use a least-privileged read-only bot key and set POKERPAL_API_URL only to a trusted HTTPS PokerPal endpoint.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vvardhan14/skills/pokerpal)
+- [Publisher profile](https://clawhub.ai/user/vvardhan14)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or text responses summarizing PokerPal API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses configured POKERPAL_API_URL and POKERPAL_BOT_API_KEY environment variables to retrieve group, game, player, buy-in, and summary data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,48 @@
-## Description: <br>
-Greet users in multiple languages with formal, informal, and casual wording. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Greet users in English, Spanish, and French with culturally appropriate formal, informal, and casual phrasing.
 
-## Publisher: <br>
-[veda1823](https://clawhub.ai/user/veda1823) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[veda1823](https://clawhub.ai/user/veda1823)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+External users and assistants use this skill to choose culturally appropriate greetings in supported languages and formality levels.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Source descriptions contain truncated wording, which could make the intended scope less clear to reviewers.
+
+Mitigation: Review greeting text and descriptions for completeness and cultural fit before using the skill in end-user conversations.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users can use this skill when they want an agent to greet someone in English, Spanish, or French with a tone that fits the situation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides human-facing greeting text, so wording may not fit every cultural or conversational context. <br>
-Mitigation: Review the selected greeting for the user's language, tone, and situation before using it in sensitive communications. <br>
-Risk: Future versions could add code, tools, permissions, or external services beyond this markdown-only release. <br>
-Mitigation: Re-review security metadata and artifact contents before deploying upgraded versions. <br>
+**Output Format:** [Plain text greeting options]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [No executable code, credential use, persistence, or external data access.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text or Markdown greeting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces greeting wording selected by language and formality.] <br>
+1.0.0 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

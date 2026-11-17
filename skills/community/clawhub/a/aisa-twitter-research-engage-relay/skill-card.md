@@ -1,46 +1,60 @@
-## Description: <br>
-Run Twitter/X likes, follows, replies, and OAuth-gated posting through AIsa for explicit engagement workflows where the user already knows the account, tweet, or campaign to act on. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run Twitter/X likes, follows, replies, and OAuth-gated posting through AIsa for workflows where the user already knows the target account, tweet, or campaign and needs explicit engagement or approved posting.
 
-## Publisher: <br>
-[baofeng-tech](https://clawhub.ai/user/baofeng-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baofeng-tech](https://clawhub.ai/user/baofeng-tech)
 
-## Use Case: <br>
-External users and developers use this skill to research known Twitter/X targets, request OAuth authorization, and run approved likes, follows, replies, posts, quotes, or media uploads through AIsa. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose the AIsa API key in normal command output, terminal logs, CI logs, or chat-visible tool traces. <br>
-Mitigation: Use trusted local terminals, avoid shared logs and chat-visible traces, redact command output that includes secrets, and rotate AISA_API_KEY if it has already appeared in logs. <br>
-Risk: The skill can perform real Twitter/X account actions, including likes, follows, replies, posts, quotes, and media uploads. <br>
-Mitigation: Confirm exact accounts, tweet IDs, post text, quote targets, and media files before running engagement or posting commands, and do not treat an action as complete until the relay returns success. <br>
-Risk: Approved local media files are read from the workspace and sent to AIsa relay endpoints for upload to Twitter/X. <br>
-Mitigation: Only pass local files the user explicitly provided, explain that files are sent to AIsa's Twitter/X relay, and avoid inventing remote attachment URLs or extra captions. <br>
+## Use Case:
 
+External users and agent operators use this skill to research known Twitter/X targets, prepare approved posts, and run explicit like, follow, reply, quote, or media-upload workflows through AIsa-backed clients.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/baofeng-tech/aisa-twitter-research-engage-relay) <br>
-- [Publisher profile](https://clawhub.ai/user/baofeng-tech) <br>
-- [AIsa Twitter Engagement](references/engage_twitter.md) <br>
-- [AIsa Twitter OAuth](references/post_twitter.md) <br>
-- [AIsa Twitter relay endpoint](https://api.aisa.one/apis/v1/twitter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY and may send approved text, account targets, tweet IDs, and local media files to AIsa relay endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: frontmatter and server release evidence) <br>
+Risk: The AIsa API key can drive Twitter/X account actions and may be exposed in command output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in environments where command output is not logged or shared, and rotate the key if exposure is suspected.
+
+Risk: Media upload commands can read arbitrary local paths that the runtime can access.
+
+Mitigation: Pass only user-selected media files from a safe workspace path and confirm that files are intended for upload before execution.
+
+Risk: Likes, follows, replies, quotes, and posts can affect a real Twitter/X account.
+
+Mitigation: Require explicit target and content approval, and do not report success until the AIsa API response confirms the action.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/baofeng-tech/skills/aisa-twitter-research-engage-relay)
+- [baofeng-tech Publisher Profile](https://clawhub.ai/user/baofeng-tech)
+- [AIsa Twitter Engagement](artifact/references/engage_twitter.md)
+- [AIsa Twitter OAuth](artifact/references/post_twitter.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell-command examples and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and AISA_API_KEY; command results should be checked before claiming Twitter/X action success.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

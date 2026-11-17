@@ -1,43 +1,66 @@
-## Description: <br>
-Flutter cross-platform development guide covering widget patterns, Riverpod/Bloc state management, GoRouter navigation, performance optimization, and platform-specific implementations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MiniMax Flutter Dev guides Flutter cross-platform app development with widget patterns, Riverpod and Bloc state management, GoRouter navigation, performance optimization, testing, and platform-specific implementation practices.
 
-## Publisher: <br>
-[daidai8910g](https://clawhub.ai/user/daidai8910g) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daidai8910g](https://clawhub.ai/user/daidai8910g)
 
-## Use Case: <br>
-Developers and engineers use this skill as a Flutter development reference for widgets, state management, navigation, performance profiling, testing, and cross-platform implementation patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package is documentation-only, but inaccurate Flutter guidance could still lead to inefficient or fragile application code. <br>
-Mitigation: Review recommendations against current Flutter, Riverpod, Bloc, and GoRouter documentation before applying them in production. <br>
-Risk: The skill references additional markdown guides that are not included in this package. <br>
-Mitigation: Treat missing linked reference files as unavailable and rely only on the bundled SKILL.md plus verified external documentation. <br>
+## Use Case:
 
+Developers and engineers use this skill when building Flutter applications, choosing state management patterns, setting up navigation, improving performance, and planning tests across mobile, web, and platform-specific surfaces.
 
-## Reference(s): <br>
-- [MiniMax Flutter Dev on ClawHub](https://clawhub.ai/daidai8910g/minimax-flutter-dev) <br>
-- [Flutter Documentation](https://docs.flutter.dev/) <br>
-- [Riverpod Documentation](https://riverpod.dev/) <br>
-- [Bloc Library Documentation](https://bloclibrary.dev/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with checklists, tables, and inline code references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no executable code or credential access declared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: The skill's linked reference documents were not included in the inspected package, so some reference links may not resolve in the release artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm bundled references are present or update links before relying on them for detailed implementation guidance.
+
+Risk: As coding guidance, incorrect application of patterns could introduce app defects or performance regressions.
+
+Mitigation: Review generated recommendations against current Flutter, Riverpod, Bloc, and GoRouter documentation and verify behavior with tests and profiling.
+
+## Reference(s):
+
+- [Widget Patterns](references/widget-patterns.md)
+- [Riverpod State Management](references/riverpod-state.md)
+- [Bloc State Management](references/bloc-state.md)
+- [GoRouter Navigation](references/gorouter-navigation.md)
+- [Project Structure](references/project-structure.md)
+- [Performance Optimization](references/performance.md)
+- [Testing Strategies](references/testing.md)
+- [Platform Integration](references/platform-specific.md)
+- [Animations](references/animations.md)
+- [Networking](references/networking.md)
+- [Forms](references/forms.md)
+- [Localization](references/localization.md)
+- [ClawHub Skill Page](https://clawhub.ai/daidai8910g/skills/minimax-flutter-dev)
+- [Publisher Profile](https://clawhub.ai/user/daidai8910g)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration instructions, Shell commands]
+
+**Output Format:** [Markdown guidance with checklists, tables, code-oriented patterns, and command examples when applicable]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reference-only skill with no executable code in the inspected package.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

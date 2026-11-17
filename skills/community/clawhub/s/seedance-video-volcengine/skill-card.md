@@ -1,45 +1,56 @@
-## Description: <br>
-Generate AI videos with ByteDance Seedance (Doubao/Volcengine Ark) via Ark API, supporting text-to-video and image-to-video with the doubao-seedance-1-5-pro-251215 model endpoint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI videos with ByteDance Seedance (豆包/火山方舟) via Ark API, supporting text-to-video and image-to-video with the doubao-seedance-1-5-pro-251215 model endpoint.
 
-## Publisher: <br>
-[maddy-cc](https://clawhub.ai/user/maddy-cc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maddy-cc](https://clawhub.ai/user/maddy-cc)
 
-## Use Case: <br>
-Developers and content creators use this skill to generate videos from text prompts or public image URLs through Volcengine Ark/Seedance. It provides curl-based task creation, polling, video URL retrieval, download guidance, and troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and image URLs are sent to Volcengine Ark/Seedance, which may expose confidential, personal, private, or regulated content to an external provider. <br>
-Mitigation: Use a dedicated Ark API key and avoid submitting confidential prompts, private images, personal data, or regulated content unless approved for that provider. <br>
-Risk: Video generation can consume provider quota or incur costs. <br>
-Mitigation: Review Ark cost, quota, and endpoint settings before running generation tasks. <br>
-Risk: Generated video URLs are temporary and can fail if the signed query string is copied incompletely. <br>
-Mitigation: Download successful MP4 outputs promptly with the complete signed URL, including all query parameters. <br>
+## Use Case:
 
+Developers and creators use this skill to guide agents through creating Seedance video-generation tasks, polling Ark task status, and retrieving generated MP4 URLs from text or image prompts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/maddy-cc/seedance-video-volcengine) <br>
-- [Volcengine Ark console](https://console.volcengine.com/ark) <br>
-- [Volcengine video generation API documentation](https://www.volcengine.com/docs/82379/1520757) <br>
-- [GitHub Issues support](https://github.com/maddy-cc/seedance-video-skill/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks, JSON request examples, and troubleshooting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ARK_API_KEY and sends prompts or public image URLs to Volcengine Ark.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Prompts, image URLs, request metadata, and task data are sent to Volcengine Ark.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for inputs approved for sharing with that external service, and avoid confidential, personal, internal-only, or non-public image inputs.
+
+Risk: The skill requires an Ark API key for authenticated API calls.
+
+Mitigation: Keep ARK_API_KEY in an environment variable and do not paste it into prompts or shared files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/maddy-cc/skills/seedance-video-volcengine)
+- [Volcengine Ark Console](https://console.volcengine.com/ark)
+- [Volcengine Video Generation API Documentation](https://www.volcengine.com/docs/82379/1520757)
+- [Seedance Video Skill Issues](https://github.com/maddy-cc/seedance-video-skill/issues)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown with bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ARK_API_KEY and sends prompts, image URLs, request metadata, and task data to Volcengine Ark.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

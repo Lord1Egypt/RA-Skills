@@ -1,40 +1,57 @@
-## Description: <br>
-Upgrade OpenClaw, compare local changelog and configuration changes, audit hooks and doctor findings, and present upgrade recommendations for approval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Upgrade OpenClaw and comprehensively discover new features, configuration options, hooks, and improvements relevant to the user's setup.
 
-## Publisher: <br>
-[decentraliser](https://clawhub.ai/user/decentraliser) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[decentraliser](https://clawhub.ai/user/decentraliser)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to update an OpenClaw installation, review version-specific changes, compare configuration schema gaps, audit hooks and doctor output, and decide which suggested improvements to apply. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can update and stash the local OpenClaw installation before a clear approval gate. <br>
-Mitigation: Before running it, explicitly confirm whether openclaw update and any git stash should happen. <br>
-Risk: The skill may send configuration data to an external model. <br>
-Mitigation: Use a local model or redact private channel, plugin, and operational configuration details before external analysis. <br>
-Risk: Bundled settings and state files may carry prior model choices or upgrade history into a new environment. <br>
-Mitigation: Review or clear settings.json and state.json before first use so the run starts from the user's own choices and environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to update a local OpenClaw installation, review relevant changelog and configuration changes, audit hooks and doctor recommendations, and apply selected improvements after explicit approval.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with inline shell commands and configuration recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist upgrade state in state.json after a run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can change the local OpenClaw installation during an update.
+
+Mitigation: Invoke it only when an OpenClaw update is intended, and review the generated report before approving any follow-up changes.
+
+Risk: Configured external sub-agent models may receive gateway configuration data.
+
+Mitigation: Use a trusted model provider and redact sensitive gateway configuration before allowing external model use.
+
+Risk: A dirty OpenClaw working tree may be stashed before update and require cleanup if the run is interrupted.
+
+Mitigation: Check `git stash list` in the OpenClaw repository after an interrupted or declined run.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/decentraliser/skills/upgrade-openclaw)
+- [Publisher profile](https://clawhub.ai/user/decentraliser)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown report with shell commands, tables, and configuration recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit user approval before applying configuration, hook, or skill changes.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

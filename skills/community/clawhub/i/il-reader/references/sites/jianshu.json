@@ -1,0 +1,197 @@
+{
+  "version": "2.4.0",
+  "source_id": "jianshu",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:03:34.146Z",
+  "entry": {
+    "url": "https://www.jianshu.com/",
+    "final_url": "https://www.jianshu.com/",
+    "title": "简书 - 创作你的创作",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:03:34.146Z",
+    "identity": {
+      "declared_name": "简书",
+      "hostname": "www.jianshu.com",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "看见，归还：最高级的告别",
+        "href": "https://www.jianshu.com/p/6b5ea2fbaf89",
+        "target": "_blank"
+      },
+      {
+        "text": "帮助中心",
+        "href": "https://www.jianshu.com/faqs",
+        "target": "_blank"
+      }
+    ],
+    "frames": [
+      {
+        "src": "https://pos.baidu.com/wckm?conwid=700&conhei=200&rdid=6870215&dc=3&di=u6870215&s1=3371940083&s2=3707467225&dri=0&dis=0&dai=1&ps=688x169&enu=encoding&exps=110277,110275,110261,110252,110011&ant=0&psi=b3b57fa508d47089&dcb=___adblockplus_&dtm=HTML_POST&dvi=0.0&dci=-1&dpt=none&tpr=1791536612991&ti=%E7%AE%80%E4%B9%A6%20-%20%E5%88%9B%E4%BD%9C%E4%BD%A0%E7%9A%84%E5%88%9B%E4%BD%9C&ari=2&ver=0820&vc=%E4%B8%80%E4%B8%AA%E5%B9%B3%E5%8F%B0%E4%B8%80%E5%A4%A9%E8%AE%A9%E6%88%91%E8%B5%9A%E4%BA%861520%E5%85%83%EF%BC%8C%E6%80%8E%E6%A0%B7%E5%81%9A%E5%88%B0%E7%9A%84%EF%BC%9F&kws=%E7%AE%80%E4%B9%A6%2C%E7%AE%80%E4%B9%A6%E5%AE%98%E7%BD%91%2C%E5%9B%BE%E6%96%87%E7%BC%96%E8%BE%91%E8%BD%AF%E4%BB%B6%2C%E7%AE%80%E4%B9%A6%E4%B8%8B%E8%BD%BD%2C%E5%9B%BE%E6%96%87%E5%88%9B%E4%BD%9C%2C%E5%88%9B%E4%BD%9C%E8%BD%AF%E4%BB%B6%2C&dps=%E7%AE%80%E4%B9%A6%E6%98%AF%E4%B8%80%E4%B8%AA%E4%BC%98%E8%B4%A8%E7%9A%84%E5%88%9B%E4%BD%9C%E7%A4%BE%E5%8C%BA%EF%BC%8C%E5%9C%A8%E8%BF%99%E9%87%8C%EF%BC%8C%E4%BD%A0%E5%8F%AF%E4%BB%A5%E4%BB%BB%E6%80%A7%E5%9C%B0%E5%88%9B%E4%BD%9C%EF%BC%8C%E4%B8%80%E7%AF%87%E7%9F%AD%E6%96%87%E3%80%81%E4%B8%80%E5%BC%A0%E7%85%A7%E7%89%87%E3%80%81%E4%B8%80%E9%A6%96%E8%AF%97%E3%80%81%E4%B8%80%E5%B9%85%E7%94%BB%E2%80%A6%E2%80%A6%E6%88%91%E4%BB%AC%E7%9B%B8%E4%BF%A1%EF%BC%8C%E6%AF%8F%E4%B8%AA%E4%BA%BA%E9%83%BD%E6%98%AF%E7%94%9F%E6%B4%BB%E4%B8%AD%E7%9A%84%E8%89%BA&dbv=2&drs=3&pcs=1265x840&pss=1265x1480&cfv=0&cpl=5&chi=50&cce=true&cec=UTF-8&tlm=1791536612&prot=2&rw=840&ltu=https%3A%2F%2Fwww.jianshu.com%2F&ecd=1&dft=0&uc=1280x840&pis=-1x-1&sr=1280x840&tcn=1791536613&qn=8afcd37771f6bc1b&ft=1",
+        "id": "iframeu6870215_0",
+        "name": "iframeu6870215_0",
+        "title": ""
+      },
+      {
+        "src": "https://pos.baidu.com/wckm?conwid=260&conhei=250&rdid=6870225&dc=3&di=u6870225&s1=129507613&s2=1673202426&dri=0&dis=0&dai=2&ps=422x834&enu=encoding&exps=110277,110275,110261,110252,110011&ant=0&psi=b3b57fa508d47089&dcb=___adblockplus_&dtm=HTML_POST&dvi=0.0&dci=-1&dpt=none&tpr=1791536612991&ti=%E7%AE%80%E4%B9%A6%20-%20%E5%88%9B%E4%BD%9C%E4%BD%A0%E7%9A%84%E5%88%9B%E4%BD%9C&ari=2&ver=0820&vc=%E5%88%98%E8%80%80%E6%96%87%E8%A2%AB%E5%8F%AB%E4%BD%9C%E6%B0%B8%E8%BF%9C%E7%9A%84%E5%AE%9D%E8%B4%9D%E5%B9%BA%E5%84%BF...&kws=%E7%AE%80%E4%B9%A6%2C%E7%AE%80%E4%B9%A6%E5%AE%98%E7%BD%91%2C%E5%9B%BE%E6%96%87%E7%BC%96%E8%BE%91%E8%BD%AF%E4%BB%B6%2C%E7%AE%80%E4%B9%A6%E4%B8%8B%E8%BD%BD%2C%E5%9B%BE%E6%96%87%E5%88%9B%E4%BD%9C%2C%E5%88%9B%E4%BD%9C%E8%BD%AF%E4%BB%B6%2C&dps=%E7%AE%80%E4%B9%A6%E6%98%AF%E4%B8%80%E4%B8%AA%E4%BC%98%E8%B4%A8%E7%9A%84%E5%88%9B%E4%BD%9C%E7%A4%BE%E5%8C%BA%EF%BC%8C%E5%9C%A8%E8%BF%99%E9%87%8C%EF%BC%8C%E4%BD%A0%E5%8F%AF%E4%BB%A5%E4%BB%BB%E6%80%A7%E5%9C%B0%E5%88%9B%E4%BD%9C%EF%BC%8C%E4%B8%80%E7%AF%87%E7%9F%AD%E6%96%87%E3%80%81%E4%B8%80%E5%BC%A0%E7%85%A7%E7%89%87%E3%80%81%E4%B8%80%E9%A6%96%E8%AF%97%E3%80%81%E4%B8%80%E5%B9%85%E7%94%BB%E2%80%A6%E2%80%A6%E6%88%91%E4%BB%AC%E7%9B%B8%E4%BF%A1%EF%BC%8C%E6%AF%8F%E4%B8%AA%E4%BA%BA%E9%83%BD%E6%98%AF%E7%94%9F%E6%B4%BB%E4%B8%AD%E7%9A%84%E8%89%BA&dbv=2&drs=3&pcs=1265x840&pss=1265x1480&cfv=0&cpl=5&chi=50&cce=true&cec=UTF-8&tlm=1791536612&prot=2&rw=840&ltu=https%3A%2F%2Fwww.jianshu.com%2F&ecd=1&dft=0&uc=1280x840&pis=-1x-1&sr=1280x840&tcn=1791536613&qn=86455664e4b097f9&ft=1",
+        "id": "iframeu6870225_0",
+        "name": "iframeu6870225_0",
+        "title": ""
+      }
+    ]
+  },
+  "controls": [
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "搜索",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "搜索",
+      "name": "q",
+      "id": "q",
+      "css": "#q",
+      "role": null,
+      "form_action": "https://www.jianshu.com/search",
+      "locator": {
+        "css": "#q"
+      },
+      "observed_url": "https://www.jianshu.com/",
+      "observed_at": "2026-10-09T09:03:33.526Z"
+    },
+    {
+      "tag": "a",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.jianshu.com/",
+      "observed_at": "2026-10-09T09:03:33.526Z"
+    },
+    {
+      "tag": "a",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.jianshu.com/",
+      "observed_at": "2026-10-09T09:03:33.526Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "jianshu:record-lookup",
+      "source_id": "jianshu",
+      "task_kind": "record-lookup",
+      "status": "entry_observed",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.jianshu.com/",
+      "controls": [
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "搜索",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "搜索",
+          "name": "q",
+          "id": "q",
+          "css": "#q",
+          "role": null,
+          "form_action": "https://www.jianshu.com/search",
+          "locator": {
+            "css": "#q"
+          },
+          "observed_url": "https://www.jianshu.com/",
+          "observed_at": "2026-10-09T09:03:33.526Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": "jianshu",
+    "quiz_entries": [],
+    "example_ids": [],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:03:34.146Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/jianshu-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/jianshu-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

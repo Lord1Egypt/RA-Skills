@@ -1,43 +1,55 @@
-## Description: <br>
-Web search via self-hosted SearxNG. Aggregates Google, Bing, DuckDuckGo, Brave. Returns title/url/snippet. Zero API key required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web search via self-hosted SearxNG. Aggregates Google, Bing, DuckDuckGo, Brave. Returns title/url/snippet. Zero API key required.
 
-## Publisher: <br>
-[sexychina](https://clawhub.ai/user/sexychina) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sexychina](https://clawhub.ai/user/sexychina)
 
-## Use Case: <br>
-Developers and agent users use Ask Search to query a local SearxNG instance for web, news, language-filtered, or engine-filtered search results without an API key. It supports CLI and MCP workflows that return concise search snippets, URLs, or raw JSON for follow-up retrieval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence flags under-scoped guidance around proxy-based scraping and logged-in browsing. <br>
-Mitigation: Keep usage to normal SearxNG search where possible, and only use proxy, browser, or logged-in fetching workflows with authorization, supervision, and an isolated environment. <br>
-Risk: Search results and snippets may be incomplete, outdated, or misleading when used without reviewing the source page. <br>
-Mitigation: Treat results as candidates, inspect snippets, and fetch or verify original sources before relying on the information. <br>
+## Use Case:
 
+Developers and agents use Ask Search to query a local or trusted SearxNG instance and receive search result titles, URLs, snippets, or raw JSON for follow-up browsing and analysis.
 
-## Reference(s): <br>
-- [Ask Search ClawHub release](https://clawhub.ai/sexychina/ask-search) <br>
-- [SearxNG](https://github.com/searxng/searxng) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [Perplexica](https://github.com/ItzCrazyKns/Perplexica) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Plain text, URL lists, or JSON search-result objects with title, url, content, and engine fields.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI output is limited by the requested result count; the MCP tool caps standard web_search requests at 20 results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and scripts/core.py VERSION) <br>
+Risk: Installer and setup guidance may create local installation risk, especially when writing to system paths or using temporary files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, prefer a user-writable bin directory, and avoid elevated installation unless the installer behavior has been reviewed.
+
+Risk: Search and deep-fetch workflows can expose queries, credentials, or browsing context if SEARXNG_URL, proxy tunnels, or logged-in browser sessions are not trusted.
+
+Mitigation: Keep SEARXNG_URL local or trusted, pin dependencies, and avoid persistent proxy or logged-in browser workflows unless their privacy and policy implications are understood.
+
+## Reference(s):
+
+- [Ask Search on ClawHub](https://clawhub.ai/sexychina/skills/ask-search)
+- [SearxNG](https://github.com/searxng/searxng)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, URLs, shell commands, configuration]
+
+**Output Format:** [CLI text result list, newline-delimited URLs, or JSON search result objects.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local or trusted SearxNG endpoint; MCP search limits requested results to a maximum of 20.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

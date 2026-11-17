@@ -1,43 +1,60 @@
-## Description: <br>
-Helps an agent collect image candidates by keyword from Bing and supported sources, download them into local keyword folders, avoid repeated downloads, and report the saved directory and run summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent to batch-download public images by keyword from Bing and the bundled demo source, save them locally, skip previously downloaded candidates, and report download results.
 
-## Publisher: <br>
-[16miku](https://clawhub.ai/user/16miku) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[16miku](https://clawhub.ai/user/16miku)
 
-## Use Case: <br>
-Developers and external agent users use this skill when they need a reusable workflow for keyword-based public image downloading, including local file output, duplicate avoidance, source statistics, and a concise completion report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates downloaded image files and metadata/history under downloads/<keyword>/ on the local filesystem. <br>
-Mitigation: Run it only in an approved workspace and review or clean generated download directories according to local data-retention expectations. <br>
-Risk: The artifact documents a cron workflow that can send downloaded images to Feishu through host OpenClaw/Feishu credentials. <br>
-Mitigation: Do not enable scheduled sending unless the recipient, channel, credentials, and operational need have been explicitly verified. <br>
+## Use Case:
 
+External users, developers, and automation agents use this skill to collect public image candidates by keyword, download them into a local downloads/<keyword>/ directory, avoid repeat downloads with history metadata, and summarize counts, skipped items, and source statistics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/16miku/image-downloader) <br>
-- [GitHub repository](https://github.com/16Miku/image-downloader-skill) <br>
-- [README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and local file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces downloaded image files and local metadata/history under downloads/<keyword>/ when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server-resolved release evidence) <br>
+Risk: The downloader performs network requests to third-party image URLs and can fetch unvalidated remote content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run with small limits in a constrained environment and review downloaded files before reuse or redistribution.
+
+Risk: Keyword-derived output paths may write outside the intended download folder.
+
+Mitigation: Sanitize keywords before execution and run the skill as an unprivileged user inside a constrained working directory.
+
+Risk: The optional cron and Feishu forwarding example can repeatedly send downloaded media to a configured recipient.
+
+Mitigation: Do not install the scheduled forwarding workflow until the recipient, schedule, logs, and removal path have been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/16miku/skills/image-downloader)
+- [Skill instructions](SKILL.md)
+- [README](README.md)
+- [Evaluation cases](evals/evals.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise execution summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports the save directory, target count, downloaded count, skipped count, candidate totals, deduped totals, source statistics, and common third-party fetch failures when relevant.]
+
+## Skill Version(s):
+
+2.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

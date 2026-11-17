@@ -1,39 +1,54 @@
-## Description: <br>
-Perform clipboard-tool operations from the command line. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perform clipboard-tool operations from the command line.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and agents use this skill to copy, paste, clear, and transform local clipboard text from command-line workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Copied text or selected file contents can include sensitive data, and the first part of copied text may appear in terminal output. <br>
-Mitigation: Avoid using this skill with passwords, tokens, private keys, or sensitive documents unless that exposure is acceptable. <br>
-Risk: Clipboard contents may remain available to other local applications after use. <br>
-Mitigation: Clear the clipboard after handling sensitive or temporary text. <br>
+## Use Case:
 
+Developers and agents use this skill to copy, paste, clear, and transform clipboard text from command-line workflows.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Text] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May copy provided text or selected file contents to the local clipboard and may print clipboard contents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Clipboard contents and copied text may be printed to terminal or agent logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with non-sensitive clipboard content and avoid passwords, tokens, keys, or private files in logged sessions.
+
+Risk: The skill can copy file contents to the clipboard.
+
+Mitigation: Review file paths and contents before copying, especially when operating in shared or logged environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dinghaibin/skills/clipboard-tool)
+- [Publisher Profile](https://clawhub.ai/user/dinghaibin)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text and command-line output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read from files, standard input, or the system clipboard depending on command options.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,50 +1,63 @@
-## Description: <br>
-Professional analytical digest of top 10 podcast industry news, trends, and business insights from premier global sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional analytical digest of top 10 podcast industry news, trends, and business insights from premier global sources.
 
-## Publisher: <br>
-[Te1man](https://clawhub.ai/user/Te1man) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[te1man](https://clawhub.ai/user/te1man)
 
-## Use Case: <br>
-External podcast teams, media operators, and analysts use this skill to request a ranked top-10 podcast industry briefing from curated public RSS sources, with strategic analysis, categorization, and source links. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Public RSS feeds and web search results can contain outdated, incomplete, or promotional claims. <br>
-Mitigation: Verify important business claims against the linked primary sources and publication dates before acting on them. <br>
-Risk: Ranked strategic analysis may overstate the market impact of an individual story. <br>
-Mitigation: Treat rankings and strategic takes as briefing guidance and compare major conclusions across multiple sources. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Te1man/podcast-insider-top10) <br>
-- [Podnews Daily RSS](https://podnews.net/feed) <br>
-- [The Podcast Sessions RSS](https://thepodsessions.com/feed/) <br>
-- [Discover Pods RSS](https://discoverpods.com/feed/) <br>
-- [Pacific Content RSS](https://pacific-content.com/feed/) <br>
-- [Podcaster News RSS](https://podcasternews.com/feed/) <br>
-- [Business of Podcasting RSS](https://www.thepodcasthost.com/business-of-podcasting/feed) <br>
-- [Buzzsprout Blog RSS](https://www.buzzsprout.com/blog.rss) <br>
-- [Spreaker Blog RSS](https://blog.spreaker.com/feed/) <br>
-- [Bingeworthy RSS](https://bingeworthy.substack.com/feed) <br>
-- [The Audio Insurgent RSS](https://audioinsurgent.substack.com/feed) <br>
-- [The Squeeze RSS](https://www.thisisthesqueeze.com/feed) <br>
+## Use Case:
 
+Developers, analysts, media teams, and podcast industry operators use this skill to gather public podcast-industry news, rank the most important developments, and produce concise strategic briefings with source links.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Ranked top-10 briefing with headlines, categories, strategic takes, and direct source links.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill causes the agent to access external RSS feeds and web search results.
+
+Mitigation: Users should expect outbound web requests when the skill is used.
+
+Risk: Podcast industry summaries and business conclusions may be incomplete or misleading if source material changes or is interpreted incorrectly.
+
+Mitigation: Verify important business conclusions against the cited primary sources before relying on them.
+
+## Reference(s):
+
+- [Podcast Insider Top-10 on ClawHub](https://clawhub.ai/te1man/skills/podcast-insider-top10)
+- [Podnews Daily RSS](https://podnews.net/feed)
+- [The Podcast Sessions RSS](https://thepodsessions.com/feed/)
+- [Discover Pods RSS](https://discoverpods.com/feed/)
+- [Pacific Content RSS](https://pacific-content.com/feed/)
+- [Podcaster News RSS](https://podcasternews.com/feed/)
+- [Business of Podcasting RSS](https://www.thepodcasthost.com/business-of-podcasting/feed)
+- [Buzzsprout Blog RSS](https://www.buzzsprout.com/blog.rss)
+- [Spreaker Blog RSS](https://blog.spreaker.com/feed/)
+- [Bingeworthy RSS](https://bingeworthy.substack.com/feed)
+- [The Audio Insurgent RSS](https://audioinsurgent.substack.com/feed)
+- [The Squeeze RSS](https://www.thisisthesqueeze.com/feed)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown briefing with ranked items, categories, strategic analysis, and source links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include translated insights when responding in the user's preferred language.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

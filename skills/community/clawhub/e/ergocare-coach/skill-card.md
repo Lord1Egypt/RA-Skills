@@ -1,43 +1,60 @@
-## Description: <br>
-ErgoCare Coach provides desk-health exercise guidance and generates bash or PowerShell reminder scripts for eye care, posture, lower-back exercises, and RSI prevention. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Your personal desk health coach with automated break reminders that generates platform-specific scripts for 20-20-20 eye care, lower back exercises, RSI prevention, ergonomic guidance, and customizable notification systems.
 
-## Publisher: <br>
-[akhmittra](https://clawhub.ai/user/akhmittra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[akhmittra](https://clawhub.ai/user/akhmittra)
 
-## Use Case: <br>
-Computer professionals, remote workers, students, gamers, and desk-based teams use this skill to get preventive ergonomic guidance, break schedules, and platform-specific reminder scripts that encourage eye, posture, back, neck, and wrist breaks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated bash or PowerShell reminder scripts are executable code and may include startup behavior. <br>
-Mitigation: Review generated scripts before running them, run with normal user privileges, test stop, pause, and status behavior, and enable startup only intentionally. <br>
-Risk: Silent or broad deployment of reminder scripts can affect users without adequate notice or rollback. <br>
-Mitigation: Avoid team-wide deployment without IT approval, user notice, and rollback instructions. <br>
-Risk: Desk-health exercise guidance may be mistaken for medical diagnosis or treatment. <br>
-Mitigation: Use the skill for preventive guidance and mild discomfort only, and consult a healthcare professional for persistent, severe, worsening, or neurological symptoms. <br>
+## Use Case:
 
+External users, developers, remote workers, students, gamers, and desk-based teams use this skill to get preventive desk-health exercise guidance and generate local reminder scripts for eye breaks, stretches, RSI prevention, and ergonomic routines.
 
-## Reference(s): <br>
-- [ErgoCare Coach on ClawHub](https://clawhub.ai/akhmittra/ergocare-coach) <br>
-- [Publisher profile](https://clawhub.ai/user/akhmittra) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with bash and PowerShell code blocks, exercise instructions, and setup steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated scripts may include desktop notifications, sound alerts, countdowns, break logging, pause or status controls, and optional startup configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: OpenClaw metadata and release evidence) <br>
+Risk: Generated bash or PowerShell reminder scripts may be executed locally and may run continuously or at startup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each generated script before use, run it as a normal user from a dedicated directory, and enable startup only after explicitly confirming the behavior.
+
+Risk: Shell or PowerShell profile autostart can make generated reminders persistent in ways users may overlook.
+
+Mitigation: Prefer clear start and stop commands, avoid profile-based autostart, and document uninstall or disable steps before enabling persistence.
+
+Risk: The skill provides preventive wellness and ergonomic guidance, not medical diagnosis or treatment.
+
+Mitigation: Use it for prevention and mild discomfort only, and seek healthcare advice for severe, persistent, radiating, or worsening symptoms.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/akhmittra/skills/ergocare-coach)
+- [Publisher profile](https://clawhub.ai/user/akhmittra)
+- [artifact/README.md](artifact/README.md)
+- [artifact/SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash or PowerShell code blocks and setup instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include executable local reminder scripts, desktop notification setup, schedule configuration, and preventive ergonomic guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and openclaw metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

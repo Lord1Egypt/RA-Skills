@@ -1,44 +1,59 @@
-## Description: <br>
-Weather alerts and forecasts from AEMET OpenData for Spain <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Weather alerts and forecasts from AEMET OpenData for Spain.
 
-## Publisher: <br>
-[pablomartinezcrespo](https://clawhub.ai/user/pablomartinezcrespo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pablomartinezcrespo](https://clawhub.ai/user/pablomartinezcrespo)
 
-## Use Case: <br>
-External users and developers use this skill to query official AEMET OpenData alerts, daily forecasts, hourly forecasts, and municipality lookups for Spain from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Spain <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores and reads a personal AEMET API key from the local filesystem. <br>
-Mitigation: Keep the key file private, restrict file permissions, and do not commit it to repositories. <br>
-Risk: The documented setup installs system command-line dependencies before use. <br>
-Mitigation: Review the install commands and install dependencies only from trusted operating-system package sources. <br>
-Risk: The package includes an extra test-skill.md file that is unrelated to the AEMET workflow. <br>
-Mitigation: Treat it as packaging clutter and remove it in a future release to avoid confusion during review. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to retrieve official AEMET weather alerts, daily forecasts, hourly forecasts, and municipality lookup results for locations in Spain.
 
-## Reference(s): <br>
-- [AEMET OpenData](https://opendata.aemet.es/) <br>
-- [AEMET API key registration](https://opendata.aemet.es/centrodedescargas/altaUsuario) <br>
-- [ClawHub skill page](https://clawhub.ai/pablomartinezcrespo/aemet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown-oriented agent guidance with shell command examples and plain-text weather output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local AEMET API key and command-line dependencies such as curl, jq, and optionally xmllint and coreutils.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release, package.json) <br>
+Risk: The skill handles a local AEMET API key and makes HTTPS requests from a shell script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store the key only in ~/.openclaw/credentials/aemet-api-key.txt with restrictive permissions and review the script before installation.
+
+Risk: Municipality search input is interpolated into jq expressions.
+
+Mitigation: Avoid untrusted or generated municipality search strings until the jq interpolation issue is fixed.
+
+Risk: Installation guidance includes sudo package installation commands.
+
+Mitigation: Review dependency installation commands before running them on a local system.
+
+## Reference(s):
+
+- [ClawHub Aemet Skill](https://clawhub.ai/pablomartinezcrespo/skills/aemet)
+- [AEMET OpenData](https://opendata.aemet.es/)
+- [AEMET API Key Registration](https://opendata.aemet.es/centrodedescargas/altaUsuario)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration guidance]
+
+**Output Format:** [Plain text terminal output with Markdown usage guidance and inline shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local AEMET API key file and uses HTTPS requests with local caching.]
+
+## Skill Version(s):
+
+1.0.3 (source: server evidence release.version and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

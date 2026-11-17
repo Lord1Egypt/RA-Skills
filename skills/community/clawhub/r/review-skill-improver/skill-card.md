@@ -1,39 +1,53 @@
-## Description: <br>
-Analyzes feedback logs to identify patterns and suggest improvements to review skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes feedback logs to identify patterns and suggest improvements to review skills.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and review-skill maintainers use this skill to analyze structured review feedback logs, identify false-positive or missing-rule patterns, and draft evidence-bound skill improvement recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated recommendations may be incorrect or overfit to limited feedback logs. <br>
-Mitigation: Review the report and supporting evidence before changing a review skill, and rescan any modified skill before release. <br>
+## Use Case:
 
+Developers and review-skill maintainers use this skill to analyze structured review feedback logs, identify high-rejection rules, and draft evidence-bound improvements to review guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/anderskev/review-skill-improver) <br>
-- [Publisher Profile](https://clawhub.ai/user/anderskev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with summary tables and recommendation sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations include evidence pointers and proposed skill text when supported by the feedback log.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated recommendations could introduce incorrect or misleading review guidance if applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated recommendations before applying them to review skills, especially proposed skill text changes.
+
+Risk: Future automation concepts such as PR generation, long-term tracking, or experiments could affect review workflows if adopted without oversight.
+
+Mitigation: Treat automation-oriented recommendations as proposals and scan or review any resulting skill changes before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anderskev/skills/review-skill-improver)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown report with tables, evidence pointers, and proposed skill text changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations are gated by schema checks, aggregation, and evidence-bound rationale requirements.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

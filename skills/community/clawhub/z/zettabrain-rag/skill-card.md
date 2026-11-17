@@ -1,47 +1,66 @@
-## Description: <br>
-Query documents on NFS shares, SMB servers, or local drives using local AI with Ollama and ChromaDB. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query documents on your NFS shares, SMB servers, or local drive using local AI.
 
-## Publisher: <br>
-[zettabrain](https://clawhub.ai/user/zettabrain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zettabrain](https://clawhub.ai/user/zettabrain)
 
-## Use Case: <br>
-Developers, IT teams, and knowledge workers use this skill to install and run a local RAG workflow over configured document folders and enterprise storage, then ask questions through a CLI or web GUI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Configured document folders are indexed into a local vector store, so sensitive documents may become searchable by anyone with access to the local service or files. <br>
-Mitigation: Configure only approved folders, restrict access to the host, and use the documented deletion or rebuild commands to remove indexed data when needed. <br>
-Risk: Remote storage or a remote OLLAMA_HOST can move document content, queries, or retrieved chunks off the local machine. <br>
-Mitigation: Keep OLLAMA_HOST on localhost for on-device use, and approve any NFS, SMB, S3, or remote Ollama configuration before indexing documents. <br>
-Risk: One-line curl or PowerShell installers and service setup execute local installation commands, including sudo on Linux. <br>
-Mitigation: Prefer the pipx install path, review installer scripts before running them, and use the documented service disable and uninstall commands when retiring the tool. <br>
+## Use Case:
 
+Employees, developers, and teams use this skill to chat with and index documents from local folders, NFS, SMB, or S3-backed sources through a local RAG workflow.
 
-## Reference(s): <br>
-- [ZettaBrain RAG on ClawHub](https://clawhub.ai/zettabrain/zettabrain-rag) <br>
-- [ZettaBrain website](https://zettabrain.io) <br>
-- [ZettaBrain RAG GitHub repository](https://github.com/zettabrain/zettabrain-rag) <br>
-- [ZettaBrain RAG on PyPI](https://pypi.org/project/zettabrain-rag/) <br>
-- [Linux and macOS installer script](https://github.com/zettabrain/zettabrain-rag/blob/main/install.sh) <br>
-- [Windows installer script](https://github.com/zettabrain/zettabrain-rag/blob/main/install.ps1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local document paths, storage backends, service controls, and environment variables configured by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Install instructions may run remote or unpinned code with elevated privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installer source before use and prefer a pinned, verifiable package or installer with checksum or signature verification.
+
+Risk: Setup can create an auto-starting local service.
+
+Mitigation: Install only when that persistence is acceptable, and use the documented service controls to stop, disable, or remove it when no longer needed.
+
+Risk: Configured document sources may include local folders, network shares, or S3 sources.
+
+Mitigation: Verify selected folders, shares, and object-storage locations before ingestion so only intended documents are indexed.
+
+Risk: A remote OLLAMA_HOST can send document queries and retrieved chunks off-machine.
+
+Mitigation: Keep OLLAMA_HOST pointed at localhost when document queries must remain on-device.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zettabrain/skills/zettabrain-rag)
+- [ZettaBrain Website](https://zettabrain.io)
+- [GitHub Source](https://github.com/zettabrain/zettabrain-rag)
+- [PyPI Package](https://pypi.org/project/zettabrain-rag/)
+- [Linux and macOS Installer](https://github.com/zettabrain/zettabrain-rag/blob/main/install.sh)
+- [Windows Installer](https://github.com/zettabrain/zettabrain-rag/blob/main/install.ps1)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local document-chat setup, ingestion, service-management, and privacy guidance for an agent to follow.]
+
+## Skill Version(s):
+
+1.0.2 (source: server evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

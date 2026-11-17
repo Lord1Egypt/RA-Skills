@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn7951tw8ma630zsybs9ewehmd832xxf",
-  "slug": "mi-visionforge-svor",
-  "version": "1.0.4",
-  "publishedAt": 1776083476381
+  "metadata": {
+    "openclaw": {
+      "requires": {
+        "env": ["SVOR_API_KEY"],
+        "bins": ["python3", "ffmpeg"]
+      },
+      "primaryEnv": "SVOR_API_KEY"
+    }
+  }
 }

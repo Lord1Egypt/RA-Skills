@@ -1,46 +1,56 @@
-## Description: <br>
-Queries public GitHub release pages and changelogs to report latest versions and recent changes for Claude Code, OpenClaw, and NousResearch Hermes Agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks GitHub release and changelog information for Claude Code, OpenClaw, and NousResearch Hermes Agent to report latest versions and recent changes.
 
-## Publisher: <br>
-[jzx0](https://clawhub.ai/user/jzx0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jzx0](https://clawhub.ai/user/jzx0)
 
-## Use Case: <br>
-Developers and agent users use this skill to check current versions, release notes, and recent update history for selected AI agent tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad update or version wording could trigger the skill in the wrong context. <br>
-Mitigation: Ask the user to specify the exact tool when the request is ambiguous. <br>
-Risk: Upgrade commands may be mistaken for commands to execute immediately. <br>
-Mitigation: Present upgrade commands as references and run them only after explicit user approval. <br>
-Risk: Public GitHub release pages or changelog files may be unavailable, incomplete, or too large to fetch fully. <br>
-Mitigation: Report unavailable sources, keep fetches bounded, and use the defined changelog fallback when release details are insufficient. <br>
+## Use Case:
 
+Developers and external users use this skill to ask an agent for latest version summaries, date-bounded changelog entries, and multi-tool status comparisons for supported AI agent tools.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jzx0/ai-agent-tools-version-changelog) <br>
-- [Claude Code releases](https://github.com/anthropics/claude-code/releases) <br>
-- [OpenClaw releases](https://github.com/openclaw/openclaw/releases) <br>
-- [OpenClaw changelog](https://raw.githubusercontent.com/openclaw/openclaw/main/CHANGELOG.md) <br>
-- [Hermes Agent releases](https://github.com/nousresearch/hermes-agent/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown version summaries, release tables, and optional upgrade command references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May fetch public GitHub release pages and changelog files; no credential environment variables were detected in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generic requests about updates or latest versions may activate this skill even when multiple tools could match.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the user to confirm the intended tool when the request is ambiguous.
+
+Risk: Version summaries may be incomplete if a GitHub release page is unavailable or too large to fetch fully.
+
+Mitigation: Report inaccessible sources clearly and supplement releases with the configured changelog when available.
+
+## Reference(s):
+
+- [Claude Code GitHub Releases](https://github.com/anthropics/claude-code/releases)
+- [OpenClaw GitHub Releases](https://github.com/openclaw/openclaw/releases)
+- [Hermes Agent GitHub Releases](https://github.com/nousresearch/hermes-agent/releases)
+- [OpenClaw CHANGELOG](https://raw.githubusercontent.com/openclaw/openclaw/main/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Shell commands]
+
+**Output Format:** [Markdown tables and bullet summaries with links and optional upgrade commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summaries depend on public GitHub release and changelog availability.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

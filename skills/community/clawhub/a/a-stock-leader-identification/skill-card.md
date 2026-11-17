@@ -1,41 +1,48 @@
-## Description: <br>
-快速找到板块内的"真龙"，识别龙头股。用于A股短线交易选股。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+快速找到板块内的"真龙"，识别龙头股。用于A股短线交易选股。
 
-## Publisher: <br>
-[haohanyang92](https://clawhub.ai/user/haohanyang92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[haohanyang92](https://clawhub.ai/user/haohanyang92)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users can use this skill to structure short-term A-share sector analysis and identify candidate leader stocks based on stated momentum, limit-up, turnover, and theme-recognition rules.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill provides aggressive short-term stock-trading guidance that may be speculative or unsuitable for a user's circumstances.
+
+Mitigation: Treat outputs as general analysis rather than personalized investment advice, verify signals independently, and consider volatility and potential losses before trading.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users use this skill to discuss heuristic identification of short-term A-share sector leader stocks and to distinguish likely leaders from follower stocks. Its output should be treated as educational market-screening guidance, not personalized investment advice. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Analysis, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may produce trading-oriented suggestions that users could mistake for personalized investment advice. <br>
-Mitigation: Treat outputs as educational discussion only and consider personal suitability, volatility, and independent professional judgment before making investment decisions. <br>
-Risk: The skill does not independently verify current market data before discussing A-share leader-stock signals. <br>
-Mitigation: Verify prices, volume, limit-up status, float, turnover, and sector context with authoritative market data before relying on any conclusion. <br>
-Risk: An agent could be asked to place trades based only on the skill's heuristic output. <br>
-Mitigation: Do not allow autonomous trading or account actions from this skill alone; require separate user confirmation and broker-side controls. <br>
+**Output Format:** [Markdown or plain text guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Financial-market outputs should be independently verified before trading.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only; produces heuristic stock-screening discussion and does not execute code, access accounts, fetch market data, or place trades.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

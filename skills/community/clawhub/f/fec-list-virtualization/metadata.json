@@ -1,6 +1,6 @@
 {
   "id": "fec-list-virtualization",
-  "name": "列表虚拟化优化",
+  "name": "List virtualization optimization",
   "category": "implementation-capability",
   "tags": [
     "virtualization",
@@ -9,8 +9,8 @@
     "tanstack-virtual",
     "performance"
   ],
-  "summary": "Frontend Craft skill for 列表虚拟化优化.",
-  "version": "2.6.0",
+  "summary": "Optimize large scrolling lists with windowing, measurement, and stable loading behavior.",
+  "version": "2.9.0",
   "license": "MIT",
   "homepage": "https://github.com/bovinphang/frontend-craft",
   "repository": "https://github.com/bovinphang/frontend-craft",
@@ -32,7 +32,7 @@
     "openclaw",
     "generic-skill-runtime"
   ],
-  "description": "Use when optimizing or reviewing large lists, virtual scrolling, windowing, react-window, TanStack Virtual, variable-height rows, dynamic measurement, infinite scroll, grid virtualization, or scroll performance; Chinese triggers include 虚拟列表, 大列表优化, 滚动性能.",
+  "description": "Use when optimizing or reviewing large lists, virtual scrolling, windowing, react-window, TanStack Virtual, variable-height rows, dynamic measurement, infinite scroll, grid virtualization, or scroll performance; Chinese triggers include virtual lists, large list optimization, scroll performance.",
   "source": "skills/fec-list-virtualization",
   "references": [
     "references/virtualization-patterns.md"

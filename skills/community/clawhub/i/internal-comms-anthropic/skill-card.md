@@ -1,43 +1,54 @@
-## Description: <br>
-Helps draft internal communications in company-specific formats, including status reports, leadership updates, 3P updates, newsletters, FAQs, incident reports, and project updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A set of resources to help write internal communications in company-preferred formats, including status reports, leadership updates, 3P updates, company newsletters, FAQs, incident reports, and project updates.
 
-## Publisher: <br>
-[pupuking723](https://clawhub.ai/user/pupuking723) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[pupuking723](https://clawhub.ai/user/pupuking723)
 
-## Use Case: <br>
-Employees and internal communications teams use this skill to draft and format company updates, newsletters, FAQs, incident reports, and project updates from provided context or authorized workplace sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages use of workplace Slack, email, calendar, and document sources, which can expose private, restricted, customer, or personal data if the scope is too broad. <br>
-Mitigation: Set explicit limits for sources, channels, documents, mailboxes, people, and date ranges; use only authorized sources; avoid sensitive HR, legal, security, customer, or personal data unless specifically authorized; and review drafts before sharing. <br>
-Risk: Drafted internal communications can overstate uncertain information or present unofficial answers as authoritative. <br>
-Mitigation: Base drafts on official company communications when possible, flag uncertainty clearly, link to authoritative sources, and request executive or owner review when a question needs an official response. <br>
+## Use Case:
 
+Employees and communications teams use this skill to draft internal updates, newsletters, FAQs, incident reports, and other company-facing messages. It helps structure concise, audience-aware communications and prompts the agent to clarify scope, audience, timing, tone, and source material when needed.
 
-## Reference(s): <br>
-- [3P Updates Guidelines](examples/3p-updates.md) <br>
-- [Company Newsletter Guidelines](examples/company-newsletter.md) <br>
-- [FAQ Answers Guidelines](examples/faq-answers.md) <br>
-- [General Communications Guidelines](examples/general-comms.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown drafts and concise communication guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include links or summaries from authorized workplace sources; users should review before sharing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill encourages broad searches across Slack, email, calendar, and documents for internal communications context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where the agent is authorized to access those sources, and constrain requests to approved channels, documents, date ranges, audiences, and topics.
+
+Risk: Internal communications drafts can expose sensitive HR, legal, security, customer, or access-controlled information if the requested scope is too broad.
+
+Mitigation: Avoid summarizing sensitive or restricted material unless explicitly approved, and review drafts before sharing them with employees or leaders.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pupuking723/skills/internal-comms-anthropic)
+- [Publisher profile](https://clawhub.ai/user/pupuking723)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Guidance]
+
+**Output Format:** [Markdown or plain text internal communications drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include links, bullets, short sections, and concise source-grounded summaries depending on the communication type.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

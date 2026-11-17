@@ -1,39 +1,63 @@
-## Description: <br>
-Analyzes cryptocurrency token market trends and sentiment using CoinGecko market data, web news, and an LLM-generated report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes cryptocurrency token market trends and sentiment using market data, web news, and LLM-generated summaries.
 
-## Publisher: <br>
-[jinu4you](https://clawhub.ai/user/jinu4you) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
 
+[jinu4you](https://clawhub.ai/user/jinu4you)
 
-## Use Case: <br>
-Developers and crypto analysts use this agent to request token-level market and sentiment summaries for a named cryptocurrency, including market data, recent news context, scores, and a short report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: Relevant token names, news snippets, market data, prompts, and derived sentiment text may be sent to Google Gemini during analysis. <br>
-Mitigation: Do not include private trading strategies, regulated data, secrets, or proprietary research unless that disclosure is acceptable under your policies. <br>
+## Use Case:
 
+External users and developers use this skill to request cryptocurrency token market, news sentiment, and score summaries for informational analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jinu4you/agent-crypto-lens) <br>
-- [Publisher profile](https://clawhub.ai/user/jinu4you) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [JSON object containing market data, sentiment scores, a Markdown report, and success or error metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a token input and optional analysis_type of market, sentiment, or full.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: package.json and server release metadata) <br>
+Risk: Token queries, market/news context, and generated prompts may be sent to third-party APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use restricted API keys and avoid submitting secrets, private portfolio details, or non-public investment information.
+
+Risk: Generated market and sentiment reports may contain inaccurate, stale, or incomplete analysis.
+
+Mitigation: Treat outputs as informational and verify market data, news sources, and score rationale before making financial or operational decisions.
+
+Risk: Output-integrity and disclosure gaps may make production use harder to audit.
+
+Mitigation: Add stronger input validation, dependency review, and clear disclosure of external API use before production deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jinu4you/skills/agent-crypto-lens)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/jinu4you)
+- [Tavily Search API Endpoint](https://api.tavily.com/search)
+- [CoinGecko API Search Endpoint](https://api.coingecko.com/api/v3/search)
+- [CoinGecko API Coin Detail Endpoint](https://api.coingecko.com/api/v3/coins/{coinId})
+- [Google Generative Language API Endpoint](https://generativelanguage.googleapis.com/v1/models/{model}:generateContent)
+- [Groq OpenAI-Compatible API Endpoint](https://api.groq.com/openai/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [JSON object containing market data, sentiment labels, markdown report text, and numeric scores.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts a token and optional analysis_type; reports should be treated as informational rather than financial advice.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and package.json; SKILL.md frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,35 @@
+# DeepSeek Harness (DSH) Plugin Overlay for 1688 UTP Shopping
+#
+# 用法：
+#   git clone https://github.com/<your-org>/1688-utp-shopping.git
+#   cd 1688-utp-shopping
+#   dsh web --patch dsh.cordis.yml
+#
+# 前置：Node.js + npm（npx 会自动从 npm 下载 @ut-protocol/utp）
+#
+# 需要交互式卡片 UI（工具结果内嵌 HTML 卡片）时改用 dsh-apps.cordis.yml（二选一），
+# 并先安装 mcp-apps-host 插件，详见 README「在 DeepSeek Harness (DSH) 中使用」。
+
+# 让 skill-filesystem 发现本目录下的 SKILL.md
+- id: skill-filesystem
+  config:
+    customSkillDirs:
+      - !!js process.cwd()
+
+# 桥接 UTP MCP Server（通过 npx 从 npm 拉取，不依赖本机预装）
+- insert:
+    - id: mcp-utp
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        serverName: utp
+        transport: stdio
+        command: npx
+        args: ['-y', '@ut-protocol/utp', 'mcp', 'serve']
+        cwd: !!js process.cwd()
+        toolCallTimeoutMs: 60000
+        failOnStartupError: false
+        reconnect:
+          enabled: true
+          initialDelayMs: 2000
+          maxDelayMs: 30000
+          maxAttempts: 10

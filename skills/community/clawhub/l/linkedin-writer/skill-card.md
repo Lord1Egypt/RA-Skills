@@ -1,38 +1,53 @@
-## Description: <br>
-Writes LinkedIn posts that sound like a real person, not a content mill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Writes LinkedIn posts that sound like a real person, not a content mill.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-External creators and professionals use this skill to draft LinkedIn posts from a topic, story, takeaway, tone preference, and call to action while keeping the writing concise, conversational, and formatted for LinkedIn. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated posts may include inaccurate factual claims, unsuitable personal experience details, or unreviewed third-party context. <br>
-Mitigation: Review each generated post before publishing, especially factual claims, personal details, and any content based on external context packs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/linkedin-writer) <br>
-- [Context packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+Employees, external creators, and content teams use this skill to draft concise LinkedIn posts from a topic, story, lesson, tone preference, and call to action. It helps shape posts into story, contrarian, list, lesson learned, or behind-the-scenes formats with human voice and LinkedIn-friendly formatting.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-formatted LinkedIn post drafts and concise drafting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Asks for topic, personal story or experience, takeaway, tone preference, and call to action; recommends short paragraphs, a strong hook, and review before publishing.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Drafted posts could disclose confidential company, client, or personal details if those details are supplied in the prompt.
+
+Mitigation: Review posts before publishing and avoid providing confidential details unless they are appropriate for the intended public post.
+
+Risk: Generated posts may not fully match the user's intended voice, claims, or professional context.
+
+Mitigation: Edit drafts for accuracy, tone, and specificity before publishing.
+
+## Reference(s):
+
+- [LinkedIn Writer on ClawHub](https://clawhub.ai/1kalin/skills/linkedin-writer)
+- [Context Packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-formatted LinkedIn post draft with short paragraphs and optional checklist-style guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, credential access, persistence, or posting automation; users should review drafts before publishing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

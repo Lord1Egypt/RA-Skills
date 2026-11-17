@@ -1,0 +1,31 @@
+<!-- ══════════════════════════════════════════════════════════════
+  片段:泳道甘特单道(底纹带 + 泳道名 + 任务条 + 里程碑)—— 原型 35
+  参数:
+    {{LANE_Y}}      道顶 y(道高 120;4 道 → 360/490/620/750)
+    {{LANE_BG}}     道底纹:交替 var(--card-bg) / var(--white);❌ 每道一色
+    {{OWNER}}       泳道名(职能/团队)   {{OWNER_SUB}}  负责人一行
+    {{BAR_X}}       任务条左 = 420 + 起始格×格宽 + 10
+    {{BAR_W}}       任务条宽 = 跨度×格宽 - 20(留缝)
+    {{TASK}}        任务名(单行;跨度 <1 格时把文字移到条外右侧)
+    {{MS_X}}        里程碑 diamond 左 = 网格线 x - 14(28px 居中压线)
+    {{MS_LABEL}}    里程碑名(放右侧,不盖条;全页里程碑 ≤3 个)
+  网格:起点 x=420,4 格 × 350px(季度);格必须等宽
+  条内文字用**单行居中写法**(line-height = 条高 44px),这是契约的居中徽章形态
+  ⚠️ 手排甘特最易出的错:条位与时间不对应(看起来在 Q2 其实压着 Q1)——
+     每条都按 BAR_X 公式算,别目测拖。
+  纪律: 任务条同色系深浅,靠**位置**表达信息不靠颜色;
+        ❌ 彩虹泳道、❌ 渐变条、❌ 逐条阴影
+  ══════════════════════════════════════════════════════════════ -->
+<div data-object="true" data-object-type="shape" style="position:absolute;left:100px;top:{{LANE_Y}}px;width:1720px;height:120px;background:{{LANE_BG}};"></div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:130px;top:{{OWNER_Y}}px;width:270px;">
+  <div style="font-size:24px;font-weight:700;line-height:1.3;color:var(--charcoal);">{{OWNER}}</div>
+  <div style="font-size:18px;line-height:1.3;color:var(--text-tertiary);margin-top:4px;">{{OWNER_SUB}}</div>
+</div>
+<div data-object="true" data-object-type="shape" style="position:absolute;left:{{BAR_X}}px;top:{{BAR_Y}}px;width:{{BAR_W}}px;height:44px;background:var(--brand-dark);border-radius:4px;"></div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:{{BAR_TEXT_X}}px;top:{{BAR_Y}}px;width:{{BAR_TEXT_W}}px;height:44px;">
+  <div style="font-size:20px;font-weight:600;color:var(--on-navy-text);line-height:44px;">{{TASK}}</div>
+</div>
+<div data-object="true" data-object-type="shape" data-shape="diamond" style="position:absolute;left:{{MS_X}}px;top:{{MS_Y}}px;width:28px;height:28px;background:var(--brand-primary);"></div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:{{MS_LABEL_X}}px;top:{{MS_Y}}px;width:300px;height:28px;">
+  <div style="font-size:18px;font-weight:600;line-height:28px;color:var(--brand-primary);">{{MS_LABEL}}</div>
+</div>

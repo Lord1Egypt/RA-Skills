@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+
+# 日志记录
+__version__ = "1.0.0"
+
+import logging
+logger = logging.getLogger(__name__)
 """
 预防规则引擎 (Error Wisdom Prevention Engine)
 
@@ -18,6 +24,7 @@ import time
 from datetime import datetime
 from typing import Dict, List, Optional, Any, Callable
 from dataclasses import dataclass, asdict
+from interfaces import TraceContext, ValidationResult, create_trace_context
 
 
 # ==================== 数据结构 ====================

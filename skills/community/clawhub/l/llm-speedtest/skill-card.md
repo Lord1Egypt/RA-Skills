@@ -1,41 +1,48 @@
-## Description: <br>
-Ping major LLM providers in parallel and compare real API latency. Run with /ping <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ping major LLM providers in parallel and compare real API latency. Run with /ping
 
-## Publisher: <br>
-[chapati23](https://clawhub.ai/user/chapati23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chapati23](https://clawhub.ai/user/chapati23)
 
-## Use Case: <br>
-Developers and engineers use this skill to run a quick live latency check across configured LLM providers when comparing response times or investigating whether a provider is slow or unavailable. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill reads LLM API keys from pass shared/ and makes live authenticated requests to configured providers. <br>
-Mitigation: Install and run it only if that key source matches your setup, or adapt scripts/ping.sh to use your approved secret manager before execution. <br>
-Risk: Running the latency test may create small provider charges. <br>
-Mitigation: Use low-quota keys or restrict the script to selected providers when cost exposure must be tightly controlled. <br>
-Risk: The skill sends live requests to external provider APIs during each test run. <br>
-Mitigation: Review the provider list and run the skill only in environments where outbound API calls to those services are allowed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chapati23/llm-speedtest) <br>
+## Use Case:
 
+Developers and engineers use this skill to compare live latency across configured LLM providers and check whether a provider appears slow or unavailable.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands] <br>
-**Output Format:** [Markdown-formatted latency report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results are sorted fastest to slowest and labeled with latency status badges.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill automatically reads stored provider API keys and sends shell network requests to LLM provider APIs.
+
+Mitigation: Review before installation, run only when live provider calls and small API quota usage are intended, and prefer explicit runtime confirmation with safer secret handling for production or high-value keys.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chapati23/skills/llm-speedtest)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-formatted latency results sorted fastest to slowest]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs live API calls with a minimal prompt and reports round-trip latency with status badges.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

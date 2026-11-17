@@ -1,41 +1,57 @@
-## Description: <br>
-Amazon Ads API v3 skill for OpenClaw agents to list advertiser profiles, inspect Sponsored Products campaigns, and summarize budgets and performance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Amazon Ads API v3 skill for OpenClaw agents to list advertiser profiles, retrieve Sponsored Products campaigns, view budgets, and summarize campaign performance.
 
-## Publisher: <br>
-[Zero2Ai-hub](https://clawhub.ai/user/Zero2Ai-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zero2ai-hub](https://clawhub.ai/user/zero2ai-hub)
 
-## Use Case: <br>
-External advertisers, agencies, and developers use this skill to connect an OpenClaw agent to Amazon Ads, list advertiser profiles, retrieve Sponsored Products campaign data, summarize campaign state and budgets, and optionally save campaign JSON for review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local Amazon Ads credentials can expose advertiser profile data if committed, shared, or stored with broad permissions. <br>
-Mitigation: Keep amazon-ads-api.json outside source control with restrictive permissions, use dedicated or least-privilege credentials where possible, and rotate the refresh token if it is exposed. <br>
-Risk: The optional output path can write campaign data to a local file that may be misplaced or exposed. <br>
-Mitigation: Choose an explicit output path, review file permissions, and avoid writing reports into shared or public directories. <br>
-Risk: The release text describes broader campaign management, while the reviewed security evidence characterizes this version as a read/reporting helper. <br>
-Mitigation: Treat this version as a reporting helper unless future release evidence validates broader campaign modification behavior. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Zero2Ai-hub/skill-amazon-ads) <br>
+## Use Case:
 
+Developers and advertisers use this skill to connect an OpenClaw agent to an Amazon Ads account, inspect advertiser profiles, retrieve Sponsored Products campaign data, and generate campaign budget summaries.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with Node.js shell commands and JSON credential/output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and a local amazon-ads-api.json credentials file referenced by AMAZON_ADS_PATH or the working directory; campaign JSON can be written with --out.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires an Amazon Ads refresh token and advertiser profile data.
+
+Mitigation: Store amazon-ads-api.json outside version control with restricted permissions and grant the minimum Amazon Ads permissions needed.
+
+Risk: Campaign exports written with --out can contain sensitive business data.
+
+Mitigation: Write exports only to approved locations, restrict file access, and handle exported JSON according to business data policies.
+
+Risk: Some documentation describes broader campaign, keyword, bid, or optimization management than this version implements.
+
+Mitigation: Use this version for profile listing, campaign retrieval, and summaries unless the artifact is updated and rescanned.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zero2ai-hub/skills/skill-amazon-ads)
+- [Related Amazon SP-API Skill](https://github.com/Zero2Ai-hub/skill-amazon-spapi)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with CLI commands; script output as JSON or plain-text campaign summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and Amazon Ads credentials; optional --out exports campaign data to JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

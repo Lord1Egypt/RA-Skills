@@ -1,38 +1,52 @@
-## Description: <br>
-Restructures a flat MEMORY.md file into a tiered memory system with an entity graph. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Restructure flat MEMORY.md files into a tiered memory system with an entity graph.
 
-## Publisher: <br>
-[kapslap](https://clawhub.ai/user/kapslap) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kapslap](https://clawhub.ai/user/kapslap)
 
-## Use Case: <br>
-Developers and agent operators use this skill to reorganize growing MEMORY.md files into protocols, active work, archive history, and a JSONL entity graph for more efficient lookup and maintenance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill reorganizes long-term agent memory, which could omit, stale, or expose sensitive details if applied without review. <br>
-Mitigation: Back up MEMORY.md or ask the agent for a migration plan and diff before applying changes, then review generated tier files and ontology entries. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Memory Architect ClawHub page](https://clawhub.ai/kapslap/memory-architect) <br>
-- [Publisher profile](https://clawhub.ai/user/kapslap) <br>
+## Use Case:
 
+Developers and agent users use this skill to reorganize large flat memory files into a compact router, active and archived memory tiers, stable protocols, and a JSONL entity graph for faster lookup.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with file layouts, JSONL examples, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces proposed memory tier files and ontology entries for user review.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill rewrites persistent agent memory files, which can move or preserve directives in unintended ways.
+
+Mitigation: Back up MEMORY.md before use and review the generated router and protocols.md before relying on them.
+
+Risk: The skill can create searchable plaintext records of contacts, accounts, chat IDs, emails, and relationships.
+
+Mitigation: Exclude secrets and sensitive account data, then periodically prune archive and ontology entries that should no longer be retained.
+
+## Reference(s):
+
+- [Memory Architect ClawHub Skill Page](https://clawhub.ai/kapslap/skills/memory-architect)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown files, JSONL entity records, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Rewrites persistent memory and creates searchable plaintext records; review changes before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

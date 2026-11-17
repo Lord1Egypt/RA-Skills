@@ -1,0 +1,61 @@
+{
+  "id": "fec-refactoring-move-features",
+  "name": "Moving Feature Refactorings",
+  "category": "review-quality",
+  "tags": [
+    "refactoring",
+    "move-function",
+    "ownership",
+    "loops"
+  ],
+  "summary": "Behavior/data ownership, statement movement, loop transformation, and dead-code catalog guidance.",
+  "version": "2.9.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "review-quality",
+    "refactoring",
+    "move-function",
+    "ownership",
+    "loops"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when behavior-preserving frontend refactoring focuses on behavior/data ownership, statement placement, loops, or dead-code knowledge, and the selected technique needs family-specific mechanics, risks, and JavaScript/TypeScript/React/Vue adaptation.",
+  "source": "skills/fec-refactoring-move-features",
+  "references": [
+    "references/moving-refactorings.md"
+  ],
+  "relations": {
+    "relatedSkills": [
+      "fec-refactoring",
+      "fec-code-smells",
+      "fec-refactoring-catalog",
+      "fec-refactoring-validation",
+      "fec-refactor-clean"
+    ],
+    "boundaryWorkflows": [
+      "Use dead-code cleanup for proven unused code, exports, styles, routes, fixtures, or dependencies.",
+      "Use TDD when adding new observable behavior or fixing a behavior-changing defect.",
+      "Use debugging first when the failure cause is unknown.",
+      "Use validation repair for understood lint, typecheck, test, or build failures that predate the refactoring step.",
+      "Use code review for merge-readiness review rather than structure-changing execution.",
+      "Use migration or architecture planning for dependency, framework, router, state-library, or platform replacements."
+    ],
+    "capabilityTags": [
+      "refactoring",
+      "move-function",
+      "ownership",
+      "loops"
+    ]
+  }
+}

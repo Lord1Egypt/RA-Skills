@@ -1,38 +1,52 @@
-## Description: <br>
-Build cross-device tools without hardcoding paths or account names. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build cross-device tools without hardcoding paths or account names.
 
-## Publisher: <br>
-[TunaIssaCoding](https://clawhub.ai/user/TunaIssaCoding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
+
+[tunaissacoding](https://clawhub.ai/user/tunaissacoding)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and engineers use this skill to design scripts and tools that work across devices by identifying variable paths, account names, configuration formats, and failure modes before implementation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The OAuth and keychain debugging examples can lead users to expose tokens, keychain payloads, passwords, cookies, or raw credential records.
+
+Mitigation: Use redacted values, boolean checks, expiration timestamps, or non-reversible fingerprints instead of pasting full secrets into chat, logs, screenshots, or tickets.
+
+Risk: The checklist scans the directory supplied by the user and may inspect files outside the intended review scope if pointed too broadly.
+
+Mitigation: Run the checklist only against directories intentionally selected for portability review.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to design shell-based tools that work across different devices, account names, paths, and configuration shapes. It provides portability patterns, debugging questions, and a pre-publish checklist for validating assumptions before release. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The methodology encourages showing exact credential and token values during debugging, which could expose secrets in logs, screenshots, or shared transcripts. <br>
-Mitigation: Use redacted prefixes or suffixes, value lengths, hashes, booleans, and expiry timestamps instead of printing real access tokens, refresh tokens, keychain password output, or raw credential JSON. <br>
+**Output Format:** [Markdown guidance with shell command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Portable Tools on ClawHub](https://clawhub.ai/TunaIssaCoding/portable-tools) <br>
-- [TunaIssaCoding ClawHub Profile](https://clawhub.ai/user/TunaIssaCoding) <br>
+**Other Properties Related to Output:** [Includes a bash pre-publish checklist for scanning an intentionally selected target directory.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands] <br>
-**Output Format:** [Markdown with inline shell and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a bash pre-publish checklist script for portability checks.] <br>
+1.2.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.2.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

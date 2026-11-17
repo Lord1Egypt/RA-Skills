@@ -1,41 +1,58 @@
-## Description: <br>
-习惯追踪 - 每天打卡，自动计算连续天数/历史最佳/总打卡数，多习惯管理，本地JSON持久化 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+习惯追踪 - 每天打卡，自动计算连续天数/历史最佳/总打卡数，多习惯管理，本地JSON持久化
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Individuals and agents use this skill to record daily habit check-ins, inspect current and best streaks, and manage multiple independent habits with local persistence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger words such as check-in or habit-related terms could invoke the skill unintentionally. <br>
-Mitigation: Use explicit habit-tracking requests before recording a check-in, and confirm the target habit name before saving progress. <br>
-Risk: Habit names and progress can be saved locally in JSON, which may expose sensitive personal routines if used for private health, financial, or personal records. <br>
-Mitigation: Review the storage location and avoid recording sensitive personal data unless local persistence is acceptable for the user and environment. <br>
+## Use Case:
 
+External users and personal productivity agents use this skill to record daily habit check-ins, view streak, best, and total statistics, and manage multiple habits with local JSON persistence.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/laosi-habit-checkin) <br>
-- [Publisher profile](https://clawhub.ai/user/534422530) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown and text with Python code, shell command examples, and JSON data examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates local JSON habit state when the included Python tracker is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Habit names and check-in dates are stored locally in a JSON file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive habit names and keep the JSON file in a user-controlled location with appropriate local file permissions.
+
+Risk: Broad trigger words may invoke habit tracking when the user did not specifically intend to update a check-in.
+
+Mitigation: Confirm the target habit and action before creating or updating a check-in record.
+
+Risk: The skill content is primarily Chinese-language.
+
+Mitigation: Review or localize prompts and output labels before using it with non-Chinese users.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/laosi-habit-checkin)
+- [ClawHub publisher profile](https://clawhub.ai/user/534422530)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Guidance, Configuration]
+
+**Output Format:** [Markdown with Python, bash, and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated code may create or update a local habit_streaks.json file when executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

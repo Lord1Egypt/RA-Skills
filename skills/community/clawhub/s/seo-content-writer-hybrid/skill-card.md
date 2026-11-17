@@ -1,44 +1,61 @@
-## Description: <br>
-SEO Content Writer (Hybrid Labs) helps agents draft SEO-optimized blog posts, landing pages, and articles with keyword integration, title and meta optimization, heading hierarchy, link recommendations, FAQ sections, and featured snippet targeting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write search-engine-optimized blog posts, landing pages, and articles with keyword integration, header hierarchy, and featured snippet targeting.
 
-## Publisher: <br>
-[hybrid1labs](https://clawhub.ai/user/hybrid1labs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hybrid1labs](https://clawhub.ai/user/hybrid1labs)
 
-## Use Case: <br>
-Content marketers, SEO teams, and agents use this skill to generate or structure keyword-optimized articles, landing pages, product pages, and content briefs from provided keywords, audience, intent, and SEO requirements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad writing prompts may activate the SEO workflow and apply SEO-specific structure to general content requests. <br>
-Mitigation: Use scoped prompts that state the intended content type, keywords, audience, search intent, and whether SEO optimization should be applied. <br>
-Risk: Competitor URLs, briefs, local files, or external SEO-tool credentials supplied by the user may be used by the skill or connected tools. <br>
-Mitigation: Provide only data and credentials intended for this workflow, and review generated claims, citations, and SEO recommendations before publication. <br>
+## Use Case:
 
+Marketing teams, content strategists, and external content creators use this skill to draft SEO-optimized articles, landing pages, product descriptions, service pages, how-to guides, comparisons, and review content from target keywords, audience, intent, and content briefs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hybrid1labs/seo-content-writer-hybrid) <br>
-- [Project Homepage](https://github.com/aaron-he-zhu/seo-geo-claude-skills) <br>
-- [Content Structure Templates](references/content-structure-templates.md) <br>
-- [SEO Writing Checklist and Content Template](references/seo-writing-checklist.md) <br>
-- [Title and Headline Formulas](references/title-formulas.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown drafts, outlines, title and meta options, SEO checklists, link recommendations, and review summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May incorporate user-provided keywords, briefs, competitor URLs, local files, or connected SEO-tool metrics when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.0 (source: server evidence and frontmatter) <br>
+Risk: Generic writing triggers may cause the skill to activate for ordinary article or blog-writing requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that SEO structure, keyword targeting, and search-intent optimization are desired before applying the full workflow.
+
+Risk: Connected SEO tools or Search Console data may expose site performance metrics during drafting.
+
+Mitigation: Only connect SEO tools or provide site metrics when those data are appropriate for content drafting, and avoid unnecessary sensitive metrics.
+
+Risk: Generated SEO content may include estimated metrics, suggested links, or unsupported claims if source data are incomplete.
+
+Mitigation: Review claims, citations, keyword metrics, and internal or external link recommendations before publishing.
+
+## Reference(s):
+
+- [SEO Writing Checklist](references/seo-writing-checklist.md)
+- [Content Structure Templates](references/content-structure-templates.md)
+- [Title and Headline Formulas](references/title-formulas.md)
+- [Project Homepage](https://github.com/aaron-he-zhu/seo-geo-claude-skills)
+- [ClawHub Skill Page](https://clawhub.ai/hybrid1labs/skills/seo-content-writer-hybrid)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Code]
+
+**Output Format:** [Markdown content with structured sections, tables, checklists, title options, meta descriptions, outlines, link recommendations, and SEO review notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include user-provided or tool-derived SEO metrics when available; outputs should label whether metrics are automated, user-provided, or estimated.]
+
+## Skill Version(s):
+
+4.0.0 (source: server release evidence, target metadata, and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

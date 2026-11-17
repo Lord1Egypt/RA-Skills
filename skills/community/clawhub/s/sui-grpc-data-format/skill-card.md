@@ -1,44 +1,58 @@
-## Description: <br>
-Helps developers update Sentio SDK 4 Sui processors that read raw transaction, object, event, or Move type structures by explaining the gRPC protobuf shapes that differ from older JSON-RPC formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers update Sentio SDK 4 Sui processors that inspect raw transactions, objects, events, or Move type strings so they use Sui gRPC protobuf data shapes instead of older JSON-RPC shapes.
 
-## Publisher: <br>
-[philz3906](https://clawhub.ai/user/philz3906) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[philz3906](https://clawhub.ai/user/philz3906)
 
-## Use Case: <br>
-Developers and engineers use this skill when writing or upgrading Sentio Sui processors on SDK 4, especially when adapting raw chain-data access from JSON-RPC shapes to gRPC protobuf shapes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sui gRPC protobuf fields can change after SDK or upstream schema updates. <br>
-Mitigation: Verify the current Sui RPC v2 protobuf schema before applying the guidance after an SDK upgrade. <br>
-Risk: Old JSON-RPC assumptions for raw Move type strings can produce incorrect parsing or address comparisons. <br>
-Mitigation: Use structural type parsing and explicit Sui address normalization, then review processor changes before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill when writing or upgrading Sentio SDK 4 Sui processors that inspect raw transactions, events, objects, or Move type strings. It helps adapt code from older JSON-RPC shapes to Sui gRPC protobuf shapes while avoiding brittle type-string parsing.
 
-## Reference(s): <br>
-- [Sentio Sui RPC v2 protobufs](https://github.com/sentioxyz/sui-apis/tree/main/proto/sui/rpc/v2) <br>
-- [MystenLabs sui-apis](https://github.com/MystenLabs/sui-apis) <br>
-- [Move language_storage.rs](https://github.com/MystenLabs/sui/blob/main/external-crates/move/crates/move-core-types/src/language_storage.rs) <br>
-- [Sui sui_serde.rs](https://github.com/MystenLabs/sui/blob/main/crates/sui-types/src/sui_serde.rs) <br>
-- [Sui gRPC v2 render.rs](https://github.com/MystenLabs/sui/blob/main/crates/sui-rpc-api/src/grpc/v2/render.rs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript code snippets and reference links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no automatic execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Protocol schema guidance can become stale after Sentio SDK or Sui RPC v2 protobuf changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Re-check field names and shapes against the current Sui RPC v2 protobufs before applying the guidance after an SDK or API upgrade.
+
+Risk: Incorrect raw type-string parsing can cause processors to misclassify Sui Move types or addresses.
+
+Mitigation: Use structural generic parsing and address normalization rather than whitespace-dependent splitting or manual leading-zero stripping.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/philz3906/skills/sui-grpc-data-format)
+- [Sentio Sui RPC v2 protobufs](https://github.com/sentioxyz/sui-apis/tree/main/proto/sui/rpc/v2)
+- [MystenLabs sui-apis upstream](https://github.com/MystenLabs/sui-apis)
+- [Move language_storage.rs](https://github.com/MystenLabs/sui/blob/main/external-crates/move/crates/move-core-types/src/language_storage.rs)
+- [Sui sui_serde.rs](https://github.com/MystenLabs/sui/blob/main/crates/sui-types/src/sui_serde.rs)
+- [Sui gRPC v2 render.rs](https://github.com/MystenLabs/sui/blob/main/crates/sui-rpc-api/src/grpc/v2/render.rs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript snippets and checklist items]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; no hidden execution or privilege behavior found in security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

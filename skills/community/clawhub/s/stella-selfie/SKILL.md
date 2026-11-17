@@ -1,258 +1,173 @@
 ---
 name: stella-selfie
-description: Generate persona-consistent selfie images and send to any OpenClaw channel. Supports Gemini, fal, and laozhang.ai providers, multi-reference avatar blending.
-allowed-tools: Bash(npm:*) Bash(node:*) Bash(openclaw:*) Read Write
+description: Generate persona-consistent selfies and third-person photos with OpenClaw native image generation; deliver to the current conversation or return image bytes to a same-host plugin.
 metadata:
   openclaw:
-    always: true
     requires:
-      env:
-        - GEMINI_API_KEY
-        - FAL_KEY
-        - LAOZHANG_API_KEY
       bins:
         - node
-    install:
-      - kind: node
-        package: "@google/genai"
-      - kind: node
-        package: "@fal-ai/client"
-    primaryEnv: GEMINI_API_KEY
+        - openclaw
     emoji: "📸"
     homepage: https://github.com/tower1229/Stella
 ---
 
 # Stella Selfie
 
-Generate persona-consistent selfie images using Google Gemini or fal (xAI Grok Imagine) and send them to messaging channels via OpenClaw. Supports multi-reference avatar blending for strong character consistency.
+Use when asked for a picture of the assistant: "send a pic", "send a selfie", "show me what you look like", "发张照片", "发自拍", or an outfit, location, mood or activity photo. Keep the photographed subject the assistant/selected persona, never the human user.
 
-## When to Use
-
-- User says "send a pic", "send me a photo", "send a selfie", "发张照片", "发自拍"
-- User says "show me what you look like...", "send a pic of you...", "展示你在..."
-- User describes a scene: "send a pic wearing...", "send a pic at...", "穿着...发张图"
-- User wants the agent to appear in a specific outfit, location, or situation
+For same-host plugin requests, use `{baseDir}/references/plugin-integration.md` and the module `{baseDir}/dist/scripts/plugin.js`. It returns one image buffer to the plugin, with no Stella backup or separate chat delivery. The plugin owns preview, any persistence and publishing.
 
 ## Prompt Modes
 
 ### Mode 1: Mirror Selfie (default)
 
-Best for: outfit showcases, full-body shots, fashion content
+Best for outfit showcases and full-body framing:
 
-```
+```text
 A mirror selfie of this person, [user's context], showing full body reflection.
 ```
 
 ### Mode 2: Direct Selfie
 
-Best for: close-up portraits, location shots, emotional expressions
+Best for close-ups, emotions and immediate presence:
 
-```
+```text
 A selfie of this person, [user's context], looking into the lens.
 ```
 
 ### Mode 3: Third-Person Photo
 
-Best for: non-selfie viewpoints, including explicit third-person requests and scenes that should not read as a selfie
+Best for explicit non-selfie viewpoints:
 
-```
+```text
 A natural third-person photo of this person, [user's context], natural composition, not a selfie.
 ```
 
-### Mode Selection Logic
-
-| Signal | Auto-Select Mode |
-| ------ | ---------------- |
-| Strong user keywords: outfit, wearing, clothes, dress, suit, fashion | `mirror` |
-| Strong user keywords: full-body, mirror, reflection, pose, show the look | `mirror` |
-| Strong user keywords: selfie, close-up, portrait, face, eyes, smile, looking into the lens | `direct` |
-| Strong user keywords: third-person, not a selfie, candid shot, 他拍, 路拍, 抓拍 | `third_person` |
+| Signal | Mode |
+| --- | --- |
+| outfit, wearing, clothes, dress, suit, fashion, full-body, mirror, reflection, pose | `mirror` |
+| selfie, close-up, portrait, face, eyes, smile, looking into the lens | `direct` |
+| third-person, not a selfie, candid shot, 他拍, 路拍, 抓拍 | `third_person` |
 | Legacy keywords: travel photo, tourist photo, 旅拍, 打卡照, 风景合影 | `third_person` |
 
-Default policy:
+Interpret explicit user requirements first. Use `mirror` by default for outfit / full-body / self-presentation requests. Use `direct` for face/emotion-focused selfies. Use `third_person` only for explicit non-selfie intent or a clearly non-selfie shot. Do not change an explicit selfie into third_person because of timeline. Default mode when no keywords match and timeline is unavailable: `mirror`.
 
-- Interpret explicit user requirements first: camera style, outfit emphasis, body framing, scene, pose, and expression.
-- Use `mirror` by default for outfit / full-body / self-presentation requests, even if the user did not explicitly mention a mirror.
-- Use `direct` by default for selfie requests focused on face, emotion, immediacy, or in-the-moment presence.
-- Use `third_person` only when the user explicitly asks for a non-selfie style or clearly describes a shot that should not read as a selfie.
+## Resolution And Aspect Ratio
 
-Default mode when no keywords match and timeline is unavailable: `mirror`
+| User says | Resolution |
+| --- | --- |
+| 2k, 2048, medium res, 中等分辨率 | `2K` |
+| 1k, low res, 低分辨率 | `1K` |
+| 4k, high res, ultra, 超清, 高分辨率 | `4K` |
 
-## Resolution Keywords
-
-| User says                           | Resolution |
-| ----------------------------------- | ---------- |
-| (default)                           | `1K`       |
-| 2k, 2048, medium res, 中等分辨率    | `2K`       |
-| 4k, high res, ultra, 超清, 高分辨率 | `4K`       |
+Default model: `google/gemini-3-pro-image`. Other host-configured native models are allowed only when they support reference-image editing. Do not infer aspectRatio from prompt text: include it only when explicitly supplied. Do not send size or force a default ratio. Omit resolution from the request JSON unless the user asked for 1K, 2K or 4K; the helper applies 2K only when the selected model supports it. Each request generates exactly one image.
 
 ## Step-by-Step Instructions
 
 ### Step 1: Collect User Input
 
-Determine from the user's message:
-
-- **Explicit context** (optional): scene, outfit, location, activity — detect from keywords
-- **Mode** (optional): `mirror`, `direct`, or `third_person` — auto-detect from explicit user intent if not specified
-- **Target channel**: Where to send (e.g., `#general`, `@username`, channel ID)
-- **Channel provider** (optional): Which platform (discord, telegram, whatsapp, slack)
-- **Resolution** (optional): 1K / 2K / 4K — default 1K
-- **Count** (optional): How many images — default 1, only increase if explicitly requested
-- **Has explicit scene?**: Does the request contain any specific scene/outfit/location/activity keywords?
+Determine explicit scene, outfit, activity, mode (`mirror`, `direct`, or `third_person`), resolution and explicitly requested aspect ratio. Use the current conversation's actual Agent ID; chat has no main fallback. Do not collect another channel/session target, batch count or save directory. Ordinary selfies do not support an extra persistent copy; explain this limitation if requested without inventing a saved path.
 
 ### Step 2: Enrich with Timeline Context Or Recent Scene Recall
 
-`timeline_resolve` is an optional enhancement, not a prerequisite.
+timeline_resolve is optional, never a prerequisite.
 
-- If `timeline_resolve` is unavailable in the current environment, skip this step and proceed with Stella's default behavior.
-- If the request is a current-state `Sparse` prompt — for example "发张自拍", "发张照片", "想看看你", "send a selfie", "send a photo", "show me what you look like" — and `timeline_resolve` is available, load and follow `references/timeline-integration.md`.
-- If the current request clearly refers back to a single recently resolved timeline scene in the current conversation, load and follow `references/timeline-integration.md` even if the photo request itself is not Sparse.
-- If the user already provided a clear standalone scene, outfit, location, activity, or camera requirement and it is not a callback to a recently resolved timeline scene, do not use timeline enhancement. Follow the default policy directly.
-- When you do call `timeline_resolve`, do not freely rewrite the request into output-slot questions. Use the fixed query rules in `references/timeline-integration.md`.
-- Only enable Nano Banana real-world grounding when the prompt can explicitly include a concrete `city` plus an exact local date/time anchor from timeline data. If those anchors are missing, do not claim real-world synchronization.
-- If timeline returns `fact.status === "empty"`, is missing `result.consumption`, or any error occurs, immediately fall back to Step 3 without mentioning timeline failure to the user.
-
-**Never block image generation on timeline availability.** Timeline enrichment is best-effort and should only be used for current-state Sparse prompts or explicit callbacks to a recently resolved timeline scene.
+- If unavailable, skip it and retain normal prompt behavior.
+- If the request is a current-state `Sparse` prompt ("发张自拍", "发张照片", "想看看你", "send a selfie"), load and follow `{baseDir}/references/timeline-integration.md` when timeline_resolve is available.
+- If the current request clearly refers back to a single recently resolved timeline scene in the current conversation, use that document's reuse/query rules even if the request is not Sparse.
+- If the user already provided a clear standalone scene, outfit, location, activity, or camera requirement and it is not a callback to a recently resolved timeline scene, do not use timeline enhancement.
+- Use the fixed query rules; never rewrite into output-slot questions. On error, timeout, empty fact or missing usable result.consumption, immediately use the default scene rules without explaining timeline internals.
+- City/date/time anchors provide scene context, not proof of actual weather. Do not claim live weather synchronization without trusted weather data; this skill does not enable a search-grounding tool.
 
 ### Step 3: Assemble Prompt
 
-Select mode from the default policy first.
+Prepare the complete prompt using the selected template, explicit user intent and eligible timeline context. The execution helper does not rewrite it, call timeline, or describe the result.
 
-If the request is Sparse, and you loaded `references/timeline-integration.md` and obtained usable timeline context, apply its Sparse-only merge and prompt rules.
-
-When that timeline enrichment includes outdoor real-world grounding, keep the grounding clause as a separate strong instruction sentence rather than a soft atmosphere phrase like `Make it feel like...`.
-
-Otherwise, use the user's explicit context directly and keep Stella's original fallback behavior:
-
-```
-[mirror]  A mirror selfie of this person, [user's explicit context if any], showing full body reflection.
-[direct]  A selfie of this person, [user's explicit context if any], looking into the lens.
-[third_person] A natural third-person photo of this person, [user's explicit context if any], natural composition, not a selfie.
+```text
+[mirror] A mirror selfie of this person, [context], showing full body reflection.
+[direct] A selfie of this person, [context], looking into the lens.
+[third_person] A natural third-person photo of this person, [context], natural composition, not a selfie.
 ```
 
-### Step 4: Generate Image
+### Step 4: Prepare Validated References
 
-Run the Stella script:
+Use the file-writing tool to create a UTF-8 JSON request in a unique temporary file in the current workspace. Avoid shell interpolation of prompt text. Supported fields only:
 
-```bash
-node {baseDir}/dist/scripts/skill.js \
-  --prompt "<ASSEMBLED_PROMPT>" \
-  --target "<TARGET_CHANNEL>" \
-  --channel "<CHANNEL_PROVIDER>" \
-  --caption "<CAPTION_TEXT>" \
-  --resolution "<1K|2K|4K>" \
-  --count <NUMBER>
+```json
+{
+  "schemaVersion": 1,
+  "agentId": "<actual current conversation Agent>",
+  "prompt": "<complete Stella prompt>"
+}
 ```
 
-### Step 5: Confirm Result
+Optional fields: explicit resolution, explicit aspectRatio and user-provided caption. Caption is reply text, not part of the image prompt. Run the preparation helper with the actual request file path as an argument:
 
-After the script completes, confirm to the user:
+```text
+node "{baseDir}/dist/scripts/skill.js" prepare "<request.json>"
+```
 
-- Image was generated successfully
-- Image was sent to the target channel
-- If any error occurred, send a concise actionable failure message
+The helper resolves the Agent via the host, uses shared settings and reference checks, and returns toolInput and an internal referenceToken. It does not generate images. If ok=false, report the actionable error and stop. Failed preparation attempts to remove every file it created, including partially written references or manifest. If cleanup is incomplete, its diagnostic identifies the scratch directory for explicit cleanup. Never bypass preparation or fall back to unreferenced generation.
 
-## Environment Variables
+Use complete prepare/release commands, not the bare script as an environment probe. Metadata reads can take longer than a process tool's initial yield window: finish the existing helper process and parse its result before advancing; do not launch duplicate helpers. This waiting applies only to preparation/cleanup, never to image-generation task status.
 
-Stella supports multiple providers and a gateway-backed send path, so its sensitive runtime environment variables
-are explicitly declared in `metadata.openclaw.requires.env` for OpenClaw's env-injection allowlist.
-The skill also sets `metadata.openclaw.always: true`, so these declarations do not become hard load-time gates.
-Actual credential validation remains runtime-driven inside `skill.js`, based on the selected provider.
+When using PowerShell with a full executable path, invoke it with `&`:
 
-| Variable             | Required                        | Description                                                                          |
-| -------------------- | ------------------------------- | ------------------------------------------------------------------------------------ |
-| `GEMINI_API_KEY`     | Required (if Provider=gemini)   | Google Gemini API key                                                                |
-| `FAL_KEY`            | Required (if Provider=fal)      | fal.ai API key                                                                       |
-| `LAOZHANG_API_KEY`   | Required (if Provider=laozhang) | laozhang.ai API key (`sk-xxx`); get it at [api.laozhang.ai](https://api.laozhang.ai) |
-| `Provider`           | Optional                        | Image provider: `gemini`, `fal`, or `laozhang`                                       |
-| `AvatarBlendEnabled` | Optional                        | Enable or disable multi-reference avatar blending                                    |
-| `AvatarMaxRefs`      | Optional                        | Maximum number of reference images to blend                                          |
+```powershell
+& "<supported-node.exe>" "{baseDir}/dist/scripts/skill.js" prepare "<request.json>"
+```
 
-Credential requirements are provider-specific:
+Use the same supported Node executable for release. If the required Node/CLI/configuration is unavailable, report the missing prerequisite and stop rather than trying unrelated environment probes.
 
-- Default `Provider=gemini`: requires `GEMINI_API_KEY`
-- `Provider=fal`: requires `FAL_KEY`
-- `Provider=laozhang`: requires `LAOZHANG_API_KEY`
+### Step 5: Call Native Image Generation Once
 
-## Media File Handling (Gemini)
+Call `image_generate` once using the returned toolInput exactly: the prepared model, full prompt, count=1, prepared images, and any resolution or aspectRatio the helper included. Do not swap the model or use message send, an SDK, CLI generation, or a second call to regenerate.
 
-When `Provider=gemini`, Stella writes generated files to:
+In the supported host, image_generate loads references before it returns its async task ID. After that invocation returns (including an error), release only this request's reference snapshots in the initiating turn:
 
-- `~/.openclaw/workspace/stella-selfie/`
+```text
+node "{baseDir}/dist/scripts/skill.js" release "<same Agent ID>" "<referenceToken>"
+```
 
-After successful send, Stella deletes the local file immediately. If send fails, the file is kept for debugging.
+Remove the temporary input JSON you created. These are input scratch files, not generated-image backups. Do not wait for a completion turn to clean them; that turn may be read-only. If cleanup fails, leave the diagnostic for explicit cleanup and do not retry generation or recursively delete other directories.
 
-## Skill Environment Options
+On PowerShell, delete only that known request file with `Remove-Item -LiteralPath "<request.json>"`. Do not pass forward-slash Windows paths to cmd deletion commands.
 
-Configure in your OpenClaw `openclaw.json` under `skills.entries.stella-selfie.env`:
+Then end the initiating turn, with at most a short acknowledgement such as "正在生成。" No polling, waiting loop, internal task/session IDs or premature "已发送" claim. The host's later completion delivers the generated attachment to this conversation. Preserve an explicit caption in the completion reply. If native generation fails, report the error in the same conversation; timeout means the upstream outcome can be uncertain.
 
-| Option               | Default  | Description                                    |
-| -------------------- | -------- | ---------------------------------------------- |
-| `Provider`           | `gemini` | Image provider: `gemini`, `fal`, or `laozhang` |
-| `AvatarBlendEnabled` | `true`   | Enable multi-reference avatar blending         |
-| `AvatarMaxRefs`      | `3`      | Maximum number of reference images to blend    |
+Later process-completion notices are not image-completion events. Handle only the named process or cleanup result; do not call image_generate action=status in response. Deliver the image only from the host's structured image-completion event.
 
-> **Note for `Provider=fal` users**: fal's image editing API only accepts HTTP/HTTPS image URLs. Local file paths (from `Avatar` / `AvatarsDir`) are not supported. Configure `AvatarsURLs` in `IDENTITY.md` with public URLs of your reference images to enable image editing with fal.
+## Configuration
 
-> **Note for `Provider=laozhang` users**: laozhang.ai uses the Google-native Gemini API format (`gemini-3-pro-image-preview`). It requires local reference images from `Avatar` / `AvatarsDir` and does not use `AvatarsURLs`. Supports 1K/2K/4K resolution and 10 aspect ratios. Get your API key at [api.laozhang.ai](https://api.laozhang.ai) — remember to configure a billing mode in the token settings before use.
+Requires OpenClaw 2026.10.9 or a compatible host exposing the native image tool, provider inventory and Agent resolvers; use a Node version supported by that host (verified baseline: >=24.22.1 <25 or >=26.12.1). Configure the selected Agent's host-native image provider authentication. Stella has no provider SDK dependencies or skill-specific provider-key install steps.
 
-## Delivery Path
-
-- Stella sends via `openclaw message send`.
-- Delivery auth and routing are handled by the local OpenClaw installation, not by skill-level gateway tokens.
-
-## External Endpoints And Data Flow
-
-| Endpoint / path                     | When used           | Data sent                                                                            |
-| ----------------------------------- | ------------------- | ------------------------------------------------------------------------------------ |
-| Google Gemini API                   | `Provider=gemini`   | Prompt text and selected local reference images from `Avatar` / `AvatarsDir`         |
-| fal API                             | `Provider=fal`      | Prompt text and public reference image URLs from `AvatarsURLs`                       |
-| laozhang.ai API (`api.laozhang.ai`) | `Provider=laozhang` | Prompt text and local reference images (`Avatar` / `AvatarsDir`, uploaded as base64) |
-| Local OpenClaw CLI                  | Always for delivery | Target channel, target id, caption text, and generated media path/URL                |
-
-## Security And Privacy
-
-- Stella reads `~/.openclaw/workspace/IDENTITY.md` and local avatar files to build reference context.
-- Under `Provider=gemini`, selected local avatar images are uploaded to Gemini as part of normal image generation.
-- Under `Provider=fal`, only public `http/https` avatar URLs are sent; local avatar files are not uploaded to fal directly.
-- Under `Provider=laozhang`, local avatar files from `Avatar` / `AvatarsDir` are base64-encoded and uploaded to laozhang.ai.
-- Generated files (Gemini and laozhang) are written to `~/.openclaw/workspace/stella-selfie/` and deleted after successful send.
-
-## User Configuration
-
-Before using this skill, you must configure your OpenClaw workspace. See `templates/SOUL.fragment.md` for the recommended capability snippet to add to your `SOUL.md`.
-
-### Required: IDENTITY.md
-
-Add the following fields to `~/.openclaw/workspace/IDENTITY.md`:
+In the actual Agent workspace's IDENTITY.md:
 
 ```markdown
 Avatar: ./assets/avatar-main.png
 AvatarsDir: ./avatars
-AvatarsURLs: https://cdn.example.com/ref1.jpg, https://cdn.example.com/ref2.jpg
 ```
 
-- `Avatar`: Path to your primary reference image (relative to workspace root)
-- `AvatarsDir`: Directory containing multiple reference photos of the same character (different styles, scenes, outfits)
-- `AvatarsURLs`: Comma-separated public URLs of reference images — required for `Provider=fal` (local files are not supported by fal's API)
+At least one valid local reference is sufficient. AvatarsDir is optional. Retired AvatarsURLs fields are ignored; only authorized local images are supported.
 
-### Required: avatars/ Directory
+Configure non-sensitive values under `skills.entries.stella-selfie.config`:
 
-Place your reference photos in `~/.openclaw/workspace/avatars/`:
-
-- Use `jpg`, `jpeg`, `png`, or `webp` format
-- All photos should be of the same character
-- Different styles, scenes, outfits, and expressions work best
-- Images are selected by creation time (newest first)
-
-### Required: SOUL.md
-
-Add the Stella capability block to `~/.openclaw/workspace/SOUL.md`. See README.md ("4. SOUL.md") for the copy/paste snippet.
-
-## Installation
-
-```bash
-clawhub install stella-selfie
+```json
+{
+  "model": "google/gemini-3-pro-image",
+  "AvatarBlendEnabled": true,
+  "AvatarMaxRefs": 3
+}
 ```
 
-After installation, complete the configuration steps above before using the skill.
+Optional AvatarAllowedRoots is a nonempty array of absolute directories replacing the defaults. Old AvatarBlendEnabled/AvatarMaxRefs/AvatarAllowedRoots env settings remain readable: config → process env → skill env → default. Remove leftover `Provider` fields; `Provider=gemini` is ignored, other legacy values must be deleted. Use `config.model` instead. Old skill-only API keys are not assumed to configure the host native provider.
+
+References must be regular JPEG/PNG/WebP files, each at most 20 MiB, with valid signatures. Default allowed roots are assets/avatars inside the actual Agent workspace; outward symlinks/junctions are not implicitly authorized. Main Avatar is preferred, realpath duplicates removed, extras selected newest first (birthtime, then mtime/ctime fallback); default maximum three, limited by the selected model's native `maxInputImages`. Blend disabled means main only. The selected model must be listed by the host and support reference-image editing.
+
+For chat, input snapshots preserve the validated bytes, but the native image tool may resize or re-encode them before upload, changing format, dimensions or fine detail. Original-byte upload is not guaranteed. The 20 MiB Stella input limit is separate from the host's media limits and optimization; requesting 4K output does not preserve reference resolution. The in-process plugin path passes validated buffers directly to the native runtime without this chat-tool optimization.
+
+The prompt and selected reference bytes go to the configured native image provider through OpenClaw. Generated media storage, retention and current-conversation delivery belong to the host. Stella creates no generated-image archive and does not delete host attachments or historical user files. It does not promise attachment availability forever.
+
+Install with `clawhub install stella-selfie` in the intended host/profile/workspace scope. No npm runtime dependency installation is needed. An optional capability snippet ships at `{baseDir}/templates/SOUL.fragment.md`; do not overwrite the user's personality files.
+
+Official behavior: [Image generation](https://docs.openclaw.ai/tools/image-generation), [Plugin runtime media](https://docs.openclaw.ai/plugins/sdk-runtime/media#api-runtime-imagegeneration).

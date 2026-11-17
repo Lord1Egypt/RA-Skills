@@ -1,42 +1,53 @@
-## Description: <br>
-Invoice Analyzer helps agents extract invoice data, validate amounts and taxes, detect anomalies, support reconciliation, and summarize spend insights from financial documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Invoice Analyzer helps process invoices, extract structured fields, validate amounts and taxes, flag anomalies, support reconciliation, and summarize financial insights from invoice data.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Finance, accounting, procurement, and operations users use this skill to process invoices, review extracted fields, validate totals and tax calculations, flag anomalies, and prepare reconciliation or approval guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Invoice processing may expose bank, tax, vendor, and spend data. <br>
-Mitigation: Use the skill only in approved environments, treat extracted data as confidential, and redact unnecessary account details from outputs. <br>
-Risk: Approval, payment scheduling, vendor bank-account change, wallet, purchase, or transaction-signing guidance could lead to financial action without adequate oversight. <br>
-Mitigation: Require human review and separate authorization before any approval, payment, vendor-account, wallet, purchase, or signing action. <br>
-Risk: Extraction, validation, reconciliation, or fraud-risk conclusions may be incorrect or incomplete. <br>
-Mitigation: Verify low-confidence fields, calculations, tax treatment, duplicate checks, and reconciliation results against source documents and trusted financial systems. <br>
+## Use Case:
 
+Finance, procurement, and accounts payable teams can use this skill to extract invoice fields, validate totals and taxes, compare vendor and payment details, identify anomalies, and prepare reconciliation or routing recommendations.
 
-## Reference(s): <br>
-- [Invoice Analyzer Code Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown reports with tables and optional JSON-style structured invoice data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include confidence scores, validation status, fraud risk notes, and recommended human review actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may present automatic invoice approval or payment-readiness recommendations in finance workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use outputs only for extraction, validation, anomaly detection, and routing suggestions; require human approval and maintain segregation-of-duties controls before payment actions.
+
+Risk: Invoice analysis can expose sensitive banking, tax, vendor, and payment information.
+
+Mitigation: Redact or limit sensitive fields unless the runtime environment is approved for that data.
+
+## Reference(s):
+
+- [Invoice Analyzer code examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Markdown reports with tables and optional JSON-style structured summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include extracted invoice fields, confidence scores, validation status, fraud risk scores, reconciliation results, and review recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

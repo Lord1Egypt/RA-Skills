@@ -1,44 +1,58 @@
-## Description: <br>
-Crypto futures backtesting engine with built-in EMA, RSI, MACD, and Bollinger Band strategies that fetches OHLCV data from ccxt-supported exchanges, runs multi-strategy sweeps, calculates win rate, PnL, and drawdown, and exports results to JSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crypto Backtest helps agents run crypto futures backtests with built-in EMA, RSI, MACD, and Bollinger Band strategies, fetch OHLCV data from ccxt-supported exchanges, compare parameter sweeps, calculate win rate, PnL, and drawdown, and export results to JSON.
 
-## Publisher: <br>
-[Sunnyztj](https://clawhub.ai/user/Sunnyztj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sunnyztj](https://clawhub.ai/user/sunnyztj)
 
-## Use Case: <br>
-Developers, quantitative trading users, and agent operators use this skill to backtest crypto futures strategies, compare parameter combinations, and generate machine-readable simulation results before considering live trading workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Market-data requests are sent to the selected exchange. <br>
-Mitigation: Review the exchange, symbol, timeframe, and network environment before running the scripts. <br>
-Risk: Result output paths can overwrite existing local files. <br>
-Mitigation: Choose output paths intentionally and inspect the destination before enabling JSON output. <br>
-Risk: Backtest results are simulations and may not predict live trading performance. <br>
-Mitigation: Treat results as analysis only, validate assumptions independently, and use paper trading before any live workflow. <br>
-Risk: The scripts depend on third-party Python packages. <br>
-Mitigation: Install dependencies in a virtual environment and verify package sources before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Adding Custom Strategies](references/custom_strategy.md) <br>
-- [Strategy Notes](references/strategy_notes.md) <br>
+## Use Case:
 
+Developers and quantitative trading practitioners use this skill to run crypto futures strategy backtests, compare parameter combinations, and export metrics for analysis or pipeline integration.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Configuration instructions, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with bash commands and optional JSON result files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Backtest and sweep scripts can print metrics to the terminal and save JSON results to caller-selected paths.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Dependency installation may pull unreviewed package versions.
+
+Mitigation: Install dependencies in a virtual environment and pin reviewed versions of ccxt; remove numpy unless the release actually needs it.
+
+Risk: JSON export can overwrite an existing local file.
+
+Mitigation: Choose output paths deliberately and write results to a dedicated backtest output location.
+
+Risk: Backtest results and historical strategy metrics can be mistaken for reliable future trading performance.
+
+Mitigation: Treat outputs as analytical evidence only, review assumptions, and validate strategies with paper trading before live use.
+
+## Reference(s):
+
+- [Adding Custom Strategies](references/custom_strategy.md)
+- [Strategy Notes](references/strategy_notes.md)
+- [Crypto Backtest on ClawHub](https://clawhub.ai/sunnyztj/skills/crypto-backtest)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command snippets; JSON backtest result files when the bundled scripts are run.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Backtest outputs include trades, win rate, PnL, drawdown, profit factor, balances, strategy parameters, and optional sweep rankings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-AI UI prototyping powered by CellCog. Interactive HTML prototypes, wireframes, app mockups, landing pages, mobile screens, SaaS dashboards, design systems, user flows. From description to clickable prototype in one prompt. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate interactive HTML UI prototypes, wireframes, app mockups, landing pages, mobile screens, dashboards, design systems, and user flows from a written prompt using CellCog.
 
-## Publisher: <br>
-[nitishgargiitd](https://clawhub.ai/user/nitishgargiitd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cellcog](https://clawhub.ai/user/cellcog)
 
-## Use Case: <br>
-Developers, designers, and product teams use Proto Cog to ask CellCog for clickable UI prototypes, wireframes, app mockups, landing pages, mobile screens, SaaS dashboards, design systems, and user flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prototype prompts, UI copy, sample data, and generated output are sent to CellCog and may be hosted on shareable links. <br>
-Mitigation: Avoid secrets, customer data, internal-only product plans, realistic credentials, and regulated data; review hosted links before sharing. <br>
-Risk: The skill requires CELLCOG_API_KEY, which is a sensitive credential. <br>
-Mitigation: Store the API key in the agent environment, avoid embedding it in prompts or generated files, and rotate it if it is exposed. <br>
+## Use Case:
 
+Developers and product or design teams use this skill to turn a written brief into clickable UI prototypes, wireframes, and app or web mockups. It supports exploring page layouts, user flows, and reusable design systems.
 
-## Reference(s): <br>
-- [Proto Cog on ClawHub](https://clawhub.ai/nitishgargiitd/proto-cog) <br>
-- [CellCog](https://cellcog.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration] <br>
-**Output Format:** [Markdown guidance with Python API-call examples; generated CellCog results may include hosted interactive HTML prototypes, static images, or PDF outputs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and CELLCOG_API_KEY; outputs may be hosted on shareable external CellCog links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.11 (source: server release metadata) <br>
+Risk: Prototype prompts may contain confidential material sent to CellCog.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only content authorized for CellCog and avoid confidential material in shareable prototypes; check hosting access and retention terms.
+
+Risk: The external CellCog SDK and prerequisite skill are not included with this release.
+
+Mitigation: Review and pin installation dependencies, and inspect the CellCog SDK guidance before use.
+
+## Reference(s):
+
+- [CellCog](https://cellcog.ai)
+- [Wireframe on ClawHub](https://clawhub.ai/cellcog/skills/ui-prototype-wireframe-cellcog)
+
+## Skill Output:
+
+**Output Type(s):** [HTML, Static images, PDF, Guidance]
+
+**Output Format:** [Interactive HTML prototype by default; static images or PDF when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Interactive prototypes may be hosted at shareable live URLs.]
+
+## Skill Version(s):
+
+1.0.17 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

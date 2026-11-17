@@ -1,0 +1,6126 @@
+#!/usr/bin/env python3
+"""DnaSP  -  Population Genetics Analysis of DNA Sequence Alignments.
+
+Python reimplementation of core DnaSP statistics, implemented from the primary
+literature and checked against the original Visual Basic source of DnaSP 6
+(Rozas et al., Mol. Biol. Evol. 2017, doi:10.1093/molbev/msx248). This skill
+contains no DnaSP source code.
+
+Statistical formulas follow:
+  - Tajima (1989) Genetics 123:585-595  (Tajima's D)
+  - Fu & Li (1993) Genetics 133:693-709  (D, F with outgroup; D*, F* without)
+  - Simonsen et al. (1995) Genetics 141:413-429  (variance coefficients A3-A6, Appendix B)
+  - Hudson, Kreitman & Aguadé (1987) Genetics 116:153-159  (HKA test)
+  - Nei & Tajima (1981) Genetics 97:145-163  (haplotype diversity)
+  - Ramos-Onsins & Rozas (2002) Mol. Biol. Evol. 19:2092-2100  (R2)
+  - Kelly (1997) Genetics 146:1197-1206  (ZnS)
+  - Rozas et al. (2001) Genetics 158:1147-1155  (Za, ZZ)
+  - Hill & Robertson (1968) Theor. Appl. Genet. 38:226-231  (R²)
+  - Lewontin (1964) Genetics 49:49-67  (D')
+  - Hudson & Kaplan (1985) Genetics 111:147-164  (Rm)
+  - Rogers & Harpending (1992) Mol. Biol. Evol. 9:552-569  (mismatch)
+  - Harpending (1994) Hum. Biol. 66:591-600  (raggedness)
+  - Nei (1987) Molecular Evolutionary Genetics  (Dxy, Da, divergence)
+
+Supported input formats:
+  FASTA  (.fas, .fa, .fasta)  -  including DnaSP header style >'name'  [comment]
+  NEXUS  (.nex, .nexus, .nxs)  -  interleaved or non-interleaved, with MATCHCHAR
+  VCF    (--vcf)  -  multi-sample; one MSA per CHROM; biallelic SNPs only
+
+Available analyses (--analysis flag):
+  polymorphism  : π, k, S, Eta, H, Hd, θ_W, Tajima's D, Fu & Li D*/F*, R2  [default]
+  ld            : Linkage disequilibrium (D, D', R², ZnS, Za, ZZ)
+  recombination : Minimum recombination events Rm (Hudson & Kaplan 1985)
+  popsize       : Mismatch distribution, raggedness r (Harpending 1994)
+  indel         : InDel polymorphism statistics
+  divergence    : Dxy, Da, fixed/shared/private differences (needs --pop-file or --input2)
+  fuliout       : Fu & Li D/F with outgroup (needs --outgroup)
+  hka           : HKA two-locus neutrality test (needs --hka-file with 2 loci)
+  mk            : McDonald-Kreitman test (needs --outgroup; coding alignment)
+  kaks          : Ka/Ks (dN/dS) via Nei-Gojobori 1986 (coding alignment)
+  fufs          : Fu's Fs neutrality test (Fu 1997; Ewens sampling formula)
+  sfs           : Site frequency spectrum  -  folded; unfolded if --outgroup provided
+  tstv          : Transition/transversion ratio (Ts/Tv) across all pairs
+  codon         : Codon usage bias  -  RSCU (Sharp & Li 1987) + ENC (Wright 1990)
+  faywu         : Fay & Wu's H (2000) + Zeng's E (2006)  -  outgroup required
+  fst           : Population differentiation Fst  -  Hudson et al. (1992) pairwise
+  all           : Run all applicable analyses given the inputs
+
+Usage:
+  python dnasp.py --input alignment.fas --output results/
+  python dnasp.py --input alignment.fas --analysis all --output results/
+  python dnasp.py --input alignment.fas --analysis ld,recombination --output results/
+  python dnasp.py --input alignment.fas --window 100 --step 25 --output results/
+  python dnasp.py --input pop1.fas --input2 pop2.fas --analysis divergence --output results/
+  python dnasp.py --input alignment.fas --pop-file pops.txt --analysis divergence --output results/
+  python dnasp.py --demo --output /tmp/dnasp_demo
+"""
+
+from __future__ import annotations
+
+__version__ = "0.6.1"
+__author__  = "David De Lorenzo"
+__credits__ = [
+    # Python reimplementation
+    "David De Lorenzo",
+    # Original DnaSP 6 algorithms and Visual Basic implementation
+    "Julio Rozas", "Albert Ferrer-Mata", "Juan Carlos Sánchez-DelBarrio",
+    "Sara Guirao-Rico", "Pablo Librado", "Sebastián Ramos-Onsins",
+    "Alejandro Sánchez-Gracia",
+]
+__licence__ = "MIT"
+
+import argparse
+import csv
+import hashlib
+import json
+import shlex
+import platform
+import importlib.metadata
+import math
+import random
+import re
+import shutil
+import sys
+import unicodedata
+from collections import Counter
+from dataclasses import dataclass, field, fields, is_dataclass
+from datetime import datetime
+from decimal import Decimal
+from functools import lru_cache
+from itertools import combinations
+from pathlib import Path
+from typing import Callable, Optional
+
+# ── Optional heavy deps (graceful degradation) ───────────────────────────────
+try:
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    HAS_MPL = True
+except ImportError:
+    HAS_MPL = False
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Constants
+# ─────────────────────────────────────────────────────────────────────────────
+
+VALID_ANALYSES = {"polymorphism", "ld", "recombination", "popsize", "indel", "divergence",
+                  "fuliout", "hka", "mk", "kaks", "fufs", "sfs", "tstv", "codon",
+                  "faywu", "fst"}
+_GAP_CHARS = frozenset("-?NRYSWKMBDHV")
+_NUCLEOTIDES = ('A', 'T', 'C', 'G')
+_PURINES     = frozenset('AG')
+_PYRIMIDINES = frozenset('CT')
+
+# Standard genetic code (NCBI transl_table=1)
+GENETIC_CODE: dict[str, str] = {
+    'TTT': 'F', 'TTC': 'F', 'TTA': 'L', 'TTG': 'L',
+    'CTT': 'L', 'CTC': 'L', 'CTA': 'L', 'CTG': 'L',
+    'ATT': 'I', 'ATC': 'I', 'ATA': 'I', 'ATG': 'M',
+    'GTT': 'V', 'GTC': 'V', 'GTA': 'V', 'GTG': 'V',
+    'TCT': 'S', 'TCC': 'S', 'TCA': 'S', 'TCG': 'S',
+    'CCT': 'P', 'CCC': 'P', 'CCA': 'P', 'CCG': 'P',
+    'ACT': 'T', 'ACC': 'T', 'ACA': 'T', 'ACG': 'T',
+    'GCT': 'A', 'GCC': 'A', 'GCA': 'A', 'GCG': 'A',
+    'TAT': 'Y', 'TAC': 'Y', 'TAA': '*', 'TAG': '*',
+    'CAT': 'H', 'CAC': 'H', 'CAA': 'Q', 'CAG': 'Q',
+    'AAT': 'N', 'AAC': 'N', 'AAA': 'K', 'AAG': 'K',
+    'GAT': 'D', 'GAC': 'D', 'GAA': 'E', 'GAG': 'E',
+    'TGT': 'C', 'TGC': 'C', 'TGA': '*', 'TGG': 'W',
+    'CGT': 'R', 'CGC': 'R', 'CGA': 'R', 'CGG': 'R',
+    'AGT': 'S', 'AGC': 'S', 'AGA': 'R', 'AGG': 'R',
+    'GGT': 'G', 'GGC': 'G', 'GGA': 'G', 'GGG': 'G',
+}
+
+# Vertebrate mitochondrial genetic code (NCBI transl_table=2; DnaSP 6's
+# "mtDNA Mammals", SINONIMO.vb::GeneticCode case 2): differs from the
+# standard/universal code at exactly 4 codons.  Needed for mitochondrial loci
+# such as COII, where TGA is a sense codon (Trp), not a stop  -  treating it as
+# standard-code stop silently drops those columns from codon, mk and kaks.
+VERTEBRATE_MITOCHONDRIAL_CODE: dict[str, str] = {**GENETIC_CODE,
+    'TGA': 'W',   # stop -> Trp
+    'ATA': 'M',   # Ile  -> Met
+    'AGA': '*',   # Arg  -> stop
+    'AGG': '*',   # Arg  -> stop
+}
+
+GENETIC_CODES: dict[str, dict[str, str]] = {
+    "standard": GENETIC_CODE,
+    "vertebrate-mitochondrial": VERTEBRATE_MITOCHONDRIAL_CODE,
+}
+
+
+def _synonymous_families(genetic_code: dict[str, str]) -> dict[str, list[str]]:
+    """Amino acid -> list of codons for it, under the given genetic code.
+
+    Stop codons ('*') are excluded here; RSCU callers add family 21 separately.
+    Callers must recompute families for the selected genetic code rather than
+    relying on the standard-code families computed at import time.
+    """
+    families: dict[str, list[str]] = {}
+    for codon, aa in genetic_code.items():
+        if aa != '*':
+            families.setdefault(aa, []).append(codon)
+    return families
+
+
+# Synonymous codon families (Group E: codon usage bias), standard code only.
+# Maps amino acid → list of codons; stop codons ('*') excluded.
+_SYNONYMOUS_FAMILIES: dict[str, list[str]] = _synonymous_families(GENETIC_CODE)
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Data structures
+# ─────────────────────────────────────────────────────────────────────────────
+
+@dataclass
+class Alignment:
+    names: list[str]
+    seqs: list[str]
+    source: str = ""
+
+    def __post_init__(self) -> None:
+        if len(self.names) != len(self.seqs):
+            raise ValueError("Sequence names and sequences must have equal counts")
+        if len(set(self.names)) != len(self.names):
+            raise ValueError("Sequence identifiers must be unique")
+        self.seqs = [seq.upper() for seq in self.seqs]
+        invalid = set(''.join(self.seqs)) - set('ACGT') - _GAP_CHARS
+        if invalid:
+            raise ValueError(f"Unsupported sequence symbols: {sorted(invalid)}")
+        lengths = {len(s) for s in self.seqs}
+        if len(lengths) > 1:
+            raise ValueError(
+                f"Sequences have unequal lengths: {sorted(lengths)}. "
+                "Is the alignment correctly formatted?"
+            )
+
+    @property
+    def n(self) -> int:
+        return len(self.seqs)
+
+    @property
+    def L(self) -> int:
+        return len(self.seqs[0]) if self.seqs else 0
+
+
+@dataclass
+class RegionStats:
+    """All polymorphism statistics for one region (whole alignment or sliding window)."""
+    region: str = "1-?"
+    n: int = 0
+    L_total: int = 0
+    L_net: int = 0
+    S: int = 0
+    Eta: int = 0
+    H: int = 0
+    Hd: float = 0.0
+    VarHd: float = 0.0
+    Pi: float = 0.0
+    k: float = 0.0
+    GC: float = 0.0
+    ThetaW: float = 0.0
+    ThetaW_nuc: float = 0.0
+    TajimaD: Optional[float] = None
+    FuLiD_star: Optional[float] = None
+    FuLiF_star: Optional[float] = None
+    R2: Optional[float] = None
+    midpoint: int | None = None  # 1-based gap-free-site midpoint; windows only
+
+    def as_tsv_row(self) -> list:
+        def fmt(v: Optional[float]) -> str:
+            return "n.a." if v is None else f"{v:.10g}"
+        return [
+            self.region, self.n, self.L_total, self.L_net,
+            self.S, self.Eta, self.H,
+            fmt(self.Hd), fmt(self.VarHd),
+            fmt(self.Pi), fmt(self.k),
+            fmt(self.GC),
+            fmt(self.ThetaW_nuc), fmt(self.ThetaW),
+            fmt(self.TajimaD),
+            fmt(self.FuLiD_star), fmt(self.FuLiF_star),
+            fmt(self.R2), "n.a." if self.midpoint is None else self.midpoint,
+        ]
+
+
+TSV_HEADER = [
+    "Region", "Sample_Size", "Sites", "NetSites",
+    "S", "Eta", "Hap",
+    "Hd", "VarHd",
+    "Pi", "ThetaK",
+    "G+Ctot",
+    "ThetaWattNuc", "ThetaWatt",
+    "TajimaD",
+    "FuLiD*", "FuLiF*",
+    "Ramos-Onsins_Rozas_R2",
+    "Midpoint",
+]
+
+
+@dataclass
+class LDPair:
+    """LD statistics for one pair of biallelic sites."""
+    site1: int          # 1-based position in net alignment
+    site2: int
+    dist: int           # nucleotide distance
+    n_valid: int        # sequences without gaps at either site
+    D: float
+    D_prime: Optional[float]
+    R2: Optional[float]
+    chi2: Optional[float]
+    p_chi2: Optional[float]
+
+
+@dataclass
+class LDStats:
+    """Whole-alignment LD summary."""
+    n_biallelic: int = 0
+    n_pairs: int = 0
+    ZnS: Optional[float] = None
+    Za: Optional[float] = None
+    ZZ: Optional[float] = None
+    pairs: list[LDPair] = field(default_factory=list)
+
+
+@dataclass
+class RecombStats:
+    """Recombination statistics."""
+    Rm: int = 0
+    n_incompatible_pairs: int = 0
+    incompatible_pairs: list[tuple[int, int]] = field(default_factory=list)
+
+
+@dataclass
+class MismatchStats:
+    """Mismatch distribution statistics (Population Size Changes module)."""
+    observed: dict[int, int] = field(default_factory=dict)
+    n_pairs: int = 0
+    mean: float = 0.0
+    variance: float = 0.0
+    raggedness: Optional[float] = None
+    cv: Optional[float] = None
+
+
+@dataclass
+class InDelEvent:
+    """One identified InDel event."""
+    start: int          # 0-based alignment position
+    end: int            # inclusive
+    length: int         # bp
+    seq_indices: frozenset = field(default_factory=frozenset)  # indices carrying gap
+
+
+@dataclass
+class InDelStats:
+    """InDel polymorphism statistics."""
+    n_positions_with_gaps: int = 0
+    net_sites: int = 0
+    n_excluded_events: int = 0
+    n_excluded_overlap_sites: int = 0
+    n_missing_sites: int = 0
+    n_fixed_gap_sites: int = 0
+    mean_deletion_length: float = 0.0
+    n_events: int = 0
+    mean_event_length: float = 0.0
+    n_haplotypes: int = 0
+    haplotype_diversity: float = 0.0
+    k_indel: float = 0.0
+    pi_indel: float = 0.0
+    theta_indel: float = 0.0
+    tajima_d_indel: Optional[float] = None
+    events: list[InDelEvent] = field(default_factory=list)
+
+
+@dataclass
+class DivergenceStats:
+    """Between-population divergence statistics (DNA Divergence module)."""
+    pop1_name: str = "Pop1"
+    pop2_name: str = "Pop2"
+    n1: int = 0
+    n2: int = 0
+    L_net: int = 0
+    # Within-population
+    Pi1: float = 0.0
+    Pi2: float = 0.0
+    k1: float = 0.0
+    k2: float = 0.0
+    # Between populations
+    Dxy: float = 0.0   # average pairwise differences between populations per site
+    Da: float = 0.0    # net nucleotide differences (Da = Dxy - (Pi1+Pi2)/2)
+    n_fixed: int = 0           # fixed-difference SITES (Sf)
+    n_shared: int = 0          # shared MUTATIONS (Ss)
+    n_private1: int = 0        # MUTATIONS exclusive to pop1 (Sx1)
+    n_private2: int = 0        # MUTATIONS exclusive to pop2 (Sx2)
+
+
+@dataclass
+class FuLiOutgroupStats:
+    """Fu & Li (1993) D and F statistics polarised by an outgroup sequence."""
+    n: int = 0           # number of ingroup sequences
+    S: int = 0           # orientable segregating sites (DnaSP's pv1); drives D/F
+    eta: int = 0         # total derived mutations (outgroup-polarised); reported only
+    eta_e: int = 0       # derived-mutation SITES carried by exactly 1 ingroup seq
+    k_bar: float = 0.0   # mean pairwise differences (standard π estimate)
+    D: Optional[float] = None  # Fu & Li D (outgroup version)
+    F: Optional[float] = None  # Fu & Li F (outgroup version)
+
+
+@dataclass
+class HKALocus:
+    """One locus for the HKA test (DnaSP 6 two-locus model, HKA 1987)."""
+    name: str = ""      # locus identifier
+    n: int = 0          # ingroup sample size
+    S: int = 0          # segregating sites within the ingroup
+    D: int = 0          # differences to the sister species (divergence)
+    L_poly: float = 0.0  # sites analysed within the ingroup
+    L_div: Optional[float] = None  # omitted means L_poly; explicit zero is invalid
+    sex: float = 1.0     # 1.0 autosomal, 0.75 X/Z-linked, 0.25 Y/W-linked
+
+
+@dataclass
+class HKAStats:
+    """Results of the HKA test (Hudson, Kreitman & Aguadé 1987).
+
+    DnaSP 6 restricts HKA to exactly two loci and solves the neutral model in
+    closed form (HKA.vb::HKAResolEcuacion, case 1).  error is set (and the test
+    not run) when the inputs are unusable or the equations have no positive
+    solution; note carries an informational remark for a test that did run
+    (e.g. more than one positive-theta solution).
+    """
+    n_loci: int = 0
+    T_hat: float = 0.0          # divergence time, units of 2N generations
+    chi2: float = 0.0
+    df: int = 0
+    p_value: Optional[float] = None
+    loci_results: list = field(default_factory=list)  # per-locus details (list of dicts)
+    error: Optional[str] = None   # set only when the test was not run
+    note: Optional[str] = None    # informational; the test still ran
+
+
+@dataclass
+class MKStats:
+    """McDonald-Kreitman test (McDonald & Kreitman 1991)."""
+    Pn: int = 0               # nonsynonymous polymorphisms in ingroup
+    Ps: int = 0               # synonymous polymorphisms in ingroup
+    Dn: int = 0               # nonsynonymous fixed differences (ingroup vs outgroup)
+    Ds: int = 0               # synonymous fixed differences (ingroup vs outgroup)
+    alpha: Optional[float] = None   # 1 − (Ds·Pn)/(Dn·Ps)  -  proportion of adaptive substitutions
+    NI: Optional[float] = None      # Neutrality Index = (Pn/Ps)/(Dn/Ds)
+    DoS: Optional[float] = None     # Direction of Selection = Dn/(Dn+Ds) − Pn/(Pn+Ps)
+    fisher_p: Optional[float] = None  # Two-tailed Fisher's exact test P-value
+    n_complex_codons: int = 0  # codons DnaSP does not analyse (excluded from all four counts)
+    n_internal_stop_codons: int = 0  # codons with a stop in some sequence, analysed as a 21st amino acid
+
+
+@dataclass
+class KaKsStats:
+    """Ka/Ks (dN/dS) estimated by the Nei-Gojobori (1986) method."""
+    n_codons: int = 0        # codons analysed (valid in every compared sequence)
+    S_sites: float = 0.0     # mean synonymous sites per sequence
+    N_sites: float = 0.0     # mean nonsynonymous sites per sequence
+    Sd: float = 0.0          # mean synonymous differences per sequence pair
+    Nd: float = 0.0          # mean nonsynonymous differences per sequence pair
+    Ks: Optional[float] = None    # synonymous substitutions per syn site (JC corrected)
+    Ka: Optional[float] = None    # nonsynonymous substitutions per nonsyn site (JC corrected)
+    omega: Optional[float] = None  # Ka/Ks; < 1 purifying, ≈ 1 neutral, > 1 positive selection
+    n_internal_stop_codons: int = 0  # codons with a stop in some sequence, analysed as a 21st amino acid
+
+
+@dataclass
+class FuFsStats:
+    """Fu's Fs neutrality test (Fu 1997).
+
+    Fs = ln(S' / (1 - S')) where S' = P(K_n ≥ H | θ_π, n) under the Ewens
+    sampling formula (infinite-alleles model). Fs << 0 → excess of haplotypes
+    (population expansion / hitchhiking). S' is not a P-value (θ_π is
+    estimated); a formal test requires coalescent simulation of the null.
+    """
+    n: int = 0
+    H: int = 0                        # observed number of haplotypes
+    theta_pi: float = 0.0             # θ_π = k (mean pairwise differences)
+    S_k: Optional[float] = None       # S' = P(K_n ≥ H | θ_π, n)  -  Ewens upper tail
+    Fs: Optional[float] = None        # ln(S' / (1 - S')); Fs << 0 → expansion/selection
+
+
+@dataclass
+class SFSStats:
+    """Site frequency spectrum (folded and optionally unfolded).
+
+    folded[i]   = number of segregating sites where minor allele count = i
+                  (i = 1 … n//2); independent of outgroup.
+    unfolded[i] = number of segregating sites where derived allele count = i
+                  (i = 1 … n-1); requires an outgroup to polarise.
+
+    Only biallelic sites contribute (DnaSP FULI.vb gates on contot == 2);
+    n_multiallelic_excluded records the sites dropped for having > 2 states.
+    """
+    n: int = 0
+    folded: dict[int, int] = field(default_factory=dict)
+    unfolded: Optional[dict[int, int]] = None
+    has_outgroup: bool = False
+    n_multiallelic_excluded: int = 0
+
+
+@dataclass
+class TsTvStats:
+    """Transition / transversion ratio, one mutation per biallelic site.
+
+    Matches DnaSP 6 (Mutational.vb::Mod31Compute_1): each biallelic segregating
+    column contributes exactly one change, classified transition (A<->G, C<->T)
+    or transversion.  Multiallelic columns are excluded; with an outgroup,
+    columns the outgroup cannot polarise (outgroup gap, or outgroup allele not
+    among the ingroup alleles) are excluded too.  This is independent of sample
+    size - duplicating a sequence does not change the counts.
+    ts_tv is None when n_transversions == 0.
+    """
+    n: int = 0          # number of ingroup sequences
+    L_net: int = 0      # number of fully clean (all-ATCG) ingroup columns
+    n_sites: int = 0    # biallelic segregating columns classified (Ts + Tv)
+    n_transitions: int = 0
+    n_transversions: int = 0
+    ts_tv: Optional[float] = None       # Ts/Tv ratio; None if Tv == 0
+    n_multiallelic_excluded: int = 0
+    n_unpolarisable_excluded: int = 0   # only when an outgroup is supplied
+    polarised: bool = False             # whether an outgroup was used
+
+
+@dataclass
+class CodonUsageStats:
+    """Codon usage bias: RSCU (Sharp & Li 1987) and ENC (Wright 1990).
+
+    rscu[codon] = observed / expected usage within synonymous family.
+      RSCU = 1.0  → uniform usage among synonyms.
+      RSCU > 1.0  → preferred codon.
+      RSCU < 1.0  → avoided codon.
+
+    ENC (Effective Number of Codons):
+      20  → maximum bias (only one codon used per amino acid).
+      61  → no bias (all synonymous codons used equally).
+      ENC < 35 suggests strong codon usage bias.
+
+    n_codons is the mean number of clean (non-stop, non-gap) codons per sequence.
+    """
+    n: int = 0                  # number of ingroup sequences
+    n_codons: float = 0.0       # mean clean coding codons per sequence
+    codon_counts: dict[str, float] = field(default_factory=dict)  # codon → mean count/seq
+    rscu: dict[str, float] = field(default_factory=dict)          # codon → RSCU value
+    ENC: Optional[float] = None     # 20 (max bias) … 61 (no bias); None if data insufficient
+    per_sequence_enc: dict[str, float | None] = field(default_factory=dict)
+
+
+@dataclass
+class FayWuStats:
+    """Fay & Wu's H and Zeng's E neutrality statistics.
+
+    Both require an outgroup to polarise each segregating site (determine
+    which allele is ancestral vs derived).
+
+    theta_pi  = standard nucleotide diversity (π), computed from polarised sites.
+    theta_w   = Watterson's θ, computed from polarised sites.
+    theta_h   = Fay & Wu's θ_H (weights derived alleles by frequency²).
+    theta_l   = Zeng's θ_L (weights derived alleles by frequency).
+
+    H  = θ_π − θ_H  (Fay & Wu 2000; negative → excess high-freq derived alleles).
+    E  = θ_L − θ_W  (Zeng et al. 2006; complements H for different distortions).
+
+    All θ values are per-site (divided by L_net).
+    None when n_polarised == 0.
+    """
+    n: int = 0                     # ingroup sample size
+    L_net: int = 0                 # sites surviving complete deletion with outgroup
+    n_polarised: int = 0           # # polarisable segregating sites (ancestral ∈ ingroup)
+    theta_pi: Optional[float] = None
+    theta_w: Optional[float] = None
+    theta_h: Optional[float] = None
+    theta_l: Optional[float] = None
+    H: Optional[float] = None      # θ_π − θ_H
+    E: Optional[float] = None      # θ_L − θ_W
+
+
+@dataclass
+class FstStats:
+    """Population differentiation (Fst) using Hudson et al. (1992) estimator.
+
+    For each pair of populations A and B:
+      Fst = 1 − π_s / π_t
+    where π_s = (π_A + π_B) / 2  (mean within-population π, per site)
+    and   π_t = π_AB              (between-population Dxy, per site).
+
+    fst_pairwise maps (pop1, pop2) → Fst value (None if π_t == 0).
+    fst_mean is the unweighted mean across all pairs.
+    pi_within[pop] = within-pop nucleotide diversity per site.
+    pi_between[(pop1, pop2)] = Dxy per site.
+    """
+    n_pops: int = 0
+    pop_names: list[str] = field(default_factory=list)
+    pop_sizes: dict[str, int] = field(default_factory=dict)
+    pi_within: dict[str, float] = field(default_factory=dict)
+    pi_between: dict[tuple, float] = field(default_factory=dict)
+    fst_pairwise: dict[tuple, Optional[float]] = field(default_factory=dict)
+    fst_mean: Optional[float] = None
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Parsers
+# ─────────────────────────────────────────────────────────────────────────────
+
+_DNASP_HEADER = re.compile(r"^>?\s*'?([^'\[]+?)'?\s*(?:\[.*?\])?\s*$")
+
+
+def parse_fasta(path: Path) -> Alignment:
+    """Parse FASTA, including DnaSP's >'name'  [comment] format."""
+    names: list[str] = []
+    seqs: list[str] = []
+    current_seq: list[str] = []
+
+    with open(path, encoding="utf-8", errors="replace") as fh:
+        for raw_line in fh:
+            line = raw_line.rstrip("\n")
+            if line.startswith(">"):
+                if names:
+                    seqs.append("".join(current_seq).upper())
+                    current_seq = []
+                m = _DNASP_HEADER.match(line)
+                names.append(m.group(1).strip() if m else line[1:].strip())
+            else:
+                seq_part = line.strip()
+                if seq_part and names:
+                    current_seq.append(seq_part)
+
+    if current_seq:
+        seqs.append("".join(current_seq).upper())
+
+    if not names:
+        raise ValueError(f"No sequences found in {path}")
+    if len(names) != len(seqs):
+        raise ValueError(
+            f"Parsed {len(names)} headers but {len(seqs)} sequences in {path}"
+        )
+    return Alignment(names=names, seqs=seqs, source=str(path))
+
+
+def parse_nexus(path: Path) -> Alignment:
+    """Parse NEXUS (DnaSP style), interleaved or sequential, with MATCHCHAR."""
+    text = path.read_text(encoding="utf-8-sig")
+    # Remove nested comments without altering quoted taxon labels.
+    cleaned, depth, quoted, i = [], 0, False, 0
+    while i < len(text):
+        c = text[i]
+        if depth:
+            depth += (c == '[') - (c == ']')
+            if c == '\n':
+                cleaned.append(c)
+        elif c == "'":
+            cleaned.append(c)
+            if quoted and i + 1 < len(text) and text[i + 1] == "'":
+                cleaned.append("'")
+                i += 1
+            else:
+                quoted = not quoted
+        elif c == '[' and not quoted:
+            depth = 1
+            cleaned.append(' ')
+        else:
+            cleaned.append(c)
+        i += 1
+    if depth or quoted:
+        raise ValueError("Unterminated NEXUS comment or quoted label")
+    text = ''.join(cleaned)
+    matrices = list(re.finditer(r"\bMATRIX\b(.*?);", text, re.I | re.S))
+    if len(matrices) != 1:
+        raise ValueError("Expected exactly one NEXUS MATRIX block")
+    fmt = re.search(r"\bFORMAT\b(.*?);", text, re.I | re.S)
+    fmt = fmt.group(1) if fmt else ''
+    datatype = re.search(r"datatype\s*=\s*(\w+)", fmt, re.I)
+    if datatype and datatype.group(1).lower() not in {'dna', 'nucleotide'}:
+        raise ValueError("Only DNA/nucleotide NEXUS matrices are supported")
+    if re.search(r"\b(transpose|tokens|nolabels)\b", fmt, re.I):
+        raise ValueError("Unsupported NEXUS FORMAT: transpose, tokens or nolabels")
+    def symbol(key, default):
+        m = re.search(r"\b" + key + r"\s*=\s*(['\"]?)([^\s'\"]+)\1", fmt, re.I)
+        value = m.group(2) if m else default
+        if len(value) != 1:
+            raise ValueError(f"NEXUS {key} must be one character")
+        return value.upper()
+    missing, gap, match = symbol('missing', '?'), symbol('gap', '-'), symbol('matchchar', '.')
+    if len({missing, gap, match}) != 3 or any(x in 'ACGT' for x in (missing, gap, match)):
+        raise ValueError("NEXUS missing/gap/match symbols must be distinct non-bases")
+    dims = {}
+    for key in ('ntax', 'nchar'):
+        m = re.search(r"\b" + key + r"\s*=\s*(\d+)", text, re.I)
+        if m:
+            dims[key] = int(m.group(1))
+    interleave = bool(re.search(r"\binterleave\b(?!\s*=\s*(?:no|false))", fmt, re.I))
+    seq_dict, order, block_index = {}, [], 0
+    for number, line in enumerate(matrices[0].group(1).splitlines(), 1):
+        line = line.strip()
+        if not line:
+            block_index = 0
+            continue
+        tokens = re.findall(r"'(?:[^']|'')*'|[^\s]+", line)
+        if len(tokens) >= 2:
+            name = tokens[0]
+            if name.startswith("'"):
+                if not name.endswith("'"):
+                    raise ValueError(f"Invalid quoted NEXUS label at matrix line {number}")
+                name = name[1:-1].replace("''", "'")
+            data = ''.join(tokens[1:])
+            if name in seq_dict and not interleave:
+                raise ValueError(f"Duplicate NEXUS identifier: {name}")
+            if name not in seq_dict:
+                if dims.get('ntax') and len(order) >= dims['ntax']:
+                    raise ValueError(f"More NEXUS taxa than NTAX at matrix line {number}")
+                seq_dict[name] = ''
+                order.append(name)
+        elif len(tokens) == 1 and order:
+            data = tokens[0]
+            if interleave:
+                if not dims.get('ntax') or len(order) != dims['ntax']:
+                    raise ValueError("Unlabelled interleave requires the complete first NTAX block")
+                name = order[block_index % len(order)]
+            else:
+                name = order[-1]
+        else:
+            raise ValueError(f"Invalid NEXUS matrix line {number}")
+        seq_dict[name] += data.upper()
+        block_index += 1
+    if not order or ('ntax' in dims and len(order) != dims['ntax']):
+        raise ValueError("NEXUS matrix taxon count does not match NTAX")
+    raw = [seq_dict[n] for n in order]
+    if len({len(x) for x in raw}) != 1 or ('nchar' in dims and len(raw[0]) != dims['nchar']):
+        raise ValueError("NEXUS matrix lengths do not match NCHAR or each other")
+    if match in raw[0]:
+        raise ValueError("MATCHCHAR cannot occur in the first NEXUS sequence")
+    expanded = [''.join(raw[0][i] if c == match else c for i, c in enumerate(row)) for row in raw]
+    expanded = [row.replace(missing, 'N').replace(gap, '-') for row in expanded]
+    return Alignment(names=order, seqs=expanded, source=str(path))
+
+
+def load_alignment(path: Path) -> Alignment:
+    """Auto-detect format from extension."""
+    suffix = path.suffix.lower()
+    if suffix in {".fas", ".fa", ".fasta"}:
+        return parse_fasta(path)
+    if suffix in {".nex", ".nexus", ".nxs"}:
+        return parse_nexus(path)
+    try:
+        return parse_fasta(path)
+    except Exception:
+        return parse_nexus(path)
+
+
+def load_pop_file(pop_file: Path) -> dict[str, str]:
+    """Read a population assignment file: seq_name<whitespace>pop_name per line.
+
+    Accepts tab- or space-separated (DnaSP's VCF ``.SG.txt`` files use a space).
+    """
+    assignments: dict[str, str] = {}
+    with open(pop_file, encoding="utf-8") as fh:
+        for line in fh:
+            line = line.strip()
+            if not line or line.startswith("#"):
+                continue
+            parts = line.split()
+            if len(parts) >= 2:
+                assignments[parts[0]] = parts[1]
+    return assignments
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# VCF input  -  multi-sample VCF -> one MSA per CHROM
+# ─────────────────────────────────────────────────────────────────────────────
+
+@dataclass
+class VCFPopulation:
+    """A multi-sample VCF parsed as one aligned MSA per CHROM.
+
+    Conversion follows DnaSP 6 (Formularios/multifilefrmvcf.vb::readvcf), with a
+    biallelic-SNP restriction:
+      - FORMAT first sub-field must be GT;
+      - only single-base biallelic SNPs are used (indels, multi-base REF/ALT and
+        multiallelic sites are skipped and counted);
+      - one MSA per CHROM value;
+      - for each CHROM, the samples analysed are those whose GT at the FIRST
+        retained variant of that CHROM does not start with '.';
+      - diploid: phased '|' -> two haplotype rows; unphased '/' -> two rows
+        only when homozygous, otherwise both rows are gaps; '.' -> gaps;
+      - haploid: one row per sample.
+    Rows are one character per retained SNP.  DnaSP's RAD engine additionally
+    splits equal-length multi-base REF/ALT per position and drops multiallelic
+    columns downstream; those cases are not reproduced here, so a CHROM
+    containing them can differ from DnaSP by a site or two.
+    """
+    alignments: dict[str, Alignment]      # {chrom: Alignment}
+    sample_names: list[str]               # base sample IDs from the header
+    haplotype_names: list[str]            # <sample>_h1/<sample>_h2, or <sample>
+    ploidy: int                          # 1 or 2 (from the first genotype seen)
+    is_phased: bool                      # diploid and every retained GT used '|'
+    n_variants_total: int
+    n_indels_skipped: int                # ref or alt not a single base
+    n_non_gt_skipped: int
+    n_multiallelic_skipped: int
+    n_unphased_het_sites: int = 0        # retained SNPs with >=1 unphased het
+                                        # genotype (both haplotypes gapped, as in
+                                        # DnaSP); complete deletion then drops
+                                        # the whole column
+
+
+_VCF_GAP = "-"
+
+
+
+_WINDOWS_RESERVED_NAMES = {"CON", "PRN", "AUX", "NUL", *(f"COM{i}" for i in range(1, 10)), *(f"LPT{i}" for i in range(1, 10))}
+
+
+def _fs_equivalence_key(name: str) -> str:
+    """Key under which two directory names may address the same entry on a
+    case-insensitive, Unicode-normalising filesystem (macOS, Windows)."""
+    return unicodedata.normalize("NFKC", name).casefold()
+
+
+# Entries a split VCF run writes at the output root; no CHROM directory may take
+# their names (a CHROM literally named result.json would make the root envelope
+# a directory, and one named reproducibility would receive the root bundle).
+_ROOT_ARTEFACT_KEYS = frozenset(_fs_equivalence_key(name) for name in ("result.json", "reproducibility"))
+
+
+def _vcf_allele(idx: str, ref: str, alt1: str) -> str:
+    """Map a GT allele index (biallelic: '0' or '1') to its nucleotide."""
+    if idx == "0":
+        return ref
+    if idx == "1":
+        return alt1
+    return _VCF_GAP
+
+
+def _gt_ploidy(gt: str) -> Optional[int]:
+    """Number of alleles in a GT field, or None if it carries no phase/unphase
+    separator and is fully missing (`.`)."""
+    if "|" in gt or "/" in gt:
+        return len(re.split(r"[|/]", gt))
+    if gt in (".", ""):
+        return None
+    return 1
+
+
+def parse_vcf(
+    path: Path, *, region: Optional[str] = None, merge: bool = False
+) -> VCFPopulation:
+    """Parse a multi-sample VCF into one MSA per CHROM (DnaSP readvcf rules).
+
+    merge=True instead returns a single pooled MSA keyed ``"<merged>"`` that
+    concatenates every CHROM (haplotype rows are the union of all CHROMs; a
+    haplotype absent from a CHROM is gap-filled there).  Only use this for a
+    deliberate genome-wide summary  -  it mixes unlinked regions, which is not
+    valid for π, Tajima's D or the SFS.
+    """
+    header_cols: Optional[list[str]] = None
+    ci = ri = ai = fi = si = -1
+    sample_names: list[str] = []
+
+    ploidy = 0
+    any_slash = False
+    any_pipe = False
+    n_total = n_indel = n_non_gt = n_multi = n_kept = n_uphet = 0
+
+    # per-CHROM state
+    cols_by_chrom: dict[str, list[list[str]]] = {}   # chrom -> list of columns
+    included_by_chrom: dict[str, list[int]] = {}      # chrom -> sample indices
+
+    with open(path, encoding="utf-8") as fh:
+        for raw in fh:
+            line = raw.rstrip("\n")
+            if not line or line.startswith("##"):
+                continue
+            if line.startswith("#"):
+                header_cols = line.split("\t")
+                for want, setter in (("#CHROM", "c"), ("REF", "r"),
+                                     ("ALT", "a"), ("FORMAT", "f")):
+                    if want not in header_cols:
+                        raise ValueError(f"VCF header missing {want!r} column.")
+                ci = header_cols.index("#CHROM")
+                ri = header_cols.index("REF")
+                ai = header_cols.index("ALT")
+                fi = header_cols.index("FORMAT")
+                si = fi + 1
+                sample_names = header_cols[si:]
+                continue
+            if header_cols is None:
+                raise ValueError("VCF has no #CHROM header line.")
+
+            f = line.split("\t")
+            chrom = f[ci]
+            if region is not None and chrom != region:
+                continue
+            n_total += 1
+            ref = f[ri]
+            alts = [a for a in f[ai].split(",") if a not in (".", "")]
+            fmt0 = f[fi].split(":")[0]
+            if fmt0 != "GT":
+                n_non_gt += 1
+                continue
+            if len(alts) > 1:
+                n_multi += 1
+                continue
+            if len(ref) != 1 or (alts and len(alts[0]) != 1):
+                n_indel += 1
+                continue
+            if not alts:
+                continue  # ALT is '.'  -  monomorphic line, nothing to add
+            alt1 = alts[0]
+            n_kept += 1
+
+            gts = [f[si + j].split(":")[0] for j in range(len(sample_names))]
+
+            # Ploidy is validated per genotype: mixed or polyploid input is
+            # rejected rather than silently decoded into gaps.
+            for g in gts:
+                p = _gt_ploidy(g)
+                if p is None:
+                    continue
+                if p > 2:
+                    raise ValueError(
+                        f"VCF has a polyploid genotype ({g!r}) at {chrom}:{f[1]}; "
+                        "only haploid and diploid data are supported."
+                    )
+                if ploidy == 0:
+                    ploidy = p
+                elif p != ploidy:
+                    raise ValueError(
+                        f"VCF mixes ploidy: {ploidy}n and {p}n genotypes "
+                        f"(e.g. {g!r} at {chrom}:{f[1]}). Split the file by ploidy "
+                        "and analyse each part separately."
+                    )
+
+            if chrom not in included_by_chrom:
+                included_by_chrom[chrom] = [
+                    j for j, g in enumerate(gts) if not g.startswith(".")
+                ]
+                cols_by_chrom[chrom] = []
+
+            col: list[str] = []
+            col_has_unphased_het = False
+            for j in included_by_chrom[chrom]:
+                g = gts[j]
+                if ploidy == 2:
+                    sep = "|" if "|" in g else ("/" if "/" in g else None)
+                    if sep is None or "." in g:
+                        col += [_VCF_GAP, _VCF_GAP]
+                        continue
+                    a, b = g.split(sep)[:2]
+                    if sep == "|":
+                        any_pipe = True
+                        col += [_vcf_allele(a, ref, alt1), _vcf_allele(b, ref, alt1)]
+                    else:  # unphased: resolve only when homozygous
+                        any_slash = True
+                        if a == b:
+                            al = _vcf_allele(a, ref, alt1)
+                            col += [al, al]
+                        else:
+                            col += [_VCF_GAP, _VCF_GAP]
+                            col_has_unphased_het = True
+                else:  # haploid
+                    col.append(_VCF_GAP if g in (".", "") else _vcf_allele(g, ref, alt1))
+            if col_has_unphased_het:
+                n_uphet += 1
+            cols_by_chrom[chrom].append(col)
+
+    per_chrom: dict[str, Alignment] = {}
+    hap_names: list[str] = []
+    for chrom, cols in cols_by_chrom.items():
+        if not cols:
+            continue
+        inc = included_by_chrom[chrom]
+        if ploidy == 2:
+            names = [f"{sample_names[j]}_h{h}" for j in inc for h in (1, 2)]
+        else:
+            names = [sample_names[j] for j in inc]
+        seqs = ["".join(cols[c][r] for c in range(len(cols))) for r in range(len(names))]
+        per_chrom[chrom] = Alignment(names=names, seqs=seqs,
+                                     source=f"{path.name}#{chrom}")
+        if not hap_names:
+            hap_names = names
+
+    if merge and per_chrom:
+        all_names: list[str] = []
+        for a in per_chrom.values():
+            for nm in a.names:
+                if nm not in all_names:
+                    all_names.append(nm)
+        merged_seqs = []
+        for nm in all_names:
+            parts = []
+            for a in per_chrom.values():
+                if nm in a.names:
+                    parts.append(a.seqs[a.names.index(nm)])
+                else:
+                    parts.append(_VCF_GAP * a.L)
+            merged_seqs.append("".join(parts))
+        alignments = {"<merged>": Alignment(names=all_names, seqs=merged_seqs,
+                                            source=f"{path.name}#merged")}
+        hap_names = all_names
+    else:
+        alignments = per_chrom
+
+    return VCFPopulation(
+        alignments=alignments,
+        sample_names=sample_names,
+        haplotype_names=hap_names,
+        ploidy=ploidy or 2,
+        is_phased=(ploidy == 2 and any_pipe and not any_slash),
+        n_variants_total=n_total,
+        n_indels_skipped=n_indel,
+        n_non_gt_skipped=n_non_gt,
+        n_multiallelic_skipped=n_multi,
+        n_unphased_het_sites=n_uphet,
+    )
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Gap treatment
+# ─────────────────────────────────────────────────────────────────────────────
+
+def complete_deletion(seqs: list[str]) -> tuple[list[str], int]:
+    """Exclude any column that has a gap/missing in ANY sequence."""
+    if not seqs:
+        return [], 0
+    L = len(seqs[0])
+    if any(len(seq) != L for seq in seqs):
+        raise ValueError("All population sequences must have the same alignment length")
+    keep = [pos for pos in range(L) if all(s[pos] in _NUCLEOTIDES for s in seqs)]
+    cleaned = ["".join(s[i] for i in keep) for s in seqs]
+    return cleaned, len(keep)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Core polymorphism functions
+# ─────────────────────────────────────────────────────────────────────────────
+
+def _harmonic(n: int, power: int = 1) -> float:
+    """Σ 1/i^power for i = 1 .. n-1."""
+    return sum(1.0 / i**power for i in range(1, n))
+
+
+def compute_gc(seqs: list[str]) -> float:
+    total = gc = 0
+    for s in seqs:
+        for c in s:
+            if c in "ACGT":
+                total += 1
+                if c in "GC":
+                    gc += 1
+    return gc / total if total else 0.0
+
+
+def compute_haplotypes(seqs: list[str]) -> tuple[int, float, float]:
+    """H, Hd, VarHd (Nei & Tajima 1981)."""
+    n = len(seqs)
+    if n < 2:
+        return 1, 0.0, 0.0
+    hap_counts: dict[str, int] = {}
+    for s in seqs:
+        hap_counts[s] = hap_counts.get(s, 0) + 1
+    H = len(hap_counts)
+    freqs = [c / n for c in hap_counts.values()]
+    sum_sq = sum(p * p for p in freqs)
+    Hd = (n / (n - 1)) * (1.0 - sum_sq)
+    sum_cu = sum(p * p * p for p in freqs)
+    VarHd = (2 / (n * (n - 1))) * (
+        2 * (n - 2) * (sum_cu - sum_sq**2) + sum_sq - sum_sq**2
+    )
+    return H, max(0.0, Hd), max(0.0, VarHd)
+
+
+def compute_k(seqs: list[str]) -> float:
+    """Mean pairwise differences (absolute count, not per site)."""
+    n = len(seqs)
+    if n < 2 or not seqs[0]:
+        return 0.0
+    total = sum(
+        sum(a != b for a, b in zip(seqs[i], seqs[j]))
+        for i in range(n) for j in range(i + 1, n)
+    )
+    return total / (n * (n - 1) / 2)
+
+
+def _site_states(col: list[str]) -> frozenset[str]:
+    return frozenset(c for c in col if c not in _GAP_CHARS)
+
+
+def compute_segregating(seqs: list[str]) -> tuple[int, int]:
+    """S (segregating sites) and Eta (total mutations)."""
+    if not seqs:
+        return 0, 0
+    L = len(seqs[0])
+    S = Eta = 0
+    for pos in range(L):
+        col = [s[pos] for s in seqs]
+        states = _site_states(col)
+        if len(states) > 1:
+            S += 1
+            Eta += len(states) - 1
+    return S, Eta
+
+
+def compute_singletons(seqs: list[str]) -> tuple[int, list[float]]:
+    """η_s (Fu & Li singleton *site* count) and per-sequence attribution.
+
+    η_s counts SITES, capped at 1 per site even when more than one allele
+    there has count 1 (e.g. a triallelic 2/1/1 split): DnaSP's
+    FuLiIntraespecifico() computes a raw per-allele count via
+    BusqSingletones() at tri-/quadri-allelic sites, then subtracts the
+    excess beyond 1 (`EtaS = EtaS - SingleMut`) by default, so a
+    multiallelic site with several singleton alleles still contributes
+    only 1 to η_s. Biallelic sites are precomputed as singleton/not, so
+    they only ever carry 0 or 1 naturally. The per-sequence attribution
+    used by R2 is a different, uncapped quantity (Ramos-Onsins & Rozas
+    2002): every singleton allele is credited to its one carrying
+    sequence, so a multiallelic site can add to more than one sequence's
+    count there.
+    """
+    n = len(seqs)
+    if n < 2 or not seqs:
+        return 0, [0.0] * n
+    L = len(seqs[0])
+    eta_s = 0
+    per_seq = [0.0] * n
+    n_triallelic = n_quadriallelic = 0
+
+    for pos in range(L):
+        col = [s[pos] for s in seqs]
+        states = _site_states(col)
+        if len(states) <= 1:
+            continue
+        if len(states) == 3:
+            n_triallelic += 1
+        elif len(states) == 4:
+            n_quadriallelic += 1
+        counts: dict[str, list[int]] = {st: [] for st in states}
+        for idx, c in enumerate(col):
+            if c in states:
+                counts[c].append(idx)
+        site_has_singleton = False
+        for allele, carriers in counts.items():
+            if len(carriers) == 1:
+                per_seq[carriers[0]] += 1
+                site_has_singleton = True
+        if site_has_singleton:
+            eta_s += 1
+
+    if n == 2:
+        total = sum(per_seq)
+        per_seq = [total / 2] * 2
+    elif n == 3 and n_triallelic > 0:
+        corr = n_triallelic / 3
+        per_seq = [x - corr for x in per_seq]
+    elif n == 4 and n_quadriallelic > 0:
+        corr = n_quadriallelic / 4
+        per_seq = [x - corr for x in per_seq]
+
+    return eta_s, per_seq
+
+
+def tajima_d(k: float, S: int, n: int) -> Optional[float]:
+    """Tajima's D (Tajima 1989, Genetics 123:585-595)."""
+    if S == 0 or n < 3:
+        return None
+    a1 = _harmonic(n, 1)
+    a2 = _harmonic(n, 2)
+    b1 = (n + 1) / (3 * (n - 1))
+    b2 = (2 * (n**2 + n + 3)) / (9 * n * (n - 1))
+    c1 = b1 - 1.0 / a1
+    c2 = b2 - (n + 2) / (a1 * n) + a2 / a1**2
+    e1 = c1 / a1
+    e2 = c2 / (a1**2 + a2)
+    vD = e1 * S + e2 * S * (S - 1)
+    if vD <= 0:
+        return None
+    return (k - S / a1) / math.sqrt(vD)
+
+
+def fu_li_d_star_f_star(
+    k: float, S: int, eta_s: int, n: int
+) -> tuple[Optional[float], Optional[float]]:
+    """Fu & Li D* and F* (Simonsen et al. 1995, equations A3-A6)."""
+    if S == 0 or n < 3:
+        return None, None
+    An = _harmonic(n, 1)
+    Bn = _harmonic(n, 2)
+    vD = (Bn / An**2 - (2 / n) * (1 + 1 / An - An + An / n) - 1 / n**2)
+    vD /= An**2 + Bn
+    vD = max(vD, 0.0)
+    uD = ((n - 1) / n - 1 / An) / An - vD
+    vF = (2 * n**3 + 110 * n**2 - 255 * n + 153) / (9 * n**2 * (n - 1))
+    vF += (2 * (n - 1) * An) / n**2
+    vF -= (8 * Bn) / n
+    vF /= An**2 + Bn
+    uF = (4 * n**2 + 19 * n + 3 - 12 * (n + 1) * (An + 1 / n))
+    uF /= 3 * n * (n - 1)
+    uF = uF / An - vF
+    denom_D = uD * S + vD * S**2
+    denom_F = uF * S + vF * S**2
+    if denom_D <= 0 or denom_F <= 0:
+        return None, None
+    D_star = (S / An - eta_s * (n - 1) / n) / math.sqrt(denom_D)
+    F_star = (k - eta_s * (n - 1) / n) / math.sqrt(denom_F)
+    return D_star, F_star
+
+
+def ramos_onsins_r2(seqs: list[str], k: float, S: int) -> Optional[float]:
+    """R2 (Ramos-Onsins & Rozas 2002).
+
+    Divides by S, the segregating-site count -- not eta (total mutations).
+    DnaSP 6's own routine (Dnasp_51.vb::JulioSebas_R2_CalculoAdaptado) is
+    called with `stot`, the same site-count variable backing the "S" column
+    (`stot += 1` once per segregating site, regardless of how many alleles
+    it carries); a stray comment inside that function ("Sw es el num. de
+    mutaciones") describes an older naming convention, not eta.
+    """
+    if S == 0:
+        return None
+    n = len(seqs)
+    _, per_seq = compute_singletons(seqs)
+    return math.sqrt(_r2_deviation_sum(per_seq, k) / n) / S
+
+
+def watterson_theta(S: int, n: int, L_net: int) -> tuple[float, float]:
+    a1 = _harmonic(n, 1)
+    if a1 == 0:
+        return 0.0, 0.0
+    theta_abs = S / a1
+    theta_nuc = theta_abs / L_net if L_net > 0 else 0.0
+    return theta_abs, theta_nuc
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Coalescent simulation: P-values for Tajima's D, R2 and Fu's Fs
+# ─────────────────────────────────────────────────────────────────────────────
+
+SIM_GIVEN = ("S", "theta")
+
+
+@dataclass
+class _Genealogy:
+    """A binary coalescent genealogy for n sampled sequences.
+
+    Nodes 0 .. n-1 are the samples, each later node is a coalescence and the last
+    node is the root, so a parent always has a higher index than its children.
+    ``length[i]`` is the branch above node i in units of 2N generations and
+    ``desc[i]`` the number of samples below it.
+    """
+    n: int
+    parent: list[int]
+    desc: list[int]
+    length: list[float]
+
+
+@dataclass
+class _TreeStats:
+    S: int
+    k: float
+    H: int
+    TajimaD: Optional[float]
+    R2: Optional[float]
+    Fs: Optional[float]
+
+
+def _coalescent_tree(rng: random.Random, n: int) -> _Genealogy:
+    """Kingman coalescent for n samples: constant size, no recombination."""
+    size = 2 * n - 1
+    parent = [-1] * size
+    desc = [1] * n + [0] * (n - 1)
+    length = [0.0] * size
+    active = list(range(n))
+    node = n
+    for k in range(n, 1, -1):
+        t = rng.expovariate(k * (k - 1) / 2.0)
+        for a in active:
+            length[a] += t
+        i, j = rng.sample(range(k), 2)
+        a, b = active[i], active[j]
+        parent[a] = parent[b] = node
+        desc[node] = desc[a] + desc[b]
+        for idx in sorted((i, j), reverse=True):
+            active.pop(idx)
+        active.append(node)
+        node += 1
+    return _Genealogy(n=n, parent=parent, desc=desc, length=length)
+
+
+def _poisson(rng: random.Random, mean: float) -> int:
+    """Exact Poisson variate: unit-rate arrivals counted before ``mean``."""
+    count, total = 0, rng.expovariate(1.0)
+    while total <= mean:
+        count += 1
+        total += rng.expovariate(1.0)
+    return count
+
+
+def _place_mutations(rng: random.Random, tree: _Genealogy,
+                     n_mutations: Optional[int] = None,
+                     theta: Optional[float] = None) -> list[int]:
+    """Infinite-sites mutations per branch.
+
+    Given S, exactly ``n_mutations`` fall on the tree, each on a branch chosen in
+    proportion to its length (Hudson's fixed-S scheme). Given theta, their number is
+    Poisson with mean theta/2 times the total branch length, so that E[S] = theta a1.
+    """
+    if (n_mutations is None) == (theta is None):
+        raise ValueError("give exactly one of n_mutations or theta")
+    branches = [i for i, parent in enumerate(tree.parent) if parent >= 0]
+    cum, running = [], 0.0
+    for i in branches:
+        running += tree.length[i]
+        cum.append(running)
+    m = n_mutations if n_mutations is not None else _poisson(rng, theta * running / 2.0)
+    counts = [0] * len(tree.parent)
+    if m:
+        for b in rng.choices(branches, cum_weights=cum, k=m):
+            counts[b] += 1
+    return counts
+
+
+def _tree_statistics(tree: _Genealogy, counts: list[int]) -> _TreeStats:
+    """S, k, H, Tajima's D, R2 and Fu's Fs straight from a genealogy.
+
+    Defined to equal what analyse_region and compute_fu_fs return for the same
+    genealogy written out as sequences (see tests/test_coalescent_pvalues.py): every
+    mutation is a biallelic site carried by the samples below its branch, and a
+    sequence is credited with a singleton wherever it alone carries an allele.
+    """
+    n, parent, desc = tree.n, tree.parent, tree.desc
+    S = sum(counts)
+    diffs = sum(counts[i] * desc[i] * (n - desc[i]) for i in range(len(parent)) if parent[i] >= 0)
+    k = diffs / (n * (n - 1) / 2) if n >= 2 else 0.0
+
+    # singletons per sequence: its own branch, plus the n-1 branch above its sibling
+    per_seq = [float(counts[leaf]) for leaf in range(n)]
+    if n >= 2:
+        root = len(parent) - 1
+        kids = [i for i in range(len(parent)) if parent[i] == root]
+        for a, b in ((kids[0], kids[1]), (kids[1], kids[0])):
+            if desc[a] == n - 1 and desc[b] == 1:
+                per_seq[b] += counts[a]
+        if n == 2:
+            per_seq = [sum(per_seq) / 2] * 2
+
+    # haplotypes: the distinct sets of mutations on each sample's path to the root
+    own, bit = [0] * len(parent), 0
+    for i, c in enumerate(counts):
+        if c:
+            own[i] = ((1 << c) - 1) << bit
+            bit += c
+    mask = [0] * len(parent)
+    for i in range(len(parent) - 2, -1, -1):
+        mask[i] = mask[parent[i]] | own[i]
+    H = len(set(mask[:n]))
+
+    R2 = math.sqrt(_r2_deviation_sum(per_seq, k) / n) / S if S else None
+    return _TreeStats(S=S, k=k, H=H, TajimaD=tajima_d(k, S, n), R2=R2,
+                      Fs=fu_fs_statistic(n, H, k))
+
+
+def _tree_sequences(tree: _Genealogy, counts: list[int]) -> list[str]:
+    """Write a genealogy out as sequences, one column per mutation (used by the tests)."""
+    n = tree.n
+    children: dict[int, list[int]] = {}
+    for i, parent in enumerate(tree.parent):
+        if parent >= 0:
+            children.setdefault(parent, []).append(i)
+    rows: list[list[str]] = [[] for _ in range(n)]
+    for i, c in enumerate(counts):
+        if not c:
+            continue
+        carriers, stack = set(), [i]
+        while stack:
+            x = stack.pop()
+            if x < n:
+                carriers.add(x)
+            else:
+                stack.extend(children.get(x, []))
+        for _ in range(c):
+            for leaf in range(n):
+                rows[leaf].append("G" if leaf in carriers else "A")
+    return ["".join(r) for r in rows]
+
+
+def _r2_deviation_sum(per_seq: list[float], k: float) -> float:
+    """Sum of (u - k/2)^2 over the per-sequence singleton counts, summed the same way
+    whatever order the sequences arrive in, so that the observed value and a simulated
+    replicate of the same genealogy agree bit for bit and a tie is a tie."""
+    return math.fsum(sorted((u - k / 2) ** 2 for u in per_seq))
+
+
+def _tail_counts(observed: Optional[float],
+                 null: list[Optional[float]]) -> Optional[tuple[int, int, int]]:
+    """Replicates <= observed, replicates >= observed, and the replicates where the
+    statistic is defined. None if there is nothing to compare.
+
+    A replicate that equals the observed value counts in both tails; equality is exact,
+    both sides having summed their terms in the same order (see _r2_deviation_sum)."""
+    values = [v for v in null if v is not None]
+    if observed is None or not values:
+        return None
+    return sum(v <= observed for v in values), sum(v >= observed for v in values), len(values)
+
+
+def _varies(values: list[Optional[float]]) -> bool:
+    """True when a simulated null takes more than one value. A statistic that is the same
+    in every replicate (R2 with two sequences; Fu's Fs with two sequences given S; any
+    statistic that is always undefined) cannot be tested, and its P-value would be 1
+    whatever the data show."""
+    seen = {v for v in values if v is not None}
+    return len(seen) > 1
+
+
+def _monte_carlo_p(count: Optional[int], n_valid: int) -> Optional[float]:
+    """(b + 1) / (N + 1): the observed data count as one replicate, so the P-value is never
+    zero (Phipson and Smyth 2010). DnaSP reports b / N, recoverable from the counts."""
+    if count is None:
+        return None
+    return (count + 1) / (n_valid + 1)
+
+
+def _two_tailed(lower: Optional[float], upper: Optional[float]) -> Optional[float]:
+    """Two-tailed P-value without assuming a symmetric null: 2 x min(tails), capped at 1."""
+    if lower is None or upper is None:
+        return None
+    return min(1.0, 2.0 * min(lower, upper))
+
+
+def _simulation_cost_warning(n: int, n_sim: int, S: int) -> Optional[str]:
+    """Each replicate costs about n^2 for the genealogy plus n x S for the mutations, in
+    pure Python, so a large alignment with many replicates can run for a long time with no
+    output. Warn before starting rather than after."""
+    if n_sim * (n * n + n * max(S, 0)) <= _SIMULATION_COST_LIMIT:
+        return None
+    return (f"--n-sim {n_sim} on {n} sequences with {S} segregating sites is a large "
+            f"simulation and may take a long time; the cost of a replicate grows with the "
+            f"square of the number of sequences and with the number of segregating sites.")
+
+
+_SIMULATION_COST_LIMIT = 2_000_000_000
+
+
+@dataclass
+class CoalescentTest:
+    """Coalescent-simulation P-values for the whole region.
+
+    Null model: Kingman coalescent, constant population size, infinite sites, no
+    recombination. ``given`` is "S" (each replicate carries exactly the observed number
+    of segregating sites) or "theta" (a Poisson number of mutations from Watterson's
+    theta). A replicate in which a statistic is undefined is left out of that statistic's
+    null, and ``n_valid_*`` counts the replicates each P-value rests on. Tajima's D is
+    tested in both tails; R2 and Fu's Fs in the lower tail, the direction population
+    growth produces. Each P-value is (b + 1) / (N + 1) for b of the N valid replicates at
+    least as extreme; the counts b are stored so that DnaSP's proportion b / N is recoverable.
+    """
+    n_sim: int = 0
+    given: str = "S"
+    seed: Optional[int] = None
+    label: str = ""
+    n: int = 0
+    S: int = 0
+    theta: Optional[float] = None
+    TajimaD: Optional[float] = None
+    TajimaD_p_lower: Optional[float] = None
+    TajimaD_p_upper: Optional[float] = None
+    TajimaD_p_two_tailed: Optional[float] = None
+    n_valid_TajimaD: int = 0
+    R2: Optional[float] = None
+    R2_p_lower: Optional[float] = None
+    n_valid_R2: int = 0
+    Fs: Optional[float] = None
+    Fs_p_lower: Optional[float] = None
+    n_valid_Fs: int = 0
+    TajimaD_count_lower: Optional[int] = None
+    TajimaD_count_upper: Optional[int] = None
+    R2_count_lower: Optional[int] = None
+    Fs_count_lower: Optional[int] = None
+    note: str = ""
+
+
+def coalescent_test(rs: RegionStats, n_sim: int, given: str = "S",
+                    seed: Optional[int] = None, label: str = "") -> CoalescentTest:
+    """Simulate the neutral null for one region and return its P-values.
+
+    ``label`` separates regions that share a seed, such as the CHROMs of one VCF, so
+    their replicates are independent while the run stays reproducible.
+    """
+    if n_sim < 0:
+        raise ValueError("--n-sim must be zero or a positive number of replicates")
+    if given not in SIM_GIVEN:
+        raise ValueError(f"--sim-given must be one of: {', '.join(SIM_GIVEN)}")
+    result = CoalescentTest(n_sim=n_sim, given=given, seed=seed, label=label, n=rs.n, S=rs.S,
+                            theta=rs.ThetaW if given == "theta" else None,
+                            TajimaD=rs.TajimaD, R2=rs.R2,
+                            Fs=fu_fs_statistic(rs.n, rs.H, rs.k))
+    if n_sim == 0:
+        result.note = "no replicates requested"
+        return result
+    if rs.S == 0:
+        result.note = "no segregating site, so there is nothing to test"
+        return result
+    if rs.n < 2:
+        result.note = "fewer than two sequences, so there is nothing to test"
+        return result
+
+    rng = random.Random() if seed is None else random.Random(f"dnasp-coalescent:{seed}:{label}")
+    null_D: list[Optional[float]] = []
+    null_R2: list[Optional[float]] = []
+    null_Fs: list[Optional[float]] = []
+    for _ in range(n_sim):
+        tree = _coalescent_tree(rng, rs.n)
+        counts = (_place_mutations(rng, tree, n_mutations=rs.S) if given == "S"
+                  else _place_mutations(rng, tree, theta=rs.ThetaW))
+        st = _tree_statistics(tree, counts)
+        null_D.append(st.TajimaD)
+        null_R2.append(st.R2)
+        null_Fs.append(st.Fs)
+
+    # A statistic is tested only where its simulated null actually varies: R2 does not with
+    # two sequences, nor does Fu's Fs with two sequences given S, and Tajima's D is
+    # undefined until n = 4. The rule is per statistic, so theta conditioning still tests
+    # Fu's Fs with two sequences, where the number of mutations varies.
+    constant = []
+    if _varies(null_D):
+        result.n_valid_TajimaD = sum(v is not None for v in null_D)
+        tails = _tail_counts(rs.TajimaD, null_D)
+        if tails is not None:
+            result.TajimaD_count_lower, result.TajimaD_count_upper, _ = tails
+            result.TajimaD_p_lower = _monte_carlo_p(result.TajimaD_count_lower, result.n_valid_TajimaD)
+            result.TajimaD_p_upper = _monte_carlo_p(result.TajimaD_count_upper, result.n_valid_TajimaD)
+            result.TajimaD_p_two_tailed = _two_tailed(result.TajimaD_p_lower, result.TajimaD_p_upper)
+    elif rs.TajimaD is not None:
+        constant.append("Tajima's D")
+    if _varies(null_R2):
+        result.n_valid_R2 = sum(v is not None for v in null_R2)
+        tails = _tail_counts(rs.R2, null_R2)
+        if tails is not None:
+            result.R2_count_lower = tails[0]
+            result.R2_p_lower = _monte_carlo_p(result.R2_count_lower, result.n_valid_R2)
+    elif rs.R2 is not None:
+        constant.append("R2")
+    if _varies(null_Fs):
+        result.n_valid_Fs = sum(v is not None for v in null_Fs)
+        tails = _tail_counts(result.Fs, null_Fs)
+        if tails is not None:
+            result.Fs_count_lower = tails[0]
+            result.Fs_p_lower = _monte_carlo_p(result.Fs_count_lower, result.n_valid_Fs)
+    elif result.Fs is not None:
+        constant.append("Fu's Fs")
+    if constant:
+        result.note = (", ".join(constant) + " takes the same value in every replicate, so it "
+                       f"is not tested given {result.given}")
+    return result
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Linkage Disequilibrium
+# ─────────────────────────────────────────────────────────────────────────────
+
+def _chi2_1df_pvalue(chi2: float) -> float:
+    """Two-tailed p-value for chi-square statistic with 1 degree of freedom."""
+    if chi2 <= 0:
+        return 1.0
+    return math.erfc(math.sqrt(chi2 / 2))
+
+
+def _bisect(f: Callable, a: float, b: float, tol: float = 1e-10, maxiter: int = 300) -> float:
+    """Bisection root-finder: return x in [a,b] with f(x) ≈ 0."""
+    fa = f(a)
+    fb = f(b)
+    if fa == 0.0:
+        return a
+    if fb == 0.0:
+        return b
+    if fa * fb > 0:
+        # f does not change sign  -  return midpoint as fallback
+        return (a + b) / 2.0
+    for _ in range(maxiter):
+        mid = (a + b) / 2.0
+        fm = f(mid)
+        if abs(fm) < tol or (b - a) / 2.0 < tol:
+            return mid
+        if fa * fm <= 0:
+            b = mid
+            fb = fm
+        else:
+            a = mid
+            fa = fm
+    return (a + b) / 2.0
+
+
+def _gammaincl_series(a: float, x: float, max_iter: int = 300) -> float:
+    """Lower regularised incomplete gamma P(a, x) via series expansion.
+
+    Converges best when x < a + 1.  Uses the recurrence:
+        P(a, x) = e^{-x} x^a / Γ(a+1) * Σ_{n=0}^∞ x^n / [(a+1)(a+2)…(a+n)]
+    """
+    if x == 0.0:
+        return 0.0
+    lnpre = a * math.log(x) - x - math.lgamma(a + 1)
+    term = 1.0
+    total = 1.0
+    ap = a
+    for _ in range(max_iter):
+        ap += 1.0
+        term *= x / ap
+        total += term
+        if term < total * 3e-15:
+            break
+    return total * math.exp(lnpre)
+
+
+def _gammaincl_cf(a: float, x: float, max_iter: int = 300) -> float:
+    """Upper regularised incomplete gamma Q(a, x) via Lentz continued fraction.
+
+    Converges best when x >= a + 1 (Numerical Recipes §6.2).
+    """
+    fpmin = 1e-300
+    b = x + 1.0 - a
+    c = 1.0 / fpmin
+    d = 1.0 / b if abs(b) > fpmin else 1.0 / fpmin
+    h = d
+    for i in range(1, max_iter + 1):
+        an = -i * (i - a)
+        b += 2.0
+        d = an * d + b
+        if abs(d) < fpmin:
+            d = fpmin
+        c = b + an / c
+        if abs(c) < fpmin:
+            c = fpmin
+        d = 1.0 / d
+        delta = d * c
+        h *= delta
+        if abs(delta - 1.0) < 1e-14:
+            break
+    return math.exp(-x + a * math.log(x) - math.lgamma(a)) * h
+
+
+def _gammaincc(a: float, x: float) -> float:
+    """Regularised upper incomplete gamma Q(a, x) = 1 − P(a, x).
+
+    Uses series expansion for small x and continued fraction for large x.
+    """
+    if x <= 0.0:
+        return 1.0
+    if x < a + 1.0:
+        return 1.0 - _gammaincl_series(a, x)
+    return _gammaincl_cf(a, x)
+
+
+def _chi2_pvalue(chi2: float, df: int) -> float:
+    """Survival function P(X > chi2) for X ~ χ²(df)."""
+    if chi2 <= 0.0:
+        return 1.0
+    if df <= 0:
+        return 1.0
+    if df == 1:
+        return math.erfc(math.sqrt(chi2 / 2.0))
+    if df == 2:
+        return math.exp(-chi2 / 2.0)
+    return _gammaincc(df / 2.0, chi2 / 2.0)
+
+
+def _get_biallelic_positions(seqs: list[str]) -> list[tuple[int, str, str]]:
+    """Return list of (position, minor_allele, major_allele) for biallelic sites.
+
+    Only strictly biallelic sites (exactly 2 nucleotide states, no gaps) are
+    returned.  Sites with gaps in any sequence are excluded (complete deletion).
+    Multiallelic sites (3+ states) are excluded.
+    """
+    if not seqs:
+        return []
+    L = len(seqs[0])
+    result = []
+    for pos in range(L):
+        col = [s[pos] for s in seqs]
+        if any(c in _GAP_CHARS for c in col):
+            continue
+        counts: Counter = Counter(col)
+        if len(counts) != 2:
+            continue
+        alleles = sorted(counts.keys(), key=lambda a: counts[a])
+        minor, major = alleles[0], alleles[1]
+        if counts[minor] == counts[major]:
+            # Tied frequencies: DnaSP (CODIGO2.vb::calculo_mas_freq1) makes the
+            # first sequence's allele "allele 1" when its count is >= n/2, so
+            # the other allele plays the minor role and D keeps DnaSP's sign.
+            major = col[0]
+            minor = next(a for a in alleles if a != major)
+        result.append((pos, minor, major))
+    return result
+
+
+def _ld_for_pair(
+    seqs: list[str], pos_i: int, minor_i: str, pos_j: int, minor_j: str
+) -> tuple[float, Optional[float], Optional[float], int]:
+    """Compute D, D', R² for a pair of biallelic sites.
+
+    Returns (D, D_prime, R2, n_valid).
+    Minor alleles at each site define the "A" and "B" haplotype.
+    """
+    n11 = n12 = n21 = n22 = 0
+    valid = 0
+    for s in seqs:
+        ci, cj = s[pos_i], s[pos_j]
+        if ci in _GAP_CHARS or cj in _GAP_CHARS:
+            continue
+        valid += 1
+        a = (ci == minor_i)
+        b = (cj == minor_j)
+        if a and b:
+            n11 += 1
+        elif a and not b:
+            n12 += 1
+        elif not a and b:
+            n21 += 1
+        else:
+            n22 += 1
+
+    if valid == 0:
+        return 0.0, None, None, 0
+
+    p_A = (n11 + n12) / valid   # freq of minor allele at site i
+    p_a = 1.0 - p_A
+    p_B = (n11 + n21) / valid   # freq of minor allele at site j
+    p_b = 1.0 - p_B
+    p_AB = n11 / valid
+
+    D = p_AB - p_A * p_B
+
+    if D > 0:
+        D_max = min(p_A * p_b, p_a * p_B)
+    elif D < 0:
+        D_max = min(p_A * p_B, p_a * p_b)
+    else:
+        D_max = 1.0
+
+    D_prime = (D / D_max) if D_max > 1e-12 else None
+
+    denom_r2 = p_A * p_a * p_B * p_b
+    R2 = (D**2 / denom_r2) if denom_r2 > 1e-12 else None
+
+    return D, D_prime, R2, valid
+
+
+def compute_ld(seqs: list[str], positions: Optional[list[int]] = None,
+               original_seqs: Optional[list[str]] = None) -> LDStats:
+    """Full LD analysis: D, D', R², ZnS, Za, ZZ.
+
+    References:
+      Lewontin & Kojima 1960 (D), Lewontin 1964 (D'),
+      Hill & Robertson 1968 (R²), Kelly 1997 (ZnS), Rozas et al. 2001 (Za, ZZ).
+
+    Args:
+        seqs: Sequences after complete deletion (no gap columns).
+        positions: Original alignment positions (1-based) for each site in seqs,
+                   used to compute nucleotide distance. If None, uses index+1.
+    """
+    biallelic = _get_biallelic_positions(seqs)
+    stats = LDStats(n_biallelic=len(biallelic))
+
+    if len(biallelic) < 2:
+        return stats
+
+    if positions is None:
+        pos_map = {i: i + 1 for i in range(len(seqs[0]))}
+    else:
+        pos_map = {i: positions[i] for i in range(len(positions))}
+
+    # Prefix gap counts preserve the VB inclusive interval and CInt rounding.
+    gap_prefix = [0]
+    if original_seqs:
+        for col in zip(*original_seqs):
+            gap_prefix.append(gap_prefix[-1] + col.count('-'))
+    pairs: list[LDPair] = []
+    for (idx_i, (pi, mi, _)), (idx_j, (pj, mj, _)) in combinations(
+        enumerate(biallelic), 2
+    ):
+        D, D_prime, R2, n_valid = _ld_for_pair(seqs, pi, mi, pj, mj)
+        dist = abs(pos_map.get(pj, pj + 1) - pos_map.get(pi, pi + 1))
+        if original_seqs:
+            first, last = pos_map[pi], pos_map[pj]
+            gaps = gap_prefix[last] - gap_prefix[first - 1]
+            dist = round(last - first - gaps / len(original_seqs))
+        chi2 = n_valid * R2 if R2 is not None else None
+        p_chi2 = _chi2_1df_pvalue(chi2) if chi2 is not None else None
+        pairs.append(LDPair(
+            site1=pos_map.get(pi, pi + 1),
+            site2=pos_map.get(pj, pj + 1),
+            dist=dist,
+            n_valid=n_valid,
+            D=D,
+            D_prime=D_prime,
+            R2=R2,
+            chi2=chi2,
+            p_chi2=p_chi2,
+        ))
+
+    stats.pairs = pairs
+    stats.n_pairs = len(pairs)
+
+    # ZnS: average R² over all pairs (Kelly 1997, eq 3)
+    r2_vals = [p.R2 for p in pairs if p.R2 is not None]
+    stats.ZnS = sum(r2_vals) / len(r2_vals) if r2_vals else None
+
+    # Za: average R² for adjacent (consecutive) pairs of biallelic sites (Rozas 2001)
+    adjacent_r2 = []
+    for k in range(len(biallelic) - 1):
+        # The pair (biallelic[k], biallelic[k+1])
+        pi, mi, _ = biallelic[k]
+        pj, mj, _ = biallelic[k + 1]
+        _, _, R2, _ = _ld_for_pair(seqs, pi, mi, pj, mj)
+        if R2 is not None:
+            adjacent_r2.append(R2)
+
+    stats.Za = sum(adjacent_r2) / len(adjacent_r2) if adjacent_r2 else None
+
+    # ZZ = Za - ZnS
+    if stats.Za is not None and stats.ZnS is not None:
+        stats.ZZ = stats.Za - stats.ZnS
+
+    return stats
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Recombination (Rm, four-gamete test)
+# ─────────────────────────────────────────────────────────────────────────────
+
+def _dnasp_rm_from_intervals(intervals: list[tuple[int, int]]) -> int:
+    """DnaSP 6's Rm reduction (CODIGO2.vb::RecombinacionRM), applied to the
+    incompatible-pair intervals in the order they were found.
+
+    This is a specific two-pass elimination from Hudson & Kaplan (1985), not
+    the graph-theoretic minimum interval-stabbing number: pass 1 drops any
+    interval that contains another (a stab of the smaller also stabs it);
+    pass 2 then drops one interval from each remaining overlapping pair. The
+    two procedures usually agree but can differ, and DnaSP's own numbers are
+    the parity target, so this reproduces it exactly rather than computing
+    the provably-minimal stab count.
+    """
+    a = list(intervals)
+    n = len(a)
+    alive = [True] * n
+    for i in range(n):
+        if not alive[i]:
+            continue
+        for j in range(i + 1, n):
+            if not alive[i]:
+                break
+            if not alive[j]:
+                continue
+            if a[i][0] >= a[j][0] and a[i][1] <= a[j][1]:
+                alive[j] = False
+            elif a[j][0] >= a[i][0] and a[j][1] <= a[i][1]:
+                alive[i] = False
+                break
+    step1 = [a[k] for k in range(n) if alive[k]]
+
+    m = len(step1)
+    alive2 = [True] * m
+    for i in range(m):
+        if not alive2[i]:
+            continue
+        for j in range(i + 1, m):
+            if not alive2[j]:
+                continue
+            ai, aj = step1[i], step1[j]
+            if ai[0] < aj[0] and ai[1] > aj[0]:
+                alive2[j] = False
+            elif aj[0] < ai[0] and aj[1] > ai[0]:
+                alive2[i] = False
+    return sum(1 for k in range(m) if alive2[k])
+
+
+def compute_recombination(seqs: list[str], net_positions: Optional[list[int]] = None) -> RecombStats:
+    """Minimum recombination events Rm (Hudson & Kaplan 1985).
+
+    The four-gamete test identifies pairs of biallelic sites that are
+    incompatible (all four haplotype combinations observed).  Each incompatible
+    pair (i, j) requires at least one recombination event between positions i
+    and j.  Rm is then DnaSP's reduction of that interval set
+    (`CODIGO2.vb::RecombinacionRM`)  --  see `_dnasp_rm_from_intervals`.
+
+    Reference: Hudson RR, Kaplan NL (1985) Genetics 111:147-164.
+    """
+    biallelic = _get_biallelic_positions(seqs)
+    stats = RecombStats()
+
+    if len(biallelic) < 2:
+        return stats
+
+    if net_positions is None:
+        pos_map = {i: i + 1 for i in range(len(seqs[0]))}
+    else:
+        pos_map = {i: net_positions[i] for i in range(len(net_positions))}
+
+    incompatible: list[tuple[int, int]] = []
+    for (idx_i, (pi, mi, _)), (idx_j, (pj, mj, _)) in combinations(
+        enumerate(biallelic), 2
+    ):
+        gametes: set[tuple[bool, bool]] = set()
+        for s in seqs:
+            ci, cj = s[pi], s[pj]
+            if ci not in _GAP_CHARS and cj not in _GAP_CHARS:
+                gametes.add((ci == mi, cj == mj))
+        if len(gametes) == 4:  # all four gamete types present → incompatible
+            p1 = pos_map.get(pi, pi + 1)
+            p2 = pos_map.get(pj, pj + 1)
+            incompatible.append((min(p1, p2), max(p1, p2)))
+
+    stats.n_incompatible_pairs = len(incompatible)
+    stats.incompatible_pairs = incompatible
+    stats.Rm = _dnasp_rm_from_intervals(incompatible)
+
+    return stats
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Population Size Changes  -  mismatch distribution
+# ─────────────────────────────────────────────────────────────────────────────
+
+def compute_mismatch(seqs: list[str]) -> MismatchStats:
+    """Mismatch distribution and raggedness statistic.
+
+    Computes the observed distribution of pairwise nucleotide differences,
+    the raggedness statistic r (Harpending 1994, equation 1), and the
+    unbiased variance over unordered pairs and Sokal & Rohlf's corrected
+    coefficient of variation (PairwiseDiff.vb, lines 565-567 and 732).
+
+    Raggedness r quantifies the smoothness of the mismatch distribution.
+    Small r → smooth (consistent with population expansion).
+    Large r → ragged (consistent with constant size or decline).
+    """
+    n = len(seqs)
+    stats = MismatchStats()
+
+    if n < 2 or not seqs[0]:
+        return stats
+
+    # Compute all pairwise differences
+    diffs: list[int] = []
+    for i in range(n):
+        for j in range(i + 1, n):
+            d = sum(a != b for a, b in zip(seqs[i], seqs[j]))
+            diffs.append(d)
+
+    if not diffs:
+        return stats
+
+    stats.n_pairs = len(diffs)
+    obs: Counter = Counter(diffs)
+    stats.observed = dict(sorted(obs.items()))
+
+    stats.mean = sum(diffs) / len(diffs)
+    variance = (sum((d - stats.mean) ** 2 for d in diffs) / (len(diffs) - 1)
+                if len(diffs) > 1 else 0.0)
+    stats.variance = variance
+    stats.cv = ((1 + 1 / (4 * n)) * math.sqrt(variance) / stats.mean
+                if stats.mean > 0 else None)
+
+    # Raggedness (Harpending 1994, eq 1)
+    # r = Σ (f(i) - f(i-1))² where f(i) = proportion of pairs with i differences
+    max_d = max(diffs)
+    total_pairs = len(diffs)
+    f = [obs.get(d, 0) / total_pairs for d in range(max_d + 2)]
+    raggedness = sum((f[i] - f[i - 1]) ** 2 for i in range(1, max_d + 2))
+    stats.raggedness = raggedness
+
+    return stats
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# InDel Polymorphism
+# ─────────────────────────────────────────────────────────────────────────────
+
+def _indel_fragments(seqs: list[str]) -> tuple[list[InDelEvent], int, set[int]]:
+    """DNAPolymorphism.vb Mod34: overlapping fragments and Model 1 events.
+
+    Missing columns are ignored while following a gap within a fragment;
+    fixed-gap columns do not initiate an analysed fragment. Adjacent gap runs
+    in different sequences do not overlap.
+    """
+    if not seqs:
+        return [], 0, set()
+    n, length = len(seqs), len(seqs[0])
+    missing = {j for j in range(length) if any(s[j] not in 'ACGT-' for s in seqs)}
+    fixed = {j for j in range(length) if all(s[j] == '-' for s in seqs)}
+    runs = sorted((m.start(), m.end() - 1) for seq in seqs for m in re.finditer('-+', seq))
+    groups = []
+    for start, end in runs:
+        if not groups or start > groups[-1][1]:
+            groups.append([start, end])
+        else:
+            groups[-1][1] = max(groups[-1][1], end)
+    accepted, excluded_events, excluded_sites = [], 0, set()
+    for first, last in groups:
+        eligible = [j for j in range(first, last + 1) if j not in missing | fixed]
+        if not eligible:
+            continue
+        first = eligible[0]
+        fragment_events = []
+        # Literal control flow of Mod34_BuscoNumEventosEnInDel and
+        # mod34_HacerAnalisis, retaining original start coordinates.
+        for start in range(first, last + 1):
+            carriers = {}
+            for row, seq in enumerate(seqs):
+                count, initiated, end = 0, False, start
+                for j in range(start, last + 1):
+                    usable = j not in missing and start == first
+                    if start > first and not initiated:
+                        previous = next((k for k in range(j - 1, first - 1, -1) if k not in missing), None)
+                        usable |= previous is not None and seq[previous] != '-'
+                    if initiated and j not in missing:
+                        usable = True
+                    if usable:
+                        if seq[j] == '-':
+                            count += 1
+                            end = j
+                            if start > first:
+                                initiated = True
+                        else:
+                            break
+                    elif j in missing:
+                        continue
+                    elif start > first:
+                        break
+                if count:
+                    carriers.setdefault(count, []).append((row, end))
+            for count, rows in carriers.items():
+                fragment_events.append(InDelEvent(start, max(end for _, end in rows), count,
+                                                 frozenset(row for row, _ in rows)))
+        if len(fragment_events) > 1:
+            excluded_events += len(fragment_events)
+            excluded_sites.update(j for j in range(first, last + 1) if j not in missing | fixed)
+        else:
+            accepted.extend(fragment_events)
+    return accepted, excluded_events, excluded_sites
+
+
+def _identify_indel_events(seqs: list[str]) -> list[InDelEvent]:
+    """Accepted non-overlapping diallelic events (DnaSP Model 1)."""
+    return _indel_fragments(seqs)[0]
+
+
+def compute_indel(seqs: list[str]) -> InDelStats:
+    """DnaSP Model 1: event diversity divided by non-InDel plus accepted sites."""
+    stats = InDelStats()
+    n = len(seqs)
+    if n < 2:
+        return stats
+    if len({len(seq) for seq in seqs}) != 1:
+        raise ValueError("InDel sequences must have equal lengths")
+    length = len(seqs[0])
+    missing = {j for j in range(length) if any(s[j] not in 'ACGT-' for s in seqs)}
+    fixed = {j for j in range(length) if all(s[j] == '-' for s in seqs)}
+    stats.n_positions_with_gaps = sum(any(s[j] == '-' for s in seqs) for j in range(length))
+    stats.n_missing_sites = len(missing)
+    stats.n_fixed_gap_sites = len(fixed)
+    events, stats.n_excluded_events, excluded = _indel_fragments(seqs)
+    stats.events = events
+    stats.n_events = len(events)
+    stats.n_excluded_overlap_sites = len(excluded)
+    stats.net_sites = length - len(missing | fixed | excluded)
+    if not events:
+        return stats
+    stats.mean_event_length = sum(e.length for e in events) / len(events)
+    stats.mean_deletion_length = (sum(e.length * len(e.seq_indices) for e in events)
+                                  / sum(len(e.seq_indices) for e in events))
+    haplotypes = [''.join('1' if i in e.seq_indices else '0' for e in events) for i in range(n)]
+    stats.n_haplotypes, stats.haplotype_diversity, _ = compute_haplotypes(haplotypes)
+    stats.k_indel = sum(2 * len(e.seq_indices) * (n - len(e.seq_indices)) / (n * (n - 1)) for e in events)
+    stats.pi_indel = stats.k_indel / stats.net_sites if stats.net_sites else 0.0
+    stats.theta_indel = len(events) / _harmonic(n)
+    stats.tajima_d_indel = tajima_d(stats.k_indel, len(events), n) if n >= 4 else None
+    return stats
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Divergence between populations
+# ─────────────────────────────────────────────────────────────────────────────
+
+def compute_divergence(
+    seqs1: list[str],
+    seqs2: list[str],
+    pop1_name: str = "Pop1",
+    pop2_name: str = "Pop2",
+) -> DivergenceStats:
+    """DNA divergence between two populations.
+
+    Computes: π per population, Dxy (average between-population divergence
+    per site), Da (net divergence), fixed differences, shared polymorphisms,
+    and private polymorphisms.
+
+    References:
+      Nei (1987) Molecular Evolutionary Genetics, eq 10.20 (Dxy)
+      Hey (1991) Genetics 128:831-840 (fixed differences)
+      Tajima (1983) Genetics 105:437-460 (k, eq A3)
+    """
+    stats = DivergenceStats(pop1_name=pop1_name, pop2_name=pop2_name)
+    n1, n2 = len(seqs1), len(seqs2)
+    stats.n1, stats.n2 = n1, n2
+
+    if n1 < 1 or n2 < 1 or not seqs1[0]:
+        return stats
+
+    # Complete deletion across BOTH populations combined
+    combined = seqs1 + seqs2
+    _, L_net = complete_deletion(combined)
+    if L_net == 0:
+        return stats
+
+    # Re-apply gap mask to get cleaned sequences
+    L = len(seqs1[0])
+    gap_cols = set()
+    for pos in range(L):
+        if any(s[pos] in _GAP_CHARS for s in combined):
+            gap_cols.add(pos)
+    keep = [pos for pos in range(L) if pos not in gap_cols]
+
+    c1 = ["".join(s[i] for i in keep) for s in seqs1]
+    c2 = ["".join(s[i] for i in keep) for s in seqs2]
+    stats.L_net = len(keep)
+
+    if not keep:
+        return stats
+
+    # Within-population diversity
+    stats.k1 = compute_k(c1)
+    stats.k2 = compute_k(c2)
+    stats.Pi1 = stats.k1 / stats.L_net if stats.L_net > 0 else 0.0
+    stats.Pi2 = stats.k2 / stats.L_net if stats.L_net > 0 else 0.0
+
+    # Dxy: average number of pairwise differences between populations, per site
+    # Nei (1987) eq 10.20
+    total_between = 0
+    for s1 in c1:
+        for s2 in c2:
+            total_between += sum(a != b for a, b in zip(s1, s2))
+    Dxy_abs = total_between / (n1 * n2)  # absolute (per gene)
+    stats.Dxy = Dxy_abs / stats.L_net if stats.L_net > 0 else 0.0
+
+    # Da: net divergence (removes within-population diversity)
+    stats.Da = stats.Dxy - (stats.Pi1 + stats.Pi2) / 2
+
+    # Fixed / shared / private classification, ported from DnaSP 6
+    # (Divergencia.vb::Mod3BuscaShareFixDifferences).  Sf is a site count;
+    # Ss, Sx1, Sx2 are MUTATION counts.
+    n_fixed = n_shared = n_private1 = n_private2 = 0
+    for pos in range(stats.L_net):
+        a1 = frozenset(s[pos] for s in c1 if s[pos] in "ATCG")
+        a2 = frozenset(s[pos] for s in c2 if s[pos] in "ATCG")
+        if not a1 or not a2:
+            continue
+        na1, na2 = len(a1), len(a2)
+        seg1, seg2 = na1 > 1, na2 > 1
+        if not seg1 and not seg2 and a1 == a2:
+            continue  # monomorphic, same allele -> not a segregating site
+
+        if a1.isdisjoint(a2):
+            # No shared allele -> fixed-difference site; within-population
+            # variation on top of it is private.
+            n_fixed += 1
+            if seg1:
+                n_private1 += na1 - 1
+            if seg2:
+                n_private2 += na2 - 1
+        elif seg1 and not seg2:
+            n_private1 += na1 - 1        # polymorphic in pop1 only
+        elif seg2 and not seg1:
+            n_private2 += na2 - 1        # polymorphic in pop2 only
+        elif seg1 and seg2:
+            na3 = len(a1 | a2)
+            if na1 <= 3 and na2 <= 3:
+                _SHARE_TABLE = {
+                    (2, 2, 2): (1, 0, 0),
+                    (2, 2, 3): (0, 1, 1),
+                    (3, 3, 3): (2, 0, 0),
+                    (3, 3, 4): (1, 1, 1),
+                    (3, 2, 3): (1, 1, 0),
+                    (2, 3, 3): (1, 0, 1),
+                    (3, 2, 4): (0, 2, 1),
+                    (2, 3, 4): (0, 1, 2),
+                }
+                ds, dx1, dx2 = _SHARE_TABLE.get((na1, na2, na3), (0, 0, 0))
+                n_shared += ds
+                n_private1 += dx1
+                n_private2 += dx2
+            elif na1 == 4 and na2 == 4:
+                n_shared += 3
+            elif na1 == 4:
+                m = (na2 - 1) if na2 > 1 else 1
+                n_shared += m
+                n_private1 += 3 - m
+            elif na2 == 4:
+                m = (na1 - 1) if na1 > 1 else 1
+                n_shared += m
+                n_private2 += 3 - m
+
+    stats.n_fixed = n_fixed
+    stats.n_shared = n_shared
+    stats.n_private1 = n_private1
+    stats.n_private2 = n_private2
+
+    return stats
+
+
+def split_alignment_by_pop(
+    aln: Alignment, pop_assignments: dict[str, str]
+) -> dict[str, Alignment]:
+    """Split an alignment into sub-alignments by population assignment."""
+    groups: dict[str, tuple[list[str], list[str]]] = {}
+    for name, seq in zip(aln.names, aln.seqs):
+        pop = pop_assignments.get(name)
+        if pop is None:
+            continue
+        if pop not in groups:
+            groups[pop] = ([], [])
+        groups[pop][0].append(name)
+        groups[pop][1].append(seq)
+    return {
+        pop: Alignment(names=names, seqs=seqs, source=aln.source)
+        for pop, (names, seqs) in groups.items()
+    }
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Fu & Li D / F with outgroup
+# ─────────────────────────────────────────────────────────────────────────────
+
+def _orientable_columns(seqs: list[str], outgroup: str) -> list[int]:
+    """Column indices usable for outgroup-polarised statistics.
+
+    Mirrors DnaSP's SitioIesInformativo gate (FULI.vb): the outgroup base is a
+    clean nucleotide, no ingroup sequence has a gap/ambiguous base there, and the
+    outgroup (ancestral) allele is present among the ingroup states unless the
+    site is monomorphic in the ingroup.  k_bar, eta and eta_e are all computed
+    over exactly this set so they cannot drift apart.
+    """
+    if not seqs:
+        return []
+    L = len(seqs[0])
+    if len(outgroup) < L:
+        raise ValueError(
+            f"Outgroup length ({len(outgroup)}) shorter than alignment ({L})."
+        )
+    cols: list[int] = []
+    for pos in range(L):
+        anc = outgroup[pos]
+        if anc in _GAP_CHARS:
+            continue
+        col = [s[pos] for s in seqs]
+        if any(c in _GAP_CHARS for c in col):
+            continue
+        states = frozenset(col)
+        if len(states) >= 2 and anc not in states:
+            continue  # polymorphic but ancestral allele absent -> not orientable
+        cols.append(pos)
+    return cols
+
+
+def _count_derived(seqs: list[str], outgroup: str) -> tuple[int, int, int]:
+    """Count outgroup-polarised derived mutations over orientable columns.
+
+    Parameters
+    ----------
+    seqs : list[str]
+        Ingroup sequences (all same length, already uppercase).
+    outgroup : str
+        Outgroup sequence (same length as seqs).
+
+    Returns
+    -------
+    S : int
+        Number of orientable, polymorphic sites (DnaSP's pv1) -- one per site
+        regardless of how many derived alleles segregate there.
+    eta : int
+        Total number of derived mutations across all orientable sites (extra
+        for a tri-/quadri-allelic site); reported but not used to scale D/F.
+    eta_e : int
+        Derived-mutation SITES carried by exactly one ingroup sequence
+        (external/singleton), capped at 1 per site: DnaSP's Mod12FuLiOutgroupNew
+        computes a raw per-allele count via Mod12BusqMutacExternas() at
+        tri-/quadri-allelic sites, then subtracts the excess beyond 1
+        (`EtaE = EtaE - ExternaMut`) by default, mirroring BusqSingletones()'s
+        EtaS discount in the no-outgroup test.
+    """
+    if not seqs:
+        return 0, 0, 0
+    n_sites = 0
+    eta = 0
+    eta_e = 0
+    for pos in _orientable_columns(seqs, outgroup):
+        anc = outgroup[pos]
+        col = [s[pos] for s in seqs]
+        states = frozenset(col)
+        if len(states) < 2:
+            continue  # monomorphic in the ingroup
+        n_sites += 1
+        site_has_external_singleton = False
+        for derived in states - {anc}:
+            n_carriers = sum(1 for c in col if c == derived)
+            eta += 1
+            if n_carriers == 1:
+                site_has_external_singleton = True
+        if site_has_external_singleton:
+            eta_e += 1
+    return n_sites, eta, eta_e
+
+
+def compute_fu_li_outgroup(seqs: list[str], outgroup: str) -> FuLiOutgroupStats:
+    """Fu & Li D and F statistics using an outgroup to polarise mutations.
+
+    The outgroup sequence identifies which allele is ancestral at each
+    segregating site.  Derived mutations carried by exactly one ingroup
+    sequence are 'external' (η_e); all derived mutations count as η.
+
+    Formulas: Fu & Li (1993) equations 22-25 (D) and 31-34 (F), matching the
+    DnaSP 6 source (FULI.vb, Mod12FuLiOutgroupNew); coefficient forms also in
+    Simonsen, Churchill & Aquadro (1995) Genetics 141:413-429.
+
+        D = (S - a_n * eta_e) / sqrt(u_D * S + v_D * S**2)
+        F = (k_bar - eta_e)   / sqrt(u_F * S + v_F * S**2)
+
+    with S the number of orientable segregating sites (DnaSP's default
+    'from segregating sites' mode -- SSOrMutations=1, i.e. Form11b.Option3D1
+    unchecked; DnaSP also offers a 'from total mutations' mode using eta in
+    S's place, not implemented here) and eta_e the derived-mutation sites
+    carried by exactly one ingroup sequence (external branch), capped at 1
+    per site. k_bar is the mean pairwise difference over the orientable-site
+    set only (DnaSP accumulates rp1 solely inside SitioIesInformativo), so it
+    uses the same column mask as S / eta_e.
+    Negative D or F indicates an excess of external (singleton) mutations.
+
+    Parameters
+    ----------
+    seqs : list[str]
+        Ingroup sequences (already uppercase, all same length).
+    outgroup : str
+        Outgroup sequence (same length), uppercase.
+
+    Returns
+    -------
+    FuLiOutgroupStats
+    """
+    n = len(seqs)
+    if n < 4 or not seqs:
+        return FuLiOutgroupStats(n=n)
+
+    # k_bar: mean pairwise differences over the orientable-site set only,
+    # matching the mask used for eta / eta_e (DnaSP FULI.vb rp1 accumulation).
+    cols = _orientable_columns(seqs, outgroup)
+    ingroup_orientable = ["".join(s[i] for i in cols) for s in seqs]
+    k_bar = compute_k(ingroup_orientable)
+
+    # Outgroup-polarised counts
+    S, eta, eta_e = _count_derived(seqs, outgroup)
+    if S == 0:
+        return FuLiOutgroupStats(n=n, eta=0, eta_e=0, k_bar=k_bar)
+
+    a_n = _harmonic(n, 1)          # Σ 1/i for i = 1..n-1
+    b_n = _harmonic(n, 2)          # Σ 1/i² for i = 1..n-1
+    a_n1 = a_n + 1.0 / n           # Σ 1/i for i = 1..n
+
+    c_n = 2.0 * (n * a_n - 2.0 * (n - 1.0)) / ((n - 1.0) * (n - 2.0))
+
+    v_D = 1.0 + (a_n**2 / (b_n + a_n**2)) * (c_n - (n + 1.0) / (n - 1.0))
+    u_D = a_n - 1.0 - v_D
+
+    v_F = (c_n
+           + 2.0 * (n**2 + n + 3.0) / (9.0 * n * (n - 1.0))
+           - 2.0 / (n - 1.0)) / (a_n**2 + b_n)
+    u_F = (1.0
+           + (n + 1.0) / (3.0 * (n - 1.0))
+           - 4.0 * ((n + 1.0) / (n - 1.0)**2) * (a_n1 - 2.0 * n / (n + 1.0))) / a_n - v_F
+
+    denom_D_sq = u_D * S + v_D * S * S
+    denom_F_sq = u_F * S + v_F * S * S
+    D: Optional[float] = (
+        (S - a_n * eta_e) / math.sqrt(denom_D_sq) if denom_D_sq > 0 else None
+    )
+    F: Optional[float] = (
+        (k_bar - eta_e) / math.sqrt(denom_F_sq) if denom_F_sq > 0 else None
+    )
+
+    return FuLiOutgroupStats(n=n, S=S, eta=eta, eta_e=eta_e, k_bar=k_bar, D=D, F=F)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# HKA test
+# ─────────────────────────────────────────────────────────────────────────────
+
+def load_hka_file(path: Path) -> list[HKALocus]:
+    """Parse an HKA locus file for the two-locus HKA test.
+
+    Expected format (whitespace-separated, header optional, '#' comments)::
+
+        # locus   n    S    L_poly   D    L_div   chrom
+        Adh       81   9    4052     210  4052    A
+        5flank    81   8    3200     78   3200    A
+
+    Columns:
+        locus  : locus name
+        n      : ingroup sample size
+        S      : segregating sites within the ingroup
+        L_poly : sites analysed within the ingroup
+        D      : differences to the sister species (divergence)
+        L_div  : sites analysed for divergence (optional; defaults to L_poly)
+        chrom  : optional; A (autosomal, default), X/Z (0.75), Y/W (0.25)
+
+    DnaSP's HKA uses exactly two loci; extra rows are still parsed and left for
+    compute_hka() to reject.
+    """
+    _CHROM = {"A": 1.0, "AUTOSOMAL": 1.0,
+              "X": 0.75, "Z": 0.75, "XL": 0.75,
+              "Y": 0.25, "W": 0.25}
+    loci: list[HKALocus] = []
+    with open(path, encoding="utf-8") as fh:
+        for number, raw in enumerate(fh, 1):
+            line = raw.strip()
+            if not line or line.startswith('#'):
+                continue
+            parts = line.split()
+            if len(parts) >= 2 and parts[0].lower() == 'locus' and parts[1].lower() in {'n', 'nseq', 'samplesize'}:
+                continue
+            try:
+                if not 5 <= len(parts) <= 7:
+                    raise ValueError("expected locus n S L_poly D [L_div] [chrom]")
+                name, n, S, L_poly, D = parts[0], int(parts[1]), int(parts[2]), float(parts[3]), int(parts[4])
+                L_div, sex = L_poly, 1.0
+                if len(parts) >= 6:
+                    if parts[5].upper() in _CHROM:
+                        if len(parts) == 7:
+                            raise ValueError("chromosome must be the last field")
+                        sex = _CHROM[parts[5].upper()]
+                    else:
+                        L_div = float(parts[5])
+                if len(parts) == 7:
+                    sex = _CHROM[parts[6].upper()]
+                if n < 2 or S < 0 or D < 0 or not all(math.isfinite(v) and v > 0 for v in (L_poly, L_div)):
+                    raise ValueError("require n >= 2, non-negative S/D and finite positive lengths")
+                if S > L_poly or D > L_div:
+                    raise ValueError("S/D cannot exceed their corresponding site counts")
+                if any(loc.name == name for loc in loci):
+                    raise ValueError("duplicate locus name")
+            except (ValueError, KeyError) as exc:
+                raise ValueError(f"HKA line {number}: {exc}") from exc
+            loci.append(HKALocus(name=name, n=n, S=S, D=D, L_poly=L_poly, L_div=L_div, sex=sex))
+    return loci
+
+
+def _hka_quadratic_roots(a: float, b: float, c: float) -> list[float]:
+    """Real roots of a x^2 + b x + c = 0, matching DnaSP's ResuelveEc2grado.
+
+    DnaSP zeroes coefficients that are negligible relative to their inputs; here
+    a plain magnitude tolerance is enough.  Returns [] when the discriminant is
+    negative, one root for the linear case, otherwise both roots.
+    """
+    if abs(a) < 1e-12:
+        if abs(b) < 1e-12:
+            return []
+        return [-c / b]
+    disc = b * b - 4.0 * a * c
+    if disc < 0.0:
+        return []
+    sq = math.sqrt(disc)
+    return [(-b + sq) / (2.0 * a), (-b - sq) / (2.0 * a)]
+
+
+def compute_hka(loci: list[HKALocus]) -> HKAStats:
+    """HKA neutrality test (Hudson, Kreitman & Aguadé 1987), DnaSP 6 model.
+
+    DnaSP restricts HKA to exactly two loci and one species' polymorphism plus
+    between-species divergence.  The neutral model has parameters θ₁, θ₂ (per
+    site) and a scaled divergence time T; it is solved in closed form as a
+    quadratic in θ₁ (HKA.vb::HKAResolEcuacion, case 1), and the goodness of fit
+    is a χ² with 1 degree of freedom using the HKA (1987) variances
+    (HKA.vb::HKAJiCuadrado):
+
+        E[Sᵢ]   = aₙᵢ · sexᵢ · θᵢ · Lᵢ
+        Var[Sᵢ] = E[Sᵢ] + sexᵢ² · bₙᵢ · θᵢ² · Lᵢ²
+        E[Dᵢ]   = (T + sexᵢ) · θᵢ · Ldivᵢ
+        Var[Dᵢ] = E[Dᵢ] + sexᵢ² · θᵢ² · Ldivᵢ²
+
+    Parameters
+    ----------
+    loci : list[HKALocus]   Exactly two, each with n, S, D and site counts.
+
+    Returns
+    -------
+    HKAStats   error is set (test not run) for the wrong number of loci, bad
+               inputs, or equations with no positive-θ solution.
+    """
+    result = HKAStats(n_loci=len(loci))
+    if len(loci) != 2:
+        result.error = "HKA requires exactly two loci (DnaSP 6 model)."
+        return result
+
+    l1, l2 = loci
+    for loc in (l1, l2):
+        if (loc.n < 2 or loc.S < 0 or loc.D < 0
+                or not all(math.isfinite(v) and v > 0 for v in
+                           (loc.L_poly, loc.L_poly if loc.L_div is None else loc.L_div, loc.sex))):
+            result.error = (
+                "HKA requires n >= 2 and positive site counts (L_poly, L_div) "
+                "for both loci."
+            )
+            return result
+
+    n1, n2 = l1.n, l2.n
+    S1, S2 = float(l1.S), float(l2.S)
+    D1, D2 = float(l1.D), float(l2.D)
+    Lp1, Lp2 = l1.L_poly, l2.L_poly
+    Ld1, Ld2 = (l1.L_poly if l1.L_div is None else l1.L_div), (l2.L_poly if l2.L_div is None else l2.L_div)
+    sx1, sx2 = l1.sex, l2.sex
+
+    a1 = _harmonic(n1, 1)   # Σ 1/i, i = 1..n1-1
+    b1 = _harmonic(n1, 2)
+    a2 = _harmonic(n2, 1)
+    b2 = _harmonic(n2, 2)
+
+    # HKA.vb::HKAResolEcuacion, case 1
+    v1 = D1 + D2
+    v2 = D1 + S1
+    v3 = S1 + S2
+    v4 = (v3 * Ld2) / (a2 * Lp2 * sx2)
+    v5 = (a1 * Lp1 * sx1 * Ld2) / (a2 * Lp2 * sx2)
+    v6 = (((sx2 - sx1) * Ld1) - (a1 * Lp1 * sx1)) / Ld1
+    v7 = v2 / Ld1
+    v8 = a1 * Lp1 * sx1
+
+    coef_a = -((v5 * v6) + v8)
+    coef_b = (v4 * v6) - (v7 * v5) - v1 + v2
+    coef_c = v7 * v4
+
+    solutions: list[tuple[float, float, float]] = []
+    seen: set[float] = set()
+    for theta1 in _hka_quadratic_roots(coef_a, coef_b, coef_c):
+        if theta1 <= 0.0 or round(theta1, 12) in seen:
+            continue
+        seen.add(round(theta1, 12))
+        theta2 = (v3 - (v8 * theta1)) / (a2 * Lp2 * sx2)
+        T = ((v2 - (v8 * theta1)) / (Ld1 * theta1)) - sx1
+        if theta2 <= 0.0:
+            continue
+        solutions.append((theta1, theta2, T))
+
+    if not solutions:
+        result.error = (
+            "HKA equations have no positive-θ solution for these data "
+            "(the neutral two-locus model is not identifiable here)."
+        )
+        return result
+
+    theta1, theta2, T_hat = solutions[0]
+
+    per = (
+        (a1, b1, sx1, S1, D1, Lp1, Ld1, theta1, l1.name, n1),
+        (a2, b2, sx2, S2, D2, Lp2, Ld2, theta2, l2.name, n2),
+    )
+    chi2 = 0.0
+    loci_results: list[dict] = []
+    for a_n, b_n, sx, S, D, Lp, Ld, theta, name, n in per:
+        E_S = a_n * sx * theta * Lp
+        Var_S = E_S + sx * sx * b_n * theta * theta * Lp * Lp
+        E_D = (T_hat + sx) * theta * Ld
+        Var_D = E_D + sx * sx * theta * theta * Ld * Ld
+        if Var_S > 0:
+            chi2 += (S - E_S) ** 2 / Var_S
+        if Var_D > 0:
+            chi2 += (D - E_D) ** 2 / Var_D
+        loci_results.append({
+            "name": name, "n": n, "S": S, "D": D,
+            "theta_hat": theta, "E_S": E_S, "E_D": E_D,
+            "Var_S": Var_S, "Var_D": Var_D,
+        })
+
+    result.T_hat = T_hat
+    result.chi2 = chi2
+    result.df = 1
+    result.p_value = _chi2_pvalue(chi2, 1)
+    result.loci_results = loci_results
+    if len(solutions) > 1:
+        result.note = (
+            f"{len(solutions)} positive-θ solutions; reporting the first "
+            f"(θ₁={theta1:.5g})."
+        )
+    return result
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Coding sequence helpers (Group C: mk, kaks)
+# ─────────────────────────────────────────────────────────────────────────────
+
+def _log_factorial(n: int) -> float:
+    """Compute log(n!) using math.lgamma (numerically stable)."""
+    return math.lgamma(n + 1)
+
+
+def _fisher_exact_2x2(a: int, b: int, c: int, d: int) -> float:
+    """Two-tailed Fisher's exact test P-value for a 2×2 contingency table.
+
+    Table layout::
+
+        a  b  (row 1)
+        c  d  (row 2)
+
+    Given the observed cell count ``a``, sums probabilities of all tables
+    (with the same marginals) that are at least as extreme (≤ observed
+    hypergeometric probability) under the null of row/column independence.
+    """
+    R1 = a + b
+    R2 = c + d
+    C1 = a + c
+    C2 = b + d
+    N  = R1 + R2
+
+    if N == 0:
+        return 1.0
+
+    lf = _log_factorial
+    log_const = lf(C1) + lf(C2) - lf(N)   # normalisation factor
+
+    def _log_prob(k: int) -> float:
+        k2 = C1 - k
+        if k < 0 or k > R1 or k2 < 0 or k2 > R2:
+            return -math.inf
+        return (lf(R1) - lf(k) - lf(R1 - k) +
+                lf(R2) - lf(k2) - lf(R2 - k2) + log_const)
+
+    p_obs = _log_prob(a)
+    k_lo  = max(0, C1 - R2)
+    k_hi  = min(R1, C1)
+
+    total = 0.0
+    for k in range(k_lo, k_hi + 1):
+        lp = _log_prob(k)
+        if lp <= p_obs + 1e-10:   # as extreme or more extreme
+            total += math.exp(lp)
+    return min(total, 1.0)
+
+
+def _count_syn_sites_codon(codon: str, genetic_code: dict[str, str] = GENETIC_CODE) -> float:
+    """Synonymous sites in a codon, DnaSP 6's variant of the Nei-Gojobori
+    (1986) count (``SINONIMO.vb::ComputeFoldPos`` / ``ComputeNumPosSNs``).
+
+    For each of the 3 positions, the fraction of the single-base
+    alternatives that are synonymous (same amino acid), where alternatives
+    that would create a stop codon are left out of the denominator: a
+    position with one stop alternative and one synonymous alternative
+    counts 1/2 (DnaSP's own example is TGT, Cys), one with two stop
+    alternatives and a synonymous third counts 1, and one whose
+    alternatives are all stops counts 0. Positions without stop
+    alternatives give the familiar 0, 1/3, 2/3, 1. Returns the sum across
+    positions (0-3 per codon).
+
+    Under the vertebrate mitochondrial code, where AGA/AGG are stops, this
+    makes the third position of AGY (Ser) and TAY (Tyr) codons whole
+    synonymous sites rather than thirds.
+
+    Codons with gaps, ambiguous bases, or stop codons return 0.0.
+    """
+    if len(codon) != 3 or any(c not in 'ATCG' for c in codon):
+        return 0.0
+    aa = genetic_code.get(codon)
+    if aa is None or aa == '*':
+        return 0.0
+    syn = 0.0
+    for pos in range(3):
+        n_syn = n_stop = 0
+        for alt in _NUCLEOTIDES:
+            if alt == codon[pos]:
+                continue
+            alt_aa = genetic_code.get(codon[:pos] + alt + codon[pos + 1:])
+            if alt_aa == '*':
+                n_stop += 1
+            elif alt_aa == aa:
+                n_syn += 1
+        non_stop = 3 - n_stop
+        if non_stop:
+            syn += n_syn / non_stop
+    return syn
+
+
+def _classify_codon_pair(
+    c1: str, c2: str, genetic_code: dict[str, str] = GENETIC_CODE
+) -> tuple[float, float]:
+    """Classify the changes between two codons as synonymous or nonsynonymous.
+
+    Uses the Nei-Gojobori (1986) pathway-averaging method as DnaSP applies
+    it (``SINONIMO.vb::NumSynonEntreCodons``).  For codons differing at k
+    positions, all k! pathways through intermediate codons are enumerated
+    and averaged.  Paths through stop codons are excluded; if all paths go
+    through stops, the entire difference is counted as nonsynonymous.  A
+    stop codon as one of the two codons compared is not a reason to skip
+    the pair: DnaSP treats a stop inside a coding region as a 21st amino
+    acid, so two stop codons one base apart differ synonymously and a stop
+    against a sense codon is a replacement.
+
+    Returns
+    -------
+    (syn_changes, nonsyn_changes) : tuple[float, float]
+    """
+    if len(c1) != 3 or len(c2) != 3:
+        return (0.0, 0.0)
+    if any(nt not in 'ATCG' for nt in c1 + c2):
+        return (0.0, 0.0)
+    aa1 = genetic_code.get(c1)
+    aa2 = genetic_code.get(c2)
+    if aa1 is None or aa2 is None:
+        return (0.0, 0.0)
+
+    diff_pos = [i for i in range(3) if c1[i] != c2[i]]
+    n_diff = len(diff_pos)
+    if n_diff == 0:
+        return (0.0, 0.0)
+    if n_diff == 1:
+        return (1.0, 0.0) if aa1 == aa2 else (0.0, 1.0)
+
+    from itertools import permutations as _perms
+    total_syn = 0.0
+    total_nonsyn = 0.0
+    n_valid = 0
+
+    for perm in _perms(diff_pos):
+        current = c1
+        path_syn = 0.0
+        path_nonsyn = 0.0
+        path_ok = True
+        for step, pos in enumerate(perm):
+            nxt = current[:pos] + c2[pos] + current[pos + 1:]
+            cur_aa = genetic_code.get(current)
+            nxt_aa = genetic_code.get(nxt)
+            # an intermediate (not the final) codon that is a stop kills the path
+            if cur_aa is None or nxt_aa is None or (step < n_diff - 1 and nxt_aa == '*'):
+                path_ok = False
+                break
+            if cur_aa == nxt_aa:
+                path_syn += 1.0
+            else:
+                path_nonsyn += 1.0
+            current = nxt
+        if path_ok:
+            total_syn += path_syn
+            total_nonsyn += path_nonsyn
+            n_valid += 1
+
+    if n_valid == 0:
+        return (0.0, float(n_diff))   # all paths through stops → all nonsyn
+    return (total_syn / n_valid, total_nonsyn / n_valid)
+
+
+def _jc_correct(p: float) -> Optional[float]:
+    """Jukes-Cantor correction: K = −3/4 × ln(1 − 4p/3).
+
+    Returns None when p ≥ 0.75 (divergence is saturated).
+    """
+    x = 1.0 - 4.0 * p / 3.0
+    if x <= 0.0:
+        return None
+    return -0.75 * math.log(x)
+
+
+def _mk_label_for_position(
+    pos: int, pairs: list[tuple[str, str]], genetic_code: dict[str, str],
+) -> Optional[str]:
+    """Resolve the syn/nonsyn label for a single FIXED codon position, using
+    only the candidate (ingroup codon, outgroup codon) pairs that actually
+    differ at that position.
+
+    With 3+ ingroup codons segregating at once, a position can be fixed
+    only because of an allele that never participates in the single
+    globally-closest pair, so each position is resolved independently:
+    filter to pairs that differ there, keep only the minimum-nucleotide-
+    distance one(s) among THOSE (DnaSP's MinPPP, scoped per position), label
+    each with DnaSP's path scorer (``_mk_step_labels``: the most synonymous
+    ordering, stop codons compared as a 21st amino acid, an ordering through
+    a stop scored as all-replacement) and, among tied pairs, take the label
+    from the pair whose path carries the fewest replacements (DnaSP's
+    "lower number of replacement changes" rule for fixed differences).
+    """
+    relevant = [(a, b) for a, b in pairs if a[pos] != b[pos]]
+    if not relevant:
+        return None
+    scored = [(sum(1 for k in range(3) if a[k] != b[k]), a, b) for a, b in relevant]
+    min_dist = min(d for d, _, _ in scored)
+    tied = [(a, b) for d, a, b in scored if d == min_dist]
+
+    best_score: Optional[int] = None
+    best_label: Optional[str] = None
+    for c1, c2 in tied:
+        labels = _mk_step_labels(c1, c2, genetic_code)
+        if labels[pos] == 0:
+            continue
+        score = -sum(1 for v in labels if v == 1)   # fewest replacements wins
+        if best_score is None or score > best_score:
+            best_score = score
+            best_label = 'nonsyn' if labels[pos] == 1 else 'syn'
+    return best_label
+
+
+def _mk_best_labels(
+    positions: list[int], pairs: list[tuple[str, str]], genetic_code: dict[str, str],
+) -> dict[int, str]:
+    """Resolve every fixed position in `positions` independently (see
+    ``_mk_label_for_position``) against the full set of candidate pairs.
+    """
+    result: dict[int, str] = {}
+    for pos in positions:
+        label = _mk_label_for_position(pos, pairs, genetic_code)
+        if label is not None:
+            result[pos] = label
+    return result
+
+
+# Genetic-code tables DnaSP treats as non-recombining: ``SINONIMO.vb`` sets
+# ``SistemaGeneticoRecombina = 0`` for every mitochondrial table and leaves
+# it at 1 (recombining) for the nuclear ones. The MK test's circular-path
+# (recombination) case is analysed only under recombining codes.
+_MK_NON_RECOMBINING_CODES: tuple[dict[str, str], ...] = (VERTEBRATE_MITOCHONDRIAL_CODE,)
+
+# BuscaSitiosReemplazamientoMK's pairwise-sum codes for a site carrying three
+# (three codons) or four (four codons) bases: the sum of the pairwise labels
+# (1 = replacement, 2 = synonymous) maps onto the two or three changes the
+# site contributes, one decimal digit per change.
+_MK_SUM_CODES_3 = {0: 0, 6: 22, 4: 12, 3: 11}
+_MK_SUM_CODES_4 = {0: 0, 12: 222, 9: 122, 8: 122, 7: 112, 6: 111}
+
+
+def _mk_aa(codon: str, genetic_code: dict[str, str]) -> str:
+    """Amino acid for the MK path routines. A stop codon is '*', which DnaSP
+    treats as a 21st amino acid inside a coding region (its help file:
+    "considered as if they would code for a new amino acid (the amino acid
+    21; for example Selenocysteine)"): two stops compare as synonymous, a
+    stop against a sense codon as a replacement."""
+    return genetic_code.get(codon, '*')
+
+
+def _terminal_stop_codon(seqs: list[str], genetic_code: dict[str, str]) -> bool:
+    """True when the alignment's final codon is a stop codon in every
+    sequence in which it is an unambiguous triplet: the coding region's
+    terminal stop, which DnaSP's own example files annotate as noncoding
+    (``COII_Apes.nex``: ``CODONPOSSET ... N: 682-684`` for a 684-bp gene)
+    and which the coding analyses therefore leave out. A stop codon anywhere
+    else, or a final codon that some sequence reads through, is analysed as
+    a 21st amino acid."""
+    seen = False
+    for s in seqs:
+        codon = s[-3:]
+        if len(codon) != 3 or any(nt not in 'ATCG' for nt in codon):
+            continue
+        seen = True
+        if genetic_code.get(codon) != '*':
+            return False
+    return seen
+
+
+def _mk_step_labels(c1: str, c2: str, genetic_code: dict[str, str]) -> list[int]:
+    """Port of ``McDonaldK.vb::PosicionesSynonimas``: label each position at
+    which c1 and c2 differ as 1 (replacement) or 2 (synonymous); 0 where
+    they agree.
+
+    For two or three differences every ordering of the single-base steps
+    is scored by its number of synonymous steps and the most synonymous
+    ordering wins; an ordering whose intermediate codon is a stop scores
+    as all-replacement rather than being dropped. Orderings are enumerated
+    in DnaSP's own order (lower position first for two differences; 123,
+    213, 132, 312, 231, 321 for three) and the first best one is kept.
+    DnaSP breaks a tie between best orderings that carry different labels
+    with a random draw when the other species is monomorphic
+    (``BuscoCambiosEnOtroFichero``); keeping the first ordering instead
+    leaves the synonymous/replacement totals unchanged and only fixes
+    which position carries which label.
+    """
+    diff = [i for i in range(3) if c1[i] != c2[i]]
+    labels = [0, 0, 0]
+    if not diff:
+        return labels
+    if len(diff) == 1:
+        same = _mk_aa(c1, genetic_code) == _mk_aa(c2, genetic_code)
+        labels[diff[0]] = 2 if same else 1
+        return labels
+    if len(diff) == 2:
+        orders: list[tuple[int, ...]] = [(diff[0], diff[1]), (diff[1], diff[0])]
+    else:
+        orders = [(0, 1, 2), (1, 0, 2), (0, 2, 1), (2, 0, 1), (1, 2, 0), (2, 1, 0)]
+    best = labels
+    best_score = -1
+    for order in orders:
+        path = [0, 0, 0]
+        current = c1
+        steps: list[tuple[str, str, int]] = []
+        for pos in order:
+            nxt = current[:pos] + c2[pos] + current[pos + 1:]
+            steps.append((current, nxt, pos))
+            current = nxt
+        if all(_mk_aa(nxt, genetic_code) != '*' for _, nxt, _ in steps[:-1]):
+            for a, b, pos in steps:
+                if _mk_aa(a, genetic_code) == _mk_aa(b, genetic_code):
+                    path[pos] = 1
+        for pos in diff:
+            path[pos] += 1
+        score = sum(path)
+        if score > best_score:
+            best, best_score = path, score
+    return best
+
+
+def _mk_labels_via_other_species(
+    c1: str, c2: str, other_codons: frozenset, genetic_code: dict[str, str],
+) -> Optional[list[int]]:
+    """Port of ``McDonaldK.vb::BuscaEnOtroFichero``, used for two codons
+    differing at exactly two positions: if exactly one of the two possible
+    intermediate codons occurs in the other species, DnaSP takes that
+    mutational path ("If there are two possible paths, and one of the
+    non-extant codons ... is found in the other species, DnaSP assume that
+    the true evolutionary path is the path with that codon" -- help file,
+    codon 10-12 worked example). Returns None when neither or both
+    intermediates are found, leaving the decision to ``_mk_step_labels``.
+    """
+    lo, hi = [i for i in range(3) if c1[i] != c2[i]]
+    via_lo = c1[:lo] + c2[lo] + c1[lo + 1:]   # lower position changed first
+    via_hi = c1[:hi] + c2[hi] + c1[hi + 1:]   # higher position changed first
+    found_lo, found_hi = via_lo in other_codons, via_hi in other_codons
+    if found_lo == found_hi:
+        return None
+    inter, first, second = (via_lo, lo, hi) if found_lo else (via_hi, hi, lo)
+    labels = [0, 0, 0]
+    labels[first] = 2 if _mk_aa(c1, genetic_code) == _mk_aa(inter, genetic_code) else 1
+    labels[second] = 2 if _mk_aa(inter, genetic_code) == _mk_aa(c2, genetic_code) else 1
+    return labels
+
+
+def _mk_merge_steps(first: list[int], second: list[int]) -> list[int]:
+    """Combine the labels of two consecutive steps of a three-codon chain
+    the way ``BuscaSitiosReemplazamientoMK`` does: a position changed in
+    both steps gets a two-digit code, smaller digit first (1 and 2 -> 12,
+    2 and 2 -> 22); a position changed in one step keeps that step's
+    label."""
+    merged = [0, 0, 0]
+    for k in range(3):
+        if first[k] and second[k]:
+            a, b = sorted((first[k], second[k]))
+            merged[k] = a * 10 + b
+        else:
+            merged[k] = first[k] or second[k]
+    return merged
+
+
+def _mk_within_species(
+    codons: list[str], other_codons: frozenset, genetic_code: dict[str, str],
+    recombining_code: bool,
+) -> Optional[list[int]]:
+    """Port of ``McDonaldK.vb::BuscaSitiosReemplazamientoMK``: the
+    within-species status of one codon's three positions, given the
+    distinct codons segregating there (``codons``, two or more, in a fixed
+    order) and the codons observed in the other species.
+
+    Returns a list of three status codes whose decimal digits are the
+    changes DnaSP counts at that position (1 = replacement, 2 =
+    synonymous; ``22`` = two synonymous changes, and so on; 0 = no change),
+    or ``None`` for a "complex codon" DnaSP does not analyse ("Total number
+    of complex codons no analyzed" in its output), which is then excluded
+    from the fixed-difference tally as well (``BuscaDeCodonesEntre``).
+
+    Case structure, by the number of distinct codons and of positions at
+    which any pair of them differs:
+
+    * 2 codons: one pair. For two differences, an intermediate codon
+      observed in the other species decides the path
+      (``_mk_labels_via_other_species``); otherwise the most synonymous
+      ordering (``_mk_step_labels``). Two codons for the same amino acid
+      differing at two or three positions are synonymous at every
+      differing position regardless of path.
+    * 3 codons, 1 position: the site carries three bases, hence two
+      changes; the pairwise labels are summed (three synonymous pairs ->
+      ``22``, one -> ``12``, none -> ``11``).
+    * 3 codons, 2 positions, two bases at each: a chain through the codon
+      adjacent to both others, each position labelled from its
+      single-step edge.
+    * 3 codons, 2 positions, three bases at one of them: the two chains
+      that start from the single-difference pair are scored and the more
+      synonymous one kept (ties, including DnaSP's "differ by 9"
+      equal-count tie, keep the first chain, as DnaSP does for the MK
+      test).
+    * 4 codons, 1 position: four bases, three changes, pairwise sums
+      (``222``, ``122``, ``112``, ``111``).
+    * 4 codons, 2 positions with two bases at each (a circular path):
+      under a recombining (nuclear) genetic code only, DnaSP assumes one
+      recombination event and takes, per position, the most synonymous of
+      the four single-step edges, demoting the first synonymous position
+      to a replacement when the four codons do not all share one amino
+      acid; under mitochondrial codes this is a complex codon.
+    * Everything else (three codons differing at all three positions,
+      four codons with a three-base position, five or more codons): a
+      complex codon.
+
+    The order of ``codons`` (DnaSP uses its internal codon numbering; a
+    sorted list is used here) only affects which of two count-equivalent
+    tied chains or paths is kept, never the synonymous/replacement totals.
+    """
+    index = len(codons)
+    pairs = [(i, j) for i in range(index) for j in range(i + 1, index)]
+    n_diff: dict[tuple[int, int], int] = {}
+    pairs_differing_at = [0, 0, 0]
+    for i, j in pairs:
+        differing = [k for k in range(3) if codons[i][k] != codons[j][k]]
+        n_diff[(i, j)] = len(differing)
+        for k in differing:
+            pairs_differing_at[k] += 1
+    n_positions = sum(1 for k in range(3) if pairs_differing_at[k])
+
+    def step(i: int, j: int) -> list[int]:
+        return _mk_step_labels(codons[i], codons[j], genetic_code)
+
+    def summed(code_map: dict[int, int]) -> list[int]:
+        total = [0, 0, 0]
+        for i, j in pairs:
+            edge = step(i, j)
+            for k in range(3):
+                total[k] += edge[k]
+        return [code_map[t] for t in total]
+
+    if index == 2:
+        c1, c2 = codons
+        labels = None
+        if n_diff[(0, 1)] == 2:
+            labels = _mk_labels_via_other_species(c1, c2, other_codons, genetic_code)
+        if labels is None:
+            labels = _mk_step_labels(c1, c2, genetic_code)
+        if n_diff[(0, 1)] >= 2 and _mk_aa(c1, genetic_code) == _mk_aa(c2, genetic_code):
+            labels = [2 if c1[k] != c2[k] else 0 for k in range(3)]
+        return labels
+
+    if index == 3:
+        if n_positions == 1:
+            return summed(_MK_SUM_CODES_3)
+        if n_positions == 2:
+            two_base_positions = sum(1 for k in range(3) if pairs_differing_at[k] == 2)
+            if two_base_positions == 2:
+                labels = [0, 0, 0]
+                for i, j in pairs:
+                    if n_diff[(i, j)] == 1:
+                        edge = step(i, j)
+                        for k in range(3):
+                            labels[k] += edge[k]
+                return labels
+            if two_base_positions == 1:
+                (a, b), = [p for p in pairs if n_diff[p] == 1]
+                third, = [x for x in range(3) if x not in (a, b)]
+                chain_1 = _mk_merge_steps(step(a, b), step(b, third))
+                chain_2 = _mk_merge_steps(step(b, a), step(a, third))
+                s1, s2 = sum(chain_1), sum(chain_2)
+                if s1 == s2 or abs(s1 - s2) == 9:
+                    return chain_1
+                return chain_2 if s1 < s2 else chain_1
+        return None
+
+    if index == 4:
+        if n_positions == 1:
+            return summed(_MK_SUM_CODES_4)
+        if (n_positions == 2 and recombining_code
+                and sum(1 for k in range(3) if pairs_differing_at[k] == 4) == 2):
+            labels = [0, 0, 0]
+            for i, j in pairs:
+                if n_diff[(i, j)] == 1:
+                    edge = step(i, j)
+                    for k in range(3):
+                        labels[k] = max(labels[k], edge[k])
+            if sum(labels) == 4 and len({_mk_aa(c, genetic_code) for c in codons}) > 1:
+                labels[labels.index(2)] = 1
+            return labels
+        return None
+
+    return None
+
+
+def compute_mk(
+    seqs: list[str], outgroup: str, genetic_code: dict[str, str] = GENETIC_CODE
+) -> MKStats:
+    """McDonald-Kreitman test (McDonald & Kreitman 1991).
+
+    Counts, per NUCLEOTIDE SITE (not per codon), the within-species
+    polymorphic changes (Pn, Ps) of an ingroup coding alignment and its
+    fixed differences from an outgroup sequence (Dn, Ds), following DnaSP
+    6's own routines in ``Módulos/McDonaldK.vb``. DnaSP's help page states
+    the per-site basis explicitly: "A fixed nucleotide site between species
+    is a site at which all sequences in one species contain nucleotide
+    variants that are not in the second species"; its worked examples show
+    one codon contributing several changes of different types.
+
+    The two tallies are independent of each other, exactly as in DnaSP,
+    where the within-species status of a site (``AAstatus1``, from
+    ``BuscaSitiosReemplazamientoMK``) is worked out from the ingroup's own
+    codons and the between-species status (``AAstatusB``, from
+    ``BuscoPosFijadas``) from the ``ht3`` rule, and neither consults the
+    other (``BuscoPosSegregantesMcDK`` / ``BuscaDeCodonesEntre``). A site
+    at which the ingroup segregates AND no ingroup sequence carries the
+    outgroup's base therefore counts in both tables (help page, codon 13-15
+    worked example: site 15 is "1 synonymous" within species and "Site#15
+    is synonymous" among the fixed differences). An earlier version of this
+    function counted such sites once, as fixed only (commit `748c593`);
+    that did not reproduce DnaSP 6's real output.
+
+    Algorithm, per codon (in-frame; complete deletion at codon level: any
+    non-ATCG base in the outgroup or any ingroup sequence skips the codon.
+    Stop codons do NOT skip a codon: as in DnaSP, a stop inside the coding
+    region is analysed as a 21st amino acid, synonymous with another stop
+    and a replacement against any sense codon, and the number of such
+    codons is reported in ``n_internal_stop_codons``, mirroring DnaSP's
+    "Stop codons have been found in the coding region" warning. The one
+    exception is a final codon that is a stop in every sequence: that is
+    the coding region's terminal stop, which DnaSP's own example files
+    annotate as noncoding, and it is left out):
+
+    1. **Within species** (Pn/Ps). If the ingroup segregates for more than
+       one codon, ``_mk_within_species`` (a port of
+       ``BuscaSitiosReemplazamientoMK``) returns a status code per
+       position whose decimal digits are the changes DnaSP counts there: a
+       site carrying k bases contributes k - 1 changes (help page, codon
+       1-3: "3 mutations in site#3: 1 replacement, 2 synonymous"), each
+       labelled synonymous or replacement by DnaSP's path rules (most
+       synonymous ordering; an intermediate codon observed in the outgroup
+       decides a two-difference path, help page codon 10-12; same-amino-acid
+       codons are synonymous at every differing position; the circular-path
+       recombination case, help page codon 16-18, is resolved only under
+       nuclear genetic codes). Codons DnaSP does not analyse ("complex
+       codons": three codons differing at all three positions, four codons
+       with a three-base position or, under mitochondrial codes, a circular
+       path, five or more codons) are excluded from BOTH tables and
+       counted in ``n_complex_codons``, mirroring DnaSP's "Total number of
+       complex codons no analyzed".
+    2. **Fixed differences** (Dn/Ds). Each position at which the outgroup's
+       base is absent from every ingroup sequence (``ht3`` = 1) is a fixed
+       difference, whether or not the ingroup itself segregates there. Its
+       label comes from the ingroup codon(s) closest to the outgroup codon
+       (fewest nucleotide differences, DnaSP's MinPPP), resolved per
+       position by ``_mk_best_labels`` with the fewest-replacements path
+       rule ("For computing fixed differences, DnaSP will check all paths
+       ... and choose the path with the minor number of changes. If there
+       are several paths with the same number of differences, DnaSP will
+       choose the path with the lower number of replacement changes").
+
+    Remaining differences from DnaSP, none of which changes the four
+    totals on any case examined: (a) DnaSP breaks genuinely tied paths by
+    a random draw (``BuscoCambiosEnOtroFichero`` when the other species is
+    monomorphic; ``BuscaSitiosFixedSynReempl`` for tied fixed-side pairs),
+    this function keeps the first candidate, which moves labels between
+    positions but not between the synonymous and replacement columns; (b)
+    DnaSP's fixed-side pair ranking sums synonymous labels over the fixed
+    positions only, this function ranks whole paths by their replacement
+    count; (c) the rule for discordant within-species labels of the same
+    nucleotide variant in the two species (help page, codon 19-21:
+    "DnaSP will choose the case with more replacement substitutions")
+    needs a polymorphic second species and is unreachable with the single
+    outgroup sequence this function takes; (d) DnaSP reads the coding
+    region from the data file's annotation, this function takes the whole
+    alignment as coding apart from a terminal stop codon.
+
+    Derived statistics:
+
+    - **α** = 1 − (Ds·Pn)/(Dn·Ps): proportion of adaptive substitutions.
+    - **NI** = (Pn/Ps)/(Dn/Ds): Neutrality Index.
+    - **DoS** = Dn/(Dn+Ds) − Pn/(Pn+Ps): Direction of Selection.
+    - **Fisher P**: two-tailed Fisher's exact test on the 2×2 table.
+
+    Parameters
+    ----------
+    seqs : list[str]
+        Ingroup sequences (pre-aligned, same length, length divisible by 3).
+    outgroup : str
+        Outgroup sequence (same length as ingroup).
+    genetic_code : dict[str, str]
+        Codon table; mitochondrial tables switch off the recombination case
+        (DnaSP's ``SistemaGeneticoRecombina``).
+
+    Returns
+    -------
+    MKStats
+    """
+    result = MKStats()
+    n = len(seqs)
+    if n < 2:
+        return result
+    L = len(seqs[0])
+    if L == 0 or L % 3 != 0 or len(outgroup) != L:
+        return result
+
+    recombining_code = not any(genetic_code is table for table in _MK_NON_RECOMBINING_CODES)
+    n_codons = L // 3
+    if _terminal_stop_codon(list(seqs) + [outgroup], genetic_code):
+        n_codons -= 1   # the coding region's terminal stop is not analysed
+    Pn = Ps = Dn = Ds = 0
+    n_complex = 0
+    n_internal_stops = 0
+
+    for ci in range(n_codons):
+        in_codons = [s[ci * 3:(ci + 1) * 3] for s in seqs]
+        out_codon  = outgroup[ci * 3:(ci + 1) * 3]
+
+        # Complete deletion: skip if any base is ambiguous in ingroup or outgroup
+        if any(nt not in 'ATCG' for nt in out_codon):
+            continue
+        if any(nt not in 'ATCG' for codon in in_codons for nt in codon):
+            continue
+        unique_in = sorted(set(in_codons))
+        # A stop codon here is analysed as a 21st amino acid (DnaSP's rule),
+        # and reported.
+        if genetic_code.get(out_codon) == '*' or any(genetic_code.get(co) == '*' for co in unique_in):
+            n_internal_stops += 1
+
+        # Within-species changes (Pn/Ps): the ingroup's own codons, as in
+        # DnaSP's BuscaSitiosReemplazamientoMK; the outgroup only enters via
+        # the observed-intermediate rule.
+        if len(unique_in) > 1:
+            status = _mk_within_species(
+                unique_in, frozenset({out_codon}), genetic_code, recombining_code
+            )
+            if status is None:
+                n_complex += 1
+                continue  # complex codon: DnaSP drops it from both tables
+            for code in status:
+                if code > 0:
+                    for digit in str(code):
+                        if digit == '1':
+                            Pn += 1
+                        elif digit == '2':
+                            Ps += 1
+
+        # Fixed differences (Dn/Ds): DnaSP's ht3 rule applied per position,
+        # independent of the within-species tally above.
+        fixed_positions = [
+            pos for pos in range(3)
+            if out_codon[pos] not in {codon[pos] for codon in in_codons}
+        ]
+        if fixed_positions:
+            pairs = [(c, out_codon) for c in unique_in]
+            labels = _mk_best_labels(fixed_positions, pairs, genetic_code)
+            for pos in fixed_positions:
+                label = labels.get(pos)
+                if label == 'nonsyn':
+                    Dn += 1
+                elif label == 'syn':
+                    Ds += 1
+
+    result.Pn = Pn
+    result.Ps = Ps
+    result.Dn = Dn
+    result.Ds = Ds
+    result.n_complex_codons = n_complex
+    result.n_internal_stop_codons = n_internal_stops
+
+    # α = 1 − (Ds·Pn) / (Dn·Ps)
+    if Dn > 0 and Ps > 0:
+        result.alpha = 1.0 - (Ds * Pn) / (Dn * Ps)
+
+    # NI = (Pn/Ps) / (Dn/Ds) = (Pn·Ds) / (Dn·Ps); DnaSP reports it (and α)
+    # only when Dn·Ps is non-zero (McDonaldK.vb::McDonaldTest).
+    if Dn > 0 and Ps > 0:
+        result.NI = (Pn * Ds) / (Dn * Ps)
+
+    # DoS = Dn/(Dn+Ds) − Pn/(Pn+Ps)
+    if (Dn + Ds) > 0 and (Pn + Ps) > 0:
+        result.DoS = Dn / (Dn + Ds) - Pn / (Pn + Ps)
+
+    # Fisher's exact test on:
+    #   Pn  Dn   (nonsynonymous row)
+    #   Ps  Ds   (synonymous row)
+    result.fisher_p = _fisher_exact_2x2(Pn, Dn, Ps, Ds)
+
+    return result
+
+
+def compute_ka_ks(
+    seqs: list[str],
+    genetic_code: dict[str, str] = GENETIC_CODE,
+    outgroup: Optional[str] = None,
+) -> KaKsStats:
+    """Ka/Ks (dN/dS) by the Nei-Gojobori (1986) method, as DnaSP 6 reports
+    it ("Synonymous and Nonsynonymous Substitutions" and "Polymorphism and
+    Divergence" outputs; ``SINONIMO.vb`` and ``EntrePobsMod.vb``).
+
+    1. Sites. For every sequence being compared, the synonymous sites S_i
+       are summed over its analysed codons with ``_count_syn_sites_codon``
+       (DnaSP's stop-excluded denominators) and the nonsynonymous sites are
+       N_i = 3 x (codons analysed) - S_i. ``S_sites`` and ``N_sites`` are
+       the means over sequences (DnaSP: "the total number of synonymous and
+       nonsynonymous sites ... is estimated as the average ... of all
+       sequences").
+    2. Differences. For each pair, synonymous (sd) and nonsynonymous (nd)
+       differences are counted with ``_classify_codon_pair`` (pathway
+       average, paths through stops excluded, as in DnaSP's
+       ``NumSynonEntreCodons``). ``Sd`` and ``Nd`` are the means over pairs.
+    3. Ks = JC(Sd / S_sites) and Ka = JC(Nd / N_sites). The Jukes-Cantor
+       correction is applied once, to the ratio of mean differences to mean
+       sites, exactly as DnaSP's ``PolDivergenceOut`` does (``DivRp2 /
+       SitiosNetos``, then ``FnJukesCantor``). This is not the mean of
+       per-pair corrected distances, which the correction's convexity
+       pushes upwards (by about 8% on DnaSP's own COII example).
+
+    Without an outgroup, the pairs are every ingroup-vs-ingroup combination
+    (DnaSP's module run on a single set of sequences with no
+    population/outgroup structure defined; the summary is then its Pi(s) /
+    Pi(a) form). With an outgroup, the pairs are each ingroup sequence
+    against the outgroup only (DnaSP's behaviour once an outgroup is defined
+    via Define Sequence Sets: ingroup-to-outgroup divergence), and the
+    outgroup is included, alongside the ingroup sequences, in the
+    per-sequence site averages.
+
+    Codons with gaps or ambiguous bases in a sequence are excluded from
+    that sequence's site count; a pair skips codons invalid in either
+    sequence (complete deletion at the codon level, per pair). A stop
+    codon is not excluded: DnaSP analyses a stop inside the coding region
+    as a 21st amino acid (zero synonymous sites, three nonsynonymous;
+    synonymous with another stop, a replacement against a sense codon;
+    the help file: "if DnaSP finds stop codons (in the middle of coding
+    regions) they will be considered as if they would code for a new amino
+    acid (the amino acid 21; for example Selenocysteine)"), and the number
+    of such codons is reported in ``n_internal_stop_codons``. A final codon
+    that is a stop in every sequence is the terminal stop, annotated as
+    noncoding in DnaSP's own example files, and is left out.
+    Ks or Ka is None when the corrected ratio is undefined (p >= 0.75) or
+    the corresponding site mean is zero. If no pair contributes a single
+    jointly-valid codon, ``n_codons``, ``S_sites`` and ``N_sites`` are
+    reported as 0 rather than the raw (unusable) alignment totals -- a
+    populated codon count would otherwise make a fully failed comparison
+    look quantified.
+
+    Parameters
+    ----------
+    seqs : list[str]
+        Ingroup sequences (pre-aligned, same length, length divisible by 3).
+    outgroup : str, optional
+        Outgroup sequence (same length). When given, restricts pairwise
+        comparisons to ingroup-vs-outgroup (see above).
+
+    Returns
+    -------
+    KaKsStats
+        ``omega`` = Ka/Ks; < 1 purifying selection, ≈ 1 neutral, > 1 positive.
+    """
+    result = KaKsStats()
+    n = len(seqs)
+    if outgroup is None:
+        if n < 2:
+            return result
+        L = len(seqs[0])
+    else:
+        if n < 1:
+            return result
+        L = len(outgroup)
+        if any(len(s) != L for s in seqs):
+            return result
+    if L == 0 or L % 3 != 0:
+        return result
+
+    n_codons = L // 3
+    site_pool = list(seqs) if outgroup is None else list(seqs) + [outgroup]
+    if _terminal_stop_codon(site_pool, genetic_code):
+        n_codons -= 1   # the coding region's terminal stop is not analysed
+
+    # Per-sequence site counts, over every sequence being compared (the
+    # ingroup, plus the outgroup itself when one is given).
+    S_per_seq: list[float] = []
+    N_per_seq: list[float] = []
+    analysed_in_all = [True] * n_codons
+    has_stop = [False] * n_codons
+    for seq in site_pool:
+        S = 0.0
+        n_analysed = 0
+        for ci in range(n_codons):
+            codon = seq[ci * 3:(ci + 1) * 3]
+            if any(nt not in 'ATCG' for nt in codon):
+                analysed_in_all[ci] = False
+                continue
+            if genetic_code.get(codon) == '*':
+                has_stop[ci] = True
+            n_analysed += 1
+            S += _count_syn_sites_codon(codon, genetic_code)
+        S_per_seq.append(S)
+        N_per_seq.append(3.0 * n_analysed - S)
+
+    # DnaSP's "Number of codons analyzed": codons valid in every sequence.
+    result.n_codons = sum(analysed_in_all)
+    result.n_internal_stop_codons = sum(1 for ci in range(n_codons) if analysed_in_all[ci] and has_stop[ci])
+    result.S_sites = sum(S_per_seq) / len(site_pool)
+    result.N_sites = sum(N_per_seq) / len(site_pool)
+
+    # Pairwise differences
+    Sd_all: list[float] = []
+    Nd_all: list[float] = []
+    if outgroup is None:
+        pairs = list(combinations(seqs, 2))
+    else:
+        pairs = [(s, outgroup) for s in seqs]
+
+    for seq_a, seq_b in pairs:
+        total_sd = 0.0
+        total_nd = 0.0
+        n_valid = 0
+        for ci in range(n_codons):
+            c1 = seq_a[ci * 3:(ci + 1) * 3]
+            c2 = seq_b[ci * 3:(ci + 1) * 3]
+            if any(nt not in 'ATCG' for nt in c1 + c2):
+                continue
+            n_valid += 1
+            sd, nd = _classify_codon_pair(c1, c2, genetic_code)
+            total_sd += sd
+            total_nd += nd
+        if n_valid == 0:
+            continue
+        Sd_all.append(total_sd)
+        Nd_all.append(total_nd)
+
+    if not Sd_all:
+        # No pair contributed a single jointly-valid codon (e.g. every
+        # ingroup sequence is a stop/gap/ambiguous codon at every position
+        # against the outgroup). Reporting the raw alignment codon/site
+        # counts here would make a completely failed comparison look like a
+        # populated, quantified result -- report nothing instead.
+        result.n_codons = 0
+        result.S_sites = 0.0
+        result.N_sites = 0.0
+        result.n_internal_stop_codons = 0
+        return result
+
+    result.Sd = sum(Sd_all) / len(Sd_all)
+    result.Nd = sum(Nd_all) / len(Nd_all)
+    if result.S_sites > 0.0:
+        result.Ks = _jc_correct(result.Sd / result.S_sites)
+    if result.N_sites > 0.0:
+        result.Ka = _jc_correct(result.Nd / result.N_sites)
+    if result.Ka is not None and result.Ks is not None and result.Ks > 0.0:
+        result.omega = result.Ka / result.Ks
+
+    return result
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Frequency spectrum helpers (Group D: fufs, sfs)
+# ─────────────────────────────────────────────────────────────────────────────
+
+def _stirling1_unsigned(n: int) -> list[int]:
+    """Row n of unsigned Stirling numbers of the first kind.
+
+    Returns a list of length n+1 where entry k holds |s(n, k)|.
+    Recurrence: |s(n+1, k)| = n × |s(n, k)| + |s(n, k-1)|
+    Uses Python arbitrary-precision integers  -  no overflow.
+    """
+    row: list[int] = [0] * (n + 1)
+    row[0] = 1  # |s(0, 0)| = 1 by convention
+    for i in range(1, n + 1):
+        new_row = [0] * (n + 1)
+        for k in range(1, i + 1):
+            new_row[k] = (i - 1) * row[k] + (row[k - 1] if k >= 1 else 0)
+        row = new_row
+    return row
+
+
+def _ewens_log_terms(n: int, theta: float) -> list[float]:
+    """log P(K_n = k) for k = 0 .. n under the Ewens sampling formula.
+
+    K_n is the number of distinct alleles in a sample of n sequences under
+    the infinite-alleles model with scaled mutation rate theta (= θ_π):
+
+        P(K_n = k) = |s(n, k)| × θ^k / [θ(θ+1)…(θ+n−1)]
+
+    Evaluated in log space.  The central unsigned Stirling numbers |s(n, k)|
+    exceed float range for n ≳ 171, so float(|s(n, k)|) overflows; math.log of
+    the exact Python int does not.  Entry k = 0 (and any k > n) is -inf.
+    """
+    log_stirling = _log_stirling1_unsigned(n)
+    log_theta = math.log(theta)
+    log_rising = math.fsum(math.log(theta + i) for i in range(n))
+    terms = [-math.inf] * (n + 1)
+    for k in range(1, n + 1):
+        if log_stirling[k] != -math.inf:
+            terms[k] = log_stirling[k] + k * log_theta - log_rising
+    return terms
+
+
+@lru_cache(maxsize=None)
+def _log_stirling1_unsigned(n: int) -> tuple[float, ...]:
+    """math.log of each |s(n, k)|, computed once per n (the exact ints are unchanged)."""
+    return tuple(math.log(v) if v > 0 else -math.inf for v in _stirling1_unsigned(n))
+
+
+def _logsumexp(values: list[float]) -> float:
+    peak = max(values)
+    return peak + math.log(math.fsum(math.exp(x - peak) for x in values))
+
+
+def _fu_fs_logs(n: int, H: int, k: float) -> tuple[float, float]:
+    """log P(K_n >= H) and log P(K_n < H) under the Ewens formula with theta = k."""
+    if H > n or not math.isfinite(k):
+        raise ValueError("Fu's Fs requires H <= n and finite theta")
+    terms = _ewens_log_terms(n, k)
+    return _logsumexp(terms[H:]), _logsumexp(terms[1:H])
+
+
+def fu_fs_statistic(n: int, H: int, k: float) -> Optional[float]:
+    """Fu's Fs = ln(S' / (1 - S')) from n, the haplotype count H and theta_pi = k."""
+    if n < 2 or H < 2 or k <= 0.0:
+        return None
+    log_upper, log_lower = _fu_fs_logs(n, H, k)
+    return log_upper - log_lower
+
+
+def _ewens_cdf(k_max: int, n: int, theta: float) -> float:
+    """P(K_n ≤ k_max) under the Ewens sampling formula."""
+    if n < 1 or theta <= 0.0:
+        return 1.0
+    k_max = min(k_max, n)
+    if k_max < 1:
+        return 0.0
+    terms = _ewens_log_terms(n, theta)
+    total = math.fsum(math.exp(terms[k]) for k in range(1, k_max + 1))
+    return min(1.0, max(0.0, total))
+
+
+def _ewens_sf(k_min: int, n: int, theta: float) -> float:
+    """P(K_n ≥ k_min) under the Ewens sampling formula (upper tail).
+
+    Summed directly rather than as 1 − _ewens_cdf(k_min − 1) to keep precision
+    when the observed allele count sits far in the upper tail.
+    """
+    if n < 1 or theta <= 0.0:
+        return 1.0
+    if k_min <= 1:
+        return 1.0
+    if k_min > n:
+        return 0.0
+    terms = _ewens_log_terms(n, theta)
+    total = math.fsum(math.exp(terms[k]) for k in range(k_min, n + 1))
+    return min(1.0, max(0.0, total))
+
+
+def compute_fu_fs(seqs: list[str], H: int, k: float) -> FuFsStats:
+    """Fu's Fs neutrality test (Fu 1997, Genetics 147:915-925).
+
+    Fs = ln(S' / (1 − S')), with S' = P(K_n ≥ H | θ_π) the Ewens-sampling-formula
+    probability of observing at least as many alleles as the H haplotypes seen,
+    given θ_π = k (mean pairwise differences). A large negative Fs means an
+    excess of haplotypes relative to neutral expectation - the signature of
+    population expansion or genetic hitchhiking. S' is not itself the P-value:
+    because θ_π is estimated, a formal test needs coalescent simulation.
+
+    Parameters
+    ----------
+    seqs : list[str]   Sequences after complete deletion (same length, clean).
+    H    : int         Observed number of haplotypes (distinct sequences).
+    k    : float       Mean pairwise differences (θ_π = π × L_net).
+
+    Returns
+    -------
+    FuFsStats with Fs, S_k (= S'), theta_pi filled.
+    """
+    n = len(seqs)
+    result = FuFsStats(n=n, H=H, theta_pi=k)
+    if n < 2 or H < 2 or k <= 0.0:
+        return result  # no polymorphism -> Fs undefined (DnaSP reports n.a.)
+
+    log_upper, log_lower = _fu_fs_logs(n, H, k)
+    result.S_k = min(1.0, math.exp(log_upper))
+    result.Fs = log_upper - log_lower
+
+    return result
+
+
+def compute_sfs(seqs: list[str], outgroup_seq: Optional[str] = None) -> SFSStats:
+    """Site frequency spectrum  -  folded and (with outgroup) unfolded.
+
+    Parameters
+    ----------
+    seqs         : list[str]          Original (unclean) ingroup sequences.
+    outgroup_seq : str | None         Outgroup sequence (same length) for
+                                      unfolded SFS.  None → folded only.
+
+    Returns
+    -------
+    SFSStats with folded dict and, if outgroup_seq is not None, unfolded dict.
+
+    Gap treatment
+    -------------
+    Folded    -  complete deletion on ingroup only: skip any column where any
+               ingroup sequence has a gap/ambiguous base.
+    Unfolded  -  additionally requires the outgroup to be a clean ATCG base
+               at that column; gap in outgroup → column skipped for unfolded
+               but still counted for folded if ingroup is clean.
+    Multiallelic sites (> 2 ingroup states) are excluded from both spectra, as
+    in DnaSP, and tallied in n_multiallelic_excluded.
+    """
+    n = len(seqs)
+    result = SFSStats(n=n, has_outgroup=outgroup_seq is not None)
+    if n < 2 or not seqs:
+        return result
+
+    L = len(seqs[0])
+    folded: dict[int, int] = {}
+    unfolded: Optional[dict[int, int]] = {} if outgroup_seq is not None else None
+
+    for col in range(L):
+        # Ingroup column
+        ing_col = [s[col] for s in seqs]
+        # Skip if any ingroup base is not clean ATCG
+        if any(c not in 'ATCG' for c in ing_col):
+            continue
+
+        counts = Counter(ing_col)
+        alleles = [a for a, cnt in counts.items()]
+        if len(alleles) < 2:
+            continue  # monomorphic  -  not a segregating site
+        if len(alleles) > 2:
+            result.n_multiallelic_excluded += 1
+            continue  # DnaSP FULI.vb: frequency block runs only when contot == 2
+
+        # ── Folded SFS ──────────────────────────────────────────────────
+        # Minor allele = least frequent; fold at n/2
+        minor_count = min(counts.values())
+        folded_key = minor_count  # i = count of minor allele (1 ≤ i ≤ n//2)
+        folded[folded_key] = folded.get(folded_key, 0) + 1
+
+        # ── Unfolded SFS (needs outgroup) ────────────────────────────────
+        if outgroup_seq is not None and unfolded is not None and col < len(outgroup_seq):
+            og = outgroup_seq[col]
+            if og in 'ATCG' and og in counts:
+                # Ancestral allele = outgroup; derived = everything else
+                derived_count = n - counts[og]
+                if 1 <= derived_count <= n - 1:
+                    unfolded[derived_count] = unfolded.get(derived_count, 0) + 1
+
+    result.folded = folded
+    result.unfolded = unfolded
+    return result
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Substitution pattern helpers (Group E: tstv, codon)
+# ─────────────────────────────────────────────────────────────────────────────
+
+def compute_ts_tv(
+    seqs: list[str], outgroup_seq: Optional[str] = None
+) -> TsTvStats:
+    """Transition / transversion ratio, one change per biallelic segregating site.
+
+    Reproduces DnaSP 6's Mod31Compute_1 / RellenoMatrizCambios /
+    CalculaTransitionTransversionRatio: build a per-site mutation count rather
+    than summing pairwise differences.
+
+    A transition is A<->G or C<->T; a transversion is any purine<->pyrimidine
+    change.  Ratio = transitions / transversions (None when Tv == 0).
+
+    Parameters
+    ----------
+    seqs : list[str]
+        Ingroup sequences (upper-case; equal length).
+    outgroup_seq : str | None
+        Optional outgroup sequence.  When given, DnaSP's polarised mode is used:
+        columns where the outgroup has a gap, or where the outgroup allele is
+        not one of the two ingroup alleles, are excluded ("ambiguo").  The Ts/Tv
+        classification itself is polarity-independent, so the ratio is the same
+        with or without the outgroup for the columns that survive.
+    """
+    result = TsTvStats(n=len(seqs), polarised=outgroup_seq is not None)
+    if len(seqs) < 2:
+        return result
+
+    L = len(seqs[0])
+    ts = tv = 0
+    for col in range(L):
+        ing = [s[col] for s in seqs]
+        if any(b not in _NUCLEOTIDES for b in ing):
+            continue
+        result.L_net += 1
+        states = set(ing)
+        if len(states) < 2:
+            continue                       # monomorphic
+        if len(states) > 2:
+            result.n_multiallelic_excluded += 1
+            continue                       # DnaSP: multiple hits -> not treated
+        if outgroup_seq is not None:
+            og = outgroup_seq[col] if col < len(outgroup_seq) else "-"
+            if og not in _NUCLEOTIDES or og not in states:
+                result.n_unpolarisable_excluded += 1
+                continue
+        a, b = sorted(states)
+        if (a in _PURINES) == (b in _PURINES):
+            ts += 1
+        else:
+            tv += 1
+
+    result.n_transitions = ts
+    result.n_transversions = tv
+    result.n_sites = ts + tv
+    if tv > 0:
+        result.ts_tv = ts / tv
+    return result
+
+
+def _sequence_enc(seq: str, genetic_code: dict[str, str]) -> tuple[Optional[float], int]:
+    """CodonUsage.vb M23ENC/M23SFtipos; sense families and synonymous weight."""
+    families = _synonymous_families(genetic_code)
+    raw = Counter(seq[i:i + 3] for i in range(0, len(seq) - 2, 3)
+                  if all(c in _NUCLEOTIDES for c in seq[i:i + 3]))
+    classes: dict[int, list[Optional[float]]] = {}
+    for codons in families.values():
+        total = sum(raw[c] for c in codons)
+        homozygosity = None
+        if len(codons) > 1 and total > 1:
+            numerator = sum(raw[c] ** 2 for c in codons) / total - 1
+            if numerator > 0.000001:
+                homozygosity = numerator / (total - 1)
+        classes.setdefault(len(codons), []).append(homozygosity)
+    means = {}
+    for size, values in classes.items():
+        if size > 1:
+            defined = [v for v in values if v is not None]
+            means[size] = sum(defined) / len(defined) if defined else None
+    if 3 in means and means[3] is None and means.get(2) and means.get(4):
+        means[3] = (means[2] + means[4]) / 2
+    weight = sum(raw[c] for codons in families.values() if len(codons) > 1 for c in codons)
+    if any(v is None for v in means.values()):
+        return None, weight
+    value = len(classes.get(1, [])) + sum(len(classes[k]) / v for k, v in means.items())
+    return min(61.0, value), weight
+
+
+def compute_codon_usage(
+    seqs: list[str], genetic_code: dict[str, str] = GENETIC_CODE,
+    *, names: list[str] | None = None,
+) -> CodonUsageStats:
+    """Mean triplet counts/RSCU including stops; weighted per-sequence ENC.
+
+    CodonUsage.vb includes amino-acid family 21 in MuestraRSCU, but excludes
+    it in M23ENC. Coding intervals must be selected before calling this method.
+    Incomplete trailing codons are rejected; ambiguous/gapped triplets omitted.
+    When names are supplied, retain each sequence's ENC (including undefined).
+    """
+    result = CodonUsageStats(n=len(seqs))
+    if not seqs:
+        return result
+    if any(len(seq) % 3 for seq in seqs):
+        raise ValueError("Codon usage requires a coding length divisible by 3")
+    families = _synonymous_families(genetic_code)
+    families['*'] = [c for c, aa in genetic_code.items() if aa == '*']
+    raw = Counter(seq[i:i + 3] for seq in seqs for i in range(0, len(seq), 3)
+                  if all(c in _NUCLEOTIDES for c in seq[i:i + 3]))
+    result.n_codons = sum(raw.values()) / len(seqs)
+    result.codon_counts = {codon: raw[codon] / len(seqs) for codon in genetic_code}
+    for codons in families.values():
+        total = sum(raw[c] for c in codons)
+        for codon in codons:
+            result.rscu[codon] = raw[codon] * len(codons) / total if total else 0.0
+    values = [_sequence_enc(seq, genetic_code) for seq in seqs]
+    if names is not None:
+        result.per_sequence_enc = {name: value for name, (value, _) in zip(names, values)}
+    usable = [(v, w) for v, w in values if v is not None and w > 0]
+    if usable:
+        result.ENC = sum(v * w for v, w in usable) / sum(w for _, w in usable)
+    return result
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Group F  -  Fay & Wu's H, Zeng's E, and Fst
+# ─────────────────────────────────────────────────────────────────────────────
+
+def compute_fay_wu(seqs: list[str], outgroup: str) -> FayWuStats:
+    """Fay & Wu's H (2000) and Zeng's E (2006) from an outgroup-polarised SFS.
+
+    Applies complete deletion: a site is used only if all ingroup sequences AND
+    the outgroup have an unambiguous ATCG nucleotide.  A segregating site is
+    'polarisable' when the outgroup allele appears in the ingroup (i.e. the
+    ancestral allele is present).
+
+    Parameters
+    ----------
+    seqs : list[str]
+        Ingroup sequences (uppercase, equal length).
+    outgroup : str
+        Outgroup sequence (same length as seqs).
+
+    Returns
+    -------
+    FayWuStats with theta_pi, theta_w, theta_h, theta_l (all per site), H, E.
+    """
+    result = FayWuStats(n=len(seqs))
+    n = len(seqs)
+    if n < 2 or not seqs:
+        return result
+    L = len(seqs[0])
+    if len(outgroup) < L:
+        raise ValueError(
+            f"Outgroup length ({len(outgroup)}) shorter than alignment ({L})."
+        )
+
+    # Step 1: complete deletion with outgroup  -  keep only clean ATCG columns
+    clean_cols = [
+        col for col in range(L)
+        if (outgroup[col] in _NUCLEOTIDES
+            and all(s[col] in _NUCLEOTIDES for s in seqs)
+            and len({s[col] for s in seqs}) <= 2
+            and (len({s[col] for s in seqs}) == 1 or outgroup[col] in {s[col] for s in seqs}))
+    ]
+    L_net = len(clean_cols)
+    result.L_net = L_net
+    if L_net == 0:
+        return result
+
+    # Step 2: build unfolded SFS from polarised sites
+    # xi[i] = number of sites where derived allele has count i (1 ≤ i ≤ n-1)
+    xi: dict[int, int] = {}
+    n_polarised = 0
+
+    for col in clean_cols:
+        anc = outgroup[col]
+        col_bases = [s[col] for s in seqs]
+        states = frozenset(col_bases)
+        if len(states) < 2:
+            continue  # monomorphic site  -  skip
+        if anc not in states:
+            continue  # can't polarise (ancestral allele absent from ingroup)
+        # For each derived allele at this site
+        for derived in states - {anc}:
+            i = sum(1 for b in col_bases if b == derived)
+            if 1 <= i <= n - 1:
+                xi[i] = xi.get(i, 0) + 1
+                n_polarised += 1
+
+    result.n_polarised = n_polarised
+    if n_polarised == 0:
+        return result
+
+    # Step 3: compute θ estimates per site
+    # θ_π = Σ_i ξ_i * 2*i*(n-i) / [n*(n-1)] / L_net
+    # θ_H = Σ_i ξ_i * 2*i²    / [n*(n-1)] / L_net
+    # θ_L = Σ_i ξ_i * i        / (n-1)     / L_net
+    # θ_W = n_polarised / a1                / L_net
+    denom_pi = n * (n - 1)
+    a1 = _harmonic(n)  # Σ_{k=1}^{n-1} 1/k  (_harmonic(n) sums i=1..n-1)
+
+    sum_pi = 0.0  # Σ ξ_i * 2*i*(n-i)
+    sum_h  = 0.0  # Σ ξ_i * 2*i²
+    sum_l  = 0.0  # Σ ξ_i * i
+
+    for i, xi_i in xi.items():
+        sum_pi += xi_i * 2 * i * (n - i)
+        sum_h  += xi_i * 2 * i * i
+        sum_l  += xi_i * i
+
+    theta_pi = sum_pi / denom_pi / L_net
+    theta_h  = sum_h  / denom_pi / L_net
+    theta_l  = sum_l  / (n - 1)  / L_net
+    theta_w  = n_polarised / a1  / L_net
+
+    result.theta_pi = theta_pi
+    result.theta_w  = theta_w
+    result.theta_h  = theta_h
+    result.theta_l  = theta_l
+    result.H = theta_pi - theta_h
+    result.E = theta_l  - theta_w
+
+    return result
+
+
+def compute_fst(pop_seqs: dict[str, list[str]]) -> FstStats:
+    """Population differentiation using Hudson et al. (1992) pairwise Fst.
+
+    For each pair of populations A and B:
+      π_s = (π_A + π_B) / 2   (mean within-population diversity, per site)
+      π_t = Dxy_AB             (between-population diversity, per site)
+      Fst = 1 − π_s / π_t
+
+    Fst = 0 → populations identical; Fst = 1 → fixed differences only.
+    Returns None for a pair when π_t == 0 (no between-pop variation).
+
+    Parameters
+    ----------
+    pop_seqs : dict[str, list[str]]
+        Map of population label → list of sequences (uppercase, equal length).
+        All sequences across all pops must be the same length.
+
+    Returns
+    -------
+    FstStats with per-population π, pairwise Dxy, pairwise Fst, and mean Fst.
+    """
+    pop_names = sorted(pop_seqs.keys())
+    result = FstStats(n_pops=len(pop_names), pop_names=pop_names)
+
+    if len(pop_names) < 2:
+        return result
+
+    # Determine L_net via complete deletion across all sequences
+    all_seqs = [s for seqs in pop_seqs.values() for s in seqs]
+    _, L_net = complete_deletion(all_seqs)
+
+    if L_net == 0:
+        for pop in pop_names:
+            result.pop_sizes[pop] = len(pop_seqs[pop])
+            result.pi_within[pop] = 0.0
+        for i, p1 in enumerate(pop_names):
+            for p2 in pop_names[i + 1:]:
+                result.pi_between[(p1, p2)] = 0.0
+                result.fst_pairwise[(p1, p2)] = None
+        return result
+
+    # Clean sequences per pop (same complete-deletion mask)
+    # Re-derive clean columns from the global mask
+    L = len(all_seqs[0])
+    clean_cols = [
+        col for col in range(L)
+        if all(s[col] in _NUCLEOTIDES for s in all_seqs)
+    ]
+    L_clean = len(clean_cols)
+
+    def _pi_within(seqs_pop: list[str]) -> float:
+        """Mean pairwise differences per site within a population."""
+        n = len(seqs_pop)
+        if n < 2:
+            return 0.0
+        total = 0.0
+        for i in range(n - 1):
+            for j in range(i + 1, n):
+                total += sum(
+                    1 for col in clean_cols
+                    if seqs_pop[i][col] != seqs_pop[j][col]
+                )
+        return total / (n * (n - 1) / 2) / L_clean
+
+    def _dxy(seqs_a: list[str], seqs_b: list[str]) -> float:
+        """Mean pairwise differences per site between two populations."""
+        na, nb = len(seqs_a), len(seqs_b)
+        if na == 0 or nb == 0:
+            return 0.0
+        total = 0.0
+        for sa in seqs_a:
+            for sb in seqs_b:
+                total += sum(
+                    1 for col in clean_cols
+                    if sa[col] != sb[col]
+                )
+        return total / (na * nb) / L_clean
+
+    # Compute within-pop π for each population
+    for pop in pop_names:
+        result.pop_sizes[pop] = len(pop_seqs[pop])
+        result.pi_within[pop] = _pi_within(pop_seqs[pop])
+
+    # Compute pairwise Dxy and Fst
+    fst_values: list[float] = []
+    for i, p1 in enumerate(pop_names):
+        for p2 in pop_names[i + 1:]:
+            dxy = _dxy(pop_seqs[p1], pop_seqs[p2])
+            result.pi_between[(p1, p2)] = dxy
+            pi_s = (result.pi_within[p1] + result.pi_within[p2]) / 2.0
+            if dxy > 0:
+                fst = 1.0 - pi_s / dxy
+                # Clamp to [0, 1]  -  negative values arise with small samples
+                fst = max(0.0, min(1.0, fst))
+                result.fst_pairwise[(p1, p2)] = fst
+                fst_values.append(fst)
+            else:
+                result.fst_pairwise[(p1, p2)] = None
+
+    if fst_values:
+        result.fst_mean = sum(fst_values) / len(fst_values)
+
+    return result
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Core analysis pipeline
+# ─────────────────────────────────────────────────────────────────────────────
+
+def analyse_region(
+    seqs: list[str],
+    names: list[str],
+    region_label: str,
+    L_total: int,
+) -> RegionStats:
+    """Run polymorphism + neutrality tests on a (possibly windowed) slice."""
+    n = len(seqs)
+    stats = RegionStats(region=region_label, n=n, L_total=L_total)
+
+    if n < 2:
+        return stats
+
+    clean, L_net = complete_deletion(seqs)
+    stats.L_net = L_net
+
+    if L_net == 0:
+        return stats
+
+    stats.S, stats.Eta = compute_segregating(clean)
+    stats.H, stats.Hd, stats.VarHd = compute_haplotypes(clean)
+    stats.GC = compute_gc(clean)
+    stats.k = compute_k(clean)
+    stats.Pi = stats.k / L_net if L_net > 0 else 0.0
+    stats.ThetaW, stats.ThetaW_nuc = watterson_theta(stats.S, n, L_net)
+    stats.TajimaD = tajima_d(stats.k, stats.S, n)
+    eta_s, _ = compute_singletons(clean)
+    stats.FuLiD_star, stats.FuLiF_star = fu_li_d_star_f_star(
+        stats.k, stats.S, eta_s, n
+    )
+    stats.R2 = ramos_onsins_r2(clean, stats.k, stats.S)
+
+    return stats
+
+
+def run_analysis(
+    aln: Alignment,
+    window_size: int = 0,
+    step_size: int = 0,
+    analyses: Optional[set[str]] = None,
+    pop_assignments: Optional[dict[str, str]] = None,
+    aln2: Optional[Alignment] = None,
+    outgroup: Optional[str] = None,
+    hka_loci: Optional[list[HKALocus]] = None,
+    genetic_code: dict[str, str] = GENETIC_CODE,
+    n_sim: int = 0,
+    sim_given: str = "S",
+    sim_seed: Optional[int] = None,
+    sim_label: str = "",
+) -> dict:
+    """Run all requested analyses and return a results bundle.
+
+    Parameters
+    ----------
+    aln : Alignment
+    window_size : int
+        Sliding window size in bp (0 = whole alignment only).
+    step_size : int
+        Sliding window step in bp.
+    analyses : set[str] | None
+        Which analyses to run.  None defaults to {{'polymorphism'}}.
+    pop_assignments : dict[str, str] | None
+        Sequence-name → population label mapping (for divergence analysis).
+    aln2 : Alignment | None
+        Second alignment (for divergence analysis).
+    outgroup : str | None
+        Outgroup sequence string (same length as aln) for fuliout analysis.
+    hka_loci : list[HKALocus] | None
+        Pre-loaded HKA loci for the hka analysis.
+    genetic_code : dict[str, str]
+        Codon -> amino acid table for mk, kaks and codon (default: the
+        standard/universal code). Use GENETIC_CODES["vertebrate-mitochondrial"]
+        for mitochondrial coding sequences (e.g. COII), where TGA is Trp, not
+        a stop, so the standard code would silently drop those codons.
+    n_sim : int
+        Coalescent replicates for P-values of Tajima's D, R2 and Fu's Fs over the
+        whole region (0, the default, runs no simulation and adds nothing).
+    sim_given : str
+        "S" to condition on the observed segregating sites, "theta" for Watterson's theta.
+    sim_seed : int | None
+        Seed for the simulation; ``sim_label`` separates regions sharing it.
+
+    Returns
+    -------
+    dict with keys: 'global', 'windows', 'ld', 'recombination',
+    'popsize', 'indel', 'divergence', 'fuliout', 'hka'.
+    """
+    if analyses is None:
+        analyses = {"polymorphism"}
+    if "all" in analyses:
+        analyses = VALID_ANALYSES.copy()
+
+    L = aln.L
+    global_label = f"1-{L}"
+
+    # Always run polymorphism
+    global_stats = analyse_region(aln.seqs, aln.names, global_label, L)
+    window_stats: list[RegionStats] = []
+
+    if window_size > 0 and step_size > 0:
+        pos = 0
+        while pos < L:
+            # CODIGO2.vb emits before testing To2 < nucw. CONTROLE.vb caps
+            # both the next start and end (Gaps in Sliding Window = considered).
+            end = min(pos + window_size, L)
+            slices = [s[pos:end] for s in aln.seqs]
+            label = f"{pos + 1}-{end}"
+            ws = analyse_region(slices, aln.names, label, end - pos)
+            clean_positions = [p + 1 for p in range(pos, end)
+                               if all(s[p] in _NUCLEOTIDES for s in aln.seqs)]
+            # CONTROLE.vb::BuscaPuntoMedioWithSynSW (line 126).
+            ws.midpoint = (clean_positions[(len(clean_positions) - 1) // 2]
+                           if clean_positions else pos + 1)
+            window_stats.append(ws)
+            if end == L:
+                break
+            pos = min(pos + step_size, L - 1)
+
+    results: dict = {
+        "genetic_code": genetic_code,
+        "global": global_stats,
+        "windows": window_stats,
+        "ld": None,
+        "recombination": None,
+        "popsize": None,
+        "indel": None,
+        "divergence": None,
+        "fuliout": None,
+        "hka": None,
+        "mk": None,
+        "kaks": None,
+        "fufs": None,
+        "sfs": None,
+        "tstv": None,
+        "codon": None,
+        "faywu": None,
+        "fst": None,
+    }
+
+    # Get cleaned sequences for non-polymorphism analyses
+    clean, _ = complete_deletion(aln.seqs)
+
+    positions = [i + 1 for i in range(aln.L) if all(seq[i] in _NUCLEOTIDES for seq in aln.seqs)]
+    if "ld" in analyses:
+        results["ld"] = compute_ld(clean, positions, aln.seqs)
+
+    if "recombination" in analyses:
+        results["recombination"] = compute_recombination(clean, positions)
+
+    if "popsize" in analyses:
+        results["popsize"] = compute_mismatch(clean)
+
+    if "indel" in analyses:
+        results["indel"] = compute_indel(aln.seqs)  # use original seqs (keep gaps)
+
+    if "divergence" in analyses:
+        # Determine population split
+        if aln2 is not None:
+            # Two separate files provided
+            div_stats = compute_divergence(
+                aln.seqs, aln2.seqs,
+                pop1_name=Path(aln.source).stem,
+                pop2_name=Path(aln2.source).stem,
+            )
+            results["divergence"] = div_stats
+        elif pop_assignments:
+            pops = split_alignment_by_pop(aln, pop_assignments)
+            pop_names = sorted(pops.keys())
+            if len(pop_names) >= 2:
+                a = pops[pop_names[0]]
+                b = pops[pop_names[1]]
+                div_stats = compute_divergence(
+                    a.seqs, b.seqs,
+                    pop1_name=pop_names[0],
+                    pop2_name=pop_names[1],
+                )
+                results["divergence"] = div_stats
+            else:
+                print("Warning: divergence analysis requires at least 2 populations in --pop-file", file=sys.stderr)
+        else:
+            print("Warning: divergence analysis requires --input2 or --pop-file", file=sys.stderr)
+
+    if "fuliout" in analyses:
+        if outgroup is not None:
+            results["fuliout"] = compute_fu_li_outgroup(aln.seqs, outgroup)
+        else:
+            print("Warning: fuliout analysis requires --outgroup <seq_name>", file=sys.stderr)
+
+    if "hka" in analyses:
+        if hka_loci:
+            results["hka"] = compute_hka(hka_loci)
+        else:
+            print("Warning: hka analysis requires --hka-file <file>", file=sys.stderr)
+
+    if "mk" in analyses:
+        if outgroup is not None:
+            if aln.L % 3 != 0:
+                print(
+                    f"Warning: alignment length ({aln.L} bp) is not divisible by 3  -  "
+                    "mk analysis requires an in-frame coding sequence.",
+                    file=sys.stderr,
+                )
+            else:
+                results["mk"] = compute_mk(aln.seqs, outgroup, genetic_code)
+        else:
+            print("Warning: mk analysis requires --outgroup <seq_name>", file=sys.stderr)
+
+    if "kaks" in analyses:
+        if aln.L % 3 != 0:
+            print(
+                f"Warning: alignment length ({aln.L} bp) is not divisible by 3  -  "
+                "kaks analysis requires an in-frame coding sequence.",
+                file=sys.stderr,
+            )
+        else:
+            results["kaks"] = compute_ka_ks(aln.seqs, genetic_code, outgroup=outgroup)
+
+    if "fufs" in analyses:
+        # Uses polymorphism stats already computed by analyse_region
+        results["fufs"] = compute_fu_fs(clean, global_stats.H, global_stats.k)
+
+    if "sfs" in analyses:
+        # Uses original (uncleaned) seqs so complete deletion is handled internally
+        results["sfs"] = compute_sfs(aln.seqs, outgroup)
+
+    if "tstv" in analyses:
+        results["tstv"] = compute_ts_tv(aln.seqs, outgroup)
+
+    if "codon" in analyses:
+        if aln.L % 3 == 0:
+            results["codon"] = compute_codon_usage(aln.seqs, genetic_code, names=aln.names)
+        else:
+            print("Warning: codon requires an in-frame alignment", file=sys.stderr)
+
+    if "faywu" in analyses:
+        if outgroup is not None:
+            results["faywu"] = compute_fay_wu(aln.seqs, outgroup)
+        else:
+            print("Warning: faywu analysis requires --outgroup <seq_name>", file=sys.stderr)
+
+    if "fst" in analyses:
+        if pop_assignments:
+            pops = split_alignment_by_pop(aln, pop_assignments)
+            if len(pops) >= 2:
+                results["fst"] = compute_fst({k: v.seqs for k, v in pops.items()})
+            else:
+                print("Warning: fst analysis requires at least 2 populations in --pop-file", file=sys.stderr)
+        else:
+            print("Warning: fst analysis requires --pop-file", file=sys.stderr)
+
+    if n_sim:
+        warning = _simulation_cost_warning(global_stats.n, n_sim, global_stats.S)
+        if warning:
+            print(f"Warning: {warning}", file=sys.stderr)
+        results["coalescent"] = coalescent_test(global_stats, n_sim, sim_given, sim_seed, sim_label)
+
+    return results
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Formatting helpers
+# ─────────────────────────────────────────────────────────────────────────────
+
+def _fmt(v: Optional[float], digits: int = 6) -> str:
+    return "n.a." if v is None else f"{v:.{digits}f}"
+
+
+_NOT_ASSESSED = "Descriptive statistic; significance not assessed (use --n-sim for a coalescent P-value)"
+
+
+def _tajima_interp(d: Optional[float]) -> str:
+    return "n.a." if d is None else _NOT_ASSESSED
+
+
+def _fu_li_interp(v: Optional[float]) -> str:
+    if v is None:
+        return "n.a."
+    return "Descriptive statistic; significance not assessed (requires calibrated critical values or simulation)"
+
+
+def _r2_interp(v: Optional[float]) -> str:
+    return "n.a." if v is None else _NOT_ASSESSED
+
+
+def _fmt_count(count: Optional[int]) -> str:
+    return "n.a." if count is None else str(count)
+
+
+def _fmt_p(p: Optional[float]) -> str:
+    """A simulated P-value, (b + 1) / (N + 1) and so never zero: four decimals, or two
+    significant digits, trailing zero kept, below 0.001, so that a small value is never
+    shown as 0.0000."""
+    if p is None:
+        return "n.a."
+    if p >= 0.001:
+        return f"{p:.4f}"
+    return format(Decimal(f"{p:#.2g}"), "f")
+
+
+def _p_interp(p: Optional[float], direction: str) -> str:
+    if p is None:
+        return "n.a."
+    shown = f"P = {_fmt_p(p)}"
+    if p < 0.05:
+        what = ("Departs from the standard neutral model" if direction == "two-tailed"
+                else "Lower than expected under the standard neutral model")
+        return f"{what} ({shown})"
+    return f"No significant departure from the standard neutral model ({shown})"
+
+
+def _ld_significance(p: Optional[float]) -> str:
+    if p is None:
+        return ""
+    if p < 0.001:
+        return "***"
+    if p < 0.01:
+        return "**"
+    if p < 0.05:
+        return "*"
+    return "n.s."
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Output writers
+# ─────────────────────────────────────────────────────────────────────────────
+
+def _serialise_results(results: dict) -> dict:
+    """JSON-ready view of the results bundle (summary.json and result.json).
+
+    LD pairs have their own TSV; pair lists are omitted from this compact form.
+    Tuple dictionary keys (population pairs) use the runner's JSON encoding.
+    """
+    def serialise(value):
+        if is_dataclass(value):
+            return {f.name: serialise(getattr(value, f.name)) for f in fields(value)
+                    if f.name not in {'pairs', 'incompatible_pairs'}}
+        if isinstance(value, dict):
+            return {json.dumps(k) if isinstance(k, tuple) else str(k): serialise(v)
+                    for k, v in value.items()}
+        if isinstance(value, (list, tuple)):
+            return [serialise(v) for v in value]
+        if isinstance(value, (set, frozenset)):
+            return sorted(serialise(v) for v in value)
+        return value
+
+    return {k: serialise(v) for k, v in results.items() if k != 'genetic_code'}
+
+
+def write_summary(output_dir: Path, results: dict) -> Path:
+    """Export the validation runner's summary schema, including named estimates."""
+    path = output_dir / 'summary.json'
+    path.write_text(json.dumps(_serialise_results(results), indent=2, allow_nan=False) + '\n', encoding='utf-8')
+    return path
+
+
+def write_result_envelope(output_dir: Path, src_label: str, input_path: Optional[Path],
+                          results: dict, result_files: list[Path], figs: list[Path],
+                          variant_sites_only: bool = False) -> Path:
+    """Write the result.json envelope (same keys as ClawBio's shared writer).
+
+    ``summary`` carries the headline statistics an agent needs; ``data`` carries
+    the same module summaries as summary.json plus the artifact list. The
+    ClawBio runner, when this package is run there, promotes ``chat_summary_lines`` and ``preferred_artifacts``
+    into its run result, so both are added to the envelope.
+    """
+    write_result_json = _load_repro_writers().write_result_json
+    output_dir = output_dir.resolve()
+    g = results["global"]
+    status = results.get("analysis_status") or {}
+    artifacts = sorted({Path(p).resolve().relative_to(output_dir).as_posix()
+                        for p in [*result_files, *figs] if p})
+
+    def _round(value, digits=6):
+        return None if value is None else round(value, digits)
+
+    summary = {
+        "source": src_label, "n": g.n, "L_total": g.L_total, "L_net": g.L_net,
+        "S": g.S, "Eta": g.Eta, "H": g.H, "Hd": _round(g.Hd), "Pi": _round(g.Pi),
+        "k": _round(g.k), "ThetaW_nuc": _round(g.ThetaW_nuc), "TajimaD": _round(g.TajimaD),
+        "FuLiD_star": _round(g.FuLiD_star), "FuLiF_star": _round(g.FuLiF_star),
+        "R2": _round(g.R2), "variant_sites_only": bool(variant_sites_only),
+        "windows": len(results.get("windows") or []),
+        "analyses_completed": list(status.get("completed", [])),
+        "analyses_skipped": status.get("skipped", []),
+    }
+    data = _serialise_results(results)
+    data["artifacts"] = artifacts
+    checksum = (hashlib.sha256(input_path.read_bytes()).hexdigest()
+                if input_path and input_path.is_file() else "")
+    datasets = {"input": input_path.name if input_path else src_label}
+    path = write_result_json(output_dir, "dnasp", __version__, summary, data,
+                             input_checksum=checksum, datasets=datasets, status="ok", ok=True)
+    envelope = json.loads(path.read_text(encoding="utf-8"))
+    pi = "n.a." if g.Pi is None else f"{g.Pi:.5f}"
+    tajima = "n.a." if g.TajimaD is None else f"{g.TajimaD:.4f}"
+    envelope["chat_summary_lines"] = [
+        f"DnaSP {_display_label(src_label)}: n = {g.n}, net sites {g.L_net}, S = {g.S}, pi = {pi}, Tajima's D = {tajima}.",
+        "Analyses completed: " + (", ".join(summary["analyses_completed"]) or "none") + ".",
+    ]
+    envelope["preferred_artifacts"] = (
+        [a for a in ("report.md", "summary.json", "results.tsv") if a in artifacts]
+        + [a for a in artifacts if a.startswith("figures/")])
+    path.write_text(json.dumps(envelope, indent=2, default=str) + "\n", encoding="utf-8")
+    return path
+
+
+def write_tsv(
+    output_dir: Path,
+    source_name: str,
+    global_stats: RegionStats,
+    window_stats: list[RegionStats],
+    variant_sites_only: bool = False,
+) -> Path:
+    tsv_path = output_dir / "results.tsv"
+    with open(tsv_path, "w", newline="", encoding="utf-8") as fh:
+        w = csv.writer(fh, delimiter="\t")
+        w.writerow(["DnaSP-Python", "Source:", source_name, "Date:", datetime.now().strftime("%Y-%m-%d %H:%M")])
+        if variant_sites_only:
+            w.writerow(["# NetSites is the retained variant-site count; "
+                        "Pi and ThetaW columns are per variant site, not per base "
+                        "(VCF input, as in DnaSP 6)."])
+        w.writerow([])
+        w.writerow(TSV_HEADER)
+        w.writerow(global_stats.as_tsv_row())
+        for ws in window_stats:
+            w.writerow(ws.as_tsv_row())
+    return tsv_path
+
+
+def write_ld_tsv(output_dir: Path, ld: LDStats) -> Path:
+    """Write LD pairwise results as TSV."""
+    path = output_dir / "ld_pairs.tsv"
+    with open(path, "w", newline="", encoding="utf-8") as fh:
+        w = csv.writer(fh, delimiter="\t")
+        w.writerow(["Site1", "Site2", "Dist", "n", "D", "D_prime", "R2", "Chi2", "P_chi2", "Sig"])
+        for p in ld.pairs:
+            w.writerow([
+                p.site1, p.site2, p.dist, p.n_valid,
+                _fmt(p.D, 6),
+                _fmt(p.D_prime, 6),
+                _fmt(p.R2, 6),
+                _fmt(p.chi2, 4),
+                _fmt(p.p_chi2, 6),
+                _ld_significance(p.p_chi2),
+            ])
+    return path
+
+
+def write_report(
+    output_dir: Path,
+    source_name: str,
+    aln: Alignment,
+    results: dict,
+    figures: list[Path],
+    variant_sites_only: bool = False,
+    genetic_code: dict[str, str] = GENETIC_CODE,
+    kaks_used_outgroup: bool = False,
+) -> Path:
+    rs = results["global"]
+    window_stats = results["windows"]
+    ld: Optional[LDStats] = results.get("ld")
+    recomb: Optional[RecombStats] = results.get("recombination")
+    popsize: Optional[MismatchStats] = results.get("popsize")
+    indel_s: Optional[InDelStats] = results.get("indel")
+    div_s: Optional[DivergenceStats] = results.get("divergence")
+    fuliout_s: Optional[FuLiOutgroupStats] = results.get("fuliout")
+    hka_s: Optional[HKAStats] = results.get("hka")
+    mk_s: Optional[MKStats] = results.get("mk")
+    kaks_s: Optional[KaKsStats] = results.get("kaks")
+
+    report_path = output_dir / "report.md"
+    lines: list[str] = [
+        "# DnaSP Population Genetics Report",
+        "",
+        f"**Input**: {source_name}  ",
+        f"**Date**: {datetime.now().strftime('%Y-%m-%d %H:%M')}  ",
+        f"**Tool**: DnaSP-Python  ",
+        "",
+        "---",
+        "",
+        "## Input Summary",
+        "",
+        "| Parameter | Value |",
+        "|-----------|-------|",
+        f"| Number of sequences | {rs.n} |",
+        f"| Alignment length (bp) | {rs.L_total} |",
+        f"| Net sites (after gap removal) | {rs.L_net} |",
+        "",
+    ]
+    if variant_sites_only:
+        lines += [
+            "> **VCF-derived alignment.** Columns represent retained biallelic "
+            f"SNP records; {rs.L_net} columns remain after the analysis mask. "
+            "A retained column can be monomorphic in the selected sample, so "
+            "the retained-column count need not equal S. Diversity is expressed "
+            "per variant site, not per base. Variant ascertainment, genotype "
+            "resolution and filtering can affect counts and neutrality summaries; "
+            "they cannot be assumed to match an all-sites alignment. Per-base "
+            "inference requires the corresponding callable-site and invariant-site "
+            "information. LD positions and distances refer to retained alignment "
+            "columns, not VCF POS or genomic base-pair separation.",
+            "",
+        ]
+    lines += [
+        "## Polymorphism Statistics",
+        "",
+        "| Statistic | Value |",
+        "|-----------|-------|",
+        f"| Segregating sites (S) | {rs.S} |",
+        f"| Total mutations (η) | {rs.Eta} |",
+        f"| Number of haplotypes (H) | {rs.H} |",
+        f"| Haplotype diversity (Hd) | {_fmt(rs.Hd)} |",
+        f"| Variance of Hd | {_fmt(rs.VarHd)} |",
+        f"| Nucleotide diversity (π) | {_fmt(rs.Pi, 8)} |",
+        f"| Mean pairwise differences (k) | {_fmt(rs.k, 6)} |",
+        f"| G+C content | {_fmt(rs.GC, 4)} |",
+        "",
+        "## Theta Estimates",
+        "",
+        "| Estimator | Per site | Absolute |",
+        "|-----------|---------|----------|",
+        f"| Watterson's θ_W | {_fmt(rs.ThetaW_nuc, 8)} | {_fmt(rs.ThetaW, 6)} |",
+        f"| Tajima's θ_k (= π) | {_fmt(rs.Pi, 8)} | {_fmt(rs.k, 6)} |",
+        "",
+        "## Neutrality Tests",
+        "",
+    ]
+    ct: Optional[CoalescentTest] = results.get("coalescent")
+    if ct is not None and (ct.n_valid_TajimaD or ct.n_valid_R2):
+        lines += [
+            "| Test | Value | P (coalescent) | Interpretation |",
+            "|------|-------|----------------|----------------|",
+            (f"| Tajima's D | {_fmt(rs.TajimaD, 6)} | {_fmt_p(ct.TajimaD_p_two_tailed)} (two-tailed) | "
+             f"{_p_interp(ct.TajimaD_p_two_tailed, 'two-tailed')} |") if ct.n_valid_TajimaD
+            else f"| Tajima's D | {_fmt(rs.TajimaD, 6)} | n.a. | {_tajima_interp(rs.TajimaD)} |",
+            f"| Fu & Li's D* | {_fmt(rs.FuLiD_star, 6)} | not simulated | {_fu_li_interp(rs.FuLiD_star)} |",
+            f"| Fu & Li's F* | {_fmt(rs.FuLiF_star, 6)} | not simulated | {_fu_li_interp(rs.FuLiF_star)} |",
+            (f"| Ramos-Onsins & Rozas R2 | {_fmt(rs.R2, 6)} | {_fmt_p(ct.R2_p_lower)} (lower tail) | "
+             f"{_p_interp(ct.R2_p_lower, 'lower')} |") if ct.n_valid_R2
+            else f"| Ramos-Onsins & Rozas R2 | {_fmt(rs.R2, 6)} | n.a. | {_r2_interp(rs.R2)} |",
+            "",
+        ]
+    else:
+        lines += [
+            "| Test | Value | Interpretation |",
+            "|------|-------|----------------|",
+            f"| Tajima's D | {_fmt(rs.TajimaD, 6)} | {_tajima_interp(rs.TajimaD)} |",
+            f"| Fu & Li's D* | {_fmt(rs.FuLiD_star, 6)} | {_fu_li_interp(rs.FuLiD_star)} |",
+            f"| Fu & Li's F* | {_fmt(rs.FuLiF_star, 6)} | {_fu_li_interp(rs.FuLiF_star)} |",
+            f"| Ramos-Onsins & Rozas R2 | {_fmt(rs.R2, 6)} | {_r2_interp(rs.R2)} |",
+            "",
+        ]
+    if ct is not None:
+        conditioning = (f"the observed number of segregating sites (S = {ct.S})" if ct.given == "S"
+                        else f"Watterson's theta (θ_W = {_fmt(ct.theta, 4)})")
+        lines += [
+            "## Coalescent simulation",
+            "",
+            f"P-values come from {ct.n_sim} replicates of the standard neutral model: Kingman "
+            f"coalescent, constant population size, infinite sites and no recombination, "
+            f"conditioned on {conditioning} with n = {ct.n}"
+            + (f", region {ct.label}" if ct.label else "")
+            + f". Seed {ct.seed}; rerun with `--sim-seed {ct.seed}` on the same Python to "
+            f"reproduce them, the replicates coming from `random.Random`, whose algorithms "
+            f"may change between versions.",
+            "",
+        ]
+        if ct.note:
+            lines += [f"No P-values were computed: {ct.note}.", ""]
+        else:
+            lines += [
+                "| Statistic | Observed | Replicates <= observed | Replicates >= observed | P | Valid replicates |",
+                "|-----------|----------|------------------------|------------------------|---|------------------|",
+                f"| Tajima's D | {_fmt(ct.TajimaD, 6)} | {_fmt_count(ct.TajimaD_count_lower)} | "
+                f"{_fmt_count(ct.TajimaD_count_upper)} | {_fmt_p(ct.TajimaD_p_two_tailed)} "
+                f"(two-tailed) | {ct.n_valid_TajimaD} |",
+                f"| R2 | {_fmt(ct.R2, 6)} | {_fmt_count(ct.R2_count_lower)} | | "
+                f"{_fmt_p(ct.R2_p_lower)} (lower tail) | {ct.n_valid_R2} |",
+                f"| Fu's Fs | {_fmt(ct.Fs, 4)} | {_fmt_count(ct.Fs_count_lower)} | | "
+                f"{_fmt_p(ct.Fs_p_lower)} (lower tail) | {ct.n_valid_Fs} |",
+                "",
+                ("Each P-value is (b + 1)/(N + 1), where b of the N valid replicates are at least as "
+                 "extreme as the observed value, so the data count as one replicate and no P-value "
+                 "is zero (Phipson and Smyth 2010); DnaSP reports b/N. Tajima's D is tested in both "
+                 "tails, as twice the smaller tail P-value capped at 1, which does not assume a "
+                 "symmetric null; R2 and Fu's Fs in the lower tail, the direction population growth "
+                 "produces. A significant result rejects the standard neutral model, not selection "
+                 "or growth in particular: demography, population structure, recombination and "
+                 "selection can each produce it. The null has no recombination, so for a "
+                 "recombining region a low Fu's Fs P-value may reflect recombination rather than "
+                 "population growth; Tajima's D and R2 are conservative there instead. Sliding "
+                 "windows are not simulated."),
+                "",
+            ]
+
+    # ── Linkage Disequilibrium ───────────────────────────────────────────────
+    if ld is not None:
+        lines += [
+            "## Linkage Disequilibrium",
+            "",
+            f"Biallelic sites analysed: {ld.n_biallelic}  ",
+            f"Pairwise comparisons: {ld.n_pairs}  ",
+            "",
+            "| Statistic | Value | Reference |",
+            "|-----------|-------|-----------|",
+            f"| ZnS (average R²) | {_fmt(ld.ZnS, 6)} | Kelly 1997, eq 3 |",
+            f"| Za (adjacent R²) | {_fmt(ld.Za, 6)} | Rozas et al. 2001 |",
+            f"| ZZ = Za − ZnS | {_fmt(ld.ZZ, 6)} | Rozas et al. 2001 |",
+            "",
+        ]
+        if ld.pairs:
+            lines += [
+                "### Pairwise LD (first 20 pairs shown; full table in ld_pairs.tsv)",
+                "",
+                "| Site1 | Site2 | Dist | D | D' | R² | χ² | P | Sig |",
+                "|-------|-------|------|---|----|----|-----|---|-----|",
+            ]
+            for p in ld.pairs[:20]:
+                lines.append(
+                    f"| {p.site1} | {p.site2} | {p.dist} "
+                    f"| {_fmt(p.D, 4)} | {_fmt(p.D_prime, 4)} | {_fmt(p.R2, 4)} "
+                    f"| {_fmt(p.chi2, 3)} | {_fmt(p.p_chi2, 4)} | {_ld_significance(p.p_chi2)} |"
+                )
+            lines.append("")
+
+    # ── Recombination ────────────────────────────────────────────────────────
+    if recomb is not None:
+        lines += [
+            "## Recombination",
+            "",
+            "| Statistic | Value | Reference |",
+            "|-----------|-------|-----------|",
+            f"| Minimum recombination events (Rm) | {recomb.Rm} | Hudson & Kaplan 1985 |",
+            f"| Incompatible site pairs | {recomb.n_incompatible_pairs} | Four-gamete test |",
+            "",
+        ]
+        if recomb.incompatible_pairs and len(recomb.incompatible_pairs) <= 30:
+            lines.append("**Incompatible pairs** (positions 1-based):")
+            lines.append("")
+            for p1, p2 in recomb.incompatible_pairs:
+                lines.append(f"  - Sites {p1} and {p2}")
+            lines.append("")
+
+    # ── Population Size Changes ──────────────────────────────────────────────
+    if popsize is not None:
+        lines += [
+            "## Population Size Changes  -  Mismatch Distribution",
+            "",
+            "| Statistic | Value | Reference |",
+            "|-----------|-------|-----------|",
+            f"| Number of pairs | {popsize.n_pairs} | |",
+            f"| Mean pairwise differences | {_fmt(popsize.mean, 4)} | |",
+            f"| Observed variance of k (unbiased over pairs, as DnaSP) | {_fmt(popsize.variance, 4)} | PairwiseDiff.vb |",
+            f"| C.V. of k (Sokal & Rohlf unbiased correction, as DnaSP) | {_fmt(popsize.cv, 4)} | Sokal & Rohlf |",
+            f"| Raggedness r | {_fmt(popsize.raggedness, 6)} | Harpending 1994 |",
+            "",
+            "**Mismatch distribution** (differences → pair count):",
+            "",
+        ]
+        if popsize.observed:
+            lines.append("| Differences | Pairs | Proportion |")
+            lines.append("|-------------|-------|------------|")
+            for d, count in sorted(popsize.observed.items()):
+                prop = count / popsize.n_pairs if popsize.n_pairs > 0 else 0
+                lines.append(f"| {d} | {count} | {prop:.4f} |")
+            lines.append("")
+        r_note = (
+            "Low raggedness → smooth distribution (consistent with population expansion).  \n"
+            "High raggedness → ragged distribution (consistent with constant size or contraction)."
+        )
+        lines.append(r_note)
+        lines.append("")
+
+    # ── InDel Polymorphism ───────────────────────────────────────────────────
+    if indel_s is not None:
+        lines += [
+            "## InDel Polymorphism",
+            "",
+            "Model 1: diallelic, non-overlapping events. Undefined event statistics require at least one accepted event.",
+            "",
+            "| Statistic | Value |",
+            "|-----------|-------|",
+            f"| Alignment positions with gaps | {indel_s.n_positions_with_gaps} |",
+            f"| Number of InDel events | {indel_s.n_events} |",
+            f"| Mean event length (bp) | {_fmt(indel_s.mean_event_length, 3)} |",
+            f"| Mean deletion length (carrier-weighted, bp) | {_fmt(indel_s.mean_deletion_length, 3)} |",
+            f"| Net sites analysed (non-InDel plus accepted InDel) | {indel_s.net_sites} |",
+            f"| Excluded overlapping events | {indel_s.n_excluded_events} |",
+            f"| Excluded overlap sites | {indel_s.n_excluded_overlap_sites} |",
+            f"| Missing sites excluded | {indel_s.n_missing_sites} |",
+            f"| Fixed-gap sites excluded | {indel_s.n_fixed_gap_sites} |",
+            f"| InDel haplotypes | {indel_s.n_haplotypes} |",
+            f"| InDel haplotype diversity (Hd) | {_fmt(indel_s.haplotype_diversity, 6)} |",
+            f"| InDel diversity k(i) | {_fmt(indel_s.k_indel, 6)} |",
+            f"| InDel diversity per site π(i) | {_fmt(indel_s.pi_indel, 6)} |",
+            f"| θ from InDel events | {_fmt(indel_s.theta_indel, 6)} |",
+            f"| Tajima's D (InDel) | {_fmt(indel_s.tajima_d_indel, 6)} |",
+            "",
+        ]
+
+    # ── Divergence ───────────────────────────────────────────────────────────
+    if div_s is not None:
+        lines += [
+            "## DNA Divergence Between Populations",
+            "",
+            f"**Population 1**: {div_s.pop1_name} (n = {div_s.n1})  ",
+            f"**Population 2**: {div_s.pop2_name} (n = {div_s.n2})  ",
+            f"**Net sites analysed**: {div_s.L_net}  ",
+            "",
+            "### Within-population diversity",
+            "",
+            "| Statistic | Pop1 | Pop2 |",
+            "|-----------|------|------|",
+            f"| π (nucleotide diversity) | {_fmt(div_s.Pi1, 6)} | {_fmt(div_s.Pi2, 6)} |",
+            f"| k (mean pairwise diff) | {_fmt(div_s.k1, 4)} | {_fmt(div_s.k2, 4)} |",
+            "",
+            "### Between-population divergence",
+            "",
+            "| Statistic | Value | Reference |",
+            "|-----------|-------|-----------|",
+            f"| Dxy (nucleotide divergence) | {_fmt(div_s.Dxy, 6)} | Nei 1987, eq 10.20 |",
+            f"| Da (net divergence) | {_fmt(div_s.Da, 6)} | Nei 1987 |",
+            f"| Fixed differences (Sf, sites) | {div_s.n_fixed} | Hey 1991 |",
+            f"| Shared mutations (Ss) | {div_s.n_shared} | |",
+            f"| Mutations exclusive to {div_s.pop1_name} (Sx1) | {div_s.n_private1} | |",
+            f"| Mutations exclusive to {div_s.pop2_name} (Sx2) | {div_s.n_private2} | |",
+            "",
+            "> Sf counts sites with no shared allele; Ss / Sx are mutation counts "
+            "(DnaSP Divergencia.vb). Total mutations in a population = Sx + Ss.",
+            "",
+        ]
+
+    # ── Fu & Li D/F with outgroup ─────────────────────────────────────────────
+    if fuliout_s is not None:
+        lines += [
+            "## Fu & Li D and F (with Outgroup)",
+            "",
+            f"**Ingroup sequences**: {fuliout_s.n}  ",
+            "",
+            "| Statistic | Value | Reference |",
+            "|-----------|-------|-----------|",
+            f"| Orientable segregating sites (S) | {fuliout_s.S} | Fu & Li 1993 |",
+            f"| Total derived mutations (η) | {fuliout_s.eta} | Fu & Li 1993 |",
+            f"| External mutations (η_e) | {fuliout_s.eta_e} | Fu & Li 1993 |",
+            f"| Mean pairwise differences (k̄) | {_fmt(fuliout_s.k_bar, 4)} | |",
+            f"| Fu & Li D | {_fmt(fuliout_s.D, 6)} | {_fu_li_interp(fuliout_s.D)} |",
+            f"| Fu & Li F | {_fmt(fuliout_s.F, 6)} | {_fu_li_interp(fuliout_s.F)} |",
+            "",
+            "> **Note**: D and F with outgroup differ from D\\* and F\\* (no outgroup): "
+            "the outgroup polarises mutations as ancestral/derived, enabling counting "
+            "of 'external' mutations on terminal branches only (η_e), capped at 1 per "
+            "site.  D = (S − aₙ·η_e)/√(u_D·S + v_D·S²); F = (k̄ − η_e)/√(u_F·S + v_F·S²); "
+            "S is the segregating-site count (DnaSP's default 'from segregating sites' "
+            "mode), not η (η is reported for reference only). Coefficients from "
+            "Fu & Li (1993), Simonsen et al. (1995).",
+            "",
+        ]
+
+    # ── HKA test ─────────────────────────────────────────────────────────────
+    if hka_s is not None:
+        lines += ["## HKA Test (Hudson, Kreitman & Aguadé 1987; two-locus)", ""]
+        if not hka_s.loci_results:
+            lines += [
+                f"*HKA not run: {hka_s.error or 'insufficient input'}*",
+                "",
+            ]
+        else:
+            sig_str = " (significant)" if (hka_s.p_value is not None and hka_s.p_value < 0.05) else ""
+            lines += [
+                f"**Estimated divergence time** T̂ = {_fmt(hka_s.T_hat, 4)} (units of 2N generations)  ",
+                "",
+                "| Statistic | Value |",
+                "|-----------|-------|",
+                f"| χ² | {_fmt(hka_s.chi2, 4)} |",
+                f"| Degrees of freedom | {hka_s.df} |",
+                f"| P-value | {_fmt(hka_s.p_value, 6)}{sig_str} |",
+                "",
+                "### Per-locus results",
+                "",
+                "| Locus | n | S | D | θ̂ (per site) | E[S] | E[D] |",
+                "|-------|---|---|---|--------------|------|------|",
+            ]
+            for lr in hka_s.loci_results:
+                lines.append(
+                    f"| {lr['name']} | {lr['n']} | {lr['S']} | {lr['D']} "
+                    f"| {_fmt(lr['theta_hat'], 6)} | {_fmt(lr['E_S'], 2)} "
+                    f"| {_fmt(lr['E_D'], 2)} |"
+                )
+            lines.append("")
+            if hka_s.note:
+                lines += [f"> Note: {hka_s.note}", ""]
+            lines += [
+                "> **Interpretation**: a significant P-value (< 0.05) means the ratio "
+                "of polymorphism to divergence differs between the two loci, "
+                "inconsistent with neutrality (e.g. a selective sweep or balancing "
+                "selection at one locus). Variances follow HKA (1987).",
+                "",
+            ]
+
+    # ── McDonald-Kreitman test ────────────────────────────────────────────────
+    if mk_s is not None:
+        sig_str = " (significant)" if (mk_s.fisher_p is not None and mk_s.fisher_p < 0.05) else ""
+        lines += [
+            "## McDonald-Kreitman Test",
+            "",
+            "| Category | Count |",
+            "|----------|-------|",
+            f"| Synonymous polymorphisms (Ps) | {mk_s.Ps} |",
+            f"| Nonsynonymous polymorphisms (Pn) | {mk_s.Pn} |",
+            f"| Synonymous fixed differences (Ds) | {mk_s.Ds} |",
+            f"| Nonsynonymous fixed differences (Dn) | {mk_s.Dn} |",
+            f"| Complex codons not analysed (excluded from all four counts) | {mk_s.n_complex_codons} |",
+            f"| Internal stop codons (analysed as a 21st amino acid, as in DnaSP) | {mk_s.n_internal_stop_codons} |",
+            "",
+            "| Statistic | Value | Reference |",
+            "|-----------|-------|-----------|",
+            f"| α (proportion adaptive) | {_fmt(mk_s.alpha, 4)} | McDonald & Kreitman 1991 |",
+            f"| NI (Neutrality Index) | {_fmt(mk_s.NI, 4)} | Rand & Kann 1996 |",
+            f"| DoS (Direction of Selection) | {_fmt(mk_s.DoS, 4)} | Stoletzki & Eyre-Walker 2011 |",
+            f"| Fisher's exact P | {_fmt(mk_s.fisher_p, 6)}{sig_str} | |",
+            "",
+            "> **Interpretation**: α > 0 and P < 0.05 → positive (adaptive) selection driving "
+            "nonsynonymous fixation. α < 0 → slight excess of nonsynonymous polymorphism "
+            "(weak purifying selection or demographic effects). NI > 1 → purifying selection; "
+            "NI < 1 → positive selection. DoS > 0 → net positive selection; DoS < 0 → "
+            "net negative selection.",
+            "",
+        ]
+
+    # ── Ka/Ks ─────────────────────────────────────────────────────────────────
+    if kaks_s is not None and kaks_s.n_codons > 0:
+        lines += [
+            "## Ka/Ks (dN/dS)  -  Nei-Gojobori Method",
+            "",
+            "| Statistic | Value | Reference |",
+            "|-----------|-------|-----------|",
+            f"| Codons analysed | {kaks_s.n_codons} | |",
+            f"| Internal stop codons (analysed as a 21st amino acid, as in DnaSP) | {kaks_s.n_internal_stop_codons} | |",
+            f"| Mean synonymous sites (S) | {_fmt(kaks_s.S_sites, 2)} | Nei & Gojobori 1986 |",
+            f"| Mean nonsynonymous sites (N) | {_fmt(kaks_s.N_sites, 2)} | |",
+            f"| Mean synonymous differences (Sd) | {_fmt(kaks_s.Sd, 4)} | |",
+            f"| Mean nonsynonymous differences (Nd) | {_fmt(kaks_s.Nd, 4)} | |",
+            f"| Ks (synonymous substitutions/site) | {_fmt(kaks_s.Ks, 6)} | JC corrected |",
+            f"| Ka (nonsynonymous substitutions/site) | {_fmt(kaks_s.Ka, 6)} | JC corrected |",
+            f"| ω = Ka/Ks | {_fmt(kaks_s.omega, 4)} | |",
+            "",
+            "> **Interpretation**: ω < 1 → purifying (negative) selection constrains "
+            "amino-acid change. ω ≈ 1 → neutral evolution. ω > 1 → positive (adaptive) "
+            "selection driving amino-acid change. Values are averages over "
+            + ("ingroup-vs-outgroup pairs only (an outgroup was given)"
+               if kaks_used_outgroup else "all ingroup pairwise comparisons")
+            + "; per-branch estimates require a phylogenetic framework.",
+            "",
+        ]
+
+    # ── Fu's Fs ──────────────────────────────────────────────────────────────
+    fufs_s: Optional[FuFsStats] = results.get("fufs")
+    if fufs_s is not None:
+        lines += [
+            "## Fu's Fs Test (Fu 1997)",
+            "",
+            "| Statistic | Value |",
+            "|-----------|-------|",
+            f"| n (sequences) | {fufs_s.n} |",
+            f"| H (observed haplotypes) | {fufs_s.H} |",
+            f"| θ_π (= k, mean pairwise differences) | {_fmt(fufs_s.theta_pi, 4)} |",
+            f"| S' = P(K ≥ H \\| θ_π, n) | {_fmt(fufs_s.S_k, 6)} |",
+            f"| Fs | {_fmt(fufs_s.Fs, 4)} |",
+            *([f"| P (coalescent, lower tail) | {_fmt_p(ct.Fs_p_lower)} |"]
+              if ct is not None and ct.n_valid_Fs else []),
+            "",
+            f"> **Interpretation**: Fs = {_fmt(fufs_s.Fs, 4)}. "
+            "Large negative Fs indicates more haplotypes than expected given nucleotide "
+            "diversity  -  signature of recent population expansion or genetic hitchhiking. "
+            "Large positive Fs (a deficit of haplotypes) points to balancing selection or "
+            "population subdivision. S' is the Ewens upper-tail probability, not the "
+            "P-value; because θ_π is estimated from the data, significance comes only from "
+            "coalescent simulation of the null "
+            + ("(see Coalescent simulation)." if ct is not None and ct.n_valid_Fs
+               else "(not run; use --n-sim)."),
+            "",
+        ]
+
+    # ── Site Frequency Spectrum ───────────────────────────────────────────────
+    sfs_s: Optional[SFSStats] = results.get("sfs")
+    if sfs_s is not None and sfs_s.folded:
+        lines += [
+            "## Site Frequency Spectrum",
+            "",
+        ]
+        # Folded SFS
+        lines += [
+            "### Folded SFS (minor allele frequency)",
+            "",
+            "| Minor allele count (i) | Frequency (i/n) | Sites |",
+            "|------------------------|-----------------|-------|",
+        ]
+        for i in sorted(sfs_s.folded.keys()):
+            freq = i / sfs_s.n if sfs_s.n > 0 else 0.0
+            lines.append(f"| {i} | {freq:.3f} | {sfs_s.folded[i]} |")
+        lines.append("")
+        # Unfolded SFS
+        if sfs_s.unfolded is not None and sfs_s.unfolded:
+            lines += [
+                "### Unfolded SFS (derived allele frequency, outgroup-polarised)",
+                "",
+                "| Derived allele count (i) | Frequency (i/n) | Sites |",
+                "|--------------------------|-----------------|-------|",
+            ]
+            for i in sorted(sfs_s.unfolded.keys()):
+                freq = i / sfs_s.n if sfs_s.n > 0 else 0.0
+                lines.append(f"| {i} | {freq:.3f} | {sfs_s.unfolded[i]} |")
+            lines.append("")
+        elif sfs_s.has_outgroup:
+            lines += ["*No unfolded SFS sites  -  outgroup did not polarise any segregating sites.*", ""]
+        else:
+            lines += ["*Unfolded SFS not available  -  no outgroup provided. Rerun with --outgroup <seq_name>.*", ""]
+        if sfs_s.n_multiallelic_excluded:
+            lines += [
+                f"*{sfs_s.n_multiallelic_excluded} multiallelic site(s) excluded "
+                "from the spectrum (DnaSP counts biallelic sites only).*",
+                "",
+            ]
+        lines += [
+            "> **Interpretation**: A skew toward singletons (i = 1) → excess rare variants → "
+            "population expansion or purifying selection (consistent with negative Tajima's D). "
+            "A uniform or U-shaped spectrum → balancing selection. "
+            "The unfolded SFS distinguishes ancestral from derived alleles; the folded SFS folds "
+            "the spectrum at i = n/2, treating both polarities equivalently.",
+            "",
+        ]
+
+    # ── Transition / Transversion ratio ──────────────────────────────────────
+    tstv_s: Optional[TsTvStats] = results.get("tstv")
+    if tstv_s is not None:
+        ts_tv_str = _fmt(tstv_s.ts_tv, 4) if tstv_s.ts_tv is not None else "N/A (Tv = 0)"
+        excl_bits = []
+        if tstv_s.n_multiallelic_excluded:
+            excl_bits.append(f"{tstv_s.n_multiallelic_excluded} multiallelic")
+        if tstv_s.n_unpolarisable_excluded:
+            excl_bits.append(f"{tstv_s.n_unpolarisable_excluded} not polarisable by outgroup")
+        lines += [
+            "## Transition / Transversion Ratio",
+            "",
+            f"| Statistic | Value |",
+            f"|-----------|-------|",
+            f"| Sequences (n) | {tstv_s.n} |",
+            f"| Clean sites (all-ATCG columns) | {tstv_s.L_net} |",
+            f"| Biallelic sites classified | {tstv_s.n_sites} |",
+            f"| Transitions (Ts) | {tstv_s.n_transitions} |",
+            f"| Transversions (Tv) | {tstv_s.n_transversions} |",
+            f"| Ts/Tv ratio | {ts_tv_str} |",
+            f"| Polarised by outgroup | {'yes' if tstv_s.polarised else 'no'} |",
+        ]
+        if excl_bits:
+            lines.append(f"| Sites excluded | {'; '.join(excl_bits)} |")
+        lines += [
+            "",
+            "> **Interpretation**: one change is counted per biallelic segregating "
+            "site (as in DnaSP), so the ratio does not depend on sample size. "
+            "Transitions (A↔G, C↔T) usually outnumber transversions; Ts/Tv ≈ 2 is "
+            "typical for nuclear DNA, mitochondrial DNA often shows Ts/Tv > 10, and "
+            "low values can indicate mutational saturation. Multiallelic sites are "
+            "excluded. 'N/A' is reported when no transversions are observed.",
+            "",
+        ]
+
+    # ── Codon usage bias ─────────────────────────────────────────────────────
+    codon_s: Optional[CodonUsageStats] = results.get("codon")
+    if codon_s is not None:
+        enc_str = _fmt(codon_s.ENC, 2) if codon_s.ENC is not None else "N/A (insufficient data)"
+        lines += [
+            "## Codon Usage Bias",
+            "",
+            f"| Statistic | Value |",
+            f"|-----------|-------|",
+            f"| Sequences (n) | {codon_s.n} |",
+            f"| Mean coding codons per sequence | {_fmt(codon_s.n_codons, 1)} |",
+            f"| Effective number of codons (ENC) | {enc_str} |",
+            "",
+        ]
+        if codon_s.ENC is not None:
+            if codon_s.ENC < 35:
+                bias_note = "**Strong codon usage bias** (ENC < 35)."
+            elif codon_s.ENC < 50:
+                bias_note = "**Moderate codon usage bias** (35 ≤ ENC < 50)."
+            else:
+                bias_note = "**Weak or no codon usage bias** (ENC ≥ 50; close to 61)."
+            lines += [f"> {bias_note}", ""]
+
+        if codon_s.per_sequence_enc:
+            lines += ["### Per-sequence ENC", "", "| Sequence | ENC |", "|----------|-----|"]
+            for name, enc in codon_s.per_sequence_enc.items():
+                label = name.replace('|', r'\|')
+                lines.append(f"| {label} | {_fmt(enc, 3)} |")
+            lines.append("")
+
+        # RSCU table  -  group by amino acid family (under the genetic code
+        # this run used, not always the standard-code grouping: e.g. under
+        # vertebrate-mitochondrial, TGA joins Trp and ATA joins Met).
+        report_families = _synonymous_families(genetic_code)
+        report_families['*'] = [c for c, aa in genetic_code.items() if aa == '*']
+        if codon_s.rscu:
+            lines += [
+                "### RSCU Values",
+                "",
+                "| Amino acid | Codons | RSCU |",
+                "|------------|--------|------|",
+            ]
+            for aa in sorted(report_families.keys()):
+                codons = sorted(report_families[aa])
+                for c in codons:
+                    rscu_val = codon_s.rscu.get(c)
+                    rscu_str = _fmt(rscu_val, 3) if rscu_val is not None else " - "
+                    lines.append(f"| {aa} | {c} | {rscu_str} |")
+            lines.append("")
+            lines += [
+                "> RSCU = 1.0: uniform usage among synonyms. "
+                "RSCU > 1.0: preferred codon. RSCU < 1.0: avoided codon.",
+                "",
+            ]
+
+    # ── Fay & Wu ─────────────────────────────────────────────────────────────
+    faywu_s: Optional[FayWuStats] = results.get("faywu")
+    if faywu_s is not None:
+        def _fw(v: Optional[float]) -> str:
+            return "N/A" if v is None else _fmt(v, 6)
+        lines += [
+            "## Fay & Wu's H and Zeng's E",
+            "",
+            "Raw per-site H and theta-L minus theta-W only; these are not normalised Hn/ZE or significance tests. Multi-allelic and unorientable polymorphic sites are excluded from the eligible set.",
+            "",
+            f"| Statistic | Value |",
+            f"|-----------|-------|",
+            f"| Ingroup sequences (n) | {faywu_s.n} |",
+            f"| Eligible sites (L_net) | {faywu_s.L_net} |",
+            f"| Polarisable segregating sites | {faywu_s.n_polarised} |",
+            f"| θ_π (from polarised sites) | {_fw(faywu_s.theta_pi)} |",
+            f"| θ_W (Watterson, polarised) | {_fw(faywu_s.theta_w)} |",
+            f"| θ_H (Fay & Wu 2000) | {_fw(faywu_s.theta_h)} |",
+            f"| θ_L (Zeng et al. 2006) | {_fw(faywu_s.theta_l)} |",
+            f"| **H = θ_π − θ_H** | {_fw(faywu_s.H)} |",
+            f"| **E = θ_L − θ_W** | {_fw(faywu_s.E)} |",
+            "",
+        ]
+        if faywu_s.H is not None:
+            if faywu_s.H < 0:
+                h_note = ("**H < 0**: excess of high-frequency derived alleles  -  "
+                          "consistent with a selective sweep or background selection.")
+            else:
+                h_note = ("**H ≥ 0**: no excess of high-frequency derived alleles; "
+                          "consistent with neutrality or purifying selection.")
+            lines += [f"> {h_note}", ""]
+        if faywu_s.E is not None:
+            if faywu_s.E < 0:
+                e_note = ("**E < 0**: θ_L < θ_W  -  excess of low-frequency derived alleles; "
+                          "consistent with a recent bottleneck or purifying selection.")
+            else:
+                e_note = ("**E ≥ 0**: θ_L ≥ θ_W  -  no excess of low-frequency derived alleles.")
+            lines += [f"> {e_note}", ""]
+
+    # ── Fst ──────────────────────────────────────────────────────────────────
+    fst_s: Optional[FstStats] = results.get("fst")
+    if fst_s is not None and fst_s.n_pops >= 2:
+        lines += [
+            "## Population Differentiation (Fst)",
+            "",
+            f"| Population | n | π (within-pop) |",
+            f"|------------|---|----------------|",
+        ]
+        for pop in fst_s.pop_names:
+            lines.append(
+                f"| {pop} | {fst_s.pop_sizes.get(pop, '?')} "
+                f"| {_fmt(fst_s.pi_within.get(pop, 0.0), 6)} |"
+            )
+        lines.append("")
+        lines += [
+            "### Pairwise Fst (Hudson et al. 1992)",
+            "",
+            "| Population pair | Dxy (between) | Fst |",
+            "|-----------------|---------------|-----|",
+        ]
+        for (p1, p2), fst_val in fst_s.fst_pairwise.items():
+            dxy = fst_s.pi_between.get((p1, p2), 0.0)
+            fst_str = _fmt(fst_val, 4) if fst_val is not None else "N/A (Dxy=0)"
+            lines.append(f"| {p1} vs {p2} | {_fmt(dxy, 6)} | {fst_str} |")
+        lines.append("")
+        if fst_s.fst_mean is not None:
+            lines += [f"> **Mean Fst across all pairs: {_fmt(fst_s.fst_mean, 4)}**", ""]
+            if fst_s.fst_mean < 0.05:
+                lines += ["> Little genetic differentiation (Fst < 0.05; Wright 1978).", ""]
+            elif fst_s.fst_mean < 0.15:
+                lines += ["> Moderate genetic differentiation (0.05 ≤ Fst < 0.15; Wright 1978).", ""]
+            elif fst_s.fst_mean < 0.25:
+                lines += ["> Great genetic differentiation (0.15 ≤ Fst < 0.25; Wright 1978).", ""]
+            else:
+                lines += ["> Very great genetic differentiation (Fst ≥ 0.25; Wright 1978).", ""]
+
+    # ── Sliding window ───────────────────────────────────────────────────────
+    if window_stats:
+        lines += [
+            "## Sliding Window Summary",
+            "",
+        ]
+        if variant_sites_only:
+            lines += [
+                "> Windows here slide over retained variant sites (SNP index), "
+                "not base pairs  -  VCF POS is not used to place columns, so a "
+                "region label is a range of SNP ranks.",
+                "",
+            ]
+        lines += [
+            "| Region | Midpoint | S | π | Tajima D |",
+            "|--------|----------|---|---|---------|",
+        ]
+        for ws in window_stats:
+            lines.append(
+                f"| {ws.region} | {ws.midpoint} | {ws.S} | {_fmt(ws.Pi, 5)} | {_fmt(ws.TajimaD, 4)} |"
+            )
+        lines.append("")
+
+    # ── Figures ──────────────────────────────────────────────────────────────
+    if figures:
+        lines += ["## Figures", ""]
+        for fig in figures:
+            lines.append(f"![{fig.stem}]({fig.relative_to(output_dir).as_posix()})")
+        lines.append("")
+
+    status = results.get('analysis_status', {})
+    if status:
+        lines += ['## Analysis status', '', 'Completed: ' + ', '.join(status['completed']), '']
+        lines += [f"- {name}: skipped ({reason})" for name, reason in status['skipped'].items()]
+        lines += ['', 'Reproducibility: archived inputs and hashes are in reproducibility/. Replay commands require the recorded code/environment paths; use the validation package runner when transferring to another machine.', '']
+
+    # ── Methods & References ─────────────────────────────────────────────────
+    lines += [
+        "---",
+        "",
+        "## Methods",
+        "",
+        "Statistics computed using DnaSP-Python, reimplementing "
+        "core DnaSP 6 algorithms (Rozas et al. 2017). "
+        "Gap treatment: complete deletion. Neutrality tests include both intraspecific "
+        "(D\\*, F\\*  -  no outgroup) and outgroup-polarised (D, F) formulations.",
+        "",
+        "## References",
+        "",
+        "- Rozas et al. (2017) Mol. Biol. Evol. 34:3299-3302, doi:10.1093/molbev/msx248  -  DnaSP v6",
+        "- Tajima (1989) Genetics 123:585-595  -  Tajima's D",
+        "- Fu & Li (1993) Genetics 133:693-709  -  D, F (outgroup) and D*, F* (no outgroup)",
+        "- Simonsen et al. (1995) Genetics 141:413-429  -  variance coefficients",
+        "- Nei & Tajima (1981) Genetics 97:145-163  -  haplotype diversity",
+        "- Ramos-Onsins & Rozas (2002) Mol. Biol. Evol. 19:2092-2100  -  R2",
+        "- Kelly (1997) Genetics 146:1197-1206  -  ZnS",
+        "- Rozas et al. (2001) Genetics 158:1147-1155  -  Za, ZZ",
+        "- Hill & Robertson (1968) Theor. Appl. Genet. 38:226-231  -  R²",
+        "- Lewontin (1964) Genetics 49:49-67  -  D'",
+        "- Hudson & Kaplan (1985) Genetics 111:147-164  -  Rm",
+        "- Rogers & Harpending (1992) Mol. Biol. Evol. 9:552-569  -  mismatch",
+        "- Harpending (1994) Hum. Biol. 66:591-600  -  raggedness",
+        "- Nei (1987) Molecular Evolutionary Genetics  -  Dxy, Da",
+        "- Hudson, Kreitman & Aguadé (1987) Genetics 116:153-159  -  HKA test",
+        "- McDonald & Kreitman (1991) Nature 351:652-654  -  MK test",
+        "- Nei & Gojobori (1986) Mol. Biol. Evol. 3:418-426  -  Ka/Ks",
+        "- Fu (1997) Genetics 147:915-925  -  Fu's Fs",
+        "- Sharp & Li (1987) Nucleic Acids Res. 15:1281-1295  -  RSCU",
+        "- Wright (1990) Gene 87:23-29  -  ENC",
+        "- Fay & Wu (2000) Genetics 155:1405-1413  -  H statistic",
+        "- Zeng et al. (2006) Genetics 174:1431-1439  -  E statistic",
+        "- Hudson et al. (1992) Genetics 132:583-589  -  Fst estimator",
+        "",
+        "---",
+        "",
+        "*DnaSP-Python is a research and educational tool. It is not a medical device "
+        "and does not provide clinical diagnoses. Consult a healthcare professional before making any medical decisions.*",
+    ]
+
+    report_path.write_text("\n".join(lines), encoding="utf-8")
+    return report_path
+
+
+def _display_label(text: str, limit: int = 80) -> str:
+    """Bounded, markup-free label for chat lines built from user-controlled names.
+
+    Control characters (including newlines and tabs) are removed, Markdown and
+    HTML punctuation is dropped (underscores are kept: they are common in file
+    and CHROM names), whitespace is collapsed and the result is truncated, so a
+    file or CHROM name cannot inject chat content.
+    """
+    cleaned = "".join(ch for ch in str(text) if ch.isprintable() and ch not in '*`[]<>|#\\')
+    cleaned = " ".join(cleaned.split())
+    if len(cleaned) > limit:
+        cleaned = cleaned[:limit - 3].rstrip() + "..."
+    return cleaned or "input"
+
+
+def write_multi_result_envelope(output_dir: Path, vcf_path: Path, sub_dirs: dict[str, Path]) -> Path:
+    """Root result.json for a multi-CHROM VCF run (one analysis per subdirectory).
+
+    A runner such as ClawBio's reads only <output_dir>/result.json, so the per-CHROM
+    envelopes are summarised here with paths relative to the output directory.
+    """
+    write_result_json = _load_repro_writers().write_result_json
+    output_dir = output_dir.resolve()
+    runs: dict[str, dict] = {}
+    artifacts: list[str] = []
+    chat: list[str] = [f"DnaSP {_display_label(vcf_path.name)}: {len(sub_dirs)} chromosomes analysed separately."]
+    preferred: list[str] = []
+    for chrom, sub in sub_dirs.items():
+        rel = Path(sub).resolve().relative_to(output_dir).as_posix()
+        envelope_path = Path(sub) / "result.json"
+        entry: dict = {"chrom": chrom, "directory": rel}
+        if envelope_path.is_file():
+            child = json.loads(envelope_path.read_text(encoding="utf-8"))
+            entry["summary"] = child.get("summary", {})
+            entry["artifacts"] = [f"{rel}/{a}" for a in child.get("data", {}).get("artifacts", [])]
+            artifacts.extend(entry["artifacts"] + [f"{rel}/result.json"])
+            preferred.append(f"{rel}/report.md")
+            g = entry["summary"]
+            pi = "n.a." if g.get("Pi") is None else f"{g['Pi']:.5f}"
+            tajima = "n.a." if g.get("TajimaD") is None else f"{g['TajimaD']:.4f}"
+            chat.append(f"{_display_label(chrom)}: n = {g.get('n')}, variant sites {g.get('L_net')}, "
+                        f"S = {g.get('S')}, pi = {pi}, Tajima's D = {tajima}.")
+        runs[rel] = entry
+    summary = {"source": vcf_path.name, "chromosomes": len(sub_dirs), "variant_sites_only": True,
+               "runs": [{"chrom": e["chrom"], "directory": e["directory"],
+                         **{k: e.get("summary", {}).get(k) for k in ("n", "L_net", "S", "Pi", "TajimaD")}}
+                        for e in runs.values()]}
+    data = {"runs": runs, "artifacts": sorted(set(artifacts))}
+    checksum = hashlib.sha256(vcf_path.read_bytes()).hexdigest() if vcf_path.is_file() else ""
+    path = write_result_json(output_dir, "dnasp", __version__, summary, data,
+                             input_checksum=checksum, datasets={"input": vcf_path.name},
+                             status="ok", ok=True)
+    envelope = json.loads(path.read_text(encoding="utf-8"))
+    envelope["chat_summary_lines"] = chat
+    envelope["preferred_artifacts"] = [a for a in preferred if a in data["artifacts"]]
+    path.write_text(json.dumps(envelope, indent=2, default=str) + "\n", encoding="utf-8")
+    return path
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Figures
+# ─────────────────────────────────────────────────────────────────────────────
+
+def make_figures(output_dir: Path, results: dict) -> list[Path]:
+    figs_dir = output_dir / "figures"
+    figs_dir.mkdir(exist_ok=True)
+    paths: list[Path] = []
+
+    if not HAS_MPL or results["global"].n == 0:
+        return paths
+
+    global_stats = results["global"]
+    window_stats = results["windows"]
+    ld: Optional[LDStats] = results.get("ld")
+    popsize: Optional[MismatchStats] = results.get("popsize")
+
+    # Sliding window: π and Tajima's D
+    if window_stats:
+        midpoints = [ws.midpoint for ws in window_stats]
+        pi_vals = [ws.Pi for ws in window_stats]
+        d_vals = [ws.TajimaD if ws.TajimaD is not None else float("nan") for ws in window_stats]
+        fig, axes = plt.subplots(2, 1, figsize=(10, 6), sharex=True)
+        axes[0].plot(midpoints, pi_vals, color="#2166ac", linewidth=1.5)
+        axes[0].set_ylabel("Nucleotide diversity (π)")
+        axes[0].set_title("Sliding Window Analysis")
+        axes[1].plot(midpoints, d_vals, color="#d6604d", linewidth=1.5)
+        axes[1].axhline(0, color="grey", linewidth=0.8, linestyle="--")
+        axes[1].set_ylabel("Tajima's D")
+        # VCF windows run over retained variant columns, so their midpoints are
+        # SNP indices, not genomic POS values; say so on the axis itself.
+        axes[1].set_xlabel("Retained variant index (SNP index, not bp)"
+                           if results.get("variant_sites_only") else "Position (bp)")
+        plt.tight_layout()
+        fig_path = figs_dir / "sliding_window.png"
+        plt.savefig(fig_path, dpi=150)
+        plt.close()
+        paths.append(fig_path)
+
+    # Summary bar chart
+    labels = ["π", "θ_W", "Hd"]
+    values = [global_stats.Pi, global_stats.ThetaW_nuc, global_stats.Hd]
+    colors = ["#2166ac", "#4dac26", "#d6604d"]
+    fig, ax = plt.subplots(figsize=(5, 4))
+    bars = ax.bar(labels, values, color=colors, edgecolor="white", linewidth=1.2)
+    ax.set_ylabel("Value")
+    ax.set_title("Population Genetics Summary")
+    for bar, val in zip(bars, values):
+        ax.text(
+            bar.get_x() + bar.get_width() / 2,
+            bar.get_height() + max(values) * 0.01 if max(values) > 0 else 0.001,
+            f"{val:.4f}", ha="center", va="bottom", fontsize=9,
+        )
+    plt.tight_layout()
+    fig_path = figs_dir / "summary.png"
+    plt.savefig(fig_path, dpi=150)
+    plt.close()
+    paths.append(fig_path)
+
+    # LD scatter: R² vs distance
+    if ld is not None and ld.pairs:
+        dists = [p.dist for p in ld.pairs]
+        r2s = [p.R2 if p.R2 is not None else 0 for p in ld.pairs]
+        fig, ax = plt.subplots(figsize=(6, 4))
+        ax.scatter(dists, r2s, alpha=0.5, s=20, color="#762a83")
+        ax.set_xlabel("Retained variant-column distance" if results.get("variant_sites_only") else "Gap-adjusted nucleotide distance (bp)")
+        ax.set_ylabel("R²")
+        ax.set_title("LD Decay")
+        ax.set_ylim(0, 1.05)
+        plt.tight_layout()
+        fig_path = figs_dir / "ld_decay.png"
+        plt.savefig(fig_path, dpi=150)
+        plt.close()
+        paths.append(fig_path)
+
+    # Mismatch distribution
+    if popsize is not None and popsize.observed:
+        diffs = sorted(popsize.observed.keys())
+        counts = [popsize.observed[d] for d in diffs]
+        total = sum(counts)
+        props = [c / total for c in counts]
+        fig, ax = plt.subplots(figsize=(7, 4))
+        ax.bar(diffs, props, color="#1a9850", edgecolor="white", linewidth=0.8)
+        ax.set_xlabel("Pairwise nucleotide differences")
+        ax.set_ylabel("Proportion of pairs")
+        ax.set_title(f"Mismatch Distribution  (r = {_fmt(popsize.raggedness, 4)})")
+        plt.tight_layout()
+        fig_path = figs_dir / "mismatch.png"
+        plt.savefig(fig_path, dpi=150)
+        plt.close()
+        paths.append(fig_path)
+
+    # SFS bar chart (folded; add unfolded as second panel if available)
+    sfs: Optional[SFSStats] = results.get("sfs")
+    if sfs is not None and sfs.folded:
+        n = sfs.n
+        # Determine panels
+        has_unfolded = sfs.unfolded is not None and bool(sfs.unfolded)
+        n_panels = 2 if has_unfolded else 1
+        fig, axes = plt.subplots(1, n_panels, figsize=(5 * n_panels, 4))
+        if n_panels == 1:
+            axes = [axes]
+
+        # Folded SFS
+        max_i = n // 2
+        folded_x = list(range(1, max_i + 1))
+        folded_y = [sfs.folded.get(i, 0) for i in folded_x]
+        axes[0].bar(folded_x, folded_y, color="#4575b4", edgecolor="white", linewidth=0.8)
+        axes[0].set_xlabel("Minor allele count (i)")
+        axes[0].set_ylabel("Number of sites")
+        axes[0].set_title("Folded SFS")
+        axes[0].set_xticks(folded_x)
+
+        # Unfolded SFS
+        if has_unfolded:
+            unfolded_x = list(range(1, n))
+            unfolded_y = [sfs.unfolded.get(i, 0) for i in unfolded_x]  # type: ignore[union-attr]
+            axes[1].bar(unfolded_x, unfolded_y, color="#d73027", edgecolor="white", linewidth=0.8)
+            axes[1].set_xlabel("Derived allele count (i)")
+            axes[1].set_ylabel("Number of sites")
+            axes[1].set_title("Unfolded SFS (outgroup-polarised)")
+            axes[1].set_xticks(unfolded_x)
+
+        plt.suptitle("Site Frequency Spectrum", y=1.01)
+        plt.tight_layout()
+        fig_path = figs_dir / "sfs.png"
+        plt.savefig(fig_path, dpi=150, bbox_inches="tight")
+        plt.close()
+        paths.append(fig_path)
+
+    # ── Codon usage RSCU bar chart ────────────────────────────────────────────
+    codon_s = results.get("codon")
+    if codon_s is not None and codon_s.rscu:
+        # Build ordered list: group by amino acid family, sorted by aa
+        bar_labels: list[str] = []
+        bar_values: list[float] = []
+        bar_colors: list[str] = []
+        # Cycle colours across amino acid families for visual grouping
+        palette = ["#4575b4", "#d73027", "#1a9850", "#fdae61",
+                   "#74add1", "#f46d43", "#66bd63", "#fee090",
+                   "#313695", "#a50026", "#006837", "#ffffbf"]
+        code = results.get('genetic_code', GENETIC_CODE)
+        plot_families = _synonymous_families(code)
+        plot_families['*'] = [c for c, aa in code.items() if aa == '*']
+        for idx, aa in enumerate(sorted(plot_families)):
+            codons = sorted(plot_families[aa])
+            col = palette[idx % len(palette)]
+            for c in codons:
+                bar_labels.append(f"{c}\n({aa})")
+                bar_values.append(codon_s.rscu.get(c, 0.0))
+                bar_colors.append(col)
+
+        fig, ax = plt.subplots(figsize=(max(12, len(bar_labels) * 0.35), 5))
+        x_pos = list(range(len(bar_labels)))
+        ax.bar(x_pos, bar_values, color=bar_colors, edgecolor="white", linewidth=0.5)
+        ax.axhline(1.0, color="black", linewidth=0.8, linestyle="--", label="RSCU = 1 (uniform)")
+        ax.set_xticks(x_pos)
+        ax.set_xticklabels(bar_labels, fontsize=6, rotation=90)
+        ax.set_ylabel("RSCU")
+        enc_label = f"  ENC = {codon_s.ENC:.1f}" if codon_s.ENC is not None else ""
+        ax.set_title(f"Relative Synonymous Codon Usage (RSCU){enc_label}")
+        ax.legend(fontsize=8)
+        plt.tight_layout()
+        fig_path = figs_dir / "codon_usage.png"
+        plt.savefig(fig_path, dpi=150, bbox_inches="tight")
+        plt.close()
+        paths.append(fig_path)
+
+    # ── Fst bar chart ────────────────────────────────────────────────────────
+    fst_s: Optional[FstStats] = results.get("fst")
+    if HAS_MPL and fst_s is not None and fst_s.fst_pairwise:
+        pairs = [f"{p1}\nvs\n{p2}" for (p1, p2) in fst_s.fst_pairwise]
+        fst_vals = [v if v is not None else math.nan for v in fst_s.fst_pairwise.values()]
+        fig, ax = plt.subplots(figsize=(max(4, len(pairs) * 1.2), 4))
+        colours = ["#E05C5C" if v >= 0.25 else "#F5A623" if v >= 0.15 else
+                   "#7ED321" if v >= 0.05 else "#4A90D9" for v in fst_vals]
+        bars = ax.bar(range(len(pairs)), fst_vals, color=colours, edgecolor="white", linewidth=0.5)
+        ax.set_xticks(range(len(pairs)))
+        ax.set_xticklabels(pairs, fontsize=8)
+        finite = [v for v in fst_vals if math.isfinite(v)]
+        ax.set_ylim(min([0.0] + finite) - 0.05, max([1.0] + [v * 1.15 for v in finite]))
+        ax.axhline(0.05, color="steelblue", lw=0.8, ls="--", label="Little (0.05)")
+        ax.axhline(0.15, color="goldenrod", lw=0.8, ls="--", label="Moderate (0.15)")
+        ax.axhline(0.25, color="tomato",    lw=0.8, ls="--", label="Great (0.25)")
+        ax.set_ylabel("Fst")
+        ax.set_title("Population Differentiation (Fst)  -  Hudson et al. 1992")
+        ax.legend(fontsize=7, loc="upper right")
+        for bar, val in zip(bars, fst_vals):
+            ax.text(bar.get_x() + bar.get_width() / 2, val + 0.01 if math.isfinite(val) else 0.01,
+                    f"{val:.3f}" if math.isfinite(val) else "n.a.", ha="center", va="bottom", fontsize=8)
+        plt.tight_layout()
+        fig_path = figs_dir / "fst.png"
+        plt.savefig(fig_path, dpi=150, bbox_inches="tight")
+        plt.close()
+        paths.append(fig_path)
+
+    return paths
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Reproducibility bundle
+# ─────────────────────────────────────────────────────────────────────────────
+
+def _load_repro_writers():
+    """Load _repro_writers.py from this skill directory by its file path.
+
+    Loading by location under a private module name means an unrelated module,
+    already imported or found earlier on sys.path, can never supply the writers.
+    Nothing is added to sys.path or sys.modules.
+    """
+    import importlib.util
+    path = Path(__file__).resolve().parent / '_repro_writers.py'
+    spec = importlib.util.spec_from_file_location('_dnasp_repro_writers', path)
+    if spec is None or spec.loader is None:
+        raise ImportError(f'cannot load the reproducibility writers from {path}')
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def write_reproducibility(output_dir: Path, input_path: Optional[Path],
+                          cli_args: list[str], result_files: list[Path],
+                          status: Optional[dict] = None) -> None:
+    """Archive input bytes and record the invocation, environment and owned files."""
+    writers = _load_repro_writers()
+    write_commands_sh = writers.write_commands_sh
+    write_environment_yml = writers.write_environment_yml
+    write_checksums = writers.write_checksums
+    output_dir = output_dir.resolve()
+    repro = output_dir / 'reproducibility'
+    repro.mkdir(parents=True, exist_ok=True)
+    inputs = {}
+    normalised = []
+    for arg in cli_args:
+        if arg.startswith('--') and '=' in arg:
+            normalised.extend(arg.split('=', 1))
+        else:
+            normalised.append(arg)
+    replay = list(normalised)
+    path_flags = {'--input', '-i', '--input2', '--vcf', '--pop-file', '--hka-file'}
+    for i, arg in enumerate(normalised):
+        if arg in path_flags and i + 1 < len(normalised):
+            source = Path(normalised[i + 1]).resolve()
+            if not source.is_file():
+                continue
+            target = repro / 'inputs' / f'{i}_{source.name}'
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(source, target)
+            inputs[str(source)] = target.relative_to(output_dir).as_posix()
+            replay[i + 1] = str(target)
+    # Demo data is generated deterministically but archive it too.
+    if input_path and input_path.is_file() and str(input_path.resolve()) not in inputs:
+        source = input_path.resolve()
+        target = repro / 'inputs' / source.name
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(source, target)
+        inputs[str(source)] = target.relative_to(output_dir).as_posix()
+    replay_output = output_dir / 'replay_output'
+    found_output = False
+    for i, arg in enumerate(replay):
+        if arg in {'--output', '-o'} and i + 1 < len(replay):
+            replay[i + 1] = str(replay_output)
+            found_output = True
+    if not found_output:
+        replay += ['--output', str(replay_output)]
+    command = shlex.join([sys.executable, str(Path(__file__).resolve()), *replay])
+    write_commands_sh(output_dir, command)
+    packages = {}
+    for name in ('matplotlib', 'numpy', 'pandas', 'opentelemetry-sdk', 'opentelemetry-api',
+                 'opentelemetry-semantic-conventions', 'pillow', 'contourpy', 'cycler', 'fonttools',
+                 'kiwisolver', 'packaging', 'pyparsing', 'python-dateutil', 'pytz', 'tzdata',
+                 'six', 'typing-extensions', 'importlib-metadata', 'zipp'):
+        try:
+            packages[name] = importlib.metadata.version(name)
+        except importlib.metadata.PackageNotFoundError:
+            # Not installed: leave the package out of the recorded environment.
+            pass
+    write_environment_yml(output_dir, 'dnasp', [f'{k}=={v}' for k, v in packages.items()],
+                          python_version=platform.python_version())
+    manifest = dict(status or {})
+    manifest.update({'skill_version': __version__, 'arguments': cli_args,
+                     'python': platform.python_version(), 'platform': platform.platform(),
+                     'packages': packages, 'inputs': inputs, 'replay_arguments': replay,
+                     'replay_scope': 'Same host and code path; PC package supplies a portable runner',
+                     'script_sha256': hashlib.sha256(Path(__file__).read_bytes()).hexdigest()})
+    manifest['outputs'] = sorted(p.relative_to(output_dir).as_posix() for p in output_dir.rglob('*') if p.is_file())
+    (repro / 'manifest.json').write_text(json.dumps(manifest, indent=2) + '\n', encoding='utf-8')
+    files = sorted(p for p in output_dir.rglob('*') if p.is_file() and p.name != 'checksums.sha256')
+    write_checksums(files, output_dir, anchor=output_dir)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Demo data
+# ─────────────────────────────────────────────────────────────────────────────
+
+DEMO_FASTA = """\
+>pop1_seq1
+TTTTATCATGATAATAAAGAACAATGTATTATCATAGCTGGTCCTACTGTTTTGCTTTCTCGTATGTGGTTTTATCATGATAATAAAGAACAATGTATTATCATAGCTGGTCCTACTGTTTTGCTTTCTCGTATGTGGTTTTATCATGATAATAAAGAACAATGTATTATCATAGCTGGTCCTACTGTTTTGCTTTCTCGTATGTGGTTTTATCATGATAATAAAGAACAATGTATTATCATAGCTGGTCCTACTGTTTTGCTTTCTCGTATGTGGGCTGGTACTGTTTTTAAAGAATCT
+>pop1_seq2
+TTTTATCATGATAATAAAGAACAATGTATTATCATAGCCGGTCCTACTGTTTTGCTTTCTCGTATGTGGTTTTATCATGATAATAAAGAACAATGTATTATCATAGCTGGTCCTACTGTTTTGCTTTCTCGTATGTGGTTTTATCATGATAATAAAGAACAATGTATTATCATAGCTGGTCCTACTGTTTTGCTTTCTCGTATGTGGTTTTATCATGATAATAAAGAACAATGTATTATCATAGCTGGTCCTACTGTTTTGCTTTCTCGTATGTGGGCTGGTACTGTTTTTAAAGAATCT
+>pop1_seq3
+TTCTATCATGATAATAAAGAACAATGTATTATCATAGCCGGTCCTACTGTTTTGCTTTCTCGTATGTGGTTTTATCATGATAATAAAGAACAATGTATTATCATAGCTGGTCCTACTGTTTTGCTTTCTCGTATGTGGTTTTATCATGATAATAAAGAACAATGTATTATCATAGCTGGTCCTACTGTTTTGCTTTCTCGTATGTGGTTTTATCATGATAATAAAGAACAATGTATTATCATAGCTGGTCCTACTGTTTTGCTTTCTCGTATGTGGGCTGGTACTGTTTTTAAAGAATCT
+>pop1_seq4
+TTCTATCATAATAATAAAGAACAATGTATTATCATAGCTGGTCCTACTGTTTTGCTTTCTCGTATGTGGTTTTATCATGATAATAAAGAACAATGTATTATCATAGCTGGTCCTACTGTTTTGCTTTCTCGTATGTGGTTTTATCATGATAATAAAGAACAATGTATTATCATAGCTGGTCCTACTGTTTTGCTTTCTCGTATGTGGTTTTATCATGATAATAAAGAACAATGTATTATCATAGCTGGTCCTACTGTTTTGCTTTCTCGTATGTGGGCTGGTACTGTTTTTAAAGAATCT
+>pop1_seq5
+TTTTATCATAATAATAAAGAACAATGTATTATCATAGCTGGTCCTACTGTTTTGCTTTCTCGTATGTGGTTTTATCATGATAATAAAGAACAATGTATTATCATAGCTGGTCCTACTGTTTTGCTTTCTCGTATGTGGTTTTATCATGATAATAAAGAACAATGTATTATCATAGCTGGTCCTACTGTTTTGCTTTCTCGTATGTGGTTTTATCATGATAATAAAGAACAATGTATTATCATAGCTGGTCCTACTGTTTTGCTTTCTCGTATGTGGGCTGGTACTGTTTTTAAAGAATCT
+>pop2_seq1
+TTTTATCATGATAATAAAGAACAATGTATTATCATAGCTGGTCCTACTGTTTTGCTTTCTCGTATGTGGTTTTATCATGATAATAAAGAACAATGTATTATCATAGCTGGTCCTACTGTTTTGCTTTCTCGTATGTGGTTTTATCATGATAATAAAGAACAATGTATTATCATAGCTGGTCCTACTGTTTTGCTTTCTCGTATGTGGTTTTATCATGATAATAAAGAACAATGTATTATCATAGCTGGTCCTACTGTTTTGCTTTCTCGTATGTGGGCTGGTACTGTTTTTAAAGAATCT
+>pop2_seq2
+TTTTATCATGATAATAAAGAACAATGTATTATCATAGCTGGTCCTACTGTTTTGCTTTCTCGTATGTGGTTCTATCATGATAATAAAGAACAATGTATTATCATAGCTGGTCCTACTGTTTTGCTTTCTCGTATGTGGTTTTATCATGATAATAAAGAACAATGTATTATCATAGCTGGTCCTACTGTTTTGCTTTCTCGTATGTGGTTTTATCATGATAATAAAGAACAATGTATTATCATAGCTGGTCCTACTGTTTTGCTTTCTCGTATGTGGGCTGGTACTGTTTTTAAAGAATCT
+>pop2_seq3
+TTCTATCATGATAATAAAGAACAATGTATTATCATAGCTGGTCCTACTGTTTTGCTTTCTCGTATGTGGTTCTATCATGATAATAAAGAACAATGTATTATCATAGCTGGTCCTACTGTTTTGCTTTCTCGTATGTGGTTTTATCATGATAATAAAGAACAATGTATTATCATAGCTGGTCCTACTGTTTTGCTTTCTCGTATGTGGTTTTATCATGATAATAAAGAACAATGTATTATCATAGCTGGTCCTACTGTTTTGCTTTCTCGTATGTGGGCTGGTACTGTTTTTAAAGAATCT
+>pop2_seq4
+TTTTATCATGATAATAAAGAAAAATGTATTATCATAGCCGGTCCTACTGTTTTGCTTTCTCGTATGTGGTTTTATCATGATAATAAAGAACAATGTATTATCATAGCTGGTCCTACTGTTTTGCTTTCTCGTATGTGGTTTTATCATGATAATAAAGAACAATGTATTATCATAGCTGGTCCTACTGTTTTGCTTTCTCGTATGTGGTTTTATCATGATAATAAAGAACAATGTATTATCATAGCTGGTCCTACTGTTTTGCTTTCTCGTATGTGGGCTGGTACTGTTTTTAAAGAATCT
+>pop2_seq5
+TTTTATCATGATAATAAAGAAAAATGTATTATCATAGCCGGTCCTACTGTTTTGCTTTCTCGTATGTGGTTTTATCATGATAATAAAGAACAATGTATTATCATAGCTGGTCCTACTGTTTTGCTTTCTCGTATGTGGTTTTATCATGATAATAAAGAACAATGTATTATCATAGCTGGTCCTACTGTTTTGCTTTCTCGTATGTGGTTTTATCATGATAATAAAGAACAATGTATTATCATAGCTGGTCCTACTGTTTTGCTTTCTCGTATGTGGGCTGGTACTGTTTTTAAAGAATCT
+>outgroup
+TTTTATCATGATAATAAAGAACAATGTATTATCATAACTGGTCCCACTGTTTTGCTTTCTCGTATGTGGTTTTATCATGATAATAAAGAACAATGTATTATCATAGCTGGTCCTACTGTTTTGCTTTCTCGTATGTGGTTTTATCATGATAATAAAGAACAATGTATTATCATAGCTGGTCCTACTGTTTTGCTTTCTCGTATGTGGTTTTATCATGATAATAAAGAACAATGTATTATCATAGCTGGTCCTACTGTTTTGCTTTCTGGTATGTGGGCTGGTACTGTTTTTAAAGAATCT
+"""
+
+DEMO_POP_FILE = """\
+pop1_seq1\tPop1
+pop1_seq2\tPop1
+pop1_seq3\tPop1
+pop1_seq4\tPop1
+pop1_seq5\tPop1
+pop2_seq1\tPop2
+pop2_seq2\tPop2
+pop2_seq3\tPop2
+pop2_seq4\tPop2
+pop2_seq5\tPop2
+"""
+
+DEMO_POP_ASSIGNMENTS: dict[str, str] = {
+    "pop1_seq1": "Pop1", "pop1_seq2": "Pop1", "pop1_seq3": "Pop1",
+    "pop1_seq4": "Pop1", "pop1_seq5": "Pop1",
+    "pop2_seq1": "Pop2", "pop2_seq2": "Pop2", "pop2_seq3": "Pop2",
+    "pop2_seq4": "Pop2", "pop2_seq5": "Pop2",
+}
+
+DEMO_DESCRIPTION = """\
+Demo alignment: 10 ingroup sequences + 1 outgroup × 300 bp (2 populations, in-frame CDS)
+  Pop1: pop1_seq1-5  |  Pop2: pop2_seq1-5  |  Outgroup: outgroup
+  Segregating sites S=5, haplotypes H=8, Hd≈0.9556, Tajima's D≈0.6789
+  Ts=4, Tv=1, Ts/Tv=4.0 (one change per biallelic site)  |  ENC≈23.74 (strong codon-usage bias)
+  MK: Pn=2, Ps=3, Dn=2, Ds=1, NI≈0.333, α≈0.667
+  KaKs: Ka≈0.010239, Ks≈0.030291, ω≈0.3380
+"""
+
+
+def run_demo(output_dir: Path, analyses: set[str]) -> None:
+    output_dir.mkdir(parents=True, exist_ok=True)
+    demo_path = output_dir / "demo_input.fas"
+    demo_path.write_text(DEMO_FASTA, encoding="utf-8")
+    pop_path = output_dir / "demo_pop.txt"
+    pop_path.write_text(DEMO_POP_FILE, encoding="utf-8")
+    print(DEMO_DESCRIPTION)
+    print(f"Demo input written to: {demo_path}")
+    print(f"Demo pop file written to: {pop_path}")
+    _run(demo_path, output_dir, 0, 0, analyses,
+         DEMO_POP_ASSIGNMENTS, None, ["--demo"],
+         outgroup_name="outgroup")
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Main pipeline
+# ─────────────────────────────────────────────────────────────────────────────
+
+def _run(
+    input_path: Optional[Path],
+    output_dir: Path,
+    window_size: int,
+    step_size: int,
+    analyses: set[str],
+    pop_assignments: Optional[dict[str, str]],
+    aln2: Optional[Alignment],
+    cli_args: list[str],
+    outgroup_name: Optional[str] = None,
+    hka_loci: Optional[list[HKALocus]] = None,
+    preloaded_aln: Optional[Alignment] = None,
+    source_name: Optional[str] = None,
+    variant_sites_only: bool = False,
+    genetic_code: dict[str, str] = GENETIC_CODE,
+    n_sim: int = 0,
+    sim_given: str = "S",
+    sim_seed: Optional[int] = None,
+    sim_label: str = "",
+) -> None:
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    if preloaded_aln is not None:
+        aln = preloaded_aln
+    elif input_path:
+        print(f"Loading alignment: {input_path}")
+        aln = load_alignment(input_path)
+    else:
+        # Demo mode: parse inline
+        tmp = output_dir / "demo_input.fas"
+        aln = load_alignment(tmp)
+
+    src_label = source_name or (input_path.name if input_path else "demo")
+    print(f"  {aln.n} sequences, {aln.L} sites")
+
+    # Extract outgroup sequence from alignment (removes it from ingroup)
+    outgroup_seq: Optional[str] = None
+    if outgroup_name is not None:
+        if outgroup_name in aln.names:
+            idx = aln.names.index(outgroup_name)
+            outgroup_seq = aln.seqs[idx]
+            # Remove outgroup from ingroup sequences
+            aln = Alignment(
+                names=[n for i, n in enumerate(aln.names) if i != idx],
+                seqs=[s for i, s in enumerate(aln.seqs) if i != idx],
+                source=aln.source,
+            )
+            print(f"  Outgroup '{outgroup_name}' extracted; {aln.n} ingroup sequences remain.")
+        else:
+            raise ValueError(f"Outgroup {outgroup_name!r} not found in alignment")
+
+    supplied = build_parser().parse_args(cli_args) if cli_args else None
+    strict = supplied is not None and not supplied.demo and supplied.analysis.lower().strip() != 'all'
+    if aln2 is not None and aln2.L != aln.L:
+        raise ValueError("Population alignment files must have the same length")
+    if outgroup_seq is not None and aln.n < 2:
+        raise ValueError("At least two ingroup sequences must remain after outgroup removal")
+    if aln.L and not any(c in _NUCLEOTIDES for seq in aln.seqs for c in seq):
+        raise ValueError("Alignment has no unambiguous nucleotide data")
+    if strict:
+        if analyses & {'mk', 'fuliout', 'faywu'} and outgroup_seq is None:
+            raise ValueError("Requested analysis requires --outgroup")
+        if 'hka' in analyses and not hka_loci:
+            raise ValueError("Requested HKA analysis requires --hka-file")
+        if analyses & {'mk', 'kaks', 'codon'} and aln.L % 3:
+            raise ValueError("Requested coding analysis requires an alignment length divisible by 3")
+        if 'divergence' in analyses and aln2 is None and not pop_assignments:
+            raise ValueError("Divergence requires --input2 or --pop-file")
+        if 'fst' in analyses and not pop_assignments:
+            raise ValueError("Fst requires --pop-file")
+
+    active = ", ".join(sorted(analyses))
+    print(f"Running analyses: {active}")
+
+    results = run_analysis(
+        aln, window_size, step_size, analyses, pop_assignments, aln2,
+        outgroup=outgroup_seq, hka_loci=hka_loci, genetic_code=genetic_code,
+        n_sim=n_sim, sim_given=sim_given, sim_seed=sim_seed, sim_label=sim_label,
+    )
+
+    completed = [name for name in sorted(analyses) if name == 'polymorphism' or results.get(name) is not None]
+    skipped = {name: 'Required inputs, population groups or coding frame unavailable'
+               for name in sorted(analyses) if name not in completed}
+    if results.get('hka') is not None and results['hka'].error:
+        completed.remove('hka')
+        skipped['hka'] = results['hka'].error
+    if results.get('kaks') is not None and results['kaks'].n_codons == 0:
+        completed.remove('kaks')
+        skipped['kaks'] = 'No comparable coding positions'
+    results['analysis_status'] = {'requested': sorted(analyses), 'completed': completed, 'skipped': skipped}
+    results['genetic_code'] = genetic_code
+    results['variant_sites_only'] = variant_sites_only
+    if strict and skipped:
+        raise ValueError('; '.join(f"{name}: {reason}" for name, reason in skipped.items()))
+
+    rs = results["global"]
+    print(
+        f"\n{'─'*50}\n"
+        f"  n={rs.n}  L={rs.L_total}  NetSites={rs.L_net}\n"
+        f"  S={rs.S}  η={rs.Eta}  H={rs.H}\n"
+        f"  Hd={_fmt(rs.Hd,4)}  π={_fmt(rs.Pi,6)}  k={_fmt(rs.k,4)}\n"
+        f"  θ_W={_fmt(rs.ThetaW_nuc,6)}  Tajima D={_fmt(rs.TajimaD,4)}\n"
+        f"  Fu&Li D*={_fmt(rs.FuLiD_star,4)}  F*={_fmt(rs.FuLiF_star,4)}\n"
+        f"  R2={_fmt(rs.R2,6)}\n"
+        f"{'─'*50}"
+    )
+    if variant_sites_only:
+        print("  Note: VCF input  -  π and θ_W are per variant site, not per base "
+              "(as in DnaSP 6).")
+
+    ld = results.get("ld")
+    if ld is not None:
+        print(f"  ZnS={_fmt(ld.ZnS,6)}  Za={_fmt(ld.Za,6)}  ZZ={_fmt(ld.ZZ,6)}")
+
+    recomb = results.get("recombination")
+    if recomb is not None:
+        print(f"  Rm={recomb.Rm}  incompatible_pairs={recomb.n_incompatible_pairs}")
+
+    mism = results.get("popsize")
+    if mism is not None:
+        print(f"  raggedness_r={_fmt(mism.raggedness,6)}  mean_diff={_fmt(mism.mean,4)}")
+
+    fuliout = results.get("fuliout")
+    if fuliout is not None:
+        print(f"  Fu&Li D={_fmt(fuliout.D,4)}  F={_fmt(fuliout.F,4)}  S={fuliout.S}  eta={fuliout.eta}  eta_e={fuliout.eta_e}")
+
+    hka = results.get("hka")
+    if hka is not None:
+        if hka.loci_results:
+            print(f"  HKA chi2={_fmt(hka.chi2,4)}  df={hka.df}  p={_fmt(hka.p_value,6)}  T_hat={_fmt(hka.T_hat,4)}")
+            if hka.note:
+                print(f"  HKA note: {hka.note}")
+        else:
+            print(f"  HKA not run: {hka.error}")
+
+    mk = results.get("mk")
+    if mk is not None:
+        print(f"  MK  Pn={mk.Pn}  Ps={mk.Ps}  Dn={mk.Dn}  Ds={mk.Ds}  "
+              f"alpha={_fmt(mk.alpha,4)}  DoS={_fmt(mk.DoS,4)}  p={_fmt(mk.fisher_p,6)}"
+              f"  complex_codons={mk.n_complex_codons}")
+        if mk.n_internal_stop_codons:
+            print(f"  WARNING: {mk.n_internal_stop_codons} codon(s) with a stop codon inside the coding "
+                  f"region, analysed as a 21st amino acid (as DnaSP does); check the frame and "
+                  f"--genetic-code.")
+
+    kaks = results.get("kaks")
+    if kaks is not None and kaks.n_codons > 0:
+        kaks_mode = " (ingroup-vs-outgroup)" if outgroup_seq is not None else ""
+        print(f"  Ka={_fmt(kaks.Ka,6)}  Ks={_fmt(kaks.Ks,6)}  omega={_fmt(kaks.omega,4)}{kaks_mode}")
+
+    fufs = results.get("fufs")
+    if fufs is not None and fufs.Fs is not None:
+        print(f"  Fu's Fs={_fmt(fufs.Fs,4)}  S_k={_fmt(fufs.S_k,6)}  H={fufs.H}  theta_pi={_fmt(fufs.theta_pi,4)}")
+    ct = results.get("coalescent")
+    if ct is not None:
+        if ct.note:
+            print(f"  Coalescent simulation: no P-values ({ct.note})")
+        else:
+            print(f"  Coalescent P ({ct.n_sim} replicates, given {ct.given}, seed {ct.seed}): "
+                  f"Tajima D {_fmt_p(ct.TajimaD_p_two_tailed)}  "
+                  f"R2 {_fmt_p(ct.R2_p_lower)}  Fs {_fmt_p(ct.Fs_p_lower)}")
+
+    sfs = results.get("sfs")
+    if sfs is not None and sfs.folded:
+        total_seg = sum(sfs.folded.values())
+        singleton_frac = sfs.folded.get(1, 0) / total_seg if total_seg > 0 else 0.0
+        unfolded_note = f"  unfolded_sites={sum(sfs.unfolded.values())}" if sfs.unfolded else ""
+        print(f"  SFS folded_sites={total_seg}  singletons={sfs.folded.get(1,0)}  "
+              f"singleton_frac={singleton_frac:.3f}{unfolded_note}")
+
+    tstv = results.get("tstv")
+    if tstv is not None:
+        ts_tv_str = f"{tstv.ts_tv:.4f}" if tstv.ts_tv is not None else "N/A"
+        print(f"  TsTv Ts={tstv.n_transitions}  Tv={tstv.n_transversions}  Ts/Tv={ts_tv_str}"
+              f"  sites={tstv.n_sites}  L_net={tstv.L_net}"
+              f"{'  polarised' if tstv.polarised else ''}")
+
+    codon_r = results.get("codon")
+    if codon_r is not None:
+        enc_str = f"{codon_r.ENC:.2f}" if codon_r.ENC is not None else "N/A"
+        print(f"  Codon n_codons={codon_r.n_codons:.1f}  ENC={enc_str}")
+
+    faywu_r = results.get("faywu")
+    if faywu_r is not None:
+        h_str = f"{faywu_r.H:.6f}" if faywu_r.H is not None else "N/A"
+        e_str = f"{faywu_r.E:.6f}" if faywu_r.E is not None else "N/A"
+        print(f"  FayWu H={h_str}  E={e_str}  n_polarised={faywu_r.n_polarised}")
+
+    fst_r = results.get("fst")
+    if fst_r is not None and fst_r.fst_pairwise:
+        fst_mean_str = f"{fst_r.fst_mean:.4f}" if fst_r.fst_mean is not None else "N/A"
+        pair_strs = "  ".join(
+            f"{p1}/{p2}={f'{v:.4f}' if v is not None else 'N/A'}"
+            for (p1, p2), v in fst_r.fst_pairwise.items()
+        )
+        print(f"  Fst mean={fst_mean_str}  pairs: {pair_strs}")
+
+    print(f"\nWriting output to: {output_dir}")
+
+    tsv = write_tsv(output_dir, src_label, rs, results["windows"],
+                    variant_sites_only=variant_sites_only)
+
+    result_files = [tsv, write_summary(output_dir, results)]
+    if ld is not None and ld.pairs:
+        ld_tsv = write_ld_tsv(output_dir, ld)
+        result_files.append(ld_tsv)
+
+    figs = make_figures(output_dir, results)
+    if not HAS_MPL:
+        print("  Note: matplotlib not installed  -  figures skipped.")
+
+    report = write_report(output_dir, src_label, aln, results, figs,
+                          variant_sites_only=variant_sites_only,
+                          genetic_code=genetic_code,
+                          kaks_used_outgroup=(outgroup_seq is not None
+                                              and results.get("kaks") is not None))
+    result_files.append(report)
+    result_files.append(write_result_envelope(output_dir, src_label, input_path, results,
+                                              result_files, figs, variant_sites_only))
+
+    write_reproducibility(output_dir, input_path, cli_args, result_files, results.get("analysis_status"))
+
+    print(f"  Report:  {report}")
+    print(f"  TSV:     {tsv}")
+    if figs:
+        print(f"  Figures: {', '.join(str(f) for f in figs)}")
+    print("Done.")
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# CLI
+# ─────────────────────────────────────────────────────────────────────────────
+
+def build_parser() -> argparse.ArgumentParser:
+    p = argparse.ArgumentParser(
+        description="DnaSP-Python  -  population genetics analysis of DNA alignments",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog=(
+            "Analyses available (--analysis):\n"
+            "  polymorphism  π, k, S, Hd, θ_W, Tajima D, Fu & Li D*/F*, R2  [always run]\n"
+            "  ld            Linkage disequilibrium (D, D', R², ZnS, Za, ZZ)\n"
+            "  recombination Minimum recombination events Rm (four-gamete test)\n"
+            "  popsize       Mismatch distribution, raggedness r\n"
+            "  indel         InDel polymorphism statistics\n"
+            "  divergence    Dxy, Da, fixed/shared differences (needs --input2 or --pop-file)\n"
+            "  fuliout       Fu & Li D/F with outgroup (needs --outgroup)\n"
+            "  hka           HKA two-locus neutrality test (needs --hka-file)\n"
+            "  mk            McDonald-Kreitman test (needs --outgroup; coding aln)\n"
+            "  kaks          Ka/Ks via Nei-Gojobori 1986 (coding alignment)\n"
+            "  fufs          Fu's Fs neutrality test (Fu 1997)\n"
+            "  sfs           Site frequency spectrum (folded; unfolded with --outgroup)\n"
+            "  tstv          Transition/transversion ratio (Ts/Tv)\n"
+            "  codon         Codon usage bias: RSCU + ENC (coding alignment)\n"
+            "  faywu         Fay & Wu's H + Zeng's E (needs --outgroup)\n"
+            "  fst           Population differentiation Fst  -  Hudson 1992 (needs --pop-file)\n"
+            "  all           Run all applicable analyses\n"
+            "\n"
+            "Examples:\n"
+            "  python dnasp.py --demo --output /tmp/dnasp_demo\n"
+            "  python dnasp.py --input aln.fas --output results/\n"
+            "  python dnasp.py --input aln.fas --analysis all --output results/\n"
+            "  python dnasp.py --input aln.fas --analysis ld,recombination --output results/\n"
+            "  python dnasp.py --input aln.nex --window 100 --step 25 --output results/\n"
+            "  python dnasp.py --input pop1.fas --input2 pop2.fas --analysis divergence --output results/\n"
+            "  python dnasp.py --input aln.fas --pop-file pops.txt --analysis divergence --output results/\n"
+            "  python dnasp.py --input aln.fas --outgroup outgroupSeq --analysis fuliout --output results/\n"
+            "  python dnasp.py --input aln.fas --hka-file hka_loci.tsv --analysis hka --output results/\n"
+            "  python dnasp.py --input coding.fas --outgroup OutSeq --analysis mk --output results/\n"
+            "  python dnasp.py --input coding.fas --analysis kaks --output results/\n"
+            "  python dnasp.py --input aln.fas --analysis fufs --output results/\n"
+            "  python dnasp.py --input aln.fas --analysis polymorphism,fufs --n-sim 10000 --output results/\n"
+            "  python dnasp.py --input aln.fas --analysis sfs --output results/\n"
+            "  python dnasp.py --input aln.fas --outgroup OutSeq --analysis sfs --output results/\n"
+            "  python dnasp.py --input aln.fas --analysis tstv --output results/\n"
+            "  python dnasp.py --input coding.fas --analysis codon --output results/\n"
+            "  python dnasp.py --input coding.fas --analysis codon,tstv,kaks --output results/\n"
+            "  python dnasp.py --input aln.fas --outgroup OG --analysis faywu --output results/\n"
+            "  python dnasp.py --input aln.fas --pop-file pops.txt --analysis fst --output results/\n"
+            "  python dnasp.py --vcf samples.vcf --analysis polymorphism,fufs,sfs --output results/\n"
+            "  python dnasp.py --vcf samples.vcf --region chr2 --pop-file pops.SG.txt --analysis fst --output results/\n"
+        ),
+    )
+    p.add_argument("--version", "-V", action="version", version=f"dnasp {__version__}")
+    p.add_argument("--input", "-i", type=Path, help="Input alignment (FASTA or NEXUS)")
+    p.add_argument("--vcf", type=Path, default=None,
+                   help="Multi-sample VCF; analyses are run once per CHROM (one MSA each), "
+                        "as in DnaSP. Phased '|' -> two haplotype rows; unphased het -> gap.")
+    p.add_argument("--region", type=str, default=None,
+                   help="With --vcf: restrict to this CHROM only")
+    p.add_argument("--vcf-merge", action="store_true", dest="vcf_merge",
+                   help="With --vcf: pool every CHROM into one MSA (genome-wide summary only; "
+                        "not valid for π/Tajima's D/SFS  -  mixes unlinked regions)")
+    p.add_argument("--input2", type=Path, help="Second population alignment (for --analysis divergence)")
+    p.add_argument("--pop-file", type=Path, dest="pop_file",
+                   help="Population assignment file (TSV: seq_name<TAB>population)")
+    p.add_argument("--outgroup", type=str, default=None,
+                   help="Sequence name to use as outgroup (for --analysis fuliout). "
+                        "This sequence is removed from the ingroup.")
+    p.add_argument("--hka-file", type=Path, dest="hka_file", default=None,
+                   help="HKA file: locus n S L_poly D [L_div] [chrom]; exactly two loci")
+    p.add_argument("--genetic-code", dest="genetic_code", default="standard",
+                   choices=sorted(GENETIC_CODES),
+                   help="Codon table for mk/kaks/codon (default: standard). Use "
+                        "vertebrate-mitochondrial for mitochondrial coding sequences "
+                        "(e.g. COII), where TGA is Trp, AGA/AGG are stop, ATA is Met  -  "
+                        "the standard code would otherwise silently drop those codons "
+                        "as stops/mismatches.")
+    p.add_argument("--output", "-o", type=Path, default=Path("dnasp_output"),
+                   help="Output directory (default: dnasp_output/)")
+    p.add_argument("--analysis", "-a", default="polymorphism",
+                   help="Comma-separated analyses to run (default: polymorphism). Use 'all' for everything.")
+    p.add_argument("--window", "-w", type=int, default=0,
+                   help="Sliding window size in bp (0 = whole alignment only)")
+    p.add_argument("--step", "-s", type=int, default=0,
+                   help="Sliding window step size in bp (default: same as window)")
+    p.add_argument("--n-sim", type=_non_negative_int, default=0,
+                   help="Coalescent replicates for P-values of Tajima's D, R2 and Fu's Fs "
+                        "over the whole region (default 0: no simulation). 10000 is typical.")
+    p.add_argument("--sim-given", choices=SIM_GIVEN, default="S",
+                   help="Condition the simulation on the observed segregating sites S "
+                        "(default) or on Watterson's theta")
+    p.add_argument("--sim-seed", type=int, default=None,
+                   help="Seed for --n-sim; if omitted one is generated and recorded")
+    p.add_argument("--demo", action="store_true",
+                   help="Run on built-in synthetic demo data")
+    return p
+
+
+def _non_negative_int(text: str) -> int:
+    try:
+        value = int(text)
+    except ValueError:
+        raise argparse.ArgumentTypeError(f"expected a whole number, got {text!r}")
+    if value < 0:
+        raise argparse.ArgumentTypeError("must be zero or a positive number of replicates")
+    return value
+
+
+def _parse_analyses(analysis_str: str) -> set[str]:
+    if analysis_str.strip().lower() == "all":
+        return VALID_ANALYSES.copy()
+    parts = {a.strip().lower() for a in analysis_str.split(",")}
+    unknown = parts - VALID_ANALYSES - {"all"}
+    if unknown or not parts or 'all' in parts:
+        raise ValueError(f"Unknown or mixed analysis selection: {analysis_str}")
+    valid = parts & VALID_ANALYSES
+    valid.add("polymorphism")  # always run
+    return valid
+
+
+def _main(argv: Optional[list[str]] = None) -> int:
+    parser = build_parser()
+    args = parser.parse_args(argv)
+
+    analyses = _parse_analyses(args.analysis)
+    if args.window < 0 or args.step < 0:
+        raise ValueError("Window and step must be non-negative")
+    if args.step and not args.window:
+        raise ValueError("--step requires a positive --window")
+    if sum(bool(x) for x in (args.input, args.vcf, args.demo)) > 1:
+        raise ValueError("Choose exactly one of --input, --vcf or --demo")
+    if args.output.exists() and (not args.output.is_dir() or any(args.output.iterdir())):
+        raise ValueError(f"Output is not an empty directory: {args.output}. Choose a new run directory.")
+
+    pop_assignments: Optional[dict[str, str]] = None
+    if args.pop_file:
+        if not args.pop_file.exists():
+            print(f"Error: pop-file not found: {args.pop_file}", file=sys.stderr)
+            return 1
+        pop_assignments = load_pop_file(args.pop_file)
+
+    aln2: Optional[Alignment] = None
+    if args.input2:
+        if not args.input2.exists():
+            print(f"Error: --input2 file not found: {args.input2}", file=sys.stderr)
+            return 1
+        aln2 = load_alignment(args.input2)
+
+    hka_loci: Optional[list[HKALocus]] = None
+    if args.hka_file:
+        if not args.hka_file.exists():
+            print(f"Error: --hka-file not found: {args.hka_file}", file=sys.stderr)
+            return 1
+        hka_loci = load_hka_file(args.hka_file)
+        print(f"Loaded {len(hka_loci)} HKA loci from {args.hka_file}")
+
+    step = args.step if args.step > 0 else args.window
+    cli_args = list(sys.argv[1:] if argv is None else argv)
+    genetic_code = GENETIC_CODES[args.genetic_code]
+    sim_seed = args.sim_seed
+    if args.n_sim and sim_seed is None:
+        # Recorded in the command the reproducibility bundle replays, so a rerun draws
+        # the same replicates.
+        sim_seed = random.SystemRandom().randrange(2 ** 31)
+        cli_args += ["--sim-seed", str(sim_seed)]
+    if args.n_sim and args.window:
+        print("  Note: --n-sim tests the whole region; sliding windows are not simulated.",
+              file=sys.stderr)
+    sim = dict(n_sim=args.n_sim, sim_given=args.sim_given, sim_seed=sim_seed)
+
+    if args.demo:
+        output_dir = args.output
+        output_dir.mkdir(parents=True, exist_ok=True)
+        demo_path = output_dir / "demo_input.fas"
+        demo_path.write_text(DEMO_FASTA, encoding="utf-8")
+        pop_path = output_dir / "demo_pop.txt"
+        pop_path.write_text(DEMO_POP_FILE, encoding="utf-8")
+        print(DEMO_DESCRIPTION)
+        print(f"Demo input written to: {demo_path}")
+        print(f"Demo pop file written to: {pop_path}")
+        # Demo always runs all analyses (hka skipped  -  no --hka-file)
+        demo_analyses = VALID_ANALYSES - {"hka"}
+        _run(demo_path, output_dir, args.window, step, demo_analyses,
+             DEMO_POP_ASSIGNMENTS, None, cli_args,
+             outgroup_name="outgroup", genetic_code=genetic_code, **sim)
+        return 0
+
+    if args.vcf:
+        if not args.vcf.exists():
+            print(f"Error: --vcf file not found: {args.vcf}", file=sys.stderr)
+            return 1
+        vcf = parse_vcf(args.vcf, region=args.region, merge=args.vcf_merge)
+        phase = ("phased" if vcf.is_phased
+                 else "unphased" if vcf.ploidy == 2 else "haploid")
+        print(
+            f"VCF: {len(vcf.sample_names)} samples ({phase}, ploidy {vcf.ploidy}); "
+            f"{len(vcf.alignments)} MSA(s); skipped "
+            f"{vcf.n_indels_skipped} indel/multi-base, "
+            f"{vcf.n_multiallelic_skipped} multiallelic, "
+            f"{vcf.n_non_gt_skipped} non-GT line(s)"
+        )
+        if vcf.n_unphased_het_sites:
+            print(
+                f"  Note: {vcf.n_unphased_het_sites} retained SNP(s) carry an "
+                "unphased heterozygous genotype  -  both haplotypes are gapped "
+                "there (DnaSP cannot phase them), so complete deletion removes "
+                "the whole column. On unphased data this can drop most sites; "
+                "phase the VCF or accept the reduced site set.",
+                file=sys.stderr,
+            )
+        if args.window:
+            print(
+                "  Note: --window on a VCF slides over retained variant sites "
+                "(SNP index), not base pairs  -  VCF POS is not used to place "
+                "columns.",
+                file=sys.stderr,
+            )
+        if not vcf.alignments:
+            print("Error: no usable variant sites in the VCF.", file=sys.stderr)
+            return 1
+
+        def _vcf_base(hn: str) -> str:
+            return hn.rsplit("_h", 1)[0] if vcf.ploidy == 2 else hn
+
+        multi = len(vcf.alignments) > 1
+        # Precompute collision-safe output subdirectory names.
+        sub_dirs: dict[str, Path] = {}
+        if multi:
+            taken: dict[str, str] = {}
+            output_root = args.output.resolve()
+            for chrom in vcf.alignments:
+                # Leading/trailing dots are dropped so "." and ".." (valid CHROM
+                # tokens) cannot name the root or its parent; empty names are hashed.
+                digest = hashlib.sha1(chrom.encode()).hexdigest()
+                safe = re.sub(r"[^\w.-]", "_", chrom).strip(".") or f"chrom_{digest[:6]}"
+                # Windows also reserves the superscript forms (COM¹, LPT³); NFKC folds them.
+                if unicodedata.normalize("NFKC", safe).split(".")[0].upper() in _WINDOWS_RESERVED_NAMES:
+                    safe = f"chrom_{safe}"
+                if _fs_equivalence_key(safe) in _ROOT_ARTEFACT_KEYS:
+                    safe = f"chrom_{safe}"
+                # Names are reserved under a filesystem-equivalence key (NFKC,
+                # case-folded), so chr1/CHR1 or two Unicode forms of one name
+                # never share a directory on macOS or Windows; a sanitised or
+                # hash-suffixed name may also equal another CHROM's literal
+                # name, so the suffix is lengthened until the key is unused.
+                candidate, length = safe, 6
+                while _fs_equivalence_key(candidate) in taken and taken[_fs_equivalence_key(candidate)] != chrom:
+                    candidate = (f"{safe}_{digest[:length]}" if length <= len(digest)
+                                 else f"{safe}_{digest}_{length - len(digest)}")
+                    length += 2
+                taken[_fs_equivalence_key(candidate)] = chrom
+                child = args.output / candidate
+                if child.resolve().parent != output_root:
+                    raise ValueError(f"CHROM {chrom!r} cannot be mapped to a directory inside {args.output}")
+                sub_dirs[chrom] = child
+            if len({_fs_equivalence_key(p.name) for p in sub_dirs.values()}) != len(sub_dirs):
+                raise ValueError("CHROM output directories are not unique on a case-insensitive filesystem")
+
+        for chrom, chrom_aln in vcf.alignments.items():
+            sub = sub_dirs.get(chrom, args.output)
+            # Population map built per CHROM from that CHROM's actual samples.
+            chrom_pops: Optional[dict[str, str]] = None
+            if pop_assignments:
+                chrom_pops = {}
+                unassigned: list[str] = []
+                for nm in chrom_aln.names:
+                    base = _vcf_base(nm)
+                    if base in pop_assignments:
+                        chrom_pops[nm] = pop_assignments[base]
+                    elif base not in unassigned:
+                        unassigned.append(base)
+                if unassigned:
+                    print(
+                        f"  Warning ({chrom}): no population assignment for "
+                        f"{', '.join(unassigned)}  -  excluded from fst / divergence",
+                        file=sys.stderr,
+                    )
+            print(f"\n=== {chrom}  ({chrom_aln.n} haplotypes x {chrom_aln.L} variant sites) ===")
+            # Each child's reproducibility record replays that CHROM only.
+            child_args = (cli_args if any(a == "--region" or a.startswith("--region=") for a in cli_args)
+                          else [*cli_args, "--region", chrom])
+            _run(
+                args.vcf, sub, args.window, step,
+                analyses, chrom_pops, aln2, child_args,
+                outgroup_name=args.outgroup, hka_loci=hka_loci,
+                preloaded_aln=chrom_aln, source_name=f"{args.vcf.name}#{chrom}",
+                variant_sites_only=True, genetic_code=genetic_code,
+                **sim, sim_label=chrom,
+            )
+        if multi:
+            # A runner reads only <output>/result.json: summarise the per-CHROM runs there,
+            # then give the split run its own bundle (replays the whole run; checksums cover
+            # the root envelope and every child file).
+            root = write_multi_result_envelope(args.output, args.vcf, sub_dirs)
+            write_reproducibility(args.output, args.vcf, cli_args, [root],
+                                  {"mode": "multi-chrom", "chromosomes": list(sub_dirs)})
+            print(f"  Root envelope: {root}")
+        return 0
+
+    if not args.input and hka_loci and analyses == {'polymorphism', 'hka'}:
+        _run(args.hka_file, args.output, 0, 0, {'hka'}, None, None, cli_args,
+             hka_loci=hka_loci, preloaded_aln=Alignment([], []), source_name=args.hka_file.name)
+        return 0
+
+    if not args.input:
+        parser.error("Provide --input <file>, --vcf <file>, or --demo")
+
+    if not args.input.exists():
+        print(f"Error: input file not found: {args.input}", file=sys.stderr)
+        return 1
+
+    _run(
+        args.input, args.output, args.window, step,
+        analyses, pop_assignments, aln2, cli_args,
+        outgroup_name=args.outgroup,
+        hka_loci=hka_loci, genetic_code=genetic_code, **sim,
+    )
+    return 0
+
+
+def _tolerate_unencodable_console() -> None:
+    """Escape characters the console cannot encode instead of failing.
+
+    Redirected stdout and stderr on Windows (as when an agent captures them) use
+    the ANSI code page, usually cp1252, which has no pi, eta or theta. Printing
+    the summary would raise UnicodeEncodeError and end the run with exit code 1.
+    Such streams keep their encoding but escape what it cannot represent
+    (for example \\u03c0); UTF-8 streams are left untouched.
+    """
+    for stream in (sys.stdout, sys.stderr):
+        encoding = (getattr(stream, "encoding", None) or "").lower().replace("-", "").replace("_", "")
+        reconfigure = getattr(stream, "reconfigure", None)
+        if reconfigure is None or encoding in ("utf8", "utf8sig"):
+            continue
+        try:
+            reconfigure(errors="backslashreplace")
+        except (ValueError, OSError):
+            # A stream that cannot be reconfigured keeps its own error handler.
+            pass
+
+
+def main(argv: Optional[list[str]] = None) -> int:
+    """CLI boundary: invalid scientific inputs yield concise diagnostics."""
+    try:
+        _tolerate_unencodable_console()
+        return _main(argv)
+    except (ValueError, OSError) as exc:
+        print(f"Error: {exc}", file=sys.stderr)
+        return 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

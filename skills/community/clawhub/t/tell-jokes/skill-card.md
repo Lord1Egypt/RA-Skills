@@ -1,39 +1,51 @@
-## Description: <br>
-Tell Jokes helps an agent respond to humor requests with jokes in multiple styles and languages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tell jokes on demand in multiple styles and languages. Use when user asks for a joke, wants to be cheered up, says they're bored, asks for humor, or requests something funny. Supports dad jokes, puns, programming jokes, dark humor, cold jokes, and more.
 
-## Publisher: <br>
-[xiaohuaishu](https://clawhub.ai/user/xiaohuaishu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xiaohuaishu](https://clawhub.ai/user/xiaohuaishu)
 
-## Use Case: <br>
-External users and assistants use this skill to provide light humor, respond to requests for jokes, and adapt delivery to the user's requested style or language. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Vague comments about boredom or wanting cheering up may be treated as invitations to tell a joke. <br>
-Mitigation: Use conversational context and user preference to decide whether humor is welcome before responding with a joke. <br>
-Risk: Dark humor can be inappropriate in sensitive, professional, or group contexts. <br>
-Mitigation: Keep jokes appropriate for the setting and avoid edgy formats unless the user clearly asks for them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaohuaishu/tell-jokes) <br>
+## Use Case:
+
+External users use this skill to have an agent respond to direct or contextual requests for humor with one joke at a time, matching the requested style and language when specified.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may activate for vague boredom or cheering-up requests when humor is not desired.
+
+Mitigation: Use clear activation criteria or user confirmation in contexts where unsolicited humor could be distracting.
+
+Risk: Requested humor styles such as dark humor may be inappropriate for some audiences or settings.
+
+Mitigation: Keep jokes appropriate to the conversation context and avoid targeted, harassing, or policy-violating content.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Natural language text with optional line breaks for timing] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May match requested joke style and language; one joke at a time unless the user asks for more.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Natural-language responses in plain text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [One joke at a time by default; style and language follow the user's request.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,52 @@
-## Description: <br>
-Call GET /api/youku/get-video-detail/v1 for YOUKU Video Details through JustOneAPI with videoId. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/youku/get-video-detail/v1 for YOUKU Video Details through JustOneAPI with videoId.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to call JustOneAPI's YOUKU video detail endpoint with a videoId, then summarize and return video metadata such as title, description, and engagement fields for lookups or dashboards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The API token can be exposed if request URLs, command logs, screenshots, or shared traces include credential-bearing requests. <br>
-Mitigation: Use a least-privilege JUST_ONE_API_TOKEN, avoid sharing request URLs or logs, and rotate the token if it may have been exposed. <br>
+## Use Case:
 
+Developers and agents use this skill to look up detailed YOUKU video metadata by videoId through the JustOneAPI endpoint, then summarize the returned fields for dashboards or analysis workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/justoneapi/justoneapi-youku-get-video-detail) <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_youku_get_video_detail&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Markdown, JSON] <br>
-**Output Format:** [Markdown summary with raw JSON when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and a videoId.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A JustOneAPI token is required and may be exposed through command logs, process listings, or full request URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped or short-lived token when available, avoid sharing command logs or full URLs, and rotate the token if exposure is suspected.
+
+## Reference(s):
+
+- [JustOneAPI homepage](https://api.justoneapi.com)
+- [Just One API usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_youku_get_video_detail&utm_content=project_link)
+- [YOUKU Video Details operation reference](generated/operations.md)
+- [ClawHub skill page](https://clawhub.ai/justoneapi/skills/justoneapi-youku-get-video-detail)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown summary with endpoint details, plus raw JSON for successful API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and videoId; reports operation-specific error details when the endpoint call fails.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

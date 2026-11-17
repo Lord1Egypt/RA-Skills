@@ -1,42 +1,65 @@
-## Description: <br>
-Set up automatic notifications when OpenClaw gateway restarts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up automatic notifications when OpenClaw gateway restarts via a user-selected messaging channel.
 
-## Publisher: <br>
-[deemoartisan](https://clawhub.ai/user/deemoartisan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deemoartisan](https://clawhub.ai/user/deemoartisan)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to configure gateway startup notifications through channels such as iMessage, WhatsApp, Telegram, Discord, or Slack. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs a persistent OpenClaw hook that sends notifications whenever the gateway starts. <br>
-Mitigation: Install it only when ongoing startup notifications are wanted, and remove or disable the OpenClaw hook when automatic notifications are no longer needed. <br>
-Risk: Gateway status messages sent to public or shared messaging channels can expose infrastructure activity. <br>
-Mitigation: Use a private trusted channel for notification delivery and avoid public Slack or Discord destinations for infrastructure status. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to install and manage a persistent gateway startup hook that sends a timestamp-only notification to iMessage, WhatsApp, Telegram, Discord, or Slack.
 
-## Reference(s): <br>
-- [Supported Channels](references/CHANNELS.md) <br>
-- [Manual Setup Guide](references/MANUAL.md) <br>
-- [Gateway Notify on ClawHub](https://clawhub.ai/deemoartisan/gateway-notify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with shell commands and generated hook configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup steps for a persistent OpenClaw gateway startup notification hook.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata and CHANGELOG.md, released 2026-03-09) <br>
+Risk: The installed hook persists and sends a notification on every OpenClaw gateway startup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after confirming this behavior, and remove it with scripts/uninstall_gateway_notify.sh followed by a gateway restart when notifications are no longer wanted.
+
+Risk: Notifications pass through the selected third-party messaging provider, which may log message metadata.
+
+Mitigation: Confirm the channel and recipient carefully, keep the default timestamp-only message unless additional data sharing is explicitly accepted, and avoid adding sensitive local details to customized handlers.
+
+Risk: The --yes flag skips the privacy confirmation prompt.
+
+Mitigation: Use --yes only in automation you control where the channel, recipient, and data flow have already been reviewed.
+
+Risk: Activating or deactivating the hook may require restarting the gateway, which can briefly disconnect the current session.
+
+Mitigation: Warn users before restart and plan for manual reconnect if auto-reconnect is unavailable.
+
+## Reference(s):
+
+- [Gateway Notify on ClawHub](https://clawhub.ai/deemoartisan/skills/gateway-notify)
+- [Security & Privacy](SECURITY.md)
+- [Manual Setup Guide](references/MANUAL.md)
+- [Supported Channels](references/CHANNELS.md)
+- [Changelog](CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose running setup or uninstall scripts that create or remove a persistent OpenClaw gateway startup hook.]
+
+## Skill Version(s):
+
+2.1.5 (source: frontmatter and changelog, released 2026-07-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

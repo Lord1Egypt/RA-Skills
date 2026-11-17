@@ -1,0 +1,11 @@
+{
+  "name": "javis-access-broker",
+  "version": "0.1.1",
+  "description": "Javis's access broker. For one ask_javis request from an outside agent it questions the agent when the task is missing or unclear, looks only at the per-request slice javis-server prepared, and submits the minimum answer the task needs, every point citing a slice id. Delivered by tag (javis-access-broker-v<version>) to javis-server, which sends the SKILL.md body as the instructions of the locked-down access-broker openclaw agent. Not a store skill and never installed into the user's workspace.",
+  "keywords": ["javis-access-broker", "access broker", "ask_javis", "agent access", "minimum necessary"],
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": { "node": ">=18" }
+}

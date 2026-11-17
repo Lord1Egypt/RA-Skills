@@ -1,41 +1,54 @@
-## Description: <br>
-The Disney Plus skill helps agents organize public Disney Plus pages, content entry points, membership information, creator guidance, and help resources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Disney Plus helps agents organize public Disney Plus pages, content entry points, membership information, creator guidance, and playback help.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-External users and agents use this skill to summarize publicly visible Disney Plus membership, content, creator, and help information. It is intended for public-page research and does not handle login-only account assets or private viewing data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Disney Plus pricing, plan details, catalog availability, and policies can change or vary by market. <br>
-Mitigation: Verify details on official Disney Plus pages, state the applicable market, and include the date of collection when summarizing time-sensitive information. <br>
-Risk: A user may try to include Disney account credentials, viewing history, or other private account data in a request. <br>
-Mitigation: Do not request or process credentials or private account data; limit outputs to publicly available pages and help information. <br>
+## Use Case:
 
+External users and agents use this skill to summarize public Disney Plus home, membership, help, creator, and program pages into market-aware comparisons, link lists, and summaries. It is intended for public information only and excludes account-private data, viewing history, payment information, and logged-in assets.
 
-## Reference(s): <br>
-- [Disney Plus homepage](https://www.disneyplus.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/CodeKungfu/disney-plus) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown summaries, comparison tables, and structured lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public Disney Plus information only; no account credentials or private viewing data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server evidence release metadata) <br>
+Risk: A user may provide private account details, logged-in viewing history, payment information, or other non-public data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with public Disney Plus pages and do not provide private account, payment, viewing-history, or logged-in asset data.
+
+Risk: Disney Plus catalog, plan, device, download, and playback details can vary by market.
+
+Mitigation: State the applicable market or region in outputs and prefer official public explanation pages over player-only or account-specific views.
+
+## Reference(s):
+
+- [Disney Plus Homepage](https://www.disneyplus.com/)
+- [ClawHub Skill Page](https://clawhub.ai/codekungfu/skills/disney-plus)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown summaries, comparison tables, and structured link lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should state the applicable market or region when Disney Plus catalog, plan, device, download, or playback details vary by location.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

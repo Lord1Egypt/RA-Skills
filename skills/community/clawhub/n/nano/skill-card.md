@@ -1,53 +1,61 @@
-## Description: <br>
-Nano (XNO) cryptocurrency wallet operations, transaction analysis, and explorer lookups. Use for send/receive, balances, pending funds, address validation, unit conversion, tx/hash/account lookup, explorer links, and Nano block-lattice questions. Prefer xno-mcp first; use xno-skills CLI as fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an assistant operate Nano (XNO) wallets, check transactions and balances, validate addresses, and look up ledger activity.
 
-## Publisher: <br>
-[cbrunnkvist](https://clawhub.ai/user/cbrunnkvist) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[casualsecurityinc](https://clawhub.ai/user/casualsecurityinc)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent work with Nano/XNO wallets, balances, sends, receives, address validation, unit conversion, QR requests, transaction history, representative changes, and explorer lookups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a Nano/XNO wallet and may initiate irreversible sends. <br>
-Mitigation: Review wallet names, destination addresses, amounts, representative changes, and send confirmations before allowing execution. <br>
-Risk: Balance checks may automatically receive pending Nano funds and update wallet state. <br>
-Mitigation: Use the skill only when wallet state changes are expected, and check balances and pending funds before and after receive operations. <br>
-Risk: Private keys, mnemonics, or seeds could be exposed if handled through the agent context. <br>
-Mitigation: Do not export mnemonics or seeds, and use OWS-backed wallet operations rather than asking the agent to handle private keys. <br>
-Risk: Ambiguous requests using the word Nano may refer to non-XNO products. <br>
-Mitigation: Clarify ambiguous requests and use this skill only for the Nano cryptocurrency protocol. <br>
+## Use Case:
 
+People and developers with configured Nano wallets use this skill to send and receive XNO, inspect balances and transaction history, create payment requests, and answer Nano protocol questions.
 
-## Reference(s): <br>
-- [Nano.org](https://nano.org) <br>
-- [ClawHub Skill Page](https://clawhub.ai/cbrunnkvist/skills/nano) <br>
-- [xno-skills MCP Reference](references/mcp.md) <br>
-- [xno-skills Balance Reference](references/balance.md) <br>
-- [xno-skills Send Reference](references/send.md) <br>
-- [xno-skills Receive Reference](references/receive.md) <br>
-- [xno-skills Address Validation Reference](references/validate.md) <br>
-- [xno-skills Unit Conversion Reference](references/convert.md) <br>
-- [Blocklattice Representatives](https://blocklattice.io/representatives) <br>
-- [Nanoticker Representatives](https://nanoticker.org/representatives) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with JSON MCP tool calls and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce wallet operation plans, Nano addresses, transaction hashes, explorer links, QR output, and JSON tool results when supported by the client.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.4.0 (source: server evidence release.version) <br>
+Risk: Real XNO transfers or refunds can send funds to the wrong recipient or exceed intended spending.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before each send, independently confirm the source wallet, full destination address, amount, and spending limit; require explicit authorization before changing the limit.
+
+Risk: Unpinned package execution can run a different version than the reviewed release.
+
+Mitigation: Avoid the unpinned `npx -y xno-skills mcp` fallback; use a version-pinned installation.
+
+Risk: Sharing private keys or mnemonics with an assistant can expose wallet secrets.
+
+Mitigation: Never paste private keys or mnemonics into the assistant; perform any raw-key operation locally outside the conversation.
+
+## Reference(s):
+
+- [Nano (XNO) ClawHub release](https://clawhub.ai/casualsecurityinc/skills/nano)
+- [Nano protocol](https://nano.org)
+- [Wallet sending](artifact/references/send.md)
+- [Payment refunds](artifact/references/payment.refund.md)
+- [MCP setup](artifact/references/mcp.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Text, Markdown, and structured JSON tool results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May provide full wallet addresses, transaction details, and payment QR codes.]
+
+## Skill Version(s):
+
+5.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

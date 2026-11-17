@@ -1,43 +1,56 @@
-## Description: <br>
-Advanced OpenClaw skill creation handler that executes the official 5-step research flow with comprehensive analysis and best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advanced OpenClaw skill creation handler that executes the official 5-step research flow with comprehensive analysis and best practices.
 
-## Publisher: <br>
-[modestyrichards](https://clawhub.ai/user/modestyrichards) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[modestyrichards](https://clawhub.ai/user/modestyrichards)
 
-## Use Case: <br>
-Developers and engineers use this skill to draft or modify OpenClaw, Moltbot, and ClawDBot skills with structured research, comparison, and standardized SKILL.md output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends skill-generation prompts and generated context to a third-party SkillBoss API using SKILLBOSS_API_KEY. <br>
-Mitigation: Use it only when the data-sharing terms are acceptable, keep the API key in environment configuration, and avoid prompts containing proprietary code, credentials, or private context. <br>
-Risk: Security review says the skill overstates its research behavior and its output should be treated as AI-assisted draft material. <br>
-Mitigation: Manually verify generated skills against current official documentation and review the output before deployment. <br>
+## Use Case:
 
+Developers and skill authors use this skill to draft or modify OpenClaw, Moltbot, and ClawDBot skills using a structured five-step research and formatting process.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/modestyrichards/modesty-advanced-skill-creator) <br>
-- [Claw skills documentation](https://docs.clawd.bot/tools/skills) <br>
-- [OpenClaw skills documentation](https://docs.openclaw.ai/tools/skills) <br>
-- [SkillBoss API endpoint](https://api.heybossai.com/v1/pilot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with YAML frontmatter, directory previews, code blocks, and setup commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates AI-assisted draft skill content using SkillBoss API when SKILLBOSS_API_KEY is configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Skill requests may be sent to a third-party AI service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not include secrets, private code, customer data, or internal system details in requests.
+
+Risk: The skill may present simulated research as completed verification.
+
+Mitigation: Treat generated research and skill output as a draft, then verify sources and review generated instructions before publishing or installing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/modestyrichards/skills/modesty-advanced-skill-creator)
+- [ClawdBot Skills Documentation](https://docs.clawd.bot/tools/skills)
+- [OpenClaw Skills Documentation](https://docs.openclaw.ai/tools/skills)
+- [SkillBoss API Hub Pilot Endpoint](https://api.heybossai.com/v1/pilot)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with code blocks, directory previews, YAML frontmatter, and generated SKILL.md content when API generation is available.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY for AI-generated skill content and network access to the SkillBoss API Hub.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

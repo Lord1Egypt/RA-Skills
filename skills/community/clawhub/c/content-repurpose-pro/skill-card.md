@@ -1,40 +1,48 @@
-## Description: <br>
-Content Repurposer transforms user-provided content into platform-specific social, marketing, newsletter, video-description, summary, carousel, podcast-note, and presentation-outline drafts without posting to external platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms user-provided content into platform-specific social posts, newsletters, summaries, video descriptions, carousel outlines, podcast notes, presentation outlines, and tone variants without posting to external services.
 
-## Publisher: <br>
-[mkpareek0315](https://clawhub.ai/user/mkpareek0315) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mkpareek0315](https://clawhub.ai/user/mkpareek0315)
 
-## Use Case: <br>
-External users and content teams use this skill to adapt one source article, script, note set, or draft into copy-ready formats for social media, email, video descriptions, slide outlines, and related content channels. It can also save local history and simple usage statistics for repeated repurposing workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: User-provided content and generated outputs may be retained in local history under ~/.openclaw/content-repurposer/. <br>
-Mitigation: Avoid using confidential, regulated, or proprietary source material unless local retention is acceptable; review or delete the local folder when history should not be retained. <br>
-Risk: Generated marketing or social copy may misstate the source material or include unsuitable platform-specific calls to action. <br>
-Mitigation: Review generated drafts before publishing and confirm that facts, tone, claims, and calls to action match the original content and publishing policy. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mkpareek0315/content-repurpose-pro) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/mkpareek0315) <br>
+## Use Case:
 
+External users and content teams use this skill to repurpose a source article, script, notes, or draft into copy-ready formats for social, email, video, podcast, and presentation workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style text with platform-specific sections, short code blocks for local setup, and optional local JSON history files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates copyable content only; does not post to social platforms or contact external services.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: User-provided drafts, generated outputs, and usage stats may be saved in local skill files.
+
+Mitigation: Avoid highly sensitive drafts unless local retention is acceptable, and clear ~/.openclaw/content-repurposer/ when finished.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mkpareek0315/skills/content-repurpose-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-formatted copy blocks and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates copy for users to review and paste manually; disclosed local history storage may retain pasted content and generated outputs.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

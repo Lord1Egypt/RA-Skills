@@ -1,40 +1,58 @@
-## Description: <br>
-Calls Tencent Cloud's DetectLiveFaceAccurate API to perform high-accuracy static face liveness checks on face images supplied as local files, Base64 strings, or image URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calls Tencent Cloud's high-accuracy static face liveness detection API to assess whether an input face image appears live or replayed, using either image Base64 data or an image URL.
 
-## Publisher: <br>
-[xiaoqiangjava](https://clawhub.ai/user/xiaoqiangjava) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoqiangjava](https://clawhub.ai/user/xiaoqiangjava)
 
-## Use Case: <br>
-Developers and external teams use this skill to run Tencent Cloud static face liveness checks for anti-replay workflows, including checks against screen replay, printed-photo, and mask-style attacks. It returns a score and threshold-based live/spoofed judgment for the submitted image. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Face images or image URLs are submitted to Tencent Cloud for processing. <br>
-Mitigation: Use the skill only when users have authorization or consent for the faces submitted and third-party cloud processing of biometric data is acceptable. <br>
-Risk: Tencent Cloud API credentials are required to call the service. <br>
-Mitigation: Store TENCENTCLOUD_SECRET_ID and TENCENTCLOUD_SECRET_KEY securely, and avoid exposing credentials in logs, screenshots, or shared command output. <br>
+## Use Case:
 
+Developers and operators use this skill to run Tencent Cloud face liveness checks for identity-verification workflows and to receive a structured score, live/not-live judgment, model version, and request ID.
 
-## Reference(s): <br>
-- [Tencent Cloud DetectLiveFaceAccurate documentation](https://cloud.tencent.com/document/product/867/48501) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON response with liveness score, score description, boolean live judgment, model version, and request ID.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Tencent Cloud credentials and accepts a local image file, Base64 image string, or image URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill handles sensitive face images and sends them to Tencent Cloud for remote processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only images the operator is authorized to process and confirm applicable privacy, retention, and regional requirements before production use.
+
+Risk: Full image URLs can be written to stderr logs.
+
+Mitigation: Avoid sensitive or long-lived signed image URLs, restrict log access and retention, and prefer local image or Base64 input when URL exposure is a concern.
+
+Risk: Tencent Cloud credentials are required to invoke the API.
+
+Mitigation: Use tightly scoped credentials, store them in environment-specific secret management, and rotate them on a regular schedule.
+
+## Reference(s):
+
+- [Tencent Cloud DetectLiveFaceAccurate API documentation](https://cloud.tencent.com/document/product/867/48501)
+- [ClawHub skill page](https://clawhub.ai/xiaoqiangjava/skills/tencentcloud-faceid-detectlivefaceaccurate)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, JSON]
+
+**Output Format:** [JSON result from a Python CLI, with stderr status and error messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Tencent Cloud credentials and accepts either image Base64 data, a local image path, or an image URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

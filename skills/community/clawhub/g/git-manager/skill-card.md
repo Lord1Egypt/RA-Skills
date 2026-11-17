@@ -1,42 +1,57 @@
-## Description: <br>
-Execute common Git operations: status, commit, push, pull, branch management, PR creation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute common Git operations such as status, commit, push, pull, branch management, PR creation, merge, stash, log, and diff with dry-run support and structured output.
 
-## Publisher: <br>
-[liyico](https://clawhub.ai/user/liyico) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liyico](https://clawhub.ai/user/liyico)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect repository state and run common Git workflows such as status, commit, push, pull, branching, checkout, merge, stash, log, and diff from an agent session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform high-impact repository operations such as commit, push, pull, branch changes, merge, stash, and diff from agent requests. <br>
-Mitigation: Require dry-run output before repository-changing actions and review the exact files staged, target branch, remote, and commit message before allowing commit or push. <br>
-Risk: The release security guidance notes a missing helper script that must be trusted, inspected, or replaced before use. <br>
-Mitigation: Install only from a trusted publisher and inspect or replace the helper script before enabling the skill in an agent environment. <br>
-Risk: Broad natural-language requests could trigger automatic commit or push behavior that includes unintended changes. <br>
-Mitigation: Use explicit file lists and operation parameters, keep protected-branch safeguards enabled, and avoid automatic commit or push from broad requests. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to run common Git repository workflows, including status checks, commits, pushes, pulls, branch management, merges, stashes, logs, and diffs. It is intended for controlled workspaces where Git actions can be reviewed and audited.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/liyico/git-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON result objects with raw Git output and operation metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include success status, error text, changed files, commit SHA, current branch, and raw Git command output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The packaged entry point can execute unescaped user input through a shell.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in tightly controlled workspaces, review commands before execution, prefer dry-run mode for planned changes, and do not grant access to repositories where injected or unintended commands would be costly.
+
+Risk: The entry point delegates work to a hard-coded executable outside the reviewed package.
+
+Mitigation: Do not rely on the stated safety checks until the executable path and implementation are packaged, reviewed, and argument handling avoids shell interpolation.
+
+Risk: Git operations can change repository history or publish code to remotes.
+
+Mitigation: Avoid use with sensitive credentials or high-value repositories unless repository permissions, protected branches, and human review gates are in place.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liyico/skills/git-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON results and concise text guidance for Git command workflows]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include raw Git output, changed files, commit SHA, branch name, errors, and dry-run previews.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

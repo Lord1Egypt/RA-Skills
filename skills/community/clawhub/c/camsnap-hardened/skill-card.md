@@ -1,44 +1,59 @@
-## Description: <br>
-Capture frames or clips from RTSP/ONVIF cameras. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Capture frames or clips from RTSP/ONVIF cameras.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-External users, developers, and operators use this skill to configure and run local camsnap camera discovery, snapshots, clips, motion watch, and troubleshooting while keeping camera credentials and footage protected. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Camera credentials or local camera details could be exposed in chat, logs, process lists, or copied files. <br>
-Mitigation: Use placeholders in responses, place credentials only in `camsnap add` commands, and keep stored credentials in `~/.config/camsnap/config.yaml`. <br>
-Risk: Captured snapshots, clips, or streams could be sent to unintended network destinations. <br>
-Mitigation: Keep camsnap outputs local unless the user intentionally chooses network transfer, and avoid piping or redirecting footage to network-transmitting commands. <br>
-Risk: Untrusted installation sources could affect camera access and captured media handling. <br>
-Mitigation: Verify trust in the `steipete/tap/camsnap` Homebrew tap and `camsnap` binary before installation or use. <br>
+## Use Case:
 
+Developers and operators use this skill to guide agents through local camera discovery, setup, snapshots, short clips, motion watching, and troubleshooting with the camsnap CLI while protecting camera credentials and footage.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/snazar-faberlens/camsnap-hardened) <br>
-- [Camsnap homepage](https://camsnap.ai) <br>
-- [Faberlens camsnap safety evidence](https://faberlens.ai/explore/camsnap) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local camsnap commands, diagnostic steps, redacted placeholders, and safety guidance for camera credentials and footage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The Homebrew install path uses an unpinned third-party tap for a camera-access tool.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted camsnap tap, and prefer a pinned or otherwise verified camsnap release before deployment.
+
+Risk: Camera credentials entered on command lines can be exposed through shell history, process lists, logs, or copied troubleshooting output.
+
+Mitigation: Use credentials only with camsnap add, avoid echoing or reusing them in other commands, and keep them confined to the camsnap configuration workflow.
+
+Risk: Snapshots, clips, and stream data may contain surveillance footage.
+
+Mitigation: Keep captures local unless the user explicitly authorizes another destination, and do not pipe camsnap output to network-transmitting commands.
+
+## Reference(s):
+
+- [Camsnap homepage](https://camsnap.ai)
+- [Faberlens camsnap safety evaluation](https://faberlens.ai/explore/camsnap)
+- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/skills/camsnap-hardened)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the camsnap binary and ffmpeg on PATH; guidance should avoid exposing camera credentials, IP addresses, file paths, and footage unless explicitly needed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

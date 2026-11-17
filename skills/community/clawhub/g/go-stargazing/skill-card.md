@@ -1,45 +1,62 @@
-## Description: <br>
-Lightweight regional stargazing and astrophotography planning skill for tonight or a specified date, scanning China nationally or by province/city, coarse-filtering by cloud cover, refining with real weather, and returning nightly recommendations with weather details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+轻量版区域级拍星推荐技能，适用于今晚或指定日期的全国、省市级拍星条件筛选。默认全国扫描，先按云量粗筛，再结合真实天气细筛，输出逐晚推荐和完整气象信息。
 
-## Publisher: <br>
-[clhwbd](https://clawhub.ai/user/clhwbd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clhwbd](https://clawhub.ai/user/clhwbd)
 
-## Use Case: <br>
-External users and agents use this skill to identify China regions that are likely suitable for stargazing or astrophotography on a given night or across several nights. It supports regional planning and weather review, not exact shooting-location selection or site-level safety decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Real-weather lookups send queried stargazing coordinates to Open-Meteo. <br>
-Mitigation: Use the skill only where sharing those coordinates with Open-Meteo is acceptable, or disable real-weather workflows in restricted environments. <br>
-Risk: Python dependencies are listed without pinned versions. <br>
-Mitigation: Pin and review dependency versions before deployment in controlled or production environments. <br>
-Risk: The tool can read user-supplied JSON boundary files when explicitly provided. <br>
-Mitigation: Review polygon file paths and contents before execution, and restrict file access in sensitive environments. <br>
-Risk: Recommendations are regional and do not verify exact shooting positions, measured seeing, measured light pollution, or local obstruction. <br>
-Mitigation: Treat results as planning guidance, then verify the chosen site, weather, access, and safety conditions before travel. <br>
+## Use Case:
 
+External users and photography planners use this skill to compare Chinese national, provincial, or city-level stargazing and Milky Way photography conditions for tonight or specified dates. It produces regional recommendations, backup options, weather details, and planning cautions rather than exact shooting locations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clhwbd/go-stargazing) <br>
-- [Open-Meteo forecast API](https://api.open-meteo.com/v1/forecast) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [Chinese natural-language recommendations or structured JSON results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes regional recommendations, backups, weather indicators, astronomy windows, risk notes, and data completeness notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.2 (source: server release evidence) <br>
+Risk: Real-weather mode sends queried coordinates and dates to Open-Meteo.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing those query details with Open-Meteo is acceptable, and disclose that dependency to users requesting real weather.
+
+Risk: Unpinned Python dependencies can change behavior across installations.
+
+Mitigation: Install in an isolated Python environment and pin or lock lunarcalendar and shapely before production use.
+
+Risk: Regional forecasts, terrain effects, and reviewed accuracy concerns can make recommendations unsuitable as exact site decisions.
+
+Mitigation: Present outputs as regional planning guidance, avoid treating them as specific camera-position recommendations, and recheck conditions before travel.
+
+Risk: Open-Meteo failures, rate limits, or daily quota exhaustion can prevent fresh real-weather results.
+
+Mitigation: Stop retrying after daily quota exhaustion, clearly tell the user that fresh weather cannot be fetched, and do not substitute mock data for real-weather conclusions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clhwbd/skills/go-stargazing)
+- [Publisher profile](https://clawhub.ai/user/clhwbd)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Natural-language Chinese guidance or JSON results with regional rankings and weather details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are regional planning guidance; the skill does not produce Excel or xlsx exports.]
+
+## Skill Version(s):
+
+1.4.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

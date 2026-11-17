@@ -1,40 +1,53 @@
-## Description: <br>
-A community group buying warehousing and logistics knowledge pack covering delivery model selection, warehouse and distribution design, fulfillment timing, cost control, operating SOPs, and local calculator examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+社区团购仓储与物流履约全链路技能包。涵盖配送模式选择、仓配体系设计、时效管理、成本控制及配套工具。适用于平台运营负责人、物流管理者。
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
 
-## Use Case: <br>
-Platform operators and logistics managers use this skill to reason about community group buying warehouse networks, delivery modes, service-level targets, cost controls, exception handling, and break-even calculations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Warehousing benchmarks, SOPs, and calculator results may not match a specific operator's region, cost base, product mix, or service commitments. <br>
-Mitigation: Treat the content as advisory business material and validate assumptions against current local operating data before making logistics or warehouse decisions. <br>
-Risk: The included Python calculator examples may process operational inputs entered during an agent session. <br>
-Mitigation: Run examples locally and enter only operational data that is appropriate to process in the local agent environment. <br>
+## Use Case:
 
+External platform operators and logistics managers use this skill to plan community group-buying warehousing, delivery models, cost control, fulfillment monitoring, exception handling, and site-layout decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nic-yuan/local-community-buying-05-warehousing-logistics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with Python code examples and operational checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory warehousing and logistics guidance, SOP-style checklists, exception-handling scripts, and local calculator examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: Embedded calculators and logistics benchmarks may reflect example assumptions rather than the user's actual operating costs, route density, or fulfillment constraints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adjust all business assumptions, thresholds, and calculator inputs before using the outputs for operational decisions.
+
+Risk: Operational guidance for cold-chain handling, delivery exceptions, and warehouse decisions may be incomplete for local laws, contracts, food-safety rules, or site-specific constraints.
+
+Mitigation: Have qualified operations, legal, and compliance reviewers validate the guidance before applying it in a live logistics process.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nic-yuan/skills/local-community-buying-05-warehousing-logistics)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with Chinese-language prose, tables, checklists, SOPs, and Python code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes example calculators and operational templates; review business assumptions before using outputs for real logistics decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

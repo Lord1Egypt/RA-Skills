@@ -1,45 +1,64 @@
-## Description: <br>
-Qirabot helps agents drive web, mobile, desktop, and game interfaces with natural-language actions through the Qirabot Python SDK. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drive web, mobile, desktop, and game interfaces with natural language using the Qirabot Python SDK.
 
-## Publisher: <br>
-[hellof20](https://clawhub.ai/user/hellof20) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hellof20](https://clawhub.ai/user/hellof20)
 
-## Use Case: <br>
-Developers, testers, and automation engineers use Qirabot to create UI automation scripts for browsers, mobile apps, desktop applications, and games when selectors are unavailable or visual validation is needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Qirabot-driven automation can see and act on the target app, browser, or account session. <br>
-Mitigation: Use dedicated test accounts or constrained sessions when possible, avoid screens with secrets or regulated data, and review generated reports before sharing them. <br>
-Risk: Automation may perform irreversible or outward-facing actions such as purchases, posts, or deletions. <br>
-Mitigation: Require explicit human confirmation before acting under a logged-in account or completing actions that change external state. <br>
-Risk: Screenshots, HTML reports, and optional recordings can capture sensitive UI content. <br>
-Mitigation: Keep recording disabled unless needed, limit report sharing, and remove sensitive artifacts before distribution. <br>
-Risk: The agent loop can report success after interacting with the wrong UI element or screen. <br>
-Mitigation: Inspect step screenshots or use an independent verification check before relying on automation results. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to create Qirabot-driven UI automation, testing, scraping, visual verification, and RPA workflows across browsers, Android, iOS, desktop apps, and games.
 
-## Reference(s): <br>
-- [Qirabot API reference](references/REFERENCE.md) <br>
-- [Qirabot service dashboard](https://app.qirabot.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces runnable Python automation templates and operational guidance; SDK runs may create HTML reports, screenshots, and optional recordings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.10 (source: server release metadata) <br>
+Risk: The skill can view and act on the target screen during UI automation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only for approved UI automation tasks, avoid privileged accounts, and require explicit approval before purchases, posts, deletes, account changes, or other irreversible actions.
+
+Risk: Automation outcomes can be wrong or incomplete even when a run reports success.
+
+Mitigation: Review generated reports and screenshots for human-facing results, and use independent verification checks when scripts must branch on the outcome.
+
+Risk: Browser profiles, reports, screenshots, and recordings can contain sensitive account or screen data.
+
+Mitigation: Keep persistent profiles scoped per site and task, protect report directories, and avoid exposing secrets or privileged sessions.
+
+Risk: Unpinned dependencies or mismatched local environments can cause unreliable automation behavior.
+
+Mitigation: Use a virtual environment, run the included preflight before writing automation, and pin package versions when repeatability matters.
+
+## Reference(s):
+
+- [Qirabot skill page](https://clawhub.ai/hellof20/skills/qirabot)
+- [Publisher profile: hellof20](https://clawhub.ai/user/hellof20)
+- [Qirabot API reference](references/REFERENCE.md)
+- [Qirabot app](https://app.qirabot.com)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python template code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces task-specific automation scripts and setup guidance; Qirabot runs may write HTML reports with screenshots and optional screen recordings.]
+
+## Skill Version(s):
+
+1.5.10 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-This ClawHub release is listed as a Chinese emotional-organization assistant, but the submitted artifact describes a Chinese fortune-weather horoscope skill that produces weekly horoscope-style reports from zodiac or birth-date input. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps Chinese-speaking users turn emotionally overwhelming or disorganized thoughts into categorized notes, bottleneck analysis, and prioritized action checklists, while the packaged artifact evidence currently describes a Chinese entertainment horoscope formatter.
 
-## Publisher: <br>
-[zaj7373](https://clawhub.ai/user/zaj7373) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zaj7373](https://clawhub.ai/user/zaj7373)
 
-## Use Case: <br>
-Chinese-speaking users can use the artifact behavior to request structured weekly horoscope reports with weather metaphors, scores, daily reminders, and general action suggestions. Reviewers should account for the server security finding that the artifact behavior does not match the emotional-organization listing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The listing promises emotional organization, while the artifact describes horoscope-style fortune guidance. <br>
-Mitigation: Review the artifact behavior before installation and update the listing or artifact so users know what the skill actually does. <br>
-Risk: Users seeking help during emotional overwhelm may receive entertainment-oriented fortune guidance instead of practical support. <br>
-Mitigation: Do not rely on this skill for mental-health support, crisis situations, medical advice, financial advice, or other consequential decisions. <br>
-Risk: The artifact may ask for birth details to personalize the horoscope report. <br>
-Mitigation: Treat birth date or birth time as optional personal information and avoid sharing more detail than needed for entertainment use. <br>
+## Use Case:
 
+External users can use this skill to offload messy feelings and tasks into a clearer structure with categories, blockers, and next actions. Reviewers should note that the only artifact file provided describes horoscope-report behavior rather than the server metadata's brain-fog-clearing use case.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/zaj7373/brain-fog-clearer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese Markdown with structured report sections, scores, and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask for a zodiac sign or birth date; the artifact states no external API or internet access is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The server metadata says the skill clears brain fog, but the artifact describes an entertainment horoscope formatter.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate that the packaged artifact matches the intended ClawHub release before publishing or installing.
+
+Risk: The artifact includes finance, relationship, and career suggestions that users could mistake for professional advice.
+
+Mitigation: Present outputs as entertainment or general reflection only and avoid using them for medical, financial, legal, or other important decisions.
+
+Risk: The server evidence reports MIT-0 while the artifact text says the skill cannot be commercialized.
+
+Mitigation: Confirm the authoritative license and terms before release review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zaj7373/skills/brain-fog-clearer)
+- [ClawHub publisher profile](https://clawhub.ai/user/zaj7373)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Simplified Chinese structured Markdown with categorized sections, tables, and checklist-style recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, credentials, network use, persistence, or hidden access according to server security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

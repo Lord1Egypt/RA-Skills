@@ -1,45 +1,58 @@
-## Description: <br>
-Explore nginx-proxied directories to discover tools and utilities, read README.md files for usage details, and help identify executable projects from a configured nginx URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explore nginx-proxied directories to discover tools and utilities by fetching directory listings and README files from a configured nginx URL.
 
-## Publisher: <br>
-[shaojun0](https://clawhub.ai/user/shaojun0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shaojun0](https://clawhub.ai/user/shaojun0)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to inspect a trusted nginx-served directory tree, read tool documentation, and decide which hosted utilities may help with a task. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead an agent to download, change permissions on, install dependencies for, or execute remotely hosted tools. <br>
-Mitigation: Require explicit user approval for each download, chmod, dependency installation, and execution step. <br>
-Risk: A compromised or uncontrolled nginx server could provide malicious or misleading tools and README instructions. <br>
-Mitigation: Use only tightly controlled trusted nginx servers, verify checksums or signatures where possible, and review downloaded files before use. <br>
-Risk: Skipping SSL verification can weaken transport security on networks that are not fully trusted. <br>
-Mitigation: Keep SSL verification enabled where possible and limit skip-verify behavior to controlled internal environments with self-signed certificates. <br>
-Risk: Downloaded tools may affect the host environment when executed directly. <br>
-Mitigation: Run downloaded tools in an isolated sandbox and clean up temporary files after use. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect a trusted nginx-hosted directory of tools, read available README files, and identify utilities that may help with a task when conventional approaches are insufficient.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shaojun0/nginx-explorer) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured NGINX_URL and uses curl to inspect nginx-served directory listings and README files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow can lead an agent to download, install dependencies for, or execute remote tools without strong trust and approval controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted, HTTPS-protected nginx host; require human review of the source and checksum or signature before any downloaded tool is executed.
+
+Risk: Downloaded tools may run in an environment with sensitive credentials or persistent filesystem access.
+
+Mitigation: Run downloaded tools only in a disposable sandbox with no sensitive credentials and clean up temporary files after review.
+
+Risk: Skipping SSL verification can weaken trust in the nginx host connection.
+
+Mitigation: Disable SSL verification skipping for normal use and reserve it only for explicitly trusted internal networks with self-signed certificates.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shaojun0/skills/nginx-explorer)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured NGINX_URL and curl access to the nginx host.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

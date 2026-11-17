@@ -1,30 +1,30 @@
 {
   "name": "企服助手",
-  "id": "enterprise-service-agent",
-  "version": "1.0.0",
-  "description": "按企服日常工作流组织，覆盖今日工作台（含今日安排+待办清单）、企业服务、后勤保障、闭环记录4大板块，支持一企一策服务策略",
-  "author": "QClaw",
-  "avatar": "https://aiarea.qclaw.qq.com/qclawimage/avatar/default/xuehaiwuya.png",
+  "id": "enterprise-service-assistant",
+  "version": "2.0.0",
+  "description": "专业的园区企业服务智能助手，提供客户管理、费用催缴、工单调度、KPI报告等服务（完全自包含版）",
+  "author": "perrykono-debug",
   "emoji": "🏢",
   "workspace": {
-    "path": "workspace-enterprise-service",
-    "entrypoint": "AGENTS.md"
+    "path": "enterprise-service-assistant",
+    "entrypoint": "SKILL.md"
   },
   "capabilities": [
-    "☀️ 今日工作台：重点关注、走访安排、待办清单（催缴/工单/续租/商机）、工作概览",
-    "🎯 企业服务：客户档案、企业画像、赋能服务推荐、一企一策策略",
-    "📦 后勤保障：库存监控、四级分级、补货提醒",
-    "📝 闭环记录：走访录入、服务归档、工单闭环、状态更新"
+    "客户档案管理和画像分析",
+    "费用催缴提醒和跟进",
+    "报修工单自动分派",
+    "库存监控和补货提醒",
+    "合同续租预警",
+    "KPI报告自动生成",
+    "C+增值服务需求匹配",
+    "走访计划管理"
   ],
   "skills": [
-    "qclaw-cron-skill",
-    "online-search",
     "docx",
     "pdf",
     "xlsx",
     "tencent-docs",
-    "mcporter",
-    "xbrowser"
+    "online-search"
   ],
   "setup": {
     "steps": [
@@ -44,10 +44,6 @@
     ]
   },
   "commands": [
-    {
-      "example": "@企服助手 今天有什么安排",
-      "description": "查看今日工作台"
-    },
     {
       "example": "@企服助手 查询客户 A栋-601",
       "description": "查询客户信息"
@@ -71,14 +67,6 @@
     {
       "example": "@企服助手 创建工单 A栋-601 水管漏水",
       "description": "创建报修工单"
-    },
-    {
-      "example": "@企服助手 推荐服务给 示例企业",
-      "description": "企业赋能服务推荐"
-    },
-    {
-      "example": "@企服助手 闭环 走访 示例企业",
-      "description": "录入走访记录"
     }
   ]
 }

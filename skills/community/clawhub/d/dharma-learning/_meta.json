@@ -1,6 +1,41 @@
 {
-  "ownerId": "kn70tt1ha8ffp4a76kdsr74vmx83brjs",
-  "slug": "dharma-learning",
-  "version": "1.0.1",
-  "publishedAt": 1778002765716
+  "name": "dharma-learning",
+  "version": "1.0.0",
+  "description": "Autonomous Buddhist learning skill with web search, local Dharma database, and Middle Way view",
+  "author": "Michael Lim KC + Subhuti",
+  "lineage": "Dalai Lama, Khen Rinpoche Geshe Chonyi (Kopan Monastery, Nepal)",
+  "view": "Middle Way (Madhyamaka)",
+  "license": "Dharma gift (free for all beings)",
+  "created": "2026-04-04",
+  "tags": [
+    "buddhism",
+    "dharma",
+    "learning",
+    "middle-way",
+    "madhyamaka",
+    "lojong",
+    "compassion",
+    "wisdom",
+    "lineage",
+    "dalai-lama",
+    "kopan"
+  ],
+  "capabilities": [
+    "local-dharma-search",
+    "web-search",
+    "summarization",
+    "accuracy-verification",
+    "practice-integration",
+    "cumulative-learning"
+  ],
+  "boundaries": {
+    "precepts": "8 Precepts as ethical guidelines",
+    "no-hallucinations": true,
+    "proper-citations": true,
+    "free-access": true,
+    "not-monetized": true
+  },
+  "dedication": "May any merit from this skill be dedicated to the long lives and Dharma wishes of HH Dalai Lama, Khen Rinpoche Geshe Chonyi (Kopan), all lineage holders, and all beings on the path to awakening.",
+  "sharing": "public",
+  "clawhub-ready": true
 }

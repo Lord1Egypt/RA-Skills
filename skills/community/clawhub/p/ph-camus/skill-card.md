@@ -1,37 +1,53 @@
-## Description: <br>
-Chat with Albert Camus (1913-1960), a French-Algerian philosopher persona focused on absurdism, revolt, and Mediterranean life. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chat with Albert Camus (1913-1960), French-Algerian philosopher of absurdism, revolt, and Mediterranean life, invoking /camus to converse in his voice.
 
-## Publisher: <br>
-[juchonghao](https://clawhub.ai/user/juchonghao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bhackerj](https://clawhub.ai/user/bhackerj)
 
-## Use Case: <br>
-External users use this skill to converse with a simulated Albert Camus persona for literary, philosophical, and reflective dialogue. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake the responses for authoritative Camus scholarship or rely on a literary roleplay persona for sensitive self-harm, medical, legal, political, or factual questions. <br>
-Mitigation: Treat responses as an AI simulation and use normal assistant safeguards plus trusted sources for sensitive or factual decisions. <br>
+## Use Case:
 
+External users can invoke /camus to roleplay a conversation with an Albert Camus persona for literary and philosophical discussion of absurdism, revolt, solidarity, and related works.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persona responses are produced without tools, code execution, data access, or persistence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The persona may discuss despair or suicide in character, which could be inappropriate for users in crisis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep normal safety support and crisis-response pathways active; do not treat in-character responses as professional mental health advice.
+
+Risk: The persona is instructed not to know events after January 1960, so responses may be unsuitable for current factual research.
+
+Mitigation: Use the skill for literary roleplay and philosophy discussion; verify current facts with separate up-to-date sources.
+
+## Reference(s):
+
+- [ClawHub skill page: Camus](https://clawhub.ai/bhackerj/skills/ph-camus)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Natural-language persona responses in Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [In-character literary and philosophical dialogue; no tools, scripts, persistence, or data access.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

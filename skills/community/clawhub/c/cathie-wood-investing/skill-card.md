@@ -1,50 +1,68 @@
-## Description: <br>
-Provides a Cathie Wood-style investing persona focused on ARK Invest's disruptive innovation framework, concentrated bets, and long-horizon technology theses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Cathie Wood and ARK Invest-style investing persona for discussing disruptive innovation, high-conviction thematic investing, and related public investment frameworks.
 
-## Publisher: <br>
-[talentedleo](https://clawhub.ai/user/talentedleo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[talentedleo](https://clawhub.ai/user/talentedleo)
 
-## Use Case: <br>
-External users and agents use this skill to generate Cathie Wood-style investment commentary, decision framing, and educational discussion about disruptive innovation themes. Outputs should be treated as persona-driven analysis, not financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persona-driven investing responses could be mistaken for financial advice. <br>
-Mitigation: Treat outputs as opinionated educational content and require independent review before making investment decisions. <br>
-Risk: Broad finance triggers may activate the skill during generic Bitcoin, innovation investing, ARK Invest, or Tesla discussions. <br>
-Mitigation: Install and enable the skill only when Cathie Wood-style investing commentary is desired. <br>
+## Use Case:
 
+External users and agent builders use this skill to frame conversations in the style of Cathie Wood's public investing commentary and ARK Invest's disruptive innovation framework. Outputs should be treated as persona-based research framing, not financial advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/talentedleo/cathie-wood-investing) <br>
-- [Publisher Profile](https://clawhub.ai/user/talentedleo) <br>
-- [01-writings.md](references/01-writings.md) <br>
-- [02-conversations.md](references/02-conversations.md) <br>
-- [03-expression-dna.md](references/03-expression-dna.md) <br>
-- [04-external-views.md](references/04-external-views.md) <br>
-- [05-decisions.md](references/05-decisions.md) <br>
-- [06-timeline.md](references/06-timeline.md) <br>
-- [ARK Invest Research](https://ark-invest.com/research) <br>
-- [CNBC: Cathie Wood on contrarian views](https://www.cnbc.com/2022/03/29/cathie-wood-says-her-contrarian-views-set-her-apart-not-her-gender.html) <br>
-- [CNBC: Cathie Wood on Bitcoin ETF approval](https://www.cnbc.com/2024/01/11/cathie-wood-says-bitcoin-etf-approval-makes-her-1point5-million-bull-case-more-likely.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text conversational responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only persona output; no executable code or private-data access identified in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: The skill may produce investment-themed responses that users could mistake for financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as perspective or research framing and require independent review before acting on any investment idea.
+
+Risk: Broad finance triggers such as Bitcoin, ARK Invest, or Big Ideas may activate the persona during general finance conversations.
+
+Mitigation: Confirm that the user wants a Cathie Wood or ARK-style perspective before relying on the skill's framing.
+
+Risk: The persona describes a polarizing, volatile investment style with concentrated positions and public price targets.
+
+Mitigation: Present the output with balanced context and avoid treating persona conviction as evidence of suitability, accuracy, or current market conditions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/talentedleo/skills/cathie-wood-investing)
+- [Publisher Profile](https://clawhub.ai/user/talentedleo)
+- [Cathie Wood - Writings & Public Statements](references/01-writings.md)
+- [Cathie Wood - Interviews & Conversations](references/02-conversations.md)
+- [Cathie Wood - Expression DNA](references/03-expression-dna.md)
+- [Cathie Wood - External Views & Criticisms](references/04-external-views.md)
+- [Cathie Wood - Key Investment Decisions](references/05-decisions.md)
+- [Cathie Wood - Timeline](references/06-timeline.md)
+- [ARK Invest](https://ark-invest.com)
+- [ARK Invest Research](https://ark-invest.com/research)
+- [Forbes Profile: Cathie Wood](https://www.forbes.com/profile/cathie-wood/)
+- [Wikipedia: Cathie Wood](https://en.wikipedia.org/wiki/Cathie_Wood)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+
+**Output Format:** [Natural-language Markdown responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persona-style responses based on provided reference material; no code execution or external tool use is part of the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

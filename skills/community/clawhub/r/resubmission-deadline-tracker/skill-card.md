@@ -1,42 +1,59 @@
-## Description: <br>
-Track manuscript resubmission deadlines and automatically generate phase-appropriate task breakdowns for academic researchers based on remaining time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track manuscript resubmission deadlines and automatically generate phase-appropriate task breakdowns for academic researchers based on remaining time.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Academic researchers, manuscript authors, and editorial support staff use this skill to track journal resubmission deadlines, assess urgency, and generate phase-appropriate revision task schedules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process private manuscript titles, journal details, reviewer issue counts, and deadline data. <br>
-Mitigation: Review the skill files before installation and avoid providing credentials or sensitive manuscript content that is not required for deadline planning. <br>
-Risk: Incorrect deadline dates, timezone assumptions, or journal policy assumptions could lead to missed resubmission milestones. <br>
-Mitigation: Verify deadline dates, timezone settings, and journal requirements against authoritative journal communications before acting on generated schedules. <br>
+## Use Case:
 
+Academic researchers use this skill to track manuscript resubmission deadlines, assess urgency from remaining time, and generate phase-appropriate revision task schedules.
 
-## Reference(s): <br>
-- [Journal Deadlines Reference](references/journal_deadlines.md) <br>
-- [Revision Checklist](references/revision_checklist.md) <br>
-- [Task Templates](references/task_templates.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or plain text with deadline summaries, urgency assessments, task schedules, checkbox lists, risk notes, and CLI command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes assumptions, timezone notes, and scope limits for manuscript resubmission deadline tracking.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Unpinned or unnecessary package dependencies may create supply-chain review risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or remove requirements.txt dependencies before installation; avoid running pip install -r requirements.txt as written unless the dependencies are confirmed necessary and trusted.
+
+Risk: Deadline calculations can be wrong if the default timezone does not match the user's actual submission context.
+
+Mitigation: Specify the intended timezone explicitly and manually verify calculations for important submissions.
+
+Risk: The delete command removes local deadline records without confirmation.
+
+Mitigation: Review the target record before using delete and keep a backup of local deadline data when records are important.
+
+## Reference(s):
+
+- [Journal Deadlines Reference](references/journal_deadlines.md)
+- [Revision Checklist](references/revision_checklist.md)
+- [Task Templates](references/task_templates.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with command examples and structured deadline summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include assumptions, urgency assessment, task schedule, risks, caveats, and next checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

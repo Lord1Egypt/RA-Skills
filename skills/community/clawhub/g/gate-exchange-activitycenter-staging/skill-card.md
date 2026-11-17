@@ -1,47 +1,61 @@
-## Description: <br>
-Gate platform activity and campaign hub skill that helps users find trading competitions, airdrops, campaign recommendations, and their enrolled activities through read-only Gate activity queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gate platform activity and campaign hub skill. Use when the user asks about trading competitions, airdrops, or their enrolled activities. Triggers on 'recommend activities', 'trading competition', 'my activities', 'airdrop campaign'.
 
-## Publisher: <br>
-[gaixianggeng](https://clawhub.ai/user/gaixianggeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaixianggeng](https://clawhub.ai/user/gaixianggeng)
 
-## Use Case: <br>
-External users and developers with a configured Gate MCP session use this skill to retrieve Gate campaign recommendations, filter activity types, search activities by name or scenario, and open their enrolled-activities entry without placing orders or changing account state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, subject to Gate activity availability and regional eligibility. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses local Gate API credentials for read-only activity lookups. <br>
-Mitigation: Use credentials with the minimum Activity:Read permission and keep secrets in local MCP configuration rather than pasting them into chat. <br>
-Risk: Generic activity requests may route unintentionally to this Gate-specific skill. <br>
-Mitigation: Use explicit prompts such as "my Gate activities" or "Gate trading competitions" when requesting Gate activity-center results. <br>
-Risk: Campaign availability, eligibility, and details may change or vary by region. <br>
-Mitigation: Verify campaign details in Gate before acting and do not treat activity listings as investment advice. <br>
+## Use Case:
 
+External users and developers use this skill to find Gate Exchange campaign activities, filter recommendations by activity type or scenario, search by activity name, and open their enrolled activities entry through a configured local Gate MCP session.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gaixianggeng/gate-exchange-activitycenter-staging) <br>
-- [Gate skills homepage](https://github.com/gate/gate-skills) <br>
-- [Gate API key management](https://www.gate.com/myaccount/profile/api-key/manage) <br>
-- [Gate Activity Center Runtime Rules](references/gate-runtime-rules.md) <br>
-- [Gate ActivityCenter MCP Specification](references/mcp.md) <br>
-- [Scenarios and Prompt Examples](references/scenarios.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown activity cards, tables, links, and concise status guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only Gate activity results; activity list responses are limited to up to three activities per request and require local Gate MCP credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; bundled skill frontmatter: 2026.4.3-1) <br>
+Risk: The skill uses configured Gate API credentials through a local Gate MCP session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an API key limited to Activity:Read and rely on the configured MCP session instead of pasting secrets into chat.
+
+Risk: The skill may display API-provided absolute activity links that are not constrained to trusted Gate domains.
+
+Mitigation: Verify that each destination is an expected Gate domain before signing in, claiming rewards, connecting wallets, or entering account information.
+
+Risk: Activity availability, rewards, and deadlines can be time-sensitive or unavailable in returned data.
+
+Mitigation: Display only API-returned activity data, avoid investment advice, and use explicit unavailable or empty-state guidance when data is missing.
+
+## Reference(s):
+
+- [Gate Skills Repository](https://github.com/gate/gate-skills)
+- [Gate API Key Management](https://www.gate.com/myaccount/profile/api-key/manage)
+- [Gate ActivityCenter MCP Specification](references/mcp.md)
+- [Gate Activity Center Runtime Rules](references/gate-runtime-rules.md)
+- [Activity Center Scenarios and Prompt Examples](references/scenarios.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, guidance]
+
+**Output Format:** [Markdown activity cards, tables, links, and empty-state guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Activity list queries are limited to three results per request; outputs preserve API-provided activity information and apply the documented URL processing rules.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter version 2026.4.3-1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

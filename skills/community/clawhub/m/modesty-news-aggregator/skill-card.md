@@ -1,42 +1,54 @@
-## Description: <br>
-Aggregates domestic and international society, technology, and military news by searching, filtering, and organizing key points. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+国内外社会、科技、军事新闻汇总。自动搜索、筛选、整理新闻要点。
 
-## Publisher: <br>
-[modestyrichards](https://clawhub.ai/user/modestyrichards) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[modestyrichards](https://clawhub.ai/user/modestyrichards)
 
-## Use Case: <br>
-External users and developers use this skill to collect current society, technology, and military news, remove duplicates or lower-confidence sources, and produce a structured Markdown briefing with titles, links, sources, timestamps, and key points. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: News search queries and retrieved snippets are sent to SkillBoss for processing, which may expose sensitive topics or proprietary material. <br>
-Mitigation: Use a limited SkillBoss API key, review the provider's privacy and billing expectations, and avoid submitting secrets, internal topics, or proprietary material. <br>
-Risk: Aggregated news summaries can include incorrect, outdated, duplicated, or lower-confidence reporting. <br>
-Mitigation: Review source links and prioritize official media or authoritative institutions before relying on the briefing. <br>
+## Use Case:
 
+External users and agents use this skill to search, filter, and summarize domestic and international technology, society, and military news into concise structured briefings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/modestyrichards/modesty-news-aggregator) <br>
-- [SkillBoss setup guide](https://skillboss.co/skill.md) <br>
-- [SkillBoss API endpoint](https://api.skillboss.co/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown news briefing with categorized lists and source links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and sends search queries plus retrieved snippets to SkillBoss for search and summarization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter says 1.0.3) <br>
+Risk: Queries and retrieved news content may be processed by SkillBoss as an external search and summarization provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential or regulated queries and install only when this external processing is acceptable.
+
+Risk: Generated summaries can contain incorrect, incomplete, or misleading claims.
+
+Mitigation: Treat summaries as drafts and verify important claims and links against the cited sources before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/modestyrichards/skills/modesty-news-aggregator)
+- [SkillBoss setup guide](https://skillboss.co/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown news briefings with titles, links, sources, timestamps, and concise bullet summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and sends search queries plus retrieved result content to SkillBoss for search and summarization.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

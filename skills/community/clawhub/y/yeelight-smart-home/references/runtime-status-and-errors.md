@@ -4,7 +4,7 @@ Use this reference for authentication, environment selection, pagination, timeou
 
 ## Runtime Request Rules
 
-- Skill calls only `scripts/invoke`, which calls `yeelight-home invoke --stdin`.
+- Skill calls only `scripts/invoke.sh`, which calls `yeelight-home invoke --stdin`.
 - Region, endpoint, credential store, pagination, timeout, and cache policy are Runtime concerns.
 - The model must not set endpoint URLs, headers, operation names, retry counts, cache TTLs, or network policy.
 - Reads may be paginated by Runtime. The user-facing answer should summarize the returned result, not page mechanics.
@@ -40,7 +40,7 @@ Use this reference for authentication, environment selection, pagination, timeou
 - Ask the user only when the contract still lacks a business choice that cannot be inferred, such as which scene action to edit among multiple plausible actions.
 - For complex JSON writes such as scene, automation, lighting design import, operation batch, favorite batch, home sort, room batch, panel event, or knob configuration, do not guess nested field names. If the first request is rejected, rebuild from Runtime's returned `payloadShape`, `examples`, `nextStep`, or detail `editablePayload`, then send one corrected Runtime request.
 - `acceptedFields` alone is not enough for nested writes. When nested action, condition, room, item, button-event, or operation fields are involved, inspect Runtime's nested `payloadShape` or detail `updateShape` before answering the user. If Runtime failed to include nested shape for a supported complex write, report that as a Runtime contract problem instead of guessing the complete JSON.
-- If the shape is unclear before a write, call local-only `intent.explain`; in its parameters object, set the `intent` field to the target Runtime intent. Use `result.intentExplanation.payloadGuide` as the objective contract. This does not require cloud access and should be faster than repeated failed writes.
+- If the shape is unclear before a write, call local-only `intent.explain`; in its parameters object, set the `intent` field to the target Runtime intent. In `invoke --stdin` responses, use `result.intentExplanation.payloadGuide`, `result.intentExplanation.requestSchema.examples`, and `result.intentExplanation.acceptedFields` as the objective contract. This does not require cloud access and should be faster than repeated failed writes.
 - For read-modify-write flows, `scene.detail.get` and `automation.detail.get` `editablePayload` are the source payloads. Preserve them, apply the minimal intended edit, and resend a complete update payload.
 
 ## Dry-Run Preview
@@ -52,7 +52,7 @@ Use this reference for authentication, environment selection, pagination, timeou
 
 ## Runtime Missing
 
-- If `scripts/invoke` returns `error.code=runtime_missing`, the local `yeelight-home` CLI is not available to the Skill.
+- If `scripts/invoke.sh` returns `error.code=runtime_missing`, the local `yeelight-home` CLI is not available to the Skill.
 - Tell the user to install `yeelight-home` from the public `yeelight/yeelight-home` release or a currently available package manager. Currently available guidance names are GitHub Releases, Homebrew, Scoop, Debian package, and npm; Winget can be mentioned only after its registry shows the package is published.
 - If the user already installed the CLI in a non-PATH location, tell them to set `YEELIGHT_HOME_BIN` to the absolute executable path.
 - After installation, ask the user to run `yeelight-home auth status --json`; if not logged in, use `yeelight-home auth login --qr`. If QR is unavailable, use `printf '%s' "$YEELIGHT_TOKEN" | yeelight-home auth token set --stdin --region <region>` in the user's own terminal for explicit local token import outside chat.
@@ -65,3 +65,4 @@ Use this reference for authentication, environment selection, pagination, timeou
 - Business failures must stay redacted; do not expose full low-level envelopes, identifiers, or token-like values.
 - App-only, LAN-only, BLE-only, QR, pairing, or credential-sensitive flows must become Runtime guidance or blocks.
 - Write verification mismatch is a partial outcome until Runtime returns a definitive state.
+- `not_supported` with `error.code=unsupported_intent` means the requested intent is not executable in the public Runtime catalog. Use a supported catalog intent or `intent.explain`; do not retry guessed intent names.

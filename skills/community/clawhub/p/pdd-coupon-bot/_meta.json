@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn76kcpexvdkcfr9jpnfpgqrs5847tw5",
-  "slug": "pdd-coupon-bot",
+  "name": "pdd-coupon-bot",
   "version": "1.0.0",
-  "publishedAt": 1775323784009
+  "description": "拼多多优惠券机器人",
+  "author": "全能虾大王",
+  "license": "MIT"
 }

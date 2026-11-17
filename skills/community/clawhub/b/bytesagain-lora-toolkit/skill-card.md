@@ -1,37 +1,59 @@
-## Description: <br>
-Configure, estimate, and generate LoRA fine-tuning scripts for LLMs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configure, estimate, and generate LoRA fine-tuning scripts for LLMs. Input: base model name, dataset size, GPU spec. Output: training config, PEFT script, cost estimate.
 
-## Publisher: <br>
-[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan LoRA fine-tuning runs, estimate hardware and cost requirements, validate dataset formats, and generate PEFT/TRL training scripts for HuggingFace-compatible language models. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/loutai0307-prog/bytesagain-lora-toolkit) <br>
+Developers and engineers use LoRA Toolkit to configure LoRA fine-tuning runs, estimate VRAM, time, and cost, validate dataset format compatibility, choose a base model for their hardware, and generate PEFT/TRL training scripts for Hugging Face-compatible LLMs.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and shell output with generated Python training scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated training scripts should be reviewed before execution; ClawHub security guidance recommends trusted model repositories, removing trust_remote_code=True unless required, pinning model revisions where practical, and running training in a virtual environment or container.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Generated training code enables remote model code execution and may use unpinned remote model repositories.
+
+Mitigation: Use only trusted model repositories, disable trust_remote_code where possible, or pin and review specific model revisions before training.
+
+Risk: The security summary reports command-injection-prone handling of user-controlled filenames and model strings.
+
+Mitigation: Run the toolkit in an isolated environment without sensitive credentials and avoid untrusted filenames or model identifiers until input handling is fixed.
+
+Risk: Fine-tuning estimates and recommendations are heuristic and may not match a specific model, dataset, GPU, or provider price.
+
+Mitigation: Review generated settings and cost estimates before training, then test with a small dataset and conservative resource limits.
+
+## Reference(s):
+
+- [LoRA Toolkit ClawHub release](https://clawhub.ai/loutai0307-prog/skills/bytesagain-lora-toolkit)
+- [Publisher profile](https://clawhub.ai/user/loutai0307-prog)
+- [BytesAgain feedback](https://bytesagain.com/feedback/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-oriented terminal text with shell commands and generated Python code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces LoRA configuration guidance, estimates, dataset validation feedback, model recommendations, and a ready-to-run training script.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

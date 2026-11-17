@@ -1,41 +1,53 @@
-## Description: <br>
-Manages a local GitHub knowledge base and helps agents search repositories, issues, and pull requests with the GitHub CLI while cataloging cloned repositories in GITHUB_KB.md. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GitHub Knowledge Base helps agents maintain a local GitHub repository catalog and use the GitHub CLI to search repositories, issues, and pull requests.
 
-## Publisher: <br>
-[JamesChan21](https://clawhub.ai/user/JamesChan21) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jameschan21](https://clawhub.ai/user/jameschan21)
 
-## Use Case: <br>
-Developers and agent users use this skill to search GitHub, inspect PRs and issues, clone repositories into a local knowledge base, and maintain a markdown catalog of projects. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can use GitHub CLI authentication and a GITHUB_TOKEN when searching or accessing repositories. <br>
-Mitigation: Use a limited GitHub token or account, provide credentials through environment variables or secrets, and never hardcode tokens. <br>
-Risk: Repository names, descriptions, and cloned code may be stored in the local knowledge base. <br>
-Mitigation: Confirm GITHUB_KB_PATH before cloning and avoid cataloging private repositories unless local retention is intended. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [GitHub CLI Linux installation guide](https://github.com/cli/cli/blob/trunk/docs/install_linux.md) <br>
-- [ClawHub release page](https://clawhub.ai/JamesChan21/github-kb) <br>
-- [Publisher profile](https://clawhub.ai/user/JamesChan21) <br>
+## Use Case:
 
+Developers and engineering agents use this skill to search GitHub with gh CLI, clone repositories into a local knowledge base, and maintain a GITHUB_KB.md project catalog.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and catalog entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use GitHub CLI authentication and update local repository files when the user asks to search, clone, or catalog projects.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A GitHub token may grant broader repository access than the workflow needs.
+
+Mitigation: Use the least-privileged GitHub token needed and provide it through GITHUB_TOKEN or a secret manager rather than hardcoding it.
+
+Risk: The local knowledge base may accumulate private or untrusted cloned repositories.
+
+Mitigation: Set GITHUB_KB_PATH to an expected directory and review private or untrusted repositories before allowing them to persist in the KB.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jameschan21/skills/github-kb)
+- [GitHub CLI Linux Installation Guide](https://github.com/cli/cli/blob/trunk/docs/install_linux.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and update a local GITHUB_KB.md catalog and propose gh CLI commands for GitHub search and cloning workflows.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,60 @@
-## Description: <br>
-Official Kakiyo skill from Kakiyo.com for managing LinkedIn automation campaigns, prospects, and AI agents via Kakiyo MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Official Kakiyo skill from Kakiyo.com for managing LinkedIn automation campaigns, prospects, and AI agents via Kakiyo MCP server.
 
-## Publisher: <br>
-[CyberBoyAyush](https://clawhub.ai/user/CyberBoyAyush) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cyberboyayush](https://clawhub.ai/user/cyberboyayush)
 
-## Use Case: <br>
-External users and developers use this skill to configure Kakiyo MCP access and manage LinkedIn outreach campaigns, prospects, AI agents, analytics, workspaces, webhooks, and do-not-contact lists. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can let an agent operate Kakiyo outreach workflows and account settings broadly. <br>
-Mitigation: Install only for trusted Kakiyo usage, use a dedicated revocable API key when possible, and review campaign, prospect, workspace, DNC, and webhook changes before execution. <br>
-Risk: Resume, delete, remove, and webhook URL actions can change outreach state or account integrations. <br>
-Mitigation: Require explicit user confirmation before these actions and verify target IDs, URLs, and affected workspaces or prospects. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Kakiyo Website](https://kakiyo.com) <br>
-- [Kakiyo Documentation](https://docs.kakiyo.com) <br>
-- [Kakiyo Dashboard](https://app.kakiyo.com) <br>
-- [Kakiyo MCP Server](https://docs.kakiyo.com/mcp-server) <br>
-- [Kakiyo API Reference](https://docs.kakiyo.com/api-reference) <br>
-- [ClawHub Skill Page](https://clawhub.ai/CyberBoyAyush/kakiyo) <br>
+## Use Case:
 
+Developers, operators, and sales teams use this skill to let an agent configure Kakiyo access, manage LinkedIn outreach campaigns and prospects, monitor analytics, manage AI agents, administer client workspaces, configure webhooks, and manage do-not-contact entries.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-oriented MCP call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires mcporter and a KAKIYO_API_KEY for live Kakiyo MCP calls.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill gives an agent broad authority to change outreach campaigns, clients, webhooks, and workspaces without clear confirmation safeguards.
+
+Mitigation: Require user confirmation before create, update, delete, invite, webhook, batch prospect, and campaign or agent pause/resume actions.
+
+Risk: Actions may target the wrong workspace, campaign, recipient, or webhook URL.
+
+Mitigation: Verify workspace IDs, campaign IDs, recipients, and webhook URLs before execution.
+
+Risk: The integration can access LinkedIn outreach and account data through Kakiyo.
+
+Mitigation: Install only when the user trusts Kakiyo with their LinkedIn outreach and account data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cyberboyayush/skills/kakiyo)
+- [Kakiyo homepage](https://kakiyo.com)
+- [Kakiyo documentation](https://docs.kakiyo.com)
+- [Kakiyo MCP server documentation](https://docs.kakiyo.com/mcp-server)
+- [Kakiyo API reference](https://docs.kakiyo.com/api-reference)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, API calls, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-formatted MCP responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires mcporter and KAKIYO_API_KEY; interacts with the Kakiyo MCP server.]
+
+## Skill Version(s):
+
+1.0.4 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

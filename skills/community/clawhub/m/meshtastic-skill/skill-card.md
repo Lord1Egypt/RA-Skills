@@ -1,48 +1,65 @@
-## Description: <br>
-Send and receive messages via Meshtastic LoRa mesh networks for off-grid messaging, mesh network status, recent message review, and LoRa radio texting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send and receive messages via Meshtastic LoRa mesh network. Use for off-grid messaging, mesh network status, reading recent mesh messages, or sending texts via LoRa radio.
 
-## Publisher: <br>
-[lukevr](https://clawhub.ai/user/lukevr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lukevr](https://clawhub.ai/user/lukevr)
 
-## Use Case: <br>
-Developers, operators, and field teams use this skill to connect AI agents to Meshtastic-compatible LoRa hardware for sending messages, monitoring mesh traffic, checking node status, and producing alerts or digests when internet access is unavailable or optional. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Map publishing or MQTT bridging can expose mesh traffic or approximate location data beyond the local radio network. <br>
-Mitigation: Keep map publishing disabled unless intentionally needed, use fuzzy positioning, avoid precise location in messages, and review MQTT broker settings before operation. <br>
-Risk: Local mesh message logs and node caches are written under /tmp and may expose message content or position-derived metadata to local users. <br>
-Mitigation: Protect or relocate message logs and node cache files, apply restrictive file permissions, and avoid storing sensitive messages in shared temporary paths. <br>
-Risk: Device control features can send messages, broadcast position, forward digests externally, or reboot the connected Meshtastic device. <br>
-Mitigation: Require explicit operator confirmation for sends, position broadcasts, external alert delivery, and device reboot actions. <br>
-Risk: Broad serial-device permissions can make the Meshtastic device writable by unintended local users. <br>
-Mitigation: Avoid broad chmod settings such as 666 and use a restricted device group or udev rule for least-privilege access. <br>
+## Use Case:
 
+Developers and operators use this skill to connect agents to Meshtastic LoRa mesh networks for off-grid messaging, mesh status checks, message monitoring, alerting, and digest generation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lukevr/meshtastic-skill) <br>
-- [Meshtastic Documentation](https://meshtastic.org/docs/) <br>
-- [Meshtastic MQTT Integration](https://meshtastic.org/docs/configuration/module/mqtt/) <br>
-- [Meshtastic Hardware Options](https://meshtastic.org/docs/hardware/) <br>
-- [Setup Guide](references/SETUP.md) <br>
-- [Claude Desktop MCP Example](references/claude_desktop_config.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON socket commands, Python scripts, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local command guidance and bridge/MCP interaction patterns for Meshtastic hardware, MQTT traffic, logs, alerts, and digests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill can publish location and device metadata through map reporting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review configuration and code before running, keep map publishing disabled unless intentionally needed, and use fuzzy or approximate positions.
+
+Risk: Mesh and MQTT traffic can be persisted locally and forwarded through alert or digest workflows.
+
+Mitigation: Use a private log directory with restrictive permissions and avoid forwarding or acting on received mesh text until it has been reviewed as untrusted external content.
+
+Risk: Broadcast mesh messages may expose sensitive information to unintended recipients.
+
+Mitigation: Do not send secrets, precise locations, personal data, or operationally sensitive details over mesh channels.
+
+Risk: Serial-device permission changes can overexpose the connected radio device.
+
+Mitigation: Prefer group-based serial access over broad device permissions such as chmod 666.
+
+## Reference(s):
+
+- [Meshtastic Setup Guide](references/SETUP.md)
+- [Claude Desktop MCP Configuration Example](references/claude_desktop_config.json)
+- [Meshtastic Documentation](https://meshtastic.org/docs/)
+- [Meshtastic MQTT Integration](https://meshtastic.org/docs/configuration/module/mqtt/)
+- [Meshtastic Hardware Options](https://meshtastic.org/docs/hardware/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands, JSON socket commands, MCP tool responses, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include mesh message text, node status, node lists, alert or digest summaries, and setup guidance.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

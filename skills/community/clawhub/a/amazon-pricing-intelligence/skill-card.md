@@ -1,46 +1,60 @@
-## Description: <br>
-Amazon Pricing Intelligence helps Amazon sellers analyze costs, compare market pricing, plan promotions, optimize profit, and evaluate price adjustments for major marketplaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Amazon Pricing Intelligence helps Amazon sellers calculate cost floors, compare market price bands, plan promotions, optimize margins, and assess price changes across major marketplaces.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-External Amazon sellers and ecommerce operators use this skill to calculate pricing floors, estimate profit margins, compare peer price bands, plan promotional discounts, and review suggested price changes before applying them. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pricing guidance may be based on stale or incomplete marketplace fee assumptions. <br>
-Mitigation: Verify current Amazon referral, FBA, storage, advertising, and promotion fees against official sources before acting on recommendations. <br>
-Risk: Suggested price changes could reduce margins, conversion, ranking stability, or Buy Box eligibility if applied without review. <br>
-Mitigation: Manually review each recommendation, confirm it remains above the break-even price, and test price changes before broad rollout. <br>
-Risk: Users may share more business data than needed for the analysis. <br>
-Mitigation: Provide only the product, cost, sales, and fee data required for the pricing task. <br>
+## Use Case:
 
+External Amazon sellers use this skill to turn product costs, marketplace fees, sales volume, and competitor price references into pricing analysis, promotional plans, margin diagnostics, and adjustment recommendations.
 
-## Reference(s): <br>
-- [Amazon Pricing Intelligence Skill Page](https://clawhub.ai/wangm-a3/amazon-pricing-intelligence) <br>
-- [Pricing Framework](references/pricing-framework.md) <br>
-- [Market Benchmarks](references/market-benchmarks.md) <br>
-- [Related Skill: Amazon Inventory Forecast](https://clawhub.ai/skills/amazon-inventory-forecast) <br>
-- [Related Skill: Amazon Seasonal Planner](https://clawhub.ai/skills/amazon-seasonal-planner) <br>
+### Deployment Geography for Use:
 
+Global; source examples cover Amazon marketplaces including the United States, United Kingdom, Germany, Japan, and Canada.
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown pricing analysis with tables, calculations, and recommendation sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only business guidance; does not run code, access seller accounts, or change prices automatically.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence; artifact frontmatter reports 1.0.0) <br>
+Risk: The skill may ask users to share product costs, prices, sales volume, FBA fees, and competitor links for analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only the information needed for the pricing task and avoid entering credentials, personal data, or confidential details that are not required.
+
+Risk: Amazon fees, FBA charges, category benchmarks, and marketplace conditions can change after the reference material was written.
+
+Mitigation: Verify fee schedules and benchmark assumptions against current Amazon documentation before relying on pricing recommendations.
+
+Risk: Pricing recommendations are advisory and can be wrong if the input data or market assumptions are incomplete.
+
+Mitigation: Review calculations, margin thresholds, and business constraints before changing live marketplace prices.
+
+## Reference(s):
+
+- [Pricing Framework](artifact/references/pricing-framework.md)
+- [Market Benchmarks](artifact/references/market-benchmarks.md)
+- [ClawHub Skill Page](https://clawhub.ai/wangm-a3/skills/amazon-pricing-intelligence)
+- [Publisher Profile](https://clawhub.ai/user/wangm-a3)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown pricing analysis reports with tables, formulas, and recommended next actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are advisory and depend on user-provided costs, fees, prices, sales volume, and benchmark context.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

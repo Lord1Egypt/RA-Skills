@@ -1,40 +1,56 @@
-## Description: <br>
-Generates complete video scripts from a topic or keywords, including storyboards, visual prompts, voiceover copy, subtitles, and audience/style guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Video Script Generator helps creators generate complete video scripts from a topic or keywords, including shot descriptions, visual prompts, voiceover copy, and subtitles.
 
-## Publisher: <br>
-[aguo333](https://clawhub.ai/user/aguo333) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aguo333](https://clawhub.ai/user/aguo333)
 
-## Use Case: <br>
-External creators, AI video makers, and content marketers use this skill to draft short-form or longer-form video scripts with shot descriptions, generation prompts, narration, subtitles, and platform-oriented structure. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated scripts may contain inaccurate factual claims, copyright-sensitive elements, advertising claims, or platform policy issues. <br>
-Mitigation: Review and edit generated scripts before publishing; check factual claims, rights, advertising compliance, sensitive wording, and target-platform rules. <br>
-Risk: The skill may activate on broad video-related requests such as video script, storyboard, short-video copy, or video planning. <br>
-Mitigation: Confirm that the user wants a full video-script deliverable before expanding the response into storyboard, prompt, and voiceover sections. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aguo333/ai-video-script) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/aguo333) <br>
+## Use Case:
 
+External short-form video creators, AI video producers, and content marketers use this skill to draft short or long video scripts, storyboards, image or video prompts, voiceover narration, and subtitles for social video platforms.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown script package with overview, storyboard sections, visual prompts, voiceover copy, and subtitles.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include multiple variants, style customization, and platform-specific duration guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad trigger words such as video script, storyboard, and AI video may activate the skill for adjacent video-planning requests.
+
+Mitigation: Confirm the user wants a generated video script, storyboard, or prompt package before producing a full response.
+
+Risk: The skill is written for Chinese-language video scripting, which may not match a non-Chinese user's expected output language.
+
+Mitigation: Ask for or honor the requested target language and platform context before drafting the script.
+
+Risk: Generated scripts and prompts may include inaccurate claims, platform-sensitive wording, or content that resembles protected material.
+
+Mitigation: Review output for factual accuracy, originality, rights concerns, and platform policy fit before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aguo333/skills/ai-video-script)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown video script with overview, shot table, visual prompts, voiceover copy, and subtitles]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce multiple script variants and platform-specific duration guidance when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

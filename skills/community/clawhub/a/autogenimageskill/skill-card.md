@@ -1,44 +1,55 @@
-## Description: <br>
-Use when the user wants GPT-Image-2 image generation or image-to-image through an official OpenAI permission code/API key, a custom Responses-compatible proxy, or a reserved purchased-capacity relay. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user wants GPT-Image-2 image generation or image-to-image through an official OpenAI permission code/API key, a custom Responses-compatible proxy, or a reserved purchased-capacity relay.
 
-## Publisher: <br>
-[etherstrings](https://clawhub.ai/user/etherstrings) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[etherstrings](https://clawhub.ai/user/etherstrings)
 
-## Use Case: <br>
-Developers and agent users use this skill to generate or transform PNG images through an official OpenAI API key, a Responses-compatible proxy, or a reserved purchased-capacity relay while keeping credentials redacted in outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and selected images may be sent to OpenAI, a configured proxy, or a reserved-capacity relay. <br>
-Mitigation: Use only trusted endpoints and avoid submitting sensitive images or confidential prompts through untrusted relays. <br>
-Risk: The skill requires sensitive API, proxy, relay, or purchase credentials at runtime. <br>
-Mitigation: Pass credentials through environment variables or a local secret manager, use scoped or disposable credentials where possible, and keep returned summaries redacted. <br>
-Risk: Reserved mode can redeem purchase keys or consume quota. <br>
-Mitigation: Require explicit user confirmation before reserved-mode generation, quota consumption, or purchase-key redemption. <br>
+## Use Case:
 
+Developers and agents use this skill to generate or transform PNG images from prompts through an official OpenAI path, a configured Responses-compatible proxy, or a reserved-capacity relay.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/etherstrings/autogenimageskill) <br>
-- [Access Modes](references/access-modes.md) <br>
-- [Runtime Notes](references/runtime.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Configuration guidance] <br>
-**Output Format:** [Markdown with shell commands and generated PNG file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns the absolute output image path plus access mode, endpoint or relay job ID, provider name when available, byte size, and revised prompt when returned; credentials remain redacted.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: frontmatter and server release evidence) <br>
+Risk: Prompts, source images, and credentials may be sent to configurable services, including custom proxies or reserved relay services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the configured image backend is trusted; prefer official mode without overriding OPENAI_BASE_URL, and treat proxy or relay modes as third-party data sharing.
+
+Risk: API keys, permission codes, purchase keys, or provider tokens can be exposed if handled carelessly at runtime.
+
+Mitigation: Pass secrets through environment variables or a secret manager, avoid command-line arguments for sensitive values when possible, and keep generated summaries redacted.
+
+## Reference(s):
+
+- [Access Modes](references/access-modes.md)
+- [Runtime Notes](references/runtime.md)
+- [ClawHub Skill Page](https://clawhub.ai/etherstrings/skills/autogenimageskill)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration guidance, Text]
+
+**Output Format:** [PNG image file plus concise text metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns the absolute output path, access mode, endpoint or relay job ID, provider name when available, byte size, and revised prompt while keeping credentials redacted.]
+
+## Skill Version(s):
+
+0.1.2 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

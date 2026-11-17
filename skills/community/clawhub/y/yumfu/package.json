@@ -1,7 +1,7 @@
 {
   "name": "yumfu",
-  "version": "1.7.11",
-  "description": "Multi-World MUD with Dynamic Daily Evolution + Sengoku Chaos - Wuxia, Harry Potter, LOTR & more | 多世界MUD + 每日世界演进 + 战国乱世",
+  "version": "1.7.12",
+  "description": "Multi-World MUD with Daily Evolution — Wuxia, fantasy, Journey to the West, Ramayana, and Tang Silk Road adventures",
   "keywords": [
     "game",
     "mud",
@@ -16,7 +16,14 @@
     "dynamic-world",
     "中文",
     "武侠",
-    "笑傲江湖"
+    "笑傲江湖",
+    "ramayana",
+    "xuanzang",
+    "silk-road",
+    "西游记",
+    "罗摩衍那",
+    "大唐西域记",
+    "journey-to-west"
   ],
   "author": "Tommy Yan <thriller.yan@gmail.com>",
   "license": "GPL-3.0-or-later",

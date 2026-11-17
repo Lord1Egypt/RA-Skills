@@ -1,38 +1,55 @@
-## Description: <br>
-Interact with Kanboard project management via JSON-RPC API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with Kanboard project management through JSON-RPC API calls for tasks, projects, boards, columns, swimlanes, comments, subtasks, and users.
 
-## Publisher: <br>
-[bivex](https://clawhub.ai/user/bivex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bivex](https://clawhub.ai/user/bivex)
 
-## Use Case: <br>
-Developers and operators use this skill to manage Kanboard projects, boards, tasks, comments, subtasks, users, permissions, tags, and related workflow objects through the JSON-RPC API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad write and delete authority over Kanboard data. <br>
-Mitigation: Use least-privilege user credentials where possible and require explicit confirmation plus a read-only lookup of affected IDs before remove, disable, permission-change, or bulk operations. <br>
-Risk: Kanboard API tokens or passwords could be exposed through logs, transcripts, or insecure transport. <br>
-Mitigation: Use HTTPS, keep credentials out of logs and transcripts, and install only when the configured Kanboard server is trusted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers and operations teams use this skill to compose Kanboard JSON-RPC commands for board, project, task, user, permission, comment, subtask, tag, and workflow automation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can make real Kanboard changes across projects, tasks, users, permissions, and deletion operations.
+
+Mitigation: Use a least-privilege user API token where possible and manually confirm deletes, user changes, permission changes, and bulk operations before execution.
+
+Risk: Kanboard credentials and API tokens are required for operation.
+
+Mitigation: Require HTTPS for KANBOARD_URL, keep credentials in trusted environment variables, and avoid shared systems where process arguments are visible.
+
+Risk: Bulk workflows can apply changes to many tasks at once.
+
+Mitigation: List and review target project, task, user, or permission IDs before running loops or batch operations.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON-RPC examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured Kanboard URL and API credentials, plus curl and jq.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with bash command templates and JSON payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, KANBOARD_URL, and Kanboard API credentials configured by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

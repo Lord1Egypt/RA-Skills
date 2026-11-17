@@ -1,43 +1,66 @@
-## Description: <br>
-Post text and photos to a personal Facebook timeline using Patchright and Playwright browser automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Posts text and photos to a personal Facebook timeline using Patchright/Playwright browser automation.
 
-## Publisher: <br>
-[oangogah-claw](https://clawhub.ai/user/oangogah-claw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oangogah-claw](https://clawhub.ai/user/oangogah-claw)
 
-## Use Case: <br>
-External users and agents use this skill to publish text or photo posts to a personal Facebook profile when Graph API posting is not available for personal timelines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use live Facebook session cookies with posting access. <br>
-Mitigation: Use only an account and cookie file approved for this purpose, store the cookie file with restrictive permissions, and do not commit it to source control. <br>
-Risk: Live mode can publish content to a personal Facebook timeline. <br>
-Mitigation: Keep dry-run enabled until the exact message and photo set have been reviewed, then set live mode only for the intended post. <br>
-Risk: Photo posts may be made Public without a user-selected audience. <br>
-Mitigation: Confirm or modify the sharing audience before posting, especially for photo uploads. <br>
+## Use Case:
 
+Agents use this skill when a user asks to publish text or photos to a personal Facebook profile rather than a Facebook Page.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/oangogah-claw/fb-personal-poster) <br>
-- [Facebook](https://www.facebook.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown instructions with bash and Python examples; the bundled CLI script prints JSON status.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dry-run is enabled by default; live posting requires explicit configuration and valid Facebook session cookies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Uses a full Facebook session cookie file with account-level access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated protected cookie file, keep file permissions restrictive, and never commit or share the cookie material.
+
+Risk: Can publish text and photos to a personal timeline when live posting is enabled.
+
+Mitigation: Verify the exact message, media paths, destination profile, and dry-run state immediately before execution.
+
+Risk: The artifact can attempt to set the sharing audience to Public.
+
+Mitigation: Require explicit user confirmation for audience settings and avoid automatic Public selection before treating the skill as low risk.
+
+Risk: Security evidence reports under-scoped safety controls and a dry-run bug that can still post live.
+
+Mitigation: Do not rely solely on dry-run behavior if FB_DRY_RUN=false may be present; require an explicit publish confirmation before live posting.
+
+Risk: Dependency versions are not pinned beyond a lower bound.
+
+Mitigation: Pin and review dependencies before production or shared-environment use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/oangogah-claw/skills/fb-personal-poster)
+- [Facebook](https://www.facebook.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and Python/browser automation instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute browser automation that publishes user-provided text and photos when live posting is enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

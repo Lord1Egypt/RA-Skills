@@ -1,0 +1,144 @@
+{
+  "schema_version": "1.0",
+  "data_mode": "illustrative",
+  "profile_id": "qinghe-user-only-demo",
+  "as_of": "2026-10-19",
+  "primary_entity_id": "product-qinghe-tools",
+  "sources": [
+    {
+      "id": "U1",
+      "kind": "user_material",
+      "locator": "provided:用户首条任务",
+      "acquisition": "user_supplied",
+      "captured_on": "2026-10-19",
+      "subject_entity_ids": [
+        "org-qinghe",
+        "product-qinghe-tools"
+      ],
+      "excerpt": "青禾科技有限公司的产品叫青禾工具，英文 Qinghe Tools。"
+    }
+  ],
+  "entities": [
+    {
+      "id": "org-qinghe",
+      "type": "Organization",
+      "facts": {
+        "canonical_name": {
+          "status": "reported",
+          "value": "青禾科技有限公司",
+          "evidence": [
+            {
+              "source_id": "U1",
+              "quote": "青禾科技有限公司的产品叫青禾工具，英文 Qinghe Tools。"
+            }
+          ]
+        },
+        "name_zh": {
+          "status": "reported",
+          "value": "青禾科技有限公司",
+          "evidence": [
+            {
+              "source_id": "U1",
+              "quote": "青禾科技有限公司的产品叫青禾工具，英文 Qinghe Tools。"
+            }
+          ]
+        },
+        "name_en": {
+          "status": "unknown",
+          "value": null,
+          "evidence": [],
+          "reason": "当前只有用户首条任务，尚无该字段资料。"
+        },
+        "aliases": {
+          "status": "unknown",
+          "value": null,
+          "evidence": [],
+          "reason": "当前只有用户首条任务，尚无该字段资料。"
+        },
+        "description": {
+          "status": "unknown",
+          "value": null,
+          "evidence": [],
+          "reason": "当前只有用户首条任务，尚无该字段资料。"
+        },
+        "website": {
+          "status": "unknown",
+          "value": null,
+          "evidence": [],
+          "reason": "当前只有用户首条任务，尚无该字段资料。"
+        },
+        "founding_date": {
+          "status": "unknown",
+          "value": null,
+          "evidence": [],
+          "reason": "当前只有用户首条任务，尚无该字段资料。"
+        }
+      },
+      "same_as": []
+    },
+    {
+      "id": "product-qinghe-tools",
+      "type": "Product",
+      "facts": {
+        "canonical_name": {
+          "status": "reported",
+          "value": "青禾工具",
+          "evidence": [
+            {
+              "source_id": "U1",
+              "quote": "青禾科技有限公司的产品叫青禾工具，英文 Qinghe Tools。"
+            }
+          ]
+        },
+        "name_zh": {
+          "status": "reported",
+          "value": "青禾工具",
+          "evidence": [
+            {
+              "source_id": "U1",
+              "quote": "青禾科技有限公司的产品叫青禾工具，英文 Qinghe Tools。"
+            }
+          ]
+        },
+        "name_en": {
+          "status": "reported",
+          "value": "Qinghe Tools",
+          "evidence": [
+            {
+              "source_id": "U1",
+              "quote": "青禾科技有限公司的产品叫青禾工具，英文 Qinghe Tools。"
+            }
+          ]
+        },
+        "aliases": {
+          "status": "unknown",
+          "value": null,
+          "evidence": [],
+          "reason": "当前只有用户首条任务，尚无该字段资料。"
+        },
+        "description": {
+          "status": "unknown",
+          "value": null,
+          "evidence": [],
+          "reason": "当前只有用户首条任务，尚无该字段资料。"
+        },
+        "website": {
+          "status": "unknown",
+          "value": null,
+          "evidence": [],
+          "reason": "当前只有用户首条任务，尚无该字段资料。"
+        },
+        "founding_date": {
+          "status": "unknown",
+          "value": null,
+          "evidence": [],
+          "reason": "当前只有用户首条任务，尚无该字段资料。"
+        }
+      },
+      "same_as": []
+    }
+  ],
+  "relationships": [],
+  "disambiguation": [],
+  "observations": []
+}

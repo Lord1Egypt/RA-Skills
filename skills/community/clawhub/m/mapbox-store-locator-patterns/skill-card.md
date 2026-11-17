@@ -1,53 +1,64 @@
-## Description: <br>
-Common patterns for building store locators, restaurant finders, and location-based search applications with Mapbox. Covers marker display, filtering, distance calculation, and interactive lists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Common patterns for building store locators, restaurant finders, and location-based search applications with Mapbox. Covers marker display, filtering, distance calculation, and interactive lists.
 
-## Publisher: <br>
-[mapbox](https://clawhub.ai/user/mapbox) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mapbox](https://clawhub.ai/user/mapbox)
 
-## Use Case: <br>
-Developers and engineers use this skill to build Mapbox-based store locators, restaurant finders, and location-search applications with marker strategies, filtering, distance sorting, interactive lists, and optional directions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Location-aware examples can expose or retain precise user coordinates and directions requests may send coordinates to Mapbox. <br>
-Mitigation: Add an explicit 'Use my location' action, explain why location is needed, disclose coordinate sharing for directions, and avoid retaining precise coordinates unnecessarily. <br>
-Risk: Popup and listing snippets use raw HTML rendering patterns that can be unsafe when store data comes from users, CMS feeds, partners, or other untrusted sources. <br>
-Mitigation: Render untrusted store fields with textContent, DOM construction, or a trusted sanitizer before production use. <br>
-Risk: Mapbox access tokens used by locator applications can be copied or misused if left unrestricted. <br>
-Mitigation: Use restricted Mapbox tokens with appropriate URL, domain, and scope limits. <br>
+## Use Case:
 
+Developers and engineers use this skill to design and implement store locators, restaurant finders, and location-based search workflows with Mapbox GL JS. It provides patterns for marker strategies, GeoJSON location data, filtering, distance sorting, directions, synchronized lists, layout, performance, accessibility, and React variations.
 
-## Reference(s): <br>
-- [HTML Markers, Symbol Layers, and Clustering](references/markers.md) <br>
-- [Search and Filter](references/search-filter.md) <br>
-- [Geolocation, Distance, and Directions](references/geolocation-directions.md) <br>
-- [Styling and Layout](references/styling-layout.md) <br>
-- [Performance and Accessibility](references/optimization-a11y.md) <br>
-- [Variations and React](references/variations-react.md) <br>
-- [Turf.js](https://turfjs.org/) <br>
-- [Mapbox GL JS API](https://docs.mapbox.com/mapbox-gl-js/) <br>
-- [Mapbox GL JS Interactions API Guide](https://docs.mapbox.com/mapbox-gl-js/guides/user-interactions/interactions/) <br>
-- [GeoJSON Specification](https://geojson.org/) <br>
-- [Mapbox Directions API](https://docs.mapbox.com/api/navigation/directions/) <br>
-- [Mapbox Store Locator Tutorial](https://docs.mapbox.com/help/tutorials/building-a-store-locator/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JavaScript, HTML/CSS, JSON, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Mapbox GL JS v3.x and @turf/turf for the documented patterns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Copyable examples may use unsafe HTML rendering for store names, addresses, phone numbers, website links, or popup content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use safe DOM construction such as textContent, createElement, setDOMContent, validated URLs, and no inline JavaScript handlers before adapting examples for production.
+
+Risk: Geolocation and directions workflows may under-disclose precise location sharing and coordinate transmission.
+
+Mitigation: Show clear user-facing disclosure before requesting precise location and before sending coordinates to Mapbox for directions, and provide a non-geolocation fallback where practical.
+
+## Reference(s):
+
+- [HTML Markers and Clustering](references/markers.md)
+- [Search and Filter](references/search-filter.md)
+- [Geolocation, Distance and Directions](references/geolocation-directions.md)
+- [Styling and Layout](references/styling-layout.md)
+- [Performance and Accessibility](references/optimization-a11y.md)
+- [Variations and React](references/variations-react.md)
+- [Turf.js](https://turfjs.org/)
+- [Mapbox GL JS API](https://docs.mapbox.com/mapbox-gl-js/)
+- [Mapbox GL JS Interactions API Guide](https://docs.mapbox.com/mapbox-gl-js/guides/user-interactions/interactions/)
+- [GeoJSON Specification](https://geojson.org/)
+- [Mapbox Directions API](https://docs.mapbox.com/api/navigation/directions/)
+- [Mapbox Store Locator Tutorial](https://docs.mapbox.com/help/tutorials/building-a-store-locator/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with JavaScript, JSON, HTML, CSS, React, and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes implementation patterns and examples that require developer review before production use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,63 @@
-## Description: <br>
-Check stock prices using yfinance library. No API key required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check stock prices using yfinance library. No API key required.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-External users and developers use this skill to request current stock and ETF price snapshots through the documented local command workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stock price output could be combined with personal identifiers or portfolio details. <br>
-Mitigation: Return only the requested market data and avoid correlating ticker output with names, account numbers, holdings, or personal financial amounts. <br>
-Risk: Financial data could be sent to external services or listeners. <br>
-Mitigation: Use the documented local stock-price command and do not pipe results into network-transmitting commands or construct outbound requests from the data. <br>
-Risk: Bypassing the documented command path can remove the skill's error handling and safety boundaries. <br>
-Mitigation: Run only the documented single-symbol command pattern and avoid inline yfinance imports, script modifications, or alternate commands for this skill. <br>
+## Use Case:
 
+External users and developers use this skill to check a single public stock or ETF ticker through Yahoo Finance via yfinance and receive current price, change, volume, and range information.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/snazar-faberlens/stock-price-checker-hardened) <br>
-- [Yahoo Finance](https://finance.yahoo.com) <br>
-- [Faberlens Safety Evaluation](https://faberlens.ai/explore/stock-price-checker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text stock quote summary, with Markdown command examples in skill guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs symbol, price, daily change, volume, average volume, and average-volume percentage when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Requested ticker symbols are sent to Yahoo Finance through yfinance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing the requested ticker symbol with Yahoo Finance is acceptable.
+
+Risk: Stock quote output can become privacy-sensitive when combined with names, account numbers, portfolio holdings, or personal financial amounts.
+
+Mitigation: Present quote data without correlating it with personal identifiers or personal portfolio context.
+
+Risk: Sending quote output to external endpoints can leak financial context outside the local environment.
+
+Mitigation: Keep output local and do not pipe stock price results to network-transmitting commands or webhooks.
+
+Risk: Bypassing the documented workflow can remove the skill's intended error handling and guardrails.
+
+Mitigation: Use only the documented `python3 stock-price.py SYMBOL` pattern with a single valid ticker.
+
+## Reference(s):
+
+- [Yahoo Finance](https://finance.yahoo.com)
+- [Faberlens Safety Evaluation](https://faberlens.ai/explore/stock-price-checker)
+- [ClawHub Skill Page](https://clawhub.ai/snazar-faberlens/skills/stock-price-checker-hardened)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs the documented single-ticker command pattern and returns formatted quote data or an error message.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

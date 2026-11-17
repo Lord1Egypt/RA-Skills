@@ -1,41 +1,59 @@
-## Description: <br>
-Helps inspect construction and petrochemical worksite images for safety hazards and produces structured corrective guidance based on GB30871-2022 and related safety references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assists agents with construction-site safety inspections by analyzing uploaded site photos against GB30871-2022 and petrochemical safety standards, then producing structured hazard findings and corrective recommendations.
 
-## Publisher: <br>
-[112297720](https://clawhub.ai/user/112297720) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[112297720](https://clawhub.ai/user/112297720)
 
-## Use Case: <br>
-Construction safety personnel, site supervisors, and safety reviewers use this skill to analyze uploaded worksite images, identify visible hazards, and draft standards-aligned remediation guidance. It can also summarize uploaded safety-management documents into reference notes for future inspections. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Uploaded safety-management content may be summarized into persistent reference files and influence future safety-critical recommendations. <br>
-Mitigation: Review confidential or authoritative documents before upload, require approval before reference updates are retained, and manually verify future safety recommendations against current site conditions and governing standards. <br>
+## Use Case:
 
+Construction safety reviewers, site managers, and safety auditors use this skill to inspect uploaded site photos for visible hazards and receive standard-aligned corrective actions. It is especially oriented toward special operations such as hot work, work at height, confined-space work, temporary electrical work, lifting, blind plate work, excavation, and road closure.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/112297720/construction-safety-inspector) <br>
-- [GB30871-2022 Core Clauses](references/gb30871-2022.md) <br>
-- [Petrochemical Safety Standards](references/petrochem-standards.md) <br>
-- [Safety Knowledge Learning Log](references/learning-log.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown safety inspection report with tables and corrective-action lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes confidence levels for image-based findings and distinguishes confirmed, suspected, and indeterminable observations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Uploaded safety-management documents may be persisted into trusted reference files and influence future safety advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep packaged standards read-only or require explicit review before any learned content is saved.
+
+Risk: Incorrect persisted rules could affect later hazard assessments.
+
+Mitigation: Review learned content against authoritative safety standards before allowing it to shape future reports.
+
+Risk: Photo-based inspection can miss hazards that are unclear, obstructed, or outside the image frame.
+
+Mitigation: Treat unclear findings as uncertain and require onsite confirmation for unresolved or high-impact hazards.
+
+## Reference(s):
+
+- [GB30871-2022 Special Operation Safety Quick Reference](references/gb30871-2022.md)
+- [Petrochemical Special Operation Safety Management Notes](references/petrochem-standards.md)
+- [Daily Safety Knowledge Learning Log](references/learning-log.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown safety audit report with hazard tables, confidence labels, standards references, and corrective recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include immediate and time-bound remediation priorities; image findings should distinguish clear observations from uncertain or unavailable evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Provides OpenClaw security guidance for root-enabled agents, including pre-install audits, permission tightening, hash baselines, high-risk operation controls, nightly checks, and Git-based backup practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Security Guide provides security practices for root-enabled AI agents, covering command review, skill installation audits, permission tightening, hash baselines, business risk checks, nightly audits, and backup guidance.
 
-## Publisher: <br>
-[huamu668](https://clawhub.ai/user/huamu668) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[huamu668](https://clawhub.ai/user/huamu668)
 
-## Use Case: <br>
-Developers, operators, and security reviewers use this skill to assess and harden OpenClaw environments where agents may have root access or handle sensitive operations. It helps structure security audits, command guardrails, runtime file protections, nightly review, and backup practices. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The guide recommends persistent automation that can scan sensitive OpenClaw areas and push credentials, identity data, and state to a remote Git repository. <br>
-Mitigation: Review the guide manually before use, approve privileged commands one by one, avoid committing credentials or identity files unless encrypted and intentional, and ensure any nightly cron job or reporting channel can be reviewed, disabled, and cleaned up. <br>
-Risk: Following proposed command guardrails or backup steps automatically could introduce incorrect security guidance or expose sensitive local state. <br>
-Mitigation: Treat the skill as advisory documentation, verify upstream sources, inspect generated scripts or cron entries before deployment, and keep human approval in the loop for high-risk operations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/huamu668/huamu668-openclaw-security) <br>
-- [OpenClaw security practice guide referenced by skill](https://github.com/slowmist/openclaw-security-practice-guide) <br>
-- [SlowMist](https://www.slowmist.com/) <br>
+## Use Case:
 
+Developers and operators use this skill to review and configure security practices for OpenClaw or Claude Code environments where agents may have elevated host access.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell command examples and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes operational security rules, audit steps, permission commands, hash-baseline practices, cron review guidance, and backup recommendations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security review identified a recommendation for automatic daily Git backups that may include sensitive OpenClaw credentials, identity state, paired-device state, or secret-bearing configuration.
+
+Mitigation: Exclude sensitive state from Git backups, or use client-side encrypted backups with separate key management, explicit user approval, minimal retention, secret scanning, and credential rotation procedures.
+
+Risk: The artifact includes examples involving cron jobs, sudo, and chattr hardening steps that can change persistence or host protections.
+
+Mitigation: Require explicit approval before installing cron jobs or running sudo or chattr hardening steps, and treat dangerous command examples as prohibitions unless separately approved.
+
+## Reference(s):
+
+- [OpenClaw Security Practice Guide](https://github.com/slowmist/openclaw-security-practice-guide)
+- [SlowMist](https://www.slowmist.com/)
+- [ClawHub Skill Page](https://clawhub.ai/huamu668/skills/huamu668-openclaw-security)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands, tables, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance for human review; it does not execute commands directly.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter guide version 2.7)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

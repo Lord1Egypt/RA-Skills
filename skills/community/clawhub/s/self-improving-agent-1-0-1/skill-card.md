@@ -1,45 +1,59 @@
-## Description: <br>
-Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude ('No, that's wrong...', 'Actually...'), (3) User requests a capability that doesn't exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures learnings, errors, feature requests, and corrections so agents can preserve recurring project knowledge in markdown and promote important lessons to project memory.
 
-## Publisher: <br>
-[pntrivedy](https://clawhub.ai/user/pntrivedy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pntrivedy](https://clawhub.ai/user/pntrivedy)
 
-## Use Case: <br>
-Developers and coding-agent users use this skill to capture corrections, command failures, missing capabilities, knowledge gaps, and reusable practices as structured project memory. It supports later review, promotion into agent instructions, and extraction of high-value learnings into reusable skills. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist conversation-derived details in project learning files, which may expose sensitive, customer, personal, or secret data if committed or shared. <br>
-Mitigation: Keep .learnings local or review entries before committing, and redact secrets plus customer or personal data before saving or sharing them. <br>
-Risk: Promoting logged learnings into agent instruction files can affect future agent behavior with incorrect or unreviewed guidance. <br>
-Mitigation: Require explicit human review before editing CLAUDE.md, AGENTS.md, Copilot instructions, or creating new skills from logged content. <br>
-Risk: Global prompt or tool hooks can capture reminders across more interactions than intended. <br>
-Mitigation: Enable hooks only for projects where durable learning capture is desired, and avoid global hook configuration unless every prompt should be covered. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pntrivedy/self-improving-agent-1-0-1) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Entry examples](artifact/references/examples.md) <br>
-- [Hook setup guide](artifact/references/hooks-setup.md) <br>
-- [Agent Skills specification](https://agentskills.io/specification) <br>
+## Use Case:
 
+Developers and AI coding-agent users use this skill to log command failures, user corrections, feature requests, knowledge gaps, and reusable fixes in structured markdown files. It also guides review and promotion of broadly useful learnings into project memory or reusable skills.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown learning, error, and feature-request entries with optional shell commands and hook configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates .learnings markdown files and may propose promotion into CLAUDE.md, AGENTS.md, Copilot instructions, or extracted skill files after review.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Durable learning logs may capture sensitive prompts, credentials, customer data, proprietary snippets, or raw error output.
+
+Mitigation: Sanitize entries before writing them, keep .learnings local or gitignored for sensitive projects, and avoid recording secrets or private content.
+
+Risk: Automatic hook reminders can encourage broad logging without enough user control.
+
+Mitigation: Enable hooks only when explicitly desired, prefer project-scoped configuration, and use scoped matchers rather than global activation.
+
+Risk: Promoting unreviewed entries into CLAUDE.md, AGENTS.md, or Copilot instructions can preserve incorrect or sensitive guidance.
+
+Mitigation: Require human review before promotion and scan proposed memory updates for correctness, sensitivity, and relevance.
+
+## Reference(s):
+
+- [Entry Examples](references/examples.md)
+- [Hook Setup Guide](references/hooks-setup.md)
+- [Agent Skills Specification](https://agentskills.io/specification)
+- [ClawHub Release Page](https://clawhub.ai/pntrivedy/skills/self-improving-agent-1-0-1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local .learnings markdown records and suggest project-memory updates when the user chooses to apply the guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

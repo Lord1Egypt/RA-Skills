@@ -1,43 +1,57 @@
-## Description: <br>
-Ad-Ready Pro generates professional advertising images from product URLs using a brand-aware ComfyDeploy pipeline with optional brand profiles, funnel-stage targeting, talent references, and multi-format output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate professional advertising images from product URLs using the Ad-Ready pipeline on ComfyDeploy, with optional brand profiles, funnel-stage targeting, model or talent references, and multi-format output.
 
-## Publisher: <br>
-[PauldeLavallaz](https://clawhub.ai/user/PauldeLavallaz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pauldelavallaz](https://clawhub.ai/user/pauldelavallaz)
 
-## Use Case: <br>
-External marketers, creators, and developers use this skill to generate product advertising images from product URLs, brand assets, optional reference imagery, and campaign funnel objectives. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Product URLs, product images, logos, reference ads, and optional model or talent images are sent to ComfyDeploy. <br>
-Mitigation: Use only assets approved for third-party processing, avoid private or unreleased campaign materials unless that processing is acceptable, and prefer a dedicated or scoped ComfyDeploy API key. <br>
-Risk: Auto-fetch mode downloads image assets and stores temporary files during preparation. <br>
-Mitigation: Review fetched assets before generation and clean up /tmp/ad-ready after auto-fetch runs. <br>
-Risk: Product scraping can be fragile or blocked by some websites, which can lead to missing or incorrect product context. <br>
-Mitigation: Provide a product image explicitly when possible and review the generated ad before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PauldeLavallaz/ad-ready-pro) <br>
-- [ComfyDeploy deployment queue API](https://api.comfydeploy.com/api/run/deployment/queue) <br>
-- [Ad-Ready documentation](https://www.patreon.com/posts/from-product-to-149933468) <br>
+## Use Case:
 
+Developers, marketers, and creative operators use this skill to prepare and run product advertising image generation from a product URL, brand assets, campaign objective, and optional visual references.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with bash commands; generated ad output is an image file such as PNG.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a ComfyDeploy API key and may download, upload, and temporarily store product, logo, reference, or model images.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can fetch arbitrary product or image URLs and upload retrieved assets to ComfyDeploy.
+
+Mitigation: Review URLs and assets before execution, avoid auto-fetch for untrusted URLs, and run in an environment with restricted outbound network access where practical.
+
+Risk: Sensitive products, internal URLs, private staging sites, unreleased brand assets, or confidential reference images could be exposed to an external generation service.
+
+Mitigation: Use public or approved assets where possible, and do not run the skill against confidential material without an appropriate review.
+
+Risk: Product scraping may be fragile or blocked, which can produce incorrect product data or lower-quality advertising output.
+
+Mitigation: Provide manually selected product images, logos, and reference assets when possible, and review generated ads before publication.
+
+## Reference(s):
+
+- [Ad-Ready Pro on ClawHub](https://clawhub.ai/pauldelavallaz/skills/ad-ready-pro)
+- [Patreon Ad-Ready docs](https://www.patreon.com/posts/from-product-to-149933468)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands and generated image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a ComfyDeploy API key and may upload selected product, logo, model, and reference images to ComfyDeploy.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

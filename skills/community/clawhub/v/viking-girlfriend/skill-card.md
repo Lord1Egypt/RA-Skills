@@ -1,43 +1,59 @@
-## Description: <br>
-An autonomous Norse Pagan AI companion with emotional depth, episodic memory, biological cycle simulation, oracular insight, and ethical safeguards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Viking Girlfriend is a self-hosted Norse Pagan AI companion with emotional state simulation, episodic memory, model routing, oracular responses, and ethical guardrails.
 
-## Publisher: <br>
-[hrabanazviking](https://clawhub.ai/user/hrabanazviking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hrabanazviking](https://clawhub.ai/user/hrabanazviking)
 
-## Use Case: <br>
-External users install this skill to run a self-hosted companion agent with Norse-themed persona behavior, persistent relationship memory, local state, model routing, and conversational guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may retain relationship-style memory, local state, checkpoints, logs, and diagnostic records. <br>
-Mitigation: Review and limit memory, logging, crash reporting, checkpoint, and background-job settings before use, especially before sharing sensitive conversations, credentials, health details, or private work. <br>
-Risk: The persona is intimate, strongly Norse Pagan, and non-neutral. <br>
-Mitigation: Install only when that persona is intentional, and edit or remove prompt and identity files if a neutral assistant posture is required. <br>
-Risk: The skill routes model calls through local and external endpoints when configured. <br>
-Mitigation: Verify endpoint configuration and API-key handling before running the skill, and prefer local routing for sensitive interactions. <br>
+## Use Case:
 
+Developers and self-hosting users can run this skill as a local AI companion that maintains conversational continuity, adapts persona state, and routes requests through local or proxied model endpoints. It is intended for interactive conversation and companion-style guidance, not regulated clinical, legal, or financial decision making.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hrabanazviking/viking-girlfriend) <br>
-- [Publisher profile](https://clawhub.ai/user/hrabanazviking) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Conversational text and Markdown, with code blocks, shell commands, configuration snippets, and local runtime records when enabled.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May rely on local model routing, local memory stores, logs, checkpoints, and background jobs depending on host configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.3 (source: server release metadata) <br>
+Risk: Persona instructions may be treated as having broad authority in a general-purpose agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the persona files before installation and subordinate them to the host agent's system policy, tool-use rules, and safety instructions.
+
+Risk: Conversation context, prompts, responses, memories, and state changes can be retained in local memory and log files.
+
+Mitigation: Run in an isolated local environment, configure log and memory retention before use, and avoid entering secrets or sensitive personal data unless retention is constrained.
+
+Risk: The skill routes model calls through local LiteLLM and Ollama endpoints and may use authenticated external model providers configured by the operator.
+
+Mitigation: Keep endpoints on trusted loopback or authenticated HTTPS services, protect API keys in environment variables, and verify outbound model routing before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hrabanazviking/skills/viking-girlfriend)
+- [Artifact skill registration](artifact/SKILL.md)
+- [Artifact security configuration](artifact/data/security_config.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON-lines responses containing companion text, with terminal mode text output for local testing]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The runtime reads newline-delimited JSON on stdin and writes newline-delimited JSON on stdout in OpenClaw mode; terminal mode provides an interactive REPL.]
+
+## Skill Version(s):
+
+0.5.3 (source: server release metadata, released 2026-03-22)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

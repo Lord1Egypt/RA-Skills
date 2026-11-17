@@ -1,38 +1,52 @@
-## Description: <br>
-印刷报价计算器根据纸张类型、尺寸、印数和印刷工艺，生成印刷总价、工序费用和利润建议价。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+印刷报价计算器 helps agents calculate printing quotes, process costs, and suggested profit pricing from paper type, size, quantity, and finishing options.
 
-## Publisher: <br>
-[tlcyqj2023](https://clawhub.ai/user/tlcyqj2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[tlcyqj2023](https://clawhub.ai/user/tlcyqj2023)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and print-service staff use this skill to generate structured estimates for business cards, flyers, brochures, packaging boxes, stickers, paper bags, and similar print products.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Built-in prices, tax rates, and profit assumptions may not match the user's region or business rules.
+
+Mitigation: Verify local paper prices, taxes, finishing costs, delivery costs, and desired margins before relying on a generated quote.
+
+Risk: The skill is a Chinese-language printing quote workflow and may not fit all users or markets.
+
+Mitigation: Confirm the language, product categories, and quoting conventions are appropriate for the intended deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Print shop operators, sales staff, and agents use this skill to collect print job parameters and draft itemized quotation estimates for products such as business cards, flyers, brochures, packaging boxes, stickers, and paper bags. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Quoted prices may be inaccurate if local paper, labor, tax, shipping, or finishing rates differ from the skill's reference tables. <br>
-Mitigation: Confirm current supplier pricing, labor rates, tax treatment, and shipping costs before using the estimate for an actual customer quote. <br>
+**Output Format:** [Markdown quotation summary with cost breakdowns and recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tlcyqj2023/print-quote-calc) <br>
+**Other Properties Related to Output:** [Chinese-language output based on built-in reference tables for paper, printing, finishing, tax, and profit assumptions.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown quotation breakdown in Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes paper, printing, finishing, other costs, direct cost, profit, unit price, quote validity, delivery details, and notes.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

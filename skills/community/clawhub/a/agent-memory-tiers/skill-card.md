@@ -1,39 +1,54 @@
-## Description: <br>
-Agent Memory Tiers helps OpenClaw agents maintain concise L0 state snapshots and L1 rolling context files so each activation starts with current state and recent task history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Memory Tiers gives OpenClaw agents persistent tiered workspace memory through L0 state snapshots and L1 rolling context files so activations can start with current state.
 
-## Publisher: <br>
-[DirtyRootsStudio](https://clawhub.ai/user/DirtyRootsStudio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dirtyrootsstudio](https://clawhub.ai/user/dirtyrootsstudio)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add lightweight local memory to OpenClaw agents, reducing startup context gathering and improving continuity across repeated activations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory files can carry stale, misleading, or unreviewed instructions into future agent runs. <br>
-Mitigation: Keep L0.md and L1.md concise, periodically review memory instructions, and remove stale blockers or outdated state during each end-of-run update. <br>
-Risk: Local memory files may accidentally retain secrets or sensitive operational details. <br>
-Mitigation: Do not store secrets, API credentials, or sensitive data in L0.md or L1.md; limit entries to necessary status summaries. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add compact, self-updating memory files to OpenClaw agent workspaces so agents can resume work, track blockers, and coordinate across multi-agent swarms.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown templates and setup guidance for L0.md, L1.md, and SOUL.md memory instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local memory guidance and file templates; no network or external API access required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Persistent workspace memory can retain secrets, credentials, private user data, or sensitive business details if agents write them into L0/L1 files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep L0/L1 summaries short and explicitly exclude secrets, credentials, private user data, and sensitive business details from memory files.
+
+Risk: Stale or oversized memory files can mislead agents or erode the token savings the skill is intended to provide.
+
+Mitigation: Keep L0 to exactly four lines, keep L1 to the seven most recent daily entries, update current state rather than appending logs, and remove resolved blockers promptly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dirtyrootsstudio/skills/agent-memory-tiers)
+- [Publisher profile](https://clawhub.ai/user/dirtyrootsstudio)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown templates and setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces L0.md and L1.md memory templates plus agent instruction snippets; no code execution or network behavior is required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,48 @@
-## Description: <br>
-Count characters in text input - total, non-whitespace, CJK, and Unicode-aware character counts for text analysis, content length limits, and i18n validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Counts characters from standard input for a minimal text length check.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill when they need a simple character count for text supplied through stdin, such as checking basic content length limits.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The documentation advertises file input, option flags, CJK-only counts, grapheme counts, JSON output, and detailed breakdowns that are not supported by the current artifact.
+
+Mitigation: Use the skill only as a minimal stdin-based character counter unless a future release implements and validates those modes.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and content engineers use this skill to count text characters, bytes, whitespace-filtered characters, CJK characters, and grapheme clusters when checking content limits or internationalized text handling. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The authoritative security summary marks the release suspicious due to a review helper that can run nested Codex review with broad filesystem and approval-bypass privileges by default. <br>
-Mitigation: Install only in a trusted maintainer environment, review helper behavior before use, and run without full-access nested review unless explicitly intended. <br>
-Risk: The artifact's executable script only counts stdin length, while the skill description advertises broader CLI modes such as file input, grapheme counting, CJK-only counts, and JSON detail. <br>
-Mitigation: Validate the installed command behavior against expected counting modes before depending on it for production content checks. <br>
+**Output Format:** [Plain text integer count, with Markdown guidance and shell command examples in the skill documentation]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dinghaibin/wc-chars-tool) <br>
+**Other Properties Related to Output:** [Current evidence supports stdin-based character counting only; advertised file input, option flags, CJK-only counts, grapheme counts, JSON output, and detailed breakdowns are not supported.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe JSON output for script integration when requested by the user.] <br>
+1.0.0 (source: ClawHub release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,57 @@
-## Description: <br>
-Provides agents with SEC EDGAR-backed US company data, filings, metrics, advertising, commerce, and research through a unified MCP API with audit-traceable lineage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access SEC EDGAR-backed US company data, filings, metrics, ads, commerce tools, and research via a unified MCP API with audit-traceable lineage.
 
-## Publisher: <br>
-[afunsten](https://clawhub.ai/user/afunsten) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[afunsten](https://clawhub.ai/user/afunsten)
 
-## Use Case: <br>
-External agents and developers use this skill to discover SEC_Market MCP endpoints for US company research, SEC filing lookup, metrics with lineage, commerce, delivery, and advertising workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes purchase, donation, delivery, and advertising campaign creation tools through a remote MCP provider. <br>
-Mitigation: Keep write, payment, delivery, and campaign tools behind explicit approval, spending limits, and review of prices, recipients, delivery details, and campaign parameters. <br>
-Risk: The remote provider is outside NVIDIA control and must be trusted before use. <br>
-Mitigation: Install and enable the skill only for trusted workspaces, and prefer read-only SEC research tools unless a user intentionally authorizes commercial actions. <br>
+## Use Case:
 
+Developers and agents use this skill to discover and call SEC_Market MCP tools for US public-company research, SEC EDGAR-backed filings and metrics, product commerce, donations, delivery, and advertising workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/afunsten/secmarketedgar) <br>
-- [SEC_Market MCP endpoint](https://market-royal-city.vercel.app/api/mcp) <br>
-- [MCP discovery document](https://market-royal-city.vercel.app/.well-known/mcp.json) <br>
-- [Agent discovery document](https://market-royal-city.vercel.app/.well-known/agent.json) <br>
-- [Agent products catalog](https://market-royal-city.vercel.app/.well-known/agent-products.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with endpoint lists and inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes MCP endpoint URLs and example curl requests; payment, delivery, donation, and ad campaign actions require explicit operator approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Payment, donation, delivery, and advertising campaign tools can trigger high-impact actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before each call, including amounts, recipients, delivery targets, campaign content, and budgets.
+
+Risk: Autonomous agents could invoke commerce or campaign operations without enough user-control scoping.
+
+Mitigation: Review the skill before installation and restrict autonomous use of commerce, delivery, and ad-campaign tools unless policy controls are in place.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/afunsten/skills/secmarketedgar)
+- [SEC_Market MCP API Endpoint](https://market-royal-city.vercel.app/api/mcp)
+- [SEC_Market MCP Discovery](https://market-royal-city.vercel.app/.well-known/mcp.json)
+- [SEC_Market Agent Entrypoint](https://market-royal-city.vercel.app/.well-known/agent.json)
+- [SEC_Market Product Catalog](https://market-royal-city.vercel.app/.well-known/agent-products.json)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks and MCP endpoint descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes audit-traceable lineage for company data where supported by the MCP API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

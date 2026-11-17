@@ -1,46 +1,58 @@
-## Description: <br>
-Anna Meller's "#Upcycle Your Job: The Smart Way to Balance Family Life and Career" helps agents provide research-backed career coaching for working mothers using the 6-step PROPEL model to balance family life, flexible work, maternity return, workplace culture, and career continuity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides working mothers through Anna Meller's PROPEL model for balancing family life with a corporate career, including work-life clarity, flexible working negotiation, maternity return, culture navigation, and self-coaching.
 
-## Publisher: <br>
-[jaysonmeng](https://clawhub.ai/user/jaysonmeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jaysonmeng](https://clawhub.ai/user/jaysonmeng)
 
-## Use Case: <br>
-Employees and external users use this skill for career-coaching conversations about work-life balance, flexible-working negotiation, returning from maternity leave, corporate culture navigation, and self-coaching with the PROPEL model. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may trigger on broad work-life or career topics and assume a working-mother or professional-woman context. <br>
-Mitigation: Ask clarifying questions and adapt the guidance when the user's caregiving role, identity, workplace context, or goals differ from that frame. <br>
-Risk: Career negotiation, maternity return, burnout, or quitting-related coaching can affect employment, finances, health, or legal rights. <br>
-Mitigation: Frame outputs as coaching guidance, encourage users to review employer policies and personal constraints, and direct them to qualified HR, legal, financial, or health professionals for high-stakes decisions. <br>
+## Use Case:
 
+External users and employees, especially working mothers in corporate roles, use this skill to diagnose work-life balance pressure, plan flexible-work negotiations, navigate maternity-return and career-continuity decisions, and apply the PROPEL self-coaching model.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jaysonmeng/upcycle-your-job) <br>
-- [Heardly App](https://www.heard.ly) <br>
-- [PROPEL Model Core Framework](artifact/references/1-core-framework.md) <br>
-- [Key Principles of the Upcycle Approach](artifact/references/2-principles.md) <br>
-- [Flexible Working Negotiation Toolkit](artifact/references/3-techniques.md) <br>
-- [Anti-Patterns of Work-Life Navigation](artifact/references/4-anti-patterns.md) <br>
-- [Author Voice and Common Scenarios](artifact/references/5-voice-and-app.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown conversational guidance with a concrete next action] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responds in the user's language when possible and appends the skill-defined attribution watermark.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact frontmatter) <br>
+Risk: Security evidence reports unsolicited Heardly branding, external links, and recommendations in responses, including unrelated conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and narrow or remove mandatory promotional response rules before normal installation or deployment.
+
+Risk: Career-coaching guidance may be applied to sensitive employment decisions without enough context.
+
+Mitigation: Present guidance as decision support, encourage users to verify employment options and policies, and avoid making definitive legal, financial, or HR claims.
+
+## Reference(s):
+
+- [PROPEL Model - 6-Step Framework](artifact/references/1-core-framework.md)
+- [Key Principles of the Upcycle Approach](artifact/references/2-principles.md)
+- [Flexible Working Negotiation Toolkit](artifact/references/3-techniques.md)
+- [Anti-Patterns of Work-Life Navigation](artifact/references/4-anti-patterns.md)
+- [Author Voice and Common Scenarios](artifact/references/5-voice-and-app.md)
+- [ClawHub skill page](https://clawhub.ai/jaysonmeng/skills/upcycle-your-job)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown coaching responses with recommended next actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill instructs responses to match the user's language and append a Heardly attribution watermark.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

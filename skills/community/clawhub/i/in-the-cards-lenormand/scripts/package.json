@@ -1,0 +1,7 @@
+{
+  "name": "in-the-cards-lenormand-scripts",
+  "private": true,
+  "dependencies": {
+    "puppeteer": "^25.1.0"
+  }
+}

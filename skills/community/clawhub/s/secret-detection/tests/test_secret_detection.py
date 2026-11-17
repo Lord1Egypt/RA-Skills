@@ -18,10 +18,10 @@ def test_scan_file():
     """Test scanning a file with secrets."""
     with tempfile.NamedTemporaryFile(mode='w', suffix='.txt', delete=False) as f:
         f.write('''# Config
-AWS_ACCESS_KEY_ID=AKIA1234567890ABCDEF
+AWS_ACCESS_KEY_ID=REDACTED-SECRET
 password = "super_secret_123"
-token = ghp_abcdefghijklmnopqrstuvwxyz123456789012
-api_key = sk-1234567890abcdefghijklmnopqrstuvwxyz123456789012345678
+token = REDACTED-SECRET
+api_key = REDACTED-SECRET
 # Clean line
 something = "not_a_secret"
 ''')

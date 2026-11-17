@@ -1,0 +1,20 @@
+Everything SDK
+
+Source: https://www.voidtools.com/Everything-SDK.zip
+Downloaded: 2026-07-31
+Publisher: voidtools PTY LTD
+
+Bundled payloads:
+- payload/Everything32.dll.txt
+  SHA256: C28CD066AF36CAE4403A9933847AFF01DB928787D86751F014A1FA60D8B97FDA
+- payload/Everything64.dll.txt
+  SHA256: C7AB8B47F7DD4C41AA735F4BA40B35AD5460A86FA7ABE0C94383F12BCE33BFB6
+- payload/EverythingARM.dll.txt
+  SHA256: 11620A496539BC63C62985CDF0079B757F7988CF3CBDF465CD97940A081700A3
+- payload/EverythingARM64.dll.txt
+  SHA256: 8531EA393677DD8FD37BED7420AC93344CD458B9A1324BA65C4A75D024D61886
+
+Each text payload is a Base64 representation of the corresponding official
+DLL. All source DLLs had a valid Windows Authenticode signature from voidtools
+PTY LTD when downloaded. The loader verifies the original DLL SHA256 before
+and after materialization.

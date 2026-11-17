@@ -1,41 +1,53 @@
-## Description: <br>
-Fetches Toutiao hot-board news trends across Chinese news topics and returns titles, popularity scores, cleaned links, covers, labels, aggregation IDs, and category tags. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches Toutiao trending news with titles, popularity scores, cleaned links, cover images when available, labels, aggregation IDs, and category tags.
 
-## Publisher: <br>
-[wuchubuzai2018](https://clawhub.ai/user/wuchubuzai2018) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wuchubuzai2018](https://clawhub.ai/user/wuchubuzai2018)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve current Toutiao trending-news entries for monitoring, summarization, or downstream Chinese news workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Scraped news results may be incomplete, stale, or non-authoritative. <br>
-Mitigation: Review returned items before using them in decisions or publications, and cross-check important facts against authoritative sources. <br>
-Risk: Toutiao's public web endpoint or response fields may change or access may be rate-limited. <br>
-Mitigation: Handle errors and missing fields gracefully, use conservative request rates, and confirm that the scraping posture is acceptable for the intended environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wuchubuzai2018/toutiao-news-trends) <br>
-- [Toutiao hot-board endpoint](https://www.toutiao.com/hot-event/hot-board/) <br>
-- [Toutiao website](https://www.toutiao.com/) <br>
+## Use Case:
 
+External users, developers, and agents use this skill to retrieve current Toutiao hot-board items for Chinese news trend monitoring and lightweight research.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, API Calls, Files] <br>
-**Output Format:** [JSON emitted by a Node.js command-line script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns up to 200 ranked items with title, popularity, link, cover, label, clusterId, and categories fields.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill contacts Toutiao to fetch public trend data, and heavy or abnormal remote responses could increase process memory use.
+
+Mitigation: Install only when outbound access to Toutiao is acceptable, keep the configured item limit bounded, and add response-size limits before high-volume or unattended use.
+
+Risk: The Toutiao web hot-board response structure may change, causing missing fields or command failures.
+
+Mitigation: Review returned JSON before downstream use and update field parsing when Toutiao changes its public response shape.
+
+## Reference(s):
+
+- [Toutiao News Trends on ClawHub](https://clawhub.ai/wuchubuzai2018/skills/toutiao-news-trends)
+- [Toutiao hot-board endpoint](https://www.toutiao.com/hot-event/hot-board/)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands]
+
+**Output Format:** [JSON emitted by a Node.js command-line script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns up to 200 ranked trend items; each item may include rank, title, popularity, link, cover, label, clusterId, and categories.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

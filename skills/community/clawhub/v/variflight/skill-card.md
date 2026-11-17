@@ -1,42 +1,51 @@
-## Description: <br>
-Query flight information, train tickets, and travel data using the Variflight API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Variflight flight, rail, weather, price, transfer, and comfort data through the Variflight HTTP API.
 
-## Publisher: <br>
-[lyz1990](https://clawhub.ai/user/lyz1990) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lyz1990](https://clawhub.ai/user/lyz1990)
 
-## Use Case: <br>
-Developers and agent users use this skill to look up flight routes, flight status, airport weather, train tickets, flight prices, transfers, and flight comfort metrics through Variflight. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends travel queries to the Variflight API. <br>
-Mitigation: Install and use it only when sending those travel queries to Variflight is acceptable for the task and environment. <br>
-Risk: The skill requires a Variflight API key, and exposed keys could be leaked through command-line history, committed config files, Docker images, or shared settings. <br>
-Mitigation: Use a protected environment variable or secret manager, avoid passing the key on the command line, keep local key files permission-restricted, and do not commit or bake live keys into shared artifacts. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve flight information, train tickets, airport weather, flight prices, route transfers, and travel comfort metrics from Variflight-backed tools.
 
-## Reference(s): <br>
-- [Variflight AI](https://ai.variflight.com) <br>
-- [Variflight API endpoint](https://ai.variflight.com/api/v1/mcp/data) <br>
-- [ClawHub skill listing](https://clawhub.ai/lyz1990/variflight) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Configuration guidance, Text] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires VARIFLIGHT_API_KEY or an equivalent local configuration file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: The skill supports passing the Variflight API key on the command line or storing it in project-local configuration, which can expose the key through shell history, logs, or committed files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a trusted secret manager or protected environment variable, avoid command-line API keys and project-level credential files, keep local credential files outside repositories with restrictive permissions such as 600, and rotate any key that may have been exposed.
+
+## Reference(s):
+
+- [Variflight AI](https://ai.variflight.com)
+- [Variflight API Endpoint](https://ai.variflight.com/api/v1/mcp/data)
+- [ClawHub Skill Page](https://clawhub.ai/lyz1990/skills/variflight)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Variflight API key supplied through a protected environment or local credential file.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

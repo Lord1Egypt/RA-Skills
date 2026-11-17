@@ -1,0 +1,129 @@
+{
+  "name": "pdf-invoice-stat",
+  "version": "2.4.6",
+  "patch_history": [
+    {
+      "version": "2.4.6",
+      "date": "2026-10-23",
+      "changes": [
+        "修复: OFD 购方名取成标签行（国际发票排版导致）",
+        "修复: OFD 购方税号取成发票号（20位纯数字被误判）",
+        "修复: OFD 销方判定失效（扩充旅行社/航空/出行等20+关键词）",
+        "修复: OFD 税额取成金额（改用勾稽关系+税率双重校验）",
+        "验证: OFD vs XML 交叉比对 50/50 字段 100% 一致",
+        "新增: tests/test_multiformat.py 五格式回归测试"
+      ],
+      "stable": true,
+      "release_date": "2026-10-23"
+    },
+    {
+      "version": "2.4.5",
+      "date": "2026-10-22",
+      "changes": [
+        "新增: format_router.py 统一入口（PDF/XML/OFD/ZIP/RAR 自动路由）",
+        "新增: XML 数电票解析（恢复 xml_parser.py）",
+        "新增: OFD 国标解析（恢复 ofd_parser.py）",
+        "新增: ZIP 混合打包支持（内含 PDF/XML/OFD 自动识别）",
+        "新增: RAR 支持（依赖 unar: brew install unar）",
+        "保证: PDF 主路径零改动（invoice_extractor.py md5 全程一致）",
+        "保证: 表头样式沿用 v2.4.0 原版 create_excel()（15 列 / D9D9D9 / A2）"
+      ],
+      "stable": true,
+      "release_date": "2026-10-22"
+    },
+    {
+      "version": "2.4.4",
+      "date": "2026-10-18",
+      "changes": [
+        "修复: PDF 损坏直接崩（加 try/except 包装）",
+        "修复: 跨页发票合并（同发票号多页时合并信息）",
+        "修复: 损坏 PDF 文件优雅返回空列表"
+      ],
+      "stable": true,
+      "release_date": "2026-10-18"
+    },
+    {
+      "version": "2.4.3",
+      "date": "2026-10-18",
+      "changes": [
+        "【稳定版】项目名杂质清理（去规格型号等列名）",
+        "【稳定版】多项目分行（按 * 标志）",
+        "【稳定版】单元测试（tests/test_extract_v243.py，4 个测试）",
+        "【稳定版】config.py 配置化 + fallback 机制",
+        "【稳定版】CHANGELOG.md 完善（已知问题/升级指南/性能历史）",
+        "【稳定版】CI 自动化（GitHub Actions + 本地脚本）"
+      ],
+      "stable": true,
+      "release_date": "2026-10-18"
+    },
+    {
+      "version": "2.4.2",
+      "date": "2026-10-16",
+      "changes": [
+        "修复: 跨行发票号识别（维达商贸漏识别）",
+        "修复: 跨行日期识别"
+      ]
+    },
+    {
+      "version": "2.4.1",
+      "date": "2026-10-16",
+      "changes": [
+        "兼容版: 增强 find_invoice_number 跨行兜底"
+      ]
+    },
+    {
+      "version": "2.4.0",
+      "date": "2025-08-13",
+      "changes": [
+        "原始 v2.4.0 发行版"
+      ]
+    }
+  ],
+  "format_support": [
+    "PDF",
+    "XML",
+    "OFD",
+    "ZIP",
+    "RAR"
+  ],
+  "output_format": "xlsx (15 列 v2.4.0 / 16 列 v3.0.0)",
+  "language": "python>=3.7",
+  "release": {
+    "current_stable": "2.4.6",
+    "release_date": "2026-10-23",
+    "tested_invoices": 48,
+    "tested_companies": [
+      "优格(海口)项目管理有限公司",
+      "伊登优格(上海)咨询管理有限公司"
+    ],
+    "tested_files": [
+      "real_batch_invoice.pdf (10 张, ¥7,478.40)",
+      "youge_batch2.pdf (38 张, ¥13,195.30)"
+    ],
+    "known_issues": 3,
+    "next_milestone": "v2.4.4 (紧急 bug 修复) 或 v2.5.0 (新功能)",
+    "released": true,
+    "release_engineer": "Kent 中传文创",
+    "full_restructure_date": "2026-10-18",
+    "format_support": [
+      "PDF",
+      "XML",
+      "OFD",
+      "ZIP",
+      "RAR"
+    ],
+    "verified": {
+      "invoices_tested": 70,
+      "total_amount": "¥102,906.87",
+      "formats": [
+        "PDF",
+        "XML",
+        "OFD",
+        "ZIP",
+        "RAR"
+      ],
+      "ofd_xml_crosscheck": "50/50 fields (100%)"
+    }
+  },
+  "structure_validated": true
+}

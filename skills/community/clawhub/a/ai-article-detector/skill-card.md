@@ -1,40 +1,54 @@
-## Description: <br>
-AI Article Detector analyzes article links and scores the probability that the writing is AI-generated on a 0-100 scale. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Article Detector analyzes article links and scores AI writing probability from 0 to 100.
 
-## Publisher: <br>
-[Evan-y25](https://clawhub.ai/user/Evan-y25) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evan-y25](https://clawhub.ai/user/evan-y25)
 
-## Use Case: <br>
-Developers, content reviewers, and editors can use this skill to fetch a public article URL and receive a local heuristic estimate of AI-written style. It is best used for triage, content review, or originality checks alongside human judgment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The AI-writing probability score is a rough heuristic and can be wrong, especially for advanced AI-generated text or content outside the optimized language profile. <br>
-Mitigation: Use the score as an advisory signal only, pair it with human review, and avoid treating it as proof for legal, disciplinary, or automated enforcement decisions. <br>
-Risk: The tool fetches user-provided article URLs and depends on npm packages to parse remote pages. <br>
-Mitigation: Install dependencies only from trusted registries, evaluate public URLs you intend to fetch, and run the tool in an environment appropriate for outbound web requests. <br>
+## Use Case:
 
+Developers, editors, and content reviewers use this skill to fetch a web article and estimate whether it appears AI-generated using an eight-dimension statistical scoring report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Evan-y25/ai-article-detector) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, guidance] <br>
-**Output Format:** [Command-line text report and JavaScript object output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports a 0-100 AI-writing probability with per-feature scores for eight statistical dimensions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and package.json) <br>
+Risk: The skill can fetch arbitrary user-supplied URLs, which may expose internal network resources or exhaust local resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a sandbox without internal network access and avoid untrusted links until URL allowlisting, private-IP blocking, redirect validation, request timeouts, response-size limits, and pinned dependencies are added.
+
+Risk: The AI-writing score is a heuristic and may be unreliable, especially outside Chinese-language content.
+
+Mitigation: Use the score as a review signal rather than a final decision, and pair it with human review for moderation, originality, or quality workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/evan-y25/skills/ai-article-detector)
+- [Publisher profile](https://clawhub.ai/user/evan-y25)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [CLI text report and JavaScript result object with AI probability, per-dimension scores, weights, and interpretation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The score is a heuristic estimate optimized for Chinese-language content and should be paired with human review.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,362 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#1e3a8a" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>十维拓客 · 录音转写洞察报告</title>
+  <style>
+    :root {
+      --bg:#f4f6f9; --card:#fff; --text:#1a1d26; --muted:#5c6370; --accent:#2563eb; --border:#e5e7eb;
+      --chart-h: clamp(200px, 42vw, 280px);
+      --chart-h-wide: clamp(240px, 55vw, 340px);
+      --safe-x: max(16px, env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px));
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body { margin:0; font-family:"Segoe UI",system-ui,-apple-system,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; overflow-x:hidden; word-break:break-word; }
+    .wrap { max-width:960px; margin:0 auto; padding:20px var(--safe-x) calc(48px + env(safe-area-inset-bottom, 0px)); }
+    header { background:linear-gradient(135deg,#1e3a8a,#2563eb); color:#fff; padding:22px 18px; border-radius:12px; margin-bottom:16px; }
+    header h1 { margin:0 0 8px; font-size:clamp(1.15rem, 4vw, 1.5rem); line-height:1.35; }
+    header .meta { opacity:.92; font-size:clamp(.8rem, 2.5vw, .9rem); line-height:1.5; }
+    .summary { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:16px 18px; margin-bottom:16px; }
+    .summary h2 { margin:0 0 8px; font-size:1.05rem; color:var(--accent); }
+    .notice { background:#fffbeb; border-left:4px solid #f59e0b; padding:8px 12px; margin:8px 0; font-size:.88rem; }
+    .charts-panel { margin-bottom:20px; }
+    .charts-panel > h2 { margin:0 0 6px; font-size:clamp(1rem, 3.5vw, 1.15rem); }
+    .charts-intro { color:var(--muted); font-size:.88rem; margin:0 0 14px; }
+    .chart-grid { display:grid; grid-template-columns:1fr; gap:14px; }
+    @media (min-width: 640px) {
+      .chart-grid { grid-template-columns:1fr 1fr; gap:16px; }
+      .chart-grid .chart-card-wide { grid-column: 1 / -1; }
+    }
+    @media (min-width: 1024px) {
+      header { padding:28px 24px; }
+      .wrap { padding-top:24px; }
+    }
+    .chart-card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:14px 16px; min-width:0; }
+    .chart-card h3 { margin:0 0 8px; font-size:clamp(.92rem, 3vw, 1rem); line-height:1.4; }
+    .chart-canvas-wrap { position:relative; width:100%; height:var(--chart-h); min-height:200px; }
+    .chart-card-wide .chart-canvas-wrap { height:var(--chart-h-wide); min-height:240px; }
+    .chart-canvas-wrap canvas { display:block; width:100% !important; height:100% !important; max-width:100%; touch-action:pan-y pinch-zoom; }
+    .chart-note { font-size:.78rem; color:var(--muted); margin:0 0 6px; }
+    .dim-table-panel { margin-bottom:16px; }
+    .table-scroll { overflow-x:auto; -webkit-overflow-scrolling:touch; margin:0 -4px; padding:0 4px 4px; }
+    .dim-table { width:100%; min-width:280px; border-collapse:collapse; font-size:.88rem; }
+    .dim-table th, .dim-table td { border:1px solid var(--border); padding:8px 10px; text-align:left; }
+    .dim-table th { background:#f8fafc; font-weight:600; white-space:nowrap; }
+    .dim-table .num { text-align:right; white-space:nowrap; }
+    .dim-table tbody tr:nth-child(even) { background:#fafbfc; }
+    .card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:16px 18px; margin-bottom:12px; min-width:0; }
+    .card h2 { margin:0 0 10px; font-size:clamp(.98rem, 3.2vw, 1.05rem); }
+    .findings { margin:0 0 8px; }
+    .metrics { font-size:.88rem; color:var(--muted); margin:0 0 10px; }
+    .excerpts { margin:0; padding-left:1.1rem; }
+    .excerpts li { margin-bottom:8px; }
+    .tag { display:inline-block; background:#eff6ff; color:var(--accent); font-size:.72rem; padding:2px 8px; border-radius:4px; margin-right:6px; vertical-align:top; }
+    .suggest { font-size:.88rem; color:var(--muted); margin:12px 0 0; }
+    .muted,.empty { color:var(--muted); }
+    footer { text-align:center; font-size:.78rem; color:var(--muted); margin-top:20px; padding:0 8px; line-height:1.5; }
+    @media (prefers-reduced-motion: reduce) {
+      * { scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>十维拓客 · 录音转写洞察报告</h1>
+      <div class="meta">统计窗口：2026-04-21 至 2026-05-21 · 样本 7 条录音转写 · 分析维度 10 项 · 维度覆盖 7/10</div>
+    </header>
+    <div class="summary">
+      <h2>执行摘要</h2>
+      <p>基于 7 条 ASR 转写，按十维拓客框架完成统计；7/10 个维度在样本中出现相关表述。</p>
+    </div>
+    <section class="dim-table-panel card">
+  <h2>各维度统计一览</h2>
+  <p class="charts-intro">下表与图表数据一致，便于手机端快速浏览；详细摘录见下方分维度说明。</p>
+  <div class="table-scroll" role="region" aria-label="各维度统计表" tabindex="0">
+    <table class="dim-table">
+      <thead><tr><th>维度</th><th>覆盖率</th><th>命中条数</th></tr></thead>
+      <tbody><tr><td>拓客场景</td><td class="num">0.0%</td><td class="num">0</td></tr><tr><td>触达人群</td><td class="num">14.3%</td><td class="num">1</td></tr><tr><td>开口获客话术</td><td class="num">14.3%</td><td class="num">1</td></tr><tr><td>客户需求</td><td class="num">28.6%</td><td class="num">2</td></tr><tr><td>客户拒绝原因</td><td class="num">14.3%</td><td class="num">1</td></tr><tr><td>有效意向分类</td><td class="num">0.0%</td><td class="num">0</td></tr><tr><td>产品匹配</td><td class="num">14.3%</td><td class="num">1</td></tr><tr><td>成交阻碍痛点</td><td class="num">28.6%</td><td class="num">2</td></tr><tr><td>跟进动作</td><td class="num">14.3%</td><td class="num">1</td></tr><tr><td>拓客成效数据</td><td class="num">0.0%</td><td class="num">0</td></tr></tbody>
+    </table>
+  </div>
+</section>
+    <section class="charts-panel">
+  <h2>各维度数据图表</h2>
+  <p class="charts-intro">基于 ASR 转写按维度关键词与录音时间统计；页面已适配电脑与手机浏览器，可横屏查看趋势图。</p>
+  <div class="chart-grid">
+    <div class="chart-card">
+      <h3>录音样本量按日变化</h3>
+      <div class="chart-canvas-wrap" data-chart-id="volume-trend">
+        <canvas id="chart-volume-trend" role="img" aria-label="录音样本量按日变化"></canvas>
+      </div>
+    </div>
+    <div class="chart-card chart-card-wide">
+      <h3>各维度覆盖率全景</h3>
+      <div class="chart-canvas-wrap" data-chart-id="dimension-radar">
+        <canvas id="chart-dimension-radar" role="img" aria-label="各维度覆盖率全景"></canvas>
+      </div>
+    </div>
+    <div class="chart-card chart-card-wide">
+      <h3>各维度关键词覆盖率</h3>
+      <div class="chart-canvas-wrap" data-chart-id="dimension-coverage">
+        <canvas id="chart-dimension-coverage" role="img" aria-label="各维度关键词覆盖率"></canvas>
+      </div>
+    </div>
+    <div class="chart-card chart-card-wide">
+      <h3>各维度命中数变化趋势（Top 维度）</h3>
+      <div class="chart-canvas-wrap" data-chart-id="dimension-hits-trend">
+        <canvas id="chart-dimension-hits-trend" role="img" aria-label="各维度命中数变化趋势（Top 维度）"></canvas>
+      </div>
+    </div>
+</div>
+</section>
+    <section class="card">
+  <h2>拓客场景</h2>
+  <p class="findings">在 7 条转写中未识别到与本维度强相关的关键词，建议结合上下文人工复核。</p>
+  <p class="metrics"><strong>命中录音</strong> 0 · <strong>覆盖率</strong> 0.0%</p>
+  <p class="muted">暂无典型摘录。</p>
+  <p class="suggest"><strong>建议</strong> 可补充针对性话术或场景演练。</p>
+</section><section class="card">
+  <h2>触达人群</h2>
+  <p class="findings">在 1/7 条录音（覆盖率 14.3%）中出现与「触达人群」相关的表述。</p>
+  <p class="metrics"><strong>命中录音</strong> 1 · <strong>覆盖率</strong> 14.3%</p>
+  <ul class="excerpts"><li><span class="tag">客户</span>…
+其实就是贷款。
+说复杂也也复杂，说简单的它无外乎就是银行提供给你资金，然后有客户呢？
+在银行这形成了一一笔债务，银行呢？
+形成一笔债权，然后在后面呢客户完成了他所要达到的目的或者用途之后，再把钱还给银行，银行回收资金的这样一个业务。
+…</li></ul>
+  <p class="suggest"><strong>建议</strong> 建议沉淀高频表述为可复用话术，并在复盘会中对照录音强化。</p>
+</section><section class="card">
+  <h2>开口获客话术</h2>
+  <p class="findings">在 1/7 条录音（覆盖率 14.3%）中出现与「开口获客话术」相关的表述。</p>
+  <p class="metrics"><strong>命中录音</strong> 1 · <strong>覆盖率</strong> 14.3%</p>
+  <ul class="excerpts"><li><span class="tag">你好</span>啊，张总你好，我们开始下一题，你不是，你先讲讲对于下半年宏观环境的判断。
+好的，张总，从目前的数据来看，我们认为美国经济大概率实现软着陆，但降息节奏可能会晚于市场预期。…</li></ul>
+  <p class="suggest"><strong>建议</strong> 建议沉淀高频表述为可复用话术，并在复盘会中对照录音强化。</p>
+</section><section class="card">
+  <h2>客户需求</h2>
+  <p class="findings">在 2/7 条录音（覆盖率 28.6%）中出现与「客户需求」相关的表述。</p>
+  <p class="metrics"><strong>命中录音</strong> 2 · <strong>覆盖率</strong> 28.6%</p>
+  <ul class="excerpts"><li><span class="tag">利率</span>…是它赚钱最主要的渠道。
+什么叫存在利差呢？
+就是说银行它放出一笔贷款去，它的利率会高一些，它吸收存款进来，它的利率会低一点，这样形成的利率差就是银行赚钱的主要方式。
+那么很多小伙伴就有问题了，银行是怎么放贷的呢？
+虽然表面上我们可能会对…</li><li><span class="tag">利率</span>…白，那么这 a 股这边结构怎么看？
+红利和科技两头配置吧，红利资产受益于无风险利率下行，而且有稳定分红，适合底仓。
+科技方面，AI、半导体、低空经济这些是正则复制的方向，不过科技波动会大，建议空控制仓位做波动操作。
+港股目前估值处于历史低…</li></ul>
+  <p class="suggest"><strong>建议</strong> 建议沉淀高频表述为可复用话术，并在复盘会中对照录音强化。</p>
+</section><section class="card">
+  <h2>客户拒绝原因</h2>
+  <p class="findings">在 1/7 条录音（覆盖率 14.3%）中出现与「客户拒绝原因」相关的表述。</p>
+  <p class="metrics"><strong>命中录音</strong> 1 · <strong>覆盖率</strong> 14.3%</p>
+  <ul class="excerpts"><li><span class="tag">不行</span>…天再打我明天再发给可以吗？好我我我最近遇到一个但是很纠结的事嗯先听我讲听你讲对我不行我就识别多然后那个那个那个我们家娃不是踢足球吗？嗯然后那个几分钟了然后接着最近五一比赛。</li></ul>
+  <p class="suggest"><strong>建议</strong> 建议沉淀高频表述为可复用话术，并在复盘会中对照录音强化。</p>
+</section><section class="card">
+  <h2>有效意向分类</h2>
+  <p class="findings">在 7 条转写中未识别到与本维度强相关的关键词，建议结合上下文人工复核。</p>
+  <p class="metrics"><strong>命中录音</strong> 0 · <strong>覆盖率</strong> 0.0%</p>
+  <p class="muted">暂无典型摘录。</p>
+  <p class="suggest"><strong>建议</strong> 可补充针对性话术或场景演练。</p>
+</section><section class="card">
+  <h2>产品匹配</h2>
+  <p class="findings">在 1/7 条录音（覆盖率 14.3%）中出现与「产品匹配」相关的表述。</p>
+  <p class="metrics"><strong>命中录音</strong> 1 · <strong>覆盖率</strong> 14.3%</p>
+  <ul class="excerpts"><li><span class="tag">贷款</span>…存在利差，这是它赚钱最主要的渠道。
+什么叫存在利差呢？
+就是说银行它放出一笔贷款去，它的利率会高一些，它吸收存款进来，它的利率会低一点，这样形成的利率差就是银行赚钱的主要方式。
+那么很多小伙伴就有问题了，银行是怎么放贷的呢？
+虽然表面上…</li></ul>
+  <p class="suggest"><strong>建议</strong> 建议沉淀高频表述为可复用话术，并在复盘会中对照录音强化。</p>
+</section><section class="card">
+  <h2>成交阻碍痛点</h2>
+  <p class="findings">在 2/7 条录音（覆盖率 28.6%）中出现与「成交阻碍痛点」相关的表述。</p>
+  <p class="metrics"><strong>命中录音</strong> 2 · <strong>覆盖率</strong> 28.6%</p>
+  <ul class="excerpts"><li><span class="tag">抵押</span>…他也复杂，因为不同的贷款之间它的期限不一样，有的可能三个月，有的可能30年。
+抵押的这个措施也不一样，可能有的是用房子抵押，有的是拿车辆去做质押，有的呢？
+可能是存单的质押，同时还有利率也不同，有的利率可能只有二点几，有的利率能高到四点几、…</li><li><span class="tag">流程</span>…不要那个来不停的点暂停关闭，暂停关闭只是正常的让他进入一个网易，点击结束音，这个流程是  OK  的哦，有一块那个有一块任务结束音以后没有等他跳转到比如说上上完成，他就会直接中断，中断口播，但是你如果说。</li></ul>
+  <p class="suggest"><strong>建议</strong> 建议沉淀高频表述为可复用话术，并在复盘会中对照录音强化。</p>
+</section><section class="card">
+  <h2>跟进动作</h2>
+  <p class="findings">在 1/7 条录音（覆盖率 14.3%）中出现与「跟进动作」相关的表述。</p>
+  <p class="metrics"><strong>命中录音</strong> 1 · <strong>覆盖率</strong> 14.3%</p>
+  <ul class="excerpts"><li><span class="tag">明天</span>…来聊聊天快点快点，我要睡觉！等等肖玲呀等等肖玲啊啊我在打包呢我打包？等等一下哪个明天再打我明天再发给可以吗？好我我我最近遇到一个但是很纠结的事嗯先听我讲听你讲对我不行我就识别多然后那个那个那个我们家娃不是踢足球吗？嗯然后那个几分钟了然后接着最近…</li></ul>
+  <p class="suggest"><strong>建议</strong> 建议沉淀高频表述为可复用话术，并在复盘会中对照录音强化。</p>
+</section><section class="card">
+  <h2>拓客成效数据</h2>
+  <p class="findings">在 7 条转写中未识别到与本维度强相关的关键词，建议结合上下文人工复核。</p>
+  <p class="metrics"><strong>命中录音</strong> 0 · <strong>覆盖率</strong> 0.0%</p>
+  <p class="muted">暂无典型摘录。</p>
+  <p class="suggest"><strong>建议</strong> 可补充针对性话术或场景演练。</p>
+</section>
+    <footer>本报告依据 ASR 转写自动生成；图表为各维度关键词命中与录音日分布统计，已适配电脑与手机浏览。结论请结合下方摘录复核。生成时间 2026-05-21 21:12:22 · userId b7a19493cabc42e290c3d6c8a6243a7c</footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" crossorigin="anonymous" onerror="this.onerror=null;this.src='https://cdn.bootcdn.net/ajax/libs/Chart.js/4.4.1/chart.umd.min.js'"></script>
+<script>
+(function () {
+  var charts = [{"id": "volume-trend", "type": "line", "title": "录音样本量按日变化", "labels": ["2026-05-19"], "values": [3], "meta": {"undatedRecords": 4, "aggregated": null}}, {"id": "dimension-radar", "type": "radar", "title": "各维度覆盖率全景", "labels": ["拓客场景", "触达人群", "开口获客话术", "客户需求", "客户拒绝原因", "有效意向分类", "产品匹配", "成交阻碍痛点", "跟进动作", "拓客成效数据"], "values": [0.0, 14.3, 14.3, 28.6, 14.3, 0.0, 14.3, 28.6, 14.3, 0.0], "meta": {}}, {"id": "dimension-coverage", "type": "bar", "title": "各维度关键词覆盖率", "labels": ["拓客场景", "触达人群", "开口获客话术", "客户需求", "客户拒绝原因", "有效意向分类", "产品匹配", "成交阻碍痛点", "跟进动作", "拓客成效数据"], "values": [0.0, 14.3, 14.3, 28.6, 14.3, 0.0, 14.3, 28.6, 14.3, 0.0], "meta": {"preferHorizontalOnMobile": true}}, {"id": "dimension-hits-trend", "type": "line", "title": "各维度命中数变化趋势（Top 维度）", "labels": ["2026-05-19"], "series": [{"name": "客户需求", "data": [2]}, {"name": "成交阻碍痛点", "data": [1]}, {"name": "触达人群", "data": [1]}, {"name": "开口获客话术", "data": [1]}, {"name": "客户拒绝原因", "data": [0]}], "meta": {"undatedRecords": 4, "aggregated": null}}];
+  var colors = ["#2563eb","#059669","#d97706","#dc2626","#7c3aed","#0891b2","#ca8a04","#4f46e5","#0d9488","#e11d48"];
+  var instances = [];
+
+  function isNarrow() {
+    return window.matchMedia("(max-width: 639px)").matches;
+  }
+
+  function baseFont() {
+    return isNarrow() ? 10 : 11;
+  }
+
+  function legendPosition() {
+    return isNarrow() ? "bottom" : "bottom";
+  }
+
+  function makeConfig(chart) {
+    var narrow = isNarrow();
+    if (chart.type === "radar") {
+      return {
+        type: "radar",
+        data: {
+          labels: chart.labels,
+          datasets: [{
+            label: "覆盖率 %",
+            data: chart.values,
+            backgroundColor: "rgba(37, 99, 235, 0.25)",
+            borderColor: "#2563eb",
+            borderWidth: 2,
+            pointRadius: narrow ? 2 : 3
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: { callbacks: { label: function(ctx) { return ctx.label + ": " + ctx.raw + "%"; } } }
+          },
+          scales: {
+            r: {
+              beginAtZero: true,
+              max: 100,
+              ticks: { stepSize: 20, font: { size: baseFont() }, backdropColor: "transparent" },
+              pointLabels: { font: { size: narrow ? 9 : 10 }, padding: narrow ? 4 : 8 }
+            }
+          }
+        }
+      };
+    }
+    if (chart.type === "bar") {
+      var horizontal = narrow && chart.meta && chart.meta.preferHorizontalOnMobile;
+      return {
+        type: "bar",
+        data: {
+          labels: chart.labels,
+          datasets: [{
+            label: "覆盖率 %",
+            data: chart.values,
+            backgroundColor: "rgba(37, 99, 235, 0.65)",
+            borderRadius: 4
+          }]
+        },
+        options: {
+          indexAxis: horizontal ? "y" : "x",
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            x: horizontal
+              ? { beginAtZero: true, max: 100, title: { display: !narrow, text: "覆盖率 %" }, ticks: { font: { size: baseFont() } } }
+              : { ticks: { maxRotation: narrow ? 60 : 45, minRotation: narrow ? 45 : 28, font: { size: baseFont() }, autoSkip: true, maxTicksLimit: narrow ? 6 : 12 } },
+            y: horizontal
+              ? { ticks: { font: { size: baseFont() }, autoSkip: false } }
+              : { beginAtZero: true, max: 100, title: { display: !narrow, text: "覆盖率 %" }, ticks: { font: { size: baseFont() } } }
+          }
+        }
+      };
+    }
+    var datasets = (chart.series || []).map(function (s, i) {
+      return {
+        label: s.name,
+        data: s.data,
+        borderColor: colors[i % colors.length],
+        backgroundColor: colors[i % colors.length] + "33",
+        tension: 0.3,
+        fill: chart.series.length === 1,
+        pointRadius: narrow ? 0 : 2,
+        borderWidth: narrow ? 1.5 : 2
+      };
+    });
+    if (!datasets.length && chart.values) {
+      datasets = [{
+        label: chart.title,
+        data: chart.values,
+        borderColor: colors[0],
+        backgroundColor: colors[0] + "33",
+        tension: 0.3,
+        fill: true,
+        pointRadius: narrow ? 0 : 2
+      }];
+    }
+    return {
+      type: "line",
+      data: { labels: chart.labels, datasets: datasets },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode: "index", intersect: false },
+        plugins: {
+          legend: {
+            position: legendPosition(),
+            labels: { boxWidth: narrow ? 10 : 12, font: { size: baseFont() }, padding: narrow ? 8 : 12 }
+          }
+        },
+        scales: {
+          y: { beginAtZero: true, ticks: { precision: 0, font: { size: baseFont() } } },
+          x: { ticks: { maxRotation: narrow ? 50 : 45, minRotation: 0, font: { size: baseFont() }, autoSkip: true, maxTicksLimit: narrow ? 8 : 15 } }
+        }
+      }
+    };
+  }
+
+  function mountAll() {
+    instances.forEach(function (c) { try { c.destroy(); } catch (e) {} });
+    instances = [];
+    charts.forEach(function (chart, i) {
+      var el = document.getElementById("chart-" + (chart.id || i));
+      if (!el || typeof Chart === "undefined") return;
+      var inst = new Chart(el, makeConfig(chart));
+      instances.push(inst);
+    });
+  }
+
+  function scheduleResize() {
+    if (window.__chartResizeTimer) clearTimeout(window.__chartResizeTimer);
+    window.__chartResizeTimer = setTimeout(mountAll, 200);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", mountAll);
+  } else {
+    mountAll();
+  }
+  window.addEventListener("resize", scheduleResize);
+  window.addEventListener("orientationchange", scheduleResize);
+  window.setTimeout(function () {
+    if (typeof Chart !== "undefined") return;
+    document.querySelectorAll(".charts-panel").forEach(function (panel) {
+      if (panel.querySelector(".chart-load-failed")) return;
+      var tip = document.createElement("p");
+      tip.className = "chart-note chart-load-failed";
+      tip.textContent = "图表库未加载（网络或内置浏览器限制）。请优先查看上方「各维度统计一览」表格；或在系统浏览器中打开本链接。";
+      panel.insertBefore(tip, panel.children[1] || null);
+    });
+  }, 3000);
+})();
+</script>
+</body>
+</html>

@@ -1,41 +1,57 @@
-## Description: <br>
-Helps agent users and skill authors create practical multi-search workflow plans, checklists, analyses, code changes, and validation notes for bug fixing, setup hardening, reliability improvements, and adjacent skill work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agent users and skill maintainers adapt Multi Search Engine-style workflow patterns into practical plans, checklists, analyses, code changes, and reliability improvements.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-AI-agent users, skill authors, maintainers, and teams use this skill to turn multi-search productivity requests into actionable local-friendly workflows, templates, checklists, code or analysis, and validation notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording may cause the skill to be invoked for general search or productivity requests where its workflow is not needed. <br>
-Mitigation: Prefer explicit invocation and review suggestions before applying code, automation, or workflow changes. <br>
+## Use Case:
 
+Developers, skill authors, maintainers, and AI-agent teams use this skill to turn a work-productivity or multi-search workflow request into an actionable plan, artifact, checklist, analysis, or implementation change.
 
-## Reference(s): <br>
-- [Requirement Plan](artifact/references/requirement-plan.md) <br>
-- [Multi Search Engine demand source](https://clawhub.ai/skills/multi-search-engine) <br>
-- [Hacker News demand signal](https://news.ycombinator.com/item?id=48621795) <br>
-- [V2EX multi-agent architecture signal](https://www.v2ex.com/t/1222063) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with optional code blocks and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include assumptions, validation notes, and follow-up risks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Broad trigger wording and implicit invocation may route ordinary requests about search or engines through this skill unexpectedly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow trigger keywords or disable implicit invocation before installation when predictable routing is important.
+
+Risk: Workflow advice or generated implementation changes can be incorrect or incomplete for a user's specific environment.
+
+Mitigation: Review outputs against the stated success criteria and test any code, shell commands, or configuration changes before deployment.
+
+## Reference(s):
+
+- [Requirement Plan](references/requirement-plan.md)
+- [Work Productivity Multi Search Workflow Helper on ClawHub](https://clawhub.ai/kyro-ma/skills/work-productivity-multi-search-workflow-helper-130446)
+- [Popular ClawHub Skill: Multi Search Engine](https://clawhub.ai/skills/multi-search-engine)
+- [Hacker News: Seeking Advice](https://news.ycombinator.com/item?id=48621795)
+- [V2EX: Multi-Agent Architecture Discussion](https://www.v2ex.com/t/1222063)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or plain text with optional code, shell command, and configuration blocks.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include reusable checklists, workflow templates, verification notes, and implementation diffs when the user asks for code support.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

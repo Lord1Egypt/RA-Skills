@@ -1,43 +1,53 @@
-## Description: <br>
-Extract structured data from PDF invoices and documents, including scanned PDFs through OCR and digital PDFs through text extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract structured data from PDF invoices and documents. Handles scanned PDFs (OCR) and digital PDFs. Outputs clean CSV/Excel with vendor, invoice number, dates, line items, totals.
 
-## Publisher: <br>
-[tktk-ai](https://clawhub.ai/user/tktk-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tktk-ai](https://clawhub.ai/user/tktk-ai)
 
-## Use Case: <br>
-Employees, external users, developers, and data teams use this skill to extract invoice fields, line items, totals, and currency data from PDF invoices, receipts, and financial documents into structured exports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Invoice PDFs and exported CSV or JSON files may contain sensitive financial or personal data. <br>
-Mitigation: Only process authorized documents, run the tool in an isolated environment, and store generated exports securely. <br>
-Risk: OCR and regex-based parsing can misread invoice fields, totals, dates, or line items. <br>
-Mitigation: Review extracted results before using them for accounting, payment, compliance, or customer-facing workflows. <br>
-Risk: Scanned PDFs require OCR dependencies that may not be present in the runtime environment. <br>
-Mitigation: Install Tesseract and the documented Python dependencies before processing scanned or image-based PDFs. <br>
+## Use Case:
 
+Developers and operations teams use this skill to extract invoice fields and line items from digital or scanned PDF invoices into structured files for review, reconciliation, or downstream processing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tktk-ai/pdf-invoice-parser) <br>
-- [Publisher profile](https://clawhub.ai/user/tktk-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands; generated scripts output CSV or JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can process a single PDF or a directory of PDFs; OCR requires Tesseract and Python OCR dependencies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill documentation recommends system-level dependency installation, which can modify the host Python environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install dependencies in an isolated virtual environment, avoid --break-system-packages, and review or pin dependencies before use.
+
+Risk: Generated CSV, JSON, or spreadsheet-ready files may contain sensitive untrusted invoice content.
+
+Mitigation: Treat generated files as sensitive, sanitize spreadsheet cells, and open CSV output with formula execution disabled before sharing or importing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tktk-ai/skills/pdf-invoice-parser)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated CSV, JSON, or TSV invoice data files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may contain sensitive invoice data and should be reviewed before spreadsheet import or sharing.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,57 @@
-## Description: <br>
-端到端（E2E）测试编排与执行。用于用户要求：设计测试用例、基于 Playwright/Cypress 实现自动化脚本、通过源码优先定位元素并在必要时使用截图/图像识别兜底、执行测试、自动修复脚本问题（如定位器或等待策略）、并输出结构化测试报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates end-to-end testing by planning cases, implementing Playwright or Cypress automation, executing tests, repairing script issues, and producing structured reports with evidence.
 
-## Publisher: <br>
-[kklldog](https://clawhub.ai/user/kklldog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kklldog](https://clawhub.ai/user/kklldog)
 
-## Use Case: <br>
-Developers and QA engineers use this skill to plan end-to-end test coverage, implement Playwright or Cypress automation, run targeted or regression suites, triage failures, and produce structured evidence-backed reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run npm, Playwright, and Docker against the user's project, which may execute project scripts or containerized commands with broad workspace access. <br>
-Mitigation: Review the runner scripts before installation, run tests against staging systems, and use non-production data and accounts. <br>
-Risk: The Docker fallback uses a configurable Playwright image and mounts the current workspace into the container. <br>
-Mitigation: Pin or restrict the Docker image in sensitive repositories and run only from a workspace intended for test execution. <br>
-Risk: Untrusted grep filters passed to test runners may affect shell command construction in the Docker runner. <br>
-Mitigation: Avoid passing untrusted filter values and prefer known test tags such as smoke or regression labels. <br>
+## Use Case:
 
+Developers and QA engineers use this skill to design traceable E2E test cases, create and run browser automation, classify failures, repair test scripts when appropriate, and report results with screenshots, traces, videos, and logs.
 
-## Reference(s): <br>
-- [E2E test case template](references/case-template.md) <br>
-- [Locator strategy](references/locator-strategy.md) <br>
-- [Playwright local and Docker fallback guidance](references/playwright-重点与docker兜底.md) <br>
-- [E2E test report template](references/report-template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/kklldog/e2e-test-orchestrator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with test cases, automation code, shell commands, execution notes, and structured reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include evidence paths for screenshots, videos, traces, logs, and test result artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The server security summary flags command-injection and supply-chain risk in the Docker runner.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing or running, avoid untrusted filter strings, pass arguments safely, enforce locked dependencies, remove npm install fallback behavior, pin container images by digest, and limit writable mounts and network access.
+
+Risk: E2E evidence artifacts can contain sensitive application data.
+
+Mitigation: Treat captured screenshots, traces, videos, and logs as sensitive and store or share them only in approved locations.
+
+## Reference(s):
+
+- [E2E test case template](references/case-template.md)
+- [Locator strategy](references/locator-strategy.md)
+- [Playwright usage and Docker fallback](references/playwright-重点与docker兜底.md)
+- [E2E test report template](references/report-template.md)
+- [ClawHub skill page](https://clawhub.ai/kklldog/skills/e2e-test-orchestrator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with test plans, TypeScript or JavaScript test code, shell commands, configuration guidance, and structured report sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference generated evidence artifacts such as screenshots, videos, traces, and logs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

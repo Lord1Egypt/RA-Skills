@@ -1,41 +1,53 @@
-## Description: <br>
-Reference tool for devtools — covers intro, quickstart, patterns and more. Quick lookup for Profile concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools that provides quick Profile concept, quickstart, pattern, debugging, performance, security, migration, and cheatsheet guidance.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and engineers use this skill as a quick reference for Profile concepts, quickstart steps, patterns, debugging, performance, security, migration, and cheat-sheet guidance in devtools workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides static reference guidance that may be incomplete or outdated for a user's specific Profile environment. <br>
-Mitigation: Review the generated guidance against current project documentation and local requirements before applying it. <br>
-Risk: The package includes an executable shell script, even though the security evidence says it only prints documentation. <br>
-Mitigation: Inspect the script before installation and run only the documented reference commands. <br>
+## Use Case:
 
+Developers and engineers use this skill as a lightweight reference helper for Profile-related devtools concepts, workflows, and implementation practices.
 
-## Reference(s): <br>
-- [Profile on ClawHub](https://clawhub.ai/bytesagain3/profile) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown-style headings and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls, credentials, or network access required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Users may treat the static reference text as authoritative Profile documentation even though the security guidance classifies it as a lightweight helper.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate important operational, security, or migration decisions against authoritative Profile documentation before applying changes.
+
+Risk: Requests for secrets, network access, or system changes would be outside the inspected behavior.
+
+Mitigation: Do not provide credentials to this skill and re-review the artifact if future versions add network, credential, or persistent state behavior.
+
+## Reference(s):
+
+- [BytesAgain](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Plain text with Markdown-style headings, lists, and tables.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference output; security evidence reports no credential, network, or persistent state access.]
+
+## Skill Version(s):
+
+2.0.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

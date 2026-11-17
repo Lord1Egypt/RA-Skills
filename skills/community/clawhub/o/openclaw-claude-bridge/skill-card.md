@@ -1,43 +1,58 @@
-## Description: <br>
-Use when user asks about Bridge to local Claude Code CLI - no API key required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bridges OpenClaw to a locally installed Claude Code CLI for code generation, code review, and data analysis without requiring an API key.
 
-## Publisher: <br>
-[cry779](https://clawhub.ai/user/cry779) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cry779](https://clawhub.ai/user/cry779)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to create and run local Claude Code tasks for code generation, code review, and data analysis through an existing logged-in Claude Code CLI subscription. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bridge can grant local file read, file edit, and shell-command capability through the user's logged-in Claude Code session. <br>
-Mitigation: Run it only in a sandbox or disposable workspace and review generated scripts before execution. <br>
-Risk: The release includes old task scripts and results that can reference or modify unrelated local projects. <br>
-Mitigation: Review and delete bundled tasks and results before installing or running the skill. <br>
-Risk: Prompts and local files may be exposed according to the user's local Claude Code configuration. <br>
-Mitigation: Avoid putting secrets or private code in prompts unless the local Claude Code routing and data handling are verified. <br>
+## Use Case:
 
+Developers and engineers use this skill to create and execute local Claude Code tasks for code generation, code review, and data analysis from OpenClaw workflows. It supports both manual shell-script execution and automated Python execution when Claude Code is installed, logged in, and backed by a valid subscription.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cry779/openclaw-claude-bridge) <br>
-- [Publisher profile](https://clawhub.ai/user/cry779) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON task/result files with generated shell scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local Claude Code CLI installation, a logged-in account, and an active subscription.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can grant broad local read, edit, and shell execution power through Claude Code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a trusted, sandboxed environment and restrict Claude tools and working directories before use.
+
+Risk: The skill builds executable shell scripts from prompts, which can make untrusted prompt content unsafe.
+
+Mitigation: Review generated or packaged task scripts before execution and avoid running tasks created from untrusted prompts.
+
+Risk: Code or prompts may be sent through the configured Claude provider or proxy during execution.
+
+Mitigation: Review data sensitivity before use and remove secrets or private source content that should not leave the local environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cry779/skills/openclaw-claude-bridge)
+- [Publisher profile](https://clawhub.ai/user/cry779)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON task metadata, generated shell scripts, and captured text or Markdown command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a locally installed and logged-in Claude Code CLI; default local execution timeout is 300 seconds.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

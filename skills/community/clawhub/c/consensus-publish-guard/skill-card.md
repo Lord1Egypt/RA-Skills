@@ -1,47 +1,59 @@
-## Description: <br>
-Persona-weighted governance for outbound publishing across blog, social, and announcement drafts that prevents unsafe public claims via hard-block checks, weighted consensus, rewrite paths, and board-native audit artifacts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Outbound publishing governance for blog, social, and announcement content using hard-block checks, weighted consensus, rewrite paths, and audit artifacts.
 
-## Publisher: <br>
-[kaicianflone](https://clawhub.ai/user/kaicianflone) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaicianflone](https://clawhub.ai/user/kaicianflone)
 
-## Use Case: <br>
-Developers and publishing workflow owners use this skill to review outward-facing drafts before release, classify publish risk, and receive an allow, block, or rewrite decision with audit artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local audit artifacts may contain submitted drafts, votes, decision details, or confidential content. <br>
-Mitigation: Configure the consensus state path in an access-controlled location and avoid submitting secrets or confidential account data unless those details should be stored locally for audit. <br>
-Risk: Installation depends on the npm dependency chain used by the guard runtime. <br>
-Mitigation: Review the dependency chain before installing or deploying the skill in a managed environment. <br>
-Risk: A guard decision can reduce publishing risk but may not replace human legal, policy, or brand review for high-impact content. <br>
-Mitigation: Use the decision and rewrite guidance as a pre-publication control and keep human review in the release process when content has elevated risk. <br>
+## Use Case:
 
+Developers and publishing teams use this skill as a pre-publication gate for blog posts, social posts, announcements, and other outbound statements that need policy, confidentiality, legal-claim, and unsupported-promise checks before release.
 
-## Reference(s): <br>
-- [Consensus Publish Guard ClawHub listing](https://clawhub.ai/kaicianflone/consensus-publish-guard) <br>
-- [consensus-guard-core npm package](https://www.npmjs.com/package/consensus-guard-core) <br>
-- [consensus-guard-core repository](https://github.com/kaicianflone/consensus-guard-core) <br>
-- [consensus-tools repository](https://github.com/kaicianflone/consensus-tools) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [OpenClaw repository](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, guidance, configuration, files] <br>
-**Output Format:** [JSON decision object and local JSON audit artifact] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Decision values include ALLOW, BLOCK, or REQUIRE_REWRITE/REWRITE-style revision guidance depending on the guard path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.17 (source: server release metadata, package.json, metadata.json) <br>
+Risk: Dependency and version metadata disagree across package, lockfile, and skill documentation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin dependencies exactly and reconcile package, lockfile, and SKILL.md versions before production deployment.
+
+Risk: External-agent mode can rely entirely on caller-supplied votes.
+
+Mitigation: Document or enforce that caller-supplied votes cannot bypass hard-block checks for sensitive or legally risky content.
+
+Risk: The skill intentionally writes persistent decision artifacts.
+
+Mitigation: Run it with a scoped CONSENSUS_STATE_FILE or CONSENSUS_STATE_ROOT so publish decisions are isolated to the intended board state.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kaicianflone/skills/consensus-publish-guard)
+- [consensus-guard-core npm package](https://www.npmjs.com/package/consensus-guard-core)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON decision object with optional rewrite patch and board artifact references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write persistent decision artifacts under the configured consensus state path.]
+
+## Skill Version(s):
+
+1.1.17 (source: server release metadata and package.json; artifact SKILL.md and package-lock.json contain older versions)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

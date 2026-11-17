@@ -1,43 +1,51 @@
-## Description: <br>
-Retrieves bibliographic metadata for articles, book chapters, and books by resolving a supplied DOI or searching the Crossref REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieves bibliographic information for articles, book chapters, and books by resolving a supplied DOI or searching Crossref metadata.
 
-## Publisher: <br>
-[carlosdelfino](https://clawhub.ai/user/carlosdelfino) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[carlosdelfino](https://clawhub.ai/user/carlosdelfino)
 
-## Use Case: <br>
-External users, researchers, librarians, and developers use this skill to look up DOI-linked bibliographic metadata or find likely DOI matches from publication details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: DOI values, search terms, and any optional User-Agent contact email are sent to DOI.org or Crossref. <br>
-Mitigation: Tell users before lookup when sensitive terms may be disclosed, and use a public contact alias if adding mailto information. <br>
-Risk: Crossref search results can return uncertain or incorrect matches when the user provides incomplete metadata. <br>
-Mitigation: Compare title, authors, year, work type, and source before presenting a likely DOI, and state when the match is uncertain. <br>
+## Use Case:
 
+Developers, researchers, and agents use this skill to look up DOI records, identify likely Crossref matches, and return concise bibliographic metadata with uncertainty noted when matching is weak.
 
-## Reference(s): <br>
-- [Crossref REST API documentation](https://www.crossref.org/documentation/retrieve-metadata/rest-api/) <br>
-- [DOI resolver](https://doi.org/) <br>
-- [Crossref Works API endpoint](https://api.crossref.org/works) <br>
-- [ClawHub skill page](https://clawhub.ai/carlosdelfino/doi-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown response with DOI metadata and optional inline curl commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access and curl; DOI values, search terms, and optional User-Agent contact email are sent to DOI.org or Crossref.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: User-provided DOI text can be placed directly into curl commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate DOI values, percent-encode path components, and avoid constructing shell command strings from raw user input before execution.
+
+## Reference(s):
+
+- [Crossref REST API documentation](https://www.crossref.org/documentation/retrieve-metadata/rest-api/)
+- [DOI resolver](https://doi.org/)
+- [ClawHub Doi Search release page](https://clawhub.ai/carlosdelfino/skills/doi-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with DOI links, bibliographic fields, and concise uncertainty notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access and curl; uses public DOI.org and Crossref REST endpoints without an API key.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

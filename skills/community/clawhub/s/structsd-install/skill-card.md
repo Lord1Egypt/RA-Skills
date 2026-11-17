@@ -1,44 +1,61 @@
-## Description: <br>
-Installs the structsd binary by guiding agents through prebuilt release downloads or source builds with Go 1.23+. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs the structsd binary, covering prebuilt release binaries and source builds via the Makefile.
 
-## Publisher: <br>
-[abstrct](https://clawhub.ai/user/abstrct) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abstrct](https://clawhub.ai/user/abstrct)
 
-## Use Case: <br>
-Developers and operators use this skill when structsd is missing, when setting up a new machine, or when they need to install or update the Structs chain binary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Go replacement snippets can remove an existing /usr/local/go toolchain. <br>
-Mitigation: Confirm how Go is currently installed before running sudo rm -rf /usr/local/go, and prefer prebuilt structsd releases when they fit the platform. <br>
-Risk: The optional Ignite installer uses a curl-to-bash command. <br>
-Mitigation: Treat Ignite as a separate optional installer and review it before execution. <br>
+## Use Case:
 
+Developers and engineers use this skill to install or update the Structs chain binary on a local machine, either from a signed release asset or by building from source when a branch or patch is needed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abstrct/structsd-install) <br>
-- [structsd releases](https://github.com/playstructs/structsd/releases) <br>
-- [structsd source repository](https://github.com/playstructs/structsd.git) <br>
-- [Structs tools configuration](https://structs.ai/TOOLS) <br>
-- [structs-onboarding skill](https://structs.ai/skills/structs-onboarding/SKILL) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides separate install paths for prebuilt binaries, source builds, updates, verification, optional Ignite setup, and troubleshooting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.4 (source: server release metadata) <br>
+Risk: System-level installation commands can overwrite binaries or remove an existing Go installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before privileged commands, prefer user-local installs where possible, and keep a backup or rollback plan before replacing /usr/local/go.
+
+Risk: Downloaded release archives and Go toolchain assets may be executed without sufficient verification.
+
+Mitigation: Verify release artifacts and Go downloads with publisher-provided checksums or signatures before installing or running them.
+
+Risk: The optional Ignite install path uses a curl-to-bash command.
+
+Mitigation: Inspect the script before execution or use a package-managed installation path when available.
+
+## Reference(s):
+
+- [structsd releases](https://github.com/playstructs/structsd/releases)
+- [structsd source repository](https://github.com/playstructs/structsd.git)
+- [Structs tools documentation](https://structs.ai/TOOLS)
+- [structs-onboarding skill](https://structs.ai/skills/structs-onboarding/SKILL)
+- [structs-desktop](https://github.com/playstructs/structs-desktop)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes verification commands and troubleshooting notes for local installation.]
+
+## Skill Version(s):
+
+1.25.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

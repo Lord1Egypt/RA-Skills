@@ -1,48 +1,61 @@
-## Description: <br>
-OpenClaw Email Lead Generation is an outreach and pipeline-management skill that helps an agent set up lead records, create custom email sequences, score prospects, draft outreach, monitor replies, generate briefings, and optionally run cron-driven follow-up workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Email Lead Generation helps an agent set up and operate a sales outreach pipeline with lead scoring, custom email sequences, reply monitoring, reports, and optional cron automation.
 
-## Publisher: <br>
-[jeffjhunter](https://clawhub.ai/user/jeffjhunter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jeffjhunter](https://clawhub.ai/user/jeffjhunter)
 
-## Use Case: <br>
-External users and business operators use this skill to manage sales leads, build personalized email sequences, track outreach status, and prepare follow-up actions through an agent-assisted workflow. It supports manual operation by default and optional email or cron automation after setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive lead records, reply content, audit logs, and temporary email-body files. <br>
-Mitigation: Treat ~/workspace/leadgen and the temporary email-body file as sensitive, restrict local access, and prune audit logs according to the configured retention period. <br>
-Risk: Email outreach can be sent unintentionally or at an inappropriate volume if automation is enabled without review. <br>
-Mitigation: Review every email before sending unless auto-send is deliberately enabled, keep cron jobs opt-in, and enforce configured daily, hourly, per-domain, warmup, and unsubscribe limits. <br>
-Risk: SMTP credentials or mail account secrets could be exposed if pasted into configuration or chat. <br>
-Mitigation: Store mail credentials only in environment variables and avoid placing passwords in config files, lead records, templates, or messages. <br>
-Risk: Cron-driven workflows may continue acting on stale configuration or stale lead data. <br>
-Mitigation: Review created cron jobs, verify schedules and prompts after setup, and periodically inspect pipeline status before leaving automation unattended. <br>
+## Use Case:
 
+External users and sales operators use this skill to manage lead records, generate tailored outreach sequences, queue or send follow-up emails with approval controls, and review pipeline reports from a conversational agent.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/jeffjhunter/openclaw-email-lead-generation) <br>
-- [Publisher Homepage](https://jeffjhunter.com) <br>
-- [Template Forge Reference](references/template-forge.md) <br>
-- [Lead Scoring Reference](references/scoring-guide.md) <br>
-- [Cron Automation Reference](references/cron-automation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON lead records, YAML configuration, email draft text, and report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates lead, template, sequence, draft, report, and audit-log files under ~/workspace/leadgen; optional email and cron automation require user setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill frontmatter) <br>
+Risk: Unsafe file-writing patterns and weak automation safeguards could affect real outbound email workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review shell-writing and automation behavior before installation, and keep the skill in manual-send mode unless the user accepts unattended outreach risk.
+
+Risk: Untrusted text in templates or email bodies can create unsafe or misleading outbound messages.
+
+Mitigation: Avoid placing untrusted text directly into templates or email bodies; require user review of generated drafts before sending.
+
+Risk: Fixed temporary files, heredoc write instructions, outside-workspace probes, and rate-limit counting need review before SMTP or cron automation.
+
+Mitigation: Consider fixing those issues before enabling SMTP sending or cron automation, and verify rate-limit behavior in manual operation first.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/jeffjhunter/skills/openclaw-email-lead-generation)
+- [Template Forge reference](references/template-forge.md)
+- [Lead scoring reference](references/scoring-guide.md)
+- [Cron automation reference](references/cron-automation.md)
+- [Publisher website](https://jeffjhunter.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Conversational guidance with Markdown, shell command blocks, JSON/YAML configuration, and generated email drafts or templates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local lead-generation files when operated by an agent; SMTP sending and cron automation are opt-in workflows.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter, artifact/_meta.json, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

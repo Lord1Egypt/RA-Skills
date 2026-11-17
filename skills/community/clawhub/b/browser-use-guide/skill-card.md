@@ -1,43 +1,58 @@
-## Description: <br>
-让AI代理控制浏览器自动化网页操作。支持 Claude/GPT/Gemini/Ollama，可执行填表、购物、搜索等任务。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+让AI代理控制浏览器自动化网页操作。支持 Claude/GPT/Gemini/Ollama，可执行填表、购物、搜索等任务。
 
-## Publisher: <br>
-[smseow001](https://clawhub.ai/user/smseow001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smseow001](https://clawhub.ai/user/smseow001)
 
-## Use Case: <br>
-Developers and agent users use this skill as a browser-use guide for installing, configuring, and applying AI-controlled browser automation to form filling, shopping, search, comparison, and account workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides agents that can control live browsers, including logged-in accounts, cloud browser sessions, shopping, email, and form submission. <br>
-Mitigation: Use a dedicated browser profile, avoid syncing primary account sessions to cloud browser environments, and require manual approval before purchases, messages, uploads, applications, or other account-changing actions. <br>
-Risk: The skill includes a remote shell script for syncing browser profile information. <br>
-Mitigation: Inspect remote shell scripts before execution and run them only in an environment where browser credentials and API keys are intentionally scoped for automation. <br>
-Risk: The skill requires sensitive credentials for Browser Use Cloud and optional LLM providers. <br>
-Mitigation: Store API keys in local environment configuration, restrict their permissions where supported, and rotate keys if they are exposed to shared browser or agent sessions. <br>
+## Use Case:
 
+Developers and external users use this skill for guidance on installing, configuring, and using browser-use so AI agents can automate browser tasks such as form filling, shopping workflows, web searches, screenshots, and authenticated site interactions.
 
-## Reference(s): <br>
-- [browser-use GitHub repository](https://github.com/browser-use/browser-use) <br>
-- [ClawHub skill page](https://clawhub.ai/smseow001/browser-use-guide) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes API key configuration, browser-use CLI commands, Python examples, OpenClaw integration notes, and troubleshooting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill asks users to run mutable remote installers and package commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use pinned package versions and commit-specific URLs, inspect downloaded scripts before running them, and avoid curl-to-shell execution.
+
+Risk: Browser automation can act on authenticated sessions, synced profiles, forms, uploads, purchases, email, and account state.
+
+Mitigation: Use a dedicated browser profile and require manual confirmation before purchases, form submissions, uploads, email sending, or account changes.
+
+Risk: The release is flagged suspicious because authentication and browser profile sharing are not scoped enough.
+
+Mitigation: Review the skill before installation and do not sync or reuse a personal browser profile unless the shared authentication data is understood.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smseow001/skills/browser-use-guide)
+- [browser-use GitHub repository](https://github.com/browser-use/browser-use)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands, Python snippets, configuration examples, and troubleshooting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes browser automation setup guidance, API key configuration notes, CLI examples, and integration instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-x402 payment protocol for AI agents. Enables autonomous micropayments using HTTP 402 status codes and stablecoins. Use when you need to pay for API access, accept payments for your services, or interact with x402-enabled endpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides command-line support for x402-style HTTP 402 payment flows, including endpoint checks, wallet configuration, simulated payments, mock balances, and payment history.
 
-## Publisher: <br>
-[Neckr0ik](https://clawhub.ai/user/Neckr0ik) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[neckr0ik](https://clawhub.ai/user/neckr0ik)
 
-## Use Case: <br>
-Developers and agent builders use this skill to inspect x402-enabled endpoints, draft payment or payment-acceptance workflows, and configure agent-facing payment commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill presents as a real autonomous payment tool while the security review says the implementation mostly simulates payments. <br>
-Mitigation: Use it only for testing or code review; do not rely on it for real settlement, account balances, payment enforcement, or production API access until verified payment behavior is clearly implemented or labeled. <br>
-Risk: Wallet secrets and local payment records may be handled with weak guidance. <br>
-Mitigation: Do not enter a funded wallet private key; use isolated test wallets and review local configuration and history files before any use. <br>
-Risk: Autonomous payment workflows can create unintended spending exposure. <br>
-Mitigation: Require human approval, dry runs, low spending limits, and endpoint verification before any live payment workflow. <br>
+## Use Case:
 
+Developers and agent builders can use this skill to explore x402-style payment workflows for API access, provider-side payment gates, wallet setup, and transaction history. As packaged, its payment, balance, and receipt behavior should be treated as mock/demo behavior rather than production payment handling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Neckr0ik/neckr0ik-x402-payments) <br>
-- [Publisher profile](https://clawhub.ai/user/Neckr0ik) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, Python examples, and configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose command-line payment, server, balance, history, and wallet-configuration workflows for review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Users may assume the payment, balance, and receipt flows are production-ready.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat these flows as mock/demo behavior until the skill implements real signing, settlement verification, and clearly documented limits.
+
+Risk: Wallet private keys or other sensitive wallet values may be handled unsafely as packaged.
+
+Mitigation: Do not use real private keys or real funds; revise storage and output behavior before any production use.
+
+Risk: Payment capability claims may exceed the packaged implementation.
+
+Mitigation: Review payment behavior against the security guidance and test with non-production endpoints before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/neckr0ik/skills/neckr0ik-x402-payments)
+- [Publisher profile](https://clawhub.ai/user/neckr0ik)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash and Python examples; CLI output is plain text and JSON-like records.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes local configuration and history file behavior under the user's x402 configuration directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, claw.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

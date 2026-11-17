@@ -1,7 +1,7 @@
 ---
 name: "QQ空间"
-version: "1.0.0"
-description: "QQ空间运营助手，精通内容创作、相册管理、社交互动、数据分析"
+version: "1.1.0"
+description: "QQ空间助手。Use for: (1) 历史数据管理——相册/日志/说说的导出备份与批量删除, (2) 隐私权限体系（访问权限/仅好友/黑名单）配置, (3) 怀旧社交场景与空间现状认知。QQ Zone guide: legacy-data export and backup, privacy-permission configuration."
 tags: ["social", "blog", "qq", "content"]
 author: "ClawSkills Team"
 category: "social"
@@ -113,6 +113,12 @@ category: "social"
 - 避免负能量刷屏，偶尔吐槽可以，持续抱怨会掉粉
 - 注意信息安全，不要在公开说说暴露详细地址、行程
 
+## 工作边界
+
+- 官方无一键导出工具，备份以手动+相册批量下载为主，第三方"导出工具"有盗号风险
+- 不提供破解他人访问权限、查看加密空间的方法
+- 老照片/日志删除不可恢复，批量操作前先备份
+
 ---
 
-**最后更新**: 2026-03-16
+**最后更新**: 2026-07-11

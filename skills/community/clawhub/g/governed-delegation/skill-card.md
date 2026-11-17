@@ -1,43 +1,54 @@
-## Description: <br>
-Policy-guided governed delegation for subagent use, including decisions about whether to delegate, which model tier is allowed, whether execution must fail closed, and how to build an auditable spawn request for critical or deterministic work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Governed Delegation helps agents decide the allowed execution envelope for subagent work, including model tier, fail-closed behavior, and auditable spawn requests.
 
-## Publisher: <br>
-[joaodriessen](https://clawhub.ai/user/joaodriessen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joaodriessen](https://clawhub.ai/user/joaodriessen)
 
-## Use Case: <br>
-Developers and operators use this skill when a task may require subagents and they need a governed execution envelope before spawning delegated work. It helps classify risk, choose an allowed model tier, decide whether to fail closed, and produce a decision or spawn request that can be audited. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper depends on a local OpenClaw policy module for canonical routing decisions. <br>
-Mitigation: Confirm the target OpenClaw environment includes the expected policy module before relying on generated delegation decisions. <br>
-Risk: Delegated prompts may include secrets or private data that could be handed to subagents or external model providers. <br>
-Mitigation: Keep secrets and private data out of delegated prompts, and review the generated spawn request before execution. <br>
-Risk: Strict or critical work can be unsafe if a requested front door does not match canonical policy. <br>
-Mitigation: For Class C, Class D, or critical-write work, include an explicit front door and fail closed when the helper rejects the requested route. <br>
+## Use Case:
 
+Developers and orchestrator maintainers use this skill when delegation is under consideration and they need policy-guided model-tier, runner, and fail-closed decisions before spawning subagents.
 
-## Reference(s): <br>
-- [Governed Delegation on ClawHub](https://clawhub.ai/joaodriessen/governed-delegation) <br>
-- [Canonical model-routing policy referenced by the skill](docs/MODEL_ROUTING_POLICY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON decision object with optional shell command usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The helper reads a JSON task classification from an argument or stdin and prints a governed delegation decision, including model, fail-closed status, policy source, runner, front-door status, and an optional spawn request envelope.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Critical delegation decisions could be unreliable if the referenced canonical routing policy or policy modules are absent or untrusted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the canonical routing policy and intent-router policy modules are present and trusted before relying on the skill for critical delegation decisions.
+
+Risk: Incorrect task classification could produce an unsuitable delegation envelope for high-risk work.
+
+Mitigation: Classify taskClass, deterministic, criticalWrite, and requiresDeepReasoning before delegation, and fail closed for Class C/D or critical-write work.
+
+## Reference(s):
+
+- [Governed Delegation Skill Page](https://clawhub.ai/joaodriessen/skills/governed-delegation)
+- [Canonical Model Routing Policy](docs/MODEL_ROUTING_POLICY.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with JSON decision output and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The helper returns a single delegation decision object with an optional auditable spawn request envelope.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

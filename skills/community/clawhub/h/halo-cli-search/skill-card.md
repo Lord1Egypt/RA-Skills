@@ -1,41 +1,54 @@
-## Description: <br>
-Use when searching public content on a Halo site with Halo CLI, especially for keyword search, site URL based search, result limits, or search without authenticated console access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when searching public content on a Halo site with Halo CLI, especially for keyword search, site URL based search, result limits, or search without authenticated console access.
 
-## Publisher: <br>
-[ruibaby](https://clawhub.ai/user/ruibaby) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ruibaby](https://clawhub.ai/user/ruibaby)
 
-## Use Case: <br>
-Developers and operators use this skill to ask an agent for Halo CLI search commands that query public Halo site content by keyword, URL, profile, result limit, or JSON output mode. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Searches without an explicit URL may use an unintended saved Halo CLI profile. <br>
-Mitigation: Prefer an explicit --url for public unauthenticated searches, and verify the intended --profile before using saved profiles. <br>
-Risk: Agent-proposed shell commands can include incorrect keywords, limits, profiles, or output flags. <br>
-Mitigation: Review generated halo search commands before execution, especially when using profile-based searches. <br>
+## Use Case:
 
+Developers and operators use this skill to guide agents in running Halo CLI search commands against public Halo sites or profile-selected Halo targets, including keyword searches, result limits, and JSON output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ruibaby/halo-cli-search) <br>
-- [Halo public site example](https://www.halo.run) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Halo CLI flags such as --keyword, --url, --profile, --limit, and --json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Omitting `--url` can cause Halo CLI to use an active or selected local profile to choose the search target.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use `--url` for unauthenticated public-site search, and confirm the selected profile before profile-based searches.
+
+Risk: Search results intended for downstream tooling may be hard to parse if emitted as human-readable text.
+
+Mitigation: Use `--json` when another tool needs to parse Halo search results.
+
+## Reference(s):
+
+- [Halo public website](https://www.halo.run)
+- [Halo CLI shared skill reference](../halo-cli-shared)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON-oriented command options when downstream tools need parseable search results.]
+
+## Skill Version(s):
+
+0.1.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,59 @@
-## Description: <br>
-Use this skill when the user wants to iterate on an existing company-internal process management system by adding, modifying, or deleting features through a screenshot-centered four-step workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps teams iterate existing company-internal process management systems by collecting workflow evidence, classifying add, modify, and delete changes, and producing a delta PRD plus a before-and-after prototype.
 
-## Publisher: <br>
-[lailiai](https://clawhub.ai/user/lailiai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lailiai](https://clawhub.ai/user/lailiai)
 
-## Use Case: <br>
-Product managers, designers, and internal tooling teams use this skill to gather iteration requirements for existing process-management systems and produce a delta PRD plus a modified prototype with before/after comparison. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may collect and persist internal screenshots, HTML prototypes, customer data, credentials, tokens, internal URLs, or proprietary details in local project artifacts. <br>
-Mitigation: Redact sensitive content before use and review generated project files before sharing or committing them. <br>
-Risk: Generated prototypes may load public CDN dependencies. <br>
-Mitigation: Replace or pin CDN-loaded dependencies with approved internal copies and stronger integrity controls before opening prototypes that contain sensitive content. <br>
-Risk: Iteration guidance and generated PRD/prototype changes may be incomplete or misleading if screenshots or workflow details are missing. <br>
-Mitigation: Require the documented confirmation checkpoints and review the validation output before implementation. <br>
+## Use Case:
 
+Product managers, product designers, and internal-system teams use this skill to structure iteration work for an existing internal process management system. It guides collection of roles, current workflow, screenshots or interface descriptions, change scope, validation checks, and final PRD/prototype outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lailiai/prd-design-iteration) <br>
-- [Step 1 baseline collection](references/steps/step1-baseline-collection.md) <br>
-- [Step 2 adjustment list](references/steps/step2-adjustment-list.md) <br>
-- [Step 3 material collection](references/steps/step3-material-collection.md) <br>
-- [Step 4 validation and output](references/steps/step4-validation-output.md) <br>
-- [Prototype template](references/templates/prototype-template.html) <br>
-- [Iteration design self-check](references/appendices/selfcheck.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown documents and HTML prototype files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces project artifacts including baseline notes, adjustment lists, delta PRD content, validation notes, and prototype HTML.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: User-provided product notes, screenshots, HTML prototypes, internal URLs, credentials, or production secrets may be written into the local project workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact customer data, credentials, internal URLs, and production secrets before providing screenshots, HTML, or workflow details.
+
+Risk: Generated prototype templates may load third-party CDN scripts.
+
+Mitigation: Open generated prototypes in an isolated browser context where possible and review external dependencies before broader use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lailiai/skills/prd-design-iteration)
+- [Step 1: Baseline Collection](references/steps/step1-baseline-collection.md)
+- [Step 2: Adjustment List](references/steps/step2-adjustment-list.md)
+- [Step 3: Material Collection](references/steps/step3-material-collection.md)
+- [Step 4: Validation and Output](references/steps/step4-validation-output.md)
+- [Prototype Template](references/templates/prototype-template.html)
+- [Self-check Checklist](references/appendices/selfcheck.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Files]
+
+**Output Format:** [Markdown documents and an HTML/React prototype]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces staged project files after user confirmations; generated prototypes may load React, Babel, and Tailwind from third-party CDNs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

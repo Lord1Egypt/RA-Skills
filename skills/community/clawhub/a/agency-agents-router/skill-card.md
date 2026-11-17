@@ -1,42 +1,56 @@
-## Description: <br>
-Orchestrates configured OpenClaw agents by classifying tasks, resolving ambiguity, selecting suitable agents, planning execution, and aggregating results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates configured OpenClaw agents by classifying tasks, resolving ambiguity, selecting specialist agents, planning execution, and aggregating results.
 
-## Publisher: <br>
-[staok](https://clawhub.ai/user/staok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[staok](https://clawhub.ai/user/staok)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to route natural-language tasks from the main agent to installed specialist agents. It supports single-agent, parallel, sequential, and DAG-style orchestration for research, engineering, content, product, business, and audit workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Delegated tasks may share user task context with multiple installed sub-agents. <br>
-Mitigation: Use the skill only when multi-agent routing is intended, review installed agents before use, and avoid delegating sensitive context unless each selected agent is appropriate for that data. <br>
-Risk: The router depends on separately installed third-party agent definitions and an accurate local agent index. <br>
-Mitigation: Install and review the agent package first, then verify that agents appear in the local OpenClaw configuration before orchestration. <br>
-Risk: Factual or time-sensitive workflows may rely on live web research by the orchestrator or sub-agents. <br>
-Mitigation: Require cited sources and dates for factual claims, and mark unverifiable items before aggregating final results. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to route complex prompts to installed specialist agents, choose single or multi-agent execution plans, and aggregate the results.
 
-## Reference(s): <br>
-- [Agency Agents Router on ClawHub](https://clawhub.ai/staok/agency-agents-router) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command snippets, routing decisions, execution plans, and aggregated agent results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include clarifying questions, delegated-agent prompts, and installation or verification steps for the local agent index.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Setup relies on unpinned third-party install scripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the external agency-agents-zh repository before installation, pin to a reviewed commit when possible, and install in a restricted environment.
+
+Risk: Routine use can share task content with sub-agent sessions and web searches.
+
+Mitigation: Avoid routing sensitive prompts unless sharing that content with selected agents and live research tools is acceptable.
+
+## Reference(s):
+
+- [Agency Agents Router on ClawHub](https://clawhub.ai/staok/skills/agency-agents-router)
+- [agency-agents-zh setup guide](https://github.com/jnMetaCode/agency-agents-zh#%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B)
+- [agency-agents upstream](https://github.com/msitarzewski/agency-agents)
+- [Agency Orchestrator](https://github.com/jnMetaCode/agency-orchestrator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline commands and structured orchestration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May delegate task content to sub-agent sessions and recommend live web research for factual or time-sensitive work.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

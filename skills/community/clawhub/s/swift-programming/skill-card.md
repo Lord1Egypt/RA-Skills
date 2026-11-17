@@ -1,38 +1,50 @@
-## Description: <br>
-Learn and write Swift code for variables, functions, classes, structs, enums, optionals, closures, protocols, async/await, and SwiftUI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Learn and write Swift code for variables, functions, classes, structs, enums, optionals, closures, protocols, async/await, and SwiftUI.
 
-## Publisher: <br>
-[saitamawtf](https://clawhub.ai/user/saitamawtf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[saitamawtf](https://clawhub.ai/user/saitamawtf)
 
-## Use Case: <br>
-Developers and learners use this skill as a compact Swift quick reference and to draft examples for common language features and basic SwiftUI patterns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Example Swift code may be copied into real projects without review, including network request examples. <br>
-Mitigation: Review and adapt generated Swift before running it in a real project, especially code involving URLSession or other network requests. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Apple Swift Docs](https://docs.swift.org/swift-book/) <br>
-- [Hacking with Swift](https://www.hackingwithswift.com) <br>
+## Use Case:
 
+Developers and learners use this skill as a concise Swift quick reference for common language constructs and basic SwiftUI patterns.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with Swift code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Much of the teaching content uses Spanish headings, comments, or sample strings despite the English title, which may reduce usefulness for English-only users.
+
+Mitigation: Review and localize examples before using the skill in English-only Swift training or code-generation workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/saitamawtf/skills/swift-programming)
+- [Apple Swift Docs](https://docs.swift.org/swift-book/)
+- [Hacking with Swift](https://www.hackingwithswift.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with Swift code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Spanish comments and sample strings in several examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

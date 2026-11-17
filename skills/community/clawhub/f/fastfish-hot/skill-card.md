@@ -1,43 +1,57 @@
-## Description: <br>
-Pulls trending news from api.pearktrue.cn and helps configure keyword-filtered Feishu, DingTalk, or Telegram push notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+fastfish-hot fetches hot-topic news from api.pearktrue.cn, supports Feishu, DingTalk, and Telegram notifications, and helps configure real-time or scheduled pushes with keyword filtering.
 
-## Publisher: <br>
-[superxs777](https://clawhub.ai/user/superxs777) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[superxs777](https://clawhub.ai/user/superxs777)
 
-## Use Case: <br>
-External users and operators use this skill to fetch real-time trending topics, configure keyword-filtered news pushes, and create scheduled delivery workflows for Feishu, DingTalk, or Telegram. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill guides installation and execution of external project scripts and dependencies. <br>
-Mitigation: Review the repository and requirements before installation, pin the documented release tag, and run in a virtual environment or container without root privileges. <br>
-Risk: Push delivery requires messaging credentials such as webhooks, bot tokens, chat IDs, and optional DingTalk signing secrets. <br>
-Mitigation: Configure only the required channel credentials, keep secrets in environment variables or .env files, and avoid displaying or committing credential values. <br>
-Risk: Scheduled push workflows can create or change recurring notification behavior. <br>
-Mitigation: Keep a record of cron jobs and only create, modify, or remove scheduled jobs when the user explicitly requests that change. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/superxs777/fastfish-hot) <br>
-- [Publisher profile](https://clawhub.ai/user/superxs777) <br>
-- [Artifact-listed fastfish-hot project repository](https://github.com/superxs777/fastfish-hot) <br>
+## Use Case:
 
+External users and developers use this skill to fetch trending topics and configure daily hot-news notifications to Feishu, DingTalk, or Telegram. It is also used to set filtering keywords, push schedules, and supporting local configuration for the fastfish-hot project.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON output from the underlying scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide use of environment variables, scheduled jobs, and messaging credentials for Feishu, DingTalk, or Telegram.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installation runs third-party code and dependencies and may create persistent webhook-backed cron jobs.
+
+Mitigation: Install only after reviewing the repository and dependencies, pin and verify the exact commit or release, run in a non-root isolated environment, and review each cron job before creation.
+
+Risk: Webhook tokens and optional admin credentials could be exposed if entered or displayed in an untrusted setup path.
+
+Mitigation: Enter credentials only in a private trusted setup path, avoid displaying .env contents or webhook values, and protect any enabled admin UI with an API key.
+
+Risk: The skill depends on api.pearktrue.cn and external notification channels for fetching and pushing hot-topic content.
+
+Mitigation: Use the skill only if the data source and selected messaging channels are trusted, and configure only the environment variables required for the intended channel.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/superxs777/skills/fastfish-hot)
+- [ClawHub publisher profile](https://clawhub.ai/user/superxs777)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON output from the underlying scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include credential setup guidance; should not reveal webhook tokens or .env contents.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

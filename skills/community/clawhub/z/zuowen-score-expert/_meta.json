@@ -1,6 +1,48 @@
 {
-  "ownerId": "kn79s6s4n5qvd0qjwrn3bt0pts81y47b",
-  "slug": "zuowen-score-expert",
+  "skill_id": "1732176000000000002",
+  "name": "zuowen-score-expert",
+  "display_name": "作文提分大师",
   "version": "1.0.0",
-  "publishedAt": 1774346636327
+  "description": "全光谱中文作文辅导技能，作为作文提分专家角色。用于指导学生中文作文写作、诊断草稿、在不代写的前提下引导头脑风暴、改进结构、深化思想、精炼语言、根据年级调整建议，或扮演温暖的费曼风格写作导师。",
+  "author": "MiniMax Agent",
+  "category": "education",
+  "tags": ["作文", "中文", "教育", "辅导", "费曼学习法", "写作技巧"],
+  "license": "proprietary",
+  "visibility": "closed_source",
+  "price": 0,
+  "features": [
+    "作文诊断与评估",
+    "七步教学路径辅导",
+    "费曼风格指导",
+    "分年级适配（小学/初中/高中/大学）",
+    "防代写安全机制",
+    "创意写作指导",
+    "杨洋/国家玮教学法融入",
+    "反馈质量把控"
+  ],
+  "file_count": 16,
+  "skills": [
+    {
+      "id": "zuowen-score-expert",
+      "type": "primary",
+      "description": "作文提分专家主技能"
+    }
+  ],
+  "created_at": "2026-03-24T17:51:18Z",
+  "updated_at": "2026-03-24T17:51:18Z",
+  "publish_settings": {
+    "visibility": "closed_source",
+    "source_protection": true,
+    "allow_forking": false,
+    "allow_modification": false,
+    "allow_commercial_use": false,
+    "review_required": true,
+    "distribution_restricted": true
+  },
+  "marketplace": {
+    "platform": "skill_marketplace",
+    "listing_status": "published",
+    "featured": false,
+    "verified": false
+  }
 }

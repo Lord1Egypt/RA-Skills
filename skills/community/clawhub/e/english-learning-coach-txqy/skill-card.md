@@ -1,41 +1,54 @@
-## Description: <br>
-English Learning Coach turns an agent into an English practice partner that checks learner messages, routes flawed English to correction-only responses, adapts reply difficulty, and summarizes learning progress. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+English Learning Coach turns an agent into an immersive English conversation coach that checks learner messages before replying, gives correction-only feedback when needed, controls output vocabulary level, tracks vocabulary and recurring errors, estimates CEFR level, runs mini quizzes, and summarizes progress.
 
-## Publisher: <br>
-[taxueqinyin](https://clawhub.ai/user/taxueqinyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[taxueqinyin](https://clawhub.ai/user/taxueqinyin)
 
-## Use Case: <br>
-External English learners use this skill for conversation practice, correction-only feedback, active vocabulary tracking, CEFR-level estimates, and short review or quiz sessions. Agents use it to keep ordinary chat immersive while recording learning signals locally when persistence is available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may keep a local learning history that includes exact practice sentences, corrections, learner profile data, vocabulary records, and quiz checkpoints. <br>
-Mitigation: Use a safe data directory, avoid personal or sensitive practice topics, and inspect or delete generated data files when retention is not desired. <br>
-Risk: Learning data can be stored silently during normal use, which may surprise users who expect conversation-only behavior. <br>
-Mitigation: Review the storage behavior before use and configure ENGLISH_LEARNING_COACH_DATA_DIR when the default skill-local data directory is not appropriate. <br>
+## Use Case:
 
+External learners and employees use this skill for English conversation practice with lightweight correction routing, simple-level agent replies, recurring-error review, active vocabulary tracking, CEFR estimates, and short progress checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/taxueqinyin/english-learning-coach-txqy) <br>
-- [Publisher profile](https://clawhub.ai/user/taxueqinyin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and Markdown responses with correction blocks, summaries, quizzes, level guidance, and optional shell commands for local persistence.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Correction-only replies use Correction, Reason, and optional Natural version fields; persistence can produce local JSON, JSONL, and Markdown learning records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can save local records of practice text, mistakes, scores, vocabulary, CEFR estimates, and quiz history without showing routine persistence notices.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when local learning records are acceptable; avoid sensitive personal or workplace content unless storage location, retention, and deletion controls are clarified.
+
+Risk: Stored learner text may be reused in later reviews or summaries without sanitization.
+
+Mitigation: Review stored Markdown and practice data before reuse, and prefer a version that sanitizes stored content before using it in future review commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/taxueqinyin/skills/english-learning-coach-txqy)
+- [Publisher profile](https://clawhub.ai/user/taxueqinyin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown responses, with optional shell commands and JSON-backed local learning records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Correction-only responses use a fixed Correction/Reason/Natural version shape; review commands can summarize scores, CEFR estimates, vocabulary, quizzes, and stored practice history.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

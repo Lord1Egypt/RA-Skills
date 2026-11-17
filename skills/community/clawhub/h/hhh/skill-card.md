@@ -1,39 +1,52 @@
-## Description: <br>
-Guide users through creating Agent Skills for Claude Code when they need to create, write, author, or design a new Skill, including SKILL.md files, frontmatter, and skill structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide users through creating Agent Skills for Claude Code. Use when the user wants to create, write, author, or design a new Skill, or needs help with SKILL.md files, frontmatter, or skill structure.
 
-## Publisher: <br>
-[mrvae](https://clawhub.ai/user/mrvae) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mrvae](https://clawhub.ai/user/mrvae)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and skill authors use this agent skill to create, structure, validate, and troubleshoot Claude Code skills and SKILL.md files.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated or revised skill files can persist and influence future agent behavior.
+
+Mitigation: Review generated SKILL.md files and any optional scripts or templates before installing them in a personal or project skills directory.
+
+Risk: Skill-authoring guidance can produce incorrect or incomplete instructions for a target workflow.
+
+Mitigation: Validate the resulting skill against the included checklist and test it with representative user requests before release.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent builders use this skill to create or update Claude Code/OpenClaw Agent Skills with focused scope, valid SKILL.md frontmatter, clear instructions, examples, and validation checks. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated personal or project skills can persist and affect future agent behavior. <br>
-Mitigation: Review generated skill files and instructions before keeping, sharing, or deploying them. <br>
-Risk: Overbroad descriptions, unclear instructions, or incorrect frontmatter can cause poor skill activation or conflicting agent behavior. <br>
-Mitigation: Validate SKILL.md frontmatter, keep each skill focused on one capability, and test activation with representative user requests. <br>
+**Output Format:** [Markdown with inline YAML, shell commands, directory layouts, and checklists]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Produces complete skill-authoring guidance and may propose SKILL.md content, supporting files, validation steps, and testing instructions.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with YAML frontmatter examples, code blocks, shell commands, and checklists.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce persistent skill files or instructions that should be reviewed before keeping, sharing, or deploying.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,50 @@
-## Description: <br>
-Thunder is a redirect-only skill that points users to the xunlei skill for complete functionality. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Decode and encode Thunder (Xunlei) thunder:// download links to plain URLs locally, with support for decoding qqdl:// and flashget:// links.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-External users and agents use Thunder as a compatibility redirect when looking for the former thunder skill. It directs them to xunlei for the maintained download-related workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may assume this redirect skill contains the maintained download functionality. <br>
-Mitigation: Review the separate xunlei skill before relying on download behavior, permissions, commands, network behavior, or data handling. <br>
+## Use Case:
 
+Developers, engineers, and agents use this skill to decode thunder://, qqdl://, and flashget:// links into plain URLs, encode plain URLs as thunder:// links, and prepare standard downloader commands while preserving safety context.
 
-## Reference(s): <br>
-- [Thunder on ClawHub](https://clawhub.ai/zhangifonly/thunder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Redirect notice only; no commands or code execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Decoded links from untrusted sources may contain misleading destinations or terminal control characters.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect decoded output before reuse and avoid pasting untrusted decoded text directly into an interactive terminal.
+
+## Reference(s):
+
+- [Thunder Skill Page](https://clawhub.ai/zhangifonly/skills/thunder)
+- [Xunlei Official Website](https://www.xunlei.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and plain text URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single-stream output; decoded URLs from untrusted links should be treated as unsafe terminal output.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

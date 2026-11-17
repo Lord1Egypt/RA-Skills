@@ -1,44 +1,54 @@
-## Description: <br>
-Creative Workshop is a five-stage creative incubation agent that helps individual entrepreneurs move from early ideas to a complete proposal package. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creative Workshop is a Chinese-language agent skill that guides users from an initial creative idea to an MVP-oriented product plan using five expert roles covering market direction, product strategy, business model, IP protection, UX, and technical specification.
 
-## Publisher: <br>
-[golngod](https://clawhub.ai/user/golngod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[golngod](https://clawhub.ai/user/golngod)
 
-## Use Case: <br>
-External users and entrepreneurs use this skill to shape a startup idea, evaluate business feasibility, plan IP protection, and assemble a staged action package. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may over-rely on business, market, financial, or investment-oriented outputs. <br>
-Mitigation: Treat outputs as planning guidance, include disclaimers for investment-related content, and consult qualified financial professionals before decisions. <br>
-Risk: IP and patent-planning outputs may be incomplete or unsuitable as legal advice. <br>
-Mitigation: Use the skill for preliminary planning only, avoid treating novelty checks as definitive, and consult qualified IP counsel or patent-search professionals. <br>
-Risk: Startup planning may involve trade secrets, unpublished inventions, personal data, credentials, or source code. <br>
-Mitigation: Avoid sharing sensitive information until the publisher clarifies logging and tool-handling practices. <br>
+## Use Case:
 
+Creators, entrepreneurs, and product teams use this skill to turn an idea into a staged MVP plan with deliverables for direction, MVP scope, business model, IP strategy, UX design, and technical implementation. Its outputs are advisory and should be reviewed before legal, financial, or engineering commitments.
 
-## Reference(s): <br>
-- [Creative Workshop ClawHub release](https://clawhub.ai/golngod/creative-workshop) <br>
-- [OPC-SPARK homepage](https://www.opc-spark.com) <br>
-- [Artifact-declared project repository](https://github.com/golngod/creative-workshop) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown documents and structured planning reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include staged idea proposals, innovation plans, business feasibility analysis, IP planning guidance, and action checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata, SKILL.md frontmatter, clawhub.json) <br>
+Risk: Business, IP, financial, and technical recommendations may be incomplete or unsuitable for a specific product decision.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as advisory and have qualified business, legal, and engineering reviewers validate them before commitments.
+
+Risk: Generated MVP specifications, API outlines, database structures, prompt templates, or deployment plans may not match production constraints.
+
+Mitigation: Review and test all specifications against the target architecture, security requirements, and implementation budget before development.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/golngod/skills/creative-workshop)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/golngod)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown and structured planning documents]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language, stage-gated workflow with cross-review across five expert roles.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

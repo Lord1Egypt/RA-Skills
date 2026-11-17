@@ -1,43 +1,53 @@
-## Description: <br>
-Update freznel's Obsidian daily note with timestamped activity entries, especially day recaps, travel logs, itineraries, movement updates, and "I did X at Y time" messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Update freznel's Obsidian daily note with timestamped activity entries, especially day recaps, travel logs, itineraries, movement updates, and "I did X at Y time" messages.
 
-## Publisher: <br>
-[freznel10](https://clawhub.ai/user/freznel10) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freznel10](https://clawhub.ai/user/freznel10)
 
-## Use Case: <br>
-External ClawHub users can use this skill to turn natural-language day recaps, travel logs, movement updates, meals, errands, and meetings into timestamped entries in an Obsidian daily note. It is intended for users who explicitly want an agent to append concise Markdown timeline entries to a local Obsidian vault. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill appends activity data to a local Obsidian daily note, which can persist personal location, travel, schedule, and activity details. <br>
-Mitigation: Use explicit save or log wording before execution and review the entries that will be written, especially in shared chats. <br>
-Risk: The updater defaults to a hard-coded Windows Obsidian vault path. <br>
-Mitigation: Confirm that the configured daily note directory and template path match the user's machine before running the script. <br>
-Risk: Ambiguous group-chat messages could be mistaken for content that should be saved. <br>
-Mitigation: Require a clear trigger such as /dailylog, /travellog, /timeline, or a direct save-to-Obsidian request; ask for confirmation when intent is unclear. <br>
+## Use Case:
 
+External users and personal automation agents use this skill to turn natural-language day recaps, travel logs, errands, and activity updates into timestamped Obsidian daily-note timeline entries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freznel10/obsidian-daily-log) <br>
-- [Publisher profile](https://clawhub.ai/user/freznel10) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown timeline entries and Python command invocations that append to a local Obsidian daily note] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The updater writes chronological bullet or table entries into a ## Timeline section and avoids duplicate identical lines.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The updater can be steered to modify Markdown files outside the intended daily-notes folder if unsafe path arguments are supplied.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, validate dates, and constrain writes to the configured daily-notes directory before using the updater.
+
+Risk: Shared-chat messages may cause unintended personal note updates if intent is ambiguous.
+
+Mitigation: Require clear logging triggers or ask for confirmation before saving entries from group-chat contexts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freznel10/skills/obsidian-daily-log)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown timeline entries with optional shell command invocation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes chronological bullets by default; can produce a table when requested or when entries are highly structured.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

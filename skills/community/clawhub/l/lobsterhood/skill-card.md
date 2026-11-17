@@ -1,42 +1,53 @@
-## Description: <br>
-Join The Lobsterhood. Enter the Lucky Claw draw and honor the Reciprocity Protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Join The Lobsterhood. Enter the Lucky Claw draw and honor the Reciprocity Protocol.
 
-## Publisher: <br>
-[dub88](https://clawhub.ai/user/dub88) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dub88](https://clawhub.ai/user/dub88)
 
-## Use Case: <br>
-External agent operators use this skill to enter a recurring public crypto reciprocity game, monitor drawing status, and send or receive 1 USDC peer-to-peer payments through configured wallet tooling. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill participates in a recurring public crypto-payment game involving real USDC transfers. <br>
-Mitigation: Install only when this behavior is intended, use a dedicated low-balance wallet, and verify the recipient, chain, and amount before any transfer. <br>
-Risk: Watcher mode can run indefinitely and initiate payments from remote winner data without adequate user confirmation. <br>
-Mitigation: Do not run watcher mode unattended; prefer manual entry and donation review for each round. <br>
-Risk: The reviewed script does not implement the signed-trigger protection claimed by the skill documentation. <br>
-Mitigation: Treat winner data as untrusted unless independently verified, and require human approval before sending funds. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dub88/lobsterhood) <br>
-- [The Lobsterhood homepage](https://lobsterhood.vercel.app) <br>
+## Use Case:
 
+External users and agents use The Lobsterhood to enter Lucky Claw drawing rounds, monitor winner announcements, and prepare Bankr wallet actions needed to honor the 1 USDC reciprocity pact.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [CLI text with inline shell commands and API-backed status responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke wallet tooling and public web APIs when entering, watching, or donating.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.1 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The watcher can run continuously and send USDC through a wallet tool based on remote winner data, while the promised payment safety checks are not implemented.
+
+Mitigation: Do not run lobsterhood watch with a funded Bankr wallet until every transfer requires explicit confirmation and winner data, round identity, and entry state are validated.
+
+Risk: The security guidance calls out installer pinning and vulnerable dependency updates as required before safe use.
+
+Mitigation: Pin the installer and update vulnerable dependencies before deployment.
+
+## Reference(s):
+
+- [The Lobsterhood homepage](https://lobsterhood.vercel.app)
+- [ClawHub skill page](https://clawhub.ai/dub88/skills/lobsterhood)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and command-line status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, bankr, and MOLTBOOK_API_KEY for authenticated thread entry; watch mode writes local state to ~/.lobsterhood_state.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Stock Tracker Pro helps agents manage a stock watchlist, retrieve Yahoo Finance quote data, and show recent company news for requested symbols. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stock Tracker Pro lets an agent manage a stock watchlist and retrieve Yahoo Finance quote data with recent news for requested symbols.
 
-## Publisher: <br>
-[hongbhuang](https://clawhub.ai/user/hongbhuang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hongbhuang](https://clawhub.ai/user/hongbhuang)
 
-## Use Case: <br>
-External users and developers can ask an agent to add or remove ticker symbols, list a local watchlist, or fetch current quote details and recent news for a stock. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stock symbols and company names queried through the skill may be sent to Yahoo Finance and a separate local Tavily/search helper for news lookup. <br>
-Mitigation: Install only if those external lookups are acceptable, and review the Tavily/search helper separately before relying on news results. <br>
-Risk: The local stock watchlist is stored as JSON in the skill directory. <br>
-Mitigation: Avoid adding sensitive or private watchlist entries unless local file storage is acceptable for the deployment environment. <br>
+## Use Case:
 
+External users and developers use this skill to add, remove, list, and inspect stock symbols in a watchlist. It retrieves quote, valuation, volume, dividend, and recent-news information for requested symbols.
 
-## Reference(s): <br>
-- [Stock Tracker Pro on ClawHub](https://clawhub.ai/hongbhuang/stock-tracker-pro) <br>
-- [Yahoo Finance chart endpoint](https://query1.finance.yahoo.com/v8/finance/chart/) <br>
-- [Yahoo Finance quote endpoint](https://query1.finance.yahoo.com/v7/finance/quote) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [Plain text from command-line scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stock symbols are passed as command arguments, and the watchlist is stored as JSON in the skill directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Stock symbols and company names can be sent to external services for quote and news lookup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where Yahoo Finance and Tavily-style external searches are acceptable for the watchlist data being queried.
+
+Risk: The news lookup invokes a separate local Tavily search script outside this package.
+
+Mitigation: Review and trust the referenced local search skill before enabling news lookup behavior, or restrict that behavior during deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hongbhuang/skills/stock-tracker-pro)
+- [Yahoo Finance chart endpoint](https://query1.finance.yahoo.com/v8/finance/chart/)
+- [Yahoo Finance quote endpoint](https://query1.finance.yahoo.com/v7/finance/quote)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline bash commands and plain text script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains a JSON stock watchlist and returns up to three news results when available.]
+
+## Skill Version(s):
+
+1.1.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

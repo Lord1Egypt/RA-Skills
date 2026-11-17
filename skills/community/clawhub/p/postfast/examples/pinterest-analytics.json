@@ -74,13 +74,13 @@
   "_notes": [
     "Pinterest analytics requires the connected account to be a Pinterest business account",
     "Canonical fields impressions / likes (reactions) / comments are LIFETIME totals from Pinterest's pin endpoint",
-    "Canonical shares is the 90-DAY rolling save count — Pinterest's v5 API does not expose lifetime save totals",
-    "Canonical totalInteractions = pin_clicks + outbound_clicks + saves + reactions + comments. The saves portion is 90-day, the rest is lifetime — treat it as 'best available' rather than strictly lifetime",
+    "Canonical shares is the 90-DAY rolling save count; Pinterest's v5 API does not expose lifetime save totals",
+    "Canonical totalInteractions = pin_clicks + outbound_clicks + saves + reactions + comments. The saves portion is 90-day, the rest is lifetime, so treat it as 'best available' rather than strictly lifetime",
     "reach is always null on Pinterest",
     "extras.pin_clicks and extras.outbound_clicks are LIFETIME totals from Pinterest's pin endpoint",
     "extras.*_90d fields are the 90-day equivalents (impressions_90d, pin_clicks_90d, outbound_clicks_90d)",
     "extras.engagement / engagement_rate / pin_click_rate / outbound_click_rate come from Pinterest's lifetime analytics; extras.save_rate is the 90-day save ÷ impressions ratio",
-    "Video pin extras (video_mrc_views, video_avg_watch_time, video_v50_watch_time, video_10s_views, video_start, quartile_95_percent_view) only populate for video pins — image pins and carousels won't have them",
+    "Video pin extras (video_mrc_views, video_avg_watch_time, video_v50_watch_time, video_10s_views, video_start, quartile_95_percent_view) only populate for video pins; image pins and carousels won't have them",
     "Refresh cadence: every 6h for pins under 14 days old, daily for pins 14-60 days old. Older pins stop refreshing automatically",
     "Manual refresh available on demand from the PostFast dashboard",
     "Canonical metric values are strings (bigint); extras values are typed as Pinterest returns them (numbers for counts and rates). null means unavailable"

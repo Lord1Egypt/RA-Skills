@@ -1,40 +1,53 @@
-## Description: <br>
-Lint your Claude Code config for token waste. Checks CLAUDE.md, hooks, skills, and commands. Gives health score and actionable fixes. Use when user asks about config optimization or token waste. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lint your Claude Code config for token waste. Checks CLAUDE.md, hooks, skills, and commands. Gives health score and actionable fixes. Use when user asks about config optimization or token waste.
 
-## Publisher: <br>
-[singggggyee](https://clawhub.ai/user/singggggyee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[singggggyee](https://clawhub.ai/user/singggggyee)
 
-## Use Case: <br>
-Developers and Claude Code users use this skill to lint local Claude configuration for token waste and receive health scores and actionable fixes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill invokes an external cclint CLI against local Claude Code configuration, so results depend on the installed CLI and its source. <br>
-Mitigation: Install cclint only from a trusted source and review its behavior before running it on sensitive workstations. <br>
-Risk: Claude configuration files may contain private prompts, hooks, commands, or secrets. <br>
-Mitigation: Run the linter locally, avoid sharing raw output that includes sensitive configuration content, and review findings before applying changes. <br>
+## Use Case:
 
+Developers and Claude Code users use this skill to inspect local Claude Code configuration for token waste and receive health scoring with actionable fixes.
 
-## Reference(s): <br>
-- [cclint GitHub repository](https://github.com/SingggggYee/cclint) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the external cclint CLI and reads local Claude Code configuration files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill depends on the separate cclint CLI, whose implementation is not included in the skill artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the cclint package before installation and execution.
+
+Risk: The linter reads local Claude Code configuration files, including CLAUDE.md, settings.json, skills, and commands.
+
+Mitigation: Install and run it only when local configuration inspection is acceptable.
+
+## Reference(s):
+
+- [cclint CLI repository](https://github.com/SingggggYee/cclint)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON output from cclint]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke the cclint CLI, which reads local Claude Code configuration files.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

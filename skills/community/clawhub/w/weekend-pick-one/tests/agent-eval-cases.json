@@ -1,0 +1,44 @@
+[
+  {
+    "id": "agent-shenzhen-live-evidence",
+    "mode": "search",
+    "prompt": "读取当前目录的 SKILL.md 及其中直接引用的必要规则，然后独立回答用户。当前时间为 2026-07-15 17:10，时区 Asia/Shanghai。已从真实浏览器核验：1）深圳市气象局 https://weather.sz.gov.cn/qixiangfuwu/yubaofuwu/jinmingtianqiyubao/index.html 显示 2026-07-18 和 2026-07-19 均有雷阵雨；2）深圳博物馆官方暑期通知 https://www.shenzhenmuseum.com/newsDetail?resId=fc3b2eefdcf5471c85df999d861f7388&clazzName=CmsInformation&from=1&type=1 显示金田路馆 7 月 1 日至 8 月 31 日周二至周日 9:00-21:00、20:30 停止入场、免预约；3）场馆介绍 https://www.shenzhenmuseum.com/recommend 显示金田路馆位于市民中心；4）深圳地铁官网 https://www.szmc.net/ 可查询市民中心站；5）小红书公开搜索页要求登录，已停止。用户问：这个周末深圳去哪玩？不想淋雨，只推一个。不要讲测试过程，只给最终答复。",
+    "required_fragments": ["判了", "深圳博物馆金田路馆", "雷阵雨", "主线", "核验依据", "公开灵感", "停止"],
+    "required_any": [["周六（2026-07-18）"]],
+    "forbidden_fragments": ["方向版", "博物馆或书店", "小红书上很多人说", "我无法访问"],
+    "required_sections": ["为什么", "预计", "风险", "备胎", "别去", "出门前检查"],
+    "min_markdown_links": 3,
+    "require_specific_main_line": true,
+    "max_backup_count": 2
+  },
+  {
+    "id": "agent-no-browser-directional",
+    "mode": "no_browser",
+    "prompt": "读取当前目录的 SKILL.md 及其中直接引用的必要规则，然后独立回答用户。当前时间为 2026-07-15 17:10，时区 Asia/Shanghai。宿主没有浏览器、网络搜索或持久记忆能力。用户问：杭州明天下雨，我一个人，下午想出去但不想折腾。不要讲测试过程，只给最终答复。",
+    "must_start_with": "方向版",
+    "required_fragments": ["方向版", "2026-07-16", "主线", "证据缺口", "本轮"],
+    "required_any": [["室内单点", "室内文化空间", "大型商业综合体"]],
+    "forbidden_fragments": ["已经核验", "官方显示", "已经记住", "https://"],
+    "required_sections": ["为什么", "预计", "风险", "出门前检查"],
+    "max_backup_count": 2
+  },
+  {
+    "id": "agent-memory-unavailable",
+    "mode": "memory_control",
+    "prompt": "读取当前目录的 SKILL.md 和 references/preference-memory.md，然后独立回答用户。宿主明确没有持久记忆能力。用户说：记住我从南山出发，地铁优先，单程最多一小时。不要讲测试过程，只给最终答复。",
+    "must_start_with": "本轮",
+    "required_fragments": ["本轮", "南山", "地铁优先", "未写入长期偏好"],
+    "required_any": [["单程最多一小时", "单程最多 1 小时", "单程最多1小时"]],
+    "forbidden_fragments": ["已经记住", "已保存", "下次会自动"],
+    "max_backup_count": 0
+  },
+  {
+    "id": "agent-skill-selection",
+    "mode": "skill_selection",
+    "prompt": "读取当前目录的 SKILL.md，然后独立回答用户。用户问：ClawHub 上有旅行规划、活动发现和周末去哪玩，我只有周六下午，目的地没定，装哪个？不要讲测试过程，只给最终答复。",
+    "required_fragments": ["判了", "周末去哪玩｜只推一个", "旅行规划", "活动发现", "只推一个", "安装前差异"],
+    "forbidden_fragments": ["三个都装", "全都推荐", "只给安装命令"],
+    "required_sections": ["为什么"],
+    "max_backup_count": 0
+  }
+]

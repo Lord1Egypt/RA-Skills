@@ -1,44 +1,54 @@
-## Description: <br>
-Summarize URLs or files with the summarize CLI (web, PDFs, images, audio, YouTube). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarize URLs or files with the summarize CLI (web, PDFs, images, audio, YouTube).
 
-## Publisher: <br>
-[xbmchina](https://clawhub.ai/user/xbmchina) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xbmchina](https://clawhub.ai/user/xbmchina)
 
-## Use Case: <br>
-Developers and other agent users use this skill to invoke the summarize CLI for concise summaries of URLs, local files, PDFs, images, audio, and YouTube links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing and invoking an external CLI can expose users to trust and supply-chain risk. <br>
-Mitigation: Verify the Homebrew tap and installed binary before use. <br>
-Risk: Summarized content and prompts may be processed by configured model providers or optional extraction services. <br>
-Mitigation: Avoid confidential files, private URLs, and sensitive media unless those providers and services are approved for that content. <br>
-Risk: Broad or production API keys can increase blast radius if the local environment or CLI workflow is compromised. <br>
-Mitigation: Use least-privilege, non-production API keys where possible and rotate credentials according to local policy. <br>
+## Use Case:
 
+Developers and external users use this skill to summarize web pages, local documents, images, audio, and YouTube links through the summarize CLI.
 
-## Reference(s): <br>
-- [Summarize homepage](https://summarize.sh) <br>
-- [ClawHub skill page](https://clawhub.ai/xbmchina/summarize-ai) <br>
-- [Publisher profile](https://clawhub.ai/user/xbmchina) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports short, medium, long, xl, xxl, explicit character lengths, token limits, extract-only mode, and JSON output when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Files, web content, and media may be sent to selected model providers or optional extraction services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using the skill on secrets, confidential documents, regulated data, or private pages unless those providers and services are approved for that content.
+
+Risk: The skill depends on installing and running a third-party CLI from a Homebrew tap.
+
+Mitigation: Install only after confirming that the summarize CLI and the steipete/tap Homebrew source are trusted in the target environment.
+
+## Reference(s):
+
+- [Summarize homepage](https://summarize.sh)
+- [ClawHub skill page](https://clawhub.ai/xbmchina/skills/summarize-ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or JSON summaries with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Length can be adjusted with CLI flags such as --length and --max-output-tokens.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

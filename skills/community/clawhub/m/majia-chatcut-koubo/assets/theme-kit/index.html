@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>9:16 口播视频配色系统 · 8 套</title>
+  <link rel="stylesheet" href="components/portrait-talk-card.css">
+  <style>
+    :root { color-scheme: light; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #F3F4F6; color: #111827; font-family: var(--pt-font); }
+    .page { width: min(1500px, calc(100% - 48px)); margin: 0 auto; padding: 56px 0 72px; }
+    .page-head { display: flex; align-items: end; justify-content: space-between; gap: 32px; margin-bottom: 34px; }
+    h1 { margin: 0; font-size: 44px; letter-spacing: -.04em; }
+    .intro { margin: 12px 0 0; color: #6B7280; font-size: 18px; }
+    .badge { padding: 10px 14px; border: 1px solid #D1D5DB; border-radius: 999px; background: white; color: #4B5563; font-size: 14px; }
+    .grid { display: grid; grid-template-columns: repeat(4, 270px); justify-content: space-between; gap: 36px 24px; }
+    .theme-card { min-width: 0; }
+    .theme-title { display: flex; align-items: baseline; gap: 10px; margin-bottom: 9px; }
+    .theme-index { font-size: 14px; font-weight: 800; color: #9CA3AF; }
+    .theme-name { font-size: 22px; font-weight: 800; letter-spacing: -.02em; }
+    .theme-desc { margin: 0 0 14px; min-height: 42px; color: #6B7280; font-size: 14px; line-height: 1.5; }
+    .poster-preview { position: relative; width: 270px; height: 480px; overflow: hidden; border-radius: 18px; background: white; box-shadow: 0 20px 48px rgba(15,23,42,.14); }
+    .poster-preview .talk-card { transform: scale(.25); transform-origin: 0 0; }
+    .palette { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 14px; }
+    .swatch { height: 34px; border: 1px solid rgba(17,24,39,.08); border-radius: 8px; }
+    .hexes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 6px; color: #6B7280; font: 10px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace; text-align: center; }
+    .scenes { margin-top: 12px; color: #4B5563; font-size: 13px; line-height: 1.5; }
+    .page-foot { margin-top: 44px; padding: 20px 24px; border: 1px solid #E5E7EB; border-radius: 18px; background: white; color: #4B5563; line-height: 1.7; }
+    @media (max-width: 1220px) { .grid { grid-template-columns: repeat(2, 270px); justify-content: center; gap: 38px 56px; } }
+    @media (max-width: 680px) { .page { width: min(100% - 24px, 320px); padding-top: 28px; } .page-head { display: block; } .badge { display: inline-block; margin-top: 16px; } .grid { grid-template-columns: 270px; gap: 36px; } h1 { font-size: 34px; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="page-head">
+      <div>
+        <h1>9:16 口播视频配色与底图系统</h1>
+        <p class="intro">同一信息层级，8 套主题色、8 种布局；1080 × 1920，可直接替换人物与文案。</p>
+      </div>
+      <div class="badge">Design tokens · SVG backgrounds · HTML component</div>
+    </header>
+    <section class="grid" id="grid"></section>
+    <footer class="page-foot">使用原则：颜色只从 tokens/themes.json 与 tokens/themes.css 读取；底图不承载关键文字；人物区优先使用透明背景视频或抠图素材；长文案先减字，再缩字号。</footer>
+  </main>
+  <script src="components/portrait-talk-card.js"></script>
+  <script>
+    const grid = document.querySelector('#grid');
+    for (const [i, theme] of PortraitTalkThemeKit.THEMES.entries()) {
+      const section = document.createElement('section');
+      section.className = 'theme-card';
+      section.innerHTML = `
+        <div class="theme-title"><span class="theme-index">${String(i + 1).padStart(2, '0')}</span><span class="theme-name">${theme.name}</span></div>
+        <p class="theme-desc">${theme.description}</p>
+        <div class="poster-preview">${PortraitTalkThemeKit.cardMarkup({ theme: theme.id, layout: theme.layout })}</div>
+        <div class="palette">${theme.palette.map(c => `<span class="swatch" style="background:${c}"></span>`).join('')}</div>
+        <div class="hexes">${theme.palette.map(c => `<span>${c.slice(1)}</span>`).join('')}</div>
+        <div class="scenes">推荐：${theme.recommendedFor.join(' / ')}</div>`;
+      grid.appendChild(section);
+    }
+  </script>
+</body>
+</html>

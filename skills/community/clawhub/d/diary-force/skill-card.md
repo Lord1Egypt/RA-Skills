@@ -1,47 +1,58 @@
-## Description: <br>
-Diary Force prompts daily journaling, structures diary input, applies thinking-model analysis, and can internalize entries into a local memory workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diary Force helps agents prompt daily journaling, structure diary entries, run thinking-model analysis, and sync entries into local memory files.
 
-## Publisher: <br>
-[YHlorra](https://clawhub.ai/user/YHlorra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-原创技能，可商用 <br>
+## Publisher:
 
+[yhlorra](https://clawhub.ai/user/yhlorra)
 
-## Use Case: <br>
-External users and developers use this skill to maintain a daily journaling habit, turn personal reflections into structured Markdown, and optionally analyze entries with thinking models before saving them to a memory repository. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+原创技能，可商用
 
-## Known Risks and Mitigations: <br>
-Risk: Personal diary entries, memory files, or AI-generated reflections may be committed and pushed automatically through Git. <br>
-Mitigation: Use only a private intended repository, verify repository remotes before use, and disable or gate Git push behavior unless automatic upload is desired. <br>
-Risk: Hard-coded diary and memory paths may point to unintended local locations. <br>
-Mitigation: Review and change the diary and memory paths before running the scripts. <br>
-Risk: Scheduled cron execution may prompt, analyze, save, or upload diary content without a fresh per-entry confirmation. <br>
-Mitigation: Disable cron or require explicit confirmation before writing files, calling the model, or pushing changes. <br>
-Risk: Sensitive personal, medical, financial, or work content may be sent to the configured model or stored in a repository. <br>
-Mitigation: Avoid highly sensitive content unless model privacy behavior and repository visibility have been verified. <br>
+## Use Case:
 
+External users and AI-native developers use Diary Force to keep a daily journal, convert free-form reflections into structured Markdown entries, and optionally analyze entries with thinking models before syncing them into a local memory system.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/YHlorra/diary-force) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
-- [Evaluation prompts](artifact/evals/evals.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown diary entries, thinking-model analysis, and CLI status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write diary and memory files locally and may trigger Git commit and push behavior when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Sensitive diary content may be written to local diary and memory paths, committed into Git history, and pushed to the configured remote.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure paths before use, restrict repository contents, review generated entries, and require confirmation before any commit or push.
+
+Risk: Broad Git staging can include unrelated local files from the memory vault parent directory.
+
+Mitigation: Replace broad staging with explicit file paths and inspect Git status before committing.
+
+Risk: Thinking-model analysis can send diary text to an external OpenCode-backed model.
+
+Mitigation: Avoid submitting sensitive entries unless the model provider is approved; redact private content or disable external analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yhlorra/skills/diary-force)
+- [SkillPay](https://skillpay.me)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown diary content, plain-text prompts, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local diary and memory files and trigger Git commands when its scripts are run.]
+
+## Skill Version(s):
+
+2.0.0 (source: ClawHub release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

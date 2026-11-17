@@ -1,41 +1,55 @@
-## Description: <br>
-Generates daily Lithuanian Facebook posts for Qvicker.lt to promote local services and attract clients and service providers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates daily Lithuanian Facebook posts for Qvicker.lt that promote local service providers and customer use cases.
 
-## Publisher: <br>
-[netas369](https://clawhub.ai/user/netas369) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[netas369](https://clawhub.ai/user/netas369)
 
-## Use Case: <br>
-Marketing operators or agents use this skill to draft Lithuanian Facebook content for Qvicker.lt, including service examples, platform benefits, testimonial-style stories, and calls to action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Lithuania <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may publish directly to Facebook without clear approval, account limits, or page confirmation. <br>
-Mitigation: Configure the workflow to draft first, require explicit approval for each post, and confirm the exact Facebook page or account before publishing. <br>
-Risk: The skill asks for realistic testimonial-style content, which could create misleading fabricated endorsements. <br>
-Mitigation: Use only verified testimonials, or clearly label any illustrative story as hypothetical. <br>
+## Use Case:
 
+Social media and marketing operators use this skill to draft daily Lithuanian Facebook content for Qvicker.lt, with post themes covering service examples, platform benefits, and customer-style stories.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/netas369/facebook-poster) <br>
-- [Qvicker.lt](https://www.qvicker.lt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Guidance] <br>
-**Output Format:** [Plain-text Lithuanian Facebook post copy with emojis, a hook, and a call to action] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May browse Qvicker.lt and may publish through facebook.post_update when that tool is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; release changelog text references 1.1.0) <br>
+Risk: The skill may publish branded Qvicker.lt content to Facebook without an approval gate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure the agent to draft first and require explicit human approval before publishing.
+
+Risk: The skill asks for realistic customer-style testimonials that may be mistaken for verified claims.
+
+Mitigation: Use testimonial-style content only when claims are verified or clearly labeled as fictional examples.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/netas369/skills/facebook-poster)
+- [Publisher profile](https://clawhub.ai/user/netas369)
+- [Qvicker.lt](https://www.qvicker.lt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, API Calls, Guidance]
+
+**Output Format:** [Lithuanian Facebook post text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May publish to Facebook when an agent has an enabled Facebook posting tool.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

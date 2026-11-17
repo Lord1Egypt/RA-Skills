@@ -1,39 +1,54 @@
-## Description: <br>
-End-to-end virtual screening workflow: SMILES to 3D SDF, ligand/receptor preparation to PDBQT, batch AutoDock Vina docking, affinity ranking, and Top-N complex export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+End-to-end virtual screening workflow: SMILES to 3D SDF, ligand/receptor preparation to PDBQT, batch AutoDock Vina docking, affinity ranking, and Top-N complex export.
 
-## Publisher: <br>
-[ning-kun](https://clawhub.ai/user/ning-kun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ning-kun](https://clawhub.ai/user/ning-kun)
 
-## Use Case: <br>
-Drug discovery researchers and computational chemistry developers use this skill to automate small-molecule virtual screening from SMILES input through docking, ranking, and top-complex export. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crafted molecule filenames, ligand names, or output paths could cause unintended local command execution. <br>
-Mitigation: Use trusted molecule files and safe ASCII names without shell metacharacters, run the workflow in an isolated conda or virtual environment, and prefer a patched version that sanitizes names and uses argument-list subprocess calls. <br>
+## Use Case:
 
+Developers and computational chemistry teams use this skill to automate small-molecule virtual screening from SMILES libraries against protein receptor structures, including molecule preparation, docking, affinity ranking, and top-complex export.
 
-## Reference(s): <br>
-- [AutoDock Vina Parameter Guide](references/vina_param_guide.md) <br>
-- [Pocket Estimation from Co-Crystallized Ligand](references/pocket_from_ligand.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python scripts, command-line examples, generated docking result files, CSV rankings, and exported PDB complexes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs local chemistry and docking tools and writes staged output directories for molecule conversion, preparation, docking, and ranking.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server evidence release.version) <br>
+Risk: Crafted ligand names or paths could trigger shell command execution or write files outside the intended output directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill in an isolated environment, and use only trusted SMILES files, ligand/input filenames, and output paths until shell command handling and filename validation are fixed.
+
+Risk: Shared or sensitive directories could expose unintended files or make generated docking outputs hard to trust.
+
+Mitigation: Use a dedicated non-sensitive working directory and review generated docking-result files before using or sharing them.
+
+## Reference(s):
+
+- [AutoDock Vina Parameter Guide](references/vina_param_guide.md)
+- [Pocket estimation from a co-crystallized ligand](references/pocket_from_ligand.py)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Files, Analysis]
+
+**Output Format:** [Markdown guidance with bash commands plus generated CSV, TXT, SDF, PDBQT, PDB, and Vina log files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes docking results under the requested output directory, including ranked scores and top-N complex exports.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-Count string length deterministically for text with hard limits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Count string length deterministically for text with hard limits. Use this skill when a post, reply, caption, commit message, or other text must stay within a maximum character count.
 
-## Publisher: <br>
-[evandataforge](https://clawhub.ai/user/evandataforge) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evandataforge](https://clawhub.ai/user/evandataforge)
 
-## Use Case: <br>
-External users and developers use this skill to verify that final posts, replies, captions, commit messages, or other text fit within a maximum character count before publication or saving. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Platform character limits may use URL, Unicode, or token weighting rules that differ from Python string length. <br>
-Mitigation: Use this skill as a deterministic local gate and add a platform-specific validator when exact enforcement matters. <br>
-Risk: Text can change after counting, making the reported result stale. <br>
-Mitigation: Count the exact final text immediately before posting or saving, including spaces, punctuation, hashtags, and URLs. <br>
+## Use Case:
 
+Developers, writers, and agents use this skill to check final text against strict character limits before posting or saving content. It is useful for posts, replies, captions, commit messages, and other text where exact Python string length is an acceptable local gate.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/evandataforge/character-count) <br>
-- [Publisher profile](https://clawhub.ai/user/evandataforge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON object or plain text key-value lines, with Markdown guidance and shell command examples for agent use] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Counts Python string length, reports chars, limit, remaining, and ok status, and requires python3.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Automatic invocation may process sensitive draft text when an agent checks content against a character limit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm when character counting is being performed for sensitive drafts and keep execution local to the bundled script.
+
+Risk: The skill counts Python string length and may not match platform-specific weighting for URLs, Unicode, or special tokens.
+
+Mitigation: Use a platform-specific validation step when exact target-platform enforcement is required.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/evandataforge/skills/character-count)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, plus JSON or plain text output from the bundled script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Counts exact Python string length, reports chars, limit, remaining, and ok status.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-Volcseed submits prompt-based image-editing jobs with reference image URLs to configured Tianshu/Volcseed proxy endpoints and fetches task results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Volcseed helps an agent submit image-editing prompts with reference image URLs and fetch the resulting task output.
 
-## Publisher: <br>
-[wangshengli0421](https://clawhub.ai/user/wangshengli0421) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangshengli0421](https://clawhub.ai/user/wangshengli0421)
 
-## Use Case: <br>
-Developers and image workflow users use this skill to submit prompt-based image edits with reference image URLs and poll Volcseed task results through configured Tianshu credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Configured proxy endpoints receive prompts and referenced image URLs. <br>
-Mitigation: Use only trusted Tianshu/Volcseed proxy endpoints and submit private image URLs or sensitive prompts only when that transfer is intended. <br>
-Risk: Credentials in TS_TOKEN and AIZNT_PROXY_URLS can authorize user-run submit and fetch commands. <br>
-Mitigation: Treat both values as secrets and avoid sharing logs, examples, or shell history that expose them. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to call the Volcseed image-editing submit and fetch flow with a prompt, reference image URLs, and a task ID.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wangshengli0421/aiznt-volcseed) <br>
-- [Publisher Profile](https://clawhub.ai/user/wangshengli0421) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, JSON] <br>
-**Output Format:** [Text guidance and shell commands that return JSON task data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TS_TOKEN and AIZNT_PROXY_URLS environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A bearer token is sent to URLs supplied through AIZNT_PROXY_URLS.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after verifying that AIZNT_PROXY_URLS contains HTTPS endpoints controlled by the intended Volcseed or Tianshu service.
+
+Risk: Prompts and image URLs are transmitted to the configured external service.
+
+Mitigation: Do not submit sensitive prompts, private image URLs, or regulated data unless the service and data handling terms are approved for that use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangshengli0421/skills/aiznt-volcseed)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON service responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TS_TOKEN and AIZNT_PROXY_URLS; submit output is a task response and fetch output is the task result JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

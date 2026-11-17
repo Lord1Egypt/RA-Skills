@@ -1,40 +1,57 @@
-## Description: <br>
-OpenCLI provides command-line guidance for website access and browser automation across public APIs, logged-in browser sessions, and local CLI integrations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenCLI helps agents use website command-line commands and browser automation for public APIs, logged-in site workflows, and selected external CLIs.
 
-## Publisher: <br>
-[chensu1234](https://clawhub.ai/user/chensu1234) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chensu1234](https://clawhub.ai/user/chensu1234)
 
-## Use Case: <br>
-Developers and agent operators use this skill to run opencli commands for website search, news, social feeds, browser interaction, screenshots, scraping, and selected external CLI tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents to use logged-in browser sessions, screenshots, form entry, clicks, chained operations, and automation that may affect account or local data. <br>
-Mitigation: Use a separate low-risk browser profile and require explicit confirmation before logged-in commands, screenshots, form entry, clicks, chained operations, or data-changing actions. <br>
-Risk: The skill may depend on a separate opencli executable and external CLI auto-install behavior. <br>
-Mitigation: Install only when the opencli executable is trusted, and disable or require approval for automatic installs. <br>
+## Use Case:
 
+Developers and external users can use this skill to ask an agent to run OpenCLI commands for website search, feeds, rankings, page interaction, screenshots, scraping, and supported external CLI workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chensu1234/opencli-hub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; opencli command output is structured text with optional JSON for supported commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May rely on a local opencli executable, Chrome session state, and external CLI tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can drive a logged-in Chrome session, inspect pages, take screenshots, click controls, and type into websites.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in a constrained environment and require user confirmation before sensitive browser, account, payment, posting, or data-changing actions.
+
+Risk: The skill can trigger installation of missing external command-line tools.
+
+Mitigation: Require explicit approval before installation and review the tool source, package manager action, and requested permissions first.
+
+Risk: Browser automation and scraping may expose private account data or page content in agent-visible outputs.
+
+Mitigation: Limit use to appropriate accounts and pages, avoid sensitive sessions, and redact private content before sharing outputs outside the local workflow.
+
+## Reference(s):
+
+- [OpenCLI ClawHub skill page](https://clawhub.ai/chensu1234/skills/opencli-hub)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or structured text with inline shell commands; some OpenCLI commands may return JSON when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include command results, browser state summaries, scraped page content, screenshots, and setup guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

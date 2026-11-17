@@ -1,0 +1,54 @@
+{
+  "_comment": [
+    "Config for create_inbound_plan.py. Copy, fill in your own values, never commit real addresses.",
+    "num_boxes x per_box must equal total_qty for every SKU, otherwise Amazon rejects the packing info.",
+    "All SKUs must fit in one box type; if Amazon returns more than one packing group they cannot."
+  ],
+
+  "plan_name": "<free-text plan name shown in Seller Central>",
+  "channel": "<your freight channel name, free text, only used in the result file>",
+  "marketplace_id": "ATVPDKIKX0DER",
+
+  "num_boxes": 5,
+  "box": {
+    "length": 40.0,
+    "width": 30.0,
+    "height": 30.0,
+    "dimension_unit": "CM",
+    "weight": 7.5,
+    "weight_unit": "KG"
+  },
+
+  "skus": [
+    {"msku": "<YOUR-MSKU-1>", "total_qty": 70, "per_box": 14},
+    {"msku": "<YOUR-MSKU-2>", "total_qty": 60, "per_box": 12},
+    {"msku": "<YOUR-MSKU-3>", "total_qty": 40, "per_box": 8}
+  ],
+
+  "source_address": {
+    "name": "<shipper name>",
+    "addressLine1": "<street>",
+    "city": "<city>",
+    "stateOrProvinceCode": "<state code>",
+    "postalCode": "<postal code>",
+    "countryCode": "CN",
+    "phoneNumber": "<phone>"
+  },
+
+  "contact": {
+    "name": "<pickup contact name>",
+    "phoneNumber": "<pickup contact phone>",
+    "email": "<pickup contact email>"
+  },
+
+  "ready_to_ship": "2030-01-01T00:00Z",
+
+  "carrier": {
+    "_comment": "Run list_carriers.py first to see the exact strings your account is offered.",
+    "shipping_mode": "OCEAN_LCL",
+    "shipping_solution": "AMAZON_PARTNERED_CARRIER",
+    "name": "<exact carrier name string from list_carriers.py>"
+  },
+
+  "max_carrier_retries": 12
+}

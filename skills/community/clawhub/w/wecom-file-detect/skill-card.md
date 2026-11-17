@@ -1,41 +1,49 @@
-## Description: <br>
-企业微信聊天文件获取 - 从 ~/.openclaw/media/inbound/ 目录检测和获取通过聊天传递的文件，当用户提到获取文件、发送文件、附件等请求时激活。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+企业微信聊天文件获取 - 从 ~/.openclaw/media/inbound/ 目录检测和获取通过聊天传递的文件；当用户提到获取文件、发送文件、附件等请求时激活。
 
-## Publisher: <br>
-[chongjie-ran](https://clawhub.ai/user/chongjie-ran) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chongjie-ran](https://clawhub.ai/user/chongjie-ran)
 
-## Use Case: <br>
-Employees or agents handling WeCom attachments use this skill to locate recent inbound files, identify common document, image, video, and archive types, read suitable file contents, and archive important files when explicitly approved. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad file requests can cause the agent to scan local WeCom inbound attachments that may include sensitive content. <br>
-Mitigation: Use explicit filenames when possible, or have the agent confirm the target file before opening or reading it. <br>
-Risk: Copying attachments into persistent work folders can retain sensitive documents longer than intended. <br>
-Mitigation: Require clear approval before copying files into companywork/ or otherwise retaining WeCom attachments. <br>
+## Use Case:
 
+Employees and agents use this skill to locate, inspect, and archive files received through WeCom chat from the local inbound attachment directory.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chongjie-ran/wecom-file-detect) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/chongjie-ran) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, markdown] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local file paths under ~/.openclaw/media/inbound/ and companywork/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill may list, read, or copy local WeCom inbound attachments without a clearly scoped file request.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require a specific current attachment or filename, confirm before opening or copying files, and avoid selecting files only by recency.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chongjie-ran/skills/wecom-file-detect)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and file-handling guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May identify, read, and copy local WeCom inbound attachments when invoked by user file requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

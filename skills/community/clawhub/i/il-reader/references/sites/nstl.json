@@ -1,0 +1,287 @@
+{
+  "version": "2.4.0",
+  "source_id": "nstl",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:00:01.656Z",
+  "entry": {
+    "url": "https://www.nstl.gov.cn/",
+    "final_url": "https://www.nstl.gov.cn/",
+    "title": "NSTL国家科技图书文献中心",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:00:01.656Z",
+    "identity": {
+      "declared_name": "国家科技图书文献中心 NSTL",
+      "hostname": "www.nstl.gov.cn",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "全国开通数据库",
+        "href": "https://www.nstl.gov.cn/nationwide.html",
+        "target": "_blank"
+      },
+      {
+        "text": "战略生物资源",
+        "href": "http://portal.las.ac.cn/newIndex?serverId=163",
+        "target": "_blank"
+      },
+      {
+        "text": "深海资源开发",
+        "href": "http://portal.las.ac.cn/newIndex?serverId=205",
+        "target": "_blank"
+      },
+      {
+        "text": "国家科技图书文献中心召开服务站工作会议\n为持续完善国家科技图书文献中心（简称NSTL）全国服务体系，深化服务站与中心和成员单位的协同共建，以科技文献智能化服务支撑科技创新与产业创新深度融合，4月21—23日，NSTL2026年服务站工作会议在福州顺利召开。本次会议紧扣 “十五五” 规划开局之年关键节点，聚焦科技文献资源",
+        "href": "https://www.nstl.gov.cn/Portal/news_details.html?id=1f121cda6d794dafa4459a156f5690c7",
+        "target": "_blank"
+      },
+      {
+        "text": "资源与服务",
+        "href": "https://www.nstl.gov.cn/Portal/zyyfw_zyjs.html",
+        "target": ""
+      },
+      {
+        "text": "文献资源建设",
+        "href": "https://www.nstl.gov.cn/Portal/wxzyjs.html",
+        "target": ""
+      },
+      {
+        "text": "帮助",
+        "href": "https://www.nstl.gov.cn/help/zzzx.html",
+        "target": ""
+      }
+    ],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "textarea",
+      "type": null,
+      "text": "用自然语言描述您的需求进行检索",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "用自然语言描述您的需求进行检索",
+      "name": "",
+      "id": "txtSearchAI",
+      "css": "#txtSearchAI",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#txtSearchAI"
+      },
+      "observed_url": "https://www.nstl.gov.cn/",
+      "observed_at": "2026-10-09T08:59:59.913Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "请选择",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "serviceStation_list",
+      "css": "#serviceStation_list",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#serviceStation_list"
+      },
+      "observed_url": "https://www.nstl.gov.cn/",
+      "observed_at": "2026-10-09T08:59:59.913Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "请选择",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "memberUnit_list",
+      "css": "#memberUnit_list",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#memberUnit_list"
+      },
+      "observed_url": "https://www.nstl.gov.cn/",
+      "observed_at": "2026-10-09T08:59:59.913Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "请选择",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "friendshipLinks_list",
+      "css": "#friendshipLinks_list",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#friendshipLinks_list"
+      },
+      "observed_url": "https://www.nstl.gov.cn/",
+      "observed_at": "2026-10-09T08:59:59.913Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "nstl:record-lookup",
+      "source_id": "nstl",
+      "task_kind": "record-lookup",
+      "status": "entry_observed",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.nstl.gov.cn/",
+      "controls": [
+        {
+          "tag": "textarea",
+          "type": null,
+          "text": "用自然语言描述您的需求进行检索",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "用自然语言描述您的需求进行检索",
+          "name": "",
+          "id": "txtSearchAI",
+          "css": "#txtSearchAI",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#txtSearchAI"
+          },
+          "observed_url": "https://www.nstl.gov.cn/",
+          "observed_at": "2026-10-09T08:59:59.913Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "请选择",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "serviceStation_list",
+          "css": "#serviceStation_list",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#serviceStation_list"
+          },
+          "observed_url": "https://www.nstl.gov.cn/",
+          "observed_at": "2026-10-09T08:59:59.913Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "请选择",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "memberUnit_list",
+          "css": "#memberUnit_list",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#memberUnit_list"
+          },
+          "observed_url": "https://www.nstl.gov.cn/",
+          "observed_at": "2026-10-09T08:59:59.913Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "请选择",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "friendshipLinks_list",
+          "css": "#friendshipLinks_list",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#friendshipLinks_list"
+          },
+          "observed_url": "https://www.nstl.gov.cn/",
+          "observed_at": "2026-10-09T08:59:59.913Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": "nstl",
+    "quiz_entries": [
+      "quiz-entry-104"
+    ],
+    "example_ids": [],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:00:01.656Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/nstl-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/nstl-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

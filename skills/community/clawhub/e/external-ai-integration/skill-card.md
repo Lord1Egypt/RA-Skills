@@ -1,41 +1,60 @@
-## Description: <br>
-Leverage external AI models such as ChatGPT, Claude, Gemini, and Hugging Face as on-demand tools through browser automation and optional API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Leverage external AI models such as ChatGPT, Claude, Gemini, and Hugging Face-hosted models as on-demand tools through browser automation and optional Hugging Face API calls.
 
-## Publisher: <br>
-[konscious0beast](https://clawhub.ai/user/konscious0beast) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[konscious0beast](https://clawhub.ai/user/konscious0beast)
 
-## Use Case: <br>
-Developers and agent operators use this skill to route selected prompts to external AI services for second opinions, summarization, translation, code review, brainstorming, and specialized model outputs while keeping the main assistant in control of the workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected prompts may be sent to external AI providers through logged-in accounts or a Hugging Face token. <br>
-Mitigation: Use only with content approved for those providers, and avoid secrets, private customer data, regulated data, or proprietary code unless the provider is approved for that content. <br>
-Risk: Manual tests can expose Hugging Face token prefixes in logs. <br>
-Mitigation: Avoid running the manual test script in shared logs, and keep tokens in approved secret storage or environment variables. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/konscious0beast/external-ai-integration) <br>
-- [ChatGPT web interface](https://chatgpt.com) <br>
-- [Hugging Face Inference API model endpoint](https://api-inference.huggingface.co/models/{model}) <br>
+## Use Case:
 
+Developers and agent operators use this skill to route suitable tasks to external AI services for second opinions, summarization, translation, code review, brainstorming, and other specialized model-assisted work while keeping the main agent in control of the workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with code and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require logged-in external AI accounts or an HF_TOKEN for Hugging Face API calls.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts or workspace content may be sent to third-party AI services without an explicit sensitivity gate.
+
+Mitigation: Use only non-sensitive prompts by default, or require approval and redaction before any external AI call.
+
+Risk: Credentials used for Hugging Face or browser-based services could be exposed through broad configuration paths, curl usage, or logs.
+
+Mitigation: Use narrowly scoped tokens from a controlled configuration path, avoid the curl fallback, and do not log token fragments.
+
+Risk: External AI responses may be incorrect, misleading, or unsuitable for direct use in higher-impact decisions.
+
+Mitigation: Validate external model outputs before incorporating them into final answers, code changes, or operational guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/konscious0beast/skills/external-ai-integration)
+- [Skill instructions](artifact/SKILL.md)
+- [External AI integration implementation](artifact/external_ai_integration.py)
+- [ChatGPT web application](https://chatgpt.com)
+- [Hugging Face Inference API endpoint pattern](https://api-inference.huggingface.co/models/{model})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell examples; external service responses may be returned as text or JSON-like API payloads.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May incorporate outputs from third-party AI services; no fixed token or response-size limits are specified.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

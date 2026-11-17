@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn7216v35y9x169y7168c2eagd858xq0",
-  "slug": "lobster-memory-system",
+  "name": "lobster-memory-system",
   "version": "1.0.0",
-  "publishedAt": 1776767248398
+  "slug": "lobster-memory-system",
+  "author": "Alan & 麻小",
+  "description": "龙虾记忆体系统 - 模块化、版本化、自动备份的 AI 记忆管理方案",
+  "tags": ["memory", "backup", "persistence", "lobster", "openclaw"],
+  "license": "MIT",
+  "homepage": "https://github.com/openclaw/lobster-memory-system",
+  "createdAt": "2026-04-21T16:44:00+08:00"
 }

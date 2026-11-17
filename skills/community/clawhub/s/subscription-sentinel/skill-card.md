@@ -1,47 +1,59 @@
-## Description: <br>
-Subscription Sentinel is a financial data agent that scans email receipts, infers subscription billing cycles, and alerts or assists with cancellation before unwanted renewals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Subscription Sentinel helps an agent inspect recent email receipts, infer subscription billing cycles, alert users about upcoming renewals, and offer cancellation guidance.
 
-## Publisher: <br>
-[JoeySome](https://clawhub.ai/user/JoeySome) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joeysome](https://clawhub.ai/user/joeysome)
 
-## Use Case: <br>
-External users running OpenClaw use this skill to analyze recent billing email receipts, maintain a local subscription record, forecast upcoming renewals, and receive cancellation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes sensitive email receipts and billing details. <br>
-Mitigation: Use it only with a trusted email integration and review the requested email access before running a scan. <br>
-Risk: The skill persists inferred subscription history in subscriptions.json. <br>
-Mitigation: Periodically inspect, protect, or delete subscriptions.json if retained billing history is not desired. <br>
-Risk: Browser-driven cancellation can change paid services or account status. <br>
-Mitigation: Require the agent to show the service, account, official site, supporting evidence, and consequences before each cancellation action. <br>
-Risk: Subscription inference can be incomplete or wrong, especially for receipts routed through Apple, PayPal, or Google Play. <br>
-Mitigation: Verify important findings against account pages or bank statements before relying on an alert or cancellation recommendation. <br>
+## Use Case:
 
+External users can use this skill with a trusted OpenClaw workspace to review subscription-related email receipts, track inferred billing schedules, and receive timely renewal or cancellation options.
 
-## Reference(s): <br>
-- [Subscription Sentinel on ClawHub](https://clawhub.ai/JoeySome/subscription-sentinel) <br>
-- [JoeySome publisher profile](https://clawhub.ai/user/JoeySome) <br>
-- [Declared project homepage](https://github.com/your-username/SubscriptionSentinel) <br>
-- [OpenClaw project](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance, Shell commands] <br>
-**Output Format:** [Markdown report with tables, plus a local subscriptions.json state file when persistence tools are available.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires trusted email access; may use web search or browser control for cancellation assistance when explicitly authorized.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles sensitive email and billing data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a private workspace with trusted email access, and protect or delete subscriptions.json when it is no longer needed.
+
+Risk: Cancellation guidance or browser-assisted cancellation can change user accounts or paid services.
+
+Mitigation: Require user approval for each exact service and final cancellation step before taking action.
+
+Risk: Subscription detection and billing-cycle inference may be incomplete or incorrect.
+
+Mitigation: Review detected subscriptions against primary billing records before relying on alerts or cancellation recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/joeysome/skills/subscription-sentinel)
+- [OpenClaw homepage metadata](https://github.com/your-username/SubscriptionSentinel)
+- [OpenClaw framework](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Markdown reports with subscription tables, cancellation guidance, and optional JSON state updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports should match the user's conversation language and are based on available email receipt evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

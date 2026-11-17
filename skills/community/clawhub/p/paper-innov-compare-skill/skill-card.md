@@ -1,42 +1,55 @@
-## Description: <br>
-Compares innovation points across multiple research papers in a folder, summarizes each paper, identifies cross-paper similarities or complementarities, and proposes combined research directions for up to 20 papers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+对一个包含最多 20 篇论文的文件夹进行批量阅读、创新点总结、横向对比，并挖掘可融合的研究方向。
 
-## Publisher: <br>
-[orbisz](https://clawhub.ai/user/orbisz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[orbisz](https://clawhub.ai/user/orbisz)
 
-## Use Case: <br>
-Researchers, students, and technical reviewers use this skill to compare batches of related papers and find plausible cross-paper research opportunities. It helps agents maintain per-paper progress, summarize innovation points, compare methods and findings, and draft a consolidated comparison report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review says the skill instructs agents to run commands and write files without confirmation. <br>
-Mitigation: Require explicit user confirmation before package installation, shell commands, or file writes, and run the skill only on a copy of the paper folder or a dedicated output directory. <br>
-Risk: The artifact includes a self-evolution workflow that writes diary entries or proposes changes to SKILL.md after execution failures. <br>
-Mitigation: Remove or ignore the self-evolution section unless the user explicitly asks for persistent diary files or skill-change proposals. <br>
-Risk: Generated paper comparisons and combined research ideas may include unsupported inferences when paper text extraction is incomplete or when the agent extrapolates beyond the cited papers. <br>
-Mitigation: Keep direct paper-supported claims separate from hypotheses, mark uncertain ideas clearly, and review the final report before using it for research planning or publication. <br>
+## Use Case:
 
+Researchers, students, and research engineers use this skill to compare papers in a selected folder, summarize each paper's innovations, and identify complementary research directions for literature reviews, topic selection, or follow-up experiments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/orbisz/paper-innov-compare-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Chinese research-paper comparison notes, Markdown summaries, JSON progress state, extracted text files, and possible DOCX comparison reports depending on the workflow used] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill is intended for folders with no more than 20 papers and may write progress files, extracted text, summaries, and final reports into the paper folder or a selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill asks agents to run commands without confirmation and writes progress, extracted text, and report files in the selected paper folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, run it only on a chosen paper folder, and use an isolated environment when handling untrusted papers.
+
+Risk: The skill includes a self-evolution workflow that can persist behavior changes into future skill runs.
+
+Mitigation: Disable or ignore the diary and pull-request self-evolution workflow unless a human explicitly reviews and approves proposed changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/orbisz/skills/paper-innov-compare-skill)
+- [Skill instructions](artifact/SKILL.md)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Chinese Markdown summaries with JSON progress state and extracted-text files; the skill instructions also describe a generated comparison report.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processes up to 20 papers and writes progress plus output files in the user-selected paper folder.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

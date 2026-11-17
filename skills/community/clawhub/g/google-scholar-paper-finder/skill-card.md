@@ -1,45 +1,60 @@
-## Description: <br>
-Helps researchers expand a topic into real-time Google Scholar searches, deduplicate candidate papers, and rank the results with venue-quality signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds and ranks relevant academic papers from Google Scholar using real-time Scholar retrieval, query expansion, deduplication, and local venue-quality scoring.
 
-## Publisher: <br>
-[figpad](https://clawhub.ai/user/figpad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[figpad](https://clawhub.ai/user/figpad)
 
-## Use Case: <br>
-Researchers, graduate students, academic writers, and developers use this skill to turn a research topic or seed paper into a Google Scholar literature search and a ranked reading table. It is useful when a user needs transparent search queries, source evidence, venue-quality tags, access links, and concise reasons for keeping or checking each paper. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Research queries and retrieved paper metadata flow through the connected Google Scholar MCP server. <br>
-Mitigation: Use the skill only with a trusted Scholar MCP server, and report when the server is unavailable, blocked, rate-limited, or returns no usable data. <br>
-Risk: Venue metrics, citation counts, access links, and local quality data may be incomplete or outdated. <br>
-Mitigation: Treat rankings as literature triage and manually verify important citations, venue details, abstracts, and access links before relying on them. <br>
-Risk: Replacing failed Scholar retrieval with model memory or unrelated search sources could create fabricated or misleading paper records. <br>
-Mitigation: Fail closed when Google Scholar MCP evidence is unavailable, and clearly label any optional comparison source outside the Google Scholar result table. <br>
+## Use Case:
 
+Researchers, graduate students, and academic writers use this skill to turn a research topic or seed paper into a ranked literature table with source evidence, venue metrics, access links, and concise recommendation reasons.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/figpad/google-scholar-paper-finder) <br>
-- [Search Workflow](references/search-workflow.md) <br>
-- [Quality Scoring](references/quality-scoring.md) <br>
-- [Venue Quality Data](data/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown table by default, with optional enriched JSON or Markdown files from the scoring script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes search queries used, source labels, candidate-pool counts, dedupe counts, access links, recommendation tiers, ranking reasons, and limitations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill depends on a working Google Scholar MCP server and may be blocked, rate-limited, or return incomplete records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Fail closed when Scholar retrieval is unavailable and report the retrieval limitation instead of substituting another source or model memory.
+
+Risk: External candidate metadata can appear in generated Markdown reports and may include unsafe or misleading raw HTML.
+
+Mitigation: Review generated Markdown with raw HTML disabled or in a sanitized viewer, especially when metadata comes from untrusted sources.
+
+Risk: Venue-quality matches can be missing or uncertain, which may affect ranking confidence.
+
+Mitigation: Mark unmatched venues as unknown, keep relevance as the primary ranking signal, and require manual checks when relevance or metadata cannot be verified.
+
+## Reference(s):
+
+- [Search Workflow](references/search-workflow.md)
+- [Quality Scoring](references/quality-scoring.md)
+- [Venue Quality Data](data/README.md)
+- [ClawHub Skill Page](https://clawhub.ai/figpad/skills/google-scholar-paper-finder)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown table by default, with optional enriched JSON and Markdown files from the scoring script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes search queries used, source/tool status, candidate and dedupe counts, expansion terms, inclusion and exclusion notes, and limitations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

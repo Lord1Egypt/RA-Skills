@@ -1,42 +1,53 @@
-## Description: <br>
-Creates and wires a Feishu-only OpenClaw agent by guiding routing selection, updating OpenClaw bindings, restarting the gateway, and verifying the result. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and wire a new OpenClaw agent with a fixed Feishu-only workflow for agent runtime setup, routing configuration, gateway restart, and binding verification.
 
-## Publisher: <br>
-[xiaowen-0725](https://clawhub.ai/user/xiaowen-0725) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xiaowen-0725](https://clawhub.ai/user/xiaowen-0725)
 
-## Use Case: <br>
-Developers and operators use this skill to create a new Feishu-routed OpenClaw agent, update account or peer bindings, preserve existing routes, and verify the gateway configuration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Feishu app secrets can be passed through command arguments and included in command output summaries. <br>
-Mitigation: Avoid sharing command output, prefer a safer secret source, and redact appSecret values from summaries before use. <br>
-Risk: The skill makes persistent OpenClaw routing changes and restarts the gateway. <br>
-Mitigation: Review the planned openclaw.json changes, keep the generated backup, and verify bindings after restart. <br>
-Risk: Incorrect account or peer identifiers could route a Feishu group or account to the wrong agent. <br>
-Mitigation: Confirm the routing mode, account ID, peer kind, and peer ID before applying changes; use the route conflict checks and binding verification output. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Routing Modes Reference](references/routing-modes.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/xiaowen-0725/openclaw-create-feishu-agent-skills) <br>
+## Use Case:
 
+Developers and operators use this skill to create an OpenClaw agent and update Feishu routing for either a dedicated bot account or a peer-based group/direct binding. It guides required inputs, backs up and upserts OpenClaw configuration, restarts the gateway, and reports binding verification results.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Feishu-only workflow; may update OpenClaw configuration and trigger gateway restart.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Feishu app secrets can be exposed when passed through command-line arguments, terminal output, shell history, or logs.
+
+Mitigation: Do not pass real Feishu app secrets through --app-secret unless secret handling is changed to use a protected input path and redact output; rotate any secret that may already have been exposed.
+
+Risk: The skill can make persistent OpenClaw Feishu routing changes and restart the gateway.
+
+Mitigation: Install and use it only when those changes are intended; review the target account or peer route, keep the generated backup, and verify bindings after restart.
+
+## Reference(s):
+
+- [Routing Modes Reference](references/routing-modes.md)
+- [ClawHub Skill Page](https://clawhub.ai/xiaowen-0725/skills/openclaw-create-feishu-agent-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include command results, config-change summaries, and verification status.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -32,13 +32,13 @@ pnpm create vite <project-name> --template react-ts
 ### Step 3: Dependencies
 
 ```
-pnpm add react-router-dom
+pnpm add react-router
 pnpm add -D postcss-px-to-viewport-8-plugin amfe-flexible
 pnpm add -D sass
 ```
 
 If WeChat JSSDK: `pnpm add weixin-js-sdk`
-If Vue: replace react-router-dom with vue-router
+If Vue: replace react-router with vue-router
 
 ### Step 4: H5-Specific Configuration
 
@@ -135,7 +135,7 @@ export default function SafeArea({ children }: { children: React.ReactNode }) {
 **`layouts/MobileLayout.tsx`:**
 > **Note:** Inline styles below are for quick scaffolding. **Production environments should replace them with SCSS modules** (e.g., `import styles from './MobileLayout.module.scss'`).
 ```tsx
-import { Outlet, useNavigate, useLocation } from 'react-router-dom';
+import { Outlet, useNavigate, useLocation } from 'react-router';
 import { HomeOutlined, AppstoreOutlined, UserOutlined } from '@ant-design/icons';
 import styles from './MobileLayout.module.scss';  // or Tailwind classes
 

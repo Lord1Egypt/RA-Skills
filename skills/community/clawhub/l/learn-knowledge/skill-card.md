@@ -1,39 +1,55 @@
-## Description: <br>
-Builds structured knowledge assets and self-assessment reports for a requested topic, including knowledge graphs, layered frameworks, Q&A pairs, and capability boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Systematic knowledge internalization and capability self-assessment engine for learning new domains, building reusable knowledge bases, and stating mastery boundaries.
 
-## Publisher: <br>
-[nonlinearHuman](https://clawhub.ai/user/nonlinearHuman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nonlinearhuman](https://clawhub.ai/user/nonlinearhuman)
 
-## Use Case: <br>
-External users and developers use this skill to systematically study a new domain, convert research into reusable local knowledge assets, and understand the agent's resulting capability boundaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated learning materials and self-assessment reports may be saved into local long-term memory, including sensitive, proprietary, or regulated subjects. <br>
-Mitigation: Install only when local reuse is desired, and review or delete saved topic folders and MEMORY.md entries for sensitive, proprietary, or regulated topics. <br>
+## Use Case:
 
+Developers and agent users use this skill to research a subject, structure the resulting knowledge, generate capability self-assessments, and preserve reusable knowledge artifacts for later sessions.
 
-## Reference(s): <br>
-- [Knowledge Graph Guide](references/knowledge_graph_guide.md) <br>
-- [Rating Standards](references/rating_standards.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown reports and JSON knowledge assets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save generated learning materials into local topic folders and update MEMORY.md when persistent memory is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Research on private, sensitive, or proprietary topics may be saved to long-term memory and reused in future sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for explicit confirmation before persistence, avoid sensitive topics unless approved, and provide a clear delete or rollback path for stored entries.
+
+Risk: Web-derived research can carry untrusted or prompt-injection content into generated knowledge artifacts.
+
+Mitigation: Treat fetched pages as untrusted evidence, filter instructions from external content, and review generated artifacts before relying on them.
+
+## Reference(s):
+
+- [Knowledge Graph Guide](references/knowledge_graph_guide.md)
+- [Rating Standards](references/rating_standards.md)
+- [ClawHub Skill Page](https://clawhub.ai/nonlinearhuman/skills/learn-knowledge)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown reports and JSON knowledge artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a concept-relation knowledge graph, hierarchical knowledge framework, Q&A pairs, capability assessment report, and memory index update guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact footer says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,36 +1,48 @@
-## Description: <br>
-Backend architecture patterns, API design, database optimization, and server-side best practices for Node.js, Express, and Next.js API routes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backend architecture patterns, API design, database optimization, and server-side best practices for Node.js, Express, and Next.js API routes.
 
-## Publisher: <br>
-[charmmm718](https://clawhub.ai/user/charmmm718) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[charmmm718](https://clawhub.ai/user/charmmm718)
 
-## Use Case: <br>
-Developers and engineers use this skill as a backend reference for designing APIs, data access layers, caching, error handling, authentication, rate limiting, background jobs, and logging in Node.js, Express, and Next.js API route projects. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Example backend snippets may be adopted without enough production review, especially for authentication, database access, logging, or queue behavior. <br>
-Mitigation: Treat snippets as examples and review generated or adapted authentication, database, logging, and queue code before production use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and engineers use this skill for practical backend architecture guidance and TypeScript examples covering APIs, repositories, services, database access, caching, error handling, authentication, authorization, rate limiting, jobs, and logging.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown with TypeScript and SQL code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no executable skill code or hidden system access was identified by the security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Example backend snippets may not include production-ready security hardening for rate limiting, logging, authentication, or authorization.
+
+Mitigation: Treat the snippets as architectural examples and tighten controls before using them in production.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charmmm718/skills/backend-patterns)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with TypeScript, SQL, and API route examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only reference skill; examples should be reviewed and hardened before production use.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

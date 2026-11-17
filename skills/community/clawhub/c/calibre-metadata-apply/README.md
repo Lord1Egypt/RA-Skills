@@ -1,150 +1,83 @@
 # calibre-metadata-apply
 
-`calibredb` を使って、既存Calibre書籍のメタデータを更新するスキルです。
+Calibreメタデータを「変更計画の保存 -> 対象/現在値の再確認 -> 適用 -> 再読込検証」で更新します。dry-runが既定です。解析workerから返っただけでは書き込みません。
 
-## このスキルの目的
+## クイックスタート
 
-このスキルは、Calibreライブラリのメタデータ運用を
-**「安全に・継続的に・監査可能に」回す** ための実務スキルです。
+Node.js >=20とcalibredbが必要です。SKILL_DIRをインストール先の絶対パスに置き換えてください。
 
-### 1) 何を解決するか
+    SKILL_DIR=/absolute/path/to/calibre-metadata-apply
+    node "$SKILL_DIR/scripts/calibredb_apply.mjs" --help
+    node "$SKILL_DIR/scripts/calibredb_apply.mjs" \
+      --with-library "http://HOST:8080/#LIBRARY_ID" \
+      --plan-file /absolute/NEW-plan.json < /absolute/changes.jsonl
 
-- 手作業で崩れやすいメタデータ整備（title/authors/publisher/pubdate/tags/sort）を定型化
-- 1冊編集とライブラリ横断編集を同じ運用ルールで実施
-- 長時間ジョブでもチャットを止めずに進行（ターン分割）
+内容を確認・承認した同じ計画だけを適用します。計画のdigestは誤編集検出用で、人の承認そのものではありません。
 
-### 2) 何を自動化するか
+    node "$SKILL_DIR/scripts/calibredb_apply.mjs" \
+      --apply --plan-file /absolute/plan.json < /dev/null
 
-- 1冊単位の確定編集（確認→dry-run→apply→検証）
-- ライブラリ横断の推定タグ付与（本文ではなく既存メタデータのみを利用）
-- 高確信候補の自動適用と、低確信候補の保留
+applyは新しいJSONL入力を受け付けません。接続先省略時は保存計画の接続先を固定して使います。入力された接続先が計画と違えば拒否します。
 
-### 3) 何をしないか（境界）
+## 入力と変更の意味
 
-- 曖昧な対象に対する即時apply
-- 根拠が弱い候補の無条件上書き
-- 本文解析が必要な重処理をmainターンで同期実行
+1行1冊のJSONLです。[例](references/changes.example.md)のコードブロック内の行だけを変更ファイルへコピーしてください。Markdown自体を入力に使わないでください。IDはダミーで、実行承認済みではありません。
 
-### 4) 想定ユースケース
+- 直接指定: title、title_sort、authors、author_sort、series、series_index、tags、publisher、pubdate、languages、comments。
+- 補助指定: analysis、comments_html、analysis_tags、tags_merge、tags_remove。
+- カタログからの提案はexpected_library/expected_uuidも保持します。別ライブラリ/別書籍への取り違えを拒否します。
+- 未指定は変更しません。title/authorsは必須値なので空不可。任意文字列はnull/空文字で消去。pubdateもnull/空文字で消去可能。series_indexはnull不可、非負の有限数でseriesが必要です。
+- authorsは配列推奨。著者名のカンマは保持します。名前中のリテラル&や|はCalibreの--fieldで安全に表せないため、変更前に拒否します。黙って別の著者に分割しません。書誌OPFの個々の著者要素で検証し、表示文字列だけで人数を推定しません。
+- pubdateはYYYY-MM-DD。CLIにはUTC時刻を明示し、ホストの時差による前日ずれを防ぎます。
+- languagesは実行時ICUが認識するISO639コード。ja/jpn、en/eng等は同じ言語として比較します。未知コードや地域付きタグを黙って削除しません。
+- tagsは既定でmerge。tags:[]だけでは消しません。置換/全消去はtags_merge:false、部分削除はtags_removeを使います。
+- commentsはコメント全体の置換です。analysisは値をHTML escapeしてOC_ANALYSISマーカー1区画を更新し、既存のその他コメントとタグを保持します。comments_htmlは承認済みraw HTML用です。3方式の同時指定や壊れたマーカーは拒否します。
+- analysis.coverageがあればfull/partialとパート数もコメントに残します。元の部分解析を全文解析に見せません。
+- タイトル・著者変更でsortが自動追随するとは仮定しません。日本語の読みはworkspaceの設定と根拠を使い、sort自体も変更内容として示します。
 
-- 「ID指定で論文書誌を修正したい」
-- 「マニュアルらしい本に `マニュアル/Manual` を一括付与したい」
-- 「論文らしい本を横断抽出して `論文` タグを付けたい」
+## 安全モデルと限界
 
-### 5) 運用ポリシー（要点）
+入力全件を検証し、ID/UUID・表示差分・関連する現在メタデータ・CLI intentを計画に保存します。apply前に全行を照合し、各書込の直前にも再照合します。別のクライアントがタイトル等を変更していた場合も古い計画を拒否します。
 
-- 高確信な提案のみ自動適用
-- 低確信・衝突ケースは保留/再処理
-- 保留は `pending-review` タグを付与して管理
-- confidence表現は `high/medium/low` に統一
-- 長時間処理はターン分割（開始ACK→完了報告）
-- 実行中の状態/一時ファイルは完了時に削除（失敗時のみ最小限保持）
+set_metadataの成功後は再読込で要求値を検証します。起動失敗・signal・timeout・出力過大を成功扱いしません。失敗/不明な結果が出たら後続行を止め、実際の適用済み行・未実行行を分けます。
 
-## セットアップ
+stateのattempts/には、書込前にfsyncしたintent、各行のresult、最終集計をJSONLで残します。同じplan digestは1度だけ試行し、ライブラリ単位のローカルロックで同じwrapper同士の競合を抑えます。失敗後はreceiptと現在値を照合して新しい計画を作ります。自動retry/rollbackはありません。
 
-1. このスキルを実行する環境にCalibreをインストールする
-   - 必須: `calibredb`
-2. PDF調査用に `pdffonts` を使えるようにする（例: `poppler-utils`）
-3. `subagent-spawn-command-builder` を導入する（spawn payload生成に使用）
+Calibre CLIにはサーバー側の比較交換(CAS)や複数冊の一括transactionがありません。他クライアントとの最終read/write間の競合までは防げません。processが突然終了した場合、ロック/intentが残ります。稼働状態と実値を確認するまでロックやreceiptを消さないでください。別state-dirでロックを迂回しないでください。
 
-```bash
-npx clawhub@latest install subagent-spawn-command-builder
-pnpm dlx clawhub@latest install subagent-spawn-command-builder
-```
+## 接続と認証
 
-4. `calibredb` と `pdffonts` が `PATH` で実行できることを確認する
-5. Calibre Content server に到達できることを確認する
-6. `--with-library` は次の形式で指定する
-   - `http://HOST:PORT/#LIBRARY_ID`
-   - localhost前提にしない（明示的なHOST:PORTを使う）
-   - 省略する場合は以下のどれかを事前設定する
-     - env: `CALIBRE_WITH_LIBRARY` / `CALIBRE_LIBRARY_URL` / `CALIBRE_CONTENT_SERVER_URL`
-     - config: `~/.config/calibre-metadata-apply/config.json` の `with_library`
-     - URLに`#LIBRARY_ID`が無い場合は `CALIBRE_LIBRARY_ID` か config `library_id` で補完可能
-   - IP変更対策:
-     - `CALIBRE_SERVER_HOSTS=host1,host2,...` を設定すると候補を順に試行
-     - WSLでは `/etc/resolv.conf` の `nameserver` も自動候補に追加
-   - `LIBRARY_ID` が不明な場合は `#-` で一覧確認できる
-     - 例: `calibredb list --with-library "http://HOST:PORT/#-" --username ... --password ...`
-7. 認証が有効な場合は次を指定する
-   - `--username <user>`
-   - `--password-env <ENV_VAR>` または `--password <plain>`
-   - 認証方式は非SSL運用前提でDigest固定(自動)とし、`--auth-mode` / `--auth-scheme` は使わない
-8. 認証情報を保存して再利用したい場合は `--save-auth` を使う
-   - 既定保存先: `~/.config/calibre-metadata-apply/auth.json`
-   - 既定では `username` と `password_env` を保存
-   - 平文パスワードも保存する場合のみ `--save-plain-password` を追加
+接続先の優先順位は--with-library、CALIBRE_WITH_LIBRARY / CALIBRE_LIBRARY_URL / CALIBRE_CONTENT_SERVER_URL、config.with_libraryです。URLに#LIBRARY_IDがなければ--library-id / CALIBRE_LIBRARY_ID / config.library_idで補います。ローカル接続は既存metadata.dbを含むディレクトリだけです。
 
-### ユーザーが先に実行すること（例: Ubuntu/WSL）
+configは~/.config/calibre-metadata-apply/config.json、または--config。許可するキーはwith_library、library_id、username、password_env、state_dir、reading_scriptです。reading_scriptは既存の人間向け並び替え設定として保持し、実行しません。未知キー・未知オプションはエラーです。
 
-```bash
-sudo apt update
-sudo apt install -y calibre poppler-utils
-```
+パスワードは既存環境変数から取得し、--password-envで変数名を変更できます。Calibreの公式<stdin>入力で渡し、argvや診断、計画には値を入れません。CLIが非対話入力の警告を出す場合も、実際の終了値と結果を検証します。暗黙の.env読込、平文認証保存、DNS/WSL/Docker探索、別ホストへのfailoverはありません。calibre-serverも起動しません。
 
-## 重要
+## 状態と互換性
 
-OpenClawが入っているだけでは不十分です。実行環境側に `calibredb` が必要です。
-チャット実行時は `calibredb` 直接実行ではなく、必ず `node scripts/calibredb_apply.mjs` を使ってください。
-この運用では既存のCalibre Content serverに接続するため、`calibre-server` を起動する手順は不要です。
+保存先: --state-dir -> CALIBRE_METADATA_APPLY_STATE_DIR -> config.state_dir -> XDG_STATE_HOME/calibre-metadata-apply -> ~/.local/state/calibre-metadata-apply。計画ファイルは--plan-fileでも指定でき、既存ファイルは上書きしません。
 
-WindowsではDefender Controlled Folder Access等の影響で書き込みが失敗する場合があります。
-`WinError 2/5` などのパス/アクセス系エラーが出る場合は、Calibreライブラリフォルダや実行バイナリを許可リストに追加してください。
+旧skill/state、旧計画、旧認証保存は自動移行/上書きしません。新しい計画を作り直します。--save-auth、--save-plain-password、--server-hosts、auth-mode/auth-schemeは廃止しました。既存reading_script設定は互換性のため受け付けます。
 
-## 安全モデル
+任意の提案作成ジョブ管理:
 
-- 入力はJSONL（1行=1更新）
-- `id` 必須
-- デフォルトはdry-run（`--apply` 指定時のみ書き込み）
+    node "$SKILL_DIR/scripts/run_state.mjs" upsert --run-id JOB --session-key HANDLE --task "metadata proposal"
+    node "$SKILL_DIR/scripts/handle_completion.mjs" --run-id JOB --result-json /absolute/result.json
 
-## ライブラリ横断処理（ターン分割）
+result.jsonは少なくとも次の形で、run_idが一致する必要があります。
 
-長時間処理はターン分割で実行し、チャット継続性を優先します。
+    {"run_id":"JOB","ok":true,"status":"proposal_ready","proposal_file":"/absolute/changes.jsonl"}
 
-- 開始ターン:
-  - `subagent-spawn-command-builder` で `sessions_spawn` payloadを生成（例: `profile=calibre-meta`）
-  - 生成payloadで軽量subagentに解析を委譲
-  - `scripts/run_state.mjs` で実行状態を記録
-- 完了ターン: 完了通知後、`scripts/handle_completion.mjs` で状態を片付けて結果を提示
-- state保存先: `state/runs.json`
+完了helperはローカル結果だけを扱い、metadataを書きません。失敗状態は保持し、完了済みIDの再登録を拒否します。特定のagent名や固定の2ターン処理を要求しません。
 
-### `spawn-profiles.json` に追加する例（`calibre-meta`）
+## テスト
 
-```json
-{
-  "profiles": {
-    "calibre-meta": {
-      "model": "openrouter/qwen/qwen3-next-80b-a3b-instruct",
-      "thinking": "low",
-      "runTimeoutSeconds": 300,
-      "cleanup": "keep"
-    }
-  }
-}
-```
+スキル単体のfake CLI/排他・破損・誤適用防止テスト:
 
-## 認証キャッシュ（初回保存）
+    node --test "$SKILL_DIR"/tests/*.test.mjs
 
-初回だけ認証情報を保存しておくと、以後は `--username` / `--password-env` を省略できます。
+リポジトリ直下で、完全に隔離した合成ライブラリを使う実Calibre連携テスト:
 
-```bash
-cat references/changes.example.jsonl | node scripts/calibredb_apply.mjs \
-  --with-library "http://127.0.0.1:8080/#MyLibrary" \
-  --password-env CALIBRE_PASSWORD \
-  --save-auth
-```
+    CALIBRE_NATIVE_TESTS=1 python3 -m unittest discover -s tests -p test_calibre_integration.py -v
 
-平文パスワードも保存したい場合（非推奨）は次を追加:
-
-```bash
---save-plain-password
-```
-
-## クイックテスト（dry-run）
-
-```bash
-cat references/changes.example.jsonl | node scripts/calibredb_apply.mjs \
-  --with-library "http://127.0.0.1:8080/#MyLibrary"
-```
-
-`--with-library` を省略したい場合は、先に `CALIBRE_WITH_LIBRARY` などを設定してください。
+[公式calibredbマニュアル](https://manual.calibre-ebook.com/generated/en/calibredb.html)と実機9.2.1のhelp/出力を基準に検証しています。本番Content serverへの書込試験は含めません。

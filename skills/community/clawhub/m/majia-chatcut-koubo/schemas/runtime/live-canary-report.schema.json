@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/runtime/live-canary-report.schema.json",
+  "title": "Sanitized live canary release report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "schemaVersion", "releaseVersion", "capabilityStatus", "capabilityObservedAt", "capabilityExpiresAt", "capabilityBuildFingerprint", "toolSchemaFingerprint", "canaries", "metrics", "stableClaimEligible", "notes"],
+  "properties": {
+    "$schema": {"const": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/runtime/live-canary-report.schema.json"},
+    "schemaVersion": {"const": "majia.koubo.live-canary.v1"},
+    "releaseVersion": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "capabilityStatus": {"enum": ["unverified", "current", "stale", "blocked"]},
+    "capabilityObservedAt": {"type": ["string", "null"], "format": "date-time"},
+    "capabilityExpiresAt": {"type": ["string", "null"], "format": "date-time"},
+    "capabilityBuildFingerprint": {"type": ["string", "null"], "minLength": 1, "maxLength": 160},
+    "toolSchemaFingerprint": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"},
+    "canaries": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["caseId", "shape", "durationClass", "status", "evidenceLevel", "checks"],
+        "properties": {
+          "caseId": {"type": "string", "pattern": "^canary-[0-9]{2}$"},
+          "shape": {"enum": ["single-speaker", "multi-take", "screen-and-speaker", "longform", "manual-edit", "terminology-heavy", "low-resolution-screen", "interrupted-session"]},
+          "durationClass": {"enum": ["short", "medium", "long", "variable"]},
+          "status": {"enum": ["not_run", "pass", "fail", "blocked"]},
+          "evidenceLevel": {"enum": ["none", "E1", "E2", "E3"]},
+          "checks": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^[a-z0-9-]+$"}}
+        }
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["passedCanaries", "unapprovedHighRiskEdits", "duplicateWrites", "manualEditsOverwritten", "evidenceStateConfusions", "recoveryObservedRate"],
+      "properties": {
+        "passedCanaries": {"type": "integer", "minimum": 0, "maximum": 8},
+        "unapprovedHighRiskEdits": {"type": ["integer", "null"], "minimum": 0},
+        "duplicateWrites": {"type": ["integer", "null"], "minimum": 0},
+        "manualEditsOverwritten": {"type": ["integer", "null"], "minimum": 0},
+        "evidenceStateConfusions": {"type": ["integer", "null"], "minimum": 0},
+        "recoveryObservedRate": {"type": ["number", "null"], "minimum": 0, "maximum": 1}
+      }
+    },
+    "stableClaimEligible": {"type": "boolean"},
+    "notes": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1, "maxLength": 240}}
+  },
+  "allOf": [
+    {
+      "if": {"required": ["stableClaimEligible"], "properties": {"stableClaimEligible": {"const": true}}},
+      "then": {
+        "properties": {
+          "capabilityStatus": {"const": "current"},
+          "capabilityObservedAt": {"type": "string", "format": "date-time"},
+          "capabilityExpiresAt": {"type": "string", "format": "date-time"},
+          "capabilityBuildFingerprint": {"type": "string", "minLength": 1},
+          "toolSchemaFingerprint": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+          "metrics": {
+            "type": "object",
+            "properties": {
+              "passedCanaries": {"type": "integer", "minimum": 5},
+              "unapprovedHighRiskEdits": {"const": 0},
+              "duplicateWrites": {"const": 0},
+              "manualEditsOverwritten": {"const": 0},
+              "evidenceStateConfusions": {"const": 0},
+              "recoveryObservedRate": {"type": "number", "minimum": 0.95}
+            }
+          }
+        }
+      }
+    }
+  ]
+}

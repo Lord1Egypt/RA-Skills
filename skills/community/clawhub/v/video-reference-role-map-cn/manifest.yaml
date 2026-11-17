@@ -1,0 +1,26 @@
+name: video-reference-role-map-cn
+slug: video-reference-role-map-cn
+display_name: 视频参考素材分工表
+description: 将用户授权的参考素材清单与视频生成目标整理为可执行分工表，逐项标明身份、地点、风格和动作用途，并提示冲突与缺料。适用于单章节、单场景或短文的视频参考梳理；最多处理100行，超量时要求分批，不下载外部来源也不虚构模型参数。
+version: 1.0.1
+license: MIT-0
+icon: icon-512.png
+repository: https://github.com/xxjrq/video-reference-role-map-cn
+tags:
+  - 视频生成
+  - 参考素材
+  - 分镜前期
+  - 创作整理
+trigger_words:
+  - 视频参考素材怎么分工
+  - 整理视频生成参考图
+  - 参考图冲突检查
+interface:
+  display_name: 视频参考素材分工表
+  short_description: 将授权参考素材拆解为身份地点风格动作职责并标注冲突缺项
+  default_prompt: 请根据我提供的授权素材列表和生成目标，输出视频参考素材分工表；缺少必要信息时列出缺项，不下载外部来源，不虚构模型参数。
+  icon_small: icon-512.png
+  icon_large: icon-512.png
+policy:
+  allow_implicit_invocation: true
+self_test: python3 scripts/self_test.py

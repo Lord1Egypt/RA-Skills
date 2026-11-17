@@ -222,7 +222,12 @@ A: 可以。拨打12345市长热线，或在大众点评等平台发表评价。
 | 腾讯翻译君 | 中英实时翻译 |
 | Google Translate | 多语言翻译 |
 | 百度翻译 | 离线翻译包 |
+| **小红书（Xiaohongshu）** | 美食发现/网红餐厅/本地攻略 |
+| **大众点评（Dianping）** | 餐厅评分/排队预测/团购 |
+| **高德地图（Amap）** | 导航+周边美食 |
 | 飞猪 | 机票酒店预订 |
 | 美团 | 外卖/团购 |
 | 滴滴出行 | 打车 |
 | 招商银行 | 外币兑换（英文界面） |
+
+> 📖 **美食APP深度指南**：[Find the Best Food in China as a Foreigner (Xiaohongshu + Dianping + Amap)](https://www.pandamate.wiki/blog/china-food-finder-apps-foreigners-2026.html) — 外国游客最大的痛点不是支付，而是"找不到本地好吃的"

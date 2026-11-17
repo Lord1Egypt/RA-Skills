@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """
-Shopee Store — get_video_upload_result (v2.media_space.get_video_upload_result)
+Shopee Store — get_video_upload_result
+
 官方: https://open.shopee.com/documents/v2/v2.media_space.get_video_upload_result?module=91&type=1
+
+入参说明见 references/apis/get-video-upload-result.md。
 """
 
 from __future__ import annotations

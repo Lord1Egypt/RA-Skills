@@ -1,42 +1,54 @@
-## Description: <br>
-Buddy creates a deterministic gacha-style electronic pet card from a username or supplied name. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Buddy generates a deterministic local pet gacha result for a provided name or the local user name, including rarity, species, stats, shiny status, and accessories.
 
-## Publisher: <br>
-[subcoldzhang](https://clawhub.ai/user/subcoldzhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[subcoldzhang](https://clawhub.ai/user/subcoldzhang)
 
-## Use Case: <br>
-Developers and ClawHub users use Buddy to run a local Python toy that generates a deterministic electronic pet draw for a username or supplied name. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Invoking the skill without a name may use the local username or Claw user name as the draw seed. <br>
-Mitigation: Pass an explicit non-sensitive name when the generated result should not be tied to a real user name. <br>
-Risk: The generic buddy trigger may activate more often than intended. <br>
-Mitigation: Use a specific request such as Buddy gacha or electronic pet draw when invoking it intentionally. <br>
-Risk: The skill depends on local python3 availability. <br>
-Mitigation: Confirm python3 is installed before running the local command. <br>
+## Use Case:
 
+External users and developers use this skill as a local toy gacha experience that prints a deterministic Buddy pet card for a supplied name. It is suitable for lightweight entertainment or testing agent workflows that invoke a Python command-line script.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/subcoldzhang/test-buddy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text console output with optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Deterministic per input name; requires local python3 and does not require network access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The script defaults to the local user name when no explicit name is supplied.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass an explicit name when the local account name should not appear in output.
+
+Risk: The interface and generated card text are written primarily in Chinese.
+
+Mitigation: Confirm the language is appropriate for the target users before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/subcoldzhang/skills/test-buddy)
+- [Publisher profile](https://clawhub.ai/user/subcoldzhang)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text pet card printed by a Python command-line script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Deterministic output for the same input name; defaults to local user-name environment variables when no name is supplied.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

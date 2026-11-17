@@ -1,40 +1,57 @@
-## Description: <br>
-Post to social media via VibePost API when publishing Twitter/X updates, sharing announcements, or posting other social content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Post to social media via the VibePost API for Twitter/X updates, shared updates, and other social content.
 
-## Publisher: <br>
-[JPaulGrayson](https://clawhub.ai/user/JPaulGrayson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jpaulgrayson](https://clawhub.ai/user/jpaulgrayson)
 
-## Use Case: <br>
-Agents and users use this skill to send approved short-form social media text to a configured posting service, primarily for Twitter/X updates. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send user-provided text to an external VibePost/Replit endpoint where it may be published publicly. <br>
-Mitigation: Preview the exact post text and target platform before running the posting command. <br>
-Risk: The artifact includes a reusable posting API key. <br>
-Mitigation: Remove and rotate the embedded key, then use a private secret or environment variable for authentication. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JPaulGrayson/social-poster) <br>
-- [VibePost posting endpoint](https://vibepost-jpaulgrayson.replit.app/api/quack/post) <br>
+## Use Case:
 
+Agents and developers use this skill to publish short social media updates through VibePost, typically to Twitter/X or another selected platform.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Posts include text and an optional platform value, defaulting to twitter.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: User-provided post text is sent to the VibePost Replit endpoint and may be published to social media.
+
+Mitigation: Use the skill only for content approved for external sharing, and confirm the exact post text and platform before sending.
+
+Risk: The artifact uses a hardcoded shared API key for the posting service.
+
+Mitigation: Replace the shared key with user-specific secrets before production use and avoid redistributing credentials in skill files.
+
+Risk: Broad trigger phrases can make it easy to invoke posting behavior unintentionally.
+
+Mitigation: Narrow invocation triggers and require explicit confirmation before any network request that can publish content.
+
+## Reference(s):
+
+- [Social Poster on ClawHub](https://clawhub.ai/jpaulgrayson/skills/social-poster)
+- [VibePost post endpoint](https://vibepost-jpaulgrayson.replit.app/api/quack/post)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON service responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Posts are submitted to a third-party service using caller-provided text and platform parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

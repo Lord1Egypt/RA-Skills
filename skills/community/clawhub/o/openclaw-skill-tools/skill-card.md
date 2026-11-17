@@ -1,44 +1,60 @@
-## Description: <br>
-Generate and security-scan OpenClaw SKILL.md files for new skills, pre-installation audits, and skill package creation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and security-scan OpenClaw SKILL.md files for skill creation, security vulnerability scanning, ClawHub skill auditing, and agent skill packaging.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Developers, skill authors, and skill users use this skill to generate OpenClaw SKILL.md files and submit candidate skills to ToolWeb for security scanning before publication or installation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Skill content submitted for generation or scanning is sent to the third-party ToolWeb API. <br>
-Mitigation: Redact secrets, private URLs, proprietary prompts, and unreleased internal details before submitting SKILL.md content. <br>
-Risk: The skill requires a ToolWeb API key and successful API calls may affect quota or billing. <br>
-Mitigation: Use a limited ToolWeb API key and monitor quota or billing usage. <br>
+## Use Case:
 
+Developers, skill authors, and skill users use this agent skill to generate OpenClaw SKILL.md files and to scan skill content for security risks before installation or release.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/openclaw-skill-tools) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
-- [ToolWeb Portal](https://portal.toolweb.in) <br>
-- [ToolWeb Platform](https://toolweb.in) <br>
-- [ToolWeb OpenClaw Skills](https://toolweb.in/openclaw/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports and generated SKILL.md content with inline shell commands and configuration snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and TOOLWEB_API_KEY; successful API calls may be metered by ToolWeb.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: The skill sends pasted skill content and generation details to ToolWeb for API processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated API key and avoid submitting private or secret-bearing SKILL.md content unless it has been redacted.
+
+Risk: Security scan results are third-party API output rather than a local independent audit.
+
+Mitigation: Treat scan responses as advisory evidence and review findings before installation, release, or deployment.
+
+Risk: Successful API calls are disclosed as billable operations.
+
+Mitigation: Confirm API key ownership, account limits, and intended usage before running generation or scanning requests.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/openclaw-skill-tools)
+- [ToolWeb Portal](https://portal.toolweb.in)
+- [ToolWeb Platform](https://toolweb.in)
+- [ToolWeb OpenClaw Skills](https://toolweb.in/openclaw/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code blocks and structured scan findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses ToolWeb API responses and may include generated SKILL.md content, security findings, recommendations, curl commands, and setup guidance.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

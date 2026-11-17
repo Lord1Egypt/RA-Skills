@@ -29,45 +29,187 @@ except ImportError:
 BASE_URL = "https://ontopo.com/api"
 WEBSITE_URL = "https://ontopo.com"
 ISRAEL_DISTRIBUTOR_SLUG = "15171493"  # Required for venue search
-ISRAEL_MARKETPLACE_ID = "29421469"   # Required for batch availability search
-
-CITIES = [
-    "tel-aviv", "jerusalem", "haifa", "herzliya", "raanana", "ramat-gan",
-    "netanya", "ashdod", "ashkelon", "beer-sheva", "eilat", "modiin",
-    "rehovot", "rishon-lezion", "petah-tikva", "holon", "bat-yam",
-    "givataim", "kfar-saba", "hod-hasharon", "rosh-haayin", "shoham",
-    "yavne", "caesarea", "zichron-yaakov", "pardes-hanna", "hadera", "nahariya"
-]
+ISRAEL_MARKETPLACE_ID = "29421469"   # Default (Tel Aviv) for batch availability search
 
 CATEGORIES = [
     "restaurants", "bars", "fine_dining", "happy_hour",
     "brunch", "business", "kosher", "events"
 ]
 
-# City to geocode mapping for availability search (from Ontopo API)
-CITY_GEOCODES = {
-    "tel-aviv": "telavivjaffa",
-    "jerusalem": "jerusalem",
-    "haifa": "haifa",
-    "herzliya": "herzliya",
-    "raanana": "raanana",
-    "ramat-gan": "ramatgan",
-    "netanya": "netanya",
-    "ashdod": "ashdod",
-    "ashkelon": "ashkelon",
-    "beer-sheva": "beersheva",
-    "eilat": "eilat",
-    "modiin": "modiin",
-    "rehovot": "rehovot",
-    "rishon-lezion": "rishonlezion",
-    "petah-tikva": "petahtikva",
-    "holon": "holon",
-    "kfar-saba": "kfarsaba",
-    "hod-hasharon": "hodhasharon",
-    "caesarea": "caesarea",
-    "north": "north",
-    "south": "south",
+# Authoritative city data from Ontopo SSR __INITIAL_STATE__
+# Each entry: (marketplace_id, geocode_key, display_label)
+# The slug (dict key) matches Ontopo's URL pattern: /he/il/{slug}/restaurants
+_CITY_DATA = {
+    "tel-aviv":       ("29421469", "telavivjaffa",       "תל אביב"),
+    "jerusalem":      ("29384685", "jerusalem",          "ירושלים"),
+    "haifa":          ("11243454", "haifa",               "חיפה"),
+    "herzeliya":      ("62204663", "herzeliya",           "הרצליה"),
+    "raanana":        ("71499188", "raanana",             "רעננה"),
+    "ramatgan":       ("87918421", "rag-giv-area",        "רמת גן - גבעתיים"),
+    "natanya":        ("19467447", "netanya_area",        "נתניה"),
+    "ashdod":         ("93786391", "ashdod",              "אשדוד"),
+    "beer-sheva":     ("83166822", "beer_sheva",          "באר שבע"),
+    "eilat":          ("71154151", "eilat_area",          "אילת"),
+    "modiin":         ("49473533", "modiin_area",         "מודיעין והסביבה"),
+    "rehovot":        ("58943955", "rehovot",             "רחובות"),
+    "rishon_lezion":  ("39514882", "rishon_lezion",       "ראשון לציון"),
+    "petah_tikva":    ("74902764", "petah_tikva_area",    "פתח תקווה"),
+    "holon":          ("60235869", "holon-batyam-area",   "חולון - בת ים"),
+    "kfar_saba":      ("45164735", "kfarsaba",            "כפר סבא"),
+    "hod_hasharon":   ("77097784", "hod_hasharon",        "הוד השרון"),
+    "ramat_hasharon":  ("64031461", "ramat_hasharon",     "רמת השרון"),
+    "caesarya":       ("86032396", "caesarea_area",        "קיסריה - חדרה והסביבה"),
+    "ness_ziona":     ("47865336", "ness_ziona",          "נס ציונה"),
+    "kiryat_ono":     ("29033809", "kiryat_ono_area",     "קריית אונו"),
+    "kineret":        ("92127549", "golan_kineret",       "כנרת ורמת הגולן"),
+    "the_north":      ("45577648", "the_north",           "אזור הצפון"),
+    "south":          ("65424368", "south",               "אזור הדרום"),
+    "merkaz":         ("41581793", "merkaz",              "אזור המרכז"),
+    "hashfela":       ("74908782", "hashfela",            "אזור השפלה"),
+    "hasharon":       ("75635900", "hasharon",            "אזור השרון"),
 }
+
+# User-friendly aliases (hyphenated → canonical slug)
+_CITY_ALIASES = {
+    "herzliya": "herzeliya",
+    "ramat-gan": "ramatgan",
+    "netanya": "natanya",
+    "rishon-lezion": "rishon_lezion",
+    "petah-tikva": "petah_tikva",
+    "kfar-saba": "kfar_saba",
+    "hod-hasharon": "hod_hasharon",
+    "ramat-hasharon": "ramat_hasharon",
+    "caesarea": "caesarya",
+    "ness-ziona": "ness_ziona",
+    "kiryat-ono": "kiryat_ono",
+    "north": "the_north",
+    "bat-yam": "holon",  # Same marketplace
+}
+
+def _resolve_city(city: str) -> str:
+    """Resolve user input to canonical city slug."""
+    city = city.lower().strip()
+    return _CITY_ALIASES.get(city, city)
+
+CITIES = sorted(_CITY_DATA.keys())
+CITY_GEOCODES = {slug: data[1] for slug, data in _CITY_DATA.items()}
+CITY_MARKETPLACE_IDS = {slug: data[0] for slug, data in _CITY_DATA.items()}
+
+# Substrings matched against a venue's address to filter search results by city.
+# The venue_search endpoint has no city parameter, so `search --city` is applied
+# client-side. Region slugs below cover several municipalities and cannot be
+# matched from an address string; they are handled separately.
+_CITY_ADDRESS_TERMS = {
+    "tel-aviv":       ["tel aviv", "תל אביב", "jaffa", "יפו"],
+    "jerusalem":      ["jerusalem", "ירושלים"],
+    "haifa":          ["haifa", "חיפה"],
+    "herzeliya":      ["herzliya", "herzeliya", "הרצליה"],
+    "raanana":        ["raanana", "ra'anana", "רעננה"],
+    "ramatgan":       ["ramat gan", "givatayim", "רמת גן", "גבעתיים"],
+    "natanya":        ["netanya", "natanya", "נתניה"],
+    "ashdod":         ["ashdod", "אשדוד"],
+    "beer-sheva":     ["beer sheva", "be'er sheva", "beersheba", "באר שבע"],
+    "eilat":          ["eilat", "אילת"],
+    "modiin":         ["modiin", "modi'in", "מודיעין"],
+    "rehovot":        ["rehovot", "רחובות"],
+    "rishon_lezion":  ["rishon", "ראשון לציון"],
+    "petah_tikva":    ["petah tikva", "petach tikva", "פתח תקווה"],
+    "holon":          ["holon", "bat yam", "חולון", "בת ים"],
+    "kfar_saba":      ["kfar saba", "כפר סבא"],
+    "hod_hasharon":   ["hod hasharon", "הוד השרון"],
+    "ramat_hasharon": ["ramat hasharon", "רמת השרון"],
+    "caesarya":       ["caesarea", "hadera", "קיסריה", "חדרה"],
+    "ness_ziona":     ["ness ziona", "nes ziona", "נס ציונה"],
+    "kiryat_ono":     ["kiryat ono", "קריית אונו", "קרית אונו"],
+}
+
+# Multi-municipality regions: valid for `available` (they map to a marketplace)
+# but not filterable from an address string in `search`.
+REGION_SLUGS = {s for s in _CITY_DATA if s not in _CITY_ADDRESS_TERMS}
+
+
+def city_matches_address(city_slug: str, address: str) -> bool:
+    """True if an address appears to be in the given city slug."""
+    terms = _CITY_ADDRESS_TERMS.get(city_slug)
+    if not terms:
+        return True
+    addr = (address or "").lower()
+    return any(term in addr for term in terms)
+
+
+# =============================================================================
+# STRUCTURED OUTPUT
+# =============================================================================
+# Every command emits the same JSON envelope so an agent can parse one shape:
+#
+#   {"ok": bool, "command": str, "criteria": {...},
+#    "results": [...], "count": int, "warning": str|null, "error": str|null}
+#
+# Venue objects are flat and always carry venue_id / name / booking_url where
+# known, so a result from any command can be fed straight into any other.
+# Pass --raw for the unprocessed upstream payload.
+
+SLOT_STATUS = {"seat": "available", "standby": "waitlist"}
+
+
+def make_booking_url(page_id: Any, locale: str = "en") -> Optional[str]:
+    """Build the public booking URL for a page id."""
+    if not page_id:
+        return None
+    return f"https://ontopo.com/{locale}/il/page/{page_id}"
+
+
+def extract_slots(availability: Optional[Dict]) -> List[Dict]:
+    """Flatten areas[].options[] into slots grouped by time and status.
+
+    Returns [{time, status, areas: [...]}]. Grouping keeps the seating choice
+    (bar vs. table vs. courtyard) while avoiding one object per area per time,
+    which is where most of the upstream payload size comes from.
+    """
+    if not isinstance(availability, dict):
+        return []
+
+    grouped: Dict[Tuple[str, str], List[str]] = {}
+    for area in availability.get("areas") or []:
+        if not isinstance(area, dict):
+            continue
+        area_name = area.get("name") or area.get("id") or "Unknown"
+        for opt in area.get("options") or []:
+            if not isinstance(opt, dict):
+                continue
+            status = SLOT_STATUS.get(opt.get("method"))
+            if not status or not opt.get("time"):
+                continue
+            key = (format_time_display(opt["time"]), status)
+            if area_name not in grouped.setdefault(key, []):
+                grouped[key].append(area_name)
+
+    return [
+        {"time": time, "status": status, "areas": areas}
+        for (time, status), areas in sorted(grouped.items())
+    ]
+
+
+def make_envelope(
+    command: str,
+    criteria: Optional[Dict] = None,
+    results: Optional[List] = None,
+    error: Optional[str] = None,
+    warning: Optional[str] = None,
+    **extra: Any
+) -> Dict:
+    """Build the standard response envelope."""
+    env = {
+        "ok": error is None,
+        "command": command,
+        "criteria": {k: v for k, v in (criteria or {}).items() if v is not None},
+        "results": results if results is not None else [],
+        "count": len(results) if results is not None else 0,
+    }
+    env.update({k: v for k, v in extra.items() if v is not None})
+    env["warning"] = warning
+    env["error"] = error
+    return env
 
 
 # =============================================================================
@@ -113,10 +255,22 @@ def parse_time(time_str: str) -> str:
     return f"{hour:02d}{minute:02d}"
 
 
+# Weekday names accepted by parse_date. "friday" means the next Friday,
+# counting today as a candidate: asking for Friday on a Friday means tonight.
+# Taking the name directly avoids the +N arithmetic that callers (human or
+# agent) routinely get wrong by a day.
+_WEEKDAYS = {name: i for i, names in enumerate([
+    ("monday", "mon"), ("tuesday", "tue", "tues"), ("wednesday", "wed"),
+    ("thursday", "thu", "thur", "thurs"), ("friday", "fri"),
+    ("saturday", "sat"), ("sunday", "sun"),
+]) for name in names}
+
+
 def parse_date(date_str: str) -> str:
     """
     Parse date input (YYYY-MM-DD) and return YYYYMMDD format.
-    Also accepts: today, tomorrow, or relative days like +3
+    Also accepts: today, tomorrow, relative days like +3, or a weekday name
+    like friday (the next occurrence, today included).
     """
     date_str = date_str.strip().lower()
 
@@ -124,6 +278,9 @@ def parse_date(date_str: str) -> str:
         dt = datetime.now()
     elif date_str == 'tomorrow':
         dt = datetime.now() + timedelta(days=1)
+    elif date_str in _WEEKDAYS:
+        now = datetime.now()
+        dt = now + timedelta(days=(_WEEKDAYS[date_str] - now.weekday()) % 7)
     elif date_str.startswith('+'):
         days = int(date_str[1:])
         dt = datetime.now() + timedelta(days=days)
@@ -131,7 +288,8 @@ def parse_date(date_str: str) -> str:
         try:
             dt = datetime.strptime(date_str, '%Y-%m-%d')
         except ValueError:
-            raise ValueError(f"Invalid date format: {date_str}. Use YYYY-MM-DD, today, tomorrow, or +N")
+            raise ValueError(f"Invalid date format: {date_str}. Use YYYY-MM-DD, "
+                             f"today, tomorrow, +N, or a weekday name like friday")
 
     return dt.strftime('%Y%m%d')
 
@@ -290,8 +448,12 @@ class OntopoClient:
 
         raise RuntimeError("Max retries exceeded")
 
-    async def search_venues(self, query: str, city: Optional[str] = None) -> List[Dict]:
-        """Search for venues by query."""
+    async def search_venues(self, query: str) -> List[Dict]:
+        """Search for venues by query.
+
+        The endpoint has no city parameter; callers filter by city client-side
+        via city_matches_address().
+        """
         params = {
             "slug": ISRAEL_DISTRIBUTOR_SLUG,
             "version": "1",
@@ -321,8 +483,17 @@ class OntopoClient:
         }
         return await self._request("GET", "/slug_content", params=params, auth_required=False)
 
-    async def resolve_page_id(self, venue_id: str) -> str:
-        """Resolve venue_id to page_id for booking operations."""
+    async def resolve_page_id(self, venue_id: str, validate: bool = False) -> str:
+        """Resolve venue_id to page_id for booking operations.
+
+        With validate=True, an input that cannot be resolved through the venue
+        profile is only accepted if it is itself a live page (one get_page
+        call); otherwise ValueError is raised. Without validation the input is
+        returned as-is - safe wherever a downstream API call rejects bad ids
+        anyway (check/info), but never safe for building shareable URLs:
+        ids taken from `available` output are ephemeral search-post ids, and
+        pasting them into a page URL yields a dead link.
+        """
         if venue_id in self._venue_page_cache:
             return self._venue_page_cache[venue_id]
 
@@ -343,7 +514,40 @@ class OntopoClient:
         except Exception:
             pass
 
-        # Fallback: try using venue_id directly as page_id
+        # Fallback: the input may already be a page id (the documented
+        # `url <page_id>` flow relies on this).
+        if validate:
+            # A live booking page identifies itself: content_type
+            # "reservation" plus a slug_venue back-reference. Search-post ids
+            # from `available` output also answer get_page, but as a bare
+            # content_type "page" with no slug_venue - and a URL built from
+            # one renders nothing. Recover those through the venue name.
+            bad = ValueError(
+                f"'{venue_id}' does not resolve to a booking page. "
+                f"Ids from `available` output are temporary search ids - "
+                f"use that output's page_slug instead, or find the venue "
+                f"with: ontopo-cli.py search <name>"
+            )
+            try:
+                page = await self.get_page(venue_id)
+            except Exception:
+                raise bad
+            if page.get("content_type") == "reservation" and page.get("slug_venue"):
+                self._venue_page_cache[venue_id] = venue_id
+                return venue_id
+            title = page.get("title")
+            if title:
+                try:
+                    venue_slug = await self.resolve_venue_name(title)
+                    if venue_slug != venue_id:
+                        recovered = await self.resolve_page_id(venue_slug)
+                        if recovered != venue_slug:
+                            self._venue_page_cache[venue_id] = recovered
+                            return recovered
+                except Exception:
+                    pass
+            raise bad
+
         self._venue_page_cache[venue_id] = venue_id
         return venue_id
 
@@ -377,17 +581,27 @@ class OntopoClient:
         time: str,
         size: int,
         geocodes: Optional[List[str]] = None,
-        category: Optional[str] = None
+        category: Optional[str] = None,
+        venue_type: Optional[str] = None,
+        city: Optional[str] = None
     ) -> str:
-        """Create a search session for batch availability."""
+        """Create a search session for batch availability.
+
+        Args:
+            venue_type: Filter by venue tag (e.g. 'safe_zone' for מרחב מוגן,
+                        'kosher', 'vegetarian', 'wine_bar', etc.)
+            city: City slug for marketplace routing (each city has its own marketplace).
+        """
+        marketplace_id = CITY_MARKETPLACE_IDS.get(city, ISRAEL_MARKETPLACE_ID) if city else ISRAEL_MARKETPLACE_ID
         body = {
-            "marketplace_id": ISRAEL_MARKETPLACE_ID,
+            "marketplace_id": marketplace_id,
             "criteria": {
                 "date": date,
                 "time": time,
                 "size": str(size)  # Must be string
             },
             "locale": self.locale,
+            "traits": ["reservation"],
             "analytics": {
                 "distributor_id": "il",
                 "platform": "web"
@@ -397,6 +611,8 @@ class OntopoClient:
             body["geocodes"] = geocodes
         if category:
             body["primary"] = [category]
+        if venue_type:
+            body["venue_type"] = venue_type
 
         response = await self._request("POST", "/search_token", body=body)
         return response.get("search_id", response.get("token", ""))
@@ -444,9 +660,11 @@ class OntopoClient:
 class CommandHandler:
     """Handle CLI commands and format output."""
 
-    def __init__(self, client: OntopoClient, json_output: bool = False):
+    def __init__(self, client: OntopoClient, json_output: bool = False,
+                 raw_output: bool = False):
         self.client = client
         self.json_output = json_output
+        self.raw_output = raw_output
 
     def _output(self, data: Any, markdown: str) -> None:
         """Output data in JSON or markdown format."""
@@ -457,19 +675,37 @@ class CommandHandler:
 
     async def cmd_cities(self) -> None:
         """List supported cities."""
-        data = {"cities": CITIES, "count": len(CITIES)}
+        cities_with_labels = [
+            {"slug": slug, "label": _CITY_DATA[slug][2]}
+            for slug in CITIES
+        ]
+        aliases = {v: k for k, v in _CITY_ALIASES.items()}
+        data = {"cities": [c["slug"] for c in cities_with_labels], "count": len(CITIES)}
+        if self.json_output and not self.raw_output:
+            self._output(make_envelope(
+                "cities",
+                results=[{"slug": c["slug"], "label": c["label"],
+                          "is_region": c["slug"] in REGION_SLUGS}
+                         for c in cities_with_labels],
+            ), "")
+            return
 
         if self.json_output:
             self._output(data, "")
         else:
             print(f"Supported Cities ({len(CITIES)}):")
             print("-" * 40)
-            for i, city in enumerate(CITIES, 1):
-                print(f"  {i:2}. {city}")
+            for i, c in enumerate(cities_with_labels, 1):
+                alias = aliases.get(c["slug"])
+                alias_str = f" (or: {alias})" if alias else ""
+                print(f"  {i:2}. {c['slug']:20s} {c['label']}{alias_str}")
 
     async def cmd_categories(self) -> None:
         """List supported categories."""
         data = {"categories": CATEGORIES, "count": len(CATEGORIES)}
+        if self.json_output and not self.raw_output:
+            self._output(make_envelope("categories", results=list(CATEGORIES)), "")
+            return
 
         if self.json_output:
             self._output(data, "")
@@ -481,7 +717,28 @@ class CommandHandler:
 
     async def cmd_search(self, query: str, city: Optional[str] = None) -> None:
         """Search for venues."""
-        venues = await self.client.search_venues(query, city)
+        warning = None
+        if city:
+            city = _resolve_city(city)
+            if city not in _CITY_DATA:
+                msg = (f"Unknown city '{city}'. "
+                       f"Run: ontopo-cli.py cities")
+                if self.json_output:
+                    self._output(make_envelope(
+                        "search", criteria={"query": query}, error=msg), "")
+                else:
+                    print(msg)
+                return
+            if city in REGION_SLUGS:
+                warning = (f"'{city}' is a multi-city region and cannot filter search "
+                           f"results; showing all matches. Use 'available --city {city}' "
+                           f"for region-wide availability.")
+
+        venues = await self.client.search_venues(query)
+
+        if city and city not in REGION_SLUGS:
+            venues = [v for v in venues
+                      if city_matches_address(city, v.get("address", ""))]
 
         if not venues:
             msg = f"No venues found for '{query}'"
@@ -489,19 +746,36 @@ class CommandHandler:
                 msg += f" in {city}"
             msg += "."
             if self.json_output:
-                self._output({"venues": [], "message": msg}, "")
+                self._output(make_envelope(
+                    "search", criteria={"query": query, "city": city},
+                    results=[], warning=warning, message=msg), "")
             else:
                 print(msg)
             return
 
-        data = {"venues": venues, "count": len(venues)}
-
         if self.json_output:
-            self._output(data, "")
+            if self.raw_output:
+                self._output({"venues": venues, "count": len(venues)}, "")
+            else:
+                results = [{
+                    "venue_id": str(v.get("slug", "")),
+                    "name": v.get("title") or v.get("name") or "Unknown",
+                    "address": v.get("address") or None,
+                } for v in venues]
+                self._output(make_envelope(
+                    "search",
+                    criteria={"query": query, "city": city},
+                    results=results,
+                    warning=warning,
+                    hint="Use 'url <venue_id>' for a booking link, "
+                         "'check <venue_id> <date> <time>' for availability.",
+                ), "")
         else:
             print(f"Search Results for '{query}':")
             if city:
                 print(f"City: {city}")
+            if warning:
+                print(f"Note: {warning}")
             print()
 
             rows = []
@@ -526,11 +800,16 @@ class CommandHandler:
         date: str,
         time: str,
         city: Optional[str] = None,
-        party_size: int = 2
+        party_size: int = 2,
+        venue_type: Optional[str] = None
     ) -> None:
         """Search for available venues."""
         api_date = parse_date(date)
         api_time = parse_time(time)
+
+        # Resolve city alias to canonical slug
+        if city:
+            city = _resolve_city(city)
 
         # Get geocode for city (single value, wrapped in list for API)
         geocode = CITY_GEOCODES.get(city) if city else None
@@ -538,7 +817,8 @@ class CommandHandler:
 
         try:
             search_id = await self.client.create_search_token(
-                api_date, api_time, party_size, geocodes
+                api_date, api_time, party_size, geocodes,
+                venue_type=venue_type, city=city
             )
 
             if not search_id:
@@ -549,24 +829,63 @@ class CommandHandler:
             results = response.get("posts", response.get("results", []))
             if not isinstance(results, list):
                 results = []
+            # Total venues matching the filter (including unavailable)
+            total_venues = response.get("total")
         except Exception as e:
             if self.json_output:
-                self._output({"error": str(e), "venues": []}, "")
+                self._output(make_envelope("available", error=str(e)), "")
             else:
                 print(f"Error searching availability: {e}")
             return
 
-        data = {
-            "date": api_date,
-            "time": api_time,
-            "party_size": party_size,
-            "city": city,
-            "venues": results,
-            "count": len(results)
-        }
+        # Count venues with actual bookable time slots (not just "Check venue")
+        def _has_bookable_slots(venue):
+            avail = venue.get("availability", {})
+            for area in avail.get("areas", []):
+                for opt in area.get("options", []):
+                    if isinstance(opt, dict) and opt.get("method") == "seat" and opt.get("time"):
+                        return True
+            return False
+
+        bookable_count = sum(1 for r in results if _has_bookable_slots(r))
 
         if self.json_output:
-            self._output(data, "")
+            if self.raw_output:
+                self._output({
+                    "date": api_date, "time": api_time,
+                    "party_size": party_size, "city": city,
+                    "venue_type": venue_type, "venues": results,
+                    "count": len(results), "bookable_count": bookable_count,
+                    "total_venues": total_venues
+                }, "")
+            else:
+                norm = []
+                for r in results:
+                    post = r.get("post", r) if isinstance(r, dict) else {}
+                    page_id = post.get("page_slug")
+                    norm.append({
+                        "venue_id": str(post.get("slug", "")),
+                        "name": post.get("venue_name") or post.get("title") or "Unknown",
+                        "page_id": str(page_id) if page_id else None,
+                        "booking_url": make_booking_url(page_id, self.client.locale),
+                        "slots": extract_slots(r.get("availability")),
+                    })
+                self._output(make_envelope(
+                    "available",
+                    criteria={
+                        "date": format_date_display(api_date),
+                        "time": format_time_display(api_time),
+                        "party_size": party_size,
+                        "city": city,
+                        "venue_type": venue_type,
+                    },
+                    results=norm,
+                    bookable_count=bookable_count,
+                    total_venues=total_venues,
+                    hint="Share booking_url values verbatim. venue_id is a "
+                         "temporary search id - a URL built from it will not "
+                         "load.",
+                ), "")
         else:
             print(f"Available Venues")
             print(f"Date: {format_date_display(api_date)}")
@@ -574,6 +893,11 @@ class CommandHandler:
             print(f"Party Size: {party_size}")
             if city:
                 print(f"City: {city}")
+            if venue_type:
+                label = "מרחב מוגן (Safe Zone)" if venue_type == "safe_zone" else venue_type
+                print(f"Filter: {label}")
+                if total_venues:
+                    print(f"Total venues with filter: {total_venues} ({bookable_count} with bookable slots)")
             print()
 
             if not results:
@@ -635,7 +959,9 @@ class CommandHandler:
                 else:
                     error_msg = f"Venue not found: {venue_id}. Try: ontopo-cli.py search <name>"
             if self.json_output:
-                self._output({"error": error_msg, "available": False}, "")
+                self._output(make_envelope(
+                    "check", criteria={"venue_input": venue_id},
+                    error=error_msg), "")
             else:
                 print(f"Error: {error_msg}")
             return
@@ -648,6 +974,30 @@ class CommandHandler:
             "party_size": party_size,
             "availability": result
         }
+        if self.json_output and not self.raw_output:
+            # The availability response carries no page id; resolve it here so
+            # the caller gets a booking link without a follow-up `url` call.
+            try:
+                page_id = await self.client.resolve_page_id(resolved_id)
+            except Exception:
+                page_id = None
+            slots = extract_slots(result)
+            self._output(make_envelope(
+                "check",
+                criteria={
+                    "venue_id": resolved_id, "venue_input": venue_id,
+                    "date": format_date_display(api_date),
+                    "time": format_time_display(api_time),
+                    "party_size": party_size,
+                },
+                results=[{
+                    "venue_id": resolved_id,
+                    "booking_url": make_booking_url(page_id, self.client.locale),
+                    "available": any(sl["status"] == "available" for sl in slots),
+                    "slots": slots,
+                }],
+            ), "")
+            return
 
         if self.json_output:
             self._output(data, "")
@@ -785,7 +1135,36 @@ class CommandHandler:
             "results": results
         }
 
-        if self.json_output:
+        if self.json_output and not self.raw_output:
+            norm = []
+            for day in results:
+                norm.append({
+                    "date": format_date_display(day.get("date", "")),
+                    "times": [{
+                        "time": format_time_display(t.get("time", "")),
+                        "status": ("available" if t.get("available")
+                                   else "waitlist" if t.get("waitlist")
+                                   else "error" if t.get("error")
+                                   else "unavailable"),
+                    } for t in day.get("times", [])],
+                })
+            try:
+                page_id = await self.client.resolve_page_id(resolved_id, validate=True)
+            except Exception:
+                page_id = None
+            self._output(make_envelope(
+                "range",
+                criteria={
+                    "venue_id": resolved_id,
+                    "venue_input": venue_id,
+                    "start_date": format_date_display(start.strftime('%Y%m%d')),
+                    "end_date": format_date_display(end.strftime('%Y%m%d')),
+                    "party_size": party_size,
+                    "booking_url": make_booking_url(page_id, self.client.locale),
+                },
+                results=norm,
+            ), "")
+        elif self.json_output:
             self._output(data, "")
         else:
             print(f"Availability Range Check")
@@ -799,7 +1178,7 @@ class CommandHandler:
             rows = []
 
             for day_result in results:
-                row = [format_date_display(day_result["date"])[:12]]
+                row = [format_date_display(day_result["date"])]
                 for time_result in day_result["times"]:
                     if time_result.get("available"):
                         row.append("Available")
@@ -833,7 +1212,9 @@ class CommandHandler:
             if "404" in error_msg or "not found" in error_msg.lower():
                 error_msg = f"Venue not found: {venue_id}. Try: ontopo-cli.py search <name>"
             if self.json_output:
-                self._output({"error": error_msg}, "")
+                self._output(make_envelope(
+                    "info", criteria={"venue_input": venue_id},
+                    error=error_msg), "")
             else:
                 print(f"Error: {error_msg}")
             return
@@ -889,6 +1270,21 @@ class CommandHandler:
             filtered = [i for i in filtered if (
                 i.get("price") is not None and float(i.get("price", 999999)) <= max_price
             )]
+
+        if self.json_output and not self.raw_output:
+            self._output(make_envelope(
+                "menu",
+                criteria={"venue_id": venue_id, "section": section,
+                          "search": search, "min_price": min_price,
+                          "max_price": max_price},
+                results=[{
+                    "name": i.get("name"),
+                    "section": i.get("section"),
+                    "price": i.get("price"),
+                    "description": i.get("description") or None,
+                } for i in filtered],
+            ), "")
+            return
 
         data = {
             "venue_id": venue_id,
@@ -952,7 +1348,32 @@ class CommandHandler:
                 print(f"Error: {error_msg}")
             return
 
-        if self.json_output:
+        if self.json_output and not self.raw_output:
+            # Only a live booking page (content_type "reservation" with a
+            # slug_venue back-reference) may contribute a booking_url. For a
+            # search-post id, get_page echoes the input slug, and a URL built
+            # from it renders nothing - same trap the url command guards.
+            page_id = info.get("slug")
+            if not (info.get("content_type") == "reservation"
+                    and info.get("slug_venue")):
+                page_id = None
+            self._output(make_envelope(
+                "info",
+                criteria={"venue_input": venue_id, "venue_id": resolved_id},
+                results=[{
+                    "venue_id": resolved_id,
+                    "page_id": str(page_id) if page_id else None,
+                    "name": info.get("title") or info.get("name") or "Unknown",
+                    "address": info.get("address") or None,
+                    "phone": info.get("phone") or None,
+                    "website": info.get("website") or None,
+                    "cuisine": [t for t in (info.get("tag1"), info.get("tag2")) if t],
+                    "price_level": info.get("venue_price") or None,
+                    "about": info.get("about_us") or None,
+                    "booking_url": make_booking_url(page_id, self.client.locale),
+                }],
+            ), "")
+        elif self.json_output:
             self._output(info, "")
         else:
             name = info.get("name", info.get("title", "Unknown"))
@@ -999,10 +1420,26 @@ class CommandHandler:
         """Get booking URL for venue."""
         # Resolve venue name to ID if needed
         resolved_id = await self.client.resolve_venue_name(venue_id)
-        page_id = await self.client.resolve_page_id(resolved_id)
+        try:
+            page_id = await self.client.resolve_page_id(resolved_id, validate=True)
+        except ValueError as e:
+            if self.json_output:
+                self._output(make_envelope(
+                    "url", criteria={"venue_input": venue_id},
+                    error=str(e)), "")
+            else:
+                print(f"Error: {e}")
+            return
         url = f"https://ontopo.com/{self.client.locale}/il/page/{page_id}"
 
-        if self.json_output:
+        if self.json_output and not self.raw_output:
+            self._output(make_envelope(
+                "url",
+                criteria={"venue_input": venue_id},
+                results=[{"venue_id": resolved_id, "page_id": page_id,
+                          "booking_url": url}],
+            ), "")
+        elif self.json_output:
             self._output({"venue_id": venue_id, "page_id": page_id, "url": url}, "")
         else:
             print(f"Booking URL: {url}")
@@ -1029,34 +1466,51 @@ Examples:
   ontopo-cli.py url abc123                          # Get booking URL
         """
     )
+    parser.add_argument(
+        "--raw", action="store_true",
+        help="With --json, emit the unprocessed upstream payload"
+    )
+    parser.add_argument(
+        "--check-args", action="store_true",
+        help=argparse.SUPPRESS  # Validate arguments and exit; used by tests.
+    )
+
+    # Accept --raw after the subcommand as well as before it. SUPPRESS keeps
+    # the top-level value when the flag is not repeated on the subcommand.
+    _common = argparse.ArgumentParser(add_help=False)
+    _common.add_argument("--raw", action="store_true",
+                         default=argparse.SUPPRESS,
+                         help="With --json, emit the unprocessed upstream payload")
 
     subparsers = parser.add_subparsers(dest="command", help="Available commands")
 
     # cities
-    cities_parser = subparsers.add_parser("cities", help="List supported cities")
+    cities_parser = subparsers.add_parser("cities", help="List supported cities", parents=[_common])
     cities_parser.add_argument("--json", action="store_true", help="Output as JSON")
 
     # categories
-    cat_parser = subparsers.add_parser("categories", help="List supported categories")
+    cat_parser = subparsers.add_parser("categories", help="List supported categories", parents=[_common])
     cat_parser.add_argument("--json", action="store_true", help="Output as JSON")
 
     # search
-    search_parser = subparsers.add_parser("search", help="Search for venues")
+    search_parser = subparsers.add_parser("search", help="Search for venues", parents=[_common])
     search_parser.add_argument("query", help="Search query")
     search_parser.add_argument("--city", help="Filter by city")
     search_parser.add_argument("--locale", choices=["en", "he"], default="en", help="Language")
     search_parser.add_argument("--json", action="store_true", help="Output as JSON")
 
     # available
-    avail_parser = subparsers.add_parser("available", help="Search available venues")
+    avail_parser = subparsers.add_parser("available", help="Search available venues", parents=[_common])
     avail_parser.add_argument("date", help="Date (YYYY-MM-DD, today, tomorrow, +N)")
     avail_parser.add_argument("time", help="Time (HH:MM, HHMM, 7pm)")
     avail_parser.add_argument("--city", help="City to search in")
     avail_parser.add_argument("--party-size", type=int, default=2, help="Party size (default: 2)")
+    avail_parser.add_argument("--safe-zone", "--mamad", action="store_true", help="Only show venues tagged as safe zone (מרחב מוגן) on Ontopo")
+    avail_parser.add_argument("--venue-type", help="Filter by venue tag (e.g. kosher, vegetarian, wine_bar)")
     avail_parser.add_argument("--json", action="store_true", help="Output as JSON")
 
     # check
-    check_parser = subparsers.add_parser("check", help="Check venue availability")
+    check_parser = subparsers.add_parser("check", help="Check venue availability", parents=[_common])
     check_parser.add_argument("venue_id", help="Venue ID or name (e.g., 36960535 or 'taizu')")
     check_parser.add_argument("date", help="Date (YYYY-MM-DD, today, tomorrow, +N)")
     check_parser.add_argument("time", nargs="?", default="19:00", help="Time (HH:MM, HHMM, 7pm) - default: 19:00")
@@ -1064,7 +1518,7 @@ Examples:
     check_parser.add_argument("--json", action="store_true", help="Output as JSON")
 
     # range
-    range_parser = subparsers.add_parser("range", help="Check availability over date range")
+    range_parser = subparsers.add_parser("range", help="Check availability over date range", parents=[_common])
     range_parser.add_argument("venue_id", help="Venue ID")
     range_parser.add_argument("start_date", help="Start date (YYYY-MM-DD)")
     range_parser.add_argument("end_date", help="End date (YYYY-MM-DD)")
@@ -1073,7 +1527,7 @@ Examples:
     range_parser.add_argument("--json", action="store_true", help="Output as JSON")
 
     # menu
-    menu_parser = subparsers.add_parser("menu", help="Get venue menu")
+    menu_parser = subparsers.add_parser("menu", help="Get venue menu", parents=[_common])
     menu_parser.add_argument("venue_id", help="Venue ID")
     menu_parser.add_argument("--section", help="Filter by section name")
     menu_parser.add_argument("--search", help="Search menu items")
@@ -1082,13 +1536,13 @@ Examples:
     menu_parser.add_argument("--json", action="store_true", help="Output as JSON")
 
     # info
-    info_parser = subparsers.add_parser("info", help="Get venue details")
+    info_parser = subparsers.add_parser("info", help="Get venue details", parents=[_common])
     info_parser.add_argument("venue_id", help="Venue ID")
     info_parser.add_argument("--locale", choices=["en", "he"], default="en", help="Language")
     info_parser.add_argument("--json", action="store_true", help="Output as JSON")
 
     # url
-    url_parser = subparsers.add_parser("url", help="Get booking URL")
+    url_parser = subparsers.add_parser("url", help="Get booking URL", parents=[_common])
     url_parser.add_argument("venue_id", help="Venue ID")
     url_parser.add_argument("--locale", choices=["en", "he"], default="en", help="Language")
     url_parser.add_argument("--json", action="store_true", help="Output as JSON")
@@ -1100,9 +1554,11 @@ async def main_async(args: argparse.Namespace) -> int:
     """Main async entry point."""
     locale = getattr(args, "locale", "en")
     json_output = getattr(args, "json", False)
+    raw_output = getattr(args, "raw", False)
 
     async with OntopoClient(locale=locale) as client:
-        handler = CommandHandler(client, json_output=json_output)
+        handler = CommandHandler(client, json_output=json_output,
+                                 raw_output=raw_output)
 
         try:
             if args.command == "cities":
@@ -1115,8 +1571,10 @@ async def main_async(args: argparse.Namespace) -> int:
                 await handler.cmd_search(args.query, args.city)
 
             elif args.command == "available":
+                venue_type = "safe_zone" if getattr(args, "safe_zone", False) else getattr(args, "venue_type", None)
                 await handler.cmd_available(
-                    args.date, args.time, args.city, args.party_size
+                    args.date, args.time, args.city, args.party_size,
+                    venue_type=venue_type
                 )
 
             elif args.command == "check":
@@ -1170,6 +1628,10 @@ def main() -> int:
     if not args.command:
         parser.print_help()
         return 1
+
+    # Validate arguments without executing (used by the docs conformance test).
+    if getattr(args, "check_args", False):
+        return 0
 
     return asyncio.run(main_async(args))
 

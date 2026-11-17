@@ -1,43 +1,57 @@
-## Description: <br>
-AIG Scanner submits and checks authorized A.I.G security scans for AI infrastructure, AI tools and skills, agents, and LLM jailbreak evaluation through Tencent Zhuque Lab AI-Infra-Guard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A.I.G Scanner helps agents submit and review AI security scans for infrastructure, AI tools and skills, agents, and LLM jailbreak evaluation through Tencent Zhuque Lab AI-Infra-Guard.
 
-## Publisher: <br>
-[aigsec](https://clawhub.ai/user/aigsec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[aigsec](https://clawhub.ai/user/aigsec)
 
-## Use Case: <br>
-Developers and security engineers use this skill to submit authorized scans to a configured A.I.G server, check scan progress, and review formatted security results for AI services, tool or skills projects, saved agents, and model jailbreak evaluations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can initiate scans against local, private-network, or third-party targets. <br>
-Mitigation: Use it only for authorized testing and confirm permission for each target before running a scan. <br>
-Risk: Targets, model tokens, API keys, and local archives may be sent to the configured A.I.G server. <br>
-Mitigation: Set AIG_BASE_URL only to a trusted server, use limited-scope credentials, and upload private archives only when they are intended for analysis by that server. <br>
-Risk: Scan submission and result polling depend on environment configuration and short polling windows. <br>
-Mitigation: Configure AIG_BASE_URL before use and retain returned session IDs so results can be checked later when a scan continues after the initial polling window. <br>
+## Use Case:
 
+Developers and security engineers use this skill to run A.I.G security checks against authorized AI infrastructure, AI tool and skill projects, saved agent configurations, and model jailbreak scenarios.
 
-## Reference(s): <br>
-- [AIG Scanner on ClawHub](https://clawhub.ai/aigsec/aig-scanner) <br>
-- [Tencent AI-Infra-Guard](https://github.com/Tencent/AI-Infra-Guard/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Plain text and Markdown-formatted scan status, findings, links, screenshots, and command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include session IDs, security scores, finding summaries, attachment links, and screenshot links returned by the configured A.I.G server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill can scan local, private, and remote network targets through a configured A.I.G service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with trusted A.I.G servers and only against networks or services you are authorized to assess; prefer HTTPS except for loopback development.
+
+Risk: Scan flows can require API tokens or model credentials.
+
+Mitigation: Provide credentials through environment variables or a secret manager, avoid long-lived keys, and do not paste raw secrets into shared commands or logs.
+
+Risk: AI tool and skill scans can upload local project archives to the configured A.I.G service.
+
+Mitigation: Upload only sanitized archives needed for the assessment and avoid arbitrary private files or unrelated source material.
+
+## Reference(s):
+
+- [Tencent AI-Infra-Guard](https://github.com/Tencent/AI-Infra-Guard/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal text with generated shell commands, scan status, and result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include formatted scan findings, status messages, session identifiers, and links or inline Markdown for result screenshots.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

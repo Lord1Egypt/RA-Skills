@@ -1,45 +1,59 @@
-## Description: <br>
-Google Workspace Admin SDK: Manage users, groups, and devices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Workspace Admin SDK: Manage users, groups, and devices.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Developers and administrators use this skill to inspect and construct Google Workspace Admin SDK CLI commands for managing users, groups, domains, roles, devices, tokens, verification codes, and related directory resources. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide powerful Google Workspace account, device, domain, token, two-step verification, and role-administration actions. <br>
-Mitigation: Install it only for intentional Google Workspace administration, use the narrowest possible admin and OAuth permissions, and require explicit human confirmation for destructive or privilege-changing commands. <br>
-Risk: The artifact expects a shared Google Workspace skill for authentication, global flags, and security rules. <br>
-Mitigation: Inspect the referenced gws-shared skill before use and generate it with gws generate-skills if it is missing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Gws Admin ClawHub release page](https://clawhub.ai/googleworkspace-bot/gws-admin) <br>
-- [Google Workspace Admin SDK ChromeOS device status](https://developers.google.com/workspace/admin/directory/reference/rest/v1/customer.devices.chromeos/batchChangeStatus) <br>
-- [Google Workspace Admin SDK patch semantics](https://developers.google.com/workspace/admin/directory/v1/guides/performance#patch) <br>
-- [Cloud Identity transitive membership check](https://cloud.google.com/identity/docs/reference/rest/v1/groups.memberships/checkTransitiveMembership) <br>
-- [Google Workspace Admin SDK troubleshooting](https://developers.google.com/workspace/admin/directory/v1/guides/troubleshoot-error-codes) <br>
-- [Cloud Identity Devices API overview](https://cloud.google.com/identity/docs/concepts/overview-devices) <br>
-- [Google Workspace user update reference](https://developers.google.com/workspace/admin/directory/v1/reference/users/update) <br>
+## Use Case:
 
+Google Workspace administrators and agents use this skill to inspect and prepare Google Workspace Admin SDK CLI commands for managing users, groups, domains, organizational units, roles, tokens, verification codes, and devices.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command-parameter guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gws CLI and should be used with gws admin --help and gws schema admin.<resource>.<method> before API calls.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence; artifact frontmatter reports 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill exposes high-impact Google Workspace administration actions, including deletes, role changes, 2-Step Verification changes, token operations, verification-code access, device wipes, and user sign-outs.
+
+Mitigation: Use a least-privilege Google account and require explicit human approval before executing destructive or security-sensitive commands.
+
+Risk: The security evidence notes insufficient built-in safety scoping for high-impact account and security administration.
+
+Mitigation: Prefer read-only inspection commands before mutations, inspect each method schema, and scope parameters to the exact intended user, group, domain, role, token, or device.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/skills/gws-admin)
+- [Artifact SKILL.md](artifact/SKILL.md)
+- [ChromeOS device batch status API](https://developers.google.com/workspace/admin/directory/reference/rest/v1/customer.devices.chromeos/batchChangeStatus)
+- [Directory API patch semantics](https://developers.google.com/workspace/admin/directory/v1/guides/performance#patch)
+- [Cloud Identity transitive membership API](https://cloud.google.com/identity/docs/reference/rest/v1/groups.memberships/checkTransitiveMembership)
+- [Directory API troubleshooting](https://developers.google.com/workspace/admin/directory/v1/guides/troubleshoot-error-codes)
+- [Cloud Identity Devices API overview](https://cloud.google.com/identity/docs/concepts/overview-devices)
+- [Directory API users update](https://developers.google.com/workspace/admin/directory/v1/reference/users/update)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gws CLI and Google Workspace administrative credentials configured by the related gws shared setup.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

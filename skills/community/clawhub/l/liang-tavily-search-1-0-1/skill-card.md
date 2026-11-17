@@ -1,42 +1,60 @@
-## Description: <br>
-Web search using Tavily's LLM-optimized API. Returns relevant results with content snippets, scores, and metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web search using Tavily's LLM-optimized API. Returns relevant results with content snippets, scores, and metadata.
 
-## Publisher: <br>
-[TerryRen2024](https://clawhub.ai/user/TerryRen2024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terryren2024](https://clawhub.ai/user/terryren2024)
 
-## Use Case: <br>
-Developers and agents use this skill to run Tavily web searches, retrieve ranked source snippets and metadata, and optionally request news, recency, domain filtering, deeper search, raw content, or raw JSON output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and selected search options are sent to Tavily. <br>
-Mitigation: Avoid including secrets, private documents, or sensitive personal data in queries unless that matches the user's data-handling requirements. <br>
-Risk: The skill requires a Tavily API key. <br>
-Mitigation: Provide the key through TAVILY_API_KEY or trusted OpenClaw configuration and avoid sharing it in prompts, search queries, or public files. <br>
+## Use Case:
 
+Developers and external agents use this skill to run Tavily web searches from an agent workflow, returning concise source lists, snippets, relevance scores, optional answers, and optional raw JSON for downstream reasoning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TerryRen2024/liang-tavily-search-1-0-1) <br>
-- [Tavily](https://tavily.com) <br>
-- [Tavily Search API endpoint](https://api.tavily.com/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON] <br>
-**Output Format:** [Markdown source list with optional answer text, or raw JSON when --json is used] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and TAVILY_API_KEY; result count is clamped to 1-20.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Search queries, filters, and raw-content requests are sent to Tavily.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting secrets, private internal identifiers, or sensitive personal data unless Tavily account terms and organizational policy permit that use.
+
+Risk: The skill requires a Tavily API key.
+
+Mitigation: Provide TAVILY_API_KEY through the agent environment or approved configuration storage and rotate it according to local credential policy.
+
+Risk: Using --raw-content can request and return larger page-content payloads.
+
+Mitigation: Enable raw-content output only when the task requires full page text and review returned content before using it in sensitive workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terryren2024/skills/liang-tavily-search-1-0-1)
+- [Publisher profile](https://clawhub.ai/user/terryren2024)
+- [Tavily homepage](https://tavily.com)
+- [Tavily Search API endpoint](https://api.tavily.com/search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration]
+
+**Output Format:** [Markdown source summaries by default, or formatted JSON when the --json option is used.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search result count is clamped to 1-20; options include search depth, topic, time range, domain filters, and raw-content inclusion.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact _meta.json lists 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

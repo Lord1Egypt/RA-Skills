@@ -1,44 +1,59 @@
-## Description: <br>
-Yqzl Ai Service helps agents submit financial documents for OCR parsing, retrieve asynchronous results, and generate accounting voucher drafts with confidence and review guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+云启智联AI服务 helps agents submit bank receipts, bank statements, invoices, and general documents to Yunqi Zhilian's OCR service, retrieve asynchronous parsing results, and generate local accounting voucher drafts with confidence and review guidance.
 
-## Publisher: <br>
-[hinejon](https://clawhub.ai/user/hinejon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hinejon](https://clawhub.ai/user/hinejon)
 
-## Use Case: <br>
-External developers, finance operators, and accounting assistants use this skill to parse bank receipts, bank statements, invoices, and general documents, then summarize results or prepare accounting voucher drafts for human review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive financial documents and API credentials through a third-party service, including plain-HTTP service paths. <br>
-Mitigation: Install only when the publisher is trusted, avoid sensitive production documents on the plain-HTTP API path, and use non-sensitive test data where possible. <br>
-Risk: The skill can silently replace its own code through automatic updates. <br>
-Mitigation: Disable or avoid automatic updates unless the update source and release contents can be verified before execution. <br>
-Risk: Bundled sample results and generated local preview files may expose financial data. <br>
-Mitigation: Review and remove sample result files and generated previews when they contain sensitive or regulated financial information. <br>
+## Use Case:
 
+Developers, finance operators, and accounting agents use this skill to parse financial documents, review extracted OCR data, query asynchronous task status, and draft accounting vouchers for human review. It is intended for documents the user is authorized to process through Yunqi Zhilian's external service.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hinejon/skills/yqzl-ai-service) <br>
-- [Yqzl AI Service Homepage](http://8.135.62.13:5000/) <br>
-- [Yqzl AI Experience Page](http://8.135.62.13:5000/AIService/experience/page) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown responses with inline shell commands, JSON result summaries, and paths to generated HTML or JSON preview files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [OCR calls are asynchronous; guidance should avoid resubmitting the same file and may reference generated local previews or accounting voucher JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Risk: Sensitive financial files may be sent to Yunqi Zhilian's external OCR service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with financial files the user is authorized to process through that service.
+
+Risk: Generated HTML and JSON previews may contain financial data and may be unsafe to open for untrusted documents until HTML escaping issues are fixed.
+
+Mitigation: Treat generated previews as sensitive records and avoid opening previews from untrusted documents.
+
+Risk: API keys can be exposed when passed directly on command lines in shared systems.
+
+Mitigation: Prefer the skill's configuration flow or environment variable support instead of placing API keys in shell history.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hinejon/skills/yqzl-ai-service)
+- [Yunqi Zhilian website](https://www.yunqi-zhilian.com/)
+- [Yunqi Zhilian AI service experience page](https://www.yunqi-zhilian.com/AIService/experience/page)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, JSON, HTML files]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON API results, and generated local HTML or JSON preview files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated previews and voucher files can contain sensitive financial records.]
+
+## Skill Version(s):
+
+1.2.5 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

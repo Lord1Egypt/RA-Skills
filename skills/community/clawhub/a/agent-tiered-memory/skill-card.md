@@ -1,48 +1,60 @@
-## Description: <br>
-Two-tier memory system for OpenClaw agents that combines recent QMD semantic search with long-term SQLite archival and optional Ollama-based summarization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Two-tier memory system for OpenClaw agents. Tier 0 = QMD semantic search for recent memories (7-14 days). Tier 1 = SQLite archive for long-term storage. Auto-archives old sessions with LLM summarization. Use when building agents that need efficient, scalable memory management.
 
-## Publisher: <br>
-[jpmoregain-eth](https://clawhub.ai/user/jpmoregain-eth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpmoregain-eth](https://clawhub.ai/user/jpmoregain-eth)
 
-## Use Case: <br>
-Developers and agent operators use this skill to keep recent OpenClaw memories searchable while moving older memory files into a long-term SQLite archive. It supports manual archive runs, cron-based archiving, archive search, and a Python interface for querying recent and archived sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The archiver can process and retain sensitive OpenClaw memory data in long-term SQLite storage. <br>
-Mitigation: Install it only when long-term memory retention is intended; run --dry-run first and review the files that would be archived. <br>
-Risk: LLM summarization sends memory content to the configured Ollama runtime during archive creation. <br>
-Mitigation: Use --skip-llm for sensitive workspaces or confirm that Ollama is local and trusted before enabling summarization. <br>
-Risk: Cron-based archiving can automatically move old memory files into the archive directory and database. <br>
-Mitigation: Review the retention threshold, database path, and archive directory before installing the cron job. <br>
-Risk: The README includes a curl-to-shell Ollama installation example. <br>
-Mitigation: Use a verified Ollama installation method rather than running remote installer commands blindly. <br>
+## Use Case:
 
+Developers and engineers use this skill to add scalable memory management to OpenClaw agents by searching recent memory files and archiving older sessions into SQLite summaries. It supports manual or scheduled archive maintenance and unified lookup across recent and archived memory.
 
-## Reference(s): <br>
-- [QMD Setup Guide](references/qmd-setup.md) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [Ollama Download](https://ollama.com/download) <br>
-- [PyTorch CUDA Wheels](https://download.pytorch.org/whl/cu121) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jpmoregain-eth/agent-tiered-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions, Python scripts, shell commands, configuration snippets, CLI text output, and SQLite archive records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results are returned as recent-file matches and archived-session summaries; archiving can run with Ollama summarization or fallback summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The optional README install path pipes a downloaded Ollama script directly to a shell.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted packaged installer or verify any downloaded script before running it.
+
+Risk: Scheduled archiving can summarize, move, and permanently retain potentially sensitive OpenClaw memory files in a local SQLite database.
+
+Mitigation: Run with --dry-run first, enable the cron job only when retention is desired, protect the archive database, and define a deletion process.
+
+Risk: LLM-based summarization can expose sensitive memory content to the local Ollama model process and may produce incomplete summaries.
+
+Mitigation: Use --skip-llm for sensitive logs or review generated summaries before relying on archived results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpmoregain-eth/skills/agent-tiered-memory)
+- [QMD Setup Guide](references/qmd-setup.md)
+- [Ollama download](https://ollama.com/download)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python examples, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or query local SQLite archive records and move old OpenClaw memory files when the archive script is run.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

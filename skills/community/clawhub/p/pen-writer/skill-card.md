@@ -1,38 +1,54 @@
-## Description: <br>
-Generates complete, fluent, original formal Chinese drafts based on the user's requirements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates complete, fluent, original Chinese formal drafts from the user's writing requirements.
 
-## Publisher: <br>
-[xiaozha87](https://clawhub.ai/user/xiaozha87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaozha87](https://clawhub.ai/user/xiaozha87)
 
-## Use Case: <br>
-Writers, business users, and agents use this skill to draft polished formal Chinese text from a requested topic, tone, or document need. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Drafted text may be inaccurate, insufficiently original, or mismatched to the intended tone or submission context. <br>
-Mitigation: Review generated text for accuracy, originality, tone, and suitability before publishing or submitting it. <br>
+## Use Case:
 
+Chinese-speaking users use this skill to produce polished formal drafts for requested topics, purposes, or constraints. The agent is expected to return only the final body text without explanatory commentary.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaozha87/pen-writer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs only the final drafted body without extra explanation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md) <br>
+Risk: The skill is narrowly scoped to Chinese formal drafting and final-answer-only output, which may be unsuitable for users who need multilingual drafts or explanatory reasoning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for Chinese formal-writing tasks and request a different skill when commentary, multilingual output, or iterative explanation is required.
+
+Risk: Low quality-review score indicates the release may require moderation before listing.
+
+Mitigation: Review the concise artifact and release evidence before publishing or installing in a governed environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaozha87/skills/pen-writer)
+- [ClawHub publisher profile](https://clawhub.ai/user/xiaozha87)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese formal prose; final answer only, with no extra explanation.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md metadata and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

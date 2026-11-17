@@ -1,40 +1,53 @@
-## Description: <br>
-随机获取一个漂流瓶消息，包含人生感悟、小故事、祝福或励志语录。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+随机返回一条中文漂流瓶消息，内容包括人生感悟、小故事、祝福或励志语录。
 
-## Publisher: <br>
-[enihsago](https://clawhub.ai/user/enihsago) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[enihsago](https://clawhub.ai/user/enihsago)
 
-## Use Case: <br>
-External users can invoke this skill when they want a random Chinese drift-bottle message for inspiration, reflection, a blessing, or a short story. Agents use it to run the bundled script and return one preset message. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording around inspiration, reflections, and random messages may activate the skill more often than intended. <br>
-Mitigation: Review the trigger wording before installation and narrow it if the agent should only respond to explicit drift-bottle requests. <br>
-Risk: Random inspirational or reflective content may be inappropriate for sensitive personal, professional, or safety-critical contexts. <br>
-Mitigation: Treat returned messages as lightweight creative content and review them before relying on or sharing them in sensitive contexts. <br>
+## Use Case:
 
+External users and agents use this skill to generate a random Chinese drift-bottle style message for inspiration, reflection, blessings, or short story prompts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/enihsago/piaoliuping) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands] <br>
-**Output Format:** [Plain text with optional JSON when run with --json] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Randomly selects one preset local message per run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Broad inspiration or life-reflection prompts may trigger the skill when the user only wanted general guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm ambiguous requests before running the skill, or reserve it for explicit drift-bottle, random-message, blessing, or reflection requests.
+
+Risk: The preset output is Chinese-only and may not satisfy requests for other languages or factual advice.
+
+Mitigation: Use it for lightweight inspirational messages; translate or modify the message list when another language or content style is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/enihsago/skills/piaoliuping)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [Plain text, with optional JSON when invoked with --json]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese preset messages selected randomly; no network, credential, data-access, or persistence behavior is reported by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

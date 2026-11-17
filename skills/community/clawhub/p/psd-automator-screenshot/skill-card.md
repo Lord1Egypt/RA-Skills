@@ -1,41 +1,52 @@
-## Description: <br>
-Use screenshot and natural language instructions to locate PSD text layers and dispatch automated edits with confidence gating. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use screenshot + natural language instruction to locate PSD text layers and dispatch automated edits with confidence gating. Requires psd-automator core.
 
-## Publisher: <br>
-[dhrxy](https://clawhub.ai/user/dhrxy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dhrxy](https://clawhub.ai/user/dhrxy)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Designers, developers, and agents use this skill to route screenshot-guided PSD or PSB text-edit requests into a PSD automation pipeline with confidence gating before execution.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: High-confidence screenshot-guided PSD edit requests may be dispatched automatically to the PSD automation pipeline.
+
+Mitigation: Review commands carefully before using the skill on valuable design files and keep recoverable copies of important PSD or PSB assets.
+
+Risk: Skill usage is recorded to skills-usage.json.
+
+Mitigation: Avoid placing sensitive project details in commands unless local logging is acceptable for the workspace.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Designers, developers, and agent operators use this skill to apply screenshot-guided text edits to PSD or PSB assets through the psd-automator workflow while preserving matching typography where possible. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: High-confidence screenshot-guided PSD text edits may be applied automatically. <br>
-Mitigation: Use backups or working copies for important PSD or PSB files before running the skill. <br>
-Risk: The skill depends on a separate psd-automator core to perform file edits. <br>
-Mitigation: Install and use it only when that core automation is trusted in the target environment. <br>
-Risk: Invocation and execution details are recorded in a local usage log. <br>
-Mitigation: Review local logging expectations before using the skill with sensitive design assets or instructions. <br>
+**Output Format:** [Markdown with inline command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May dispatch high-confidence screenshot-guided PSD edit requests automatically and logs invocations to skills-usage.json.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or plain text with command invocations, status messages, and confirmation prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [High-confidence edits may be dispatched automatically; medium-confidence requests return candidate matches for confirmation.] <br>
+1.0.1 (source: server-resolved release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

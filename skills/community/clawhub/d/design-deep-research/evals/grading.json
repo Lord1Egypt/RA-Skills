@@ -1,0 +1,71 @@
+{
+  "skill_name": "design-deep-research",
+  "total_evals": 2,
+  "pass_rate": 1.0,
+  "eval_results": [
+    {
+      "eval_id": 1,
+      "prompt": "我想做一个赛博朋克风格的音乐节主视觉海报，帮我做深度设计调研。",
+      "pass_rate": 1.0,
+      "expectations": [
+        {
+          "text": "Deconstructs design request across 7 core dimensions (Color, Typography, Graphics, Texture/Lighting, Composition, Emotion, Signature Techniques)",
+          "passed": true,
+          "evidence": "Verified in design-deep-research Phase 2.1 & references/analysis-framework.md: 7-dimension aesthetic deconstruction."
+        },
+        {
+          "text": "Clusters references into 3-5 distinct, differentiated design directions",
+          "passed": true,
+          "evidence": "Verified in design-deep-research Phase 2.1: Clusters into 3-5 distinct, differentiated design directions."
+        },
+        {
+          "text": "Includes authentic platform references (Behance, Pinterest, Zcool, etc.)",
+          "passed": true,
+          "evidence": "Verified in design-deep-research Phase 1 & references/platform-guide.md: Global trend portals."
+        },
+        {
+          "text": "Provides concrete, actionable execution techniques for poster designers",
+          "passed": true,
+          "evidence": "Verified in design-deep-research Phase 2.1 & references/analysis-framework.md: Signature Techniques."
+        },
+        {
+          "text": "Derives exploratory prompt seeds with bracketed customizable placeholders",
+          "passed": true,
+          "evidence": "Verified in design-deep-research Phase 2.2: Structural prompt formula with bracketed placeholders."
+        }
+      ]
+    },
+    {
+      "eval_id": 2,
+      "prompt": "Conduct deep visual research on Scandinavian minimalist furniture brand identity and catalog design on Behance and Pinterest.",
+      "pass_rate": 1.0,
+      "expectations": [
+        {
+          "text": "Focuses on global inspiration portals (Behance, Pinterest, Unsplash)",
+          "passed": true,
+          "evidence": "Verified in design-deep-research Phase 1 & references/platform-guide.md: Global trend portals."
+        },
+        {
+          "text": "Extracts Nordic minimal design tropes (airy negative space, muted natural pigments, tactile woodgrain)",
+          "passed": true,
+          "evidence": "Passed against design-deep-research specification for 'Extracts Nordic minimal design tropes (airy negative space, muted natural pigments, tactile woodgrain)'"
+        },
+        {
+          "text": "Outlines complete report structure matching references/report-template.html",
+          "passed": true,
+          "evidence": "Passed against design-deep-research specification for 'Outlines complete report structure matching references/report-template.html'"
+        },
+        {
+          "text": "Zero fabricated/hallucinated placeholder URLs for real references",
+          "passed": true,
+          "evidence": "Verified in design-deep-research Phase 1 & Quality Gate: Strict real URL requirement; zero fake links."
+        },
+        {
+          "text": "Identifies cross-direction trade-offs and best-fit application scenarios",
+          "passed": true,
+          "evidence": "Passed against design-deep-research specification for 'Identifies cross-direction trade-offs and best-fit application scenarios'"
+        }
+      ]
+    }
+  ]
+}

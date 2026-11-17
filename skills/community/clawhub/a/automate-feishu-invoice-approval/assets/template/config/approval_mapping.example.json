@@ -1,0 +1,72 @@
+{
+  "approval_code": "请替换为费用报销审批定义 Code，或在 .env 设置 LARK_APPROVAL_CODE",
+  "required_invoice_fields": [
+    "invoice_number",
+    "issue_date",
+    "seller_name",
+    "seller_tax_id",
+    "amount_excluding_tax",
+    "tax_amount",
+    "total_amount",
+    "expense_category",
+    "approval_summary"
+  ],
+  "expense_type_options": {
+    "差旅": "请替换_差旅选项ID",
+    "住宿": "请替换_住宿选项ID",
+    "交通": "请替换_交通选项ID",
+    "设备": "请替换_设备选项ID",
+    "团建": "请替换_团建选项ID",
+    "通讯": "请替换_通讯选项ID",
+    "招待": "请替换_招待选项ID",
+    "其他": "请替换_其他选项ID"
+  },
+  "form": [
+    {
+      "id": "请替换_报销类型控件ID",
+      "type": "radioV2",
+      "value": "{{invoice.expense_category_value}}"
+    },
+    {
+      "id": "请替换_报销事由控件ID",
+      "type": "textarea",
+      "value": "{{invoice.approval_summary}}"
+    },
+    {
+      "id": "请替换_合计金额公式控件ID",
+      "type": "formula",
+      "value": "{{invoice.total_amount_number}}"
+    },
+    {
+      "id": "请替换_费用明细控件ID",
+      "type": "fieldList",
+      "value": [
+        [
+          {
+            "id": "请替换_费用内容控件ID",
+            "type": "input",
+            "value": "{{invoice.expense_item_content}}"
+          },
+          {
+            "id": "请替换_费用日期控件ID",
+            "type": "date",
+            "value": "{{invoice.issue_date_rfc3339}}"
+          },
+          {
+            "id": "请替换_费用金额控件ID",
+            "type": "amount",
+            "value": "{{invoice.total_amount_number}}",
+            "currency": "CNY"
+          }
+        ]
+      ]
+    },
+    {
+      "id": "请替换_附件控件ID",
+      "type": "attachmentV2",
+      "value": [
+        "{{approval_file.attachment_code}}"
+      ]
+    }
+  ]
+}

@@ -1,43 +1,55 @@
-## Description: <br>
-Extract design tokens from existing code and generate DESIGN.md with awesome-design-md comparison. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract design tokens from existing code and generate DESIGN.md with awesome-design-md comparison.
 
-## Publisher: <br>
-[html1602](https://clawhub.ai/user/html1602) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[html1602](https://clawhub.ai/user/html1602)
 
-## Use Case: <br>
-Developers and engineers use this skill to scan project style files, extract design tokens such as colors, typography, spacing, and effects, and generate design-system documentation for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill scans project style files and may write generated design documentation and analysis files into the workspace. <br>
-Mitigation: Run it in a version-controlled working tree and inspect generated files before committing or sharing them. <br>
-Risk: Usage may invoke the referenced npm/GitHub extractor with npx. <br>
-Mitigation: Review the referenced extractor package or repository before running it in sensitive projects. <br>
+## Use Case:
 
+Developers and engineers use this skill to scan project style files, extract colors, typography, spacing, effects, and component patterns, and generate design-system documentation with awesome-design-md comparison.
 
-## Reference(s): <br>
-- [Design Extractor homepage](https://github.com/moyubox/design-extractor) <br>
-- [awesome-design-md](https://github.com/VoltAgent/awesome-design-md) <br>
-- [ClawHub skill page](https://clawhub.ai/html1602/design-extractor-clawhub) <br>
-- [Publisher profile](https://clawhub.ai/user/html1602) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown documentation with generated design-token analysis and optional JSON analysis artifacts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write DESIGN.md or DESIGN-EXTRACTED.md and Docs/Design/extracted-analysis.json into the analyzed workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Running mutable external code while scanning a project can affect local files or expose workspace context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, reviewed package version or commit in a low-privilege workspace without sensitive environment variables.
+
+Risk: Automatic conversion into `.claude/skills` creates a persistent agent-skill entry.
+
+Mitigation: Avoid automatic conversion unless that persistent entry is explicitly intended, and review generated files before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/html1602/skills/design-extractor-clawhub)
+- [Project homepage](https://github.com/moyubox/design-extractor)
+- [awesome-design-md](https://github.com/VoltAgent/awesome-design-md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown design documentation with JSON analysis data and optional shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces DESIGN.md or DESIGN-EXTRACTED.md and Docs/Design/extracted-analysis.json when run against a project.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

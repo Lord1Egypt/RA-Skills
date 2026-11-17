@@ -1,43 +1,56 @@
-## Description: <br>
-Generate speech or audio from text using OATDA's unified audio API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate speech or audio from text using OATDA's unified audio API.
 
-## Publisher: <br>
-[devcsde](https://clawhub.ai/user/devcsde) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[devcsde](https://clawhub.ai/user/devcsde)
 
-## Use Case: <br>
-Developers and agent users use this skill to convert text into spoken audio, narration, voiceovers, or accessibility audio through OATDA's speech API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text submitted for speech synthesis is sent to OATDA. <br>
-Mitigation: Avoid sending secrets, regulated data, or confidential drafts unless that data flow is acceptable for the use case. <br>
-Risk: The skill requires an OATDA API key to call the speech and model-discovery endpoints. <br>
-Mitigation: Use a scoped API key where possible and verify only that the key exists instead of printing the full value. <br>
+## Use Case:
 
+Developers, creators, and accessibility-focused users use this skill through an agent to generate spoken audio, narration, voiceovers, and other text-to-speech outputs from text with OATDA-supported providers.
 
-## Reference(s): <br>
-- [OATDA Homepage](https://oatda.com) <br>
-- [OATDA Audio Models Endpoint](https://oatda.com/api/v1/llm/models?type=audio) <br>
-- [OATDA Speech Endpoint](https://oatda.com/api/v1/llm/speech) <br>
-- [ClawHub Skill Page](https://clawhub.ai/devcsde/oatda-generate-speech) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and a saved audio file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, and an OATDA API key; speech responses are saved as local audio files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The command template can mishandle arbitrary user text and may allow command injection if text is pasted directly into JSON payloads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Build request JSON with a proper encoder such as jq --arg, validate output paths, and avoid reusing shell snippets with unsanitized user input.
+
+Risk: The skill reads an OATDA API key and sends provided text to OATDA for speech generation.
+
+Mitigation: Use the skill only when that data flow is acceptable, verify credential presence without printing the full key, and avoid sending sensitive text unless authorized.
+
+## Reference(s):
+
+- [OATDA Homepage](https://oatda.com)
+- [OATDA Audio Models Endpoint](https://oatda.com/api/v1/llm/models?type=audio)
+- [OATDA Speech Endpoint](https://oatda.com/api/v1/llm/speech)
+- [ClawHub Skill Page](https://clawhub.ai/devcsde/skills/oatda-generate-speech)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown with bash commands and generated audio file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, OATDA_API_KEY, and safe JSON construction for user-provided text.]
+
+## Skill Version(s):
+
+1.1.0 (source: evidence.release.version and target metadata; artifact _meta.json reports 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,54 @@
-## Description: <br>
-Helps QA engineers design and manage bulk test-data generation, data masking, cleanup, naming, lifecycle practices, and compliance-aware data factory workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides bulk test-data creation, data masking, and test-data lifecycle management for software testing.
 
-## Publisher: <br>
-[kokxi](https://clawhub.ai/user/kokxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kokxi](https://clawhub.ai/user/kokxi)
 
-## Use Case: <br>
-QA engineers and test automation teams use this skill to plan repeatable test-data strategies, generate data through APIs, database scripts, or data factories, define masking rules, and manage cleanup for isolated test environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Database, API, cleanup, and masking examples could affect production systems or personal data if applied outside an isolated test environment. <br>
-Mitigation: Use scoped non-production credentials, tag generated rows as test data, review DELETE statements before execution, and get approval before using real production or personal data. <br>
+## Use Case:
 
+Developers and QA engineers use this skill to plan and generate repeatable test datasets, mask sensitive data, and manage test-data cleanup.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown with structured sections and SQL or Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes strategy, generation plan, masking rules, and data management workflow guidance. Follow the security guidance to use isolated test environments, scoped non-production credentials, test-data tags, reviewed DELETE statements, and approval before using production or personal data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The optional command to install the broader skill set could fetch unreviewed code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the publisher and repository, and prefer a pinned or reviewed version before running it.
+
+Risk: Running example SQL or API operations against live systems could change production data.
+
+Mitigation: Use isolated test environments and review the target and affected records before execution.
+
+## Reference(s):
+
+- [Test-data masking reference](artifact/references/data-masking.md)
+- [ClawHub skill release](https://clawhub.ai/kokxi/skills/qa-test-data-engineering)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Configuration, SQL queries]
+
+**Output Format:** [Markdown with example SQL and Python code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Test-data plans cover generation, masking, and lifecycle management, with a DATA-XXXX identifier for each plan.]
+
+## Skill Version(s):
+
+1.8.0 (source: skill metadata and ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

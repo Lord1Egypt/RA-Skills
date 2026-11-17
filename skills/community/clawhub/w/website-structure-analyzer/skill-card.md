@@ -1,41 +1,54 @@
-## Description: <br>
-Analyzes a website's navigation, page structure, functional modules, business model, technical signals, and competitor differences, then produces a structured report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes a website's functional structure, page organization, business flows, technology indicators, business model, and competitor differences.
 
-## Publisher: <br>
-[wei3bao](https://clawhub.ai/user/wei3bao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wei3bao](https://clawhub.ai/user/wei3bao)
 
-## Use Case: <br>
-Developers, product teams, and analysts use this skill to inspect public or approved websites, summarize their information architecture and functional modules, and produce competitor or feature-analysis notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may browse or extract content from target websites and save reports or screenshots locally. <br>
-Mitigation: Use it only on public or approved sites, avoid private authenticated pages unless intended, and review saved files before sharing them. <br>
-Risk: Website structure, technology stack, or business-model inferences can be incomplete or misleading when pages are dynamic, restricted, or only partially captured. <br>
-Mitigation: Validate important findings against the live site and treat inferred technology or competitor analysis as reviewable analysis rather than authoritative fact. <br>
+## Use Case:
 
+Developers, product teams, and analysts use this skill to review public websites for navigation, page structure, functional modules, inferred technology stack, business model, and competitor comparison signals.
 
-## Reference(s): <br>
-- [Website Analysis Reference Guide](references/analysis-template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/wei3bao/website-structure-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, analysis, files, guidance] <br>
-**Output Format:** [Markdown report with structured sections and optional screenshots saved as local files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are intended to be saved under /workspace/analysis; screenshots may be saved under /workspace/analysis/screenshots when captured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Reports and screenshots may be saved locally when analyzing private, authenticated, or proprietary sites.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm local retention is acceptable before use on sensitive sites and review saved files after analysis.
+
+Risk: An underspecified request could cause broader website browsing than intended.
+
+Mitigation: Provide a specific target URL and scope before running the analysis.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wei3bao/skills/website-structure-analyzer)
+- [Website Analysis Reference Guide](artifact/references/analysis-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Structured Markdown report with optional local screenshot files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are saved under /workspace/analysis, with screenshots saved under /workspace/analysis/screenshots when collected.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

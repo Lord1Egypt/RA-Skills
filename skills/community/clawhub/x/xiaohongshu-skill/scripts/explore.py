@@ -1,15 +1,15 @@
 """
 小红书首页推荐流模块
 
-基于 xiaohongshu-mcp/feeds.go 翻译
+Reference: xiaohongshu-mcp/feeds.go (Apache-2.0). See THIRD_PARTY_NOTICES.md.
 """
 
 import json
 import sys
 import time
-from typing import Optional, Dict, Any, List
+from typing import Any, Dict, List
 
-from .client import XiaohongshuClient, DEFAULT_COOKIE_PATH
+from .client import DEFAULT_COOKIE_PATH, XiaohongshuClient
 
 
 class ExploreAction:

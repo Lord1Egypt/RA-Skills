@@ -1,42 +1,55 @@
-## Description: <br>
-MiroPRISM is an adversarial two-round review protocol that requires reviewers to challenge Round 1 findings with independent evidence before synthesis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MiroPRISM is an adversarial two-round review protocol that runs specialist reviewers independently, broadcasts a sanitized Round 1 digest, and requires evidence-backed agreement, disagreement, or uncertainty before synthesis.
 
-## Publisher: <br>
-[jeremyknows](https://clawhub.ai/user/jeremyknows) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jeremyknows](https://clawhub.ai/user/jeremyknows)
 
-## Use Case: <br>
-Developers and engineers use MiroPRISM to review architecture decisions, security-sensitive changes, open source releases, and other high-stakes artifacts where consensus drift is a risk. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Review material may include proprietary code, secrets, regulated data, or private security findings, and review material may be shown to multiple subagents or stored locally under analysis/miroprism. <br>
-Mitigation: Redact sensitive values before running the skill and keep analysis/miroprism out of public commits, backups, and shared artifacts when needed. <br>
-Risk: Large artifacts increase exposure and cost because Round 2 sends the original artifact to each reviewer. <br>
-Mitigation: Use Budget mode, external file references, or symmetric truncation for large artifacts while ensuring all reviewers receive the same input. <br>
+## Use Case:
 
+Developers and engineers use MiroPRISM to review architecture decisions, security-sensitive changes, open source releases, and other high-stakes artifacts where consensus drift is a risk.
 
-## Reference(s): <br>
-- [Miroprism on ClawHub](https://clawhub.ai/jeremyknows/miroprism) <br>
-- [PRISM](https://github.com/jeremyknows/PRISM) <br>
-- [Post-Launch Metrics Reference](references/post-launch-metrics.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance, Analysis] <br>
-**Output Format:** [Markdown synthesis with review findings, verdicts, digest logs, and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes review state and final synthesis under analysis/miroprism; can run standard, budget, or extended review modes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: frontmatter and server release metadata) <br>
+Risk: The workflow spawns multiple reviewers over the user's project and writes review records under analysis/miroprism.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where this review activity and local artifact writing are acceptable.
+
+Risk: Untrusted artifact and reviewer text can be reused in later agent prompts.
+
+Mitigation: Treat outputs as advisory, use the digest-review pause for sensitive work, and run only with strong prompt-injection isolation and least-privilege limits when reviewing hostile artifacts.
+
+## Reference(s):
+
+- [Post-Launch Metrics Reference](references/post-launch-metrics.md)
+- [MiroPRISM ClawHub Skill Page](https://clawhub.ai/jeremyknows/skills/miroprism)
+- [jeremyknows ClawHub Publisher Profile](https://clawhub.ai/user/jeremyknows)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Shell commands, Guidance, Files]
+
+**Output Format:** [Markdown review synthesis with digest logs, metrics, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes review artifacts under analysis/miroprism, including Round 1 outputs, sanitized digests, Round 2 outputs, archived syntheses, and optional metrics.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

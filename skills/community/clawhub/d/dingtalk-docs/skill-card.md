@@ -1,49 +1,70 @@
-## Description: <br>
-Manages DingTalk cloud documents, folders, and document content, including search, creation, reading when available, and writing through DingTalk document tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DingTalk Docs helps agents search, create, read, write, and organize DingTalk Cloud Docs while avoiding unsupported workflows such as calendar, messaging, approval, and multidimensional-table management.
 
-## Publisher: <br>
-[aliramw](https://clawhub.ai/user/aliramw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[aliramw](https://clawhub.ai/user/aliramw)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill when an agent needs to operate DingTalk cloud documents with the user's configured DingTalk document credential. It is suited for finding documents, creating documents or folders, writing Markdown content, and reading document content when the DingTalk service exposes the read method. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can write to DingTalk documents using the configured credential, including overwrite mode. <br>
-Mitigation: Confirm whether the user wants overwrite or append behavior before write operations, and review document targets before allowing imports or updates. <br>
-Risk: Requests involving tables or multidimensional tables may be ambiguous because the documented scope is inconsistent. <br>
-Mitigation: Ask the user to confirm the exact target type before creating or modifying tables, multidimensional tables, or other non-document nodes. <br>
-Risk: The read method may not be available in every DingTalk MCP instance. <br>
-Mitigation: Check whether get_document_content_by_url is exposed before promising read access, and explain unavailable reads as service rollout status rather than a local configuration failure. <br>
-Risk: The DingTalk service URL contains an access token. <br>
-Mitigation: Store the URL with mcporter configuration or an environment variable and avoid echoing or committing credential-bearing URLs. <br>
+## Use Case:
 
+External users, developers, and operational teams use this skill to manage DingTalk Cloud Docs through an agent: locating accessible documents, creating documents or folders, writing Markdown content, and conditionally reading document content when the service exposes the read tool.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aliramw/dingtalk-docs) <br>
-- [Publisher profile](https://clawhub.ai/user/aliramw) <br>
-- [Project homepage from ClawHub metadata](https://github.com/aliramw/dingtalk-docs) <br>
-- [DingTalk MCP documentation](https://mcp.dingtalk.com) <br>
-- [API reference](references/api-reference.md) <br>
-- [Error codes](references/error-codes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, text] <br>
-**Output Format:** [Markdown guidance with DingTalk document command examples and local file workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create, overwrite, append, import, or export document content through mcporter and the configured DingTalk document service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.4 (source: frontmatter, package.json, CHANGELOG) <br>
+Risk: The skill uses a token-bearing DingTalk document service URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store the URL with mcporter configuration or a protected environment variable, and avoid exposing it in shell history, logs, or shared files.
+
+Risk: The skill can create, overwrite, or append cloud document content.
+
+Mitigation: Confirm the target document ID and update mode before writing, especially when updateType=0 would replace existing content.
+
+Risk: Ambiguous requests for tables or multidimensional tables can select the wrong DingTalk node type.
+
+Mitigation: Ask the user to choose the intended node type before calling create_dentry_under_node, and pass accessType as a string.
+
+Risk: Local import and export helpers read or write workspace files.
+
+Mitigation: Review file contents and destinations before import or export, and rely on the documented workspace path, extension, and size checks.
+
+Risk: The mcporter binary is required for document operations.
+
+Mitigation: Pin and verify mcporter before global installation or execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aliramw/skills/dingtalk-docs)
+- [DingTalk Docs Repository](https://github.com/aliramw/dingtalk-docs)
+- [DingTalk MCP Service](https://mcp.dingtalk.com)
+- [API Reference](references/api-reference.md)
+- [Error Codes](references/error-codes.md)
+- [Security Test Report](tests/TEST_REPORT.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON argument examples and shell commands; helper scripts read or write workspace Markdown and text files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses mcporter and DINGTALK_MCP_DOCS_URL. Document reading is conditional when the DingTalk service has not exposed get_document_content_by_url.]
+
+## Skill Version(s):
+
+0.3.4 (source: SKILL.md frontmatter, package.json, CHANGELOG, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

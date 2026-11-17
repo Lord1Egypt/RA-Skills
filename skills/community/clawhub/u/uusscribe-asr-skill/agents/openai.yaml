@@ -1,0 +1,4 @@
+interface:
+  display_name: "UUScribe ASR"
+  short_description: "Transcribe audio files and YouTube videos"
+  default_prompt: "Use $uusscribe-asr-skill to transcribe this audio file or YouTube URL."

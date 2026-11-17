@@ -1,45 +1,60 @@
-## Description: <br>
-Trades F1 Drivers Championship winner markets on Kalshi using current points standings and Monte Carlo simulation to compute win probabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades F1 Drivers Championship winner markets on Kalshi by using current points standings and Monte Carlo simulation to estimate win probabilities.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External users and developers use this skill to identify and optionally execute Kalshi F1 Drivers Championship trades when a points-based Monte Carlo model diverges from market prices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can execute real-money automated trades when live mode is enabled. <br>
-Mitigation: Start in dry-run mode, enable --live only intentionally, keep max position and trade-count tunables small, and review all trading behavior before deployment. <br>
-Risk: Live trading requires sensitive API and wallet credentials. <br>
-Mitigation: Use a dedicated low-balance Solana wallet and limited trading credentials; do not provide a main wallet private key. <br>
-Risk: The strategy depends on static F1 standings, driver ratings, and third-party market data. <br>
-Mitigation: Review and update the model inputs and simmer-sdk behavior before enabling live execution. <br>
+## Use Case:
 
+External agents and developers use this skill to evaluate F1 Drivers Championship Kalshi markets, compare a points-based Monte Carlo model to market prices, and optionally execute paper or live trades when configured.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/kalshi-f1-points-model-trader) <br>
-- [Simmer skills](https://simmer.markets/skills) <br>
-- [simmer-sdk repository](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text output, JSON automaton reports, and Markdown setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dry-run by default; live trading requires explicit --live and configured credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release and frontmatter) <br>
+Risk: The skill can place and close real Kalshi trades when live mode is enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep dry-run mode enabled until trade-size limits, slippage limits, exit thresholds, and fail-closed behavior have been reviewed against the operator's risk tolerance.
+
+Risk: Live trading requires high-value credentials, including SIMMER_API_KEY and SOLANA_PRIVATE_KEY.
+
+Mitigation: Use a dedicated low-balance wallet and API key, restrict credential exposure, and rotate credentials if they may have been exposed.
+
+Risk: The security evidence notes an unpinned trading SDK dependency and weak fail-closed safeguards.
+
+Mitigation: Review or pin simmer-sdk before supplying live credentials, and verify safeguards using paper trading before enabling --live.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/kalshi-f1-points-model-trader)
+- [Simmer Markets skills](https://simmer.markets/skills)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with CLI commands, configuration parameters, and optional JSON automaton reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to dry-run mode; live trading requires the explicit --live flag and configured credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -4,21 +4,16 @@ Use this skill to answer the question: *what do podcasts actually say about X?* 
 
 ## Goals
 
-1. Verify that `podwise` is installed and configured.
+1. Verify the Podwise MCP connection.
 2. Clarify the research topic and scope with the user.
-3. Use `ask` to retrieve transcript-grounded insights with cited episode URLs.
+3. Use `ask_podwise` to retrieve transcript-grounded insights with cited source clips.
 4. Fetch summaries and highlights from the cited episodes.
 5. Synthesize a structured research report with multiple perspectives, key claims, and source links.
 6. Write the report to a file and offer to export it.
 
 ## Step 1: Check the Environment
 
-```bash
-podwise --help
-podwise config show
-```
-
-If `podwise` is not installed or the API key is missing, stop and follow [references/installation.md](references/installation.md) before continuing.
+Call `get_me`. If the Podwise tools are unavailable or return an authentication error, stop and follow [../references/installation.md](../references/installation.md) before continuing.
 
 ## Step 2: Load the Listener Taste
 
@@ -36,48 +31,35 @@ If the user has not already stated a clear topic, ask:
 
 If the user already provided both, skip the questions and proceed.
 
-## Step 4: Run Ask
+## Step 4: Ask Podwise
 
-```bash
-# Transcript-grounded synthesis — --sources appends cited episode URLs and excerpts
-podwise ask "{topic}" --sources
-```
+Call `ask_podwise` with the research topic as the `question`.
 
-`ask` searches transcript content and generates a synthesized answer — it may take up to 60 seconds. Do not cancel it early.
+The answer includes **cited source clips** (episode seq, speaker, timestamps) automatically — there is no separate sources flag. The call counts against the user's Ask quota and may take up to 60 seconds; do not cancel early.
 
-Parse the `ask` output to extract all cited episode URLs. These are the primary source episodes for Step 5.
+Parse the result to extract all cited episode seqs and the answer text. The cited episodes are the primary sources for Step 5.
 
 ## Step 5: Fetch Deep Artifacts from Cited Episodes
 
-From the `ask --sources` output, identify all cited episode URLs. For each cited episode, run:
-
-```bash
-podwise get summary {episode-url}
-podwise get highlights {episode-url}
-podwise get keywords {episode-url}
-```
+For each cited episode `seq`, call `get_episode_summary` (this returns the summary, takeaways, chapters, highlights, Q&A, keywords, and mind map in one call).
 
 **Handling cited episode count:**
 
 - **3 or more cited episodes**: Proceed normally — fetch artifacts for all.
 - **Fewer than 3 cited episodes**: Proceed with whatever episodes were cited. Add a note at the top of the report: *"Limited sources — this topic may be underrepresented in Podwise's corpus. Consider broadening your topic or angle."*
-- **0 cited episodes**: This means `ask` succeeded but returned no source citations. Proceed using only the `ask` text output to write the report. Add a note at the top: *"No cited episodes available — this report is based on AI synthesis only, not traceable to specific episodes."*
+- **0 cited episodes**: `ask_podwise` succeeded but returned no source citations. Proceed using only the answer text to write the report. Add a note at the top: *"No cited episodes available — this report is based on AI synthesis only, not traceable to specific episodes."*
 
-If any `get` fails because an episode is not yet processed, skip that episode and note it in the report. Do not prompt for processing — do not let quota confirmation interrupt the research flow.
+If `get_episode_summary` fails because an episode is not yet processed, skip that episode and note it in the report. Do not prompt for processing — do not let quota confirmation interrupt the research flow.
 
-If the user explicitly asks to include an unprocessed episode, ask for confirmation once and then run:
-
-```bash
-podwise process {episode-url}
-```
+If the user explicitly asks to include an unprocessed episode, ask for confirmation once and then call `process_episode` with the `seq`.
 
 ## Step 6: Synthesize the Research Report
 
-With the `ask` output, episode summaries, highlights, and keywords in hand, write a structured research report in four parts.
+With the `ask_podwise` answer and the episode artifacts in hand, write a structured research report in four parts.
 
 ### Part 1 — Overview
 
-2–3 paragraphs summarising the state of the topic as represented across Podwise's podcast corpus. Draw primarily from the `ask` output. Be specific — name claims, name the kinds of speakers making them, and note any strong consensus.
+2–3 paragraphs summarising the state of the topic as represented across Podwise's podcast corpus. Draw primarily from the answer. Be specific — name claims, name the kinds of speakers making them, and note any strong consensus.
 
 ### Part 2 — Key Perspectives
 
@@ -95,7 +77,7 @@ Where do speakers disagree? Identify 2–3 genuine tensions, contradictions, or 
 
 ### Part 4 — Source Episodes
 
-A reference list of all episodes cited in the `ask` output and successfully fetched in Step 5:
+A reference list of all episodes cited in the answer and successfully fetched in Step 5:
 
 - **{Episode Title}** · {Podcast Name} · {date} · [Open]({episode-url})
   > {one sentence on what this episode contributes to the topic}
@@ -161,10 +143,10 @@ After writing the file, confirm the path and ask:
 
 ## Common Failure Cases
 
-- If `podwise ask` times out or returns an error, report the error directly. Do not fabricate a synthesis — tell the user the research could not be completed and suggest retrying with a more specific topic.
-- If the user's topic is very broad (e.g. "technology", "health"), ask them to narrow it before running — `ask` performs better on specific questions than general categories.
-- If `get` fails for a cited episode because it is not yet processed, skip it and note it in the report. The `ask` synthesis remains the primary source.
-- If all cited episodes fail to fetch artifacts, produce a lightweight report from the `ask` text output only and label it clearly as a "synthesis-only report".
+- If `ask_podwise` times out or returns an error, report the error directly. Do not fabricate a synthesis — tell the user the research could not be completed and suggest retrying with a more specific topic.
+- If the user's topic is very broad (e.g. "technology", "health"), ask them to narrow it before running — `ask_podwise` performs better on specific questions than general categories.
+- If `get_episode_summary` fails for a cited episode because it is not yet processed, skip it and note it in the report. The answer remains the primary source.
+- If all cited episodes fail to fetch artifacts, produce a lightweight report from the answer text only and label it clearly as a "synthesis-only report".
 
 ## Output Contract
 
@@ -174,6 +156,6 @@ The report must include at minimum: Overview, Key Perspectives, and Source Episo
 
 Points of Tension may be omitted only when source material shows genuine consensus.
 
-The `ask` output is the primary synthesis source. Episode summaries, highlights, and keywords are supplementary depth — use them to sharpen and cite the perspectives, not to replace the synthesis.
+The `ask_podwise` answer is the primary synthesis source. Episode artifacts are supplementary depth — use them to sharpen and cite the perspectives, not to replace the synthesis.
 
 Always write the file and confirm the path. Always end with the follow-up prompt.

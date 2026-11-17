@@ -1,40 +1,50 @@
-## Description: <br>
-DashScope LLM sends a single-turn chat prompt to Alibaba Cloud DashScope through its OpenAI-compatible API and prints the model response. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends a single user prompt to Alibaba Cloud DashScope through its OpenAI-compatible chat API for quick LLM checks, prompt experiments, and one-shot text generation.
 
-## Publisher: <br>
-[pengzhendong](https://clawhub.ai/user/pengzhendong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pengzhendong](https://clawhub.ai/user/pengzhendong)
 
-## Use Case: <br>
-Developers and engineers use this skill for quick DashScope LLM checks, prompt experiments, and simple one-shot text generation from a terminal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompt text is sent to Alibaba Cloud DashScope. <br>
-Mitigation: Use only content approved for that service and avoid passwords, API keys, personal data, or confidential business content unless sharing is authorized. <br>
-Risk: The CLI reads DASHSCOPE_API_KEY from the environment. <br>
-Mitigation: Keep the API key out of prompts, logs, command history, and committed files. <br>
+## Use Case:
 
+Developers and engineers use this skill to send a simple single-turn chat request to DashScope models from an agent workflow or local CLI. It is suited for quick prompt testing and lightweight text generation when DashScope credentials are available.
 
-## Reference(s): <br>
-- [DashScope OpenAI-compatible API endpoint](https://dashscope.aliyuncs.com/compatible-mode/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text from stdout with Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Single-turn requests only; no streaming, tool calling, structured output handling, or advanced retry management.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: User prompts passed through --message are sent to Alibaba Cloud DashScope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not include secrets, regulated data, or proprietary text unless that use is approved for DashScope.
+
+## Reference(s):
+
+- [DashScope OpenAI-Compatible API Endpoint](https://dashscope.aliyuncs.com/compatible-mode/v1)
+- [ClawHub Skill Page](https://clawhub.ai/pengzhendong/skills/dashscope-llm)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text response printed to stdout, with markdown guidance and shell command examples in the skill instructions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single-turn response; no streaming, tool calling, structured output handling, or advanced retry management.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,1 @@
-{
-  "ownerId": "kn7c3kgfvnhefjww9yw5h6n7zx83wgtx",
-  "slug": "goal-tracker-pro",
-  "version": "1.0.0",
-  "publishedAt": 1776864534174
-}
+{"name":"goal-tracker-pro","version":"1.0.0","author":"小鸣 🦞","tags":["goal","tracker","achievement","success"],"requires":{"bins":["curl"]}}

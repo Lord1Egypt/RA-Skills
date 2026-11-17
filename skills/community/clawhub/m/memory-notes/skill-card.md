@@ -1,38 +1,53 @@
-## Description: <br>
-How to write well-structured Basic Memory notes: frontmatter, observations with semantic categories, relations with wiki-links, and best practices for building a rich knowledge graph. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+How to write well-structured Basic Memory notes: frontmatter, observations with semantic categories, relations with wiki-links, and best practices for building a rich knowledge graph.
 
-## Publisher: <br>
-[phernandez](https://clawhub.ai/user/phernandez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phernandez](https://clawhub.ai/user/phernandez)
 
-## Use Case: <br>
-Developers, knowledge workers, and AI-assisted agents use this skill to create or improve Basic Memory notes with clear frontmatter, rich context, structured observations, and explicit relations. It is best suited for maintaining a searchable knowledge graph while avoiding accidental retention of secrets or sensitive personal information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Notes created with this workflow are intended to persist and may be found later, so sensitive details or uncertain claims could remain in the knowledge base. <br>
-Mitigation: Review note content before writing or updating it, and avoid storing passwords, API keys, sensitive personal information, or uncertain claims unless retention is deliberate. <br>
+## Use Case:
 
+Developers and knowledge workers use this skill to create or improve Basic Memory notes with useful frontmatter, substantive context, structured observations, wiki-links, and typed relations.
 
-## Reference(s): <br>
-- [Memory Notes on ClawHub](https://clawhub.ai/phernandez/memory-notes) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with examples for Basic Memory note content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance for persistent Basic Memory notes; users should avoid storing passwords, API keys, sensitive personal information, or uncertain claims unless intentional.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: AI-written notes may preserve inaccurate or incomplete information in persistent memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated notes for accuracy and nuance before saving them.
+
+Risk: Creating duplicate notes can fragment the knowledge graph and reduce retrieval quality.
+
+Mitigation: Search for existing notes with multiple query variations before creating a new note, and update matching notes instead.
+
+## Reference(s):
+
+- [ClawHub skill page: Memory Notes](https://clawhub.ai/phernandez/skills/memory-notes)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with examples for Basic Memory note structure and tool usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces human-reviewable note-writing guidance rather than executable code.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

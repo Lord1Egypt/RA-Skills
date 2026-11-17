@@ -1,41 +1,58 @@
-## Description: <br>
-FocusMind helps agents analyze long or messy conversation context, estimate context health, extract active goals, and generate summaries or cleanup recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FocusMind helps agents analyze context health, extract goals, and generate concise summaries so long-running conversations stay focused.
 
-## Publisher: <br>
-[hongjiaoni](https://clawhub.ai/user/hongjiaoni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hongjiaoni](https://clawhub.ai/user/hongjiaoni)
 
-## Use Case: <br>
-Developers and agent builders use this skill to inspect conversation or project context, identify when context is becoming unclear, and produce summaries, goal lists, and cleanup guidance for long-running agent sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Conversation or project context may be analyzed, saved, exported, or sent through webhook notifications. <br>
-Mitigation: Use the skill only with context you are comfortable processing or saving, review export paths before use, and enable webhook notifications only for trusted endpoints. <br>
-Risk: Interactive load, save, and export commands can read from or overwrite files accessible to the running process. <br>
-Mitigation: Run the skill with least-privilege filesystem access and verify file paths before using REPL load/save or report export features. <br>
+## Use Case:
 
+Developers and agent builders use this skill to check whether a long conversation is becoming unfocused, summarize important context, extract active goals, and decide when cleanup is needed.
 
-## Reference(s): <br>
-- [FocusMind design patterns](references/patterns.md) <br>
-- [ClawHub skill page](https://clawhub.ai/hongjiaoni/focus-mind) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, HTML, Guidance] <br>
-**Output Format:** [Console text, Markdown reports, JSON data, or HTML exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are rule-based context health assessments, summaries, extracted goals, recommendations, and optional exported report files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can read context from files and export reports to user-specified paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit, trusted input and output paths and review generated reports before sharing them.
+
+Risk: HTML export is reported to have unsafe output escaping for untrusted or shared conversation content.
+
+Mitigation: Prefer Markdown or JSON export for untrusted content until HTML escaping is fixed and reviewed.
+
+Risk: Optional webhook and file notifications may send or store context-derived report data.
+
+Mitigation: Keep webhook and file notifications disabled unless the destination is trusted and the data-sharing impact is acceptable.
+
+## Reference(s):
+
+- [FocusMind Design Patterns](references/patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/hongjiaoni/skills/focus-mind)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown and JSON reports, with optional exported Markdown, JSON, or HTML files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can read context from stdin or explicit input files; optional export and notification outputs should be configured deliberately.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

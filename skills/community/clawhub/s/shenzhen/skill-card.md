@@ -1,39 +1,47 @@
-## Description: <br>
-Provides a comprehensive Shenzhen city reference covering history, economic development, technology industries, geography, urban construction, culture, tourism, notable companies, startup conditions, and living information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language reference skill that provides an overview of Shenzhen's history, economic development, technology sector, geography, urban construction, culture, tourism, major companies, entrepreneurship environment, and living information.
 
-## Publisher: <br>
-[LeoCryptoFlow](https://clawhub.ai/user/LeoCryptoFlow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leocryptoflow](https://clawhub.ai/user/leocryptoflow)
 
-## Use Case: <br>
-External users and agents use this skill to answer questions about Shenzhen's development history, technology sector, startup environment, local companies, tourism, transportation, cost of living, housing, cuisine, and city planning. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Time-sensitive city facts such as population, GDP, metro mileage, housing costs, and policies may become outdated. <br>
-Mitigation: Verify current details against official or trusted local sources before using them for consequential decisions. <br>
-Risk: Static informational content may omit context needed for legal, relocation, investment, or business decisions. <br>
-Mitigation: Treat outputs as orientation material and consult qualified or official sources for high-impact decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/LeoCryptoFlow/shenzhen) <br>
+## Use Case:
+
+External users and agents use this skill to answer Chinese-language questions about Shenzhen's city profile, industries, landmarks, tourism, startup environment, and living considerations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: City statistics, policies, transportation details, housing costs, and other practical information can become outdated.
+
+Mitigation: Verify current figures and practical details from official or current sources before relying on them for travel, relocation, investment, or business decisions.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static informational city reference; verify time-sensitive facts before relying on them.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Chinese-language Markdown or plain text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference content; current city statistics, policies, and practical details should be verified before consequential use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -239,7 +239,7 @@ python3 .../lint.py --summary | mail -s 'wiki lint' you@example.com
 # Slack incoming webhook
 python3 .../lint.py --summary | \
   xargs -I{} curl -s -X POST -H 'Content-type: application/json' \
-    --data '{"text":"{}"}' https://hooks.slack.com/services/XXX/YYY/ZZZ
+    --data '{"text":"{}"}' REDACTED-SECRET
 
 # Any chat via openclaw CLI (Feishu / Discord / Telegram / Slack / ...)
 python3 .../lint.py --summary | \

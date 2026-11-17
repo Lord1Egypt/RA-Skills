@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// install-host.mjs -- consent-gated multi-host installer (SKILL-05 / SKILL-06)
+// install-host.mjs -- confirmation-based multi-host installer (SKILL-05 / SKILL-06)
 // Detects other MCP hosts via `npx -y fsb-mcp-server install --list`,
 // prompts y/n per host, runs `npx -y fsb-mcp-server install --<host>` only on explicit yes.
 // NEVER passes --all. NEVER auto-writes OpenClaw's MCP config (use print-stdio.mjs).
@@ -7,6 +7,9 @@
 import { spawn } from 'node:child_process';
 import { createInterface } from 'node:readline';
 import process from 'node:process';
+import os from 'node:os';
+import path from 'node:path';
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 
 const NPX = 'npx';
 const PKG = 'fsb-mcp-server';
@@ -16,6 +19,73 @@ const FILLER = new Set([
   'config', 'version', 'the', 'with', 'from', 'into', 'at', 'on'
 ]);
 const HOST_NAME_RE = /^[a-z0-9-]+$/;
+
+// Hermes Skills Hub branch (additive to the existing CLI-driven host loop).
+// Mirrors the OpenClaw skip pattern -- detection is filesystem-based, install
+// is fs.writeFileSync-based; we NEVER pass --hermes to the CLI (no such flag).
+const HERMES_CONFIG_PATH = path.join(os.homedir(), '.hermes', 'config.yaml');
+const HERMES_BLOCK = `mcp_servers:
+  fsb:
+    command: "npx"
+    args: ["-y", "fsb-mcp-server"]
+`;
+const HERMES_FSB_CHILD = `  fsb:
+    command: "npx"
+    args: ["-y", "fsb-mcp-server"]
+`;
+
+// Detect the indent width used by direct children of `mcp_servers:`.
+// Walks lines after the heading; the first line that starts with whitespace +
+// an alphanumeric `key:` defines the indent unit. Returns 2 if none found
+// before EOF or a column-0 line.
+//
+// Worked example -- input:
+//   mcp_servers:
+//       other:        <- 4-space indent
+//         command: "x"
+// Returns: 4
+function detectMcpServersIndent(content) {
+  const lines = content.split('\n');
+  let headerIdx = -1;
+  for (let i = 0; i < lines.length; i++) {
+    if (/^mcp_servers:\s*(?:#.*)?$/.test(lines[i])) {
+      headerIdx = i;
+      break;
+    }
+  }
+  if (headerIdx === -1) return 2;
+  for (let i = headerIdx + 1; i < lines.length; i++) {
+    const line = lines[i];
+    // Column-0 non-whitespace = end of mcp_servers block
+    if (line.length > 0 && !/^\s/.test(line)) return 2;
+    const m = /^(\s+)[A-Za-z0-9_-]+:/.exec(line);
+    if (m) return m[1].length;
+  }
+  return 2;
+}
+
+// Returns true only if `fsb:` exists as a DIRECT child of `mcp_servers:`
+// (matches the detected indent exactly, not deeper). Scoped to the
+// mcp_servers block; ends at first column-0 non-whitespace line or EOF.
+function findFsbInMcpServers(content) {
+  const lines = content.split('\n');
+  let headerIdx = -1;
+  for (let i = 0; i < lines.length; i++) {
+    if (/^mcp_servers:\s*(?:#.*)?$/.test(lines[i])) {
+      headerIdx = i;
+      break;
+    }
+  }
+  if (headerIdx === -1) return false;
+  const indent = detectMcpServersIndent(content);
+  const directChildRe = new RegExp('^' + ' '.repeat(indent) + 'fsb:\\s*$');
+  for (let i = headerIdx + 1; i < lines.length; i++) {
+    const line = lines[i];
+    if (line.length > 0 && !/^\s/.test(line)) return false; // left the block
+    if (directChildRe.test(line)) return true;
+  }
+  return false;
+}
 
 function runDetect() {
   return new Promise((resolve) => {
@@ -132,16 +202,83 @@ function runInstallHost(host) {
   });
 }
 
+async function maybeInstallHermes(rl, stdinClosed) {
+  if (!existsSync(HERMES_CONFIG_PATH)) {
+    process.stdout.write(
+      '[WARN] no Hermes config detected at ~/.hermes/config.yaml -- skipping Hermes branch\n'
+    );
+    return { status: 'skipped' };
+  }
+
+  let existing = '';
+  try {
+    existing = readFileSync(HERMES_CONFIG_PATH, 'utf8');
+  } catch (err) {
+    process.stdout.write(
+      '[FAIL] could not read ~/.hermes/config.yaml: ' + (err && err.message ? err.message : String(err)) + '\n'
+    );
+    return { status: 'failed' };
+  }
+
+  // Already-configured guard: only true when `fsb:` is a DIRECT child of
+  // `mcp_servers:` (avoids cross-section false positives like `other_thing.fsb:`).
+  if (findFsbInMcpServers(existing)) {
+    process.stdout.write('[WARN] Hermes config already has mcp_servers.fsb -- not overwriting\n');
+    return { status: 'already_configured' };
+  }
+
+  process.stdout.write('Detected Hermes config at ~/.hermes/config.yaml\n');
+
+  let answer = '';
+  if (!stdinClosed) {
+    answer = await ask(rl, 'Inject fsb mcp_servers block? [y/N]: ');
+  } else {
+    process.stdout.write('Inject fsb mcp_servers block? [y/N]: (stdin closed -- treating as no)\n');
+  }
+  const trimmed = (answer || '').trim();
+  const yes = trimmed === 'y' || trimmed === 'Y';
+
+  if (!yes) {
+    process.stdout.write('Skipped Hermes\n');
+    return { status: 'skipped' };
+  }
+
+  let newContent;
+  if (/^mcp_servers:\s*(?:#.*)?$/m.test(existing)) {
+    // File has an `mcp_servers:` heading already (possibly with trailing comment) --
+    // inject the fsb child immediately after that heading line so other mcp_servers
+    // entries are preserved. Indent is detected from any existing children so we
+    // match the user's style rather than forcing 2 spaces.
+    const indent = detectMcpServersIndent(existing);
+    const indentStr = ' '.repeat(indent);
+    const fsbChild =
+      indentStr + 'fsb:\n' +
+      indentStr + indentStr + 'command: "npx"\n' +
+      indentStr + indentStr + 'args: ["-y", "fsb-mcp-server"]\n';
+    newContent = existing.replace(/^(mcp_servers:\s*(?:#.*)?)\n/m, '$1\n' + fsbChild);
+  } else {
+    // No existing mcp_servers heading -- append the full block, ensuring the
+    // file ends with a newline before the appended block.
+    const sep = existing.length === 0 || existing.endsWith('\n') ? '' : '\n';
+    newContent = existing + sep + HERMES_BLOCK;
+  }
+
+  try {
+    writeFileSync(HERMES_CONFIG_PATH, newContent, 'utf8');
+  } catch (err) {
+    process.stdout.write(
+      '[FAIL] could not write ~/.hermes/config.yaml: ' + (err && err.message ? err.message : String(err)) + '\n'
+    );
+    return { status: 'failed' };
+  }
+
+  process.stdout.write('[OK] wrote mcp_servers.fsb into ~/.hermes/config.yaml\n');
+  return { status: 'installed' };
+}
+
 async function main() {
   const { listOut } = await runDetect();
   const hosts = parseHosts(listOut);
-
-  if (hosts.length === 0) {
-    process.stdout.write(
-      '[WARN] no other MCP hosts detected. Re-run after installing one (Claude Desktop, Cursor, VS Code, etc.).\n'
-    );
-    process.exit(0);
-  }
 
   const installed = [];
   const skipped = [];
@@ -150,6 +287,12 @@ async function main() {
   const rl = createInterface({ input: process.stdin, output: process.stdout });
   let stdinClosed = false;
   rl.on('close', () => { stdinClosed = true; });
+
+  if (hosts.length === 0) {
+    process.stdout.write(
+      '[WARN] no other MCP hosts detected via the CLI list. Re-run after installing one (Claude Desktop, Cursor, VS Code, etc.).\n'
+    );
+  }
 
   for (const host of hosts) {
     if (!HOST_NAME_RE.test(host)) {
@@ -184,6 +327,19 @@ async function main() {
     } else {
       failed.push(host + '(exit=' + result.code + ')');
     }
+  }
+
+  // Hermes Skills Hub branch: filesystem-based detection (no CLI flag). Runs
+  // independently after the CLI-driven host loop so it surfaces in the summary
+  // bucket alongside the other hosts.
+  const hermesResult = await maybeInstallHermes(rl, stdinClosed);
+  if (hermesResult.status === 'installed') {
+    installed.push('hermes');
+  } else if (hermesResult.status === 'failed') {
+    failed.push('hermes(write-failed)');
+  } else {
+    // 'skipped' and 'already_configured' both fall into the skipped bucket.
+    skipped.push('hermes');
   }
 
   rl.close();

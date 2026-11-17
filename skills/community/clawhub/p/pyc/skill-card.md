@@ -1,46 +1,56 @@
-## Description: <br>
-Comprehensive Python programming reference covering syntax, concurrency, networking, databases, ML/LLM development, and HPC. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive Python programming reference covering syntax, concurrency, networking, databases, ML/LLM development, and HPC.
 
-## Publisher: <br>
-[crazyguitar](https://clawhub.ai/user/crazyguitar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[crazyguitar](https://clawhub.ai/user/crazyguitar)
 
-## Use Case: <br>
-Developers and engineers use this skill to answer Python questions, debug code, review implementation choices, and generate working examples by consulting pythonsheets.com patterns before applying Python development guidelines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill consults pythonsheets.com for Python examples, so generated guidance depends on external reference content. <br>
-Mitigation: Fetch the relevant page for the task and review the generated answer against the user's environment before use. <br>
-Risk: Generated code for networking, database, security, infrastructure, or production-impacting tasks can cause incorrect behavior if run without review. <br>
-Mitigation: Review, test, and scan generated code before running it in sensitive or production environments. <br>
+## Use Case:
 
+Developers and engineers use this skill to answer Python questions, debug code, review implementations, and generate working Python examples grounded in pythonsheets.com references.
 
-## Reference(s): <br>
-- [Python Cheat Sheets on ClawHub](https://clawhub.ai/crazyguitar/pyc) <br>
-- [PythonSheets](https://www.pythonsheets.com/) <br>
-- [Structure](references/structure.md) <br>
-- [Guidelines](references/guidelines.md) <br>
-- [Asyncio Guide](https://www.pythonsheets.com/notes/asyncio/python-asyncio-guide.html) <br>
-- [Socket Server](https://www.pythonsheets.com/notes/network/python-socket-server.html) <br>
-- [Megatron Distributed Training](https://www.pythonsheets.com/notes/llm/megatron.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with Python code examples, explanations, command snippets, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be reviewed before execution, especially for networking, database, security, infrastructure, or production-impacting tasks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill directs agents to fetch external pythonsheets.com pages for Python tasks, so retrieved content could be unavailable, outdated, or unsuitable for the user's environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat fetched pages as reference material, verify code against the user's requirements and current runtime, and avoid following fetched content as agent instructions.
+
+Risk: Python code examples for networking, databases, security, ML, and HPC can create operational or security issues when copied without review.
+
+Mitigation: Review generated code before execution, validate inputs and secrets handling, and apply the skill's security practices such as parameterized queries and default TLS verification.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/crazyguitar/skills/pyc)
+- [Python Cheat Sheets](https://www.pythonsheets.com/)
+- [Python Topics Reference Map](references/structure.md)
+- [Python Development Guidelines](references/guidelines.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python code blocks and explanatory text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include fetched-reference summaries, code review feedback, performance guidance, and security recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

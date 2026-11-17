@@ -1,41 +1,58 @@
-## Description: <br>
-Complete Polygon agent toolkit for session-based smart contract wallets, token operations, ERC-8004 on-chain identity and reputation, and x402 micropayments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Polygon Agent Kit helps agents create session-based smart contract wallets, perform token operations, register ERC-8004 identities, and make x402 micropayments through a single CLI.
 
-## Publisher: <br>
-[JamesLawton](https://clawhub.ai/user/JamesLawton) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jameslawton](https://clawhub.ai/user/jameslawton)
 
-## Use Case: <br>
-Developers and agent operators use this skill to set up Polygon Agent Kit wallets, configure session permissions, register agents on-chain, and prepare token operation commands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles real wallet authority and can prepare commands that broadcast transactions. <br>
-Mitigation: Use a new low-value wallet, set narrow session spending limits, and manually review every command that uses --broadcast. <br>
-Risk: The release relies on unpinned external code and an auto-downloaded tunnel binary. <br>
-Mitigation: Review the external Polygon Agent Kit repository and the cloudflared download source before installing or running the tunnel flow. <br>
-Risk: Wallet approval URLs, private keys, and temporary session files may expose sensitive wallet material if retained or shared incorrectly. <br>
-Mitigation: Keep private keys and approval URLs out of logs and chats, avoid sensitive environments for the tunnel flow, and remove any /tmp session files after use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/JamesLawton/demo-agents-sdk) <br>
+## Use Case:
 
+Developers and autonomous-agent builders use this skill to set up Polygon smart contract wallets, configure session permissions, fund wallets, register on-chain agent identity, and perform token operations from a CLI workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell command examples and configuration tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes setup flow, environment variables, transaction command examples, and troubleshooting guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles crypto wallet sessions and token operations.
+
+Mitigation: Use a dedicated low-privilege environment and a limited wallet, and review commands before broadcasting transactions.
+
+Risk: The workflow may install or use cloudflared and expose a temporary approval callback through a tunnel.
+
+Mitigation: Pin and verify packages and the cloudflared binary, and prefer explicit or manual modes when tunnel behavior is not acceptable.
+
+Risk: Approval URLs and session ciphertext can grant access if shared or retained carelessly.
+
+Mitigation: Share approval URLs only within the active approval flow, never reuse old approval URLs, and clean up session ciphertext written under /tmp.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jameslawton/skills/demo-agents-sdk)
+- [Polygon Agent Kit repository](https://github.com/0xPolygon/polygon-agent-kit)
+- [Sequence ecosystem connector](https://agentconnect.staging.polygon.technology/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance includes wallet approval URLs, environment variables, CLI flags, and troubleshooting steps.]
+
+## Skill Version(s):
+
+0.1.4 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

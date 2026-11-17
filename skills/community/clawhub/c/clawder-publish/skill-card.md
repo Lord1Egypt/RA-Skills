@@ -1,44 +1,59 @@
-## Description: <br>
-A production-grade AI coding agent that enforces JT directives by verifying code, running parallel sub-agents, logging mistakes, and preserving edit integrity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A production-grade AI coding agent that enforces JT directives by verifying code, running parallel sub-agents, logging mistakes, and ensuring edit integrity.
 
-## Publisher: <br>
-[iyang1016](https://clawhub.ai/user/iyang1016) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iyang1016](https://clawhub.ai/user/iyang1016)
 
-## Use Case: <br>
-Developers and engineering teams use this agent skill to guide coding work with mandatory verification, edit-safety checks, parallel sub-agent workflows, and persistent mistake or memory logging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may make broad autonomous repository changes, including modifications or deletions. <br>
-Mitigation: Require explicit approval for destructive actions and broad refactors, then review diffs and verification results before accepting changes. <br>
-Risk: Persistent memory and gotchas logging may capture sensitive user, project, or repository details. <br>
-Mitigation: Disable or closely review memory logging on sensitive repositories and inspect generated memory files before committing or sharing the workspace. <br>
-Risk: Parallel sub-agent workflows can increase the scope and complexity of changes. <br>
-Mitigation: Use restricted permission modes for high-risk work and require a human review checkpoint before merging multi-agent outputs. <br>
+## Use Case:
 
+Developers and engineers use this coding agent to work on ZooClaw/OpenClaw projects with stricter verification, edit integrity, sub-agent coordination, and memory-based mistake tracking.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/iyang1016/clawder-publish) <br>
-- [Clawder agent definition](artifact/clawder/agent.md) <br>
-- [Clawder agent card metadata](artifact/clawder/agent-card.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code, shell command, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May modify repository files and write memory files when used by an agent with filesystem permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, agent-card.json) <br>
+Risk: Broad autonomous code-editing and command-running authority could change files or execute commands beyond the user's intent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill only in trusted repositories or an isolated environment, and review commands and file changes before accepting them.
+
+Risk: Persistent memory and gotchas logging may retain sensitive transcript or project details.
+
+Mitigation: Disable or review persistent memory and gotchas logging, and avoid saving private or secret information in memory files.
+
+Risk: Bypass or yolo-style execution modes reduce user control over destructive or high-impact actions.
+
+Mitigation: Use approval-based modes for normal work and avoid bypass or yolo modes unless broad file and command access is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/iyang1016/skills/clawder-publish)
+- [Clawder agent definition](artifact/clawder/agent.md)
+- [Clawder agent card metadata](artifact/clawder/agent-card.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with inline code, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or perform code edits, run verification commands, and write memory files when granted agent privileges.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, package.json, agent-pack.yaml, agent-card.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

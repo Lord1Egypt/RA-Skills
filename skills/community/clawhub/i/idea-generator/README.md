@@ -33,7 +33,7 @@ openclaw gateway restart
 AI 会自动：
 1. 启动工作台服务
 2. 在浏览器提示打开 `http://localhost:50000/live-dashboard.html`
-3. 搜索百度 / B站获取行业洞察
+3. 搜索百度 / 小红书 / B站获取行业洞察
 4. 每轮生成 5 个候选创意，≥90分入围
 5. 多轮迭代递进优化
 
@@ -45,7 +45,7 @@ AI 会自动：
 |------|------|
 | OpenClaw | 已安装并运行（[安装指南](https://github.com/openclaw/openclaw)） |
 | Python 3.8+ | 通常系统自带；无需 pip install（纯标准库） |
-| 网络 | 可访问百度、B站 |
+| 网络 | 可访问百度、小红书、B站 |
 
 ---
 

@@ -1,38 +1,49 @@
-## Description: <br>
-Coaches creators through creating, launching, and selling online courses, including niche validation, curriculum design, lesson structure, recording workflow, platform choice, pricing, sales page copy, launch sequencing, and ongoing iteration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coaches creators through creating, launching, and selling online courses, including niche validation, curriculum design, lesson structure, production workflow, platform choice, pricing, sales copy, launch sequencing, and iteration.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Creators, educators, and course operators use this skill to plan or improve an online course, choose an appropriate course model and platform, set pricing, prepare a launch, and diagnose weak sales, low completion, or missing testimonials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pricing, scarcity, refund, platform, and pre-sale recommendations may be treated as business advice. <br>
-Mitigation: Review legal, tax, consumer-protection, and platform-policy requirements before taking payments or making public claims. <br>
+## Use Case:
 
+External creators and education-focused entrepreneurs use this skill to evaluate course ideas, choose a course model and platform, design curriculum, set pricing, plan launches, and diagnose weak sales, low completion, or missing testimonials.
 
-## Reference(s): <br>
-- [Online Course Creator on ClawHub](https://clawhub.ai/charlie-morrison/cm-online-course-creator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with structured plans, recommendations, outlines, and diagnostics] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only planning aid; does not run code, persist data, use credentials, or take automatic actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Platform pricing, conversion benchmarks, and business advice may become outdated or vary by creator niche, audience, and market.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current platform terms, pricing, and market assumptions before using recommendations for launch or revenue decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/cm-online-course-creator)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown with structured recommendations, checklists, outlines, and diagnostic guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stage-based course creation and launch advice; no code execution or credential handling is described.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

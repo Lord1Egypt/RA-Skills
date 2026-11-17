@@ -1,40 +1,54 @@
-## Description: <br>
-Write ready-to-post captions (FB/IG) and short TikTok/Reels scripts for CraveGo.ph focused only on new user/signup promos, in a friendly and casual brand voice, with safe phrasing and a signup CTA. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write ready-to-post captions for Facebook and Instagram and short TikTok/Reels scripts for CraveGo.ph new-user signup promotions, using friendly, casual, and safe promotional phrasing.
 
-## Publisher: <br>
-[bobneobux](https://clawhub.ai/user/bobneobux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bobneobux](https://clawhub.ai/user/bobneobux)
 
-## Use Case: <br>
-External marketing and content teams use this skill to draft platform-specific CraveGo.ph signup promotion captions for Facebook and Instagram, plus short TikTok/Reels scripts. The skill is scoped to new-user/signup promotions and asks for safe wording with a clear signup call to action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence reports a suspicious verdict because a review helper can grant broader local authority than a review workflow needs. <br>
-Mitigation: Review the helper before installation or invocation. Prefer restricted execution settings unless full local access is intentional, and use moderation or PR-maintainer workflows only with intended credentials and explicit targets. <br>
-Risk: The skill generates marketing copy for signup promotions, which could create misleading legal or financial claims if used without review. <br>
-Mitigation: Review generated captions and scripts before posting, keep wording soft, and verify that each post stays focused on signup calls to action. <br>
+## Use Case:
 
+Marketing teams and agents use this skill to draft CraveGo.ph signup-promo captions and short social video scripts for Facebook, Instagram, TikTok, and Reels. The output is intended for review before public posting.
 
-## Reference(s): <br>
-- [ClawHub skill page: CraveGo Caption & Script Writer](https://clawhub.ai/bobneobux/caption-script-writer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON object containing platform, caption or script, CTA, hashtags, hook, and variations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [TikTok output includes a scene-by-scene script with a hook in the first 1-2 seconds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated marketing copy could be inaccurate, off-brand, or unsuitable for public promotional use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated captions and scripts for accuracy, brand fit, and compliance before posting publicly.
+
+Risk: Promotional language could imply legal or financial claims if edited or extended beyond the skill's intended scope.
+
+Mitigation: Keep copy focused on new-user signup promotions and use soft phrasing that avoids legal or financial claims.
+
+## Reference(s):
+
+- [CraveGo Caption & Script Writer on ClawHub](https://clawhub.ai/bobneobux/skills/caption-script-writer)
+- [bobneobux Publisher Profile](https://clawhub.ai/user/bobneobux)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [JSON containing platform, caption or script, call to action, hashtags, hook, and variations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are scoped to CraveGo.ph new-user or signup promotions and should avoid legal or financial claims.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

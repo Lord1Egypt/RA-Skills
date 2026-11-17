@@ -78,7 +78,7 @@ python doctor/emr-gen/medical-term-normalization/scripts/run.py \
 - `--sheet STRING`：读取 Excel 时指定 sheet（可选）。
 - `--encoding STRING`：`txt/csv` 编码，默认 `utf-8`。
 - `--base URL`：内部大模型 base URL，默认 `https://maas-api.hivoice.cn/v1`。
-- `--model STRING`：模型名称，默认 `u1-insuremed`。
+- `--model STRING`：模型名称，默认 `u2-med`。
 - `--timeout SECONDS`：HTTP 超时秒数；`0` 表示一直等待，默认 `0`。
 - `--appkey STRING`：**必填**。内部医疗大模型鉴权 key，使用 Bearer 方式认证。
 - `--output-json PATH`：可选。保存输出 JSON。

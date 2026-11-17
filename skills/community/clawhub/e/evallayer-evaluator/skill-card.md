@@ -1,44 +1,60 @@
-## Description: <br>
-AI-powered deliverable evaluation via EvalLayer API that extracts factual claims, scores quality, and returns structured JSON verdicts with pass/fail, confidence scores, and payout recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+EvalLayer Evaluator sends text deliverables to the EvalLayer API to extract factual claims, score quality, and return structured JSON verdicts with pass/fail status, confidence scores, and payout recommendations.
 
-## Publisher: <br>
-[ryanhall00](https://clawhub.ai/user/ryanhall00) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryanhall00](https://clawhub.ai/user/ryanhall00)
 
-## Use Case: <br>
-Developers and agent operators use this skill to submit text deliverables to EvalLayer as a quality gate, receive structured evaluation verdicts, and review claim-level support signals before acting on agent work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted deliverables leave the local environment and are sent to EvalLayer over HTTPS. <br>
-Mitigation: Review content before submission and avoid sending secrets, confidential business material, regulated data, or personal information. <br>
-Risk: Extracted content may be stored for aggregation. <br>
-Mitigation: Use the skill only for content that can be shared with EvalLayer under the user's data handling requirements. <br>
-Risk: Automated pass/fail and payout recommendations may be inappropriate for consequential decisions if used without review. <br>
-Mitigation: Use EvalLayer results as decision support and keep a human review step for consequential outcomes. <br>
-Risk: The authenticated evaluation flow depends on an EvalLayer API key. <br>
-Mitigation: Use a dedicated EvalLayer API key with minimal scope and rotate it if exposed. <br>
+## Use Case:
 
+Developers and agent builders use this skill to submit text deliverables to EvalLayer for factual-claim extraction, quality scoring, pass/fail verdicts, confidence scores, and payout recommendations in agent workflows.
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/ryanhall00/evallayer-evaluator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [json, shell commands, guidance] <br>
-**Output Format:** [JSON responses from shell-driven API calls, with setup and usage guidance in Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and python3; authenticated evaluation requires EVALLAYER_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: frontmatter and server release metadata) <br>
+Risk: Submitted topics and deliverables are sent to EvalLayer and may be stored for aggregation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review content before submission and do not send secrets, regulated data, private customer data, or proprietary drafts without organizational approval.
+
+Risk: The authenticated evaluation script requires an EvalLayer API key.
+
+Mitigation: Use a dedicated API key and keep it in the EVALLAYER_API_KEY environment variable rather than embedding it in prompts, scripts, or deliverables.
+
+Risk: Payout recommendations are advisory and the implementation submits evaluations as crypto_research tasks.
+
+Mitigation: Treat scores and payout recommendations as one quality signal and review fit for the actual task before acting on results.
+
+## Reference(s):
+
+- [EvalLayer Evaluator Skill Page](https://clawhub.ai/ryanhall00/skills/evallayer-evaluator)
+- [EvalLayer Evaluation API](https://api.evallayer.ai/evaluate)
+- [EvalLayer Demo Evaluation API](https://api.evallayer.ai/demo/evaluate)
+- [EvalLayer Intelligence API](https://api.evallayer.ai/intelligence)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Evaluation responses include pass/fail status, quality and confidence scores, rationale, claim counts, payout recommendation, and evaluation ID.]
+
+## Skill Version(s):
+
+2.0.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

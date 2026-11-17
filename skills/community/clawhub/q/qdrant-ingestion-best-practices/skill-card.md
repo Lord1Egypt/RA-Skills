@@ -1,50 +1,60 @@
-## Description: <br>
-Provides production-grade guidance for designing, ingesting, and retrieving data in Qdrant-based RAG pipelines with best practices for chunking, metadata, access control, embedding model selection, and operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill whenever building, designing, or debugging a RAG pipeline using Qdrant as the vector store.
 
-## Publisher: <br>
-[encryptshawn](https://clawhub.ai/user/encryptshawn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[encryptshawn](https://clawhub.ai/user/encryptshawn)
 
-## Use Case: <br>
-Developers and engineers use this skill when building, designing, or debugging Qdrant-backed RAG systems. It helps them choose ingestion order, metadata schemas, chunking strategy, embedding models, hybrid retrieval patterns, access control filters, and operational checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Code snippets and operational patterns may be copied into production without adapting access-control, deletion, and upsert behavior to the target system. <br>
-Mitigation: Review the generated implementation details against local data governance, Qdrant collection design, and deletion/upsert requirements before deployment. <br>
-Risk: Raw query or retrieval logging can expose sensitive content or user intent. <br>
-Mitigation: Use privacy-preserving telemetry and avoid retaining raw queries, payloads, or retrieved sensitive text unless explicitly approved. <br>
-Risk: The documented duplicate-chunk metadata refresh behavior may require correction before production use. <br>
-Mitigation: Validate duplicate-chunk handling in conformance tests and ensure metadata refreshes are idempotent before enabling ingestion at scale. <br>
+## Use Case:
 
+Developers and engineers use this skill to design, implement, and review Qdrant-based RAG ingestion and retrieval pipelines. It provides guidance for chunking, metadata schema design, embedding selection, hybrid retrieval, payload filtering, access control, and operational standards.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/encryptshawn/qdrant-ingestion-best-practices) <br>
-- [Skill overview](artifact/SKILL.md) <br>
-- [Quick Reference](artifact/QUICK_REFERENCE.md) <br>
-- [RAG Pipeline Overview](artifact/guides/01-rag-pipeline-overview.md) <br>
-- [Metadata Schema Standards](artifact/guides/02-metadata-schema.md) <br>
-- [Ingestion Pipeline](artifact/guides/07-ingestion-pipeline.md) <br>
-- [Retrieval Architecture](artifact/guides/08-retrieval-architecture.md) <br>
-- [Access Control Patterns](artifact/guides/09-access-control.md) <br>
-- [Operational Standards](artifact/guides/10-operational-standards.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline code examples and configuration patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output; code snippets should be reviewed and adapted before production use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Production snippets may weaken tenant isolation or access boundaries if copied without adaptation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require review before installation and add tenant-qualified IDs and filters, internally derived collection placement, and security-metadata change detection before production use.
+
+Risk: Delete, retention, and migration examples can affect stored Qdrant chunks if adapted without safeguards.
+
+Mitigation: Use explicit safeguards for delete and migration operations, privacy-aware audit logging, scoped filters, and a tested rollback or recovery path.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/encryptshawn/skills/qdrant-ingestion-best-practices)
+- [Quick Reference](QUICK_REFERENCE.md)
+- [RAG Pipeline Overview](guides/01-rag-pipeline-overview.md)
+- [Metadata Schema Standards](guides/02-metadata-schema.md)
+- [Ingestion Pipeline](guides/07-ingestion-pipeline.md)
+- [Retrieval Architecture](guides/08-retrieval-architecture.md)
+- [Access Control Patterns](guides/09-access-control.md)
+- [Operational Standards](guides/10-operational-standards.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with code snippets, checklists, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; generated implementation snippets require review before production use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

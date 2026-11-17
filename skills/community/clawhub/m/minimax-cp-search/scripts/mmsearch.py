@@ -7,7 +7,7 @@ import sys
 import os
 
 # Set environment
-os.environ["MINIMAX_API_KEY"] = "sk-cp-_opubDWoTJY5qpJAoI_AFpXQ_RC4rMuuHzCFeNKLQHwXzykGUAyD-k7wKHiwiGNJB8Op-s_AZqXCeXtSgjBEQMjNHOvGlKutYUx6brckZBFhrqbzj4xWvK4"
+os.environ["MINIMAX_API_KEY"] = "REDACTED-SECRET"
 os.environ["MINIMAX_API_HOST"] = "https://api.minimaxi.com"
 
 def call_mcp_tool(tool_name, arguments):

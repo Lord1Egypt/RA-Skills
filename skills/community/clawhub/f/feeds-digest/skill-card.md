@@ -1,45 +1,67 @@
-## Description: <br>
-Aggregates RSS and Atom updates from YouTube, Microsoft blogs, GitHub releases, and generic feeds, then filters them by date and topic with optional LLM summarization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-Source-RSS-Digest (YouTube, MS Tech Community, GitHub) mit Datums- und Topic-Filter und optionaler LLM-Zusammenfassung.
 
-## Publisher: <br>
-[jcbuer](https://clawhub.ai/user/jcbuer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jcbuer](https://clawhub.ai/user/jcbuer)
 
-## Use Case: <br>
-Developers and technical teams use this skill to collect product, release, and community updates into a filtered digest for review, reporting, or scheduled automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Configured feeds are fetched from external network sources and digest history is written to local cache files. <br>
-Mitigation: Review configured feed URLs before use and protect or clear the feeds-digest cache if feed history is sensitive. <br>
-Risk: Using --llm can send digest content to the configured Perplexity or OpenAI provider. <br>
-Mitigation: Use Ollama for local-only summarization or avoid --llm for private or sensitive feeds. <br>
-Risk: Python dependencies are version-ranged rather than pinned. <br>
-Mitigation: Use a lockfile or pinned dependency set in controlled environments. <br>
+## Use Case:
 
+Developers, consultants, and operations teams use this skill to collect technical updates from configured RSS/Atom sources, filter them by date range and topics, and produce a digest. It can optionally append an LLM-generated executive summary when the user enables the LLM flow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jcbuer/feeds-digest) <br>
-- [Data sources 2026](references/data-sources-2026.md) <br>
-- [YouTube channel discovery](references/youtube-channel-discovery.md) <br>
-- [Microsoft Tech Community categories](references/ms-tc-categories.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or JSON digest text, optionally written to a file, with setup commands and configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional LLM summaries use the configured Perplexity, OpenAI, or Ollama provider; date windows, topics, feed sources, and maximum items per source are configurable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill fetches content from configured network feeds and writes cache/history data locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted feed URLs, review configuration before running, and install in a dedicated user environment when practical.
+
+Risk: The documented system-wide cron example runs the digest as root.
+
+Mitigation: Prefer user-level cron and avoid root execution unless a reviewer approves the operational need.
+
+Risk: When LLM summarization is enabled, digest content may be sent to an external or local LLM provider and API keys are required for hosted providers.
+
+Mitigation: Enable LLM mode only for content appropriate for the selected provider, keep API keys out of inline cron commands, and store credentials in a protected secret mechanism.
+
+Risk: Dependencies are installed from package indexes without pinned versions.
+
+Mitigation: Pin and review dependencies or install inside a dedicated virtual environment before scheduled or production use.
+
+## Reference(s):
+
+- [README](README.md)
+- [Data Sources 2026](references/data-sources-2026.md)
+- [YouTube Channel Discovery](references/youtube-channel-discovery.md)
+- [Microsoft Tech Community Categories](references/ms-tc-categories.md)
+- [Summary Prompt](prompts/summary.md)
+- [ClawHub Skill Page](https://clawhub.ai/jcbuer/skills/feeds-digest)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/jcbuer)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Files, Shell commands, Configuration]
+
+**Output Format:** [Markdown digest or JSON, with optional Markdown executive summary and optional file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include feed source status, filtered feed items, item links, publication dates, topics, and optional LLM-generated summary content.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

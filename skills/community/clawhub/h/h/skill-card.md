@@ -1,43 +1,49 @@
-## Description: <br>
-Skill 发现中心 helps agents search a built-in sample catalog of ClawHub skills and return command-style recommendations, details, tags, and discovery guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill 发现中心 helps agents search, browse, and manage ClawHub skill discovery through Chinese-language command responses for keyword search, tag browsing, recommendations, history, and skill details.
 
-## Publisher: <br>
-[hgta23](https://clawhub.ai/user/hgta23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hgta23](https://clawhub.ai/user/hgta23)
 
-## Use Case: <br>
-Agents and ClawHub users use this skill to discover skills by keyword, tag, popularity, similarity, and simple recommendation commands. Treat its management-style responses as informational because server security evidence says installs and saved favorites are simulated. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Install and management commands can imply real ClawHub actions even though server security evidence says those actions are simulated. <br>
-Mitigation: Treat install, favorites, history, and management responses as guidance only, and verify actual skill state in ClawHub before relying on it. <br>
-Risk: Recommendations, popularity, and skill details are based on static bundled data rather than live ClawHub metadata. <br>
-Mitigation: Cross-check recommendations and skill details against the ClawHub skill page or another trusted catalog source before installing. <br>
-Risk: Server security guidance reports that the JavaScript file is syntactically invalid due escaped operators. <br>
-Mitigation: Review and fix the JavaScript, then test it in a sandbox before enabling runtime use. <br>
+## Use Case:
 
+Developers and ClawHub users use this skill to discover skills through command-style search, tag browsing, trending lists, recommendations, and detail lookups. Its responses are useful as static discovery guidance rather than live personalized ClawHub results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hgta23/h) <br>
-- [Publisher profile](https://clawhub.ai/user/hgta23) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text command responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a static in-memory skill catalog and does not perform verified live installs, persistent favorites, or live ClawHub catalog updates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact package.json) <br>
+Risk: Recommendation and install wording may imply live personalization or successful installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat recommendations as canned catalog entries and verify any installation through the ClawHub environment before relying on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hgta23/skills/h)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain text command responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses are generated from a static catalog; install output is informational and should not be treated as proof that another skill was installed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

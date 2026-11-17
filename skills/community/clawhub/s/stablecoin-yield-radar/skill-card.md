@@ -1,42 +1,60 @@
-## Description: <br>
-Query real-time stablecoin supply APY from Barker's yield index across 500+ protocols and 20+ CEX, returning ranked APY, TVL, protocol, chain, and asset details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query real-time stablecoin supply APY from Barker's yield index across DeFi protocols and centralized exchanges, returning ranked APY, TVL, protocol, chain, and asset information.
 
-## Publisher: <br>
-[zuoyeweb3](https://clawhub.ai/user/zuoyeweb3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zuoyeweb3](https://clawhub.ai/user/zuoyeweb3)
 
-## Use Case: <br>
-External users and agents use this skill to look up and compare stablecoin yield opportunities from Barker's public index, including APY, TVL, protocol, chain, and asset details. Results are for informational comparison rather than financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on live public API requests for yield data, so results may change or the endpoint may be unavailable. <br>
-Mitigation: State that data is live, handle API failures without inventing yields, and encourage direct verification of any opportunity. <br>
-Risk: Users could treat ranked APY results as financial advice. <br>
-Mitigation: Present results as informational only and remind users to verify terms, risks, and current rates before moving funds. <br>
+## Use Case:
 
+External users and agents use this skill to look up and compare stablecoin yield opportunities by asset, chain, APY, TVL, protocol, and venue. It is intended for informational yield discovery, not financial advice.
 
-## Reference(s): <br>
-- [Barker](https://barker.money) <br>
-- [Barker Public Stablecoin Yields API](https://api.barker.money/api/public/v1/stablecoin-yields) <br>
-- [ClawHub release page](https://clawhub.ai/zuoyeweb3/stablecoin-yield-radar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Guidance] <br>
-**Output Format:** [Markdown table with concise explanatory text and API request guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Ranks yield opportunities and includes Barker attribution; no credentials required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Stablecoin APY data can fluctuate and may be incomplete or stale when decisions are made.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat results as informational, verify rates directly with the venue or protocol, and avoid presenting the output as financial advice.
+
+Risk: Stablecoin yield queries are sent to Barker's public API and responses include Barker attribution.
+
+Mitigation: Use the skill only when this external API dependency and attribution requirement are acceptable for the deployment context.
+
+Risk: Broad yield and stablecoin trigger phrases may activate the skill in general crypto-yield conversations.
+
+Mitigation: Review activation behavior before deployment and invoke it only for stablecoin yield lookup or comparison requests.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zuoyeweb3/skills/stablecoin-yield-radar)
+- [Barker Website](https://barker.money)
+- [Barker Public Stablecoin Yields API](https://api.barker.money/api/public/v1/stablecoin-yields)
+- [Barker Public API Base](https://api.barker.money/api/public/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, API Calls, Guidance]
+
+**Output Format:** [Markdown table with concise explanatory text and Barker attribution]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include APY, base APY, reward APY, TVL, protocol, chain, asset, pool, and last-updated data returned by Barker's public API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

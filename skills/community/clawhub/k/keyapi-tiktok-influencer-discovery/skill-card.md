@@ -1,44 +1,55 @@
-## Description: <br>
-Discover, profile, and analyze TikTok influencers with keyword search, profile lookup, follower trends, engagement rates, live-stream GMV, video performance, and competitive ranking workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover, profile, and deeply analyze TikTok influencers from keyword-based search to multi-dimensional performance intelligence covering follower trends, engagement rates, live-stream GMV, video performance, and competitive rankings.
 
-## Publisher: <br>
-[lycici](https://clawhub.ai/user/lycici) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lycici](https://clawhub.ai/user/lycici)
 
-## Use Case: <br>
-Marketing, creator-commerce, and competitive-intelligence users can discover TikTok influencers, resolve creator identities, compare performance metrics, and produce structured campaign-fit analysis. The skill is most useful when an agent needs to orchestrate KeyAPI MCP calls and synthesize influencer research into a concise report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A KeyAPI bearer token may be stored in a local plaintext .env file. <br>
-Mitigation: Set KEYAPI_TOKEN in the shell when possible, keep any .env file private, and avoid committing local credential files. <br>
-Risk: API research results are cached on disk by default and may include sensitive creator or campaign research. <br>
-Mitigation: Use --no-cache for sensitive runs or clear the .keyapi-cache directory after use. <br>
-Risk: Changing KEYAPI_SERVER_URL can send authenticated requests to a non-default service. <br>
-Mitigation: Keep KEYAPI_SERVER_URL at the default unless the replacement endpoint is trusted. <br>
+## Use Case:
 
+External users and developers use this skill to research TikTok creators for influencer discovery, campaign shortlisting, affiliate evaluation, and competitive performance analysis. It helps agents query KeyAPI, cache responses, and synthesize creator profile, trend, video, livestream, product, audience, and ranking insights.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lycici/keyapi-tiktok-influencer-discovery) <br>
-- [KeyAPI Website](https://keyapi.ai/) <br>
-- [KeyAPI MCP Service](https://mcp.keyapi.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown research reports with command examples and JSON API result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses KEYAPI_TOKEN authentication, Node.js execution, optional local cache files, and KeyAPI MCP responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requires a KeyAPI token and may store API responses locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set KEYAPI_TOKEN through the environment, keep any .env file out of source control, and review or clear .keyapi-cache when creator or audience research is sensitive.
+
+Risk: Changing KEYAPI_SERVER_URL sends authentication and research queries to a different destination.
+
+Mitigation: Use the default KeyAPI MCP server unless the alternate server is fully trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lycici/skills/keyapi-tiktok-influencer-discovery)
+- [KeyAPI](https://keyapi.ai/)
+- [KeyAPI MCP server](https://mcp.keyapi.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses KEYAPI_TOKEN, Node.js, KeyAPI MCP calls, local response caching, pagination, and cover-image URL conversion.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

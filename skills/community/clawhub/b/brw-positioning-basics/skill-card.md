@@ -1,38 +1,53 @@
-## Description: <br>
-Help founders and marketers nail their positioning. Use when someone mentions "positioning," "value proposition," "who is this for," "how do I describe my product," "messaging," "ICP," "ideal customer," or is struggling to articulate what makes their product different. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps founders and marketers clarify product positioning, value propositions, target customers, messaging, and differentiation.
 
-## Publisher: <br>
-[BrianRWagner](https://clawhub.ai/user/BrianRWagner) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[brianrwagner](https://clawhub.ai/user/brianrwagner)
 
-## Use Case: <br>
-Founders, marketers, and go-to-market teams use this skill to clarify a product's target customer, problem, approach, differentiation, and competitive position. It helps produce positioning statements, one-liners, elevator pitches, differentiators, target customer profiles, and competitive positioning summaries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may share confidential business, customer, or sales data when following the external strategy-call link. <br>
-Mitigation: Treat the external link as optional promotion and avoid sharing confidential data with external sites unless intentionally approved. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Brian Wagner](https://brianrwagner.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/BrianRWagner/brw-positioning-basics) <br>
+## Use Case:
 
+External founders, marketers, and product teams use this skill to turn product context into a positioning statement, short pitch, differentiators, target customer profile, and competitive position.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces concise positioning artifacts such as a positioning statement, one-liner, elevator pitch, differentiators, target customer profile, and competitive position statement.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may activate on broad marketing-language requests.
+
+Mitigation: Confirm the user is asking for positioning, messaging, ICP, value proposition, or differentiation work before applying its framework.
+
+Risk: Outputs may be influenced by the author's visible commercial call-to-action.
+
+Mitigation: Treat the booking link as publisher attribution and avoid presenting it as required for using the positioning framework.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brianrwagner/skills/brw-positioning-basics)
+- [Brian Wagner](https://brianrwagner.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a positioning statement, concise one-liner, elevator pitch, key differentiators, target customer profile, and competitive-position summary.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

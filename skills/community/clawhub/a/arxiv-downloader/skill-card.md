@@ -1,41 +1,56 @@
-## Description: <br>
-Downloads arXiv paper PDFs or LaTeX source archives from an arXiv ID or URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads arXiv paper PDFs or LaTeX source archives by arXiv ID or URL.
 
-## Publisher: <br>
-[ninganme](https://clawhub.ai/user/ninganme) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ninganme](https://clawhub.ai/user/ninganme)
 
-## Use Case: <br>
-Developers, researchers, and agents use this skill to fetch arXiv PDFs or LaTeX source archives into a local output directory when given an arXiv ID or URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill downloads files from arxiv.org and writes them to the local filesystem. <br>
-Mitigation: Use it only when arXiv downloads are intended, save into a dedicated output folder, and review downloaded files before opening or processing them. <br>
-Risk: Custom output filenames and output paths are not fully constrained before files are written. <br>
-Mitigation: Avoid untrusted custom filenames and choose an explicit, dedicated output directory. <br>
+## Use Case:
 
+Developers, researchers, and other external users use this skill to download arXiv PDFs or LaTeX source archives by providing an arXiv ID or arXiv URL.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ninganme/arxiv-downloader) <br>
-- [arXiv](https://arxiv.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files] <br>
-**Output Format:** [Console status text and downloaded PDF or tar.gz files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports an optional output directory, LaTeX source mode, and custom output filename.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: A crafted --name value can cause downloads to overwrite files outside the intended download folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only plain filenames, keep downloads in a dedicated folder, reject path components in --name, and enforce that the final output path remains under the chosen output directory.
+
+Risk: Unattended downloads from untrusted arguments can create unexpected files or overwrite existing files.
+
+Mitigation: Review arguments before execution, avoid silent overwrites, and add streaming downloads with a size limit before unattended use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ninganme/skills/arxiv-downloader)
+- [arXiv abstract URL example](https://arxiv.org/abs/2301.12345)
+- [arXiv PDF download pattern](https://arxiv.org/pdf/{id}.pdf)
+- [arXiv LaTeX source download pattern](https://arxiv.org/e-print/{id})
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, guidance]
+
+**Output Format:** [Markdown guidance and terminal output from a Python download script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces downloaded PDF files or LaTeX source archives in a user-selected output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

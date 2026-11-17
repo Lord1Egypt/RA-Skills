@@ -1,0 +1,12 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_company_knowledgebase_list",
+    "description": "List team knowledge-base folders that the current account may use under its role permissions. Returns id, name, and description. Call this before binding knowledge bases while creating or editing an expert, and only use real folder IDs returned here.",
+    "parameters": {
+      "type": "object",
+      "properties": {},
+      "additionalProperties": false
+    }
+  }
+}

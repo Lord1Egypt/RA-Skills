@@ -1,44 +1,59 @@
-## Description: <br>
-Zero-exposure script execution using MGC Blackbox: store scripts encrypted, execute them locally, and return results to the agent without exposing plaintext script content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A documentation skill that teaches agents how to store encrypted scripts in MGC Blackbox and execute them through MCP, API, or WebUI paths with explicit user authorization.
 
-## Publisher: <br>
-[zkeviny](https://clawhub.ai/user/zkeviny) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zkeviny](https://clawhub.ai/user/zkeviny)
 
-## Use Case: <br>
-Developers and operators use this skill to guide agents through storing, sealing, and locally executing encrypted scripts with MGC Blackbox. It is intended for workflows where an agent should receive execution results without directly viewing script plaintext. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stored scripts can execute locally with the user's privileges while the agent does not see the plaintext script body. <br>
-Mitigation: Require manual approval and provenance review for each stored script before execution, and run scripts with least-privilege local accounts. <br>
-Risk: Scripts may access local MGC credentials through the token-backed API. <br>
-Mitigation: Avoid broad credentials, scope stored secrets narrowly, and restrict access to the local token file and MGC service. <br>
-Risk: The documentation emphasizes hidden encrypted execution without enough consent and scope guidance. <br>
-Mitigation: Add operator consent checks and clear execution boundaries to any workflow that uses this skill. <br>
+## Use Case:
 
+Developers and external agent operators use this skill to document and follow MGC Blackbox workflows for encrypted script storage, blackbox execution, runtime parameter passing, credential access, and script sealing. It is intended for explicitly approved local script execution where the agent receives results rather than script plaintext.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zkeviny/skills/secure-script-runner) <br>
-- [MGC Blackbox project reference](https://github.com/zkeviny/MGC-Blackbox) <br>
-- [MGC Blackbox issue tracker](https://github.com/zkeviny/MGC-Blackbox/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown documentation with Python, JSON, and shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill artifact; no executable files are included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: Opaque scripts may have broad local access to files, network, and MGC-stored credentials without clear technical scoping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when MGC Blackbox and the scripts are trusted; run under a low-privilege account, deny outbound network access by default, and require separate approval for each named credential.
+
+Risk: The agent cannot audit script plaintext when executing scripts through blackbox workflows.
+
+Mitigation: Require the user to verify each script source, purpose, and expected data or credential access before authorizing execution.
+
+Risk: MGC 1.4.9 script execution issues may cause parameter parsing failures, silent failures, or blocked stdout.
+
+Mitigation: Use parse_known_args, strip added quotes from runtime parameters, prefer forward-slash paths and explicit named arguments, and write substantive output to files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zkeviny/skills/secure-script-runner)
+- [MGC Blackbox Repository](https://github.com/zkeviny/MGC-Blackbox)
+- [MGC Blackbox Issues](https://github.com/zkeviny/MGC-Blackbox/issues)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown documentation with Python, JSON, and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes MGC 1.4.9 workaround guidance for parse_known_args, manual quote stripping, and file-based outputs.]
+
+## Skill Version(s):
+
+1.1.1 (source: server-resolved release, SKILL.md frontmatter, and manifest.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

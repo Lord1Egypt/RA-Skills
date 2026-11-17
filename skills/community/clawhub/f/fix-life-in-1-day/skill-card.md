@@ -1,44 +1,62 @@
-## Description: <br>
-Fix your entire life in 1 day. 10 psychological sessions based on Dan Koe's viral article. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users through 10 structured self-reflection sessions based on Dan Koe's article.
 
-## Publisher: <br>
-[evgyur](https://clawhub.ai/user/evgyur) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[evgyur](https://clawhub.ai/user/evgyur)
 
-## Use Case: <br>
-External users use this ClawHub skill for a structured self-reflection and journaling workflow across 10 guided sessions, with English and Russian prompts, progress tracking, saved responses, insights, and a final markdown document. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for personal journal-style reflections and stores progress, responses, insights, reminders, and exports in the local workspace. <br>
-Mitigation: Treat the workspace files as sensitive, avoid sharing them unintentionally, and use the reset or deletion path when retained reflections are no longer wanted. <br>
-Risk: The prompt style can be emotionally intense and may surface distressing self-reflection topics. <br>
-Mitigation: Use it only as self-reflection support, pause when prompts feel overwhelming, and do not use it as therapy or crisis support. <br>
+## Use Case:
 
+External ClawHub or Clawdbot users use this skill to work through English or Russian self-reflection sessions, save responses, track progress, and generate a final Markdown summary of insights and a one-day reset protocol.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/evgyur/fix-life-in-1-day) <br>
-- [Life Architect sources](references/sources.md) <br>
-- [Life Architect sessions overview](references/sessions.md) <br>
-- [Dan Koe source post](https://x.com/thedankoe/status/2010751592346030461) <br>
-- [Alex Prompter source post](https://x.com/alex_prompter/status/2011566578152661139) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON status responses, guided markdown prompts, saved markdown session notes, and an exported markdown final document] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores progress, user responses, insights, reminders, and final exports under the user's local workspace memory directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Sensitive psychological reflections, summaries, reminders, and exports may remain in plaintext workspace files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a private workspace, avoid entering highly sensitive details, and add clear consent notices plus restrictive file permissions before deployment.
+
+Risk: The shell handler has a command-injection risk.
+
+Mitigation: Review and harden the shell handler before installation by validating inputs, avoiding unsafe command construction, and testing command paths with hostile input.
+
+Risk: Users may treat self-help prompts as mental-health advice.
+
+Mitigation: Add explicit mental-health safety notices, crisis-resource direction, and boundaries that the skill is for reflection rather than diagnosis or treatment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/evgyur/skills/fix-life-in-1-day)
+- [Life Architect Sources](artifact/references/sources.md)
+- [10 Sessions Overview](artifact/references/sessions.md)
+- [Dan Koe original post](https://x.com/thedankoe/status/2010751592346030461)
+- [Alex Prompter 10 prompts](https://x.com/alex_prompter/status/2011566578152661139)
+- [Clawdbot](https://github.com/clawdbot/clawdbot)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown prompts and JSON status or progress responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes session progress, user reflections, insights, reminders, and final exports to workspace memory files.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

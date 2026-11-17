@@ -1,50 +1,64 @@
-## Description: <br>
-Generates and edits images with QwenCloud Wan and Qwen Image models, including text-to-image, reference-image editing, style transfer, subject consistency, text rendering, and interleaved text-image output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and edits images with QwenCloud Wan and Qwen Image models for text-to-image, reference-image editing, style transfer, subject consistency, text rendering, multi-image composition, and interleaved text-image output.
 
-## Publisher: <br>
-[cuixiaoyang123](https://clawhub.ai/user/cuixiaoyang123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cuixiaoyang123](https://clawhub.ai/user/cuixiaoyang123)
 
-## Use Case: <br>
-Developers, designers, and agents use this skill to create image assets, edit reference images, render poster text, and produce mixed text-image content through QwenCloud image-generation APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a QwenCloud API key and may send prompts and selected images to QwenCloud. <br>
-Mitigation: Use environment variables or placeholder `.env` entries, never expose plaintext credentials, and confirm that prompt and image content is appropriate to send to QwenCloud. <br>
-Risk: Generated images can incur QwenCloud usage charges, especially when multi-image parameters are increased. <br>
-Mitigation: Start with one output image during testing and review billing or usage before increasing `n` or `max_images`. <br>
-Risk: The skill can prompt agents to install update-related code through an `npx skills add` command. <br>
-Mitigation: Treat update prompts as optional and review the repository, command, and any proposed `.agents`, `CLAUDE.md`, or `AGENTS.md` changes before approving installation. <br>
+## Use Case:
 
+External developers and agent users use this skill to generate and edit images through QwenCloud models from natural-language prompts and optional reference images. It supports creative asset generation, posters, style transfer, subject-consistent edits, multi-image composition, and interleaved text-image content.
 
-## Reference(s): <br>
-- [Execution Guide](references/execution-guide.md) <br>
-- [API Guide](references/api-guide.md) <br>
-- [Prompt Guide](references/prompt-guide.md) <br>
-- [Agent Compatibility](references/agent-compatibility.md) <br>
-- [Qwen Image Generation API Sources](references/sources.md) <br>
-- [QwenCloud Text-to-Image API Reference](https://docs.qwencloud.com/developer-guides/image-generation/text-to-image) <br>
-- [QwenCloud Wan2.6 Image Editing API Reference](https://docs.qwencloud.com/api-reference/image-generation/wan26-image-gen-edit/create-task) <br>
-- [QwenCloud Wan2.5 Image Editing API Reference](https://docs.qwencloud.com/api-reference/image-generation/wan25-general-image-editing/create-task) <br>
-- [QwenCloud Model List](https://www.qwencloud.com/models) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with JSON API requests, shell commands, and generated image files or image URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local image paths, image URLs, interleaved markdown output, and JSON response summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: ClawHub release evidence) <br>
+Risk: QwenCloud receives prompts, reference images, and API-authenticated requests during normal image generation and editing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive prompts or images, provide only the needed QwenCloud API key through environment variables, and do not expose credential values in logs or responses.
+
+Risk: The skill includes an update-check and install prompt workflow with persistent agent-state behavior.
+
+Mitigation: Review any ACTION_REQUIRED or UPDATE_AVAILABLE signal before acting, and decline or disable the update-check prompt unless the mutable install path is trusted.
+
+Risk: The suggested update installation path uses npx to install external skill code.
+
+Mitigation: Inspect and approve the source and requested update before running the installation command; prefer reviewed or pinned releases where available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cuixiaoyang123/skills/qwencloud-image-generation)
+- [Qwen Image Generation API Sources](references/sources.md)
+- [Qwen Image Generation API Supplementary Guide](references/api-guide.md)
+- [Qwen Image Generation Execution Guide](references/execution-guide.md)
+- [Image Generation Prompt Guide](references/prompt-guide.md)
+- [QwenCloud text-to-image API reference](https://docs.qwencloud.com/developer-guides/image-generation/text-to-image)
+- [Wan2.6 Image API reference](https://docs.qwencloud.com/api-reference/image-generation/wan26-image-gen-edit/create-task)
+- [QwenCloud model list](https://www.qwencloud.com/models)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Image files, JSON responses, Markdown for interleaved output, and shell or Python command guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local_path, local_paths, image_url, image_urls, image_count, width, height, seed, and interleaved_content.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release evidence, created 2026-04-30)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

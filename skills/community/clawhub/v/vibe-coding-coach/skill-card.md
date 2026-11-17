@@ -1,40 +1,53 @@
-## Description: <br>
-Vibe Coding Coach helps users plan AI-assisted software projects, choose coding tools, structure prompts and workflows, debug issues, and prepare prototypes for deployment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coaches people through AI-assisted software workflows, prompt design, tool selection, debugging, and pre-launch review.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-External users, product managers, founders, designers, students, and developers use this skill to turn app ideas into AI coding sessions, choose tools, craft prompts, debug AI-built apps, and prepare prototypes for deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation phrases may cause the skill to appear for general AI coding or app-building questions where its coaching is not needed. <br>
-Mitigation: Confirm that the request is about AI-assisted app-building workflow guidance before applying the skill's recommendations. <br>
-Risk: Guidance for deploying AI-generated applications can be incomplete for security-sensitive features such as authentication, payments, or private data handling. <br>
-Mitigation: Review AI-generated code and obtain qualified security or engineering review before deploying production systems with real users or sensitive data. <br>
+## Use Case:
 
+Non-engineers, founders, product managers, and developers use it to plan AI-assisted app work, choose tools, write focused prompts, troubleshoot changes, and check readiness before release.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gechengling/vibe-coding-coach) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance with prompt templates, checklists, and tool recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include staged prompts, diagnostic questions, tool comparisons, and verification checklists for AI coding workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: SKILL.md frontmatter and release evidence) <br>
+Risk: The security review found no issues but has medium confidence because two local references could not be resolved.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Consider this coverage limitation before installing, and review the relevant guidance where possible.
+
+Risk: Prompts or debugging examples could expose secrets or real customer data if copied into an AI coding tool.
+
+Mitigation: Remove credentials and identifying data before sharing; use environment variable names and synthetic examples.
+
+## Reference(s):
+
+- [Vibe Coding Coach on ClawHub](https://clawhub.ai/gechengling/skills/vibe-coding-coach)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with plain-language prompts, workflow tables, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Coaching material for the user to apply in their own tools; it does not write files, run code, or deploy changes.]
+
+## Skill Version(s):
+
+3.0.4 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

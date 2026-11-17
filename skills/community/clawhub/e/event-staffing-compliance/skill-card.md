@@ -1,49 +1,56 @@
-## Description: <br>
-Helps agents assess W-2 vs 1099 classification, joint-employer, COI, injury-liability, and wage/hour compliance risks for temporary event staffing in the US and Canada. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assesses worker-classification and compliance risks for temporary event staffing in the United States and Canada, with live state-by-state lookups.
 
-## Publisher: <br>
-[kissmyabs32](https://clawhub.ai/user/kissmyabs32) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kissmyabs32](https://clawhub.ai/user/kissmyabs32)
 
-## Use Case: <br>
-External users and event operations teams use this skill to review temporary event staffing plans for worker classification, insurance, joint-employer, injury-liability, and wage/hour exposure. It is intended for event staffing questions in the United States and Canada, not permanent employment or other markets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States and Canada <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat general compliance guidance as legal advice. <br>
-Mitigation: State that outputs are informational and direct users to employment counsel for binding determinations. <br>
-Risk: Using live state compliance lookup sends relevant event and state details to TempGuru. <br>
-Mitigation: Use the MCP lookup only when the user expects live compliance data for the event jurisdiction. <br>
-Risk: The optional quote-requesting capability can initiate vendor contact. <br>
-Mitigation: Invoke quote requests only when the user clearly intends to contact the vendor. <br>
+## Use Case:
 
+Event organizers and staffing buyers use the skill to assess W-2 versus 1099 arrangements, workers' compensation, certificates of insurance, joint-employer exposure, and wage and hour requirements for temporary event staff.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kissmyabs32/event-staffing-compliance) <br>
-- [TempGuru MCP Server](https://mcp.tempguru.co/mcp) <br>
-- [W-2 vs 1099 for Event Workers](https://tempguru.co/risk-briefs/w2-vs-1099-event-workers) <br>
-- [What Compliant Staffing Means](https://tempguru.co/risk-briefs/what-is-compliant-staffing) <br>
-- [Joint-Employer Liability](https://tempguru.co/risk-briefs/joint-employer-liability-event-staffing) <br>
-- [COI Requirements](https://tempguru.co/risk-briefs/coi-event-staffing) <br>
-- [Wage/Hour Compliance](https://tempguru.co/risk-briefs/wage-hour-compliance-event-staffing) <br>
-- [Event Worker Injury Liability](https://tempguru.co/risk-briefs/event-worker-injury-liability) <br>
+### Deployment Geography for Use:
 
+United States and Canada
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, API calls] <br>
-**Output Format:** [Markdown or plain text guidance, optionally informed by MCP lookup results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides general compliance information, not legal advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: A general staffing compliance assessment may not reflect every current jurisdictional rule or the facts of a particular arrangement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the live lookup for the event jurisdiction and consult employment counsel for binding decisions.
+
+## Reference(s):
+
+- [W-2 vs 1099 for event workers](https://tempguru.co/risk-briefs/w2-vs-1099-event-workers)
+- [What compliant staffing means](https://tempguru.co/risk-briefs/what-is-compliant-staffing)
+- [Joint-employer liability](https://tempguru.co/risk-briefs/joint-employer-liability-event-staffing)
+- [Certificate of insurance requirements](https://tempguru.co/risk-briefs/coi-event-staffing)
+- [Wage and hour compliance](https://tempguru.co/risk-briefs/wage-hour-compliance-event-staffing)
+- [Event worker injury liability](https://tempguru.co/risk-briefs/event-worker-injury-liability)
+- [TempGuru Event Staffing Planner](https://chatgpt.com/g/g-6a285fef5fd4819199e9b9c25da543c8-tempguru-event-staffing-planner)
+- [TempGuru staffing and compliance MCP endpoint](https://mcp.tempguru.co/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance]
+
+**Output Format:** [Markdown text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include jurisdiction-specific compliance checks and links to supporting material.]
+
+## Skill Version(s):
+
+1.7.5 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

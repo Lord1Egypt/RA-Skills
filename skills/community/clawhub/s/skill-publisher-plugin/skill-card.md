@@ -1,43 +1,57 @@
-## Description: <br>
-Helps agents publish local skills to the ClawHub marketplace by checking login state, inspecting existing releases, and proposing publish or update commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents upload and publish local skills to the ClawHub marketplace, including login checks, release/version decisions, and CLI command references.
 
-## Publisher: <br>
-[vivian8725118](https://clawhub.ai/user/vivian8725118) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vivian8725118](https://clawhub.ai/user/vivian8725118)
 
-## Use Case: <br>
-Developers and skill authors use this agent skill to prepare ClawHub publish commands, choose initial or update versioning, and publish local skill directories to the marketplace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Publish commands can make local skill content public on ClawHub. <br>
-Mitigation: Require explicit user confirmation of the target directory, slug, version, and account before running any publish command. <br>
-Risk: A local skill may contain secrets, proprietary content, or files that should not be published. <br>
-Mitigation: Inspect the files for secrets or proprietary content before publishing. <br>
-Risk: Loose activation could lead an agent to prepare publishing actions when the user did not intend a public release. <br>
-Mitigation: Use the skill only when the user clearly asks to publish or update a ClawHub skill. <br>
+## Use Case:
 
+Developers and skill publishers use this skill to prepare, version, and publish local skills to ClawHub with CLI-based checks and commands.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/vivian8725118/skill-publisher-plugin) <br>
-- [Publisher profile](https://clawhub.ai/user/vivian8725118) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ClawHub CLI commands for login checks, release inspection, publishing, syncing, semantic version choices, and changelog text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Unpinned `npx clawhub` commands may execute an unexpected CLI version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned or vetted ClawHub CLI invocation and review proposed commands before execution.
+
+Risk: Publishing a local skill can unintentionally expose sensitive files or incorrect marketplace metadata.
+
+Mitigation: Verify the local skill path, slug, name, version, tags, and changelog before publishing, and keep secrets out of the skill directory.
+
+Risk: Shell command templates can be unsafe when placeholders are filled from untrusted metadata.
+
+Mitigation: Treat placeholder values as reviewed inputs and quote or reject unsafe values before running generated commands.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/vivian8725118/skills/skill-publisher-plugin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes CLI command templates and publishing status output examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

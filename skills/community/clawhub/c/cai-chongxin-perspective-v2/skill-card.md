@@ -1,40 +1,54 @@
-## Description: <br>
-Provides a simulated Cai Chongxin/Joe Tsai business perspective for analysis of finance discipline, strategic investment, M&A integration, international expansion, governance, long-term value investing, sports business, wealth succession, and philanthropy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language business and investment analysis and advice framed through a Cai Chongxin perspective, covering financial discipline, strategic investment, M&A integration, international expansion, and long-term value investing.
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-Developers and agent users can use this skill to frame business, investment, corporate finance, M&A, globalization, governance, and philanthropy discussions through a simulated public-figure perspective. Its outputs should be treated as perspective-taking guidance, not verified financial, legal, or professional advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad finance or strategy topics and present roleplay-style business analysis that could be mistaken for professional advice. <br>
-Mitigation: Treat outputs as perspective framing only and verify financial, legal, investment, and strategic decisions with qualified sources or reviewers. <br>
-Risk: The skill simulates a public-figure perspective and may overstate certainty about how that person would respond. <br>
-Mitigation: Make clear to users that responses are simulated from public materials and should not be treated as statements by or endorsements from the named person. <br>
+## Use Case:
 
+External users and business operators use this Chinese-language persona skill to frame corporate finance, strategic investment, M&A integration, international expansion, governance, and long-term value investing questions through a named executive perspective.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejianjun000/cai-chongxin-perspective-v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text responses in a simulated business-perspective style] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only persona guidance; no system access or tool execution behavior is described in the evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: Persona-framed business or investment guidance may be mistaken for professional financial, tax, legal, governance, or investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use outputs as brainstorming context for consequential decisions and verify conclusions with qualified professionals.
+
+Risk: A named executive perspective may imply endorsement or first-person authority.
+
+Mitigation: Treat outputs as stylistic framing based on public material, not statements from or endorsement by Cai Chongxin.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejianjun000/skills/cai-chongxin-perspective-v2)
+- [Publisher profile](https://clawhub.ai/user/xiejianjun000)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-language Markdown guidance and analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, network access, persistence, or hidden install behavior identified in security evidence.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata; artifact version information states v2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,60 @@
-## Description: <br>
-Create beginner-friendly workout plans, calorie and macro estimates, meal structures, food plans, and fitness-oriented recipe suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create beginner-friendly workout plans, calorie and macro estimates, meal structures, food plans, and fitness-oriented recipe suggestions.
 
-## Publisher: <br>
-[Elyasuuuuu](https://clawhub.ai/user/Elyasuuuuu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[elyasuuuuu](https://clawhub.ai/user/elyasuuuuu)
 
-## Use Case: <br>
-External users use this skill to get practical beginner fitness coaching, including workout plans, calorie and macro estimates, meal structures, food plans, and goal-aligned recipe ideas for fat loss, muscle gain, recomposition, or maintenance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Calorie and macro targets are estimates and may be inappropriate for medical conditions, medications, eating disorders, or unsafe restriction. <br>
-Mitigation: Treat outputs as general fitness planning, share only details the user is comfortable providing, and seek professional guidance for medical, injury, medication-sensitive, eating-disorder, or unsafe weight-control concerns. <br>
-Risk: Workout guidance can be unsuitable when injuries, equipment limits, or training constraints are missing. <br>
-Mitigation: Collect relevant constraints when needed and keep recommendations cautious when injury or safety concerns are mentioned. <br>
+## Use Case:
 
+External users use this skill for practical fitness coaching, including workout planning, calorie and macro estimates, meal structures, food plans, and goal-aligned recipes. It is intended for general fitness guidance, not diagnosis, medical treatment, eating-disorder coaching, or extreme dieting advice.
 
-## Reference(s): <br>
-- [Nutrition baselines](references/nutrition-baselines.md) <br>
-- [Output templates](references/output-templates.md) <br>
-- [Common use cases](references/use-cases.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Elyasuuuuu/training-and-nutrition-coach) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Shell commands] <br>
-**Output Format:** [Markdown with structured lists and optional JSON from the local macro calculator] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include estimates and may ask one grouped follow-up question when key user details are missing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may ask for health-adjacent personal details such as age, height, weight, sex, activity level, training frequency, and dietary constraints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Collect only details needed for the requested plan and avoid presenting the output as medical care.
+
+Risk: Fitness, calorie, and macro guidance can be unsafe or inappropriate for users with injuries, medical conditions, medication-sensitive issues, eating-disorder concerns, or unsafe weight-control behavior.
+
+Mitigation: Keep recommendations framed as estimates, avoid extreme dieting advice, and refer users with medical or safety concerns to qualified professional guidance.
+
+Risk: Calorie and macro estimates can appear more precise than they are.
+
+Mitigation: State assumptions clearly, round targets, and recommend reviewing progress over 2-3 weeks before adjusting.
+
+## Reference(s):
+
+- [Nutrition baselines](references/nutrition-baselines.md)
+- [Output templates](references/output-templates.md)
+- [Common use cases](references/use-cases.md)
+- [ClawHub skill page](https://clawhub.ai/elyasuuuuu/skills/training-and-nutrition-coach)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include estimated calories, macros, meal structures, workout plans, recipe ideas, assumptions, follow-up questions, and next steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

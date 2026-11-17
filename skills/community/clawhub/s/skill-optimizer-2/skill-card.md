@@ -1,41 +1,53 @@
-## Description: <br>
-Analyze the current conversation history and local installed skills to identify missed skill triggers, overlapping or duplicate skills, weak metadata, stale or risky skills, and workflow gaps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze the current conversation history and local installed skills to identify missed skill triggers, overlapping or duplicate skills, weak metadata, stale or risky skills, and workflow gaps.
 
-## Publisher: <br>
-[zhangchenchen](https://clawhub.ai/user/zhangchenchen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangchenchen](https://clawhub.ai/user/zhangchenchen)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to audit local skill directories and the current conversation for trigger, metadata, duplication, safety, and workflow issues before choosing whether to fix, merge, delete, or keep findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reviews current conversation context and visible local skill directories, which may expose sensitive workspace details. <br>
-Mitigation: Review the exact scope and paths before use, and provide only the conversation logs or directories needed for the audit. <br>
-Risk: Audit recommendations may lead to skill edits, merges, or deletions after user approval. <br>
-Mitigation: Require explicit user selections for Fix, Merge, Delete, or Keep and Skip, and confirm exact deletion targets when there is ambiguity. <br>
+## Use Case:
 
+Developers and agents use this skill to audit visible conversation and local skill evidence, identify trigger, metadata, duplication, stale-file, safety, and installation workflow issues, and produce an action queue for user review.
 
-## Reference(s): <br>
-- [Report Schema](references/report-schema.md) <br>
-- [ClawHub skill page](https://clawhub.ai/zhangchenchen/skill-optimizer-2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown audit report with findings and an action queue] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user choices before editing, merging, or deleting skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release metadata) <br>
+Risk: The skill inspects the current thread and visible local skill directories, which may expose sensitive local context to the audit output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated audit before sharing it, and avoid providing logs or directories that contain secrets unless they are necessary for the audit.
+
+Risk: Recommended Fix, Merge, or Delete actions could change skill behavior or remove useful local skill files if approved without review.
+
+Mitigation: Use the generated action queue as a proposal only, review each recommended action, and confirm any edit or deletion before authorizing changes.
+
+## Reference(s):
+
+- [Report Schema](references/report-schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown report with structured findings and an action queue]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Limits user-facing action choices to Fix, Merge, Delete, or Keep and Skip.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

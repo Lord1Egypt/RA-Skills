@@ -1,46 +1,59 @@
-## Description: <br>
-Compare health insurance plans, estimate total yearly costs, and choose coverage that fits medical usage, prescriptions, and financial risk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compare health insurance plans, estimate total yearly costs, and choose coverage that fits medical usage, prescriptions, and financial risk.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to compare health insurance options, model yearly costs across utilization scenarios, and prepare enrollment or renewal decisions with clear trade-offs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may handle sensitive health, prescription, provider, budget, or insurance decision details in local memory. <br>
-Mitigation: Ask for explicit approval before writing memory, store only durable decision context, and avoid IDs, policy numbers, payment details, or unredacted confirmations unless the user can protect them securely. <br>
-Risk: Insurance recommendations can be wrong if plan documents, provider network status, formularies, deadlines, or user assumptions are incomplete or outdated. <br>
-Mitigation: Label assumptions, verify plan IDs, provider network fit, medication coverage, effective dates, and enrollment confirmations against authoritative plan materials before treating a recommendation as final. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/health-insurance) <br>
-- [Skill Homepage](https://clawic.com/skills/health-insurance) <br>
-- [Comparison Checklist](comparison-checklist.md) <br>
-- [Cost Model](cost-model.md) <br>
-- [Coverage Framework](coverage-framework.md) <br>
-- [Enrollment Playbook](enrollment-playbook.md) <br>
-- [Memory Template](memory-template.md) <br>
-- [Setup](setup.md) <br>
+## Use Case:
 
+External users use this skill to compare health insurance options, model low, expected, and high-use annual costs, and choose a coverage strategy that fits provider access, prescriptions, budget, and downside risk.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with structured checklists, cost calculations, recommendations, and optional shell commands for local setup] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; optional local memory is written only after explicit user approval.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Sensitive insurance information may be retained locally if the user approves broad memory or artifact storage.
+
+Mitigation: Ask for explicit approval before writing to local health-insurance memory, retain only durable decision context, and redact policy numbers, government IDs, payment details, and unnecessary personal information.
+
+Risk: Plan recommendations may be unreliable if provider networks, formularies, deadlines, plan IDs, or enrollment confirmations are stale or unverified.
+
+Mitigation: Confirm plan details against official insurer, employer, marketplace, or broker evidence before enrollment, preserve confirmation artifacts, and do not claim enrollment is complete without confirmation evidence.
+
+## Reference(s):
+
+- [Health Insurance ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/health-insurance)
+- [Health Insurance Homepage](https://clawic.com/skills/health-insurance)
+- [Setup Guide](artifact/setup.md)
+- [Coverage Framework](artifact/coverage-framework.md)
+- [Cost Model](artifact/cost-model.md)
+- [Comparison Checklist](artifact/comparison-checklist.md)
+- [Enrollment Playbook](artifact/enrollment-playbook.md)
+- [Memory Template](artifact/memory-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with optional shell command blocks and structured comparison tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only; no external network requests; optional local memory requires explicit approval.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

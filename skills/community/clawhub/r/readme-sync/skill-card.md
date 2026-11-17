@@ -1,41 +1,58 @@
-## Description: <br>
-README Sync helps agents read relevant README sections before project work and propose confirmed README updates afterward. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+README Sync helps coding agents read relevant README context before project work and propose confirmed README updates after code work.
 
-## Publisher: <br>
-[zyqfxy](https://clawhub.ai/user/zyqfxy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zyqfxy](https://clawhub.ai/user/zyqfxy)
 
-## Use Case: <br>
-Developers and coding agents use this skill to keep project README files aligned with coding work. It guides agents to read only relevant README context, cache notable changes, and sync approved updates after review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: README summaries or pending update state may contain sensitive project details if the user records them there. <br>
-Mitigation: Review proposed README and .readme_pending.json content before syncing, avoid adding secrets, and clear pending state when it should not persist. <br>
-Risk: The init, auto-init, and sync workflows can modify README-related files in the local project. <br>
-Mitigation: Run preview or pending-review commands first and require user confirmation before applying README changes. <br>
+## Use Case:
 
+Developers and coding agents use this skill to keep README.md aligned with project state by reading relevant sections before work, caching noteworthy changes, and applying README updates after user confirmation.
 
-## Reference(s): <br>
-- [README template](references/readme_template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/zyqfxy/readme-sync) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown prose with shell command snippets and local README updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update README.md and .readme_pending.json after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may read README context automatically during project work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when that behavior is acceptable for the project, and limit README contents to information appropriate for agent context.
+
+Risk: README updates or auto-initialization could introduce inaccurate project documentation if accepted without review.
+
+Mitigation: Review pending updates and generated README content before approving sync or auto-init behavior.
+
+Risk: The helper creates a pending-update JSON file while staging README changes.
+
+Mitigation: Review or clear pending updates before committing repository changes.
+
+## Reference(s):
+
+- [README Sync release page](https://clawhub.ai/zyqfxy/skills/readme-sync)
+- [README template](references/readme_template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads README sections and proposes README updates; README writes require user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

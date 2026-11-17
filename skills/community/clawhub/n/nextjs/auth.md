@@ -1,5 +1,38 @@
 # Authentication — NextJS
 
+## Security Model: Three Layers, One Boundary
+
+| Layer | Job | Trust level |
+|-------|-----|-------------|
+| Middleware | Optimistic cookie check → redirect for UX | Zero — treat as a convenience |
+| Page/Server Component | Session read for rendering decisions | Display only, not enforcement |
+| Data layer (queries, Server Actions, route handlers) | Verify session before every read/write | The actual security boundary |
+
+Why middleware can't be the boundary: CVE-2025-29927 (fixed in `next 15.2.3` / `14.2.25`, backported to older lines) let attackers skip middleware entirely with a spoofed `x-middleware-subrequest` header. Any app whose only check lived in middleware was fully open. Layouts aren't a boundary either — they don't re-render on client-side navigation within them, so a session check there goes stale without any error.
+
+The data-access-layer (DAL) pattern — every data function verifies for itself:
+
+```typescript
+// lib/dal.ts
+import 'server-only'                    // build fails if this leaks client-side
+import { cache } from 'react'
+import { auth } from '@/auth'
+
+export const requireUser = cache(async () => {
+  const session = await auth()
+  if (!session?.user?.id) redirect('/login')
+  return session.user
+})
+
+// Every query goes through it
+export async function getInvoices() {
+  const user = await requireUser()
+  return db.invoice.findMany({ where: { userId: user.id } })
+}
+```
+
+`cache()` makes repeated `requireUser()` calls cost one session lookup per request — checking in every function is free, so there's no performance excuse to skip it.
+
 ## Auth.js / NextAuth.js Setup
 
 ### Installation
@@ -73,7 +106,9 @@ import { handlers } from '@/auth'
 export const { GET, POST } = handlers
 ```
 
-## Middleware Protection
+## Middleware Redirects (UX layer only)
+
+Keep it to cookie presence and redirects — no DB calls (middleware runs on every matched request, before any cache), and never as the sole check (see Security Model above):
 
 ```typescript
 // middleware.ts
@@ -103,8 +138,9 @@ export const config = {
 
 ## Server Components
 
+Check in the **page**, never only the layout (Security Model above):
+
 ```typescript
-// Get session in Server Component
 import { auth } from '@/auth'
 import { redirect } from 'next/navigation'
 
@@ -221,10 +257,12 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: PrismaAdapter(prisma),
   providers: [...],
   session: {
-    strategy: 'jwt', // or 'database' for database sessions
+    strategy: 'jwt', // or 'database'
   },
 })
 ```
+
+JWT vs database sessions — the trade-off, resolved: JWT reads cost nothing and work in middleware, but revocation waits for token expiry ("log out everywhere" and instant bans don't work); database sessions revoke instantly but cost a query per check. Default JWT; switch to database the moment the product needs admin-forced logout or visible active-session lists.
 
 ## Role-Based Access
 

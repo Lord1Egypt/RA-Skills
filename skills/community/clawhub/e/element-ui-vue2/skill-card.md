@@ -1,48 +1,64 @@
-## Description: <br>
-Element UI Vue2 desktop component library for developing Vue 2.x pages with Element components such as buttons, inputs, forms, tables, dialogs, navigation, and desktop web application UI elements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Element UI Vue2 helps agents provide Vue 2 desktop UI guidance using Element components for forms, tables, dialogs, navigation, layout, theming, and related component APIs.
 
-## Publisher: <br>
-[wufengsheng](https://clawhub.ai/user/wufengsheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wufengsheng](https://clawhub.ai/user/wufengsheng)
 
-## Use Case: <br>
-Developers and engineers use this skill to build Vue 2 desktop web interfaces with Element UI components, layouts, forms, tables, dialogs, navigation, theming, and internationalization references. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated upload flows may rely on client-side file type hints. <br>
-Mitigation: Validate file type, size, and content on the server before accepting uploads. <br>
-Risk: Generated components that render user-controlled HTML or custom slot content can introduce XSS if copied without review. <br>
-Mitigation: Escape or sanitize user input and avoid unsanitized dynamic HTML in production code. <br>
-Risk: Element UI form validation examples may be mistaken for complete security validation. <br>
-Mitigation: Keep client-side validation for user experience and enforce server-side validation for sensitive operations. <br>
-Risk: Production projects may inherit dependency risk from Vue 2 and Element UI packages. <br>
-Mitigation: Review the dependency chain and monitor Element UI release or security notices before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill when building Vue 2.x desktop web pages with Element UI components and when they need quick access to component usage, API attributes, events, slots, methods, installation, theming, and internationalization guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wufengsheng/skills/element-ui-vue2) <br>
-- [Element UI Vue2 Documentation](https://element.eleme.cn/#/zh-CN) <br>
-- [Element UI Releases](https://github.com/ElemeFE/element/releases) <br>
-- [Element UI Installation Guide](artifact/references/dev-guide/installation.md) <br>
-- [Element UI Quickstart Guide](artifact/references/dev-guide/quickstart.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown prose with Vue, JavaScript, and shell code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference material; no hidden execution, persistence, or credential access described.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: Dependency and CDN snippets may be copied without fixed versions or integrity controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin npm and CDN versions, use project lockfiles, and add subresource integrity for browser-loaded assets where practical.
+
+Risk: UI examples for upload, dynamic HTML, and form validation can be mistaken for production security controls.
+
+Mitigation: Add server-side file validation, sanitize or escape user-controlled HTML, and enforce server-side validation for sensitive actions.
+
+Risk: The reference set is mainly zh-CN documentation and may need localization review for teams working in other languages.
+
+Mitigation: Have implementers confirm translated terminology and component behavior against the project requirements before applying examples.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wufengsheng/skills/element-ui-vue2)
+- [Element UI Chinese documentation](https://element.eleme.cn/#/zh-CN)
+- [Element UI installation guide](https://element.eleme.cn/#/zh-CN/component/installation)
+- [Element UI changelog](https://element.eleme.cn/#/zh-CN/component/changelog)
+- [Element UI GitHub releases](https://github.com/ElemeFE/element/releases)
+- [Skill definition](artifact/SKILL.md)
+- [Installation reference](artifact/references/dev-guide/installation.md)
+- [Component reference bundle](artifact/llms-full.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with Vue, JavaScript, HTML, CSS, and shell snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Primarily zh-CN Element UI Vue 2 reference material; users should review generated examples before production use.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

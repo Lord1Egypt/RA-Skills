@@ -1,38 +1,57 @@
-## Description: <br>
-A Toutiao content creation assistant for account operations, content writing, trend tracking, and performance analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jinritoutiao helps Toutiao creators draft and review headlines, structure articles and micro-posts, diagnose content performance metrics, and plan account positioning.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-Content creators and account operators use this skill to draft Toutiao titles, articles, micro-posts, content plans, data diagnoses, and monetization guidance for Toutiao publishing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated public content or publishing advice may be inaccurate, unoriginal, legally noncompliant, or inconsistent with Toutiao platform policies. <br>
-Mitigation: Review all generated content and recommendations for accuracy, originality, legal compliance, and Toutiao policy compliance before publishing. <br>
+## Use Case:
 
+External creators and content operators use this skill to plan Toutiao posts, improve headline and article structure, interpret supplied performance metrics, and align account operations with platform rules.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangifonly/jinritoutiao) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown or plain text content recommendations, drafts, diagnoses, and planning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credentials, or persistent agent behavior; outputs should be reviewed before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can help optimize attention-grabbing titles, which could be misused for misleading or exaggerated content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated titles against the article body and reject titles that overstate claims, hide important context, or conflict with Toutiao policy.
+
+Risk: Platform policies, recommendation behavior, and monetization rules can change after the skill content was written.
+
+Mitigation: Verify current Toutiao creator policies and dashboard data before relying on policy, ranking, or revenue guidance.
+
+Risk: Performance diagnosis may be unreliable if users provide incomplete or invented analytics.
+
+Mitigation: Base diagnostics on real creator metrics such as impressions, click-through rate, read completion, engagement, timing, and recent account status.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangifonly/skills/jinritoutiao)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with draft titles, article structures, diagnostic notes, and planning recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, tool use, credentials, persistence, or privileged access are described by the evidence.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

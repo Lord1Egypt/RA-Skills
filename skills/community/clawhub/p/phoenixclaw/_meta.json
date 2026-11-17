@@ -2,5 +2,37 @@
   "ownerId": "kn76ecdj2xm85rsz42qdktm2nd808tgg",
   "slug": "phoenixclaw",
   "version": "0.0.19",
-  "publishedAt": 1773805821800
+  "publishedAt": 1770824347180,
+  "requiredPaths": [
+    "~/.openclaw/sessions/*.jsonl",
+    "~/.openclaw/agents/*.jsonl",
+    "~/.openclaw/cron/runs/*.jsonl",
+    "~/.agent/sessions/*.jsonl",
+    "~/.openclaw/memory/*.md",
+    "~/.openclaw/workspace/memory/*.md",
+    "~/.phoenixclaw/config.yaml"
+  ],
+  "writePaths": [
+    "~/日记/daily/*.md",
+    "~/日记/weekly/*.md",
+    "~/日记/monthly/*.md",
+    "~/日记/assets/*",
+    "~/.phoenixclaw/profile.md",
+    "~/.phoenixclaw/timeline.md",
+    "~/.phoenixclaw/growth-map.md"
+  ],
+  "capabilities": [
+    "read_session_logs",
+    "read_memory_files",
+    "write_journal_entries",
+    "copy_media_assets",
+    "register_cron_job",
+    "execute_plugins"
+  ],
+  "privacy": {
+    "dataAccess": "session_logs_and_memory_only",
+    "mediaHandling": "copy_to_journal_assets",
+    "retention": "user_configured_journal_path",
+    "plugins": "optional_finance_and_moment_tracking"
+  }
 }

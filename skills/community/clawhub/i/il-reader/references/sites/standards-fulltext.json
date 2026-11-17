@@ -1,0 +1,613 @@
+{
+  "version": "2.4.0",
+  "source_id": "standards-fulltext",
+  "status": "query_verified",
+  "checked_at": "2026-10-09T09:01:07.084Z",
+  "entry": {
+    "url": "https://openstd.samr.gov.cn/bzgk/gb/index",
+    "final_url": "https://openstd.samr.gov.cn/bzgk/std/index",
+    "title": "国家标准全文公开",
+    "status": "accessible",
+    "http_status": null,
+    "checked_at": "2026-10-09T09:01:07.084Z",
+    "identity": {
+      "declared_name": "国家标准全文公开系统",
+      "hostname": "openstd.samr.gov.cn",
+      "domain_matches": true
+    },
+    "links": [],
+    "frames": []
+  },
+  "controls": [],
+  "recipes": [
+    {
+      "id": "standards-fulltext:official-guidance",
+      "source_id": "standards-fulltext",
+      "task_kind": "official-guidance",
+      "status": "blocked",
+      "parameters": [
+        "topic",
+        "official_publisher",
+        "version",
+        "target_statement"
+      ],
+      "instructions": [
+        "优先发布机构的当前原文/官方帮助，核查完整陈述及版本，不引用题库答案作为依据。"
+      ],
+      "transitions": {},
+      "entry_url": "https://openstd.samr.gov.cn/bzgk/gb/index",
+      "controls": [],
+      "result_items": {
+        "status": "observed",
+        "locator": {
+          "role": "row",
+          "scope": {
+            "css": "table.table"
+          }
+        },
+        "notes": "排除表头；按本题标准号、名称、语种、类别和状态匹配一行，进入该行的查看详细"
+      },
+      "record_identity": {
+        "status": "partial",
+        "fields": [
+          {
+            "name": "标准号",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "语种",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "是否采标",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "标准名称",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "类别",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "状态",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "发布日期",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "实施日期",
+            "locator": null,
+            "status": "text_observed"
+          }
+        ]
+      },
+      "detail_fields": {
+        "status": "partial",
+        "fields": [
+          {
+            "name": "中文标准名称",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "英文标准名称",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "标准状态",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "在线预览",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "下载标准",
+            "locator": null,
+            "status": "text_observed"
+          }
+        ]
+      },
+      "completion": {
+        "status": "observed",
+        "ready": {
+          "css": "table.table"
+        },
+        "empty": null,
+        "loading": null,
+        "rule": "新的官方标准列表页面加载完成，表格包含本题标准名称或标准号；本轮未确认该库零结果标志",
+        "snapshot": "validation/site-audit-v24/standards-fulltext-query-results.json"
+      }
+    },
+    {
+      "id": "standards-fulltext:pdf-inspection",
+      "source_id": "standards-fulltext",
+      "task_kind": "pdf-inspection",
+      "status": "query_verified",
+      "parameters": [
+        "document_title_or_identifier",
+        "edition_or_language",
+        "body_page_or_pdf_page",
+        "target_section"
+      ],
+      "instructions": [
+        "使用本题书名、标识符、语言和版次定位记录，确认正文页码与PDF物理页码的偏移后读取目标页；只在页面/全文确实可读时取证。"
+      ],
+      "transitions": {
+        "results": {
+          "mode": "popup",
+          "container": {
+            "css": "table.table"
+          },
+          "ready": {
+            "css": "table.table"
+          },
+          "match": {
+            "css": "table.table",
+            "match": "contains"
+          }
+        },
+        "detail": {
+          "mode": "popup",
+          "container": {
+            "css": "table.tdlist"
+          },
+          "ready": {
+            "css": "table.tdlist"
+          },
+          "match": {
+            "css": "table.tdlist",
+            "match": "contains"
+          }
+        }
+      },
+      "entry_url": "https://openstd.samr.gov.cn/bzgk/std/index",
+      "controls": [],
+      "pending": [
+        "本题参数、资源类型、年份与匹配方式仍需按题核查；未验证的筛选控件变化时重新观察"
+      ],
+      "query_input": {
+        "css": "input[placeholder=\"请输入标准号或标准名称\"]:visible"
+      },
+      "submit": {
+        "css": "#searchBtn"
+      },
+      "condition_check": "在结果同一行核对标准号、语种、类别、状态和发布日期/实施日期；不同语言记录不合并成同一全文",
+      "result_items": {
+        "status": "observed",
+        "locator": {
+          "role": "row",
+          "scope": {
+            "css": "table.table"
+          }
+        },
+        "notes": "排除表头；按本题标准号、名称、语种、类别和状态匹配一行，进入该行的查看详细"
+      },
+      "record_identity": {
+        "status": "partial",
+        "fields": [
+          {
+            "name": "标准号",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "语种",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "是否采标",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "标准名称",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "类别",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "状态",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "发布日期",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "实施日期",
+            "locator": null,
+            "status": "text_observed"
+          }
+        ]
+      },
+      "detail_fields": {
+        "status": "partial",
+        "fields": [
+          {
+            "name": "中文标准名称",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "英文标准名称",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "标准状态",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "在线预览",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "下载标准",
+            "locator": null,
+            "status": "text_observed"
+          }
+        ]
+      },
+      "completion": {
+        "status": "observed",
+        "ready": {
+          "css": "table.table"
+        },
+        "empty": null,
+        "loading": null,
+        "rule": "新的官方标准列表页面加载完成，表格包含本题标准名称或标准号；本轮未确认该库零结果标志",
+        "snapshot": "validation/site-audit-v24/standards-fulltext-query-results.json"
+      },
+      "execution": {
+        "version": 1,
+        "queryMode": "literal",
+        "resetEntry": true,
+        "parameters": {
+          "query": {
+            "type": "string",
+            "required": true
+          }
+        },
+        "prepare": [
+          {
+            "action": "fill",
+            "locator": {
+              "css": "input[placeholder=\"请输入标准号或标准名称\"]:visible"
+            },
+            "parameter": "query"
+          }
+        ],
+        "submit": {
+          "action": "click",
+          "locator": {
+            "css": "#searchBtn"
+          }
+        },
+        "scope": "标准号或名称查询；返回列表仍需核对语种、状态与版本，PDF任务不自动证明全文内容。"
+      }
+    },
+    {
+      "id": "standards-fulltext:record-lookup",
+      "source_id": "standards-fulltext",
+      "task_kind": "record-lookup",
+      "status": "query_verified",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {
+        "results": {
+          "mode": "popup",
+          "container": {
+            "css": "table.table"
+          },
+          "ready": {
+            "css": "table.table"
+          },
+          "match": {
+            "css": "table.table",
+            "match": "contains"
+          }
+        },
+        "detail": {
+          "mode": "popup",
+          "container": {
+            "css": "table.tdlist"
+          },
+          "ready": {
+            "css": "table.tdlist"
+          },
+          "match": {
+            "css": "table.tdlist",
+            "match": "contains"
+          }
+        }
+      },
+      "entry_url": "https://openstd.samr.gov.cn/bzgk/std/index",
+      "controls": [],
+      "pending": [
+        "本题参数、资源类型、年份与匹配方式仍需按题核查；未验证的筛选控件变化时重新观察"
+      ],
+      "query_input": {
+        "css": "input[placeholder=\"请输入标准号或标准名称\"]:visible"
+      },
+      "submit": {
+        "css": "#searchBtn"
+      },
+      "condition_check": "在结果同一行核对标准号、语种、类别、状态和发布日期/实施日期；不同语言记录不合并成同一全文",
+      "result_items": {
+        "status": "observed",
+        "locator": {
+          "role": "row",
+          "scope": {
+            "css": "table.table"
+          }
+        },
+        "notes": "排除表头；按本题标准号、名称、语种、类别和状态匹配一行，进入该行的查看详细"
+      },
+      "record_identity": {
+        "status": "partial",
+        "fields": [
+          {
+            "name": "标准号",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "语种",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "是否采标",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "标准名称",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "类别",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "状态",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "发布日期",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "实施日期",
+            "locator": null,
+            "status": "text_observed"
+          }
+        ]
+      },
+      "detail_fields": {
+        "status": "partial",
+        "fields": [
+          {
+            "name": "中文标准名称",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "英文标准名称",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "标准状态",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "在线预览",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "下载标准",
+            "locator": null,
+            "status": "text_observed"
+          }
+        ]
+      },
+      "completion": {
+        "status": "observed",
+        "ready": {
+          "css": "table.table"
+        },
+        "empty": null,
+        "loading": null,
+        "rule": "新的官方标准列表页面加载完成，表格包含本题标准名称或标准号；本轮未确认该库零结果标志",
+        "snapshot": "validation/site-audit-v24/standards-fulltext-query-results.json"
+      },
+      "execution": {
+        "version": 1,
+        "queryMode": "literal",
+        "resetEntry": true,
+        "parameters": {
+          "query": {
+            "type": "string",
+            "required": true
+          }
+        },
+        "prepare": [
+          {
+            "action": "fill",
+            "locator": {
+              "css": "input[placeholder=\"请输入标准号或标准名称\"]:visible"
+            },
+            "parameter": "query"
+          }
+        ],
+        "submit": {
+          "action": "click",
+          "locator": {
+            "css": "#searchBtn"
+          }
+        },
+        "scope": "标准号或名称查询；返回列表仍需核对语种、状态与版本，PDF任务不自动证明全文内容。"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": "standards-fulltext",
+    "quiz_entries": [],
+    "example_ids": [
+      "KH-Q042"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:01:07.084Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/standards-fulltext-query-before.json",
+      "original_entry_snapshot": null,
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。",
+      "query_snapshot": "validation/site-audit-v24/standards-fulltext-query-results.json",
+      "detail_snapshot": "validation/site-audit-v24/standards-fulltext-query-detail.json"
+    }
+  },
+  "query_validation": {
+    "checked_at": "2026-10-09T09:25:20.810Z",
+    "scope": "仅确认检索提交、真实结果容器与页面打开方式；本题条件、排序、筛选和答案必须重新核验",
+    "snapshot": "validation/site-audit-v24/standards-fulltext-query-results.json"
+  },
+  "result_items": {
+    "status": "observed",
+    "locator": {
+      "role": "row",
+      "scope": {
+        "css": "table.table"
+      }
+    },
+    "notes": "排除表头；按本题标准号、名称、语种、类别和状态匹配一行，进入该行的查看详细"
+  },
+  "record_identity": {
+    "status": "partial",
+    "fields": [
+      {
+        "name": "标准号",
+        "locator": null,
+        "status": "text_observed"
+      },
+      {
+        "name": "语种",
+        "locator": null,
+        "status": "text_observed"
+      },
+      {
+        "name": "是否采标",
+        "locator": null,
+        "status": "text_observed"
+      },
+      {
+        "name": "标准名称",
+        "locator": null,
+        "status": "text_observed"
+      },
+      {
+        "name": "类别",
+        "locator": null,
+        "status": "text_observed"
+      },
+      {
+        "name": "状态",
+        "locator": null,
+        "status": "text_observed"
+      },
+      {
+        "name": "发布日期",
+        "locator": null,
+        "status": "text_observed"
+      },
+      {
+        "name": "实施日期",
+        "locator": null,
+        "status": "text_observed"
+      }
+    ]
+  },
+  "detail_fields": {
+    "status": "partial",
+    "fields": [
+      {
+        "name": "中文标准名称",
+        "locator": null,
+        "status": "text_observed"
+      },
+      {
+        "name": "英文标准名称",
+        "locator": null,
+        "status": "text_observed"
+      },
+      {
+        "name": "标准状态",
+        "locator": null,
+        "status": "text_observed"
+      },
+      {
+        "name": "在线预览",
+        "locator": null,
+        "status": "text_observed"
+      },
+      {
+        "name": "下载标准",
+        "locator": null,
+        "status": "text_observed"
+      }
+    ]
+  },
+  "completion": {
+    "status": "observed",
+    "ready": {
+      "css": "table.table"
+    },
+    "empty": null,
+    "loading": null,
+    "rule": "新的官方标准列表页面加载完成，表格包含本题标准名称或标准号；本轮未确认该库零结果标志",
+    "snapshot": "validation/site-audit-v24/standards-fulltext-query-results.json"
+  }
+}

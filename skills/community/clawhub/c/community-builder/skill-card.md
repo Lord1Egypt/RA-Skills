@@ -1,44 +1,53 @@
-## Description: <br>
-Plan, launch, and grow branded online communities on Discord, Facebook Groups, Reddit, or forums to turn buyers into loyal advocates who drive repeat purchases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan, launch, and grow branded online communities on Discord, Facebook Groups, Reddit, or forums to turn buyers into loyal advocates who drive repeat purchases.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External community, marketing, support, and brand teams use this skill to plan platform selection, launch structure, moderation, engagement rituals, and measurement for branded online communities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Community launch plans may involve member analytics, private outreach, customer comparisons, or reuse of member-generated content. <br>
-Mitigation: Disclose moderation and analytics practices, avoid unnecessary personal or sensitive data collection, get permission before reusing member content or sending private outreach, and confirm compliance with applicable privacy laws. <br>
-Risk: Platform-specific engagement, automation, and moderation advice may conflict with a community platform's current rules or brand policies. <br>
-Mitigation: Review the chosen platform's rules and the organization's moderation policy before applying automations, tracking, outreach, or customer-data comparisons. <br>
+## Use Case:
 
+External brand, ecommerce, and community teams use this skill to plan platform selection, launch cohorts, content rituals, moderation, growth loops, and measurement for branded customer communities.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/leooooooow/community-builder) <br>
-- [Community Engagement Playbook](artifact/engagement-playbook.md) <br>
-- [Community Launch Brief Template](artifact/output-template.md) <br>
-- [Platform Comparison Matrix](artifact/platform-comparison-matrix.md) <br>
-- [Community Builder Quality Checklist](artifact/quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance, planning briefs, checklists, matrices, and community operating recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable behavior; produces planning and operating guidance for human review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Community plans may involve member photos, testimonials, DMs, or health-adjacent skincare content without a complete consent and privacy workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before collecting or featuring member content, add clear member consent, separate marketing-release permission, retention and deletion rules, access limits, and applicable privacy-law review.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/leooooooow/skills/community-builder)
+- [Community Launch Brief Template](artifact/output-template.md)
+- [Community Engagement Playbook](artifact/engagement-playbook.md)
+- [Platform Comparison Matrix](artifact/platform-comparison-matrix.md)
+- [Community Builder Quality Checklist](artifact/quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance, tables, checklists, and planning templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution; outputs are planning artifacts for community launch and operations.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

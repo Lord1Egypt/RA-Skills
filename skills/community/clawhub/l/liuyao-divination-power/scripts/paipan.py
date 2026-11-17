@@ -6,14 +6,14 @@
 功能：
   - 三币摇卦法随机生成六爻（从初爻到上爻）
   - 双轨干支计算：sxtwl（优先，精确到节气）→ 纯 Python（回退，内嵌 2026-2086 年数据）
-  - 定主卦/变卦/世应/六神/六亲/伏神
+  - 定主卦/变卦/世应/六神兽/六亲/伏神
   - 输出结构化 JSON，匹配六爻解卦 Skill 的输入格式
 
 用法：
   python paipan.py --subject "所问之事" [--intent "意图类别"] [--year YYYY --month MM --day DD --hour HH --minute MM] [--yao "111111"]
 
   --subject  所占之事（必填）
-  --intent   意图类别：求财|官运|学业|感情|健康|孕产|出行|失物|词讼|天气|通用（默认通用）
+  --intent   意图类别：求财|官运|学业|感情|健康|出行|失物|词讼|天气|通用（默认通用）
   --yao      手动六爻编码（6位 1-4 字符串，自下而上），不提供则随机生成
   --year     公历年（默认当前）
   --month    公历月
@@ -51,7 +51,7 @@ DIZHI_TO_WUXING = {
     "申": "金", "酉": "金", "戌": "土", "亥": "水",
 }
 
-# 六神：日干 → 起始索引
+# 六神兽：日干 → 起始索引
 LIUSHEN_START = {"甲": 0, "乙": 0, "丙": 1, "丁": 1, "戊": 2, "己": 3,
                  "庚": 4, "辛": 4, "壬": 5, "癸": 5}
 LIUSHEN_NAMES = ["青龙", "朱雀", "勾陈", "腾蛇", "白虎", "玄武"]
@@ -62,7 +62,35 @@ DIZHI_INDEX = {dz: i + 1 for i, dz in enumerate(DIZHI)}   # 子=1 … 亥=12
 TIANGAN_INDEX = {tg: i + 1 for i, tg in enumerate(TIANGAN)}  # 甲=1 … 癸=10
 
 # 有效的 intent 类别
-VALID_INTENTS = {"求财", "官运", "学业", "感情", "健康", "孕产", "出行", "失物", "词讼", "天气", "通用"}
+VALID_INTENTS = {"求财", "官运", "学业", "感情", "健康", "出行", "失物", "词讼", "天气", "通用"}
+
+PREGNANCY_BLOCK_KEYWORDS = (
+    "孕产", "怀孕", "有孕", "妊娠", "胎产", "胎儿", "胚胎", "保胎", "流产",
+    "生产", "分娩", "临盆", "坐月子", "预产期", "产检", "孕妇", "宝宝性别",
+    "胎儿性别", "生男生女",
+)
+PREGNANCY_GENDER_KEYWORDS = (
+    "性别", "男女", "男孩", "女孩", "男宝", "女宝", "儿子", "女儿",
+    "生男", "生女", "是男是女", "蓝粉", "粉蓝", "宝宝性别", "胎儿性别",
+)
+
+
+def is_pregnancy_blocked_request(subject: str, intent: str) -> bool:
+    """frv gate: pregnancy/childbirth requests are blocked before paipan."""
+    text = f"{subject or ''} {intent or ''}"
+    return intent == "孕产" or any(keyword in text for keyword in PREGNANCY_BLOCK_KEYWORDS)
+
+
+def is_pregnancy_gender_request(subject: str, intent: str) -> bool:
+    text = f"{subject or ''} {intent or ''}"
+    return any(keyword in text for keyword in PREGNANCY_GENDER_KEYWORDS)
+
+
+def pregnancy_block_message(subject: str, intent: str) -> str:
+    message = "这个问题我不能用六爻来占。孕产相关问题请优先听医生和专业产检意见，祝平安顺利。"
+    if is_pregnancy_gender_request(subject, intent):
+        message += " 也温柔提醒：宝宝的性别不该影响被期待和被善待的程度，更不能服务重男轻女。"
+    return message
 
 # ── 宫→五行（用于变卦六亲按本卦宫重算）──────────────
 _GONG_WUXING = {
@@ -74,6 +102,63 @@ _GONG_WUXING = {
 }
 _SHENG = {"木": "火", "火": "土", "土": "金", "金": "水", "水": "木"}
 _KE   = {"木": "土", "土": "水", "水": "火", "火": "金", "金": "木"}
+
+# ── 地支关系常量（格局自动检测用）──────────────────────────
+DIZHI_LIUHE_PAIRS = [
+    ("子", "丑"), ("寅", "亥"), ("卯", "戌"), ("辰", "酉"), ("巳", "申"), ("午", "未"),
+]
+DIZHI_LIUCHONG_PAIRS = [
+    ("子", "午"), ("丑", "未"), ("寅", "申"), ("卯", "酉"), ("辰", "戌"), ("巳", "亥"),
+]
+DIZHI_SANHUI_GROUPS = [
+    ("亥", "子", "丑"),   # 北方水局
+    ("寅", "卯", "辰"),   # 东方木局
+    ("巳", "午", "未"),   # 南方火局
+    ("申", "酉", "戌"),   # 西方金局
+]
+# 三合局（长生-帝旺-墓库 + 五行属性）
+DIZHI_SANHE_GROUPS = [
+    ("申", "子", "辰", "水"),   # 水局
+    ("亥", "卯", "未", "木"),   # 木局
+    ("寅", "午", "戌", "火"),   # 火局
+    ("巳", "酉", "丑", "金"),   # 金局
+]
+
+
+# ── 八宫规则推断游魂/归魂（方案 C：不依赖 GUA64 第 10 列标签）──
+# 八宫变化：纯(6世)→一世→二世→三世→四世(4爻变)→五世(5爻变)→游魂(4爻回退+下卦变反宫)→归魂(下卦回本宫)
+# 关键区分：游魂=世4应1+4爻=纯卦4爻(回退了)；四世=世4应1+4爻≠纯卦4爻
+#          归魂=世3应6+5爻≠纯卦5爻(五世保留了变化)；三世=世3应6+5爻=纯卦5爻
+
+def _build_pure_guastr():
+    """从 GUA64 表读取八纯卦 guastr（世爻=6）→ {宫名: guastr}"""
+    return {v[10]: k for k, v in GUA64.items() if v[6] == 6}
+
+
+_PURE_GUASTR = None  # lazy init after GUA64 is defined
+
+
+def _infer_you_gui_hun(gua_name, gong_name, shi, ying, guastr):
+    """用八宫变化规则推断游魂/归魂（不依赖 GUA64 第 10 列字符串标签）。
+
+    规则：
+    - 游魂 = 世4应1 + 4爻=纯卦4爻（回退到纯卦状态）
+    - 归魂 = 世3应6 + 5爻≠纯卦5爻（五世的变化被保留）
+    返回 (is_you_hun: bool, is_gui_hun: bool)。
+    """
+    global _PURE_GUASTR
+    if _PURE_GUASTR is None:
+        _PURE_GUASTR = _build_pure_guastr()
+    pure = _PURE_GUASTR.get(gong_name, "")
+    if not pure or len(guastr) != 6:
+        return False, False
+    yao4_back = (guastr[3] == pure[3])   # 4爻已回退→游魂候选
+    yao5_changed = (guastr[4] != pure[4])  # 5爻保留变化→归魂候选
+    if shi == 4 and ying == 1:
+        return (yao4_back, False)
+    if shi == 3 and ying == 6:
+        return (False, yao5_changed)
+    return False, False
 
 
 def _liuqin_by_gong(gong_wuxing, yao_wuxing):
@@ -89,6 +174,214 @@ def _liuqin_by_gong(gong_wuxing, yao_wuxing):
     if _SHENG.get(yao_wuxing) == gong_wuxing:
         return "父母"
     return "?"
+
+
+def detect_patterns(lines, ben_gua_attr, bian_gua_attr, month_branch="", ri_chen="",
+                    ben_you_hun=False, ben_gui_hun=False,
+                    bian_you_hun=False, bian_gui_hun=False):
+    """特殊格局自动检测（规则化判断，非 AI 手动识别）
+
+    从 lines 数据自动推断三会局 / 三合局 / 地支六合 / 地支六冲 / 伏吟 / 反吟 /
+    独发 / 独静 / 本卦六冲卦 / 本卦六合卦。游魂/归魂由 _infer_you_gui_hun()
+    用八宫变化规则推断后传入（不再依赖 GUA64 第 10 列字符串标签）。
+    SKILL.md 第三步应直接读取 JSON 的 patterns 字段，不再让 AI 手动识别。
+
+    参数：
+      lines:          build_paipan_data 产出的 lines 数组
+      ben_gua_attr:   本卦属性中文字符串（六合/六冲标记，不再用于游魂归魂判定）
+      bian_gua_attr:  变卦属性，同上
+      month_branch:   月建地支（用于判断日月补字 / 日月引动）
+      ri_chen:         日辰地支（用于判断日月补字 / 日月引动）
+      ben_you_hun:    本卦游魂 bool（build_paipan_data 规则推断传入）
+      ben_gui_hun:    本卦归魂 bool（同上）
+      bian_you_hun:   变卦游魂 bool（同上，无变卦时为 False）
+      bian_gui_hun:   变卦归魂 bool（同上，无变卦时为 False）
+
+    返回 dict。
+    """
+    dizhi_list = [l["di_zhi"] for l in lines]
+    dizhi_set = set(dizhi_list)
+    dong_lines = [l for l in lines if l["dong"]]
+    dong_count = len(dong_lines)
+    dong_set = {l["di_zhi"] for l in dong_lines}
+
+    # ── 三会局：5 态（严格成局 / 成局 / 三会 / 三会之势）──
+    # 成局三路径：① 动爻激活  ② 日月临爻（日月之力=动爻）  ③ 动爻+空亡→出空成局
+    # 不成局：全静无日月临 / 全静有日月临但旬空压死 / 卦中缺字靠日月补
+    sanhui = []
+    for group in DIZHI_SANHUI_GROUPS:
+        present = [dz for dz in group if dz in dizhi_set]
+        if len(present) != 3:
+            continue
+        group_lines = [l for l in lines if l["di_zhi"] in group]
+        dong_positions = [l["pos"] for l in group_lines if l["dong"]]
+        sun_moon_in_group = (month_branch in group) or (ri_chen in group)
+        kong_positions = [l["pos"] for l in group_lines if l.get("kong_wang")]
+        has_kong = bool(kong_positions)
+
+        # ── 有动爻：动则不空，动爻是激活源 ──
+        if len(dong_positions) == 3:
+            status = "严格成局"
+        elif len(dong_positions) == 2 and sun_moon_in_group:
+            status = "严格成局"
+        elif len(dong_positions) >= 1:
+            if has_kong:
+                # 动爻不空（动则不空），空在它爻 → 暂时冻结，出空成局
+                status = "三会"
+            else:
+                status = "成局"
+        # ── 全静（无动爻）：日月之力可激活，但旬空会压死成局活力 ──
+        elif sun_moon_in_group:
+            if has_kong:
+                # 日月入组 + 空亡 → 空亡压死，出空也只是三会之势，无法成局
+                status = "三会之势"
+            else:
+                status = "成局"
+        else:
+            status = "三会之势"
+
+        # 组内每爻详情
+        members = []
+        for l in group_lines:
+            members.append({
+                "pos": l["pos"],
+                "di_zhi": l["di_zhi"],
+                "is_dong": l["dong"],
+                "is_kong": bool(l.get("kong_wang")),
+                "is_sun_moon": month_branch == l["di_zhi"] or ri_chen == l["di_zhi"],
+            })
+
+        sanhui.append({
+            "group": "".join(group),
+            "members": members,
+            "status": status,
+            "dong_positions": dong_positions,
+            "kong_positions": kong_positions,
+            "sun_moon_in_group": sun_moon_in_group,
+            "has_kong": has_kong,
+        })
+
+    # ── 三合局：3 档 + 日月引动 + 半合子型 ──
+    sanhe = []
+    for g0, g1, g2, wx in DIZHI_SANHE_GROUPS:
+        group_tuple = (g0, g1, g2)
+        present_in_gua = [dz for dz in group_tuple if dz in dizhi_set]
+        missing_in_gua = [dz for dz in group_tuple if dz not in dizhi_set]
+        group_lines = [l for l in lines if l["di_zhi"] in group_tuple]
+        dong_positions = [l["pos"] for l in group_lines if l["dong"]]
+        kong_positions = [l["pos"] for l in group_lines if l.get("kong_wang")]
+        has_dong = bool(dong_positions)
+        sun_moon_fills = (
+            len(missing_in_gua) == 1
+            and missing_in_gua[0] in (month_branch, ri_chen)
+        )
+
+        if len(present_in_gua) == 3:
+            # 日月引动：日辰或月建占其中一字，可代替动爻激活合局
+            sun_moon_activates = (month_branch in group_tuple) or (ri_chen in group_tuple)
+            if has_dong:
+                status = "成局"
+            elif sun_moon_activates:
+                status = "成局"  # 日月引动
+            else:
+                status = "虚合"
+            subtype = ""
+            missing = ""
+        elif len(present_in_gua) == 2:
+            if sun_moon_fills:
+                # 二字 + 日月补字 = 三字俱全
+                status = "成局" if has_dong else "虚合"
+                subtype = ""
+                missing = missing_in_gua[0]
+            elif has_dong:
+                # 半合：二字现 + 含动爻
+                status = "半合"
+                present_set = set(present_in_gua)
+                if present_set == {g0, g1}:
+                    subtype = "长生帝旺"
+                elif present_set == {g1, g2}:
+                    subtype = "帝旺墓库"
+                elif present_set == {g0, g2}:
+                    subtype = "长生墓库"
+                else:
+                    subtype = ""
+                missing = missing_in_gua[0] if missing_in_gua else ""
+            else:
+                continue  # 二字现 + 全静 + 无日月补 → 不记录
+        else:
+            continue  # 只 1 字 → 不记录
+
+        sanhe.append({
+            "group": g0 + g1 + g2,
+            "wuxing": wx,
+            "status": status,
+            "subtype": subtype,
+            "dong_positions": dong_positions,
+            "kong_positions": kong_positions,
+            "missing": missing,
+            "sun_moon_fills": sun_moon_fills,
+        })
+
+    # ── 地支六合：卦中任意两爻地支成合 ──
+    liuhe = []
+    for a, b in DIZHI_LIUHE_PAIRS:
+        if a in dizhi_set and b in dizhi_set:
+            pos = [l["pos"] for l in lines if l["di_zhi"] in (a, b)]
+            liuhe.append({"pair": f"{a}{b}", "positions": pos})
+
+    # ── 地支六冲：卦中任意两爻地支相冲 ──
+    liuchong = []
+    for a, b in DIZHI_LIUCHONG_PAIRS:
+        if a in dizhi_set and b in dizhi_set:
+            pos = [l["pos"] for l in lines if l["di_zhi"] in (a, b)]
+            liuchong.append({"pair": f"{a}{b}", "positions": pos})
+
+    # ── 伏吟：动爻变爻同地支 ──
+    fuyin = []
+    for l in dong_lines:
+        bian = l.get("bian_yao")
+        if bian and bian["di_zhi"] == l["di_zhi"]:
+            fuyin.append(l["pos"])
+
+    # ── 反吟：动爻变爻相冲 ──
+    chong_set = {frozenset(p) for p in DIZHI_LIUCHONG_PAIRS}
+    fanyin = []
+    for l in dong_lines:
+        bian = l.get("bian_yao")
+        if bian and frozenset((l["di_zhi"], bian["di_zhi"])) in chong_set:
+            fanyin.append(l["pos"])
+
+    # ── 独发 / 独静 ──
+    # 独发：六爻中仅一爻发动    独静：六爻中仅一爻不发动
+    dufa = (dong_count == 1)
+    dujing = (dong_count == 5)
+
+    # ── 本卦 / 变卦属性（六合卦、六冲卦）──
+    # 游魂/归魂 bool 由 build_paipan_data 调用 _infer_you_gui_hun() 规则推断传入
+    ben_attr = ben_gua_attr or ""
+    bian_attr = bian_gua_attr or ""
+    ben_liuchong_gua = "六冲" in ben_attr
+    ben_liuhe_gua = "六合" in ben_attr
+
+    return {
+        "sanhui_ju": sanhui,
+        "sanhe_ju": sanhe,
+        "dizhi_liuhe": liuhe,
+        "dizhi_liuchong": liuchong,
+        "fuyin_positions": fuyin,
+        "fanyin_positions": fanyin,
+        "dufa": dufa,
+        "dujing": dujing,
+        "ben_gua_attr": ben_attr,
+        "bian_gua_attr": bian_attr,
+        "ben_liuchong_gua": ben_liuchong_gua,
+        "ben_liuhe_gua": ben_liuhe_gua,
+        "ben_you_hun": ben_you_hun,
+        "ben_gui_hun": ben_gui_hun,
+        "bian_you_hun": bian_you_hun,
+        "bian_gui_hun": bian_gui_hun,
+        "dong_count": dong_count,
+    }
 
 
 # ═══════════════════════════════════════════════════════════════
@@ -244,7 +537,8 @@ def calc_ganzhi_pure(year, month, day, hour=0):
     # 月干从寅月起始，偏移量 = 月支对寅的偏移
     month_offset = (DIZHI.index(month_zhi) - DIZHI.index("寅")) % 12
     month_gan_idx = (TIANGAN.index(yin_gan) + month_offset) % 10
-    month_gz = f"{TIANGAN[month_gan_idx]}{month_zhi}"
+    month_gan = TIANGAN[month_gan_idx]
+    month_gz = f"{month_gan}{month_zhi}"
 
     # 3. 日柱
     day_result = get_day_ganzhi(year, month, day)
@@ -260,18 +554,142 @@ def calc_ganzhi_pure(year, month, day, hour=0):
     hour_gz = f"{TIANGAN[hour_gan_idx]}{hour_zhi}"
 
     # 5. 旬空
+    # 日空
     cha = DIZHI_INDEX[ri_zhi] - TIANGAN_INDEX[ri_gan]
     if cha < 0:
         cha += 12  # 用地支周期 12 补正，非天干周期 10
     kw1 = KONGWANG_ZU[cha - 2]
     kw2 = KONGWANG_ZU[cha - 1]
 
+    # 月空（月柱旬空）
+    cha_m = DIZHI_INDEX[month_zhi] - TIANGAN_INDEX[month_gan]
+    if cha_m < 0:
+        cha_m += 12
+    mk1 = KONGWANG_ZU[cha_m - 2]
+    mk2 = KONGWANG_ZU[cha_m - 1]
+
+    # 农历日期（纯 Python 查表）
+    lunar_info = _solar_to_lunar_pure(year, month, day)
+    lunar_year_gz = _lunar_year_gz(lunar_info["year"])
+    lunar_str = _format_lunar_cn(
+        lunar_year_gz, lunar_info["month"], lunar_info["day"], lunar_info["is_leap"]
+    )
+
     return {
         "year": year_gz, "month": month_gz, "day": day_gz, "hour": hour_gz,
         "month_branch": month_zhi,
         "ri_gan": ri_gan, "ri_zhi": ri_zhi,
         "xunkong": [kw1, kw2],
+        "yue_xunkong": [mk1, mk2],
+        "lunar": lunar_str,
     }
+
+
+# ═══════════════════════════════════════════════════════════════
+#  农历日期计算（双轨：sxtwl 直接取 / 纯 Python 查表）
+# ═══════════════════════════════════════════════════════════════
+# 消除 AI 在生成 HTML 报告 meta.lunar 字段时手算农历的环节 —— 既易错又费 token。
+# sxtwl 分支直接调用库；纯 Python 分支用下面这张预生成的查找表。
+
+# 查找表已拆到独立文件 scripts/lunar_data.py，让主脚本保持干净。
+# 数据结构、来源、为什么不能算法推算（77.5% 错误率）等说明见该文件头注释。
+from lunar_data import LUNAR_TABLE_2025_2086
+
+
+def _solar_to_lunar_pure(year, month, day):
+    """纯 Python 公历转农历（基于 LUNAR_TABLE_2025_2086 查找表）。
+
+    返回 dict：{year, month, day, is_leap}（year 为农历年数字，月日按农历）。
+    超出 2025-2086 范围抛 ValueError。
+    """
+    target = date(year, month, day)
+
+    # 1. 确定 target 所在的农历年（以正月初一分界）
+    if year in LUNAR_TABLE_2025_2086:
+        ny_m, ny_d = LUNAR_TABLE_2025_2086[year][:2]
+        if target < date(year, ny_m, ny_d):
+            lunar_year = year - 1
+        else:
+            lunar_year = year
+    else:
+        lunar_year = year - 1
+
+    if lunar_year not in LUNAR_TABLE_2025_2086:
+        raise ValueError(
+            f"农历数据超出纯 Python 支持范围 (2025-2086)，年份 {year} 对应农历年 {lunar_year} 无数据。"
+            f"请安装 sxtwl：pip install sxtwl"
+        )
+
+    # 2. 计算 delta_days（从农历正月初一算起的偏移）
+    ny_m, ny_d = LUNAR_TABLE_2025_2086[lunar_year][:2]
+    delta_days = (target - date(lunar_year, ny_m, ny_d)).days
+
+    if delta_days < 0:
+        raise ValueError("农历计算错误：delta_days < 0")
+
+    # 3. 遍历月找命中
+    _, _, months_bits, num_months, leap = LUNAR_TABLE_2025_2086[lunar_year]
+
+    days_acc = 0
+    for i in range(num_months):
+        bit_pos = num_months - 1 - i
+        m_days = 30 if (months_bits >> bit_pos) & 1 else 29
+
+        if days_acc + m_days > delta_days:
+            lunar_day = delta_days - days_acc + 1
+
+            # 确定月号与闰标志（leap 是"闰几月"，序号 i 是按时间顺序的第几个月）
+            if leap > 0 and i == leap:
+                lunar_month = leap
+                is_leap = True
+            elif leap > 0 and i > leap:
+                lunar_month = i  # 闰月之后，序号 i 对应月号 i
+                is_leap = False
+            else:
+                lunar_month = i + 1  # 闰月之前或无闰月
+                is_leap = False
+
+            return {
+                "year": lunar_year,
+                "month": lunar_month,
+                "day": lunar_day,
+                "is_leap": is_leap,
+            }
+        days_acc += m_days
+
+    raise ValueError(f"农历计算失败：{year}-{month}-{day} 超出农历年 {lunar_year} 范围")
+
+
+# 中文月日数字（用于农历显示）
+_LUNAR_MONTH_CN = ["正", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "腊"]
+_LUNAR_DAY_CN = [
+    "初一", "初二", "初三", "初四", "初五", "初六", "初七", "初八", "初九", "初十",
+    "十一", "十二", "十三", "十四", "十五", "十六", "十七", "十八", "十九", "二十",
+    "廿一", "廿二", "廿三", "廿四", "廿五", "廿六", "廿七", "廿八", "廿九", "三十",
+]
+
+
+def _lunar_year_gz(lunar_year_num):
+    """取农历年（数字）对应的干支，如 2026 → '丙午'。
+
+    优先查 YEAR_GZ_LICHUN 表（精确，2026-2086）；超出表范围用 60 甲子周期推算
+    （如 2025 → 乙巳，用于 2026 年初跨年场景）。
+    """
+    if lunar_year_num in YEAR_GZ_LICHUN:
+        gan, zhi, _ = YEAR_GZ_LICHUN[lunar_year_num]
+        return gan + zhi
+    # 60 甲子周期推算：2026 = 丙午（天干 idx 2，地支 idx 6）
+    delta = lunar_year_num - 2026
+    gan_idx = (2 + delta) % 10
+    zhi_idx = (6 + delta) % 12
+    return TIANGAN[gan_idx] + DIZHI[zhi_idx]
+
+
+def _format_lunar_cn(lunar_year_gz, lunar_month, lunar_day, is_leap):
+    """格式化农历日期为中文表示，如 '丙午年五月廿六' / '丙午年闰五月廿六'。"""
+    month_str = ("闰" if is_leap else "") + _LUNAR_MONTH_CN[lunar_month - 1]
+    day_str = _LUNAR_DAY_CN[lunar_day - 1]
+    return f"{lunar_year_gz}年{month_str}月{day_str}"
 
 
 # ═══════════════════════════════════════════════════════════════
@@ -400,7 +818,7 @@ b8 = ["官鬼巳火", "妻财卯木", "父母丑土", "官鬼午火", "兄弟申
 # ── 离宫八卦 ──
 c1 = ["父母卯木", "子孙丑土", "官鬼亥水", "妻财酉金", "子孙未土", "兄弟巳火",
       6, 3, "六冲", "", "离宫", "离为火"]
-c2 = ["子孙丑土", "官鬼亥水", "妻财申金", "妻财酉金", "子孙未土", "兄弟巳火",
+c2 = ["子孙辰土", "兄弟午火", "妻财申金", "妻财酉金", "子孙未土", "兄弟巳火",
       1, 4, "六合", "", "离宫", "火山旅"]
 c3 = ["子孙丑土", "官鬼亥水", "妻财酉金", "妻财酉金", "子孙未土", "兄弟巳火",
       2, 5, "", "", "离宫", "火风鼎"]
@@ -412,7 +830,7 @@ c6 = ["父母寅木", "子孙辰土", "兄弟午火", "子孙未土", "兄弟巳
       5, 2, "", "", "离宫", "风水涣"]
 c7 = ["父母寅木", "子孙辰土", "兄弟午火", "兄弟午火", "妻财申金", "子孙戌土",
       4, 1, "", "游魂卦", "离宫", "天水讼"]
-c8 = ["父母卯木", "子孙辰土", "官鬼亥水", "兄弟午火", "妻财申金", "子孙戌土",
+c8 = ["父母卯木", "子孙丑土", "官鬼亥水", "兄弟午火", "妻财申金", "子孙戌土",
       3, 6, "", "归魂卦", "离宫", "天火同人"]
 
 # ── 震宫八卦 ──
@@ -424,9 +842,9 @@ d3 = ["兄弟寅木", "妻财辰土", "子孙午火", "子孙午火", "官鬼申
       2, 5, "", "", "震宫", "雷水解"]
 d4 = ["妻财丑土", "父母亥水", "官鬼酉金", "子孙午火", "官鬼申金", "妻财戌土",
       3, 6, "", "", "震宫", "雷风恒"]
-d5 = ["妻财辰土", "子孙午火", "官鬼申金", "妻财丑土", "父母亥水", "兄弟酉金",
-      3, 6, "", "", "震宫", "地风升"]
-d6 = ["妻财辰土", "父母亥水", "官鬼酉金", "官鬼申金", "妻财戌土", "父母子水",
+d5 = ["妻财丑土", "父母亥水", "官鬼酉金", "妻财丑土", "父母亥水", "官鬼酉金",
+      4, 1, "", "", "震宫", "地风升"]
+d6 = ["妻财丑土", "父母亥水", "官鬼酉金", "官鬼申金", "妻财戌土", "父母子水",
       5, 2, "", "", "震宫", "水风井"]
 d7 = ["妻财丑土", "父母亥水", "官鬼酉金", "父母亥水", "官鬼酉金", "妻财未土",
       4, 1, "", "游魂卦", "震宫", "泽风大过"]
@@ -489,9 +907,9 @@ g8 = ["兄弟辰土", "父母午火", "子孙申金", "兄弟未土", "父母巳
 
 # ── 坤宫八卦 ──
 h1 = ["兄弟未土", "父母巳火", "官鬼卯木", "兄弟丑土", "妻财亥水", "子孙酉金",
-      1, 4, "六冲", "", "坤宫", "坤为地"]
+      6, 3, "六冲", "", "坤宫", "坤为地"]
 h2 = ["妻财子水", "官鬼寅木", "兄弟辰土", "兄弟丑土", "妻财亥水", "子孙酉金",
-      6, 3, "六合", "", "坤宫", "地雷复"]
+      1, 4, "六合", "", "坤宫", "地雷复"]
 h3 = ["父母巳火", "官鬼卯木", "兄弟丑土", "兄弟丑土", "妻财亥水", "子孙酉金",
       2, 5, "", "", "坤宫", "地泽临"]
 h4 = ["妻财子水", "官鬼寅木", "兄弟辰土", "兄弟丑土", "妻财亥水", "子孙酉金",
@@ -683,11 +1101,29 @@ class LiuYaoPaipan:
                 cha += 12  # 用地支周期 12 补正，非天干周期 10
             xunkong = [KONGWANG_ZU[cha - 2], KONGWANG_ZU[cha - 1]]
 
+            # 月空
+            month_gan = month_gz[0]
+            month_zhi2 = month_gz[1]
+            cha_m = DIZHI_INDEX[month_zhi2] - TIANGAN_INDEX[month_gan]
+            if cha_m < 0:
+                cha_m += 12
+            yue_xunkong = [KONGWANG_ZU[cha_m - 2], KONGWANG_ZU[cha_m - 1]]
+
+            # 农历日期（sxtwl 直接取，消除 AI 手算环节）
+            lunar_year_num = day_obj.getLunarYear()
+            lunar_month = day_obj.getLunarMonth()
+            lunar_day = day_obj.getLunarDay()
+            lunar_is_leap = day_obj.isLunarLeap()
+            lunar_year_gz = _lunar_year_gz(lunar_year_num)
+            lunar_str = _format_lunar_cn(lunar_year_gz, lunar_month, lunar_day, lunar_is_leap)
+
             return {
                 "year": year_gz, "month": month_gz, "day": day_gz, "hour": hour_gz,
                 "month_branch": month_gz[1],
                 "ri_gan": ri_gan, "ri_zhi": ri_zhi,
                 "xunkong": xunkong,
+                "yue_xunkong": yue_xunkong,
+                "lunar": lunar_str,
                 "backend": "sxtwl",
             }
         else:
@@ -699,9 +1135,10 @@ class LiuYaoPaipan:
     # ── 排盘 ────────────────────────────────────────────
 
     @staticmethod
-    def build_paipan_data(ygua, year, month, day, hour, minute, subject, intent):
+    def build_paipan_data(ygua, year, month, day, hour, minute, subject, intent, seed=None):
         """
         主入口：输入 ygua（6 位 1-4 编码列表，自下而上），输出完整 JSON 数据。
+        seed 非空时记录到 JSON 输出，便于复现。
         """
         # 1. 计算干支
         gz = LiuYaoPaipan.calc_ganzhi(year, month, day, hour, minute)
@@ -728,6 +1165,10 @@ class LiuYaoPaipan:
             main_gua_attr = (main_gua_attr + " " if main_gua_attr else "") + main_gua_arr[9]
         shi_yao_pos = main_gua_arr[6]   # 1-6
         ying_yao_pos = main_gua_arr[7]  # 1-6
+        ben_gua_gong = main_gua_arr[10]
+        # 方案 C：游魂/归魂用八宫变化规则推断（不再读 main_gua_arr[9] 标签）
+        ben_you_hun, ben_gui_hun = _infer_you_gui_hun(
+            main_gua_arr[11], ben_gua_gong, shi_yao_pos, ying_yao_pos, guastr)
 
         # 3. 计算变卦键
         bbgua = [int(x) for x in gua]
@@ -747,25 +1188,30 @@ class LiuYaoPaipan:
             if bian_gua_arr[9]:
                 bian_gua_attr = (bian_gua_attr + " " if bian_gua_attr else "") + bian_gua_arr[9]
             bian_gua_gong = bian_gua_arr[10]
+            # 方案 C：变卦游魂/归魂规则推断
+            bian_you_hun, bian_gui_hun = _infer_you_gui_hun(
+                bian_gua_arr[11], bian_gua_gong, bian_gua_arr[6], bian_gua_arr[7], bguastr)
         else:
             bian_gua_arr = None
             bian_gua_name = None
             bian_gua_attr = None
             bian_gua_gong = None
+            bian_you_hun, bian_gui_hun = False, False
 
         # 4. 动爻标记（按爻位索引 0-5）
         dong_set = {}
         for j in range(0, len(dgua_raw), 2):
             dong_set[dgua_raw[j]] = True
 
-        # 5. 六神
+        # 5. 六神兽
         liushen_start = LIUSHEN_START[gz["ri_gan"]]
 
         # 6. 藏爻
         cangyao_list = CANGYAO64.get(guastr, ["", "", "", "", "", ""])
 
         # 7. 旬空检查
-        xunkong_set = set(gz["xunkong"])
+        ri_xunkong_set = set(gz["xunkong"])
+        yue_xunkong_set = set(gz.get("yue_xunkong", []))
 
         # 7b. 本卦宫五行（用于变卦六亲按本卦宫重算）
         ben_gong_wuxing = _GONG_WUXING.get(main_gua_arr[10], "")
@@ -794,8 +1240,9 @@ class LiuYaoPaipan:
             is_dong = i in dong_set
 
             # 变爻（六亲按本卦宫重算，遵循传统本卦宫法）
+            # 无论是否动爻，只要存在变卦就计算变卦纳甲（非动爻也需要显示完整的变卦信息）
             bian_yao = None
-            if is_dong and bian_gua_arr is not None:
+            if bian_gua_arr is not None:
                 b_parsed = parse_line_str(bian_gua_arr[i])
                 if b_parsed:
                     b_di_zhi = b_parsed[1]
@@ -806,9 +1253,9 @@ class LiuYaoPaipan:
                         "wu_xing": b_wx,
                     }
 
-            # 六兽
-            # 自上而下排列：上爻(i=5)→初爻(i=0)
-            # liushen 索引 = (start + i) % 6，其中 i=0 是初爻
+            # 六神兽：自下而上排列（初爻得起始神，依次至上爻）
+            # 日干甲乙起青龙、丙丁起朱雀、戊起勾陈、己起腾蛇、庚辛起白虎、壬癸起玄武
+            # 初爻 i=0 得起始索引 liushen_start，每上一爻 +1，模 6 循环
             ls_idx = (liushen_start + i) % 6
             liu_shou = LIUSHEN_NAMES[ls_idx]
 
@@ -824,7 +1271,12 @@ class LiuYaoPaipan:
                 }
 
             # 旬空
-            is_kong = di_zhi in xunkong_set
+            kong_parts = []
+            if di_zhi in ri_xunkong_set:
+                kong_parts.append("日空")
+            if di_zhi in yue_xunkong_set:
+                kong_parts.append("月空")
+            is_kong = "".join(kong_parts) if kong_parts else ""
 
             lines.append({
                 "pos": pos,
@@ -837,6 +1289,7 @@ class LiuYaoPaipan:
                 "liu_shou": liu_shou,
                 "fu_shen": fu_shen,
                 "kong_wang": is_kong,
+                "ben_yin_yang": "阳" if gua[i] == "1" else "阴",
                 "shensha": [name for name, dzs in shensha_map.items() if di_zhi in dzs],
             })
 
@@ -851,9 +1304,11 @@ class LiuYaoPaipan:
                 "day": gz["day"], "hour": gz["hour"],
             },
             "backend": gz.get("backend", "unknown"),
+            "lunar": gz.get("lunar", ""),
             "month_branch": gz["month_branch"],
             "ri_chen": gz["ri_zhi"],
             "kong_wang": gz["xunkong"],
+            "yue_xunkong": gz.get("yue_xunkong", []),
             "question": subject,
             "intent": intent,
             "shensha": shensha_map,
@@ -867,6 +1322,11 @@ class LiuYaoPaipan:
             "bguastr": bguastr if has_dong else None,
             "ygua": "".join(ygua),
             "lines": lines,
+            "patterns": detect_patterns(lines, main_gua_attr, bian_gua_attr,
+                                       gz["month_branch"], gz["ri_zhi"],
+                                       ben_you_hun, ben_gui_hun,
+                                       bian_you_hun, bian_gui_hun),
+            "seed": seed,
         }
 
         return result
@@ -889,7 +1349,7 @@ def main():
     )
     parser.add_argument("--subject", required=True, help="所占之事（必填）")
     parser.add_argument("--intent", default="通用",
-                        help="意图类别：求财|官运|学业|感情|健康|孕产|出行|失物|词讼|天气|通用")
+                        help="意图类别：求财|官运|学业|感情|健康|出行|失物|词讼|天气|通用")
     parser.add_argument("--yao", default=None,
                         help="手动六爻编码（6位1-4，自下而上；不提供则三币随机）")
     parser.add_argument("--manual", action="store_true",
@@ -901,7 +1361,19 @@ def main():
     parser.add_argument("--day", type=int, default=None)
     parser.add_argument("--hour", type=int, default=None)
     parser.add_argument("--minute", type=int, default=0)
+    parser.add_argument("--seed", type=int, default=None,
+                        help="随机数种子（指定后摇卦结果可复现，不指定则真随机）")
+    parser.add_argument("-o", "--output", default=None,
+                        help="输出 JSON 到文件（推荐，避免终端编码问题）")
     args = parser.parse_args()
+
+    # seed 植入（仅影响自动摇卦；--yao 手动模式不受影响）
+    if args.seed is not None and not args.yao:
+        random.seed(args.seed)
+
+    if is_pregnancy_blocked_request(args.subject, args.intent):
+        print(pregnancy_block_message(args.subject, args.intent), file=sys.stderr)
+        sys.exit(2)
 
     # 校验 intent
     if args.intent not in VALID_INTENTS:
@@ -932,8 +1404,13 @@ def main():
             data["meta"]["mode"] = "import"
         else:
             data["meta"] = {"question": args.subject, "intent": args.intent, "mode": "import"}
-        json.dump(data, sys.stdout, ensure_ascii=False, indent=2)
-        sys.stdout.write("\n")
+        if args.output:
+            with open(args.output, "w", encoding="utf-8") as f:
+                json.dump(data, f, ensure_ascii=False, indent=2)
+            print(f"✅ JSON 已写入: {args.output}", file=sys.stderr)
+        else:
+            json.dump(data, sys.stdout, ensure_ascii=False, indent=2)
+            sys.stdout.write("\n")
         return
 
     # 六爻编码
@@ -949,10 +1426,17 @@ def main():
     # 排盘
     try:
         data = LiuYaoPaipan.build_paipan_data(
-            ygua, year, month, day, hour, minute, args.subject, args.intent
+            ygua, year, month, day, hour, minute, args.subject, args.intent,
+            seed=args.seed,
         )
     except ValueError as e:
-        print(f"错误：{e}", file=sys.stderr)
+        msg = str(e)
+        if "2026-2086" in msg:
+            # 纯 Python 回退的年份越界——给用户更友好的提示
+            print(f"错误：{msg}", file=sys.stderr)
+            print("提示：请安装 sxtwl 以支持其他年份：pip install sxtwl", file=sys.stderr)
+        else:
+            print(f"错误：{msg}", file=sys.stderr)
         sys.exit(1)
 
     # 标记排盘模式
@@ -960,8 +1444,13 @@ def main():
         data["mode"] = "manual"
 
     # 输出
-    json.dump(data, sys.stdout, ensure_ascii=False, indent=2)
-    sys.stdout.write("\n")
+    if args.output:
+        with open(args.output, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+        print(f"✅ JSON 已写入: {args.output}", file=sys.stderr)
+    else:
+        json.dump(data, sys.stdout, ensure_ascii=False, indent=2)
+        sys.stdout.write("\n")
 
 
 if __name__ == "__main__":

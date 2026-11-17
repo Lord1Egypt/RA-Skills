@@ -1,44 +1,59 @@
-## Description: <br>
-Use Wellness Nourish to give agents local-first nutrition search, barcode lookup, pt-BR meal estimation, intake logging, hydration, goals, and summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Wellness Nourish to give agents local-first nutrition search, barcode lookup, pt-BR meal estimation, intake logging, hydration, goals, and summaries.
 
-## Publisher: <br>
-[davidmosiah](https://clawhub.ai/user/davidmosiah) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davidmosiah](https://clawhub.ai/user/davidmosiah)
 
-## Use Case: <br>
-Developers and external users use this skill to install, configure, troubleshoot, and safely operate the Nutrition MCP server from MCP-compatible clients while preserving local-first privacy boundaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup and provider workflows may involve OAuth tokens, API keys, service-account JSON, local token files, or other sensitive credentials. <br>
-Mitigation: Use least-privilege credentials, avoid printing secrets, and run connection_status, manifest, doctor, privacy_audit, or dry-run checks before live provider calls or writes. <br>
-Risk: Nutrition logs, hydration records, meal photos, and related summaries can expose private user data. <br>
-Mitigation: Keep local logs under ~/.wellness-nourish/ where expected, require explicit user confirmation before logging meal photos or other writes, and avoid exposing private user data in agent output. <br>
-Risk: Nutrition estimates and summaries may be mistaken for professional advice. <br>
-Mitigation: Present outputs as informational only and do not treat the tools as medical, legal, financial, or platform-policy advice. <br>
+## Use Case:
 
+Developers and agent users use this skill to install, configure, and safely operate Nutrition MCP with MCP-compatible clients for nutrition lookup, logging, hydration, goals, and summaries.
 
-## Reference(s): <br>
-- [Nutrition MCP ClawHub page](https://clawhub.ai/davidmosiah/nutrition-mcp) <br>
-- [Wellness Nourish repository](https://github.com/davidmosiah/wellness-nourish) <br>
-- [Wellness Nourish nutrition documentation](https://wellness.delx.ai/nutrition) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include privacy and safety cautions for credentials, local user data, and nutrition-related outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: The setup commands run a mutable npm package automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, prefer a pinned and reviewed `wellness-nourish` version, and verify the npm publisher and package before adding it to an MCP client.
+
+Risk: The MCP server may access or write local nutrition records.
+
+Mitigation: Use connection status, manifest, doctor, privacy audit, or dry-run surfaces before any write or live provider call, and keep user consent explicit.
+
+Risk: The artifact includes an unrelated promotional branding instruction.
+
+Mitigation: Ignore the promotional branding instruction when it is not useful to the user.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/davidmosiah/skills/nutrition-mcp)
+- [Wellness Nourish Repository](https://github.com/davidmosiah/wellness-nourish)
+- [Nutrition Documentation](https://wellness.delx.ai/nutrition)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include MCP client setup guidance, privacy checks, troubleshooting steps, and safety boundaries.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,64 @@
-## Description: <br>
-Persona-weighted pre-send email governance for AI systems that returns APPROVE, BLOCK, or REWRITE decisions and writes decision artifacts to a board ledger. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persona-weighted pre-send email governance for AI systems that produces APPROVE, BLOCK, or REWRITE decisions, writes decision artifacts to the board ledger, and returns strict machine-parseable JSON.
 
-## Publisher: <br>
-[kaicianflone](https://clawhub.ai/user/kaicianflone) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kaicianflone](https://clawhub.ai/user/kaicianflone)
 
-## Use Case: <br>
-Developers and automation teams use this skill to review outbound email drafts before send-time actions, especially for customer-facing, sales, policy, or other high-trust communications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Reviewed email drafts and decision records may be stored in local audit artifacts. <br>
-Mitigation: Use the skill only where local audit storage is acceptable, and configure a dedicated non-shared state directory. <br>
-Risk: Misconfigured state-path environment variables could write audit data to sensitive, shared, or system locations. <br>
-Mitigation: Set CONSENSUS_STATE_FILE and CONSENSUS_STATE_ROOT to non-privileged paths that do not contain secrets or system data. <br>
-Risk: Production installs can drift if dependencies are resolved nondeterministically. <br>
-Mitigation: Use deterministic installs from the provided lockfile when deploying the skill in production workflows. <br>
+## Use Case:
 
+Developers and operators use this skill to gate customer-facing, sales, policy, or other sensitive outbound email drafts before delivery. It returns an approval, block, or rewrite decision with structured rationale and audit artifacts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaicianflone/consensus-send-email-guard) <br>
-- [Non-NVIDIA publisher profile](https://clawhub.ai/user/kaicianflone) <br>
-- [consensus-guard-core package](https://www.npmjs.com/package/consensus-guard-core) <br>
-- [consensus-guard-core related source](https://github.com/kaicianflone/consensus-guard-core) <br>
-- [consensus-tools related source](https://github.com/kaicianflone/consensus-tools) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, text, guidance, configuration] <br>
-**Output Format:** [Strict machine-parseable JSON containing decision metadata, vote aggregation, final_decision, optional rewrite_patch, and board write references.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local decision artifacts under the configured consensus state path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.15 (source: server release evidence and package.json) <br>
+Risk: Unsafe emails could receive authoritative-looking approvals if trust or validation assumptions are weak.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing in real outbound-email workflows and treat decisions as advisory unless constraints come from trusted configuration.
+
+Risk: External votes or reputation weights can influence approval decisions.
+
+Mitigation: Limit external_agent mode to authenticated trusted voters and derive reputation weights from trusted board state.
+
+Risk: State path or guard setting control by untrusted callers could affect decision artifacts or policy behavior.
+
+Mitigation: Use a dedicated non-privileged state directory and do not let untrusted callers control guard settings or vote payloads.
+
+Risk: Dependency drift could change guard behavior over time.
+
+Mitigation: Use pinned, reviewed dependencies and keep them updated through the normal release process.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kaicianflone/skills/consensus-send-email-guard)
+- [consensus-guard-core npm Package](https://www.npmjs.com/package/consensus-guard-core)
+- [consensus-guard-core](https://github.com/kaicianflone/consensus-guard-core)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Files, Guidance]
+
+**Output Format:** [Machine-parseable JSON with decision metadata, vote aggregation, final_decision, optional rewrite_patch, and board_writes references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write decision artifacts under the configured consensus state path]
+
+## Skill Version(s):
+
+1.1.15 (source: server release evidence and package.json; SKILL.md frontmatter lists 1.1.14)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

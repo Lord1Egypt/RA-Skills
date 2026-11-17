@@ -1,6 +1,13 @@
 {
-  "ownerId": "kn729vgfd93s0mykdnhmfgsh6180r2k1",
-  "slug": "debridge-mcp",
+  "name": "debridge-mcp",
+  "description": "Enable AI agents to execute non-custodial cross-chain swaps and transfers via deBridge protocol",
+  "category": "defi",
+  "tags": ["defi", "cross-chain", "bridge", "swap", "mcp"],
+  "author": "avi",
+  "repo": "github.com/aviclaw/debridge-mcp",
+  "created": "2026-02-17",
+  "updated": "2026-02-17",
   "version": "0.1.0",
-  "publishedAt": 1771292532768
+  "platform": "openclaw",
+  "status": "beta"
 }

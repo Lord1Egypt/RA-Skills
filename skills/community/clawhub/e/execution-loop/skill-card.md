@@ -1,51 +1,70 @@
-## Description: <br>
-Execution Loop provides stop-hook patterns and helper scripts that keep agents working through complex tasks, require concrete completion evidence, re-anchor long sessions, and configure headless execution budgets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls agent execution loops by preventing premature stops, detecting incomplete or speculative completion, re-anchoring long sessions, and guiding headless execution.
 
-## Publisher: <br>
-[lanyasheng](https://clawhub.ai/user/lanyasheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanyasheng](https://clawhub.ai/user/lanyasheng)
 
-## Use Case: <br>
-Developers and agent operators use this skill to manage long-running agent work, prevent premature stops, require evidence before completion, and keep execution aligned with the original task. It is most relevant for multi-step coding, migration, and verification workflows where Stop hooks or headless turn limits are part of the agent runtime. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence when an agent is allowed to stop by using local Stop hooks and state files. <br>
-Mitigation: Install it only for workflows where deliberate Stop-hook control is desired, and review hook behavior before deployment. <br>
-Risk: Session state may persist locally under shared context directories. <br>
-Mitigation: Use clear session IDs without path characters, keep state directories private and out of source control, and clean old session data when it is no longer needed. <br>
-Risk: Re-anchor and handoff patterns may persist sensitive prompt context locally. <br>
-Mitigation: Avoid enabling those patterns for highly sensitive prompts unless local persistence is acceptable. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add Stop-hook controls for long or complex agent tasks so the agent keeps working until completion criteria, safety valves, or cancellation conditions allow it to stop.
 
-## Reference(s): <br>
-- [Execution Loop Skill Page](https://clawhub.ai/lanyasheng/execution-loop) <br>
-- [Pattern 1.1: Ralph Persistent Loop](references/ralph.md) <br>
-- [Pattern 1.2: Doubt Gate](references/doubt-gate.md) <br>
-- [Pattern 1.3: Adaptive Complexity Scoring](references/adaptive-complexity.md) <br>
-- [Task Completion Verifier](references/task-completion.md) <br>
-- [Drift Re-anchoring](references/drift-reanchor.md) <br>
-- [Headless Execution Control](references/headless-config.md) <br>
-- [Iteration-Aware Block Messaging](references/iteration-aware-messaging.md) <br>
-- [Cancel Signal with TTL](references/cancel-ttl.md) <br>
-- [Execution Loop Extended Patterns](references/extended-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with Bash commands, JSON hook outputs, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes helper scripts that read and write local session state for Stop-hook workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.0 (source: server release evidence) <br>
+Risk: Stop-hook state and file handling can let local or repository-controlled content steer the agent or trigger command execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable the skill only by deliberate opt-in, validate session IDs, sanitize checklist text, and restrict verifier tools and paths before broad use.
+
+Risk: Persistent session state can remain available longer than intended.
+
+Mitigation: Set restrictive permissions on session state and document cleanup and retention expectations.
+
+Risk: Loop-control hooks can continue execution longer than intended if guardrails are incomplete.
+
+Mitigation: Hard-cap iterations and preserve cancellation, stale-state, authentication-error, and other stop safety valves.
+
+Risk: Timestamp parsing issues can weaken stale-state or cancel-signal checks.
+
+Mitigation: Fix and test timestamp parsing before enabling the hooks broadly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lanyasheng/skills/execution-loop)
+- [Ralph persistent loop](references/ralph.md)
+- [Doubt Gate](references/doubt-gate.md)
+- [Task completion verifier](references/task-completion.md)
+- [Drift re-anchoring](references/drift-reanchor.md)
+- [Headless execution control](references/headless-config.md)
+- [Adaptive complexity scoring](references/adaptive-complexity.md)
+- [Cancel signal with TTL](references/cancel-ttl.md)
+- [Iteration-aware messaging](references/iteration-aware-messaging.md)
+- [Extended execution-loop patterns](references/extended-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands, JSON hook responses, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create session state files and task checklists when scripts are enabled.]
+
+## Skill Version(s):
+
+2.4.0 (source: server release metadata; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

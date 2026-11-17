@@ -1,0 +1,13 @@
+{
+  "version": "1.1.2",
+  "released_at": "2026-10-21",
+  "requires_node": ">=22",
+  "changes": [
+    "Skill 代码采用 MIT-0，图片与 API 服务条款独立。",
+    "补齐独立公开仓库和平台分发说明；保留现有搜索、下载与升级行为。"
+  ],
+  "changes_en": [
+    "Skill code is licensed under MIT-0; image and API service terms remain separate.",
+    "Public repository and distribution documentation; existing search, download and upgrade behavior is preserved."
+  ]
+}

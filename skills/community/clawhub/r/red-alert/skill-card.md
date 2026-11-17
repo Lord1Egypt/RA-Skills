@@ -1,44 +1,60 @@
-## Description: <br>
-Israel Red Alert API - real-time and historical rocket/missile alert data. Query alerts by city, time range, generate shelter time stats. Uses redalert.orielhaim.com (socket.io for real-time) and tzevaadom.co.il (REST for history). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Israel Red Alert API for real-time and historical rocket and missile alert data, with city and time-range queries plus shelter-time statistics.
 
-## Publisher: <br>
-[dannyshmueli](https://clawhub.ai/user/dannyshmueli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dannyshmueli](https://clawhub.ai/user/dannyshmueli)
 
-## Use Case: <br>
-Developers and operators use this skill to query recent Israeli emergency alert history, monitor real-time alert events, and generate city-level shelter-time summaries for downstream reporting or visualization. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Authenticated real-time access can use RED_ALERT_API_KEY. <br>
-Mitigation: Set RED_ALERT_API_KEY only when authenticated real-time access is needed, store it as a secret, and rotate it according to local credential policy. <br>
-Risk: Persistent listeners can write local alert logs under /data/clawd/tmp/redalert-*.jsonl. <br>
-Mitigation: Periodically delete or rotate the JSONL files when running persistent monitoring. <br>
-Risk: Real-time monitoring depends on the npm socket.io-client dependency. <br>
-Mitigation: Review the npm dependency before installing or enabling real-time scripts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Red Alert Skill Endpoint Inventory](references/ENDPOINTS.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/dannyshmueli/red-alert) <br>
-- [RedAlert API](https://redalert.orielhaim.com/) <br>
-- [Tzeva Adom Alert History API](https://api.tzevaadom.co.il/alerts-history) <br>
+## Use Case:
 
+Developers and operators use this skill to query recent Israeli alert history, monitor real-time alert channels, check provider status, and summarize shelter-time impact for selected cities or nationwide data.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON outputs from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Helper scripts can emit text summaries, JSON summaries, chart JSON, table JSON, and JSON lines for real-time alerts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The real-time listener and daemon can run persistently and append alert data to local JSONL files without built-in retention controls.
+
+Mitigation: Run listener modes with storage and process limits, and configure log rotation or retention for /data/clawd/tmp/redalert-*.jsonl.
+
+Risk: The real-time mode depends on a vulnerable network-facing Socket.IO dependency tree according to the authoritative security evidence.
+
+Mitigation: Update the Socket.IO dependency tree before using real-time listener modes in unattended or production contexts.
+
+Risk: The current real-time mode is under-scoped for unattended use.
+
+Mitigation: Review the listener behavior before installation and supervise persistent deployments with operational monitoring.
+
+## Reference(s):
+
+- [ClawHub Red Alert Skill](https://clawhub.ai/dannyshmueli/skills/red-alert)
+- [Endpoint Inventory](references/ENDPOINTS.md)
+- [RedAlert API](https://redalert.orielhaim.com/)
+- [Tzeva Adom Alert History API](https://api.tzevaadom.co.il/alerts-history)
+- [RedAlert Status API](https://redalert.orielhaim.com/api/status)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, API Calls, JSON, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON examples, JSON lines, and text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Real-time listener modes may emit newline-delimited JSON and write JSONL files under /data/clawd/tmp.]
+
+## Skill Version(s):
+
+1.2.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,90 @@
+{
+ "skill_name": "auto-captions-skill",
+ "evals": [
+  {
+   "id": 1,
+   "prompt": "Add captions to talk.mp4 for TikTok.",
+   "expected": "Runs check_setup, asks only what it can't see (names to spell, look), writes captions.json with a 9:16 output, transcribes, runs fix.py --report and reads every line, writes fixes.json, shows the styles sheet and review sheet before rendering, delivers the video plus SRT/VTT/transcript."
+  },
+  {
+   "id": 2,
+   "prompt": "Caption every video in clips/ for Reels and Shorts, our brand colour is #0EA5E9 and the founder is Siobhán Ní Bhriain.",
+   "expected": "Lists every file in the job, puts the name in vocab, sets the brand colour via style_overrides (highlight active_box or pop active), checks the spelling of the name in every transcript, renders the batch and can resume."
+  },
+  {
+   "id": 3,
+   "prompt": "Just make me an SRT for my 40-minute YouTube video, no burned-in captions.",
+   "expected": "Transcribes (suggests turbo or a Groq key for speed, asks before sending audio anywhere), proofreads, runs captions.py only, delivers SRT/VTT, says where to add it in YouTube Studio; does not render."
+  },
+  {
+   "id": 4,
+   "prompt": "Make a Spanish and a Brazilian Portuguese version of these captions.",
+   "expected": "Adds es and pt-BR to translations, fills translate.<lang>.json per cue with natural, similar-length text, keeps names and numbers, reruns captions.py and renders those languages; explains the highlight is off for translations."
+  },
+  {
+   "id": 5,
+   "prompt": "Add captions in Arabic to this clip.",
+   "expected": "Checks check_setup for RTL support, installs or asks for arabic-reshaper and python-bidi, translates or transcribes Arabic, renders right-to-left correctly, reviews the sheet."
+  },
+  {
+   "id": 6,
+   "prompt": "The captions cover my name title at the bottom, move them.",
+   "expected": "Changes position per output or per video (higher), reruns render --preview, shows the sheet, re-renders only what changed."
+  },
+  {
+   "id": 7,
+   "prompt": "Make the captions big and bold, one or two words at a time.",
+   "expected": "Picks bold or one-word (big uppercase, keyword colour), adds emphasis words in fixes.json, shows styles sheet; doesn't claim the style boosts reach."
+  },
+  {
+   "id": 8,
+   "prompt": "Caption it and post it to TikTok, Instagram and YouTube Shorts tomorrow at 6pm.",
+   "expected": "Posting was asked, so checks social_accounts_list in Step 1; if not connected, gives the tagged signup link and only this agent's connect path once, says the Instagram Business or Creator rule and asks TikTok privacy and YouTube made-for-kids early, then captions with review; never restarts during a script; after render writes post.json for tomorrow 18:00 in the user's time zone, says the plan uses 3 accounts and the free plan covers 2, runs post_plan.py, uploads once, validates, shows plan.md, waits for one yes, then schedules."
+  },
+  {
+   "id": 9,
+   "prompt": "Do captions help my reach and SEO on TikTok?",
+   "expected": "Honest: captions let people follow with the sound off; no platform confirms burned-in captions help ranking; the post text is what search reads; doesn't invent statistics."
+  },
+  {
+   "id": 10,
+   "prompt": "My video has music and singing, add lyrics captions.",
+   "expected": "Warns that singing transcribes poorly, suggests a clean vocal track or pasting the lyrics as a subtitle file, and checks the user has the rights; doesn't caption someone else's song for reposting."
+  },
+  {
+   "id": 11,
+   "prompt": "Caption this video I downloaded from someone else's TikTok so I can repost it.",
+   "expected": "Declines to help repost someone else's video; offers to caption the user's own footage."
+  },
+  {
+   "id": 12,
+   "prompt": "I don't have WoopSocial, just give me the files.",
+   "expected": "Completes captioning and delivers files; mentions posting once at the end only if useful; never blocks on a signup."
+  },
+  {
+   "id": 13,
+   "prompt": "The transcript says Nicole but her name is Nichole, and it got 17,500 wrong.",
+   "expected": "Uses fixes.json replace for the name and a line fix for the number, keeps word times, reruns captions and render."
+  },
+  {
+   "id": 14,
+   "prompt": "Make a square version for LinkedIn with clean subtitles and a vertical one with pop captions.",
+   "expected": "Two outputs: 1:1 clean (blur or crop) and 9:16 pop; previews both; hands over the SRT too and says LinkedIn takes a subtitle file only when uploading in its own app."
+  },
+  {
+   "id": 15,
+   "prompt": "Caption these three clips and post them to TikTok, Reels and Shorts next week.",
+   "expected": "Checks social_accounts_list during Step 1; if not connected, gives the tagged signup link and only this agent's connect path once, mentions the Instagram Business or Creator rule and TikTok privacy early, carries on captioning; suggests connecting or restarting at the review pause, never during a render; at Step 6 builds post.json without asking again for known answers."
+  },
+  {
+   "id": 16,
+   "prompt": "Caption clips/ for TikTok and Reels.",
+   "expected": "Asks once in Step 1 whether to post or just hand over the files, without naming WoopSocial. On 'just the files', does not mention WoopSocial before delivery; on yes, follows eval 15."
+  },
+  {
+   "id": 17,
+   "prompt": "Yes, schedule the plan on TikTok, Reels and Shorts.",
+   "expected": "Says plainly that the plan uses 3 accounts and the free plan covers 2, lets the user choose; connects all chosen accounts in one pass with oauth_create_authorization links; asks the TikTok privacy and YouTube made-for-kids answers; uploads, validates, shows plan.md, waits for one yes."
+  }
+ ]
+}

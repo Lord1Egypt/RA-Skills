@@ -1,45 +1,64 @@
-## Description: <br>
-Find popular and practical skills across ClawHub and GitHub for concrete user workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find popular and practical skills across ClawHub and GitHub for concrete workflows, then return verified shortlists with usefulness, popularity, maintenance, and safety notes.
 
-## Publisher: <br>
-[yuanziwen100](https://clawhub.ai/user/yuanziwen100) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuanziwen100](https://clawhub.ai/user/yuanziwen100)
 
-## Use Case: <br>
-External users, developers, and agent operators use this skill to find practical skill recommendations for a specific workflow. It guides the agent to compare ClawHub popularity signals with GitHub maintenance and source checks before returning a concise shortlist. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may recommend other skills that have their own security, maintenance, or provenance risks. <br>
-Mitigation: Review each recommended skill separately before installation and treat security warnings as hard negatives unless the user explicitly asks to inspect a risky skill. <br>
-Risk: Optional ClawHub CLI fallback may run local commands. <br>
-Mitigation: Use the CLI fallback only after website and GitHub checks are insufficient and only when the user is comfortable running `npx clawhub` locally. <br>
+## Use Case:
 
+Developers, employees, and external users use this skill to discover practical agent skills for a specific workflow and compare candidates using current ClawHub and GitHub signals.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yuanziwen100/popular-skill-scout) <br>
-- [Publisher Profile](https://clawhub.ai/user/yuanziwen100) <br>
-- [Sources And Queries](artifact/references/sources-and-queries.md) <br>
-- [Query Templates](artifact/references/query-templates.md) <br>
-- [Ranking Rubric](artifact/references/ranking-rubric.md) <br>
-- [Current Seeds](artifact/references/current-seeds.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown shortlist with concise recommendation fields and caveats] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include optional shell commands for trial installation or live verification when the user requests them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may suggest ClawHub CLI fallback commands such as unpinned npx execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent to avoid unpinned npx and to show exact commands before running any CLI fallback.
+
+Risk: The skill may recommend trial-installing or running third-party skills.
+
+Mitigation: Review the selected skill, required commands, and publisher details first, then test only in a disposable or tightly scoped environment.
+
+Risk: Marketplace recommendations can be affected by stale popularity, unclear provenance, or suspicious flags.
+
+Mitigation: Require live verification of ClawHub details, upstream source, maintenance, and safety notes before treating a candidate as a strong recommendation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yuanziwen100/skills/popular-skill-scout)
+- [Sources And Queries](references/sources-and-queries.md)
+- [Query Templates](references/query-templates.md)
+- [Ranking Rubric](references/ranking-rubric.md)
+- [Current Seeds](references/current-seeds.md)
+- [ClawHub Skills Browse](https://clawhub.ai/skills?nonSuspicious=true)
+- [OpenClaw Directory](https://www.openclawdirectory.dev/skills)
+- [LobeHub Skills Marketplace](https://lobehub.com/skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands]
+
+**Output Format:** [Markdown shortlist with structured recommendation fields and occasional inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include recommended, worth-inspecting, and skip sections with verification and safety notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

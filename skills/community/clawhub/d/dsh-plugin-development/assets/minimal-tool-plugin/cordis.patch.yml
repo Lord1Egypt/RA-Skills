@@ -1,0 +1,6 @@
+- insert:
+    # id 全局唯一。⚠️ 0.1.6-alpha.1 起重复 id 不再报错，而是**后者覆盖前者**（静默），详见 references/05-pitfalls.md 坑 P3。
+    - id: dsh-tool-greet
+      # 交付期按「包名」引用，Node 才能解析到已安装代码。
+      # 开发期调试改用本地文件路径，见 README。
+      name: dsh-tool-greet

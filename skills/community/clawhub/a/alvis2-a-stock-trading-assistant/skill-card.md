@@ -1,40 +1,57 @@
-## Description: <br>
-A Chinese A-share stock analysis assistant for mainland China market quotes, individual stock analysis, market sentiment, hot sectors, alerts, and trading strategy guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An A-share stock trading assistant for China mainland markets that helps with real-time quotes, individual stock analysis, market sentiment, hot sectors, trading strategy suggestions, and price alerts.
 
-## Publisher: <br>
-[alvisdunlop](https://clawhub.ai/user/alvisdunlop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alvisdunlop](https://clawhub.ai/user/alvisdunlop)
 
-## Use Case: <br>
-External users use this skill to analyze Chinese mainland A-share stocks, compare market and sector conditions, and draft trading actions with source timestamps and risk notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with functional scope limited to mainland China A-share markets. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trading suggestions and position sizing may be incorrect, stale, or unsuitable for a user's financial situation. <br>
-Mitigation: Treat outputs as informational, verify market data independently, and make financial decisions outside the skill. <br>
-Risk: The reviewed artifact references helper scripts and saved watchlist behavior that were not included in the artifact. <br>
-Mitigation: Review any helper scripts and watchlist entries before running them or relying on alerts. <br>
+## Use Case:
 
+External users use this skill to ask an agent for China A-share market quotes, technical and fundamental analysis, market sentiment summaries, sector highlights, trading strategy suggestions, and price-alert tracking. It is scoped to Shanghai and Shenzhen A-share stocks and excludes Hong Kong, U.S., and other overseas markets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alvisdunlop/alvis2-a-stock-trading-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with concise tables, source timestamps, and risk notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces informational market analysis and trading guidance; it should not be treated as guaranteed financial advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The skill can provide trading suggestions that may be mistaken for definitive financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat suggestions as informational, verify market data independently, and require risk warnings with all price or trading recommendations.
+
+Risk: Ambiguous stock requests may be outside the intended market scope.
+
+Mitigation: Confirm that requests concern Shanghai or Shenzhen A-share stocks and ignore Hong Kong, U.S., and other overseas securities.
+
+Risk: Price alerts may be stored locally in a watchlist file when monitoring targets is requested.
+
+Mitigation: Tell users when watchlist entries are created and avoid storing unnecessary personal or sensitive information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alvisdunlop/skills/alvis2-a-stock-trading-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown text with tables, structured analysis, risk notes, and occasional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses should include data source and retrieval time when presenting market data, and price suggestions should include risk warnings.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

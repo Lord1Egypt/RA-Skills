@@ -1,43 +1,59 @@
-## Description: <br>
-Google Calendar CLI — list, create, move, and delete events. Zero dependencies, just Node.js + Google OAuth. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Calendar CLI - list, create, move, and delete events. Zero dependencies, just Node.js + Google OAuth.
 
-## Publisher: <br>
-[clawbob](https://clawhub.ai/user/clawbob) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawbob](https://clawhub.ai/user/clawbob)
 
-## Use Case: <br>
-Developers, operators, and agent users use Calendar Crab to inspect and modify Google Calendar events from a terminal or agent workflow. It supports listing upcoming events, creating meetings, rescheduling events, and deleting events after verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent persistent Google Calendar write and delete access. <br>
-Mitigation: Review actions before execution, list events first, and use exact event IDs for move or delete operations when possible. <br>
-Risk: OAuth credential and refresh-token files are stored locally. <br>
-Mitigation: Store OAuth files with restrictive permissions, do not commit or share them, and revoke the refresh token when the skill is no longer used. <br>
-Risk: Move and delete operations may notify attendees. <br>
-Mitigation: Assume attendee notifications may be sent and confirm the target event before changing or deleting it. <br>
+## Use Case:
 
+External users and developers use Calendar Crab to let an agent or terminal session list, create, reschedule, and delete Google Calendar events through Google OAuth.
 
-## Reference(s): <br>
-- [Calendar Crab on ClawHub](https://clawhub.ai/clawbob/calendar-crab) <br>
-- [Google Cloud Console](https://console.cloud.google.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text CLI output and Markdown usage guidance with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call Google Calendar APIs and update local OAuth token files when access tokens are refreshed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can create, move, or delete Google Calendar events immediately using stored OAuth credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed calendar operations before execution and list events first to confirm the intended target.
+
+Risk: Time-based move and delete operations can affect the wrong event when more than one event matches.
+
+Mitigation: Use event IDs for move and delete operations whenever possible and avoid time-based deletes for ambiguous calendar slots.
+
+Risk: OAuth credential and token files stored locally can expose calendar access if shared or copied.
+
+Mitigation: Store OAuth files in a private directory with restrictive permissions and revoke the Google refresh token if the files are exposed.
+
+## Reference(s):
+
+- [Calendar Crab ClawHub Page](https://clawhub.ai/clawbob/skills/calendar-crab)
+- [Google Cloud Console](https://console.cloud.google.com/)
+- [OpenClaw Project](https://github.com/pearyj/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [Plain text CLI output with shell commands and JSON error details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can perform authenticated Google Calendar API operations that create, move, or delete events.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

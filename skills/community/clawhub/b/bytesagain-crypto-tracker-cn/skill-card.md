@@ -1,46 +1,65 @@
-## Description: <br>
-Track cryptocurrency markets in real time, including crypto prices, market sentiment, DeFi TVL, trending coins, meme coins, RSI indicators, moving averages, yield comparisons, and Ethereum gas fees. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks cryptocurrency prices, market sentiment, DeFi TVL, trending and meme coins, technical indicators, yield comparisons, gas fees, portfolios, and price alerts using public crypto APIs.
 
-## Publisher: <br>
-[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve cryptocurrency market data and educational crypto-market guidance through shell-based commands and supporting Chinese-language reference material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is shell-based and contacts public cryptocurrency market-data APIs. <br>
-Mitigation: Install only in environments where outbound calls to those APIs are acceptable, and review the shell scripts before execution. <br>
-Risk: The release includes under-disclosed local financial logging and persistence for portfolio, alert, and history data. <br>
-Mitigation: Use a dedicated data directory, avoid entering sensitive financial information, and review or disable local logging behavior before relying on the tool. <br>
-Risk: The included trading strategy material can be mistaken for financial advice. <br>
-Mitigation: Treat strategy and signal content as educational material and require independent review before making financial decisions. <br>
+## Use Case:
 
+External users and developers use this skill to check crypto market data, compare DeFi metrics, calculate simple technical indicators, and manage local portfolio or alert records. Its educational strategy content should be treated as reference material, not financial advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/loutai0307-prog/bytesagain-crypto-tracker-cn) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
-- [CoinGecko API](https://api.coingecko.com/api/v3) <br>
-- [DefiLlama API](https://api.llama.fi) <br>
-- [Alternative.me Fear and Greed API](https://api.alternative.me/fng) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and terminal text with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include market data, educational guidance, local portfolio or alert records, and command examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The package includes under-disclosed local finance tracking and financial-data storage behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the included finance tracker before installation and only use it when local storage of holdings, alerts, transaction descriptions, and history is acceptable.
+
+Risk: Portfolio, alert, and finance-history data may contain sensitive financial information on shared machines.
+
+Mitigation: Use a private machine or tighten file permissions before entering portfolio details, alerts, or transaction descriptions.
+
+Risk: The skill contacts public crypto APIs for market, DeFi, sentiment, yield, and gas data.
+
+Mitigation: Run it only in environments where outbound requests to public crypto data services are permitted.
+
+Risk: The skill includes educational strategy content and market signals that could be mistaken for investment advice.
+
+Mitigation: Treat outputs as informational only and require independent review before making financial decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/loutai0307-prog/skills/bytesagain-crypto-tracker-cn)
+- [BytesAgain homepage](https://bytesagain.com)
+- [CoinGecko API](https://api.coingecko.com/api/v3)
+- [DefiLlama API](https://api.llama.fi)
+- [Alternative.me Fear and Greed API](https://api.alternative.me/fng)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or terminal-oriented text with inline shell commands and tabular summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May contact public crypto APIs and may write portfolio, alert, history, and finance-tracking data to local files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

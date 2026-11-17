@@ -1,39 +1,59 @@
-## Description: <br>
-Create foundational segmented lists for marketing and sales operations, including a master sendable list, ICP-based lists, persona lists, engagement lists, and behavioral lists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create foundational segmented lists for marketing and sales operations, including a master sendable list, ICP-based lists, persona lists, engagement lists, and behavioral lists.
 
-## Publisher: <br>
-[tomgranot](https://clawhub.ai/user/tomgranot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tomgranot](https://clawhub.ai/user/tomgranot)
 
-## Use Case: <br>
-Marketing and sales operations teams use this skill to create and verify dynamic HubSpot lists for campaign targeting, sales prioritization, customer and partner segmentation, re-engagement, and database health monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The included automation can make persistent HubSpot account changes that may not match the documented list plan. <br>
-Mitigation: Review and edit the Python script before running it, use a least-privilege HubSpot token, confirm each list definition against consent and segmentation rules, and test in a sandbox or verify list counts before using the lists for campaigns. <br>
+## Use Case:
 
+Marketing operations and sales operations teams use this skill to create active HubSpot segmentation lists for campaign targeting, sales prioritization, and database health monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tomgranot/build-smart-lists) <br>
-- [HubSpot API endpoint](https://api.hubapi.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown instructions and Python automation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create persistent HubSpot lists and write a CSV audit trail when the included script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The executable script creates different HubSpot lists than the documentation promises.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the generated list definitions before execution and verify that the created lists match the intended segmentation plan.
+
+Risk: The script-created 'All Marketing Contacts' list omits consent and deliverability filters needed for a compliant sendable audience.
+
+Mitigation: Add and verify unsubscribe, hard bounce, email-known, and quarantine filters in HubSpot before treating the list as sendable.
+
+Risk: The script uses a HubSpot access token to create lists.
+
+Mitigation: Run it only with a token limited to the minimum list-management scopes required for the task.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tomgranot/skills/build-smart-lists)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/tomgranot)
+- [HubSpot API Base URL](https://api.hubapi.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with a Python execution script and CSV audit output when run]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires HubSpot list-management permissions and a HubSpot access token; created lists should be reviewed in HubSpot before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-Queries Kdniao shipment tracking through the Kdniao API and returns courier status and tracking events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries real-time Kdniao courier tracking data so agents can report shipment status, shipment progress, and delivery details.
 
-## Publisher: <br>
-[15814059255](https://clawhub.ai/user/15814059255) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[15814059255](https://clawhub.ai/user/15814059255)
 
-## Use Case: <br>
-Developers and agent users use this skill to look up package delivery status, track waybill progress, and summarize shipment events from Kdniao using their own API credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shipment tracking numbers and Kdniao credentials are sent to the configured API endpoint. <br>
-Mitigation: Use only trusted Kdniao endpoints, avoid overriding the API URL unless the destination is trusted, and confirm users are comfortable sending tracking numbers to Kdniao. <br>
-Risk: The documentation includes a realistic-looking credential example. <br>
-Mitigation: Replace sample credentials with the user's own secret and avoid publishing real credentials in documentation, terminal history, or logs. <br>
+## Use Case:
 
+Developers and logistics-support agents use this skill to query Kdniao with user-provided waybill numbers and present tracking status and timeline details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/15814059255/kdniao-skill) <br>
-- [Kdniao API endpoint used by the skill](https://api.kdniao.com/api/dist) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires KUAIDI_BIRD_API_CREDENTIALS in CUSTOMER_CODE|APP_KEY format and a shipment tracking number.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Tracking numbers and authenticated request material can be sent to an external logistics API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only authorized tracking numbers and tell users that shipment data will be sent to Kdniao or the configured API destination.
+
+Risk: The optional API URL can redirect requests to an arbitrary destination.
+
+Mitigation: Avoid overriding the default API URL unless the destination is trusted and controlled.
+
+Risk: Credential-looking examples may be copied into environments or logs.
+
+Mitigation: Replace examples with the user's own Kdniao credentials and keep the credential environment variable out of shared logs and transcripts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/15814059255/skills/kdniao-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, JSON]
+
+**Output Format:** [Markdown instructions with bash commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns the Kdniao API response pretty-printed as JSON.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

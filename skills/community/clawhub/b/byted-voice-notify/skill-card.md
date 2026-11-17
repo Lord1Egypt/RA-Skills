@@ -1,44 +1,53 @@
-## Description: <br>
-Uses Volcano Engine Voice Service APIs to send voice notifications to specified phone numbers and select voice resources by language or keyword. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends voice notifications to specified phone numbers using Volcengine Voice Service APIs, including number-pool lookup and voice-resource selection by language or keyword.
 
-## Publisher: <br>
-[volcengine-skills](https://clawhub.ai/user/volcengine-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volcengine-skills](https://clawhub.ai/user/volcengine-skills)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent send phone-based voice notifications through a configured Volcengine account. It queries available number pools and voice resources, chooses a matching resource from the user's request, and sends the notification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, subject to Volcengine Voice Service availability and applicable telecom rules. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place real outbound voice notifications using the user's Volcengine account. <br>
-Mitigation: Require explicit confirmation of the recipient phone number, selected voice resource or content, provider, and send action before every notification. <br>
-Risk: Credentials with broad Volcengine permissions could increase impact if the agent or environment is misused. <br>
-Mitigation: Use credentials with only the minimum Volcengine permissions needed for querying voice resources, querying number pools, and sending approved voice notifications. <br>
+## Use Case:
 
+External users and developers use this skill to have an agent query Volcengine voice resources and number pools, then send a voice notification to a supplied phone number.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/volcengine-skills/byted-voice-notify) <br>
-- [Volcengine signing mechanism documentation](https://www.volcengine.com/docs/6358/166389?lang=zh) <br>
-- [Volcengine voice resource list documentation](https://www.volcengine.com/docs/6358/1722078?lang=zh) <br>
-- [Volcengine single voice notification documentation](https://www.volcengine.com/docs/6358/172952?lang=zh) <br>
-- [Volcengine number pool list documentation](https://www.volcengine.com/docs/6358/173339?lang=zh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires VOLCENGINE_ACCESS_KEY and VOLCENGINE_SECRET_KEY environment variables and can trigger outbound voice notifications.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can place real phone calls through a configured Volcengine voice-service account and may act on broad prompts without an explicit confirmation step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require confirmation of the phone number, selected voice resource, number pool, provider, and expected cost or privacy impact before every send action.
+
+## Reference(s):
+
+- [Volcengine signing mechanism](https://www.volcengine.com/docs/6358/166389?lang=zh)
+- [Query available voice resources](https://www.volcengine.com/docs/6358/1722078?lang=zh)
+- [Send a single voice notification](https://www.volcengine.com/docs/6358/172952?lang=zh)
+- [Query number pool list](https://www.volcengine.com/docs/6358/173339?lang=zh)
+- [ClawHub skill page](https://clawhub.ai/volcengine-skills/skills/byted-voice-notify)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, API calls, JSON, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires VOLCENGINE_ACCESS_KEY and VOLCENGINE_SECRET_KEY environment variables.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

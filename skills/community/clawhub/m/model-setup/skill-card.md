@@ -1,39 +1,55 @@
-## Description: <br>
-Manages OpenClaw model configuration by adding, testing, listing, and assigning model providers in models.json and agent config files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Model Setup helps manage OpenClaw model configuration by adding, testing, and assigning model entries with validation and backups.
 
-## Publisher: <br>
-[YKaiXu](https://clawhub.ai/user/YKaiXu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ykaixu](https://clawhub.ai/user/ykaixu)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure OpenClaw model providers, validate model access, test optional tool-calling and streaming support, and set default or agent-specific models. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local model and agent configuration files can be permanently changed. <br>
-Mitigation: Verify each config path and agent path before running add commands, review the proposed configuration, and keep backups before changing defaults. <br>
-Risk: API keys may be stored in local model configuration and sent to any configured model endpoint during tests. <br>
-Mitigation: Use only trusted HTTPS Base URLs, confirm the host before testing, and avoid entering credentials for untrusted providers. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/YKaiXu/model-setup) <br>
+## Use Case:
+
+Developers and OpenClaw users use this skill to configure model providers, test model access, optionally validate tool calling and streaming, set defaults, and attach models to specific agents.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: API keys may be exposed through shell command arguments, local configuration files, or backup files.
+
+Mitigation: Use only keys approved for local storage, restrict file permissions, avoid sharing shell history or backups, and rotate keys that were previously passed through command examples.
+
+Risk: Testing against untrusted or plaintext Base URLs can disclose credentials to endpoints the user does not control.
+
+Mitigation: Use trusted HTTPS provider endpoints and review Base URLs before running model accessibility, tool-calling, or streaming tests.
+
+Risk: The server security verdict is suspicious due to risky credential handling.
+
+Mitigation: Review the skill and generated configuration changes before installation or use, especially in shared or production OpenClaw environments.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command invocations and JSON configuration examples; helper scripts emit JSON or formatted text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may update local models.json and agent config.json files, and model tests send API keys to the configured Base URL.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with JSON configuration snippets and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local OpenClaw configuration files and backups.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

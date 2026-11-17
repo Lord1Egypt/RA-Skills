@@ -1,43 +1,58 @@
-## Description: <br>
-Create and manage Karma funding programs, including program setup, intake forms, applications, reviewers, milestones, payouts, grant agreements, comments, and AI evaluation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage Karma funding programs, including registry setup, intake forms, applications, reviewers, milestones, payouts, grant agreements, and AI evaluation.
 
-## Publisher: <br>
-[maheshmurthy](https://clawhub.ai/user/maheshmurthy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maheshmurthy](https://clawhub.ai/user/maheshmurthy)
 
-## Use Case: <br>
-Program administrators and grant operators use this skill to run funding program workflows on Karma, from program creation and application intake through reviewer management, approvals, payouts, agreements, and reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent durable API access to high-impact Karma funding administration workflows. <br>
-Mitigation: Use a dedicated, least-privileged Karma API key and review the key's permissions before use. <br>
-Risk: Administrative actions can approve or reject applications, change reviewers, toggle agreements, run AI evaluations, and create payouts. <br>
-Mitigation: Manually confirm every high-impact command and its target identifiers before it runs. <br>
-Risk: Persisting a Karma API key in shell startup files or credential files can increase credential exposure. <br>
-Mitigation: Avoid long-lived shell startup storage unless necessary, prefer scoped credential storage, and rotate the key if exposure is suspected. <br>
+## Use Case:
 
+Program operators, grant administrators, reviewers, and applicants use this skill to create Karma funding programs, configure application intake, manage review workflows, submit applications, and coordinate payouts and agreements.
 
-## Reference(s): <br>
-- [Karma API Docs](https://gapapi.karmahq.xyz/v2/docs/static/index.html) <br>
-- [ClawHub Skill Page](https://clawhub.ai/maheshmurthy/karma-funding-program-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with curl command examples and JSON request bodies.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Karma API keys and program, application, community, grant, wallet, and payout identifiers supplied by the user or environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and release evidence) <br>
+Risk: The skill can perform high-impact funding administration actions, including approvals, payouts, reviewer changes, agreement signatures, and AI evaluation submissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Manually confirm those actions before sending authenticated API requests.
+
+Risk: The skill uses Karma API keys and may persist credentials in plaintext shell or plugin data files.
+
+Mitigation: Use session-only credentials or secure secret storage, and only provide API keys you are willing to grant to the agent.
+
+Risk: The API host can be overridden with KARMA_API_URL.
+
+Mitigation: Leave the default Karma endpoint unless you fully trust the alternate endpoint.
+
+## Reference(s):
+
+- [Karma API Documentation](https://gapapi.karmahq.xyz/v2/docs/static/index.html)
+- [ClawHub Skill Listing](https://clawhub.ai/maheshmurthy/skills/karma-funding-program-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, API Calls, Configuration]
+
+**Output Format:** [Markdown guidance with inline bash curl commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes workflow prompts, endpoint-specific payload guidance, and operational checks for Karma funding program administration.]
+
+## Skill Version(s):
+
+1.1.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

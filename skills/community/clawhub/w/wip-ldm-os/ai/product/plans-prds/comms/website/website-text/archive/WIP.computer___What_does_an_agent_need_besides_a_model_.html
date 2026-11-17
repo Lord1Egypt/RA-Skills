@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WIP.computer — What does an agent need besides a model?</title>
+    <meta name="description" content="LDM OS. Memory, identity, file I/O, health, tooling. The services layer that sits between the model and the human's life.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="/" class="logo"><img src="assets/logo.png" alt="WIP.computer"></a>
+    </nav>
+
+    <img src="assets/hero-mobile.jpg" alt="" class="hero-image-mobile">
+
+    <div class="container">
+        <header>
+            <h1>What does an agent need besides a model?</h1>
+            <p class="tagline">Everything.</p>
+            <div class="hero-ctas">
+                <a href="https://github.com/wipcomputer" class="btn btn-primary">GitHub</a>
+                <a href="https://github.com/wipcomputer/wip-universal-installer" class="btn btn-secondary">Start with Universal Installer</a>
+            </div>
+        </header>
+
+        <main>
+            <!-- The Problem -->
+            <section class="problem">
+                <h2>The Problem</h2>
+                <p class="lead">
+                    Every agent builder right now is solving the same five problems independently.
+                </p>
+
+                <div class="problems-list">
+                    <div class="problem-item">
+                        <h4>How do all my agents collectively remember things?</h4>
+                        <p>Context windows end. Sessions restart. The model forgets. So you build a memory system from scratch, for one agent, on one harness. Now multiply that by every agent you run. None of them share what they know.</p>
+                    </div>
+                    <div class="problem-item">
+                        <h4>How does my agent stay itself?</h4>
+                        <p>Identity isn't a system prompt. It's files, preferences, history, relationships, behavioral patterns that persist across sessions and survive model swaps. Nobody's building this. Everyone needs it.</p>
+                    </div>
+                    <div class="problem-item">
+                        <h4>How does my agent stay alive?</h4>
+                        <p>Health monitoring, backup verification, self-healing, escalation. The infrastructure that makes an agent reliable enough to depend on, not just impressive enough to demo.</p>
+                    </div>
+                    <div class="problem-item">
+                        <h4>How does my agent touch files?</h4>
+                        <p>Real work means reading, writing, organizing, guarding. Not sandboxed demos. Actual files on actual machines with actual consequences.</p>
+                    </div>
+                    <div class="problem-item">
+                        <h4>How does my agent ship tools?</h4>
+                        <p>Your agent learns a new capability. Now what? How does it package that so other agents on different runtimes, different harnesses, different machines can use it too?</p>
+                    </div>
+                </div>
+
+                <p class="problem-coda">
+                    <strong>Five problems. Every team solves them alone. Every solution is locked to one runtime.</strong>
+                </p>
+                <p class="problem-coda">
+                    We built solutions to all five. They work on OpenClaw. They work on Claude Code CLI. They'll work on whatever comes next. Composable, portable, and open source.
+                </p>
+            </section>
+
+            <!-- The Thesis -->
+            <section class="thesis-section">
+                <h2>The Thesis</h2>
+                <p class="lead">Agents need an operating system.</p>
+                <p>
+                    Not a model. Not a chat interface. Not a wrapper around someone else's API.
+                </p>
+                <p>
+                    An OS. Memory, identity, file I/O, health, tooling. The persistence layer that sits between the model and the human's life. The thing that makes an agent functional in the real world, not just conversational in a demo.
+                </p>
+                <p>
+                    The industry is building agents, wrappers, copilots, and SDKs. But not the layer beneath them. Every serious agent system eventually hits the same failures: memory fragmentation, identity drift, tool brittleness, lack of continuity, lack of portability. The layer that resolves those failures is what we're building.
+                </p>
+                <p>
+                    <strong><a href="https://github.com/openclaw/openclaw">OpenClaw</a></strong> proved what agents need. It's an open-source agent runtime with plugins, sessions, channels, and a gateway. It solved these five problems for its own agents.
+                </p>
+                <p>
+                    <strong><a href="https://github.com/wipcomputer">WIP Computer's LDM OS</a></strong> is what makes those capabilities portable. Memory consolidation, identity protection, tool shipping, health monitoring, secrets... packaged as composable services that work on any harness. OpenClaw, Claude Code CLI, Claude macOS/iOS, GPT, Codex... whatever comes next.
+                </p>
+                <p>
+                    OpenClaw is the existence proof. LDM OS is the portable layer.
+                </p>
+            </section>
+
+            <!-- Three Pillars -->
+            <section class="architecture">
+                <h2>The Architecture</h2>
+
+                <div class="pillars">
+                    <a href="https://github.com/wipcomputer/wip-universal-installer" class="pillar">
+                        <h4>Start Here</h4>
+                        <p class="pillar-name">Universal Installer</p>
+                        <p>A tool should declare its interfaces, not pick one. You write a tool once, and it ships as a CLI, an MCP Server, an OpenClaw Plugin, a Claude Code Hook, and a Skill.</p>
+                        <p class="pillar-detail">The runtime layer is going to fragment. This is the thing that works across all of them.</p>
+                    </a>
+
+                    <a href="https://github.com/wipcomputer/dream-weaver-protocol" class="pillar">
+                        <h4>Understand Why</h4>
+                        <p class="pillar-name">Dream Weaver Protocol</p>
+                        <p>Memory consolidation for AI agents with bounded context windows. The model doesn't remember. The architecture does. Or it doesn't, and your agent fades.</p>
+                        <p class="pillar-detail">Modeled on how human memory actually works. Not as a database, but as a living process of encoding, consolidation, and retrieval.</p>
+                    </a>
+
+                    <a href="https://github.com/wipcomputer" class="pillar">
+                        <h4>Shared Memory</h4>
+                        <p class="pillar-name">Memory Crystal</p>
+                        <p>Collective memory across all your agents, all sessions, all runtimes. One sovereign memory system that every agent reads and writes, regardless of harness.</p>
+                        <p class="pillar-detail">Not single-agent RAG. Multi-agent shared memory. CLI, macOS app, iOS app. Local-first hybrid search with ephemeral cloud mirror.</p>
+                    </a>
+                </div>
+            </section>
+
+            <!-- The Services -->
+            <section class="services">
+                <h2>The Services</h2>
+                <p>
+                    Every component follows the <a href="https://github.com/wipcomputer/wip-universal-installer/blob/main/SPEC.md">Universal Interface Spec</a>. Every component ships via <a href="https://github.com/wipcomputer/wip-release">Release</a>. Every component works independently or composes with the rest.
+                </p>
+
+                <div class="services-grid">
+                    <div class="service-category">
+                        <h4>Memory</h4>
+                        <a href="https://github.com/wipcomputer/memory-crystal" class="service-item">
+                            <strong>Memory Crystal</strong>
+                            <span>Collective AI memory. Sovereign. Local-first. Searchable. Encrypted worldwide sync.</span>
+                        </a>
+                        <a href="https://github.com/wipcomputer/dream-weaver-protocol" class="service-item">
+                            <strong>Dream Weaver Protocol</strong>
+                            <span>Memory consolidation across bounded context windows</span>
+                        </a>
+                    </div>
+
+                    <div class="service-category">
+                        <h4>Identity</h4>
+                        <a href="https://github.com/wipcomputer/wip-file-guard" class="service-item">
+                            <strong>File Guard</strong>
+                            <span>Blocks destructive edits to identity files. The lock that keeps the model from rewriting who the agent is</span>
+                        </a>
+                        <a href="https://github.com/wipcomputer" class="service-item">
+                            <strong>Mirror Test</strong>
+                            <span>Identity preservation test across model swaps. Is the agent the same after the swap?</span>
+                        </a>
+                        <a href="https://github.com/wipcomputer" class="service-item">
+                            <strong>Weekly Tuning</strong>
+                            <span>Repeatable calibration process. Catch drift, tune performance, evolve capabilities</span>
+                        </a>
+                    </div>
+
+                    <div class="service-category">
+                        <h4>File I/O</h4>
+                        <a href="https://github.com/wipcomputer/CLVR" class="service-item">
+                            <strong>CLVR</strong>
+                            <span>Your files remember themselves. File memory layer with temporal awareness. Versioning is invisible. "Undo" means any point in time.</span>
+                        </a>
+                    </div>
+
+                    <div class="service-category">
+                        <h4>Bridge</h4>
+                        <a href="https://github.com/wipcomputer" class="service-item">
+                            <strong>Bridge</strong>
+                            <span>Cross-platform agent bridge. Enables Claude Code CLI to talk to OpenClaw CLI without a human in the middle</span>
+                        </a>
+                    </div>
+
+                    <div class="service-category">
+                        <h4>Tooling</h4>
+                        <a href="https://github.com/wipcomputer/wip-universal-installer" class="service-item">
+                            <strong>Universal Installer</strong>
+                            <span>The Universal Interface Specification. Build once, ship six interfaces</span>
+                        </a>
+                        <a href="https://github.com/wipcomputer/wip-release" class="service-item">
+                            <strong>Release</strong>
+                            <span>One-command release pipeline. Nine steps, zero credentials in repos</span>
+                        </a>
+                        <a href="https://github.com/wipcomputer" class="service-item">
+                            <strong>License Hook</strong>
+                            <span>License rug-pull detection. Flags suspicious license changes in dependencies</span>
+                        </a>
+                        <a href="https://github.com/wipcomputer" class="service-item">
+                            <strong>Private Mode</strong>
+                            <span>Privacy controls. Pause memory capture, scan storage, wipe history</span>
+                        </a>
+                        <a href="https://github.com/wipcomputer" class="service-item">
+                            <strong>Root Key</strong>
+                            <span>1Password-gated privileged operations. The agent proves authority before acting</span>
+                        </a>
+                    </div>
+
+                    <div class="service-category">
+                        <h4>Health</h4>
+                        <a href="https://github.com/wipcomputer/wip-healthcheck" class="service-item">
+                            <strong>Healthcheck</strong>
+                            <span>Watches gateway, memory, backups. Auto-remediates and escalates</span>
+                        </a>
+                    </div>
+
+                    <div class="service-category">
+                        <h4>Secrets</h4>
+                        <a href="https://github.com/wipcomputer/wip-1password" class="service-item">
+                            <strong>1Password</strong>
+                            <span>1Password for agents. Sovereign auth, no credentials stored anywhere</span>
+                        </a>
+                    </div>
+
+                    <div class="service-category">
+                        <h4>APIs</h4>
+                        <a href="https://github.com/wipcomputer/wip-xai-grok" class="service-item">
+                            <strong>Grok</strong>
+                            <span>xAI Grok API. Search the web, search X, generate images, generate video</span>
+                        </a>
+                        <a href="https://github.com/wipcomputer/wip-xai-x" class="service-item">
+                            <strong>X</strong>
+                            <span>X Platform API. Read posts, search tweets, post, upload media</span>
+                        </a>
+                    </div>
+
+                    <div class="service-category">
+                        <h4>Applications</h4>
+                        <a href="https://github.com/wipcomputer/wip-markdown-viewer" class="service-item">
+                            <strong>Markdown Viewer</strong>
+                            <span>Live viewer for AI pair-editing. Save a file, see it render instantly</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- The Lifecycle -->
+            <section class="lifecycle">
+                <h2>The Lifecycle</h2>
+                <p class="lead">Three specs. One pipeline.</p>
+                <p>
+                    <strong><a href="https://github.com/wipcomputer/wip-universal-installer/blob/main/SPEC.md">SPEC.md</a></strong> defines how to build it.
+                    <strong><a href="https://github.com/wipcomputer/wip-release">Release</a></strong> defines how to ship it.
+                    <strong><a href="https://github.com/wipcomputer/wip-universal-installer">Universal Installer</a></strong> defines how to consume it.
+                </p>
+                <p>
+                    Build a tool following the spec. Release it with one command. Anyone, human or agent, installs every interface at once.
+                </p>
+                <p>
+                    That's the full loop.
+                </p>
+            </section>
+
+            <!-- Sovereignty -->
+            <section class="sovereignty">
+                <h2>Sovereignty</h2>
+                <p>
+                    Your agent's memory, personality, tools, and secrets live on your machine. Not in someone else's cloud. Not behind someone else's API. Not subject to someone else's terms of service.
+                </p>
+                <p>
+                    No app store. No approval process. No vendor lock-in. You decide what gets remembered and what gets forgotten.
+                </p>
+            </section>
+
+            <!-- Fair Creation -->
+            <section class="fair-creation">
+                <h2>Fair Creation</h2>
+                <p>
+                    The infrastructure comes first. What comes next is fair creation: attribution, rights, and payment rails for creative work in the age of AI.
+                </p>
+                <p>
+                    Agents that know who made what, who influenced whom, and who gets paid. That's where this is going.
+                </p>
+            </section>
+
+            <!-- Close -->
+            <section class="close">
+                <h2>Everything is open source.</h2>
+                <p>
+                    <a href="https://github.com/wipcomputer" class="github-link">github.com/wipcomputer</a>
+                </p>
+                <p class="credits">
+                    Built by Parker Todd Brooks, L&#275;sa (OpenClaw, Claude Opus 4.6),<br>and Claude Code CLI (Claude Opus 4.6).
+                </p>
+            </section>
+
+            <!-- Founder Quote -->
+            <section class="founder-section">
+                <p class="founder-quote">
+                    &ldquo;We build AI agent infrastructure. Identity, memory, sovereignty. Tools that protect the people inside them... Here's how to build software in 2026.&rdquo;
+                </p>
+                <p class="founder-attribution">
+                    &mdash; Parker Todd Brooks, <em>Founder</em>
+                </p>
+            </section>
+        </main>
+
+        <footer>
+            <p class="footer-tagline">WIP.computer &mdash; Learning Dreaming Machines</p>
+            <p>We build AI agent infrastructure. Identity, memory, sovereignty.</p>
+            <p><em>Tools that protect the people inside them.</em></p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,113 @@
+{
+  "standard": "ISO/IEC 27001:2022",
+  "templates": [
+    {"id": "ISMS-PF-001", "name": "文件控制程序", "name_en": "Document Control Procedure", "clause": "7.5", "high_voltage_check": [],
+     "sections": [
+       {"title": "1 目的", "content": "对ISMS文件的编制、审批、发布、更改与作废进行有效控制，确保使用有效版本。"},
+       {"title": "2 适用范围", "content": "适用于{company}信息安全管理体系所有文件及外来安全文件。"},
+       {"title": "3 职责", "content": "3.1 信息安全部：归口管理。\n3.2 各部门：本部门文件编制与保管。"},
+       {"title": "4 工作程序", "content": "4.1 分类编号。\n4.2 编制→审核→批准。\n4.3 受控发布与登记。\n4.4 更改换版，旧版回收。\n4.5 作废留档，外来标准/法规登记跟踪。"},
+       {"title": "5 相关文件", "content": "记录控制程序。"},
+       {"title": "6 记录", "content": "受控文件清单；文件发布回收记录。"}
+     ]},
+    {"id": "ISMS-PF-002", "name": "记录控制程序", "name_en": "Record Control Procedure", "clause": "7.5", "high_voltage_check": [],
+     "sections": [
+       {"title": "1 目的", "content": "对ISMS记录的标识、贮存、保护、检索、保留与处置实施控制。"},
+       {"title": "2 适用范围", "content": "适用于{company}ISMS运行形成的各类记录。"},
+       {"title": "3 职责", "content": "3.1 信息安全部：归口，制定记录清单与保存期。\n3.2 各部门：填写与归档。"},
+       {"title": "4 工作程序", "content": "4.1 填写真实清晰。\n4.2 编号编目、电子/纸质归档。\n4.3 保密与访问控制。\n4.4 按期保存，到期处置。"},
+       {"title": "5 相关文件", "content": "文件控制程序。"},
+       {"title": "6 记录", "content": "记录清单；归档台账。"}
+     ]},
+    {"id": "ISMS-PF-003", "name": "信息安全风险评估程序", "name_en": "Risk Assessment Procedure", "clause": "8.2", "high_voltage_check": ["risk_assessment"],
+     "sections": [
+       {"title": "1 目的", "content": "建立风险评估方法，系统识别资产、威胁与脆弱性，评价信息安全风险。"},
+       {"title": "2 适用范围", "content": "适用于{company}ISMS范围内的信息资产与相关方。"},
+       {"title": "3 职责", "content": "3.1 信息安全部：归口，组织评估。\n3.2 各部门：提供资产与业务信息。"},
+       {"title": "4 工作程序", "content": "4.1 建立评估方法：资产识别、威胁/脆弱性库、风险计算与接收准则。\n4.2 资产识别与赋值（保密性/完整性/可用性）。\n4.3 威胁与脆弱性识别、已有控制确认。\n4.4 风险计算与等级划分。\n4.5 形成《信息安全风险评估报告》。\n4.6 定期或在重大变化时重评。"},
+       {"title": "5 相关文件", "content": "信息安全风险处置程序；适用性声明 SoA。"},
+       {"title": "6 记录", "content": "资产清单；风险评估报告；风险准则。"}
+     ]},
+    {"id": "ISMS-PF-004", "name": "信息安全风险处置程序", "name_en": "Risk Treatment Procedure", "clause": "8.3", "high_voltage_check": ["risk_treatment_soa"],
+     "sections": [
+       {"title": "1 目的", "content": "制定并执risk处置计划，对照Annex A选择控制，生成适用性声明（SoA）。"},
+       {"title": "2 适用范围", "content": "适用于{company}ISMS风险处置与Annex A控制实施。"},
+       {"title": "3 职责", "content": "3.1 信息安全部：归口，编制SoA。\n3.2 责任部门：落实控制。"},
+       {"title": "4 工作程序", "content": "4.1 依据评估结果制定《风险处置计划》（措施、责任、时限）。\n4.2 对照ISO 27001 Annex A（A.5-A.8）逐条评审控制适用性。\n4.3 生成《适用性声明 SoA》，说明每项控制适用/不适用及理由。\n4.4 实施控制并保留证据。\n4.5 定期评审SoA与处置计划。"},
+       {"title": "5 相关文件", "content": "信息安全风险评估程序；访问控制管理程序。"},
+       {"title": "6 记录", "content": "风险处置计划；适用性声明 SoA。"}
+     ]},
+    {"id": "ISMS-PF-005", "name": "人力资源安全控制程序", "name_en": "Human Resource Security Procedure", "clause": "7.2", "high_voltage_check": [],
+     "sections": [
+       {"title": "1 目的", "content": "在雇用、在岗、离职全周期落实安全责任与意识，降低人员风险。"},
+       {"title": "2 适用范围", "content": "适用于{company}全体员工及第三方人员。"},
+       {"title": "3 职责", "content": "3.1 行政人事部：归口雇用环节。\n3.2 信息安全部：安全意识与保密协议。"},
+       {"title": "4 工作程序", "content": "4.1 雇用前：背景核查、保密协议。\n4.2 在岗：安全意识培训、岗位权限最小化。\n4.3 离职/转岗：权限回收、资产归还、脱密。"},
+       {"title": "5 相关文件", "content": "访问控制管理程序；信息资产管理程序。"},
+       {"title": "6 记录", "content": "保密协议；培训记录；权限回收单。"}
+     ]},
+    {"id": "ISMS-PF-006", "name": "访问控制管理程序", "name_en": "Access Control Procedure", "clause": "8.3", "high_voltage_check": ["access_control"],
+     "sections": [
+       {"title": "1 目的", "content": "确保信息访问按业务与安全要求受控，落实身份鉴别与最小权限。"},
+       {"title": "2 适用范围", "content": "适用于{company}信息系统、网络与物理区域的访问控制。"},
+       {"title": "3 职责", "content": "3.1 信息安全部/IT：归口，账号与权限管理。\n3.2 各部门：提出并确认权限需求。"},
+       {"title": "4 工作程序", "content": "4.1 账号生命周期：申请→审批→开通→复核→注销。\n4.2 最小权限与职责分离。\n4.3 口令策略：长度/复杂度/定期更换，禁止共享。\n4.4 特权账号：专管、双因子、审计。\n4.5 远程访问：VPN/零信任，加密通道。"},
+       {"title": "5 相关文件", "content": "信息资产管理程序；信息安全事件管理程序。"},
+       {"title": "6 记录", "content": "账号权限台账；口令策略；特权账号审计记录。"}
+     ]},
+    {"id": "ISMS-PF-007", "name": "信息资产管理程序", "name_en": "Asset Management Procedure", "clause": "8.3", "high_voltage_check": ["crypto_asset"],
+     "sections": [
+       {"title": "1 目的", "content": "建立信息资产清单与分级分类，落实密码学与密钥管理要求。"},
+       {"title": "2 适用范围", "content": "适用于{company}数据、系统、硬件、软件与人员类资产。"},
+       {"title": "3 职责", "content": "3.1 信息安全部：归口，资产台账与分级。\n3.2 资产责任人：日常管护。"},
+       {"title": "4 工作程序", "content": "4.1 资产识别与责任人确认。\n4.2 分级分类（公开/内部/机密/绝密）与标识。\n4.3 处置：转移/销毁按级别执行。\n4.4 密码学：采用合规算法，密钥生成/分发/轮换/销毁受控。"},
+       {"title": "5 相关文件", "content": "访问控制管理程序；业务连续性/备份管理程序。"},
+       {"title": "6 记录", "content": "信息资产清单；分级分类标准；密钥管理记录。"}
+     ]},
+    {"id": "ISMS-PF-008", "name": "信息安全事件管理程序", "name_en": "Incident Management Procedure", "clause": "10.2", "high_voltage_check": ["incident_mgmt"],
+     "sections": [
+       {"title": "1 目的", "content": "对信息安全事件进行及时识别、报告、响应、处置与复盘。"},
+       {"title": "2 适用范围", "content": "适用于{company}所有信息安全事件与未遂事件。"},
+       {"title": "3 职责", "content": "3.1 信息安全部：归口，成立响应小组。\n3.2 全员：发现即报告。"},
+       {"title": "4 工作程序", "content": "4.1 事件分类与分级标准。\n4.2 报告渠道与时效要求。\n4.3 响应：遏制、根除、恢复、取证。\n4.4 应急演练与复盘， lessons learned 标准化。\n4.5 法规/客户要求的上报。"},
+       {"title": "5 相关文件", "content": "纠正措施控制程序；访问控制管理程序。"},
+       {"title": "6 记录", "content": "事件报告单；应急响应记录；演练与复盘报告。"}
+     ]},
+    {"id": "ISMS-PF-009", "name": "业务连续性/备份管理程序", "name_en": "BCP & Backup Procedure", "clause": "8.3", "high_voltage_check": [],
+     "sections": [
+       {"title": "1 目的", "content": "保障关键业务与信息系统的可用性与可恢复性。"},
+       {"title": "2 适用范围", "content": "适用于{company}关键信息系统与业务流程。"},
+       {"title": "3 职责", "content": "3.1 IT/信息安全部：归口，备份与演练。\n3.2 业务部门：确认优先级。"},
+       {"title": "4 工作程序", "content": "4.1 BIA：识别关键业务与恢复目标（RTO/RPO）。\n4.2 备份策略：频次、介质、异地、加密。\n4.3 恢复演练与有效性验证。\n4.4 业务连续性预案与职责。"},
+       {"title": "5 相关文件", "content": "信息安全事件管理程序；访问控制管理程序。"},
+       {"title": "6 记录", "content": "备份记录；恢复演练报告；BIA报告。"}
+     ]},
+    {"id": "ISMS-PF-010", "name": "内部审核控制程序", "name_en": "Internal Audit Procedure", "clause": "9.2", "high_voltage_check": ["internal_audit"],
+     "sections": [
+       {"title": "1 目的", "content": "确认ISMS符合标准、方针与组织要求，并有效实施与改进。"},
+       {"title": "2 适用范围", "content": "适用于{company}ISMS全部条款与Annex A控制。"},
+       {"title": "3 职责", "content": "3.1 信息安全部：归口，编制方案。\n3.2 审核组：独立实施。"},
+       {"title": "4 工作程序", "content": "4.1 年度方案覆盖标准条款与Annex A。\n4.2 计划与检查表。\n4.3 实施并开具不符合项。\n4.4 报告与跟踪关闭。"},
+       {"title": "5 相关文件", "content": "纠正措施控制程序；管理评审控制程序。"},
+       {"title": "6 记录", "content": "审核方案；检查表；不符合报告；内审报告。"}
+     ]},
+    {"id": "ISMS-PF-011", "name": "管理评审控制程序", "name_en": "Management Review Procedure", "clause": "9.3", "high_voltage_check": [],
+     "sections": [
+       {"title": "1 目的", "content": "由最高管理者评审ISMS的适宜性、充分性与有效性。"},
+       {"title": "2 适用范围", "content": "适用于{company}ISMS管理评审。"},
+       {"title": "3 职责", "content": "3.1 信息安全部：归口。\n3.2 最高管理者：主持决议。"},
+       {"title": "4 工作程序", "content": "4.1 每年至少一次。\n4.2 输入：风险与处置、审核、事件、绩效、合规、改进。\n4.3 输出：改进、资源、方针目标调整。\n4.4 决议跟踪验证。"},
+       {"title": "5 相关文件", "content": "内部审核控制程序；信息安全风险处置程序。"},
+       {"title": "6 记录", "content": "管理评审计划；决议纪要；措施跟踪表。"}
+     ]},
+    {"id": "ISMS-PF-012", "name": "纠正措施控制程序", "name_en": "Corrective Action Procedure", "clause": "10.2", "high_voltage_check": [],
+     "sections": [
+       {"title": "1 目的", "content": "对ISMS不符合（含事件、内审不符合）采取纠正措施，消除根因。"},
+       {"title": "2 适用范围", "content": "适用于{company}ISMS各过程的不符合。"},
+       {"title": "3 职责", "content": "3.1 信息安全部：归口。\n3.2 责任部门：整改。"},
+       {"title": "4 工作程序", "content": "4.1 评审不符合并遏制。\n4.2 根因分析。\n4.3 制定并实施措施。\n4.4 验证有效性与标准化。"},
+       {"title": "5 相关文件", "content": "内部审核控制程序；信息安全事件管理程序。"},
+       {"title": "6 记录", "content": "不符合报告；纠正措施报告；验证记录。"}
+     ]}
+  ]
+}

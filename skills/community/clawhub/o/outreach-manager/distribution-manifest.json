@@ -1,0 +1,46 @@
+{
+  "capabilities": [
+    "inline-delivery",
+    "canonical-state-read"
+  ],
+  "capability_ceiling": "lite",
+  "catalog_sha256": "6f0256cf52710f2916ecebaea0f3110c9313099ec4a69a11cac72ba9b2f3b940",
+  "files": [
+    {
+      "bytes": 11129,
+      "mode": "0644",
+      "path": "SKILL.md",
+      "sha256": "846a26731b680e5ef8def099dd4ab6e2fe1a97dc066f8186c386fd62485640fc"
+    },
+    {
+      "bytes": 3438,
+      "mode": "0644",
+      "path": "references/cold-copy-rules.md",
+      "sha256": "15bb5ded3f174ae91ae57fe575f49922ba3e9b72c8f22009b39ccf916bc3189b"
+    },
+    {
+      "bytes": 12092,
+      "mode": "0644",
+      "path": "references/templates.md",
+      "sha256": "0bb8bf79de2e058907f2275ca85ba844295899d7a849632fcadf79a590a6f39c"
+    }
+  ],
+  "files_sha256": "bb1cdfc47e2a278bfa2e6c7b46c64ebd2329c3347b9edc0d0b886c914a237556",
+  "hash_algorithm": "sha256",
+  "kind": "standalone-skill",
+  "manifest_excludes": [
+    "distribution-manifest.json"
+  ],
+  "manifest_path": "distribution-manifest.json",
+  "package_ceiling": {
+    "max_bytes": 1000000,
+    "max_files": 64
+  },
+  "profile": "lite",
+  "profile_definition_sha256": "4598e1f7bba667ef928ea2a60a6252ad9348086e9eecab29437db442df2a568e",
+  "schema_version": "1.1",
+  "source": {
+    "commit": "f552620c278afddcb25d09637a0cfcc1ce48faf4",
+    "repository": "aaron-he-zhu/aaron-marketing-skills"
+  }
+}

@@ -1,43 +1,62 @@
-## Description: <br>
-Diagnose OpenClaw "message sent but no assistant reply" issues, then safely switch active model references with primary + multi-fallback support, including heartbeat-triggered recovery to the highest available model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnose OpenClaw "message sent but no assistant reply" issues, then safely switch active model references with primary + multi-fallback support, including heartbeat-triggered recovery to the highest available model.
 
-## Publisher: <br>
-[zxs1633079383](https://clawhub.ai/user/zxs1633079383) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zxs1633079383](https://clawhub.ai/user/zxs1633079383)
 
-## Use Case: <br>
-Developers and operators use this skill to diagnose OpenClaw sessions that send a user message but return no assistant content, then validate model availability and apply a safe model fallback or rollback workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Applying the model-switching workflow can change active OpenClaw model routing. <br>
-Mitigation: Run dry-runs first, perform the required pre- and post-switch model availability probes, and review changed files and backups before relying on the new routing. <br>
-Risk: Provider probes use the configured provider endpoint and credentials. <br>
-Mitigation: Verify the configured provider base URL before probing and run the workflow only in an environment where the OpenClaw configuration and logs are appropriate to inspect. <br>
-Risk: Heartbeat or cron integration can keep reapplying fallback and recovery behavior. <br>
-Mitigation: Enable heartbeat or cron only when ongoing automatic fallback and recovery is intended, and keep the priority list explicit. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zxs1633079383/openclaw-session-reply-debug) <br>
-- [README.md](README.md) <br>
-- [OpenClaw model connectivity test runbook](openclaw-model-connectivity-test.md) <br>
+## Use Case:
 
+Developers and operators use this skill to diagnose OpenClaw sessions where messages are sent but no assistant reply appears, then validate model availability and switch active model references to a working primary or fallback model.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and validation steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose dry-run and apply commands that inspect OpenClaw sessions, probe model providers, and update local model references after validation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can persistently modify OpenClaw model configuration and session cache files.
+
+Mitigation: Run the model-switching scripts in dry-run mode first, review the planned file changes, and apply only after the selected target model has passed the documented probes.
+
+Risk: Provider probes send configured API credentials to the provider endpoint in OpenClaw configuration.
+
+Mitigation: Use trusted HTTPS provider base URLs and verify OpenClaw provider settings before running probes or enabling automated fallback.
+
+Risk: Diagnostic output may expose provider settings or operational details if copied into support channels.
+
+Mitigation: Review and redact session, config, log, and probe output before sharing it outside the trusted operator context.
+
+Risk: Heartbeat or cron integration with --apply can repeatedly change persistent model settings.
+
+Mitigation: Manually test the exact command, confirm backup behavior and post-switch replies, then enable automation only with the intended primary and fallback order.
+
+## Reference(s):
+
+- [OpenClaw Model Connectivity Test Runbook](openclaw-model-connectivity-test.md)
+- [OpenClaw Session Troubleshooting README](README.md)
+- [ClawHub Skill Page](https://clawhub.ai/zxs1633079383/skills/openclaw-session-reply-debug)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON examples, and optional JavaScript script execution.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include dry-run plans, provider probe results, selected model details, changed file counts, backup paths, and post-switch verification steps.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

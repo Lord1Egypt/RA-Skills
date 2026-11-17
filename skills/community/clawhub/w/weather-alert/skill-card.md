@@ -1,45 +1,61 @@
-## Description: <br>
-Monitors weather for any location, checks forecast thresholds for rain, snow, temperature, wind, UV, and pressure, and provides alerts, daily briefings, event suitability checks, and trend summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Proactive weather monitoring and alerting that tracks conditions for any location, sends threshold-based notifications for rain, snow, temperature, wind, UV, and pressure, and provides daily briefings.
 
-## Publisher: <br>
-[indigas](https://clawhub.ai/user/indigas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[indigas](https://clawhub.ai/user/indigas)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to check current and forecast weather, monitor threshold-based conditions, plan events, and receive concise weather alerts for configured locations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queried or monitored locations may be shared with public weather services. <br>
-Mitigation: Install and use only for locations that are acceptable to disclose to the configured public weather APIs. <br>
-Risk: Automatic alert delivery or scheduling may depend on host-level exec-event or scheduler integrations outside the script. <br>
-Mitigation: Review the host integration and configured notification method before enabling automatic alerts. <br>
+## Use Case:
 
+External users and developers use this skill to check current weather, receive 7-day briefings, monitor configurable weather thresholds, and assess outdoor event suitability for selected locations.
 
-## Reference(s): <br>
-- [Weather Data Sources](references/weather-sources.md) <br>
-- [Open-Meteo](https://open-meteo.com/) <br>
-- [Open-Meteo Forecast API](https://api.open-meteo.com/v1/forecast) <br>
-- [wttr.in JSON weather endpoint](https://wttr.in/{location}?format=j1) <br>
-- [OpenWeatherMap Current Weather API](https://api.openweathermap.org/data/2.5/weather) <br>
-- [ClawHub skill page](https://clawhub.ai/indigas/weather-alert) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style weather summaries, alert lists, event suitability guidance, and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read local configuration, cache forecast data, and query public weather services for requested or monitored locations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Location data is sent to third-party weather services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the data-sharing implications before installation and use locations that are appropriate to disclose to the configured weather providers.
+
+Risk: The automated alert configuration includes an execution-style notification method.
+
+Mitigation: Do not enable `exec-event` unless the host clearly shows what will run, how often it runs, where state is stored, and how to turn it off.
+
+Risk: Install and persistence disclosures are not tight enough for unattended operation.
+
+Mitigation: Use a pinned or trusted installer and review scheduled checks, local state paths, and shutdown controls before enabling automated monitoring.
+
+## Reference(s):
+
+- [Weather Data Sources](artifact/references/weather-sources.md)
+- [Open-Meteo](https://open-meteo.com/)
+- [Open-Meteo Forecast API](https://api.open-meteo.com/v1/forecast)
+- [wttr.in JSON weather endpoint](https://wttr.in/{location}?format=j1)
+- [OpenWeatherMap weather API](https://api.openweathermap.org/data/2.5/weather)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain-text weather reports, alert summaries, event-suitability notes, shell command examples, and YAML configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include live third-party weather API results, cached weather data, configurable thresholds, and location-specific alert output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

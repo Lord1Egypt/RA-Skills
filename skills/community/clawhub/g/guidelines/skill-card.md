@@ -1,46 +1,61 @@
-## Description: <br>
-Generates FTdesign-compliant HTML preview pages for list, form, and detail interfaces from natural-language page descriptions. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Generates FTdesign-compliant HTML preview pages for list, form, and detail interfaces from a user's page description.
 
-## Publisher: <br>
-[Nero1510](https://clawhub.ai/user/Nero1510) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nero1510](https://clawhub.ai/user/nero1510)
 
-## Use Case: <br>
-Developers and designers use this skill to turn page requirements into FTdesign-style HTML previews for management lists, data-entry forms, and detail views. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: User-influenced HTML can be written and previewed, which may expose users to unsafe or misleading generated content. <br>
-Mitigation: Use explicit requests only, review generated HTML before previewing it, and avoid auto-previewing output created from untrusted prompts. <br>
-Risk: Weak filename and overwrite controls can lead to unexpected file placement or replacement. <br>
-Mitigation: Check destination filenames before generation and add path validation plus overwrite prompts before broader deployment. <br>
-Risk: Generated pages may load external CDN resources. <br>
-Mitigation: Provide an option to disable external CDN loading or pin approved local assets for restricted environments. <br>
-Risk: HTML escaping is not clearly enforced for all user-supplied content. <br>
-Mitigation: Escape inserted text by default and review generated markup before sharing or opening it in privileged contexts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Nero1510/guidelines) <br>
-- [FTdesign Component API](artifact/references/components-api.md) <br>
-- [FTdesign Design System](artifact/references/design-system.md) <br>
-- [FTdesign Examples](artifact/references/examples.md) <br>
+## Use Case:
 
+Developers and designers use this skill to turn admin-interface requirements into FTdesign-style prototype HTML previews for list, form, and detail pages.
 
-## Skill Output: <br>
-**Output Type(s):** [code, files, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with HTML, CSS, Python, and JSON snippets; generated output is HTML files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated pages may reference external icon or font CDNs and can be opened in a browser or IDE preview.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact documentation) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The helper script can write outside the intended workspace when output paths are not constrained.
+
+Mitigation: Run it only on trusted configuration files, review output_filename before execution, and constrain generated files to a dedicated output directory.
+
+Risk: Generated preview HTML can embed unsafe values from configuration input.
+
+Mitigation: Avoid previewing HTML generated from untrusted input and HTML-escape rendered strings before using previews.
+
+Risk: Unvalidated icon class names can affect generated markup.
+
+Mitigation: Validate icon class names against the expected Remix Icon classes before generation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nero1510/skills/guidelines)
+- [FTdesign design system reference](references/design-system.md)
+- [FTdesign components API reference](references/components-api.md)
+- [FTdesign examples reference](references/examples.md)
+- [Remix Icon stylesheet](https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css)
+- [Google Fonts Inter stylesheet](https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [HTML files, JSON configuration examples, Markdown guidance, and Python command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated HTML is intended for browser preview and prototyping.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, README version history, and artifact version notes)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

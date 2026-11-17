@@ -1,43 +1,54 @@
-## Description: <br>
-Bidirectional file synchronization tool using MD5 hashes and version history for conflict detection between two user-selected directories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bidirectional file synchronization tool using MD5 hash and version history for conflict detection across two directories.
 
-## Publisher: <br>
-[67available](https://clawhub.ai/user/67available) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[67available](https://clawhub.ai/user/67available)
 
-## Use Case: <br>
-Developers and users with two local folders use this skill to run or configure bidirectional file synchronization, such as syncing a PC folder with removable storage while preserving conflicts and deletion history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The sync script mutates files in user-selected directories. <br>
-Mitigation: Test on sample folders first, back up important data, and choose narrow paths before syncing valuable files. <br>
-Risk: Conflicts and deletions are retained locally in .conflict and .trash directories. <br>
-Mitigation: Review .conflict and .trash after each run before deleting or reusing retained files. <br>
-Risk: State and log artifacts retain file names, hashes, timestamps, and sync actions. <br>
-Mitigation: Review .sync_state.json and .sync_logs for local retention concerns before sharing or archiving synced folders. <br>
+## Use Case:
 
+Developers and technical users use this skill to set up and run bidirectional folder sync between two trusted directories, with conflict copies, trash preservation, version history, and logs for manual review.
 
-## Reference(s): <br>
-- [File Sync on ClawHub](https://clawhub.ai/67available/file-sync) <br>
-- [Detailed behavior notes and edge cases](references/behaviors.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Files] <br>
-**Output Format:** [Markdown with inline shell commands and local file-system artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs can mutate selected folders and create .conflict, .trash, .sync_state.json, and .sync_logs artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: The security scan reports that the bundled sync script can be tricked into reading, copying, or moving files outside the chosen folders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on folders you fully trust and control; avoid attacker-controlled USB drives or shared folders until path validation and symlink rejection are added.
+
+Risk: Concurrent use against the same folder pair can corrupt state files or produce inconsistent sync decisions.
+
+Mitigation: Run a single sync process per folder pair and review the generated logs, conflict folder, and trash folder after each sync.
+
+## Reference(s):
+
+- [Behavior Notes](references/behaviors.md)
+- [ClawHub Skill Page](https://clawhub.ai/67available/skills/file-sync)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, file paths, and Python script references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May refer to generated sync logs, state files, conflict folders, and trash folders created by the bundled sync script.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,33 @@
+{
+  "comfyui_url": "http://localhost:8188",
+  "comfyui_api_key": "",
+  "poll_interval_seconds": 10,
+  "keep_models_resident": false,
+  "output_dir": "media/comfyui",
+  "music": {
+    "acestep15": {
+      "workflow_path": "workflows/acestep_audio_api.json",
+      "timeout_seconds": 600,
+      "default_duration": 200,
+      "default_steps": 8,
+      "default_seed": 0,
+      "output_subdir": "music",
+      "default_params": {
+        "bpm": 95,
+        "keyscale": "E minor",
+        "language": "en",
+        "timesignature": "4",
+        "cfg_scale": 2.0,
+        "temperature": 0.85,
+        "top_p": 0.9,
+        "top_k": 0,
+        "min_p": 0
+      }
+    }
+  },
+  "default_model": {
+    "music": "acestep15"
+  },
+  "purge_remote": true,
+  "purge_fail_hints": 0
+}

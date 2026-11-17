@@ -1,46 +1,59 @@
-## Description: <br>
-Scrape and extract structured data from public creator profiles across platforms such as YouTube, Instagram, TikTok, Twitter/X, LinkedIn, Twitch, and personal websites. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scrape and extract structured data from public creator profiles across platforms such as YouTube, Instagram, TikTok, Twitter/X, LinkedIn, Twitch, Substack, GitHub, Patreon, and personal websites.
 
-## Publisher: <br>
-[ahqazi-dev](https://clawhub.ai/user/ahqazi-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ahqazi-dev](https://clawhub.ai/user/ahqazi-dev)
 
-## Use Case: <br>
-External users, analysts, and developers use this skill to look up public creator profiles, extract normalized profile JSON, compare profiles, and prepare summaries or exports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live scraping and managed browser sessions can access profile data through an authenticated session. <br>
-Mitigation: Use only authorized public-profile lookups and require explicit confirmation before using logged-in browser sessions. <br>
-Risk: Apify fallback sends scraping requests through a third-party service when an API token is configured. <br>
-Mitigation: Use Apify only when the user confirms the fallback and accepts third-party processing for the requested profile. <br>
-Risk: Saved exports can persist scraped creator data to disk. <br>
-Mitigation: Confirm before saving scraped data, use an explicit output path, and avoid storing private contact information or phone numbers. <br>
-Risk: Broad lead-list or monitoring workflows may exceed normal public-profile lookup expectations. <br>
-Mitigation: Avoid broad lead-list or monitoring use unless the user has a clearly appropriate, authorized purpose. <br>
+## Use Case:
 
+Developers, analysts, and creator operations teams use this skill to resolve public creator handles or URLs, collect profile metadata and stats, and compare creators for research, reporting, or exports.
 
-## Reference(s): <br>
-- [Platform Selectors Reference](references/platform-selectors.md) <br>
-- [Apify Actors - Fallback Scraping Reference](references/apify-actors.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ahqazi-dev/scrape-creator-profile) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, files, shell commands, configuration, guidance] <br>
-**Output Format:** [Conversational Markdown summaries, normalized JSON objects, Markdown comparison tables, CSV exports, and saved JSON files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes multiple profiles sequentially with a configurable delay; fields not found are returned as null.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: The skill can fetch user-provided creator profile URLs and collect public profile data over the network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for public creator profiles and avoid logged-in browser sessions unless necessary for a legitimate user request.
+
+Risk: Apify fallback may send requested profile URLs and scrape inputs to a third-party scraping service.
+
+Mitigation: Require confirmation before Apify fallback and use a narrowly scoped APIFY_API_TOKEN.
+
+Risk: Saved JSON or CSV exports may be unsafe until path and spreadsheet-formula handling is reviewed.
+
+Mitigation: Treat saved exports as untrusted data, review output paths before writing, and sanitize CSV content before opening it in spreadsheet tools.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ahqazi-dev/skills/scrape-creator-profile)
+- [Platform Selectors Reference](references/platform-selectors.md)
+- [Apify Actors Fallback Reference](references/apify-actors.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, CSV, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown summaries, normalized JSON objects, Markdown comparison tables, CSV exports, and saved JSON files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can process one profile or a sequence of profiles; fields not publicly available are returned as null.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, README, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

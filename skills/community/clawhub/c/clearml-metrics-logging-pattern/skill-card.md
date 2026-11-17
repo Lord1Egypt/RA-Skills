@@ -1,40 +1,55 @@
-## Description: <br>
-Standardized ClearML metrics logging patterns for PDEBench experiment scripts, covering train loss, validation metrics, competition scores, PDE residuals, and TensorBoardX integration for dist/expflow compatibility. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Standardized ClearML metrics logging patterns for PDEBench experiment scripts, including train loss, validation metrics, competition scores, PDE residuals, TensorBoardX integration, and dist/expflow compatibility.
 
-## Publisher: <br>
-[diamond2nv](https://clawhub.ai/user/diamond2nv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diamond2nv](https://clawhub.ai/user/diamond2nv)
 
-## Use Case: <br>
-Developers and engineers use this skill when creating or modifying PDEBench training and evaluation scripts that need consistent ClearML metric logging. It provides naming conventions and code patterns for training loss, validation metrics, competition scores, PDE residuals, system metrics, k-fold summaries, and TensorBoardX plus ClearML dual logging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ClearML metric logging may report validation scores, competition results, experiment metadata, GPU telemetry, or other system values that are sensitive in some environments. <br>
-Mitigation: Review the metrics and system values your scripts report before enabling ClearML logging, and avoid logging sensitive experiment or telemetry data unless it is approved for your environment. <br>
+## Use Case:
 
+Developers and ML engineers use this skill when adding or standardizing ClearML metric logging in PDEBench training and evaluation scripts so experiment runs can be compared consistently through expflow.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/diamond2nv/clearml-metrics-logging-pattern) <br>
-- [expflow homepage](https://github.com/diamond2nv/expflow) <br>
-- [Publisher profile](https://clawhub.ai/user/diamond2nv) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance for ClearML metric logging patterns; no hidden execution behavior identified by the provided security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.0 (source: server-resolved release evidence) <br>
+Risk: ClearML experiment tracking can record metrics and related run details that may expose sensitive dataset information or secrets if logging is configured carelessly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review ClearML configuration before use, avoid logging secrets or sensitive dataset details, and prefer a self-hosted or governed ClearML server for private experiments.
+
+Risk: Unpinned uvx or tool launches can reuse an installed tool environment and run an older or unexpected expflow release.
+
+Mitigation: Pin expflow-pde versions in launch commands when reproducibility or supply-chain hygiene matters.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/diamond2nv/skills/clearml-metrics-logging-pattern)
+- [expflow Homepage](https://github.com/diamond2nv/expflow)
+- [Publisher Profile](https://clawhub.ai/user/diamond2nv)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python code templates, shell commands, and YAML configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes metric naming conventions, installation options, ClearML telemetry guidance, and known pitfalls.]
+
+## Skill Version(s):
+
+0.7.2 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

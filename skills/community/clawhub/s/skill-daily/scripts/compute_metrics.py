@@ -2,6 +2,7 @@
 """
 指标计算脚本
 为每个 Skill 计算：star_rate、activity_rate、age_days、综合得分
+v1.1: 适配 ClawHub 新 API 结构（stats.installs 替代 installsCurrent）+ 新增字段
 """
 import json
 import argparse
@@ -34,49 +35,103 @@ def to_int(v, default=0):
 
 
 def compute_metrics(skill_record):
-    """计算单个 Skill 的所有指标"""
+    """计算单个 Skill 的所有指标（适配新 API 结构）"""
     skill = safe_get(skill_record, 'skill', default={})
     owner = safe_get(skill_record, 'owner', default={})
     version = safe_get(skill_record, 'latestVersion', default={})
 
     stats = safe_get(skill, 'stats', default={})
+
+    # 核心统计字段 — 兼容新旧 API
     stars = to_int(stats.get('stars'))
     downloads = to_int(stats.get('downloads'))
-    installs_current = to_int(stats.get('installsCurrent'))
-    installs_all_time = to_int(stats.get('installsAllTime'))
     comments = to_int(stats.get('comments'))
+    version_count = to_int(stats.get('versions'))
 
+    # installs: 新 API 用 stats.installs，旧 API 用 stats.installsCurrent / installsAllTime
+    installs = to_int(stats.get('installs'))  # 新 API
+    if installs == 0:
+        installs = to_int(stats.get('installsCurrent'))  # 旧 API 兼容
+
+    # 时间相关
     created_at_ms = to_int(skill.get('createdAt'))
     now_ms = int(time.time() * 1000)
     age_days = max(0, (now_ms - created_at_ms) / (1000 * 60 * 60 * 24)) if created_at_ms else 0
 
+    updated_at_ms = to_int(version.get('createdAt')) or created_at_ms
+    days_since_update = max(0, (now_ms - updated_at_ms) / (1000 * 60 * 60 * 24)) if updated_at_ms else 999
+
     # 关键指标
     star_rate = (stars / downloads * 100) if downloads > 0 else 0
-    activity_rate = (installs_current / installs_all_time * 100) if installs_all_time > 0 else 0
-    version_count = to_int(stats.get('versions'))
+    activity_rate = (installs / max(downloads, 1) * 100) if downloads > 0 else 0
+
+    # 新增：更新活跃度（30 天内有更新视为活跃）
+    is_actively_maintained = days_since_update <= 30
+    update_frequency = version_count / max(age_days, 1) * 30  # 每月版本数
+
+    # 新增：分类（categories 替代 capabilityTags）
+    categories = skill.get('categories', []) or skill.get('capabilityTags', []) or []
+
+    # 新增：元数据
+    metadata = safe_get(skill_record, 'skill', 'metadata', default={})
+    supported_os = metadata.get('os', []) if isinstance(metadata, dict) else []
+    setup_requirements = metadata.get('setup', []) if isinstance(metadata, dict) else []
+
+    # 新增：版本信息
+    changelog = version.get('changelog', '')
+    changelog_summary = changelog[:200] + ('...' if len(changelog) > 200 else '') if changelog else ''
+
+    # 新增：安全标记
+    is_suspicious = skill.get('isSuspicious', False)
+    badges = skill.get('badges', {})
+    is_verified = bool(badges.get('verified', False)) if isinstance(badges, dict) else False
 
     return {
+        # 基础信息
         "skill_id": skill.get('_id'),
         "display_name": skill.get('displayName', ''),
         "slug": skill.get('slug', ''),
         "summary": skill.get('summary', ''),
+        "url": f"https://clawhub.ai/{owner.get('handle', '')}/{skill.get('slug', '')}",
+
+        # 作者信息
         "author_handle": owner.get('handle', ''),
         "author_display": owner.get('displayName', ''),
         "author_image": owner.get('image', ''),
-        "url": f"https://clawhub.ai/{owner.get('handle', '')}/{skill.get('slug', '')}",
-        "version": version.get('version', ''),
-        "version_count": version_count,
+        "author_kind": owner.get('kind', ''),
+
+        # 核心统计
         "stars": stars,
         "downloads": downloads,
-        "installs_current": installs_current,
-        "installs_all_time": installs_all_time,
+        "installs_current": installs,
         "comments": comments,
-        "star_rate": round(star_rate, 3),  # 百分比
-        "activity_rate": round(activity_rate, 3),  # 百分比
+        "version_count": version_count,
+
+        # 计算指标
+        "star_rate": round(star_rate, 3),
+        "activity_rate": round(activity_rate, 3),
         "age_days": round(age_days, 1),
-        "created_at": created_at_ms,
-        "capability_tags": skill.get('capabilityTags', []),
-        "is_suspicious": skill.get('isSuspicious', False),
+
+        # 新增：更新活跃度
+        "days_since_update": round(days_since_update, 1),
+        "is_actively_maintained": is_actively_maintained,
+        "update_frequency": round(update_frequency, 2),
+
+        # 新增：分类
+        "categories": categories,
+
+        # 新增：版本信息
+        "version": version.get('version', ''),
+        "changelog_summary": changelog_summary,
+        "license": version.get('license', ''),
+
+        # 新增：元数据
+        "supported_os": supported_os,
+        "setup_requirements": setup_requirements,
+
+        # 安全标记
+        "is_suspicious": is_suspicious,
+        "is_verified": is_verified,
     }
 
 

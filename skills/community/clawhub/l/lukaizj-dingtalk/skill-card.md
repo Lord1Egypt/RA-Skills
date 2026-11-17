@@ -1,44 +1,56 @@
-## Description: <br>
-DingTalk (钉钉) integration - Send messages, create groups, and automate DingTalk workflows <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DingTalk (钉钉) integration - Send messages, create groups, and automate DingTalk workflows.
 
-## Publisher: <br>
-[lukaizj](https://clawhub.ai/user/lukaizj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lukaizj](https://clawhub.ai/user/lukaizj)
 
-## Use Case: <br>
-Developers and workspace automation users use this skill to send DingTalk messages, create group chats, list accessible chats, and check DingTalk API access from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can act in a real workplace DingTalk account. <br>
-Mitigation: Use a dedicated least-privilege DingTalk app and require human confirmation of recipients, message contents, and group membership before taking action. <br>
-Risk: The skill requires sensitive DingTalk app credentials. <br>
-Mitigation: Store the App Secret only in secure environment variables or secret management and avoid exposing token outputs in prompts or logs. <br>
+## Use Case:
 
+Developers and operations teams use this skill to send DingTalk text or markdown messages, create group chats, list accessible chats, and automate DingTalk workflows from an agent.
 
-## Reference(s): <br>
-- [DingTalk Open Platform](https://open.dingtalk.com/) <br>
-- [DingTalk API Endpoint](https://oapi.dingtalk.com) <br>
-- [Skill Homepage](https://github.com/lukaizj/dingtalk-integration-skill) <br>
-- [ClawHub Skill Page](https://clawhub.ai/lukaizj/lukaizj-dingtalk) <br>
-- [Publisher Profile](https://clawhub.ai/user/lukaizj) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [JSON responses from DingTalk tool calls with text or markdown message content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DingTalk app credentials and optional agent ID supplied through environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and claw.json) <br>
+Risk: The security summary flags a callable token tool that returns part of an access token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for trusted workflows, remove or disable the token tool before broad use, and avoid returning token substrings in tool results or logs.
+
+Risk: The skill can send messages and create DingTalk chats through the configured app.
+
+Mitigation: Scope DingTalk app permissions narrowly and require clear user confirmation before sending messages or creating chats.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lukaizj/skills/lukaizj-dingtalk)
+- [Publisher profile](https://clawhub.ai/user/lukaizj)
+- [Project homepage](https://github.com/lukaizj/dingtalk-integration-skill)
+- [DingTalk Open Platform](https://open.dingtalk.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Configuration]
+
+**Output Format:** [Markdown and structured tool-call results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DingTalk App ID and App Secret environment variables; DingTalk Agent ID is optional in configuration.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence and claw.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

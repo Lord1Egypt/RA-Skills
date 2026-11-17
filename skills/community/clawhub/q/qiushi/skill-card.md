@@ -1,40 +1,53 @@
-## Description: <br>
-Qiushi OpenClaw Skills is a Chinese-language AI Agent skill pack that provides Mao Zedong methodology-based reasoning and workflow-selection frameworks in the OpenClaw skill format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Qiushi Skills is a Chinese-language OpenClaw agent skill collection that applies Mao Zedong-inspired methodological frameworks for analysis, planning, investigation, prioritization, feedback integration, and review.
 
-## Publisher: <br>
-[taotao666720](https://clawhub.ai/user/taotao666720) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[taotao666720](https://clawhub.ai/user/taotao666720)
 
-## Use Case: <br>
-External users and agent builders use this skill pack to make an assistant apply structured Chinese-language reasoning methods for complex problem analysis, investigation, feedback integration, prioritization, planning, and review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill pack can broadly influence reasoning and workflow selection through a specific Maoist methodology framework. <br>
-Mitigation: Install it only for contexts where that framing is desired; for a more neutral assistant, keep the skills manual-only or disable automatic invocation. <br>
-Risk: Instruction-only skills may still shape conclusions, priorities, and review posture even without code execution. <br>
-Mitigation: Review generated guidance for fit with the user, organization, and task context before relying on it for decisions. <br>
+## Use Case:
 
+External users and agent developers can use this skill bundle to add structured methodology prompts for complex problem analysis, planning, information gathering, prioritization, iterative validation, and workflow composition. It is intended for users who explicitly want this Chinese-language methodology overlay in OpenClaw-style agent workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/taotao666720/qiushi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown with structured lists, tables, and concise reasoning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill pack; no tools, credential use, network calls, or code execution were identified in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: The security evidence reports that one auto-start skill ranks user instructions above host safety, security, privacy, and tool-use rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and revise or remove the arming-thought instruction-priority section before deployment so host system, developer, security, privacy, and tool-use rules remain higher priority than user requests.
+
+Risk: The security evidence identifies this as a Chinese-language Maoist methodology overlay that may activate automatically.
+
+Mitigation: Install and enable it only when users intentionally want this framework, and consider disabling automatic startup unless the user explicitly requests it.
+
+## Reference(s):
+
+- [Qiushi Skills ClawHub Page](https://clawhub.ai/taotao666720/skills/qiushi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with structured lists, tables, and occasional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tools, credentials, API calls, or external services are required by the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

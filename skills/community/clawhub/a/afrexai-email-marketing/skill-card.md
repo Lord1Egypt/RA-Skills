@@ -1,40 +1,53 @@
-## Description: <br>
-Complete email marketing system for strategy, sequences, segmentation, automation, deliverability, and analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete email marketing system - strategy, sequences, segmentation, automation, deliverability, and analytics. Build campaigns that convert.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Marketing teams, founders, operators, and external agents use this skill to audit email programs, plan campaigns, draft email sequences, design segments, configure automation logic, and optimize deliverability and analytics. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Agent-generated email marketing plans could affect real sends, list imports, segmentation, subscriber removals, or automations. <br>
-Mitigation: Require explicit human approval before applying outputs to an email platform, CRM, subscriber list, or automation workflow. <br>
-Risk: Email marketing work may involve subscriber personal data. <br>
-Mitigation: Share only the subscriber data needed for the task and avoid unnecessary personal data in prompts or generated artifacts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Email Marketing Command Center on ClawHub](https://clawhub.ai/1kalin/afrexai-email-marketing) <br>
-- [Publisher profile: 1kalin](https://clawhub.ai/user/1kalin) <br>
+## Use Case:
 
+External marketers, operators, and business teams use this skill to plan, write, segment, automate, audit, and optimize email marketing campaigns. It provides campaign structures, deliverability checklists, analytics templates, and compliance reminders for commercial email programs.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown with templates, checklists, tables, and YAML-style examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance; no code execution, credentials, persistence, or hidden execution behavior identified in security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Email marketing work can involve subscriber lists, behavioral segments, campaign metrics, and other personal or commercially sensitive data.
+
+Mitigation: Use anonymized metrics where possible and avoid pasting full subscriber lists or personal data unless necessary.
+
+Risk: Segmentation, retargeting, SMS follow-up, and compliance advice may affect consent, unsubscribe, privacy, and advertising obligations.
+
+Mitigation: Confirm consent, unsubscribe, retargeting, SMS, GDPR, CASL, CCPA, and ad-platform requirements before acting on the generated guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-email-marketing)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown with structured checklists, tables, templates, and YAML-style examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces marketing strategy, campaign copy, segmentation plans, automation guidance, deliverability checks, analytics templates, and compliance reminders.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

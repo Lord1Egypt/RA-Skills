@@ -1,44 +1,62 @@
-## Description: <br>
-Plan Romania trips with regional contrasts, Transylvania and Black Sea logistics, local food cues, and practical local guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan Romania trips with regional contrasts, Transylvania and Black Sea logistics, local food cues, and practical local guidance.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to plan Romania trips by choosing regions, bases, routes, food priorities, transport options, seasonal timing, and practical safety checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can keep local Romania trip notes, which may include preferences, constraints, and route decisions. <br>
-Mitigation: Use one-off answers or set the activation preference to never_ask when the user does not want ongoing memory. <br>
-Risk: Travel conditions such as weather, road closures, schedules, opening hours, and tickets can change after guidance is generated. <br>
-Mitigation: Verify time-sensitive details locally before committing to mountain, coastal, transport, or ticketed plans. <br>
+## Use Case:
 
+External travelers and travel-planning agents use this skill to shape Romania itineraries around realistic regional routes, city bases, food, mountains, coast timing, transportation, safety, and practical local constraints.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/romania) <br>
-- [Skill homepage](https://clawic.com/skills/romania) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Setup process](artifact/setup.md) <br>
-- [Memory structure](artifact/memory-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown travel-planning guidance with optional local memory notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May keep optional Romania trip preferences in ~/romania/memory.md when the user wants continuity.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill may save trip preferences, route decisions, and constraints in ~/romania/memory.md for planning continuity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell users where the local notes are stored and review or delete ~/romania/memory.md if they do not want saved travel-planning context.
+
+Risk: Travel recommendations can become inaccurate when hours, tickets, weather, road conditions, or seasonal access change.
+
+Mitigation: Prompt users to verify time-sensitive details locally before committing to bookings, mountain plans, coast days, or long transfers.
+
+Risk: Mountain, wildlife, road, and water-safety guidance may affect real-world traveler safety.
+
+Mitigation: Keep safety advice conservative, encourage marked routes and weather checks, and direct users to local emergency or rescue resources when risk is elevated.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/romania)
+- [Skill Homepage](https://clawic.com/skills/romania)
+- [Romania Skill Definition](artifact/SKILL.md)
+- [Romania Setup](artifact/setup.md)
+- [Romania Memory Template](artifact/memory-template.md)
+- [Romania Emergencies and Safety](artifact/emergencies.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Natural-language travel guidance with occasional Markdown lists, tables, and local memory notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May keep Romania trip preferences and constraints in ~/romania/memory.md when continuity is useful and the user is actively planning Romania.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

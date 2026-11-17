@@ -1,36 +1,47 @@
-## Description: <br>
-Write Basque that sounds human. Not formal, not robotic, not AI-generated. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write Basque that sounds human. Not formal, not robotic, not AI-generated.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and writing assistants use this skill to produce casual, natural-sounding Basque text with attention to register, dialect flavor, particles, fillers, and bilingual code-switching. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Casual tone, dialect flavor, and Spanish/French code-switching may not fit formal, standardized, or monolingual Basque contexts. <br>
-Mitigation: Review generated text against the intended audience, register, dialect expectations, and publication context before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+External users and developers use this skill to guide an agent toward casual, human-sounding Basque text with natural register, dialect flavor, and code-switching where appropriate.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill favors informal wording, dialect flavor, and Spanish/French mixing, which may be inappropriate for formal or standardized Basque.
+
+Mitigation: Review generated Basque before use in formal, official, educational, or standardized-language contexts.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Natural-language writing guidance and generated Basque text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only skill with no executable behavior or sensitive access requests.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown or plain text responses shaped by Basque writing-style guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, data access, persistence, or external tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

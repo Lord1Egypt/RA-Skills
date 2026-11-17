@@ -1,39 +1,58 @@
-## Description: <br>
-Generates a compressed project context map to help agents understand an unfamiliar codebase before deeper file reads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a compressed project context map to avoid expensive Read/Grep calls.
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and coding agents use this skill at the start of a session or before implementation work to scan a repository, identify structure, entry points, dependencies, routes, environment variables, hot files, and likely token savings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner runs over the current repository and may produce local context files. <br>
-Mitigation: Install only in trusted codebases, review generated context before relying on it, and use --no-wiki or avoid --output when local files should not be created. <br>
+## Use Case:
 
+Developers and coding agents use this skill at the start of a session or before feature work to summarize repository structure, dependencies, entry points, imports, routes, environment variables, and high-blast-radius files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-conserve-context-map) <br>
-- [Conserve plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/conserve) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or JSON project context map with optional local files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create .codesight/ wiki files or a user-specified output file when those options are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: ClawHub release metadata) <br>
+Risk: The documented scanner command can execute Python code from the repository being scanned, which is unsafe for untrusted repositories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on repositories you trust, or change the invocation to use a fixed, verified scanner path outside the target project.
+
+Risk: The scanner may generate .codesight/ files during analysis.
+
+Mitigation: Review or disable .codesight/ file generation when read-only analysis is required.
+
+Risk: Broad automatic activation can run the scanner in contexts where repository trust has not been established.
+
+Mitigation: Narrow triggers or require explicit user confirmation before running the scanner on unfamiliar projects.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-conserve-context-map)
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/conserve)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown project overview or JSON scanner output, with optional .codesight Markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports section-specific output, blast-radius checks, token-budget limiting, cache control, and optional wiki article generation.]
+
+## Skill Version(s):
+
+1.9.19 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

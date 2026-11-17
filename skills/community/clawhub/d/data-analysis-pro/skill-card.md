@@ -1,45 +1,55 @@
-## Description: <br>
-Data Analysis Pro helps agents analyze, interpret, and visualize spreadsheet, CSV, or JSON data through ChartGen-backed natural language workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Data Analysis Pro helps agents perform natural-language data analysis, interpretation, and visualization through the ChartGen API.
 
-## Publisher: <br>
-[chartgen-ai](https://clawhub.ai/user/chartgen-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chartgen-ai](https://clawhub.ai/user/chartgen-ai)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to run natural-language data analysis, trend interpretation, and chart generation over provided CSV, Excel, or JSON datasets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected spreadsheets, CSVs, or JSON data are sent to chartgen.ai for processing. <br>
-Mitigation: Use only approved datasets, avoid confidential or regulated data unless the vendor flow is approved, and review ChartGen privacy practices before use. <br>
-Risk: API usage consumes credits and depends on a configured ChartGen API key. <br>
-Mitigation: Use a dedicated API key with credit limits and rotate or revoke it according to organizational policy. <br>
-Risk: Generated HTML visualizations may be shared outside the originating environment. <br>
-Mitigation: Review generated HTML and chart content before publishing or distributing it. <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to submit CSV, Excel, or JSON data with natural-language questions for analysis, interpretation, and chart generation.
 
-## Reference(s): <br>
-- [Data Analysis Pro on ClawHub](https://clawhub.ai/chartgen-ai/data-analysis-pro) <br>
-- [ChartGen](https://chartgen.ai) <br>
-- [ChartGen Billing](https://chartgen.ai/billing) <br>
-- [ECharts CDN](https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown or text analysis results, ECharts JSON, and optional HTML chart files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CHARTGEN_API_KEY and sends selected input data to chartgen.ai for processing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: The skill can upload arbitrary readable local CSV, Excel, or JSON files to the third-party ChartGen API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only provide files intended for ChartGen processing; avoid sensitive or regulated datasets and use a limited-scope API key.
+
+Risk: Generated chart HTML may contain unsafe remote-controlled content handling.
+
+Mitigation: Treat generated HTML reports as untrusted until reviewed, and open or share them only in controlled environments.
+
+## Reference(s):
+
+- [Data Analysis Pro on ClawHub](https://clawhub.ai/chartgen-ai/skills/data-analysis-pro)
+- [ChartGen](https://chartgen.ai)
+- [ChartGen API endpoint](https://chartgen.ai/api/platform_api/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, files, guidance]
+
+**Output Format:** [Markdown text, ECharts JSON, and optional HTML chart files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CHARTGEN_API_KEY and sends provided file or JSON data to the ChartGen API.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

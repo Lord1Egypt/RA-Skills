@@ -1,42 +1,52 @@
-## Description: <br>
-Perform cron-tool operations from the command line. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perform cron-tool operations from the command line.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, operators, and external users can use this skill to manage user crontab entries from a command-line workflow, including listing, adding, disabling, backing up, restoring, and editing scheduled jobs.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Cron changes can persistently modify, disable, or erase scheduled jobs.
+
+Mitigation: Back up the crontab before use, review proposed changes carefully, and avoid running the skill as a privileged or service account.
+
+Risk: Security evidence reports weak disclosure and an unsafe removal path for remove, enable, disable, and edit operations.
+
+Mitigation: Do not allow automated agent use of remove, enable, disable, or edit until the removal bug and confirmation gaps are fixed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to inspect and manage user cron jobs from the command line, including adding, disabling, backing up, restoring, and editing scheduled commands. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Cron changes persist and scheduled commands continue running after they are added or restored. <br>
-Mitigation: Back up the current crontab first and only add or restore commands that have been reviewed. <br>
-Risk: The security summary reports that removing a job by numeric line number may wipe the whole crontab. <br>
-Mitigation: Avoid numeric --remove until the issue is fixed; verify the current crontab and maintain a backup before removing jobs. <br>
-Risk: Restoring from a file replaces the current crontab. <br>
-Mitigation: Inspect the restore file and the current crontab before confirming the replacement. <br>
+**Output Format:** [Markdown with inline bash code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dinghaibin/cron-tool) <br>
+**Other Properties Related to Output:** [May propose or invoke cron-management commands that alter persistent scheduled jobs.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May affect the current user's crontab when commands are executed.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

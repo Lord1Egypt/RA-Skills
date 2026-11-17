@@ -1,42 +1,62 @@
-## Description: <br>
-Persistent causal memory for AI agents that records decisions, tool calls, parallel work, and session history as a causally linked chain. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent causal memory for AI agents that records decisions, tool calls, parallel work, and session history as a causally linked chain.
 
-## Publisher: <br>
-[has9800](https://clawhub.ai/user/has9800) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[has9800](https://clawhub.ai/user/has9800)
 
-## Use Case: <br>
-Developers and agent users use Raven Memory to give OpenClaw and MCP-compatible agents persistent local memory across sessions, including decisions, tool calls, and causal history for later recall. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent cross-session memory can retain sensitive conversations, tool results, and project history with weak privacy boundaries. <br>
-Mitigation: Use separate Raven databases for separate projects or users, and do not store secrets or regulated data. <br>
-Risk: Recalled memory may be stale, incomplete, or misleading when reused in future sessions. <br>
-Mitigation: Treat recalled memory as untrusted context and review it before relying on it. <br>
-Risk: Encryption at rest is not assured by the available evidence. <br>
-Mitigation: Do not assume the database is encrypted unless SQLCipher support is independently verified, and protect the database file with appropriate local access controls. <br>
+## Use Case:
 
+Developers and agent operators use Raven Memory to give OpenClaw or MCP-compatible agents persistent local recall across sessions, including causal chains for actions, decisions, branch/merge work, rollback, and semantic history search.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/has9800/raven-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Configuration, Guidance] <br>
-**Output Format:** [JSON tool responses with text summaries and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists agent memory in a local database configured by RAVEN_DB_PATH.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release, frontmatter, pyproject.toml) <br>
+Risk: Persistent local memory can retain sensitive conversation content, decisions, tool history, and user preferences across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable the skill only for workspaces where persistent memory is appropriate, avoid recording secrets or regulated data, and restrict the Raven database path with appropriate filesystem permissions.
+
+Risk: Recalled memory is intended to be loaded into the agent's context and can influence future behavior.
+
+Mitigation: Review recalled summaries and nodes before relying on them for sensitive decisions, scope databases by project or user, and remove or roll back stale or inappropriate memory.
+
+Risk: Artifact text advertises optional SQLCipher encryption, while the security evidence warns not to rely on it unless the installed package implements and enforces it.
+
+Mitigation: Verify encryption behavior in the installed package before storing sensitive data, or rely on external controls such as disk encryption and access-controlled database locations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/has9800/skills/raven-memory)
+- [Publisher profile](https://clawhub.ai/user/has9800)
+- [Artifact README](artifact/README.md)
+- [Skill manifest](artifact/skill.md)
+- [Package metadata](artifact/pyproject.toml)
+- [MCP server implementation](artifact/tcc/integration/mcp_server.py)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Configuration, Guidance]
+
+**Output Format:** [JSON tool responses and natural-language memory summaries for MCP-compatible agents]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include recalled conversation-derived memory, node summaries, search results, rollback status, health status, and database path information.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter, pyproject.toml, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

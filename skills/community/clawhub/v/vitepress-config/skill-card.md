@@ -1,51 +1,65 @@
-## Description: <br>
-VitePress static site generator toolkit for configuration, theming, routing, markdown, Vue in markdown, data loading, custom themes, SSR, i18n, and deployment guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+VitePress static site generator toolkit for configuration, theming, routing, markdown, Vue in markdown, data loading, custom themes, SSR, i18n, and deployment guidance.
 
-## Publisher: <br>
-[makiwinster72](https://clawhub.ai/user/makiwinster72) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[makiwinster72](https://clawhub.ai/user/makiwinster72)
 
-## Use Case: <br>
-Developers and technical writers use this skill to get concise VitePress setup, configuration, theming, routing, markdown, Vue integration, data loading, SSR, i18n, and deployment guidance for documentation, blog, and marketing sites. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Package installation and CLI examples can modify a project or local development environment. <br>
-Mitigation: Review generated npm and VitePress commands before running them, and apply them in the intended project directory. <br>
-Risk: CMS and deployment examples may require API tokens or service credentials. <br>
-Mitigation: Use least-privilege credentials only for services you intentionally connect, and avoid pasting secrets into shared prompts or generated files. <br>
-Risk: Configuration snippets for routing, base paths, search, and deployment can affect published site behavior. <br>
-Mitigation: Test changes with VitePress build and preview before publishing. <br>
+## Use Case:
 
+Developers and technical writers use this skill to configure, customize, build, and deploy VitePress documentation or content sites. It provides concise guidance, examples, and references for common VitePress workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/makiwinster72/vitepress-config) <br>
-- [VitePress official documentation](https://vitepress.dev/) <br>
-- [VitePress guide](https://vitepress.dev/guide/) <br>
-- [VitePress site config reference](https://vitepress.dev/reference/site-config) <br>
-- [VitePress GitHub repository](https://github.com/vuejs/vitepress) <br>
-- [Reference index](references/README.md) <br>
-- [Site config reference](references/site-config.md) <br>
-- [Default theme config reference](references/default-theme-config.md) <br>
-- [CLI reference](references/cli.md) <br>
-- [Deployment guide](references/deploy.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline code blocks and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include VitePress configuration snippets, frontmatter examples, CLI commands, and deployment guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Unpinned package installation or npx commands can introduce supply-chain drift.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin package versions where practical and prefer vetted local project scripts before copying install or execution commands.
+
+Risk: Deployment examples may require tokens or broad GitHub Actions permissions.
+
+Mitigation: Scope deployment tokens and GitHub Actions permissions narrowly using least privilege.
+
+Risk: CMS and API fetch examples can expose or over-permission credentials if copied directly.
+
+Mitigation: Use least-privilege CMS or API tokens and keep credentials in environment variables or platform secret stores.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/makiwinster72/skills/vitepress-config)
+- [VitePress Official Docs](https://vitepress.dev/)
+- [VitePress Guide](https://vitepress.dev/guide/)
+- [VitePress Site Config Reference](https://vitepress.dev/reference/site-config)
+- [VitePress GitHub Repository](https://github.com/vuejs/vitepress)
+- [References Index](references/README.md)
+- [Site Config Reference](references/site-config.md)
+- [Default Theme Config Reference](references/default-theme-config.md)
+- [Deployment Reference](references/deploy.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code blocks and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; review commands and configuration before applying them to a project.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

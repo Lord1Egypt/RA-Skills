@@ -1,37 +1,52 @@
-## Description: <br>
-Predict optimal next evolution actions based on history analysis, including stagnation detection, innovation gap measurement, and skill recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Predict optimal next evolution actions based on history analysis, including stagnation detection, innovation gap measurement, and skill recommendations.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to analyze OpenClaw evolution history and choose the next evolution focus, such as breaking stagnation, increasing innovation, exploring new domains, or stabilizing current behavior.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can read persistent OpenClaw evolution history by default, including extracted signals, intents, and gene names.
+
+Mitigation: Install only when that history access is acceptable, or require an explicit approved evolution history path before use.
+
+Risk: The security verdict is suspicious because the default history access is not clearly disclosed in the skill instructions.
+
+Mitigation: Review the skill before installing and document the default history path and data exposure expectations for users.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to analyze local OpenClaw evolution history, detect stagnation or innovation gaps, and choose the next evolution focus or recommended skill to create. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local OpenClaw evolution history, which may contain sensitive or misleading prompt context. <br>
-Mitigation: Install only in environments where that local history can be read, and review recommendations before acting on them. <br>
+**Output Format:** [JSON-compatible prediction object and human-readable text or Markdown report]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Includes prediction category, priority, confidence, reasoning, metrics, alternatives, and suggested skills.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, guidance, text, code] <br>
-**Output Format:** [JavaScript objects and human-readable text or markdown-style reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local evolution history and returns predictions, confidence, reasoning, metrics, alternatives, and skill recommendations.] <br>
+1.0.0 (source: package.json and server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Find Software Developer helps agents find, shortlist, vet, and enrich US software development firms through the ServiceGraph pro_services API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents find, shortlist, vet, and enrich US software development firms by mapping user requests to ServiceGraph pro_services searches and enrichment workflows.
 
-## Publisher: <br>
-[nostrband](https://clawhub.ai/user/nostrband) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nostrband](https://clawhub.ai/user/nostrband)
 
-## Use Case: <br>
-External users and agents use this skill to locate US software development firms, translate buyer requirements into ServiceGraph filters, compare brief firm cards, and request credit-bearing enrichments after user approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan marks the release suspicious and notes high-impact maintainer workflows. <br>
-Mitigation: Install only if the publisher is trusted; review the skill before deployment and require explicit confirmation before moderation, publishing, production deploy, or account-impacting actions. <br>
-Risk: The skill requires sensitive ServiceGraph credentials and may perform credit-bearing detail unlocks. <br>
-Mitigation: Keep API keys out of chat and loaded through the local environment; confirm requested unlocks and expected credit use with the user before calling paid endpoints. <br>
+## Use Case:
 
+External users and developers use this skill to discover and compare US software development vendors for custom software, web, mobile, backend/API, DevOps/cloud, systems integration, and hosting-related needs. It helps convert informal requirements into ServiceGraph filters, shortlist firms, and manage paid detail unlocks with user confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nostrband/find-software-developer) <br>
-- [ServiceGraph API](https://api.servicegraph.co) <br>
-- [Publisher profile](https://clawhub.ai/user/nostrband) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline API calls, filters, and shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a ServiceGraph bearer token for API access; detail unlocks can consume credits and should be confirmed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The REST authentication guidance includes a shell pattern that sources .env.local, which can execute local file contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pre-exported SERVICEGRAPH_API_KEY or a safe secret manager or MCP integration instead of sourcing .env.local.
+
+Risk: Firm-detail unlocks can spend ServiceGraph credits.
+
+Mitigation: Confirm the selected firms and expected credit cost with the user before calling the unlock endpoint.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nostrband/skills/find-software-developer)
+- [ServiceGraph API](https://api.servicegraph.co)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API calls, Configuration, Guidance]
+
+**Output Format:** [Markdown with API request examples, shell commands, and shortlist guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require SERVICEGRAPH_API_KEY for authenticated API calls and user confirmation before paid firm-detail unlocks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter: 0.4.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

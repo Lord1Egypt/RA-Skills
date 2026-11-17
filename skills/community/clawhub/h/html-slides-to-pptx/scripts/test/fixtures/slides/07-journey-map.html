@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>今日旅程地图 · F型</title>
+<link rel="stylesheet" href="../assets/theme.css">
+</head>
+<body>
+<div class="slide-container">
+
+  <!-- 顶部红色装饰线 -->
+  <div data-object="true" data-object-type="shape" style="position:absolute; left:100px; top:60px; width:80px; height:4px; background:var(--lenovo-red); z-index:10;"></div>
+
+  <!-- 页标题块 -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute; left:100px; top:100px; width:1720px; z-index:10;">
+    <div style="font-size:22px; color:var(--lenovo-red); font-weight:600; letter-spacing:4px; margin-bottom:14px;">今日旅程</div>
+    <div style="font-size:56px; font-weight:700; color:var(--charcoal); line-height:1.15; letter-spacing:-0.5px;">I.D.E.A. 四阶段全天节奏</div>
+    <div style="font-size:22px; color:var(--text-secondary); margin-top:16px; font-weight:400;">上午专注力最好——学"输入"和"蒸馏"；下午互动性强——做"碰撞"和"产出"</div>
+  </div>
+
+  <!-- 时间轴主线 -->
+  <div data-object="true" data-object-type="shape" style="position:absolute; left:180px; top:520px; width:1620px; height:6px; background:linear-gradient(90deg, var(--deep-navy) 0%, var(--deep-navy) 45%, var(--lenovo-red) 55%, var(--lenovo-red) 100%); z-index:5;"></div>
+
+  <!-- 上午/下午分隔 -->
+  <div data-object="true" data-object-type="shape" style="position:absolute; left:990px; top:490px; width:2px; height:70px; background:var(--border-medium); z-index:5;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute; left:930px; top:445px; width:120px; text-align:center; z-index:10;">
+    <div style="font-size:14px; color:var(--text-tertiary); letter-spacing:2px;">午餐分割</div>
+  </div>
+
+  <!-- 上午/下午标签 -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute; left:180px; top:340px; width:800px; z-index:10;">
+    <div style="font-size:22px; color:var(--deep-navy); font-weight:700; letter-spacing:8px;">上午</div>
+    <div style="font-size:14px; color:var(--text-tertiary); margin-top:4px;">9:30 - 12:15</div>
+  </div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute; left:1020px; top:340px; width:780px; z-index:10; text-align:right;">
+    <div style="font-size:22px; color:var(--lenovo-red); font-weight:700; letter-spacing:8px;">下午</div>
+    <div style="font-size:14px; color:var(--text-tertiary); margin-top:4px;">13:25 - 16:05</div>
+  </div>
+
+  <!-- 四阶段节点 · I -->
+  <div data-object="true" data-object-type="shape" style="position:absolute; left:250px; top:496px; width:56px; height:56px; background:var(--deep-navy); border-radius:50%; z-index:8; box-shadow:0 4px 12px rgba(10,46,92,0.3);"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute; left:250px; top:496px; width:56px; height:56px; display:flex; align-items:center; justify-content:center; color:#FFFFFF; font-family:var(--font-en); font-size:26px; font-weight:800; z-index:11;">I</div>
+
+  <div data-object="true" data-object-type="textbox" style="position:absolute; left:170px; top:600px; width:280px; text-align:center; z-index:10;">
+    <div style="font-size:24px; font-weight:700; color:var(--deep-navy); margin-bottom:6px;">智能摄入</div>
+    <div style="font-size:14px; color:var(--text-tertiary); letter-spacing:2px; margin-bottom:12px;">Ingestion</div>
+    <div style="font-size:16px; color:var(--text-secondary); line-height:1.6;">
+      <div style="margin-bottom:4px; color:var(--charcoal); font-weight:600;">9:30 - 11:10</div>
+      搜索 → 建库
+    </div>
+    <div style="margin-top:14px; padding:8px 14px; background:#F5F7FA; border-radius:4px; font-size:14px; color:var(--charcoal); display:inline-block;">
+      认知破冰
+    </div>
+  </div>
+
+  <!-- 四阶段节点 · D -->
+  <div data-object="true" data-object-type="shape" style="position:absolute; left:610px; top:496px; width:56px; height:56px; background:var(--deep-navy); border-radius:50%; z-index:8; box-shadow:0 4px 12px rgba(10,46,92,0.3);"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute; left:610px; top:496px; width:56px; height:56px; display:flex; align-items:center; justify-content:center; color:#FFFFFF; font-family:var(--font-en); font-size:26px; font-weight:800; z-index:11;">D</div>
+
+  <div data-object="true" data-object-type="textbox" style="position:absolute; left:530px; top:600px; width:280px; text-align:center; z-index:10;">
+    <div style="font-size:24px; font-weight:700; color:var(--deep-navy); margin-bottom:6px;">对话蒸馏</div>
+    <div style="font-size:14px; color:var(--text-tertiary); letter-spacing:2px; margin-bottom:12px;">Dialogue</div>
+    <div style="font-size:16px; color:var(--text-secondary); line-height:1.6;">
+      <div style="margin-bottom:4px; color:var(--charcoal); font-weight:600;">11:10 - 12:15</div>
+      封闭蒸馏 → 知识清单
+    </div>
+    <div style="margin-top:14px; padding:8px 14px; background:#F5F7FA; border-radius:4px; font-size:14px; color:var(--charcoal); display:inline-block;">
+      技能建构
+    </div>
+  </div>
+
+  <!-- 四阶段节点 · E -->
+  <div data-object="true" data-object-type="shape" style="position:absolute; left:1160px; top:496px; width:56px; height:56px; background:var(--lenovo-red); border-radius:50%; z-index:8; box-shadow:0 4px 12px rgba(226,35,42,0.3);"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute; left:1160px; top:496px; width:56px; height:56px; display:flex; align-items:center; justify-content:center; color:#FFFFFF; font-family:var(--font-en); font-size:26px; font-weight:800; z-index:11;">E</div>
+
+  <div data-object="true" data-object-type="textbox" style="position:absolute; left:1080px; top:600px; width:280px; text-align:center; z-index:10;">
+    <div style="font-size:24px; font-weight:700; color:var(--lenovo-red); margin-bottom:6px;">涌现连接</div>
+    <div style="font-size:14px; color:var(--text-tertiary); letter-spacing:2px; margin-bottom:12px;">Emergence</div>
+    <div style="font-size:16px; color:var(--text-secondary); line-height:1.6;">
+      <div style="margin-bottom:4px; color:var(--charcoal); font-weight:600;">13:25 - 14:45</div>
+      多视角碰撞 → 洞察清单
+    </div>
+    <div style="margin-top:14px; padding:8px 14px; background:#FEE9EA; border-radius:4px; font-size:14px; color:var(--lenovo-red); display:inline-block; font-weight:600;">
+      洞察整合
+    </div>
+  </div>
+
+  <!-- 四阶段节点 · A -->
+  <div data-object="true" data-object-type="shape" style="position:absolute; left:1520px; top:496px; width:56px; height:56px; background:var(--lenovo-red); border-radius:50%; z-index:8; box-shadow:0 4px 12px rgba(226,35,42,0.3);"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute; left:1520px; top:496px; width:56px; height:56px; display:flex; align-items:center; justify-content:center; color:#FFFFFF; font-family:var(--font-en); font-size:26px; font-weight:800; z-index:11;">A</div>
+
+  <div data-object="true" data-object-type="textbox" style="position:absolute; left:1440px; top:600px; width:280px; text-align:center; z-index:10;">
+    <div style="font-size:24px; font-weight:700; color:var(--lenovo-red); margin-bottom:6px;">行动放大</div>
+    <div style="font-size:14px; color:var(--text-tertiary); letter-spacing:2px; margin-bottom:12px;">Action</div>
+    <div style="font-size:16px; color:var(--text-secondary); line-height:1.6;">
+      <div style="margin-bottom:4px; color:var(--charcoal); font-weight:600;">14:55 - 16:05</div>
+      双源产出 → 交付物
+    </div>
+    <div style="margin-top:14px; padding:8px 14px; background:#FEE9EA; border-radius:4px; font-size:14px; color:var(--lenovo-red); display:inline-block; font-weight:600;">
+      价值输出
+    </div>
+  </div>
+
+  <!-- 底部终点声明 -->
+  <div data-object="true" data-object-type="shape" style="position:absolute; left:100px; top:880px; width:1720px; height:80px; background:#1A1A1A; border-radius:8px; z-index:5;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute; left:100px; top:880px; width:1720px; height:80px; display:flex; align-items:center; justify-content:center; z-index:11;">
+    <div style="color:#FFFFFF; font-size:26px; font-weight:600; letter-spacing:2px;">
+      🎯 今日终点 · <span style="color:var(--lenovo-red); font-weight:700;">你能独立用 I.D.E.A. 处理任何 ESG 信息需求场景</span>
+    </div>
+  </div>
+
+  <!-- 页脚 -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute; left:100px; bottom:40px; width:1720px; z-index:10;">
+    <div style="display:flex; align-items:center; gap:20px; font-size:16px; color:var(--text-tertiary);">
+      <span style="font-weight:600; color:var(--text-secondary);">AI辅助ESG管理革新工作坊</span>
+      <span style="color:var(--border-medium);">|</span>
+      <span>今日旅程地图</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

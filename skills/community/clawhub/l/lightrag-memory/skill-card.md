@@ -1,40 +1,59 @@
-## Description: <br>
-LightRAG-based semantic memory system for AI agents that provides long-term knowledge storage and retrieval using vector embeddings and knowledge graphs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LightRAG Memory provides semantic long-term memory for AI agents using vector embeddings and knowledge graphs, with commands to index, insert, and query memory content.
 
-## Publisher: <br>
-[ogi98rus](https://clawhub.ai/user/ogi98rus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ogi98rus](https://clawhub.ai/user/ogi98rus)
 
-## Use Case: <br>
-Developers and agent operators use this skill to index and query long-term agent memory with LightRAG, reducing repeated full-file reads and enabling semantic retrieval across memory documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Indexed files and query text may be sent to the configured OpenAI-compatible provider for embeddings and language-model processing. <br>
-Mitigation: Only index content suitable for that provider, use a dedicated API key, and verify OPENAI_BASE_URL before indexing or querying. <br>
-Risk: Python dependencies are installed from package indexes and may change over time if left unpinned. <br>
-Mitigation: Install in a virtual environment and review or pin the dependencies before use. <br>
+## Use Case:
 
+Developers and agent builders use this skill to maintain searchable long-term memory, retrieve targeted context from memory files, and add new knowledge without rereading entire documents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ogi98rus/lightrag-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Plain text query results and Markdown command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports naive, local, global, and hybrid query modes; stores LightRAG data locally by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Local memory files and inserted documents may be processed by the configured OpenAI-compatible API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted endpoint, avoid storing secrets in memory files, and use a limited API key.
+
+Risk: Dependency versions are not pinned in requirements.txt.
+
+Mitigation: Pin and review dependency versions before deployment.
+
+Risk: The documented reset command deletes the selected storage directory contents.
+
+Mitigation: Verify LIGHTARG_WORKING_DIR or the storage path before running any reset command.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ogi98rus/skills/lightrag-memory)
+- [Publisher profile](https://clawhub.ai/user/ogi98rus)
+- [Default OpenAI API endpoint](https://api.openai.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and plain-text query results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OPENAI_API_KEY; OPENAI_BASE_URL can point to a trusted OpenAI-compatible endpoint.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-China A Stock Trader helps an agent analyze China A-share equities with real-time market data, technical indicators, fundamental screening, market-sentiment checks, risk flags, and trading-style guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese A-share market analysis, stock screening, technical indicators, risk checks, market sentiment, Dragon-Tiger list data, and buy/hold/sell-style informational outputs.
 
-## Publisher: <br>
-[dxie48892-jpg](https://clawhub.ai/user/dxie48892-jpg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dxie48892-jpg](https://clawhub.ai/user/dxie48892-jpg)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent for A-share stock analysis, screening, market heat, dragon-tiger list data, and risk-aware buy, hold, or sell guidance. Outputs are informational and should be independently verified before any investment decision. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts third-party finance data providers and may receive unavailable, delayed, or inaccurate market data. <br>
-Mitigation: Verify prices, fundamentals, and financial reports against independent sources before relying on the analysis. <br>
-Risk: The skill produces speculative trading-style guidance that may be mistaken for personalized financial advice. <br>
-Mitigation: Treat outputs as informational, retain the risk disclaimer in generated reports, and make investment decisions outside the agent workflow. <br>
-Risk: Users may disclose brokerage credentials, private portfolio details, or account access even though the skill does not need them. <br>
-Mitigation: Do not provide brokerage credentials, private portfolio details, account access, or other sensitive financial information to the skill. <br>
+## Use Case:
 
+External users and developers use this skill to analyze China A-share stocks, screen candidates, review market heat and Dragon-Tiger list signals, and receive risk-aware informational trading analysis. The outputs should support research and review, not replace independent financial judgment.
 
-## Reference(s): <br>
-- [A-share Stock Code Reference](references/china-stocks.md) <br>
-- [ClawHub skill page](https://clawhub.ai/dxie48892-jpg/china-a-stock-trader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown-style analysis with Python dictionary-style data and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include public market data from third-party finance providers; does not execute trades or require brokerage credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and artifact metadata, released 2026-03-21) <br>
+Risk: Stock advice can be incorrect or stale because it depends on external market-data sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat buy, hold, and sell outputs as informational and verify data freshness and source quality before acting.
+
+Risk: The skill can fall back to example records when live data or dependencies fail.
+
+Mitigation: Do not trade from fallback or mock records; confirm that live data retrieval succeeded.
+
+Risk: Unpinned or unreviewed dependencies can change behavior.
+
+Mitigation: Install dependencies from a pinned, reviewed environment.
+
+## Reference(s):
+
+- [A-share stock code reference](references/china-stocks.md)
+- [ClawHub skill page](https://clawhub.ai/dxie48892-jpg/skills/china-a-stock-trader)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown and text analysis with Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May depend on outbound market-data queries and can fall back to example data when live data fails.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

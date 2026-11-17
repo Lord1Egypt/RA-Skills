@@ -1,42 +1,49 @@
-## Description: <br>
-Helps an agent decide when to search past conversation history and request summarized findings from a dedicated conversation-search agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches past conversation history when an agent needs prior decisions, implementation context, unfamiliar workflow guidance, or help after getting stuck.
 
-## Publisher: <br>
-[YumoeZhung](https://clawhub.ai/user/YumoeZhung) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yumoezhung](https://clawhub.ai/user/yumoezhung)
 
-## Use Case: <br>
-Developers and coding agents use this skill to decide when prior Claude Code conversations may help with architectural choices, stuck debugging, unfamiliar workflows, or explicit references to past work. It guides the agent to request a focused summary instead of loading raw conversation history directly. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Past conversation retrieval can expose secrets, credentials, personal data, tool outputs, or private project details. <br>
-Mitigation: Use the narrowest search and read scope that answers the current question, and avoid retrieving unrelated conversation content. <br>
-Risk: Direct memory-tool access can load more raw conversation content than needed. <br>
-Mitigation: Route historical searches through the dedicated conversation-search agent and rely on concise synthesized findings with sources. <br>
-Risk: Older conversation findings may be stale or not apply to the current codebase. <br>
-Mitigation: Inspect current files and requirements first, then use memory as supporting context for decisions or troubleshooting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/YumoeZhung/remembering-conversations) <br>
-- [Episodic Memory MCP Tools Reference](MCP-TOOLS.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill to consult prior conversation history before repeating investigations, choosing an implementation approach, or handling unfamiliar workflows. It is intended to return concise, actionable historical context with sources after the current task is understood.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Tool invocation instructions] <br>
-**Output Format:** [Markdown with task prompts and tool invocation examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results should be summarized into actionable findings with sources rather than loading full raw conversations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can search and read sensitive archived conversation history too broadly, including past sessions that may contain credentials, private code, or sensitive tool output.
+
+Mitigation: Use explicit prompts, current-project limits, snippet-first reads, and caution around archives likely to contain sensitive material.
+
+## Reference(s):
+
+- [Episodic Memory MCP Tools Reference](artifact/MCP-TOOLS.md)
+- [ClawHub Skill Page](https://clawhub.ai/yumoezhung/skills/remembering-conversations)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown synthesis with source references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [When used as directed, the search agent summarizes selected conversation results in roughly 200-1000 words.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

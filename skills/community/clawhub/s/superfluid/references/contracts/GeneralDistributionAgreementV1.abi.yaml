@@ -26,13 +26,13 @@ meta:
       avalanche-c: "0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2"
       celo-mainnet: "0x308b7405272d11494716e30C6E972DbF6fb89555"
       scroll-mainnet: "0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28"
-      degenchain: "0x210a01ad187003603B2287F78579ec103Eb70D9B"
+      arc-mainnet: "0xE32790AC5e6aAA8416364551b5E1E6736c64e50D"
     testnet:
       avalanche-fuji: "0x51f571D934C59185f13d17301a36c07A2268B814"
       base-sepolia: "0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8"
       eth-sepolia: "0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9"
       optimism-sepolia: "0xd453d38A001B47271488886532f1CCeAbf0c7eF3"
-      scroll-sepolia: "0x93fA9B627eE016990Fe5e654F923aaE8a480a75b"
+      arc-testnet: "0xC5428C0377A17d2Ec35f55B87632e5bb49dBA51A"
 
 # == Abbreviations ==
 # 3Ps  — Three Periods: liquidation, patrician, and pleb (solvency model)
@@ -137,6 +137,8 @@ distributeFlow:
     - "Gotcha: Actual flow rate may differ from requested due to integer division rounding (requestedFlowRate / totalUnits). The remainder does not stay in the pool — it is streamed to the pool admin as a continuous adjustment flow."
     - "Gotcha: If requestedFlowRate < totalUnits, per-unit rate truncates to 0 and the entire flow goes to admin as adjustment."
     - "Gotcha: Unit changes (updateMemberUnits) can only increase the adjustment flow (sticky), never decrease it. Re-call distributeFlow to reset the per-unit rate and adjustment flow."
+    - "Gotcha: Solvency (patrician/pleb/pirate and reward split) uses the account-level totalDeposit from SuperToken.realtimeBalanceOf, summed across CFA and GDA (v1.15.3, live on all networks). Older logic used only this agreement's deposit, so mixed CFA+GDA senders could be treated as pirate."
+    - "Gotcha: Liquidating a critical sender with no flow into this pool reverts GDA_FLOW_DOES_NOT_EXIST (v1.15.3)."
   mutability: nonpayable
   access: admin | anyone(if-pool-allows) | anyone(if-liquidation)
   inputs:
@@ -148,7 +150,7 @@ distributeFlow:
   outputs:
     - newCtx: bytes
   emits: [FlowDistributionUpdated, BufferAdjusted]
-  errors: [GDA_ONLY_SUPER_TOKEN_POOL, GDA_NO_NEGATIVE_FLOW_RATE, GDA_DISTRIBUTE_FROM_ANY_ADDRESS_NOT_ALLOWED, GDA_DISTRIBUTE_FOR_OTHERS_NOT_ALLOWED, GDA_NON_CRITICAL_SENDER, GDA_INSUFFICIENT_BALANCE]
+  errors: [GDA_ONLY_SUPER_TOKEN_POOL, GDA_NO_NEGATIVE_FLOW_RATE, GDA_DISTRIBUTE_FROM_ANY_ADDRESS_NOT_ALLOWED, GDA_DISTRIBUTE_FOR_OTHERS_NOT_ALLOWED, GDA_FLOW_DOES_NOT_EXIST, GDA_NON_CRITICAL_SENDER, GDA_INSUFFICIENT_BALANCE]
 
 # == Member Management ==
 # Manage pool members and claims through the Host.

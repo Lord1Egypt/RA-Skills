@@ -1,46 +1,57 @@
-## Description: <br>
-Converts PRDs, interface documentation, and requirements specifications into acceptance, integration, testing, go-live, boundary, and open-question checklists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts PRDs, interface documentation, and requirements specifications into acceptance, integration, testing, and go-live checklists.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Developers, product managers, QA engineers, and release reviewers use this skill to turn PRDs, API/interface docs, and scope notes into reviewable acceptance, integration, test, and launch checklists with explicit pending questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Input specifications or requirements may contain secrets, sensitive personal data, or proprietary details. <br>
-Mitigation: Provide only the files needed for the checklist task and redact unnecessary sensitive content before use. <br>
-Risk: The helper can write a report to the requested output path. <br>
-Mitigation: Choose output paths deliberately and use dry-run or stdout review when you do not want a file written. <br>
-Risk: Generated checklists can be mistaken for completed testing or approval evidence. <br>
-Mitigation: Treat outputs as review drafts and verify test execution, approvals, and launch readiness separately. <br>
+## Use Case:
 
+Product, engineering, QA, and release teams use this skill to turn written requirements into reviewable Markdown checklists, pending questions, and next-step guidance before acceptance, integration, testing, or launch work.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/52YuanChangXing/spec-to-checklist) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
-- [Checklist template](artifact/resources/template.md) <br>
-- [Structured skill configuration](artifact/resources/spec.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or JSON checklist/report content, with optional file output when an output path is provided] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local Python helper supports file, directory, CSV/TSV, and pattern-scan inputs; outputs should be treated as review drafts rather than proof that testing passed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill processes local files selected by the user and can write generated reports to a chosen output path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review input paths and output destinations before running the bundled script, and use dry-run or direct Markdown drafting when file writes are not desired.
+
+Risk: Generated checklists may omit requirements or reflect gaps in incomplete PRDs, interface documents, or scope notes.
+
+Mitigation: Treat outputs as review drafts, keep pending questions visible, and verify checklist items against source requirements before execution or release decisions.
+
+Risk: Inputs may contain personal, confidential, or compliance-sensitive information.
+
+Mitigation: Redact sensitive material before processing and keep generated checklist artifacts within the intended local workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/spec-to-checklist)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands]
+
+**Output Format:** [Markdown checklist text, with optional local shell command usage for file-based generation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces review drafts and checklists from local user-provided inputs; script output can be written to a selected local file.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

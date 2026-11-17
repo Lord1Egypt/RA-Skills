@@ -1,39 +1,48 @@
-## Description: <br>
-Guides architectural decisions for Deep Agents applications. Use when deciding between Deep Agents vs alternatives, choosing backend strategies, designing subagent systems, or selecting middleware approaches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides architectural decisions for Deep Agents applications. Use when deciding between Deep Agents vs alternatives, choosing backend strategies, designing subagent systems, or selecting middleware approaches.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[anderskev](https://clawhub.ai/user/anderskev)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to make and document architecture decisions for Deep Agents applications, including framework fit, backend selection, subagent boundaries, middleware design, human approval gates, context handling, and checkpointing.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Architecture guidance may lead users to enable filesystem access, persistent memory, execute tools, or reduced human approval gates without adequate review.
+
+Mitigation: Review application designs and generated implementation code before deployment, with particular attention to filesystem scope, persistent data handling, execute-tool access, and human-in-the-loop controls.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to choose whether Deep Agents fits an application and to document backend, subagent, middleware, human-in-the-loop, context, and checkpointing decisions before implementation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Deep Agents implementations can expose broad filesystem roots, command execution, subagent tool access, or persistent memory if architecture choices are not scoped before implementation. <br>
-Mitigation: Use the skill's decision gates and the security guidance to explicitly scope filesystem roots, command approvals, subagent tool access, and memory retention before building. <br>
-Risk: Documentation-only architecture guidance may be applied incorrectly or become outdated as Deep Agents behavior changes. <br>
-Mitigation: Review the generated architecture decisions against current project requirements and scan the skill before deployment. <br>
+**Output Format:** [Markdown guidance with tables, checklists, decision trees, and Python code snippets]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Documentation-only architecture guidance; no commands are run and no files are installed by the skill itself.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with tables, decision gates, and Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only architecture guidance; no code execution, credential access, or installation actions are performed by the skill itself.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

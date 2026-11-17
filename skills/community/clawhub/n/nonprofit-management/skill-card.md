@@ -1,42 +1,59 @@
-## Description: <br>
-Operations assistant for small 501(c)(3) nonprofits: IRS compliance, grant tracking, board meeting prep, donor management, program reporting, and financial health monitoring for organizations under $1M revenue with small or volunteer staff. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operations assistant for small 501(c)(3) nonprofits with under $1M in revenue and small or volunteer staff, covering IRS compliance, grant tracking, board preparation, donor management, program reporting, and financial health monitoring.
 
-## Publisher: <br>
-[joshbuildswithdoit](https://clawhub.ai/user/joshbuildswithdoit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joshbuildswithdoit](https://clawhub.ai/user/joshbuildswithdoit)
 
-## Use Case: <br>
-External nonprofit staff, board members, and volunteers use this skill to organize small 501(c)(3) operations, including compliance reminders, board materials, grant calendars, donor acknowledgments, program reporting, and financial health checks. It prepares planning materials and flags issues for qualified legal, tax, or CPA review rather than filing returns or providing legal advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive donor, participant, board, or financial data may be exposed or reused in generated external-facing documents. <br>
-Mitigation: Limit pasted personal information, confirm consent before generating external-facing documents, and review receipts, letters, and reports before sending. <br>
-Risk: Tax, legal, and state-specific compliance guidance may be misapplied if treated as professional advice. <br>
-Mitigation: Use the skill for preparation and issue-spotting, then have qualified legal, tax, or CPA professionals review filings and compliance decisions. <br>
+## Use Case:
 
+External nonprofit staff, board members, and volunteers use this skill to organize compliance deadlines, prepare governance materials, track grants and donors, draft reports, and monitor basic financial health. It supports operational drafting and tracking, not legal, tax, or accounting advice.
 
-## Reference(s): <br>
-- [501(c)(3) Annual Compliance Checklist](references/compliance-checklist.md) <br>
-- [Nonprofit Financial Health Benchmarks](references/financial-benchmarks.md) <br>
-- [Grant Calendar Template](references/grant-calendar-template.md) <br>
+### Deployment Geography for Use:
 
+Global, with state-specific compliance examples defaulting to Ohio and requiring local review before use.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown checklists, agendas, templates, reminders, reports, and advisory guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only skill with no executable code, credential access, or hidden data movement identified by release security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: The skill may produce nonprofit compliance, tax-preparation, or governance guidance that users could mistake for professional legal, tax, or accounting advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use outputs as drafts and tracking aids only; have attorneys, CPAs, preparers, or qualified staff review filings, legal questions, and state-specific requirements before relying on them.
+
+Risk: Donor, beneficiary, board, and program workflows can involve confidential or sensitive personal information.
+
+Mitigation: Limit input to necessary fields, avoid unnecessary full donor lists or protected beneficiary details, and remove confidential board information from external-facing outputs unless disclosure is approved.
+
+Risk: Several compliance examples are Ohio-specific and may be inaccurate for organizations operating elsewhere.
+
+Mitigation: Treat Ohio examples as defaults only and verify charitable registration, gaming, employment, and filing rules for the relevant state or jurisdiction.
+
+## Reference(s):
+
+- [Grant Calendar Template](artifact/references/grant-calendar-template.md)
+- [501(c)(3) Annual Compliance Checklist](artifact/references/compliance-checklist.md)
+- [Nonprofit Financial Health Benchmarks](artifact/references/financial-benchmarks.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown checklists, agendas, calendars, reports, receipt drafts, and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include sensitive nonprofit operations content and should be reviewed before use for donor privacy, beneficiary privacy, state-specific compliance, legal, tax, and accounting accuracy.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

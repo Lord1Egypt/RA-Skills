@@ -1,42 +1,56 @@
-## Description: <br>
-Local log file inspection and analysis toolkit for parsing common log formats, aggregating errors, filtering log lines by pattern, level, and time window, and following live logs without third-party dependencies or remote calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clean Log Toolkit helps agents inspect local log files by parsing common formats, aggregating errors, filtering by pattern, time, level, and context, following live logs, and producing structured reports without third-party dependencies or remote calls.
 
-## Publisher: <br>
-[gopendrasharma89-tech](https://clawhub.ai/user/gopendrasharma89-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gopendrasharma89-tech](https://clawhub.ai/user/gopendrasharma89-tech)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect local log files, turn semi-structured logs into CSV, TSV, or JSONL, summarize error patterns, and produce reports or filtered excerpts for incident tickets and debugging workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Log files may contain sensitive operational data or personal information. <br>
-Mitigation: Review input and output paths, limit sharing of generated reports, and redact sensitive log content before distributing results. <br>
-Risk: Live follow sessions can continue running longer than intended. <br>
-Mitigation: Use follow.py with --timeout or --max-events when bounded execution is needed. <br>
-Risk: Error fingerprinting and regex-based parsing are heuristic and can group different events together or accept near-matching log lines. <br>
-Mitigation: Inspect representative samples, increase --top when needed, and use explicit formats or named-group regexes for higher precision. <br>
+## Use Case:
 
+Developers, support engineers, and agents use this skill to inspect local log files, convert logs into structured outputs, find error clusters, filter incident windows by time, level, and pattern, and prepare reports for tickets or downstream analysis.
 
-## Reference(s): <br>
-- [Clean Log Toolkit on ClawHub](https://clawhub.ai/gopendrasharma89-tech/clean-log-toolkit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and shell-oriented guidance, with generated CSV, TSV, JSONL, JSON, Markdown, CSV reports, filtered text lines, and JSON line envelopes from the bundled scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally with Python 3 standard library only; reads caller-provided log inputs and writes only caller-provided output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release evidence and artifact SKILL.md) <br>
+Risk: Output files can overwrite source logs or symlink aliases, which can cause data loss.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a separate output directory and confirm output paths are not the original log path or a symlink to it before running parse, grep, or error-report commands.
+
+Risk: Generated reports can preserve sensitive raw log content.
+
+Mitigation: Inspect and redact reports before sharing them in tickets, repositories, spreadsheets, or chat.
+
+## Reference(s):
+
+- [Clean Log Toolkit ClawHub skill page](https://clawhub.ai/gopendrasharma89-tech/skills/clean-log-toolkit)
+- [Clean Log Toolkit ClawHub homepage](https://clawhub.ai/gopendrasharma89-tech/clean-log-toolkit)
+- [Related Clean CSV Toolkit](https://clawhub.ai/gopendrasharma89-tech/clean-csv-toolkit)
+- [Related Clean Text Toolkit](https://clawhub.ai/gopendrasharma89-tech/clean-text-toolkit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, CSV, TSV, JSONL, shell commands, guidance]
+
+**Output Format:** [Plain text summaries, filtered log lines, Markdown reports, JSON reports, CSV/TSV tables, JSONL rows, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local stdout output or files at caller-provided paths; follow.py can stream matched lines as JSON envelopes.]
+
+## Skill Version(s):
+
+0.2.0 (source: release metadata and SKILL.md body)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

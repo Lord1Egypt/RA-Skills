@@ -1,44 +1,59 @@
-## Description: <br>
-合同规则审阅助手 - 上传本地合同文件到 AnyShare 并调用规则审阅技能进行自动化审阅，支持保存结果和生成分享链接 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+合同规则审阅助手 - 上传本地合同文件到 AnyShare 并调用规则审阅技能进行自动化审阅，支持保存结果和生成分享链接
 
-## Publisher: <br>
-[susan-meng](https://clawhub.ai/user/susan-meng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[susan-meng](https://clawhub.ai/user/susan-meng)
 
-## Use Case: <br>
-Employees, legal operations teams, and contract reviewers use this skill to upload local contracts to AnyShare, apply rule-review templates, generate an automated review report, and save the result in a structured document library location. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uploads sensitive contract files to AnyShare and processes them through review and indexing services. <br>
-Mitigation: Run it only where organizational policy permits this processing, confirm the file and destination folder before execution, and use a least-privileged token. <br>
-Risk: The skill can generate a share link for the review report. <br>
-Mitigation: Create or retain share links only when sharing is explicitly required, and revoke links that are no longer needed. <br>
+## Use Case:
 
+Contract reviewers, legal operations teams, and business users use this skill to upload local contracts to AnyShare, apply built-in or user-provided review templates, run rule review, and save Markdown review reports with share links.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/susan-meng/contract-rule-review) <br>
-- [Publisher Profile](https://clawhub.ai/user/susan-meng) <br>
-- [Security Audit Checklist](artifact/SECURITY.md) <br>
-- [Troubleshooting Guide](artifact/references/troubleshooting.md) <br>
-- [AnyShare MCP Endpoint](https://anyshare.aishu.cn/asmcp/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown review reports with setup guidance and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured AnyShare access token and personal document library GNS; generated reports may include share links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter states 2.0.0) <br>
+Risk: The skill handles sensitive contract files and uploads them to AnyShare for review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only contracts the user is authorized to upload, keep the AnyShare token least-privileged, and create or share report links only with approved recipients and clear retention expectations.
+
+Risk: Server security evidence reports a verified filename-based code-injection flaw in the documented workflow.
+
+Mitigation: Avoid processing files from untrusted sources or with untrusted filenames until the filename handling flaw is fixed and reviewed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/susan-meng/skills/contract-rule-review)
+- [Security Audit Checklist](SECURITY.md)
+- [Troubleshooting Guide](references/troubleshooting.md)
+- [General Contract Review Template](templates/通用合同审阅模板.md)
+- [Service Contract Review Template](templates/服务合同审阅模板.md)
+- [Procurement Contract Review Template](templates/采购合同审阅模板.md)
+- [AnyShare MCP Service](https://anyshare.aishu.cn/asmcp/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown review report, file uploads, saved report file, and share link]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an AnyShare access token, an AnyShare MCP service configuration, and authorized contract files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter says 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,50 +1,59 @@
-## Description: <br>
-Generates short and promotional videos from text prompts, images, first/last frames, or reference images through IMA Studio video-generation services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents generate AI videos from text prompts, images, first/last frames, or reference images using IMA Studio video models such as Wan, Kling, Veo, Sora, Pixverse, Hailuo, SeeDance, and Vidu.
 
-## Publisher: <br>
-[allenfancy-gan](https://clawhub.ai/user/allenfancy-gan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[allenfancy-gan](https://clawhub.ai/user/allenfancy-gan)
 
-## Use Case: <br>
-External creators, marketers, and developers use this skill to create video clips from prompts or source images, including text-to-video, image-to-video, first/last-frame interpolation, and reference-image guided video generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends prompts, selected media, and the IMA API key to IMA Studio services. <br>
-Mitigation: Use a scoped or test API key for evaluation, avoid sharing logs or screenshots that contain credentials or local paths, and run only when external IMA service use is intended. <br>
-Risk: Local media and derived cover frames may be uploaded through an upload-token flow to a pre-signed HTTPS storage URL. <br>
-Mitigation: Review media before upload and avoid sensitive content unless the operator has approved use of IMA Studio upload services. <br>
-Risk: Remote media URLs may be downloaded temporarily for probing, validation, or video-cover extraction. <br>
-Mitigation: Use direct public HTTPS media URLs only and rely on the skill's documented rejection of credentialed, redirected, private, loopback, and oversized remote media. <br>
-Risk: Video generation can consume account credits and poll for long-running tasks. <br>
-Mitigation: Run the low-cost doctor check first, start with lower-cost model and resolution settings, and increase duration or quality only after a small validation run succeeds. <br>
+## Use Case:
 
+External users, creators, marketers, and developers use this skill to route video-generation requests, validate parameters, and create text-to-video, image-to-video, first-last-frame, or reference-image outputs through IMA APIs.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/allenfancy-gan/ima-video-ai) <br>
-- [IMA homepage](https://www.imaclaw.ai) <br>
-- [References map](artifact/references/README.md) <br>
-- [Security and network behavior](artifact/references/shared/security-and-network.md) <br>
-- [Model selection policy](artifact/references/shared/model-selection-policy.md) <br>
-- [API contract and errors](artifact/references/operations/api-contract-and-errors.md) <br>
-- [Video capability](artifact/capabilities/video/CAPABILITY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance and CLI output JSON containing remote HTTPS video result URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns remote HTTPS video result URLs; generated videos are not converted into local file attachments by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.13 (source: server release metadata; artifact frontmatter reports 1.2.0) <br>
+Risk: API keys or sensitive request details may be exposed through unsafe endpoint configuration, troubleshooting output, or local failure logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped or test IMA key, keep IMA_BASE_URL, IMA_IM_BASE_URL, and --base-url pointed only at trusted IMA HTTPS endpoints, avoid commands that print the full key, and inspect or delete ~/.openclaw/logs/ima_skills/ after failures.
+
+Risk: Prompts, task parameters, and uploaded media are processed by third-party IMA services during video generation.
+
+Mitigation: Review media and prompt sensitivity before use, provide only direct public HTTPS media URLs when using remote references, and validate the workflow with low-cost test runs before broader use.
+
+## Reference(s):
+
+- [IMA homepage](https://www.imaclaw.ai)
+- [ClawHub skill page](https://clawhub.ai/allenfancy-gan/skills/ima-video-ai)
+- [Reference map](artifact/references/README.md)
+- [Security and network](artifact/references/shared/security-and-network.md)
+- [Model selection policy](artifact/references/shared/model-selection-policy.md)
+- [Product list and create parameters](artifact/references/models/product-list-and-create-params.md)
+- [Video capability](artifact/capabilities/video/CAPABILITY.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance, Remote video URLs]
+
+**Output Format:** [Markdown guidance with CLI commands and optional JSON task results containing remote HTTPS video URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires IMA_API_KEY; video results are returned as remote HTTPS URLs rather than local file attachments.]
+
+## Skill Version(s):
+
+1.0.13 (source: server release metadata; artifact SKILL.md frontmatter reports 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

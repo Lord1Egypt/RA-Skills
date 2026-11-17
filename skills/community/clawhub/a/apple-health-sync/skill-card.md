@@ -1,45 +1,61 @@
-## Description: <br>
-Sync encrypted Apple Health data from an iOS device (iPhone, iPad) to OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sync encrypted Apple Health data from an iOS device (iPhone, iPad) to OpenClaw, Hermes Agent, Claude, Codex or any other AI agent.
 
-## Publisher: <br>
-[lukasosterheider](https://clawhub.ai/user/lukasosterheider) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lukasosterheider](https://clawhub.ai/user/lukasosterheider)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to initialize encrypted iOS Apple Health pairing, fetch and store sanitized local health snapshots, unlink paired devices, and generate daily, weekly, or monthly health summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive Apple Health data and can store private keys and health-derived records under ~/.apple-health-sync. <br>
-Mitigation: Install only on trusted machines and treat the configured state directory as sensitive, including backups, shared accounts, and screen sharing. <br>
-Risk: Saved summaries may expose personal health information. <br>
-Mitigation: Use the --save option only for intended destinations and apply normal controls for private health records. <br>
-Risk: Fetched health payloads are external inputs before local storage and summarization. <br>
-Mitigation: Keep the documented validation and fail-closed behavior enabled so unsafe or unsupported payloads are rejected. <br>
+## Use Case:
 
+External users and developers use this skill to onboard an iOS device, fetch and locally decrypt Apple Health snapshots, unlink devices, and generate daily, weekly, or monthly health summaries for agent workflows.
 
-## Reference(s): <br>
-- [Config reference](references/config.md) <br>
-- [Apple Health Sync homepage](https://gethealthsync.app/) <br>
-- [Health Sync for OpenClaw iOS app](https://apps.apple.com/app/health-sync-for-openclaw/id6759522298) <br>
-- [ClawHub skill page](https://clawhub.ai/lukasosterheider/apple-health-sync) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with inline shell commands, text summaries, optional JSON summaries, and local configuration or data files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists sync state and health-derived records under ~/.apple-health-sync by default or a configured state directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.8.1 (source: server release metadata) <br>
+Risk: The skill handles Apple Health-derived data and private sync keys stored under the selected local state directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the state directory private, do not share private keys, rotation backups, databases, NDJSON exports, or saved reports, and preserve the documented file permissions.
+
+Risk: The sync workflow uses a disclosed Supabase relay for onboarding, fetching encrypted rows, and unlinking devices.
+
+Mitigation: Use only the documented relay URLs and rely on local decryption; do not send private keys or health records to the onboarding relay.
+
+Risk: Dependency installation, identity rotation, unlinking, report saving, and recurring schedules can affect sensitive local state or recurring access patterns.
+
+Mitigation: Run those actions only after explicit user confirmation of the dependency install, unlink, rotation, report destination, or schedule.
+
+## Reference(s):
+
+- [Health Sync homepage](https://gethealthsync.app/)
+- [Health Sync for OpenClaw iOS app](https://apps.apple.com/app/health-sync-for-openclaw/id6759522298)
+- [ClawHub skill page](https://clawhub.ai/lukasosterheider/skills/apple-health-sync)
+- [Config reference](references/config.md)
+- [Default runtime config](references/configs.defaults.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands plus optional text or JSON health summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local private state, onboarding artifacts, encrypted-sync outputs, SQLite or NDJSON health snapshots, and confirmed saved summaries.]
+
+## Skill Version(s):
+
+0.9.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

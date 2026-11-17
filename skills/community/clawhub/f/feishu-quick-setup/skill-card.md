@@ -1,45 +1,60 @@
-## Description: <br>
-Creates a new Feishu or Lark bot through the Feishu App Registration API Device Flow and saves the bot credentials to the OpenClaw config file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates a new Feishu bot through the Feishu App Registration Device Flow and saves its app ID and app secret to the OpenClaw configuration.
 
-## Publisher: <br>
-[hashstacs-hk](https://clawhub.ai/user/hashstacs-hk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hashstacs-hk](https://clawhub.ai/user/hashstacs-hk)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to create and connect a new Feishu or Lark bot when appId and appSecret have not yet been configured. It guides the agent through checking existing configuration, starting authorization, polling for completion, and saving the resulting bot credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup flow stores a Feishu or Lark app ID and app secret in the local OpenClaw config, and may create a backup file containing the previous config. <br>
-Mitigation: Keep the OpenClaw config and any .bak backup private, restrict local file access, and rotate credentials if either file is exposed. <br>
-Risk: The user must approve a returned Feishu or Lark authorization link to create and connect a new bot. <br>
-Mitigation: Install only when creating a new Feishu or Lark bot is intended, use the returned verification URL as provided, and stop if the request is unexpected. <br>
-Risk: Additional Feishu permissions can expand what the bot can access. <br>
-Mitigation: Review the bot's Feishu permissions after setup and enable only the permissions needed for the intended OpenClaw workflows. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to create a Feishu or Lark bot, guide the user through authorization, and store the resulting credentials for Feishu channel setup.
 
-## Reference(s): <br>
-- [Feishu permissions guide](references/feishu-permissions.md) <br>
-- [Troubleshooting guide](references/troubleshooting.md) <br>
-- [Feishu Open Platform](https://open.feishu.cn) <br>
-- [ClawHub skill page](https://clawhub.ai/hashstacs-hk/feishu-quick-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and single-line JSON command outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill may ask the user to open a returned Feishu or Lark verification URL and may save app credentials to the local OpenClaw configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill stores long-lived Feishu app secrets locally, which can expose credentials on shared or weakly protected machines.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on a trusted single-user machine or tighten local file permissions before setup.
+
+Risk: App secrets may be exposed if copied into command history, terminal logs, or shared support output.
+
+Mitigation: Avoid sharing command logs that contain credentials and rotate the Feishu app secret if exposure is possible.
+
+Risk: Granting broad Feishu document, drive, calendar, or contact permissions can expand access beyond the user's need.
+
+Mitigation: After setup, verify Feishu permissions manually and enable only the scopes required for the intended OpenClaw workflows.
+
+## Reference(s):
+
+- [Feishu permissions guide](references/feishu-permissions.md)
+- [Troubleshooting guide](references/troubleshooting.md)
+- [Feishu Open Platform](https://open.feishu.cn)
+- [ClawHub skill page](https://clawhub.ai/hashstacs-hk/skills/feishu-quick-setup)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and single-line JSON script results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update OpenClaw Feishu configuration and a local backup file.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

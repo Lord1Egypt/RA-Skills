@@ -1,44 +1,59 @@
-## Description: <br>
-Content moderation plugin for OpenClaw/Moltbot AI agents. Use when building chatbots that need profanity filtering, moderating user messages in Discord/Slack/Telegram bots, or adding content moderation to OpenClaw agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Content moderation plugin for OpenClaw/Moltbot AI agents.
 
-## Publisher: <br>
-[thegdsks](https://clawhub.ai/user/thegdsks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[thegdsks](https://clawhub.ai/user/thegdsks)
 
-## Use Case: <br>
-Developers and bot operators use this skill to add profanity filtering and moderation behavior to OpenClaw or Moltbot agents for Discord, Slack, Telegram, and similar chat workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The plugin can trigger automatic moderation actions such as message deletion or bans. <br>
-Mitigation: Configure moderation actions deliberately, test them before deployment, and keep bot permissions to the least privilege needed. <br>
-Risk: Violation logging can expose user identifiers, flagged text, or other moderation records. <br>
-Mitigation: Define retention, access, and review rules for violation logs before enabling logging in production. <br>
-Risk: A mismatched npm package or repository could lead to installing unintended code. <br>
-Mitigation: Verify the package and linked repository are the intended sources and pin the dependency version before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw Profanity Plugin on ClawHub](https://clawhub.ai/thegdsks/openclaw-profanity) <br>
-- [openclaw-profanity npm package](https://www.npmjs.com/package/openclaw-profanity) <br>
-- [glin-profanity OpenClaw package](https://github.com/GLINCKER/glin-profanity/tree/release/packages/openclaw) <br>
-- [Core library docs](https://www.typeweaver.com/docs/glin-profanity) <br>
+## Use Case:
 
+Developers and agent builders use this skill to add profanity detection and moderation behavior to OpenClaw or Moltbot chat agents across Discord, Slack, Telegram, and similar chat workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash and JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes installation commands, configuration options, moderation actions, and platform examples.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Automated moderation actions can delete messages, block users, or ban repeat offenders before moderators verify detection quality.
+
+Mitigation: Start with warn, censor, or log-only modes, test against representative chat data, and require moderator review plus a reversal process before enabling deletes or bans.
+
+Risk: Moderator notifications and logs may expose user, channel, and violation details.
+
+Mitigation: Limit bot permissions, restrict log access, define retention limits, and treat moderation records as sensitive workspace data.
+
+Risk: The package is installed from npm and no server-resolved provenance is available for this release.
+
+Mitigation: Pin the dependency version and audit the npm package before installing it in a production chat workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/thegdsks/skills/openclaw-profanity)
+- [npm package](https://www.npmjs.com/package/openclaw-profanity)
+- [Core library docs](https://www.typeweaver.com/docs/glin-profanity)
+- [Referenced GitHub package path](https://github.com/GLINCKER/glin-profanity/tree/release/packages/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript examples and npm installation commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include moderation actions such as warn, censor, block, log, or custom violation handling.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

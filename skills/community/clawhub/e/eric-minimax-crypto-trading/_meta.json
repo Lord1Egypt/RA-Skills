@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn712egma3976f4b68hksznyrs85wsr5",
-  "slug": "eric-minimax-crypto-trading",
-  "version": "11.0.0",
-  "publishedAt": 1777802556962
+  "id": 378680790331480,
+  "version": "1.0.0",
+  "name": "minimax-crypto-trading",
+  "updated_at": 1774005547111,
+  "platform": "minimax"
 }

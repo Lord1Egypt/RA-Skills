@@ -1,6 +1,16 @@
 {
-  "ownerId": "kn767tksgcz5s8za135n8s2fpd80mgmf",
-  "slug": "synology-calendar",
-  "version": "1.0.1",
-  "publishedAt": 1772517801233
+  "name": "synology-calendar",
+  "version": "1.0.0",
+  "description": "Manage Synology Calendar events and todos via API",
+  "author": "OpenClaw Community",
+  "tags": ["synology", "calendar", "events", "tasks"],
+  "requires": {
+    "python": ">=3.7",
+    "libraries": ["requests"]
+  },
+  "env": {
+    "SYNOLOGY_URL": "群晖地址，如 http://192.168.1.1:5000",
+    "SYNOLOGY_USER": "用户名",
+    "SYNOLOGY_PASSWORD": "密码"
+  }
 }

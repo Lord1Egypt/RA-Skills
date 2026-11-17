@@ -1,44 +1,63 @@
-## Description: <br>
-Manages and orchestrates multi-step, stateful agent workflows; handles task dependencies, persistent state, error recovery, and external rate-limiting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages and orchestrates multi-step, stateful agent workflows; handles task dependencies, persistent state, error recovery, and external rate-limiting.
 
-## Publisher: <br>
-[abeltennyson](https://clawhub.ai/user/abeltennyson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abeltennyson](https://clawhub.ai/user/abeltennyson)
 
-## Use Case: <br>
-Developers and automation builders use this skill to define, resume, and coordinate multi-step agent workflows with dependencies, persistent state, rate limits, and optional notifications. It is suited to structured task automation where human requests need to become executable task plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task descriptions, workflow data, notification text, and recipient details may be sent to the SkillBoss/HeyBoss API. <br>
-Mitigation: Avoid secrets, regulated data, private business workflows, or unapproved contacts unless explicit confirmation, redaction, and recipient controls are added. <br>
-Risk: The cooldown wrapper executes a provided command string and the workflow scripts can perform external API calls. <br>
-Mitigation: Review commands and task definitions before execution, constrain allowed actions, and run the skill in an environment with only the required credentials. <br>
-Risk: External API failures or model parsing errors can produce incomplete or fallback task results. <br>
-Mitigation: Validate parsed task JSON and workflow results before using them for notifications or follow-on actions. <br>
+## Use Case:
 
+Developers and engineers use this skill to define, parse, run, and resume multi-step agent workflows with task dependencies, persistent JSON state, external API-backed reasoning, notifications, and cooldown handling.
 
-## Reference(s): <br>
-- [Task Structure Schema](references/task_schema.md) <br>
-- [SkillBoss API Hub /v1 API](https://api.heybossai.com/v1) <br>
-- [SkillBoss API Hub /v1/pilot Endpoint](https://api.heybossai.com/v1/pilot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with JSON task definitions and shell/Python command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call the SkillBoss/HeyBoss API and write local task state files when the included scripts are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Free-form task prompts, workflow details, and notification content may be processed by the SkillBoss API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not include secrets, regulated data, or other sensitive content in task requests or notification payloads.
+
+Risk: The skill can trigger outbound notifications through the external API.
+
+Mitigation: Review generated task definitions and notification recipients before running workflows that may send messages.
+
+Risk: The skill requires SKILLBOSS_API_KEY for API access.
+
+Mitigation: Store SKILLBOSS_API_KEY only in protected environment configuration and avoid logging or embedding it in task files.
+
+Risk: The cooldown shell wrapper is flagged as unsafe for untrusted command or task-name input.
+
+Mitigation: Avoid using cooldown.sh with untrusted or generated input until its eval and path handling are fixed.
+
+## Reference(s):
+
+- [Task Structure Schema](references/task_schema.md)
+- [SkillBoss API Hub pilot endpoint](https://api.heybossai.com/v1/pilot)
+- [ClawHub skill page](https://clawhub.ai/abeltennyson/skills/abel-agent-task-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python, shell, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces task definitions, workflow execution guidance, persisted task-state files, and command-line execution patterns.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

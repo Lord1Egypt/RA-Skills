@@ -1,42 +1,55 @@
-## Description: <br>
-Crea guias de compra SEO optimizadas para posts de afiliado en espanol, incluyendo estructura, comparativas, reviews, CTAs, E-E-A-T y salida en Markdown lista para CMS o WordPress. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates Spanish SEO affiliate buying guides, product comparisons, rankings, and purchase-intent reviews with conversion-focused structure, copywriting, and E-E-A-T guidance.
 
-## Publisher: <br>
-[cmunozdev](https://clawhub.ai/user/cmunozdev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cmunozdev](https://clawhub.ai/user/cmunozdev)
 
-## Use Case: <br>
-External creators, affiliate marketers, and SEO writers use this skill to draft or improve Spanish buying guides, product rankings, comparisons, and review-style affiliate articles. It helps collect required inputs, structure the article for search intent, and produce Markdown with SEO metadata, disclosure language, product sections, comparison tables, and a final checklist. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may encourage generated reviews to imply firsthand product testing that has not happened. <br>
-Mitigation: Replace implied firsthand testing with verified, user-supplied, or sourced claims before publishing. <br>
-Risk: Affiliate disclosures, prices, ratings, and availability can be inaccurate or outdated. <br>
-Mitigation: Review outputs before publication and verify disclosures, prices, ratings, availability, and affiliate links against current source data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Estructura Detallada: Guia de Compra SEO para Afiliado](references/estructura-detallada.md) <br>
-- [Ejemplos de Reviews de Producto para Guias de Afiliado](references/ejemplos-reviews.md) <br>
-- [Plantillas de Tablas Comparativas para Guias de Afiliado](references/tabla-comparativa.md) <br>
-- [ClawHub skill page](https://clawhub.ai/cmunozdev/seo-affiliate-guide) <br>
+## Use Case:
 
+External creators, SEO writers, affiliate marketers, and publishers use this skill to draft or improve Spanish buying guides, comparison posts, ranked product lists, and reviews intended for affiliate monetization.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Configuration instructions] <br>
-**Output Format:** [Markdown with SEO metadata, article sections, tables, checklist, and optional improvement suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated claims about testing, prices, ratings, availability, and affiliate disclosures should be reviewed before publication.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may lead agents to state or imply hands-on product testing when the user has not supplied real testing evidence.
+
+Mitigation: Require first-person experience claims to be backed by user-supplied test notes or remove them from generated content.
+
+Risk: Affiliate content may include outdated or unsupported prices, ratings, availability, specifications, or urgency claims.
+
+Mitigation: Require citations or current user-provided data for product claims, and use completion markers when details are missing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cmunozdev/skills/seo-affiliate-guide)
+- [Estructura Detallada: Guia de Compra SEO para Afiliado](references/estructura-detallada.md)
+- [Ejemplos de Reviews de Producto para Guias de Afiliado](references/ejemplos-reviews.md)
+- [Plantillas de Tablas Comparativas para Guias de Afiliado](references/tabla-comparativa.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with SEO metadata, article body, comparison tables, checklists, and optional schema markup suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Spanish-language affiliate content; may include placeholders when user-supplied product details, affiliate links, prices, ratings, or evidence are missing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

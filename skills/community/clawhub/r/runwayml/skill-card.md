@@ -1,42 +1,60 @@
-## Description: <br>
-Generate AI videos, images, and audio with Runway API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI videos, images, and audio with Runway API.
 
-## Publisher: <br>
-[slightly-unrelated](https://clawhub.ai/user/slightly-unrelated) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[slightly-unrelated](https://clawhub.ai/user/slightly-unrelated)
 
-## Use Case: <br>
-Developers and creative technologists use this skill to generate Runway API examples for video, image, and audio workflows. It helps set up API-key usage, choose generation models, and handle asynchronous Runway tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running the examples requires a Runway API key and may spend Runway credits. <br>
-Mitigation: Store RUNWAYML_API_SECRET in a secret manager or environment variable, and review model, duration, and credit impact before making API calls. <br>
-Risk: Prompts, images, audio, or video inputs may be sent to Runway or partner models. <br>
-Mitigation: Avoid submitting secrets, regulated data, or sensitive personal media unless your data-handling requirements allow it. <br>
+## Use Case:
 
+Developers and creative engineers use this skill to generate video, image, and audio assets through Runway API calls from agent-authored JavaScript or shell examples.
 
-## Reference(s): <br>
-- [Runway API Documentation](https://docs.dev.runwayml.com/) <br>
-- [Runway Model Guide](https://docs.dev.runwayml.com/guides/models/) <br>
-- [Runway Developer Portal](https://dev.runwayml.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with JavaScript and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires internet access, a Runway API key, and asynchronous task polling for generated media URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: Prompts, images, videos, or audio supplied to the skill may be sent to Runway's API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only content that is approved for sharing with Runway and review Runway's API terms before use.
+
+Risk: The skill requires a Runway API key stored in the environment.
+
+Mitigation: Store RUNWAYML_API_SECRET in a managed secret store or local environment, avoid committing it, and rotate it if exposed.
+
+Risk: Generation calls can consume Runway account credits.
+
+Mitigation: Review model costs and account billing before running generated API calls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/slightly-unrelated/skills/runwayml)
+- [Runway API Documentation](https://docs.dev.runwayml.com/)
+- [Runway Model Guide](https://docs.dev.runwayml.com/guides/models/)
+- [Runway Developer Portal](https://dev.runwayml.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with JavaScript and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Runway API request examples, model choices, prompt guidance, and task polling instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

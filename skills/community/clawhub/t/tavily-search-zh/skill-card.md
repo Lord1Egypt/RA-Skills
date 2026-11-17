@@ -1,41 +1,54 @@
-## Description: <br>
-Calls Tavily web search through AISA with search depth, topic, and time-range filters for more flexible web retrieval than basic keyword search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calls Tavily web search through AISA with support for search depth, topic, and time-range filters.
 
-## Publisher: <br>
-[aisadocs](https://clawhub.ai/user/aisadocs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aisadocs](https://clawhub.ai/user/aisadocs)
 
-## Use Case: <br>
-Developers and agent users use this skill when they need Tavily-backed web search with depth, topic, and recency controls, especially for time-sensitive retrieval tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries, URLs, and extracted content may be sent to broader AISA search, extraction, model, and synthesis endpoints than the Tavily-only description clearly discloses. <br>
-Mitigation: Avoid confidential queries, private or internal URLs, and sensitive documents unless AISA data handling is acceptable for that content. <br>
-Risk: The skill requires a sensitive AISA_API_KEY credential. <br>
-Mitigation: Provide the key through a managed environment secret, avoid exposing it in prompts or logs, and rotate it if it is disclosed. <br>
+## Use Case:
 
+Developers and external users can use this skill when an agent needs filtered web retrieval through Tavily, especially for queries where recency, search depth, topic, or time range matter.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aisadocs/tavily-search-zh) <br>
-- [AISA service](https://aisa.one) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; the bundled CLI prints text search results derived from API responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and AISA_API_KEY; search queries and URLs are sent to AISA endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The included client exposes AISA routes beyond Tavily search, including URL extraction, Sonar-style prompts, scholar/web/smart searches, and multi-source synthesis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution and limit use to routes that are acceptable for the deployment context.
+
+Risk: Queries, URLs, and authenticated requests are sent to remote AISA services.
+
+Mitigation: Do not submit secrets, private URLs, or sensitive internal queries unless remote processing through AISA is approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aisadocs/skills/tavily-search-zh)
+- [AISA](https://aisa.one)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal text with search results, URLs, dates, snippets, answers, citations, and setup commands where relevant]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and AISA_API_KEY; sends search queries and URLs to remote AISA endpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

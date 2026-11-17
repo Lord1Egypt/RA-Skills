@@ -1,42 +1,55 @@
-## Description: <br>
-Find, rank, and shortlist AI product, AI agent, and agent-skill directories where users can submit products for backlinks, referral traffic, and discovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds, ranks, and shortlists directories where users can submit AI tools, AI apps, AI agents, or agent skills and plugins for backlinks, referral traffic, and discovery.
 
-## Publisher: <br>
-[nostrband](https://clawhub.ai/user/nostrband) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nostrband](https://clawhub.ai/user/nostrband)
 
-## Use Case: <br>
-External users, founders, growth teams, and developers use this skill to discover and prioritize directories for submitting AI products, AI agents, and agent skills. It helps them query ServiceGraph, evaluate authority and reach signals, and decide when to unlock submission details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a ServiceGraph API key. <br>
-Mitigation: Store the key in .env.local or an environment variable and do not paste it into chat. <br>
-Risk: Unlocking directory details can spend ServiceGraph credits. <br>
-Mitigation: Review the number of rows and expected credit cost before approving unlock requests. <br>
+## Use Case:
 
+External users, founders, growth teams, and developers use this skill to identify AI-focused directory and registry sites, rank them by authority signals, and decide which listings to unlock for submission guidance and traffic details.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/nostrband/find-ai-directories) <br>
-- [Publisher Profile](https://clawhub.ai/user/nostrband) <br>
-- [ServiceGraph API](https://api.servicegraph.co) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, API calls] <br>
-**Output Format:** [Markdown guidance with inline shell commands and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ranked directory shortlists, filter suggestions, unlock cost notes, and submission guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The REST authentication example sources .env.local from the project directory, which can execute project-controlled shell code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the OAuth/MCP path, a trusted secret manager, or an already-exported SERVICEGRAPH_API_KEY; do not run the wrapper that sources .env.local.
+
+Risk: Unlocking directory rows can spend credits.
+
+Mitigation: Confirm paid unlocks with the user before making unlock requests and state the credit cost and 30-day TTL before proceeding.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nostrband/skills/find-ai-directories)
+- [Publisher profile](https://clawhub.ai/user/nostrband)
+- [ServiceGraph API](https://api.servicegraph.co)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with API request examples and concise ranked recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include filters, ranked directory shortlists, unlock cost notes, submission guidance, and credential setup guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release evidence; artifact frontmatter reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

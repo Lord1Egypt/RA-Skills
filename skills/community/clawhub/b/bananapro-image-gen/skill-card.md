@@ -1,43 +1,57 @@
-## Description: <br>
-Generates and edits images with Gemini image models for whiteboard diagrams, logo design, and social media visuals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and edits images with Gemini image models, including whiteboard-style diagrams, logo designs, and social media graphics.
 
-## Publisher: <br>
-[xianyu110](https://clawhub.ai/user/xianyu110) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xianyu110](https://clawhub.ai/user/xianyu110)
 
-## Use Case: <br>
-Developers, designers, and content creators use this skill to generate or edit images from prompts, including whiteboard-style diagrams, logos, and social media graphics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, optional input images, and API keys are sent to the configured API provider. <br>
-Mitigation: Use the official Gemini endpoint unless you intentionally trust a proxy provider, and avoid submitting confidential prompts or private images. <br>
-Risk: An API key may be exposed to an unintended endpoint if the proxy URL is misconfigured. <br>
-Mitigation: Review the configured endpoint before use and rotate keys if they may have been sent to an unintended service. <br>
+## Use Case:
 
+Developers and creators use this skill to generate or edit Gemini-based images for whiteboard diagrams, logos, and social media assets from prompts and optional source images.
 
-## Reference(s): <br>
-- [Bananapro Image Gen on ClawHub](https://clawhub.ai/xianyu110/bananapro-image-gen) <br>
-- [Google AI Studio API keys](https://aistudio.google.com/apikey) <br>
-- [Gemini API v1beta endpoint](https://generativelanguage.googleapis.com/v1beta) <br>
-- [apipro.maynor1024.live API proxy](https://apipro.maynor1024.live/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Image files, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Image files produced by a Python command, with markdown and bash usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports text-to-image and image editing inputs, with 1K, 2K, and 4K resolution options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Prompts, selected source images, and API credentials may be sent to the configured Gemini endpoint, recommended third-party relay, or another custom relay.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the official Gemini endpoint, avoid unknown relays, use a separate revocable API key, and do not submit sensitive images or prompts.
+
+Risk: The dependency declaration is lower-bounded rather than pinned, which can change runtime behavior over time.
+
+Mitigation: Pin and review dependencies before deployment in controlled or commercial environments.
+
+## Reference(s):
+
+- [Bananapro Image Gen on ClawHub](https://clawhub.ai/xianyu110/skills/bananapro-image-gen)
+- [Publisher profile: xianyu110](https://clawhub.ai/user/xianyu110)
+- [Google AI Studio API keys](https://aistudio.google.com/apikey)
+- [Gemini Generative Language API endpoint](https://generativelanguage.googleapis.com/v1beta)
+- [Recommended relay endpoint](https://apipro.maynor1024.live/)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and Python script usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local image files when the bundled generation script is executed.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

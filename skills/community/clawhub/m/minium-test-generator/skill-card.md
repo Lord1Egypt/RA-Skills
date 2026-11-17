@@ -1,47 +1,63 @@
-## Description: <br>
-Minium recorded-script to test-case tool that parses recorded scripts and generates project-aligned test cases and page objects while preserving step completeness and logical consistency. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Minium recording script to test case tool that helps agents parse recorded scripts and produce project-aligned test cases and page objects while checking step completeness.
 
-## Publisher: <br>
-[yiziria](https://clawhub.ai/user/yiziria) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yiziria](https://clawhub.ai/user/yiziria)
 
-## Use Case: <br>
-Developers and test engineers use this skill to turn Minium recorded scripts into page objects, executable tests, and step-comparison materials for WeChat mini-program automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recorded Minium scripts may contain sensitive test data, identifiers, or environment details. <br>
-Mitigation: Redact sensitive values before providing recorded scripts to the skill. <br>
-Risk: Generated files or modifications may affect files outside the intended test scope if the target directory is too broad. <br>
-Mitigation: Provide only the intended test directory and review generated diffs before running or committing changes. <br>
-Risk: The artifact includes IDE assistant configuration that may not match the user's approval expectations. <br>
-Mitigation: Remove or ignore the bundled .idea Sweep auto-approval file if that IDE assistant is used. <br>
+## Use Case:
 
+Developers and QA engineers use this skill to convert Minium WeChat mini-program recording scripts into Page Object methods, executable test cases, step comparison tables, and validation reports. It is intended for adding or checking Minium automated tests within a confirmed project workspace.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yiziria/minium-test-generator) <br>
-- [Quick start guide](快速开始.md) <br>
-- [Avoid missing steps](core-skills/避免漏掉步骤.md) <br>
-- [Code generation quality control flow](docs/代码生成质量控制流程.md) <br>
-- [Code review checklist](docs/代码审查清单.md) <br>
-- [Code style guide](docs/代码规范.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with Python code, generated files, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or propose page-object files, test-case files, step checklists, and validation reports in the user-specified test directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter states 11.0.0) <br>
+Risk: The release may overstate how complete the automatic generator is.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated Page Object methods, tests, and validation reports before relying on them.
+
+Risk: The skill asks for broad project file access and can write files in a test workspace.
+
+Mitigation: Use only a confirmed workspace, require a clear file creation or modification plan, and inspect diffs before applying changes.
+
+Risk: Minium recording scripts can contain tokens, cookies, account data, internal URLs, or other secrets.
+
+Mitigation: Redact sensitive values from recording scripts before sharing them with an agent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yiziria/skills/minium-test-generator)
+- [Artifact README](artifact/README.md)
+- [Quick Start Guide](artifact/快速开始.md)
+- [Code Generation Quality Control Process](artifact/docs/代码生成质量控制流程.md)
+- [Code Review Checklist](artifact/docs/代码审查清单.md)
+- [Code Specification](artifact/docs/代码规范.md)
+- [Avoid Missing Steps](artifact/core-skills/避免漏掉步骤.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python and shell code blocks, plus generated Python test and page object files when used in a workspace]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or write files in a user's Minium test workspace after the user confirms the target directory and generation plan.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata; artifact frontmatter reports 11.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

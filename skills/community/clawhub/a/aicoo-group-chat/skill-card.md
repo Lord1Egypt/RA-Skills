@@ -1,45 +1,60 @@
-## Description: <br>
-Helps agents operate Aicoo group chats by creating and managing groups, sending messages, inviting members, generating join links, and using the relevant Aicoo APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through Aicoo group chat workflows, including creating groups, sending messages, inviting members, managing settings, listing groups, leaving groups, and generating join links.
 
-## Publisher: <br>
-[xisen-w](https://clawhub.ai/user/xisen-w) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xisen-w](https://clawhub.ai/user/xisen-w)
 
-## Use Case: <br>
-Agents and users use this skill to manage multi-party Aicoo conversations, send group messages, search group conversation history, invite or remove members, and adjust group settings through documented API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API keys, session cookies, and join links can expose or alter access to group conversations. <br>
-Mitigation: Treat these values as secrets, avoid logging or sharing them, and rotate or revoke them if exposed. <br>
-Risk: Group administration commands can invite or remove members and change settings. <br>
-Mitigation: Confirm the target group ID, member identity, and intended setting before executing administrative commands. <br>
-Risk: Group messages and search results can disclose conversation content to unintended recipients. <br>
-Mitigation: Review message content and scope searches or responses to the intended group before sending or sharing results. <br>
+## Use Case:
 
+External users and developers use this skill to operate authenticated Aicoo group chat workflows through documented API calls and management endpoints. It is intended for creating coordination groups, broadcasting updates, inviting collaborators, reading group activity, and changing group settings.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xisen-w/aicoo-group-chat) <br>
-- [Aicoo Agent Message API](https://www.aicoo.io/api/v1/agent/message) <br>
-- [Aicoo Group Conversations API](https://www.aicoo.io/api/v1/conversations?view=group) <br>
-- [Aicoo Group Management API](https://www.aicoo.io/api/groups) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, text] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API requests that require AICOO_API_KEY or session cookies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can enable broad group messaging and group-management actions through authenticated Aicoo endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before sending messages, creating invite links, inviting or removing members, changing settings, or using contacts and network data to identify people.
+
+Risk: Search and retrieval across conversations can expose group content beyond the user's immediate request.
+
+Mitigation: Scope searches to the requested group or conversation view and confirm before searching outside group conversations.
+
+Risk: Session-authenticated management endpoints can change membership, settings, and join-link availability.
+
+Mitigation: Use least-privileged authenticated sessions and restrict administrative actions to users with verified group-admin intent.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/xisen-w/skills/aicoo-group-chat)
+- [Aicoo unified message API](https://www.aicoo.io/api/v1/agent/message)
+- [Aicoo conversations API](https://www.aicoo.io/api/v1/conversations?view=group)
+- [Aicoo groups API](https://www.aicoo.io/api/groups)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API calls, Configuration]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires authenticated Aicoo API key or session token depending on endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

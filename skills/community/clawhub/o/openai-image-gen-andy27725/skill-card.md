@@ -1,43 +1,58 @@
-## Description: <br>
-Batch-generate images via OpenAI Images API. Random prompt sampler + `index.html` gallery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch-generate images via OpenAI Images API. Random prompt sampler + `index.html` gallery.
 
-## Publisher: <br>
-[andy27725](https://clawhub.ai/user/andy27725) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andy27725](https://clawhub.ai/user/andy27725)
 
-## Use Case: <br>
-Developers and creative users use this skill to generate image batches from provided or randomly sampled prompts, then review saved image files with a local HTML gallery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an OpenAI API key and can incur image-generation costs. <br>
-Mitigation: Run it only with an intended `OPENAI_API_KEY`, choose the count and model deliberately, and monitor API usage. <br>
-Risk: Prompts are sent to the OpenAI Images API. <br>
-Mitigation: Review custom and randomly generated prompts before execution, and avoid including confidential or sensitive content. <br>
-Risk: Generated files are written locally, with the default directory based on the user's environment. <br>
-Mitigation: Use `--out-dir` to confine outputs to a known folder before sharing or archiving results. <br>
+## Use Case:
 
+Developers and agents use this skill to generate batches of images from random or user-provided prompts through the OpenAI Images API, then review the resulting image files, prompt mapping, and gallery.
 
-## Reference(s): <br>
-- [OpenAI Images API reference](https://platform.openai.com/docs/api-reference/images) <br>
-- [ClawHub skill page](https://clawhub.ai/andy27725/openai-image-gen-andy27725) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, API Calls, Shell commands, Configuration instructions] <br>
-**Output Format:** [Image files, JSON prompt mapping, and HTML gallery] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces PNG, JPEG, or WebP images, prompts.json, and index.html in a local output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Prompts are sent to OpenAI for image generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid private or sensitive prompt content unless sending it to the API provider is intended.
+
+Risk: The skill writes generated images, prompts.json, and index.html to local storage.
+
+Mitigation: Use --out-dir to choose the output location and review generated files before sharing or publishing them.
+
+Risk: The skill requires an OpenAI API key.
+
+Mitigation: Provide OPENAI_API_KEY only in an environment where use of the key and related API costs are authorized.
+
+## Reference(s):
+
+- [OpenAI Images API documentation](https://platform.openai.com/docs/api-reference/images)
+- [ClawHub skill page](https://clawhub.ai/andy27725/skills/openai-image-gen-andy27725)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Code, Files]
+
+**Output Format:** [Command-line execution that writes image files, prompts.json, and an index.html gallery]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and OPENAI_API_KEY; supports model, prompt, count, size, quality, output format, background, style, and output directory options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

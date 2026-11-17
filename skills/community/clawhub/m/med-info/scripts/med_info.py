@@ -1122,7 +1122,7 @@ def niosh_hazardous_match(candidate_names: List[str]) -> Dict[str, Any]:
     }
 
 
-FDA_REMS_INFO_URL = "https://www.fda.gov/drugs/drug-safety-and-availability/risk-evaluation-and-mitigation-strategies-rems"
+FDA_REMS_INFO_URL = "https://www.fda.gov/drugs/drug-safety-and-availability/riREDACTED-SECRET"
 FDA_REMS_DATABASE_URL = "https://www.accessdata.fda.gov/scripts/cder/rems/index.cfm"
 
 

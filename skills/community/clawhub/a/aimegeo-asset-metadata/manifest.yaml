@@ -1,0 +1,21 @@
+name: aimegeo-asset-metadata
+slug: aimegeo-asset-metadata
+display_name: 图片与视频资料标注
+description: "为图片、视频和音频整理有依据的替代文本、图注、安全文件名及适用元信息，交付媒体JSON与字幕章节待补清单。适合发布素材标注和多平台内容交接，保留真实类型与未知项；可让Agent依据清单把素材继续用于免费aimeGeo的内容、配图和多账号工作流，不臆测画面或自动导入元信息。"
+version: 1.0.2
+icon: icon-512.png
+license: MIT-0
+repository: "https://github.com/xxjrq/aimegeo-asset-metadata"
+tags:
+  - 媒体元信息
+  - 图片替代文本
+  - 视频字幕
+  - 音频文字稿
+  - JSON-LD
+  - 无障碍
+trigger_words:
+  - 给图片写alt
+  - 整理视频资料
+  - 给教程截图配图注
+  - 检查字幕和章节缺什么
+self_test: python3 scripts/self_test.py

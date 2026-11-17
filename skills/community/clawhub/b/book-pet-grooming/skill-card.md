@@ -1,40 +1,49 @@
-## Description: <br>
-Book pet-grooming services through Lokuli MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book pet-grooming services through Lokuli MCP.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users and agents use this skill to search for pet-grooming providers, check appointment availability, and create bookings through Lokuli. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Booking creation sends customer name, email, and phone number to the external Lokuli booking service. <br>
-Mitigation: Confirm the user consents to sharing those details before creating a booking. <br>
-Risk: A booking could be created for the wrong provider, service, date, or time. <br>
-Mitigation: Confirm the provider, service, appointment time, and contact details with the user before calling create_booking. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/edwardrodriguez703-design/book-pet-grooming) <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users use this skill to find pet-grooming providers, check availability, and create bookings through Lokuli.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Configuration instructions] <br>
-**Output Format:** [Markdown with JSON-RPC examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Lokuli MCP tools for search, availability checks, and booking creation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Creating a booking may send the user's name, email, phone number, selected service, provider, and time slot to Lokuli.
+
+Mitigation: Confirm booking details with the user before creating an appointment and collect only the contact information needed for the booking.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/edwardrodriguez703-design/skills/book-pet-grooming)
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls]
+
+**Output Format:** [Markdown guidance with JSON-RPC tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May send booking contact details to Lokuli when creating appointments.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

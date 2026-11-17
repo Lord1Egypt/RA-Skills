@@ -1,37 +1,51 @@
-## Description: <br>
-Generate an energy-optimized, time-blocked daily plan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate an energy-optimized, time-blocked daily plan.
 
-## Publisher: <br>
-[ItsFlow](https://clawhub.ai/user/ItsFlow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[itsflow](https://clawhub.ai/user/itsflow)
 
-## Use Case: <br>
-Employees, external users, and productivity-focused individuals use this skill to turn priorities, fixed commitments, and energy windows into a daily markdown plan with top priorities, time blocks, success criteria, and an evening check-in. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The generated plan may include sensitive notes, tasks, meeting details, priorities, or commitments supplied by the user. <br>
-Mitigation: Decide what personal or work context is appropriate to share before invoking the skill, and review the generated plan before storing or sharing it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ItsFlow/plan-my-day) <br>
+## Use Case:
+
+External users use this skill to turn their priorities, fixed commitments, and energy windows into a structured daily schedule with top priorities, time blocks, success criteria, and reflection prompts.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The plan may rely on sensitive personal notes, priorities, tasks, or calendar-like commitments provided by the user.
+
+Mitigation: Provide only the planning context needed for the day and review the generated schedule before acting on it.
+
+Risk: A generated daily schedule may over-prioritize or misplace work if the user context is incomplete.
+
+Mitigation: Confirm fixed commitments, adjust time blocks manually, and keep buffer time for unexpected changes.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown daily plan with headings, checklists, and time-blocked schedule sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reflect user-provided notes, tasks, meeting details, priorities, and energy-window preferences.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown daily plan with headings, task checklists, time-blocked schedule sections, success criteria, and reflection prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-provided priorities, tasks, notes, and calendar-like commitments when available; no code execution or hidden system access was identified in the server security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

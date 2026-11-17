@@ -1,42 +1,59 @@
-## Description: <br>
-Runs adversarial multi-agent war-room evaluations for strategic decisions by assigning Analyst, Guardian, Treasurer, Builder, and Strategist roles, then synthesizing a GO, NO-GO, or REWORK ruling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs adversarial multi-agent war-room evaluations that challenge strategic proposals through Analyst, Guardian, Treasurer, Builder, and Strategist roles, then synthesize a GO, NO-GO, or REWORK ruling.
 
-## Publisher: <br>
-[scytheshan-pixel](https://clawhub.ai/user/scytheshan-pixel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[scytheshan-pixel](https://clawhub.ai/user/scytheshan-pixel)
 
-## Use Case: <br>
-Employees, developers, and decision owners use this skill to stress-test proposals for investments, products, architecture, hiring, and other decisions that benefit from structured adversarial review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Strategic proposal details may be shared across spawned subagents and written to local files. <br>
-Mitigation: For confidential decisions, instruct the agent not to use temporary files and only provide information approved for subagent review. <br>
-Risk: The artifact asks agents to store decisions in long-term memory, commit reports to git, and update logs. <br>
-Mitigation: Require explicit approval for memory writes, git commits, log updates, and report destinations before running the workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/scytheshan-pixel/iris-war-room) <br>
-- [Domain Adaptation](artifact/references/domains.md) <br>
-- [Prompt Templates](artifact/references/prompts.md) <br>
-- [Role Definitions](artifact/references/roles.md) <br>
+## Use Case:
 
+Developers, operators, and decision makers use this skill to stress-test strategic decisions across finance, product, engineering, and hiring before committing resources.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with role summaries, scenario projections, ruling, action items, and optional local file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce spawned-agent prompts and local report paths as part of the workflow.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can write proposal context and final reports to local files, which may expose confidential strategy material if storage locations are not controlled.
+
+Mitigation: Require explicit approval for file writes, use sanitized proposal context, and remove stored reports when retention is not required.
+
+Risk: The skill can spawn subagents that read shared context, increasing the chance that sensitive decision data is distributed beyond the initiating interaction.
+
+Mitigation: Limit inputs to information approved for subagent review and disable shared temp-file context for confidential proposals.
+
+Risk: The post-ruling checklist can store decisions in memory, commit reports to Git, or update logs, creating additional persistence paths.
+
+Mitigation: Require explicit approval before memory, Git, or log persistence and disable those steps in restricted environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/scytheshan-pixel/skills/iris-war-room)
+- [Domain adaptation reference](references/domains.md)
+- [Prompt templates reference](references/prompts.md)
+- [Role definitions reference](references/roles.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with structured tables, ruling, scenario projections, and action items]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save reports to local files and may direct agents to use shared temporary proposal context.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,58 @@
-## Description: <br>
-Expert guidance on Swift Concurrency best practices, patterns, and implementation for async/await, actors, tasks, Sendable, Swift 6 migration, and concurrency diagnostics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides expert guidance on Swift Concurrency, including async/await, actors, tasks, Sendable, data-race safety, migration, and concurrency-related diagnostics.
 
-## Publisher: <br>
-[soponcd](https://clawhub.ai/user/soponcd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[soponcd](https://clawhub.ai/user/soponcd)
 
-## Use Case: <br>
-Developers use this skill to diagnose Swift Concurrency issues, plan Swift 6 migrations, choose safe async patterns, and review actor isolation, Sendable, task, testing, and performance concerns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may lead an agent to inspect normal Swift project files such as Package.swift and Xcode project settings to tailor advice. <br>
-Mitigation: Review which project files are shared with the agent and avoid exposing unrelated secrets or sensitive source material. <br>
+## Use Case:
 
+Developers and engineers use this skill to diagnose Swift Concurrency issues, choose safe async/await and actor patterns, and plan Swift 6 migration work with appropriate project-setting checks.
 
-## Reference(s): <br>
-- [Swift Concurrency on ClawHub](https://clawhub.ai/soponcd/swift-concurrency) <br>
-- [Swift Concurrency Course](https://www.swiftconcurrencycourse.com?utm_source=github&utm_medium=agent-skill&utm_campaign=skill-footer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown with Swift code snippets and concise verification steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance-only output; no executable code is bundled with the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Advice may depend on Swift language mode, strict concurrency checking, upcoming features, or default actor isolation settings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect Package.swift or Xcode project settings and confirm unknown build settings before applying migration-sensitive fixes.
+
+Risk: The artifact refers to helper reference files that are not included, which can limit topic-specific depth.
+
+Mitigation: Use the main skill guidance as the authoritative available source and fall back to developer confirmation or external documentation when a referenced helper file is unavailable.
+
+Risk: The skill may read or search Swift project files to tailor concurrency advice.
+
+Mitigation: Review proposed file reads and searches in sensitive repositories and avoid exposing unrelated proprietary code when only configuration details are needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/soponcd/skills/swift-concurrency)
+- [Swift Concurrency Course](https://www.swiftconcurrencycourse.com?utm_source=github&utm_medium=agent-skill&utm_campaign=skill-footer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Swift code snippets and project inspection commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask for Swift language mode, strict concurrency settings, default actor isolation, and related project configuration before giving migration-sensitive advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

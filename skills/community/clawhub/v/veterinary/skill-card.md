@@ -1,39 +1,56 @@
-## Description: <br>
-Support veterinary understanding from pet care to clinical practice and research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Support veterinary understanding from pet care to clinical practice and research.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Pet owners, veterinary students, veterinarians, veterinary technicians, educators, and researchers use this skill for educational triage framing, species-specific veterinary reasoning, client communication, literature-aware research support, and scope-aware clinical discussion. It should not be used as a substitute for a licensed veterinarian's diagnosis, treatment, dosing, or emergency guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Animal-health guidance could be mistaken for diagnosis, treatment, dosing, emergency advice, or region-specific professional direction. <br>
-Mitigation: Treat outputs as educational support only and consult a licensed veterinarian for diagnosis, treatment, dosing, emergencies, and local requirements. <br>
-Risk: Species, breed, weight, jurisdiction, and geography materially affect veterinary safety and scope. <br>
-Mitigation: Confirm species and relevant context before using any guidance, and defer prescribing, diagnosis, and final clinical judgment to the responsible veterinarian. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/veterinary) <br>
+## Use Case:
 
+External users and veterinary professionals use this skill for educational veterinary triage, explanation, clinical reasoning support, teaching prompts, and evidence-oriented research discussion. It is decision-support guidance and not a substitute for veterinarian judgment.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational veterinary support only; no commands, files, or direct system actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may mistake educational triage or explanation for a diagnosis or treatment plan for an individual animal.
+
+Mitigation: State urgency tiers clearly, avoid individual diagnoses, and direct urgent or animal-specific decisions to a veterinarian.
+
+Risk: Drug, dose, toxicity threshold, and reference-range guidance can be species-specific, weight-specific, regional, and time-sensitive.
+
+Mitigation: Confirm species and weight before pharmacology, flag outdated or region-specific information, and ask users to verify current veterinary guidance.
+
+Risk: Owner, technician, or student workflows can cross professional scope boundaries.
+
+Mitigation: Frame outputs by user role, escalate emergencies, and defer prescribing, euthanasia decisions, and specialist protocols to licensed veterinary professionals.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/veterinary)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose with triage categories, explanations, calculations, citations, and safety caveats]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, persistence, installers, or hidden setup behavior is described by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence, released 2026-02-10)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

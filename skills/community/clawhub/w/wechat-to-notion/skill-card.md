@@ -1,43 +1,56 @@
-## Description: <br>
-Save WeChat public account articles to a Notion database, including title, cover image, body content, keywords, a review comment, and a star rating. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Save WeChat public account articles to a Notion database by fetching title, cover image, body content, keywords, review comments, and ratings.
 
-## Publisher: <br>
-[Gevtolev](https://clawhub.ai/user/Gevtolev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gevtolev](https://clawhub.ai/user/gevtolev)
 
-## Use Case: <br>
-Developers, researchers, and knowledge workers use this skill to archive WeChat public account articles into a Notion database while preserving article structure and adding searchable review metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes real changes to Notion using a Notion API key. <br>
-Mitigation: Use a dedicated Notion integration shared only with the intended database or parent page, and confirm the destination database before running the save step. <br>
-Risk: The Notion API key can be exposed if pasted into chat or stored carelessly. <br>
-Mitigation: Keep NOTION_API_KEY out of chat and shell history where possible, and provide it through the agent or OpenClaw configuration mechanism. <br>
-Risk: Fetched article text plus generated tags, ratings, and comments are persisted in Notion. <br>
-Mitigation: Review the source article and generated metadata before saving sensitive or regulated content. <br>
+## Use Case:
 
+External users and developers use this skill to archive WeChat official account articles into a Notion database, including article content, metadata, generated keywords, a short quality comment, and a star rating.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Gevtolev/wechat-to-notion) <br>
-- [Notion integrations](https://notion.so/my-integrations) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON intermediate article data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NOTION_API_KEY plus python3 and curl; fetches only mp.weixin.qq.com article URLs and writes content blocks to Notion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.5 (source: server-resolved release metadata) <br>
+Risk: The skill can send fetched article text, images, metadata, generated keywords, rating, and comments to a Notion workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with links and workspaces the user explicitly wants to archive, and confirm before saving sensitive or private content.
+
+Risk: The workflow exposes avoidable credential and temporary-file handling risks.
+
+Mitigation: Check only that NOTION_API_KEY is present, avoid printing key prefixes, and use a unique private temporary file for fetched article JSON.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gevtolev/skills/wechat-to-notion)
+- [Publisher profile](https://clawhub.ai/user/gevtolev)
+- [OpenClaw](https://github.com/nicholasgriffintn/OpenClaw)
+- [Notion integrations](https://notion.so/my-integrations)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown instructions with shell commands and generated text values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires NOTION_API_KEY, python3, curl, a WeChat article URL, and a Notion database URL.]
+
+## Skill Version(s):
+
+1.2.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

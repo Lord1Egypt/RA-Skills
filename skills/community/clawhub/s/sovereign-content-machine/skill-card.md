@@ -1,44 +1,61 @@
-## Description: <br>
-Content strategy engine that plans, creates, and schedules content across platforms. Analyzes audience, generates topic ideas, writes drafts, builds editorial calendars, and optimizes for engagement metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Content strategy engine that plans, creates, and schedules content across platforms. Analyzes audience, generates topic ideas, writes drafts, builds editorial calendars, and optimizes for engagement metrics.
 
-## Publisher: <br>
-[ryudi84](https://clawhub.ai/user/ryudi84) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ryudi84](https://clawhub.ai/user/ryudi84)
 
-## Use Case: <br>
-External users, marketers, founders, developer advocates, newsletter writers, and creators use this skill to plan content strategy, audit existing channels, generate audience personas and topic ideas, draft platform-specific content, build editorial calendars, and optimize content for engagement and SEO. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste credentials, private customer lists, raw account exports, or sensitive analytics while asking for content audits or strategy help. <br>
-Mitigation: Use aggregated or anonymized metrics and avoid sharing credentials, API keys, customer lists, private account exports, or unnecessary analytics. <br>
-Risk: Generated posts, calendars, or optimization recommendations may be inaccurate, misleading, off-brand, or inappropriate for a target audience. <br>
-Mitigation: Review generated content and schedules before publishing, and adapt claims, dates, CTAs, and metrics to verified source material. <br>
-Risk: Activation-scoping issues may occur if the skill is invoked outside content strategy and marketing planning work. <br>
-Mitigation: Install and invoke the skill only when an assistant for content strategy, marketing planning, drafting, and scheduling is intended. <br>
+## Use Case:
 
+External creators, founders, marketers, developer advocates, and newsletter writers use this skill to plan content strategy, audit existing content, create audience personas, generate topic ideas, draft platform-specific content, and build editorial calendars.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ryudi84/sovereign-content-machine) <br>
-- [README](artifact/README.md) <br>
-- [Examples](artifact/EXAMPLES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown with structured tables, checklists, drafts, calendars, scorecards, and action plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include content calendars, content audits, topic scorecards, platform-specific drafts, repurposing plans, SEO checklists, and A/B test plans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Users may expose sensitive customer identifiers, credentials, private exports, or confidential raw analytics while requesting content audits or strategy recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use aggregated metrics, remove customer identifiers, and omit credentials or private exports before sharing inputs with the agent.
+
+Risk: The optional unpinned npx install path may fetch an unexpected CLI version.
+
+Mitigation: Prefer the normal clawhub install path or use a pinned and verified CLI version.
+
+Risk: Generated content plans and optimization advice may be inaccurate, outdated, or misaligned with a specific brand, audience, or platform policy.
+
+Mitigation: Review recommendations before publication, verify claims and metrics, and adapt drafts to current platform rules and brand requirements.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ryudi84/skills/sovereign-content-machine)
+- [Publisher Profile](https://clawhub.ai/user/ryudi84)
+- [Project Homepage](https://github.com/ryudi84/sovereign-tools)
+- [README](artifact/README.md)
+- [Examples](artifact/EXAMPLES.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown with tables, lists, platform-specific draft copy, calendars, scoring matrices, and action plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include dates, posting times, target keywords, calls to action, content scores, SEO checklists, and publication recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

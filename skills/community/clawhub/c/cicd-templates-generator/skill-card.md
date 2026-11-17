@@ -1,43 +1,57 @@
-## Description: <br>
-Generates CI/CD workflow templates for GitHub Actions, GitLab CI, and Jenkins based on selected language, framework, test, deployment, and release options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates CI/CD workflow files for GitHub Actions, GitLab CI, and Jenkins based on a project's language, framework, testing, deployment, and release options.
 
-## Publisher: <br>
-[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to generate starter CI/CD workflow files for Python, JavaScript, and Go projects. It is intended to speed up workflow creation while leaving the generated pipeline available for review before commit or execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated workflow files can introduce deployment triggers, publish jobs, third-party actions, shell installation steps, or secret references that affect a repository after commit. <br>
-Mitigation: Use print-only or review mode first, then inspect the generated workflow before committing or enabling it. <br>
-Risk: Generated templates may include placeholder secret names or deployment assumptions that do not match the target repository or organization policy. <br>
-Mitigation: Replace placeholders with approved secret names and remove unused deploy or publish stages before use. <br>
+## Use Case:
 
+Developers and small teams use this skill to generate CI/CD workflow configuration for Python, JavaScript, and Go projects, including tests, Docker builds, cloud deployment steps, and release jobs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shenghoo123-png/cicd-templates-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/shenghoo123-png) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Design document](artifact/DESIGN-cicd-templates-generator.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and generated CI/CD configuration files such as YAML or Jenkinsfile text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can print generated workflow content or write files to the selected output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Some generated templates can pipe remote scripts into bash for Codecov or GoReleaser.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or replace those steps with pinned, verified actions or locally managed tooling before committing the workflow.
+
+Risk: Generated deploy and publish jobs can use cloud, registry, package, or repository credentials.
+
+Mitigation: Enable only the jobs that are required, scope CI secrets tightly, and restrict credentialed jobs to protected branches, tags, environments, and isolated runners.
+
+Risk: The generated workflow may not match a project's dependency, deployment, or release controls without adjustment.
+
+Mitigation: Review every generated workflow, verify deploy and publish behavior, and test it in a non-production CI environment before enabling it.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/shenghoo123-png/skills/cicd-templates-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance and generated CI/CD configuration files, including YAML workflows and Jenkinsfile text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated content may be printed to stdout or written as ci.yml, .gitlab-ci.yml, Jenkinsfile, or all supported formats.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact package files report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

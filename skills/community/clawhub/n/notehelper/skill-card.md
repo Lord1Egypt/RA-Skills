@@ -1,42 +1,58 @@
-## Description: <br>
-当用户想保存文章或链接到笔记库、搜索已保存文章、或配置 NoteHelper API 密钥时触发，并指导代理使用 /notehelper save、link、search 和 config 命令。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Saves user-approved articles or links to the NoteHelper cloud notebook, searches saved items, and guides API-key setup when explicitly requested.
 
-## Publisher: <br>
-[notesynchelper](https://clawhub.ai/user/notesynchelper) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[notesynchelper](https://clawhub.ai/user/notesynchelper)
 
-## Use Case: <br>
-Developers and knowledge workers use this skill to save article content or bare URLs into a NoteHelper-backed note library, search saved articles, and configure the API key needed to reach the external service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided notes, URLs, article content, and search terms may be sent to the external NoteHelper service, including bare URLs when the link route is selected. <br>
-Mitigation: Install only if you trust notebooksyncer.com, prefer explicit /notehelper link or /notehelper save commands, and confirm ambiguous bare URLs before sending them. <br>
-Risk: The API key is stored locally and used as a request header, so exposure could allow use of the note service. <br>
-Mitigation: Store the key only in ~/.openclaw/notehelper.json or NOTEHELPER_API_KEY, avoid sharing command transcripts that contain it, and revoke the key if it is exposed. <br>
+## Use Case:
 
+People who use NoteHelper can ask an agent to save an article or link to their cloud notebook, search saved notes, or get help setting up the NoteHelper key. The skill is intended only for explicit NoteHelper requests.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/notesynchelper/notehelper) <br>
-- [NoteHelper homepage](https://notebooksyncer.com) <br>
-- [OpenClaw NoteHelper service](https://claw.notebooksyncer.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell, JSON, curl, and GraphQL examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NOTEHELPER_API_KEY for save, link, and search actions; may send user-provided article content, URLs, and search terms to claw.notebooksyncer.com.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: User-selected article content and search terms are sent to NoteHelper's cloud service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Send only content and terms the user has chosen to share, and follow the skill's confirmation step for uploads.
+
+Risk: The API key grants access to the user's NoteHelper account.
+
+Mitigation: Keep the key private and prefer OpenClaw SecretRef configuration.
+
+Risk: Link processing can incur points charges.
+
+Mitigation: Explain applicable charges and obtain confirmation before submitting links.
+
+## Reference(s):
+
+- [NoteHelper developer integration](https://www.bijitongbu.site/tutorials/developer-integration/)
+- [NoteHelper points and pricing](https://www.bijitongbu.site/tutorials/points-explained/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text]
+
+**Output Format:** [Markdown notes and plain-text status or search results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include saved-note summaries, source links, task status, or search results.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

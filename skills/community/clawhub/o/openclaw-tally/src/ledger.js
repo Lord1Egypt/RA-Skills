@@ -1,6 +1,6 @@
 import Database from 'better-sqlite3'
 import { readFileSync, mkdirSync } from 'node:fs'
-import { resolve, dirname } from 'node:path'
+import { resolve, dirname, sep } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { homedir } from 'node:os'
 
@@ -16,7 +16,11 @@ const TALLY_DB = resolve(TALLY_DIR, 'tally.db')
  */
 function validateDbPath(dbPath) {
   const resolved = resolve(dbPath)
-  const allowed = resolved.startsWith(TALLY_DIR) || resolved.startsWith('/tmp/') || resolved.startsWith('/private/tmp/')
+  const allowed =
+    resolved === TALLY_DIR ||
+    resolved.startsWith(`${TALLY_DIR}${sep}`) ||
+    resolved.startsWith('/tmp/') ||
+    resolved.startsWith('/private/tmp/')
   if (!allowed) {
     throw new Error('Database path must be within ~/.openclaw/tally/ or /tmp/')
   }
@@ -32,12 +36,7 @@ export class TaskLedger {
    */
   constructor(dbPath) {
     if (dbPath) {
-      // Allow custom paths only under /tmp (for testing) or the default tally dir
-      const resolved = resolve(dbPath)
-      if (!resolved.startsWith(TALLY_DIR) && !resolved.startsWith('/tmp/') && !resolved.startsWith('/private/tmp/')) {
-        throw new Error('Database path must be within ~/.openclaw/tally/ or /tmp/')
-      }
-      this.dbPath = resolved
+      this.dbPath = validateDbPath(dbPath)
     } else {
       this.dbPath = TALLY_DB
     }

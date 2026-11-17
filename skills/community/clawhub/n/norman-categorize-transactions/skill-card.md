@@ -1,39 +1,48 @@
-## Description: <br>
-Review and categorize uncategorized bank transactions, match them with invoices, and verify bookkeeping entries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review and categorize uncategorized bank transactions, match them with invoices, and verify bookkeeping entries.
 
-## Publisher: <br>
-[stanlee000](https://clawhub.ai/user/stanlee000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[stanlee000](https://clawhub.ai/user/stanlee000)
 
-## Use Case: <br>
-Finance and operations users use this skill to review uncategorized bank transactions, assign bookkeeping categories, connect incoming payments to invoices, and verify bookkeeping entries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can change accounting records by categorizing transactions, linking invoices, attaching documents, and marking entries as verified. <br>
-Mitigation: Use it only for explicitly requested transaction categorization or reconciliation, and review proposed categories, invoice links, attachments, and verification changes before writing them. <br>
-Risk: The available security evidence notes under-scoped safeguards around when and how bookkeeping changes happen. <br>
-Mitigation: Confirm the applicable chart of accounts and keep human approval in the workflow before applying changes to real books. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Norman homepage](https://norman.finance) <br>
+## Use Case:
 
+External users and finance operators use this skill to review uncategorized bank transactions, suggest bookkeeping categories, match incoming payments to invoices, attach receipts, and verify bookkeeping entries.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with transaction review batches and tool-driven bookkeeping updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Presents uncategorized transactions in batches of 10-15 with date, amount, description, and suggested category.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can change accounting records by categorizing transactions, linking invoices or receipts, and marking entries verified without clearly requiring approval first.
+
+Mitigation: Require user review and approval before each bookkeeping change, and confirm the correct chart of accounts before categorizing transactions.
+
+## Reference(s):
+
+- [Norman Finance](https://norman.finance)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown transaction review batches with suggested categories and next actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Presents transactions in batches of 10-15 with date, amount, description, and suggested category.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

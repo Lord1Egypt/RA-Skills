@@ -1,46 +1,58 @@
-## Description: <br>
-Manage Things 3 via the `things` CLI on macOS, including adding and updating projects and todos through the URL scheme and reading, searching, and listing local Things data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Things 3 via the `things` CLI on macOS, including adding or updating projects and todos through the URL scheme and reading, searching, or listing local Things database content.
 
-## Publisher: <br>
-[kenswj](https://clawhub.ai/user/kenswj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kenswj](https://clawhub.ai/user/kenswj)
 
-## Use Case: <br>
-External users and developers use this macOS-only skill to let an agent inspect a local Things 3 database and prepare or run `things` CLI commands for task, project, area, and tag workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read local Things 3 data and make task changes through the `things` CLI. <br>
-Mitigation: Install only in trusted environments, review proposed changes before writes, and prefer `things --dry-run` previews before modifying tasks. <br>
-Risk: The skill depends on an unpinned third-party CLI installed from a Go module. <br>
-Mitigation: Review and pin the CLI version where possible, and update it through a controlled dependency process. <br>
-Risk: Granting Full Disk Access may expose more local data than the skill needs for normal operation. <br>
-Mitigation: Grant Full Disk Access only when database reads fail and only to the calling app that needs it. <br>
-Risk: Persisting `THINGS_AUTH_TOKEN` enables ongoing update capability. <br>
-Mitigation: Avoid persisting the token unless continuous update access is intentional; prefer passing it only for specific update operations. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent manage Things 3 tasks, projects, areas, tags, and scheduling details on macOS through the `things` command-line tool.
 
-## Reference(s): <br>
-- [Things Mac on ClawHub](https://clawhub.ai/kenswj/things-mac-1-0-0) <br>
-- [things3-cli](https://github.com/ossianhempel/things3-cli) <br>
-- [things3-cli Go install module](https://github.com/ossianhempel/things3-cli/cmd/things) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [macOS-only; requires the `things` binary and local Things 3 access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill depends on the third-party `things3-cli` project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the upstream project is trusted, and consider reviewing or pinning the exact version before installing.
+
+Risk: Local Things database reads may require Full Disk Access.
+
+Mitigation: Grant Full Disk Access only to the minimum calling application needed for the workflow.
+
+Risk: `THINGS_AUTH_TOKEN` enables update operations.
+
+Mitigation: Treat `THINGS_AUTH_TOKEN` as a secret and avoid exposing it in logs, transcripts, or shared configuration.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kenswj/skills/things-mac-1-0-0)
+- [things3-cli GitHub Repository](https://github.com/ossianhempel/things3-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [macOS-only; requires the `things` binary and may need Full Disk Access or `THINGS_AUTH_TOKEN` for specific operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

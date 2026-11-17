@@ -1,43 +1,55 @@
-## Description: <br>
-Find files by name, size, date, and type with deduplication. Use when searching filesystems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find files by name, size, date, and type with deduplication. Use when searching filesystems.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and agents use Finder to enumerate files under selected local directories by name, size, modification date, type, emptiness, or largest-file order. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can enumerate filenames and file sizes under directories selected by the user. <br>
-Mitigation: Use narrow, intentional paths and avoid running it across sensitive system or private directories unless that enumeration is acceptable. <br>
-Risk: The shell script does not robustly validate or quote all user-supplied patterns and paths. <br>
-Mitigation: Use trusted inputs, avoid unusual shell metacharacters in patterns or paths, and review or harden quoting and validation before broad deployment. <br>
+## Use Case:
 
+Developers and operators use Finder to locate files during filesystem inspection by name pattern, minimum size, recency, extension, emptiness, or largest size.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain3/finder) <br>
-- [Publisher homepage](https://bytesagain.com) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
-- [Finder shell script](artifact/scripts/script.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text command output and Markdown guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command output is limited to the first 20 matches for most searches and to the requested count for largest-file listings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Crafted patterns, paths, sizes, extensions, day values, or counts can be interpreted as command syntax during local file searches.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted inputs until the script corrects argument indexing, quotes expansions, and validates each command parameter.
+
+Risk: Recursive filesystem scans may traverse sensitive or unexpectedly large directory trees.
+
+Mitigation: Limit searches to intended directories and document recursive scan behavior before deploying the skill.
+
+## Reference(s):
+
+- [Finder on ClawHub](https://clawhub.ai/bytesagain3/skills/finder)
+- [Publisher profile: bytesagain3](https://clawhub.ai/user/bytesagain3)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash command examples and shell output text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Most commands print up to 20 matching paths; the largest-file command prints a requested count.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

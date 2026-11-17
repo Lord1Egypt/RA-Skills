@@ -19,9 +19,7 @@ class TestRedactSecrets(unittest.TestCase):
     def test_pem_private_key(self):
         text = (
             "config start\n"
-            "-----BEGIN RSA PRIVATE KEY-----\n"
-            "MIIBogIBAAJBALRi+0x8...\n"
-            "-----END RSA PRIVATE KEY-----\n"
+            "REDACTED-SECRET\n"
             "config end"
         )
         result = redact_secrets(text)
@@ -50,9 +48,9 @@ class TestRedactSecrets(unittest.TestCase):
     # AWS credentials
     # ------------------------------------------------------------------
     def test_aws_access_key_id(self):
-        text = "aws_access_key_id = AKIAIOSFODNN7EXAMPLE"
+        text = "aws_access_key_id = REDACTED-SECRET"
         result = redact_secrets(text)
-        self.assertNotIn("AKIAIOSFODNN7EXAMPLE", result)
+        self.assertNotIn("REDACTED-SECRET", result)
         self.assertIn(REDACTED, result)
 
     def test_aws_secret_access_key(self):

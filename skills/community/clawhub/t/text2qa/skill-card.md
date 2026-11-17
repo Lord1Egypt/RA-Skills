@@ -1,38 +1,52 @@
-## Description: <br>
-Extracts structured Q&A pairs and selection preferences from chat sessions, uploaded documents, articles, transcripts, or other freeform text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts structured Q&A pairs and selection preferences from chat sessions, documents, articles, transcripts, or other freeform text.
 
-## Publisher: <br>
-[goog](https://clawhub.ai/user/goog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[goog](https://clawhub.ai/user/goog)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to turn a conversation or supplied text into reusable Q&A records and stated or inferred selection preferences.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Conversation or document content may include sensitive personal, business, legal, medical, or credential information that the skill summarizes into reusable Q&A and preference records.
+
+Mitigation: Invoke it only on content the user explicitly wants summarized, and avoid sensitive material unless that reuse is intended.
+
+Risk: Inferred preferences or synthesized answers may misstate the source material if used without review.
+
+Mitigation: Review generated Q&A pairs and preference labels before using them as a knowledge base, quiz source, or decision record.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to turn conversations or source text into reusable Q&A records, quizzes, flashcards, knowledge-base entries, and documented user preferences. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Processing full conversations or uploaded documents can expose private or sensitive information in reusable Q&A and preference summaries. <br>
-Mitigation: Process only the needed excerpt when possible, and review the generated summary before saving or sharing it. <br>
+**Output Format:** [Markdown with Q&A and preference table sections]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/goog/text2qa) <br>
+**Other Properties Related to Output:** [Includes total counts and labels preferences as direct or inferred.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with a Q&A section and a selection-preferences table] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes total counts and marks each preference source as direct or inferred.] <br>
+1.0.0 (source: ClawHub release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

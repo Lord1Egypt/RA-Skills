@@ -1,43 +1,58 @@
-## Description: <br>
-Manages stock and crypto watchlists with AISA live price checks, price targets, stop-loss alerts, and signal-change checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages stock and cryptocurrency watchlists with AISA live price checks, target prices, stop-loss alerts, and signal-change checks.
 
-## Publisher: <br>
-[aisadocs](https://clawhub.ai/user/aisadocs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aisadocs](https://clawhub.ai/user/aisadocs)
 
-## Use Case: <br>
-Developers and external users use this skill to add, remove, list, and check stock or crypto tickers from a command-line watchlist, with optional target price, stop-loss, and signal-change alerts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ticker symbols are sent to the AISA service for live price and signal checks. <br>
-Mitigation: Install only if the user trusts the AISA endpoint and is comfortable sharing watchlist tickers with that service. <br>
-Risk: Generated prices and BUY/HOLD/SELL signals may be incomplete or misleading for investment decisions. <br>
-Mitigation: Treat generated market data and signals as informational, not financial advice. <br>
-Risk: The default local state path can be confused with other repository state. <br>
-Mitigation: Set CLAWDBOT_STATE_DIR to a dedicated directory when isolating watchlist data matters. <br>
+## Use Case:
 
+External users and developers use this skill to add, remove, list, and check watched stock or cryptocurrency symbols, including target-price, stop-loss, and signal-change alerts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aisadocs/stock-watchlist-zh) <br>
-- [AISA API endpoint](https://api.aisa.one/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text and JSON-backed local watchlist state] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY and python3; stores watchlist state locally unless CLAWDBOT_STATE_DIR is set.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and frontmatter) <br>
+Risk: AISA_BASE_URL can redirect the AISA API key and watched tickers to a replacement endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep AISA_BASE_URL unset unless the replacement endpoint is intentionally configured and trusted.
+
+Risk: The generated local watchlist can reveal private tickers or alert levels.
+
+Mitigation: Keep the .clawdbot watchlist file out of commits and use a private CLAWDBOT_STATE_DIR when needed.
+
+Risk: The release security verdict is suspicious and calls for review before installation.
+
+Mitigation: Install and run the skill only in a controlled environment after reviewing the release security guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aisadocs/skills/stock-watchlist-zh)
+- [AISA API endpoint](https://api.aisa.one/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with command examples, configuration notes, and summarized watchlist status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update a local JSON watchlist file under .clawdbot unless CLAWDBOT_STATE_DIR is set.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

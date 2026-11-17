@@ -1,42 +1,54 @@
-## Description: <br>
-Search the FBI's Most Wanted list - fugitives, missing persons, and wanted individuals with photos and case details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search the FBI's Most Wanted list — fugitives, missing persons, and wanted individuals with photos and case details.
 
-## Publisher: <br>
-[b-gutman](https://clawhub.ai/user/b-gutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[b-gutman](https://clawhub.ai/user/b-gutman)
 
-## Use Case: <br>
-External users, developers, researchers, journalists, and analysts use this skill to search or retrieve FBI Wanted person records by keyword, category, pagination, or UID. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The server security verdict is suspicious and warns that related behavior can include unsandboxed review agents or high-impact write actions. <br>
-Mitigation: Install only in a trusted maintainer workspace, confirm targets and credentials before running commands, and disable YOLO-style autoreview behavior when available. <br>
-Risk: The skill depends on a remote MCP endpoint and command-line execution to retrieve wanted-person records. <br>
-Mitigation: Review the endpoint and MCP client configuration before use, and treat returned case details as external data that should be checked before publication or operational decisions. <br>
+## Use Case:
 
+External users, researchers, journalists, educators, and developers can use this skill to search the FBI Wanted database and retrieve wanted-person case details for awareness, research, or application workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/b-gutman/pipeworx-fbiwanted) <br>
-- [Pipeworx FBI Wanted pack](https://pipeworx.io/packs/fbiwanted) <br>
-- [Pipeworx FBI Wanted MCP endpoint](https://gateway.pipeworx.io/fbiwanted/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, shell commands] <br>
-**Output Format:** [Markdown with JSON and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl for the documented direct MCP request example; MCP client configuration uses mcp-remote via npx.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Search queries are handled by the Pipeworx gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where sending FBI Wanted search queries to the Pipeworx gateway is acceptable.
+
+Risk: The MCP configuration downloads and runs an unpinned mcp-remote package at startup.
+
+Mitigation: Use a pinned, reviewed mcp-remote version or run the server in a sandbox with limited filesystem, environment-variable, and network access.
+
+## Reference(s):
+
+- [Pipeworx FBI Wanted Pack Homepage](https://pipeworx.io/packs/fbiwanted)
+- [ClawHub Skill Page](https://clawhub.ai/b-gutman/skills/pipeworx-fbiwanted)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Configuration]
+
+**Output Format:** [Markdown or JSON-style summaries of FBI Wanted search results and person details, with MCP configuration examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returned records may include titles, descriptions, charges, reward information, images, status, physical descriptions, and case details.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

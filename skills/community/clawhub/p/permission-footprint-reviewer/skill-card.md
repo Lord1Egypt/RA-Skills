@@ -1,45 +1,61 @@
-## Description: <br>
-Reviews the permissions required by a skill, script, or workflow and proposes least-privilege alternatives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews the permissions required by a skill, script, or workflow and suggests least-privilege alternatives.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Developers, security reviewers, and automation maintainers use this skill to summarize permission footprints, identify excessive permissions, and prepare least-privilege review checklists before acting on scripts, skills, or workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Inputs may include sensitive script details, paths, permissions, or operational context. <br>
-Mitigation: Provide redacted inputs where possible and include only the material needed for the permission review. <br>
-Risk: The helper can write a report file when an output path is supplied. <br>
-Mitigation: Choose output paths deliberately, or use stdout or dry-run behavior when reviewing sensitive material. <br>
-Risk: Permission recommendations can be incomplete if the provided environment or workflow details are incomplete. <br>
-Mitigation: Review the draft, resolve pending confirmation items, and validate changes before applying them to any system. <br>
+## Use Case:
 
+Developers, security reviewers, and skill maintainers use this skill to turn permission requirements and runtime context into a review draft covering the current footprint, over-permissioning, least-privilege alternatives, isolation guidance, and a review checklist.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/permission-footprint-reviewer) <br>
-- [README](artifact/README.md) <br>
-- [Skill specification](artifact/resources/spec.json) <br>
-- [Output template](artifact/resources/template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands, configuration] <br>
-**Output Format:** [Structured Markdown or JSON report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can print to stdout or write a local report file when an output path is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may process permission reviews that include sensitive operational details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit, non-sensitive or redacted inputs where possible, following the evidence guidance.
+
+Risk: The artifact includes broader inactive audit helpers in the local script that may not be obvious from the primary structured-brief mode.
+
+Mitigation: Document or remove inactive helper paths before deployment if they are not intended for supported use.
+
+Risk: Documentation and generated report labels are primarily Chinese-language, which can limit review by non-Chinese-speaking teams.
+
+Mitigation: Have an appropriate reviewer check the generated Markdown or provide localized templates before relying on the output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/permission-footprint-reviewer)
+- [Publisher profile](https://clawhub.ai/user/52yuanchangxing)
+- [Artifact README](artifact/README.md)
+- [Skill specification](artifact/resources/spec.json)
+- [Output template](artifact/resources/template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands, configuration]
+
+**Output Format:** [Structured Markdown, with optional JSON wrapper from the local Python script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces review drafts and checklists from local input; the script can write output to a user-selected file.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

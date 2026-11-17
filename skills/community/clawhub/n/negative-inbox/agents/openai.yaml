@@ -1,0 +1,4 @@
+interface:
+  display_name: "Negative Review Inbox"
+  short_description: "汇总已有差评预警与低星评论，整理处理清单并按要求标记已读"
+  default_prompt: "使用 $amazon-negative-review-inbox 查看已有 Amazon 差评预警和指定产品的低星评论，按严重程度整理处理清单，先不要标记已读。"

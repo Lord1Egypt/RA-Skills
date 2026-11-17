@@ -1,43 +1,56 @@
-## Description: <br>
-Get new study items for any subject, using a local study list and progress tracking to avoid repeating learned items. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Tutor retrieves new study items from a local JSON study list, supports arbitrary subject data, and tracks learned items so sessions do not repeat content.
 
-## Publisher: <br>
-[buiphuc](https://clawhub.ai/user/buiphuc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[buiphuc](https://clawhub.ai/user/buiphuc)
 
-## Use Case: <br>
-External users and agent operators use this skill to retrieve daily learning items from a configurable local JSON study list, track completed items, and optionally prepare practice quizzes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Study data and progress are stored locally in the skill folder and may include user-provided learning material. <br>
-Mitigation: Avoid placing private or sensitive content in data/data.json unless local storage and copying into learned_items.json are acceptable. <br>
-Risk: Optional Quizbuild use may send quiz material to an external service. <br>
-Mitigation: Enable Quizbuild only after reviewing the service configuration and confirming that sharing the selected study content is acceptable. <br>
+## Use Case:
 
+External users and agents use this skill to fetch daily learning items from a local study list, present them for review, and optionally create a short practice quiz through a configured Quizbuild MCP service.
 
-## Reference(s): <br>
-- [Daily Tutor on ClawHub](https://clawhub.ai/buiphuc/daily-tutor) <br>
-- [Publisher profile](https://clawhub.ai/user/buiphuc) <br>
-- [Data format examples](references/EXAMPLES.md) <br>
-- [Quizbuild MCP endpoint](https://api.quizbuild.com/mcp/quizbuild) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text study items with Markdown instructions and optional JSON quiz tool arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3; reads local JSON study data and writes local progress state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: frontmatter and release evidence) <br>
+Risk: Study data can include secrets, confidential notes, or proprietary material that may be sent to the configured external Quizbuild MCP service during optional quiz generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep sensitive material out of data/data.json when using Quizbuild, and review the configured MCP service before sending generated quiz content.
+
+Risk: The skill records learning progress in a local file-backed tracker, so local data changes determine which items are shown or skipped.
+
+Mitigation: Review data/data.json and data/config.json before use, and manage data/learned_items.json intentionally when resetting or preserving study progress.
+
+## Reference(s):
+
+- [Daily Tutor ClawHub page](https://clawhub.ai/buiphuc/skills/daily-tutor)
+- [Data format examples](references/EXAMPLES.md)
+- [Project README linked by artifact](https://github.com/buiphuc/daily-tutor#readme)
+- [Quizbuild MCP endpoint](https://api.quizbuild.com/mcp/quizbuild)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text and Markdown guidance with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads study items from local JSON, writes local progress state, and may provide quiz-generation guidance when Quizbuild is configured.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter, changelog, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

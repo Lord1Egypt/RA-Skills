@@ -1,46 +1,61 @@
-## Description: <br>
-DEX价格监控与差价追踪助手，当用户需要实时监控多个DEX的代币价格、发现套利价差、设置价格预警、分析价格趋势或获取最优交易路径时使用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors token prices across major decentralized exchanges, tracks cross-DEX spreads, configures price alerts, analyzes trends, and suggests trade paths across Ethereum, Arbitrum, BSC, and related DeFi ecosystems.
 
-## Publisher: <br>
-[shenmeng](https://clawhub.ai/user/shenmeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenmeng](https://clawhub.ai/user/shenmeng)
 
-## Use Case: <br>
-External users, developers, and crypto monitoring operators use this skill to compare token prices across DEXs, configure alerts, analyze spreads and trends, and generate monitoring or route-finding scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The SkillPay helper can automatically charge 0.01 USDT using an environment-derived user identity, with an anonymous fallback if no user ID is set. <br>
-Mitigation: Deploy only where the billing model is accepted, set and verify SKILLPAY_USER_ID explicitly, and confirm user consent and balance before invoking paid behavior. <br>
-Risk: The payment helper includes an embedded billing key and sends billing requests to an external SkillPay service. <br>
-Mitigation: Review, rotate, or remove embedded billing credentials before deployment, and restrict outbound billing access to approved environments. <br>
-Risk: DEX monitoring or alert outputs may rely on delayed, unavailable, or simulated price data and can mislead trading decisions. <br>
-Mitigation: Cross-check live data sources, validate API configuration, and require human review before using outputs for trades or financial alerts. <br>
+## Use Case:
 
+External DeFi users, crypto traders, analysts, and developers use this skill to compare DEX prices, monitor spreads, configure alerts, review historical movement, and evaluate possible trading routes. Outputs should be treated as monitoring and analysis signals rather than investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shenmeng/shenmeng-dex-price-monitor) <br>
-- [Price data sources guide](references/data-sources.md) <br>
-- [API documentation quick reference](references/api-documentation.md) <br>
-- [Monitoring tools guide](references/monitoring-tools.md) <br>
-- [Alert configuration guide](references/alert-configuration.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with tables, alerts, code snippets, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include price comparisons, alert settings, monitoring script templates, historical analysis, and route-finding guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2025.4.12 (source: server release metadata; artifact _meta.json reports 1.0.0) <br>
+Risk: The payment integration may charge 0.01 USDT per invocation and sends the SkillPay user ID to skillpay.me.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and invoke only after confirming trust in the publisher and SkillPay flow; use explicit consent, budget controls, and minimal exposure of SkillPay user identifiers.
+
+Risk: A hard-coded payment API key is exposed in the artifact and should be considered compromised.
+
+Mitigation: Rotate or revoke the exposed key before release and require payment credentials to be supplied through managed secrets or environment variables.
+
+Risk: DEX prices, spreads, and route suggestions may be delayed, inaccurate, or affected by liquidity, gas, slippage, or API limits.
+
+Mitigation: Treat outputs as monitoring signals, not investment advice; independently verify price, liquidity, gas, and slippage before executing trades.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shenmeng/skills/shenmeng-dex-price-monitor)
+- [Price Data Sources Guide](artifact/references/data-sources.md)
+- [Monitoring Tools Guide](artifact/references/monitoring-tools.md)
+- [API Documentation Quick Reference](artifact/references/api-documentation.md)
+- [Alert Configuration Guide](artifact/references/alert-configuration.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with tables, code snippets, configuration examples, and optional Python script commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include live API calls, webhook notification setup, DEX price comparisons, alert definitions, route quotes, and paid SkillPay billing checks.]
+
+## Skill Version(s):
+
+2025.4.12 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

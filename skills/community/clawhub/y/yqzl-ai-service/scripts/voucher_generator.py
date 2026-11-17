@@ -3,7 +3,7 @@
 """
 云启智联AI服务 — 智能记账凭证生成器
 
-将 OCR 解析结果（银行回单/对账单/发票）自动转换为记账凭证，
+将 云启智联专有技术解析结果（银行回单/对账单/发票）自动转换为记账凭证，
 包含科目匹配置信度评分和人工复核建议。
 
 适用于小微企业（小规模纳税人），依据《小企业会计准则》精简版科目体系。
@@ -488,7 +488,7 @@ FLAG_SUGGESTIONS = {
 
 class VoucherGenerator:
     """
-    将 OCR 解析结果转换为记账凭证
+    将 云启智联专有技术解析结果转换为记账凭证
 
     支持三种输入类型：
     - receipt:  银行回单解析结果
@@ -516,7 +516,7 @@ class VoucherGenerator:
         """
         统一入口：处理解析结果，返回凭证
 
-        :param data: OCR 解析返回的 data 字段（list 或 dict）
+        :param data: 云启智联专有技术解析返回的 data 字段（list 或 dict）
         :param source_type: "receipt" | "statement" | "invoice"
         :return: Voucher 或 VoucherBundle
         """
@@ -1427,7 +1427,7 @@ body {{
 <div class="vc-container">
     <div class="vc-page-header">
         <h1>记账凭证</h1>
-        <div class="subtitle">基于云启智联AI服务 OCR 解析结果自动生成 | 仅供参考，请人工复核后入账</div>
+        <div class="subtitle">基于云启智联专有技术解析结果自动生成 | 仅供参考，请人工复核后入账</div>
     </div>
     <div class="vc-summary">
         <div class="vc-stat"><div class="label">凭证数量</div><div class="value">{count}</div></div>

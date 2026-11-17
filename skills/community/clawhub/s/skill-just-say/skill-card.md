@@ -1,39 +1,53 @@
-## Description: <br>
-Helps users turn a skill name, functional description, and examples into an OpenClaw-compatible skill package with concise generated guidance and files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps users create OpenClaw-compatible skills from a simple skill name, functional description, and examples.
 
-## Publisher: <br>
-[yuan-xuan](https://clawhub.ai/user/yuan-xuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuan-xuan](https://clawhub.ai/user/yuan-xuan)
 
-## Use Case: <br>
-Developers, creators, and workflow owners use this skill to draft OpenClaw skills from natural-language descriptions of expertise, examples, and desired behavior. It is most useful for quickly producing starter SKILL.md and README-style content that should be reviewed before publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated skill content or code may be incorrect, unsafe, or overstate compliance checks. <br>
-Mitigation: Review generated SKILL.md, README.md, and any logic.js code before using or publishing the generated skill. <br>
+## Use Case:
 
+People without coding experience use this skill to turn domain knowledge, workflows, or examples into an OpenClaw-compatible skill package. It is suited for quickly drafting skill documentation, package structure, optional logic, tests, and publishing-ready guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuan-xuan/skill-just-say) <br>
-- [Publisher profile](https://clawhub.ai/user/yuan-xuan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown and structured skill-file guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated skill packages should be reviewed before use or publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated skill packages may include unsuitable instructions or optional code for a user's environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Manually review generated skill files, especially optional logic.js content, before running or publishing them.
+
+Risk: Chinese-only documentation may make review harder for teams that do not read Chinese.
+
+Mitigation: Have a qualified reviewer translate or inspect the documentation before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuan-xuan/skills/skill-just-say)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with generated skill package content and optional code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language documentation; generated skill packages should be manually reviewed before use or publishing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

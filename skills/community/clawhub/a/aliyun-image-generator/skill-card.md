@@ -1,44 +1,55 @@
-## Description: <br>
-Generates images through Aliyun Tongyi Wanxiang when the user starts a request with the dedicated trigger phrase. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates images with Aliyun Tongyi Wanxiang when the user prompt starts with the dedicated trigger phrase "千问画个图".
 
-## Publisher: <br>
-[roykingw](https://clawhub.ai/user/roykingw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roykingw](https://clawhub.ai/user/roykingw)
 
-## Use Case: <br>
-External users and developers use this skill to expand short Chinese-language image prompts, call Aliyun DashScope text-to-image generation, and return the saved local image path. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to provide an Aliyun API key through chat. <br>
-Mitigation: Use a limited, revocable key and avoid sharing keys that grant broader Aliyun account access. <br>
-Risk: The skill stores the Aliyun API key persistently in a local hidden file. <br>
-Mitigation: Remove scripts/.aliyun_key when finished and rotate the key if it may have been exposed. <br>
-Risk: The skill may install the requests package during normal use. <br>
-Mitigation: Preinstall and pin requests in a controlled environment before running the skill. <br>
+## Use Case:
 
+External users and developers use this skill to turn short Chinese image requests into expanded prompts, call Aliyun Tongyi Wanxiang, and receive the saved local image path.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/roykingw/aliyun-image-generator) <br>
-- [Aliyun Bailian console](https://bailian.console.aliyun.com/) <br>
-- [DashScope text-to-image API endpoint](https://dashscope.aliyuncs.com/api/v1/services/aigc/text2image/image-synthesis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [Markdown or plain text with Python command invocations, status messages, and local image file paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a local PNG image file after a successful Aliyun API call.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill asks users to provide a cloud API key in chat and stores it permanently in a plaintext local file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-privilege Alibaba or DashScope key with spending limits, avoid real long-lived credentials in chat, and replace plaintext key storage before routine use.
+
+Risk: The skill installs the Python requests dependency at runtime if it is missing.
+
+Mitigation: Review and preinstall dependencies in a controlled environment, or remove runtime package installation before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/roykingw/skills/aliyun-image-generator)
+- [Aliyun Bailian Console](https://bailian.console.aliyun.com/)
+- [DashScope Text-to-Image API Endpoint](https://dashscope.aliyuncs.com/api/v1/services/aigc/text2image/image-synthesis)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files, Guidance]
+
+**Output Format:** [Plain text or Markdown with shell commands and local image file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates PNG images through Aliyun Tongyi Wanxiang and reports the saved local path.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

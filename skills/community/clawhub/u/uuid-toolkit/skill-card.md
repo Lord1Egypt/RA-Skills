@@ -1,38 +1,56 @@
-## Description: <br>
-Generate, parse, validate, and convert UUIDs (v1/v3/v4/v5), ULIDs, and NanoIDs for identifier creation, inspection, validation, format conversion, and bulk generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate, parse, validate, and convert UUIDs (v1/v3/v4/v5), ULIDs, and NanoIDs without external dependencies.
 
-## Publisher: <br>
-[Johnnywang2001](https://clawhub.ai/user/Johnnywang2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[johnnywang2001](https://clawhub.ai/user/johnnywang2001)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to create unique identifiers, inspect UUID or ULID metadata, validate identifier formats, and convert UUIDs between common representations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: UUIDv1 values can expose timestamp and node information when shared publicly.
+
+Mitigation: Use UUIDv4, ULID, NanoID, or deterministic UUIDs unless time-based UUIDv1 metadata is specifically required.
+
+Risk: Very large bulk generation requests can consume excessive resources in shared or resource-limited environments.
+
+Mitigation: Keep --count and --size bounded for the operating environment before running bulk generation.
+
+Risk: The skill runs a local Python CLI for identifier operations.
+
+Mitigation: Install and run it only in environments where local script execution is acceptable, and review the skill before deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to ask an agent for local commands or code-oriented guidance that generate, parse, validate, and convert common identifier formats. It is useful for application development, debugging identifier data, and producing bulk UUID, ULID, NanoID, or nil UUID values. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: UUIDv1 identifiers can expose creation time and device-like node metadata. <br>
-Mitigation: Prefer UUIDv4, ULID, or NanoID for privacy-sensitive identifiers, and avoid UUIDv1 when timestamp or node metadata should not be shared. <br>
+**Output Format:** [Plain text and Markdown with inline shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Johnnywang2001/uuid-toolkit) <br>
+**Other Properties Related to Output:** [Local Python 3.9+ CLI output; no external dependencies.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and generated identifier strings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local Python 3.9+ command examples; no external dependencies are required by the artifact.] <br>
+1.0.0 (source: ClawHub release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

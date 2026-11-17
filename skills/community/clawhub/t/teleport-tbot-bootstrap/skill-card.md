@@ -1,45 +1,64 @@
-## Description: <br>
-Bootstrap a persistent Teleport Machine ID (tbot) setup on macOS using LaunchAgent and tbot configure identity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bootstrap a persistent Teleport Machine ID (tbot) setup on macOS using LaunchAgent and tbot configure identity.
 
-## Publisher: <br>
-[webvictim](https://clawhub.ai/user/webvictim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[webvictim](https://clawhub.ai/user/webvictim)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to configure a local macOS Teleport Machine ID bot, install a user-level LaunchAgent, and verify refreshed SSH identity output for OpenClaw or agent host access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill configures a persistent macOS Teleport bot identity for the current user account. <br>
-Mitigation: Install it only on accounts that should maintain automation identity refresh, and review the generated LaunchAgent plist and tbot configuration before relying on them. <br>
-Risk: Onboarding tokens, registration secrets, tbot state, and identity outputs are sensitive credentials. <br>
-Mitigation: Use least-privilege Teleport roles, label-scoped node access, secure secret delivery, and restricted filesystem permissions for the tbot directory and files. <br>
-Risk: Cleanup commands remove LaunchAgent and tbot paths. <br>
-Mitigation: Confirm removal paths point only to this skill's LaunchAgent and tbot directory before running cleanup. <br>
+## Use Case:
 
+Developers and infrastructure engineers use this skill to set up and verify a persistent Teleport Machine ID identity on a macOS user account for agent SSH and automation workflows.
 
-## Reference(s): <br>
-- [Teleport tbot CLI Reference](https://goteleport.com/docs/reference/cli/tbot/) <br>
-- [Teleport YAML examples](references/teleport-prereq-examples.yaml) <br>
-- [LaunchAgent notes for tbot](references/launchagent-notes.md) <br>
-- [ClawHub skill page](https://clawhub.ai/webvictim/teleport-tbot-bootstrap) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown with inline shell commands and configuration file guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup steps for tbot identity configuration, LaunchAgent installation, first-run verification, and cleanup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill installs a persistent credential-refreshing Teleport bot on a macOS user account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use only on a trusted macOS account, and unload the LaunchAgent and remove bot state when no longer needed.
+
+Risk: Onboarding tokens, registration secrets, generated tbot configuration, bot state, and identity outputs are sensitive.
+
+Mitigation: Prefer secure secret delivery instead of command-line tokens or plaintext chat logs, and avoid committing generated credentials or state to source control.
+
+Risk: The generated LaunchAgent runs a resolved tbot binary persistently and can refresh access without further prompting.
+
+Mitigation: Verify the resolved tbot binary and generated plist before loading, then keep Teleport role scope narrow.
+
+Risk: The bundled example uses a high bound-keypair recovery limit and includes broad illustrative Teleport-side settings.
+
+Mitigation: Reduce recovery limits and adapt Teleport roles, labels, and policies to the minimum scope required for the deployment.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/webvictim/skills/teleport-tbot-bootstrap)
+- [Teleport tbot CLI reference](https://goteleport.com/docs/reference/cli/tbot/)
+- [Teleport prerequisite examples](references/teleport-prereq-examples.yaml)
+- [LaunchAgent notes](references/launchagent-notes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup steps, command proposals, validation guidance, and macOS LaunchAgent configuration for Teleport tbot identity refresh.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

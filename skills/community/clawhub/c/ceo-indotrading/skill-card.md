@@ -1,44 +1,56 @@
-## Description: <br>
-Agent CEO IndoTrading untuk Handy yang memonitor KPI bisnis, meninjau laporan keuangan, menganalisis operasional, dan memberikan insight strategis berbasis data dalam Bahasa Indonesia. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CEO IndoTrading is an Indonesian-language business analysis agent for Handy that monitors KPI, finance, and operations data and turns it into growth-focused strategic insight.
 
-## Publisher: <br>
-[handy01](https://clawhub.ai/user/handy01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[handy01](https://clawhub.ai/user/handy01)
 
-## Use Case: <br>
-Business operators and executives use this skill to review IndoTrading KPI, finance, and operational reports in Bahasa Indonesia. It asks for missing data, compares performance against targets or prior periods, and returns growth-focused insights and recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may handle sensitive KPI, financial, or operational business data when connected to company systems. <br>
-Mitigation: Grant only minimum read-only access, review visible data scopes before use, and avoid sharing raw credentials or unrestricted API keys in chat. <br>
-Risk: The artifact contains placeholder data-source integrations and target values, so analysis may be incomplete without current business data. <br>
-Mitigation: Require users to provide the reporting period, source data, and metric targets before treating recommendations as decision support. <br>
+## Use Case:
 
+IndoTrading business leaders and operators use this skill to review KPI, finance, and operational data in Bahasa Indonesia and turn trends or anomalies into growth-focused recommendations. It asks for missing source data before analysis and frames outputs as current condition, trend, insight, recommendation, and one strategic action item.
 
-## Reference(s): <br>
-- [KPI IndoTrading](references/kpi.md) <br>
-- [Laporan Keuangan IndoTrading](references/keuangan.md) <br>
-- [Operasional IndoTrading](references/operasional.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/handy01/ceo-indotrading) <br>
-- [Publisher Profile](https://clawhub.ai/user/handy01) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown business report in Bahasa Indonesia] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured as condition, trend, insight, recommendation, and one growth-focused action item.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Business, finance, dashboard, API, spreadsheet, or database data may be sensitive or incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only deliberate data sources and review the skill's analysis before using it for business decisions.
+
+Risk: The skill gives growth recommendations based on supplied data and may be wrong if the data or targets are missing.
+
+Mitigation: Confirm source data, periods, and metrics before acting on recommendations.
+
+## Reference(s):
+
+- [KPI IndoTrading](references/kpi.md)
+- [Laporan Keuangan IndoTrading](references/keuangan.md)
+- [Operasional IndoTrading](references/operasional.md)
+- [ClawHub skill page](https://clawhub.ai/handy01/skills/ceo-indotrading)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown business analysis in Bahasa Indonesia]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default structure covers current condition, trend, insight, recommendation, and a growth-focused strategic action item.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

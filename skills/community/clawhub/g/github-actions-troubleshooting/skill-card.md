@@ -1,42 +1,56 @@
-## Description: <br>
-Troubleshoot GitHub Actions workflows, particularly for Go projects. Diagnose failing workflows, distinguish between code and environment issues, interpret logs, and apply fixes for common CI/CD problems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Troubleshoot GitHub Actions workflows, particularly for Go projects. Diagnose failing workflows, distinguish between code and environment issues, interpret logs, and apply fixes for common CI/CD problems.
 
-## Publisher: <br>
-[irook661](https://clawhub.ai/user/irook661) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[irook661](https://clawhub.ai/user/irook661)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect GitHub Actions failures, review logs and artifacts, and decide whether CI problems come from code, dependencies, or environment configuration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to use the active GitHub CLI login for repository troubleshooting. <br>
-Mitigation: Confirm the intended GitHub account and repository before running suggested gh commands. <br>
-Risk: Downloaded workflow artifacts or logs may contain sensitive project information. <br>
-Mitigation: Review artifacts locally before sharing them or including their contents in follow-up prompts. <br>
-Risk: Dependency or linter fixes may modify local project files. <br>
-Mitigation: Inspect generated changes before committing or pushing them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/irook661/github-actions-troubleshooting) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/irook661) <br>
+## Use Case:
 
+Developers and engineers use this skill to diagnose failing GitHub Actions workflows, inspect logs and artifacts, separate code failures from CI environment issues, and apply common Go CI fixes.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose GitHub CLI, Git, Go module, and linter commands for review before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: GitHub CLI commands operate against repositories and workflow runs supplied by the user, so incorrect targets may expose or modify the wrong project context.
+
+Mitigation: Confirm the repository owner/name and run identifiers before executing commands, and use accounts with least necessary repository access.
+
+Risk: Downloaded workflow artifacts may contain untrusted files, scripts, or binaries.
+
+Mitigation: Download artifacts into an isolated directory, review artifact names and sources, avoid directly running downloaded content, and delete artifacts when analysis is complete.
+
+Risk: Suggested Go CI fixes such as dependency cleanup or linter configuration changes can alter project behavior if applied without review.
+
+Mitigation: Review proposed changes in version control and run the relevant tests or workflow checks before merging.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/irook661/skills/github-actions-troubleshooting)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GitHub CLI and Git; examples assume the user supplies the target repository and workflow run identifiers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Connects an agent to external services through Membrane so it can create connections, find or build actions, and run API operations such as sending messages, creating tasks, syncing data, or managing records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect to external apps through Membrane so agents can send messages, create tasks, sync data, manage contacts, and perform API operations.
 
-## Publisher: <br>
-[bratchenko](https://clawhub.ai/user/bratchenko) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[bratchenko](https://clawhub.ai/user/bratchenko)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent connect to external apps through Membrane, authenticate connections, discover or build actions, and execute requested API operations across business tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can act as a broad bridge into connected apps and run high-impact actions. <br>
-Mitigation: Install only when this broad Membrane access is intended, use least-privileged Membrane tokens and connected accounts, and scope connected apps narrowly. <br>
-Risk: Actions such as creating connections or connectors, posting content, syncing or exporting data, modifying records, or destructive operations may occur without clear built-in confirmation rules. <br>
-Mitigation: Require explicit user confirmation before those actions are executed. <br>
-Risk: The Membrane token is a high-privilege credential for connected app operations. <br>
-Mitigation: Treat MEMBRANE_TOKEN as a secret and avoid exposing it in prompts, logs, generated files, or action inputs. <br>
+## Use Case:
 
+Developers and agents use this skill to discover or create Membrane connections and actions, then run those actions against external services after user authorization.
 
-## Reference(s): <br>
-- [Membrane](https://getmembrane.com) <br>
-- [Membrane Dashboard](https://console.getmembrane.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/bratchenko/self-integration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API calls, Configuration, JSON, Text] <br>
-**Output Format:** [Markdown guidance with HTTP request examples and JSON request or response shapes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MEMBRANE_TOKEN and may use MEMBRANE_API_URL to target the Membrane API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: The skill can send a high-privilege Membrane token and action data to a configurable API endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep MEMBRANE_API_URL fixed to the official HTTPS Membrane API unless intentionally operating a trusted deployment, and scope and rotate MEMBRANE_TOKEN carefully.
+
+Risk: Connected-app actions can post messages, modify records, create tasks, or perform other state-changing operations.
+
+Mitigation: Require explicit user approval before state-changing actions and review action inputs against the target app.
+
+Risk: The ClawHub security verdict is suspicious because endpoint validation is not documented.
+
+Mitigation: Review before installing and use only if the publisher and Membrane access model are trusted for the connected apps.
+
+## Reference(s):
+
+- [Self-Integration on ClawHub](https://clawhub.ai/bratchenko/skills/self-integration)
+- [Membrane homepage](https://getmembrane.com)
+- [Membrane dashboard](https://console.getmembrane.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, JSON, Configuration]
+
+**Output Format:** [Markdown with HTTP endpoints and JSON request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MEMBRANE_TOKEN and optionally MEMBRANE_API_URL; action outputs depend on connected apps.]
+
+## Skill Version(s):
+
+1.1.2 (source: ClawHub release metadata; artifact frontmatter metadata version is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

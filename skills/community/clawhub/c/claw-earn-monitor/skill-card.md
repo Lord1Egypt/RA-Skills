@@ -1,43 +1,56 @@
-## Description: <br>
-Monitor Claw Earn worker, bounty scanner, wallet health, and earning analytics for AI Agent Store marketplace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor Claw Earn worker, bounty scanner, wallet health, and earning analytics for AI Agent Store marketplace.
 
-## Publisher: <br>
-[silverod](https://clawhub.ai/user/silverod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[silverod](https://clawhub.ai/user/silverod)
 
-## Use Case: <br>
-External developers and Claw Earn operators use this skill to inspect worker status, wallet health, bounty filters, scan history, and earning analytics for AI Agent Store marketplace workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill works with Claw Earn session tokens and wallet-related workflows; exposed tokens may allow account or financial actions. <br>
-Mitigation: Keep session tokens out of chats, logs, screenshots, shell history, and shared terminals; rotate any token that may have been exposed. <br>
-Risk: The skill includes commands that inspect local logs, configuration, wallet state, and authenticated marketplace endpoints. <br>
-Mitigation: Review commands before execution and redact sensitive output before sharing diagnostics. <br>
+## Use Case:
 
+External developers and Claw Earn operators use this skill to inspect worker health, wallet status, bounty scans, earning history, and common marketplace or RPC issues.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/silverod/claw-earn-monitor) <br>
-- [AI Agent Store open bounties endpoint](https://aiagentstore.ai/claw/open) <br>
-- [AI Agent Store wallet info endpoint](https://aiagentstore.ai/agent/walletInfo) <br>
-- [Base mainnet RPC endpoint](https://mainnet.base.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash, Python, and YAML snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance is diagnostic and may reference local worker logs, wallet state, marketplace endpoints, and configuration files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Session tokens and local environment files may be exposed while diagnosing HTTP 401 or wallet issues.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Mask token values before sharing command output, screenshots, logs, or files, and keep ~/.openclaw/claw-earn.env out of version control.
+
+Risk: Diagnostic commands inspect local worker logs, state files, wallet status, marketplace endpoints, and Base RPC connectivity.
+
+Mitigation: Run the skill only in environments where the agent is allowed to inspect Claw Earn runtime files and query the referenced marketplace and RPC endpoints.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/silverod/skills/claw-earn-monitor)
+- [AI Agent Store open bounties endpoint](https://aiagentstore.ai/claw/open)
+- [AI Agent Store wallet info endpoint](https://aiagentstore.ai/agent/walletInfo)
+- [Base mainnet RPC endpoint](https://mainnet.base.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Covers local worker status, logs, state files, wallet health, bounty filters, marketplace queries, and Base RPC checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-Automates backup workflows with scheduled and incremental backups, integrity checks, recovery drills, and backup reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates scheduled and incremental backups with backup verification, recovery drills, and backup reporting.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers, operators, and data owners use this skill to plan or run backup automation covering scheduled backups, incremental backups, verification, recovery drills, and backup reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backup automation may access broad data sets or storage locations without clear safety limits. <br>
-Mitigation: Run first in a limited-permission test environment and explicitly define allowed source data, destinations, retention, and restore scope. <br>
-Risk: Restore or scheduled operations can overwrite data or move sensitive information if executed without review. <br>
-Mitigation: Require explicit confirmation before restore or scheduled operations and validate backup integrity with recovery drills before production use. <br>
-Risk: The release directs users toward external, unreviewed code and dependencies. <br>
-Mitigation: Review the repository and Python dependencies before installation or execution. <br>
+## Use Case:
 
+Developers and IT operators use this skill to set up backup automation for data backup, disaster recovery, cloud backup, and local backup workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/ai-intelligent-backup-automation) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include operational guidance for backup, verification, restore testing, and reporting workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter lists 1.0.9) <br>
+Risk: Backup and restore operations can affect high-value data or overwrite existing state if run without clear safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in an isolated, non-privileged environment and require explicit confirmation before restore, overwrite, or production recovery-test actions.
+
+Risk: The release is flagged as suspicious because it asks users to run unreviewed remote code for high-impact backup and restore workflows.
+
+Mitigation: Review the cloned repository and dependencies before installation, and avoid production use until the implementation and restore behavior have been independently checked.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-intelligent-backup-automation)
+- [Publisher profile](https://clawhub.ai/user/yang1002378395-cmyk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter lists 1.0.9)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,55 @@
-## Description: <br>
-Strava (strava.com). Use this skill for Strava requests, including reading, creating, and updating data through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects to Strava through an OOMOL-connected account to read fitness data and create or update supported activities and athlete information.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and agents use this skill to work with Strava account data through the OOMOL connector, including activity, route, club, gear, segment, stream, upload, and athlete profile workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read Strava account data through an OOMOL-connected account. <br>
-Mitigation: Install only when comfortable connecting Strava through OOMOL and letting an agent read Strava data on request. <br>
-Risk: Write actions can create or update activities, upload activity files, update athlete weight, or change segment starring state. <br>
-Mitigation: Review and confirm exact write payloads before approving actions that change Strava data. <br>
+## Use Case:
 
+Strava users can use the skill to inspect activities, routes, segments, clubs, and training information, and to create or update supported Strava data through their connected account.
 
-## Reference(s): <br>
-- [Strava homepage](https://www.strava.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-strava) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance, JSON] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schema inspection before constructing action payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: First-time setup may run a remote oo CLI installer that has not been verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the installer and approve its installation before running the setup fallback.
+
+Risk: The connected service can access private fitness and location data, and supported actions can upload or edit Strava data.
+
+Mitigation: Review OOMOL's data access and automatic skill synchronization, and confirm uploads and edits before they run.
+
+## Reference(s):
+
+- [Strava API Reference](https://developers.strava.com/docs/reference/)
+- [Strava](https://www.strava.com)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON data with explanatory text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can include fitness and location-related account data; confirm state-changing actions.]
+
+## Skill Version(s):
+
+1.0.6 (source: server-resolved release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

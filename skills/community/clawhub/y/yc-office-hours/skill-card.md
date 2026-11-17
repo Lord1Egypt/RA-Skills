@@ -1,41 +1,53 @@
-## Description: <br>
-YC Office Hours diagnostic: six forcing questions that expose demand reality, status quo, desperate specificity, narrowest wedge, observation, and future-fit for startup ideas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Office Hours guides an agent through a YC-style startup diagnostic that tests demand, status quo, target-user specificity, narrowest wedge, observation, future fit, and viability before producing a report.
 
-## Publisher: <br>
-[qianen6](https://clawhub.ai/user/qianen6) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qianen6](https://clawhub.ai/user/qianen6)
 
-## Use Case: <br>
-Founders, product builders, and startup advisors use this skill to test whether a new product idea has real demand before moving into implementation or business modeling. It guides an agent through a kill gate, staged customer-development questions, premise checks, and a written diagnostic assignment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may expose confidential product ideas or private repository context through web research, recent git-history review, or a saved report. <br>
-Mitigation: For confidential ideas or private repositories, instruct the agent to skip web search, avoid git inspection, or return the report inline instead of writing a workspace file. <br>
-Risk: The diagnostic produces forceful market and demand guidance that could be incorrect if founder-provided evidence is incomplete. <br>
-Mitigation: Treat the output as an advisory diagnostic, verify factual claims and market research, and review the assignment before acting on it. <br>
+## Use Case:
 
+External founders and product teams use this skill to pressure-test startup or product ideas before implementation. The agent conducts a viability screen, asks forcing questions one at a time, challenges assumptions, and saves a diagnostic report with demand scoring and a concrete assignment.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/qianen6/yc-office-hours) <br>
-- [Garry Tan's gstack office-hours skill](https://github.com/garrytan/gstack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown diagnostic report with a brief text handoff] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The report is normally saved to docs/business/office-hours-report.md and includes demand scores, kill-gate findings, premise checks, risks, and one concrete next assignment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill may use web search and read product-related repository files and recent git history while diagnosing a startup idea.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in repositories where that access is acceptable, and limit accessible files before use when unrelated confidential plans, credentials, or sensitive customer data may be present.
+
+Risk: The skill writes a business diagnostic report under docs/business, which may contain sensitive product strategy or founder feedback.
+
+Mitigation: Review the generated report before sharing or committing it, and keep the report out of public repositories when it includes confidential business information.
+
+## Reference(s):
+
+- [Office Hours ClawHub release](https://clawhub.ai/qianen6/skills/yc-office-hours)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown diagnostic report with conversational prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Saves the diagnostic report to docs/business/office-hours-report.md when used in a repository.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

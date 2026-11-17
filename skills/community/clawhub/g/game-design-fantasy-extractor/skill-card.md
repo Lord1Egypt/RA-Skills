@@ -1,42 +1,50 @@
-## Description: <br>
-Extract the core player fantasy from a game, feature, loop, or pitch based on what the design actually lets the player do, feel, and become. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract the core player fantasy from a game, feature, loop, or pitch based on what the design actually lets the player do, feel, and become.
 
-## Publisher: <br>
-[stanestane](https://clawhub.ai/user/stanestane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stanestane](https://clawhub.ai/user/stanestane)
 
-## Use Case: <br>
-Game designers, creative directors, narrative designers, product teams, and external developers use this skill to identify the player fantasy implied by a game concept, feature, loop, or pitch and test whether the mechanics actually support that promise. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste confidential pitches, design documents, or unreleased project details into an agent while requesting critique. <br>
-Mitigation: Avoid submitting confidential material unless the user is comfortable having the agent process it; redact sensitive project details before use. <br>
-Risk: Design critique can misread incomplete context or turn assumptions into firm recommendations. <br>
-Mitigation: Review the generated fantasy diagnosis against the source design evidence before using it for roadmap, pitch, or production decisions. <br>
+## Use Case:
 
+Game designers, product teams, narrative designers, and creative leads use this skill to extract and pressure-test the player fantasy implied by a game, feature, loop, or pitch. It helps teams identify whether mechanics, progression, pacing, and theme support a clear emotional promise or create conflicting fantasies.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/stanestane/game-design-fantasy-extractor) <br>
-- [Family Conventions](references/family-conventions.md) <br>
-- [Output Patterns](references/output-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with headings, bullets, and optional tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a core fantasy statement, supporting fantasy layers, a support map, conflict analysis, design implications, and a minimal reframe or fix.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Incomplete or one-sided design inputs can lead to overconfident fantasy diagnosis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: State assumptions, anchor conclusions to supplied mechanics or observations, and ask for missing context when the target, scope, or claimed fantasy is unclear.
+
+## Reference(s):
+
+- [Family Conventions](references/family-conventions.md)
+- [Output Patterns](references/output-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown analysis with sections, bullets, and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include core fantasy statements, supporting fantasy layers, support maps, conflicts, design implications, and a minimal reframe or fix.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

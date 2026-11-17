@@ -1,43 +1,56 @@
-## Description: <br>
-Adds getmem.ai persistent memory to OpenClaw by retrieving memory context before replies and ingesting user and assistant exchanges after replies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent memory for OpenClaw agents via getmem.ai; it retrieves user memory before replies and ingests conversation exchanges after replies.
 
-## Publisher: <br>
-[nimblev2023](https://clawhub.ai/user/nimblev2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nimblev2023](https://clawhub.ai/user/nimblev2023)
 
-## Use Case: <br>
-External users, developers, and operators use this OpenClaw plugin to give agents per-user persistent memory by injecting retrieved getmem.ai context and storing completed exchanges for future retrieval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User conversations and assistant replies may be sent to getmem.ai for persistent remote memory. <br>
-Mitigation: Install only with user or administrator approval after confirming privacy, retention, deletion, and compliance requirements. <br>
-Risk: Broad default memory collection can be inappropriate for regulated, secret-bearing, or policy-restricted conversations. <br>
-Mitigation: Avoid those conversations unless there is an explicit policy for disabling, scoping, or approving memory use. <br>
+## Use Case:
 
+Developers and OpenClaw administrators use this plugin to add cross-session memory to agents by retrieving relevant user context before a reply and storing new conversation turns after a reply.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/nimblev2023/getmem-openclaw) <br>
-- [getmem.ai](https://getmem.ai) <br>
-- [getmem.ai API reference](https://getmem.ai/llms-full.txt) <br>
-- [getmem.ai platform](https://platform.getmem.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Configuration] <br>
-**Output Format:** [Plain text memory context injected into the agent prompt, with JSON API requests for memory retrieval and ingestion.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a getmem.ai API key and can be disabled with the enabled configuration flag.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Prompts, replies, and user identifiers are sent to and stored by getmem.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where users and administrators explicitly accept third-party memory storage and avoid sensitive or regulated deployments without appropriate controls.
+
+Risk: Retrieved memories are injected into later agent context and may affect future replies.
+
+Mitigation: Use only in deployments with clear opt-in, deletion, retention, and identity-scoping controls, and review behavior before enabling it for multiple tenants.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nimblev2023/skills/getmem-openclaw)
+- [getmem.ai](https://getmem.ai)
+- [getmem.ai API reference](https://getmem.ai/llms-full.txt)
+- [getmem.ai platform](https://platform.getmem.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown documentation with inline shell commands and configuration keys]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an API key and sends user identifiers, prompts, and replies to getmem.ai when enabled.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

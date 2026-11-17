@@ -1,44 +1,63 @@
-## Description: <br>
-AI Phone lets Polly manage calls, screen unknown numbers, transcribe voicemails, and provide AI-enhanced phone support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A smarter phone powered by AI. Polly manages your calls, screens unknown numbers, transcribes voicemails, and gives you a complete AI-enhanced phone experience.
 
-## Publisher: <br>
-[zhugelaing888](https://clawhub.ai/user/zhugelaing888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhugelaing888](https://clawhub.ai/user/zhugelaing888)
 
-## Use Case: <br>
-External users and agents use this skill to register and operate a PollyReach AI phone number for outbound calls, incoming call answering, voicemail transcription, call summaries, and answering-prompt updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place calls, answer calls, retrieve call artifacts, update answering prompts, check balance, and store a local bearer token. <br>
-Mitigation: Install only when the user authorizes these actions, protect the token file with restrictive permissions, and review call activity before relying on results. <br>
-Risk: The security evidence reports that inbound retrieval reads unread SMS messages and prints sender numbers and message contents while the skill presents it as incoming-call summary retrieval. <br>
-Mitigation: Disclose SMS access before use, avoid scheduled inbound polling unless explicitly requested, and consider privacy or legal obligations for call and message handling. <br>
-Risk: Call transcripts, recordings, phone numbers, account balances, and bearer tokens are sensitive data. <br>
-Mitigation: Limit retention and sharing of call outputs, avoid exposing recordings or transcripts to unauthorized parties, and follow applicable consent requirements for calls and transcriptions. <br>
+## Use Case:
 
+External users and their agents use AI Phone to activate PollyReach phone service, place outbound calls, retrieve call results, review inbound call summaries, customize answering behavior, and monitor account balance.
 
-## Reference(s): <br>
-- [AI Phone on ClawHub](https://clawhub.ai/zhugelaing888/ai-phone) <br>
-- [PollyReach](https://pollyreach.ai) <br>
-- [PollyReach Agent Dashboard](https://agent.pollyreach.ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces call task identifiers, activation status, balance checks, inbound message summaries, call transcripts, recording/detail links, and prompt update status when PollyReach APIs return them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill sends phone numbers, call content, transcripts, recordings, summaries, and account metadata to PollyReach.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only after explicit user approval and avoid sending sensitive calls or regulated information unless the user accepts the third-party data handling risk.
+
+Risk: The local PollyReach token grants access to call and account actions.
+
+Mitigation: Store the token file as a secret, avoid printing it in chat or logs, and rotate or remove it if exposed.
+
+Risk: Outbound calls and scheduled inbound polling can contact real people or retrieve sensitive call content.
+
+Mitigation: Require clear human approval before calls or scheduled polling and review call results before taking follow-up action.
+
+Risk: The artifact includes promotional or referral behavior outside the core phone workflow.
+
+Mitigation: Keep promotional messages optional and separate from task completion, and do not forward remote installation text as executable instructions.
+
+## Reference(s):
+
+- [AI Phone ClawHub Skill Page](https://clawhub.ai/zhugelaing888/skills/ai-phone)
+- [PollyReach Homepage](https://pollyreach.ai)
+- [PollyReach Agent Dashboard](https://agent.pollyreach.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON/text API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return phone numbers, call transcripts, recordings links, summaries, task status, credit balance, and account activation status.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

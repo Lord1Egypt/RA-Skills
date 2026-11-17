@@ -1,40 +1,57 @@
-## Description: <br>
-Requires the agent to clarify user intent, requirements, and design before creating features, components, functionality, or behavior changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through structured brainstorming, requirements clarification, design approval, and specification review before implementation.
 
-## Publisher: <br>
-[LiuHe12](https://clawhub.ai/user/LiuHe12) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuhe12](https://clawhub.ai/user/liuhe12)
 
-## Use Case: <br>
-Developers and agent users use this skill to turn creative or feature ideas into approved design specs before implementation planning. It is especially useful when scope, assumptions, architecture, data flow, error handling, or tests need to be discussed before code changes begin. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated designs or specs can carry incorrect assumptions into later implementation work. <br>
-Mitigation: Review and approve the proposed design and written spec before moving to implementation planning. <br>
-Risk: The optional visual companion starts a local browser server and records browser option clicks in a local session events file. <br>
-Mitigation: Keep the companion bound to localhost or a trusted network and avoid using it for sensitive choices that should not be recorded locally. <br>
+## Use Case:
 
+Developers and product teams use this skill to turn creative or feature requests into scoped designs and reviewed specs before implementation planning.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/LiuHe12/brainstorming-4) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, files] <br>
-**Output Format:** [Conversational guidance and Markdown design specifications, with optional shell commands for local visual companion sessions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a design document after user approval and may use a local browser companion for visual questions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill takes broad control over the agent workflow and can slow or override direct implementation requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when a design-first workflow is desired, and confirm that users explicitly approve designs before implementation planning begins.
+
+Risk: The optional browser companion logs selections and can be exposed on the network if configured with a non-loopback host.
+
+Mitigation: Keep the companion bound to localhost unless remote access is intentional, and avoid putting sensitive information in mockups or browser selections.
+
+Risk: Design documents, mockups, click history, and brainstorm session files may be written or committed as part of the workflow.
+
+Mitigation: Review generated files before committing, keep temporary companion artifacts out of source control unless intentionally preserved, and clean sessions that are no longer needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/liuhe12/skills/brainstorming-4)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown prose with occasional shell commands and HTML fragments for visual mockups]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create design documents, review prompts, visual mockups, and local companion session artifacts during the workflow.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

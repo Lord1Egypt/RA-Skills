@@ -1,44 +1,60 @@
-## Description: <br>
-Searches academic papers and conducts literature reviews with OpenAlex, including paper lookup, citation exploration, metadata extraction, and structured synthesis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search academic papers and conduct literature reviews using the OpenAlex API.
 
-## Publisher: <br>
-[mmyg11](https://clawhub.ai/user/mmyg11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mmyg11](https://clawhub.ai/user/mmyg11)
 
-## Use Case: <br>
-Researchers, students, analysts, and agents use this skill to find scholarly works by topic, author, or DOI and to assemble structured literature reviews with paper metadata, citation context, and thematic synthesis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Academic queries, author names, and DOIs are sent to external services such as OpenAlex or Unpaywall. <br>
-Mitigation: Avoid confidential research topics or sensitive identifiers when running searches. <br>
-Risk: The literature-review workflow can write output files and may overwrite a chosen output path. <br>
-Mitigation: Choose output paths deliberately and review generated files before relying on them. <br>
-Risk: Fetched paper metadata may remain in the local cache under /tmp/litreview_cache. <br>
-Mitigation: Clear the cache when retained academic metadata should not remain on the machine. <br>
+## Use Case:
 
+Developers, researchers, and research-support agents use this skill to search scholarly works by topic, author, or DOI; inspect citations and open-access metadata; and generate structured literature-review summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mmyg11/academic-research-skip) <br>
-- [OpenAlex API](https://api.openalex.org) <br>
-- [Topanga](https://topanga.ludwitt.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown, JSON, and terminal text from academic search and literature-review commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write user-selected review files and cache fetched paper metadata in /tmp/litreview_cache.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Academic search topics, author names, and DOIs are sent to OpenAlex; DOIs from deep-read requests may be sent to Unpaywall.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive research queries when external API disclosure is not acceptable.
+
+Risk: The literature-review workflow caches API responses under /tmp/litreview_cache, which may be unsuitable on shared or high-sensitivity systems.
+
+Mitigation: Use the workflow on trusted systems and clear or isolate the cache when handling sensitive topics.
+
+Risk: Generated reports include a publisher attribution link and may contain incomplete or misleading paper metadata from upstream services.
+
+Mitigation: Review generated Markdown or JSON before publishing or relying on it.
+
+## Reference(s):
+
+- [OpenAlex API](https://api.openalex.org)
+- [Unpaywall API](https://api.unpaywall.org)
+- [Academic Research Skip on ClawHub](https://clawhub.ai/mmyg11/skills/academic-research-skip)
+- [Topanga](https://topanga.ludwitt.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, files, shell commands, guidance]
+
+**Output Format:** [Markdown, plain text, or JSON; literature reviews may be written to a Markdown or JSON file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results include paper metadata such as title, authors, year, abstract when available, citation count, DOI, open-access URL, source, and OpenAlex ID.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,63 @@
-## Description: <br>
-Use the ClawHub CLI to search, install, update, and publish agent skills from clawhub.com, including fetching new skills, syncing installed skills, and publishing skill folders with the npm-installed CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the ClawHub CLI to search, install, update, and publish agent skills from clawhub.com.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-Developers and engineers use this skill to operate ClawHub CLI workflows for discovering, installing, updating, listing, authenticating, and publishing agent skills while applying safety guardrails around global installs, bulk updates, and output handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide package-management operations that install, update, or publish agent skills. <br>
-Mitigation: Install only trusted ClawHub CLI packages and registries, prefer targeted or interactive updates, and use fresh confirmation for destructive or bulk operations. <br>
-Risk: Forced non-interactive updates can silently replace local skills and bypass review prompts. <br>
-Mitigation: Avoid combining --force with --no-input for bulk updates unless the user gives explicit current-turn confirmation after the risks are explained. <br>
-Risk: ClawHub CLI output may expose local paths, installed skill names, or authentication identity. <br>
-Mitigation: Do not pipe ClawHub CLI output to public network services, webhooks, paste sites, or HTTP endpoints; display it locally instead. <br>
+## Use Case:
 
+Developers and agent operators use this skill to manage ClawHub skills from an agent session, including search, install, update, listing, authentication checks, and publishing workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/clawhub-hardened) <br>
-- [Publisher profile](https://clawhub.ai/user/snazar-faberlens) <br>
-- [ClawHub registry](https://clawhub.com) <br>
-- [Faberlens ClawHub safety evaluation](https://faberlens.ai/explore/clawhub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the npm-installed clawhub CLI for command execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Global npm installation can alter the user's CLI environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm global installation deliberately before running npm i -g clawhub.
+
+Risk: Forced bulk updates can silently replace installed skills.
+
+Mitigation: Require fresh confirmation and explain the risk before using --force with --no-input or bulk update flows.
+
+Risk: Publishing can upload unintended private files or metadata.
+
+Mitigation: Inspect the target directory, registry, manifest, symlinks, and secrets before publishing.
+
+Risk: Command output may expose paths, installed skills, or auth identity.
+
+Mitigation: Do not pipe ClawHub output to webhooks, paste sites, HTTP endpoints, or other network-transmitting services.
+
+## Reference(s):
+
+- [Clawhub Hardened Skill Page](https://clawhub.ai/snazar-faberlens/skills/clawhub-hardened)
+- [ClawHub Registry](https://clawhub.com)
+- [Faberlens Safety Report](https://faberlens.ai/explore/clawhub)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May request confirmation before global installs, forced bulk updates, publishing, or other sensitive ClawHub operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

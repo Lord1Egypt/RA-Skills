@@ -1,43 +1,56 @@
-## Description: <br>
-Conducts structured web research by searching, fetching, following up, deduplicating, and synthesizing information into cited reports with source quality scoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conduct structured web research by searching, fetching, and synthesizing information into reports with citations and source verification.
 
-## Publisher: <br>
-[indigas](https://clawhub.ai/user/indigas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[indigas](https://clawhub.ai/user/indigas)
 
-## Use Case: <br>
-Developers, analysts, and research-focused agents use this skill to turn a research question or batch of questions into cited Markdown, JSON, or HTML reports with source scoring, limitations, and follow-up questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research queries and generated reports may include sensitive topics and can be sent to external web services or persisted locally. <br>
-Mitigation: Avoid sensitive topics unless that exposure is acceptable, and review or delete saved reports when they are no longer needed. <br>
-Risk: Synthesized findings may be outdated, incomplete, or misleading if sources are weak or conflicting. <br>
-Mitigation: Cross-check major claims against multiple sources, review source quality scores and limitations, and independently verify important conclusions before use. <br>
+## Use Case:
 
+Developers, analysts, and research teams use this skill to run structured web research workflows that search, fetch, deduplicate, score, and synthesize sources into cited reports for single questions or small batches.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/indigas/claw-web-research) <br>
-- [Search Strategies](artifact/references/search-strategies.md) <br>
-- [Synthesis Framework](artifact/references/synthesis-framework.md) <br>
-- [Report Template](artifact/references/report_template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown, JSON, or HTML research reports with citations; inline shell commands for running the pipeline.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may be saved under workspace/research/ and may include source quality scores, limitations, and citations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server evidence release.version, artifact SKILL.md, scripts/research.py) <br>
+Risk: Generated HTML reports may embed untrusted web content as executable HTML when opened.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer Markdown or JSON output for untrusted research topics, or escape dynamic content and validate URLs before opening or sharing HTML reports.
+
+Risk: Research outputs may include outdated, incomplete, disputed, or weakly sourced claims.
+
+Mitigation: Review cited sources, cross-reference major claims, check publication dates for time-sensitive topics, and preserve limitations in the final report.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/indigas/skills/claw-web-research)
+- [Search Strategies for Web Research](artifact/references/search-strategies.md)
+- [Synthesis Framework](artifact/references/synthesis-framework.md)
+- [Research Report Template](artifact/references/report_template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, html, shell commands, guidance]
+
+**Output Format:** [Markdown, JSON, or self-contained HTML research reports with source lists, quality scoring, limitations, and methodology notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are written to workspace/research/ by default; batch mode accepts a JSON file of research questions.]
+
+## Skill Version(s):
+
+2.1.0 (source: release evidence and artifact/SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

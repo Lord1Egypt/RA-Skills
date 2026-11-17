@@ -1,39 +1,49 @@
-## Description: <br>
-Prepares leaders for daily effectiveness in an AI-augmented workplace by focusing on human capabilities, hybrid human-AI team norms, and career resilience as automation reshapes work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prepares leaders for daily effectiveness in an AI-augmented workplace by focusing on the human capabilities that machines cannot replicate.
 
-## Publisher: <br>
-[fatihguner](https://clawhub.ai/user/fatihguner) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fatihguner](https://clawhub.ai/user/fatihguner)
 
-## Use Case: <br>
-Leaders, founders, managers, and workforce-development teams use this skill to assess AI-era leadership readiness, allocate work between humans and AI, design preskilling programs, and set practical norms for human-AI collaboration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill's broad AI-leadership guidance may be invoked in conversations that require specialized HR, legal, compliance, or labor-relations review. <br>
-Mitigation: Use it as planning guidance and route high-impact workforce, employment, or compliance decisions through qualified reviewers. <br>
-Risk: AI-generated leadership assessments or automation timelines may be incomplete or misleading if accepted without domain review. <br>
-Mitigation: Treat outputs as drafts and verify recommendations against organizational context, domain expertise, and current policy before acting. <br>
+## Use Case:
 
+Leaders, managers, founders, and workforce-development teams use this skill to plan AI adoption, evaluate which work should remain human-led, design human-AI team norms, and build career resilience through preskilling.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with prompts, assessment tables, and action-plan templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only leadership and workforce-development guidance; no code execution or external system access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill may be invoked for broad AI-related leadership discussions and produce guidance that is too general for a specific organization or role.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide clear role, industry, team, and adoption-context details, then review the guidance before using it for workforce or career decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fatihguner/skills/ai-era-leadership)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Markdown]
+
+**Output Format:** [Markdown guidance with prompts, assessment tables, and action plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only leadership guidance; no system access or external tool execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

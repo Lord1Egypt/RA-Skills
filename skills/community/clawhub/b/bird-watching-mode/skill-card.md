@@ -1,41 +1,58 @@
-## Description: <br>
-Bird-watching log workflow: ask for place on enable, resolve eBird region via superpicky-cli region-query, persist to workspace/bird.json; record sightings from user text or BirdID photo identify; export CSV summaries for the user. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bird Watching Mode helps an agent initialize a local birding session, resolve an eBird region, record text or photo-based bird sightings, and export the sighting log as CSV.
 
-## Publisher: <br>
-[yoshino-s](https://clawhub.ai/user/yoshino-s) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yoshino-s](https://clawhub.ai/user/yoshino-s)
 
-## Use Case: <br>
-External users and agent operators use this skill to keep a local bird-watching log, resolve an eBird region, record sightings from text or photos, and export observations or per-species summaries as CSV files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local birding log and CSV exports may include sensitive notes, timestamps, location context, local image paths, or raw photo-identification output. <br>
-Mitigation: Review workspace/bird.json and exported CSV files before sharing them. <br>
-Risk: Region lookup and photo identification depend on the external SuperPicky CLI helper. <br>
-Mitigation: Use only a trusted SuperPicky CLI installation and confirm uncertain photo-identification results before appending a sighting. <br>
+## Use Case:
 
+External users and developers use this skill to keep a local bird-watching log, add sightings from field notes or BirdID photo identification, and export observations or per-species summaries for review or sharing.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yoshino-s/bird-watching-mode) <br>
-- [bird.json schema](scripts/bird_log_schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, plus local JSON and CSV files created by bundled scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes workspace/bird.json and optional CSV exports; photo identification depends on a trusted SuperPicky CLI installation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The local birding log can contain place, time, species, notes, image paths, and raw BirdID output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in workspaces where that local data is acceptable, and avoid sharing the log unless those fields have been reviewed.
+
+Risk: CSV exports can expose the same sighting and location details when attached, emailed, or opened in spreadsheets.
+
+Mitigation: Review generated CSV files before sharing them and remove fields that should not leave the workspace.
+
+Risk: Photo identification relies on a separate SuperPicky CLI and BirdID setup.
+
+Mitigation: Install and trust that dependency separately, and confirm uncertain species suggestions before recording them.
+
+## Reference(s):
+
+- [Bird log schema](scripts/bird_log_schema.md)
+- [ClawHub skill page](https://clawhub.ai/yoshino-s/skills/bird-watching-mode)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, JSON, CSV files, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, plus workspace JSON and optional CSV files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes workspace/bird.json and optional CSV exports; photo identification depends on the separate SuperPicky CLI and BirdID components.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

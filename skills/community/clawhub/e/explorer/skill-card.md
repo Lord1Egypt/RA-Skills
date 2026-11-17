@@ -1,43 +1,54 @@
-## Description: <br>
-Search and analyze trending GitHub repositories by topics, star count, and creation date. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and analyze trending GitHub repositories by topics, star count, and creation date.
 
-## Publisher: <br>
-[manifoldor](https://clawhub.ai/user/manifoldor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[manifoldor](https://clawhub.ai/user/manifoldor)
 
-## Use Case: <br>
-Developers and technical researchers use this skill to discover popular open-source GitHub projects by topic, stars, creation window, programming language, and sort order. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An optional GITHUB_TOKEN may be exposed if stored in shell startup files or granted broad permissions. <br>
-Mitigation: Treat the token as a secret, grant only the minimum permissions needed, avoid private-repository or write scopes, and prefer a temporary environment variable or secret manager. <br>
-Risk: GitHub API rate limits can interrupt searches or reduce result availability. <br>
-Mitigation: Use a minimally scoped token for higher API limits when appropriate, and rerun searches after loosening filters if no results are returned. <br>
+## Use Case:
 
+Developers, engineers, and technical researchers use this skill to discover popular open-source GitHub projects by topic, language, star count, creation window, and sorting criteria.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/manifoldor/explorer) <br>
-- [GitHub Search API reference](references/github_api.md) <br>
-- [GitHub REST Search documentation](https://docs.github.com/en/rest/search) <br>
-- [GitHub Search Repositories endpoint](https://api.github.com/search/repositories) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Terminal text listing matching repositories with names, descriptions, URLs, stars, forks, language, tags, and dates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can use an optional GITHUB_TOKEN environment variable to raise GitHub API rate limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: The skill can query GitHub over the network and optionally use a GitHub token for higher API rate limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run without a token when possible; otherwise use a fine-grained, read-only, short-lived token scoped to the current command or shell session.
+
+Risk: The artifact documentation suggests appending a GitHub token to a shell startup file, which can leave long-lived credentials on disk.
+
+Mitigation: Do not append real tokens to ~/.zshrc or commit or sync shell configuration files containing tokens.
+
+## Reference(s):
+
+- [GitHub Search API reference](references/github_api.md)
+- [Official GitHub REST Search documentation](https://docs.github.com/en/rest/search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style terminal text with repository names, descriptions, URLs, stars, forks, language, topics, and dates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May query the GitHub Search API and may use GITHUB_TOKEN when the user provides it for higher rate limits.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata, created 2026-03-29)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

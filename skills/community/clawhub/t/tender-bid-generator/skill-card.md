@@ -1,45 +1,60 @@
-## Description: <br>
-Generate bid proposal drafts from tender documents by extracting requirements, structuring response sections, and preparing Word-compatible bid content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese bid proposal drafts from tender documents by extracting requirements, organizing standard bid sections, and producing editable Word-oriented content.
 
-## Publisher: <br>
-[chengcheng8632](https://clawhub.ai/user/chengcheng8632) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chengcheng8632](https://clawhub.ai/user/chengcheng8632)
 
-## Use Case: <br>
-External users and business proposal teams use this skill to parse PDF, Word, or text tender documents and draft compliant bid materials for human review before submission. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tender documents may contain sensitive commercial, pricing, or qualification information. <br>
-Mitigation: Let the agent read only the specific tender files provided for the task and keep generated bid drafts in a controlled location. <br>
-Risk: Generated bid drafts may contain incorrect pricing, compliance claims, qualification statements, or technical responses. <br>
-Mitigation: Have a qualified person review all pricing, compliance, qualification, and technical content before submission. <br>
-Risk: Parsing or template generation depends on local document-processing packages and user-selected file paths. <br>
-Mitigation: Confirm the exact file path before parsing and install dependencies only from trusted sources. <br>
+## Use Case:
 
+External proposal, procurement, and business development users use this skill to parse Chinese tender documents and draft bid responses with project details, qualification requirements, technical specifications, commercial terms, scoring criteria, and standard bid sections.
 
-## Reference(s): <br>
-- [Writing Guide](references/writing-guide.md) <br>
-- [Bid Template](assets/bid-template.txt) <br>
-- [ClawHub Skill Page](https://clawhub.ai/chengcheng8632/tender-bid-generator) <br>
-- [Publisher Profile](https://clawhub.ai/user/chengcheng8632) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown and text bid drafts with JSON extraction output and optional Word-compatible document files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated bid content requires human review for pricing, compliance, qualification evidence, and submission readiness.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated bid content may contain incorrect qualifications, pricing, legal commitments, deadlines, or tender responses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Manually review all generated bid content against the source tender, company records, pricing approvals, and legal requirements before submission.
+
+Risk: Tender parsing reads user-provided PDF, DOCX, or TXT files and may handle sensitive procurement or company information.
+
+Mitigation: Run the skill locally on files the user explicitly provides and avoid processing confidential tenders in unapproved environments.
+
+Risk: Generic dependency installation prompts could install unpinned document parsing packages into a shared environment.
+
+Mitigation: Install PyPDF2 and python-docx in a dedicated virtual environment with pinned versions before running the scripts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chengcheng8632/skills/tender-bid-generator)
+- [Publisher Profile](https://clawhub.ai/user/chengcheng8632)
+- [Writing Guide](references/writing-guide.md)
+- [Bid Template](assets/bid-template.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, JSON tender extraction output, and editable bid document content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads user-provided PDF, DOCX, or TXT tender files locally and relies on manual review before bid submission.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

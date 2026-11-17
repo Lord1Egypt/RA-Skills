@@ -1,41 +1,50 @@
-## Description: <br>
-Intent inference and alignment for persistent AI agents. Classifies gaps between tasks and intentions, checks for misalignment before executing, and prevents wasted work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intent inference and alignment for persistent AI agents: classifies gaps between tasks and intentions, checks for misalignment before executing, and prevents wasted work.
 
-## Publisher: <br>
-[MouseRider](https://clawhub.ai/user/MouseRider) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mouserider](https://clawhub.ai/user/mouserider)
 
-## Use Case: <br>
-Developers and agent operators use this skill to help persistent AI agents infer user intent, classify ambiguity, check for misalignment, and push back when a requested task may not serve the user's goal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Intent inference can be wrong if user profile, memory, or project context is stale or incomplete. <br>
-Mitigation: Keep user profile and memory context accurate, and ask for clarification before expensive, irreversible, or high-stakes actions. <br>
-Risk: The agent may over-apply pushback or intent inference when the user wants literal execution. <br>
-Mitigation: Be explicit when literal execution is preferred, and use the skill's own guidance to avoid questioning every task. <br>
+## Use Case:
 
+External users and developers use this skill to help persistent AI agents infer user intent from profile goals, recent memory, project state, and active conversation context before choosing how to execute a request.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/MouseRider/intention-engine) <br>
-- [Nate Skelton's Intent Engineering](https://natesnewsletter.substack.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown guidance and inline decision protocols] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no executable code, tool calls, credential handling, or hidden install behavior found in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill encourages agents to infer intent from persistent context, which can misalign with the user's current request or privacy expectations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before irreversible, external-facing, costly, or privacy-impacting actions, and re-check inferred intent against current user context.
+
+## Reference(s):
+
+- [Nate Skelton's Intent Engineering](https://natesnewsletter.substack.com/)
+- [Intention Engine on ClawHub](https://clawhub.ai/mouserider/skills/intention-engine)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text]
+
+**Output Format:** [Markdown instructions for agent behavior]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only skill; no API calls, tools, credential variables, or MCP references were detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

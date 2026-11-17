@@ -1,46 +1,60 @@
-## Description: <br>
-Upload and send local files to Feishu chats using Feishu app credentials, supporting group chats, individual users, and email recipients. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uploads local files to Feishu Drive and sends them as file messages to group chats, users, or email recipients using configured Feishu app credentials.
 
-## Publisher: <br>
-[brucezhu888](https://clawhub.ai/user/brucezhu888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucezhu888](https://clawhub.ai/user/brucezhu888)
 
-## Use Case: <br>
-Developers and operators use this skill to upload a selected local document or archive to Feishu and send it to a group chat, individual user, or email recipient. It is intended for file-sharing workflows where Feishu message media upload is not enough for document-style files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A user or agent may upload the wrong local file or a file that is not appropriate to share in Feishu. <br>
-Mitigation: Before each use, confirm the local file path and that the file is acceptable to upload to Feishu. <br>
-Risk: A file may be sent to the wrong Feishu recipient if the receive_id or receive_id_type is incorrect. <br>
-Mitigation: Confirm the recipient ID and type before execution, especially when using chat_id, open_id, user_id, or email values. <br>
-Risk: Feishu app credentials may be over-privileged or exposed outside the intended tenant workflow. <br>
-Mitigation: Use least-privilege Feishu permissions and rotate the app secret if it may have been exposed. <br>
+## Use Case:
 
+Developers and operators use this skill to send local documents, archives, and other files through a Feishu bot to group chats or individual recipients. It is intended for file-sharing workflows where the agent has an explicit file path, recipient, and configured Feishu app credentials.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/brucezhu888/feishu-file-upload) <br>
-- [Feishu Developer Console permissions](https://open.feishu.cn/app/YOUR_APP_ID/auth) <br>
-- [Feishu tenant access token API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal) <br>
-- [Feishu file upload API](https://open.feishu.cn/open-apis/im/v1/files) <br>
-- [Feishu send message API](https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type={receive_id_type}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [Console status text and markdown-style shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3, the requests library, Feishu app credentials in ~/.openclaw/openclaw.json, and optionally OPENCLAW_CHAT_ID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: The skill can send any accessible local file to an arbitrary Feishu recipient.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation of the file path and recipient, restrict who can invoke the skill, and avoid sensitive directories.
+
+Risk: The skill uses stored Feishu app credentials to request a tenant access token from Feishu.
+
+Mitigation: Use a dedicated least-privilege Feishu app with only the required permissions and rotate credentials if they are exposed.
+
+Risk: The bundled documentation's credential-handling disclosure is inaccurate.
+
+Mitigation: Correct the disclosure before release so users understand that app credentials are sent over HTTPS to Feishu's auth endpoint.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brucezhu888/skills/feishu-file-upload)
+- [Feishu tenant access token API endpoint](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal)
+- [Feishu file upload API endpoint](https://open.feishu.cn/open-apis/im/v1/files)
+- [Feishu message API endpoint](https://open.feishu.cn/open-apis/im/v1/messages)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Code, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and command-line output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local file path, Feishu app credentials, Python 3, the requests library, and a Feishu recipient identifier or OPENCLAW_CHAT_ID.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

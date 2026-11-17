@@ -1,6 +1,5 @@
 {
-  "enabled": true,
-  "timezone": "Asia/Shanghai",
+  "enabled": false,
   "schedules": [
     {
       "id": "daily-evening-review",
@@ -29,7 +28,7 @@
     }
   ],
   "prompt_templates": {
-    "prompt": "你之前反复提过「{title}」，现在挺适合顺手强化一下，要不要我帮你把这条线拉回来？",
+    "prompt": "可供复习的冷记忆候选：「{title}」。",
     "gentle": "有一条最近反复出现的旧记忆，适合轻轻复习一下：「{title}」",
     "direct": "建议强化回顾：{title}"
   }

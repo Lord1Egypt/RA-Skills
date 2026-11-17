@@ -1,45 +1,68 @@
-## Description: <br>
-Convert Figma design files to pixel-level mobile-first static HTML/CSS pages with MCP-first extraction, REST fallback, layered DOM reconstruction, and visual diff validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert Figma design files to pixel-level, mobile-first static HTML/CSS pages using Figma MCP extraction, REST fallback, layered DOM reconstruction, and visual diff validation.
 
-## Publisher: <br>
-[elsemk](https://clawhub.ai/user/elsemk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[elsemk](https://clawhub.ai/user/elsemk)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn Figma links, screenshots, or asset bundles into native static HTML and CSS while preserving mobile-first layout, real DOM structure, and visual fidelity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may use Figma credentials and optionally the local Claude credential store for Figma MCP. <br>
-Mitigation: Prefer explicit FIGMA_MCP_TOKEN or FIGMA_TOKEN, review Claude CLI and MCP setup commands before running them, and do not share or commit callback URLs, code#state values, auth-lock files, or credential files. <br>
-Risk: Generated static pages can diverge from the source design if extraction, assets, or responsive layout assumptions are incomplete. <br>
-Mitigation: Use the skill's visual diff pipeline, mobile no-horizontal-scroll checks, real DOM reconstruction rules, and user confirmation criteria before treating the page as complete. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn Figma links, design screenshots, or asset bundles into static HTML/CSS pages while preserving mobile-first layout, real DOM structure, and visual fidelity. It is intended for static page restoration workflows, not React, Vue, SPA, server-rendered, or JavaScript-heavy applications.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/elsemk/figma-to-static) <br>
-- [Figma MCP Usage Reference](references/figma-mcp-usage.md) <br>
-- [CSS Extraction Rules](references/css-extraction-rules.md) <br>
-- [Standard Project Directory Structure](references/file-structure.md) <br>
-- [Figma MCP Auth State Machine](references/mcp-auth-state-machine.md) <br>
-- [Anti-Patterns](references/anti-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Shell commands, Configuration instructions, Guidance, Markdown] <br>
-**Output Format:** [Markdown guidance with shell commands and generated static HTML/CSS file structure] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces native HTML/CSS assets and visual diff outputs when the workflow is executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.6 (source: server-resolved release metadata) <br>
+Risk: The skill can handle short-lived OAuth artifacts and optionally read Claude-stored Figma credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer explicit FIGMA_MCP_TOKEN or FIGMA_TOKEN values, avoid pasting live auth codes into logged shells, and use the provided state/session validation checks before submitting auth artifacts.
+
+Risk: The setup path may modify user-level Claude/Figma MCP configuration or install global CLI tooling.
+
+Mitigation: Review setup scripts before use and run the safe status/preflight path unless an interactive login flow is explicitly intended.
+
+Risk: Preview hosting can expose local project contents if bound publicly or served from an overly broad directory.
+
+Mitigation: Bind previews to 127.0.0.1 where possible, or serve only a sanitized and authenticated preview directory.
+
+Risk: Generated static pages may diverge from the source design or accidentally simplify real DOM structure into images.
+
+Mitigation: Use the visual diff pipeline, inspect region heatmaps, keep navigation and text as real DOM, and require human review before deployment.
+
+## Reference(s):
+
+- [Figma MCP Usage Reference](references/figma-mcp-usage.md)
+- [CSS Extraction Rules](references/css-extraction-rules.md)
+- [Reusable CSS Patterns](references/css-patterns.md)
+- [Standard Project Directory Structure](references/file-structure.md)
+- [Figma MCP Auth State Machine](references/mcp-auth-state-machine.md)
+- [Anti-Patterns](references/anti-patterns.md)
+- [ClawHub skill page](https://clawhub.ai/elsemk/skills/figma-to-static)
+- [Publisher profile](https://clawhub.ai/user/elsemk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated static HTML/CSS project files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce assets, CSS, HTML files, validation reports, and visual diff outputs when used by an agent.]
+
+## Skill Version(s):
+
+2.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

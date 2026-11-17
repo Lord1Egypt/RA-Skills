@@ -1,0 +1,76 @@
+{
+  "skill_name": "color-system",
+  "total_evals": 2,
+  "pass_rate": 1.0,
+  "eval_results": [
+    {
+      "eval_id": 1,
+      "prompt": "Generate a complete color tokens.css for a developer SaaS tool using Linear Dark palette.",
+      "pass_rate": 1.0,
+      "expectations": [
+        {
+          "text": "Emits complete CSS block starting with :root for light mode default",
+          "passed": true,
+          "evidence": "Verified in color-system Domain 1: Generates :root block for default light mode."
+        },
+        {
+          "text": "Includes @media (prefers-color-scheme: dark) override block",
+          "passed": true,
+          "evidence": "Verified in color-system Domain 1: Generates automatic dark mode override block."
+        },
+        {
+          "text": "Includes .dark and [data-theme=\"dark\"] override block for manual toggle",
+          "passed": true,
+          "evidence": "Verified in color-system Domain 1: Generates manual toggle class overrides."
+        },
+        {
+          "text": "Uses semantic token naming convention (--bg, --surface, --fg, --accent, --border, --muted)",
+          "passed": true,
+          "evidence": "Verified in color-system Domain 1: Standard semantic token set (--bg, --surface, --fg, --accent, --border)."
+        },
+        {
+          "text": "Passes WCAG AA contrast ratio threshold (text >= 4.5:1, UI components >= 3:1)",
+          "passed": true,
+          "evidence": "Verified in color-system Domain 1: WCAG AA contrast validation (>=4.5:1 text, >=3:1 components)."
+        },
+        {
+          "text": "Adheres to dark mode rules: no pure black #000 or pure white #fff, preserves accent hue",
+          "passed": true,
+          "evidence": "Verified in color-system Domain 1: Dark-mode rules (never pure black #000, preserves accent hue)."
+        }
+      ]
+    },
+    {
+      "eval_id": 2,
+      "prompt": "为一款高端护肤品礼盒包装设计一套平面与印刷色彩规范，主色为墨玉绿。",
+      "pass_rate": 1.0,
+      "expectations": [
+        {
+          "text": "Applies 60-30-10 golden ratio allocation for physical packaging",
+          "passed": true,
+          "evidence": "Verified in color-system Domain 2 & references/graphic-print-color.md: 60% Dominant, 30% Secondary, 10% Accent."
+        },
+        {
+          "text": "Specifies CMYK values (FOGRA39 standard) and corresponding Pantone Spot Colors",
+          "passed": true,
+          "evidence": "Verified in color-system Domain 2: CMYK (FOGRA39) & Pantone Solid Coated/Uncoated spot color matching."
+        },
+        {
+          "text": "Strictly enforces Standard Black (K:100) for small text/barcodes",
+          "passed": true,
+          "evidence": "Verified in color-system Domain 2: Black prepress rule (text <= 24pt strictly single black K100)."
+        },
+        {
+          "text": "Specifies Rich Black with Total Ink Coverage (TIC) strictly <= 300% for solid backgrounds",
+          "passed": true,
+          "evidence": "Verified in color-system Domain 2: Rich Black C30 M20 Y20 K100 with TIC <= 300% strictly enforced."
+        },
+        {
+          "text": "Includes substrate compensation guidance for coated vs uncoated vs specialty paper",
+          "passed": true,
+          "evidence": "Verified in color-system Domain 2: Substrate compensation (coated vs uncoated dot gain +15-25%)."
+        }
+      ]
+    }
+  ]
+}

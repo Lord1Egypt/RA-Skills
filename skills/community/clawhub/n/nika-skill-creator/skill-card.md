@@ -1,44 +1,57 @@
-## Description: <br>
-Create or update Nika platform skills with main documents and sub-documents that follow Nika constraints, including two-level structure, sub-document references, and no path or extension references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create or update Nika platform skills (main doc + sub docs) that follow Nika constraints (two-level docs, @sub-doc references, no path/extension references). Use when user asks to make a Nika skill, refactor an existing one to Nika format, or validate a Nika skill draft; also useful to output documents that can be pasted into Nika.
 
-## Publisher: <br>
-[typewrong](https://clawhub.ai/user/typewrong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[typewrong](https://clawhub.ai/user/typewrong)
 
-## Use Case: <br>
-Developers and skill authors use this skill to create, refactor, or validate Nika platform skill drafts. It helps produce repository files and copyable Nika main-document and sub-document content with explicit input, output, and validation contracts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The initializer writes files into a local repository and can replace existing files when --force is used. <br>
-Mitigation: Run scripts only in the intended repository and use --force only when existing files are meant to be replaced. <br>
-Risk: Generated Nika skill documents may contain incomplete placeholders or unsuitable workflow assumptions. <br>
-Mitigation: Review generated documents and run the included validator before using or publishing the target skill. <br>
+## Use Case:
 
+Developers and skill authors use this skill to create, refactor, and validate Nika platform skill drafts with two-level documentation, defined input/output contracts, and reusable subdocuments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/typewrong/nika-skill-creator) <br>
-- [Nika Skill constraints](references/nika-spec.md) <br>
-- [Main document template](references/main-doc-template.md) <br>
-- [Sub-document template](references/sub-doc-template.md) <br>
-- [Validation checklist](references/validation-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown documents, Python command examples, generated files, and validation summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The included initializer writes local skill files and refuses to overwrite existing files unless --force is used. The validator reports structural and reference-rule findings for target Nika skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The helper script can write or overwrite files in a user-selected filesystem location.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a workspace intended for Nika skill creation, check the destination before execution, and avoid --force unless overwriting is intentional.
+
+Risk: Unexpected output directories could place generated skill files outside the intended project area.
+
+Mitigation: Use project-relative output directories and avoid absolute paths or parent-traversal path components.
+
+## Reference(s):
+
+- [Nika Skill Constraints](references/nika-spec.md)
+- [Main Document Template](references/main-doc-template.md)
+- [Sub-document Template](references/sub-doc-template.md)
+- [Validation Checklist](references/validation-checklist.md)
+- [ClawHub Skill Page](https://clawhub.ai/typewrong/skills/nika-skill-creator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with optional generated files and shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or validate Nika skill Markdown files in a user-selected workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

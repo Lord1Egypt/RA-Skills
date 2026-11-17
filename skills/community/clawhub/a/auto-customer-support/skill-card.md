@@ -1,43 +1,61 @@
-## Description: <br>
-Provides a lightweight FAQ-based customer support scaffold with webhook replies, CSV FAQ loading, template responses, and escalation to human support or ticketing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a lightweight FAQ-based customer support scaffold with automated replies, webhook intake, and handoff or ticket escalation paths.
 
-## Publisher: <br>
-[xianji520](https://clawhub.ai/user/xianji520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xianji520](https://clawhub.ai/user/xianji520)
 
-## Use Case: <br>
-Developers and support engineers use this skill to scaffold a simple customer-support bot that answers common questions from a CSV FAQ, exposes a webhook endpoint, and routes low-confidence messages to human follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The development server can be exposed publicly or run with Flask debug mode enabled. <br>
-Mitigation: Disable debug mode and avoid exposing the development server before connecting the skill to real customer channels. <br>
-Risk: Automatic replies or ticket creation can send incorrect responses or create unintended support actions. <br>
-Mitigation: Run staging tests and require explicit confirmation before enabling automatic replies or live ticket creation. <br>
-Risk: Channel credentials may be mishandled during integration. <br>
-Mitigation: Keep channel credentials in environment variables or a secrets manager and grant only the permissions needed for message handling and ticket creation. <br>
+## Use Case:
 
+Developers and support operations teams use this skill to scaffold FAQ-driven customer support automation, test sample conversations, and prepare webhook or ticket-system integrations with human escalation when confidence is low.
 
-## Reference(s): <br>
-- [Integration Guides](references/integration-guides.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/xianji520/auto-customer-support) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code, JSON response examples, shell commands, CSV data, and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a local Flask scaffold for FAQ retrieval, webhook handling, and escalation stubs; production channels require operator review and credential configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The runnable server is configured with debug mode and binds to all interfaces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable debug mode and bind to localhost or a protected interface before any shared or production deployment.
+
+Risk: Webhook and escalation routes are unauthenticated.
+
+Mitigation: Add authentication or signature validation, request validation, and rate limits before connecting external channels.
+
+Risk: Unpinned dependencies can change behavior or introduce vulnerable versions.
+
+Mitigation: Pin and review dependencies before deployment.
+
+Risk: Automated support replies may be sent to real customer channels before controls are ready.
+
+Mitigation: Test in a controlled environment and do not connect real customer channels or ticket systems until security controls and reply quality are reviewed.
+
+## Reference(s):
+
+- [Channel Integration Guide](references/integration-guides.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with code, shell commands, configuration notes, and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces FAQ reply text and escalation indicators; runtime webhook responses are JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

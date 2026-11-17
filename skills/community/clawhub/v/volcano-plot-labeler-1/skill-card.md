@@ -1,41 +1,58 @@
-## Description: <br>
-Automatically labels the top significant genes in volcano plots from CSV or TSV differential-expression data and writes a labeled plot image. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze data with `volcano-plot-labeler` using a reproducible workflow, explicit validation, and structured outputs for review-ready interpretation.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Researchers and data analysts use this skill to generate volcano plots from differential-expression tables, highlight top genes, and produce reviewable plot files for reports or analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local CSV or TSV input and writes a plot file to the output path supplied by the user. <br>
-Mitigation: Run it in a sandboxed workspace, validate input and output paths, and process only files intended for this analysis. <br>
-Risk: Python dependencies are declared without pinned versions. <br>
-Mitigation: Pin or review dependency versions before repeatable or shared use. <br>
+## Use Case:
 
+Developers and data analysts use this skill to label the most significant genes in volcano plots from differential expression CSV or TSV data. It helps produce review-ready plots with ranked gene labels, threshold styling, and explicit assumptions about inputs and outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aipoch-ai/volcano-plot-labeler-1) <br>
-- [Runtime Checklist](references/runtime_checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Files] <br>
-**Output Format:** [Markdown guidance with Python examples and local plot files such as PNG, PDF, or SVG] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local CSV or TSV input and writes the requested plot file path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill reads local CSV or TSV data and writes plot files, so broad filesystem access can expose unintended inputs or outputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in an isolated workspace and provide only the intended input and output paths.
+
+Risk: Unpinned Python dependencies can change runtime behavior across environments.
+
+Mitigation: Use an isolated Python environment and pin or lock dependency versions before production use.
+
+Risk: The checklist names path-validation and workspace-restriction controls that are not proven implemented safeguards.
+
+Mitigation: Enforce path restrictions in the calling environment rather than relying on checklist text alone.
+
+## Reference(s):
+
+- [Volcano Plot Labeler on ClawHub](https://clawhub.ai/aipoch-ai/skills/volcano-plot-labeler-1)
+- [Runtime Checklist](references/runtime_checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Files]
+
+**Output Format:** [Markdown with inline bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can generate local volcano plot image files such as PNG, PDF, or SVG when run with valid CSV or TSV input.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

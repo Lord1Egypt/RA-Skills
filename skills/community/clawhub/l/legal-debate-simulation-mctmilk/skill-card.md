@@ -1,41 +1,52 @@
-## Description: <br>
-Simulates opposing counsel to challenge a user's legal basis, claim theory, facts, procedural posture, and fairness arguments, then suggests defensive responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI扮演对方律师，对己方的法条适用进行全方位攻击，并给出防御策略建议。
 
-## Publisher: <br>
-[mctmilk](https://clawhub.ai/user/mctmilk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mctmilk](https://clawhub.ai/user/mctmilk)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Legal practitioners or case-preparation users can use this skill to simulate opposing counsel attacks against a proposed legal theory, then generate matching defense strategies for pre-hearing practice.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may treat generated legal attack and defense strategies as legal advice.
+
+Mitigation: Present outputs as practice material and have qualified legal counsel review any argument before use.
+
+Risk: The source prompt is Chinese-language and may not fit another language or legal system without adaptation.
+
+Mitigation: Verify jurisdiction, language, legal provisions, and procedural assumptions before relying on the output.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External legal practitioners and legal-preparation users use this skill to stress-test arguments before hearings or mock trials by receiving concrete attack points and matching defense strategies. It is preparation support and should not be treated as legal advice. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Analysis, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Users may enter confidential, privileged, or personally identifying case details while preparing arguments. <br>
-Mitigation: Provide only the facts needed for the exercise, redact unnecessary identifiers, and avoid privileged or sensitive details unless sharing them with the AI service is approved. <br>
-Risk: The simulated attack and defense strategies may be mistaken for legal advice or authoritative case assessment. <br>
-Mitigation: Treat outputs as preparation support and review all legal positions, procedural assumptions, and strategy choices with qualified counsel or authoritative legal sources. <br>
+**Output Format:** [Markdown attack list, defense strategies, and optional attack-defense comparison table]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mctmilk/legal-debate-simulation-mctmilk) <br>
-- [Publisher profile](https://clawhub.ai/user/mctmilk) <br>
+**Other Properties Related to Output:** [Requires the user to provide their litigation role, legal provision and claim, and concise case facts.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text with attack lists, defense strategies, and an optional attack-versus-defense comparison table] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided party posture, legal provision and claim, and concise case facts.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

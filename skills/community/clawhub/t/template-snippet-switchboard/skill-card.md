@@ -1,41 +1,57 @@
-## Description: <br>
-Organizes reusable templates and snippets by scenario, role, tone, and length, then produces reviewable structured outputs for writing workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages reusable templates and snippets, switching them by scenario, role, tone, and length while maintaining versioned, reviewable outputs.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Developers, operators, and writing teams use this skill to turn existing templates, snippets, scenarios, and style requirements into a structured, reviewable Markdown template library with maintenance and retirement guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated snippets or templates may contain sensitive or unreviewed language from local inputs. <br>
-Mitigation: Use only intended input files, remove sensitive material before processing, and review generated drafts before publishing or reuse. <br>
-Risk: The optional Python helper reads local files and may produce misleading reports if pointed at the wrong path or customized without review. <br>
-Mitigation: Run the helper only on files or directories meant for processing, prefer dry-run or review workflows, and recheck customized specs before operational use. <br>
+## Use Case:
 
+Developers, operators, and writing teams use this skill to organize reusable writing templates, customer-service snippets, and sales scripts into structured Markdown drafts with scenarios, role variants, tone switches, maintenance rules, and retirement criteria.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/52YuanChangXing/template-snippet-switchboard) <br>
-- [Publisher Profile](https://clawhub.ai/user/52YuanChangXing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown or JSON structured reports, with optional local shell command usage for the bundled Python helper.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended as reviewable drafts, checklists, or dry-run reports; review generated content before publishing or applying it.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The bundled script includes local audit and pattern-scanning behavior that can inspect files beyond simple template formatting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the script before installation and run it only on non-sensitive inputs or inside a constrained workspace.
+
+Risk: The broader audit modes are under-documented relative to the template-management description.
+
+Mitigation: Require the publisher to remove or clearly document the extra modes before relying on the skill in shared or production workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/template-snippet-switchboard)
+- [README](artifact/README.md)
+- [Output template](artifact/resources/template.md)
+- [Structured spec](artifact/resources/spec.json)
+- [Smoke test](artifact/tests/smoke-test.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown report by default, or a JSON object containing the generated report when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local input and bundled template/spec files; the optional script can write the report to a local output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

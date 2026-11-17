@@ -1,57 +1,69 @@
-## Description: <br>
-Helps agents work with the Resend email API for transactional email, inbound email webhooks, templates, delivery events, domains, contacts, broadcasts, webhooks, API keys, automations, logs, and SDK setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Resend Skills helps agents work with the Resend email API for transactional email, inbound webhooks, templates, delivery events, domains, contacts, broadcasts, API keys, automations, logs, and SDK setup.
 
-## Publisher: <br>
-[christina-de-martinez](https://clawhub.ai/user/christina-de-martinez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[christina-de-martinez](https://clawhub.ai/user/christina-de-martinez)
 
-## Use Case: <br>
-Developers and operators use this skill to guide agents through Resend email workflows, including sending transactional emails, receiving inbound mail, configuring webhooks and domains, managing contacts and broadcasts, and handling API keys safely. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents toward production-impacting Resend actions such as sending emails or broadcasts, enabling automations, changing domains or webhooks, modifying contacts, or creating and deleting API keys. <br>
-Mitigation: Require explicit user confirmation for those actions and review recipients, payloads, domains, webhook endpoints, automation state, and API-key scopes before execution. <br>
-Risk: The skill requires sensitive Resend credentials and may involve webhook signing secrets. <br>
-Mitigation: Store secrets only in environment variables, use least-privilege Resend API keys, avoid exposing tokens in logs or generated code, and rotate credentials if disclosure is suspected. <br>
-Risk: Inbound email, logs, and attachments may contain untrusted or sensitive content. <br>
-Mitigation: Verify webhook signatures, retrieve only the data needed for the task, redact sensitive content when sharing outputs, and apply additional inbox security controls before allowing automated downstream actions. <br>
-Risk: Retries or malformed batch requests can duplicate or block email sends. <br>
-Mitigation: Use idempotency keys for retryable sends, validate batch payloads before submission, and prefer single sends when attachments or scheduling are required. <br>
+## Use Case:
 
+Developers and teams use this skill to get implementation guidance, examples, and operational cautions for building email workflows with Resend. It covers sending and receiving email, managing Resend account resources, choosing SDKs, and avoiding common production issues such as duplicate sends, unverified webhooks, and exposed secrets.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/christina-de-martinez/resend-skills) <br>
-- [Resend Skill Documentation](https://resend.com/docs/resend-skill) <br>
-- [Resend Skill Repository](https://github.com/resend/resend-skills) <br>
-- [Resend Agent Skills](https://resend.com/agent-skills) <br>
-- [Resend Documentation](https://resend.com/docs) <br>
-- [Resend API Reference](https://resend.com/docs/api-reference) <br>
-- [Sending Overview](references/sending/overview.md) <br>
-- [Sending Best Practices](references/sending/best-practices.md) <br>
-- [Receiving](references/receiving.md) <br>
-- [Webhooks](references/webhooks.md) <br>
-- [API Keys](references/api-keys.md) <br>
-- [Automations](references/automations.md) <br>
-- [Logs](references/logs.md) <br>
-- [Installation](references/installation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline code examples, shell commands, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include language-specific SDK examples and operational checklists for Resend workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.3.3 (source: server evidence and frontmatter) <br>
+Risk: Real email sends, account changes, deletion operations, and webhook updates can affect production Resend resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege Resend API keys and confirm send, delete, API-key, and webhook actions before running them.
+
+Risk: Resend API keys, webhook secrets, logs, and attachments may contain sensitive data.
+
+Mitigation: Store secrets in environment variables, avoid logging complete secrets, and treat logs and attachments as sensitive.
+
+Risk: Unpinned SDK or external skill dependencies can reduce reproducibility.
+
+Mitigation: Pin SDK or external skill dependencies when the deployment environment requires reproducible installs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/christina-de-martinez/skills/resend-skills)
+- [Resend skill documentation](https://resend.com/docs/resend-skill)
+- [Resend agent skills](https://resend.com/agent-skills)
+- [Resend API reference](https://resend.com/docs/api-reference)
+- [Resend documentation](https://resend.com/docs)
+- [Resend skills repository](https://github.com/resend/resend-skills)
+- [Sending overview](references/sending/overview.md)
+- [Sending best practices](references/sending/best-practices.md)
+- [Receiving](references/receiving.md)
+- [Webhooks](references/webhooks.md)
+- [Templates](references/templates.md)
+- [Domains](references/domains.md)
+- [Installation](references/installation.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with code examples, API usage notes, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Resend API calls, SDK installation commands, environment variable guidance, and operational warnings.]
+
+## Skill Version(s):
+
+3.3.3 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

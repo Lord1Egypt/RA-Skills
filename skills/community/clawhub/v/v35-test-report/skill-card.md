@@ -1,43 +1,54 @@
-## Description: <br>
-Analyzes v3.5 production deployer logs to generate test reports and statistics for monitoring, version comparison, strategy analysis, and AI agent performance evaluation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes v3.5 production deployment logs and generates test report statistics for run counts, v3.5 versus v3.0 comparisons, prediction accuracy, and strategy analysis.
 
-## Publisher: <br>
-[rf-ai-wh](https://clawhub.ai/user/rf-ai-wh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rf-ai-wh](https://clawhub.ai/user/rf-ai-wh)
 
-## Use Case: <br>
-Developers, operators, and AI agent evaluators use this skill to inspect v3.5 production log data, compare v3.5 and v3.0 behavior, and summarize performance indicators for experiments or operational reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The disclosed local log path may contain identifiers, secrets, customer data, or sensitive operational details. <br>
-Mitigation: Review or redact /tmp/agent_v35_production.log before running the skill or sharing generated reports. <br>
-Risk: Generated statistics may be incomplete or misleading when the production log format differs from the expected v3.5 and v3.0 patterns. <br>
-Mitigation: Compare generated summaries against the source log before using them for performance decisions or external reporting. <br>
+## Use Case:
 
+Developers and engineers use this skill to summarize a local v3.5 production deployment log, compare v3.5 and v3.0 performance, and prepare concise test-report statistics for AI agent evaluation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rf-ai-wh/v35-test-report) <br>
-- [Publisher profile](https://clawhub.ai/user/rf-ai-wh) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and plain-text report output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads /tmp/agent_v35_production.log and prints aggregate report statistics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, artifact frontmatter, and artifact changelog) <br>
+Risk: The fixed local log path may contain secrets, user data, internal identifiers, or sensitive operational details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm /tmp/agent_v35_production.log is the intended input and sanitize sensitive data before running the report.
+
+Risk: The skill may be expected to provide monitoring, visualizations, strategy analytics, or exported files beyond its actual behavior.
+
+Mitigation: Use it as a local console summary tool for aggregate statistics, and validate whether additional reporting or monitoring is needed separately.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rf-ai-wh/skills/v35-test-report)
+- [Publisher profile](https://clawhub.ai/user/rf-ai-wh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and console text report output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads /tmp/agent_v35_production.log and prints aggregate statistics; it does not export report files.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

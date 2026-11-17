@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dependency",
+  "meta": {
+    "title": "Web App Dependency Graph",
+    "output": "examples/dependency-web-app-rendered.html",
+    "quality_profile": "showcase",
+    "views": [
+      { "id": "core-chain", "label": "Core chain", "focus": ["web", "api", "db"], "note": "Follow the primary request path from UI to persistence." },
+      { "id": "background", "label": "Background work", "focus": ["api", "worker", "cache"], "note": "See the async processing and cache dependencies." },
+      { "id": "shared", "label": "Shared libraries", "focus": ["api", "utils", "auth"], "note": "Trace the libraries shared across services." }
+    ]
+  },
+  "nodes": [
+    { "id": "web", "label": "web", "version": "1.4.2", "kind": "application" },
+    { "id": "api", "label": "api", "version": "2.1.0", "kind": "service" },
+    { "id": "db", "label": "database", "version": "16.3", "kind": "service" },
+    { "id": "cache", "label": "cache", "version": "7.2.4", "kind": "service" },
+    { "id": "worker", "label": "worker", "version": "1.1.3", "kind": "service" },
+    { "id": "utils", "label": "utils", "version": "0.9.0", "kind": "library" },
+    { "id": "auth", "label": "auth", "version": "3.0.1", "kind": "library" }
+  ],
+  "dependencies": [
+    { "id": "web-api", "from": "web", "to": "api", "label": "calls", "kind": "runtime", "variant": "emphasis" },
+    { "id": "api-db", "from": "api", "to": "db", "label": "queries", "kind": "runtime", "variant": "emphasis" },
+    { "id": "api-cache", "from": "api", "to": "cache", "label": "reads", "kind": "runtime", "route": "vertical-channel", "channelX": 300 },
+    { "id": "api-worker", "from": "api", "to": "worker", "label": "enqueues", "kind": "runtime", "variant": "dashed" },
+    { "id": "worker-cache", "from": "worker", "to": "cache", "label": "updates", "kind": "runtime" },
+    { "id": "api-utils", "from": "api", "to": "utils", "kind": "dev", "variant": "dashed" },
+    { "id": "api-auth", "from": "api", "to": "auth", "kind": "dev", "variant": "dashed" },
+    { "id": "worker-utils", "from": "worker", "to": "utils", "kind": "dev", "variant": "dashed" },
+    { "id": "auth-utils", "from": "auth", "to": "utils", "kind": "dev", "variant": "dashed" }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Primary dependency path",
+      "items": [
+        "web depends on api, which depends on the database and cache",
+        "The hot path stays visually clear even with background work",
+        "Runtime edges are solid; development-only imports are dashed"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Shared libraries",
+      "items": [
+        "utils is the leaf library everything imports",
+        "auth depends on utils, forming a clean acyclic core",
+        "Version tags show the installed release per node"
+      ]
+    }
+  ]
+}

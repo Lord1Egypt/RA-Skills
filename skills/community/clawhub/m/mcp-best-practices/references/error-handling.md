@@ -21,14 +21,14 @@ MCP has two distinct error reporting mechanisms. Choosing the wrong one makes th
 
 **The rule** (SEP-1303, merged into spec 2025-11-25): If the LLM could self-correct by seeing the error message, it MUST be a Tool Execution Error. Protocol errors are for structural problems the LLM can't fix.
 
-### SEP-2140 Extension (open proposal)
+### SEP-2140 Extension (proposal; issue closed in favor of spec PR #2145)
 
 Extends SEP-1303 to cover three more cases that should also be Tool Execution Errors:
 1. **Tool resolution failures** - unknown tool name (currently protocol error)
 2. **Tool unavailability** - disabled/policy-restricted tool
 3. **Output validation failures** - structuredContent doesn't match outputSchema
 
-Source: [modelcontextprotocol#2140](https://github.com/modelcontextprotocol/modelcontextprotocol/issues/2140)
+Source: [modelcontextprotocol#2140](https://github.com/modelcontextprotocol/modelcontextprotocol/issues/2140), closed 2026-01-23 in favor of [PR #2145](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2145)
 
 ## Tool Execution Errors
 
@@ -99,6 +99,10 @@ return {
 3. **Be actionable** - tell the LLM what to do differently
 4. **Never return stack traces** - they waste tokens and leak internals
 
+### Forgiving Input Recovery
+
+If an argument's intent is unambiguous, recover it instead of returning an error: accept a full URL where a bare handle is expected (and vice versa), map common aliases (`image_url`/`media_url`/`src`/`href` -> `url`), coerce obvious scalar/array mismatches. Agents routinely vary surface forms, and every avoidable `isError` costs a round-trip. Reserve errors for genuine ambiguity - and then follow the principles above with an actionable hint.
+
 ## Protocol Errors
 
 Use JSON-RPC error responses (via `McpError` in v1, `ProtocolError` in v2) only for structural problems. Standard JSON-RPC error codes:
@@ -118,17 +122,20 @@ import { McpError, ErrorCode } from "@modelcontextprotocol/sdk/types.js";
 throw new McpError(ErrorCode.InternalError, "Database connection lost");
 ```
 
+Inside a **tool handler** a throw does not produce a JSON-RPC error at all: the SDK converts every exception - including a thrown `McpError`/`ProtocolError` - into an `isError: true` result carrying the message, and drops the code and `data` (`UrlElicitationRequiredError` is the one exception). Protocol errors are what the SDK itself emits for unknown methods, malformed requests, and validation outside your handler.
+
 ## The error.data Loss Behavior
 
-**Critical**: The SDK strips `error.data` when converting an `McpError` thrown from a tool handler into a `CallToolResult`. If you embed structured data in McpError's `data` field (e.g., payment challenges, retry metadata), it does not reach the client. This is observed across the x402/MPP MCP ecosystem - see Client Compatibility table below. (Code `-32042` is a documented exception, see [`-32042` Payment Required](#payment-required---32042-ietf-pattern) below.)
+**Critical**: The SDK strips `error.data` when converting an `McpError` thrown from a tool handler into a `CallToolResult`. If you embed structured data in McpError's `data` field (e.g., payment challenges, retry metadata), it does not reach the client. This is observed across the x402/MPP MCP ecosystem - see Client Compatibility table below. (Historically `-32042` was the one code observed to survive with `error.data` intact - do not rely on it: as of spec 2026-07-28 that code is spec-allocated and off-limits, see [Payment Error Patterns](#payment-error-patterns).)
 
 ```typescript
 // BROKEN: error.data is lost in transit
-throw new McpError(-32042, "Payment Required", {
+// (1002 = application-defined, outside the JSON-RPC reserved range -32768..-32000)
+throw new McpError(1002, "Payment Required", {
   x402Version: 2,
   accepts: [{ scheme: "exact", network: "base", price: "5000" }],
 });
-// Client receives: { code: -32042, message: "Payment Required" }
+// Client receives: { code: 1002, message: "Payment Required" }
 // The accepts array is GONE
 
 // FIX: Use isError tool result with structured content
@@ -181,9 +188,22 @@ For MCP servers gated by payment protocols (x402, MPP), errors need to carry pay
 
 > **HTTP status is always 200.** A payment/auth challenge returned as an `isError: true` tool result is a *successful* JSON-RPC response, so it rides HTTP `200` - not `401`/`402`. Clients (and anyone testing with `curl`) must parse the JSON-RPC body for the challenge; don't gate on the HTTP status code. Misreading this as "auth is broken" is a common false alarm.
 
-### Payment Required `-32042` (IETF pattern)
+### Do not use `-32042` for payments (collision with the released spec)
 
-`-32042` is the JSON-RPC error code reserved for "Payment Required" in the IETF draft [`draft-payment-transport-mcp-00`](https://datatracker.ietf.org/doc/draft-payment-transport-mcp/). Unlike most McpError codes, the McpServer wire path preserves `-32042`'s `error.data` end-to-end, so it can carry payment challenges. Some payment libraries (e.g. `mppx`) deliberately use `-32042` for this reason. If you need standards alignment with the IETF draft and your client supports it, prefer `-32042`. The broader ecosystem still relies on the `isError: true` pattern below for cross-client compatibility today.
+Some payment tooling follows the Internet-Draft [`draft-payment-transport-mcp-00`](https://paymentauth.org/draft-payment-transport-mcp-00.html) (self-published 2026-07-03; not on the IETF datatracker), which claims `-32042` for "Payment Required" and `-32043` for "payment verification failed". **Both codes collide with MCP's own allocation policy as of spec 2026-07-28.**
+
+The released spec partitions the JSON-RPC implementation-defined range and puts `-32020..-32099` under exclusive spec control:
+
+> **`-32020` to `-32099` - reserved for the MCP specification.** [...] Implementations **MUST NOT** emit any code from this sub-range that is not defined by this specification and **MUST** use defined codes only with their specified meanings.
+
+`-32042` is already spec-allocated - as *"URL elicitation required (2025-11-25 only)"*, a retired code that implementations of the current revision MUST NOT emit at all. A payment challenge sent as `-32042` is therefore both spec-violating and ambiguous with a real (if retired) MCP meaning.
+
+**What to do instead**, in order of preference:
+
+1. **Use the `isError: true` tool-result pattern below.** It is what the x402/MPP ecosystem actually interoperates on, it survives the `error.data` loss described above, and it is unaffected by the code-allocation policy.
+2. If you genuinely need a protocol-level code, **allocate outside the JSON-RPC reserved range entirely** - the spec is explicit that new codes "**SHOULD** be allocated outside the JSON-RPC reserved range (`-32768` to `-32000`)".
+
+Do not allocate anything new in `-32000..-32019` either: that sub-range is now **legacy**, and new implementations "**SHOULD NOT** use codes from this sub-range at all".
 
 ### x402 Payment Required (isError pattern)
 
@@ -258,7 +278,7 @@ async function paidToolHandler(args: unknown, extra: { _meta?: Record<string, un
 
 ### Client Compatibility
 
-| Client | Reads `isError` challenges | Reads McpError `-32042` |
+| Client | Reads `isError` challenges | Reads a JSON-RPC error code challenge (`-32042`) |
 |--------|---------------------------|------------------------|
 | x402MCPClient | Yes (via `structuredContent` then `content[0].text`) | No (crashes) |
 | x402-proxy | Yes | No (planned) |

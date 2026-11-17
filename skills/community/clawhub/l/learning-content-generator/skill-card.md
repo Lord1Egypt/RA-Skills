@@ -1,44 +1,67 @@
-## Description: <br>
-Generates personalized learning content and short self-check quizzes for nodes in an input knowledge graph, adapting depth by L1/L2/L3 hierarchy and parent context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates personalized learning content and short quizzes for selected knowledge-graph nodes, adapting depth by hierarchy and parent context.
 
-## Publisher: <br>
-[wzp2026](https://clawhub.ai/user/wzp2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wzp2026](https://clawhub.ai/user/wzp2026)
 
-## Use Case: <br>
-External developers and education-content authors use this skill to turn a knowledge graph node and its parent context into node-level learning material, quiz questions, and verification artifacts for learner review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated curriculum may be inaccurate or misleading when it presents topic-specific content as authoritative. <br>
-Mitigation: Treat output as a rough draft and manually verify every cited source before learner or production use. <br>
-Risk: The RAG enhancer can query external Wikipedia and arXiv services with course, project, or learner topics. <br>
-Mitigation: Avoid using the enhancer with confidential topics unless external lookups are acceptable; sanitize topics or disable enhancement when needed. <br>
-Risk: The artifact behavior includes fixed blockchain-oriented defaults that may not fit arbitrary knowledge graph domains. <br>
-Mitigation: Review generated content for topic fit and replace irrelevant defaults, examples, and citations. <br>
+## Use Case:
 
+Educators, learning-platform builders, and agents use this skill to turn a knowledge graph plus a target node into structured study material, source labels, and quiz questions. It is especially suited to Chinese-language learning paths that need different depth for L1, L2, and L3 nodes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wzp2026/learning-content-generator) <br>
-- [Learning Content Generator README](references/README.md) <br>
-- [Content generation configuration](references/content_config.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown learning-content files, quiz Markdown, JSON content data, and verification summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Main content is described as 3000-5000 characters per node with 3-5 single-choice quiz questions; long text may be split.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.1 (source: frontmatter and server release metadata) <br>
+Risk: Possible third-party lookups of learning topics through RAG behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable or remove RAG retrieval unless it is needed, and review any external sources before relying on generated content.
+
+Risk: Overconfident or hardcoded educational content can produce inaccurate learning material.
+
+Mitigation: Independently verify generated claims, citations, standards, and quiz answers before publication or learner use.
+
+Risk: Plugin-loading configuration can expand the behavior of the skill.
+
+Mitigation: Disable plugin auto-loading unless all plugins are identified, reviewed, and approved for the deployment environment.
+
+Risk: Local output and progress files may be written during generation.
+
+Mitigation: Run the skill in a controlled workspace and inspect generated files before sharing or importing them elsewhere.
+
+Risk: Chinese/domestic-source defaults may not match every audience or compliance need.
+
+Mitigation: Confirm the source policy and geography fit the intended learners before commercial use.
+
+## Reference(s):
+
+- [Detailed learning content generator README](references/README.md)
+- [Learning content generator configuration](references/content_config.yaml)
+- [ClawHub skill page](https://clawhub.ai/wzp2026/skills/learning-content-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance]
+
+**Output Format:** [Markdown study content with quiz sections, plus JSON metadata and verification reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local content, quiz, JSON, progress, and verification files; long content may be split.]
+
+## Skill Version(s):
+
+2.3.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

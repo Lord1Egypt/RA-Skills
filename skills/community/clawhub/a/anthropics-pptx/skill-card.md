@@ -1,41 +1,53 @@
-## Description: <br>
-Creates professional PowerPoint presentations from natural language prompts with auto-layout, branding, image placement, and export guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create professional PowerPoint presentations from text prompts using Anthropic-style design principles with auto-layout, branding, and image handling.
 
-## Publisher: <br>
-[zachary2024](https://clawhub.ai/user/zachary2024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zachary2024](https://clawhub.ai/user/zachary2024)
 
-## Use Case: <br>
-Developers and content creators use this skill to turn natural language presentation requests into PowerPoint deck generation guidance, including slide structure, layout, branding, image placement, and export options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may assume the package name, author field, or Anthropics Style wording proves official Anthropic affiliation. <br>
-Mitigation: Verify any actual pptx-generator command and Python packages against trusted sources before installation or use. <br>
-Risk: Generated presentation content or layout choices may be incomplete, inaccurate, or unsuitable for a target audience. <br>
-Mitigation: Review generated decks, cited content, branding, and exports before sharing or publishing. <br>
+## Use Case:
 
+Developers and presentation authors use this skill to turn natural language prompts into PowerPoint decks with generated slide structure, styling, image placement, and export guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zachary2024/anthropics-pptx) <br>
-- [Publisher profile](https://clawhub.ai/user/zachary2024) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces presentation-generation guidance and command examples; the reviewed artifact contains no executable implementation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The referenced pptx-generator command and Python dependencies may not be installed in the agent environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify availability of the command, python-pptx, and Pillow before relying on the skill for presentation generation.
+
+Risk: Anthropic-style branding may imply affiliation or provenance that the server evidence does not establish.
+
+Mitigation: Verify the publisher and branding expectations before presenting the skill as associated with any external organization.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zachary2024/skills/anthropics-pptx)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce presentation-generation prompts and export guidance for .pptx or PDF workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

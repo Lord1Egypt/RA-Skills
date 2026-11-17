@@ -134,7 +134,7 @@ metadata:
 | 109 | [pi-zhi-fu-he-gan-jue-jian-cha](pi-zhi-fu-he-gan-jue-jian-cha/SKILL.md) | 皮质复合感觉检查 |
 | 110 | [pnh-flow-cytometry-diagnosis](pnh-flow-cytometry-diagnosis/SKILL.md) | PNH流式细胞术诊断 |
 | 111 | [ppd-skin-test-interpretation](ppd-skin-test-interpretation/SKILL.md) | PPD皮肤试验判读 |
-| 112 | [psa-risk-stratification-for-prostate-cancer](psa-risk-stratification-for-prostate-cancer/SKILL.md) | PSA及其f/t比值在前列腺癌风险分层中的应用 |
+| 112 | [psa-riREDACTED-SECRET](psa-riREDACTED-SECRET/SKILL.md) | PSA及其f/t比值在前列腺癌风险分层中的应用 |
 | 113 | [pt-aptt-combined-interpretation-for-coagulation-defects](pt-aptt-combined-interpretation-for-coagulation-defects/SKILL.md) | PT与APTT联合判读二期止血缺陷 |
 | 114 | [qian-fan-she-jian-cha-yu-shen-jing-jie-duan-ding-wei](qian-fan-she-jian-cha-yu-shen-jing-jie-duan-ding-wei/SKILL.md) | 浅反射检查与神经节段定位 |
 | 115 | [renal-palpation-and-abnormality-assessment](renal-palpation-and-abnormality-assessment/SKILL.md) | 肾脏触诊与异常判断 |

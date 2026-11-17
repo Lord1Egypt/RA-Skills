@@ -1,40 +1,56 @@
-## Description: <br>
-量化策略评估报告生成器，读取 Excel 净值数据，计算量化指标并生成图表、分析文字、PDF 和 Word 策略评估报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates quantitative strategy evaluation reports by reading Excel NAV data, calculating performance and risk metrics, creating charts, and producing PDF and Word reports with structured analysis.
 
-## Publisher: <br>
-[duanwei2028](https://clawhub.ai/user/duanwei2028) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[duanwei2028](https://clawhub.ai/user/duanwei2028)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to turn uploaded quantitative strategy Excel data into institutional-style strategy evaluation reports. It supports NAV analysis, optional instrument-level analysis, AI-authored commentary, chart generation, and PDF/DOCX report output.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Uploaded Excel files and generated reports may contain sensitive financial data.
+
+Mitigation: Run the skill in an isolated virtual environment or controlled workspace, restrict access to input and output directories, and remove generated artifacts when no longer needed.
+
+Risk: Untrusted analysis.json files or strategy names can affect report content and generated filenames.
+
+Mitigation: Use trusted analysis inputs and sanitize strategy names and output paths before production use.
+
+Risk: Dependencies are documented as install commands rather than pinned in a lock file.
+
+Mitigation: Pin dependencies or use a reviewed lock file before deploying the workflow in production.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Analysts and agents supporting investment research use this skill to turn uploaded Excel net-value data into quantitative metrics, charts, AI-written commentary, and PDF/DOCX strategy reports. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files]
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided Excel performance data and generated JSON, charts, PDF, and DOCX files may contain sensitive financial information. <br>
-Mitigation: Run the skill in a dedicated project or virtual environment, place only intended Excel files in the data folder, choose an output directory suitable for retention or sharing, and delete generated files when they contain sensitive data. <br>
-Risk: Generated strategy analysis can be misleading if source data, computed metrics, or AI-written commentary are not reviewed before use. <br>
-Mitigation: Review analysis.json, content.json, charts, and final PDF/DOCX reports for data quality, calculation consistency, and appropriate financial interpretation before relying on them. <br>
+**Output Format:** [Markdown guidance with shell commands, JSON content requirements, PNG charts, PDF reports, and DOCX reports]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/duanwei2028/proreport) <br>
+**Other Properties Related to Output:** [Produces analysis.json, content.json, chart PNG files, and strategy report documents in the selected output directory.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Text, Files, Guidance] <br>
-**Output Format:** [Markdown instructions with bash and Python snippets, plus local JSON, PNG, PDF, and DOCX report outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local Excel files and writes analysis.json, content.json, chart PNGs, and PDF/DOCX reports under the selected output directory.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

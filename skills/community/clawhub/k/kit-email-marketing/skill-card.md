@@ -1,46 +1,61 @@
-## Description: <br>
-Run email marketing campaigns via Kit (formerly ConvertKit). Manage subscribers, create broadcasts and sequences, handle tags and segments, track email stats, and automate workflows with webhooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run email marketing campaigns via Kit (formerly ConvertKit). Manage subscribers, create broadcasts and sequences, handle tags and segments, track email stats, and automate workflows with webhooks.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-External users and email marketing operators use this skill to manage Kit subscribers, tags, broadcasts, sequences, segments, forms, analytics, and webhooks through a connected Kit account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can manage real Kit email-marketing data through a connected account. <br>
-Mitigation: Install only when comfortable connecting Kit through ClawLink, and review write previews before allowing changes. <br>
-Risk: Broadcast creation can send, schedule, or publish email content. <br>
-Mitigation: Confirm the broadcast content, audience, timing, and public setting before execution. <br>
-Risk: Subscriber, tag, broadcast, custom-field, and webhook deletion can affect production marketing workflows. <br>
-Mitigation: Verify the target resource with read/list operations first and require explicit confirmation for destructive actions. <br>
+## Use Case:
 
+External users and operators use this skill to manage Kit email marketing through an agent, including subscribers, tags, broadcasts, sequences, forms, analytics, and webhooks.
 
-## Reference(s): <br>
-- [Kit API Documentation](https://api.kit.com/) <br>
-- [Kit Broadcasts Guide](https://kit.com/creators/broadcasts) <br>
-- [Kit Sequences Guide](https://kit.com/creators/sequences) <br>
-- [ClawLink OpenClaw Documentation](https://docs.claw-link.dev/openclaw) <br>
-- [Kit skill page](https://clawhub.ai/hith3sh/kit-email-marketing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, API Calls] <br>
-**Output Format:** [Markdown with inline shell commands and tool-call parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a connected Kit account through ClawLink before authenticated Kit tool calls can run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The skill depends on ClawLink for OAuth-backed access to the user's Kit account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after accepting the ClawLink trust boundary, review the ClawLink plugin and service, and revoke the Kit connection when it is no longer needed.
+
+Risk: Write operations can change subscriber data, tags, broadcasts, forms, custom fields, account colors, and webhooks.
+
+Mitigation: Preview and explicitly confirm the target resource and intended effect before executing any write operation.
+
+Risk: Destructive or high-impact actions can unsubscribe subscribers, delete tags or broadcasts, or immediately send or schedule email campaigns.
+
+Mitigation: Confirm destructive actions separately and verify broadcast timing, audience, and content before execution.
+
+## Reference(s):
+
+- [Kit API Documentation](https://api.kit.com/)
+- [Kit Broadcasts Guide](https://kit.com/creators/broadcasts)
+- [Kit Sequences Guide](https://kit.com/creators/sequences)
+- [ClawLink Docs](https://docs.claw-link.dev/openclaw)
+- [ClawLink Verification](https://claw-link.dev/verify)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON tool parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an active Kit account and ClawLink connection; write actions require explicit user confirmation.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

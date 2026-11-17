@@ -1,43 +1,56 @@
-## Description: <br>
-Provides lightweight Kubernetes learning notes drawn from video references, including Kubernetes fundamentals, CoreDNS, CNI plugins, and RBAC service accounts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+从抖音视频学习: Kubernetes — 【2026最新】这绝对是B站讲的最好的Kubernetes系统精讲教程，全程干货无废话！
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-External users and developers can use this skill for general Kubernetes study guidance and video-derived notes. It is best suited for orientation and learning support rather than precise operational cluster administration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be selected for broad Kubernetes prompts and may provide lightweight learning notes rather than precise operational advice. <br>
-Mitigation: Review recommendations before applying them to clusters and validate Kubernetes commands or configuration against authoritative documentation and the target environment. <br>
-Risk: The skill references external video links. <br>
-Mitigation: Review external sources before relying on them. <br>
+## Use Case:
 
+External users and developers use this Chinese-language Kubernetes study helper to get concise learning guidance based on Kubernetes tutorial notes and referenced videos, including topics such as CoreDNS, CNI plugins, and RBAC service accounts.
 
-## Reference(s): <br>
-- [Kubernetes 301363 ClawHub page](https://clawhub.ai/534422530/kubernetes-301363) <br>
-- [Kubernetes(k8s)-CoreDNS介绍(一)](https://www.bilibili.com/video/BV1xGKjehEQd) <br>
-- [理解 CNI 和 CNI 插件](https://www.bilibili.com/video/BV1XJ411W7zZ) <br>
-- [Kubernetes从入门到回炉重造](https://www.bilibili.com/video/BV1fL4y1T7ct) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; responses should be treated as lightweight learning notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad Kubernetes trigger wording may cause the skill to activate on generic Kubernetes questions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow the trigger wording to Chinese-language Kubernetes study, tutorial-summary, or referenced-video learning requests.
+
+Risk: Duplicated Chinese study-note content may make responses feel repetitive or lower quality.
+
+Mitigation: Review and consolidate duplicated notes before relying on the skill for polished learner-facing guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/kubernetes-301363)
+- [Kubernetes CoreDNS video](https://www.bilibili.com/video/BV1xGKjehEQd)
+- [Kubernetes CNI and CNI plugins video](https://www.bilibili.com/video/BV1XJ411W7zZ)
+- [Kubernetes In Action study video](https://www.bilibili.com/video/BV1fL4y1T7ct)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown or text responses in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior; responses are based on study-note content and linked video references.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

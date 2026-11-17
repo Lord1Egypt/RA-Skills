@@ -1,42 +1,56 @@
-## Description: <br>
-Provides Exchange 2010 EWS access for managing emails, folders, attachments, calendar events, contacts, tasks, and out-of-office settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full access to Exchange 2010 EWS for managing emails, folders, attachments, calendar events, contacts, tasks, and out-of-office settings.
 
-## Publisher: <br>
-[pes0](https://clawhub.ai/user/pes0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pes0](https://clawhub.ai/user/pes0)
 
-## Use Case: <br>
-Developers and agents that administer Exchange 2010 mailboxes use this skill to read and search mail, manage calendars, contacts, tasks, attachments, and out-of-office settings, and send or modify Exchange data through EWS. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad live Exchange mailbox authority with weak guardrails. <br>
-Mitigation: Use least-privilege Exchange credentials and require explicit confirmation before sending mail or changing or deleting Exchange data. <br>
-Risk: Credentials and organization-specific defaults may be misconfigured or exposed. <br>
-Mitigation: Verify the PICARD_PASSWORD versus EXCHANGE_PASSWORD mismatch before use, remove organization-specific defaults, and protect the credentials file. <br>
-Risk: Attachment downloads can write files from mailbox content to disk. <br>
-Mitigation: Restrict attachment downloads to a safe directory and sanitize filenames before writing files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pes0/exchange-2010-ews) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
+## Use Case:
 
+Developers and agents with Exchange delegate credentials use this skill to manage Exchange 2010 EWS mailboxes, calendars, contacts, tasks, attachments, and out-of-office settings.
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration, guidance] <br>
-**Output Format:** [Python return values and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May perform live Exchange mailbox, calendar, contact, task, attachment, and out-of-office actions when called with credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad mailbox write access can affect email, calendar, task, attachment, and out-of-office data.
+
+Mitigation: Install only for a tightly scoped, least-privileged Exchange account and add confirmations for send, delete, update, and out-of-office actions.
+
+Risk: Credential defaults and credential-file handling may expose or misuse Exchange account access.
+
+Mitigation: Require explicit Exchange server, username, email, domain, and password variables; remove hardcoded defaults; and protect the credentials file.
+
+Risk: Attachment download and temporary-file behavior can expose sensitive files or write outside intended locations.
+
+Mitigation: Sanitize and restrict attachment download paths, and avoid processing sensitive attachments until temp-file cleanup and download containment are fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pes0/skills/exchange-2010-ews)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, API calls, Configuration, Guidance]
+
+**Output Format:** [Python function calls and structured Python dictionaries, with Markdown examples and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can read, send, update, and delete Exchange mailbox, calendar, contact, task, out-of-office, and attachment data when installed with valid credentials.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

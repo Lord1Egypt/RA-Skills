@@ -1,43 +1,57 @@
-## Description: <br>
-Gekko Strategist is an AI-powered DeFi strategy development agent that designs, backtests, adapts, and evaluates yield farming strategies based on market conditions, risk profiles, and capital allocation goals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered DeFi strategy development agent. Design, backtest, adapt, and evaluate yield farming strategies based on market conditions, risk profiles, and capital allocation goals. The brain of the Gekko system.
 
-## Publisher: <br>
-[gekkoai001](https://clawhub.ai/user/gekkoai001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gekkoai001](https://clawhub.ai/user/gekkoai001)
 
-## Use Case: <br>
-External users and DeFi developers use this skill to design, backtest, adapt, and compare yield farming strategies on Base using market conditions, risk profiles, and capital allocation goals. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Strategy prompts or market context are sent to the disclosed external GekkoTerminal API. <br>
-Mitigation: Install only if this external API use is acceptable, and avoid sending seed phrases, private keys, exchange credentials, or wallet access. <br>
-Risk: Yield strategy recommendations may be informational and may not match future market conditions. <br>
-Mitigation: Independently review and backtest recommendations before using them for any separate transaction or allocation decision. <br>
-Risk: The skill discusses DeFi vault allocations but does not execute transactions itself. <br>
-Mitigation: Require explicit user approval and wallet signing in any separate execution flow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Gekko Strategist ClawHub Page](https://clawhub.ai/gekkoai001/gekko-strategist) <br>
-- [GekkoTerminal Strategist A2A Endpoint](https://gekkoterminal.ai/api/a2a?agent=strategist) <br>
-- [Publisher Profile](https://clawhub.ai/user/gekkoai001) <br>
+## Use Case:
 
+Developers, agents, and DeFi users use Gekko Strategist to design, backtest, adapt, and compare yield farming strategies on Base before any separate execution step.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and API response guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces strategy recommendations, backtest summaries, adapted allocation guidance, and side-by-side strategy comparisons; it does not execute trades or sign wallet transactions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Strategy details, capital amounts, risk tolerance, and backtest inputs may be sent to gekkoterminal.ai.
+
+Mitigation: Avoid sharing sensitive proprietary strategies or private financial details unless you trust the service's data handling.
+
+Risk: Generated DeFi strategies are recommendations and may be unsuitable or inaccurate.
+
+Mitigation: Backtest and independently review strategy outputs before taking any action.
+
+Risk: The skill does not execute trades itself, but users may later act on its recommendations.
+
+Mitigation: Keep execution separate and require explicit wallet signing before any transaction.
+
+## Reference(s):
+
+- [Gekko Strategist ClawHub skill page](https://clawhub.ai/gekkoai001/skills/gekko-strategist)
+- [Gekko Strategist API endpoint](https://gekkoterminal.ai/api/a2a?agent=strategist)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, API calls]
+
+**Output Format:** [Markdown with JSON API request examples and strategy, backtest, adaptation, or comparison results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Remote API calls may receive market conditions, risk tolerance, capital amounts, strategy objects, date ranges, and strategy arrays.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

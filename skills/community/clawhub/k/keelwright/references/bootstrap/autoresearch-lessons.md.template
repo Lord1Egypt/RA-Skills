@@ -1,0 +1,10 @@
+# autoresearch-lessons.md — keelwright cross-run learning
+
+> **What this is:** the short list of lessons your AI has actually learned the hard way on
+> this project — patterns that broke more than once, written down so they stop recurring.
+>
+> **You never have to write in it.** keelwright fills it in. Worth committing; deleting it
+> just means those lessons are forgotten.
+
+## Lessons
+<!-- Agent appends: pattern → root cause → fix that worked -->

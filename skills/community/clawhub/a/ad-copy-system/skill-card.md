@@ -1,40 +1,49 @@
-## Description: <br>
-AudienceLab ad copywriting system for creating ad scripts, headlines, hooks, customer avatars, and offer messaging using a structured ad architecture. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through an AudienceLab ad copy workflow for customer avatars, diary-entry messaging, ad scripts, headlines, hooks, and style variations.
 
-## Publisher: <br>
-[boris148](https://clawhub.ai/user/boris148) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[boris148](https://clawhub.ai/user/boris148)
 
-## Use Case: <br>
-Marketing teams, agencies, and creators use this skill to build customer avatars, diary-style customer insight, ad scripts, headline hooks, and copy variations for client or offer campaigns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing copy may include unsupported statistics, testimonials, income or performance claims, deadlines, or authority statements. <br>
-Mitigation: Fact-check and substantiate campaign claims before publishing or sending outputs to customers. <br>
-Risk: Persuasive ad variations may be unsuitable for a brand, platform policy, audience, or regulated use case without review. <br>
-Mitigation: Route outputs through marketing, legal, and compliance review, then edit them for the target channel and jurisdiction. <br>
+## Use Case:
 
+Marketing teams, agencies, and creators use this skill to develop customer avatars, direct-response ad scripts, email sequences, landing page messaging, and hook or headline ideas for offers across niches.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/boris148/ad-copy-system) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose with structured prompts, ad scripts, headlines, and copy variations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs require human review for factual claims and compliance before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill encourages persuasive emotional advertising copy that may be inaccurate, unsuitable for the audience, or noncompliant in regulated contexts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated copy for factual support, audience fit, applicable advertising rules, legal compliance, and locale preferences before use.
+
+## Reference(s):
+
+- [Ad Copy System on ClawHub](https://clawhub.ai/boris148/skills/ad-copy-system)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured text prompts and generated copy]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated copy should be reviewed for factual support, audience fit, legal compliance, and locale preferences.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

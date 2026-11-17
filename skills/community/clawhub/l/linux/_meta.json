@@ -1,6 +1,35 @@
 {
-  "ownerId": "kn73vp5rarc3b14rc7wjcw8f8580t5d1",
+  "owner": "clawic",
   "slug": "linux",
-  "version": "1.0.0",
-  "publishedAt": 1770677640742
+  "displayName": "Linux",
+  "latest": {
+    "version": "1.0.6",
+    "publishedAt": 1785140325493
+  },
+  "history": [
+    {
+      "version": "1.0.5",
+      "publishedAt": 1785080500492
+    },
+    {
+      "version": "1.0.4",
+      "publishedAt": 1785068764920
+    },
+    {
+      "version": "1.0.3",
+      "publishedAt": 1784974783533
+    },
+    {
+      "version": "1.0.2",
+      "publishedAt": 1784845768367
+    },
+    {
+      "version": "1.0.1",
+      "publishedAt": 1784815154847
+    },
+    {
+      "version": "1.0.0",
+      "publishedAt": 1770677640742
+    }
+  ]
 }

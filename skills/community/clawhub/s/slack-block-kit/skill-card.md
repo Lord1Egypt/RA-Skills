@@ -1,42 +1,60 @@
-## Description: <br>
-Create and send native Slack Block Kit messages, including tables, code cards, structured layouts, buttons, inputs, and rich Slack blocks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and send native Slack Block Kit messages, including tables, code cards, structured layouts, buttons, inputs, and rich Slack blocks.
 
-## Publisher: <br>
-[bill492](https://clawhub.ai/user/bill492) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bill492](https://clawhub.ai/user/bill492)
 
-## Use Case: <br>
-Developers and operators use this skill to draft portable rich Slack messages or native Block Kit payloads, validate local samples, and prepare Slack API posts with accessibility fallbacks and token handling guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Slack messages or interactive workflows may be posted to live channels before review. <br>
-Mitigation: Review generated payloads and require explicit confirmation before live posts, buttons, inputs, or other interactive workflows. <br>
-Risk: Slack bot tokens could be exposed while composing or debugging API calls. <br>
-Mitigation: Resolve tokens from configured secrets or environment variables, and do not place token values in prompts, generated messages, or logs. <br>
+## Use Case:
 
+Developers and agents use this skill to compose rich Slack-native messages when plain mrkdwn is not enough. It supports portable OpenClaw presentation messages, Slack-specific Block Kit JSON, local sample validation, and direct Slack API posting guidance.
 
-## Reference(s): <br>
-- [Slack Block Kit Reference](https://api.slack.com/block-kit/reference) <br>
-- [Slack chat.postMessage API](https://slack.com/api/chat.postMessage) <br>
-- [Slack Agent Blocks](https://api.slack.com/partners/thinking-steps) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JSON and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Slack Block Kit JSON payloads, Slack API examples, and sample validation commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill can help compose and post Slack messages, so content may be sent to the wrong channel or thread if destinations are not checked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the destination channel, thread, and message content before using direct Slack API posting.
+
+Risk: Slack bot tokens are required for direct posting and could be exposed if pasted into chat, logs, or generated commands.
+
+Mitigation: Keep Slack bot tokens in configured secrets and avoid printing token values while copying or debugging commands.
+
+Risk: Local sample validation is lightweight and does not replace full Slack schema or runtime validation.
+
+Mitigation: Run the bundled sample validator and verify important messages with Slack readback when testing or investigating incidents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bill492/skills/slack-block-kit)
+- [Slack chat.postMessage API](https://slack.com/api/chat.postMessage)
+- [Slack Block Kit reference](https://api.slack.com/block-kit/reference)
+- [Slack thinking steps partner guide](https://api.slack.com/partners/thinking-steps)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Slack Block Kit JSON examples and optional shell commands or API payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes reusable sample JSON files and a table generator; direct Slack posting requires a Slack bot token and confirmed channel or thread destination.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

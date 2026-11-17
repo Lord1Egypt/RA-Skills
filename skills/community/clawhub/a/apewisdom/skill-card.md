@@ -1,41 +1,57 @@
-## Description: <br>
-Scan Reddit for trending stocks and sentiment spikes using the ApeWisdom API (free). Use this to find "meme stocks", retail momentum, and sentiment shifts on r/wallstreetbets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan Reddit for trending stocks and sentiment spikes using the ApeWisdom API (free). Use this to find "meme stocks", retail momentum, and sentiment shifts on r/wallstreetbets.
 
-## Publisher: <br>
-[stuhorsman](https://clawhub.ai/user/stuhorsman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[stuhorsman](https://clawhub.ai/user/stuhorsman)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to fetch ApeWisdom Reddit ticker sentiment and identify high-mention or fast-rising symbols for further review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts ApeWisdom for live Reddit market-sentiment data. <br>
-Mitigation: Install and run it only in environments where outbound requests to ApeWisdom are allowed. <br>
-Risk: Ticker sentiment output can be volatile, incomplete, or mistaken for financial advice. <br>
-Mitigation: Treat results as informational signals and verify decisions with independent analysis before acting. <br>
-Risk: The script depends on the Python requests package being available. <br>
-Mitigation: Prepare the runtime dependency before execution or run in an environment that already includes requests. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ApeWisdom API endpoint](https://apewisdom.io/api/v1.0/filter) <br>
+## Use Case:
 
+External users and agents use this skill to fetch ApeWisdom Reddit sentiment rankings, identify trending stock or crypto tickers, and compare top mentions with 24-hour chatter spikes for informational market-sentiment review.
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON printed to stdout, with Markdown usage guidance in the skill instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires outbound access to ApeWisdom and the Python requests package; results are live market-sentiment data and should be treated as informational.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill makes outbound requests to ApeWisdom for live market-sentiment data.
+
+Mitigation: Install only where network access to ApeWisdom is acceptable and prefer explicit least-privilege network permission metadata.
+
+Risk: Market-sentiment rankings can be mistaken for investment recommendations.
+
+Mitigation: Treat results as informational signals rather than financial advice and validate decisions against independent sources.
+
+Risk: The HTTP request does not set an explicit timeout.
+
+Mitigation: Run in an environment where stalled commands can be interrupted, or add a request timeout before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/stuhorsman/skills/apewisdom)
+- [ApeWisdom API Endpoint](https://apewisdom.io/api/v1.0/filter)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, JSON]
+
+**Output Format:** [Markdown guidance with shell commands; scanner output is a JSON array of ranked ticker records.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default output returns up to 20 results; spike sorting filters out entries with 10 or fewer mentions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

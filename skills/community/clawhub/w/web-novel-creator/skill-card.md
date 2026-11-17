@@ -1,44 +1,62 @@
-## Description: <br>
-Web Novel Creator is a web-novel coordination skill that standardizes project directories, archives chapter outputs, and hands indexing work to Memory Manager Pro while interoperating with specialized writing skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinates Chinese web-novel projects by standardizing project directories, archiving chapter outputs from compatible writing skills, and handing index updates to Memory Manager Pro.
 
-## Publisher: <br>
-[guojiuben](https://clawhub.ai/user/guojiuben) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guojiuben](https://clawhub.ai/user/guojiuben)
 
-## Use Case: <br>
-External users and developers use this skill after web-novel chapter generation to normalize project folders, migrate or rename draft files, update title and planning records, and request memory-index updates through Memory Manager Pro. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may move or rename chapter files and create planning or title-library files in a novel project. <br>
-Mitigation: Keep backups of valuable drafts and request a preview or confirmation before migration. <br>
-Risk: The skill can request broad memory-index updates through Memory Manager Pro. <br>
-Mitigation: Confirm the target project, task ID, chapter range, and indexing scope before full reindexing. <br>
+## Use Case:
 
+External writers and agent users use this skill after a web-novel writing skill has produced chapters to align outputs under one project, update title and planning artifacts, and request Memory Manager Pro indexing.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/guojiuben/web-novel-creator) <br>
-- [外部 Skill 对接规范](references/对接规范.md) <br>
-- [关键词映射表](references/关键词映射.md) <br>
-- [番茄小说平台规范](references/番茄小说规范.md) <br>
-- [章节规划模板](references/规划模板.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with file-path conventions, shell command examples, and structured handoff payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or reorganize chapter, planning, title-library, and memory-index handoff files in a web-novel project workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and README changelog, released 2026-04-26) <br>
+Risk: Chapter or planning files may be moved or renamed in the wrong project path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target novel project path and review proposed migrations before applying them to an existing workspace.
+
+Risk: Persistent project indexes may be updated with incorrect chapter metadata.
+
+Mitigation: Verify the chapter number, title, word count, project name, and source skill before requesting Memory Manager Pro index updates.
+
+Risk: Other writing skills may depend on their original output layout.
+
+Mitigation: Check the detected source skill and preserve non-indexed review or auxiliary outputs unless the user confirms a migration.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/guojiuben/skills/web-novel-creator)
+- [README](README.md)
+- [External Skill Integration Specification](references/对接规范.md)
+- [Chapter Planning Template](references/规划模板.md)
+- [Keyword Mapping Table](references/关键词映射.md)
+- [Fanqie Novel Platform Guidelines](references/番茄小说规范.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown prose with file paths, templates, and command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or reorganize project directories, move chapter files, update planning and title-library files, and prepare Memory Manager Pro handoff requests.]
+
+## Skill Version(s):
+
+2.0.0 (source: release evidence and README changelog, released 2026-04-26)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

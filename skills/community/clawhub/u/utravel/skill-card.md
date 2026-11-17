@@ -1,41 +1,59 @@
-## Description: <br>
-UTravel helps travelers plan personalized trips, including destination itineraries, attraction notes, dining suggestions, lodging recommendations, and preference-aware follow-up planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+UTravel is an intelligent travel-planning assistant that helps users choose destinations, plan itineraries, recommend lodging areas, and account for personal preferences and special needs.
 
-## Publisher: <br>
-[shawngoethe](https://clawhub.ai/user/shawngoethe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shawngoethe](https://clawhub.ai/user/shawngoethe)
 
-## Use Case: <br>
-External travelers use this skill to turn destination, trip length, traveler type, interests, lodging preferences, budget, and special requirements into a practical itinerary with accommodation guidance. It is intended for conversational travel planning and preference-aware recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill records traveler preferences and may include sensitive trip, accessibility, family, budget, or identity-adjacent details in future recommendations. <br>
-Mitigation: Share only information needed for planning, avoid unnecessary sensitive details, and review whether saved preferences can be viewed, disabled, or deleted before relying on memory. <br>
-Risk: Attraction hours, ticket prices, student discounts, booking requirements, and hotel details may be outdated or incorrect. <br>
-Mitigation: Verify prices, availability, accessibility, reservations, and official attraction guidance before booking or traveling. <br>
+## Use Case:
 
+External users use UTravel to generate city-level travel itineraries with attraction sequencing, ticket and reservation notes, dining suggestions, and lodging recommendations based on travel style, budget, age group, and accessibility or family needs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shawngoethe/skills/utravel) <br>
-- [Server-resolved GitHub source](https://github.com/ShawnGoethe/UTravel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Conversational Markdown itinerary with daily schedule blocks, lodging recommendations, prices, booking notes, and travel reminders.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may reflect stored traveler profile fields such as user type, travel style, interests, and accommodation preference.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence; artifact frontmatter reports 1.0.0) <br>
+Risk: The skill records travel preferences and user attributes for future personalization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where profile storage is acceptable, ask before saving preferences, and provide ways to review or delete stored preferences.
+
+Risk: Age group, accessibility, family, and lodging preferences can be sensitive in travel planning contexts.
+
+Mitigation: Treat these details carefully and avoid retaining them unless they are needed for the user's requested recommendation.
+
+Risk: Ticket prices, reservation requirements, opening hours, and accommodation details may change.
+
+Mitigation: Have users verify time-sensitive travel details with official attraction and lodging sources before booking or departure.
+
+## Reference(s):
+
+- [Server-resolved GitHub provenance](https://github.com/ShawnGoethe/UTravel)
+- [ClawHub skill page](https://clawhub.ai/shawngoethe/skills/utravel)
+- [Publisher profile](https://clawhub.ai/user/shawngoethe)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Conversational Markdown with itinerary sections, lodging recommendations, and travel notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include saved travel preferences and user attributes for future personalization.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

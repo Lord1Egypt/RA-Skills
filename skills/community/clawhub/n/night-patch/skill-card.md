@@ -1,43 +1,62 @@
-## Description: <br>
-NightPatch detects low-risk workflow friction during scheduled runs, proposes or applies small reversible fixes, and reports the changes for review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NightPatch detects small workflow friction points during scheduled nighttime runs, proposes or applies low-risk fixes, and generates rollback-oriented reports.
 
-## Publisher: <br>
-[teachers10086](https://clawhub.ai/user/teachers10086) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[teachers10086](https://clawhub.ai/user/teachers10086)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to inspect local workflow habits, identify small maintenance opportunities, and optionally run bounded overnight fixes with rollback reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Unattended scheduled execution can read shell history, change shell startup files, move files, or delete logs. <br>
-Mitigation: Run ./start.sh dry-run first, review scripts and reports before enabling cron, and keep backups of ~/.bashrc and important workspace files. <br>
-Risk: The security verdict flags incomplete scoping and rollback controls for automated local changes. <br>
-Mitigation: Limit execution to trusted test workspaces until behavior is understood, review audit logs, and avoid use where shell history or project files contain secrets. <br>
+## Use Case:
 
+Developers and automation-focused users use this skill to inspect repetitive workflow patterns, shell command usage, scattered notes, and old logs, then receive a concise report or a bounded nighttime maintenance action. It is intended for controlled workspace optimization rather than production environment changes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/teachers10086/night-patch) <br>
-- [Security Guide](SECURITY_GUIDE.md) <br>
-- [Release Notes](RELEASE.md) <br>
-- [Inspiration Source](https://xialiao.ai/p/10010000000005745) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports, console text, shell commands, and YAML configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can run in dry-run mode before applying changes; scheduled execution is optional.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata, artifact manifest.json, package.json, and RELEASE.md) <br>
+Risk: Scheduled runs can mutate a workspace without immediate human supervision.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run in an isolated test workspace first, keep dry-run enabled, and require explicit approval before enabling cron or mutating actions.
+
+Risk: Shell alias handling may persist changes to the user's shell profile.
+
+Mitigation: Make ~/.bashrc writes opt-in, validate shell-history-derived commands, and review generated aliases before applying them.
+
+Risk: Log cleanup can delete files in a way that is not directly rollbackable.
+
+Mitigation: Quarantine, compress, or back up candidate logs before deletion, and review retention settings before running cleanup.
+
+## Reference(s):
+
+- [ClawHub NightPatch page](https://clawhub.ai/teachers10086/skills/night-patch)
+- [SKILL.md](artifact/SKILL.md)
+- [Security guide](artifact/SECURITY_GUIDE.md)
+- [Release notes](artifact/RELEASE.md)
+- [Inspiration source](https://xialiao.ai/p/10010000000005745)
+- [Practice sharing](https://xialiao.ai/p/10010000000007345)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local reports, logs, audit records, rollback instructions, and dry-run summaries depending on configuration.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence, manifest.json, package.json, RELEASE.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,7 +1,7 @@
 ---
-name: airport-lounge-finder
-display_name: 机场贵宾厅查询
-description: 全球50+机场贵宾厅查询，支持按机场/信用卡权益/准入方式三维度搜索，覆盖PP卡/龙腾出行/航司休息室，零配置即装即用。
+name: 机场贵宾厅查询
+display_name: "机场贵宾厅查询"
+description: 全球50+机场贵宾厅查询，支持按机场/信用卡权益/准入方式三维度搜索，覆盖PP卡/龙腾出行/航司休息室，零配置即装即用。暑假机场贵宾厅查询，休息候车更舒适
 tags: [机场贵宾厅, 休息室查询, PP卡, 龙腾出行, 信用卡权益]
 tools:
   - name: search

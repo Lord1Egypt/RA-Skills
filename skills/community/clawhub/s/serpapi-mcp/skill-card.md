@@ -1,42 +1,58 @@
-## Description: <br>
-Run SerpAPI searches via SerpAPI's MCP server using mcporter. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run SerpAPI searches via SerpAPI's MCP server using mcporter.
 
-## Publisher: <br>
-[merlintxu](https://clawhub.ai/user/merlintxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[merlintxu](https://clawhub.ai/user/merlintxu)
 
-## Use Case: <br>
-Developers and agent users use this skill to run SerpAPI-backed web searches through MCP and return SerpAPI JSON for follow-up analysis or automation. Teams can optionally log search queries and result summaries to Airtable when that data flow is intentionally enabled. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search queries and returned results are sent to SerpAPI. <br>
-Mitigation: Use the skill only for searches appropriate for SerpAPI processing and avoid highly sensitive search terms. <br>
-Risk: Optional Airtable logging can store queries and full result JSON outside the agent environment. <br>
-Mitigation: Keep SERP_LOG_AIRTABLE disabled unless logging is intentional, and use a least-privilege Airtable token scoped to the intended base and table. <br>
-Risk: The runtime depends on the external mcporter CLI. <br>
-Mitigation: Install mcporter from a trusted source and verify it before enabling the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/merlintxu/serpapi-mcp) <br>
-- [SerpAPI AI Overview API](https://serpapi.com/google-ai-overview-api) <br>
+## Use Case:
 
+Developers and agent users use this skill to run SerpAPI web searches from an agent workflow, including optional engine, result count, and mode controls. It can also enrich AI Overview results and optionally persist search results to Airtable when configured.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Shell commands, Configuration instructions] <br>
-**Output Format:** [JSON returned to stdout, with Markdown usage guidance in the skill instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires mcporter and SerpAPI API credentials; Airtable logging is optional and disabled unless configured.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.1 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search queries and full SerpAPI responses may contain sensitive or confidential data, especially when Airtable logging is enabled.
+
+Mitigation: Keep Airtable logging disabled for sensitive searches unless users explicitly consent, and restrict access to the Airtable base when logging is used.
+
+Risk: SerpAPI and Airtable credentials are required for external service access and could be exposed if handled carelessly.
+
+Mitigation: Store scoped, revocable tokens outside the repo or workspace, rotate credentials if exposed, and avoid printing secrets in logs.
+
+Risk: The skill depends on mcporter and external SerpAPI and optional Airtable network calls.
+
+Mitigation: Install only in environments where those services are approved, and prefer a pinned or local mcporter installation where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/merlintxu/skills/serpapi-mcp)
+- [SerpAPI Google AI Overview API](https://serpapi.com/google-ai-overview-api)
+- [SerpAPI MCP search endpoint](https://mcp.serpapi.com/$SERPAPI_API_KEY/mcp.search)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration guidance]
+
+**Output Format:** [JSON to stdout, with optional Airtable records containing raw and summarized JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports compact or complete search modes, SerpAPI key failover, optional AI Overview enrichment, and optional Airtable truncation flags.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

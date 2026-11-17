@@ -1,41 +1,53 @@
-## Description: <br>
-Synchronizes shared project and reference memories across OpenClaw agents or workspaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Team Shared Memory synchronizes shared memory across multiple agent workspaces.
 
-## Publisher: <br>
-[amd5](https://clawhub.ai/user/amd5) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amd5](https://clawhub.ai/user/amd5)
 
-## Use Case: <br>
-Developers and teams use this skill to keep project and reference memory files synchronized across OpenClaw agents or workspaces while leaving user and feedback memories private. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shared memory sync can overwrite project or reference memory files during conflict resolution. <br>
-Mitigation: Keep backups of important memory files and review synchronization results after conflict-heavy runs. <br>
-Risk: Secrets, regulated data, or private notes may be copied into shared memory if users place them in shared folders. <br>
-Mitigation: Avoid storing sensitive data in shared memory folders and run the included secret scan before synchronization. <br>
+## Use Case:
 
+Developers and teams using OpenClaw agents use this skill to synchronize shared project and reference memory between local workspaces while keeping user and feedback memory private.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/amd5/team-shared-memory) <br>
-- [Publisher profile](https://clawhub.ai/user/amd5) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and command-line status text; synchronization writes Markdown memory files and JSON sync state.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js >=18.0.0 and local access to the OpenClaw workspace memory directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence, SKILL.md frontmatter, skill.json) <br>
+Risk: Persistent team memory may be writable by other users, workspaces, or agents, and sync operations move files without strong approval boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted local memory directories with restrictive filesystem permissions, run under an unprivileged account, and manually review shared Markdown before relying on it.
+
+Risk: The advertised secret scan should not be relied on to protect synchronization operations.
+
+Mitigation: Review memory content before sharing and treat secret scanning as advisory until enforced scanning and approval or quarantine controls are available.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/amd5/skills/team-shared-memory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and shell command guidance for local memory synchronization workflows]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js >=18.0.0 and local access to OpenClaw memory directories.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

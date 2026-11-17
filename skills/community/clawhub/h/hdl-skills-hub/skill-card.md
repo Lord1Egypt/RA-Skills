@@ -1,46 +1,65 @@
-## Description: <br>
-HDL Skills Hub coordinates HDL-MCP-Server skills for authentication, request signing, product lookup, cart operations, home management, and smart-home device control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HDL Skills Hub coordinates authenticated HDL API skills for login, request signing, product lookup, shopping cart updates, home selection, and smart-home device control.
 
-## Publisher: <br>
-[superzhangquansong](https://clawhub.ai/user/superzhangquansong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[superzhangquansong](https://clawhub.ai/user/superzhangquansong)
 
-## Use Case: <br>
-External users and agents use this skill to navigate HDL account authentication, signed HDL API requests, product and shopping-cart workflows, home selection, and smart-home device status or control tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may require agents to handle HDL account credentials, local app secrets, access tokens, refresh tokens, and request signatures. <br>
-Mitigation: Install only from a trusted publisher, prefer platform-managed secrets, and avoid exposing credentials, tokens, signatures, or IDs in agent responses or logs. <br>
-Risk: The skill can change physical smart-home device state, including lights, curtains, and other connected devices. <br>
-Mitigation: Require clear confirmation of the target home, room, device, and action before executing device-control operations. <br>
-Risk: The security scan reports insufficient scoping and confirmation safeguards for smart-home actions. <br>
-Mitigation: Use versions or deployment policies that scope account access, confirm destructive or physical-state-changing requests, and warn before transmitting passwords or changing device state. <br>
+## Use Case:
 
+External HDL users and agents use this skill to safely navigate HDL smart-home and commerce workflows that require authentication, signed API requests, product search, cart changes, and device control.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/superzhangquansong/hdl-skills-hub) <br>
-- [HDL device list API endpoint](https://gateway.hdlcontrol.com/home-wisdom/app/device/list) <br>
-- [HDL device control API endpoint](https://gateway.hdlcontrol.com/home-wisdom/app/device/control) <br>
-- [HDL home list API endpoint](https://gateway.hdlcontrol.com/home-wisdom/app/home/list) <br>
-- [HDL login API endpoint](https://gateway.hdlcontrol.com/basis-footstone/user/oauth/login) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown and structured API workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may involve HDL account credentials, tokens, signatures, home identifiers, device identifiers, and physical smart-home state changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter lists 1.2.0) <br>
+Risk: The skill handles passwords, app secrets, access tokens, refresh tokens, and request signatures.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a secure secret-input or login handoff flow, protect .env storage, avoid chat transcript storage of passwords, and redact tokens, signatures, secrets, and IDs from user-visible output.
+
+Risk: The skill can change shopping carts and control real-world smart-home devices.
+
+Mitigation: Require explicit user confirmation before cart changes or device-control actions, and scope HDL tokens to the minimum permissions needed.
+
+Risk: API responses may contain sensitive internal identifiers and home or device metadata.
+
+Mitigation: Return descriptive names and operation results only; do not expose home IDs, device IDs, SKU IDs, project IDs, ERP numbers, secret keys, local secrets, or request signatures.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/superzhangquansong/skills/hdl-skills-hub)
+- [HDL Skills Hub Source](artifact/SKILL.md)
+- [User Authentication API Skill](artifact/user-auth-api/SKILL.md)
+- [Sign Encryption API Skill](artifact/sign-encryption-api/SKILL.md)
+- [Product Query API Skill](artifact/product-query-api/SKILL.md)
+- [Shopping Cart API Skill](artifact/shopping-cart-api/SKILL.md)
+- [Device Control API Skill](artifact/device-control-api/SKILL.md)
+- [Home Management API Skill](artifact/home-management-api/SKILL.md)
+- [API Specification Skill](artifact/api-spec/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, configuration, guidance]
+
+**Output Format:** [Markdown responses with structured API request and response guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires authenticated HDL context and careful redaction of tokens, signatures, secrets, and internal IDs.]
+
+## Skill Version(s):
+
+1.2.0 (source: artifact frontmatter; release metadata version is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,88 @@
+{
+  "standard": "ISO 14001:2015",
+  "chinese_title": "环境管理体系 要求及使用指南",
+  "abbr": "EMS",
+  "note": "采用 Annex SL 高阶结构；核心差异化条款为 6.1.2 环境因素、6.1.3 合规义务、9.1.1 监测与 9.1.2 合规评价。",
+  "clauses": [
+    {"clause": "4", "title": "组织环境", "chinese_title": "组织环境",
+     "subclauses": ["4.1 理解组织及其环境", "4.2 理解相关方需求和期望", "4.3 确定体系范围", "4.4 环境管理体系"]},
+    {"clause": "5", "title": "领导作用", "chinese_title": "领导作用",
+     "subclauses": ["5.1 领导承诺", "5.2 环境方针", "5.3 组织角色、职责和权限", "5.4 员工的参与和协商（ISO 14001 特有）"]},
+    {"clause": "6", "title": "策划", "chinese_title": "策划",
+     "subclauses": ["6.1.1 总则", "6.1.2 环境因素", "6.1.3 合规义务", "6.1.4 措施的策划", "6.2 环境目标及其实现的策划"]},
+    {"clause": "7", "title": "支持", "chinese_title": "支持",
+     "subclauses": ["7.1 资源", "7.2 能力", "7.3 意识", "7.4 信息交流", "7.5 文件化信息"]},
+    {"clause": "8", "title": "运行", "chinese_title": "运行",
+     "subclauses": ["8.1 运行策划和控制", "8.2 应急准备和响应"]},
+    {"clause": "9", "title": "绩效评价", "chinese_title": "绩效评价",
+     "subclauses": ["9.1.1 监视、测量和分析", "9.1.2 合规性评价", "9.2 内部审核", "9.3 管理评审"]},
+    {"clause": "10", "title": "改进", "chinese_title": "改进",
+     "subclauses": ["10.1 总则", "10.2 不符合和纠正措施", "10.3 持续改进"]}
+  ],
+  "clause_keywords": {
+    "4.3": ["体系范围"], "5.2": ["环境方针"], "5.4": ["员工参与", "协商"],
+    "6.1.2": ["环境因素", "environmental aspect"], "6.1.3": ["合规义务", "法律法规", "compliance obligation"],
+    "6.2": ["环境目标", "environmental objective"], "7.2": ["能力培训"], "7.5": ["文件控制", "记录控制"],
+    "8.1": ["运行控制", "operational control"], "8.2": ["应急", "emergency", "应急演练"],
+    "9.1.1": ["环境监测", "监测"], "9.1.2": ["合规性评价", "compliance evaluation"],
+    "9.2": ["内部审核"], "9.3": ["管理评审"], "10.2": ["纠正措施", "环境不符合"]
+  },
+  "high_voltage_lines": [
+    {"id": "environmental_aspects", "name_zh": "环境因素识别评价（6.1.2）", "name_en": "Environmental Aspects",
+     "description_zh": "是否系统识别活动/产品/服务中的环境因素，评价重要环境因素并形成清单。",
+     "keywords_zh": ["环境因素", "重要环境因素", "环境影响", "识别评价"], "keywords_en": ["environmental aspect"],
+     "related_clauses": ["6.1.2"],
+     "compliance_statement": [
+       "✓ 建立《环境因素识别与评价程序》，覆盖活动、产品和服务全范围。",
+       "✓ 形成《重要环境因素清单》并据此策划控制措施与目标。"]},
+    {"id": "compliance_obligation", "name_zh": "合规义务（6.1.3）", "name_en": "Compliance Obligations",
+     "description_zh": "是否识别适用的环保法律法规与其他要求，并建立获取/更新渠道。",
+     "keywords_zh": ["合规义务", "法律法规", "环保法规", "排污许可"], "keywords_en": ["compliance obligation"],
+     "related_clauses": ["6.1.3"],
+     "compliance_statement": [
+       "✓ 建立《合规义务识别与控制程序》，形成《适用法律法规清单》并定期更新。",
+       "✓ 对许可证（如排污、危废）要求有专门跟踪。"]},
+    {"id": "operational_control", "name_zh": "运行控制（8.1）", "name_en": "Operational Control",
+     "description_zh": "对重要环境因素是否建立运行控制：污水/废气/噪声/固废（危废）管理。",
+     "keywords_zh": ["运行控制", "危废", "污水处理", "废气", "噪声", "固废"], "keywords_en": ["operational control"],
+     "related_clauses": ["8.1"],
+     "compliance_statement": [
+       "✓ 针对重要环境因素制定运行控制程序（如废水、废气、噪声、固体废物、危废）。",
+       "✓ 危废交由有资质单位处置，保留转移联单。"]},
+    {"id": "emergency_response", "name_zh": "应急准备和响应（8.2）", "name_en": "Emergency Preparedness",
+     "description_zh": "是否识别潜在环境紧急状况（泄漏、火灾），制定预案并演练。",
+     "keywords_zh": ["应急", "泄漏", "火灾", "演练", "预案"], "keywords_en": ["emergency"],
+     "related_clauses": ["8.2"],
+     "compliance_statement": [
+       "✓ 识别环境紧急状况（化学品泄漏、火灾、超标排放），制定应急预案。",
+       "✓ 定期演练并保留记录，配备应急物资。"]},
+    {"id": "compliance_evaluation", "name_zh": "合规性评价（9.1.2）", "name_en": "Compliance Evaluation",
+     "description_zh": "是否定期评价对适用法律法规及其他要求的符合情况，保留评价记录。",
+     "keywords_zh": ["合规性评价", "合规评价", "符合情况"], "keywords_en": ["compliance evaluation"],
+     "related_clauses": ["9.1.2"],
+     "compliance_statement": [
+       "✓ 按策划周期开展合规性评价，覆盖全部合规义务。",
+       "✓ 发现不符合时启动纠正措施并跟踪关闭。"]},
+    {"id": "internal_audit", "name_zh": "内部审核（9.2）", "name_en": "Internal Audit",
+     "description_zh": "是否按计划实施内审并闭环不符合项。",
+     "keywords_zh": ["内部审核", "审核计划", "审核不符合"], "keywords_en": ["internal audit"],
+     "related_clauses": ["9.2"],
+     "compliance_statement": [
+       "✓ 编制年度内审方案，覆盖全部要素与部门。",
+       "✓ 内审不符合项已整改闭环。"]}
+  ],
+  "required_procedures": [
+    {"id": "EMS-PF-001", "name": "文件控制程序", "clause": "7.5", "priority": "high", "high_voltage_check": [], "match_keywords": ["文件控制"]},
+    {"id": "EMS-PF-002", "name": "记录控制程序", "clause": "7.5", "priority": "high", "high_voltage_check": [], "match_keywords": ["记录控制"]},
+    {"id": "EMS-PF-003", "name": "环境因素识别与评价程序", "clause": "6.1.2", "priority": "high", "high_voltage_check": ["environmental_aspects"], "match_keywords": ["环境因素"]},
+    {"id": "EMS-PF-004", "name": "合规义务识别与控制程序", "clause": "6.1.3", "priority": "high", "high_voltage_check": ["compliance_obligation"], "match_keywords": ["合规义务", "法律法规"]},
+    {"id": "EMS-PF-005", "name": "人力资源控制程序", "clause": "7.2", "priority": "medium", "high_voltage_check": [], "match_keywords": ["能力", "培训"]},
+    {"id": "EMS-PF-006", "name": "运行控制程序（水/气/声/渣）", "clause": "8.1", "priority": "high", "high_voltage_check": ["operational_control"], "match_keywords": ["运行控制", "危废"]},
+    {"id": "EMS-PF-007", "name": "应急准备和响应控制程序", "clause": "8.2", "priority": "high", "high_voltage_check": ["emergency_response"], "match_keywords": ["应急", "预案"]},
+    {"id": "EMS-PF-008", "name": "监测与测量控制程序", "clause": "9.1.1", "priority": "medium", "high_voltage_check": [], "match_keywords": ["环境监测"]},
+    {"id": "EMS-PF-009", "name": "合规性评价程序", "clause": "9.1.2", "priority": "high", "high_voltage_check": ["compliance_evaluation"], "match_keywords": ["合规性评价"]},
+    {"id": "EMS-PF-010", "name": "内部审核控制程序", "clause": "9.2", "priority": "high", "high_voltage_check": ["internal_audit"], "match_keywords": ["内部审核"]},
+    {"id": "EMS-PF-011", "name": "管理评审控制程序", "clause": "9.3", "priority": "high", "high_voltage_check": [], "match_keywords": ["管理评审"]},
+    {"id": "EMS-PF-012", "name": "不符合、纠正措施控制程序", "clause": "10.2", "priority": "high", "high_voltage_check": [], "match_keywords": ["纠正措施", "环境不符合"]}
+  ]
+}

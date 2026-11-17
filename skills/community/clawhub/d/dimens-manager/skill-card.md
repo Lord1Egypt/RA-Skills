@@ -1,54 +1,69 @@
-## Description: <br>
-用于维表智联项目内业务资源创建、配置、维护和排查，适合处理 Key、团队、项目、表格、权限、工作流、报表、画布等落地问题。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through Dimens/BintelAI business administration tasks for authentication, team and project context, tables, permissions, workflows, reports, and canvases.
 
-## Publisher: <br>
-[flyowl](https://clawhub.ai/user/flyowl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flyowl](https://clawhub.ai/user/flyowl)
 
-## Use Case: <br>
-Developers and operators use this skill to manage Dimens project resources, including authentication, teams, projects, tables, permissions, workflows, reports, and canvases. It helps route tasks to the right reference material and produce operational guidance, CLI commands, API examples, and configuration payloads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive credentials, OAuth tokens, or API secrets could be exposed through chat logs, shell history, or local profile storage. <br>
-Mitigation: Avoid pasting real secrets into chats or command lines, store returned secrets in a secrets manager, and review local profile token storage before use. <br>
-Risk: Write, delete, reset, or public-share actions could change business resources or access boundaries unintentionally. <br>
-Mitigation: Require explicit confirmation before those actions and review the target operation, affected resource, and expected outcome. <br>
-Risk: Commands run against the wrong Dimens team, project, or resource scope could modify unrelated business data. <br>
-Mitigation: Check teamId, projectId, resource ownership, and permission scope before running permission, public-view, or resource-changing commands. <br>
+## Use Case:
 
+Developers and operators use this skill to administer Dimens/BintelAI project resources with guided command sequences and checks. It supports resource creation, configuration, maintenance, and troubleshooting across authentication, teams, projects, tables, permissions, workflows, reports, and canvases.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/flyowl/dimens-manager) <br>
-- [维表智联官网](https://dimens.bintelai.com/) <br>
-- [README](artifact/README.md) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
-- [Key Authentication Overview](artifact/references/key-auth/overview.md) <br>
-- [Team Context Overview](artifact/references/team/overview.md) <br>
-- [Project Overview](artifact/references/project/overview.md) <br>
-- [Table Overview](artifact/references/table/overview.md) <br>
-- [Permission Overview](artifact/references/permission/overview.md) <br>
-- [Workflow Overview](artifact/references/workflow/overview.md) <br>
-- [Approval Workflow Generation](artifact/references/workflow/references/approval-generation.md) <br>
-- [Report Overview](artifact/references/report/overview.md) <br>
-- [Canvas Overview](artifact/references/canvas/overview.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with CLI commands, API examples, and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May involve OAuth tokens, API keys, resource identifiers, and write operations that require user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill can guide live administrative actions affecting Dimens/BintelAI credentials, permissions, publishing, rollback, and deletion workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before deletes, restores, public sharing, permission changes, and API key lifecycle actions.
+
+Risk: Authentication secrets, access tokens, or local CLI profiles could be exposed during operational troubleshooting.
+
+Mitigation: Use only the official trusted base URL for authentication, avoid placing real secrets in chats or command lines, and protect or clear CLI profiles that store tokens.
+
+Risk: Incorrect team, project, or resource context can cause commands to affect the wrong tenant or asset.
+
+Mitigation: Confirm authentication, teamId, projectId, and resource ownership before writes, and read the current resource state before submitting updates.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/flyowl/skills/dimens-manager)
+- [Dimens/BintelAI product site](https://dimens.bintelai.com/)
+- [Skill definition](artifact/SKILL.md)
+- [Skill README](artifact/README.md)
+- [Key authentication overview](artifact/references/key-auth/overview.md)
+- [Team context overview](artifact/references/team/overview.md)
+- [Project initialization overview](artifact/references/project/overview.md)
+- [Table management overview](artifact/references/table/overview.md)
+- [Permission management overview](artifact/references/permission/overview.md)
+- [Workflow overview](artifact/references/workflow/overview.md)
+- [Report overview](artifact/references/report/overview.md)
+- [Canvas overview](artifact/references/canvas/overview.md)
+- [Approval workflow generation](artifact/references/workflow/references/approval-generation.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON or configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Dimens CLI command sequences, validation checks, and read-before-write workflow steps.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release evidence; artifact frontmatter lists 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

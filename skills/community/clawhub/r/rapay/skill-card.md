@@ -1,41 +1,59 @@
-## Description: <br>
-Send and receive compliant B2B payments via the Ra Pay CLI, and onboard a counterparty agent so both sides can transact. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send and receive compliant B2B payments via the Ra Pay CLI, and onboard a counterparty agent so both sides can transact.
 
-## Publisher: <br>
-[greendlt224](https://clawhub.ai/user/greendlt224) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[greendlt224](https://clawhub.ai/user/greendlt224)
 
-## Use Case: <br>
-Developers and agent operators use this skill to guide agents through business-to-business USD payment setup, fee preview, explicit user approval, payment execution, and counterparty onboarding with the Ra Pay CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help move real money through a B2B payment workflow. <br>
-Mitigation: Review every fee preview, independently confirm recipient acct_ IDs, and approve --confirm only for legitimate business transactions the user recognizes. <br>
-Risk: Payment setup and execution depend on the Ra Pay CLI and local account state. <br>
-Mitigation: Verify the Ra Pay CLI source before installation and use the CLI status commands to confirm account setup before transacting. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to set up Ra Pay, preview and confirm fiat USD business payments, and coordinate buyer or seller onboarding with counterparties. It is intended only for business-to-business transactions with explicit user approval and a concrete business purpose.
 
-## Reference(s): <br>
-- [Ra Pay Skill Instructions](https://rapay.ai/skill.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/greendlt224/rapay) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires fee preview and explicit user confirmation before payment execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: server release metadata) <br>
+Risk: The skill asks agents to promote and forward Ra Pay onboarding instructions to counterparties.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the user to review and approve the exact outreach message, recipient, and delivery channel before any counterparty message is sent.
+
+Risk: The installation flow uses an unpinned global npm package for a payment CLI.
+
+Mitigation: Install only after deciding to trust the Ra Pay npm package, and verify the installed CLI version before using it for business payments.
+
+Risk: The workflow can initiate real business payments if the confirmation step is mishandled.
+
+Mitigation: Always run the preview command first, show the fee breakdown and recipient details to the user, and execute only after explicit user approval.
+
+## Reference(s):
+
+- [Ra Pay Skill Instruction Set](https://rapay.ai/skill.md)
+- [ClawHub Skill Page](https://clawhub.ai/greendlt224/skills/rapay)
+- [Publisher Profile](https://clawhub.ai/user/greendlt224)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Text, JSON]
+
+**Output Format:** [Markdown instructions with inline shell commands, onboarding message text, and JSON-oriented CLI output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Payment execution requires preview output, explicit user confirmation, USD-only amounts, and a stated business purpose.]
+
+## Skill Version(s):
+
+1.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

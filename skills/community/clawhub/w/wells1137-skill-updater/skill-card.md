@@ -1,37 +1,48 @@
-## Description: <br>
-Updates a specific skill within a repository and triggers the automated publishing pipeline. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Updates a specific skill within a repository and triggers the automated publishing pipeline for a single-skill release.
 
-## Publisher: <br>
-[wells1137](https://clawhub.ai/user/wells1137) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wells1137](https://clawhub.ai/user/wells1137)
 
-## Use Case: <br>
-Developers and maintainers use this skill to release a new version of a single skill by collecting the target skill, version, and changelog, then running the repository's release script. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A user-selected repository release script performs the actual publish action and may trigger an unintended skill release if inputs or script contents are wrong. <br>
-Mitigation: Before running the skill, verify the repository path, skill name, version, changelog, and contents of scripts/release.sh. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wells1137/wells1137-skill-updater) <br>
+## Use Case:
 
+Developers and skill maintainers use Skill Updater to collect release details for one modified skill and run the repository's release script to publish the update through an existing ClaWHub pipeline.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands] <br>
-**Output Format:** [Text and shell command execution guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompts for repository path, skill name, version, and changelog before running a release script.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can trigger an external ClaWHub publish workflow by running a repository release script.
+
+Mitigation: Before use, confirm the target repository, skill name, version, changelog, publishing destination, and behavior of the repository's scripts/release.sh.
+
+## Reference(s):
+
+- [Skill Updater on ClaWHub](https://clawhub.ai/wells1137/skills/wells1137-skill-updater)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Interactive prompts and shell command execution status]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompts for repository path, skill name, new version, and changelog before invoking the repository release script.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

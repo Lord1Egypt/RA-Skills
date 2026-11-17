@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 竞品周报"
+  short_description: "经确认后生成主品与竞品的证据周报"
+  default_prompt: "使用 $amazon-competitor-weekly-report 经报价确认后为主 ASIN 与已授权竞品生成证据对照周报。"

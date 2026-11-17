@@ -1,41 +1,59 @@
-## Description: <br>
-Analyze Google Ads search-term CSV exports locally and draft negative-keyword plans with dry-run safety. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze Google Ads search-term CSV exports locally and draft negative-keyword plans with dry-run safety.
 
-## Publisher: <br>
-[davidmosiah](https://clawhub.ai/user/davidmosiah) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davidmosiah](https://clawhub.ai/user/davidmosiah)
 
-## Use Case: <br>
-Developers, marketers, and agent operators use this skill to install, configure, and safely operate Google Ads Intent MCP for local search-term CSV analysis and negative-keyword planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Google Ads OAuth tokens, API keys, service-account files, local token files, or private CSV exports could be exposed if copied into chat or logs. <br>
-Mitigation: Keep credentials and exports local, do not paste secrets into chat, and use connection status, doctor, manifest, privacy audit, and dry-run checks before sharing outputs. <br>
-Risk: Future live-account tooling could change ad-account state if used without clear user consent. <br>
-Mitigation: Default to exported CSV analysis and require explicit confirmation before any live provider call or account mutation. <br>
+## Use Case:
 
+Developers, advertisers, and agent operators use this skill to install, configure, and safely run Google Ads Intent MCP for local search-term CSV analysis and negative-keyword planning. It also guides privacy checks, dry-run review, and troubleshooting for MCP-compatible clients.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/davidmosiah/google-ads-intent-mcp) <br>
-- [Google Ads Intent MCP repository](https://github.com/davidmosiah/google-ads-intent-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown] <br>
-**Output Format:** [Markdown with inline shell commands and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Focuses on dry-run workflows, privacy checks, and explicit handling of Google Ads credentials and exported CSV data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Setup instructions install mutable remote code from a Git URL without pinning a reviewed version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the upstream repository, prefer a pinned commit or trusted versioned release, and run setup in a low-privilege environment.
+
+Risk: Advertising exports and credentials such as OAuth tokens, API keys, service-account JSON, or local token files could be exposed during setup or troubleshooting.
+
+Mitigation: Run diagnostics without secrets or unrelated credentials present, avoid printing private data, and keep user consent explicit before inspecting local files.
+
+Risk: Negative-keyword recommendations or future live-mode tooling could affect advertising performance if applied without review.
+
+Mitigation: Default to exported CSV analysis and dry-run plans, and require explicit confirmation before any live provider call or account mutation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/davidmosiah/skills/google-ads-intent-mcp)
+- [Repository](https://github.com/davidmosiah/google-ads-intent-mcp)
+- [Docs/site](https://github.com/davidmosiah/google-ads-intent-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Emphasizes local CSV analysis, dry-run planning, privacy checks, and explicit consent before any future live account mutation.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,52 @@
-## Description: <br>
-NOVA Memory helps agents design and operate a three-layer long-term memory system using episodic, semantic, and rules-based memory files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NOVA Memory helps agents design and operate a three-layer long-term memory system with episodic records, semantic knowledge, persistent rules, identity files, and maintenance routines.
 
-## Publisher: <br>
-[ShaunLeeCN](https://clawhub.ai/user/ShaunLeeCN) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[shaunleecn](https://clawhub.ai/user/shaunleecn)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add structured long-term memory to an AI assistant, including memory folders, an index file, identity records, maintenance routines, and integration notes for OpenClaw-style agents. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can cause an agent to persist long-term local memory about users, conversations, identity, and work context. <br>
-Mitigation: Enable it only when persistent memory is intended, review stored memory files, and avoid recording secrets or sensitive personal data. <br>
-Risk: The skill describes automatic maintenance, cron scheduling, and Git commits for memory updates. <br>
-Mitigation: Disable cron jobs and automatic commits unless explicitly desired, and require review before memory maintenance changes are applied. <br>
-Risk: The skill may require edits to AGENTS.md and references a helper script that is not included in the artifact. <br>
-Mitigation: Review AGENTS.md changes before enabling them and inspect or provide the referenced helper script before running it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [NOVA Memory on ClawHub](https://clawhub.ai/ShaunLeeCN/nova-three-level-memory) <br>
-- [ShaunLeeCN publisher profile](https://clawhub.ai/user/ShaunLeeCN) <br>
+## Use Case:
 
+Developers and agent operators use this skill to add durable memory practices to AI assistants, including session recall, identity context, rule storage, memory consolidation, and periodic maintenance.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with file tree examples, markdown snippets, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose persistent local memory files, scheduled maintenance, AGENTS.md updates, and Git commits.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks agents to persist and reload memory about users, identity, conversations, and operating context.
+
+Mitigation: Make memory writes opt-in, review memory changes before saving them, and avoid committing private memory files.
+
+Risk: The skill includes automatic maintenance, AGENTS.md integration, and Git commit behavior that can change agent behavior over time.
+
+Mitigation: Require explicit approval before adding scheduled maintenance, changing AGENTS.md, or committing generated memory updates.
+
+## Reference(s):
+
+- [ClawHub skill page: NOVA Memory](https://clawhub.ai/shaunleecn/skills/nova-three-level-memory)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with file-tree examples and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose durable memory files, AGENTS.md changes, cron scheduling, and Git commits.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

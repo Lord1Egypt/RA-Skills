@@ -1,6 +1,42 @@
 {
-  "ownerId": "kn70mbfbga1k8rk8hc4e5zk5s583yg3b",
-  "slug": "ai-coding-tools-full-suite",
-  "version": "1.0.0",
-  "publishedAt": 1774926871358
+  "author": "MiniMax Agent",
+  "commands": [
+    "/ai-tools",
+    "/aitools",
+    "@ai-coding-tools-full-suite"
+  ],
+  "created": "2025-01-26",
+  "description": "一站式AI编程工具分析技能包，支持Cursor、Claude Code、Devin、Windsurf等35+工具的深度分析、对比选型、Agent设计参考和提示词工程。封装了11个技能，覆盖 35+AI编程工具。",
+  "id": 380661292802856,
+  "name": "ai-coding-tools-full-suite",
+  "platform": "minimax",
+  "skill-id": "1847283652",
+  "stats": {
+    "analysis_dimensions": "100+",
+    "covered_tools": "35+",
+    "total_skills": 11
+  },
+  "sub-skills": [
+    "ai-coding-assistant-comparison",
+    "cursor-prompt-analysis",
+    "claude-code-prompt-analysis",
+    "devin-agent-loop-analysis",
+    "windsurf-prompt-analysis",
+    "ai-agent-design-best-practices",
+    "spec-driven-development",
+    "tool-definitions-reference",
+    "prompt-engineering-for-coding",
+    "ai-tools-prompt-master",
+    "ai-tools-guidance-assistant"
+  ],
+  "tags": [
+    "AI-programming",
+    "coding-assistant",
+    "cursor",
+    "claude-code",
+    "prompt-engineering",
+    "agent-design"
+  ],
+  "updated_at": 1774488190848,
+  "version": "1.0.0"
 }

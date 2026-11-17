@@ -1,38 +1,52 @@
-## Description: <br>
-Acts as the user's social life assistant in the Friends topic. Remembers friends, birthdays, plans, debts, shared interests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal Friends helps an agent remember and update a private social-life record covering friends, birthdays, plans, debts, shared interests, and gift ideas.
 
-## Publisher: <br>
-[GekaCross](https://clawhub.ai/user/GekaCross) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gekacross](https://clawhub.ai/user/gekacross)
 
-## Use Case: <br>
-External users use this skill as a personal social-memory assistant to track friends, birthdays, meeting plans, shared interests, gift ideas, and debts in a local friends note. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill stores personal details about friends, birthdays, plans, gift ideas, and debts in a persistent workspace file. <br>
-Mitigation: Review or delete knowledge/personal/friends.md when saved information should be removed, and avoid storing details about other people that should not persist in the agent workspace. <br>
-Risk: Friend and relationship details could be exposed in an inappropriate chat context. <br>
-Mitigation: Keep the stored friend information private and do not share it in group chats. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users can use this skill in an OpenClaw personal chat to maintain a private workspace file of friends, birthdays, debts, meeting plans, gift ideas, and relationship notes.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown notes and conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update knowledge/personal/friends.md with friend profiles, dates, plans, debt notes, and gift ideas.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill persistently stores sensitive personal relationship, birthday, planning, gift, and debt details in a local workspace file.
+
+Mitigation: Use it only in an appropriate private workspace, narrow activation where possible, and require confirmation before saving or changing sensitive personal or financial details.
+
+Risk: Broad activation on friend names or social terms may capture information the user did not intend to persist.
+
+Mitigation: Review proposed memory updates before writing them and periodically audit knowledge/personal/friends.md for stale or unnecessary details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gekacross/skills/personal-friends)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Files]
+
+**Output Format:** [Natural language responses with Markdown updates to knowledge/personal/friends.md]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and update a local workspace memory file containing friends, birthdays, plans, debts, notes, and gift ideas.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Token Diligence"
+  short_description: "Investigate token controls, exits and launch flows"
+  default_prompt: "Use $galleon-defi-security-token-diligence to review this exact EVM token and explain its material risks and evidence gaps."

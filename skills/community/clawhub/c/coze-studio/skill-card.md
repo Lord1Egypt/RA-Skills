@@ -1,44 +1,55 @@
-## Description: <br>
-Provides a local command-line placeholder for Coze Studio-style agent development tasks, including help, status, simple data logging, search, and export commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a command-line skill branded as Coze Studio with help, status, info, and simple local data logging utilities.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Developers and agents can use this skill to run a small local shell utility for status checks, simple data entry, search, and export workflows. Security evidence indicates it should be treated as a placeholder utility rather than the full Coze Studio platform. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package is materially over-described and appears to be a local placeholder utility rather than the full Coze Studio platform. <br>
-Mitigation: Review the bundled scripts before installation and do not rely on this skill for full Coze Studio functionality. <br>
-Risk: Commands can write local data and history files under the configured data directory. <br>
-Mitigation: Set COZE_STUDIO_DIR to a controlled location and review or clear that directory after use. <br>
-Risk: Arguments may be written to local logs or data files. <br>
-Mitigation: Avoid passing secrets, tokens, private data, or sensitive prompts as command arguments. <br>
+## Use Case:
 
+Developers and external users can invoke the skill's shell commands to check status and info, run placeholder functionality, and add, search, list, or export simple local entries. Reviewers should treat it as a small local utility rather than a full Coze Studio agent-development platform.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/bytesagain-lab/coze-studio) <br>
-- [Publisher homepage](https://bytesagain.com) <br>
-- [Referenced upstream Coze Studio project](https://github.com/coze-dev/coze-studio) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [Plain text command output with shell usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or read local files under COZE_STUDIO_DIR, defaulting to the user's local data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill is advertised as a Coze Studio agent-development platform, but the inspected artifact behaves as a generic shell utility.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review expected functionality before relying on it for agent development, debugging, or deployment workflows.
+
+Risk: Commands can persist user-provided text and command history in local data files.
+
+Mitigation: Avoid passing secrets or tokens as arguments and set COZE_STUDIO_DIR to a private trusted directory before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/skills/coze-studio)
+- [Publisher profile](https://clawhub.ai/user/bytesagain-lab)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local data and command history files under COZE_STUDIO_DIR or the default user data directory.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

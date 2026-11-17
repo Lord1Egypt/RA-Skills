@@ -1,43 +1,55 @@
-## Description: <br>
-NVIDIA free API integration for OpenAI-compatible access to 133+ mainstream models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers in configuring NVIDIA's OpenAI-compatible API with OpenClaw and the Python OpenAI SDK for model listing, chat, streaming, and embeddings.
 
-## Publisher: <br>
-[clementgu](https://clawhub.ai/user/clementgu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clementgu](https://clawhub.ai/user/clementgu)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure NVIDIA's OpenAI-compatible API endpoint, choose models, and call chat, streaming, and embedding workflows with their own NVIDIA API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a personal NVIDIA API key and may send prompts to NVIDIA's API endpoint. <br>
-Mitigation: Store the key privately, use environment variables or local-only configuration, and avoid committing real credentials. <br>
-Risk: The security summary notes confusing API-key wording and the guidance says to verify the advertised CLI exists. <br>
-Mitigation: Confirm the intended setup path and available nvidia-api commands before relying on the CLI examples. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to configure NVIDIA's OpenAI-compatible API endpoint, set their own NVIDIA API key, and try supported chat, streaming, embedding, and model-selection workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clementgu/nvidia-free-api) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/clementgu) <br>
-- [NVIDIA API catalog](https://build.nvidia.com/) <br>
-- [NVIDIA OpenAI-compatible API endpoint](https://integrate.api.nvidia.com/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline bash, Python, and YAML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-managed NVIDIA_API_KEY credential.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence; artifact frontmatter reports 1.0.0) <br>
+Risk: Users may place NVIDIA API keys in shell profiles or provider configuration files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a personal NVIDIA API key, avoid committing secrets, and review local configuration changes before saving provider settings or environment-variable exports.
+
+Risk: The artifact documentation is Chinese-only, which may make setup details easier to misunderstand for some users.
+
+Mitigation: Review the configuration examples carefully and confirm endpoint, model, and API-key settings before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clementgu/skills/nvidia-free-api)
+- [NVIDIA API catalog](https://build.nvidia.com/)
+- [NVIDIA OpenAI-compatible API endpoint](https://integrate.api.nvidia.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash, Python, and YAML snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-supplied NVIDIA_API_KEY values and OpenAI-compatible provider configuration examples.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence; artifact frontmatter and _meta.json report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

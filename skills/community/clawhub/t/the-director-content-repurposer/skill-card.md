@@ -1,38 +1,54 @@
-## Description: <br>
-Transforms long-form content into concise, platform-tailored social posts optimized for LinkedIn, Twitter/X, and Instagram engagement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms long-form content into concise, platform-tailored social posts optimized for LinkedIn, Twitter/X, and Instagram engagement.
 
-## Publisher: <br>
-[di5cip1e](https://clawhub.ai/user/di5cip1e) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[di5cip1e](https://clawhub.ai/user/di5cip1e)
 
-## Use Case: <br>
-Content marketers, creators, and communications teams use this skill to turn articles, transcripts, podcast notes, video descriptions, and other long-form text into platform-native social drafts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated social posts may be inaccurate, misleading, or unsuitable for the user's brand if published without review. <br>
-Mitigation: Review and edit generated posts before publishing, especially hooks, factual claims, hashtags, and calls to action. <br>
+## Use Case:
 
+Content marketers, creators, and communications teams use this skill to turn articles, transcripts, podcast notes, video descriptions, and other long-form text into platform-native posts or threads for LinkedIn, Twitter/X, and Instagram.
 
-## Reference(s): <br>
-- [Content Repurposer on ClawHub](https://clawhub.ai/di5cip1e/the-director-content-repurposer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-formatted social post drafts, thread structures, captions, checklists, and platform guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes platform-specific character limits, hashtag guidance, hooks, calls to action, and review checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: Generated social posts may include inaccurate, misleading, or off-brand claims if the source material is ambiguous or incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit generated posts before publishing, especially claims, statistics, links, hashtags, and calls to action.
+
+Risk: Broad social-media or thread-writing requests may activate the skill when the user did not intend a marketing-style rewrite.
+
+Mitigation: Use explicit target platforms and tone requirements, then confirm the final output matches the requested audience and purpose.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/di5cip1e/skills/the-director-content-repurposer)
+- [Publisher profile](https://clawhub.ai/user/di5cip1e)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text social posts, captions, and thread drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include platform-specific hooks, hashtags, calls to action, character-limit checks, and formatting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,51 @@
-## Description: <br>
-Helps users create AI writing prompts, choose a Chinese self-media track, draft public account articles, rewrite copy with a more human voice, and generate click-worthy titles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when helping users create writing prompts, determine public-account tracks, generate article drafts, rewrite content with a more natural voice, and create click-worthy titles.
 
-## Publisher: <br>
-[flynnwang007](https://clawhub.ai/user/flynnwang007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flynnwang007](https://clawhub.ai/user/flynnwang007)
 
-## Use Case: <br>
-External creators, marketers, and editors use this skill to plan Chinese self-media positioning, generate article drafts, rewrite copy for platform fit, reduce AI-sounding phrasing, and prepare title ideas for public account or social posts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow includes extraction and rewriting prompts that could be misused to copy or republish third-party articles, captions, subtitles, or posts without rights. <br>
-Mitigation: Use it for summaries, analysis, original drafting, or licensed material, and require human review before publishing. <br>
+## Use Case:
 
+External content creators and marketing writers use this skill to build prompts, choose a public-account niche, draft and rewrite Chinese social-media articles, add a more natural voice, and generate titles and image guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/flynnwang007/ai-writing-prompt-guide) <br>
-- [创作罐头](https://www.czgts.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with prompt blocks, structured Chinese guidance, draft copy, rewrite output, and title lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no code execution, shell commands, credential access, or external API calls are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill includes workflows for full extraction and publish-ready rewriting of third-party platform content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for original drafting, structure analysis, short excerpts, or attribution-safe transformations; avoid copying full third-party articles, posts, subtitles, or scripts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/flynnwang007/skills/ai-writing-prompt-guide)
+- [Publisher profile](https://clawhub.ai/user/flynnwang007)
+- [创作罐头](https://www.czgts.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with reusable prompt blocks and structured Chinese writing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces prompt templates, article-drafting guidance, rewrite guidance, title options, and image-tool suggestions; no code execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

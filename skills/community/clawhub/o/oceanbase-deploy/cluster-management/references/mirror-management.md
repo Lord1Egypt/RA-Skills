@@ -1,44 +1,20 @@
-# Mirror & Repository Management
+<!-- Compatibility anchors retained for published 2.x deep links. -->
+<a id="mirror-repository-management"></a>
+<a id="mirror--repository-management"></a>
+<a id="commands"></a>
+<a id="list-mirrors"></a>
+<a id="update-mirrors"></a>
+<a id="clone-rpm-to-local"></a>
+<a id="create-mirror"></a>
+<a id="enable-disable"></a>
+<a id="enable--disable"></a>
+<a id="clean-mirrors"></a>
+<a id="notes"></a>
 
-Manage local and remote package repositories for OBD.
+# Legacy Mirror and Repository Reference
 
-## Commands
+This compatibility path is retained for existing links. Mirror sections, local repository entries, offline material, remote-repository trust, cleanup, and artifact import are controller-administration concerns.
 
-### List Mirrors
-```bash
-obd mirror list [repo_name]
-```
+Read [OBD mirror and repository management](../../obd-administration/references/mirror-and-repositories.md) for the current workflow. For a fully offline artifact closure, also read [offline repository preparation](../../obd-administration/references/offline-repository.md).
 
-### Update Mirrors
-```bash
-obd mirror update
-```
-Refreshes remote mirror metadata.
-
-### Clone RPM to Local
-```bash
-obd mirror clone <path_to_rpm> [-f]
-```
-Use `-f` to force overwrite.
-
-### Create Mirror
-```bash
-obd mirror create -n <name> -p <path> -V <version>
-```
-
-### Enable / Disable
-```bash
-obd mirror enable <repo_name>
-obd mirror disable <repo_name>
-```
-
-### Clean Mirrors
-```bash
-obd mirror clean
-```
-Removes cached mirror data.
-
-## Notes
-
-- `ocp-ce` packages are not in the public community mirror by default. Verify with `obd mirror list` before planning OCP CE deployment.
-- When deploying offline, clone all required RPMs to the local mirror first.
+Do not use the former command-summary content from this path: in particular, do not run `mirror create`, `mirror clone --force`, or `mirror clean` without the input, impact, exact-object, and recovery gates in the administration references.

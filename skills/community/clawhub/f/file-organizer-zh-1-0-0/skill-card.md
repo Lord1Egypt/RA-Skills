@@ -1,38 +1,54 @@
-## Description: <br>
-Organizes local files into type-based folders using Chinese-language prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language file organizer that classifies local files into type-based folders.
 
-## Publisher: <br>
-[zhangyingzhuangk](https://clawhub.ai/user/zhangyingzhuangk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangyingzhuangk](https://clawhub.ai/user/zhangyingzhuangk)
 
-## Use Case: <br>
-External users and developers can ask an agent in Chinese to inspect or reorganize Desktop, Downloads, Documents, or a specified Windows folder by moving top-level files into type-based subfolders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically move many top-level files from broad folders such as Desktop, Downloads, Documents, or a specified Windows path without a preview or confirmation. <br>
-Mitigation: Test on a copied or small folder first, keep backups for important files, and use specific paths only when file movement is intended. <br>
+## Use Case:
 
+External users and agents use this skill to organize files in Desktop, Downloads, Documents, or a supplied Windows path into folders by file type, and to report file counts and sizes on request.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangyingzhuangk/file-organizer-zh-1-0-0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, files] <br>
-**Output Format:** [Plain text status messages in Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create category folders and move top-level files when an organizing prompt is handled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, server release evidence) <br>
+Risk: The skill can move many local files as soon as broad Chinese trigger words are invoked with Desktop, Downloads, Documents, or a supplied Windows path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it first on a small test folder and require the agent to confirm the exact target directory and planned moves before execution.
+
+Risk: The evidence reports no preview, confirmation, or undo path before organization occurs.
+
+Mitigation: Avoid broad requests on important folders unless the files are backed up or the target directory is disposable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangyingzhuangk/skills/file-organizer-zh-1-0-0)
+- [Publisher profile](https://clawhub.ai/user/zhangyingzhuangk)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain text messages in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May also move files into type-based folders in the target directory when invoked.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

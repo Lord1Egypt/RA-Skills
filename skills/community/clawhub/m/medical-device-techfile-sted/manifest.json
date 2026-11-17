@@ -1,0 +1,40 @@
+{
+  "schema": "ownership-attestation/1.0",
+  "package": "医械技术文件STED专家",
+  "version": "1.0.0",
+  "author": "注册老炮 (Regulatory Veteran)",
+  "year": "2026",
+  "timestamp_utc": "2026-08-27T16:02:28.011514+00:00",
+  "timestamp_local": "2026-08-28T00:02:28.011523",
+  "package_fingerprint_sha256": "90b044932fc6133a0d1d7763526f19975d208268e293658b1fe7902c28023846",
+  "files": [
+    {
+      "path": "LICENSE.md",
+      "sha256": "37c67dc8c7399b06e6072f938fa1a9dcf96a4891cad1069a6435d7c094735e0b"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "4eb8b6adb1d64996bc1084fcd4395ff035fa3cd768dc395cd54da7a1a51654a6"
+    },
+    {
+      "path": "medical-device-techfile-sted_security_test.py",
+      "sha256": "59f0a12f205e061248af992b3a712a8e538e7c285df2b812bef03bbeecb616a1"
+    },
+    {
+      "path": "references/技术文件STED知识库.md",
+      "sha256": "98bb49e49e48d085a3cfa475b7d24ff68ff418e3a01fca98ce42d53bdc2cb94d"
+    },
+    {
+      "path": "security-radar.svg",
+      "sha256": "1fd4161902d490a87a6369cfd31d340b9e5ffeaea6be162168ba93f7cb48bf76"
+    },
+    {
+      "path": "security_results.json",
+      "sha256": "59f004b2aef3de6c55bca16b17cec2df43ef1a14901174204dcd31c4a3811dea"
+    },
+    {
+      "path": "安全审计报告.md",
+      "sha256": "536a3cdc3a267b16c334c5beb702144e689168d489ee58ac6ccdc37b79b70222"
+    }
+  ]
+}

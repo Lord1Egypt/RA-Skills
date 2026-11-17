@@ -1,41 +1,58 @@
-## Description: <br>
-Solana/Base Multi-Chain Meme Scanner & Auditor (Anti-Rug) <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Solana/Base Multi-Chain Meme Scanner & Auditor (Anti-Rug)
 
-## Publisher: <br>
-[qiyun154-cyber](https://clawhub.ai/user/qiyun154-cyber) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[qiyun154-cyber](https://clawhub.ai/user/qiyun154-cyber)
 
-## Use Case: <br>
-External users and developers use this skill to scan Solana and Base token pools and run basic token audit checks before reviewing whether a token warrants further investigation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill presents incomplete checks as anti-rug auditing and trading-safety guidance. <br>
-Mitigation: Treat scanner labels, risk scores, and audit recommendations as preliminary signals only; verify token safety with independent sources before making trading decisions. <br>
-Risk: Future versions could request wallet access, API keys, or permission to execute transactions. <br>
-Mitigation: Review requested permissions before installation and do not grant wallet or transaction execution access unless the behavior has been independently audited. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qiyun154-cyber/sentry-ai) <br>
-- [DEX Screener Solana token endpoint](https://api.dexscreener.com/latest/dex/tokens/solana) <br>
-- [DEX Screener Base token endpoint](https://api.dexscreener.com/latest/dex/tokens/base) <br>
+## Use Case:
 
+External developers and crypto-market analysts can use this skill to scan Solana and Base token-pool data and generate basic token risk reports. Its outputs should be treated as research signals, not trading recommendations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Console text and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports token pool summaries, risk scores, audit checks, and recommendations; outputs should be reviewed before use in trading decisions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may overstate crypto audit and token safety capabilities and may label tokens as safe using weak checks.
+
+Mitigation: Treat outputs as market-data hints only and require independent contract, liquidity, holder-distribution, and trading-risk review before acting.
+
+Risk: The artifact describes execution features such as take-profit, stop-loss, and gas optimization in a financial context.
+
+Mitigation: Do not connect wallets or automate trades based on this package without separate security checks, manual approval, and appropriate operational controls.
+
+Risk: The audit script can report UNKNOWN for liquidity and holder distribution while still producing a recommendation.
+
+Mitigation: Require complete external data and clearly treat UNKNOWN checks as unresolved risk rather than evidence of token safety.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qiyun154-cyber/skills/sentry-ai)
+- [DexScreener Solana token endpoint](https://api.dexscreener.com/latest/dex/tokens/solana)
+- [DexScreener Base token endpoint](https://api.dexscreener.com/latest/dex/tokens/base)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text terminal output with token metadata, risk scores, audit checks, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May depend on external DEX data availability; audit checks are basic and may return UNKNOWN for liquidity and holder distribution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

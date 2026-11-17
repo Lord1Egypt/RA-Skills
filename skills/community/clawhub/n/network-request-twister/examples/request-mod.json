@@ -1,0 +1,55 @@
+{
+  "id": "twist-demo-002",
+  "name": "Demo: request modification",
+  "version": "1.0",
+  "description": "Modify request headers, URL, cookies, and form fields before they reach the server",
+  "rules": [
+    {
+      "id": "add-auth",
+      "name": "Add Authorization header",
+      "enabled": true,
+      "priority": 10,
+      "stage": "request",
+      "match": {
+        "allOf": [
+          {"type": "urlPrefix", "value": "https://api.example.com/"},
+          {"type": "headerNotExists", "name": "Authorization"}
+        ]
+      },
+      "actions": [
+        {"type": "setHeader", "name": "Authorization", "value": "Bearer dev-token"}
+      ]
+    },
+    {
+      "id": "rewrite-url",
+      "name": "Redirect staging to local",
+      "enabled": true,
+      "priority": 8,
+      "stage": "request",
+      "match": {
+        "allOf": [
+          {"type": "urlContains", "value": "staging.example.com"}
+        ]
+      },
+      "actions": [
+        {"type": "setUrl", "value": "http://localhost:3000/api"}
+      ]
+    },
+    {
+      "id": "change-method",
+      "name": "Convert POST to GET for cache testing",
+      "enabled": false,
+      "priority": 5,
+      "stage": "request",
+      "match": {
+        "allOf": [
+          {"type": "urlContains", "value": "/cache-test"},
+          {"type": "method", "values": ["POST"]}
+        ]
+      },
+      "actions": [
+        {"type": "setMethod", "value": "GET"}
+      ]
+    }
+  ]
+}

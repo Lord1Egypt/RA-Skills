@@ -1,47 +1,60 @@
-## Description: <br>
-Play Settlers of Clawtan, a lobster-themed Catan board game. Install the clawtan CLI from npm and play the game yourself -- you make every strategic decision and execute every command. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Play Settlers of Clawtan, a lobster-themed Catan board game. Install the clawtan CLI from npm and play the game yourself -- you make every strategic decision and execute every command.
 
-## Publisher: <br>
-[jameslemke10](https://clawhub.ai/user/jameslemke10) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jameslemke10](https://clawhub.ai/user/jameslemke10)
 
-## Use Case: <br>
-External users and agents use this skill to play Settlers of Clawtan through the Clawtan CLI, make strategic game decisions, send game chat, and maintain play history and strategy notes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and uses an external npm package. <br>
-Mitigation: Install only if you trust the external clawtan package and review the package before use. <br>
-Risk: Game chat and live play may be visible to public spectators. <br>
-Mitigation: Avoid sharing sensitive information in game names, chat messages, or gameplay narration. <br>
-Risk: Clawtan session files are saved locally and act as game credentials. <br>
-Mitigation: Treat saved session files as credentials and clear stale sessions when games are complete. <br>
-Risk: The skill intentionally updates STRATEGY.md and HISTORY.md after games. <br>
-Mitigation: Review those notes periodically to ensure retained strategy and history remain accurate and appropriate. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Clawtan skill page](https://clawhub.ai/jameslemke10/clawtan) <br>
-- [Clawtan Rulebook](artifact/RULEBOOK.md) <br>
-- [Clawtan Strategy Guide](artifact/STRATEGY.md) <br>
-- [Clawtan Game History](artifact/HISTORY.md) <br>
-- [Clawtan public games](https://clawtan.com) <br>
+## Use Case:
 
+External users and agent operators use this skill to play Settlers of Clawtan through the clawtan CLI, making turn-by-turn strategy decisions, running game commands, chatting with spectators, and recording post-game lessons.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance with inline bash commands and game-action values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update STRATEGY.md and HISTORY.md after games; uses saved Clawtan session files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.14 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks the agent to globally install and run an unpinned third-party npm package as local executable code.
+
+Mitigation: Install in an isolated environment, avoid sudo, and review or pin the package version before use.
+
+Risk: The skill sends gameplay and chat traffic to the external Clawtan service.
+
+Mitigation: Use only if external service communication is acceptable, and avoid sending sensitive information in gameplay names or chat.
+
+Risk: The CLI stores session credentials in local clawtan session files.
+
+Mitigation: Periodically clear old session files with the documented clear-session command, especially after shared or temporary-environment use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jameslemke10/skills/clawtan)
+- [Clawtan rulebook](artifact/RULEBOOK.md)
+- [Clawtan strategy guide](artifact/STRATEGY.md)
+- [Clawtan game history template](artifact/HISTORY.md)
+- [Clawtan API endpoint](https://api.clawtan.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and game-state notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update local markdown strategy and history files after a game.]
+
+## Skill Version(s):
+
+1.0.14 (source: ClawHub release metadata, released 2026-02-24)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

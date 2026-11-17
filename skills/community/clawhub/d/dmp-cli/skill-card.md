@@ -1,46 +1,60 @@
-## Description: <br>
-Use the Mingdata DMP CLI to manage audiences, insight tasks, media sync tasks, RTQ deals, and reference data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the Mingdata DMP CLI to manage audiences, insight tasks, media sync tasks, RTQ deals, and reference data.
 
-## Publisher: <br>
-[mingri26](https://clawhub.ai/user/mingri26) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mingri26](https://clawhub.ai/user/mingri26)
 
-## Use Case: <br>
-Developers and operators use this skill to configure and run the Mingdata DMP CLI for audience management, insight tasks, media sync workflows, RTQ deals, and DMP reference data lookup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill supports operations that can upload, transform, sync, create, or modify sensitive audience and deal data. <br>
-Mitigation: Confirm authorization, data scope, and destination before running DMP data commands. <br>
-Risk: The skill references plaintext credentials and local DMP configuration. <br>
-Mitigation: Use a secret manager or CI secret store, avoid logging environment variables or audience file paths, and restrict permissions on local DMP config. <br>
-Risk: The skill directs installation of a release binary from a third-party repository. <br>
-Mitigation: Install only from a trusted source and independently verify the release binary before execution. <br>
+## Use Case:
 
+External developers and operations teams use this skill to configure and run the Mingdata DMP CLI for audience management, insight tasks, media sync, RTQ deal updates, and reference-data lookups.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mingri26/dmp-cli) <br>
-- [Repository](https://github.com/a652/dmp-cli) <br>
-- [Releases](https://github.com/a652/dmp-cli/releases) <br>
-- [DMP CLI Command Reference](references/commands.md) <br>
-- [DMP CLI Workflows](references/workflows.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides use of json, plain, and table CLI output modes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can guide high-impact DMP operations such as audience uploads, media syncs, and deal changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended DMP context, platform, advertiser, dataset, and authorization before running modifying commands.
+
+Risk: The skill requires DMP credentials and upload secrets for non-interactive use.
+
+Mitigation: Use least-privilege credentials from a secret manager or masked CI secrets, and avoid exposing secrets in prompts, logs, shell history, or command output.
+
+Risk: The installation guidance downloads a CLI release before use.
+
+Mitigation: Install a pinned, verified dmp release in a user-local path before execution instead of fetching an unreviewed latest binary during an agent task.
+
+## Reference(s):
+
+- [DMP CLI Command Reference](references/commands.md)
+- [DMP CLI Workflows](references/workflows.md)
+- [dmp-cli repository](https://github.com/a652/dmp-cli)
+- [dmp-cli releases](https://github.com/a652/dmp-cli/releases)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include DMP CLI command sequences, environment-variable setup guidance, JSON parsing guidance, and operational checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

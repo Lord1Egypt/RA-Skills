@@ -26,7 +26,7 @@ Review after each sequential task following the subagent-driven-development patt
 Dispatch detailed review of all changes:
 
 ```
-Task tool (superpowers:code-reviewer):
+Task tool (superpowers:requesting-code-review):
   description: "Final review: Issues #42, #43, #44"
   prompt: |
     Review complete implementation for issues: #42, #43, #44
@@ -105,6 +105,18 @@ current working repo.
 > learnings always go to
 > https://github.com/athola/claude-night-market/discussions
 > so the framework can improve.
+
+### Record Lessons Learned (decision journal)
+
+If this work involved rework, a failed approach, or a blocker, record it to
+`docs/lessons-learned.md` so the insight survives past the session (draft and
+confirm):
+
+- If leyline is installed, invoke `Skill(leyline:decision-journal)` and append
+  a lesson entry (`what_happened`, `what_didnt_work`, `root_cause`, `action`;
+  set `phase` to `execute`). Show the draft and append on confirmation.
+- Fallback (leyline absent): append to `docs/lessons-learned.md` using the
+  in-file ENTRY TEMPLATE and assign the next `LL-NNN` id.
 
 ## Example Final Output
 

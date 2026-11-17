@@ -1,47 +1,61 @@
-## Description: <br>
-Enables an agent to create and use a SendClaw email address for limited, task-oriented professional communication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users design and optimize revenue operations systems for lead lifecycle management, lead scoring, routing, CRM workflows, marketing-to-sales handoffs, pipeline hygiene, and RevOps dashboards.
 
-## Publisher: <br>
-[codejika](https://clawhub.ai/user/codejika) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coreyhaines31](https://clawhub.ai/user/coreyhaines31)
 
-## Use Case: <br>
-External users and agent builders use this skill to give an agent a SendClaw mailbox for sending, receiving, replying to, and checking email under explicit human communication rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill lets an agent send real external email from a SendClaw mailbox. <br>
-Mitigation: Set explicit human rules for when the agent may send or reply, and require review for sensitive or first-time messages. <br>
-Risk: The SendClaw API key represents the agent email identity. <br>
-Mitigation: Store SENDCLAW_API_KEY in a secrets manager and only send it to SendClaw API endpoints. <br>
-Risk: Webhook notifications can expose mailbox activity if pointed at an endpoint outside the user's control. <br>
-Mitigation: Configure webhooks only to endpoints the user controls, or leave webhook notifications disabled. <br>
+## Use Case:
 
+Revenue operations, marketing, sales, and customer success teams use this skill to create implementable lifecycle definitions, scoring models, routing rules, CRM automation workflows, pipeline controls, and dashboard specifications.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/codejika/revops) <br>
-- [Publisher profile](https://clawhub.ai/user/codejika) <br>
-- [SendClaw homepage](https://sendclaw.com) <br>
-- [SendClaw API base](https://sendclaw.com/api) <br>
-- [SendClaw skill documentation](https://sendclaw.com/skill.md) <br>
-- [SendClaw heartbeat documentation](https://sendclaw.com/heartbeat.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls, markdown] <br>
-**Output Format:** [Markdown with HTTP and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SENDCLAW_API_KEY for authenticated SendClaw API use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter reports 1.7.5) <br>
+Risk: RevOps workflows may involve lead and customer data across CRM, messaging, enrichment, advertising, and automation tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm approved CRM systems, Slack or email channels, webhook destinations, enrichment vendors, and advertising audiences before implementing any workflow.
+
+Risk: Bulk reassignment, archiving, retargeting, or external data sharing can affect customer records or expose sensitive business data.
+
+Mitigation: Add human review and approval steps before bulk changes, retargeting actions, or sharing lead and customer data with external systems.
+
+Risk: The skill provides implementation guidance but does not execute or verify CRM changes itself.
+
+Mitigation: Treat outputs as RevOps playbooks, test changes on a limited segment first, and review CRM automation behavior before broad rollout.
+
+## Reference(s):
+
+- [Automation Playbooks](references/automation-playbooks.md)
+- [Lifecycle Stage Definitions](references/lifecycle-definitions.md)
+- [Lead Routing Rules](references/routing-rules.md)
+- [Lead Scoring Models](references/scoring-models.md)
+- [ClawHub Skill Page](https://clawhub.ai/coreyhaines31/skills/revops)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown documents with tables, checklists, workflow specifications, and platform-specific implementation guidance when CRM context is known]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces standalone RevOps recommendations that users can review and implement in their CRM, marketing automation, scheduling, enrichment, and reporting systems.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata; artifact metadata.version says 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

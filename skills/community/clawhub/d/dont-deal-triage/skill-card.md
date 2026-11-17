@@ -1,43 +1,58 @@
-## Description: <br>
-Use this skill when a developer or desk worker reports chest pain, chest pressure, left arm or jaw discomfort, shortness of breath, unusual sweating, faintness, or asks for an exhaustion-aware health check that should consider local work patterns from git activity and current host context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent provide conservative triage guidance for developers or desk workers reporting chest pain, chest pressure, left arm or jaw discomfort, shortness of breath, unusual sweating, faintness, or exhaustion-aware health concerns.
 
-## Publisher: <br>
-[shaoqing404](https://clawhub.ai/user/shaoqing404) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shaoqing404](https://clawhub.ai/user/shaoqing404)
 
-## Use Case: <br>
-Developers and desk workers use this skill for conservative, local-first triage when chest discomfort, shortness of breath, faintness, unusual sweating, or exhaustion-aware health concerns require a quick emergency-versus-urgent-care recommendation. It is not a diagnosis tool. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake the triage flow for diagnosis or reassurance during potentially serious symptoms. <br>
-Mitigation: State that the skill is not diagnostic, prioritize emergency red flags, and direct users toward emergency or same-day medical care when symptoms are concerning. <br>
-Risk: Local work-pattern and host context can be sensitive and can only weakly inform fatigue risk. <br>
-Mitigation: Keep inspection narrow, treat git-derived fatigue as context rather than proof, and store local health summaries only after explicit consent. <br>
-Risk: This release references bundled scripts and reference files that are absent from the package. <br>
-Mitigation: Use the remaining SKILL.md instructions as the available evidence and do not rely on missing local automation or reference documents until the package is updated. <br>
+## Use Case:
 
+Employees, developers, and desk workers use this skill to get short, conservative guidance when symptoms may require emergency help or same-day medical review. It is designed to keep acute health triage action-oriented and is not a diagnosis skill.
 
-## Reference(s): <br>
-- [Server-resolved source repository](https://github.com/shaoqing404/dont-deal/tree/main/skills/dont-deal-triage) <br>
-- [ClawHub skill page](https://clawhub.ai/shaoqing404/skills/dont-deal-triage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [Concise triage guidance, optionally structured as JSON with urgency, reasoning_summary, recommended_action, and follow_up_questions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prioritizes short, action-oriented responses and one-question-at-a-time follow-up when symptoms are active.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Users may treat health-triage output as medical diagnosis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the skill as conservative triage support only, and direct active emergency symptoms to emergency help or same-day medical review as appropriate.
+
+Risk: The release package references scripts and reference files that are not included in the artifact.
+
+Mitigation: Do not rely on the referenced local analyzer or quick-mode files unless they are supplied and reviewed in the installed package.
+
+Risk: The skill may lead an agent to inspect limited local work-pattern data such as git timestamps while discussing health symptoms.
+
+Mitigation: Require explicit user consent before local context inspection or local storage of health history, and keep inspection limited to the active repository signals described by the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shaoqing404/skills/dont-deal-triage)
+- [Server-resolved GitHub provenance](https://github.com/shaoqing404/dont-deal/tree/main/skills/dont-deal-triage)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance]
+
+**Output Format:** [Concise conversational guidance or structured JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include urgency, reasoning_summary, recommended_action, and follow_up_questions.]
+
+## Skill Version(s):
+
+0.1.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

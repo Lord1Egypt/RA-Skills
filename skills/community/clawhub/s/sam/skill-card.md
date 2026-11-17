@@ -1,46 +1,57 @@
-## Description: <br>
-Use SAM (Segment Anything Model) to remove image backgrounds and extract foreground subjects as transparent PNGs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses SAM (Segment Anything Model) to remove image backgrounds and extract foreground subjects as transparent PNGs.
 
-## Publisher: <br>
-[scikkk](https://clawhub.ai/user/scikkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scikkk](https://clawhub.ai/user/scikkk)
 
-## Use Case: <br>
-External users and developers use this skill to remove image backgrounds, cut out foreground subjects, or extract multiple segmented elements from local images as transparent PNG files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: First use can install an unpinned package from the Segment Anything GitHub repository. <br>
-Mitigation: Preinstall and pin dependencies in a controlled environment before using the skill. <br>
-Risk: First use can download large SAM checkpoint files to ~/.cache/sam. <br>
-Mitigation: Use a local checkpoint path or preseed the cache in environments with controlled network and storage policies. <br>
-Risk: Segmentation results may be incorrect when hint points, model size, or grid settings do not match the image subject. <br>
-Mitigation: Review generated PNG outputs before downstream use and adjust hint points, model size, or thresholds as needed. <br>
+## Use Case:
 
+Developers, designers, and content operations teams use this skill to run SAM on local image files for background removal, subject cutouts, foreground extraction, and multi-element segmentation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/scikkk/sam) <br>
-- [Segment Anything repository](https://github.com/facebookresearch/segment-anything.git) <br>
-- [SAM ViT-B checkpoint](https://dl.fbaipublicfiles.com/segment_anything/sam_vit_b_01ec64.pth) <br>
-- [SAM ViT-L checkpoint](https://dl.fbaipublicfiles.com/segment_anything/sam_vit_l_0b3195.pth) <br>
-- [SAM ViT-H checkpoint](https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with command examples; runtime output is transparent PNG files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and image-processing dependencies. Supports model size, local checkpoint path, foreground hint points, all-elements grid mode, IoU threshold, and minimum mask area options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: First-run execution can install mutable remote code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated Python environment and preinstall a pinned, reviewed segment_anything dependency before running the skill.
+
+Risk: Model checkpoints can be downloaded as large unverified files into a local cache.
+
+Mitigation: Use locally verified SAM checkpoints and pass them with the --checkpoint option.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/scikkk/skills/sam)
+- [Segment Anything dependency](https://github.com/facebookresearch/segment-anything.git)
+- [SAM ViT-B checkpoint](https://dl.fbaipublicfiles.com/segment_anything/sam_vit_b_01ec64.pth)
+- [SAM ViT-L checkpoint](https://dl.fbaipublicfiles.com/segment_anything/sam_vit_l_0b3195.pth)
+- [SAM ViT-H checkpoint](https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with bash commands; runtime output is transparent PNG image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single-subject mode writes one PNG file; all-elements mode writes one PNG per detected element.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

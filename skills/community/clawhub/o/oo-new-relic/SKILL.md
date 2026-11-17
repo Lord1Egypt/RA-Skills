@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "New Relic"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.5"
   services: ["new_relic"]
   icon: "https://static.oomol.com/logo/third-party/New%20Relic.svg"
 ---
@@ -95,11 +95,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — New Relic is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=new_relic
+  https://console.oomol.com/connections/new_relic
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - New Relic homepage: https://newrelic.com
+- API documentation: https://docs.newrelic.com/docs/apis/intro-apis/introduction-new-relic-apis/

@@ -1,53 +1,68 @@
-## Description: <br>
-Plan and execute the Morpho-first agentic lending workflow for Api3-backed markets, including feed readiness checks, guarded funding, oracle adapter deployment, market deployment, and verification when the request and environment support signer-backed execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plans and executes guarded Morpho market workflows for Api3-backed lending markets, including explicit asset selection, oracle-route resolution, feed-readiness checks or funding, deployment, and verification when signer-backed execution is explicitly allowed.
 
-## Publisher: <br>
-[daav3](https://clawhub.ai/user/daav3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daav3](https://clawhub.ai/user/daav3)
 
-## Use Case: <br>
-Developers and operators use this skill to plan, dry-run, and, with explicit signer-backed approval, execute Morpho market workflows for selected collateral and borrow assets backed by Api3 feeds. It helps resolve oracle routes, classify or fund feeds, deploy the Morpho oracle adapter and market, and report verified outcomes or blockers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform high-authority on-chain financial actions, including feed funding and market deployment. <br>
-Mitigation: Use planning, preflight, dry-run, and approval-summary review before any signer-backed execution, and require explicit user approval for transaction submission. <br>
-Risk: Signer material can be exposed if raw private keys are placed in request files or chat. <br>
-Mitigation: Use environment variables such as LIVE_SIGNER_ENV or an external signer, and keep generated request files and run directories private. <br>
-Risk: A funding transaction or dry-run plan can be mistaken for a verified live Morpho market. <br>
-Mitigation: Claim completion only after the run proves live feed readiness, adapter handoff, market creation, positive oracle verification, and rollback-plan inspection. <br>
-Risk: Bundled feed and market snapshots may be stale for live deployment decisions. <br>
-Mitigation: Prefer live RPC-backed checks for current on-chain claims and treat packaged data as fallback planning evidence. <br>
-Risk: Lower-level EVK or Euler commands may invoke broader tooling outside the intended Morpho workflow. <br>
-Mitigation: Prefer the agentic-lending-morpho wrapper for normal runs and use lower-level commands only for deliberate debugging or resume operations. <br>
+## Use Case:
 
+Developers and DeFi operators use this skill to plan, dry-run, or explicitly execute Morpho market and market-set workflows for selected collateral and borrow assets. It helps resolve Api3 oracle routes, classify or fund feeds when supported, deploy the Morpho oracle adapter and market, and report verification status without overstating incomplete runs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daav3/agentic-lending-morpho) <br>
-- [Project homepage](https://github.com/daav3/agentic-lending-project) <br>
-- [Workflow](references/workflow.md) <br>
-- [Current capabilities and limits](references/current_capabilities.md) <br>
-- [Morpho oracle adapter](references/morpho-oracle-adapter.md) <br>
-- [Feed-to-market state machine](references/state-machine.md) <br>
-- [Wrapper summary contract](references/summary-contract.md) <br>
-- [Live request template](references/live-request-template.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON artifacts and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May emit or inspect request files, approval summaries, run directories, rollback plans, progress logs, deployment artifacts, and verification summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.11 (source: server release metadata and package.json) <br>
+Risk: Raw wallet keys can be accepted by the runtime and may be written into saved run artifacts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use environment-variable based signer inputs such as LIVE_SIGNER_ENV, never inline privateKey fields, keep request files free of secrets, and rotate any wallet whose real key was saved in an old run directory.
+
+Risk: Signer-backed execution can create forward-only on-chain changes that cannot be undone by deleting local files.
+
+Mitigation: Default to planning or dry-run, require explicit approval before transaction submission, inspect approval-summary.json before live execution, and inspect rollback-plan.json before any dependent transaction.
+
+Risk: Bundled feed-status and market-registry data are packaged snapshots and may not reflect current on-chain state.
+
+Mitigation: Use live RPC-backed feed checks for deployment or verification claims and treat packaged data as fallback planning input only.
+
+Risk: Browser-assisted or unsupported feed funding branches can block an autonomous deployment path.
+
+Mitigation: Report browser-assisted funding as a user handoff, stop on unsupported routes, and only continue to deployment after feed readiness and propagation are proven.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/daav3/skills/agentic-lending-morpho)
+- [Project Homepage](https://github.com/daav3/agentic-lending-project)
+- [Workflow](references/workflow.md)
+- [Current Capabilities and Limits](references/current_capabilities.md)
+- [Morpho Oracle Adapter](references/morpho-oracle-adapter.md)
+- [Feed-to-Market State Machine](references/state-machine.md)
+- [Wrapper Summary Contract](references/summary-contract.md)
+- [Live Request Template](references/live-request-template.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance]
+
+**Output Format:** [Markdown guidance with shell commands plus JSON request, approval, decision, rollback, progress, deployment, and verification artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local run directories and resumable artifacts; final success claims depend on explicit wrapper fields and on-chain verification evidence.]
+
+## Skill Version(s):
+
+0.1.11 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

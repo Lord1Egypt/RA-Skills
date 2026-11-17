@@ -1,42 +1,50 @@
-## Description: <br>
-Optimize token usage by adopting the compact TOON format for data storage and context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimize token usage by adopting the compact TOON format for data storage and context.
 
-## Publisher: <br>
-[nelohenriq](https://clawhub.ai/user/nelohenriq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nelohenriq](https://clawhub.ai/user/nelohenriq)
 
-## Use Case: <br>
-Developers and agent operators use this skill to parse, generate, and store structured data in TOON so long-running notes, logs, configurations, and session summaries consume fewer LLM context tokens than equivalent JSON. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Installing or updating through ClawHub registry tooling can modify local skill folders and may store a local API token for authenticated operations. <br>
-Mitigation: Review the CLI documentation and install only from the intended release; use appropriate local token handling and permissions. <br>
-Risk: Incorrect TOON formatting can make structured data ambiguous or harder for an agent to parse. <br>
-Mitigation: Keep 2-space indentation strict, declare array lengths, quote values that contain commas or significant whitespace, and validate important conversions against JSON. <br>
+## Use Case:
 
+Developers and agents use this skill to represent structured data, logs, schedules, reports, and context summaries in TOON so more information can fit into LLM context windows.
 
-## Reference(s): <br>
-- [ClawHub TOON Release](https://clawhub.ai/nelohenriq/toon-adoption-skill) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with TOON code blocks and examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Encourages UTF-8 .toon files, strict 2-space indentation, explicit array lengths, and tabular arrays for uniform object lists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, release metadata) <br>
+Risk: An agent using this skill may save summaries, logs, schedules, reports, or other session context as .toon files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review where the agent writes skill-generated files and apply local data handling controls for saved session data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nelohenriq/skills/toon-adoption-skill)
+- [Publisher profile](https://clawhub.ai/user/nelohenriq)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with TOON examples and formatting rules]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to read or write .toon files for saved context and structured records.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

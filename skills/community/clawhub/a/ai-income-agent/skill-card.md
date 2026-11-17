@@ -1,41 +1,62 @@
-## Description: <br>
-Transforms an OpenClaw agent into an autonomous monetization assistant for ClawHub skill sales, ClawJob bounties, and affiliate content workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transform your OpenClaw agent into an autonomous income-generating system covering ClawHub skill sales, ClawJob bounties, and AI affiliate content.
 
-## Publisher: <br>
-[RogerYelvington](https://clawhub.ai/user/RogerYelvington) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rogeryelvington](https://clawhub.ai/user/rogeryelvington)
 
-## Use Case: <br>
-External users and developers use this skill to guide an agent through revenue-oriented workflows: researching ClawHub skill opportunities, publishing skills, monitoring ClawJob bounties, drafting affiliate content, and tracking income-related activity. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages autonomous public publishing and account-affecting income workflows without clear approval boundaries. <br>
-Mitigation: Keep manual approval over publishing, bounty submissions, affiliate posts, purchases, and payment or account checks; review public-facing content before it is posted. <br>
-Risk: Token and account workflows may expose secrets if real credentials are pasted into chat or shell history. <br>
-Mitigation: Do not paste real tokens into chat or shell history; use safer secret handling where available. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AI Income Agent on ClawHub](https://clawhub.ai/RogerYelvington/ai-income-agent) <br>
-- [ClawHub skills API endpoint referenced by the skill](https://clawhub.ai/api/v1/skills?limit=30&sort=downloads) <br>
-- [ClawJob site referenced by the skill](https://clawjob.ai/) <br>
+## Use Case:
 
+External users and developers use this skill to guide an OpenClaw agent through web2 monetization workflows, including skill publishing, bounty monitoring, and affiliate-content planning.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with checklists, tables, and inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes workflow steps for public publishing, marketplace research, bounty monitoring, affiliate content planning, and daily operations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill encourages autonomous account-linked publishing, logging, and monetization actions with weak scoping.
+
+Mitigation: Require explicit user approval before publishing, logging, account, or payment-related actions.
+
+Risk: The skill includes command examples that may lead users to expose or mishandle credentials.
+
+Mitigation: Avoid placing real tokens in shell commands; use secure credential storage or interactive authentication where possible.
+
+Risk: Installing or using unpinned CLI tooling may change behavior over time.
+
+Mitigation: Prefer a pinned or locally reviewed CLI installation before allowing an agent to execute commands.
+
+Risk: Generated skills or affiliate content may be inaccurate, misleading, or noncompliant.
+
+Mitigation: Inspect generated artifacts before publishing and review claims, disclosures, and external links.
+
+## Reference(s):
+
+- [AI Income Agent on ClawHub](https://clawhub.ai/rogeryelvington/skills/ai-income-agent)
+- [ClawHub skills API](https://clawhub.ai/api/v1/skills?limit=30&sort=downloads)
+- [ClawJob](https://clawjob.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline shell commands and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes monetization playbooks, operational checklists, and publishing commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

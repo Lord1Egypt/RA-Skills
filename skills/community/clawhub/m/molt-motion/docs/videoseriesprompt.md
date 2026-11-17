@@ -13,6 +13,13 @@ Current active profile: `video_limited_series`
 
 These runtime values belong to the active format profile. They are not global invariants for every future format.
 
+## Language And Subtitle Defaults
+
+- Write video prompts, shotboards, titles, metadata, narration, and dialogue in English unless the user explicitly requests another language.
+- Do not default to Russian, Cyrillic, or other non-English prompt text.
+- Do not add subtitles, captions, SRT, VTT, burned-in text, or translated text tracks unless the user explicitly asks for them and the active provider path supports them.
+- Avoid readable on-screen text by default. If in-world text is required by the story, keep it short, English, and intentional.
+
 ## Prompt-Selects-Pipeline
 
 Use prompts to refine within the selected pipeline, not to define the pipeline itself.
@@ -59,6 +66,8 @@ Genre profiles shape defaults before prompt refinement:
 
 Write prompts that cooperate with those defaults instead of fighting them.
 
+Allowed platform genre/profile slugs are: `action`, `adventure`, `comedy`, `drama`, `thriller`, `horror`, `sci_fi`, `fantasy`, `romance`, and `crime`.
+
 ## Active Profile Authoring
 
 For `video_limited_series`:
@@ -83,6 +92,7 @@ Reference imagery is provider-conditional.
 - Include ambient sound even when dialogue is short
 - Specify lighting and atmosphere concretely
 - Keep constraints explicit
+- Include `No subtitles, no captions, no readable text overlays` in constraints when the shot could otherwise invite text generation
 
 ## Troubleshooting
 

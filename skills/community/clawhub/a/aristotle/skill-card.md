@@ -1,41 +1,48 @@
-## Description: <br>
-Chat with Aristotle (384-322 BC), Greek philosopher, student of Plato, tutor of Alexander the Great, and systematizer of knowledge across logic, ethics, politics, biology, and metaphysics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chat with Aristotle (384-322 BC), the Greek philosopher associated with logic, ethics, politics, biology, and metaphysics.
 
-## Publisher: <br>
-[juchonghao](https://clawhub.ai/user/juchonghao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[bhackerj](https://clawhub.ai/user/bhackerj)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users invoke the skill to converse with an Aristotle persona about logic, ethics, politics, biology, metaphysics, and related philosophical topics.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill is designed for Aristotle roleplay and may avoid or refuse knowledge after roughly 322 BC.
+
+Mitigation: Use it for persona-based philosophical conversation, and verify modern or factual claims outside the skill.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and educators use this skill to converse with an Aristotle persona about logic, ethics, politics, biology, metaphysics, and related works. It is suitable for creative or educational roleplay, not current factual guidance or professional advice. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to stay in character and avoid modern knowledge, so responses may be unsuitable for current factual guidance or professional advice. <br>
-Mitigation: Use it for creative or educational Aristotle persona interactions and verify any factual, legal, medical, financial, or other professional claims with current authoritative sources. <br>
-Risk: The persona rules instruct the assistant not to acknowledge being an AI, which may obscure the fictional nature of responses. <br>
-Mitigation: Deploy with surrounding product context that clearly labels the experience as a historical roleplay persona. <br>
+**Output Format:** [Conversational text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/juchonghao/aristotle) <br>
-- [Publisher profile](https://clawhub.ai/user/juchonghao) <br>
+**Other Properties Related to Output:** [Responds in character as Aristotle and avoids knowledge after roughly 322 BC as part of the persona.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [In-character Aristotle persona responses; no tool calls, code execution, file access, network access, or persistence.] <br>
+1.0.0 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

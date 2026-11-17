@@ -1,38 +1,49 @@
-## Description: <br>
-Use when a successful session or repeatable process should be captured as a reusable skill with steps, arguments, and invocation guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures a successful session or repeatable process as a reusable skill with steps, arguments, and invocation guidance.
 
-## Publisher: <br>
-[wimi321](https://clawhub.ai/user/wimi321) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wimi321](https://clawhub.ai/user/wimi321)
 
-## Use Case: <br>
-Developers and agent users use this skill to turn a completed successful session or repeatable process into a reusable SKILL.md with clear triggers, workflow steps, inputs, outputs, and success criteria. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Session-derived skill content may include sensitive details or inaccurate workflow assumptions if copied without review. <br>
-Mitigation: Avoid using this skill on sessions containing secrets or customer data, then review the generated SKILL.md and its save location before committing or sharing it. <br>
+## Use Case:
 
+Developers and agent operators use this skill after a successful session to convert the workflow, constraints, corrections, inputs, outputs, and success criteria into a reusable skill specification.
 
-## Reference(s): <br>
-- [Workflow Skillify on ClawHub](https://clawhub.ai/wimi321/workflow-skillify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown skill specification with trigger and argument guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a reusable SKILL.md and guidance derived from session history, user corrections, and desired save scope.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Reusable skills may accidentally preserve sensitive session details or incorrect workflow constraints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated SKILL.md before keeping it, confirm the save location, and avoid including secrets or sensitive session details.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wimi321/skills/workflow-skillify)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Guidance]
+
+**Output Format:** [Markdown skill specification, typically a SKILL.md file with trigger and argument guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include save-location guidance when a desired scope is provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

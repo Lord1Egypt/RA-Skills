@@ -1,45 +1,60 @@
-## Description: <br>
-博客/公众号文章润色改写专家，可将现有文章进行深度润色改写，在保持核心事实不变的前提下大幅降低文本相似度，同时提升内容吸引力和传播力，并支持链接内容抓取、AI 痕迹消除、HTML 封面设计和事实核实。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+博客/公众号文章润色改写专家，可将现有文章进行深度润色改写，在保持核心事实不变的前提下大幅降低文本相似度，同时提升内容吸引力和传播力，并支持链接内容抓取、AI 痕迹消除、HTML 封面设计和事实核实。
 
-## Publisher: <br>
-[javastarboy](https://clawhub.ai/user/javastarboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[javastarboy](https://clawhub.ai/user/javastarboy)
 
-## Use Case: <br>
-External content creators and publishing teams use this skill to rewrite blog or WeChat public-account articles, reduce textual similarity while preserving core facts, replace promotional copy, generate title options, and produce screenshot-ready HTML cover designs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary flags that the skill can use logged-in browser sessions and may fetch private, paywalled, or otherwise restricted pages. <br>
-Mitigation: Use it only on articles the user is authorized to access and require explicit approval before using browser-session access. <br>
-Risk: The security summary flags similarity reduction and AI-authorship masking without enough user-control boundaries. <br>
-Mitigation: Review copyright, attribution, platform disclosure, and AI-labeling requirements before publishing rewritten content. <br>
-Risk: The skill rewrites source material while preserving facts, so inaccurate or uncited claims can be carried forward. <br>
-Mitigation: Use the skill's fact-checking step for time-sensitive data, names, companies, products, statistics, and any claim marked uncertain. <br>
+## Use Case:
 
+External creators, editors, and content operators use this skill to rewrite Chinese blog or public-account articles, reduce textual similarity, remove AI-like phrasing, verify questionable facts, replace promotional copy, generate alternate titles, and create a screenshot-ready HTML cover.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/javastarboy/blog-rewriter) <br>
-- [AI 痕迹识别与优化指南](references/ai-detection-patterns.md) <br>
-- [HTML 封面设计模板](references/html-cover-templates.md) <br>
-- [文章改写操作指南](references/rewriting-guidelines.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Files, Guidance] <br>
-**Output Format:** [Markdown article rewrite with optional HTML cover file, title suggestions, and rewrite report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local HTML files for 1200x900 cover designs and [图片] placeholders for original image positions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Private, paywalled, or logged-in URLs may be opened and processed when a user asks the skill to rewrite linked content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only content the user is authorized to process, and avoid private or logged-in URLs unless the user explicitly accepts that processing.
+
+Risk: Rewritten articles may include inaccurate or misleading factual claims if source material is stale, ambiguous, or only partially verified.
+
+Mitigation: Review the final article and any facts marked as unverified before publication.
+
+Risk: Cover generation writes local HTML files that may later be opened or shared outside the workspace.
+
+Mitigation: Inspect generated HTML files before opening, publishing, or distributing them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/javastarboy/skills/blog-rewriter)
+- [AI 痕迹识别与优化指南](artifact/references/ai-detection-patterns.md)
+- [HTML 封面设计模板](artifact/references/html-cover-templates.md)
+- [文章改写操作指南](artifact/references/rewriting-guidelines.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Files, Guidance]
+
+**Output Format:** [Markdown article rewrite with title suggestions, a rewrite report, and HTML cover code or a local HTML file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a local 1200x900 HTML cover file in the workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

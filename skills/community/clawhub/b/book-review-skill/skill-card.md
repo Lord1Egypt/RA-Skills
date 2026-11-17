@@ -1,40 +1,58 @@
-## Description: <br>
-Generate structured book reviews, brief summaries, related-concept maps, and comparisons from user-provided reading notes using local templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate structured book reviews from user-provided reading notes, including key takeaways, related concepts, applications, and limitations, using local templates without external APIs, filesystem access, or secrets.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users and developers use this skill to turn reading notes into structured book-review drafts, concise summaries, concept links, or book comparisons. The skill is best suited for formatting and expanding user-supplied notes while keeping unsupported quotes, page numbers, and chapter claims out of the result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sparse notes or requests for exact quotes, page numbers, or chapter details can lead to unsupported review claims. <br>
-Mitigation: Ask for the source excerpt or clearly label the basis as user notes, common knowledge, or inference, and avoid invented quotes, page numbers, citations, or chapter details. <br>
-Risk: Supply-chain assurance depends on the installed OpenClaw runtime and dependencies. <br>
-Mitigation: Install only in a current patched OpenClaw runtime and prefer reviewed or pinned dependencies. <br>
+## Use Case:
 
+Readers, learners, and writing-focused agents use this skill to turn supplied book notes into brief or detailed reviews, concept maps, comparisons, and action-oriented takeaways.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/skills/book-review-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-formatted text with structured sections and bullet lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local template output based on user-provided reading notes; no external API calls, filesystem access, persistence, or secrets are indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: SKILL.md frontmatter, package.json, clawhub.json, server release metadata) <br>
+Risk: Broad book-review trigger phrases may cause the skill to run for general reading-note requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user wants a structured book review or summary before applying the skill to ambiguous reading-note prompts.
+
+Risk: Generated reviews can overstate source support if the user asks for quotes, page numbers, or chapter-level claims that were not supplied.
+
+Mitigation: Ask for the excerpt or clearly label the response as a memory-based summary, and do not invent quotes, citations, page numbers, or chapter details.
+
+Risk: Dependency versions are not fully pinned by a lockfile in the release evidence.
+
+Mitigation: Install from trusted release artifacts and prefer future releases that include pinned dependencies and a lockfile for stronger supply-chain hygiene.
+
+## Reference(s):
+
+- [Artifact README](artifact/README.md)
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/book-review-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown text with structured review sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should identify the source basis, avoid fabricated quotes or page numbers, and include a practical application plus a limitation or open question.]
+
+## Skill Version(s):
+
+1.1.1 (source: frontmatter, package.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

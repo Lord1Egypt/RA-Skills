@@ -1,42 +1,54 @@
-## Description: <br>
-Organizes consulting knowledge in Obsidian by converting Word, PDF, or Markdown inputs into atomic Markdown notes, classifying them into diagnosis, solution, and deliverable libraries, adding YAML tags, and suggesting related-note keywords. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents organize consulting knowledge bases in Obsidian by converting Word, PDF, and Markdown documents into atomic Markdown notes with folder classification, YAML tags, and related-note prompts.
 
-## Publisher: <br>
-[d997gq7vsq-svg](https://clawhub.ai/user/d997gq7vsq-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[d997gq7vsq-svg](https://clawhub.ai/user/d997gq7vsq-svg)
 
-## Use Case: <br>
-Consultants and knowledge managers use this skill to split long consulting documents into Obsidian-ready atomic notes, place them in a three-library workspace structure, and maintain tags and related-note hints for retrieval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can reorganize or rewrite notes in an Obsidian consulting vault. <br>
-Mitigation: Back up the vault, confirm the target folder, and review each proposed batch before approving file writes or moves. <br>
-Risk: Incorrect classification, tags, or rename paths could make consulting notes harder to retrieve. <br>
-Mitigation: Review previewed paths, tags, and rename actions against the taxonomy before applying changes. <br>
+## Use Case:
 
+Consultants and knowledge-base maintainers use this skill to split long consulting documents into Obsidian-ready atomic notes, classify them into diagnosis, solution, or deliverable libraries, and add standardized tags. It also supports cleanup reports and tag completion for existing Markdown notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/d997gq7vsq-svg/obsidian-consulting-notes) <br>
-- [Consulting taxonomy reference](references/taxonomy.md) <br>
-- [Detailed workflow reference](references/workflow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Configuration] <br>
-**Output Format:** [Markdown notes with YAML frontmatter, related-note sections, and operation reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or create batches of up to 20 file changes after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Broad keyword-based classification can rename, move, or retag notes incorrectly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Process small batches, review the proposed file list before confirming changes, and keep a backup of the Obsidian workspace.
+
+Risk: Document splitting can discard context or create misleading atomic notes when source material has multiple overlapping topics.
+
+Mitigation: Review generated note summaries, target folders, and YAML tags before accepting writes.
+
+## Reference(s):
+
+- [Consulting Knowledge Base Taxonomy](references/taxonomy.md)
+- [Detailed Operation Workflow](references/workflow.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown files with YAML frontmatter and text operation reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose file creation, renaming, movement, and tag updates for user confirmation before writing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

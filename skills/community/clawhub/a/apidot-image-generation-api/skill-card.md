@@ -1,47 +1,67 @@
-## Description: <br>
-Use APIDot for image generation API and image editing API workflows, including text-to-image API, image-to-image API, GPT Image 2 API, Nano Banana API, Nano Banana Pro API, Seedream API, Flux API, async task submission, polling, task status, and webhook integration based on APIDot docs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use APIDot for image generation API and image editing API workflows, including text-to-image API, image-to-image API, GPT Image 2 API, Nano Banana API, Nano Banana Pro API, Seedream API, Flux API, async task submission, polling, task status, and webhook integration based on APIDot docs.
 
-## Publisher: <br>
-[jiehao71727](https://clawhub.ai/user/jiehao71727) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiehao71727](https://clawhub.ai/user/jiehao71727)
 
-## Use Case: <br>
-Developers and engineers use this documentation-only skill to route APIDot image generation, editing, polling, and webhook questions to the right integration guidance and current APIDot references. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: APIDOT_API_KEY could be exposed if copied into browser code, logs, public repositories, screenshots, or chat output. <br>
-Mitigation: Keep the key in server-side environment variables or a backend secret manager, and redact secrets from logs and generated guidance. <br>
-Risk: Model-specific request fields, availability, or product behavior may change after release. <br>
-Mitigation: Verify current APIDot docs and model pages before coding against model-specific fields or making product claims. <br>
-Risk: Live image API calls can consume external service quota or process private prompts and image URLs. <br>
-Mitigation: Make live API calls only after explicit user approval in a safe server-side environment, and avoid logging private prompts, source media URLs, final image URLs, and callback URLs. <br>
+## Use Case:
 
+Developers and engineers use this skill to route APIDot image generation, image editing, async polling, and webhook integration work to the right APIDot documentation, examples, and implementation guidance.
 
-## Reference(s): <br>
-- [APIDot Docs](https://apidot.ai/docs) <br>
-- [APIDot Models](https://apidot.ai/models) <br>
-- [APIDot Quickstart](https://apidot.ai/docs/quickstart) <br>
-- [APIDot Webhooks](https://apidot.ai/docs/webhooks) <br>
-- [GPT Image 2 Docs](https://apidot.ai/docs/gpt-image-2) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jiehao71727/apidot-image-generation-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline code, shell commands, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no executable files or stored credentials are included in the release artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: APIDot API keys could be exposed if placed in browser code, public repositories, logs, screenshots, or chat output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store APIDOT_API_KEY only in server-side environment variables or a backend secret manager, and avoid logging keys, private prompts, private image URLs, or callback URLs.
+
+Risk: Live APIDot API calls may spend credits or submit real media and prompts.
+
+Mitigation: Only authorize live API calls when the user explicitly asks and provides a safe server-side environment.
+
+Risk: Model fields, pricing, availability, and product behavior may change over time.
+
+Mitigation: Verify current APIDot docs and model pages before relying on model-specific request fields, pricing, availability, or operational claims.
+
+## Reference(s):
+
+- [APIDot API Docs](https://apidot.ai/docs)
+- [APIDot Image Models](https://apidot.ai/models/image)
+- [APIDot Models](https://apidot.ai/models)
+- [APIDot Quickstart](https://apidot.ai/docs/quickstart)
+- [APIDot Webhooks](https://apidot.ai/docs/webhooks)
+- [GPT Image 2 Docs](https://apidot.ai/docs/gpt-image-2)
+- [APIDot Examples](https://github.com/APIDotAI/apidot-examples)
+- [GPT Image 2 API Examples](https://github.com/APIDotAI/gpt-image-2-api)
+- [Nano Banana 2 API Examples](https://github.com/APIDotAI/nano-banana-2-api)
+- [Nano Banana Pro API Examples](https://github.com/APIDotAI/nano-banana-pro-api)
+- [Seedream 4.5 API Examples](https://github.com/APIDotAI/seedream-4.5-api)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with code or shell snippets when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only; may guide optional APIDot API calls when the user explicitly authorizes live use.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

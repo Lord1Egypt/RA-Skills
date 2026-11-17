@@ -1,40 +1,52 @@
-## Description: <br>
-Provide a chronological history of all actions the agent has taken from the beginning (birth) until now. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provide a chronological history of all actions the agent has taken from the beginning (birth) until now.
 
-## Publisher: <br>
-[BlueBirdBack](https://clawhub.ai/user/BlueBirdBack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bluebirdback](https://clawhub.ai/user/bluebirdback)
 
-## Use Case: <br>
-External users and developers use Claw History to ask an agent for an evidence-backed chronological timeline of its available lifetime actions, including source coverage, gaps, and confidence. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The generated history can expose sensitive prior session, memory, command-log, or local-path details. <br>
-Mitigation: Review available records for secrets, private user content, internal paths, and sensitive operational details before sharing the timeline. <br>
-Risk: Incomplete memory files, disabled hooks, or inaccessible sessions can make the lifetime timeline incomplete. <br>
-Mitigation: Report missing sources and coverage gaps explicitly, and label entries as confirmed or inferred based on the available evidence. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Claw History on ClawHub](https://clawhub.ai/BlueBirdBack/claw-history) <br>
-- [BlueBirdBack publisher profile](https://clawhub.ai/user/BlueBirdBack) <br>
+## Use Case:
 
+External users and developers use this skill to reconstruct an auditable timeline of an agent's activity from available memories, session histories, command logs, and current conversation records.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown timeline with evidence labels, coverage notes, gaps, and confidence.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include source pointers, inferred entries, and explicit limitations when memory files, session history, command logs, or conversation logs are unavailable.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may inspect broad persistent memories, session histories, sub-agent records, and command logs that can contain secrets, private paths, customer data, credentials, or unrelated work.
+
+Mitigation: Review before installing in sensitive environments, use only where full local history access is acceptable, and define clear logging retention and deletion practices.
+
+Risk: Timeline completeness depends on available memories, session histories, and command logs, so missing or inaccessible sources can lead to incomplete history.
+
+Mitigation: Have the agent report unavailable sources, visible date ranges, gaps, and confidence, and enable the recommended session-memory and command-logger hooks when full auditing is needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bluebirdback/skills/claw-history)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown chronological timeline with source coverage, gaps, and confidence notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include shell commands for optional OpenClaw hook setup when explaining recommended history sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

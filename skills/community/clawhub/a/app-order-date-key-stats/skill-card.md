@@ -1,41 +1,57 @@
-## Description: <br>
-Generates read-only SQL-based order statistics for the 久事体育 app over configurable time ranges, keywords, and supported time dimensions such as hour, day, or month. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates read-only Jiushi Sports app order statistics by date range, keyword, and day, hour, or month grouping, including users, order counts, payment amount, refund amount, and net sales amount.
 
-## Publisher: <br>
-[jaggerliu](https://clawhub.ai/user/jaggerliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jaggerliu](https://clawhub.ai/user/jaggerliu)
 
-## Use Case: <br>
-Data and operations analysts use this skill to query app order trends by time period and keyword, then receive a Markdown table and Chinese summary of users, orders, payments, refunds, and net sales. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can connect an agent to a real business order database. <br>
-Mitigation: Install only in authorized internal environments and use a narrowly scoped read-only database account. <br>
-Risk: The artifact builds SQL from user-provided dates and keywords without strong guardrails. <br>
-Mitigation: Require parameterized SQL or strict validation for dates, time dimensions, and keywords before live query execution. <br>
-Risk: Database credentials or connection details could be exposed through agent output or logs. <br>
-Mitigation: Read secrets from environment variables, avoid broad production credentials, and never display passwords or full connection strings. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jaggerliu/app-order-date-key-stats) <br>
+## Use Case:
 
+Data analysts and operations teams use this skill to query Jiushi Sports app orders for a confirmed time range, keyword filter, and hourly, daily, or monthly time bucket. The agent returns a Markdown table and concise Chinese summary of order volume, users, payments, refunds, and net sales.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown table with SQL/Python execution guidance and Chinese summary text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python plus mysql-connector-python, pandas, and tabulate; expects authorized database environment variables for live queries.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: User-provided date or keyword values can affect SQL construction.
+
+Mitigation: Use a least-privileged read-only database account, restrict access to the required table or views, and add parameterized SQL with strict date and keyword validation before deployment.
+
+Risk: The documented query outputs do not match the executable query.
+
+Mitigation: Align the fixed SQL template, executable query, and rendered result columns during review so users receive consistent metrics.
+
+Risk: Runtime dependencies are not pinned.
+
+Mitigation: Pin mysql-connector-python, pandas, and tabulate versions and scan the resolved environment before installing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jaggerliu/skills/app-order-date-key-stats)
+- [Publisher Profile](https://clawhub.ai/user/jaggerliu)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown table with a Chinese summary and Python/SQL execution guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python plus mysql-connector-python, pandas, and tabulate; database credentials are read from environment variables.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter says 1.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

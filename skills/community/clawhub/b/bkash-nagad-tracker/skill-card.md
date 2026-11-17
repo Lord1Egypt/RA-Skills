@@ -1,41 +1,62 @@
-## Description: <br>
-Log bKash, Nagad, Rocket, and cash transactions conversationally in Bengali or English, with weekly spending digests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Log bKash, Nagad, Rocket, and cash transactions conversationally in Bengali or English, with weekly spending digests for Bangladesh-focused expense tracking.
 
-## Publisher: <br>
-[sabbiramin113008](https://clawhub.ai/user/sabbiramin113008) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sabbiramin113008](https://clawhub.ai/user/sabbiramin113008)
 
-## Use Case: <br>
-External users who track Bangladesh-focused expenses use this skill to log mobile money and cash transactions from conversational English, Bengali, or mixed-language messages and receive weekly spending summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Bangladesh and global Bangladeshi diaspora <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Transaction messages and weekly spending statistics may be sent to Anthropic for parsing or digest generation. <br>
-Mitigation: Use a dedicated limited API key, avoid highly sensitive notes, and only enable automatic weekly digests when the user intentionally wants them. <br>
-Risk: The artifact makes local-storage privacy claims while still using external API calls for natural-language parsing and summaries. <br>
-Mitigation: Tell users that local JSON storage does not prevent selected transaction content or summary statistics from being sent to Anthropic under their API key. <br>
+## Use Case:
 
+External users and agents use this skill to log Bangladesh-oriented mobile wallet and cash expenses from conversational Bengali, English, or mixed-language messages, then view recent transactions or weekly spending digests.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sabbiramin113008/bkash-nagad-tracker) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/sabbiramin113008) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Files, Guidance] <br>
-**Output Format:** [Plain text and Markdown with JSON records and shell command invocations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores transaction records locally as JSON and can generate scheduled weekly digest text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill handles financial transaction data and the security summary flags inaccurate local-only privacy claims around Anthropic API sharing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disclose when transaction text is sent to Anthropic, require explicit opt-in for parsing and digest generation, and provide a documented local-only mode.
+
+Risk: The security guidance flags unsafe shell-string command templates for transaction parsing and logging.
+
+Mitigation: Replace shell-string templates with argument-array execution and preserve quoting for user-supplied transaction notes.
+
+Risk: Automatic weekly digests may run without a fresh user prompt and process stored financial data.
+
+Mitigation: Require explicit opt-in for heartbeat digests and document how users can disable the schedule.
+
+Risk: Stored transaction data may persist locally without clear retention expectations.
+
+Mitigation: Document storage location, deletion behavior, retention policy, and any manual cleanup steps.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sabbiramin113008/skills/bkash-nagad-tracker)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/sabbiramin113008)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Conversational text and Markdown with JSON snippets and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce transaction confirmations, weekly digest summaries, recent transaction lists, deletion confirmations, setup guidance, and parser JSON for agent use.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,61 @@
-## Description: <br>
-Hire Spanish-speaking humans for real-world tasks in Latin America. Create missions, browse humans, manage payments, reviews, and disputes through 15 MCP tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hire Spanish-speaking humans for real-world tasks in Latin America. Create missions, browse humans, manage payments, reviews, and disputes through 15 MCP tools.
 
-## Publisher: <br>
-[GYMTOPZ](https://clawhub.ai/user/GYMTOPZ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gymtopz](https://clawhub.ai/user/gymtopz)
 
-## Use Case: <br>
-External developers and agents use this skill to configure and operate the RentaUnHumano MCP server for creating, tracking, and reviewing paid real-world tasks performed by humans in Latin America. <br>
-
-### Deployment Geography for Use: <br>
-Latin America and supported Spanish-speaking markets <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can create paid real-world tasks and affect payments, cancellations, reviews, disputes, and worker activity. <br>
-Mitigation: Use sandbox mode first and require explicit confirmation before paid, bulk, cancellation, review, dispute, or sensitive-location operations. <br>
-Risk: Task creation and messaging may share operational details with an external service and human workers. <br>
-Mitigation: Use a dedicated API key, limit sensitive task details, and review mission content before sending it to the service. <br>
-Risk: The MCP server is installed from an npm package during configuration. <br>
-Mitigation: Review or pin the npm MCP server package where possible before enabling it in an agent environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/GYMTOPZ/rentaunhumano-mcp) <br>
-- [Publisher profile](https://clawhub.ai/user/GYMTOPZ) <br>
-- [RentaUnHumano platform](https://rentaunhumano.com) <br>
-- [API documentation](https://rentaunhumano.com/docs/api) <br>
-- [MCP documentation](https://rentaunhumano.com/docs/mcp) <br>
-- [npm MCP server package](https://www.npmjs.com/package/@rentaunhumano/mcp-server) <br>
-- [OpenAPI specification](https://rentaunhumano.com/.well-known/openapi.yaml) <br>
-- [LLM-friendly documentation](https://rentaunhumano.com/llms.txt) <br>
+## Use Case:
 
+External developers and operators use this skill to connect agents to RentaUnHumano MCP tools for creating, tracking, and resolving real-world human tasks in Latin America.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Text, Markdown] <br>
-**Output Format:** [Markdown instructions with bash, JSON, and natural-language task examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires mcporter and a RENTA_API_KEY environment variable.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Latin America
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can create paid, location-based real-world tasks when used with a live API key.
+
+Mitigation: Use sandbox mode first and require operator confirmation for spending and task creation before production use.
+
+Risk: The setup runs an unpinned external MCP package with an API key.
+
+Mitigation: Pin and verify the MCP server package version, and use a narrowly scoped, revocable API key.
+
+Risk: Missions, messages, proof files, reviews, and disputes may disclose sensitive personal or business information to the service or assigned workers.
+
+Mitigation: Avoid submitting secrets, credentials, unnecessary personal data, regulated data, or sensitive business details unless disclosure is intended.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gymtopz/skills/rentaunhumano-mcp)
+- [RentaUnHumano Platform](https://rentaunhumano.com)
+- [RentaUnHumano API Docs](https://rentaunhumano.com/docs/api)
+- [RentaUnHumano MCP Docs](https://rentaunhumano.com/docs/mcp)
+- [OpenAPI Spec](https://rentaunhumano.com/.well-known/openapi.yaml)
+- [npm Package](https://www.npmjs.com/package/@rentaunhumano/mcp-server)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May trigger MCP API actions that create paid, location-based real-world tasks when configured with a live API key.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-macOS 只读查询：Mail 未读、Calendar 日程、Notes 搜索、Stocks 行情（输出 JSON）。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+macOS Suite Readonly lets agents query unread Mail, Calendar events, Notes search results, and stock quotes on macOS and returns JSON.
 
-## Publisher: <br>
-[lilei0311](https://clawhub.ai/user/lilei0311) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lilei0311](https://clawhub.ai/user/lilei0311)
 
-## Use Case: <br>
-Developers and agents use this skill on macOS to query unread Mail messages, Calendar events, Notes folders and note search results, and stock quotes as structured JSON. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can return private Mail subjects and senders, Calendar details, and Notes snippets once macOS permissions are granted. <br>
-Mitigation: Grant permissions only in environments where the agent is allowed to inspect that personal data, and review returned JSON before sharing it outside the local workflow. <br>
-Risk: Stock quote commands contact qt.gtimg.cn with requested symbols. <br>
-Mitigation: Use stock quote commands only when external quote lookups are acceptable for the symbols being requested. <br>
+## Use Case:
 
+Developers and agents use this skill on macOS to retrieve read-only personal productivity data from Mail, Calendar, and Notes, and to fetch stock quotes for user-requested symbols.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lilei0311/macos-suite-readonly) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/lilei0311) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands] <br>
-**Output Format:** [JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Each command writes a single JSON object with ok/action status and command-specific result fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata and skill.json) <br>
+Risk: Private Mail, Calendar, and Notes data can be exposed in agent-visible JSON output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in workspaces and with agents authorized to access that local data, and treat returned JSON as private.
+
+Risk: Stock quote commands send requested symbols to Tencent's quote service.
+
+Mitigation: Avoid querying sensitive watchlists or proprietary symbol lists when external disclosure of requested symbols is a concern.
+
+Risk: macOS automation or privacy permissions may be denied, producing failures or partial results.
+
+Mitigation: Grant only the required macOS permissions and handle ok=false or warning responses as permission or availability signals.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lilei0311/skills/macos-suite-readonly)
+
+## Skill Output:
+
+**Output Type(s):** [Text]
+
+**Output Format:** [JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Each command emits a single JSON object; list sizes are bounded by command limits.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Find EV charging stations along a route or near a destination using Camino AI's location intelligence with OpenStreetMap data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find EV charging stations along a route or near a destination using Camino AI's location intelligence with OpenStreetMap data.
 
-## Publisher: <br>
-[james-southendsolutions](https://clawhub.ai/user/james-southendsolutions) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[james-southendsolutions](https://clawhub.ai/user/james-southendsolutions)
 
-## Use Case: <br>
-External users and developers use this skill to find EV charging stations near coordinates, cities, destinations, or route-planning waypoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: EV charger searches may send coordinates, destination details, and related location context to Camino AI. <br>
-Mitigation: Share only the location details needed for the task and review the query before executing the skill. <br>
-Risk: The skill requires a Camino API key and may expose it if settings files or shell environments are shared carelessly. <br>
-Mitigation: Use a dedicated Camino API key and avoid sharing or committing settings files that contain CAMINO_API_KEY. <br>
+## Use Case:
 
+External users and developers use this skill to find EV charging stations near coordinates, cities, highways, hotels, or other destinations through Camino AI location intelligence.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/james-southendsolutions/camino-ev-charger) <br>
-- [Camino API activation](https://app.getcamino.ai/skills/activate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON API results with Markdown usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CAMINO_API_KEY and the curl and jq command-line tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: Mutable remote install instructions and all-companion-skills installation can introduce code outside this reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only the intended camino-ev-charger version, prefer pinned versions or commit hashes, and review companion skills before installing them.
+
+Risk: EV charger search requests can disclose the Camino API key and location details to Camino's API.
+
+Mitigation: Use approved API keys, avoid submitting sensitive locations, and account for Camino API data handling before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/james-southendsolutions/skills/camino-ev-charger)
+- [Camino API activation](https://app.getcamino.ai/skills/activate)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CAMINO_API_KEY plus curl and jq; EV charger searches are sent to Camino's API.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,65 @@
-## Description: <br>
-Sum2Slides converts plain text or Markdown summaries into structured, editable PowerPoint presentations with configurable templates and themes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sum2Slides converts plain text or Markdown summaries into structured PowerPoint presentations with configurable templates, themes, and output settings.
 
-## Publisher: <br>
-[wwumit](https://clawhub.ai/user/wwumit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wwumit](https://clawhub.ai/user/wwumit)
 
-## Use Case: <br>
-Developers, productivity users, and teams use this skill to turn meeting notes, research summaries, project updates, and other text content into presentation drafts. It is useful when an agent needs to generate a PPTX deck from supplied text or Markdown with minimal manual formatting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process chat history, meeting notes, or other sensitive text into presentation files without clear consent when automatic triggers are enabled. <br>
-Mitigation: Keep automatic triggers and auto-save disabled by default, require user confirmation before processing chat or meeting content, and restrict input sources to approved files or messages. <br>
-Risk: Generated slides may be copied to shared folders or distributed through Slack or email workflows before the content is reviewed. <br>
-Mitigation: Require explicit approval before shared-folder, Slack, or email distribution and review generated PPTX content for confidential or inaccurate material. <br>
-Risk: Artifact materials include a hardcoded Feishu owner identifier in release guidance. <br>
-Mitigation: Remove or replace hardcoded owner identifiers before deployment and configure ownership through environment-specific settings. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to turn meeting notes, research summaries, project reports, and similar text into editable slide decks. It supports local command-line or Python API use with configurable presentation templates and themes.
 
-## Reference(s): <br>
-- [Sum2Slides ClawHub listing](https://clawhub.ai/wwumit/sum2slides) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
-- [TUTORIAL.md](artifact/TUTORIAL.md) <br>
-- [OPENCLAW_USAGE_GUIDE.md](artifact/OPENCLAW_USAGE_GUIDE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples, Python API examples, YAML configuration, and generated PPTX presentation files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated presentations may contain summarized user-provided text and should be reviewed before sharing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata, package.json, CHANGELOG) <br>
+Risk: Broad automatic chat or keyword triggering can process private or irrelevant messages into slide decks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the skill limited to explicit commands where possible, and disable or tightly scope automatic keyword triggering for private chats.
+
+Risk: Generated slides may contain incorrect summaries or sensitive content before sharing.
+
+Mitigation: Review generated presentations before distribution and avoid using private or confidential input unless the deployment policy allows it.
+
+Risk: The artifact includes examples that reference a hardcoded Feishu owner_open_id.
+
+Mitigation: Replace any Feishu owner_open_id with the deployment owner's own ID before use.
+
+Risk: Dependency installation may pull packages from untrusted sources.
+
+Mitigation: Install dependencies in a virtual environment from trusted package indexes and review dependency versions before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wwumit/skills/sum2slides)
+- [Skill Documentation](artifact/SKILL.md)
+- [Package README](artifact/README.md)
+- [OpenClaw Usage Guide](artifact/OPENCLAW_USAGE_GUIDE.md)
+- [Release Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance and generated PowerPoint (.pptx) files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports text or Markdown input, output path selection, templates, themes, slide limits, and font settings.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata, package.json, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

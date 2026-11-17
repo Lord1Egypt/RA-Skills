@@ -1,0 +1,212 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pdurlej/openclaw-skill-safe-update/schemas/openclaw.benchmark.shadow_run_index.v1.schema.json",
+  "title": "OpenClaw Benchmark Shadow-Run Index Entry",
+  "description": "Evaluation-only, self-contained, appendable index entry emitted by the benchmark runner (issue #22). Each entry binds one benchmark run to its frozen corpus, the worker (model_family, role) pair, the per-arm canonical scorecard digests, and the frozen threshold gates. The entry is self-contained: an index of N entries needs no cross-entry reinterpretation to read any single entry. It never affects the canonical verdict; canonical_status_effect is always none.",
+  "type": "object",
+  "required": [
+    "schema",
+    "effect",
+    "runtime_effect",
+    "external_effect",
+    "external_write_effect",
+    "production_apply_allowed",
+    "operator_approval",
+    "authoritative",
+    "canonical_status_effect",
+    "entry_id",
+    "corpus_digest",
+    "run_id",
+    "generated_at",
+    "worker",
+    "arms",
+    "advisory_adapter",
+    "comparison_summary"
+  ],
+  "properties": {
+    "schema": {
+      "const": "openclaw.benchmark.shadow_run_index.v1"
+    },
+    "effect": {
+      "const": "benchmark_evaluation_only"
+    },
+    "runtime_effect": {
+      "const": "none"
+    },
+    "external_effect": {
+      "const": "none"
+    },
+    "external_write_effect": {
+      "const": "none"
+    },
+    "production_apply_allowed": {
+      "const": false
+    },
+    "operator_approval": {
+      "const": false
+    },
+    "authoritative": {
+      "const": false
+    },
+    "canonical_status_effect": {
+      "const": "none"
+    },
+    "entry_id": {
+      "type": "string",
+      "description": "Stable, content-addressed identifier derived from the corpus_digest, the worker, and the canonical scorecard digests. Two entries with identical canonical scorecard digests over the same corpus share an entry_id, so an append-only index deduplicates a deterministic re-run.",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "corpus_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256,
+      "description": "Volatile per-run identifier. Distinct run_ids may share an entry_id when their canonical scorecard digests agree (a deterministic re-run)."
+    },
+    "generated_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "worker": {
+      "$ref": "#/$defs/worker"
+    },
+    "arms": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 3,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/armEntry"
+      }
+    },
+    "advisory_adapter": {
+      "type": "string",
+      "description": "Identifier of the configured advisory adapter, or 'not_configured'."
+    },
+    "comparison_summary": {
+      "type": "object",
+      "description": "Self-contained summary of the per-arm value metric. Each arm field carries the value-axis basis-points score, the canonical scorecard digest, and whether the arm's thresholds passed.",
+      "required": [
+        "baseline",
+        "shadow_impact",
+        "advisory"
+      ],
+      "properties": {
+        "baseline": {
+          "$ref": "#/$defs/armSummary"
+        },
+        "shadow_impact": {
+          "$ref": "#/$defs/armSummary"
+        },
+        "advisory": {
+          "$ref": "#/$defs/armSummary"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "armEnum": {
+      "enum": [
+        "baseline",
+        "shadow_impact",
+        "advisory"
+      ]
+    },
+    "worker": {
+      "type": "object",
+      "required": [
+        "id",
+        "model_family",
+        "role"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "model_family": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "role": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        }
+      },
+      "additionalProperties": false
+    },
+    "armEntry": {
+      "type": "object",
+      "description": "Per-arm binding inside the index entry.",
+      "required": [
+        "arm",
+        "present",
+        "canonical_scorecard_digest",
+        "incremental_recall_basis_points",
+        "threshold_passed"
+      ],
+      "properties": {
+        "arm": {
+          "$ref": "#/$defs/armEnum"
+        },
+        "present": {
+          "type": "boolean"
+        },
+        "canonical_scorecard_digest": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "incremental_recall_basis_points": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000
+        },
+        "threshold_passed": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "armSummary": {
+      "type": "object",
+      "required": [
+        "present",
+        "incremental_recall_basis_points",
+        "canonical_scorecard_digest",
+        "threshold_passed"
+      ],
+      "properties": {
+        "present": {
+          "type": "boolean"
+        },
+        "incremental_recall_basis_points": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000
+        },
+        "canonical_scorecard_digest": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "threshold_passed": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

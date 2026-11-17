@@ -12,7 +12,7 @@ const options = {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
-    'Authorization': 'Bearer sk_live_iOQS6NKYgLCf8sAcIsjeNpIvsN9ml7fK6CVrfIyPIVs',
+    'Authorization': 'Bearer REDACTED-SECRET',
     'Content-Length': data.length
   }
 };

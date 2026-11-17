@@ -1,46 +1,61 @@
-## Description: <br>
-Uses the Pexels API to search for and download high-quality free images, with automatic resizing and format validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the Pexels API to search for and download high-quality free images, with resizing, format validation, and metadata capture.
 
-## Publisher: <br>
-[Glittering](https://clawhub.ai/user/Glittering) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[glittering](https://clawhub.ai/user/glittering)
 
-## Use Case: <br>
-Content creators, social media teams, and developers can use this skill to retrieve Pexels images for publishing workflows and resize them for target platforms such as Xiaohongshu, WeChat, Weibo, Instagram, Twitter, and Facebook. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Pexels API key and sends image search queries to Pexels. <br>
-Mitigation: Use a dedicated API key, avoid exposing it in shared terminals or logs, and only run searches that are appropriate to send to Pexels. <br>
-Risk: The downloader writes image and metadata files to the local filesystem. <br>
-Mitigation: Run it in a dedicated output folder and review downloaded files and generated metadata before using them in production content. <br>
-Risk: The artifact depends on requests and Pillow for network access and image processing. <br>
-Mitigation: Install pinned or current patched dependency versions and update them through normal security maintenance. <br>
+## Use Case:
 
+Developers, content creators, and agents use this skill to retrieve Pexels images for social media and visual-content workflows, resize them for target platforms, and save source metadata for later review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Glittering/pexels-image-downloader) <br>
-- [Pexels API Documentation](https://www.pexels.com/api/documentation/) <br>
-- [Pexels API](https://www.pexels.com/api/) <br>
-- [Pillow Documentation](https://pillow.readthedocs.io/) <br>
-- [Google Image Optimization Guidance](https://developers.google.com/speed/docs/insights/OptimizeImages) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent guidance for searching, downloading, resizing, validating, and organizing local image files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, package.json) <br>
+Risk: The skill requires a Pexels API key and performs remote API calls and image downloads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated API key, keep it out of source control, and run the downloader in a controlled environment.
+
+Risk: Downloaded images and metadata are written to a local directory selected by the user.
+
+Mitigation: Use a dedicated output folder and review downloaded files and saved metadata before reuse or publication.
+
+Risk: Dependencies are declared with minimum versions rather than exact pins.
+
+Mitigation: Install in a virtual environment and pin or regularly update dependencies according to local security policy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/glittering/skills/pexels-image-downloader)
+- [Pexels API documentation](https://www.pexels.com/api/documentation/)
+- [Pexels API](https://www.pexels.com/api/)
+- [Pillow documentation](https://pillow.readthedocs.io/)
+- [Optimize Images guidance](https://developers.google.com/speed/docs/insights/OptimizeImages)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration, files, JSON]
+
+**Output Format:** [Markdown guidance with bash and Python examples; generated local image files and JSON metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Pexels API key, makes network requests to Pexels, and writes downloaded images plus metadata to a chosen local output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

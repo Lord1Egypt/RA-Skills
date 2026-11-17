@@ -1,46 +1,61 @@
-## Description: <br>
-猫眼电影票购票助手帮助用户通过猫眼查询影片、影院和场次，查看座位、创建订单、获取支付链接并查询出票状态。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+猫眼电影票购票助手 helps users search Maoyan movies and cinemas, choose showtimes and seats, create ticket orders, open payment links, and check ticket status.
 
-## Publisher: <br>
-[maoyan-tech](https://clawhub.ai/user/maoyan-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maoyan-tech](https://clawhub.ai/user/maoyan-tech)
 
-## Use Case: <br>
-External users use this skill to complete a guided Maoyan movie-ticket purchase flow, from movie and cinema discovery through seat selection, order creation, payment handoff, and ticket-status checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create Maoyan ticket orders and pass payment links to the user. <br>
-Mitigation: Review the selected movie, cinema, showtime, seats, ticket count, and payment recipient before proceeding with payment. <br>
-Risk: The skill stores a short-lived Maoyan session token locally. <br>
-Mitigation: Use only trusted environments, rely on the skill's token-expiry behavior, and clear the stored AuthKey when account access should be revoked. <br>
-Risk: Login and payment QR links may be sent through the current chat channel. <br>
-Mitigation: Confirm the channel and recipient before sending links, and avoid forwarding authentication or payment links to unintended recipients. <br>
-Risk: The skill shares location, account, movie, cinema, seat, order, and ticket-status data with Maoyan services. <br>
-Mitigation: Use the skill only when that data sharing is acceptable for the user and deployment context. <br>
+## Use Case:
 
+External users use this agent to complete a Maoyan movie-ticket workflow: finding movies and cinemas, comparing showtimes, selecting seats, creating an order, paying, and checking ticket issuance.
 
-## Reference(s): <br>
-- [Scripts API Reference](references/scripts-api.md) <br>
-- [Error Codes Reference](references/error-codes.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/maoyan-tech/maoyan-ticket-booking) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Conversational Markdown with tables, command-backed JSON exchanges, payment or login links, and QR handoff guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May store a short-lived Maoyan session token locally and may create purchase orders after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The skill handles Maoyan session tokens and stores an AuthKey locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the user is comfortable granting Maoyan session access; avoid exposing token values and prefer safer credential storage or authorization before broader deployment.
+
+Risk: The skill can create ticket orders after user confirmations.
+
+Mitigation: Require explicit user confirmation for seats and order details before order creation, and keep payment as a user-directed link or QR step.
+
+Risk: Some workflows return generated shell command strings for message delivery.
+
+Mitigation: Validate channel and target identifiers and replace returned shell strings with structured shell-free execution before production use.
+
+## Reference(s):
+
+- [Scripts API Reference](references/scripts-api.md)
+- [Error Codes Reference](references/error-codes.md)
+- [Maoyan Mobile Site](https://m.maoyan.com/)
+- [ClawHub Skill Page](https://clawhub.ai/maoyan-tech/skills/maoyan-ticket-booking)
+- [Publisher Profile](https://clawhub.ai/user/maoyan-tech)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown conversation responses with JSON-driven shell command examples and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May display movie, cinema, showtime, seat-map, payment, and ticket-status information returned by Maoyan scripts.]
+
+## Skill Version(s):
+
+1.0.4 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

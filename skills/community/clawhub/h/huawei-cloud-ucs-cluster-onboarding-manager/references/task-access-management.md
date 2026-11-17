@@ -1,0 +1,218 @@
+# Task: Access Management
+
+## Overview
+
+UCS access management covers obtaining cluster kubeconfig, accessing cluster information, and managing federation kubeconfig for multi-cluster operations. This task covers creating kubeconfig, viewing access information, and downloading federation configurations.
+
+## Operations Catalog
+
+| Operation                   | Method | Description              | Key Parameters                    |
+| --------------------------- | ------ | ------------------------ | --------------------------------- |
+| `ShowClusterAccessInfo`     | GET    | Get cluster access info (**only for category=onpremise**) | `--clusterid`, `--region` (optional), `--vpcendpoint` (optional) |
+| `CreateClusterKubeconfig`   | POST   | Create cluster kubeconfig (**only for category=onpremise**; CCE clusters use CCE `CreateKubernetesClusterCert`) | `--clusterid`                     |
+| `CreateClusterConf`         | POST   | Create cluster configuration  | `--clusterid`                     |
+| `DownloadFederationKubeconfig` | GET | Download federation kubeconfig | `--clustergroupid` (REQUIRED), `--duration` (REQUIRED) |
+
+## API Decision Tree: Obtaining Kubeconfig
+
+```
+Need cluster kubeconfig?
+├── category=self (CCE cluster)
+│   └── CCE CreateKubernetesClusterCert --cluster_id=<cce-cluster-id> --duration=30 --cli-region=cn-north-4
+│       (CCE API, NOT UCS CreateClusterKubeconfig which returns internal error for CCE clusters)
+│       (direct access, no proxy-agent needed)
+│       (ShowClusterAccessInfo NOT supported — returns "Cluster category not supported")
+└── category=onpremise (self-managed cluster)
+    ├── Step 1: ShowClusterAccessInfo --clusterid=<ucs-cluster-id> --cli-region=cn-north-4
+    │   (obtain proxy-agent configuration)
+    ├── Step 2: Deploy proxy-agent in the target cluster
+    └── Step 3: CreateClusterKubeconfig --clusterid=<ucs-cluster-id> --cli-region=cn-north-4
+        (obtain kubeconfig after tunnel is established)
+```
+
+> ⚠️ **Critical**: `CreateClusterKubeconfig` only works for `category=onpremise` clusters. For `category=self` (CCE) clusters, it returns an internal error. Always use CCE API `CreateKubernetesClusterCert` for CCE cluster kubeconfig.
+
+## Workflows
+
+### W1: View Cluster Access Information
+
+> ⚠️ **This operation only applies to `category=onpremise` (self-managed) clusters.** For `category=self` (CCE) clusters, it returns "Cluster category not supported". CCE clusters do not need proxy-agent — use CCE API `CreateKubernetesClusterCert` to obtain kubeconfig directly.
+
+```bash
+hcloud UCS ShowClusterAccessInfo --clusterid=<ucs-cluster-id> --cli-region=cn-north-4
+```
+
+With optional parameters for specific access details:
+
+```bash
+hcloud UCS ShowClusterAccessInfo --clusterid=<ucs-cluster-id> --region=cn-north-4 --vpcendpoint=true --cli-region=cn-north-4
+```
+
+**Response Example** [verified for category=onpremise clusters only]:
+
+The response format for `ShowClusterAccessInfo` has been verified for `category=onpremise` clusters. For `category=self` (CCE) clusters, this API returns "Cluster category not supported" — use CCE API `CreateKubernetesClusterCert` instead. The likely fields for onpremise clusters include:
+
+- API server endpoint address (public and/or private)
+- Access type (`Public`, `Private`, `Both`)
+- Intranet endpoint (for CCE clusters)
+
+**Key Fields** (expected, format to be verified):
+- API server endpoint: Cluster API server public endpoint
+- Access type: Network access type (`Public`, `Private`, `Both`)
+- Intranet endpoint: Internal network endpoint (available for CCE clusters)
+
+**Use Cases**:
+- Verify cluster connectivity before deploying applications
+- Determine which endpoint to use (public vs private) based on network setup
+- Troubleshoot access issues by checking endpoint availability
+
+### W2: Create Cluster Kubeconfig
+
+> ⚠️ **Category-specific behavior** (verified):
+> - **`category=onpremise` (self-managed clusters)**: Use `CreateClusterKubeconfig` to obtain kubeconfig after proxy-agent is deployed and tunnel is established.
+> - **`category=self` (CCE clusters)**: `CreateClusterKubeconfig` returns an internal error. Use CCE API `CreateKubernetesClusterCert` instead:
+>   ```bash
+>   hcloud CCE CreateKubernetesClusterCert --cluster_id=<cce-cluster-id> --duration=30 --cli-region=cn-north-4
+>   ```
+
+**For category=onpremise clusters**:
+
+```bash
+hcloud UCS CreateClusterKubeconfig --clusterid=<ucs-cluster-id> --cli-region=cn-north-4
+```
+
+**Response**: Returns a Kubernetes kubeconfig YAML content. Save this to a file for kubectl access:
+
+```bash
+hcloud UCS CreateClusterKubeconfig --clusterid=<ucs-cluster-id> --cli-region=cn-north-4 > cluster-kubeconfig.yaml
+
+kubectl --kubeconfig=cluster-kubeconfig.yaml get nodes
+```
+
+**Kubeconfig Security**:
+- ⚠️ **Never store kubeconfig in public repositories or CI logs**
+- ⚠️ **Kubeconfig tokens have expiration periods** — regenerate when access fails
+- ✅ **Store kubeconfig in secure, encrypted storage** (e.g., secrets management tools)
+- ✅ **Restrict file permissions**: `chmod 600 cluster-kubeconfig.yaml`
+
+### W3: Create Cluster Configuration
+
+```bash
+hcloud UCS CreateClusterConf --clusterid=<ucs-cluster-id> --cli-region=cn-north-4
+```
+
+**Use Cases**:
+- Alternative to `CreateClusterKubeconfig` for obtaining cluster access details
+- Provides configuration information for integration with other tools
+
+### W4: Download Federation Kubeconfig
+
+⚠️ **Note**: `DownloadFederationKubeconfig` requires both `--clustergroupid` and `--duration` as mandatory parameters. The `--clustergroupid` specifies which fleet group's federation kubeconfig to download, and `--duration` specifies the validity period.
+
+```bash
+hcloud UCS DownloadFederationKubeconfig --clustergroupid=<group-id> --duration=86400 --cli-region=cn-north-4
+```
+
+**Parameters**:
+- `--clustergroupid` (required): Fleet group ID for the federation kubeconfig
+- `--duration` (required): Kubeconfig validity duration in seconds
+- `--cli-region` (required): Region ID
+
+**Response**: Returns a federation kubeconfig YAML that provides unified kubectl access to all UCS-managed clusters in the fleet group.
+
+**Federation Kubeconfig Features**:
+- Contains context entries for each registered cluster in the fleet group
+- Enables cross-cluster operations via kubectl
+- Supports workload distribution across multiple clusters
+
+**Usage**:
+
+```bash
+hcloud UCS DownloadFederationKubeconfig --clustergroupid=<group-id> --duration=86400 --cli-region=cn-north-4 > federation-kubeconfig.yaml
+
+kubectl --kubeconfig=federation-kubeconfig.yaml config get-contexts
+
+kubectl --kubeconfig=federation-kubeconfig.yaml config use-context <context-name>
+
+kubectl --kubeconfig=federation-kubeconfig.yaml get nodes --all-contexts
+```
+
+**Federation Requirements**:
+- At least one cluster must be registered and in `Available` status in the fleet group
+- All clusters must have valid API server connectivity
+- Kubeconfig tokens may expire — regenerate periodically
+
+### W5: Validate Kubeconfig Access
+
+After obtaining kubeconfig, verify access works:
+
+```bash
+kubectl --kubeconfig=cluster-kubeconfig.yaml cluster-info
+
+kubectl --kubeconfig=federation-kubeconfig.yaml cluster-info
+
+kubectl --kubeconfig=cluster-kubeconfig.yaml get nodes
+```
+
+Expected: Returns cluster information and node list without errors.
+
+## Common Scenarios
+
+### S1: Obtain Kubeconfig for New Cluster
+
+**For CCE cluster (category=self)**:
+
+```bash
+hcloud UCS RegisterCluster --apiVersion=v1 --kind=Cluster --metadata.name=my-cluster --spec.category=self --spec.provider=huaweicloud --spec.type=turbo --spec.manageType=discrete --spec.country=CN --spec.city=110000 --metadata.uid=<cce-id> --spec.projectID=<project-id> --spec.region=cn-north-4 --cli-region=cn-north-4
+
+hcloud UCS ShowCluster --clusterid=<ucs-cluster-id> --cli-region=cn-north-4
+
+# Use CCE API for CCE cluster kubeconfig (NOT UCS CreateClusterKubeconfig)
+hcloud CCE CreateKubernetesClusterCert --cluster_id=<cce-cluster-id> --duration=30 --cli-region=cn-north-4
+
+kubectl --kubeconfig=<saved-kubeconfig> cluster-info
+```
+
+**For self-managed cluster (category=onpremise)**:
+
+```bash
+hcloud UCS RegisterCluster --apiVersion=v1 --kind=Cluster --metadata.name=my-cluster --spec.category=onpremise --spec.provider=self_managed --spec.type=Kubernetes --spec.manageType=discrete --spec.country=CN --spec.city=110000 --metadata.annotations.kubeconfig=<kubeconfig-content> --cli-region=cn-north-4
+
+hcloud UCS ShowCluster --clusterid=<ucs-cluster-id> --cli-region=cn-north-4
+
+# Use UCS API for onpremise cluster kubeconfig
+hcloud UCS CreateClusterKubeconfig --clusterid=<ucs-cluster-id> --cli-region=cn-north-4
+
+kubectl --kubeconfig=<saved-kubeconfig> cluster-info
+```
+
+### S2: Refresh Expired Kubeconfig
+
+```bash
+hcloud UCS CreateClusterKubeconfig --clusterid=<ucs-cluster-id> --cli-region=cn-north-4
+
+hcloud UCS DownloadFederationKubeconfig --clustergroupid=<group-id> --duration=86400 --cli-region=cn-north-4
+```
+
+### S3: Multi-Cluster Operations with Federation Kubeconfig
+
+```bash
+hcloud UCS DownloadFederationKubeconfig --clustergroupid=<group-id> --duration=86400 --cli-region=cn-north-4 > federation.yaml
+
+kubectl --kubeconfig=federation.yaml config get-contexts
+
+kubectl --kubeconfig=federation.yaml --context=<cluster-context> get pods -A
+
+for ctx in $(kubectl --kubeconfig=federation.yaml config get-contexts -o name); do
+  echo "=== $ctx ==="
+  kubectl --kubeconfig=federation.yaml --context=$ctx get nodes
+done
+```
+
+### S4: Secure Kubeconfig Storage for CI/CD
+
+```bash
+hcloud UCS CreateClusterKubeconfig --clusterid=<ucs-cluster-id> --cli-region=cn-north-4 > ci-kubeconfig.yaml
+
+chmod 600 ci-kubeconfig.yaml
+```

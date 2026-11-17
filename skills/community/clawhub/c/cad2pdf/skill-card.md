@@ -1,43 +1,54 @@
-## Description: <br>
-CAD2PDF converts DWG and DXF CAD drawings into vector PDFs, with automatic page splitting by drawing frame and support for Chinese text, dimensions, and hatch fills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts DWG and DXF CAD drawings into vector PDFs with automatic page splitting, Chinese text decoding, dimension repair, hatch rendering, and black-and-white print output.
 
-## Publisher: <br>
-[lgx281227231](https://clawhub.ai/user/lgx281227231) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lgx281227231](https://clawhub.ai/user/lgx281227231)
 
-## Use Case: <br>
-Developers, engineers, and CAD or construction teams use this skill to convert CAD drawings into reviewable or printable PDF files. It is especially useful when recipients do not have CAD software or when one multi-frame drawing should become a multi-page PDF. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup path includes system-level dependency installation for ODA File Converter and fonts. <br>
-Mitigation: Review the dependency commands before installation and run them only in an environment where system package changes are acceptable. <br>
-Risk: DWG conversion uses ODA File Converter at directory scope before producing the requested PDF. <br>
-Mitigation: Run the skill in a working directory that contains only the drawings intended for conversion. <br>
-Risk: Automatic page and detail-region detection can misclassify unusually sparse or scattered drawing entities. <br>
-Mitigation: Inspect the generated PDF pages before using them for engineering review, quoting, or distribution. <br>
+## Use Case:
 
+Developers, engineers, and CAD users use this skill to convert DWG or DXF drawings into shareable PDF files for review, printing, or delivery when recipients may not have CAD software. It is especially oriented to multi-frame engineering drawings that need automatic page splitting and readable Chinese annotations.
 
-## Reference(s): <br>
-- [CAD2PDF ClawHub release page](https://clawhub.ai/lgx281227231/cad2pdf) <br>
-- [ODA File Converter dependency](https://www.opendesign.com/guestfiles/get?filename=ODAFileConverter_QT6_lnxX64_8.3dll_27.1.deb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with bash and Python command examples; the conversion workflow produces PDF files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts DWG or DXF input paths, an optional PDF output path, paper size, and DPI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Setup can make system-wide package changes and install dependencies with root privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a controlled VM or container, verify the ODA File Converter source and checksum, and prefer a Python virtual environment for Python dependencies.
+
+Risk: DWG conversion may process extra CAD files located in the same input folder.
+
+Mitigation: Place the target DWG in a folder without unrelated or confidential drawings before conversion.
+
+## Reference(s):
+
+- [CAD2PDF ClawHub skill page](https://clawhub.ai/lgx281227231/skills/cad2pdf)
+- [ODA File Converter dependency](https://www.opendesign.com/guestfiles/get?filename=ODAFileConverter_QT6_lnxX64_8.3dll_27.1.deb)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code, files]
+
+**Output Format:** [Markdown guidance with shell commands and generated PDF files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output PDFs are generated from local DWG or DXF inputs; paper size and DPI can be configured by command-line flags.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

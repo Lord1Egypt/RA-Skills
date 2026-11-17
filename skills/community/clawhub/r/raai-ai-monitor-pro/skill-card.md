@@ -1,48 +1,59 @@
-## Description: <br>
-AI monitoring for construction sites and IT infrastructure: dashboards, alerts, incident playbooks, photo reports, SLA and capacity control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI monitoring for construction sites and IT infrastructure: dashboards, alerts, incident playbooks, photo reports, SLA and capacity control.
 
-## Publisher: <br>
-[raaipro](https://clawhub.ai/user/raaipro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raaipro](https://clawhub.ai/user/raaipro)
 
-## Use Case: <br>
-External operators, CTOs, SREs, DevOps leads, and construction managers use this skill to turn infrastructure or site status inputs into dashboards, alerts, incident response playbooks, SLA reporting, capacity planning, photo reports, and executive summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incident playbooks include production-impacting diagnostic and remediation commands. <br>
-Mitigation: Require explicit human confirmation before executing commands, verify host and service targets, and begin with read-only diagnostics. <br>
-Risk: Operational reports and notifications may contain sensitive customer, incident, revenue, infrastructure, or site information. <br>
-Mitigation: Redact sensitive data before sharing reports or sending Slack and Telegram notifications. <br>
-Risk: The server security verdict is suspicious because broad prompts can create unclear confirmation boundaries for production response. <br>
-Mitigation: Review outputs before use in production, keep an accountable incident commander in the loop, and validate unsupported marketplace capability tags before enabling integrations. <br>
+## Use Case:
 
+CTOs, SREs, DevOps leads, operations leads, and construction site managers use this skill to turn supplied infrastructure, incident, SLA, business-impact, and photo context into operational dashboards, alerts, playbooks, reports, post-mortems, and capacity plans.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/raaipro/raai-ai-monitor-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/raaipro) <br>
-- [README](README.md) <br>
-- [Onboarding guide](docs/onboarding.md) <br>
-- [ROI guide](docs/roi.md) <br>
-- [Limits and anti-fail guide](docs/anti-fail.md) <br>
-- [Quick start examples](examples/quick-start.md) <br>
+### Deployment Geography for Use:
 
+Global; artifact defaults and examples are primarily Russian-language and use RUB business-impact examples.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, tables, checklists, YAML configuration examples, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided infrastructure, incident, SLA, business-impact, and site-photo context; optional Slack, Telegram, Prometheus, Grafana, and PagerDuty integrations require explicit configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.5.3 (source: server release and SKILL.md frontmatter) <br>
+Risk: The security review found broad production-changing incident commands without strong approval or scoping controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as an advisory SRE/reference package and require a human to review the exact target and command before any shell, database, Docker, Kubernetes, firewall, or rollback action.
+
+Risk: The security review says the included install, build, and smoke-test scripts may need repair before use.
+
+Mitigation: Inspect and test the scripts in a disposable environment before installation, and avoid unattended deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/raaipro/skills/raai-ai-monitor-pro)
+- [README](artifact/README.md)
+- [Configuration template](artifact/config.yaml)
+- [Onboarding guide](artifact/docs/onboarding.md)
+- [ROI guide](artifact/docs/roi.md)
+- [Anti-fail guide](artifact/docs/anti-fail.md)
+- [Quick-start examples](artifact/examples/quick-start.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain-text operational reports with tables, checklists, YAML configuration snippets, and shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory outputs depend on user-supplied infrastructure, SLA, revenue, ownership, and incident context; production-changing commands require human review before execution.]
+
+## Skill Version(s):
+
+3.5.3 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-AI News Digest helps agents generate daily or weekly AI and technology news briefings with structured summaries, topic grouping, optional formats, and optional email delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI News Digest helps agents generate daily or weekly AI and technology news briefings with structured summaries, topical grouping, optional formats, and email-ready output.
 
-## Publisher: <br>
-[Sunshine-del-ux](https://clawhub.ai/user/Sunshine-del-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sunshine-del-ux](https://clawhub.ai/user/sunshine-del-ux)
 
-## Use Case: <br>
-Developers, operators, and content teams can use this skill to produce recurring AI and technology news digests for personal tracking, newsletters, or internal briefings. It is most useful when the user wants structured summaries that can be reviewed before publishing or emailing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or aggregated news summaries may be inaccurate, stale, or unsuitable for publication without review. <br>
-Mitigation: Review digest content and source coverage before sharing it with readers or internal stakeholders. <br>
-Risk: Email delivery can expose recipient lists or send unwanted messages if SMTP credentials or targets are misconfigured. <br>
-Mitigation: Use revocable app-specific SMTP credentials or a secret manager, limit recipients, and test delivery before enabling routine sends. <br>
-Risk: Scheduled cron execution can create recurring output or email activity beyond the user's intent. <br>
-Mitigation: Add cron entries only after confirming the desired cadence, destination, and generated content review process. <br>
+## Use Case:
 
+External users and developers use this skill to produce AI and technology news digests for personal briefings, newsletters, or organization-specific update workflows. The bundled shell behavior currently emits a template digest unless live news, OpenAI, and email integrations are configured.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Sunshine-del-ux/new-ai-news-digest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown news digest with documented options for HTML or plain-text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional email delivery and recurring cron examples require user-provided SMTP configuration and intentional scheduling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/_meta.json) <br>
+Risk: Optional OpenAI and SMTP credentials can be exposed if they are placed in shared shell history, committed files, or broad-scope accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use scoped or app-specific credentials, keep secrets out of checked-in files and shared command history, and rotate credentials if exposed.
+
+Risk: Automated email delivery can send incomplete or template-only digests if enabled before live news sources and SMTP behavior are reviewed.
+
+Mitigation: Review any cron job before enabling it, test delivery manually, and confirm configured sources produce the expected digest content.
+
+Risk: Generated news summaries may be inaccurate, stale, or incomplete when source feeds, APIs, or summarization settings are not configured or reviewed.
+
+Mitigation: Use trusted news sources, validate important claims before redistribution, and review generated summaries before commercial publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunshine-del-ux/skills/new-ai-news-digest)
+- [ClawHub publisher profile](https://clawhub.ai/user/sunshine-del-ux)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-like text with optional HTML or plain text output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference optional OpenAI API and SMTP environment configuration for smarter summaries and email delivery.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

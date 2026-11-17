@@ -1,55 +1,16 @@
-# SkillHub Peer Benchmarking Guide
+# Quality Self-Assessment & Differentiation Guide
 
-Complete methodology for Phase 2 peer benchmarking in skill-forge.
+Complete methodology for Phase 2 quality self-assessment in skill-forge v5.1.
 
-**When to read**: When entering Phase 2 (after Phase 1 creation + self-validation completes). Read this file in full before starting benchmarking.
+> **v5.1 架构变更**：同类搜索已前移到 Step 0.4（创建前）。Phase 2 现在聚焦于创建后的质量自评和差异化验证。
 
----
-
-## Step 5a: Search & Rank
-
-### Primary: SkillHub API
-
-```
-URL: https://api.skillhub.cn/api/v1/search?q=<keywords>
-Keywords: extract from the created Skill's name + core function
-Example: for "interview-insight-miner", search "interview insight analysis"
-```
-
-API returns quality metrics: `downloads`, `installs`, `stars`, `score`.
-
-### Quality Ranking Formula
-
-```
-综合评分 = downloads × 0.4 + installs × 0.3 + stars × 0.3
-```
-
-| Metric | Weight | Rationale |
-|--------|--------|-----------|
-| downloads | 0.4 | Most objective — people downloaded because it has real value |
-| installs | 0.3 | More precise — actually installed after downloading |
-| stars | 0.3 | Community endorsement — but biased by age (older Skills get more stars) |
-
-Sort by score descending, take **Top 3**.
-
-### CLI Fallback (when API unavailable)
-
-```bash
-skillhub search <keywords>
-```
-
-CLI does not return downloads/stars. Use proxy ranking:
-1. Higher version → more iterations → likely better quality
-2. Longer description (>200 chars) → author was more thorough
-3. Description contains specific trigger scenarios → more practical
-
-Take Top 3.
+**When to read**: When entering Phase 2 (after Phase 1 creation + self-validation completes), or when triggered by "技能评估" entry. Read this file in full before starting assessment.
 
 ---
 
-## Step 5b: Tencent Manual Compliance Comparison
+## Step 5a: 腾讯9维度自评
 
-Compare our Skill against Top 3 peers on these **9 Tencent Skills Manual dimensions**:
+Evaluate the created Skill on these **9 Tencent Skills Manual dimensions**:
 
 | # | Tencent Principle | What to check |
 |---|-------------------|---------------|
@@ -63,55 +24,97 @@ Compare our Skill against Top 3 peers on these **9 Tencent Skills Manual dimensi
 | 8 | **Example: edge case coverage** | Example covers boundary situations? |
 | 9 | **Size: under 200 lines** | Lean and focused, no bloat? Progressive disclosure (references/scripts/assets)? |
 
-Fill in the comparison table:
+### Self-Assessment Table
 
-| Tencent Principle | Our Skill | #1 Peer | #2 Peer | #3 Peer | Gap? |
-|-------------------|-----------|---------|---------|---------|------|
-| 1. Trigger precision | | | | | |
-| 2. Keyword frontloading | | | | | |
-| 3. Do NOT scope | | | | | |
-| 4. One Job | | | | | |
-| 5. 4-module structure | | | | | |
-| 6. Output concreteness | | | | | |
-| 7. Intern Test rules | | | | | |
-| 8. Edge case coverage | | | | | |
-| 9. Size control (≤200 lines + progressive disclosure) | | | | | |
+Fill in self-evaluation scores (1-10) and mark weak dimensions:
 
----
+| # | Tencent Principle | Score (1-10) | Weak? | Notes |
+|---|-------------------|--------------|-------|-------|
+| 1 | Trigger precision | | | |
+| 2 | Keyword frontloading | | | |
+| 3 | Do NOT scope | | | |
+| 4 | One Job | | | |
+| 5 | 4-module structure | | | |
+| 6 | Output concreteness | | | |
+| 7 | Intern Test rules | | | |
+| 8 | Edge case coverage | | | |
+| 9 | Size control (≤200 lines + progressive disclosure) | | | |
 
-## Step 5c: Differentiation & Gap Analysis
-
-### If our Skill duplicates an existing high-quality Skill
-
-→ Recommend user install the existing Skill: `skillhub install <slug>`
-
-### If our Skill has meaningful differences
-
-→ Document differentiation:
-```
-vs [Peer #1 name]: 我们做X不做Y，对方做Y不做X
-vs [Peer #2 name]: 我们的输出格式更[具体/专业/简洁]
-vs [Peer #3 name]: 我们的规则覆盖了[对方遗漏的边界情况]
-```
-
-### If peers reveal blind spots in our Skill
-
-→ List specific improvements with Tencent Manual justification:
-```
-盲区1: [具体问题]（违反腾讯手册原则：[哪条原则]）
-  → 修复方案：[具体修复]
-盲区2: [具体问题]（违反腾讯手册原则：[哪条原则]）
-  → 修复方案：[具体修复]
-```
+**Any score <7 → mark as weak dimension, must propose fix in Step 5c.**
 
 ---
 
-## Step 5d: User Decision
+## Step 5b: 差异化验证
 
-Present benchmarking results with 3 options:
+### If Step 0.4 found peers (分支b)
 
-1. **采纳补充** — Apply all gap fixes, re-run Step 4 validation
-2. **保持原样** — Ship as-is, acknowledge gaps
-3. **直接安装已有** — If a peer Skill already does the job well, install it instead
+Verify that the differentiation advantages identified in Step 0.4 are actually reflected in the created Skill:
+
+```
+Step 0.4 差异点: [具体差异]
+  → Skill中的体现: [在哪个模块/规则/示例中落地]
+  → 验证结果: ✅已落地 / ❌未落地
+
+Step 0.4 差异点: [具体差异]
+  → Skill中的体现: [在哪个模块/规则/示例中落地]
+  → 验证结果: ✅已落地 / ❌未落地
+```
+
+**未落地的差异点 → 补充到Step 5c修复方案。**
+
+### If Step 0.4 found no peers (分支c)
+
+Skip differentiation verification. Proceed directly to Step 5c blind spot check.
+
+---
+
+## Step 5c: 盲区修复
+
+### For weak dimensions (Step 5a score <7)
+
+List specific improvements with Tencent Manual justification:
+
+```
+弱项1: [维度#N - 具体问题]（评分: X/10）
+  → 腾讯手册依据: [相关原则]
+  → 修复方案: [具体修复动作]
+  → 预期提升: 修复后评分可达 X/10
+
+弱项2: [维度#N - 具体问题]（评分: X/10）
+  → 腾讯手册依据: [相关原则]
+  → 修复方案: [具体修复动作]
+  → 预期提升: 修复后评分可达 X/10
+```
+
+### For unlanded differentiation (Step 5b ❌)
+
+```
+未落地差异: [差异点]
+  → 补充位置: [哪个模块需要补充]
+  → 补充内容: [具体内容]
+```
+
+---
+
+## Step 5d: 用户决策
+
+Present assessment results with options:
+
+1. **采纳修复** — Apply all fixes, re-run Step 4 validation
+2. **保持原样** — Ship as-is, acknowledge weak dimensions
 
 **User's decision is final.** AI recommends but never forces.
+
+---
+
+## 独立评估入口（技能评估触发词）
+
+When triggered by "技能评估 / skill评估 / 评估技能" (not part of full workflow):
+
+1. Ask user for the Skill to evaluate (file path or content)
+2. Run Step 5a self-assessment (9 dimensions)
+3. Run Step 5c blind spot analysis
+4. Present results + improvement suggestions
+5. User decides whether to apply fixes
+
+**Note**: This path does NOT include Step 5b (differentiation verification), because there's no Step 0.4 peer search context.

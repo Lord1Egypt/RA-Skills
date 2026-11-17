@@ -1,0 +1,4 @@
+interface:
+  display_name: "Kuaishou video"
+  short_description: "Publish a Kuaishou video via Ego Lite; login-check first"
+  default_prompt: "Use kuaishou-video: check-login, then publish a local video file. Success is 审核中."

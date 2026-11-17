@@ -1,0 +1,256 @@
+version: mock-crm-1.0
+domain: CRM·销售与服务协同
+datasets:
+- name: customers
+  source: customers
+  cn: 客户档案表
+  grain: 一行一个客户
+  primary_key: customer_id
+  ai:
+    instructions: 能答客户分层/行业分布；客户联系方式等隐私字段不存在于本表
+    synonyms: [客户表, 客户档案]
+  fields:
+  - name: customer_id
+    role: pk
+    cn: 客户编号
+  - name: level
+    role: dim
+    cn: 客户等级
+    enum: &crm_level
+    - 普通
+    - 银牌
+    - 金牌
+  - name: industry
+    role: dim
+    cn: 所属行业
+    enum:
+    - 制造
+    - 零售
+    - 软件
+    - 物流
+  - name: register_date
+    role: time
+    cn: 建档日期
+  ontology_ref: 客户
+- name: tickets
+  source: tickets
+  cn: 服务工单表
+  grain: 一行一张工单
+  primary_key: ticket_id
+  ai:
+    instructions: 能答工单量/超期/关闭率；必带时间围栏（created_date）；不答工单原文内容
+    synonyms: [工单表, 服务工单]
+  fields:
+  - name: ticket_id
+    role: pk
+    cn: 工单号
+  - name: created_date
+    role: time
+    cn: 创建日期
+  - name: type
+    role: dim
+    cn: 工单类型
+    enum: &crm_type
+    - 咨询
+    - 投诉
+    - 故障
+  - name: status
+    role: dim
+    cn: 工单状态
+    enum: &crm_status
+    - 新建
+    - 处理中
+    - 待客户
+    - 已升级
+    - 已关闭
+  - name: overdue
+    role: dim
+    cn: 是否SLA超期
+    enum: &crm_overdue
+    - 是
+    - 否
+  - name: customer_id
+    role: fk
+    cn: 客户编号
+  ontology_ref: 工单
+- name: leads
+  source: leads
+  cn: 市场线索表
+  grain: 一行一条线索
+  primary_key: lead_id
+  ai:
+    instructions: 能答线索量/首响时效；首响SLA为30分钟（内部约定）
+    synonyms: [线索表, 销售线索]
+  fields:
+  - name: lead_id
+    role: pk
+    cn: 线索号
+  - name: created_date
+    role: time
+    cn: 创建日期
+  - name: source
+    role: dim
+    cn: 线索来源
+    enum: &crm_source
+    - 官网
+    - 转介绍
+    - 展会
+  - name: status
+    role: dim
+    cn: 线索状态
+    enum:
+    - 新线索
+    - 已联系
+    - 已转化
+    - 无效
+  - name: first_response_minutes
+    role: measure
+    cn: 首次响应分钟数
+  ontology_ref: 线索
+relationships:
+- from: tickets
+  to: customers
+  join_key: customer_id
+  cardinality: N:1
+  traversable: true
+  ontology_ref: 客户->工单:提交
+concepts:
+- term: SLA超期工单
+  synonyms:
+  - 超期工单
+  - 超时工单
+  expand:
+    dataset: tickets
+    field: overdue
+    values:
+    - 是
+metrics:
+- id: ticket_count
+  name: 工单总量
+  synonyms:
+  - 工单数
+  - 工单有多少
+  - 服务工单量
+  type: count
+  dataset: tickets
+  structured: true
+  status: 已发布
+  expr: COUNT(*)
+  time_field: created_date
+  unit: 张
+  caliber:
+    note: 全部状态工单计数
+    basis: mock 内部约定
+- id: overdue_ticket_count
+  name: 超期未关闭工单数
+  synonyms:
+  - 超期工单数
+  - SLA超期工单有多少
+  - 超时未办结工单
+  type: count
+  dataset: tickets
+  structured: true
+  status: 已发布
+  expr: COUNT(*)
+  filters:
+  - field: overdue
+    values:
+    - 是
+  extra_where: status != '已关闭'
+  time_field: created_date
+  unit: 张
+  caliber:
+    note: SLA超期且尚未关闭的工单（已关闭的超期工单是历史完成项，不计入）
+    basis: mock 内部约定
+- id: ticket_close_rate
+  name: 工单关闭率
+  synonyms:
+  - 工单办结率
+  - 工单关闭比例
+  - 工单处理完成率
+  type: ratio
+  dataset: tickets
+  structured: true
+  status: 已发布
+  numerator:
+    expr: SUM(CASE WHEN status = '已关闭' THEN 1 ELSE 0 END)
+  denominator:
+    expr: COUNT(*)
+  time_field: created_date
+  unit: '%'
+  display_scale: 100
+  caliber:
+    note: 已关闭工单占全部工单比例（SUM/SUM 加权，禁行级平均）
+    basis: mock 内部约定
+  on_zero_denominator: 'null'
+- id: lead_timeout_count
+  name: 首响超时线索数
+  synonyms:
+  - 首响超时的线索
+  - 线索响应超时数
+  - 没及时跟进的线索
+  type: count
+  dataset: leads
+  structured: true
+  status: 已发布
+  expr: COUNT(*)
+  extra_where: first_response_minutes > 30
+  time_field: created_date
+  unit: 条
+  caliber:
+    note: 首次响应超过 30 分钟 SLA 的线索
+    basis: mock 内部约定
+templates:
+- id: overdue_ticket_list
+  name: 超期未关闭工单明细
+  dataset: tickets
+  columns:
+  - ticket_id
+  - customer_id
+  - type
+  - created_date
+  extra_where: overdue = '是' AND status != '已关闭'
+  time_field: created_date
+  synonyms:
+  - 超期工单列表
+  - 哪些工单超期了
+  - 超期工单明细
+  note: 按 created_date 倒序，默认最多 100 行
+  status: 已发布
+ontology:
+  entities:
+  - name: 客户
+    attributes:
+    - name: 客户等级
+      value_type: enum
+      values: *crm_level
+    note: 一行一个客户
+    uid: ent_customer
+    evidence:
+      source: user_provided
+  - name: 工单
+    attributes:
+    - name: 工单类型
+      value_type: enum
+      values: *crm_type
+    - name: 是否超期
+      value_type: enum
+      values: *crm_overdue
+    note: 一行一张工单
+    uid: ent_ticket
+    evidence:
+      source: user_provided
+  - name: 线索
+    attributes:
+    - name: 线索来源
+      value_type: enum
+      values: *crm_source
+    note: 一行一条线索
+    uid: ent_lead
+    evidence:
+      source: user_provided
+  relations:
+  - from: 客户
+    to: 工单
+    predicate: 提交
+    mapping: equi_key

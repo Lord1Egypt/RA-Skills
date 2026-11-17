@@ -1,39 +1,55 @@
-## Description: <br>
-Automates publishing videos to the Douyin Creator platform by uploading a prepared video and filling in title, description, and hashtag metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Douyin Creator video publishing in a browser by uploading a prepared video, filling title and description metadata, and submitting the post.
 
-## Publisher: <br>
-[vincentlau2046-sudo](https://clawhub.ai/user/vincentlau2046-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vincentlau2046-sudo](https://clawhub.ai/user/vincentlau2046-sudo)
 
-## Use Case: <br>
-Content creators and operators use this skill to prepare metadata and guide browser automation for posting completed video files to a logged-in Douyin creator account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publicly post to a logged-in Douyin account without a final confirmation step. <br>
-Mitigation: Require a manual final check of the account, selected video, title, description, hashtags, visibility settings, and destination page before allowing the publish click; a safer workflow should stop at draft or upload until explicit confirmation is given. <br>
+## Use Case:
 
+Creators or operators with an already logged-in Douyin Creator browser session use this skill to publish prepared video files and associated title, description, and hashtag metadata.
 
-## Reference(s): <br>
-- [Douyin Creator Upload Page](https://creator.douyin.com/creator-micro/content/upload) <br>
-- [Douyin Browser Publish on ClawHub](https://clawhub.ai/vincentlau2046-sudo/douyin-browser-publish) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown instructions with Python helper scripts and JSON queue metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides browser actions against a logged-in Douyin session and can generate publishing metadata or queue JSON files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can control a logged-in Douyin creator session and click the final publish button without explicit user confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require manual review of the video, title, description, hashtags, account state, and an explicit confirmation before the final publish click.
+
+Risk: Generated metadata can include built-in Qiqi child-story branding and fixed hashtags that may be inappropriate for other videos.
+
+Mitigation: Review and edit all title, description, and hashtag fields before upload or publishing.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/vincentlau2046-sudo/skills/douyin-browser-publish)
+- [Douyin Creator upload page](https://creator.douyin.com/creator-micro/content/upload)
+- [Douyin Creator video post page](https://creator.douyin.com/creator-micro/content/post/video)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown instructions with JavaScript snippets and JSON metadata files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Helper scripts may generate publish_meta.json or publish queue JSON files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

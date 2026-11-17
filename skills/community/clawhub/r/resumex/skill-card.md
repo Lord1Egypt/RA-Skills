@@ -1,50 +1,63 @@
-## Description: <br>
-Auto Job Applying Agent manages a user's Resumex resume, searches for matching jobs, fills approved job application forms with local browser automation, and logs application outcomes to Resumex. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto Job Applying Agent helps users manage Resumex resumes, search for matching jobs, apply to selected job postings, log application outcomes, and optionally deliver resume summaries by Telegram.
 
-## Publisher: <br>
-[atharva-badgujar](https://clawhub.ai/user/atharva-badgujar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[atharva-badgujar](https://clawhub.ai/user/atharva-badgujar)
 
-## Use Case: <br>
-External job seekers use this agent to manage a Resumex resume, find and rank job listings, submit selected applications, and track application status. It is also useful for resume updates, tailoring, and optional Telegram delivery of resume summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can submit real job applications using personal resume data. <br>
-Mitigation: Keep AUTO_APPLY_MODE=false, review the ranked job list, and approve only specific jobs before submission. <br>
-Risk: Submitted applications and Resumex tracker entries may be difficult or impossible to undo. <br>
-Mitigation: Test on one selected job first and confirm application details before allowing broader submission. <br>
-Risk: The skill requires sensitive credentials, including a Resumex API key and optional Telegram token. <br>
-Mitigation: Use a dedicated revocable Resumex API key, avoid Telegram delivery unless needed, and revoke credentials immediately if exposure is suspected. <br>
-Risk: Local browser automation may be detected or blocked by job portals. <br>
-Mitigation: Use transparent Playwright automation without stealth behavior and fall back to manual completion when a portal blocks automation or requires complex steps. <br>
-Risk: Dependency installation downloads Playwright and a Chromium browser binary. <br>
-Mitigation: Install dependencies in a virtual environment or sandbox before using auto-apply. <br>
+## Use Case:
 
+External users use this skill to manage resume data in Resumex and coordinate job search, job application, and job-tracker workflows through an agent. It is most relevant for candidates who want guided resume editing plus assisted application submission with explicit review of target jobs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/atharva-badgujar/resumex) <br>
-- [Resumex](https://resumex.dev) <br>
-- [Resumex API documentation](https://resumex.dev/api-docs) <br>
-- [Privacy policy](artifact/PRIVACY.md) <br>
-- [Security guide](artifact/SECURITY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with shell command snippets and JSON helper results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires RESUMEX_API_KEY; optionally uses Telegram credentials and local Playwright browser automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+Risk: The skill can submit personal resume and contact data to job sites that may not be validated by the server evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep AUTO_APPLY_MODE=false, review each ranked job URL before applying, avoid unfamiliar or generic application sites, and use manual application mode when confidence is low.
+
+Risk: Resume and job-tracker workflows depend on a Resumex API key and optional Telegram credentials.
+
+Mitigation: Use a dedicated revocable Resumex API key, avoid Telegram delivery unless needed, and keep credential values out of shared logs or transcripts.
+
+Risk: Playwright browser automation and browser installation can weaken local isolation and may be blocked by job portals.
+
+Mitigation: Install dependencies in a virtual environment or sandbox, keep the browser transparent without stealth tooling, and fall back to manual application when portals require CAPTCHA, MFA, PDF upload, or complex forms.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/atharva-badgujar/skills/resumex)
+- [Publisher profile](https://clawhub.ai/user/atharva-badgujar)
+- [Resumex](https://resumex.dev)
+- [Resumex API documentation](https://resumex.dev/api-docs)
+- [README](artifact/README.md)
+- [Privacy policy](artifact/PRIVACY.md)
+- [Security guide](artifact/SECURITY.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with inline shell commands, configuration values, links, and JSON status summaries from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ranked job lists, resume summaries, application status results, manual-apply instructions, API request examples, and setup guidance.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

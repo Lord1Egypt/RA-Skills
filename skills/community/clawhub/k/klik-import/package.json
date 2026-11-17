@@ -1,0 +1,29 @@
+{
+  "name": "@klik/import-skill",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Klik Memory Import Skill — collect and upload agent memory to Klik",
+  "keywords": ["klik", "agent-skills", "memory", "import", "cli"],
+  "license": "MIT",
+  "engines": { "node": ">=18" },
+  "main": "dist/klik-import.mjs",
+  "bin": { "klik-import": "dist/klik-import.mjs" },
+  "files": ["dist", "SKILL.md", "README.md", "LICENSE", ".github/assets"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/minervacap2022/klik-import-skill.git"
+  },
+  "bugs": { "url": "https://github.com/minervacap2022/klik-import-skill/issues" },
+  "homepage": "https://github.com/minervacap2022/klik-import-skill#readme",
+  "publishConfig": { "access": "public" },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test test/*.test.ts --experimental-strip-types",
+    "lint": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^18.19.0",
+    "esbuild": "^0.20.0",
+    "typescript": "^5.4.0"
+  }
+}

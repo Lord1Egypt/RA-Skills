@@ -1,7 +1,7 @@
 ---
 name: modular-skills
 description: Build composable skill modules with hub-and-spoke loading
-version: 1.9.8
+version: 1.10.3
 triggers:
   - architecture
   - modularity
@@ -16,17 +16,14 @@ source: claude-night-market
 source_plugin: abstract
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/abstract](https://github.com/athola/claude-night-market/tree/master/plugins/abstract). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/abstract](https://github.com/athola/claude-night-market/tree/master/plugins/abstract). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
-## Table of Contents
+## When NOT To Use
 
-- [Overview](#overview)
-- [Quick Start](#quick-start)
-- [Workflow and Tasks](#workflow-and-tasks)
-- [Quality Checks](#quality-checks)
-- [Resources](#resources)
-
+- A single-file skill already inside its token budget (use
+  `abstract:skill-authoring`)
+- The lazy-loading contract itself (use `leyline:progressive-loading`)
 
 # Modular Skills Design
 
@@ -51,14 +48,14 @@ We design skills around single responsibility and loose coupling. Each module fo
 
 **Deprecated**: `skills/shared/modules/` directories. This pattern caused orphaned references when shared modules were updated or removed.
 
-**Current pattern**: Each skill owns its modules at `skills/<skill-name>/modules/`. When multiple skills need the same content, the primary owner holds the module and others reference it via relative path (e.g., `../skill-authoring/modules/anti-rationalization.md`). The validator flags any remaining `skills/shared/` directories.
+**Current pattern**: Each skill owns its modules at `skills/<skill-name>/modules/`. When multiple skills need the same content, the primary owner holds the module and others reference it via relative path (e.g., `../skill-authoring/modules/description-writing.md`). The validator flags any remaining `skills/shared/` directories.
 
 ## Quick Start
 
 ### Skill Analysis
-Analyze modularity using `scripts/analyze.py`. You can set a custom threshold for line counts to identify files that need splitting.
+Analyze modularity using `scripts/skill_analyzer.py`. You can set a custom threshold for line counts to identify files that need splitting.
 ```bash
-python scripts/analyze.py --threshold 100
+python scripts/skill_analyzer.py --file path/to/SKILL.md --threshold 100
 ```
 From Python, use `analyze_skill` from `abstract.skill_tools`.
 
@@ -76,11 +73,11 @@ python scripts/abstract_validator.py --scan
 
 ## Workflow and Tasks
 
-Start by assessing complexity with `skill_analyzer.py`. If a skill exceeds 150 lines, break it into focused modules following the patterns in `../../docs/examples/modular-skills/`. Use `token_estimator.py` to check efficiency and `abstract_validator.py` to verify the final structure. This iterative process maintains module maintainability and token efficiency.
+Start by assessing complexity with `skill_analyzer.py`. If a skill exceeds 150 lines, break it into focused modules following the patterns in `modules/implementation-patterns.md`. Use `token_estimator.py` to check efficiency and `abstract_validator.py` to verify the final structure. This iterative process maintains module maintainability and token efficiency.
 
 ## Quality Checks
 
-Identify modules needing attention by checking line counts and missing Table of Contents. Any module over 100 lines requires a TOC after the frontmatter to aid navigation.
+Identify modules needing attention by checking line counts. A module over 100 lines is a candidate for a split. Do not add a Table of Contents: an anchor list restates the headings below it and costs tokens on every load, and grep finds the headings directly.
 ```bash
 # Find modules exceeding 100 lines
 find modules -name "*.md" -exec wc -l {} + | awk '$1 > 100'
@@ -90,22 +87,12 @@ find modules -name "*.md" -exec wc -l {} + | awk '$1 > 100'
 
 Our standards prioritize concrete examples and a consistent voice. Always provide actual commands in Quick Start sections instead of abstract descriptions. Use third-person perspective (e.g., "the project", "developers") rather than "you" or "your". Each code example should be followed by a validation command. For discoverability, descriptions must include at least five specific trigger phrases.
 
-### TOC Template
-```markdown
-## Table of Contents
-
-- [Section Name](#section-name)
-- [Examples](#examples)
-- [Troubleshooting](#troubleshooting)
-```
-
 ## Resources
 
 ### Shared Modules: Cross-Skill Patterns
-Standard patterns for triggers, enforcement language, and anti-rationalization:
-- **Trigger Patterns**: See [trigger-patterns.md](modules/enforcement-patterns.md)
-- **Enforcement Language**: See [enforcement-language.md](../shared-patterns/modules/workflow-patterns.md)
-- **Anti-Rationalization**: See [anti-rationalization.md](../skill-authoring/modules/anti-rationalization.md)
+Standard patterns for triggers and for deciding whether a skill applies:
+- **Trigger Patterns**: See [enforcement-patterns.md](modules/enforcement-patterns.md)
+- **Skill Selection**: See [skill-selection-judgment.md](../../shared-modules/skill-selection-judgment.md)
 
 ### Skill-Specific Modules
 Detailed guides for implementation and maintenance:
@@ -117,6 +104,16 @@ Detailed guides for implementation and maintenance:
 - **Troubleshooting**: See `modules/troubleshooting.md`
 - **Optimization Techniques**: See `modules/optimization-techniques.md` - reducing large skill file sizes through externalization, consolidation, and progressive loading
 
-### Tools and Examples
+### Tools
 - **Tools**: `skill_analyzer.py`, `token_estimator.py`, and `abstract_validator.py` in `../../scripts/`.
-- **Examples**: See `../../docs/examples/modular-skills/` for reference implementations.
+
+## Exit Criteria
+
+- [ ] Every module file produced is at or under 150 lines, and no SKILL.md
+  or module carries a Table of Contents.
+- [ ] No `skills/shared/modules/` directory exists. All modules are under
+  `skills/<skill-name>/modules/`.
+- [ ] `python scripts/abstract_validator.py --scan` exits 0 with no structural warnings on the
+  affected skill directory.
+- [ ] `python scripts/tokens.py` reports total estimated tokens within the declared
+  `estimated_tokens` budget for the hub SKILL.md.

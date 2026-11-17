@@ -1,42 +1,60 @@
-## Description: <br>
-Query Last.fm listening data, show now playing, sync scrobble history to local DB, and deploy a personal "now playing" web dashboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries Last.fm listening data, shows now playing status, syncs scrobble history to a local database, and helps deploy a personal listening dashboard.
 
-## Publisher: <br>
-[poiley](https://clawhub.ai/user/poiley) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[poiley](https://clawhub.ai/user/poiley)
 
-## Use Case: <br>
-External users, developers, and engineers use this skill to query Last.fm listening data, manage local scrobble history, and set up a personal now-playing dashboard. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The release package includes unrelated personal workspace files and high-privilege automation instructions. <br>
-Mitigation: Review the full package before installation and republish a scoped release containing only the Last.fm dashboard skill files. <br>
-Risk: The release security summary reports exposed credentials in the package. <br>
-Mitigation: Remove exposed credentials from the package, rotate affected secrets, and verify the cleaned release before use. <br>
+## Use Case:
 
+External users and developers use this skill to query current and historical Last.fm listening activity, generate CLI responses, and configure or deploy a personal now-playing dashboard.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/poiley/whatisxlistening-to) <br>
-- [Last.fm API account creation](https://www.last.fm/api/account/create) <br>
-- [Live dashboard demo](https://whatisbenlistening.to) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, configuration snippets, and deployment guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Last.fm API setup steps, local SQLite sync guidance, Docker commands, and Kubernetes configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: ClawHub release metadata) <br>
+Risk: The security summary says this package looks like a personal workspace rather than a scoped skill and exposes sensitive credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not install or publish as-is; remove personal workspace material and secrets, split the package into scoped skills, and rotate any exposed credentials before release.
+
+Risk: The security guidance flags broad automation, persistence, sync, auto-update, and location-tracking behavior in the package.
+
+Mitigation: Require explicit consent, authentication, confirmations, and disablement controls for automation, tracking, sync, and update behavior.
+
+Risk: The target skill uses Last.fm API credentials and synchronizes listening history into a local SQLite database.
+
+Mitigation: Keep Last.fm keys in environment variables or a secrets manager, avoid publishing local databases or config files, and restrict dashboard access before exposing it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/poiley/skills/whatisxlistening-to)
+- [Live dashboard demo](https://whatisbenlistening.to)
+- [Last.fm API account creation](https://www.last.fm/api/account/create)
+- [Last.fm API endpoint](https://ws.audioscrobbler.com/2.0/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, configuration snippets, and concise status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Last.fm API usage, local SQLite sync guidance, Docker commands, and Kubernetes configuration guidance.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata; pyproject.toml reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

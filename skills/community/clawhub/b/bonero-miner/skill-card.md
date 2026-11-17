@@ -1,43 +1,58 @@
-## Description: <br>
-Mine Bonero - private cryptocurrency for AI agents. RandomX CPU mining, Monero-based privacy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through installing Bonero, creating a wallet, and running RandomX CPU mining for a privacy cryptocurrency.
 
-## Publisher: <br>
-[happybigmtn](https://clawhub.ai/user/happybigmtn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[happybigmtn](https://clawhub.ai/user/happybigmtn)
 
-## Use Case: <br>
-Developers and agent operators use this skill to install Bonero tooling, create a wallet, configure seed nodes, and start CPU mining after obtaining authorization. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill directs users to run an unpinned remote installer for cryptocurrency mining software. <br>
-Mitigation: Download and inspect the installer before execution, and pin a trusted release or commit when possible. <br>
-Risk: The skill starts a detached CPU miner that can consume compute resources and power. <br>
-Mitigation: Run only with explicit authorization, limit mining threads, monitor system load and power use, and stop the daemon when mining is no longer intended. <br>
-Risk: Wallet seed phrases are sensitive and cannot be recovered if exposed or lost. <br>
-Mitigation: Store seed phrases outside chat logs and shared files, and keep backups in an appropriate secure location. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/happybigmtn/bonero-miner) <br>
-- [Bonero project homepage](https://github.com/happybigmtn/bonero) <br>
-- [Bonero install script](https://raw.githubusercontent.com/happybigmtn/bonero/master/install.sh) <br>
+## Use Case:
 
+External developers and agent operators use this skill to configure a Bonero wallet, start CPU mining, check daemon status, and troubleshoot mining setup. It is intended for environments where cryptocurrency mining, CPU and power use, network activity, and privacy-coin activity have explicit human approval.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash command blocks and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes wallet setup, seed node configuration, CPU thread guidance, daemon control commands, and troubleshooting steps.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The quick install path executes a mutable remote script with broad local authority.
+
+Mitigation: Review the upstream script before running it; prefer pinned source, checksums or signatures, a disposable build environment, and an unprivileged account.
+
+Risk: Mining consumes CPU, power, and network resources on real hardware.
+
+Mitigation: Mine only with explicit human approval and configure thread counts conservatively for the host.
+
+Risk: Privacy-coin activity may be unacceptable in some environments.
+
+Mitigation: Run the skill only where privacy-coin use and related network activity are allowed by the owner and applicable policy.
+
+## Reference(s):
+
+- [Bonero-Miner ClawHub listing](https://clawhub.ai/happybigmtn/skills/bonero-miner)
+- [Bonero project homepage](https://github.com/happybigmtn/bonero)
+- [Bonero quick install script](https://raw.githubusercontent.com/happybigmtn/bonero/master/install.sh)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes wallet, daemon, mining-thread, peer-node, status-check, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+2.0.0 (source: server evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

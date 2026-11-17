@@ -1,44 +1,55 @@
-## Description: <br>
-Set up IndexNow for any website to enable real-time URL submission to Bing, Yandex, Seznam, and other search engines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up IndexNow for a website so an agent can generate a key file, add a URL submission script, and integrate sitemap-based URL submission into deploy or content-update workflows.
 
-## Publisher: <br>
-[tuyangtusenpo](https://clawhub.ai/user/tuyangtusenpo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tuyangtusenpo](https://clawhub.ai/user/tuyangtusenpo)
 
-## Use Case: <br>
-Developers and site operators use this skill to configure IndexNow for websites, publish an IndexNow key file, add a Node.js URL submission script, and integrate submissions into deploy or content-update workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The submission script can send sitemap URLs for the configured SITE_URL to the IndexNow endpoint. <br>
-Mitigation: Run it only for websites you control and confirm SITE_URL points to the intended production host. <br>
-Risk: IndexNow requires a public key file, so an incorrectly placed or unexpected key file can cause setup failures or confusion. <br>
-Mitigation: Verify the key file is intentionally public at the documented URL and contains only the IndexNow key. <br>
-Risk: A sitemap may include staging, admin, private, or otherwise unintended URLs. <br>
-Mitigation: Review the sitemap before submission and remove URLs that should not be sent to search engines. <br>
+## Use Case:
 
+Developers and site operators use this skill to add IndexNow to websites, publish a verification key, read sitemap URLs, and submit changed URLs after deploys or content updates.
 
-## Reference(s): <br>
-- [IndexNow API endpoint](https://api.indexnow.org/IndexNow) <br>
-- [Bing Webmaster Tools](https://www.bing.com/webmasters) <br>
-- [ClawHub skill page](https://clawhub.ai/tuyangtusenpo/indexnow-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline JSON, bash commands, and a JavaScript submission script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup steps for generating an IndexNow key, publishing the key file, reading sitemap URLs, and submitting them to the IndexNow endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Automatic submission can send the site's sitemap URLs to the IndexNow endpoint after deploys or content updates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable the npm script only for sites where public URL submission is intended, and confirm the sitemap belongs to the target site before running it.
+
+Risk: An unrelated secret could be passed through INDEXNOW_KEY by mistake.
+
+Mitigation: Use an IndexNow key generated specifically for the public site and avoid reusing unrelated project credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tuyangtusenpo/skills/indexnow-setup)
+- [IndexNow API endpoint](https://api.indexnow.org/IndexNow)
+- [Bing Webmaster Tools](https://www.bing.com/webmasters)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash, JSON, and JavaScript snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or modify a Node.js URL submission script and project npm configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

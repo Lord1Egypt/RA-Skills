@@ -1,38 +1,50 @@
-## Description: <br>
-Professional reference for specialty coffee brewing, bean origins, and ratios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional reference for specialty coffee brewing, bean origins, and ratios, with support for brewing guidance, brew-ratio calculation, and origin flavor reference.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-External users and coffee enthusiasts use this skill for specialty coffee brewing guidance, origin flavor notes, and basic ratio calculations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users expecting a pure documentation skill may not realize the release includes a shell helper. <br>
-Mitigation: Review the helper before use; the reviewed script only prints coffee guidance and performs local ratio calculations. <br>
+## Use Case:
 
+External users and coffee practitioners use this skill as a quick reference for specialty coffee brewing methods, bean-origin flavor notes, and brew-ratio calculations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xueyetianya/bytesagain-coffee) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance and plain-text shell output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a local shell helper for brew method summaries and ratio calculations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The included ratio helper can run unintended shell commands from a crafted cup value.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or fix the shell helper before installation or invocation with user-supplied cup counts, and validate numeric input before arithmetic.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xueyetianya/skills/bytesagain-coffee)
+- [Publisher profile](https://clawhub.ai/user/xueyetianya)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown or plain text guidance with optional shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include brewing ratios, temperature and timing recommendations, bean-origin flavor notes, and calculated coffee amounts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

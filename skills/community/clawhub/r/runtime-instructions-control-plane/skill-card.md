@@ -1,43 +1,59 @@
-## Description: <br>
-Load per-job runtime instructions from Google Sheets, cache them locally, and reconcile cron job enablement flags safely for OpenClaw operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Load per-job runtime instructions from Google Sheets, cache them locally, and reconcile cron job enablement flags safely for OpenClaw operations.
 
-## Publisher: <br>
-[danielsinewe](https://clawhub.ai/user/danielsinewe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danielsinewe](https://clawhub.ai/user/danielsinewe)
 
-## Use Case: <br>
-Developers and operators use this skill to manage OpenClaw job instructions from a Google Sheet, maintain local runtime instruction cache files, and preview or apply cron job enablement changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Google Sheet editors can change runtime instructions and cron enablement, causing persistent local changes. <br>
-Mitigation: Limit sheet editing to trusted operators and periodically audit or clear cached runtime instruction files. <br>
-Risk: Broad credentials or personal gcloud credentials can expose more access than the skill needs. <br>
-Mitigation: Use a dedicated read-only Google service account scoped to the intended spreadsheet. <br>
-Risk: Applying reconciliation can disable jobs that are missing from the sheet. <br>
-Mitigation: Run the reconciler without --apply first and inspect all proposed disables before applying changes. <br>
+## Use Case:
 
+Developers and operators use this skill to manage OpenClaw job runtime instructions and cron enablement from a Google Sheet control plane without manually editing local job configuration.
 
-## Reference(s): <br>
-- [Google Sheet Runtime Instructions Schema](references/google-sheet-instructions-schema.md) <br>
-- [ClawHub release page](https://clawhub.ai/danielsinewe/runtime-instructions-control-plane) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and generated local JSON/Markdown runtime instruction files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js plus Google Sheets spreadsheet access through a read-only service account or gcloud token fallback.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: A Google Sheet can persistently steer job runtime instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the sheet as an operational authority, restrict access tightly, and periodically inspect or clear cached runtime-instruction files.
+
+Risk: Cron reconciliation can bulk-change job enabled flags and missing rows can disable jobs.
+
+Mitigation: Run dry-run first, review the planned changes, and apply only after confirming the sheet fully represents intended job state.
+
+Risk: Service-account credentials are required for sheet access.
+
+Mitigation: Use least-privilege read-only credentials and store private keys in a secret manager.
+
+## Reference(s):
+
+- [Google Sheet Runtime Instructions Schema](references/google-sheet-instructions-schema.md)
+- [ClawHub skill page](https://clawhub.ai/danielsinewe/skills/runtime-instructions-control-plane)
+- [Publisher profile](https://clawhub.ai/user/danielsinewe)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, plus generated local JSON and Markdown runtime-instruction files when scripts are run]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and Google Sheets credentials or cached local runtime-instruction files.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,56 @@
-## Description: <br>
-Concept Anatomy helps users deeply understand a single concept by analyzing it across eight dimensions and synthesizing a concise core insight. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Concept Anatomy helps an agent analyze a single concept through eight dimensions: history, dialectics, phenomena, language, form, existence, aesthetics, and meta-reflection, then condense the result into one core insight.
 
-## Publisher: <br>
-[jack-long-2022](https://clawhub.ai/user/jack-long-2022) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jack-long-2022](https://clawhub.ai/user/jack-long-2022)
 
-## Use Case: <br>
-External users, learners, and knowledge workers use this skill to move beyond quick definitions and produce structured, Chinese-language concept analysis across historical, dialectical, practical, linguistic, formal, existential, aesthetic, and reflective dimensions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generic learning requests may route ordinary definition questions into a longer eight-dimension analysis format. <br>
-Mitigation: Use explicit /concept-anatomy or 八维度 phrasing when the user wants deep concept analysis, and reserve shorter definition workflows for simple questions. <br>
-Risk: The skill may produce misleading analysis if the requested concept is too broad or lacks a clear object. <br>
-Mitigation: Ask the user to narrow broad topics into a specific concept before applying the eight-dimension framework. <br>
+## Use Case:
 
+External users and developers use this skill when they want a structured, Chinese-language deep explanation of a clearly scoped concept rather than a short definition. The skill guides an agent to produce an eight-part conceptual analysis and a concise final insight.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jack-long-2022/skills/concept-anatomy) <br>
-- [Process guide](artifact/PROCESS.md) <br>
-- [Examples](artifact/EXAMPLES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style structured analysis with numbered dimensions and a final one-sentence insight] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language framework; intended for one concept at a time.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Broad activation phrases such as '搞懂' or '帮我理解' may route ordinary explanation requests into a long-form concept analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill when Chinese-language structured concept analysis is desired, and ask explicitly for a short answer or another language when that output is preferred.
+
+Risk: The skill can produce detailed conceptual explanations that may still contain model-generated inaccuracies or overconfident framing.
+
+Mitigation: Review important outputs against trusted sources before using them for education, business, investment, or publication decisions.
+
+## Reference(s):
+
+- [Concept Anatomy skill page](https://clawhub.ai/jack-long-2022/skills/concept-anatomy)
+- [Publisher profile](https://clawhub.ai/user/jack-long-2022)
+- [PROCESS.md](artifact/PROCESS.md)
+- [EXAMPLES.md](artifact/EXAMPLES.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style structured analysis with numbered sections and a final concise insight]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language output; final insight is constrained by the artifact to no more than 30 Chinese characters.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,61 @@
-## Description: <br>
-Automates a monthly photo-to-Mixtiles workflow by collecting photos from a WhatsApp group, curating selected images with vision, building a multi-photo Mixtiles cart link, and sending it. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated monthly photo-to-Mixtiles pipeline. Collects photos from a WhatsApp group, curates the best ones using vision, builds a multi-photo Mixtiles cart link, and sends it.
 
-## Publisher: <br>
-[SaharCarmel](https://clawhub.ai/user/SaharCarmel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[saharcarmel](https://clawhub.ai/user/saharcarmel)
 
-## Use Case: <br>
-External users or agents use this skill to prepare a recurring family photo tile order by collecting recent WhatsApp group images, selecting suitable photos, creating a Mixtiles cart link, and sending that link to the configured recipient. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can access private WhatsApp group photos. <br>
-Mitigation: Grant access only to the intended group and set MIXTILES_GROUP_JID narrowly before execution. <br>
-Risk: Selected family photos may leave local or WhatsApp storage during the Mixtiles and Cloudinary cart flow. <br>
-Mitigation: Review the dependent Mixtiles cart script and require manual confirmation before any upload. <br>
-Risk: The skill can send a generated cart link without a clear review step. <br>
-Mitigation: Add a manual approval step before sending and verify MIXTILES_SEND_TO points to the intended recipient. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SaharCarmel/i-love-you-mom) <br>
+## Use Case:
 
+External users use this skill to collect recent family photos from a WhatsApp group, choose suitable images for a monthly Mixtiles order, generate a cart link, and send that link to a configured recipient.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON manifest output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires wacli, jq, python3, WhatsApp group access, and a dependent Mixtiles cart script.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles private WhatsApp photos and message metadata.
+
+Mitigation: Run it only for groups the user is authorized to process, keep downloaded files in a controlled location, and delete local queues after the order workflow is complete.
+
+Risk: The collection step can gather photos outside the intended monthly window because the script filters only by a lower date bound.
+
+Mitigation: Review the downloaded manifest and selected files before upload or sending, and add an explicit upper date bound before relying on unattended monthly execution.
+
+Risk: Selected photos may be uploaded to Cloudinary and shared through a Mixtiles cart link with limited user control.
+
+Mitigation: Confirm selected images, upload destination, cart contents, and recipient before sending the link.
+
+Risk: The newest-file fallback can associate a downloaded file with the wrong message if structured download output is missing.
+
+Mitigation: Prefer verified media download paths from wacli output and inspect the manifest when fallback path detection is used.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/saharcarmel/skills/i-love-you-mom)
+- [Publisher profile](https://clawhub.ai/user/saharcarmel)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command blocks and a JSON manifest from the helper script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires wacli, jq, python3, WhatsApp group configuration, and a compatible Mixtiles cart script.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

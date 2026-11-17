@@ -1,45 +1,67 @@
-## Description: <br>
-On-chain DeFi intelligence for AI agents covering wallet balances, token prices, DEX estimates, yield opportunities, protocol TVL, gas prices, and airdrop farming on Optimism and Base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+On-chain DeFi intelligence for AI agents across Optimism and Base, covering wallet balances, token prices, DEX estimates, yield opportunities, protocol TVL, gas prices, bridge quotes, Aave positions, and market sentiment.
 
-## Publisher: <br>
-[old-greggyboy](https://clawhub.ai/user/old-greggyboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[old-greggyboy](https://clawhub.ai/user/old-greggyboy)
 
-## Use Case: <br>
-External users and developers use this skill to gather live DeFi market and wallet context on Optimism and Base before planning swaps, bridge moves, yield scans, or Aave health checks. Treat the outputs as informational context, not as execution advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet, market, swap, bridge, yield, and liquidation outputs may be stale, incomplete, or unsuitable for direct execution. <br>
-Mitigation: Use the skill for informational analysis only and verify results with official protocol interfaces or trusted market data before taking financial action. <br>
-Risk: Wallet lookups send public wallet addresses to external RPC and API providers. <br>
-Mitigation: Avoid private wallet analysis unless the user is comfortable sharing the public address with those providers. <br>
-Risk: Live RPC and API dependencies can time out or become temporarily unavailable. <br>
-Mitigation: Retry transient failures once and clearly report unavailable data instead of filling gaps with guesses. <br>
+## Use Case:
 
+Developers and AI agents use this skill to retrieve live DeFi market, wallet, bridge, lending, and gas information for Optimism and Base. It supports planning and analysis workflows, not transaction execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/old-greggyboy/defi-scout) <br>
-- [CoinGecko simple price API](https://api.coingecko.com/api/v3/simple/price) <br>
-- [DeFiLlama yields API](https://yields.llama.fi/pools) <br>
-- [Across suggested fees API](https://app.across.to/api/suggested-fees) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; scripts return JSON or concise text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Most scripts require no API key; CoinMarketCap sentiment requires CMC_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server evidence release.version) <br>
+Risk: Wallet addresses and query details are sent to public blockchain, bridge, and market-data APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only wallet addresses and query details that are acceptable to disclose to those services.
+
+Risk: The security evidence reports that the skill reads a shared .env file and writes cache data outside the skill directory.
+
+Mitigation: Avoid placing unrelated secrets in the shared .env reachable by this skill, and prefer a version that reads only CMC_API_KEY and uses a skill-local or explicitly configured cache directory.
+
+Risk: Swap output is a price-based estimate rather than an executable protocol-routed quote.
+
+Mitigation: Use swap estimates for planning only and verify executable quotes in the relevant protocol interface before any transaction.
+
+Risk: High APY pools and low-liquidity pools can be misleading or short-lived.
+
+Mitigation: Filter out pools below the documented TVL threshold, flag APY above 100% as high risk, and compare gas cost to position size before presenting an opportunity.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/old-greggyboy/skills/defi-scout)
+- [CoinGecko simple price API](https://api.coingecko.com/api/v3/simple/price)
+- [DeFiLlama yields API](https://yields.llama.fi/pools)
+- [Optimism public RPC](https://mainnet.optimism.io)
+- [Base public RPC](https://mainnet.base.org)
+- [Across suggested fees API](https://app.across.to/api/suggested-fees)
+- [CoinMarketCap API endpoints](https://pro-api.coinmarketcap.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON script outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Most scripts output JSON; cmc-sentiment.js emits concise sentiment text and requires CMC_API_KEY.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

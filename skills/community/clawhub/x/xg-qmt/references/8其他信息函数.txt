@@ -1,0 +1,137 @@
+'''
+8其他信息函数
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+获取除复权信息
+ContextInfo.get_divid_factors - 获取除权除息日和复权因子
+原型
+
+内置python
+
+ContextInfo.get_divid_factors(stock.market)
+释义
+
+获取除权除息日和复权因子
+
+参数
+
+字段名	数据类型	解释
+stock.market	string	股票代码.市场代码，如 '600000.SH'
+返回值
+
+dict
+
+key:时间戳，
+
+value:list[每股红利,每股送转,每股转赠,配股,配股价,是否股改,复权系数]
+
+输入除权除息日非法时候返回空dict，合法时返回输入日期的对应的dict，不输入时返回查询股票的所有除权除息日及对应dict
+
+示例
+
+示例返回值
+
+# coding:gbk
+def init(C):
+	pass
+	
+def handlebar(C):
+	Result = C.get_divid_factors('600000.SH')
+	print(Result)
+获取指数权重
+ContextInfo.get_weight_in_index - 获取某只股票在某指数中的绝对权重
+原型
+
+内置python
+
+ContextInfo.get_weight_in_index(indexcode, stockcode)
+释义
+
+获取某只股票在某指数中的绝对权重
+
+参数
+
+字段名	数据类型	解释
+indexcode	string	指数代码，格式为 'stockcode.market'，例如 '000300.SH'
+stockcode	string	股票代码，格式为 'stockcode.market'，例如 '600004.SH'
+返回值
+
+float：返回的数值单位是 %，如 1.6134 表示权重是 1.6134%
+
+示例
+
+示例返回值
+
+# coding:gbk
+def init(C):
+	pass
+	
+def handlebar(C):
+	data = C.get_weight_in_index('000300.SH', '000002.SZ')
+	print(data)
+获取成分股信息
+ContextInfo.get_stock_list_in_sector - 获取板块成份股
+原型
+
+内置python
+
+ContextInfo.get_stock_list_in_sector(sectorname, realtime)
+释义
+
+获取板块成份股，支持客户端左侧板块列表中任意的板块，包括自定义板块
+
+参数
+
+字段名	数据类型	解释
+sectorname	string	板块名，如 '沪深300'，'中证500'，'上证50'，'我的自选'等
+realtime	毫秒级时间戳	实时数据的毫秒级时间戳
+返回值
+
+list：内含成份股代码，代码形式为 'stockcode.market'，如 '000002.SZ'
+
+示例
+
+示例返回值
+
+# coding:gbk
+def init(C):
+	pass
+def handlebar(C):
+	print(C.get_stock_list_in_sector('上证50'))
+获取交易日信息
+注意
+
+该函数只能在after_init;handlebar运行
+ContextInfo.get_trading_dates - 获取交易日信息
+原型
+
+内置python
+
+ContextInfo.get_trading_dates(stockcode,start_date,end_date,count,period='1d')
+释义
+
+ContextInfo.get_trading_dates(stockcode,start_date,end_date,count,period='1d')
+
+参数
+
+字段名	数据类型	解释
+stockcode	string	股票代码,缺省值''默认为当前图代码，如:'600000.SH'
+start_date	string	开始时间，缺省值''为空时不使用，如:'20170101','20170101000000'
+end_date	string	结束时间，缺省值''默认为当前bar的时间，如:'20170102','20170102000000'
+count	int	K线个数，必须大于0，取包括end_date往前的count个K线，但最早不会早于start_date
+period	string	k线类型,'1d':日线,'1m':分钟线,'3m':三分钟线,'5m':5分钟线,'15m':15分钟线,'30m':30分钟线,'1h':小时线,'1w':周线,'1mon':月线,'1q':季线,'1hy':半年线,'1y':年线
+返回值
+
+list:K线周期（交易日）列表 period为日线时返回如['20170101','20170102',...]样式 其它返回如['20170101010000','20170102020000',...]样式
+
+示例
+
+示例返回值
+
+# coding:gbk
+def init(C):
+	pass
+def after_init(C):
+    print(C.get_trading_dates('600000.SH','','',30,'1d'))
+def handlebar(C):
+	pass

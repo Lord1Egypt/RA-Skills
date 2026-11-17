@@ -1,40 +1,54 @@
-## Description: <br>
-Smart context compaction for OpenClaw agents that scans tool outputs, extracts important details into memory files, and produces a pre-compact checklist before /compact. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Test B helps OpenClaw agents prepare for context compaction by scanning conversation and tool-output history, extracting important details to memory files, and producing a pre-compact checklist.
 
-## Publisher: <br>
-[wavmson](https://clawhub.ai/user/wavmson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wavmson](https://clawhub.ai/user/wavmson)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to preserve important task context before conversation compression. It is intended to scan large tool outputs, record selected facts or decisions, and ask for confirmation before compacting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may persist sensitive conversation or tool-output details too broadly. <br>
-Mitigation: Require explicit confirmation before memory writes and exclude secrets, tokens, credentials, cookies, private keys, personal data, and sensitive configuration values. <br>
-Risk: Important context could still be lost if compression happens before unresolved warning items are handled. <br>
-Mitigation: Review the pre-compact checklist, resolve warning items, and compact only after user confirmation. <br>
+## Use Case:
 
+Developers and agent operators use this skill before OpenClaw context compaction to preserve key facts, decisions, errors, user preferences, and task progress in memory files and to review a checklist before compression.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wavmson/compact-test-b) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown checklist with concise status notes and optional memory-file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May append selected details to memory/YYYY-MM-DD.md when the agent has user approval and suitable memory tooling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may save summarized conversation and tool-output details into persistent memory files, including sensitive data if present.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in sessions where persistent memory is acceptable, and review or redact tokens, passwords, private keys, personal data, internal hostnames, and confidential configuration before entries are written.
+
+Risk: The extraction workflow may preserve more detail than is necessary for task continuity.
+
+Mitigation: Limit saved entries to facts, decisions, errors, preferences, and task progress that are needed after compaction, then review the pre-compact checklist before confirming compression.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wavmson/skills/compact-test-b)
+- [Publisher profile](https://clawhub.ai/user/wavmson)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown checklist and appended memory notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May append summarized task details to memory/YYYY-MM-DD.md after reviewing conversation and tool output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

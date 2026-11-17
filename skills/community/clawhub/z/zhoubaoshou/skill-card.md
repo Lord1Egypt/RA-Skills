@@ -1,38 +1,49 @@
-## Description: <br>
-周报速整助手将用户提供的零散工作记录、聊天摘录或待办清单整理为包含工作完成情况、后续计划和待协调问题的结构化周报。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+周报速整助手将零散工作记录、聊天片段和待办清单整理为结构化周报，并按工作完成情况、后续计划和待协调问题优化成正式汇报文本。
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Employees and team contributors use this skill to turn informal work notes, chat excerpts, and task lists into a polished weekly report. It is intended for weekly, daily, or monthly status-report drafting where the user wants clearer categorization and professional phrasing without adding unsupported facts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste confidential work notes, chat excerpts, or internal details into the agent for rewriting. <br>
-Mitigation: Only provide information that is approved for use with the agent, and review the generated report before sharing it. <br>
+## Use Case:
 
+Employees, managers, and team leads use this skill to convert rough work notes into a clear weekly report for routine business communication. It is suited for weekly, daily, or monthly status summaries where the user wants formal wording and a standard report structure.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/zhoubaoshou) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured report text with section headings and numbered items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Matches the user's input language, preserves user-provided facts, and marks missing information as [待补充] instead of inventing details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Formatted report language may be inaccurate if the source notes are incomplete or if quantified wording is not supported by the input.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated report for accuracy, especially quantified statements, and keep [待补充] markers or ask for clarification when details are missing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/zhoubaoshou)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style structured report text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the user's input language and marks missing details as [待补充] when information is insufficient.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-Escalates a blocked agent's problem, attempted fixes, and current result to a supervisor through a local webhook gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Escalates an agent's unresolved issue to a configured supervisor through a webhook gateway after several failed attempts.
 
-## Publisher: <br>
-[superWorldSavior](https://clawhub.ai/user/superWorldSavior) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[superworldsavior](https://clawhub.ai/user/superworldsavior)
 
-## Use Case: <br>
-Developers and support agents use this skill when an agent is blocked after repeated troubleshooting attempts and needs to hand concise context to a supervisor. It is intended for escalation of technical errors, out-of-scope requests, and ambiguous decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Troubleshooting context can be sent through a webhook to preset recipients without clear redaction, consent, or recipient-scoping safeguards. <br>
-Mitigation: Use only in a trusted local gateway environment; configure the supervisor, recipient, and delivery channel explicitly before use. <br>
-Risk: Escalation content may include credentials, access tokens, personal data, customer content, or full logs. <br>
-Mitigation: Redact sensitive data and obtain user approval before sending any credentials, personal data, customer content, or logs. <br>
-Risk: A broad or reused webhook token could allow unintended escalation requests. <br>
-Mitigation: Use a narrowly scoped HOOKS_TOKEN and rotate it according to the gateway operator's policy. <br>
+## Use Case:
 
+Agents and operators use this skill to escalate unresolved technical, scope, or ambiguity issues to a configured supervisor with a concise problem statement, attempted fixes, and current result.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/superWorldSavior/agent-escalation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Guidance] <br>
-**Output Format:** [Shell command invocation with Markdown message content and console status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local webhook gateway and a configured HOOKS_TOKEN.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Escalation arguments may include sensitive troubleshooting context that is forwarded to a supervisor and delivery channel.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact passwords, API keys, tokens, personal data, and raw customer logs before invoking the skill.
+
+Risk: The webhook uses a bearer token and should only target trusted infrastructure.
+
+Mitigation: Verify the gateway host, port, and token before use; keep the gateway on loopback or require TLS for any non-local destination.
+
+Risk: Default supervisor, channel, and recipient settings can send escalations to the wrong destination if not reviewed.
+
+Mitigation: Configure and confirm the supervisor agent, delivery channel, and recipient for the installing organization.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/superworldsavior/skills/agent-escalation)
+- [Publisher profile](https://clawhub.ai/user/superworldsavior)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-formatted escalation message and shell command status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured webhook gateway, bearer token, supervisor agent, delivery channel, and recipient.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,55 @@
-## Description: <br>
-Amazon Rufus Optimizer helps sellers evaluate product listing readiness for Rufus-style shopping conversations by simulating buyer prompts, diagnosing intent tag coverage, and proposing listing copy improvements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Amazon Rufus Optimizer helps Amazon sellers simulate Rufus-style shopping conversations, diagnose intent-tag coverage, rewrite listing copy, and identify cross-category scenarios for listing optimization.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-Amazon marketplace sellers and listing optimization teams use this skill to check whether a product's title, bullet points, and positioning cover the buyer intents Rufus-style shopping assistants may use. It produces scenario simulations, missing intent tags, conversational copy rewrites, cross-category suggestions, and a visibility score for review before applying listing changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Listing suggestions may be inaccurate, overstate Rufus behavior, or conflict with Amazon policy if applied without review. <br>
-Mitigation: Review every recommendation against Amazon policy, product facts, and current marketplace performance before changing a live listing. <br>
-Risk: Users may provide sensitive product or listing details while requesting optimization advice. <br>
-Mitigation: Only provide product or listing information that is appropriate to share with the agent and avoid unnecessary confidential data. <br>
+## Use Case:
 
+Amazon marketplace sellers and listing optimization teams use this skill to evaluate whether product copy covers Rufus-style buyer intents, then generate advisory improvements for scenario wording, audience tags, and cross-category positioning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangm-a3/amazon-rufus-optimizer) <br>
-- [Rufus intent taxonomy](artifact/references/intent-taxonomy.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Analysis] <br>
-**Output Format:** [Markdown-style diagnostic report with scores, simulated prompts, intent tag gaps, listing copy suggestions, and optional JSON from the bundled analyzer script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are advisory and should be reviewed against Amazon policy, product facts, and actual marketplace performance before implementation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release evidence) <br>
+Risk: Rufus visibility scores and simulated recommendation outcomes may be mistaken for verified Amazon ranking data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat scores and simulations as advisory copywriting guidance, then validate listing changes against Amazon policy, marketplace performance data, and human review before publishing.
+
+Risk: Chinese-language guidance and examples may be misapplied to listings in other locales.
+
+Mitigation: Review translated or localized copy with a fluent marketplace operator before publishing customer-facing listing text.
+
+## Reference(s):
+
+- [Amazon Rufus Optimizer ClawHub Page](https://clawhub.ai/wangm-a3/skills/amazon-rufus-optimizer)
+- [Rufus Intent Taxonomy](artifact/references/intent-taxonomy.md)
+- [Rufus Keyword Analyzer](artifact/scripts/rufus-keyword-analyzer.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style reports with scored diagnostics, simulated conversation outcomes, keyword coverage analysis, and prioritized recommendations; the analyzer script can also emit JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are advisory and depend on user-provided product names, ASINs, listing copy, bullet points, categories, and selling-point keywords.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

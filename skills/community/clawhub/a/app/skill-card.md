@@ -1,36 +1,52 @@
-## Description: <br>
-Launch and scale mobile apps with ASO, viral loops, monetization, and App Store growth tactics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Launch and scale mobile apps with ASO, viral loops, monetization, and App Store growth tactics.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Mobile app founders, product teams, and marketers use this skill to plan launch and growth work across ASO, store creative, ratings, referrals, monetization, paid acquisition, retention, and launch coordination. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Advice-oriented growth recommendations may be incorrect, outdated, or unsuitable for a specific app, market, or business model. <br>
-Mitigation: Review recommendations before acting and validate them against current store policies, user data, and business metrics. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External app founders, marketers, and product teams use this skill for mobile app launch and growth guidance across app store optimization, screenshots, ratings, viral loops, monetization, paid acquisition, retention, and launch planning.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown or conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory app-growth recommendations; no executable output.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill provides app growth, monetization, and platform-policy guidance that may become outdated or may not fit a specific app category or market.
+
+Mitigation: Review recommendations against current Apple App Store, Google Play, advertising platform, and business requirements before acting on them.
+
+Risk: Marketing and monetization recommendations may not produce guaranteed performance outcomes.
+
+Mitigation: Validate recommendations through measurement, controlled tests, and business review before relying on them for launch or budget decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/app)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only guidance with no code execution, credential handling, persistence, or hidden behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

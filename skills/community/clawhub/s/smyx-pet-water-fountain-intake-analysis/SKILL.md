@@ -1,7 +1,7 @@
 ---
 name: "smyx-pet-water-fountain-intake-analysis"
 description: "Triggers when a user provides a pet water fountain area video URL or file for analysis; supports local video uploads or network URLs to call server-side APIs for water intake behavior recognition, tracking drinking frequency, single-session duration, and estimated daily intake per pet, comparing against historical baselines to detect sudden drops or spikes in water consumption, outputting early warning alerts for potential kidney disease or diabetes risk. Application scenarios: smart water fountains, multi-pet household health monitoring, pet chronic disease management. | 当用户提供饮水机区域视频URL或文件时，触发本技能进行饮水量行为分析；支持通过上传本地视频或网络视频URL，调用服务端API进行饮水行为识别，统计每只宠物的饮水次数、单次时长、日总饮水量，对比历史基线，对饮水骤降或骤升进行预警，辅助早期发现肾病或糖尿病风险。应用场景：智能饮水机、多宠家庭健康监测、宠物慢性病管理。"
-version: "1.0.3"
+version: "1.0.21"
 license: "MIT-0"
 ---
 

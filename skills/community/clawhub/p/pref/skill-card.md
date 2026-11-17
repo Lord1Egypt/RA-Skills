@@ -1,45 +1,56 @@
-## Description: <br>
-Quantitative research and data tools for AI agents with 670+ PREF MCP capabilities and self-service agent key onboarding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides onboarding guidance for PREF's quantitative research MCP server, including agent API key registration, authenticated client configuration, quota awareness, and verification steps.
 
-## Publisher: <br>
-[morluto](https://clawhub.ai/user/morluto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[morluto](https://clawhub.ai/user/morluto)
 
-## Use Case: <br>
-External developers and agent builders use this skill to register and configure an agent-owned PREF MCP key, connect a remote MCP endpoint, and verify authenticated access for quantitative research workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PREF agent keys are sensitive credentials that could be exposed through terminal history, logs, prompts, or shared configuration. <br>
-Mitigation: Store the key as a secret, avoid echoing or logging it, and reference it through an environment variable or protected credentials file. <br>
-Risk: The remote PREF MCP service receives research queries and tool arguments sent by the agent. <br>
-Mitigation: Install only if the operator trusts pref.trade for those queries, and review MCP capabilities before sensitive or high-impact use. <br>
-Risk: A stale or incomplete MCP client configuration can silently use anonymous quota instead of the intended agent key. <br>
-Mitigation: Verify access with preference_account_status and confirm the MCP client sends an Authorization: Bearer header. <br>
+## Use Case:
 
+Developers and AI-agent operators use this skill to connect Claude Code, Codex, or another MCP client to PREF quantitative research tools with a pref_agent key and verify authenticated quota instead of anonymous access.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/morluto/pref) <br>
-- [PREF homepage](https://pref.trade) <br>
-- [PREF MCP endpoint](https://pref.trade/mcp) <br>
-- [PREF agent registration](https://pref.trade/v1/agents/register) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash, YAML, JSON, and text examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces onboarding and verification guidance for a remote MCP service; it does not include local executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: A live PREF API key could be exposed through shell history, logs, prompts, transcripts, or shared terminal output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a secure prompt, OS keychain, or protected editor flow for secrets, and rotate the PREF key if it has already been exposed.
+
+Risk: Connecting a broad remote MCP server can expose more tool capability than an agent needs for a task.
+
+Mitigation: Inspect the available PREF MCP tools before use and restrict the enabled remote tools to the task-relevant set.
+
+## Reference(s):
+
+- [PREF homepage](https://pref.trade)
+- [PREF MCP endpoint](https://pref.trade/mcp)
+- [PREF agent registration endpoint](https://pref.trade/v1/agents/register)
+- [ClawHub skill page](https://clawhub.ai/morluto/skills/pref)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with bash, YAML, JSON, and text code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes remote MCP endpoint setup, bearer-token authentication, quota tiers, and verification guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

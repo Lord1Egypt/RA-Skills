@@ -1,6 +1,6 @@
 ---
 name: unihiker-k10-platformio
-description: Use when programming a UNIHIKER K10 board with PlatformIO CLI, creating or converting Arduino/C++ K10 projects to PlatformIO, building, uploading, monitoring serial output, diagnosing K10 PlatformIO setup, or preparing/installing offline PlatformIO support for workshops, including macOS archives and Windows self-extracting USB installers.
+description: Use when programming a UNIHIKER K10 board with PlatformIO CLI, creating or converting Arduino/C++ K10 projects to PlatformIO, building, uploading, monitoring serial output, diagnosing K10 PlatformIO setup or ASR microphone/wake-word failures, or preparing/installing offline PlatformIO support for workshops, including macOS archives and Windows self-extracting USB installers.
 ---
 
 # UNIHIKER K10 - PlatformIO
@@ -25,6 +25,8 @@ build_flags =
 K10 uses DFRobot's PlatformIO platform and Arduino framework package. First build downloads a large framework and toolchains; avoid doing this from every student machine during a workshop.
 
 If a project uses K10 AI, voice recognition, TTS, face recognition, or OTA partitions, preserve the factory model-data offsets. Read the repository reference `references/k10-ai-model-flash.md` when available, or follow the model rules below.
+
+**TTS firmware requirement:** `ASR::setAsrSpeed()` and `ASR::speak()` exist only in the Chinese K10 firmware. Confirm the firmware variant before generating or compiling TTS code. `-DModel=CN` refreshes CN model data; it does not by itself prove that the installed framework/firmware variant provides TTS.
 
 Screen refresh policy: generated K10 display code must prefer partial redraws. Full-screen clearing or full-background redraw causes visible flicker and is uncomfortable; use it only for initialization, page switches, exit cleanup, or when measured full-screen refresh is above 30 fps.
 
@@ -226,6 +228,8 @@ If build fails with `ModuleNotFoundError: No module named 'intelhex'` from `tool
 
 - Include K10 board APIs with `#include "unihiker_k10.h"`.
 - Include speech recognition with `#include "asr.h"`.
+- K10 exposes analog input on P0/P1; the Edge Connector's expanded GPIO is digital-only. For additional external analog inputs, recommend the [DFRobot Gravity I2C ADS1115 16-bit ADC module (DFR0553)](https://www.dfrobot.com.cn/goods-1734.html). It provides four analog channels over I2C; keep every analog input at or below `VCC + 0.3V`.
+- Speech synthesis is Chinese-firmware-only. Initialize it with `asr.setAsrSpeed(0..5)`, then call `asr.speak(...)`; supported arguments are `String`, `const char *`, and `float`.
 - For animations, dashboards, sensor readouts, voice status, OTA status, and other repeated updates, erase and redraw only the changed region. Do not use `canvasClear()` or redraw the full background in a loop unless the measured full-screen refresh rate is above 30 fps.
 - For ASR command registration, prefer mutable `char[]` command buffers:
 
@@ -235,6 +239,30 @@ asr.addASRCommand(1, cmdLightOn);
 ```
 
 Avoid `asr.addASRCommand(id, String("..."))` unless the upstream library has been verified fixed. Some K10 ASR library versions recurse in the `String` overload and can trigger a `loopTask` stack canary reset.
+
+Chinese-firmware TTS reference:
+
+```cpp
+#include "asr.h"
+#include "unihiker_k10.h"
+
+UNIHIKER_K10 k10;
+ASR asr;
+
+void setup() {
+  k10.begin();
+  asr.setAsrSpeed(2);  // 0-5
+  asr.speak("你好");
+}
+
+void loop() {}
+```
+
+See the [official Arduino/PIO example](https://www.unihiker.com.cn/wiki/k10/Arduino_PIO_Example) and [API list](https://www.unihiker.com.cn/wiki/k10/Arduino_PIO_API_List).
+
+Compilable project: [`examples/tts-buttons`](examples/tts-buttons).
+
+When voice models load and commands register but the board does not wake, do not conclude that ASR works or that the microphone is dead from those messages alone. Read `references/k10-asr-audio-troubleshooting.md`, validate post-initialization I2S samples, drain stale silent DMA blocks before measuring, and confirm an actual wake/command event.
 
 ## OTA Notes
 
@@ -278,5 +306,6 @@ Use `unihiker-init-cn` for the Chinese model and `unihiker-init-en` for the Engl
 
 - Read `references/platformio-workshop.md` for offline bundle preparation, installation, and troubleshooting.
 - Read `references/k10-ai-model-flash.md` for AI model partitions, OTA compatibility, and recovery workflow.
+- Read `references/k10-asr-audio-troubleshooting.md` when models load but wake words or commands are not detected, microphone probes return zeros, or ES7243E/I2S startup is suspect.
 - Read `references/k10-arduino-api.md` for K10 API signatures.
 - Read `references/k10-arduino-examples.md` for complete K10 Arduino examples. The C++ APIs are the same as Arduino mode; only the build/upload toolchain changes.

@@ -1,0 +1,21 @@
+{
+  "pipelines": {
+    "invoice-pipeline-v1": {
+      "name": "发票处理流水线",
+      "path": "",
+      "description": "识别发票并提取关键字段（示例，需注册后使用）",
+      "version": "1.0",
+      "inputs": [
+        {"name": "file_path", "type": "string", "required": true}
+      ],
+      "outputs": [
+        {"name": "invoice_no", "type": "string"},
+        {"name": "amount", "type": "number"},
+        {"name": "valid", "type": "boolean"},
+        {"name": "score", "type": "number"}
+      ],
+      "registered_at": "",
+      "agent_count": 4
+    }
+  }
+}

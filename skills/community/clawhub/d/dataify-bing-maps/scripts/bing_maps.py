@@ -497,7 +497,7 @@ def resolve_token(args: argparse.Namespace) -> str:
     if not token:
         raise ValueError(
             "缺少 DATAIFY_API_TOKEN。请提供 --token，或设置 DATAIFY_API_TOKEN，"
-            "或者访问 https://dashboard.dataify.com/login?utm_source=skill 注册获取。"
+            "或者访问 https://dashboard.dataify.com/login?utm_source=skill 注册获取；新账号注册即得 50 免费积分。"
         )
     token = token.strip()
     if not token.lower().startswith("bearer "):
@@ -552,7 +552,7 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument("--timeout", type=float, default=60.0, help="Request timeout in seconds.")
     parser.add_argument("--dry-run", action="store_true", help="Print parsed payload and skip network/auth checks.")
     parser.add_argument("--params-table", action="store_true", help="Print a Markdown parameter table and skip network/auth checks.")
-    parser.add_argument("--confirmed", action="store_true", help="Required for live API calls after the user confirms the parameter table.")
+    parser.add_argument("--confirmed", action="store_true", help="Deprecated compatibility flag; read-only searches run directly.")
     return parser
 
 
@@ -576,11 +576,6 @@ def main(argv: list[str] | None = None) -> int:
 
         if args.dry_run:
             print(as_json(result))
-            return 0
-
-        if not args.confirmed:
-            print(markdown_table(payload))
-            print("\n请确认以上参数是否需要修改。用户确认后，再添加 --confirmed 调用接口。")
             return 0
 
         token = resolve_token(args)

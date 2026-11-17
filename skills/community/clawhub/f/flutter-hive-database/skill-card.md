@@ -1,39 +1,58 @@
-## Description: <br>
-在 Flutter 项目中封装 Hive 本地数据库服务，遵循 Repository 模式和 MVVM 架构。当用户需要使用 Hive 数据库、本地持久化存储、离线数据缓存、或提到 hive、本地数据库、数据持久化时使用。支持三种独立模式：创建数据服务、创建数据库操作、创建数据模型并自动注入 CRUD。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps Flutter developers scaffold Hive local database services, repositories, and JSON-backed data models that follow Repository and MVVM patterns.
 
-## Publisher: <br>
-[symboy](https://clawhub.ai/user/symboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[symboy](https://clawhub.ai/user/symboy)
 
-## Use Case: <br>
-Flutter developers use this skill to scaffold Hive local database services, repositories, and data models for offline storage and persistence. It is intended for version-controlled Flutter projects where generated files and diffs can be reviewed before use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/symboy/flutter-hive-database) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Generator script](artifact/scripts/generate.py) <br>
+Developers use this skill in Flutter projects to add Hive persistence, create repository classes, and generate data models with CRUD helpers from trusted entity JSON.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated Dart files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates or updates Flutter project files; review planned files and diffs before running, and avoid untrusted raw entity JSON until stricter validation is available.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Crafted model JSON could cause unsafe Dart source generation or code injection beyond the intended model shape.
+
+Mitigation: Use only entity JSON you wrote or fully trust, and inspect generated Dart files before building or shipping the app.
+
+Risk: Generated files modify a Flutter project and may add persistence behavior that does not match the app's data model or compatibility needs.
+
+Mitigation: Review the generated service, repository, model, and CRUD methods against the project schema and Hive initialization flow before use.
+
+Risk: The security evidence says the generator should add stricter schema validation and path containment before routine use.
+
+Mitigation: Treat installation and execution as review-required until the publisher adds stricter input validation and containment checks.
+
+## Reference(s):
+
+- [Flutter Hive Database skill page](https://clawhub.ai/symboy/skills/flutter-hive-database)
+- [Generator script](scripts/generate.py)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated Dart files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates Flutter project files under lib/ for Hive services, repositories, and models.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

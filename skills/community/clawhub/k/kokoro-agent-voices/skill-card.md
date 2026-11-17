@@ -1,41 +1,54 @@
-## Description: <br>
-Local text-to-speech skill that gives agents distinct Kokoro TTS voice profiles and writes generated speech to WAV files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kokoro Agent Voices provides local Kokoro TTS text-to-speech for agents with named voice profiles, 54 available voices, and WAV output.
 
-## Publisher: <br>
-[nissan](https://clawhub.ai/user/nissan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nissan](https://clawhub.ai/user/nissan)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add local Kokoro TTS voice output, list available voices, map named agent profiles to voices, and save synthesized speech as WAV audio. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The playback helper can turn a crafted output filename into a local shell command when --play is used. <br>
-Mitigation: Review before installing or using, and avoid --play with untrusted or unusual output paths until playback uses a safe subprocess argument list. <br>
-Risk: The first run performs outbound network access to download Kokoro model weights from Hugging Face Hub. <br>
-Mitigation: Plan for the one-time model download and verify the deployment environment permits that fetch; subsequent TTS inference is documented as local. <br>
+## Use Case:
 
+Developers and agent builders use this skill to generate local speech from agent text, assign voice profiles, list available voices, and save WAV audio without per-call TTS API costs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nissan/kokoro-agent-voices) <br>
-- [Kokoro-82M model on Hugging Face](https://huggingface.co/hexgrad/Kokoro-82M) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, configuration, guidance, files] <br>
-**Output Format:** [Markdown with inline bash and Python examples; runtime script output includes console text and WAV files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates 24 kHz WAV audio locally after the one-time Kokoro model download.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: Optional playback can execute unintended shell commands through the output filename.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid --play and do not pass untrusted output paths until playback uses a non-shell subprocess call or equivalent safe audio playback.
+
+Risk: First run downloads Kokoro model weights from Hugging Face Hub without server evidence of a pinned revision.
+
+Mitigation: Confirm the model download fits the deployment supply-chain policy and pin or verify model artifacts where required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nissan/skills/kokoro-agent-voices)
+- [Kokoro model on Hugging Face](https://huggingface.co/hexgrad/Kokoro-82M)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and WAV file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated speech is saved as WAV audio; first use may download Kokoro model weights from Hugging Face Hub, with later inference running locally.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

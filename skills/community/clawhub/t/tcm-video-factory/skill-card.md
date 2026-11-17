@@ -1,40 +1,54 @@
-## Description: <br>
-Automates health video production planning with topic research, script, character, image prompt, and video prompt generation using the Perplexity API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate health video production planning (Topic Research - Script - Character - Image/Video Prompts) using Perplexity API. Based on TCM Video Factory workflow.
 
-## Publisher: <br>
-[xaotiensinh-abm](https://clawhub.ai/user/xaotiensinh-abm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xaotiensinh-abm](https://clawhub.ai/user/xaotiensinh-abm)
 
-## Use Case: <br>
-Content creators and video producers use this skill to turn a health topic or theme into a structured short-form video production plan. The plan includes topic selection, a character prompt, a four-part script, image prompts, and VEO3 video prompts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends the requested video topic and generated planning context to Perplexity. <br>
-Mitigation: Use a dedicated Perplexity API key where possible and avoid entering private or regulated health information. <br>
-Risk: Generated health scripts or claims may be inaccurate or misleading if published without review. <br>
-Mitigation: Review health claims, disclaimers, and generated production plans before publishing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [TCM Video Factory on ClawHub](https://clawhub.ai/xaotiensinh-abm/tcm-video-factory) <br>
-- [Publisher profile: xaotiensinh-abm](https://clawhub.ai/user/xaotiensinh-abm) <br>
+## Use Case:
 
+Content creators, developers, and production teams use this skill to turn a health topic into a video production plan with topic research, a character prompt, a four-part script, image prompts, and VEO3 video prompts.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Guidance, Files] <br>
-**Output Format:** [Markdown file named PLAN_[timestamp].md with script, character, image prompt, and video prompt sections.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and PERPLEXITY_API_KEY; sends the requested topic and planning context to Perplexity.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json, release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The requested topic and generated planning context are sent to Perplexity using the user's API key.
+
+Mitigation: Avoid private health details, proprietary campaign information, and regulated personal data unless the use fits the user's Perplexity data-handling requirements.
+
+Risk: Generated health video scripts and prompts may include claims that need domain review before publication.
+
+Mitigation: Review generated plans for accuracy, appropriate disclaimers, and Vietnamese-language production fit before using them in public content.
+
+## Reference(s):
+
+- [TCM Video Factory on ClawHub](https://clawhub.ai/xaotiensinh-abm/skills/tcm-video-factory)
+- [Publisher profile: xaotiensinh-abm](https://clawhub.ai/user/xaotiensinh-abm)
+- [Perplexity Chat Completions API endpoint](https://api.perplexity.ai/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown file with production-plan sections and inline prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a timestamped PLAN_[Timestamp].md file in the current working directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

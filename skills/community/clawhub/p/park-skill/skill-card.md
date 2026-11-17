@@ -1,49 +1,62 @@
-## Description: <br>
-Park Skill helps answer industrial park operations questions across park overview, recruitment policy, enterprise services, operations management, and data dashboard scenarios in Chinese and English. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Park Skill helps industrial, technology, and business park teams answer bilingual questions about park information, recruitment policies, enterprise services, operations, and dashboard statistics.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-Park operators, recruitment teams, property managers, enterprise service teams, and operations leaders use this skill to retrieve park information, explain tenant policies, guide enterprise services, support property operations, and summarize occupancy or business metrics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Marketplace capability tags include crypto and purchase permissions even though the artifact is a documentation-and-configuration skill. <br>
-Mitigation: Verify capability tags before deployment and avoid granting crypto or purchase permissions beyond what the skill files describe. <br>
-Risk: The skill can discuss tenant, tax, financing, occupancy, and complaint information that may be sensitive in real operations. <br>
-Mitigation: Limit access to operational data and review outputs before using them for business decisions or external communication. <br>
-Risk: The artifact mentions Excel, PDF, and PPT export behavior, but no executable export implementation is present in the release evidence. <br>
-Mitigation: Require confirmation before any future export implementation writes files, and prevent overwriting existing files. <br>
+## Use Case:
 
+Park operators, leasing teams, property managers, and enterprise service staff use this skill to answer park operations questions, explain leasing and incentive policies, guide enterprise services, and summarize operational metrics in Chinese or English.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangm-a3/park-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/wangm-a3) <br>
-- [Publisher homepage](https://xiaping.coze.site) <br>
-- [README.md](README.md) <br>
-- [clawhub.yaml](clawhub.yaml) <br>
-- [config/park-config.yaml](config/park-config.yaml) <br>
-- [examples/example-query.md](examples/example-query.md) <br>
-- [examples/example-output.md](examples/example-output.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Bilingual Markdown, Markdown tables, and structured JSON-style responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May summarize configured park data, policies, service workflows, operational metrics, and report-style exports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The bundled park, policy, rent, and operating figures appear to be static sample data and may not match a deploying organization's actual park.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace config/park-config.yaml with current approved park data before production use, and have policy, rent, and service figures reviewed by the responsible business owner.
+
+Risk: Broad activation examples may cause the skill to answer adjacent real estate, policy, or enterprise service questions when the user did not clearly ask for park operations help.
+
+Mitigation: Tighten activation examples and routing rules so the skill is invoked only for explicit park operations, leasing, enterprise service, property, or dashboard requests.
+
+Risk: The skill can present compliance, tax incentive, environmental, and safety information that users may treat as authoritative guidance.
+
+Mitigation: Label responses that involve policy or compliance as informational and require review against current local rules and park-specific procedures.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wangm-a3/skills/park-skill)
+- [Park Skill README](artifact/README.md)
+- [Park Configuration](artifact/config/park-config.yaml)
+- [Example Queries](artifact/examples/example-query.md)
+- [Example Outputs](artifact/examples/example-output.md)
+- [Skill Homepage](https://xiaping.coze.site)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Files, Guidance]
+
+**Output Format:** [Bilingual Markdown responses, Markdown tables, structured JSON, and report-style summaries; artifact documentation also describes Excel, PDF, and PPT export.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports zh-CN and en-US responses using static configuration and locale files.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata; artifact files list 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

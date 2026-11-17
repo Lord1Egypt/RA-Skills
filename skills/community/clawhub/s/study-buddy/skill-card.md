@@ -1,41 +1,54 @@
-## Description: <br>
-Study Buddy helps parents of middle- and high-school students plan study routines, record check-ins, track progress, manage wrong-question notes, and generate local study reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Study Buddy helps parents of middle- and high-school students create study plans, log daily check-ins, track progress, manage wrong-question notes, and generate study reports.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External parents and guardians use this skill to organize a child's study plan, record daily learning activity, monitor progress, manage wrong-question review, and produce study summaries. It is a study-management aid and does not provide subject teaching or replace educational decisions by parents, teachers, or tutors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Child-related study records are stored locally and may be visible to other users on a shared computer. <br>
-Mitigation: Use a private account or set STUDY_BUDDY_HOME to an isolated directory, then delete the data directory when the records are no longer needed. <br>
-Risk: Study plans and feedback may be treated as authoritative educational advice. <br>
-Mitigation: Use the output as planning support and review it against the child's school requirements, parent judgment, and qualified educator guidance. <br>
+## Use Case:
 
+External users, especially parents of middle- and high-school students, use this skill to manage study routines, track learning activity, record wrong questions, and generate local progress reports. It supports learning management and habit building, not subject-matter tutoring or educational decision replacement.
 
-## Reference(s): <br>
-- [Command Reference](references/commands.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/skills/study-buddy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown or plain text guidance with shell command examples; the CLI can write local JSON study records.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local storage under ~/.study-buddy by default and supports STUDY_BUDDY_HOME for an isolated data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: release evidence, SKILL.md frontmatter, clawhub.json, skill.json) <br>
+Risk: The skill stores a child's study profile, learning logs, wrong-question entries, and reports as local JSON files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use STUDY_BUDDY_HOME to isolate data on shared machines, restrict local file access as appropriate, and delete the data directory when records are no longer needed.
+
+Risk: Generated plans, reports, and feedback are study-management aids and may be incomplete or unsuitable for a student's specific needs.
+
+Mitigation: Have a parent, teacher, or qualified advisor review recommendations before relying on them for important education decisions.
+
+## Reference(s):
+
+- [Study Buddy Command Reference](artifact/references/commands.md)
+- [Study Buddy Release Page](https://clawhub.ai/harrylabsj/skills/study-buddy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and local JSON data files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores profile, plan, log, wrong-question, and report records locally under ~/.study-buddy/ by default, or under STUDY_BUDDY_HOME when configured.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter, skill.json, clawhub.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

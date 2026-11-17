@@ -1,45 +1,60 @@
-## Description: <br>
-ML-powered DOM pruning for 95% smaller browser prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ML-powered DOM pruning for 95% smaller browser prompts.
 
-## Publisher: <br>
-[rcholic](https://clawhub.ai/user/rcholic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT OR Apache-2.0 <br>
+## Publisher:
 
+[rcholic](https://clawhub.ai/user/rcholic)
 
-## Use Case: <br>
-Developers and agent users use this skill in OpenClaw browser sessions to capture compact, ranked DOM snapshots for LLM browser automation and to click, type, or scroll by Predicate element ID. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+(MIT OR Apache-2.0)
 
-## Known Risks and Mitigations: <br>
-Risk: API-backed snapshots and demos can send page-derived content to external services. <br>
-Mitigation: Use predicate-snapshot-local for sensitive pages and avoid API-backed snapshots or LLM demos on private or account pages unless external processing is acceptable. <br>
-Risk: The skill can click, type, or scroll in the active browser page when invoked. <br>
-Mitigation: Install and invoke it only in browser sessions where this level of page control is intended, and review snapshot IDs before using action commands. <br>
-Risk: API keys may be exposed if stored in shared files or committed to version control. <br>
-Mitigation: Prefer environment variables or local configuration and keep keys out of shared files and repositories. <br>
+## Use Case:
 
+Developers and browser-automation agents use this skill in OpenClaw to capture compact, ranked DOM snapshots and interact with page elements by Predicate ID.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/rcholic/predicate-snapshot) <br>
-- [Predicate Snapshot Homepage](https://predicate.systems/skills/snapshot) <br>
-- [Predicate Documentation](https://predicatesystems.ai/docs) <br>
-- [OpenClaw + Predicate Snapshot Skill Installation Guide](docs/INSTALL_AND_TEST.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style text with pipe-delimited DOM element rows and plain action status messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Snapshot output is capped by a configurable element limit and can run in API-backed or local-only mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release metadata and package.json) <br>
+Risk: The skill can click, type, and scroll in active browser pages, including sensitive logged-in, payment, or admin pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Supervise /predicate-act use and avoid granting the skill active sessions with unnecessary privileges.
+
+Risk: ML snapshot mode should be reviewed before use on sensitive browsing contexts.
+
+Mitigation: Prefer /predicate-snapshot-local for sensitive pages or review page sensitivity before enabling ML ranking.
+
+Risk: Mutable installer and dependency paths can change between installations.
+
+Mitigation: Pin or verify the installer, package version, and dependencies instead of relying on @latest.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/rcholic/skills/predicate-snapshot)
+- [Predicate Snapshot homepage](https://predicate.systems/skills/snapshot)
+- [Predicate documentation](https://predicatesystems.ai/docs)
+- [Install and test guide](docs/INSTALL_AND_TEST.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown headers followed by a compact pipe-delimited element table, or short status/error text for actions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Snapshot output is limited by a configurable element count; ML ranking requires PREDICATE_API_KEY, while local mode avoids ML re-ranking.]
+
+## Skill Version(s):
+
+0.4.0 (source: package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

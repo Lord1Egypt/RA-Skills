@@ -1,42 +1,54 @@
-## Description: <br>
-Creates visually structured HTML operation-guide pages for Web UI walkthroughs, feature explanations, and agent import tutorials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates HTML operation-guide pages for Web UI walkthroughs, feature explanations, and agent import tutorials.
 
-## Publisher: <br>
-[2239721014-ops](https://clawhub.ai/user/2239721014-ops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[2239721014-ops](https://clawhub.ai/user/2239721014-ops)
 
-## Use Case: <br>
-Developers, operators, and documentation authors use this skill to generate polished Web UI operation guides with feature cards, screenshot placeholders, step-by-step instructions, code blocks, FAQs, and sharing links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can steer an agent toward publishing generated HTML to a hardcoded GitHub repository, branch, and output path. <br>
-Mitigation: Confirm the repository, branch, output path, generated file contents, and final publication intent before any git commit or push. <br>
-Risk: Generated guide content may contain incorrect UI descriptions, outdated steps, or misleading screenshot placeholders. <br>
-Mitigation: Review the final HTML guide against the target interface and replace placeholders with approved screenshots before sharing. <br>
-Risk: Publishing generated files can expose internal workflows, screenshots, or instructions if sensitive content is included. <br>
-Mitigation: Screen the generated page for secrets, private URLs, customer data, and internal-only details before upload. <br>
+## Use Case:
 
+Developers, documentation authors, and support teams use this skill to create visually structured HTML guides for Web interfaces, common features, operation steps, and agent import walkthroughs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/2239721014-ops/instruction-web) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [HTML guide content with Markdown status notes, shell command snippets, and generated CDN or preview links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create HTML files intended for a configured workplace-doc output directory and may propose GitHub commit and push commands for publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated guides may be committed and pushed to a public GitHub-backed publishing flow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target repository, branch, output directory, and public sharing intent before running git commit or git push.
+
+Risk: The workflow can produce public jsDelivr and preview links for generated HTML.
+
+Mitigation: Review generated HTML for sensitive screenshots, private instructions, and unintended repository paths before publishing or sharing links.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/2239721014-ops/skills/instruction-web)
+- [Publisher profile](https://clawhub.ai/user/2239721014-ops)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [HTML guide content, Markdown status text, shell command examples, and sharing links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated HTML is intended for the workplace-doc output directory and may include screenshot placeholders, cards, badges, code blocks, step guides, jsDelivr links, and preview links.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

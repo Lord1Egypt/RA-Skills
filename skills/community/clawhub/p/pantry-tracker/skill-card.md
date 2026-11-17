@@ -1,42 +1,59 @@
-## Description: <br>
-Track grocery purchases and monitor food freshness using Supabase. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track grocery purchases and monitor food freshness using Supabase for grocery-order monitoring, expiry checks, pantry logging, morning summaries, and food-waste management.
 
-## Publisher: <br>
-[meimakes](https://clawhub.ai/user/meimakes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[madebydia](https://clawhub.ai/user/madebydia)
 
-## Use Case: <br>
-External users and developers use this skill to log pantry items from grocery orders, estimate freshness windows, query expiring food, and generate morning pantry summaries through a Supabase-backed CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores email-derived grocery data, including optional order references, in Supabase. <br>
-Mitigation: Use a private Supabase project, avoid storing order IDs unless needed, and review what grocery-order content is parsed before enabling recurring scans. <br>
-Risk: The included database setup lacks the access controls implied by anon-key usage. <br>
-Mitigation: Add Row Level Security policies before using an anon key and never use a service role key for pantry operations. <br>
+## Use Case:
 
+Individuals and household agents use this skill to log grocery purchases, estimate shelf life, check expiring items, and update pantry item status from manual input or parsed grocery-order data.
 
-## Reference(s): <br>
-- [Pantry Tracker on ClawHub](https://clawhub.ai/meimakes/pantry-tracker) <br>
-- [Default Shelf Life](references/shelf-life.md) <br>
-- [Supabase Schema](references/supabase-schema.sql) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON examples, and plain-text CLI summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SUPABASE_URL and SUPABASE_KEY; the skill expects the agent to use a separate email tool for grocery-order scanning.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+Risk: Grocery emails, order IDs, and pantry records can contain personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use authenticated user tokens, confirm consent before recurring email ingestion, and avoid storing more grocery or order detail than needed.
+
+Risk: Pantry data stored in Supabase can be exposed if access controls are weak.
+
+Mitigation: Use explicit per-user row-level security, restricted grants, and the anon key rather than a service-role key.
+
+Risk: Commands such as bulk-add, refresh, use, and toss can mutate pantry records automatically.
+
+Mitigation: Prefer dry-run or user confirmation behavior before running commands that add or update pantry records.
+
+## Reference(s):
+
+- [Default Shelf Life](artifact/references/shelf-life.md)
+- [Supabase Schema](artifact/references/supabase-schema.sql)
+- [Pantry Tracker ClawHub Listing](https://clawhub.ai/madebydia/skills/pantry-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples; CLI output is plain text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SUPABASE_URL and SUPABASE_KEY; some commands create or update pantry records.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Generate detailed crypto tax reports for XPR Network activity with support for New Zealand and United States regional tax rules and cost basis methods. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate detailed crypto tax reports for XPR Network activity with support for New Zealand and United States regional tax rules and cost basis methods.
 
-## Publisher: <br>
-[paulgnz](https://clawhub.ai/user/paulgnz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[paulgnz](https://clawhub.ai/user/paulgnz)
 
-## Use Case: <br>
-External users and agents use this skill to compile XPR Network balances, DEX trades, transfers, rates, gains, income events, and Markdown/CSV tax-report outputs for supported NZ and US tax workflows. Reports are estimates and should be reviewed by a qualified tax professional before filing. <br>
-
-### Deployment Geography for Use: <br>
-New Zealand and United States <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated reports and CSVs may contain sensitive wallet-linked tax data and may be uploaded to external deliverable storage. <br>
-Mitigation: Review storage and delivery destinations before use, avoid uploading data the user does not want stored externally, and confirm privacy handling for generated URLs. <br>
-Risk: Tax estimates may be incomplete or jurisdiction-specific, especially around regional rules, tax-year boundaries, and unsupported activity types. <br>
-Mitigation: Verify the selected jurisdiction, tax year, and cost-basis method, retain CSV exports for review, and have a qualified tax professional review the report before filing. <br>
-Risk: Historical pricing can be limited or less accurate when CoinGecko access is unavailable or DEX-derived rates are sparse. <br>
-Mitigation: Use a dedicated CoinGecko API key when needed and cross-check material rates or gaps before relying on the final report. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/paulgnz/xpr-tax) <br>
-- [CoinGecko API](https://api.coingecko.com/api/v3) <br>
-- [CoinGecko Pro API](https://pro-api.coingecko.com/api/v3) <br>
+## Use Case:
 
+External users and agents use this skill to gather XPR Network balances, DEX trades, transfers, rates, and generated tax report artifacts for NZ or US crypto tax workflows. The outputs are estimates and should be reviewed with a tax professional before filing or financial reliance.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown report plus CSV export data and structured tool responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only API queries and calculations; generated reports may contain wallet-linked tax data, balances, income events, and disposals.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+New Zealand and United States
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated tax reports and CSVs may contain sensitive financial records and are externally delivered.
+
+Mitigation: Confirm where deliverables are stored, whether URLs are public or permanent, and require explicit user approval before uploading reports or CSV exports.
+
+Risk: Tax calculations are estimates and may not be suitable as filed tax advice.
+
+Mitigation: Preserve the generated disclaimer and have a qualified tax professional verify calculations before relying on them.
+
+Risk: Generated CSV files may be unsafe when opened in spreadsheet software.
+
+Mitigation: Treat CSV exports as untrusted files and review or sanitize them before opening in spreadsheet applications.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/paulgnz/skills/xpr-tax)
+- [ClawHub publisher profile](https://clawhub.ai/user/paulgnz)
+- [CoinGecko API](https://api.coingecko.com/api/v3)
+- [CoinGecko Pro API](https://pro-api.coingecko.com/api/v3)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, csv, configuration, guidance]
+
+**Output Format:** [JSON tool results, Markdown tax reports, and CSV export content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Queries external APIs for read-only XPR Network data and may require COINGECKO_API_KEY for complete historical pricing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

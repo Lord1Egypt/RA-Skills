@@ -1,0 +1,29 @@
+<!-- ══════════════════════════════════════════════════════════════
+  片段:Harvey ball 评分行(表格一行 + 4 个圆饼叠放)—— 原型 33
+  参数:
+    {{ROW_BG}}       行底色(推荐行用 var(--card-bg);其余留空 transparent)
+    {{NAME}}         方案名     {{NAME_COLOR}}  方案名色(推荐行用 var(--brand-primary),其余 var(--charcoal))
+    {{VERDICT}}      结论列(写人话:"风险集中,不建议";❌ 不写"综合评分 3.2")
+    {{ROW_Y}}        本行圆饼的**行中心 y** —— 圆心 y = ROW_Y - 18(圆 36px)
+    {{C1_SHAPE}}..{{C4_SHAPE}}   每格形状:ellipse(满/空) 或 pie(半档)
+    {{C1_BG}}..      每格填充:满/半 = var(--brand-dark);空 = transparent
+    {{C1_BORDER}}..  空档描边:空 = 2px solid var(--border-medium);其余留空
+  列中心 x(与原型 33 六列表格对齐):505 / 755 / 1005 / 1255
+  ⚠️ 圆饼是**独立叠放对象,不随表格流** —— 改行高/列宽后必须重算 left/top,
+     否则圆饼与格子错位(浏览器里看不出、PPTX 里全歪)。
+  纪律: 单色深浅,❌ 红黄绿交通灯(色盲不友好);❌ 用"★★★☆☆"字符星(AI 味);
+        图例必须写等权与打分方式,否则是伪精确
+  ══════════════════════════════════════════════════════════════ -->
+<tr style="background:{{ROW_BG}};">
+  <td style="padding:26px 24px;font-size:24px;font-weight:700;color:{{NAME_COLOR}};border:1px solid var(--border-light);">{{NAME}}</td>
+  <td style="border:1px solid var(--border-light);"></td>
+  <td style="border:1px solid var(--border-light);"></td>
+  <td style="border:1px solid var(--border-light);"></td>
+  <td style="border:1px solid var(--border-light);"></td>
+  <td style="padding:26px 24px;font-size:22px;line-height:1.4;color:var(--text-secondary);border:1px solid var(--border-light);">{{VERDICT}}</td>
+</tr>
+<!-- ↓ 下面 4 个圆饼放在 </table> 之后(绝对定位,不能写在 td 里) -->
+<div data-object="true" data-object-type="shape" data-shape="{{C1_SHAPE}}" style="position:absolute;left:487px;top:{{ROW_Y}}px;width:36px;height:36px;background:{{C1_BG}};{{C1_BORDER}}"></div>
+<div data-object="true" data-object-type="shape" data-shape="{{C2_SHAPE}}" style="position:absolute;left:737px;top:{{ROW_Y}}px;width:36px;height:36px;background:{{C2_BG}};{{C2_BORDER}}"></div>
+<div data-object="true" data-object-type="shape" data-shape="{{C3_SHAPE}}" style="position:absolute;left:987px;top:{{ROW_Y}}px;width:36px;height:36px;background:{{C3_BG}};{{C3_BORDER}}"></div>
+<div data-object="true" data-object-type="shape" data-shape="{{C4_SHAPE}}" style="position:absolute;left:1237px;top:{{ROW_Y}}px;width:36px;height:36px;background:{{C4_BG}};{{C4_BORDER}}"></div>

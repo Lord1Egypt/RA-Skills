@@ -1,41 +1,53 @@
-## Description: <br>
-Converts text to speech through Microsoft Edge TTS voices without an API key, supporting 100+ voices across 50+ languages including Chinese and English. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Text-to-Speech via Edge TTS (Microsoft Azure voices). Free, no API key needed, supports 100+ voices in 50+ languages including Chinese and English.
 
-## Publisher: <br>
-[vincentlau2046-sudo](https://clawhub.ai/user/vincentlau2046-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vincentlau2046-sudo](https://clawhub.ai/user/vincentlau2046-sudo)
 
-## Use Case: <br>
-Developers and content creators use this skill to generate speech audio, optionally with SRT subtitles, from supplied text or text files using Microsoft Edge TTS voices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text submitted for synthesis is sent to Microsoft's online TTS service. <br>
-Mitigation: Do not use this skill for secrets, credentials, private documents, regulated data, or confidential transcripts unless that processing is acceptable. <br>
-Risk: Optional README examples describe model download commands and trust_remote_code usage outside the Edge TTS workflow. <br>
-Mitigation: Review optional commands before running them and avoid executing model-download or trust_remote_code examples unless they are required and approved. <br>
+## Use Case:
 
+Developers and agents use this skill to convert text or text files into speech through Microsoft Edge TTS voices, with options for voice, rate, pitch, volume, language-filtered voice listing, and optional SRT subtitle generation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vincentlau2046-sudo/tts-cosyvoice) <br>
-- [Publisher profile](https://clawhub.ai/user/vincentlau2046-sudo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell command examples; generated artifacts are MP3 audio files and optional SRT subtitle files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, the edge-tts Python package, and an internet connection to reach the online TTS service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The skill can send submitted text to Microsoft-operated cloud TTS infrastructure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit sensitive text unless that data transfer is approved; use an offline TTS path for confidential content.
+
+Risk: The release includes code-loading and setup patterns that could execute unreviewed third-party Python code.
+
+Mitigation: Review before installing, use a dedicated virtual environment with pinned dependencies, remove the hard-coded /home/vincent sys.path override, and avoid trust_remote_code examples unless pinned and sandboxed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vincentlau2046-sudo/skills/tts-cosyvoice)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Files]
+
+**Output Format:** [Markdown guidance with bash commands; generated outputs are MP3 audio files and optional SRT subtitle files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, the edge-tts Python package, and an internet connection to reach Microsoft-operated TTS infrastructure.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

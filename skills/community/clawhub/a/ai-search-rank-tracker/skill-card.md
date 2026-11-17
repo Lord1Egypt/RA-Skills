@@ -1,44 +1,63 @@
-## Description: <br>
-Track whether ChatGPT, Claude, Gemini, and Perplexity recommend a startup or brand across a prompt set. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Estimates AI search visibility for a brand across prompt sets and produces reports with mention, rank, competitor, sentiment, and visibility score data.
 
-## Publisher: <br>
-[x-rayluan](https://clawhub.ai/user/x-rayluan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[x-rayluan](https://clawhub.ai/user/x-rayluan)
 
-## Use Case: <br>
-External developers, founders, marketing teams, and AI SEO practitioners use this skill to run prompt sets against configured model providers, detect brand mentions and competitors, estimate ranking and sentiment, and generate visibility reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reports may represent simulated or estimated AI visibility rather than verified direct results from each named service. <br>
-Mitigation: Treat scores and rankings as directional analysis, disclose that limitation when sharing reports, and review raw responses and errors before making business decisions. <br>
-Risk: Prompt sets and provider calls can expose sensitive brand, competitor, or market strategy details to configured AI providers or routing services. <br>
-Mitigation: Use non-confidential prompt sets unless the provider and routing path are trusted, and keep API keys in environment variables rather than checked-in files. <br>
-Risk: Missing keys, quota limits, or provider errors can create zero scores or incomplete results that look like poor brand visibility. <br>
-Mitigation: Check generated report errors and rerun failed engines before sharing or comparing visibility metrics. <br>
+## Use Case:
 
+External users, marketing teams, founders, agencies, and developers use this skill to run prompt-set visibility checks for a company, product, or domain and generate simple brand monitoring reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/x-rayluan/ai-search-rank-tracker) <br>
-- [README](README.md) <br>
-- [Prompt database README](prompt-db/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, CSV, shell commands, configuration] <br>
-**Output Format:** [JSON, Markdown, and CSV report files with console status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include brand mention status, rank estimates, competitors, sentiment, scores, prompt metadata, raw excerpts, and provider errors when calls fail.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Reports may be misleading if simulated AI-engine responses are treated as actual ChatGPT, Claude, Gemini, or Perplexity rankings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat reports as estimates unless the implementation is changed to query those services directly or labels results as simulations.
+
+Risk: Path-handling bugs can read or write outside intended folders.
+
+Mitigation: Restrict promptPack values to bundled pack names and review generated report paths before running the skill.
+
+Risk: Prompts, brand strategy, or related inputs may be sent to configured AI backends.
+
+Mitigation: Avoid confidential prompts or brand strategy, and use scoped API keys through reviewed environment configuration.
+
+Risk: CSV exports may be unsafe to open without review.
+
+Mitigation: Open generated CSV exports cautiously and inspect content before importing them into spreadsheet tools.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/x-rayluan/skills/ai-search-rank-tracker)
+- [README.md](artifact/README.md)
+- [Prompt Database README](artifact/prompt-db/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, csv, shell commands, configuration guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated report files in JSON, Markdown, and CSV.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports should be reviewed as visibility estimates, especially when generated from simulated assistant responses.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

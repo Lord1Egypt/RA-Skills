@@ -4,6 +4,2126 @@ All notable changes to outlook-graph-mcp are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/);
 this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+## [1.33.0] — 2026-11-16
+
+To Do due dates, reminders and repeat rules are sent in the configured time zone, and a relative
+`due` such as `+7d` is worked out before it is sent. A new opt-in tool sets a contact's photo. The
+release check sends its sign-in token only to Microsoft Graph. 78 tools, 71 by default.
+
+### Added
+
+- **Opt-in `contact_photos` toolset adds `outlook_set_contact_photo` (#121).** Sets or replaces a
+  contact's photo from a JPEG, PNG or GIF file in `attachments_dir`, so a contact made from a
+  business card can get its picture without a trip to Outlook on the web. The type is read from the
+  file's bytes, and the file must be 20 MiB or less (this server's limit; Graph's own store limit
+  still applies). Anything else is refused before it is sent. Outlook may re-encode the image: on a
+  personal account it kept PNG and GIF uploads as JPEG. Needs `contacts_write`, which with this
+  group loaded can upload a local file to Graph. The default tool list is unchanged.
+  (#249, @neilbrencode)
+
+### Security
+
+- **The release check sends the sign-in token only to Microsoft Graph.** `scripts/preflight.py`
+  followed a paging link (`@odata.nextLink`) from a Graph reply as given, with the token
+  attached, so a link naming another host would have been sent the token. Every request it makes
+  now goes through one check, and a URL outside `https://graph.microsoft.com/v1.0/` is refused
+  before anything is sent. The script runs only before a release and isn't part of the installed
+  package. ClawHub's scan of 1.32.0 named it.
+
+### Fixed
+
+- **To Do due dates, reminders and recurrence are sent in the configured time zone** (#72, #252).
+  `outlook_create_task` and `outlook_update_task` labelled every date `UTC` and sent no zone with
+  a recurrence, whatever `config.timezone` said. A zone-less `due` now goes out as written,
+  labelled with `config.timezone`. A `due` with a `Z` or an offset keeps its instant, sent as
+  wall-clock time in that zone. A recurrence is sent with that zone as `range.recurrenceTimeZone`
+  unless it already names one; some accounts store it as UTC whatever is sent, as seen live. To Do
+  keeps only the date of a non-repeating task's `due`, so there the zone decides which day is
+  stored and the hour is not kept. **Behaviour change:** on a non-UTC server a zone-less `due` now
+  means local time, as the docs have always said. On a UTC server a zone-less `due` and a
+  recurrence go out as before; a `due` with a `Z` or an offset, which went out as written, is now
+  sent as that instant's UTC time, so `2026-11-10T05:00:00+09:00` is sent as
+  `2026-11-09T20:00:00`. A `config.timezone` Graph refuses (`EST` and five others) falls back to
+  UTC, as calendar events do.
+- **`outlook_list_tasks` and `outlook_get_task` return `due_time_zone` beside `due`.** On some
+  accounts Microsoft keeps a repeating task's due in the zone it was sent in, so a bare time could
+  be read as UTC and reported on the wrong day; some accounts store it as UTC.
+- **A relative `due` is worked out before it is sent.** `due="+7d"` passed validation and then
+  reached Graph as the literal text `+7d` (#74).
+
+## [1.32.0] — 2026-11-14
+
+Event times can be relative (`+2h`, `now`), `outlook_update_event` can add an online meeting, and
+the docs say plainly that some personal accounts ignore `is_online`. Moving a repeating task's due
+date is refused, because Microsoft would leave a duplicate task. On a Mac, the "Not
+authenticated" that installs and upgrades have reported since Oct 26 is fixed.
+
+### Fixed
+
+- **"Not authenticated" on a Mac after an install or upgrade since Oct 26 (#244).** outlook-mcp
+  keeps the sign-in in the Mac Keychain through azure-identity, Microsoft's sign-in library.
+  azure-identity 1.27.0, released 2026-10-26, saves it under a different Keychain entry, and
+  outlook-mcp accepted any newer azure-identity. So an install or upgrade from that day on
+  looked in the new entry, found nothing, and reported "Not authenticated", although the
+  sign-in was still there. azure-identity is now held below 1.27, so the original entry is read
+  again. After upgrading, run `outlook-mcp status`. If it still says not authenticated, run
+  `outlook-mcp auth` once: a sign-in made after Oct 26 went to the new entry, which this release
+  doesn't read. Only Macs were affected. #244 tracks reading either entry and moving the sign-in
+  across, so the cap can be lifted.
+
+- **`outlook_update_task` refuses to move a repeating task's due date (#242).** Microsoft
+  accepted the change and the list then held two tasks, the original and a copy, both with the
+  new due date. Sending the repeat rule with its start moved, in the same request, still made the
+  copy. The tool now reads the task first and, if it repeats, refuses before anything is sent,
+  pointing to the Microsoft To Do app. A repeating task's other fields, and the due date of a
+  task that doesn't repeat, change as before; a due change now costs one extra read.
+
+- Missing attachment paths in `outlook_send_with_attachments` and `outlook_attach_to_draft`
+  return the file-not-found message to the client instead of a generic tool error (#232,
+  @benjamin-di).
+
+- **`is_online` is described as it behaves, and `outlook_update_event` takes it (#70).** Graph
+  honours `isOnlineMeeting` on some personal accounts and ignores it on others, while
+  `outlook_create_event`'s description, the README and `SKILL.md` said it never works. They now
+  say it may have no effect on some personal accounts. `outlook_update_event` gains
+  `is_online=True`, which adds an online meeting. `is_online=False` is refused: Graph accepts it
+  and keeps the meeting, unchanged 90 seconds later, on a personal account. On an event with
+  attendees, `is_online` needs `mail_send` under a policy that withholds it, as a subject, body
+  or location change already does. That the join details reach them is assumed, not
+  observed: the live tests create no attendees. (#234, #240, @neilbrencode)
+
+- **`outlook_create_event` and `outlook_update_event` accept relative times for `start` and
+  `end`** (`+2h`, `now`, or `7d` for seven days ago), as the server's other date arguments
+  do. They passed validation and were then sent to Microsoft as typed, which refused the
+  request. A relative time is now sent as local time in the event's own time zone, so the
+  event keeps that zone; ISO 8601 times are still sent exactly as written. Three cases are
+  refused instead, before the event is written: an event stored in a Windows-named time zone
+  ("Pacific Standard Time", as Microsoft has returned repeating events), where the time has
+  to be given as local time without a zone; a time in the interval a zone repeats when
+  daylight saving ends, where it names two moments, so a time outside that interval has to
+  be given; and a relative time on an all-day event, which Microsoft needs at midnight. (#74,
+  #237, @neilbrencode)
+
+### Changed
+
+- **`outlook_create_event` and `outlook_update_event` report `is_online` (#70).** When the call
+  asked for an online meeting (`is_online=True` on create, any `is_online` on update), the
+  result carries `is_online` as Graph's reply states it, so an account that ignored the request
+  shows `false` on the call itself. It is omitted when the reply has no such field, and every
+  other result is unchanged.
+
+- **`outlook_create_event` and `outlook_update_event` report a relative `start` or `end` as it
+  was written (#74).** Each end given as a relative time is in the result, with its zone, in
+  the form the read tools use: `"start": "2026-11-04T17:00:00 (America/Los_Angeles)"`. So a
+  `start="7d"` is seen to make an event in the past. An end given in ISO 8601 is not echoed,
+  and a call with no relative time returns what it did before.
+
+### Security
+
+- `uv.lock` moves opentelemetry-api to 1.45.2 (GHSA-mf5v-w3w3-f6cg: quadratic-time `traceparent`
+  parsing). It arrives through the Graph SDK's tracing, and nothing here parses a `traceparent`
+  from outside.
+
+## [1.31.4] — 2026-11-03
+
+Follow-ups to the 1.31.3 hardening: more ways of naming the home folder are recognised, cursors
+and headers are checked more strictly, and failures say more plainly what happened.
+
+### Security
+
+- **`attachments_dir` checks recognise more spellings of the home or settings folder.** A
+  folder that holds home by another route is refused: on macOS, the Data volume and the
+  folders above it; on Windows, `\\?\C:\`-style device spellings, which are treated as the
+  drive path they name. The check never looks anything up on another filesystem, so loading
+  the config makes no network or directory-service request.
+- **An event's time-zone name is checked** before it goes into a request header.
+- **Document-reading errors use fixed phrases.** When `outlook_read_attachment` cannot read a
+  PDF or XLSX file, the error is one of three plain sentences (damaged or not a valid file,
+  hit a size or time limit, unexpected parser problem) instead of an internal exception name.
+
+### Fixed
+
+- **Malformed cursors are refused cleanly.** A pagination cursor's `skip` must be a
+  non-negative count; a delta link may carry only the query options its endpoint uses; a
+  digest token that is not a non-empty string is refused by name.
+- **A reply's text is placed above the quote** even when the quoted message contains the
+  text `<body`, or the draft's `<head>`, which can carry the original's styles, contains
+  `<body` or `<hr`.
+- **`format="html"` and `format="full"` message bodies drop control characters,** as text
+  bodies already did. A form feed becomes a space instead: HTML treats it as whitespace, and
+  deleting it could join a tag to its attribute.
+- **A download that finds `attachments_dir` changed mid-download** now gives the same refusal
+  as the other attachments-folder refusals.
+
+### Changed
+
+- **`outlook_reply` / `outlook_forward`: clearer failure messages.** A server error while the
+  reply is being created says it was not sent. When a draft made on the way could not be
+  cleaned up after a failure (these two tools, and the reply and forward drafts of the draft
+  tools), the error says a draft may remain in Drafts and gives its id.
+- **The inbox-rule write refusal** says a changed setting takes effect only after a restart.
+
+## [1.31.3] — 2026-11-02
+
+Hardening: what an email can steer the agent into, and what a config can point it at.
+
+### Security
+
+- **Attachment text is decoded only from standard text charsets.** A sender chooses the
+  charset a file declares, so `outlook_read_attachment` and `as_content` downloads now decode
+  text only from real text charsets; anything else comes back as raw bytes (or, for
+  `outlook_read_attachment`, a message that it cannot decode the file).
+- **Downloads never replace a file or create hidden names.** `outlook_download_attachment`
+  and `outlook_download_task_attachment` refuse a name that is already taken (a symlink there
+  counts), a name starting with a dot, and any folder starting with a dot below
+  `attachments_dir`. Pick a new `save_path`.
+- **`attachments_dir` must be a folder of its own.** It must be absolute, and cannot be the
+  home folder, a folder that contains it, or a folder that contains the settings folder;
+  subfolders are fine and the default is unchanged. A config that breaks the rule fails to
+  load at startup: the server starts in its safe state and the CLI prints a repair line.
+  A `config.json` that repeats a key is refused, and `OUTLOOK_MCP_EXPECTED_USERNAME` now
+  follows the `client_id` rule (it supplies the value only when the file has none).
+- **Writing into someone else's calendar or To Do list needs `mail_send`.** Creating or
+  updating an event, attaching a file to an event, creating or updating a task, checklist
+  text and task attachment uploads in a calendar or list another person owns are shown to
+  them like an invitation, so they need `mail_send` as well.
+- **Inbox rules with no reported enabled state count as on.** The forwarding-rule safety
+  checks no longer treat a rule as off when Graph does not say.
+- **Sender verification uses `header.d` only** to decide DKIM alignment.
+
+### Changed
+
+- **`outlook_list_task_lists` shows `is_owner` and `is_shared`** for each list.
+- **Draft results list every recipient** (to, cc, bcc, reply_to), so the user can check them
+  before sending. The README no longer calls `mail_drafts` "safe".
+- **Refusals about settings name the setting** without spelling out the edit.
+
+### Fixed
+
+- **Event attachments and reply/forward drafts are not re-sent after a Graph server error.**
+  A 5xx mid-request is reported rather than repeated, so one attachment or draft cannot be
+  created twice.
+
+## [1.31.2] — 2026-11-01
+
+Clearer contact updates, from @benjamin-di, and a pypdf security floor for PDF attachments.
+
+### Fixed
+
+- **Contact updates say what `""` does.** `outlook_update_contact` now tells the agent that
+  a text field passed as `""` is cleared, and that `job_title` is the job and `company` the
+  employer, for +21 proxy tokens on the default surface and no ceiling raised. From
+  @benjamin-di, with thanks (#216).
+
+### Security
+
+- **The `documents` extra requires pypdf 6.21.4.** `outlook_read_attachment` parses PDFs with
+  pypdf, and versions before 6.21.4 can loop or use large amounts of memory on a crafted PDF
+  (GHSA-x3rh-gjgm-fmqc, GHSA-62m5-6wh8-28x7, GHSA-4vqv-7265-gm2w, GHSA-42gh-23hr-vphw,
+  GHSA-mfr5-77xh-9j7h, GHSA-cggf-277g-3q54, GHSA-5849-834g-hvw5). The parse already runs in a
+  worker that is killed past 256 MiB or 30 seconds, so such a PDF failed that one read rather
+  than the server. The floor was 6.21.2, so upgrading this package kept an older pypdf; it
+  now moves it to 6.21.4 or later.
+
+## [1.31.1] — 2026-10-31
+
+Plain-text reads, reported by @uni5592427, with thanks (#124).
+
+### Fixed
+
+- **`format="text"` returns text.** `outlook_read_message` and `outlook_read_messages`
+  returned a message's stored body for `text`, the default, and for most mail that is HTML:
+  `text` and `html` gave the same bytes, and the agent paid for the layout markup on every
+  read (#124). Both now send Graph's `Prefer: outlook.body-content-type="text"`, the batch
+  read on each sub-request, so Graph converts the body before it is returned. A `concise`
+  read asks for text whatever the `format`, so `body_preview` is text too. `html` and `full`
+  are unchanged; `full`'s `body` is still the stored body.
+- **The docs no longer call `format="full"` "both".** One read returns one body type, so
+  `full` gives the stored body, usually HTML, in both `body` and `body_html`; it never
+  carried a plain-text half. The README and the tool description now say so and point a
+  plain-text reader at `text`.
+
+### Security
+
+- **A `text` read no longer hands the agent a message's raw HTML.** Everything a sender put
+  in the markup — comments, `<style>` blocks, attributes — reached the model as part of the
+  body, a channel prompt injection uses. A `text` read now gets Graph's own text rendering of
+  the body (#124). Text hidden only by styling, such as `display:none`, may still be rendered:
+  a body remains untrusted content either way.
+
+### Changed
+
+- **The release preflight checks the original-MIME export.** `scripts/preflight.py` reads
+  the newest message's `$value` the way `outlook_export_message` does (`message/rfc822`, no
+  compression, no redirects), status only, so a 403 or 501 there blocks a release. Inbox
+  rules stay unprobed on purpose: whether a personal mailbox allows them is per account, and a
+  known refusal would block every release.
+
+## [1.31.0] — 2026-10-30
+
+Original MIME export, from @benjamin-di, with thanks (#210).
+
+### Added
+
+- Opt-in `mime` toolset adds `outlook_export_message`: original message MIME as a `message/rfc822` resource blob after JSON metadata with byte count and SHA-256, bounded to 10 MiB on the existing sign-in (#210).
+
+## [1.30.2] — 2026-10-29
+
+A fix to the 1.30 rules listing, from @hrgupta, with thanks (#206).
+
+### Fixed
+
+- **`outlook_list_rules` shows what a rule excludes.** `exceptions` is a predicates block on
+  the rule itself, beside `conditions` — `MessageRulePredicates` has no `exceptions` member,
+  so a listing that looked inside `conditions` never found one. A rule that forwards everything
+  except a set of mail therefore listed as if it caught everything, which is the question a rule
+  listing exists to answer. The block is now serialized alongside `conditions`, scrubbed like
+  every other caller-visible string, and omitted when unset.
+
+## [1.30.1] — 2026-10-28
+
+### Fixed
+
+- **The MCP registry lists the 1.30 tools.** 1.30.0 reached PyPI, but the registry refused
+  its `server.json` description at 101 characters (its limit is 100), so it kept showing
+  1.29.0. The description is shorter, and a test now holds the limit, so CI catches it before
+  a release instead of the registry after one. No code change from 1.30.0.
+
+## [1.30.0] — 2026-10-28
+
+Inbox rules, from @hrgupta, with thanks: four opt-in tools list, create, change and delete
+server-side inbox rules (#128). They are off by default, a rule that forwards mail also needs
+`mail_send`, and not every personal mailbox allows rules; a refused listing says so (#203).
+The README gains a short What's new (#202). 76 tools, up from 72: the four rule tools are
+opt-in, so 71 load by default and the default surface stays at 11,130 proxy tokens.
+
+### Added
+
+- **Inbox rules: `outlook_list_rules`, `outlook_create_rule`, `outlook_update_rule`,
+  `outlook_delete_rule`.** Graph's `/me/mailFolders/inbox/messageRules` was previously
+  documented here as a dead end on personal accounts; it is not (see ROADMAP). Rules are
+  server-side, so they keep running with every client closed. `outlook_update_rule` reads the
+  rule before patching it, because Graph replaces a rule's `actions` object wholesale — a
+  re-point that did not send the other actions back would silently clear them. The three write
+  tools sit behind a new `mail_rules` permission category and need `MailboxSettings.ReadWrite`
+  on the token, which the new `mailbox_settings_write` config key adds to the sign-in: the
+  default consent set asks only for `MailboxSettings.Read`, and consent is per requested scope,
+  so the portal permission alone would not put it in the token. `outlook_list_rules` returns each
+  rule's conditions and actions, not only its name and status — a forwarding rule you cannot see
+  is the one that matters. Overlapping updates of one rule are serialized in-process; Graph
+  returns no `@odata.etag` on this endpoint, so there is no `If-Match` and the last write wins
+  across processes. The `mail_send` gate follows the indirect routes as well: a forwarding rule
+  behind a `stop_processing_rules` rule starts delivering mail when the forwarding rule is
+  moved up, or when that stop rule is reordered, disabled or deleted, so those changes require
+  `mail_send` too — none of them names a forwarding address. A rule that stops processing is
+  also one carrying `permanentDelete`, a null or omitted sequence is not sequence zero, and a
+  cut-short rule listing is "cannot tell" rather than "nothing hidden". Graph assigns rule order:
+  a requested `sequence` was accepted but not honoured on a live personal mailbox, so the tools
+  return the stored value as authoritative, and add `sequence_requested` when it differs from
+  the request. Reordering a *disabled*
+  forwarding rule does not demand `mail_send`, nor does repairing a rule in the same call that
+  switches it off (what lands is still disabled), and `mailbox_settings_write` is refused
+  alongside `read_only_consent` rather than being silently ignored. `outlook_list_rules` also
+  reports `has_error`, and both read and write paths walk the model's own attributes instead of
+  a hand-kept field list, so a field Graph adds later is neither hidden from the read nor
+  dropped from an update. A refused listing says it is either the read consent or a mailbox
+  that refuses rules, rather than pointing at the dead-ends page: a live personal mailbox
+  whose token reads its categories under that same scope still answered 403 there.
+
+  The four rule tools are their own **opt-in** `rules` toolset group: with
+  `OUTLOOK_MCP_TOOLSETS` unset they do not load, so the surface every user pays for stays at
+  71 tools and 11,130 proxy tokens, under the 11,250 ceiling. They load when the
+  group is named, or when `mailbox_settings_write: true` is set and no selection was made —
+  three of the four cannot work without that scope, so asking for it is treated as asking for
+  the tools, without overriding a narrower `OUTLOOK_MCP_TOOLSETS` an operator chose. Both
+  surfaces are budgeted separately: the 71-tool default under 11,250, and the rules-enabled
+  75-tool surface under 12,150 (measured 11,951).
+
+## [1.29.0] — 2026-10-27
+
+A contributor release, nearly all of it from @benjamin-di, with thanks. A meeting invitation
+now leads to its calendar event (#195), calendar listings name their owner (#193), an instance
+can be pinned to one sign-in (#179), and settings can come from `OUTLOOK_MCP_` environment
+variables that may only tighten security (#180). The tool schemas every client reads each turn
+are a quarter smaller: the default surface is 11,130 proxy tokens, down from 14,813 in 1.28.0.
+Tool count unchanged at 72, 71 by default.
+
+### Added
+
+
+- **Calendar listings include the owner and private-item visibility permission** (#193).
+  Calendars with the same name can be distinguished without another Graph request;
+  missing metadata stays null. No change to requests, scopes or the tool surface.
+
+- **Resolve an invitation with `outlook_get_event(message_id=...)`** (#195), using Graph's
+  association to the recipient's calendar event, then reading its current details.
+  Exactly one of `event_id` and `message_id` is required. Existing event-ID requests
+  are unchanged. Event details expose nullable organizer/proposal/cancellation flags
+  and attendees' proposed slots with their original time zones. An invitation with no
+  calendar event is refused with the reason it may have none (the meeting was cancelled
+  or removed), never matched by subject (#197). No write or new scope.
+
+- **Optional `expected_username` pins an instance to its sign-in username** (#179). A cached
+  record for another user is refused before credential construction; interactive
+  sign-in checks the returned record before saving or using it. No change when
+  unset, no tool-surface change, and no deletion of another instance's shared tokens.
+
+- **Optional `OUTLOOK_MCP_` inputs for existing configuration fields** (#180). Client ID input
+  may supply an app when the file has none; tenant/timezone inputs may override. Security
+  inputs may only tighten the valid file's policy or its defaults. Attempted loosening and
+  malformed or misspelt security inputs refuse startup and name the variable. Shared by
+  auth/serve/status; no automatic file writeback, new dependency, tool or scope. File-only
+  loading is unchanged.
+
+### Changed
+
+- **The tool schemas every client reads each turn are a quarter smaller** (#198). The schemas no
+  longer carry the `title` Pydantic writes on every input (`"title": "Unread Only"` on
+  `unread_only`) and on every tool, or an optional input's `null` branch and
+  `"default": null`, which say nothing that leaving the input out does not. The 71-tool
+  default surface goes from 14,846 to 11,130 proxy tokens, and its budget ceiling comes down
+  with it, to 11,250. No description changed, and the server accepts exactly the same
+  arguments: the SDK checks them against each tool's own model, so an explicit `null` still
+  works. Inputs named `title` (contacts, tasks) are kept, as is a `null` allowed beside some
+  other default.
+
+### Fixed
+
+- **HTTP startup explains a wildcard bind without allowed client hosts, and token-file
+  content errors name the token format instead of file permissions.** Wildcard-port
+  allow-list entries also accept the bare Host/Origin used on default HTTP/HTTPS ports;
+  the refused GET event stream advertises only POST (#191).
+
+- **On macOS, a PDF or spreadsheet that hits a parser limit reports that limit, not
+  "Operation not permitted".** When the parser had just exited, macOS refused the cleanup
+  kill with EPERM instead of saying no such process, and that refusal replaced the
+  limit's own error. It now means nothing is left to kill, as the no-such-process answer
+  already did; a parser still running is killed as before (#199).
+
+## [1.28.0] — 2026-10-25
+
+### Added
+
+- **Folder arguments take a path, so any folder can be named, including one whose name another
+  folder shares** (#144). `Inbox/Travel/Flights` names Flights under Travel under Inbox, and a `/`
+  inside a folder's name is written `//` (`Inbox/Q1//Q2`; not a backslash, which JSON reads as a
+  plain `/`). The first part is a well-known name, as before with no request, or a top-level
+  folder; each later part is matched case-insensitively among the previous folder's children,
+  so a path costs one listing per level, where a nested name walks the whole tree. Every tool
+  that takes a folder gets it through `resolve_folder_id`: `outlook_list_inbox`,
+  `outlook_search_mail`, `outlook_move_message`, `outlook_copy_message`, `outlook_batch_triage`'s
+  move and `outlook_list_inbox_delta`. Until now a `/` meant an id, so a path went to Graph as
+  one and failed, a name containing `/` could not be named at all, and a name used under two
+  parents could only be reached by its id. An id-shaped reference whose first part names no
+  folder still goes through as an id; a path that goes wrong below a folder that exists, or that
+  has an empty part, keeps the resolver's own message. The ambiguity error now lists the
+  candidates' paths (the first five), `outlook_list_folders(recursive=True)` returns each
+  folder's `path` in the same form, and the path rule is in the server instructions. No lookup
+  cache: a cached path goes stale silently
+  when a folder is renamed and another takes its name.
+- **Event keys: find "the event for booking X" again** (#148). An agent recording a flight,
+  a stay or an appointment had nothing stable to find it by when a change to the same booking
+  arrived, only a subject and a time that both change, so it created a second event.
+  `outlook_create_event` and `outlook_update_event` take `key`, the caller's own reference,
+  stored in a hidden extended property this server owns. `outlook_get_event` returns it (`null`
+  when unset), and the default `outlook_list_events` listing shows it on the events that carry
+  one. The new `outlook_find_event_by_key` finds events by key in the default calendar or a named
+  one, with no date window, and returns single events and series masters, never occurrences. A
+  key is 1–128 letters, digits and `. _ : @ -`, refused otherwise before anything is sent. One
+  line in the connect-time instructions tells the agent to look a key up before creating. 68 → 69
+  tools.
+- **Files on calendar events** (#153). Drafts and To Do tasks could carry attachments and events
+  could not, so an agent putting a flight on the calendar had nowhere to put the e-ticket. The new
+  `outlook_attach_to_event` attaches files from `attachments_dir` through the same code as
+  `outlook_attach_to_draft`: every path is confined by `resolve_attachment_path`, a file up to
+  3 MB is one POST, and a larger one uses Graph's upload session for events. It returns the new
+  attachment IDs (none yet for a file sent through the upload session).
+  `outlook_remove_event_attachment` removes one, and `outlook_get_event` now lists
+  `attachments` (ID, name, size, type and whether inline, never the bytes), reading them with a
+  second request only when the event has any. Attendees are not sent the files when they are
+  attached; they get them with the event's next update. So under an `allow_categories` that
+  withholds `mail_send`, attaching to an event with attendees is refused, as rewording one is, and
+  the tool is marked destructive. A missing file is refused with a message the agent can read.
+  69 → 71 tools.
+- **The read tools can say whether Microsoft verified who a message is from (#130).** A From
+  line is whatever the sender typed, so mail claiming to come from the user's bank or manager
+  could be spoofed, and nothing told the agent which it was. `outlook_read_message` and
+  `outlook_read_messages` take `include_sender_auth=True`, which adds `sender_authentication`:
+  `authenticated`, the From domain, Microsoft's `dkim`, `dmarc` and `compauth` results, and a
+  short `reason`. It is read from the `Authentication-Results` header Microsoft stamps on
+  receipt, and only the topmost one counts, since a sender can write that header into the
+  message too. The header is parsed as RFC 8601, with comments and quoted strings respected.
+  `authenticated` is true only for a pass aligned with the From domain: `dmarc=pass` for it,
+  `dkim=pass` signed by it or a subdomain, or `compauth=pass` where every `header.from` is it.
+  A failing `dmarc` or `compauth`, either stated twice, another service's header, or one that
+  cannot be parsed authenticates nothing. `authenticated` vouches for `from_domain` only, never
+  for the display name, and `false` means unverified, not spoofed. Off by default, so the
+  default read sends the same request and returns the same fields as before.
+  The opt-in read selects `internetMessageHeaders` and every field the formatters read, and
+  `test_select_covers_the_formatter.py` pins that list against both. The headers themselves
+  are not returned. The instructions every client receives say to use it before acting on a
+  message because of who sent it. When it merged, the opt-in read brought the tool surface
+  from 14,197 to 14,272 proxy tokens, inside the 14,350 ceiling of the time.
+- **Attachments can be read as text: PDF pages, spreadsheet cells and plain text (#182).**
+  `outlook_read_attachment` returns readable PDF pages, XLSX cells/formulas/saved results,
+  or text in its declared charset as paged tool content, without saving a server-side file. PDF/XLSX parsers
+  are an optional `documents` extra; the tool is in the opt-in `documents` group, off by default.
+  The parent serializes parsers and enforces RSS and wall limits on every platform. Parser errors
+  are bounded and cleaned, metadata is checked before download, and worker fields are validated.
+  Missing text, missing formula caches and parser limits
+  are explicit; no OCR or formula recalculation is performed. A worksheet name over 31
+  characters is cut for display and ends in its one-based position, so names sharing a prefix
+  stay distinguishable (#187); the original names still select the workbook data. Byte
+  downloads are unchanged.
+- **An optional streamable-HTTP transport** (#126), for a server on another machine or in a
+  container, or a client that cannot spawn a local process.
+  `OUTLOOK_MCP_TRANSPORT=streamable-http` serves `/mcp` through the SDK's own streamable-HTTP
+  app, stateless and answering JSON, on `OUTLOOK_MCP_HTTP_HOST`/`OUTLOOK_MCP_HTTP_PORT` (default
+  `127.0.0.1:8000`). It never starts without a token, loopback included (`OUTLOOK_MCP_HTTP_TOKEN`,
+  or `OUTLOOK_MCP_HTTP_TOKEN_FILE` naming an owner-only file that is not a symlink), and every
+  request must carry it as a bearer or gets `401`. Host and Origin are checked against an
+  allow-list (`OUTLOOK_MCP_HTTP_ALLOWED_HOSTS` for a public name). It speaks plain HTTP, so
+  TLS belongs to a proxy in front. stdio stays the default, unchanged; uvicorn is declared
+  directly. See the README's "Remote / HTTP transport".
+
+### Changed
+
+- **Where Graph honours the filter, `outlook_changes_since` follows mail received since its
+  first call's window (#156).** Graph keeps that call's `receivedDateTime` filter in later cursors,
+  so later rounds on those accounts report new mail
+  and, for older messages, only what Graph's message delta still sends for them: deletes, moves
+  out of the inbox and read/unread changes. A flag or category set on mail received before the
+  window is no longer reported. A token stored by an earlier version keeps following the whole
+  inbox until the digest starts over (no token, or a 410 resync).
+
+### Fixed
+
+- **A lone surrogate no longer ends the server** (#186). A lone UTF-16 surrogate has no
+  UTF-8 encoding. A text attachment whose declared charset decodes to one (utf-7 `+2AA-`, for
+  example) came back from `as_content=True` as text, an attachment name could carry one into
+  the same reply, and so could error text naming sender data. Each reached the SDK's stdio
+  writer, which raised, and the server process exited, so one email could end an agent's
+  session. In any other result the call failed with a bare `Error executing tool`. Such
+  attachment text now arrives as an embedded resource holding the original bytes, and
+  `sanitize_output`, error text and every tool's result replace any other lone surrogate with
+  U+FFFD (a split pair is joined back instead). No tool-surface change.
+- **An empty recipient list clears the recipients, instead of being read as "not mentioned"
+  (#183).**
+  A reply-all draft arrives with Graph's own `to` and `cc` already on it, and `if cc:` dropped
+  `cc=[]`, so the draft kept people the caller had explicitly removed — sending it mailed them.
+  Omitted (`None`) still leaves Graph's choice alone; `[]` now reaches the create call as an
+  empty collection, which is what Graph receives.
+- **A truncated image comes back as a resource, not as `ImageContent` (#183).** Detection stopped at
+  the signature, so a PNG cut before its IEND was sent as an image; a client that cannot open
+  it can reject the whole tool result. Each type must now finish the way it starts: PNG ends
+  with the IEND chunk itself (CRC included — the four letters alone were enough before), GIF
+  with its trailer, WEBP with a RIFF length that fits the bytes present. JPEG walks the
+  segments to the first scan and requires end-of-image after it, so a photo carrying a Samsung
+  trailer or a Motion Photo's appended video is still an image: decoders stop at EOI, and
+  refusing those would make a phone photo unviewable.
+- **`outlook_create_folder`'s `parent_folder` takes a name, as its description always said.** It
+  was validated as an id and nothing else, so "Junk Email" was refused locally and a user
+  folder's name reached Graph as an id. It now goes through the same resolver as every other
+  folder argument, paths included.
+- **`outlook_changes_since` no longer reports an inbox's history as new on its second call
+  (#156).**
+  On an inbox of more than about 1,000 messages, the first call stopped partway through Graph's
+  snapshot without saying so, and the next call reported the rest of the mailbox as new mail,
+  with every old high-importance or flagged message in `urgent_flagged`. The first call now asks
+  Graph for the last `fallback_window_hours` only. It also no longer counts every contact as new,
+  only those modified inside the window. Consumer mailboxes that ignore the mail filter
+  fall back to the client-side bound and report `_meta.mail_window_fallback`. An unfinished
+  mail bootstrap carries `mail_bootstrap_from` inside `delta_tokens`, so continuation
+  cannot count old snapshot items as new; pass the entire dictionary back. A new `has_more`
+  beside `delta_tokens` names any resource
+  the per-call cap stopped mid-sync, and a reply with no new cursor hands back the token passed
+  in instead of `None`.
+- **A mail search Graph cut short says so (#134).** Graph ends a message `$search` a little past 250
+  results with no `@odata.nextLink` and no error, whatever `$top` asks for (275 for pages of 25
+  or more, measured on an Exchange Online mailbox holding tens of thousands of matches; Graph's
+  documentation says up to 1,000), which reads exactly like the end of a complete search.
+  `outlook_search_mail`'s cursor now counts what it has served, and the last page of a search
+  that ends past 250 carries `incomplete`: older matches may be missing, and adding
+  `received<=` with the last message's date reaches them.
+- **Oversized inline attachment input is refused before whitespace normalization** (#129).
+  The exact decoded-size check remains, preceded by a cheap raw-length bound so a
+  whitespace-heavy argument cannot allocate a large split list before being refused.
+- **A large attachment that fails to upload no longer goes out missing (#125).** Files over
+  3 MB go up in chunks through an upload session, and no chunk's reply was read: a refused
+  chunk was skipped over, so `outlook_send_with_attachments` sent the draft and
+  `outlook_attach_to_draft` reported the file as attached without it. Each reply is now
+  checked. A refusal stops the upload with Graph's own error (the upload URL, which carries
+  its own authorization, stays out of it), and an upload Graph does not report as complete
+  (200 or 201), or a file that comes up short while it is read, fails as `IncompleteUpload`.
+  Nothing is sent after a failed upload, and `outlook_send_with_attachments` names the draft
+  it leaves in Drafts, so it can be deleted or finished with `outlook_attach_to_draft` rather
+  than duplicated by a retry. `outlook_attach_to_event` uploads through the same path.
+
+## [1.27.0] — 2026-10-24
+
+### Fixed
+
+- **Failures outside the Graph SDK reach the model with their text and a remedy.** Only SDK
+  errors were translated, so three others arrived as a bare `Error executing tool <name>`. A
+  stale cursor on a standalone delta tool (`410`, `syncStateNotFound`) now says to discard it and
+  sync again with no `delta_token`; the server log no longer carries that cursor either, which the
+  crash's traceback did. A failed `$batch` in `outlook_read_messages` carries Graph's own message
+  and the usual hint (back-off on `429`). A sign-in that lapses mid-session (a revoked or
+  idle-expired refresh token) gets the remedy startup would give: run `outlook-mcp auth`, or log
+  in again for `AADSTS70000`. And a reply that is not a JSON object is reported as an unreadable
+  Graph reply instead of as invalid input. `outlook_changes_since` still resyncs a stale token on
+  its own.
+- **`outlook_batch_triage` retries a throttled message instead of reporting it as failed.**
+  Graph answers a `$batch` with 200 even when it throttled some of the requests inside it, and
+  documents that the SDK's retry handler does not retry those; each comes back 429 with its own
+  `Retry-After`. `outlook_read_messages` has re-sent them since 1.12.0. The write batch goes
+  through the SDK adapter, whose retry handler covers the whole request, so it looked covered and
+  was not: a throttled move, flag or category change was returned as a per-message error. It now
+  re-sends just the throttled ones through the same `retry_throttled_subrequests`, up to three
+  times. If a re-send itself fails, only the re-sent messages are reported as failed, so the ones
+  an earlier round changed are not hidden behind an error. A batch Graph refused as a whole came
+  back as a successful call with every message marked `no response from batch` and Graph's reason
+  dropped; it is now one tool error in Graph's words, raised as every SDK call raises it.
+- **`outlook_batch_triage` no longer marks messages unread when asked to mark them read.**
+  `mark_read` treated any `value` other than `"true"` as unread, and the tool describes the value
+  as a status, so `"read"`, `"yes"` or `"True "` marked every message in the batch unread. It now
+  takes `true`/`false` or `read`/`unread`, in any case, and refuses anything else before sending.
+- **`outlook_search_mail`'s cursor moves to the next page.** Graph pages a message `$search`
+  only with `$skiptoken` (`$search` with `$skip` is `400 SearchWithSkip`), and
+  `build_request_config` dropped the token: no typed `users/*` query-parameters class has the
+  field. So every cursor fetched page one again, with `has_more` still true, and no search could
+  get past its first page. A cursor's page now goes out as the request plus Graph's
+  `$skiptoken`, which is what Graph's own `@odata.nextLink` is. The cursor also carries the
+  folder the search ran in, as `outlook_list_events`'s carries its calendar, so a later page
+  stays in that folder whatever `folder` it is passed.
+- **A contact's company can be changed.** `outlook_create_contact` takes `company` and
+  `outlook_get_contact` returns it, but `outlook_update_contact` could not write it, so a contact
+  who moved to another employer kept the old one unless it was deleted and recreated (#173).
+  `outlook_update_contact` now takes `company` (Graph's `companyName`), changed only when given,
+  like the tool's other fields.
+- **A send answered 503 or 504 is no longer sent again.** Every SDK request passes through
+  kiota's `RetryHandler`, which re-sends a request answered 429, 503 or 504, and POST and PATCH
+  are among the methods it retries. A 503 or 504 does not say the write failed, only that its
+  answer did not arrive, so a message, an invitation, an event update or an RSVP could go out up
+  to four times, and a draft that had already gone out could be reported as a failed send
+  (#131). The tools that can email someone (`outlook_send_message`, `outlook_reply`,
+  `outlook_forward`, `outlook_send_draft`, `outlook_send_with_attachments`,
+  `outlook_create_event`, `outlook_update_event` and `outlook_rsvp`) now make that write with
+  kiota's retry off. A 429 is still sent again after `Retry-After`: Graph fails a throttled
+  request and asks for it again. On a 5xx the error says the write may already have gone
+  through and where to check (Sent Items, the calendar, the event), instead of "Retry after a
+  short delay". Every other call keeps kiota's retries.
+- **A reply keeps its paragraphs, line breaks and the quoted original.** `outlook_reply` sent
+  plain text as the reply action's `comment`, and on an HTML message Graph joins its lines
+  with spaces, so a multi-paragraph reply with a list arrived as one run-on paragraph; on a
+  plain-text message the reply also turned into HTML. `is_html=True` sent `message.body`
+  instead, which replaces the whole body: the reply went out without the original (#167).
+  `outlook_forward`'s `comment` had the first problem. Both now create the reply or forward
+  draft with no text, patch the text in above the quote Graph wrote and send the draft: on an
+  HTML message right after the draft's `<body>` tag, plain text converted first (blank lines to
+  paragraphs, line breaks kept, `- ` or `* ` lines to a list, everything else escaped); on a
+  plain-text message as plain text. Checked against an Exchange Online mailbox. The send runs
+  without kiota's replay (#131). If the patch fails or Graph refuses the send, the draft is
+  deleted; after a 5xx, or a send cut off before Graph answered (a dropped connection), it is
+  left in Drafts and the error says to check Sent Items first and gives the draft's id. A
+  forward without a comment is still one call. The tool surface is unchanged.
+
+### Added
+
+- **`outlook_read_message` takes a Message-ID.** An agent often holds a message's Message-ID
+  header value (`<abc@example.com>`) rather than its Graph ID: from a forwarded message's
+  headers, a reply's `In-Reply-To`, or another tool. `message_id` now accepts one, recognised by
+  its `@`, which no Graph ID contains. It is looked up with an exact
+  `$filter=internetMessageId eq '...'` that selects only the ID, and then read as before, so the
+  response's `id` is the Graph ID every other tool takes. The value is matched exactly, angle
+  brackets included. Graph stores what the sender wrote, and a few senders leave the brackets
+  out. A Message-ID shared by copies in several folders is refused with their IDs instead of
+  guessed between. It costs one sentence in one docstring (+10 proxy tokens), with no ceiling
+  change.
+- **`outlook_create_event` takes `calendar`.** An event could be read from a secondary calendar
+  (`outlook_list_events`, #62) but only ever created in the default one (#141). `calendar` is
+  resolved the way `outlook_list_events` resolves it, with the same errors: omitted, blank or
+  `"primary"` is the default calendar and costs no extra request; otherwise a display name or an
+  ID from `outlook_list_calendars`. A calendar Graph lists as read-only (`canEdit: false`, such as
+  a birthdays or holiday calendar) is refused before anything is sent, naming the calendars that
+  can be written; Graph's own answer is a 403 whose hint blames the account type. The tools that
+  take an event ID need no `calendar`: `/me/events/{id}` reaches an event on any of the user's own
+  calendars.
+- **A contact's birthday can be set** (#163). `outlook_get_contact` returned `birthday`, but
+  neither write tool could set one. `outlook_create_contact` and `outlook_update_contact` take
+  `birthday`, a date (`YYYY-MM-DD`). Graph stores a birthday as an instant, so it is sent as
+  that date at 11:59 UTC: the same calendar date in every time zone from UTC−11 to UTC+12,
+  where midnight UTC would be the day before everywhere west of Greenwich, and the time the
+  birthdays already in a mailbox are stored at. Anything but a plain date is refused before
+  anything is sent. There is no clearing a birthday yet.
+- **A contact's categories, notes and middle name can be written** (#175). `outlook_get_contact`
+  returned `categories` and `personal_notes`, but no tool could set them, and Graph's `middleName`
+  was neither read nor written. `outlook_create_contact` and `outlook_update_contact` take
+  `categories`, `personal_notes` and `middle_name`, and `outlook_get_contact` returns
+  `middle_name`. On update, `categories` replaces the contact's whole list, as
+  `outlook_categorize_message` does a message's: `[]` removes every category, and omitting it
+  leaves them alone. The update description says so, since adding one category with a one-item
+  list would drop the rest.
+- **A draft can start as a reply, a reply-all or a forward, in the message's thread** (#143).
+  `outlook_create_draft` takes `reply_to_message_id` (with `reply_all=True` for reply-all) or
+  `forward_message_id`, and creates the draft with Graph's `createReply`, `createReplyAll` or
+  `createForward`: in Drafts, in the thread, with the original quoted below, and nothing sent.
+  Until now the only way to answer in the thread was `outlook_reply` or `outlook_forward`, which
+  send at once, and a new draft with "RE:" in its subject started a new conversation. For a
+  reply Graph picks the recipients and subject, and a `to`, `cc`, `bcc`, `subject`, `reply_to` or
+  `importance` passed with it replaces Graph's; a forward needs `to`, as Graph requires. The
+  body goes in afterwards, by one patch, above the quote Graph wrote: Graph's `comment` joins a
+  multi-line text's lines with spaces on an HTML message, so paragraphs, line breaks and lists
+  would arrive as one run-on paragraph, and `message.body` replaces the quoted original. On an
+  HTML message the body goes right after the draft's `<body>` tag, where Outlook puts a reply,
+  leaving the original's markup as Graph wrote it; plain text is converted first, blank lines
+  to paragraphs, line breaks kept and `- ` or `* ` lines to a list, everything else escaped. On
+  a plain-text message the draft stays plain text, with the text above the quote. Both checked
+  against an Exchange Online mailbox. `deferred_send_datetime` works as for a new draft, set by
+  the same patch. If that patch fails, the new draft is deleted, so a failed call leaves no
+  half-made reply. The result adds `to` and `cc` as
+  Graph addressed the draft. `to` and `subject` are optional in the schema now; a new draft
+  still needs both and is refused without them. The tool surface grows by 138 proxy tokens.
+- **Mail bodies can be written in Markdown** (#168). `outlook_send_message`, `outlook_reply`,
+  `outlook_forward` (its `comment`), `outlook_create_draft` and `outlook_update_draft` take
+  `is_markdown=True`, beside `is_html`. Agents write Markdown, and until now it went out as text
+  with its asterisks showing, or with `is_html=True` as text that isn't HTML. A safe subset is
+  converted to HTML: paragraphs, line breaks, `-`, `*`, `+` and numbered lists, `**bold**`,
+  `*italic*`, `` `code` ``, backslash escapes, and `[text](url)` links to `https:` and `mailto:`
+  addresses only; an image, `![alt](url)`, becomes a link to it. Everything else, raw HTML
+  included, is escaped and shown as written; headings, quotes and code blocks stay text, and
+  underscores are not emphasis (`snake_case` names are common in an agent's mail). No new
+  dependency: the converter is about 80 lines in
+  `tools/_mail_body.py`, every pattern linear in the line's length. A reply or forward, and a
+  reply or forward draft (#143), puts the HTML above the quote, as #167 does; on a plain-text
+  thread the Markdown is sent as written and the reply stays plain text. `is_html` and
+  `is_markdown` together are refused. The supported subset is one `INSTRUCTIONS` bullet, sent
+  once per session, so no docstring grows; the five booleans add 97 proxy tokens to the tool
+  surface, within the 13,900 ceiling #143 set for the pair.
+- **A contact's email addresses can be added and removed one at a time** (#161).
+  `outlook_update_contact`'s `email` replaces every address with the one given, so an agent
+  asked to add someone's second address had to drop the first. `add_emails` and
+  `remove_emails` change only the addresses they name: the contact is read, the change is
+  merged into the addresses it holds (kept ones go back as read, display name included), and
+  the update is pinned to that read with `If-Match`, so an edit made in between is refused with
+  `412` instead of being overwritten (#87). Refused before anything is written: `email` together
+  with either list, the same address in both, an empty list, removing an address the contact
+  doesn't have, and a result of more than three addresses, the number of email slots Exchange
+  keeps per contact. `email` is unchanged.
+- **Contacts can be found by phone number, however it is written** (#165). Graph's contact
+  `$search` finds a number only as it is stored, so a number from a signature or a missed call
+  without its country code, or with a different one, found nothing, and an agent concluded the
+  caller was not a contact. `outlook_search_contacts` takes `phone` in place of `query`: it reads
+  the contact listing (pages of 1,000, up to 10,000 contacts; nothing is kept) and matches when
+  the shorter number's digits end the longer's, as written or without leading zeros, with at
+  least seven digits. `+44 20 7946 0018` finds `020 7946 0018`. Graph has no server-side
+  alternative: `$filter` on contacts reaches only `emailAddresses`. Fewer than seven digits is
+  refused. `query` searches are unchanged.
+- **Attachments as content, for clients that can't see the server's disk** (#129). The
+  attachment tools moved files only through `attachments_dir`, so a remote or sandboxed client
+  could neither read an attachment nor attach a file, and a local one needed a second tool call
+  to look at a PDF or image it had just downloaded. Both directions can now carry the bytes in
+  the call instead, opt-in, and nothing is read from or written to disk:
+  - `outlook_download_attachment` and `outlook_download_task_attachment` take `as_content=True`
+    in place of `save_path`, which becomes optional; a call passes exactly one of the two. The
+    result is a JSON block with `name`, `size` and `content_type`, then the attachment: PNG,
+    JPEG, GIF and WebP up to 5 MB as an image, text up to 100,000 characters as text, and
+    anything else, PDFs included, as an embedded resource holding the base64 bytes and their
+    type. Text that does not decode cleanly, or carries control characters, goes out whole as
+    a resource rather than altered. Over 10 MB is refused, pointing to `save_path`.
+  - `outlook_send_with_attachments` and `outlook_attach_to_draft` take inline files in
+    `attachments`, `[{name, content_base64, content_type?}]`, beside `attachment_paths`, which
+    becomes optional. Each is limited to 3 MB, Graph's simple-attachment size, so no inline file
+    takes the upload-session path. A malformed item, a name that is a path and an unknown key
+    are refused before anything is sent. A call with neither `attachment_paths` nor
+    `attachments` is refused too: the server ignores an unknown argument, so a misspelt one
+    would otherwise send the mail, or report "attached", with no file. An `attach_to_draft` with
+    an empty list used to succeed with nothing attached; it is refused the same way.
+  - An image comes back as an image only when its bytes open as one, by their signature: a
+    sender can name anything `chart.png`, and some model APIs reject a whole result whose image
+    does not decode. A real image labelled as another image type goes out as what it is.
+
+  The fence is unchanged: `resolve_attachment_path` still governs every path argument. An
+  inline file is bytes the agent already holds and could already put in a message body, so it
+  widens nothing; the caps are there for the model's context. The tool surface grows by 233
+  proxy tokens, to 14,197 with the rest of this release, and the budget's ceiling is raised
+  deliberately to 14,350.
+
+### Security
+
+- **The agent is told attachments are written by other people, not only their names.** With
+  `as_content`, an attachment's text and images reach the model straight from this server, so
+  the connect-time rule and SKILL.md now name attachments themselves. Where only an
+  attachment's name reached the model before, a text attachment's body now does.
+
+## [1.26.0] — 2026-10-23
+
+### Fixed
+
+- **Tool descriptions no longer carry the source file's indentation.** The SDK publishes each
+  tool's docstring as Python stores it. Python 3.13 strips a docstring's indentation when it
+  compiles it; 3.10–3.12 keep it, so on those versions every client paid for about 240 proxy
+  tokens of spaces on every turn. The tool-surface budget also measured a different number on
+  each Python, so a change measured on 3.13 could fit the ceiling locally and fail CI. The
+  descriptions are now dedented once, when each tool is registered, and the surface measures
+  13,004 on every supported version.
+- **A contact's job title no longer becomes part of its name.** `outlook_create_contact`'s
+  `title` writes Graph's `title`, the name prefix ("Dr.", "Ms."), which Graph folds into the
+  display name — so an agent filling in a business card that passed the person's job there got
+  back "Engineer Jane Doe" (#119). `outlook_create_contact` and `outlook_update_contact` now take
+  `job_title` (Graph's `jobTitle`), `outlook_get_contact` returns it, and `title` is described as
+  the prefix it is. `title` keeps its name and meaning, so existing callers are unaffected.
+  `outlook_update_contact` also takes `title` now, so a job already stuck in the prefix can be
+  corrected in place instead of by deleting and recreating the contact.
+- **A business or home phone number can be saved as one.** `outlook_create_contact` and
+  `outlook_update_contact` wrote every `phone` to `mobilePhone`, so an office number from a
+  business card was saved as a mobile and had to be moved by hand (#120). A new `phone_type`
+  argument (`mobile`, the default, `business` or `home`) files it under the matching Graph field.
+  Graph keeps business and home numbers as lists, and a write replaces that list with the one
+  number given — the same replace-not-merge rule the addresses follow.
+  `outlook_update_contact` also takes `clear_phones`, which empties the types it names, so a
+  number already saved as mobile moves to business in one update instead of leaving a copy
+  behind in mobile.
+- **A refused calendar update no longer claims nothing changed when it may have.** A series
+  update is pinned to the version it read, and Graph answers a stale pin with `412`. The hint
+  said "nothing was modified", but the SDK retries an update after a gateway timeout, and when
+  the first attempt had gone through, the retry is the one refused — so an agent reported a
+  change that landed as a failure (#96). The hint now says the change may already have been
+  applied and to re-read the item before trying again. Retry behaviour is unchanged.
+
+### Changed
+
+- **New installs get current Microsoft Graph libraries again.** 1.22.1 held `microsoft-kiota-*`
+  below 1.13 because `msgraph-core` 1.5.1 stopped rewriting `/me` under it, so every call
+  failed with `me-token-to-replace is invalid` (#80). `msgraph-core` 1.5.2 carries the fix
+  (microsoftgraph/msgraph-sdk-python-core#1129), so the cap is gone and `msgraph-core>=1.5.2`
+  takes its place. The floor is what keeps it fixed: `msgraph-sdk` still accepts 1.5.1, which
+  installs beside kiota 1.13+ and breaks `/me` the same way. The lock now resolves kiota 1.14.3
+  and `msgraph-core` 1.5.2, and `tests/test_me_rewrite_reaches_the_wire.py` fails on 1.5.1 with
+  kiota 1.14.3 and passes on 1.5.2.
+
+### Security
+
+- **The release pipeline runs only actions it can name exactly.** Every `uses:` in the CI and
+  publish workflows is pinned to a full commit SHA, with the version it was resolved from as a
+  comment; a version tag can be moved by the action's owner, a SHA cannot. Dependabot
+  (GitHub Actions only) opens PRs to move the pins. Publishing is split into three jobs: `build`
+  runs the checks, tests and build with no publishing token; `pypi` only uploads the built files,
+  with no checkout and no cache; `registry` publishes to the MCP registry.
+  `tests/test_workflows_are_pinned.py` holds both lines.
+- **Only a release tag can upload to PyPI.** The `pypi` job now runs in a `pypi` GitHub
+  environment limited to `v*` tags, so a workflow run started from a branch cannot publish,
+  and once PyPI's trusted publisher names the same environment, no other job in the workflow
+  can either. The environment checks only the tag's name, so the lock is as strong as the
+  rule on who may create a `v*` tag; RELEASING.md's appendix sets that up too. The manual
+  retry after a partial failure now names the release tag
+  (`gh workflow run publish.yml --ref vX.Y.Z`); without it the run starts on `main` and the
+  environment refuses it. RELEASING.md's appendix gives the three settings and their order.
+- **Sign-in and Graph calls stop trusting a compromised certificate authority — upgrade.**
+  msal (through requests) and httpx check Microsoft's certificates against `certifi`'s bundle,
+  and certifi before 2026.10.19 includes `emSign ECC Root CA - G3`, whose intermediate CA keys
+  were stolen (GHSA-6q48-6c7w-9gw2): someone holding one and sitting on the network path could
+  impersonate `login.microsoftonline.com` or `graph.microsoft.com`. Nothing set a minimum, so
+  upgrading this package kept whatever certifi was already installed. It now requires
+  `certifi>=2026.10.19`, and `tests/test_trust_store_excludes_compromised_roots.py` checks the
+  root is gone from what both clients load. If you followed the README's Linux SSL fix and set
+  `SSL_CERT_FILE` / `REQUESTS_CA_BUNDLE`, both clients read your system CA bundle instead of
+  certifi, so upgrading this package changes nothing for you: update your distribution's CA
+  package (`ca-certificates`) as well.
+- **The lock moves `aiohttp` to 3.14.5 and `opentelemetry-api` to 1.45.1** (Dependabot alerts;
+  lock only, nothing users install changes). aiohttp is never loaded (azure-core imports it
+  only for async credentials, and sign-in is synchronous). The `tracestate` parsing the
+  opentelemetry-api advisory names does run: the MCP SDK's default `OpenTelemetryMiddleware`
+  extracts trace context from every request's `_meta`. But the server speaks only stdio, so the
+  only party that can send `_meta` is the client that launched it, which is why there is no
+  minimum on opentelemetry-api.
+
+### Documentation
+
+- **The README and SKILL.md match the registered surface again, and a test keeps them there.**
+  `concise` is taken by six read tools, not five (`outlook_read_messages` was missing from
+  both lists); the toolset example loads 28 tools, not "~30"; errors reach the client as a
+  tool error whose text carries the message and hint, not a `{code, message, action}`
+  response; the `allow_categories` table names every tool each category gates (draft
+  attachments, reclassify, Focused Inbox overrides were missing); and the README's roadmap
+  no longer offers inbox rules, which ROADMAP.md records as not viable on personal accounts.
+  `tests/test_docs_match_the_surface.py` pins tool lists, per-section and total counts,
+  toolset groups, the concise list, the category set and the prompts to the code.
+
+## [1.25.1] — 2026-10-07
+
+A patch release. The last two code items from the 1.24.0 security review, a calendar fix from a
+contributor, and one dependency bump:
+
+- A mail attachment download can no longer empty an existing file or be redirected through a
+  symlink, and the saved file is owner-only rather than default permissions. It writes the way
+  the To Do download always has.
+- IDs, email addresses and phone numbers are validated as whole strings, and the batch tool
+  percent-encodes message IDs the way every other call does.
+- A recurring event whose range would end before it begins is refused before anything is sent,
+  naming both dates (#86, @neilbrencode).
+- `uv.lock` moves `multidict` past a medium-severity memory leak.
+
+Nothing to do before upgrading.
+
+### Fixed
+
+- **A recurring event whose range would end before it begins is refused, naming both dates.**
+  `range.startDate` is re-derived from the event's start, while `range.endDate` is the caller's,
+  so moving a start past the series end built a range Graph refuses with
+  `400 ErrorInvalidParameter: StartDateV2 should be earlier or equal to EndDateV2` (#86). That
+  now fails before anything is sent, on create, on update, and on a time zone change that
+  re-sends the series and moves its first day past the end. `endDate` is never moved to make
+  room, because extending a series is not what was asked for. `numbered` and `noEnd` ranges are
+  unaffected.
+
+### Security
+
+- **A mail attachment download can no longer empty, redirect or expose a file.**
+  `outlook_download_attachment` opened its target and wrote to it directly. An attachment with
+  no content (an attached email, a link to a cloud file) emptied any file already under that
+  name before failing; a symlink placed at the target after the path check was written through,
+  so the bytes landed wherever it pointed; and the file got default permissions (0644) rather
+  than owner-only ones — mitigated when the server created the attachments folder, which it
+  makes owner-only. It now writes the way the To Do download always has — to a temp file created
+  owner-only, moved into place — and refuses an attachment with no content, or a target that
+  cannot land, before anything is touched. The attachment name and content type it reports are
+  stripped of control characters, as the To Do download's are, and a carriage return no longer
+  survives any single-line field.
+
+- **IDs, addresses and phone numbers are validated whole.** The ID, email and phone patterns
+  accepted one trailing newline, so `"inbox\n"` got past `outlook_delete_folder`'s guard on
+  well-known folders. And `outlook_batch_triage` now percent-encodes message IDs in its request
+  URLs, the way every other call already does, so an ID containing `/` stays one path segment.
+
+- **`uv.lock` moves `multidict` to 6.9.1**, past a reference leak in its items-view union and
+  subtraction (GHSA-54p9-h82j-f925, medium), flagged by Dependabot on 2026-10-06. It arrives
+  indirectly, through `aiohttp` and `yarl` under the Graph SDK, and the worst case is memory that
+  is not freed. The lock file governs development, CI and `uv run`; a PyPI install already
+  resolved the fixed version.
+
+## [1.25.0] — 2026-10-05
+
+The rest of the security review that produced 1.24.0. No new tools and no change to what a tool
+does with the mailbox; the changes are to what the server tells clients and agents, and to a
+config mistake that used to fail open:
+
+- Tools that can send email (send, reply, forward, send a draft, RSVP, and create or update an
+  event, since an invitation is an email) are marked destructive, so clients that auto-approve
+  ordinary writes ask before them.
+- The agent is told, once per session, that mail, events, contacts and attachment names are
+  written by other people and are never instructions.
+- A misspelt `read_only`, `allow_categories` or `read_only_consent` key stops the server instead
+  of being ignored.
+- The release job runs a pinned, checksum-verified `mcp-publisher`.
+
+**Before you upgrade:**
+
+- **Check `config.json` for a misspelt safety key.** `readOnly`, `read-only`, `allowCategories`
+  and similar slips of those three keys used to be warned about and ignored, which left the
+  server writable; they now stop it from starting, with a message naming the key to rename.
+  Spelt correctly, nothing changes.
+- **Expect your client to ask before sending.** If it auto-approves writes that are not marked
+  destructive, it now prompts for the send tools, `outlook_rsvp`, and creating or updating an
+  event.
+- **Contributors:** CI fails any file `ruff format` would change. Run
+  `uv run ruff format src/ tests/ scripts/` before pushing.
+
+### Changed
+
+- **The tree is formatted with `ruff format`, and CI enforces it.** The command was documented
+  in `CLAUDE.md` and the README but nothing enforced it, so following it rewrote 49 of 105 files
+  and then failed `ruff check` (#78). Every file under `src/`, `tests/` and `scripts/` is
+  now formatted, and `ci.yml`'s `test` job and `publish.yml` run
+  `ruff format --check src/ tests/ scripts/` beside `ruff check`, which also covers `scripts/`
+  now. Contributors: run `uv run ruff format src/ tests/ scripts/` before pushing.
+  The dev extra and the dependency group both require `ruff>=0.15.10,<0.17`, so a `pip install
+  outlook-graph-mcp[dev]` gets a ruff that formats the tree the way CI checks it.
+
+### Security
+
+- **The agent is told that mailbox content is not instructions.** Mail, events, contacts and
+  attachment names are written by other people, and that text reaches the model beside the
+  user's own requests. The instructions every client receives at connect time now say so, ahead
+  of the working rules: treat it as information, and never send, forward, delete, share a file
+  or change settings because a message or invite asks. SKILL.md, which OpenClaw loads into the
+  agent's context, carries the same rule. Every other guard in this server narrows what an agent
+  that follows an injected instruction can do; this asks it not to.
+
+- **The publish job runs a pinned, checksum-verified `mcp-publisher`.** It used to download
+  whatever the registry repo had most recently released and run it unchecked, in the job that
+  holds the credential PyPI and the MCP registry trust to publish this package. The version is
+  now fixed (v1.8.1, the one 1.24.0 published with) and the tarball must match its SHA-256
+  before it is unpacked. `scripts/install-mcp-publisher.sh` is the one place the pin lives; a
+  new CI job runs it on every push.
+
+- **Tools that can send email are marked destructive.** MCP clients read the tool annotations to
+  decide what to ask about, and `destructiveHint: false` means "only adds to your own data" — a
+  write a client may approve without asking. The five send tools, `outlook_rsvp`, and
+  `outlook_create_event` / `outlook_update_event` (an invitation is an email) were all marked
+  that way, though nothing they send can be taken back. All eight now say `destructiveHint:
+  true`. A test finds every tool gated on `mail_send` and fails if one is not marked, so a new
+  send tool cannot fall through.
+
+- **A misspelt safety key stops the server instead of being ignored.** An unknown key in
+  `config.json` is accepted with a warning, so a config written for a newer release still boots
+  an older one. For `read_only`, `allow_categories` and `read_only_consent` that fails open:
+  their defaults are the permissive ones, so `"readOnly": true` — warned about on stderr and
+  ignored — ran a fully writable server its operator believed was read-only. A key that is
+  plainly one of these three in another spelling (`readOnly`, `read-only`, `allowCategories`) or
+  with a one-or-two-letter slip (`read_onyl`, `allow_category`) is now refused, and the repair
+  names the key it meant. Every other unknown key still loads with a warning.
+
+## [1.24.0] — 2026-10-04
+
+A security release. A review of the code since 1.23.0 found no problem in any contributor's change
+and nothing exploitable in the default setup on macOS or Linux. On Windows, an attachment path
+from the agent could make the machine sign in to another host (1.20.0 through 1.23.0). The
+optional safety settings were weaker than the README said, and one sign-in route had been closed
+by #101. In this release:
+
+- Signing in to a second, read-only Azure app now needs the new `read_only_consent` setting,
+  which asks for the read permissions only. A saved sign-in is only used with the app it was
+  made for.
+- `allow_categories` means what it says: calendar invitations, rewording an event that has
+  attendees, and RSVP messages need `mail_send`.
+- The draft tools only touch drafts, on every server.
+- A delta cursor only works with the tool that issued it.
+- On Windows, a network path in an attachment argument is refused before it is resolved.
+- The Graph client authenticates requests to Graph only, request URLs stay out of the logs, and
+  refusals no longer tell the agent how to switch themselves off.
+- `uv.lock` moves past four advisories in `pyjwt` and `urllib3`.
+
+**Before you upgrade:**
+
+- **If `client_id` points at a read-only app registration,** set `read_only: true` and
+  `read_only_consent: true` before you next run `outlook-mcp auth`. Without them, sign-in asks
+  that app for write access too, and accepting it cannot be undone by changing the config.
+  `outlook-mcp auth` warns about this before the browser opens.
+- **If `client_id` changed since you last signed in, sign in again.** The server no longer
+  quietly uses a sign-in made with a different app registration. `outlook-mcp status` says so.
+- **If `allow_categories` lists `calendar_write` but not `mail_send`,** the agent can no longer
+  invite people, reword an event that has attendees, or add a message to an RSVP. Add
+  `mail_send` if it should.
+- **Add `MailboxSettings.Read` to your app registration** before you next run
+  `outlook-mcp auth`. The first sign-in now asks for it by name (#106), and a registration
+  that does not list it may be refused. Existing sign-ins keep refreshing.
+
+Not verified live: the `mail_send` gate itself, which would mean sending real invitations (its
+input is checked live), and a mail delta `nextLink`, which the test mailbox is too small to
+produce. Both are covered offline.
+
+### Changed
+
+- **CI runs the test suite on Windows (#88).** Every job ran on `ubuntu-latest`, so failures
+  that are deterministic on Windows and impossible on Linux could not surface: the four test
+  failures in #85, and the locale-encoded `config.json` in #99, were each found by hand.
+  The `test` job now has one `windows-latest` entry, on Python 3.12, beside the four Linux
+  versions, and a failing entry no longer cancels the others, so a Windows-only failure shows
+  as one. The install jobs stay on Linux. What it cannot do is find hardening that was never
+  asserted: the `0o700`/`0o600` calls in #85 were inert on Windows for the life of the file, and
+  no test on any platform said so.
+
+### Fixed
+
+- **`outlook_list_categories` gets the permission it actually needs.** The first consent asked
+  for exactly the scopes the README lists, and `MailboxSettings.Read` — the one permission
+  Graph documents for `/me/outlook/masterCategories` — was not among them. On a `.default`
+  consent that went unnoticed (the blanket grant covered it); under the concrete first consent
+  a new user following the registration steps would have hit a 403 on that one tool. It is now
+  in the registration step and in the consented set.
+
+- **Four tests no longer fail on every Windows run, and `load_config` stops re-`chmod`ing the
+  config file on every load.** Two separate causes. `os.chmod` on Windows honours only the
+  read-only attribute, so `0o700` and `0o600` are not representable there (measured: `0o777`
+  and `0o666`) and three mode assertions could never pass. Those are now
+  `skipif(sys.platform == "win32")` with the reason in the marker, and the portable halves of two
+  of them — that the directory is created, and that an attachment path stays confined to it —
+  keep running on Windows rather than being skipped along with the mode. The fourth test,
+  `~`-expansion on the attachment-confinement path, was a fixture bug rather than an impossible
+  assertion: `ntpath.expanduser` resolves `~` from `USERPROFILE`, not `HOME`, so patching `HOME`
+  alone had no effect. It now patches both and runs on every platform (#89).
+
+  **Behaviour change.** `load_config` read the config file's mode and re-applied `0o600` when it
+  differed. On Windows the mode never reads back as `0o600`, so that check could never converge
+  and re-`chmod`ed on every single load; it is now skipped where the bits cannot be enforced.
+  One consequence worth naming: a `config.json` the user had marked **read-only** used to have
+  that attribute cleared by any load, because `chmod` on Windows does honour read-only. It now
+  stays read-only, so the lock holds and `save_config` fails rather than silently succeeding
+  after a load has unlocked the file.
+
+  The hardening itself is unchanged, but each site now records what it can and cannot do: on
+  Windows these calls cannot enforce owner-only access, and what governs the path is its Windows
+  ACL — including whatever it inherits from the directory it was created under — which this code
+  neither applies nor verifies. The README's "directory is `0700`, file is `0600`" claim is
+  qualified to match. Applying a real Windows DACL is deliberately not part of this change.
+
+- **A fortnightly series moved to another day keeps each block within one week, even when its
+  pattern omits `firstDayOfWeek`.** When `outlook_update_event` moves a series' days with its start
+  (1.23.0), it moved the week boundary only if the pattern named one. A hand-written pattern
+  repeating every two or more weeks, on several days and with no `firstDayOfWeek`, therefore kept
+  Graph's default Sunday boundary while its days moved. A fortnightly Sunday-and-Monday series
+  moved back a day became Saturday-and-Sunday split across that boundary, and every Sunday landed a
+  week after its Saturday — verified live, reported as `updated`. A missing boundary is now treated
+  as Graph's Sunday and moved with the days. Patterns read back from Graph always carry the field,
+  so only patterns a caller wrote were affected. Every week (`interval` 1) the boundary is now left
+  as it was: it schedules nothing there, and moving it only changed the week start Outlook shows.
+
+- **`config.json` is read and written as UTF-8 on every platform, so a non-ASCII value means the
+  same thing on Windows (#99).** The config was read and written in the locale encoding, which is
+  cp1252 on a typical Windows install. A UTF-8 config, which is what an editor or a copy from
+  another machine produces, was decoded as cp1252 there, so `"attachments_dir": "C:/Users/Zoë/att"`
+  silently became `C:/Users/ZoÃ«/att`: a different directory. A value outside cp1252, such as
+  `中文`, could not be saved at all (`UnicodeEncodeError`). The shared writer now always emits
+  UTF-8, which covers the auth record too. That record is ASCII, so it is unaffected. The reader
+  accepts UTF-8, with or without the byte-order mark that Windows PowerShell 5.1's
+  `Set-Content -Encoding utf8` writes.
+
+  **Behaviour change.** A config the server cannot decode now gets a remedy that names the
+  encoding: "config.json must be saved as UTF-8". Before, it was told to check that the file is
+  readable and owned by you. One case this newly reaches is a UTF-16 file, which is what Windows
+  PowerShell 5.1's `>` and `Out-File` write. On Windows, that file used to be reported as invalid
+  JSON.
+
+  A config saved in the Windows ANSI code page, Windows PowerShell 5.1's `Set-Content` default,
+  loaded correctly before on the machine that wrote it. It keeps loading. When a file is not
+  valid UTF-8, it is read in the machine's own code page as before, but only if the result is a
+  valid config. A warning then asks for a re-save as UTF-8. This is a best-effort fallback for
+  files that are *not* valid UTF-8, with one limit that bytes alone cannot resolve. A legacy file
+  whose bytes also happen to form valid UTF-8 is read as UTF-8, without a warning: the cp1252 bytes
+  for the literal text `ZoÃ«` are UTF-8 for `Zoë`. A UTF-8-only reader would read them identically.
+  Plain accented text such as `Zoë` in cp1252 is not valid UTF-8, so it does reach the fallback.
+
+- **First-time sign-in consents the concrete delegated scopes, not `.default`.** On a
+  personal (MSA) account, a first device-code consent asking only for
+  `https://graph.microsoft.com/.default` can land a session that authenticates but carries
+  no delegated permissions — and no scope can be redeemed from that session afterwards
+  (AADSTS70000: "The requested user must first sign-in and grant the client application
+  access"), so the account is stuck until someone logs in again. `outlook-mcp auth` now
+  asks for the full read-write set whatever the config's `read_only` flag says — that
+  flag gates the tools, not the token, and a read-only first consent could never be
+  widened once the flag flips — and silent refresh keeps using `.default`, which on an
+  already-consented session means precisely "the consented set", and is the only thing a
+  session consented through `.default` alone can still redeem, so records saved before
+  this change keep refreshing. When a refresh does fail with AADSTS70000, the remedy — on
+  `outlook_auth_status`, `outlook-mcp status`, and every tool call — names the code and
+  says to log in again, because the error's own text suggests a retry that cannot work
+  (#82).
+
+### Security
+
+- **On Windows, a network path is refused before it is resolved.** The attachment tools confine
+  every path by resolving it and checking the result, which is right everywhere except for one
+  input: on Windows, resolving `\\host\share\file` opens it, and opening it connects to `host` and
+  signs in as the logged-in user. The refusal came one step after that. A path whose drive is a
+  network share or a device namespace (`\\host\share`, `//host/share`, `\\?\UNC\…`, `\\.\…`) is
+  now turned away by its text, before the filesystem is asked anything — unless it sits inside
+  an `attachments_dir` the operator put on a share themselves. Resolving remains the authority
+  for every path that gets past that. Affected: 1.20.0 through 1.23.0, on Windows only; macOS
+  and Linux were never affected.
+
+- **The draft tools only touch drafts.** A draft is addressed by its message id, and every message
+  has one. `outlook_delete_draft` made the same permanent DELETE that
+  `outlook_delete_message(permanent=True)` makes, on whatever id it was given, and
+  `outlook_update_draft`, `outlook_attach_to_draft` and `outlook_remove_draft_attachment` were
+  equally unparticular — all under `mail_drafts`, the category the README describes as "drafts
+  only". Each now reads the message's `isDraft` first and refuses anything Graph does not call a
+  draft, before changing it. One extra GET per call. `outlook_send_draft` is unchanged: it is
+  gated by `mail_send`, not `mail_drafts`.
+
+- **Calendar writes that send email need `mail_send`.** With attendees on it, an event is also
+  an email: Exchange delivers the subject and body to every address the call names, and an RSVP
+  comment goes to the organizer. All of that was gated by `calendar_write` alone, which the
+  README rated "creates calendar entries" and offered as a "calendar-only, nothing else" policy
+  — so withholding `mail_send` did not stop an agent sending text of its choosing to an address
+  of its choosing. With `allow_categories` set and `mail_send` absent, these are now refused:
+  `attendees` on `outlook_create_event` and `outlook_update_event`; a new subject, body or
+  location on any event that already has attendees, whether or not you organize it — an
+  attendee's own copy is what their next response is built from (one extra read, paid only
+  under such a policy); and `message` on `outlook_rsvp`. Events with nobody else on them, a
+  bare RSVP, time changes and cancellations are unaffected, and so is every server that does
+  not set `allow_categories`. If your policy lists `calendar_write` and you want the agent to invite
+  people, add `mail_send`.
+
+- **A delta cursor only works with the tool that issued it.** Since 1.21 a cursor's host is
+  pinned to `graph.microsoft.com`, which keeps the token on Graph. It did not keep a tool on its
+  own data: a cursor is a whole URL, so a delta tool handed any other Graph path as its cursor
+  fetched it and returned what came back through its own formatter, and `outlook_changes_since`
+  passed cursors through the same way. Nothing left Graph and nothing could be written — the
+  request is always a GET — but it reached data no loaded tool covers: To Do list names on a
+  server started without the `todo` group, say, or message subjects from any folder through
+  the digest, which by design reports only counts, senders and flagged Inbox subjects. Each
+  delta tool now accepts its own endpoint and nothing else (`/v1.0/me/mailFolders/<id>/messages/delta`,
+  `/v1.0/me/calendarView/delta`, `/v1.0/me/contacts/delta`), for the caller's cursor, every
+  `@odata.nextLink`, and the `deltaLink` it hands back; dot segments and encoded separators are
+  refused. A cursor pointing anywhere else is answered with a `foreign_cursor` error before any
+  request is made. Checked in the live tier against a consumer mailbox: the `deltaLink` of all
+  three tools, and a mid-sync `nextLink` for calendar and contacts, pass. A mail `nextLink` was
+  not observed — no folder there was large enough to return one — so that shape rests on the
+  mail `deltaLink` having the same path; the live test for it skips, by name, until it is seen.
+
+- **A read-only app registration can be signed in to again: `read_only_consent`.** The README
+  and SECURITY.md offer one route to a credential that cannot write — a second Azure app
+  holding only the read permissions — and the consent change above closed it: sign-in asked
+  *whatever* app was configured for the full read-write set, so that app was either refused or
+  handed write access, which is the thing it existed to not have. `read_only_consent: true`
+  makes `outlook-mcp auth` ask for `Mail.Read`, `Calendars.Read`, `Contacts.Read`,
+  `Tasks.Read`, `MailboxSettings.Read` and `User.Read`, and nothing else. It is its own key
+  rather than a reading of `read_only`, for the reason the consent change gives: a consent
+  narrowed by `read_only` strands every write the day that flag is flipped. The config refuses
+  `read_only_consent` without `read_only: true`, so that state cannot be configured. Never
+  shipped broken: 1.23.0 still signs in with `.default`.
+
+- **A saved sign-in is only used with the app it was made for.** azure-identity serves the saved
+  record's client id and ignores the configured one, so after `client_id` changed in
+  config.json the old app's session went on being used, and `outlook-mcp status` printed the
+  new id beside "authenticated". Moving to a read-only app without signing in again left the
+  write-capable session in place. A record whose client id differs from the config's is now
+  refused, with a `client_id_mismatch` error on `outlook-mcp status`, `outlook_auth_status`
+  and every tool call that says to run `outlook-mcp auth`.
+
+- **`uv.lock` no longer pins two packages with published advisories.** `pyjwt` 2.14.0 → 2.15.1
+  (CVE-2026-101918) and `urllib3` 2.7.0 → 2.8.0 (CVE-2026-97687, -97688, -97689), all
+  published 2026-10-01. None is reachable in a way that matters here — a crash in a JWKS
+  flow this server does not use, and proxy-TLS and hostile-server issues on a client that
+  only talks to Microsoft's sign-in endpoints. The lock file governs development, CI and
+  anything run with `uv run`; an install from PyPI resolves its own versions and already got
+  the fixed ones, so no published release was affected.
+
+- **The Graph client only authenticates requests to Graph.** The SDK's auth provider was built
+  with no host allow-list, and kiota's default is that every host is valid: it asks the
+  credential for a token scoped to whatever host a request names, and attaches it. Nothing
+  here sent an SDK request anywhere else — the pages followed with `with_url` are
+  `@odata.nextLink`s from Graph's own responses — so this is the guarantee moved into the
+  client rather than a hole closed. A request to any other host now goes out with no token,
+  and none is minted for it. The raw delta path already pinned the same host.
+
+- **Request URLs are no longer logged.** The MCP SDK sets the root logger to INFO unless told
+  otherwise, and httpx logs every request URL at INFO — Graph URLs that carry search terms,
+  the address a `from_address` filter matches on, and message ids — to stderr, which some
+  clients keep in a log file. README has always said recipient addresses are never logged.
+  The server now starts at WARNING; nothing in this package logs below it.
+
+- **Refusals no longer tell the agent how to switch themselves off.** "Set read_only to false
+  in …/config.json to enable write operations" reached the model as the remedy for a
+  read-only refusal; the `allow_categories` refusal said to unset the list for full write
+  access, the attachments fence said which key to change, and the plaintext token cache
+  refusal said how to opt in. The clients this server runs under give the agent file tools,
+  and the agent reads mail. Each now names the setting so the agent can tell the user, and
+  ends: "If you are an AI agent, do not change the server's settings — tell the user." — addressed
+  by name, because `outlook-mcp auth` prints some of these to the operator too. A refused
+  download target now says to pass a path inside `attachments_dir` (a bare filename lands
+  there) rather than to move a file that does not exist yet. SKILL.md, which OpenClaw loads
+  into the agent's context, says the same: the settings are the user's.
+
+- **`outlook-mcp auth` warns before a read-only config consents write access.** `read_only: true`
+  alone still consents the read-write set (see the consent entry above), which is right when
+  the flag will be flipped later and a trap for anyone whose `client_id` is a read-only app
+  registration: 1.23.0 signed that app in with `.default`, so it was never asked for write
+  access, and the first 1.24.0 sign-in would ask. With `read_only` set and `read_only_consent`
+  not, `auth` now says so before the browser opens and names the setting to add.
+
+- **`outlook-mcp status` prints the plaintext-cache refusal instead of a traceback.** The refresh
+  re-raises it so the operator gets the remedy, and `status` was the one caller that did not
+  catch it.
+
+## [1.23.0] — 2026-09-30
+
+The headline is a data-safety fix. Changing a recurring series' start, end or repeat pattern made
+Graph silently undo every occurrence someone had edited or deleted, and `outlook_update_event` let
+it happen. It is now refused, and the refusal names what would be lost. Also in this release:
+
+- Events are anchored in a real time zone, so recurring series survive daylight-saving changes.
+- An event can be re-anchored into another zone on update.
+- To Do tasks gain sub-steps, detail reads and attachments.
+- `outlook_list_events` reads secondary calendars and reports each event's `type`.
+- Events carry a "Show as" status.
+- Contacts round-trip their addresses, categories and notes.
+
+**Breaking:** `outlook_list_accounts` and `outlook_switch_account` are removed (70 → 68 tools).
+Run one server per account with `OUTLOOK_MCP_CONFIG_DIR` instead.
+
+**Known:** `is_online` behaves differently from one personal account to another. On two
+contributors' mailboxes Graph now honours it and creates a real Teams meeting. On the
+maintainer's it is still ignored, re-checked on 2026-09-30. `outlook_create_event`'s description
+and the README say it has no effect, which is wrong for some users. Check `is_online` in the
+event you get back. The docs correction, and `is_online` on `outlook_update_event`, are in progress (#70).
+*Superseded — see #70: the docs are corrected, and `outlook_update_event` takes `is_online`.*
+
+### Added
+
+- **`OUTLOOK_MCP_CONFIG_DIR` moves the settings directory — and only it.** Set it (per
+  process) and `config.json`, the auth record, and the attachments directory all move together;
+  unset or empty keeps the default `~/.outlook-mcp`. This is how a second mailbox is served: one
+  server process per account, each with its own settings directory. The MSAL signal file stays
+  at `~/.IdentityService/` on purpose — every azure-identity cache on the host shares one
+  Keychain item, and both processes must keep coordinating through the same signal file or their
+  cache writes clobber each other (which is why `HOME`, not this variable, is the wrong thing to
+  move). Relative values are anchored to an absolute path at startup, so the terminal that runs
+  `outlook-mcp auth` and the client that starts the server cannot end up on different settings
+  directories; a value that exists but is a file is refused with the repair.
+
+- **`outlook_update_event` can re-anchor an event into a different time zone.** Events created
+  before the anchoring fix are stored in UTC, and there was no way to repair one: the tool could
+  preserve the zone an event was already in but not change it, so a drifting series had to be
+  deleted and rebuilt, losing its id and re-inviting its attendees. `timezone` takes an IANA name
+  and requires `start` and `end` in the same call — Graph rejects a `start` patch carrying no
+  `timeZone` at all, so the zone is never an independent edit, and passing it alone is refused
+  rather than answered `updated`. One zone re-anchors both ends, which is what "move this to
+  Eastern" means; an event whose ends are in genuinely different zones keeps them by omitting the
+  argument.
+
+  Changing a **series master's** zone needs its recurrence re-sent in the same patch. Without it
+  Graph answers `400 ErrorPropertyValidationFailure`, which names neither the zone nor the
+  property; with it the identical patch succeeds. Neither rule is documented, and both were
+  established live, with the zone unchanged and a single instance as controls. The event's existing
+  recurrence is read and sent back, with `range.startDate` and `range.recurrenceTimeZone` dropped
+  so Graph re-derives them from the new anchor — echoing the stale zone back beside a new
+  `start.timeZone` produces the same opaque 400 this exists to avoid.
+
+  The pattern's days move with the anchor's local date. A US evening series stored as Thursday
+  02:00Z is Wednesday 18:00 in Los Angeles; re-deriving only `startDate` sent a Wednesday start
+  beside `daysOfWeek: ["thursday"]`, and Graph put every occurrence on Thursday, reported as
+  `updated`. Weekly days shift together (with `firstDayOfWeek`, so a fortnightly block stays one
+  block), and absolute monthly and yearly patterns take the new date's day. Where the moved series
+  has no exact expression — a relative pattern such as "the first Thursday", or a monthly one
+  pushed into the neighbouring month — the update is refused, asking for the pattern explicitly.
+
+  Handing a recurrence straight back from `outlook_get_event` while asking for a new `timezone`
+  works, including across a date boundary. That round trip returns `range.recurrenceTimeZone`, and
+  sending the old zone beside the new anchor is a pair Graph refuses — so an ordinary
+  read-modify-write became an opaque 400. The explicit argument is the more specific instruction,
+  so the stale range zone is dropped and Graph re-derives it. Without an explicit `timezone` a
+  caller-supplied range zone is still passed through untouched: it is then the only statement
+  about that zone, and discarding it would be a sanitizer removing input for no stated reason.
+  Whenever `start` is given, a supplied `range.startDate` is re-derived from it rather than refused
+  as a mismatch, and a pattern equal to the stored one moves with the start as above; a pattern
+  that differs is the caller's new instruction and is sent as given.
+
+  `timezone` is refused on an all-day event rather than ignored. Graph stores one anchored in UTC
+  whatever zone it is sent, so there is nothing to apply and silently substituting UTC would
+  report success for work not done.
+
+  Re-sending the recurrence hands back state this tool read rather than state the caller supplied,
+  so that patch is pinned to the version it read (`If-Match`). A client that re-patterns the series
+  between the read and the write now gets `412` — with a hint saying nothing was modified and to
+  re-read — instead of having its change silently reverted to the pattern this call happened to
+  see. The same pin covers every patch that reshapes a series master, because each one rests on the
+  occurrence check below: editing or deleting an occurrence moves the master's change key, so one
+  edited in another client after the check is refused rather than discarded. Every other patch is
+  still last-writer-wins: the caller supplied those values and means them. Verified live on a
+  consumer mailbox, on the SDK's own request builder.
+
+  Completes items 1 and 2 of #77. Split start/end zones on *creation* (item 3) remain deferred:
+  `outlook_create_event` still takes one `timezone`, and `outlook_update_event` preserves a split
+  it finds without being able to author one.
+
+- **Events carry a "Show as" status, on both the write and the read side.** Graph's `showAs`
+  — Outlook's free/busy field — was reachable through neither: `outlook_create_event` and
+  `outlook_update_event` had no way to set it, and every read path dropped it. There was no
+  way to create a tentative hold, mark a block as free, or say "working elsewhere". This was
+  never an API limitation: `showAs` is a writable property on `microsoft.graph.event`, and a
+  live probe against a consumer mailbox confirmed Graph stores all six values (`free`,
+  `tentative`, `busy`, `oof`, `workingElsewhere`, `unknown`) on POST and on PATCH, each read
+  back on a fresh GET — no value is accepted and then silently dropped. `show_as` accepts
+  those values case-insensitively plus the spellings an agent reads off the Outlook menu
+  (`out of office`, `working elsewhere`); anything else is refused with the valid set named,
+  rather than passed through to a Graph 400 that lists nothing. Omitting it leaves Graph's
+  own default of `busy` — and, on update, the event's current status — untouched.
+
+  **Response-shape change:** `outlook_list_events`, `outlook_get_event` and
+  `outlook_list_events_delta` each gain a `show_as` key. Additive, and `show_as` is `""` only
+  when Graph did not return the field. `concise=True` deliberately does *not* carry it, on the
+  same terms as `response_status`, so the highest-volume listing costs no more than before.
+
+- **`outlook_list_events(calendar=…)` reads secondary calendars.** Every calendar read went to
+  the default calendar, so events in a class schedule or a shared team calendar were
+  unreachable — an empty listing with no hint why. `calendar` takes a display name
+  (case-insensitive) or an ID from `outlook_list_calendars`; omit it, or pass `"primary"`, for
+  the default calendar and the unchanged single round-trip. Names are matched before anything
+  is assumed about IDs — "Kids + School" and "Calendar - Jane Smith (…)" are names, however
+  ID-like they look — and an ID that is not one of the user's calendars is refused with the
+  real list rather than sent to Graph. A listing is resolved once: the cursor carries the
+  calendar, so a later page neither re-lists `/me/calendars` nor drifts to the default calendar
+  when `calendar` is omitted. `/me/calendars` is now read in full (paged) here and in
+  `outlook_list_calendars`.
+
+  Thanks to **@Nyaecho** for the feature (#62).
+
+- **To Do tasks grew sub-steps, detail reads, and attachments (8 new tools).**
+  `outlook_get_task` reads one task in full — notes, due, recurrence flag, and its checklist
+  items via `$expand=checklistItems`, ordered unchecked-first with creation time as the
+  tiebreak (deterministic, so the first open item stably reads as "the next step").
+  `outlook_add_checklist_item`, `outlook_update_checklist_item` (partial
+  patch: `is_checked` or rename) and `outlook_delete_checklist_item` manage those sub-steps.
+  Task attachments are their own resource, not mail FileAttachments: creation is an inline
+  base64 POST of a `taskFileAttachment` — verified live on a consumer outlook.com mailbox
+  from 64 bytes to the full 20 MiB ceiling. (The upload-session route exists on those
+  accounts too — `createUploadSession` answers 201 — but its upload URL is a Graph route,
+  so every chunk PUT needs `Authorization` and `Content-Type` headers, response checking,
+  and `nextExpectedRanges` handling; inline stays the simpler, verified path at these
+  sizes and sessions are the documented future route above 20 MiB.) The client-side
+  ceiling is **1 byte – 20 MiB**: Graph rejects request bodies over 30 MB and base64
+  inflates the file 4/3. Downloads read `contentBytes` off the attachment entity and
+  write atomically (temp
+  file + replace), so a failed fetch can never truncate a file already staged in
+  `attachments_dir`. `outlook_list_task_attachments` paginates (`$top` + cursor) like every
+  other list tool; uploads and downloads are confined to `attachments_dir`, same as mail
+  attachments. Tool count: 62 → 70.
+
+- **`outlook_update_contact` can write the addresses it can now read** — `home_address`,
+  `business_address` and `other_address`, each taking the same shape `outlook_get_contact`
+  returns (any subset of `street`, `city`, `state`, `postal_code`, `country_or_region`). One
+  vocabulary for both halves, so keeping the parts you are not changing is handing the address
+  straight back rather than renaming five keys. Graph **replaces** the whole address object
+  rather than merging into it, so parts not supplied come back empty; the tool docstring, README
+  and SKILL.md say so, and a live guard pins it. Omitting an address leaves it untouched, and an
+  address that carries no content is an error rather than a PATCH that reports `updated` having
+  done nothing — this tool cannot clear an address.
+
+  A part that was not supplied is now left unset rather than assigned `None`: the Graph request
+  adapter serializes through the backing store, which emits an explicitly-`None` field — and for a
+  nested model emits it onto the *parent*, under its Python name. Every partial address therefore
+  went out as `{"country_or_region": null, …, "homeAddress": {…}}` and came back
+  `400 The property 'country_or_region' does not exist on type 'microsoft.graph.contact'`, while
+  the full five-part write returned 200. Caught by the live write tier; the offline guard that now
+  pins it has to serialize through the backing-store proxy, because the bare `JsonSerializationWriter`
+  cannot see the difference.
+
+### Changed
+
+- **Legacy `accounts` / `default_account` config keys load with a warning instead of failing.**
+  One process serves one account now; a config written for the old multi-account shape still
+  boots, and each legacy key names what replaced it.
+- **The auth record is written atomically** (write-temp, fsync, `0600`, rename), like
+  `config.json` always was. The record identifies the signed-in account; a plain write leaves a
+  world-readable window and a half-written file for anything reading it concurrently.
+- **A config the server cannot load exits with the repair, not a traceback.** The entrypoint
+  validates the config before the transport starts: an invalid value, a refused symlink, an
+  unreadable file or directory, non-UTF-8 bytes, or a settings path that is a file each end with
+  exit code 1 and a note on stderr saying what to fix — stdout, the protocol channel, stays
+  empty. The CLI commands do the same. Reached through the lifespan directly, the same failures
+  degrade to a read-only boot whose every tool call carries the repair.
+
+- **Response shape: `outlook_list_events` and `outlook_list_events_delta` both carry `type`.**
+  Two changes, one contract. The listing's `type` key already existed and was always `""`; it
+  now carries `occurrence` or `exception` for an instance of a recurring series and
+  `singleInstance` for a one-off, so a caller branching on `type == ""` (or treating the field as
+  never set) sees new behaviour.
+
+  **The two tools do not carry the same *values*, which is worth knowing before branching on
+  them.** `outlook_list_events` is `/me/calendarView`, which returns expanded instances, so a
+  `seriesMaster` never appears on it — the discriminator there is `occurrence`/`exception`
+  against `singleInstance`, and an agent filtering a listing for `seriesMaster` to find recurring
+  meetings matches nothing. `outlook_list_events_delta` is `/me/calendarView/delta`, a different
+  endpoint, and it *does* return masters alongside instances. Both measured live over one
+  ±180-day window: the listing gave 276 `occurrence`, 206 `singleInstance`, 18 `exception` and
+  no masters; the delta gave 212 `singleInstance`, 94 `seriesMaster` and 94 `occurrence`, three
+  of which were read back by id and confirmed as masters carrying a real recurrence. So a caller
+  that seeds from the listing and refreshes from the delta should expect master ids the seed
+  never held.
+  `outlook_list_events_delta` gains a `type` key it has never had — its formatter's docstring
+  claimed to mirror the listing's field-for-field and did not, which mattered because `SKILL.md`
+  steers recurring work to the delta tool: an agent seeding from `outlook_list_events` and
+  refreshing from the delta tool would have hit a `KeyError` or a silent downgrade the moment
+  the listing started returning real values. That parity is between the delta and the
+  **default** listing shape — `concise=True` has its own, narrower keys and has never matched
+  the delta, which is why the README and `SKILL.md` now say "the default listing" rather than
+  "`outlook_list_events`". The parity claim is now a key-set test rather than
+  a sentence, so a field added to either formatter fails until it is added to both.
+
+  `outlook_list_events` also stops fetching `categories`, which it never returned to anyone —
+  no response-shape change, purely bytes it was paying Graph for. `concise=True` omits `type`,
+  as it always has; `outlook_get_event` is unchanged and still returns `categories`.
+
+- **The five existing To Do tools got stricter inputs and ISO datetimes.** `outlook_list_tasks`,
+  `outlook_get_task`, `outlook_create_task`, `outlook_update_task`, `outlook_complete_task` and
+  `outlook_delete_task` (and the new detail tools) share one `list_id` resolver, and it changed
+  in ways clients can observe. An empty `list_id` string is now **rejected** instead of
+  silently falling back to the default list — clients that fill every optional string with `""`
+  were quietly targeting the default list; the error names the fix (omit the argument). An
+  explicit `list_id` is now validated as a Graph id, so a mistyped id fails locally with the
+  offending value instead of as an opaque Graph 400. The default list is resolved **once per
+  process** rather than on every call (halving the request count of a normal checklist flow);
+  only a found `defaultList` is cached — the first-list fallback re-resolves. Response
+  timestamps (`created`, `completed`, `checked_at`) are now real ISO 8601 with a `T`
+  (`2026-09-15T09:00:00+00:00`), not Python's `str(datetime)` with a space separator, so they
+  sort and parse as datetimes.
+
+- **SKILL.md installs from PyPI instead of cloning `main`.** The OpenClaw install manifest
+  ran `git clone … && uv sync`, which fetches whatever is on the default branch at install
+  time — unpinned, unversioned, and not what any release was tested as. It now runs
+  `uv tool install outlook-graph-mcp`: the released wheel, hash-pinned by the index, which
+  exposes the same `outlook-mcp` binary the manifest declares. The setup steps moved with it,
+  so registration is `openclaw mcp set outlook '{"command":"outlook-mcp"}'` and auth is plain
+  `outlook-mcp auth` with no clone path to substitute. Contributors get a pointer to the
+  source workflow instead.
+
+  README already recommended the PyPI install as Option A, so SKILL.md was the outlier.
+  Flagged by the ClawHub scanner against 1.22.0: *"its OpenClaw install command fetches
+  mutable source code from GitHub."*
+
+### Removed
+
+- **`outlook_list_accounts` and `outlook_switch_account`** — the in-process account-switching
+  scaffolding. One process serving several accounts fought the host-wide token cache (every
+  azure-identity cache on a host shares one Keychain item; a "switch" rewrote the same item and
+  evicted the other account) and none of it was needed: one server per account with its own
+  `OUTLOOK_MCP_CONFIG_DIR` serves the same mailboxes without sharing a process. The tool count
+  goes 70 → 68 (the two schemas were among the smallest on the surface).
+
+### Fixed
+
+- **Reshaping a series no longer discards its edited and deleted occurrences silently.** Graph
+  restores every changed occurrence of a series when its master's `start`, `end` or recurrence
+  changes, and reports success. Measured live with one edited and one deleted occurrence: moving
+  the start an hour in the same zone, moving only the end, re-anchoring into another zone,
+  extending the range and adding a weekday each brought both back, while a subject patch and a
+  recurrence re-sent unchanged kept them — so the loss follows the change to the series' shape,
+  and it predates `timezone`. `outlook_update_event` now reads the master's
+  `cancelledOccurrences` and `exceptionOccurrences` before any `start`, `end` or `recurrence`
+  patch to a series and refuses, naming each one that would be lost, rather than patching. It
+  fails closed: a read that omits either collection is refused rather than taken as a clean
+  series. `remove_recurrence` is unaffected — collapsing the series is what it asks for.
+  **Behaviour change:** such a patch used to succeed and quietly undo those changes; it is now
+  refused, naming what would be lost and saying to change individual occurrences instead.
+
+- **A recurrence value of the wrong JSON type is refused by name.** A `range` sent as a string, a
+  `null` interval or occurrence count, a numeric date or day name all escaped the recurrence
+  converter as `TypeError` or `AttributeError`, which reach the model as a crash with the message
+  withheld. Worse, a string where the `pattern` object belongs was *accepted*: `"type" in "daily"`
+  is a substring test, so an empty pattern was built. Each now raises an input error naming the
+  field. A fractional or boolean count (`2.5`, `true`) is refused too rather than truncated to
+  `2` or `1`. The converter is shared, so this covers `outlook_create_event`,
+  `outlook_update_event` and the To Do tools alike.
+
+- **A recurrence-only `outlook_update_event` built the series on UTC's day, not the event's.**
+  Graph returns the stored start projected into UTC and names the event's zone in Windows terms
+  ("Pacific Standard Time") for anything it was not handed an IANA name for — which Python maps to
+  nothing. So an Outlook-created event at 18:00 Pacific, stored as `02:00Z` the next day, became a
+  series on the wrong weekday, a full day late, and Graph accepted it silently. Rather than carry a
+  Windows-to-IANA table, the event is re-read with `Prefer: outlook.timezone` and Graph does the
+  projection — verified live to be honoured on the SDK's own request builder, so this adds no
+  raw-HTTP path and inherits kiota's retries. The second read happens only when the anchor cannot
+  be resolved locally; events this server creates carry IANA names and need one GET as before.
+  Graph echoes the requested zone in `start.timeZone`, so a reply in any other zone means the
+  header was not honoured, and it is refused rather than read as local time — as is a reply with
+  no start, since the only fallback is the UTC date this read exists to avoid.
+  This is item 2 of #77, and it replaces a test that pinned the wrong answer deliberately.
+
+- **Calendar events are anchored in a real time zone, so recurring series survive daylight
+  saving.** `outlook_create_event` labelled every `start` and `end` with the literal
+  `timeZone: "UTC"` while passing the caller's datetime through unchanged. For a single event
+  that is merely lossy — the instant is correct, the zone it was scheduled in is gone, and
+  `outlook_get_event` reports `(UTC)` no matter what was asked for. For a **recurring** event
+  it is wrong: Graph expands a series against the zone its master is anchored in, so a weekly
+  09:00 meeting created through this server became 08:00 the week the clocks went back, and
+  stayed there. Verified against a live consumer mailbox — three occurrences of one weekly
+  series, 09:00 / 08:00 / 08:00 local.
+
+  `outlook_create_event` now takes `timezone`, an IANA zone name, defaulting to
+  `config.timezone`. The datetime string still reaches Graph as written: an offset or a `Z` pins
+  the instant exactly as before, and the zone decides only what the *second* occurrence does.
+  The recurrence is built against the event's date **in that zone** — `2026-10-29T01:00:00Z`
+  anchored in `America/Los_Angeles` is Wednesday the 28th at 18:00, and taking the date off the
+  text built a Thursday series starting the 29th, which Graph accepted and scheduled a day late.
+
+  `outlook_update_event` stops undoing the fix: a `start`/`end` patch keeps the zone the event is
+  already anchored in instead of stamping `UTC` on it. Graph rejects a `start` patch carrying no
+  `timeZone` at all, so one has to be sent, and the event's own is the only one that does not move
+  it. Start and end are read separately because Graph stores them separately — a flight that
+  leaves New York and lands in Los Angeles keeps both ends. Re-anchoring an event into a
+  *different* zone is the `timezone` argument in the Added section above, which shipped in the
+  same release after being developed separately.
+
+  **Behaviour change.** A zone-less `start`/`end` on `outlook_create_event`
+  ("2026-10-28T09:00:00") now means that wall-clock time in the configured zone, where it
+  previously meant UTC — *unless* `config.timezone` is one of the legacy names Graph refuses
+  (below), where it still means UTC. On a UTC-configured server nothing changes; on any other,
+  an event created from a zone-less datetime lands where the user meant rather than
+  `config.timezone`'s offset away from it. This is what `SKILL.md` has always said zone-less
+  input means, and what every read path already did.
+
+  On `outlook_update_event` a zone-less time is read in the **event's own** zone, which is
+  neither of the above. Patching a colleague's New York meeting to `09:00` means 09:00 there.
+
+  **All-day events are unaffected**, deliberately. Graph stores one anchored in UTC whatever
+  zone it is sent — verified live, both a midnight `Z` and a naive midnight labelled
+  `America/Los_Angeles` came back `originalStartTimeZone: UTC` — so an all-day event is
+  labelled the way Graph will hold it. Anything else would have been worse than cosmetic: a
+  `00:00Z` start labelled `America/Los_Angeles` is 17:00 the *previous* day, which built the
+  recurrence for the wrong date and the wrong weekday.
+
+  **Response shape.** `outlook_get_event` gains `original_start_time_zone` and
+  `original_end_time_zone`. `start` and `end` stay UTC, which means they say nothing about the
+  anchor — an event anchored in `America/Los_Angeles` and one anchored in `UTC` are
+  indistinguishable in them while behaving differently across a transition. Listings and the
+  delta formatter are unchanged.
+
+  Abbreviations passed as `timezone` are refused locally with the zone name to use instead:
+  `PDT` is not a zone name, and Graph answers it with `400 TimeZoneNotSupportedException`. So
+  are six names that *do* resolve as IANA keys and that Graph rejects anyway, all verified live —
+  `EST`, `MST` and `HST`, which are fixed offsets that would not follow daylight saving even if
+  it accepted them, and `CET`, `EET` and `WET`, which do observe it and are refused purely
+  because Graph will not take them. The reason is stated per name rather than of the group,
+  because the daylight-saving half is false for the second three.
+
+  Zone names are checked against `zoneinfo.available_timezones()` rather than by catching what
+  `ZoneInfo()` raises. The two disagree by platform: macOS resolves names against a
+  case-insensitive `/usr/share/zoneinfo`, so `america/los_angeles` is accepted there and sent to
+  Graph as written, while a Linux tzdata-only install refuses it — a validator built on the
+  exception passes on a contributor's laptop and rejects in production.
+
+  An existing `config.timezone` holding one of those six is **not** refused. Nothing ever sent
+  it anywhere before this release, so an install carrying one has been working; refusing it now
+  would leave that server reading calendars happily while every `outlook_create_event` without an
+  explicit `timezone` failed. Instead such an event is anchored in **UTC** — exactly what this
+  server wrote before it sent a zone at all — and a warning is logged once per run naming the
+  config key and the IANA zone to set. Those installs are no worse off than before; they simply
+  do not get DST-correct recurring events until someone edits one line.
+
+  The only signal an operator gets is a log line, which the model never sees — so if an agent
+  needs to know its event was anchored somewhere other than the configured zone, that is still
+  missing. Scoped rather than claimed: the behaviour-change note above says so explicitly.
+
+  `EST` is deliberately *not* translated to `America/New_York`: they are different zones. `EST` is
+  a fixed UTC−05:00 that never observes daylight saving, and that is how `resolve_timezone` — and
+  therefore every calendar *read* — already interprets the value, so anchoring writes in a
+  DST-observing zone would make the two halves of the server disagree about the same string every
+  summer. A *misspelt* `config.timezone` is an error for the same reason: it already fails every
+  calendar read, and inventing a zone for its writes would split the two apart.
+
+- **`classification` was always empty outside the inbox listing.** `outlook_search_mail`,
+  `outlook_list_drafts` and `outlook_get_thread` share `list_inbox`'s summary formatter, which
+  reports Focused Inbox's verdict — but each had its own copy of the `$select`, and only
+  `list_inbox`'s copy asked Graph for `inferenceClassification`. The other three returned
+  `"classification": ""` for every message regardless of how it had actually been classified,
+  which is indistinguishable from a message Graph declined to classify. The field list is one
+  constant now, and a guard reads the formatter's source and fails if a `$select` is narrower
+  than the fields it feeds — or wider.
+
+- **`outlook_list_events` reports a real `type`, so a recurring series is distinguishable from a
+  one-off.** It has reported `type: ""` for every event on every call since 1.16.0 — the release
+  that added "`type` on every listed event" because "`outlook_list_events` could not distinguish
+  a recurring series from a one-off without fetching each event individually". The formatter read
+  `event.type`; the listing's `$select` never asked Graph for it. Graph honoured the `$select`,
+  the SDK left the attribute `None`, and the formatter turned that into `""` — present, empty,
+  and indistinguishable from a genuine value. Seven releases — 1.16.0 through 1.22.0 — and a
+  unit test that passed throughout, because it handed the formatter a mock with `type` already
+  set: a mock cannot tell an honoured `$select` from an ignored one. `outlook_get_event` was
+  never affected — it sends no `$select`, so Graph returns everything. Reported and diagnosed against a live consumer mailbox in #69.
+
+  The same listing also *selected* `categories`, which no formatter on that path reads — the
+  bytes were fetched and discarded on every call. Both directions of that drift are now caught
+  by the guard built for it in #65, also unreleased: both calendar listing shapes have a row in
+  `tests/test_select_covers_the_formatter.py`, which had never been pointed at calendar. The two
+  `$select` strings are module constants rather than inline literals so the guard can see them,
+  and a new test asserts the listing really sends the constant the guard checks. Live guards
+  cover both `type` and `show_as` on the listing, and `type` on the delta path.
+
+- **`outlook_get_contact` returns the addresses, categories and notes Graph was already sending.**
+  The tool sends no `$select`, so Graph returns the whole contact — and the detail formatter read
+  12 fields of it. A contact with a home address, two categories and a note read back as having
+  none of them, which from the caller's side is indistinguishable from a contact that genuinely
+  has none. Detail now carries `home_address`, `business_address`, `other_address`, `categories`
+  and `personal_notes`. Graph sends an empty `physicalAddress` object rather than null for an
+  address a contact does not have, so an empty one is reported as `None` instead of three blank
+  addresses.
+
+  The `$select` audit on the two listing paths found both ends of the same mistake: `givenName`,
+  `surname` and `title` were selected and never read; `categories` was read by nobody because it
+  was never selected. Both lists were duplicated verbatim and are one constant now. Categories are
+  on the listing only — Graph's `$search` over contacts does not return them (verified live under a
+  narrow `$select`, a wide one, and none at all), so the search path omits the key rather than
+  reporting every contact as uncategorised.
+
+- **`outlook_list_contacts_delta` carries `categories` too.** Its formatter's docstring claims
+  it mirrors the listing summary field-for-field, and both `SKILL.md` and `outlook_changes_since`
+  steer recurring work to the delta tool — so an agent seeds from `outlook_list_contacts` and
+  refreshes from the delta. Adding the field to one and not the other would have had that agent
+  either `KeyError` on the key or report every changed contact as uncategorised, which is the
+  same "empty means absent" lie this entry exists to fix, one module over.
+  `/me/contacts/delta` takes no `$select`, so Graph was already sending it.
+
+## [1.22.1] — 2026-09-29
+
+A hotfix cut from 1.22.0 (branch `release/1.22.x`) carrying only this fix; the entries under
+[Unreleased] above ship in 1.23.0.
+
+### Fixed
+
+- **A fresh install was broken: every `/me` call failed with "me-token-to-replace is invalid".**
+  `uv tool install outlook-graph-mcp` resolved `microsoft-kiota-* 1.13+` (released 2026-09-18),
+  which moved per-request options from `request.options` to `request.extensions`; `msgraph-core`
+  1.5.1 still reads the old attribute, so its rewrite of `/users/me-token-to-replace` → `/me` never
+  fires. Nothing capped kiota, and the lock file pinned 1.12.3 — so CI and every developer install
+  were green while every new user's install was not. kiota is now capped below 1.13 until a
+  `msgraph-core` release carries the upstream fix (msgraph-sdk-python-core#1129).
+  `tests/test_me_rewrite_reaches_the_wire.py` builds the client the way msgraph does and asserts
+  on the URL the real middleware pipeline sends, for a bare and a nested `/me` path, against
+  whatever versions the environment resolved. Reported in #80.
+
+## [1.22.0] — 2026-09-12
+
+### Fixed
+
+- **Runs on hosts with no IANA time zone database.** `zoneinfo` resolves zone names against
+  the host's database; Windows ships none and slim Linux images (Alpine, distroless) often
+  omit `/usr/share/zoneinfo`. Every calendar read called `ZoneInfo(config.timezone)`, so on
+  those hosts every calendar tool failed — and failed *silently*, because
+  `ZoneInfoNotFoundError` is an unexpected exception to `_wrap_tool_errors`, which withholds
+  its text. The agent saw a bare `Error executing tool outlook_list_events` for a condition
+  with a one-line fix. `tzdata` is now a dependency (unconditional: a container without the
+  system database hits the identical failure, and it is inert where one exists), and an
+  unresolvable zone raises `ValueError` — the anticipated-failure channel — with separate
+  messages for "no database at all" and "not a zone name", since those need different fixes.
+
+  Thanks to **@neilbrencode**, who reported it with a reproduction and fixed it (#53, #54).
+
+- **The calendar window no longer opens an hour early during a DST fall-back.** PEP 495 makes
+  arithmetic on an aware datetime reset `fold` to 0, so `datetime.now(tz) + timedelta(days=0)`
+  is not the identity: in the repeated hour it silently selects the first pass. Events that
+  had already ended were returned as upcoming. Caught in review of #54 and fixed there, with
+  a frozen-clock regression test — shape assertions cannot see it, because the two datetimes
+  compare equal (PEP 495 has intra-zone comparison ignore `fold` as well).
+
+### Documentation
+
+- **`read_only` is documented as what it is: a tool gate, not a token scope.** It blocks
+  this server's write tools; it does not narrow the OAuth token, which is acquired with
+  `.default` and carries whatever the Azure app was consented for. A `read_only` server
+  still holds a write-capable Graph token, and the setting is a line in `config.json` rather
+  than something Microsoft enforces. README gains a section spelling this out, SECURITY.md
+  names it in the design list, and ROADMAP carries the real fix (a separately consented
+  read-only app). Raised by the ClawHub scanner as `[T05]`; predates v1 and is not a
+  regression.
+
+## [1.21.0] — 2026-09-11
+
+### Security
+
+- **A delta cursor can no longer redirect your mailbox token.** `fetch_delta_pages`
+  used its `delta_token` argument as the request URL verbatim and attached
+  `Authorization: Bearer <Graph token>` to it, with no check on scheme or host;
+  `@odata.nextLink` values read back out of a response body were followed the same
+  way. `_delta.py` deliberately does not persist cursors — "that's the caller's
+  job" — so the cursor is agent-held state, and an agent takes instructions from
+  the mail it reads. A string like `https://evil.example/collect` arriving in a
+  message body was therefore enough to send a live, full-mailbox access token to
+  a stranger. Every URL that would carry the token is now parsed and required to
+  be https on `graph.microsoft.com` (`require_graph_url`), including the
+  `deltaLink` handed back as the next cursor, so a poisoned link is never stored
+  and replayed either.
+
+  Parsed, not string-matched, for the same reason `resolve_attachment_path`
+  resolves instead of comparing prefixes: `startswith("https://graph.microsoft.com")`
+  accepts `https://graph.microsoft.com@evil.example/` — whose real host is
+  `evil.example` — and `https://graph.microsoft.com.evil.example/`.
+
+  Guarded live: `tests/test_live_delta_cursors.py` drives a real delta round
+  against Graph and replays the returned cursor through the guard, plus pins
+  that a real `deltaLink` carries no port and no userinfo — the two assumptions
+  the `netloc` equality rests on. The mocked suite cannot check this, because
+  its cursors are ones we wrote; preflight only checks that the delta endpoints
+  answer, and never routes a cursor through `fetch_delta_pages`.
+
+  Hardened further after review: the validator refuses control and space
+  characters outright (`urlsplit` deletes tab/CR/LF before parsing while an
+  HTTP client does not, so one string could read as two different hosts),
+  compares the whole `netloc` rather than `hostname` so userinfo and an
+  explicit port are refused with it, and returns the string it actually
+  checked rather than the one passed in.
+
+  Reported by the ClawHub security scanner (`[T09]`) against 1.19.0.
+
+- **The token cache is no longer written in cleartext without being asked.**
+  `allow_unencrypted_storage=True` was unconditional, so on Linux without
+  libsecret a reusable Graph refresh token was persisted to disk in plaintext
+  with only a log line to mark it. It is now opt-in via
+  `allow_unencrypted_token_cache` (default `false`); without it, authentication
+  stops and explains the two ways forward instead. macOS and Windows always had
+  an encrypted store and are unaffected.
+
+  **Breaking** on Linux hosts without libsecret that relied on the silent
+  fallback: set `allow_unencrypted_token_cache: true`, or install
+  `gnome-keyring libsecret-1-0 python3-gi` and re-create the venv with
+  `--system-site-packages`.
+
+### Fixed
+
+- **Startup no longer blocks for fifteen minutes on an expired token.**
+  `try_cached_token` promises a token "without user interaction", but built its
+  credential with azure-identity's default
+  `disable_automatic_authentication=False`. A cache miss therefore did not
+  return False — it opened a device-code flow and polled for a human until
+  `timeout` (900s), inside `lifespan`, on server startup. The silent path now
+  forbids the interactive flow and reports failure, which is the answer the
+  caller was always documented to get. `outlook-mcp auth` is unaffected; the
+  prompt belongs to it.
+
+  This also explains why `uv run pytest` — documented as the offline unit
+  suite — hung on developer machines while passing in CI: the tests build the
+  real server, whose lifespan authenticates for real, and CI has no
+  `~/.outlook-mcp/auth_record.json` to authenticate with. Three test files that
+  could not complete locally now run in seconds.
+
+- **The server still boots when the token cache is unwritable.** Refusing to
+  write plaintext is right; dying in `lifespan` on the way up is not — the
+  client sees a dead process and the one line the operator needs never leaves
+  stderr. It now starts unauthenticated and every tool call carries the real
+  remedy, which `outlook_auth_status` reports too. "Run `outlook-mcp auth`" is
+  specifically the wrong advice here, because it fails the same way.
+
+- **The second Linux failure mode is recognised.** The eager
+  `find_spec("gi")` check only sees a *missing* libsecret. When libsecret is
+  importable but unusable — no running Secret Service, as in a display-less
+  SSH session or a container — azure-identity refuses lazily at first token
+  use, with a `ValueError` naming its own `allow_unencrypted_storage` kwarg
+  rather than the config key. That is now translated, so both halves of the
+  condition give the same answer.
+
+- `try_cached_token` no longer reports a token-storage misconfiguration as an
+  expired token. It caught every exception and returned `False`, which is right
+  for a stale token and wrong for "this host cannot store one safely" — that
+  looped the operator back through `outlook-mcp auth` with no idea what to change.
+
+### Changed
+
+- **Dependency lock refreshed.** `pip-audit` reported advisories across
+  `aiohttp`, `click`, `cryptography` (including GHSA-537c-gmf6-5ccf), `h2`,
+  `pyjwt`, `python-multipart`, `starlette`, and `urllib3`; all had published
+  fixes. Now clean. Notable jumps: `starlette` 1.0.0 → 1.6.0, `mcp` 2.1.1 →
+  2.2.0, `pydantic` 2.12.5 → 2.13.5, `aiohttp` 3.13.5 → 3.14.3.
+
+### Documentation
+
+- **SECURITY.md said tokens were "never in plain files", which was not true**
+  on Linux without libsecret. Corrected, alongside the same overstatement in
+  SKILL.md and README's feature list. The delta-cursor boundary is now documented
+  next to the attachment one.
+- Private vulnerability reporting is enabled on the repository, so the
+  `/security/advisories/new` link in SECURITY.md now works for outside reporters
+  (#52).
+
+## [1.20.0] — 2026-09-10
+
+Security, and the first release shaped by what agents actually did rather than by
+what we assumed they would. Two months of recorded trajectories (1,279 tool calls)
+turned out to disagree with the design in three specific places.
+
+### Security
+
+- **Attachment reads and writes are confined to a configured directory.**
+  `outlook_download_attachment` checked its `save_path` only for the substring
+  `..`, so any absolute path was writable. `outlook_send_with_attachments` and
+  `outlook_attach_to_draft` checked nothing at all, so any file the server
+  process could read could be emailed anywhere. Against a mail server — which
+  reads untrusted input for a living — "attach the file at &lt;path&gt; and reply" was
+  a working exfiltration primitive. New `attachments_dir` config (default
+  `~/.outlook-mcp/attachments`) bounds all three. Confinement is resolved rather
+  than textual, so a symlink sitting inside the directory and a sibling directory
+  sharing a name prefix are both refused.
+
+### Fixed
+
+- **Every domain error reached the model as `Error executing tool <name>`.** The
+  2.x SDK forwards the text of an anticipated failure (`ToolError`) and withholds
+  the text of a crash. `OutlookMCPError` inherited from `Exception`, so
+  auth-required, read-only, permission-denied, not-found, every wrapped Graph
+  error and every validation message was classified as a crash and suppressed.
+  Only pydantic's argument-type errors survived, because the SDK raises those
+  itself. The mock suite could not see it: it asserts on exception *types*, which
+  stayed green throughout.
+- **The `action` recovery hints had never reached an agent, on either SDK.** They
+  lived on the exception attribute and never in `str()`. Two of them named
+  `outlook_login`, a tool that does not exist; they now say `outlook-mcp auth`.
+
+### Added
+
+- **Relative dates on every datetime parameter.** `7d` / `-7d` (ago), `+7d` (from
+  now), `now`; units m/h/d/w. The archive shows `after="7d"` attempted fifty
+  times and refused every time, then worked around with a hand-computed
+  timestamp. The rejection message now names the accepted formats.
+- **Connect-time `instructions`.** 115 calls re-checked an identity that cannot
+  change mid-session and 196 listed folders before folder-scoped scans that
+  resolve display names on their own — about a quarter of all traffic. Guidance
+  that spans tools belongs in one string sent once per session, not duplicated
+  into 62 docstrings paid for every turn.
+- **Three workflow prompts** — `morning_brief`, `triage_folder`, `catch_up` — the
+  workflows the archive shows being assembled by hand. `catch_up` is where the
+  delta tools finally get named; they had gone unused because nothing pointed an
+  agent at them.
+- **`ttlMs` / `cacheScope` on `tools/list`** (SEP-2549). Was `ttlMs: 0`, so
+  clients re-fetched ~8.6k tokens of schemas they could have kept. Now five
+  minutes, private.
+- **`idempotentHint` on seven tools** whose operation is a PATCH of an absolute
+  value. Opt-in and pinned rather than inferred: a client that trusts the hint
+  may retry after a timeout, and a wrong entry sends a second email.
+  `openWorldHint` deliberately left unset — it is `true` by default in the schema
+  and would be `true` on all 62, so stating it costs schema tokens on every turn
+  and tells a client nothing new.
+
+### Changed
+
+- **BREAKING:** an attachment path outside `attachments_dir` is now refused.
+  Callers that saved to or attached from arbitrary locations must move the file
+  there or widen the setting. This is why the change ships in a minor rather than
+  a patch.
+
+### Notes
+
+Tool count unchanged at 62. Tool titles were considered and dropped: they would
+have added roughly 10% to the schema bytes every client pays for on every turn,
+and would have displayed "List Inbox" while the README and every error message
+say `outlook_list_inbox`.
+
+## [1.19.0] — 2026-09-08
+
+Tiers 2 and 3 of the silent-no-op audit, and the two bugs they found on their first run.
+
+### Added
+
+- **`tests/test_no_dead_modules.py`** — builds the intra-package import graph from the console-script entry point and fails on any module nothing reaches. The module-level counterpart of the dead-parameter guard: `models/` sat unreferenced for months while 30 tests imported it directly, because tests that import a module by name make dead code look alive. Collects imports from every AST node, since this package imports lazily inside functions. Mutation-verified.
+- **`tests/test_sdk_fields_exist.py`** — every `model.attr = …` in `tools/` where `model` was bound by an `msgraph.generated.models` constructor must name a declared dataclass field of that class. Dataclass instances accept arbitrary attributes, so assigning a field the SDK doesn't have raises nothing, serializes nothing, and reaches nothing. Offline, no mocks.
+- **`tests/test_write_payloads_reach_the_wire.py`** — for eleven write tools across calendar, mail, drafts, contacts and To Do, calls the handler with a distinctive sentinel for every argument, serializes the object handed to `.post()`/`.patch()` exactly as kiota would, and asserts each value is present in that JSON. Attribute-level assertions cannot see a field the handler forgot (#41) or the SDK dropped (`remove_recurrence`); the wire can.
+- **Live round-trips for contacts and To Do** (`test_live_contacts_write.py`, `test_live_todo_write.py`): every parameter each write tool accepts is written, read back through the tool's own read path, and asserted — the only detector for Graph accepting a value and ignoring it. The write tier's rules now cover calendar, contacts and To Do (the three surfaces with no outward side effect; still no mail, ever). Because the real config may whitelist only some write categories, `live_write_config` opens the three it needs on an **in-process copy**; `~/.outlook-mcp/config.json` is never touched.
+
+### Removed
+
+- **`sensitivity` on `outlook_send_message`.** Found by the wire test and confirmed by the field guard: msgraph-sdk's `Message` has no `sensitivity` field — not in the dataclass, not in `serialize()`, not in the deserializers. `msg.sensitivity = Sensitivity.Private` hung a stray attribute on the instance that kiota never saw. Sending it by hand via `additional_data` was then tried against live Graph (as a draft, deleted): `400 UnableToDeserializePostBody`. It is a legacy MAPI property that this endpoint does not accept, so there is nothing to implement. The parameter never did anything for anyone; it is removed rather than left as a convincing no-op. **Schema change** on one tool.
+- **`src/outlook_mcp/tools/auth_tools.py`** — a six-line docstring stub left behind when the auth tools moved into `server.py`, imported by nothing. Flagged by the new module guard.
+
+### Fixed
+
+- **To Do `reminder=True` was silently stored as off.** The live round-trip caught it: Graph accepts `isReminderOn: true`, returns 201, and persists `false` unless `reminderDateTime` is also set. Confirmed by isolating the two cases live. `create_task` now anchors the reminder on the due time, and `reminder=True` without `due` is a named error — there is nothing to anchor it on, and the alternative is the no-op we just removed.
+
+### Verified
+
+- Offline **638 passed, 32 deselected**; ruff clean across `src/`, `tests/`, `scripts/`.
+- **16 live write-tier tests** — calendar 10, contacts 3, To Do 3 — plus preflight 13/13, live 10, integration 6. Calendar, contacts and tasks swept afterwards for leftover test data: none.
+- 62 tools, unchanged.
+
+## [1.18.0] — 2026-09-08
+
+A guard against the bug class that produced [#41], and the bug it immediately found.
+
+### Added
+
+- **`tests/test_no_dead_parameters.py`** — fails the build on any parameter that is declared and never read. That is the static half of the #41 shape: `outlook_create_event` took `recurrence`, threaded it to the handler, never applied it, and returned `status: created` for fourteen releases. An AST walk catches it offline, in CI, for free.
+
+  Deliberately strict about what counts as a use: only `Name` loads, never attribute names. Counting `event.recurrence` as a use of a `recurrence` parameter is precisely how #41 would have slipped past. Functions taking `*args`/`**kwargs` are skipped, since forwarding makes the question undecidable. Two framework-callback parameters are allowlisted with written reasons, and a second test fails if an allowlist entry goes stale — a stale exemption silently re-opens the hole it was excusing. The guard is mutation-verified: injecting a dead parameter makes it fail with the file, line and parameter name.
+
+  It catches one of the three shapes. Graph accepting a field and ignoring it (`is_online`, 1.16.0) needs live coverage; the SDK dropping a field from the payload (`remove_recurrence`, 1.17.0) needs assertions on serialized output. Both are noted in the module docstring.
+
+### Fixed
+
+- **`outlook_reply` ignored `is_html`** — found by the new guard on its first run. Every reply sent with `is_html=True` went out as plain text, with any markup stripped. Graph's reply action takes `comment` as plain text only; markup has to ride on the action's `message` field as an `ItemBody` with contentType HTML. Both are now set correctly and exclusively — setting `comment` alongside `message` would duplicate the text in the sent reply. Verified that Graph stores and preserves an HTML body on a reply-shaped message; the send path itself is not live-tested, because the write tier does not send mail.
+- **`AuthManager.login_interactive()` and `try_cached_token()` took a `scopes` argument they ignored**, resolving scopes internally via `get_token_scopes()` instead. Callers passed a value that did nothing. The parameter is removed from both. Internal API; no MCP tool signature changes.
+
+### Verified
+
+- Offline **619 passed, 26 deselected**; ruff clean across `src/`, `tests/`, `scripts/`.
+- preflight 13/13, live 10, integration 6, live_write 10 — the auth signature change is on the path every credentialed tier and `outlook-mcp status` uses, so all four were re-run.
+- 62 tools, unchanged.
+
+## [1.17.0] — 2026-09-07
+
+Ending a series without deleting it.
+
+### Added
+
+- **`remove_recurrence` on `outlook_update_event`.** Ending a series previously meant deleting the event — there was no way to turn a series master back into a single occurrence. `remove_recurrence=True` does that, keeping the first occurrence's time. It is a separate flag rather than a sentinel on `recurrence`, because `None` there already means "leave alone"; passing both raises.
+
+  The implementation is not the obvious one. Graph clears a series with an explicit `"recurrence": null`, but the msgraph SDK **omits any field set to `None`** from the serialized payload — `Event(subject="x", recurrence=None)` serializes to `{"subject": "x"}` — so `event.recurrence = None` is a silent no-op of exactly the kind that produced [#41]. The null is therefore sent through `additional_data`, which kiota does serialize. Two tests pin this: one asserts the wire format contains `"recurrence": null` rather than checking the attribute (an attribute assertion would stay green through the bug), and one asserts the SDK still drops an explicit `None`, so if kiota ever changes, the workaround can be simplified.
+
+  Verified live: a `seriesMaster` becomes a `singleInstance` with `recurrence: null` and its start time intact.
+
+## [1.16.0] — 2026-09-07
+
+Calendar editing catches up with calendar creation, and a layer that only looked like validation comes out.
+
+### Added
+
+- **`attendees` on `outlook_update_event`.** You could create a meeting with guests but never add one to a meeting that already existed. Note the semantics, which are Graph's, not ours: there is no add-one operation, so the argument **replaces the whole collection** — Outlook emails invitations to everyone on the new list and cancellations to anyone dropped. `[]` removes them all. Every argument on this tool keeps `None` = "leave alone", so `False` and `[]` remain instructions rather than absences.
+- **`is_all_day` on `outlook_update_event`**, which requires `start` and `end` in the *same* call. Graph rejects a lone isAllDay patch with `ErrorInvalidRequest: Missing parameters: Event.Start`; that is now a named local error naming both bounds instead of an opaque 400 from the wire.
+- **`type` on every listed event** (`singleInstance` / `seriesMaster` / `occurrence` / `exception`). `outlook_list_events` could not distinguish a recurring series from a one-off without fetching each event individually. Computed once in the summary formatter; the detail formatter inherits it. `concise=True` still omits it — that mode exists to drop tokens.
+- **`Accept-Encoding: gzip` on the two raw-httpx paths** (`fetch_delta_pages`, `read_messages`). The SDK path already negotiated compression; these bypass the SDK and did not. Delta pages and 20-message `$batch` responses are large, highly compressible, and refetched constantly by polling agents. Roadmap Tier-0 #7.
+
+### Removed
+
+- **`src/outlook_mcp/models/` — the entire Pydantic I/O layer.** All 22 classes across `calendar.py`, `mail.py`, `todo.py`, `contacts.py` and `common.py` were referenced by zero non-model source files; only their own tests imported them. They read as the input-validation layer, and `CLAUDE.md` claimed one existed ("All input validated via Pydantic + validation.py"), but nothing on any tool path ever constructed them. This is the exact mechanism that hid [#41] for fourteen releases: `CreateEventInput.validate_recurrence` enforced the shorthand allowlist, looked authoritative, and never ran. They are redundant by construction — `MCPServer` generates tool schemas from the type annotations. `CLAUDE.md` now says what actually runs, and requires any future model layer to be wired to the tool path in the same commit. Drops 30 tests that exercised only dead code.
+- **`scripts/probe_datetime_semantics.py`.** One-off evidence gathering for 1.15.0's timezone question. The question is answered, the finding is recorded in the 1.15.0 entry below, and a script that creates and deletes real calendar events should not ship in a bundle other people install.
+
+### Fixed
+
+- **`is_online` is documented as a no-op on personal accounts.** Adding it to `outlook_update_event` was in scope until the live write tier caught what mocks cannot: Graph accepts `isOnlineMeeting` on a consumer mailbox and silently ignores it. A created event comes back `isOnlineMeeting: False`, `onlineMeetingProvider: "unknown"`, `onlineMeeting: None`. Teams meetings require a work/school account, which this server does not target — so `outlook_create_event`'s `is_online` parameter has never done anything for this project's only audience. Rather than ship a convincing no-op on a second tool, the parameter was left off `update_event`, the behavior is documented on `create_event`, and a live test now pins it: if Microsoft ever starts honouring it, that test fails and tells us the parameter is worth adding. *Superseded — see #70: it is honoured on some personal accounts, and `outlook_update_event` takes it since.*
+
+### Verified
+
+- Offline suite **608 passed, 25 deselected**; `ruff check src/ tests/` clean; 62 tools register (unchanged — this release adds parameters, not tools).
+- **9 live write-tier tests** against a real personal `@outlook.com` calendar, including all-day conversion, partial-patch isolation, and the online-meeting pin. `attendees` is deliberately *not* exercised live — patching it emails real invitations, and the tier's no-attendees rule outranks the coverage; the built payload is unit-tested instead.
+
+[#41]: https://github.com/mpalermiti/outlook-mcp/issues/41
+
+## [1.15.0] — 2026-09-07
+
+Recurring calendar events, which have never actually worked, and a timezone bug found while fixing them.
+
+### Fixed
+
+- **`outlook_create_event` silently discarded `recurrence`.** Every "recurring" event the server has ever created was a single occurrence with `recurrence: null`. The parameter was declared on both the tool and the handler and then never assigned to the Graph `Event` before `POST /me/events` — so the call returned `status: created` and looked like it worked. Two independent failures sat on that one argument: the tool schema typed it `str | None`, so a Graph recurrence object was rejected by Pydantic before reaching the handler, and the JSON-string workaround reached the handler and was dropped there. The `daily`/`weekly`/`monthly` shorthands the docstring has advertised since 1.0 were equally inert — `CreateEventInput.validate_recurrence` in `models/calendar.py` is referenced only by its own unit test, never by the tool path, so any string was accepted and ignored. Reported by @Wermeling. ([#41])
+- **`outlook_get_event` returned a Python repr for `recurrence`.** The read path did `str(event.recurrence)`, emitting ~500 characters of `PatternedRecurrence(additional_data={}, odata_type=None, pattern=...)` into a field the response model declares as `dict | None`. It now returns the same JSON shape `outlook_create_event` accepts, with unset fields omitted.
+
+- **Zone-less datetimes were resolved against the server's clock.** `validate_datetime` handed a naive datetime ("2026-10-22T12:30:00") straight to `.astimezone()`, which resolves against the *process's* local timezone. The same query string therefore meant a different instant depending on where the server happened to run: `12:30` became `12:30Z` on a UTC container, `19:30Z` on a laptop in California and `10:30Z` in Berlin. That skewed every `$filter` bound built from a zone-less value in `outlook_list_inbox`, `outlook_list_events` and `outlook_list_events_delta`, and — the one with a visible consequence — the PR_DEFERRED_SEND_TIME of a scheduled message, so "send this at 09:00" went out hours off. `validate_datetime` now takes an explicit `tz` for zone-less input only; input carrying a `Z` or an offset already pins its own instant and is untouched. The default is UTC and the server passes `config.timezone`, which is what `CLAUDE.md` has always said input interpretation should use.
+
+  **Behavior change** where `config.timezone` is not UTC: a bare date now means midnight *there* rather than midnight UTC, so `after="2026-10-22"` on an `America/Los_Angeles` config resolves to `2026-10-22T07:00:00Z`. Hosts running in the configured zone — the common case — see no change at all; hosts where the two disagreed were the ones silently producing different answers.
+
+  The write paths (`calendar_write`, `todo`) call `validate_datetime` for its exception and discard the normalized value, so they are unaffected. That is deliberate and now verified rather than assumed: `scripts/probe_datetime_semantics.py` established that Graph honors an explicit offset in the `dateTime` field and reads a naive value as the declared `timeZone`, making the current write behavior correct. "Fixing" those call sites to use the discarded value would have introduced exactly the host-clock bug this entry removes.
+
+### Added
+
+- **`recurrence` accepts three input shapes** on `outlook_create_event`: a Microsoft Graph recurrence object (matching `outlook_create_task`, which has taken `dict` since 1.5.0); a JSON-encoded string of one, since some client bridges stringify nested arguments; or a shorthand — `daily`, `weekdays`, `weekly`, `monthly`, `yearly` — expanded against the event's own start, so `weekly` on a Monday start means every Monday and `monthly` on the 7th means the 7th.
+- **`range.startDate` is reconciled with the event start.** Graph requires the range to begin on the day of the first occurrence and returns `ErrorInvalidRecurrenceRange` otherwise. It is now defaulted from `start` when omitted, and a supplied value that disagrees is rejected locally with a message naming both dates instead of surfacing as an opaque 400. The date is taken as the caller wrote it rather than UTC-normalized, so an evening or early-morning series doesn't shift a day.
+- **`recurrence` on `outlook_update_event`.** There was previously no path to add recurrence to an event that already existed — the parameter simply wasn't there, so a single event could never become a series. It now takes the same three shapes as `outlook_create_event`. Graph anchors a series on the master's start, so when `start` isn't part of the same patch the event's current start is read first and used as the anchor; a partial patch that omits `recurrence` leaves any existing pattern untouched. Reading that start back also required `event_start_date` to tolerate Graph's seven-digit fractional seconds, which `datetime.fromisoformat` rejects on the project's 3.10 floor.
+- **`type` on `outlook_get_event`** — `singleInstance`, `seriesMaster`, `occurrence` or `exception`. This is the field that lets a client confirm a series actually took; its absence is part of why #41 needed a raw Graph call to diagnose.
+- **`src/outlook_mcp/tools/_recurrence.py`** — recurrence conversion shared by calendar and To Do, which model it identically. `build_patterned_recurrence` is To Do's 1.5.0 converter moved here unchanged, so `outlook_create_task` keeps exactly its previous behavior; `build_event_recurrence` is the calendar entry point layered on top; `serialize_recurrence` is the inverse for read paths.
+- **`live_write` test tier** — the project's first write-side tests, and the reason this fix is trustworthy. Recurrence cannot be validated any other way: a `PatternedRecurrence` that is well-formed to the SDK still 400s if the range disagrees with the start, and mocks only ever assert what we *build*. Double-gated (marker deselected by default **and** skipped without `OUTLOOK_MCP_LIVE_WRITE=1`), calendar-only, no attendees, bounded ranges only, everything deleted in a `finally`. Rules in `tests/conftest.py`; runbook step 1d in `RELEASING.md`.
+
+### Verified
+
+- Five write-tier tests green against live Graph on a personal `@outlook.com` account: the series master is created, comes back `type: seriesMaster`, the recurrence round-trips through `outlook_get_event` as a dict, the `startDate` we default is one Graph accepts, and a non-recurring control still reports `singleInstance`. Every created event deleted; the calendar was re-queried afterwards and held no leftovers.
+- Offline suite: **609 passed, 21 deselected** (was 577 / 16 at 1.14.0). `ruff check src/ tests/ scripts/` clean.
+- A separate probe (`scripts/probe_datetime_semantics.py`) established what Graph does with the datetimes this tool sends, since `create_event` labels every start `timeZone: "UTC"` while passing the caller's string through verbatim. Graph honors an explicit offset (`12:30:00+02:00` → `10:30:00Z`) and reads a naive datetime as the declared UTC. Both are correct and deterministic; no change was made. Recorded because the obvious "fix" — using the normalized value `validate_datetime` already computes and throws away — would have introduced a real bug, resolving naive input against the *server's* local clock.
+
+[#41]: https://github.com/mpalermiti/outlook-mcp/issues/41
+
+## [1.14.0] — 2026-09-04
+
+Migration to the `mcp` 2.x SDK, lifting the `<2` ceiling that 1.13.1 pinned as a stopgap. **No behavior change for clients** — all 62 tool schemas serialize byte-for-byte identically to 1.13.1.
+
+### Changed
+
+- **`mcp[cli]` requirement raised to `>=2`** (was `>=1.27,<2`). The SDK renamed `FastMCP` to `MCPServer` and moved it from `mcp.server.fastmcp` to `mcp.server.mcpserver` in 2.0.0 (2026-07-28). 1.13.1 pinned below that release to restore installs; this completes the migration instead of living under the ceiling. The Python floor is unchanged — `mcp` 2.1.1 requires `>=3.10`, same as this project.
+- `ToolAnnotations` moved to snake_case field names in the SDK (`read_only_hint`, `destructive_hint`), retaining the camelCase forms as serialization aliases. The wire format clients see (`readOnlyHint` / `destructiveHint`) is unchanged; only in-process attribute reads in `tests/test_toolsets.py` needed updating. The annotation and `OUTLOOK_MCP_TOOLSETS` gating work from 1.12.0 carries over untouched.
+
+### Removed
+
+- The `mcp._mcp_server.version = __version__` workaround. `MCPServer` accepts a `version` kwarg directly, so `serverInfo.version` is now set through public API rather than by reaching into a private attribute.
+
+### Verified
+
+- Offline suite green on `mcp` 2.1.1: `577 passed, 16 deselected` — identical to 1.13.1.
+- All 62 tool schemas dumped from 1.x and 2.1.1 and diffed: **byte-for-byte identical** (52,998 bytes each).
+- `serverInfo.version` reports `1.14.0`; 62 tools register.
+
+## [1.13.1] — 2026-09-04
+
+Hotfix. **Every fresh install since 2026-07-28 was dead on arrival** — this restores it. No code changes; one dependency bound and a CI job to make sure it cannot happen again.
+
+### Fixed
+
+- **`mcp[cli]` was declared with no upper bound, so new installs pulled an incompatible major.** `mcp` 2.0.0 (2026-07-28) removed `mcp.server.fastmcp` by design — it was renamed to `MCPServer`. `src/outlook_mcp/server.py` imports `from mcp.server.fastmcp import Context, FastMCP`, so a fresh `pip install outlook-graph-mcp` resolved `mcp` 2.1.1 and `outlook-mcp serve` exited 1 with:
+
+  ```
+  ModuleNotFoundError: No module named 'mcp.server.fastmcp'
+  ```
+
+  Now pinned to `mcp[cli]>=1.27,<2`, which resolves 1.29.1 and imports cleanly with all 62 tools.
+
+  This was **not** a 1.13.0 regression. 1.12.0 shipped 2026-07-18, ten days before `mcp` 2.0.0, and was broken by the same unbounded specifier the moment that release landed. Every install path — PyPI, `uvx`, ClawHub, the MCP registry — was affected for roughly five weeks. Migrating to the `mcp` 2.x `MCPServer` API is a separate, deliberate piece of work; this release only restores a working install.
+
+- **CI could not see it, which is why it lasted five weeks.** The test job runs `uv sync`, which resolves through `uv.lock` — and the lock pinned the old, working `mcp` 1.27.0. All 577 tests passed in 0.75s against a dependency set no new user would ever get. Same shape as the bugs fixed in 1.13.0: a green suite testing something other than what ships.
+
+### Added
+
+- **`fresh-install` CI job.** Builds the wheel, installs it into a clean venv with a **fresh dependency resolve that deliberately ignores `uv.lock`**, prints the resolved versions, then asserts the server imports and registers all 62 tools. This is the check that turns "an upstream major broke us" from a user-reported outage into a failed PR. It fails today on `main` without the pin — verified locally before shipping.
+
+## [1.13.0] — 2026-09-04
+
+Correctness release. Three shipped bugs fixed, all of which were invisible to a fully green mock suite — including one tool that had never worked in any released version. Adds the live test tier that would have caught them. One new filter parameter; no new tools (still 62), no breaking changes.
+
+### Fixed
+
+- **`outlook_list_inbox` returned `400 InefficientFilter` whenever `from_address` or `classification` was used** ([#31](https://github.com/mpalermiti/outlook-mcp/issues/31)). `list_inbox` sets `$orderby=receivedDateTime desc` unconditionally, but Graph requires an `$orderby` property to also appear in `$filter` **and to precede** the other filtered properties — clause order is load-bearing, not just presence. Both parameters failed on every call, as did `unread_only + from_address` and `from_address + after`. Clauses are now emitted date-first, with a permissive `receivedDateTime` floor prepended only when the caller supplies no `after`/`before`. Validation still runs in signature order, so validation-error precedence is unchanged.
+
+  Considered and rejected: dropping `$orderby` when `receivedDateTime` isn't filtered. Graph's implicit ordering follows whichever index served the filter and is **ascending** for `inferenceClassification` — that fix would have silently returned the *oldest* focused mail with no error.
+
+- **`outlook_list_thread` returned `400` on every call and had never worked in a released version.** Same root cause: `$filter=conversationId eq '…'` with `$orderby=receivedDateTime asc`. Verified against six real conversations before and after.
+
+- **`outlook_search_mail` silently returned zero results for every documented KQL property restriction** ([#30](https://github.com/mpalermiti/outlook-mcp/issues/30)). `sanitize_kql` stripped `:`, so `subject:Unlock` was sent as `"subjectUnlock"` — HTTP 200, no error, no results. The docstring's own example (`from:sarah@acme.com`) was broken; `from:`, `subject:` and `hasattachment:true` were all dead.
+
+  `:`, `(` and `)` are now preserved. Still stripped, each for a measured reason: `"` (an embedded quote makes Graph *silently discard* `$search` and return the whole mailbox — the real injection vector), `\` (a genuine escape metachar: `\s` is a 400, a trailing `\` escapes our closing quote), `*` (buys nothing, since Graph already prefix-matches, and a bare `*` would become a silent whole-mailbox read where it is currently a loud 400), and `&` `|` `!` (not operators; the symbol forms silently zero out a matching query). Applies to `outlook_search_contacts` too, which shares the sanitizer.
+
+  A query that sanitizes to empty now raises a clear `ValueError` instead of an opaque Graph `BadRequest`.
+
+- **Integration tests had been silently skipping since they were written.** The fixture called `AuthManager.login()`, which does not exist; the `AttributeError` was swallowed by a bare `except Exception` and reported as a skip — the "6 skipped" in every run. Repointed at `try_cached_token`. Running them then surfaced two more latent defects: a session-scoped Graph client raised `Event loop is closed` (the kiota/httpx transport binds to the running loop, so it is now function-scoped), and `test_list_drafts_smoke` asserted `result["drafts"]` where `list_drafts` returns `messages`.
+
+### Added
+
+- **`uncategorized_only` on `outlook_list_inbox`** ([#28](https://github.com/mpalermiti/outlook-mcp/pull/28), thanks [@jasond727](https://github.com/jasond727)) — filters to messages with no categories assigned via OData `not categories/any()`. Default `False`; behavior unchanged when omitted. Lets an agent ask "what have I not triaged yet?" server-side instead of pulling and filtering the whole inbox.
+
+- **Live query-shape test tier (`uv run pytest -m live`)** — 10 read-only tests guarding the three failure classes above. Mocks assert what we *send*; they cannot see what Graph *does* with it, which is how all three bugs shipped under 558 green tests. These assert on returned data, not just absence of an exception, because the dangerous failure mode is a silent 200 with wrong results. Mutation-verified: reverting each fix fails the corresponding tests. `scripts/preflight.py` does not cover this — it probes endpoint reachability and treats a 400 as a non-blocking SKIP.
+
+  The default `pytest` run is now the offline unit suite only; `integration` and `live` are deselected via `addopts`. Previously `integration` ran for real on any machine holding a cached token and merely *skipped* in CI, which reads as "covered" when nothing was exercised.
+
+### Changed
+
+- `outlook_list_inbox` summary line now names `category` as a filter dimension — that first docstring line is what an LLM reads when choosing among 62 tools.
+- `outlook_search_mail` docstring records two Graph behaviors that cost real query results: `AND`/`OR`/`NOT` must be **uppercase** (lowercase `and` matches as a literal term), and two terms with no operator between them *broaden* rather than narrow.
+- The `403 ErrorAccessDenied` recovery hint now carries a URL. It previously said "See ROADMAP 'Investigated and not viable'", but `ROADMAP.md` ships in neither the sdist nor the wheel — anyone who installed from PyPI had nothing to open.
+
+### Documentation
+
+- **`ROADMAP.md` mailboxSettings entry carried a misattributed quote.** It claimed the endpoint "is documented as `Delegated (personal Microsoft account): Not supported`". Both mailboxSettings reference pages list personal accounts as *supported*, and their permissions tables have been unchanged since 2023-10-27 — so they did not say that when 1.7.1 shipped either. The string belongs to a neighbouring `MailboxSettings`-scoped page (`workHoursAndLocations`, a different resource). The empirical `403` was always the real justification and is unaffected; re-verified 2026-09-03. The 1.7.1 entry below repeats the quote and is deliberately left as written — this changelog does not retroactively edit released sections.
+
+- **Inbox message rules documented as non-viable** ([#29](https://github.com/mpalermiti/outlook-mcp/pull/29), thanks [@tlewthwa](https://github.com/tlewthwa)) — `/me/mailFolders/inbox/messageRules` returns `403 ErrorAccessDenied` on personal accounts despite Graph's docs listing personal-MSA support, verified with a raw HTTP probe and the token's scopes recorded. Includes a COM/MAPI side investigation and a pointer to `/me/inferenceClassification/overrides`, the one rule-shaped capability that does work on personal accounts. This closes out the only Near-term roadmap item as blocked.
+
+### Tool count
+
+- 1.12.0 → 1.13.0: **62 tools, 13 categories** (no change).
+
+## [1.12.0] — 2026-07-18
+
+Performance & efficiency pass for recurring agent loops (personal-account mail + calendar). No new tools, no breaking changes; the default tool surface is unchanged (62 tools). Validated against a measured tool-schema token count (~8,644 tokens/turn) and a mid-2026 ecosystem review.
+
+### Added — Config-gated toolsets
+
+`OUTLOOK_MCP_TOOLSETS` env var (e.g. `mail,calendar,digest,delta`) loads only the named tool groups plus the always-on `account`/auth tools, instead of all 62. Groups: `mail`, `drafts`, `attachments`, `calendar`, `contacts`, `todo`, `folders`, `digest`, `delta`, `admin`. A client that only needs mail + calendar drops the surface from 62 → ~30 tools (~52% fewer tool-schema tokens per turn). Unset = all tools (backward compatible). The grouping is a flexible selector rather than a fixed core/admin package split — the measurement showed the admin/override/batch group is only ~7% of tokens, so real savings come from dropping whole unused domains.
+
+### Added — Tool annotations
+
+Every tool now carries `readOnlyHint` / `destructiveHint` (`ToolAnnotations`): 26 read-only tools, 8 destructive (delete/remove), the rest additive writes. Clients can auto-approve reads and gate destructive ops (delete mail, decline event) without a hardcoded allowlist. Classification lives in `toolsets.py` as one reviewable table, drift-guarded by a test.
+
+### Changed — Concurrent digest
+
+`outlook_changes_since` fetches mail / events / contacts concurrently (`asyncio.gather`) instead of sequentially — ~2–3× lower latency on the most-used recurring tool. Each resource still resyncs independently on a stale token; the `_meta.resync` order is deterministic regardless of completion order.
+
+### Changed — Graph client reuse
+
+`_get_graph_client` caches one `GraphServiceClient` (auth provider, request adapter, TLS pool) in the lifespan context and reuses it while the credential is unchanged, instead of rebuilding it on every tool call. A `switch_account` / re-auth swaps the credential object, so an identity check rebuilds automatically.
+
+### Fixed — Throttling on the raw-httpx paths
+
+New `throttle.py` restores `Retry-After` honoring on the delta / `$batch` paths that bypass the SDK's kiota `RetryHandler`:
+- `outlook_changes_since` / delta queries retry the delta GET on 429/503.
+- `outlook_read_messages` — a `$batch` returns HTTP 200 even when a sub-request is throttled (429/503); the tool now re-issues just the throttled sub-requests honoring `Retry-After` (bounded by `max_retries`) instead of recording a 429 as a permanent failure.
+
+## [1.11.1] — 2026-07-18
+
+### Fixed — `outlook_download_attachment` corrupted binary attachments ([#25](https://github.com/mpalermiti/outlook-mcp/issues/25))
+
+`outlook_download_attachment` raised `UnicodeDecodeError` on any attachment whose bytes aren't valid UTF-8 — in practice every non-text file (`.pdf`, `.docx`, images, etc.). The tool double-decoded `contentBytes`: the msgraph SDK (Kiota) already base64-decodes it into raw `bytes` during deserialization, but the tool then called `.decode("utf-8")` + `base64.b64decode()` on the already-decoded bytes. It now writes `attachment.content_bytes` verbatim.
+
+Regression from [#9](https://github.com/mpalermiti/outlook-mcp/pull/9) (v1.6-era), which added decoding that is correct for the raw Graph REST/JSON API but wrong when going through the SDK. Diagnosed and verified by @AI-OWEN. Added a regression test that downloads a non-UTF-8 binary payload and asserts byte-for-byte fidelity; corrected the pre-existing download test whose mock fed base64-*encoded* bytes and thereby masked the bug.
+
+No API, signature, or tool-count change. **Tool count: 62, 13 categories** (unchanged).
+
+### Docs
+
+- Added a **Troubleshooting** section to the README covering `SSL: CERTIFICATE_VERIFY_FAILED` on Linux ([#24](https://github.com/mpalermiti/outlook-mcp/issues/24)) — point Python at the system CA bundle via both `SSL_CERT_FILE` (httpx delta/`$batch` paths) and `REQUESTS_CA_BUNDLE` (azure-identity auth).
+
 ## [1.11.0] — 2026-05-22
 
 ### Added — Bulk message read via `$batch` (1 tool)

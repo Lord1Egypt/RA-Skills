@@ -1,0 +1,27 @@
+name: douyin-commerce-product-research-free
+display_name: 免费抖音商品选品研究
+slug: douyin-commerce-product-research-free
+version: 1.0.3
+description: 免费、免第三方 API Key，通过已登录浏览器读取抖音公开商品页，整理价格、卖点、选品对比和内容切入建议。
+category: business-operations
+author: xxjrq
+repository: https://github.com/xxjrq/douyin-commerce-product-research-free
+tags:
+  - douyin
+  - product-research
+  - ecommerce
+  - easy-webbridge
+  - free
+  - no-api-key
+trigger_words:
+  - 抖音商品选品
+  - 抖音选品分析
+  - 抖音商品对比
+  - 抖音带货选题
+  - 抖音店铺研究
+license: MIT-0
+runtime:
+  name: easy-webbridge
+  prerequisite: Follow https://www.ebrower.com/helperdoc/ai-agent-workflow.html; standalone source is https://github.com/aiispower/easy-webbridge and https://gitee.com/xxjrq/easy-webbridge.
+icon: assets/icon-512.png
+self_test: node scripts/self-test.mjs

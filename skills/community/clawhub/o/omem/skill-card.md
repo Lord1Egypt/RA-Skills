@@ -1,44 +1,60 @@
-## Description: <br>
-Searches a user's local OMem work-memory index across emails, calendar events, documents, and collaboration notes to help answer work-context questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches a user's local OMem work-memory index across configured emails, calendar events, documents, and collaboration notes.
 
-## Publisher: <br>
-[seacen](https://clawhub.ai/user/seacen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[seacen](https://clawhub.ai/user/seacen)
 
-## Use Case: <br>
-Employees and their agents use this skill to search local work history, decisions, meetings, documents, and colleagues, then fetch the most relevant OMem wiki pages or raw parsed artifacts when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can query sensitive local work memory, including emails, calendar items, documents, and notes. <br>
-Mitigation: Install and use it only when the user wants agent access to that OMem index; scope ambiguous requests with account, source, date range, or document type when needed. <br>
-Risk: Search ranking may return plausible but irrelevant pages when a query is broad or ambiguous. <br>
-Mitigation: Read returned abstracts, rerank before opening pages, and cite OMem source paths so the user can verify the answer. <br>
+## Use Case:
 
+Developers and other agent users use this skill to answer questions about their own work history by querying a local OMem wiki, then fetching the most relevant pages or parsed source text when needed.
 
-## Reference(s): <br>
-- [OMem documentation](https://seacen.github.io/omem/) <br>
-- [OMem install script](https://github.com/seacen/omem/releases/latest/download/install.sh) <br>
-- [Query syntax and edge cases](references/query-syntax.md) <br>
-- [CLI output schemas](references/output-schemas.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or plain text with cited OMem source paths and occasional inline shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include JSON parsing of OMem CLI results and source-path citations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can surface confidential local work-history material from email, calendar, document, and collaboration sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for clearly work-history-related questions and review retrieved content before sharing it outside the user's intended context.
+
+Risk: Untrusted user text could be passed into local shell queries.
+
+Mitigation: Quote query strings carefully and avoid pasting untrusted text directly into shell commands.
+
+Risk: The artifact includes curl-to-shell installation guidance for the prerequisite OMem CLI.
+
+Mitigation: Prefer a verified or package-managed installer before enabling the skill in sensitive environments.
+
+## Reference(s):
+
+- [OMem documentation](https://seacen.github.io/omem/)
+- [Query syntax](references/query-syntax.md)
+- [Output schemas](references/output-schemas.md)
+- [Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown responses with citations and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses JSON output from the local omem CLI and may cite OMem wiki or source paths.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

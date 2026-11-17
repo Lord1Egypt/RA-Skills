@@ -1,39 +1,53 @@
-## Description: <br>
-B2B SaaS customer case study and social proof builder that helps create customer success stories, testimonials, proof assets, and derivative sales or social content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+B2B SaaS customer case study and social proof builder for writing, extracting, or creating customer success stories, case studies, testimonials, and social proof assets.
 
-## Publisher: <br>
-[renehdzgtz](https://clawhub.ai/user/renehdzgtz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[renehdzgtz](https://clawhub.ai/user/renehdzgtz)
 
-## Use Case: <br>
-Marketing, sales, and customer success teams use this skill to turn customer wins, interview notes, transcripts, and outcome summaries into B2B SaaS case studies and reusable social proof assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The trigger wording may activate for general customer notes or outcome summaries where case-study formatting is not desired. <br>
-Mitigation: Give explicit instructions when the source material should remain as notes, analysis, or another format instead of a case study package. <br>
-Risk: Generated customer stories can include unsupported claims if source material is sparse or metrics are not verified. <br>
-Mitigation: Review metrics, quotes, names, confidentiality choices, and customer approvals before publication or sales use. <br>
+## Use Case:
 
+External marketing, sales, and customer success teams use this skill to turn customer wins, interview transcripts, notes, and metrics into B2B SaaS case study packages and reusable social proof assets.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a full case study package with pull quotes, LinkedIn snippets, a sales one-pager, an objection buster, and a distribution checklist.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Customer transcripts, notes, and metrics may contain confidential business information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the anonymized option when needed and remove identifiers or metrics that are not approved for publication.
+
+Risk: Generated quotes, testimonials, or public-facing snippets may be inaccurate, unattributed, or not approved for external use.
+
+Mitigation: Review generated assets against source material and obtain the necessary customer or internal approvals before sharing them externally.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/renehdzgtz/skills/b2b-saas-case-study)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown case study package with sections for a full case study, pull quotes, LinkedIn snippets, sales one-pager, objection buster, and distribution checklist.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include anonymized customer details when confidentiality requires it.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

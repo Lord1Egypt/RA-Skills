@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 产品特性优先级"
+  short_description: "按评论频次和影响排序产品改进特性"
+  default_prompt: "使用 $amazon-feature-priority-planner 根据 Amazon 评论证据排列产品特性改进优先级。"

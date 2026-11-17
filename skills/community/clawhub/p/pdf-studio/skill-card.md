@@ -1,43 +1,58 @@
-## Description: <br>
-Professional PDF document generator for reports, invoices, certificates, portfolios, and other publication-ready PDFs with images, tables, charts, tables of contents, headers, footers, and cross-platform fonts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional PDF document generator for reports, invoices, certificates, portfolios, and other publication-ready PDFs with support for images, tables, charts, tables of contents, headers, footers, and cross-platform fonts.
 
-## Publisher: <br>
-[tobewin](https://clawhub.ai/user/tobewin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-Developers and document authors use this skill to plan and generate print-quality PDF reports, invoices, certificates, resumes, portfolios, contracts, and academic documents using local Python PDF libraries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording may select PDF output when a user asks for a generic report. <br>
-Mitigation: Confirm the user wants a PDF deliverable before choosing PDF-specific generation steps. <br>
-Risk: The skill depends on manually installed Python PDF libraries. <br>
-Mitigation: Install dependencies only from trusted package sources, preferably in an isolated virtual environment, and review generated code before execution. <br>
-Risk: Marketplace capability tags include crypto and purchase labels that do not match the reviewed skill behavior. <br>
-Mitigation: Treat those tags as labeling noise unless future evidence shows payment, purchase, wallet, or crypto behavior. <br>
+## Use Case:
 
+Developers, employees, and external users use this skill to plan and generate professional PDFs such as business reports, invoices, certificates, resumes, portfolios, academic papers, and forms. It guides document requirements, layout choices, font selection, and local PDF library use.
 
-## Reference(s): <br>
-- [PDF Templates](references/templates.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/tobewin/pdf-studio) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown with PDF-generation guidance, dependency commands, and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local PDF files when the agent follows the generated implementation steps with user-approved Python libraries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated PDF code or commands may be incorrect or unsuitable for the user's environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated code before running it and test output locally before using generated PDFs in production workflows.
+
+Risk: PDF generation depends on user-installed Python libraries such as FPDF2, WeasyPrint, or ReportLab.
+
+Mitigation: Install dependencies manually from trusted sources and verify the selected library supports the required document features and fonts.
+
+Risk: Some prompts and templates are Chinese-focused despite broader multilingual claims.
+
+Mitigation: Confirm language, font, and layout requirements for the target audience before finalizing the document.
+
+## Reference(s):
+
+- [PDF Templates](artifact/references/templates.md)
+- [ClawHub skill page](https://clawhub.ai/tobewin/skills/pdf-studio)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with optional code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local PDF-generation code or commands; generated code should be reviewed before execution and dependencies should be installed manually from trusted sources.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,54 @@
-## Description: <br>
-Manage AI-built websites via NiceBox OpenClaw API. Supports article publishing, viewing messages, and checking site status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage AI-built websites via NiceBox OpenClaw API. Supports article publishing, viewing messages, and checking site status.
 
-## Publisher: <br>
-[ravchen](https://clawhub.ai/user/ravchen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ravchen](https://clawhub.ai/user/ravchen)
 
-## Use Case: <br>
-Developers and site operators use this skill to manage a NiceBox-hosted website from an agent workflow, including publishing articles, listing inbound messages or leads, and checking site status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses AIBOX_API_KEY to authenticate live NiceBox API requests. <br>
-Mitigation: Keep AIBOX_API_KEY private and avoid exposing command output or logs that could reveal credentials or sensitive request context. <br>
-Risk: Article publishing can change a live website. <br>
-Mitigation: Review title, content, summary, author, cover URL, and publish status before running the publishing script. <br>
-Risk: Listed messages or leads may contain sensitive user data. <br>
-Mitigation: Treat message output as private data and avoid sharing or logging it unnecessarily. <br>
-Risk: Overriding AIBOX_BASE_URL can send credentials and site data to a different endpoint. <br>
-Mitigation: Use the default NiceBox endpoint unless the alternate base URL is trusted. <br>
+## Use Case:
 
+Developers and site operators use this skill to publish articles, inspect incoming site messages, and check site status for NiceBox-hosted AI-built websites through the OpenClaw API.
 
-## Reference(s): <br>
-- [NiceBox OpenClaw API base URL](https://ai.nicebox.cn/api/openclaw) <br>
-- [ClawHub skill page](https://clawhub.ai/ravchen/nicebox-site-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, text, JSON] <br>
-**Output Format:** [Command-line instructions and formatted JSON responses from NiceBox API scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and AIBOX_API_KEY; optional AIBOX_BASE_URL overrides the default NiceBox OpenClaw endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: A custom base URL can receive the NiceBox API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep AIBOX_BASE_URL on the documented NiceBox HTTPS endpoint and avoid passing custom --base-url values.
+
+Risk: The API key can publish site content and read site messages.
+
+Mitigation: Use a narrowly scoped API key and run commands only from trusted environments and invocation paths.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ravchen/skills/nicebox-site-manager)
+- [NiceBox OpenClaw API endpoint](https://ai.nicebox.cn/api/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown guidance with shell commands and formatted JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and AIBOX_API_KEY; AIBOX_BASE_URL can override the default API endpoint.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

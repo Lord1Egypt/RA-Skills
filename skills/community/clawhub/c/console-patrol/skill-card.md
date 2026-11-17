@@ -1,40 +1,57 @@
-## Description: <br>
-Console Patrol helps agents scan web applications for browser console errors and framework warnings, then report severity-ranked diagnostics and suggested fixes for React, Ant Design, and Element UI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Console Patrol helps agents scan web applications for browser console errors and warnings, with framework-specific diagnostics for React, Ant Design, and Element UI.
 
-## Publisher: <br>
-[zhzgao](https://clawhub.ai/user/zhzgao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhzgao](https://clawhub.ai/user/zhzgao)
 
-## Use Case: <br>
-Developers and QA engineers use this skill to scan authorized web application routes for browser console errors, runtime failures, and framework-specific warnings. The skill is useful during debugging, pre-release checks, and CI-style frontend audits where severity-ranked findings and fix suggestions are needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install dependencies and run browser-based scans against web applications. <br>
-Mitigation: Use it only on applications and routes you are authorized to inspect, and review dependency installation or browser-scanning steps before execution. <br>
-Risk: Console findings can depend on route coverage, app load timing, and framework detection. <br>
-Mitigation: Confirm the scanned routes, adjust wait time for lazy-loaded pages, and review findings before making code changes. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to audit web app routes for console errors, warnings, and framework-specific issues, then report severity, location, and suggested fixes.
 
-## Reference(s): <br>
-- [Console Patrol ClawHub page](https://clawhub.ai/zhzgao/console-patrol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown reports with tables, issue lists, inline code, and optional shell or Python command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include pages scanned, P0/P1/P2 severity counts, affected URLs, console messages, and suggested fixes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Route scanning can touch unintended pages or sensitive production data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run scans only against approved test routes or controlled environments, and avoid sensitive production data.
+
+Risk: Screenshots may capture sensitive page content.
+
+Mitigation: Use screenshot capture only when needed and review where generated files are stored.
+
+Risk: The skill depends on installed browser automation tooling and package dependencies.
+
+Mitigation: Install and run dependencies in a least-privileged sandbox, and pin or vet them before CI or shared-agent use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhzgao/skills/console-patrol)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports page counts, issue totals, severity counts, rule identifiers, affected locations, and suggested fixes.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

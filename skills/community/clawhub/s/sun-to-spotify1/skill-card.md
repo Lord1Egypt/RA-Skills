@@ -1,45 +1,63 @@
-## Description: <br>
-Generate Sun audio and stream episodes to Spotify as a podcast. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate Sun audio and stream episodes to Spotify as a podcast using the `sun` CLI or HTTP API.
 
-## Publisher: <br>
-[sunbot001](https://clawhub.ai/user/sunbot001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunbot001](https://clawhub.ai/user/sunbot001)
 
-## Use Case: <br>
-External users and developers use this skill to turn a supplied prompt into a Sun-generated audio experience and publish completed episodes to Spotify as a podcast. It supports CLI-first operation with an HTTP API fallback when the CLI is unavailable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create Spotify shows and upload generated episodes without a separate approval step. <br>
-Mitigation: Require explicit review of the show title, cover image, generated audio, and target Spotify show before any upload command runs. <br>
-Risk: The workflow uses Sun and Spotify credentials, including personal API tokens and OAuth authorization. <br>
-Mitigation: Use isolated credential storage, avoid logging secrets, prefer uv or pipx installation, and revoke tokens that are no longer needed. <br>
-Risk: The curl installer executes a remote install script. <br>
-Mitigation: Prefer uv or pipx installation when possible, or review the installer before running it. <br>
+## Use Case:
 
+Developers and creators use this skill to generate podcasts, audiobooks, or audio courses from a user prompt and publish the resulting episodes to Spotify. It guides authentication, job creation, incremental episode fetching, upload sequencing, and error handling for CLI and HTTP workflows.
 
-## Reference(s): <br>
-- [Sun to Spotify skill page](https://clawhub.ai/sunbot001/sun-to-spotify1) <br>
-- [Sun CLI Usage](artifact/cli-usage.md) <br>
-- [Sun Public HTTP API](artifact/http-api.md) <br>
-- [Sun CLI installer](https://sunapp-ai.github.io/sun-to-spotify/install.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON examples, and operational checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Sun authentication, a personal Sun API token, Spotify authorization through save-to-spotify, and user-supplied audio prompt details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill recommends a curl-to-bash installer path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer an isolated exact-version install with `uv tool` or `pipx`; review the installer before using curl-to-bash.
+
+Risk: Authentication and token creation can expose sensitive credentials or full token secrets.
+
+Mitigation: Have the user complete browser login directly, avoid pasting passwords or full tokens into agent chats or logs, and store tokens in an environment variable or secret manager.
+
+Risk: The workflow can publish generated audio to the wrong Spotify destination.
+
+Mitigation: Confirm the Spotify account, show creation choice, and target show before allowing uploads.
+
+Risk: Using the wrong Sun API host can send requests or tokens to an unintended service.
+
+Mitigation: Confirm the Sun API host before token creation or audio generation, especially when environment overrides are present.
+
+## Reference(s):
+
+- [Sun CLI Usage](artifact/cli-usage.md)
+- [Sun Public HTTP API](artifact/http-api.md)
+- [ClawHub skill page](https://clawhub.ai/sunbot001/skills/sun-to-spotify1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, API calls]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes operational guidance for authentication, polling, incremental downloads, Spotify upload sequencing, and user-facing error handling.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

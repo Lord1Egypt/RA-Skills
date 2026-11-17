@@ -1,42 +1,55 @@
-## Description: <br>
-A prompt-based reference skill that provides structured knowledge about the number 520, including its Chinese internet-slang meaning of "I Love You," mathematical properties, science and technology references, history, geography, and everyday cultural uses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A prompt-based skill that provides structured information about the number 520, including its Chinese internet-slang meaning, mathematical properties, scientific references, and cultural uses.
 
-## Publisher: <br>
-[Wscats](https://clawhub.ai/user/Wscats) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wscats](https://clawhub.ai/user/wscats)
 
-## Use Case: <br>
-External users and agents use this skill to answer natural-language questions about 520 as a cultural, mathematical, scientific, historical, geographic, and social reference. It is useful for concise explanations, comparisons with related Chinese number slang, and culturally aware guidance around 520-related prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for broad 520-related prompts. <br>
-Mitigation: Use it when the user is asking about the number 520, Chinese number slang, May 20th, or closely related cultural and reference topics. <br>
-Risk: Some factual or cultural claims may be unsuitable as the sole basis for financial, gift, travel, or formal decisions. <br>
-Mitigation: Independently verify important factual, commercial, or culturally sensitive claims before relying on them. <br>
+## Use Case:
 
+External users, educators, and developers can use this prompt skill to answer natural-language questions about 520 as a number, cultural symbol, Chinese numeric homophone, date, or related technical and geographic reference.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Wscats/520) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text natural-language responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credential use, persistence, or data access is described by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release evidence) <br>
+Risk: The prompt-only skill may activate too broadly for adjacent topics such as romance, Chinese culture, May 20th, or related numbers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow trigger wording or review activation behavior before enabling it in contexts where broad cultural or romance-topic activation would be intrusive.
+
+Risk: The skill provides broad informational answers that may include cultural, historical, scientific, and commercial claims.
+
+Mitigation: Review factual claims before relying on generated responses in educational, commercial, or other high-impact settings.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wscats/skills/520)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-formatted natural-language responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only informational output; no code execution or tool calls are described in the release evidence.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

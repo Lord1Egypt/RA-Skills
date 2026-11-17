@@ -1,43 +1,54 @@
-## Description: <br>
-AI-powered Instagram post generator that creates captions, hashtags, and image prompts from a user-provided topic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Instagram-ready captions, hashtags, and image prompts from a user-provided topic or instruction.
 
-## Publisher: <br>
-[shivang2882-bot](https://clawhub.ai/user/shivang2882-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shivang2882-bot](https://clawhub.ai/user/shivang2882-bot)
 
-## Use Case: <br>
-Content creators, marketers, and social media teams use this skill to turn a topic or instruction into Instagram-ready post copy, hashtags, and an image prompt. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated captions or hashtags may be inaccurate, misleading, or unsuitable for a brand or audience. <br>
-Mitigation: Review and edit generated captions and hashtags before publishing. <br>
-Risk: User-provided topics may include private or sensitive information that should not be used in social posts. <br>
-Mitigation: Avoid entering private or sensitive information, and remove such details before generating post content. <br>
-Risk: Generated image prompts may lead to visuals that need brand, rights, or safety review. <br>
-Mitigation: Review the image prompt and any resulting visual asset before posting. <br>
+## Use Case:
 
+Marketing, branding, social media, and content teams use this skill to turn a topic or instruction into draft Instagram captions, hashtags, and image prompts for review before posting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shivang2882-bot/insta-poster) <br>
-- [Artifact skill documentation](artifact/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [Structured JSON containing caption, hashtags, image_prompt, and status fields.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill drafts content only; it does not access Instagram accounts or publish posts automatically.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact config.json) <br>
+Risk: Generated captions, hashtags, or image prompts may be inaccurate, misleading, off-brand, or unsuitable for public social media use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit generated content before using it publicly.
+
+Risk: Users may assume the skill publishes to Instagram or handles account credentials.
+
+Mitigation: Treat the output as draft content only; the security evidence states that the skill does not publish posts, use credentials, or connect to an Instagram account.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shivang2882-bot/skills/insta-poster)
+- [Publisher profile](https://clawhub.ai/user/shivang2882-bot)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON]
+
+**Output Format:** [Structured JSON object with caption, hashtags, image_prompt, and status fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates draft content for review; it does not publish posts or connect to Instagram.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact config)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

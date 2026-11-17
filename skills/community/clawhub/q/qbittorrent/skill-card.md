@@ -1,41 +1,56 @@
-## Description: <br>
-Manage torrents with qBittorrent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage torrents with qBittorrent through its WebUI API.
 
-## Publisher: <br>
-[jmagar](https://clawhub.ai/user/jmagar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[jmagar](https://clawhub.ai/user/jmagar)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+External users, developers, and operators use this skill to list, add, pause, resume, delete, recheck, categorize, tag, and inspect torrents in qBittorrent.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can control important or private qBittorrent downloads.
+
+Mitigation: Review the skill before installation and use it only with a qBittorrent WebUI instance you intend the agent to manage.
+
+Risk: The skill reads qBittorrent WebUI credentials from a config file or environment variables.
+
+Mitigation: Use restrictive permissions for the credential file, avoid shared machines, and prefer a local-only or HTTPS WebUI.
+
+Risk: Delete commands can remove torrents and, with `--files`, downloaded content.
+
+Mitigation: Require explicit user confirmation before executing delete operations, especially commands that include `--files`.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to manage qBittorrent torrents through the WebUI API, including listing, adding, pausing, resuming, deleting, rechecking, tagging, and speed-limit operations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can delete torrents and, with the files option, remove downloaded data. <br>
-Mitigation: Require explicit user confirmation before delete operations, especially delete with files or broad all-target actions. <br>
-Risk: The qBittorrent WebUI session cookie may be stored in a predictable temporary path. <br>
-Mitigation: Set QBIT_COOKIE to a private path with 0600 permissions and protect the credentials configuration file. <br>
-Risk: The agent can control a qBittorrent WebUI instance. <br>
-Mitigation: Use strong non-default WebUI credentials and prefer localhost or HTTPS access. <br>
+**Output Format:** [Markdown with inline shell commands and qBittorrent API responses]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May include torrent metadata such as hash, name, state, progress, speed, ETA, category, tags, and save path.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, API calls] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses qBittorrent WebUI credentials from a local configuration file or environment variables.] <br>
+1.0.0 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

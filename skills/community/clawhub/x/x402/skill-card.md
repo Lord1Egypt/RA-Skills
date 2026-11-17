@@ -1,43 +1,60 @@
-## Description: <br>
-Pay for resources via the x402 HTTP payment protocol using gasless USDC transfers on Base without accounts or KYC, enabling cryptographic identity-based access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an x402 HTTP payment helper that lets agents pay for resources with USDC on Base using wallet-signed payment headers.
 
-## Publisher: <br>
-[LumenFromTheFuture](https://clawhub.ai/user/LumenFromTheFuture) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lumenfromthefuture](https://clawhub.ai/user/lumenfromthefuture)
 
-## Use Case: <br>
-Developers and agents use this skill to make machine-to-machine x402 payments for paid HTTP resources such as compute, APIs, domains, and service credits using USDC on Base. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can authorize real USDC payments through x402 flows without built-in confirmation or spend limits. <br>
-Mitigation: Use a dedicated low-balance wallet, restrict use to trusted URLs, and review the amount, recipient, network, and token before signing. <br>
-Risk: Wallet private keys may be exposed if a main wallet key is provided through environment variables or wallet files. <br>
-Mitigation: Avoid using a main wallet private key, keep wallet files restricted, and use a separate wallet created for agent payment activity. <br>
+## Use Case:
 
+Developers and agent builders use this skill to integrate x402 payment flows for paid APIs, compute, domains, and other HTTP resources. It supports parsing HTTP 402 payment requirements, signing EIP-3009 USDC authorizations, encoding X-Payment headers, and making paid fetch requests.
 
-## Reference(s): <br>
-- [x402 Protocol Spec](https://x402.org) <br>
-- [EIP-3009: Transfer With Authorization](https://eips.ethereum.org/EIPS/eip-3009) <br>
-- [Conway Documentation](https://docs.conway.tech) <br>
-- [ClawHub Skill Page](https://clawhub.ai/LumenFromTheFuture/x402) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with JavaScript and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces x402 payment helper code and command examples that may sign and submit USDC payments when supplied with a funded wallet.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/package.json) <br>
+Risk: The helper can authorize USDC payments from a wallet using payment terms supplied by remote servers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance wallet, restrict calls to trusted x402 providers, and require explicit user approval with maximum spend checks before any signature.
+
+Risk: Remote payment requirements may specify unexpected recipients, assets, or contract addresses.
+
+Mitigation: Validate recipient addresses, USDC contract addresses, network IDs, and requested amounts before signing or sending an X-Payment header.
+
+Risk: Examples and tests can execute payment-related code if run with real wallet credentials.
+
+Mitigation: Do not run npm test or example scripts with real wallet credentials unless the provider, amount, and destination have been reviewed.
+
+## Reference(s):
+
+- [x402 Protocol Spec](https://x402.org)
+- [EIP-3009: Transfer With Authorization](https://eips.ethereum.org/EIPS/eip-3009)
+- [Conway Documentation](https://docs.conway.tech)
+- [ClawHub Skill Page](https://clawhub.ai/lumenfromthefuture/skills/x402)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JavaScript examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include payment examples that require wallet credentials, USDC on Base, and calls to trusted x402 providers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

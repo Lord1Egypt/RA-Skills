@@ -1,39 +1,52 @@
-## Description: <br>
-Personal healthy eating assistant that records health notes and food inventory, then recommends meals using existing items and flags items nearing expiration; health-record features are limited to the main session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal health diet assistant that records and queries health and food inventory information, generates personalized dietary recommendations based on health status, prioritizes available foods, marks ingredients already in inventory, and reminds the user about items nearing expiration.
 
-## Publisher: <br>
-[BiyaoShang](https://clawhub.ai/user/BiyaoShang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[biyaoshang](https://clawhub.ai/user/biyaoshang)
 
-## Use Case: <br>
-Individual users use this skill to maintain local health and diet notes, track food inventory, ask about those records, and receive personalized meal recommendations that account for health constraints and available foods. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Sensitive health notes and food inventory may be stored in local plaintext Markdown files. <br>
-Mitigation: Install only if local plaintext storage is acceptable; review or delete those files when the information should no longer be retained, and avoid storing medical details that other local tools or users should not access. <br>
-Risk: Meal recommendations can be inappropriate if health records or inventory details are incomplete or outdated. <br>
-Mitigation: Keep records current and review recommendations before acting, especially for allergies, symptoms, medical restrictions, or expiring foods. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/BiyaoShang/eatsth-by) <br>
+## Use Case:
 
+External users use this skill to maintain personal health and food inventory notes and receive diet recommendations that account for symptoms, restrictions, dislikes, habits, available foods, and expiration dates. Health-record features are intended for direct personal sessions only.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Natural-language responses and local Markdown records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local Markdown files for health notes and food inventory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill stores sensitive personal health details in plain local Markdown files.
+
+Mitigation: Add explicit consent, review, correction, deletion, and protected-storage rules before collecting or retaining health records.
+
+Risk: Diet recommendations may be based on incomplete or outdated health and food inventory records.
+
+Mitigation: Ask users to confirm current health constraints and inventory status before relying on recommendations, and present recommendations as informational rather than medical advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/biyaoshang/skills/eatsth-by)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain-language responses and Markdown record updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local Markdown files for health and food inventory records.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

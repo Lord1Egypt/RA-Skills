@@ -1,42 +1,54 @@
-## Description: <br>
-Shorten URLs from terminal with custom slugs, local storage, and basic analytics. A self-contained CLI that maps long URLs to short slugs using a local JSON file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shorten URLs from terminal with custom slugs, local storage, and basic analytics.
 
-## Publisher: <br>
-[Derick001](https://clawhub.ai/user/Derick001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[derick001](https://clawhub.ai/user/derick001)
 
-## Use Case: <br>
-Developers, operators, and terminal users use this skill to create and manage local short URL mappings, search them, export or import backups, and inspect basic click analytics without relying on an external URL-shortening service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shortened URLs and metadata are stored locally in plain JSON. <br>
-Mitigation: Avoid storing sensitive private URLs, and protect or delete the local mappings file according to the user's security requirements. <br>
-Risk: Importing mappings from an untrusted JSON file could add unwanted or misleading URL records. <br>
-Mitigation: Import only JSON files from trusted sources and review imported mappings before relying on them. <br>
-Risk: Delete, overwrite import, and cleanup commands can remove local mappings. <br>
-Mitigation: Export a backup before destructive operations and use cleanup --dry-run before deleting entries in bulk. <br>
+## Use Case:
 
+Developers and command-line users use this skill to shorten, expand, search, manage, import, export, and clean up locally stored URL mappings without relying on an external shortening service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Derick001/url-shortener-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Terminal text and optional JSON output from local CLI commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Python 3 and stores mappings in a local JSON file under the user's home directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence and skill frontmatter) <br>
+Risk: URL history is stored in plaintext under the user's home directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing secrets in URLs and use only on systems where local plaintext URL history is acceptable.
+
+Risk: Import, overwrite, force delete, and cleanup commands can change or remove local mappings.
+
+Mitigation: Back up mappings before import or cleanup, prefer cleanup with --dry-run first, and review destructive flags before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/derick001/skills/url-shortener-cli)
+- [Publisher profile](https://clawhub.ai/user/derick001)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration]
+
+**Output Format:** [Terminal text and optional JSON output from CLI commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates local URL mapping data under ~/.url-shortener/mappings.json.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

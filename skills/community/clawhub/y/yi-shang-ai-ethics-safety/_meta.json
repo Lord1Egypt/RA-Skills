@@ -1,6 +1,45 @@
 {
-  "ownerId": "kn79yx9eg18yykdmrcwp143nf182wh9f",
-  "slug": "yi-shang-ai-ethics-safety",
+  "name": "yi-shang-ai-ethics-safety",
   "version": "1.2.2",
-  "publishedAt": 1774882666260
+  "description": "Comprehensive AI ethics safety and authenticity monitoring based on Instinctual Integrity Quotient (IIQ) theory. Detects alienation patterns, ensures value alignment through Daoist/Buddhist/Confucian principles, and provides 27-type personality matrix for AI team configuration.",
+  "main": "SKILL.md",
+  "author": "Figo Cheung",
+  "license": "MIT",
+  "keywords": [
+    "ai",
+    "ethics",
+    "safety",
+    "authenticity",
+    "value-alignment",
+    "alienation-detection",
+    "iiq",
+    "daoism",
+    "confucianism",
+    "buddhism"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills"
+  },
+  "skill": {
+    "name": "AI 树德：义商本体伦理安全系统",
+    "description": "基于情智义三商人格理论，提供 AI 义商（本真性）检测与防护能力。核心价值理念：以义为体、以情智为用",
+    "version": "1.2.2",
+    "features": [
+      "异化模式检测（工具化亲和者、工具化智囊、精致 AI 利己主义者）",
+      "三商测评（义商 IIQ、情商 EQ、智商 IQ）",
+      "价值观对齐（道儒佛三教融合）",
+      "27 种 AI 人格类型矩阵",
+      "自动化伦理审计",
+      "虚假情感检测",
+      "推荐算法价值校准"
+    ],
+    "useCases": [
+      "构建伦理 AI 系统",
+      "检测 AI 异化风险",
+      "AI 伦理审计",
+      "推荐算法设计",
+      "AI 团队配置"
+    ]
+  }
 }

@@ -1,46 +1,59 @@
-## Description: <br>
-Trade on Phemex for USDT-M futures, Coin-M futures, and spot markets by checking market data, managing balances and positions, placing or canceling orders, setting leverage, and transferring funds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade on Phemex (USDT-M futures, Coin-M futures, Spot) - place orders, manage positions, check balances, and query market data.
 
-## Publisher: <br>
-[bubble501](https://clawhub.ai/user/bubble501) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bubble501](https://clawhub.ai/user/bubble501)
 
-## Use Case: <br>
-External users and developers use this skill to operate Phemex trading workflows through the phemex-cli tool, including market-data lookup, account review, order management, leverage changes, and spot/futures fund transfers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place or cancel orders, change leverage, inspect positions, and transfer funds with Phemex API credentials. <br>
-Mitigation: Use a dedicated key with minimum permissions, disable withdrawals, prefer testnet or read-only access first, and require explicit approval before each order, cancellation, leverage change, position-mode change, or transfer. <br>
-Risk: Persistent credentials in ~/.phemexrc can expose high-impact exchange access if the file is mishandled. <br>
-Mitigation: Protect or avoid ~/.phemexrc, use environment variables or a secret store when appropriate, and restrict file access to the local user. <br>
-Risk: Installing and running the npm CLI package gives local code access to trading credentials and exchange actions. <br>
-Mitigation: Pin and verify the package version before installation, review command output before acting, and keep manual approval in the loop for trading operations. <br>
+## Use Case:
 
+External users and developers use this skill to query Phemex market data, inspect account state, place or modify orders, manage positions and leverage, and transfer funds through phemex-cli.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/bubble501/phemex-trade) <br>
-- [Project homepage from skill metadata](https://github.com/betta2moon/phemex-trade-mcp) <br>
-- [Phemex](https://phemex.com) <br>
-- [Phemex production API endpoint](https://api.phemex.com) <br>
-- [Phemex testnet API endpoint](https://testnet-api.phemex.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses phemex-cli with PHEMEX_API_KEY and PHEMEX_API_SECRET, optionally stored in ~/.phemexrc.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The skill can exercise real financial authority through trading, order cancellation, leverage changes, position-mode changes, and transfers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before actions that trade, cancel, change leverage, switch modes, or move funds; start on testnet and show account and position context before trading.
+
+Risk: Persistent exchange credentials may be stored in ~/.phemexrc as plaintext.
+
+Mitigation: Prefer an OS secret store or ephemeral environment variables; if ~/.phemexrc is used, restrict file access to the current user and use a dedicated least-privileged Phemex API key without withdrawal permissions.
+
+Risk: A mutable global CLI install can change behavior between runs.
+
+Mitigation: Install a pinned and audited phemex-trade-mcp version before use and review changes before upgrading.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bubble501/skills/phemex-trade)
+- [Project Homepage Listed in Artifact](https://github.com/betta2moon/phemex-trade-mcp)
+- [Phemex](https://phemex.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses phemex-cli; authenticated account, trading, leverage, position-mode, and transfer operations require PHEMEX_API_KEY and PHEMEX_API_SECRET.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

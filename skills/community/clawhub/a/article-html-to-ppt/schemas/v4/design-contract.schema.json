@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://meowclaw.dev/schemas/v4/design-contract.schema.json",
+  "title": "PPT Smith v4 Source-bound Design Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "contract_id", "status", "source_ir_sha256", "template_evidence", "pages", "review"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "contract_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9-]*[a-z0-9])?$"},
+    "status": {"enum": ["draft", "approved", "rejected"]},
+    "source_ir_sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "template_evidence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["source_sha256", "slide_indices"],
+      "properties": {
+        "source_sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+        "slide_indices": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "integer", "minimum": 1}}
+      }
+    },
+    "pages": {
+      "type": "array", "minItems": 1, "uniqueItems": true,
+      "items": {"$ref": "#/$defs/page"}
+    },
+    "review": {
+      "type": "object", "additionalProperties": false,
+      "required": ["state", "evidence"],
+      "properties": {
+        "state": {"enum": ["unreviewed", "approved", "rejected"]},
+        "evidence": {"type": "array", "items": {"$ref": "#/$defs/reviewEvidence"}}
+      }
+    }
+  },
+  "$defs": {
+    "composition": {"enum": ["metric_proof", "ranked_evidence", "action_roadmap", "comparison", "framework_map", "evidence_canvas"]},
+    "contentRef": {
+      "type": "object", "additionalProperties": false,
+      "required": ["kind"],
+      "properties": {
+        "kind": {"enum": ["slide_message", "slide_title", "block", "chart", "diagram_ir"]},
+        "block_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$"}
+      },
+      "allOf": [
+        {"if": {"properties": {"kind": {"const": "block"}}}, "then": {"required": ["block_id"]}},
+        {"if": {"properties": {"kind": {"enum": ["slide_message", "slide_title", "chart", "diagram_ir"]}}}, "then": {"not": {"required": ["block_id"]}}}
+      ]
+    },
+    "page": {
+      "type": "object", "additionalProperties": false,
+      "required": ["slide_id", "template_slide_index", "composition", "message_ref", "primary_ref", "evidence_refs"],
+      "properties": {
+        "slide_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$"},
+        "template_slide_index": {"type": "integer", "minimum": 1},
+        "composition": {"$ref": "#/$defs/composition"},
+        "message_ref": {"$ref": "#/$defs/contentRef"},
+        "primary_ref": {"$ref": "#/$defs/contentRef"},
+        "evidence_refs": {"type": "array", "maxItems": 4, "uniqueItems": true, "items": {"$ref": "#/$defs/contentRef"}},
+        "visual_ref": {"$ref": "#/$defs/contentRef"}
+      }
+    },
+    "reviewEvidence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["reviewer", "at"],
+      "properties": {
+        "reviewer": {"enum": ["human", "visual_model"]},
+        "at": {"type": "string", "format": "date-time"},
+        "notes": {"type": "string", "maxLength": 1000}
+      }
+    }
+  }
+}

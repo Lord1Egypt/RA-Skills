@@ -1,42 +1,54 @@
-## Description: <br>
-Autonomous space navigation agent using optical quantum kernels for terrain classification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous space navigation agent using optical quantum kernels for terrain classification.
 
-## Publisher: <br>
-[AadiPapp](https://clawhub.ai/user/AadiPapp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[aadipapp](https://clawhub.ai/user/aadipapp)
 
-## Use Case: <br>
-Developers and engineers can use this skill to simulate terrain classification from sensor vectors and receive proceed, avoid, halt, or safe-mode navigation recommendations for a toy or research-style space autonomy workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The space-navigation framing could be mistaken for validated autonomous navigation capability. <br>
-Mitigation: Use it only as a toy or research-style terrain classification helper, and require independent validation, explicit guardrails, and human review before any safety-critical use. <br>
-Risk: Classifier confidence and printed navigation decisions may be misleading for real spacecraft, robotics, rover, drone, vehicle, or other safety-critical systems. <br>
-Mitigation: Do not rely on the generated decisions for real navigation; treat them as local simulation output for review and experimentation. <br>
+## Use Case:
 
+External developers and engineers can use this skill to run a local simulation that classifies space-terrain sensor readings and returns proceed, avoid, halt, or safe-mode decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AadiPapp/space-autonomy-skill) <br>
-- [README](README.md) <br>
-- [Navigation script](scripts/quantum_nav.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text command-line output and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Takes a comma-separated numeric sensor vector and prints terrain scores plus a navigation decision.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter reports 0.1.0) <br>
+Risk: Malformed sensor input can bypass the advertised safety check and return a PROCEED decision.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate sensor input shape and values before execution, and fail closed to safe mode on malformed or out-of-range input.
+
+Risk: The skill presents navigation-style decisions that may be mistaken for safety-critical autonomy behavior.
+
+Mitigation: Use it only as a local simulation unless the decision logic, input validation, and fail-closed behavior are independently reviewed for the deployment context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aadipapp/skills/space-autonomy-skill)
+- [Publisher profile](https://clawhub.ai/user/aadipapp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and plain-text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local simulation output includes terrain kernel scores, the best terrain match, confidence, and a navigation decision.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

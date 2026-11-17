@@ -1,0 +1,14 @@
+{
+  "prompt":    {"_type": "Value", "dtype": "string"},
+  "prompt_id": {"_type": "Value", "dtype": "string"},
+  "messages":  {
+    "_type": "List",
+    "feature": {
+      "_type": "struct",
+      "fields": {
+        "role":    {"_type": "Value", "dtype": "string"},
+        "content": {"_type": "Value", "dtype": "string"}
+      }
+    }
+  }
+}

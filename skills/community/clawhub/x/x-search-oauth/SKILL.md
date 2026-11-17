@@ -14,7 +14,7 @@ metadata:
         package: "x-search-oauth"
         bins: ["xso", "x-search-oauth"]
         label: "Install xso CLI companion (npm)"
-  version: "0.2.3"
+  version: "0.2.5"
 ---
 
 # X Search OAuth
@@ -102,3 +102,7 @@ For trend reports:
 ```
 
 For exact post/thread lookups, lead with the direct answer, then cite the post URLs and note any uncertainty.
+
+## CLI credential boundary
+
+The standalone CLI uses direct xAI OAuth, not Gateway tokens or subprocess arguments. It rejects legacy gateway credential flags, validates stored refresh endpoints against HTTPS xAI hosts and refuses redirects for OAuth and search requests. Queries go to xAI; local OAuth state stays in the config file.

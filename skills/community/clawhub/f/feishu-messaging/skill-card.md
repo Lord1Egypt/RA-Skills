@@ -1,37 +1,54 @@
-## Description: <br>
-Guides agents through Feishu Open Platform workflows for finding chats or members and sending messages or uploads through a Feishu bot. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents use Feishu Open Platform APIs to find chats and members, send text messages, and upload images or files.
 
-## Publisher: <br>
-[jypjypjypjyp](https://clawhub.ai/user/jypjypjypjyp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jypjypjypjyp](https://clawhub.ai/user/jypjypjypjyp)
 
-## Use Case: <br>
-Developers and operators use this skill to prepare Feishu API workflows for finding chats or members, sending bot messages, and uploading message attachments. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Messages or uploaded files may be sent to unintended Feishu recipients or expose sensitive content. <br>
-Mitigation: Confirm recipient IDs, message content, and file paths before sending or uploading; use least-privilege Feishu scopes and keep app secrets out of logs and shared chats. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Feishu Open Platform API Documentation](https://open.feishu.cn/document/server-docs/api-call-guide/server-api-list) <br>
+## Use Case:
 
+Employees, operators, and developers use this skill to send Feishu messages and resolve Feishu chat or member identifiers when coordinating work in a Feishu tenant.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, API calls, configuration] <br>
-**Output Format:** [Markdown with Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Feishu app credentials, bot permissions, recipient identifiers, and local file paths for uploads.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Verbose DEBUG and full-response logging may expose sensitive Feishu API responses or organizational metadata.
+
+Mitigation: Use lower log levels in tenant environments, redact API responses before logging, and avoid copying the example full-response logging pattern.
+
+Risk: The skill handles Feishu chat/member lookup results and file uploads that may contain sensitive organizational data.
+
+Mitigation: Limit Feishu app permissions to the minimum required scopes, confirm recipients and file paths before sending, and treat uploaded files and lookup results as sensitive.
+
+## Reference(s):
+
+- [Feishu API Documentation](https://open.feishu.cn/document/server-docs/api-call-guide/server-api-list)
+- [ClawHub Skill Page](https://clawhub.ai/jypjypjypjyp/skills/feishu-messaging)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/jypjypjypjyp)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Configuration]
+
+**Output Format:** [Markdown with Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Feishu app credentials, target recipient or chat identifiers, and appropriate Feishu API permissions.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,49 @@
-## Description: <br>
-Analyzes and correlates AFM topography and SECM activity data to identify microscale structure-activity relationships in electrocatalysis research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes and correlates AFM topography and SECM activity data to identify microscale structure-activity relationships in electrocatalysis research.
 
-## Publisher: <br>
-[xrayxiaoruiyang-pixel](https://clawhub.ai/user/xrayxiaoruiyang-pixel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xrayxiaoruiyang-pixel](https://clawhub.ai/user/xrayxiaoruiyang-pixel)
 
-## Use Case: <br>
-Researchers and technical users use this skill to run local AFM-SECM correlation analyses, compare surface morphology with electrochemical activity, and generate figures, tables, and reports for electrocatalysis workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unreadable AFM or SECM inputs may be silently replaced with synthetic data, producing plausible research outputs. <br>
-Mitigation: Audit or modify fallback paths so unreadable inputs fail with a clear error; allow synthetic data only through an explicit demo mode and label demo outputs in plots, reports, CSV, and JSON. <br>
+## Use Case:
 
+Developers and research engineers use this skill to run local AFM and SECM correlation analysis, producing morphology features, electrochemical hotspot comparisons, plots, tables, and reports for electrocatalysis datasets.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/xrayxiaoruiyang-pixel/afm-secm-correlation-tools-1-0-0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with bash examples and local analysis outputs including PNG, CSV, JSON, and Markdown reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally against AFM and SECM input files; results depend on input parsing and preprocessing choices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Malformed or unsupported AFM or SECM inputs may be replaced with realistic-looking synthetic data, which can make reports appear to represent an experiment they did not analyze.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review parser behavior before use on real research data and confirm that unsupported or malformed files fail clearly instead of generating substitute results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xrayxiaoruiyang-pixel/skills/afm-secm-correlation-tools-1-0-0)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with bash examples; generated analysis files include PNG, CSV, JSON, and Markdown reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local CLI workflow that writes analysis artifacts to a user-selected output directory]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

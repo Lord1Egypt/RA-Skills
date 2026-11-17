@@ -1,39 +1,52 @@
-## Description: <br>
-Analyze relationship between profitability and market share. Use for competitive advantage assessment, scale economies analysis, and strategy validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze relationship between profitability and market share. Use for competitive advantage assessment, scale economies analysis, and strategy validation.
 
-## Publisher: <br>
-[linuszz](https://clawhub.ai/user/linuszz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[linuszz](https://clawhub.ai/user/linuszz)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Business strategists, analysts, and agents use this skill to compare Return on Sales against Relative Market Share, benchmark competitors, assess scale advantages, and produce strategic recommendations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may activate for broad strategy or profitability prompts where a more specific business-analysis skill is better suited.
+
+Mitigation: Confirm the prompt specifically needs ROS/RMS competitive-positioning analysis before using the framework.
+
+Risk: Strategic conclusions may be misleading when revenue, profit, market-share, industry-boundary, or benchmark inputs are incomplete or stale.
+
+Mitigation: Use current, sourced financial and market-share data, validate industry boundaries, and review recommendations with qualified business judgment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Business strategists, analysts, and consultants use this skill to compare Return on Sales and Relative Market Share, benchmark profitability against industry peers, and form competitive-positioning recommendations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts may include confidential financial or competitive data. <br>
-Mitigation: Use sanitized or approved data and follow organizational data-handling policies before sharing inputs. <br>
-Risk: ROS/RMS conclusions can be misleading when industry boundaries, market share, or profitability data are incomplete or not comparable. <br>
-Mitigation: Verify source data, benchmark assumptions, and strategic recommendations before relying on the analysis for business decisions. <br>
+**Output Format:** [Markdown analysis with tables, calculations, interpretation, and recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May include ROS/RMS formulas, competitor benchmarking tables, trend interpretation, and suggested chart types.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown analysis with tables, formulas, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use user-provided financial and competitive data; does not execute commands or request credentials.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

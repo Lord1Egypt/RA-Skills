@@ -1,44 +1,54 @@
-## Description: <br>
-AgentFuel API helps agents call Replicate, Anthropic, and ElevenLabs through a single crypto-funded AgentFuel gateway key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use AgentFuel to call Replicate, Anthropic, and ElevenLabs APIs using a single crypto-funded key.
 
-## Publisher: <br>
-[openclawb17-stack](https://clawhub.ai/user/openclawb17-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openclawb17-stack](https://clawhub.ai/user/openclawb17-stack)
 
-## Use Case: <br>
-Developers and external agent builders use this skill to check AgentFuel balances, create USDT credit invoices, transfer credits, and call supported AI APIs through curl or web_fetch examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AGENTFUEL_KEY represents funded API access and may expose paid credits if leaked. <br>
-Mitigation: Treat the key like a payment credential, keep it in environment variables or secret storage, and prefer Authorization headers over URLs containing ?key=. <br>
-Risk: USDT invoice and transfer workflows can move credits or funds to the wrong destination. <br>
-Mitigation: Manually verify invoice addresses, amounts, recipient keys, and transfer details before sending funds or credits. <br>
-Risk: Prompts and generated content pass through the AgentFuel gateway and upstream AI providers. <br>
-Mitigation: Avoid sending sensitive prompts unless the user trusts AgentFuel and the relevant upstream provider. <br>
+## Use Case:
 
+Developers and agents use this skill to check AgentFuel balances, create USDT-funded invoices, transfer credits, and proxy AI API calls through AgentFuel to supported providers.
 
-## Reference(s): <br>
-- [AgentFuel API base URL](https://agentfuel.dev/v1) <br>
-- [ClawHub AgentFuel API release](https://clawhub.ai/openclawb17-stack/agentfuel-api) <br>
-- [openclawb17-stack publisher profile](https://clawhub.ai/user/openclawb17-stack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks and API endpoint examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AGENTFUEL_KEY; header-based authorization is preferred over query-string keys.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release evidence) <br>
+Risk: API keys may be exposed if real AgentFuel keys are placed in query-string URLs or prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use header-based authorization, avoid putting real keys in URLs or prompts, and rotate any key already used in a query-string URL.
+
+Risk: Crypto-funded invoices and credit transfers can move value to the wrong network, recipient, or amount without enough guardrails.
+
+Mitigation: Manually confirm invoice amount, token network, recipient key, and transfer amount before any payment or credit transfer.
+
+## Reference(s):
+
+- [ClawHub AgentFuel API Skill](https://clawhub.ai/openclawb17-stack/skills/agentfuel-api)
+- [AgentFuel API Base URL](https://agentfuel.dev/v1)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash commands and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AGENTFUEL_KEY for authenticated AgentFuel API calls.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata; artifact frontmatter lists 1.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -26,7 +26,7 @@ Trade prediction markets with edge. Scan markets, calculate true probabilities, 
 ```bash
 # Set credentials
 export KALSHI_KEY_ID=your_key_id
-export KALSHI_PRIVATE_KEY="-----BEGIN RSA PRIVATE KEY-----\n...\n-----END RSA PRIVATE KEY-----"
+export KALSHI_PRIVATE_KEY="REDACTED-SECRET"
 
 # Scan for edges
 node scripts/scan-edges.js --category tennis

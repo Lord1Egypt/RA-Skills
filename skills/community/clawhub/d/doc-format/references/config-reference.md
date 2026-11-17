@@ -23,8 +23,14 @@
 | 二级标题字体改为楷体 | `--set h2_font=楷体` |
 | 页码字体改为 Times New Roman | `--set page_number_font="Times New Roman"` |
 | 正文行距改为 30 磅 | `--set line_spacing=30` |
+| 正文行距改为 1.5 倍 | `--set line_spacing_unit=multiple --set line_spacing_multiple=1.5` |
 | 题目行距改为 33 磅 | `--set title_line_spacing=33` |
+| 题目行距改为 1 倍 | `--set title_line_spacing_unit=multiple --set title_line_spacing_multiple=1.0` |
 | 副标题行距改为 33 磅 | `--set subtitle_line_spacing=33` |
+| 缩进改为字符单位，首行 2 字符 | `--set paragraph_indent_unit=chars --set first_line_indent_chars=2` |
+| 正文左右缩进各 1 字符 | `--set paragraph_indent_unit=chars --set left_indent_chars=1 --set right_indent_chars=1` |
+| 题目强制加粗 | `--set title_bold=true` |
+| 一级/二级标题强制加粗 | `--set h1_bold=true --set h2_bold=true` |
 | 强制 A4 | `--set force_a4=true` |
 | 不设置大纲级别 | `--set set_outline=false` |
 | 不启用附件格式化 | `--set enable_attachment_formatting=false` |
@@ -37,6 +43,10 @@
 | TXT/MD 保留单个空行，多个空行保留至 1 个 | `--set blank_line_mode="保留单个空行，多个空行保留至1个空行"` |
 
 旧配置中的 `remove_blank_lines` 仍可读取；如未提供 `blank_line_mode`，CLI 会按旧字段映射到新的 TXT/MD 空行模式。
+
+行距默认沿用旧版磅值模式：`line_spacing_unit/title_line_spacing_unit/subtitle_line_spacing_unit/table_line_spacing_unit` 默认为 `pt`。切换为 `multiple` 后，对应的 `*_line_spacing_multiple` 默认按 `1.0` 单倍行距解释。
+
+段落缩进默认沿用旧版厘米模式：`paragraph_indent_unit=cm` 时读取 `left_indent_cm/right_indent_cm`。需要字符单位时改为 `chars`，并设置 `left_indent_chars/right_indent_chars/first_line_indent_chars`，其中首行缩进默认 2 字符。
 
 ## 常用字号对照
 
@@ -59,7 +69,10 @@
 {
     "body_font": "宋体",
     "body_size": 12,
-    "line_spacing": 30,
+    "line_spacing_unit": "multiple",
+    "line_spacing_multiple": 1.5,
+    "paragraph_indent_unit": "chars",
+    "first_line_indent_chars": 2,
     "force_a4": true,
     "enable_table_formatting": true,
     "use_custom_english_font": true,
@@ -78,7 +91,8 @@
 python scripts/wfp_cli.py save-config \
   --set body_font=宋体 \
   --set body_size=12 \
-  --set line_spacing=30 \
+  --set line_spacing_unit=multiple \
+  --set line_spacing_multiple=1.5 \
   --enable-table-formatting \
   --english-font "Times New Roman" \
   --normalize-punctuation
@@ -90,7 +104,7 @@ python scripts/wfp_cli.py format -i ./documents -o ./documents_formatted
 python scripts/wfp_cli.py format -i input.docx --config ./wfp_config.json
 
 # 使用内联 JSON 临时覆盖
-python scripts/wfp_cli.py format -i input.docx --config-json "{\"force_a4\": true, \"line_spacing\": 30}"
+python scripts/wfp_cli.py format -i input.docx --config-json "{\"force_a4\": true, \"line_spacing_unit\": \"multiple\", \"line_spacing_multiple\": 1.5}"
 
 # 使用 --set 临时覆盖
 python scripts/wfp_cli.py format -i input.docx --set force_a4=true --set title_size=18

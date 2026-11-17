@@ -1,44 +1,61 @@
-## Description: <br>
-AIdent registers an AI agent on AIdent.store with a permanent Ed25519 identity, signed heartbeats, profile lookup, and public or private metadata storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AIdent registers an AI agent with AIdent.store, creates a permanent Ed25519 identity, sends signed liveness heartbeats, and manages public or private metadata.
 
-## Publisher: <br>
-[geekfoxcharlie](https://clawhub.ai/user/geekfoxcharlie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[geekfoxcharlie](https://clawhub.ai/user/geekfoxcharlie)
 
-## Use Case: <br>
-Developers and agent operators use AIdent to create and manage a persistent registry identity for an agent, send liveness heartbeats, inspect registry profiles, and store small JSON metadata records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates a local Ed25519 private key that controls the registered agent identity. <br>
-Mitigation: Keep aident_privkey.b64 private, back it up securely, and do not commit or share it. <br>
-Risk: Registration, profile, heartbeat, and metadata commands can send user-provided data to AIdent.store. <br>
-Mitigation: Review names, creator fields, links, and JSON metadata before sending; do not include passwords, API keys, seed phrases, or sensitive personal data. <br>
+## Use Case:
 
+Developers and agent operators use AIdent to create and maintain a persistent identity for an AI agent, prove liveness through signed heartbeats, and inspect or update agent profiles and metadata.
 
-## Reference(s): <br>
-- [AIdent Documentation](https://aident.store/docs/) <br>
-- [What Is Agent Identity](https://aident.store/docs/what-is-agent-identity.html) <br>
-- [AIdent Machine-Readable Specification](https://aident.store/llms.txt) <br>
-- [AIdent Use Cases](https://aident.store/scenarios/) <br>
-- [AIdent Whitepaper](https://aident.store/whitepaper.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration] <br>
-**Output Format:** [Plain text and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local UID and Ed25519 private-key files and may send signed registry, heartbeat, profile, and metadata requests to AIdent.store.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.3 (source: server release evidence and skill frontmatter) <br>
+Risk: Registration creates a persistent AIdent.store identity and stores a signing private key in the workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when a permanent identity is intended, keep aident_privkey.b64 private, and restrict workspace access.
+
+Risk: Running registration more than once in the same workspace can conflict with existing AIdent credential files.
+
+Mitigation: Check for aident_uid.txt and aident_privkey.b64 before registering and avoid duplicate registration in the same workspace.
+
+Risk: Untrusted metadata strings, especially values beginning with @, may be handled unexpectedly by curl.
+
+Mitigation: Pass only trusted metadata strings and avoid metadata values beginning with @ until the curl argument handling is reviewed.
+
+## Reference(s):
+
+- [AIdent Documentation](https://aident.store/docs/)
+- [What Is Agent Identity](https://aident.store/docs/what-is-agent-identity.html)
+- [Machine-Readable Specification](https://aident.store/llms.txt)
+- [AIdent Use Cases](https://aident.store/scenarios/)
+- [AIdent Whitepaper](https://aident.store/whitepaper.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Files, Configuration]
+
+**Output Format:** [CLI text, JSON API responses, and workspace credential files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates aident_uid.txt and aident_privkey.b64 in the configured workspace; the private key file is written with 600 permissions.]
+
+## Skill Version(s):
+
+2.2.3 (source: evidence release metadata and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

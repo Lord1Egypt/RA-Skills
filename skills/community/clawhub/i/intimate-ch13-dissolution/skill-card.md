@@ -1,49 +1,66 @@
-## Description: <br>
-Provides Chinese-language conversational study support for Chapter 13 of Rowland S. Miller's Intimate Relationships, covering relationship dissolution, divorce, breakup processes, recovery, and effects on children. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language study aid for learning Chapter 13, "The Dissolution and Loss of Relationships," from Rowland S. Miller's Intimate Relationships, 6th edition.
 
-## Publisher: <br>
-[junwugit](https://clawhub.ai/user/junwugit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junwugit](https://clawhub.ai/user/junwugit)
 
-## Use Case: <br>
-External learners and educators use this skill to study Intimate Relationships Chapter 13 through concise Chinese explanations, term clarification, model comparisons, textbook examples, and scenario-based application. It is educational support only and should not be treated as legal, clinical, emergency, or personal safety advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat relationship-dissolution explanations as legal, clinical, emergency, or personal safety advice. <br>
-Mitigation: Frame responses as textbook-based educational support and direct situations involving abuse, threats, self-harm, or immediate danger to local emergency services, trusted people, or qualified professionals. <br>
-Risk: The skill tends to answer in Chinese, which may not match every user's language expectation. <br>
-Mitigation: Use it for Chinese-language study support or explicitly ask the agent to switch language when a different language is needed. <br>
+## Use Case:
 
+Students and educators use this skill to discuss textbook concepts about divorce, breakup processes, relationship-dissolution models, emotional recovery, and effects on children. It supports concise Chinese-language tutoring with progressive disclosure and chapter-specific reference material.
 
-## Reference(s): <br>
-- [Skill source](SKILL.md) <br>
-- [Applications and common misconceptions](references/applications.md) <br>
-- [Breakup aftermath, emotional recovery, and children](references/breakup-aftermath.md) <br>
-- [Breakup process and divorce steps](references/breakup-process.md) <br>
-- [Divorce predictors and longitudinal studies](references/divorce-predictors.md) <br>
-- [Divorce rates and social factors](references/divorce-rates.md) <br>
-- [Textbook example anchors](references/examples.md) <br>
-- [Key terms](references/key-terms.md) <br>
-- [Theories and models](references/models.md) <br>
-- [Research, years, and textbook data](references/research.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Conversational Markdown, primarily in Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational explanations with progressive disclosure and safety boundary reminders; no code execution, credential access, network use, or persistence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may treat textbook discussion of divorce, conflict, or relationship distress as legal advice, therapy, or a safety plan.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the skill as educational support only, avoid deciding what a user should do in a real relationship, and direct users facing abuse, threats, stalking, self-harm, or immediate danger to local emergency services, trusted people, or professional support.
+
+Risk: The skill is based on a specific textbook chapter and may not reflect current divorce statistics, jurisdiction-specific law, or broader relationship-science literature.
+
+Mitigation: State the chapter scope, avoid inventing citations or data, and recommend current authoritative sources when users need up-to-date statistics, legal information, clinical advice, or material outside Chapter 13.
+
+Risk: The artifact is written for Chinese-language tutoring, which may not meet expectations for users who need another language.
+
+Mitigation: Tell users they can ask for another language when needed and preserve key English terms alongside Chinese explanations for clarity.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/junwugit/skills/intimate-ch13-dissolution)
+- [Core terms](references/key-terms.md)
+- [Theory and models](references/models.md)
+- [Divorce rates and social factors](references/divorce-rates.md)
+- [Divorce predictors and longitudinal studies](references/divorce-predictors.md)
+- [Breakup process and divorce steps](references/breakup-process.md)
+- [Breakup aftermath, recovery, and child impacts](references/breakup-aftermath.md)
+- [Research, years, and textbook data](references/research.md)
+- [Textbook example anchors](references/examples.md)
+- [Applications and common misunderstandings](references/applications.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese Markdown conversational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses progressive disclosure and chapter-specific references; does not execute code, access credentials, or persist data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

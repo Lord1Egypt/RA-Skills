@@ -1,43 +1,54 @@
-## Description: <br>
-Help users add custom model providers to OpenClaw by configuring model providers, default model selection, environment variables, and validation steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help users add custom model providers to OpenClaw by configuring provider definitions, default model selection, environment variables, and validation steps.
 
-## Publisher: <br>
-[ksbbs](https://clawhub.ai/user/ksbbs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ksbbs](https://clawhub.ai/user/ksbbs)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to add built-in or custom AI model providers, generate configuration snippets, apply them to OpenClaw settings, and validate provider availability. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Real API keys could be exposed if users paste production credentials into chat or shared configuration. <br>
-Mitigation: Use placeholders in generated examples and set real keys locally through environment variables or a secret manager. <br>
-Risk: Incorrect model-provider settings could break or misroute OpenClaw requests. <br>
-Mitigation: Review generated changes, keep a backup of ~/.openclaw/openclaw.json, and run OpenClaw validation commands before relying on the provider. <br>
-Risk: Any configured provider may receive future OpenClaw prompts and context. <br>
-Mitigation: Choose providers that meet the user's data-handling requirements before making them default. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to configure built-in or custom AI model providers, generate configuration snippets, apply them to OpenClaw settings, and validate connectivity.
 
-## Reference(s): <br>
-- [OpenClaw model provider documentation](https://docs.openclaw.ai/zh-CN/concepts/model-providers) <br>
-- [OpenClaw configuration reference](references/openclaw-config-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with JSON configuration snippets and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include OpenClaw configuration fragments, environment-variable names, backup commands, validation commands, and troubleshooting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Provider setup guidance may lead users to expose API keys in chat, shell output, OpenClaw JSON, or shell profile files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use placeholders while discussing configuration, prefer environment variables or a safer secret mechanism, avoid commands that print full keys, and rotate any exposed key.
+
+Risk: Manual provider configuration can break model routing when provider names, model IDs, merge mode, endpoints, or API types are incorrect.
+
+Mitigation: Back up the OpenClaw configuration before editing, validate JSON syntax, run OpenClaw configuration validation, list available models, and test the target model before relying on it.
+
+## Reference(s):
+
+- [OpenClaw Official Documentation - Model Providers](https://docs.openclaw.ai/zh-CN/concepts/model-providers)
+- [OpenClaw Model Provider Configuration Reference](references/openclaw-config-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON configuration snippets and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API-key placeholders and provider-specific model settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

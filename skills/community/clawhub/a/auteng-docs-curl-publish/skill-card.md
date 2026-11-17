@@ -1,38 +1,53 @@
-## Description: <br>
-Publishes markdown to AutEng with curl and returns shareable links for rendered documents, including documents with Mermaid diagrams, KaTeX, and code blocks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish markdown and return share links using curl. Support markdown with mermaid diagrams such as component diagrams, flowcharts, and sequence diagrams. Also supports KaTex and code blocks. AutEng will return a shareable link to the published rendered document.
 
-## Publisher: <br>
-[operator-auteng-ai](https://clawhub.ai/user/operator-auteng-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[operator-auteng-ai](https://clawhub.ai/user/operator-auteng-ai)
 
-## Use Case: <br>
-Developers and technical writers use this skill to publish user-chosen markdown through AutEng's hosted renderer and retrieve a shareable link. It is useful for documents that include Mermaid diagrams, KaTeX, code blocks, and optional expiration metadata. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Accidental upload of secrets, credentials, private notes, proprietary documents, internal diagrams, regulated data, or personal information in markdown sent to AutEng. <br>
-Mitigation: Review markdown before publishing, omit sensitive content unless it is intended to leave the environment, and set an expiration when appropriate. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AutEng publish markdown API endpoint](https://auteng.ai/api/tools/docs/publish-markdown/) <br>
-- [ClawHub skill page](https://clawhub.ai/operator-auteng-ai/auteng-docs-curl-publish) <br>
+## Use Case:
 
+Developers and technical writers use this skill to publish Markdown documents to AutEng with curl and retrieve shareable rendered-document links. It is useful for documents that may include Mermaid diagrams, KaTeX, and code blocks.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, JSON] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands send selected markdown to AutEng and may return share_url, title, and expires_at fields.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Published Markdown is sent to AutEng and a shareable URL is returned, which can expose content outside the local environment.
+
+Mitigation: Do not publish secrets, credentials, private customer data, or internal documents unless AutEng access, retention, and expiration behavior is acceptable.
+
+Risk: A response without share_url means the publish operation may have failed or returned an unexpected payload.
+
+Mitigation: Treat any response missing share_url as an error and inspect the full JSON body before sharing or relying on the result.
+
+## Reference(s):
+
+- [AutEng publish-markdown endpoint](https://auteng.ai/api/tools/docs/publish-markdown/)
+- [ClawHub skill page](https://clawhub.ai/operator-auteng-ai/skills/auteng-docs-curl-publish)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, JSON, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces curl examples and jq response handling guidance for retrieving share_url and compact success payloads.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

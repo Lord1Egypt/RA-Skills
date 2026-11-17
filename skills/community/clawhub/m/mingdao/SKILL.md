@@ -1,7 +1,7 @@
 ---
 name: "明道云"
-version: "1.0.0"
-description: "明道云低代码助手，精通应用搭建、工作流、数据管理、开放API"
+version: "1.1.0"
+description: "明道云 APaaS 平台指南。Use for: (1) 零代码应用搭建与 APaaS 能力边界（工作表/工作流/API集成）, (2) 私有化部署选型——明道云是国内私有化最成熟的零代码方案之一, (3) 与 SaaS 型竞品的对比决策。Mingdao APaaS guide: app building, private-deployment strengths, and platform selection."
 tags: ["lowcode", "workflow", "apaas", "data"]
 author: "ClawSkills Team"
 category: "productivity"
@@ -337,6 +337,12 @@ filters = [
 | 记录权限 | 谁能看哪些行 | 数据范围（全部/本部门/本人） |
 | 字段权限 | 谁能看哪些列 | 角色 × 字段（可见/编辑/隐藏） |
 
+## 工作边界
+
+- 私有化部署的服务器配置与授权费用以官方报价为准
+- 数据敏感型企业（政企/医疗）是私有化的典型客群，纯 SaaS 需求可比较 `jiandaoyun`/`huoban`
+- API 与 Webhook 集成能力强，但复杂系统集成建议做 PoC 验证再签约
+
 ---
 
-**最后更新**: 2026-03-16
+**最后更新**: 2026-07-11

@@ -1,43 +1,54 @@
-## Description: <br>
-Generate polished .xlsx workbooks from structured JSON with multiple sheets, frozen headers, filters, typed columns, formulas, totals, and French/Morocco formatting defaults. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate polished .xlsx workbooks from structured JSON -- multiple sheets, frozen headers, filters, typed columns, formulas, totals, and French/Morocco formatting defaults.
 
-## Publisher: <br>
-[0xvespertine](https://clawhub.ai/user/0xvespertine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xvespertine](https://clawhub.ai/user/0xvespertine)
 
-## Use Case: <br>
-Developers and agents use this skill to turn structured JSON, database results, or context-derived data into polished Excel workbook files for reporting and delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A mistaken input JSON file or output path could produce the wrong workbook or write the file somewhere unintended. <br>
-Mitigation: Review the JSON input path and output path before execution, and prefer the documented export directory for generated workbooks. <br>
-Risk: Formula columns are carried into the workbook and recalculated by the recipient's Excel client. <br>
-Mitigation: Use formula definitions only from trusted sources and review formula columns before sharing the workbook. <br>
-Risk: The setup command installs xlsxwriter without a pinned version. <br>
-Mitigation: Pin xlsxwriter in controlled or reproducible environments. <br>
+## Use Case:
 
+Developers and agents use this skill to turn structured JSON or normalized SQL query results into polished .xlsx workbook files with typed columns, formulas, totals, filters, and French/Morocco formatting defaults.
 
-## Reference(s): <br>
-- [SQL to Excel Export Recipe](references/SQL_TO_EXCEL_RECIPE.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/0xvespertine/excel-export) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [.xlsx workbook files from JSON input, with a JSON success summary on stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates new workbooks only; it does not read, edit, or preserve existing Excel files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and release evidence) <br>
+Risk: Formula-containing workbook specs from untrusted parties can run or fetch external content when opened in a spreadsheet client.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only generate formula columns from trusted specs, and review formulas before opening or sharing the workbook.
+
+Risk: Unpinned xlsxwriter installations can make workbook generation less reproducible over time.
+
+Mitigation: Pin xlsxwriter in the execution environment when reproducibility matters.
+
+## Reference(s):
+
+- [SQL to Excel Export Recipe](references/SQL_TO_EXCEL_RECIPE.md)
+- [Excel Export ClawHub release page](https://clawhub.ai/0xvespertine/skills/excel-export)
+
+## Skill Output:
+
+**Output Type(s):** [files, json, shell commands, configuration, guidance]
+
+**Output Format:** [XLSX workbook files plus a JSON success summary; supporting guidance is Markdown with shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates new workbooks only; it does not read, edit, or preserve existing Excel files.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

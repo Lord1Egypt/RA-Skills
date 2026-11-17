@@ -1,46 +1,60 @@
-## Description: <br>
-Secure email proxy for AI agents that supports searching, reading, and drafting email through MCP while keeping credentials server-side and filtering PII, prompt injection, 2FA, and password-reset content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Secure email proxy for AI agents. Search, read, and draft emails via MCP with server-side credential isolation, PII redaction, prompt injection detection, and content filtering.
 
-## Publisher: <br>
-[ryanfren](https://clawhub.ai/user/ryanfren) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-BSL 1.1 <br>
+## Publisher:
 
+[ryanfren](https://clawhub.ai/user/ryanfren)
 
-## Use Case: <br>
-Developers and agent users use this skill to give an AI agent constrained email access for searching, reading threads, listing labels or drafts, and creating draft replies without sending mail automatically. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+BSL 1.1
 
-## Known Risks and Mitigations: <br>
-Risk: The skill connects an AI agent to mailbox content through AgentCloak or a self-hosted instance. <br>
-Mitigation: Use a limited or dedicated mailbox where possible, confirm email access can be revoked, and install only when you are comfortable trusting the selected AgentCloak deployment with mailbox access. <br>
-Risk: The hosted service path requires trusting server-side handling of email credentials and content. <br>
-Mitigation: Self-host when full control is required, or use the hosted service only after accepting its trust boundary. <br>
-Risk: Drafted replies may contain mistakes or unintended sensitive content. <br>
-Mitigation: Manually review all drafts before sending; the documented workflow creates drafts rather than sending messages automatically. <br>
-Risk: The API key grants access to the configured AgentCloak mailbox proxy. <br>
-Mitigation: Protect the API key, rotate it if exposed, and remove or revoke access when the skill is no longer needed. <br>
+## Use Case:
 
+External users and developers use AgentCloak to give agents controlled email search, read, thread, label, and draft access while filtering credentials, PII, security-sensitive messages, and prompt-injection attempts before content reaches the agent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryanfren/agentcloak-email-proxy) <br>
-- [AgentCloak homepage](https://agentcloak.up.railway.app) <br>
-- [AgentCloak GitHub link from skill documentation](https://github.com/ryanfren/AgentCloak) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash setup snippets; MCP tool calls return email text, thread data, labels, draft metadata, and draft content.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read and draft only; the skill documentation states that agents cannot send, delete, or modify email.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Hosted AgentCloak receives email credentials and message content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the hosted-service trust model before connecting an inbox, or self-host AgentCloak when mailbox content must stay under direct user control.
+
+Risk: The documented self-hosting setup executes mutable third-party code from an unpinned GitHub branch.
+
+Mitigation: Pin a reviewed release or commit before deployment and run the service with minimal privileges.
+
+Risk: Agents may still receive sensitive or adversarial email content after filtering.
+
+Mitigation: Use the blocklist, PII redaction, and prompt-injection warning controls, and review created drafts before sending them outside the agent workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryanfren/skills/agentcloak-email-proxy)
+- [AgentCloak hosted app](https://agentcloak.up.railway.app)
+- [AgentCloak source repository](https://github.com/ryanfren/AgentCloak)
+- [AgentCloak MCP endpoint](https://agentcloak.up.railway.app/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks, MCP tool call examples, and filtered email or draft results returned as text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires mcporter and AGENTCLOAK_API_KEY; hosted use sends credentials and email content through the AgentCloak service, while self-hosted use keeps processing local to the user's deployment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

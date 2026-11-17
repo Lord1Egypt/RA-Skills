@@ -1,49 +1,68 @@
-## Description: <br>
-OpenClaw configuration reference for openclaw.json covering gateway settings, channels, agents, sessions, sandboxing, tools, models, environment variables, and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Config Reference helps agents answer questions and troubleshoot issues involving openclaw.json configuration, gateway settings, channels, agents, sessions, sandboxing, tools, browser, models, environment variables, cron jobs, and hooks.
 
-## Publisher: <br>
-[Yixn](https://clawhub.ai/user/Yixn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yixn](https://clawhub.ai/user/yixn)
 
-## Use Case: <br>
-Developers and operators use this skill to look up OpenClaw configuration fields, choose safer settings, and recover from broken gateway or openclaw.json changes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Incorrect OpenClaw configuration examples can prevent the gateway from starting or expose it more broadly than intended. <br>
-Mitigation: Back up openclaw.json, validate changes, run openclaw doctor, and require strong authentication before exposing gateway access beyond localhost. <br>
-Risk: Copied examples may include token or API key placeholders that could be mishandled in real deployments. <br>
-Mitigation: Keep credentials in protected environment files or secret stores and avoid hardcoding channel, gateway, or model-provider tokens in shared config. <br>
-Risk: Tool execution, elevated access, open DM policies, or permissive sandbox settings can grant unintended system access. <br>
-Mitigation: Prefer deny or ask modes for code execution and elevated access, restrict trusted users, and confirm Docker is available before enabling sandbox modes that require it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Yixn/openclaw-config-reference) <br>
-- [ClawHosters homepage](https://clawhosters.com) <br>
-- [Gateway configuration reference](references/gateway.md) <br>
-- [Agents configuration reference](references/agents.md) <br>
-- [Channels configuration reference](references/channels.md) <br>
-- [Session, sandbox, cron, and hooks reference](references/session.md) <br>
-- [Tools, browser, and skills reference](references/tools.md) <br>
-- [Models and environment reference](references/models-env.md) <br>
-- [Troubleshooting and recovery guide](references/troubleshooting.md) <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to look up openclaw.json schema details, apply safer configuration changes, and recover from gateway startup failures.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with configuration examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output; examples should be reviewed before applying to a live OpenClaw deployment.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Applying incorrect openclaw.json keys or partial edits can prevent the Gateway from starting.
+
+Mitigation: Back up the config first, prefer validated CLI changes, check JSON syntax, and run openclaw doctor after edits.
+
+Risk: Exposing the Gateway beyond loopback without authentication can create unwanted external access.
+
+Mitigation: Keep the Gateway loopback-only by default and require authentication before intentionally using LAN, webhook, or Funnel exposure.
+
+Risk: Open DM policies combined with elevated tools can give untrusted chat users powerful agent access.
+
+Mitigation: Use pairing or allowlists for direct messages and keep elevated tools disabled unless the deployment is trusted and controlled.
+
+Risk: Injecting the full shell environment into agents can expose secrets more broadly than intended.
+
+Mitigation: Avoid shellEnv: true unless agents require it, and prefer narrowly scoped environment variables for provider keys and runtime settings.
+
+## Reference(s):
+
+- [OpenClaw Config Reference](SKILL.md)
+- [Gateway Configuration Reference](references/gateway.md)
+- [Agents Configuration Reference](references/agents.md)
+- [Channels Configuration Reference](references/channels.md)
+- [Session, Sandbox, Cron & Hooks Reference](references/session.md)
+- [Tools, Browser & Skills Configuration Reference](references/tools.md)
+- [Models & Environment Configuration Reference](references/models-env.md)
+- [Troubleshooting Guide](references/troubleshooting.md)
+- [ClawHosters](https://clawhosters.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON5 and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

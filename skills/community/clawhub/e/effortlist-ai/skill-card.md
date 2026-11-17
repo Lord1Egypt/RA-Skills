@@ -1,48 +1,67 @@
-## Description: <br>
-Manage EffortList AI folders, tasks, todos, schedules, booking links, and appointments through the EffortList AI platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage EffortList AI folders, tasks, and todos for life organization, project tracking, and schedule management through the EffortList AI platform.
 
-## Publisher: <br>
-[Quarantiine](https://clawhub.ai/user/Quarantiine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quarantiine](https://clawhub.ai/user/quarantiine)
 
-## Use Case: <br>
-External users authorize an agent to organize EffortList folders, tasks, todos, schedules, booking links, and appointments on their behalf. The skill is intended for account management workflows where the user wants agent assistance with planning, scheduling, CRUD operations, undo/redo, and appointment review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authenticated account and scheduling operations can change personal data beyond drafting task plans. <br>
-Mitigation: Install only when the user intends the agent to manage the EffortList account, and keep the EFFORTLIST_API_KEY scoped to trusted agent environments. <br>
-Risk: Deletes, bulk changes, booking-link updates, appointment decisions, OTP flows, and guest notifications can have high-impact or public-facing effects. <br>
-Mitigation: Require explicit user confirmation before these actions and summarize the records, guests, times, and availability changes before execution. <br>
-Risk: Scheduling conflicts or unintended appointment changes can occur when overriding availability or modifying booked items. <br>
-Mitigation: Check current availability and user scheduling preferences before modifications, respect conflict responses, and use undo/redo only as a recovery mechanism after user review. <br>
+## Use Case:
 
+External users and agents use this skill to manage EffortList AI folders, tasks, todos, booking links, appointments, and scheduling preferences with authenticated API access. It supports planning projects, editing scheduled items, reviewing appointment workflows, and using undo or redo when changes need to be reversed.
 
-## Reference(s): <br>
-- [EffortList AI ClawHub listing](https://clawhub.ai/Quarantiine/effortlist-ai) <br>
-- [EffortList homepage](https://www.effortlist.io) <br>
-- [EffortList API documentation](https://www.effortlist.io/docs) <br>
-- [EffortList security documentation](https://www.effortlist.io/security) <br>
-- [Technical API Reference](references/api.md) <br>
-- [Omni Architecture & Lifecycle](references/architecture.md) <br>
-- [Security & Data Privacy](references/security.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance with REST API endpoint references and configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EFFORTLIST_API_KEY and may perform authenticated account, scheduling, booking, appointment, and delete operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.10.2 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill gives an agent broad authority over EffortList account data, schedules, booking links, and appointments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated API key, limit autonomous execution, and revoke the key from the EffortList dashboard when access is no longer needed.
+
+Risk: Deletes, booking-link changes, appointment changes, and public-token actions can be destructive or externally visible.
+
+Mitigation: Require explicit user confirmation before these actions and use undo or redo workflows when supported.
+
+Risk: Scheduling edits can create conflicts or affect protected time.
+
+Mitigation: Check current availability, timezone, weekly schedule, minimum notice, and overlap responses before finalizing schedule changes.
+
+Risk: Bulk operations can hit API limits or miss records in large datasets.
+
+Mitigation: Respect the 100 requests per minute limit, inspect rate-limit headers, and use limit and offset pagination for list endpoints.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/quarantiine/skills/effortlist-ai)
+- [EffortList homepage](https://www.effortlist.io)
+- [EffortList API docs](https://www.effortlist.io/docs)
+- [EffortList security](https://www.effortlist.io/security)
+- [EffortList AI Technical API Reference](artifact/references/api.md)
+- [EffortList AI Omni Architecture and Lifecycle](artifact/references/architecture.md)
+- [EffortList AI Security and Data Privacy](artifact/references/security.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown guidance with REST endpoint examples and configuration commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires EFFORTLIST_API_KEY and may direct authenticated changes to folders, tasks, todos, booking links, appointments, and availability settings.]
+
+## Skill Version(s):
+
+1.10.2 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

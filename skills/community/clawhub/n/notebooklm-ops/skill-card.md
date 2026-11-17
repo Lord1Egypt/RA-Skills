@@ -1,42 +1,53 @@
-## Description: <br>
-Manage NotebookLM MCP authentication lifecycle on Linux by automating GUI startup, auth refresh, status checks, smoke tests, and cleanup when Google session cookies expire frequently. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage the NotebookLM MCP authentication lifecycle on Linux by automating GUI startup, authentication refresh, status checks, smoke tests, and cleanup for frequent cookie expiry.
 
-## Publisher: <br>
-[Spiceman161](https://clawhub.ai/user/Spiceman161) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[spiceman161](https://clawhub.ai/user/spiceman161)
 
-## Use Case: <br>
-Developers and operators managing a Linux-hosted NotebookLM MCP setup use this skill to start and stop the browser GUI stack, refresh Google authentication, and run status or smoke checks when cookies expire frequently. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill controls a logged-in Google browser session through CDP/VNC. <br>
-Mitigation: Use a dedicated Chromium profile and preferably a dedicated Google account, and restrict CDP and VNC access to trusted local users only. <br>
-Risk: Sensitive work is delegated to host-local helper scripts that are not included in the package. <br>
-Mitigation: Inspect and trust the external helper scripts under /home/moltuser/clawd before running the skill. <br>
-Risk: The GUI/browser stack may remain active after use. <br>
-Mitigation: Run the OFF workflow after use to stop Chromium, x11vnc, Xvfb, openbox, and related leftovers. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Spiceman161/notebooklm-ops) <br>
-- [Google NotebookLM](https://notebooklm.google.com/) <br>
+## Use Case:
 
+Developers and operators use this skill to start, stop, refresh, and check NotebookLM MCP authentication on a Linux host where Google session cookies expire frequently.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Operational guidance for NotebookLM MCP auth refresh, status checks, smoke tests, and shutdown.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Authenticated Google browser control through VNC/CDP could expose a session if reachable by untrusted users.
+
+Mitigation: Use a dedicated low-privilege Google account or browser profile, and bind VNC/CDP only to trusted local interfaces with appropriate access controls.
+
+Risk: The skill delegates to local scripts outside the artifact, so runtime behavior depends on files not bundled with this release.
+
+Mitigation: Inspect the referenced /home/moltuser/clawd scripts before running the skill and keep those files writable only by trusted users.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/spiceman161/skills/notebooklm-ops)
+- [NotebookLM](https://notebooklm.google.com/)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may affect local Chromium, VNC/CDP, GUI, and NotebookLM MCP processes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

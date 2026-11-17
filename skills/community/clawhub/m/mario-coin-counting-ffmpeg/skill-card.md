@@ -1,40 +1,52 @@
-## Description: <br>
-Extract key frames (I-frames) from video files using FFmpeg command line tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract key frames (I-frames) from video files using FFmpeg command line tool.
 
-## Publisher: <br>
-[lnj22](https://clawhub.ai/user/lnj22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[lnj22](https://clawhub.ai/user/lnj22)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and video-processing practitioners use this skill to ask an agent for FFmpeg commands that extract I-frames, thumbnails, or important video frames from common media formats for analysis, previews, or downstream processing.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: FFmpeg keyframe extraction may create many image files depending on the source video's encoding and keyframe frequency.
+
+Mitigation: Run commands in a dedicated output directory and review the output pattern before execution.
+
+Risk: The agent may propose FFmpeg commands that operate on user-specified local video files.
+
+Mitigation: Execute commands only against intended input files and review generated shell commands before running them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and video-processing users use this skill to generate FFmpeg commands that extract keyframes, thumbnails, or important frames from common video formats for analysis, previews, or downstream processing. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: FFmpeg must be installed from a trusted source before users run generated commands. <br>
-Mitigation: Confirm the local FFmpeg installation source and version before using the commands. <br>
-Risk: Frame extraction can create many files or overwrite files that match the chosen output pattern. <br>
-Mitigation: Use a deliberate output directory and filename pattern, and review existing files before execution. <br>
+**Output Format:** [Markdown with inline bash code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lnj22/mario-coin-counting-ffmpeg) <br>
+**Other Properties Related to Output:** [Produces FFmpeg command examples and notes; users supply input videos and output patterns.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces FFmpeg command examples and option guidance for user-selected input videos and output patterns.] <br>
+0.1.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

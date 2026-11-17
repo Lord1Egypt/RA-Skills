@@ -1,41 +1,54 @@
-## Description: <br>
-Generates conversion-focused TikTok comment replies that turn questions and objections into safe next-step actions without sounding spammy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate conversion-focused TikTok comment replies that turn questions and objections into safe next-step actions without sounding spammy.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-CC BY-NC-SA 4.0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External TikTok Shop creators and operators use this skill to classify buyer comments and draft public replies, follow-up CTAs, conversion ladders, and policy-safe alternatives grounded in provided product and offer facts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC BY-NC-SA 4.0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated replies may include unsupported product claims, guarantees, delivery promises, or spam-like repetition. <br>
-Mitigation: Review replies before posting and keep claims grounded in provided product facts, offer terms, shipping and return rules, prohibited claims, and TikTok platform rules. <br>
-Risk: Commercial usage may be restricted because artifact license text states CC BY-NC-SA 4.0 non-commercial use while server metadata lists MIT-0. <br>
-Mitigation: Confirm the governing license with the publisher before commercial deployment; obtain a separate paid commercial license from Razestar if the artifact license terms apply. <br>
+## Use Case:
 
+External TikTok Shop creators and operators use this skill to classify buyer comments, draft public replies and follow-up CTAs, and produce safer alternatives for risky claims.
 
-## Reference(s): <br>
-- [Output Template](references/output-template.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Leooooooow/tiktok-comment-reply-templates) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown tables and bullet lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Intent-tagged public replies, follow-up CTA prompts, conversion ladders, risk notes, and do-not-say alternatives.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated replies may include conversion-oriented calls to action or claims that are inaccurate, unsupported, or misaligned with TikTok platform policies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every reply against provided product facts, offer terms, shipping and return rules, and platform policy before posting or saving it as a reusable template.
+
+Risk: Commercial usage rights are unclear because artifact license text limits reuse to non-commercial CC BY-NC-SA 4.0 while release metadata lists MIT-0.
+
+Mitigation: Confirm the governing license and obtain any required commercial license before using this skill in a commercial workflow.
+
+## Reference(s):
+
+- [Output Template](artifact/references/output-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/leooooooow/skills/tiktok-comment-reply-templates)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown tables and lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces an intent table, reply pack, conversion ladder, and safety guardrails.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

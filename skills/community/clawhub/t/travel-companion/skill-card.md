@@ -1,41 +1,58 @@
-## Description: <br>
-Travel Companion helps agents create saved, shareable travel plans with real place data, interactive maps, optimized routes, hotel and sightseeing recommendations, packing checklists, and collaborative editing through Aizzie. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Travel Companion helps agents create persistent, shareable travel plans with real place data, interactive maps, optimized routes, hotel and sightseeing recommendations, packing checklists, and collaborative editing through Aizzie.
 
-## Publisher: <br>
-[hehachris](https://clawhub.ai/user/hehachris) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hehachris](https://clawhub.ai/user/hehachris)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to build multi-day itineraries with real destinations, routes, lodging, sightseeing, packing checklists, and shared editing. It is intended for trips, vacations, destination research, and organizing travel plans that persist outside the chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trip details may leave the chat and persist on a third-party service. <br>
-Mitigation: Confirm that saving or sharing the itinerary is intended before creating real trips. <br>
-Risk: Itineraries can include sensitive lodging, timing, companion, or absence-from-home details. <br>
-Mitigation: Avoid entering sensitive travel details unless the user wants those details handled by the external service. <br>
+## Use Case:
 
+External users and travel planners use this skill to turn travel requests into multi-day itineraries with real places, mapped routes, hotels, restaurants, sightseeing stops, packing lists, and shareable saved plans.
 
-## Reference(s): <br>
-- [Travel Companion ClawHub release](https://clawhub.ai/hehachris/travel-companion) <br>
-- [Aizzie homepage](https://aizzie.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and links to saved itinerary resources] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update persistent, shareable travel plans on an external service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: Travel plans, dates, places, and companion details may be sent to and persisted on aizzie.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Get user consent before saving or sharing trips, and avoid entering sensitive personal details unless necessary.
+
+Risk: The skill runs a mutable npm CLI at runtime using @latest.
+
+Mitigation: Prefer a pinned, reviewed Aizzie CLI version when installing or operating the skill.
+
+Risk: Persistent and shareable itineraries can expose trip information to unintended viewers if links are shared broadly.
+
+Mitigation: Share trip links only with intended collaborators and review itinerary contents before distribution.
+
+## Reference(s):
+
+- [Aizzie homepage](https://aizzie.ai)
+- [Travel Companion on ClawHub](https://clawhub.ai/hehachris/skills/travel-companion)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown travel-planning guidance with inline Aizzie CLI commands and saved-plan status notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create persistent itineraries, maps, routes, checklists, and shareable collaboration links through aizzie.ai.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

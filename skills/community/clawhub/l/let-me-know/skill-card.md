@@ -1,38 +1,56 @@
-## Description: <br>
-Notify the user before starting any long-running task and keep them updated. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Notify the user before starting noticeable long-running tasks, provide configurable progress heartbeats, and send immediate completion or failure notices.
 
-## Publisher: <br>
-[fogyoy](https://clawhub.ai/user/fogyoy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fogyoy](https://clawhub.ai/user/fogyoy)
 
-## Use Case: <br>
-Developers and agent operators use this skill to keep users informed during long-running tasks with a pre-flight notice, periodic progress heartbeats, and immediate completion or failure updates. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The security summary identifies a high-impact gateway restart fallback without explicit user approval. <br>
-Mitigation: Require explicit user approval or remove the gateway restart fallback before installing or using the skill. <br>
-Risk: Heartbeat messages may expose sensitive log details while reporting task progress. <br>
-Mitigation: Summarize progress at a high level and avoid sending secrets, credentials, private paths, or sensitive log excerpts in heartbeat messages. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users and developers use this skill when an agent starts a task expected to take more than 2-3 minutes, so the agent sends a start notice, periodic progress updates, and an immediate completion or failure message.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline command examples and message templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Progress messages should reflect current task state rather than repeated static templates.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may ask an agent to restart a gateway if heartbeat cleanup remains stuck.
+
+Mitigation: Prefer removing or overriding the gateway-restart behavior and limit cleanup to retrying heartbeat removal or scheduling a bounded cleanup job.
+
+Risk: Heartbeat jobs may continue sending progress messages if cleanup fails.
+
+Mitigation: Prefer in-run heartbeat messages when possible; when cron is used, store the heartbeat job ID and remove it in both success and failure paths.
+
+Risk: Notification text may not match the user's preferred language.
+
+Mitigation: Confirm or adapt notification messages to the user's preferred language before using the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fogyoy/skills/let-me-know)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown status messages with inline command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default heartbeat interval is 5 minutes and can be changed by the user.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,56 @@
-## Description: <br>
-Maintain and operate the PropAI Sync monorepo, including hosted-platform BYOK API validation, Railway deployment checks, scoped tests, build gates, hosted smoke checks, and ClawHub-ready publishing steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PropAI Sync helps agents maintain and operate the PropAI Sync monorepo, including BYOK API validation, hosted smoke checks, build gates, Railway deployment checks, and ClawHub publishing steps.
 
-## Publisher: <br>
-[vishalgojha](https://clawhub.ai/user/vishalgojha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vishalgojha](https://clawhub.ai/user/vishalgojha)
 
-## Use Case: <br>
-Developers and engineers use this skill while working in the PropAI Sync monorepo to run quality gates, validate hosted BYOK API behavior, check Railway deployments, and prepare ClawHub skill releases. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Hosted smoke validation can generate or expose bootstrap API keys during endpoint checks. <br>
-Mitigation: Treat bootstrap API keys as sensitive, keep them out of handoff notes, terminal logs, screenshots, and shared CI output, and rotate or revoke test keys after validation. <br>
-Risk: Deployment validation can fail or give misleading confidence if non-2xx endpoint responses are ignored. <br>
-Mitigation: Treat any non-2xx response as a failing gate and record endpoint outcomes before handoff. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [PropAI Sync ClawHub skill page](https://clawhub.ai/vishalgojha/propai-sync) <br>
+## Use Case:
 
+Developers and operators use this skill to run scoped quality checks, build gates, hosted smoke tests, and Railway deployment validation for PropAI Sync releases.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, validation steps, and JSON smoke-check output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The hosted smoke script prints a JSON summary of endpoint validation and records gateway logs under a temporary job-log directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2026.2.28 (source: server release metadata, created 2026-03-05T22:02:00Z) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Deployment and login workflows may run with insufficient scoping or production credentials.
+
+Mitigation: Review the skill before installing it in environments with Railway or production deployment credentials, require explicit approval before deployment steps, and use staging credentials by default.
+
+Risk: The Railway CLI is invoked through an unpinned executable dependency.
+
+Mitigation: Pin the Railway CLI version before running deployment validation in controlled environments.
+
+Risk: Hosted smoke output can expose a literal API key prefix.
+
+Mitigation: Record only whether an API key was received instead of printing any literal key prefix.
+
+## Reference(s):
+
+- [PropAI Sync ClawHub Skill Page](https://clawhub.ai/vishalgojha/skills/propai-sync)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON smoke-check summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include deployment validation steps and HANDOFF.md status entries.]
+
+## Skill Version(s):
+
+2026.2.28 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

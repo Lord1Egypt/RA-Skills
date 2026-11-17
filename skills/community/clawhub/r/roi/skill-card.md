@@ -1,41 +1,51 @@
-## Description: <br>
-Roi is a reference tool that prints local documentation for Roi devtools topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Roi is a reference helper that returns static devtools guidance.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and engineers use this skill to retrieve concise Roi reference material, including quickstart, debugging, performance, security, migration, and cheat sheet guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Static reference documentation may be incomplete or outdated for a user's current Roi environment. <br>
-Mitigation: Review the generated guidance against current project requirements and authoritative Roi documentation before relying on it for operational decisions. <br>
-Risk: The release includes a shell script entry point, even though this version only prints local documentation. <br>
-Mitigation: Review script changes before installing future updates and keep normal shell execution controls in place. <br>
+## Use Case:
 
+Developers and engineers use Roi to retrieve concise reference documentation for common devtools topics such as onboarding, patterns, debugging, performance, security, migration, and quick-reference workflows.
 
-## Reference(s): <br>
-- [Roi on ClawHub](https://clawhub.ai/ckchzh/roi) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown headings and lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs static local documentation via shell command selection; no credentials, API calls, or network access are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Static security guidance may be too general for a specific production environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated reference text against current organizational security and compliance requirements before applying it.
+
+## Reference(s):
+
+- [Roi ClawHub skill page](https://clawhub.ai/ckchzh/skills/roi)
+- [BytesAgain homepage](https://bytesagain.com)
+- [BytesAgain publisher profile](https://clawhub.ai/user/ckchzh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands]
+
+**Output Format:** [Plain text and Markdown reference documentation emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference output; no network calls, credential access, or persistent changes reported by security evidence.]
+
+## Skill Version(s):
+
+2.0.2 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

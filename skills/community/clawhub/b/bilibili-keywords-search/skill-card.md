@@ -1,42 +1,55 @@
-## Description: <br>
-Searches Bilibili videos by keyword through the RedFox API, with sorting, time-range filters, pagination, and optional daily keyword subscription guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+根据用户输入的关键词调用 Redfox 接口搜索 Bilibili 最新视频，并支持排序、发布时间筛选、分页浏览和每日订阅提示。
 
-## Publisher: <br>
-[redfox-data](https://clawhub.ai/user/redfox-data) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redfox-data](https://clawhub.ai/user/redfox-data)
 
-## Use Case: <br>
-External users such as Bilibili creators, operations teams, data analysts, brands, and MCNs use this skill to search recent Bilibili videos, compare keyword performance, adjust filters, and review results in a Markdown table. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a RedFox API key and sends Bilibili search keywords to redfox.hk. <br>
-Mitigation: Install only when that credential and keyword-sharing posture is acceptable; keep the key in an environment variable and avoid exposing it in prompts, logs, or files. <br>
-Risk: Daily keyword subscriptions can continue running after initial setup if the user forgets how they were scheduled. <br>
-Mitigation: Use a visible scheduler and record how to disable or update the subscription before enabling recurring searches. <br>
+## Use Case:
 
+Bilibili creators, operators, data analysts, brands, and MCNs use this skill to research keyword-specific videos, monitor topic trends, compare content performance, and receive daily keyword updates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/redfox-data/skills/bilibili-keywords-search) <br>
-- [RedFoxHub API key settings](https://redfox.hk/settings/api-keys?source=clawhub) <br>
-- [RedFoxHub](https://redfox.hk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown tables and guidance generated from JSON search results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REDFOX_API_KEY and sends user-provided Bilibili search keywords to redfox.hk.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill sends Bilibili search terms to RedFox using REDFOX_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after confirming the RedFox API key source, scope, validity, reset process, and acceptable data sharing.
+
+Risk: The skill encourages daily keyword subscriptions that may create persistent scheduled tasks.
+
+Mitigation: Require explicit keyword-bound confirmation before enabling a subscription, and make sure the user can list, disable, and delete the scheduled task.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/redfox-data/skills/bilibili-keywords-search)
+- [RedFox API Key Settings](https://redfox.hk/settings/api-keys?source=clawhub)
+- [RedFox Bilibili Search API Endpoint](https://redfox.hk/story/api/bili/search)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown tables and concise text with optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results include video titles, authors, engagement counts, links, publish times, covers, tags, category labels, paging status, filter labels, and subscription guidance.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

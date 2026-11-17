@@ -1,41 +1,51 @@
-## Description: <br>
-Manage bun-do tasks and projects by adding, editing, deleting, toggling completion, managing subtasks, and logging project progress entries through the local bun-do REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage bun-do tasks and projects by adding, editing, deleting, marking done, managing subtasks, and logging project progress entries.
 
-## Publisher: <br>
-[ricardofrantz](https://clawhub.ai/user/ricardofrantz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ricardofrantz](https://clawhub.ai/user/ricardofrantz)
 
-## Use Case: <br>
-External users and developers use this skill to let agents manage local bun-do tasks, subtasks, recurring payments, and project progress logs while keeping task data on the user's machine. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to mutate or delete local task and project data. <br>
-Mitigation: Require explicit user confirmation before deletes, completion changes, project creation, and log creation. <br>
-Risk: The documented shell/Python search pattern could be unsafe if user-provided search text is substituted directly. <br>
-Mitigation: Use safe JSON processing and proper quoting instead of interpolating raw user text into shell or Python snippets. <br>
-Risk: The skill depends on a trusted local Bun Do API running on the user's machine. <br>
-Mitigation: Install and use the skill only when the local Bun Do API is trusted and expected to modify the user's task data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ricardofrantz/bun-do-api) <br>
+## Use Case:
+
+External users and agents use this skill to manage local-first bun-do task and project data through the bun-do REST API, including deadlines, reminders, recurring payments, subtasks, and project progress logs.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can modify or delete persistent local task, project, and payment-tracking records.
+
+Mitigation: Require explicit user confirmation before delete, clear-done, mark-done, and autonomous progress-logging actions.
+
+Risk: Broad task-management triggers may cause the skill to act on important personal, project, or bill-tracking data.
+
+Mitigation: Review intended actions before execution and prefer a pinned local installation without elevated privileges.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Markdown, Guidance] <br>
-**Output Format:** [Markdown with JSON request examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local REST API instructions and command patterns for managing bun-do data.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline JSON and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose REST API calls that create, update, mark done, or delete local task and project records.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

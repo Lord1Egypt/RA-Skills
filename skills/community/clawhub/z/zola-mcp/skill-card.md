@@ -1,40 +1,54 @@
-## Description: <br>
-Connects an agent to Zola wedding planning data for vendors, budget, guests, RSVPs, seating, events, registry, gifts, and inquiries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps an agent work with Zola wedding planning data, including vendors, budget, guests, seating, RSVPs, events, registry, gifts, and marketplace discovery.
 
-## Publisher: <br>
-[chrischall](https://clawhub.ai/user/chrischall) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chrischall](https://clawhub.ai/user/chrischall)
 
-## Use Case: <br>
-External users and agents use this skill to access and manage Zola wedding planning data, including vendors, budgets, guests, seating, events, RSVPs, registry items, gifts, and vendor inquiries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires durable access to Zola account data through a long-lived refresh token or browser-cookie fallback. <br>
-Mitigation: Treat the token like a password, avoid pasting or storing it unless necessary, and rotate or revoke it if exposed. <br>
-Risk: The skill can support account-changing wedding planning actions and may activate for broad wedding-planning requests. <br>
-Mitigation: Confirm the user intends to use Zola and review account-changing actions before they run. <br>
+## Use Case:
 
+External users and agents use this skill to manage Zola wedding planning records and retrieve planning status across vendors, guests, budget, seating, RSVPs, registry, and gifts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chrischall/zola-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide an agent to call Zola MCP tools that read or modify account data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.2 (source: server release evidence) <br>
+Risk: The skill can expose sensitive wedding-planning data such as guest addresses, RSVPs, invitations, budget, vendors, registry, and gifts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the agent is intended to access this Zola data, and review outputs before sharing or acting on them.
+
+Risk: The skill describes write-capable actions for vendors, guests, addresses, seating, events, invitations, budget items, and registry reconciliation.
+
+Mitigation: Require explicit user review before any add, update, remove, invite, seating, budget, or bulk event change.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chrischall/skills/zola-mcp)
+- [Publisher profile](https://clawhub.ai/user/chrischall)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown or plain text responses that may summarize tool results and propose wedding-planning actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May involve sensitive wedding-planning records and write-capable actions through Zola-related tools]
+
+## Skill Version(s):
+
+1.7.5 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

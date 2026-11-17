@@ -1,39 +1,53 @@
-## Description: <br>
-Optimizes affiliate marketing by improving product selection, link strategies, disclosure compliance, conversion rates, tracking, and performance analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimizes affiliate marketing by improving product selection, link strategies, disclosure compliance, conversion rates, tracking, and performance analysis.
 
-## Publisher: <br>
-[eric060](https://clawhub.ai/user/eric060) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eric060](https://clawhub.ai/user/eric060)
 
-## Use Case: <br>
-External users and marketing operators use this skill to plan affiliate campaigns, choose products, optimize links, prepare disclosure checklists, set up tracking, and analyze campaign performance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact references an optimize.py command that is not included in the reviewed package. <br>
-Mitigation: Treat the skill as guidance-only unless that script is separately provided, inspected, and approved before execution. <br>
-Risk: Affiliate marketing recommendations may be incomplete or unsuitable for a specific platform, region, or disclosure requirement. <br>
-Mitigation: Review product choices, tracking practices, and disclosure language against applicable platform rules and advertising requirements before publishing. <br>
+## Use Case:
 
+Affiliate marketers and content operators use this skill to improve product selection, affiliate link strategy, disclosure compliance, conversion performance, tracking setup, and campaign analysis.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with example shell command usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces product recommendations, link strategies, compliance checklists, and optimization tips.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The documented optimize.py command references a script that is not included in the package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat this release as guidance unless a separate script is provided and reviewed independently before execution.
+
+Risk: Affiliate marketing recommendations can create compliance exposure if disclosures or platform rules are not followed.
+
+Mitigation: Review generated compliance checklists and campaign advice against applicable disclosure requirements and platform policies before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eric060/skills/affiliate-marketing-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces product recommendations, link strategies, compliance checklists, and optimization tips; no executable script is bundled in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

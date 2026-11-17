@@ -1,47 +1,63 @@
-## Description: <br>
-Uses the gitcode-api Python SDK for GitCode REST automation, including installation, OpenAI-style client structure, sync/async usage, repository-scoped helpers, and bundled CLI helpers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the gitcode-api Python SDK for GitCode REST automation, including installation, sync and async clients, repository-scoped helpers, runtime resource introspection, and bundled CLI helpers.
 
-## Publisher: <br>
-[trenza1ore](https://clawhub.ai/user/trenza1ore) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[trenza1ore](https://clawhub.ai/user/trenza1ore)
 
-## Use Case: <br>
-Developers and engineers use this skill to automate GitCode REST workflows with the gitcode-api Python SDK, including repository, pull request, user, search, and OAuth examples. It also helps agents validate the local environment and choose sync, async, or CLI usage patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses GitCode access tokens and can guide repository API operations. <br>
-Mitigation: Use a least-privileged GitCode token, prefer environment variables over command-line token arguments, and keep tokens encrypted when supported. <br>
-Risk: Repository write operations such as create, update, delete, merge, transfer, webhook, OAuth, or permission-changing actions can modify remote state. <br>
-Mitigation: Require explicit user approval before any write or permission-changing action and review generated code or commands before execution. <br>
-Risk: Installing the gitcode-api package can change the Python environment. <br>
-Mitigation: Prefer a virtual environment and consider pinning the package version before installation. <br>
+## Use Case:
 
+Developers and engineers use this skill to write, explain, debug, and validate Python automation against the GitCode REST API. It helps agents choose sync or async client patterns, configure repository context, inspect available SDK methods, and run environment or CLI checks.
 
-## Reference(s): <br>
-- [GitCode API Reference](references/api-reference.md) <br>
-- [GitCode API Workflow Patterns](references/workflow-patterns.md) <br>
-- [Hosted SDK Quickstart](https://gitcode-api.readthedocs.io/en/latest/sdk/quickstart.html) <br>
-- [GitCode API Documentation](https://gitcode-api.readthedocs.io/) <br>
-- [gitcode-api on PyPI](https://pypi.org/project/gitcode-api/) <br>
-- [Built-in CLI Documentation](https://gitcode-api.readthedocs.io/en/latest/sdk/cli.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include JSON output examples from the helper CLI and response objects converted with to_dict().] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and skill metadata) <br>
+Risk: The skill guides installation of an unpinned Python package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated virtual environment, pin and verify the gitcode-api package version, and review the package before installation.
+
+Risk: The skill can help perform broad authenticated GitCode operations, including destructive or sensitive repository, member, webhook, OAuth, key, merge, and file changes.
+
+Mitigation: Use a least-privilege short-lived GitCode token from an environment variable or secret store, confirm the exact owner, repository, and intended action, and review sensitive operations before execution.
+
+Risk: Passing access tokens through command-line arguments can expose credentials.
+
+Mitigation: Prefer environment variables or a secret store over argv for GitCode tokens.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/trenza1ore/skills/gitcode-api)
+- [GitCode API Reference](references/api-reference.md)
+- [GitCode API Workflow Patterns](references/workflow-patterns.md)
+- [Hosted SDK Quickstart](https://gitcode-api.readthedocs.io/en/latest/sdk/quickstart.html)
+- [Client API Documentation](https://gitcode-api.readthedocs.io/en/latest/sdk/client_api.html)
+- [Built-in CLI Documentation](https://gitcode-api.readthedocs.io/en/latest/sdk/cli.html)
+- [PyPI Project](https://pypi.org/project/gitcode-api/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose authenticated GitCode API calls and local environment checks that require user review before execution.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

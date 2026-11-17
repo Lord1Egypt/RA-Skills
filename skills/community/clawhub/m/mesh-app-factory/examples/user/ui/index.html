@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="content-type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="data:image/ico;base64,aWNv">
+<link href="/assets/v3/quasar_font.css" rel="stylesheet" type="text/css">
+<link href="/assets/v3/quasar.css" rel="stylesheet" type="text/css">
+<title>User</title>
+<style>
+/*设置标准字体*/body {font-family:'微软雅黑', sans-serif !important;}
+/*设置衬线字体*/.serif {font-family:'宋体', serif !important;}
+/*设置无衬线字体*/.sans-serif {font-family:'微软雅黑', sans-serif !important;}
+</style>
+</head>
+<body><div id="app" v-cloak><router-view></router-view></div></body>
+<script src="/assets/v3/vue.js"></script>
+<script src="/assets/v3/vue-router.js"></script>
+<script src="/assets/v3/quasar.js"></script>
+<script src="/assets/v3/osadapter.js"></script>
+<script type="module">
+import Language from "./language.js"
+import AlertDialog from "/assets/v3/components/alert_dialog.js"
+import ConfirmDialog from "/assets/v3/components/confirm_dialog.js"
+import UserSelector from "/assets/v3/components/user_selector.js"
+import DateInput from "/assets/v3/components/date_input.js"
+import Users from "./users.js"
+import User from "./user.js"
+import Authorizes from "./authorizes.js"
+
+const l=Platform.language();
+const tags = l.indexOf("zh") == 0 ? Language.zh : Language.en;
+
+//router定义
+const router = VueRouter.createRouter({"history": VueRouter.createMemoryHistory(),
+routes:[
+ {path:'/users', component:Users},
+ {path:'/user', component:User},
+ {path:'/authorizes', component:Authorizes}
+]});
+
+//service定义
+const service = {name:"user",N_PAGE:15,N_SMPG:5,
+services:[],roles:{},serviceNames:{},roleNames:{}, //用在授权页面
+get_roles(srv) {
+    if(this.roles[srv]) {
+        return new Promise(resolve => {
+            resolve({options:this.roles[srv],names:this.roleNames[srv]});
+        });
+    }
+    return request({method:"GET",url:"/api/roles"}, srv).then(resp => {
+        if(resp.code != RetCode.OK) {
+            return resp;
+        }
+        var roles=[];
+        var roleNames={};
+        var label;
+        for(var r in resp.data) {
+            label=resp.data[r].name;
+            roles.push({label:label,value:r});
+            roleNames[r]=label;
+        }
+        this.roles[srv]=roles;
+        this.roleNames[srv]=roleNames;
+        return {options:this.roles[srv],names:this.roleNames[srv]};
+    })
+},
+get_services(){
+    if(this.services.length>0) {
+        return new Promise(resolve =>{
+            resolve({options:this.services, names:this.serviceNames});
+        });
+    }
+    var opts={method:"GET",url:"/power/serviceList"};
+    return request(opts, this.name).then(resp => {
+        if(resp.code!=RetCode.OK) {
+            return resp;
+        }
+
+        var list=[];
+        var names={};
+        var info;
+        for(var s in resp.data.services) {
+            info=resp.data.services[s];
+            if(info.type=='COMPANY' && info.visible>0) {
+                list.push({label:info.dispName,value:s});
+                names[s]=info.dispName;
+            }
+        }
+        this.services=list;
+        this.serviceNames=names;
+        return {options:this.services,names:this.serviceNames};
+    });
+},
+go_back() { //返回，在页面中通过service.go_back调用
+    router.back();
+},
+jumpTo(url) {
+    router.push(url)
+},
+runtime:{},//运行时
+setRt(k,v) {
+    this.runtime[router.currentRoute.value.path+':'+k]=v;
+},
+getRt(k,def) {
+    var v=this.runtime[router.currentRoute.value.path+':'+k];
+    return v?v:def;
+}
+};
+
+//app主体定义
+const app = Vue.createApp({
+provide:{tags:tags, service:service},
+created(){
+    this.$router.push('/users').catch(err => {err}) //避免报NavigationDuplicated，此错误不影响功能
+},
+mounted() {
+    window.sys_go_back = this.sysGoBack;//给webview调用
+},
+methods:{
+sysGoBack() {
+    //声明全局函数，在webview中调用，
+    //实现按回退按钮回退历史页面，如果无历史，则退出activity或应用
+    if(this.$router.currentRoute.value.path==="/users") {
+        return false;
+    }
+    this.$router.back();
+    return true;
+}
+}
+});
+
+app.use(Quasar);
+app.use(router);
+//注册全局组件
+app.component('component-alert-dialog', AlertDialog);
+app.component('component-confirm-dialog', ConfirmDialog);
+app.component('component-user-selector', UserSelector);
+app.component('component-date-input', DateInput);
+//启动APP
+app.mount('#app');
+</script>
+</html>

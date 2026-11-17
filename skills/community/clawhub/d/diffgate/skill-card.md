@@ -1,39 +1,58 @@
-## Description: <br>
-Compare two texts and return a unified diff with a similarity score, line-level addition and deletion counts, and individual change records for LLM output comparison, content integrity checks, and document-change tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compare two texts and get a unified diff with a similarity score (0-1), line-level additions/deletions, and individual change records.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and agents use Diffgate to run local text comparisons through an API when checking LLM output consistency, document integrity, skill-version diffs, or configuration changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Binding the local API to a public network interface could let unintended users submit text for comparison or receive diff output. <br>
-Mitigation: Keep the uvicorn server bound to localhost unless network access is intentional and controlled. <br>
-Risk: Diff responses include changed input content, so sensitive text may appear in returned output. <br>
-Mitigation: Avoid submitting sensitive text unless it is acceptable for that text to appear in the returned diff. <br>
+## Use Case:
 
+Developers and engineers use Diffgate to compare LLM outputs, documents, configuration files, and skill versions for line-level changes and similarity.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, text] <br>
-**Output Format:** [JSON response containing similarity, additions, deletions, and changed-line records.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Input text fields are capped at 500,000 characters each.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The local Uvicorn service could be exposed beyond the host if bound publicly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep it bound to localhost unless authentication, rate limits, and resource controls are added.
+
+Risk: Compared text may contain secrets or sensitive content handled by the local service process.
+
+Mitigation: Avoid submitting secrets unless the runtime environment is approved to process that text.
+
+Risk: Installing current PyPI dependencies can introduce dependency drift.
+
+Mitigation: Install in an environment where resolving current packages is acceptable and pin dependencies for controlled deployments.
+
+## Reference(s):
+
+- [Diffgate ClawHub listing](https://clawhub.ai/mirni/skills/diffgate)
+- [mirni publisher profile](https://clawhub.ai/user/mirni)
+
+## Skill Output:
+
+**Output Type(s):** [text, analysis]
+
+**Output Format:** [JSON response with similarity, addition and deletion counts, and per-line change records.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stateless local FastAPI endpoint; request text fields are limited to 500,000 characters each.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,57 @@
+{
+  "id": "twist-demo-004",
+  "name": "Demo: all conditions",
+  "version": "1.0",
+  "description": "Demonstrates every match condition type",
+  "rules": [
+    {
+      "id": "url-matching",
+      "name": "URL conditions",
+      "enabled": true,
+      "priority": 10,
+      "stage": "request",
+      "match": {
+        "allOf": [
+          {"type": "urlPrefix", "value": "https://api."},
+          {"type": "urlContains", "value": "/v1/"},
+          {"type": "urlRegex", "pattern": "/v\\d+/users/\\d+"}
+        ]
+      },
+      "actions": [{"type": "block"}]
+    },
+    {
+      "id": "header-cookie-query",
+      "name": "Header, cookie, and query conditions",
+      "enabled": true,
+      "priority": 8,
+      "stage": "request",
+      "match": {
+        "allOf": [
+          {"type": "headerExists", "name": "Authorization"},
+          {"type": "headerRegex", "name": "Content-Type", "pattern": "application/json"},
+          {"type": "cookieExists", "name": "session"},
+          {"type": "queryEquals", "name": "debug", "value": "true"}
+        ],
+        "anyOf": [
+          {"type": "cookieEquals", "name": "role", "value": "admin"},
+          {"type": "cookieEquals", "name": "role", "value": "superadmin"}
+        ]
+      },
+      "actions": [{"type": "block"}]
+    },
+    {
+      "id": "body-jsonpath",
+      "name": "Body JSON path condition",
+      "enabled": true,
+      "priority": 6,
+      "stage": "request",
+      "match": {
+        "allOf": [
+          {"type": "bodyJsonPath", "path": "/action", "value": "delete"},
+          {"type": "bodyRegex", "pattern": "\"confirmed\":\\s*true"}
+        ]
+      },
+      "actions": [{"type": "block", "statusCode": 403}]
+    }
+  ]
+}

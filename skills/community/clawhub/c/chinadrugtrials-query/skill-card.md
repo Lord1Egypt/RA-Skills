@@ -1,43 +1,54 @@
-## Description: <br>
-Query chinadrugtrials.org.cn, the Chinese Drug Clinical Trial Registration and Information Disclosure Platform, to search or retrieve Chinese clinical trial registration records for a drug, indication, company, CTR number, or keyword. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query chinadrugtrials.org.cn, the Chinese Drug Clinical Trial Registration and Information Disclosure Platform, for Chinese clinical trial registration records by drug, indication, company, CTR number, or keyword.
 
-## Publisher: <br>
-[zephyrlucky-skills](https://clawhub.ai/user/zephyrlucky-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zephyrlucky-skills](https://clawhub.ai/user/zephyrlucky-skills)
 
-## Use Case: <br>
-Agents and clinical-research users use this skill to search the China Drug Clinical Trial Registration and Information Disclosure Platform and return official registration rows with applicant, disclosure date, status, and detail links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on browser automation against an external public registry, so site availability, anti-bot behavior, or navigation timeouts can prevent complete results. <br>
-Mitigation: Use the documented Playwright workflow, keep navigation waits bounded, and report unverified fields explicitly when official detail extraction fails. <br>
-Risk: Incorrect text encoding for Chinese queries can return unrelated records. <br>
-Mitigation: Use UTF-8 handling and verify that result counts and returned rows match the intended keyword or CTR identifier. <br>
-Risk: Fallback sources may be stale or disagree with the official platform. <br>
-Mitigation: Prefer official list and detail pages, and state whenever any field was supplemented from a non-official source. <br>
+## Use Case:
 
+Developers, research operations teams, and external agents use this skill to retrieve public ChinaDrugTrials records and return registration details such as applicant/company, first public disclosure date, trial status, and official detail links.
 
-## Reference(s): <br>
-- [China Drug Clinical Trial Registration and Information Disclosure Platform](https://www.chinadrugtrials.org.cn/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zephyrlucky-skills/chinadrugtrials-query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown table by default, with optional JSON output from the bundled query script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Rows include registration number, trial status, drug name, indication, title, applicant company, first disclosure date, and official detail link.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Browser automation against a public website can fail or return incomplete data when the site changes, times out, blocks automation, or requires a specific Chromium/Chrome executable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run with Playwright and an available Chromium/Chrome executable, keep waits bounded, and verify the official result count and detail links before relying on the output.
+
+Risk: Incorrect keyword encoding or fallback parsing can produce irrelevant or stale clinical trial records.
+
+Mitigation: Use UTF-8 query handling, confirm the result page matches the intended keyword or CTR number, and clearly mark any detail field that could not be verified from the official page.
+
+## Reference(s):
+
+- [ChinaDrugTrials platform](https://www.chinadrugtrials.org.cn/)
+- [ClawHub skill listing](https://clawhub.ai/zephyrlucky-skills/skills/chinadrugtrials-query)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown table by default, or JSON when requested; guidance may include shell commands and Python snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs one row per registration and may include official detail links plus unverified-field markers when a detail value cannot be confirmed.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

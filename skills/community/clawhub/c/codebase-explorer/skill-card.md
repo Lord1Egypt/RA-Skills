@@ -1,41 +1,55 @@
-## Description: <br>
-Analyze unfamiliar codebases and generate structured onboarding guides with architecture maps, entry points, conventions, and project-specific instructions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze unfamiliar codebases and generate structured onboarding guides with architecture maps, entry points, conventions, and project-specific instructions.
 
-## Publisher: <br>
-[djc00p](https://clawhub.ai/user/djc00p) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djc00p](https://clawhub.ai/user/djc00p)
 
-## Use Case: <br>
-Developers and engineers use this skill to analyze unfamiliar repositories, map architecture and entry points, identify project conventions, and produce onboarding guidance or a starter CLAUDE.md. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Repository inspection can expose sensitive project details or secrets if used on private codebases without care. <br>
-Mitigation: Install only for repositories the user is comfortable letting an agent inspect, ask the agent to avoid secrets, and review generated onboarding guidance before sharing it. <br>
+## Use Case:
 
+Developers and engineers use this skill to understand unfamiliar repositories, map architecture and entry points, identify project conventions, and draft onboarding guidance or project-specific CLAUDE.md instructions.
 
-## Reference(s): <br>
-- [Reconnaissance Phase](references/reconnaissance.md) <br>
-- [Onboarding Artifacts](references/artifacts.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/djc00p/codebase-explorer) <br>
-- [Publisher Profile](https://clawhub.ai/user/djc00p) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance and project instruction drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include an onboarding guide and a starter CLAUDE.md tailored to repository evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated CLAUDE.md content can influence future agent behavior if it is incorrect or too broad.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review any generated CLAUDE.md before keeping it and keep only project-specific, accurate instructions.
+
+Risk: Repository scans may miss conventions or commands when project structure is unusual or ambiguous.
+
+Mitigation: Verify generated onboarding notes against the actual code and configuration, and preserve explicit unknowns instead of guessing.
+
+## Reference(s):
+
+- [Reconnaissance Phase](references/reconnaissance.md)
+- [Onboarding Artifacts](references/artifacts.md)
+- [ClawHub Skill Page](https://clawhub.ai/djc00p/skills/codebase-explorer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration guidance, Shell commands]
+
+**Output Format:** [Markdown with structured sections, tables, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce an onboarding guide and starter CLAUDE.md content for review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

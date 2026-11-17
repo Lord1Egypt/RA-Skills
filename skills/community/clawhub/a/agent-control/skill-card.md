@@ -1,40 +1,57 @@
-## Description: <br>
-Manage OpenClaw isolated agents from chat with short commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage OpenClaw isolated agents from chat with short commands.
 
-## Publisher: <br>
-[alincatalin](https://clawhub.ai/user/alincatalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alincatalin](https://clawhub.ai/user/alincatalin)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to translate short chat requests into agent management commands for listing, creating, switching, binding, unbinding, deleting, and updating agent identity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make persistent OpenClaw agent configuration changes, including binding channels and deleting agents. <br>
-Mitigation: Double-check agent names and channel bindings before running commands, and require explicit confirmation before delete operations. <br>
-Risk: Short chat commands may be ambiguous and could target the wrong agent or channel. <br>
-Mitigation: Ask one focused clarification question when an agent name, channel, workspace, or binding is unclear. <br>
+## Use Case:
 
+Developers and operators use this skill to manage OpenClaw isolated agents from chat, including creating, listing, switching, binding, unbinding, deleting, and setting agent identity.
 
-## Reference(s): <br>
-- [Agent Control on ClawHub](https://clawhub.ai/alincatalin/agent-control) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance, Text] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides a brief success or failure result and the next useful command after each operation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can persistently create, bind, unbind, reconfigure, or delete OpenClaw agents and channel bindings from chat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only in trusted workspaces where chat-driven OpenClaw agent reconfiguration is intended and acceptable.
+
+Risk: The helper can run an agent deletion command without enforcing the confirmation described by the skill instructions.
+
+Mitigation: Require a matching confirmation flag or equivalent guard before invoking delete, and review delete operations before execution.
+
+Risk: Incorrect routing or identity changes could direct a channel to the wrong agent or present an unintended agent identity.
+
+Mitigation: Review the generated OpenClaw command, target agent name, and channel binding before applying changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alincatalin/skills/agent-control)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Code, Markdown, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May emit OpenClaw CLI commands and JSON-formatted helper results.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-通过企业微信将本地文件发送给用户，支持文档、图片、视频、语音等常见文件类型和文件大小限制说明。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通过企业微信将本地目录中的文件（文档、图片、视频、语音）发送给指定用户，支持文件大小限制管理。
 
-## Publisher: <br>
-[chongjie-ran](https://clawhub.ai/user/chongjie-ran) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chongjie-ran](https://clawhub.ai/user/chongjie-ran)
 
-## Use Case: <br>
-WeCom users and agents use this skill to locate local workspace files and send them to a specified recipient through a MEDIA directive. It is useful when a user needs a document, image, video, or voice file delivered from known workspace folders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends local workspace files through WeCom and could expose the wrong or private file. <br>
-Mitigation: Use explicit filenames or full paths, verify the recipient, and confirm the selected file before sending any MEDIA directive. <br>
-Risk: Broad trigger phrases may cause the agent to act on an imprecise file request. <br>
-Mitigation: Ask for clarification when the requested file is ambiguous, especially for companywork or other private folders. <br>
+## Use Case:
 
+Employees or agents operating in a WeCom-enabled workspace use this skill to locate local files and send documents, images, videos, or voice files to a specified user.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chongjie-ran/wecom-file-sender) <br>
-- [Publisher profile](https://clawhub.ai/user/chongjie-ran) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown text with MEDIA directives and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces one MEDIA line per selected file path; includes guidance for supported WeCom file size limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can cause an agent to share local workspace or company-memory files through WeCom without clear authorization or confirmation safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require an exact recipient and file path, confirm before every send, and apply the organization's data-sharing policy before emitting a MEDIA directive.
+
+Risk: Sensitive company records, customer data, credentials, or regulated content may be exposed if files from memory or companywork paths are sent without review.
+
+Mitigation: Treat memory and companywork paths as sensitive and avoid sending protected content unless policy explicitly permits sharing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chongjie-ran/skills/wecom-file-sender)
+- [Publisher profile](https://clawhub.ai/user/chongjie-ran)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with MEDIA directives and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [MEDIA directives are emitted one file per line with a local file path; documented size limits cover images, videos, AMR voice files, and generic files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

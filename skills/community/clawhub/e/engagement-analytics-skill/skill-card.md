@@ -1,46 +1,58 @@
-## Description: <br>
-Helps agents design, implement, and interpret behavioral analytics and engagement tracking across website, email, social, and mobile touchpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents design, implement, and interpret behavioral engagement analytics across website, email, social, and mobile app touchpoints.
 
-## Publisher: <br>
-[abhishekj9621](https://clawhub.ai/user/abhishekj9621) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abhishekj9621](https://clawhub.ai/user/abhishekj9621)
 
-## Use Case: <br>
-Developers, marketers, and analytics practitioners use this skill to plan event schemas, implement tracking, audit data quality, and report engagement across digital touchpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sample tracking code could collect personal or behavioral data without proper consent or minimization. <br>
-Mitigation: Add consent checks before collection, avoid sensitive form-field tracking, hash or minimize identifiers, and document retention and deletion flows. <br>
-Risk: Analytics integrations can expose provider credentials or over-permissioned access. <br>
-Mitigation: Use least-privilege provider credentials, rotate tokens as required, and avoid embedding secrets directly in client-side examples. <br>
-Risk: Sending comments, profile data, or engagement events to third-party analytics providers may conflict with policy or privacy law. <br>
-Mitigation: Confirm third-party data sharing is allowed by internal policies and applicable privacy laws before using the examples. <br>
+## Use Case:
 
+Developers, marketers, and analytics practitioners use this skill to plan event schemas, tracking implementations, attribution flows, engagement scoring, and analytics health reports for digital products and campaigns.
 
-## Reference(s): <br>
-- [Engagement Analytics Skill](https://clawhub.ai/abhishekj9621/engagement-analytics-skill) <br>
-- [Website Behavioral Analytics](references/website-analytics.md) <br>
-- [Email Engagement Tracker](references/email-analytics.md) <br>
-- [Social Media Engagement Tracker](references/social-analytics.md) <br>
-- [Mobile App Analytics](references/mobile-analytics.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration instructions] <br>
-**Output Format:** [Markdown with event schemas, checklists, analytics reports, and inline code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include sample tracking code, event taxonomy, privacy notes, attribution guidance, and analytics health-report templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Copy-ready tracking examples can collect or share sensitive user behavior without enough built-in guardrails.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review privacy and compliance details before use; apply consent gating, data minimization, sensitive-field exclusions, redaction, retention rules, and vendor/data-sharing review before production deployment.
+
+Risk: Form, identity-linking, attribution, webhook, and LLM sentiment examples could expose personal or sensitive behavioral data if pasted directly into production.
+
+Mitigation: Adapt examples to the deployment's privacy requirements, avoid raw PII in event properties, and validate vendor data flows before enabling tracking.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/abhishekj9621/skills/engagement-analytics-skill)
+- [Website Behavioral Analytics](artifact/references/website-analytics.md)
+- [Email Engagement Tracker](artifact/references/email-analytics.md)
+- [Social Media Engagement Tracker](artifact/references/social-analytics.md)
+- [Mobile App Analytics](artifact/references/mobile-analytics.md)
+- [Social Blade](https://socialblade.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with event schemas, checklists, code snippets, API examples, and reporting templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include platform-specific implementation notes for GA4, GTM, Klaviyo, Mailchimp, Firebase, Amplitude, Mixpanel, AppsFlyer, social APIs, and attribution workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

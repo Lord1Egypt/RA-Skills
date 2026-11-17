@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import datetime as dt
 import json
 import re
 import sys
@@ -25,12 +26,13 @@ MAX_PROFILE_BYTES = 1800
 def read_text(path: Path, *, max_bytes: int | None = None) -> tuple[str, bool]:
     if not path.exists():
         return "", False
-    data = path.read_bytes()
+    with path.open("rb") as stream:
+        data = stream.read(max_bytes + 1) if max_bytes is not None else stream.read()
     truncated = False
     if max_bytes is not None and len(data) > max_bytes:
         data = data[:max_bytes]
         truncated = True
-    return data.decode("utf-8", errors="replace"), truncated
+    return data.decode("utf-8", errors="ignore"), truncated
 
 
 def load_json(path: Path) -> dict[str, Any] | None:
@@ -84,6 +86,13 @@ def build_context(workspace: Path) -> dict[str, Any]:
         warnings.append("missing memory/active-context.md; read long-term/short-term/progress as fallback")
     if active_truncated:
         warnings.append(f"memory/active-context.md exceeded {MAX_ACTIVE_CONTEXT_BYTES} bytes and was truncated")
+    updated = extract_updated(active_context)
+    try:
+        if (dt.date.today() - dt.date.fromisoformat(updated)).days > 14:
+            warnings.append("memory/active-context.md is stale; prefer recent knowledge assessment and selectively check history")
+    except ValueError:
+        if active_context:
+            warnings.append("memory/active-context.md has no valid Updated date")
 
     profile_path = workspace / "curriculum/profile.md"
     profile, profile_truncated = read_text(profile_path, max_bytes=MAX_PROFILE_BYTES)
@@ -94,6 +103,18 @@ def build_context(workspace: Path) -> dict[str, Any]:
     if profile_truncated:
         warnings.append(f"curriculum/profile.md exceeded {MAX_PROFILE_BYTES} bytes and was truncated")
 
+    today = dt.date.today().isoformat()
+    state = load_json(workspace / "records/knowledge-state.json") or {}
+    followup = load_json(workspace / "records/next-practice.json") or {}
+    for rel, value in [("records/knowledge-state.json", state), ("records/next-practice.json", followup)]:
+        if value:
+            files_read.append(rel)
+    concepts = [{"id": key, **{k: v for k, v in point.items() if k != "recent_evidence"}}
+                for key, point in state.get("concepts", {}).items()]
+    priorities = {"需要巩固": 0, "待确认": 1, "待观察": 2, "初步掌握": 3, "稳定掌握": 4}
+    concepts.sort(key=lambda point: (priorities.get(point["status"], 5), point["next_review_date"]))
+    due = [review for review in followup.get("reviews", []) if review["due_date"] <= today]
+    due.sort(key=lambda review: review["due_date"])
     return {
         "mode_default": "fast_grade_light_record",
         "active_context_updated": extract_updated(active_context),
@@ -112,6 +133,11 @@ def build_context(workspace: Path) -> dict[str, Any]:
         },
         "active_context": active_context,
         "curriculum_profile": profile,
+        "knowledge_assessment": concepts[:10],
+        "knowledge_point_count": len(concepts),
+        "due_reviews": due[:10],
+        "due_review_count": len(due),
+        "current_paper_topics": state.get("current_paper_topics", [])[:10],
     }
 
 
@@ -128,6 +154,12 @@ def render_markdown(context: dict[str, Any]) -> str:
     ]
     if context["warnings"]:
         lines.extend(["", "## Warnings", "", *[f"- {warning}" for warning in context["warnings"]]])
+    lines.extend(["", "## Knowledge Assessment", ""])
+    for point in context.get("knowledge_assessment", []):
+        lines.append(f"- {point['title']}: {point['status']}；有效题数 {point['scored_items']}；建议复测 {point['next_review_date']}。{point['reason']}")
+    lines.extend(["", f"## Due Reviews ({context.get('due_review_count', 0)})", ""])
+    for review in context.get("due_reviews", []):
+        lines.append(f"- {review['due_date']} {review['topic']}: {review['action']}")
     lines.extend(
         [
             "",

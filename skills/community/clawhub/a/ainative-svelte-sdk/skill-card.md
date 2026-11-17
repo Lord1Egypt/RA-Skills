@@ -1,44 +1,59 @@
-## Description: <br>
-Use @ainative/svelte-sdk to add reactive AINative chat state and configuration to Svelte or SvelteKit apps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use @ainative/svelte-sdk to add AI chat to Svelte/SvelteKit apps with reactive chat state, configuration, message display, loading states, and error handling.
 
-## Publisher: <br>
-[urbantech](https://clawhub.ai/user/urbantech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[urbantech](https://clawhub.ai/user/urbantech)
 
-## Use Case: <br>
-Developers use this skill when adding AINative chat completions to Svelte or SvelteKit applications, including installation, store setup, message rendering, loading state, error state, and server-side API routing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may install and rely on a third-party npm package and the AINative service without validating that they trust those providers. <br>
-Mitigation: Confirm trust in @ainative/svelte-sdk and AINative before installing or sending application traffic through the service. <br>
-Risk: Secret API keys could be exposed if production credentials are placed in browser-bundled client code. <br>
-Mitigation: Keep real secret keys server-side and use only scoped public keys in browser code. <br>
-Risk: Chat messages may be sent to AINative as part of normal external API use. <br>
-Mitigation: Make users aware that chat content may be sent to AINative and route sensitive production traffic through a controlled server-side endpoint. <br>
+## Use Case:
 
+Developers use this skill to install and configure @ainative/svelte-sdk, create Svelte chat stores, and wire AINative chat behavior into Svelte or SvelteKit applications.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/urbantech/ainative-svelte-sdk) <br>
-- [AINative API base URL](https://api.ainative.studio) <br>
-- [AINative chat completions endpoint](https://api.ainative.studio/v1/public/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with bash, TypeScript, and Svelte code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes client-side setup, Svelte store usage, server route guidance, exported types, and API key handling notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Installing or using an untrusted npm package or service can introduce supply-chain or service-trust risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm trust in the @ainative/svelte-sdk npm package and AINative service before installation or production use.
+
+Risk: Embedding private API keys in browser bundles can expose credentials.
+
+Mitigation: Use the SvelteKit server-route pattern for production keys and keep private API keys out of client-side bundles.
+
+Risk: Chat requests can transmit sensitive user content to the AINative API.
+
+Mitigation: Avoid sending sensitive user content unless the application's data handling policy allows it.
+
+## Reference(s):
+
+- [Ainative Svelte Sdk on ClawHub](https://clawhub.ai/urbantech/skills/ainative-svelte-sdk)
+- [AINative API base URL](https://api.ainative.studio)
+- [AINative chat completions endpoint](https://api.ainative.studio/v1/public/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash, TypeScript, and Svelte code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes package installation, SDK configuration, store usage, environment variable guidance, and server-route guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

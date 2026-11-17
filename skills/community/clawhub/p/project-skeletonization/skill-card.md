@@ -1,42 +1,54 @@
-## Description: <br>
-Project Skeletonization guides an agent through converting a complete business project into a reusable base skeleton while preserving common framework capabilities and gating destructive changes on user confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collaborative workflow for converting a complete business project into a reusable base skeleton while requiring inventory, keep/remove proposals, uncertain-item review, and user confirmation before changes.
 
-## Publisher: <br>
-[agilebuilder](https://clawhub.ai/user/agilebuilder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agilebuilder](https://clawhub.ai/user/agilebuilder)
 
-## Use Case: <br>
-Developers and engineers use this skill when turning an existing application into a reusable starter or template. It inventories the project, separates common framework capabilities from business-specific code, asks for confirmation on destructive changes, and guides verification of the resulting skeleton. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide deletion or refactoring of project files, which may remove reusable capabilities or business-critical code if project boundaries are misunderstood. <br>
-Mitigation: Require the documented inventory, keep/remove lists, uncertain-items list, and user confirmation before any destructive transformation. <br>
-Risk: Database, authentication, uploads, audit logs, scheduled jobs, and deployment configuration can be common framework capabilities or business-specific behavior depending on the project. <br>
-Mitigation: Review these areas explicitly and approve retention or removal decisions before editing them. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn an existing business application into a reusable starter project by preserving common framework capabilities, removing business-specific modules, and adding minimal placeholders for verification.
 
-## Reference(s): <br>
-- [Project Skeletonization on ClawHub](https://clawhub.ai/agilebuilder/skills/project-skeletonization) <br>
-- [Publisher profile: agilebuilder](https://clawhub.ai/user/agilebuilder) <br>
-- [Server-resolved source import: agilebuilder/agilebuilder-skills](https://github.com/agilebuilder/agilebuilder-skills/tree/master/skills/project-skeletonization) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline code blocks and command snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Destructive transformations are confirmation-gated; final responses include verification results and unresolved concerns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Risk: The skill can direct an agent to inspect and modify a project while removing business-specific functionality.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the proposed inventory, keep list, remove list, uncertain items, and key options before approving any transformation.
+
+Risk: Database migrations, authentication, scheduled jobs, file storage, audit logs, or deployment configuration may be common infrastructure or business-specific behavior.
+
+Mitigation: Treat those areas as explicit review points and verify build, tests, startup, and placeholder behavior after changes.
+
+## Reference(s):
+
+- [Server-resolved GitHub source](https://github.com/agilebuilder/agilebuilder-skills/tree/master/skills/project-skeletonization)
+- [ClawHub skill page](https://clawhub.ai/agilebuilder/skills/project-skeletonization)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with proposed file changes and command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user confirmation before destructive transformations.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

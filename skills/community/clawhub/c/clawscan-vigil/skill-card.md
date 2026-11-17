@@ -1,42 +1,60 @@
-## Description: <br>
-Clawscan Vigil scans OpenClaw skills before installation with static and dynamic checks to identify security risks and suspicious code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans OpenClaw skills before installation for security risks using static and dynamic analysis to identify potentially malicious code.
 
-## Publisher: <br>
-[jjj09090](https://clawhub.ai/user/jjj09090) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jjj09090](https://clawhub.ai/user/jjj09090)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to scan local or installed OpenClaw skills before adoption and to produce risk reports for manual review or CI workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dynamic scanning may execute scanned skill code inside the scanner process with weak containment. <br>
-Mitigation: Prefer running scans with --no-dynamic for untrusted targets, or run the scanner in a disposable sandboxed environment. <br>
-Risk: The skill may create or use local quota and license files under ~/.clawscan. <br>
-Mitigation: Review local state created by the tool and avoid using sensitive profiles or shared environments for evaluation scans. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to scan OpenClaw or ClawHub skills before installation, review static and dynamic findings, and decide whether a skill should be installed, rejected, or sandboxed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jjj09090/clawscan-vigil) <br>
-- [Project homepage](https://github.com/clawscan/clawscan-vigil) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [CLI text reports with optional JSON scan results and Markdown-oriented guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Exit codes indicate low, medium, high, or scan-error outcomes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release, frontmatter, pyproject.toml) <br>
+Risk: Default dynamic analysis can run scanned Python code in-process.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run scans of untrusted skills with dynamic analysis disabled or inside a disposable sandbox.
+
+Risk: A low-risk result can understate risk for non-Python, instruction-only, JavaScript, shell, or mixed-language skills.
+
+Mitigation: Treat the result as one review signal and add manual review or complementary scanners for unsupported formats.
+
+Risk: The skill records local quota and license files under the user's home directory.
+
+Mitigation: Use an isolated user profile or review local data handling before running it in shared or sensitive environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jjj09090/skills/clawscan-vigil)
+- [Publisher Profile](https://clawhub.ai/user/jjj09090)
+- [Project Homepage](https://github.com/clawscan/clawscan-vigil)
+- [Artifact README](README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, JSON, Markdown, Shell commands, Guidance]
+
+**Output Format:** [CLI text, Markdown summaries, and optional JSON scan results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scan results include risk level, finding counts, file paths, categories, descriptions, and recommendations when available.]
+
+## Skill Version(s):
+
+0.2.0 (source: frontmatter, pyproject.toml, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

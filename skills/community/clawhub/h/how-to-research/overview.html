@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>怎样调研 · how-to-research — 技能总览</title>
+<style>
+  :root{
+    --bg:#f7f4ee; --ink:#221e18; --muted:#6e675c; --hair:#d9d2c4; --hair2:#e6e0d4;
+    --accent:#96422e; --accent-ink:#7c3625; --block:#efe9dd;
+    --serif:Georgia,"Times New Roman","Songti SC",SimSun,serif;
+    --mono:Consolas,"Courier New",monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--serif);font-size:16px;line-height:1.65}
+  .wrap{display:grid;grid-template-columns:200px minmax(0,1fr);gap:56px;max-width:1160px;margin:0 auto;padding:64px 40px 96px}
+  nav{position:sticky;top:48px;align-self:start;font-size:13px}
+  nav .t{font-size:12px;letter-spacing:.14em;color:var(--muted);margin-bottom:14px}
+  nav a{display:block;color:var(--muted);text-decoration:none;padding:5px 0;border-left:1px solid var(--hair);padding-left:12px}
+  nav a:hover{color:var(--accent-ink);border-left-color:var(--accent)}
+  main{min-width:0}
+  .kicker{font-size:12px;letter-spacing:.22em;color:var(--accent-ink);margin-bottom:18px}
+  h1{font-size:42px;font-weight:600;letter-spacing:-.01em;line-height:1.15}
+  h1 .en{display:block;font-size:17px;color:var(--muted);font-weight:400;letter-spacing:.06em;margin-top:10px;font-style:italic}
+  .lede{margin-top:26px;font-size:17.5px;max-width:66ch}
+  .lede em{font-style:normal;color:var(--accent-ink)}
+  .stats{margin-top:34px;padding:16px 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);display:flex;flex-wrap:wrap;gap:0}
+  .stats div{padding:2px 26px 2px 0;margin-right:26px;border-right:1px solid var(--hair2)}
+  .stats div:last-child{border-right:0}
+  .stats b{display:block;font-size:21px;font-weight:600}
+  .stats span{font-size:12.5px;color:var(--muted)}
+  h2{font-size:25px;font-weight:600;margin:72px 0 8px;padding-top:10px}
+  h2 + .sub{color:var(--muted);font-size:14.5px;margin-bottom:22px}
+  h3{font-size:17px;font-weight:600;margin:28px 0 10px}
+  p{max-width:70ch;margin-bottom:14px}
+  table{width:100%;border-collapse:collapse;font-size:14.5px;margin:18px 0 8px}
+  th{font-size:12.5px;letter-spacing:.1em;color:var(--muted);text-align:left;font-weight:400;padding:8px 14px 8px 0;border-bottom:1px solid var(--ink)}
+  td{padding:10px 14px 10px 0;border-bottom:1px solid var(--hair);vertical-align:top}
+  td:first-child{white-space:nowrap;color:var(--accent-ink)}
+  tr:last-child td{border-bottom:1px solid var(--hair)}
+  .flow{list-style:none;counter-reset:step;margin:22px 0 8px;max-width:74ch}
+  .flow li{counter-increment:step;position:relative;padding:0 0 22px 46px}
+  .flow li::before{content:counter(step,cjk-ideographic);position:absolute;left:0;top:0;width:28px;height:28px;border:1px solid var(--accent);border-radius:50%;color:var(--accent-ink);font-size:13px;display:flex;align-items:center;justify-content:center;background:var(--bg)}
+  .flow li::after{content:"";position:absolute;left:14px;top:30px;bottom:2px;width:1px;background:var(--hair)}
+  .flow li:last-child::after{display:none}
+  .flow b{display:block;font-size:15.5px}
+  .flow span{color:var(--muted);font-size:14px}
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:18px}
+  .duo h3{margin-top:0}
+  .duo ul{list-style:none}
+  .duo li{padding:9px 0;border-bottom:1px solid var(--hair2);font-size:14.5px}
+  .duo li:last-child{border-bottom:0}
+  .duo .n{color:var(--muted);margin-right:8px;font-variant-numeric:tabular-nums}
+  pre{background:var(--block);border:1px solid var(--hair);padding:20px 24px;font-family:var(--mono);font-size:13px;line-height:1.75;overflow-x:auto;margin:18px 0}
+  pre b{color:var(--accent-ink);font-weight:600}
+  .cases{margin-top:16px}
+  .cases dt{font-weight:600;font-size:15px;margin-top:20px}
+  .cases dt i{font-style:normal;color:var(--accent-ink);font-size:13px;margin-left:10px;font-weight:400}
+  .cases dd{color:var(--muted);font-size:14.5px;max-width:72ch;margin-top:4px}
+  .colophon{margin-top:88px;padding-top:18px;border-top:1px solid var(--hair);font-size:12.5px;color:var(--muted);line-height:2}
+  .colophon a{color:var(--accent-ink)}
+  @media (max-width:900px){.wrap{grid-template-columns:1fr;padding:40px 22px 72px}nav{position:static;display:none}.duo{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <div class="t">目 录</div>
+    <a href="#s1">这个技能是什么</a>
+    <a href="#s2">全书骨架 · 十二讲</a>
+    <a href="#s3">方法论总工作流</a>
+    <a href="#s4">七种调研方式</a>
+    <a href="#s5">十大反面模式</a>
+    <a href="#s6">经典案例一览</a>
+    <a href="#s7">目录结构与用法</a>
+  </nav>
+  <main>
+    <div class="kicker">AGENT SKILL OVERVIEW · 从一本书到一个技能</div>
+    <h1>怎样调研<span class="en">how-to-research — 源自《怎样调研》（任仲然 著）</span></h1>
+    <p class="lede">这不是书的摘要，而是一套<em>可执行的调研方法论工具箱</em>：把全书十二讲的框架、判断规则、操作步骤与反面警示提炼成 Agent 技能——给 AI 装上"调研方法论"，也给你自己留一部按讲次、按主题可检索的案头手册。</p>
+    <div class="stats">
+      <div><b>216</b><span>页扫描版 PDF</span></div>
+      <div><b>12</b><span>讲 · 逐章拆解</span></div>
+      <div><b>135,924</b><span>字 OCR 全文</span></div>
+      <div><b>16</b><span>个技能文件</span></div>
+      <div><b>0</b><span>段抄录原文</span></div>
+    </div>
+
+    <h2 id="s1">这个技能是什么</h2>
+    <p class="sub">双用途设计 · 提炼原则：提取结构，不抄原文</p>
+    <p><b>给 AI 用</b>——执行市场调研、竞品分析、行业研究、用户访谈、实地调查等任务时，按书中方法论行事：先定导向、再精准备、选对方式、现场抓真话、报告趁热写、成果促转化。</p>
+    <p><b>给自己用</b>——SKILL.md 是总纲，十二个章节文件按需加载；glossary 查术语、patterns 查做法、cheatsheet 查判断规则，一张纸速查全书。</p>
+    <p>生成流水线：扫描版 PDF（无文字层）→ AutoClaw OCR 逐页识别 216 页 → 结构分析定位十二讲 → 逐章提炼 → 安全扫描 → 开源发布。框架命名保留作者原话，如"蹲'活点'不蹲'死点'""求实求真求是导向"。</p>
+
+    <h2 id="s2">全书骨架 · 十二讲</h2>
+    <p class="sub">从"为什么调研"到"调研的绩效"，一条完整的闭环</p>
+    <table>
+      <tr><th>讲次</th><th>主题</th><th>核心方法（保留作者原话命名）</th></tr>
+      <tr><td>第一讲</td><td>调研的理由</td><td>邓小平"大同小异"调研法 · 调研力五分解 · 未经调研不拍板</td></tr>
+      <tr><td>第二讲</td><td>调研的导向</td><td>四大导向 · 求实求真求是"三求"递进 · 十多十少自查表</td></tr>
+      <tr><td>第三讲</td><td>调研的准备</td><td>小切口大文章 · 方式三着眼点 · 陈云国际金融调研纲目</td></tr>
+      <tr><td>第四讲</td><td>文献调研</td><td>三渠道并查 · 观察同步 · 马克思文献调研"中国专题"</td></tr>
+      <tr><td>第五讲</td><td>问卷调研和量表调研</td><td>封闭/开放类 · 答项三原则 · 量表四型</td></tr>
+      <tr><td>第六讲</td><td>抽样调研和典型调研</td><td>抽样三考量 · 七类型 · 恩格斯《英国工人阶级状况》</td></tr>
+      <tr><td>第七讲</td><td>蹲点调研</td><td>"三深入" · 解剖麻雀选雀法 · 陈云青浦算细账</td></tr>
+      <tr><td>第八讲</td><td>信访调研</td><td>送上门的调研 · "六多"筛选 · 个案挖共性</td></tr>
+      <tr><td>第九讲</td><td>谈话调研和座谈会调研</td><td>毛泽东七点调查技术 · 寻乌调查 · 听真话法则</td></tr>
+      <tr><td>第十讲</td><td>随机调研</td><td>四个基调 · 覆盖面硬指标 · 沉下去—浮上来</td></tr>
+      <tr><td>第十一讲</td><td>调研报告</td><td>真实深高 · 边调研边起草 · 朱德写实法 · 五分写五分改</td></tr>
+      <tr><td>第十二讲</td><td>调研的绩效</td><td>交换比较反复 · 转化五出口 · 伯延电话报告</td></tr>
+    </table>
+
+    <h2 id="s3">方法论总工作流</h2>
+    <p class="sub">六个环节，任一环节的详细打法都在对应章节文件里</p>
+    <ol class="flow">
+      <li><b>定导向</b><span>四大导向校准方向：目的目标、现实问题、基层基础、求实求真求是（ch02）</span></li>
+      <li><b>精准备</b><span>精确课题、精练主题、研学政策、拟好纲目、配强队伍（ch03）</span></li>
+      <li><b>选方式</b><span>七种方式按需打组合拳：点上进行深度调研、面上进行广度调研（ch04–10）</span></li>
+      <li><b>抓实施</b><span>三同、解剖麻雀、讨论式调查会、设法听真话（ch07–09）</span></li>
+      <li><b>出报告</b><span>边调研边起草，真实深高，五分写五分改（ch11）</span></li>
+      <li><b>促转化</b><span>决策、纠错、便捷上报、理论创造、推动落实（ch12）</span></li>
+    </ol>
+
+    <h2 id="s4">七种调研方式</h2>
+    <p class="sub">何时用哪种 · 关键动作是什么</p>
+    <table>
+      <tr><th>方式</th><th>何时用</th><th>关键动作</th></tr>
+      <tr><td>文献调研</td><td>一切调研的前置与日常</td><td>上级/本级/横向三渠道并查；关键词从内容角度拟</td></tr>
+      <tr><td>问卷·量表</td><td>需要量化、覆盖面广</td><td>封闭类为主；答项同等级互斥；允许多选不允全选</td></tr>
+      <tr><td>抽样调研</td><td>总体太大无法普查</td><td>抽样框刚性、样本适中、等概率；七类型可变通</td></tr>
+      <tr><td>典型调研</td><td>总结经验、摸清两头</td><td>先进/落后/中间三类都看；选错就放弃不贴金</td></tr>
+      <tr><td>蹲点调研</td><td>要深度、要解剖</td><td>三深入；解剖麻雀先选雀；蹲"活点"不蹲"死点"</td></tr>
+      <tr><td>信访调研</td><td>要底层真实</td><td>信访是送上门的调研；六多筛选；个案挖共性</td></tr>
+      <tr><td>随机调研</td><td>要面上真实、防排演</td><td>不打招呼沉到底；先进村后访镇；缴饭费拒特产</td></tr>
+    </table>
+
+    <h2 id="s5">十大反面模式</h2>
+    <p class="sub">作者反复警示的错误做法——每条都在章节文件里附了"为什么错"</p>
+    <div class="duo">
+      <ul>
+        <li><span class="n">01</span>老爷式调查——浮在上面听汇报</li>
+        <li><span class="n">02</span>只有调查没有研究</li>
+        <li><span class="n">03</span>只有研究没有调查——"没有地基的牌楼"</li>
+        <li><span class="n">04</span>偏听偏信——一家之言当普遍看法</li>
+        <li><span class="n">05</span>答卷式调研——只要答案不谈思想</li>
+      </ul>
+      <ul>
+        <li><span class="n">06</span>豆腐账——问题平摆浮搁无内在联系</li>
+        <li><span class="n">07</span>拔高包装典型——王婆卖瓜</li>
+        <li><span class="n">08</span>诱导性问句与"一边倒"选项</li>
+        <li><span class="n">09</span>调研与写报告割裂成两阶段</li>
+        <li><span class="n">10</span>把调研当交差——报告交上去就完事</li>
+      </ul>
+    </div>
+
+    <h2 id="s6">经典案例一览</h2>
+    <p class="sub">全部在章节文件中压缩重述为"背景→做法→结果→可复用的点"</p>
+    <dl class="cases">
+      <dt>寻乌调查 · 兴国调查<i>1930 · ch09</i></dt>
+      <dd>毛泽东开 10 多天调查会：8 大项 25 子目的商业纲目、"记下后念给大家听"的开场白、8 位农民一星期的家庭调查——从 8 个家庭得出"革命"二字的结构性结论。</dd>
+      <dt>陈云青浦蹲点<i>1961 · ch07</i></dt>
+      <dd>15 天住娘舅家：看 10 个养猪场、和老农算双季稻细账（损失折 310–330 斤稻谷），三份小题目大政策的报告。</dd>
+      <dt>周恩来伯延四天<i>1961 · ch12</i></dt>
+      <dd>三次吃饭层层穿透真实食堂，放羊女孩一句"羊能上树吗？"戳穿假话；电话直报四个问题，22 天后全国食堂取消。</dd>
+      <dt>陈云宝钢决策<i>1979 · ch12</i></dt>
+      <dd>只问只听不亮倾向→上海实地调研→"交换、比较、反复"三次改变主意→"干到底。举棋不定不好。"1985 年一期建成达产。</dd>
+      <dt>老石"猪周期"追踪<i>2011 · ch11</i></dt>
+      <dd>双休日 6 县市 900 公里：用饲料账反驳"成本推高说"（每斤成本涨 6 角 vs 猪价涨 4.7 元），锁定疫病与产能两大真因，两天成报告、次日上常务会。</dd>
+      <dt>《中国农民工调查》<i>2005 · ch11</i></dt>
+      <dd>调研"私活"之作：问答式五问五答、1.8 亿总量测算、四类保障缺失数据，五点建议三点写进上级文件。</dd>
+    </dl>
+
+    <h2 id="s7">目录结构与用法</h2>
+    <p class="sub">仓库即技能目录，双击 SKILL.md 从总纲进入</p>
+<pre>
+how-to-research/
+├── <b>SKILL.md</b>        # 核心框架 + 讲次索引 + 主题索引（入口）
+├── <b>chapters/</b>       # 十二讲逐章拆解（ch01–ch12，按需加载）
+├── <b>glossary.md</b>     # 术语表
+├── <b>patterns.md</b>     # 方法与模式全集
+├── <b>cheatsheet.md</b>   # 决策速查表（最实用的一层）
+├── overview.html    # 本页
+└── README.md
+</pre>
+    <p>对 Agent 说"用怎样调研做一次竞品调研"加载总纲；问具体主题（"问卷答项怎么设置"）自动定位章节；问 ch07 加载第七讲。文件按需读取，不一次性占用上下文。</p>
+
+    <div class="colophon">
+      源书：《怎样调研》，任仲然著，党建读物出版社 2019（"机关工作实务丛书"）· 本书版权归原作者及出版社所有，本仓库仅含方法论提炼与转述<br>
+      生成：OpenClaw book-to-skill 流水线 · 216 页 OCR（AutoClaw OCR）· 2026-09-15 · 仓库：<a href="https://github.com/yxdwind/how-to-research">github.com/yxdwind/how-to-research</a>
+    </div>
+  </main>
+</div>
+</body>
+</html>

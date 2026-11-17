@@ -1,40 +1,53 @@
-## Description: <br>
-Access TDNET timely disclosures from Tokyo Stock Exchange and JPX-listed companies, including earnings, dividends, buybacks, forecast revisions, and governance changes, with search by company, stock code, date, or keyword. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access TDNET timely disclosures from Tokyo Stock Exchange listed companies, including earnings, dividends, buybacks, forecast revisions, and governance changes, without an API key.
 
-## Publisher: <br>
-[ajtgjmdjp](https://clawhub.ai/user/ajtgjmdjp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ajtgjmdjp](https://clawhub.ai/user/ajtgjmdjp)
 
-## Use Case: <br>
-Developers, analysts, and market-monitoring agents use this skill to look up public Japanese market disclosures, browse recent TDNET announcements, and retrieve company- or date-specific disclosure results. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and invokes an external Python CLI package. <br>
-Mitigation: Verify the tdnet-disclosure-mcp package provenance before use in sensitive environments. <br>
-Risk: Disclosure search terms may be sent to the external public disclosure API used by the CLI. <br>
-Mitigation: Use the skill only with public or non-sensitive search terms. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ajtgjmdjp/tdnet-disclosure-mcp) <br>
-- [Publisher Profile](https://clawhub.ai/user/ajtgjmdjp) <br>
+## Use Case:
 
+External users, developers, and financial analysts use this skill to retrieve and search Japan stock market corporate disclosure announcements by company, stock code, keyword, or date.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The installed CLI can return human-readable text or JSON for disclosure queries.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The external Python package is installed by package name and is not pinned to a reviewed version.
+
+Mitigation: Use a reviewed pinned version or hash-locked install in a sandboxed environment.
+
+Risk: Financial disclosure results may be incomplete, stale, or unsuitable as the only basis for decisions.
+
+Mitigation: Verify important disclosures against official TDNET or exchange sources before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ajtgjmdjp/skills/tdnet-disclosure-mcp)
+- [Publisher profile](https://clawhub.ai/user/ajtgjmdjp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The underlying command-line tool can return JSON when invoked with its JSON output option.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

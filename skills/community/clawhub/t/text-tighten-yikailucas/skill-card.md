@@ -1,41 +1,49 @@
-## Description: <br>
-Tighten, rewrite, and sharpen text without changing the core meaning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tighten, rewrite, and sharpen text without changing the core meaning. Use when the user asks to polish wording, make writing more concise, improve clarity, reduce repetition, strengthen tone, or produce cleaner versions of emails, docs, slides, posts, and notes.
 
-## Publisher: <br>
-[yikailucas](https://clawhub.ai/user/yikailucas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yikailucas](https://clawhub.ai/user/yikailucas)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to polish, shorten, or rewrite emails, documents, slide text, posts, and notes while preserving intent, facts, and important nuance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided drafts may include confidential or regulated content. <br>
-Mitigation: Use only in an agent environment approved for that data, and avoid submitting sensitive text when approval is absent. <br>
-Risk: Text compression can remove nuance or make claims sound stronger than intended. <br>
-Mitigation: Review the rewritten output against the source before sending or publishing it. <br>
+## Use Case:
 
+External users and writers use this skill to tighten emails, documents, slides, posts, and notes while preserving meaning, factual claims, and the requested tone.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yikailucas/text-tighten-yikailucas) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/yikailucas) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text or Markdown rewrite with optional comparison notes or variants] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves user-provided meaning, factual claims, important nuance, and requested tone target.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Important drafts may lose nuance, factual accuracy, or intended tone during rewriting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review important outputs against the source text to confirm facts, nuance, and intended tone are preserved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yikailucas/skills/text-tighten-yikailucas)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain text or Markdown rewrite]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return a direct rewrite, original-plus-rewritten comparison, or multiple tone options while preserving the user's intent, facts, and important domain terms.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

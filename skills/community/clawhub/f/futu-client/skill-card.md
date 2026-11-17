@@ -1,40 +1,54 @@
-## Description: <br>
-Provides a Python client to query stock positions, account information, orders, deals, watchlists, and market data, and to place or modify orders through Futu OpenAPI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Python client for querying Futu brokerage positions, account information, orders, deals, watchlists, and market data, and for placing or modifying orders through Futu OpenAPI.
 
-## Publisher: <br>
-[xdl2003](https://clawhub.ai/user/xdl2003) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xdl2003](https://clawhub.ai/user/xdl2003)
 
-## Use Case: <br>
-Developers and trading automation agents use this skill to connect to a local FutuOpenD instance for brokerage account queries, market data retrieval, and order operations across supported HK, US, and CN markets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent access to sensitive brokerage account data. <br>
-Mitigation: Keep account data out of chat transcripts and logs, and require explicit approval before retrieving sensitive account details. <br>
-Risk: The skill can place, modify, or cancel real brokerage orders. <br>
-Mitigation: Keep simulation mode as the default where possible, use least-privilege credentials, and require explicit human approval before any real order operation. <br>
+## Use Case:
 
+Developers and trading automation users can use this skill to integrate a local FutuOpenD session with agent workflows that inspect account state, retrieve market data, and prepare brokerage actions. Use live trading methods only with explicit human confirmation and order limits.
 
-## Reference(s): <br>
-- [Futu Client on ClawHub](https://clawhub.ai/xdl2003/futu-client) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Code, Data, Shell commands, Guidance] <br>
-**Output Format:** [Python client methods returning pandas DataFrames, dictionaries, booleans, and exceptions; documentation includes Markdown and shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FutuOpenD on 127.0.0.1:11111 and the futu-api and pandas Python packages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and artifact/_meta.json, published 2026-03-15) <br>
+Risk: The skill can read brokerage account data and submit real orders through a running FutuOpenD session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use SIMULATE explicitly for testing, keep trading passwords out of logs and shared prompts, and require human confirmation before any live order action.
+
+Risk: Live trading can create real financial loss if an agent calls order methods without limits.
+
+Mitigation: Set account-level and workflow-level order limits, restrict access to live trading methods, and review price, quantity, side, symbol, and environment before submission.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xdl2003/skills/futu-client)
+- [Publisher profile](https://clawhub.ai/user/xdl2003)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python and shell examples, plus Python client methods returning dictionaries or pandas DataFrames]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a running local FutuOpenD service and futu-api dependency; brokerage methods may access account data and submit real orders.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

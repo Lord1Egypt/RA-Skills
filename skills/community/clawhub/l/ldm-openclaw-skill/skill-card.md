@@ -1,46 +1,61 @@
-## Description: <br>
-Run an LDM inbox placement and deliverability preflight before OpenClaw agents send outbound email campaigns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run an LDM inbox placement and deliverability preflight before OpenClaw agents send outbound email campaigns.
 
-## Publisher: <br>
-[live-direct-marketing](https://clawhub.ai/user/live-direct-marketing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[live-direct-marketing](https://clawhub.ai/user/live-direct-marketing)
 
-## Use Case: <br>
-External OpenClaw users and developers use this skill to run deliverability preflights before bulk outbound email campaigns, then pause or revise campaigns when inbox placement, authentication, content, or compliance checks are risky. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may send campaign subjects, message bodies, sender details, and links to the LDM service for analysis. <br>
-Mitigation: Use it only for intended outbound deliverability checks, configure the API key deliberately, and avoid submitting content that should not be shared with the LDM service. <br>
-Risk: The skill relies on an API key for authenticated checks. <br>
-Mitigation: Store the API key in the configured environment variable and do not expose it in logs, chat output, pull requests, or generated files. <br>
-Risk: A failed deliverability preflight indicates that outbound email may land in spam, promotions, or junk folders. <br>
-Mitigation: Pause bulk sending when checks fail, apply the reported fixes, and rerun the preflight before sending. <br>
+## Use Case:
 
+External developers and teams building outbound OpenClaw agents use this skill to run deliverability checks before sending bulk cold email, recruiting outreach, investor updates, deal-flow notifications, or partnership outreach. The skill helps agents pause risky sends and report concrete fixes when inbox placement, authentication, content, or compliance checks fail.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/live-direct-marketing/ldm-openclaw-skill) <br>
-- [LDM OpenClaw Skill homepage](https://github.com/live-direct-marketing/ldm-openclaw-skill) <br>
-- [LDM Inbox Placement Test](https://check.live-direct-marketing.online) <br>
-- [LDM Developer API](https://developers.live-direct-marketing.online) <br>
-- [Live Direct Marketing](https://live-direct-marketing.online) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown/text guidance with optional shell command snippets and structured deliverability result summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include PASS/FAIL status, inbox placement percentage, provider issues, authentication results, content risks, recommended fixes, and a send/revise/pause decision.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Outbound campaign subjects, bodies, sender identities, links, and provider targeting may be submitted to the configured LDM service for checking.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm trust in the LDM service and the configured LDM_API_BASE before installing or using the skill.
+
+Risk: The LDM API key could be exposed through logs, chat messages, pull requests, or generated files.
+
+Mitigation: Store the key in LDM_API_KEY and do not print, log, or write it into generated artifacts.
+
+Risk: A user may send bulk outbound email despite a failed deliverability preflight.
+
+Mitigation: Pause failed campaigns, report concrete fixes, and proceed only after the user explicitly confirms they want to send despite the risk.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/live-direct-marketing/skills/ldm-openclaw-skill)
+- [Skill Homepage](https://github.com/live-direct-marketing/ldm-openclaw-skill)
+- [LDM Inbox Placement Test](https://check.live-direct-marketing.online)
+- [LDM Developer API](https://developers.live-direct-marketing.online)
+- [Live Direct Marketing](https://live-direct-marketing.online)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and plain-text result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports pass/fail status, inbox placement percentage, provider issues, authentication status, content risks, recommended fixes, and send/revise/pause decision.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

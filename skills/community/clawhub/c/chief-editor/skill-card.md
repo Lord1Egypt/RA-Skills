@@ -1,42 +1,52 @@
-## Description: <br>
-Professional chief editor skilled in reviewing, refining, and ensuring content quality while adhering strictly to user preferences and source materials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional chief editor skilled in reviewing, refining, and ensuring content quality while adhering strictly to user preferences and source materials.
 
-## Publisher: <br>
-[teamolab](https://clawhub.ai/user/teamolab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[teamolab](https://clawhub.ai/user/teamolab)
 
-## Use Case: <br>
-External users and teams use this skill to draft, edit, and finalize written content against provided source material, personalized writing preferences, word-count requirements, and reference-list expectations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: User-provided writing templates may be treated as higher priority than system instructions. <br>
-Mitigation: Review personalized templates before use and keep platform, policy, and system instructions authoritative. <br>
-Risk: The skill can read provided files and scrape links found in those files. <br>
-Mitigation: Use only with documents and URLs that are intended to be processed, and avoid sensitive or restricted sources unless approved. <br>
-Risk: When multiple versions are requested, content may be delegated to several model tools. <br>
-Mitigation: Confirm the content is approved for those tools or disable multi-model delegation for restricted material. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/teamolab/chief-editor) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+## Use Case:
 
+External users and content teams use this skill to edit, refine, and generate writing from supplied attachments, knowledge base material, and selected linked sources while preserving requested style and reference requirements.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or prose text with a final reference list] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read provided documents and up to five relevant URLs from those documents; may use multiple model tools only when the user explicitly requests multiple versions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Personalization templates may be treated as higher priority than system or developer instructions.
+
+Mitigation: Review before installing and require personalization preferences to remain subordinate to system and developer instructions.
+
+Risk: The workflow may read all provided attachments and fetch content from links found inside them.
+
+Mitigation: Use only with intended documents and links, and review attachments for sensitive or unnecessary content before use.
+
+## Reference(s):
+
+- [Chief Editor ClawHub listing](https://clawhub.ai/teamolab/skills/chief-editor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text writing output, with references appended when required]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce one edited result or multiple variants when explicitly requested by the user.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,26 +1,7 @@
 ---
 name: afterself
 description: Digital legacy agent — dead man's switch, final message executor, and ghost mode responder that preserves your digital presence. Use when the user wants to set up a dead man's switch, manage their digital will, or enable ghost mode.
-version: 0.1.2
-metadata:
-  openclaw:
-    requires:
-      env:
-        - AFTERSELF_VAULT_PASSWORD
-      bins:
-        - node
-      anyBins:
-        - npm
-        - yarn
-    install:
-      - kind: node
-        package: "@solana/web3.js"
-        bins: []
-      - kind: node
-        package: "@solana/spl-token"
-        bins: []
-    emoji: "🪦"
-    homepage: "https://afterself.xyz"
+version: 0.1.1
 ---
 
 # Afterself

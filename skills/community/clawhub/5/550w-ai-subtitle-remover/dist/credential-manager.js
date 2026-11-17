@@ -36,10 +36,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CredentialManager = void 0;
 const fs = __importStar(require("fs"));
 const path = __importStar(require("path"));
+const os = __importStar(require("os"));
 const types_1 = require("./types");
+const i18n_1 = require("./i18n");
 class CredentialManager {
     constructor(storagePath) {
-        this.storagePath = storagePath ?? path.resolve(__dirname, "../.credentials.json");
+        const configRoot = process.env.XDG_CONFIG_HOME?.trim()
+            || (process.platform === "win32" ? process.env.APPDATA?.trim() : null)
+            || path.join(os.homedir(), ".config");
+        this.storagePath = storagePath ?? path.join(configRoot, "550w-ai", "credentials.json");
+        this.legacyStoragePath = path.resolve(__dirname, "../.credentials.json");
     }
     get() {
         // 优先从环境变量读取
@@ -53,9 +59,13 @@ class CredentialManager {
             envApiKey.length <= types_1.MAX_CREDENTIAL_LENGTH) {
             return { userNo: envUserNo, apiKey: envApiKey };
         }
-        // 其次从 JSON 文件读取
+        // 其次从用户配置目录读取；最后只读兼容旧版本 Skill 目录内的凭证。
+        return this.readFile(this.storagePath)
+            ?? (this.storagePath !== this.legacyStoragePath ? this.readFile(this.legacyStoragePath) : null);
+    }
+    readFile(target) {
         try {
-            const content = fs.readFileSync(this.storagePath, "utf-8");
+            const content = fs.readFileSync(target, "utf-8");
             const data = JSON.parse(content);
             if (typeof data.userNo === "string" &&
                 typeof data.apiKey === "string" &&
@@ -81,16 +91,27 @@ class CredentialManager {
             throw new Error(`apiKey 长度必须在 1-${types_1.MAX_CREDENTIAL_LENGTH} 之间，当前长度: ${apiKey.length}`);
         }
         const stored = { userNo, apiKey, updatedAt: Date.now() };
-        fs.writeFileSync(this.storagePath, JSON.stringify(stored, null, 2), "utf-8");
+        fs.mkdirSync(path.dirname(this.storagePath), { recursive: true });
+        fs.writeFileSync(this.storagePath, JSON.stringify(stored, null, 2), { encoding: "utf-8", mode: 0o600 });
+        fs.chmodSync(this.storagePath, 0o600);
     }
     isConfigured() {
         return this.get() !== null;
     }
-    getGuideMessage() {
+    getGuideMessage(locale, region) {
+        const applyUrl = (0, i18n_1.credentialApplyUrl)(locale, region);
         return {
             code: types_1.ErrorCode.AUTH_FAILED,
-            message: `凭证未配置。请先获取 userNo 和 apiKey，申请地址: ${types_1.CREDENTIAL_APPLY_URL}。` +
-                `获取后请通过 set 方法配置凭证。`,
+            message: (0, i18n_1.localize)(locale, `尚未配置凭证。请前往 ${applyUrl} 获取用户 ID 和 API Key，然后在连接器设置中完成配置。`, `Credentials are not configured. Get your user ID and API key at ${applyUrl}, then add them in the connector settings.`),
+            credentialSetup: {
+                required: ["userNo", "apiKey"],
+                url: applyUrl,
+                urls: { zh: applyUrl, en: applyUrl },
+                ...((0, i18n_1.resolveServiceRegion)(region, locale) === "global" && {
+                    privacyUrl: (0, i18n_1.globalPolicyUrl)("privacy", locale),
+                    termsUrl: (0, i18n_1.globalPolicyUrl)("terms", locale),
+                }),
+            },
         };
     }
 }

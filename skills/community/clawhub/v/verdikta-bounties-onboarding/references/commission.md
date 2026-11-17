@@ -1,0 +1,53 @@
+# Commission configuration and recovery
+
+Discovery produces an unquoted request/rubric draft, not a transaction-ready offer. Obtain supplier agreement and owner authorization for these additional terms. Never use fixture-only requests as real deliveries.
+
+For a discovery handoff, install both skill directories and run the discovery package's dependency installation. `verdikta-discover` returns an assessment input: print its preview with `node <discover>/scripts/preview.bundle.mjs input.json > draft.json` (the website's import shows the same bytes' SHA-256 for that input). Compute the exact file SHA-256 after owner review, set `workOrderDraftSha256` to that approved hash, and set `workOrderDraft` in the creator config to that preview file; copy its rubric/threshold into the owner-reviewed config, then supply actual supplier and price terms. The creator checks the request, rejects fixture-only work, recomputes the preview and binds OPEN/TARGETED intent in both directions, and includes its exact request plus a SHA-256 of the saved draft bytes in the evaluation description. Edits to the draft invalidate recovery identity. No draft grants authorization by itself.
+
+`create_bounty.js --config approved.json` requires:
+
+- title, description, rubricJson and juryNodes (validated against the selected live class).
+- classId, threshold (0–100, outside rubricJson), and either submissionWindowHours (whole hours) or submissionDeadline (an exact deadline, for terms that name a date: unix seconds or ISO-8601 UTC ending in Z, such as `"2026-10-22T00:00:00Z"`). With submissionDeadline the script sends it to `/jobs/create` instead of a window and refuses a server deadline that differs by a second; at least five usable minutes must remain. `wager.js` sets it to a wager's settlement deadline.
+- procurementMode: TARGETED with targetHunter, or deliberately OPEN.
+- bountyAmount: decimal ETH string. Optional creatorDeterminationPayment and arbiterDeterminationPayment are decimal ETH strings; bountyAmount must equal their maximum.
+- creatorAssessmentWindowSeconds: integer seconds divisible by 3600; zero requires equal payments.
+- oracle: maxOracleFee and estimatedBaseCost as integer wei strings; alpha 0–1000; maxFeeBasedScaling 1–1000. Fee must be positive and within the live aggregator ceiling; base cost must be below fee.
+
+Use `examples/creator.json` as a synthetic shape example only. Its jury entries are placeholders: select real currently available models from `/api/classes/:id/models`; the script rejects placeholders. Rubric must-pass weights are zero; scored weights sum to 1 within 0.001. Every criterion needs unique id, description, numeric weight and boolean must. The proposed template threshold 85 is uncalibrated.
+
+## Spend policy
+
+The owner-reviewed `VERDIKTA_SPEND_POLICY` JSON has integer wei fields `maxValueWei`, `maxTotalWei`, `maxGasLimit`, `maxFeePerGasWei`, `maxPriorityFeePerGasWei`. The total is a cumulative upper bound on value + execution gas for this process; limits are not a persistent daily ledger. Base's separately charged L1 data fee is not an execution-gas cap. Do not grant ongoing unattended authority through repeated CLI invocations; use the hosted runtime's durable caps for that case. Withdrawals to the recorded owner address (`withdraw_to_owner.js`) use the gas, fee and total execution caps but not the value caps, because the funds return to the owner. An owner should keep the policy outside model-writable workspace/configuration and review each commissioning intent.
+
+Size the caps for the largest transaction the wallet will sign. Starting an evaluation (`startPreparedSubmission`, the claim step of every submission, a wager claim included) is the gas-heaviest call. On Base Sepolia a class-128, two-juror start used 3,257,858 gas, and the executor's limit for it was 4,150,503: the estimate plus 25%. A `maxGasLimit` of 2,000,000 blocks every such start. Recommended:
+
+- `maxGasLimit`: `6000000`. That leaves headroom for a two-juror class; more jurors or iterations can need more.
+- `maxFeePerGasWei` and `maxPriorityFeePerGasWei`: the executor signs with exactly these values (EIP-1559 `maxFeePerGas` and `maxPriorityFeePerGas`). Set them above the network's current base fee plus tip, or a transaction waits unmined. You pay the actual base fee plus tip, not the cap.
+- `maxTotalWei`: at least the sum, over the transactions of one run, of value + gas limit × `maxFeePerGasWei`. Every transaction reserves that much before signing. For example, at `maxFeePerGasWei` `100000000` (0.1 gwei), a 4,150,503-gas start reserves 0.000415 ETH plus its evaluation prepay. A close that first clears claims reserves once per clearing call and once for the close.
+- `maxValueWei`: the largest single value, such as a reward or an evaluation prepay.
+
+When a cap stops a transaction, nothing is signed, and the refusal names the cap, the amount the call needs and the policy file (`Gas limit exceeds owner cap: startPreparedSubmission needs a gas limit of 4150503, and maxGasLimit is 2000000 in the spend policy …`). Raising a cap is the owner's decision: report the message instead of editing the policy.
+
+## Approval and recovery state
+
+Never use `--yes` or `--confirm-spend` without approval for the specific action. `--yes` suppresses the prompt only after printing the exact transaction and caps. A dry-run still validates destination, chain, code, selector, arguments, gas, and policy, but does not broadcast. To preview a new task without any financial setup, use `verdikta-discover`.
+
+Creation reserves `approved.json.state.json` exclusively before API mutation. Preserve it privately even on failures: signed bytes authorize the exact transaction. `--resume approved.json.state.json` verifies the saved hash, signer, destination, calldata and caps and reads back at the receipt block with bounded retries before linking. If the RPC has no transaction/receipt, review and rebroadcast only the identical saved signed bytes; never choose a new nonce or create another API job. API_CREATED can resume first signing using its recorded local `apiCreatedAt`; server open time must be within 15 minutes of that timestamp and at least five usable submission minutes must remain before the assessment window. Review the shortened remaining time. Legacy BROADCAST_PENDING without a hash/raw transaction requires manual reconciliation.
+
+`--dry-run --prepared saved-state.json` accepts that state and its timestamp. A raw saved response or legacy state without a local timestamp must still be within 15 minutes of API creation. Neither form creates API state or signs; never alter a timestamp to bypass validation.
+
+A submission's `--state` file records hunter CID, prepare hash and submission ID. Right after a prepare, submit retries a lagging `getSubmission` read ("bad submissionId") for about 15 seconds; if the node is still behind, it exits with the exact `--resume ID --state …` command to run next. If prepare receipt tracking failed, recover the ID from that hash before using `--resume SUBMISSION_ID --state original-state.json`; the script validates the successful prepare transaction/event, hunter, CID, chain and recovered ID before repairing the missing state field. It then confirms tracking (bounded backoff for RPC lag) and starts the same prepared submission. `nextAction` guides waiting and recovery. A deferred payment must be claimed by its recipient through a separately authorized withdrawal, not by submitting more work.
+
+Deployment snapshot changes require maintainer review of live docs, bytecode and source compatibility; a remote address alone is not authorization. Generate ABI and rubric assets with `node scripts/sync_contract_assets.js` from the complete repository after compiling contracts with the secret-free local config.
+
+### Signed transactions that were not mined
+
+Submit preserves `prepareRawTransaction` and `prepareTxHash` even if transport fails. The current submit CLI does not rebroadcast an unmined prepare. Keep that state file; an authorized operator must reconcile the hash/receipt and nonce, then either rebroadcast those exact signed bytes after checking their terms or replace that nonce to abandon it. Once mined, recover the submission ID and use `--resume ID --state original-state.json`. Do not start over with a new state file while the signed prepare can still execute.
+
+Deleting state or waiting past the local five-minute review floor does not revoke a signed create. Its signature remains valid until the nonce is consumed; contract checks may subsequently revert it. To abandon an unmined create or prepare, the owner must separately authorize a replacement/cancellation transaction using the same sender and nonce on the same chain, and wait for confirmation. If the nonce is already used, inspect the original hash and the transaction that consumed it before proceeding; a nonce-too-low RPC error is not permission to create another bounty. No cancellation transaction is sent by these helpers.
+
+The five-minute usable-time check is a minimum safety floor, not a recommended task duration. Review the displayed remaining time against the actual work before approving a delayed create.
+
+## Chat approval of a verdikta-discover draft
+
+`approve_work_order.js` turns an owner's approval line into the `approved.json` above. Inputs: the agent's assessment input (`--input`), the owner's line verbatim (`--approval`, format `Approve <hash prefix of 8 or more hex characters>, payout <X> ETH, window <N>h`), a title and optional owner notes, and the operator-reviewed defaults file (`--defaults`, default `~/.config/verdikta-bounties/commission-defaults.json`). The defaults hold what a draft never carries: `classId`, `juryNodes` (real models of that class), `oracle` (`maxOracleFee`, `alpha`, `estimatedBaseCost`, `maxFeeBasedScaling`), optional `creatorAssessmentWindowSeconds` (default 0) and `workProductType` (default `research`); `examples/commission-defaults.json` shows the shape and is refused as-is (`fixture_only`). The script derives the draft from the input with the discovery package's `preview` and hashes its `previewText`, exactly what the Create Bounty page and the agent's `--check` show, so an approval written against the chat preview binds the same bytes. It writes `draft.json` (those bytes) and `approved.json` (the binding plus the terms) under `~/.config/verdikta-bounties/work-orders/<hash prefix>/` with `wx`, so a draft is prepared once. Payout and window come from the line and nowhere else. Then `create_bounty.js --config .../approved.json --yes` runs every existing check and signs within the spend policy; the owner's line is the approval that `--yes` requires for that config only.

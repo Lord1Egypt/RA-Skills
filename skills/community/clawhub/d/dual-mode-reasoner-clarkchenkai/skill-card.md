@@ -1,45 +1,55 @@
-## Description: <br>
-Dual-Mode Reasoner is a risk-aware reasoning skill that helps an agent choose between quick and deliberate reasoning modes and produce a fixed decision-support output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dual-Mode Reasoner helps an agent choose between quick and deliberate reasoning based on task risk, then exposes assumptions, counterexamples, recommendations, and stop conditions in a fixed response structure.
 
-## Publisher: <br>
-[clarkchenkai](https://clawhub.ai/user/clarkchenkai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clarkchenkai](https://clawhub.ai/user/clarkchenkai)
 
-## Use Case: <br>
-External users, employees, and developers use this skill when a task needs visible reasoning-depth selection, assumption exposure, counterexample testing, and a clear stop condition for decision support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Implicit invocation may make the assistant use the six-section reasoning format automatically. <br>
-Mitigation: Disable implicit invocation or call the skill explicitly only when structured risk-aware decision support is desired. <br>
-Risk: Users may mistake the reasoning protocol for regulated-domain expertise. <br>
-Mitigation: Use the skill as a decision-support scaffold and consult qualified experts for legal, medical, financial, or other regulated decisions. <br>
-Risk: The skill can surface assumptions and counterexamples but cannot verify external facts on its own. <br>
-Mitigation: Check material evidence independently before acting on high-impact or hard-to-reverse recommendations. <br>
+## Use Case:
 
+External users, developers, and employees can use this skill when a task needs explicit reasoning-depth selection for mixed-risk decisions. It is intended to make risk signals, assumptions, counterexamples, recommendations, and escalation conditions visible rather than implicit.
 
-## Reference(s): <br>
-- [Kahneman Reference](references/kahneman.md) <br>
-- [Mode Triggers](references/mode-triggers.md) <br>
-- [Deliberation Patterns](references/deliberation-patterns.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/clarkchenkai/dual-mode-reasoner-clarkchenkai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with six named sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fixed output contract ending with mode selection, risk signals, working assumptions, counterexamples, recommendation, and stop condition.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Implicit invocation can make decision-oriented answers more structured and explicit than some users expect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the activation triggers and narrow implicit invocation wording when manual activation is preferred.
+
+Risk: The skill may be used on high-stakes or governance-sensitive decisions where an agent recommendation should not be the final authority.
+
+Mitigation: Use the required stop condition to identify when to act, pause, or escalate for human or policy review.
+
+## Reference(s):
+
+- [Deliberation Patterns](references/deliberation-patterns.md)
+- [Kahneman Reference](references/kahneman.md)
+- [Mode Triggers](references/mode-triggers.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown sections with concise prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a fixed six-part response structure: mode selection, risk signals, working assumptions, counterexamples, decision or recommendation, and stop condition.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

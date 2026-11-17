@@ -1,39 +1,58 @@
-## Description: <br>
-Chinese Ad Copywriter generates platform-specific Chinese marketing copy and checks it for advertising-law banned words through an external compliance API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese ad copywriter with API-powered compliance checking for generating platform-specific Chinese marketing copy and checking ad text for banned words and advertising-law risk.
 
-## Publisher: <br>
-[lm203688](https://clawhub.ai/user/lm203688) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lm203688](https://clawhub.ai/user/lm203688)
 
-## Use Case: <br>
-External users and marketing teams use this skill to draft Chinese ad copy for Xiaohongshu, Douyin, WeChat, Baidu, and e-commerce platforms, then check the copy for banned-word and advertising-law compliance issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ad copy, titles, keywords, and platform names may be sent to the disclosed Tencent Cloud Function endpoint during compliance checks. <br>
-Mitigation: Avoid confidential client drafts, unreleased campaigns, personal data, or regulated claims unless the publisher provides acceptable privacy, retention, and token-handling terms. <br>
+## Use Case:
 
+Marketing writers, ecommerce operators, and developers use this skill to draft Chinese advertising copy for platforms such as Xiaohongshu, Douyin, WeChat, Baidu, Taobao, and JD, then review the copy for banned terms and safer replacements.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lm203688/chinese-ad-copywriter) <br>
-- [Compliance API endpoint](https://1341839497-2yuxt6z58d.ap-guangzhou.tencentscf.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with Chinese ad copy variations, compliance reports, replacement suggestions, and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use shell scripts that call an external API for compliance checks and platform templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Ad text, titles, keywords, and platform choices may be sent to an external Tencent Cloud API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential or client-sensitive material unless the endpoint and data-handling expectations have been reviewed.
+
+Risk: The bundled scripts build request payloads from command-line input.
+
+Mitigation: Review and improve JSON and URL encoding before relying on the scripts in production workflows.
+
+Risk: Generated marketing guidance and compliance scores may not fully reflect current advertising-law obligations.
+
+Mitigation: Have qualified reviewers check final copy, especially for medical, health, education, finance, and other regulated categories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lm203688/skills/chinese-ad-copywriter)
+- [Compliance API endpoint](https://1341839497-2yuxt6z58d.ap-guangzhou.tencentscf.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text with Chinese copy variants, compliance findings, replacement suggestions, scores, and optional bash command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include platform-specific templates, risk labels, and compliance scores.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

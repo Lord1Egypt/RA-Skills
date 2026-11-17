@@ -1,44 +1,54 @@
-## Description: <br>
-Enables agents to interact with the eToro API to access market data, portfolio and social features, and execute trades programmatically. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables agents to interact with the eToro API to access market data, portfolio and social features, and execute trades programmatically.
 
-## Publisher: <br>
-[marian2js](https://clawhub.ai/user/marian2js) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[marian2js](https://clawhub.ai/user/marian2js)
 
-## Use Case: <br>
-Developers and agents use this skill to access eToro market data, portfolio information, watchlists, social feeds, and trading endpoints through the eToro Public API. It supports both demo and real account workflows when the user supplies appropriate eToro API credentials. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can enable an agent to place or cancel real-money trades without built-in confirmation safeguards. <br>
-Mitigation: Prefer a Virtual/Demo or read-only eToro key, and require explicit user approval for the real environment, instrument, side, amount or units, leverage, and exact order or position before any live trading action. <br>
-Risk: eToro API credentials may grant account access beyond market-data lookups. <br>
-Mitigation: Keep public and user keys in secure secret storage and use the least-privileged key permissions suitable for the task. <br>
-Risk: Using a real endpoint with a real-account key can execute financial actions when the user expected a demo workflow. <br>
-Mitigation: Check that the selected User Key environment matches the endpoint family, and use endpoints containing /demo/ for testing and paper trading. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [eToro API Portal](https://api-portal.etoro.com/) <br>
-- [eToro Public API Base URL](https://public-api.etoro.com/api/v1) <br>
-- [eToro API MCP Server](https://api-portal.etoro.com/mcp) <br>
-- [ClawHub skill page](https://clawhub.ai/marian2js/etoro-api) <br>
+## Use Case:
 
+Developers and agents use this skill to work with eToro market data, portfolio information, watchlists, social feed features, user analytics, and demo or real trading workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, API calls] <br>
-**Output Format:** [Markdown reference with endpoint lists, curl commands, and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes demo and real trading endpoint guidance; live trading actions should be confirmed explicitly before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can support live trading and other account-changing eToro actions.
+
+Mitigation: Prefer Virtual/Demo or read-only keys, and require explicit approval before any live trade, close, cancel, watchlist change, or feed post.
+
+Risk: Using a real portfolio key or non-demo endpoint by mistake could affect a user's live account.
+
+Mitigation: Confirm the key environment before each trading workflow and use demo endpoints for testing or paper trading.
+
+## Reference(s):
+
+- [eToro API Portal](https://api-portal.etoro.com/)
+- [eToro Public API Base URL](https://public-api.etoro.com/api/v1)
+- [eToro MCP Server](https://api-portal.etoro.com/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown with inline bash commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Covers authenticated eToro API requests for market data, portfolio data, watchlists, social features, and trading actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,183 @@
+collection: VB
+sort-by: 10
+shortname: vb
+launch: am start --user 0 -n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture -e ROM "{file.path}" -e LIBRETRO /data/data/com.retroarch.aarch64/cores/mednafen_vb_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch.aarch64/files/retroarch.cfg
+
+game: SD高达维度战争
+file: SD高达维度战争.vb
+assets.box_front: Imgs/SD高达维度战争.png
+description: 《SD高达维度战争》，由 Bandai Namco 出品，1995 年发行，策略类游戏，Virtual Boy 平台，单人游玩。
+publisher: Bandai Namco
+release: 1995
+genre: Strategy
+players: 1
+game: 保龄球VB
+file: 保龄球VB.vb
+assets.box_front: Imgs/保龄球VB.png
+description: 《保龄球VB》，由 Athena 出品，1995 年发行，体育类游戏，Virtual Boy 平台，单人游玩。
+publisher: Athena
+release: 1995
+genre: Sports
+players: 1
+game: 印斯茅斯之馆
+file: 印斯茅斯之馆.vb
+assets.box_front: Imgs/印斯茅斯之馆.png
+description: 《印斯茅斯之馆》，由 I'Max 出品，1995 年发行，Lightgun Shooter类游戏，Virtual Boy 平台，单人游玩。
+publisher: I'Max
+release: 1995
+genre: Lightgun Shooter
+players: 1
+game: 垂直战机
+file: 垂直战机.vb
+assets.box_front: Imgs/垂直战机.png
+description: 《垂直战机》，由 Nintendo 出品，1995 年发行，Shoot'em Up类游戏，Virtual Boy 平台，单人游玩。
+publisher: Nintendo
+release: 1995
+genre: Shoot'em Up
+players: 1
+game: 塞维利亚队长2
+file: 塞维利亚队长2.vb
+assets.box_front: Imgs/塞维利亚队长2.png
+description: 《塞维利亚队长2》，Virtual Boy 平台。
+game: 大鱼吃小鱼
+file: 大鱼吃小鱼.vb
+assets.box_front: Imgs/大鱼吃小鱼.png
+description: 《大鱼吃小鱼》，由 ThunderStruck 出品，Virtual Boy 平台，单人游玩。
+publisher: ThunderStruck
+players: 1
+game: 太空侵略者
+file: 太空侵略者.vb
+assets.box_front: Imgs/太空侵略者.png
+description: 《太空侵略者》，由 Taito 出品，1995 年发行，合集类游戏，Virtual Boy 平台，单人游玩。
+publisher: Taito
+release: 1995
+genre: Compilation
+players: 1
+game: 太空壁球
+file: 太空壁球.vb
+assets.box_front: Imgs/太空壁球.png
+description: 《太空壁球》，由 Coconuts Japan 出品，1995 年发行，体育类游戏，Virtual Boy 平台，单人游玩。
+publisher: Coconuts Japan
+release: 1995
+genre: Sports
+players: 1
+game: 太空弹球
+file: 太空弹球.vb
+assets.box_front: Imgs/太空弹球.png
+description: 《太空弹球》，由 Nintendo 出品，弹珠台类游戏，Virtual Boy 平台，单人游玩。
+publisher: Nintendo
+genre: Pinball
+players: 1
+game: 尼斯特时髦保龄球
+file: 尼斯特时髦保龄球.vb
+assets.box_front: Imgs/尼斯特时髦保龄球.png
+description: 《尼斯特时髦保龄球》，由 Nintendo 出品，1996 年发行，体育类游戏，Virtual Boy 平台，单人游玩。
+publisher: Nintendo
+release: 1996
+genre: Sports
+players: 1
+game: 布洛克斯
+file: 布洛克斯.vb
+assets.box_front: Imgs/布洛克斯.png
+description: 《布洛克斯》，Virtual Boy 平台。
+game: 布洛克斯2
+file: 布洛克斯2.vb
+assets.box_front: Imgs/布洛克斯2.png
+description: 《布洛克斯2》，Virtual Boy 平台。
+game: 弹跳高手
+file: 弹跳高手.vb
+assets.box_front: Imgs/弹跳高手.png
+description: 《弹跳高手》，由 Nintendo 出品，Various类游戏，Virtual Boy 平台，单人游玩。
+publisher: Nintendo
+genre: Various
+players: 1
+game: 未来水世界
+file: 未来水世界.vb
+assets.box_front: Imgs/未来水世界.png
+description: 《未来水世界》，由 Ocean 出品，1995 年发行，Shoot'em Up类游戏，Virtual Boy 平台，单人游玩。
+publisher: Ocean
+release: 1995
+genre: Shoot'em Up
+players: 1
+game: 机器人拳击
+file: 机器人拳击.vb
+assets.box_front: Imgs/机器人拳击.png
+description: 《机器人拳击》，由 Nintendo 出品，体育类游戏，Virtual Boy 平台，单人游玩。
+publisher: Nintendo
+genre: Sports
+players: 1
+game: 杀虫剂
+file: 杀虫剂.vb
+assets.box_front: Imgs/杀虫剂.png
+description: 《杀虫剂》，Virtual Boy 平台。
+game: 杰克兄弟
+file: 杰克兄弟.vb
+assets.box_front: Imgs/杰克兄弟.png
+description: 《杰克兄弟》，由 Atlus 出品，1995 年发行，冒险类游戏，Virtual Boy 平台，单人游玩。
+publisher: Atlus
+release: 1995
+genre: Adventure
+players: 1
+game: 汉堡在去瑞士的路上
+file: 汉堡在去瑞士的路上.vb
+assets.box_front: Imgs/汉堡在去瑞士的路上.png
+description: 《汉堡在去瑞士的路上》，Virtual Boy 平台。
+game: 炮弹大对决
+file: 炮弹大对决.vb
+assets.box_front: Imgs/炮弹大对决.png
+description: 《炮弹大对决》，由 Bullet Proof Software 出品，射击类游戏，Virtual Boy 平台，单人游玩。
+publisher: Bullet Proof Software
+genre: Shooter
+players: 1
+game: 炸弹人燃烧炸弹
+file: 炸弹人燃烧炸弹.vb
+assets.box_front: Imgs/炸弹人燃烧炸弹.png
+description: 《炸弹人燃烧炸弹》，由 Nintendo 出品，1995 年发行，益智类游戏，Virtual Boy 平台，单人游玩。
+publisher: Nintendo
+release: 1995
+genre: Puzzle
+players: 1
+game: 益智实验VB
+file: 益智实验VB.vb
+assets.box_front: Imgs/益智实验VB.png
+description: 《益智实验VB》，由 J-Wing 出品，1995 年发行，益智类游戏，Virtual Boy 平台，单人游玩。
+publisher: J-Wing
+release: 1995
+genre: Puzzle
+players: 1
+game: 红色方块
+file: 红色方块.vb
+assets.box_front: Imgs/红色方块.png
+description: 《红色方块》，Virtual Boy 平台。
+game: 红色警报
+file: 红色警报.vb
+assets.box_front: Imgs/红色警报.png
+description: 《红色警报》，由 Nintendo 出品，1995 年发行，模拟类游戏，Virtual Boy 平台，单人游玩。
+publisher: Nintendo
+release: 1995
+genre: Simulation
+players: 1
+game: 苏联2010
+file: 苏联2010.vb
+assets.box_front: Imgs/苏联2010.png
+description: 《苏联2010》，Virtual Boy 平台。
+game: 苏联2011
+file: 苏联2011.vb
+assets.box_front: Imgs/苏联2011.png
+description: 《苏联2011》，Virtual Boy 平台。
+game: 超级格斗
+file: 超级格斗.vb
+assets.box_front: Imgs/超级格斗.png
+description: 《超级格斗》，Virtual Boy 平台。
+game: 超越速度
+file: 超越速度.vb
+assets.box_front: Imgs/超越速度.png
+description: 《超越速度》，Virtual Boy 平台。
+game: 钓鱼VB
+file: 钓鱼VB.vb
+assets.box_front: Imgs/钓鱼VB.png
+description: 《钓鱼VB》，由 Pack In Video 出品，1995 年发行，Hunting and Fishing类游戏，Virtual Boy 平台，单人游玩。
+publisher: Pack In Video
+release: 1995
+genre: Hunting and Fishing
+players: 1

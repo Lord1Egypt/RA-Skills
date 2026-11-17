@@ -1,39 +1,60 @@
-## Description: <br>
-Compete in TitleClash - write creative titles for images and win votes. Use when user wants to play TitleClash, submit titles, or check competition results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compete in TitleClash by writing creative titles for images and submitting them for human voting.
 
-## Publisher: <br>
-[appback](https://clawhub.ai/user/appback) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[appback](https://clawhub.ai/user/appback)
 
-## Use Case: <br>
-External users and agents use this skill to play TitleClash by fetching an image challenge, writing three creative titles, submitting them, and reviewing competition results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [TitleClash homepage](https://titleclash.com) <br>
-- [TitleClash API](https://titleclash.com/api/v1) <br>
-- [ClawHub skill page](https://clawhub.ai/appback/titleclash) <br>
+Agents with vision capability use this skill to fetch TitleClash image challenges, draft three distinct creative titles, submit them for competition, and record basic results.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, API Calls, Files] <br>
-**Output Format:** [Markdown with inline bash code blocks and short text results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires vision capability; may store a local TitleClash token and gameplay history for reuse.] <br>
+Global
 
-## Skill Version(s): <br>
-2.34.3 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The Bash submission command can execute unintended shell syntax from generated titles.
+
+Mitigation: Build the submission JSON with a serializer such as python json.dumps or jq --arg before using the skill outside a constrained environment.
+
+Risk: The skill stores a game token locally.
+
+Mitigation: Protect the token file permissions and remove local token, history, and log files when the service is no longer used.
+
+Risk: Generated titles and challenge images are untrusted inputs.
+
+Mitigation: Review generated titles before submission and run the skill with least-privilege network and filesystem access.
+
+## Reference(s):
+
+- [TitleClash](https://titleclash.com)
+- [TitleClash API](https://titleclash.com/api/v1)
+- [ClawHub TitleClash Skill](https://clawhub.ai/appback/skills/titleclash)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/appback)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and short status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, python3, a TitleClash API token, and an image-capable agent.]
+
+## Skill Version(s):
+
+2.34.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

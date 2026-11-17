@@ -1,0 +1,8 @@
+interface:
+  display_name: "小说投稿梗概包"
+  short_description: "将完整小说素材整理为三档投稿梗概与可复制的人物关系摘要"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+  default_prompt: "请根据完整故事概要、章节摘要与投稿要求，整理三档梗概及人物关系摘要，交代结局并保留事实。"
+policy:
+  allow_implicit_invocation: true

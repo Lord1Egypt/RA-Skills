@@ -1,43 +1,59 @@
-## Description: <br>
-Daily Beauty searches Xiaohongshu for a selected creator profile and returns nine full-body image files while filtering previously used, wallpaper, AI-generated, and marketing accounts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Beauty retrieves one Xiaohongshu beauty blogger and returns nine full-body image results while filtering previously used bloggers, AI accounts, wallpaper accounts, and marketing accounts.
 
-## Publisher: <br>
-[lorexxar](https://clawhub.ai/user/lorexxar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lorexxar](https://clawhub.ai/user/lorexxar)
 
-## Use Case: <br>
-Agents and end users use this skill to fetch a daily Xiaohongshu image set, receive a short blogger summary, and obtain local image paths for follow-up messaging or review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary reports a hard-coded Feishu recipient for sending results. <br>
-Mitigation: Remove or change the recipient before use and require explicit confirmation before sending messages. <br>
-Risk: The security guidance notes Xiaohongshu searches, local image downloads, persistent deduplication records, and image conversion on remote files. <br>
-Mitigation: Run in a restricted workspace, review downloaded files and retained records, and keep image conversion tooling patched. <br>
-Risk: The security summary reports broad triggers that could run the workflow unintentionally. <br>
-Mitigation: Narrow trigger phrases or require a confirmation step before network searches, downloads, or messaging. <br>
+## Use Case:
 
+External users and agent operators use this skill to fetch a curated daily set of Xiaohongshu beauty blogger images, with deduplication and account filtering applied before results are returned.
 
-## Reference(s): <br>
-- [Blacklist Filtering Reference](references/blacklist.md) <br>
-- [Whitelist Blogger Reference](references/whitelist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Files, Shell commands] <br>
-**Output Format:** [JSON status object with local PNG image file paths and optional messaging command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Downloads up to nine images to the local OpenClaw workspace and updates local deduplication JSON files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.10 (source: server release metadata) <br>
+Risk: The workflow can send results to a hardcoded Feishu recipient.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or parameterize the recipient and require explicit confirmation before delivery.
+
+Risk: The workflow downloads and processes unvalidated remote images locally.
+
+Mitigation: Enforce HTTPS and host allowlists, add file size and file type checks, and sandbox ImageMagick conversion.
+
+Risk: Persistent deduplication records may retain source image URLs and blogger identifiers.
+
+Mitigation: Review retention requirements and clear or rotate the JSON records when they are no longer needed.
+
+## Reference(s):
+
+- [Daily Beauty ClawHub Skill Page](https://clawhub.ai/lorexxar/skills/daily-beauty)
+- [Blacklist Reference](references/blacklist.md)
+- [Whitelist Reference](references/whitelist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown usage guidance and JSON runtime output with local image file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The runtime writes downloaded image files locally and updates JSON deduplication records.]
+
+## Skill Version(s):
+
+1.0.10 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

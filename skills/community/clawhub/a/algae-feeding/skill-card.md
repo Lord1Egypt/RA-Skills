@@ -1,41 +1,54 @@
-## Description: <br>
-Calculates algae feeding amounts from daily aquaculture reports by parsing workshop, pool range, strain, larval day, and AM/PM feeding period against bundled feeding standards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language algae feeding calculator that parses daily hatchery reports and produces per-pool feeding volumes for small and large algae across supported pool sizes, strains, days, and morning or afternoon periods.
 
-## Publisher: <br>
-[cheney87](https://clawhub.ai/user/cheney87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cheney87](https://clawhub.ai/user/cheney87)
 
-## Use Case: <br>
-Aquaculture operators and agents use this skill to parse algae-feeding daily reports and generate per-pool feeding quantities grouped by algae type, workshop, pool range, and feeding period. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unusual report formatting or date edge cases may lead to incorrect feeding calculations. <br>
-Mitigation: Test representative daily reports and review generated quantities before using the results operationally. <br>
-Risk: Bundled feeding standards may not match a farm's current operating procedure. <br>
-Mitigation: Confirm the feeding-standard reference files match the current procedure before relying on the calculated volumes. <br>
+## Use Case:
 
+External hatchery operators and aquaculture staff use this skill to convert algae feeding daily-report text into grouped feeding instructions with liters per pool and algae-type totals.
 
-## Reference(s): <br>
-- [Algae Feeding Standard](references/algae-feeding-standard.md) <br>
-- [Daily Report Parsing Guide](references/parsing-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown] <br>
-**Output Format:** [Structured text report with Markdown-compatible line breaks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports feeding quantities in liters per pool and grouped total volumes for small and large chain algae.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Incorrect parsing or calculation could produce feeding amounts that do not match the farm standard.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review calculated outputs against the algae feeding standard before operational use.
+
+Risk: Untrusted or oversized daily-report text may trigger weak input-validation behavior.
+
+Mitigation: Use bounded, trusted report text and add pool-number bounds and validation before broader operational deployment.
+
+## Reference(s):
+
+- [Algae Feeding Standard](references/algae-feeding-standard.md)
+- [Daily Report Parsing Guide](references/parsing-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain text feeding calculation report in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Groups results by algae type, workshop, and pool range; includes liters per pool and total liters where supported.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

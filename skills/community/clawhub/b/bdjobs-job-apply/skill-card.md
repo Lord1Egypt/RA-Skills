@@ -1,41 +1,57 @@
-## Description: <br>
-BDJobs job search, matching, applying, undoing, and salary-update automation for OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BDJobs job search, matching, applying, undoing, and salary-update automation for OpenClaw.
 
-## Publisher: <br>
-[sazidulalam47](https://clawhub.ai/user/sazidulalam47) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sazidulalam47](https://clawhub.ai/user/sazidulalam47)
 
-## Use Case: <br>
-External BDJobs users and agents supporting them use this skill to configure a job profile, search and rank fresh jobs, apply to selected matches, cancel applications, and update expected salary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores BDJobs passwords, reusable session tokens, and resume data locally. <br>
-Mitigation: Treat the data folder and command output as sensitive, restrict access to the workspace, and delete stored credentials or tokens when they are no longer needed. <br>
-Risk: The skill can apply to jobs, cancel applications, and update salary expectations on a live BDJobs account. <br>
-Mitigation: Require explicit user confirmation before apply, undo, or salary-update actions and review proposed job matches before execution. <br>
+## Use Case:
 
+External users use this skill to manage BDJobs searches, compare openings against a resume and preferences, apply to selected jobs, cancel applications, and update expected salary through OpenClaw.
 
-## Reference(s): <br>
-- [BDJobs API Reference](references/api.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/sazidulalam47/bdjobs-job-apply) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration files and shell command execution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local data files for credentials, session data, resume content, job lists, application results, and salary updates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: BDJobs credentials and session tokens may be stored locally and printed in command output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in a private environment with restricted file access and command logs, and rotate or remove stored credentials and tokens after use.
+
+Risk: Apply, cancel, and salary-update scripts can make live changes to a BDJobs account.
+
+Mitigation: Review each target job, cancellation, and salary value before executing live action scripts.
+
+Risk: Resume and profile details are transmitted to BDJobs-related APIs during login, search, apply, and account-management flows.
+
+Mitigation: Use the skill only when the user accepts transmission of this data to those services.
+
+## Reference(s):
+
+- [BDJobs API Reference](artifact/references/api.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands, JSON file updates, and BDJobs API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local JSON and Markdown files under the skill data directory.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

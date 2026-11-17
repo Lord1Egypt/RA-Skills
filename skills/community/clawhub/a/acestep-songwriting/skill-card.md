@@ -1,40 +1,52 @@
-## Description: <br>
-Music songwriting guide for ACE-Step. Provides professional knowledge on writing captions, lyrics, choosing BPM/key/duration, and structuring songs. Use this skill when users want to create, write, or plan a song before generating it with ACE-Step. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Music songwriting guide for ACE-Step that helps users write captions and structured lyrics, choose BPM, key, duration, time signature, and language, and plan songs before generation.
 
-## Publisher: <br>
-[DumoeDss](https://clawhub.ai/user/DumoeDss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dumoedss](https://clawhub.ai/user/dumoedss)
 
-## Use Case: <br>
-External users and creators use this skill to plan songs for ACE-Step by drafting captions, structured lyrics, and music-generation parameters before producing audio. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated lyrics or songwriting plans may need review for quality, originality, rights, and suitability before use in a music-generation workflow. <br>
-Mitigation: Review and revise captions, lyrics, and parameters before generating or publishing music. <br>
-Risk: Conflicting captions, lyric tags, or parameter choices can reduce output quality or produce unsuitable song structure. <br>
-Mitigation: Check that genre, emotion, instrumentation, vocal tags, duration, BPM, key, and time signature are consistent before generation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DumoeDss/acestep-songwriting) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/DumoeDss) <br>
+## Use Case:
 
+External users and creators use this skill to prepare ACE-Step song generation inputs, including a style caption, structured lyrics, and music parameter choices.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown with captions, structured lyrics, and ACE-Step parameter recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs typically include Caption (-c), Lyrics (-l), and parameters such as duration, BPM, key, time signature, and language.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated lyrics may not be original or suitable for commercial use.
+
+Mitigation: Review and revise lyrics for originality, rights, brand fit, and audience suitability before commercial release.
+
+Risk: Conflicting captions, lyric tags, or music parameters can reduce generation quality.
+
+Mitigation: Keep the caption, lyric structure tags, and explicit music parameters consistent, then iterate based on generated results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dumoedss/skills/acestep-songwriting)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown sections with caption text, structured lyrics, and ACE-Step parameter values.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include duration, BPM, key, time signature, and language settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

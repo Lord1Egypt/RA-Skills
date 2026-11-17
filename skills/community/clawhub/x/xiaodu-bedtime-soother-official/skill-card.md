@@ -1,44 +1,60 @@
-## Description: <br>
-Orchestrates child bedtime routines through the installed xiaodu-control-official skill, using XiaoDu smart screens and XiaoDu IoT devices for scene-first bedtime setup, announcements, bedtime media, and delayed story shutdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+XiaoDu Bedtime Soother Official coordinates child bedtime routines through the installed xiaodu-control-official skill, using scene-first XiaoDu smart-screen and IoT actions for requests such as bedtime mode, bedtime stories, white noise, or room preparation.
 
-## Publisher: <br>
-[dueros-mcp](https://clawhub.ai/user/dueros-mcp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dueros-mcp](https://clawhub.ai/user/dueros-mcp)
 
-## Use Case: <br>
-External users and home-automation agents use this skill to turn broad bedtime requests into a conservative XiaoDu routine: select an existing bedtime scene when available, safely adjust supported IoT devices, announce the bedtime transition, start story or calming media, and schedule a stop or screen-off follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control XiaoDu smart screens, supported IoT devices, media playback, and delayed stop or screen-off behavior. <br>
-Mitigation: Install only for agents that should manage bedtime home-automation flows, and review the xiaodu-control-official dependency before deployment because it performs the underlying device actions. <br>
-Risk: A broad bedtime request could affect the wrong room or device if available targets are ambiguous. <br>
-Mitigation: Follow the skill's minimum-confirmation rule: ask for clarification when multiple reasonable smart screens, rooms, or device targets exist, and avoid whole-home control by default. <br>
-Risk: User bedtime preferences may be written to local memory files. <br>
-Mitigation: Store only preferences that the user actually provided, and avoid claiming that a preference was remembered unless the file write completed. <br>
+## Use Case:
 
+External users use this skill to let an agent coordinate XiaoDu bedtime routines for children, including safe scene selection, conservative bedroom-device adjustment, smart-screen announcements, bedtime content, and timed story shutdown. It is intended for homes where xiaodu-control-official and the XiaoDu smart-screen and IoT MCP servers are already configured.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dueros-mcp/xiaodu-bedtime-soother-official) <br>
-- [Usage Notes](references/usage-notes.md) <br>
-- [Test Cases](references/test-cases.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Natural-language guidance with inline shell commands and optional preference file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May schedule delayed stop and screen-off commands through scripts/bedtime_story_tail.sh when a smart screen target is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill can control XiaoDu smart screens and relevant IoT devices during bedtime routines.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target room or device before ambiguous multi-step home-control actions, avoid defaulting to whole-home control, and report only actions that actually succeeded.
+
+Risk: The skill may save household or child bedtime preferences.
+
+Mitigation: Require explicit consent before saving preferences and define retention or deletion expectations for household and child-related data.
+
+Risk: A bedtime story or media session could continue longer than expected if delayed shutdown is unavailable or fails.
+
+Mitigation: Set a reasonable maximum delay, prefer the provided timed stop and screen-off step, and tell the user when automatic shutdown could not be scheduled.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dueros-mcp/skills/xiaodu-bedtime-soother-official)
+- [Publisher profile](https://clawhub.ai/user/dueros-mcp)
+- [Usage notes](references/usage-notes.md)
+- [Test cases](references/test-cases.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with inline shell commands and concise user-facing response text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands are intended to run serially; outputs may include preference updates and delayed stop or screen-off actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,51 @@
-## Description: <br>
-Generates daily, weekly, monthly, project, sprint, incident, and customer reports from local work records such as memory files, logs, Git commits, and user-provided notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Report Generator helps agents create daily, weekly, monthly, project, sprint, incident, and customer reports from available work logs, memory files, Git history, project files, or user-provided notes.
 
-## Publisher: <br>
-[wskflf](https://clawhub.ai/user/wskflf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wskflf](https://clawhub.ai/user/wskflf)
 
-## Use Case: <br>
-Employees, developers, project leads, and delivery teams use this skill to turn local work history and selected notes into concise status reports for personal tracking, team updates, management reporting, customer updates, sprint summaries, or incident reviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can gather local work records, memory files, logs, Git history, and project files that may contain sensitive information. <br>
-Mitigation: Specify exact source files, repositories, and date ranges before use, and exclude sensitive repositories or memory logs. <br>
-Risk: Generated reports may be prepared for external sharing, including Feishu card formatting, before the user has checked the content. <br>
-Mitigation: Review the complete generated report and require explicit confirmation before anything is sent or formatted for Feishu. <br>
+## Use Case:
 
+Employees, managers, and delivery teams use this skill to summarize work activity into status reports for standups, weekly updates, project reviews, incident postmortems, or customer communication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wskflf/smart-report-gen) <br>
-- [Additional report templates](artifact/references/templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, plain text, Feishu card content, or custom user-supplied report format] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can generate daily, weekly, monthly, project, sprint, incident, customer, English, or bilingual report variants.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may gather broad memory, repository, workspace, task-note, or optional API data when generating reports, which can expose confidential, customer, personal, or proprietary information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit source paths and date ranges before generation, preview candidate inputs, redact sensitive content, and require separate confirmation before creating Feishu or other externally shareable output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wskflf/skills/smart-report-gen)
+- [Publisher profile](https://clawhub.ai/user/wskflf)
+- [Report templates](references/templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, Feishu cards, plain text, or custom report templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce Chinese, English, or bilingual reports and can use date-range helper commands for daily, weekly, and monthly summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

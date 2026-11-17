@@ -219,6 +219,20 @@ def check_dependencies():
 check_dependencies()
 ```
 
+## Zotero 附件别名与 Symlink 降级
+
+`scripts/zotero_sources.py` 将 `sources/zotero/metadata.yaml` 中声明的附件映射实体化为 `sources/zotero/` 下的符号链接。符号链接创建失败时（如 Windows 未开开发者模式），单条失败不再中断批次，按 `--on-symlink-error` 降级：
+
+| 模式 | 行为 | 适用场景 |
+|---|---|---|
+| `metadata`（默认） | 不创建实体文件；Agent 读取时直接路由到 metadata.yaml 的 `local_path` | 零数据漂移，推荐 |
+| `copy` | 在别名路径落只读字节副本 | 下游工具必须见到实体文件 |
+| `hardlink` | 同分区硬链接，无需管理员权限 | 需要实体文件且与源同分区 |
+
+- 重跑幂等：已匹配的符号链接或内容一致的副本会被跳过（`skipped`）。
+- Linked-file 附件（ZotMoov/ZotFile 管理的外部路径）：`local_path` 支持任意绝对路径，不限于 Zotero 内部 `storage/`；真实路径由 MCP/Agent 在写入 metadata.yaml 时解析。
+- 新增别名的命名应经 `src/llm_wiki/sanitizer.py` 的 `sanitize_title_stem` 清洗；既有别名是 frontmatter `sources[]` 的锚点，不改名。
+
 ## 参考文档
 
 - [AGENTS.md](../AGENTS.md) - 完整的 Agent 实现指南

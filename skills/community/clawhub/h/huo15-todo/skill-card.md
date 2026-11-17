@@ -1,40 +1,58 @@
-## Description: <br>
-Huo15 Todo helps an agent break multi-step programming work into a visible checklist, keep one item in progress at a time, and mark items complete as work is verified. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents break multi-step programming work into a visible todo checklist, keep only one item in progress, and mark each item complete as it is verified.
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
 
-## Use Case: <br>
-Developers and coding agents use this skill during multi-step programming tasks to plan a short set of verifiable checklist items, show progress to the user, and close each item after validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Broad planning aliases may activate the skill for requests where a checklist adds overhead. <br>
-Mitigation: Use it for multi-step work and skip it for simple single-step tasks. <br>
-Risk: Structured checklist output can make an incomplete plan appear complete. <br>
-Mitigation: Review the checklist against the user's requirements and update it as new sub-tasks are discovered. <br>
+## Use Case:
 
+Developers and coding agents use this skill to plan multi-step programming tasks, maintain a single active todo item, and verify each checklist item before closing the task.
 
-## Reference(s): <br>
-- [Huo15 Todo on ClawHub](https://clawhub.ai/zhaobod1/skills/huo15-todo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown checklist guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code or external tools required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Broad aliases may activate this skill during ordinary planning requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for multi-step tasks where a visible checklist is useful, and disable or rename broad aliases if activation is too frequent.
+
+Risk: The skill text is primarily Chinese, so non-Chinese users may receive planning guidance in an unexpected language.
+
+Mitigation: Instruct the agent to match the user's language, or publish a localized variant for the intended audience.
+
+Risk: Checklist workflow can add unnecessary process to simple one-step tasks.
+
+Mitigation: Apply the skill only when tasks have three or more steps, multiple files, multiple phases, or evolving subtasks.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/zhaobod1/skills/huo15-todo)
+- [Project homepage](https://github.com/zhaobod1/huo15-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown checklist and concise planning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

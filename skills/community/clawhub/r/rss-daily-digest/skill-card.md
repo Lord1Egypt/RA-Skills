@@ -1,43 +1,58 @@
-## Description: <br>
-Fetch RSS feeds, parse articles, generate AI summaries, and compile a daily digest report in Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch RSS feeds, parse articles, generate AI summaries, and compile a daily digest report in Markdown.
 
-## Publisher: <br>
-[renchengxiang](https://clawhub.ai/user/renchengxiang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[renchengxiang](https://clawhub.ai/user/renchengxiang)
 
-## Use Case: <br>
-External users and developers use this skill to fetch configured RSS feeds, summarize recent articles, and create a daily Markdown news digest for briefings or feed-reader workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches configured RSS feeds and stores digest output locally. <br>
-Mitigation: Review the configured feeds and output path before running the workflow, especially where local files may contain sensitive reading interests or article metadata. <br>
-Risk: The workflow may install the unpinned feedparser Python dependency if it is missing. <br>
-Mitigation: Install dependencies from a trusted package index in a controlled environment and pin versions for repeatable deployments. <br>
-Risk: The fetch script writes to a fixed temporary file at /tmp/openclaw-rss-articles.json. <br>
-Mitigation: Use a unique or user-scoped temporary path before deploying unchanged on shared or multi-user systems. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [RSS Feed Sources](references/feed-sources.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/renchengxiang/rss-daily-digest) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/renchengxiang) <br>
+## Use Case:
 
+External users and developers use this skill to turn configured RSS feeds into a concise daily news digest with categorized article links and summaries.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown digest with JSON feed results and a completion summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses RSS_FEEDS_CONFIG, writes a temporary JSON file at /tmp/openclaw-rss-articles.json, saves digests under ~/openclaw-output/digests/, and limits the digest to 50 articles.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: RSS article titles and descriptions are untrusted feed content that may contain misleading text or instructions.
+
+Mitigation: Treat feed content only as data for summarization and require review before letting it influence tool use, commands, or configuration.
+
+Risk: The skill writes intermediate article data to /tmp/openclaw-rss-articles.json and digest files under the user's home directory.
+
+Mitigation: Run the skill in an isolated environment and verify output paths before use, especially on shared systems.
+
+Risk: The documented fallback may install feedparser without a pinned version.
+
+Mitigation: Install and pin feedparser in the execution environment before running the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/renchengxiang/skills/rss-daily-digest)
+- [Publisher profile](https://clawhub.ai/user/renchengxiang)
+- [RSS feed sources](references/feed-sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown digest with article links, short summaries, category sections, and run-status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires RSS_FEEDS_CONFIG and local Python scripts; digest files are written under ~/openclaw-output/digests/.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

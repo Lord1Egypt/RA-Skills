@@ -1,45 +1,60 @@
-## Description: <br>
-Synthesizes text or Markdown files into speech audio using Volcengine's asynchronous Doubao TTS service, with support for voice selection, emotion settings, SSML, and subtitle timestamp output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts text or Markdown files into speech audio using Volcengine V3 async long-text synthesis, with voice, emotion, SSML, and subtitle timestamp options.
 
-## Publisher: <br>
-[happyphper](https://clawhub.ai/user/happyphper) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[happyphper](https://clawhub.ai/user/happyphper)
 
-## Use Case: <br>
-External users and developers use this skill to convert Chinese text, Markdown, or TXT content into audio files for audiobooks, bedtime stories, narration, and batch audio production. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Volcengine credentials and stores them in ~/.config/doubao-tts/.env during setup. <br>
-Mitigation: Treat the configuration file as sensitive, restrict access to it, and rotate or delete the token if it is exposed. <br>
-Risk: Input text is submitted to Volcengine's cloud TTS service for processing. <br>
-Mitigation: Do not submit confidential, regulated, or secret text unless Volcengine processing is acceptable for that data. <br>
-Risk: Generated audio is temporarily hosted by the service and download links expire. <br>
-Mitigation: Download outputs promptly and avoid relying on service-hosted audio as durable storage. <br>
+## Use Case:
 
+External users and developers use this skill to synthesize spoken audio from direct text, Markdown, or text files for audiobooks, bedtime stories, and batch audio production. It is useful when an agent needs to prepare Volcengine TTS commands, configure required credentials, and generate audio or subtitle outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/happyphper/doubao-tts-cn) <br>
-- [Volcengine console](https://console.volcengine.com/) <br>
-- [Volcengine TTS submit endpoint](https://openspeech.bytedance.com/api/v3/tts/submit) <br>
-- [Volcengine TTS query endpoint](https://openspeech.bytedance.com/api/v3/tts/query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; runtime outputs audio files and optional subtitle JSON/SRT files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires VOLCENGINE_APP_ID and VOLCENGINE_ACCESS_TOKEN; sends submitted text to Volcengine's cloud TTS service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter says 2.0.0) <br>
+Risk: Selected text or file contents are sent to Volcengine for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with content approved for Volcengine processing and avoid submitting sensitive or restricted text.
+
+Risk: Passing the Volcengine access token on the command line can expose it through shell history or process inspection.
+
+Mitigation: Set credentials through a protected environment or credential manager and rotate any token previously entered in shell history.
+
+Risk: The installer installs unpinned Python packages into the active environment.
+
+Mitigation: Use a virtual environment and pin or review package versions before installation.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/happyphper/skills/doubao-tts-cn)
+- [Volcengine console](https://console.volcengine.com/)
+- [Volcengine TTS submit endpoint](https://openspeech.bytedance.com/api/v3/tts/submit)
+- [Volcengine TTS query endpoint](https://openspeech.bytedance.com/api/v3/tts/query)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands and generated audio or subtitle file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce MP3, WAV, PCM, OGG Opus, subtitle JSON, and SRT files through Volcengine API calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

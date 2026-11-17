@@ -1,39 +1,39 @@
 ---
 name: fec-accessibility-check
-description: Use when reviewing or improving frontend accessibility, semantic structure, keyboard support, focus management, ARIA labels, screen reader behavior, WCAG 2.2 issues, touch accessibility, or assistive-technology regressions; Chinese triggers include 无障碍, accessibility, a11y, WCAG, 屏幕阅读器.
+description: Use when reviewing or improving frontend accessibility, semantic structure, keyboard support, focus management, ARIA labels, screen reader behavior, WCAG 2.2 issues, touch accessibility, or assistive-technology regressions; Chinese triggers include accessibility, accessibility, a11y, WCAG, screen reader.
 ---
 
-# 无障碍实现规范（WCAG 2.2 AA）
+# Accessibility Implementation Specification (WCAG 2.2 AA)
 
 ## Purpose
 
-确保前端 UI 对残障用户可访问，满足 WCAG 2.2 AA 的核心要求，并能被键盘、屏幕阅读器、触控和缩放用户稳定使用。
+Ensure the front-end UI is accessible to users with disabilities, meets the core requirements of WCAG 2.2 AA, and is stable for keyboard, screen reader, touch, and zoom users.
 
 ## Procedure
 
-1. 检查语义结构：landmark、标题层级、表单 label、按钮/链接可访问名称、表格语义和图片 alt。
-2. 检查键盘路径：Tab 顺序、Enter/Space/Esc 行为、焦点可见、关闭后焦点恢复。
-3. 检查复杂组件：对话框、菜单、标签页、树、抽屉、表格和自定义控件的 ARIA 状态。
-4. 检查动态状态：loading、empty、error、toast 和异步更新需要被屏幕阅读器感知。
-5. 检查视觉与触控可读性：文本/背景对比、focus ring、缩放到 200%、减少动效偏好、触摸目标尺寸和移动端虚拟键盘行为。
-6. 用真实键盘路径复核关键流程，必要时补充屏幕阅读器或浏览器无障碍树观察；屏幕阅读器流程见 [references/screen-reader-testing.md](references/screen-reader-testing.md)。
-7. 复核 WCAG 2.2 新增高频风险：可见焦点不被遮挡、拖拽操作有替代路径、目标尺寸过小、帮助入口和认证流程不依赖记忆负担。
-8. 输出分级报告；报告格式见 [references/report-template.md](references/report-template.md)。
+1. Check the semantic structure: landmark, title level, form label, button/link accessible name, table semantics and image alt.
+2. Check the keyboard path: Tab order, Enter/Space/Esc behavior, focus visible, focus restored after closing.
+3. Check the ARIA status of complex components: dialog boxes, menus, tabs, trees, drawers, tables, and custom controls.
+4. Check dynamic status: loading, empty, error, toast and asynchronous updates need to be perceived by screen readers.
+5. Check visual and touch readability: text/background contrast, focus ring, zoom to 200%, reduced animation preference, touch target size, and mobile virtual keyboard behavior.
+6. Use the real keyboard path to review the key process, and if necessary, add a screen reader or browser accessibility tree observation; see [references/screen-reader-testing.md](references/screen-reader-testing.md) for the screen reader process.
+7. Review the new high-frequency risks in WCAG 2.2: the visible focus is not blocked, the drag operation has alternative paths, the target size is too small, and the help entrance and authentication process do not rely on memory burden.
+8. Output the classification report; see [references/report-template.md](references/report-template.md) for the report format.
 
-## Detailed References
+## Detailed reference
 
-撰写无障碍审查报告时，加载 [references/report-template.md](references/report-template.md)。需要验证屏幕阅读器公告、焦点读法和动态区域时，加载 [references/screen-reader-testing.md](references/screen-reader-testing.md)。
+When writing an accessibility review report, load [references/report-template.md](references/report-template.md). Load [references/screen-reader-testing.md](references/screen-reader-testing.md) when you need to verify screen reader announcements, focus pronunciations, and dynamic areas.
 
 ## Constraints
 
-- 优先使用语义化 HTML，而不是 ARIA。
-- `role` 不应覆盖原生语义。
-- 交互元素必须可键盘访问。
-- 表单错误必须与字段关联。
-- 颜色对比度风险需要指出具体文本/背景组合。
-- 不用 ARIA 弥补可以用原生 HTML 解决的问题。
-- 不把浏览器自动可访问树当作最终结论；关键路径需要用键盘和至少一种辅助技术或等价检查验证。
+- Prefer semantic HTML over ARIA.
+- `role` should not override native semantics.
+- Interactive elements must be keyboard accessible.
+- Form errors must be associated with fields.
+- Color contrast risks need to be pointed out for specific text/background combinations.
+- Don't use ARIA to make up for problems that can be solved with native HTML.
+- Do not treat automatic browser accessibility trees as final; critical paths need to be verified with the keyboard and at least one assistive technology or equivalent check.
 
 ## Expected Output
 
-交互元素可键盘访问，语义和 ARIA 使用正确，焦点管理稳定；无障碍检查报告保存为 `reports/accessibility-review-YYYY-MM-DD-HHmmss.md`。
+Interactive elements are keyboard accessible, semantics and ARIA are used correctly, and focus management is stable; accessibility check reports are saved as `reports/accessibility-review-YYYY-MM-DD-HHmmss.md`.

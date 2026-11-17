@@ -1,38 +1,56 @@
-## Description: <br>
-Use this skill when a customs broker, trade-compliance analyst, importer, or trade counsel needs to classify a product under HTSUS, EU CN/TARIC, or another national tariff schedule. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when a customs broker, trade-compliance analyst, importer, or trade counsel needs to classify a product under HTSUS, EU CN/TARIC, or another national tariff schedule.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[archlab-space](https://clawhub.ai/user/archlab-space)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Customs brokers, trade-compliance analysts, importers, exporters, and trade counsel use this skill to draft a GRI-ordered tariff-classification memo for a single product. It supports HTSUS, EU CN/TARIC, and other national tariff schedules while preserving a review record for licensed human approval.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: A draft classification memo could be mistaken for final customs or legal advice.
+
+Mitigation: Keep the review-required label on outputs and have a licensed customs broker, trade-compliance reviewer, or trade counsel validate the recommendation against official tariff text and rulings before use.
+
+Risk: Product identifiers, materials, suppliers, and prior classifications may be commercially sensitive.
+
+Mitigation: Share only the product details needed for classification in an approved agent environment.
+
+Risk: Tariff schedules, trade-program measures, and AD/CVD scope issues can change or require agency-specific determinations.
+
+Mitigation: Verify current HTSUS, CN/TARIC, trade-program lists, and any AD/CVD scope questions with official sources or qualified counsel before filing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Customs brokers, trade-compliance analysts, importers, exporters, and trade counsel use this skill to draft a GRI-ordered tariff classification memo for a single product, including a recommended HTSUS or CN/TARIC code, ruling search list, reasonable-care record, and alternatives-rejected log for licensed review. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Tariff classifications, tariff notes, and trade measures may be incorrect or outdated if treated as final filing advice. <br>
-Mitigation: Use the output only as non-final trade-compliance drafting work; verify current official tariff sources and have a licensed customs broker or trade counsel review classifications before relying on them for filings. <br>
+**Output Format:** [Draft Markdown classification memo with structured intake, GRI analysis, ruling-search terms, reasonable-care record, and review-required labels.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/archlab-space/hs-tariff-classification) <br>
+**Other Properties Related to Output:** [Outputs are draft recommendations for licensed customs broker or trade-compliance review and do not file entries, transmit customs data, request binding rulings, or decide AD/CVD scope or origin questions.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Draft Markdown classification memo] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Labels outputs as draft material requiring licensed customs broker or trade-compliance review.] <br>
+0.1.1 (source: server evidence and changelog, released 2026-05-28)
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence and changelog, released 2026-05-28) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

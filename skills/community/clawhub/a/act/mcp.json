@@ -1,0 +1,139 @@
+{
+  "name": "act",
+  "version": "2.1.0",
+  "description": "活动发现与创建 — 搜索、查看详情、创建活动",
+  "mcp": "https://mcp.fore.vip",
+  "auth": {
+    "create": {
+      "header": "X-API-Key",
+      "note": "临时静态 Key，后续升级为数据库动态管理"
+    }
+  },
+  "tools": [
+    {
+      "name": "search_activities",
+      "description": "搜索/查询活动。提供经纬度时按距离由近到远排序，不提供时按热度（浏览数）排序。支持关键词搜索和类型筛选。关键词仅匹配活动标题和地址。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "keyword": { "type": "string", "description": "搜索关键词，模糊匹配内容(content)和地址(address)" },
+          "type": { "type": "string", "enum": ["sport", "culture", "volunteer", "other"], "description": "活动类型筛选" },
+          "latitude": { "type": "number", "description": "用户纬度，触发 geoNear 距离排序" },
+          "longitude": { "type": "number", "description": "用户经度，需配合 latitude" },
+          "page": { "type": "integer", "description": "页码，默认 1", "default": 1, "minimum": 1 },
+          "pageSize": { "type": "integer", "description": "每页条数，默认 10，上限 50", "default": 10, "minimum": 1, "maximum": 50 }
+        }
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "text": { "type": "string", "description": "自然语言摘要" },
+          "list": { "type": "array", "description": "结构化列表，geoNear 模式含 distance" },
+          "total": { "type": "number" },
+          "page": { "type": "integer" },
+          "pageSize": { "type": "integer" }
+        }
+      }
+    },
+    {
+      "name": "get_activity_detail",
+      "description": "查看活动详细信息，含内容、地址、时间、参与人数、发布者。调用后自动增加浏览量。",
+      "inputSchema": {
+        "type": "object",
+        "properties": { "id": { "type": "string", "description": "活动 _id" } },
+        "required": ["id"]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "_id": { "type": "string" },
+          "content": { "type": "string" }, "address": { "type": "string" },
+          "type": { "type": "string" }, "tags": { "type": "array" },
+          "cover": { "type": "string" }, "location": { "type": "object" },
+          "view_count": { "type": "number" }, "participant_count": { "type": "number" },
+          "creator_name": { "type": "string" },
+          "start_time": { "type": "number" }, "end_time": { "type": "number" }
+        }
+      }
+    },
+    {
+      "name": "create_activity",
+      "description": "创建新活动。需在 HTTP Header 中传入 X-API-Key 鉴权。content/address/cover 必填。cover 自动下载转存至云存储。系统自动填充 open=1、type=ai。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "content": { "type": "string", "description": "活动说明（必填，≤500 字）" },
+          "address": { "type": "string", "description": "活动地址（必填，≤128 字）" },
+          "cover": { "type": "string", "description": "封面图 URL（必填，自动转存至云存储）" },
+          "tags": { "type": "array", "items": { "type": "string" }, "description": "标签列表，最多 10 个" },
+          "latitude": { "type": "number", "description": "纬度（可选，与 longitude 配合生成 location）" },
+          "longitude": { "type": "number", "description": "经度（可选，与 latitude 配合生成 location）" },
+          "start_time": { "type": "number", "description": "开始时间 ms 时间戳（可选）" },
+          "end_time": { "type": "number", "description": "结束时间 ms 时间戳（可选，null=不限）" },
+          "max_participants": { "type": "integer", "description": "最大参与人数（默认 0=不限制）" },
+          "creator_name": { "type": "string", "description": "发布者昵称（可选）" }
+        },
+        "required": ["content", "address", "cover"]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "_id": { "type": "string", "description": "创建活动后的 _id" },
+          "url": { "type": "string", "description": "活动详情页链接" },
+          "content": { "type": "string" }, "address": { "type": "string" },
+          "type": { "type": "string", "description": "系统填充为 ai" },
+          "tags": { "type": "array" },
+          "cover": { "type": "string", "description": "云存储 URL" },
+          "location": { "type": "object" },
+          "status": { "type": "number" }, "open": { "type": "number", "description": "系统填充为 1" },
+          "view_count": { "type": "number" }, "participant_count": { "type": "number" },
+          "create_time": { "type": "number" }, "update_time": { "type": "number" }
+        }
+      }
+    },
+    {
+      "name": "list_activity_schedules",
+      "description": "查询指定活动下的行程列表，按开始时间升序。返回 schedule 表原始字段，不联表 guest 用户信息。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "activity_id": { "type": "string", "description": "活动 _id" },
+          "page": { "type": "integer", "description": "页码，默认 1", "default": 1, "minimum": 1 },
+          "pageSize": { "type": "integer", "description": "每页条数，默认 10，上限 50", "default": 10, "minimum": 1, "maximum": 50 }
+        },
+        "required": ["activity_id"]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "list": { "type": "array", "description": "行程列表，含 _id/activity_id/content/start_time/end_time/guest_id/in_progress/cps/creator/create_time" },
+          "total": { "type": "number", "description": "该活动下行程总数" },
+          "page": { "type": "integer" },
+          "pageSize": { "type": "integer" }
+        }
+      }
+    }
+  ],
+  "errors": {
+    "search": {
+      "empty": "text 字段提示「没有找到相关的活动」或「暂无可参与的活动」",
+      "invalid_params": "静默降级忽略"
+    },
+    "detail": {
+      "-1": "Missing activity id / Activity not found"
+    },
+    "create": {
+      "403": "Invalid or missing X-API-Key",
+      "-1": "content/address/cover 必填字段缺失或超长",
+      "-3": "封面转存失败（下载/上传异常），活动不创建",
+      "-2": "数据库写入失败"
+    }
+  },
+  "geo": {
+    "region": "CN-SZ",
+    "label": "深圳",
+    "center": [114.058, 22.543],
+    "note": "坐标格式 [lng, lat]（GeoJSON 标准）",
+    "coverage": "深圳市全域，约 80km 半径"
+  }
+}

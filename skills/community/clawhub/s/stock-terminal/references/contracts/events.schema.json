@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sentisense.ai/contracts/stock-terminal/events-2.0.schema.json",
+  "title": "Stock terminal host event protocol",
+  "description": "Version 2.0 renderer events. Sequence and transition rules are enforced by the reducer.",
+  "oneOf": [
+    { "$ref": "#/$defs/turnStart" },
+    { "$ref": "#/$defs/textDelta" },
+    { "$ref": "#/$defs/toolCall" },
+    { "$ref": "#/$defs/toolResult" },
+    { "$ref": "#/$defs/artifact" },
+    { "$ref": "#/$defs/turnEnd" }
+  ],
+  "$defs": {
+    "base": {
+      "type": "object",
+      "required": ["schemaVersion", "type", "turnId", "seq"],
+      "properties": {
+        "schemaVersion": { "const": "2.0" },
+        "type": { "type": "string" },
+        "turnId": { "$ref": "#/$defs/id" },
+        "seq": { "type": "integer", "minimum": 0, "maximum": 9007199254740991 }
+      }
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "pattern": "^[^\\s]+$"
+    },
+    "turnStart": {
+      "allOf": [
+        { "$ref": "#/$defs/base" },
+        {
+          "type": "object",
+          "required": ["shape"],
+          "properties": {
+            "schemaVersion": true,
+            "type": { "const": "turn_start" },
+            "turnId": true,
+            "seq": { "const": 0 },
+            "shape": { "enum": ["text", "canvas"] }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "textDelta": {
+      "allOf": [
+        { "$ref": "#/$defs/base" },
+        {
+          "type": "object",
+          "required": ["text"],
+          "properties": {
+            "schemaVersion": true,
+            "type": { "const": "text_delta" },
+            "turnId": true,
+            "seq": true,
+            "text": { "type": "string", "minLength": 1, "maxLength": 8192 }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "toolCall": {
+      "allOf": [
+        { "$ref": "#/$defs/base" },
+        {
+          "type": "object",
+          "required": ["callId", "toolId", "argSummary"],
+          "properties": {
+            "schemaVersion": true,
+            "type": { "const": "tool_call" },
+            "turnId": true,
+            "seq": true,
+            "callId": { "$ref": "#/$defs/id" },
+            "toolId": { "$ref": "#/$defs/id" },
+            "argSummary": { "type": "string", "minLength": 1, "maxLength": 96 }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "toolResult": {
+      "allOf": [
+        { "$ref": "#/$defs/base" },
+        {
+          "type": "object",
+          "required": ["callId", "status", "summary"],
+          "properties": {
+            "schemaVersion": true,
+            "type": { "const": "tool_result" },
+            "turnId": true,
+            "seq": true,
+            "callId": { "$ref": "#/$defs/id" },
+            "status": { "enum": ["success", "error"] },
+            "summary": { "type": "string", "minLength": 1, "maxLength": 2048 }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "artifact": {
+      "allOf": [
+        { "$ref": "#/$defs/base" },
+        {
+          "type": "object",
+          "required": ["artifactId", "kind", "body"],
+          "properties": {
+            "schemaVersion": true,
+            "type": { "const": "artifact" },
+            "turnId": true,
+            "seq": true,
+            "artifactId": { "$ref": "#/$defs/id" },
+            "kind": { "const": "canvas" },
+            "body": { "$ref": "canvas-2.0.schema.json" }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "turnEnd": {
+      "allOf": [
+        { "$ref": "#/$defs/base" },
+        {
+          "type": "object",
+          "required": ["status"],
+          "properties": {
+            "schemaVersion": true,
+            "type": { "const": "turn_end" },
+            "turnId": true,
+            "seq": true,
+            "status": { "enum": ["success", "error", "stopped"] },
+            "fallbackText": { "type": "string", "minLength": 1, "maxLength": 2048 }
+          },
+          "additionalProperties": false
+        }
+      ]
+    }
+  }
+}

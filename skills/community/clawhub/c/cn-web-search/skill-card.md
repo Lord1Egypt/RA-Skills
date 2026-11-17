@@ -1,42 +1,54 @@
-## Description: <br>
-Chinese web search skill that helps agents query public search engines and websites for Chinese, English, WeChat, finance, technical, macroeconomic, U.S. stock, sentiment, and Pre-IPO information without requiring an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CN Web Search helps agents search Chinese and English web sources across 28 free search engines and content sites using webpage fetches without API keys.
 
-## Publisher: <br>
-[joansongjr](https://clawhub.ai/user/joansongjr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joansongjr](https://clawhub.ai/user/joansongjr)
 
-## Use Case: <br>
-Developers and agents use this skill to compose web-fetch searches across multiple public Chinese, English, finance, technical, macroeconomic, sentiment, and IPO sources. It is suited for gathering current public web results that should be reviewed and cross-checked before use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to external public search engines and websites. <br>
-Mitigation: Do not include secrets, credentials, private company data, personal data, or regulated information in queries. <br>
-Risk: Fetched web content can be incomplete, stale, or untrusted. <br>
-Mitigation: Verify important results against authoritative sources before relying on them for decisions. <br>
-Risk: Server evidence reports unavailable provenance and notes inconsistent visible metadata. <br>
-Mitigation: Verify the installed version and publisher before using the skill where provenance matters. <br>
+## Use Case:
 
+Developers and agents use this skill to route Chinese, English, finance, technical, encyclopedia, macroeconomic, and pre-IPO queries to public web search and content sources for current information gathering.
 
-## Reference(s): <br>
-- [CN Web Search on ClawHub](https://clawhub.ai/joansongjr/cn-web-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with URL templates and web_fetch command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search queries may be sent to external public search engines and websites.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.0 (source: server release metadata and frontmatter) <br>
+Risk: Search terms are sent to third-party search engines and content sites.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential, personal, legal, medical, or sensitive business queries when using broad third-party engines.
+
+Risk: Fetched search results may vary by third-party ranking, availability, and webpage scraping behavior.
+
+Mitigation: Cross-check important findings across multiple sources before using them in decisions or downstream outputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/joansongjr/skills/cn-web-search)
+- [Publisher profile](https://clawhub.ai/user/joansongjr)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands]
+
+**Output Format:** [Markdown with URL templates and web_fetch examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+2.4.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

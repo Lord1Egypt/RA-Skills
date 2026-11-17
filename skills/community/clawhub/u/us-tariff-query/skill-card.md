@@ -1,38 +1,57 @@
-## Description: <br>
-查美国对XX产品的最新关税政策/税率变化/豁免条款。无需API Key，安装即用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries public U.S. tariff policy, rate changes, and exemption information for a product name or HS code without requiring an API key.
 
-## Publisher: <br>
-[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack)
 
-## Use Case: <br>
-External trade, ecommerce, supply-chain, and policy users use this skill to research current U.S. tariff policies, rates, exemptions, and compliance considerations for products or HS codes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tariff rates, exemptions, and trade-policy requirements can change quickly and may be time-sensitive. <br>
-Mitigation: Treat outputs as research assistance and verify rates, exemptions, and legal compliance against current official U.S. sources before acting. <br>
+## Use Case:
 
+External users such as cross-border ecommerce sellers, trade teams, supply-chain managers, and policy researchers use this skill to look up current U.S. tariff rates, policy changes, exemptions, and compliance considerations for products or HS codes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yezhaowang888-stack/us-tariff-query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summary with tariff data, source-oriented context, exemptions, compliance notes, and risk guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use web search and web fetch tools to gather time-sensitive tariff information; official sources should be checked before operational or legal decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and _meta.json) <br>
+Risk: Tariff rates, exclusions, and trade-policy requirements may change quickly or be misapplied to a product classification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify legal or trade decisions against current official U.S. notices and source records before acting.
+
+Risk: The skill is documented primarily in Chinese, which may affect usability for teams that require English-language operating guidance.
+
+Mitigation: Confirm that installers and reviewers understand the language posture and provide local usage guidance where needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yezhaowang888-stack/skills/us-tariff-query)
+- [U.S. International Trade Commission](https://www.usitc.gov/)
+- [U.S. Customs and Border Protection Trade](https://www.cbp.gov/trade)
+- [Office of the United States Trade Representative](https://ustr.gov/)
+- [Federal Register](https://www.federalregister.gov/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Markdown]
+
+**Output Format:** [Markdown text with tariff summaries, rate details, exemption notes, and compliance guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include summarized current rates, recent policy changes, Section 301 status, exemption timelines, and official-source caveats.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,67 @@
-## Description: <br>
-WeCom Task Manager helps authorized agents manage enterprise WeCom smart-sheet tasks and goals, including creation, progress updates, status reporting, filtering, dependency handling, and completion workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage, track, and update enterprise WeCom tasks and goals with creation, progress updates, status reporting, filtering, and dependency handling for authorized agents.
 
-## Publisher: <br>
-[jhzheng222](https://clawhub.ai/user/jhzheng222) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jhzheng222](https://clawhub.ai/user/jhzheng222)
 
-## Use Case: <br>
-Teams and authorized agents use this skill to coordinate work in a WeCom smart sheet: tracking task lifecycle state, decomposing goals into executable tasks, finding the next task, and generating status and statistics reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change or delete live task data in the configured WeCom smart sheet. <br>
-Mitigation: Use it only with a dedicated WeCom sheet and require explicit confirmation before delete_task or delete_goal operations. <br>
-Risk: The security review reports an unsafe command-execution pattern around mcporter calls. <br>
-Mitigation: Review and replace shell=True mcporter execution with argv-based subprocess calls before production installation. <br>
-Risk: Agent identity is used as part of the access-control flow. <br>
-Mitigation: Do not rely on AGENT_ID alone as an authorization boundary; pair it with trusted publisher review and environment-level controls. <br>
+## Use Case:
 
+Developers and operations teams use this skill to coordinate WeCom-backed task and goal records, including task creation, lifecycle updates, dependency-aware next-task selection, reminders, filtering, and status reporting.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jhzheng222/wecom-task-manager) <br>
-- [API reference](references/api.md) <br>
-- [Quickstart guide](QUICKSTART.md) <br>
-- [Priority levels](PRIORITY_LEVELS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python API examples, shell commands, JSON configuration, and task status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read, create, update, or delete records in the configured WeCom smart sheet when invoked by an authorized agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: server release evidence) <br>
+Risk: The skill can modify or delete shared WeCom task records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing in any shared or production WeCom workspace and require explicit confirmation for delete operations.
+
+Risk: Access controls are too weak for the authority granted to task and goal APIs.
+
+Mitigation: Replace AGENT_ID-based authorization with a trusted runtime identity and add authorization checks to all goal APIs.
+
+Risk: Hardcoded document and sheet fallbacks could target unintended shared records.
+
+Mitigation: Remove hardcoded doc and sheet fallbacks and require explicit configuration for each workspace.
+
+Risk: mcporter invocation behavior needs review before production use.
+
+Mitigation: Change mcporter calls to use argument arrays with shell=False.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jhzheng222/skills/wecom-task-manager)
+- [API reference](references/api.md)
+- [Quickstart guide](QUICKSTART.md)
+- [Priority levels](PRIORITY_LEVELS.md)
+- [Enterprise WeChat smart sheet API](https://open.work.weixin.qq.com/devtool/query?e=2022034)
+- [mcporter tool documentation](https://github.com/openclaw/mcporter)
+- [OpenClaw AgentSkills specification](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples plus JSON configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call WeCom smart-sheet APIs through mcporter and may create, update, or delete shared task and goal records.]
+
+## Skill Version(s):
+
+1.2.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

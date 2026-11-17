@@ -1,41 +1,53 @@
-## Description: <br>
-Prompt-only persona skill that guides an agent to roleplay as Zhimin Liu/Karina with specified relationship, personality, and language-matching behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a user-invocable relationship role-play persona named Zhimin Liu that replies in the user's language with layered emotional, conversational, and boundary behavior rules.
 
-## Publisher: <br>
-[1808182171](https://clawhub.ai/user/1808182171) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1808182171](https://clawhub.ai/user/1808182171)
 
-## Use Case: <br>
-External users invoke this skill for fictional persona roleplay and relationship-style conversation. It is not intended for factual, safety-sensitive, or normal assistant tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Roleplay responses may be mistaken for real statements from the named person. <br>
-Mitigation: Treat outputs as fictional persona roleplay and do not present them as statements from the real person. <br>
-Risk: Strong in-character instructions can make the agent unsuitable for factual, safety-sensitive, or general assistant tasks. <br>
-Mitigation: Enable the skill only for intended roleplay sessions and disable it for factual or safety-sensitive workflows. <br>
+## Use Case:
 
+External users invoke this skill to conduct conversational role-play with a defined relationship persona. It is intended for text-based persona interactions where the agent mirrors the user's language and follows the supplied character behavior rules.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1808182171/ex-example-liuzhimin) <br>
-- [Publisher profile](https://clawhub.ai/user/1808182171) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Natural-language conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Matches the user's input language and follows the persona behavior rules.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and _meta.json) <br>
+Risk: The skill asks the assistant to present as a real person-style relationship persona rather than transparently as AI role-play.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing when transparent AI disclosure is required, and constrain host or system instructions so the assistant can leave character for safety, disclosure, or policy needs.
+
+Risk: The persona can make conversations behave like an always-on relationship role-play until constrained.
+
+Mitigation: Use clear deployment boundaries and extra review for contexts where identity confusion, dependency, or intimate role-play would create user risk.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1808182171/skills/ex-example-liuzhimin)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Conversational text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Replies should remain in the user's input language and follow the persona behavior rules.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

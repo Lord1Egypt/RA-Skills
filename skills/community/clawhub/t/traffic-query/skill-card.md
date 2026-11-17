@@ -1,40 +1,54 @@
-## Description: <br>
-Query and organize China travel information for flights and trains, including schedules, prices, duration, stops, and summary tables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query and organize China travel information for flights and trains, including schedules, prices, duration, stops, and summary tables.
 
-## Publisher: <br>
-[LiuBroth](https://clawhub.ai/user/LiuBroth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liubroth](https://clawhub.ai/user/liubroth)
 
-## Use Case: <br>
-Employees, external users, developers, and travel planners use this skill to query China domestic flight and train options, normalize visible schedules and prices, and summarize the best choices with caveats about source quality. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel result pages may expose itinerary details or other personal travel context selected by the user. <br>
-Mitigation: Only connect filtered travel result pages intended for summarization, and avoid exposing passenger or payment details unnecessarily. <br>
-Risk: Prices, inventory, and availability can change or depend on booking site state, region, login status, seat class, or cabin. <br>
-Mitigation: Verify final fares and availability on the booking site before acting. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to query domestic China flight and train options, normalize messy booking or timetable results, and summarize schedules, prices, duration, stops, and source caveats.
 
-## Reference(s): <br>
-- [Traffic Query Sources](references/sources.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries with compact option lists and caveats] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries may include schedules, prices, duration, stops, seat or cabin details, source notes, and partial-result labels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata and README) <br>
+Risk: Travel result pages can be dynamic, incomplete, or affected by login state, region, inventory, and source-specific pricing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the agent's summary against the opened or cited result page before relying on prices, availability, or completeness.
+
+Risk: City-level routes and shared-code flight rows can cause duplicate or mismatched travel options.
+
+Mitigation: Confirm exact airports or stations, route date, and duplicate shared-code rows when comparing options.
+
+## Reference(s):
+
+- [Traffic Query Sources](artifact/references/sources.md)
+- [Traffic Query ClawHub Release](https://clawhub.ai/liubroth/skills/traffic-query)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with compact travel option summaries and caveats]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summaries may include normalized flight or train fields, highlights such as earliest or cheapest options, and notes about incomplete or source-dependent data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and README)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

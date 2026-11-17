@@ -1,44 +1,60 @@
-## Description: <br>
-Oura Ring data source for OpenClaw (Tier 1). Use to connect an Oura account using an Oura Personal Access Token, fetch Oura v2 usercollection data (sleep, readiness, activity), normalize it into a stable daily JSON shape for the Wellness hub, and render a short summary message for any chat channel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Oura Ring data source for OpenClaw (Tier 1). Use to connect an Oura account using an Oura Personal Access Token, fetch Oura v2 usercollection data (sleep, readiness, activity), normalize it into a stable daily JSON shape for the Wellness hub, and render a short summary message for any chat channel.
 
-## Publisher: <br>
-[gavinchengcool](https://clawhub.ai/user/gavinchengcool) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gavinchengcool](https://clawhub.ai/user/gavinchengcool)
 
-## Use Case: <br>
-Developers and agents use this skill to connect an Oura account with a Personal Access Token, fetch daily sleep, readiness, and activity data, normalize it for a Wellness hub, and render a short channel-aware summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Oura Personal Access Token grants access to wellness data if exposed. <br>
-Mitigation: Store OURA_ACCESS_TOKEN in a protected environment or secret store and rotate it if exposure is suspected. <br>
-Risk: Generated raw and normalized JSON files can contain private health and activity data. <br>
-Mitigation: Write outputs only to trusted local paths, restrict sharing, and treat generated files as private health data. <br>
+## Use Case:
 
+External users and developers use this skill to fetch daily Oura sleep, readiness, and activity data with a Personal Access Token, normalize it for a Wellness hub, and produce a concise text or Markdown digest.
 
-## Reference(s): <br>
-- [Oura API quick reference](references/oura_api.md) <br>
-- [Output schema](references/output_schema.md) <br>
-- [Oura API v2 base](https://api.ouraring.com/v2) <br>
-- [Publisher profile](https://clawhub.ai/user/gavinchengcool) <br>
-- [ClawHub skill page](https://clawhub.ai/gavinchengcool/openclaw-oura) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON files, Shell commands, Configuration] <br>
-**Output Format:** [Markdown or plain text summary plus normalized JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OURA_ACCESS_TOKEN; optional OURA_TZ controls date resolution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Sensitive Oura health data may be written to predictable temporary files or retained longer than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use private, user-owned output directories, restrict file access, and delete raw exports when no longer needed.
+
+Risk: The Oura Personal Access Token can expose user health data if it is logged, shared, or stored insecurely.
+
+Mitigation: Protect OURA_ACCESS_TOKEN like a password, provide it through a local environment or secret manager, and avoid committing or printing it.
+
+Risk: Using the default timezone can fetch or summarize the wrong local day.
+
+Mitigation: Set OURA_TZ or --tz explicitly for the user's actual timezone before fetching data.
+
+## Reference(s):
+
+- [Oura API quick reference](references/oura_api.md)
+- [Wellness hub output schema](references/output_schema.md)
+- [Oura API v2](https://api.ouraring.com/v2)
+- [ClawHub skill page](https://clawhub.ai/gavinchengcool/skills/openclaw-oura)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Normalized JSON files plus text or Markdown summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses OURA_ACCESS_TOKEN and optional OURA_TZ or --tz; fetches sleep, readiness, and daily activity for a requested day.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

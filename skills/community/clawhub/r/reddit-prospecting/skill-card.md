@@ -1,41 +1,62 @@
-## Description: <br>
-Find buying-intent leads on Reddit via Brave Search without Reddit account credentials, then score prospects and draft value-first comment structures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find buying-intent leads on Reddit via Brave Search, without a Reddit account or OAuth, then score posts and generate value-first comments.
 
-## Publisher: <br>
-[3rdbrain](https://clawhub.ai/user/3rdbrain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[3rdbrain](https://clawhub.ai/user/3rdbrain)
 
-## Use Case: <br>
-Sales, growth, and developer-relations teams use this skill to find Reddit discussions that show buying intent, prioritize prospects, and prepare helpful reply structures. It supports manual review workflows rather than automated posting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms and prospecting queries are sent to Brave Search when BRAVE_API_KEY is configured. <br>
-Mitigation: Use only queries appropriate for Brave Search and avoid including confidential customer, account, or internal strategy details. <br>
-Risk: Generated comments or post templates may be inaccurate, overly promotional, or misaligned with subreddit rules. <br>
-Mitigation: Manually review every generated response for accuracy, disclosure, and subreddit rule compliance before posting. <br>
+## Use Case:
 
+Sales, marketing, and developer relations users use this skill to find Reddit discussions with buying intent through Brave Search, score prospects, and draft value-first response structures.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/3rdbrain/reddit-prospecting) <br>
-- [Brave Search API](https://api.search.brave.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and console text with structured prospect analysis, scoring summaries, and comment outlines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BRAVE_API_KEY for search; generated comments and prospect scores should be manually reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Risk: The skill sends configured search queries to Brave Search and requires a Brave Search API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide BRAVE_API_KEY only in trusted agent environments and avoid submitting confidential or sensitive prospecting queries.
+
+Risk: Search result titles, snippets, and URLs are untrusted terminal output, and the security evidence notes terminal-output hygiene issues.
+
+Mitigation: Treat displayed search results as untrusted, avoid copying terminal control characters, and prefer a sanitized release before using the output in automation.
+
+Risk: The artifact includes local post-template and metrics helpers beyond the three commands described in SKILL.md.
+
+Mitigation: Use the documented search, score, and comment commands unless the additional helpers are separately reviewed for the intended workflow.
+
+Risk: Generated comment or engagement guidance could be used in ways that conflict with subreddit rules or disclosure expectations.
+
+Mitigation: Review subreddit rules, disclose product affiliations when relevant, and keep comments value-first rather than promotional.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/3rdbrain/skills/reddit-prospecting)
+- [Brave Search API](https://api.search.brave.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown-style structured guidance from Node.js CLI commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BRAVE_API_KEY for search; score and comment helpers can run from provided arguments.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

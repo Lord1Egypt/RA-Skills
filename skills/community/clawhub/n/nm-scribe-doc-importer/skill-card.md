@@ -1,41 +1,59 @@
-## Description: <br>
-Converts external documents (PDF, DOCX, PPTX, XLSX, HTML) into editable markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts external documents (PDF, DOCX, PPTX, XLSX, HTML) into editable markdown.
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers, documentation authors, and agents use this skill to convert PDF, DOCX, PPTX, XLSX, or HTML content into cleaned, sanitized markdown drafts for project documentation or rewriting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The default output path may place a .md draft beside the source document, which could be ambiguous or overwrite an expected draft. <br>
-Mitigation: Confirm the destination path before writing, especially when a markdown file may already exist next to the source document. <br>
-Risk: External documents may contain embedded instructions, oversized sections, or conversion artifacts that could distort the imported markdown. <br>
-Mitigation: Apply the content-sanitization checklist, wrap external content in boundary markers, truncate oversized sections, and mark unclear content for review. <br>
+## Use Case:
 
+Developers, writers, and documentation maintainers use this skill to import PDFs, office documents, spreadsheets, slide decks, and HTML into editable markdown for rewriting, cleanup, or project integration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-scribe-doc-importer) <br>
-- [Scribe plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/scribe) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Guidance] <br>
-**Output Format:** [Markdown draft with cleanup notes and review markers when conversion artifacts are unclear] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a .md draft beside the source document or to a user-confirmed target path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: release metadata; artifact frontmatter reports 1.9.8) <br>
+Risk: The skill may activate on broad document-related wording.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when external-file conversion to markdown is intended, and review whether the activation matches the user's request.
+
+Risk: The skill can write a converted markdown draft to a target path.
+
+Mitigation: Review or confirm the output path before allowing the draft file to be written.
+
+Risk: Imported external documents can include embedded instructions or conversion artifacts.
+
+Mitigation: Apply the documented sanitization and cleanup steps, including stripping instruction tags, bounding external content, and marking unclear sections for review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-scribe-doc-importer)
+- [ClawHub publisher profile](https://clawhub.ai/user/athola)
+- [clawdis homepage](https://github.com/athola/claude-night-market/tree/master/plugins/scribe)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, files, guidance]
+
+**Output Format:** [Markdown document drafts with conversion notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write a draft markdown file to a user-confirmed target path and report conversion limitations.]
+
+## Skill Version(s):
+
+1.9.19 (source: server release metadata; artifact frontmatter lists 1.9.8)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

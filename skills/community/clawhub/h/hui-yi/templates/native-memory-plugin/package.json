@@ -1,0 +1,11 @@
+{
+  "name": "hui-yi-native-memory",
+  "version": "1.2.13",
+  "private": true,
+  "type": "module",
+  "description": "Fail-closed webchat adapter for the public OpenClaw primary-memory trigger cache",
+  "openclaw": {
+    "extensions": ["./index.mjs"],
+    "compat": { "pluginApi": ">=2026.9.5" }
+  }
+}

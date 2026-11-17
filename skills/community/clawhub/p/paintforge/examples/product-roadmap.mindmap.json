@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "diagram_type": "mindmap",
+  "meta": {
+    "title": "Product Roadmap",
+    "output": "examples/mindmap-product-roadmap-rendered.html",
+    "quality_profile": "showcase",
+    "views": [
+      { "id": "growth", "label": "Growth", "focus": ["growth", "referrals", "seo"], "note": "The growth initiatives branch." },
+      { "id": "platform", "label": "Platform", "focus": ["platform", "api", "observability"], "note": "The platform foundations branch." },
+      { "id": "retention", "label": "Retention", "focus": ["retention", "onboarding", "notifications"], "note": "The retention and engagement branch." }
+    ]
+  },
+  "root": {
+    "id": "roadmap",
+    "label": "Q3 Roadmap"
+  },
+  "topics": [
+    { "id": "growth", "label": "Growth", "parent": "roadmap", "variant": "emphasis" },
+    { "id": "referrals", "label": "Referral program", "parent": "growth" },
+    { "id": "seo", "label": "SEO landing pages", "parent": "growth" },
+    { "id": "retention", "label": "Retention", "parent": "roadmap", "variant": "emphasis" },
+    { "id": "onboarding", "label": "Onboarding flow", "parent": "retention" },
+    { "id": "notifications", "label": "Smart notifications", "parent": "retention" },
+    { "id": "platform", "label": "Platform", "parent": "roadmap", "variant": "emphasis" },
+    { "id": "api", "label": "Public API", "parent": "platform" },
+    { "id": "observability", "label": "Observability", "parent": "platform" }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Three themes",
+      "items": [
+        "Growth, retention, and platform are the three emphasis branches",
+        "Each theme fans out into concrete initiatives",
+        "The central topic sits left with branches flowing right"
+      ]
+    }
+  ]
+}

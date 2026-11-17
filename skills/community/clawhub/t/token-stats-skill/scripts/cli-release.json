@@ -1,0 +1,34 @@
+{
+  "version": "0.1.0",
+  "source_commit": "df44be1c7c8a",
+  "release_url": "https://github.com/baijian/token-stats/releases/tag/v0.1.0",
+  "verified_at": "2026-11-05",
+  "trust_note": "Hashes were cross-checked against release checksums and GitHub asset digests. They pin publisher artifacts; they are not an independent code audit or a signature.",
+  "artifacts": {
+    "darwin_amd64": {
+      "archive": "token-stats_v0.1.0_darwin_amd64.tar.gz",
+      "archive_sha256": "7eb76cdcdaf419ad2e70a7309de8ac4eb1dbecebe6a5c2f2acc5f0655da8557a",
+      "binary_sha256": "e475768c8843194dc11276949100748eead062ab7e073351beda582c000cae7d"
+    },
+    "darwin_arm64": {
+      "archive": "token-stats_v0.1.0_darwin_arm64.tar.gz",
+      "archive_sha256": "cc2a6665351add3c1957a297d578b6a43546cb3433fb2ad4bc63f1240b1dbcdf",
+      "binary_sha256": "2467f3300412fab783fa93f01f1b7464f86c33c56c51ef201bc10c1d402b4b44"
+    },
+    "linux_amd64": {
+      "archive": "token-stats_v0.1.0_linux_amd64.tar.gz",
+      "archive_sha256": "37fabf73db38d86638e321fe960f22446659a1121b57beb1163460bd5c00d8de",
+      "binary_sha256": "af40face85e0e1ee37aacd9c108655fade53753de92bd0b55a5cab91f7e438e1"
+    },
+    "linux_arm64": {
+      "archive": "token-stats_v0.1.0_linux_arm64.tar.gz",
+      "archive_sha256": "6fb0046737361890aab721b14aab6fdd0504c038ab38d70dcd8b978cb8dddd49",
+      "binary_sha256": "9a7e6b7f25697b313928d36c6a42b2d58ab71a1f8508c681d33095f988177b85"
+    },
+    "windows_amd64": {
+      "archive": "token-stats_v0.1.0_windows_amd64.tar.gz",
+      "archive_sha256": "fb26780381839e11afdb46af4ca1e5963af5d6dca67c7a9d1f57cb118874fee2",
+      "binary_sha256": "e942c4c9fc2aa8b963d7de362dc996d1b973605ab98aaad215ffb8052e12ee25"
+    }
+  }
+}

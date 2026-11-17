@@ -1,6 +1,123 @@
 {
-  "ownerId": "kn70x62a7ex7bxq5qve2xp5pwd82qn7z",
-  "slug": "beep-skills",
-  "version": "2.2.1",
-  "publishedAt": 1777372998627
+  "name": "beep-skills",
+  "version": "2.2.0",
+  "description": "Real-time voice announcements for OpenClaw actions. | 实时语音播报AI的一举一动。",
+  "display_name": "Beep · 小喇叭",
+  "author": "miaoweilin",
+  "license": "MIT",
+  "tags": [
+    "audio",
+    "tts",
+    "announcement",
+    "voice",
+    "broadcast",
+    "beep",
+    "小喇叭"
+  ],
+  "capabilities": [
+    "text-to-speech",
+    "workflow-integration",
+    "one-click-verification"
+  ],
+  "changelog": {
+    "2.2.0": [
+      "🛡️ 防遗忘机制（6层防线）：openclaw.json hooks + BOOTSTRAP.md + AGENTS/MEMORY/IDENTITY",
+      "📁 文件集成规则：SKILL.md 明确说明需要在哪些文件中加入什么播报规则",
+      "📝 SKILL.md 重构：精简为纯技能文档，移除非技能内容",
+      "⚙️ openclaw.json hooks：每次会话启动自动运行自检脚本",
+      "📋 BOOTSTRAP.md：新会话自动加载播报规则速查表"
+    ],
+    "2.1.0": [
+      "🎉 新增：一键集成验证命令 `beep verify-integration`",
+      "🔧 稳定性增强：重试机制（3次指数退避）、播放降级（pygame→shell→日志）",
+      "⚙️ 配置热重载：`beep config reload` 无需重启",
+      "🗑️ LRU 缓存优化：自动清理旧文件，默认保留最新100个",
+      "📝 结构化日志：时间戳+级别+消息，支持DEBUG/INFO/WARNING/ERROR",
+      "📊 运行时统计：缓存大小、成功率、运行时间",
+      "🐛 修复：配置读取bug、方法缺失、函数名错误、重复定义",
+      "🎨 品牌升级：英文名 Beep，中文名 小喇叭"
+    ],
+    "2.0.8": [
+      "✅ 播报本地化 - 所有播报仅在本机后台播放，不发送语音文件到聊天",
+      "✅ 统一包装脚本 - scripts/announce.py 自动解析 skill 路径",
+      "✅ 默认音量优化 - 配置文件默认 volume=0.1（10%）",
+      "✅ CLI 工具修复 - 修复 pygame 导入问题，提升 Windows 稳定性",
+      "✅ 文档全面升级 - MEMORY.md / AGENTS.md / TOOLS.md 统一管理"
+    ],
+    "2.0.7": [
+      "✅ PyPI 支持 - pip install beep-announcement",
+      "✅ 配置文件系统 - ~/.config/audio-announcement/config.json",
+      "✅ 异步默认化 - 默认后台播放，减少阻塞",
+      "✅ CLI 工具 - audio-announce 命令支持测试、配置、统计"
+    ],
+    "2.0.6": [
+      "✅ 防遗忘机制 - 启动自检 + 身份绑定",
+      "✅ 快速集成指南 - announce_helper.py 简化集成",
+      "✅ 强制规则模板 - 可直接复制到 AGENTS.md"
+    ],
+    "1.5.0-1.7.4": [
+      "Windows 11 完整支持，新增 announce_pygame.py",
+      "简化 Windows 使用",
+      "清理无用测试脚本"
+    ]
+  },
+  "requirements": {
+    "python": ">=3.9",
+    "packages": [
+      "edge-tts",
+      "pygame"
+    ],
+    "platform_packages": {
+      "linux": [
+        "mpg123"
+      ],
+      "macos": [
+        "afplay"
+      ]
+    }
+  },
+  "scripts": {
+    "main": "beep",
+    "compat": "audio-announce",
+    "announce": "scripts/announce.py",
+    "announce_pygame": "audio_announcement/scripts/announce_pygame.py"
+  },
+  "commands": {
+    "beep": {
+      "description": "Beep · 小喇叭 主命令",
+      "subcommands": {
+        "test": "测试所有类型播报",
+        "config": "查看/设置配置",
+        "verify-integration": "一键验证集成（新增！）",
+        "stats": "查看统计信息",
+        "enable": "启用播报",
+        "disable": "禁用播报",
+        "check": "运行环境自检"
+      }
+    },
+    "audio-announce": {
+      "description": "兼容旧命令（向后兼容）",
+      "note": "所有功能与 beep 命令相同，建议迁移到 beep"
+    }
+  },
+  "integration": {
+    "files": [
+      "AGENTS.md - Session Startup 第6项检查 beep",
+      "SOUL.md - 核心特质：每次交互必须播报",
+      "IDENTITY.md - 强制播报规则",
+      "MEMORY.md - 长期记忆与防遗忘机制"
+    ],
+    "auto_check": "scripts/startup_check_announcement.py",
+    "helper_class": "beep.announce_helper.AnnouncementHelper"
+  },
+  "brand": {
+    "english_name": "Beep",
+    "chinese_name": "小喇叭",
+    "full_name": "Beep · 小喇叭",
+    "slogan": "让电脑会说话",
+    "pronunciation": {
+      "en": "/biːp/",
+      "zh": "/xiǎo lǎ ba/"
+    }
+  }
 }

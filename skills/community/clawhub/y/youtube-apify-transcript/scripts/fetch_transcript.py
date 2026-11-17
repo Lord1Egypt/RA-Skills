@@ -221,6 +221,14 @@ def run_apify_actor(video_url, api_token, language=None, actor_id=None):
     # topaz_sharingan actor uses startUrls format
     if actor_id == "topaz_sharingan~Youtube-Transcript-Scraper-1":
         input_data = {"startUrls": [{"url": video_url}]}
+        if language:
+            print(
+                f"Warning: --lang {language} is ignored. The default actor "
+                f"{actor_id} takes no language input and returns whatever track "
+                "the video provides. Use --actor karamelo~youtube-transcripts "
+                "or starvibe~youtube-video-transcript to select a language.",
+                file=sys.stderr,
+            )
     elif actor_id == "pintostudio~youtube-transcript-scraper":
         input_data = {"videoUrl": video_url}
     elif actor_id == "starvibe~youtube-video-transcript":
@@ -509,7 +517,7 @@ def process_batch(batch_file, api_token, use_cache, language, output_json, actor
     print(f"\n{'='*40}", file=sys.stderr)
     print(f"Batch complete: {fetched} fetched, {cached} cached, {failed} failed", file=sys.stderr)
     if fetched > 0:
-        print(f"[Cost: ~${fetched * 0.007:.3f} for {fetched} API call(s)]", file=sys.stderr)
+        print(f"[Cost: ~${fetched * 0.01:.2f} for {fetched} API call(s)]", file=sys.stderr)
     
     return results
 
@@ -562,7 +570,8 @@ def main():
     )
     parser.add_argument(
         "--lang", "-l",
-        help="Preferred transcript language (e.g., 'en', 'de')"
+        help="Preferred transcript language (e.g., 'en', 'de'). Ignored by the default actor; "
+             "supported by --actor karamelo~youtube-transcripts and starvibe~youtube-video-transcript"
     )
     parser.add_argument(
         "--actor",
@@ -652,7 +661,7 @@ def main():
         print(output)
     
     if not from_cache:
-        print("\n[Cost: ~$0.007 per video]", file=sys.stderr)
+        print("\n[Cost: ~$0.01 per video]", file=sys.stderr)
 
 
 if __name__ == "__main__":

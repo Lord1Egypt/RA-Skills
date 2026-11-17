@@ -1,45 +1,60 @@
-## Description: <br>
-Converts legal PDFs and scanned documents into editable Markdown with PaddleOCR-based structure extraction, table recognition, formula recognition, layout analysis, and traceable archive outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PaddleOCR converts legal PDFs and scanned document images into Markdown with structured OCR outputs and a traceable local archive.
 
-## Publisher: <br>
-[cat-xierluo](https://clawhub.ai/user/cat-xierluo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[cat-xierluo](https://clawhub.ai/user/cat-xierluo)
 
-## Use Case: <br>
-Legal professionals, developers, and document-processing teams use this skill to convert local PDFs or common image files into Markdown for legal review, evidence extraction, knowledge-base ingestion, and downstream analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive documents may be sent to a configured OCR API endpoint. <br>
-Mitigation: Use only a trusted local or controlled endpoint for privileged legal, medical, or confidential records, and use page selection to minimize uploaded content. <br>
-Risk: The workflow can save local copies of source files, extracted text, JSON results, and images in an archive. <br>
-Mitigation: Use no-archive mode when retention is not needed, and delete generated archives and image folders after review. <br>
-Risk: Network behavior depends on the configured OCR endpoint and token. <br>
-Mitigation: Review the endpoint configuration before execution and avoid running the skill against endpoints that are not approved for the document sensitivity. <br>
+## Use Case:
 
+Developers, legal operations teams, and agents use this skill to convert legal PDFs, case files, medical records, evidence scans, tables, formulas, and complex layouts into editable Markdown and archived JSON outputs for review or downstream analysis.
 
-## Reference(s): <br>
-- [Output structure reference](references/output_schema.md) <br>
-- [PaddleOCR official site](https://www.paddleocr.com) <br>
-- [ClawHub skill page](https://clawhub.ai/cat-xierluo/paddle-ocr) <br>
-- [Metadata homepage](https://github.com/cat-xierluo/legal-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration] <br>
-**Output Format:** [Markdown files with JSON archive artifacts and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write an archive containing the source file copy, result Markdown, result JSON, batch JSON files, extracted images, and metadata; supports page selection and a no-archive mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata, skill frontmatter, CHANGELOG) <br>
+Risk: Sensitive legal, medical, financial, or evidence files may be uploaded to the configured OCR service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted PaddleOCR endpoint and prefer limited page ranges for sensitive documents.
+
+Risk: The skill keeps local archives by default, which may retain sensitive source files, OCR text, JSON, and extracted images.
+
+Mitigation: Use --no-archive when retention is not appropriate and review archive storage permissions before processing sensitive files.
+
+Risk: Output image directories can be replaced during conversion.
+
+Mitigation: Avoid choosing output paths where an existing *_images directory contains important files.
+
+## Reference(s):
+
+- [PaddleOCR official site](https://www.paddleocr.com)
+- [Output schema](references/output_schema.md)
+- [ClawHub skill page](https://clawhub.ai/cat-xierluo/skills/paddle-ocr)
+- [Project homepage](https://github.com/cat-xierluo/legal-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, JSON, Files, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown files, JSON archive files, local file paths, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a local archive by default; optional page ranges and output paths can narrow processing.]
+
+## Skill Version(s):
+
+1.1.1 (source: frontmatter and changelog, released 2026-04-05)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

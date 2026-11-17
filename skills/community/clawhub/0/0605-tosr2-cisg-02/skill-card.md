@@ -1,48 +1,63 @@
-## Description: <br>
-Analyze stocks and cryptocurrencies using Yahoo Finance data, with portfolio management, watchlists with alerts, dividend analysis, stock scoring, viral trend detection, and rumor or early signal detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes stocks and cryptocurrencies using Yahoo Finance data, with portfolio management, watchlists, dividend analysis, stock scoring, trend detection, and rumor scanning.
 
-## Publisher: <br>
-[yinwuzhe](https://clawhub.ai/user/yinwuzhe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yinwuzhe](https://clawhub.ai/user/yinwuzhe)
 
-## Use Case: <br>
-External users and developers use this skill to generate stock, crypto, portfolio, watchlist, dividend, hot-market, and rumor-signal analyses from market and news data. It is intended for informational finance workflows and should not be treated as financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional social scanning can use live Twitter/X session credentials through AUTH_TOKEN and CT0. <br>
-Mitigation: Prefer finance scans without social data or use --no-social; if social scanning is required, keep credentials out of git and logs, restrict file permissions, and rotate or revoke exposed tokens. <br>
-Risk: The Twitter/X workflow can require trusting the bird CLI and may request broad local browser access. <br>
-Mitigation: Do not grant Terminal Full Disk Access or browser-cookie access unless the operator explicitly accepts that workflow; use the least-privileged token setup available. <br>
-Risk: Finance outputs may be stale, incomplete, or unsuitable for investment decisions. <br>
-Mitigation: Treat outputs as informational analysis, review source data freshness and caveats, and require qualified human review before trading or investment use. <br>
+## Use Case:
 
+External users and developers use this skill to generate informational stock and cryptocurrency analyses, compare tickers, track portfolios and watchlists, inspect dividends, and scan trending or rumored market signals. Outputs should be treated as informational analysis, not financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yinwuzhe/0605-tosr2-cisg-02) <br>
-- [Publisher profile](https://clawhub.ai/user/yinwuzhe) <br>
-- [Yahoo Finance](https://finance.yahoo.com) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [bird CLI](https://github.com/steipete/bird) <br>
-- [Usage guide](docs/USAGE.md) <br>
-- [Hot Scanner documentation](docs/HOT_SCANNER.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Plain-text and Markdown-style terminal reports with optional JSON output and inline bash commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include market recommendations, confidence scores, caveats, portfolio summaries, alert checks, trend rankings, and local configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-6.2.0 (source: artifact/SKILL.md frontmatter); ClawHub release 1.0.1 <br>
+Risk: Optional Twitter/X scanning handles live session cookies and exposes the full environment to an external CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the optional Twitter/X features before installation; avoid placing live X cookies in the skill directory and run hot scans with --no-social unless the bird executable is trusted and credentials are isolated.
+
+Risk: Portfolio and watchlist files can contain sensitive local financial data.
+
+Mitigation: Store these files with appropriate local access controls and avoid committing or sharing them.
+
+Risk: Market analysis, rumor signals, and recommendations may be incomplete, stale, or unsuitable for investment decisions.
+
+Mitigation: Treat outputs as informational only and verify material decisions with current market sources and a licensed financial advisor.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yinwuzhe/skills/0605-tosr2-cisg-02)
+- [Publisher profile](https://clawhub.ai/user/yinwuzhe)
+- [Yahoo Finance](https://finance.yahoo.com)
+- [Usage guide](artifact/docs/USAGE.md)
+- [Hot Scanner documentation](artifact/docs/HOT_SCANNER.md)
+- [Architecture documentation](artifact/docs/ARCHITECTURE.md)
+- [Concept documentation](artifact/docs/CONCEPT.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands plus plain-text or JSON script outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read market data from third-party services and store local portfolio and watchlist JSON files.]
+
+## Skill Version(s):
+
+6.2.0 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

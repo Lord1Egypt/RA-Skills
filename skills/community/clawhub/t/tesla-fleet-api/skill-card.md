@@ -1,44 +1,60 @@
-## Description: <br>
-Integrates with Tesla's official Fleet API to configure OAuth, read vehicle or energy device data, and issue signed remote vehicle commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when integrating with Tesla's official Fleet API to read vehicle and energy device data or issue remote commands such as HVAC preconditioning, wake, and charge controls.
 
-## Publisher: <br>
-[odrobnik](https://clawhub.ai/user/odrobnik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[odrobnik](https://clawhub.ai/user/odrobnik)
 
-## Use Case: <br>
-Developers and agents use this skill to set up Tesla Fleet API credentials, manage OAuth tokens, list vehicles, inspect vehicle status, and run remote vehicle actions such as wake, climate, lock, honk, and charging controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access sensitive Tesla account tokens, vehicle data, and location-related information when configured. <br>
-Mitigation: Keep the workspace private, protect auth.json and private-key.pem, and avoid sharing generated state files or logs. <br>
-Risk: Remote commands can affect a physical vehicle, including climate, charging, locks, horn, lights, and wake actions. <br>
-Mitigation: Require explicit user confirmation before running commands that change vehicle state. <br>
-Risk: The local signing proxy and private key are needed for signed vehicle commands. <br>
-Mitigation: Run the proxy only when needed, stop it when finished, and protect the private key material. <br>
+## Use Case:
 
+Developers and vehicle automation users use this skill to configure Tesla Fleet API access, manage OAuth tokens, read vehicle or energy device data, and run signed remote vehicle commands through the official API and local proxy flow.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/odrobnik/tesla-fleet-api) <br>
-- [Publisher profile](https://clawhub.ai/user/odrobnik) <br>
-- [Tesla vehicle-command proxy](https://github.com/teslamotors/vehicle-command) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute or propose local Python and shell scripts that call Tesla Fleet API endpoints when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill handles Tesla OAuth access, local token storage, precise vehicle location, and command authority over a real vehicle.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that access is acceptable, protect local token and key files, and require explicit human confirmation before unlock, charging, climate, honk, location, or similar vehicle workflows.
+
+Risk: Misconfigured API endpoints could route sensitive tokens or vehicle commands away from intended Tesla Fleet API hosts or the local signing proxy.
+
+Mitigation: Restrict audience and base_url settings to Tesla Fleet API hosts or the localhost proxy, and avoid HTTP endpoints.
+
+Risk: The private vehicle command key is stored as private-key.pem in the workspace.
+
+Mitigation: Keep private-key.pem protected with owner-only permissions and avoid exposing it in chat, logs, or shared workspaces.
+
+## Reference(s):
+
+- [ClawHub Tesla Fleet API skill page](https://clawhub.ai/odrobnik/skills/tesla-fleet-api)
+- [Tesla Fleet API setup guide](artifact/SETUP.md)
+- [Tesla Fleet API command reference](artifact/SKILL.md)
+- [Homepage from skill metadata](https://github.com/odrobnik/tesla-fleet-api-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, JSON, Text]
+
+**Output Format:** [Markdown guidance with shell commands, local configuration files, human-readable command output, and optional JSON API output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Tesla OAuth credentials and local workspace state for tokens, vehicle cache, named places, and proxy materials.]
+
+## Skill Version(s):
+
+1.5.2 (source: frontmatter and server release evidence, released 2026-03-30)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

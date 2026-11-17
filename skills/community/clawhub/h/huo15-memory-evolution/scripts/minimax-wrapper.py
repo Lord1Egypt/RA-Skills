@@ -12,7 +12,7 @@ import time
 from datetime import datetime
 
 # ============ 配置区 ============
-API_KEY = "sk-cp-pD1WY6KcHeUNXDeKmG4ZnzDch-sXsZKmAsNn7rXZDoAbGwc7u6XJn55Z6GbgW3qngTC-i5geM4PzDwkaSj8sQUSk2TPPj-lrLc-Yamjn-S2j4mfOT8RGKUY"
+API_KEY = "REDACTED-SECRET"
 API_URL = "https://api.minimaxi.com/v1/text/chatcompletion_v2"
 
 # Cost Tracker 配置

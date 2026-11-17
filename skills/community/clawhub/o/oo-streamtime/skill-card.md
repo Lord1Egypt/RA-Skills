@@ -1,44 +1,60 @@
-## Description: <br>
-Streamtime (streamtime.net). Use this skill for Streamtime requests that read, create, or update data through the OOMOL-connected Streamtime connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Streamtime (streamtime.net). Use this skill for ANY Streamtime request — reading, creating, and updating data. Whenever a task involves Streamtime, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Employees, external collaborators, and agents with an authorized OOMOL-connected Streamtime account use this skill to inspect Streamtime organisation records and to create or update companies, contacts, and jobs after user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access Streamtime data through an OOMOL-connected account and requires sensitive credentials managed by that connection. <br>
-Mitigation: Install only when the agent should use that Streamtime account, and sign in to the oo CLI only from trusted OOMOL sources. <br>
-Risk: Create and update actions can change Streamtime companies, contacts, and jobs. <br>
-Mitigation: Review the exact action payload and expected effect with the user before running write actions. <br>
-Risk: Incorrect payloads can target the wrong Streamtime record or fail against the connector contract. <br>
-Mitigation: Fetch the live connector schema for the selected action before constructing payloads. <br>
+## Use Case:
 
+People managing a Streamtime-connected business account can use this skill to retrieve organisation, company, contact, job, branch, rate-card, and user information, or create and update companies, contacts, and jobs.
 
-## Reference(s): <br>
-- [ClawHub Streamtime listing](https://clawhub.ai/oomol/oo-streamtime) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [Streamtime homepage](https://www.streamtime.net) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before actions; write actions require user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: Automatic setup executes downloaded CLI code that the security review marks unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI installation before enabling automatic setup.
+
+Risk: Create and update actions change records in the connected Streamtime business account.
+
+Mitigation: Confirm the exact action payload and effect before each change.
+
+Risk: The CLI may automatically synchronize agent skills, which can affect local skill files.
+
+Mitigation: Review synchronization behavior and the OO_SKILLS_SYNC_DISABLED control before running the CLI.
+
+## Reference(s):
+
+- [Streamtime public API documentation](https://help.streamtime.net/en/articles/12854233-using-the-streamtime-public-api)
+- [Streamtime](https://www.streamtime.net)
+- [oo CLI command reference](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON action results with command and usage guidance in Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Action results include data and execution metadata; input fields are determined from the live action schema.]
+
+## Skill Version(s):
+
+1.0.5 (source: release evidence, frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

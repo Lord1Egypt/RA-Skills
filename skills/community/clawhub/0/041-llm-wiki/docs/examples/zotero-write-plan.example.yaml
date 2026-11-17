@@ -1,0 +1,37 @@
+version: 1
+mode: authorized-write
+library_id: "0"
+collection:
+  key: COLL0001
+  name: blogs/DeepLearning
+policy:
+  preserve_existing_tags: true
+  replace_tags: false
+  write_notes: false
+  change_collections: false
+  change_metadata: false
+  relation_policy: reviewed-only
+  # Optional scoped opt-in for tag removal. Omit (or false) to forbid all removals.
+  # When true, items may list reviewed_removals — but only managed llm-wiki:* tags,
+  # never llm-wiki:ingested or preserved tags, never unmanaged/user tags, and never
+  # a tag also present in the same item's desired_managed_tags.
+  allow_managed_removals: false
+items:
+  - item_key: ITEM0001
+    expected_collections:
+      - COLL0001
+    desired_managed_tags:
+      - llm-wiki:ingested
+      - llm-wiki:Deep-Learning
+    reviewed_relations:
+      - ITEM0002
+    # Optional; requires policy.allow_managed_removals: true. Retired
+    # llm-wiki:<page_stem> binding tags are the intended target.
+    reviewed_removals: []
+  - item_key: ITEM0002
+    expected_collections:
+      - COLL0001
+    desired_managed_tags:
+      - llm-wiki:ingested
+    reviewed_relations:
+      - ITEM0001

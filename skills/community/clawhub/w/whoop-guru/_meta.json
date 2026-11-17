@@ -1,6 +1,84 @@
 {
-  "ownerId": "kn7c0vaq0vp7sej96ctxrvhsdh83kg1y",
-  "slug": "whoop-guru",
+  "name": "whoop-guru",
+  "description": "WHOOP AI Fitness Coach - LLM-powered personalized training plans for running, strength, and recovery",
   "version": "8.4.12",
-  "publishedAt": 1775357724591
+  "license": "Apache-2.0",
+  "emoji": "💪",
+  "author": "HealthGao Team",
+  "homepage": "https://clawhub.com/skills/whoop-guru",
+  "repository": "https://github.com/effeceee/healthgao",
+  "requires": {
+    "python": ">=3.8",
+    "bins": [
+      "python3",
+      "curl"
+    ],
+    "packages": [
+      "requests",
+      "pandas",
+      "matplotlib"
+    ]
+  },
+  "environment": {
+    "OPENCLAW_WORKSPACE": {
+      "description": "OpenClaw workspace directory (auto-detected)",
+      "required": false
+    },
+    "WHOOP_DATA_DIR": {
+      "description": "WHOOP data storage directory (auto-detected)",
+      "required": false
+    },
+    "WHOOP_SKILL_DIR": {
+      "description": "Skill directory for data sync (auto-detected)",
+      "required": false
+    }
+  },
+  "credentials": {
+    "whoop_tokens": {
+      "description": "OAuth tokens obtained via login flow",
+      "storage": "~/.clawdbot/whoop-tokens.json",
+      "managed_by": "scripts/whoop_auth.py"
+    },
+    "whoop_env_file": {
+      "description": "Alternative: credentials file with env vars",
+      "storage": "~/.clawdbot/whoop-credentials.env",
+      "used_by": "lib/whoop-fetcher.sh",
+      "variables": [
+        "WHOOP_CLIENT_ID",
+        "WHOOP_CLIENT_SECRET",
+        "WHOOP_REFRESH_TOKEN"
+      ]
+    },
+    "llm_api": {
+      "description": "LLM API key for AI analysis",
+      "storage": "data/config/llm_config.json",
+      "managed_by": "User via chat command"
+    }
+  },
+  "features": {
+    "whoop_api": "实时获取WHOOP恢复、睡眠、训练、HRV数据",
+    "llm_coach": "LLM驱动的个性化AI健身教练",
+    "push_notifications": "每日主动推送（08:00早报、09:00早安、18:00晚间、20:00打卡、22:00日报）",
+    "ml_predictions": "7天恢复预测、HRV异常检测",
+    "training_plans": "跑步/增肌/减脂/伤痛恢复训练计划",
+    "progress_tracking": "打卡系统、目标追踪、周报",
+    "marathon_training": "马拉松训练目标管理、配速计划、训练阶段分析",
+    "quick_checkin": "快速打卡接口，无需填写完成情况",
+    "checkin_auto": "WHOOP数据自动检测 + 打卡确认流程",
+    "feedback_learning": "用户反馈学习系统（睡眠/训练/恢复基线）",
+    "beijing_time": "全部时间处理统一使用北京时间(UTC+8)"
+  },
+  "installation": {
+    "steps": [
+      "1. pip install requests pandas matplotlib",
+      "2. python3 scripts/whoop_auth.py login --client-id YOUR_ID --client-secret YOUR_SECRET",
+      "3. 完成OAuth授权（浏览器自动打开）",
+      "4. (可选) 配置LLM API"
+    ]
+  },
+  "privacy": {
+    "data_transmission": "用户健康数据（恢复/睡眠/训练/HRV）将发送到：(1) WHOOP API用于获取数据，(2) 用户配置的LLM API用于AI分析",
+    "credential_storage": "所有凭证存储在本地文件系统，不上传到第三方服务器",
+    "user_control": "用户可随时删除 ~/.clawdbot/ 目录和 data/config/ 目录清除所有凭证和数据"
+  }
 }

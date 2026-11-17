@@ -1,6 +1,15 @@
 {
-  "ownerId": "kn70sq6670wfg72bzefwkg5b71831vjp",
+  "ownerId": "5145852587",
   "slug": "china-install-skills",
-  "version": "1.2.0",
-  "publishedAt": 1773669168444
+  "name": "China Install Skills",
+  "version": "1.1.0",
+  "description": "中国大陆专用 ClawHub 技能安装工具 - 绕过 API 限流，直连 Convex API 进行搜索/下载/安装/自动更新",
+  "publishedAt": 1742158800000,
+  "updatedAt": 1742158800000,
+  "license": "MIT-0",
+  "tags": ["clawhub", "skill-manager", "automation", "china-friendly", "installer", "no-rate-limit"],
+  "author": "奶龙·主理人",
+  "homepage": "https://github.com/openclaw/openclaw",
+  "repository": "https://github.com/openclaw/openclaw",
+  "changelog": "v1.0.0 - 初始版本：搜索、下载、安装、一键安装、每周自动更新检查"
 }

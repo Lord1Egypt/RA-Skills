@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# bin/amazon-shopper — thin wrapper that finds and executes scripts/shopper.mjs.
+set -euo pipefail
+SKILL_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+exec node "${SKILL_DIR}/scripts/shopper.mjs" "$@"

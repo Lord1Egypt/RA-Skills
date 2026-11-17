@@ -1,39 +1,48 @@
-## Description: <br>
-Format Python, JavaScript, TypeScript, JSON, HTML, CSS, and Go code snippets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Format Python, JavaScript, TypeScript, JSON, HTML, CSS, and Go code snippets.
 
-## Publisher: <br>
-[hahg199](https://clawhub.ai/user/hahg199) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[hahg199](https://clawhub.ai/user/hahg199)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to reformat pasted code snippets into readable Markdown code blocks and receive a brief explanation of the formatting changes.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Formatted output may include incorrect syntax or unintended style changes because the skill provides manual formatting guidance rather than a guaranteed parser-backed formatter.
+
+Mitigation: Review formatted output before using it in source code or configuration files.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to reformat supported code snippets into readable Markdown code blocks and receive a brief explanation of formatting changes. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Formatted output can alter code style or small implementation details before it is copied into a project. <br>
-Mitigation: Review the formatted result, compare it with the original snippet, and run relevant tests before applying it. <br>
+**Output Format:** [Markdown with fenced code blocks and a brief explanatory note]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hahg199/code-formatter199) <br>
-- [Publisher profile](https://clawhub.ai/user/hahg199) <br>
+**Other Properties Related to Output:** [Supports Python, JavaScript, TypeScript, JSON, HTML, CSS, and Go snippets.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown code block with a brief explanatory note] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses language identifiers for supported code blocks and returns an unsupported-language message when needed.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,52 @@
-## Description: <br>
-Interact with the Jules CLI to manage asynchronous coding sessions for complex, isolated coding tasks that benefit from a remote VM. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with the Jules CLI to manage asynchronous coding sessions for complex, isolated coding tasks that benefit from a remote VM.
 
-## Publisher: <br>
-[ajstafford](https://clawhub.ai/user/ajstafford) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ajstafford](https://clawhub.ai/user/ajstafford)
 
-## Use Case: <br>
-Developers and coding agents use this skill to delegate complex, isolated, asynchronous coding work to Jules CLI sessions, monitor progress, and deliberately integrate completed changes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Remote session creation, teleporting, or applying pulled changes can affect remote resources or modify the local codebase. <br>
-Mitigation: Require explicit user approval before jules remote new, jules remote pull --apply, jules teleport, or login-related actions; review and test changes before relying on them. <br>
-Risk: Unsafe CLI input handling can pass untrusted repository names, session IDs, or task text into shell commands. <br>
-Mitigation: Validate repository and session ID formats, quote shell placeholders, pass session IDs through environment variables, and avoid embedding user-provided data directly in inline scripts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Jules CLI Usage Reference](references/usage.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ajstafford/jules-cli) <br>
+## Use Case:
 
+Developers and engineers use this skill to assign, monitor, and integrate Jules CLI asynchronous coding sessions for larger or more exploratory repository work.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local jules and python3 binaries and HOME environment access; sensitive Jules actions require explicit user approval.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Task text passed through documented shell commands can accidentally execute local shell syntax when the text is untrusted or unsanitized.
+
+Mitigation: Validate and quote inputs, avoid shell processing for task text when possible, or pass the task through a file or stdin mechanism supported by the CLI.
+
+Risk: Applying completed remote work can modify the local codebase.
+
+Mitigation: Require explicit user approval before applying remote changes and inspect the proposed changes before integration.
+
+## Reference(s):
+
+- [Jules CLI Usage Reference](references/usage.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the jules and python3 binaries, and may require HOME for Jules credentials.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

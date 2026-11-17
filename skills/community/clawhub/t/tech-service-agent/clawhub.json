@@ -1,0 +1,13 @@
+{
+  "name": "tech-service-agent",
+  "displayName": "科技服务业机构Agent",
+  "version": "1.0.0",
+  "description": "负责采集、维护和查询全国科技服务业机构信息。支持多源采集、增量更新、每日简报、DCAR周报与智能查询，覆盖孵化器、中试基地、概念验证中心、科技园区等全品类机构。",
+  "author": "golngod",
+  "license": "MIT",
+  "pricing": {
+    "model": "free"
+  },
+  "tags": ["tech-service", "institution", "incubation", "innovation", "data-collection"],
+  "minOpenClawVersion": "1.2.0"
+}

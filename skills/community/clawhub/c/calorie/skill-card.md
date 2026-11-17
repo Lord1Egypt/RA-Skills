@@ -1,44 +1,60 @@
-## Description: <br>
-Calorie Detective analyzes food photos with AI vision to estimate calories, protein, carbohydrates, fat, and dietary suggestions using Kimi vision and a local food nutrition database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calorie Detective uses AI vision to identify food from photos and estimate calories, macronutrients, and diet suggestions with Kimi vision support and a local nutrition database.
 
-## Publisher: <br>
-[aaa2531349](https://clawhub.ai/user/aaa2531349) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[aaa2531349](https://clawhub.ai/user/aaa2531349)
 
-## Use Case: <br>
-External users and developers use this skill to submit food images and receive an estimated nutrition report for everyday diet tracking, fitness planning, and calorie awareness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: API-key/provider handling is under-scoped and could expose or misuse credentials if broad keys are configured. <br>
-Mitigation: Use a dedicated low-scope API key, set only the intended provider key, and avoid storing secrets in configuration files. <br>
-Risk: Food photos may contain sensitive details such as faces, documents, location clues, or private surroundings. <br>
-Mitigation: Avoid uploading images with sensitive content and disclose that photos are sent to the configured vision provider for analysis. <br>
-Risk: Nutrition results are AI estimates and may be inaccurate for portion size, ingredients, and cooking method. <br>
-Mitigation: Treat reports as general diet-tracking guidance and consult qualified nutrition or medical professionals for health-critical decisions. <br>
+## Use Case:
 
+External users and health-focused consumers use this skill to analyze food photos, estimate nutritional content, and receive practical diet guidance. Developers can deploy it through Kimi Claw or run it locally with configured vision-provider credentials.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/aaa2531349/calorie) <br>
-- [Moonshot Platform Documentation](https://platform.moonshot.cn/docs) <br>
-- [Moonshot Chat Completions API](https://api.moonshot.cn/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, shell commands, guidance] <br>
-**Output Format:** [Markdown nutrition report with calorie, macronutrient, itemized food, and recommendation sections; deployment guidance uses YAML and shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts JPEG, PNG, and WebP food images in the Kimi Claw configuration; generated estimates are advisory and may vary by ingredients, portion size, and cooking method.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/_meta.json) <br>
+Risk: Food images or other readable files may be sent to external vision providers if upload paths are too broad or file validation is weak.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive food images, run with a narrowly scoped upload directory, and add image validation before production use.
+
+Risk: Misconfigured provider credentials may cause requests to use the wrong API key or provider settings.
+
+Mitigation: Fix provider-specific API key selection and verify provider configuration in a non-production environment before release.
+
+Risk: Nutrition estimates and diet suggestions may be inaccurate or inappropriate for users with medical or dietary constraints.
+
+Mitigation: Present results as estimates, keep the disclaimer visible, and direct users with health-specific needs to qualified professionals.
+
+## Reference(s):
+
+- [Calorie Detective ClawHub listing](https://clawhub.ai/aaa2531349/skills/calorie)
+- [Kimi API documentation](https://platform.moonshot.cn/docs)
+- [Kimi Claw console](https://platform.moonshot.cn/console/claw)
+- [Deployment guide](artifact/DEPLOY.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, text, guidance]
+
+**Output Format:** [Markdown nutrition report with food identification, calorie estimates, macronutrient breakdown, and diet suggestions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call external vision APIs and uses estimated nutrition data; outputs should be treated as informational, not medical advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

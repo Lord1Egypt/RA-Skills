@@ -1,42 +1,57 @@
-## Description: <br>
-Helps agents set up, improve, or audit analytics tracking for GA4, GTM, conversion events, UTM strategy, validation, and privacy-aware measurement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents set up, improve, and audit analytics tracking for marketing and product decisions across event tracking, GA4, GTM, UTMs, and related analytics tools.
 
-## Publisher: <br>
-[Mrhuang09](https://clawhub.ai/user/Mrhuang09) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mrhuang09](https://clawhub.ai/user/mrhuang09)
 
-## Use Case: <br>
-Developers, marketers, and product teams use this skill to design tracking plans, implement GA4 or GTM events, validate conversion tracking, and improve measurement quality for marketing and product decisions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Analytics examples could be applied in ways that send PII or bypass required consent controls. <br>
-Mitigation: Review local privacy requirements, avoid PII in analytics properties, use consent controls where required, and obtain approval from an authorized account owner before publishing analytics or advertising tags. <br>
-Risk: Incorrect or duplicate analytics events could create misleading measurement data. <br>
-Mitigation: Validate events and conversions with GA4 DebugView, GTM Preview Mode, and browser-based tag inspection before relying on the data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Event Library Reference](references/event-library.md) <br>
-- [GA4 Implementation Reference](references/ga4-implementation.md) <br>
-- [Google Tag Manager Implementation Reference](references/gtm-implementation.md) <br>
-- [Google Analytics Recommended Events](https://support.google.com/analytics/answer/9267735) <br>
+## Use Case:
 
+Developers, marketers, and analytics practitioners use this skill to create tracking plans, define event naming and properties, implement GA4 or GTM tracking, validate conversion data, and review privacy-sensitive measurement choices.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with tracking tables, validation checklists, and JavaScript or GTM snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include GA4 and GTM event plans, UTM conventions, debugging steps, and privacy or consent notes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Tracking examples copied into production without consent or privacy review may collect inappropriate personal data or send data to unapproved third-party destinations.
+
+Mitigation: Confirm the consent flow, avoid PII and raw payment details, prefer pseudonymous identifiers, and review GA4, Google Ads, Facebook Pixel, Segment, Mixpanel, Amplitude, or other destinations against privacy and compliance requirements.
+
+Risk: Analytics configuration errors can create duplicate, missing, or misleading conversion data.
+
+Mitigation: Validate events and parameters in GA4 DebugView, GTM Preview Mode, and browser debugging tools before publishing production tags.
+
+## Reference(s):
+
+- [Event Library Reference](references/event-library.md)
+- [GA4 Implementation Reference](references/ga4-implementation.md)
+- [Google Tag Manager Implementation Reference](references/gtm-implementation.md)
+- [Google Analytics recommended events](https://support.google.com/analytics/answer/9267735)
+- [ClawHub skill page](https://clawhub.ai/mrhuang09/skills/analytics-tracking-2)
+- [Publisher profile](https://clawhub.ai/user/mrhuang09)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with tables, checklists, and inline JavaScript or HTML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include tracking plan templates, event naming recommendations, GA4 and GTM implementation snippets, validation steps, and privacy review reminders.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact metadata.version is 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

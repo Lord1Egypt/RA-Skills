@@ -1,42 +1,54 @@
-## Description: <br>
-Plan campaign visuals and hooks for developer promotions. Use when working on paid campaign planning for developers, technical founders, product engineers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan campaign visuals and hooks for developer promotions. Use when working on paid campaign planning for developers, technical founders, product engineers.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Developers, technical founders, and product engineers use this skill to plan paid campaign creative briefs, including audience goals, campaign constraints, visuals, and hooks for developer-focused promotions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated ad copy or visual direction may be inaccurate, misleading, or unsuitable for publication. <br>
-Mitigation: Review generated campaign materials for accuracy, brand fit, and publication readiness before use. <br>
-Risk: Skill permissions list Bash and Read, which may expose host-level capabilities if granted broadly by the agent environment. <br>
-Mitigation: Keep Bash and Read permissions scoped at the host level according to the agent environment's security policy. <br>
+## Use Case:
 
+Developers, technical founders, product engineers, and marketing teams use this skill to draft developer-focused paid campaign creative briefs, including audience, goals, constraints, visuals, and hooks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tobeyrebecca/toby-generate-developer-ad-creative-brief) <br>
-- [Publisher Profile](https://clawhub.ai/user/tobeyrebecca) <br>
-- [SkillBoss Skill Page](https://www.skillboss.co/skills/generate-developer-ad-creative-brief) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include creative brief sections, ad hooks, visual direction, and review guidance before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated campaign content may be inaccurate, misleading, or unsuitable for external publication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and refine generated briefs, hooks, and visual concepts before publishing or using them in paid campaigns.
+
+Risk: External enrichment such as image generation can introduce brand, rights, or policy concerns.
+
+Mitigation: Check enriched assets against brand, legal, and campaign requirements before delivery.
+
+## Reference(s):
+
+- [SkillBoss skill page](https://www.skillboss.co/skills/generate-developer-ad-creative-brief)
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/toby-generate-developer-ad-creative-brief)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured text creative brief]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include draft campaign visuals, hooks, prompts, and publication-review guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

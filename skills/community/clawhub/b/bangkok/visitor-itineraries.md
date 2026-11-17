@@ -34,7 +34,7 @@
    - Dress code: no shorts/sandals
    - One drink for the view (~400-600 THB)
 
-6. **Chinatown for Dinner** (MRT Hua Lamphong)
+6. **Chinatown for Dinner** (MRT Wat Mangkon)
    - Yaowarat Road lights up after 6 PM
    - Must-try: T&K Seafood, sidewalk BBQ, mango sticky rice
 
@@ -101,8 +101,8 @@ Follow 3-day itinerary above
 ### Day 4: Ayutthaya Day Trip
 
 **Getting There**
-- Train from Hua Lamphong (6:40 AM departure, 2h, 20 THB)
-- Or minivan from Victory Monument (1.5h, 70 THB)
+- Train, ~1.5-2h, 20-60 THB — express services depart Krung Thep Aphiwat (Bang Sue, MRT connected) since 2023; some ordinary trains still leave Hua Lamphong, check your train's terminal
+- Or minivan from Mo Chit (1.5h, ~70-100 THB)
 
 **In Ayutthaya**
 - Rent bicycle at station (50 THB/day)

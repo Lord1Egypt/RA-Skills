@@ -1,45 +1,66 @@
-## Description: <br>
-High-performance offline voice pipeline for NVIDIA Jetson with wake word detection, STT, and TTS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+High-performance bilingual voice assistant pipeline for NVIDIA Jetson with wake word detection, speech transcription, spoken responses, and Home Assistant control.
 
-## Publisher: <br>
-[nikil511](https://clawhub.ai/user/nikil511) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nikil511](https://clawhub.ai/user/nikil511)
 
-## Use Case: <br>
-Developers and engineers use this skill to run a bilingual English/Greek voice assistant pipeline on NVIDIA Jetson-class edge hardware with wake word detection, speech transcription, LLM responses, TTS, LED feedback, and optional Home Assistant control. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive credentials and the evidence reports exposed keys. <br>
-Mitigation: Rotate or remove exposed keys before installation and provide secrets through environment variables or a secret manager. <br>
-Risk: Voice audio and prompts may leave the device through cloud STT, LLM, or TTS services despite offline framing. <br>
-Mitigation: Confirm users consent to cloud processing, document which services receive audio or prompts, and use local fallbacks when cloud processing is not acceptable. <br>
-Risk: Gateway and Home Assistant integrations can control devices in the user's environment. <br>
-Mitigation: Use HTTPS or trusted local-only endpoints and restrict Home Assistant tokens to the minimum devices and actions required. <br>
-Risk: Biometric enrollment files are sensitive personal data. <br>
-Mitigation: Store enrollment audio and speaker models with restricted permissions and avoid persistent listening in shared spaces without clear consent. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure and run a bilingual voice assistant on NVIDIA Jetson hardware for wake-word interactions, STT, LLM responses, TTS, and smart-home device control.
 
-## Reference(s): <br>
-- [Voice Pipeline Notes](references/VOICE_PIPELINE_NOTES.md) <br>
-- [Groq Audio Transcriptions API](https://api.groq.com/openai/v1/audio/transcriptions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with code, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include systemd, environment variable, audio-device, and Home Assistant configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Always-listening microphone and cloud-processing behavior may be inappropriate for some environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable the service only where continuous microphone capture and the documented cloud data flows have been reviewed and accepted.
+
+Risk: Voice data and assistant requests may be sent to external cloud services.
+
+Mitigation: Review provider data flows before deployment and require user-provided API keys rather than bundled or shared credentials.
+
+Risk: Home Assistant control can affect real devices.
+
+Mitigation: Use HTTPS or localhost-only endpoints with least-privilege Home Assistant tokens and limit exposed actions to intended devices.
+
+Risk: Credential and authentication weaknesses are identified in the security evidence.
+
+Mitigation: Rotate any embedded credentials, remove secrets from source files, and load secrets through the deployment environment.
+
+Risk: Speaker verification and serialized model loading can fail open or load unsafe files if deployed carelessly.
+
+Mitigation: Make speaker verification fail closed and avoid loading joblib or pickle files from untrusted writable paths.
+
+## Reference(s):
+
+- [Greek Voice Assistant Pipeline - Implementation Status](references/VOICE_PIPELINE_NOTES.md)
+- [Groq Audio Transcriptions API](https://api.groq.com/openai/v1/audio/transcriptions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include environment variable names, service commands, device paths, and implementation guidance for a Jetson voice pipeline.]
+
+## Skill Version(s):
+
+1.2.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

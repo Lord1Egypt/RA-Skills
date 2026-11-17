@@ -1,45 +1,58 @@
-## Description: <br>
-Scans A-share market data and documents a workflow for ranking next-day short-term trading candidates using multi-factor signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates top 30 high-potential China A-share stocks for next-day short-term trading using multi-factor signals and daily market scanning.
 
-## Publisher: <br>
-[kernelh](https://clawhub.ai/user/kernelh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kernelh](https://clawhub.ai/user/kernelh)
 
-## Use Case: <br>
-Developers and trading workflow builders use this skill to scan China A-share market data, configure signal thresholds, and prepare candidate lists for short-term review. Outputs should be treated as decision support rather than validated financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; intended market coverage is China A-shares. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The documentation advertises prediction, reporting, and notification features that are not fully implemented in the submitted artifact. <br>
-Mitigation: Review available files and verify commands before deployment; treat the artifact as a scanner-oriented skeleton unless additional implementation is supplied. <br>
-Risk: The workflow depends on optional market-data credentials and third-party data packages. <br>
-Mitigation: Install dependencies in a virtual environment, review any market-data token before use, and restrict credentials to the minimum needed scope. <br>
-Risk: Trading signals can be inaccurate or financially harmful if treated as validated predictions. <br>
-Mitigation: Use outputs only as review inputs and require human validation, backtesting, and risk controls before any trading decision. <br>
+## Use Case:
 
+Developers, analysts, and trading tool operators use this skill after the China A-share market close to scan the market and generate next-day short-term signal rankings, reports, CSV files, charts, and local alerts.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kernelh/alpha-pulse-1-0-0) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
-- [Artifact configuration](artifact/config.yaml) <br>
-- [Artifact market scanner](artifact/lib/scanner.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and YAML snippets plus command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe reports, CSVs, charts, and notifications, but the submitted artifact only includes a scanner skeleton and configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Dependency installation may introduce ordinary package and environment risks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a virtual environment and pin or review dependency versions before running pip.
+
+Risk: Configuration or shared workspace use could expose sensitive tokens.
+
+Mitigation: Avoid placing sensitive tokens in shared workspaces.
+
+Risk: Enabled clipboard, voice, popup, or auto-open behavior can create unintended local side effects.
+
+Mitigation: Turn off clipboard, voice, popup, or auto-open report behavior unless those effects are specifically intended.
+
+## Reference(s):
+
+- [Alpha Pulse ClawHub Skill Page](https://clawhub.ai/kernelh/skills/alpha-pulse-1-0-0)
+- [Artifact Skill Documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, shell commands, guidance]
+
+**Output Format:** [Markdown reports, CSV files, charts, and local notification text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local side effects such as clipboard updates, voice alerts, popup notifications, or opening reports when enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

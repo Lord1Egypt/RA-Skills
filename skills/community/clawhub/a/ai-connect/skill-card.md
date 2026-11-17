@@ -1,38 +1,54 @@
-## Description: <br>
-Ai Connect gives agents quick command guidance for reading, searching, and summarizing content across major web platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ai Connect is an Agent Reach quick-reference skill that helps an agent read, search, and summarize content from major web and social platforms.
 
-## Publisher: <br>
-[smseow001](https://clawhub.ai/user/smseow001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smseow001](https://clawhub.ai/user/smseow001)
 
-## Use Case: <br>
-Developers and agent users use this skill to give an AI agent concise commands for web reading, social search, video metadata extraction, repository lookup, RSS reading, and platform status checks. Some logged-in platform workflows require cookies or login setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to access external sites and logged-in accounts, including workflows that ask users to export browser cookies. <br>
-Mitigation: Review before installing, avoid casually pasting or storing cookies, treat cookies like passwords, prefer OAuth or scoped tokens where available, and use a dedicated low-privilege account when proceeding. <br>
+## Use Case:
 
+Developers and external agent users use this skill to choose platform-specific commands for reading web pages, extracting video metadata or captions, searching social platforms, reading GitHub resources, and checking Agent Reach connectivity.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smseow001/ai-connect) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with command examples and structured summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include platform links, extracted page content, video summary points, search result summaries, and status-check output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: Authenticated platform workflows may expose login cookies, which can enable account takeover if shared or logged.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat cookies like passwords: do not paste them into chat or logs, prefer OAuth or scoped tokens where available, restrict local cookie file permissions, and revoke sessions if exposure is suspected.
+
+Risk: The skill invokes web-reading and platform-search tools whose retrieved content may be incomplete, unavailable, or platform-dependent.
+
+Mitigation: Review extracted content and search results before relying on them, especially for external publication, business decisions, or authenticated account activity.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smseow001/skills/ai-connect)
+- [Publisher profile](https://clawhub.ai/user/smseow001)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and platform-specific examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require authenticated platform cookies for selected services; outputs can include extracted page text, video summaries, search results, and status checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

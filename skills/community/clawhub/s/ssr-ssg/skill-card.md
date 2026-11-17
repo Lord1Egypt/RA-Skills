@@ -1,39 +1,53 @@
-## Description: <br>
-Deep workflow for SSR, SSG, ISR, and hybrid rendering, choosing modes per route, data freshness, caching, streaming, hydration, SEO, and operational trade-offs for frameworks such as Next.js, Nuxt, and Remix. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep workflow for SSR, SSG, ISR, and hybrid rendering that helps agents choose modes per route, plan data freshness and caching, handle streaming and hydration, and validate SEO, performance, and operations.
 
-## Publisher: <br>
-[codekungfu](https://clawhub.ai/user/codekungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-Developers and engineers use this skill to choose SSR, SSG, ISR, client-heavy, edge, or hybrid rendering strategies per route while planning freshness, personalization, caching, hydration, SEO, performance, and operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Framework-specific rendering, caching, or SEO guidance may not fit a production system without review. <br>
-Mitigation: Review recommendations against the target framework, hosting platform, authentication model, cache boundaries, and production SEO requirements before applying them. <br>
-Risk: Incorrect cache decisions can expose private data or serve stale content. <br>
-Mitigation: Validate cache-control, vary behavior, invalidation ownership, and per-route freshness requirements before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to guide SSR, SSG, ISR, edge, and hybrid rendering decisions for modern web applications. It helps agents produce route-level rendering strategies, caching plans, hydration boundary checks, and validation guidance for SEO, performance, and operations.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance with checklists and decision matrices] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory rendering strategy guidance; no code execution or sensitive access is requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Incorrect SSR, SSG, ISR, cache, or edge-rendering changes can affect freshness, SEO, performance, or private-data caching.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed rendering and caching changes per route, with explicit freshness, authentication, cache-vary, invalidation, SEO, and performance checks before deployment.
+
+Risk: Hydration or server-client boundary mistakes can duplicate work, expose server-only assumptions, or cause runtime mismatches.
+
+Mitigation: Verify client islands, serialized state, environment-specific APIs, and hydration-sensitive values such as locale, random IDs, and time.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codekungfu/skills/ssr-ssg)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with matrices, checklists, and implementation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include per-route rendering recommendations, cache and invalidation plans, streaming and hydration checks, and SEO/performance validation steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

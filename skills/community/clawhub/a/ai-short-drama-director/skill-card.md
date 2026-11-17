@@ -1,42 +1,53 @@
-## Description: <br>
-Turns a user-provided short-drama script or story outline into a staged AI video-production workflow covering script analysis, asset prompts, storyboard design, first-frame generation, clip generation, and final compositing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Short Drama Director helps an agent turn a user-provided script or story into a complete AI short-drama video workflow covering script analysis, character and scene assets, storyboard design, first frames, video clips, and post-production.
 
-## Publisher: <br>
-[tianheihei002](https://clawhub.ai/user/tianheihei002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tianheihei002](https://clawhub.ai/user/tianheihei002)
 
-## Use Case: <br>
-External creators and developers use this skill to guide short-drama video production from a script through character and scene assets, storyboard planning, generated clips, subtitles or music, and final composition. It is intended for agent-assisted creative production with user confirmation between stages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can write or overwrite local files under output/ during video production. <br>
-Mitigation: Review output paths before generation and run the workflow in a clean project directory or container when prior outputs must be preserved. <br>
-Risk: The workflow suggests installing ffmpeg with apt-get if ffmpeg is missing, which can make persistent system changes. <br>
-Mitigation: Install dependencies manually in a controlled environment and do not allow automatic package installation during skill execution. <br>
-Risk: The workflow uses ffmpeg and generated media files in a local video pipeline. <br>
-Mitigation: Review ffmpeg commands and input file paths before execution, especially when adding subtitles, music, or transitions. <br>
+## Use Case:
 
+External creators and agent users use this skill to plan and execute an AI-assisted short-drama production workflow from a script, including prompts, storyboard assets, clip generation steps, subtitles, background music, and final video assembly.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tianheihei002/ai-short-drama-director) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, JSON, Code, Shell commands, Media files] <br>
-**Output Format:** [Markdown reports, JSON manifests, inline shell and Python snippets, tool request payloads, and generated media file paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates an output/ workspace containing analysis, asset lists, storyboards, frame and clip references, subtitles, optional music, final video, and a production report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The workflow may ask the agent to run an unscoped system package installation command for ffmpeg.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before any apt-get command is run, and prefer a disposable or project-specific workspace.
+
+Risk: The workflow generates many local media and intermediate files during short-drama production.
+
+Mitigation: Run it in a workspace with sufficient disk space and review generated images, clips, subtitles, and final video before sharing or reuse.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tianheihei002/skills/ai-short-drama-director)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON indexes, prompt text, shell commands, and generated media file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces staged local outputs under output/, including analysis notes, asset lists, storyboard indexes, frames, video clips, subtitles, music, a final video, and a production report.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

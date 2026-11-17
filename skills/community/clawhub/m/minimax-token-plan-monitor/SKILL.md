@@ -1,6 +1,6 @@
 ---
 name: minimax-token-plan-monitor
-description: MiniMax Token Plan 用量监控 — 专为云部署龙虾（OpenClaw）设计，自动查询本周/5小时窗口用量、套餐余量、剩余调用次数及重置时间。支持 QQ/Discord/Telegram 多通道通知，可配置告警阈值。触发词：minimax额度查询、token plan用量、本周用量、剩余次数、订阅状态、minimax coding plan、minimax配额。
+description: MiniMax Token Plan 用量监控 — 自动查询本周/5小时窗口用量、套餐余量、剩余调用次数及重置时间。支持 QQ/Discord/Telegram 多通道通知，可配置告警阈值。触发词：minimax额度查询、token plan用量、本周用量、剩余次数、订阅状态、minimax coding plan、minimax配额。
 ---
 
 # MiniMax Token Plan 用量监控 📊
@@ -22,8 +22,8 @@ description: MiniMax Token Plan 用量监控 — 专为云部署龙虾（OpenCla
 在 `~/.env` 中配置以下变量：
 
 ```bash
-# MiniMax 账号（账号 + 密码）
-MINIMAX_PHONE=your_account_here
+# MiniMax 账号（手机号 + 密码）
+MINIMAX_PHONE=15605428773
 MINIMAX_PASSWORD=your_password_here
 
 # 通知配置（可选，留空则只输出日志）

@@ -1,42 +1,58 @@
-## Description: <br>
-Uses the Tavily API to run AI-enhanced web searches with configurable result limits, search depth, time filtering, optional images, and Chinese or English language hints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the Tavily API to run AI-enhanced web searches with summary answers, optional images, date filtering, and Chinese or English query workflows.
 
-## Publisher: <br>
-[chyher](https://clawhub.ai/user/chyher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chyher](https://clawhub.ai/user/chyher)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve web search results, summaries, URLs, and optional images from Tavily for current information gathering, research, and technical troubleshooting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to Tavily and may include sensitive user-provided terms. <br>
-Mitigation: Avoid confidential or regulated queries unless Tavily handling is acceptable for the deployment environment. <br>
-Risk: The skill requires a Tavily API key that could be exposed if stored carelessly. <br>
-Mitigation: Use a dedicated key, keep .env files private, and monitor quota usage. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chyher/irene-tavily) <br>
-- [Publisher profile](https://clawhub.ai/user/chyher) <br>
-- [Tavily](https://tavily.com) <br>
-- [Tavily Search API endpoint](https://api.tavily.com/search) <br>
+## Use Case:
 
+Developers, researchers, and external users use this skill to run Tavily web searches from an agent workflow for current information, technical questions, academic research, and multilingual information gathering.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, API calls, shell commands, configuration guidance] <br>
-**Output Format:** [Plain text search summaries or JSON search responses printed to standard output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, curl, and a TAVILY_API_KEY configured in the environment or a supported .env file.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search queries and the configured Tavily API key are sent to Tavily.
+
+Mitigation: Install only when Tavily query sharing is acceptable, and scope the API key to the current session or a locked-down secret store when possible.
+
+Risk: The skill reads TAVILY_API_KEY from broader .env locations than documented, including ~/.env and the current directory.
+
+Mitigation: Review or remove the fallback locations before using the skill in shared, sensitive, or multi-project environments.
+
+Risk: Plaintext API key storage can expose credentials if file permissions are loose.
+
+Mitigation: If using ~/.openclaw/.env, make the file owner-readable only and avoid committing local .env files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chyher/skills/irene-tavily)
+- [Tavily homepage](https://tavily.com)
+- [Tavily search API endpoint](https://api.tavily.com/search)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Plain text or JSON search results, with Markdown setup and usage guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TAVILY_API_KEY and supports result count, search depth, answer inclusion, image inclusion, date filtering, and language preference options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

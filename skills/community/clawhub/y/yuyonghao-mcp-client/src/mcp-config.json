@@ -22,7 +22,7 @@
       "@modelcontextprotocol/server-github"
     ],
     "env": {
-      "GITHUB_TOKEN": "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"
+      "GITHUB_TOKEN": "REDACTED-SECRET"
     },
     "description": "GitHub API 集成 - 需配置 token"
   }

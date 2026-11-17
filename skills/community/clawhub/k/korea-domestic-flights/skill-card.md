@@ -1,45 +1,60 @@
-## Description: <br>
-Searches, compares, and monitors Korean domestic flights with Playwright-backed workflows for route, date-range, multi-destination, and price-alert tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches, compares, and monitors South Korea domestic flight fares with Korean airport names, natural-language dates, date-range scans, multi-destination comparison, and price alerts.
 
-## Publisher: <br>
-[twbeatles](https://clawhub.ai/user/twbeatles) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twbeatles](https://clawhub.ai/user/twbeatles)
 
-## Use Case: <br>
-Travelers, travel operators, and agents use this skill to search Korean domestic one-way and round-trip fares, compare dates and destinations, generate fare briefings, and manage target-price watch rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-South Korea <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Searches execute code from an unpinned local tmp/Scraping-flight-information scraper clone outside the reviewed package. <br>
-Mitigation: Use only after verifying the local scraper clone and its dependencies; pin or review that dependency before running live searches. <br>
-Risk: Price-alert rules can store routes, travel dates, target prices, notes, and message templates in a local JSON file. <br>
-Mitigation: Create recurring checks intentionally, protect the rule file as user travel data, and remove old rules when they are no longer needed. <br>
-Risk: Live fare results depend on browser automation and external flight-search site behavior. <br>
-Mitigation: Treat fares as point-in-time results, use the fixture and dry-run checks before relying on automation, and confirm prices before purchase. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to search South Korea domestic one-way and round-trip fares, compare destinations and date ranges, generate concise Korean fare briefings, and manage target-price watch rules.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/twbeatles/korea-domestic-flights) <br>
-- [README](README.md) <br>
-- [Domestic Airport Codes](references/domestic-airports.md) <br>
-- [Price Alert JSON Format](references/price-alerts-schema.md) <br>
+### Deployment Geography for Use:
 
+South Korea domestic air travel
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Human-readable Korean briefings, JSON search results, alert-rule JSON, and shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Price alert checks can write local watch-rule state and print alert messages to stdout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.6.4 (source: server release evidence) <br>
+Risk: The skill executes an unpinned local scraper dependency.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the local tmp/Scraping-flight-information repository is trusted, controlled, and pinned or verified before use.
+
+Risk: Price-alert storage can be redirected to arbitrary user-supplied paths.
+
+Mitigation: Keep the default alert-store path unless a reviewed workflow intentionally needs another file.
+
+Risk: External provider site changes or browser environment failures can produce missing or stale fare results.
+
+Mitigation: Run the included smoke or live dry-run checks before scheduled use and treat empty results as candidates for scraper maintenance review.
+
+## Reference(s):
+
+- [Domestic Airports Reference](references/domestic-airports.md)
+- [Price Alerts Schema](references/price-alerts-schema.md)
+- [Hybrid Smoke Fixtures](references/hybrid-smoke-fixtures.json)
+- [ClawHub Skill Page](https://clawhub.ai/twbeatles/skills/korea-domestic-flights)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [Korean human-readable briefings, JSON search results, shell command invocations, and JSON price-alert rule files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include price calendars, recommendation reasons, search diagnostics, stdout alert messages, and dedupe metadata for saved watch rules.]
+
+## Skill Version(s):
+
+0.6.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

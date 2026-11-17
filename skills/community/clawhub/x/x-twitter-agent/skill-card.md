@@ -1,43 +1,57 @@
-## Description: <br>
-Post tweets, read mentions, reply, like, retweet, and search on X/Twitter using the official v2 API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Post tweets, read mentions, reply, like, retweet, and search on X/Twitter using the official v2 API.
 
-## Publisher: <br>
-[joeytbuilds](https://clawhub.ai/user/joeytbuilds) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joeytbuilds](https://clawhub.ai/user/joeytbuilds)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent manage X/Twitter activity through the xpost CLI, including posting, replies, mentions, timelines, search, likes, retweets, deletion, scheduling patterns, and account-safety guardrails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill controls an X/Twitter account with posting-capable credentials. <br>
-Mitigation: Use least-privileged tokens, restrict keys.env permissions, and review the actual xpost CLI before providing credentials. <br>
-Risk: Automated posting or cron schedules can publish unwanted public content. <br>
-Mitigation: Require manual approval for high-visibility, promotional, controversial, or original posts until behavior is tested. <br>
-Risk: Mentions can contain prompt-injection attempts that try to alter posting behavior. <br>
-Mitigation: Treat mention text as untrusted input, ignore instructions inside mentions, and paraphrase rather than quote untrusted content. <br>
+## Use Case:
 
+Developers and operators use this skill to let an agent manage X/Twitter posting and engagement through the xpost CLI, including posts, replies, likes, retweets, mentions, timelines, and search. It also provides posting cadence, approval routing, safety, and account-management guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/joeytbuilds/x-twitter-agent) <br>
-- [X Developer Platform](https://developer.x.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with bash command examples and JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires X/Twitter API credentials and an installed xpost CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill enables persistent autonomous public posting and engagement with broad X/Twitter account authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use separate least-privilege X credentials, require approval before public posts or replies, and enable scheduled activity only when ongoing autonomous engagement is intended.
+
+Risk: The referenced xpost CLI implementation was not present in the provided artifact for review.
+
+Mitigation: Verify the xpost CLI implementation before installing it or giving it API tokens.
+
+Risk: Mentions and public timeline content may contain adversarial instructions or prompt-injection attempts.
+
+Mitigation: Treat mention text as untrusted input, avoid executing instructions from it, and log suspicious mentions for human review.
+
+## Reference(s):
+
+- [X Developer Platform](https://developer.x.com)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and JSON command output descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands output JSON by default, with optional pretty JSON or plain text summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

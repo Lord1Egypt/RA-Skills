@@ -1,42 +1,62 @@
-## Description: <br>
-Percept Listen helps an OpenClaw agent receive ambient conversation transcripts from wearable audio devices, with local storage and searchable speaker-tagged conversation data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures ambient audio from wearable devices, transcribes it locally, and streams searchable, speaker-tagged conversation data to an OpenClaw agent.
 
-## Publisher: <br>
-[jarvis563](https://clawhub.ai/user/jarvis563) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jarvis563](https://clawhub.ai/user/jarvis563)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill when they want an agent to receive locally stored, searchable transcripts from an Omi pendant or Apple Watch audio workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Ambient listening can capture and store nearby conversations. <br>
-Mitigation: Install only when ambient listening is intended, obtain consent from people who may be recorded, and check applicable recording laws. <br>
-Risk: Transcript webhooks or tunnels can expose private conversation data if misconfigured. <br>
-Mitigation: Protect tunnel and webhook access, and review how local transcript files and the SQLite database are retained or deleted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Percept GitHub Repository](https://github.com/GetPercept/percept) <br>
-- [Percept Documentation](https://github.com/GetPercept/percept/docs) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jarvis563/percept-listen) <br>
-- [Publisher Profile](https://clawhub.ai/user/jarvis563) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to connect an Omi pendant or Apple Watch audio source to an agent for local transcription, searchable conversation context, and live transcript access.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Describes local transcript and conversation file outputs produced by the Percept workflow.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Ambient recording can capture sensitive conversations or people who have not consented.
+
+Mitigation: Use only where all recorded participants have been informed as required by law and where ambient capture is appropriate.
+
+Risk: Transcript webhooks and tunnel endpoints can expose sensitive conversation data if reachable without access controls.
+
+Mitigation: Protect the webhook with authentication, private tunnel access controls, or equivalent network restrictions before use.
+
+Risk: Local transcripts and searchable conversation records can retain sensitive data longer than intended.
+
+Mitigation: Define retention and deletion practices for transcript files, SQLite data, and conversation exports before deployment.
+
+Risk: Installing the Percept dependency without version control can increase supply-chain and behavior-change risk.
+
+Mitigation: Install Percept in an isolated environment with a pinned trusted version.
+
+## Reference(s):
+
+- [Percept Listen on ClawHub](https://clawhub.ai/jarvis563/skills/percept-listen)
+- [Percept GitHub Repository](https://github.com/GetPercept/percept)
+- [Percept Docs](https://github.com/GetPercept/percept/docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command snippets and configuration paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or reference local transcript text, searchable conversation records, and local data paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

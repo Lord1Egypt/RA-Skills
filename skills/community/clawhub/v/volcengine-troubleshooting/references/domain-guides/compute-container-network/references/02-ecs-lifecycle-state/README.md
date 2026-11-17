@@ -82,4 +82,3 @@ ve autoscaling DescribeScalingPolicies --Region "<region>" --ScalingGroupId "<sc
 | `AccessDenied` / `NoPermission` | 转平台账号与权限手册 |
 | 控制台输出显示系统错误 | 进入登录/OS 或镜像初始化排查 |
 | 伸缩活动失败原因为库存/配额 | 转计费/配额手册，保留伸缩组上下文 |
-

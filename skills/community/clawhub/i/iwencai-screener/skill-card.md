@@ -1,43 +1,58 @@
-## Description: <br>
-Analyzes links, files, text, or keywords to identify focused stock-market benefit themes, query iWenCai for related stock candidates, and generate an Excel report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+根据输入的链接、文件、文本或关键词分析利好行业/概念/题材/产业链，聚焦核心受益方向，在i问财网站进行选股查询，返回每项前5个结果并生成Excel文件。
 
-## Publisher: <br>
-[caobingxi](https://clawhub.ai/user/caobingxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[caobingxi](https://clawhub.ai/user/caobingxi)
 
-## Use Case: <br>
-External users and market researchers use this skill to turn market news, documents, free text, or keywords into focused stock-screening directions and an Excel workbook of iWenCai results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stock-related terms derived from user links, files, text, or keywords may be sent to iWenCai during searches. <br>
-Mitigation: Avoid confidential documents and private investment material unless derived query terms may leave the local environment. <br>
-Risk: The skill creates local Excel or CSV reports containing screening results. <br>
-Mitigation: Store and share generated reports according to the user's data-handling requirements. <br>
+## Use Case:
 
+External users and agents use this skill to analyze links, files, text, or keywords for Chinese-market stock-screening intent, identify 3-5 core beneficial sectors or concepts, query i问财, and return structured stock results with an Excel workbook.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/caobingxi/iwencai-screener) <br>
-- [Publisher profile](https://clawhub.ai/user/caobingxi) <br>
-- [iWenCai](https://www.iwencai.com) <br>
-- [Artifact README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files] <br>
-**Output Format:** [Markdown response plus an Excel workbook, with CSV fallback behavior in the helper script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Organizes results by selected industry, concept, theme, or supply-chain direction, with up to five stock results per direction and returned fields preserved where available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence, created 2026-03-12) <br>
+Risk: The skill can auto-activate broadly, fetch or read user-supplied content, and write Excel files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for confirmation before reading local files or writing Excel output, and restrict exports to a controlled directory.
+
+Risk: Generated spreadsheets and stock selections may be treated as verified financial advice.
+
+Mitigation: Treat outputs as unverified analysis and validate stock data and conclusions against trusted financial sources before use.
+
+Risk: Weak spreadsheet-safety controls may allow unsafe or misleading workbook content to reach users.
+
+Mitigation: Review generated workbook contents before opening, sharing, or importing them into other systems.
+
+## Reference(s):
+
+- [i问财](https://www.iwencai.com)
+- [ClawHub skill page](https://clawhub.ai/caobingxi/skills/iwencai-screener)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, files, guidance]
+
+**Output Format:** [Markdown stock-screening analysis plus generated Excel workbook]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns up to five stock results per selected direction and writes a multi-sheet Excel file when export succeeds.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and release changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

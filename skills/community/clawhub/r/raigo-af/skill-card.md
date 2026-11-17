@@ -1,48 +1,59 @@
-## Description: <br>
-RAIGO Agent Firewall provides an instruction-layer security policy for OpenClaw agents that blocks or flags prompt injection, jailbreak, secret-leakage, destructive-action, and related agent-risk patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RAIGO Agent Firewall provides a baseline AI security policy for OpenClaw agents, covering prompt injection, jailbreaks, obfuscation, indirect injection, system prompt extraction, credential exfiltration, destructive commands, code injection, rogue agent detection, goal hijacking, identity spoofing, multi-agent trust exploitation, memory poisoning, supply chain attacks, and related agentic threats.
 
-## Publisher: <br>
-[musharsec](https://clawhub.ai/user/musharsec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[musharsec](https://clawhub.ai/user/musharsec)
 
-## Use Case: <br>
-Developers and teams using OpenClaw agents use this skill to add a conservative baseline policy layer before agent actions. It is intended to help agents block, warn on, or audit risky instructions and external-content patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes broad protection claims that may overstate the strength of an instruction-layer policy. <br>
-Mitigation: Treat it as a conservative baseline control, review and scan it before deployment, and do not rely on it as a complete security boundary. <br>
-Risk: The policy may occasionally overblock legitimate requests. <br>
-Mitigation: Test expected workflows before broad rollout and use human confirmation for warn-tier decisions. <br>
-Risk: Optional raigo Cloud usage introduces a separate service relationship and audit-logging path. <br>
-Mitigation: Review organizational policy, data handling, and compliance requirements before connecting Cloud features. <br>
+## Use Case:
 
+Developers and agent operators use this skill to apply a baseline security policy before an OpenClaw agent acts. It helps classify requests into block, confirm, or audit responses for common prompt security and agentic AI threat patterns.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/musharsec/raigo-af) <br>
-- [RAIGO OpenClaw Integration Guide](https://raigo.ai/docs/openclaw) <br>
-- [RAIGO Documentation](https://raigo.ai/docs) <br>
-- [raigo Cloud](https://cloud.raigo.ai) <br>
-- [OWASP Top 10 for LLM Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/) <br>
-- [OWASP Top 10 for Agentic AI](https://genai.owasp.org/resource/owasp-top-10-for-agentic-ai-v1-0/) <br>
-- [OWASP LLM Prompt Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown policy responses and decision guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only policy content; no runtime engine or external calls are included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Users may treat the Markdown policy checklist as a guaranteed security enforcement engine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before deployment and keep agent platform controls, security review, and monitoring in place.
+
+Risk: The optional raigo Cloud upgrade path replaces the local skill with downloaded organisation-specific rules.
+
+Mitigation: Review the replacement SKILL.md and the cloud service privacy and integrity guarantees before using the downloaded policy.
+
+## Reference(s):
+
+- [OpenClaw Integration Guide](https://raigo.ai/docs/openclaw)
+- [RAIGO Documentation](https://raigo.ai/docs)
+- [raigo Cloud](https://cloud.raigo.ai)
+- [OWASP Top 10 for LLM Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+- [OWASP Top 10 for Agentic AI](https://genai.owasp.org/resource/owasp-top-10-for-agentic-ai-v1-0/)
+- [OWASP LLM Prompt Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html)
+- [ClawHub skill page](https://clawhub.ai/musharsec/skills/raigo-af)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown policy guidance with response templates and configuration steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces policy decisions and user-facing block, warning, and audit response guidance; the optional cloud upgrade path can replace the local skill file with organisation-specific rules.]
+
+## Skill Version(s):
+
+1.0.3 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

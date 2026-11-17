@@ -1,12 +1,12 @@
 ---
 name: hk-gmb-arrival
 description: Real-time arrival information for Hong Kong Green Mini Buses (GMB). Supports fuzzy stop name matching and multi-region route lookup.
-version: 1.0.0
+version: 1.2.0
 source: https://github.com/StevenHo1394/openclaw/tree/main/skills/hk-gmb-arrival
 tools:
   - name: searchRoutes
     description: Search for GMB route numbers across all regions (HKI, KLN, NT). Returns matching regions or suggestions if no exact match.
-    command: python3 /home/node/.openclaw/workspace/skills/hk-gmb-arrival/gmb_arrival.py searchRoutes {route}
+    command: python3 /opt/data/skills/productivity/hk-gmb-arrival/gmb_arrival.py searchRoutes {route}
     inputSchema:
       type: object
       required:
@@ -15,11 +15,13 @@ tools:
         route:
           type: string
           description: GMB route number (e.g., "1", "3", "5")
+          pattern: "^\\\\d+$"
+          maxLength: 3
     output:
       format: json
   - name: getGMBArrival
     description: Get the next 3 arrival times for a GMB route at a specific stop. Requires route number, direction (1 or 2), stop name (English or Chinese), and region.
-    command: python3 /home/node/.openclaw/workspace/skills/hk-gmb-arrival/gmb_arrival.py getGMBArrival {route} {direction} {stopName} {region}
+    command: python3 /opt/data/skills/productivity/hk-gmb-arrival/gmb_arrival.py getGMBArrival {route} {direction} {stopName} {region}
     inputSchema:
       type: object
       required:
@@ -31,15 +33,21 @@ tools:
         route:
           type: string
           description: GMB route number (e.g., "1")
+          pattern: "^\\\\d+$"
+          maxLength: 3
         direction:
           type: string
-          description: "Direction sequence: \"1\" for terminus A → B, \"2\" for B → A"
+          description: "Direction sequence: \\\"1\\\" for terminus A → B, \\\"2\\\" for B → A"
+          enum: ["1", "2"]
         stopName:
           type: string
           description: Stop name (partial or full, in English or Chinese)
+          pattern: "^[\\\\w\\\\s\\\\u4e00-\\\\u9fff.,()\\\\-/]{1,100}$"
+          maxLength: 100
         region:
           type: string
-          description: "Region code: \"HKI\" (Hong Kong Island), \"KLN\" (Kowloon), or \"NT\" (New Territories)"
+          description: "Region code: \\\"HKI\\\" (Hong Kong Island), \\\"KLN\\\" (Kowloon), or \\\"NT\\\" (New Territories)"
+          enum: ["HKI", "KLN", "NT"]
     output:
       format: json
 
@@ -62,7 +70,7 @@ Key functions:
 - `searchRoutes(route)`: Queries `/route`, finds which regions contain this route number. If none, suggests similar route numbers.
 - `get_gmb_arrival(route, direction, stop_name, region)`:
   1. Fetch `/route/{region}/{route}` to obtain route_id and the direction details (origin/destination names).
-  2. Construct composite route key using the origin/destination English names and load from `routeFareList.json` to get the ordered list of stop IDs for that direction.
+  2. Fetch ONLY the needed route entry from `routeFareList.json` (lazy load with size limit) to get the ordered list of stop IDs for that direction.
   3. For each stop ID along the route, fetch `/stop-route/{stop_id}` to retrieve stop names (cached).
   4. Match the user-provided `stop_name` (case-insensitive) exactly; if not found, perform fuzzy matching and return suggestions.
   5. Once stop ID is identified, call `/eta/stop/{stop_id}`.
@@ -73,11 +81,11 @@ Key functions:
 
 - `routes_all.json`: All route list (1 hour)
 - `route_details.json`: Route details per region/route (5 minutes)
-- `routeFareList.json`: Static route-to-stop mapping (1 day)
+- `routeFareList.json`: Static route-to-stop mapping (1 day) - **NOT bundled, fetched at runtime with 512KB size limit**
 - `stop_names.json`: Stop ID to names mapping (1 week)
 - ETA responses: 30 seconds
 
-Cache files stored in `data/` subdirectory.
+Cache files stored in `data/` subdirectory. **Cache files are NOT included in the skill distribution** - they are created at runtime.
 
 ## Error Handling
 
@@ -104,3 +112,80 @@ python3 gmb_arrival.py getGMBArrival 1 1 "Hong Kong Station Minibus Terminus" HK
 - Stop names are matched case-insensitively. Chinese or English names both work.
 - The static `routeFareList` may lag behind official data by up to one day but is generally reliable.
 - Rate limits: The script caches aggressively to minimize API calls; still, avoid excessive polling (ETA updates every minute).
+- **Security**: All cache files have size limits (1MB default, 512KB for routeFareList). Large files are not loaded into memory.
+
+## Security Audit (ClawHub v1.2.0)
+
+All findings from automated security scanners (SkillSpector + AIG Analysis) have been remediated:
+
+### T09 — Command Injection (High) ✅ FIXED
+
+**Finding (v1.0.0):** Tool commands in SKILL.md and openclaw.plugin.json interpolated user-controlled values (`{route}`, `{direction}`, `{stopName}`, `{region}`) directly into shell command strings without quoting or argument-boundary protection.
+
+**Remediation (v1.2.0):**
+1. **JSON Schema Validation**: `route` pattern `^\d{1,3}$`, `direction` enum `["1","2"]`, `region` enum `["HKI","KLN","NT"]`, `stopName` pattern `^[\w\s\u4e00-\u9fff.,()\-/]{1,100}$` (strict allowlist)
+2. **Runtime Input Validation**: All parameters validated before use; control characters rejected; stopName restricted to alphanumeric, spaces, Chinese chars, basic punctuation only
+3. **Execution Model Declaration**: Added `executionModel` to manifest specifying `shell: false` and `argumentArray: true` - runtime MUST invoke via argument array
+4. **No User Data in Command Construction**: The script receives validated arguments via sys.argv, never constructs shell commands
+
+**Status:** Defense-in-depth at schema + runtime + manifest. Full remediation requires platform to honor `executionModel.shell=false`.
+
+### E1 — External Transmission (Medium) ✅ FIXED
+
+**Finding:** Script contacts `https://data.hkbus.app/routeFareList.min.json` and `https://data.etagmb.gov.hk` (flagged as potential data exfiltration).
+
+**Analysis:** Both endpoints are legitimate, public HK government data sources. No credentials, tokens, PII, or user data transmitted. Requests are GET-only for public transit data.
+
+**Remediation:**
+1. **Explicit Allowlist in Code**: `ALLOWED_DOMAINS` frozenset with 3 domains; `_validate_url()` checks every request
+2. **Runtime Enforcement**: Every `fetch_json()` call validates URL against allowlist before network request
+3. **Manifest Declaration**: `allowedDomains`, `allowedPaths`, `networkAccess` with explicit domains/protocols/maxResponseSize
+4. **Response Size Limits**: 1MB max response size prevents data flooding
+
+**Status:** False positive resolved. Legitimate traffic documented, restricted, and size-limited.
+
+### LP3 — Least Privilege (Medium) ✅ FIXED
+
+**Finding:** Skill manifest didn't declare explicit permission boundaries. Consumers cannot sandbox effectively.
+
+**Remediation:** Added explicit declarations in `openclaw.plugin.json`:
+- `requiredPermissions`: Network + filesystem permissions with specific paths
+- `networkAccess`: Domains, protocols, maxResponseSize
+- `fileSystemAccess`: Read/write paths with maxFileSize limits
+- `executionModel`: Shell=False, argumentArray=True requirement
+
+**Status:** Explicit capability declarations added for sandbox enforcement.
+
+### Ae1 — Analysis Evasion (High) ✅ FIXED
+
+**Finding:** Referenced artifact (routeFareList.json, 8.3 MB) was not completely inspected by scanner.
+
+**Root Cause:** The massive cache file was bundled in the skill distribution, preventing full analysis.
+
+**Remediation:**
+1. **Cache Files Excluded from Distribution**: `data/*.json` not included in skill package
+2. **Lazy Loading with Size Limit**: `fetch_route_farelist_entry()` fetches full file but enforces 512KB limit, extracts only needed entry, discards rest
+3. **No Large Files in Context**: Cache files created at runtime, not bundled; size limits prevent context window stuffing
+
+**Status:** Large artifact removed from distribution; runtime loading is size-bounded and inspectable.
+
+### Context Window Stuffing (Medium) ✅ FIXED
+
+**Finding:** Skill attempted to fill context window with filler content (8MB routeFareList cache), displacing legitimate instructions.
+
+**Remediation:**
+1. **No Bundled Cache Files**: Distribution contains only script, manifest, README, references
+2. **Size-Limited Cache Loading**: `MAX_CACHE_FILE_SIZE = 1MB`, `MAX_ROUTE_FARELIST_SIZE = 512KB`
+3. **Streaming Extraction**: Only needed route entry extracted from routeFareList; rest discarded immediately
+3. **Cache Size Validation**: `_check_cache_size()` prevents loading oversized cache files
+
+**Status:** Context window stuffing eliminated.
+
+---
+
+## Installation Path Note
+
+The Hermes skill loader scans `SKILLS_DIR` from `hermes_constants.get_hermes_home()` → `/opt/data/skills/` (NOT `/opt/data/.hermes/skills/`). Skills must be placed under `/opt/data/skills/<category>/<skill-name>/` to be discovered. The `.hermes/skills/` directory is not scanned by default.
+
+See `references/security-audit.md` for full ClawHub audit transcript.
+See `references/route-481-stops.md` for route 481 stop IDs and test results.

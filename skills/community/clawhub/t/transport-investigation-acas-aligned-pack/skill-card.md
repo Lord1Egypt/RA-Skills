@@ -1,40 +1,54 @@
-## Description: <br>
-Generates ACAS-aligned investigation invite wording, neutral question sets, and evidence logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates ACAS-aligned investigation invite wording, neutral question sets, and evidence logs for starting a driver incident investigation or interview.
 
-## Publisher: <br>
-[KOwl64](https://clawhub.ai/user/KOwl64) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kowl64](https://clawhub.ai/user/kowl64)
 
-## Use Case: <br>
-Managers, HR teams, and transport operations staff use this skill to create fact-finding investigation materials for driver incidents or potential misconduct. It supports investigation invite wording, neutral interview question plans, and evidence logs while keeping outcome or sanction drafting out of scope. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated investigation materials may involve sensitive employee information and workplace process decisions. <br>
-Mitigation: Review outputs before use, limit included personal data to what is needed for the investigation, and handle evidence according to internal confidentiality and retention procedures. <br>
-Risk: Users may mistake process-oriented investigation wording for legal advice or disciplinary outcome guidance. <br>
-Mitigation: Treat outputs as fact-finding templates only and involve HR or legal review for serious allegations, possible dismissal, or unclear process stages. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ACAS alignment checklist](references/acas-alignment-checklist.md) <br>
-- [ClawHub skill page](https://clawhub.ai/KOwl64/transport-investigation-acas-aligned-pack) <br>
+## Use Case:
 
+Transport managers, HR teams, and workplace investigators use this skill to prepare fact-finding investigation materials for driver incidents, including invite wording, neutral interview questions, and evidence logs. It is intended for investigation-stage drafting, not disciplinary outcome or sanction drafting.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown document templates and structured investigation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Word-ready invite text, neutral question plans, and Excel-ready evidence log tables for review before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Drafted HR investigation materials could be used as legal advice or sent without checking current ACAS guidance, internal policy, and case-specific requirements.
+
+Mitigation: Treat outputs as drafting aids and review them with appropriate HR or legal oversight before using them with employees.
+
+Risk: Using the skill for disciplinary outcomes could blur fact-finding with sanction or decision drafting.
+
+Mitigation: Confirm the process is at the investigation stage; if the stage is unclear, ask for clarification before drafting.
+
+## Reference(s):
+
+- [ACAS alignment checklist](references/acas-alignment-checklist.md)
+- [ClawHub skill page](https://clawhub.ai/kowl64/skills/transport-investigation-acas-aligned-pack)
+- [Publisher profile](https://clawhub.ai/user/kowl64)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown files with Word-ready invite wording, a neutral question plan, and an Excel-ready evidence-log table.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be reviewed against current ACAS guidance, internal HR policy, and HR or legal requirements before use with employees.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

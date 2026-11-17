@@ -1,0 +1,11 @@
+{
+  "events": [
+    { "summary": "Early sync (synthetic)", "start": { "dateTime": "2026-11-16T07:30:00-08:00" }, "end": { "dateTime": "2026-11-16T09:30:00-08:00" } },
+    { "summary": "Design review (synthetic)", "start": { "dateTime": "2026-11-16T10:00:00-08:00" }, "end": { "dateTime": "2026-11-16T11:00:00-08:00" } },
+    { "summary": "Overlapping call (synthetic)", "start": { "dateTime": "2026-11-16T10:30:00-08:00" }, "end": { "dateTime": "2026-11-16T11:30:00-08:00" } },
+    { "summary": "Lunch (synthetic)", "start": { "dateTime": "2026-11-16T20:00:00Z" }, "end": { "dateTime": "2026-11-16T21:00:00Z" } },
+    { "summary": "Quick check-in (synthetic)", "start": { "dateTime": "2026-11-16T14:45:00-08:00" }, "end": { "dateTime": "2026-11-16T15:00:00-08:00" } },
+    { "summary": "Holiday (synthetic, all-day)", "start": { "date": "2026-11-16" }, "end": { "date": "2026-11-17" } },
+    { "summary": "Cancelled (synthetic)", "status": "cancelled", "start": { "dateTime": "2026-11-16T16:00:00-08:00" }, "end": { "dateTime": "2026-11-16T17:00:00-08:00" } }
+  ]
+}

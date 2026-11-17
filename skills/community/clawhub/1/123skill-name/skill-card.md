@@ -1,46 +1,60 @@
-## Description: <br>
-Captures agent learnings, errors, corrections, and feature requests in local markdown logs so future sessions can review and promote durable guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures learnings, errors, corrections, and feature requests in markdown files so agents can improve future workflows.
 
-## Publisher: <br>
-[suncrespo](https://clawhub.ai/user/suncrespo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[suncrespo](https://clawhub.ai/user/suncrespo)
 
-## Use Case: <br>
-Developers and coding-agent users use this skill to record command failures, user corrections, knowledge gaps, and feature requests in `.learnings/` markdown files. They can then review, resolve, and promote recurring lessons into agent guidance files or reusable skill scaffolds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local persistent learning logs may retain sensitive prompts, command output, secrets, or private implementation details if users log raw context. <br>
-Mitigation: Use short summaries or redacted excerpts, avoid secrets and raw transcripts, and keep logs scoped to trusted project or workspace locations. <br>
-Risk: Optional hook scripts can inspect prompt or command-output context and inject reminders during agent workflows. <br>
-Mitigation: Prefer project-level hooks over global hooks, add matchers when prompts may contain sensitive material, and review hook scripts before enabling them. <br>
-Risk: Promoting unreviewed entries into long-lived agent guidance can preserve incorrect or misleading instructions. <br>
-Mitigation: Manually review and approve entries before promoting them into persistent guidance files or extracted skills. <br>
+## Use Case:
 
+Developers and agent users use this skill to record corrections, command failures, feature requests, and durable workflow lessons in project-local learning files. It also provides optional hook and OpenClaw guidance for reminding agents to capture useful learnings.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/suncrespo/123skill-name) <br>
-- [OpenClaw Integration](references/openclaw-integration.md) <br>
-- [Hook Setup Guide](references/hooks-setup.md) <br>
-- [Examples](references/examples.md) <br>
-- [Agent Skills specification](https://agentskills.io/specification) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration, Code, Guidance] <br>
-**Output Format:** [Markdown entries and setup guidance with bash, JSON, and TypeScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or appends local `.learnings/` markdown files and may provide hook setup or reusable skill scaffold instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Persistent learning files and promoted memory can carry unreviewed or sensitive content into future agent context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep learning logs project-local, review entries before promotion, and store only concise sanitized summaries with no secrets or raw transcripts.
+
+Risk: Broad or user-level hooks can add learning reminders across many prompts and workspaces.
+
+Mitigation: Use opt-in, project-level hook configuration and avoid global hooks unless persistent coverage is explicitly desired.
+
+Risk: Cross-session sharing can expose transcript excerpts, command output, or workspace details.
+
+Mitigation: Use cross-session tools only in trusted environments and share short sanitized summaries with relevant paths instead of raw transcript content.
+
+## Reference(s):
+
+- [OpenClaw Integration](artifact/references/openclaw-integration.md)
+- [Hook Setup Guide](artifact/references/hooks-setup.md)
+- [Entry Examples](artifact/references/examples.md)
+- [Agent Skills Specification](https://agentskills.io/specification)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and structured log-entry templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes or recommends project-local .learnings markdown files when the agent follows the skill.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

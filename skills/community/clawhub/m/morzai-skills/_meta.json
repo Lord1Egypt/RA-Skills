@@ -1,6 +1,18 @@
 {
-  "ownerId": "kn729sgd8qw3ra3y1pqhekrbt584sesc",
-  "slug": "morzai-skills",
-  "version": "1.0.1",
-  "publishedAt": 1777001921700
+  "id": "morzai-ecommerce-suite",
+  "version": "2.0.0",
+  "name": "Morzai AI E-commerce Skills",
+  "platform_compatibility": {
+    "openclaw": ">=1.0.0",
+    "claude_code": "supported"
+  },
+  "capabilities": [
+    "recolor",
+    "retouch",
+    "ironing",
+    "amazon-listing-sets",
+    "lifestyle-visuals",
+    "marketing-posters"
+  ],
+  "last_updated": "2026-04-09"
 }

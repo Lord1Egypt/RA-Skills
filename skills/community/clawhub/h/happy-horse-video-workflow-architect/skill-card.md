@@ -1,45 +1,57 @@
-## Description: <br>
-Turns rough Happy Horse use cases into structured video workflow plans, prompt packs, and revision loops for text-to-video, image-to-video, and reference-driven short-form video workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn rough Happy Horse use cases into structured video workflow plans, prompt packs, and revision loops for text-to-video, image-to-video, and reference-driven short-form video workflows.
 
-## Publisher: <br>
-[aitools101](https://clawhub.ai/user/aitools101) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gpt-img-2](https://clawhub.ai/user/gpt-img-2)
 
-## Use Case: <br>
-External creators, marketers, and developers use this skill to turn Happy Horse video ideas into workflow recommendations, prompt packs, revision checklists, and test plans for short-form content, product clips, and campaign tests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include private campaign assets, customer data, credentials, or confidential business details while planning Happy Horse workflows. <br>
-Mitigation: Keep sensitive inputs out of prompt-planning requests unless they are approved for use in the workflow. <br>
-Risk: Generated workflow plans may overstate product behavior or settings if they drift beyond the public Happy Horse resources. <br>
-Mitigation: Check recommendations against the linked Happy Horse documentation and avoid unsupported model settings or product claims. <br>
+## Use Case:
 
+Developers, creators, and marketing teams use this skill to turn rough Happy Horse video ideas into workflow recommendations, prompt packs, revision checklists, and next-step tests for short-form content, product clips, and campaign testing.
 
-## Reference(s): <br>
-- [Happy Horse Video Workflow Architect Docs](https://happy-horse.pro/docs/happy-horse-video-workflow-architect) <br>
-- [Happy Horse AI Video Generator Demo](https://happy-horse.pro/ai-video-generator) <br>
-- [Happy Horse Create](https://happy-horse.pro/create) <br>
-- [Happy Horse Product Guide](https://happy-horse.pro/blog/what-is-happy-horse) <br>
-- [Raw Skill Definition](https://happy-horse.pro/skills/happy-horse-video-workflow-architect/SKILL.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/aitools101/happy-horse-video-workflow-architect) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown workflow plan with prompt pack, variants, constraints, revision checklist, and test order.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only output; no scripts, commands, binaries, or autonomous network calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, server release metadata) <br>
+Risk: Prompt and workflow plans could imply unsupported Happy Horse product settings or claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs against the canonical Happy Horse documentation and keep constraints focused on documented workflow behavior.
+
+Risk: The skill may direct users to public Happy Horse pages for examples or follow-up actions.
+
+Mitigation: Use only public links and do not provide local credentials, private project data, or sensitive campaign details unless appropriate for the user's environment.
+
+## Reference(s):
+
+- [Happy Horse Workflow Architect documentation](https://happy-horse.pro/docs/happy-horse-video-workflow-architect)
+- [Happy Horse AI video generator](https://happy-horse.pro/ai-video-generator)
+- [Happy Horse Create](https://happy-horse.pro/create)
+- [Happy Horse product guide](https://happy-horse.pro/blog/what-is-happy-horse)
+- [ClawHub skill listing](https://clawhub.ai/gpt-img-2/skills/happy-horse-video-workflow-architect)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Markdown]
+
+**Output Format:** [Markdown with structured workflow recommendations, prompt variants, constraints, and test plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only output; no executable code, local binaries, required environment variables, or autonomous network calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

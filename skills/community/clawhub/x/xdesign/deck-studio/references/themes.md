@@ -102,6 +102,34 @@ Or enable `T`-cycling by listing themes on the body:
 
 ## How to extend
 
-Copy an existing theme, rename it, and override only the variables you want to
-change. Keep each theme under ~200 lines. Prefer adjusting tokens to adding
-new selectors.
+### Full theme (override everything)
+
+Copy an existing theme, rename it, and override only the variables you want to change. Keep each theme under ~200 lines. Prefer adjusting tokens to adding new selectors.
+
+### Delta theme (override only what changes)
+
+For brand-specific customizations, create a **delta theme** — a small CSS file that overrides only the tokens that differ from `base.css` defaults. See `_delta-example.css` for the template.
+
+```css
+/* my-brand-delta.css */
+:root {
+  --accent: #YOUR_BRAND_COLOR;
+  --accent-2: #DARKER_VARIANT;
+  /* Only override what changes — everything else inherits from base.css */
+}
+```
+
+**When to use delta vs full:**
+- **Delta** when you just need to swap colors/fonts into an existing theme structure (most brand customizations).
+- **Full** when you need to change the overall mood (light → dark, add background patterns, change border-radius philosophy).
+
+**How to apply a delta on top of an existing theme:**
+
+```html
+<!-- Load base theme first -->
+<link rel="stylesheet" href="../assets/themes/minimal-white.css">
+<!-- Then apply delta overrides -->
+<link rel="stylesheet" href="../assets/themes/my-brand-delta.css">
+```
+
+The delta file's `:root` block runs after the base theme's, so its values win. This lets you customize any of the 36 themes with a 10-line file instead of copying the entire theme.

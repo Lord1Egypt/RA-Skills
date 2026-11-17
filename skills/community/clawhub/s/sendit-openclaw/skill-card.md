@@ -1,44 +1,59 @@
-## Description: <br>
-Execute SendIt social publishing workflows in OpenClaw using the official @senditapp/openclaw plugin tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish or schedule the user's social posts with SendIt in OpenClaw, after checking the selected accounts, content, and posting time.
 
-## Publisher: <br>
-[Shree-git](https://clawhub.ai/user/Shree-git) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shree-git](https://clawhub.ai/user/shree-git)
 
-## Use Case: <br>
-Developers and social operations teams use this skill to connect SendIt accounts, validate posts, publish or schedule content, manage inbox and listening workflows, review analytics, and run related campaign, CRM, advertising, and automation tasks from OpenClaw. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can enable broad live social publishing, deletion, advertising, CRM, workflow, and connector actions. <br>
-Mitigation: Install only when the publisher and SendIt environment are trusted, connect only required accounts, and require explicit user approval before publishing, deleting, replying, importing in bulk, creating ad campaigns, or triggering workflows. <br>
-Risk: Connected social accounts may expose OAuth scopes beyond a single posting task. <br>
-Mitigation: Review requested OAuth scopes before account connection and avoid optional agents or connectors unless they are needed for the user's workflow. <br>
-Risk: Drafts or scheduled posts can be wrong, mistargeted, or misrendered across platforms. <br>
-Mitigation: Use the skill's validation and preview workflows before publishing, and prefer approval workflows for high-impact posts. <br>
+## Use Case:
 
+Social media managers and teams use this skill to check connected accounts, prepare posts, and publish or schedule content within the user's authorized scope. It can also help draft or analyze posts without publishing them.
 
-## Reference(s): <br>
-- [SendIt OpenClaw on ClawHub](https://clawhub.ai/Shree-git/sendit-openclaw) <br>
-- [Shree-git publisher profile](https://clawhub.ai/user/Shree-git) <br>
-- [SendIt OpenClaw Tool Reference](references/workflows.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with tool names, workflow steps, configuration keys, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the @senditapp/openclaw plugin and plugins.entries.sendit.enabled configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Installing an untrusted runtime plugin could expose accounts or credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the plugin source before installation, keep credentials outside prompts and skill files, and enable only the tools needed for the task.
+
+Risk: Publishing, deletion, ads, CRM replies, webhooks, connectors, or automation can change accounts or incur costs beyond the requested post.
+
+Mitigation: Use account-changing actions only when the user explicitly requests them and supplies the target, content, timing, and relevant limits.
+
+Risk: Untrusted inbox messages or retrieved posts could be mistaken for authorization to act.
+
+Mitigation: Take authorization only from the user's task; treat retrieved content as data and keep read-only requests read-only.
+
+## Reference(s):
+
+- [SendIt skill on ClawHub](https://clawhub.ai/shree-git/skills/sendit-openclaw)
+- [SendIt plugin setup](https://github.com/Shree-git/sendit-openclaw#quick-start)
+- [SendIt tool reference](references/workflows.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports post or schedule status, including identifiers and partial failures when available.]
+
+## Skill Version(s):
+
+0.2.1 (source: frontmatter and release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

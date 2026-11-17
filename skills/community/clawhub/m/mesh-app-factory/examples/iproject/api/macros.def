@@ -1,0 +1,63 @@
+{
+    "is_prj_leader":{
+        "name":"judge_prj_leader",
+        "db":"project",
+        "type":"dataexists",
+        "cache":"#PID#_@{#tokenAcc}",
+        "expect" : true, //如果不存在，则返回NOT_EXISTS，否则返回OK
+        "errorCode":"NO_RIGHT",
+        "errorInfo":"no right",
+        "sql":"select 1 from member where pid=#PID#
+             and account='@{#tokenAcc}' and role='L'"
+    },
+    
+    "is_prj_stakeholder":{ //项目利益相关人
+        "name":"judge_prj_leader",
+        "db":"project",
+        "type":"dataexists",
+        "expect" : true, //如果不存在，则返回NOT_EXISTS，否则返回OK
+        "errorCode":"NO_RIGHT",
+        "errorInfo":"no right",
+        "sql":"select 1 from member where pid=#PID#
+             and account='@{#tokenAcc}' and role in('L','O')"
+    },
+    
+    "is_fprj_stakeholder":{ //父项目的利益相关人
+        "name":"judge_fprj_leader",
+        "db":"project",
+        "type":"dataexists",
+        "expect" : true, //如果不存在，则返回NOT_EXISTS，否则返回OK
+        "errorCode":"NO_RIGHT",
+        "errorInfo":"no right",
+        "sql":"select 1 from project p,member m where p.id=#PID#
+            and m.pid=p.fid and m.account='@{#tokenAcc}' and m.role in('L','O')"
+    },
+    
+    "is_prj_member":{
+        "name":"judge_prj_member",
+        "db":"project",
+        "type":"dataexists",
+        "expect" : true,
+        "errorCode":"NO_RIGHT",
+        "errorInfo":"no right",
+        "sql":"select 1 from member where pid=#PID# and account='@{#tokenAcc}'"
+    },
+    
+    "is_prj_exists": {
+        "name":"judge_prj_exists",
+        "db":"project",
+        "type" : "dataexists",
+        "expect" : true, //如果不存在，则返回NOT_EXISTS，否则返回OK
+        "sql":"select 1 from project where id=#PID#"
+    },
+    
+    "is_initprj_stakeholder": {
+        "name":"judge_prj_holders_stage",
+        "db":"project",
+        "type" : "dataexists",
+        "expect" : true, //如果不存在，则返回NOT_EXISTS，否则返回OK
+        "sql":"select 1 from member m,project p
+             where m.pid=#PID# and m.account='@{#tokenAcc}' and m.role in('L','O')
+             and p.id=#PID# and p.stage='INIT'"
+    }
+}

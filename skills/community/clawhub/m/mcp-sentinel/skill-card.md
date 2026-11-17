@@ -1,41 +1,58 @@
-## Description: <br>
-Audits MCP and AI agent configuration files for risky commands, broad filesystem access, inline secrets, and prompt-injection risks, reporting findings by severity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits MCP and AI agent configuration files for risky commands, broad filesystem access, inline secrets, and prompt-injection risks, then reports findings by severity.
 
-## Publisher: <br>
-[fasjdas](https://clawhub.ai/user/fasjdas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fasjdas](https://clawhub.ai/user/fasjdas)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to run MCP Sentinel against a project root, summarize risky MCP or AI-agent configuration findings by severity, and propose safer configuration changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow relies on a disclosed third-party MCP Sentinel CLI and its npm dependencies. <br>
-Mitigation: Review the referenced CLI and dependency set before installation or execution in sensitive environments. <br>
-Risk: Scanning project roots may inspect configuration files that contain secret-looking keys or values. <br>
-Mitigation: Run scans only on intended project roots and report secret findings by key name without exposing full values. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to run or interpret MCP Sentinel audits on MCP and AI agent configuration files, prioritize risky command, filesystem, secret, and prompt-injection findings, and guide remediation.
 
-## Reference(s): <br>
-- [MCP Sentinel GitHub repository](https://github.com/fasjdas/mcp-sentinel) <br>
-- [ClawHub release page](https://clawhub.ai/fasjdas/mcp-sentinel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands, severity summaries, and optional configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summarizes findings by severity and avoids exposing full secret values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill tells users to install and run mutable third-party code without pinned release or provenance verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after choosing a reviewed commit or release and verifying provenance.
+
+Risk: Running the scanner against broad directories can expose unrelated files or secrets to the audit process.
+
+Mitigation: Run in a sandbox or container with read-only access to the specific project being audited.
+
+Risk: Static scanner findings are best-effort signals and may miss issues or flag benign configuration.
+
+Mitigation: Treat findings as prompts for human review and remediation rather than as a complete security review.
+
+## Reference(s):
+
+- [MCP Sentinel ClawHub listing](https://clawhub.ai/fasjdas/skills/mcp-sentinel)
+- [MCP Sentinel repository linked by the skill](https://github.com/fasjdas/mcp-sentinel)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown summaries with command snippets and optional JSON audit output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings should be summarized by severity, and secret values should be redacted.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

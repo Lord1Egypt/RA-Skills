@@ -1,47 +1,62 @@
-## Description: <br>
-Agent Sheet is a shell-native spreadsheet CLI for workbook inspection, sheet and range reads, precise writes, import/export handoff, review-table construction, formula analysis, and bounded workbook-native scripting with verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shell-native spreadsheet CLI for agent work, used for workbook inspection, sheet and range reads, precise writes, import/export handoff, review-table construction, formula analysis, and bounded workbook-native scripting with verification.
 
-## Publisher: <br>
-[yangluoshen](https://clawhub.ai/user/yangluoshen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangluoshen](https://clawhub.ai/user/yangluoshen)
 
-## Use Case: <br>
-Developers and agent operators use Agent Sheet to inspect and modify local spreadsheets through explicit workbook targets, safe shell roundtrips, import/export handoffs, and verification playbooks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and change local spreadsheets. <br>
-Mitigation: Keep workbook IDs, sheets, and ranges explicit, then verify changed ranges and exported files after edits. <br>
-Risk: Broad clears, deletes, and sheet lifecycle actions can have destructive effects. <br>
-Mitigation: Review those actions before execution and prefer the smallest scoped command that satisfies the task. <br>
-Risk: Installing agent-sheet@latest can change behavior over time in sensitive environments. <br>
-Mitigation: Pin the npm package version when reproducibility or stronger change control is required. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect, transform, write, import, export, and verify spreadsheet workbooks through the local agent-sheet CLI while keeping workbook targets explicit and changes bounded.
 
-## Reference(s): <br>
-- [Agent Sheet ClawHub page](https://clawhub.ai/yangluoshen/agent-sheet) <br>
-- [Agent Sheet repository and documentation](https://github.com/dream-num/skills) <br>
-- [Command Selection Matrix](references/command-selection-matrix.md) <br>
-- [Shell Patterns](references/shell-patterns.md) <br>
-- [Gotchas](references/gotchas.md) <br>
-- [JavaScript API Minimal Reference](references/js-api-minimal.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash, Python, and CLI command snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Encourages bounded previews, explicit entry IDs, staged files, and verification after spreadsheet writes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.6 (source: ClawHub release metadata) <br>
+Risk: The npm installation target uses agent-sheet@latest, so future package changes could alter behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the package and publisher are trusted, or pin an audited agent-sheet version before deployment.
+
+Risk: Write, delete, clear, import/export, and script js commands can make real changes to workbook or filesystem state.
+
+Mitigation: Confirm the target entryId, sheet, range, and path before execution, keep mutations bounded, and run the documented verification steps after changes.
+
+Risk: Shell roundtrips can preserve row counts while shifting headers or key columns.
+
+Mitigation: Verify the header row, first sample rows, key columns, and total row count before treating writeback as successful.
+
+## Reference(s):
+
+- [Repository](https://github.com/dream-num/skills)
+- [Documentation](https://github.com/dream-num/skills)
+- [Command Selection Matrix](artifact/references/command-selection-matrix.md)
+- [Gotchas Reference](artifact/references/gotchas.md)
+- [Shell Patterns Reference](artifact/references/shell-patterns.md)
+- [JS API Minimal Reference](artifact/references/js-api-minimal.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration]
+
+**Output Format:** [Markdown with inline shell and code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce bounded previews, file paths, stream output, verification summaries, and small helper-script invocations.]
+
+## Skill Version(s):
+
+0.1.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Provides agent guidance for using the 泛微 e-office IM Socket.IO/WebSocket API for private chat, group chat, online status, offline messages, and group management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+泛微 e-office 即时通讯（IM）WebSocket API - 私聊、群聊等
 
-## Publisher: <br>
-[quanruxiaohong](https://clawhub.ai/user/quanruxiaohong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quanruxiaohong](https://clawhub.ai/user/quanruxiaohong)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent prepare Socket.IO calls and workflows for e-office IM, including sending messages, managing groups, checking online status, and handling offline messages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can enable broad live messaging, status changes, and group-management actions through an e-office IM account. <br>
-Mitigation: Use a least-privileged token and require explicit user confirmation before sending messages, withdrawing or deleting messages, changing status, or modifying groups. <br>
-Risk: Credentials and message contents may be exposed if tokens or payloads are logged, shared, or sent over an insecure endpoint. <br>
-Mitigation: Do not log or share tokens, avoid administrator credentials, and prefer wss/https endpoints. <br>
+## Use Case:
 
+Employees, developers, and operators use this skill to guide an agent through e-office IM WebSocket workflows for private chat, group chat, message state changes, online status checks, offline message retrieval, and group membership management.
 
-## Reference(s): <br>
-- [e-office IM API documentation](references/im-api.md) <br>
-- [Project homepage](https://github.com/yourname/eoffice-im-skill) <br>
-- [ClawHub skill page](https://clawhub.ai/quanruxiaohong/eoffice-im) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with JavaScript, JSON, shell, and TypeScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EOFFICE_IM_BASE_URL and EOFFICE_IM_TOKEN configuration before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Broad authenticated messaging and group-management actions can expose message content or affect users and groups if used without clear authorization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for a trusted e-office IM environment, use narrowly scoped and revocable tokens, and require explicit confirmation before sending, reading, deleting, withdrawing, changing status, or modifying group membership.
+
+Risk: Insecure endpoint examples and token handling could expose credentials or message content.
+
+Mitigation: Prefer wss/https endpoints and avoid placing real tokens in prompts, examples, logs, or shared configuration.
+
+## Reference(s):
+
+- [e-office IM API reference](artifact/references/im-api.md)
+- [Project homepage from ClawHub metadata](https://github.com/yourname/eoffice-im-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Socket.IO examples, configuration snippets, and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires EOFFICE_IM_BASE_URL and EOFFICE_IM_TOKEN configuration for a trusted e-office IM environment.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

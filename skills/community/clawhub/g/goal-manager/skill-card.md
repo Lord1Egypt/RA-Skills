@@ -1,42 +1,54 @@
-## Description: <br>
-Goal Manager helps users create OKR and SMART goals, update key-result progress, generate periodic review templates, and choose from goal templates for work, health, learning, finance, relationships, and life planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Goal Manager helps Chinese-speaking users create OKR and SMART goals, track progress, and generate periodic review templates.
 
-## Publisher: <br>
-[cp3d1455926-svg](https://clawhub.ai/user/cp3d1455926-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cp3d1455926-svg](https://clawhub.ai/user/cp3d1455926-svg)
 
-## Use Case: <br>
-Individuals and productivity-focused agents use this skill to structure personal or professional goals, track progress against OKRs or SMART criteria, and prepare daily, weekly, monthly, quarterly, or yearly reviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may store personal planning, goal, and review content locally. <br>
-Mitigation: Avoid entering highly sensitive details unless the storage location, retention behavior, and deletion process are understood. <br>
-Risk: The delete flow may remove matching stored goals without a strong confirmation step. <br>
-Mitigation: Review or back up stored goal files before asking the skill to delete goals. <br>
+## Use Case:
 
+Chinese-speaking users and agent operators use this skill to create goals from built-in OKR/SMART templates, update key result progress, view saved goals, and generate daily, weekly, monthly, quarterly, or yearly review prompts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cp3d1455926-svg/goal-manager) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style Chinese text responses with goal summaries, progress bars, template lists, and review prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill can persist goal and review data as local JSON files when its Python helper is executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Goal data and reviews are stored in JSON files beside the skill when the helper runs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a workspace where local file persistence is acceptable, and avoid storing sensitive personal goals unless the workspace storage is trusted.
+
+Risk: Delete or cancel requests may remove matching goals without a confirmation step.
+
+Mitigation: Review goal names before issuing delete or cancel requests, and keep backups of goals.json if the data matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cp3d1455926-svg/skills/goal-manager)
+- [ClawHub publisher profile](https://clawhub.ai/user/cp3d1455926-svg)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Files]
+
+**Output Format:** [Chinese Markdown responses and local JSON goal or review records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [When executed, the Python helper stores goals and reviews in JSON files beside the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

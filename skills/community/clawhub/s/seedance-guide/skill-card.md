@@ -1,42 +1,53 @@
-## Description: <br>
-Professional Seedance 2.0 / Jimeng storyboard and prompt engineering guide for creating cinematic AI video prompts, storyboard breakdowns, and audio direction from multimodal inputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional Seedance 2.0 / Jimeng storyboard and prompt engineering guide for creating cinematic storyboards, movie-grade AI video prompts, and audio script guidance from multimodal inputs.
 
-## Publisher: <br>
-[xiuxiuing](https://clawhub.ai/user/xiuxiuing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiuxiuing](https://clawhub.ai/user/xiuxiuing)
 
-## Use Case: <br>
-Creators, marketers, and developers use this skill to turn video ideas and multimodal assets into structured Seedance 2.0 storyboard prompts, directorial breakdowns, and sound design notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompt guidance around faces and identity may be used to work around downstream safety checks. <br>
-Mitigation: Review generated prompts before use, avoid unauthorized likenesses, and do not use stylization, framing, or wording changes to bypass platform rules. <br>
-Risk: Generated video prompts may reference media that the user is not authorized to use. <br>
-Mitigation: Use only media and likenesses for which the user has appropriate rights and consent. <br>
+## Use Case:
 
+External users and developers use this skill to turn video ideas and multimodal assets into Seedance 2.0 storyboard prompts, directorial breakdowns, camera instructions, and sound guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiuxiuing/seedance-guide) <br>
-- [README](artifact/README.md) <br>
-- [Usage and examples](artifact/usage_and_examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown storyboard prompts and directorial breakdowns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include timeline segments, material references, camera directions, sound design notes, and prompt templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: release evidence) <br>
+Risk: The prompt guidance may encourage content-check evasion for identity-linked media generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove detector-aware face-obscuring and term-substitution guidance before use or publication.
+
+Risk: Use with real people's images or likenesses can raise consent, impersonation, or platform-policy concerns.
+
+Mitigation: Require documented consent for likeness use and confirm generated prompts comply with the target video platform's content policies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiuxiuing/skills/seedance-guide)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown storyboard prompts, directorial breakdowns, and sound guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference user-provided image, video, and audio assets using @filename syntax.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

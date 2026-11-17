@@ -1,42 +1,57 @@
-## Description: <br>
-Computes key JiuShi Sports app order metrics by order title or order detail, with optional keyword and business-section filters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates order analytics for the JiuShi Sports app by product dimension, including order counts, unpaid and refunded orders, payment and refund amounts, and user counts with optional keyword and business-section filters.
 
-## Publisher: <br>
-[jaggerliu](https://clawhub.ai/user/jaggerliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jaggerliu](https://clawhub.ai/user/jaggerliu)
 
-## Use Case: <br>
-Authorized business analysts and operations teams use this skill to query production order data for order counts, unpaid and refund counts, payment and refund amounts, and user counts over a specified time range. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill queries production business order data using locally supplied database credentials. <br>
-Mitigation: Use it only with authorization to access the JiuShi order database, and configure a narrowly scoped read-only account. <br>
-Risk: The SQL template builds filters from user input without strong input controls. <br>
-Mitigation: Replace f-string SQL with parameterized queries and strict allowlists for dates, dimensions, keywords, and business sections before production use. <br>
-Risk: Database credentials or connection details could be exposed through careless execution or logging. <br>
-Mitigation: Provide credentials through protected environment variables and avoid printing passwords or full connection strings. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jaggerliu/app-order-prod-key-stats) <br>
-- [Publisher profile](https://clawhub.ai/user/jaggerliu) <br>
+## Use Case:
 
+Business analysts and operations teams use this skill to request product-level order statistics for the JiuShi Sports app over a chosen time range. It returns filtered payment, refund, order, and user metrics grouped by order title or order detail.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown tables and Chinese summary text, with Python query code when execution is needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires authorized database credentials and Python packages mysql-connector-python, pandas, and tabulate.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter says 1.3) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security evidence reports unsafe handling of user inputs in the live database query template.
+
+Mitigation: Use parameterized SQL, validate time ranges, keywords, dimensions, and business-section filters, and keep the query template read-only before running against production data.
+
+Risk: The skill can expose business order metrics and potentially sensitive small-cohort information.
+
+Mitigation: Run only with tightly scoped read-only database credentials, restrict network access to approved environments, and apply privacy controls for small result groups.
+
+Risk: Dependency drift could change query or rendering behavior.
+
+Mitigation: Pin mysql-connector-python, pandas, and tabulate versions for reproducible installs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jaggerliu/skills/app-order-prod-key-stats)
+- [ClawHub publisher profile](https://clawhub.ai/user/jaggerliu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown tables with concise Chinese summaries and optional Python or SQL snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python plus mysql-connector-python, pandas, and tabulate; database credentials should be supplied through environment variables.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -118,7 +118,7 @@ Present the analysis:
 
 ## Version Bump Execution
 
-### Step 1: Update SKILL.md frontmatter
+### Step 1: Update version in SKILL.md frontmatter
 
 ```yaml
 # Before
@@ -208,7 +208,7 @@ git commit -m "feat(workflow)!: change screenshot delivery from React to HTML"
 ## Update Workflow Summary
 
 ```
-用户说"更新 wx-peitu" / "迭代 react-design-draft"
+用户说"发布技能更新 wx-peitu" / "迭代技能发布 react-design-draft"
     │
     ├── Step 1: git fetch + git diff → 检测变更文件
     │

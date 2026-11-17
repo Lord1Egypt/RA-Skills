@@ -1,47 +1,61 @@
-## Description: <br>
-Create and manage articles on the PANews platform, including authenticated draft, submission, image upload, tag search, column application, revision, and content polishing workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage articles on the PANews platform with authenticated creator workflows for drafting, publishing, revising, image uploads, tag search, column applications, and article review.
 
-## Publisher: <br>
-[medz](https://clawhub.ai/user/medz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[medz](https://clawhub.ai/user/medz)
 
-## Use Case: <br>
-External PANews contributors use this skill to prepare, create, update, submit, and manage platform articles through authenticated creator workflows. It is also useful for reviewing article drafts, searching tags, uploading cover images, and applying for a publishing column. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a PANews browser session token for account-changing actions such as creating, submitting, updating, or deleting creator content. <br>
-Mitigation: Use an environment variable or credential store for PA-User-Session, validate the session before write actions, and avoid pasting tokens into chat or command history. <br>
-Risk: Broad implicit triggers may lead an agent into publishing workflows before the intended column, article, or submission state is clear. <br>
-Mitigation: Confirm the target column, article, and whether the user intends to submit for review before create, update, submit, or delete actions. <br>
-Risk: Delete operations are sensitive because evidence notes no CLI-level second confirmation. <br>
-Mitigation: Require explicit user confirmation for the exact article before invoking delete operations. <br>
+## Use Case:
 
+External PANews contributors and their agents use this skill to prepare, manage, and submit PANews articles through authenticated creator workflows, including drafts, revisions, media uploads, tag lookup, and column applications.
 
-## Reference(s): <br>
-- [Publish a New Article](references/workflow-publish.md) <br>
-- [Manage My Articles](references/workflow-manage.md) <br>
-- [Revise and Resubmit](references/workflow-revise.md) <br>
-- [Apply for a Column](references/workflow-apply-column.md) <br>
-- [Polish an Article](references/workflow-polish.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/medz/panews-creator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and structured workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide authenticated API-backed publishing actions when the user provides a valid PANews session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: A valid PANews session can let an agent create, update, submit, upload for, apply to, or delete creator content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a secure credential source, keep the session narrowly controlled, and manually confirm each high-impact action before execution.
+
+Risk: Deletion, submission, or update commands can affect the wrong article if IDs or status changes are not checked.
+
+Mitigation: Confirm article IDs, target columns, requested field changes, and submit/delete intent with the user before taking the action.
+
+Risk: Passing session tokens as command-line arguments can expose credentials through shell history or process listings.
+
+Mitigation: Prefer environment variables, direnv, or a secret manager for PANews session values.
+
+## Reference(s):
+
+- [Publish a New Article](references/workflow-publish.md)
+- [Manage My Articles](references/workflow-manage.md)
+- [Revise and Resubmit](references/workflow-revise.md)
+- [Apply for a Column](references/workflow-apply-column.md)
+- [Polish an Article](references/workflow-polish.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and structured workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use authenticated PANews creator actions when the user provides a valid session; article polishing can be text-only.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Generate VASP input files (INCAR, KPOINTS, POSCAR.template) for DFT tasks like relaxation, static calculations, molecular dynamics, band structure, and density of states calculations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate VASP DFT calculation input files (INCAR, KPOINTS, POSCAR, POTCAR) for structural optimization, electronic structure, molecular dynamics, band structure, and density-of-states workflows.
 
-## Publisher: <br>
-[Runye](https://clawhub.ai/user/Runye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[runye](https://clawhub.ai/user/runye)
 
-## Use Case: <br>
-Developers and computational materials researchers use this skill to create and review starter VASP calculation inputs for common DFT workflows. It helps draft INCAR, KPOINTS, and POSCAR template content while reminding users to generate POTCAR separately. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated VASP parameters may be unsuitable for a specific material system or calculation objective. <br>
-Mitigation: Review INCAR, KPOINTS, and POSCAR.template content against the target structure, pseudopotentials, and convergence requirements before spending compute. <br>
-Risk: Running the generator in an active calculation directory can overwrite intended INCAR, KPOINTS, or POSCAR.template files. <br>
-Mitigation: Run the generator only in a new or intended VASP calculation directory and keep backups of existing input files. <br>
+## Use Case:
 
+Developers and computational materials scientists use this skill to generate and review VASP input files for DFT calculations, including relaxation, static, molecular dynamics, band structure, and density-of-states workflows.
 
-## Reference(s): <br>
-- [VASP INCAR Parameters Reference](references/incar-parameters.md) <br>
-- [ClawHub release page](https://clawhub.ai/Runye/vasp-input-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples and generated VASP input-file content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local INCAR, KPOINTS, and POSCAR.template files when its bundled generator script is run; POTCAR is guidance only.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated files can overwrite existing VASP input files in the selected output directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the generator in a working folder or back up existing INCAR and KPOINTS files before execution.
+
+Risk: Default calculation parameters may not match a specific material, pseudopotential set, or production accuracy requirement.
+
+Mitigation: Review ENCUT, k-point density, smearing, spin settings, and POTCAR choices before using generated inputs for VASP calculations.
+
+## Reference(s):
+
+- [VASP INCAR Parameters Reference](references/incar-parameters.md)
+- [ClawHub Skill Page](https://clawhub.ai/runye/skills/vasp-input-generator)
+
+## Skill Output:
+
+**Output Type(s):** [configuration, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with generated VASP text files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates local INCAR, KPOINTS, and optional POSCAR.template files; POTCAR generation remains guidance only.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

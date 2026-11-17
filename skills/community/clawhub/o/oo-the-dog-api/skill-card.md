@@ -1,44 +1,52 @@
-## Description: <br>
-The Dog API skill guides agents to use OOMOL's oo CLI connector for reading and managing The Dog API breeds, images, favourites, and votes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill to read, create, update, and delete data through The Dog API.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and external users use this skill to operate a connected The Dog API account through the OOMOL connector, including read-only breed and image queries plus confirmed favourites and votes changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill operates a connected The Dog API account through OOMOL and requires sensitive account credentials to be available server-side. <br>
-Mitigation: Install and use it only when the user trusts OOMOL and intentionally wants the agent to operate that connected account. <br>
-Risk: Write and destructive actions can create or delete favourites and votes. <br>
-Mitigation: Confirm the exact payload, target, and expected effect with the user before running write or destructive actions. <br>
-Risk: Setup commands can install the oo CLI or initiate account login and connector setup. <br>
-Mitigation: Run install, login, or connection steps only after an action fails for the matching setup reason or the user explicitly requests setup. <br>
+## Use Case:
 
+Developers and agents use this skill with a connected The Dog API account to find breeds and images, and to manage favourites and votes.
 
-## Reference(s): <br>
-- [The Dog API homepage](https://thedogapi.com/) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-the-dog-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, guidance, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the OOMOL oo CLI; connector responses are returned as JSON when the --json flag is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and skill metadata) <br>
+Risk: A routine API request can trigger installation of unverified software without separate approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install the oo CLI from a verified release before enabling the skill, and assess any automatic installation or skill synchronization it may perform.
+
+## Reference(s):
+
+- [The Dog API documentation](https://docs.thedogapi.com/)
+- [The Dog API](https://thedogapi.com/)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [ClawHub skill page](https://clawhub.ai/oomol/skills/oo-the-dog-api)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON API payloads and responses, with oo CLI commands and usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes and deletions require user confirmation.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

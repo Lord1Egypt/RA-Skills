@@ -1,0 +1,167 @@
+{
+ "video": "../behnken.mp4",
+ "video_sha256": "b5a519d494aaa8c80914fe5489ac82d55a0c14522494acb90dd71035ffbca502",
+ "campaign": "example-orbit-crew-dragon",
+ "clips": [
+  {
+   "id": "01",
+   "account": "TikTok",
+   "file": "clip-01.mp4",
+   "sha256": "f19b071b1256a34dadf0d8a26fbe00a1ca54982413aef05cd472ab8f2df97a35",
+   "bytes": 2185825,
+   "seconds": 29.4,
+   "window": [
+    488.6,
+    519.7
+   ],
+   "ranges": [
+    [
+     488.6,
+     489.09
+    ],
+    [
+     489.39,
+     494.12
+    ],
+    [
+     494.12,
+     498.59
+    ],
+    [
+     498.81,
+     500.25
+    ],
+    [
+     500.99,
+     504.57
+    ],
+    [
+     504.57,
+     508.33
+    ],
+    [
+     508.33,
+     511.87
+    ],
+    [
+     511.87,
+     515.54
+    ],
+    [
+     515.85,
+     517.83
+    ],
+    [
+     518.11,
+     519.9
+    ]
+   ],
+   "framing": "crop",
+   "hook": "Astronauts live Groundhog Day on purpose",
+   "on_screen": {
+    "disclosure": "EXAMPLE ONLY: not a real ad",
+    "disclosure_seconds": 4.0,
+    "watermark": "EXAMPLE ONLY"
+   },
+   "cover": "clip-01-cover.jpg"
+  },
+  {
+   "id": "02",
+   "account": "Reels",
+   "file": "clip-02.mp4",
+   "sha256": "61414fcfd31c2fea0bb1b1e43abcf675e80e2de337f09afa4363f4f480ef38c8",
+   "bytes": 1570618,
+   "seconds": 20.7,
+   "window": [
+    213.0,
+    234.41
+   ],
+   "ranges": [
+    [
+     213.0,
+     215.44
+    ],
+    [
+     215.7,
+     220.44
+    ],
+    [
+     220.82,
+     226.56
+    ],
+    [
+     226.94,
+     230.74
+    ],
+    [
+     230.74,
+     234.71
+    ]
+   ],
+   "framing": "crop",
+   "hook": "Save the crew, not the mission",
+   "on_screen": {
+    "disclosure": "EXAMPLE ONLY: not a real ad",
+    "disclosure_seconds": 4.0,
+    "watermark": "EXAMPLE ONLY"
+   },
+   "cover": "clip-02-cover.jpg"
+  },
+  {
+   "id": "03",
+   "account": "Shorts",
+   "file": "clip-03.mp4",
+   "sha256": "c0c21071bc41534de9f7c19c280784ecf32aef3e4d6ab878d5e76d80c4649383",
+   "bytes": 2039298,
+   "seconds": 26.6,
+   "window": [
+    70.9,
+    99.95
+   ],
+   "ranges": [
+    [
+     70.9,
+     77.49
+    ],
+    [
+     79.3,
+     80.79
+    ],
+    [
+     81.08,
+     82.26
+    ],
+    [
+     82.62,
+     88.25
+    ],
+    [
+     88.25,
+     90.92
+    ],
+    [
+     90.92,
+     93.9
+    ],
+    [
+     93.9,
+     97.94
+    ],
+    [
+     98.18,
+     100.17
+    ]
+   ],
+   "framing": "crop",
+   "hook": "His goal: future crews forget his name",
+   "on_screen": {
+    "disclosure": "EXAMPLE ONLY: not a real ad",
+    "disclosure_seconds": 4.0,
+    "watermark": "EXAMPLE ONLY"
+   },
+   "cover": "clip-03-cover.jpg"
+  }
+ ],
+ "contactSheet": "contact-sheet.jpg",
+ "warnings": []
+}

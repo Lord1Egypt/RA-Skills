@@ -1,42 +1,52 @@
-## Description: <br>
-Academic Deep Research guides an agent through scoped, multi-cycle web research with user checkpoints, evidence hierarchy, contradiction handling, and APA-style reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Academic Deep Research guides an agent through transparent, rigorous deep research using clarifying checkpoints, planned investigation themes, repeated research cycles, APA-style citations, evidence hierarchy, and contradiction analysis.
 
-## Publisher: <br>
-[alvisdunlop](https://clawhub.ai/user/alvisdunlop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[alvisdunlop](https://clawhub.ai/user/alvisdunlop)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Researchers, analysts, and developers use this skill when they need reproducible literature reviews, competitive intelligence, trend reports, or complex claim verification with explicit methodology and citations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may search persistent agent memory by default, which can expose or reuse prior context without sufficiently clear user consent or scope.
+
+Mitigation: Require explicit user approval before memory_search or memory_get are used, and install the skill only in environments where prior-memory lookup is acceptable.
+
+Risk: Deep research outputs can still contain incorrect, outdated, or misleading conclusions despite citation and methodology requirements.
+
+Mitigation: Review cited sources, verify high-impact claims against primary sources, and keep the skill's required contradiction and limitation analysis in the final report.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Researchers, analysts, and operators use this skill to plan and conduct literature reviews, competitive intelligence, trend reports, and other source-heavy investigations that need documented methodology and reproducible evidence trails. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Overbroad research requests can lead to long-running investigations or unclear conclusions. <br>
-Mitigation: Set scope, number of themes, source expectations, and time limits before approving the research plan. <br>
-Risk: Sensitive personal or business information may be exposed when search, fetch, memory, or parallel-session tools are used. <br>
-Mitigation: Avoid confidential inputs unless tool processing is acceptable, and disable memory or parallel sessions when tighter containment is needed. <br>
-Risk: Research outputs may include outdated, inaccessible, or conflicting sources. <br>
-Mitigation: Review citations, limitations, and contradiction handling before relying on the final report. <br>
+**Output Format:** [Markdown research plans and narrative reports with citations, methodology notes, source assessments, and limitation analysis]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alvisdunlop/alvis2-academic-deep-research) <br>
+**Other Properties Related to Output:** [May include user checkpoints, research execution plans, evidence trails, contradiction analysis, and final APA-style references.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown research plans and narrative reports with APA 7th citations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user checkpoints before research begins and before executing the approved research plan.] <br>
+2.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-2.0.0 (source: ClawHub release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "currency": "USD",
+  "budget": "300",
+  "costs": [
+    {
+      "id": "cost-1",
+      "currency": "USD",
+      "paid": "80",
+      "refund_received": "0",
+      "committed_total": "150",
+      "estimate": null,
+      "cancelled": false
+    },
+    {
+      "id": "cost-2",
+      "currency": "USD",
+      "paid": "0",
+      "refund_received": "0",
+      "committed_total": null,
+      "estimate": "90",
+      "cancelled": false
+    }
+  ]
+}

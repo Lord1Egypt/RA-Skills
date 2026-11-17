@@ -1,42 +1,54 @@
-## Description: <br>
-Queries a configured local LibRAG knowledge base for Chinese retrieval, evidence extraction, source text, and source-location recall. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calls a configured LibRAG knowledge-base recall API to retrieve Chinese knowledge-base passages, evidence text, source locations, and structured JSON results for an agent.
 
-## Publisher: <br>
-[7010G](https://clawhub.ai/user/7010G) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[7010g](https://clawhub.ai/user/7010g)
 
-## Use Case: <br>
-Agents and developers use this skill to query a configured Chinese LibRAG knowledge base, retrieve relevant passages, and return evidence with request and result metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The included config uses a placeholder API key and stores connection settings locally. <br>
-Mitigation: Replace the placeholder with a scoped LibRAG key and keep config.json private. <br>
-Risk: The skill makes network calls to the configured LibRAG base_url. <br>
-Mitigation: Confirm base_url points to the intended LibRAG service before use. <br>
-Risk: Retrieved source text may be returned to the agent. <br>
-Mitigation: Use only knowledge bases whose retrieved content may be shown in the agent context. <br>
+## Use Case:
 
+Developers and agents working in Chinese knowledge-base workflows use this skill to query a configured LibRAG service, retrieve relevant passages with source text and scores, and support evidence-backed answers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/7010G/librag-knowledge-recall) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration] <br>
-**Output Format:** [JSON returned by the recall script, with command-line usage guidance in Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local config.json with LibRAG base_url, api_key, kb_id, recall mode, top-k settings, source-text options, and score filtering.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, created 2026-03-10T07:47:56Z) <br>
+Risk: Knowledge-base questions and retrieved context are sent to the configured LibRAG endpoint, where an untrusted service or logs could expose sensitive content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted loopback or HTTPS LibRAG endpoint and avoid confidential questions unless the endpoint and its logging are approved for that data.
+
+Risk: The skill requires an API key in configuration, and exposed keys could allow unauthorized knowledge-base recall.
+
+Mitigation: Keep the key private, avoid printing the full key, scope it to the intended knowledge base when possible, and rotate it if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/7010g/skills/librag-knowledge-recall)
+- [ClawHub publisher profile](https://clawhub.ai/user/7010g)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON recall results with request details, response payload, and summary fields.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a configured LibRAG base URL, API key, knowledge-base ID, recall mode, top-k settings, source text, score, and tree-output options.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

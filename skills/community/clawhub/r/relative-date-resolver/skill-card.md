@@ -1,40 +1,50 @@
-## Description: <br>
-Converts natural-language relative day expressions into the soonest future calendar date in ISO format for accurate scheduling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts natural-language day and relative-date references into the soonest future calendar date in ISO format for scheduling workflows.
 
-## Publisher: <br>
-[jtheodas](https://clawhub.ai/user/jtheodas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jtheodas](https://clawhub.ai/user/jtheodas)
 
-## Use Case: <br>
-Agents, developers, and scheduling workflows use this skill before creating calendar events or stating specific future dates that depend on expressions such as "next Friday", "this Wed", or "tomorrow". <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Important calendar events may be scheduled incorrectly if the reference time or timezone differs from the user's intent. <br>
-Mitigation: Confirm the returned date manually for important events and provide a reference time or IANA timezone when timezone matters. <br>
-Risk: The local helper depends on python-dateutil for parsing weekday expressions. <br>
-Mitigation: Ensure python-dateutil is available in the runtime before relying on the skill. <br>
+## Use Case:
 
+Developers and agents use this skill before creating calendar events, proposing meeting times, or communicating specific dates derived from phrases such as "next Friday", "this Wed", or "tomorrow".
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jtheodas/relative-date-resolver) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [ISO date string (YYYY-MM-DD)] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns the soonest future matching date; invalid or ambiguous expressions may raise a clear error or use a reasonable future match.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Timezone-sensitive scheduling can be wrong because the helper accepts a timezone parameter but the reviewed implementation does not apply it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the resolved date against the intended timezone before creating real calendar events or sending confirmed dates to users.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jtheodas/skills/relative-date-resolver)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Guidance]
+
+**Output Format:** [ISO date string with Markdown usage guidance and Python helper code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns YYYY-MM-DD for the resolved future date; invalid or ambiguous expressions may raise an error or use the most reasonable future match.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -5,7 +5,7 @@ Configure automatic security self-improvement triggers for AI coding agents.
 ## Overview
 
 Hooks can help capture security findings with minimal overhead:
-- **UserPromptSubmit** (recommended): Reminder after each prompt to evaluate security findings
+- **UserPromptSubmit** (recommended): Reminder after matching prompts to evaluate security findings
 - **PostToolUse (Bash)** (optional): Detection when high-signal security patterns appear in command output (trusted environments only)
 
 ## Claude Code Setup
@@ -19,7 +19,7 @@ Create `.claude/settings.json` in your project root (activator-only recommended)
   "hooks": {
     "UserPromptSubmit": [
       {
-        "matcher": "",
+        "matcher": "security|vuln|CVE|auth|permission|secret|credential|compliance",
         "hooks": [
           {
             "type": "command",
@@ -32,38 +32,20 @@ Create `.claude/settings.json` in your project root (activator-only recommended)
 }
 ```
 
-### Optional: Add PostToolUse Error Detector
+### Command output detection
 
-Enable this only when you explicitly want command-output pattern checks in trusted environments:
+Leave PostToolUse disabled. Do not attach `error-detector.sh` to every Bash call.
 
-```json
-{
-  "hooks": {
-    "PostToolUse": [
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "./skills/self-improving-security/scripts/error-detector.sh"
-          }
-        ]
-      }
-    ]
-  }
-}
-```
+### Option 2: User-Level Configuration (discouraged)
 
-### Option 2: User-Level Configuration
-
-Add to `~/.claude/settings.json` for global activation:
+Do **not** install this hook globally. User-level hooks persist across all repositories and sessions. Keep hooks project-scoped. The example below is shown only so you can recognize and remove it:
 
 ```json
 {
   "hooks": {
     "UserPromptSubmit": [
       {
-        "matcher": "",
+        "matcher": "security|vuln|CVE|auth|permission|secret|credential|compliance",
         "hooks": [
           {
             "type": "command",
@@ -85,7 +67,7 @@ For lower overhead, use only the UserPromptSubmit hook:
   "hooks": {
     "UserPromptSubmit": [
       {
-        "matcher": "",
+        "matcher": "security|vuln|CVE|auth|permission|secret|credential|compliance",
         "hooks": [
           {
             "type": "command",
@@ -107,7 +89,7 @@ Codex uses the same hook system. Create `.codex/settings.json`:
   "hooks": {
     "UserPromptSubmit": [
       {
-        "matcher": "",
+        "matcher": "security|vuln|CVE|auth|permission|secret|credential|compliance",
         "hooks": [
           {
             "type": "command",
@@ -146,7 +128,7 @@ Always redact sensitive values before documenting.
 
 1. Enable the hook configuration
 2. Start a new Claude Code session
-3. Send any prompt
+3. Send a prompt that matches the domain matcher
 4. Verify you see `<security-improvement-reminder>` in the context
 
 ### Test Error Detector Hook
@@ -188,12 +170,12 @@ If using relative paths, ensure you're in the correct directory or use absolute 
 }
 ```
 
-### Too Much Overhead
+### Matcher is required
 
-If the activator feels intrusive:
+Never use an empty matcher. If the activator still feels intrusive:
 
 1. **Use minimal setup**: Only UserPromptSubmit, skip PostToolUse
-2. **Add matcher filter**: Only trigger for security-related prompts:
+2. **Narrow the matcher further**. Current domain matcher examples: security-related prompts:
 
 ```json
 {

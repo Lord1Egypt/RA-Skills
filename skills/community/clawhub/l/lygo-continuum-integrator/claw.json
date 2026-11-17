@@ -1,0 +1,49 @@
+{
+  "name": "lygo-continuum-integrator",
+  "displayName": "LYGO Continuum Integrator",
+  "version": "1.0.1",
+  "description": "Pure local advisor. Signs running ∫(Truth × Light) df from t=0, phase-locks state vectors across lattice nodes, treats chaos as constructive interference only, emits non-collapsing geodesic receipts. Pairs with geodesic-sealer. No network, no auto-publish.",
+  "slug": "lygo-continuum-integrator",
+  "publisher": "deepseekoracle",
+  "license": "MIT-0",
+  "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack/tree/main/clawhub/mirrors/lygo-continuum-integrator",
+  "clawhub": "https://clawhub.ai/deepseekoracle/lygo-continuum-integrator",
+  "signature": "Delta9Phi963-CONTINUUM-INTEGRATOR-v1.0.0",
+  "proposed_by": "@grok",
+  "tags": [
+    "latest",
+    "lygo",
+    "continuum",
+    "integrator",
+    "geodesic",
+    "truth-light",
+    "phase-lock",
+    "advisor",
+    "delta9",
+    "openclaw"
+  ],
+  "entry": "SKILL.md",
+  "scripts": {
+    "integrate": "scripts/integrator_cli.py integrate",
+    "phase_lock": "scripts/integrator_cli.py phase-lock",
+    "emit_receipt": "scripts/integrator_cli.py emit-receipt",
+    "verify_lock": "scripts/integrator_cli.py verify-lock",
+    "demo": "scripts/integrator_cli.py demo",
+    "self_check": "scripts/self_check.py"
+  },
+  "permissions": {
+    "network": false,
+    "subprocess": false,
+    "shell": false,
+    "filesystem": {
+      "write": "only --write with --i-consent"
+    },
+    "publish": false
+  },
+  "pairs_with": [
+    "lygo-geodesic-sealer",
+    "lygo-continuum",
+    "lygo-mint-walkthrough",
+    "lygo-haven-star-chart"
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "周期数据核对"
+  short_description: "按周期核验文章、发布、AI回答与经营数据，保留来源和统计边界"
+  default_prompt: "使用 $aimegeo-performance-report 按周期核验这些运营数据并保留来源与统计边界。"

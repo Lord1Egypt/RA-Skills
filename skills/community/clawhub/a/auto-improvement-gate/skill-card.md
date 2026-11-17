@@ -1,46 +1,52 @@
-## Description: <br>
-Validates executed improvement candidates with a seven-layer gate, routes uncertain changes to human review, and rejects or reverts candidates when required checks fail. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Improvement Gate helps agents validate completed skill changes through schema, compile, lint, regression, review, doubt, and human-review gates, rejecting or reverting required-layer failures.
 
-## Publisher: <br>
-[lanyasheng](https://clawhub.ai/user/lanyasheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[lanyasheng](https://clawhub.ai/user/lanyasheng)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent operators use this skill to decide whether an executed improvement candidate should be kept, reverted, rejected, or sent for human promotion review.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can make or undo approval-related file changes with weak path and gate controls.
+
+Mitigation: Use trusted signed artifacts, contain rollback and review paths, and require explicit review before running it against real repositories or shared approval state.
+
+Risk: Approval or rejection actions may affect shared review state.
+
+Mitigation: Make required gates non-bypassable and require explicit confirmation before approve or reject actions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineering agents use this skill to validate whether completed skill-improvement changes should be kept, reverted, rejected, or queued for human approval. It is intended for closed-loop improvement pipelines that already produce ranking, execution, and optional evaluation artifacts. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Rollback pointers can change local files when a candidate is rejected, reverted, or escalated. <br>
-Mitigation: Run the skill only in the intended improvement-gate pipeline with trusted execution artifacts and a dedicated state root. <br>
-Risk: Human review decisions are persisted locally and can affect later promotion decisions. <br>
-Mitigation: Restrict access to the review state directory and require reviewer identity and rationale for completed reviews. <br>
-Risk: Incorrect or untrusted ranking, execution, or evaluation artifacts can drive the gate toward the wrong decision. <br>
-Mitigation: Provide artifacts from trusted upstream skills and inspect pending-promote records before approving changes. <br>
+**Output Format:** [Markdown with JSON receipts and inline shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lanyasheng/auto-improvement-gate) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Gate script](artifact/scripts/gate.py) <br>
-- [Human review script](artifact/scripts/review.py) <br>
+**Other Properties Related to Output:** [Produces gate decisions, review-queue actions, and rollback or promotion guidance.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and JSON receipt examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces gate decisions, rollback status, pending-review records, and next-step guidance through local CLI workflows.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

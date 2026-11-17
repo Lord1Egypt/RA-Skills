@@ -1,47 +1,62 @@
-## Description: <br>
-Generate AI images for free using Z-Image-Turbo. Say "generate an image of..." and get stunning results in seconds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI images for free using Z-Image-Turbo. Say "generate an image of..." and get stunning results in seconds.
 
-## Publisher: <br>
-[futurizerush](https://clawhub.ai/user/futurizerush) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[futurizerush](https://clawhub.ai/user/futurizerush)
 
-## Use Case: <br>
-External users and developers use this skill to let an AI assistant generate image files from natural-language prompts through ModelScope's Z-Image-Turbo API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and generation parameters are sent to ModelScope/Alibaba services. <br>
-Mitigation: Use the skill only with prompts and parameters that are acceptable to share with that external service. <br>
-Risk: MODELSCOPE_API_KEY is a credential required for image generation. <br>
-Mitigation: Store the token as a secret environment variable and avoid pasting it into chats, logs, or committed files. <br>
-Risk: Account setup may require phone verification, a payment method, and referral or invite links. <br>
-Mitigation: Review the ModelScope and Alibaba Cloud account requirements before installing or enabling the skill. <br>
+## Use Case:
 
+Developers and assistant users use this skill to turn natural-language prompts into image files for thumbnails, avatars, banners, concept art, and visual mockups.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/futurizerush/imgforge) <br>
-- [Publisher profile](https://clawhub.ai/user/futurizerush) <br>
-- [Source homepage](https://github.com/FuturizeRush/zimage-skill) <br>
-- [Z-Image project](https://github.com/Tongyi-MAI/Z-Image) <br>
-- [Z-Image-Turbo model](https://huggingface.co/Tongyi-MAI/Z-Image-Turbo) <br>
-- [ModelScope API inference limits](https://modelscope.ai/docs/model-service/API-Inference/limits) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Image files with status text or optional JSON output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MODELSCOPE_API_KEY; supports prompt text, output path, width, height, and optional JSON mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Prompts and the ModelScope API token are sent to ModelScope/Alibaba services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid secrets, private business data, and personal data in prompts; keep MODELSCOPE_API_KEY out of shared logs and repositories.
+
+Risk: The current downloader saves bytes from an API-provided image URL without tight destination or size checks.
+
+Mitigation: Run the skill in a controlled workspace, review output paths before execution, and avoid privileged directories for generated files.
+
+Risk: The security verdict is suspicious because external API calls and image downloads require review.
+
+Mitigation: Review and scan the skill before deployment, and install only from a trusted or pinned release source.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/futurizerush/skills/imgforge)
+- [ClawHub publisher profile](https://clawhub.ai/user/futurizerush)
+- [Project homepage](https://github.com/FuturizeRush/zimage-skill)
+- [Z-Image project](https://github.com/Tongyi-MAI/Z-Image)
+- [Z-Image-Turbo model card](https://huggingface.co/Tongyi-MAI/Z-Image-Turbo)
+- [ModelScope API inference limits](https://modelscope.ai/docs/model-service/API-Inference/limits)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, JSON]
+
+**Output Format:** [Markdown guidance with shell commands; the CLI can save image files and optionally print JSON status.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MODELSCOPE_API_KEY; supports width and height from 512 to 2048 pixels and an optional JSON output mode.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,61 @@
-## Description: <br>
-Resolve Telegram media placeholders into local files for vision, document, video, audio, or other follow-up analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Resolves Telegram media placeholders into local files for agent vision or analysis by downloading the referenced Telegram media through the Bot API.
 
-## Publisher: <br>
-[kurinzo](https://clawhub.ai/user/kurinzo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kurinzo](https://clawhub.ai/user/kurinzo)
 
-## Use Case: <br>
-Developers and operators use this skill when an agent sees a Telegram media placeholder and needs to retrieve the referenced file for analysis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Telegram bot token for chats where the bot is present. <br>
-Mitigation: Use a limited-purpose bot, treat the token as a secret, and avoid pasting or logging it. <br>
-Risk: The skill can forward private Telegram messages to another chat to retrieve media metadata. <br>
-Mitigation: Set --forward-to only to a private chat you control and avoid sensitive group media. <br>
-Risk: Downloaded or forwarded media copies may remain after use. <br>
-Mitigation: Delete downloaded files after analysis and confirm forwarded-message cleanup succeeded. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kurinzo/tg-media-resolve) <br>
-- [Publisher profile](https://clawhub.ai/user/kurinzo) <br>
-- [Telegram Bot API endpoint](https://api.telegram.org) <br>
+## Use Case:
 
+Developers and agents use this skill to resolve Telegram media placeholders from chat context into local files that can be passed to image tools, analysis workflows, or shell commands.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and local file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns downloaded Telegram media files in a local output directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Target Telegram messages may be briefly forwarded while resolving media.
+
+Mitigation: Use only trusted Telegram chats and bot credentials, and prefer a private forward-to chat when resolving media.
+
+Risk: Downloaded files may be written outside the intended output folder if filenames are not safely constrained.
+
+Mitigation: Run the skill with an isolated output directory and review publisher fixes for filename sanitization before routine use.
+
+Risk: Bot tokens passed on the command line may be exposed through local process inspection or shell history.
+
+Mitigation: Avoid routine use until token handling is changed to a safer secret source.
+
+Risk: Forwarded-message deletion is best effort, so cleanup failures may leave copied chat content behind.
+
+Mitigation: Use a private forward-to destination and confirm cleanup behavior before handling sensitive media.
+
+## Reference(s):
+
+- [Telegram Bot API](https://api.telegram.org)
+- [ClawHub skill page](https://clawhub.ai/kurinzo/skills/tg-media-resolve)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, guidance]
+
+**Output Format:** [Markdown with inline bash commands and local file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Downloads Telegram media to a local output directory and prints the resulting file path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

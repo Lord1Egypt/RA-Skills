@@ -1,38 +1,52 @@
-## Description: <br>
-Book mechanic services through Lokuli MCP for users who need to find and book mechanic services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book mechanic services through Lokuli MCP by searching providers, checking availability, and creating booking requests.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users can use this skill to search for mechanic providers, check appointment availability, and create mechanic service bookings through Lokuli. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Creating a booking may send the user's name, email, phone number, selected mechanic, service, and appointment time to Lokuli. <br>
-Mitigation: Confirm those details with the user before calling the booking tool. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
-- [Book Mechanic on ClawHub](https://clawhub.ai/edwardrodriguez703-design/book-mechanic) <br>
+## Use Case:
 
+External users and agents use this skill to find mechanic service providers through Lokuli, check appointment availability, and request a booking after confirming service details.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Guidance] <br>
-**Output Format:** [Conversational text with JSON-RPC MCP tool calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use search, availability, and booking tool calls that include appointment and customer contact details.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send personal contact details and appointment information to an external booking service.
+
+Mitigation: Confirm the provider, service, time slot, customer name, email, and phone number before creating a booking request.
+
+Risk: The trigger language is broader than clear booking intent for mechanic-related requests.
+
+Mitigation: Use the booking flow only when the user intends to search for or book mechanic services through Lokuli.
+
+## Reference(s):
+
+- [Lokuli MCP Endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API calls, JSON]
+
+**Output Format:** [Text guidance and JSON-RPC tool-call payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include provider, service, appointment, and customer contact details needed for a booking request.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

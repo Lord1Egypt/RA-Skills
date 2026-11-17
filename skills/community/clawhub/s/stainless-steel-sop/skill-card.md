@@ -1,41 +1,54 @@
-## Description: <br>
-Stainless Steel Sop generates a Markdown standard operating procedure for stainless-steel customer visits, covering travel planning, customer verification, weather alerts, supply-chain analysis, logistics, budgets, and contingency plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Markdown SOPs for stainless steel industry customer visits, including travel planning, customer verification, weather alerts, industry-chain analysis, logistics, budgets, and contingency plans.
 
-## Publisher: <br>
-[wuxi304-collab](https://clawhub.ai/user/wuxi304-collab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuxi304-collab](https://clawhub.ai/user/wuxi304-collab)
 
-## Use Case: <br>
-Business-development staff in the stainless-steel industry use this skill to prepare customer-visit SOPs that combine itinerary planning, customer background checks, industry-fit analysis, logistics, budget estimates, and risk response steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Customer names, addresses, contacts, and travel dates may be shared with configured search, map, ticketing, weather, or enterprise-data providers. <br>
-Mitigation: Confirm data-sharing authorization before use and verify each dependent provider or skill separately. <br>
-Risk: Generated travel plans, customer details, weather guidance, or budgets may be incomplete or stale. <br>
-Mitigation: Review generated SOPs and confirm critical itinerary, contact, weather, and cost details before acting on them. <br>
+## Use Case:
 
+Business development and sales operations teams use this skill to prepare structured stainless steel customer visit plans with route options, customer background checks, weather-aware travel advice, product fit notes, costs, and contingency steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wuxi304-collab/stainless-steel-sop) <br>
-- [Publisher profile](https://clawhub.ai/user/wuxi304-collab) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown SOP document with structured itinerary, customer background, transportation, weather, budget, checklist, and contingency sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include confidence notes for verified customer information and travel recommendations based on external lookups.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact version history) <br>
+Risk: Customer names, addresses, contacts, or itinerary details may be sent to third-party travel, map, weather, search, or enterprise-information services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only under organizational policy for those lookups, and redact or generalize customer details when exact information is not required.
+
+Risk: Generated travel and customer-visit plans may contain stale availability, weather, route, cost, or business information.
+
+Mitigation: Verify critical itinerary, customer, cost, and safety details with authoritative sources before booking travel or meeting customers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wuxi304-collab/skills/stainless-steel-sop)
+- [Publisher profile](https://clawhub.ai/user/wuxi304-collab)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown SOP document with structured sections, checklists, estimates, and source-confidence notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose third-party travel, map, weather, search, and enterprise-information lookups.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

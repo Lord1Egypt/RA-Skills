@@ -1,0 +1,7 @@
+{
+  "decision": "answer",
+  "kind": "summary",
+  "points": [ { "text": "The meeting moved to Thursday at 10.", "sources": ["s4"] } ],
+  "task_kind": "scheduling",
+  "topic": "the meeting time that Jordan and the user agreed on during the long Monday afternoon call"
+}

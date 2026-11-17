@@ -1,44 +1,55 @@
-## Description: <br>
-Summarizes recent newsletter emails received in Gmail into a single newsletter digest. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarizes recent Gmail newsletter emails into a digest using configured labels or sender addresses.
 
-## Publisher: <br>
-[neeravmakwana](https://clawhub.ai/user/neeravmakwana) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neeravmakwana](https://clawhub.ai/user/neeravmakwana)
 
-## Use Case: <br>
-People who receive newsletters in Gmail use this skill to summarize messages from configured labels or senders and email a digest to configured recipients. It also supports natural-language updates to filters, recipients, delivery mode, and scheduling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads Gmail messages and sends digest emails, which can expose sensitive email content if filters or recipients are wrong. <br>
-Mitigation: Set intended labels or senders and recipients in settings.json before use, and confirm which Gmail account gog will use. <br>
-Risk: Group delivery can reveal recipient addresses to other recipients. <br>
-Mitigation: Use individual delivery when recipients should not see each other. <br>
-Risk: Scheduled use can continue future Gmail reads, summarization, and outbound digest emails. <br>
-Mitigation: Only schedule the skill when the ongoing cadence is intended, and disable the schedule when it is no longer needed. <br>
+## Use Case:
 
+External users and employees use this skill to generate, email, schedule, and configure a digest of recent Gmail newsletters. It is useful when recipients want daily newsletter summaries based on configured Gmail labels or sender addresses.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/neeravmakwana/email-newsletter-digest) <br>
-- [Publisher profile](https://clawhub.ai/user/neeravmakwana) <br>
-- [REFERENCE.md](REFERENCE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Natural-language status messages and an emailed markdown-style digest generated from Gmail newsletter summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses configured Gmail labels or senders, recipient email addresses, and recipient delivery mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: The skill can retrieve more Gmail content than selected newsletter messages when fetching full threads for body extraction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review configured labels and senders before installation, and be cautious with recurring schedules until full-thread retrieval is acceptable for the mailbox.
+
+Risk: The skill can automatically send digest, warning, or failure emails to configured recipients, including third-party recipients.
+
+Mitigation: Verify recipients and delivery mode before use; prefer individual delivery when recipients should not see each other.
+
+## Reference(s):
+
+- [Email Newsletter Digest Reference](REFERENCE.md)
+- [ClawHub Skill Page](https://clawhub.ai/neeravmakwana/skills/email-newsletter-digest)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/neeravmakwana)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Natural-language status messages, settings JSON updates, and an HTML email digest derived from newsletter summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses configured labels, senders, recipients, and delivery mode; depends on gog, summarize, and OPENAI_API_KEY.]
+
+## Skill Version(s):
+
+1.0.1 (source: SKILL.md frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,54 @@
-## Description: <br>
-Automates KOL and influencer research across social platforms for a requested niche, region, platform set, and target count. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated KOL and influencer research across social platforms for compiling outreach and partnership lists by niche, region, platform, and target count.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Marketing, partnerships, and GTM teams use this skill to compile influencer and KOL prospects across Instagram, TikTok, YouTube, X/Twitter, and Facebook for outreach planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public influencer data may be stale, incomplete, or inconsistent across aggregator sources. <br>
-Mitigation: Cross-check high-value prospects and review follower counts, handles, and profile URLs before outreach. <br>
-Risk: Autonomous mode can infer missing region, platform, target count, or output-location choices. <br>
-Mitigation: Provide explicit inputs up front, or ask the agent to confirm assumptions before research and file creation. <br>
-Risk: The workflow creates local Excel reports that may contain outreach targets and campaign notes. <br>
-Mitigation: Choose an intended output location and review the workbook before sharing it outside the workspace. <br>
+## Use Case:
 
+External marketing, partnerships, and growth teams use this skill to compile influencer and KOL lists for a specified niche and region. The skill searches public sources, normalizes profile data, and prepares an outreach-ready Excel report with a summary.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/PHY041/phy-influencer-research) <br>
-- [Publisher Profile](https://clawhub.ai/user/PHY041) <br>
-- [Canlah AI](https://canlah.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, files, guidance] <br>
-**Output Format:** [Markdown summary plus Python-generated Excel workbook] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates platform-specific sheets and an All_Platforms sheet when the workbook generation step is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Broad public web searches can collect outdated, incomplete, or mismatched influencer profile data when the niche, region, platforms, or target count are underspecified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Specify the niche, region, platforms, target count, and output expectations before running the skill, then review sampled profile URLs and follower counts before outreach.
+
+Risk: The skill automatically creates an Excel workbook from public-source research, so generated files may contain inaccurate or incomplete profile metadata.
+
+Mitigation: Treat the workbook as a research aid and verify important entries against current platform profiles before campaign or partnership decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-influencer-research)
+- [Canlah AI homepage](https://canlah.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, files, guidance]
+
+**Output Format:** [Markdown summary plus generated Excel workbook (.xlsx)]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Workbook output includes per-platform sheets, an All_Platforms sheet, normalized influencer profile fields, and summary counts by platform.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

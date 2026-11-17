@@ -1,40 +1,50 @@
-## Description: <br>
-Use AgileBuilder MCP for template-based project creation and document-constrained implementation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use AgileBuilder MCP for template-based project creation and document-constrained implementation.
 
-## Publisher: <br>
-[agilebuilder](https://clawhub.ai/user/agilebuilder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agilebuilder](https://clawhub.ai/user/agilebuilder)
 
-## Use Case: <br>
-Developers and coding agents use this skill to create projects from AgileBuilder templates and to guide implementation work using AgileBuilder policy, guide, catalog, and project documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can steer generic project creation and coding work through AgileBuilder documents and tools. <br>
-Mitigation: Confirm the selected template, target path, and applicable AgileBuilder constraints before allowing workspace changes. <br>
+## Use Case:
 
+Developers and engineers use this skill to create projects from AgileBuilder templates and to implement code changes while respecting AgileBuilder policy, guide, catalog, and project documents.
 
-## Reference(s): <br>
-- [Server-resolved GitHub source](https://github.com/agilebuilder/agilebuilder-skills/tree/master/skills/agilebuilder-template-delivery) <br>
-- [ClawHub skill page](https://clawhub.ai/agilebuilder/skills/agilebuilder-template-delivery) <br>
-- [Publisher profile](https://clawhub.ai/user/agilebuilder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with resource references, tool-use rationale, and implementation notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include selected template rationale, AgileBuilder resources read, conflict notes, and verification notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill can cause an agent to prefer AgileBuilder templates over manual scaffolding when active.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that AgileBuilder is the intended project workflow before creating or modifying a project.
+
+## Reference(s):
+
+- [Server-resolved source provenance](https://github.com/agilebuilder/agilebuilder-skills/tree/master/skills/agilebuilder-template-delivery)
+- [ClawHub skill page](https://clawhub.ai/agilebuilder/skills/agilebuilder-template-delivery)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code, markdown]
+
+**Output Format:** [Markdown guidance with tool-use steps, commands, code changes, and configuration notes when applicable]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent responses should state material AgileBuilder resources read and surface conflicts between user requirements and documented constraints.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

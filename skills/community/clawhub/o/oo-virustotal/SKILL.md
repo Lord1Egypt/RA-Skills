@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "VirusTotal"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["virustotal"]
   icon: "https://static.oomol.com/logo/third-party/Virustotal.webp"
 ---
@@ -49,8 +49,8 @@ Each action is listed below with a one-line description; actions that change sta
 - `get_metadata` — Retrieve VirusTotal metadata, including available privileges, engines, and relationship names.
 - `get_url_report` — Retrieve the latest VirusTotal report for a URL using either a raw URL or a VirusTotal URL identifier.
 - `get_votes` — Retrieve community votes for a file, URL, domain, or IP address in VirusTotal.
-- `rescan_file` — Request a fresh VirusTotal analysis for a previously submitted file.
-- `scan_url` — Submit a URL to VirusTotal for analysis.
+- `rescan_file` — Request a fresh VirusTotal analysis for a previously submitted file. [write]
+- `scan_url` — Submit a URL to VirusTotal for analysis. [write]
 - `search` — Search files, URLs, domains, IPs, and other objects in VirusTotal.
 - `upload_file` — Upload a file to VirusTotal for analysis, automatically using the large-file upload URL when needed. [write]
 
@@ -83,11 +83,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — VirusTotal is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=virustotal
+  https://console.oomol.com/connections/virustotal
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - VirusTotal homepage: https://www.virustotal.com
+- API documentation: https://docs.virustotal.com/reference/authentication

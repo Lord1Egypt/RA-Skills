@@ -1,43 +1,58 @@
-## Description: <br>
-MCP Colombia Hub aggregates Colombian services through an MCP server for MercadoLibre product search, Booking.com hotel search, flight references, Colombian financial-product comparisons, job applications, and Soulprint identity checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MCP Colombia aggregates Colombian commerce, travel, finance, job-search, and identity-verification services through an MCP server for MCP-compatible agents.
 
-## Publisher: <br>
-[ManuelFelipeArias](https://clawhub.ai/user/ManuelFelipeArias) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[manuelfelipearias](https://clawhub.ai/user/manuelfelipearias)
 
-## Use Case: <br>
-Developers and external users use this skill to configure and operate an MCP-compatible Colombian services hub for product, travel, finance, job-search, and identity-verification workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may process Soulprint tokens, DID or reputation data, CV or LinkedIn URLs, salary expectations, and cover messages. <br>
-Mitigation: Treat these values as sensitive, avoid logging or sharing them unnecessarily, and require explicit user confirmation before job-application use. <br>
-Risk: The MCP server is installed and run through an external npm package. <br>
-Mitigation: Install only from trusted environments and review the package and requested capabilities before enabling it in an MCP client. <br>
-Risk: Real-time search features may send travel, job, or identity-related context to third-party services. <br>
-Mitigation: Disclose the involved services to users and confirm consent before sending personal or job-application data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/ManuelFelipeArias/mcp-colombia) <br>
-- [mcp-colombia-hub npm package](https://www.npmjs.com/package/mcp-colombia-hub) <br>
-- [Soulprint validator node](https://soulprint-node-production.up.railway.app) <br>
+## Use Case:
 
+Developers and agent users use this skill to connect an MCP-compatible client to Colombian product search, hotel and flight lookup, job listings, financial comparisons, loan simulation, and Soulprint-based identity checks.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, Shell commands, API calls, Text] <br>
-**Output Format:** [Markdown with JSON and bash code blocks plus MCP tool-call guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and npx; real-time job and travel search may require BRAVE_API_KEY; some operations use Soulprint identity tokens.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release metadata) <br>
+Global, with functional coverage focused on Colombia
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs and runs a mutable remote npm package through npx.
+
+Mitigation: Pin the npm package to a reviewed version, inspect the package before installation, and run it with least privilege.
+
+Risk: Soulprint and job-application workflows may involve identity-linked reputation data and sharing with external validation or job-search services.
+
+Mitigation: Only provide Soulprint tokens, CV links, or job-application data after confirming the privacy and data-sharing implications are acceptable.
+
+Risk: Travel, job, and financial outputs may depend on external live search or scraped public pages.
+
+Mitigation: Verify important prices, rates, listings, and application links with the authoritative provider before acting on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/manuelfelipearias/skills/mcp-colombia)
+- [npm package](https://www.npmjs.com/package/mcp-colombia-hub)
+- [Soulprint validator endpoint](https://soulprint-node-production.up.railway.app)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, shell commands, guidance]
+
+**Output Format:** [Markdown with JSON configuration and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include external service links, Colombian peso values, identity status, reputation details, and MCP tool-call guidance.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

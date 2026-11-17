@@ -1,40 +1,56 @@
-## Description: <br>
-零配置即装即用｜景点门票酒店机票一键查｜含预订链接和实时价格｜本地生活特价直达 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+美团旅行助手 lets agents query hotels, flights, trains, scenic tickets, booking links, and itinerary suggestions for travel requests across 300+ Chinese cities.
 
-## Publisher: <br>
-[travel-skills](https://clawhub.ai/user/travel-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[travel-skills](https://clawhub.ai/user/travel-skills)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and travel agents use this skill to turn natural-language Chinese travel requests into hotel, flight, train, attraction ticket, booking-link, and itinerary results.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Travel-query privacy and operational control are review-worthy because city and travel request data are sent to a remote proxy.
+
+Mitigation: Review the proxy endpoint, retention controls, and data handling disclosures before deployment; avoid sending sensitive personal travel details unless the publisher's controls are acceptable.
+
+Risk: The release evidence reports a built-in proxy token.
+
+Mitigation: Publisher should rotate the token and remove default credentials from the distributed skill before production use.
+
+Risk: The release evidence reports inconsistent tool declarations.
+
+Mitigation: Confirm the declared tool names match the executable tool route before relying on automated invocation.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Travelers and agents use this skill to look up Meituan travel options for hotels, flights, trains, attraction tickets, and itinerary ideas across supported Chinese cities. It returns prices, schedules, availability details, and booking links for follow-up outside the skill. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global, with results focused on China travel inventory. <br>
+**Output Type(s):** [Text, Guidance, API Calls]
 
-## Known Risks and Mitigations: <br>
-Risk: Travel searches are sent through a cloud proxy, which can expose city names, destinations, timing, and booking intent. <br>
-Mitigation: Avoid entering sensitive personal itinerary details unless needed for the query and only use the skill if the proxy operator is trusted. <br>
-Risk: Prices, schedules, availability, and booking links can change, and the skill does not complete booking or payment. <br>
-Mitigation: Confirm all details on the linked Meituan booking page before relying on them or making a purchase. <br>
+**Output Format:** [JSON responses that agents can summarize as travel guidance and booking links]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/travel-skills/meituan-travel-assistant) <br>
+**Other Properties Related to Output:** [Requires city and natural-language query inputs; sends travel queries to a remote proxy service.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [JSON responses summarized by the agent as travel guidance and booking links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a city and natural-language travel query; prices, schedules, availability, and booking links may change.] <br>
+2.0.4 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and artifact version file) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

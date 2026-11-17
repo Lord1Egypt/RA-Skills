@@ -1,0 +1,39 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="MotuArt Color Engine logo">
+  <defs>
+    <linearGradient id="mceLogoCoral" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff8a5c" />
+      <stop offset="55%" stop-color="#ff6a4d" />
+      <stop offset="100%" stop-color="#f2542d" />
+    </linearGradient>
+    <linearGradient id="mceLogoGold" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffe08a" />
+      <stop offset="50%" stop-color="#ffb347" />
+      <stop offset="100%" stop-color="#f59e0b" />
+    </linearGradient>
+    <linearGradient id="mceLogoRose" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff7a4d" />
+      <stop offset="55%" stop-color="#f43f5e" />
+      <stop offset="100%" stop-color="#e11d48" />
+    </linearGradient>
+    <linearGradient id="mceLogoCoralHi" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="white" stop-opacity="0.5" />
+      <stop offset="100%" stop-color="white" stop-opacity="0" />
+    </linearGradient>
+    <linearGradient id="mceLogoGoldHi" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="white" stop-opacity="0.55" />
+      <stop offset="100%" stop-color="white" stop-opacity="0" />
+    </linearGradient>
+    <linearGradient id="mceLogoRoseHi" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="white" stop-opacity="0.35" />
+      <stop offset="100%" stop-color="white" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+  <g>
+    <path d="M 3 5 Q 0 3, 0 7 L 0 41 Q 0 45, 3 43 L 20 26 Q 22 24, 20 22 L 3 5 Z" fill="url(#mceLogoCoral)" />
+    <path d="M 3 5 Q 0 3, 0 7 L 0 24 L 10 14 L 3 5 Z" fill="url(#mceLogoCoralHi)" />
+    <path d="M 45 5 Q 48 3, 48 7 L 48 41 Q 48 45, 45 43 L 28 26 Q 26 24, 28 22 L 45 5 Z" fill="url(#mceLogoGold)" />
+    <path d="M 45 5 Q 48 3, 48 7 L 48 24 L 38 14 L 45 5 Z" fill="url(#mceLogoGoldHi)" />
+    <path d="M 5 45 Q 3 48, 7 48 L 41 48 Q 45 48, 43 45 L 26 28 Q 24 26, 22 28 L 5 45 Z" fill="url(#mceLogoRose)" />
+    <path d="M 5 45 Q 3 48, 7 48 L 24 48 L 14 38 L 5 45 Z" fill="url(#mceLogoRoseHi)" />
+  </g>
+</svg>

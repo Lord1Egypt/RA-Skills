@@ -1,43 +1,60 @@
-## Description: <br>
-n8n (n8n.io). Use this skill for ANY n8n request -- reading, creating, updating, and deleting data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+n8n (n8n.io). Use this skill for ANY n8n request — reading, creating, updating, and deleting data. Whenever a task involves n8n, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to manage connected n8n workspaces through OOMOL, including workflow lifecycle actions, execution inspection, tags, variables, insights, and data table operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform powerful n8n write and destructive actions through the user's connected OOMOL workspace. <br>
-Mitigation: Review exact workflow, table, tag, variable, and execution targets before use, and require explicit user confirmation for write or destructive actions. <br>
-Risk: The skill depends on OOMOL CLI access to a connected n8n account. <br>
-Mitigation: Install and authenticate the oo CLI only when the user intends to manage n8n through OOMOL and trusts that connector path. <br>
+## Use Case:
 
+Developers and n8n workspace operators use this skill to inspect workflows, executions, tags, variables, and data tables, and to make approved changes through their connected n8n account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/skills/oo-n8n) <br>
-- [n8n homepage](https://n8n.io) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before constructing action payloads; write and destructive actions require confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Setup runs unverified remote code, and the deployed connector was not verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the setup before installing and use a reviewed, pinned CLI release; account for OOMOL-mediated access by using a narrowly scoped n8n connection.
+
+Risk: The CLI may synchronize additional agent skills at startup.
+
+Mitigation: Set OO_SKILLS_SYNC_DISABLED=1 for each CLI invocation to disable startup skill synchronization.
+
+Risk: Write and deletion actions can change or remove n8n data.
+
+Mitigation: Keep the documented approval step for each write or deletion and confirm its exact target and effect before execution.
+
+## Reference(s):
+
+- [n8n API documentation](https://docs.n8n.io/api/api-reference/)
+- [n8n](https://n8n.io)
+- [oo CLI command reference](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md)
+- [ClawHub skill page](https://clawhub.ai/oomol/skills/oo-n8n)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, JSON, Shell commands, Guidance]
+
+**Output Format:** [Schema-guided CLI commands and JSON responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Actions can read, update, create, activate, archive, or delete n8n resources, subject to the documented approval requirements.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-A personal diary management skill for recording, viewing, searching, and deleting diary entries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+My Diary helps users record, view, search, and delete personal diary entries stored in a local JSON file.
 
-## Publisher: <br>
-[nancyzhong2024](https://clawhub.ai/user/nancyzhong2024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nancyzhong2024](https://clawhub.ai/user/nancyzhong2024)
 
-## Use Case: <br>
-Individuals and assistants use this skill to record, browse, search, and delete personal diary entries stored locally in a JSON file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Diary contents are stored in a local plaintext JSON file. <br>
-Mitigation: Use a private storage path and protect the file with appropriate local permissions or encryption when entries may be sensitive. <br>
-Risk: The skill can display or delete diary entries. <br>
-Mitigation: Review prompts before showing entries and require confirmation before deleting an entry. <br>
+## Use Case:
 
+External users use this skill with an AI assistant to maintain a personal diary: writing timestamped entries, browsing summaries, reading entries, keyword searching, and deleting entries after confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nancyzhong2024/my-diary) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/nancyzhong2024) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text responses describing diary entries and requested diary actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local plaintext JSON diary file; deletion requires confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Diary entries are sensitive personal content stored as plaintext JSON at the documented local path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private, access-restricted storage location and avoid shared machines or logged/shared assistant sessions.
+
+Risk: View and search commands can reveal stored personal diary content.
+
+Mitigation: Run the skill only in trusted sessions and review requests before displaying or searching diary entries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nancyzhong2024/skills/my-diary)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [Text responses and local JSON diary entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Diary entries include id, content, and created_at fields; deletion requires confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

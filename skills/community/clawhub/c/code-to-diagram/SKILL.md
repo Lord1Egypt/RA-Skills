@@ -1,27 +1,29 @@
 ---
 name: "code-to-diagram"
-description: "分析源代码逻辑，生成 Mermaid 流程图或 SVG 架构图并渲染为 PNG 图片。支持 15 种主题、5 种视觉风格、语义图形体系和 40+ 产品图标。"
-version: "2.0.0"
-tags: ["diagram", "mermaid", "svg", "flowchart", "visualization", "code-analysis", "architecture", "beautiful-mermaid"]
+description: "分析源代码逻辑，生成 Mermaid 流程图或 SVG 架构图并渲染为 PNG 图片。官方 mermaid 渲染（与 Markdown 预览一致），支持 16 种主题、5 种视觉风格、语义图形体系和 40+ 产品图标。"
+version: "3.0.0"
+tags: ["diagram", "mermaid", "svg", "flowchart", "visualization", "code-analysis", "architecture", "mermaid-cli"]
 bindShells: ["ClaudeCode"]
 ---
 
 # Code-to-Diagram Skill
 
-分析指定目录或文件的源代码，提取控制流 / 数据流逻辑，输出两个文件：
+分析指定目录或文件的源代码，提取控制流 / 数据流逻辑，输出文件：
 
 1. **Markdown 文档**（`.md`）：包含图表源码和代码逻辑解释文字
-2. **渲染后的 PNG 图片**（高清）
+2. **渲染后的 PNG 图片**（高清，用户不需要图片时可跳过）
+
+> Mermaid 路径中用于渲染的 `.mmd` 中间文件会在渲染完成后自动删除，最终只保留 `.md` 和 `.png`。
 
 支持两种渲染引擎：
 
 | 引擎 | 输入 | 渲染方式 | 适用场景 |
 |------|------|----------|----------|
-| **Mermaid**（默认） | `.mmd` | beautiful-mermaid → SVG → rsvg-convert → PNG | 流程图、时序图、类图、状态图、ER 图、XY 图 |
+| **Mermaid**（默认） | `.mmd` | 官方 mermaid（mmdc）→ PNG | 流程图、时序图、类图、状态图、ER 图、XY 图，以及甘特图、思维导图、饼图等全部 mermaid 图表类型 |
 | **SVG** | `.svg` | rsvg-convert → PNG | 架构图、AI 系统图、需要品牌图标或定制风格的图表 |
 
-> Mermaid 引擎默认使用 [beautiful-mermaid](https://github.com/lukilabs/beautiful-mermaid) 渲染，提供 15 种精美主题。
-> 不支持的图表类型（gantt、mindmap、pie、journey、gitgraph）自动回退到 mmdc。
+> Mermaid 引擎使用官方 mermaid 渲染器（mmdc / Mermaid CLI），PNG 与 GitHub、VS Code 等 Markdown 预览效果一致。
+> 16 个内置主题通过 mermaid `themeVariables` 应用。
 
 ---
 
@@ -119,7 +121,7 @@ bindShells: ["ClaudeCode"]
 %%{ init: { 'flowchart': { 'curve': 'basis' } } }%%
 ```
 可选曲线类型：`basis`（平滑）、`monotoneX`、`monotoneY`、`stepBefore`、`stepAfter`。
-> beautiful-mermaid 和 mmdc 都支持曲线配置，无需切换渲染器。
+> 曲线配置由官方 mermaid 渲染器原生支持，直接写在 `.mmd` 中即可生效。
 
 **换行规则**：节点文本中使用 `<br/>` 而非 `\n`。
 
@@ -203,17 +205,33 @@ Mermaid 对语法要求严格。写入 `.mmd` 文件前，逐项检查：
 
 ### 前置检测
 
-渲染前必须检测依赖工具是否已安装：
+渲染前必须检测依赖工具是否已安装（使用 `--no-png` 不生成图片时可跳过本步骤）。
+
+**Mermaid 引擎**（必需 `mmdc`，即 Mermaid CLI）：
 
 ```bash
-which rsvg-convert
+which mmdc
 ```
 
 - **已安装**：返回路径，可继续
 - **未安装**：停止流程，提示用户安装：
 
-  > 未检测到 `rsvg-convert`。请先安装：
+  > 未检测到 `mmdc`。请先安装：
   >
+  > ```bash
+  > npm install -g @mermaid-js/mermaid-cli
+  > ```
+  >
+  > 安装完成后告知我，我会继续。（也可使用 npx 免安装运行，脚本会自动尝试）
+
+**SVG 引擎**（必需 `rsvg-convert`）：
+
+```bash
+which rsvg-convert
+```
+
+- **未安装**：提示用户安装：
+
   > ```bash
   > # macOS
   > brew install librsvg
@@ -221,18 +239,6 @@ which rsvg-convert
   > # Debian / Ubuntu
   > apt-get install librsvg2-bin
   > ```
-  >
-  > 安装完成后告知我，我会继续。
-
-如果使用 mmdc 回退渲染器（gantt、mindmap、pie、journey、gitgraph 等图表类型），还需检测：
-
-```bash
-which mmdc
-```
-
-- **未安装**：提示用户安装 `npm install -g @mermaid-js/mermaid-cli`，或使用 npx 免安装运行
-
-> beautiful-mermaid 由脚本自动管理，无需额外检测。
 
 ### 写入 .mmd 文件并渲染
 
@@ -249,6 +255,18 @@ node ~/.claude/skills/code-to-diagram/scripts/code_to_diagram.js render \
 脚本会生成两个文件：
 1. `<name>.png` — 渲染后的高清 PNG 图片
 2. `<name>.md` — 基础 Markdown 文档（仅包含图表源码）
+
+渲染成功后脚本会**自动删除输入的 `.mmd` 中间文件**，最终只保留 `.md` 和 `.png`。
+
+如果用户明确表示**不需要图片**，在命令中加 `--no-png` 参数，此时只生成 `.md` 文件，不调用渲染器（也无需检测 `rsvg-convert`）：
+
+```bash
+node ~/.claude/skills/code-to-diagram/scripts/code_to_diagram.js render \
+  --file <路径/diagram.mmd> \
+  --name <输出文件基础名> \
+  --output-dir <保存目录> \
+  --no-png
+```
 
 然后用 `Read` 工具读取生成的 `.md` 文件，用 `Write` 工具补充代码逻辑解释文字，最终内容结构：
 1. 代码逻辑解释文字（中文）
@@ -346,8 +364,10 @@ node ~/.claude/skills/code-to-diagram/scripts/code_to_diagram.js render \
 脚本最后一行输出 JSON，包含输出文件路径：
 
 ```json
-{"md":"/path/to/diagram.md","png":"/path/to/diagram.png","engine":"mermaid","theme":"markdown-preview","renderer":"beautiful-mermaid"}
+{"md":"/path/to/diagram.md","png":"/path/to/diagram.png","engine":"mermaid","theme":"markdown-preview","renderer":"mmdc"}
 ```
+
+使用 `--no-png` 时 `png` 字段为 `null`：
 
 **重要：不要使用 `Read` 工具读取 PNG 文件来内联展示图片。** PNG 图片体积大，直接读取会消耗大量上下文窗口，极易导致超限。只需将生成的文件路径告知用户即可，例如：
 
@@ -423,15 +443,11 @@ node code_to_diagram.js render [选项]
   --engine,     -e  <引擎>      mermaid | svg（默认：mermaid）
   --help,       -h              帮助信息
 
-Mermaid 引擎（beautiful-mermaid，默认）：
-  --theme,      -t  <主题>      16 个内置主题（默认：markdown-preview）
-  --renderer        <渲染器>    auto | beautiful-mermaid | mmdc（默认：auto）
-  --padding         <像素>      画布内边距（默认：40）
+Mermaid 引擎（官方 mmdc 渲染）：
+  --theme,      -t  <主题>      16 个内置主题（默认：markdown-preview，映射为 themeVariables）
   --transparent                 透明背景
   --bg,         -b  <颜色>      自定义背景色（覆盖主题）
-  --font            <字体>      自定义字体（默认：系统字体）
-
-mmdc 回退选项：
+  --font            <字体>      自定义字体（默认：系统中文字体）
   --width,      -W  <像素>      画布宽度（默认：2400）
   --height,     -H  <像素>      画布高度（默认：4000）
   --scale,      -s  <倍数>      缩放系数（默认：3）
@@ -439,7 +455,7 @@ mmdc 回退选项：
 SVG 引擎：
   --style       <风格>          flat-icon | dark-terminal | blueprint | notion-clean | glassmorphism
 
-**图片尺寸说明**：beautiful-mermaid 和 SVG 引擎会根据图表内容自动计算最佳输出尺寸（viewBox 宽度 × 16，范围 2400-4800px），确保文字清晰可读。mmdc 渲染器使用固定的画布尺寸。
+**图片尺寸说明**：Mermaid 引擎使用固定画布尺寸（可用 `--width` / `--height` / `--scale` 调整）；SVG 引擎会根据图表内容自动计算最佳输出尺寸（viewBox 宽度 × 8/12/16，范围 1200-4800px），确保文字清晰可读。
 ```
 
 ---
@@ -448,11 +464,15 @@ SVG 引擎：
 
 **Mermaid 引擎**：
 
-- **beautiful-mermaid**（主要）：`npm install`（在 `scripts/` 目录下）
-- **rsvg-convert**（必需）：将 SVG 转换为 PNG
-- **mmdc**（可选，仅回退时需要）：处理 gantt、mindmap、pie、journey、gitgraph
+- **mmdc**（必需）：Mermaid CLI，官方 mermaid 渲染器
 
 **SVG 引擎**：依赖 `rsvg-convert`（来自 librsvg）。
+
+**安装 mmdc**：
+
+```bash
+npm install -g @mermaid-js/mermaid-cli
+```
 
 **安装 rsvg-convert**：
 
@@ -462,13 +482,6 @@ brew install librsvg
 
 # Debian / Ubuntu
 apt-get install librsvg2-bin
-```
-
-**安装 beautiful-mermaid**：
-
-```bash
-cd ~/.claude/skills/code-to-diagram/scripts
-npm install
 ```
 
 ---
@@ -481,9 +494,8 @@ npm install
 | 输出空白 | 图表关键字缺失或拼写错误 | 第一行必须以合法关键字开头，且流程图需跟方向（`TD`/`LR`） |
 | 含特殊字符的标签出错 | 字符未转义 | 用引号包裹标签：`A["节点 (文本)"]` |
 | 节点 ID 含空格失败 | ID 必须是单个标识符 | 用 camelCase 或下划线做 ID，文本放在 label 中 |
-| rsvg-convert 报错 | 未安装 librsvg | 执行 `brew install librsvg`（macOS）或 `apt-get install librsvg2-bin`（Linux） |
+| rsvg-convert 报错（SVG 引擎） | 未安装 librsvg | 执行 `brew install librsvg`（macOS）或 `apt-get install librsvg2-bin`（Linux） |
 | mmdc 未找到 | 未安装 Mermaid CLI | 执行 `npm install -g @mermaid-js/mermaid-cli` 或使用 npx |
 | Puppeteer/Chrome 启动报错 | 无头浏览器不可用 | 创建 `puppeteer-config.json` 加 `{"args": ["--no-sandbox"]}`，通过 `-p` 传入 |
 | 大图被截断 | 默认页面过小 | 增大 `--width` / `--height`，或用 `--scale` 缩放 |
 | SVG 引擎字体缺失 | 内联字体声明不完整 | 检查 `<style>` 中 `@font-face` 的 `font-family` 是否与文本一致 |
-| beautiful-mermaid 主题不生效 | 脚本未安装依赖 | 在 `scripts/` 目录下执行 `npm install` |

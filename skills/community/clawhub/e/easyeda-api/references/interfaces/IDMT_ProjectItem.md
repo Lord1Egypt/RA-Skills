@@ -1,11 +1,11 @@
 # IDMT\_ProjectItem interface
 
-工程属性
+Project property
 
 ## Signature
 
 ```typescript
-interface IDMT_ProjectItem extends IDMT_BriefProjectItem 
+interface IDMT_ProjectItem extends IDMT_BriefProjectItem
 ```
 **Extends:** [IDMT\_BriefProjectItem](./IDMT_BriefProjectItem.md)
 
@@ -15,97 +15,77 @@ interface IDMT_ProjectItem extends IDMT_BriefProjectItem
 
 Property
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [collaborationMode?](./IDMT_ProjectItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 [EDMT\_ProjectCollaborationMode](../enums/EDMT_ProjectCollaborationMode.md)
 
-
 </td><td>
 
-_(Optional)_ 工程协作模式
-
+_(Optional)_ Project collaboration mode
 
 </td></tr>
 <tr><td>
 
 [data](./IDMT_ProjectItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 Array&lt;[IDMT\_BoardItem](./IDMT_BoardItem.md) \| [IDMT\_SchematicItem](./IDMT_SchematicItem.md) \| [IDMT\_PcbItem](./IDMT_PcbItem.md) \| [IDMT\_PanelItem](./IDMT_PanelItem.md)<!-- -->&gt;
 
-
 </td><td>
 
-工程内文档数据
-
+Project in document data
 
 </td></tr>
 <tr><td>
 
 [description?](./IDMT_ProjectItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 描述
-
+_(Optional)_ Description
 
 </td></tr>
 <tr><td>
 
 [name](./IDMT_ProjectItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-工程链接名称
-
+Project link name
 
 </td></tr>
 </tbody></table>
@@ -118,7 +98,7 @@ string
 
 # IDMT\_ProjectItem.collaborationMode property
 
-工程协作模式
+Project collaboration mode
 
 ## Signature
 
@@ -130,7 +110,7 @@ collaborationMode?: EDMT_ProjectCollaborationMode;
 
 # IDMT\_ProjectItem.data property
 
-工程内文档数据
+Project in document data
 
 ## Signature
 
@@ -142,7 +122,7 @@ data: Array<IDMT_BoardItem | IDMT_SchematicItem | IDMT_PcbItem | IDMT_PanelItem>
 
 # IDMT\_ProjectItem.description property
 
-描述
+Description
 
 ## Signature
 
@@ -154,7 +134,7 @@ description?: string;
 
 # IDMT\_ProjectItem.name property
 
-工程链接名称
+Project link name
 
 ## Signature
 

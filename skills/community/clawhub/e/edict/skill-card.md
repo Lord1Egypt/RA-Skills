@@ -1,45 +1,61 @@
-## Description: <br>
-三省六部 is an OpenClaw multi-agent orchestration and governance skill for coordinating nine specialized agents with dashboard monitoring, model configuration, workflow support, and audit trails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+三省六部 (Edict) is an OpenClaw multi-agent orchestration skill that coordinates nine specialized agents for decision drafting, review, execution, model configuration, dashboard monitoring, and audit logging.
 
-## Publisher: <br>
-[zhmza](https://clawhub.ai/user/zhmza) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhmza](https://clawhub.ai/user/zhmza)
 
-## Use Case: <br>
-Developers and AI operations teams use this skill to coordinate complex multi-agent workflows, allocate resources, review risks, manage compliance checks, and monitor execution through an Edict-style governance model. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The default setup can expose a sensitive dashboard. <br>
-Mitigation: Bind the dashboard to localhost unless remote access is intentional, and add strong authentication before any external exposure. <br>
-Risk: Installation can alter the user's Python environment. <br>
-Mitigation: Install in a virtual environment and avoid --break-system-packages. <br>
-Risk: Audit logs may contain sensitive data and be retained for a long period. <br>
-Mitigation: Reduce retention where appropriate and redact logs before processing sensitive information. <br>
-Risk: Runtime behavior depends on the external Edict implementation that is installed or imported. <br>
-Mitigation: Inspect the implementation that will actually run before deploying the skill. <br>
+## Use Case:
 
+Developers and operators use this skill to coordinate multi-agent AI governance workflows that separate proposal drafting, review, execution, resource allocation, security, compliance, and engineering work. It is suited for complex workflow orchestration, operational monitoring, model configuration, and audit-trail generation.
 
-## Reference(s): <br>
-- [三省六部 reference notes](artifact/references/README.md) <br>
-- [ClawHub skill page](https://clawhub.ai/zhmza/edict) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python examples, shell commands, and YAML configuration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may guide local setup, dashboard launch, model routing, audit logging, and governance workflow configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, skill metadata, and skill.json) <br>
+Risk: The dashboard configuration can expose a web interface beyond localhost when bound to 0.0.0.0.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Bind the dashboard to 127.0.0.1 unless external access is intentional, and add authentication before any non-local access.
+
+Risk: The install and start scripts can install Python dependencies at runtime, creating supply-chain review risk.
+
+Mitigation: Use a virtual environment or container, pin dependencies, and pin the edict runtime to a reviewed version or commit before deployment.
+
+Risk: Audit logging may retain operational data for long periods.
+
+Mitigation: Review retention settings and storage protections against the data and compliance requirements of the deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhmza/skills/edict)
+- [README](README.md)
+- [Skill Definition](SKILL.md)
+- [Historical and Governance References](references/README.md)
+- [Configuration Example](assets/config-example.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python examples, YAML configuration, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local configuration, logs, and data directories when installation scripts are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, artifact metadata, and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

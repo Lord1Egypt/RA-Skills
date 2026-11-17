@@ -1,45 +1,60 @@
-## Description: <br>
-Headless web search and content extraction via the Brave Search API, with retry, circuit breaker protection, bounded-concurrency page fetching, structured logging, and paragraph-aware truncation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Headless Brave Browser provides Brave Search API web search and optional HTTP/HTTPS page content extraction as plain text, Markdown, or newline-delimited JSON without a browser.
 
-## Publisher: <br>
-[kelexine](https://clawhub.ai/user/kelexine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kelexine](https://clawhub.ai/user/kelexine)
 
-## Use Case: <br>
-Developers and agents use this skill for scriptable web research, documentation lookup, Brave Search result retrieval, and optional extraction of readable Markdown from public web pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to Brave Search and requested URLs are fetched from the web. <br>
-Mitigation: Avoid confidential queries or internal-only URLs unless authorized, and provide BRAVE_API_KEY only through the environment. <br>
-Risk: Query and URL metadata can appear in stderr logs depending on logging settings. <br>
-Mitigation: Set LOG_LEVEL and LOG_JSON appropriately for the deployment environment and avoid collecting sensitive logs. <br>
-Risk: Extracted web content can be incomplete, stale, or untrusted. <br>
-Mitigation: Review extracted Markdown before using it in downstream agent decisions or generated outputs. <br>
+## Use Case:
 
+Developers and agent operators use this skill to perform scriptable web research, documentation lookup, search-result collection, and URL content extraction from non-interactive environments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kelexine/brave-headless) <br>
-- [Skill homepage](https://github.com/kelexine/brave-headless) <br>
-- [Brave Search API](https://brave.com/search/api) <br>
-- [Architecture reference](ARCHITECTURE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration] <br>
-**Output Format:** [Plain text or newline-delimited JSON for search results; Markdown or JSON for page extraction.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search returns up to 20 results; optional content extraction truncates output according to MAX_CONTENT_LENGTH or --max-length.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: SKILL.md frontmatter, package.json, server release metadata) <br>
+Risk: The skill can fetch arbitrary HTTP/HTTPS URLs from the agent's network environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in a network-isolated environment or with egress controls, and avoid providing untrusted or private URLs.
+
+Risk: The security summary notes weak response-size controls, especially when page content extraction is enabled.
+
+Mitigation: Be cautious with --content and use conservative MAX_CONTENT_LENGTH or --max-length settings.
+
+Risk: Dependency state may change over time for the Node.js packages used during extraction.
+
+Mitigation: Update or review the dependency lockfile before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kelexine/skills/brave-headless)
+- [Project Homepage](https://github.com/kelexine/brave-headless)
+- [Brave Search API](https://brave.com/search/api)
+- [Architecture Reference](artifact/ARCHITECTURE.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Plain text, Markdown, or newline-delimited JSON from Node.js CLI commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BRAVE_API_KEY; content extraction can be bounded with MAX_CONTENT_LENGTH or --max-length.]
+
+## Skill Version(s):
+
+0.2.0 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

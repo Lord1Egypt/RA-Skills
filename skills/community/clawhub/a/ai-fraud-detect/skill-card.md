@@ -1,38 +1,54 @@
-## Description: <br>
-Provides AI-assisted fraud detection for transaction risk control and identity verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+反欺诈检测，交易风控 + 身份验证。
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-External users and developers can use this skill to set up fraud-detection workflows for transaction monitoring, risk scoring, identity checks, and case investigation in financial, payment, e-commerce, and account-security scenarios. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill points users to an external application repository while the reviewed artifact does not include the executable app or dependencies. <br>
-Mitigation: Inspect the external repository and requirements file, use a virtual environment, test with synthetic data first, and avoid real transaction, payment, account, or identity data until maintainer, dependency, storage, and network behavior are verified. <br>
+## Use Case:
 
+External developers and risk teams can use this skill to frame fraud detection, transaction risk monitoring, identity verification, risk scoring, and case investigation workflows for financial, e-commerce, payment, and account-security contexts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/ai-fraud-detect) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown with setup commands and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes pricing, use cases, technology stack, and installation steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and frontmatter) <br>
+Risk: The skill asks users to run unverified remote code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the source before installing, run it only in a restricted virtual environment or container, pin the repository to a reviewed commit, and verify dependencies.
+
+Risk: Fraud detection and identity verification workflows may involve sensitive transaction, account, or identity data.
+
+Mitigation: Do not provide real identity documents, account records, or transaction histories until the publisher documents data handling and provenance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-fraud-detect)
+- [Publisher profile](https://clawhub.ai/user/yang1002378395-cmyk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill describes fraud-detection capabilities and setup steps; it does not declare external tool or binary requirements.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

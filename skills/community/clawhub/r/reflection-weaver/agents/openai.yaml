@@ -1,0 +1,3 @@
+interface:
+  display_name: "Reflection Weaver"
+  short_description: "Turn a reflection, draft essay, or voice-note transcript into a woven knowledge object by preserving the voice, extracting stable concepts, and strengthening backlinks."

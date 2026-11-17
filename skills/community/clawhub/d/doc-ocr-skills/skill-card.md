@@ -1,43 +1,54 @@
-## Description: <br>
-OCR documents (PDFs and images) using Gemini 2.5 Flash, PaddleOCR (local), or RapidOCR (local). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OCR documents (PDFs and images) using Gemini 2.5 Flash, PaddleOCR (local), or RapidOCR (local).
 
-## Publisher: <br>
-[scottkiss](https://clawhub.ai/user/scottkiss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scottkiss](https://clawhub.ai/user/scottkiss)
 
-## Use Case: <br>
-Developers, researchers, and operations teams use this skill to extract text from scanned PDFs and images. It supports local OCR engines for private processing and a Gemini engine when cloud OCR is acceptable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer downloads a prebuilt binary, which creates supply-chain trust considerations. <br>
-Mitigation: Inspect the installer before running it, build from source when possible, or verify checksums if the publisher provides them. <br>
-Risk: Using the Gemini engine may send selected document contents to a cloud service. <br>
-Mitigation: Use RapidOCR or PaddleOCR for private documents, and use Gemini only when cloud processing is acceptable. <br>
-Risk: The Gemini API key is stored in a local configuration file. <br>
-Mitigation: Protect ~/.ocr/config with appropriate file permissions and avoid sharing the key in logs, prompts, or support artifacts. <br>
+## Use Case:
 
+Developers and external users use this skill to extract text from scanned PDFs and images with local OCR engines or Gemini-based cloud OCR. It supports single-document and batch workflows with optional output files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/scottkiss/doc-ocr-skills) <br>
-- [Go documentation](https://golang.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Plain text OCR output, with Markdown instructions and shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write recognized text to a file or output directory and can batch process supported document files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The release evidence flags installation through mutable remote code and an unauthenticated native binary that was not included for review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Build from reviewed source or use a release with published checksums or signatures; avoid curl-piped shell installation and do not run the installer with elevated privileges.
+
+Risk: Gemini mode may send selected documents to a cloud OCR service, and the documented configuration stores the API key in plaintext.
+
+Mitigation: Use local OCR engines for sensitive documents unless cloud processing is approved; protect, scope, and rotate the Gemini API key.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/scottkiss/skills/doc-ocr-skills)
+- [Publisher profile](https://clawhub.ai/user/scottkiss)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Plain text OCR output and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can process individual files or batches; Gemini mode uses a configured API key and may send selected documents to a cloud OCR service.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

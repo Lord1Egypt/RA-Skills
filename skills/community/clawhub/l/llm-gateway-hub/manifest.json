@@ -1,0 +1,9 @@
+{
+  "name": "统一大模型网关中枢",
+  "normalizedName": "llm-gateway-hub",
+  "description": "统一大模型网关，用于回答「几家模型 API 怎么统一调」「Key 散在各处怎么管」「这个月烧了多少钱」这类问题。一个配置接入多家 OpenAI 兼容平台（豆包 / 千问 / DeepSeek / Kimi / 智谱 / 腾讯混元 / 硅基流动 / Ollama），统一调用接口 + 预算硬拦截 + 自动消耗台账 + Key 安全管理。调用与消耗台账按证据链审计留痕，可还原每笔调用用了哪家模型、花了多少。当需要接入多个大模型 API、统一管理各家 Key 与费用、或搭建跨平台调用中枢时使用。触发词：大模型网关、多模型接入、统一调用、API 网关、预算管控、消耗台账、Key 管理、模型费用统计、LLM gateway、OpenAI 兼容。本技能为通用方法论工具，非医疗器械 / 非医疗软件，无疗效或临床声明；详见包内免责声明。",
+  "author": "诺声(Logos)@SynomosAI",
+  "copyright": "SynomosAI",
+  "version": "1.0.3",
+  "license": "MIT"
+}

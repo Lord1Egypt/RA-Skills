@@ -1,40 +1,54 @@
-## Description: <br>
-AI Academic Mentor helps agents read papers closely, compare literature, polish academic writing, and explain complex concepts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Academic Mentor helps users read papers closely, analyze literature, polish English academic writing, and explain academic concepts.
 
-## Publisher: <br>
-[smallkeyboy](https://clawhub.ai/user/smallkeyboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smallkeyboy](https://clawhub.ai/user/smallkeyboy)
 
-## Use Case: <br>
-Students, researchers, and academic writers use this skill to summarize uploaded papers, compare multiple sources, identify research gaps, polish English academic prose, and get layered explanations of difficult concepts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may submit confidential manuscripts, unpublished research, sensitive datasets, or material subject to institutional or publisher restrictions. <br>
-Mitigation: Use normal privacy caution and avoid submitting restricted material unless the surrounding agent environment and applicable policies allow it. <br>
-Risk: Academic-support workflows can be misused for ghostwriting, fabricated data, or invented references. <br>
-Mitigation: Keep use to analysis, tutoring, outlining, and polishing user-provided text; refuse requests to write papers, fabricate data, or invent citations. <br>
+## Use Case:
 
+Students, researchers, and academic writers use this skill to analyze uploaded papers, compare literature, identify research gaps, polish English academic writing, and explain complex concepts.
 
-## Reference(s): <br>
-- [Academic Writing Style Guide](references/academic-writing-style.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured tables, lists, explanations, and revision notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May cite user-provided paper content when discussing source material.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may provide confidential papers, unpublished research, or other sensitive academic documents for analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sharing confidential or unpublished material unless it is approved for use in the agent environment.
+
+Risk: Academic writing support may be misused to request ghostwriting, fabricated data, or fabricated references.
+
+Mitigation: Keep assistance limited to analysis, explanation, research planning, and polishing user-provided text; refuse requests to write papers for the user or invent evidence.
+
+## Reference(s):
+
+- [Academic Writing Style Guide](references/academic-writing-style.md)
+- [AI Academic Mentor on ClawHub](https://clawhub.ai/smallkeyboy/skills/ai-academic-mentor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with tables, lists, structured summaries, and revision notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include paper-summary tables, literature comparison matrices, research-gap suggestions, concept explanations, and academic writing edits with explanations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

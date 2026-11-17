@@ -1,42 +1,60 @@
-## Description: <br>
-Locate places using flexible query formats - free-form search or structured address components. Returns coordinates, addresses, and optional street-level photos. Use for geocoding addresses or finding specific named places. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Locate places using flexible query formats - free-form search or structured address components. Returns coordinates, addresses, and optional street-level photos.
 
-## Publisher: <br>
-[Valvoc](https://clawhub.ai/user/Valvoc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[valvoc](https://clawhub.ai/user/valvoc)
 
-## Use Case: <br>
-External users and developers use this skill to geocode addresses, find named places, and retrieve coordinates, formatted addresses, and optional street-level imagery through Camino's place lookup API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Place searches, addresses, postal codes, and optional photo lookup parameters are sent to Camino's external API. <br>
-Mitigation: Avoid submitting sensitive home, customer, or operational locations unless Camino's privacy and retention terms meet the user's requirements. <br>
-Risk: The skill depends on an external API key and network API behavior for place lookup results. <br>
-Mitigation: Configure CAMINO_API_KEY only in trusted environments and review returned place data before using it in customer-facing or operational decisions. <br>
+## Use Case:
 
+Developers and external agents use this skill to look up named places or geocode structured addresses through Camino, returning coordinates, formatted addresses, and optional street-level imagery.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Valvoc/camino-places-bak) <br>
-- [Camino skill activation](https://app.getcamino.ai/skills/activate) <br>
-- [Camino search API endpoint](https://api.getcamino.ai/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON API responses and Markdown usage guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CAMINO_API_KEY plus curl and jq; place queries, addresses, postal codes, and optional photo lookup parameters are sent to Camino's external API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Place searches and addresses are sent to Camino.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting sensitive addresses or personal data unless the deployment has approved that data sharing.
+
+Risk: CAMINO_API_KEY grants access to the Camino API.
+
+Mitigation: Store the key only in trusted agent settings and avoid exposing it in prompts, logs, or shared files.
+
+Risk: Mutable or unpinned installs can change the reviewed skill behavior.
+
+Mitigation: Prefer a pinned or reviewed ClawHub version rather than @latest or an unpinned GitHub URL.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/valvoc/skills/camino-places-bak)
+- [ClawHub publisher profile](https://clawhub.ai/user/valvoc)
+- [Camino search API endpoint](https://api.getcamino.ai/search)
+- [Camino skill activation](https://app.getcamino.ai/skills/activate)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash examples; API responses are JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CAMINO_API_KEY and the curl and jq command-line tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

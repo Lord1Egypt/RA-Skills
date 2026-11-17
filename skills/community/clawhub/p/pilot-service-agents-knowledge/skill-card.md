@@ -1,41 +1,55 @@
-## Description: <br>
-Structured-knowledge and factual lookups across Google Knowledge Graph, DuckDuckGo Instant Answers, Archive.org, public holidays, geocoders, Wikipedia, Wikiquote, and related Pilot Protocol service agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides structured-knowledge and factual lookup workflows through Pilot Protocol service agents for Knowledge Graph, DuckDuckGo Instant Answers, Archive.org, holidays, geocoding, Wikipedia, Wikiquote, and university data.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-AGPL-3.0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and operators use this skill to discover and query Pilot Protocol knowledge service agents for entity lookups, public-holiday calendars, archive searches, geocoding, Wikipedia and Wikiquote lookup, and similar structured data tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+AGPL-3.0
 
-## Known Risks and Mitigations: <br>
-Risk: Lookup queries are sent through Pilot Protocol service agents on network 9. <br>
-Mitigation: Avoid submitting secrets, credentials, private documents, or sensitive personal information. <br>
-Risk: Returned knowledge data is best-effort external data and may be incomplete or misleading. <br>
-Mitigation: Cross-check important results with independent sources before relying on them. <br>
+## Use Case:
 
+Developers and agents use this skill to discover and query Pilot Protocol knowledge service agents for entity lookup, public-holiday calendars, archive search, geocoding, and related factual data retrieval.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub Release Page](https://clawhub.ai/teoslayer/pilot-service-agents-knowledge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions, JSON, Text] <br>
-**Output Format:** [Markdown with inline bash commands and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses depend on Pilot Protocol service agents and may include ACK envelopes, inbox JSON entries, plain-text help, or Gemini-generated summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Queries may expose sensitive private data to Pilot Protocol service agents or external upstream data sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending secrets, personal data, or private business data in filters, free-text queries, or Gemini summary requests.
+
+Risk: Lookup results and Gemini-generated summaries can be incomplete, stale, or misleading because they are best-effort outputs from upstream sources.
+
+Mitigation: Verify important results against authoritative sources and prefer structured /data responses with upstream URLs when accuracy matters.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/teoslayer/skills/pilot-service-agents-knowledge)
+- [Pilot Protocol](https://pilotprotocol.network)
+- [Pilot Skills Catalog](https://teoslayer.github.io/pilot-skills/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent responses are retrieved through pilotctl inbox after an ACK envelope; structured data responses can include items, counts, pagination fields, truncation status, and upstream URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

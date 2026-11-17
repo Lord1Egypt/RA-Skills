@@ -1,44 +1,63 @@
-## Description: <br>
-Clean and organize Gmail accounts in bulk. Use when asked to clean Gmail, remove spam, trash newsletters/promotional emails, bulk-delete emails by sender, create labels, set up auto-filters, or restore emails from trash. Handles single or multiple Gmail accounts via OAuth token files. Works with any Gmail account using the Gmail API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gmail Cleaner helps agents scan, bulk clean, organize, filter, and restore messages across one or more Gmail accounts using Gmail API scripts.
 
-## Publisher: <br>
-[cedarscy](https://clawhub.ai/user/cedarscy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cedarscy](https://clawhub.ai/user/cedarscy)
 
-## Use Case: <br>
-External users and developers use this skill to scan Gmail accounts, bulk clean messages, organize labels and filters, and restore messages from Trash through Gmail API scripts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can permanently delete Gmail messages, including Trash purging in deep_clean.py and explicit permanent deletion in clean.py. <br>
-Mitigation: Run scan.py and dry-run modes first, prefer moving messages to Trash, and use --skip-trash-purge unless permanent removal is intended. <br>
-Risk: The skill can create persistent Gmail labels and filters that affect future messages. <br>
-Mitigation: Review label and filter configuration before running organize.py, and use --skip-filters when persistent filter creation is not required. <br>
-Risk: Reusable Gmail OAuth tokens are stored as .pkl files on disk. <br>
-Mitigation: Store token files in a protected location, restrict local file access, and revoke tokens when access is no longer needed. <br>
-Risk: The scripts may install Python dependencies at runtime. <br>
-Mitigation: Install dependencies yourself in a trusted environment before running the scripts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cedarscy/gmail-cleaner) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/cedarscy) <br>
+## Use Case:
 
+External users and developers use this skill to guide Gmail mailbox cleanup tasks such as scanning senders, trashing matched messages, organizing labels and filters, and restoring messages from trash.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides an agent to run local Python scripts that call the Gmail API and may modify mailbox state.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requests powerful Gmail modify, delete, and settings access.
+
+Mitigation: Use it only with Gmail accounts where that access is acceptable, choose the minimum needed scope, and revoke OAuth tokens when finished.
+
+Risk: Bulk delete and trash-purge operations can cause irreversible mailbox data loss.
+
+Mitigation: Run scan and dry-run modes first, review each query or sender list, and use --skip-trash-purge unless permanent deletion is intentional.
+
+Risk: OAuth token pickle files can grant access to another person's mailbox if shared or reused.
+
+Mitigation: Keep token files local and protected, never use tokens from another person, and remove or revoke tokens after use.
+
+Risk: The scripts may auto-install unpinned Python dependencies.
+
+Mitigation: Prefer installing reviewed, pinned dependencies manually in an isolated environment before running the scripts.
+
+## Reference(s):
+
+- [Gmail API modify OAuth scope](https://www.googleapis.com/auth/gmail.modify)
+- [Gmail API readonly OAuth scope](https://www.googleapis.com/auth/gmail.readonly)
+- [Gmail API settings OAuth scope](https://www.googleapis.com/auth/gmail.settings.basic)
+- [Gmail API labels OAuth scope](https://www.googleapis.com/auth/gmail.labels)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose mailbox-modifying operations that should be reviewed and dry-run before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

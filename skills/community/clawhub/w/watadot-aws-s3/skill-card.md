@@ -1,41 +1,49 @@
-## Description: <br>
-Watadot Aws S3 provides AWS S3 management guidance for bucket orchestration, synchronization, lifecycle management, and related AWS CLI workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+High-performance S3 management by Watadot Studio. Includes bucket orchestration, sync, and lifecycle management.
 
-## Publisher: <br>
-[ordiy](https://clawhub.ai/user/ordiy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ordiy](https://clawhub.ai/user/ordiy)
 
-## Use Case: <br>
-Developers and engineers use this skill as an AWS CLI command reference for managing S3 buckets, syncing local directories to S3, inspecting objects, and applying S3 operational best practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The S3 sync example uses a delete flag that can remove destination objects. <br>
-Mitigation: Run sync commands with --dryrun first, omit --delete unless exact mirroring is intended, and enable S3 versioning for important data. <br>
-Risk: AWS CLI commands operate against the active AWS profile and selected bucket. <br>
-Mitigation: Verify the active AWS profile and target bucket before execution, and use least-privilege IAM policies scoped to the required buckets or prefixes. <br>
+## Use Case:
 
+Developers and operators use this skill to generate AWS CLI S3 commands for bucket management, synchronization, object discovery, and storage best practices.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ordiy/watadot-aws-s3) <br>
-- [Publisher profile](https://clawhub.ai/user/ordiy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the AWS CLI and an active AWS profile; includes commands that may modify or delete S3 objects when used with destructive flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: An S3 sync example uses deletion behavior that can remove destination objects absent from the local directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the target bucket and prefix, test with a dry run, and run deletion only when the user is comfortable removing destination objects.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ordiy/skills/watadot-aws-s3)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash code blocks and prose guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the AWS CLI; examples should be reviewed before execution against real S3 buckets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

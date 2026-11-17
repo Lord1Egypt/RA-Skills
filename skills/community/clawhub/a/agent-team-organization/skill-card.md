@@ -1,39 +1,55 @@
-## Description: <br>
-Create and maintain a Teams management page for OpenClaw Control UI, including named agent teams, parent and child nesting, indented tree rendering, collapsible team groups, parent selectors, and file-backed team registry persistence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and maintain a Teams management page for OpenClaw Control UI, including named agent teams, parent/child nesting, indented tree rendering, collapsible team groups, parent selectors, and file-backed team registry persistence.
 
-## Publisher: <br>
-[maverick-software](https://clawhub.ai/user/maverick-software) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maverick-software](https://clawhub.ai/user/maverick-software)
 
-## Use Case: <br>
-Developers and engineers use this skill to build, extend, fix, or document the OpenClaw Teams page, team hierarchy UX, and gateway/UI plumbing for team organization features. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Teams Page UI Structure](artifact/references/ui-structure.md) <br>
-- [Teams Runtime Troubleshooting](artifact/references/runtime-troubleshooting.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/maverick-software/agent-team-organization) <br>
+Developers and engineers use this skill to build, extend, fix, or document the OpenClaw Teams page, including team hierarchy UX, gateway methods, UI state, and file-backed team registry persistence.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript data shapes, file paths, runtime verification steps, and implementation checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only guidance with no hidden execution behavior; when troubleshooting live runtime bundles, confirm the exact target, keep a backup, and use user-approved gateway restarts or patches.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill may guide changes to OpenClaw Teams UI, gateway code, runtime artifacts, and persistent team registry data.
+
+Mitigation: Require source changes to be rebuilt, tested, deployed with backup and rollback, and verified against nested team save/load behavior before use.
+
+Risk: The troubleshooting guidance can lead an operator toward direct patching of a live gateway runtime bundle.
+
+Mitigation: Prefer source-level fixes and rebuilt runtime artifacts; allow direct live bundle patching only under explicit emergency operator control.
+
+## Reference(s):
+
+- [Teams Page UI Structure](references/ui-structure.md)
+- [Teams Runtime Troubleshooting](references/runtime-troubleshooting.md)
+- [Agent Team Organization on ClawHub](https://clawhub.ai/maverick-software/skills/agent-team-organization)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with code, command, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide edits to OpenClaw Teams UI, gateway handlers, runtime artifacts, and persistent team registry data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

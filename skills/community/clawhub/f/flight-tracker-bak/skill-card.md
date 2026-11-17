@@ -1,39 +1,52 @@
-## Description: <br>
-Automates MAO-to-CNF flight searches twice daily and sends a WhatsApp report with the cheapest matching one-way flights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates searches for one-way MAO to CNF flights on a twice-daily schedule and reports qualifying results through WhatsApp.
 
-## Publisher: <br>
-[andreataide86](https://clawhub.ai/user/andreataide86) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[andreataide86](https://clawhub.ai/user/andreataide86)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users can use this skill to configure an agent workflow that searches for qualifying one-way flights from Manaus (MAO) to Belo Horizonte/Confins (CNF) and summarizes the five cheapest matches for WhatsApp reporting.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Scheduled automation may run before the user has confirmed the intended cron schedule, timezone, and WhatsApp destination.
+
+Mitigation: Review and explicitly approve the cron schedule, America/Manaus timezone, and WhatsApp recipient before enabling automation.
+
+Risk: Flight search and WhatsApp reporting may require credentials or session data outside the bundled skill files.
+
+Mitigation: Keep credentials out of skill files and reports, use the minimum required access, and verify secret handling before running the workflow.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Travelers or operators use this skill to monitor one-way flights from Manaus (MAO) to Belo Horizonte/Confins (CNF) for a fixed August 2026 travel window and receive WhatsApp summaries of the top matching fares. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring WhatsApp reports may send travel search data to the wrong recipient or continue after the trip search is no longer needed. <br>
-Mitigation: Confirm the recipient, schedule, and data being sent before enabling the cron job, and disable the job when monitoring is no longer needed. <br>
+**Output Format:** [Markdown with configuration guidance and command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/andreataide86/skills/flight-tracker-bak) <br>
-- [Publisher profile](https://clawhub.ai/user/andreataide86) <br>
+**Other Properties Related to Output:** [Reports up to the five cheapest matching one-way flight options based on the configured route, date, duration, connection, arrival-time, carrier-priority, and price criteria.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with scheduled search configuration and WhatsApp reporting details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search criteria include route MAO to CNF, one-way travel from 2026-08-07 to 2026-08-14, maximum 7-hour duration, up to 1 connection, 08:00-16:00 arrival, R$1,000 maximum price, and top 5 cheapest results.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

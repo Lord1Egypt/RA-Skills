@@ -1,95 +1,74 @@
 ---
 name: dcc-mcp-creator
 description: >-
-  Infrastructure skill - guide developers and agents through creating or
-  modernizing a full DCC-MCP adapter for Nuke, Blender, 3ds Max, Unreal,
-  ZBrush, Houdini, Maya, and custom studio tools. Use when building server,
-  dispatcher, gateway, packaging, and runtime integration. Not for authoring
-  individual SKILL.md tool packages - use dcc-mcp-skills-creator.
+  Build or modernize DCC-MCP adapters and standalone studio MCP services. For individual tool skill packages, use dcc-mcp-skills-creator.
 license: MIT-0
-compatibility: "dcc-mcp-core 0.17+, Python 3.7+"
 allowed-tools: Bash Read Write Edit
 metadata:
   dcc-mcp:
     dcc: python
     layer: infrastructure
-    version: "0.19.2"  # x-release-please-version
+    compatibility: "dcc-mcp-core 0.17+, Python 3.7+"
+    version: "0.19.117"
     search-hint: >-
       create DCC MCP adapter, Nuke MCP, DccServerBase, HostExecutionBridge,
       dispatcher, readiness, resources, gateway, Blender, 3ds Max, Unreal,
-      ZBrush, Houdini, Maya
-    tags: "adapter-development, host-runtime, dispatcher, gateway, nuke, blender, 3dsmax, unreal, zbrush"
+      ZBrush, Houdini, Maya, standalone internal MCP service, private intranet,
+      non-DCC server, chunked main-thread jobs, cooperative cancellation
+    tags: "adapter-development, internal-mcp-service, standalone, host-runtime, dispatcher, gateway, nuke, blender, 3dsmax, unreal, zbrush"
     skill-reference-docs:
       - "references/*.md"
   openclaw:
-    homepage: https://github.com/dcc-mcp/dcc-mcp-core/blob/main/skills/dcc-mcp-creator/SKILL.md
+    homepage: https://github.com/dcc-mcp/dcc-mcp-agent-plugins/blob/main/plugins/dcc-mcp/skills/dcc-mcp-creator/SKILL.md
 ---
 
 # DCC-MCP Creator
 
-Use this skill when you are creating a new DCC-MCP adapter or modernizing an
-existing adapter repository: server composition, host-thread dispatch,
-sidecar/gateway wiring, readiness, resources, project state, diagnostics,
-install lifecycle, or cross-DCC verification.
+Implement the requested adapter or service within its owner's project. A private
+service needs no public repository, catalog entry, issue or release. For operating
+an existing app use `dcc-mcp`; for individual tool packages use `dcc-mcp-skills-creator`.
+An already-loaded skill needs no installation or new agent turn.
 
-For individual skill packages (`SKILL.md`, `tools.yaml`, scripts, groups, and
-skill taxonomy), load `dcc-mcp-skills-creator` instead.
+## Implementation boundaries
 
-## Runtime Vocabulary
+Use `DccServerBase` and `DccServerOptions.from_env(...)`, with host API calls
+through `HostExecutionBridge`. Embedded, sidecar and standalone services have
+different owner/host lifetimes; resolve that contract before wiring the runtime.
+Reuse Core's public lifecycle, discovery and state owners rather than parallel
+adapter implementations. Keep identity and host configuration data-driven.
 
-- DCC startup hook: adapter code running inside the host at application startup; it prepares env/instance data and launches the service path without blocking the DCC UI/main thread.
-- Per-DCC service: one registered runtime row for one concrete DCC instance; Python `DccServerBase` and Rust sidecars both participate as per-DCC services.
-- Sidecar: the Rust `dcc-mcp-sidecar` child launched through the stable `dcc-mcp-server sidecar` command; it bridges host RPC to MCP/REST and exits when the watched DCC dies.
-- Gateway daemon: the one machine-wide `dcc-mcp-server gateway` process that owns routing, dynamic capability search/describe/call, and Gateway Admin.
-- Guardian: a lightweight loop inside daemon-backed services that probes gateway `/health` and re-ensures the daemon through `gateway-launch.lock`; it is not a separate process.
-- Service heartbeat: registry freshness for the service row only. Do not describe heartbeat as the gateway restart trigger.
+For Python adapters, first verify the host's interpreter, ABI and dependencies.
+When the host has no Python and Python is needed, prefer the existing shared
+DCC-MCP Runtime; keep official JS/native bridges available without Python.
+Follow [Python runtime selection](references/PYTHON_RUNTIME_SELECTION.md) before
+choosing a payload or installer. Do not bundle or download Python per adapter.
 
-## Fast Workflow
+Application UI uses project-owned `dcc-cua` / `ui-control`. Before observation
+or input report `provider=dcc-cua runtime=<version> pid=<exact-pid> hwnd=<exact-native-hwnd>`.
+Missing binding blocks actions. Read the bundled `dcc-cua` skill for UI work;
+never fall back to generic Computer Use without the user's explicit change of provider.
 
-1. Classify the host integration:
-   - Embedded Python host: Blender, 3ds Max Python, Houdini, Maya, Nuke.
-   - External bridge host: ZBrush, Photoshop, Unity, custom tools.
-   - Game/editor host with mixed Python or C++ bridge: Unreal, Unity.
-2. Read the relevant reference:
-   - [ADAPTER_WORKFLOW.md](references/ADAPTER_WORKFLOW.md) for the build path.
-   - [HOST_PATTERN_MATRIX.md](references/HOST_PATTERN_MATRIX.md) for host-specific wiring.
-   - [CORE_ESCALATION_CHECKLIST.md](references/CORE_ESCALATION_CHECKLIST.md) before adding adapter-local glue.
-    - [TESTING_AND_RELEASE.md](references/TESTING_AND_RELEASE.md) before validating or publishing.
-    - [docs/guide/gateway.md](../../docs/guide/gateway.md) for gateway daemon lifecycle details.
-    - [docs/guide/adapter-install-lifecycle.md](../../docs/guide/adapter-install-lifecycle.md) for sidecar launch/readiness details.
-    - [docs/guide/adapter-release-checklist.md](../../docs/guide/adapter-release-checklist.md) for release train compliance.
-    - [docs/guide/new-adapter-onboarding.md](../../docs/guide/new-adapter-onboarding.md) for new adapter scaffolding.
-    - [docs/guide/adapter-compatibility-matrix.md](../../docs/guide/adapter-compatibility-matrix.md) for the per-DCC compatibility table.
-3. Start from `DccServerBase` + `DccServerOptions.from_env(...)`.
-4. Route host API calls through `HostExecutionBridge`; do not hand-roll a second script executor.
-5. Keep DCC identity data-driven: `dcc_name`, `server_name`, env-var prefix, skill names, and gateway metadata.
-6. Use core helpers for skill discovery, `MinimalModeConfig`, project tools, resources, diagnostics, context snapshots, install lifecycle, and gateway failover before writing adapter-local wrappers. Python `DccServerBase.collect_skill_search_paths()` includes marketplace-installed skills under `~/.dcc-mcp/marketplace/<dcc>` (or `DCC_MCP_MARKETPLACE_INSTALL_ROOT/<dcc>`) when the directory exists, so adapters should not add a second marketplace path convention.
-7. Use CLI profiles (`dcc-mcp-cli gateway ...`, `list/search/describe/call`) as the user UX; treat `dcc-mcp-server` modes as runtime plumbing. Read `docs/guide/gateway.md` before changing daemon, guardian, sentinel, registry, or idle-timeout behavior.
-8. Use `dcc_mcp_core.install_lifecycle.build_sidecar_command(...)` / `launch_sidecar(...)` for sidecar startup and readiness. Read `docs/guide/adapter-install-lifecycle.md` before changing host RPC, dispatch readiness, launch stdio, `watch_pid`, or `instance_id` handling.
-9. Pass `instance_id` to sidecar launch helpers only when it is a real UUID for the DCC service. During early startup, omit it or pass `None`; `build_sidecar_command()` rejects cosmetic values such as `"unknown"` with `success=false` and `reason="invalid_instance_id"` so adapters do not spawn a child that can only fail with a CLI argument error.
-10. Adapter supervisors that must stop the sidecar on plugin unload should call `launch_sidecar(..., return_process=True, detached=False)` instead of reimplementing `subprocess.Popen`; keep `return_process=False` for CLI/JSON paths because the process handle is not serializable.
-11. If the adapter cannot share the gateway `FileRegistry`, register remotely through `POST /v1/instances/register`, refresh with `/heartbeat`, and deregister on shutdown; the gateway will expose the row as `source: "http"` in `gateway://instances` / `GET /v1/instances`, preserve `instance_short` and `mcp_url`, and route it through the same `live_instances` contract.
-12. For same-LAN convenience discovery, build with `mdns` and pair adapter-side `--advertise-mdns` with gateway-side `--discover-mdns`; treat this as a multicast discovery hint only, keep auth/TLS policy explicit, and prefer HTTP registration or relay for routed/subnet-crossing production deployments.
-13. For NAT or routed-subnet deployments, run the tunnel agent with stable `instance_id`, `capabilities_fingerprint`, `adapter_version`, and `scene` metadata, then configure the standalone gateway with `--relay-source ADMIN_URL=PUBLIC_BASE_URL`; the gateway will expose active tunnels as `source: "relay"` rows with relay details in `source_meta` after probing `/v1/healthz` through `<PUBLIC_BASE_URL>/tunnel/<tunnel_id>/mcp`.
-14. Preserve gateway caller attribution when adding adapter wrappers or admin/debug routes: let MCP `initialize.params.clientInfo`, MCP `_meta.agent_context`, REST `meta.agent_context`, `x-dcc-mcp-*` headers, and safe `User-Agent` fallbacks flow through core rather than logging raw prompts or local machine data.
-15. For lifecycle/memory/telemetry policy, use `register_lifecycle_hooks(...)`, `search_skills(..., session_id=...)`, `dispatch_session_start(...)`, `dispatch_before_tool_call(...)`, `dispatch_after_tool_call(...)`, and `dispatch_session_end(...)`; pair `MemoryRecorder(InMemoryMemoryStore()).install(hooks)` with those hooks when adapters need bounded memory summaries, failed-pattern avoidance, or session compaction. Memory injection is conservative and budgeted by default: search receives compact ranking hints, tool calls receive memory only when it matches the current `tool_name`, and session-start injection is opt-in. Use `SqliteMemoryStore()` only when longterm patterns should be durable, operator-managed in the Admin Memory tab, and included in memory hit-rate observability; disable the recorder for privacy-sensitive deployments. Open a focused core issue/RFC only when those public hooks cannot express the adapter boundary.
-16. Add one executable smoke path: unit tests for construction plus either headless DCC, mock dispatcher MCP calls, gateway REST replay, mDNS same-LAN discovery smoke, relay-source smoke, or `just idle-memory-smoke` for standalone server idle/regression checks.
-17. For gateway/admin observability, surface explicit state instead of silent zeroes: traffic panels should report disabled, unavailable, filtered, or genuine no-traffic states; skill panels should distinguish discovered, loaded, searched, selected, called, failed, and low-adoption skills; and admin-facing frames/paths should stay metadata-only or aliased unless an operator explicitly configures a private raw sink.
-18. Preserve workflow observability: adapter calls should carry request, parent, trace, session, DCC, transport, and artifact/validation metadata so the Admin workflow graph can show Intent → Discovery → Skill Load → Tool Calls → Fallbacks → Artifacts → Validation → Report without raw log reading.
-19. Preserve bounded `agent_context` task/session/turn metadata and artifact/validation-friendly tool names so Admin task outcomes can group workflows, calls, deliverables, and checks without reading raw payloads or local paths.
+## Choose relevant guidance
 
-## Example: New Nuke Adapter
+| Work | Read |
+|---|---|
+| New or modernized public adapter | [Adapter workflow](references/ADAPTER_WORKFLOW.md), [host patterns](references/HOST_PATTERN_MATRIX.md) |
+| Private standalone service | [Internal service workflow](references/INTERNAL_SERVICE_WORKFLOW.md) |
+| Server ownership, host dispatch, state digest, UI integration, gateway or sidecar wiring | [Runtime integration](references/RUNTIME_INTEGRATION.md); consult its relevant numbered contracts |
+| Proposed adapter-local workaround for shared behavior | [Core escalation](references/CORE_ESCALATION_CHECKLIST.md) |
+| Async/main-thread jobs, cancellation or reconnect | [Async recovery](references/ASYNC_RECOVERY.md) |
+| Runtime failure or issue ownership | [Failure routing](references/FAILURE_ROUTING.md) |
+| Nuke/standalone examples or cross-DCC file synchronization | [Integration examples](references/INTEGRATION_EXAMPLES.md) |
+| Portable host setup or a typed native vector extension | [Native extension workflow](references/NATIVE_EXTENSION_WORKFLOW.md); distinguish software deployment, source-only standard adapters and released integration |
+| Validation or release | [Testing and release](references/TESTING_AND_RELEASE.md) |
 
-When asked to create a Nuke MCP adapter, start by mapping the host lifecycle:
-how Python is loaded, how the UI/main thread must be entered, what headless
-mode is available, how plugins are installed, and which operations should be
-bundled as default skills. Then scaffold the adapter around core primitives:
-
-- `DccServerBase` for MCP/HTTP and skill catalog behavior.
-- `DccServerOptions.from_env("NUKE")` or an adapter-specific equivalent for env-driven configuration.
-- `HostExecutionBridge` plus a Nuke dispatcher for all Nuke API calls.
-- Core project, readiness, resource, diagnostics, and gateway helpers before adapter-local glue.
-- `dcc-mcp-skills-creator` for the first `nuke-*` skill packages.
+Use the `dcc-mcp` route only when live validation is needed; source-only edits
+do not require starting a host, installing a CLI, or updating a server.
+Run the relevant local checks, fix failures caused by the change, and verify the
+requested behavior before reporting completion. Keep source/mock validation
+separate from real-host acceptance. Publishing requires the requested scope
+and the applicable release gates; native Python 3.7 remains an LTS profile,
+and `py37-lite` does not satisfy its release gate.
 
 ## Non-Negotiables
 
@@ -98,4 +77,5 @@ bundled as default skills. Then scaffold the adapter around core primitives:
 - Do not reach into `server._server` unless no public core API exists; if you must, file a core issue and keep the adapter shim small.
 - Do not create Maya-only abstractions in shared core or adapter templates.
 - Do not expose raw script execution as the primary user workflow when a typed skill can cover the task.
+- Do not require GitHub, a public catalog entry, or public issue tracking for a private internal service.
 - Do not publish local paths, private machine names, or source-attribution markers in public issues or PR text.

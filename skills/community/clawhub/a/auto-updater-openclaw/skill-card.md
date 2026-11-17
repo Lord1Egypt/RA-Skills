@@ -1,45 +1,63 @@
-## Description: <br>
-Automatically keep OpenClaw and installed workspace skills up to date using native OpenClaw commands for update checks, scheduled maintenance, daily skill updates, recurring OpenClaw update workflows, and cron-based self-update routines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically keep OpenClaw and installed workspace skills up to date using native OpenClaw commands.
 
-## Publisher: <br>
-[zdy2019](https://clawhub.ai/user/zdy2019) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zdy2019](https://clawhub.ai/user/zdy2019)
 
-## Use Case: <br>
-Developers and operators use this skill to create or run OpenClaw-native update routines for installed skills and, when explicitly requested, OpenClaw itself. It supports recurring maintenance workflows, cron scheduling, and compact update summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled update jobs can continue running after setup if the user forgets about them. <br>
-Mitigation: Review the exact schedule, timezone, session binding, and removal plan before creating a cron job. <br>
-Risk: Automatically updating the OpenClaw runtime can change agent behavior more broadly than updating skills. <br>
-Mitigation: Default to skills-only automation and update OpenClaw core only after the user explicitly opts in. <br>
-Risk: Bulk skill updates can encounter ClawHub rate limits. <br>
-Mitigation: Prefer per-skill updates and stop the run with a clear explanation when a 429 rate-limit response appears. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to configure recurring skill maintenance, update checks, and optional core update routines with native OpenClaw commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zdy2019/auto-updater-openclaw) <br>
-- [OpenClaw Auto-Updater Cron Examples](references/cron-examples.md) <br>
-- [Notes for the OpenClaw Auto-Updater Skill](references/notes.md) <br>
-- [Draft release notes for next public update](references/release-notes-draft.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and compact status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance; no credentials or API keys are required by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: A cron schedule or timezone may run updates at an unintended time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the schedule, timezone, and delivery session before creating a recurring update job.
+
+Risk: Automatic OpenClaw core runtime updates can change the runtime more broadly than skill-only updates.
+
+Mitigation: Prefer skills-only automatic updates unless the user explicitly opts into recurring OpenClaw core updates.
+
+Risk: Repeated broad skill updates may encounter ClawHub remote rate limits.
+
+Mitigation: Prefer gentle per-skill updates and stop the run with a clear explanation if a 429 rate-limit response appears.
+
+Risk: Some update or scheduling commands may require user approval or elevated access.
+
+Mitigation: Stop and ask before proceeding when a command requires approval or elevated access.
+
+## Reference(s):
+
+- [OpenClaw Auto-Updater Cron Examples](references/cron-examples.md)
+- [Notes for the OpenClaw Auto-Updater Skill](references/notes.md)
+- [Draft release notes for next public update](references/release-notes-draft.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and compact text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include cron schedules and update reports; automatic OpenClaw core runtime updates are opt-in.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,76 @@
-## Description: <br>
-Complete GoDaddy API skill with shell scripts + MCP server for domains, DNS, certificates, shoppers, subscriptions, agreements, countries, and aftermarket listings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Work with GoDaddy's gddy CLI, public Domains MCP, REST and GraphQL APIs, domains and DNS, Commerce, Hosting, Email, experimental Platform apps, and Agent Name Service.
 
-## Publisher: <br>
-[solarx56](https://clawhub.ai/user/solarx56) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[solarx56](https://clawhub.ai/user/solarx56)
 
-## Use Case: <br>
-Developers and operators use this skill to manage GoDaddy account resources through shell scripts or an MCP server, including domains, DNS records, certificates, shoppers, subscriptions, agreements, countries, and aftermarket listings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The MCP server can let an agent make costly or destructive GoDaddy account changes without built-in approval checks. <br>
-Mitigation: Use OTE/test credentials first and connect the MCP server only in environments with separate human approval or other controls for purchases, deletions, DNS replacement, certificate revocation, and cancellations. <br>
-Risk: Production GoDaddy credentials can authorize domain, DNS, certificate, shopper, and subscription changes. <br>
-Mitigation: Store credentials securely, avoid shell startup files for sensitive production secrets, and do not paste credential debug output into logs or chats. <br>
-Risk: DNS replacement, domain cancellation, certificate revocation, and subscription cancellation can interrupt live services or be difficult to reverse. <br>
-Mitigation: Back up current DNS records, validate payloads, test workflows in OTE when possible, and review the artifact safety checklist before high-impact operations. <br>
+## Use Case:
 
+Developers and agent operators use this skill to discover current GoDaddy CLI, MCP, REST, and GraphQL workflows, then plan and verify domain, DNS, hosting, email, platform, and account-related actions.
 
-## Reference(s): <br>
-- [GoDaddy API Documentation](https://developer.godaddy.com/doc) <br>
-- [GoDaddy API Keys](https://developer.godaddy.com/keys) <br>
-- [Authentication & Environment Setup](references/auth-and-env.md) <br>
-- [GoDaddy API Endpoints Reference](references/endpoints.md) <br>
-- [Request Body Schemas](references/request-bodies.md) <br>
-- [Error Handling](references/error-handling.md) <br>
-- [Safety Playbook](references/safety-playbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON payload examples, and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires bash, curl, jq, node, npm, and GoDaddy API credentials in GODADDY_API_BASE_URL, GODADDY_API_KEY, and GODADDY_API_SECRET.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill can guide actions that change real GoDaddy resources or incur charges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the agent to show the exact target, effect, cost, and rollback or verification plan, then obtain explicit approval before any purchase, DNS edit, hosting change, email provisioning, or API mutation.
+
+Risk: CLI installation or updates could execute untrusted or mutable code if source and integrity are not checked.
+
+Mitigation: Use the versioned official gddy release with SHA-256 verification; review any optional npx agent installer package and version before running it with normal user privileges.
+
+Risk: Credentials or debug output could expose OAuth tokens, PATs, or request details.
+
+Mitigation: Use browser OAuth or scoped PAT storage, avoid pasting tokens into chat, and avoid debug output around secrets unless necessary.
+
+Risk: DNS mutations can duplicate records, replace existing values, or leave partial state after a failure.
+
+Mitigation: Read current records, preserve rollback data, use dry-run where supported, obtain approval for the concrete plan, execute once, and verify with a fresh read.
+
+Risk: Retries for billed or asynchronous operations can duplicate purchases or other account-impacting work.
+
+Mitigation: Poll returned operation IDs and inspect account or resource state before deciding whether another call is safe.
+
+## Reference(s):
+
+- [GoDaddy API Skill on ClawHub](https://clawhub.ai/solarx56/skills/godaddy-api)
+- [GoDaddy CLI, MCP, and agent platform](references/agent-platform.md)
+- [Dynamic API catalog](references/api-catalog.md)
+- [Mutation safety](references/safety.md)
+- [Errors, retries, and limits](references/errors-and-limits.md)
+- [GoDaddy CLI](https://github.com/godaddy/cli)
+- [GoDaddy CLI v0.2.12 release](https://github.com/godaddy/cli/releases/tag/v0.2.12)
+- [GoDaddy Domains MCP](https://developer.godaddy.com/en/docs/api-users/mcp)
+- [GoDaddy Domains v3 OpenAPI](https://developer.godaddy.com/openapi/domains-v3.json)
+- [GoDaddy Domains v2 OpenAPI](https://developer.godaddy.com/openapi/domains-v2.json)
+- [GoDaddy Domains v1 OpenAPI](https://developer.godaddy.com/openapi/domains-v1.json)
+- [GoDaddy API rate limits](https://developer.godaddy.com/en/docs/api-users/rate-limits)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown guidance with inline shell, JSON, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes approval, verification, retry, and credential-handling guidance for GoDaddy workflows.]
+
+## Skill Version(s):
+
+2.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

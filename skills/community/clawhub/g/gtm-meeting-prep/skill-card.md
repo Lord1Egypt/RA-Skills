@@ -1,41 +1,55 @@
-## Description: <br>
-Prepare a seller or growth rep for an upcoming sales or partnership meeting by producing a pre-meeting brief with account context, attendee research, discovery questions, and a recommended conversation arc. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prepare a seller or growth rep for an upcoming sales or partnership meeting with a pre-meeting brief covering account context, attendee research, discovery questions, and a recommended conversation arc.
 
-## Publisher: <br>
-[davidslavich](https://clawhub.ai/user/davidslavich) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davidslavich](https://clawhub.ai/user/davidslavich)
 
-## Use Case: <br>
-Sales, growth, and partnership teams use this skill to prepare for scheduled calls, demos, intro meetings, POC kick-offs, proposals, partnerships, and QBRs. It creates a focused meeting brief with company context, attendee priorities, discovery questions, landmines, a narrative arc, and a concrete next step. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses web search for public company and persona research, which can create privacy risk if users provide confidential meeting notes, private attendee lists, or unnecessary personal details. <br>
-Mitigation: Use it for intentional sales account research on named companies, limit inputs to necessary business context, and avoid confidential or private personal details. <br>
-Risk: Persona, pain-point, or buying-signal claims may be inaccurate or outdated if based on weak or stale public sources. <br>
-Mitigation: Verify sources before using claims in outreach, meeting strategy, or stakeholder-specific talking points. <br>
+## Use Case:
 
+Sales, growth, and partnership teams use this skill to prepare for calls, demos, intros, POC kick-offs, proposals, partnerships, and QBRs. It turns meeting details and web research into a focused brief with account context, attendee priorities, landmines, discovery questions, a conversation arc, and a proposed next step.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/davidslavich/gtm-meeting-prep) <br>
-- [iCustomer website](https://icustomer.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown meeting brief] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires web search access for public account and attendee research.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+Risk: Meeting details, company names, attendee identities, or sensitive invite content may be used during web-assisted meeting research.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only the meeting and attendee details needed for the brief, and avoid confidential invite content or sensitive personal details unless necessary.
+
+Risk: Generated attendee or account research may be incomplete or inaccurate.
+
+Mitigation: Review the brief before use, especially attendee priorities, recent signals, landmines, and recommended next steps.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/davidslavich/skills/gtm-meeting-prep)
+- [Publisher profile](https://clawhub.ai/user/davidslavich)
+- [iCustomer website](https://icustomer.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown meeting brief]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses provided meeting details and web research; no code, persistence, or hidden installation behavior is indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

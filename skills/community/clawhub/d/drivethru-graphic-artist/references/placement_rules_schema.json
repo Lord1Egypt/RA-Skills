@@ -21,7 +21,7 @@
               "type": "number",
               "minimum": 0.0,
               "maximum": 1.0,
-              "description": "Decoration center X position as a fraction of the garment bbox width (0 = left edge, 1 = right edge)."
+              "description": "Decoration center X position as a fraction of the garment bbox width, in IMAGE coordinates (0 = image left edge, 1 = image right edge). Placement names use the WEARER's left/right: on a flat FRONT photo the wearer's left chest/sleeve is on the IMAGE RIGHT (x > 0.5) and the wearer's right is on the image left (x < 0.5)."
             },
             "y_top_ratio": {
               "type": "number",
@@ -43,7 +43,7 @@
               "description": "Optional cap on decoration height as a fraction of the detected garment bbox height. If the aspect-locked height from width_ratio exceeds this, the decoration is scaled down (aspect preserved) so it fits the location's height box (e.g. a hoodie full-front print must fit above the pocket ~= 9in). Omit for width-only sizing."
             }
           },
-          "additionalProperties": false
+          "additionalProperties": true
         }
       },
       "additionalProperties": false

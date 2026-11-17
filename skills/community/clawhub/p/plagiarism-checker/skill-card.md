@@ -1,44 +1,58 @@
-## Description: <br>
-Detect text originality and AI-generated content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect text originality and AI-generated content.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Writers, editors, educators, and developers use this skill to run local heuristic checks on submitted text and receive reference-only originality, AI-likelihood, paragraph analysis, and rewriting guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Heuristic originality and AI-generation scores can be inaccurate or produce false positives. <br>
-Mitigation: Treat reports as reference signals and do not use them as the sole basis for academic, legal, employment, or disciplinary decisions. <br>
-Risk: Quoted text, common technical terminology, and short passages may be flagged even when reuse is legitimate. <br>
-Mitigation: Review flagged passages manually, check citations and context, and prefer longer inputs that meet the artifact's recommended minimum length. <br>
-Risk: File-based checks can process sensitive drafts from local paths selected by the user. <br>
-Mitigation: Run the skill only on intended files and review file paths before execution. <br>
+## Use Case:
 
+External users, developers, and content reviewers use this skill to screen text or local files for originality, AI-generation probability, paragraph-level risk, and rewriting recommendations.
 
-## Reference(s): <br>
-- [Detection Guide](artifact/references/detection-guide.md) <br>
-- [Report Template](artifact/references/report-template.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/openlark/plagiarism-checker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text terminal report with markdown-compatible recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include word and character counts, originality score, AI-generation probability, paragraph analysis, risk level, and recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Originality and AI-generation results are heuristic and may be inaccurate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use results as screening guidance only, and require human review before making academic, legal, or disciplinary decisions.
+
+Risk: The skill reads user-provided local files.
+
+Mitigation: Provide only files intended for analysis and avoid submitting sensitive or unrelated content.
+
+Risk: Some documented options and detection methods may be inaccurate or not implemented.
+
+Mitigation: Confirm supported command-line options before use and disclose any unsupported workflow steps to the user.
+
+## Reference(s):
+
+- [Detection Guide](references/detection-guide.md)
+- [Detection Report Template](references/report-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with terminal report text and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Originality score, AI-generation probability, paragraph-level flags, and recommendations are heuristic and should be reviewed by a person.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

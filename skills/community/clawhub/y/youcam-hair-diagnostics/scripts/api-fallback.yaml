@@ -1,0 +1,141 @@
+snapshot_date: 2026-11-02 06:21
+base_url: https://yce-api-01.makeupar.com
+credit:
+  balance_path: /s2s/v1.0/client/credit
+  history_path: /s2s/v1.0/client/credit/history
+  feature_cost_path: /s2s/v2.0/credit/feature-cost
+  api_spendable_prefix: Api
+features:
+  hair-density-detection:
+    api_name: AI Hair Density Detection
+    version: v2.0
+    task_path: /s2s/v2.0/task/hair-density-detection
+    doc: https://docs.perfectcorp.com/reference/ai_hair_density_detection.md
+    body_schema:
+      title: BasicRunTaskV2
+      anyOf:
+      - title: Run task with src file url
+        type: object
+        required:
+        - src_file_url
+        properties:
+          src_file_url:
+            type: string
+            description: Url of the file to run task. The url should be publicly accessible.
+            example: https://example.com/selfie.jpg
+      - title: Run task with src file ID
+        type: object
+        required:
+        - src_file_id
+        properties:
+          src_file_id:
+            type: string
+            description: ID of file to run task. File ID from upload file API.
+            example: pfNK5PuRe0MrwLHcGA3DOmB1ahwfXTbYHjv+KoBIxbE=
+  hair-type-detection:
+    api_name: AI Hair Type Detection
+    version: v2.0
+    task_path: /s2s/v2.0/task/hair-type-detection
+    doc: https://docs.perfectcorp.com/reference/ai_hair_type_detection.md
+    body_schema:
+      type: object
+      anyOf:
+      - title: Run task with 3 angle src file urls
+        type: object
+        required:
+        - src_file_urls
+        properties:
+          src_file_urls:
+            type: array
+            minItems: 3
+            maxItems: 3
+            description: The file URLs from upload file API. The file IDs for the sequence of source images are 'frontFace', 'rightFace', and 'leftFace'. Should provide either 'src_file_urls' or 'src_file_ids'.
+            example:
+            - https://example.com/selfie.jpg
+            - https://example.com/selfie.jpg
+            - https://example.com/selfie.jpg
+            items:
+              type: string
+      - title: Run task with 3 angle src file IDs
+        type: object
+        required:
+        - src_file_ids
+        properties:
+          src_file_ids:
+            type: array
+            minItems: 3
+            maxItems: 3
+            description: The file IDs from upload file API. The file IDs for the sequence of source images are 'frontFace', 'rightFace', and 'leftFace'. Should provide either 'src_file_urls' or 'src_file_ids'.
+            example:
+            - pfNK5PuRe0MrwLHcGA3DOmB1ahwfXTbYHjv+KoBIxbE=
+            - pkVzplMv8Y1QPgHbqtKfyJmg+xJDUbTP16YijZ3qARNf
+            - B5LNohvvO+7d/78Ymuhp6vMiSooN/5DX9oVuupzkKctf
+            items:
+              type: string
+  hair-frizziness-detection:
+    api_name: AI Hair Frizziness Detection
+    version: v2.0
+    task_path: /s2s/v2.0/task/hair-frizziness-detection
+    doc: https://docs.perfectcorp.com/reference/ai_hair_frizziness_detection.md
+    body_schema:
+      type: object
+      anyOf:
+      - title: Run task with 3 angle src file urls
+        type: object
+        required:
+        - src_file_urls
+        properties:
+          src_file_urls:
+            type: array
+            minItems: 3
+            maxItems: 3
+            description: The file URLs from upload file API. The file IDs for the sequence of source images are 'frontFace', 'rightFace', and 'leftFace'. Should provide either 'src_file_urls' or 'src_file_ids'.
+            example:
+            - https://example.com/selfie.jpg
+            - https://example.com/selfie.jpg
+            - https://example.com/selfie.jpg
+            items:
+              type: string
+      - title: Run task with 3 angle src file IDs
+        type: object
+        required:
+        - src_file_ids
+        properties:
+          src_file_ids:
+            type: array
+            minItems: 3
+            maxItems: 3
+            description: The file IDs from upload file API. The file IDs for the sequence of source images are 'frontFace', 'rightFace', and 'leftFace'. Should provide either 'src_file_urls' or 'src_file_ids'.
+            example:
+            - pfNK5PuRe0MrwLHcGA3DOmB1ahwfXTbYHjv+KoBIxbE=
+            - pkVzplMv8Y1QPgHbqtKfyJmg+xJDUbTP16YijZ3qARNf
+            - B5LNohvvO+7d/78Ymuhp6vMiSooN/5DX9oVuupzkKctf
+            items:
+              type: string
+  hair-length-detection:
+    api_name: AI Hair Length Detection
+    version: v2.0
+    task_path: /s2s/v2.0/task/hair-length-detection
+    doc: https://docs.perfectcorp.com/reference/ai_hair_length_detection.md
+    body_schema:
+      title: BasicRunTaskV2
+      anyOf:
+      - title: Run task with src file url
+        type: object
+        required:
+        - src_file_url
+        properties:
+          src_file_url:
+            type: string
+            description: Url of the file to run task. The url should be publicly accessible.
+            example: https://example.com/selfie.jpg
+      - title: Run task with src file ID
+        type: object
+        required:
+        - src_file_id
+        properties:
+          src_file_id:
+            type: string
+            description: ID of file to run task. File ID from upload file API.
+            example: pfNK5PuRe0MrwLHcGA3DOmB1ahwfXTbYHjv+KoBIxbE=
+      type: object

@@ -1,43 +1,51 @@
-## Description: <br>
-Habit formation and procedural learning for AI agents. Develop preferences and shortcuts through repetition. Part of the AI Brain series. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Habit formation and procedural learning for AI agents. Develop preferences and shortcuts through repetition. Part of the AI Brain series.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Developers and agent builders can use this skill as a placeholder for AI-agent habit formation, procedural memory, reward-based learning, and preference development workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A future implemented version may send agent context or memory data to SkillBoss API Hub. <br>
-Mitigation: Before enabling a future version, review what data is transmitted, how it is stored or retained, and whether that matches the deployment's privacy requirements. <br>
-Risk: The future SkillBoss API key may grant access beyond the intended workflow. <br>
-Mitigation: Use a scoped key where available, store it outside skill files, rotate it if exposed, and review what permissions SKILLBOSS_API_KEY grants. <br>
-Risk: Learned habits or procedural preferences could reinforce unwanted agent behavior if they cannot be inspected or reset. <br>
-Mitigation: Confirm that implemented habit state can be reviewed, disabled, corrected, or reset before production use. <br>
+## Use Case:
 
+Developers and agent builders use this skill as a placeholder for future habit formation and procedural-memory behavior in AI agents, including repeated-action preferences, workflow shortcuts, and reward-based learning patterns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/toby-basal-ganglia-memory) <br>
-- [SkillBoss API Hub](https://api.skillbossai.com/v1/pilot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Current artifact is non-executable and under development; future use discloses SKILLBOSS_API_KEY authentication for SkillBoss API Hub.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Future implemented versions may send prompts, memory, or agent context to SkillBoss API Hub.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before setting SKILLBOSS_API_KEY or deploying an implemented version, review what data is transmitted, retained, and whether the behavior is opt-in and reversible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/toby-basal-ganglia-memory)
+- [Publisher profile](https://clawhub.ai/user/tobeyrebecca)
+- [SkillBoss API Hub endpoint](https://api.skillbossai.com/v1/pilot)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown, Configuration]
+
+**Output Format:** [Markdown or plain text guidance with configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Current artifact is a non-executable placeholder; future use may require SKILLBOSS_API_KEY on Darwin or Linux.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

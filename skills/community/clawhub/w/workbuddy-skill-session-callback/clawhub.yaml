@@ -1,0 +1,16 @@
+# ClawHub skill metadata
+# Repository: workbuddy-skill-session-callback
+name: workbuddy-skill-session-callback
+version: 1.0.5
+description: 【WorkBuddy 桌面版专用】会话回调（Session Callback）— 通过 WorkBuddy 的 ACP 协议（Agent Client Protocol）实现"一个会话调起另一个会话"：外部进程 / cron job / 另一会话向目标会话注入消息，唤醒其 agent 带完整上下文继续处理。等价于 openclaw 的 sessions_send，是 WorkBuddy 上的原生实现。仅适用于 WorkBuddy 桌面版，不适用于 openclaw 等其他平台。
+skill_file: SKILL.md
+tags:
+  - workbuddy
+  - workbuddy-desktop
+  - session-callback
+  - acp
+  - agent-client-protocol
+  - cron
+  - session-injection
+  - sessions-send
+  - automation

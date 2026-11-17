@@ -1,37 +1,54 @@
-## Description: <br>
-Operate Volcengine RDS instances and database workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate Volcengine RDS instances and database workflows, including provisioning guidance, connectivity checks, performance troubleshooting, and backup or restore procedures.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and database operators use this skill to plan and review Volcengine RDS provisioning, connectivity checks, performance troubleshooting, backup, and restore workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Operational guidance could affect production database availability or data integrity if applied without review. <br>
-Mitigation: Use the skill as an RDS operations reference, apply scoped Volcengine credentials, and review suggested tuning, restore, backup, or write operations before production use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Sources](references/sources.md) <br>
+## Use Case:
 
+Developers, database operators, and platform engineers use this skill to inspect, troubleshoot, and operate Volcengine RDS instances in a safe operational order.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with operational checklists and command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review suggested tuning, restore, backup, or write operations before applying them to production databases.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Operational database guidance can affect live Volcengine RDS instances if applied to the wrong engine, region, or instance identifier.
+
+Mitigation: Confirm engine type, region, and instance identifier before acting, and verify the resulting status and metrics after each operation.
+
+Risk: Write operations, restores, tuning, or other high-risk changes can disrupt service or data state.
+
+Mitigation: Confirm destructive or write operations before execution, prefer snapshots before high-risk changes, and surface parameter drift before applying updates.
+
+## Reference(s):
+
+- [sources.md](references/sources.md)
+- [ClawHub skill page](https://clawhub.ai/cinience/skills/volcengine-database-rds)
+- [Publisher profile](https://clawhub.ai/user/cinience)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with operational checklists, status summaries, and command or configuration examples when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should separate read-only diagnostics from write operations and include status, metrics, and next recommended action.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

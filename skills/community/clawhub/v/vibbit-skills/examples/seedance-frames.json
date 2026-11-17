@@ -1,0 +1,9 @@
+{
+  "model": "doubao-seedance-2-5-260628",
+  "prompt": "The camera smoothly transitions from a street in the morning to its lights at night.",
+  "duration_seconds": 5,
+  "resolution": "720p",
+  "aspect_ratio": "adaptive",
+  "first_frame_image_url": "https://example.com/first.png",
+  "last_frame_image_url": "https://example.com/last.png"
+}

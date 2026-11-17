@@ -20,6 +20,15 @@ This skill is for routing Grok Imagine Video 1.5 questions to the right APIDot d
 
 This release contains `SKILL.md` plus non-executable notes in `references/api.md`. It includes no executable files, install-time automation, review automation helpers, shell automation, bundled API clients, automatic network calls, or stored credentials.
 
+## Start on APIDot
+
+Use these APIDot entry points when coming from ClawHub:
+
+- Open the Grok Imagine Video 1.5 model page: https://apidot.ai/models/grok-imagine-video-1-5
+- Read Grok Imagine Video 1.5 API docs: https://apidot.ai/docs/grok-imagine-video-1-5
+- Open the account dashboard: https://apidot.ai/dashboard/api-key
+- Use general APIDot examples: https://github.com/APIDotAI/apidot-examples
+
 ## Search Terms
 
 Use this skill for searches and requests phrased as Grok Imagine Video 1.5 API, Grok Imagine Video 1 5, grok-imagine-video-1-5, grok-imagine-video-1.5, xAI image-to-video API, reference image animation, prompt-guided motion, APIDot Grok Video API, or Grok Imagine video generation.

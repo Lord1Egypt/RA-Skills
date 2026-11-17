@@ -1,43 +1,56 @@
-## Description: <br>
-Hugmap Tech News Graph queries HugMap's public, read-only technology knowledge graph for people, companies, technologies, products, papers, patents, articles, events, and their relationships. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries HugMap's read-only technology knowledge graph for people, companies, technologies, products, papers, patents, articles, events, and their relationships.
 
-## Publisher: <br>
-[jones-so](https://clawhub.ai/user/jones-so) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jones-so](https://clawhub.ai/user/jones-so)
 
-## Use Case: <br>
-Developers and agents use this skill to look up technology entities, explore relationship paths and graph neighborhoods, browse industry taxonomies, and summarize recent technology news from HugMap with source links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms and entity IDs are sent over the network to HugMap or to the configured HugMap-compatible endpoint. <br>
-Mitigation: Avoid sensitive queries and leave HUGMAP_BASE_URL at the default HugMap site unless intentionally using another trusted endpoint. <br>
-Risk: Knowledge graph results can be incomplete, outdated, or reflect HugMap's available source data. <br>
-Mitigation: Preserve HugMap links in responses so readers can inspect full entity pages, relationship graphs, and source context. <br>
+## Use Case:
 
+Developers, analysts, and external users use this skill to retrieve HugMap technology graph data, build entity briefs, explore relationships, and summarize recent industry activity with HugMap links.
 
-## Reference(s): <br>
-- [HugMap](https://www.hugmap.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jones-so/hugmap-tech-graph) <br>
-- [HugMap Open API Endpoint Reference](artifact/reference.md) <br>
-- [HugMap Usage Examples](artifact/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [JSON from a Python CLI, with Markdown-ready HugMap entity links for agent responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3. Uses optional HUGMAP_BASE_URL to choose the HugMap API base URL; defaults to https://www.hugmap.com.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: Queries and entity identifiers are sent to the configured HugMap server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for data appropriate to share with HugMap or the configured server, and set HUGMAP_BASE_URL only to a trusted endpoint.
+
+Risk: Responses include HugMap links and attribution by default.
+
+Mitigation: Ask for link-free output or use --no-links when plain data is required.
+
+## Reference(s):
+
+- [HugMap](https://www.hugmap.com)
+- [ClawHub Skill Page](https://clawhub.ai/jones-so/skills/hugmap-tech-graph)
+- [HugMap Open API Reference](reference.md)
+- [HugMap Use Case Examples](examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON query results with Markdown-ready HugMap links and concise text guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only HugMap API queries; optional HUGMAP_BASE_URL configuration; --no-links can suppress injected HugMap links.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

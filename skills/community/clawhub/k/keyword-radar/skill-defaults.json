@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "channel": "keyword-radar",
+  "workflow": "keyword_radar",
+  "focus": "all",
+  "outputTemplate": "review_keyword_radar",
+  "requiredCapabilities": [
+    "keyword_radar"
+  ],
+  "allowedCommands": [
+    "setup",
+    "configure",
+    "check",
+    "version",
+    "charts"
+  ]
+}

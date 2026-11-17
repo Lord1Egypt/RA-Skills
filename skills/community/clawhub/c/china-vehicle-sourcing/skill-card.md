@@ -1,41 +1,54 @@
-## Description: <br>
-Comprehensive vehicle sourcing guide for international buyers - provides detailed information about China's passenger car, commercial vehicle, motorcycle, and new energy vehicle manufacturing industry, including regional clusters, production bases, key players, and sourcing best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive vehicle sourcing guide for international buyers - provides detailed information about China's passenger car, commercial vehicle, motorcycle, and new energy vehicle manufacturing industry, including regional clusters, production bases, key players, and sourcing best practices (2026 updated).
 
-## Publisher: <br>
-[1970168137](https://clawhub.ai/user/1970168137) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1970168137](https://clawhub.ai/user/1970168137)
 
-## Use Case: <br>
-External buyers and sourcing teams use this skill to understand China's vehicle manufacturing clusters, compare vehicle segments, and frame supplier evaluation questions before commercial engagement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sourcing, compliance, pricing, and payment guidance may be incomplete or outdated for a specific transaction. <br>
-Mitigation: Use the skill as a starting point and independently verify suppliers, regulations, certifications, and commercial terms before making business decisions. <br>
-Risk: The bundled data provides cluster-level intelligence and does not establish that any individual supplier is qualified for a buyer's requirements. <br>
-Mitigation: Perform supplier due diligence, factory audits, certification checks, and contract review outside the skill before procurement. <br>
+## Use Case:
 
+External buyers and sourcing teams use this skill to understand China's vehicle manufacturing clusters, vehicle segments, supply chain structure, and supplier evaluation practices. Agents can use its bundled reference data and helper functions to answer sourcing questions and produce practical procurement guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/1970168137/china-vehicle-sourcing) <br>
-- [Publisher Profile](https://clawhub.ai/user/1970168137) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown or structured Python dictionary responses from bundled data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only informational output based on bundled vehicle sourcing data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Bundled 2026 vehicle-sourcing data may become outdated or incomplete for purchasing decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current regulations, suppliers, import requirements, and market data before committing to a transaction.
+
+Risk: Supplier evaluation and sourcing recommendations are advisory business guidance rather than completed due diligence.
+
+Mitigation: Use independent supplier verification, contract review, and compliance checks before relying on the guidance operationally.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1970168137/skills/china-vehicle-sourcing)
+- [Publisher profile](https://clawhub.ai/user/1970168137)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown or structured Python dictionary output from bundled helper functions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Offline-style bundled reference data; no external access is required by the artifact code.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

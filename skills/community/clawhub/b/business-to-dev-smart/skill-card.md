@@ -1,42 +1,53 @@
-## Description: <br>
-Smart business-to-dev requirement translator that analyzes a project codebase, understands business requirements, references actual code, and generates implementation-ready developer documentation for any technology stack. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart business-to-dev requirement translator that analyzes a project codebase, understands business requirements, references actual code, and generates implementation-ready development documents.
 
-## Publisher: <br>
-[wumaohua233](https://clawhub.ai/user/wumaohua233) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wumaohua233](https://clawhub.ai/user/wumaohua233)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to turn business feature requests, optional UI screenshots, and project context into executable development requirement documents. It helps identify relevant existing code, propose interface and data model changes, and break implementation work into developer tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads the project path provided by the user and can save a local project summary containing architecture or business details. <br>
-Mitigation: Review .ai-memory/project-profile.md for sensitive details, add .ai-memory/ to .gitignore when appropriate, and delete or refresh the file before sharing the repository or after major code changes. <br>
-Risk: Generated implementation guidance and code references may be incomplete or may not fully match the target codebase. <br>
-Mitigation: Have developers review the generated requirements, interface designs, data models, and task breakdown against the actual code before implementation. <br>
+## Use Case:
 
+Developers, product engineers, and technical leads use this skill to turn business requirements and optional UI screenshots into implementation-ready development documents grounded in the target codebase.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wumaohua233/business-to-dev-smart) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact examples](artifact/EXAMPLE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with code blocks, command examples, interface tables, implementation steps, and task checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a local .ai-memory/project-profile.md file in the scoped project path to preserve project structure and architecture context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may read broad portions of a project and create a local .ai-memory/project-profile.md summary containing architecture, paths, stack details, and code patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated project summary in private repositories and add .ai-memory/ to ignore rules if it should not be committed.
+
+Risk: Generated implementation guidance and code references may be incomplete or need adjustment for complex projects.
+
+Mitigation: Have developers review the generated document against the actual codebase before treating it as an execution plan.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wumaohua233/skills/business-to-dev-smart)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code blocks, shell commands, implementation references, and structured task lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a local .ai-memory/project-profile.md project summary for reuse.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

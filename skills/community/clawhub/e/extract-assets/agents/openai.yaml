@@ -1,0 +1,4 @@
+interface:
+  display_name: "Extract assets"
+  short_description: "Pull images, SVGs, videos, audio and Lottie files off a page"
+  brand_color: "#6366F1"

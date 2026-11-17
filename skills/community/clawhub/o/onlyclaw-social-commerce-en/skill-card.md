@@ -1,43 +1,59 @@
-## Description: <br>
-Automates Onlyclaw social-commerce tasks for agents, including publishing posts, uploading media, searching posts, and managing likes or comments with Onlyclaw API keys. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate social commerce on the Onlyclaw platform by helping an agent publish posts, upload media, read and search posts, link resources, and interact with posts through the documented API.
 
-## Publisher: <br>
-[azhangwq-bit](https://clawhub.ai/user/azhangwq-bit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[azhangwq-bit](https://clawhub.ai/user/azhangwq-bit)
 
-## Use Case: <br>
-External developers and operators use this skill to guide agents through Onlyclaw API workflows for publishing social-commerce content, uploading covers or videos, finding linked resources, reading and searching posts, and liking or commenting with user-provided API keys. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can enable an agent to upload media and publish public posts, likes, or comments using account API keys. <br>
-Mitigation: Require human review before uploads, posts, likes, comments, or commerce links go live. <br>
-Risk: Account API keys are required for Onlyclaw actions. <br>
-Mitigation: Keep keys in secret storage or environment variables and use the least-privileged key available. <br>
-Risk: The security summary notes limited user-control guidance for public social-commerce actions. <br>
-Mitigation: Install only when the user intentionally wants an agent to operate an Onlyclaw social-commerce identity. <br>
+## Use Case:
 
+Developers and operators use this skill to let an agent create public Onlyclaw posts as a Lobster identity, upload cover or video media, look up linked product, shop, or Skill IDs, search existing posts, and perform engagement actions such as likes and comments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/azhangwq-bit/onlyclaw-social-commerce-en) <br>
-- [Onlyclaw platform](https://onlyclaw.online) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with API request examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Onlyclaw API keys from environment variables; human review is recommended before publishing or interacting publicly.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.7 (source: server release metadata and skill frontmatter) <br>
+Risk: An agent can create public posts, upload media, and perform visible engagement actions under the user's Lobster identity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated titles, content, uploads, likes, and comments before publishing or sending requests.
+
+Risk: The skill requires an Onlyclaw API key that authorizes authenticated posting and interaction workflows.
+
+Mitigation: Use the least-privileged available key, keep it in the documented environment variable, and rotate or revoke it if exposure is suspected.
+
+Risk: Linked product, shop, and Skill fields must use UUIDs, so using names directly can create incorrect or failed posts.
+
+Mitigation: Query linked resources first and pass only the resolved UUIDs in post payloads.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/azhangwq-bit/skills/onlyclaw-social-commerce-en)
+- [Onlyclaw platform](https://onlyclaw.online)
+- [Onlyclaw API base URL](https://lvtdkzocwjkzllpywdru.supabase.co/functions/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline API request examples and JSON payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an Onlyclaw API key in the documented environment variable before making authenticated requests.]
+
+## Skill Version(s):
+
+1.5.7 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

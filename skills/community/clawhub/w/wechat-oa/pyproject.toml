@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wechat-oa"
+version = "3.0.3"
+description = "微信公众号草稿箱管理工具 - 面向AI Agent的Skill"
+requires-python = ">=3.8"
+keywords = ["wechat", "official-account", "draft", "agent", "skill"]
+authors = [
+    { name = "wechat-oa Team" }
+]
+license = "MIT"
+readme = "README.md"
+dependencies = [
+    "requests>=2.31.0",
+    "Pillow>=10.0.0",
+    "click>=8.1.0",
+    "premailer>=3.10.0",
+    "bleach>=6.0.0",
+    "beautifulsoup4>=4.12.0",
+    "mistune>=3.0.0",
+]
+
+[project.scripts]
+wechat-oa = "wechat_oa.cli.commands:cli"
+
+[project.optional-dependencies]
+md2wxhtml = [
+    "md2wxhtml>=0.1.0",
+]
+dev = [
+    "pytest",
+    "pytest-cov"
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["wechat_oa*"]

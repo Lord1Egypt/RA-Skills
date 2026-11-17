@@ -1,252 +1,196 @@
 ---
 name: ocas-forge
+description: 'Skill architect and builder. Designs, builds, and validates complete Agent Skill packages through a mandatory eight-phase pipeline. Default output is the finished installable package. Not for skill evaluation (use skilllab) or variant proposals (use ocas-mentor).'
+license: MIT
 source: https://github.com/indigokarasu/forge
-install: openclaw skill install https://github.com/indigokarasu/forge
-description: Use when creating, building, reviewing, repairing, or validating Agent Skill packages. Runs a mandatory six-phase pipeline: existence gate, classify, scope, architecture, build, validate. Default output is the finished installable package. Trigger phrases: 'create a new skill', 'build a skill', 'design a skill', 'review this skill', 'repair this skill', 'validate skill package', 'update forge'. Do not use for skill evaluation or variant proposals (use Mentor).
-metadata: {"openclaw":{"emoji":"🔨"}}
+includes:
+- references/**
+- scripts/**
+metadata:
+  author: Indigo Karasu (indigokarasu)
+  version: "3.8.0"
+  hermes:
+    category: software-development
+    tags:
+    - skill-builder
+    - architecture
+    - design
+    - OCAS-core
+tags:
+- skill-builder
+- architecture
+- design
+- OCAS-core
+triggers:
+- build a skill
+- create skill
+- skill architecture
+- design skill package
+- skill builder
 ---
 
-# Forge
+# Occas-Forge
 
-Forge is the system's skill architect — given a capability idea or broken existing package, it runs a mandatory six-phase internal pipeline covering existence gate, classification, scoping, architecture, construction, and validation before writing a single file. The default output is the finished, installable package with all file contents written; Forge never returns design briefs or plans in place of the real artifact.
+Skill architect and builder. Given a capability idea or broken package, runs a mandatory eight-phase pipeline before writing files. Default output is the finished installable package — never returns design briefs or plans in place of real artifacts.
 
+Every build starts with absorption check, research, and classification before a single file is created.
 
-## When to use
+## Why This Skill Exists
 
-- Create a new Agent Skill from a goal or capability description
-- Review or critique an existing skill package
+Forge is the only authorized skill builder in OCAS. Without it, agents would create skills with inconsistent structure, missing frontmatter, no tests, and no cross-skill coordination. The rigid pipeline ensures every skill meets OCAS standards and doesn't duplicate existing work.
+
+## When to Use
+
+- Building new OCAS skills from scratch
+- Skill architecture and design review
+- Bulk skill library updates and synchronization
+- Skill consolidation and deprecation
 - Repair broken or defective skill packages
-- Classify whether a proposed capability deserves to be a skill
 - Validate a skill package against OCAS standards
 
+## When NOT to Use
 
-## When not to use
+- **Skill evaluation/scoring** — use skilllab
+- **Variant proposals/experiments** — use Mentor or Fellow
+- **System health monitoring** — use Custodian
+- **One-off task execution** — use the appropriate existing skill
+- **Web research** — use Sift
+- **Authentication and MCP wiring** — use ocas-auth
+- **Frontmatter reference/template lookup** — use `write-a-skill` for quick field requirements
+- **Building non-skill artifacts**
 
-- Evaluating skill performance — use Mentor
-- Running or orchestrating skills — use Mentor
-- Web research — use Sift
-- Building non-skill artifacts
+## Pipeline
 
+- [ ] **Existence gate** — check if skill already exists, absorption test
+- [ ] **Research** — search GitHub + skill library for patterns; review ≥10 sources
+- [ ] **Classify** — determine shortcut/workflow/system type
+- [ ] **Scope** — define boundaries and interfaces
+- [ ] **Architecture** — design package structure
+- [ ] **Plan** — create implementation plan
+- [ ] **Build** — implement the skill
+- [ ] **Validate** — run critique and verify 50/50
 
-## Responsibility boundary
+**Absorption first:** If an existing skill already owns the domain, add content as a `references/` doc or `scripts/` file — do NOT create a new skill. See `references/enforcement_durability.md`.
 
-Forge owns skill design, construction, and validation.
+**Research is mandatory for ALL operations** — not just new builds. When improving an existing skill, you MUST research external sources for new patterns.
 
-Forge does not own: skill evaluation or variant testing (Mentor), behavioral pattern analysis (Corvus), behavioral refinement (Praxis), experimentation (Fellow).
-
-Forge receives VariantProposal and VariantDecision files from Mentor. It builds variant packages and applies promotion decisions.
-
+**Pre-Build Quality Linters** (embedded in the Validate step, per `spec-ocas-skill-improvements.md` §5.1):
+1. **Frontmatter verification** — validate required metadata fields (`name`, `description`, `version`, `author`).
+2. **Incident-log shape detection** — flag skill descriptions / reference bodies overly dense in ephemeral issue numbers or quoted chat transcripts instead of generalizable rules.
+3. **Reference sprawl check** — fail the build if `references/` exceeds 60 files.
+4. **Config vs env separation** — reject scripts that read behavioral configuration from `os.environ` instead of `skills.config.<key>` in `config.yaml` (reserving env vars strictly for credentials/secrets).
+Run all four before a new package is marked valid; a failing linter blocks promotion to production.
 
 ## Commands
 
-- `forge.build` — design, scope, build, and validate a complete skill package
-- `forge.critique` — review a package and identify defects
-- `forge.repair` — fix broken files in an existing package
-- `forge.classify` — classify a proposed skill (shortcut, workflow, system)
+- `forge.build` — design, scope, build, validate a complete skill package
+- `forge.critique` — review package and identify defects
+- `forge.repair` — fix broken files in existing package
 - `forge.validate` — run validation checks on a package
-- `forge.scaffold` — generate a minimal package skeleton
-- `forge.status` — current build state if multi-step build in progress
-- `forge.journal` — write journal for the current run; called at end of every run
-- `forge.update` — pull latest from GitHub source; preserves journals and data
+- `forge.audit` — audit one or more skills for OCAS compliance, apply fixes, sync to GitHub
+- `forge.consolidate` — merge orphan/duplicate skill into natural parent
+- `forge.sync` — sync local changes to canonical repository via PR
+- `forge.update` — pull latest from GitHub source
+- `forge.status` — current build state (multi-step)
+- `forge.journal` — write journal for current run
 
+**Run completion:** After every command, check for unprocessed VariantProposal/VariantDecision files in `intake/`, process new files, persist build logs to `decisions.jsonl`, write journal. Never report success until validation has actually executed — `write_file`/`skill_manage(action='create')` completing is NOT validation.
 
-## Mandatory design pipeline
+## Triage Classification (dispatch)
 
-Run all phases before writing files:
+| Intent | Priority | Action | When |
+|--------|----------|--------|------|
+| new_journals | 50 | dispatch_scan | Files need eval-store bridge |
+| explicit_run | 80 | run_full_pipeline | Explicit-run override detected |
+| re_detection | 30 | closure_noop | All journals already in both eval stores |
 
-1. **Existence gate** — Is this better as a skill than a one-off prompt?
-2. **Classify** — Shortcut, workflow, or system?
-3. **Scope** — Exact job, explicit non-goals, smallest useful promise
-4. **Architecture** — What goes in SKILL.md vs references vs scripts vs assets?
-5. **Build** — Write all files
-6. **Validate** — Routing, structural, usefulness checks
-
-
-## Skill type classification
+## Skill Type Classification
 
 - **Shortcut** — narrow tool wrapper. 20-120 line SKILL.md.
 - **Workflow** — multi-step process. 80-250 line SKILL.md.
-- **System** — durable behavior system. 150-300 line SKILL.md, deeper material in references.
+- **System** — durable behavior system. 150-300 line SKILL.md + references.
 
+## Error Handling
 
-## Package rules
+| Error | Handling |
+|-------|----------|
+| `closure_closeout_check.py` crashes (FileNotFoundError – `<hermes-home>` placeholder) | Skip script. Manually verify gates: (1) grep bare relpath in both eval stores, (2) recompute max journal mtime programmatically + ≥2s pad, advance both monitor copies + praxis `ingest_state.json`, (3) re-assert `verified_second_wave` on all dispatch-owned files. |
+| `run_mixed_wave_closure.py` crashes (NameError: 'os') | Handle closure manually. Same manual procedure as above. |
+| `bridge_eval_inline.py` crashes (FileNotFoundError) | Manual JSONL append to both eval stores. |
+| `forge_count_unprocessed.py` returns 0 but dispatcher says genuine | Cross-check against prior `forge-scan-*.json` journal's `unprocessed_proposals` field. |
+| `verify_eval_no_phantoms.py --fix` run during closure | STOP. Historical phantoms are out of scope. Only fix date-scoped entries. |
+| Dispatch eval-store entries have wrong key | All scanners must union `filename`/`journal_id`/`journal`/`journal_file` keys. |
+| Mtime-advance truncation (hand-typed literal) | Always recompute `max(os.path.getmtime(p))` programmatically + ≥1s pad. |
+| Scripts with `<hermes-home>` placeholder crash on --help | Not a runtime failure — module-scope 3rd-party import before argparse. |
+| `.sh` script permission denied | Run via `bash script.sh --help` instead of `./script.sh`. |
 
-Minimum package: skill.json + SKILL.md. Add references/, scripts/, assets/ only when justified.
+## Gotchas / Pitfalls
 
-Read `references/authoring_rules.md` for full authoring standards.
-Read `references/package_patterns.md` for package shape guidance by type.
-Read `references/examples.md` for good and bad examples.
+Key patterns in `references/gotchas-compact.md`. Critical at-a-glance:
 
+- **`proposals/`/`processed/` are SOURCE MIRRORS** — use `forge_count_unprocessed.py`, never recursive walk
+- **`<hermes-home>` placeholder in closure scripts** — skip, manual gate verify
+- **Eval-store grep uses bare relpath** — never `commons/journals/`-prefixed
+- **JSON edits: `write_file` not `patch`** — `patch` corrupts JSON structure
+- **Never recursive-glob `commons/journals/**`** — symlink loops, use bounded per-skill globs
+- **Tool-layer flake on read/write tools** — route to `terminal()` after 1-2 failures
+- **Mtime-advance: never hand-type literals** — programmatic only
+- **Dispatch eval keys union ALL 4 variants** — `filename`, `journal_id`, `journal`, `journal_file`
+- **Research is NOT optional for improvements** — Phase 1.5 mandatory
+- **NEVER create/rename `ocas-*` without user authorization**
+- **Absorption first** — never create new skill when existing one owns the domain
 
-## Run completion
+## Naming and Authorship Rules
 
-After every Forge command (build, critique, repair, validate):
+See `references/naming-and-authorship.md`. Key: never create/rename to `ocas-*`/`util-*` without explicit authorization. Auto-generated skills use `author: autogenerated`.
 
-1. Check `~/openclaw/data/ocas-forge/intake/` for VariantProposal and VariantDecision files from Mentor; process and move to `intake/processed/`
-2. Persist build log entries and decisions to local JSONL files
-3. Log material decisions to `decisions.jsonl`
-4. Write journal via `forge.journal`
+## Dispatch / Cron Integration
 
-## Anti-patterns to reject
+When triggered by dispatcher or `forge:journal-scan` cron:
 
-- Vague or overly broad scope
-- Generic descriptions that don't route well
-- SKILL.md bloated with background explanation
-- Support folders created for aesthetics
-- Plans returned instead of packages
-- Template residue and placeholders
-- Storage inside skill package directories
-- Undocumented inter-skill interfaces
+- [ ] Check for unprocessed `vp_*.json`/`vd_*.json` in `intake/` (use `forge_count_unprocessed.py`)
+- [ ] Cross-reference against `intake/processed/` and `processed/`
+- [ ] Process new files; move to `processed/`
+- [ ] If no unprocessed files: write no-op journal and exit
+- [ ] Perform phantom file cleanup (see `references/phantom-file-cleanup.md`)
 
+Full detail in `references/dispatch-integration-detail.md` and `references/dispatch-pipeline-guide.md`.
 
-## Inter-skill interfaces
+## Self-Update
 
-Forge receives intake files from Mentor at: `~/openclaw/data/ocas-forge/intake/`
+`forge.update` pulls from `source:` URL. Pre-drift check: `git fetch origin; git log HEAD..origin/main` and `git diff --stat origin/main`.
 
-File types received:
-- `{proposal_id}.json` — VariantProposal (spec-ocas-shared-schemas.md)
-- `{decision_id}.json` — VariantDecision (spec-ocas-shared-schemas.md)
+## Support File Map
 
-After processing each file, move to `intake/processed/`.
-
-See `spec-ocas-interfaces.md` for full handoff contracts.
-
-
-## Storage layout
-
-```
-~/openclaw/data/ocas-forge/
-  config.json
-  build_log.jsonl
-  decisions.jsonl
-  intake/
-    {proposal_id}.json
-    {decision_id}.json
-    processed/
-
-~/openclaw/journals/ocas-forge/
-  YYYY-MM-DD/
-    {run_id}.json
-```
-
-
-Default config.json:
-```json
-{
-  "skill_id": "ocas-forge",
-  "skill_version": "2.3.0",
-  "config_version": "1",
-  "created_at": "",
-  "updated_at": "",
-  "validation": {
-    "require_routing_tests": true,
-    "require_structural_check": true,
-    "require_usefulness_check": true
-  },
-  "retention": {
-    "days": 0,
-    "max_records": 10000
-  }
-}
-```
-
-
-## OKRs
-
-Universal OKRs from spec-ocas-journal.md apply to all runs.
-
-```yaml
-skill_okrs:
-  - name: build_completion_rate
-    metric: fraction of forge.build invocations producing a complete package
-    direction: maximize
-    target: 0.95
-    evaluation_window: 30_runs
-  - name: validation_pass_rate
-    metric: fraction of built packages passing all three validation checks
-    direction: maximize
-    target: 0.90
-    evaluation_window: 30_runs
-  - name: variant_build_success
-    metric: fraction of VariantProposal intake files successfully built
-    direction: maximize
-    target: 0.90
-    evaluation_window: 30_runs
-```
-
-
-## Optional skill cooperation
-
-- Mentor — receives VariantProposal and VariantDecision files via intake directory
-- Fellow — Forge may build experiment harnesses for Fellow benchmarks
-
-
-## Journal outputs
-
-Action Journal — every build, critique, repair, validation, and variant processing run.
-
-
-## Initialization
-
-On first invocation of any Forge command, run `forge.init`:
-
-1. Create `~/openclaw/data/ocas-forge/` and subdirectories (`intake/`, `intake/processed/`)
-2. Write default `config.json` with ConfigBase fields if absent
-3. Create empty JSONL files: `build_log.jsonl`, `decisions.jsonl`
-4. Create `~/openclaw/journals/ocas-forge/`
-5. Register heartbeat entry `forge:intake` in `HEARTBEAT.md` if not already present
-6. Register cron job `forge:update` if not already present (check `openclaw cron list` first)
-7. Log initialization as a DecisionRecord in `decisions.jsonl`
-
-
-## Background tasks
-
-| Job name | Mechanism | Schedule | Command |
-|---|---|---|---|
-| `forge:intake` | heartbeat | every heartbeat pass | Check `~/openclaw/data/ocas-forge/intake/` for VariantProposal and VariantDecision files from Mentor; process and move to `intake/processed/` |
-| `forge:update` | cron | `0 0 * * *` (midnight daily) | `forge.update` |
-
-Heartbeat registration: append `forge:intake` entry to `~/.openclaw/workspace/HEARTBEAT.md` if not already present.
-
-Registration during `forge.init`:
-```
-openclaw cron list
-# If forge:update absent:
-openclaw cron add --name forge:update --schedule "0 0 * * *" --command "forge.update" --sessionTarget isolated --lightContext true --timezone America/Los_Angeles
-```
-
-
-## Self-update
-
-`forge.update` pulls the latest package from the `source:` URL in this file's frontmatter. Runs silently — no output unless the version changed or an error occurred.
-
-1. Read `source:` from frontmatter → extract `{owner}/{repo}` from URL
-2. Read local version from `skill.json`
-3. Fetch remote version: `gh api "repos/{owner}/{repo}/contents/skill.json" --jq '.content' | base64 -d | python3 -c "import sys,json;print(json.load(sys.stdin)['version'])"`
-4. If remote version equals local version → stop silently
-5. Download and install:
-   ```bash
-   TMPDIR=$(mktemp -d)
-   gh api "repos/{owner}/{repo}/tarball/main" > "$TMPDIR/archive.tar.gz"
-   mkdir "$TMPDIR/extracted"
-   tar xzf "$TMPDIR/archive.tar.gz" -C "$TMPDIR/extracted" --strip-components=1
-   cp -R "$TMPDIR/extracted/"* ./
-   rm -rf "$TMPDIR"
-   ```
-6. On failure → retry once. If second attempt fails, report the error and stop.
-7. Output exactly: `I updated Forge from version {old} to {new}`
-
-
-## Visibility
-
-public
-
-
-## Support file map
-
-| File | When to read |
-|---|---|
-| `references/authoring_rules.md` | Before any build, critique, or validation |
-| `references/package_patterns.md` | When deciding package shape by skill type |
-| `references/examples.md` | When reviewing descriptions or detecting anti-patterns |
-| `references/journal.md` | Before forge.journal; at end of every run |
+| File | When to Read |
+|------|-------------|
+| `references/design_pipeline.md` | Before forge.build (mandatory 8-phase pipeline) |
+| `references/init_procedure.md` | On first invocation of any Forge command |
+| `references/authoring_rules.md` | Before writing/editing any SKILL.md |
+| `references/builder_workflows.md` | Before forge.verify-update, forge.consolidate, forge.sync, forge.audit |
+| `references/dispatch-pipeline-guide.md` | Before running any dispatch pipeline or recovery |
+| `references/dispatch-integration-pitfalls-skillmd.md` | Companion to dispatch-pipeline-guide.md |
+| `references/dispatch-integration-detail.md` | Expanded critical dispatch rules and recovery recipes |
+| `references/gotchas-compact.md` | When any dispatch operation or build encounters unexpected behavior |
+| `references/closure-script-path-placeholder-bug.md` | When closure scripts crash with FileNotFoundError |
+| `references/run-mixed-wave-closure-crash-os-import.md` | When run_mixed_wave_closure.py crashes |
+| `references/naming-and-authorship.md` | Before naming/renaming or setting author |
+| `references/enforcement_durability.md` | When deciding absorption vs. new-skill |
+| `references/interfaces.md` | Before processing VariantProposal/VariantDecision files |
+| `references/github_repo_guardrails.md` | Before creating any GitHub repo or PR |
+| `references/storage-layout.md` | When debugging data path issues |
+| `references/journal-file-path-construction.md` | Before writing any journal file |
+| `references/phantom-file-cleanup.md` | After every dispatch journal write run |
+| `references/redetection-mtime-truncation-pitfall.md` | When advancing gate state (mtime truncation trap) |
+| `references/closure-email-state-refire-pitfalls.md` | When closing mixed wave with email state files |
+| `references/closure-post-ingest-mtime-trap.md` | After caller-journal write (Praxis ingest mtime gap) |
+| `references/recover-dispatch-wave.md` | Prior-wave-misclassification recovery (rewrite existing wave) |
+| `scripts/forge_count_unprocessed.py` | Safe bounded count of unprocessed proposals |
+| `scripts/forge_audit_skills.py` | OCAS compliance audit — run before any submission |
+| `scripts/bridge_eval_inline.py` | Idempotent dual-store eval bridge |
+| `scripts/closure_convergence_sweep.py` | Iterative gap-bridge loop (loop until 0 additions) |
+| `scripts/closure_closeout_check.py` | Closure gate verifier (all gates in one pass) |
+| `scripts/bridge_explicit_run.py` | Caller-side bridge for new_journals-ONLY dispatch waves |
+| `scripts/run_mixed_wave_closure.py` | Complete mixed-wave closure runner (Forge+Mentor+Praxis+Taste) |
+| `references/synthesis-methodology.md` | When synthesizing a new skill from multiple sources |
+| `references/sync_audit_procedure.md` | Before forge.sync-audit |

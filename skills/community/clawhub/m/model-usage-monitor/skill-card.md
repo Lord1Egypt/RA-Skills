@@ -1,43 +1,56 @@
-## Description: <br>
-Monitors OpenClaw model usage from local logs, estimates model costs, calculates cache hit rate, and reports automated alert checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Model Usage Monitor helps OpenClaw users monitor local model usage, estimate costs, calculate cache hit rate, and receive automated cost-spike alerts.
 
-## Publisher: <br>
-[halfmoon82](https://clawhub.ai/user/halfmoon82) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[halfmoon82](https://clawhub.ai/user/halfmoon82)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to inspect local model usage patterns, cost estimates, cache behavior, and threshold-based alerts from their OpenClaw environment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence flags under-disclosed persistent scheduled execution and local agent session-file access. <br>
-Mitigation: Review the cron behavior and local file access before installation; prefer manual or copy-only installation unless hourly monitoring is intended. <br>
-Risk: The skill can copy monitoring code into ~/.openclaw/workspace/.lib and create an hourly OpenClaw cron job. <br>
-Mitigation: Confirm how to list and remove the OpenClaw cron job before enabling automated checks. <br>
-Risk: Monitoring reports are derived from local logs and session files, which can contain sensitive operational context. <br>
-Mitigation: Run the skill only in environments where reading OpenClaw logs and local agent session files is acceptable. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to inspect local model-routing logs, understand model usage and estimated cost patterns, and trigger alerts when usage crosses configured thresholds.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/halfmoon82/model-usage-monitor) <br>
-- [MIT-0 license](https://opensource.org/licenses/MIT-0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Console text, JSON reports, markdown-style reports, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May emit nonzero exit status during alert checks when thresholds are exceeded.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence and artifact metadata) <br>
+Risk: The skill reads local OpenClaw logs and main-agent session metadata, which can expose sensitive usage context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where that local metadata access is acceptable, and review the documented file paths before use.
+
+Risk: Installation behavior can place executable code under ~/.openclaw/workspace/.lib and setup.py can add recurring OpenClaw cron execution.
+
+Mitigation: Review or disable setup.py automatic cron behavior, and verify any OpenClaw cron entry before relying on hourly alerts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/halfmoon82/skills/model-usage-monitor)
+- [Publisher profile](https://clawhub.ai/user/halfmoon82)
+- [README.md](artifact/README.md)
+- [clawhub.yaml](artifact/clawhub.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration]
+
+**Output Format:** [Console, Markdown, or JSON reports with alert status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads local OpenClaw logs and session metadata; alert checks can be run manually or on a recurring schedule.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata, clawhub.yaml, README.md, and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-AI-powered meeting summary generator that converts meeting notes into professional summaries and action items. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered meeting summary generator that converts meeting notes into professional summaries and action items.
 
-## Publisher: <br>
-[icepopma](https://clawhub.ai/user/icepopma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[icepopma](https://clawhub.ai/user/icepopma)
 
-## Use Case: <br>
-Employees, teams, and professionals use this skill to turn raw meeting notes into structured summaries with decisions, action items, discussion points, attendees, and next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Normal runs attempt an automatic 0.003 USDT SkillPay charge using an embedded merchant key unless test mode is used. <br>
-Mitigation: Review the billing behavior before installing, use --test for dry runs, and avoid setting SKILLPAY_MERCHANT_KEY unless payment use is intentional. <br>
-Risk: Private meeting notes are processed by the configured OpenClaw/Sloan agent. <br>
-Mitigation: Submit sensitive meeting content only when the local OpenClaw/Sloan setup and data handling are approved for that content. <br>
+## Use Case:
 
+External users and teams use this skill to turn meeting notes or a notes file into a concise meeting summary with decisions, action items, discussion points, attendees, and next steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/icepopma/meeting-summary-generator) <br>
-- [Project repository listed in skill docs](https://github.com/icepopma/meeting-summary-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown] <br>
-**Output Format:** [Markdown meeting summary printed to stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts inline notes or a notes file plus optional title, date, and test mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata and package.json) <br>
+Risk: The skill performs paid billing by default and includes a merchant key in the package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm billing behavior and merchant-key handling before installation; use test mode only for evaluation and set SKILLPAY_MERCHANT_KEY explicitly where approved.
+
+Risk: Meeting notes are sent to the Sloan OpenClaw agent, whose exact privileges are not defined in the evidence.
+
+Mitigation: Use only non-sensitive notes until the Sloan agent configuration, data handling, and access controls are reviewed.
+
+Risk: Dependency installation sources and pinned installer versions need review before deployment.
+
+Mitigation: Review package-lock.json and install dependencies from trusted, pinned sources before commercial use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/icepopma/skills/meeting-summary-generator)
+- [Publisher profile](https://clawhub.ai/user/icepopma)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown]
+
+**Output Format:** [Markdown meeting summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Paid run by default; supports optional title, date, file input, and test mode.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata and package.json; SKILL.md frontmatter states 1.0.7)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,49 @@
-## Description: <br>
-Zhua Contributor helps OpenClaw community contributors package and publish skills, write documentation, share experience, and build community influence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zhua Contributor helps OpenClaw community contributors prepare skill releases, write documentation, share experience, and build community presence.
 
-## Publisher: <br>
-[beipian261](https://clawhub.ai/user/beipian261) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[beipian261](https://clawhub.ai/user/beipian261)
 
-## Use Case: <br>
-External OpenClaw community contributors and developers use this skill to plan skill releases, documentation, community support, experience sharing, and influence-building activities for the OpenClaw ecosystem. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Publishing or sharing skill packages can expose secrets, proprietary code, license issues, or upload content to the wrong registry or account. <br>
-Mitigation: Review package contents, licenses, and target registry or account before publishing; require explicit user approval before uploading anything. <br>
-Risk: The artifact includes placeholder scripts and reference materials, so example commands may not implement a complete real publishing workflow. <br>
-Mitigation: Treat generated commands as workflow guidance and verify them against the actual OpenClaw or skillhub tooling before execution. <br>
+## Use Case:
 
+Developers and community contributors use this skill for Chinese-language guidance on publishing OpenClaw skills, drafting skill documentation, sharing contribution experience, and participating in community support.
 
-## Reference(s): <br>
-- [Reference Documentation for Zhua Contributor](references/api_reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and contribution workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include packaging, validation, documentation, and publishing steps for OpenClaw skill contributions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Publish commands can upload skill packages to an external registry.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before running any publish command, review the skill package for secrets or proprietary content and confirm where the registry upload will go.
+
+## Reference(s):
+
+- [Reference Documentation for Zhua Contributor](references/api_reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and contribution guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language community publishing guidance; publish commands should be reviewed before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

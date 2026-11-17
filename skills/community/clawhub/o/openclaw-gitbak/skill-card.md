@@ -1,40 +1,57 @@
-## Description: <br>
-Backup/restore OpenClaw config and workspace via git. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backup/restore OpenClaw config and workspace via git.
 
-## Publisher: <br>
-[burnlife001](https://clawhub.ai/user/burnlife001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[burnlife001](https://clawhub.ai/user/burnlife001)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to back up and restore OpenClaw configuration and workspace directories through Git repositories. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The backup flow can push broad OpenClaw configuration and workspace data to an external Git remote. <br>
-Mitigation: Before running backup commands, edit config.sh so the Git host and organization point only to repositories you control, inspect every configured backup path, and review .gitignore for secrets and private workspace files. <br>
-Risk: The restore flow can delete local files or overwrite local state when restoring into existing directories. <br>
-Mitigation: Make a separate local copy before restoring, test each target in a temporary directory, and avoid restore.sh all until every configured target has been checked. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to back up and restore OpenClaw configuration and workspace directories with Git-based shell scripts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/burnlife001/openclaw-gitbak) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash command examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill points agents to bash scripts that read scripts/config.sh and operate on configured local paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Backups can upload OpenClaw configuration and workspace data to the default third-party Git destination if the configuration is not changed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure the Git host, organization, branch, and repository names for a trusted destination before running backup commands.
+
+Risk: Restore operations can remove local files in existing target directories before pulling content.
+
+Mitigation: Run restore only after creating an independent backup or in a clean target directory where replacing local files is acceptable.
+
+Risk: Git backup commands may commit files that contain private configuration or workspace data.
+
+Mitigation: Inspect the staged files and review ignore rules before committing or pushing a backup.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/burnlife001/skills/openclaw-gitbak)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash command examples and shell configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides backup and restore commands that can initialize Git repositories, commit files, push to a configured remote, clone repositories, and pull restored content.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

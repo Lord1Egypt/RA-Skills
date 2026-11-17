@@ -1,11 +1,11 @@
 ---
-title: Methodology — Socratic Dialog
+title: Methodology — Socratic Dialogue
 description: Deep reference for the Socratic reasoning skill. Defines the six techniques (Horoi, Elenchus, Maieutics, Aporia, RaR, Retraction), Vlastos's deeper goal of Context Integrity, and the failure modes that gate against uncontrolled fluency.
 audience: agents that have loaded `../SKILL.md` and need methodological depth
 status: source-of-truth
 ---
 
-# Methodology — Socratic Dialog
+# Methodology — Socratic Dialogue
 
 This document is the third level of progressive disclosure for the `socratic-dialogue` skill. The first level (YAML frontmatter) tells the agent *when* to load. The second level (`SKILL.md`) tells it *what to do*. This file tells it *why each step works and how to handle edge cases*.
 
@@ -75,7 +75,7 @@ The skill treats this as an *operational discipline*, not a stylistic flourish. 
 
 ### 2.6 Retraction
 
-**What:** The act of explicitly withdrawing a prior claim when it is shown to be wrong or inconsistent. This is the **epistemic immune system** of Socratic dialog — it makes the reasoning chain auditable.
+**What:** The act of explicitly withdrawing a prior claim when it is shown to be wrong or inconsistent. This is the **epistemic immune system** of Socratic dialogue — it makes the reasoning chain auditable.
 
 **Operational form:** the agent's retraction has four required elements:
 1. *What* is being retracted (specific claim)
@@ -181,7 +181,7 @@ The SKILL.md has a Troubleshooting section with two short entries. This section 
 * **Second line — Antibodies (Adversarial Cross-Examination / Elenchus):** Detect contradictions with Fixed Parameters in real time. The agent does not allow inconsistent claims to live in the same reasoning chain.
 * **Third line — T-cells (Faithfulness / Faithfulness Check):** Destroy cells (claims) that betray the host (the reasoning chain). The agent performs periodic audits regardless of whether the user has agreed.
 
-**Why "autoimmunology":** If the immune system attacks the host itself, it causes an autoimmune disease. In Socratic dialog, this happens when the agent begins to undermine its own verified conclusions. The anti-bias section in `SKILL.md` is the operationalization of the autoimmune checkpoint — the agent should attack external claims more aggressively than its own verified ones, but should also know when to stop attacking.
+**Why "autoimmunology":** If the immune system attacks the host itself, it causes an autoimmune disease. In Socratic dialogue, this happens when the agent begins to undermine its own verified conclusions. The anti-bias section in `SKILL.md` is the operationalization of the autoimmune checkpoint — the agent should attack external claims more aggressively than its own verified ones, but should also know when to stop attacking.
 
 ### 7.1 Closing the Loop
 
@@ -197,7 +197,7 @@ After each cycle (workflow steps 1–5), the agent must perform a meta-step:
 This skill is not:
 - **A brainstorming tool.** Maieutics surfaces what the user already knows; it does not generate new ideas. For brainstorming, use a different skill.
 - **A decision-making tool.** The skill helps structure the *reasoning*; it does not make the call. The user decides.
-- **A therapy substitute.** Socratic dialog in a personal-development context can look therapeutic, but it is not. If the user is in emotional distress, ground them first. (This is also why the SKILL.md has "When NOT to use" entries — including contexts where the user is not in a state for cooperative inquiry.)
+- **A therapy substitute.** Socratic dialogue in a personal-development context can look therapeutic, but it is not. If the user is in emotional distress, ground them first. (This is also why the SKILL.md has "When NOT to use" entries — including contexts where the user is not in a state for cooperative inquiry.)
 - **A debate tool.** Elenchus is not argumentum ad hominem, not rhetoric, not persuasion. If the user feels attacked, the agent has left Socratic mode.
 
 ---

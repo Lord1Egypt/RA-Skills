@@ -1,41 +1,54 @@
-## Description: <br>
-Challenges the user for a secret word before allowing access to sensitive files or system commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Challenges the user for a secret word before allowing access to sensitive files or system commands.
 
-## Publisher: <br>
-[Cenralsolution](https://clawhub.ai/user/Cenralsolution) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[cenralsolution](https://clawhub.ai/user/cenralsolution)
 
-## Use Case: <br>
-Developers and agent users use this skill to add a secret-word challenge before sensitive file access, system commands, credential handling, deletions, or similar protected actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is an agent workflow guard and does not provide real operating-system MFA or filesystem access control. <br>
-Mitigation: Use it only as a supplemental agent workflow check, review sensitive actions before execution, and do not rely on it as the sole security boundary. <br>
-Risk: Password-like material and audit logs are stored under ~/.openclaw and may be readable depending on local permissions. <br>
-Mitigation: Use unique high-entropy secret and reset words, avoid reusing account passwords, and protect or review local file permissions for the vault and audit log. <br>
+## Use Case:
 
+Developers and agent users use this skill to add an advisory secret-word gate before sensitive file or command workflows, with local session unlock, emergency reset, and audit logging behavior.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Cenralsolution/mfa-word) <br>
-- [Publisher profile](https://clawhub.ai/user/Cenralsolution) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, configuration] <br>
-**Output Format:** [Text responses and JSON-like tool status objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns access decisions, setup/reset confirmations, and challenge guidance for protected actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: package.json and server release metadata) <br>
+Risk: Users may overestimate the skill as a real MFA or access-control boundary for secrets, shell commands, .env files, or deletions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat it as an advisory prompt workflow unless the surrounding runtime separately enforces access checks.
+
+Risk: The skill writes authentication state and audit logs locally under ~/.openclaw.
+
+Mitigation: Review local storage behavior before installation and use strong, unique secret words when testing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cenralsolution/skills/mfa-word)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/cenralsolution)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, guidance]
+
+**Output Format:** [Text responses and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill may write a local vault and audit log under ~/.openclaw when its tools are used.]
+
+## Skill Version(s):
+
+1.1.0 (source: package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

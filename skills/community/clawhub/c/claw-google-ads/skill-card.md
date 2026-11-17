@@ -1,41 +1,56 @@
-## Description: <br>
-Manages Google Ads campaigns through the Google Ads API, including viewing campaign metrics, adjusting daily budgets, changing campaign status, and generating basic reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages Google Ads campaigns by helping an agent list campaign metrics, prepare basic reports, and invoke script commands for campaign budget or status changes through the Google Ads API.
 
-## Publisher: <br>
-[3824108-cell](https://clawhub.ai/user/3824108-cell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[3824108-cell](https://clawhub.ai/user/3824108-cell)
 
-## Use Case: <br>
-External users and developers use this skill to inspect Google Ads campaign performance and run campaign-management commands through a local Python script. It is intended for accounts where the user can provide Google Ads API credentials and confirm sensitive campaign changes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses local Google Ads API credentials and may access ad-account data. <br>
-Mitigation: Use dedicated least-privilege credentials where possible and protect the ~/.google-ads.yaml configuration file. <br>
-Risk: The tool may select the first accessible Google Ads customer account by default. <br>
-Mitigation: Verify the selected customer account before listing data or making campaign changes. <br>
-Risk: Budget and campaign-status commands can materially affect advertising spend or campaign availability. <br>
-Mitigation: Require explicit confirmation before any budget update or campaign enable/disable action. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/3824108-cell/claw-google-ads) <br>
+## Use Case:
 
+Developers, operators, and agents use this skill to inspect Google Ads campaign performance and coordinate controlled account-management actions such as budget or status changes. It is intended for workflows where the user can provide Google Ads credentials and confirm business-impacting changes before execution.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and terminal text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local Google Ads API credentials; budget and campaign-status changes should require explicit user confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can read local Google Ads credential configuration, including ~/.google-ads.yaml.
+
+Mitigation: Use owner-only file permissions, avoid shared workspaces for real secrets, and install only where agent access to those credentials is acceptable.
+
+Risk: The artifact selects the first accessible Google Ads customer account, which can target the wrong account in multi-account environments.
+
+Mitigation: Require explicit confirmation of the target Google Ads customer account before any operation.
+
+Risk: Budget and status-management features are advertised but incomplete in this artifact.
+
+Mitigation: Treat budget and status changes as proposals until implementation behavior is verified against a test account.
+
+## Reference(s):
+
+- [Google ads for OpenClaw on ClawHub](https://clawhub.ai/3824108-cell/skills/claw-google-ads)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and script output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read local Google Ads credential configuration and may propose business-impacting account operations that require explicit confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

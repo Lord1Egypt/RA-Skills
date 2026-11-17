@@ -1,47 +1,62 @@
-## Description: <br>
-Provides Prometheus and Grafana monitoring assets for Java game server JVM metrics and self-managed MySQL, with Pushgateway data collection, Alertmanager alerts, Feishu/Lark webhook notifications, and Ansible deployment support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pg Game Monitor provides Prometheus, Pushgateway, Grafana, Alertmanager, and Feishu/Lark webhook monitoring for multiple Java game server JVMs and self-hosted MySQL on physical servers.
 
-## Publisher: <br>
-[freepengyang](https://clawhub.ai/user/freepengyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freepengyang](https://clawhub.ai/user/freepengyang)
 
-## Use Case: <br>
-Developers and operations teams use this skill to deploy and maintain monitoring for single-host Java game servers and self-managed MySQL. It helps configure metrics collection, dashboards, alerting rules, and Feishu/Lark notification delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs persistent monitoring and webhook services on target hosts. <br>
-Mitigation: Review the installation scripts and confirm systemd services, ports, and long-running processes are approved before deployment. <br>
-Risk: The skill handles MySQL credentials and Feishu/Lark webhook URLs. <br>
-Mitigation: Store secrets in Ansible Vault or another secret manager, restrict environment file permissions, and avoid exposing those files in logs or shared terminal output. <br>
-Risk: The skill pushes host and application metrics to Pushgateway and forwards alerts to webhook endpoints. <br>
-Mitigation: Use trusted internal or HTTPS endpoints and confirm outbound monitoring data is allowed by the deployment environment. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to deploy and operate monitoring for Java game server JVM memory, GC, threads, class memory, and MySQL health, with Grafana dashboards and Feishu/Lark alert delivery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freepengyang/pg-game-monitor) <br>
-- [Deployment guide](references/deploy.md) <br>
-- [Monitoring architecture planning](references/planning.md) <br>
-- [Prometheus alert rule guide](references/rules.md) <br>
-- [Grafana configuration guide](references/grafana.md) <br>
-- [FAQ](references/faq.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and bundled Python, shell, YAML, and JSON configuration artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes scripts, Prometheus rules, Ansible playbook content, webhook code, and Grafana dashboard JSON files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.3 (source: server release evidence) <br>
+Risk: Installer behavior creates persistent monitoring services with insecure defaults and exposed monitoring or webhook ports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set unique Grafana credentials before startup, restrict service ports with firewall rules, authentication, and TLS, and run services under dedicated least-privilege users.
+
+Risk: Downloaded components and Python dependencies may be installed without checksum, signature, or hash verification.
+
+Mitigation: Pin dependencies with hashes and verify component checksums or signatures before installing.
+
+Risk: Webhook and database secrets can be stored in environment files on monitored hosts.
+
+Mitigation: Store secrets with strict file permissions or a secret manager, and use Ansible Vault or equivalent controls for database credentials.
+
+## Reference(s):
+
+- [Pg Game Monitor on ClawHub](https://clawhub.ai/freepengyang/skills/pg-game-monitor)
+- [Deployment Guide](artifact/references/deploy.md)
+- [Prometheus Alert Rules](artifact/references/rules.md)
+- [Grafana Configuration Guide](artifact/references/grafana.md)
+- [Monitoring Architecture Planning](artifact/references/planning.md)
+- [FAQ](artifact/references/faq.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and references to Python, YAML, shell, and Grafana dashboard JSON files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes deployment commands, environment variables, Prometheus alert rules, Grafana dashboard references, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.3.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

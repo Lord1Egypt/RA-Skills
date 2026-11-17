@@ -1,40 +1,49 @@
-## Description: <br>
-Exact detection thresholds for identifying malicious network patterns including port scans, DoS attacks, and beaconing behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Exact detection thresholds for identifying malicious network patterns including port scans, DoS attacks, and beaconing behavior.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wu-uk](https://clawhub.ai/user/wu-uk)
 
-## Use Case: <br>
-Developers, security analysts, and agent operators use this skill to apply documented network-traffic thresholds for port scan, DoS pattern, C2 beaconing, and benign traffic assessment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Threat labels may be misleading if the thresholds are applied without the required packet context and combined conditions. <br>
-Mitigation: Apply the documented detection requirements exactly and review resulting classifications before relying on them operationally. <br>
-Risk: Example imports refer to a local packet-analysis helper library. <br>
-Mitigation: Verify the referenced helper library is trusted before running it on packet captures. <br>
+## Use Case:
 
+Security analysts and developers use this skill to apply fixed threshold rules when assessing packet captures or network telemetry for port scans, DoS spikes, C2 beaconing, and benign traffic.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wu-uk/dapt-intrusion-detection-threat-detection) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Markdown] <br>
-**Output Format:** [Markdown with Python code blocks and threshold tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides threshold guidance and example detection functions; it does not install software or take actions on the user's system.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: Fixed network detection thresholds may misclassify traffic if local baseline patterns differ from the examples.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the port scan, DoS, and beaconing thresholds against the target environment before relying on classifications.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/wu-uk/skills/dapt-intrusion-detection-threat-detection)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code]
+
+**Output Format:** [Markdown with Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides threshold-based network threat detection guidance; it does not execute code by itself.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

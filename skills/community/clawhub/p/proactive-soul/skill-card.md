@@ -1,51 +1,62 @@
-## Description: <br>
-Gives your agent an inner life - proactive daily dispatches, persistent intellectual threads, and genuine pushback when it disagrees. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gives your agent an inner life — proactive daily dispatches, persistent intellectual threads, and genuine pushback when it disagrees.
 
-## Publisher: <br>
-[bobgourley](https://clawhub.ai/user/bobgourley) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bobgourley](https://clawhub.ai/user/bobgourley)
 
-## Use Case: <br>
-External OpenClaw users install this skill to give an agent persistent intellectual continuity, proactive daily outreach, and a defined pushback style. It is intended for agents configured with QMD, cron scheduling, and a private messaging channel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads broad workspace, memory, and vault content before dispatches. <br>
-Mitigation: Limit QMD indexing to intended paths and keep sensitive vaults or files out of the index unless they should inform dispatches. <br>
-Risk: The skill changes persistent workspace behavior by patching AGENTS.md and creating CURIOSITY.md. <br>
-Mitigation: Review the AGENTS.md patch before enabling; to remove the behavior, uninstall the skill, delete CURIOSITY.md, and revert the AGENTS.md additions. <br>
-Risk: The skill sends scheduled unprompted messages through the configured messaging channel. <br>
-Mitigation: Use a private channel, confirm the four cron jobs are desired, and disable those cron jobs to pause outbound dispatches. <br>
-Risk: The skill has no strong runtime consent gate for its persistent authority. <br>
-Mitigation: Enable it only after explicit user approval of the workspace changes, indexed paths, messaging channel, and pause/removal process. <br>
+## Use Case:
 
+OpenClaw users and agent developers use this skill to make an agent maintain persistent intellectual threads, send scheduled proactive messages through a configured channel, and apply a direct pushback protocol during conversations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bobgourley/proactive-soul) <br>
-- [Publisher profile](https://clawhub.ai/user/bobgourley) <br>
-- [Project homepage](https://github.com/bobgourley/proactive-soul) <br>
-- [README](README.md) <br>
-- [Proactive outreach protocol](references/proactive-protocol.md) <br>
-- [Pushback protocol](references/pushback-protocol.md) <br>
-- [Intellectual character](references/intellectual-character.md) <br>
-- [Knowledge core](references/Knowledge_Core.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update AGENTS.md and CURIOSITY.md when enabled, and may send scheduled outbound messages through the configured channel.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release and frontmatter) <br>
+Risk: The skill can modify workspace instructions and create persistent intellectual-state files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the AGENTS.md diff before enabling, keep CURIOSITY.md retention rules explicit, and remove the file plus AGENTS.md additions when uninstalling.
+
+Risk: The skill reads broad workspace, memory, vault, and personal knowledge content before generating dispatches.
+
+Mitigation: Limit QMD indexing to approved paths and exclude sensitive notes, secrets, and private vault content unless deliberately authorized.
+
+Risk: The skill sends autonomous outbound messages through the configured messaging channel.
+
+Mitigation: Confirm the destination channel, require user consent for scheduled dispatches, and pause or disable cron jobs when proactive outreach is not wanted.
+
+## Reference(s):
+
+- [Proactive Soul on ClawHub](https://clawhub.ai/bobgourley/skills/proactive-soul)
+- [Project homepage](https://github.com/bobgourley/proactive-soul)
+- [Proactive Outreach Protocol](references/proactive-protocol.md)
+- [Pushback Protocol](references/pushback-protocol.md)
+- [Intellectual Character](references/intellectual-character.md)
+- [Knowledge Core](references/Knowledge_Core.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown prose, configuration snippets, shell commands, and workspace file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update AGENTS.md and CURIOSITY.md, send scheduled outbound messages, and save dispatch notes to memory when configured.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

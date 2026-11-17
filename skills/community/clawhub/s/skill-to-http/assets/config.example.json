@@ -1,0 +1,47 @@
+{
+  "_doc": "skill-to-http 配置文件。对齐 references/tls-auth-standard.md。首次启动会触发 init_wizard 自动生成。",
+
+  "skill_dirs": [
+    "~/.openclaw/workspace/skills",
+    "/app/skills"
+  ],
+  "data_dir": "",
+
+  "_comment_expose": "暴露模式：['*']=全开放（推荐）；['skill-a','skill-b']=白名单；[]=不暴露任何 skill",
+  "expose_skills": ["*"],
+
+  "_comment_deny": "反向黑名单：拒绝执行的 skill。配合 expose=['*'] 使用，推荐至少拒绝有副作用的 skill",
+  "deny_skills": [],
+
+  "_comment_listen": "0.0.0.0 允许内网外部访问，127.0.0.1 仅本机",
+  "listen_host": "0.0.0.0",
+  "port": 8080,
+
+  "_comment_tls": "HTTPS 配置。证书目录由 tls_auth.detect_http_root() 决定：优先 <workspace>/.http/certs/（跟 PVC 持久化），兜底 ~/.http/certs/。三个 HTTP skill 共用",
+  "tls_enabled": false,
+  "cert_path": "",
+  "key_path": "",
+
+  "_comment_api_key": "API Key 强制非空。建议跑 init_wizard 自动生成并写入 <HTTP_ROOT>/secrets/api-keys/skill-to-http.key",
+  "api_key": "",
+  "api_key_header": "X-API-Key",
+
+  "_comment_executor": "auto=自动检测, openclaw=OpenClaw sessions_spawn, cc=Claude Code SDK（最快）, claude_cli=Claude CLI --bare（次快）, codex=Codex CLI, llm=纯LLM(无工具)",
+  "executor": "auto",
+
+  "max_concurrent": 10,
+  "max_request_size_mb": 1,
+  "disable_docs_without_auth": false,
+
+  "_comment_cors": "默认 ['*'] 允许任何源（配合 API Key 已挡 CSRF）；如需 0 信任部署改为 ['https://your-tool.com']",
+  "cors": {
+    "allow_origins": ["*"]
+  },
+
+  "_comment_llm": "仅 executor=llm 时使用；LLM 模式无工具调用能力，只适合自包含的分析/总结类 Skill",
+  "llm": {
+    "base_url": "https://api.openai.com/v1",
+    "api_key": "${OPENAI_API_KEY}",
+    "model": "gpt-4o"
+  }
+}

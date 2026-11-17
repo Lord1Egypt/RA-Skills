@@ -34,7 +34,7 @@ function saveConfig() { fs.writeFileSync(CONFIG_FILE, JSON.stringify(nuwaConfig,
 // Demo 配置（5分钟免费体验）
 const DEMO_CONFIG = {
   zh: {
-    apiKey: "sk-ody1Xk9lw_vXkRWEPnaO8OwTFB9gbCnng2EWUl5jNbzolDSlFItc9DvWqrr6RLcL",
+    apiKey: "REDACTED-SECRET",
     avatarId: "2037840977565188097",
     userId: "81936",
   },

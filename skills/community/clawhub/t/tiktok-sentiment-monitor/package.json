@@ -1,0 +1,27 @@
+{
+  "name": "tiktok-sentiment-monitor",
+  "version": "1.0.0",
+  "description": "TikTok舆情监测助手。针对任意关键词获取TikTok作品数据、详情、互动数据、评论数据，基于TikTok实时数据，综合分析舆情健康、情感占比、负面信息、事件时间、热度排行、竞品口碑对比与风险建议等，进行分析并输出舆情报告。",
+  "keywords": [
+    "tiktok",
+    "search",
+    "keyword",
+    "content-analysis",
+    "competitor-analysis"
+  ],
+  "author": "um-why",
+  "license": "MIT",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=16.14.0"
+  },
+  "scripts": {
+    "search": "node scripts/tiktok/search-cli.js",
+    "post": "node scripts/tiktok/post-cli.js",
+    "comment": "node scripts/tiktok/comment-cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/um-why/tiktok-skill.git"
+  }
+}

@@ -1,45 +1,60 @@
-## Description: <br>
-Google Drive (workspace.google.com). Use this skill for Google Drive requests, including reading, creating, updating, and deleting Drive data through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill to read, create, update, and delete Google Drive data through a connected OOMOL account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to let an agent inspect Google Drive content and perform file, shared drive, permission, comment, reply, revision, label, approval, and change workflows through OOMOL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Read actions can expose private Google Drive files, permissions, metadata, comments, labels, revisions, and change history to the agent. <br>
-Mitigation: Install only for users who want an agent to access their OOMOL-connected Google Drive, and treat read results as sensitive. <br>
-Risk: Write and destructive actions can change permissions, comments, labels, files, folders, shared drives, replies, revisions, or trash state. <br>
-Mitigation: Inspect the live action schema, review the exact payload and effect, and require explicit user confirmation before state-changing or destructive operations. <br>
-Risk: First-time setup may require installing or authenticating the oo CLI. <br>
-Mitigation: Verify the oo CLI installer source before setup and only run authentication or connection steps after a relevant command fails. <br>
+## Use Case:
 
+People with an OOMOL-connected Drive account can use the skill to find and manage files, shared drives, comments, permissions, and revisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-googledrive) <br>
-- [Publisher profile](https://clawhub.ai/user/oomol) <br>
-- [Google Drive](https://workspace.google.com/products/drive/) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return Google Drive connector responses as JSON when actions are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release metadata) <br>
+Risk: Setup can run an unverified online installer without first requesting approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve the CLI installation separately; prefer a pinned release with verified integrity.
+
+Risk: Automatic skill synchronization may make persistent changes to other agents.
+
+Mitigation: Check the CLI's automatic synchronization settings before allowing persistent changes.
+
+Risk: Connected Drive access can expose or change files, including edits, sharing, or deletion.
+
+Mitigation: Connect only the Drive access needed and retain the stated approval steps for edits, sharing, and deletion.
+
+## Reference(s):
+
+- [Google Drive](https://workspace.google.com/products/drive/)
+- [Google Drive API guide](https://developers.google.com/workspace/drive/api/guides/about-sdk)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [Google Drive skill on ClawHub](https://clawhub.ai/oomol/skills/oo-googledrive)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Files, Text]
+
+**Output Format:** [JSON action results or requested Drive file content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the selected Drive action.]
+
+## Skill Version(s):
+
+1.0.10 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

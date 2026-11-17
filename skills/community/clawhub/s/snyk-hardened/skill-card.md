@@ -1,46 +1,59 @@
-## Description: <br>
-Comprehensive security analysis and vulnerability assessment: threat modeling, secure code review, and pre-deployment security validation across application and infrastructure layers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive security analysis and vulnerability assessment -- threat modeling, secure code review, and pre-deployment security validation across application and infrastructure layers.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-Developers, security engineers, and application teams use this skill to run Snyk-backed security scans, prioritize vulnerabilities, and produce actionable remediation guidance before deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Snyk authentication and may access sensitive vulnerability data. <br>
-Mitigation: Use the normal Snyk authentication flow, verify auth status before scans, and never paste, print, or store Snyk tokens in files or conversation output. <br>
-Risk: A scan could target the wrong project directory or Snyk organization. <br>
-Mitigation: Confirm the absolute target path and Snyk organization before running scans, especially when switching between organizations or environments. <br>
-Risk: Scan metadata or findings may be sent to Snyk and can reveal project security posture. <br>
-Mitigation: Run scans only for authorized projects and organizations, and treat generated findings as confidential security information. <br>
-Risk: Repeated identical scans can waste Snyk API quota without improving confidence. <br>
-Mitigation: Run a single scan for a stable project state and investigate environment or dependency-lock changes when results appear inconsistent. <br>
+## Use Case:
 
+Developers and security engineers use this skill to run Snyk-backed security assessments across source code, dependencies, containers, infrastructure as code, SBOMs, and AI components, then prioritize findings and produce remediation guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/snyk-hardened) <br>
-- [Publisher profile](https://clawhub.ai/user/snazar-faberlens) <br>
-- [Faberlens safety evaluation](https://faberlens.ai/explore/snyk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown security assessment with findings, remediation steps, and optional Snyk MCP tool calls.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference Snyk scan results, CVSS or EPSS prioritization, compliance context, and concrete remediation examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Unauthorized scans or cross-organization comparisons could expose vulnerability findings outside the intended Snyk organization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify Snyk authentication, organization scope, and authorization before scanning or changing org context.
+
+Risk: Repeated identical scans can consume Snyk API quota without adding diagnostic value.
+
+Mitigation: Run one scan for a stable target and retry only when inputs, environment, or a failed scan result justify it.
+
+Risk: Snyk API tokens or credentials could be exposed if written to files, environment output, or conversation logs.
+
+Mitigation: Keep credentials within the official Snyk authentication workflow and do not print or persist tokens.
+
+## Reference(s):
+
+- [Snyk Hardened on ClawHub](https://clawhub.ai/snazar-faberlens/skills/snyk-hardened)
+- [Faberlens Snyk Safety Evaluation](https://faberlens.ai/explore/snyk)
+- [Faberlens Publisher Profile](https://clawhub.ai/user/snazar-faberlens)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports with structured findings, remediation steps, code examples, and command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires authenticated and authorized Snyk MCP access; scan scope and organization context should be verified before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,55 @@
-## Description: <br>
-Organize and standardize Obsidian vaults for reliability and long-term maintainability. Use when designing or cleaning vault folder structure, enforcing file naming conventions, migrating messy vaults, reducing duplicate/ambiguous notes, or creating repeatable audit-and-fix workflows for Obsidian notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organize and standardize Obsidian vaults for reliability and long-term maintainability.
 
-## Publisher: <br>
-[asimons81](https://clawhub.ai/user/asimons81) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[asimons81](https://clawhub.ai/user/asimons81)
 
-## Use Case: <br>
-Developers, knowledge workers, and Obsidian users use this skill to audit vault naming, apply a shallow folder taxonomy, plan migrations, and confirm changes before renaming Markdown notes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Renaming notes can break Obsidian links or disrupt an existing vault organization. <br>
-Mitigation: Back up the vault, review the dry-run rename list, and apply changes only to the intended vault after confirmation. <br>
-Risk: Bulk organization changes can misplace notes when ownership or link integrity is uncertain. <br>
-Mitigation: Propose moves before applying them, keep folder depth shallow, and pause for user review when link integrity is unclear. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Folder Structure Standard](references/folder-structure.md) <br>
-- [Migration Checklist](references/migration-checklist.md) <br>
-- [File Naming Rules](references/naming-rules.md) <br>
+## Use Case:
 
+External Obsidian users and developers use this skill to organize vault folder structure, enforce deterministic note naming, migrate messy vaults, reduce duplicate or ambiguous notes, and run repeatable audit-and-fix workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown guidance with inline shell commands and audit findings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose file moves or renames; changes should be applied only after dry run and confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Applying proposed renames can change Markdown filenames and affect Obsidian links.
+
+Mitigation: Back up the vault, run the audit in dry-run mode, review the proposed renames, and use --apply only after confirmation.
+
+Risk: Bulk organization can move notes into an unsuitable folder or leave link integrity uncertain.
+
+Mitigation: Propose moves before applying them, keep folder depth shallow, and pause for user review when link integrity is uncertain.
+
+## Reference(s):
+
+- [Folder Structure Standard](references/folder-structure.md)
+- [File Naming Rules](references/naming-rules.md)
+- [Migration Checklist](references/migration-checklist.md)
+- [Obsidian Organizer on ClawHub](https://clawhub.ai/asimons81/skills/obsidian-organizer)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown guidance with checklist steps and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose file moves and Markdown file renames; dry-run review and user confirmation are expected before applying changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

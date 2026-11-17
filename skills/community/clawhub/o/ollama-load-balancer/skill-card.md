@@ -1,44 +1,56 @@
-## Description: <br>
-Guides agents through deploying and operating an Ollama load balancer for distributed Llama, Qwen, DeepSeek, and Mistral inference with mDNS discovery, health checks, queue management, failover, retry, and cleanup guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ollama Load Balancer helps agents guide deployment and operation of ollama-herd for load-balanced Ollama inference across multiple machines, including mDNS discovery, health checks, queue management, failover, and retry behavior.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-Developers and operators use this skill to deploy, query, monitor, and troubleshoot an Ollama load-balanced inference fleet across multiple machines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing and operating the load balancer affects a local Ollama fleet and stores latency data and logs under ~/.fleet-manager. <br>
-Mitigation: Install only for intended fleet management, review the PyPI package source before use, and account for persistent local operational data. <br>
-Risk: Model pull and delete actions can consume substantial storage or remove models from load balancer nodes. <br>
-Mitigation: Require explicit confirmation before pulling or deleting models. <br>
-Risk: Restarting or stopping load balancer services can disrupt active inference workloads. <br>
-Mitigation: Confirm before restarting or stopping services, and report offline nodes instead of attempting remote access. <br>
+## Use Case:
 
+Developers and engineers use this skill to deploy and operate an Ollama load balancer, inspect fleet health, manage routing behavior, and troubleshoot local multi-node inference services.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/ollama-load-balancer) <br>
-- [ollama-herd package](https://pypi.org/project/ollama-herd/) <br>
-- [ollama-herd repository](https://github.com/geeks-accelerator/ollama-herd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration instructions] <br>
-**Output Format:** [Markdown with bash, Python, and SQL snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may query local load balancer APIs and persistent data under ~/.fleet-manager.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: frontmatter and server release evidence) <br>
+Risk: The skill includes package installation and local service commands for ollama-herd.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a virtual environment, pin and review the ollama-herd package version before running it, and avoid elevated privileges.
+
+Risk: Settings changes or model pull/delete actions can affect fleet behavior, disk usage, and network usage.
+
+Mitigation: Require explicit user approval before changing settings or pulling or deleting models.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/twinsgeeks/skills/ollama-load-balancer)
+- [ollama-herd package](https://pypi.org/project/ollama-herd/)
+- [ollama-herd repository](https://github.com/geeks-accelerator/ollama-herd)
+- [Publisher profile](https://clawhub.ai/user/twinsgeeks)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline bash, Python, curl, and SQL examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local service URLs, operational checks, package installation commands, and confirmation-gated model management guidance.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,62 @@
-## Description: <br>
-Monitors 20+ premium RSS feeds for breaking news and matches stories to Polymarket markets via keyword analysis, trading when breaking news creates an estimated price impact exceeding 12%. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors 20+ premium RSS feeds for breaking news, matches stories to Polymarket markets by keyword analysis, and trades when estimated price impact exceeds 12%.
 
-## Publisher: <br>
-[Mibayy](https://clawhub.ai/user/Mibayy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mibayy](https://clawhub.ai/user/mibayy)
 
-## Use Case: <br>
-External users and developers use this skill to monitor breaking news feeds, identify likely Polymarket-relevant events, and generate or execute trading signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can place recurring real trades with limited built-in containment. <br>
-Mitigation: Keep the skill in dry-run or simulation mode until the code, dependencies, venues, and trade behavior are reviewed. <br>
-Risk: Scheduled execution can repeatedly evaluate news and place trades without direct operator review. <br>
-Mitigation: Control or disable the cron schedule and add explicit market, trade-count, and daily-loss limits before enabling live trading. <br>
-Risk: The skill requires a trading API key and may use real-market access depending on venue configuration. <br>
-Mitigation: Use a capped or least-privilege trading key and verify the TRADING_VENUE setting before running outside simulation. <br>
+## Use Case:
 
+Developers and external users use this skill to run an automated news-monitoring trader that filters recent RSS stories, matches them to active Polymarket markets, and produces dry-run or live trading actions when estimated impact crosses its threshold.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Mibayy/news-events) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, API calls] <br>
-**Output Format:** [Console text with optional Simmer SDK trade requests] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dry-run is the default; live mode can place trades when invoked with --live.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: frontmatter, clawhub.json, server release evidence) <br>
+Risk: The skill can execute live automated trading when explicitly run with --live.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and constrain live trading before installation, run dry-run first, and require a second confirmation before enabling live mode.
+
+Risk: Trading credentials and account funds may be exposed to unnecessary scope.
+
+Mitigation: Scope SIMMER_API_KEY to minimal funds and permissions and store credentials outside shared project files.
+
+Risk: Plaintext HTTP feeds and temporary shared state can weaken integrity and privacy.
+
+Mitigation: Remove or replace plaintext HTTP feeds where possible and store state in a private per-user directory.
+
+Risk: Dependency behavior may change between installs.
+
+Mitigation: Pin dependencies and review the skill before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mibayy/skills/news-events)
+- [Publisher profile](https://clawhub.ai/user/mibayy)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, API Calls, Shell commands, Configuration]
+
+**Output Format:** [Console logs and API trade requests, with command-line execution modes for dry-run, live trading, and quiet cron operation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY; dry-run is the default and live trading requires the --live flag.]
+
+## Skill Version(s):
+
+2.0.3 (source: release evidence, SKILL.md frontmatter, clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

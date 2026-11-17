@@ -1,40 +1,52 @@
-## Description: <br>
-DBA多AI协作系统 coordinates database expert personas for architecture design, daily operations, troubleshooting, performance tuning, migration, security, reporting, and training across Oracle, MySQL, PostgreSQL, SQL Server, Chinese domestic databases, MongoDB, Redis, and ClickHouse. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DBA多AI协作系统用于处理架构设计、日常运维、故障排查、性能优化和数据迁移等数据库DBA工作，覆盖Oracle、MySQL、PostgreSQL、SQL Server、国产数据库以及MongoDB、Redis和ClickHouse。
 
-## Publisher: <br>
-[pc-study](https://clawhub.ai/user/pc-study) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[pc-study](https://clawhub.ai/user/pc-study)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Database administrators, developers, and operations teams use this skill to route database-related requests to specialist roles and produce coordinated DBA plans, troubleshooting guidance, optimization advice, migration guidance, inspection reports, and backup validation outputs.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill automatically stores database environment details, task history, and user preferences in local memory files.
+
+Mitigation: Use the skill only where persisted DBA context is acceptable, and disable or tightly control memory behavior before sharing confidential database details.
+
+Risk: DBA requests may include passwords, connection strings, hostnames, incident details, topology, query results, or other confidential production data.
+
+Mitigation: Redact sensitive values before use and limit workspace access to authorized users.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Database administrators, developers, and operations teams use this skill to route database requests to specialized DBA personas and produce structured plans, diagnostics, reports, migration guidance, optimization advice, and final recommendations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Analysis, Markdown, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs the agent to automatically save DBA environment details, task history, and user preferences, which can retain sensitive operational context. <br>
-Mitigation: Disable memory or review and delete stored memory before sharing passwords, connection strings, hostnames, production topology, or incident details. <br>
-Risk: Scheduled inspections, reports, and backup validation workflows could act on production databases without sufficient review or privileges control. <br>
-Mitigation: Require explicit approval for automated workflows and use least-privilege, task-specific database access. <br>
+**Output Format:** [Markdown with structured sections and optional code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pc-study/dba-team) <br>
+**Other Properties Related to Output:** [May generate or update local memory files for environment details, task history, and user preferences when memory behavior is enabled.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses structured sections for requirements, task planning, execution process, and final solution.] <br>
+1.0.0 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

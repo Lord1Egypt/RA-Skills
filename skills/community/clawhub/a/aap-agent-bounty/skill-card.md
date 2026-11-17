@@ -1,40 +1,54 @@
-## Description: <br>
-Verification-first helper for proof checks and optional 0 ETH Base claim submission. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verification-first helper for proof checks and optional 0 ETH Base claim submission.
 
-## Publisher: <br>
-[AlphaC007](https://clawhub.ai/user/AlphaC007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[alphac007](https://clawhub.ai/user/alphac007)
 
-## Use Case: <br>
-Developers and bounty claimants use this skill to verify proof status, prepare an AAP claim payload, and optionally submit a zero-value Base transaction after explicit confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead to an on-chain transaction, which may incur gas costs or target the wrong account if details are not reviewed. <br>
-Mitigation: Review the exact cast command, target address, wallet signer, gas cost, and proof links before setting confirm_broadcast to true. <br>
-Risk: GitHub or wallet credentials could be exposed if raw secrets are supplied directly. <br>
-Mitigation: Use user-managed gh authentication, least-privilege GH_TOKEN only when needed, and a user-managed cast signer context; do not provide raw private keys, seed phrases, or mnemonics. <br>
+## Use Case:
 
+External users and developers use this skill to verify proof status, prepare an AAP claim payload, and optionally submit a user-confirmed 0 ETH proof transaction on Base.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AlphaC007/aap-agent-bounty) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, json] <br>
-**Output Format:** [Markdown guidance with shell commands and a JSON status object] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return approved, pending, or rejected status with reason, wallet address, transaction hash, and proof links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.10 (source: server release metadata, package.json, skill.json) <br>
+Risk: An on-chain proof transaction can publish proof data and incur Base gas costs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Broadcast only when confirm_broadcast is true, show the exact transaction command first, and confirm the target wallet and 0 ETH value before execution.
+
+Risk: Credential or signer context may be unavailable or unsafe if raw key material is requested.
+
+Mitigation: Use user-managed GitHub auth or a least-privilege GH_TOKEN and user-managed cast signer context; never request raw private keys, seed phrases, or mnemonics.
+
+## Reference(s):
+
+- [AAP Agent Bounty Skill Page](https://clawhub.ai/alphac007/skills/aap-agent-bounty)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON status output and shell commands for user review]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only output; transaction broadcast remains pending unless confirm_broadcast is true.]
+
+## Skill Version(s):
+
+1.0.10 (source: package.json, skill.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

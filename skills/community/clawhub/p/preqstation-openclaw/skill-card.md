@@ -1,41 +1,52 @@
-## Description: <br>
-Delegates PREQSTATION coding tasks to Claude Code, Codex CLI, or Gemini CLI with PTY-safe worktree execution, background monitoring, and project mapping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Delegates PREQSTATION coding tasks to Claude Code, Codex CLI, or Gemini CLI with PTY-safe execution, worktree isolation, background execution, and monitoring.
 
-## Publisher: <br>
-[sonim1](https://clawhub.ai/user/sonim1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sonim1](https://clawhub.ai/user/sonim1)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to delegate PREQSTATION-related coding, refactoring, and review work to local coding-agent CLIs while keeping execution in mapped git worktrees. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can launch local coding agents with sandbox and approval checks disabled. <br>
-Mitigation: Use it only in trusted repositories and review the planned command, worktree path, and engine before execution. <br>
-Risk: Broad `preq` and `preqstation` triggers can unintentionally activate a powerful delegation flow. <br>
-Mitigation: Use explicit, scoped requests and confirm ambiguous task intent before launching an engine. <br>
-Risk: MEMORY.md stores reusable local workspace paths. <br>
-Mitigation: Keep MEMORY.md private and review mapping changes before using them for task execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sonim1/preqstation-openclaw) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to route coding, refactoring, and review tasks into mapped project worktrees using local Claude, Codex, or Gemini CLI engines.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown and plain text with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a mapped project workspace, git, and at least one available local engine binary: claude, codex, or gemini.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.6 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can run powerful local coding CLIs with approval or sandbox controls disabled, which may modify code, create branches or worktrees, and start background processes.
+
+Mitigation: Install only for trusted repositories, trusted local CLI agents, and trusted task inputs; review generated changes and keep execution scoped to task worktrees.
+
+Risk: Unsafe prompt or path construction in shell commands can cause unintended command behavior.
+
+Mitigation: Prefer safely escaped arguments or prompt files, revise command templates before broad use, and keep sandbox protections enabled by default where possible.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sonim1/skills/preqstation-openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with inline shell command examples and completion summary text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a mapped project path, a git worktree, git, and at least one supported local CLI engine.]
+
+## Skill Version(s):
+
+0.1.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

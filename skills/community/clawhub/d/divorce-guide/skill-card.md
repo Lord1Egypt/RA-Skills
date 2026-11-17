@@ -1,41 +1,58 @@
-## Description: <br>
-A Chinese-language divorce litigation defense guidance skill that helps defendants organize response strategy, draft answer materials, prepare evidence, review property and custody issues, and look up relevant legal articles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language agent guidance for people responding as defendants in divorce litigation, covering response workflow, defense statement drafting, evidence preparation, property division, child custody, strategy, and legal article lookup.
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-Individuals and assisting professionals use this skill for general legal-information support when responding to divorce litigation in a Chinese-law context. It helps structure case facts, deadlines, evidence preparation, answer drafts, property division questions, custody issues, and next-step planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users could mistake general divorce-litigation information for legal advice tailored to their case or jurisdiction. <br>
-Mitigation: Use the skill for legal-information support only and confirm jurisdiction, filing deadlines, strategy, and filings with a qualified lawyer. <br>
-Risk: Some artifact text is encoding-damaged, which can make legal details unclear or misleading. <br>
-Mitigation: Verify important article references, deadlines, and generated draft language against authoritative legal sources before relying on the output. <br>
+## Use Case:
 
+External users facing China-focused divorce litigation use this skill to organize case facts, understand procedural steps, prepare defense materials, review evidence needs, and receive informational guidance on property and child custody issues.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/divorce-guide) <br>
-- [Legal articles reference](artifact/references/legal_articles.md) <br>
+### Deployment Geography for Use:
 
+China-focused; global access where China-focused legal information is appropriate.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured checklists, analysis sections, and draft legal-document templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only guidance; no executable, credential, network, persistence, or data-access behavior identified by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may mistake informational divorce-litigation guidance for professional legal advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: State that outputs are informational, recommend consulting a qualified lawyer for case-specific advice, and verify court deadlines and local practice before acting.
+
+Risk: Users may share sensitive personal, family, financial, or litigation details while seeking guidance.
+
+Mitigation: Ask only for necessary facts, avoid requesting excess personal detail, and remind users not to disclose more case information than needed.
+
+Risk: Legal rules, court practice, or deadlines may vary by location or change over time.
+
+Mitigation: Prompt users to confirm current requirements with the accepting court, official legal sources, or counsel before filing documents or relying on deadlines.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/divorce-guide)
+- [Divorce litigation legal articles reference](references/legal_articles.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports, checklists, defense statement drafts, timelines, and short-form legal information responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language informational legal guidance; no code execution, persistence, or external tool use indicated by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

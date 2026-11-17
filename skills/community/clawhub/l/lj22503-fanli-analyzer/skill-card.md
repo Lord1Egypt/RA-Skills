@@ -1,43 +1,60 @@
-## Description: <br>
-Event Analyzer helps agents analyze important events through a four-step collect, select, judge, and analyze framework that emphasizes source checks, signal filtering, and investment-oriented event interpretation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Event Analyzer helps agents evaluate important market and policy events through structured evidence collection, signal filtering, source assessment, and market-impact analysis.
 
-## Publisher: <br>
-[lj22503](https://clawhub.ai/user/lj22503) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lj22503](https://clawhub.ai/user/lj22503)
 
-## Use Case: <br>
-External users and analysts use this skill to evaluate recent market, policy, industrial, or company events, filter weak signals, grade source quality, and produce structured event-analysis reports. The reports may include business implications and investment-oriented commentary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Finance-oriented analyses may include buy/sell, position-size, entry, stop-loss, or take-profit ideas. <br>
-Mitigation: Treat outputs as unverified general commentary, not personalized financial advice; require independent review before any financial decision. <br>
-Risk: The skill requests broad Write and Exec tool access despite being primarily an analysis prompt. <br>
-Mitigation: Deploy with the narrowest tool permissions needed for the workflow and remove Write/Exec unless explicitly required. <br>
+## Use Case:
 
+External users and analysts use this skill to review significant events, separate durable signals from noise, assess source quality, and produce structured event-analysis reports. The skill is especially oriented toward Chinese-language business, market, policy, and trading-impact analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lj22503/lj22503-fanli-analyzer) <br>
-- [Publisher profile](https://clawhub.ai/user/lj22503) <br>
-- [Skill README](artifact/README.md) <br>
-- [Event analysis sample](artifact/examples/event-analysis-sample.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown event-analysis reports with sourced bullets, scoring tables, and action-oriented commentary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include concrete trading ideas, position sizing, entry, stop-loss, or take-profit commentary; treat as unverified general information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Outputs may be mistaken for licensed financial advice because the skill can generate named instruments, position sizes, timing, and stop-loss levels.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as unlicensed market commentary, require independent human review, and do not use them as the sole basis for investment or trading decisions.
+
+Risk: Requested tool permissions are broader than the stated research workflow justifies.
+
+Mitigation: Install with tightly limited tools; allow WebSearch only when needed and block Exec and Message unless separately justified and approved.
+
+Risk: Market, policy, and event data can become stale or be cited with unclear source quality.
+
+Mitigation: Require current, traceable primary-source URLs for material claims and re-check data freshness before acting on time-sensitive conclusions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lj22503/skills/lj22503-fanli-analyzer)
+- [README](artifact/README.md)
+- [Event analysis sample](artifact/examples/event-analysis-sample.md)
+- [Weekly events example](artifact/examples/weekly-events-20260416.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured Chinese-language event research that may include market commentary, source-quality judgments, signal rankings, position sizing, timing, and stop-loss suggestions.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

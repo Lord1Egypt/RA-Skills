@@ -7,9 +7,33 @@ metadata:
     emoji: "📈"
     requires:
       bins: ["python3", "pip"]
+    permissions:
+      - local-network  # Futu OpenD (default 127.0.0.1:11111)
+      - filesystem-read  # json/config.json and skill modules
+      - filesystem-write  # optional account_info.json / strategy logs / PID files when user opts in
+      - process  # optional background strategy only after explicit user confirmation
 ---
 
 # Futu Trade Bot Skills 📈
+
+## ⚠️ Security & Safety (READ FIRST)
+
+This skill can control a **live brokerage account** via Futu OpenD. Misuse can cause **irreversible financial loss**.
+
+**Hard rules for the agent:**
+1. **Default to SIMULATE.** Never use `trd_env="REAL"` unless the user explicitly requests live trading and confirms the exact order parameters.
+2. **State-changing actions require explicit user approval**, then pass `confirm=True`:
+   - `unlock_trade` / `lock_trade`
+   - `submit_order` when `trd_env="REAL"`
+   - `modify_order` / `cancel_order` when `trd_env="REAL"`
+   - `cancel_all_orders` in **any** environment
+3. **Read-only actions** (quotes, `get_account_info(persist=False)`) may run without `confirm`.
+4. **Do not** collect trading passwords via interactive stdin. Use config (`trade_password_md5` preferred) or an explicit parameter the user already provided out-of-band.
+5. **Do not** write `json/account_info.json` unless the user asks to cache accounts (`persist=True`).
+6. **Background strategies** (write script / start process / stop process) only after the user clearly asks and confirms symbol, qty, `SIMULATE`/`REAL`, and log/PID paths.
+7. If a restricted sandbox blocks OpenD or `~/.com.futunn.FutuOpenD/Log`, **tell the user** before suggesting `host` / `elevated` mode — never silently escalate.
+
+**中文硬规则：** 默认模拟盘；真金白银/解锁/全部撤单必须先复述参数并得到用户明确同意，再传 `confirm=True`；禁止 stdin 要密码；默认不把账户信息写盘。
 
 ## 🎯 Overview / 概述
 
@@ -27,30 +51,28 @@ A trading bot skill based on Futu OpenAPI that enables natural language trading.
 
 ## When to Use This Skill / 使用场景
 
-Use this skill when the user asks in natural language, for example:
+### Read-only (no confirm required)
+- **行情查询**：“腾讯现在多少钱？”、“查港股报价”、“看 K 线 / 逐笔”
+- **账户列表查询**：“看看我有哪些账户”（`get_account_info()`，默认不落盘）
 
-- **账户相关**：“查一下我的账户余额”、“解锁交易”、“锁定账户”、“看看我有哪些账户”
-- **行情查询**：“腾讯现在多少钱？”、“查一下港交所的实时报价”、“帮我看看美团今天的K线图”
-- **数据拉取**：“获取腾讯的历史K线数据”、“拉取最近10笔成交”
-- **订阅与回调**：“实时监控腾讯的报价”、“给我推送腾讯的逐笔成交”
-- **下单交易**：“帮我买100股腾讯，限价350”、“卖出200股阿里”、“撤单”、“把订单价格改到355”
-- **策略运行**：
-  - “帮我写一个区间策略，监控腾讯，低于540买入，高于550卖出”
-  - “启动这个策略”
-  - “我的策略跑得怎么样了？”
-  - “停止我的策略”
+### State-changing (require explicit user intent + confirmation)
+- **解锁 / 锁定交易**：“解锁交易”、“锁定账户” → 复述风险后 `unlock_trade(confirm=True)` / `lock_trade(confirm=True)`
+- **下单 / 改单 / 撤单**：“帮我买 100 股腾讯限价 350” → 复述 code/side/qty/price/`SIMULATE|REAL`，用户确认后再调用；`REAL` 必须 `confirm=True`
+- **全部撤单**：“撤销全部订单” → 高风险，**任何环境**都要 `cancel_all_orders(..., confirm=True)`
+- **策略启停**：仅当用户明确说启动/停止策略；先确认参数与环境，默认 `SIMULATE`
 
-**Note to agent**: When the user expresses any of these intents, you should use the encapsulated functions provided in this skill (e.g., `get_account_info`, `get_market_snapshot`, `submit_order`, etc.). **Never call Futu SDK functions directly** – always go through the skill's API.
+**Do not** map vague chat like “看看市场怎么样” to unlock/order/cancel.
+
+**Note to agent**: Always use this skill's wrappers (`get_account_info`, `get_market_snapshot`, `submit_order`, …). **Never call Futu SDK functions directly**. Never skip `confirm` gates for privileged actions.
 
 ## Quick Start / 快速开始
 
 **Prerequisites / 前提条件:**
 - Ensure Futu OpenD is running and HK quote entitlement is available.
 - 确保富途OpenD正在运行且拥有港股行情权限。
-- When running inside a restricted agent sandbox (for example OpenClaw/Codex exec), prefer `host` / `elevated` mode.
-- The Futu Python SDK may access local OpenD resources during import, including the user log directory under `~/.com.futunn.FutuOpenD/Log`, so restricted sandboxes may fail before business functions are called.
-- 如果在受限的 agent 沙箱中运行（例如 OpenClaw/Codex exec），优先使用 `host` / `elevated` 模式。
-- 富途 Python SDK 在导入阶段就可能访问本机 OpenD 相关资源，包括 `~/.com.futunn.FutuOpenD/Log` 下的日志目录；因此受限沙箱可能会在业务函数执行前就失败。
+- Futu OpenD must be reachable (default `127.0.0.1:11111`). The SDK may also need write access to `~/.com.futunn.FutuOpenD/Log`.
+- If a restricted sandbox blocks OpenD/log access, **ask the user** whether to rerun in `host` / `elevated` mode. Do not silently escalate privileges.
+- 若沙箱导致 OpenD/日志目录不可用，先告知用户再征得同意后使用 `host` / `elevated`，不要静默提权。
 
 **Setup Steps / 安装步骤:**
 1. Install this skill via ClawHub (if not installed yet):
@@ -84,40 +106,35 @@ Use this skill when the user asks in natural language, for example:
 
 ## 依赖项
 
-本技能通过 `pip install -e .` 自动安装以下核心 Python 包：
-- `futu-api`（富途 SDK）
-- `pydantic`（数据校验）
-
-更多依赖请以 `pyproject.toml` / `requirements.txt` 为准。
+本技能通过 `pip install -e .` 安装（版本见 `requirements.txt` / `pyproject.toml`）：
+- `futu-api==9.6.5608`
+- `pydantic>=2.7.0,<3`
 
 ## Module Map
 
 - **Account**: `account_manager`
-  - `get_account_info()`
-  - `unlock_trade(password=None, password_md5=None)`
-  - `lock_trade()`
-- **Quote**: `quote_service`
+  - `get_account_info(persist=False)` — default no disk write
+  - `unlock_trade(..., confirm=True)` — privileged
+  - `lock_trade(..., confirm=True)` — privileged
+- **Quote**: `quote_service` (read-oriented)
   - Stage 1: `get_stock_basicinfo`, `get_market_state`
   - Stage 2: `subscribe`, `unsubscribe`, `unsubscribe_all`, `query_subscription`, callbacks
   - Stage 3: `get_market_snapshot`, `get_cur_kline`, `request_history_kline`, `get_rt_ticker`
   - Stage 4: `start_quote_stream`, `start_orderbook_stream`
-- **Trade**: `trade_service`
-  - `submit_order`, `modify_order`, `cancel_order`, `cancel_all_orders`
-- **Strategy Runtime**: `strategy_runtime`
-  - `run_strategy`
-- **Strategy Helpers**: `strategy`
-  - in-memory state
-  - trade guard / lock
-  - trading window and cooldown helpers
+- **Trade**: `trade_service` (privileged)
+  - `submit_order(..., confirm=)` — REAL requires confirm
+  - `modify_order` / `cancel_order` — REAL requires confirm
+  - `cancel_all_orders(..., confirm=True)` — always requires confirm
+- **Strategy Runtime**: `strategy_runtime` / `strategy` helpers
 
 ## Standard Workflow
 
-1. Run `preflight_check` first to verify config, OpenD connectivity, and sandbox/runtime readiness.
-2. Call `get_account_info()` and select target account (get `acc_id`).
-3. Pull quote/snapshot for the target symbol (default HK use case: `HK.00700`).
-4. For real trading, call `unlock_trade(...)` (password from config or input).
-5. Submit or manage orders with explicit `acc_id` and `trd_env`.
-6. After real operation, call `lock_trade()` if needed.
+1. Run `preflight_check` first.
+2. `get_account_info()` (no persist) and select `acc_id`.
+3. Quote/snapshot for target symbol (e.g. `HK.00700`).
+4. For live trading only after user confirmation: `unlock_trade(confirm=True)`.
+5. Orders with explicit `acc_id` + `trd_env` (prefer `SIMULATE`; REAL needs `confirm=True`).
+6. After live ops, `lock_trade(confirm=True)` if the user wants trading locked again.
 
 ## Connection Lifecycle
 
@@ -158,19 +175,20 @@ if not preflight["success"]:
 ```
 
 ```python
-# Get list of accounts
-info = get_account_info()
+# Get list of accounts (in-memory only by default)
+info = get_account_info()  # persist=False
 if info['success']:
     accounts = info['accounts']
     print(accounts)
 
-# Unlock trade (uses password from config or provided)
-unlock_trade()  # will prompt for password if not configured
-# Or with explicit password:
-# unlock_trade(password="your_password")
+# Optional: cache accounts locally only if user asked
+# info = get_account_info(persist=True)
 
-# Lock trade
-lock_trade()
+# Unlock trade ONLY after explicit user approval
+unlock_trade(confirm=True)  # loads trade_password_md5 / trade_password from config
+
+# Lock trade after user approval
+lock_trade(confirm=True)
 ```
 
 ## Quote Usage
@@ -241,55 +259,55 @@ if in_trading_window(start_time="09:30", end_time="16:00"):
 ## Trade Usage
 
 ```python
-# Submit an order
+# Preferred: SIMULATE (no confirm required by the gate)
 result = submit_order(
     code="HK.00700",
     side="BUY",
     qty=200,
-    acc_id=6017237,               # from get_account_info
-    trd_env="SIMULATE",            # or "REAL"
-    price=150,                     # required for LIMIT order
+    acc_id=6017237,
+    trd_env="SIMULATE",
+    price=150,
     order_type="NORMAL",
 )
 
-# Modify order (change price/quantity)
+# REAL only after user explicitly approves the exact parameters
+# result = submit_order(..., trd_env="REAL", confirm=True)
+
 modify_order(
     op="NORMAL",
     order_id="123456789",
     trd_env="SIMULATE",
     price=151,
     qty=200,
-    acc_id=6017237
+    acc_id=6017237,
 )
 
-# Cancel a single order
 cancel_order(order_id="123456789", trd_env="SIMULATE", acc_id=6017237)
 
-# Cancel all orders
-cancel_all_orders(trd_env="SIMULATE", acc_id=6017237)
+# Bulk cancel ALWAYS requires confirm=True
+cancel_all_orders(trd_env="SIMULATE", acc_id=6017237, confirm=True)
 ```
 
-## Running a Background Trading Strategy (Using System Tools)
+## Running a Background Trading Strategy (Optional, User-Confirmed Only)
 
-This skill does not manage long-running processes internally. Instead, you (the agent) should use system tools (e.g., `exec`, `write`, `kill`) to run strategy scripts in the background. This keeps the skill simple and leverages the platform's process management.
+This skill does **not** auto-start long-running processes. Only if the user **explicitly** asks to start/stop a strategy:
 
-### 4.1 Workflow for Background Strategies
+1. Run preflight.
+2. Restate parameters: symbol, account, qty, buy/sell rules, **SIMULATE (default) or REAL**, log path.
+3. Wait for user confirmation.
+4. Write a **fixed-parameter** strategy script from the template below (no arbitrary remote code).
+5. Start it with the platform process tools the user already authorized; record PID + log path.
+6. Stop only when the user asks; then terminate that PID and clean the PID file.
 
-1. **Run preflight first** with `PYTHONPATH=src python -m preflight_check`.
-2. If preflight reports sandbox/log-directory restrictions, rerun in `host` / `elevated` mode before using quote/trade functions.
-3. **Generate a Python script** based on user's natural language request, using the encapsulated functions from this skill (e.g., `start_quote_stream`, `submit_order`, `run_strategy`).
-4. **Save the script** to a temporary file (using the `write` tool or similar).
-5. **Launch the script as a background process** using the `exec` tool, redirecting output to a log file.
-6. **Record the process ID (PID)** and log file path for future monitoring.
-7. **Monitor/stop** using system tools (`ps`, `kill`, `cat`).
+Do **not** launch background strategies for vague requests. Do **not** use elevated/host mode without telling the user why.
 
-### 4.2 Natural Language Triggers
+### Natural Language Triggers
 
 | User Request | Agent Action |
 |--------------|--------------|
-| “Start a strategy to monitor Tencent, buy below 540, sell above 550” | Generate script → save → launch with `exec` → return PID and log path |
-| “How is my strategy doing?” | Read log file (e.g., `tail -n 20 logfile`) → summarize |
-| “Stop my strategy” | Kill process using PID via `kill` tool |
+| “Start a strategy…” (explicit) | Confirm params → write template script → start after approval → return PID/log |
+| “How is my strategy doing?” | Read the agreed log file / check PID → summarize |
+| “Stop my strategy” | Confirm → stop the recorded PID → clean up |
 
 ### 4.3 Script Template (for Agent Reference)
 
@@ -367,17 +385,11 @@ finally:
 **User**: “Start a range strategy for Tencent, buy below 540, sell above 550.”
 
 **Agent**:
-1. **Get account ID** via `get_account_info()`.
-2. **Generate script** using the template above, filling in parameters.
-3. **Save script** to a file, e.g., `range_00700.py`, using `write` tool.
-4. **Launch background process** using `exec`:
-   ```bash
-   cd /path/to/workspace
-   nohup .venv/bin/python range_00700.py > strategy.out 2>&1 &
-   ```
-   (Capture the PID from output.)
-5. **Record** PID and log path.
-6. **Reply**: “Strategy started. PID: 12345, log file: strategy_00700.log. You can check status or stop it anytime.”
+1. Restate strategy params; default `TRD_ENV=SIMULATE`. Ask for confirmation.
+2. After approval, `get_account_info()` for `acc_id`.
+3. Write the template script with fixed parameters (e.g. `range_00700.py`).
+4. Start only the approved script; capture PID and log path.
+5. Reply with PID/log and remind the user how to stop it.
 
 ### 4.5 Check Status
 
@@ -393,9 +405,8 @@ finally:
 **User**: “Stop my strategy.”
 
 **Agent**:
-- Send SIGTERM: `kill 12345`.
-- Verify process ended, clean up PID file if needed.
-- Reply: “Strategy stopped.”
+- Confirm the user wants to stop the recorded PID.
+- Terminate that process, clean the PID file, reply with status.
 
 ---
 
@@ -433,9 +444,10 @@ If the skill fails before quote/trade functions are even called, recheck:
   - `futu_api.port` (default: 11111)
   - `futu_api.security_firm` (e.g., `FUTUSECURITIES`)
 - **Password handling**:
-  - Prefer `trade_password_md5` (32‑char lowercase MD5)
-  - Fallback to `trade_password` (will be MD5‑ed at runtime)
-- **Account cache**: `json/account_info.json` (auto‑generated after `get_account_info`)
+  - Prefer `trade_password_md5` (32-char lowercase MD5)
+  - Optional empty `trade_password` fallback (MD5 at runtime)
+  - Never commit real credentials; keep `json/config.json` private
+- **Account cache**: `json/account_info.json` only when `get_account_info(persist=True)`
 
 ## 📜 License
 

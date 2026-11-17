@@ -1,43 +1,58 @@
-## Description: <br>
-Render JSON schemas to images and generate schemas from prompts using declare-render and AI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Render JSON schemas to images and generate schemas from prompts using declare-render and AI.
 
-## Publisher: <br>
-[cai-zhuo](https://clawhub.ai/user/cai-zhuo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
 
+[cai-zhuo](https://clawhub.ai/user/cai-zhuo)
 
-## Use Case: <br>
-Developers and engineers use this CLI to render declare-render JSON schemas as PNG or JPG images, validate render-data schemas, or generate a schema from a prompt before rendering it. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: The AI generation path depends on a materials-agents dependency that security evidence reports as missing local code. <br>
-Mitigation: Verify the materials-agents dependency before installing or using the generate command. <br>
-Risk: API credentials can be supplied on the command line and generation can use custom OpenAI-compatible base URLs. <br>
-Mitigation: Prefer OPENAI_API_KEY from the environment and avoid untrusted custom base URLs or sensitive prompt content. <br>
-Risk: Windows shell handling and untrusted prompt or file path strings may need extra caution. <br>
-Mitigation: Review file paths and prompt strings before execution, especially on Windows. <br>
+## Use Case:
 
+Developers and agents use this skill to validate declare-render JSON schemas, render them to PNG or JPG images, and optionally generate a schema from a natural-language prompt before rendering it.
 
-## Reference(s): <br>
-- [Materials CLI on ClawHub](https://clawhub.ai/cai-zhuo/materials-cli) <br>
-- [node-canvas installation guide](https://github.com/Automattic/node-canvas#installation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Code, Files, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and file-oriented outputs such as JSON schemas and PNG/JPG images] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js for CLI execution and OPENAI_API_KEY for AI schema generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The security evidence says unreviewed local code receives the OpenAI API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installed code and dependency set before use, and run with a scoped API key in an environment that limits credential exposure.
+
+Risk: The security evidence flags a Windows launcher pattern that can turn crafted arguments into shell commands.
+
+Mitigation: Avoid using the Windows launcher path until the release removes shell-based launching or the command arguments have been independently reviewed.
+
+Risk: The security guidance calls out missing clarity around render dimensions and data sent to the configured OpenAI-compatible endpoint.
+
+Mitigation: Validate schema dimensions before rendering and document or review prompt/schema data handling before enabling AI-assisted generation.
+
+## Reference(s):
+
+- [Materials Cli release page](https://clawhub.ai/cai-zhuo/skills/materials-cli)
+- [node-canvas installation guide](https://github.com/Automattic/node-canvas#installation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON schema or image file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require Node, canvas system dependencies, and OPENAI_API_KEY for AI-assisted generation.]
+
+## Skill Version(s):
+
+1.0.8 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

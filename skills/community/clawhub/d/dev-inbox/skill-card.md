@@ -1,42 +1,53 @@
-## Description: <br>
-Triage and route anything that comes up during a session - bugs, ideas, improvements, small fixes - to the right place. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Triage and persist work outside the explicit active objective when a message contains multiple requests, an item is unrelated or deferred, the user asks to remember, track, log, or handle something later, or invokes dev-inbox.
 
-## Publisher: <br>
-[clarezoe](https://clawhub.ai/user/clarezoe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clarezoe](https://clawhub.ai/user/clarezoe)
 
-## Use Case: <br>
-Developers, writers, designers, and other agent users use this skill to capture off-task bugs, ideas, improvements, and follow-up work during a session, then route each item to GitHub Issues, agent memory, TODO.md, or a paste-ready fallback so it remains discoverable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad automatic triggers may turn casual off-task phrases into durable notes, memory entries, or GitHub Issues. <br>
-Mitigation: Configure the agent to ask for confirmation before writing records, especially before storing conversation content or creating GitHub Issues. <br>
-Risk: Persistent local or remote writes can preserve sensitive or irrelevant session content longer than intended. <br>
-Mitigation: Review the proposed title, type, priority, destination, and body before approving any record. <br>
+## Use Case:
 
+Developers and agents use this skill to separate active work from deferred or unrelated items, classify those items, and persist them to a discoverable follow-up destination.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/clarezoe/dev-inbox) <br>
-- [README](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and structured task records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or append persistent records in GitHub Issues, agent memory, TODO.md, or paste-ready text after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata and skill metadata) <br>
+Risk: Session content may be saved or published to GitHub issues, agent memory, or TODO.md without enough destination-specific confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the workflow before installing and add explicit confirmation for durable or remote writes where required.
+
+Risk: Secrets, customer data, private vulnerability details, or sensitive internal plans could be persisted if they appear in deferred work items.
+
+Mitigation: Avoid using the skill with sensitive content unless the workflow is modified to require redaction before records are written.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clarezoe/skills/dev-inbox)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with record templates, optional shell commands, and concise confirmation text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update GitHub issues, agent memory entries, or TODO.md records depending on the available environment.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

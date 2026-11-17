@@ -1,43 +1,54 @@
-## Description: <br>
-Resource Master helps estimate and consolidate server hardware requirements for healthcare product projects from local knowledge-base resource-planning documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Resource Master helps agents estimate and summarize hospital server hardware resources from Chinese-language knowledge-base documents, including merged assessments across multiple medical products.
 
-## Publisher: <br>
-[hellohushuai](https://clawhub.ai/user/hellohushuai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hellohushuai](https://clawhub.ai/user/hellohushuai)
 
-## Use Case: <br>
-External users and implementation teams use this skill to plan healthcare project server resources, compare single-product estimates, and summarize consolidated infrastructure requirements across multiple products. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Server estimates can be misleading if the local kb folder contains outdated or untrusted resource-planning documents. <br>
-Mitigation: Use only vetted kb documents and review the generated estimates before relying on them for procurement or deployment planning. <br>
-Risk: Required planning inputs may be missing or ambiguous, such as annual outpatient volume, inpatient volume, staff count, or product list. <br>
-Mitigation: Ask for missing inputs before producing final resource tables and keep source-path notes with the estimate. <br>
-Risk: The server release version is 1.0.6 while bundled artifact metadata lists 1.0.5. <br>
-Mitigation: Confirm that the version mismatch is expected before installing or publishing the card. <br>
+## Use Case:
 
+Developers, implementation engineers, and healthcare project teams use this Chinese-language skill to turn hospital scale inputs and selected medical products into server resource estimates, consolidated hardware tables, resource totals, and deployment notes.
 
-## Reference(s): <br>
-- [Hardware resource planning template](references/hardware-template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/hellohushuai/resource-master) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown tables and concise recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes source-path notes for referenced kb documents when estimates are produced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence; bundled artifact metadata lists 1.0.5) <br>
+Risk: The skill reads relevant local kb/ documents, so sensitive or unrelated files in that scope could influence generated estimates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep sensitive or unrelated documents outside the kb/ scope and review the cited source paths in the response.
+
+Risk: Hardware estimates can be inaccurate when knowledge-base documents are stale or project inputs such as outpatient volume, inpatient volume, staff count, or product list are incomplete.
+
+Mitigation: Provide the required sizing inputs and verify final resource tables against current project requirements before procurement or deployment planning.
+
+## Reference(s):
+
+- [Hardware resource sizing template](references/hardware-template.md)
+- [ClawHub skill page](https://clawhub.ai/hellohushuai/skills/resource-master)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese-language Markdown tables and concise prose with source-path citations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local kb/ documents as supporting evidence for estimates]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

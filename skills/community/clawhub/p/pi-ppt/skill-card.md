@@ -1,41 +1,54 @@
-## Description: <br>
-Generate PPTs using services provided by PI (Presentation Intelligence). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate PPTs using services provided by PI (Presentation Intelligence).
 
-## Publisher: <br>
-[xmcbbkad](https://clawhub.ai/user/xmcbbkad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xmcbbkad](https://clawhub.ai/user/xmcbbkad)
 
-## Use Case: <br>
-External users and developers use this skill to turn a topic, outline, prompt, or supported source document into a generated PowerPoint presentation through the PI service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and uploaded documents are sent to the configured PI service for processing. <br>
-Mitigation: Use only trusted PI service endpoints, scope PI credentials, and avoid submitting confidential or sensitive documents unless that service use is approved. <br>
-Risk: PI credentials are required in environment variables and could be exposed through shared shells, command histories, or logs. <br>
-Mitigation: Provide PIPPT_APP_ID and PIPPT_APP_SECRET through a secure runtime environment and avoid pasting secrets into shared command lines or logs. <br>
+## Use Case:
 
+External users and developers use this skill to generate editable PowerPoint decks from a topic, outline, prompt, or a supported uploaded document through the PI service.
 
-## Reference(s): <br>
-- [PI website](https://www.pi.inc/) <br>
-- [ClawHub skill page](https://clawhub.ai/xmcbbkad/pi-ppt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, API calls, Files, Guidance] <br>
-**Output Format:** [Console text with a generated PowerPoint URL] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The generated deck is produced by the PI service and can be viewed, edited, downloaded, and reused from the returned URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release evidence) <br>
+Risk: The skill sends prompts and optional uploaded documents to the external PI service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the configured PIPPT_BASE_URL is a trusted HTTPS PI endpoint and only submit documents your organization permits PI to process.
+
+Risk: The skill requires PI application credentials in environment variables.
+
+Mitigation: Store PIPPT_APP_ID and PIPPT_APP_SECRET in a managed secret store or runtime environment and avoid placing them in prompts, command history, or source files.
+
+## Reference(s):
+
+- [PI website](https://www.pi.inc/)
+- [ClawHub skill page](https://clawhub.ai/xmcbbkad/skills/pi-ppt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and a generated PPT document URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated decks usually take about 3-6 minutes and may be based on one supported uploaded document.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

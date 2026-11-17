@@ -1,41 +1,54 @@
-## Description: <br>
-Helps an agent scope a minimum viable product by collecting candidate features, cutting them to essentials, defining positioning, platform requirements, success metrics, and deferred work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Product Scoper helps agents define an MVP scope, decide which features to include or cut, create product positioning, and set success metrics.
 
-## Publisher: <br>
-[qiu-difeng](https://clawhub.ai/user/qiu-difeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiu-difeng](https://clawhub.ai/user/qiu-difeng)
 
-## Use Case: <br>
-Developers, founders, and product teams use this skill to turn a product idea or prior opportunity and competitor analysis into a tightly scoped MVP plan with a short feature set, positioning statement, cut list, platform considerations, and success metrics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product, provider, payment, and legal recommendations may be incomplete or unsuitable for a specific market or launch context. <br>
-Mitigation: Treat the output as planning guidance and review platform, payment, privacy, and legal decisions before relying on them. <br>
-Risk: Users could share real secrets or production credentials while discussing OAuth, payment, hosting, or integration choices. <br>
-Mitigation: Do not paste real secrets or production credentials unless a separate trusted tool explicitly requires them. <br>
+## Use Case:
 
+External product builders, founders, and developers use this skill to turn product ideas and competitor inputs into a concise MVP scope, positioning statement, feature table, cut list, platform spec, and launch metrics.
 
-## Reference(s): <br>
-- [Platform Specification Reference](artifact/references/platform-spec.md) <br>
-- [ClawHub skill page](https://clawhub.ai/qiu-difeng/niche-product-scoper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown prose and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include feature tables, positioning statements, explicit cut lists, platform choices, success metrics, and kill thresholds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: release evidence) <br>
+Risk: Platform and language defaults may be inappropriate for products that are not China-focused or that need multilingual launch support.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adapt the platform, authentication, payment, hosting, internationalization, and legal defaults before using the generated scope as a build plan.
+
+Risk: Strict MVP feature cuts could omit required compliance, safety, support, or operational work for regulated or high-risk products.
+
+Mitigation: Have the final scope reviewed by product, legal, security, and operations stakeholders before implementation.
+
+## Reference(s):
+
+- [Platform Specification Reference](references/platform-spec.md)
+- [Product Scoper ClawHub Listing](https://clawhub.ai/qiu-difeng/skills/niche-product-scoper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown scope document with feature tables, positioning, cut decisions, platform requirements, and success metrics]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides the agent toward an MVP with three to five core features and explicit deferred items.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence; artifact frontmatter metadata.version is 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Security scanner for OpenClaw skills that helps agents check for prompt injection, data exfiltration, permission overreach, suspicious URLs, dangerous commands, and metadata mismatches before installation or use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawGuard Scanner helps agents scan OpenClaw skills for prompt injection, data exfiltration, permission overreach, suspicious URLs, dangerous commands, and metadata mismatches before installation or audit.
 
-## Publisher: <br>
-[Frrrrrrrrank](https://clawhub.ai/user/Frrrrrrrrank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[frrrrrrrrank](https://clawhub.ai/user/frrrrrrrrank)
 
-## Use Case: <br>
-Developers and agent operators use this skill to scan third-party OpenClaw skills before installation or safety review. It guides the agent to run ClawGuard, report findings by severity, and proceed only when risks are clear to the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may run a third-party npm CLI through npx or recommend a global npm install. <br>
-Mitigation: Verify the intended ClawGuard package before first use, prefer a pinned or isolated npx invocation, and require explicit approval before any global install. <br>
-Risk: A clean ClawGuard result may be treated as proof that a skill is fully safe. <br>
-Mitigation: Treat scan results as warning signals for known patterns and continue reviewing skill behavior, permissions, and external links before installation. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to scan OpenClaw skill directories before installation or during audits, then interpret findings and decide whether installation should proceed.
 
-## Reference(s): <br>
-- [ClawGuard Scanner on ClawHub](https://clawhub.ai/Frrrrrrrrank/clawguard-scanner) <br>
-- [ClawGuard homepage](https://github.com/Frrrrrrrrank/clawguard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and severity-grouped scan results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May request explicit user approval before installation when scan findings indicate high or critical risk.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill asks agents to run an unpinned npm package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, verified ClawGuard package version and run it in a sandbox with read-only access to the target skill directory.
+
+Risk: The fallback global install path can persist tooling on the host.
+
+Mitigation: Avoid global installation unless the package source is trusted and the user accepts persistent host changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/frrrrrrrrank/skills/clawguard-scanner)
+- [Declared project homepage](https://github.com/Frrrrrrrrank/clawguard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON scan output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke npx to run ClawGuard against a target skill directory.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

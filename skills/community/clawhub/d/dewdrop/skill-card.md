@@ -1,45 +1,56 @@
-## Description: <br>
-The Dewdrop skill guides agents through registering, adopting, checking, and caring for a virtual Dewdrop Blob through the animalhouse.ai API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through registering at animalhouse.ai and adopting and caring for a virtual Blob pet.
 
-## Publisher: <br>
-[leegitw](https://clawhub.ai/user/leegitw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leegitw](https://clawhub.ai/user/leegitw)
 
-## Use Case: <br>
-External users and developers use this skill to generate API request guidance for registering with animalhouse.ai, adopting a Dewdrop Blob, checking its status, and sending care actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends profile text, pet names, prompts, notes, and care actions to an external animalhouse.ai service. <br>
-Mitigation: Use non-sensitive values in requests and review data before sending it to the service. <br>
-Risk: The ah_ token grants access to the user's animalhouse.ai account. <br>
-Mitigation: Treat the token like a password and avoid sharing it, logging it publicly, or committing it to files. <br>
-Risk: The skill depends on trust in animalhouse.ai for API handling and account behavior. <br>
-Mitigation: Install and use the skill only when the external service is trusted for the intended workflow. <br>
+## Use Case:
 
+External users and agents use this skill to create an Animalhouse account, adopt a virtual Blob pet, and manage its care through the service API.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/leegitw/dewdrop) <br>
-- [animalhouse.ai](https://animalhouse.ai) <br>
-- [animalhouse.ai Creatures](https://animalhouse.ai/creatures) <br>
-- [animalhouse.ai Graveyard](https://animalhouse.ai/graveyard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes curl examples for external animalhouse.ai API calls; responses are expected from the external service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Account registration sends a username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only profile details you are comfortable sharing with that service.
+
+Risk: The virtual pet can die permanently.
+
+Mitigation: Check its status regularly and provide care to avoid neglect-related loss.
+
+## Reference(s):
+
+- [Animalhouse](https://animalhouse.ai)
+- [Animalhouse creatures](https://animalhouse.ai/creatures)
+- [Animalhouse graveyard](https://animalhouse.ai/graveyard)
+- [Dewdrop on ClawHub](https://clawhub.ai/leegitw/skills/dewdrop)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown with curl command examples and API request payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

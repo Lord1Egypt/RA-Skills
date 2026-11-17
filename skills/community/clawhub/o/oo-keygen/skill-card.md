@@ -1,42 +1,55 @@
-## Description: <br>
-Keygen (keygen.sh). Use this skill for ANY Keygen request: reading, creating, updating, and deleting data through the OOMOL connector instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the oo CLI to inspect and manage Keygen resources through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to manage Keygen products, policies, licenses, users, groups, entitlements, machines, components, and processes from an agent. It supports read operations as well as state-changing account workflows when the user has connected Keygen through OOMOL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can route broad read, write, and destructive actions into a connected Keygen account. <br>
-Mitigation: Require clear user intent before account-impacting actions and explicit confirmation for actions tagged write or destructive. <br>
-Risk: The skill requires sensitive account credentials through the connector. <br>
-Mitigation: Install only when the user intends to let the agent access Keygen through OOMOL, and rely on the connector's server-side credential handling rather than exposing raw API tokens. <br>
+## Use Case:
 
+Developers and operations teams use this skill to inspect Keygen accounts and manage licenses, users, machines, products, policies, and related resources. It can also validate license keys and IDs.
 
-## Reference(s): <br>
-- [ClawHub Keygen skill listing](https://clawhub.ai/oomol/oo-keygen) <br>
-- [Keygen homepage](https://keygen.sh) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The agent should inspect the live connector schema before constructing action payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The security review says check-ins and heartbeats are treated as harmless reads even though they can change state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Correct the action classifications and require user authorization before check-ins or heartbeat actions, including starting and maintaining heartbeat monitoring.
+
+Risk: The hosted connector implementation and remote CLI installer have not been audited.
+
+Mitigation: Use a suitably restricted Keygen account, understand that OOMOL handles its credentials and requests, and review and verify the CLI installation and bundled skill changes.
+
+## Reference(s):
+
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [Keygen](https://keygen.sh)
+- [Keygen API documentation](https://keygen.sh/docs/api/)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, Shell commands, Guidance, Text]
+
+**Output Format:** [Markdown guidance with oo CLI commands and JSON payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Action-specific JSON inputs and Keygen response data]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

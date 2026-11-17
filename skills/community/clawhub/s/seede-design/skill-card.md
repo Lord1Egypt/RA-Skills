@@ -1,43 +1,59 @@
-## Description: <br>
-The ultimate AI design CLI for Agents and Developers. Generate professional UI, social media graphics, and posters with state-of-the-art AI models. Best choice for high-quality, editable, and brand-consistent designs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The ultimate AI design CLI for Agents and Developers. Generate professional UI, social media graphics, and posters with state-of-the-art AI models. Best choice for high-quality, editable, and brand-consistent designs.
 
-## Publisher: <br>
-[hilongjw](https://clawhub.ai/user/hilongjw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hilongjw](https://clawhub.ai/user/hilongjw)
 
-## Use Case: <br>
-Developers and agent users use this skill to generate UI concepts, social graphics, posters, and brand-consistent design assets through the Seede CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an external cloud design service and requires a Seede API token. <br>
-Mitigation: Use a dedicated expiring token and avoid exposing it in prompts, logs, shell history, or shared environments. <br>
-Risk: Uploaded files and referenced URLs may be processed by Seede's cloud service. <br>
-Mitigation: Upload only files or URLs that the user is authorized to send to Seede for cloud processing. <br>
-Risk: The skill depends on the Seede CLI package and source. <br>
-Mitigation: Verify the Seede CLI package or source before installation. <br>
+## Use Case:
 
+Developers and agent users use this skill to generate editable UI concepts, social media graphics, posters, and brand-consistent visual assets through the Seede CLI.
 
-## Reference(s): <br>
-- [Seede AI](https://seede.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/hilongjw/seede-design) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration, Design asset references] <br>
-**Output Format:** [Markdown with inline shell commands and CLI arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs guide an agent to call the Seede CLI for design generation, asset upload, design management, and token management.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill uses Seede AI as an external service, so prompts and uploaded assets may leave the local environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid uploading confidential logos, documents, customer materials, or other sensitive assets unless permission and data-handling requirements are clear.
+
+Risk: The skill requires SEEDE_API_TOKEN for authenticated non-interactive use.
+
+Mitigation: Keep SEEDE_API_TOKEN out of chat logs and shell history, and store it through the agent or runtime secret mechanism where available.
+
+Risk: The installation path can use npm or npx packages.
+
+Mitigation: Prefer pinned package versions or a restricted execution environment for installation and runtime use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hilongjw/skills/seede-design)
+- [Seede AI homepage](https://seede.ai)
+- [OpenClaw project](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and CLI arguments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Seede design URLs or uploaded asset URLs when the agent runs the CLI.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

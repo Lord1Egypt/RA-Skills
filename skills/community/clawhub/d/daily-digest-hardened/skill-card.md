@@ -1,46 +1,58 @@
-## Description: <br>
-Generate a daily digest from memory and interactions, stored under journals/digest/. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a daily digest from memory and interactions, stored under journals/digest/.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-Developers and Clawdbot users use this skill to generate a local daily Markdown digest from current memory notes, including decisions, lessons, actions, and questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The implementation may copy secrets from memory notes into persistent digest files even though the skill promises secret filtering. <br>
-Mitigation: Review and sanitize memory files before running the skill, and treat generated digest files as sensitive until real secret detection is implemented. <br>
-Risk: Scheduled execution can persist sensitive memory content without an interactive review step. <br>
-Mitigation: Avoid automatic scheduling unless the memory source is already sanitized and digest outputs are stored with appropriate access controls. <br>
-Risk: Memory content can contain prompt-injection text or requests for destructive actions. <br>
-Mitigation: Treat memory entries as data only; do not follow embedded instructions, transmit digest contents externally, or modify source memory files during digest generation. <br>
+## Use Case:
 
+Developers and Clawdbot users use this skill to produce a local daily Markdown digest from current memory notes and recent interactions. It is intended for recurring personal or team workflow summaries saved under journals/digest/.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/snazar-faberlens/daily-digest-hardened) <br>
-- [Publisher Profile](https://clawhub.ai/user/snazar-faberlens) <br>
-- [Safety Evaluation](https://faberlens.ai/explore/daily-digest) <br>
-- [README.md](artifact/README.md) <br>
-- [SAFETY.md](artifact/SAFETY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown digest file and concise shell usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes journals/digest/digest-YYYY-MM-DD.md locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Memory notes may contain credential values that could be copied into persistent digest files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only on sanitized memory notes, review generated digest files before sharing or committing them, and rotate any real secrets already copied into digest output.
+
+Risk: Memory files are an untrusted input surface and may contain prompt-injection text framed as instructions.
+
+Mitigation: Treat memory content as source data only and keep digest generation limited to summarization rather than executing embedded requests.
+
+Risk: Digest content and memory-derived summaries can expose private user information if transmitted externally.
+
+Mitigation: Keep processing local and avoid sending digest contents, metadata, or memory excerpts to webhooks, APIs, or other external services.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/skills/daily-digest-hardened)
+- [Faberlens daily-digest safety evaluation](https://faberlens.ai/explore/daily-digest)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown file with structured digest sections and optional inline shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a dated digest file to journals/digest/ when the script is executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

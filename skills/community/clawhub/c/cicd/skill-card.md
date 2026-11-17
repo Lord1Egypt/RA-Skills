@@ -1,38 +1,53 @@
-## Description: <br>
-Pipelines, gates, artifacts, and safe deployments. Use when setting up CI/CD, hardening pipelines, or reducing release risk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides structured guidance for setting up CI/CD pipelines, gates, artifacts, safe deployments, pipeline hardening, and release-risk reduction.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan, review, harden, and communicate CI/CD pipeline changes with clear stages, verification steps, and operational follow-through. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: CI/CD recommendations can affect deployments, permissions, secrets, or rollout behavior if applied without review. <br>
-Mitigation: Have a qualified maintainer review proposed pipeline, permission, secret, and rollout changes before applying them to real systems. <br>
+## Use Case:
 
+Developers and release engineers use this skill to structure CI/CD planning, hardening, rollout review, and operational follow-through for pipelines and deployments.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/codenova58/cicd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with checklists and procedural steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The staged workflow can add process overhead when a user only wants quick CI/CD advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Offer the four stages briefly and switch to freeform support if the user declines the workflow.
+
+Risk: CI/CD recommendations can miss environment-specific constraints around secrets, permissions, approvals, deployment strategy, or rollback readiness.
+
+Mitigation: Ask targeted context questions before strong recommendations and tie guidance to explicit verification steps.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codenova58/skills/cicd)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown or plain text with staged recommendations, checklists, trade-offs, and verification steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; guidance adapts to the user's preference for a structured workflow or freeform help.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

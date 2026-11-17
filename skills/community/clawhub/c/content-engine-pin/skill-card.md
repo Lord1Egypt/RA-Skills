@@ -1,45 +1,59 @@
-## Description: <br>
-A Chinese-language OpenClaw and Obsidian workflow for planning, drafting, distributing, and analyzing content production across platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+用 OpenClaw + Obsidian 搭建内容工厂，系统化生产百万阅读爆文。涵盖选题策略、内容框架、AI 辅助创作、多平台分发、数据分析全流程。适合自媒体创作者、内容团队、个人 IP 建设者。
 
-## Publisher: <br>
-[huamu668](https://clawhub.ai/user/huamu668) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[huamu668](https://clawhub.ai/user/huamu668)
 
-## Use Case: <br>
-External creators, content teams, and personal-brand operators use this skill to organize a content factory in Obsidian with OpenClaw-assisted ideation, drafting, publishing schedules, analytics reviews, and reusable templates. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Setup commands may install OpenClaw packages or create local symlinks. <br>
-Mitigation: Verify the OpenClaw package name and symlink target before running setup commands. <br>
-Risk: Obsidian vault workflows may collect or organize private drafts, analytics, or source material. <br>
-Mitigation: Keep secrets and unrelated private files out of the vault used with this skill. <br>
-Risk: AI-assisted content can contain inaccurate claims or unsuitable publishing recommendations. <br>
-Mitigation: Review generated content manually before publishing or scheduling it on real platforms. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/huamu668/content-engine-pin) <br>
-- [Obsidian](https://obsidian.md) <br>
-- [Skill README](artifact/README.md) <br>
-- [A/B Test Template](artifact/templates/AB测试模板.md) <br>
-- [Topic Template](artifact/templates/选题模板.md) <br>
+## Use Case:
 
+Content creators, content teams, and personal-brand operators use this skill to structure an OpenClaw and Obsidian workflow for ideation, drafting, platform adaptation, analytics, and content review.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, workflow checklists, and reusable templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language content operations workflow for OpenClaw and Obsidian] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The workflow asks users to install an unpinned openclaw-multiagent dependency.
+
+Mitigation: Pin and verify the dependency before installation, and install it only from a trusted source.
+
+Risk: Scheduled Daily and Weekly automation may scan sources and write results into an Obsidian vault without clear review controls.
+
+Mitigation: Configure the vault path narrowly, confirm scanned sources and write locations, and enable hooks only after review.
+
+Risk: Generated notes, drafts, and analytics can influence public content decisions if accepted without review.
+
+Mitigation: Review generated content and keep vault backups or version history before publishing or overwriting notes.
+
+## Reference(s):
+
+- [Content Engine release page](https://clawhub.ai/huamu668/skills/content-engine-pin)
+- [Obsidian](https://obsidian.md)
+- [Topic template](templates/选题模板.md)
+- [A/B testing template](templates/AB测试模板.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and reusable note templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Chinese-language workflow guidance, Obsidian vault structure, content templates, and suggested OpenClaw commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

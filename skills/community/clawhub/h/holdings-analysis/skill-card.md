@@ -1,43 +1,57 @@
-## Description: <br>
-实时诊断持仓，结合腾讯行情和技术指标，计算买卖评分、状态、操作信号和盈亏情况。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+实时诊断股票持仓，调用腾讯行情数据并结合技术指标计算买入评分、卖出评分、PASS/FAIL 状态、操作信号和盈亏情况。
 
-## Publisher: <br>
-[jayden-zhong](https://clawhub.ai/user/jayden-zhong) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jayden-zhong](https://clawhub.ai/user/jayden-zhong)
 
-## Use Case: <br>
-Investors or agents maintaining a local holdings list use this skill to fetch current market data, score portfolio positions, and produce concise hold, warning, sell, pass, or fail diagnostics. Its outputs are portfolio analysis aids and should not be treated as financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads and executes holdings data and imports modules from a hard-coded external workspace path. <br>
-Mitigation: Install and run it only in a private, trusted workspace where untrusted users or tools cannot edit the referenced holdings file or imported modules. <br>
-Risk: Portfolio symbols and analysis inputs may be transmitted to Tencent market-data endpoints and analysis results may be saved locally. <br>
-Mitigation: Use only holdings data appropriate for external market-data requests, and review local output files for sensitive portfolio details before sharing. <br>
-Risk: The generated scores and sell or hold signals can be mistaken for investment advice. <br>
-Mitigation: Treat outputs as diagnostic signals for review, not as authoritative financial recommendations. <br>
+## Use Case:
 
+External users and developers use this skill to analyze a supplied stock holdings list, retrieve market data, compute technical scores, and identify hold, warn, or sell signals for portfolio review. The artifact states that the analysis is for learning and research and does not constitute investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jayden-zhong/holdings-analysis) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/jayden-zhong) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Console text and local JSON files with stock scores, signals, status labels, profit/loss metrics, and summary statistics] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces portfolio diagnostics from local holdings data and external market-data responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The security summary says the skill runs code from hardcoded external .qclaw workspace paths and can load replacement modules outside the reviewed package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, run only when every referenced workspace file is trusted, and prefer a packaged version that reads holdings from explicit JSON or CSV inputs.
+
+Risk: Stock analysis output can be mistaken for investment advice.
+
+Mitigation: Use the output as informational portfolio review, confirm market data and decisions independently, and keep the non-advice disclaimer visible to users.
+
+Risk: Live market-data requests can fail or return incomplete data, which may leave prices, scores, or signals missing.
+
+Mitigation: Check generated JSON and text summaries for missing or zero-valued fields before relying on the analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jayden-zhong/skills/holdings-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and JSON analysis summaries with Python command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local holdings analysis files and depends on live market data availability.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

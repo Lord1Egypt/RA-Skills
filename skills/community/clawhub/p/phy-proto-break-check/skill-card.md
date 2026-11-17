@@ -1,43 +1,54 @@
-## Description: <br>
-Phy Proto Break Check compares versions of Protobuf and gRPC .proto files and classifies compatibility changes as critical, breaking, non-breaking, or informational. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Protobuf/gRPC breaking change detector that compares .proto schema versions and reports critical, breaking, non-breaking, and note-level changes with migration guidance and a CI fail-gate command.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers and platform engineers use this skill before merging Protobuf or gRPC schema changes to find wire-compatibility, generated-stub, and migration risks. It can compare git revisions, directories, or before-and-after proto files and produce findings suitable for release review or CI gating. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local .proto files and may inspect git history in repositories or directories selected by the user. <br>
-Mitigation: Run it only against intended repositories and paths, and avoid pointing it at unrelated sensitive source trees. <br>
-Risk: Generated CI fail-gate commands could affect build or release automation if copied without review. <br>
-Mitigation: Review the proposed command and scope before adding it to CI or release workflows. <br>
-Risk: The artifact uses regex-based proto parsing rather than protoc, so unusual or complex proto syntax may require human review. <br>
-Mitigation: Treat findings as compatibility review support and pair them with established proto tooling or manual review for complex schemas. <br>
+## Use Case:
 
+Developers and backend engineers use this skill before merging protobuf or gRPC schema changes to identify compatibility breaks across messages, fields, enums, services, and RPCs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-proto-break-check) <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown findings with migration guidance, inline code or shell commands, and an optional CI fail-gate command.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Groups findings by severity and highlights concrete migration steps for breaking changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and skill metadata) <br>
+Risk: The checker may read .proto files from selected directories or git refs and may run local git commands to inspect history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only against intended repositories and paths, and review command scope before using git-history based comparisons.
+
+Risk: Detection accuracy is imperfect and findings may miss some protobuf compatibility issues.
+
+Mitigation: Treat results as a compatibility aid, review findings manually, and combine with protobuf tooling such as buf lint or protoc validation when appropriate.
+
+## Reference(s):
+
+- [Canlah AI homepage](https://canlah.ai)
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-proto-break-check)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style analysis with categorized findings, migration guidance, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include CI fail-gate command suggestions for blocking critical or breaking protobuf changes.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

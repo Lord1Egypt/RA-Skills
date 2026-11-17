@@ -1,45 +1,57 @@
-## Description: <br>
-Connect to Kubernetes clusters using YAML configuration files. Use when you need to apply, validate, or manage Kubernetes resources via kubectl with YAML input. Handles kubeconfig creation, context switching, and resource deployment from YAML content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect to Kubernetes clusters using YAML configuration files. Use when you need to apply, validate, or manage Kubernetes resources via kubectl with YAML input. Handles kubeconfig creation, context switching, and resource deployment from YAML content.
 
-## Publisher: <br>
-[jokerzeng](https://clawhub.ai/user/jokerzeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jokerzeng](https://clawhub.ai/user/jokerzeng)
 
-## Use Case: <br>
-Developers and platform engineers use this skill to validate Kubernetes YAML, apply manifests, manage kubeconfig files, and switch kubectl contexts for accessible clusters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: kubectl commands can affect real Kubernetes clusters. <br>
-Mitigation: Run dry-runs first, confirm the current context and namespace, and avoid production unless explicitly intended. <br>
-Risk: Untrusted manifests can create, modify, or delete cluster resources. <br>
-Mitigation: Review manifests before applying them and validate YAML before execution. <br>
-Risk: Kubeconfig files can contain credentials or sensitive cluster access details. <br>
-Mitigation: Store kubeconfig files with restrictive permissions such as mode 600. <br>
+## Use Case:
 
+Developers and platform engineers use this skill to validate Kubernetes YAML, apply resources with kubectl, manage kubeconfig files, switch contexts, and inspect cluster status.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jokerzeng/k8s-yaml-connect) <br>
-- [Kubernetes Documentation](https://kubernetes.io/docs/) <br>
-- [kubectl Cheat Sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/) <br>
-- [Kubernetes Configuration Best Practices](https://kubernetes.io/docs/concepts/configuration/overview/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and YAML code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose kubectl commands and kubeconfig handling steps that should be reviewed before execution against a real cluster.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill can apply or validate Kubernetes resources against the active kubectl context, which may affect the wrong cluster or namespace if the context is not checked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the current context and namespace before running kubectl apply, and use dry-run validation before applying manifests.
+
+Risk: The skill handles kubeconfig credentials and may create copied or long-lived credential files.
+
+Mitigation: Use mktemp with mode 0600, avoid persistent copied kubeconfig files, and clean up temporary credential files after use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jokerzeng/skills/k8s-yaml-connect)
+- [Kubernetes Official Documentation](https://kubernetes.io/docs/)
+- [kubectl Cheat Sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
+- [Kubernetes Configuration Overview](https://kubernetes.io/docs/concepts/configuration/overview/)
+- [kubeval](https://github.com/instrumenta/kubeval)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash commands and YAML configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs assume kubectl is installed, a Kubernetes cluster is reachable, and the user has appropriate cluster permissions.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

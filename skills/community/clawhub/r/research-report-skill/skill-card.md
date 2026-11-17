@@ -1,39 +1,50 @@
-## Description: <br>
-Helps users create structured industry research reports, market analyses, business trend analyses, and professional research documents using established research frameworks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user requests industry research reports, market analysis, business trend analysis, or professional research documents.
 
-## Publisher: <br>
-[hy0235](https://clawhub.ai/user/hy0235) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hy0235](https://clawhub.ai/user/hy0235)
 
-## Use Case: <br>
-External users, analysts, and business teams use this skill to scope, research, draft, and review market research reports, competitive intelligence, investment theses, and technology trend reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review marked this release suspicious and recommends review before installation. <br>
-Mitigation: Install only when the publisher is trusted, keep normal sandboxing enabled, and review generated work before relying on it. <br>
-Risk: Research reports can contain outdated, weakly sourced, or misleading market claims. <br>
-Mitigation: Require recent credible sources, citations, and a human review of key claims, calculations, and recommendations. <br>
+## Use Case:
 
+Business users, analysts, strategists, and researchers use this skill to structure and draft industry research reports, market analyses, competitive intelligence, and trend reports.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown research reports, outlines, tables, and review checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Report length and scope are adapted to user requirements; outputs should include cited data and caveats when evidence is limited.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: Research report outputs may contain incorrect assumptions, weak source selection, or outdated market data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review cited sources, assumptions, and conclusions carefully before using outputs for investment, business, or strategic decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hy0235/skills/research-report-skill)
+- [Publisher Profile](https://clawhub.ai/user/hy0235)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports, outlines, tables, and review checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include source-review prompts, data caveats, report outlines, and structured analysis sections.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

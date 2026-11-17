@@ -1,40 +1,53 @@
-## Description: <br>
-Generates professional customer-service reply scripts for multiple industries using AI, with sentiment analysis and quality scoring for support, complaint, and sales scenarios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate professional customer service scripts for more than 10 industries using AI-assisted reply generation, sentiment analysis, and quality scoring.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Customer support teams and automation developers use this skill to draft professional customer-service responses for industry-specific scenarios, including complaints, after-sales follow-up, support, and sales conversion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Customer messages may be sent to the configured OpenClaw API provider. <br>
-Mitigation: Do not submit sensitive customer data unless organizational policy permits sending it to that provider, and configure API credentials only in trusted environments. <br>
-Risk: Generated customer replies may be inaccurate or unsuitable for the specific customer context. <br>
-Mitigation: Review generated replies before using them with customers. <br>
+## Use Case:
 
+Customer service teams, support automation builders, and agent developers use this skill to draft customer replies for complaints, after-sales support, sales conversion, and common service scenarios across industries such as e-commerce, finance, education, and healthcare.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yang1002378395-cmyk/ai-customer-service-scripts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text customer-service scripts with optional quality scores and concise operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an OPENCLAW_API_KEY when running the bundled generator; generated replies should be reviewed before customer use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact documentation) <br>
+Risk: Customer messages may be sent to the OpenClaw LLM provider, including confidential or regulated customer data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where external LLM processing is approved, minimize personal data in prompts, and require human review before sending generated replies in sensitive industries.
+
+Risk: The artifact depends on external packages and runtime API credentials.
+
+Mitigation: Install dependencies in an isolated environment with pinned versions, and provide OPENCLAW_API_KEY through managed secrets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-customer-service-scripts)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, guidance]
+
+**Output Format:** [Plain text customer-service replies with Python and command-line usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated replies are scored from 0 to 100 by a simple quality heuristic.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

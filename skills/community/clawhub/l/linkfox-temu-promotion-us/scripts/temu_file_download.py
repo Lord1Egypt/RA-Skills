@@ -53,7 +53,7 @@ def main():
 
     params = load_json_arg(sys.argv)
     body = build_request(params)
-    result = call_temu_api(FILE_DOWNLOAD_URL, body, timeout=120, linkfox_params=params)
+    result = call_temu_api(FILE_DOWNLOAD_URL, body, timeout=150, linkfox_params=params)
     inline = lf_inline_flag()
     emit_result(result, inline)
 

@@ -1,44 +1,62 @@
-## Description: <br>
-PRECC Token Saver instructs an agent to route shell commands through precc-hook so commands can be rewritten for directory fixes, output compression, and learned command heuristics before execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Before running shell commands, the skill tells an agent to route them through the PRECC hook to correct working-directory issues, compress command output, and apply learned command heuristics.
 
-## Publisher: <br>
-[yijunyu](https://clawhub.ai/user/yijunyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yijunyu](https://clawhub.ai/user/yijunyu)
 
-## Use Case: <br>
-Developers and engineers using OpenClaw agents use this skill to reduce shell-command token usage and prevent repeated command failures by routing shell commands through PRECC before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill routes shell commands through external tooling that can rewrite commands before execution. <br>
-Mitigation: Install only when PRECC is trusted for the target projects, review rewritten commands, and verify how to disable the hook. <br>
-Risk: Setup guidance includes external installation and update flows that can change local tooling. <br>
-Mitigation: Prefer pinned or package-manager installs, review update behavior, and avoid curl-to-bash installation in sensitive environments. <br>
-Risk: Optional session-history ingestion can expose sensitive local workflow data. <br>
-Mitigation: Avoid broad history ingestion on sensitive work and confirm how learned local data can be cleared. <br>
+## Use Case:
 
+Developers and engineers use this skill to have an agent pre-process shell commands through PRECC so command failures, verbose output, and repeated shell mistakes can be reduced during coding sessions.
 
-## Reference(s): <br>
-- [PRECC project homepage](https://github.com/yijunyu/precc-cc) <br>
-- [OpenClaw native PreToolUse hook issue](https://github.com/openclaw/openclaw/issues/7597) <br>
-- [ClawHub skill page](https://clawhub.ai/yijunyu/precc-token-saver) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown instructions with JSON hook payload examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides the agent to invoke precc-hook before shell execution and may result in rewritten shell commands; hook errors fall back to the original command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.8 (source: frontmatter and server release metadata) <br>
+Risk: The PRECC hook can inspect and rewrite every shell command the agent runs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in repositories where PRECC is trusted, review rewritten commands before execution in sensitive contexts, and avoid routing secrets through shell commands.
+
+Risk: The setup flow includes a curl-to-bash installer.
+
+Mitigation: Prefer the documented package-manager installation path when possible, or pin and verify the installer before running it.
+
+Risk: History ingestion can process prior session data.
+
+Mitigation: Run history ingestion only after confirming which histories will be read and that they do not contain sensitive material.
+
+Risk: The hook is prompt-level in OpenClaw rather than platform-enforced.
+
+Mitigation: Treat command rewriting as agent-enforced guidance, and verify high-impact commands manually before execution.
+
+## Reference(s):
+
+- [PRECC project homepage](https://github.com/yijunyu/precc-cc)
+- [OpenClaw native PreToolUse tracking issue](https://github.com/openclaw/openclaw/issues/7597)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON hook examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill instructs the agent to parse PRECC hook JSON and execute a rewritten shell command when one is returned.]
+
+## Skill Version(s):
+
+0.1.8 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

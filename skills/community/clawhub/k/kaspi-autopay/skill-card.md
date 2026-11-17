@@ -1,40 +1,50 @@
-## Description: <br>
-Automates Kaspi Pay receipt verification and product delivery in Telegram bots for Kazakhstan businesses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Telegram bot auto-payment integration for Kazakhstan market (Kaspi Pay) that automates payment verification, receipt checking, and product delivery in Telegram bots.
 
-## Publisher: <br>
-[azamat02](https://clawhub.ai/user/azamat02) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[azamat02](https://clawhub.ai/user/azamat02)
 
-## Use Case: <br>
-Developers and business operators building Telegram-first commerce, service booking, or info-product bots in Kazakhstan can use this skill to plan a managed Kaspi Pay receipt-checking flow with instant fulfillment. <br>
-
-### Deployment Geography for Use: <br>
-Kazakhstan <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Real payment verification, customer receipt handling, and fulfillment decisions may depend on an unreviewed managed integration with unclear data, credential, and control boundaries. <br>
-Mitigation: Verify the developer, request security and data-flow documentation, confirm Kaspi and Telegram compliance, and require scoped credentials, audit logs, limits, deletion terms, and manual override procedures before using it with customers. <br>
-Risk: The proprietary payment verification method may be difficult to audit before production use. <br>
-Mitigation: Test with a non-production Telegram bot first and define dispute handling, failed-verification handling, and rollback procedures before enabling paid customer flows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Kaspi Autopay ClawHub listing](https://clawhub.ai/azamat02/kaspi-autopay) <br>
-- [Developer Telegram contact](https://t.me/saidulyyy) <br>
+## Use Case:
 
+External developers and Kazakhstan businesses use this skill to evaluate a managed Telegram bot integration for Kaspi Pay receipt verification and instant Telegram product or access delivery.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration instructions, Code] <br>
-**Output Format:** [Markdown guidance with implementation notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Telegram bot payment-flow guidance; the artifact describes a managed integration rather than a self-hosted payment verifier.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Kazakhstan
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The managed integration may handle Telegram bot tokens, payment receipts, payment data, refunds, fraud decisions, and Kazakhstan payment-compliance obligations.
+
+Mitigation: Vet the developer and payment-verification method before use, and confirm data handling, refund handling, fraud handling, privacy, and Kazakhstan payment compliance in the service agreement.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/azamat02/skills/kaspi-autopay)
+- [Publisher Profile](https://clawhub.ai/user/azamat02)
+- [Developer Telegram Contact](https://t.me/saidulyyy)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance for a managed integration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code is included in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

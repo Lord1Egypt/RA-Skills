@@ -1,42 +1,57 @@
-## Description: <br>
-Use installed TrueCrypt on Windows to mount, dismount, inspect, and automate legacy TrueCrypt containers or encrypted partitions from the command line. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents provide cautious Windows TrueCrypt command-line commands for mounting, dismounting, inspecting, and automating legacy containers or encrypted partitions.
 
-## Publisher: <br>
-[stanestane](https://clawhub.ai/user/stanestane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stanestane](https://clawhub.ai/user/stanestane)
 
-## Use Case: <br>
-Developers, IT administrators, and power users use this skill to generate cautious Windows TrueCrypt CLI commands for mounting, dismounting, inspecting, and automating legacy TrueCrypt volumes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: TrueCrypt is discontinued, so legacy usage can carry maintenance, compatibility, and security uncertainty. <br>
-Mitigation: Use this skill only when TrueCrypt support is intentionally required, note the discontinued status when relevant, and review generated commands before use. <br>
-Risk: Passing passwords with /p can expose secrets in process listings, logs, or shell history. <br>
-Mitigation: Prefer interactive password entry or keyfiles, and include /p only when the user explicitly accepts the exposure risk. <br>
-Risk: Incorrect volume paths, device paths, or drive letters can mount or dismount the wrong target. <br>
-Mitigation: Confirm the TrueCrypt executable, target volume, and drive letter first; start with install checks or command preparation before risky operations. <br>
+## Use Case:
 
+Developers and operators maintaining legacy TrueCrypt volumes use this skill to get cautious Windows CLI mount, dismount, install-detection, and scripting guidance without exposing secrets unnecessarily.
 
-## Reference(s): <br>
-- [TrueCrypt command cookbook](references/commands.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown with inline PowerShell and batch code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include install checks, command explanations, and cautious validation steps; avoids command-line passwords unless the user accepts that risk.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Command-line passwords may be exposed through process listings, logs, or shell history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using the /p switch unless the user explicitly accepts the exposure risk, and avoid placing real passwords in saved scripts.
+
+Risk: TrueCrypt is discontinued and no longer receives long-term security maintenance.
+
+Mitigation: Use this skill only when legacy TrueCrypt CLI support is intentionally required, and keep the discontinued status visible when security is relevant.
+
+Risk: Mount and dismount commands can affect encrypted volumes and drive-letter state.
+
+Mitigation: Confirm the TrueCrypt executable path, volume or device path, target drive letter, and keyfile requirements before proposing commands; prefer non-destructive checks first.
+
+## Reference(s):
+
+- [TrueCrypt command cookbook](references/commands.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown responses with inline PowerShell or batch command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include install-detection steps, switch explanations, and cautious validation plans.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

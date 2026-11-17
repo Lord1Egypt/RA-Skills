@@ -1,45 +1,60 @@
-## Description: <br>
-Automated daily planning and reflection system with morning briefs, wind-down prompts, sleep nudges, and weekly reviews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Rhythm automates daily planning and reflection with morning briefs, evening wind-down prompts, sleep nudges, and weekly reviews.
 
-## Publisher: <br>
-[alvisdunlop](https://clawhub.ai/user/alvisdunlop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alvisdunlop](https://clawhub.ai/user/alvisdunlop)
 
-## Use Case: <br>
-External users, professionals, and founders use this skill to configure recurring daily planning, task syncing, morning briefings, evening reflection prompts, sleep nudges, and weekly reviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional business metrics syncing uses broad subscription access and can store customer identifiers locally. <br>
-Mitigation: Enable ARR tracking only when needed, do not set SKILLBOSS_API_KEY otherwise, and protect or periodically delete local memory files containing ARR and customer data. <br>
-Risk: The skill requires sensitive credentials such as Google OAuth files, API keys, and optional calendar URLs. <br>
-Mitigation: Keep credentials and ICS URLs out of shared folders and repositories, use least-privilege access where possible, and review scheduled jobs before enabling them. <br>
-Risk: Cron jobs can run scripts repeatedly and persist personal planning, task, and reflection data. <br>
-Mitigation: Review cron entries before installation, scope paths to the intended workspace, and monitor generated memory files for sensitive content. <br>
+## Use Case:
 
+External users and developers use this skill to set up automated morning briefings, evening planning prompts, sleep reminders, and weekly reviews that combine tasks, calendar context, and optional business metrics.
 
-## Reference(s): <br>
-- [Daily Rhythm Configuration Guide](references/CONFIGURATION.md) <br>
-- [Daily Rhythm ClawHub Release](https://clawhub.ai/alvisdunlop/abe-daily-rhythm) <br>
-- [Publisher Profile](https://clawhub.ai/user/alvisdunlop) <br>
-- [Google Cloud Console](https://console.cloud.google.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, cron examples, and generated daily or weekly planning prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local memory files containing tasks, reflections, calendar-derived data, ARR, and customer identifiers when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill accesses Google Tasks, calendar ICS data, and optional subscription or ARR data that may expose sensitive personal or business information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Google OAuth setup with read-only Tasks scope, keep credentials, tokens, ICS URLs, and API keys out of shared folders and repositories, and restrict permissions on credential and memory directories.
+
+Risk: Scheduled cron automation can run scripts and write local memory files without direct review at execution time.
+
+Mitigation: Review each cron entry and script path before enabling automation, run scripts manually first, and disable scheduled jobs that are not needed.
+
+Risk: The optional ARR sync can store customer identifiers and subscription metrics locally.
+
+Mitigation: Inspect or remove ARR sync if it is not required, minimize stored customer identifiers, and protect generated business-data files.
+
+## Reference(s):
+
+- [Daily Rhythm Configuration Guide](references/CONFIGURATION.md)
+- [Heartbeat Template](assets/HEARTBEAT_TEMPLATE.md)
+- [Google Cloud Console](https://console.cloud.google.com/)
+- [Google Tasks read-only OAuth scope](https://www.googleapis.com/auth/tasks.readonly)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, configuration snippets, and generated planning prompts or briefs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can read and write local memory JSON/Markdown files and can call Google Tasks and optional SkillBoss API Hub services when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Privacy-first, self-hosted chat memory for OpenClaw that saves and recalls conversation history across sessions without a cloud dependency. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Privacy-first, self-hosted chat memory for OpenClaw - save and recall conversation history across sessions without any cloud dependency.
 
-## Publisher: <br>
-[ukkit](https://clawhub.ai/user/ukkit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ukkit](https://clawhub.ai/user/ukkit)
 
-## Use Case: <br>
-Developers and OpenClaw users use Memcord to add local, persistent chat memory through an MCP server so agents can save meaningful conversation context and recall it in later sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist chat contents locally and recall them later, which may retain sensitive conversation content. <br>
-Mitigation: Use explicit save requests where possible, avoid saving secrets or credentials, and review local retention expectations before installing. <br>
-Risk: Storage location, deletion, retention, and consent behavior are not clearly documented in the available evidence. <br>
-Mitigation: Review the package documentation and local files before relying on it for ongoing memory, especially in shared or regulated environments. <br>
+## Use Case:
 
+OpenClaw users and developers use Memcord to add self-hosted persistent memory to conversations, including saving meaningful session context and recalling it later.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ukkit/memcord) <br>
-- [Publisher Profile](https://clawhub.ai/user/ukkit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON5 configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides OpenClaw MCP configuration guidance and operational guidance for saving and reading local chat memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.1 (source: frontmatter and server release evidence) <br>
+Risk: Chat history may be persisted locally in plaintext and recalled automatically in later sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with clear consent, avoid saving sensitive conversations, and confirm where memory files are stored and how they can be deleted.
+
+Risk: The configured uvx command runs an unpinned external memcord package that was not included in the artifact for review.
+
+Mitigation: Prefer an exact pinned package version and verify the package source before installation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ukkit/skills/memcord)
+- [Publisher Profile](https://clawhub.ai/user/ukkit)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, configuration, guidance, shell commands]
+
+**Output Format:** [Markdown with JSON5 configuration examples and tool-use guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides installation of the memcord MCP server through uvx and documents the memcord_auto_save and memcord_read tools.]
+
+## Skill Version(s):
+
+4.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

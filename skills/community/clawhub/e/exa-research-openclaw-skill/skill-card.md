@@ -1,43 +1,55 @@
-## Description: <br>
-Use the local `exa` CLI to search the live web, ask grounded questions with citations, fetch page contents, find similar links, retrieve Exa code context, or manage Exa research tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the local `exa` CLI to search the live web, ask grounded questions with citations, fetch page contents, find similar links, retrieve Exa code context, or manage Exa research tasks.
 
-## Publisher: <br>
-[WKenya](https://clawhub.ai/user/WKenya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wkenya](https://clawhub.ai/user/wkenya)
 
-## Use Case: <br>
-Developers and researchers use this skill to route current web research, cited answer synthesis, page extraction, similar-link discovery, code context retrieval, and Exa research workflows through the local Exa CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs the local Exa CLI selected by EXA_BIN or PATH. <br>
-Mitigation: Install Exa from a trusted source and verify EXA_BIN or PATH before using the wrapper. <br>
-Risk: The skill requires an Exa API key. <br>
-Mitigation: Keep the key in OpenClaw secrets or a locked-down file and avoid committing credentials. <br>
-Risk: Web research, raw API calls, private URLs, or proprietary content may be sent to the Exa service. <br>
-Mitigation: Prefer scoped Exa commands, avoid raw calls unless needed, and only send sensitive content when Exa processing is acceptable. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to route live web research, grounded answer synthesis, page extraction, related-link discovery, code-context lookup, and longer Exa research workflows through the local Exa CLI.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/WKenya/exa-research-openclaw-skill) <br>
-- [Exa CLI upstream project](https://github.com/jdegoes/exa) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and CLI output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the local exa CLI and EXA_API_KEY; results may include live web links, citations, page content, highlights, summaries, code context, and research task data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The wrapper can pass the Exa API key to whichever executable is selected by `EXA_BIN` or `PATH`.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted Exa CLI binary, prefer an absolute or controlled executable path, and avoid running the skill from untrusted shell environments.
+
+Risk: API keys may be exposed through loose local secret handling.
+
+Mitigation: Prefer OpenClaw-managed secrets or a locked-down key file, keep keys outside the repository, and restrict file permissions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wkenya/skills/exa-research-openclaw-skill)
+- [Upstream Exa Repository](https://github.com/jdegoes/exa)
+- [Exa Website](https://exa.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and Exa CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the `exa` binary and an `EXA_API_KEY`; the skill advises using narrow queries, highlights, summaries, token caps, and selected URL extraction to keep context small.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

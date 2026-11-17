@@ -1,40 +1,53 @@
-## Description: <br>
-Validated CAG decision memory for OpenClaw tools, agents, and long-running project sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validated CAG decision memory for OpenClaw tools, agents, and long-running project sessions.
 
-## Publisher: <br>
-[guideboardlabs](https://clawhub.ai/user/guideboardlabs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guideboardlabs](https://clawhub.ai/user/guideboardlabs)
 
-## Use Case: <br>
-Developers and agent operators use unCAGd to retrieve, capture, validate, and reconcile durable project decisions during long-running OpenClaw sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on an external MCP package that is not included in the reviewed artifact. <br>
-Mitigation: Install it only when the package source is trusted and review the package before use. <br>
-Risk: Persistent project memory can steer future agent behavior across workspaces if imported or validated without review. <br>
-Mitigation: Review candidates before validation and treat import or export flows as trusted handoffs. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve, capture, validate, resolve, compress, import, and export durable project decisions during ongoing software work. It is intended for repositories, agent workflows, plugins, MCP servers, and multi-step implementations where prior decisions can affect later work.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/guideboardlabs/uncagd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with tool names and command-oriented instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces guidance for retrieving, capturing, validating, exporting, importing, compressing, and resolving project memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and artifact _meta.json) <br>
+Risk: Validated memories can make project decisions durable across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate a memory only after explicit user approval, a passing test tied to the decision, a PR or commit reference, or a clear request to remember it.
+
+Risk: Retrieved memories may be stale, incomplete, or in tension with the current codebase.
+
+Mitigation: Treat retrieved memories as constraints to check, read the current code before acting, and use the contradiction workflow when policy or implementation decisions change.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guideboardlabs/skills/uncagd)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API Calls, markdown]
+
+**Output Format:** [Markdown guidance with tool-call recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce portable memory handoff documents through memory export behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

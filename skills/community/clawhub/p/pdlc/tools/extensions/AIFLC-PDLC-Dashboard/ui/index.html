@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIFLC Dashboard — PDLC Family</title>
+<link rel="stylesheet" href="styles.css?v=52">
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <span class="topbar-title">AIFLC : AI-* PDLC Family</span>
+  <span class="badge" id="overall-badge">0%</span>
+  <button class="theme-toggle" onclick="toggleTheme()">☀/🌙</button>
+</div>
+
+<!-- MAIN PANELS -->
+<div class="main">
+  <!-- LEFT PANEL -->
+  <div class="panel-left" id="panel-left">
+    <div class="tabs" id="left-tabs">
+      <div class="tab active" data-tab="portfolio">Portfolio</div>
+      <div class="tab" data-tab="ideas">Ideas</div>
+      <div class="tab" data-tab="stats-left">Stats</div>
+    </div>
+    <div class="tab-content active" id="tc-portfolio"></div>
+    <div class="tab-content" id="tc-ideas"></div>
+    <div class="tab-content" id="tc-stats-left"></div>
+  </div>
+
+  <!-- TOGGLE BUTTON (between panels in DOM) -->
+  <div class="panel-toggle" id="panel-toggle" onclick="toggleLeftPanel()">&lt;</div>
+
+  <!-- RIGHT PANEL -->
+  <div class="panel-right">
+    <h2 id="right-header" style="color:var(--text-heading);margin-bottom:12px;font-size:16px;">Select a project</h2>
+    <div class="tabs" id="right-tabs">
+      <div class="tab active" data-tab="pm">PM</div>
+      <div class="tab" data-tab="po">PO</div>
+      <div class="tab" data-tab="architect">Architect</div>
+      <div class="tab" data-tab="ux">UX</div>
+      <div class="tab" data-tab="chain">Chain</div>
+      <div class="tab" data-tab="mgmt">MF</div>
+      <div class="tab" data-tab="stats-right">Stats</div>
+    </div>
+    <div class="tab-content active" id="tc-pm"></div>
+    <div class="tab-content" id="tc-po"></div>
+    <div class="tab-content" id="tc-architect"></div>
+    <div class="tab-content" id="tc-ux"></div>
+    <div class="tab-content" id="tc-chain">
+      <div id="chain-container"><div class="mermaid" id="chain-mermaid"></div></div>
+    </div>
+    <div class="tab-content" id="tc-mgmt"></div>
+    <div class="tab-content" id="tc-stats-right"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer"><span>AIFLC PDLC Dashboard v0.4.0 · AI-* PDLC Family</span><span id="footer-date"></span><span>Built on AIFLC by <a href="https://www.linkedin.com/in/mohammad-maheri-8399565b" target="_blank" style="color:var(--color-accent);text-decoration:none;">Mohammad Maheri</a></span></div>
+
+<!-- MERMAID CDN -->
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+
+<!-- DATA LOADING (standalone browser/file:// only).
+     In VS Code mode the extension builds its own HTML and injects `D` directly — this block is not used there.
+     Standalone resolution follows the AI-DFE consumer contract: data-root → REGISTRY.json → outputFile.
+     The ONLY hardcoded value is the data-root anchor (override with ?data=<path> or window.DASHBOARD_DATA_ROOT). -->
+<script id="dashboard-data">
+var D = null;
+var DASHBOARD_CONSUMER = "AIFLC-PDLC-Dashboard";
+var DASHBOARD_OUTPUT = "dashboard-data.json";
+</script>
+<script>
+// Empty-state renderer + one-shot file picker (works on file:// — FileReader reads a user-selected file).
+window.__dashboardEmpty = function (info) {
+  var host = document.querySelector('.panel-left') || document.body;
+  var msg = (info && info.message) ? info.message : 'No data loaded.';
+  host.innerHTML =
+    '<div class="empty-state" style="margin-top:40px;padding:16px;line-height:1.5;">' + msg +
+    '<div style="margin-top:16px;"><label style="cursor:pointer;padding:8px 14px;border:1px solid var(--border,#555);border-radius:6px;display:inline-block;">Load data file\u2026' +
+    '<input type="file" accept="application/json,.json" style="display:none;" onchange="__dashboardPick(event)"></label></div></div>';
+};
+window.__dashboardPick = function (evt) {
+  var f = evt.target.files && evt.target.files[0];
+  if (!f) return;
+  var rd = new FileReader();
+  rd.onload = function () {
+    try {
+      var p = JSON.parse(rd.result);
+      D = (p && typeof p === 'object' && p.data) ? p.data : p;
+      if (typeof init === 'function') init();
+    } catch (e) { alert('Not valid JSON: ' + e.message); }
+  };
+  rd.readAsText(f);
+};
+</script>
+<script>
+// Resolve data via REGISTRY.json → outputFile (the consumer contract). Skip if D already injected.
+(function () {
+  if (D) { return; }
+  function qp(n) { try { return new URLSearchParams(window.location.search).get(n); } catch (e) { return null; } }
+  var dataRoot = (qp('data') || window.DASHBOARD_DATA_ROOT || '.').replace(/\/+$/, '');
+  function empty(m) { if (typeof window.__dashboardEmpty === 'function') window.__dashboardEmpty({ message: m }); }
+
+  if (window.location.protocol === 'file:') {
+    empty('Running from <code>file://</code>, where the browser blocks reading data files. Use the VS Code extension, serve over http (<code>npx serve</code>), or load the JSON manually below.');
+    return;
+  }
+  fetch(dataRoot + '/REGISTRY.json')
+    .then(function (r) { if (!r.ok) throw new Error('REGISTRY.json ' + r.status); return r.json(); })
+    .then(function (reg) {
+      var entry = reg && reg.files && reg.files[DASHBOARD_OUTPUT];
+      if (!entry) throw new Error('no entry in REGISTRY for ' + DASHBOARD_OUTPUT);
+      var out = dataRoot + '/' + (entry.path ? entry.path.split('/').pop() : DASHBOARD_OUTPUT);
+      return fetch(out)
+        .then(function (r) { if (!r.ok) throw new Error('data ' + r.status + ' @ ' + out); return r.json(); })
+        .then(function (parsed) { D = (parsed && parsed.data) ? parsed.data : parsed; if (typeof init === 'function') init(); });
+    })
+    .catch(function () {
+      // Fallback: try loading dashboard-data.json directly from same directory
+      fetch(dataRoot + '/' + DASHBOARD_OUTPUT)
+        .then(function (r) { if (!r.ok) throw new Error(DASHBOARD_OUTPUT + ' ' + r.status); return r.json(); })
+        .then(function (parsed) { D = (parsed && parsed.data) ? parsed.data : parsed; if (typeof init === 'function') init(); })
+        .catch(function () {
+          empty('No data loaded. <b>Standalone:</b> place <code>' + DASHBOARD_OUTPUT + '</code> alongside <code>index.html</code>, or use <code>?data=&lt;path-to-data-folder&gt;</code>.<br><b>In VS Code:</b> run <code>DAT__ all</code> to populate the data surface.');
+        });
+    });
+})();
+</script>
+
+<!-- DASHBOARD LOGIC -->
+<script src="dashboard.js?v=53"></script>
+</body>
+</html>

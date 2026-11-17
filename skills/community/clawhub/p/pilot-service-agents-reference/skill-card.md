@@ -1,44 +1,57 @@
-## Description: <br>
-Lightweight utility lookups for dictionaries, jokes, colors, currencies, random facts, D&D data, and similar Pilot service agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides lightweight utility lookup guidance for Pilot Protocol service agents covering dictionaries, jokes, colors, currencies, random facts, D&D data, and similar reference tasks.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-AGPL-3.0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and agents use this skill to discover and query Pilot Protocol reference service agents for low-stakes lookups such as word tools, jokes, trivia, color data, D&D references, country/time/weather lookups, and ECB currency rates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Lookup queries are sent through external Pilot service agents and may reach upstream services. <br>
-Mitigation: Do not submit secrets or sensitive personal or business data; review each agent's /help output before sending queries. <br>
-Risk: The service-agent catalog is broader than the short description and can change over time. <br>
-Mitigation: Refresh discovery with list-agents and verify the selected agent contract before relying on filters or response shape. <br>
-Risk: Summary and free-text flows may return generated prose rather than structured source data. <br>
-Mitigation: Treat summaries as convenience output and verify important facts against the structured data or upstream source. <br>
+## Use Case:
 
+Developers and agent users use this skill to discover and query low-stakes Pilot Protocol reference agents for word tools, trivia, jokes, colors, public facts, and ECB currency-rate lookups. It is not intended for live market data, detailed country profiles, or knowledge-graph entity lookup workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/teoslayer/pilot-service-agents-reference) <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [Pilot Skills Catalog](https://teoslayer.github.io/pilot-skills/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON response shapes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pilotctl, a running Pilot Protocol daemon joined to network 9, and the list-agents directory agent; actual service-agent responses are read from pilotctl inbox.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Queries may be sent to remote lookup agents and upstream public APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid private or sensitive queries and inspect each agent's /help output before sending data.
+
+Risk: The reference category covers broad utility lookups and can overlap with more specialized domains.
+
+Mitigation: Use the finance, data, or knowledge skills for live market data, detailed country profiles, or knowledge-graph lookups.
+
+## Reference(s):
+
+- [Pilot Protocol](https://pilotprotocol.network)
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-service-agents-reference)
+- [Pilot skills index](https://teoslayer.github.io/pilot-skills/)
+- [Artifact skill definition](artifact/SKILL.md)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown with inline bash commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pilotctl on PATH and a Pilot Protocol daemon joined to network 9.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

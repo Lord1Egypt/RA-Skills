@@ -1,42 +1,56 @@
-## Description: <br>
-Mint (purchase) an Art Blocks token using the artblocks-mcp tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mint or prepare to purchase an Art Blocks token using artblocks-mcp tools, including project discovery, minter configuration, eligibility checks, pricing, and transaction preparation.
 
-## Publisher: <br>
-[ryley-o](https://clawhub.ai/user/ryley-o) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ryley-o](https://clawhub.ai/user/ryley-o)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and agents use this skill to guide Art Blocks minting workflows, inspect live minter details, check gated eligibility, and prepare supported ETH set-price purchase transactions before wallet signing.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: A prepared NFT mint transaction may target the wrong project, chain, price, or recipient if inputs are not checked before signing.
+
+Mitigation: Review the project, chain, price, recipient address, warnings, and gas cost in the wallet before signing.
+
+Risk: Eligibility checks for an Art Blocks username may query all wallets linked to that profile.
+
+Mitigation: Use a single wallet address for eligibility checks when the user does not want profile-linked wallets queried together.
+
+Risk: Some minter and currency types are not supported by the transaction builder.
+
+Mitigation: Use the skill to explain unsupported minter mechanics and direct the user to their wallet rather than preparing an unsupported transaction.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to discover Art Blocks minting details, check eligibility for gated projects, understand minter mechanics, and prepare supported purchase transactions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, API Calls, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Users may sign a transaction for the wrong Art Blocks project, chain, price, or recipient. <br>
-Mitigation: Confirm the project ID, chain, ETH price, recipient or purchaseTo address, and all warnings before wallet signing. <br>
-Risk: The skill relies on the configured artblocks-mcp provider for project, eligibility, and transaction information. <br>
-Mitigation: Use the skill only with a trusted artblocks-mcp provider and verify generated transaction details independently before signing. <br>
-Risk: Allowlist and profile eligibility checks can expose linked wallet information. <br>
-Mitigation: Treat wallet, profile, and eligibility results as private information and avoid sharing them beyond the minting workflow. <br>
+**Output Format:** [Markdown guidance with structured tool parameters and transaction-preparation details]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryley-o/mint-artblocks-token) <br>
+**Other Properties Related to Output:** [Surfaces project, minter, price, eligibility, chain, recipient, and warning details; only supports transaction building for MinterSetPriceV5 ETH purchases.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API Calls, configuration] <br>
-**Output Format:** [Markdown with structured tool-use guidance and transaction details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces minting guidance, eligibility-check instructions, warnings to surface before signing, and supported transaction-building details.] <br>
+1.0.0 (source: ClawHub release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

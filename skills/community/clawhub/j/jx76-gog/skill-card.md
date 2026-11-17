@@ -1,43 +1,54 @@
-## Description: <br>
-Google Workspace CLI for Gmail, Calendar, Drive, Contacts, Sheets, and Docs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Workspace CLI for Gmail, Calendar, Drive, Contacts, Sheets, and Docs.
 
-## Publisher: <br>
-[JX-76](https://clawhub.ai/user/JX-76) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jx-76](https://clawhub.ai/user/jx-76)
 
-## Use Case: <br>
-Developers and operators use this skill to set up and run gog commands for Gmail, Calendar, Drive, Contacts, Sheets, Docs, and related Google Workspace workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires broad Google Workspace account access through gog and OAuth. <br>
-Mitigation: Review requested OAuth scopes during setup and install the external gog CLI only from a trusted source. <br>
-Risk: Credentials, client secrets, or OAuth tokens could be exposed in chats, logs, or repositories. <br>
-Mitigation: Keep client secrets and tokens out of prompts, transcripts, command output, and source control. <br>
-Risk: Commands can send email, create calendar events, or change and clear Workspace data. <br>
-Mitigation: Require explicit user confirmation before running visible or destructive actions. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to operate the gog CLI for Gmail, Calendar, Drive, Contacts, Sheets, and Docs workflows after OAuth setup.
 
-## Reference(s): <br>
-- [gog CLI homepage](https://gogcli.sh) <br>
-- [ClawHub skill page](https://clawhub.ai/JX-76/jx76-gog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and CLI usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include JSON-oriented command options such as --json and --no-input for scripting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The gog CLI uses sensitive OAuth access to Google Workspace services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the gog CLI and Homebrew tap are trusted, and authorize only the minimum Google services needed.
+
+Risk: Commands can send email, create calendar events, or update, append, and clear spreadsheet data.
+
+Mitigation: Review destructive or externally visible commands before execution and prefer JSON and no-input modes for scripts.
+
+## Reference(s):
+
+- [gog homepage](https://gogcli.sh)
+- [ClawHub skill page](https://clawhub.ai/jx-76/skills/jx76-gog)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include OAuth setup steps and user-directed gog commands that can read or modify Google Workspace data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

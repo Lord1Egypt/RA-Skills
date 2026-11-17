@@ -1,41 +1,62 @@
-## Description: <br>
-Detects local CPU, RAM, disk, and GPU capacity, recommends local LLM serving engines and models, and generates Docker Compose or systemd deployment files for Ollama, vLLM, and llama.cpp. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects local hardware, recommends local LLM deployment engines and models, and generates Docker Compose or systemd configuration for Ollama, vLLM, and llama.cpp.
 
-## Publisher: <br>
-[minirr890112-byte](https://clawhub.ai/user/minirr890112-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[minirr890112-byte](https://clawhub.ai/user/minirr890112-byte)
 
-## Use Case: <br>
-Developers and engineers use this skill to assess whether local hardware can run common LLM serving stacks and to produce starter deployment commands or configuration files. It is suited for local AI setup planning with Ollama, vLLM, and llama.cpp. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Docker Compose and systemd files can expose local inference service ports, mount host volumes, and create services that restart or start on boot. <br>
-Mitigation: Inspect generated files before running them, verify port and volume choices, and enable systemd services only when a persistent local LLM server is intended. <br>
-Risk: vLLM configuration may include an optional Hugging Face token environment variable. <br>
-Mitigation: Avoid passing tokens unless required for the selected model and keep token scope limited. <br>
+## Use Case:
 
+Developers and engineers use this skill to assess local hardware for LLM serving and generate deployment recommendations and service configuration for Ollama, vLLM, or llama.cpp.
 
-## Reference(s): <br>
-- [Project homepage](https://github.com/minirr890112-byte/llm-deploy-helper) <br>
-- [ClawHub skill page](https://clawhub.ai/minirr890112-byte/llm-deploy-helper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style CLI guidance with generated Docker Compose YAML, systemd unit files, shell commands, and Rich terminal tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated files may include exposed service ports, mounted model/cache volumes, GPU settings, and optional persistent service configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, pyproject.toml, package __version__) <br>
+Risk: Generated Docker Compose or systemd service files can create persistent local LLM services with exposed API ports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect generated docker-compose.yml and .service files before running them, bind services to localhost unless remote access is intentionally secured, and review persistence settings before enabling services.
+
+Risk: Deployment commands may rely on container images, model identifiers, or source installs that are not pinned.
+
+Mitigation: Install only from a pinned release or commit and confirm container image and model provenance before deployment.
+
+Risk: vLLM deployments may pass HF_TOKEN into containers.
+
+Mitigation: Protect any HF_TOKEN value and avoid logging, committing, or broadly exposing generated environment configuration.
+
+Risk: Generated systemd services may run Docker with elevated local privileges.
+
+Mitigation: Review root privileges, cleanup behavior, and service enablement steps before installing or starting generated units.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/minirr890112-byte/skills/llm-deploy-helper)
+- [Project homepage from metadata](https://github.com/minirr890112-byte/llm-deploy-helper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [CLI text with shell commands, Docker Compose YAML, and systemd unit content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local hardware recommendations, model and engine choices, generated service configuration, and follow-up commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

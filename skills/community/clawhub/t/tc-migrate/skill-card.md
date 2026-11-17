@@ -1,49 +1,64 @@
-## Description: <br>
-腾讯云跨账号资源迁移工具。将源账号（账号A）的 VPC、CLB、NAT、CVM、安全组等资源迁移到目标账号（账号B），通过 CCN 云联网实现跨账号网络互通。支持自动扫描、配置生成、Terraform 部署。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+腾讯云跨账号资源迁移工具。将源账号（账号A）的 VPC、CLB、NAT、CVM、安全组等资源迁移到目标账号（账号B），通过 CCN 云联网实现跨账号网络互通。支持自动扫描、配置生成、Terraform 部署。
 
-## Publisher: <br>
-[awaili](https://clawhub.ai/user/awaili) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[awaili](https://clawhub.ai/user/awaili)
 
-## Use Case: <br>
-Cloud infrastructure engineers use this skill to scan Tencent Cloud resources in a source account, generate migration configuration, and apply Terraform to recreate selected VPC, subnet, security group, CLB, NAT, CVM, and CCN resources in a target account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The tool uses source and destination Tencent Cloud credentials and writes sensitive configuration and Terraform state files. <br>
-Mitigation: Use temporary least-privilege credentials, keep account.yaml, tc-migrate.yaml, terraform.tfvars, tfplan, and terraform.tfstate out of version control, and restrict local file permissions. <br>
-Risk: Terraform actions can create, modify, or destroy cloud infrastructure. <br>
-Mitigation: Review Terraform plan output before apply or destroy, and avoid --yes in production workflows. <br>
-Risk: Migrated security-group behavior may need manual review, especially IPv6 rules. <br>
-Mitigation: Verify security-group rules manually after migration before relying on the migrated network posture. <br>
+## Use Case:
 
+Developers and cloud engineers use this skill to prepare and run Tencent Cloud cross-account resource migrations, including scanning source account resources, generating migration configuration, producing Terraform variables, and invoking Terraform workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/awaili/tc-migrate) <br>
-- [README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Workflow guide](artifact/docs/workflow-guide.md) <br>
-- [Command reference](artifact/reference/commands.md) <br>
-- [CCN security configuration](artifact/reference/ccn-security.md) <br>
-- [Installation guide](artifact/reference/installation.md) <br>
-- [Troubleshooting guide](artifact/reference/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, YAML examples, and Terraform configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Linux, Python 3, Terraform, and Tencent Cloud credentials for both source and target accounts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and pyproject.toml) <br>
+Risk: The skill reads and writes Tencent Cloud credentials in local YAML and Terraform variable/state files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege, short-lived credentials in a controlled workspace; avoid previewing real secrets; restrict file permissions; and keep account.yaml, tc-migrate.yaml, terraform.tfvars, tfplan, and Terraform state files out of source control.
+
+Risk: Terraform apply, run, destroy, and -y options can create, modify, or delete cloud resources.
+
+Mitigation: Review generated configuration and Terraform plans before execution, avoid auto-approve until audited, and run only with an explicitly supplied and reviewed Terraform project.
+
+Risk: The packaged artifact does not include the Terraform configuration directory expected by the docs and CLI.
+
+Mitigation: Provide and audit the missing Terraform configuration before running init, plan, apply, run, destroy, or related commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/awaili/skills/tc-migrate)
+- [README](README.md)
+- [Workflow guide](docs/workflow-guide.md)
+- [Installation guide](reference/installation.md)
+- [Command reference](reference/commands.md)
+- [File structure reference](reference/file-structure.md)
+- [CCN security reference](reference/ccn-security.md)
+- [Troubleshooting guide](reference/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces CLI instructions and local configuration/Terraform variable files when executed by an agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and src/pyproject.toml; package __version__ is 3.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

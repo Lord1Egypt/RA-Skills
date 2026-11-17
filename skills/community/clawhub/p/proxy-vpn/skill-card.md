@@ -1,41 +1,60 @@
-## Description: <br>
-Create and manage HTTPS, SOCKS, or WireGuard proxies via the URnetwork API to connect through specific countries, regions, or cities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage HTTPS, SOCKS, or WireGuard proxies via the URnetwork API and MCP server for country, region, city, or provider-specific network access.
 
-## Publisher: <br>
-[xcolwell](https://clawhub.ai/user/xcolwell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xcolwell](https://clawhub.ai/user/xcolwell)
 
-## Use Case: <br>
-Developers and agents use this skill to find URnetwork locations and create authenticated proxy configurations for web browsing, scraping, sockets, UDP, or system-wide routing. It helps choose between HTTPS, SOCKS, and WireGuard based on the user's requested connection target and protocol needs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to handle auth codes and reusable bearer tokens for a URnetwork account. <br>
-Mitigation: Treat auth codes and JWTs as secrets, avoid logging or storing them in plain text, and rotate them if exposed. <br>
-Risk: The skill can create proxy sessions broadly, including loops over multiple egress IPs or providers. <br>
-Mitigation: Require explicit user confirmation before creating proxies, especially bulk egress-IP or provider loops. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [URnetwork API specification](https://github.com/urnetwork/connect/blob/main/api/bringyour.yml) <br>
-- [URnetwork API endpoint](https://api.bringyour.com) <br>
-- [URnetwork MCP endpoint](https://mcp.bringyour.com) <br>
+## Use Case:
 
+Agents and developers use this skill to authenticate to URnetwork, find available proxy locations, and create HTTPS, SOCKS, or WireGuard proxy configurations for selected countries, regions, cities, or egress providers.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with curl examples and proxy configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include HTTPS proxy URLs, SOCKS settings, or WireGuard configuration details returned by URnetwork.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks agents to collect and reuse a URnetwork auth code or JWT, which can expose proxy account access if mishandled.
+
+Mitigation: Treat auth codes and JWTs as credentials, avoid placing them in untrusted chats or logs, and prefer temporary or session-only storage.
+
+Risk: WireGuard proxy configuration can route all device traffic through the proxy.
+
+Mitigation: Review requests to enable WireGuard and require explicit user intent before creating or applying system-wide proxy configuration.
+
+Risk: Proxy location and provider selection can affect traffic routing, policy compliance, and user expectations.
+
+Mitigation: Confirm the requested country, region, city, or provider with the user and use the documented location type filters before creating proxy configurations.
+
+## Reference(s):
+
+- [URnetwork API specification](https://github.com/urnetwork/connect/blob/main/api/bringyour.yml)
+- [URnetwork API endpoint](https://api.bringyour.com)
+- [URnetwork MCP server](https://mcp.bringyour.com)
+- [ClawHub skill page](https://clawhub.ai/xcolwell/skills/proxy-vpn)
+- [ClawHub publisher profile](https://clawhub.ai/user/xcolwell)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with API request examples and proxy configuration instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include HTTPS proxy URLs, SOCKS proxy settings, WireGuard configuration text, location identifiers, provider identifiers, and credential handling guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

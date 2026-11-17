@@ -1,39 +1,49 @@
-## Description: <br>
-Retrieves related Alibaba Cloud search terms when provided an ALIYUN_RPA_RobotId value. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieves related Aliyun (Alibaba Cloud) search suggestions through an MCP call that requires a robotId value.
 
-## Publisher: <br>
-[xnlc-qft](https://clawhub.ai/user/xnlc-qft) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xnlc-qft](https://clawhub.ai/user/xnlc-qft)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve related Alibaba Cloud search queries through a trusted MCP tool by supplying the required robotId parameter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The robotId may identify an Alibaba Cloud or RPA setup and could be sensitive in some environments. <br>
-Mitigation: Confirm which MCP server receives the robotId, use only trusted servers, and treat the value as sensitive unless your Alibaba Cloud/RPA setup confirms it is only a non-secret identifier. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve Aliyun-related search terms by supplying the required ALIYUN_RPA_RobotId value through an MCP tool call.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xnlc-qft/get-ali-searches) <br>
-- [Publisher profile](https://clawhub.ai/user/xnlc-qft) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text] <br>
-**Output Format:** [List of related search query strings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the robotId parameter.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: An incorrect or untrusted ALIYUN_RPA_RobotId could route the MCP call to the wrong Aliyun workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the MCP tool and ALIYUN_RPA_RobotId value are from a trusted Aliyun workflow before installing or using the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xnlc-qft/skills/get-ali-searches)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Markdown guidance with a list-shaped text result]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a trusted ALIYUN_RPA_RobotId value.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

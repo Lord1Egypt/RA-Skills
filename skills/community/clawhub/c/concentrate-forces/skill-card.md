@@ -1,40 +1,54 @@
-## Description: <br>
-Helps an agent choose one main target when limited resources are split across too many tasks, concentrate effort there, and finish a meaningful breakthrough before expanding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent choose one primary target when limited time, attention, compute, or budget is split across competing tasks, then sequence work until a meaningful breakthrough is complete.
 
-## Publisher: <br>
-[arg0](https://clawhub.ai/user/arg0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arg0](https://clawhub.ai/user/arg0)
 
-## Use Case: <br>
-Employees, developers, and external users can use this skill when competing priorities require a clear main effort, sequence of work, and completion check before moving to the next task. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can steer an agent toward a single-priority planning style that may underweight secondary tasks or stakeholder constraints. <br>
-Mitigation: Use it when focused sequencing is appropriate, then review the chosen priority against dependencies, urgency, and completion evidence before acting. <br>
-Risk: The skill uses military-strategy quotations as metaphorical framing. <br>
-Mitigation: Apply the guidance to planning and prioritization only, and avoid treating the metaphor as instruction for harmful or adversarial conduct. <br>
+## Use Case:
 
+Employees, external users, and developers can use this skill when competing priorities are spreading resources too thin. It guides the agent to identify the main problem, focus effort, verify completion, and then move to the next priority.
 
-## Reference(s): <br>
-- [Original Texts](original-texts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown planning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Planning guidance only; no shell commands, code, or system access requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill's military-strategy framing could be misread as permission to override user priorities or normal confirmation steps.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat it only as a prioritization method and keep user instructions, confirmation requirements, and safety policies in force.
+
+Risk: The skill is primarily written in Chinese, which can lead to misunderstanding for agents or reviewers that do not handle the language well.
+
+Mitigation: Review the skill with Chinese-language competence before deployment or rely on the English trigger summary only after validation.
+
+## Reference(s):
+
+- [Concentrate Forces ClawHub Page](https://clawhub.ai/arg0/skills/concentrate-forces)
+- [Original Texts](artifact/original-texts.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown guidance and prioritization steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior; produces planning guidance for task sequencing and focused execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

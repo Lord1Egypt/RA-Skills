@@ -1,39 +1,52 @@
-## Description: <br>
-Guides localization strategy for AI and SaaS products expanding into global markets, including i18n implementation, market-specific SEO, pricing, and marketing adaptation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides localization strategy for AI/SaaS products expanding into global markets, including i18n implementation, translation, pricing, market adaptation, and multilingual SEO.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kostja94](https://clawhub.ai/user/kostja94)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, product teams, and growth teams use this skill to plan multilingual expansion, choose i18n URL and SEO patterns, prioritize markets, and shape pricing and localization rollout plans.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Localization and URL-structure recommendations may not match the product's actual primary audience, search strategy, or regional constraints.
+
+Mitigation: Review recommendations against the product's target markets, SEO plan, compliance needs, and brand strategy before implementation.
+
+Risk: The skill may read local project context files when available to tailor guidance.
+
+Mitigation: Review project context files before use and avoid storing sensitive material there unless it is appropriate for agent-assisted planning.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, founders, and growth teams use this skill to plan multilingual product expansion, choose i18n URL and SEO patterns, prioritize markets, and adapt pricing and marketing for local conditions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, configuration, code]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read local project context files to tailor product, market, and brand recommendations. <br>
-Mitigation: Review any `.claude/project-context.md` or `.cursor/project-context.md` files before using the skill. <br>
-Risk: Localization guidance can affect SEO, pricing, compliance, and market-entry decisions. <br>
-Mitigation: Review recommendations with product, legal, SEO, and regional market stakeholders before deployment. <br>
+**Output Format:** [Markdown guidance with checklists, recommendations, and implementation notes]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May read local project context files when available to tailor localization recommendations.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration, Code] <br>
-**Output Format:** [Markdown with structured recommendations, checklists, tables, and optional code or configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read local project context files when present to tailor localization strategy.] <br>
+1.1.0 (source: release evidence and SKILL.md metadata)
 
-## Skill Version(s): <br>
-1.1.0 (source: release evidence and skill metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

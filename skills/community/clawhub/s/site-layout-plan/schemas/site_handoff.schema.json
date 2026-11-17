@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local/site-layout-plan/site_handoff.schema.json",
+  "title": "site_handoff.json（算量技能 → 平面布置，site-handoff/v1）",
+  "type": "object",
+  "required": ["schema", "project", "members"],
+  "properties": {
+    "schema": {"const": "site-handoff/v1"},
+    "project": {"type": "string", "minLength": 1},
+    "contract_id": {"type": "string", "description": "上游 cad-contract/v1 契约号"},
+    "source_sha256": {"type": "string", "description": "上游图纸/契约摘要，用于溯源"},
+    "coord_unit": {
+      "type": "string",
+      "enum": ["m", "meter", "meters", "metre", "metres", "米"],
+      "description": "坐标单位声明；只接受米。cm/mm/ft 会被 CLI 以 exit 4 拒绝。缺省视为 m。"
+    },
+    "members": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "weight_t", "zone", "weight_basis", "coord_status"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1, "description": "柱/构件编号"},
+          "weight_t": {
+            "type": ["number", "null"],
+            "exclusiveMinimum": 0,
+            "description": "单件总重（t）；缺失写 null，禁止补 0"
+          },
+          "x_m": {"type": ["number", "null"], "description": "平面 X（m）"},
+          "y_m": {"type": ["number", "null"], "description": "平面 Y（m）"},
+          "zone": {"type": "string", "description": "分区名；为空则判 blind，不跨区"},
+          "weight_basis": {
+            "type": "string",
+            "examples": ["total", "unit", "estimate_band_upper", "unknown"],
+            "description": "重量口径；total=单件总重"
+          },
+          "coord_status": {
+            "type": "string",
+            "examples": ["confirmed", "missing", "inferred"],
+            "description": "坐标可信状态；missing 时无法算幅度"
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

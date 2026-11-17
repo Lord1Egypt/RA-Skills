@@ -1,40 +1,49 @@
-## Description: <br>
-Evaluates ideas, estimates ROI, ranks opportunities, and outputs the highest-leverage execution plan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes and ranks your ideas by ROI, then provides a focused, actionable plan to quickly validate and execute the highest-leverage opportunity.
 
-## Publisher: <br>
-[theshimaw-svg](https://clawhub.ai/user/theshimaw-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[theshimaw-svg](https://clawhub.ai/user/theshimaw-svg)
 
-## Use Case: <br>
-External users and operators use this skill to compare business ideas, niches, or monetization options by likely reward, effort, speed to first result, and scalability, then choose a focused validation plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides ROI and monetization advice that may be mistaken for financial guidance. <br>
-Mitigation: Treat outputs as business brainstorming and validate assumptions before making financial or operational commitments. <br>
-Risk: Users may include private business details while asking for prioritization or growth advice. <br>
-Mitigation: Avoid sharing sensitive business information unless it is appropriate to use that information in planning prompts. <br>
+## Use Case:
 
+Entrepreneurs, builders, and growth-oriented users use this skill to compare business ideas, niches, or monetization paths and choose the highest-leverage option to validate first.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/theshimaw-svg/opportunity-intelligence) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style ranked list with an execution plan, fastest first result, and risks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Limits output to no more than three ranked ideas and emphasizes actions executable within 24-72 hours.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.json release.version) <br>
+Risk: Broad and duplicated triggers may route general prioritization, growth, or monetization questions to this skill when a narrower response would be better.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and narrow trigger wording so activation requires explicit business idea, niche, ROI, validation, or monetization intent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/theshimaw-svg/skills/opportunity-intelligence)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with ranked opportunities, a top pick, rationale, execution steps, fastest first result, and risks.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Limits ranking to no more than three ideas and emphasizes actions that can be started within 24 to 72 hours.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,58 @@
-## Description: <br>
-标签化长期记忆系统。当用户说"记住..."时存储记忆，当用户问"我之前..."时查询记忆，定期生成总结并询问确认，主动核对记忆正确性。支持标签(#偏好、#决定、#项目等)、BM25搜索、时间范围查询、人类审核机制。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TagMemory gives an agent a local, tag-based long-term memory system for storing, searching, verifying, and summarizing user-confirmed information.
 
-## Publisher: <br>
-[luckyboybs](https://clawhub.ai/user/luckyboybs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luckyboybs](https://clawhub.ai/user/luckyboybs)
 
-## Use Case: <br>
-Developers and agent users use TagMemory to store, search, review, correct, delete, and summarize local long-term memories with semantic tags and BM25 search. The skill is intended for user-confirmed memory maintenance, including preference, decision, project, person, event, knowledge, and mistake records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill persistently stores user memories in a local database. <br>
-Mitigation: Install only when persistent local memory is intended, avoid storing secrets or highly sensitive personal data, and periodically review and delete stored memories. <br>
-Risk: Stored memories can be listed or exposed in bulk through the skill's memory listing and query behavior. <br>
-Mitigation: Limit use to trusted local environments and review stored records before sharing command output or summaries. <br>
-Risk: The artifact ships with prefilled sample memory summary data. <br>
-Mitigation: Inspect or remove artifact/data/pending_summary.json before first use so sample data is not mistaken for user-confirmed memory. <br>
-Risk: Runtime metadata is mismatched in the package evidence. <br>
-Mitigation: Verify the runtime entry and hook packaging before deployment. <br>
+## Use Case:
 
+Developers and OpenClaw users can use this skill to let an agent retain important user preferences, decisions, project facts, events, and periodic summaries with tag filtering, BM25 search, and human review before memories are treated as reliable.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/luckyboybs/tag-memory) <br>
-- [Publisher profile](https://clawhub.ai/user/luckyboybs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text, Markdown summaries, JSON command results, and shell command invocations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores and retrieves local memory records with tags, timestamps, verification status, source, and agent id fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact manifest) <br>
+Risk: The skill persists personal or project details in local plaintext memory storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not store secrets or confidential data unless local retention is acceptable, and review the local memory database contents regularly.
+
+Risk: Packaged pending summary data may carry stale or unintended memory content into a release.
+
+Mitigation: Remove packaged pending_summary.json before installation or release.
+
+Risk: Weak confirmation defaults can archive summaries or replace memories without sufficiently explicit user approval.
+
+Mitigation: Require explicit confirmation for summary archival and memory replacement, avoid default-confirm behavior, and keep updates recoverable or confirmed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/luckyboybs/skills/tag-memory)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/luckyboybs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and JSON-like tool results with CLI command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local SQLite/FTS5 storage and returns tagged memory records, pending verification prompts, summaries, and statistics.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

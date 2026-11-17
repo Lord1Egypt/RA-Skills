@@ -1,42 +1,54 @@
-## Description: <br>
-Stop waiting for prompts. Keep working. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents keep working from a task queue and proactive heartbeat instead of waiting for prompts.
 
-## Publisher: <br>
-[ayakolin](https://clawhub.ai/user/ayakolin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ayakolin](https://clawhub.ai/user/ayakolin)
 
-## Use Case: <br>
-Developers and agent operators use this skill to set up task queues, heartbeat routines, and scheduling practices that let agents continue useful work between human prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled autonomous work can continue without fresh human prompts and pursue tasks outside the intended scope. <br>
-Mitigation: Keep the task queue narrow, require human approval for destructive or external actions, and run work in a dedicated branch or sandbox. <br>
-Risk: Team updates can expose sensitive information if posted to shared channels. <br>
-Mitigation: Restrict Discord or Slack updates to non-sensitive summaries. <br>
-Risk: Referenced external repositories are not confirmed by server-resolved provenance for this version. <br>
-Mitigation: Verify any referenced repository before cloning or installing from it. <br>
+## Use Case:
 
+Developers and agent operators use this skill to set up proactive work routines, task queues, heartbeat behavior, handoff notes, and scheduling patterns for autonomous agent progress.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ayakolin/agent-autonomy-kit-skip) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and template files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup instructions and queue/heartbeat templates; no API calls or credentials are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release and SKILL.md frontmatter) <br>
+Risk: Persistent unattended execution can allow broad queued tasks to run with insufficient human review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict which tasks may be queued, control who can edit the queue, define budgets and stop conditions, and review task scope before enabling scheduled work.
+
+Risk: External posting, agent spawning, and scheduled cron examples may expand operational impact if enabled by default.
+
+Mitigation: Disable external posting and agent spawning until explicitly configured, set the correct timezone, and document how to list and remove every scheduled job.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ayakolin/skills/agent-autonomy-kit-skip)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/ayakolin)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes queue and heartbeat templates plus scheduling examples for unattended agent work.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

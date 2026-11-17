@@ -1,43 +1,56 @@
-## Description: <br>
-Create and check long-running video material evaluation tasks for submitted videos, including task creation, task listing, and task-detail retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates and checks long-running video material evaluation tasks, including submission, task listing, and detail/result retrieval for video evaluation workflows.
 
-## Publisher: <br>
-[volcengine-skills](https://clawhub.ai/user/volcengine-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volcengine-skills](https://clawhub.ai/user/volcengine-skills)
 
-## Use Case: <br>
-External users and developers use this skill to submit local MP4 video materials for long-running evaluation tasks, then query task status and results later. It is intended for material or creative-asset evaluation workflows, not generic video storage or upload. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an API key and sends selected video materials and prompts to Volcengine services. <br>
-Mitigation: Confirm the user is comfortable with the external transfer and credential use before running task submission commands. <br>
-Risk: Submitting evaluation tasks may create API cost or long-running work. <br>
-Mitigation: Prefer explicit confirmation before starting generation or evaluation jobs and return the task ID so the user can check status later. <br>
-Risk: Unsupported files or oversized batches can cause failed submissions. <br>
-Mitigation: Validate MP4 format, video/mp4 MIME type, 50 MB per-file size, and the 50-video batch limit before uploading any file. <br>
+## Use Case:
 
+External developers and agents use this skill to submit local MP4 creative assets for video material evaluation, then check task lists or task details later for status and results. The skill is intended for evaluation-task workflows, not generic video upload.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/volcengine-skills/byted-airesearch-videoeval) <br>
-- [Volcengine API key console](https://console.volcengine.com/datatester/ai-research/audience/list?tab=apikey) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Human-readable Markdown summaries backed by JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Task submission is non-blocking; detail output summarizes completed task results and avoids raw implementation fields unless explicitly requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: An API-host override could redirect API keys, prompts, and uploaded videos away from the expected Volcengine host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in a controlled environment and ensure BYTED_AIRESEARCH_VIDEOEVAL_BASE_URL is unset or pinned to https://console.volcengine.com before submitting videos or prompts.
+
+Risk: API keys passed on the command line may appear in shell history, process listings, or logs.
+
+Mitigation: Prefer BYTED_AIRESEARCH_VIDEOEVAL_API_KEY for real credentials and rotate any key previously used in shell commands or logs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/volcengine-skills/skills/byted-airesearch-videoeval)
+- [Volcengine API key console](https://console.volcengine.com/datatester/ai-research/audience/list?tab=apikey)
+- [Volcengine attachment upload endpoint](https://console.volcengine.com/datatester/compass/api/v3/survey/attachment)
+- [Volcengine evaluation task endpoint](https://console.volcengine.com/datatester/compass/api/v3/survey/task)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, API calls]
+
+**Output Format:** [Natural-language Markdown summaries with JSON script envelopes for agent use]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Submissions are non-blocking; task list and detail queries return normalized status and result data for later human-readable summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

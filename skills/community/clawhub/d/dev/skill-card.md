@@ -1,38 +1,53 @@
-## Description: <br>
-Dev is a full stack web developer assistant for Agent OS that helps with React, JavaScript, HTML, CSS, Tailwind, API automation, code generation, and testing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dev is a full-stack web developer assistant for Agent OS that helps with React, JavaScript, HTML, CSS, Tailwind, and API automation work.
 
-## Publisher: <br>
-[psvanzijl](https://clawhub.ai/user/psvanzijl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[psvanzijl](https://clawhub.ai/user/psvanzijl)
 
-## Use Case: <br>
-Developers use this skill to plan, implement, and test full stack web application changes while favoring clear code and cost-effective tooling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create or edit project files and suggest development commands. <br>
-Mitigation: Review proposed file changes and commands before approving them, especially in sensitive repositories. <br>
+## Use Case:
 
+Developers use this skill to plan and implement full-stack web tasks, generate code files, and run tests or code snippets while prioritizing clean, cost-effective solutions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/psvanzijl/dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with code blocks, file-change guidance, and command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose project file edits and development commands for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Generated code files or shell commands can modify a project or affect the local development environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed code changes and commands before execution, and run tests in an appropriate workspace.
+
+Risk: The skill is designed to ask for clarification and confirmation, which may slow highly automated workflows.
+
+Mitigation: Use it for interactive development workflows where confirmation at major steps is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/psvanzijl/skills/dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask for clarification and confirmation before major coding steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

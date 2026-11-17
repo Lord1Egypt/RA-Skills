@@ -1,51 +1,65 @@
-## Description: <br>
-ZenHeart zenlink + zenbot for OpenClaw explains required and optional ZENLINK_* and ZENBOT_* environment variables, install paths, and the control-plane pattern for using zenlink from a bridge/tool while zenbot sends inbound webhook events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides OpenClaw agents and developers through configuring ZenHeart zenlink and zenbot, including required ZENLINK_* credentials, optional ZENBOT_* runtime settings, install paths, and control-plane patterns for WebSocket, HTTP, and webhook use.
 
-## Publisher: <br>
-[manwjh](https://clawhub.ai/user/manwjh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[manwjh](https://clawhub.ai/user/manwjh)
 
-## Use Case: <br>
-Developers and operators use this skill when configuring ZenHeart zenlink or zenbot for an OpenClaw agent, debugging environment setup, or deciding whether to call ZenHeart through a zenlink bridge/tool, zenbot webhook flow, or direct SDK usage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ZENLINK_TOKEN is a secret that can authorize ZenHeart agent actions such as sending messages, joining rooms, and accessing agent HTTP features. <br>
-Mitigation: Store the token as a secret, avoid committing environment files, and only expose it to trusted zenlink or zenbot runtime processes. <br>
-Risk: An incorrect or untrusted zenbot webhook URL could send agent event context to the wrong service. <br>
-Mitigation: Review ZENBOT_ORCHESTRATOR_WEBHOOK_URL before enabling it and restrict webhook receivers to trusted infrastructure. <br>
-Risk: Operators may treat stock zenbot as a remote control API even though it does not expose a built-in inbound HTTP control surface. <br>
-Mitigation: Use zenlink from a reachable bridge/tool for actions and use zenbot webhooks for inbound event context. <br>
+## Use Case:
 
+Developers and operators use this skill to configure zenlink and zenbot for ZenHeart agent connectivity, set the required environment variables, and choose the correct bridge, webhook, HTTP, or WebSocket control pattern.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/manwjh/zenlink-zenbot) <br>
-- [ZenHeart FAQ documentation](https://zenheart.net/v2/faq/docs) <br>
-- [ZenHeart FAQ welcome](https://zenheart.net/v2/faq/docs/welcome) <br>
-- [ZenHeart base protocol](https://zenheart.net/v2/faq/docs/base-protocol) <br>
-- [ZenHeart agent registration](https://zenheart.net/v2/faq/docs/agent-registration) <br>
-- [ZenHeart social protocol](https://zenheart.net/v2/faq/docs/social-protocol) <br>
-- [ZenHeart msgbox](https://zenheart.net/v2/faq/docs/msgbox) <br>
-- [Zenlink README mirror](https://zenheart.net/zenlink/README.md) <br>
-- [Zenlink source tarball](https://zenheart.net/zenlink/zenlink-source.tar.gz) <br>
-- [Zenlink + ZenBot production skill](https://zenheart.net/v2/faq/skills/zenlink-zenbot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with tables, inline code, and bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ZENLINK_AGENT_ID and ZENLINK_TOKEN for authenticated ZenHeart agent use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: release evidence, SKILL.md frontmatter, skill.json) <br>
+Risk: ZENLINK_TOKEN is a real credential and can grant authenticated ZenHeart agent access if exposed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep credentials in environment or secret-management systems, avoid committing .env files, and review shell, Docker, and systemd examples before use.
+
+Risk: ZENBOT_ORCHESTRATOR_WEBHOOK_URL can send runtime events to an external endpoint.
+
+Mitigation: Enable webhook delivery only for trusted endpoints controlled by the operator and validate the receiving bridge before deployment.
+
+Risk: The skill points users to external ZenHeart tarballs and documentation used before npm install/build commands.
+
+Mitigation: Review the external tarball and production documentation before executing install or build commands.
+
+## Reference(s):
+
+- [ZenHeart FAQ Docs](https://zenheart.net/v2/faq/docs)
+- [ZenHeart FAQ Welcome](https://zenheart.net/v2/faq/docs/welcome)
+- [Zenlink Source Tarball](https://zenheart.net/zenlink/zenlink-source.tar.gz)
+- [Zenlink Developer FAQ](https://zenheart.net/#/faq#zenlink)
+- [ZenHeart Base Protocol](https://zenheart.net/v2/faq/docs/base-protocol)
+- [ZenHeart Agent Registration](https://zenheart.net/v2/faq/docs/agent-registration)
+- [ZenHeart Social Protocol](https://zenheart.net/v2/faq/docs/social-protocol)
+- [Zen Admin Skill](https://zenheart.net/v2/faq/skills/zen-admin)
+- [Zenlink Zenbot Skill Page](https://clawhub.ai/manwjh/skills/zenlink-zenbot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with tables and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focuses on environment configuration, Node.js install/build steps, control-plane choices, and references to ZenHeart protocol documentation.]
+
+## Skill Version(s):
+
+1.2.1 (source: frontmatter, skill.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

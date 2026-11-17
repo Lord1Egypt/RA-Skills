@@ -1,42 +1,54 @@
-## Description: <br>
-从DXF提取户型信息，并结合历史报价库生成匹配模板的家装或工装预算Excel。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates editable interior design budget spreadsheets from DXF floor-plan data and a local pricing library.
 
-## Publisher: <br>
-[137984917-cyber](https://clawhub.ai/user/137984917-cyber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[137984917-cyber](https://clawhub.ai/user/137984917-cyber)
 
-## Use Case: <br>
-Interior designers and renovation estimators use this skill to turn exported DXF floor-plan files and a local historical pricing library into editable Excel budget drafts for residential or commercial projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated spreadsheets can expose internal pricing assumptions from the local budget library. <br>
-Mitigation: Review the budget library and generated workbook before sharing the output with clients or external parties. <br>
-Risk: The default budget-library path is machine-specific and may not match the user's environment. <br>
-Mitigation: Confirm or update the local budget-library path before running the script. <br>
-Risk: Writing to an existing output path can replace a prior spreadsheet. <br>
-Mitigation: Choose an output path where overwriting an existing file would be acceptable. <br>
+## Use Case:
 
+Interior designers and budget preparers use this skill to turn CAD-exported DXF floor plans into Excel budget drafts for residential or commercial interior projects. It helps preserve a local pricing system while reducing manual line-item setup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/137984917-cyber/interior-auto-budget) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text] <br>
-**Output Format:** [Excel workbook (.xlsx) with terminal status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local Python dependencies, a local JSON budget library, and a user-supplied DXF input file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version and artifact skill.json) <br>
+Risk: The pricing library path is hardcoded for the original author's local environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm and update the local pricing-library path before running the script.
+
+Risk: Automatically estimated areas, quantities, and budget totals may be inaccurate for a specific project.
+
+Mitigation: Review the generated workbook and adjust quantities and prices before sharing it with a client.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/137984917-cyber/skills/interior-auto-budget)
+- [Publisher profile](https://clawhub.ai/user/137984917-cyber)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples and generated Excel workbook files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads a user-provided DXF file and a local pricing JSON library, then writes an editable XLSX budget file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

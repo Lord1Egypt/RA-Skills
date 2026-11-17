@@ -1,39 +1,56 @@
-## Description: <br>
-Scaffold a self-learning goal-oriented agent that iterates toward a measurable goal by measuring, learning, and adapting its strategy at every heartbeat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scaffold a self-learning goal-oriented agent that takes a goal, metric, target, and constraints, then generates a workspace for iterative measurement, learning, and strategy adaptation.
 
-## Publisher: <br>
-[theashbhat](https://clawhub.ai/user/theashbhat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[theashbhat](https://clawhub.ai/user/theashbhat)
 
-## Use Case: <br>
-Developers and operators use this skill to scaffold a goal-focused agent workspace with a measurable target, metric command, iteration budget, and constraints so an agent can optimize toward that goal over repeated heartbeats. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill creates an autonomous agent loop whose most important generated heartbeat and evaluator templates were not present in the reviewed package. <br>
-Mitigation: Review generated files before activation, supply and review missing templates, and avoid use in production or sensitive workspaces until the full loop behavior is verified. <br>
-Risk: The activated loop can take repeated actions toward a user-defined goal based on text constraints rather than a programmatic sandbox. <br>
-Mitigation: Run in an isolated VM or low-risk workspace, keep backups, use read-only metric commands, set a low max-iteration count, and avoid goals involving credentials, finances, destructive actions, public accounts, or sensitive data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/theashbhat/goal-agent) <br>
+## Use Case:
 
+Developers and operators use this skill to scaffold a goal-specific autonomous agent workspace with generated goal tracking, strategy, learning, heartbeat, and metric evaluation files.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Generated Markdown files and an executable shell script, with setup commands and operational guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-supplied goal, metric command, target value, and optional constraints, direction, iteration limit, and output directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated autonomous loop instructions can lead an agent to take broad actions if the goal or constraints are too open-ended.
+
+Mitigation: Run the goal workspace in a dedicated workspace or VM, use explicit constraints, start with a low iteration limit, and monitor early runs.
+
+Risk: Crafted goal, metric, or constraint values can trigger command execution through the documented shell templating flaw.
+
+Mitigation: Avoid untrusted --goal, --metric, and --constraints values, keep metric commands read-only, and inspect generated files before activation.
+
+Risk: Using an output directory with important existing files can expose those files to generated autonomous workflows.
+
+Mitigation: Use a fresh output directory and review generated HEARTBEAT.md and evaluate.sh before copying HEARTBEAT.md into the active agent location.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/theashbhat/skills/goal-agent)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, shell commands, configuration]
+
+**Output Format:** [Generated Markdown files and shell script files, with setup guidance shown in Markdown and bash commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces GOAL.md, STRATEGY.md, LEARNINGS.md, HEARTBEAT.md, and evaluate.sh in the selected output directory.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

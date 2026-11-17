@@ -1,37 +1,48 @@
-## Description: <br>
-Create distinctive, production-grade frontend interfaces with high design quality. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create distinctive, production-grade frontend interfaces with high design quality.
 
-## Publisher: <br>
-[ahump20](https://clawhub.ai/user/ahump20) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
+
+[ahump20](https://clawhub.ai/user/ahump20)
+
+### License/Terms of Use:
+
+Apache 2.0
+
+## Use Case:
+
+Developers and agents use this skill to design and implement polished frontend components, pages, dashboards, applications, posters, and styled web interfaces with a distinctive visual direction.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill encourages opinionated visual direction, motion, and distinctive styling that may not automatically match accessibility, brand, or production requirements.
+
+Mitigation: Review generated interfaces for accessibility, brand fit, performance, and user needs before deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and designers use this skill to have an agent create polished frontend components, pages, dashboards, applications, and UI code with a distinct visual direction. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Code]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated UI code may add external fonts, third-party libraries, analytics, images, or network resources. <br>
-Mitigation: Review generated frontend code before deployment and explicitly approve external resources and dependencies. <br>
+**Output Format:** [Markdown with code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May include frontend assets, styling details, or configuration when needed for the requested interface.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with frontend code and design guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be reviewed before deployment, especially when they introduce external resources or dependencies.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

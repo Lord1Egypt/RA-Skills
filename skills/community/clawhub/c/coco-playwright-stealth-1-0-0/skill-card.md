@@ -1,45 +1,59 @@
-## Description: <br>
-Playwright-based web scraping OpenClaw Skill with anti-bot protection, tested on complex sites like Discuss.com.hk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Playwright-based web scraping OpenClaw Skill with anti-bot protection. Successfully tested on complex sites like Discuss.com.hk.
 
-## Publisher: <br>
-[gu-yunyu](https://clawhub.ai/user/gu-yunyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gu-yunyu](https://clawhub.ai/user/gu-yunyu)
 
-## Use Case: <br>
-Developers and agent operators use this skill to fetch content from JavaScript-heavy or anti-bot-protected websites with Playwright scripts. It can return scraped page metadata and content previews, and can optionally save screenshots or HTML captures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan says the skill promotes anti-bot bypassing and may violate site rules or laws when used without permission. <br>
-Mitigation: Use it only for sites where you have permission, review the target site's terms, and avoid stealth or proxy behavior unless it is authorized. <br>
-Risk: The skill can weaken browser containment and run a downloaded Chromium browser against arbitrary URLs. <br>
-Mitigation: Install dependencies deterministically, run the skill in an isolated environment, and avoid logged-in, sensitive, or internal-only pages. <br>
-Risk: Screenshots and saved HTML can capture sensitive page content. <br>
-Mitigation: Review generated screenshots and HTML before sharing, and disable capture options when they are not needed. <br>
+## Use Case:
 
+Developers and automation agents use this skill to fetch content from dynamic or anti-bot-protected websites with Playwright, optionally saving screenshots or HTML for review.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/gu-yunyu/coco-playwright-stealth-1-0-0) <br>
-- [Playwright Official Docs](https://playwright.dev/) <br>
-- [puppeteer-extra-plugin-stealth](https://github.com/berstend/puppeteer-extra/tree/master/packages/puppeteer-extra-plugin-stealth) <br>
-- [deep-scraper skill](https://clawhub.com/opsun/deep-scraper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-like scraper output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scripts may save screenshot PNG files and optional HTML captures when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter, package.json, and changelog report 1.2.0) <br>
+Risk: The skill can browse arbitrary untrusted pages with stealth-oriented browser settings and broad URL access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in an isolated environment with restricted network access and use only URLs you are authorized to access.
+
+Risk: Saved screenshots or HTML can retain sensitive page content.
+
+Mitigation: Avoid private or sensitive URLs, choose controlled output paths, and review or delete generated files after use.
+
+Risk: The documentation points users to optional third-party skill installation instructions outside this package.
+
+Mitigation: Review any separately installed skill and its dependencies before running those optional instructions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gu-yunyu/skills/coco-playwright-stealth-1-0-0)
+- [Playwright official documentation](https://playwright.dev/)
+- [puppeteer-extra-plugin-stealth reference](https://github.com/berstend/puppeteer-extra/tree/master/packages/puppeteer-extra-plugin-stealth)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; scripts emit JSON and may write screenshot or HTML files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses URL input and optional environment variables such as HEADLESS, WAIT_TIME, SCREENSHOT_PATH, SAVE_HTML, and USER_AGENT.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json; artifact frontmatter, package.json, and changelog state 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

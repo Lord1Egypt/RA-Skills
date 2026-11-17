@@ -1,47 +1,59 @@
-## Description: <br>
-Manage Calendly events, invitees, scheduling links, webhooks, and availability via the Calendly API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Calendly events, invitees, scheduling links, webhooks, and availability via the Calendly API.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-External users, employees, and developers use this skill to manage Calendly scheduling workflows from an agent, including events, invitees, event types, availability, scheduling links, webhooks, and organization-related actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill connects to a Calendly account through OAuth and can read or change Calendly resources. <br>
-Mitigation: Install only if the user is comfortable connecting Calendly through ClawLink, and keep access scoped to the intended account. <br>
-Risk: Write operations can create, update, cancel, delete, invite, revoke, or remove Calendly resources. <br>
-Mitigation: Review the write-operation preview and require explicit user confirmation before executing any write or destructive action. <br>
-Risk: The integration requires sensitive OAuth credentials for the connected account. <br>
-Mitigation: Use the hosted OAuth connection flow and avoid asking the user to paste Calendly credentials or API tokens into chat. <br>
+## Use Case:
 
+External users and developers use this skill to operate Calendly from an OpenClaw chat, including listing events and invitees, checking availability, creating scheduling links, managing webhooks, and handling event cancellations.
 
-## Reference(s): <br>
-- [Calendly API Documentation](https://developer.calendly.com/) <br>
-- [Calendly Scheduled Events API](https://developer.calendly.com/api-docs/evedefaultapi/scheduled-events) <br>
-- [Calendly Webhook Subscriptions](https://developer.calendly.com/api-docs/webhook-subscriptions) <br>
-- [ClawLink OpenClaw Documentation](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink Verification](https://claw-link.dev/verify) <br>
-- [ClawHub Skill Page](https://clawhub.ai/hith3sh/calendly-scheduling) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Calendly tool names, JSON parameters, setup steps, previews, and confirmation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: ClawHub release metadata) <br>
+Risk: The skill asks users to install and allow an unpinned third-party plugin with ongoing access to a connected Calendly account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the publisher and ClawLink are trusted, and prefer a pinned or otherwise verifiable plugin release when available.
+
+Risk: OAuth-backed write actions can cancel events, modify organization membership, create webhooks, or delete Calendly data.
+
+Mitigation: Preview write actions and confirm the target resource and intended effect before execution, especially for cancellations, organization changes, webhooks, and data deletion.
+
+## Reference(s):
+
+- [Calendly API Documentation](https://developer.calendly.com/)
+- [Calendly Events API](https://developer.calendly.com/api-docs/evedefaultapi/scheduled-events)
+- [Calendly Webhooks](https://developer.calendly.com/api-docs/webhook-subscriptions)
+- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=calendly-scheduling)
+- [ClawLink Docs](https://docs.claw-link.dev/openclaw)
+- [ClawLink Verification](https://claw-link.dev/verify)
+- [ClawHub Skill Page](https://clawhub.ai/hith3sh/skills/calendly-scheduling)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, API calls]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON tool parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include Calendly resource identifiers, scheduling links, webhook configuration details, and previews for write actions.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

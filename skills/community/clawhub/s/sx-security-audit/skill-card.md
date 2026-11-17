@@ -1,48 +1,65 @@
-## Description: <br>
-A local security audit skill that checks file permissions, environment variables, dependencies, configuration, network ports, Git settings, shell history, macOS security settings, and secrets, with CLI, JSON, configuration file, and Feishu report support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs broad security audits across file permissions, environment variables, dependencies, configuration files, network ports, Git settings, shell configuration, macOS security checks, and secret detection, with CLI options, JSON output, and configuration-file support.
 
-## Publisher: <br>
-[zhuxiaobao-y](https://clawhub.ai/user/zhuxiaobao-y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuxiaobao-y](https://clawhub.ai/user/zhuxiaobao-y)
 
-## Use Case: <br>
-Developers and operators use this skill to run targeted or full local security audits, review prioritized findings, and generate Markdown or JSON reports for remediation tracking or Feishu sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The audit inspects sensitive local configuration, environment, shell, Git, dependency, and network-port information. <br>
-Mitigation: Run only the checks needed for the task, protect generated reports as confidential, and redact secrets or host details before sharing. <br>
-Risk: Feishu delivery can send security findings outside the local machine. <br>
-Mitigation: Use Feishu sending only after confirming the webhook or plugin destination and reviewing the report contents. <br>
+## Use Case:
 
+Developers and security-minded operators use this skill to run local security checks, prioritize findings, and generate Markdown or JSON audit reports. It is suited for auditing OpenClaw workspaces and nearby development environments before sharing reports or changing security posture.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/zhuxiaobao-y/sx-security-audit) <br>
-- [Permissions rules](references/permissions.md) <br>
-- [Secrets detection rules](references/secrets-detection.md) <br>
-- [Dependency audit guidance](references/dependency-audit.md) <br>
-- [Code security best practices](references/code-security.md) <br>
-- [NPM Advisory Database](https://github.com/npm/advisories) <br>
-- [PyPI Security](https://pypi.org/security) <br>
-- [CVE Database](https://cve.mitre.org/) <br>
-- [OWASP Top 10](https://owasp.org/www-project-top-ten/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text, Markdown reports, JSON reports, and Feishu message payloads.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports selected check modules, severity filtering, quiet mode, output files, and optional Feishu delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Security reports may include shell credential values or other sensitive local findings that could be exposed if saved or shared externally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact generated reports before storing them in shared locations or sending them through Feishu, webhooks, or other messaging tools.
+
+Risk: Audit helper commands and dependency-check examples can affect the local environment if run without isolation or version pinning.
+
+Mitigation: Run checks in an isolated environment when possible, pin tool versions before installation, and review commands before executing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhuxiaobao-y/skills/sx-security-audit)
+- [Permissions rules](references/permissions.md)
+- [Secrets detection rules](references/secrets-detection.md)
+- [Dependency vulnerability scanning](references/dependency-audit.md)
+- [Code security best practices](references/code-security.md)
+- [NPM Advisory Database](https://github.com/npm/advisories)
+- [PyPI Security](https://pypi.org/security)
+- [CVE Database](https://cve.mitre.org/)
+- [OWASP Top 10](https://owasp.org/www-project-top-ten/)
+- [CWE Top 25](https://cwe.mitre.org/top25/)
+- [SANS Top 25](https://www.sans.org/top25-software-errors/)
+- [Node.js Security Best Practices](https://nodejs.org/en/docs/guides/security)
+- [Python Security Guide](https://python.readthedocs.io/en/latest/security/index.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Terminal output, Markdown audit reports, JSON audit reports, configuration snippets, and Feishu-ready report messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include pass, warning, and fail counts, severity distribution, detailed findings, impact descriptions, and prioritized remediation guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

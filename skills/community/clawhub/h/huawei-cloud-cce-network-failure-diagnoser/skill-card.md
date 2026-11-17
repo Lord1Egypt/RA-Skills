@@ -1,48 +1,63 @@
-## Description: <br>
-Huawei Cloud CCE Network Failure Diagnoser helps agents diagnose Huawei Cloud CCE Service, DNS/CoreDNS, Ingress, NetworkPolicy, ELB, EIP, NAT, VPC, subnet, security group, and ACL network failures using the bundled Python SDK dispatcher. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnoses Huawei Cloud CCE network connectivity, DNS/CoreDNS, Ingress, NetworkPolicy, ELB backend, EIP, NAT, and VPC failures and produces Markdown diagnosis reports.
 
-## Publisher: <br>
-[pintudeyudi](https://clawhub.ai/user/pintudeyudi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pintudeyudi](https://clawhub.ai/user/pintudeyudi)
 
-## Use Case: <br>
-Developers and platform engineers use this skill to investigate Huawei Cloud CCE network incidents, collect read-only Kubernetes and cloud-side evidence, and produce a Markdown diagnosis report with findings, confidence, recommendations, and verification criteria. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled dispatcher exposes powerful cluster administration and sensitive-data actions beyond the advertised read-only network troubleshooting purpose. <br>
-Mitigation: Review and restrict the bundled dispatcher before use; permit only the diagnosis actions needed for the incident workflow. <br>
-Risk: The skill requires sensitive Huawei Cloud and Kubernetes credentials. <br>
-Mitigation: Use least-privilege read-only Huawei Cloud and Kubernetes credentials, avoid passing AK/SK values on the command line, and tightly control log, secret, and kubeconfig-returning actions. <br>
-Risk: Mutating actions may be available through bundled scripts even though the documented network diagnosis workflow is read-only. <br>
-Mitigation: Do not run mutating actions unless they have been intentionally audited and approved; keep network changes as reviewed recommendations with rollback and verification criteria. <br>
+## Use Case:
 
+Developers and platform engineers use this skill to investigate Huawei Cloud CCE Service reachability, DNS, Ingress, NetworkPolicy, ELB, EIP, NAT, and VPC network failures. It gathers read-only diagnostic evidence and returns structured findings with a Markdown report, confidence levels, recommendations, and verification criteria.
 
-## Reference(s): <br>
-- [Diagnosis workflow](references/workflow.md) <br>
-- [Risk rules](references/risk-rules.md) <br>
-- [Output schema](references/output-schema.md) <br>
-- [Verification method](references/verification-method.md) <br>
-- [IAM policies](references/iam-policies.md) <br>
-- [Common pitfalls](references/common-pitfalls.md) <br>
-- [ClawHub skill page](https://clawhub.ai/pintudeyudi/huawei-cloud-cce-network-failure-diagnoser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Structured JSON with embedded Markdown diagnosis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include investigation process, evidence matrix, conclusions, confidence levels, recommendations, and verification criteria.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Server security review reports that the skill describes read-only network diagnosis while its shipped dispatcher can run broad cloud administration actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and restrict execution to the documented read-only network diagnostic actions before use with real Huawei Cloud or Kubernetes credentials.
+
+Risk: Server security review reports potential exposure of Kubernetes secrets.
+
+Mitigation: Avoid production or write-capable credentials until the publisher removes Secret data access; if real credentials were already used, rotate exposed credentials and review agent logs for secret output.
+
+Risk: Server security review calls out dependency pinning and certificate/TLS handling concerns.
+
+Mitigation: Pin dependencies and fix certificate/TLS handling before deployment in production environments.
+
+## Reference(s):
+
+- [Skill page](https://clawhub.ai/pintudeyudi/skills/huawei-cloud-cce-network-failure-diagnoser)
+- [Workflow](references/workflow.md)
+- [Risk Rules](references/risk-rules.md)
+- [Output Schema](references/output-schema.md)
+- [IAM Policies](references/iam-policies.md)
+- [Verification Method](references/verification-method.md)
+- [Common Pitfalls](references/common-pitfalls.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Structured JSON with embedded Markdown diagnosis report and read-only verification guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include findings, snapshots, top causes, confidence values, recommendations, and verification criteria.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

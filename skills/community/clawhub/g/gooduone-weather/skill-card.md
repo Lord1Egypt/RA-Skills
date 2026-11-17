@@ -1,39 +1,54 @@
-## Description: <br>
-查询城市天气情况。使用场景：用户询问某个城市的天气、温度、或天气预报时。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+查询城市天气情况。使用场景：用户询问某个城市的天气、温度、或天气预报时。
 
-## Publisher: <br>
-[gooduone](https://clawhub.ai/user/gooduone) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gooduone](https://clawhub.ai/user/gooduone)
 
-## Use Case: <br>
-External users and agents use this skill to answer Chinese-language weather questions for a named city, including current conditions, temperature, rainfall checks, and short forecasts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Weather lookups may send city or location text to wttr.in. <br>
-Mitigation: Avoid including sensitive personal details in weather queries and use HTTPS wttr.in URLs where possible. <br>
+## Use Case:
 
+External users and agents use this skill to query current weather, temperature, or forecast information for a named city and return the result in Chinese.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/gooduone/gooduone-weather) <br>
-- [wttr.in weather service](https://wttr.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline curl commands; weather responses may be plain text, concise text, or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports Chinese-language output with lang=zh, concise one-line output with format=3, and JSON output with format=j1.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Weather queries are sent to wttr.in, which can expose the requested city or location context to that service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing the queried city with wttr.in is acceptable.
+
+Risk: Examples omit an explicit URL scheme, which can make transport behavior less clear to reviewers and users.
+
+Mitigation: Prefer explicit https://wttr.in URLs when adapting or executing the examples.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gooduone/skills/gooduone-weather)
+- [wttr.in weather service](https://wttr.in)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, JSON, guidance]
+
+**Output Format:** [Markdown with inline bash commands and optional plain text or JSON weather results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports Chinese-language weather output with lang=zh, concise one-line responses with format=3, and JSON output with format=j1.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

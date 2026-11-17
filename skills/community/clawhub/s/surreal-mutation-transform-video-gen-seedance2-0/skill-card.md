@@ -1,44 +1,60 @@
-## Description: <br>
-Generates surreal, short-form text-to-video or single image-to-video clips with WeryAI Seedance 2.0, using expanded cinematic prompts and fixed model constraints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates surreal short videos with WeryAI Seedance 2.0 from text prompts or a single input image.
 
-## Publisher: <br>
-[zoucdr](https://clawhub.ai/user/zoucdr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoucdr](https://clawhub.ai/user/zoucdr)
 
-## Use Case: <br>
-External users, creators, and agent operators use this skill to turn short creative briefs or a single image into surreal Seedance 2.0 video generations with confirmation before paid API execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a WeryAI API key and sends prompts, public image URLs, or explicitly selected local images to WeryAI. <br>
-Mitigation: Install and run only when comfortable sharing those inputs with WeryAI, and never store the API key in skill files or logs. <br>
-Risk: Local image paths can be read and uploaded by the bundled script when the user deliberately chooses that flow. <br>
-Mitigation: Prefer public HTTPS image URLs; use local paths only after reviewing the selected file and confirming consent to upload it. <br>
-Risk: Paid generation runs can consume credits, and the script does not enforce the skill's SEEDANCE_2_0-only policy in code. <br>
-Mitigation: Confirm paid settings before execution and verify the request JSON uses model SEEDANCE_2_0. <br>
+## Use Case:
 
+External creators, marketers, and developers use this skill to expand short creative briefs into surreal production prompts, submit text-to-video or image-to-video jobs to WeryAI Seedance 2.0, and return playable video links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zoucdr/surreal-mutation-transform-video-gen-seedance2-0) <br>
-- [Publisher profile](https://clawhub.ai/user/zoucdr) <br>
-- [WeryAI video CLI and JSON reference](resources/WERYAI_VIDEO_API.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with confirmation tables, inline video links, and shell command execution guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces WeryAI video task submissions and returns playable video URLs or clear failure details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: Image parameters can cause readable local files to be uploaded to WeryAI when local paths are supplied.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer public HTTPS image URLs, reject untrusted image paths, and require explicit operator consent before any local file upload.
+
+Risk: Generation uses a paid WeryAI API key and repeated runs can consume credits.
+
+Mitigation: Run in an isolated environment with a WeryAI key intended for this use, confirm parameters before submission, and avoid automatic retries that create new jobs.
+
+Risk: The bundled script does not enforce every skill-level model and parameter limit.
+
+Mitigation: Validate model, duration, aspect ratio, resolution, audio, and unsupported fields against the skill documentation before invoking the script.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zoucdr/skills/surreal-mutation-transform-video-gen-seedance2-0)
+- [WERYAI_VIDEO_API.md](resources/WERYAI_VIDEO_API.md)
+- [WeryAI video API host](https://api.weryai.com)
+- [WeryAI model and upload API host](https://api-growth-agent.weryai.com)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, API Calls, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and playable video links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WERYAI_API_KEY and Node.js 18+; uses paid network calls and returns WeryAI task status or video URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

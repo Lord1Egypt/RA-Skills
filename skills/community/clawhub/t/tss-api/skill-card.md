@@ -1,39 +1,54 @@
-## Description: <br>
-Provides API reference guidance for querying Compass TSS cross-chain transaction status, scanned block heights, pending transactions, orders, and transaction hashes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+tss-api provides Compass TSS API reference guidance for querying cross-chain transaction heights, pending transactions, orders, transaction hashes, and status records.
 
-## Publisher: <br>
-[lbtsm](https://clawhub.ai/user/lbtsm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lbtsm](https://clawhub.ai/user/lbtsm)
 
-## Use Case: <br>
-Developers and support operators use this skill to ask an agent for endpoint, parameter, response, and curl guidance when checking cross-chain transaction records through the Compass TSS API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Transaction hashes, order IDs, chain IDs, or block heights used in queries may be sent to tss-api.chainservice.io. <br>
-Mitigation: Avoid submitting identifiers that should not be shared with that provider, and review requests before using the external service. <br>
+## Use Case:
 
+Developers and support engineers use this skill as an API reference for inspecting Compass TSS cross-chain transaction records, pending transactions, block-height scans, order IDs, transaction hashes, and status codes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lbtsm/tss-api) <br>
-- [Compass TSS API base URL](https://tss-api.chainservice.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown API guidance with JSON examples and curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only API reference; examples may include chain IDs, block heights, order IDs, and transaction hashes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: ClawHub release evidence) <br>
+Risk: Queries can expose sensitive or non-public order IDs or transaction hashes to the Compass TSS API endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only identifiers intended to be shared with that endpoint and avoid sending confidential transaction data.
+
+Risk: The API reference is primarily in Chinese, which may cause localization or interpretation errors for non-Chinese readers.
+
+Mitigation: Have bilingual reviewers confirm endpoint parameters and status semantics before operational use.
+
+## Reference(s):
+
+- [ClawHub tss-api skill page](https://clawhub.ai/lbtsm/skills/tss-api)
+- [Compass TSS API base endpoint](https://tss-api.chainservice.io)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown API reference with JSON response examples and bash curl commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes REST endpoint paths, query parameters, response examples, status codes, and curl commands.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

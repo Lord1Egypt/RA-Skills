@@ -1,44 +1,63 @@
-## Description: <br>
-Guides an agent through an Alipay CLI-based A402 payment workflow when an HTTP request returns 402 Payment Required, including payment initiation, status checking, resource retry, and fulfillment acknowledgement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Handles HTTP 402 Payment Required responses for A402 buyer payments by parsing the Payment-Needed bill, invoking the alipay-bot CLI to initiate payment, retrying the protected request with payment proof, and sending a fulfillment acknowledgement.
 
-## Publisher: <br>
-[yun520-1](https://clawhub.ai/user/yun520-1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yun520-1](https://clawhub.ai/user/yun520-1)
 
-## Use Case: <br>
-External users and developers use this skill when an HTTP 402 response requires an A402 buyer payment flow. It helps the agent collect the Payment-Needed header, run the Alipay payment CLI, wait for user payment confirmation, retry the protected resource request, and acknowledge fulfillment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can initiate real payment activity through an external Alipay CLI. <br>
-Mitigation: Review the merchant, amount, and authorization prompts before paying, and continue only after explicit user payment confirmation. <br>
-Risk: Payment links, payment proofs, feedback text, and purchased resource data may be sensitive. <br>
-Mitigation: Avoid persistent logging or forwarding outside the intended channels, and do not submit feedback text containing secrets or unrelated personal information. <br>
-Risk: Shell commands and file paths are part of the workflow. <br>
-Mitigation: Use the fixed package version and integrity check, validate file names, trade numbers, and resource URLs, and reject unsafe parameters before execution. <br>
+## Use Case:
 
+External users and developers use this skill when an HTTP request returns 402 Payment Required and an agent needs to guide the buyer-side Alipay/A402 payment flow. It supports wallet checks, payment submission, status querying, protected resource retry, and fulfillment acknowledgement.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yun520-1/alipay-pay-for-402-service) <br>
-- [Payment Skills Homepage](https://github.com/alipay/payment-skills) <br>
-- [Alipay Agent Payment npm Package](https://www.npmjs.com/package/@alipay/agent-payment) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and CLI output, with possible JSON responses and MEDIA lines from the payment CLI.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include payment status, payment links, QR-code media paths, trade numbers, and purchased resource content returned by the CLI workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter and changelog mention 1.0.7) <br>
+Risk: The skill installs and executes an external npm package in a payment workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package source and integrity before installation, install only the pinned package version, and proceed only when the user trusts the package and merchants involved.
+
+Risk: The retry flow may operate on untrusted or user-supplied resource URLs.
+
+Mitigation: Enforce strict HTTPS URL validation and safe argument handling before running payment status or retry commands.
+
+Risk: Problem feedback could include secrets, payment details, or unnecessary personal data.
+
+Mitigation: Show the feedback payload to the user for confirmation and omit secrets or personal data that are not required for troubleshooting.
+
+Risk: Payment links and QR code references are sensitive to exposure and may be user-bound.
+
+Mitigation: Display payment links only through user-approved channels and avoid writing them to persistent logs or caches.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yun520-1/skills/alipay-pay-for-402-service)
+- [OpenClaw homepage](https://github.com/alipay/payment-skills)
+- [alipay-bot npm package](https://www.npmjs.com/package/@alipay/agent-payment)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command snippets and direct CLI output forwarding]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires npm and alipay-bot; payment links, QR MEDIA lines, and purchased resource responses are expected to be passed through without alteration.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter: 1.0.7)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

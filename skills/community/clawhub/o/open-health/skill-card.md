@@ -1,44 +1,59 @@
-## Description: <br>
-Open Health helps users find and book virtual mental health appointments with licensed US providers through conversational availability search and booking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Open Health helps agents search for and book real virtual mental health appointments with licensed US providers through a public booking API.
 
-## Publisher: <br>
-[gljirain](https://clawhub.ai/user/gljirain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gljirain](https://clawhub.ai/user/gljirain)
 
-## Use Case: <br>
-External users can use this skill to search for same-day or next-day psychiatric and mental health telehealth appointments, compare provider availability, and book a video visit with insurance or cash-pay options. Agents should use it only when the user clearly wants care booking, not for crisis support, diagnosis, prescription refills, or general medical advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send sensitive mental-health appointment details, identity, contact information, date of birth, and insurance/member ID to a remote booking service. <br>
-Mitigation: Confirm the exact payload and destination with the user before any real booking, prefer dry-run validation first, and never log, persist, or store patient information. <br>
-Risk: Users may treat the booking workflow as medical advice or crisis support. <br>
-Mitigation: Use the skill only for care booking requests; route crisis language to emergency resources and defer diagnosis or treatment guidance to licensed providers. <br>
-Risk: A real booking action can create an appointment, and availability may change before confirmation. <br>
-Mitigation: Get explicit user confirmation for the selected provider and time before booking, and search again if the selected slot is unavailable. <br>
+## Use Case:
 
+External users seeking US mental health telehealth appointments use this skill to search provider availability by service, state, payment method, and timing, then book a selected slot after providing required patient details.
 
-## Reference(s): <br>
-- [Klarity Booking API Reference](references/api-reference.md) <br>
-- [Klarity Booking API](https://rx.helloklarity.com) <br>
-- [Open Health on ClawHub](https://clawhub.ai/gljirain/open-health) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance, Shell commands, API Calls] <br>
-**Output Format:** [Conversational text with shell command examples and JSON API responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and python3; availability and booking depend on the remote telehealth booking API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can create real mental-health appointments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require clear user intent and explicit confirmation before making the final booking call.
+
+Risk: The booking flow handles sensitive mental-health, identity, contact, and insurance data.
+
+Mitigation: Avoid logging, persisting, or adding patient JSON to memory or summaries; use the data only for the immediate API call.
+
+Risk: The skill is not appropriate for crisis situations, diagnosis, medical advice, or prescription refills.
+
+Mitigation: Redirect crisis or immediate-danger requests to emergency resources and leave clinical assessment to licensed providers.
+
+## Reference(s):
+
+- [Klarity Booking API Reference](references/api-reference.md)
+- [Klarity booking API base URL](https://rx.helloklarity.com)
+- [Open Health ClawHub page](https://clawhub.ai/gljirain/skills/open-health)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API calls, JSON]
+
+**Output Format:** [Markdown responses with shell command invocations and JSON API payloads or results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces time-sensitive availability and booking responses; patient data should be used only for the immediate booking flow and then discarded.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata, created 2026-03-12)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

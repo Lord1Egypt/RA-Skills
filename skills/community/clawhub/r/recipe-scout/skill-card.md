@@ -1,45 +1,61 @@
-## Description: <br>
-Find and normalize Chinese recipes (中餐菜谱) from structured sources first, then export clean recipe notes to Obsidian markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find and normalize Chinese recipes from structured sources first, then export clean recipe notes to Obsidian markdown.
 
-## Publisher: <br>
-[cylqqqcyl](https://clawhub.ai/user/cylqqqcyl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cylqqqcyl](https://clawhub.ai/user/cylqqqcyl)
 
-## Use Case: <br>
-Home cooks, recipe curators, and agents assisting them use this skill to find Chinese recipes from structured sources, compare candidates, normalize measurements and steps, and optionally save polished recipe notes for Obsidian. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recipe exports may write notes into an Obsidian vault or fallback workspace path, including synced folders. <br>
-Mitigation: Confirm the target folder and filenames before exporting recipe notes. <br>
-Risk: Recipe guidance can become unreliable if social posts or logged-in pages are treated as authoritative sources. <br>
-Mitigation: Prefer public structured recipe pages, avoid login or paywall bypass, and mark social-source details as low confidence unless cross-validated. <br>
+## Use Case:
 
+Home cooks, recipe curators, and agents use this skill to discover Chinese recipes, compare candidate sources, normalize ingredients and steps, and optionally create Obsidian recipe notes.
 
-## Reference(s): <br>
-- [ClawHub Recipe Scout page](https://clawhub.ai/cylqqqcyl/recipe-scout) <br>
-- [OpenClaw Skills documentation](https://docs.openclaw.ai/tools/skills) <br>
-- [Extraction Schema](references/schema.md) <br>
-- [Query Formulation Examples](references/query-examples.md) <br>
-- [Obsidian Recipe Note Template](references/obsidian-template.md) <br>
-- [HowToCook recipe collection](https://github.com/Anduin2017/HowToCook) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown, with optional structured recipe data and Obsidian markdown files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write one markdown file per recipe when export is requested; otherwise returns recipe candidates, summaries, normalized steps, shopping lists, and source confidence in chat.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Recipe notes may be written to an unintended Obsidian vault or fallback export path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the destination path before export and return the written file paths for user review.
+
+Risk: Browser fallback may use an available browser profile or session for recipe pages that require rendering or login.
+
+Mitigation: Prefer web search and fetch for structured recipe pages, and use browser access only when rendering or transcript interaction is necessary.
+
+Risk: Social or incomplete recipe sources can provide missing or unreliable ingredient amounts, timings, or technique details.
+
+Mitigation: Prioritize structured recipe sources, mark low-confidence social-source details clearly, and avoid fabricating measurements or cooking times.
+
+## Reference(s):
+
+- [Recipe Scout ClawHub Page](https://clawhub.ai/cylqqqcyl/skills/recipe-scout)
+- [OpenClaw Skills Documentation](https://docs.openclaw.ai/tools/skills)
+- [Obsidian Recipe Note Template](artifact/references/obsidian-template.md)
+- [Query Formulation Examples](artifact/references/query-examples.md)
+- [Extraction Schema](artifact/references/schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown responses and optional Obsidian-compatible recipe note files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include source confidence, normalized recipe fields, shopping lists, and exported file paths when note export is requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Pomodoro-style focus blocks managed by your agent, with controls to start, pause, track sessions, and report daily focus time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pomodoro-style focus blocks managed by your agent. Start, pause, track sessions. Daily focus time reports. No app needed, just chat.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-Individuals, teams, and productivity-focused agent users can use this skill to run Pomodoro-style focus blocks through chat, track session history, and receive daily focus summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Focus session task names and history may be stored locally on disk. <br>
-Mitigation: Avoid entering sensitive client, health, legal, or personal details as task names unless local disk history is acceptable in the deployment environment. <br>
-Risk: Local focus history could be lost, corrupted, or exposed through normal local file access. <br>
-Mitigation: Use appropriate file permissions and backup or retention practices for environments that rely on focus history. <br>
+## Use Case:
 
+External users use this skill to let an agent manage Pomodoro-style focus sessions, breaks, task tagging, and daily or weekly focus summaries through chat.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TheShadowRose/focus-timer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Conversational text and Markdown-style summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May store local focus session history in JSON when used with the bundled JavaScript helper.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and frontmatter) <br>
+Risk: The skill can write session data to an unrestricted caller-chosen local file path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a trusted workspace, avoid exposing the data file path to untrusted input, and prefer a fixed app-owned storage path with deletion controls and visible write errors.
+
+Risk: Local focus-session records may reveal work activity or personal productivity patterns.
+
+Mitigation: Review before installing when local activity privacy matters and keep backups of important local data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/theshadowrose/skills/focus-timer)
+- [OpenClaw project](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Conversational text, Markdown examples, JavaScript code, and YAML configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write local session data to a configured JSON file path.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

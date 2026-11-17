@@ -1,40 +1,54 @@
-## Description: <br>
-Provides a Charlie Munger-inspired mental-model framework for inversion, circle of competence, margin of safety, opportunity cost, compounding, and cognitive-bias checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Munger Lens is a Chinese-language reasoning aid that applies Charlie Munger's mental models, including inversion, circle of competence, margin of safety, opportunity cost, compounding, and misjudgment psychology.
 
-## Publisher: <br>
-[xiaonizhou-crypto](https://clawhub.ai/user/xiaonizhou-crypto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaonizhou-crypto](https://clawhub.ai/user/xiaonizhou-crypto)
 
-## Use Case: <br>
-Developers and end users can use this skill to frame business, investment, and long-term strategy decisions through Munger-style heuristics and cognitive-bias checks. It is best suited for reflective decision support, not automated financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may over-rely on the framework as financial or investment advice. <br>
-Mitigation: Treat outputs as general reasoning guidance and apply independent review before making financial decisions. <br>
-Risk: Quoted attribution and Munger-style framing may be incomplete or imprecise. <br>
-Mitigation: Verify important quotations and source claims before using them in public, educational, or investment contexts. <br>
+## Use Case:
 
+Developers and end users can invoke this skill when they want a structured Munger-style lens for business decisions, investment risk review, long-term strategy, or cognitive-bias checks.
 
-## Reference(s): <br>
-- [Munger Lens on ClawHub](https://clawhub.ai/xiaonizhou-crypto/munger-lens) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Markdown-style decision guidance and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Content-only guidance; no code, credentials, network access, or system-changing instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Users may over-rely on the investment framing as financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as a reasoning aid only, verify assumptions independently, and consult qualified financial professionals for financial decisions.
+
+Risk: The skill is presented in Chinese, which may limit reliable use by readers who need another language.
+
+Mitigation: Confirm language support before deployment and review any translation for accuracy.
+
+## Reference(s):
+
+- [Munger Lens on ClawHub](https://clawhub.ai/xiaonizhou-crypto/skills/munger-lens)
+- [Publisher profile](https://clawhub.ai/user/xiaonizhou-crypto)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language reasoning framework; no code execution, external access, or persistence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Syncs job application emails from Gmail and updates statuses in a Notion or SQLite tracker, including offers, rejections, and interview invitations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Syncs job application emails from Gmail and updates statuses in a Notion or SQLite tracker, detecting offers, rejections, interview invitations, and follow-up needs.
 
-## Publisher: <br>
-[chenyuan99](https://clawhub.ai/user/chenyuan99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenyuan99](https://clawhub.ai/user/chenyuan99)
 
-## Use Case: <br>
-Job seekers use this skill to keep an application tracker current by reading relevant Gmail threads, classifying application status, syncing Notion or SQLite records, and optionally creating interview calendar events. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads job-related Gmail content and may write sensitive application details to Notion or SQLite. <br>
-Mitigation: Use narrow Gmail labels where possible and review the configured tracker backend, Notion database, and SQLite path before running syncs. <br>
-Risk: Bulk re-enrichment or calendar creation can make many tracker or calendar changes. <br>
-Mitigation: Confirm bulk operations and calendar event creation before execution, and review the generated per-application report after each run. <br>
+## Use Case:
 
+External users use this skill to keep a job application tracker current from Gmail activity, with optional writes to Notion, a local SQLite database, and Google Calendar interview events.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chenyuan99/job-application-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with tracker updates, summaries, and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update Notion pages, a local SQLite database, profile.md configuration, and optional calendar events when the relevant integrations are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.11 (source: server release metadata; artifact frontmatter version 0.5.0) <br>
+Risk: The skill may read sensitive job-related Gmail threads and write extracted details to a tracker.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with explicit consent for Gmail access and tracker writes, and review the data it will sync before installation.
+
+Risk: SQLite persistence can be unsafe when the database path is user-supplied, profile-loaded, or passed through shell interpolation.
+
+Mitigation: Prefer the Notion backend or a fixed trusted SQLite path; validate and pass SQLite paths safely without shell interpolation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenyuan99/skills/job-application-manager)
+- [Publisher profile](https://clawhub.ai/user/chenyuan99)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, structured tracker content, JSON-like API payloads, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read job-related Gmail threads and write extracted application details to Notion, SQLite, or Google Calendar when configured.]
+
+## Skill Version(s):
+
+1.0.11 (source: ClawHub release metadata; artifact frontmatter version 0.5.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

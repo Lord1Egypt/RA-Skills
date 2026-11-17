@@ -1,41 +1,58 @@
-## Description: <br>
-Automatic context compression for OpenClaw sessions that summarizes long conversations into structured digests, saves compressed summaries locally, and helps inject prior context into new sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatic context compression for OpenClaw sessions that summarizes long conversations into structured digests, stores local compact files, and helps inject relevant prior context into new sessions.
 
-## Publisher: <br>
-[zgjq](https://clawhub.ai/user/zgjq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zgjq](https://clawhub.ai/user/zgjq)
 
-## Use Case: <br>
-Developers and agents use this skill to compact long OpenClaw conversations into concise session memory, preserving decisions, facts, pending actions, blockers, and technical context for later work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Conversation summaries may preserve sensitive work context or secrets if a session is compacted without review. <br>
-Mitigation: Avoid compacting sessions that contain secrets or sensitive internal details, and review compact files when privacy matters. <br>
-Risk: Redaction reduces exposure but may not remove every sensitive detail from generated compacts. <br>
-Mitigation: Use the skill's redaction checks and manually remove sensitive paths, URLs, credentials, and personal information before relying on a compact. <br>
+## Use Case:
 
+Developers and agent users use this skill to condense long OpenClaw conversations into reusable session memory, recover recent decisions and pending work, and reduce repeated context in later sessions.
 
-## Reference(s): <br>
-- [Compaction Prompt Template](references/compaction_prompt.md) <br>
-- [ClawHub skill page](https://clawhub.ai/zgjq/context-compactor-zero-dep) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown session digests and shell commands for local compaction scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores local compact files under the configured OpenClaw workspace and keeps up to 30 compacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: server release evidence) <br>
+Risk: Conversation-derived information may be stored and reinjected into later sessions, including sensitive project context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when local cross-session memory is intended, inspect generated compacts, and avoid compacting conversations that contain credentials, customer data, or private infrastructure details.
+
+Risk: Current redaction checks are not a complete secret scanner.
+
+Mitigation: Redact sensitive details before compaction and review compact output instead of relying solely on built-in filtering.
+
+Risk: Opt-in LLM compaction can send conversation text to the configured LLM provider.
+
+Mitigation: Use keyword-based local extraction for sensitive sessions, or confirm that the configured LLM provider is approved for the conversation contents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zgjq/skills/context-compactor-zero-dep)
+- [Compaction prompt template](artifact/references/compaction_prompt.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown session digests, shell command snippets, and local compact-file operations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Standard-library Python workflow; local compact retention is capped at 30 files.]
+
+## Skill Version(s):
+
+1.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

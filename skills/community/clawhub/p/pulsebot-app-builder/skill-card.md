@@ -1,46 +1,60 @@
-## Description: <br>
-Build real-time Timeplus data processing and analysis applications in Pulsebot as single-file HTML/JavaScript apps that connect to Timeplus Proton, visualize streaming data with Vistral, and follow the Timeplus UI style guide. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build real-time Timeplus data processing and analysis applications in Pulsebot. Creates pure frontend HTML/JavaScript apps that connect directly to Timeplus Proton via @timeplus/proton-javascript-driver (UMD), visualize live streaming data with @timeplus/vistral (UMD), and follow the Timeplus UI style guide. No npm build or bundler required - output is a single self-contained HTML file.
 
-## Publisher: <br>
-[gangtao](https://clawhub.ai/user/gangtao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gangtao](https://clawhub.ai/user/gangtao)
 
-## Use Case: <br>
-Developers use this skill to build browser-based Timeplus Proton dashboards, pipeline visualizers, and streaming analytics apps in Pulsebot. The skill guides requirement clarification, SQL/query setup, chart selection, Timeplus styling, and delivery of a self-contained HTML app. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML may run SQL against the local Timeplus Proton proxy at localhost:8001. <br>
-Mitigation: Review the SQL query and target streams before opening or sharing generated apps. <br>
-Risk: Generated apps load React, Vistral, Proton driver, and peer dependencies from third-party unpkg script tags. <br>
-Mitigation: Use trusted, pinned, or locally hosted dependencies when working with sensitive Proton data or controlled environments. <br>
+## Use Case:
 
+Developers and data engineers use this skill to create Pulsebot frontend apps for Timeplus Proton streams, including real-time dashboards, pipeline visualizers, streaming analytics views, and data exploration tools.
 
-## Reference(s): <br>
-- [Pulsebot App Builder release page](https://clawhub.ai/gangtao/pulsebot-app-builder) <br>
-- [Proton JavaScript Driver Reference](references/PROTON_DRIVER.md) <br>
-- [Vistral API Reference](references/VISTRAL_API.md) <br>
-- [Timeplus Application Style Guide](references/STYLE_GUIDE.md) <br>
-- [Timeplus Proton JavaScript Driver](https://github.com/timeplus-io/proton-javascript-driver) <br>
-- [Timeplus Vistral](https://github.com/timeplus-io/vistral) <br>
-- [Timeplus style guide source](https://gist.github.com/gangtao/5307e8bbb84384804c7fb9480a515925) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with HTML, JavaScript, CSS, SQL, and shell command snippets; final app output is a single self-contained HTML file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated apps load browser dependencies from CDN and connect to a local Timeplus Proton proxy at localhost:8001.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated apps may query localhost:8001 as soon as the HTML file opens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require a visible manual Connect or Run action that shows the SQL before execution, especially when Proton data is sensitive.
+
+Risk: Generated apps may run mutable JavaScript loaded from unpkg without integrity checks.
+
+Mitigation: Prefer pinned dependency versions with Subresource Integrity or vendored assets before production use.
+
+## Reference(s):
+
+- [Pulsebot App Builder on ClawHub](https://clawhub.ai/gangtao/skills/pulsebot-app-builder)
+- [Publisher profile: gangtao](https://clawhub.ai/user/gangtao)
+- [Proton JavaScript Driver Reference](references/PROTON_DRIVER.md)
+- [Vistral API Reference](references/VISTRAL_API.md)
+- [Timeplus Application Style Guide](references/STYLE_GUIDE.md)
+- [Timeplus Proton JavaScript Driver](https://github.com/timeplus-io/proton-javascript-driver)
+- [Timeplus Vistral](https://github.com/timeplus-io/vistral)
+- [Timeplus App Style Guide Source](https://gist.github.com/gangtao/5307e8bbb84384804c7fb9480a515925)
+
+## Skill Output:
+
+**Output Type(s):** [code, files, shell commands, configuration, guidance]
+
+**Output Format:** [Single-file HTML with embedded JavaScript and CSS, plus concise setup or usage notes when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated apps may query the local Proton proxy and load browser dependencies from CDN URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

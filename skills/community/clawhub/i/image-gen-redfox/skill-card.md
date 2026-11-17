@@ -1,44 +1,54 @@
-## Description: <br>
-GPT-image2 uses the RedFox API to submit gpt-image-2 text-to-image and image-to-image jobs and download PNG, JPEG, or WebP outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI image generator based on gpt-image-2 that supports text-to-image and image-to-image generation with PNG, JPEG, and WebP outputs.
 
-## Publisher: <br>
-[redfox-data](https://clawhub.ai/user/redfox-data) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redfox-data](https://clawhub.ai/user/redfox-data)
 
-## Use Case: <br>
-Designers, content marketers, e-commerce operators, and developers use this skill to generate or edit images from prompts and local reference images through the RedFox gpt-image-2 service, with controls for size, format, background, batch count, quality, and output location. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, selected reference images, and the RedFox API key are sent to an external RedFox service for processing. <br>
-Mitigation: Avoid private photos, confidential designs, regulated data, and secrets unless RedFox privacy and retention terms have been reviewed. <br>
-Risk: The RedFox API key can be exposed if it is hardcoded, passed casually in commands, logged, or stored in an unprotected file. <br>
-Mitigation: Prefer an environment variable or protected config file, avoid plaintext exposure in prompts, logs, code, and output files, and rotate the key if it is exposed. <br>
+## Use Case:
 
+External users, designers, content marketers, and e-commerce operators use this skill to generate or edit image assets from natural-language prompts and optional reference images.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/redfox-data/image-gen-redfox) <br>
-- [README.en.md](README.en.md) <br>
-- [SKILL.md](SKILL.md) <br>
-- [RedFox API key settings](https://redfox.hk/settings/api-keys?source=clawhub) <br>
-- [RedFox service](https://redfox.hk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands; generated image files are PNG, JPEG, or WebP.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports prompts up to 500 characters, one to ten images, whitelisted image sizes, optional reference image upload, and RedFox API-key configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The RedFox API key can be provided through an environment variable, command-line argument, or plaintext config file, which can expose paid or sensitive credentials more broadly than expected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer an environment variable or credential manager, avoid the plaintext config-file option, and rotate the key if exposure is suspected.
+
+Risk: Prompts and reference images are sent to RedFox for generation or editing.
+
+Mitigation: Do not submit private images, confidential prompts, or regulated data unless the user is comfortable sharing them with RedFox.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/redfox-data/skills/image-gen-redfox)
+- [RedFox API key settings](https://redfox.hk/settings/api-keys?source=clawhub)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [CLI text output, task IDs, and generated image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Downloads generated images to a local output directory unless submit-only mode is used; can return a task ID for later polling.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

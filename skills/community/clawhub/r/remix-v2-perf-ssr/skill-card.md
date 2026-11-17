@@ -1,43 +1,59 @@
-## Description: <br>
-Remix v2 performance, streaming, caching, and server/client boundary guidance for configuring HTTP caching, server-only modules, hydration safety, prefetching, and asset preload behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Remix v2 performance, streaming, caching, and server/client boundaries. Use when configuring HTTP caching, server-only modules, hydration safety, or prefetch.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill to get Remix v2 SSR performance guidance for streaming deferred data, cache headers, prefetch behavior, hydration-safe rendering, and separating server-only from client-only modules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Applying caching or prefetch recommendations to authenticated or personalized routes without review can expose user-specific content or create unnecessary duplicate requests. <br>
-Mitigation: Review cache headers, prefetch modes, and route sensitivity before applying the guidance; use private or no-store policies for personalized data. <br>
+## Use Case:
 
+Developers and engineers use this skill for Remix v2 SSR performance guidance, including streaming with defer and Await, HTTP caching headers, route prefetching, hydration safety, asset preloading, and server/client module boundaries.
 
-## Reference(s): <br>
-- [HTTP Caching with the headers Route Export](references/headers-caching.md) <br>
-- [Hydration Safety](references/hydration.md) <br>
-- [links Export - Preloading and Image Notes](references/links-preload.md) <br>
-- [Prefetching with Link and PrefetchPageLinks](references/prefetch.md) <br>
-- [Server/Client Split - .server.ts, .client.ts, and Env Vars](references/server-client-split.md) <br>
-- [Streaming with defer and Await](references/streaming.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript/TSX code examples and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no tool calls, commands, or generated files are produced by the skill itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: window.ENV examples can expose sensitive values if developers publish raw environment data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Expose only public values and prefer the serializer pattern called out by the security guidance.
+
+Risk: Caching guidance may cause user-specific HTML or data to be cached if applied to personalized routes without review.
+
+Mitigation: Review proposed Cache-Control and headers export changes before deployment, especially on authenticated or personalized routes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anderskev/skills/remix-v2-perf-ssr)
+- [HTTP Caching with the headers Route Export](artifact/references/headers-caching.md)
+- [Hydration Safety](artifact/references/hydration.md)
+- [links Export - Preloading and Image Notes](artifact/references/links-preload.md)
+- [Prefetching with Link and PrefetchPageLinks](artifact/references/prefetch.md)
+- [Server/Client Split - .server.ts, .client.ts, and Env Vars](artifact/references/server-client-split.md)
+- [Streaming with defer and Await](artifact/references/streaming.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with inline TypeScript, TSX, HTTP header, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; no tools, MCP servers, credential environment variables, or runtime execution were detected in release evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

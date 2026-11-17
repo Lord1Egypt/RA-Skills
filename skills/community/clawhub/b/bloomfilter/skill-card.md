@@ -1,38 +1,55 @@
-## Description: <br>
-Search, register, and manage domains via Bloomfilter x402 API - pay with USDC on Base <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, register, and manage domains via Bloomfilter x402 API - pay with USDC on Base.
 
-## Publisher: <br>
-[Eronmmer](https://clawhub.ai/user/Eronmmer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[eronmmer](https://clawhub.ai/user/eronmmer)
 
-## Use Case: <br>
-External users and developers use this skill to search domain availability, register or renew domains, and manage DNS records through Bloomfilter. It requires local wallet signing for Bloomfilter authentication and x402 USDC payments, so users should use a dedicated wallet with limited funds and review domain or DNS changes before approval. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
-
-## Reference(s): <br>
-- [Bloomfilter Skill Page](https://clawhub.ai/Eronmmer/bloomfilter) <br>
-- [Bloomfilter](https://bloomfilter.xyz) <br>
-- [Bloomfilter Documentation](https://docs.bloomfilter.xyz) <br>
+### License/Terms of Use:
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API calls, Configuration] <br>
-**Output Format:** [Markdown guidance with HTTP endpoint details and JSON request or response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EVM_PRIVATE_KEY for local SIWE and x402 payment signing; paid operations spend USDC on Base.] <br>
+## Use Case:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Developers and external users use this skill to search domain availability, register or renew domains with USDC on Base, and manage DNS records through Bloomfilter.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can initiate paid domain registration, renewal, and DNS mutation flows when configured with a wallet key.
+
+Mitigation: Require explicit confirmation before registration, renewal, or DNS changes, and keep the wallet funded only for intended domain purchases.
+
+Risk: The local agent runtime uses EVM_PRIVATE_KEY for payment and authentication signing.
+
+Mitigation: Install only when the publisher and Bloomfilter registrar are trusted, and provide a wallet key dedicated to this use case.
+
+## Reference(s):
+
+- [Bloomfilter](https://bloomfilter.xyz)
+- [Bloomfilter Documentation](https://docs.bloomfilter.xyz)
+- [ClawHub Skill Page](https://clawhub.ai/eronmmer/skills/bloomfilter)
+- [Publisher Profile](https://clawhub.ai/user/eronmmer)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown with API endpoint examples and request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include domain names, DNS record details, wallet setup guidance, and x402 payment flow instructions.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

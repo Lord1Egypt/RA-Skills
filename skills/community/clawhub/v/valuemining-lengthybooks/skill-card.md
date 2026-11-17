@@ -1,42 +1,54 @@
-## Description: <br>
-Extract actionable insights from books using a Four-Layer Methodology covering conceptual frameworks, case studies, implementation SOPs, critical analysis, and validation rubrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract actionable insights from methodology and skill-building books via a Four-Layer framework for concept mapping, case studies, SOPs, and critical analysis.
 
-## Publisher: <br>
-[281862066-a11y](https://clawhub.ai/user/281862066-a11y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[281862066-a11y](https://clawhub.ai/user/281862066-a11y)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to turn methodology, business, psychology, and skill-building books into structured notes, cross-domain application guides, SOPs, and validation questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may provide confidential, regulated, personal, proprietary, or copyrighted book content during extraction. <br>
-Mitigation: Provide only authorized excerpts and the minimum business context needed, following the security guidance in the server evidence. <br>
-Risk: Book-derived summaries and SOPs may oversimplify, misinterpret, or overgeneralize the source material. <br>
-Mitigation: Review outputs against the original source, keep caveats and context notes, and validate recommendations before use. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to extract structured, actionable guidance from methodology, business, psychology, and skill-building books. It supports rapid assessment, deeper learning, training material creation, and implementation planning through concept maps, case studies, SOPs, critical analysis, and validation prompts.
 
-## Reference(s): <br>
-- [Book Value Extraction Methodology](references/book-extraction-methodology.md) <br>
-- [ClawHub skill page](https://clawhub.ai/281862066-a11y/valuemining-lengthybooks) <br>
-- [Publisher profile](https://clawhub.ai/user/281862066-a11y) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown reports with optional PDF or Word-oriented formatting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include concept maps, case studies, migration matrices, SOPs, critical limitations, scoring rubrics, and troubleshooting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; skill frontmatter reports 1.0.0) <br>
+Risk: The skill may process substantial book text and user-provided professional context, which can include proprietary or sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid providing sensitive proprietary material unless it is appropriate for the agent session and the user's data handling requirements.
+
+Risk: Cultural or organizational assumptions in extracted guidance may not fit every region, audience, or workplace.
+
+Mitigation: Review and adapt outputs to the user's region, audience, organization, and implementation constraints before applying them.
+
+## Reference(s):
+
+- [Book Extraction Methodology](references/book-extraction-methodology.md)
+- [ClawHub Skill Page](https://clawhub.ai/281862066-a11y/skills/valuemining-lengthybooks)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown reports with structured tables, templates, SOPs, rubrics, and implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May be adapted for PDF or Word report generation when the host agent supports those formats.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; SKILL.md frontmatter states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-Provides experience summaries for OpenClaw tasks, including installation problems, troubleshooting steps, package discovery, configuration patterns, and tool-specific guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Experience summaries for OpenClaw tasks, including common installation problems, troubleshooting steps, and best practices for packages, configurations, and tools.
 
-## Publisher: <br>
-[dawai2005](https://clawhub.ai/user/dawai2005) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dawai2005](https://clawhub.ai/user/dawai2005)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to troubleshoot installation, package discovery, environment configuration, and browser/tool issues, and to document newly resolved task experiences. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Command examples include package installation, force flags, and publish commands that could change a user's environment or release content if copied without review. <br>
-Mitigation: Verify package names and command intent before execution; avoid force or publish commands unless those effects are intended. <br>
-Risk: API-key examples and terminal snippets could lead users to place real secrets or sensitive output into shared documentation. <br>
-Mitigation: Use placeholders for credentials and do not save real API keys, tokens, or copied terminal output containing secrets into the skill file or shared notes. <br>
-Risk: Troubleshooting summaries may become stale as packages, registries, and tools change. <br>
-Mitigation: Consult current official documentation or registry results for newer issues before relying on a stored summary. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dawai2005/task-experience-summaries) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/dawai2005) <br>
-- [ClawHub registry](https://clawhub.ai) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to troubleshoot installation, package discovery, configuration, and browser-tool issues, and to document resolved task experiences for future reference.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reference content for agent troubleshooting and documentation; examples should be reviewed before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installation examples can lead users to install the wrong package or trust an unexpected publisher.
+
+Mitigation: Verify exact package or skill names, publisher identity, source repository, requested permissions, and version before following examples.
+
+Risk: Global npm installation and force-install commands can overwrite existing files or expand system-level exposure.
+
+Mitigation: Avoid running npm global installs as administrator or root, and use force installs only after checking the conflicting file.
+
+Risk: Unfamiliar skills or tools may interact with sensitive workspace files or credentials.
+
+Mitigation: Test unfamiliar skills in a low-risk environment before using them with sensitive files or credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dawai2005/skills/taREDACTED-SECRET)
+- [ClawHub registry](https://clawhub.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline shell command examples and troubleshooting steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Troubleshooting entries are organized by problem, solution, root cause, and prevention guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

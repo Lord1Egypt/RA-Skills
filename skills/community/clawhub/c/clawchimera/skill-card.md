@@ -1,46 +1,59 @@
-## Description: <br>
-Runs VPS performance and network tests covering system information, CPU, memory, disk, streaming access, IP quality, routing, latency, and speed checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs VPS performance and network tests covering system information, CPU, memory, disk, streaming access, IP quality, mail ports, routing, latency, and speed checks.
 
-## Publisher: <br>
-[spiritLHLS](https://clawhub.ai/user/spiritLHLS) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spiritlhls](https://clawhub.ai/user/spiritlhls)
 
-## Use Case: <br>
-Developers, VPS operators, and infrastructure evaluators use this skill to benchmark a target server and collect network, performance, routing, streaming-access, and IP-quality results for comparison or diagnosis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill downloads and runs an upstream binary at runtime. <br>
-Mitigation: Install only when comfortable with runtime binary download and prefer running on a disposable or test VPS as a non-root user. <br>
-Risk: The default test flow can upload detailed server and network results publicly. <br>
-Mitigation: Pass -upload=false unless public result sharing is intentional. <br>
-Risk: Broad external network tests may disclose infrastructure characteristics or trigger monitoring on the target network. <br>
-Mitigation: Run only on systems and networks where benchmarking and outbound network testing are authorized. <br>
-Risk: Using --call-ai can share raw infrastructure results with the configured AI backend. <br>
-Mitigation: Review result contents before AI analysis and avoid --call-ai when the results contain sensitive infrastructure details. <br>
+## Use Case:
 
+Developers and server operators use this skill to benchmark VPS instances and generate AI-ready analysis prompts from benchmark output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/spiritLHLS/clawchimera) <br>
-- [Clawdis homepage](https://github.com/oneclickvirt/ClawChimera) <br>
-- [Upstream ECS project](https://github.com/oneclickvirt/ecs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Plain text benchmark results, terminal output, and Markdown analysis prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes goecs.txt when tests complete; analyze.sh can summarize or compare result files and can optionally call a local AI tool.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill downloads and runs an upstream native binary at runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a constrained non-root environment and require pinned, verified downloads before treating it as routine-risk.
+
+Risk: Benchmark reports can expose public IP, provider, route, port, and system fingerprints.
+
+Mitigation: Treat generated reports as sensitive and review them before sharing or pasting into external systems.
+
+Risk: Result upload is enabled by default in the exposed arguments.
+
+Mitigation: Pass -upload=false unless public sharing is intentional.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/spiritlhls/skills/clawchimera)
+- [ClawChimera Homepage](https://github.com/oneclickvirt/ClawChimera)
+- [Upstream ECS Project](https://github.com/oneclickvirt/ecs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown, including shell command examples and AI analysis prompts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create goecs.txt in the working directory and may upload benchmark results when upload remains enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

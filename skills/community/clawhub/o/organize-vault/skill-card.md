@@ -1,41 +1,54 @@
-## Description: <br>
-Organizes a Markdown vault by proposing semantic topic folders, moving notes after user confirmation, and creating or updating MOC.md index files without changing note content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organizes a Markdown vault by grouping notes into semantic topic folders, moving notes after confirmation, and creating or updating MOC.md indexes without changing note contents.
 
-## Publisher: <br>
-[wanli6](https://clawhub.ai/user/wanli6) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wanli6](https://clawhub.ai/user/wanli6)
 
-## Use Case: <br>
-External users and developers use this skill to initialize or maintain a git-tracked Markdown knowledge vault by grouping notes into topic folders and maintaining MOC.md indexes. It is intended for vault organization workflows where the user reviews proposed file moves and index updates before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can move Markdown notes and create or update MOC.md files in a selected vault. <br>
-Mitigation: Start from a clean git state with a recent commit or backup, review the full proposed change list, and confirm only intended file moves and index updates. <br>
-Risk: Semantic grouping may place ambiguous notes in an unexpected topic or in misc/. <br>
-Mitigation: Review low-confidence classifications and misc/ assignments before approval, and adjust directory choices during the preview step. <br>
+## Use Case:
 
+Developers, knowledge workers, and note-taking users use this skill to initialize or incrementally maintain a Markdown vault by classifying notes, moving files, and updating map-of-content indexes after reviewing a proposed change list.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wanli6/organize-vault) <br>
-- [Publisher profile](https://clawhub.ai/user/wanli6) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with command snippets, proposed file-operation previews, and MOC.md index entries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-selected git-tracked Markdown vault and explicit confirmation before moving notes or writing MOC.md files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: Unsafe file moves or path handling may behave incorrectly for unusual filenames or untrusted vault contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on a backed-up or cleanly committed git repository, inspect every proposed move or write before approval, and avoid paths with spaces, shell metacharacters, leading hyphens, or traversal-like names unless safer path handling is applied.
+
+Risk: Semantic classification can place notes in the wrong topic or create misleading MOC links.
+
+Mitigation: Review the full proposed change list, require explicit confirmation before execution, and route ambiguous notes to misc/ with a pending-organization marker instead of forcing a topic.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wanli6/skills/organize-vault)
+- [Skill homepage from frontmatter](https://github.com/wanli6/OrganizeVault)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, proposed file moves, and MOC.md file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Proposes and performs file moves and MOC.md writes only after user confirmation; relies on git for rollback.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

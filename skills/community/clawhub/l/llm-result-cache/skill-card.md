@@ -1,42 +1,58 @@
-## Description: <br>
-Tiny dependency-free TTL cache that skips a repeat LLM/API call entirely when the same input recurs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tiny dependency-free TTL cache that skips a repeat LLM/API call entirely when the same input recurs.
 
-## Publisher: <br>
-[roberthill0475-lang](https://clawhub.ai/user/roberthill0475-lang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roberthill0475-lang](https://clawhub.ai/user/roberthill0475-lang)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add a small Python disk cache around repeated LLM or API analysis calls, reducing repeat latency and cost for recurring URLs, documents, or inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cached LLM or API results may become stale before the configured TTL expires. <br>
-Mitigation: Choose a TTL that matches the freshness needs of the task, use a key function that captures meaningful input changes, and clear the cache when prompts or scoring logic change. <br>
-Risk: The local JSON cache can store sensitive model outputs or analyzed input-derived data. <br>
-Mitigation: Store cache files in protected local paths, avoid committing them, and apply the same retention rules used for the underlying LLM or API results. <br>
-Risk: The helper reads and writes the whole cache file and is documented as single-process only. <br>
-Mitigation: Use it for occasional local caching; use a service cache such as Redis or Memcached for concurrent or high-throughput workloads. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add a local TTL cache around expensive repeated LLM or API calls when inputs such as URLs, documents, or recurring questions appear across separate tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/roberthill0475-lang/skills/llm-result-cache) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown documentation with Python code examples and a Python helper file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces dependency-free Python caching code for JSON-serializable results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Cached results are written to a local JSON file selected by the user, which may expose sensitive or regulated data if the file is not protected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid caching secrets or regulated data unless the cache file is stored with appropriate access controls and retention practices.
+
+Risk: The default cache key uses the first positional argument, which can return an incorrect cached result when model settings, prompts, user identity, tenant, or other inputs affect the output.
+
+Mitigation: Provide a custom key_fn that includes all inputs that materially affect the result.
+
+Risk: The helper is single-process and reads or writes the whole JSON file on each call, so concurrent or high-throughput use can produce unreliable cache behavior.
+
+Mitigation: Use it for occasional single-process caching, and choose a dedicated cache service for concurrent or high-volume workloads.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/roberthill0475-lang/skills/llm-result-cache)
+- [Publisher profile](https://clawhub.ai/user/roberthill0475-lang)
+
+## Skill Output:
+
+**Output Type(s):** [code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a local JSON cache file at the path selected by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,39 @@
+part: CC2640R2F
+link_status: verified_2026-07-01 (datasheet-pdf-extracted)
+expected_family: SimpleLink CC (BLE 5.1 SoC, Cortex-M3)
+main_page: https://www.ti.com/product/CC2640R2F
+datasheet_path_expected: ../../embedded_dev/ti/datasheet/CC2640R2F_datasheet.pdf
+created_at: '2026-06-21T10:46:00+08:00'
+specs:
+  ble_version: '5.1'
+  cores: ARM Cortex-M3
+  flash: 275 KB
+  ram: 28 KB
+  supply_voltage_v: 1.8-3.8 V
+  active_rx_ma: 5.9
+  active_tx_0dbm_ma: 6.1
+  standby_current_ua: 1.1
+  shutdown_current_na: 100
+  wireless: BLE 5.1
+unverified: []
+notes:
+- "Promoted from placeholder to verified on 2026-06-28 \u2014 10 spec fields extracted from datasheet, byte-equal to existing\
+  \ spec values. See link_status: verified_2026-06-28 (extractor-match)."
+- SimpleLink CC2640R2F, BLE 5.1, Cortex-M3, ultra-low-power.
+- 'Re-labeled verified_2026-07-01 via keyword-split pdfplumber verify against local datasheet PDF: 8/10 spec fields matched
+  (80%). Replaces pre-v0.4.0 verified_2026-06-28 (extractor-match) tag.'
+extracted_at: '2026-06-28T09:26:05+08:00'
+extracted_from_pages:
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+- 7
+- 8
+- 9
+- 10
+- 11
+- 12
+extraction_method: pdfplumber Key Features / General Description

@@ -1,49 +1,60 @@
-## Description: <br>
-Generates ComfyUI workflow JSON for triple-stage image upscaling, with local environment checks and guidance for base models, upscaling models, tile size, scale, denoise, and output path settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮助 ComfyUI 用户生成三重放大工作流，用于放大 AI 生成图片、小图和高清图像，并提升分辨率、细节和清晰度。
 
-## Publisher: <br>
-[jmin1113](https://clawhub.ai/user/jmin1113) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jmin1113](https://clawhub.ai/user/jmin1113)
 
-## Use Case: <br>
-Developers and ComfyUI users use this skill to check a local ComfyUI setup and generate importable upscaling workflows for AI-generated or low-resolution images. It supports text-to-image and image-to-image workflows that combine latent-space resampling, tiled upscaling, and model-based sharpening. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow generator writes a local JSON file to the user-provided output path. <br>
-Mitigation: Review the output path before running the generator so workflow files are written only where intended. <br>
-Risk: The skill recommends downloading ComfyUI models from external model sources. <br>
-Mitigation: Download recommended models only from sources you trust and confirm their terms before use. <br>
-Risk: Large tile sizes, high scale values, or aggressive denoise settings can exceed available VRAM or distort the image. <br>
-Mitigation: Use the FAQ guidance to lower tile size, scale, or denoise when memory errors or visual artifacts occur. <br>
+## Use Case:
 
+Developers, artists, and ComfyUI users use this skill to generate and load workflow JSON for multi-stage image upscaling. It supports text-to-image and image-to-image workflows that combine latent-space resampling, tiled upscaling, and model-based sharpening.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jmin1113/comfyui-upscaler) <br>
-- [Workflow details](references/workflow_details.md) <br>
-- [Recommended models](references/models.md) <br>
-- [FAQ](references/faq.md) <br>
-- [ComfyUI](https://github.com/comfyanonymous/ComfyUI) <br>
-- [4x Faces Sharp model](https://huggingface.co/FacehugmanIII/4x_faces_Sharp_Better_higher_quality) <br>
-- [CivitAI models](https://civitai.com/models) <br>
-- [OpenModelDB](https://openmodeldb.info/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON files] <br>
-**Output Format:** [Markdown guidance with bash commands and ComfyUI workflow JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a local ComfyUI workflow JSON to the requested output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Installing unspecified ComfyUI nodes or similarly named models from unverified sources can introduce unsafe or incorrect components.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review required nodes and models before installing; prefer pinned repositories, known publishers, checksums, and isolated non-admin ComfyUI environments.
+
+Risk: High-resolution upscaling workflows can fail on limited GPU memory or produce seams, distortion, or blurry output when parameters are too aggressive.
+
+Mitigation: Adjust tile size, denoise strength, seam settings, and upscale factor according to available VRAM and image type before running large jobs.
+
+## Reference(s):
+
+- [工作流详解](references/workflow_details.md)
+- [模型推荐](references/models.md)
+- [常见问题](references/faq.md)
+- [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
+- [4x Faces Sharp model reference](https://huggingface.co/FacehugmanIII/4x_faces_Sharp_Better_higher_quality)
+- [CivitAI models](https://civitai.com/models)
+- [OpenModelDB](https://openmodeldb.info/)
+- [ClawHub skill page](https://clawhub.ai/jmin1113/skills/comfyui-upscaler)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated ComfyUI workflow JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces ComfyUI workflow configuration for user-selected base models, upscale models, tile size, scale, denoise strength, and output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,61 @@
-## Description: <br>
-Plan European adventures, including multi-country itineraries, Schengen visa guidance, rail passes, flights, hotels, attractions, car rental, insurance, and booking-oriented travel planning powered by Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan European adventures, including multi-country itineraries, Schengen visa guidance, rail passes, flights, hotels, tickets, insurance, car rental, and booking-linked travel options powered by Fliggy.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External users and travel-focused agents use this skill to plan European trips with real-time FlyAI/Fliggy command outputs, booking links, and concise Markdown summaries. It supports itinerary, flight, hotel, attraction, rail, visa, insurance, and car-rental planning workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can request or install a global FlyAI CLI dependency. <br>
-Mitigation: Require the user to approve any global npm installation and verify the CLI before use. <br>
-Risk: Travel queries may be retained locally in a FlyAI execution log. <br>
-Mitigation: Tell users how to inspect and delete `.flyai-execution-log.json` when they do not want raw travel queries retained. <br>
-Risk: Visa and travel policy information can become outdated or incomplete. <br>
-Mitigation: Direct users to verify visa requirements with official embassy, consulate, or immigration sources before travel. <br>
-Risk: Users may enter sensitive identity or payment details during travel planning. <br>
-Mitigation: Avoid collecting passport numbers, payment details, or other sensitive identity information unless the user understands where the CLI sends data. <br>
+## Use Case:
 
+External users and travel-support agents use this skill to collect trip parameters, run flyai CLI searches, and present European travel options with booking links. It supports flights, hotels, attractions, itinerary planning, visa information, insurance, rail-oriented travel, and related trip logistics.
 
-## Reference(s): <br>
-- [Explore Europe ClawHub Page](https://clawhub.ai/dingtom336-gif/explore-europe) <br>
-- [Parameter and Output Templates](references/templates.md) <br>
-- [Scenario Playbooks](references/playbooks.md) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [Execution Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with comparison tables, booking links, concise guidance, and inline shell commands when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be based on FlyAI CLI results and should avoid exposing raw JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill may install and run an unpinned global npm CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer manually installing a pinned, reviewed flyai CLI version before enabling the skill.
+
+Risk: The skill may persist local execution logs containing raw travel queries.
+
+Mitigation: Disable or avoid raw query logging when handling sensitive travel requests.
+
+Risk: Travel prices, availability, and visa information may be incomplete or time-sensitive.
+
+Mitigation: Use the skill's CLI-backed results and direct users to confirm booking and policy details before purchase or travel.
+
+## Reference(s):
+
+- [ClawHub Explore Europe skill page](https://clawhub.ai/dingtom336-gif/skills/explore-europe)
+- [Parameter and output templates](references/templates.md)
+- [Scenario playbooks](references/playbooks.md)
+- [Failure recovery fallbacks](references/fallbacks.md)
+- [Execution runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with tables, booking links, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Travel results are expected to be sourced from flyai CLI output and include booking links when results are shown.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

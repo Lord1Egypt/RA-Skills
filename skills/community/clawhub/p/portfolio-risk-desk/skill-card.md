@@ -1,47 +1,62 @@
-## Description: <br>
-Generate a portfolio-aware daily or on-demand risk analysis brief from public market data, company updates, earnings material, and macro context, then emit a host-consumable handoff for persistence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a portfolio-aware daily or on-demand risk analysis brief from public market data, company updates, earnings material, and macro context, then emit a host-consumable handoff for persistence.
 
-## Publisher: <br>
-[prashamshah115](https://clawhub.ai/user/prashamshah115) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[prashamshah115](https://clawhub.ai/user/prashamshah115)
 
-## Use Case: <br>
-External users and agents use this skill to turn a portfolio, watchlist, or market theme into a concise public-markets risk brief with exposure mapping, scenario analysis, watchpoints, source traceability, and uncertainty notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live retrieval can use an Apify token to create, update, or delete remote scraping tasks. <br>
-Mitigation: Review the Apify bootstrap flow before enabling live providers, prefer manual task IDs when appropriate, and scope the Apify account used for the skill. <br>
-Risk: Portfolio or watchlist-derived queries may be sent to Apify-backed Google or X scrapers. <br>
-Mitigation: Avoid sensitive portfolio details, disable X signals when they are not needed, and use fixture or inline-only flows when external retrieval is inappropriate. <br>
-Risk: Briefs, metadata, and portfolio context can be persisted locally or handed off for Notion storage. <br>
-Mitigation: Avoid LOCAL_STATE_DIR unless local persistence is intended, and use inline delivery unless Notion storage is explicitly desired. <br>
+## Use Case:
 
+Individual investors, analysts, and market-focused teams use Portfolio Risk Desk to turn a portfolio, watchlist, or theme into an evidence-led public-markets brief with exposure mapping, scenario analysis, source traceability, and watchpoints. It is designed for research and monitoring, not trade execution or price targets.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/prashamshah115/portfolio-risk-desk) <br>
-- [Publisher Profile](https://clawhub.ai/user/prashamshah115) <br>
-- [README](artifact/README.md) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
-- [Tool Contract](artifact/intelligence_desk_brief_tool_contract.json) <br>
-- [Output Template](artifact/intelligence_desk_brief_output_template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Configuration, Guidance] <br>
-**Output Format:** [Structured Markdown brief with JSON payloads and host handoff metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Briefs include source traceability, audit metadata, confidence levels, uncertainty notes, and optional delivery handoff data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Live Apify retrieval can expose credentials if broad tokens, custom API endpoints, or failed-run outputs are handled carelessly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped Apify token, keep APIFY_BASE_URL fixed to the real Apify API, and review failed live-provider outputs before sharing generated briefs.
+
+Risk: Local state handling may write outside intended workspace or profile paths when LOCAL_STATE_DIR is unconstrained.
+
+Mitigation: Disable local state in shared deployments or tightly constrain LOCAL_STATE_DIR until workspace and profile path validation is confirmed.
+
+Risk: Generated Notion and memory handoffs can persist sensitive portfolio context.
+
+Mitigation: Treat Notion and memory outputs as durable copies of user portfolio data and apply the host's normal access controls, retention policy, and review process.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/prashamshah115/skills/portfolio-risk-desk)
+- [Publisher profile](https://clawhub.ai/user/prashamshah115)
+- [Skill definition](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [Tool contract](artifact/intelligence_desk_brief_tool_contract.json)
+- [Output template](artifact/intelligence_desk_brief_output_template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Configuration, Guidance]
+
+**Output Format:** [Markdown brief plus structured JSON handoff payload]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes source traceability, uncertainty notes, audit metadata, delivery status, and optional Notion handoff metadata.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter and pyproject.toml report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

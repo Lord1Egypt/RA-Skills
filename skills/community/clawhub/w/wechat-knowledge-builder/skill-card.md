@@ -1,43 +1,59 @@
-## Description: <br>
-Converts WeFlow-exported WeChat chat JSON into personal knowledge base entries, knowledge cards, customer profiles, and AI persona training data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将 WeFlow 导出的微信聊天 JSON 数据转换为个人知识库条目、知识卡片和 AI 分身训练数据。
 
-## Publisher: <br>
-[weebrclb123-del](https://clawhub.ai/user/weebrclb123-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weebrclb123-del](https://clawhub.ai/user/weebrclb123-del)
 
-## Use Case: <br>
-Employees, developers, and external operators use this skill to analyze authorized WeFlow chat exports and turn selected conversations into structured knowledge cards, customer profile notes, follow-up summaries, and Feishu-ready knowledge base fields. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill analyzes private WeChat exports and can convert conversations into persistent customer profiles, knowledge records, and training data. <br>
-Mitigation: Use only authorized, deliberately selected chat exports; remove unrelated or sensitive conversations before analysis. <br>
-Risk: Generated profiles or summaries may expose personal, customer, or business-sensitive information if uploaded broadly. <br>
-Mitigation: Review and redact outputs before any Feishu upload, and confirm workspace permissions, retention, and deletion plans. <br>
-Risk: Using broad paths or unreviewed export folders may process more chat history than intended. <br>
-Mitigation: Use exact file paths and verify the selected input files before running parsing or analysis commands. <br>
+## Use Case:
 
+Users who are authorized to process WeChat exports use this skill to extract customer profiles, business keywords, decisions, communication patterns, and follow-up records from WeFlow JSON chat data. The resulting knowledge cards and Feishu table fields support personal knowledge bases, customer management, and AI persona training preparation.
 
-## Reference(s): <br>
-- [Feishu knowledge base field design reference](artifact/references/feishu-template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/weebrclb123-del/wechat-knowledge-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown knowledge cards, structured summaries, Feishu field guidance, and optional generated files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May summarize private chat exports into persistent profiles or training data; review and redact outputs before storage or sharing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Private WeChat exports and derived customer profiles may include sensitive personal or business information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Process only chats you are authorized to use, redact sensitive content before creating knowledge cards, and define retention rules for generated files and Feishu records.
+
+Risk: Generated knowledge cards or Feishu tables may expose private conversations if shared too broadly.
+
+Mitigation: Store outputs only in restricted Feishu spaces or local locations with appropriate access controls.
+
+Risk: Extracted summaries, customer profiles, and follow-up records may be incomplete or misleading.
+
+Mitigation: Review generated cards against the source chat export before using them for customer management, contract follow-up, or AI persona training.
+
+## Reference(s):
+
+- [Feishu Knowledge Base Field Design Reference](references/feishu-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/weebrclb123-del/skills/wechat-knowledge-builder)
+- [Publisher Profile](https://clawhub.ai/user/weebrclb123-del)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown knowledge cards, Feishu table field guidance, and optional Python-generated Markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may contain private chat-derived customer details and should be reviewed, redacted, and access-controlled before sharing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

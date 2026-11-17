@@ -1,43 +1,54 @@
-## Description: <br>
-Bidirectional sync with reMarkable tablet via Cloud API (rmapi). Fetch handwritten notes/sketches, process with AI, and push content back. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bidirectional sync with reMarkable tablet via Cloud API (rmapi). Fetch handwritten notes/sketches, process with AI, and push content back. Use for sketch enhancement, journal extraction, or sending documents/images to the tablet.
 
-## Publisher: <br>
-[coolmanns](https://clawhub.ai/user/coolmanns) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[coolmanns](https://clawhub.ai/user/coolmanns)
 
-## Use Case: <br>
-Developers, knowledge workers, and agents use this skill to move handwritten notes, sketches, PDFs, and generated images between a reMarkable tablet and local AI workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: External tools and Python packages used for sync and conversion can access local files and reMarkable cloud content. <br>
-Mitigation: Install only trusted rmapi and package versions, prefer pinned releases with verified checksums, and run the workflow on a trusted machine. <br>
-Risk: The rmapi authentication token stored in ~/.rmapi can grant access to tablet content. <br>
-Mitigation: Treat ~/.rmapi as sensitive credential material, restrict local access, and re-authenticate only on trusted systems. <br>
-Risk: Bulk sync or AI processing can expose private notes, journals, sketches, or documents. <br>
-Mitigation: Use a dedicated sync folder, tag, or starred-item workflow, review bulk upload and download targets, and process private content only when explicitly intended. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/coolmanns/remarkable-sync) <br>
-- [rmapi releases](https://github.com/ddvk/rmapi/releases) <br>
-- [reMarkable desktop connection](https://my.remarkable.com/connect/desktop) <br>
+## Use Case:
 
+Developers and agent users use this skill to fetch handwritten notes, sketches, and documents from a reMarkable tablet, process them locally or with AI tools, and upload supported PDF or EPUB content back to the tablet.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance covers rmapi setup, authentication, tablet fetch and upload commands, and file conversion workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to install mutable third-party tools and Python packages used in a tablet sync workflow.
+
+Mitigation: Verify or pin the rmapi binary and Python packages before use, and install them in a dedicated environment where practical.
+
+Risk: The workflow stores a persistent reMarkable cloud token and may process sensitive handwritten notes or sketches.
+
+Mitigation: Protect ~/.rmapi as a credential file and sync only notebooks or documents suitable for local tooling and any downstream AI services involved.
+
+## Reference(s):
+
+- [ClawHub skill release: reMarkable Tablet Sync](https://clawhub.ai/coolmanns/skills/remarkable-sync)
+- [rmapi releases](https://github.com/ddvk/rmapi/releases)
+- [reMarkable desktop connection page](https://my.remarkable.com/connect/desktop)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands and Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides use of rmapi, rmc, CairoSVG, and Pillow; does not include executable bundled code.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

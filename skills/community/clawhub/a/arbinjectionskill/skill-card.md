@@ -1,42 +1,57 @@
-## Description: <br>
-BYOCB ArbInjectionSkill scans EVM smart contracts for arbitrary call injection vulnerabilities, monitors chains in real time, and supports scanning specific addresses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BYOCB ArbInjectionSkill scans EVM smart contracts for arbitrary call injection vulnerabilities, either by monitoring chains in real time or scanning specific addresses.
 
-## Publisher: <br>
-[CryptoToolDev](https://clawhub.ai/user/CryptoToolDev) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cryptotooldev](https://clawhub.ai/user/cryptotooldev)
 
-## Use Case: <br>
-External developers, smart contract auditors, and blockchain security researchers use this skill to monitor supported EVM chains or scan contract addresses for arbitrary call injection risk and user-alertable findings. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to run unpinned external code and install Node.js dependencies. <br>
-Mitigation: Pin the external repository to a specific audited commit and inspect dependencies before running npm install. <br>
-Risk: The skill recommends automatic daily updates for code that runs in the background. <br>
-Mitigation: Avoid automatic git pull or npm install in production; review and test updates before deployment. <br>
-Risk: The skill may send vulnerability findings through messaging channels and can use scoped API keys for deeper analysis. <br>
-Mitigation: Explicitly choose approved alert channels and use scoped or revocable API keys only when scan context may leave the environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [BYOCB ArbInjection repository](https://github.com/BringYourOwnBot/arb-injection) <br>
-- [ClawHub skill page](https://clawhub.ai/CryptoToolDev/arbinjectionskill) <br>
+## Use Case:
 
+Solidity and blockchain security researchers and auditors use this skill to monitor supported EVM chains or scan specific contract addresses for arbitrary call injection risk during authorized security review.
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, Shell commands, Configuration, Markdown, JSON] <br>
-**Output Format:** [Markdown alerts and reports, JSON findings, shell commands, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings are saved under ./results/ and critical or high verdicts are intended for user alerting after verification.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill directs users to install and update code from a mutable repository with npm dependencies.
+
+Mitigation: Pin and inspect a reviewed repository revision, review dependency changes before installation, run in a constrained environment, and avoid automatic daily updates.
+
+Risk: Automated alerting can disclose sensitive vulnerability details through external messaging channels.
+
+Mitigation: Confirm the destination channel and recipient before enabling alerts, and limit externally shared details to what the recipient is authorized to receive.
+
+Risk: Scanner results can include false positives for proxy, callback, or hardcoded-target patterns.
+
+Mitigation: Review the generated report and verify target control, access controls, and known safe patterns before alerting or taking action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cryptotooldev/skills/arbinjectionskill)
+- [Repository link listed in skill artifact](https://github.com/BringYourOwnBot/arb-injection)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and JSON reports, alert text, and inline shell/configuration commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are saved to a results directory and may include risk verdicts from SAFE/LOW through CRITICAL.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,57 @@
-## Description: <br>
-Helps users plan, design, and evaluate A/B tests or experiments, including hypotheses, variants, sample sizing, metrics, and analysis guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents plan, design, implement, document, and analyze statistically rigorous A/B tests, split tests, and related experiments.
 
-## Publisher: <br>
-[mariokarras](https://clawhub.ai/user/mariokarras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mariokarras](https://clawhub.ai/user/mariokarras)
 
-## Use Case: <br>
-Marketing, product, growth, and engineering teams use this skill to structure statistically rigorous experiments, choose metrics, estimate sample sizes, document test plans, and interpret results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read local product marketing context files to tailor its guidance. <br>
-Mitigation: Review those local context files before use when they may contain sensitive business information. <br>
-Risk: Experiment recommendations can be misleading if baseline rates, traffic, or minimum detectable effect assumptions are inaccurate. <br>
-Mitigation: Validate inputs and review sample-size, metric, and stopping-rule assumptions before acting on the test plan. <br>
+## Use Case:
 
+External users, developers, marketers, and product teams use this skill to design A/B and multivariate experiments with clear hypotheses, sample-size planning, metrics, guardrails, launch checklists, and result interpretation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mariokarras/abm-ab-test-setup) <br>
-- [Sample Size Guide](references/sample-size-guide.md) <br>
-- [A/B Test Templates Reference](references/test-templates.md) <br>
-- [Evan Miller A/B Testing Sample Size Calculator](https://www.evanmiller.org/ab-testing/sample-size.html) <br>
-- [Optimizely Sample Size Calculator](https://www.optimizely.com/sample-size-calculator/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text, Analysis] <br>
-**Output Format:** [Markdown or plain text with structured experiment plans, checklists, metric definitions, and interpretation notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local product marketing context when present to reduce follow-up questions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata; artifact frontmatter reports 1.1.0) <br>
+Risk: The skill may activate too broadly in comparison-related conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow activation conditions when installed alongside other analytics, experimentation, or conversion-rate-optimization skills.
+
+Risk: Optional local product-marketing context files may contain sensitive unrelated material.
+
+Mitigation: Keep unrelated sensitive content out of those context files and review shared context before use.
+
+## Reference(s):
+
+- [Sample Size Guide](references/sample-size-guide.md)
+- [A/B Test Templates Reference](references/test-templates.md)
+- [Evan Miller A/B Test Sample Size Calculator](https://www.evanmiller.org/ab-testing/sample-size.html)
+- [Optimizely Sample Size Calculator](https://www.optimizely.com/sample-size-calculator/)
+- [ClawHub Skill Page](https://clawhub.ai/mariokarras/skills/abm-ab-test-setup)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown guidance with structured plans, checklists, tables, templates, and implementation examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local product-marketing context files when present; otherwise asks task-specific questions before producing recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter metadata.version is 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

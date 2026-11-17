@@ -1,46 +1,61 @@
-## Description: <br>
-Generates structured disease-to-innovative-drug intelligence reports that combine disease normalization, target and mechanism analysis, representative drugs, clinical progress, and evidence limitations using local adapters for ChEMBL, ClinicalTrials.gov, and controlled search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A disease-to-innovative-drug analysis skill for biomedical question answering that turns disease-level questions into evidence-backed reports covering targets, drugs, clinical progress, and mechanism trends.
 
-## Publisher: <br>
-[inbreak](https://clawhub.ai/user/inbreak) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[inbreak](https://clawhub.ai/user/inbreak)
 
-## Use Case: <br>
-Biomedical analysts, developers, and research teams use this skill to turn disease-focused drug landscape questions into reproducible, evidence-backed reports covering innovative mechanisms, representative drugs, clinical trials, trends, and limitations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms may be sent to third-party public data providers when the Tavily-backed fallback is enabled. <br>
-Mitigation: Avoid personal medical details in prompts and use a dedicated Tavily API key for this skill. <br>
-Risk: Unpinned Python dependencies can reduce reproducibility across installs. <br>
-Mitigation: Pin dependency versions before regulated, audited, or reproducibility-sensitive deployments. <br>
-Risk: Biomedical reports may be incomplete or misleading if treated as clinical advice. <br>
-Mitigation: Use the generated report as research support only and review conclusions against authoritative biomedical and regulatory sources. <br>
+## Use Case:
 
+External users and developers use this skill to investigate innovative drugs for a specified disease by normalizing the disease, querying biomedical data sources, ranking evidence, and producing a structured disease-drug intelligence report.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/inbreak/disease-drug-intelligence) <br>
-- [ClawBio Homepage](https://github.com/ClawBio/ClawBio) <br>
-- [Disease-to-Innovative-Drug Playbook](references/disease_to_drug_playbook.md) <br>
-- [ChEMBL API](https://www.ebi.ac.uk/chembl/api/data) <br>
-- [ClinicalTrials.gov API v2](https://clinicaltrials.gov/api/v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Structured Markdown report with evidence notes and optional command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local ChEMBL and ClinicalTrials.gov adapters first; Tavily-backed search is a configured fallback for recent public updates when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The local runner can execute Python files by filename and may be misused outside the declared tool set.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated environment, invoke only manifest-listed commands, and do not pass arbitrary filenames to local_tools/run_tool.sh.
+
+Risk: Disease and drug queries may be sent to external services, including ChEMBL, ClinicalTrials.gov, and Tavily.
+
+Mitigation: Avoid submitting sensitive patient or proprietary research data, and set TAVILY_API_KEY only when the search fallback is needed.
+
+Risk: Biomedical intelligence reports can be incomplete or outdated when source databases lack current or consistent evidence.
+
+Mitigation: Review report conclusions against traceable database identifiers and public sources before using them for research, clinical, or commercial decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/inbreak/skills/disease-drug-intelligence)
+- [ClawBio homepage](https://github.com/ClawBio/ClawBio)
+- [Disease-to-Innovative-Drug Playbook](references/disease_to_drug_playbook.md)
+- [ChEMBL API](https://www.ebi.ac.uk/chembl/api/data)
+- [ClinicalTrials.gov API](https://clinicaltrials.gov/api/v2)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Structured Markdown report with evidence notes and optional inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports follow the bundled disease-drug template unless the user requests a shorter or alternate format.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

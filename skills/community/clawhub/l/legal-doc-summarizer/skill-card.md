@@ -1,40 +1,53 @@
-## Description: <br>
-Reads common legal documents and produces structured, plain-language summaries that flag risks, hidden obligations, market deviations, and negotiation pushback; it is not a substitute for licensed counsel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads contracts, NDAs, terms of service, employment agreements, leases, and SaaS MSAs to produce structured plain-language summaries with risk flags, clause explanations, market-norm comparisons, and redline checklists.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-External users and employees use this skill to review contracts, NDAs, employment agreements, leases, SaaS MSAs, and similar legal documents for plain-language risk summaries, clause explanations, market-norm comparisons, and negotiation checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may rely on generated contract analysis as legal advice or for jurisdiction-specific decisions. <br>
-Mitigation: Treat outputs as general information, verify jurisdiction-specific statements with licensed counsel, and escalate high-stakes documents to a lawyer. <br>
-Risk: Broad trigger phrases may make the skill activate on non-legal requests. <br>
-Mitigation: Provide clear legal document context before relying on the output and disregard summaries for unrelated requests. <br>
+## Use Case:
 
+Employees and external users use this skill to understand legal documents before negotiation or legal review. It summarizes obligations, flags clauses that may need pushback, and explains when to escalate to licensed counsel.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/legal-doc-summarizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown summary with risk flags, market deviations, redline checklist, and escalation guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides general information only and may need lawyer review for high-stakes or jurisdiction-specific matters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may activate on generic wording when a user did not intend to invoke contract review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use contract-specific prompts and confirm the intended document type before relying on the summary.
+
+Risk: Users may mistake summaries for legal advice in high-value, regulated, or jurisdiction-specific matters.
+
+Mitigation: Treat the output as general information and route high-stakes or jurisdiction-specific documents to licensed counsel.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/legal-doc-summarizer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown summary with risk flags, market deviations, redline checklist, and escalation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides general legal information only and is not a substitute for licensed counsel.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

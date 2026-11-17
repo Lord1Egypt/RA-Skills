@@ -55,7 +55,8 @@ def rich_db():
             ZAVALANCHEKIND INTEGER DEFAULT 0,
             ZAVALANCHEPICKTYPE INTEGER,
             ZDUPLICATEASSETVISIBILITYSTATE INTEGER DEFAULT 0,
-            ZUNIFORMTYPEIDENTIFIER TEXT
+            ZUNIFORMTYPEIDENTIFIER TEXT,
+            ZUUID TEXT
         )
     """)
     c.execute("""
@@ -124,7 +125,7 @@ def rich_db():
     # Asset 1: high-quality favorite
     ts1 = datetime_to_coredata(datetime(2024, 6, 15, 10, 0, 0))
     c.execute(
-        "INSERT INTO ZASSET VALUES (1,'IMG_001.heic',?,4032,3024,0,0,1,0,0,48.8566,2.3522,0,NULL,0,'public.heic')",
+        "INSERT INTO ZASSET VALUES (1,'IMG_001.heic',?,4032,3024,0,0,1,0,0,48.8566,2.3522,0,NULL,0,'public.heic','CCCCCCCC-0000-0000-0000-000000000001')",
         (ts1,),
     )
     c.execute("INSERT INTO ZADDITIONALASSETATTRIBUTES VALUES (1,5000000,4032,3024)")
@@ -137,7 +138,7 @@ def rich_db():
     # Asset 2: old screenshot
     ts2 = datetime_to_coredata(datetime(2024, 1, 10, 9, 0, 0))
     c.execute(
-        "INSERT INTO ZASSET VALUES (2,'Screenshot.png',?,1920,1080,0,1,0,0,0,NULL,NULL,0,NULL,0,'public.png')",
+        "INSERT INTO ZASSET VALUES (2,'Screenshot.png',?,1920,1080,0,1,0,0,0,NULL,NULL,0,NULL,0,'public.png','CCCCCCCC-0000-0000-0000-000000000002')",
         (ts2,),
     )
     c.execute("INSERT INTO ZADDITIONALASSETATTRIBUTES VALUES (2,2000000,1920,1080)")
@@ -145,7 +146,7 @@ def rich_db():
     # Asset 3: low-quality photo
     ts3 = datetime_to_coredata(datetime(2025, 2, 15, 8, 0, 0))
     c.execute(
-        "INSERT INTO ZASSET VALUES (3,'IMG_003.jpg',?,1024,768,0,0,0,0,0,NULL,NULL,0,NULL,0,'public.jpeg')",
+        "INSERT INTO ZASSET VALUES (3,'IMG_003.jpg',?,1024,768,0,0,0,0,0,NULL,NULL,0,NULL,0,'public.jpeg','CCCCCCCC-0000-0000-0000-000000000003')",
         (ts3,),
     )
     c.execute("INSERT INTO ZADDITIONALASSETATTRIBUTES VALUES (3,500000,1024,768)")
@@ -154,7 +155,7 @@ def rich_db():
     # Asset 4: burst leftover
     ts4 = datetime_to_coredata(datetime(2025, 3, 1, 16, 0, 0))
     c.execute(
-        "INSERT INTO ZASSET VALUES (4,'IMG_004.heic',?,4032,3024,0,0,0,0,0,48.8566,2.3522,2,0,0,'public.heic')",
+        "INSERT INTO ZASSET VALUES (4,'IMG_004.heic',?,4032,3024,0,0,0,0,0,48.8566,2.3522,2,0,0,'public.heic','CCCCCCCC-0000-0000-0000-000000000004')",
         (ts4,),
     )
     c.execute("INSERT INTO ZADDITIONALASSETATTRIBUTES VALUES (4,4000000,4032,3024)")
@@ -163,7 +164,7 @@ def rich_db():
     # Asset 5: video
     ts5 = datetime_to_coredata(datetime(2025, 3, 1, 16, 30, 0))
     c.execute(
-        "INSERT INTO ZASSET VALUES (5,'VID_001.mov',?,1920,1080,1,0,0,0,0,48.8566,2.3522,0,NULL,0,'com.apple.quicktime-movie')",
+        "INSERT INTO ZASSET VALUES (5,'VID_001.mov',?,1920,1080,1,0,0,0,0,48.8566,2.3522,0,NULL,0,'com.apple.quicktime-movie','CCCCCCCC-0000-0000-0000-000000000005')",
         (ts5,),
     )
     c.execute("INSERT INTO ZADDITIONALASSETATTRIBUTES VALUES (5,50000000,1920,1080)")
@@ -171,7 +172,7 @@ def rich_db():
     # Asset 6: apple-detected duplicate
     ts6 = datetime_to_coredata(datetime(2025, 1, 15, 12, 0, 0))
     c.execute(
-        "INSERT INTO ZASSET VALUES (6,'IMG_006.heic',?,4032,3024,0,0,0,0,0,NULL,NULL,0,NULL,2,'public.heic')",
+        "INSERT INTO ZASSET VALUES (6,'IMG_006.heic',?,4032,3024,0,0,0,0,0,NULL,NULL,0,NULL,2,'public.heic','CCCCCCCC-0000-0000-0000-000000000006')",
         (ts6,),
     )
     c.execute("INSERT INTO ZADDITIONALASSETATTRIBUTES VALUES (6,4800000,4032,3024)")
@@ -180,7 +181,7 @@ def rich_db():
     # Asset 7: trashed
     ts7 = datetime_to_coredata(datetime(2025, 3, 2, 10, 0, 0))
     c.execute(
-        "INSERT INTO ZASSET VALUES (7,'IMG_007.heic',?,4032,3024,0,0,0,0,1,NULL,NULL,0,NULL,0,'public.heic')",
+        "INSERT INTO ZASSET VALUES (7,'IMG_007.heic',?,4032,3024,0,0,0,0,1,NULL,NULL,0,NULL,0,'public.heic','CCCCCCCC-0000-0000-0000-000000000007')",
         (ts7,),
     )
     c.execute("INSERT INTO ZADDITIONALASSETATTRIBUTES VALUES (7,3000000,4032,3024)")
@@ -188,7 +189,7 @@ def rich_db():
     # Asset 8: second duplicate (same visibility state as 6, same timestamp+dimensions)
     ts8 = datetime_to_coredata(datetime(2025, 1, 15, 12, 0, 0))
     c.execute(
-        "INSERT INTO ZASSET VALUES (8,'IMG_008.heic',?,4032,3024,0,0,0,0,0,NULL,NULL,0,NULL,2,'public.heic')",
+        "INSERT INTO ZASSET VALUES (8,'IMG_008.heic',?,4032,3024,0,0,0,0,0,NULL,NULL,0,NULL,2,'public.heic','CCCCCCCC-0000-0000-0000-000000000008')",
         (ts8,),
     )
     c.execute("INSERT INTO ZADDITIONALASSETATTRIBUTES VALUES (8,4700000,4032,3024)")
@@ -197,7 +198,7 @@ def rich_db():
     # Asset 9: normal photo
     ts9 = datetime_to_coredata(datetime(2025, 6, 20, 14, 0, 0))
     c.execute(
-        "INSERT INTO ZASSET VALUES (9,'IMG_009.heic',?,4032,3024,0,0,0,0,0,42.0,-91.0,0,NULL,0,'public.heic')",
+        "INSERT INTO ZASSET VALUES (9,'IMG_009.heic',?,4032,3024,0,0,0,0,0,42.0,-91.0,0,NULL,0,'public.heic','CCCCCCCC-0000-0000-0000-000000000009')",
         (ts9,),
     )
     c.execute("INSERT INTO ZADDITIONALASSETATTRIBUTES VALUES (9,4200000,4032,3024)")
@@ -431,6 +432,7 @@ class TestDuplicateFinder:
                 "Z_PK": 1,
                 "ZFILENAME": "a.jpg",
                 "ZDATECREATED": datetime_to_coredata(datetime(2025, 1, 1)),
+                "tz_offset": None,
                 "ZORIGINALFILESIZE": 5000000,
                 "ZWIDTH": 4032,
                 "ZHEIGHT": 3024,
@@ -445,6 +447,7 @@ class TestDuplicateFinder:
                 "Z_PK": 2,
                 "ZFILENAME": "b.jpg",
                 "ZDATECREATED": datetime_to_coredata(datetime(2025, 1, 1)),
+                "tz_offset": None,
                 "ZORIGINALFILESIZE": 4000000,
                 "ZWIDTH": 4032,
                 "ZHEIGHT": 3024,
@@ -755,24 +758,63 @@ class TestSmartExport:
         """Test AppleScript generation (mocked execution)."""
         from smart_export import export_with_applescript
 
+        items = [{"uuid": "ABC-123", "filename": "IMG_001.heic"}]
         with patch("smart_export.subprocess.run") as mock_run:
             mock_run.return_value.returncode = 0
-            result = export_with_applescript(["IMG_001.heic"], str(tmp_path), "2025")
+            mock_run.return_value.stdout = "EXPORTED:1 SKIPPED:0"
+            exported, skipped = export_with_applescript(items, str(tmp_path), "2025")
 
-        assert result is True
+        assert (exported, skipped) == (1, 0)
         mock_run.assert_called_once()
         call_args = mock_run.call_args
         assert call_args[0][0][0] == "osascript"
 
+        # Assets are addressed by identifier, never by a filename search.
+        script = call_args[0][0][2]
+        assert '"ABC-123/L0/001"' in script
+        assert "media item id" in script
+        assert "search for" not in script
+
+    def test_export_with_applescript_reports_skips(self, tmp_path):
+        """An id that does not resolve is skipped, not silently counted as exported."""
+        from smart_export import export_with_applescript
+
+        items = [
+            {"uuid": "ABC-123", "filename": "IMG_001.heic"},
+            {"uuid": "DEF-456", "filename": "IMG_002.heic"},
+        ]
+        with patch("smart_export.subprocess.run") as mock_run:
+            mock_run.return_value.returncode = 0
+            mock_run.return_value.stdout = "EXPORTED:1 SKIPPED:1"
+            assert export_with_applescript(items, str(tmp_path)) == (1, 1)
+
+    def test_export_without_uuid_is_refused(self, tmp_path):
+        """Exporting by filename alone can exceed the planned set — refuse it."""
+        from smart_export import export_with_applescript
+
+        with patch("smart_export.subprocess.run") as mock_run, pytest.raises(ValueError, match="no UUID"):
+            export_with_applescript([{"filename": "IMG_001.heic"}], str(tmp_path))
+
+        mock_run.assert_not_called()
+
     def test_export_with_applescript_failure(self, tmp_path):
         from smart_export import export_with_applescript
 
+        items = [{"uuid": "ABC-123", "filename": "test.jpg"}]
         with patch("smart_export.subprocess.run") as mock_run:
             mock_run.return_value.returncode = 1
             mock_run.return_value.stderr = "error"
-            result = export_with_applescript(["test.jpg"], str(tmp_path))
+            assert export_with_applescript(items, str(tmp_path)) == (0, 1)
 
-        assert result is False
+    def test_export_with_unparseable_output(self, tmp_path):
+        """A zero exit code with unexpected output must not be read as success."""
+        from smart_export import export_with_applescript
+
+        items = [{"uuid": "ABC-123", "filename": "test.jpg"}]
+        with patch("smart_export.subprocess.run") as mock_run:
+            mock_run.return_value.returncode = 0
+            mock_run.return_value.stdout = "something unexpected"
+            assert export_with_applescript(items, str(tmp_path)) == (0, 1)
 
 
 # ── Cleanup Executor (improve coverage) ──────────────────────────────────────
@@ -792,6 +834,20 @@ class TestCleanupExecutorExtended:
         assert result["summary"]["category"] == "low_quality"
         assert result["summary"]["count"] >= 1
 
+    def test_limit_caps_candidates(self, rich_db):
+        """--limit bounds how many items the destructive path can ever touch."""
+        from cleanup_executor import get_cleanup_candidates
+
+        with patch("cleanup_executor.PhotosDB") as mock_cls:
+            mock_cls.return_value.__enter__ = lambda s: rich_db
+            mock_cls.return_value.__exit__ = lambda s, *a: None
+            unlimited = get_cleanup_candidates(category="low_quality", quality_threshold=0.9)
+            capped = get_cleanup_candidates(category="low_quality", quality_threshold=0.9, limit=1)
+
+        assert unlimited["summary"]["count"] > 1, "fixture must exceed the cap for this to prove anything"
+        assert capped["summary"]["count"] == 1
+        assert len(capped["candidates"]) == 1
+
     def test_all_screenshots_candidates(self, rich_db):
         from cleanup_executor import get_cleanup_candidates
 
@@ -807,8 +863,8 @@ class TestCleanupExecutorExtended:
         from cleanup_executor import execute_cleanup
 
         candidates = [
-            {"filename": "test.jpg", "size": 1000},
-            {"filename": "test2.jpg", "size": 2000},
+            {"uuid": "UUID-1", "filename": "test.jpg", "size": 1000},
+            {"uuid": "UUID-2", "filename": "test2.jpg", "size": 2000},
         ]
         result = execute_cleanup(candidates, dry_run=True)
         assert result["dry_run"] is True
@@ -817,10 +873,10 @@ class TestCleanupExecutorExtended:
     def test_execute_cleanup_real(self):
         from cleanup_executor import execute_cleanup
 
-        candidates = [{"filename": "test.jpg", "size": 1000}]
+        candidates = [{"uuid": "UUID-1", "filename": "test.jpg", "size": 1000}]
         with patch("cleanup_executor.subprocess.run") as mock_run:
             mock_run.return_value.returncode = 0
-            mock_run.return_value.stdout = "1 items moved to Recently Deleted"
+            mock_run.return_value.stdout = "DELETED:1 SKIPPED:0"
             result = execute_cleanup(candidates, dry_run=False, batch_size=50)
 
         assert result["dry_run"] is False
@@ -829,7 +885,7 @@ class TestCleanupExecutorExtended:
     def test_execute_cleanup_error(self):
         from cleanup_executor import execute_cleanup
 
-        candidates = [{"filename": "test.jpg", "size": 1000}]
+        candidates = [{"uuid": "UUID-1", "filename": "test.jpg", "size": 1000}]
         with patch("cleanup_executor.subprocess.run") as mock_run:
             mock_run.return_value.returncode = 1
             mock_run.return_value.stderr = "AppleScript error"
@@ -842,7 +898,7 @@ class TestCleanupExecutorExtended:
 
         from cleanup_executor import execute_cleanup
 
-        candidates = [{"filename": "test.jpg", "size": 1000}]
+        candidates = [{"uuid": "UUID-1", "filename": "test.jpg", "size": 1000}]
         with patch("cleanup_executor.subprocess.run") as mock_run:
             mock_run.side_effect = sp.TimeoutExpired("osascript", 120)
             result = execute_cleanup(candidates, dry_run=False)

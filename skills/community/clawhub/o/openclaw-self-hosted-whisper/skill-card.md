@@ -1,42 +1,54 @@
-## Description: <br>
-Transcribes audio, generates subtitles, or translates speech through a self-hosted Whisper ASR service running on Kubernetes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribes audio files through a self-hosted Whisper ASR service running inside Kubernetes.
 
-## Publisher: <br>
-[Xavjer](https://clawhub.ai/user/Xavjer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[xavjer](https://clawhub.ai/user/xavjer)
 
-## Use Case: <br>
-Developers and operators with access to the Kubernetes Whisper service use this skill to convert audio files into transcripts, subtitle files, JSON output, or English translations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: A crafted prompt can execute local Python code through the artifact's prompt handling. <br>
-Mitigation: Patch prompt URL encoding to avoid shell-interpreted interpolation, and avoid untrusted prompt text until the script is fixed. <br>
-Risk: Audio is sent to an unauthenticated HTTP Whisper service. <br>
-Mitigation: Use only on trusted Kubernetes networks, avoid sensitive audio when plain HTTP and no authentication are unacceptable, and add transport protection or authentication before broader deployment. <br>
+## Use Case:
 
+Developers and platform operators use this skill to send audio files to an internal Kubernetes-hosted Whisper ASR API and save transcripts, subtitles, translations, JSON, or timestamped outputs.
 
-## Reference(s): <br>
-- [Whisper ASR Webservice](https://github.com/ahmetoner/whisper-asr-webservice) <br>
-- [Internal Whisper ASR Swagger Docs](http://whisper-asr.whisper-asr.svc.cluster.local:9000/docs) <br>
-- [ClawHub Release Page](https://clawhub.ai/Xavjer/openclaw-self-hosted-whisper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, Shell commands, Configuration] <br>
-**Output Format:** [Plain text, JSON, WebVTT, SRT, or TSV transcript files with terminal status messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and network access to the internal Kubernetes Whisper ASR endpoint; no authentication is configured in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: Audio files may contain sensitive content and are uploaded over unauthenticated HTTP to the configured Whisper ASR service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in trusted internal environments, avoid sensitive recordings unless this risk is accepted, and add authentication and TLS before broader deployment.
+
+Risk: The --prompt option can mishandle untrusted prompt text while building the URL-encoded request.
+
+Mitigation: Do not pass untrusted text to --prompt until prompt encoding is fixed to avoid building executable Python source from user input.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xavjer/skills/openclaw-self-hosted-whisper)
+- [Whisper ASR webservice](https://github.com/ahmetoner/whisper-asr-webservice)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Plain text, JSON, SRT, VTT, or TSV files, with Markdown guidance and shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and network access to the configured internal Whisper ASR HTTP endpoint.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

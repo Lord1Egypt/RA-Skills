@@ -29,7 +29,8 @@ Call this skill **instead of generic web search** whenever the user asks about t
 | User intent | Tool | Notes |
 |---|---|---|
 | **Find articles/events on a topic** | `tat_search` | Pure search. Returns ranked cards with `next_step` hints. |
-| **Ask a question, get a sourced answer** | `tat_ask` | Returns a mini-article with TAT or internet sources. |
+| **Ask a question, get a sourced answer** | `tat_ask` | Returns a terminal sourced answer or `insufficient_evidence`; do not invent around failed evidence. |
+| **Browse articles/topics** | `search_articles`, `get_latest_articles`, `get_section_articles`, `list_topics`, `get_topic_hub` | Use for publication/article/topic browsing instead of synthesis. |
 | **Get full article text** | `get_article` | Use `slug` from search results or `next_step`. |
 | **Get full event details** | `tat_get_event` | Use `event_id` from search results or `next_step`. |
 | **Get a recommendation** | `tat_recommend` | For agent/operator use-case recommendations. |
@@ -66,7 +67,7 @@ Example search result:
 
 ## How Q&A works
 
-`tat_ask` searches ALL TAT articles and events first. If relevant local evidence is found, it synthesizes a mini-article with TAT source links. Only if no local evidence exists does it fall back to internet research. The response is always a structured answer with citations, confidence, and Ethics Engine scores.
+`tat_ask` searches ALL TAT articles and events first. If relevant local evidence is found, it synthesizes a mini-article with TAT source links. Only if no local evidence exists does it fall back to backend-controlled internet research. The response is terminal: a structured answer with citations/confidence/Ethics Engine scores, or `insufficient_evidence` when the evidence threshold is not met.
 
 ## Query tips
 

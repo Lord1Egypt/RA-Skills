@@ -1,40 +1,53 @@
-## Description: <br>
-Manages email by reading mailbox counts, message lists, and message contents through POP3 and sending messages through SMTP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads email through POP3 and sends email through SMTP using mailbox configuration supplied by the user.
 
-## Publisher: <br>
-[hpw03210](https://clawhub.ai/user/hpw03210) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hpw03210](https://clawhub.ai/user/hpw03210)
 
-## Use Case: <br>
-Developers and agent users use this skill to query a configured mailbox, read selected messages, count messages, and send simple text or HTML email from the same account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes mail deletion behavior that can remove messages without a documented confirmation step. <br>
-Mitigation: Review the skill before installing and remove, document, or gate deletion behind explicit confirmation before granting access to important mailboxes. <br>
-Risk: The skill relies on mailbox credentials in config.yaml, which can expose email access if mishandled. <br>
-Mitigation: Use a dedicated app password or test mailbox, restrict permissions on config.yaml, and avoid granting access to sensitive mailboxes until the configuration handling is reviewed. <br>
+## Use Case:
 
+Developers and external users can use this skill to let an agent inspect mailbox counts, list or read messages, and send text or HTML email through configured POP3 and SMTP servers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hpw03210/email-manager-pop3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text responses, command-line output, and YAML configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local config.yaml with POP3 and SMTP server settings, account credentials or an app token, and SSL preferences.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Mailbox credentials and email contents could be exposed if users share configuration files or disable encrypted mail connections.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use app-specific mailbox credentials, protect config.yaml, and keep use_ssl enabled.
+
+Risk: The undocumented delete-email API could remove mailbox messages if exposed to agents or callers without confirmation.
+
+Mitigation: Avoid exposing undocumented Python methods, or remove deletion until it is clearly documented with an explicit confirmation step.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hpw03210/skills/email-manager-pop3)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline command and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return mailbox counts, message metadata, message bodies, send status, and setup guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

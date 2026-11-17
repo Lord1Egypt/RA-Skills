@@ -1,41 +1,58 @@
-## Description: <br>
-Helps draft structured admission records through a three-step flow that collects, confirms, and formats patient-provided details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bingli Shengchengqi collects basic case details and drafts a structured Chinese admission record.
 
-## Publisher: <br>
-[gshatw](https://clawhub.ai/user/gshatw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gshatw](https://clawhub.ai/user/gshatw)
 
-## Use Case: <br>
-Users preparing draft admission records can use this skill to collect core patient details, confirm the inputs, and produce a formatted admission-record draft. It is not a substitute for clinical judgment or final medical documentation review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may handle sensitive health information. <br>
-Mitigation: Use only with explicit user intent and avoid entering real patient-identifying information unless the environment is approved for it. <br>
-Risk: Generated records may include unprovided or defaulted clinical details. <br>
-Mitigation: Treat outputs as drafts, mark missing facts as unknown or pending, and require clinician review before use. <br>
+## Use Case:
 
+External users or clinical documentation drafters can use this skill to collect complaint, sex, age, and optional context before drafting a structured admission record. Treat the output as a draft-writing aid, not as verified clinical facts.
 
-## Reference(s): <br>
-- [Bingli Shengchengqi on ClawHub](https://clawhub.ai/gshatw/bingli-shengchengqi) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-formatted admission record draft with conversational prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated records are drafts and may include default values for missing clinical facts; clinician review is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json, _meta.json, INDEX.md, server release evidence) <br>
+Risk: The skill can create authoritative-looking patient records with invented clinical details from incomplete input.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the output only as a draft; verify every fact and mark unsupported fields as unknown or not assessed before clinical, billing, insurance, or legal use.
+
+Risk: The workflow may involve sensitive medical information.
+
+Mitigation: Do not enter real patient data unless the execution environment is approved for sensitive medical information.
+
+Risk: Default normal values can make missing history, vital signs, or examination details appear confirmed.
+
+Mitigation: Review all defaulted fields and replace unsupported values with explicit unknown or not assessed wording.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gshatw/skills/bingli-shengchengqi)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown admission-record draft with conversational prompts for missing details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill asks for basic patient details, confirms the collected information, and may fill unspecified fields with normal or clinical default values.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json, _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

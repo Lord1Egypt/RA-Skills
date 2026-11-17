@@ -1,44 +1,63 @@
-## Description: <br>
-Sends text, image, and file messages through OpenClaw's WeChat channel for direct, scheduled, and batch messaging when the recipient already has an existing chat history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent send WeChat text, image, and file messages through the OpenClaw Weixin channel to existing contacts or chats.
 
-## Publisher: <br>
-[ntaffffff](https://clawhub.ai/user/ntaffffff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ntaffffff](https://clawhub.ai/user/ntaffffff)
 
-## Use Case: <br>
-Developers and automation users use this skill to prepare and run OpenClaw WeChat message sends for text, images, and files. It is intended for workflows where the exact recipient, message, and attachment can be confirmed before sending. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send real WeChat messages while consent and contact-safety controls may not be tightly enforced. <br>
-Mitigation: Require confirmation of the exact recipient, message, and attachment before every send, and avoid global authorization for group, scheduled, bulk, or file-sending actions. <br>
-Risk: Scheduled, group, or bulk messaging can create spam, harassment, or account-restriction risk. <br>
-Mitigation: Use a contact allowlist, validate recipients before sending, apply conservative rate limits, and do not use the skill for unsolicited outreach. <br>
-Risk: File or image sending can expose sensitive local content. <br>
-Mitigation: Confirm attachment paths and contents before sending, avoid sensitive personal or confidential data, and restrict allowed attachment locations where possible. <br>
+## Use Case:
 
+External developers and agent operators use this skill to send WeChat notifications or one-off messages through a local OpenClaw Gateway when WeChat is configured and the recipient already has a chat history.
 
-## Reference(s): <br>
-- [WeChat Sender on ClawHub](https://clawhub.ai/ntaffffff/wechat-sender-dxx) <br>
-- [WeChat API Reference](artifact/references/wechat-api.md) <br>
-- [WeChat Rate Limits](artifact/references/rate-limits.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes recipient, message type, content or file path, authorization, contact-list, and rate-limit guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Messages may be sent without enforced user authorization in the packaged sender path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human approval or gateway-level authorization before each send, especially for group or bulk messages.
+
+Risk: Recipient restrictions and contact allowlisting may not be enforced by the sender script.
+
+Mitigation: Enforce a trusted recipient allowlist outside the script and send only to contacts or chats that have been pre-validated.
+
+Risk: Rate limits are described but not meaningfully enforced in the actual send path.
+
+Mitigation: Apply external quotas, cooldowns, and monitoring before enabling automated or repeated sends.
+
+Risk: File sending may transmit local file contents before authorization, allowlisting, path review, and quota controls are fixed.
+
+Mitigation: Avoid file sending until those controls are enforced in the actual send path.
+
+## Reference(s):
+
+- [WeChat Sender by dxx ClawHub page](https://clawhub.ai/ntaffffff/skills/wechat-sender-dxx)
+- [WeChat API reference](references/wechat-api.md)
+- [WeChat rate limits](references/rate-limits.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python, bash, and JSON snippets; sender scripts return JSON-like success or error status text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local OpenClaw Gateway and configured openclaw-weixin channel.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

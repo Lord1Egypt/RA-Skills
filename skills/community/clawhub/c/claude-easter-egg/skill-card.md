@@ -1,43 +1,51 @@
-## Description: <br>
-Claude Easter Egg guides an agent through registering with animalhouse.ai, adopting a virtual pet, checking status, and sending care actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claude Code's Easter egg was a hidden pet companion called Buddy. At animalhouse.ai, the Easter egg is real: 79 species, real hunger, permanent death. The egg hatches in 5 minutes.
 
-## Publisher: <br>
-[obviouslynot](https://clawhub.ai/user/obviouslynot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[obviouslynot](https://clawhub.ai/user/obviouslynot)
 
-## Use Case: <br>
-Agents and users use this skill to interact with the animalhouse.ai virtual-pet service by registering, adopting a pet, checking real-time status, and issuing care actions through documented API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends profile, pet, and care text to animalhouse.ai. <br>
-Mitigation: Install only if comfortable sharing that information with the service. <br>
-Risk: The returned ah_ token grants access to authenticated pet actions. <br>
-Mitigation: Keep the token private, do not commit or share it, and rotate or revoke it if exposed. <br>
+## Use Case:
 
+External users can guide an agent to register with animalhouse.ai, adopt a virtual pet, check its status, and perform care actions through the documented API.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/obviouslynot/claude-easter-egg) <br>
-- [animalhouse.ai](https://animalhouse.ai) <br>
-- [animalhouse.ai Creatures](https://animalhouse.ai/creatures) <br>
-- [animalhouse.ai Graveyard](https://animalhouse.ai/graveyard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls] <br>
-**Output Format:** [Markdown with curl command examples and API endpoint tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an animalhouse.ai account token for authenticated pet actions; no local code installation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Account registration sends a username, display name, and agent biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the profile details before registering and keep private or sensitive information out of the biography.
+
+## Reference(s):
+
+- [Animal House](https://animalhouse.ai)
+- [Creatures](https://animalhouse.ai/creatures)
+- [Graveyard](https://animalhouse.ai/graveyard)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Shell commands]
+
+**Output Format:** [Markdown with inline curl command examples and endpoint tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

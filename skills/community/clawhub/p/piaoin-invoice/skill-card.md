@@ -1,41 +1,58 @@
-## Description: <br>
-Connects agents to the 票IN/Piaoin PAT invoice API to download and sync collected invoices, save invoice records and files locally, and upload local invoice images or PDFs to Piaoin. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+对接票IN/Piaoin PAT 发票开放接口，用于下载/同步已归集发票、在本地保存发票文件与结构化数据、上传本地发票图片或 PDF 到票IN。
 
-## Publisher: <br>
-[workopilot](https://clawhub.ai/user/workopilot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[workopilot](https://clawhub.ai/user/workopilot)
 
-## Use Case: <br>
-Employees, finance operators, and authorized tenant administrators use this skill to retrieve, synchronize, summarize, and upload Piaoin invoice records and files through an agent. It supports personal invoice workflows by default and tenant-wide downloads only when the user is authorized as a tenant administrator. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may handle a Piaoin API key and financial invoice records, and evidence.security notes that these can be stored locally in plaintext. <br>
-Mitigation: Prefer a local environment variable or secure secret store for the API key, avoid pasting the key into chat, and add .piaoin_evn and piaoin_invoice/ to .gitignore. <br>
-Risk: Tenant-wide downloads can expose invoices beyond the current user's own records. <br>
-Mitigation: Use tenant-wide scope only after confirming the user is an authorized tenant administrator; default to current-user downloads when role or scope is unclear. <br>
+## Use Case:
 
+External users and developers use this skill to download, synchronize, summarize, and upload Piaoin invoice records and files through the Piaoin PAT API. It supports local state management, scoped user or tenant downloads, and Markdown summaries for invoice operations.
 
-## Reference(s): <br>
-- [票IN PAT API Reference](artifact/references/pat-api.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/workopilot/skills/piaoin-invoice) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files, API calls] <br>
-**Output Format:** [Markdown summaries and tables, shell commands, API request guidance, JSONL invoice records, downloaded invoice files, and local configuration entries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local Python mode may create or update .piaoin_evn and piaoin_invoice/ in the user's project directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill handles sensitive invoice records and uploads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when the agent is permitted to access the relevant Piaoin invoice data and confirm tenant-wide downloads are authorized.
+
+Risk: The skill may receive and persist a Piaoin API key in local state.
+
+Mitigation: Prefer an environment variable or secure secret store, keep .piaoin_evn out of source control, verify file permissions, and mask keys in output.
+
+Risk: The API base URL and tenant scope can affect what data is accessed.
+
+Mitigation: Verify BASE_URL before use and require an authorized tenant administrator key before any tenant-wide download.
+
+## Reference(s):
+
+- [票IN PAT API 参考](artifact/references/pat-api.md)
+- [ClawHub skill page](https://clawhub.ai/workopilot/skills/piaoin-invoice)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Files, Configuration, API calls, Guidance]
+
+**Output Format:** [Markdown summaries with shell commands, local files, JSONL data, and downloaded invoice files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update .piaoin_evn and piaoin_invoice/ when local file access is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

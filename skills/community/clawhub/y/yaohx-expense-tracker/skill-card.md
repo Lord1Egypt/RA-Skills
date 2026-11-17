@@ -1,41 +1,59 @@
-## Description: <br>
-Expense Tracker records personal spending from text or payment screenshots, stores monthly expense records, and generates monthly spending summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Yaohx Expense Tracker helps an agent record local personal expenses from text or payment screenshots, query monthly spending, manage categories, delete records, and generate monthly spending reports.
 
-## Publisher: <br>
-[nontrace](https://clawhub.ai/user/nontrace) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yaohx-star](https://clawhub.ai/user/yaohx-star)
 
-## Use Case: <br>
-Individuals and agent users use this skill to capture expenses from manual descriptions or payment screenshots, maintain monthly JSON expense records, and review category-based spending reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores sensitive expense history in local JSON files. <br>
-Mitigation: Use it only where local persistent storage of spending history is acceptable, protect the generated files, and remove records that should not be retained. <br>
-Risk: Payment screenshots can expose raw payment text through OCR logs. <br>
-Mitigation: Avoid screenshots with unrelated sensitive information and remove or disable raw OCR logging before routine use. <br>
+## Use Case:
 
+External users can use this skill with an agent to maintain a local personal expense ledger, capture spending from natural-language notes or payment screenshots, and review monthly spending summaries.
 
-## Reference(s): <br>
-- [Data Schema Reference](references/data_schema.md) <br>
-- [Tesseract OCR](https://github.com/tesseract-ocr/tesseract) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash snippets and JSON expense records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local JSON files for categories, monthly expenses, and monthly summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: Deleting financial records can remove a user's source-of-truth expense data if the wrong record is selected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the user to confirm the exact record identifier and visible expense details before running a deletion workflow.
+
+Risk: The optional OCR path recommends installing an unpinned dependency.
+
+Mitigation: Install OCR dependencies only in a controlled environment with pinned, trusted package versions.
+
+Risk: The release evidence warns that expected supporting scripts may be missing from the installed package.
+
+Mitigation: Verify the installed package includes the required scripts before relying on recording, OCR, listing, reporting, or deletion workflows.
+
+## Reference(s):
+
+- [Server-resolved GitHub source repository](https://github.com/yaohx-star/yaohx-expense-tracker)
+- [ClawHub skill page](https://clawhub.ai/yaohx-star/skills/yaohx-expense-tracker)
+- [Publisher profile](https://clawhub.ai/user/yaohx-star)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or Markdown with shell command examples and JSON-shaped script outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local categories and monthly expense JSON files when the supporting scripts are present.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

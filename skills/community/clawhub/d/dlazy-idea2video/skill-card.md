@@ -1,45 +1,55 @@
-## Description: <br>
-Turn a user's idea into a full video-generation pipeline covering story, characters, 3-view portraits, scenes, shots, keyframes, shot videos, and final concatenation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates a reviewable video-production plan from an idea, covering story, characters, scenes, shots, keyframes, and video assembly.
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-Developers and creators use this skill to plan and run a dLazy-backed idea-to-video workflow from an initial concept through generated assets and merged video output. It guides requirement gathering, plan confirmation, canvas expansion, and execution through dLazy CLI commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires dLazy API credentials and may store an API key in local CLI configuration. <br>
-Mitigation: Use dLazy only when intended, prefer per-run DLAZY_API_KEY or npx when possible, and rotate or revoke keys from the dLazy dashboard if exposure is suspected. <br>
-Risk: Prompts and selected local media may be sent to dLazy services for generation. <br>
-Mitigation: Review inputs before execution and avoid passing private, regulated, or confidential files unless the deployment has approved that data flow. <br>
-Risk: The release evidence flags tension between canvas planning and direct terminal command execution. <br>
-Mitigation: Review each proposed dlazy command before allowing it and require explicit user confirmation at the workflow gates. <br>
+## Use Case:
 
+External users and developers can turn a creative idea into a structured video-production workflow, review or adjust the plan, and prepare it for execution in a canvas.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dlazyai/idea2video) <br>
-- [dLazy CLI source](https://github.com/dlazyai/cli) <br>
-- [dLazy CLI npm package](https://www.npmjs.com/package/@dlazy/cli) <br>
-- [dLazy website](https://dlazy.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and structured workflow summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill may produce or reference dLazy-hosted image and video generation outputs when the user authorizes execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and release evidence) <br>
+Risk: Prompts and local media used in the workflow may be sent to dLazy's hosted services for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting sensitive prompts or media, and review the intended execution flow and CLI installation details before running it.
+
+Risk: The benign security verdict has medium confidence and the analysis was partial.
+
+Mitigation: Review the CLI installation and execution flow before use; treat the scan result as incomplete coverage rather than a guarantee.
+
+## Reference(s):
+
+- [dLazy CLI repository referenced by the skill](https://github.com/dlazy-ai/cli)
+- [@dlazy/cli package on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy website](https://dlazy.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Configuration, Guidance]
+
+**Output Format:** [Markdown plan and JSON workflow configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The workflow is shaped by the user's idea, requirements, visual style, aspect ratio, and desired scope.]
+
+## Skill Version(s):
+
+1.3.44 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

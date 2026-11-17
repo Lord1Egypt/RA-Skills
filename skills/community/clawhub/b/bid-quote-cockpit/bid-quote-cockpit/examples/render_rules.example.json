@@ -1,0 +1,28 @@
+{
+  "_usage": "python scripts/dump_rendered.py 看板.html --rules render_rules.json --log gate.log",
+  "_note": "容器 id 只要出现在本文件里，就会被自动渲染，无需再写进 --ids。exit 0 才可交付。",
+  "_why": "千分位/正负号/单位后缀都是客户端 JS 用 fmt() 现拼的，源码里只有裸数字，grep 查不到。",
+
+  "tRecoPrice": {
+    "must_contain": ["有效最低"],
+    "must_not_contain": ["NaN", "undefined", "__MISSING__"]
+  },
+
+  "_comment_1": "★ 反向强校验：同名容器里，正确单位必须持有正确金额",
+  "scoreNote": {
+    "must_contain": ["甲公司", "123,456.00"],
+    "must_match": ["最低为\\s*甲公司"],
+    "must_not_match": ["最低为\\s*乙公司\\s*€?\\s*123,456"]
+  },
+
+  "_comment_2": "评分表：总分、名次、无 NaN",
+  "tScore": {
+    "must_contain": ["综合总分", "名次"],
+    "must_not_contain": ["NaN", "undefined", "null"]
+  },
+
+  "_comment_3": "状态/提示类容器：只防渲染空洞",
+  "recoNote": {
+    "must_not_contain": ["undefined", "NaN", "__MISSING__"]
+  }
+}

@@ -1,48 +1,60 @@
-## Description: <br>
-木工厂报价助手用于从图纸和文字描述中提取尺寸与工艺信息，匹配材料阶梯价格、损耗率和利润率，并生成木作报价明细与 Excel 报价单。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+木工厂报价助手。自动匹配阶梯价格、计算损耗率、生成报价明细表（工艺成本/损耗/总成本/报价金额）。支持图纸尺寸提取、多格式导出。触发关键词：算报价、图纸报价、工艺核算、生成报价表、木作报价、板材成本核算。
 
-## Publisher: <br>
-[gh488](https://clawhub.ai/user/gh488) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gh488](https://clawhub.ai/user/gh488)
 
-## Use Case: <br>
-Woodworking shops, furniture manufacturers, display-case makers, and custom millwork vendors use this skill to estimate material costs, process costs, loss, total cost, and quote price from drawings or supplied dimensions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Default pricing, loss-rate, profit-margin, branding, and contact details may not match the deploying business. <br>
-Mitigation: Review and customize those values before using the skill for operational quotations. <br>
-Risk: Internal pricing mode can expose real purchase data if enabled in an untrusted workspace. <br>
-Mitigation: Use internal pricing mode only in a trusted workspace; use public or example configuration for external workflows. <br>
-Risk: Broad trigger words may activate the skill for a quotation request that was not intended for this workflow. <br>
-Mitigation: Confirm the intended drawing, dimensions, and quotation task before relying on the generated quote. <br>
-Risk: Quotation spreadsheets can be exported from the wrong drawing or to an unintended output file. <br>
-Mitigation: Confirm the drawing input and output path before exporting Excel quotation workbooks. <br>
+## Use Case:
 
+Woodworking shops, furniture manufacturers, custom millwork vendors, and external business users use this skill to parse drawings or descriptions, estimate material and process costs, apply waste and profit assumptions, and generate quotation details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gh488/wood-quotation-assistant) <br>
-- [材料编码对照表](artifact/references/material_codes.md) <br>
-- [木工厂报价核算逻辑说明](artifact/references/quotation_logic.md) <br>
-- [采购数据配置说明](artifact/data/purchase_cost_data.md) <br>
-- [核算模板说明](artifact/data/wood_quotation_template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, configuration] <br>
-**Output Format:** [Markdown quotation table and optional Excel .xlsx quotation workbook] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local Excel export uses openpyxl; PDF drawing parsing uses pdfplumber when installed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Excel quotations may include fixed third-party branding or contact details that do not match the installing organization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or configure embedded business identity fields before producing customer-facing quotation files.
+
+Risk: Spreadsheet content may be interpreted as formulas when exported to Excel.
+
+Mitigation: Sanitize cell values before export and review generated workbooks before sharing them externally.
+
+Risk: Cost estimates depend on local material prices, loss rates, process prices, and profit margin settings.
+
+Mitigation: Configure pricing assumptions for the target shop or supplier policy before relying on generated quotes.
+
+## Reference(s):
+
+- [Material Codes](artifact/references/material_codes.md)
+- [Quotation Logic](artifact/references/quotation_logic.md)
+- [ClawHub Skill Page](https://clawhub.ai/gh488/skills/wood-quotation-assistant)
+- [Publisher Profile](https://clawhub.ai/user/gh488)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown tables, JSON-like calculation data, Excel workbook files, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May export .xlsx quotation workbooks and depends on user-configured material prices, loss rates, process prices, and profit margin.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

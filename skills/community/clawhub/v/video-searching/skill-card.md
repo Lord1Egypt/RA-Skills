@@ -1,41 +1,58 @@
-## Description: <br>
-Search and analyze videos across YouTube, TikTok, Instagram, and X/Twitter via the Memories.ai Video Searching API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and analyze videos across YouTube, TikTok, Instagram, and X/Twitter via the Memories.ai Video Searching API.
 
-## Publisher: <br>
-[memories-ai-official](https://clawhub.ai/user/memories-ai-official) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[memories-ai-official](https://clawhub.ai/user/memories-ai-official)
 
-## Use Case: <br>
-External users and agents use this skill to find, compare, and analyze social videos with concrete links and metrics across supported platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Video-search queries are sent to Memories.ai under the configured MEMORIES_API_KEY. <br>
-Mitigation: Avoid confidential or regulated search terms and use a scoped or dedicated API key when available. <br>
-Risk: The documented script path may not match the packaged root script location. <br>
-Mitigation: Confirm the runner path before deployment and adjust packaging or invocation if needed. <br>
+## Use Case:
 
+External users and developers use this skill to search, compare, and analyze social videos across YouTube, TikTok, Instagram, and X/Twitter, returning concrete video references and concise analysis through the Memories.ai API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/memories-ai-official/video-searching) <br>
-- [Memories.ai Video Searching API](https://api-tools.memories.ai/agents/video-searching-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown response summarizing video-search results, with structured video references and run metadata.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MEMORIES_API_KEY plus curl and jq; emits user-facing summaries from structured API events.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence and artifact _meta.json) <br>
+Risk: The skill sends user video-search queries to the Memories.ai service using a Memories.ai API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only where sharing those queries with Memories.ai is acceptable, and store MEMORIES_API_KEY as a protected environment variable.
+
+Risk: The skill may fail if the packaged script path, executable permissions, network access, curl, jq, or MEMORIES_API_KEY are unavailable.
+
+Mitigation: Verify the runner script path and permissions before use, and confirm the required tools, environment variable, and network connectivity are available.
+
+Risk: Returned video URLs, metrics, or relevance notes may be incomplete or unavailable from the upstream service.
+
+Mitigation: Show only API-provided video references and metrics, and avoid fabricating URLs or engagement data when fields are missing.
+
+## Reference(s):
+
+- [Memories.ai Video Searching API](https://api-tools.memories.ai/agents/video-searching-api)
+- [ClawHub Video Searching skill page](https://clawhub.ai/memories-ai-official/skills/video-searching)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown response with video titles, URLs, platform labels, relevance notes, available metrics, and execution metadata; clarifications and errors are plain text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MEMORIES_API_KEY, curl, and jq; sends user video-search queries to Memories.ai and must not fabricate video URLs or metrics.]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,53 @@
-## Description: <br>
-Vision Bot helps agents describe images, detect objects, extract text, count visual elements, and analyze webpage screenshots from user-provided image tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes public images through AIProx to describe scenes, identify objects, extract visible text, and count objects.
 
-## Publisher: <br>
-[unixlamadev-spec](https://clawhub.ai/user/unixlamadev-spec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unixlamadev-spec](https://clawhub.ai/user/unixlamadev-spec)
 
-## Use Case: <br>
-Use for accessibility descriptions, OCR from screenshots or photos, object identification and counting, multilingual image analysis, and visual review of webpage screenshots when external image processing is acceptable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, subject to the user's organization, local laws, service availability, and restrictions for external image processing. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image URLs, screenshots, OCR targets, webpage references, and task text are sent to a disclosed external API. <br>
-Mitigation: Use this skill only when external processing is acceptable, avoid confidential images or private internal URLs, and review the request content before submission. <br>
-Risk: The skill requires an AIPROX_SPEND_TOKEN for paid API access. <br>
-Mitigation: Use a spend-limited token where possible and manage it as a secret in the agent environment. <br>
+## Use Case:
 
+People and agents use Vision Bot to get descriptions, object counts, and OCR text from a public image URL. The caller should confirm the 50-sat charge before each paid analysis.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/unixlamadev-spec/vision-bot) <br>
-- [Publisher Profile](https://clawhub.ai/user/unixlamadev-spec) <br>
-- [Project Homepage](https://aiprox.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Natural-language analysis and structured examples for image description, object detection, OCR, counting, and webpage screenshot review.] <br>
-**Output Parameters:** [Accepts an image URL in the task string or a separate image_url field, task text that selects the analysis mode, and AIPROX_SPEND_TOKEN in the environment for API access.] <br>
-**Other Properties Related to Output:** [Responses follow the language of the user's task and may include descriptions, detected objects, extracted text, and visual observations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 <br>
+Risk: The task text and image URL are sent to AIProx, and a page URL may also be sent to microlink.io for a screenshot.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive public images and do not send secrets or personal data; review the providers’ privacy terms.
+
+Risk: Each paid analysis costs 50 sats, and the optional spend token is a bearer credential.
+
+Mitigation: Get approval for the stated charge before calling, keep the token out of logs, and use a minimally funded token or per-call L402 payment.
+
+## Reference(s):
+
+- [AIProx documentation](https://aiprox.dev/docs.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Analysis]
+
+**Output Format:** [Structured JSON containing an image description, detected objects, extracted text, and an optional count.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [One image-analysis result per request; object counts are included when requested.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

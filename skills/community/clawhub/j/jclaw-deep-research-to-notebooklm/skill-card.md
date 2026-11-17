@@ -1,42 +1,61 @@
-## Description: <br>
-Orchestrates an end-to-end workflow that runs Gemini Deep Research, uploads the report to NotebookLM, and generates selected NotebookLM artifacts such as audio, video, infographics, and slides. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates Deep Research followed by NotebookLM content generation, chaining dependent skills to produce selected audio, video, infographic, or slide artifacts with optional downloads.
 
-## Publisher: <br>
-[skywalker-lili](https://clawhub.ai/user/skywalker-lili) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skywalker-lili](https://clawhub.ai/user/skywalker-lili)
 
-## Use Case: <br>
-Developers and research-oriented users use this skill to turn a research topic into a Deep Research report and then create NotebookLM content artifacts with bounded polling and optional downloads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can continue through a background agent handoff after the initial confirmation. <br>
-Mitigation: Confirm the full research topic, artifact choices, language, download setting, and polling limits before launch, and monitor the status notifications. <br>
-Risk: The workflow sends Discord updates and re-invokes an OpenClaw agent to start the NotebookLM phase. <br>
-Mitigation: Use it only in an intended channel or workspace and verify that the dependency skills and OpenClaw delivery path are trusted. <br>
-Risk: The generated research report is uploaded to NotebookLM, and optional downloads may be written to an ObsidianVault path. <br>
-Mitigation: Avoid sensitive inputs unless NotebookLM use is approved, and review local download paths before enabling downloads. <br>
+## Use Case:
 
+Developers and agent operators use this skill to run a research workflow and then create NotebookLM artifacts from the resulting report without manually transferring content between tools.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/skywalker-lili/jclaw-deep-research-to-notebooklm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples and bash command/script snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates task configuration and polling scripts; may save reports and optional NotebookLM downloads through the agent workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Detached background scripts and automatic agent-triggered continuation can keep operating after the initial user interaction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before background continuation and provide clear status notifications for each phase.
+
+Risk: Unsafe shell evaluation can execute unintended command text during download handling.
+
+Mitigation: Avoid eval and build download commands from fixed arguments or shell-safe command construction.
+
+Risk: A predictable task directory under /tmp can expose workflow files to accidental disclosure or interference on shared systems.
+
+Mitigation: Use a private, unpredictable task directory with restricted permissions.
+
+Risk: Discord messaging and optional local downloads affect where status and generated artifacts are sent or stored.
+
+Mitigation: Make notification channels, download behavior, and destination paths clear before running the workflow.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/skywalker-lili/skills/jclaw-deep-research-to-notebooklm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON snippets and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create background polling scripts, task JSON, report files, status notifications, and optional downloaded NotebookLM artifacts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

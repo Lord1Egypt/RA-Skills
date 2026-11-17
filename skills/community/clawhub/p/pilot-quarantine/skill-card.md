@@ -1,41 +1,54 @@
-## Description: <br>
-Isolate suspicious agents pending investigation in Pilot Protocol networks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Isolate suspicious agents pending investigation in Pilot Protocol networks.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and incident responders use this skill to temporarily isolate suspicious Pilot Protocol agents, review quarantine records, and release agents after investigation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Quarantine examples can disconnect live agents even though immediate disconnects are described as out of scope. <br>
-Mitigation: Require manual operator review before running disconnect commands, and separate temporary trust suspension from session termination when adapting the workflow. <br>
-Risk: Active containment commands can disrupt legitimate Pilot Protocol sessions if the target agent is misidentified. <br>
-Mitigation: Confirm the agent identity and investigation reason before applying untrust or disconnect operations. <br>
+## Use Case:
 
+Developers and incident responders use this skill to quarantine suspicious Pilot Protocol agents, suspend trust temporarily, review behavior, and release agents after investigation.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [Pilot Quarantine on ClawHub](https://clawhub.ai/teoslayer/pilot-quarantine) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash command blocks and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pilotctl, jq, openssl, and a running Pilot Protocol daemon.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Quarantine examples can untrust nodes and disconnect connections, which could affect unintended agents if targets are not scoped and previewed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit target validation and a dry-run preview before untrust or disconnect actions; make disconnect behavior opt-in.
+
+Risk: Shell and jq examples handle agent names, quarantine IDs, and JSON records unsafely.
+
+Mitigation: Use jq --arg for dynamic values, constrain quarantine IDs to generated hex values, serialize JSON records instead of heredocs, and write records with restrictive file permissions.
+
+## Reference(s):
+
+- [Pilot Protocol homepage](https://pilotprotocol.network)
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-quarantine)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pilotctl, jq, openssl, and a running Pilot Protocol daemon.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

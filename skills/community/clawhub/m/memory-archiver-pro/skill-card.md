@@ -1,38 +1,53 @@
-## Description: <br>
-Memory Archiver Pro helps an agent archive local memory files by date, search saved memories by keyword, continue work across sessions, generate daily memory briefings, and clean up expired files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically archives AI agent memory files by date, supports keyword search and cross-session memory inheritance, and generates daily memory briefings to reduce information loss.
 
-## Publisher: <br>
-[linbo405](https://clawhub.ai/user/linbo405) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linbo405](https://clawhub.ai/user/linbo405)
 
-## Use Case: <br>
-Developers and agent users use this skill to organize local agent memory into a dated archive, retrieve prior context by keyword, and produce daily briefings for cross-session continuity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may manage, retain, or clean up local memory files that contain sensitive information. <br>
-Mitigation: Review what is stored in the memory directory, avoid storing secrets there, and confirm retention and backup settings before enabling auto-clean behavior. <br>
+## Use Case:
 
+Developers and OpenClaw Agent users use this skill to organize memory files into dated archives, search prior context, continue work across sessions, and produce daily summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/linbo405/memory-archiver-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Configuration, Guidance] <br>
-**Output Format:** [Markdown and structured local memory files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use an archive directory, retention period, auto-clean setting, daily briefing setting, and keyword search input.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can read and summarize memory files, which may carry private or sensitive information across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrow archive directory and avoid storing secrets or private data in memory files.
+
+Risk: Automatic cleanup can delete memory records older than the configured retention period.
+
+Mitigation: Disable auto-clean unless backups exist and review the retention period before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linbo405/skills/memory-archiver-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown or text summaries, search-result lists, archived knowledge-base files, and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May process files under the configured memory archive and may remove expired records when auto-clean is enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

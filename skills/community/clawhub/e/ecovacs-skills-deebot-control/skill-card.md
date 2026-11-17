@@ -1,48 +1,59 @@
-## Description: <br>
-Control Ecovacs Deebot vacuums via the IoT API and a gateway for device discovery, battery and status checks, cleaning, docking, and nickname-based robot selection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Ecovacs Deebot vacuums via the IoT API and a gateway using a user-provided Open Platform Access Key.
 
-## Publisher: <br>
-[ecovacs-ai](https://clawhub.ai/user/ecovacs-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ecovacs-ai](https://clawhub.ai/user/ecovacs-ai)
 
-## Use Case: <br>
-External users, developers, and integrators use this skill to let an assistant operate Ecovacs Deebot robot vacuums through an Ecovacs Open Platform Access Key and compatible gateway. It supports listing robots, checking battery and work state, starting or pausing cleaning, sending a unit to charge, and interpreting common command failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An Ecovacs Open Platform Access Key can authorize vacuum control if exposed. <br>
-Mitigation: Keep the AK private, avoid sharing it in chats or URLs, and store it only in trusted environment variables or local configuration. <br>
-Risk: Cleaning or docking commands cause a physical robot to move. <br>
-Mitigation: Confirm the target device, command, and surrounding area are safe before sending cleaning or docking actions. <br>
-Risk: A wrong regional portal or untrusted gateway can cause failed commands or credential exposure. <br>
-Mitigation: Use the official portal matching the account region or a trusted self-hosted gateway. <br>
+## Use Case:
 
+External users, operators, and integrators use this skill to let an agent list Ecovacs Deebot robots, check battery and status, and issue supported cleaning or charging commands through an Open Platform AK and gateway.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/ecovacs-ai/ecovacs-skills-deebot-control) <br>
-- [README](README.md) <br>
-- [Skill Instructions](SKILL.md) <br>
-- [Ecovacs Deebot Control API Reference](references/api.md) <br>
-- [Internal Implementation Reference](references/agent-internal.md) <br>
-- [Ecovacs Open Platform China](https://open.ecovacs.cn/) <br>
-- [Ecovacs Open Platform Global](https://open.ecovacs.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, curl examples, and JSON request bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include robot-control commands that require a user-provided Ecovacs Open Platform Access Key and a regional or trusted self-hosted gateway.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: An exposed Ecovacs Open Platform AK can control the user's Ecovacs robots.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted HTTPS Ecovacs gateway or trusted self-hosted gateway, avoid placing the AK in chat, shell history, or URLs, protect or avoid ~/.ecovacs_session.json, and rotate the AK if it may have been exposed.
+
+Risk: Robot-control commands affect physical devices and may fail or behave differently by model, firmware, battery state, region, or connectivity.
+
+Mitigation: Confirm the target nickname, account region, command intent, and returned gateway response before relying on the result; review model-specific support and common error codes when a command fails.
+
+## Reference(s):
+
+- [Skill instructions](SKILL.md)
+- [README](README.md)
+- [Ecovacs Deebot Control API Reference](references/api.md)
+- [Agent internal implementation reference](references/agent-internal.md)
+- [Ecovacs Open Platform China](https://open.ecovacs.cn/)
+- [Ecovacs Open Platform Global](https://open.ecovacs.com/)
+- [ClawHub skill page](https://clawhub.ai/ecovacs-ai/skills/ecovacs-skills-deebot-control)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash, curl, Python CLI commands, and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-provided Ecovacs Open Platform AK and a matching regional gateway; behavior depends on robot model, firmware, account region, battery level, and online status.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

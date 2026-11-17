@@ -1,43 +1,60 @@
-## Description: <br>
-Queries real-time weather and forecasts through QWeather with JWT and host configuration, supporting city names, LocationID values, coordinates, and an optional default location. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+天气查询：使用和风天气（JWT+Host）获取实时天气与未来预报；支持城市名/LocationID/经纬度；缺省地点可用 QWEATHER_DEFAULT_LOCATION。
 
-## Publisher: <br>
-[murphys7017](https://clawhub.ai/user/murphys7017) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[murphys7017](https://clawhub.ai/user/murphys7017)
 
-## Use Case: <br>
-External users and developers use this skill to answer weather questions without general web search by resolving a city, LocationID, or coordinates and returning current conditions or daily forecasts. It is intended for agents that can call local JavaScript weather helpers configured with QWeather credentials. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires local QWeather credential configuration and can generate JWTs from an Ed25519 private key. <br>
-Mitigation: Configure credentials locally, protect private key files, and avoid running or sharing output from the JWT token helper. <br>
-Risk: Weather location queries are sent to external weather services, including an under-documented Open-Meteo fallback path. <br>
-Mitigation: Use only when sending requested locations to QWeather and Open-Meteo is acceptable, and disclose the fallback provider before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/murphys7017/qweather) <br>
-- [QWeather Geo API endpoint](https://geoapi.qweather.com/v2/city/lookup) <br>
-- [QWeather weather API endpoint](https://devapi.qweather.com/v7/weather/now) <br>
-- [Open-Meteo geocoding fallback endpoint](https://geocoding-api.open-meteo.com/v1/search) <br>
-- [Open-Meteo forecast fallback endpoint](https://api.open-meteo.com/v1/forecast) <br>
+## Use Case:
 
+External users and agent operators use this skill to answer current weather and forecast questions from a city name, LocationID, or latitude/longitude. It supports default-location configuration and returns concise weather conditions, temperature, humidity, wind, observation time, and forecast highlights.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [JSON objects with weather fields and concise natural-language guidance for missing configuration or request failures] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns resolved location, current weather, forecast details, source labels, and structured error messages when configuration or API calls fail.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Location queries may be sent to external weather services, including an Open-Meteo fallback path.
+
+Mitigation: Use the skill only where sending queried locations to external weather services is acceptable, and remove or gate the Open-Meteo fallback unless users opt in.
+
+Risk: A token generation utility can print live QWeather JWTs when run.
+
+Mitigation: Do not run token generation in logged environments unless the utility is changed to redact tokens.
+
+Risk: The artifact includes a private-key-shaped placeholder file for QWeather setup.
+
+Mitigation: Replace the placeholder with setup documentation and keep real QWeather private keys outside the skill package.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/murphys7017/skills/qweather)
+- [QWeather Geo API endpoint](https://geoapi.qweather.com/v2/city/lookup)
+- [QWeather current weather endpoint](https://devapi.qweather.com/v7/weather/now)
+- [Open-Meteo geocoding endpoint](https://geocoding-api.open-meteo.com/v1/search)
+- [Open-Meteo forecast endpoint](https://api.open-meteo.com/v1/forecast)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Text, JSON, Guidance]
+
+**Output Format:** [Structured weather results and concise natural-language guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns current conditions, forecasts, location resolution results, warnings, hourly data, precipitation, and lifestyle indices depending on the invoked tool.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

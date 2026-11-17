@@ -1,42 +1,59 @@
-## Description: <br>
-Creates and optimizes meta tags including title tags, meta descriptions, Open Graph tags, and Twitter cards for click-through rates and social sharing engagement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates and optimizes title tags, meta descriptions, Open Graph tags, and Twitter cards to improve search click-through rates and social sharing previews.
 
-## Publisher: <br>
-[SKULLHAVEN](https://clawhub.ai/user/SKULLHAVEN) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[skullhaven](https://clawhub.ai/user/skullhaven)
 
-## Use Case: <br>
-External marketers, SEO practitioners, content teams, and site owners use this skill to create or improve search and social preview metadata for web pages. It helps generate page analysis notes, optimized title and description options, Open Graph and Twitter card tags, HTML snippets, and A/B testing suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested meta tags may be inaccurate, misleading, or poorly matched to the target page if the input content or audience details are incomplete. <br>
-Mitigation: Review generated titles, descriptions, and social tags against the live page before publishing them. <br>
-Risk: The artifact references an external npx install command and external links. <br>
-Mitigation: Run commands only after confirming the referenced tool and install intent. <br>
+## Use Case:
 
+External users, developers, marketers, and content teams use this skill to create or improve metadata for web pages, including search result snippets and social preview tags. It supports new pages, existing tag optimization, social sharing setup, duplicate or missing tag fixes, and A/B test suggestions.
 
-## Reference(s): <br>
-- [Meta Tag Formulas Reference](references/meta-tag-formulas.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/SKULLHAVEN/meta-tags-optimizer-2) <br>
-- [SEO & GEO Skills Library](https://skills.sh/aaron-he-zhu/seo-geo-claude-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with HTML meta tag code blocks, recommendation tables, and validation checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include title and meta description length counts, Open Graph and Twitter card snippets, CTR improvement rationale, and A/B test suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: The artifact includes an optional install-all npx command for a larger skills bundle.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only run the command after trusting the publisher and verifying or pinning the package version.
+
+Risk: Generated tags may be inappropriate for non-US or non-English pages if locale assumptions are not checked.
+
+Mitigation: Confirm the target language and locale before publishing generated metadata.
+
+Risk: SEO recommendations can create misleading snippets if generated titles or descriptions do not match page content.
+
+Mitigation: Review generated tags against the actual page content and validation checklist before deployment.
+
+## Reference(s):
+
+- [Meta Tag Formulas Reference](artifact/references/meta-tag-formulas.md)
+- [Meta Tags Optimizer on ClawHub](https://clawhub.ai/skullhaven/skills/meta-tags-optimizer-2)
+- [SEO & GEO Skills Library](https://skills.sh/aaron-he-zhu/seo-geo-claude-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with HTML meta tag code blocks, recommendation tables, rationale, and validation checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated title and description options, complete meta tag blocks, Open Graph and Twitter Card tags, CTR analysis, and A/B test suggestions.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; artifact frontmatter metadata version is 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

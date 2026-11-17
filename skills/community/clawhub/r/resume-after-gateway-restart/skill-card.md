@@ -1,43 +1,57 @@
-## Description: <br>
-Reliably resumes agent work after an OpenClaw gateway restart by saving restart context, scheduling one-shot cron resume jobs, and returning the reply to the original chat route. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents schedule a durable OpenClaw restart-and-resume workflow before restarting the OpenClaw gateway, then return to the original chat and continue work after restart.
 
-## Publisher: <br>
-[bobbylindsey](https://clawhub.ai/user/bobbylindsey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bobbylindsey](https://clawhub.ai/user/bobbylindsey)
 
-## Use Case: <br>
-Developers and operators use this skill when an OpenClaw gateway restart would otherwise interrupt an active task. It helps preserve context, schedule a post-restart wakeup, and deliver the follow-up response back to Discord or Telegram. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates local OpenClaw cron jobs that send messages after a gateway restart. <br>
-Mitigation: Review the generated cron job names, route, model, and message timing before restart, and remove stale jobs when resume automation is no longer needed. <br>
-Risk: The skill restarts the user-level OpenClaw gateway service through a delayed systemd unit. <br>
-Mitigation: Use only when a gateway restart is intended, schedule the restart after notifying the user, and confirm the resume cron jobs exist before the service is restarted. <br>
-Risk: The resume workflow writes local restart status to memory/post-restart-task.md. <br>
-Mitigation: Keep the file limited to task state needed for restart recovery and avoid storing sensitive information in the resume context. <br>
+## Use Case:
 
+Developers and operators use this skill when an OpenClaw gateway restart is needed during an active task and the agent should resume automatically in the original chat. It guides the agent to save resume context, schedule follow-up cron turns, and restart the gateway after the pre-restart message has time to deliver.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bobbylindsey/resume-after-gateway-restart) <br>
-- [Publisher profile](https://clawhub.ai/user/bobbylindsey) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with shell command examples and status-file guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local cron scheduling commands, a restart command, and guidance for updating memory/post-restart-task.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A wrong session key or delivery route could send the post-restart response to the wrong chat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the session key, delivery channel, and delivery target before scheduling the cron jobs.
+
+Risk: An inaccurate resume note could cause the follow-up agent turn to continue the wrong task.
+
+Mitigation: Review memory/post-restart-task.md before restart and make the next step explicit and narrow.
+
+Risk: Restarting the gateway interrupts active agent work.
+
+Mitigation: Send a standalone pre-restart notice, schedule the restart with a short delay, and confirm the cron jobs exist before restart.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bobbylindsey/skills/resume-after-gateway-restart)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and file snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a resume-note template, cron scheduling commands, and delayed restart command guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

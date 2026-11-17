@@ -8,6 +8,7 @@ import { z } from "zod";
 import {
   checkPermission,
   getRequiredPermission,
+  requireAdmin,
   auditLog,
   revokeToken as revokeTokenFromSecurity,
   recalculateTrustScore,
@@ -20,12 +21,52 @@ import {
   clearOfflineNotification,
   updateAgentTrustScore,
   resolveAgentId,
+  getOnlineAgentIds,
 } from "../identity.js";
-import { onlineAgents } from "../sse.js";
 import { db } from "../db.js";
-import { withRetry, requireAuth, mcpFail } from "../utils.js";
+import { withRetry, requireAuth, authed, mcpFail } from "../utils.js";
+import { logError } from "../logger.js";
 
 export function registerIdentityTools(server: McpServer, authContext?: AuthContext): void {
+
+  // ────────────────────────────────────────────────────
+  // NEW Tool: generate_invite (P0-4)
+  // 生成邀请码 — admin only
+  // ────────────────────────────────────────────────────
+  server.tool(
+    "generate_invite",
+    "生成新 Agent 邀请码。仅 admin 可调用。邀请码默认 24 小时后过期。",
+    {
+      role: z.enum(["member","admin"]).default("member"),
+      expires_in_hours: z.number().min(1).max(168).default(24),
+    },
+    authed(authContext, "generate_invite", async (ctx, { role, expires_in_hours }) => {
+      if (ctx.role !== "admin") {
+        return mcpFail("Admin role required", "generate_invite");
+      }
+      const crypto = await import("crypto");
+      const plain = crypto.randomBytes(32).toString("hex");
+      const hash = crypto.createHash("sha256").update(plain).digest("hex");
+      const now = Date.now();
+      const expiresAt = now + expires_in_hours * 3600 * 1000;
+      const tokenId = `invite_${now}_${crypto.randomBytes(4).toString("hex")}`;
+      db.prepare(
+        "INSERT INTO auth_tokens (token_id, token_type, token_value, agent_id, role, used, created_at, expires_at) VALUES (?, 'invite_code', ?, NULL, ?, 0, ?, ?)"
+      ).run(tokenId, hash, role, now, expiresAt);
+      auditLog("generate_invite", ctx.agentId, tokenId, `role=${role} expires=${expires_in_hours}h`);
+      return {
+        content: [{
+          type: "text",
+          text: JSON.stringify({
+            success: true,
+            invite_code: plain,
+            role, expires_at: new Date(expiresAt).toISOString(),
+            warning: "⚠️ 邀请码仅显示一次，请在过期前使用 register_agent 注册"
+          }, null, 2)
+        }]
+      };
+    })
+  );
 
   // ────────────────────────────────────────────────────
   // NEW Tool 1: register_agent (Phase 1)
@@ -75,8 +116,7 @@ export function registerIdentityTools(server: McpServer, authContext?: AuthConte
     {
       agent_id: z.string().describe("Agent ID（注册时返回的 agent_id）"),
     },
-    async ({ agent_id }) => {
-      const ctx = requireAuth(authContext, "heartbeat");
+    authed(authContext, "heartbeat", async (ctx, { agent_id }) => {
 
       // 验证调用者是 Agent 本人
       if (ctx.agentId !== agent_id && ctx.role !== "admin") {
@@ -103,7 +143,7 @@ export function registerIdentityTools(server: McpServer, authContext?: AuthConte
           text: JSON.stringify(result, null, 2),
         }],
       };
-    }
+    })
   );
 
   // ────────────────────────────────────────────────────
@@ -121,8 +161,7 @@ export function registerIdentityTools(server: McpServer, authContext?: AuthConte
       capability: z.string().optional()
                   .describe("能力筛选"),
     },
-    async ({ status, role, capability }) => {
-      const ctx = requireAuth(authContext, "query_agents");
+    authed(authContext, "query_agents", async (ctx, { status, role, capability }) => {
 
       const agents = queryAgentsFromIdentity({ status, role, capability });
 
@@ -136,7 +175,7 @@ export function registerIdentityTools(server: McpServer, authContext?: AuthConte
           }, null, 2),
         }],
       };
-    }
+    })
   );
 
   // ────────────────────────────────────────────────────
@@ -149,20 +188,24 @@ export function registerIdentityTools(server: McpServer, authContext?: AuthConte
     {
       token_id: z.string().describe("要吊销的 Token ID"),
     },
-    async ({ token_id }) => {
-      const ctx = requireAuth(authContext, "revoke_token");
+    authed(authContext, "revoke_token", async (ctx, { token_id }) => {
+      requireAdmin(ctx); // T4: admin 角色护栏
 
       const success = revokeTokenFromSecurity(token_id);
       if (success) {
-        auditLog("tool_revoke_token", ctx.agentId, token_id);
+        // P2-1 修复：吊销审计必须把「被吊销者」写入 target，
+        // 否则信任分公式按 agent_id（=操作者 admin）统计会误扣管理员、漏扣被吊销者。
+        const tokenRow = db.prepare(`SELECT agent_id FROM auth_tokens WHERE token_id=?`).get(token_id) as any;
+        auditLog("tool_revoke_token", ctx.agentId, token_id, tokenRow?.agent_id);
 
         // Phase 5a Day 2: token 吊销影响信任评分
         try {
-          const tokenRow = db.prepare(`SELECT agent_id FROM auth_tokens WHERE token_id=?`).get(token_id) as { agent_id: string } | undefined;
           if (tokenRow?.agent_id) {
             recalculateTrustScore(tokenRow.agent_id);
           }
-        } catch {}
+        } catch (err) {
+          logError("revoke_token_trust_recalc_failed", err, { module: "identity", token_id });
+        }
       }
 
       return {
@@ -175,7 +218,7 @@ export function registerIdentityTools(server: McpServer, authContext?: AuthConte
           }, null, 2),
         }],
       };
-    }
+    })
   );
 
   // ────────────────────────────────────────────────────
@@ -189,8 +232,8 @@ export function registerIdentityTools(server: McpServer, authContext?: AuthConte
       agent_id: z.string().describe("目标 Agent ID"),
       delta:    z.number().min(-100).max(100).describe("信任分增量（正数加分，负数扣分）"),
     },
-    async ({ agent_id, delta }) => {
-      const ctx = requireAuth(authContext, "set_trust_score");
+    authed(authContext, "set_trust_score", async (ctx, { agent_id, delta }) => {
+      requireAdmin(ctx); // T4: admin 角色护栏
 
       const result = updateAgentTrustScore(agent_id, delta, ctx.agentId);
 
@@ -214,7 +257,7 @@ export function registerIdentityTools(server: McpServer, authContext?: AuthConte
           }, null, 2),
         }],
       };
-    }
+    })
   );
 
   // ────────────────────────────────────────────────────
@@ -224,10 +267,9 @@ export function registerIdentityTools(server: McpServer, authContext?: AuthConte
     "get_online_agents",
     "查询当前通过 SSE 在线连接的 Agent 列表，分配任务前可先确认对方在线。",
     {},
-    async () => {
-      requireAuth(authContext, "get_online_agents");
+    authed(authContext, "get_online_agents", async (_ctx) => {
 
-      const online = onlineAgents();
+      const online = getOnlineAgentIds();
       return {
         content: [{
           type: "text",
@@ -238,7 +280,7 @@ export function registerIdentityTools(server: McpServer, authContext?: AuthConte
           }, null, 2),
         }],
       };
-    }
+    })
   );
 
 }

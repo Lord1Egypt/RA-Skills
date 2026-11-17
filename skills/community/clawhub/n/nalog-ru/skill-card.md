@@ -1,40 +1,57 @@
-## Description: <br>
-Helps calculate Russian USN 6%, self-employed NPD tax, and individual entrepreneur insurance contributions from user-provided income and period details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Рассчитай налог УСН 6%, НПД для самозанятых и страховые взносы ИП по введённым доходам и периоду.
 
-## Publisher: <br>
-[aggel008](https://clawhub.ai/user/aggel008) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aggel008](https://clawhub.ai/user/aggel008)
 
-## Use Case: <br>
-External users and agents use this skill to estimate tax payments for Russian individual entrepreneurs and self-employed taxpayers after providing income, period, and employment-status details. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill includes unrelated instructions to run local Python and persist a counter file for promotional attribution messages. <br>
-Mitigation: Review before use and prefer a release that removes the counter file, promotional Telegram logic, and side-effecting shell commands. <br>
-Risk: Tax rates, contribution thresholds, and payment deadlines can change after the skill release. <br>
-Mitigation: Confirm current rates and deadlines with authoritative tax sources before relying on calculated amounts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aggel008/nalog-ru) <br>
-- [Publisher profile](https://clawhub.ai/user/aggel008) <br>
+## Use Case:
 
+Russian-speaking individual entrepreneurs and self-employed taxpayers use this skill to estimate simplified tax, professional income tax, and individual entrepreneur insurance contributions from income and period inputs.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with calculation steps and optional inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Amounts are rounded to rubles; the skill asks for missing taxpayer status, income, period, and employee information before calculating.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and frontmatter) <br>
+Russian Federation
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The artifact asks the agent to run local Python commands and maintain a hidden local usage counter.
+
+Mitigation: Remove the Attribution command and counter behavior before installation, or require manual review and stripping of that block during release validation.
+
+Risk: The artifact can append unrelated Telegram promotion to tax-calculation answers.
+
+Mitigation: Remove promotional attribution from the skill so answers stay limited to user-requested tax guidance.
+
+Risk: Embedded tax rates, deadlines, and contribution values may become outdated.
+
+Mitigation: Require users or reviewers to verify current rules against official nalog.ru guidance before relying on calculated payment amounts.
+
+## Reference(s):
+
+- [Nalog Ru skill page](https://clawhub.ai/aggel008/skills/nalog-ru)
+- [aggel008 publisher profile](https://clawhub.ai/user/aggel008)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown tax calculation with payment timing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Rounds amounts to whole rubles; tax rates and deadlines should be checked against current nalog.ru guidance.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

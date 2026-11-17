@@ -1,43 +1,58 @@
-## Description: <br>
-Auto-create or reuse a Conda environment for Python projects by scanning dependency files, matching existing environments, and handling CUDA/GPU needs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-create or reuse a Conda environment for Python projects by scanning dependency files, matching existing environments, and handling CUDA/GPU needs.
 
-## Publisher: <br>
-[kazuya-ecnu](https://clawhub.ai/user/kazuya-ecnu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kazuya-ecnu](https://clawhub.ai/user/kazuya-ecnu)
 
-## Use Case: <br>
-Developers and engineers use this skill to set up isolated Conda environments for Python projects, reuse compatible existing environments, and install dependencies from common project files. It is especially useful for projects with conflicting Python versions, CUDA/GPU packages, or team environment standardization needs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dependency installation can execute project packaging logic or install untrusted packages. <br>
-Mitigation: Review dependency files and run install commands only in an isolated environment you control. <br>
-Risk: The skill creates or updates Conda environments and may install packages with pip or conda. <br>
-Mitigation: Confirm the target project path, environment name, and proposed commands before execution; avoid modifying the base environment. <br>
-Risk: PEP 668 fallback handling may propose pip's --break-system-packages option. <br>
-Mitigation: Use that fallback only inside an isolated Conda environment after confirming it will not affect system-managed Python packages. <br>
+## Use Case:
 
+Developers and engineers use this skill to create or reuse isolated Conda environments for Python projects, install dependencies from common project files, and verify the resulting runtime including optional CUDA support.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kazuya-ecnu/auto-conda-env) <br>
-- [PyTorch CUDA 11.8 wheel index](https://download.pytorch.org/whl/cu118) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and a final environment summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes environment name, Python version, installed dependencies, environment path, and activation command when setup completes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill may install project-controlled code or dependencies during environment setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review dependency files and project install scripts before allowing project installation, especially for untrusted repositories.
+
+Risk: The skill can suggest --break-system-packages, which bypasses Python package protections.
+
+Mitigation: Allow this only after verifying the interpreter, target environment, and need; prefer isolated Conda environments first.
+
+Risk: The skill creates or changes Python environments on the user's machine.
+
+Mitigation: Confirm the target project path and environment name before execution, and avoid modifying the base Conda environment.
+
+## Reference(s):
+
+- [Auto Conda Env on ClawHub](https://clawhub.ai/kazuya-ecnu/skills/auto-conda-env)
+- [PyTorch CUDA wheel index](https://download.pytorch.org/whl/cu118)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and an environment setup summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include environment name, Python version, installed dependencies, environment path, and activation command.]
+
+## Skill Version(s):
+
+1.1.0 (source: SKILL.md frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

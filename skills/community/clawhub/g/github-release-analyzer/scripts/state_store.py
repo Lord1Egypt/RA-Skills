@@ -13,12 +13,17 @@ def _resolve_state_root() -> Path:
 
     Priority:
     1. GITHUB_RELEASE_ANALYZER_STATE_ROOT env var
-    2. Legacy workspace path (if existing state found, for backward compat)
-    3. Persistent global path (survives skill upgrades)
+    2. Active Hermes profile path when HERMES_HOME is set
+    3. Legacy OpenClaw workspace path (if existing state found)
+    4. Persistent OpenClaw path (survives skill upgrades)
     """
     env = os.environ.get("GITHUB_RELEASE_ANALYZER_STATE_ROOT")
     if env:
         return Path(env)
+
+    hermes_home = os.environ.get("HERMES_HOME")
+    if hermes_home:
+        return Path(hermes_home) / "state" / "github-release-analyzer"
 
     home = Path.home()
     legacy = home / ".openclaw" / "workspace" / "state" / "github-release-analyzer"

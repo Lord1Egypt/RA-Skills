@@ -1,42 +1,54 @@
-## Description: <br>
-AI-powered event assistant for discovering, booking, and coordinating event tickets with KYD Labs protocol and Google Calendar integrations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered event assistant for discovering, booking, and coordinating event tickets. Integrates with KYD Labs protocol and Google Calendar.
 
-## Publisher: <br>
-[Seenfinity](https://clawhub.ai/user/Seenfinity) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[seenfinity](https://clawhub.ai/user/seenfinity)
 
-## Use Case: <br>
-External users and developers use TixFlow to search for events, compare prices, coordinate waitlists and calendar entries, and prototype ticket purchase flows for OpenClaw agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill advertises ticket buying, wallet or NFT minting, calendar, and routing powers without clear consent or safety boundaries. <br>
-Mitigation: Do not connect payment, wallet, calendar, or minting credentials until purchases and account changes require explicit confirmation and data sharing is documented. <br>
-Risk: Mock ticket, transaction, calendar, and event data could be mistaken for real outcomes. <br>
-Mitigation: Label mock and demo results clearly, validate event and purchase status through trusted services, and avoid acting on generated identifiers as completed transactions. <br>
+## Use Case:
 
+External users and agent developers use TixFlow to discover events, compare ticket options, coordinate waitlists, purchase or mint tickets, and create calendar entries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Seenfinity/tixflow) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill manifest](artifact/skill.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, API calls] <br>
-**Output Format:** [JSON-like function results and short natural-language responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires external API credentials for calendar, maps, ticketing, and minting flows; mock/demo results may be returned when real integrations are not configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.2 (source: server release evidence) <br>
+Risk: Ticket purchase, cNFT minting, wallet, waitlist, and calendar actions can create transactions or account changes without clear consent and scoping safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation for each ticket purchase, mint, wallet, waitlist, or calendar-write action, and verify event, quantity, price, destination wallet, and account details before proceeding.
+
+Risk: Calendar, ticketing, mapping, and minting integrations may expose broader access than the user intended when API keys are provided.
+
+Mitigation: Provide only the API keys needed for the intended task, scope credentials narrowly, and prefer demo mode until the CrossMint/KYD, Google Calendar, and Maps behavior has been reviewed.
+
+## Reference(s):
+
+- [TixFlow on ClawHub](https://clawhub.ai/seenfinity/skills/tixflow)
+- [seenfinity publisher profile](https://clawhub.ai/user/seenfinity)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, guidance]
+
+**Output Format:** [Agent-facing text with JavaScript action results and configuration requirements]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference Google Calendar, KYD Labs, Google Maps, CrossMint, wallet, waitlist, and ticketing actions depending on available configuration.]
+
+## Skill Version(s):
+
+0.2.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

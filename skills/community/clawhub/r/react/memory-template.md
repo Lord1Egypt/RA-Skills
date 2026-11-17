@@ -7,14 +7,19 @@
 
 ## Current Project
 
-- **Name:** 
-- **Type:** SPA / SSR / Static
-- **Framework:** Next.js / Vite / Remix
+- **Name:**
+- **Type:** SPA / SSR / Static / Hybrid
+- **Framework + version:** Next.js / Vite / Remix
+- **React version:** (19+ → React Compiler status matters, see below)
+- **React Compiler:** on / off  <!-- decides Core Rule 6: hand memoization or none -->
 
 ## Stack Decisions
 
-| Layer | Choice | Notes |
-|-------|--------|-------|
+<!-- Fill once; sessions read this instead of re-asking. Deviations from the
+     recommended stack (setup.md) get a one-line reason in Notes. -->
+
+| Layer | Choice | Notes / why deviated |
+|-------|--------|----------------------|
 | Styling | | |
 | Server state | | |
 | Client state | | |
@@ -23,23 +28,26 @@
 
 ## Architecture Notes
 
-<!-- Key decisions, component hierarchy, state flow -->
+<!-- Feature list, state ownership map (which store/query owns what),
+     where the 'use client' boundaries sit -->
 
 ## Patterns in Use
 
-<!-- Custom hooks, component patterns, conventions -->
+<!-- Custom hooks, query key factories, naming conventions — anything a new
+     session must follow to avoid producing inconsistent code -->
 
 ## Traps Encountered
 
-<!-- Document project-specific issues and solutions -->
+<!-- Project-specific failures and their fixes. Check before debugging:
+     the bug has often happened here before. -->
 
-| Issue | Solution | Date |
-|-------|----------|------|
-| | | |
+| Issue | Root cause | Solution | Date |
+|-------|-----------|----------|------|
+| | | | |
 
 ## Performance Notes
 
-<!-- Bundle size, render optimizations, measurements -->
+<!-- Profiler findings, bundle sizes with dates, what was virtualized/split and why -->
 
 ## References
 

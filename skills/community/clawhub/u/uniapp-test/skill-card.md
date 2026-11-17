@@ -1,40 +1,53 @@
-## Description: <br>
-Guides agents through analyzing uni-app or uni-app x pages, creating or updating corresponding *.test.js cases, running platform test commands, and iterating on failures until tests pass. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+uniapp-test helps agents analyze uni-app and uni-app x pages, create or update adjacent automated test files, run platform-specific test commands, and iterate on failures.
 
-## Publisher: <br>
-[dengzy321](https://clawhub.ai/user/dengzy321) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dengzy321](https://clawhub.ai/user/dengzy321)
 
-## Use Case: <br>
-Developers and test engineers use this skill to add or improve automated tests for uni-app and uni-app x pages, then run the appropriate Web, mobile, or mini-program test command and fix failing cases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide file edits and test command execution in a user's uni-app project. <br>
-Mitigation: Use it in trusted project folders, review diffs before keeping changes, and confirm the exact npm command before running browser, emulator, or device tests. <br>
-Risk: Generated tests may be brittle if the target page lacks stable selectors or if device and simulator prerequisites are unavailable. <br>
-Mitigation: Prefer data-testid or semantic class selectors, verify connected devices before mobile test runs, and rerun only the targeted test file after fixes. <br>
+## Use Case:
 
+Developers and engineers use this skill to maintain uni-app automated tests for .vue and .uvue pages, including generating page-adjacent *.test.js files and repairing failing test cases. It is most useful for Web, Android, iOS, Harmony, and WeChat Mini Program test workflows.
 
-## Reference(s): <br>
-- [uni-app automated testing API](https://uniapp.dcloud.net.cn/worktile/auto/api.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands] <br>
-**Output Format:** [Markdown guidance with JavaScript test code and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update page-adjacent *.test.js files and propose targeted page changes when test failures indicate application bugs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may edit page-adjacent test files and run npm test commands, including platform or device tests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for explicit uni-app testing tasks, confirm required devices or simulators are available before running platform tests, and review file changes before keeping them.
+
+Risk: The security summary notes overbroad activation language.
+
+Mitigation: Invoke the skill only for uni-app or uni-app x automated testing work where page analysis, test generation, test execution, or test repair is intended.
+
+## Reference(s):
+
+- [uni-app automated testing API](https://uniapp.dcloud.net.cn/worktile/auto/api.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with JavaScript test snippets and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update page-adjacent *.test.js files and propose targeted reruns with --testcaseFile.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.json release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

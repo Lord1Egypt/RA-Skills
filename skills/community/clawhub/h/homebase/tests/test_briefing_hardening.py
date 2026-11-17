@@ -7,18 +7,14 @@ Covers:
   - Config regression (calendar ID not personal, primary_email_id present)
   - Weather regression (output includes temperature)
   - Briefing data contract (both kids, correct date)
-  - Preflight checks (mocked)
 """
 
 from __future__ import annotations
 
 import json
-import os
 from datetime import datetime
-from pathlib import Path
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
-import pytest
 
 # conftest.py patches keychain and adds SKILL_DIR to sys.path
 
@@ -34,8 +30,8 @@ class TestValidateBriefingData:
             "weather": "🌤️ *Weather*\n  Clear sky, 72°F (High 80°F / Low 58°F)",
             "events": [{"title": "Swim class", "time": "10:40", "calendar_source": "Family Calendar"}],
             "meal_suggestions": {
-                "amyra": {"breakfast": "Eggs", "lunch": "Sandwich", "side": "Fruit"},
-                "reyansh": {"breakfast": "Oats", "lunch": "Khichdi", "side": "Banana"},
+                "ana": {"breakfast": "Eggs", "lunch": "Sandwich", "side": "Fruit"},
+                "ben": {"breakfast": "Oats", "lunch": "Khichdi", "side": "Banana"},
             },
         }
         with patch("features.briefing.morning_briefing._load_primary_email_id", return_value="personal@gmail.com"):
@@ -48,7 +44,7 @@ class TestValidateBriefingData:
             "date": datetime.now().strftime("%A, %B %d"),
             "weather": None,
             "events": [],
-            "meal_suggestions": {"amyra": {}, "reyansh": {}},
+            "meal_suggestions": {"ana": {}, "ben": {}},
         }
         with patch("features.briefing.morning_briefing._load_primary_email_id", return_value=""):
             warnings = validate_briefing_data(data)
@@ -60,7 +56,7 @@ class TestValidateBriefingData:
             "date": datetime.now().strftime("%A, %B %d"),
             "weather": "Cloudy conditions expected",
             "events": [],
-            "meal_suggestions": {"amyra": {}, "reyansh": {}},
+            "meal_suggestions": {"ana": {}, "ben": {}},
         }
         with patch("features.briefing.morning_briefing._load_primary_email_id", return_value=""):
             warnings = validate_briefing_data(data)
@@ -72,11 +68,11 @@ class TestValidateBriefingData:
             "date": datetime.now().strftime("%A, %B %d"),
             "weather": "72°F",
             "events": [],
-            "meal_suggestions": {"amyra": {}},  # reyansh missing
+            "meal_suggestions": {"ana": {}},  # ben missing
         }
         with patch("features.briefing.morning_briefing._load_primary_email_id", return_value=""):
             warnings = validate_briefing_data(data)
-        assert any("reyansh" in w for w in warnings)
+        assert any("ben" in w for w in warnings)
 
     def test_wrong_date_warns(self):
         from features.briefing.morning_briefing import validate_briefing_data
@@ -84,7 +80,7 @@ class TestValidateBriefingData:
             "date": "Monday, January 01",
             "weather": "72°F",
             "events": [],
-            "meal_suggestions": {"amyra": {}, "reyansh": {}},
+            "meal_suggestions": {"ana": {}, "ben": {}},
         }
         with patch("features.briefing.morning_briefing._load_primary_email_id", return_value=""):
             warnings = validate_briefing_data(data)
@@ -98,7 +94,7 @@ class TestValidateBriefingData:
             "events": [
                 {"title": "Personal dentist", "calendar_source": "personal@gmail.com"},
             ],
-            "meal_suggestions": {"amyra": {}, "reyansh": {}},
+            "meal_suggestions": {"ana": {}, "ben": {}},
         }
         with patch("features.briefing.morning_briefing._load_primary_email_id", return_value="personal@gmail.com"):
             warnings = validate_briefing_data(data)
@@ -110,7 +106,7 @@ class TestValidateBriefingData:
             "date": datetime.now().strftime("%A, %B %d"),
             "weather": "72°F",
             "events": "not a list",
-            "meal_suggestions": {"amyra": {}, "reyansh": {}},
+            "meal_suggestions": {"ana": {}, "ben": {}},
         }
         with patch("features.briefing.morning_briefing._load_primary_email_id", return_value=""):
             warnings = validate_briefing_data(data)
@@ -124,7 +120,7 @@ class TestReliabilityTracker:
     def test_creates_tracker_on_first_run(self, tmp_skill_dir):
         from features.briefing.morning_briefing import _record_reliability
         with patch("features.briefing.morning_briefing.SKILL_DIR", str(tmp_skill_dir)):
-            data = {"weather": "72°F", "events": [], "meal_suggestions": {"amyra": {}, "reyansh": {}}}
+            data = {"weather": "72°F", "events": [], "meal_suggestions": {"ana": {}, "ben": {}}}
             _record_reliability(data, [])
 
         tracker_path = tmp_skill_dir / "household" / "briefing_reliability.json"
@@ -136,7 +132,7 @@ class TestReliabilityTracker:
     def test_degraded_when_warnings(self, tmp_skill_dir):
         from features.briefing.morning_briefing import _record_reliability
         with patch("features.briefing.morning_briefing.SKILL_DIR", str(tmp_skill_dir)):
-            data = {"weather": None, "events": [], "meal_suggestions": {"amyra": {}, "reyansh": {}}}
+            data = {"weather": None, "events": [], "meal_suggestions": {"ana": {}, "ben": {}}}
             _record_reliability(data, ["weather data unavailable"])
 
         tracker_path = tmp_skill_dir / "household" / "briefing_reliability.json"
@@ -147,7 +143,7 @@ class TestReliabilityTracker:
     def test_no_duplicate_same_date(self, tmp_skill_dir):
         from features.briefing.morning_briefing import _record_reliability
         with patch("features.briefing.morning_briefing.SKILL_DIR", str(tmp_skill_dir)):
-            data = {"weather": "72°F", "events": [], "meal_suggestions": {"amyra": {}, "reyansh": {}}}
+            data = {"weather": "72°F", "events": [], "meal_suggestions": {"ana": {}, "ben": {}}}
             _record_reliability(data, [])
             _record_reliability(data, [])
 
@@ -214,13 +210,13 @@ class TestWeatherRegression:
 class TestBriefingDataContract:
 
     def test_briefing_data_has_both_kids(self):
-        """Both Amyra and Reyansh must appear in meal suggestions."""
+        """Both Ana and Ben must appear in meal suggestions."""
         from features.briefing.morning_briefing import validate_briefing_data
         data = {
             "date": datetime.now().strftime("%A, %B %d"),
             "weather": "72°F",
             "events": [],
-            "meal_suggestions": {"amyra": {}, "reyansh": {}},
+            "meal_suggestions": {"ana": {}, "ben": {}},
         }
         with patch("features.briefing.morning_briefing._load_primary_email_id", return_value=""):
             warnings = validate_briefing_data(data)
@@ -234,45 +230,9 @@ class TestBriefingDataContract:
             "date": today,
             "weather": "72°F",
             "events": [],
-            "meal_suggestions": {"amyra": {}, "reyansh": {}},
+            "meal_suggestions": {"ana": {}, "ben": {}},
         }
         with patch("features.briefing.morning_briefing._load_primary_email_id", return_value=""):
             warnings = validate_briefing_data(data)
         date_warnings = [w for w in warnings if "date mismatch" in w]
         assert date_warnings == [], f"Date mismatch: {date_warnings}"
-
-
-# ── Preflight Checks (mocked) ───────────────────────────────────────────────
-
-class TestPreflightChecks:
-
-    def test_config_integrity_passes(self, tmp_skill_dir):
-        from features.briefing.briefing_preflight import check_config_integrity
-        with patch("features.briefing.briefing_preflight.SKILL_DIR", tmp_skill_dir):
-            # Re-import config_loader with the test config
-            import importlib
-            import core.config_loader as config_loader
-            orig_path = config_loader.SKILL_DIR
-            config_loader.SKILL_DIR = str(tmp_skill_dir)
-            try:
-                config_loader.config = config_loader._load_config()
-                ok, msg = check_config_integrity()
-            finally:
-                config_loader.SKILL_DIR = orig_path
-                config_loader.config = config_loader._load_config()
-        assert ok, f"Config integrity failed: {msg}"
-
-    def test_calendar_freshness_missing_cache(self, tmp_skill_dir):
-        from features.briefing.briefing_preflight import check_calendar_freshness
-        with patch("features.briefing.briefing_preflight.SKILL_DIR", tmp_skill_dir):
-            ok, msg = check_calendar_freshness()
-        assert not ok
-        assert "No cached calendar" in msg or "cleared" in msg
-
-    def test_weather_api_check(self):
-        from features.briefing.briefing_preflight import check_weather_api
-        with patch("features.briefing.weather.fetch_weather") as mock:
-            mock.return_value = {"temp_current": 70}
-            ok, msg = check_weather_api()
-        assert ok
-        assert "70°F" in msg

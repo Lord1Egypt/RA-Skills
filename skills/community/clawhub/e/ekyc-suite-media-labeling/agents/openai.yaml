@@ -1,0 +1,4 @@
+interface:
+  display_name: "eKYC Suite Media Labeling"
+  short_description: "KYC media labeling Skill and KYC image labeling Skill for selected portrait, behavior, and scene review labels"
+  default_prompt: "Use eKYC Suite Media Labeling for KYC media labeling, KYC image labeling, portrait labels, behavior labels, or scene review labels in a consented image or video."

@@ -1,42 +1,62 @@
-## Description: <br>
-Generates fixed-format Chinese daily morning greetings with live weather, rotating icons, and wisdom-and-blessing pairs, and can help configure recurring OpenClaw delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill generates fixed-format daily Chinese morning greetings with live weather, rotating icons, local wisdom-and-blessing pairs, alternate variants, and optional OpenClaw schedule or Weixin bot delivery support.
 
-## Publisher: <br>
-[joannaxing](https://clawhub.ai/user/joannaxing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joannaxing](https://clawhub.ai/user/joannaxing)
 
-## Use Case: <br>
-People who want an automated Chinese morning greeting use this skill to generate or schedule a three-paragraph message with weather and a short wisdom/blessing segment. It supports manual resend or alternate phrasing while defaulting to Shanghai unless a city is specified. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring schedules and failure alerts may send messages to the wrong destination if the cron route is misconfigured. <br>
-Mitigation: Confirm the cron schedule, primary chat destination, and failure-alert destination before enabling the skill. <br>
-Risk: Optional Weixin fanout may post the generated greeting externally using detected webhook credentials. <br>
-Mitigation: Allow --deliver-weixin auto only after confirming the intended webhook source and destination. <br>
+## Use Case:
 
+External users and OpenClaw operators use this skill to generate or schedule concise daily morning greetings that combine current weather, clothing guidance, and a rotating wisdom quote. It also supports manual reruns, alternate greeting variants, and optional Weixin bot fanout.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/joannaxing/daily-morning-greetings) <br>
-- [wisdom_pairs.json](references/wisdom_pairs.json) <br>
-- [Project homepage](https://iheaven.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text greeting, JSON context from local scripts, or Markdown with bash code blocks for configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The user-facing greeting is a three-paragraph Chinese message; live weather may be unavailable; optional Weixin webhook fanout can occur when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: evidence.release.version, SKILL.md frontmatter, package.json) <br>
+Risk: Optional Weixin fanout can send the generated greeting to webhook URLs detected from environment variables or OpenClaw configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review WEIXIN/WECHAT webhook variables and OpenClaw configuration before installation, and keep Weixin fanout disabled unless that delivery path is intended.
+
+Risk: Live weather and geocoding lookups contact external weather services and may include the configured city or coordinates.
+
+Mitigation: Use explicit, non-sensitive location settings and confirm that network access to weather services is acceptable for the deployment environment.
+
+Risk: Scheduled delivery can post greetings to an unintended chat or route if cron delivery settings are wrong.
+
+Mitigation: Confirm the delivery route when creating or updating schedules, and use failure alerts that follow the same intended channel.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/joannaxing/skills/daily-morning-greetings)
+- [Publisher Profile](https://clawhub.ai/user/joannaxing)
+- [wisdom_pairs.json](references/wisdom_pairs.json)
+- [Publisher Homepage](https://iheaven.org)
+- [Open-Meteo Forecast API](https://api.open-meteo.com/v1/forecast)
+- [wttr.in Weather Service](https://wttr.in)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text, JSON, and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default location is Shanghai; live weather requires network access; optional Weixin fanout may send the generated greeting to a configured webhook.]
+
+## Skill Version(s):
+
+1.0.12 (source: evidence.release.version, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-5-Step Quant Trading System with multi-source data, enhanced ML models, and 15+ strategy templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+5-Step Quant Trading System with multi-source data, enhanced ML models, and 15+ strategy templates.
 
-## Publisher: <br>
-[pikachu022700](https://clawhub.ai/user/pikachu022700) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pikachu022700](https://clawhub.ai/user/pikachu022700)
 
-## Use Case: <br>
-Developers and quantitative analysts use this skill to run a five-step crypto market analysis pipeline that collects market data, calculates indicators, trains a model, generates strategy code, and backtests the result. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Queried trading symbols and request timing may be sent to Binance and Hyperliquid market-data APIs. <br>
-Mitigation: Run only when that disclosure is acceptable for the intended workflow. <br>
-Risk: The skill can fall back to synthetic market history if live historical data is unavailable. <br>
-Mitigation: Check whether outputs used real market history or synthetic fallback data before relying on backtest metrics. <br>
-Risk: Trading signals, backtests, and optimization suggestions may be mistaken for financial advice. <br>
-Mitigation: Treat results as research output and independently validate them before making financial decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pikachu022700/quant-system-5steps) <br>
-- [ClawHub metadata homepage](https://clawhub.com/quant-system-5steps) <br>
+## Use Case:
 
+Developers and external users can use this skill to run a five-step cryptocurrency quant workflow for market-data collection, technical analysis, model training, strategy generation, and backtest review.
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration, guidance] <br>
-**Output Format:** [Python return dictionary with console text and embedded strategy code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes market indicators, model signal, strategy template, backtest metrics, and optimization suggestions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Trading outputs may be misleading because the workflow can silently use simulated data and under-tested strategies.
+
+Mitigation: Treat outputs as experimental, verify market data provenance, and avoid using backtest or signal results for real trading decisions unless the synthetic-data fallback and strategy execution gaps are fixed or clearly surfaced.
+
+Risk: Public crypto-market API failures can reduce data reliability for analysis and backtesting.
+
+Mitigation: Review the collected data source before relying on generated signals, strategy code, or performance metrics.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pikachu022700/skills/quant-system-5steps)
+- [ClawHub metadata homepage](https://clawhub.com/quant-system-5steps)
+- [Hyperliquid info API](https://api.hyperliquid.xyz/info)
+- [Binance ticker price API](https://api.binance.com/api/v3/ticker/price?symbol={symbol})
+- [Binance order book API](https://api.binance.com/api/v3/depth?symbol={symbol}&limit=10)
+- [Binance klines API](https://api.binance.com/api/v3/klines?symbol={symbol}&interval={interval}&limit={limit})
+
+## Skill Output:
+
+**Output Type(s):** [text, json, code, guidance]
+
+**Output Format:** [Python dictionary / JSON-like result with console text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes market-data analysis, a model signal, generated strategy code, backtest metrics, and optimization suggestions.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

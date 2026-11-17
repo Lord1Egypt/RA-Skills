@@ -1,47 +1,61 @@
-## Description: <br>
-OpenClaw skill that installs a Google Sheets CLI with setup steps and commands for read/write, batch, formatting, and sheet management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs and documents a Google Sheets CLI for service-account based read/write, batch, formatting, and sheet-management workflows.
 
-## Publisher: <br>
-[codedao12](https://clawhub.ai/user/codedao12) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[codedao12](https://clawhub.ai/user/codedao12)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to configure and run a Google Sheets CLI for service-account based read, write, formatting, batch, and sheet-management workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The configured service account can read and modify spreadsheets shared with it. <br>
-Mitigation: Share only the specific spreadsheets needed for the workflow and prefer read-only scope when write access is not required. <br>
-Risk: Write, clear, delete, batch, and formatting commands can make destructive spreadsheet changes. <br>
-Mitigation: Test destructive commands on a copy or non-critical spreadsheet before using them on important data. <br>
-Risk: Service account credentials may be exposed if key files or inline credential JSON are logged or committed. <br>
-Mitigation: Keep credential files private, avoid logging credential values, and do not commit service account keys. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Google Sheet API ClawHub release](https://clawhub.ai/codedao12/google-sheet-api) <br>
-- [Google Sheets API Field Guide](assets/sheets-api-guide.md) <br>
-- [Google Sheets API usage limits](https://developers.google.com/workspace/sheets/api/limits) <br>
-- [spreadsheets.values.append reference](https://developers.google.com/workspace/sheets/api/reference/rest/v4/spreadsheets.values/append) <br>
-- [ValueInputOption reference](https://developers.google.com/workspace/sheets/api/reference/rest/v4/ValueInputOption) <br>
-- [spreadsheets.batchUpdate reference](https://developers.google.com/workspace/sheets/api/reference/rest/v4/spreadsheets/batchUpdate) <br>
-- [Google Sheets API batch requests guide](https://developers.google.com/workspace/sheets/api/guides/batch) <br>
+## Use Case:
 
+Developers and automation agents use this skill to configure service-account access and operate Google Sheets through repeatable CLI commands for reads, writes, formatting, batch updates, and sheet management.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI commands return JSON to stdout and use non-zero exit codes on errors.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The CLI can modify or delete spreadsheet data through clear, deleteSheet, and batch operations.
+
+Mitigation: Review commands before execution, especially destructive and raw batch operations, and restrict write access to intended spreadsheets.
+
+Risk: Service-account credentials may grant access beyond the immediate task if broadly shared or automatically discovered.
+
+Mitigation: Use a least-privilege service account, share only target spreadsheets with that account, and prefer explicit credential environment variables over automatic credential-file discovery.
+
+Risk: The release has supply-chain risk because dependencies are not pinned by a reviewed lockfile in the provided artifact.
+
+Mitigation: Pin dependencies or add and review a lockfile before production deployment.
+
+## Reference(s):
+
+- [Google Sheet API skill page](https://clawhub.ai/codedao12/skills/google-sheet-api)
+- [Google Sheets API usage limits](https://developers.google.com/workspace/sheets/api/limits)
+- [Google Sheets API append reference](https://developers.google.com/workspace/sheets/api/reference/rest/v4/spreadsheets.values/append)
+- [Google Sheets API ValueInputOption reference](https://developers.google.com/workspace/sheets/api/reference/rest/v4/ValueInputOption)
+- [Google Sheets API batchUpdate reference](https://developers.google.com/workspace/sheets/api/reference/rest/v4/spreadsheets/batchUpdate)
+- [Google Sheets API batch requests guide](https://developers.google.com/workspace/sheets/api/guides/batch)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, json]
+
+**Output Format:** [Markdown guidance with shell commands and JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The CLI writes JSON to stdout and uses non-zero exit codes on errors.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

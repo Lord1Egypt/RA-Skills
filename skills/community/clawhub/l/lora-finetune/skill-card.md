@@ -1,40 +1,53 @@
-## Description: <br>
-LoRA fine-tuning pipeline for image-generation models on Apple Silicon, with dataset preparation, local training scripts, and comparison image generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LoRA fine-tuning helper for image generation models on Apple Silicon, covering dataset setup, local training, and comparison image generation.
 
-## Publisher: <br>
-[nissan](https://clawhub.ai/user/nissan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nissan](https://clawhub.ai/user/nissan)
 
-## Use Case: <br>
-Developers and ML practitioners use this skill to prepare captioned image datasets, train local LoRA adapters, and compare base versus fine-tuned image outputs for custom styles or subjects. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill downloads models from Hugging Face and requires an HF_TOKEN. <br>
-Mitigation: Use a least-privilege Hugging Face token, review model access and license terms, and run training in an environment where outbound downloads are expected. <br>
-Risk: The server security summary notes documentation mismatch: the training script defaults to FLUX.1-schnell while the documentation emphasizes Stable Diffusion, and advertised LLM-as-judge evaluation is not implemented in the artifact. <br>
-Mitigation: Set --model_id explicitly before training and add or verify evaluation logic before relying on comparison scores. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nissan/lora-finetune) <br>
-- [Hugging Face Hub](https://huggingface.co) <br>
+## Use Case:
 
+Developers and creative engineers use this skill to prepare image-caption datasets, run local LoRA training on Mac hardware, and generate base-versus-adapter comparison images for custom visual styles or characters.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with inline bash commands and Python script references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled scripts can produce LoRA weight files, training logs, generated images, and side-by-side comparison images when run by the user.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill downloads unpinned models from Hugging Face using a Hugging Face token.
+
+Mitigation: Use a read-only token, verify or pin model repositories before running, and run the training code in a controlled local environment.
+
+Risk: The documentation and scripts materially differ: the training script defaults to FLUX while the documentation describes Stable Diffusion and LLM scoring that is not implemented.
+
+Mitigation: Review the scripts before use, choose the intended model explicitly, and treat documented evaluation scores as illustrative unless reproduced with separate evaluation tooling.
+
+## Reference(s):
+
+- [Lora Finetune on ClawHub](https://clawhub.ai/nissan/skills/lora-finetune)
+- [Hugging Face Hub](https://huggingface.co)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with inline shell commands and Python scripts that create LoRA weights, logs, and comparison images.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and HF_TOKEN; downloads base models from Hugging Face while training runs locally.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,11 +1,11 @@
 ---
 name: oo-bugbug
-description: "BugBug (bugbug.io). Use this skill for ANY BugBug request — searching and reading data. Whenever a task involves BugBug, use this skill instead of calling the API directly."
+description: "BugBug (bugbug.io). Use this skill for ANY BugBug request — reading, creating, and updating data. Whenever a task involves BugBug, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "BugBug"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["bugbug"]
   icon: "https://static.oomol.com/logo/third-party/Bugbug.png"
 ---
@@ -44,7 +44,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `list_suites` — List suites available in the connected BugBug workspace.
 - `list_test_runs` — List historical BugBug test runs with optional filters.
 - `list_tests` — List tests available in the connected BugBug workspace.
-- `run_test` — Execute a BugBug test using the official RunTest request contract.
+- `run_test` — Execute a BugBug test using the official RunTest request contract. [write]
 
 ## Safety
 
@@ -75,11 +75,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — BugBug is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=bugbug
+  https://console.oomol.com/connections/bugbug
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - BugBug homepage: https://bugbug.io
+- API documentation: https://docs.bugbug.io/running-tests/running-via-api

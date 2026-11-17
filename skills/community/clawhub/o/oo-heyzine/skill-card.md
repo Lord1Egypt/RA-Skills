@@ -1,44 +1,55 @@
-## Description: <br>
-Heyzine helps agents manage Heyzine flipbooks and bookshelves through the OOMOL oo CLI for reading, updating, assigning, and deleting data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Heyzine flipbooks and bookshelves through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users, developers, and operators use this skill to list and retrieve Heyzine flipbooks and bookshelves, then perform confirmed write or destructive maintenance through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive Heyzine credentials through an OOMOL-connected account. <br>
-Mitigation: Use the OOMOL connector flow so raw credentials are not handled by the agent, and reconnect only after an authentication or connection error. <br>
-Risk: Write actions can change bookshelf assignments or social sharing metadata. <br>
-Mitigation: Fetch the live action schema first, build an exact JSON payload, and confirm the payload and intended effect with the user before running the command. <br>
-Risk: Destructive actions can delete flipbooks or remove bookshelf assignments. <br>
-Mitigation: Require explicit user approval for the target resource and action before executing destructive commands. <br>
+## Use Case:
 
+External users can list and inspect Heyzine flipbooks and bookshelves, organize flipbooks, update sharing metadata, and delete flipbooks through their connected account.
 
-## Reference(s): <br>
-- [ClawHub Heyzine Skill](https://clawhub.ai/oomol/oo-heyzine) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [Heyzine](https://heyzine.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before building action payloads; command responses are JSON from the oo CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and frontmatter) <br>
+Risk: Setup directs execution of downloaded installer code and an installed CLI that were not verified in this review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately; prefer a verified, fixed release instead of running a download directly.
+
+Risk: OOMOL handles the connected account and receives connector requests.
+
+Mitigation: Use an account authorized for these requests. The oo CLI command reference documents OO_SKILLS_SYNC_DISABLED=1 to disable automatic skill synchronization.
+
+## Reference(s):
+
+- [Heyzine](https://heyzine.com)
+- [Heyzine API documentation](https://heyzine.com/developers#apikey)
+- [oo CLI command reference](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown guidance, shell command examples, JSON payloads, and connector responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the connected Heyzine account and its permissions.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

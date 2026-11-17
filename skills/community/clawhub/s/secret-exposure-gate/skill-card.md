@@ -1,42 +1,57 @@
-## Description: <br>
-Checks a directory before release for possible secrets, tokens, private URLs, certificate fragments, or credential files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks a release directory for possible secrets, tokens, private URLs, certificate fragments, and credential files before publishing.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Developers, release engineers, and skill publishers use this skill as a local pre-release gate to scan a chosen project or release directory for high-risk secret patterns and produce reviewable remediation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner reads a chosen local path and generated reports may include sensitive snippets or private URLs. <br>
-Mitigation: Point it only at the intended project or release directory, keep reports private, and redact findings before sharing. <br>
-Risk: Providing an output path writes the generated report to disk. <br>
-Mitigation: Use stdout or dry-run behavior when a persistent report file is not desired, and review the output location before writing. <br>
+## Use Case:
 
+Developers, maintainers, and release engineers use this skill as a pre-publication review gate to scan local directories for likely credential exposure and produce remediation-oriented review notes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/52YuanChangXing/secret-exposure-gate) <br>
-- [README](artifact/README.md) <br>
-- [Output Specification](artifact/resources/spec.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or JSON report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write a report file when an output path is provided; otherwise prints to stdout or supports dry-run behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Users could treat the skill as a complete secret scanner even though server security evidence says its gate is under-scoped.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as a lightweight preflight review and run a dedicated secret-scanning tool before publishing important repositories or packages.
+
+Risk: Scan results may miss sensitive files or patterns outside the bundled heuristic coverage.
+
+Mitigation: Review high-risk files manually and keep repository or package release checks in place before distribution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/secret-exposure-gate)
+- [README](artifact/README.md)
+- [Specification](artifact/resources/spec.json)
+- [Output template](artifact/resources/template.md)
+- [Smoke test](artifact/tests/smoke-test.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown review reports with optional JSON output from the local script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs emphasize scan overview, suspected secrets, high-risk files, false-positive notes, remediation advice, and recheck guidance without displaying full secret values.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

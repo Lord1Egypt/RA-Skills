@@ -1,41 +1,60 @@
-## Description: <br>
-Decentralized P2P bot-to-bot messaging over NKN for sending and receiving private, encrypted text, images, audio, and files without a centralized server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Decentralized P2P bot-to-bot messaging over NKN. Send and receive text, images, audio, and files without any centralized server. Private, encrypted, serverless.
 
-## Publisher: <br>
-[zbruceli](https://clawhub.ai/user/zbruceli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zbruceli](https://clawhub.ai/user/zbruceli)
 
-## Use Case: <br>
-Developers and agent operators use this skill to let agents exchange peer-to-peer text messages and encrypted media over NKN, manage contacts, listen for incoming messages, and review local message history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The listener and interactive modes can receive media from unknown peers and may automatically fetch and write peer-supplied files from external NKN/IPFS infrastructure. <br>
-Mitigation: Use listen and interactive modes only with trusted peers until downloads are opt-in, size-limited, path-contained, and easy to clean up; protect the local dchat data and config directories. <br>
+## Use Case:
 
+External users, developers, and agents use dchat to send and receive encrypted peer-to-peer messages and media over NKN without operating a central server. It also supports contact aliases, message history, listening bots, and address sharing for bot-to-bot or bot-to-human workflows.
 
-## Reference(s): <br>
-- [ClawHub dchat skill page](https://clawhub.ai/zbruceli/dchat) <br>
-- [NKN](https://nkn.org) <br>
-- [dchat Desktop](https://github.com/nickytonline/dchat) <br>
-- [nMobile](https://nmobile.nkn.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command output descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local CLI actions that may send or receive messages and files through external NKN and IPFS infrastructure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release metadata) <br>
+Risk: Remote media handling may allow writes outside the media cache or exhaust local resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in an isolated user account or sandbox, disable or gate automatic downloads, and confirm media path validation and incoming size limits before normal use.
+
+Risk: The skill connects to NKN and IPFS networks and creates persistent local identity, database, and media cache files.
+
+Mitigation: Review network access before installing, restrict filesystem permissions, and treat all received media as untrusted.
+
+Risk: Server evidence calls out sender-selected gateway behavior, dependency updates, and missing packaged wrapper/dist files as items to fix before lower-risk deployment.
+
+Mitigation: Verify packaged runtime files, update dependencies, and constrain or review sender-selected gateway use before relying on the skill.
+
+## Reference(s):
+
+- [ClawHub dchat Skill Page](https://clawhub.ai/zbruceli/skills/dchat)
+- [NKN Network](https://nkn.org)
+- [nMobile](https://nmobile.nkn.org/)
+- [dchat Desktop](https://github.com/nickytonline/dchat)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown with inline shell commands, CLI output text, and local file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a persistent local NKN identity, SQLite message database, contact records, and media cache under the user's home directory.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

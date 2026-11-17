@@ -1,40 +1,52 @@
-## Description: <br>
-数据分析助手，从原始数据中提取洞察、生成可视化建议和分析报告，适用于销售、用户行为、财务和运营数据分析，并支持 Excel、CSV 和数据库查询结果等输入格式。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Data Analysis Zh helps Chinese-speaking users analyze Excel, CSV, and database query results to extract business insights, visualization suggestions, and structured analysis reports.
 
-## Publisher: <br>
-[olina1ye](https://clawhub.ai/user/olina1ye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[olina1ye](https://clawhub.ai/user/olina1ye)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to turn sales, user behavior, finance, and operations data into concise Chinese-language analysis, report structure, charts to consider, and next-step recommendations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Data analysis may involve sensitive business, financial, or operational data.
+
+Mitigation: Only provide files or query results that the user is authorized to share with the agent.
+
+Risk: Generated insights, anomaly explanations, or recommendations may be incomplete or misleading if the input data is incomplete or ambiguous.
+
+Mitigation: Review the generated analysis against source data and business context before using it for decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Chinese-speaking business users, analysts, and teams use this skill to inspect spreadsheet or database-query data, extract business insights, summarize key metrics, identify trends or anomalies, and draft structured analysis reports with visualization suggestions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive business or personal data may be included in spreadsheets or database-query results shared with the agent. <br>
-Mitigation: Review and minimize sensitive datasets before using the skill, and follow the organization's data-handling policy for analysis inputs. <br>
-Risk: Broad data-analysis prompts may invoke this skill for datasets that need domain review. <br>
-Mitigation: Review generated insights, conclusions, and visualization recommendations before using them for business decisions or reporting. <br>
+**Output Format:** [Markdown analysis report with lists and tables]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Data Analysis Zh on ClawHub](https://clawhub.ai/olina1ye/data-analysis-zh) <br>
+**Other Properties Related to Output:** [Uses user-provided data files or query results; no code execution, persistence, external calls, or hidden behavior are indicated by the security evidence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis reports with tables, summaries, conclusions, and visualization recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, install commands, persistence, or hidden actions are indicated by the security evidence.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

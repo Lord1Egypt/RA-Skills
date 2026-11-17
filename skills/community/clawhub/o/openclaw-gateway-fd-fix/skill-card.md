@@ -1,39 +1,56 @@
-## Description: <br>
-Fixes OpenClaw Gateway spawn EBADF, RPC probe failed, and EMFILE too many open files errors caused by file descriptor exhaustion from too many files in the workspace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fixes OpenClaw Gateway spawn EBADF, RPC probe failed, and EMFILE too many open files errors caused by file descriptor exhaustion from too many files in a workspace.
 
-## Publisher: <br>
-[thomaszhang2661](https://clawhub.ai/user/thomaszhang2661) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[thomaszhang2661](https://clawhub.ai/user/thomaszhang2661)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and engineers use this skill to diagnose and repair macOS OpenClaw Gateway crashes or hangs caused by workspace file descriptor exhaustion.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The repair script can permanently delete workspace dependency directories.
+
+Mitigation: Review the listed targets first and back up important workspace content before confirming deletion.
+
+Risk: The repair script modifies the macOS OpenClaw Gateway LaunchAgent and restarts the service.
+
+Mitigation: Back up the LaunchAgent plist, validate the intended resource-limit changes, and confirm gateway health after restart.
+
+Risk: Unsafe shell path handling could delete unintended files or break the gateway service.
+
+Mitigation: Prefer NUL-delimited path handling, plist-aware validation, and a rollback plan before operational use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers maintaining OpenClaw Gateway on macOS use this skill to diagnose workspace file descriptor exhaustion, clean dependency directories when approved, update LaunchAgent file descriptor limits, and restart the gateway. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The repair script can remove `.venv` and `node_modules` directories from the OpenClaw workspace. <br>
-Mitigation: Inspect the listed directories before confirming deletion, and move or back up anything that is not easily recreated. <br>
-Risk: The repair changes a macOS LaunchAgent plist and restarts the OpenClaw Gateway service. <br>
-Mitigation: Review the created plist backup and final LaunchAgent configuration before relying on the restarted service. <br>
+**Output Format:** [Markdown guidance with bash and XML snippets]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Includes a shell repair script that can remove dependency directories, update a macOS LaunchAgent plist, restart the gateway service, and report verification status.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with bash and XML snippets plus a shell script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [macOS-specific; includes interactive confirmation before deleting dependency directories.] <br>
+1.0.0 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

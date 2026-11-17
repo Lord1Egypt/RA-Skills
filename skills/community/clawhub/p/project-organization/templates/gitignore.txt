@@ -1,0 +1,11 @@
+# —— project-organization 默认忽略（可自行增补）——
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+desktop.ini
+.trash/
+# 大体积产物（按需开启；开启后不进版本库）
+# *.pptx
+# *.zip
+# *.mp4

@@ -1,41 +1,50 @@
-## Description: <br>
-Query UK National Rail live departure boards, arrivals, delays, and train services for GB stations via Darwin/Huxley2 APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query UK National Rail live departure boards, arrivals, delays, and train services for GB stations via Darwin/Huxley2 API.
 
-## Publisher: <br>
-[Jabbslad](https://clawhub.ai/user/Jabbslad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jabbslad](https://clawhub.ai/user/jabbslad)
 
-## Use Case: <br>
-External users and agents use this skill to answer questions about UK train departures, arrivals, delays, platforms, service details, and station codes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: National Rail tokens are used in live API requests and could be exposed if shared, logged, or configured in an unsafe environment. <br>
-Mitigation: Use a dedicated, revocable token and keep it in private environment or skill configuration storage. <br>
-Risk: The shell helper can send the access token to the configured HUXLEY_URL endpoint. <br>
-Mitigation: Use the default endpoint or another trusted endpoint only; do not set HUXLEY_URL to an untrusted service. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Jabbslad/uk-trains) <br>
-- [National Rail OpenLDBWS registration](https://realtime.nationalrail.co.uk/OpenLDBWSRegistration/) <br>
-- [National Rail Darwin OpenLDBWS endpoint](https://lite.realtime.nationalrail.co.uk/OpenLDBWS/ldb12.asmx) <br>
+## Use Case:
 
+External users and developers use this skill to look up live UK rail departures, arrivals, delays, platforms, service details, and station codes for chat or command-line workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a National Rail token for live rail queries; station search can run without the token in the shell helper.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The helper shell script can send the National Rail token to an endpoint selected through HUXLEY_URL.
+
+Mitigation: Use the Python command path or only run scripts/trains.sh with a trusted HTTPS HUXLEY_URL; rotate the token if it may have been sent to an untrusted endpoint.
+
+## Reference(s):
+
+- [UK Trains ClawHub Skill Page](https://clawhub.ai/jabbslad/skills/uk-trains)
+- [National Rail OpenLDBWS Registration](https://realtime.nationalrail.co.uk/OpenLDBWSRegistration/)
+- [National Rail OpenLDBWS Endpoint](https://lite.realtime.nationalrail.co.uk/OpenLDBWS/ldb12.asmx)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [JSON API responses and concise Markdown chat summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a NATIONAL_RAIL_TOKEN; live results depend on National Rail Darwin or Huxley2 API availability.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

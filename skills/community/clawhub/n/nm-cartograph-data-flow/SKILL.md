@@ -1,7 +1,7 @@
 ---
 name: data-flow
 description: Generates a Mermaid sequence diagram showing how data moves between components
-version: 1.9.8
+version: 1.10.3
 triggers:
   - tracing request flows or documenting data transformation pipelines
 metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/cartograph", "emoji": "\ud83e\udd9e"}}
@@ -9,7 +9,7 @@ source: claude-night-market
 source_plugin: cartograph
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/cartograph](https://github.com/athola/claude-night-market/tree/master/plugins/cartograph). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/cartograph](https://github.com/athola/claude-night-market/tree/master/plugins/cartograph). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Data Flow Diagram
@@ -23,6 +23,11 @@ between components in a codebase.
 - Understanding data transformation pipelines
 - Documenting API call chains
 - Answering "what happens when X is called?"
+
+## When NOT To Use
+
+- Static call structure (use `cartograph:call-chain`)
+- Process steps and state transitions (use `cartograph:workflow-diagram`)
 
 ## Workflow
 
@@ -93,3 +98,17 @@ If rendering fails, fix syntax and retry (max 2 retries).
 
 Show the rendered diagram with a brief description of the
 flow depicted (2-3 sentences).
+
+## Exit Criteria
+
+- [ ] Mermaid `sequenceDiagram` syntax generated with participants
+      and at least one `->>` call arrow
+- [ ] `mcp__claude_ai_Mermaid_Chart__validate_and_render_mermaid_diagram`
+      called with `diagramType: "sequenceDiagram"` and returns without
+      error (or retry attempted on first failure)
+- [ ] Participant count is at most 10; if more components exist,
+      they are aggregated and the aggregation noted
+- [ ] A 2-3 sentence description of the depicted flow is shown
+      alongside the rendered diagram
+- [ ] Return arrows (`-->>`) are present for any request that has
+      a corresponding response in the traced flow

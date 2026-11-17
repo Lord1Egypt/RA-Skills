@@ -1,44 +1,63 @@
-## Description: <br>
-Generate satisfying vertical carpet deep-clean shorts with WeryAI, using text prompts or dirty rug photos to show rinsing, grime runoff, and fiber revival. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Carpet Wash Video helps agents generate satisfying vertical carpet deep-clean shorts with WeryAI from text prompts or dirty rug photo URLs, emphasizing rinse action, grime runoff, and fiber revival.
 
-## Publisher: <br>
-[zoucdr](https://clawhub.ai/user/zoucdr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoucdr](https://clawhub.ai/user/zoucdr)
 
-## Use Case: <br>
-External creators and agent users use this skill to generate WeryAI text-to-video or image-to-video carpet-cleaning shorts with prompt expansion, parameter checks, and confirmation before submission. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, supplied image URLs, and the WERYAI_API_KEY are sent to WeryAI during generation. <br>
-Mitigation: Use a dedicated API key where possible and avoid submitting sensitive prompts or private images. <br>
-Risk: Environment URL overrides can redirect requests and bearer tokens away from the default WeryAI hosts. <br>
-Mitigation: Keep WERYAI_BASE_URL and WERYAI_MODELS_BASE_URL unset unless the alternate hosts are intentionally trusted. <br>
-Risk: Generated video requests may fail because of model limits, content safety checks, missing credentials, or unsupported image formats. <br>
-Mitigation: Confirm model, duration, aspect ratio, prompt, API key, and HTTPS image URL constraints before running the command. <br>
+## Use Case:
 
+External users and content creators use this skill to turn carpet-cleaning briefs or HTTPS rug images into WeryAI video-generation requests for vertical satisfying shorts. Agents use it to expand prompts, confirm parameters, run the WeryAI CLI helper, and return playable video URLs or clear error guidance.
 
-## Reference(s): <br>
-- [ClawHub: Carpet Wash Video](https://clawhub.ai/zoucdr/carpet-wash-video) <br>
-- [WeryAI video generation API host](https://api.weryai.com) <br>
-- [WeryAI model registry API host](https://api-growth-agent.weryai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON command parameters and returned playable video URLs or structured error details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WERYAI_API_KEY, Node.js 18+, network access, and reachable HTTPS image URLs for image-to-video requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Confirmed prompts, optional HTTPS image URLs, and the WERYAI_API_KEY bearer token are sent to the configured WeryAI endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set WERYAI_API_KEY only in trusted environments and run the skill only when sending that content to WeryAI is acceptable.
+
+Risk: WERYAI_BASE_URL and WERYAI_MODELS_BASE_URL overrides can redirect requests and credentials away from the default WeryAI hosts.
+
+Mitigation: Review or unset those override variables before use unless the alternate endpoint is explicitly approved.
+
+Risk: The skill is intended for paid WeryAI video generation and may consume account credits.
+
+Mitigation: Install and run it only when paid WeryAI use is intended, and keep the documented confirmation step before submission.
+
+Risk: Generation depends on network access, Node.js 18 or newer, valid model parameters, and WeryAI service availability.
+
+Mitigation: Use the documented dry-run, status, and error outputs to verify requests and provide clear recovery guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zoucdr/skills/carpet-wash-video)
+- [WeryAI generation API host](https://api.weryai.com)
+- [WeryAI models API host](https://api-growth-agent.weryai.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON CLI command examples and WeryAI video URL results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return playable video URLs, task status, or structured error guidance after API polling.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence and target metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

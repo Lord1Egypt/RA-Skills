@@ -1,43 +1,58 @@
-## Description: <br>
-Access Cookidoo (Thermomix) recipes, shopping lists, and meal planning via the unofficial cookidoo-api Python package. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access Cookidoo (Thermomix) recipes, shopping lists, and meal planning via the unofficial cookidoo-api Python package.
 
-## Publisher: <br>
-[thekie](https://clawhub.ai/user/thekie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[thekie](https://clawhub.ai/user/thekie)
 
-## Use Case: <br>
-External users and developers use this skill to access their Cookidoo recipes, meal planning information, account details, and shopping lists from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Cookidoo account credentials and can access account-linked recipe and list data. <br>
-Mitigation: Install only if this account access is acceptable, and provide credentials through the shell or a secret manager rather than storing long-lived plaintext credentials. <br>
-Risk: The skill depends on an unofficial Cookidoo API package that may stop working if Cookidoo changes its service behavior. <br>
-Mitigation: Review command output before relying on it and update or pin the cookidoo-api dependency when compatibility changes. <br>
-Risk: Shopping-list or meal-plan actions may affect a user's Cookidoo account if extended or automated by an agent workflow. <br>
-Mitigation: Require explicit user review before allowing any workflow to modify shopping-list or meal-plan data. <br>
+## Use Case:
 
+External users and personal automation agents use this skill to access Cookidoo account data, search recipes, view saved recipes and shopping lists, and assist with meal planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/thekie/cookidoo) <br>
-- [cookidoo-api on PyPI](https://pypi.org/project/cookidoo-api/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Plain text or JSON from CLI commands, with Markdown guidance in the skill instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Cookidoo account credentials and an active subscription; CLI options include --json and --limit.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: package.json, server release metadata, target metadata) <br>
+Risk: The skill requires a Cookidoo account email and plaintext password for an unofficial API client.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide credentials only through a protected session environment or a secrets manager; if using the documented env file, restrict permissions and avoid syncing or committing it.
+
+Risk: The skill depends on an unofficial and unpinned Python package, so Cookidoo changes or dependency updates may break behavior.
+
+Mitigation: Review and pin the dependency before deployment, then retest recipe, plan, shopping, search, recipe detail, and account-info commands after package or Cookidoo changes.
+
+Risk: The documented favorites and sync claims are not supported by the reviewed version.
+
+Mitigation: Treat favorites and sync workflows as unavailable unless a package update is reviewed and confirms those capabilities.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/thekie/skills/cookidoo)
+- [cookidoo-api Python package](https://pypi.org/project/cookidoo-api/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and optional JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Cookidoo account credentials and an active Cookidoo subscription]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

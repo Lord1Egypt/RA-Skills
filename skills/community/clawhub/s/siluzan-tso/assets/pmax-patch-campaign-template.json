@@ -1,5 +1,5 @@
 {
-  "_comment": "PATCH 活动；budget/targetCpa 填主币种元，CLI 自动 ×100",
+  "_comment": "PATCH 活动；budget/targetCpa 填主币种元，CLI 自动 ×100。assetAutomationSettings 只改提交的类型，例如 GENERATE_IMAGE_ENHANCEMENT / GENERATE_IMAGE_EXTRACTION（OPTED_IN 或 OPTED_OUT）。未提交不写。需要改文字规范时另加 textGuidelines（整段替换；传 {} 清空；termExclusions≤25×30；messagingRestrictions≤40×300；restrictionType 仅 RESTRICTION_BASED_EXCLUSION）。不要把 textGuidelines 留在只改预算的文件里",
   "id": "12345678901",
   "budgetId": "111222333",
   "budget": 5.5,

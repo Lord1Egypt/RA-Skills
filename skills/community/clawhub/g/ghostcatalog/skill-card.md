@@ -1,46 +1,55 @@
-## Description: <br>
-Scan, tag, validate, and catalog files using the Ghost Catalog semantic file header system. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ghost Catalog scans, tags, validates, searches, and catalogs workspace files using SOM semantic headers and a local SQLite catalog database.
 
-## Publisher: <br>
-[SoMaCoSF](https://clawhub.ai/user/SoMaCoSF) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[somacosf](https://clawhub.ai/user/somacosf)
 
-## Use Case: <br>
-Developers and engineers use this skill to organize workspace files with semantic SOM headers, maintain a local SQLite catalog, validate catalog compliance, and produce catalog status reports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill scans local project files and could catalog secrets, private documents, generated files, or dependencies if ignore rules are incomplete. <br>
-Mitigation: Configure .ghost_ignore or .gitignore before scanning so sensitive, generated, dependency, and private paths are excluded. <br>
-Risk: The tag operation can modify multiple files by adding catalog headers. <br>
-Mitigation: Review previews and source-control diffs before applying headers to batches of files. <br>
-Risk: The local SQLite catalog can contain workspace file paths and metadata. <br>
-Mitigation: Treat the catalog database as project metadata and exclude sensitive paths from cataloging. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/SoMaCoSF/ghostcatalog) <br>
-- [Ghost Catalog skill definition](artifact/SKILL.md) <br>
-- [Category codes reference](artifact/category-codes.md) <br>
-- [Header templates reference](artifact/header-templates.md) <br>
-- [Catalog database schema](artifact/schema.sql) <br>
-- [Somaco unification map](artifact/somaco-unification.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to discover untagged project files, apply or validate SOM headers, search catalog metadata, and generate compliance reports during workspace maintenance.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Text summaries, Markdown reports, file header blocks, and SQLite catalog entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local file catalog metadata and may propose or apply header changes to workspace files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Tagging can prepend headers to workspace files and may break files with strict syntax or schemas.
+
+Mitigation: Run scans first and review proposed tagging changes before applying them, especially for config files, generated files, schema-validated JSON, and files that may contain secrets.
+
+Risk: Catalog data is stored locally and may become inaccurate if files are moved or edited outside the catalog workflow.
+
+Mitigation: Use validation and report workflows to compare file headers against the local SQLite catalog before relying on catalog status.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/somacosf/skills/ghostcatalog)
+- [Ghost Catalog category codes](artifact/category-codes.md)
+- [Ghost Catalog header templates](artifact/header-templates.md)
+- [Ghost Catalog database schema](artifact/schema.sql)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown summaries, tables, generated file headers, and local SQLite catalog records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or apply workspace file header changes when the user invokes tagging or fixing workflows.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -16,6 +16,8 @@
 
 `audit list`、`audit show`、`audit restore-plan` 不产生业务写，不要求 commit。`audit restore-apply` 须加 `--i-confirm` 与 `--ack-subsequent-writes`；若仍未传 commit，会自动使用 `compensate:restore:<auditId>` 作为本条补偿写的说明。
 
+账户侧破坏性命令（`account delink` / `unshare` / `reauth` / `mcc-unbind` / `bc-unbind`）及删系列（`ad campaign-delete`、`ad pmax-edit --status Removed`）除 `--commit` 外，还须 `--i-confirm`（表示**已获用户明确同意**）。缺任一门控 CLI 均拒绝发网关；`--commit` **不能**替代用户确认。
+
 ## 可选 runId
 
 批量脚本可设 `SILUZAN_AUDIT_RUN_ID`，与审计字段 `runId` 一并写入，便于 `audit list --run-id` 过滤。

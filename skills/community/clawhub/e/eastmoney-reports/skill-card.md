@@ -1,40 +1,54 @@
-## Description: <br>
-Queries and downloads Dongfang Caifu research reports, including industry, stock, strategy, macro, and broker morning reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries and downloads Dongfang Caifu (Eastmoney) research reports across industry, stock, strategy, macro, and brokerage morning report categories.
 
-## Publisher: <br>
-[manymore13](https://clawhub.ai/user/manymore13) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[manymore13](https://clawhub.ai/user/manymore13)
 
-## Use Case: <br>
-External users, developers, and research analysts use this skill to query Eastmoney report listings, find industry codes, export report metadata, and download selected PDFs through command-line or MCP workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Executable Python code was not included in the scanned package. <br>
-Mitigation: Review the external repository and dependencies before installing or running the tool. <br>
-Risk: The skill can save many PDF files locally, especially when bulk download options are used. <br>
-Mitigation: Use an explicit output directory, start with small download limits, and use bulk downloads only when intentionally saving many reports. <br>
+## Use Case:
 
+Developers, analysts, and agent users can use this skill to find Eastmoney research report categories, query recent reports by industry, stock, or report type, download PDFs, and export report metadata for spreadsheet review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/manymore13/eastmoney-reports) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and MCP tool guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save CSV/Excel exports and downloaded PDF files to a user-specified local directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The reviewed artifact asks users to install and run mutable remote code that was not included in the reviewed package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the remote repository and dependencies before installing, prefer a pinned commit or trusted release, and run the tool in a virtual environment with limited filesystem access.
+
+Risk: Bulk downloads can create significant local disk usage and place load on the external report service.
+
+Mitigation: Use bounded page sizes and output directories, avoid broad bulk downloads by default, and monitor downloaded file volume.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/manymore13/skills/eastmoney-reports)
+- [Publisher profile](https://clawhub.ai/user/manymore13)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Configuration guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, structured report summaries, and downloaded PDF or CSV files when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local report downloads and CSV exports depending on selected command or MCP tool.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

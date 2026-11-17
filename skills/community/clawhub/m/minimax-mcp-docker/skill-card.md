@@ -1,43 +1,55 @@
-## Description: <br>
-MiniMax MCP Docker版（适配极空间） helps an agent use MiniMax-backed image understanding, OCR, and web search through an external MCP package. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MiniMax image-understanding and web-search MCP skill for Docker-style environments, supporting image OCR, visual content understanding, and internet search through a local wrapper.
 
-## Publisher: <br>
-[hongjiahao371-pixel](https://clawhub.ai/user/hongjiahao371-pixel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hongjiahao371-pixel](https://clawhub.ai/user/hongjiahao371-pixel)
 
-## Use Case: <br>
-Users who want an agent to process images with MiniMax OCR/image understanding or perform web search can use this skill after installing the referenced MCP package and configuring a MiniMax API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user images and search queries to an external MiniMax service for processing. <br>
-Mitigation: Avoid sending sensitive images or private search terms unless the user is comfortable with MiniMax processing that content. <br>
-Risk: The skill requires a MiniMax API key and includes behavior for storing that key locally. <br>
-Mitigation: Use a dedicated MiniMax key with limited exposure and configure it directly in the local credentials file instead of pasting it into chat. <br>
-Risk: The skill depends on an external npm package to execute MiniMax MCP commands. <br>
-Mitigation: Verify the external package before installation and review the skill before running it. <br>
+## Use Case:
 
+Developers and ClawHub users use this skill to configure and invoke MiniMax-backed image OCR, image content understanding, and web search through an MCP wrapper. It is aimed at Docker-style deployments such as environments adapted for 极空间.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hongjiahao371-pixel/minimax-mcp-docker) <br>
-- [MiniMax API platform](https://platform.minimaxi.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown or plain text with command examples and returned MCP results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call an external MCP package and MiniMax API; image understanding can take 30-60 seconds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: A MiniMax API key could be exposed if pasted into chat or configured through an untrusted mechanism.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure the key outside chat using a trusted local secret mechanism, keep the credentials file private, and prefer a narrowly scoped, rotatable MiniMax key.
+
+Risk: The wrapper executes external Node MCP tooling, and the security guidance flags executable path and dependency version handling for review.
+
+Mitigation: Pin and review the MCP package version, fix the executable path before use, and avoid running the wrapper from untrusted project directories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hongjiahao371-pixel/skills/minimax-mcp-docker)
+- [Publisher profile](https://clawhub.ai/user/hongjiahao371-pixel)
+- [MiniMax API platform](https://platform.minimaxi.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text responses with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call MiniMax MCP image-understanding or search commands; image-understanding operations can take 30-60 seconds and the wrapper uses a 120-second command timeout.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

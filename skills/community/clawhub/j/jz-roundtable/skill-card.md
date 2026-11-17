@@ -1,40 +1,55 @@
-## Description: <br>
-Multi-perspective decision analysis that dynamically selects relevant roles for a simulated expert roundtable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Roundtable by JZ provides multi-perspective decision analysis by simulating a structured expert discussion and synthesizing consensus action items.
 
-## Publisher: <br>
-[jzOcb](https://clawhub.ai/user/jzOcb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jzocb](https://clawhub.ai/user/jzocb)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to structure important decisions as a simulated roundtable that surfaces multiple viewpoints, disagreements, consensus, and action items. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The simulated roundtable may sound authoritative on legal, financial, trading, safety-critical, or other high-stakes decisions. <br>
-Mitigation: Treat the output as advisory, verify important claims with qualified sources, and avoid relying on it as the sole basis for high-stakes action. <br>
-Risk: Broad decision-making triggers may apply the roundtable format when a user did not intend that structure. <br>
-Mitigation: Invoke the skill explicitly for decisions where multiple viewpoints are desired and confirm the decision topic before using the output. <br>
+## Use Case:
 
+External users, employees, and developers use this skill to examine important decisions from multiple perspectives, especially when choices involve risk, trade-offs, public communication, or major changes.
 
-## Reference(s): <br>
-- [Roundtable by JZ on ClawHub](https://clawhub.ai/jzOcb/jz-roundtable) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with role-based discussion sections and action items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only; no code execution, file changes, tool use, or external data access indicated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Broad activation may cause simulated perspectives to shape ordinary tasks or sensitive decisions unnecessarily.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke the skill explicitly for important decisions and review the generated consensus before acting on it.
+
+Risk: Decision guidance can be incorrect, incomplete, or overly persuasive because it is generated as a prompt-only analysis aid.
+
+Mitigation: Use the output as advisory input and verify high-impact, financial, legal, security, or irreversible decisions with appropriate human review.
+
+## Reference(s):
+
+- [Roundtable Skill README](artifact/README.md)
+- [Roundtable Skill Definition](artifact/SKILL.md)
+- [ClawHub skill page](https://clawhub.ai/jzocb/skills/jz-roundtable)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown with role-based discussion sections, consensus, and action items]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces simulated multi-role perspectives and recommendations; no code, tools, persistence, or data access are included in the reviewed artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact documents v1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

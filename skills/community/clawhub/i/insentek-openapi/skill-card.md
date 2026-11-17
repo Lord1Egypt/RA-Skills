@@ -1,49 +1,64 @@
-## Description: <br>
-Lets agents query Insentek / E-Ecology IoT device data with natural language, including live readings, historical data, trend analysis, device comparison, and exports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Insentek OpenAPI lets agents query Insentek and E Ecology IoT device data in natural language, including real-time and historical sensor readings, trend analysis, cross-device comparisons, and exports.
 
-## Publisher: <br>
-[xddcode](https://clawhub.ai/user/xddcode) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xddcode](https://clawhub.ai/user/xddcode)
 
-## Use Case: <br>
-External users and developers use this skill to operate against Insentek IoT accounts from supported agent platforms, resolving devices, querying sensor readings, generating summaries or reports, and exporting data files without exposing API credentials in chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stored Insentek API credentials can be sent to a configured API base URL. <br>
-Mitigation: Use only the default Insentek endpoint or a trusted test/self-hosted endpoint; do not set INSENTEK_API_BASE or --api-base to an untrusted host. <br>
-Risk: Sensitive appid and secret values may be exposed if handled through chat or command-line flags. <br>
-Mitigation: Use the interactive login flow, avoid sharing credentials in conversation, and rotate credentials if they may have been exposed. <br>
-Risk: Exports and generated reports can write files to user-specified paths. <br>
-Mitigation: Review output paths before allowing CSV, Excel, JSON, or HTML writes. <br>
+## Use Case:
 
+External users and operators with configured Insentek credentials use this skill to query, analyze, compare, and export IoT device data from Insentek-compatible deployments. Developers can also use it to install the skill, configure local authentication, and route agent requests through the provided CLI scripts.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/xddcode/insentek-openapi) <br>
-- [README](README.md) <br>
-- [Getting Started](docs/getting-started.md) <br>
-- [Interaction Guide](docs/interaction.md) <br>
-- [Analysis Guide](docs/analysis.md) <br>
-- [Insentek OpenAPI Reference](reference/api-doc.md) <br>
-- [Insentek OpenAPI endpoint](https://openapi.ecois.info) <br>
-- [E-Ecology cloud portal](https://cloud.ecois.info) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, files, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands, JSON API responses, and CSV, Excel, JSON, or HTML file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local encrypted credential setup, dry-run previews, row limits, and output-path checks for generated exports and reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.4 (source: SKILL.md frontmatter, skill.json, CHANGELOG, and server release metadata) <br>
+Risk: API credentials could be exposed if the API endpoint or command arguments are influenced.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted publisher, keep INSENTEK_API_BASE and --api-base pointed at the official HTTPS API, and avoid passing tokens on the command line.
+
+Risk: Local credential material remains sensitive even when encrypted.
+
+Mitigation: Protect ~/.config/insentek/credentials.json, maintain restrictive local file access, and clear credentials with the skill logout command when access is no longer needed.
+
+Risk: Raw IoT data can be overexposed in conversation if full result sets are pasted into chat.
+
+Mitigation: Use the skill's summary and row-limit behavior for chat responses, and export large or raw datasets to CSV, Excel, JSON, or HTML files instead.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xddcode/skills/insentek-openapi)
+- [Insentek OpenAPI base URL](https://openapi.ecois.info)
+- [E Ecology cloud console](https://cloud.ecois.info)
+- [Getting started guide](docs/getting-started.md)
+- [Interaction guide](docs/interaction.md)
+- [Analysis guide](docs/analysis.md)
+- [Platform setup guide](docs/platform-setup.md)
+- [OpenAPI reference](reference/api-doc.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown responses with shell commands, JSON previews, CSV/Excel/JSON exports, and HTML report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Conversation output is summarized with row limits; full raw data is directed to file exports.]
+
+## Skill Version(s):
+
+1.2.4 (source: server release evidence, SKILL.md frontmatter, skill.json, package.json, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

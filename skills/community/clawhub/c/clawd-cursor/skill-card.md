@@ -1,43 +1,62 @@
-## Description: <br>
-ClawdCursor lets an OpenClaw agent operate visible Windows or macOS desktop applications through a local Clawd Cursor API when direct tools are not enough. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI desktop agent that lets an OpenClaw agent control visible Windows or macOS applications by opening apps, clicking, typing, navigating browsers, filling forms, and reading screens.
 
-## Publisher: <br>
-[AmrDab](https://clawhub.ai/user/AmrDab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[amrdab](https://clawhub.ai/user/amrdab)
 
-## Use Case: <br>
-Developers and agent operators use this skill to route user-approved desktop or browser UI tasks to Clawd Cursor after direct API, CLI, filesystem, or browser-native tools have been tried. It is intended for GUI interaction, visual verification, form filling, and cross-application workflows on the user's own machine. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad ability to see and operate the user's desktop, including sensitive applications. <br>
-Mitigation: Use it only for intentional desktop tasks, prefer direct tools when available, and require user confirmation before sensitive apps, messages, deletions, purchases, account changes, or settings changes. <br>
-Risk: Starting the local service can make screen-control capability available before the user expects it. <br>
-Mitigation: Start Clawd Cursor only when it is explicitly needed, keep the service bound to localhost, review the external repository before setup, and stop or abort tasks when work is complete. <br>
-Risk: Screenshots and UI text may be sent to the user's configured cloud AI provider when local mode is not used. <br>
-Mitigation: Prefer local/Ollama mode for private screens and avoid exposing credentials, private messages, financial data, or other sensitive content unless the user has clearly approved that data flow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawdCursor on ClawHub](https://clawhub.ai/AmrDab/clawd-cursor) <br>
-- [Clawd Cursor homepage](https://clawdcursor.com) <br>
-- [Clawd Cursor source repository](https://github.com/AmrDab/clawd-cursor) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill when a task requires GUI-level interaction that direct filesystem, shell, API, or browser tools cannot complete. It is suited for desktop app workflows, browser form interaction, visual verification, and cross-application tasks under user-controlled safety approvals.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Markdown with inline shell, PowerShell, JavaScript, and HTTP examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides the agent to poll local task status, request user approval for safety-gated actions, and prefer direct tools before GUI automation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.6.3 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill enables broad desktop automation with access to visible screens and applications.
+
+Mitigation: Run it only with explicit user intent, prefer a constrained user account or VM, and avoid sensitive apps such as email, banking, password managers, admin consoles, or private messages unless the user confirms the specific task.
+
+Risk: The release asks users to install and run mutable remote code before using the local service.
+
+Mitigation: Verify the upstream repository and package versions before installation, then run the documented doctor command before starting the service.
+
+Risk: Screenshots and UI text may be sent to a configured cloud AI provider when local mode is not used.
+
+Mitigation: Prefer Ollama or another local provider when possible, and confirm that cloud-provider routing matches the user's data-handling expectations before processing sensitive screens.
+
+Risk: GUI automation can perform consequential actions such as sending messages, deleting data, or changing settings.
+
+Mitigation: Use direct tools first, escalate only residual UI steps, and require user confirmation for sensitive or irreversible actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/amrdab/skills/clawd-cursor)
+- [Publisher profile](https://clawhub.ai/user/amrdab)
+- [Clawd Cursor homepage](https://clawdcursor.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code blocks, shell commands, and REST API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local API requests, polling steps, browser automation snippets, setup commands, and safety confirmation guidance.]
+
+## Skill Version(s):
+
+0.6.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

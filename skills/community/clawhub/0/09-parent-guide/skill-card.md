@@ -1,38 +1,53 @@
-## Description: <br>
-Miki家长成长指南 · 陪伴妈妈/爸爸度过角色转变期，提供情绪支持+认知调整+亲子关系建设. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+09 Parent Guide provides Chinese-language parenting and emotional-support guidance for new mothers and fathers during early family role transitions.
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
 
-## Use Case: <br>
-External parents and caregivers use this skill to frame supportive conversations about early parenting, emotional adjustment, and parent-child relationship building from late pregnancy through age two. It is informational support and directs users toward professional help for serious mental-health warning signs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Parenting and mental-health guidance could be mistaken for professional care, especially around postpartum depression or self-harm warning signs. <br>
-Mitigation: Use as supportive information only and preserve escalation language that advises immediate professional help for self-harm thoughts, persistent low mood, lack of bonding, severe insomnia or appetite loss, or severe family conflict. <br>
+## Use Case:
 
+External parents and caregivers use this skill to receive supportive Chinese-language guidance on late pregnancy, postpartum adjustment, early parenting roles, parent-child relationship building, and when to seek professional help.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nic-yuan/09-parent-guide) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with structured support sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language parent support guidance with escalation prompts for professional help when warning signs are present.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Users may treat general parenting or emotional-support guidance as a substitute for professional medical or mental-health care.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Direct urgent mental-health symptoms, self-harm thoughts, postpartum depression concerns, and medical issues to qualified professionals or emergency services.
+
+Risk: Early-parenting stress, persistent low mood, or weak emotional connection with a baby may indicate concerns beyond the skill's support scope.
+
+Mitigation: Preserve the skill's escalation guidance for professional screening or consultation when warning signs are present.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nic-yuan/skills/09-parent-guide)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-formatted Chinese-language guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a structured parent-support response template.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

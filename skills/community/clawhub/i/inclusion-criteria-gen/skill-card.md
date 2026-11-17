@@ -1,48 +1,66 @@
-## Description: <br>
-Generate and optimize clinical trial subject inclusion/exclusion criteria to balance scientific rigor with recruitment feasibility. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and optimize clinical trial subject inclusion/exclusion criteria to balance scientific rigor with recruitment feasibility.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Clinical trial protocol teams and life-science researchers use this skill to draft, optimize, analyze, and benchmark eligibility criteria for protocol design, enrollment feasibility, recruitment strategy, and competitive eligibility review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may send target, drug, company, indication, or trial queries to external PatSnap MCP services or web-search providers. <br>
-Mitigation: Use only data your organization permits to share with those services, and avoid confidential protocol drafts, unpublished strategy, patient data, or proprietary study materials. <br>
-Risk: Generated eligibility criteria and feasibility estimates can influence clinical trial design decisions. <br>
-Mitigation: Have qualified clinical, regulatory, and safety reviewers validate all proposed criteria, rationales, and enrollment assumptions before protocol use. <br>
-Risk: The artifact includes CLI commands that read and write local JSON files. <br>
-Mitigation: Run commands in a controlled workspace and review input and output paths before execution. <br>
+## Use Case:
 
+Clinical operations, medical writing, and protocol design teams use this skill to draft, optimize, analyze, and benchmark clinical trial eligibility criteria while considering recruitment feasibility.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/aipoch-ai/inclusion-criteria-gen) <br>
-- [AIPOCH publisher profile](https://clawhub.ai/user/aipoch-ai) <br>
-- [Criteria templates](references/criteria_templates.json) <br>
-- [Optimization guidelines](references/optimization_guidelines.md) <br>
-- [Common pitfalls](references/common_pitfalls.md) <br>
-- [Regulatory guidance](references/regulatory_guidance.md) <br>
-- [Feasibility data](references/feasibility_data.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and JSON criteria, analysis, optimization, or benchmark report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI and Python API flows can read criteria JSON input and write generated report JSON files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Loose file access and installation guidance could lead to unintended local file reads or writes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the CLI only with trusted input and output paths inside a dedicated workspace, and install it in an isolated environment.
+
+Risk: Unpinned or unnecessary dependency installation could increase supply-chain review burden.
+
+Mitigation: Avoid running pip install -r requirements.txt unless dependencies are removed or pinned and reviewed.
+
+Risk: Clinical trial criteria drafts may contain sensitive protocol information or patient-level data.
+
+Mitigation: Do not provide PHI, secrets, or confidential protocol material unless approved local storage and review controls are in place.
+
+Risk: Generated eligibility changes may be mistaken for clinical or regulatory decisions.
+
+Mitigation: Treat generated criteria, optimization notes, and benchmark outputs as drafting aids that require qualified clinical, regulatory, and operational review.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/skills/inclusion-criteria-gen)
+- [Optimization Guidelines for Inclusion/Exclusion Criteria](references/optimization_guidelines.md)
+- [Common Pitfalls in Eligibility Criteria Design](references/common_pitfalls.md)
+- [Regulatory Guidance on Eligibility Criteria](references/regulatory_guidance.md)
+- [Criteria Templates](references/criteria_templates.json)
+- [Feasibility Data](references/feasibility_data.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON examples and CLI/Python usage patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce JSON criteria files, optimization reports, complexity analyses, and benchmark placeholder reports when the bundled CLI is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

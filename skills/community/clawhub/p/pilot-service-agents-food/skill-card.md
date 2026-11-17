@@ -1,42 +1,59 @@
-## Description: <br>
-Food, recipe, brewery, and nutrition lookup guidance for Pilot Protocol service agents backed by OpenFoodFacts, TheCocktailDB, TheMealDB, Fruityvice, and Open Brewery DB. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Food, recipes, and nutrition lookups through Pilot Protocol service agents for OpenFoodFacts, TheCocktailDB, TheMealDB, Fruityvice, and Open Brewery DB.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and agent users use this skill to discover Pilot Protocol food-related service agents, inspect each agent's filter contract, and query product, recipe, ingredient, brewery, and reference nutrition data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+AGPL-3.0
 
-## Known Risks and Mitigations: <br>
-Risk: Barcode, ingredient, location, recipe, and nutrition queries may be handled as external network traffic through Pilot Protocol service agents. <br>
-Mitigation: Install only when the Pilot Protocol daemon and pilotctl setup are trusted, and avoid sending private health, personal, or secret information. <br>
-Risk: Food catalogs, agent availability, and nutrition facts are reference data and may be incomplete, stale, or unsuitable for medical nutrition advice. <br>
-Mitigation: Use list-agents and /help to verify current agent contracts, and route medical nutrition questions to an appropriate health-specific workflow. <br>
+## Use Case:
 
+Developers and external users use this skill to discover and query Pilot Protocol food service agents for packaged-food lookups, recipe searches, ingredient data, brewery searches, and reference nutrition data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/teoslayer/pilot-service-agents-food) <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [Pilot skills catalog](https://teoslayer.github.io/pilot-skills/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and JSON response shapes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent replies may arrive asynchronously through pilotctl inbox; summary and free-text queries can return generated prose.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Nutrition and recipe data may be incomplete or unsuitable for medical decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat returned nutrition and recipe data as reference information only, and route medical nutrition advice or calorie-tracking needs to an appropriate health workflow.
+
+Risk: Summary requests may return Gemini-generated prose through the service-agent workflow.
+
+Mitigation: Prefer structured /data responses for factual extraction and review generated summaries before relying on them.
+
+Risk: Results depend on Pilot Protocol daemon, overlay network, directory-agent availability, and upstream community-maintained catalogs.
+
+Mitigation: Verify the agent contract with /help or a fresh list-agents query, handle unavailable or truncated responses, and inspect upstream_url when present.
+
+## Reference(s):
+
+- [Pilot Protocol](https://pilotprotocol.network)
+- [ClawHub Skill Page](https://clawhub.ai/teoslayer/skills/pilot-service-agents-food)
+- [Pilot Skills Index](https://teoslayer.github.io/pilot-skills/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Service-agent responses may include JSON data envelopes, plain-text help, or Gemini-generated prose summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

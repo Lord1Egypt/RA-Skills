@@ -29,29 +29,6 @@ license: MIT
 
 ---
 
-## 推荐 Skill 依赖（按工作流阶段）
-
-基于 work agent SOP，各阶段推荐调用的 skill：
-
-| 阶段 | 任务 | 推荐 Skill | 说明 |
-|------|------|-----------|------|
-| **Phase III** | 深度调研 | `academic-deep-research` | 行业分析、竞品研究 |
-| **Phase III** | 快速查证 | `web_search` / `tavily_search` | 事实数据、最新动态 |
-| **Phase III** | 技术评估 | `cto-advisor` | 技术可行性、方案对比 |
-| **Phase IV** | MRD 编写 | `business-writing` | 商业文档写作 |
-| **Phase V** | PRD 编写 | `prd-writer` | 产品需求文档 |
-| **Phase V** | 图表绘制 | `mermaid-diagrams` | 流程图/架构图 |
-| **研发** | 代码开发 | `github` / `gh-issues` | 代码管理、Issue 跟踪 |
-| **研发** | 测试验证 | `healthcheck` | 服务健康检查 |
-| **全部** | 任务管理 | `clawlist` | 树形 TODO + 进度跟踪 |
-| **全部** | 知识沉淀 | `memory` / `wiki-maintainer` | 经验归档、知识库更新 |
-
-> ⚠️ **可用性说明**：上表中部分 Skill（如 `academic-deep-research`、`cto-advisor`、`business-writing`、`prd-writer`、`healthcheck`、`clawlist`、`wiki-maintainer` 等）为推荐搭配但需单独安装，使用前请先确认已在环境中可用（`openclaw skills list`）。`mermaid-diagrams` 对应内置 `mermaid:*` 系列 Skill。
->
-> **调用原则**：每个阶段优先使用对应 skill，不重复造轮子。skill 调用后需将结论写回 PROJECT_NOTE.md。
-
----
-
 ## 1. clawmate link
 
 OpenClaw 编写文件并保存后，使用 `/clawmate link {filename}` 搜索文件并生成 Markdown 可点击预览链接。
@@ -90,9 +67,9 @@ Phase I 确认三种类型之一，决定后续全流程和目录结构：
 
 | 类型 | 目录 | 流程 | 产出 |
 |------|------|------|------|
-| **观点收集** | research/ collect/ | I→II→III→研究报告 | 结构化研究报告 |
-| **产品方案** | + prd/ | I→II→III→IV(MRD)→V(PRD) | MRD + PRD |
-| **研发需求** | + prd/ dev/ test/ | I→II→III→IV(MRD)→V(PRD) | MRD + PRD + 可运行系统 |
+| **观点收集** | docs/research/ | I→II→III→研究报告 | 结构化研究报告 |
+| **产品方案** | + docs/prd/ | I→II→III→IV(MRD)→V(PRD) | MRD + PRD |
+| **研发需求** | + docs/prd/ src/ tests/ | I→II→III→IV(MRD)→V(PRD) | MRD + PRD + 可运行系统 |
 
 ### 命令签名
 
@@ -102,56 +79,6 @@ clawmate init [root] <project>
 
 - `root`: 可选，指定 ClawMate root_id（默认使用 config.json 的 `defaultRootId`）
 - `project`: 项目名称
-
-## 3. clawmate plan
-
-规划或更新项目计划（CLAWLIST）。
-
-### 命令签名
-
-```
-clawmate plan [root] <project>
-```
-
-- `root`: 可选，指定 ClawMate root_id（默认使用 config.json 的 `defaultRootId`）
-- `project`: 项目名称
-
-### 功能说明
-
-1. 读取项目根目录的 CLAWLIST.md（如不存在则创建模板）
-2. 使用 `curl -s "{CLAWMATE_URL}/api/clawmate/list?root={root}&marker_filter=true"` 列出项目，确认目标项目是否存在
-3. 读取 PROJECT_NOTE.md 了解当前阶段
-4. 更新 CLAWLIST.md：
-   - 检查当前阶段，标记已完成项
-   - 按阶段结构（Phase I-V）列出未完成任务
-   - 如有 dev/test/research 子目录，生成对应汇总条目
-5. 输出更新后的计划摘要
-
-### 目录约定
-
-- **默认路径**：`{root_dir}/{项目名}/`（root_dir 由 root_id 解析）
-- **源码目录**：统一使用 `dev/`
-
-### 全流程概览
-
-```mermaid
-flowchart LR
-    A[Phase I<br>项目初始化] --> B[Phase II<br>需求澄清]
-    B --> C[Phase III<br>信息收集]
-    C --> D{项目类型?}
-    D -->|观点收集| E[研究报告<br>编写与评审]
-    D -->|产品方案| F[Phase IV<br>MRD 编写]
-    D -->|研发需求| F
-    E --> G{通过?}
-    G -->|否| C
-    G -->|是| H[✅ 完成]
-    F --> I{通过?}
-    I -->|否| C
-    I -->|是| J[Phase V<br>PRD 编写]
-    J --> K{通过?}
-    K -->|否| J
-    K -->|是| H
-```
 
 ### Phase I：项目初始化
 
@@ -178,24 +105,77 @@ flowchart LR
 3. **研发需求** — 需要开发 + 测试的完整工程
 ```
 
-**步骤 1：创建目录结构**
+**步骤 1：创建项目目录**
 
-确认类型后立即创建：
+确认类型后创建目录树。**先不要创建 `.clawmate/`**——它由下一步的服务创建；
+若你提前建好，convert 会判定该目录「已是项目」并返回 409。
 
 ```bash
 # 观点收集
-mkdir -p {项目根路径}/{.clawmate,research,collect}
+mkdir -p {项目根路径}/research
 
 # 产品方案
-mkdir -p {项目根路径}/{.clawmate,research,collect,prd}
+mkdir -p {项目根路径}/{research,prd}
 
 # 研发需求
-mkdir -p {项目根路径}/{.clawmate,research,collect,prd,dev,test}
+mkdir -p {项目根路径}/{research,prd,src,tests}
 ```
+
+**步骤 2：调用 convert，一次完成项目初始化**
+
+`POST /api/clawmate/project/convert` 是项目初始化的**唯一入口**（网页端「转换为项目」
+走的也是它），一次完成四件事：
+
+| 产物 | 说明 |
+|------|------|
+| `.clawmate/` marker | 项目边界；ClawMate 靠它做 session 隔离与 Agent Panel 项目切换 |
+| `PROJECT_NOTE.md` / `CLAWLIST.md` / `AGENTS.md` / `.gitignore` | 基础文档，已存在则不覆盖 |
+| `git init` + 作者身份 + 首次提交 | 项目自有 git 历史，**无需再手工 `git init`** |
+| `project-harness/` 骨架 + `.clawmate/` 运行子目录 | 从 `project.harness_template_dir` 复制，已存在则不覆盖 |
+
+```bash
+curl -s -X POST "{CLAWMATE_URL}/api/clawmate/project/convert" \
+  -H 'Content-Type: application/json' \
+  -d '{"root":"{root}","path":"{项目名}"}' 2>/dev/null
+```
+
+**必须读响应中的 `governance` 字段并如实告知用户**——缺少内容时要澄清，不得静默略过：
+
+| 现象 | 含义与动作 |
+|------|------------|
+| `governance.project_harness: true` | 治理骨架已就位，可继续下一步 |
+| `skipped_reason: 未配置模板` | 请项目创建者在 `config.json` 设 `project.harness_template_dir`，或改用手动复制 |
+| `skipped_reason: 模板缺失` | 模板路径失效，报告创建者核查 |
+| `skipped_reason: 已存在` | 骨架已在，跳过即可 |
+| HTTP 409 | 该目录已是项目：**不要重复初始化**；若它尚无 `project-harness/`，走方式 B 补铺 |
 
 > **`.clawmate/` marker 作用**：ClawMate 服务通过此目录识别 project 边界，实现 session 隔离和 Agent Panel 项目切换。每个 project 必须包含此目录。
 
-**步骤 2：创建核心文档 + 归档机制**
+**方式 B — 手动复制模板（仅当 convert 未铺骨架、或项目已存在需补铺时）**：
+
+```bash
+cp -r {harness_template_dir}/. {项目根路径}/
+```
+
+**步骤 3：填全 project-harness 四项（必做，否则只是空壳）**
+
+骨架只有占位符，必须在同一轮引导中逐项确认填写：
+
+| 文件 | 填什么 |
+|------|--------|
+| `project-harness/manifest.yaml` | `project.id` / `name` / `owner` / `classification` / `approval_required` |
+| `project-harness/workflow.yaml` | `objective` / `inputs` / `outputs` / `stages`（每阶段 `owner` + `depends_on`） |
+| `project-harness/roles.yaml` | 在本项目启用的角色，逐角色填 `paths`（`read`/`write`/`deny_write`）与 `enforcement.gateway_bind` |
+| `project-harness/acceptance.yaml` | 本项目验收规则；`evidence_dir: .clawmate/evidence`、`formal_reports_dir: docs/reports` |
+
+> ⚠️ **项目不复制、不修改角色定义**。角色的职责与红线是全局唯一的（见
+> `~/projects/multiagent-governance/roles/`）；项目只在 `roles.yaml` 里**引用**
+> 角色并声明路径契约。详见 `docs/project-harness-onboarding.md`。
+>
+> ⚠️ **建项目是项目创建者（人类）的专属行为**，角色不得自行执行 `/clawmate init`
+> 或铺治理骨架。
+
+**步骤 4：创建核心文档 + 归档机制**
 
 > **关键原则**：所有文档必须有明确的「更新触发器」和「归档边界」，避免过期信息堆积。
 > 
@@ -205,24 +185,24 @@ mkdir -p {项目根路径}/{.clawmate,research,collect,prd,dev,test}
 
 **活跃文档（始终加载）**：
 - **CLAWLIST.md**（项目级 — 总览）— 管理所有非研发、测试的项目进展（Phase I-V），并包含研发级/测试级/研究级 CLAWLIST 的整体进展简要汇总（分组体现）
-- **CLAWLIST.md**（研发级 — 明细，可选）— 研发需求项目在 `dev/` 下创建，管理开发任务明细
-- **CLAWLIST.md**（研究级 — 明细，可选）— 放在 `research/` 下，管理研究计划与进度（替代独立的 RESEARCH_PLAN.md）
-- **CLAWLIST.md**（测试级 — 明细，可选）— 放在 `test/` 下，管理测试任务明细
+- **CLAWLIST.md**（研发级 — 明细，可选）— 研发需求项目在 `src/` 下创建，管理开发任务明细
+- **CLAWLIST.md**（研究级 — 明细，可选）— 放在 `docs/research/` 下，管理研究计划与进度（替代独立的 RESEARCH_PLAN.md）
+- **CLAWLIST.md**（测试级 — 明细，可选）— 放在 `tests/` 下，管理测试任务明细
 - **PROJECT_NOTE.md** — 产品决策唯一来源 + 信息架构规则
 
 **归档文档（按需加载，详见「懒加载机制」）**：
 - **archive/** — 统一归档目录（项目根目录下），包含已完成/过期的研究、方案、迭代记录、废弃 PRD
 
-> **硬性规则**：所有归档必须放在 `archive/` 根目录下，严禁在子目录中创建 archive/（如 `prd/archive/`、`research/done/` 等）。
+> **硬性规则**：所有归档必须放在 `archive/` 根目录下，严禁在子目录中创建 archive/（如 `docs/prd/archive/`、`docs/research/done/` 等）。
 
 **归档触发条件**：
 | 场景 | 归档源 | 归档目标 | 示例 |
 |------|--------|---------|------|
-| 研究主题已实施 | `research/{主题}/` | `archive/research/2026-06-{主题}/` | 技术选型完成后归档 |
-| PRD 迭代 | `prd/PRD.md` | `archive/prd-versions/PRD-v1.2-YYYY-MM-DD.md` | PRD v1.3 评审通过后 |
+| 研究主题已实施 | `docs/research/{主题}/` | `archive/research/2026-06-{主题}/` | 技术选型完成后归档 |
+| PRD 迭代 | `docs/prd/PRD.md` | `archive/prd-versions/PRD-v1.2-YYYY-MM-DD.md` | PRD v1.3 评审通过后 |
 | 决策过期 | `PROJECT_NOTE.md` 旧条目 | `archive/decisions/YYYY-MM-DD-{主题}.md` | 技术方案变更 |
 | 迭代结束 | `CLAWLIST.md` 已完成项 | `archive/iterations/sprint-{N}-YYYY-MM-DD.md` | Sprint 复盘完成 |
-| 需求取消 | `prd/sub_prd/{场景}.md` | `archive/prd-versions/cancelled/{场景}-v{版本}.md` | 明确取消开发 |
+| 需求取消 | `docs/prd/sub_prd/{场景}.md` | `archive/prd-versions/cancelled/{场景}-v{版本}.md` | 明确取消开发 |
 
 **归档命名规范**：`archive/{类别}/YYYY-MM-{主题}/` 或 `archive/{类别}/YYYY-MM-DD-{简述}.md`，确保可检索。
 
@@ -231,7 +211,7 @@ mkdir -p {项目根路径}/{.clawmate,research,collect,prd,dev,test}
 # CLAWLIST — {项目名}（项目级 — 总览）
 
 > 本项目级 CLAWLIST 管理所有非研发、测试的项目进展，并汇总各分组的简要状态。
-> 明细任务分别在 dev/、test/、research/ 的 CLAWLIST 中管理。
+> 明细任务分别在 src/、tests/、docs/research/ 的 CLAWLIST 中管理。
 
 ## Phase I 项目初始化
 - [x] 确认项目类型
@@ -247,7 +227,7 @@ mkdir -p {项目根路径}/{.clawmate,research,collect,prd,dev,test}
 
 ## Phase III 信息收集
 - [ ] 识别信息需求
-- [ ] 生成研究计划 → [research/CLAWLIST.md](research/CLAWLIST.md)
+- [ ] 生成研究计划 → [docs/research/CLAWLIST.md](docs/research/CLAWLIST.md)
 - [ ] 执行研究
 - [ ] 用户确认
 
@@ -266,19 +246,19 @@ mkdir -p {项目根路径}/{.clawmate,research,collect,prd,dev,test}
 - [ ] 子场景 PRD: {场景1}
 - [ ] 用户评审通过
 
-## 研发进展汇总（明细见 dev/CLAWLIST.md）
-- [ ] 架构设计 → [dev/CLAWLIST.md](dev/CLAWLIST.md)
+## 研发进展汇总（明细见 src/CLAWLIST.md）
+- [ ] 架构设计 → [src/CLAWLIST.md](src/CLAWLIST.md)
 - [ ] 核心功能开发
 - [ ] 接口联调
 - [ ] 单元测试覆盖
 
-## 测试进展汇总（明细见 test/CLAWLIST.md）
-- [ ] 集成测试 → [test/CLAWLIST.md](test/CLAWLIST.md)
+## 测试进展汇总（明细见 tests/CLAWLIST.md）
+- [ ] 集成测试 → [tests/CLAWLIST.md](tests/CLAWLIST.md)
 - [ ] 回归验证
 - [ ] 性能测试
 
-## 研究进展汇总（明细见 research/CLAWLIST.md）
-- [ ] 技术选型 → [research/CLAWLIST.md](research/CLAWLIST.md)
+## 研究进展汇总（明细见 docs/research/CLAWLIST.md）
+- [ ] 技术选型 → [docs/research/CLAWLIST.md](docs/research/CLAWLIST.md)
 - [ ] 竞品分析
 - [ ] 用户调研
 ```
@@ -378,8 +358,8 @@ mkdir -p {项目根路径}/{.clawmate,research,collect,prd,dev,test}
 **按需加载（延迟）**：
 ```
 3. CLAWLIST.md（研发级）  ← 仅当进入开发阶段
-4. prd/PRD.md            ← 仅当需要查看详细需求
-5. research/             ← 仅当需要背景信息
+4. docs/prd/PRD.md            ← 仅当需要查看详细需求
+5. docs/research/             ← 仅当需要背景信息
 6. archive/              ← 仅当需要历史决策
 ```
 
@@ -419,33 +399,25 @@ mkdir -p {项目根路径}/{.clawmate,research,collect,prd,dev,test}
 |------|------|------|------|
 | YYYY-MM-DD | {决策内容} | {为什么} | {影响范围} |
 
-## 开发规范（研发需求项目）
-- 代码风格：{规范}
-- 测试要求：{覆盖率}
-- 文档要求：{必须更新哪些文档}
-
-## 核心架构
-{架构图 + 说明}
-
-## 常见问题与修复
-| 问题 | 原因 | 修复 | 日期 |
-|------|------|------|------|
-| {问题} | {原因} | {修复} | {日期} |
-
-## 关键代码模式
-{可复用的代码模式 / 设计模式}
+> 技术细节（代码风格、测试要求、架构说明、常见问题、代码模式）不放这里——
+> 归 `AGENTS.md` 与 `docs/`。本文件只保留**决策**与**当前焦点**，避免与文档重复。
 ```
 
-**步骤 3：初始化 Git**
+**步骤 5：初始化 Git（通常无需手工执行）**
+
+`convert` 已在步骤 2 完成 `git init`、作者身份与首次提交，因此**正常流程到此结束**，
+不要再重复 `git init`。仅当你是对**已存在**的项目补做（当时 convert 返回 409）时，
+才需要手工执行：
 
 ```bash
 cd {项目根路径}
-git init
-git config user.email "openclaw@openclaw.ai"
+git init   # 已有 .git 时跳过
+git config user.email "updatedb@qq.com"
 git config user.name "OpenClaw"
+git add -A && git commit -m "Initial commit: {项目名}"
 ```
 
-.gitignore 模板：
+.gitignore 模板（`convert` 未创建时才需手写）：
 ```
 node_modules/ .npm/ .pnpm-store/
 __pycache__/ *.py[cod] .venv/ venv/ .env*
@@ -455,194 +427,145 @@ __pycache__/ *.py[cod] .venv/ venv/ .env*
 dist/ build/
 ```
 
-首次提交：`git add -A && git commit -m "Initial commit: {项目名}"`
-
-### Phase II：需求澄清
-
-五项必问：
-
-1. **目的** — 要达成什么目标？解决什么问题？
-2. **服务对象**（三类必覆盖）：
-   - 产品用户：最终使用者是谁？使用场景？
-   - 项目管理人员：谁负责推进、验收、决策？
-   - 领导/汇报对象：需要向谁汇报？汇报形式？
-3. **输出物** — 最终交付什么？文档/代码/设计/报告/演示文稿？
-4. **评价标准** — 按服务对象分层确认
-5. **工作范围** — 是否需要开发？是否需要测试？
-
-**产出**：PROJECT_NOTE.md「需求澄清记录」章节（更新）
-
-### Phase III：信息收集
-
-1. **识别信息需求**：从 Phase II 推导研究主题
-2. **生成研究计划**：`research/CLAWLIST.md`
-3. **执行研究**：调用 `academic-deep-research` / `web_search` / `cto-advisor`
-4. **提示用户补充**
-5. **用户确认**「信息充分，可以进入 Phase IV」
-
-### Phase IV：MRD 编写与评审（产品方案/研发需求）
-
-**MRD 内容框架**：
-
-| # | 章节 | 内容 |
-|---|------|------|
-| 1 | **市场概述** | 市场规模、增长趋势、关键驱动因素 |
-| 2 | **目标市场** | 细分市场定义、目标用户画像 |
-| 3 | **竞品分析** | 主要竞品、差异化定位、竞争格局图 |
-| 4 | **用户需求** | 痛点分析、需求优先级、使用场景 |
-| 5 | **商业价值** | 商业模式、收入预期、投资回报 |
-| 6 | **市场策略** | 进入策略、定价、推广路径 |
-| 7 | **风险与假设** | 关键假设、主要风险、缓解措施 |
-
-**评审检查单**：
-- 核心目标一致性（映射回 Phase II 目标）
-- 市场数据有出处、可溯源
-- 三类服务对象全覆盖
-- 竞品分析覆盖主要对手
-- 商业逻辑可解释、可验证
-- 风险识别 + 缓解措施
-
-### Phase V：PRD 编写与评审（产品方案/研发需求）
-
-**执行步骤**：
-1. 确认 PRD 结构（总 PRD + 子场景 PRD）
-2. 编写总 PRD → `prd/PRD.md`
-3. 逐条编写子场景 PRD → `prd/sub_prd/{场景名}.md`
-4. 每个子场景：编写 → 评审 → 修改 → 通过
-
-**PRD 评审检查单**：
-- 目标用户与 Phase II 服务对象一致
-- 功能完整性覆盖所有输出物
-- 流程闭环（核心流程 + 异常路径）
-- 验收标准可度量
-- Mermaid 图表正确
-
 ### 项目目录结构
 
-**观点收集**：
-```
-{项目名}/
-├── .clawmate/               ← marker 目录（session 隔离 & project 识别）
-├── CLAWLIST.md
-├── PROJECT_NOTE.md          ← 含「需求澄清记录」+「信息架构规则」
-├── research/
-│   └── CLAWLIST.md            ← 研究计划与进度
-└── collect/
-```
+**唯一权威结构**：
 
-**产品方案**：
 ```
 {项目名}/
 ├── .clawmate/               ← marker 目录（session 隔离 & project 识别）
-├── CLAWLIST.md
-├── PROJECT_NOTE.md          ← 含「需求澄清记录」+「信息架构规则」
-├── research/
-│   └── CLAWLIST.md            ← 研究计划与进度
-├── collect/
-└── prd/
-    ├── MRD.md
-    ├── PRD.md
-    └── sub_prd/
-```
-
-**研发需求**：
-```
-{项目名}/
-├── .clawmate/               ← marker 目录（session 隔离 & project 识别）
+│   ├── state/               ← 运行状态      （治理契约锚点，convert 自动建）
+│   ├── tasks/               ← 任务实例快照   （治理契约锚点，convert 自动建）
+│   ├── evidence/            ← 验收证据       （治理契约锚点，convert 自动建）
+│   └── audit/               ← 审计日志       （仅项目创建者可写）
+├── project-harness/         ← 治理契约（manifest / workflow / roles / acceptance）
+├── docs/                    ← 正式项目文档（convert 铺骨架，_TEMPLATE_INCLUDE）
+│   ├── prd/                 ← 产品方案 / 研发需求
+│   │   ├── MRD.md
+│   │   ├── PRD.md
+│   │   └── sub_prd/
+│   ├── research/            ← 研究目录（研究计划/进度 + 收集的素材与来源材料）
+│   │   ├── CLAWLIST.md      ← 研究计划与进度
+│   │   └── {主题}/          ← 按主题组织的材料与结论
+│   └── reports/             ← 正式报告
 ├── CLAWLIST.md              ← 项目级总览：Phase I-V + 研发/测试/研究进展汇总
-├── PROJECT_NOTE.md          ← 产品决策唯一来源 + 信息架构规则（顶部「当前焦点」）
-├── research/                ← 研究目录
-│   ├── CLAWLIST.md          ← 研究计划与进度（替代 RESEARCH_PLAN.md）
-│   └── {主题}/
-├── collect/                 ← 收集素材
-├── prd/
-│   ├── MRD.md               ← 当前版本
-│   ├── PRD.md               ← 当前版本
-│   └── sub_prd/             ← 当前子场景
-├── dev/                     ← 源码
-│   ├── main.py
-│   ├── requirements.txt
-│   └── ...
-├── test/                    ← 测试（与源码严格分离）
+├── PROJECT_NOTE.md          ← 项目决策唯一来源（顶部「当前焦点」）
+├── AGENTS.md                ← agent 操作规范
+├── src/                     ← 源码
+├── tests/                   ← 测试（与源码严格分离）
 │   ├── CLAWLIST.md          ← 测试级：测试任务明细
 │   ├── reports/             ← 测试报告
 │   ├── results/             ← 测试结果、日志、截图
 │   └── scripts/             ← 测试脚本
 ├── archive/                 ← 统一归档目录（根目录，严禁子目录建 archive/）
 │   ├── research/
-│   │   └── 2026-06-技术选型/
 │   ├── decisions/
-│   │   └── 2026-06-10-数据库选型.md
 │   ├── iterations/
-│   │   └── sprint-1.md
 │   └── prd-versions/
-│       └── PRD-v1.2-2026-05-20.md
 └── .gitignore
 ```
+
+**按项目类型启用**：
+
+| 项目类型 | 启用目录 | 交付物 |
+|---|---|---|
+| 观点收集 | `docs/research/` | 结构化研究报告 |
+| 产品方案 | + `docs/prd/` | MRD + PRD |
+| 研发需求 | + `docs/prd/ src/ tests/` | MRD + PRD + 可运行系统 |
+
+> **只建本项目用得到的目录，不预建空目录。** `.clawmate/` 的 state/tasks/evidence/audit
+> 由 `convert` 建好；`sessions/`、`cache/` 等由服务按需懒创建。
+> 正式报告写入 `docs/reports/`（**不是** `.clawmate/reports/`）；运行证据写入
+> `.clawmate/evidence/`，二者不混用。
 
 #### 测试目录隔离规则（硬性）
 
-> **测试工作结果必须存放在 test/ 目录，严禁与源码混放。**
+> **测试工作结果必须存放在 tests/ 目录，严禁与源码混放。**
 
 | 内容 | 正确位置 | 错误位置 |
 |------|---------|---------|
-| 测试报告 | `test/reports/` | `dev/reports/` ❌ |
-| 测试结果/日志 | `test/results/` | `dev/logs/` ❌ |
-| 测试脚本 | `test/scripts/` | `dev/scripts/` ❌ |
-| 测试截图 | `test/results/screenshots/` | `dev/` ❌ |
-| 测试计划/CLAWLIST | `test/CLAWLIST.md` | `dev/CLAWLIST.md` ❌ |
+| 测试报告 | `tests/reports/` | `src/reports/` ❌ |
+| 测试结果/日志 | `tests/results/` | `src/logs/` ❌ |
+| 测试脚本 | `tests/scripts/` | `src/scripts/` ❌ |
+| 测试截图 | `tests/results/screenshots/` | `src/` ❌ |
+| 测试计划/CLAWLIST | `tests/CLAWLIST.md` | `src/CLAWLIST.md` ❌ |
 
 **理由**：
-- 源码目录（dev/）只放代码和配置文件
+- 源码目录（src/）只放代码和配置文件
 - 测试目录独立便于 CI/CD 打包时排除
 - 测试历史归档在 archive/iterations/，不污染源码
 
-**目录结构**：
+## 3. clawmate plan
+
+规划或更新项目计划（CLAWLIST）。
+
+### 命令签名
+
 ```
-{项目名}/
-├── .clawmate/               ← marker 目录
-├── CLAWLIST.md              ← 项目级总览
-├── PROJECT_NOTE.md          ← 产品决策唯一来源 + 信息架构规则
-├── research/                ← 研究目录
-│   ├── CLAWLIST.md          ← 研究计划与进度（替代 RESEARCH_PLAN.md）
-│   └── {主题}/
-├── collect/
-├── prd/
-│   ├── MRD.md
-│   ├── PRD.md
-│   └── sub_prd/
-├── dev/                     ← 源码
-│   ├── main.py
-│   └── ...
-├── test/                    ← 测试（与源码严格分离）
-│   ├── CLAWLIST.md          ← 测试级：测试任务明细
-│   ├── reports/             ← 测试报告
-│   ├── results/             ← 测试结果、日志
-│   └── scripts/             ← 测试脚本
-├── archive/                 ← 统一归档目录（根目录）
-│   ├── research/
-│   ├── decisions/
-│   ├── iterations/
-│   └── prd-versions/
-└── .gitignore
+clawmate plan [root] <project>
 ```
 
-### Git 提交规范
+- `root`: 可选，指定 ClawMate root_id（默认使用 config.json 的 `defaultRootId`）
+- `project`: 项目名称
 
-| 时机 | 类型 | 格式 |
-|------|------|------|
-| 新功能 | `feat:` | `feat: 添加xxx功能` |
-| Bug 修复 | `fix:` | `fix: 修复xxx问题` |
-| 文档 | `docs:` | `docs: 更新xxx文档` |
-| 重构 | `refactor:` | `refactor: 重构xxx` |
-| 测试 | `test:` | `test: 添加xxx测试` |
-| 杂项 | `chore:` | `chore: 更新依赖` |
+### 功能说明
 
-### 图表规范
+1. 读取项目根目录的 CLAWLIST.md（如不存在则创建模板）
+2. 使用 `curl -s "{CLAWMATE_URL}/api/clawmate/list?root={root}&marker_filter=true"` 列出项目，确认目标项目是否存在
+3. 读取 PROJECT_NOTE.md 了解当前阶段
+4. 更新 CLAWLIST.md：
+   - 检查当前阶段，标记已完成项
+   - 按阶段结构（Phase I-V）列出未完成任务
+   - 如有 src/tests/research 子目录，生成对应汇总条目
+5. 输出更新后的计划摘要
 
-所有文档图表使用 **Mermaid 语法**，禁止截图替代。
+### 目录约定
 
----
+- **默认路径**：`{root_dir}/{项目名}/`（root_dir 由 root_id 解析）
+- **源码目录**：统一使用 `src/`（测试目录为 `tests/`，与源码严格分离）
+
+### 全流程概览
+
+```mermaid
+flowchart LR
+    A[Phase I<br>项目初始化] --> B[Phase II<br>需求澄清]
+    B --> C[Phase III<br>信息收集]
+    C --> D{项目类型?}
+    D -->|观点收集| E[研究报告<br>编写与评审]
+    D -->|产品方案| F[Phase IV<br>MRD 编写]
+    D -->|研发需求| F
+    E --> G{通过?}
+    G -->|否| C
+    G -->|是| H[✅ 完成]
+    F --> I{通过?}
+    I -->|否| C
+    I -->|是| J[Phase V<br>PRD 编写]
+    J --> K{通过?}
+    K -->|否| J
+    K -->|是| H
+```
+
+
+> **台账边界**：`CLAWLIST.md` 是**持久阶段台账**（Phase I–V、门禁、交付追踪），随项目纳入版本管理。
+> **运行态任务**（进行中/待办/子任务、谁在执行）以 OpenClaw Tasks / TaskFlow 为准，不在本文件重复登记。
+> 两处若冲突：阶段与门禁以 `CLAWLIST.md` 为准，任务运行态以 TaskFlow 为准。
+
+### 阶段推进（II–V）
+
+`plan` 只负责**阶段推进与台账维护**：确认当前阶段、更新 `CLAWLIST.md`，并在阶段门禁通过后
+推进 `PROJECT_NOTE.md` 的「当前阶段」。各阶段的方法学由对应 skill 提供，本 skill 不复制其内容。
+
+| 阶段 | 本 skill 负责的产物路径 | 方法学来源 |
+|---|---|---|
+| II 需求澄清 | `PROJECT_NOTE.md`「需求澄清记录」 | `discovery-process` |
+| III 信息收集 | `docs/research/CLAWLIST.md`、`docs/research/{主题}/` | `deep-research` / `web_search` |
+| IV MRD | `docs/prd/MRD.md` | `competitive-analysis-process` / `product-strategy-session` |
+| V PRD | `docs/prd/PRD.md`、`docs/prd/sub_prd/{场景}.md` | `prd-development` / `user-story` |
+
+**阶段门禁**：评审检查单由方法学 skill 提供。本 skill 只要求两件事——产物已落盘到上表路径，
+且用户已确认——之后才在 `PROJECT_NOTE.md` 推进「当前阶段」并同步 `CLAWLIST.md`。
+
+> **观点收集型项目**在 Phase III 结束即交付，没有 IV/V。
 
 ## 4. clawmate feed
 
@@ -881,11 +804,11 @@ for e in data.get('entries', []):
 
 | 场景 | 归档源 | 归档目标 | 触发条件 |
 |------|--------|---------|---------|
-| 研究完成 | `research/{主题}/` | `archive/research/YYYY-MM-{主题}/` | 方案已实施或已否决 |
-| PRD 迭代 | `prd/PRD.md` | `archive/prd-versions/PRD-v{X.Y}-YYYY-MM-DD.md` | 新版本评审通过 |
+| 研究完成 | `docs/research/{主题}/` | `archive/research/YYYY-MM-{主题}/` | 方案已实施或已否决 |
+| PRD 迭代 | `docs/prd/PRD.md` | `archive/prd-versions/PRD-v{X.Y}-YYYY-MM-DD.md` | 新版本评审通过 |
 | 决策变更 | `PROJECT_NOTE.md` 旧条目 | `archive/decisions/YYYY-MM-DD-{主题}.md` | 决策被新决策覆盖 |
 | 迭代结束 | `CLAWLIST.md` 已完成项 | `archive/iterations/sprint-{N}-YYYY-MM-DD.md` | Sprint 复盘完成 |
-| 需求取消 | `prd/sub_prd/{场景}.md` | `archive/prd-versions/cancelled/{场景}-v{版本}.md` | 明确取消开发 |
+| 需求取消 | `docs/prd/sub_prd/{场景}.md` | `archive/prd-versions/cancelled/{场景}-v{版本}.md` | 明确取消开发 |
 
 **归档检查点**：
 - 超过 2 周未更新的文档 → 标记「待审查」→ 确认归档或更新
@@ -914,14 +837,14 @@ for e in data.get('entries', []):
 **加载控制原则**：
 - 默认不加载 > 100KB 的文件
 - 默认不加载 archive/ 目录
-- 大文件拆分：PRD > 100KB 时拆为 `PRD-core.md` + `sub_prd/`
+- 大文件拆分：PRD > 100KB 时拆为 `PRD-core.md` + `docs/prd/sub_prd/`
 - 摘要前置：每个大文件顶部 20 行必须是「快速理解摘要」
 
 ### 9.4 归档命名规范
 
 ```
 archive/
-├── research/
+├── docs/research/
 │   └── 2026-06-15-数据库选型/          ← 日期-主题
 │       ├── report.md
 │       └── comparison.xlsx
@@ -933,7 +856,7 @@ archive/
     └── PRD-v1.2-2026-05-20.md          ← 文件名-版本-日期
 ```
 
-> ⚠️ **严禁**在 `prd/`、`research/`、`dev/` 等子目录中创建 `archive/` 或 `done/` 子目录。所有归档统一在根目录 `archive/` 下。
+> ⚠️ **严禁**在 `docs/prd/`、`docs/research/`、`src/` 等子目录中创建 `archive/` 或 `done/` 子目录。所有归档统一在根目录 `archive/` 下。
 
 ### 9.5 文档同步检查清单
 
@@ -945,8 +868,8 @@ archive/
 - [ ] CLAWLIST.md：已完成项已勾选，新增项已添加
 - [ ] PROJECT_NOTE.md：如有决策变更，已记录
 - [ ] PRD.md：如有功能变更，已同步更新
-- [ ] research/：已实施方案已归档到 archive/research/
-- [ ] prd/sub_prd/：已取消/已合并场景已归档
+- [ ] docs/research/：已实施方案已归档到 archive/research/
+- [ ] docs/prd/sub_prd/：已取消/已合并场景已归档
 - [ ] 过期文档（> 2 周未更新）：已审查并标记状态
 ```
 

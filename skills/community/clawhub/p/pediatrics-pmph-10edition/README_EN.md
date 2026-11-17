@@ -156,7 +156,7 @@ No specific treatment required. Ensure adequate feeding to promote meconium pass
 
 ---
 
-**Related skill:** [Neonatal Jaundice Risk Assessment & Physiological Jaundice Diagnosis](neonatal-jaundice-risk-assessment-diagnosis/SKILL.md)
+**Related skill:** [Neonatal Jaundice Risk Assessment & Physiological Jaundice Diagnosis](neonatal-jaundice-riREDACTED-SECRET/SKILL.md)
 ```
 
 #### 2. **Clinical Case Analysis**
@@ -192,7 +192,7 @@ Answer：
 
 ---
 
-**Related skills:** [Neonatal Jaundice Risk Assessment & Diagnosis](neonatal-jaundice-risk-assessment-diagnosis/SKILL.md) · [Bilirubin Encephalopathy Staging & Diagnosis](bilirubin-encephalopathy-staging-and-diagnosis/SKILL.md)
+**Related skills:** [Neonatal Jaundice Risk Assessment & Diagnosis](neonatal-jaundice-riREDACTED-SECRET/SKILL.md) · [Bilirubin Encephalopathy Staging & Diagnosis](bilirubin-encephalopathy-staging-and-diagnosis/SKILL.md)
 ```
 
 #### 3. **Exam Question**

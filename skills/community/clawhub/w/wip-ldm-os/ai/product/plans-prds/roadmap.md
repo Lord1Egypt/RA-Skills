@@ -1,7 +1,7 @@
 # LDM OS ... Roadmap
 
-**Last updated:** 2026-04-28
-**Current version:** v0.4.84
+**Last updated:** 2026-07-06
+**Current version:** v0.4.86
 
 Items are either **Upcoming**, **Done**, or **Deprecated**. Never delete. Always move.
 

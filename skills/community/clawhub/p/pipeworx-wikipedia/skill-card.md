@@ -1,40 +1,55 @@
-## Description: <br>
-Search, summarize, and explore the structure of English Wikipedia articles with full-text search, section details, and random article retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, summarize, and explore the structure of English Wikipedia articles with full-text search, section information, and random article retrieval.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Developers and agents use this skill to discover Wikipedia articles, retrieve concise article summaries, inspect section structure, and fetch random articles through the Pipeworx Wikipedia MCP endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Runtime configuration may request permissions or environment variables outside the static artifact evidence. <br>
-Mitigation: Review any permissions or environment variables requested at runtime and avoid providing secrets unless they are clearly required for the task. <br>
-Risk: The skill retrieves remote Wikipedia content that may be incomplete, outdated, or unsuitable for a high-stakes answer on its own. <br>
-Mitigation: Review returned article links and supporting context before using the output for factual or user-facing conclusions. <br>
+## Use Case:
 
+Developers and agents use this skill to search English Wikipedia, retrieve article summaries, inspect article sections, and fetch random articles through a Pipeworx-hosted MCP server.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brucegutman/pipeworx-wikipedia) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces article search results, summaries, section metadata, random article extracts, and MCP configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Wikipedia search terms and requested article titles are sent to the third-party Pipeworx gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not include secrets or private context in queries; install only when this routing is acceptable.
+
+Risk: Wikipedia content may be incomplete, outdated, or unsuitable as the sole source for high-stakes facts.
+
+Mitigation: Verify important facts against official Wikimedia pages or other authoritative sources before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brucegutman/skills/pipeworx-wikipedia)
+- [Pipeworx Wikipedia MCP gateway](https://gateway.pipeworx.io/wikipedia/mcp)
+- [Publisher profile](https://clawhub.ai/user/brucegutman)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [MCP tool responses can include article titles, snippets, summaries, section metadata, thumbnails, and article links.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

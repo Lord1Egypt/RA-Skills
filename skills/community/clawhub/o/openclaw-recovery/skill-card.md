@@ -1,42 +1,58 @@
-## Description: <br>
-OpenClaw Recovery provides scripts and configuration that back up OpenClaw settings, monitor service health, restart or roll back the gateway, and notify the user during recovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Recovery installs cross-platform backup and health-monitoring automation that checks OpenClaw, repairs invalid configuration values, rolls back to known-good backups, and sends local notifications.
 
-## Publisher: <br>
-[yoyoyosan](https://clawhub.ai/user/yoyoyosan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yoyoyosan](https://clawhub.ai/user/yoyoyosan)
 
-## Use Case: <br>
-OpenClaw users and operators use this skill to keep a local OpenClaw service available by creating configuration backups, scheduling health checks, and restoring a working configuration when the gateway fails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install background recovery tasks that restart OpenClaw and overwrite its active configuration. <br>
-Mitigation: Review scheduled cron or Task Scheduler entries during installation, enable autonomous recovery only where it is acceptable, and remove the scheduled tasks if continuous recovery is not desired. <br>
-Risk: Backups may include local authentication files in ~/.openclaw/backups. <br>
-Mitigation: Restrict permissions on the backup directory, decide whether auth-profiles.json and auth-state.json should be backed up, and remove sensitive backups that are not needed. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to keep a local OpenClaw gateway available by scheduling health checks, backups, configuration repair, and rollback across macOS, Linux, and Windows environments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yoyoyosan/openclaw-recovery) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown instructions with shell scripts and JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes install, backup, recovery, rollback, uninstall, and safe-mode configuration files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.1 (source: release metadata) <br>
+Risk: The skill installs persistent scheduled jobs that can change OpenClaw configuration and restart the gateway without manual approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the scheduled cron or Task Scheduler entries before installation and confirm the uninstall path removes only the intended OpenClaw recovery jobs.
+
+Risk: The skill backs up authentication-related files, and the security summary flags unsafe handling of those backups.
+
+Mitigation: Restrict backup directory permissions, avoid sharing backup archives, and rotate credentials if backup contents may have been exposed.
+
+Risk: Automatic recovery can overwrite the active OpenClaw configuration during repair, rollback, or safe-mode startup.
+
+Mitigation: Keep a separate known-good configuration copy and test manual backup and rollback behavior before enabling unattended recovery.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yoyoyosan/skills/openclaw-recovery)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON configuration references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May install scheduled jobs, write backups and logs under ~/.openclaw, and modify OpenClaw configuration during recovery.]
+
+## Skill Version(s):
+
+4.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

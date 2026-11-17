@@ -1,44 +1,57 @@
-## Description: <br>
-使用 UAPI 的“时间戳转换”单接口 skill，处理时间戳转换、Unix 时间戳、日期转时间戳等请求，并帮助代理调用 GET /convert/unixtime。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+使用 UAPI 的“时间戳转换”单接口 skill，帮助代理调用 GET /convert/unixtime 在 Unix 时间戳和日期字符串之间转换。
 
-## Publisher: <br>
-[shuakami](https://clawhub.ai/user/shuakami) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shuakami](https://clawhub.ai/user/shuakami)
 
-## Use Case: <br>
-Developers and external agents use this skill when they need to convert between Unix timestamps and standard date-time strings through UAPI's GET /convert/unixtime endpoint. It helps confirm required query parameters, response codes, and quota-related guidance before calling the endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Timestamp or date values may be sent to UAPI when the endpoint is called. <br>
-Mitigation: Avoid using the skill for sensitive time data unless sending that value to UAPI is acceptable. <br>
-Risk: Broad timestamp-related trigger wording could make the skill activate for some general timestamp questions. <br>
-Mitigation: Confirm the user's request specifically requires UAPI timestamp conversion before invoking the endpoint. <br>
+## Use Case:
 
+Developers and agents use this skill when a user needs UAPI timestamp conversion through GET /convert/unixtime, including converting 10- or 13-digit Unix timestamps to dates or standard date strings to Unix timestamps.
 
-## Reference(s): <br>
-- [Quick Start](references/quick-start.md) <br>
-- [GET /convert/unixtime Operation](references/operations/get-convert-unixtime.md) <br>
-- [Convert Resource](references/resources/Convert.md) <br>
-- [UAPI Base URL](https://uapis.cn/api/v1) <br>
-- [ClawHub Skill Page](https://clawhub.ai/shuakami/uapi-get-convert-unixtime) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API Calls, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with API request details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May send timestamp or date values to UAPI when the agent calls the disclosed endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill may send a user-provided timestamp or date string to an external UAPI service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting sensitive or confidential values unless external API use is acceptable for the task.
+
+Risk: Anonymous UAPI quota can be exhausted, which may require a UAPI key to continue.
+
+Mitigation: Use a UAPI key only when needed and handle quota-related errors before retrying.
+
+## Reference(s):
+
+- [Quick Start](references/quick-start.md)
+- [GET /convert/unixtime Operation](references/operations/get-convert-unixtime.md)
+- [Convert Resource](references/resources/Convert.md)
+- [UAPI API Base](https://uapis.cn/api/v1)
+- [ClawHub Skill Page](https://clawhub.ai/shuakami/skills/uapi-get-convert-unixtime)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Markdown]
+
+**Output Format:** [Markdown guidance with API endpoint, parameters, and response handling details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call an external UAPI service with the timestamp or date string supplied by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

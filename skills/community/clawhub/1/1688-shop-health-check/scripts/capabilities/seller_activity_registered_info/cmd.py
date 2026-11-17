@@ -12,7 +12,7 @@ from _output import print_output, print_error
 
 from capabilities.seller_activity_registered_info.service import get_activity_registered_info
 
-COMMAND_NAME = "seller_activity_registered_info"
+COMMAND_NAME = "alibaba.1688.seller.activity.registered.info"
 COMMAND_DESC = "获取商家近 30 天活动参与及效果数据"
 
 def main():
@@ -24,10 +24,12 @@ def main():
         return
 
     parser = argparse.ArgumentParser(description="商家近 30 天活动参与信息查询（商家身份由 AK 自动识别，无需提供 user_id）")
-    parser.parse_args()
+    parser.add_argument("--NEWTON_SHOP_LOGIN_ID", default=None,
+                        help="店铺登录ID，指定查询的店铺")
+    args = parser.parse_args()
 
     try:
-        result = get_activity_registered_info()
+        result = get_activity_registered_info(login_id=args.NEWTON_SHOP_LOGIN_ID)
         print_output(True, "活动参与信息查询成功", {
             "data": result,
         })

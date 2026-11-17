@@ -1,42 +1,58 @@
-## Description: <br>
-Analyzes recent A-share stock news and events, including news sentiment, institutional validation, and market response, using Investoday financial data to produce structured stock event analysis reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes recent A-share stock news and event signals using Investoday financial data, identifying stock codes and producing a structured news-event analysis report focused on sentiment, institutional validation, market response, catalysts, and risk messages.
 
-## Publisher: <br>
-[kenneth-bro](https://clawhub.ai/user/kenneth-bro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kenneth-bro](https://clawhub.ai/user/kenneth-bro)
 
-## Use Case: <br>
-External users and finance analysts use this skill to review recent A-share company news, announcements, research sentiment, ratings, and real-time market response for a stock. The output is a structured event analysis report for reference only, not investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an Investoday API key and stock queries may be visible to the data provider. <br>
-Mitigation: Use a protected INVESTODAY_API_KEY and avoid submitting confidential watchlists or sensitive query patterns unless the deployment's data-sharing policy allows it. <br>
-Risk: Financial news and event analysis can be mistaken for investment advice. <br>
-Mitigation: Keep outputs framed as reference analysis, retain the skill's no-investment-advice constraint, and avoid buy, sell, target-price, position-size, or short-term trading recommendations. <br>
-Risk: The skill depends on the separate investoday-finance-data helper skill for data access. <br>
-Mitigation: Install and review the helper skill before deployment, and confirm its API behavior and credential handling match the intended environment. <br>
+## Use Case:
 
+External users and finance-focused agents use this skill to analyze recent A-share company news, announcements, research sentiment, ratings changes, and live market feedback. It produces a structured report that summarizes core events, directional event sentiment, institutional validation, market response, and follow-up signals without giving investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kenneth-bro/investoday-stock-news-event-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with structured sections and supporting data references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires INVESTODAY_API_KEY and the investoday-finance-data helper skill; conclusions are reference analysis and must not include buy, sell, target-price, position-size, or short-term trading advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The workflow depends on an INVESTODAY_API_KEY and live Investoday API access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure the API key only in the intended runtime environment and review credential handling before deployment.
+
+Risk: Broad trigger terms may route queries that are better suited to intraday price movement, single-news interpretation, or analyst-report workflows.
+
+Mitigation: Review routing behavior and prefer the more specific related skill when the user asks about today's price move, a single news item, or institutional analyst views.
+
+Risk: Finance outputs can be mistaken for investment recommendations.
+
+Mitigation: Keep reports informational, preserve the skill's prohibition on buy or sell advice, and clearly state when evidence is insufficient or signals diverge.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kenneth-bro/skills/investoday-stock-news-event-analysis)
+- [Publisher profile](https://clawhub.ai/user/kenneth-bro)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown stock news-event analysis report with structured sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires INVESTODAY_API_KEY and the investoday-finance-data skill; outputs are informational and must not include buy or sell advice, target-price upside calculations, position sizing, or short-term trading recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

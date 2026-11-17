@@ -1,44 +1,54 @@
-## Description: <br>
-Append a personalized signature to mark the end of AI output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Append a personalized signature to mark the end of AI output, like saying 'Over' so the user knows the response is complete.
 
-## Publisher: <br>
-[z35th3rjj](https://clawhub.ai/user/z35th3rjj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[z35th3rjj](https://clawhub.ai/user/z35th3rjj)
 
-## Use Case: <br>
-External users and agent builders use this skill to append a configurable end-of-response signature so readers can tell when an AI response is complete. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent signatures can add unwanted text to every completed response. <br>
-Mitigation: Enable and configure the skill only when a visible end marker is desired, and keep templates concise. <br>
-Risk: Weather-based variables may involve location-based lookup behavior. <br>
-Mitigation: Avoid weather variables unless location-based lookup is acceptable for the deployment. <br>
-Risk: Local sign-off configuration could contain unexpected display text. <br>
-Mitigation: Review sign-off.json after changing styles or templates and keep it limited to harmless display text. <br>
+## Use Case:
 
+External users and developers use this skill to make an agent append a configurable sign-off at the end of completed responses, tool-result summaries, or final multi-part outputs. It helps clarify turn completion while allowing workspace-level templates and variables.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/z35th3rjj/sign-off) <br>
-- [Publisher profile](https://clawhub.ai/user/z35th3rjj) <br>
-- [Variables reference](docs/variables.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text signature appended to the agent response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use workspace configuration and preset templates to render the final sign-off text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Persistent sign-off formatting can interfere with strict JSON, code-only, checksum, command-output, or automation workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable or override the skill for workflows that require exact output, and reserve it for ordinary completed responses.
+
+Risk: Conversation-driven customization can persist changes to sign-off.json.
+
+Mitigation: Review requested signature or template changes before allowing them to persist in workspace configuration.
+
+## Reference(s):
+
+- [Variables Reference](docs/variables.md)
+- [ClawHub Skill Page](https://clawhub.ai/z35th3rjj/skills/sign-off)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain-text response suffixes with optional shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read workspace sign-off.json and append persistent response formatting when installed.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

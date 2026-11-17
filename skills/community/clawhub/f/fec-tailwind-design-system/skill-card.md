@@ -1,42 +1,54 @@
-## Description: <br>
-Guides developers designing, implementing, or reviewing Tailwind CSS design systems, including token mapping, theme extension, component variants, dark mode, responsive utilities, safelists, and maintainable class composition. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents designing and reviewing Tailwind CSS tokens, themes, component variants, utility classes, dark mode, and responsive styling.
 
-## Publisher: <br>
-[bovinphang](https://clawhub.ai/user/bovinphang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bovinphang](https://clawhub.ai/user/bovinphang)
 
-## Use Case: <br>
-Developers and frontend engineers use this skill to plan and review Tailwind CSS design-system work, including design tokens, theme configuration boundaries, reusable component variants, class governance, dark mode, and responsive validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence frontend styling decisions around tokens, variants, dark mode, and class organization. <br>
-Mitigation: Review generated design-system guidance against project accessibility, brand, component-library, and responsive requirements before applying it. <br>
-Risk: Incorrect dynamic Tailwind class guidance could break build-time scanning or omit required generated classes. <br>
-Mitigation: Prefer explicit class mappings, variant helpers, or safelists for dynamic cases and verify the resulting UI across relevant states and breakpoints. <br>
+## Use Case:
 
+Front-end developers and design-system maintainers use this skill to plan reusable Tailwind tokens, component variants, class conventions, themes, and responsive behavior.
 
-## Reference(s): <br>
-- [Tailwind system patterns](references/tailwind-system-patterns.md) <br>
-- [ClawHub release page](https://clawhub.ai/bovinphang/fec-tailwind-design-system) <br>
-- [Frontend Craft repository](https://github.com/bovinphang/frontend-craft) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Tailwind CSS configuration and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include token maps, theme extension boundaries, component variant recommendations, class reuse strategies, and dark mode or responsive review notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.5.0 (source: server release evidence, metadata.json, package.json, README.md) <br>
+Risk: Broad Tailwind-related activation may bring design-system advice into tasks that do not need it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable the skill for token, theme, variant, dark-mode, responsive, or class-governance work; review advice against the project's existing conventions.
+
+Risk: Theme or component changes may reduce contrast or miss interactive states and breakpoints.
+
+Mitigation: Check focus, disabled, invalid, selected, and loading states across light and dark themes and relevant viewport sizes.
+
+## Reference(s):
+
+- [Tailwind design-system patterns](references/tailwind-system-patterns.md)
+- [ClawHub skill release](https://clawhub.ai/bovinphang/skills/fec-tailwind-design-system)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration instructions, Code]
+
+**Output Format:** [Markdown with optional code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Token mappings, variant plans, and dark-mode and responsive validation guidance.]
+
+## Skill Version(s):
+
+2.9.0 (source: ClawHub release, README.md, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

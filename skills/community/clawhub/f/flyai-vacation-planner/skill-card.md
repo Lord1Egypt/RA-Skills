@@ -1,53 +1,61 @@
-## Description: <br>
-智能拼假日历助手，帮助用户计算最优请假方案。输入目的地、可请假天数和出发城市，自动生成拼假方案并查询机票价格。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps Chinese-language travelers compare leave-extension vacation plans, then queries FlyAI travel commands for flight, hotel, destination, and visa context.
 
-## Publisher: <br>
-[hello-ahang](https://clawhub.ai/user/hello-ahang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hello-ahang](https://clawhub.ai/user/hello-ahang)
 
-## Use Case: <br>
-External users use this skill to plan efficient vacation schedules by combining statutory holidays, weekends, and requested leave days, then compare travel windows with flight, hotel, destination, and visa information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill instructs agents to install an unpinned global FlyAI CLI package. <br>
-Mitigation: Install only from a trusted FlyAI CLI supply chain, prefer a pinned or sandboxed install, and avoid sudo unless the user explicitly accepts the risk. <br>
-Risk: The skill can use persistent travel profile data such as home city, budget, family details, travel history, and special needs. <br>
-Mitigation: Ask the user before saving profile details, and review or delete sensitive entries in memory or ~/.flyai/user-profile.md when they are no longer needed. <br>
+## Use Case:
 
+External travelers and travel-planning agents use this skill to identify efficient vacation periods around Chinese holidays, compare travel dates, and gather flight, hotel, destination, and visa information for a chosen trip.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hello-ahang/flyai-vacation-planner) <br>
-- [Publisher profile](https://clawhub.ai/user/hello-ahang) <br>
-- [AI Search reference](reference/ai-search.md) <br>
-- [Example conversations](reference/examples.md) <br>
-- [China holiday reference](reference/holidays-cn.md) <br>
-- [Keyword Search reference](reference/keyword-search.md) <br>
-- [Flight Search reference](reference/search-flight.md) <br>
-- [Hotel Search reference](reference/search-hotel.md) <br>
-- [Marriott Hotel Search reference](reference/search-marriott-hotel.md) <br>
-- [Marriott Package Search reference](reference/search-marriott-package.md) <br>
-- [POI Search reference](reference/search-poi.md) <br>
-- [Train Search reference](reference/search-train.md) <br>
-- [User profile storage reference](reference/user-profile-storage.md) <br>
-- [Visa rules reference](reference/visa-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with travel plan cards and inline FlyAI CLI commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include flight price ranges, hotel or destination suggestions, visa reminders, and follow-up travel actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Risk: The skill directs agents to install or upgrade an unpinned global FlyAI CLI package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after trusting the FlyAI CLI publisher, avoid sudo unless the system-wide risk is accepted, and review the global npm package before use.
+
+Risk: The skill may read or persist personal travel-profile data such as budget, family details, travel history, and accessibility needs.
+
+Mitigation: Treat travel profiles as personal data, ask before saving preferences, and prefer one-time use when the user does not want data persisted.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hello-ahang/skills/flyai-vacation-planner)
+- [User Profile Storage](reference/user-profile-storage.md)
+- [China Holiday Reference](reference/holidays-cn.md)
+- [Flight Search](reference/search-flight.md)
+- [Hotel Search](reference/search-hotel.md)
+- [Keyword Search](reference/keyword-search.md)
+- [POI Search](reference/search-poi.md)
+- [Train Search](reference/search-train.md)
+- [Visa Rules](reference/visa-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with structured travel plan cards and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference live FlyAI CLI results and optional saved user travel profile data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

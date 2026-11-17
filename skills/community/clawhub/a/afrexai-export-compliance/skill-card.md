@@ -1,38 +1,53 @@
-## Description: <br>
-Evaluates products, destinations, and end users against U.S. export-control and sanctions considerations, then drafts classification guidance, license-needs analysis, checklists, and compliance documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluates products, destinations, and end users against U.S. export-control and sanctions considerations, then produces classification recommendations, license guidance, red-flag checks, and documentation templates.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Compliance, legal, operations, logistics, and international sales teams use this skill to prepare preliminary export-control assessments for products, destinations, and end users. It helps structure ECCN classification, sanctions screening, license determination, red-flag review, and supporting documentation before qualified review. <br>
-
-### Deployment Geography for Use: <br>
-Global for U.S. export-control workflows <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Preliminary export-control, sanctions, ECCN, license-exception, or end-user screening results could be mistaken for final legal clearance. <br>
-Mitigation: Verify results against current official BIS, OFAC, DDTC, EAR/ITAR, Entity List, SDN List, and Country Chart sources, and obtain review from qualified export-compliance or legal personnel before acting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-export-compliance) <br>
-- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+Compliance, legal, operations, sales, logistics, and research teams use this skill for initial export-control triage before international transactions involving software, hardware, technical data, services, or research collaboration. It helps organize ECCN classification, destination and end-user screening, license determination, red-flag review, and transaction documentation.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown or plain-text assessment with checklists and documentation templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces preliminary compliance guidance, not legal clearance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global, for transactions evaluated under U.S. export-control and sanctions regimes
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Export rules and sanctions lists change frequently, so static guidance can become outdated or incomplete for a live transaction.
+
+Mitigation: Verify classifications, sanctions screening, license requirements, and party screening against current BIS, OFAC, and qualified legal or compliance sources before acting.
+
+Risk: The skill can produce compliance recommendations that may be mistaken for legal advice or final authorization to proceed.
+
+Mitigation: Use outputs as an initial checklist and require human compliance or legal review before shipment, service delivery, technology transfer, or release of technical data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-export-compliance)
+- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown assessment with checklist items and documentation templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static compliance aid; results require review against current official sources before action.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

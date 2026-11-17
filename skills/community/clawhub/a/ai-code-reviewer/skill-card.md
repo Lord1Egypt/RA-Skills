@@ -1,43 +1,58 @@
-## Description: <br>
-AI Code Reviewer helps agents review multilingual code for quality, likely bugs, security issues, performance concerns, PR descriptions, and test suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Code Reviewer helps analyze code quality, identify potential defects and security issues, generate PR descriptions, and suggest unit tests across multiple programming languages.
 
-## Publisher: <br>
-[daimingvip-a11y](https://clawhub.ai/user/daimingvip-a11y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daimingvip-a11y](https://clawhub.ai/user/daimingvip-a11y)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to inspect code changes, summarize review findings, draft PR descriptions, and propose unit tests across common languages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private repository code or secrets could be exposed during review. <br>
-Mitigation: Confirm where code is sent before use, redact secrets, and avoid sharing unnecessary repository context. <br>
-Risk: Generated fixes, PR descriptions, or tests may be incomplete or incorrect. <br>
-Mitigation: Review all generated patches, PR text, and test cases before applying or publishing them. <br>
-Risk: Optional PR automation may require a GitHub token. <br>
-Mitigation: Use a narrowly scoped token and grant only the permissions needed for the intended workflow. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to review code or diffs, identify quality, security, and performance issues, prepare PR descriptions, and draft unit test cases before merge or release.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daimingvip-a11y/ai-code-reviewer) <br>
-- [AI Code Reviewer documentation](https://clawhub.ai/docs/ai-code-reviewer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown review reports with code blocks, PR descriptions, test examples, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ranked findings, suggested fixes, test cases, checklists, and follow-up review guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Optional API and GitHub credentials may expose repository access if configured with broad privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer read-only review first, use least-privilege or short-lived tokens, and keep GitHub Actions permissions minimal.
+
+Risk: Automatic fixes or PR automation may introduce incorrect changes.
+
+Mitigation: Review generated diffs, tests, and PR content before accepting or merging them.
+
+Risk: Copied CI workflow examples may rely on mutable action references.
+
+Mitigation: Pin copied GitHub Actions workflow steps to immutable commit SHAs before CI use.
+
+## Reference(s):
+
+- [AI Code Reviewer ClawHub Skill](https://clawhub.ai/daimingvip-a11y/skills/ai-code-reviewer)
+- [AI Code Reviewer Documentation](https://clawhub.ai/docs/ai-code-reviewer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown review reports, PR descriptions, test code snippets, shell command examples, and configuration examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require code or diff input; optional PR automation depends on configured GitHub credentials.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and artifact changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

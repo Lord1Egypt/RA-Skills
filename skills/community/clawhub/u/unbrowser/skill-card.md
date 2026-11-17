@@ -1,44 +1,59 @@
-## Description: <br>
-Cheap first-pass web discovery without launching Chrome; fetch SSR pages, run bounded JavaScript, find routes, forms, and API endpoints, extract structured data, and detect bot-wall or browser-only escalation points. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cheap first-pass web discovery without launching Chrome: fetch SSR pages, run bounded JS, find routes, forms, and API endpoints, extract structured data, and detect bot-wall or browser-only escalation points.
 
-## Publisher: <br>
-[protostatis](https://clawhub.ai/user/protostatis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[protostatis](https://clawhub.ai/user/protostatis)
 
-## Use Case: <br>
-Developers and agents use Unbrowser for low-cost first-pass discovery and extraction on public or explicitly authorized web pages before escalating to a managed browser. It helps inspect routes, forms, API-like endpoints, structured data, and challenge signals while keeping authenticated actions user-confirmed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can handle sensitive session cookies during authenticated browsing. <br>
-Mitigation: Use only cookies explicitly provided by the user for the authorized host, confirm state-changing authenticated actions, clear cookies after use, and close the session before unrelated work. <br>
-Risk: Cookie-solving services can expose browser cookies if bound or routed too broadly. <br>
-Mitigation: Keep solver services on loopback, use explicit host allowlists for private or internal targets, and avoid remote cookie services unless the user intentionally trusts them. <br>
-Risk: The security review flagged a helper that can grant a nested reviewer full local access. <br>
-Mitigation: Install only in a trusted ClawHub maintenance environment and prefer the documented opt-out or non-yolo mode unless full local access is intentional. <br>
+## Use Case:
 
+Developers and agents use this skill to perform inexpensive first-pass web discovery, structured extraction, route/form/API discovery, and simple form workflows before escalating browser-only pages to a managed browser.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/protostatis/unbrowser) <br>
-- [Project homepage](https://github.com/protostatis/unbrowser) <br>
-- [RPC methods reference](https://github.com/protostatis/unbrowser#rpc-methods) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, Python snippets, and JSON-RPC examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include JSON-RPC request examples and escalation guidance; the skill itself does not directly produce persistent files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.15 (source: frontmatter and server release metadata) <br>
+Risk: The skill depends on a local browsing binary that makes outbound requests from the user's machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from trusted pyunbrowser sources and prefer pinned or reviewed package versions in sensitive environments.
+
+Risk: Cookies supplied to the tool can act as login credentials for the exporting user.
+
+Mitigation: Treat cookies as credentials, scope them to the authorized host, clear them after authenticated use, and require explicit approval before account-changing actions.
+
+Risk: Local challenge-cookie services can expose browser cookies if bound or allowed too broadly.
+
+Mitigation: Keep cookie services loopback-bound, use host allowlists for private or internal targets, and avoid public interfaces.
+
+## Reference(s):
+
+- [unbrowser project homepage](https://github.com/protostatis/unbrowser)
+- [unbrowser RPC methods](https://github.com/protostatis/unbrowser#rpc-methods)
+- [ClawHub skill page](https://clawhub.ai/protostatis/skills/unbrowser)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell, JSON-RPC, and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes escalation guidance, host-scoped cookie handling, and no declared environment-variable credentials.]
+
+## Skill Version(s):
+
+0.0.21 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

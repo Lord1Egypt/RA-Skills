@@ -1,0 +1,46 @@
+# manifest.yaml — skill 元数据规范 v1
+name: 360-web-search-cn
+owner: 360 AI 开放平台
+description: 基于360搜索引擎的实时中文网页搜索——网页智搜/AI搜索/图片搜索
+
+dependencies: []
+
+requirements:
+  tools:
+    - curl
+  env:
+    - SEARCH_360_API_KEY
+
+credentials:
+  - "360 AI 开放平台 API Key（环境变量 SEARCH_360_API_KEY）"
+
+permissions: []
+
+side_effects:
+  - network_call
+
+external_resources:
+  - search_360_api
+
+triggers:
+  - "搜索"
+  - "查一下"
+  - "联网"
+  - "最新"
+  - "帮我找"
+  - "今天"
+  - "最近"
+  - "360 搜索"
+  - "中文网页搜索"
+  - "实时信息"
+
+exposes_to_a2a: true
+
+sla:
+  p95_latency_seconds: 30
+  success_rate: 0.90
+
+notes: |
+  API 密钥从环境变量 SEARCH_360_API_KEY 读取，仅向 api.360.cn 发出 HTTPS 请求。
+  首次使用时 SKILL.md 的「凭证检查」会引导用户在 https://ai.360.com/platform 获取并配置密钥。
+  默认接口为 aiso-pro，支持网页智搜（sr/pro/max/news/km-e2）、AI 搜索、以文/以图搜图。

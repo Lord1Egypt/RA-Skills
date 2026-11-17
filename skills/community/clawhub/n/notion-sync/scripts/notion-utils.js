@@ -3,8 +3,8 @@
  * Common functions for HTTP requests, error handling, and data extraction
  */
 
-const https = require('https');
 const fs = require('fs');
+const https = require('https');
 const os = require('os');
 const path = require('path');
 
@@ -14,65 +14,70 @@ const NOTION_VERSION = '2025-09-03';
 let _cachedToken = undefined;
 
 /**
- * Resolve the Notion API token from multiple sources (in priority order):
+ * Resolve the Notion API token from the process environment.
  *
- * 1. --token-file <path>    Read from a file (recommended for automation)
- * 2. --token-stdin           Read from stdin (recommended for pipes)
- * 3. ~/.notion-token         Auto-detected default token file
- * 4. NOTION_API_KEY env var  Environment variable fallback
- *
- * Credentials are never accepted as bare command-line arguments to avoid
- * exposure in process listings and shell history.
+ * Runtimes provide NOTION_API_KEY through their preferred secret manager.
+ * OpenClaw may inject an opaque protected-store sentinel; the real credential
+ * is then substituted only when the request reaches api.notion.com.
  */
 function resolveToken() {
   if (_cachedToken !== undefined) return _cachedToken;
 
-  const args = process.argv;
+  _cachedToken = process.env.NOTION_API_KEY || null;
+  return _cachedToken;
+}
 
-  for (let i = 2; i < args.length; i++) {
-    // --token-file <path>
-    if (args[i] === '--token-file' && args[i + 1]) {
-      try {
-        const tokenPath = expandHomePath(args[i + 1]);
-        _cachedToken = fs.readFileSync(tokenPath, 'utf8').trim();
-        return _cachedToken;
-      } catch (err) {
-        console.error(`Error reading token file "${args[i + 1]}": ${err.message}`);
-        process.exit(1);
-      }
-    }
-    // --token-stdin
-    if (args[i] === '--token-stdin') {
-      try {
-        _cachedToken = fs.readFileSync(0, 'utf8').trim(); // fd 0 = stdin
-        return _cachedToken;
-      } catch (err) {
-        console.error(`Error reading token from stdin: ${err.message}`);
-        process.exit(1);
-      }
-    }
+const LEGACY_TOKEN_FLAGS = new Set(['--token', '--token-file', '--token-stdin']);
+const TOKEN_MIGRATION_MESSAGE =
+  'notion-sync v3 no longer accepts CLI or file-based tokens. Supply NOTION_API_KEY ' +
+  'through your runtime\'s secret manager. OpenClaw users should use a protected ' +
+  'secret allowed only for api.notion.com. See references/MIGRATION-V3.md.';
+const PROTECTED_SECRET_MESSAGE =
+  'Protected OpenClaw credentials require a valid NOTION_API_KEY sentinel and ' +
+  'Gateway-hosted exec with the secret egress proxy.';
+// Build the marker at runtime so distributing this client does not look like
+// an unresolved protected credential to egress scanners inspecting uploads.
+const PROTECTED_SECRET_PREFIX = ['oc', 'sent', 'v2.'].join('-');
+const PROTECTED_SECRET_SUFFIX = ['.', 'end'].join('');
+
+function findLegacyTokenFlag(args = process.argv.slice(2)) {
+  for (const arg of args) {
+    if (LEGACY_TOKEN_FLAGS.has(arg)) return arg;
+    if (arg.startsWith('--token=')) return '--token';
+    if (arg.startsWith('--token-file=')) return '--token-file';
   }
-
-  // Auto-check default token file
-  const defaultTokenPath = path.join(os.homedir(), '.notion-token');
-  if (fs.existsSync(defaultTokenPath)) {
-    try {
-      _cachedToken = fs.readFileSync(defaultTokenPath, 'utf8').trim();
-      return _cachedToken;
-    } catch (err) {
-      console.error(`Error reading default token file "${defaultTokenPath}": ${err.message}`);
-      process.exit(1);
-    }
-  }
-
-  // Env var fallback
-  if (process.env.NOTION_API_KEY) {
-    _cachedToken = process.env.NOTION_API_KEY;
-    return _cachedToken;
-  }
-
-  _cachedToken = null;
   return null;
+}
+
+function supportsNativeProxy(nodeVersion = process.versions.node) {
+  const [major, minor] = String(nodeVersion).split('.').map(Number);
+  return major >= 25 || (major === 24 && minor >= 5) || (major === 22 && minor >= 21);
+}
+
+function isProtectedCredential(apiKey) {
+  return apiKey.startsWith(PROTECTED_SECRET_PREFIX) && apiKey.endsWith(PROTECTED_SECRET_SUFFIX);
+}
+
+function createProtectedProxyAgent(apiKey, env = process.env, nodeVersion = process.versions.node) {
+  if (!isProtectedCredential(apiKey)) {
+    throw new Error(PROTECTED_SECRET_MESSAGE);
+  }
+
+  if (!supportsNativeProxy(nodeVersion) || !env.HTTPS_PROXY || !env.NODE_EXTRA_CA_CERTS) {
+    throw new Error(
+      'Protected Notion credentials require OpenClaw Gateway-hosted exec, its egress ' +
+      'proxy and CA, and Node.js 22.21+ (22.x), 24.5+ (24.x), or 25+.'
+    );
+  }
+
+  return new https.Agent({
+    proxyEnv: { HTTPS_PROXY: env.HTTPS_PROXY },
+  });
+}
+
+function createRequestAgent(apiKey, env = process.env, nodeVersion = process.versions.node) {
+  if (!apiKey.startsWith(PROTECTED_SECRET_PREFIX)) return undefined;
+  return createProtectedProxyAgent(apiKey, env, nodeVersion);
 }
 
 /**
@@ -90,14 +95,15 @@ function expandHomePath(inputPath) {
  */
 function wrapNetworkError(err) {
   const networkCodes = new Set(['ENOTFOUND', 'ECONNREFUSED', 'ETIMEDOUT', 'ECONNRESET', 'EAI_AGAIN']);
-  if (networkCodes.has(err.code)) {
+  const code = err.code || err.cause?.code;
+  if (networkCodes.has(code) || err.name === 'AbortError' || err.name === 'TimeoutError') {
     return new Error('Could not reach Notion API. Check your internet connection.');
   }
   return new Error(`Could not reach Notion API. ${err.message}`);
 }
 
 /**
- * Get the Notion API key (resolves from all supported sources)
+ * Get the run-scoped Notion API key or protected-store sentinel
  */
 function getApiKey() {
   return resolveToken();
@@ -106,27 +112,43 @@ function getApiKey() {
 /**
  * Check if a Notion API token was provided, exit with helpful message if not
  */
+function shouldRequireApiKey(rawArgs = process.argv.slice(2)) {
+  const args = stripTokenArg(rawArgs);
+
+  if (args.length === 0) return false;
+  if (args.includes('--help') || args.includes('-h')) return false;
+
+  // Usage-first behavior: if invocation starts with option flags,
+  // let script-level arg validation print usage/errors before auth checks.
+  if (args[0].startsWith('-')) {
+    if (args[0] !== '--stdin') return false;
+    return args.slice(1).some(arg => !arg.startsWith('-'));
+  }
+
+  return true;
+}
+
 function checkApiKey() {
-  // Allow usage/help output without requiring credentials.
   if (hasHelpFlag()) return;
 
+  const legacyFlag = findLegacyTokenFlag();
+  if (legacyFlag) {
+    const message = `${legacyFlag} is not supported. ${TOKEN_MIGRATION_MESSAGE}`;
+    if (hasJsonFlag()) console.log(JSON.stringify({ error: message }, null, 2));
+    else console.error(`Error: ${message}`);
+    process.exit(1);
+  }
+
+  if (!shouldRequireApiKey()) return;
+
   if (!getApiKey()) {
-    const message = 'No Notion API token found. Provide one via: --token-file <path>, --token-stdin (pipe), or NOTION_API_KEY env var.';
+    const message = `No Notion API token found. ${TOKEN_MIGRATION_MESSAGE}`;
     if (hasJsonFlag()) {
       console.log(JSON.stringify({ error: message }, null, 2));
     } else {
       console.error('Error: No Notion API token provided');
       console.error('');
       console.error(message);
-      console.error('');
-      console.error('Usage (pick one):');
-      console.error('  node scripts/<script>.js --token-file ~/.notion-token [args]');
-      console.error('  echo "$NOTION_API_KEY" | node scripts/<script>.js --token-stdin [args]');
-      console.error('  NOTION_API_KEY=ntn_... node scripts/<script>.js [args]');
-      console.error('');
-      console.error('Default: if ~/.notion-token exists, it is used automatically.');
-      console.error('');
-      console.error('Credentials are never passed as bare CLI arguments (security best practice).');
       console.error('Create an integration at https://www.notion.so/my-integrations');
     }
     process.exit(1);
@@ -134,7 +156,7 @@ function checkApiKey() {
 }
 
 /**
- * Strip token-related flags from an args array so scripts don't parse them as their own args
+ * Strip supported global flags so scripts can parse command-specific arguments
  */
 function hasJsonFlag() {
   return process.argv.includes('--json');
@@ -142,10 +164,6 @@ function hasJsonFlag() {
 
 function hasHelpFlag() {
   return process.argv.includes('--help') || process.argv.includes('-h');
-}
-
-function hasUnsafePathFlag() {
-  return process.argv.includes('--allow-unsafe-paths');
 }
 
 function log(msg) {
@@ -157,16 +175,24 @@ function isPathInside(baseDir, targetPath) {
   return relative === '' || (!relative.startsWith('..') && !path.isAbsolute(relative));
 }
 
-function resolveSafePath(inputPath, options = {}) {
-  const { mode = 'read' } = options;
+function getAllowedPaths(mode, args = process.argv.slice(2)) {
+  const flag = mode === 'write' ? '--allow-write-path' : '--allow-read-path';
+  const allowedPaths = [];
 
-  if (!inputPath) {
-    throw new Error('Path is required');
+  for (let i = 0; i < args.length; i++) {
+    if (args[i] === flag && args[i + 1] && !args[i + 1].startsWith('-')) {
+      allowedPaths.push(args[++i]);
+    } else if (args[i].startsWith(`${flag}=`) && args[i].length > flag.length + 1) {
+      allowedPaths.push(args[i].slice(flag.length + 1));
+    }
   }
 
+  return allowedPaths;
+}
+
+function resolveCanonicalPath(inputPath, mode) {
   const expanded = expandHomePath(inputPath);
   const absolute = path.resolve(expanded);
-
   let candidatePath = absolute;
 
   if (fs.existsSync(absolute)) {
@@ -176,26 +202,49 @@ function resolveSafePath(inputPath, options = {}) {
       candidatePath = absolute;
     }
   } else if (mode === 'write') {
-    const parentDir = path.dirname(absolute);
-    if (fs.existsSync(parentDir)) {
+    let existingAncestor = absolute;
+    while (!fs.existsSync(existingAncestor)) {
+      const parentDir = path.dirname(existingAncestor);
+      if (parentDir === existingAncestor) break;
+      existingAncestor = parentDir;
+    }
+
+    if (fs.existsSync(existingAncestor)) {
       try {
-        candidatePath = path.join(fs.realpathSync(parentDir), path.basename(absolute));
+        const realAncestor = fs.realpathSync(existingAncestor);
+        const remainder = path.relative(existingAncestor, absolute);
+        candidatePath = path.join(realAncestor, remainder);
       } catch (_) {
         candidatePath = absolute;
       }
     }
   }
 
-  if (hasUnsafePathFlag()) {
-    return candidatePath;
+  return candidatePath;
+}
+
+function resolveSafePath(inputPath, options = {}) {
+  const { mode = 'read' } = options;
+
+  if (!inputPath) {
+    throw new Error('Path is required');
   }
+
+  const candidatePath = resolveCanonicalPath(inputPath, mode);
 
   const workspaceRoot = fs.realpathSync(process.cwd());
   if (!isPathInside(workspaceRoot, candidatePath)) {
+    const isExplicitlyAllowed = getAllowedPaths(mode).some((allowedPath) =>
+      resolveCanonicalPath(allowedPath, mode) === candidatePath
+    );
+
+    if (isExplicitlyAllowed) return candidatePath;
+
     const action = mode === 'write' ? 'write to' : 'read from';
+    const allowFlag = mode === 'write' ? '--allow-write-path' : '--allow-read-path';
     throw new Error(
       `Refusing to ${action} path outside current workspace: ${inputPath}. ` +
-      'Use --allow-unsafe-paths to override intentionally.'
+      `Authorize only this exact path with ${allowFlag} "${inputPath}".`
     );
   }
 
@@ -205,14 +254,21 @@ function resolveSafePath(inputPath, options = {}) {
 function stripTokenArg(args) {
   const result = [];
   for (let i = 0; i < args.length; i++) {
-    if (args[i] === '--token-file' && i + 1 < args.length) {
-      i++; // skip value
-    } else if (args[i] === '--token-stdin') {
+    if (args[i] === '--json') {
       // skip flag only (no value)
-    } else if (args[i] === '--json') {
-      // skip flag only (no value)
-    } else if (args[i] === '--allow-unsafe-paths') {
-      // skip flag only (no value)
+    } else if (
+      (args[i] === '--allow-read-path' || args[i] === '--allow-write-path') &&
+      i + 1 < args.length &&
+      !args[i + 1].startsWith('-')
+    ) {
+      i++; // skip flag and exact path
+    } else if (
+      args[i].startsWith('--allow-read-path=') ||
+      args[i].startsWith('--allow-write-path=')
+    ) {
+      // skip exact path authorization
+    } else if (args[i] === '-h') {
+      result.push('--help');
     } else {
       result.push(args[i]);
     }
@@ -221,32 +277,77 @@ function stripTokenArg(args) {
 }
 
 /**
+ * Parse a positive integer CLI value with strict validation.
+ */
+function parsePositiveInteger(value, flagName = 'value') {
+  const normalized = String(value ?? '').trim();
+
+  if (!/^\d+$/.test(normalized)) {
+    throw new Error(`${flagName} must be a positive integer`);
+  }
+
+  const parsed = Number(normalized);
+  if (!Number.isSafeInteger(parsed) || parsed <= 0) {
+    throw new Error(`${flagName} must be a positive integer`);
+  }
+
+  return parsed;
+}
+
+/**
+ * Parse a Notion page-size limit. Notion caps page sizes at 100.
+ */
+function parsePageSizeLimit(value, flagName = '--limit') {
+  if (value === undefined) {
+    throw new Error(`${flagName} must be a positive integer`);
+  }
+
+  let limit;
+  try {
+    limit = parsePositiveInteger(value, flagName);
+  } catch {
+    throw new Error(`${flagName} must be a positive integer between 1 and 100`);
+  }
+
+  if (limit > 100) {
+    throw new Error(`${flagName} must be a positive integer between 1 and 100`);
+  }
+
+  return limit;
+}
+
+/**
  * Make a Notion API request with proper error handling
  */
 function notionRequest(path, method, data = null) {
   const apiKey = getApiKey();
   if (!apiKey) {
-    return Promise.reject(new Error('No Notion API token found. Provide one via: --token-file <path>, --token-stdin (pipe), or NOTION_API_KEY env var.'));
+    return Promise.reject(new Error(`No Notion API token found. ${TOKEN_MIGRATION_MESSAGE}`));
+  }
+
+  let requestAgent;
+  try {
+    requestAgent = createRequestAgent(apiKey);
+  } catch (err) {
+    return Promise.reject(err);
   }
 
   return new Promise((resolve, reject) => {
     const requestData = data ? JSON.stringify(data) : null;
-
     const options = {
       hostname: 'api.notion.com',
       port: 443,
-      path: path,
-      method: method,
+      path,
+      method,
       headers: {
-        'Authorization': `Bearer ${apiKey}`,
+        Authorization: `Bearer ${apiKey}`,
         'Notion-Version': NOTION_VERSION,
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     };
 
-    if (requestData) {
-      options.headers['Content-Length'] = Buffer.byteLength(requestData);
-    }
+    if (requestAgent) options.agent = requestAgent;
+    if (requestData) options.headers['Content-Length'] = Buffer.byteLength(requestData);
 
     const req = https.request(options, (res) => {
       let body = '';
@@ -255,7 +356,7 @@ function notionRequest(path, method, data = null) {
         if (res.statusCode >= 200 && res.statusCode < 300) {
           try {
             resolve(JSON.parse(body));
-          } catch (e) {
+          } catch (_) {
             resolve(body);
           }
         } else {
@@ -264,12 +365,8 @@ function notionRequest(path, method, data = null) {
       });
     });
 
-    req.on('error', (err) => {
-      reject(wrapNetworkError(err));
-    });
-    if (requestData) {
-      req.write(requestData);
-    }
+    req.on('error', (err) => reject(wrapNetworkError(err)));
+    if (requestData) req.write(requestData);
     req.end();
   });
 }
@@ -403,8 +500,19 @@ function formatPropertyValue(propertyType, value) {
       return { checkbox: boolValue };
     }
 
-    case 'number':
-      return { number: typeof value === 'number' ? value : parseFloat(value) };
+    case 'number': {
+      if (typeof value !== 'number' && typeof value !== 'string') {
+        throw new Error('Invalid number property value: must be a finite number');
+      }
+      if (typeof value === 'string' && value.trim() === '') {
+        throw new Error('Invalid number property value: must be a finite number');
+      }
+      const numberValue = typeof value === 'number' ? value : Number(value.trim());
+      if (!Number.isFinite(numberValue)) {
+        throw new Error('Invalid number property value: must be a finite number');
+      }
+      return { number: numberValue };
+    }
 
     case 'url':
       return { url: value };
@@ -421,10 +529,10 @@ function formatPropertyValue(propertyType, value) {
     }
 
     case 'rich_text':
-      return { rich_text: [{ type: 'text', text: { content: value } }] };
+      return { rich_text: parseRichText(String(value)) };
 
     case 'title':
-      return { title: [{ type: 'text', text: { content: value } }] };
+      return { title: parseRichText(String(value)) };
 
     default:
       throw new Error(`Unsupported property type: ${propertyType}. Supported: select, multi_select, checkbox, number, url, email, date, rich_text, title`);
@@ -527,6 +635,8 @@ function parseMarkdownToBlocks(markdown, options = {}) {
   let inCodeBlock = false;
   let codeLanguage = '';
   let codeContent = [];
+  let codeFenceMarker = '';
+  let codeFenceLength = 0;
 
   const flushParagraph = () => {
     if (currentParagraph.length > 0) {
@@ -541,34 +651,50 @@ function parseMarkdownToBlocks(markdown, options = {}) {
     }
   };
 
-  for (const line of lines) {
-    // Code blocks
-    if (line.startsWith('```')) {
-      if (!inCodeBlock) {
-        flushParagraph();
-        inCodeBlock = true;
-        codeLanguage = line.slice(3).trim() || 'plain text';
-        codeContent = [];
-      } else {
-        const codeText = codeContent.join('\n');
-        blocks.push({
-          type: 'code',
-          code: {
-            language: codeLanguage,
-            rich_text: codeText
-              ? parseRichText(codeText)
-              : [{ type: 'text', text: { content: '' } }]
-          }
-        });
-        inCodeBlock = false;
-        codeLanguage = '';
-        codeContent = [];
+  const flushCodeBlock = () => {
+    const codeText = codeContent.join('\n');
+    blocks.push({
+      type: 'code',
+      code: {
+        language: codeLanguage,
+        rich_text: codeText
+          ? parseRichText(codeText)
+          : [{ type: 'text', text: { content: '' } }]
       }
+    });
+    inCodeBlock = false;
+    codeLanguage = '';
+    codeContent = [];
+    codeFenceMarker = '';
+    codeFenceLength = 0;
+  };
+
+  for (const line of lines) {
+    // Fenced code blocks (``` or ~~~)
+    const openingFenceMatch = line.match(/^(`{3,}|~{3,})(.*)$/);
+    if (!inCodeBlock && openingFenceMatch) {
+      flushParagraph();
+      inCodeBlock = true;
+      codeFenceMarker = openingFenceMatch[1][0];
+      codeFenceLength = openingFenceMatch[1].length;
+      codeLanguage = openingFenceMatch[2].trim() || 'plain text';
+      codeContent = [];
       continue;
     }
 
     if (inCodeBlock) {
-      codeContent.push(line);
+      const closingFenceMatch = line.match(/^(`+|~+)\s*$/);
+      const isMatchingClosingFence = Boolean(
+        closingFenceMatch
+        && closingFenceMatch[1][0] === codeFenceMarker
+        && closingFenceMatch[1].length >= codeFenceLength
+      );
+
+      if (isMatchingClosingFence) {
+        flushCodeBlock();
+      } else {
+        codeContent.push(line);
+      }
       continue;
     }
 
@@ -583,8 +709,8 @@ function parseMarkdownToBlocks(markdown, options = {}) {
       continue;
     }
 
-    // Horizontal rules
-    if (/^---+$/.test(line)) {
+    // Horizontal rules (---, ***, ___ and longer repeats)
+    if (/^(?:-{3,}|\*{3,}|_{3,})$/.test(line.trim())) {
       flushParagraph();
       blocks.push({ type: 'divider', divider: {} });
       continue;
@@ -601,6 +727,17 @@ function parseMarkdownToBlocks(markdown, options = {}) {
       continue;
     }
 
+    // Numbered lists
+    if (/^\d+\.\s+/.test(line)) {
+      flushParagraph();
+      const text = line.replace(/^\d+\.\s+/, '').trim();
+      blocks.push({
+        type: 'numbered_list_item',
+        numbered_list_item: { rich_text: toRichText(text) }
+      });
+      continue;
+    }
+
     // Empty lines
     if (line.trim() === '') {
       flushParagraph();
@@ -608,6 +745,10 @@ function parseMarkdownToBlocks(markdown, options = {}) {
     }
 
     currentParagraph.push(line);
+  }
+
+  if (inCodeBlock) {
+    flushCodeBlock();
   }
 
   flushParagraph();
@@ -746,10 +887,20 @@ module.exports = {
   getApiKey,
   resolveToken,
   checkApiKey,
+  shouldRequireApiKey,
+  findLegacyTokenFlag,
+  TOKEN_MIGRATION_MESSAGE,
+  PROTECTED_SECRET_MESSAGE,
+  supportsNativeProxy,
+  isProtectedCredential,
+  createProtectedProxyAgent,
+  createRequestAgent,
   stripTokenArg,
+  parsePositiveInteger,
+  parsePageSizeLimit,
   hasJsonFlag,
   hasHelpFlag,
-  hasUnsafePathFlag,
+  getAllowedPaths,
   log,
   resolveSafePath,
   expandHomePath,

@@ -1,47 +1,62 @@
-## Description: <br>
-Publish AI-powered web pages with end-to-end encryption on yourbro.ai. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish AI-powered web pages with end-to-end encryption on yourbro.ai.
 
-## Publisher: <br>
-[mehanig](https://clawhub.ai/user/mehanig) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mehanig](https://clawhub.ai/user/mehanig)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to create, configure, and publish encrypted web page directories through a local yourbro-agent and the yourbro.ai relay. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a local yourbro-agent binary and a YOURBRO_TOKEN credential. <br>
-Mitigation: Install only when you trust yourbro.ai and keep the token scoped and protected in the agent environment. <br>
-Risk: Page visibility settings can make content public or share it with specific accounts. <br>
-Mitigation: Review page.json before sharing links and avoid setting sensitive pages to public. <br>
-Risk: Deletion commands under /data/yourbro/pages/ can permanently remove local page content. <br>
-Mitigation: Confirm the target slug and keep backups before running delete commands. <br>
+## Use Case:
 
+Developers and external users use this skill to publish, update, share, and manage multi-file web pages through local page directories served by a paired yourbro-agent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mehanig/yourbro) <br>
-- [yourbro.ai homepage](https://yourbro.ai) <br>
-- [yourbro-agent macOS Apple Silicon download](https://yourbro.ai/releases/latest/yourbro-agent-darwin-arm64) <br>
-- [yourbro-agent macOS Intel download](https://yourbro.ai/releases/latest/yourbro-agent-darwin-amd64) <br>
-- [yourbro-agent Linux x86_64 download](https://yourbro.ai/releases/latest/yourbro-agent-linux-amd64) <br>
-- [yourbro-agent Linux ARM64 download](https://yourbro.ai/releases/latest/yourbro-agent-linux-arm64) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration, and HTML/CSS/JavaScript file content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local page files under /data/yourbro/pages/ and page metadata such as page.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.11 (source: server release evidence) <br>
+Risk: The skill asks users to install and run a native yourbro-agent binary that can change over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use pinned agent versions with published checksums or signatures before running the binary.
+
+Risk: The local agent requires access to a yourbro token, local page files, and a persistent SQLite database.
+
+Mitigation: Run the agent with only the environment variables and filesystem access needed for the intended page directories.
+
+Risk: The release security verdict is suspicious because the native agent is unverified.
+
+Mitigation: Review the service design and binary source before installation, especially for sensitive or commercial page content.
+
+## Reference(s):
+
+- [yourbro homepage](https://yourbro.ai)
+- [macOS Apple Silicon agent download](https://yourbro.ai/releases/latest/yourbro-agent-darwin-arm64)
+- [macOS Intel agent download](https://yourbro.ai/releases/latest/yourbro-agent-darwin-amd64)
+- [Linux x86_64 agent download](https://yourbro.ai/releases/latest/yourbro-agent-linux-amd64)
+- [Linux ARM64 agent download](https://yourbro.ai/releases/latest/yourbro-agent-linux-arm64)
+- [ClawHub skill page](https://clawhub.ai/mehanig/skills/yourbro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline JSON, shell, HTML, CSS, and JavaScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local page files, optional page.json metadata, and shareable page URLs for a running yourbro-agent.]
+
+## Skill Version(s):
+
+0.0.11 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

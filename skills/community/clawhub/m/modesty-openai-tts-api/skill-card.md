@@ -1,43 +1,62 @@
-## Description: <br>
-USE THIS for openai tts api. OpenAI text-to-speech. 0% markup, 648+ APIs, one key. Powered by SkillBoss. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agent guidance for using SkillBoss to call OpenAI text-to-speech through an OpenAI-compatible API with a single SkillBoss API key.
 
-## Publisher: <br>
-[modestyrichards](https://clawhub.ai/user/modestyrichards) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[modestyrichards](https://clawhub.ai/user/modestyrichards)
 
-## Use Case: <br>
-Developers and agents use this skill to set up SkillBoss API access and call OpenAI text-to-speech through an OpenAI-compatible endpoint with a single API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is named for OpenAI TTS, but setup may enable access to a broader paid SkillBoss API gateway. <br>
-Mitigation: Review the remote SkillBoss setup content before installation and require explicit approval before using non-TTS models or APIs. <br>
-Risk: The skill requires a sensitive SkillBoss API key and can make paid API calls. <br>
-Mitigation: Use a restricted or low-limit key where available, configure spending controls, and avoid exposing SKILLBOSS_API_KEY in logs or shared transcripts. <br>
+## Use Case:
 
+Developers and agents use this skill to configure a SkillBoss API key and call the openai/tts-1 text-to-speech model through SkillBoss for text-to-speech requests.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/modestyrichards/modesty-openai-tts-api) <br>
-- [SkillBoss console](https://skillboss.co/console) <br>
-- [SkillBoss API endpoint](https://api.skillboss.co/v1/run) <br>
-- [SkillBoss products](https://skillboss.co/products) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash, curl, and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and may initiate paid API calls through SkillBoss.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and frontmatter) <br>
+Risk: TTS prompts and the SkillBoss API key are routed through SkillBoss.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review SkillBoss terms and privacy posture before use, and avoid sensitive or regulated text unless that review is complete.
+
+Risk: The remote setup instruction is unpinned and can enable broad non-TTS SkillBoss capabilities.
+
+Mitigation: Inspect setup instructions before allowing an agent to follow them, and constrain use to the intended text-to-speech workflow.
+
+Risk: The configured SkillBoss access can expose many unrelated APIs beyond text-to-speech.
+
+Mitigation: Use the key only in environments intended for SkillBoss access, monitor usage, and revoke or rotate the key if scope changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/modestyrichards/skills/modesty-openai-tts-api)
+- [Publisher profile](https://clawhub.ai/user/modestyrichards)
+- [SkillBoss setup instructions](https://skillboss.co/skill.md)
+- [SkillBoss console](https://skillboss.co/console)
+- [SkillBoss products](https://skillboss.co/products)
+- [SkillBoss API endpoint](https://api.skillboss.co/v1/run)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell and Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY for API calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

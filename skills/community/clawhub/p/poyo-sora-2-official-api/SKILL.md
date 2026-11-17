@@ -1,10 +1,16 @@
 ---
 name: poyo-sora-2-official-api
 description: Sora 2 Official video generation on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `sora-2-official`, text-to-video, optional single-image guided video, 4/8/12/16/20 second duration, vertical or landscape video, polling, and webhooks.
-metadata: {"openclaw":{"homepage":"https://docs.poyo.ai/api-manual/video-series/sora-2-official","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
+metadata: {"openclaw":{"homepage":"https://poyo.ai/models/sora-2-official","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo Sora 2 Official Video Generation
+
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/sora-2-official>
+- API docs: <https://docs.poyo.ai/api-manual/video-series/sora-2-official>
+- API key page: <https://poyo.ai/dashboard/api-key>
 
 Use this skill for `sora-2-official` video jobs on PoYo. It helps agents prepare text-to-video and optional single-image guided video payloads, submit async tasks, and explain polling or webhook follow-up.
 

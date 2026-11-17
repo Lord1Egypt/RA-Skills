@@ -1,43 +1,58 @@
-## Description: <br>
-Scrapes the latest AI news from AI news websites, supports categorization and tagging, and helps with content aggregation and public-opinion monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+News Scraper Xiaobai collects recent AI news from AIBase and helps agents organize items with categories, tags, links, summaries, and source metadata.
 
-## Publisher: <br>
-[jiahuishao](https://clawhub.ai/user/jiahuishao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiahuishao](https://clawhub.ai/user/jiahuishao)
 
-## Use Case: <br>
-Developers and agents use this skill to collect recent AI news from AIBase, return structured news records, and prepare categorized Markdown summaries for aggregation or monitoring workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scraper performs ordinary network requests to public news pages and writes crawl results to local files. <br>
-Mitigation: Run it only in a Python environment where public-news scraping and local News directory writes are acceptable. <br>
-Risk: Dependency hygiene should be improved, including an unused openpyxl dependency and unpinned dependency ranges. <br>
-Mitigation: Pin or lock dependencies before use and remove unused packages when deploying. <br>
-Risk: Scraped article text may contain instructions or content that should not control the agent using the results. <br>
-Mitigation: Treat scraped article content as untrusted data and ignore instructions embedded in article text. <br>
+## Use Case:
 
+Developers and agents use this skill to collect recent AI news from AIBase, return structured news records, and prepare concise categorized Markdown summaries for content aggregation or monitoring workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiahuishao/news-scraper-xiaobai) <br>
-- [AIBase news source](https://www.aibase.com/zh/news) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell/Python examples and JSON news records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write a local News/news_latest.json file and print summarized crawl results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Article URL handling could fetch unintended internal or external URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict article fetches to the intended AIBase HTTPS host and validate redirects before enabling the crawler in environments with private network access.
+
+Risk: Fetched article text is untrusted web content that may influence downstream agent summaries.
+
+Mitigation: Treat scraped article content as untrusted data and review generated summaries before reuse or publication.
+
+Risk: Runtime dependencies are specified with lower bounds rather than pinned versions.
+
+Mitigation: Pin and review dependencies before deploying this skill in production or sensitive environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiahuishao/skills/news-scraper-xiaobai)
+- [AIBase news index](https://www.aibase.com/zh/news)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands, Python snippets, and JSON news records.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can save a JSON file containing crawl time, total count, titles, URLs, publish times, sources, keywords, summaries, and article content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

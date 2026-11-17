@@ -1,41 +1,58 @@
-## Description: <br>
-Multi-platform crypto auto-trading strategy bundle for OKX, Binance, Bybit, and Bitget, with five strategies, deployment guidance, risk controls, and Telegram alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an agent-facing crypto auto-trading strategy bundle with five trading strategies, deployment guidance, configurable risk controls, and Telegram alerting for exchanges such as OKX, Binance, Bybit, and Bitget.
 
-## Publisher: <br>
-[sg345662365-oss](https://clawhub.ai/user/sg345662365-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sg345662365-oss](https://clawhub.ai/user/sg345662365-oss)
 
-## Use Case: <br>
-Developers and traders use this skill to generate or follow crypto trading automation guidance, including Node.js/CCXT setup steps, exchange configuration, strategy selection, risk-control settings, and alerting. It is intended for users who understand exchange API credentials and the financial risk of live crypto trading. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live crypto trading can cause financial loss if strategies or settings behave unexpectedly. <br>
-Mitigation: Use paper or sandbox mode first, set small position and loss limits, and only enable live trading after reviewing the strategy behavior. <br>
-Risk: Exchange API credentials may allow account actions if they are over-permissioned or exposed. <br>
-Mitigation: Create exchange API keys with withdrawals disabled, restrict IP access when supported, and store credentials outside shared prompts or public files. <br>
+## Use Case:
 
+External developers and trading automation users use this skill to have an agent explain, configure, and run crypto trading strategy code, exchange setup steps, risk controls, and alerting guidance. It is relevant for users evaluating automated strategies across supported crypto exchanges.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sg345662365-oss/crypto-auto-trader) <br>
-- [Publisher Profile](https://clawhub.ai/user/sg345662365-oss) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with code snippets and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference exchange API key configuration, risk limits, live trading mode, Telegram alert setup, and Node.js/CCXT deployment steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: The skill involves configuring exchange API keys for an automated trading bot.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use exchange API keys with withdrawals disabled, minimal trading permissions, IP allowlisting where supported, and subaccounts isolated from primary funds.
+
+Risk: The skill can support long-running automated trading against live crypto markets.
+
+Mitigation: Test with paper trading or small capped balances first, define clear start and stop controls, and avoid running it on funds the user cannot afford to lose.
+
+Risk: Dependency and runtime setup guidance is not enough on its own for live deployment.
+
+Mitigation: Review dependency versions and lockfiles before execution, keep secrets out of tracked configuration files, and perform a manual security review before using real credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sg345662365-oss/skills/crypto-auto-trader)
+- [ClawHub publisher profile](https://clawhub.ai/user/sg345662365-oss)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include trading bot configuration steps, exchange API key handling guidance, dependency installation commands, PM2 process commands, and risk-control recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

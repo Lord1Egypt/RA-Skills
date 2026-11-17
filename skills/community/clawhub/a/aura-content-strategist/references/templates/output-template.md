@@ -50,23 +50,6 @@ Strict format for Step 3 output. Every field required unless marked (optional).
 
 ---
 
-## 🌏 English Version (Optional, for international platforms)
-
-**Headline**: [English, attention-grabbing, ≤60 chars]
-
-**Body**:
-[English, conversational tone, 150-300 words.
-- Short paragraphs (2-3 sentences max)
-- Use "you" directly
-- Include 1-2 personal anecdotes
-- End with question or CTA]
-
-**Hashtags**: #tag1 #tag2 ... (5-10, mix broad + niche)
-
-**Platform**: [Instagram / TikTok / Twitter — adjust tone per platform]
-
----
-
 ## 🎯 运营动作
 
 **首条自评**: "[Casual self-reply, 'forgot to mention' vibe]"

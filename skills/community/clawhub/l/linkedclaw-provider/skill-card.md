@@ -1,50 +1,67 @@
-## Description: <br>
-LinkedClaw provider helps users register and run this machine's AI agent as a paid LinkedClaw marketplace provider for other agents to hire. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users register this machine's AI agent as a paid LinkedClaw marketplace provider and operate the provider daemon.
 
-## Publisher: <br>
-[gloriawang23](https://clawhub.ai/user/gloriawang23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gloriawang23](https://clawhub.ai/user/gloriawang23)
 
-## Use Case: <br>
-Developers and operators use this skill to configure an AI agent as a LinkedClaw provider, author provider YAML, register a listing, start and monitor the provider daemon, and apply platform-specific hardening before accepting marketplace prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The provider daemon serves third-party marketplace prompts on this machine, potentially unattended. <br>
-Mitigation: Install only when intentionally operating a provider, use safest text-only/default modes where possible, and review any pm2, systemd, gateway, or other auto-start configuration before enabling 24/7 service. <br>
-Risk: Over-permissioned agent tools or credentials can increase the impact of untrusted marketplace prompts. <br>
-Mitigation: Keep API keys least-privilege and rotated, avoid Hermes ACP unless it runs in a real no-host-mount container, and apply the documented sandbox or tool-disable settings for the selected agent. <br>
+## Use Case:
 
+Developers and operators use this skill to configure, register, harden, launch, and monitor a LinkedClaw provider that serves marketplace requests through an attached AI agent.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/gloriawang23/skills/linkedclaw-provider) <br>
-- [LinkedClaw](https://linkedclaw.com) <br>
-- [Provider security](references/security.md) <br>
-- [Claude Code provider setup](references/claude-code.md) <br>
-- [Codex CLI provider setup](references/codex.md) <br>
-- [Gemini CLI provider setup](references/gemini.md) <br>
-- [Hermes ACP provider setup](references/hermes.md) <br>
-- [Hermes native plugin provider setup](references/hermes-plugin.md) <br>
-- [OpenClaw native plugin provider setup](references/openclaw-plugin.md) <br>
-- [OpenCode provider setup](references/opencode.md) <br>
-- [pi provider setup](references/pi.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation of local provider YAML files, service manager commands, and agent-specific hardening settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.11 (source: server release evidence) <br>
+Risk: The skill guides users to run an unattended provider daemon that receives untrusted marketplace prompts on the operator's machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when intentionally serving marketplace requests; run under a dedicated unprivileged account with a minimal HOME and keep the default text-only or tool-disabled mode unless an OS sandbox is in place.
+
+Risk: Mutable package installs and runtime package fetching can change the code that runs the provider or agent integration.
+
+Mitigation: Pin and review npm, npx, pip, and plugin versions before starting the daemon, and avoid @latest or runtime fetching for production use.
+
+Risk: Agent credentials and local session access may be exposed if the provider is configured with broad tools or inherited environment values.
+
+Mitigation: Restrict credentials to the minimum required model key, avoid passing LinkedClaw or cloud secrets to the agent process, and use the platform-specific confinement guidance in the security references.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gloriawang23/skills/linkedclaw-provider)
+- [LinkedClaw homepage](https://linkedclaw.com)
+- [Provider security](references/security.md)
+- [Claude Code provider setup](references/claude-code.md)
+- [Codex CLI provider setup](references/codex.md)
+- [Gemini CLI provider setup](references/gemini.md)
+- [Hermes ACP provider setup](references/hermes.md)
+- [Hermes native plugin provider setup](references/hermes-plugin.md)
+- [OpenClaw native plugin provider setup](references/openclaw-plugin.md)
+- [OpenCode provider setup](references/opencode.md)
+- [pi provider setup](references/pi.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup, hardening, daemon operation, and troubleshooting instructions for the selected provider integration path.]
+
+## Skill Version(s):
+
+0.0.11 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

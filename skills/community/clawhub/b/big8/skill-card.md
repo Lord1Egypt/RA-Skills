@@ -1,42 +1,63 @@
-## Description: <br>
-Big8 is an entertainment-focused Chinese metaphysics assistant for BaZi readings, face reading, feng shui image analysis, zodiac horoscopes, I Ching-style daily divination, and Chinese almanac guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Big8 is a Chinese metaphysics and fortune-telling assistant for BaZi charts, face reading, feng shui photo review, horoscopes, I Ching divination, and daily almanac guidance.
 
-## Publisher: <br>
-[kobenfang](https://clawhub.ai/user/kobenfang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kobenfang](https://clawhub.ai/user/kobenfang)
 
-## Use Case: <br>
-Chinese-speaking users use this skill for entertainment-oriented fortune-telling, feng shui, face reading, horoscope, BaZi, divination, and almanac responses. Agents can route text, birth dates, and optional face or room images into the appropriate mode, call the bundled Python helper for structured calculations, and present concise Chinese readings and suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to submit face photos or room images for analysis, and the security summary flags unclear privacy claims about image processing and retention. <br>
-Mitigation: Use it only when the runtime clearly explains where images are processed and whether they are retained; avoid uploading images of other people without consent. <br>
-Risk: Face reading, feng shui, fortune-telling, zodiac, divination, and almanac outputs may be mistaken for authoritative personal guidance. <br>
-Mitigation: Present readings as entertainment and cultural reference only, and do not rely on them for medical, legal, financial, or major life decisions. <br>
-Risk: Birth dates, face images, and room photos can reveal sensitive personal information. <br>
-Mitigation: Minimize submitted personal details, prefer non-identifying images where possible, and remove or redact unnecessary sensitive context before use. <br>
+## Use Case:
 
+External users use Big8 as an entertainment-oriented Chinese metaphysics assistant to generate BaZi readings, feng shui layout suggestions, face-reading commentary, horoscope or zodiac guidance, I Ching-style divination, and daily almanac notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kobenfang/big8) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown-formatted Chinese responses, with JSON returned by helper commands for BaZi, zodiac, divination, and almanac calculations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use user-provided birth date, time, optional gender, timezone or country, text questions, and optional face or room images; readings should remain entertainment-oriented and avoid medical, legal, or financial advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The skill may handle sensitive birth dates, selfies, and room photos.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only necessary personal inputs, avoid uploading other people's photos, and rely on the stated discard-after-analysis behavior.
+
+Risk: Fortune-telling, feng shui, face-reading, and horoscope outputs may be mistaken for life, medical, legal, or financial advice.
+
+Mitigation: Treat outputs as entertainment and do not use them as the basis for medical, legal, financial, or major life decisions.
+
+Risk: Running Python helper commands may require installing dependencies.
+
+Mitigation: Install dependencies in a pinned virtual environment before running helper scripts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kobenfang/skills/big8)
+- [Skill instructions](artifact/SKILL.md)
+- [Big8 product plan](artifact/big8-plan.md)
+- [BaZi knowledge reference](artifact/scripts/knowledge/bazi.yaml)
+- [Feng shui knowledge reference](artifact/scripts/knowledge/fengshui.yaml)
+- [Face-reading knowledge reference](artifact/scripts/knowledge/face.yaml)
+- [Zodiac knowledge reference](artifact/scripts/knowledge/zodiac.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style Chinese responses with occasional JSON from local helper commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Entertainment guidance only; photo and birth-date inputs may be sensitive.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

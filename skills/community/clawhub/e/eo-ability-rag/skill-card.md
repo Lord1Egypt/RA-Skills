@@ -1,39 +1,49 @@
-## Description: <br>
-RAG knowledge sharing capability for sharing expert experience and best practices across projects with semantic search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a RAG knowledge-sharing capability for indexing, searching, sharing, and reusing expert experience and best practices across projects.
 
-## Publisher: <br>
-[467718584](https://clawhub.ai/user/467718584) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[467718584](https://clawhub.ai/user/467718584)
 
-## Use Case: <br>
-Developers and agent users use this skill to index, search, share, and reuse project knowledge, expert experience, and best practices across EO workflows or standalone keyword search. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may store or reuse project knowledge across projects or sessions without clear privacy, consent, deletion, or search-scoping controls. <br>
-Mitigation: Index only knowledge intended for reuse, avoid secrets and confidential or regulated data, and verify storage location, search access, deletion path, and sharing scope before use. <br>
+## Use Case:
 
+Developers and EO workflow users use this skill to make project knowledge reusable by indexing expert experience, searching it semantically or by keyword, and sharing relevant sources across projects.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/467718584/eo-ability-rag) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/467718584) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Guidance] <br>
-**Output Format:** [Markdown with TypeScript interface examples and command-style snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces retrieved knowledge entries, relevance scores, source labels, and total indexed counts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Automatic indexing and cross-project knowledge sharing can create persistent knowledge stores without clear user control or privacy boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing in workspaces with confidential, customer, personal, regulated, or secret data; require opt-in indexing, project isolation, exclusions, retention limits, and deletion controls before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/467718584/skills/eo-ability-rag)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with command examples and TypeScript interface snippets; runtime results are structured entries with relevance scores, sources, and index counts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports index, search, share, learn, and stats actions; with EO plugins it may use persistent vector indexes, and without plugins it falls back to keyword search.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

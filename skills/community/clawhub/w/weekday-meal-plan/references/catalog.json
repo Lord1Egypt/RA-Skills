@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "price_basis": "fictional Assignment 3 planning fixtures; not live retail prices",
+  "currency": "USD",
+  "quantity_unit": "planning portion; not a nutritional serving claim",
+  "ingredients": {
+    "rice": { "units_per_pack": 8, "price_cents": 240 },
+    "chickpeas": { "units_per_pack": 2, "price_cents": 120 },
+    "lentils": { "units_per_pack": 4, "price_cents": 200 },
+    "pasta": { "units_per_pack": 4, "price_cents": 180 },
+    "tomato": { "units_per_pack": 2, "price_cents": 150 },
+    "frozen_vegetables": { "units_per_pack": 4, "price_cents": 240 },
+    "eggs": { "units_per_pack": 6, "price_cents": 300 },
+    "chicken": { "units_per_pack": 4, "price_cents": 500 },
+    "tortillas": { "units_per_pack": 6, "price_cents": 240 }
+  },
+  "recipes": [
+    { "id": "chickpea-rice-bowl", "name": "Chickpea rice bowl", "meal_style": "vegan", "active_minutes": 20,
+      "units_per_serving": { "rice": 1, "chickpeas": 1, "frozen_vegetables": 1 } },
+    { "id": "lentil-tomato-soup", "name": "Lentil tomato soup", "meal_style": "vegan", "active_minutes": 25,
+      "units_per_serving": { "lentils": 1, "tomato": 1, "frozen_vegetables": 1 } },
+    { "id": "tomato-chickpea-pasta", "name": "Tomato chickpea pasta", "meal_style": "vegan", "active_minutes": 20,
+      "units_per_serving": { "pasta": 1, "tomato": 1, "chickpeas": 0.5 } },
+    { "id": "egg-vegetable-rice", "name": "Egg and vegetable rice", "meal_style": "vegetarian", "active_minutes": 15,
+      "units_per_serving": { "rice": 1, "eggs": 2, "frozen_vegetables": 1 } },
+    { "id": "chicken-vegetable-wrap", "name": "Chicken vegetable wrap", "meal_style": "omnivore", "active_minutes": 25,
+      "units_per_serving": { "tortillas": 2, "chicken": 1, "frozen_vegetables": 1 } },
+    { "id": "chickpea-tomato-wrap", "name": "Chickpea tomato wrap", "meal_style": "vegan", "active_minutes": 15,
+      "units_per_serving": { "tortillas": 2, "chickpeas": 1, "tomato": 0.5 } }
+  ]
+}

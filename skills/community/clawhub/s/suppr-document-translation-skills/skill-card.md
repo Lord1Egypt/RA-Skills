@@ -1,39 +1,53 @@
-## Description: <br>
-超能文献（Suppr）文档翻译 API。当用户需要翻译文档（Word、Excel、PowerPoint、PDF、TXT、HTML）、查询翻译状态或管理翻译任务时激活。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+超能文献（Suppr）文档翻译 API。当用户需要翻译文档（Word、Excel、PowerPoint、PDF、TXT、HTML）、查询翻译状态或管理翻译任务时激活。
 
-## Publisher: <br>
-[zjg678](https://clawhub.ai/user/zjg678) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zjg678](https://clawhub.ai/user/zjg678)
 
-## Use Case: <br>
-Developers and end users use this skill to create Suppr document translation tasks, check task status, list or stop tasks, and retrieve translated files across supported office, PDF, text, and HTML formats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documents or document URLs submitted through this workflow are sent to Suppr's external translation service. <br>
-Mitigation: Submit only files approved for Suppr processing, and review the provider's retention, logging, and deletion practices before using confidential, regulated, or proprietary content. <br>
+## Use Case:
 
+External developers and agent operators use this skill to submit documents or document URLs to Suppr for AI translation, then query task status, stop tasks, and retrieve translated results.
 
-## Reference(s): <br>
-- [Suppr API documentation](https://openapi.suppr.wilddata.cn/introduction.html) <br>
-- [ClawHub skill page](https://clawhub.ai/zjg678/suppr-document-translation-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with API endpoint descriptions, JSON examples, and curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Suppr API key supplied as a bearer token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Documents, document URLs, and task metadata are sent to Suppr's API for translation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit confidential files, internal URLs, or URLs containing access tokens unless approved and covered by the provider's retention and privacy terms.
+
+Risk: The skill uses bearer-token authentication for the Suppr API.
+
+Mitigation: Keep API keys scoped, protected, and out of shared prompts, logs, and generated examples.
+
+## Reference(s):
+
+- [Suppr API documentation](https://openapi.suppr.wilddata.cn/introduction.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with API endpoint descriptions, JSON examples, and curl commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference user-provided documents, document URLs, language codes, task IDs, and bearer API keys.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

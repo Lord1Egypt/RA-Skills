@@ -1,0 +1,4 @@
+interface:
+  display_name: "CodeSift"
+  short_description: "Review systemic defects, unused code and ineffective gates"
+  default_prompt: "Use $codesift to investigate the requested scope, list evidence-backed findings and concrete fixes, and wait for my approval before modifying files."

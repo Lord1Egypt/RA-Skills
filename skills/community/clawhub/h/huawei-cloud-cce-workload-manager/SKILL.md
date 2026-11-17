@@ -114,7 +114,7 @@ export HUAWEI_CLOUD_REGION=cn-north-4
 
 ### 1. Kubeconfig Acquisition
 
-See [Task: Kubeconfig Acquisition](references/task-kubeconfig-acquisition.md) for detailed workflows.
+See [Task: Kubeconfig Acquisition](references/taREDACTED-SECRET.md) for detailed workflows.
 
 ```bash
 # CCE cluster kubeconfig (duration in days, 1-1827)
@@ -143,7 +143,7 @@ kubectl --kubeconfig=~/.kube/cce-kubeconfig.yaml cluster-info
 
 ### 2. Workload Management (Deployment/StatefulSet/DaemonSet)
 
-See [Task: Deployment Management](references/task-deployment-management.md) and [Task: StatefulSet/DaemonSet Management](references/task-statefulset-daemonset-management.md) for detailed workflows.
+See [Task: Deployment Management](references/taREDACTED-SECRET.md) and [Task: StatefulSet/DaemonSet Management](references/taREDACTED-SECRET.md) for detailed workflows.
 
 All commands use `kubectl --kubeconfig=<kubeconfig-file> -n <namespace>` pattern.
 
@@ -427,10 +427,10 @@ kubectl --kubeconfig=~/.kube/cce-kubeconfig.yaml get hpa -n production
 
 | Document                                                      | Description                              |
 | ------------------------------------------------------------- | ---------------------------------------- |
-| [Task: Kubeconfig Acquisition](references/task-kubeconfig-acquisition.md) | Kubeconfig acquisition workflows |
+| [Task: Kubeconfig Acquisition](references/taREDACTED-SECRET.md) | Kubeconfig acquisition workflows |
 | [Task: kubectl Setup](references/task-kubectl-setup.md)       | kubectl installation and configuration   |
-| [Task: Deployment Management](references/task-deployment-management.md) | Deployment lifecycle workflows |
-| [Task: StatefulSet/DaemonSet Management](references/task-statefulset-daemonset-management.md) | StatefulSet and DaemonSet workflows |
+| [Task: Deployment Management](references/taREDACTED-SECRET.md) | Deployment lifecycle workflows |
+| [Task: StatefulSet/DaemonSet Management](references/taREDACTED-SECRET.md) | StatefulSet and DaemonSet workflows |
 
 ## Notes
 

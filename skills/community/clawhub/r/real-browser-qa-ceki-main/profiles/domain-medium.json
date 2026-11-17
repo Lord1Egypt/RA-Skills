@@ -1,0 +1,69 @@
+{
+  "id": "domain-medium",
+  "label": "Medium — Publishing Platform",
+  "emoji": "✍️",
+  "domain": "medium.com",
+  "description": "Medium — long-form publishing platform. Clean typography, minimal UI. Rich text editor. Login via Google/Twitter/email. Used for reading and publishing articles.",
+  "source_patterns": [
+    "Feed scrolling (topic-based): home feed / topic tag — medium-to-slow vertical scroll, card previews",
+    "Article reading: click headline → 2-4s load → deep scroll through long-form content, long pauses",
+    "Clap/like interaction: hover clap button (300-600ms) → click → optional hold for multiple claps",
+    "Highlight text: select passage → wait 200ms for popup → click highlight icon",
+    "Comment: scroll to bottom → click respond → 1-2s think → type → submit",
+    "Write/publish flow: click 'Write' → enter title → compose body (slow, thoughtful) → add tags → preview → publish",
+    "Login flow: click 'Sign in' → select Google/Twitter/email → complete OAuth redirect"
+  ],
+  "active_hours": {
+    "description": "Reading — morning/evening; Publishing — business hours",
+    "peak": [7, 10, 20, 23],
+    "off_peak_min": 3
+  },
+  "typing": {
+    "wpm": { "min": 70, "max": 110 },
+    "profile": "natural",
+    "think_prob": 0.02,
+    "think_ms": [500, 2000],
+    "backspace_freq": 0.04,
+    "article_composition_wpm": { "min": 40, "max": 65 }
+  },
+  "scroll": {
+    "passes": 4,
+    "description": "Content reading — deep passes, slow, long pauses for comprehension. Long-form articles 5-15 min read.",
+    "speed_px_per_ms": { "min": 10, "max": 35 },
+    "pause_between_passes_ms": { "min": 3000, "max": 10000 },
+    "depth_per_pass": { "min": 0.4, "max": 0.8 },
+    "infinite_scroll_detection": "div[class*='streamItem'], section[data-testid='section']"
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 2000, "max": 4000 },
+    "pre_click_pause_ms": { "min": 300, "max": 800 },
+    "inter_action_pause_ms": { "min": 500, "max": 2000 },
+    "post_expand_pause_ms": { "min": 1500, "max": 3000 }
+  },
+  "mouse": {
+    "speed": 0.7,
+    "curvature": 0.25,
+    "jitter": 0.3,
+    "description": "Slow — reading speed, deliberate navigation"
+  },
+  "platform_specific": {
+    "selectors_css": {
+      "feed_article": "article, div[class*='streamItem'], div[role='link']",
+      "article_body": "article section, div[class*='storyBody']",
+      "clap_button": "button[aria-label*='clap'], button[aria-label*='Clap'], div[class*='clapButton']",
+      "highlight_popup": "div[class*='highlightMenu'], div[data-testid='highlight-popup']",
+      "editor_title": "textarea[placeholder*='Title'], h3[data-testid='editor-title']",
+      "editor_body": "div[data-testid='editor-body'], div[class*='editor'] p",
+      "publish_button": "button[data-testid='publish-button'], button:has-text('Publish')",
+      "sign_in_button": "a[href*='sign-in'], button:has-text('Sign in')"
+    },
+    "requires_login": false,
+    "login": {
+      "description": "Reading is public, writing/clapping requires login",
+      "pre_login_pause_ms": 2000,
+      "field_pause_ms": { "min": 400, "max": 1000 },
+      "post_login_wait_ms": { "min": 3000, "max": 6000 }
+    },
+    "sequence_hint": "navigate topic feed → scroll (2-4 passes) → click interesting headline → 2-4s read wait → deep scroll through article (slow, long pauses) → optional: clap (click ×1-50) / highlight / scroll to comments → respond → back to feed"
+  }
+}

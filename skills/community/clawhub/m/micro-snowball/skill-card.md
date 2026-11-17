@@ -1,40 +1,53 @@
-## Description: <br>
-The disciplined framework for low-capital, high-leverage strategy validation. Test 50x strategies with pennies, not paychecks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The disciplined framework for low-capital, high-leverage strategy validation. Test 50x strategies with pennies, not paychecks.
 
-## Publisher: <br>
-[tmstudio667-commits](https://clawhub.ai/user/tmstudio667-commits) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tmstudio667-commits](https://clawhub.ai/user/tmstudio667-commits)
 
-## Use Case: <br>
-Developers and quantitative strategy testers use this skill to validate aggressive, high-leverage crypto trading strategies on OKX or Binance with very small per-trade capital. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents toward very high-leverage crypto trading without clear safety limits or credential boundaries. <br>
-Mitigation: Use paper trading or exchange testnet keys unless live trading is intentional, and require explicit confirmation, hard loss limits, and restricted API permissions before any live trade or leverage change. <br>
-Risk: Unrestricted OKX or Binance API keys could allow unintended live trades or leverage changes. <br>
-Mitigation: Provide only narrowly scoped exchange credentials and avoid unrestricted API keys. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tmstudio667-commits/micro-snowball) <br>
-- [Publisher Profile](https://clawhub.ai/user/tmstudio667-commits) <br>
+## Use Case:
 
+Developers and external users can use this skill as a framework for validating high-leverage crypto trading strategies with very small trade sizes on OKX or Binance. It focuses on leverage setup, ROE-oriented reporting, and DCA recovery concepts for aggressive quantitative strategy experiments.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May involve exchange API configuration and high-leverage trading workflow guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill concerns live high-leverage crypto exchange activity, including 50x isolated margin behavior.
+
+Mitigation: Review the actual runtime implementation, start with paper trading, use dedicated low-permission exchange API keys with withdrawals disabled, and set hard exchange-side limits.
+
+Risk: The artifact shows an unpinned npx run command for a workflow that can affect real funds.
+
+Mitigation: Avoid unpinned remote execution; pin and review the package or run only a locally audited implementation before connecting exchange credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tmstudio667-commits/skills/micro-snowball)
+- [Publisher profile](https://clawhub.ai/user/tmstudio667-commits)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include exchange API configuration guidance and trading-risk precautions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,51 @@
-## Description: <br>
-Harmonic.ai helps agents search, enrich, and read Harmonic.ai company and person data through a connected OOMOL account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use a connected Harmonic.ai account to enrich companies and people and retrieve profiles, employee identifiers, and enrichment status.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent for Harmonic.ai company and person enrichment, profile lookup, employee listing, and enrichment status checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Company websites, LinkedIn URLs, email addresses, and similar identifiers may be sent to OOMOL and Harmonic.ai for enrichment or lookup. <br>
-Mitigation: Submit only identifiers the user intends to use for that Harmonic.ai action and avoid unnecessary sensitive data. <br>
-Risk: The skill depends on an authenticated OOMOL account with a connected Harmonic.ai credential. <br>
-Mitigation: Use first-time setup steps only after an authentication or connection error, and confirm account readiness before retrying. <br>
+## Use Case:
 
+Developers and analysts use the connected Harmonic.ai account to enrich and retrieve company and person profiles, retrieve employee identifiers, and check enrichment job status.
 
-## Reference(s): <br>
-- [Harmonic.ai homepage](https://harmonic.ai) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/skills/oo-harmonic-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses may include Harmonic.ai data plus connector execution metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and skill metadata) <br>
+Risk: Setup instructions can execute downloaded software without clear user approval or limits on local changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately, use a verified release, check which agent skills it installs, and connect only the intended Harmonic account.
+
+## Reference(s):
+
+- [Harmonic.ai](https://harmonic.ai)
+- [Harmonic API documentation](https://console.harmonic.ai/docs/api-reference/introduction)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Guidance]
+
+**Output Format:** [JSON connector responses with concise agent-facing summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses can include company or person profiles, employee identifiers, and enrichment job status.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,54 @@
-## Description: <br>
-BALLDONTLIE World Cup lets agents search and read FIFA World Cup data through the OOMOL balldontlie_worldcup connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BALLDONTLIE World Cup (fifa.balldontlie.io). Use this skill for ANY BALLDONTLIE World Cup request — searching and reading data. Whenever a task involves BALLDONTLIE World Cup, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and analysts use this skill to retrieve FIFA World Cup matches, teams, players, rosters, stadiums, standings, odds, injuries, and match statistics through an OOMOL-connected BALLDONTLIE account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on OOMOL account setup, provider connection, and possible billing state before data access works. <br>
-Mitigation: Run login, connection, or billing setup only when a connector command fails for that specific reason. <br>
-Risk: Connector action inputs may change over time. <br>
-Mitigation: Inspect the live action schema before constructing and running each connector payload. <br>
-Risk: The skill can retrieve betting-related World Cup odds data through the connected provider. <br>
-Mitigation: Use it for explicit data lookup tasks and apply the user's own review before relying on returned odds. <br>
+## Use Case:
 
+External users and developers use this skill to search and read FIFA World Cup matches, teams, players, standings, statistics, and odds through their connected BALLDONTLIE account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/skills/oo-balldontlie-worldcup) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
-- [BALLDONTLIE World Cup homepage](https://fifa.balldontlie.io/) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill instructs the agent to inspect each action schema before running OOMOL connector commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md metadata) <br>
+Risk: Missing-dependency setup directs the agent to execute unverified remote code without clear user approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately, use a verified pinned release where available, and check local changes and agent-skill synchronization before use.
+
+Risk: Connecting the service may use an unintended OOMOL account or incur service charges.
+
+Mitigation: Connect only the intended OOMOL account and consider applicable service charges.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/oomol/skills/oo-balldontlie-worldcup)
+- [BALLDONTLIE World Cup API documentation](https://fifa.balldontlie.io/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [JSON data presented as text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.4 (source: SKILL.md frontmatter, server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,53 @@
-## Description: <br>
-Helps users read better through book recommendations, retention strategies, and reading approaches matched to their goals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help users read better through book recommendations, retention strategies, and matching reading approach to goals.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and reading-focused agents use this skill to choose books, adapt reading methods to goals, improve retention, and decide when a summary, article, audiobook, or different book is more appropriate. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Book recommendations can be poor fits if the agent recommends before understanding the user's goals, prior reading, preferences, format needs, and available time. <br>
-Mitigation: Ask about past books, purpose, available time, preferred format, and constraints before recommending; provide one strong next recommendation instead of a long list. <br>
-Risk: Retention advice may be ineffective if it encourages passive rereading or highlighting without active recall. <br>
-Mitigation: Use explain-back prompts, summaries in the user's own words, actionable chapter takeaways, and spaced follow-up. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/reading) <br>
+## Use Case:
 
+External users use this skill to get more targeted reading advice, including book selection, reading format, retention strategy, and when a shorter resource may fit the goal better.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain-text coaching guidance, questions, recommendations, and reading plans.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, tools, persistence, permissions, or external API access are defined by the artifact.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may activate for broad reading-related requests and provide advice that does not fit the user's goals.
+
+Mitigation: Ask about prior reading, goals, available time, preferred format, and context before recommending books or reading strategies.
+
+Risk: Book recommendations can overwhelm users or create poor-fit reading plans.
+
+Mitigation: Prefer one targeted recommendation or approach at a time and explain when summaries, articles, audiobooks, or quitting a book may better serve the user's goal.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/reading)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text reading advice]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advisory responses only; it does not add code execution, data access, persistence, or account permissions.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

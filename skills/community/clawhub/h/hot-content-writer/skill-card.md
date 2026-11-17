@@ -1,44 +1,55 @@
-## Description: <br>
-Hot Content Writer generates platform-specific Chinese social-media copy from a topic, with optional DeepSeek/OpenAI-compatible API mode and hot-list driven daily content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates AI-assisted social media copy from hot topics for Xiaohongshu, Douyin, WeChat public accounts, Weibo, and Zhihu, with local template fallback and optional DeepSeek-compatible API generation.
 
-## Publisher: <br>
-[qq853632587](https://clawhub.ai/user/qq853632587) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mkt-agents](https://clawhub.ai/user/mkt-agents)
 
-## Use Case: <br>
-External creators, social media operators, and marketing teams use this skill to draft topic-driven posts, scripts, titles, hashtags, and daily hot-topic content for Xiaohongshu, Douyin, WeChat public accounts, Weibo, and Zhihu. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API mode may reuse an existing OPENAI_API_KEY and send requests to the configured DeepSeek/OpenAI-compatible endpoint. <br>
-Mitigation: Use a dedicated low-privilege DeepSeek key, verify OPENAI_API_BASE before API runs, and unset unrelated OPENAI_API_KEY values when they should not be used. <br>
-Risk: A local config.json can store an API key for this skill. <br>
-Mitigation: Keep config.json local-only, avoid committing secrets, and prefer environment variables or a secret manager when available. <br>
-Risk: Hot-topic modes execute companion hot-list skill scripts and consume their results. <br>
-Mitigation: Use hot-list integrations only with companion skills that have been reviewed and trusted in the deployment environment. <br>
+## Use Case:
 
+External creators, social media operators, and marketing teams use this skill to turn topics or hot-list items into platform-specific drafts, titles, hashtags, and publishing tips.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/qq853632587/hot-content-writer) <br>
-- [DeepSeek Platform](https://platform.deepseek.com) <br>
-- [DeepSeek API Endpoint](https://api.deepseek.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Generated social-media copy and titles as JSON or plain text, plus command examples and configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write generated content to a user-specified output file; API mode sends prompts to the configured OpenAI-compatible endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence and package.json) <br>
+Risk: The skill can send topics, audience notes, prompts, and API credentials to a configured LLM endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use environment variables for API keys, avoid sensitive or regulated content, and only set a custom api_base when the endpoint is fully trusted.
+
+Risk: Hot-list workflows execute neighboring skill scripts with weak scoping.
+
+Mitigation: Review the installed hot-list skills before using --from-hot or daily_content.py, and run the workflow in a controlled workspace.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mkt-agents/skills/hot-content-writer)
+- [DeepSeek Platform](https://platform.deepseek.com)
+- [Project Homepage](https://github.com/openclaw/hot-content-writer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, configuration, guidance]
+
+**Output Format:** [JSON to stdout or file containing generated titles, copy, hashtags, and publishing tips; optional plain-text WeChat summary.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call a configured OpenAI-compatible LLM endpoint and can fall back to local templates when no API key is configured.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

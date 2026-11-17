@@ -1,44 +1,55 @@
-## Description: <br>
-ESFP Coach helps ESFP users work through growth, career, learning, focus, and planning challenges through a coaching mode for reflection and an advisory mode for concrete action steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Esfp Coach helps ESFP users work through growth, career, learning, focus, planning, and impulse-control challenges through a two-mode coaching and advisory conversation flow.
 
-## Publisher: <br>
-[lj22503](https://clawhub.ai/user/lj22503) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lj22503](https://clawhub.ai/user/lj22503)
 
-## Use Case: <br>
-External users use this skill for informal MBTI-style ESFP coaching, including growth bottlenecks, career or learning direction, focus problems, and planning difficulty. The skill should not be used as professional mental-health advice or for high-stakes decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact mixes ESFP and INTP content, which can produce mismatched or misleading personality-type coaching. <br>
-Mitigation: Review the advice for type-specific consistency and use it only for informal coaching until the publisher resolves the ESFP/INTP mismatch. <br>
-Risk: The skill asks the agent to save profile and growth records without clear consent controls. <br>
-Mitigation: Do not allow profile or growth record storage unless the user explicitly approves it for the current conversation. <br>
-Risk: Users may share sensitive personal, workplace, relationship, financial, or health details during coaching. <br>
-Mitigation: Avoid sharing sensitive details and do not use the skill for mental-health support or other high-stakes decisions. <br>
+## Use Case:
 
+External users can use this skill for ESFP-oriented personal growth coaching, including reflective questions, concrete action plans, and follow-up notes for common career, learning, focus, and planning challenges. It is not a substitute for professional mental health care.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lj22503/lj22503-esfp-coach) <br>
-- [ESFP Traits and Cognitive Functions](references/esfp-traits.md) <br>
-- [INTP Insights Reference](references/intp-insights.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain conversational text with short coaching questions, action plans, and risk notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Coaching responses are intended to stay concise: up to 200 Chinese characters in coaching mode and up to 400 Chinese characters in advisory mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.0 (source: server release metadata) <br>
+Risk: The release has inconsistent package identity signals.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended package identity before installation and do not rely on mismatched README install commands.
+
+Risk: The skill may record personal coaching history without clear privacy controls.
+
+Mitigation: Use it only where the host platform lets users disable, inspect, and delete memory, and avoid storing sensitive personal details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lj22503/skills/lj22503-esfp-coach)
+- [ESFP traits reference](artifact/references/esfp-traits.md)
+- [INTP insights reference](artifact/references/intp-insights.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown conversation responses with questions, recommendations, action steps, and brief risk notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill asks agents to keep coaching responses concise, switch between coaching and advisory modes, and record relevant coaching context when available.]
+
+## Skill Version(s):
+
+1.8.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

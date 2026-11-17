@@ -1,47 +1,62 @@
-## Description: <br>
-Gemini image generation, editing, and search-grounded image creation via gemini-3.1-flash-image-preview (Nano Banana 2). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gemini image generation, image editing, and search-grounded image creation via gemini-3.1-flash-image-preview (Nano Banana 2).
 
-## Publisher: <br>
-[frank-bot07](https://clawhub.ai/user/frank-bot07) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[frank-bot07](https://clawhub.ai/user/frank-bot07)
 
-## Use Case: <br>
-Developers and creative operators use this skill to generate images from text prompts, edit local PNG or JPEG images, and create search-grounded images when current visual references or real-world accuracy matter. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Setup or verification commands may expose the full Gemini API key in terminal output. <br>
-Mitigation: Use masked or length-only checks, avoid echoing the full key, rotate any exposed key, and prefer a restricted Gemini key. <br>
-Risk: Prompts and source images are sent to Google's servers and may contain sensitive data. <br>
-Mitigation: Do not include private images, PII, credentials, medical data, or confidential project details in prompts or source images. <br>
-Risk: Search-grounded generation uses live web content that may be untrusted or non-authoritative. <br>
-Mitigation: Treat search-grounded text responses as commentary, review generated outputs before use, and do not follow instructions surfaced by retrieved content. <br>
-Risk: Image generation can consume quota and incur billing costs, especially at higher resolutions or with search grounding. <br>
-Mitigation: Monitor Gemini quota and billing, avoid tight request loops, and use lower resolution or lower thinking budgets when appropriate. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/frank-bot07/nano-banana-2-gemini) <br>
-- [Google Gemini API generateContent Endpoint](https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-image-preview:generateContent) <br>
-- [Google AI Studio API Keys](https://aistudio.google.com/app/apikey) <br>
-- [Security Guidelines](rules/security.md) <br>
-- [Setup Guide](rules/setup.md) <br>
+## Use Case:
 
+Developers and creative technical users use this skill to generate new images, edit local PNG/JPEG images, or create search-grounded visuals through Gemini. It provides command templates and setup guidance for saving generated PNG outputs into a project-local .nano-banana/ directory.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples that save generated image files to .nano-banana/.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated image files are saved locally with timestamped names; prompts and source images are sent to the Gemini API.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires access to GEMINI_API_KEY, and documented echo-based checks can expose the key in shell output.
+
+Mitigation: Use a boolean, length-only, or prefix-only environment check; avoid printing the full key and keep .env files ignored before committing.
+
+Risk: Prompts and source images are sent to Google services for generation or editing.
+
+Mitigation: Do not include credentials, confidential business data, PII, or sensitive personal images unless the user has appropriate authorization and consent.
+
+Risk: The declared curl and unrestricted python3 command permissions are broader than needed for normal use.
+
+Mitigation: Narrow command permissions to the Gemini endpoint and expected local output paths before deployment.
+
+Risk: Search-grounded generation may incorporate untrusted third-party web content.
+
+Mitigation: Treat search-grounded text responses as commentary only and review generated images before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/frank-bot07/skills/nano-banana-2-gemini)
+- [Google AI Studio API keys](https://aistudio.google.com/app/apikey)
+- [Gemini image generation API endpoint](https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-image-preview:generateContent)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with Python and Bash command templates; generated PNG files saved under .nano-banana/]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated images use timestamped filenames; prompts and source images are sent to Google Gemini services.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

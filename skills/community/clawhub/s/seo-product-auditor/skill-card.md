@@ -1,46 +1,60 @@
-## Description: <br>
-Audits Shopify and WooCommerce product listings against a 10-criterion SEO rubric, reports weak listings, exports scores, and can propose or apply listing improvements after confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans Shopify or WooCommerce product listings, scores product SEO against a 10-criterion rubric, prioritizes weak listings, and can propose or apply UK English rewrites after confirmation.
 
-## Publisher: <br>
-[hussainpatan9](https://clawhub.ai/user/hussainpatan9) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hussainpatan9](https://clawhub.ai/user/hussainpatan9)
 
-## Use Case: <br>
-E-commerce operators and agencies use this skill to audit Shopify or WooCommerce product SEO, identify priority fixes, generate UK English rewrites, and optionally update product listings after reviewing previews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to provide live Shopify or WooCommerce credentials in chat. <br>
-Mitigation: Use least-privilege credentials, prefer read-only access for audits, add write permissions only when applying approved fixes, and rotate any credentials pasted into chat. <br>
-Risk: The skill can make bulk changes to production product listings. <br>
-Mitigation: Review each before-and-after preview carefully, require explicit confirmation before writes, and start with small batches or a read-only audit before bulk updates. <br>
-Risk: Generated titles, descriptions, tags, or SEO metadata may be inaccurate for a product. <br>
-Mitigation: Verify proposed content against the product details and store policy before approving updates. <br>
+## Use Case:
 
+External store operators, ecommerce teams, and developers use this skill to audit product listing SEO across Shopify or WooCommerce, identify low-scoring products, export reports, and generate reviewed fixes for titles, descriptions, tags, metadata, and image alt text.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hussainpatan9/seo-product-auditor) <br>
-- [Publisher profile](https://clawhub.ai/user/hussainpatan9) <br>
-- [README.md](artifact/README.md) <br>
-- [CONFIG.md](artifact/CONFIG.md) <br>
-- [EXAMPLES.md](artifact/EXAMPLES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports, before-and-after previews, CSV exports, API request examples, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can store audit and fix results in agent memory; can generate workspace CSV files for audit exports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks for store API credentials and can read or update live product listings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege credentials, prefer read-only access for audits, avoid pasting live admin secrets into chat when possible, and verify required Shopify scopes before use.
+
+Risk: Bulk fixes can change many product titles, descriptions, tags, metadata fields, or image alt text.
+
+Mitigation: Review product IDs, changed fields, and before/after previews before approving any bulk update.
+
+Risk: Generated SEO copy or inferred keywords may be inaccurate for a product.
+
+Mitigation: Confirm suggested rewrites against the product details and do not apply changes when specifications are missing or uncertain.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hussainpatan9/skills/seo-product-auditor)
+- [README](artifact/README.md)
+- [Setup guide](artifact/CONFIG.md)
+- [Examples](artifact/EXAMPLES.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, CSV exports, JSON-like memory records, API request examples, and before/after change previews]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Shopify or WooCommerce update proposals and product audit files; writes should require explicit user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

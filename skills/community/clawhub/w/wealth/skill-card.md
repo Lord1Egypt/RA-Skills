@@ -1,43 +1,54 @@
-## Description: <br>
-A comprehensive AI agent skill for building and managing wealth across every stage of life. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A comprehensive AI agent skill for building and managing wealth across every stage of life.
 
-## Publisher: <br>
-[agenticio](https://clawhub.ai/user/agenticio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agenticio](https://clawhub.ai/user/agenticio)
 
-## Use Case: <br>
-External users use this skill for educational financial planning conversations about saving, investing, tax efficiency, retirement readiness, insurance, estate planning, and major wealth decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat educational financial output as licensed financial, tax, legal, insurance, or investment advice. <br>
-Mitigation: Verify current limits and laws, avoid sharing account numbers or identifiers, and consult qualified professionals before major decisions. <br>
-Risk: Financial limits, tax rules, and market conditions may change after the skill content was authored. <br>
-Mitigation: Check current authoritative sources before acting on contribution limits, tax strategies, withdrawal choices, or investment decisions. <br>
+## Use Case:
 
+External users use this skill for educational wealth-planning guidance across financial foundations, investing, tax efficiency, retirement planning, insurance, estate planning, and windfall decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agenticio/wealth) <br>
-- [Skill definition](artifact/skill.md) <br>
-- [Usage examples](artifact/examples.md) <br>
-- [Heartbeat prompts](artifact/heartbeat.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown] <br>
-**Output Format:** [Markdown conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational financial-planning output; does not access accounts or execute transactions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Users may treat educational wealth-planning output as individualized financial, tax, legal, or insurance advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Consult qualified financial, tax, legal, or insurance professionals before acting on major recommendations.
+
+Risk: Financial prompts can contain sensitive personal information.
+
+Mitigation: Use approximate values and avoid sharing account numbers, SSNs, exact addresses, login credentials, or uniquely identifying financial details.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/agenticio/skills/wealth)
+- [Publisher Profile](https://clawhub.ai/user/agenticio)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown or conversational text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Educational financial-planning guidance; no executable code, tools, network access, persistence, or hidden behavior identified by security evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

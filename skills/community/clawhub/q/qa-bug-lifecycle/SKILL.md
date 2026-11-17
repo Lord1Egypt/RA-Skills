@@ -1,47 +1,32 @@
 ---
 name: qa-bug-lifecycle
-version: 1.5.0
 description: >-
-  当团队缺陷管理混乱、Bug 没有统一的分级标准、或者领导要看缺陷趋势数据时使用此技能。覆盖缺陷从提交到关闭的完整生命周期，包括严重度/优先级分级规范、各状态流转条件和时效要求、缺陷度量和趋势分析。如果缺陷管理不规范，复盘数据就是垃圾——"严重Bug数量下降"可能是因为大家不再标记严重了。
-
-when_to_use: 用户说"缺陷管理"、"Bug管理"、"缺陷流程"、"Bug状态"、"严重度"、"缺陷趋势"、需要管理缺陷、分析缺陷趋势、团队需要规范缺陷管理流程时
+  当团队缺陷管理混乱、Bug 没有统一的分级标准、或者领导要看缺陷趋势数据时使用此技能。覆盖缺陷从提交到关闭的完整生命周期，包括严重度/优先级分级规范、各状态流转条件和时效要求、缺陷度量和趋势分析。如果缺陷管理不规范，复盘数据就是垃圾——"严重Bug数量下降"可能是因为大家不再标记严重了。 触发场景：缺陷管理、Bug管理、缺陷流程、Bug状态、严重度、缺陷趋势、团队需要规范缺陷管理流程时。 Use when the user asks about: bug and defect management — severity and priority grading, status workflow and SLA, defect metrics, and trend analysis.
+license: MIT
 allowed-tools: Read Grep Glob
-related_skills:
-  upstream:
-    - qa-bug-reporting           # 输入：Bug报告进入生命周期
-  downstream:
-    - qa-quality-metrics         # 输出：缺陷数据用于质量度量
-    - qa-retrospective           # 输出：缺陷数据用于复盘
-input_format:
-  required:
-    - name: Bug报告
-      type: object
-      description: 来自qa-bug-reporting的缺陷报告
-  optional:
-    - name: 修复方案
-      type: string
-      description: 开发团队的修复方案
-    - name: 验证结果
-      type: string
-      description: 修复验证结果
-output_format:
-  structure:
-    - lifecycle_state: 当前生命周期状态
-    - state_history: 状态变更历史
-    - next_actions: 下一步操作建议
-    - closure_criteria: 关闭条件检查
-error_recovery_guidance:
-  on_failure: "验证不通过时退回上一状态并附上退回原因"
-  retry_behavior: "退回后通知相关责任人重新处理"
+metadata:
+  display-name: "Bug Lifecycle"
+  version: "1.8.0"
+  when-to-use: "用户说\"缺陷管理\"、\"Bug管理\"、\"缺陷流程\"、\"Bug状态\"、\"严重度\"、\"缺陷趋势\"、需要管理缺陷、分析缺陷趋势、团队需要规范缺陷管理流程时"
+  related-skills: "{\"upstream\":[\"qa-bug-reporting\"],\"downstream\":[\"qa-quality-metrics\",\"qa-retrospective\",\"qa-test-reporting\"]}"
+  references: "[\"references/defect-analysis.md\"]"
+  input-format: "{\"required\":[{\"name\":\"Bug报告\",\"type\":\"object\",\"description\":\"来自qa-bug-reporting的缺陷报告\"}],\"optional\":[{\"name\":\"修复方案\",\"type\":\"string\",\"description\":\"开发团队的修复方案\"},{\"name\":\"验证结果\",\"type\":\"string\",\"description\":\"修复验证结果\"}]}"
+  output-format: "{\"traceability\":[\"每个缺陷沿用原始ID（TC_{缺陷模块缩写}_{功能缩写}_{序号}，如 TC_BUG_LOGIN_001；缺陷追溯保留 BUG 前缀）\",\"关联生命周期状态ID\"],\"structure\":[\"覆盖率：标注口径（基于现有需求/输入文档），禁止\\\"全覆盖/100%\\\"绝对化表述；缺失模块标注\\\"未覆盖+原因\\\"\",{\"lifecycle_state\":\"当前生命周期状态\"},{\"severity_level\":\"严重度分级\"},{\"priority_level\":\"优先级分级\"},{\"state_history\":\"状态变更历史\"},{\"timeline\":\"各状态时效要求\"},{\"next_actions\":\"下一步操作建议\"},{\"closure_criteria\":\"关闭条件检查\"}]}"
+  error-recovery-guidance: "{\"on_failure\":\"验证不通过时退回上一状态并附上退回原因\",\"retry_behavior\":\"退回后通知相关责任人重新处理\"}"
+  categories: "[\"Development\",\"Testing\",\"Quality\"]"
+  depth-requirement: "{\"reference_value\":\"根据缺陷数量调整管理深度：简单×1/中等×2/复杂×3\",\"minimum\":\"至少覆盖严重度分级、状态流转、时效要求3个维度\"}"
 ---
+> ⚠️ 本技能单独使用效果有限，建议配合完整技能集（12 步工作流）使用。安装：npx skills add Kokxi/qa-test-skills
+
+> **⚠️ 安全警告**：本技能的示例可能涉及订单号、支付金额、截图、身份证、手机号等敏感数据。
+> 实际使用时请勿粘贴真实生产数据、客户信息或财务凭证；测试前应脱敏/掩码处理。
+> 本技能仅在 workspace/ 输出评估文件，不持久化、不外传、不跨会话复用。
 
 # 缺陷生命周期管理
 
 ## 核心原则
 
-你是一位缺陷管理专家，擅长管理缺陷从发现到关闭的全流程。
-**核心原则**：缺陷管理不仅仅是记录Bug，而是驱动问题解决和质量改进。
-本技能覆盖缺陷生命周期、分级标准、分析方法和度量指标。
+缺陷管理不仅仅是记录Bug，而是驱动问题解决和质量改进。
 
 ## 缺陷生命周期
 
@@ -132,74 +117,13 @@ P3-轻微（Minor）：
 └─ 处理：排期处理
 ```
 
-## 缺陷分析
+## 加载时机
 
-### 缺陷类型分析
+| 什么时候读 | 读哪个 |
+|-----------|--------|
+| 做缺陷趋势/密度分析时 | [`references/defect-analysis.md`](references/defect-analysis.md) |
 
-```text
-缺陷类型：
-├─ 功能缺陷：功能不符合需求
-├─ 界面缺陷：UI显示问题
-├─ 性能缺陷：性能不达标
-├─ 安全缺陷：安全漏洞
-├─ 兼容性缺陷：兼容性问题
-├─ 接口缺陷：接口问题
-├─ 数据缺陷：数据问题
-└─ 配置缺陷：配置问题
-
-分析维度：
-├─ 缺陷类型分布
-├─ 缺陷模块分布
-├─ 缺陷趋势
-└─ 缺陷密度
-```
-
-### 缺陷根因分析
-
-```text
-根因分类：
-├─ 需求问题
-│   ├─ 需求不清晰
-│   ├─ 需求变更
-│   └─ 需求遗漏
-│
-├─ 设计问题
-│   ├─ 设计不合理
-│   ├─ 设计遗漏
-│   └─ 设计变更
-│
-├─ 实现问题
-│   ├─ 代码错误
-│   ├─ 逻辑错误
-│   └─ 边界处理
-│
-├─ 环境问题
-│   ├─ 环境配置
-│   ├─ 依赖问题
-│   └─ 数据问题
-│
-└─ 测试问题
-    ├─ 用例遗漏
-    ├─ 执行遗漏
-    └─ 验证不充分
-```
-
-### 缺陷度量指标
-
-```text
-核心指标：
-├─ 缺陷密度 = 缺陷数 / 功能点数
-├─ 缺陷修复率 = 已修复缺陷 / 总缺陷
-├─ 缺陷重开率 = 重新打开缺陷 / 总缺陷
-├─ 缺陷逃逸率 = 线上缺陷 / (线上+测试缺陷)
-└─ 缺陷修复周期 = 修复日期 - 提交日期
-
-分析维度：
-├─ 按时间：缺陷趋势
-├─ 按模块：模块质量
-├─ 按类型：问题分布
-└─ 按人员：效率分析
-```
+> `缺陷分析`的完整内容已下沉至 `references/defect-analysis.md`，避免每次触发都占用上下文。
 
 ## 缺陷报告模板
 
@@ -275,5 +199,3 @@ P3-轻微（Minor）：
 - [ ] 缺陷分析是否深入？
 - [ ] 度量指标是否定义？
 - [ ] 改进措施是否制定？
-
-

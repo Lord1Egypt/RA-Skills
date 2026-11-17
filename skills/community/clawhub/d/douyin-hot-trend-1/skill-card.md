@@ -1,43 +1,54 @@
-## Description: <br>
-Fetches Douyin hot list and trending-search data, including titles, heat values, rankings, and links for popular videos, challenges, music, and related topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches Douyin hot search and trending-list data, returning ranked topics with heat values and Douyin links.
 
-## Publisher: <br>
-[noah-1106](https://clawhub.ai/user/noah-1106) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[noah-1106](https://clawhub.ai/user/noah-1106)
 
-## Use Case: <br>
-External users, developers, analysts, marketers, and social media operators use this skill to fetch public Douyin trend data for hot-topic tracking, content trend analysis, and planning reference. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running the fetch scripts sends network requests to Douyin. <br>
-Mitigation: Run the skill only in environments where Douyin access is expected and permitted. <br>
-Risk: Local trend history may be retained in data/douyin.db or regenerated data/index.html. <br>
-Mitigation: Delete those local files when trend history should not be kept. <br>
-Risk: Generated HTML reports render fetched titles and links. <br>
-Mitigation: Open generated reports cautiously and review fetched content before sharing or publishing. <br>
+## Use Case:
 
+Developers, analysts, and social media operators use this skill to retrieve Douyin trending topics for content monitoring, trend analysis, and marketing planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/noah-1106/douyin-hot-trend-1) <br>
-- [Douyin web interface](https://www.douyin.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, markdown, shell commands] <br>
-**Output Format:** [Console text output, JSON arrays, and locally generated HTML reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Trend items include rank, title, heat value, label when present, and a detail link; scripts can limit the number of returned items.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill sends requests to Douyin and stores fetched trend data under the local data directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use reasonable request frequency, and confirm local storage behavior is acceptable for the deployment environment.
+
+Risk: The generated HTML report can render fetched titles, labels, inline JSON, and links without sufficient sanitization.
+
+Mitigation: Do not host or rely on the generated report until displayed values are escaped and URL schemes are restricted to safe Douyin HTTPS links.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/noah-1106/skills/douyin-hot-trend-1)
+- [Douyin web data source](https://www.douyin.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, files]
+
+**Output Format:** [Console text, JSON arrays, local SQLite data, and optional generated HTML report files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default retrieval is 50 items, with a user-supplied count supported by the command-line scripts.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

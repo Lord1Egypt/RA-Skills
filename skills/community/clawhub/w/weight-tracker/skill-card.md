@@ -1,47 +1,59 @@
-## Description: <br>
-减肥进度追踪助手。用户告诉 AI 今天的体重，AI 自动帮您记录并生成漂亮的图表，清晰展示减肥进度。支持中英文界面，macOS/Windows/Linux 多平台使用。当用户说"记录体重"、"今天体重"、"减肥打卡"、"体重多少"时自动触发。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮助用户通过本地 JSON 记录体重、配置减肥目标，并用浏览器页面展示中英文减重进度图表。
 
-## Publisher: <br>
-[mixinan](https://clawhub.ai/user/mixinan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mixinan](https://clawhub.ai/user/mixinan)
 
-## Use Case: <br>
-External users can use this skill to record daily body weight, maintain local JSON history, and view progress toward a weight goal in a browser-based chart. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Weight history and goals are personal data stored in local JSON files. <br>
-Mitigation: Keep the skill folder private and install only if local storage of this data is acceptable. <br>
-Risk: Serving the tracker beyond localhost can expose personal weight data on a local network. <br>
-Mitigation: Prefer localhost-only viewing and avoid LAN sharing unless the exposure is understood and intended. <br>
-Risk: Port-based process cleanup commands can stop the wrong process if used carelessly. <br>
-Mitigation: Verify the exact server process before running any kill command. <br>
-Risk: The setup script changes local configuration and data files. <br>
-Mitigation: Run setup.sh without administrator privileges and review generated config.json and weight_history.json after setup. <br>
+## Use Case:
 
+Individuals using an AI agent use this skill to log daily weight entries, update local JSON history, and view progress toward a target weight in a local browser page.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mixinan/weight-tracker) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/mixinan) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [User guide](artifact/assets/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and local JSON updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces and updates local configuration and weight-history JSON files; browser visualization is served from local files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Private weight history is stored in local plaintext JSON.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when local plaintext storage is acceptable and avoid sharing config or history files without review.
+
+Risk: The local web page can expose weight data if served beyond localhost.
+
+Mitigation: Run the HTTP server bound to localhost only, and add access controls before any LAN sharing.
+
+Risk: Imported or shared configuration and history files may contain unsafe stored values.
+
+Mitigation: Treat external config.json and weight_history.json files as untrusted and review them before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mixinan/skills/weight-tracker)
+- [Artifact README](artifact/assets/README.md)
+- [Skill Instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JSON file updates and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local configuration/history changes and browser-viewable progress output; no API credentials were detected.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

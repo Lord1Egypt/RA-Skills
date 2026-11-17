@@ -1,0 +1,32 @@
+{
+  "name": "报告库 (Report)",
+  "description": "/qa-report 指令的输出结果存储模型",
+  "version": "1.0",
+  "fields": {
+    "id": { "type": "string", "format": "report-YYYYMMDD-NNN", "required": true },
+    "created_at": { "type": "string", "format": "ISO 8601", "required": true },
+    "module": { "type": "string", "description": "所属产品/团队", "required": true },
+    "source": { "type": "string", "description": "来源 session_id", "required": true },
+    "tags": { "type": "array", "items": "string", "default": [] },
+    "data": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "report_type": { "type": "string", "enum": ["日报", "周报", "阶段报告", "季度报告", "专项报告"] },
+        "time_period": { "type": "string", "description": "时间段描述" },
+        "team_or_person": { "type": "string" },
+        "key_metrics": {
+          "type": "object",
+          "properties": {
+            "executed_cases": { "type": "integer" },
+            "found_bugs": { "type": "integer" },
+            "fixed_bugs": { "type": "integer" },
+            "remaining_bugs": { "type": "integer" },
+            "fix_rate": { "type": "number", "description": "修复率百分比" }
+          }
+        },
+        "summary": { "type": "string", "description": "简明摘要" }
+      }
+    }
+  }
+}

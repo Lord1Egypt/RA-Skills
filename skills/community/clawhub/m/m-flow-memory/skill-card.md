@@ -1,41 +1,53 @@
-## Description: <br>
-Provides an M-Flow-based memory workflow for adding, indexing, searching, and distilling agent memory across lexical, vector, and triplet search modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+M-Flow Memory helps agents add, index, search, and distill memory using the M-Flow framework.
 
-## Publisher: <br>
-[sora-mury](https://clawhub.ai/user/sora-mury) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sora-mury](https://clawhub.ai/user/sora-mury)
 
-## Use Case: <br>
-Developers and agent builders use this skill to connect an agent to M-Flow memory operations, including memory capture, indexing, multimode recall, and session distillation into knowledge points. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store and index conversation content with unclear consent, retention, deletion, and sharing boundaries. <br>
-Mitigation: Review the deployment before installing, use only non-sensitive content until storage and access boundaries are verified, and confirm deletion and retention behavior before production use. <br>
-Risk: Memory distillation may summarize or retain raw transcripts depending on the local M-Flow setup. <br>
-Mitigation: Verify whether distillation stores summaries, raw transcripts, or both, and document who or what agents can search retained memories. <br>
+## Use Case:
 
+Developers and agent builders use this skill to integrate M-Flow memory workflows for adding, indexing, searching, and distilling session or knowledge content across agent workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sora-mury/m-flow-memory) <br>
-- [Publisher profile](https://clawhub.ai/user/sora-mury) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python, shell, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include environment variables, dependency versions, local service endpoints, and memory workflow steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: User-provided content may be stored and indexed in M-Flow memory with unclear retention and access controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when persistence is intended, and confirm where M-Flow stores data, how records are deleted, and which users or agents can search them before handling sensitive content.
+
+Risk: The skill imports a sibling local M-Flow package through a path insertion mechanism.
+
+Mitigation: Install and run it only in a trusted workspace, and ensure the sibling m_flow dependency path is not writable by untrusted users.
+
+## Reference(s):
+
+- [M-Flow Memory ClawHub listing](https://clawhub.ai/sora-mury/skills/m-flow-memory)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python, bash, and environment configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call local M-Flow APIs and persist user-provided memory content when used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

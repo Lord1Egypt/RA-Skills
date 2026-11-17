@@ -1,38 +1,57 @@
-## Description: <br>
-Use this skill when a licensed customs broker, import compliance manager, or trade-compliance team needs to prepare a CBP entry summary draft for a commercial import shipment into the United States. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prepares a draft U.S. CBP entry summary for commercial import shipments, including entry-type selection, document review, HTS confirmation, duty and fee estimates, PGA screening, and line-item summary drafting for licensed customs-broker review.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-External trade-compliance users, including licensed U.S. customs brokers, import compliance managers, trade-compliance teams, in-house trade counsel, and freight forwarders, use this skill to assemble draft CBP entry-summary materials for U.S. imports before broker review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Draft entry summaries may contain incorrect customs values, duty rates, PGA flags, or regulatory assumptions. <br>
-Mitigation: Treat output as a draft and have a licensed customs broker, trade counsel, or qualified compliance professional verify all classifications, values, rates, and admissibility determinations before ACE/ABI transmission or CBP submission. <br>
+## Use Case:
 
+Licensed customs brokers, import compliance managers, trade-compliance teams, in-house trade counsel, and freight forwarders use this skill to assemble a draft U.S. import entry package for broker review before any ACE/ABI transmission.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/archlab-space/customs-entry-drafter) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured tables and review blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft output is labeled for licensed customs-broker review before ACE/ABI transmission or CBP submission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence and changelog, released 2026-05-30) <br>
+Risk: Importer tax/account details, bill of lading data, and commercial invoices can contain sensitive business information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in an agent session approved for that data and redact fields that are not needed for drafting.
+
+Risk: Draft duty, fee, classification, and PGA outputs may be incomplete or outdated if treated as final filing guidance.
+
+Mitigation: Require review by a licensed customs broker or trade counsel before relying on the draft or making any ACE/ABI submission.
+
+Risk: Fee caps, duty rates, trade remedies, sanctions, and agency admissibility requirements can change.
+
+Mitigation: Confirm current CBP, HTSUS, OFAC, AD/CVD, Section 301/232, and PGA requirements before finalizing the entry.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/customs-entry-drafter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured tables, checklists, estimates, and review notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft-only output labeled for licensed customs-broker review; it does not transmit filings.]
+
+## Skill Version(s):
+
+0.1.0 (source: changelog, released 2026-05-30; server release version 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

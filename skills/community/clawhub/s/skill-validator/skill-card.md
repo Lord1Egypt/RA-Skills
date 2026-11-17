@@ -1,44 +1,59 @@
-## Description: <br>
-A ClawHub skill-format validator that checks required files, package metadata, shell script syntax, permissions, and release-readiness issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Validator checks ClawHub skill packages for required files, metadata, shell script syntax, permissions, and format issues, then reports problems and repair guidance.
 
-## Publisher: <br>
-[puppetcat-fire](https://clawhub.ai/user/puppetcat-fire) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[puppetcat-fire](https://clawhub.ai/user/puppetcat-fire)
 
-## Use Case: <br>
-Developers and ClawHub publishers use this skill to validate skill package structure before release, including SKILL.md, package.json, shell scripts, permissions, and configuration fields. It helps identify format and compatibility problems and can emit human-readable or JSON validation reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documentation points users toward a curl-downloaded publishing adapter that is not part of the packaged artifact. <br>
-Mitigation: Use the packaged validator scripts for validation tasks, and inspect any externally downloaded adapter before running it. <br>
-Risk: Some documented workflows perform publishing or bulk publishing actions that can affect ClawHub, GitHub, local files, and account state. <br>
-Mitigation: Run publishing commands only after reviewing target paths, account configuration, release metadata, and generated packages. <br>
-Risk: The installer writes local configuration, rule, log, and example files under the user's OpenClaw configuration directory. <br>
-Mitigation: Review installation effects before running install.sh, especially on shared or managed systems. <br>
+## Use Case:
 
+Developers and skill publishers use Skill Validator to preflight ClawHub skills before release by checking package structure, metadata, script syntax, permissions, and compatibility issues.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/puppetcat-fire/skill-validator) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [Skill development guide](https://github.com/openclaw/openclaw/docs/skills.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text or JSON validation report with shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local validator configuration, rule files, logs, and example skill files under the user's OpenClaw configuration directory during installation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.11 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: The release security summary flags the skill as suspicious because its documentation encourages unpinned remote publishing scripts and higher-impact publish workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing; avoid curl-and-run flows unless pinned to a reviewed commit with a verified checksum, and use publish or CI examples only with intentionally scoped credentials.
+
+Risk: The installer can create or replace global command links under /usr/local/bin when run with --link.
+
+Mitigation: Run install.sh without --link unless global command replacement is intended, and review the target paths and permissions first.
+
+Risk: Validation and repair guidance can affect release decisions or local skill files.
+
+Mitigation: Treat reported fixes as recommendations; review and scan the skill before deployment or publication.
+
+## Reference(s):
+
+- [Skill Validator on ClawHub](https://clawhub.ai/puppetcat-fire/skills/skill-validator)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [OpenClaw Skill Development Guide](https://github.com/openclaw/openclaw/docs/skills.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal output with optional JSON validation reports and Markdown-facing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires bash, jq, find, grep, and sed according to the release metadata.]
+
+## Skill Version(s):
+
+1.0.11 (source: server release metadata, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,52 @@
-## Description: <br>
-解决AI记忆混乱问题——"今天讲明天忘"。通过文件系统和规则流程实现持久记忆，确保新任务开始时自动回顾上下文，而不是靠"想"。核心机制：任务开始判断→读取记忆→执行→保存。适用于频繁切换话题或任务的AI协作场景。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent maintain persistent context by using workspace memory files and a structured task-start workflow for reading, executing, and saving important information.
 
-## Publisher: <br>
-[long57777](https://clawhub.ai/user/long57777) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[long57777](https://clawhub.ai/user/long57777)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent users can use this skill to give agents a repeatable memory workflow for long-running collaboration, frequent task switching, user preferences, tool notes, and lessons learned.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill encourages agents to save and reload personal details, project history, corrections, workflow rules, and tool notes.
+
+Mitigation: Use it only in workspaces where persistent memory is appropriate, and keep secrets, tokens, private emails, and sensitive client data out of memory files.
+
+Risk: Automatic memory writes may preserve inaccurate, stale, or overly broad instructions.
+
+Mitigation: Require explicit confirmation before memory writes and periodically review or delete memory files.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent users use this skill to make an assistant persist useful workspace context, user preferences, task notes, and lessons learned in local markdown files so future sessions can reload relevant context. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to persist local cross-session memory, which can retain sensitive or unnecessary personal details if used carelessly. <br>
-Mitigation: Review memory files before sharing or committing a workspace, avoid storing secrets or unnecessary personal data, and tell the agent when information should remain ephemeral. <br>
+**Output Format:** [Markdown guidance with memory file templates and workflow rules]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/long57777/context-memory) <br>
+**Other Properties Related to Output:** [May guide an agent to create or update workspace memory files.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions and file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill may guide the agent to create or update local memory files such as MEMORY.md, BOOTSTRAP.md, .learnings files, and dated logs.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,11 +1,11 @@
 # ESYS\_LogType enum
 
-日志类型
+Log type
 
 ## Signature
 
 ```typescript
-declare enum ESYS_LogType 
+enum ESYS_LogType
 ```
 
 ## Enumeration Members
@@ -14,80 +14,90 @@ declare enum ESYS_LogType
 
 Member
 
-
 </th><th>
 
 Value
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 ERROR
 
-
 </td><td>
 
-`"error"`
-
+`'error'`
 
 </td><td>
-
-错误
-
 
 </td></tr>
 <tr><td>
 
 FATAL\_ERROR
 
+</td><td>
+
+`'fatalError'`
 
 </td><td>
 
-`"fatalError"`
+</td></tr>
+<tr><td>
 
+FIND
 
 </td><td>
 
-致命错误
+`'find'`
 
+</td><td>
 
 </td></tr>
 <tr><td>
 
 INFO
 
+</td><td>
+
+`'info'`
 
 </td><td>
 
-`"info"`
+</td></tr>
+<tr><td>
 
+OPEN\_PROJECT
 
 </td><td>
 
-信息
+`'openProject'`
 
+</td><td>
+
+</td></tr>
+<tr><td>
+
+REPLACE
+
+</td><td>
+
+`'replace'`
+
+</td><td>
 
 </td></tr>
 <tr><td>
 
 WARNING
 
-
 </td><td>
 
-`"warn"`
-
+`'warn'`
 
 </td><td>
-
-警告
-
 
 </td></tr>
 </tbody></table>

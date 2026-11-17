@@ -1,46 +1,60 @@
-## Description: <br>
-合同风险审查虾帮助代理审查合同文本，识别不平等条款、违约责任失衡、知识产权、管辖权、模糊表述和隐藏义务等风险，并生成修订建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+合同风险审查虾 supports Chinese-language and PRC-oriented contract review by identifying risky clauses, grading severity, and drafting revision suggestions.
 
-## Publisher: <br>
-[tujinsama](https://clawhub.ai/user/tujinsama) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tujinsama](https://clawhub.ai/user/tujinsama)
 
-## Use Case: <br>
-Legal, procurement, operations, and business users can use this skill to review Chinese contract text, compare drafts against templates, and produce a structured risk report with suggested replacement language. It is intended to assist review, not replace professional legal advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Contract text may contain confidential or sensitive business information. <br>
-Mitigation: Use the skill only with contracts the user is authorized to review and handle contract files according to the organization's confidentiality requirements. <br>
-Risk: Generated legal analysis and replacement clauses may be incomplete or unsuitable for a specific jurisdiction or transaction. <br>
-Mitigation: Treat outputs as review support and have qualified legal counsel validate high-risk findings and final contract language. <br>
-Risk: Batch review or notification integrations could expose more documents or recipients than intended. <br>
-Mitigation: Confirm scope, recipients, and permissions before batch-scanning repositories or connecting review findings to notification or compliance-monitoring workflows. <br>
+## Use Case:
 
+Legal, procurement, operations, and business users can use this skill to review contract text, uploaded contract files, or contract template comparisons for risky terms. It produces a structured review report with risk levels, clause locations, explanations, revision guidance, and replacement text.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tujinsama/contract-risk-review-claw) <br>
-- [Risk Clauses Reference](references/risk-clauses.md) <br>
-- [Contract Templates Reference](references/contract-templates.md) <br>
-- [Legal Regulations Reference](references/legal-regulations.md) <br>
-- [Revision Suggestions Reference](references/revision-suggestions.md) <br>
+### Deployment Geography for Use:
 
+Global, for Chinese-language or PRC-oriented contract review support.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown contract review report with risk summary, clause-level findings, revision suggestions, and replacement text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are advisory and should be reviewed by an authorized legal professional before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: Contracts may contain sensitive or confidential information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Process only contracts the user is authorized to review, and avoid sending unauthorized documents into the workflow.
+
+Risk: Automated contract review can miss context-specific legal issues or produce guidance that is not sufficient for high-value agreements.
+
+Mitigation: Have qualified counsel verify results for high-value, legally complex, or jurisdiction-sensitive agreements.
+
+Risk: The embedded legal references and review posture are scoped to Chinese-language or PRC-oriented contract support.
+
+Mitigation: Use the skill within that scope and seek jurisdiction-specific legal review for contracts governed by other legal systems.
+
+## Reference(s):
+
+- [风险条款库](references/risk-clauses.md)
+- [合同模板库](references/contract-templates.md)
+- [法律法规库](references/legal-regulations.md)
+- [修订建议库](references/revision-suggestions.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown contract review report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include an overall grade, risk counts, severity-grouped clause findings, explanations, suggested edits, replacement text, and a review conclusion.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

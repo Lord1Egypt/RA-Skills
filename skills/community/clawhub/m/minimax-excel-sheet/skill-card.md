@@ -1,40 +1,54 @@
-## Description: <br>
-MiniMax Excel helps agents generate professional Excel spreadsheets while preserving formulas, macros, pivot tables, data validation, and conditional formatting for .xlsx and .xlsm outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MiniMax Excel helps agents generate professional .xlsx and .xlsm workbooks that preserve formulas, macros, pivot tables, data validation, and conditional formatting through low-level XML-oriented spreadsheet handling.
 
-## Publisher: <br>
-[smseow001](https://clawhub.ai/user/smseow001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smseow001](https://clawhub.ai/user/smseow001)
 
-## Use Case: <br>
-Developers, analysts, and business users use this skill to ask an agent for financial reports, data summaries, analysis reports, budgets, and performance tracking spreadsheets that need formulas, formatting, pivot tables, or macro-enabled output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Macro-enabled .xlsm workbooks can contain VBA that changes workbook behavior or executes automation. <br>
-Mitigation: Preserve or create macros only from trusted sources, review VBA before distribution, and use .xlsx when macros are not needed. <br>
-Risk: The MiniMax/source and implementation claims are not backed by server-resolved provenance for this release. <br>
-Mitigation: Treat upstream source and implementation claims as unverified unless the publisher provides code or an authoritative upstream reference. <br>
+## Use Case:
 
+External users, developers, and business analysts use this skill to ask an agent to create Excel workbooks for financial reports, data summaries, analysis reports, budget plans, and performance tracking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smseow001/minimax-excel-sheet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Code, Guidance] <br>
-**Output Format:** [.xlsx or .xlsm workbook files, with optional VBA macro code or automation script content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May preserve or generate macros; prefer .xlsx when macros are not needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Generated .xlsm workbooks may contain macro-enabled spreadsheet content that behaves like executable content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use macros only for trusted requests, review VBA before opening or sharing broadly, and save generated workbooks under new filenames until verified.
+
+Risk: Generated formulas, pivots, and workbook logic may affect financial or operational decisions if they are incorrect or misunderstood.
+
+Mitigation: Review formulas, pivot table behavior, and workbook calculations before relying on generated spreadsheets for reporting or distribution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smseow001/skills/minimax-excel-sheet)
+- [Publisher profile](https://clawhub.ai/user/smseow001)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Code, Guidance]
+
+**Output Format:** [.xlsx or .xlsm workbook files, with text or Markdown guidance when explaining formulas, macros, or report structure]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Macro-enabled spreadsheet output should be treated as executable content and reviewed before broad opening or sharing.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

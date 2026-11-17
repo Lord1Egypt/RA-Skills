@@ -1,42 +1,54 @@
-## Description: <br>
-Ecom Intel helps ecommerce sellers and operators analyze competitors, monitor prices, compare reviews, and produce market intelligence reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ecom Intel helps e-commerce sellers analyze competitors, track prices, analyze reviews, and prepare decision-oriented market intelligence reports.
 
-## Publisher: <br>
-[freeman88-tch](https://clawhub.ai/user/freeman88-tch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freeman88-tch](https://clawhub.ai/user/freeman88-tch)
 
-## Use Case: <br>
-External ecommerce sellers, operators, and product selection managers use this skill to track competitor activity, price movement, customer review themes, and deeper market research signals for commercial decision support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process uploaded files, pasted notes, URLs, searches, and generated outputs through iflow as an external knowledge-base service. <br>
-Mitigation: Install only when using iflow is intended, and avoid submitting confidential or regulated ecommerce data unless that service is approved for the data. <br>
-Risk: Shared knowledge bases may expose a read-only snapshot of files and outputs. <br>
-Mitigation: Review knowledge-base contents before sharing and limit sharing to audiences authorized to see the underlying files and generated outputs. <br>
-Risk: Commerce intelligence outputs can be incomplete, stale, or misleading if source listings, prices, or reviews change. <br>
-Mitigation: Validate important pricing, competitor, and review conclusions against current source data before making commercial decisions. <br>
+## Use Case:
 
+E-commerce sellers, operators, and product selection managers use this skill to monitor competitors, compare pricing and reviews, identify market changes, and generate weekly or deep research reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freeman88-tch/ecom-intel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include competitor analysis, price monitoring summaries, review sentiment themes, weekly reports, and deep research report guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can produce market, pricing, and review analysis that may be incomplete or incorrect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs before using them for business decisions and compare important findings against authoritative business data.
+
+Risk: Broad research phrasing could trigger the skill when the user did not intend e-commerce intelligence assistance.
+
+Mitigation: Use explicit ecom-intel commands when invoking the skill and confirm the intended task before acting on generated recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freeman88-tch/skills/ecom-intel)
+- [ClawHub publisher profile](https://clawhub.ai/user/freeman88-tch)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports and concise analysis responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include competitor summaries, price monitoring notes, review sentiment analysis, recommendations, weekly reports, and deep research report guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

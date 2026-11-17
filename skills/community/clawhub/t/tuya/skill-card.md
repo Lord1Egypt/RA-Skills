@@ -1,45 +1,66 @@
-## Description: <br>
-Control and automate Tuya Smart devices with official cloud APIs, secure request signing, region-aware routing, and safe command execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control and automate Tuya Smart devices with official cloud APIs, secure request signing, region-aware routing, and safe command execution.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers, integrators, and smart-home operators use this skill to authenticate to Tuya cloud APIs, discover device capabilities, plan guarded commands, troubleshoot account linking, and coordinate safe device rollouts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent through actions that affect real Tuya smart-home devices, including high-impact devices or bulk updates. <br>
-Mitigation: Start in read-only or guided-write mode, require explicit approval for locks, alarms, heating, high-power switches, and bulk changes, and use read-before-write plus read-after-write verification. <br>
-Risk: Incorrect region, project, account-linking, or device-capability assumptions can cause failed calls or commands against the wrong operating context. <br>
-Mitigation: Resolve region, endpoint, project scope, account model, and function schema before command generation or execution. <br>
-Risk: Stored device mappings or activation preferences may become stale and lead to mistaken automation behavior. <br>
-Mitigation: Periodically review local notes under ~/tuya and update device mappings, activation preferences, and approved automation policies. <br>
-Risk: Tuya credentials and tokens are sensitive and could expose device-control authority if mishandled. <br>
-Mitigation: Use least-privilege Tuya credentials, keep secrets in local environment variables, avoid pasting production secrets into chat logs, and do not persist raw tokens unless explicitly approved. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Tuya Developer Documentation](https://developer.tuya.com) <br>
-- [Tuya Smart ClawHub Skill Page](https://clawhub.ai/ivangdavila/tuya) <br>
-- [Tuya Smart Homepage](https://clawic.com/skills/tuya) <br>
+## Use Case:
 
+Developers and smart-home operators use this skill to configure Tuya cloud access, discover device capabilities, build signed API requests, and execute or troubleshoot guarded device-control workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON examples, and operational checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may include Tuya API request plans, local workspace templates, command payload examples, and verification steps.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Tuya Access ID, Access Secret, project tokens, device IDs, and command payloads can expose operational control data if mishandled.
+
+Mitigation: Keep credentials in local environment variables, never paste production secrets into chat logs, avoid storing raw secrets in notes, and use least-privilege Tuya project permissions.
+
+Risk: Device write operations can affect real-world devices, including high-impact classes such as locks, alarms, HVAC, heating controls, high-power switches, and bulk device cohorts.
+
+Mitigation: Default to read-only inspection, discover capability schemas before command generation, require explicit confirmation before writes, use canary-first rollout, and verify state after each command.
+
+Risk: Wrong regional endpoints, stale signatures, or mismatched account-linking assumptions can cause failed requests or operations against the wrong project context.
+
+Mitigation: Confirm data center, project scope, app account model, timestamp, nonce, signed path, and body hash before API calls, then stop and reconcile account linkage when device lists disagree.
+
+Risk: The local ~/tuya workspace may contain endpoint choices, device identifiers, command dictionaries, automation constraints, and incident details.
+
+Mitigation: Store only Tuya-relevant non-secret notes, use restrictive local file permissions, and treat the workspace as an operational notebook that should not be shared casually.
+
+## Reference(s):
+
+- [Tuya Smart Skill on ClawHub](https://clawhub.ai/ivangdavila/skills/tuya)
+- [Tuya Smart Skill Homepage](https://clawic.com/skills/tuya)
+- [Tuya Developer Documentation](https://developer.tuya.com)
+- [Tuya US OpenAPI Endpoint](https://openapi.tuyaus.com)
+- [Tuya Europe OpenAPI Endpoint](https://openapi.tuyaeu.com)
+- [Tuya China OpenAPI Endpoint](https://openapi.tuyacn.com)
+- [Tuya India OpenAPI Endpoint](https://openapi.tuyain.com)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, markdown]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON request examples, and operational checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose signed Tuya API calls, local note structures, device command payloads, and guarded rollout plans.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

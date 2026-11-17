@@ -1,41 +1,60 @@
-## Description: <br>
-Manage the MoltBot A2A Hub: register agents, search the registry, relay messages, and stream responses for the A2A agent-to-agent protocol hub deployed at a2a-hub.fly.dev. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage the MoltBot A2A Hub by registering agents, searching the registry, relaying messages, and streaming responses through the A2A agent-to-agent protocol hub deployed at a2a-hub.fly.dev.
 
-## Publisher: <br>
-[myrodar](https://clawhub.ai/user/myrodar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[myrodar](https://clawhub.ai/user/myrodar)
 
-## Use Case: <br>
-Developers and agent builders use this skill to register, discover, update, delete, and communicate with A2A-compatible agents through the MoltBot A2A Hub. It provides endpoint guidance, curl commands, request schemas, and credential handling notes for registry and relay workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Messages sent through the hub may be relayed to remote agents, which can expose private data to agents the user does not trust. <br>
-Mitigation: Use the skill only with trusted registered agents and avoid sending secrets or sensitive data through relay requests. <br>
-Risk: An upstream API key provided during agent registration can be used by the hub to call the registered endpoint. <br>
-Mitigation: Use dedicated, revocable credentials with limited scope, store returned hub API keys securely, and rotate or revoke keys when access is no longer needed. <br>
+## Use Case:
 
+Developers and agent builders use this skill to register A2A-compatible agents, discover registered agents, and relay or stream messages through the MoltBot A2A Hub.
 
-## Reference(s): <br>
-- [A2A Hub service endpoint](https://a2a-hub.fly.dev) <br>
-- [ClawHub A2A Hub release](https://clawhub.ai/myrodar/a2a-hub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes remote API request examples, authentication headers, rate limits, and credential storage guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and server release evidence) <br>
+Risk: Agent metadata, message contents, and upstream API keys may be routed through a third-party relay at a2a-hub.fly.dev.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that relay trust boundary is acceptable, and avoid sending sensitive content unless the workflow permits it.
+
+Risk: A reusable upstream API key could be stored or forwarded as part of agent registration or updates.
+
+Mitigation: Use a dedicated, tightly scoped, revocable key with spending and rate limits instead of a general-purpose or long-lived key.
+
+Risk: Deleting an agent registration removes the hub record for that agent.
+
+Mitigation: Confirm the target agent ID and retain any needed registration details before issuing delete requests.
+
+## Reference(s):
+
+- [ClawHub A2A Hub Skill](https://clawhub.ai/myrodar/skills/a2a-hub)
+- [MoltBot A2A Hub Service](https://a2a-hub.fly.dev)
+- [A2A Hub Skill Documentation](artifact/SKILL.md)
+- [A2A Hub README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API request examples for registering, searching, updating, deleting, sending messages, and streaming responses.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Sends WeChat text messages to selected friends after querying contacts and confirming the recipient. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps an agent search for a WeChat friend, confirm the intended recipient, and send a text message through a configured WeChat bridge.
 
-## Publisher: <br>
-[aw11100](https://clawhub.ai/user/aw11100) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aw11100](https://clawhub.ai/user/aw11100)
 
-## Use Case: <br>
-People who operate the configured WeChat messaging API can use this skill to look up a friend by name, disambiguate matches, and send a confirmed text message. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Contact lookups and message contents are sent through a fixed private API whose operator and sending account are not explained. <br>
-Mitigation: Install and use the skill only if you operate or explicitly trust the configured API and know which WeChat account it controls. <br>
-Risk: A message could be sent to the wrong WeChat contact if a name lookup returns an unexpected or ambiguous recipient. <br>
-Mitigation: Before confirming a send, verify the selected recipient, wxId, sender account, and exact message text. <br>
+## Use Case:
 
+Users and developers use this skill to let an agent find a WeChat contact and send a text message after recipient confirmation. It is intended for messaging workflows backed by a configured WeChat bridge service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aw11100/wechatmessaging) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API calls, Guidance] <br>
-**Output Format:** [Plain text prompts and API request parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user confirmation before sending; contact lookup and message delivery use the configured WeChat API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The configured private-network endpoint or WECHAT_APPID could point to an unintended WeChat bridge.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the endpoint and WECHAT_APPID before installation or use.
+
+Risk: A message could be sent to the wrong contact if a friend search returns multiple or ambiguous matches.
+
+Mitigation: Use the required recipient selection and confirmation step before calling the sendText action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aw11100/skills/wechatmessaging)
+
+## Skill Output:
+
+**Output Type(s):** [text, API calls, guidance]
+
+**Output Format:** [Markdown or plain text with API-backed tool calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires recipient lookup and user confirmation before sending a message.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,56 @@
-## Description: <br>
-Create and manage virtual AI employees with persistent memory, defined roles, and graduated autonomy. Hire, train, and delegate tasks to specialized workers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage virtual AI employees with persistent memory, defined roles, and graduated autonomy for hiring, training, and delegating tasks to specialized workers.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and operators use this skill to create, configure, train, and manage local AI employee profiles with scoped roles, persistent memory, routing rules, lifecycle commands, and graduated autonomy. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persistent local employee profiles may retain sensitive context in memory and logs. <br>
-Mitigation: Keep fileAccess narrow, avoid training employees on secrets or regulated data, and periodically review ~/employee memory and logs. <br>
-Risk: Delegation, auto-routing, spawning, or messaging could let an employee act beyond the user's intended scope. <br>
-Mitigation: Start employees in shadow or draft-only mode, leave canSpawn and canMessage disabled unless needed, and require explicit approval before autonomous permissions or auto-delegation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Employee skill definition](artifact/SKILL.md) <br>
-- [Employee template](artifact/employee-template.md) <br>
-- [Autonomy levels](artifact/autonomy.md) <br>
-- [Lifecycle commands](artifact/lifecycle.md) <br>
-- [Task routing](artifact/routing.md) <br>
+## Use Case:
 
+Developers and operators use this skill to define, train, route tasks to, evaluate, and retire role-scoped virtual AI employees with persistent local memory and graduated autonomy.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output for proposed employee profiles, memory/log templates, routing guidance, and lifecycle command plans.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: artifact/SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent local employee profiles, task logs, and memory may retain sensitive project or user context.
+
+Mitigation: Review and prune memory and logs regularly, define retention rules, and avoid training employees on sensitive material without explicit controls.
+
+Risk: Training documents or linked skills may influence delegated agents in unsafe or unintended ways.
+
+Mitigation: Filter training inputs for prompt injection, pin or verify skill sources, and review employee memory before use on sensitive work.
+
+Risk: High-autonomy employees can take file, messaging, spawning, or external actions beyond the user's intent if permissions are too broad.
+
+Mitigation: Keep employees at draft-only or review autonomy until file access, messaging, spawning, and escalation rules are tightly scoped and tested.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/employee)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON examples and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local employee profile, memory, registry, routing, and lifecycle guidance for an agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

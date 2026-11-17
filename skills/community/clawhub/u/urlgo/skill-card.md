@@ -1,42 +1,58 @@
-## Description: <br>
-urlgo helps agents control a browser through a CLI for opening pages, capturing screenshots, reading page content, clicking, typing, and running JavaScript. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+urlgo lets an agent control a local browser through CDP to open pages, capture screenshots, read page text or HTML, and execute JavaScript.
 
-## Publisher: <br>
-[fslong520](https://clawhub.ai/user/fslong520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fslong520](https://clawhub.ai/user/fslong520)
 
-## Use Case: <br>
-Agents and developers use urlgo to operate a local browser through CDP when they need to inspect web pages, capture screenshots, extract page content, or perform supervised browser interactions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables powerful browser-control actions including click, type, and JavaScript evaluation. <br>
-Mitigation: Supervise browser actions and review intended targets before execution. <br>
-Risk: The skill depends on an external urlgo executable. <br>
-Mitigation: Verify where the executable comes from before installing or running the skill. <br>
-Risk: Browser automation can act on sensitive authenticated pages. <br>
-Mitigation: Avoid using the skill on sensitive authenticated pages unless that access is intended, and close the background browser when finished. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect and interact with web pages through a local CDP-enabled browser, including screenshots, text snapshots, HTML source capture, clicks, typing, and JavaScript evaluation.
 
-## Reference(s): <br>
-- [ClawHub skill page: urlgo](https://clawhub.ai/fslong520/urlgo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Files, Code] <br>
-**Output Format:** [Markdown with inline shell commands, file paths, and browser action results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce page snapshots, screenshot files, and JavaScript evaluation results through the urlgo CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-6.5.1 (source: server-resolved release evidence) <br>
+Risk: The skill grants broad CDP control over a local browser, including page navigation, clicks, typing, screenshots, and JavaScript evaluation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when browser automation is intended, review proposed browser actions before execution, and close the detached browser session when finished.
+
+Risk: Screenshots, HTML source, snapshots, and JavaScript evaluation can expose private content from logged-in or sensitive pages.
+
+Mitigation: Avoid sensitive logged-in accounts unless each action is explicitly approved, and treat captured page content as sensitive data.
+
+Risk: The browser can remain running in the background after the CLI exits.
+
+Mitigation: Check browser status before and after use, and close stale or unrelated tabs and browser processes when work is complete.
+
+## Reference(s):
+
+- [ClawHub urlgo Skill Page](https://clawhub.ai/fslong520/skills/urlgo)
+- [ClawHub Publisher Profile: fslong520](https://clawhub.ai/user/fslong520)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and browser-derived text, HTML, or PNG screenshot files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local screenshot files and page content captured from the controlled browser.]
+
+## Skill Version(s):
+
+6.6.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

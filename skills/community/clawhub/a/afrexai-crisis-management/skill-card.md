@@ -1,41 +1,49 @@
-## Description: <br>
-Helps organizations detect crises early, assess severity and type, activate response teams, and communicate effectively to manage reputation and operational incidents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps organizations detect, assess, respond to, communicate during, and recover from business crises using playbooks, templates, and response frameworks.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Business operators, communications leads, legal reviewers, security teams, HR teams, and executives use this skill to classify emerging crises, activate response roles, draft stakeholder communications, and plan recovery. It is intended as a structured planning aid for incidents such as PR issues, cyber incidents, operational failures, personnel matters, regulatory issues, and reputation risk. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill provides high-stakes crisis, legal, regulatory, HR, privacy, security, and public communications guidance. <br>
-Mitigation: Use it as a planning aid only, and have qualified legal, security, HR, privacy, and communications staff review real-world statements, notifications, legal holds, and public actions before acting. <br>
-Risk: Draft incident communications or notification checklists may be incomplete or unsuitable for a specific jurisdiction, industry, or factual record. <br>
-Mitigation: Validate all generated guidance against current facts, applicable law, regulator expectations, insurance obligations, and organization-specific escalation procedures before release. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-crisis-management) <br>
-- [Publisher profile](https://clawhub.ai/user/1kalin) <br>
-- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+Business operators, communications teams, executives, legal reviewers, and incident leads use this skill to classify crisis severity, activate response roles, draft stakeholder communications, manage media inquiries, and plan recovery after incidents.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown with structured checklists, tables, YAML-style templates, and draft communications] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces planning guidance and draft content for human review; it does not execute code, access accounts, or perform external actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Legal, regulatory, healthcare, finance, and data-breach timelines may be jurisdiction-specific or change over time.
+
+Mitigation: Treat those outputs as planning drafts and verify them with qualified counsel or current authoritative sources before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-crisis-management)
+- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown playbooks, checklists, tables, structured templates, and YAML-style planning blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces crisis assessments, stakeholder communication drafts, response plans, tabletop exercises, readiness audits, and post-mortem templates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

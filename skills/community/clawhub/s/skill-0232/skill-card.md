@@ -1,37 +1,52 @@
-## Description: <br>
-Documents core, technical, and professional skills along with practical learning goals in a concise markdown note. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a concise personal skills checklist covering core, technical, professional, and learning-goal areas.
 
-## Publisher: <br>
-[618dt](https://clawhub.ai/user/618dt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[618dt](https://clawhub.ai/user/618dt)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Agents can use this as a compact reference for summarizing a user's skills, tool familiarity, and current learning goals. It is most useful for profile summaries, coaching context, or planning skill development.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The artifact is a personal skills checklist rather than an operational agent workflow.
+
+Mitigation: Treat it as profile or planning context and review any agent-generated recommendations before applying them.
+
+Risk: The final note contains non-English text that may be less accessible in single-language deployments.
+
+Mitigation: Translate or localize the note when deploying in an English-only or otherwise language-constrained environment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Agents and users can use this skill as a compact reference for personal skill areas, tooling familiarity, and learning priorities. It is useful when summarizing a learner profile or maintaining a simple skills inventory. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact is a general skills note rather than a functional agent workflow. <br>
-Mitigation: Use it as descriptive guidance or profile context, and do not expect it to automate tasks without additional instructions. <br>
+**Output Format:** [Markdown checklist]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [No commands, code execution, file writes, credential access, or external service calls are produced by the artifact.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static note; no code execution, data access, or file modification behavior is described.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

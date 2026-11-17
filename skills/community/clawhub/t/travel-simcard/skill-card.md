@@ -1,47 +1,61 @@
-## Description: <br>
-Find international SIM cards and eSIM plans for overseas travel, including data packages, local numbers, and destination coverage, with related travel booking support powered by Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find international SIM card and eSIM options for overseas travel using flyai CLI results, including data packages, local numbers, coverage, prices, and booking links.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External users and travel-focused agents use this skill to search for international SIM card and eSIM options for a destination, compare available plans, and return booking links from flyai CLI results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill instructs agents to install and use an unpinned global flyai npm CLI. <br>
-Mitigation: Install the CLI yourself from a trusted source, review the installed package and version before use, and avoid automatic global installation in restricted environments. <br>
-Risk: The skill can persist raw travel queries and execution details in `.flyai-execution-log.json`. <br>
-Mitigation: Review, rotate, or disable the local log before use, and avoid entering sensitive passport, visa, payment, or detailed itinerary data unless the CLI and log handling are acceptable. <br>
-Risk: Booking recommendations and prices depend on external flyai CLI results and provider links. <br>
-Mitigation: Confirm price, coverage, validity period, and booking terms on the linked provider page before purchase. <br>
+## Use Case:
 
+Travelers and travel-support agents use this skill to compare SIM card and eSIM options for a destination from live flyai CLI output. It formats results as concise booking-oriented Markdown with prices, coverage context, and bookable links.
 
-## Reference(s): <br>
-- [Travel Simcard Skill Page](https://clawhub.ai/dingtom336-gif/travel-simcard) <br>
-- [Publisher Profile](https://clawhub.ai/user/dingtom336-gif) <br>
-- [Templates](references/templates.md) <br>
-- [Playbooks](references/playbooks.md) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown comparison tables with booking links and inline shell commands when setup or retries are needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs must be based on flyai CLI results, include booking links from detailUrl, and match the user's input language.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can install a global flyai CLI before answering travel queries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a reviewed, pinned, isolated CLI installation and avoid unattended global npm installs.
+
+Risk: Raw travel queries may be persisted in an execution log.
+
+Mitigation: Disable or remove query logging before handling sensitive travel or personal details.
+
+Risk: Booking links and real-time prices come from flyai output and may lead to third-party booking flows.
+
+Mitigation: Review booking links and CLI results before purchase or sharing with users.
+
+## Reference(s):
+
+- [Skill Definition](artifact/SKILL.md)
+- [Output Templates](artifact/references/templates.md)
+- [Scenario Playbooks](artifact/references/playbooks.md)
+- [Failure Recovery](artifact/references/fallbacks.md)
+- [Execution Log Schema](artifact/references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown comparison tables with inline booking links and bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results must be derived from flyai CLI output, include booking links from detailUrl values, and follow the user's input language.]
+
+## Skill Version(s):
+
+3.2.0 (source: evidence release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

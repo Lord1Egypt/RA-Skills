@@ -1,41 +1,53 @@
-## Description: <br>
-一个简单的日常开销记录和统计工具，帮助管理个人财务。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A simple daily expense recording and statistics tool for managing personal finances.
 
-## Publisher: <br>
-[yangjinghua0127](https://clawhub.ai/user/yangjinghua0127) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangjinghua0127](https://clawhub.ai/user/yangjinghua0127)
 
-## Use Case: <br>
-External users and agents use this skill to record simple personal expenses, view recent bills, summarize spending by category or month, and export local JSON reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes personal expense records to local JSON files. <br>
-Mitigation: Use it only in a workspace where local expense data can be stored, backed up, and reviewed before sharing artifacts. <br>
-Risk: ClawScan guidance recommends care with local-authority workflow helpers even though this release was rated clean. <br>
-Mitigation: Review commands and generated files before deployment, and follow the documented confirmation steps for any sensitive local action. <br>
+## Use Case:
 
+External users use this skill to record everyday expenses with simple Chinese commands, review recent records, view category and monthly totals, and export local JSON reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yangjinghua0127/expense-note) <br>
-- [Publisher profile](https://clawhub.ai/user/yangjinghua0127) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, JSON files, guidance] <br>
-**Output Format:** [Console text and local JSON expense data or report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local JSON persistence under data/expenses.json and can export dated report JSON files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill stores personal financial records in local JSON files under its data directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Users should review local data handling expectations, back up expenses.json before relying on it, and avoid sharing the data directory unintentionally.
+
+Risk: Malformed amounts or unusual category names may lead to incorrect expense records because validation is limited.
+
+Mitigation: Users should review entered amounts and category names before relying on reports or summaries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yangjinghua0127/skills/expense-note)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, JSON]
+
+**Output Format:** [Console text and local JSON files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes expense records to data/expenses.json and exports dated report JSON files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

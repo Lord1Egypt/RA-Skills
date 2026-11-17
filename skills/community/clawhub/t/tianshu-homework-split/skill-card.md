@@ -1,40 +1,52 @@
-## Description: <br>
-Splits syllabus, assignment, or study requirement text into a numbered Markdown checklist for students. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Splits course assignments, syllabus requirements, or long study text into a numbered Markdown checklist for students.
 
-## Publisher: <br>
-[wangshengli0421](https://clawhub.ai/user/wangshengli0421) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wangshengli0421](https://clawhub.ai/user/wangshengli0421)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Students use this skill to convert course requirements, homework instructions, and review outlines into copyable Markdown task lists for Notion, Obsidian, or a todo workflow.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Automatically split tasks may omit or misread assignment details such as deadlines, optional work, or teacher-specific requirements.
+
+Mitigation: Review the generated checklist against the original assignment text before relying on it.
+
+Risk: Input from a local file or pasted text is printed as derived checklist content, which may expose sensitive course or personal details if shared.
+
+Mitigation: Use appropriate local files and review the output before copying it into shared tools.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Students use this skill to turn course assignment instructions, syllabus requirements, or review outlines into a Markdown task checklist for Notion, Obsidian, or a to-do list. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated checklist items can miss or misstate deadlines, optional work, or task boundaries in the original assignment text. <br>
-Mitigation: Review the Markdown checklist against the original teacher requirements before relying on it. <br>
-Risk: Using the file input mode processes local documents supplied by the user. <br>
-Mitigation: Use --file only with documents the user intends to process, or use --text for pasted content. <br>
+**Output Format:** [Markdown checklist printed to stdout]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangshengli0421/tianshu-homework-split) <br>
+**Other Properties Related to Output:** [Reads user-provided text or a UTF-8 local file and preserves deadline-related wording when detected.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Shell commands] <br>
-**Output Format:** [Markdown checklist printed to stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads user-provided UTF-8 files or pasted text, preserves deadline wording when detected, and includes a short self-check section.] <br>
+1.0.0 (source: evidence.json release.version and artifact/clawhub.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and clawhub.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

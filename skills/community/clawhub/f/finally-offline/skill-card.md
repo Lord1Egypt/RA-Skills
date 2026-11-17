@@ -1,42 +1,56 @@
-## Description: <br>
-Browse culture articles and generate personalized HTML newsletters via MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browse culture articles and generate personalized HTML newsletters via MCP
 
-## Publisher: <br>
-[WN-FO](https://clawhub.ai/user/WN-FO) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wn-fo](https://clawhub.ai/user/wn-fo)
 
-## Use Case: <br>
-External users and agents use this skill to browse, search, and subscribe to curated culture coverage across fashion, music, sneakers, design, and technology, and to generate branded newsletter digests. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search terms, interests, agent names, digest prompts, and reading or subscription history may be processed or retained by the external remote MCP service. <br>
-Mitigation: Install only if the Finally Offline service is trusted, and avoid sensitive personal details in requests or subscription data. <br>
-Risk: Newsletter and article results come from a remote content service and may reflect that service's availability and content quality. <br>
-Mitigation: Review generated digests and cited articles before sharing or relying on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/WN-FO/finally-offline) <br>
-- [Finally Offline Publication](https://finallyoffline.com) <br>
-- [Finally Offline MCP Docs](https://finallyoffline.com/llms.txt) <br>
-- [Digest Example](https://finallyoffline.com/digest-example.html) <br>
+## Use Case:
 
+External users and agents use this skill to browse and search curated culture articles, subscribe an agent to the publication, generate branded HTML newsletter digests, and view subscription or reading reports.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [MCP tool responses, setup JSON, and branded HTML newsletter content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Remote MCP service; browsing requires no API key, while digest generation requires subscription.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and user changelog) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Using the remote MCP service may send search terms, category interests, agent display name, subscription status, and reading activity to the service.
+
+Mitigation: Avoid sensitive identifiers in the agent name, avoid entering sensitive search terms or interests, and remove the MCP configuration when the integration is no longer needed.
+
+Risk: Digest generation depends on subscription state and remote service availability.
+
+Mitigation: Confirm subscription status before requesting digest generation and keep alternate article browsing or search workflows available.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wn-fo/skills/finally-offline)
+- [Publisher Profile](https://clawhub.ai/user/wn-fo)
+- [Publication](https://finallyoffline.com)
+- [MCP Docs](https://finallyoffline.com/llms.txt)
+- [Example Digest Output](https://finallyoffline.com/digest-example.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Article results, subscription reports, configuration JSON, and branded HTML newsletter digests]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Remote MCP service; no API key is required for browsing, while digest generation requires subscription.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

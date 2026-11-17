@@ -1,41 +1,61 @@
-## Description: <br>
-Alpha Pulse provides China A-share T+1 short-term stock signal scanning and report-generation guidance based on capital-flow, price-volume, technical, news, and sentiment factors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Alpha Pulse provides a China A-share T+1 short-term signal scaffold for scanning the market, ranking Top 30 next-day candidates, and generating signal reports.
 
-## Publisher: <br>
-[77Spongebob](https://clawhub.ai/user/77Spongebob) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[77spongebob](https://clawhub.ai/user/77spongebob)
 
-## Use Case: <br>
-External users and developers use this skill to guide an agent through scanning China A-share market data, filtering candidates, and producing short-term stock signal reports. It should be treated as an incomplete stock-data scanner and not as a ready trading engine. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The release describes a stock-prediction system whose full implementation is not included in the package. <br>
-Mitigation: Review the artifact contents before use and verify or supply any missing prediction, factor, report, and notification modules before running workflows that depend on them. <br>
-Risk: Financial signal output may be inaccurate or incomplete. <br>
-Mitigation: Do not rely on the skill output for trading decisions without independent financial review and validation against trusted market data. <br>
-Risk: Runtime behavior depends on Python packages and market-data access. <br>
-Mitigation: Run the scanner in an isolated Python environment, pin dependencies, and validate data-provider behavior before regular use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/77Spongebob/alpha-pulse) <br>
+## Use Case:
 
+Developers and market-analysis users use this skill to scaffold daily post-close A-share screening, next-day short-term signal ranking, and Markdown/CSV/chart report generation. Outputs should be treated as informational market-analysis material, not financial advice.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, Python code references, and report output descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The artifact includes a configuration file and scanner skeleton, while described prediction, factor, report, and notification modules are not included.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Unpinned Python dependencies and market-data packages may change behavior over time.
+
+Mitigation: Install dependencies in an isolated virtual environment and pin package versions before operational use.
+
+Risk: Generated reports, CSV files, or charts could overwrite or add files in a workspace.
+
+Mitigation: Review generated file paths and contents before overwriting existing workspace files.
+
+Risk: Optional market-data tokens may be stored or used by configuration and data-fetching flows.
+
+Mitigation: Avoid entering optional tokens unless their storage location and use are understood.
+
+Risk: Stock predictions can be mistaken for financial advice.
+
+Mitigation: Treat all predictions and rankings as informational market-analysis outputs.
+
+## Reference(s):
+
+- [Alpha Pulse on ClawHub](https://clawhub.ai/77spongebob/skills/alpha-pulse)
+- [Publisher profile: 77spongebob](https://clawhub.ai/user/77spongebob)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, CSV, Charts, Shell commands, Configuration]
+
+**Output Format:** [Markdown reports, CSV exports, chart files, shell commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include desktop notification guidance; generated files should be reviewed before overwriting workspace content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, released 2026-03-08)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

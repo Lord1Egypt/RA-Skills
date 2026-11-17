@@ -1,42 +1,61 @@
-## Description: <br>
-Transform natural language image requests into optimized structured prompts for Gemini image generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms natural-language image requests into structured Gemini image-generation prompts with style-specific details for photography, illustration, anime, 3D, watercolor, product, minimalist, and surreal outputs.
 
-## Publisher: <br>
-[minilozio](https://clawhub.ai/user/minilozio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[minilozio](https://clawhub.ai/user/minilozio)
 
-## Use Case: <br>
-Developers, creators, and agent users use this skill to turn natural language image requests into structured Gemini image prompts with style, composition, camera, rendering, and negative-prompt details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on a Gemini API key and a helper workflow that may expose credentials if handled carelessly. <br>
-Mitigation: Keep GEMINI_API_KEY in the environment, avoid logging or committing it, and use a trusted Gemini generator helper. <br>
-Risk: Generated image filenames, output paths, or reference images may expose sensitive data or affect unintended files. <br>
-Mitigation: Use simple agent-constructed filenames, avoid unsanitized user input in paths, and be deliberate when using sensitive reference images. <br>
+## Use Case:
 
+Developers and agent users use this skill to convert casual image requests into detailed structured prompts and command examples for Gemini-based image generation or image editing workflows.
 
-## Reference(s): <br>
-- [Structured Prompt Guide for Gemini Image Generation](references/prompt-guide.md) <br>
-- [Nano Banana Prompting Skill on ClawHub](https://clawhub.ai/minilozio/nano-banana-prompting) <br>
-- [Gemini API Key Setup](https://aistudio.google.com/apikey) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with structured JSON prompt examples and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide an agent to produce image files through a trusted Gemini image generation helper.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: Prompt text may be shaped by the user and then passed through a documented local shell command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution and prefer implementations that pass prompt JSON as a separate process argument, file, or stdin.
+
+Risk: Generated output filenames or paths could overwrite existing files or write outside the intended location.
+
+Mitigation: Use agent-derived safe filenames, check for collisions, and confirm any non-default output path before running the generator.
+
+Risk: The workflow requires GEMINI_API_KEY for image generation.
+
+Mitigation: Install and use the skill only in environments where local command execution and access to that API key are acceptable.
+
+## Reference(s):
+
+- [Structured Prompt Guide for Gemini Image Generation](references/prompt-guide.md)
+- [ClawHub Release Page](https://clawhub.ai/minilozio/skills/nano-banana-prompting)
+- [Google AI Studio API Key](https://aistudio.google.com/apikey)
+- [OpenClaw](https://openclaw.ai)
+- [Claude Code](https://code.claude.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with JSON prompt templates and bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires uv, GEMINI_API_KEY, and a compatible Gemini image-generation script or skill.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

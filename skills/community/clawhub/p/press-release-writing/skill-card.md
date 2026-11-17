@@ -1,42 +1,55 @@
-## Description: <br>
-Press release writing in AP style with inverted pyramid structure, including formatting, datelines, quotes, boilerplates, and fact-checking for announcements such as product launches, funding news, partnerships, company news, and events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Press release writing in AP style with inverted pyramid structure, covering formatting, datelines, quotes, boilerplates, and fact-checking for product launches, funding announcements, partnerships, company news, and events.
 
-## Publisher: <br>
-[okaris](https://clawhub.ai/user/okaris) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[okaris](https://clawhub.ai/user/okaris)
 
-## Use Case: <br>
-Communications, marketing, public relations, and founder teams use this skill to draft and review professional press releases in AP style. It helps structure announcements, write headlines and quotes, add boilerplates and media contacts, and fact-check claims with external research tools. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill suggests installing an external research CLI through a remote shell installer. <br>
-Mitigation: Review the installer first or use the documented manual install path and verify the published SHA-256 checksum before running the CLI. <br>
-Risk: Research prompts may send confidential or embargoed press release details to external search tools. <br>
-Mitigation: Use a narrowly scoped inference.sh account and avoid entering confidential, embargoed, or sensitive announcement details into external research tools. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/okaris/press-release-writing) <br>
-- [inference.sh](https://inference.sh) <br>
-- [inference.sh CLI installer](https://cli.inference.sh) <br>
-- [inference.sh CLI checksums](https://dist.inference.sh/cli/checksums.txt) <br>
+## Use Case:
 
+Marketing, communications, public relations, and founder-led teams use this skill to draft professional press releases in AP style and structure announcements with a clear headline, dateline, lead, quotes, boilerplate, and media contact details.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Press release guidance includes AP style structure, examples, checklists, research commands, and fact-checking prompts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.5 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to run mutable remote install commands that could execute unreviewed code.
+
+Mitigation: Inspect the installer, verify published checksums, and independently trust the publisher before running curl-to-shell or unpinned npx commands.
+
+Risk: CLI login and research queries may send announcement details or research prompts to external services.
+
+Mitigation: Review prompts before submission and avoid sending confidential or sensitive announcement details unless external processing is approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/okaris/skills/press-release-writing)
+- [inference.sh](https://inference.sh)
+- [inference.sh CLI installer](https://cli.inference.sh)
+- [inference.sh CLI checksums](https://dist.inference.sh/cli/checksums.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown prose with optional inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+0.1.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

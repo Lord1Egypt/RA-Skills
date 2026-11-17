@@ -1,44 +1,58 @@
-## Description: <br>
-将任务执行结果推送到负一屏卡片显示，支持普通推送和定时任务推送。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pushes task execution results to a mobile Today-screen card and supports both immediate and scheduled task-result pushes.
 
-## Publisher: <br>
-[pingjiang](https://clawhub.ai/user/pingjiang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pingjiang](https://clawhub.ai/user/pingjiang)
 
-## Use Case: <br>
-OpenClaw users use this skill to send agent task results to a mobile Today-screen card, including immediate conversation results and scheduled task results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agent outputs may leave the local environment through an external phone notification service. <br>
-Mitigation: Use only for non-confidential content unless the destination API URL, auth-code handling, and data retention expectations are understood. <br>
-Risk: Scheduled task results can be pushed automatically without a fresh user confirmation. <br>
-Mitigation: Disable or tightly control scheduled pushes when automatic delivery is not appropriate. <br>
-Risk: Authentication is controlled by AS_TODAY_AUTH_CODE. <br>
-Mitigation: Store the auth code only in the skill environment configuration and rotate it if exposure is suspected. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to send concise task summaries, success or failure status, and detailed result content to a phone-facing Today-screen card. It is intended for both user-triggered pushes and scheduled task-result notifications.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pingjiang/push2today) <br>
-- [Publisher profile](https://clawhub.ai/user/pingjiang) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and CLI parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and AS_TODAY_AUTH_CODE; sends summarized task results and content to a configured phone notification API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Scheduled task results may be pushed automatically without confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only where automatic result sharing is intended, and add a confirmation or policy gate before sending scheduled-task outputs.
+
+Risk: Task content or authentication data may expose secrets or private information, especially when debug logging is enabled.
+
+Mitigation: Avoid sending secrets or private content, keep DEBUG disabled, and configure only trusted HTTPS API endpoints.
+
+Risk: Shell-based invocation may be vulnerable if untrusted parameter values are interpolated into commands.
+
+Mitigation: Review the command path before installation and prefer an argument-safe invocation that does not rely on shell interpolation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pingjiang/skills/push2today)
+- [Metadata homepage](https://github.com/your-name/push2today)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, API Calls, Guidance]
+
+**Output Format:** [Markdown guidance with CLI command arguments and JSON API payload content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node and AS_TODAY_AUTH_CODE; summary is limited to 64 characters and content is limited to 30717 characters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

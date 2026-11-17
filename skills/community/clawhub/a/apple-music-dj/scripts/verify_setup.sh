@@ -4,6 +4,53 @@
 
 set -euo pipefail
 
+# Testing hook: APPLE_MUSIC_API_BASE may point at a local mock server (tests/mock_api.py).
+# Loopback addresses only, so real tokens can never be sent to another host.
+BASE="https://api.music.apple.com"
+if [[ -n "${APPLE_MUSIC_API_BASE:-}" ]]; then
+    if [[ "$APPLE_MUSIC_API_BASE" =~ ^http://(127\.0\.0\.1|localhost)(:[0-9]+)?$ ]]; then
+        BASE="$APPLE_MUSIC_API_BASE"
+    else
+        echo "ERROR: APPLE_MUSIC_API_BASE must be http://127.0.0.1[:port] or http://localhost[:port]" >&2
+        exit 1
+    fi
+fi
+
+# The token check below writes the tokens into a temporary curl config (mode 600). Remove those
+# files however we exit — including Ctrl-C or `kill` mid-request. Names carry this script's pid,
+# so the cleanup only ever touches this run's files.
+# shellcheck disable=SC2317,SC2329  # invoked via the traps below (older ShellCheck says 2317, newer 2329)
+_cleanup() {
+    if [[ -n "${_CURL_PID:-}" ]]; then
+        kill "$_CURL_PID" 2>/dev/null || true
+    fi
+    rm -f "${TMPDIR:-/tmp}"/am_verify_$$_* 2>/dev/null || true
+}
+_CURL_PID=""
+trap _cleanup EXIT
+trap '_cleanup; exit 130' INT
+trap '_cleanup; exit 143' TERM
+
+# _http_status <curl-config> <url> — sets HTTP_CODE ("000" on failure). curl runs in the
+# background and we `wait` for it: bash defers traps until a foreground command finishes, so a
+# plain `$(curl ...)` would ignore Ctrl-C/TERM until the request ended.
+HTTP_CODE="000"
+_http_status() {
+    local cfg="$1" url="$2" out rc=0
+    out=$(mktemp "${TMPDIR:-/tmp}/am_verify_$$_XXXXXX")
+    curl -s -o /dev/null -w "%{http_code}" --max-time 20 -K "$cfg" "$url" > "$out" 2>/dev/null &
+    _CURL_PID=$!
+    wait "$_CURL_PID" || rc=$?
+    if (( rc >= 128 )); then
+        _cleanup
+        exit "$rc"
+    fi
+    _CURL_PID=""
+    HTTP_CODE=$(cat "$out" 2>/dev/null || true)
+    [[ -n "$HTTP_CODE" ]] || HTTP_CODE="000"
+    rm -f "$out"
+}
+
 PASS="✅"
 FAIL="❌"
 WARN="⚠️"
@@ -34,13 +81,11 @@ echo ""
 
 echo "Checking Python version..."
 py_version=$(python3 -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')" 2>/dev/null || echo "0.0")
-py_major=$(echo "$py_version" | cut -d. -f1)
-py_minor=$(echo "$py_version" | cut -d. -f2)
 
-if [[ "$py_major" -ge 3 && "$py_minor" -ge 9 ]]; then
-    echo "  $PASS Python $py_version (≥ 3.9 required)"
+if python3 -c "import sys; sys.exit(0 if sys.version_info >= (3, 10) else 1)" 2>/dev/null; then
+    echo "  $PASS Python $py_version (≥ 3.10 required)"
 else
-    echo "  $FAIL Python $py_version (≥ 3.9 required)"
+    echo "  $FAIL Python $py_version (≥ 3.10 required)"
     errors=$((errors + 1))
 fi
 
@@ -67,7 +112,8 @@ if [[ -n "${APPLE_MUSIC_DEV_TOKEN:-}" ]]; then
     echo "  $PASS APPLE_MUSIC_DEV_TOKEN — set"
 else
     echo "  $FAIL APPLE_MUSIC_DEV_TOKEN — NOT SET"
-    echo "       See references/auth-setup.md for instructions"
+    echo "       Set up both tokens in one step: python3 scripts/setup_auth.py"
+    echo "       Or try the skill first with no tokens: python3 scripts/demo.py tour"
     errors=$((errors + 1))
 fi
 
@@ -76,7 +122,7 @@ if [[ -n "${APPLE_MUSIC_USER_TOKEN:-}" ]]; then
     echo "  $PASS APPLE_MUSIC_USER_TOKEN — set ($token_len chars)"
 else
     echo "  $FAIL APPLE_MUSIC_USER_TOKEN — NOT SET"
-    echo "       See references/auth-setup.md for instructions"
+    echo "       Set it up with: python3 scripts/setup_auth.py (see references/auth-setup.md)"
     errors=$((errors + 1))
 fi
 
@@ -108,11 +154,11 @@ if [[ -n "${APPLE_MUSIC_DEV_TOKEN:-}" ]]; then
 
         if [[ "$remaining" -le 0 ]]; then
             echo "  $FAIL Dev token has EXPIRED!"
-            echo "       Regenerate with: python3 scripts/generate_dev_token.py"
+            echo "       Regenerate with: python3 scripts/setup_auth.py --new-dev-token"
             errors=$((errors + 1))
         elif [[ "$days_remaining" -le 14 ]]; then
             echo "  $WARN Dev token expires in ${days_remaining} day(s) — consider regenerating soon"
-            echo "       Regenerate with: python3 scripts/generate_dev_token.py"
+            echo "       Regenerate with: python3 scripts/setup_auth.py --new-dev-token"
             warnings=$((warnings + 1))
         else
             echo "  $PASS Dev token valid for ${days_remaining} more day(s)"
@@ -123,6 +169,32 @@ if [[ -n "${APPLE_MUSIC_DEV_TOKEN:-}" ]]; then
     fi
 else
     echo "  $WARN Skipped — APPLE_MUSIC_DEV_TOKEN not set"
+fi
+
+echo ""
+
+# ── User token age ────────────────────────────────────────
+# The user token carries no expiry, so _common records (by fingerprint) when it was first seen.
+
+echo "Checking user token age..."
+
+if [[ -n "${APPLE_MUSIC_USER_TOKEN:-}" ]]; then
+    age_json=$(AMDJ_SCRIPTS="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)" python3 -c '
+import json, os, sys
+sys.path.insert(0, os.environ["AMDJ_SCRIPTS"])
+from _common import check_user_token_age
+print(json.dumps(check_user_token_age()))' 2>/dev/null || echo null)
+    age_msg=$(jq -r '.message // empty' <<< "$age_json" 2>/dev/null || true)
+    if [[ -z "$age_msg" ]]; then
+        echo "  $WARN Could not track the user token's age — skipping check"
+    elif [[ "$(jq -r '.warning' <<< "$age_json")" == "true" ]]; then
+        echo "  $WARN ${age_msg#⚠️  }"
+        warnings=$((warnings + 1))
+    else
+        echo "  $PASS ${age_msg#✅ }"
+    fi
+else
+    echo "  $WARN Skipped — APPLE_MUSIC_USER_TOKEN not set"
 fi
 
 echo ""
@@ -149,6 +221,8 @@ expected_scripts=(
     "playlist_history.py"
     "strategy_engine.py"
     "setup_cron.py"
+    "setup_auth.py"
+    "demo.py"
     "verify_setup.sh"
 )
 
@@ -170,13 +244,11 @@ echo "Checking API connectivity..."
 if [[ -n "${APPLE_MUSIC_DEV_TOKEN:-}" && -n "${APPLE_MUSIC_USER_TOKEN:-}" ]]; then
     # Verify dev token
     echo "  Verifying dev token against API..." >&2
-    auth_cfg=$(mktemp "${TMPDIR:-/tmp}/am_verify_XXXXXX")
+    auth_cfg=$(mktemp "${TMPDIR:-/tmp}/am_verify_$$_XXXXXX")
     chmod 600 "$auth_cfg"
     printf -- '-H "Authorization: Bearer %s"\n' "$APPLE_MUSIC_DEV_TOKEN" > "$auth_cfg"
-    dev_code=$(curl -s -o /dev/null -w "%{http_code}" \
-        -K "$auth_cfg" \
-        "https://api.music.apple.com/v1/storefronts/us" \
-        2>/dev/null || echo "000")
+    _http_status "$auth_cfg" "${BASE}/v1/storefronts/us"
+    dev_code="$HTTP_CODE"
     rm -f "$auth_cfg"
 
     case "$dev_code" in
@@ -185,7 +257,7 @@ if [[ -n "${APPLE_MUSIC_DEV_TOKEN:-}" && -n "${APPLE_MUSIC_USER_TOKEN:-}" ]]; th
             ;;
         401)
             echo "  $FAIL Dev token — invalid or expired (HTTP 401)"
-            echo "       Regenerate with: python3 scripts/generate_dev_token.py"
+            echo "       Regenerate with: python3 scripts/setup_auth.py --new-dev-token"
             errors=$((errors + 1))
             ;;
         *)
@@ -196,14 +268,12 @@ if [[ -n "${APPLE_MUSIC_DEV_TOKEN:-}" && -n "${APPLE_MUSIC_USER_TOKEN:-}" ]]; th
 
     # Verify user token
     echo "  Verifying user token against API..." >&2
-    auth_cfg=$(mktemp "${TMPDIR:-/tmp}/am_verify_XXXXXX")
+    auth_cfg=$(mktemp "${TMPDIR:-/tmp}/am_verify_$$_XXXXXX")
     chmod 600 "$auth_cfg"
     printf -- '-H "Authorization: Bearer %s"\n-H "Music-User-Token: %s"\n' \
         "$APPLE_MUSIC_DEV_TOKEN" "$APPLE_MUSIC_USER_TOKEN" > "$auth_cfg"
-    user_code=$(curl -s -o /dev/null -w "%{http_code}" \
-        -K "$auth_cfg" \
-        "https://api.music.apple.com/v1/me/recent/played/tracks?limit=1" \
-        2>/dev/null || echo "000")
+    _http_status "$auth_cfg" "${BASE}/v1/me/recent/played/tracks?limit=1"
+    user_code="$HTTP_CODE"
     rm -f "$auth_cfg"
 
     case "$user_code" in
@@ -216,7 +286,7 @@ if [[ -n "${APPLE_MUSIC_DEV_TOKEN:-}" && -n "${APPLE_MUSIC_USER_TOKEN:-}" ]]; th
             ;;
         403)
             echo "  $FAIL User token expired (HTTP 403)"
-            echo "       Re-authorize via MusicKit JS in browser"
+            echo "       Renew it: python3 scripts/setup_auth.py"
             errors=$((errors + 1))
             ;;
         429)
@@ -254,7 +324,7 @@ fi
 
 sf_cache="${HOME}/.apple-music-dj/storefront.cache"
 if [[ -f "$sf_cache" ]]; then
-    sf_val=$(cat "$sf_cache" | tr -d '[:space:]')
+    sf_val=$(tr -d '[:space:]' < "$sf_cache")
     echo "  $PASS Storefront cached: $sf_val"
 else
     echo "  $WARN No storefront cache (will auto-detect on first run)"

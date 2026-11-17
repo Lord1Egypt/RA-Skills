@@ -1,43 +1,52 @@
-## Description: <br>
-Freelance Autobot helps an agent find crypto-native freelance gigs on FreeLanceDAO, CryptoGigs, and OpenCollab, score them for fit, and prepare or submit profile and proposal content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous freelance hunter that finds crypto-native gigs, scores them for fit, builds a CryptoGig profile, and can submit proposals.
 
-## Publisher: <br>
-[ssidharhubble](https://clawhub.ai/user/ssidharhubble) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ssidharhubble](https://clawhub.ai/user/ssidharhubble)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Freelancers and agents use this skill to search supported freelance platforms, rank gigs by fit, prepare profile content, and draft or submit proposals.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can trigger live third-party freelance proposal submissions.
+
+Mitigation: Use dry-run mode first and confirm exactly which accounts and platforms it will access before enabling live submission.
+
+Risk: Automatic proposal submission can create duplicate, low-quality, or reputation-impacting account activity.
+
+Mitigation: Require human review before proposal submission unless the user has explicitly accepted that account activity risk.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and freelance operators use this skill to discover crypto-native freelance opportunities, rank them by fit, and generate platform profile or proposal content. It is intended for account-linked freelance workflows where each proposed action should be reviewed before live submission. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can submit freelance proposals or create public profile content without clear approval steps. <br>
-Mitigation: Run dry-run behavior first, review every proposed profile and proposal manually, and allow live submissions or profile changes only after confirming the exact content and target platform. <br>
-Risk: Account-linked automation can act on freelance platforms in ways that affect public reputation or client communications. <br>
-Mitigation: Use a constrained account context, keep logs of attempted actions, and require explicit confirmation before any public-facing update or proposal submission. <br>
+**Output Format:** [Markdown with shell command examples and profile/proposal text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Freelance Autobot on ClawHub](https://clawhub.ai/ssidharhubble/freelance-autobot) <br>
-- [FreeLanceDAO](https://freelancedao.xyz) <br>
-- [CryptoGigs](https://cryptogig.com) <br>
-- [OpenCollab](https://opencollab.ai) <br>
+**Other Properties Related to Output:** [May produce platform activity guidance and proposal-submission instructions.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with bash command examples and profile or proposal text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include dry-run recommendations and manual review steps before account actions.] <br>
+1.0.18 (source: server release metadata and SKILL.md frontmatter)
 
-## Skill Version(s): <br>
-1.0.18 (source: server release metadata and SKILL.md frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

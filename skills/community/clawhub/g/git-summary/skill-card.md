@@ -1,37 +1,47 @@
-## Description: <br>
-Get a quick summary of the current Git repository including status, recent commits, branches, and contributors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get a quick summary of the current Git repository including status, recent commits, branches, and contributors.
 
-## Publisher: <br>
-[zweack](https://clawhub.ai/user/zweack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zweack](https://clawhub.ai/user/zweack)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect a local Git repository and produce a concise repository summary covering status, commits, branches, remotes, uncommitted changes, and contributors. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated summaries can expose sensitive repository metadata, including remote URLs, commit messages, branch names, contributor names, and changed file paths. <br>
-Mitigation: Review summaries before sharing them externally and redact secrets, tokens, private URLs, or sensitive project details. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zweack/git-summary) <br>
+## Use Case:
+
+Developers and engineers use this skill to inspect a Git repository's current branch, working tree status, recent commits, branches, remotes, and contributor activity.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Git summaries can expose branch names, commit messages, contributor names, and remote repository URLs.
+
+Mitigation: Review the generated summary before sharing it publicly and redact sensitive repository details, especially tokens or private remote URLs.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Structured Markdown summary with Git command results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires git on darwin, linux, or win32; summaries may include repository metadata such as remote URLs, commit messages, branch names, contributor names, and changed file paths.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown summary with Git command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires git and should avoid exposing sensitive remote URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

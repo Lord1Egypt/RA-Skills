@@ -1,40 +1,54 @@
-## Description: <br>
-Feishu Bitable Merger merges data from multiple Feishu Bitable tables into one target table. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feishu Bitable Merger merges data from multiple Feishu bitables into one target table.
 
-## Publisher: <br>
-[night556](https://clawhub.ai/user/night556) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[night556](https://clawhub.ai/user/night556)
 
-## Use Case: <br>
-Developers and operations teams use this skill to consolidate Feishu Bitable records from multiple source tables into a target table, with optional field mapping and deduplication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read from and bulk-write records to Feishu Bitable tables, which may add many records to a target table without an automatic confirmation step. <br>
-Mitigation: Install only from a trusted publisher, use a least-privilege Feishu app or account, double-check source and target URLs, and test on a non-production or backup table first. <br>
+## Use Case:
 
+Developers and operations teams use this skill to consolidate records from multiple Feishu Bitable tables into a prepared target table, including optional field mapping and duplicate removal.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/night556/feishu-bitable-merger) <br>
-- [README](README.md) <br>
-- [Skill definition](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Text] <br>
-**Output Format:** [Command-line status output and Feishu Bitable record writes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can bulk-add records to the target Feishu Bitable and optionally deduplicate records after merging.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and package.json) <br>
+Risk: The skill writes persistent records to the selected Feishu Bitable target table, so an incorrect target URL or field setup can affect production data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Test on a copy or non-production table first, confirm source and target URLs, verify field compatibility, and keep a backup before running the merge.
+
+Risk: The skill requires Feishu Bitable read and write permissions for apps and records.
+
+Mitigation: Install only when those permissions are acceptable for the workspace and use credentials with the minimum access needed for the merge.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/night556/skills/feishu-bitable-merger)
+- [Publisher profile](https://clawhub.ai/user/night556)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs a merge workflow that reads Feishu Bitable records and writes persistent records to the target table.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

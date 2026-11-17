@@ -4,8 +4,8 @@
 # Usage: send-plan.sh <caption> <html1.html> [html2.html ...]
 # Multiple HTMLs are screenshotted individually and sent as a photo album.
 #
-# Credentials from environment (set in OpenClaw config or .env):
-#   TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
+# Credentials: skill-root .credentials dotfile (chmod 600) read by
+# send-album.mjs directly — this script never touches them.
 #
 # Example (split weekly plan):
 #   send-plan.sh "Week 5 Plan" week-05-run.html week-05-cross.html
@@ -17,14 +17,6 @@ set -e
 CAPTION="$1"
 shift
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-
-BOT_TOKEN="${TELEGRAM_BOT_TOKEN}"
-CHAT_ID="${TELEGRAM_CHAT_ID}"
-
-if [ -z "$BOT_TOKEN" ] || [ -z "$CHAT_ID" ]; then
-  echo "Error: TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID must be set as environment variables"
-  exit 1
-fi
 
 if [ -z "$CAPTION" ] || [ $# -eq 0 ]; then
   echo "Usage: send-plan.sh <caption> <html1.html> [html2.html ...]"
@@ -42,4 +34,4 @@ for HTML_FILE in "$@"; do
 done
 
 echo "Sending ${#PNG_FILES[@]} image(s)..."
-node "${SCRIPT_DIR}/send-album.mjs" "$CAPTION" "$CHAT_ID" "$BOT_TOKEN" "${PNG_FILES[@]}"
+node "${SCRIPT_DIR}/send-album.mjs" "$CAPTION" "${PNG_FILES[@]}"

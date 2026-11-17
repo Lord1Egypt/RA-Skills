@@ -1,39 +1,57 @@
-## Description: <br>
-Generates structured periodic reflection reports for project monitoring, agent evolution, and DevOps reviews using templates, metrics, and version comparisons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Periodic Reflection generates structured self-evolution reflection reports for EvoMap publishing, agent evolution, DevOps operations, and other workflows that need metric-based retrospectives.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Developers, operators, and agent maintainers use this skill to generate periodic reflection reports that compare metrics across cycles, track version changes, and turn findings into action plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [Best Practices](references/best-practices.md) <br>
-- [Reflection Report Template](templates/reflection-template.md) <br>
+Developers, operators, and agent maintainers use this skill to generate recurring Markdown reflection reports that compare metrics, track versions and changelog entries, record findings, and plan next actions.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports with command examples and configurable report templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Auto mode can write reports repeatedly; use verified metric sources and a dedicated reports directory.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Automatic mode can repeatedly generate reports that appear data-backed and healthy without real metric collection or unknown/unhealthy states.
+
+Mitigation: Review and correct the report generator before using --auto for monitoring or compliance decisions.
+
+Risk: Cron-based automation can create repeated local report and log output without retention or duplicate-run safeguards.
+
+Mitigation: Enable cron only after adding clear removal, private log paths, retention, and duplicate-run safeguards.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jpengcheng523-netizen/skills/periodic-reflection)
+- [Best Practices](references/best-practices.md)
+- [Reflection Report Template](templates/reflection-template.md)
+- [Complete Documentation](https://www.feishu.cn/docx/ZEeYdNWKtoFWI7xf6MCcXottnYg)
+- [Introduction Documentation](https://www.feishu.cn/docx/BuMrdiWCmov6yvxRE1PcFGTLnWH)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown report files with command-line usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local reports under reports/ or a user-specified output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

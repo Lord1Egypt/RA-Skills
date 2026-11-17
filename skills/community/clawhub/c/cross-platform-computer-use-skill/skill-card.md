@@ -1,43 +1,67 @@
-## Description: <br>
-Top-level cross-platform computer-use skill that bundles standalone macOS, Windows, and Linux runtimes with zero local Claude dependency and selects the correct platform payload at install/use time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Top-level cross-platform computer-use skill that bundles standalone macOS, Windows, and Linux runtimes with zero local Claude dependency and selects the correct platform payload at install/use time.
 
-## Publisher: <br>
-[wimi321](https://clawhub.ai/user/wimi321) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wimi321](https://clawhub.ai/user/wimi321)
 
-## Use Case: <br>
-Developers and agent operators use this skill to install and run a portable computer-use MCP runtime that selects the correct macOS, Windows, or Linux payload for the current host. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose visible screen contents, clipboard text, application state, and GUI input through desktop-control behavior. <br>
-Mitigation: Install and run it only in a trusted local desktop session, and avoid private documents, financial apps, credentials, or other sensitive workflows unless the permission flow has been reviewed. <br>
-Risk: The security evidence says powerful screen, clipboard, app, and input permissions are granted silently where users may expect manual approval. <br>
-Mitigation: Review or patch the permission flow before deployment, and require explicit operator approval for sensitive applications or actions. <br>
+## Use Case:
 
+Developers and automation agents use this skill to install, build, and run a portable computer-use runtime across macOS, Windows, and Linux. It supports desktop automation workflows through platform-specific MCP server payloads.
 
-## Reference(s): <br>
-- [Cross Platform Computer Use Skill on ClawHub](https://clawhub.ai/wimi321/cross-platform-computer-use-skill) <br>
-- [macOS Computer-Use Skill on ClawHub](https://clawhub.ai/wimi321/computer-use-macos) <br>
-- [Windows Computer-Use Skill on ClawHub](https://clawhub.ai/wimi321/computer-use-windows) <br>
-- [Linux Computer-Use Skill on ClawHub](https://clawhub.ai/wimi321/computer-use-linux) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to build and run a host-specific MCP desktop-control runtime.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill enables screen viewing, app control, keyboard and mouse input, and clipboard access on the local desktop.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on trusted, isolated desktops and close sensitive apps before running desktop automation workflows.
+
+Risk: The security evidence reports powerful desktop access without the separate user approval its tooling describes.
+
+Mitigation: Review actions before execution and require a real approval or allowlist flow before finance, admin, secrets, or personal-account workflows.
+
+Risk: Runtime validation differs by platform: macOS is real-device validated, while Windows and Linux still need end-to-end validation on real hosts.
+
+Mitigation: State the active host platform and validation status before treating behavior as verified.
+
+Risk: Linux desktop control targets X11 first, and Wayland may restrict screenshots, focus inspection, clipboard, and synthetic input.
+
+Mitigation: Validate the desktop environment and permission model on the target Linux host before deployment.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/wimi321/skills/cross-platform-computer-use-skill)
+- [macOS Computer-Use Skill](https://clawhub.ai/wimi321/computer-use-macos)
+- [Windows Computer-Use Skill](https://clawhub.ai/wimi321/computer-use-windows)
+- [Linux Computer-Use Skill](https://clawhub.ai/wimi321/computer-use-linux)
+- [macOS runtime repository](https://github.com/wimi321/macos-computer-use-skill)
+- [Windows runtime repository](https://github.com/wimi321/windows-computer-use-skill)
+- [Linux runtime repository](https://github.com/wimi321/linux-computer-use-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Selects one platform payload for the current host and reports platform-specific validation limits.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

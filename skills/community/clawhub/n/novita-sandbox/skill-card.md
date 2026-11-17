@@ -1,43 +1,58 @@
-## Description: <br>
-Run browser operations and untrusted code in an isolated Novita cloud sandbox using Firecracker microVMs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run browser operations and untrusted code in an isolated Novita cloud sandbox backed by Firecracker VMs.
 
-## Publisher: <br>
-[piston4711](https://clawhub.ai/user/piston4711) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[piston4711](https://clawhub.ai/user/piston4711)
 
-## Use Case: <br>
-Developers and agent operators use this skill to run external browsing tasks, downloaded code, build commands, and unfamiliar project workflows in a Novita cloud sandbox instead of the local workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper can upload selected local files to a cloud sandbox. <br>
-Mitigation: Do not upload secrets, credentials, API keys, personal configuration, or other sensitive local files. <br>
-Risk: The helper can write downloaded sandbox files back to local paths. <br>
-Mitigation: Download only to explicit safe destinations and inspect expected outputs before relying on them. <br>
-Risk: Sandbox use requires a Novita API key and may run remote commands with internet access. <br>
-Mitigation: Use the skill only when comfortable with remote sandbox execution, protect the API key, and kill sandboxes after sensitive work. <br>
+## Use Case:
 
+Developers and agents use this skill to isolate external browsing, web-derived commands, and untrusted project build or test work in Novita sandboxes while keeping the local workspace out of scope.
 
-## Reference(s): <br>
-- [Novita Sandbox: Browser Use Integration](references/browser-use.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/piston4711/novita-sandbox) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with inline bash, Python, and JavaScript command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Sandbox command output is JSON and may be truncated by the helper script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.8 (source: server release metadata) <br>
+Risk: The skill can upload arbitrary local files to Novita, which may expose private workspace data or credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated environment, give the skill only the Novita API key it needs, and avoid uploading secrets or broad workspace files.
+
+Risk: The helper can download sandbox output to local paths and overwrite files without enforced path limits or confirmation.
+
+Mitigation: Download only into a disposable staging directory and review files before moving them into a workspace.
+
+Risk: Paused sandboxes preserve state and can resume with prior browser, file, or process context.
+
+Mitigation: Kill sandboxes when finished to clear preserved state and stop billing.
+
+## Reference(s):
+
+- [Novita Sandbox: Browser Use Integration](references/browser-use.md)
+- [ClawHub Skill Page](https://clawhub.ai/piston4711/skills/novita-sandbox)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Code, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with bash, Python, and JavaScript examples; the helper CLI returns JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Sandbox command output is truncated to 8000 characters by the helper script.]
+
+## Skill Version(s):
+
+0.1.8 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

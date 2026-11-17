@@ -1,41 +1,53 @@
-## Description: <br>
-Structured development workflow inspired by Garry Tan's gstack for building features, starting projects, reviewing code, and shipping code through a disciplined Think, Plan, Build, Review, Test, and Ship process. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured development workflow inspired by Garry Tan's gstack for building features, starting projects, reviewing code, and shipping code through a disciplined Think, Plan, Build, Review, Test, and Ship process.
 
-## Publisher: <br>
-[jahonn](https://clawhub.ai/user/jahonn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jahonn](https://clawhub.ai/user/jahonn)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to run a structured development sprint from product framing through implementation, review, testing, and release. It is suited to feature work, new project starts, code review workflows, and shipping branches with staged checkpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can direct an agent to edit files, create commits, push to remotes, open pull requests, and take deploy-like release steps. <br>
-Mitigation: Require explicit user confirmation before commits, browser actions on non-local systems, git pull or rebase, git push, opening pull requests, or deploy-like actions. <br>
-Risk: Release actions could run against the wrong repository, branch, remote, diff, or commit message. <br>
-Mitigation: Confirm the repository, branch, remote, pending diff, test status, and commit or pull request text before allowing release steps. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to run a structured development sprint from early product framing through planning, implementation, review, testing, and release preparation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jahonn/gstack-workflow) <br>
-- [Phase prompts](references/prompts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and conversational guidance with inline shell commands and generated project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce DESIGN.md, PLAN.md, review reports, test reports, commits, pull requests, and release notes depending on the selected phase.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The workflow can reach Build, Test, and Ship phases that modify files, run commands, commit changes, rebase branches, push code, or open pull requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the agent to show exact files, commands, branch, remote, and PR target before those phases, and confirm before commits, rebases, pushes, or overwriting DESIGN.md or PLAN.md.
+
+Risk: The security review found broad activation and insufficient confirmation gates around ship-phase git push and PR actions.
+
+Mitigation: Install only when an opinionated repository workflow is desired, and keep release actions behind explicit human approval.
+
+## Reference(s):
+
+- [Phase Prompts](references/prompts.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown, repository files, review reports, test reports, code changes, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update DESIGN.md and PLAN.md, propose or execute code changes, run tests, and prepare branch or PR steps depending on the phase used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,50 @@
-## Description: <br>
-Cross-asset contagion risk score - detects systemic spillover risk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This retired signal previously provided a cross-asset contagion risk score and is no longer available.
 
-## Publisher: <br>
-[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl)
 
-## Use Case: <br>
-External developers and analysts use this skill to request a real-time cross-asset contagion score as a macro tail-risk overlay before leveraged positions or when monitoring spillover risk across equities and commodities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks an agent to use an EVM private key for paid x402 requests. <br>
-Mitigation: Use a dedicated low-balance Base wallet with only the USDC intended for calls, avoid reusing valuable wallet keys, and require explicit approval or a spending cap before calls. <br>
-Risk: Each standard request may trigger a $25 on-chain payment. <br>
-Mitigation: Review the pricing tier before use and cap or approve paid calls explicitly. <br>
+## Use Case:
 
+Financial analysts and developers previously used the signal to review systemic spillover risk across assets. It is retired, its endpoint returns HTTP 410, and agents should not be configured to call it.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kynto2001-ctrl/skills/cross-asset-contagion) <br>
-- [APEX Runner cross-asset contagion signal](https://apexrunner.ai/signals/cross-asset-contagion) <br>
-- [APEX Runner pricing lookup](https://apexrunner.ai/signals/my-pricing) <br>
-- [APEX Runner agent stress index signal](https://apexrunner.ai/signals/agent-stress-index) <br>
-- [APEX Runner institutional cross-asset contagion signal](https://apexrunner.ai/signals/cross-asset-contagion-institutional) <br>
-- [APEX Runner liquidation pressure signal](https://apexrunner.ai/signals/liquidation-pressure) <br>
-- [Publisher profile](https://clawhub.ai/user/kynto2001-ctrl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Guidance] <br>
-**Output Format:** [JSON response with contagion_risk, score, and trigger_assets fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EVM_PRIVATE_KEY and an EVM wallet funded with USDC on Base for paid x402 requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The signal endpoint is retired and returns HTTP 410, so any configured calls will fail.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not configure an agent to call the endpoint. The artifact states there is no direct replacement.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/kynto2001-ctrl/skills/cross-asset-contagion)
+- [Signal status page](https://apexrunner.ai/signals/cross-asset-contagion)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown status and usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documents the retired status and former purpose; it does not provide an active signal score.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

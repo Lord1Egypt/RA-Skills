@@ -1,45 +1,61 @@
-## Description: <br>
-Self-evolving agent framework that uses hybrid Darwinian exploration and Lamarckian optimization to propose, score, and confirm improvements to an agent's skills, prompts, memory, and workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-evolving agent-development skill that uses a hybrid evolutionary strategy, combining Darwinian exploration and Lamarckian optimization to generate candidate improvements, score them, preserve successful patterns, and keep users in the approval loop.
 
-## Publisher: <br>
-[zhuqingsonga](https://clawhub.ai/user/zhuqingsonga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuqingsonga](https://clawhub.ai/user/zhuqingsonga)
 
-## Use Case: <br>
-OpenClaw developers use this skill to generate and compare multiple self-improvement proposals, review fitness scores and risks, and decide whether to update agent skills, prompts, memory, or workflows. It is intended for human-in-the-loop evolution rather than unattended self-modification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can propose changes to its own prompts, skills, memory, and behavior, which may cause unsafe or unwanted agent drift. <br>
-Mitigation: Review every proposed diff or module change before approval and require explicit confirmation before applying self-modification. <br>
-Risk: Automatic or scheduled evolution may trigger broad behavioral changes without a clear user request. <br>
-Mitigation: Keep automatic and scheduled evolution disabled unless explicitly needed, and prefer user-initiated evolution sessions. <br>
-Risk: Conversation details stored in memory or the gene pool may expose sensitive information. <br>
-Mitigation: Avoid storing sensitive conversation content in memory or gene-pool records and review retained entries regularly. <br>
+## Use Case:
 
+OpenClaw developers use this skill to design and supervise agent self-improvement workflows, including proposal generation, multi-dimensional fitness scoring, gene-pool updates, and crystallizing repeated successes into reusable skills.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhuqingsonga/auto-evolving-agent) <br>
-- [Evolution History Template](references/evolution-history-template.md) <br>
-- [Fitness Scoring Template](references/fitness-scoring-template.md) <br>
-- [Gene Pool Template](references/gene-pool-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with ranked proposals, scoring tables, diffs, and confirmation prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include candidate populations, fitness scores, risk levels, Git snapshot or rollback notes, and memory or gene-pool update records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may propose persistent changes to its own instructions, memory, workflows, SOUL.md, and installed capabilities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in proposal-only or tightly supervised mode, review exact diffs and module metadata, and approve only changes with clear scope and rollback paths.
+
+Risk: Broad memory reuse and gene-pool updates can preserve low-quality, stale, or unintended patterns.
+
+Mitigation: Require explicit user approval for memory admission, periodically prune stored patterns, and keep fitness criteria tied to observed task outcomes.
+
+Risk: Automatic evolution can create supply-chain and file-scope risk if it installs or replaces capabilities without review.
+
+Mitigation: Avoid enabling automatic evolution until file scope, rollback, memory hygiene, and supply-chain checks are enforced.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhuqingsonga/skills/auto-evolving-agent)
+- [README](README.md)
+- [Evolution History Template](references/evolution-history-template.md)
+- [Fitness Scoring Template](references/fitness-scoring-template.md)
+- [Gene Pool Template](references/gene-pool-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with structured proposals, scoring tables, checklists, and implementation snippets when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Human approval is expected before persistent changes, especially changes to instructions, memory, workflows, SOUL.md, or installed capabilities.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,14 @@
+<!-- ══════════════════════════════════════════════════════════════
+  片段:渐变横条 + 叠字(截图还原区,叠文字安全)
+  ⚠️ 使用限制(去 AI 味反模式 4):仅封面/章节分隔/收尾页可用;内容页结论写进 action title。
+  参数:
+    {{X}} {{Y}} {{W}} {{H}}    位置尺寸(全宽横幅常用 X=100px,W=1720px,H=80px)
+    {{FROM}} {{TO}}           渐变起止色(如 var(--deep-navy) → var(--deep-navy-light))
+    {{TEXT}}                   横条文字(可含 span 高亮,截图时文字会被单独提取,不烙进 PNG)
+  机制: 渐变 shape 走截图还原;文字用 line-height={{H}} 单行居中,可编辑
+  z 序: 渐变条 z-index:5 < 文字 z-index:11
+  ══════════════════════════════════════════════════════════════ -->
+<div data-object="true" data-object-type="shape" style="position:absolute;left:{{X}};top:{{Y}};width:{{W}};height:{{H}};background:linear-gradient(90deg, {{FROM}} 0%, {{TO}} 100%);border-radius:8px;z-index:5;"></div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:{{X}};top:{{Y}};width:{{W}};height:{{H}};text-align:center;z-index:11;">
+  <div style="font-size:24px;font-weight:600;color:var(--on-navy-text);line-height:{{H}};letter-spacing:2px;">{{TEXT}}</div>
+</div>

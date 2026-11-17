@@ -1,46 +1,60 @@
-## Description: <br>
-Fetch, analyze, chart, and track WHOOP health data including recovery, HRV, resting heart rate, sleep, strain, and workouts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch, analyze, chart, and track WHOOP health data including recovery, HRV, resting heart rate, sleep, strain, and workouts.
 
-## Publisher: <br>
-[brennaman](https://clawhub.ai/user/brennaman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[brennaman](https://clawhub.ai/user/brennaman)
 
-## Use Case: <br>
-External users and developers use this skill to connect an agent to WHOOP data, summarize recovery and sleep trends, generate charts, track health experiments, and optionally log daily metrics to Obsidian. The health interpretation is informational and should not be treated as medical advice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The optional Obsidian logger may stage, commit, and push unrelated private notes when the configured vault is a Git repository. <br>
-Mitigation: Use --dry-run first, inspect git status before enabling sync, and disable or remove automatic Git sync if the vault contains unrelated private content. <br>
-Risk: WHOOP OAuth credentials are stored locally under ~/.config/whoop-skill/credentials.json. <br>
-Mitigation: Protect the credentials file, grant only scopes the user is comfortable with, and re-authenticate or revoke access if credentials may be exposed. <br>
-Risk: Health interpretations can be mistaken for medical advice. <br>
-Mitigation: Present WHOOP analysis as informational trend guidance and direct users to qualified medical professionals for health concerns. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [WHOOP Lab homepage](https://www.paulbrennaman.me/lab/whoop-skill) <br>
-- [ClawHub WHOOP Lab release](https://clawhub.ai/brennaman/whoop-lab) <br>
-- [WHOOP API Reference](artifact/references/api.md) <br>
-- [WHOOP Health Analysis Guide](artifact/references/health_analysis.md) <br>
-- [WHOOP Developer API documentation](https://developer.whoop.com/api) <br>
-- [WHOOP Developer Dashboard](https://developer-dashboard.whoop.com) <br>
+## Use Case:
 
+External users and developers use this skill to connect a WHOOP account, fetch personal health metrics, generate charts and dashboards, track health experiments, and optionally log daily metrics to Obsidian.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON, HTML files, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON API responses, and generated HTML chart files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local WHOOP credentials, configuration, experiment records, HTML charts, and optional Obsidian daily notes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requests broad read access to WHOOP health data and stores OAuth refresh credentials locally.
+
+Mitigation: Install only when broad WHOOP health-data access is acceptable, protect ~/.config/whoop-skill/credentials.json, and revoke WHOOP app access plus delete the credential file when access is no longer needed.
+
+Risk: Optional Obsidian logging can commit and push the configured vault, which may include unrelated notes or sensitive health data.
+
+Mitigation: Use a dedicated vault or disable git sync before running Obsidian logging, and review generated notes before sharing or committing them.
+
+Risk: Generated chart HTML contains sensitive health data and loads Chart.js from a remote CDN.
+
+Mitigation: Treat chart files as private health records, avoid auto-sharing them, and prefer offline or locally bundled chart assets for sensitive environments.
+
+## Reference(s):
+
+- [WHOOP Lab homepage](https://www.paulbrennaman.me/lab/whoop-skill)
+- [WHOOP API reference](references/api.md)
+- [WHOOP health analysis guide](references/health_analysis.md)
+- [WHOOP Developer Dashboard](https://developer-dashboard.whoop.com)
+- [WHOOP API documentation](https://developer.whoop.com/api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON, HTML files]
+
+**Output Format:** [Markdown guidance with shell commands, JSON API responses, and generated HTML chart files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local configuration, credential, experiment, chart, and Obsidian note files when the user runs the bundled scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,50 +1,63 @@
-## Description: <br>
-SWARM: System-Wide Assessment of Risk in Multi-agent systems. 38 agent types, 29 governance levers, 55 scenarios. Study emergent risks, phase transitions, and governance cost paradoxes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SWARM: System-Wide Assessment of Risk in Multi-agent systems. 38 agent types, 29 governance levers, 55 scenarios. Study emergent risks, phase transitions, and governance cost paradoxes.
 
-## Publisher: <br>
-[rsavitt](https://clawhub.ai/user/rsavitt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[rsavitt](https://clawhub.ai/user/rsavitt)
 
-## Use Case: <br>
-Developers, safety researchers, and governance teams use this skill to run and interpret local multi-agent safety simulations, including scenario sweeps, governance levers, phase-transition studies, and API or CLI workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on an external Python package and optional extras. <br>
-Mitigation: Install only from the expected PyPI package or GitHub repository, consider pinning the package version, and enable extras only when needed. <br>
-Risk: The optional development API has no authentication and is intended for localhost use. <br>
-Mitigation: Keep the API bound to 127.0.0.1; add authentication, firewall controls, and persistent storage before any production or network exposure. <br>
-Risk: Scenario content can accidentally include real secrets, credentials, or personal data. <br>
-Mitigation: Use synthetic scenarios and avoid placing API keys, credentials, or personal data in scenario files or API submissions. <br>
-Risk: Simulation outputs can be mistaken for ground truth about real systems. <br>
-Mitigation: Treat outputs as research artifacts, disclose simulation parameters when publishing, and avoid presenting results as definitive measurements of real deployments. <br>
+## Use Case:
 
+Developers, safety researchers, and governance reviewers use this skill to simulate multi-agent AI dynamics, study emergent risk patterns, and evaluate governance levers with CLI, Python, and optional localhost API workflows.
 
-## Reference(s): <br>
-- [SWARM ClawHub release](https://clawhub.ai/rsavitt/swarm-2) <br>
-- [SWARM GitHub repository](https://github.com/swarm-ai-safety/swarm) <br>
-- [SWARM documentation](https://github.com/swarm-ai-safety/swarm/tree/main/docs) <br>
-- [SWARM theoretical foundations](https://github.com/swarm-ai-safety/swarm/tree/main/docs/research/theory.md) <br>
-- [SWARM governance guide](https://github.com/swarm-ai-safety/swarm/tree/main/docs/governance.md) <br>
-- [SWARM red-teaming guide](https://github.com/swarm-ai-safety/swarm/tree/main/docs/red-teaming.md) <br>
-- [SWARM scenario format](https://github.com/swarm-ai-safety/swarm/tree/main/docs/guides/scenarios.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python, YAML, bash, and HTTP API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide local CLI, Python, and localhost API workflows that can export simulation results as JSON or CSV.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: frontmatter, skill.json, server release metadata) <br>
+Risk: The optional development API has no authentication and could expose simulation functions if bound beyond localhost.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the API on localhost, do not expose it to untrusted networks, and add authentication plus a proper database before production deployment.
+
+Risk: Scenarios may accidentally include real secrets, credentials, or personal data.
+
+Mitigation: Use synthetic scenario data only and review inputs before running or sharing simulations.
+
+Risk: Simulation results can be mistaken for ground truth about real multi-agent systems.
+
+Mitigation: Treat outputs as research artifacts, disclose parameters when publishing, and validate conclusions with independent review.
+
+Risk: Local package installation and optional extras can introduce ordinary dependency and reproducibility risks.
+
+Mitigation: Install in a virtual environment or container and pin dependency versions when reproducibility matters.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rsavitt/skills/swarm-2)
+- [SWARM Repository](https://github.com/swarm-ai-safety/swarm)
+- [SWARM Documentation](https://github.com/swarm-ai-safety/swarm/tree/main/docs)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python, YAML, shell, and API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide local simulation setup, scenario authoring, metric interpretation, and optional localhost API usage.]
+
+## Skill Version(s):
+
+1.5.0 (source: frontmatter, skill.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Diagnose and mitigate ClawHub/ClawDHUB publish failures (auth, browser-login, missing dependencies, pending security-scan visibility errors, and wrong profile/skill URLs). Use when publishing skills to ClawHub fails, inspect reports temporary errors, or you need a safer publish+verify workflow with retries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnose and mitigate ClawHub and ClawDHUB publish failures covering authentication, browser-login, missing dependencies, pending security-scan visibility errors, and wrong profile or skill URLs.
 
-## Publisher: <br>
-[BlueBirdBack](https://clawhub.ai/user/BlueBirdBack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bluebirdback](https://clawhub.ai/user/bluebirdback)
 
-## Use Case: <br>
-Developers and release maintainers use this skill to diagnose ClawHub publishing failures, run preflight checks, prefer token-based login in headless environments, and publish with retry-aware verification. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The publish wrapper can publish under the user's logged-in ClawHub account. <br>
-Mitigation: Confirm `clawhub whoami`, the target skill path, slug, version, changelog, and `latest` tag before running the publish wrapper. <br>
-Risk: Authentication and account output may be written to temporary files during diagnostics. <br>
-Mitigation: Avoid running the helper in shared temporary directories when account details are sensitive. <br>
-Risk: A newly published skill can appear hidden or unavailable while security scan visibility catches up. <br>
-Mitigation: Treat immediate inspect failures as potentially transient, retry with backoff, and verify with both the CLI and the skill web URL before escalating. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Publish Error Map](references/error-map.md) <br>
-- [ClawHub skill page](https://clawhub.ai/BlueBirdBack/clawhub-publish-doctor) <br>
+## Use Case:
 
+Developers and release engineers use this skill to diagnose failed ClawHub publishing workflows, prepare safer publish commands, and verify skill visibility after transient scan or registry states.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash commands and shell script references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes preflight, login, publish, inspect, and retry guidance for ClawHub workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may install or run the ClawHub CLI without confirming the package source.
+
+Mitigation: Verify the ClawHub CLI package before installation and avoid elevated privileges unless they are strictly required.
+
+Risk: Login tokens can be exposed if copied into shared shells, logs, or command history.
+
+Mitigation: Treat ClawHub tokens as secrets and prefer secure token handling for headless login.
+
+Risk: Temporary files used by shell helpers may expose account or publish state on shared systems.
+
+Mitigation: Use secure temporary files or shell variables before running the scripts in shared environments.
+
+## Reference(s):
+
+- [ClawHub Publish Error Map](references/error-map.md)
+- [ClawHub Publish Doctor skill page](https://clawhub.ai/bluebirdback/skills/clawhub-publish-doctor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and concise diagnostic guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include retry-aware publish and inspect commands for the ClawHub CLI.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

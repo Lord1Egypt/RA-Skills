@@ -1,44 +1,54 @@
-## Description: <br>
-Helps users turn image ideas into structured, English image-generation prompts with style, composition, lighting, platform parameters, variants, negative prompts, and iteration guidance for Midjourney, Stable Diffusion, DALL-E, and Flux. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps users turn image ideas into structured English prompts, variants, negative prompts, and platform-specific parameters for Midjourney, Stable Diffusion, DALL-E, and Flux.
 
-## Publisher: <br>
-[qqyougitcom](https://clawhub.ai/user/qqyougitcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qqyougitcom](https://clawhub.ai/user/qqyougitcom)
 
-## Use Case: <br>
-External users and creators use this skill to refine rough image concepts into production-ready prompts for common text-to-image platforms. The skill is for prompt writing and guidance; it does not generate, edit, or upscale images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may produce low-quality, misleading, or poorly matched image-generation prompts if the user's concept is vague or underspecified. <br>
-Mitigation: Review the generated prompt, platform parameters, and iteration advice before using them in an image-generation system. <br>
-Risk: The skill explicitly does not generate, edit, upscale, or animate images, so users may expect behavior outside its supported scope. <br>
-Mitigation: Use the skill only for prompt optimization and route actual image generation or editing to an appropriate image tool. <br>
-Risk: The security evidence is clean, but the artifact-coherence review noted limited artifact-backed behavior evidence. <br>
-Mitigation: Review displayed permissions and install only when requested access matches prompt-writing behavior. <br>
+## Use Case:
 
+External users and creators use this skill to convert short AI art ideas into polished prompts with subject details, style mapping, composition, lighting, platform parameters, variants, and iteration guidance. It supports prompt preparation only and does not generate or edit images.
 
-## Reference(s): <br>
-- [AI绘画提示词优化器 - 详细内容参考](references/details.md) <br>
-- [ClawHub skill page](https://clawhub.ai/qqyougitcom/mimo-ai-art-prompt) <br>
-- [Publisher profile](https://clawhub.ai/user/qqyougitcom) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-like structured text containing prompt analysis, optimized prompts, platform parameters, variants, negative prompts, and iteration advice] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs prompts and recommendations only; no image files, API calls, shell commands, or configuration files are produced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata; artifact frontmatter lists 1.3.0) <br>
+Risk: Generated prompts may not match the user's intended language, content boundaries, or current platform behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adjust generated prompts and parameters before using them in external image tools.
+
+Risk: The skill provides prompt guidance but does not generate, edit, or validate images.
+
+Mitigation: Use a separate image generation or editing tool for production images and verify the final output against the intended use case.
+
+## Reference(s):
+
+- [AI绘画提示词优化器 on ClawHub](https://clawhub.ai/qqyougitcom/skills/mimo-ai-art-prompt)
+- [AI绘画提示词优化器 - 详细内容参考](artifact/references/details.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown-style text with prompt sections, parameter tables, variants, negative prompts, and iteration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces prompt-writing guidance only; it does not call image generation APIs, generate images, edit images, or execute code.]
+
+## Skill Version(s):
+
+1.3.1 (source: ClawHub release evidence; artifact frontmatter says 1.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

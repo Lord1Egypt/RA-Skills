@@ -1,45 +1,60 @@
-## Description: <br>
-Create and update CRM records in Microsoft Dynamics 365, including Opportunities, Leads, Contacts, Accounts, and Tasks, through the Dataverse Web API with Azure AD OAuth 2.0. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and update CRM records in Microsoft Dynamics 365, including Opportunities, Leads, Contacts, Accounts, and Tasks, via the Dataverse Web API with Azure AD OAuth 2.0.
 
-## Publisher: <br>
-[vieiradiego](https://clawhub.ai/user/vieiradiego) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vieiradiego](https://clawhub.ai/user/vieiradiego)
 
-## Use Case: <br>
-Employees, external CRM users, and developers use this skill to create or update Dynamics 365 CRM records from agent-mediated instructions. It is suited for teams that need authenticated Dataverse operations for opportunities, leads, contacts, accounts, and tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or update CRM records in the configured Dynamics 365 tenant. <br>
-Mitigation: Install and run it only for users authorized to modify the target tenant, and test workflows with non-production CRM data before using real customer or deal records. <br>
-Risk: OAuth client secrets, access tokens, and refresh tokens could expose CRM access if copied into prompts or logs. <br>
-Mitigation: Store credentials in a secret manager, keep them out of prompts and logs, and rotate them according to the tenant's security policy. <br>
-Risk: Over-broad Azure app permissions could allow more CRM access than the agent workflow needs. <br>
-Mitigation: Use least-privilege delegated permissions and review admin consent before deployment. <br>
+## Use Case:
 
+Developers and business users use this skill to create or update Microsoft Dynamics 365 CRM opportunities, leads, contacts, accounts, and tasks from agent-guided workflows using Dataverse and Azure AD OAuth.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/vieiradiego/openclaw-dynamics-365) <br>
-- [Microsoft Dataverse Web API overview](https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/overview) <br>
-- [Microsoft Dataverse OAuth documentation](https://learn.microsoft.com/en-us/power-apps/developer/data-platform/authenticate-oauth) <br>
-- [npm package](https://www.npmjs.com/package/openclaw-dynamics-365) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript snippets, shell commands, configuration values, and Dynamics 365 record links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Azure AD OAuth credentials and a Dynamics 365 instance URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release evidence) <br>
+Risk: The skill can create or update live Dynamics 365 CRM records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a controlled tenant with least-privilege Dataverse permissions and require users to confirm the exact CRM record and fields before create or update actions.
+
+Risk: The configured Dynamics 365 instance URL controls the API destination that receives bearer-token requests.
+
+Mitigation: Validate and lock DYNAMICS365_INSTANCE_URL to the exact expected HTTPS Dynamics 365 origin before token-backed API calls.
+
+Risk: OAuth client secrets and refresh tokens are sensitive credentials.
+
+Mitigation: Store secrets and refresh tokens in managed secret storage, limit access, and rotate or re-authorize if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vieiradiego/skills/openclaw-dynamics-365)
+- [npm package](https://www.npmjs.com/package/openclaw-dynamics-365)
+- [Microsoft Dataverse Web API](https://learn.microsoft.com/en-us/power-apps/developer/data-platform/webapi/overview)
+- [Microsoft Dataverse OAuth authentication](https://learn.microsoft.com/en-us/power-apps/developer/data-platform/authenticate-oauth)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with TypeScript examples, shell commands, and configuration guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes success or error feedback and record links when CRM operations complete.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

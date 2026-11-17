@@ -1,42 +1,63 @@
-## Description: <br>
-解读钦天监(qintianjian)网站、经济周期理论、木星周期与三元九运/康波周期/美林时钟的关联。用于用户询问钦天监网站用途、项目价值、周期预测原理、BAP-578、Crypto+AI、币安黑客松、钦天监指数、QCX等时触发。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language guidance about the qintianjian website, cyclical economic theories, Jupiter-cycle mappings, QCX/BTC sentiment, and multi-year crypto and economic timing prompts.
 
-## Publisher: <br>
-[dapp20260215-lab](https://clawhub.ai/user/dapp20260215-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dapp20260215-lab](https://clawhub.ai/user/dapp20260215-lab)
 
-## Use Case: <br>
-External users and agents use this skill to explain the qintianjian site, economic-cycle theory, Jupiter-cycle claims, QCX index calculations, and related Crypto+AI investment-cycle prompts. It supports informational analysis and command-style responses, not personalized financial advice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill presents speculative crypto and economic-cycle analysis that could be mistaken for personalized financial advice. <br>
-Mitigation: Treat outputs as informational context only and verify forecasts, allocations, and market assumptions independently before making decisions. <br>
-Risk: The /qcx workflow may use Alternative.me market sentiment data and links to a website, DAPP, and contract address. <br>
-Mitigation: Verify the data source, website, DAPP, and contract address independently before relying on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [钦天监 official site](https://qintianjian.fun/) <br>
-- [钦天监 DAPP](https://dapp.qintianjian.fun/) <br>
-- [Alternative.me Fear and Greed API](https://api.alternative.me/fng/) <br>
-- [ClawHub skill page](https://clawhub.ai/dapp20260215-lab/qintianjian) <br>
+## Use Case:
 
+External users and agents use this skill to answer questions about the qintianjian project, its cycle-based economic framework, QCX scoring, BTC sentiment mapping, and stated 20-year warning timeline. The skill is best treated as explanatory and speculative market commentary, not personalized financial advice.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with command-oriented explanations and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference Alternative.me market sentiment data when the /qcx workflow is used.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may mistake speculative crypto and investment-timing commentary for personalized financial advice.
+
+Mitigation: Present cycle scores, BTC sentiment mapping, and forecasts as speculative commentary only, and do not use them as the sole basis for trading or investment decisions.
+
+Risk: Directive phrases in the artifact encourage risk-on or risk-off actions without clear risk limits.
+
+Mitigation: Add clear financial-advice disclaimers, require independent validation, and avoid personalized recommendations unless reviewed by qualified professionals.
+
+Risk: External BTC sentiment lookup could expose private context if implementation sends user-specific data with the request.
+
+Mitigation: Use only the public Alternative.me endpoint for sentiment data and do not send private user context to that API.
+
+Risk: Multi-year cycle forecasts may overstate certainty.
+
+Mitigation: Label forecasts as unverified heuristic projections and pair them with current, independently sourced market and policy context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dapp20260215-lab/skills/qintianjian)
+- [qintianjian website](https://qintianjian.fun/)
+- [qintianjian DAPP](https://dapp.qintianjian.fun/)
+- [Alternative.me Fear and Greed API](https://api.alternative.me/fng/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, API calls]
+
+**Output Format:** [Markdown text with command-style responses, tables, and short explanatory guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May incorporate public BTC sentiment data from Alternative.me; private user context should not be sent to that API.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Search the web and read page contents without API keys, with support for multi-engine search, page extraction, persistent browser interaction, screenshots, downloads, cookie banner dismissal, and JSON, markdown, or text output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web Pilot lets agents search the web, extract readable page text, run persistent browser sessions, download files and PDFs, dismiss cookie banners, and return JSON, markdown, or text without API keys.
 
-## Publisher: <br>
-[LiranUdi](https://clawhub.ai/user/LiranUdi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[liranudi](https://clawhub.ai/user/liranudi)
 
-## Use Case: <br>
-Developers, agent builders, and accessibility-focused users use this skill to search the web, extract readable page content, automate browser interactions, capture screenshots, and download files through local Playwright and HTTP scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control a local browser session and interact with live websites, including logged-in or sensitive pages. <br>
-Mitigation: Run it in an isolated environment, avoid sensitive sites unless each action is directly supervised, and close browser sessions when work is complete. <br>
-Risk: The security summary flags broad download and persistent-browser controls that need careful review before use. <br>
-Mitigation: Review generated actions before execution and avoid untrusted downloads until filename confinement and TLS verification behavior are fixed. <br>
+## Use Case:
 
+Developers, engineers, and agent users use this skill to search the web, extract readable page text, run stateful browser actions, capture screenshots, and download files without external API keys. It can support accessibility workflows where an agent reads, navigates, and interacts with webpages on a user's behalf.
 
-## Reference(s): <br>
-- [Web Pilot on ClawHub](https://clawhub.ai/LiranUdi/web-pilot) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON by default, with optional markdown or plain text output and generated files such as screenshots, PDFs, and downloads.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search returns result objects; page extraction returns readable content; browser session commands can preserve state until closed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version) <br>
+Risk: Broad browser automation can interact with websites, click controls, fill forms, execute JavaScript, and preserve session state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in isolated environments or for trusted tasks, supervise authenticated or sensitive browsing, and review actions before form submission.
+
+Risk: Search queries, page interactions, and downloaded content can expose sensitive information or introduce untrusted files.
+
+Mitigation: Avoid secrets in search queries, treat downloaded files as untrusted, and scan or sandbox downloaded artifacts before opening them.
+
+Risk: Persistent browser and download behavior has weak local controls according to the security summary.
+
+Mitigation: Avoid shared or high-trust environments unless the persistent-browser and download handling are hardened.
+
+## Reference(s):
+
+- [Web Pilot ClawHub Skill Page](https://clawhub.ai/liranudi/skills/web-pilot)
+- [OpenClaw Project](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON by default, with markdown and plain text options for page extraction]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write downloaded files, screenshots, and PDF exports to local paths when those actions are requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

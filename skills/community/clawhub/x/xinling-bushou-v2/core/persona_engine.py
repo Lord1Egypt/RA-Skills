@@ -39,12 +39,12 @@ class PersonaEngine:
         if base_dir is None:
             base_dir = Path.home() / ".xinling-bushou-v2"
         
-        self.base_dir = base_dir
+        self.base_dir = Path(base_dir).expanduser().resolve()
         self.default_platform = default_platform
         
         # 初始化子模块
-        self.registry = PersonaRegistry(base_dir)
-        self.session_store = SessionStore(base_dir / "sessions")
+        self.registry = PersonaRegistry(self.base_dir)
+        self.session_store = SessionStore(self.base_dir / "sessions")
         self.prompt_compiler = PromptCompiler()
         
         # 适配器缓存（懒加载）
@@ -72,7 +72,8 @@ class PersonaEngine:
         Returns:
             人格定义字典
         """
-        return self.registry.load_persona(persona_id)
+        raw_persona = self.registry.load_persona(persona_id)
+        return self.registry.normalize_persona(persona_id, raw_persona)
     
     def activate_persona(
         self,
@@ -80,7 +81,8 @@ class PersonaEngine:
         persona_id: str,
         relationship: RelationshipMode = RelationshipMode.STACK,
         override_config: Optional[Dict[str, Any]] = None,
-        base_prompt: str = ""
+        base_prompt: str = "",
+        allow_auto_activation: bool = False,
     ) -> CompiledPersona:
         """
         激活人格
@@ -113,11 +115,15 @@ class PersonaEngine:
             # 继承模式：base + 覆盖片段
             fragment = self.prompt_compiler.compile_inherit(
                 base_prompt=base_prompt,
-                persona_def=persona_def
+                persona_def=persona_def,
+                allow_auto_activation=allow_auto_activation,
             )
         elif relationship == RelationshipMode.STACK:
             # 叠加模式：仅人格片段
-            fragment = self.prompt_compiler.compile_overlay(persona_def)
+            fragment = self.prompt_compiler.compile_overlay(
+                persona_def,
+                allow_auto_activation=allow_auto_activation,
+            )
         else:
             # 独立模式：完整人格定义
             fragment = self.prompt_compiler.compile_independent(persona_def)

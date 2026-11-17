@@ -1,37 +1,52 @@
-## Description: <br>
-Build audience segmentation and targeting plans for Meta (Facebook/Instagram), Google Ads, TikTok Ads, YouTube Ads, and DSP/programmatic campaigns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build audience segmentation and targeting plans for Meta (Facebook/Instagram), Google Ads, TikTok Ads, YouTube Ads, and DSP/programmatic campaigns.
 
-## Publisher: <br>
-[danyangliu-sandwichlab](https://clawhub.ai/user/danyangliu-sandwichlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[danyangliu-sandwichlab](https://clawhub.ai/user/danyangliu-sandwichlab)
 
-## Use Case: <br>
-Marketing teams, growth operators, and agents use this skill to turn campaign goals and available business context into audience segments, exclusions, targeting hypotheses, and platform-specific next steps for paid media planning. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated audience targeting recommendations could be inaccurate, conflict with ad platform policy, or create privacy or discriminatory targeting concerns if applied without review. <br>
-Mitigation: Review recommendations against platform policy, privacy requirements, and campaign evidence before applying them in real ad accounts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/danyangliu-sandwichlab/audience-segmentation-analyst) <br>
+## Use Case:
 
+Marketing operators, growth teams, and advertising strategists use this skill to define ICP segments, audience labels, exclusions, targeting hypotheses, and measurable handoff payloads for paid media campaigns.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown with structured handoff fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes intent summary, findings, prioritized action plan, risks and guardrails, and a compact handoff payload.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may activate for broader ad strategy questions than audience segmentation.
+
+Mitigation: Review recommendations before passing handoff payloads to tools or people that can modify real campaigns or budgets.
+
+Risk: Audience recommendations may be based on incomplete account, policy, or performance context.
+
+Mitigation: Require missing critical inputs, separate assumptions from facts, and run compliance or account checks before launch or scale.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/danyangliu-sandwichlab/skills/audience-segmentation-analyst)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown with structured sections and handoff fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Execution-ready advertising recommendations with assumptions, risks, guardrails, and downstream handoff payloads.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

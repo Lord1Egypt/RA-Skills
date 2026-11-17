@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn77kf0v53kcwg4jc3k49ag3rh82yrzd",
-  "slug": "rpa-caller",
+  "name": "rpa-caller",
   "version": "1.0.0",
-  "publishedAt": 1773932894675
+  "description": "通过 HTTP 请求调用 RPA 功能，让机器人完成自动化任务",
+  "author": "",
+  "createdAt": "2026-03-01"
 }

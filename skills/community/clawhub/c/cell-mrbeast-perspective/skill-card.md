@@ -1,44 +1,60 @@
-## Description: <br>
-Uses MrBeast-style content judgment models to diagnose and improve video concepts, titles, thumbnails, hooks, retention, pacing, and reinvestment decisions while keeping platform, budget, and market limits explicit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MrBeast perspective skill for content packaging, video concepts, title and thumbnail strength, hook design, retention, and reinvestment logic.
 
-## Publisher: <br>
-[cellinlab](https://clawhub.ai/user/cellinlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cellinlab](https://clawhub.ai/user/cellinlab)
 
-## Use Case: <br>
-Creators, content strategists, and growth teams use this skill to review video ideas and packaging through content lenses such as CTR x AVD, no dull moments, stair-stepping, and audience-first framing. It is most directly suited to YouTube-style video work and should translate the underlying logic before applying it to other platforms or lower-budget contexts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may produce misleading content-growth advice if its MrBeast-style heuristics are applied outside their intended platform, budget, or market context. <br>
-Mitigation: Review recommendations against the target platform, available budget, and audience market before using them in production planning. <br>
-Risk: The security evidence notes workflows in the scanned package that can make real changes when invoked. <br>
-Mitigation: Use the package only in trusted ClawHub repositories and confirm targets, credentials, and commands before any write action. <br>
+## Use Case:
 
+Creators, content strategists, and growth teams use this skill to diagnose video concepts, titles, thumbnails, hooks, retention issues, and reinvestment choices through a MrBeast-style content judgment lens. It is especially relevant when the user wants Chinese-first guidance that makes platform, budget, and market limits explicit.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cellinlab/cell-mrbeast-perspective) <br>
-- [Core Models](references/core-models.md) <br>
-- [Decision Heuristics](references/decision-heuristics.md) <br>
-- [Expression DNA](references/expression-dna.md) <br>
-- [Boundaries](references/boundaries.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown or plain text advisory responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default output language is Chinese, with explicit platform, budget, and market boundaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Advice may overfit YouTube-style click-through and retention patterns to other platforms or markets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Translate the underlying concept, packaging, and pacing logic to the target platform instead of copying YouTube-specific tactics.
+
+Risk: High-budget creator tactics may be unrealistic for small teams or low-budget users.
+
+Mitigation: Keep budget, platform, and market constraints explicit and prioritize concept clarity and creative execution before expensive production changes.
+
+Risk: Users may mistake the lens for MrBeast personally or for a complete brand strategy.
+
+Mitigation: Present the skill as an advisor-style perspective for content packaging, growth, and retention rather than as the person or a full brand strategy replacement.
+
+## Reference(s):
+
+- [Core Models](references/core-models.md)
+- [Decision Heuristics](references/decision-heuristics.md)
+- [Expression DNA](references/expression-dna.md)
+- [Boundaries](references/boundaries.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text advisory responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to Chinese responses unless the user specifies another language.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

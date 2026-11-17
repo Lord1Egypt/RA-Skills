@@ -1,43 +1,54 @@
-## Description: <br>
-飞书多维表格周报权限检查与合并一体化工具，用户输入一个飞书多维表格 URL 后，它提取「链接地址」列、检查飞书文档阅读权限，并在用户确认后将可访问文档按章节合并为新文档。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+飞书多维表格周报权限检查与合并一体化工具：读取用户提供的多维表格 URL，检查周报文档权限，并在用户确认后合并可访问文档。
 
-## Publisher: <br>
-[ganguagua](https://clawhub.ai/user/ganguagua) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ganguagua](https://clawhub.ai/user/ganguagua)
 
-## Use Case: <br>
-Employees and team coordinators who collect weekly reports in Feishu Bitable use this skill to check which linked report documents are readable, review accessible and inaccessible lists, and merge accessible reports into a consolidated Feishu document after confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Readable weekly-report content may be copied into a newly created Feishu document during the merge step. <br>
-Mitigation: Review the accessible document list before confirming the merge, and proceed only when the listed documents are intended to be combined. <br>
-Risk: Documents without current Feishu read permission should not be included in the merged output. <br>
-Mitigation: Use the permission-check result as the merge boundary and include only documents reported as accessible. <br>
+## Use Case:
 
+Teams using Feishu Bitable weekly reports use this skill to extract report links, identify accessible and inaccessible documents, and create one merged Feishu document after confirmation.
 
-## Reference(s): <br>
-- [Merge Rules Reference](references/merge_rules.md) <br>
-- [Permission Rules Reference](references/permission_rules.md) <br>
-- [ClawHub release page](https://clawhub.ai/ganguagua/feishu-bitable-weekly-report-merge) <br>
-- [Publisher profile](https://clawhub.ai/user/ganguagua) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown status report with accessible and inaccessible document lists, a confirmation prompt, and a final Feishu document link when a merge is completed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a merged Feishu document only after the user confirms the merge step.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Accessible weekly report contents may be copied into a newly merged Feishu document.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the source table and accessible document list before confirming the merge.
+
+Risk: Permission failures or Feishu rate limits can lead to an incomplete merge set.
+
+Mitigation: Use the reported accessible and inaccessible lists, and retry rate-limited document fetches before creating the final document.
+
+## Reference(s):
+
+- [Merge Rules Reference](artifact/references/merge_rules.md)
+- [Permission Rules Reference](artifact/references/permission_rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown/text response with Feishu document link when a merge is created]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports accessible and inaccessible document lists; creates the merged Feishu document only after user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

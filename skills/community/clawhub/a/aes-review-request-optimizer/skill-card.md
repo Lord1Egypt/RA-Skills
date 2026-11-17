@@ -1,43 +1,61 @@
-## Description: <br>
-Optimize review request timing, channel, and messaging to maximize review collection rates and star ratings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimizes review request timing, channels, segmentation, and compliant messaging for ecommerce sellers trying to improve review collection rates and star ratings across Amazon, Shopify, eBay, and Etsy.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External ecommerce sellers use this skill to audit review collection performance and design compliant request timing, channel sequencing, segmentation, messaging, and measurement programs for marketplaces and direct-to-consumer stores. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review request language that asks unhappy buyers to contact support first can be interpreted as review gating if customers do not retain an equal, direct path to leave a review. <br>
-Mitigation: Revise final templates so support contact is offered as help, not a condition or detour, and confirm wording against Amazon, Shopify, eBay, Etsy, SMS, and local advertising rules before launch. <br>
+## Use Case:
 
+External ecommerce sellers and marketplace operators use this skill to audit review collection, choose compliant request timing and channels, draft review-request messaging, and define metrics for improving review velocity and star-rating health.
 
-## Reference(s): <br>
-- [Review Request Optimizer on ClawHub](https://clawhub.ai/leooooooow/aes-review-request-optimizer) <br>
-- [Review Program Audit Checklist](references/audit-checklist.md) <br>
-- [Review Channel Playbook](references/channel-playbook.md) <br>
-- [Compliant Messaging Templates](references/messaging-templates.md) <br>
-- [Review Request Program Output Template](references/output-template.md) <br>
-- [Review Program Quality Checklist](assets/quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with checklists, tables, templates, and program recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only business and marketing guidance; no code, credentials, persistence, or hidden data flows are present in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Negative-feedback routing may become review gating or suppression if unhappy buyers are delayed, diverted, or treated differently before they can review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Offer support neutrally to all buyers, keep the public review path available, and review final workflows against each marketplace policy before launch.
+
+Risk: SMS, WhatsApp, and email outreach can violate opt-in, unsubscribe, suppression, or regional messaging rules.
+
+Mitigation: Verify opt-in status, unsubscribe handling, suppression lists, and channel-specific consent requirements before activating any outreach sequence.
+
+Risk: QR codes or redirect pages can introduce privacy and marketplace-compliance issues.
+
+Mitigation: Use transparent redirect behavior, avoid unnecessary tracking, and confirm landing pages comply with privacy requirements and marketplace review policies.
+
+## Reference(s):
+
+- [Review Program Audit Checklist](references/audit-checklist.md)
+- [Review Channel Playbook](references/channel-playbook.md)
+- [Compliant Messaging Templates](references/messaging-templates.md)
+- [Review Request Program Output Template](references/output-template.md)
+- [Review Program Quality Checklist](assets/quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with tables, checklists, channel plans, and messaging templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include review-program audit fields, segmented outreach timing, channel sequencing, compliant message variants, metrics, and sign-off checklists.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

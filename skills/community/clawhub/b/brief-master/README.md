@@ -120,7 +120,7 @@ Write me a brief for my dev agent to fix the translation timeout issue
 ```
 
 ```
-Help me write a cron job prompt for overnight research
+Write an execution brief for an overnight research cron job
 ```
 
 ```

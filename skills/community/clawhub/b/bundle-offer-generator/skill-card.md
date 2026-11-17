@@ -1,41 +1,53 @@
-## Description: <br>
-Generate ecommerce bundle ideas using product mix, margin logic, and customer intent. Use when teams want stronger offer packaging without random discounting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate ecommerce bundle ideas using product mix, margin logic, and customer intent.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External ecommerce teams use this skill to design product bundles that increase average order value while preserving clear purchase logic and margin discipline. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can process margin, pricing, inventory, and customer-context inputs that may be commercially sensitive. <br>
-Mitigation: Avoid sharing confidential margin, inventory, or pricing data unless it is acceptable to include that information in the agent conversation. <br>
-Risk: Bundle recommendations may overemphasize average order value if source inputs omit margin limits or discount boundaries. <br>
-Mitigation: Provide margin space, discount boundaries, inventory limits, and platform constraints so the generated offer ladder can include concrete margin risk notes. <br>
+## Use Case:
 
+Ecommerce, merchandising, and growth teams use this skill to turn product relationships, margin constraints, customer intent, and selling scenarios into structured bundle offers for product pages, cart upsells, and campaigns.
 
-## Reference(s): <br>
-- [Bundle Offer Generator output template](references/output-template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Leooooooow/bundle-offer-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown bundle planning table with pricing logic, margin notes, ladder recommendations, usage recommendations, and risk notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses product list, prices, margin space, product relationships, target customer context, and optional discount, inventory, or platform constraints as planning inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Bundle recommendations can overemphasize offer appeal while weakening margin discipline.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review pricing logic, discount boundaries, and margin notes before publishing offers.
+
+Risk: Mostly Chinese instructions may be misread by teams working in other locales.
+
+Mitigation: Set an explicit working language and provide locale-specific product, pricing, and campaign constraints when invoking the skill.
+
+## Reference(s):
+
+- [Bundle Offer Generator Output Template](references/output-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Analysis]
+
+**Output Format:** [Markdown tables and bullet lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces bundle concepts, pricing logic, margin notes, usage recommendations, and risk notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

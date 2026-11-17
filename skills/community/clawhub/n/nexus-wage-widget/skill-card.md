@@ -1,45 +1,63 @@
-## Description: <br>
-工作日薪看板 Pro is a single-file HTML widget for real-time wage tracking, payday countdowns, Pomodoro focus timing, configurable themes, and responsive glass-style layouts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+工作日薪看板 Pro helps an agent recreate or adapt a single-file HTML/CSS/JavaScript wage dashboard with real-time earnings, payday countdown, Pomodoro focus timing, themes, responsive layouts, and saved settings.
 
-## Publisher: <br>
-[lwter](https://clawhub.ai/user/lwter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lwter](https://clawhub.ai/user/lwter)
 
-## Use Case: <br>
-Developers and personal productivity users use this skill to inspect, recreate, or customize a browser wage dashboard that calculates workday earnings and includes a 25-minute Pomodoro timer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The widget stores salary and work schedule settings in browser localStorage. <br>
-Mitigation: Use it only in browser profiles where local storage is acceptable, and avoid entering sensitive compensation details on shared devices. <br>
-Risk: The widget loads font assets from the listed CDN domains. <br>
-Mitigation: Allow those requests only if acceptable for the deployment environment, or replace the font links with approved self-hosted assets. <br>
-Risk: Optional weather data generation should remain user-directed. <br>
-Mitigation: Fetch or provide weather data only when the user asks for it and review any generated weather file before use. <br>
+## Use Case:
 
+Developers and agent users use this skill to reproduce or modify a browser-based personal productivity widget for tracking earned wages, workday progress, payday timing, and Pomodoro focus sessions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lwter/nexus-wage-widget) <br>
-- [Daily Wage widget source](references/daily_wage.html) <br>
-- [English README](readme.en.md) <br>
-- [Chinese README](readme.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration instructions] <br>
-**Output Format:** [Markdown with inline HTML, CSS, and JavaScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference the bundled single-file HTML widget and localStorage configuration keys.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Salary and work schedule settings are stored in the browser profile's localStorage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive salary data on shared browser profiles, and clear the widget's localStorage values when the profile is no longer trusted.
+
+Risk: Opening the widget contacts the configured font CDN.
+
+Mitigation: Review or self-host font dependencies before using the widget in restricted or privacy-sensitive environments.
+
+Risk: The Pomodoro timer may request browser notification permission.
+
+Mitigation: Grant notification permission only when desktop timer alerts are desired, and review browser site permissions if the widget is reused elsewhere.
+
+Risk: The skill text mentions optional weather automation.
+
+Mitigation: Add weather automation only intentionally, and review any added data source, network access, and permissions before deployment.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/lwter/skills/nexus-wage-widget)
+- [daily_wage.html](references/daily_wage.html)
+- [English README](readme.en.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with HTML, CSS, and JavaScript implementation details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill references a single-file widget and may include browser configuration guidance for localStorage, notifications, themes, layout, and font loading.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Enables an AI agent to initialize, maintain, and reuse local memory files so it can carry user context, active tasks, and preferences across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory Bridge helps an agent preserve lightweight session context across restarts by creating and maintaining local Markdown memory files for user identity, task handoff, entities, preferences, and lessons learned.
 
-## Publisher: <br>
-[qwertyu7894](https://clawhub.ai/user/qwertyu7894) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qwertyu7894](https://clawhub.ai/user/qwertyu7894)
 
-## Use Case: <br>
-Developers and frequent agent users use this skill to preserve lightweight local context between sessions, including identity notes, preferences, active work, handoff state, and lessons learned. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent local memory can store and resurface user or session information beyond the current conversation. <br>
-Mitigation: Install only when cross-session memory is intentional, avoid storing secrets or sensitive personal or business data, and periodically review the memory files. <br>
-Risk: Stored memory can become stale, inaccurate, or unwanted and still influence later agent behavior. <br>
-Mitigation: Keep MEMORY.md as a short index, edit or clean outdated notes, and delete MEMORY.md, memory/, and .learnings/ when memory should be cleared. <br>
+## Use Case:
 
+Developers and agent users use Memory Bridge to give an AI assistant continuity between sessions through a small index file and on-demand Markdown records. It is useful when a workspace needs persistent context for current tasks, user preferences, project entities, and prior corrections without loading large history files at startup.
 
-## Reference(s): <br>
-- [Memory Bridge on ClawHub](https://clawhub.ai/qwertyu7894/memory-bridge) <br>
-- [Memory Guide](MEMORY-GUIDE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with local file templates and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates local memory files such as MEMORY.md, USER.md, memory/, and .learnings/ when the agent follows the workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill stores and reloads personal conversation context in local plaintext Markdown files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not store passwords, API keys, private keys, financial data, or sensitive personal details in the memory files; review and delete the files regularly.
+
+Risk: Persistent memory has weak consent, privacy, and cleanup controls.
+
+Mitigation: Initialize memory only after explicit user confirmation, make the file locations clear, and provide deletion by removing MEMORY.md, memory/, and .learnings/.
+
+Risk: Outdated or incorrect memory can influence later agent behavior.
+
+Mitigation: Keep MEMORY.md as a short index, clean stale entries, and verify remembered task or preference details before relying on them.
+
+## Reference(s):
+
+- [Memory Bridge Skill Page](https://clawhub.ai/qwertyu7894/skills/memory-bridge)
+- [MEMORY-GUIDE.md](artifact/MEMORY-GUIDE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates local plaintext Markdown memory files under the user's workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

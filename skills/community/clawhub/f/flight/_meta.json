@@ -1,6 +1,19 @@
 {
-  "ownerId": "kn73vp5rarc3b14rc7wjcw8f8580t5d1",
+  "owner": "clawic",
   "slug": "flight",
-  "version": "1.0.1",
-  "publishedAt": 1771184104129
+  "displayName": "Flight",
+  "latest": {
+    "version": "1.0.3",
+    "publishedAt": 1785140325484
+  },
+  "history": [
+    {
+      "version": "1.0.2",
+      "publishedAt": 1785080500519
+    },
+    {
+      "version": "1.0.1",
+      "publishedAt": 1771184104129
+    }
+  ]
 }

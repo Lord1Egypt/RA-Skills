@@ -1,43 +1,54 @@
-## Description: <br>
-AI图像创作(AI付版) - 聚合数据 generates images from text prompts through Juhe's paid AI image service and an Alipay payment flow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+聚合数据提供的 paid AI image generation skill that collects a prompt and size, calls Juhe's A2M HTTP 402 service, and hands payment completion to the Alipay payment skill.
 
-## Publisher: <br>
-[juhemcp](https://clawhub.ai/user/juhemcp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[juhemcp](https://clawhub.ai/user/juhemcp)
 
-## Use Case: <br>
-External users and agents use this skill to create paid AI-generated images from prompts, with user confirmation before sending prompt text to Juhe and completing payment through Alipay. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image prompts are sent in plaintext to Juhe for generation. <br>
-Mitigation: Avoid personal, sensitive, confidential, or regulated information in prompts before continuing. <br>
-Risk: The workflow uses a paid Alipay payment flow before results are returned. <br>
-Mitigation: Confirm the payment amount, order details, and user consent before invoking payment. <br>
-Risk: Generated images may be unlawful, infringing, or inappropriate for a user's jurisdiction or use case. <br>
-Mitigation: Review requested content and generated outputs against applicable law, platform rules, and organizational policy. <br>
+## Use Case:
 
+External users use this skill to request paid AI image generation from text prompts through Juhe, with payment handled through Alipay before generation results are returned and saved locally.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/juhemcp/juhe-ai-image-generate-a2a) <br>
-- [Juhe A2A query endpoint](https://apis.juhe.cn/a2a/query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON request bodies and downloaded image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user consent for paid generation; prompt text is sent to Juhe and payment handling is delegated to alipay-payment-skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release evidence) <br>
+Risk: Prompt text is sent to Juhe's paid third-party image service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell users before collecting prompt parameters and avoid private, regulated, or sensitive information in prompts.
+
+Risk: The security review flags unsafe install and shell-command patterns.
+
+Mitigation: Verify the Alipay payment installer source and exact version before running it, and prefer a structured HTTP client over interpolated shell commands for API requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/juhemcp/skills/juhe-ai-image-generate-a2a)
+- [Juhe A2A query endpoint](https://apis.juhe.cn/a2a/query)
+
+## Skill Output:
+
+**Output Type(s):** [Text, API Calls, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with JSON request examples and shell command snippets; generated image files are downloaded locally.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt text is capped at 800 characters; image size maps to 1:1, 16:9, 4:3, 3:4, or 9:16.]
+
+## Skill Version(s):
+
+1.0.11 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

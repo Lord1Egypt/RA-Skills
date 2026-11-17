@@ -1,41 +1,57 @@
-## Description: <br>
-Use QName.AI domain lookup from the terminal. Call this when an Agent needs WHOIS/domain availability evidence for one domain at a time through the approved QName API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use QName AI from the terminal for WHOIS, traffic, or Google Ads keyword research through the approved QName AI API, staying within the key's approved API types and quotas.
 
-## Publisher: <br>
-[vibevibing](https://clawhub.ai/user/vibevibing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vibevibing](https://clawhub.ai/user/vibevibing)
 
-## Use Case: <br>
-Developers and agents use this skill to run one-domain QName.AI WHOIS and domain availability lookups from the terminal, with JSON output available for downstream parsing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an approved QName API key for CLI use. <br>
-Mitigation: Use environment variables for temporary sessions and avoid printing stored secrets unless intentionally inspecting local configuration. <br>
-Risk: Using the CLI outside its documented scope may produce unsupported or incomplete workflows. <br>
-Mitigation: Limit use to single-domain WHOIS or availability lookups and avoid batch lookup, realtime stream checks, traffic analysis, domain rating, or registrar purchase actions. <br>
+## Use Case:
 
+Developers and external agents use this skill to run approved QName AI CLI workflows for WHOIS/domain availability, traffic lookup, and Google Ads keyword research while respecting configured API entitlements and quotas.
 
-## Reference(s): <br>
-- [QName.AI](https://qname.ai) <br>
-- [ClawHub release page](https://clawhub.ai/vibevibing/qname-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides one-domain lookups and credential setup; QName CLI responses may be JSON or text depending on command flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: A QName AI API key could be exposed through shell history, printed configuration, or overly broad local handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use short-lived environment variables or an interactive secret flow, treat the key as a secret, and avoid printing secrets unless the user explicitly requests inspection.
+
+Risk: Commands could exceed approved per-request or daily quotas, or use traffic and keyword APIs without the configured key being entitled for them.
+
+Mitigation: Keep automation within approved quotas and use traffic or keyword commands only when the key is approved for the matching API type.
+
+Risk: Keyword results may be scoped incorrectly if the default United States and English target IDs do not match the task.
+
+Mitigation: Set country, language, and network options explicitly when the default targeting does not match the user's research need.
+
+## Reference(s):
+
+- [QName AI](https://qname.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and JSON-oriented CLI guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance favors JSON output for agent parsing and includes quota, entitlement, and secret-handling constraints.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

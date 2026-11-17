@@ -1,39 +1,53 @@
-## Description: <br>
-Exports solution documents from conversations as Markdown and publishes them to a configured web server for download. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Doc Export organizes solved conversation issues into Markdown solution documents and publishes them to a web server for user download.
 
-## Publisher: <br>
-[binyuli](https://clawhub.ai/user/binyuli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[binyuli](https://clawhub.ai/user/binyuli)
 
-## Use Case: <br>
-Users ask the agent to turn an in-progress troubleshooting or setup conversation into a downloadable Markdown solution document with background, steps, examples, and common issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Conversation-derived documents may become publicly reachable when published to the configured website. <br>
-Mitigation: Show the document, filename, and URL before publishing, and remove secrets or private details from the content. <br>
-Risk: Published and archived documents may remain available after the user downloads them. <br>
-Mitigation: Ask the agent to delete the public copy and any archived local copy when the document is no longer needed. <br>
+## Use Case:
 
+External users and agent operators use this skill to turn resolved conversation content into a downloadable Markdown guide with background, steps, examples, and common questions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown document, public download link, and cleanup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Publishes generated documents to a configured HTTPS web directory and retains a local archive unless cleanup is requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Conversation-derived documents may expose secrets or personal data if published to the configured public web domain.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact sensitive content and require explicit approval before publishing any generated document.
+
+Risk: Public web copies and retained archive copies may remain accessible longer than intended.
+
+Mitigation: Use private or expiring links where possible and define cleanup for both the public web copy and archived source document.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/binyuli/skills/doc-export)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown document and HTTPS download link]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated documents may be copied to a public web directory and retained in a local archive.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

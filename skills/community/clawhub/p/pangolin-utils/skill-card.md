@@ -1,36 +1,52 @@
-## Description: <br>
-3D visualization toolkit wrapping Pangolin viewer for real-time display of point clouds, trajectories, cameras, planes, chessboards, and images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pywayne Visualization Pangolin Utils guides agents in writing Python code with PangolinViewer for real-time 3D visualization of point clouds, trajectories, cameras, planes, chessboards, and images.
 
-## Publisher: <br>
-[wangyendt](https://clawhub.ai/user/wangyendt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wangyendt](https://clawhub.ai/user/wangyendt)
 
-## Use Case: <br>
-Developers and robotics or computer-vision engineers use this skill as a reference for visualizing point clouds, trajectories, camera poses, calibration boards, planes, lines, and image streams with PangolinViewer. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Examples may trigger Pangolin installation through gettool. <br>
-Mitigation: Confirm gettool fetches Pangolin from a trusted source before running examples that install dependencies. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and robotics or computer vision engineers use this skill to generate code and guidance for visualizing sensor data, SLAM or tracking outputs, robot states, camera calibration scenes, and pose trajectories with pywayne's PangolinViewer.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes API usage examples for visualization objects and notes about the Pangolin dependency and float32 input requirements.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The underlying pywayne/Pangolin dependency may auto-download Pangolin via gettool.
+
+Mitigation: Review and approve dependency download behavior in the target environment before asking an agent to generate or run viewer code.
+
+Risk: Visualization output can be misleading if point, pose, quaternion, or image inputs use unsupported shapes, numeric types, or conventions.
+
+Mitigation: Validate input arrays against the documented float32, SE3, and quaternion format requirements before relying on generated visualization code.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangyendt/skills/pangolin-utils)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance focuses on pywayne.visualization.pangolin_utils.PangolinViewer usage and expected data formats.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

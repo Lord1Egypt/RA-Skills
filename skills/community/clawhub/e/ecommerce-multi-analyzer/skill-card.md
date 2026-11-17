@@ -1,43 +1,62 @@
-## Description: <br>
-输入主流电商平台商品链接后，该技能会抓取和搜索商品信息，比较多平台价格、评分、评价和店铺信息，并生成本地交互式 HTML 分析报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+电商多平台商品数据分析助手。输入任意主流电商平台商品链接（淘宝/天猫/京东/拼多多/抖音电商/1688），自动抓取商品详情、搜索跨平台同款商品、对比价格/评分/评价，生成交互式可视化HTML分析报告。
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-Shoppers, sourcing teams, and ecommerce analysts use this skill to compare one product across Chinese ecommerce platforms and create a buying-advice report from available product page and search data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches product pages and search results from external ecommerce sites. <br>
-Mitigation: Run it only in contexts where external product lookups are acceptable, and avoid submitting sensitive or private product links. <br>
-Risk: Third-party page text can be inserted into the generated local HTML report. <br>
-Mitigation: Open generated reports only for trusted product links and review report content before sharing it. <br>
-Risk: Prices, ratings, and availability may be stale, incomplete, or affected by ecommerce anti-scraping controls. <br>
-Mitigation: Treat the report as decision support, verify important values on the source platforms, and include the retrieval time in the analysis. <br>
+## Use Case:
 
+External users and shopping researchers use this skill to compare product listings across major Chinese e-commerce platforms, summarize price and rating differences, and generate a visual buying-analysis report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/ecommerce-multi-analyzer) <br>
-- [Project homepage](https://github.com/bettermen/ecommerce-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Agent guidance plus structured JSON data and a generated interactive HTML report.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill writes product-analysis data and the generated report locally under /tmp using the included Python report generator.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and SKILL.md frontmatter) <br>
+Risk: Generated HTML reports can execute unsafe content from product-derived data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Escape all product-derived text before rendering reports and review generated HTML before opening or sharing it.
+
+Risk: Product links in generated reports can expose users to unsafe navigation behavior.
+
+Mitigation: Restrict report links to http/https URLs and add rel="noopener noreferrer" to external links.
+
+Risk: The report depends on a remotely loaded Chart.js script.
+
+Mitigation: Bundle Chart.js locally or use an integrity-checked dependency source.
+
+Risk: Shared /tmp output paths can leave stale data or collide between runs.
+
+Mitigation: Use unique per-run output paths or clean up temporary files after report generation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/ecommerce-multi-analyzer)
+- [Project homepage](https://github.com/bettermen/ecommerce-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [JSON data prepared for a generated interactive HTML report, with concise shopping analysis and buying guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python.exe; report generation uses product-derived data and should be reviewed before opening or sharing generated HTML.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

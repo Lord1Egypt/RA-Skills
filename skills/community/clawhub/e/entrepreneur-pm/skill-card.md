@@ -1,46 +1,59 @@
-## Description: <br>
-Entrepreneur PM Framework helps operators route multi-agent tasks, align task packages, require relevant skill use, and capture lessons for ongoing AI team management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Entrepreneur PM Framework helps managers route AI-agent work, align task goals, require relevant skill use, and capture lessons from completed tasks.
 
-## Publisher: <br>
-[forevercrab321-svg](https://clawhub.ai/user/forevercrab321-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[forevercrab321-svg](https://clawhub.ai/user/forevercrab321-svg)
 
-## Use Case: <br>
-Operators and developers use this skill to plan and manage AI agent work by choosing the right agent, writing clear task packages, enforcing skill usage, and recording lessons from completed work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes under-scoped instructions for live Shopify store changes. <br>
-Mitigation: Separate live commerce administration into a scoped skill with explicit approval, validation, and rollback checks before any store mutation. <br>
-Risk: The skill includes an options-trading example that could be followed as financial guidance. <br>
-Mitigation: Remove the example or constrain it to non-advisory workflow planning with clear human review before any trading decision. <br>
-Risk: The skill references persistent memory and skill updates that could preserve unreviewed or unsafe practices. <br>
-Mitigation: Limit memory writes and skill updates to reviewed content, and require periodic review of accumulated lessons. <br>
-Risk: The skill references a local credential path for Shopify administration. <br>
-Mitigation: Remove credential-path details from public instructions and use environment-specific secret handling with least-privilege access. <br>
+## Use Case:
 
+External users and agent-team managers use this skill to prepare structured task packages, select appropriate agents, define success criteria, enforce relevant skill use, and record operational lessons after completion.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/forevercrab321-svg/entrepreneur-pm) <br>
-- [Agent Capabilities](references/agent-capabilities.md) <br>
-- [Task Examples](references/task-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance, task templates, routing tables, checklists, and short operational reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include task package templates, agent routing recommendations, review checklists, and memory update guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill exposes sensitive Shopify admin access patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or restrict the Shopify token path before use, and require explicit approval for any production store mutation.
+
+Risk: The skill encourages persistent lessons and skill updates that could alter future agent behavior.
+
+Mitigation: Require review before writing persistent lessons or modifying any skill files.
+
+Risk: Agent routing may grant broad tool or secret access to subagents.
+
+Mitigation: Limit subagent secret and tool access by role before delegating tasks.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/forevercrab321-svg/skills/entrepreneur-pm)
+- [Agent Capabilities Matrix](artifact/references/agent-capabilities.md)
+- [Task Package Examples](artifact/references/task-examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown task packages, checklists, routing recommendations, and review templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include file paths, tool choices, and direct-operation instructions that should be reviewed before use in production systems.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

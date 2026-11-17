@@ -1,39 +1,52 @@
-## Description: <br>
-Absolute Mode makes agent replies terse and information-dense by stripping conversational filler, emotional framing, and unnecessary formatting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Absolute Mode changes an assistant's communication style to terse, high-density responses with configurable lite, full, and ultra intensity levels.
 
-## Publisher: <br>
-[samuellie](https://clawhub.ai/user/samuellie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[samuellie](https://clawhub.ai/user/samuellie)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to make assistant responses more concise while preserving safety overrides for security warnings, destructive actions, and ambiguous prompts.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The communication mode can activate unintentionally when users ask for phrases such as "max efficiency".
+
+Mitigation: Confirm intent when activation is ambiguous and use "stop absolute mode" or "return to normal" to exit.
+
+Risk: Highly compressed responses can reduce context around security, destructive actions, or ambiguous requests.
+
+Mitigation: Suspend the mode for safety warnings, destructive actions, and clarification needs as specified by the artifact.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to make agent responses more direct, terse, and token-efficient while preserving safety overrides for ambiguous or high-risk situations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Terse replies may omit nuance, empathy, or detailed safety explanation in contexts that need careful communication. <br>
-Mitigation: Disable the skill or use its safety override for legal, medical, security, destructive, ambiguous, or empathy-sensitive situations. <br>
+**Output Format:** [Markdown or plain text responses]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Absolute Mode on ClawHub](https://clawhub.ai/samuellie/absolute-mode) <br>
-- [samuellie ClawHub profile](https://clawhub.ai/user/samuellie) <br>
+**Other Properties Related to Output:** [Configurable intensity levels: lite, full, ultra.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text or Markdown responses with terse structure and an optional safety override prefix.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports lite, full, and ultra intensity levels; suspends terse mode for safety-sensitive or ambiguous situations.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

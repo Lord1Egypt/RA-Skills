@@ -1,41 +1,59 @@
-## Description: <br>
-Rust-based browser automation using local Chrome for fast DOM extraction, session management, screenshots, scraping, and site structure analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rust-based browser automation using local Chrome for fast DOM extraction, session management, screenshots, scraping, and site structure analysis.
 
-## Publisher: <br>
-[yujinlong001](https://clawhub.ai/user/yujinlong001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yujinlong001](https://clawhub.ai/user/yujinlong001)
 
-## Use Case: <br>
-Developers and agents use this skill to automate local Chrome sessions for stateful web navigation, interaction, DOM extraction, page-to-Markdown conversion, screenshots, and sitemap analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents using this skill can view page contents, form values, tab URLs, cookies, and saved session files. <br>
-Mitigation: Install only when local Chrome automation is intended, avoid shared or synced session-file locations, and review requests involving cookies, session files, screenshots, filesystem paths, or sensitive pages. <br>
-Risk: The skill can automate scraping, raw JavaScript execution, and browser control on third-party sites. <br>
-Mitigation: Avoid protected third-party sites unless authorized and review each automation plan for site terms, consent, and data-handling expectations. <br>
+## Use Case:
 
+Developers and agents use this skill to automate local Chrome sessions for navigation, page interaction, DOM extraction, screenshots, Markdown conversion, and sitemap or page-structure analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yujinlong001/fast-browser-use-local) <br>
-- [Project homepage from ClawHub metadata](https://github.com/rknoche6/fast-browser-use) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON, shell commands, configuration snippets, and browser-derived text or image file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or save browser session data, cookies, local storage values, screenshots, DOM snapshots, Markdown extracts, and sitemap analysis depending on the invoked tool.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can control a local browser and handle session cookies, which may expose sensitive authenticated activity if used with real accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated browser profile or test accounts, avoid financial or administrative sessions, and treat saved session files as secrets equivalent to login tokens.
+
+Risk: The security evidence flags weak scoping, unsafe defaults, and browser actions that may affect sites beyond the user's intended target.
+
+Mitigation: Review commands before execution, narrow triggers and permissions, keep Chrome sandboxing enabled by default, and require explicit confirmation for sensitive browser actions.
+
+Risk: The artifact includes documentation for bypassing bot detection and reusing login sessions, which can enable misuse or violations of site protections.
+
+Mitigation: Do not use the skill to bypass site protections, scrape protected services, or reuse sessions without authorization.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yujinlong001/skills/fast-browser-use-local)
+- [Publisher profile](https://clawhub.ai/user/yujinlong001)
+- [Homepage from ClawHub metadata](https://github.com/rknoche6/fast-browser-use)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, configuration snippets, and structured browser automation outputs such as JSON, Markdown, and PNG files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local Chrome or Chromium and runs browser actions through a local Rust CLI or MCP server.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

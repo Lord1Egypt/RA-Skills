@@ -1,47 +1,60 @@
-## Description: <br>
-Use capsolver to automatically resolve Geetest, reCAPTCHA v2, reCAPTCHA v3, MTCaptcha, DataDome, AWS WAF, Cloudflare Turnstile, and Cloudflare Challenge, etc. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use CapSolver to automatically resolve Geetest, reCAPTCHA v2, reCAPTCHA v3, MTCaptcha, DataDome, AWS WAF, Cloudflare Turnstile, and Cloudflare Challenge challenges.
 
-## Publisher: <br>
-[capsolver](https://clawhub.ai/user/capsolver) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[capsolver](https://clawhub.ai/user/capsolver)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to call CapSolver for CAPTCHA recognition and token-solving workflows in authorized RPA or browser automation contexts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides broad CAPTCHA and anti-bot bypass capability. <br>
-Mitigation: Use it only for authorized target sites and review whether the workflow complies with site rules and organizational policy before deployment. <br>
-Risk: The skill can send challenge data, proxy values, page URLs, user-agent values, and page HTML to CapSolver. <br>
-Mitigation: Avoid sending private page HTML, account data, session data, or other sensitive content; treat API_KEY and proxy credentials as secrets. <br>
-Risk: The security scan verdict is suspicious. <br>
-Mitigation: Require security review and intentional approval before installation in production automation. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to call the CapSolver API from an agent workflow and obtain CAPTCHA challenge solutions or tokens for supported challenge types. Users should only apply it where they are authorized to use a third-party CAPTCHA or anti-bot solving service.
 
-## Reference(s): <br>
-- [CapSolver Homepage](https://capsolver.com/) <br>
-- [ImageToTextTask Documentation](https://docs.capsolver.com/en/guide/recognition/ImageToTextTask/#independent-module-support) <br>
-- [reCAPTCHA Classification Documentation](https://docs.capsolver.com/guide/recognition/ReCaptchaClassification/) <br>
-- [AWS WAF Classification Documentation](https://docs.capsolver.com/guide/recognition/AwsWafClassification/) <br>
-- [VisionEngine Documentation](https://docs.capsolver.com/guide/recognition/VisionEngine/) <br>
-- [Proxy Usage Documentation](https://docs.capsolver.com/guide/api-how-to-use-proxy/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Configuration] <br>
-**Output Format:** [JSON responses from CapSolver API calls, with command-line usage guidance in Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an API_KEY secret and may accept proxy, user-agent, page URL, challenge HTML, site key, image, or token parameters depending on the task type.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The skill sends CAPTCHA or anti-bot challenge material to a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when authorized for the target site and when third-party processing of challenge data is acceptable.
+
+Risk: API keys, proxy credentials, WAF tokens, returned cookies, page HTML, and challenge data are sensitive.
+
+Mitigation: Store secrets in protected environment variables or local secret stores, avoid placing them directly in shared command histories or logs, and redact outputs before sharing.
+
+Risk: The server security verdict is suspicious because the skill has limited safety disclosure for anti-bot solving behavior.
+
+Mitigation: Run it in an isolated environment with reviewed dependency versions and document acceptable-use boundaries before deployment.
+
+## Reference(s):
+
+- [CapSolver homepage](https://capsolver.com/)
+- [CapSolver documentation](https://docs.capsolver.com/)
+- [CapSolver proxy usage guide](https://docs.capsolver.com/guide/api-how-to-use-proxy/)
+- [ClawHub skill page](https://clawhub.ai/capsolver/skills/capsolver-captcha-solver)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; solver commands print JSON solution data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a CapSolver API key and may require proxy, site key, page HTML, image, or challenge-specific parameters depending on task type.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

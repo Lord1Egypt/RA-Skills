@@ -1,40 +1,53 @@
-## Description: <br>
-Sends workspace files such as images, audio, and documents through Feishu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends files to Feishu, including images, audio, documents, and other file types.
 
-## Publisher: <br>
-[Tazio7](https://clawhub.ai/user/Tazio7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tazio7](https://clawhub.ai/user/tazio7)
 
-## Use Case: <br>
-Employees and agents use this skill when they need to share a selected workspace file through Feishu with an optional caption. It is suited to user-approved sends of known workspace files, not unattended sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send workspace files to Feishu, which may expose sensitive content externally. <br>
-Mitigation: Before each send, verify the file path, file contents, caption, and recipient or channel; avoid sending sensitive files unless external sharing is acceptable. <br>
-Risk: Using a non-workspace path or the wrong message parameter can cause failed delivery or unintended behavior. <br>
-Mitigation: Use workspace paths and the documented media, file_path, or path parameter for file sends. <br>
+## Use Case:
 
+Developers and agent users use this skill when an agent needs to send workspace files through Feishu with an optional caption.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Tazio7/feishu-file-send) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands] <br>
-**Output Format:** [Markdown instructions with Python tool-call examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance emphasizes workspace file paths, Feishu channel selection, optional captions, and recipient or channel review before sending.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Agents may send private, personal, or business-sensitive workspace files unintentionally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the exact file path and contents before sending a file through Feishu.
+
+Risk: File sending can fail or reach the wrong workflow when the file path is outside the expected workspace or when the wrong message parameter is used.
+
+Mitigation: Use an absolute workspace path through media, file_path, or path, and avoid using the message parameter for files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tazio7/skills/feishu-file-send)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API calls, Code]
+
+**Output Format:** [Markdown guidance with Python-style Feishu message tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses workspace file paths and optional captions for file delivery through Feishu.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

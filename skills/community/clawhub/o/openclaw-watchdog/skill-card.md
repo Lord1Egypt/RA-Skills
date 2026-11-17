@@ -1,46 +1,58 @@
-## Description: <br>
-Self-healing monitoring system for the OpenClaw gateway that auto-detects failures, fixes crashes, and sends Telegram alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-healing monitoring system for OpenClaw gateway that auto-detects failures, fixes crashes, and sends Telegram alerts.
 
-## Publisher: <br>
-[Abdullah4AI](https://clawhub.ai/user/Abdullah4AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[abdullah4ai](https://clawhub.ai/user/abdullah4ai)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to install and manage a background watchdog that monitors gateway health, attempts recovery, and sends Telegram alerts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill installs an always-on user-level background service. <br>
-Mitigation: Review service installation details before setup and use the documented LaunchAgent or systemd uninstall steps when the watchdog is no longer needed. <br>
-Risk: The skill handles Telegram credentials and sends operational diagnostics to Telegram. <br>
-Mitigation: Use a dedicated Telegram bot token, avoid pasting it into persistent chat or shell history, and rotate the token if it may have been exposed. <br>
-Risk: The watchdog can restart the OpenClaw gateway and perform high-impact recovery actions. <br>
-Mitigation: Understand the recovery behavior before enabling it; OpenClaw reinstall is gated by a local approval marker file. <br>
-Risk: The security verdict is suspicious due to persistence, secret handling, external notifications, and weak safeguards around recovery behavior. <br>
-Mitigation: Review carefully before installing and do not provide OpenAI or Anthropic keys unless a later version clearly requires them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Abdullah4AI/openclaw-watchdog) <br>
-- [Publisher profile](https://clawhub.ai/user/Abdullah4AI) <br>
-- [Watch Dog Troubleshooting](references/troubleshooting.md) <br>
-- [Telegram BotFather](https://t.me/BotFather) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to install and operate a local watchdog service that monitors gateway health, restarts the gateway after repeated failures, and sends Telegram alerts.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes setup, credential validation, service verification, troubleshooting, and uninstall guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs a persistent user-level watchdog service that can restart the OpenClaw gateway and send Telegram alerts.
+
+Mitigation: Install it only when persistent gateway monitoring and automatic recovery are intended, and verify the installed service status and logs after setup.
+
+Risk: Sensitive Telegram credentials, and optional unused API keys if supplied, may be retained by the installed service configuration.
+
+Mitigation: Provide only the required Telegram token and chat ID, avoid supplying OpenAI or Anthropic API keys, and rotate the Telegram bot token if it may have appeared in logs.
+
+Risk: The security scan notes unpinned aiohttp and npm openclaw install behavior.
+
+Mitigation: Review package installation behavior before enabling automatic recovery, and pin or approve dependency sources according to local deployment policy.
+
+## Reference(s):
+
+- [OpenClaw Watch Dog ClawHub listing](https://clawhub.ai/abdullah4ai/skills/openclaw-watchdog)
+- [Publisher profile](https://clawhub.ai/user/abdullah4ai)
+- [Watch Dog Troubleshooting](artifact/openclaw-watchdog/references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command snippets and configuration steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, openssl, TELEGRAM_TOKEN, and TELEGRAM_CHAT_ID; installs a user-level LaunchAgent or systemd service.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

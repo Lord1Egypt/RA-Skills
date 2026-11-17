@@ -1,0 +1,46 @@
+{
+  "status": "no_edge_confirmed",
+  "n_groups": 25,
+  "n_records": 6,
+  "theoretical": {
+    "front_mean": 0.7143,
+    "back_mean": 0.3333,
+    "total_mean": 1.0476
+  },
+  "empirical": {
+    "front_mean": 0.56,
+    "total_mean": 1.16,
+    "front_hist": [
+      14,
+      8,
+      3,
+      0,
+      0,
+      0
+    ],
+    "total_hist": [
+      7,
+      9,
+      7,
+      2,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "monte_carlo": {
+    "front_mean": 0.88,
+    "total_mean": 1.2,
+    "n": 25
+  },
+  "tests": {
+    "front_z_pvalue": 0.293915,
+    "front_chi_pvalue": 0.875647,
+    "total_chi_pvalue": 0.991852,
+    "min_pvalue": 0.293915,
+    "front_effect": 0.1543,
+    "total_effect": 0.1124
+  },
+  "conclusion": "自证通过: 系统累积 25 个推荐分组的前区命中均值 0.560 ≈ 理论随机期望 0.714 (蒙特卡洛随机基线 0.880), 最小显著性 p=0.294 >> 0.01 —— 系统自身推荐与纯随机无显著差异, 确认无预测优势 (no_edge)。"
+}

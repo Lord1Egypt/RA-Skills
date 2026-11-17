@@ -1,54 +1,68 @@
-## Description: <br>
-Provides Defold game engine development guidance for building Lua-based 2D games, covering game objects, GUI/Druid, physics, animation, input, dynamic objects, saves, and common game patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Develop games using Defold engine with Lua scripting, including components, GUI, physics, animation, input handling, dynamic objects, and save/load systems.
 
-## Publisher: <br>
-[andyrenxu7255](https://clawhub.ai/user/andyrenxu7255) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andyrenxu7255](https://clawhub.ai/user/andyrenxu7255)
 
-## Use Case: <br>
-Developers and game builders use this skill to get Defold-specific guidance, Lua examples, and project patterns for 2D game development across gameplay, UI, physics, animation, input, dynamic object creation, and persistence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for broad game-development prompts even when Defold was not explicitly requested. <br>
-Mitigation: Confirm the project uses Defold before relying on Defold-specific APIs or generated code. <br>
-Risk: Suggested third-party Defold libraries and dependency URLs may affect a game project's dependency surface. <br>
-Mitigation: Review the linked libraries, versions, and licenses before adding them to a project. <br>
-Risk: The dependency helper can modify a game.project file. <br>
-Mitigation: Run the helper only on an intended project file and review the diff before committing or building. <br>
+## Use Case:
 
+Developers and game builders use this skill for Defold projects that need Lua game code, engine API guidance, GUI and input patterns, physics behavior, animation setup, dynamic object loading, dependency setup, and save/load systems.
 
-## Reference(s): <br>
-- [Defold Skill Page](https://clawhub.ai/andyrenxu7255/defold) <br>
-- [Defold Manual](https://defold.com/manuals) <br>
-- [Defold Asset Portal](https://defold.com/assets) <br>
-- [Druid Framework](https://github.com/Insality/druid) <br>
-- [DefSave](https://github.com/subsoap/defsave) <br>
-- [Core Concepts](references/core-concepts.md) <br>
-- [GUI System](references/gui-system.md) <br>
-- [Dynamic Objects](references/dynamic-objects.md) <br>
-- [Data Storage](references/data-storage.md) <br>
-- [Physics System](references/physics-system.md) <br>
-- [Animation System](references/animation-system.md) <br>
-- [Input System](references/input-system.md) <br>
-- [Business Game Patterns](references/business-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Lua and shell code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose edits to Defold project files and dependency URLs for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The helper script modifies a game.project file and could add dependencies to the wrong project if run with an unintended path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run scripts/add_dependencies.py only against a project file you intend to change and review the diff before opening the project in Defold.
+
+Risk: Recommended GitHub dependencies are URL based and do not include checksums or immutable commit pins.
+
+Mitigation: Review each dependency source and version before adding it; pin or vendor dependencies according to project policy when stronger supply-chain control is required.
+
+Risk: Generic game-development prompts may activate the skill even when the project is not using Defold.
+
+Mitigation: Confirm the project is a Defold/Lua project before applying Defold-specific APIs or dependency changes.
+
+## Reference(s):
+
+- [Core Concepts](references/core-concepts.md)
+- [GUI System](references/gui-system.md)
+- [Dynamic Objects](references/dynamic-objects.md)
+- [Data Storage](references/data-storage.md)
+- [Physics System](references/physics-system.md)
+- [Animation System](references/animation-system.md)
+- [Input System](references/input-system.md)
+- [Business Game Patterns](references/business-patterns.md)
+- [Defold Manual](https://defold.com/manuals)
+- [Druid Framework](https://github.com/Insality/druid)
+- [DefSave](https://github.com/subsoap/defsave)
+- [Defold Asset Portal](https://defold.com/assets)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Lua code examples and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Defold Lua snippets and a user-run dependency helper for game.project files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

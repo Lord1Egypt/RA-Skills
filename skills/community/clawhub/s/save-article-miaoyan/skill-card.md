@@ -1,43 +1,58 @@
-## Description: <br>
-Saves article webpages to Miaoyan by fetching content, generating a brief summary, and writing a Markdown note to the Miaoyan/待学习 folder. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Saves web articles to Miaoyan by fetching readable content, generating a short summary, and writing a Markdown note to the Miaoyan 待学习 folder.
 
-## Publisher: <br>
-[vlalamoon](https://clawhub.ai/user/vlalamoon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vlalamoon](https://clawhub.ai/user/vlalamoon)
 
-## Use Case: <br>
-Users who collect web or WeChat articles use this skill to turn a supplied URL into a local Miaoyan Markdown note with a source link, generated summary, and article body. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic fetching and file creation can process unintended links or create unwanted notes. <br>
-Mitigation: Review messages and URLs before enabling automatic triggers, or require user confirmation before running the save workflow. <br>
-Risk: URLs or article content may be sent to third-party extraction services such as Jina Reader or Tavily. <br>
-Mitigation: Avoid private, authenticated, internal, or sensitive links unless the skill is changed to use a local-only fetch mode or clearly discloses external processing. <br>
-Risk: The skill writes Markdown files into an iCloud-synced Miaoyan folder. <br>
-Mitigation: Confirm the destination path and sync behavior before installation, and restrict execution to trusted articles and expected local accounts. <br>
+## Use Case:
 
+External users who save WeChat and other web articles into Miaoyan use this skill to fetch readable content, summarize it, and create local Markdown notes in an iCloud-synced Miaoyan folder.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vlalamoon/save-article-miaoyan) <br>
-- [Tavily](https://tavily.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files] <br>
-**Output Format:** [Markdown note files plus command-line status text or trigger JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saved notes include title, save date, source link, generated summary, and article content; long article content may be truncated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Article URLs may be sent to external extraction providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill with private, tokenized, internal, signed, or sensitive URLs unless confirmation and URL allowlisting are added.
+
+Risk: WeChat article links can be saved automatically without a user confirmation step.
+
+Mitigation: Review the trigger configuration and require explicit confirmation before automatic saves in shared or sensitive environments.
+
+Risk: Fetched article content is written to a fixed iCloud-synced Miaoyan folder.
+
+Mitigation: Confirm the storage policy for synced notes and change the target folder before deployment when local-only storage is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vlalamoon/skills/save-article-miaoyan)
+- [Tavily](https://tavily.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown notes plus plain-text or JSON status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes fetched article content and generated summaries to a fixed Miaoyan/iCloud folder; may call external extraction providers.]
+
+## Skill Version(s):
+
+2.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

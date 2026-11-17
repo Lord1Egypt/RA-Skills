@@ -1,44 +1,55 @@
-## Description: <br>
-评估量子电池项目的真实性、技术成熟度与投资价值，识别虚假宣传与真实技术突破。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+评估量子电池项目的真实性、技术成熟度与投资价值，识别虚假宣传与真实技术突破。
 
-## Publisher: <br>
-[golngod](https://clawhub.ai/user/golngod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[golngod](https://clawhub.ai/user/golngod)
 
-## Use Case: <br>
-External users, analysts, founders, and investors use this skill to assess quantum battery claims, compare stated parameters against expected technical maturity, and identify signs of misleading commercialization or investment claims. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides finance-adjacent investment guidance that could be mistaken for final financial advice. <br>
-Mitigation: Use it only as an informational due-diligence checklist and consult qualified financial professionals before making investment decisions. <br>
-Risk: The skill helps identify possible scams or misleading claims, which could lead to unsupported fraud accusations if used without corroboration. <br>
-Mitigation: Independently verify sources, technical claims, and project credentials before making public claims or taking legal action. <br>
-Risk: Quantum battery research and commercialization timelines can become outdated as new evidence appears. <br>
-Mitigation: Refresh technical references and compare claims against current peer-reviewed literature and credible institutional sources. <br>
+## Use Case:
 
+External users and analysts use this Chinese-language skill to evaluate quantum battery claims, technical maturity, commercialization promises, and investment-related risk signals. It supports due diligence-style outputs such as evaluation reports and technical parameter comparisons.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/golngod/opc-quantum-battery) <br>
-- [量子电池参考资源](references/参考资源清单.md) <br>
-- [量子电池项目评估清单](references/评估检查清单.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown evaluation reports and comparison tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Expected outputs include a quantum battery evaluation report and a technical parameter comparison table.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Market, investment, and research-status statements may become outdated or be unsuitable for a specific user's financial situation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as educational due diligence prompts, verify current research independently, and consult a qualified financial professional before making investment decisions.
+
+Risk: Quantum battery claims are technically specialized and may be overstated by third parties being evaluated.
+
+Mitigation: Use the skill's parameter checks and academic verification steps as screening aids, then confirm claims against peer-reviewed publications and credible institutional sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/golngod/skills/opc-quantum-battery)
+- [量子电池参考资源](references/参考资源清单.md)
+- [量子电池项目评估清单](references/评估检查清单.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-language Markdown reports, checklists, and parameter comparison tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No hidden execution, persistence, credential access, or destructive behavior found in the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

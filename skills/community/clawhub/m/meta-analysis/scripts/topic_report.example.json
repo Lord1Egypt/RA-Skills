@@ -1,0 +1,99 @@
+{
+  "slug": "pd1-nsclc-2ndline",
+  "title": "PD-1 Inhibitors vs Docetaxel in 2nd-line Advanced NSCLC",
+  "date": "2026-08-15",
+  "path": "full",
+  "verdict": "recommend",
+  "background": "Second-line treatment for advanced NSCLC after first-line chemo-immunotherapy remains uncertain. Recent trials (e.g. KEYNOTE-010, CheckMate 017, ORIENT-3, RATIONALE-303) individually show PFS/OS benefit vs docetaxel, but no updated aggregate since the 2024 meta (18 trials). A decision-relevant question: do PD-1/PD-L1 inhibitors as a class improve OS in 2nd-line, and does PD-L1 TPS modify the effect? (Dedup layer 3: 4 meta-analyses 2021-2026 identified.)",
+  "pico": {
+    "P": "Non-small cell lung cancer, stage IV, 2nd-line (after 1st-line platinum-based ± IO)",
+    "I": "PD-1/PD-L1 inhibitors (nivolumab, pembrolizumab, atezolizumab, durvalumab, sintilimab, tislelizumab, toripalimab, camrelizumab)",
+    "C": "Docetaxel monotherapy",
+    "O": "Overall survival (HR), progression-free survival (HR), ORR (RR)",
+    "search_terms": {
+      "P": "carcinoma, non-small-cell lung[Mesh] AND (second-line OR previously treated)",
+      "I": "nivolumab OR pembrolizumab OR atezolizumab OR durvalumab OR sintilimab OR tislelizumab OR toripalimab OR camrelizumab",
+      "C": "docetaxel",
+      "O": "survival OR response",
+      "filters": "Meta-Analysis[pt] OR Randomized Controlled Trial[pt], 2021-2026"
+    }
+  },
+  "meta_type": "pairwise",
+  "meta_type_rationale": "Two-arm RCTs (PD-1 vs docetaxel); pairwise with random-effects DL model, subgroup by PD-L1 TPS. Not NMA (no ≥3 simultaneous arms in a connected network); IPD not required (published summary HRs sufficient).",
+  "scores": {
+    "clinical": 4,
+    "feasibility": 4,
+    "data": 3,
+    "novelty": 4,
+    "total": 15
+  },
+  "score_anchors": {
+    "clinical": "OS/PFS benefit is a real clinical decision for 2nd-line therapy selection; magnitude still debated by class vs single drug",
+    "feasibility": "Clean 2-arm design, standard effect measures (HR for time-to-event, RR for ORR); no missing-data reconstruction needed",
+    "data": "Published summary HRs available for ~10 RCTs; 2 trials require hazard-ratio extraction from KM (moderate effort)",
+    "novelty": "2024 meta covered 18 trials but without PD-L1 TPS subgroup; 3 post-2024 trials add evidence (verified in dedup layer 3)"
+  },
+  "cross_checks": [
+    {"rule": "R1", "triggered": false, "note": "PICO decomposable to drug list"},
+    {"rule": "R2", "triggered": false, "note": "2-arm design, pairwise correct"},
+    {"rule": "R3", "triggered": true, "note": "Novelty=4 re-verified against 2024 meta; increment = TPS subgroup + 3 new trials"},
+    {"rule": "R4", "triggered": false, "note": "I2>50% trigger pre-set, subgroup plan exists"},
+    {"rule": "R5", "triggered": false, "note": "OS/PFS→HR, ORR→RR aligned"},
+    {"rule": "R6", "triggered": false, "note": "PROSPERO in next actions"}
+  ],
+  "dedup": {
+    "prospero": "2 registered reviews found (CRD4202xxxxxx, CRD4202yyyyyy): same PICO — exact-dup risk for the OS endpoint",
+    "cochrane": "1 Cochrane review in progress on IO in 2nd-line NSCLC (protocol stage)",
+    "pubmed": "4 meta-analyses 2021-2026; 3 use older drug sets, 1 includes all PD-1s (2024, 18 trials)",
+    "non_english": "not applicable (English-language trial literature)",
+    "near_duplicate": "near-dup vs 2024 meta (18 trials); increment = 3 new trials + PD-L1 TPS subgroup absent from prior review",
+    "increment": "Adds 3 post-2024 trials and a pre-specified PD-L1 TPS subgroup analysis absent from the 2024 review"
+  },
+  "search_strategy": "PubMed via E-utilities + Cochrane + PROSPERO (user opt-in run). PRISMA-S style: MeSH + free text, filters Meta-Analysis[pt]/RCT[pt], 2021-2026. Grey: conference abstracts (ASCO/ESMO) via manual screen.",
+  "expected_studies": "~10 RCTs (approx 8-12); anticipated 5,000-6,000 patients",
+  "compliance": {
+    "prisma": [
+      {"item": "1", "status": "ok", "note": "title identifies systematic review"},
+      {"item": "5", "status": "plan", "note": "eligibility draft at topic stage"},
+      {"item": "9", "status": "gap", "note": "extraction form to be built in protocol phase"}
+    ],
+    "amstar2": [
+      {"domain": "protocol", "status": "plan", "note": "PROSPERO before data extraction"},
+      {"domain": "publication_bias", "status": "ok", "note": "Egger/Begg/trim-fill via skill"}
+    ],
+    "overall_risk": "yellow",
+    "note": "2 gaps with clear fixes; re-check at protocol stage"
+  },
+  "outcomes": [
+    "OS (HR, primary)",
+    "PFS (HR, secondary)",
+    "ORR (RR, secondary)",
+    "Grade 3-5 AEs (RR, safety)"
+  ],
+  "subgroups": [
+    "PD-L1 TPS (>=50% / 1-49% / <1%)",
+    "Histology (squamous / non-squamous)",
+    "Prior IO exposure (yes / no)"
+  ],
+  "sensitivity": [
+    "Leave-one-out",
+    "Random-effects DL vs REML",
+    "Quality filter (RoB 2 low-risk only)"
+  ],
+  "risks": [
+    {"risk": "Heterogeneity from mixed PD-L1 expression", "mitigation": "Pre-specified TPS subgroup + I2>50% trigger"},
+    {"risk": "Incomplete HR extraction from 2 KM-only trials", "mitigation": "Digitize with published KM curves; sensitivity by extraction method"},
+    {"risk": "Near-duplicate rejection", "mitigation": "Increment statement (TPS subgroup + new trials) in cover letter"}
+  ],
+  "next_actions": [
+    "PROSPERO registration (before data extraction)",
+    "Finalize search strategy + run dedup layers (user opt-in)",
+    "Build extraction form (pilot on 2 studies)",
+    "Run full analysis via meta-analysis skill Core Functions"
+  ],
+  "prospero": {
+    "ready": true,
+    "missing": ["affiliation", "named contact", "team members", "funding"],
+    "mapping_note": "All 11 report sections map to PROSPERO fields; 4 user-provided fields pending"
+  }
+}

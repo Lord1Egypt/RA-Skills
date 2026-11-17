@@ -316,6 +316,26 @@ def fetch_live_midpoint(token_id):
         return None
 
 
+def _book_prices_best_first(raw_levels, descending):
+    """Parse raw CLOB book level prices and sort them best-first.
+
+    The CLOB returns bids LOW→HIGH and asks HIGH→LOW, so index [0] of the raw
+    response is the WORST price on each side — reading it as the touch computes
+    worst-ask minus worst-bid (the full book width) and inverts the
+    MAX_SPREAD_PCT gate. Levels whose price won't parse are dropped rather than
+    defaulted to 0, so a malformed level can't fabricate a zero-priced touch
+    (which would produce a negative spread that passes the gate).
+    """
+    prices = []
+    for lvl in raw_levels:
+        try:
+            prices.append(float(lvl["price"]))
+        except (KeyError, TypeError, ValueError):
+            continue
+    prices.sort(reverse=descending)
+    return prices
+
+
 def fetch_orderbook_spread(clob_token_ids):
     """Return spread_pct for the YES token, or None on failure."""
     if not clob_token_ids:
@@ -328,13 +348,14 @@ def fetch_orderbook_spread(clob_token_ids):
     asks = result.get("asks", [])
     if not bids or not asks:
         return None
-    try:
-        best_bid = float(bids[0]["price"])
-        best_ask = float(asks[0]["price"])
-        mid = (best_bid + best_ask) / 2
-        return (best_ask - best_bid) / mid if mid > 0 else None
-    except (KeyError, ValueError, IndexError, TypeError):
+    bid_prices = _book_prices_best_first(bids, descending=True)
+    ask_prices = _book_prices_best_first(asks, descending=False)
+    if not bid_prices or not ask_prices:
         return None
+    best_bid = bid_prices[0]
+    best_ask = ask_prices[0]
+    mid = (best_bid + best_ask) / 2
+    return (best_ask - best_bid) / mid if mid > 0 else None
 
 
 # =============================================================================
@@ -816,7 +837,16 @@ def run_fast_scaler(dry_run=True, positions_only=False, show_config=False, quiet
         spread_pct = (pre_spread_cents / 100.0) / mid_est
         log(f"  Spread: {pre_spread_cents:.1f}¢ ({best.get('liquidity_tier', 'unknown')})")
     else:
-        spread_pct = fetch_orderbook_spread(clob_tokens) or 0.0
+        spread_pct = fetch_orderbook_spread(clob_tokens)
+        if spread_pct is None:
+            # Fail CLOSED. `or 0.0` used to turn a failed book fetch into a
+            # PERFECT zero spread, which cleared MAX_SPREAD_PCT every time —
+            # the gate was loudest exactly when it knew least. Skipping costs
+            # one sprint cycle; trading an unmeasured book crosses whatever
+            # spread happens to be there.
+            log("  ⏸️  Order book unavailable — cannot verify spread, skip")
+            _emit_automaton(signals=0, attempted=0, executed=0, skip_reason="book_unavailable")
+            return
         log(f"  Spread: {spread_pct:.1%} (live CLOB)")
 
     if spread_pct > MAX_SPREAD_PCT:

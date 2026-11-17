@@ -1,37 +1,54 @@
-## Description: <br>
-Enables Microsoft Word's Track Changes on DOCX documents using native OOXML elements, with cross-run text matching, paragraph-level replacement, visible insertions and deletions, and support for text split across multiple w:t nodes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables agents to edit DOCX files with Microsoft Word Track Changes using native OOXML revision elements.
 
-## Publisher: <br>
-[elio-huang-15](https://clawhub.ai/user/elio-huang-15) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[elio-huang-15](https://clawhub.ai/user/elio-huang-15)
 
-## Use Case: <br>
-Developers and agents use this skill to edit DOCX files while preserving visible tracked revisions that can be reviewed, accepted, or rejected in Microsoft Word. It is useful for replacing text, inserting paragraphs, marking deletions, and applying batches of document revisions while preserving formatting where possible. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill rewrites user-selected DOCX files and may expose tracked changes or author metadata to document recipients. <br>
-Mitigation: Write to a new output path, keep an original backup, and review the Word Review pane before sharing the edited DOCX. <br>
+## Use Case:
 
+Developers and document-editing agents use this skill to apply auditable replacements, insertions, deletion marks, and batch revisions to Microsoft Word documents while preserving Word's review workflow.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local DOCX files with Microsoft Word Track Changes markup; users should review the Word Review pane before sharing edited documents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill modifies user-provided DOCX files and can overwrite the input when no explicit output path is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit output paths and keep originals unchanged until the tracked revision output is reviewed.
+
+Risk: Processing untrusted or unusually large DOCX files may consume excessive local resources because archive extraction is not size-limited.
+
+Mitigation: Run only on trusted, reasonably sized documents or add external file size and archive expansion limits before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/elio-huang-15/skills/word-track-changes)
+- [Publisher Profile](https://clawhub.ai/user/elio-huang-15)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces DOCX files with native Word revision markup when invoked through the included Python API or CLI scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

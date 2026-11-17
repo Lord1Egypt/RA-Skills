@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>样张 · 规模拆解 TAM/SAM/SOM(原型 40)</title>
+<link rel="stylesheet" href="../assets/theme.css">
+</head>
+<body>
+<div class="slide-container" style="background:var(--off-white);">
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:120px;width:1720px;">
+    <div style="font-size:56px;font-weight:700;line-height:1.2;color:var(--charcoal);">三年内可实际获取 6.8 亿,占可服务市场的 12%</div>
+  </div>
+  <!-- 嵌套层:trapezoid + rotate(180deg) 窄边朝下,逐层收窄 -->
+  <div data-object="true" data-object-type="shape" data-shape="trapezoid" style="position:absolute;left:100px;top:340px;width:1000px;height:160px;background:var(--brand-dark);transform:rotate(180deg);"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:150px;top:380px;width:900px;">
+    <div style="font-size:22px;font-weight:700;letter-spacing:2px;color:var(--on-navy-sub);">TAM 总体可寻址市场</div>
+    <div class="num" style="font-size:44px;font-weight:800;line-height:1.15;color:#FFFFFF;margin-top:6px;">142<span style="font-size:22px;font-weight:600;">亿</span></div>
+  </div>
+  <div data-object="true" data-object-type="shape" data-shape="trapezoid" style="position:absolute;left:220px;top:520px;width:760px;height:160px;background:var(--brand-dark-soft);transform:rotate(180deg);"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:270px;top:560px;width:660px;">
+    <div style="font-size:22px;font-weight:700;letter-spacing:2px;color:var(--on-navy-sub);">SAM 可服务市场</div>
+    <div class="num" style="font-size:44px;font-weight:800;line-height:1.15;color:#FFFFFF;margin-top:6px;">57<span style="font-size:22px;font-weight:600;">亿</span></div>
+  </div>
+  <div data-object="true" data-object-type="shape" data-shape="trapezoid" style="position:absolute;left:340px;top:700px;width:520px;height:160px;background:var(--brand-primary);transform:rotate(180deg);"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:390px;top:740px;width:420px;">
+    <div style="font-size:22px;font-weight:700;letter-spacing:2px;color:#FFE9EC;">SOM 可获取市场(3 年)</div>
+    <div class="num" style="font-size:44px;font-weight:800;line-height:1.15;color:#FFFFFF;margin-top:6px;">6.8<span style="font-size:22px;font-weight:600;">亿</span></div>
+  </div>
+  <!-- 右侧算式链:每层的收窄口径(本原型可信度的全部来源) -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1180px;top:340px;width:640px;">
+    <div style="font-size:20px;font-weight:700;letter-spacing:2px;color:var(--brand-primary);">收窄口径</div>
+  </div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1180px;top:392px;width:640px;">
+    <div style="font-size:24px;line-height:1.55;color:var(--text-primary);"><span style="font-weight:700;">142 亿</span> = 全国规上制造企业 3.1 万家 × 年均 IT 支出 45.8 万元</div>
+  </div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1180px;top:562px;width:640px;">
+    <div style="font-size:24px;line-height:1.55;color:var(--text-primary);"><span style="font-weight:700;">57 亿</span> = 142 亿 × 40%(已上云且数据量达门槛的企业占比)</div>
+  </div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1180px;top:732px;width:640px;">
+    <div style="font-size:24px;line-height:1.55;color:var(--text-primary);"><span style="font-weight:700;">6.8 亿</span> = 57 亿 × 12%(三年目标份额,参照同类产品第 3 年渗透)</div>
+  </div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:900px;width:1720px;">
+    <div style="font-size:22px;line-height:1.5;color:var(--text-secondary);">12% 份额是本页唯一的主观取值 —— 三家同类产品第 3 年渗透率区间为 9-15%,取中值;若只达 9% 则 SOM 为 5.1 亿。</div>
+  </div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:990px;width:1720px;">
+    <div style="font-size:16px;line-height:1.5;color:var(--text-tertiary);">来源:统计局 2025 规上企业名录 + 行业 IT 支出调研(n=180 家);SOM 份额为估算,参照三家同类产品第 3 年披露渗透率(9-15%)</div>
+  </div>
+</div>
+<template data-slide-notes>
+样张:原型 40 规模拆解。trapezoid+rotate(180deg) 逐层收窄;右侧算式链写清每层乘了什么系数、系数来自哪;主观取值单独披露区间。
+</template>
+</body>
+</html>

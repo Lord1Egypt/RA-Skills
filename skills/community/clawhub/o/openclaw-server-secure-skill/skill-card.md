@@ -1,42 +1,57 @@
-## Description: <br>
-Comprehensive security hardening and installation guide for OpenClaw (formerly Clawdbot/Moltbot). Use this skill when the user wants to secure a server, install the OpenClaw agent, or configure Tailscale/Firewall for the agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive security hardening and installation guide for OpenClaw (formerly Clawdbot/Moltbot), including server hardening, agent installation, and Tailscale/firewall configuration.
 
-## Publisher: <br>
-[kime541200](https://clawhub.ai/user/kime541200) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kime541200](https://clawhub.ai/user/kime541200)
 
-## Use Case: <br>
-Developers and server operators use this skill to harden a self-hosted OpenClaw server, install the OpenClaw agent, configure access controls, and verify the deployment with security checks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill guides persistent server-level security changes, including SSH, firewall, VPN, package installation, and credential permission changes. <br>
-Mitigation: Confirm console or out-of-band access first, verify SSH key login, review each command, and keep recoverable backups of changed configuration files. <br>
-Risk: Firewall changes can lock out legitimate administrators if allow rules are incomplete before UFW is enabled or public SSH access is removed. <br>
-Mitigation: Add and test explicit SSH allow rules, especially for the intended Tailscale path, before enabling default-deny rules or deleting public SSH access. <br>
-Risk: The Tailscale step uses a remote script execution pattern. <br>
-Mitigation: Prefer Tailscale's signed package repository or inspect the installer before running it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kime541200/openclaw-server-secure-skill) <br>
-- [Tailscale install script](https://tailscale.com/install.sh) <br>
+## Use Case:
 
+External developers and server operators use this skill to have an agent guide secure setup of a self-hosted OpenClaw instance, including SSH hardening, UFW/Fail2ban setup, Tailscale access, owner allowlisting, and verification checks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes server-level security changes that should be reviewed before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks an agent to make server-wide SSH, firewall, service, VPN, IPv6, and npm configuration changes that could disrupt access or system behavior.
+
+Mitigation: Review each sudo command before execution, verify key-based non-root SSH access in a second session, and keep console or provider recovery access available.
+
+Risk: The workflow includes unverified install commands such as a curl-to-shell Tailscale installer and a global OpenClaw npm install.
+
+Mitigation: Prefer signed package-manager installation steps where possible, review installer contents before running them, and pin and verify the OpenClaw npm package.
+
+Risk: Firewall and VPN rule changes can unintentionally expose services or block intended administration paths.
+
+Mitigation: Confirm UFW, listening socket, Tailscale, and OpenClaw health checks after changes and before ending the setup session.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kime541200/skills/openclaw-server-secure-skill)
+- [Tailscale install script](https://tailscale.com/install.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes privileged Linux server commands that require user review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

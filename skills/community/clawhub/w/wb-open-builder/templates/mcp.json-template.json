@@ -1,0 +1,32 @@
+{
+  "_note": "二选一：远程服务删除 stdio 形态，本地进程删除远程形态；mcpServers 下仅保留一个 Server",
+  "mcpServers": {
+    "{{your-service}}": {
+      "type": "streamableHttp",
+      "url": "https://mcp.{{your-domain}}.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${SERVICE_TOKEN}"
+      },
+      "timeout": 30000
+    }
+  },
+  "_stdio_form": {
+    "mcpServers": {
+      "{{your-service}}": {
+        "command": "npx",
+        "args": ["{{your-mcp-package}}"],
+        "runtime": { "type": "node", "version": "20" }
+      }
+    }
+  },
+  "_fields": {
+    "type": "sse | streamableHttp | stdio（远程必填）",
+    "url": "SSE/streamableHttp 必填，生产环境必须 HTTPS",
+    "command": "stdio 必填，如 npx、uvx、node",
+    "args": "启动参数数组（可选）",
+    "headers/env": "支持 ${VAR_NAME} 占位，禁止真实凭证",
+    "timeout": "连接超时毫秒，默认 30000（可选）",
+    "runtime": "stdio 运行时声明，目前支持 Node.js（可选）",
+    "disabledTools": "不向 AI 暴露的工具列表（可选）"
+  }
+}

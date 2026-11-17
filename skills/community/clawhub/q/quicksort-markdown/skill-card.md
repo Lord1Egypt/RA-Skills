@@ -1,41 +1,49 @@
-## Description: <br>
-Sort markdown file headings and nested content alphabetically to organize notes efficiently. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sorts Markdown headings and their nested content alphabetically to help organize notes.
 
-## Publisher: <br>
-[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del)
 
-## Use Case: <br>
-Developers, writers, and note maintainers use this skill to organize Markdown notes by alphabetizing headings and their nested content. It supports sorting a file to a chosen output path or reading Markdown from standard input. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sorting can reorder important notes in unexpected ways if run directly against originals. <br>
-Mitigation: Run it on a copy or write to a new output file first, then review the sorted Markdown before replacing originals. <br>
-Risk: The documented command may need adjustment because the packaged file is tool.py. <br>
-Mitigation: Run the packaged tool.py file when using this release. <br>
+## Use Case:
 
+Developers, writers, and note-takers use this skill to alphabetize Markdown heading sections while preserving nested content structure.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/albionaiinc-del/quicksort-markdown) <br>
-- [Skill usage documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands; the bundled tool writes sorted Markdown text or files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally on user-provided Markdown; security evidence found no hidden network, credential, persistence, or privilege behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Using the same file as both input and output can erase the Markdown source file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Write sorted output to a different file, keep backups or version control for important notes, and avoid true in-place sorting until safe handling is added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/albionaiinc-del/skills/quicksort-markdown)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces sorted Markdown text to a file or standard output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

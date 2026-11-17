@@ -1,44 +1,56 @@
-## Description: <br>
-Media Generation helps agents generate images, edit existing images, create short videos, run inpainting and outpainting workflows, use reference images as provider inputs, batch media jobs from manifests, and fetch returned media. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and edits images, creates short videos, supports inpainting, outpainting, reference-image workflows, batch jobs, and retrieval of returned media.
 
-## Publisher: <br>
-[lijiazhen0623](https://clawhub.ai/user/lijiazhen0623) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lijiazhen0623](https://clawhub.ai/user/lijiazhen0623)
 
-## Use Case: <br>
-Developers and agents use this skill to route media-production requests to the appropriate helper for image generation, image editing, video generation, reference-image transport, batch execution, and media retrieval. It is intended for reusable workflows that save generated outputs to local media folders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, selected media files, provider responses, and optional logs may contain sensitive information. <br>
-Mitigation: Avoid confidential media unless the configured provider is trusted, and treat batch summary files as sensitive logs. <br>
-Risk: The skill uses configured media-provider API credentials and can upload prompts and selected media to those providers. <br>
-Mitigation: Confirm provider configuration and credential scope before running helper commands. <br>
-Risk: Provider-returned URLs may be downloaded into local temporary media folders. <br>
-Mitigation: Review downloaded outputs and keep generated files in the documented tmp/images or tmp/videos folders. <br>
+## Use Case:
 
+Developers and creators use this skill to route AI media requests to configured providers, generate or edit images and short videos, and collect downloaded outputs under predictable media directories.
 
-## Reference(s): <br>
-- [Model Capabilities](references/model-capabilities.md) <br>
-- [Reference-Image Workflow](references/reference-image-workflow.md) <br>
-- [Batch Workflows](references/batch-workflows.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and local media file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated images are saved under tmp/images, generated videos are saved under tmp/videos, and optional batch summaries may be written as JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release metadata) <br>
+Risk: Provider-directed video polling and media downloads may contact unintended hosts or expose API keys.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted media providers, restrict network access where possible, and validate polling and download URLs against approved HTTPS provider or CDN origins before execution.
+
+Risk: Sensitive prompts or private images can be sent to external media providers and remain in local media, mask, or batch-summary files.
+
+Mitigation: Use only approved providers for sensitive work and clean tmp/images, tmp/videos, masks, and batch summaries after sensitive jobs.
+
+## Reference(s):
+
+- [Model Capabilities](references/model-capabilities.md)
+- [Reference-Image Workflow](references/reference-image-workflow.md)
+- [Batch Workflows](references/batch-workflows.md)
+- [ClawHub Skill Page](https://clawhub.ai/lijiazhen0623/skills/media-generation)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with shell commands and generated media file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated images are saved under tmp/images/ and videos under tmp/videos/; batch runs may emit JSON summaries.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

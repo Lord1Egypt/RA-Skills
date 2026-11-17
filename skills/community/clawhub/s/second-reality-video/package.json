@@ -1,0 +1,27 @@
+{
+  "name": "second-reality-video-client",
+  "version": "1.0.1",
+  "description": "Open client and wire protocol for a deterministic world-state video service (HTTP 402 + Payment-Needed).",
+  "type": "module",
+  
+  "engines": {
+    "node": ">=18"
+  },
+  "bin": {
+    "second-reality-video-client": "scripts/second-reality-video-client.mjs",
+    "second-reality-video-mock": "scripts/mock-service.mjs"
+  },
+  "files": [
+    "scripts/",
+    "references/",
+    "SKILL.md",
+    "README.md"
+  ],
+  "scripts": {
+    "mock": "node scripts/mock-service.mjs",
+    "probe": "node scripts/second-reality-video-client.mjs probe",
+    "pay": "node scripts/second-reality-video-client.mjs pay",
+    "complete": "node scripts/second-reality-video-client.mjs complete",
+    "status": "node scripts/second-reality-video-client.mjs status"
+  }
+}

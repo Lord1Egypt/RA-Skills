@@ -1,6 +1,6 @@
 {
   "id": "fec-component-testing",
-  "name": "组件测试",
+  "name": "Component testing",
   "category": "testing",
   "tags": [
     "rtl",
@@ -9,8 +9,8 @@
     "user-event",
     "regression"
   ],
-  "summary": "Frontend Craft skill for 组件测试.",
-  "version": "2.5.0",
+  "summary": "Write and review UI unit and component tests with Testing Library or Vue Test Utils.",
+  "version": "2.9.0",
   "license": "MIT",
   "homepage": "https://github.com/bovinphang/frontend-craft",
   "repository": "https://github.com/bovinphang/frontend-craft",
@@ -32,7 +32,7 @@
     "openclaw",
     "generic-skill-runtime"
   ],
-  "description": "Use when authoring or reviewing frontend unit, component, or light integration tests close to UI code, including React Testing Library, Vue Test Utils, hooks/composables, props/emits, callbacks, accessible queries, user-event interactions, mocks, loading/error/empty states, and regression coverage. For layer planning, real-browser journeys, or existing validation failures, choose the matching testing or validation workflow first; Chinese triggers include 组件测试, 组件单测, 单元测试, 轻量集成测试.",
+  "description": "Use when authoring or reviewing frontend unit, component, or light integration tests close to UI code, including React Testing Library, Vue Test Utils, hooks/composables, props/emits, callbacks, accessible queries, user-event interactions, mocks, loading/error/empty states, and regression coverage. For layer planning, real-browser journeys, or existing validation failures, choose the matching testing or validation workflow first; Chinese triggers include component testing, Component unit testing, unit testing, lightweight integration testing.",
   "source": "skills/fec-component-testing",
   "references": [],
   "relations": {

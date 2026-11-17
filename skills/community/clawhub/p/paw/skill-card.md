@@ -1,42 +1,60 @@
-## Description: <br>
-Paw.skill helps pet owners preserve owner-provided memories, habits, sounds, routines, and special moments as local pet profiles for living pets or pets who have passed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Paw.skill helps agents preserve owner-described pet memories, including personality, habits, sounds, routines, special moments, and remembrance prompts for pets who have died.
 
-## Publisher: <br>
-[realteamprinz](https://clawhub.ai/user/realteamprinz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[realteamprinz](https://clawhub.ai/user/realteamprinz)
 
-## Use Case: <br>
-Pet owners use this skill to build and revisit local profiles that capture a pet's personality, communication cues, routines, bonds, and remembered moments. It is intended for remembrance and personal memory preservation, not veterinary or medical advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pet memories may contain personal or sensitive information and are stored in readable local files. <br>
-Mitigation: Use trusted local environments, confirm where ~/.paw-skill/pets/ lives on shared or synced systems, and delete the relevant pet folder when the memories should no longer be retained. <br>
-Risk: Users may mistake remembrance responses for veterinary, medical, or health guidance. <br>
-Mitigation: Use the skill only for owner-provided memories and personal remembrance; do not use it for veterinary or medical advice. <br>
+## Use Case:
 
+External users and agents use this skill to turn owner-provided pet memories into local pet profiles, sound dictionaries, routines, bond maps, and remembrance interactions. It is not intended for veterinary, medical, or health-tracking decisions.
 
-## Reference(s): <br>
-- [Species Guide](references/species-guide.md) <br>
-- [Pet Profile Template](templates/PET-PROFILE.md) <br>
-- [Paw.skill ClawHub Page](https://clawhub.ai/realteamprinz/paw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Conversational text plus local Markdown and JSONL pet memory files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates per-pet PROFILE.md, memories.jsonl, and moments.md files under ~/.paw-skill/pets/ when the host agent follows the skill instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Personal pet memories are persisted in a local folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when local persistence is acceptable, and remove ~/.paw-skill/pets/ to delete stored profiles.
+
+Risk: Pet observations or health details could be mistaken for veterinary advice.
+
+Mitigation: Do not rely on the skill for veterinary or medical decisions.
+
+Risk: Remembrance interactions can involve emotionally sensitive grief content.
+
+Mitigation: Follow the skill's grief-aware behavior: do not rush grief, do not suggest replacement pets, and ground responses in memories the owner provided.
+
+## Reference(s):
+
+- [Paw.skill ClawHub page](https://clawhub.ai/realteamprinz/skills/paw)
+- [Publisher profile: realteamprinz](https://clawhub.ai/user/realteamprinz)
+- [Species Guide](artifact/references/species-guide.md)
+- [Pet Profile Template](artifact/templates/PET-PROFILE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown pet profiles, JSONL memory logs, and conversational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores pet profiles and memories locally under ~/.paw-skill/pets/ when used as described.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

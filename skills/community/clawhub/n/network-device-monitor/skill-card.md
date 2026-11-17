@@ -1,40 +1,56 @@
-## Description: <br>
-Monitors network devices across a subnet, detects unknown clients, and tracks device state changes over time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor network devices, detect unknown clients, and alert on new connections. Works with any router that serves a web UI. Tracks device state changes over time.
 
-## Publisher: <br>
-[hostilespider](https://clawhub.ai/user/hostilespider) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[hostilespider](https://clawhub.ai/user/hostilespider)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, IT operators, and network administrators use this skill to scan authorized local networks, compare detected devices against a known-device list, and surface new or unknown clients.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Network scanning can be inappropriate or unauthorized on shared, corporate, or sensitive networks.
+
+Mitigation: Run scans only on networks where the operator has authorization, and use a narrow validated subnet.
+
+Risk: ARP mode scans the local network segment and may go beyond the requested subnet.
+
+Mitigation: Prefer non-root nmap mode; use ARP mode only when segment-wide scanning is understood and authorized.
+
+Risk: Discovered device identifiers are stored locally in a state file.
+
+Mitigation: Treat the state file as sensitive local data, choose an explicit protected path when needed, and remove it when no longer required.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, IT operators, and home-lab administrators use this skill to run authorized local network scans, compare detected devices with a known-device list, and surface unknown or changed devices. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill performs local network discovery and can expose device inventory information. <br>
-Mitigation: Use it only on networks you are authorized to scan, keep scan ranges narrow, and protect or delete saved state files that contain sensitive inventory. <br>
-Risk: ARP scan mode may require elevated privileges on the local machine. <br>
-Mitigation: Prefer non-root nmap mode when possible and grant elevated privileges only for authorized scans. <br>
+**Output Format:** [Markdown guidance with shell commands; scan output can be plain text, table text, or JSON.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hostilespider/network-device-monitor) <br>
+**Other Properties Related to Output:** [State is stored locally in a JSON file unless a different state path is supplied.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; runtime output can be plain text, table text, or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local state JSON file for device history and optional known-device JSON configuration.] <br>
+1.0.0 (source: server-resolved release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
-# SECURITY: This script makes NO network calls and spawns NO subprocesses.
+# SECURITY: Local-only. No network access and no child processes.
 # All I/O is local file operations only.
-# Base data directory is data/ (root) or data/<env>/ when NETWORK_AI_ENV or --env is set.
+# Base data directory is data/ (root) or data/<env>/ when NETWORK_AI_ENV or --env is set;
+# <env> must be one of dev|st|sit|qa|sandbox|preprod|prod (anything else is rejected).
+# Writes must stay inside data/ and never follow a symlink.
 #   READS:  <data_dir>/swarm_budgets.json, <data_dir>/heartbeats.json,
 #           <data_dir>/audit_log.jsonl, <data_dir>/task_tracking.json,
 #           <data_dir>/agent_health.json, <data_dir>/budget_tracking.json
@@ -9,7 +11,7 @@
 #           <data_dir>/audit_log.jsonl, <data_dir>/task_tracking.json,
 #           <data_dir>/agent_health.json, <data_dir>/budget_tracking.json
 # Imports used: argparse, json, os, sys, datetime, pathlib, typing
-# No imports of: requests, socket, subprocess, urllib, http, ssl, ftplib, smtplib
+# Standard library only; no networking or process-spawning modules are imported.
 """
 Swarm Guard - Prevents Handoff Tax, Silent Failures, and Budget Overruns
 
@@ -44,16 +46,42 @@ from pathlib import Path
 from typing import Any, Optional, Union
 
 # Configuration
+_DATA_ROOT = Path(__file__).resolve().parent.parent / "data"
+
+# The only environments a data/<env>/ directory is used for.
+_ENVIRONMENTS = ("dev", "st", "sit", "qa", "sandbox", "preprod", "prod")
+
+
 def _resolve_data_dir(env: str = "") -> Path:
-    """Return the active data directory, scoped to <env> when set."""
-    import re as _re
-    _env = env or os.environ.get("NETWORK_AI_ENV", "")
-    base = Path(__file__).parent.parent / "data"
-    if _env:
-        if not _re.match(r'^[a-zA-Z0-9_-]+$', _env):
-            raise ValueError(f"Invalid NETWORK_AI_ENV value: {_env!r}")
-        return base / _env
-    return base
+    """Return data/, or data/<env>/ for one of the documented environments."""
+    requested = env or os.environ.get("NETWORK_AI_ENV", "")
+    if not requested:
+        return _DATA_ROOT
+    for name in _ENVIRONMENTS:
+        if requested == name:
+            return _DATA_ROOT / name  # built from the fixed list, not the input
+    raise ValueError(
+        f"Unknown environment {requested!r}; expected one of: {', '.join(_ENVIRONMENTS)}"
+    )
+
+
+_O_NOFOLLOW = getattr(os, "O_NOFOLLOW", 0)
+_O_BINARY = getattr(os, "O_BINARY", 0)
+
+
+def _write_confined(path: Path, text: str, append: bool = False) -> None:
+    """Write or append `text` inside data/ only, never through a symlink."""
+    real_root = _DATA_ROOT.resolve()
+    real_dir = path.parent.resolve()
+    if real_dir != real_root and real_root not in real_dir.parents:
+        raise PermissionError(f"Refusing to write outside {real_root}: {path}")
+    if path.is_symlink():
+        raise PermissionError(f"Refusing to write through a symlink: {path}")
+    flags = os.O_WRONLY | os.O_CREAT | (os.O_APPEND if append else os.O_TRUNC)
+    fd = os.open(path, flags | _O_NOFOLLOW | _O_BINARY, 0o600)
+    with os.fdopen(fd, "a" if append else "w", encoding="utf-8") as fh:
+        fh.write(text)
+
 
 DATA_DIR = _resolve_data_dir()
 BLACKBOARD_PATH = DATA_DIR / "swarm-blackboard.md"
@@ -114,14 +142,13 @@ TOKEN_COSTS = {
 
 def log_audit(action: str, details: dict[str, Any]) -> None:
     """Append entry to audit log."""
-    AUDIT_LOG.parent.mkdir(exist_ok=True)
+    AUDIT_LOG.parent.mkdir(parents=True, exist_ok=True)
     entry: dict[str, Any] = {
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "action": action,
         "details": details
     }
-    with open(AUDIT_LOG, "a") as f:
-        f.write(json.dumps(entry) + "\n")
+    _write_confined(AUDIT_LOG, json.dumps(entry) + "\n", append=True)
 
 
 class SwarmGuard:
@@ -129,7 +156,7 @@ class SwarmGuard:
     
     def __init__(self):
         self.data_dir = DATA_DIR
-        self.data_dir.mkdir(exist_ok=True)
+        self.data_dir.mkdir(parents=True, exist_ok=True)
         self.task_log_path = self.data_dir / "task_tracking.json"
         self.health_log_path = self.data_dir / "agent_health.json"
         self.budget_log_path = self.data_dir / "budget_tracking.json"
@@ -157,9 +184,9 @@ class SwarmGuard:
     
     def _save_state(self) -> None:
         """Persist tracking state to disk."""
-        self.task_log_path.write_text(json.dumps(self.task_tracking, indent=2))
-        self.health_log_path.write_text(json.dumps(self.agent_health, indent=2))
-        self.budget_log_path.write_text(json.dumps(self.budget_tracking, indent=2))
+        _write_confined(self.task_log_path, json.dumps(self.task_tracking, indent=2))
+        _write_confined(self.health_log_path, json.dumps(self.agent_health, indent=2))
+        _write_confined(self.budget_log_path, json.dumps(self.budget_tracking, indent=2))
     
     # ========================================================================
     # HANDOFF TAX PREVENTION
@@ -382,13 +409,18 @@ class SwarmGuard:
         if result.get("status") == "error":
             issues.append(f"ERROR_STATUS: Agent reported error: {result.get('error', 'unknown')}")
         
-        # Check confidence
-        confidence = result.get("confidence", 0)
-        if confidence < MIN_CONFIDENCE_THRESHOLD:
+        # Check confidence: a number in [0, 1]; below the threshold needs a human review
+        confidence = result.get("confidence")
+        needs_review = False
+        if isinstance(confidence, bool) or not isinstance(confidence, (int, float)) or not 0 <= confidence <= 1:
+            if "confidence" in result:
+                issues.append("INVALID_CONFIDENCE: 'confidence' must be a number between 0 and 1")
+        elif confidence < MIN_CONFIDENCE_THRESHOLD:
+            needs_review = True
             warnings.append(
                 f"LOW_CONFIDENCE: Agent confidence is {confidence:.0%}, "
                 f"threshold is {MIN_CONFIDENCE_THRESHOLD:.0%}. "
-                "Consider supervisor review."
+                "A supervisor must review this result before other agents use it."
             )
         
         # Check for empty output
@@ -397,6 +429,7 @@ class SwarmGuard:
             issues.append("EMPTY_OUTPUT: Result contains no meaningful output")
         
         valid = len(issues) == 0
+        usable = valid and not needs_review
         
         # Record validation
         if task_id in self.task_tracking:
@@ -407,19 +440,28 @@ class SwarmGuard:
                 "timestamp": datetime.now(timezone.utc).isoformat(),
                 "agent_id": agent_id,
                 "valid": valid,
-                "issues": issues
+                "needs_review": needs_review,
+                "issues": issues,
+                "warnings": warnings
             })
             self._save_state()
+        
+        if not valid:
+            recommendation = "BLOCKED - Do NOT propagate this result. Fix issues or restart task."
+        elif needs_review:
+            recommendation = "REVIEW REQUIRED - Low confidence. Do NOT propagate until a supervisor approves or the agent re-runs with higher confidence."
+        else:
+            recommendation = "APPROVED - Result can be used by other agents"
         
         return {
             "task_id": task_id,
             "agent_id": agent_id,
             "valid": valid,
-            "usable": valid,  # Other agents can use this result
+            "usable": usable,  # Other agents may use this result only when true
+            "needs_review": needs_review,
             "issues": issues,
             "warnings": warnings,
-            "recommendation": "APPROVED - Result can be used by other agents" if valid 
-                            else "BLOCKED - Do NOT propagate this result. Fix issues or restart task."
+            "recommendation": recommendation
         }
     
     def supervisor_review(self, task_id: str) -> dict[str, Any]:
@@ -465,6 +507,15 @@ class SwarmGuard:
             for v in failed_validations:
                 recommendations.append(f"Re-run or fix agent '{v['agent_id']}': {v['issues']}")
         
+        # Low-confidence results: an agent's latest validation decides whether it still needs review
+        latest_by_agent: dict[str, dict[str, Any]] = {}
+        for v in validations:
+            latest_by_agent[str(v.get("agent_id"))] = v
+        needs_review = [a for a, v in latest_by_agent.items() if v.get("needs_review") and v.get("valid")]
+        if needs_review:
+            issues.append(f"REVIEW_REQUIRED: low-confidence results from {sorted(needs_review)}")
+            recommendations.append("A human must review these results, or the agents must re-run with confidence at or above the threshold, before anything is committed")
+        
         # Check for participating agents' health
         participating_agents: set[str] = set()
         for h in handoffs:
@@ -500,7 +551,7 @@ class SwarmGuard:
         if len(issues) == 0:
             verdict = "APPROVED"
             status = "healthy"
-        elif any("VALIDATION_FAILURES" in i or "UNHEALTHY_AGENTS" in i or "BUDGET_EXCEEDED" in i for i in issues):
+        elif any("VALIDATION_FAILURES" in i or "UNHEALTHY_AGENTS" in i or "BUDGET_EXCEEDED" in i or "REVIEW_REQUIRED" in i for i in issues):
             verdict = "BLOCKED"
             status = "critical"
         else:
@@ -1000,7 +1051,7 @@ Examples:
     # Exit code based on result
     if result.get("blocked") or result.get("verdict") == "BLOCKED":
         sys.exit(2)
-    elif not result.get("healthy", True) or not result.get("valid", True):
+    elif not result.get("healthy", True) or not result.get("valid", True) or result.get("usable") is False:
         sys.exit(1)
     sys.exit(0)
 
@@ -1049,8 +1100,13 @@ def _pretty_print(command: str, result: dict[str, Any]) -> None:
             print("   → Do NOT call sessions_send")
     
     elif command == "validate-result":
-        if result.get("valid"):
+        if result.get("usable"):
             print("✅ RESULT VALID")
+            print(f"   Task: {result['task_id']}")
+            print(f"   Agent: {result['agent_id']}")
+            print(f"   → {result['recommendation']}")
+        elif result.get("valid"):
+            print("⚠️  RESULT NEEDS REVIEW")
             print(f"   Task: {result['task_id']}")
             print(f"   Agent: {result['agent_id']}")
             print(f"   → {result['recommendation']}")

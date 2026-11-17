@@ -1,41 +1,53 @@
-## Description: <br>
-Summarizes important family-related mobile notifications by person, highlighting action items and FYI updates for spouses, parents, children, teachers, and other family contacts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarizes important family-related mobile notifications by person, grouping children, spouse, parents or elders, and marking action-required versus FYI items.
 
-## Publisher: <br>
-[vivalavida-say-hi](https://clawhub.ai/user/vivalavida-say-hi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vivalavida-say-hi](https://clawhub.ai/user/vivalavida-say-hi)
 
-## Use Case: <br>
-External ClawHub users use this skill to turn recent phone notifications into a person-centered family digest, emphasizing messages that need a response or action. It is intended for family-related notification summaries rather than expenses, travel orders, marketing, logistics, or idle chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes private local phone notification data, including family messages and potentially unrelated notifications in the requested date range. <br>
-Mitigation: Invoke it only for intended people, topics, or date ranges, and avoid broad prompts when unrelated private notifications should not be processed. <br>
-Risk: Notification summaries may omit nuance or misclassify whether a family message needs action. <br>
-Mitigation: Review the cited source and deadline details before acting on important requests. <br>
+## Use Case:
 
+External users use this skill to turn recent mobile notifications into a family-focused digest grouped by relevant people. It helps surface requests, deadlines, and FYI updates from spouses, elders, schools, teachers, and other family contacts while filtering unrelated noise.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vivalavida-say-hi/yoooclaw-family-digest) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/vivalavida-say-hi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style conversational summary grouped by family member with importance markers, sources, deadlines, and action items when present.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces session text only and does not write files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may read sensitive phone notification files and infer family relationships from names and message content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when comfortable with that access, and use specific people or date ranges when requesting a digest.
+
+Risk: Broad trigger phrases may cause the skill to review notifications for less-specific family-message requests.
+
+Mitigation: Use narrow prompts for the person or time window of interest and avoid broad requests when unrelated notifications should not be reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vivalavida-say-hi/skills/yoooclaw-family-digest)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-formatted conversational summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Groups by inferred family member and includes importance labels, sources, deadlines, and action items when present.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

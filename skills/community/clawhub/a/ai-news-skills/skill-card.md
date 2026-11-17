@@ -1,47 +1,77 @@
-## Description: <br>
-Ai News Skills automates an AI-news workflow that collects public web news into Feishu, generates daily reports and morning guides, and synthesizes weekly trend reports with deep dives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ai News Skills automates public AI-news collection, daily signal reports with morning guides, and weekly trend reports with deep dives across three collaborating agent skills.
 
-## Publisher: <br>
-[yy4fun](https://clawhub.ai/user/yy4fun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yy4fun](https://clawhub.ai/user/yy4fun)
 
-## Use Case: <br>
-Developers and operators maintaining AI news workflows use this skill suite to collect public AI news, curate high-value daily signals, publish morning briefs, and assemble weekly trend reports in Feishu and OpenClaw-compatible environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled runs can publish reports or guides to configured Feishu destinations. <br>
-Mitigation: Configure only intended Feishu tables, wiki spaces, and chat IDs, then perform a manual dry run before enabling cron jobs. <br>
-Risk: Source URLs are sent to the Jina Reader URL proxy for public-page extraction. <br>
-Mitigation: Use public news sources only and avoid adding private or internal URLs unless sharing those URLs with r.jina.ai is acceptable. <br>
-Risk: The installer adds an external Python package and replaces existing ai_news_fetcher and ai_news_reporter directories under the OpenClaw skills folder. <br>
-Mitigation: Review install.sh before installation and back up or rename existing local skill directories if they contain changes. <br>
+## Use Case:
 
+Developers, analysts, and operations teams use this skill bundle to collect public AI-news items into Feishu, produce daily signal reports and morning briefings, and synthesize weekly trend reports with deep dives and watch-list updates.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yy4fun/ai-news-skills) <br>
-- [Agent Reach dependency](https://github.com/Panniantong/Agent-Reach) <br>
-- [Jina Reader](https://r.jina.ai) <br>
-- [Fetcher execution guide](skills/ai_news_fetcher/references/execution.md) <br>
-- [Daily reporting guide](skills/ai_news_reporter/references/reporting.md) <br>
-- [Weekly reporting guide](skills/ai_weekly_reporter/references/reporting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports and guides, JSON article records, Feishu table/wiki updates, shell commands, and concise execution logs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may be written to local report files and configured Feishu tables, wiki spaces, or chats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata; artifact docs report 1.3.0) <br>
+Risk: Mutable installation steps and unpinned dependencies can change what is installed over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review install.sh before use and pin Agent Reach to a trusted version.
+
+Risk: Feishu credentials could grant broader access than the workflow requires.
+
+Mitigation: Use a least-privilege Feishu app limited to the intended Bitable and wiki documents.
+
+Risk: Scheduled or implicit runs may publish or modify records before the workflow is validated.
+
+Mitigation: Disable cron and implicit invocation until the fetcher, reporter, and weekly reporter have been tested manually.
+
+Risk: The skill updates watch_chains.md and analysis_framework.md as part of its reporting loop.
+
+Mitigation: Require human approval before changes to watch chains or the analysis framework are applied.
+
+Risk: The workflow sends article URLs to Jina Reader for public-page conversion.
+
+Mitigation: Use it only with public URLs and avoid sending private, confidential, or access-controlled links.
+
+## Reference(s):
+
+- [ClawHub listing](https://clawhub.ai/yy4fun/skills/ai-news-skills)
+- [README](artifact/README.md)
+- [Installation guide](artifact/docs/install.md)
+- [Agent Reach](https://github.com/Panniantong/Agent-Reach)
+- [Jina Reader](https://r.jina.ai)
+- [Fetcher execution guide](artifact/skills/ai_news_fetcher/references/execution.md)
+- [Fetcher data model](artifact/skills/ai_news_fetcher/references/data-model.md)
+- [News source guide](artifact/skills/ai_news_fetcher/references/sources.md)
+- [Daily report workflow](artifact/skills/ai_news_reporter/references/reporting.md)
+- [Daily report output template](artifact/skills/ai_news_reporter/references/output-template.md)
+- [Watch chains](artifact/skills/ai_news_reporter/references/watch_chains.md)
+- [Weekly report workflow](artifact/skills/ai_weekly_reporter/references/reporting.md)
+- [Deep-dive analysis framework](artifact/skills/ai_weekly_reporter/references/analysis_framework.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports and guides, JSON news records, shell commands, configuration files, Feishu table/wiki updates, and process logs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local daily and weekly Markdown copies, Feishu Bitable records, Feishu wiki documents, morning brief messages, watch-list updates, and concise run summaries.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata; artifact frontmatter, README, and changelog show 1.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

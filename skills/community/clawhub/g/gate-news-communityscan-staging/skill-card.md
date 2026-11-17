@@ -1,47 +1,62 @@
-## Description: <br>
-Community sentiment via Gate-News MCP, X/Twitter-first, for social discussion, KOL takes, or opinion on a coin or topic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Community sentiment via Gate-News MCP, X/Twitter-first. Use for social discussion, KOL takes, or opinion on a coin or topic.
 
-## Publisher: <br>
-[gaixianggeng](https://clawhub.ai/user/gaixianggeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaixianggeng](https://clawhub.ai/user/gaixianggeng)
 
-## Use Case: <br>
-External users use this skill to summarize crypto community sentiment from Gate-News X/Twitter discussion data and social sentiment metrics. It helps compare dominant narratives, KOL themes, sentiment scores, and price-sentiment alignment without presenting sentiment as investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crypto social sentiment can be mistaken for financial advice or a reliable price predictor. <br>
-Mitigation: Label outputs as informational community sentiment, include the skill's investment-advice disclaimer, and present bullish and bearish views neutrally. <br>
-Risk: Coverage is X/Twitter-first and may omit Reddit, Discord, Telegram, or broader news context. <br>
-Mitigation: State platform coverage clearly, label reports as X/Twitter-only when UGC search is unavailable, and route news or coin-analysis requests to the matching Gate skill. <br>
-Risk: Unavailable Gate-News MCP tools can lead to partial or missing analysis. <br>
-Mitigation: Use the documented graceful degradation path: continue with the available dimension, label missing data, or return a concise retry/setup message if all required tools fail. <br>
-Risk: Rumors or KOL discussion may be unverified. <br>
-Mitigation: Do not fabricate opinions or quotes, attribute only what the returned data supports, and describe rumors as unverified claims. <br>
+## Use Case:
 
+External users and developers use this skill to summarize crypto community sentiment and X/Twitter discussion around a coin, topic, or broad market prompt. The skill is intended for social-sentiment reporting, not financial advice or price prediction.
 
-## Reference(s): <br>
-- [Gate News Community Scan Runtime Rules](references/gate-runtime-rules.md) <br>
-- [Info & News Common Runtime Rules](references/info-news-runtime-rules.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/gaixianggeng/gate-news-communityscan-staging) <br>
-- [Third-Party Publisher Profile](https://clawhub.ai/user/gaixianggeng) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown report with sentiment tables, narrative summaries, key takeaways, and limitations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only Gate-News MCP outputs are synthesized into an X/Twitter-focused community sentiment report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata; skill frontmatter version: 2026.4.7-1) <br>
+Risk: Users may treat community sentiment as financial advice or a price prediction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: State that results are social chatter, present sentiment as non-predictive, and include the skill's non-investment-advice limitation.
+
+Risk: Coverage is X/Twitter-focused and may omit Reddit, Discord, or Telegram discussion.
+
+Mitigation: Label reports as X/Twitter-only unless supported UGC data is available, and note unavailable platforms in the output.
+
+Risk: Ambiguous prompts may route to this skill when the user wanted news, fundamentals, or price-move analysis.
+
+Mitigation: Use the routing rules to redirect news, coin analysis, and price-move questions to the appropriate dedicated skill.
+
+Risk: Required Gate-News MCP tools may be unavailable or return partial data.
+
+Mitigation: Degrade gracefully by reporting available dimensions, clearly marking missing sections, or returning a concise failure when all required tools fail.
+
+## Reference(s):
+
+- [Gate News Community Scan Runtime Rules](references/gate-runtime-rules.md)
+- [Info & News Common Runtime Rules](references/info-news-runtime-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown community sentiment report with tables and short takeaways]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Labels platform coverage, notes missing data, and includes a non-investment-advice limitation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

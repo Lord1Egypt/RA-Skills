@@ -1,42 +1,53 @@
-## Description: <br>
-Guides users through uploading an image and metadata, mining a vanity salt, and deploying a token on-chain through the Nad.fun BondingCurveRouter flow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide users through uploading an image and metadata, mining a vanity salt, and deploying a token on-chain via BondingCurveRouter in a 4-step flow on Nad.fun.
 
-## Publisher: <br>
-[therealharpaljadeja](https://clawhub.ai/user/therealharpaljadeja) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[therealharpaljadeja](https://clawhub.ai/user/therealharpaljadeja)
 
-## Use Case: <br>
-External developers and agents use this skill to guide Nad.fun token creation, including image upload, metadata upload, vanity salt generation, and on-chain deployment with optional initial purchase. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send selected images, token metadata, social links, wallet addresses, and token details to Nad.fun services. <br>
-Mitigation: Require explicit user confirmation before each upload and review all submitted fields before sending them to the API. <br>
-Risk: The skill can guide irreversible blockchain transactions involving funds. <br>
-Mitigation: Verify contract addresses, network, fee estimates, initial purchase amount, and transaction parameters before any signature. <br>
-Risk: The security summary notes no clear confirmation gate for uploads or blockchain transactions. <br>
-Mitigation: Configure the agent to pause for user approval before upload, salt mining, and on-chain deployment steps. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/therealharpaljadeja/nadfun-token-creation) <br>
-- [Nad.fun production API](https://api.nadapp.net) <br>
+## Use Case:
 
+Developers and agents use this skill to guide Nad.fun token creation, including image upload, metadata upload, vanity salt mining, and on-chain deployment. It is intended for users who need step-by-step API and smart contract interaction guidance for creating a token.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with JavaScript, Solidity, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide API uploads and blockchain transaction preparation; confirmation should occur before uploads or signing.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill relies on an unpinned wallet-management prerequisite, which could lead users to install or trust the wrong package.
+
+Mitigation: Verify the exact monad-development package and publisher before using it for wallet management or transaction signing.
+
+Risk: The skill can lead to irreversible value-spending blockchain transactions without a required final confirmation step.
+
+Mitigation: Use a dedicated low-balance wallet and require manual confirmation of the contract address, chain, token parameters, fees, initial buy value, and decoded transaction before signing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/therealharpaljadeja/skills/nadfun-token-creation)
+- [Nad.fun API Base URL](https://api.nadapp.net)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JavaScript, Solidity, and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API request bodies, token metadata, wallet-dependent values, contract addresses, fee values, salts, and transaction parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

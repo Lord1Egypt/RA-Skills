@@ -1,40 +1,54 @@
-## Description: <br>
-Doc Sysadmin helps agents check and maintain Ubuntu 24.04 host health, including disk space, memory, slowdowns, and periodic cleanup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Doc Sysadmin helps maintain Ubuntu 24.04 hosts by checking disk, memory, load, logs, and cleanup tasks.
 
-## Publisher: <br>
-[zelzaclaw](https://clawhub.ai/user/zelzaclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zelzaclaw](https://clawhub.ai/user/zelzaclaw)
 
-## Use Case: <br>
-Developers, operators, and technical users can use this skill to guide Ubuntu 24.04 system health checks, review disk and memory pressure, investigate slowdowns, and propose cleanup commands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The bundled cleanup script can perform broad system changes, including automatic package removal, deletion of temporary directories, journal vacuuming, and cache dropping. <br>
-Mitigation: Review commands before use, prefer a dry run or explicit confirmation flow, and run only the specific maintenance steps that are intended for the current host. <br>
-Risk: The cleanup behavior may delete temporary data without matching the skill's narrower safe-cleanup guidance. <br>
-Mitigation: Restrict temp cleanup to clearly scoped old files and avoid running scripts/cleanup.sh as-is on a real Ubuntu system. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Doc Sysadmin on ClawHub](https://clawhub.ai/zelzaclaw/doc-sysadmin) <br>
-- [Ubuntu 24.04 Essential Commands](references/ubuntu24-commands.md) <br>
+## Use Case:
 
+Developers, operators, and system administrators use this skill to inspect Ubuntu 24.04 host health, diagnose slowdowns, report disk and memory status, and propose cleanup actions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose privileged Ubuntu maintenance commands that require user review before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can change the host system through elevated maintenance commands, including package removal, temporary-directory deletion, log vacuuming, and cache changes.
+
+Mitigation: Review proposed commands before use, separate read-only diagnostics from remediation, and require explicit confirmation before privileged or destructive actions.
+
+Risk: Broad cleanup behavior can delete shared temporary data or remove packages without clear confirmation.
+
+Mitigation: Narrow cleanup targets, add dry-run output, and confirm the exact files or packages affected before execution.
+
+## Reference(s):
+
+- [Ubuntu 24.04 Essential Commands](references/ubuntu24-commands.md)
+- [Doc Sysadmin ClawHub Skill Page](https://clawhub.ai/zelzaclaw/skills/doc-sysadmin)
+- [zelzaclaw ClawHub Publisher Profile](https://clawhub.ai/user/zelzaclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise operational reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose privileged Ubuntu maintenance commands and before/after status summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

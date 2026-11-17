@@ -9,8 +9,8 @@ category: audit-scoping
 
 # Escalation Criteria
 
-Audit tiers escalate based on evidence from the
-previous tier, not by default.
+Audit tiers escalate only on evidence from the
+previous tier.
 Each escalation requires documented justification.
 
 ## Tier 1 -> Tier 2 Escalation
@@ -39,7 +39,11 @@ when ANY of these criteria are met:
 - Large changes are statistically more likely to
   contain defects
 
-### Suspicious Patterns
+### Suspicious Patterns (manual check)
+
+`scripts/tiered_audit.py` computes the four signals above and
+below. It does not compute these; check them by hand when the
+history suggests them:
 
 - Reverted commits (indicates something went wrong)
 - Commits with no tests added alongside implementation

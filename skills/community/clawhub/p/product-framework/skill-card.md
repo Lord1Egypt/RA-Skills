@@ -1,42 +1,55 @@
-## Description: <br>
-Design and visualize AI product frameworks including layered architecture, value chains, capability maps, and competitive positioning for product managers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design and visualize AI product frameworks including layered architecture, value chains, capability maps, and competitive positioning for product managers.
 
-## Publisher: <br>
-[pupujanet-eng](https://clawhub.ai/user/pupujanet-eng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pupujanet-eng](https://clawhub.ai/user/pupujanet-eng)
 
-## Use Case: <br>
-Product managers and product teams use this skill to turn AI product ideas into structured product architectures, value frameworks, capability maps, competitive positioning, roadmaps, and OKRs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated product strategy or competitive positioning may be incomplete or misleading if treated as final business guidance. <br>
-Mitigation: Review outputs against user research, market evidence, business constraints, and stakeholder input before adoption. <br>
-Risk: AI product framework recommendations may surface privacy, copyright, safety, or compliance considerations without resolving them. <br>
-Mitigation: Route product decisions involving data use, generated content, or automated actions through appropriate legal, security, and policy review. <br>
+## Use Case:
 
+Product managers use this skill to structure new AI product concepts, create layered product architecture models, define product pillars and capability maps, and organize competitive positioning into clear Markdown and Mermaid frameworks.
 
-## Reference(s): <br>
-- [Framework Templates](references/framework-templates.md) <br>
-- [AI Product Patterns](references/ai-product-patterns.md) <br>
-- [Product Framework on ClawHub](https://clawhub.ai/pupujanet-eng/product-framework) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with tables and Mermaid diagrams] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include bilingual Chinese and English framework labels, one-line component explanations, and Mermaid flowcharts or mindmaps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated product frameworks may include Chinese headings or templates when that does not match the user's requested language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for the desired output language or translate headings and templates before sharing the result.
+
+Risk: Framework output may overstate product strategy, competitive positioning, or AI product assumptions if the user provides incomplete context.
+
+Mitigation: Review the generated framework against known product facts, market evidence, and stakeholder requirements before use.
+
+## Reference(s):
+
+- [Product Framework on ClawHub](https://clawhub.ai/pupujanet-eng/skills/product-framework)
+- [AI Product Patterns](references/ai-product-patterns.md)
+- [Framework Templates](references/framework-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown with tables and Mermaid diagrams]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Chinese framework headings or templates unless the user asks for another language.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

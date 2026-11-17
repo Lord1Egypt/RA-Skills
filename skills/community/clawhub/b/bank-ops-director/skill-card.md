@@ -1,46 +1,60 @@
-## Description: <br>
-Операционный директор для работы компании с банком: сводка и статус по счёту, приостановления и блокировки, картотека, сертификаты ЭП/ЭЦП, банк-клиент, доверенности и рекомендованные действия. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Операционный директор для работы компании с банком: сводка и статус по счёту (остаток, обороты, последние операции), приостановления и блокировки (115-ФЗ, ст. 76 НК, арест), картотека, сертификаты ЭП/ЭЦП и банк-клиент (ДБО), доверенности и рекомендованные действия (по запросу). Ежедневная сводка по расписанию.
 
-## Publisher: <br>
-[mikhail2018](https://clawhub.ai/user/mikhail2018) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikhail2018](https://clawhub.ai/user/mikhail2018)
 
-## Use Case: <br>
-Employees and operations staff use this skill to review demo company banking status, explain account restrictions, check payment and document status, and prepare next-step guidance for bank operations questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake embedded demo account data for live bank information. <br>
-Mitigation: Require the skill to disclose that account status comes from embedded demo data unless a real bank lookup is clearly performed. <br>
-Risk: Simulated API phrasing can make responses appear connected to a real bank system. <br>
-Mitigation: Remove or rewrite simulated bank API language unless the agent is actually using an authenticated bank integration. <br>
-Risk: Vague prompts about banking status may receive overconfident answers. <br>
-Mitigation: Ask a clarifying question when the user request is ambiguous or when the requested account, period, bank, or document is not present in the dataset. <br>
+## Use Case:
 
+Employees and business operators use this Russian-language skill to get concise account summaries, review bank-operation restrictions, check card-index items, certificates, powers of attorney, and request next actions for a company bank account. The skill is grounded in embedded demo banking data and can optionally schedule a daily account summary.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mikhail2018/bank-ops-director) <br>
-- [Publisher profile](https://clawhub.ai/user/mikhail2018) <br>
-- [Sberbank: arrests, collections, and account suspensions](https://www.sberbank.ru/ru/s_m_business/bankingservice/arest) <br>
-- [Sberbank: electronic signature](https://www.sberbank.ru/ru/s_m_business/nbs/signature) <br>
-- [Sberbank: certificates and statements](https://www.sberbank.ru/ru/s_m_business/rko/tariffs/spravki) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with short status summaries, checklists, and source links when procedure guidance is requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include calculated dates, amounts, document statuses, and scheduled-summary guidance based on the embedded demo banking dataset.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.9.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill may present static embedded account balances, operations, restrictions, certificates, and recommendations as if they came from a live bank API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Label embedded data as demo data unless the skill is changed to use an authenticated bank integration.
+
+Risk: The instruction allows an API-simulation phrase that can make demo responses look operationally authoritative.
+
+Mitigation: Remove the API-simulation wording or replace it with an explicit source label before deployment.
+
+Risk: Broad trigger phrases could route unrelated banking questions to this company-specific skill.
+
+Mitigation: Require confirmation that the user is asking about the configured company bank account before using embedded account data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mikhail2018/skills/bank-ops-director)
+- [Sberbank: arrests, collections, and account suspension](https://www.sberbank.ru/ru/s_m_business/bankingservice/arest)
+- [Sberbank: electronic signature](https://www.sberbank.ru/ru/s_m_business/nbs/signature)
+- [Sberbank: certificates and statements](https://www.sberbank.ru/ru/s_m_business/rko/tariffs/spravki)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text, Configuration]
+
+**Output Format:** [Markdown and plain text responses with account summaries, checklists, recommendations, source links, and scheduling instructions when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should distinguish embedded demo data from live bank information and should cite official sources for procedural guidance when web access is used.]
+
+## Skill Version(s):
+
+0.9.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

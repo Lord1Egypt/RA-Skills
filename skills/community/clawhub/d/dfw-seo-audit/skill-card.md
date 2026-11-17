@@ -1,43 +1,58 @@
-## Description: <br>
-Crawl any website and get a 0-100 SEO score with 50+ checks across Technical, On-Page, Schema, Social, and Compliance categories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crawl any website and get a 0-100 SEO score with 50+ checks across Technical, On-Page, Schema, Social, and Compliance categories.
 
-## Publisher: <br>
-[drivenautoplex1](https://clawhub.ai/user/drivenautoplex1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[drivenautoplex1](https://clawhub.ai/user/drivenautoplex1)
 
-## Use Case: <br>
-External site owners, marketers, and developers use this skill to audit pages for SEO issues, industry compliance gaps, competitor differences, and prioritized fixes. With an Anthropic API key, it can also generate SEO article drafts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches user-provided URLs during audits and compliance scans. <br>
-Mitigation: Run it only against URLs you are authorized to check, and avoid submitting sensitive internal URLs unless the execution environment is approved for that use. <br>
-Risk: Article generation and AI-backed analysis use Anthropic when ANTHROPIC_API_KEY is configured. <br>
-Mitigation: Use the AI-backed features only for topics and page context that may be sent to an external AI provider. <br>
-Risk: The release security summary says the documentation overstates some crawl-depth and check-count capabilities. <br>
-Mitigation: Treat reported SEO findings as decision support and verify important recommendations before publishing site changes. <br>
+## Use Case:
 
+Marketing teams, site operators, and agent workflows use this skill to audit public web pages for SEO issues, industry-specific compliance signals, competitor gaps, and prioritized fixes. With an Anthropic API key, it can also generate SEO article drafts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/drivenautoplex1/dfw-seo-audit) <br>
-- [Project homepage](https://github.com/drivenautoplex1/openclaw-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text or JSON audit reports, markdown article drafts, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write reports or generated article markdown to a requested output file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter and release evidence) <br>
+Risk: The skill can make outbound requests to URLs supplied in prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it with network egress controls and avoid internal, localhost, staging, cloud metadata, or credential-bearing URLs.
+
+Risk: Article generation sends the requested topic to Anthropic.
+
+Mitigation: Do not submit sensitive, confidential, or regulated content as article topics unless that use is approved for the configured Anthropic account.
+
+Risk: The advertised crawl, 50+ check, and AI-analysis claims may be overstated.
+
+Mitigation: Treat results as heuristic SEO guidance and review important compliance or business decisions before acting on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/drivenautoplex1/skills/dfw-seo-audit)
+- [OpenClaw skills homepage](https://github.com/drivenautoplex1/openclaw-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, files, guidance]
+
+**Output Format:** [Plain text or JSON audit reports, Markdown article drafts, and optional output files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Demo mode uses a static sample; compliance-only mode fetches a supplied URL without AI analysis; article generation requires ANTHROPIC_API_KEY.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

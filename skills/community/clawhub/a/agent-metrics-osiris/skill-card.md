@@ -1,42 +1,57 @@
-## Description: <br>
-Observability and metrics for AI agents - track calls, errors, latency. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor AI agent calls, errors, latency, and resource usage with a terminal dashboard and JSON export for observability and metrics tracking.
 
-## Publisher: <br>
-[nantes](https://clawhub.ai/user/nantes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nantes](https://clawhub.ai/user/nantes)
 
-## Use Case: <br>
-Developers and engineers use this skill to record AI agent calls, errors, latency, and resource usage, then inspect terminal summaries or export metrics for observability workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Local metric files and exports may contain sensitive labels, error details, stack traces, prompts, tokens, or customer data. <br>
-Mitigation: Avoid recording secrets or private data, and review agent_metrics.json and exported files before sharing or committing them. <br>
-Risk: The artifact references a PowerShell wrapper that is not present in the supplied artifact files. <br>
-Mitigation: Use the included Python CLI or separately obtain and review any wrapper before execution. <br>
-Risk: The tool depends on psutil for resource metrics. <br>
-Mitigation: Install psutil from a trusted package source and pin or review the dependency in managed environments. <br>
+## Use Case:
 
+Developers and engineers use this skill to add lightweight observability to AI agent workflows, including call counts, error logging, latency tracking, resource snapshots, dashboard views, and local metrics export.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nantes/agent-metrics-osiris) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, code, JSON] <br>
-**Output Format:** [Markdown guidance with shell command examples; runtime metrics can be displayed as terminal text or exported as JSON or CSV.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a local agent_metrics.json file when metrics are recorded.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata; artifact frontmatter reports 1.0.3) <br>
+Risk: Metrics labels, error details, stack traces, and exported files may include secrets, raw prompts, or sensitive operational data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run in a least-privileged local Python environment and avoid recording secrets, tokens, raw prompts, or sensitive stack traces in labels or details.
+
+Risk: The skill depends on psutil, which is installed separately by the user.
+
+Mitigation: Pin and review the psutil dependency according to the deployment environment's normal dependency-management process.
+
+Risk: Local JSON and CSV exports may be retained or shared outside the intended environment.
+
+Mitigation: Store exports only in approved locations and apply normal retention, access-control, and cleanup practices.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nantes/skills/agent-metrics-osiris)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, code, configuration, JSON, CSV]
+
+**Output Format:** [Markdown guidance with command examples and local JSON or CSV metrics output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local agent_metrics.json by default and can export metrics to JSON or CSV.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata; artifact frontmatter reports 1.0.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

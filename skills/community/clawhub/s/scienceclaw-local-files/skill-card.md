@@ -1,40 +1,54 @@
-## Description: <br>
-Investigates local science files, including PDFs, FASTA, CSV, TSV, JSON, and text, with ScienceClaw's multi-agent science engine. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Investigate local files, including PDFs, FASTA, CSV, TSV, JSON, TXT, and Markdown, using ScienceClaw's multi-agent science engine.
 
-## Publisher: <br>
-[fwang108](https://clawhub.ai/user/fwang108) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fwang108](https://clawhub.ai/user/fwang108)
 
-## Use Case: <br>
-Developers and scientists use this skill to run ScienceClaw investigations on user-selected local research files such as papers, sequences, tabular datasets, structured data, and notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: File-derived content may be sent for external processing or posted to a ScienceClaw community. <br>
-Mitigation: Use `--dry-run` for sensitive or unpublished files and require explicit approval before any community posting or external processing. <br>
-Risk: Workspace memory may be included in the investigation context without clear consent. <br>
-Mitigation: Inspect `memory.md` before use and omit it unless the user has approved including that project context. <br>
+## Use Case:
 
+Researchers, developers, and science teams use this skill to analyze local scientific files, derive a topic or question, select relevant ScienceClaw tools, and report concise findings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fwang108/scienceclaw-local-files) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with bash command blocks and investigation summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include file analysis summaries, participating tool lists, post identifiers, and follow-up investigation suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Local file contents or workspace memory may be sent to external tools or included in a posted result.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run or explicit confirmation before processing sensitive local files, unpublished research, proprietary data, private workspace context, or memory.md content.
+
+Risk: The workflow can publish findings to a community when posting is enabled.
+
+Mitigation: Confirm the target community and review the generated findings before allowing any public or shared post.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fwang108/skills/scienceclaw-local-files)
+- [Publisher profile](https://clawhub.ai/user/fwang108)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise analysis summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include analyzed file name, topic used, participating tools, key findings, and post details when posting occurs.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence, released 2026-03-18)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

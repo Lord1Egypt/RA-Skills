@@ -1,41 +1,54 @@
-## Description: <br>
-Maintains and restores project context across OpenClaw sessions, tracks active projects, manages tasks, switches projects, and summarizes current progress. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart Context Engine maintains conversation state and project continuity across OpenClaw sessions by tracking active projects, saving and restoring context, and supporting project management commands.
 
-## Publisher: <br>
-[deus-pandora](https://clawhub.ai/user/deus-pandora) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[deus-pandora](https://clawhub.ai/user/deus-pandora)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to preserve project continuity across sessions, restore previous work context, track pending tasks, and switch between active projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Saved project context may include secrets, credentials, private customer data, or sensitive command history. <br>
-Mitigation: Do not store sensitive data in project notes or context, and periodically review or delete saved project memory files when they are no longer needed. <br>
-Risk: Restored project context may be outdated or incomplete after time away from a project. <br>
-Mitigation: Review restored summaries, pending tasks, and last-session details before relying on them for current work. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to preserve project continuity across sessions, restore the last active project, manage pending tasks, and summarize current progress.
 
-## Reference(s): <br>
-- [Context Engine API Reference](references/API.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/deus-pandora/context-engine-deus) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists local project and session context between OpenClaw sessions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md metadata, CHANGELOG released 2026-02-19) <br>
+Risk: The skill automatically persists project context, notes, file paths, command metadata, and task history in plaintext under the OpenClaw memory directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where local filesystem permissions are acceptable, avoid saving secrets or sensitive commands, and review stored project memory regularly.
+
+Risk: The scanner verdict is suspicious because the skill lacks clear opt-in, deletion, and permission-hardening controls for persisted session data.
+
+Mitigation: Use the skill in environments where persistent memory is expected and add operational controls for consent, deletion, and access restrictions before broader deployment.
+
+## Reference(s):
+
+- [Context Engine API Reference](artifact/references/API.md)
+- [ClawHub Skill Page](https://clawhub.ai/deus-pandora/skills/context-engine-deus)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON command results and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local project state summaries, task updates, context restoration messages, and command-line usage guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and changelog, released 2026-02-19)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

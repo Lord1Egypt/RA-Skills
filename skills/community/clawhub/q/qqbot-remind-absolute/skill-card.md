@@ -1,41 +1,58 @@
-## Description: <br>
-Manages QQBot reminders through real OpenClaw cron jobs with explicit per-user timezone settings for reminders, alarms, timed notifications, recurring reminders, lookup, cancellation, and timezone setup or changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages QQBot reminders through real OpenClaw cron jobs with explicit per-user timezone settings for reminders, alarms, timed notifications, recurring reminders, lookup, cancellation, and timezone changes.
 
-## Publisher: <br>
-[zykkk-power](https://clawhub.ai/user/zykkk-power) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zykkk-power](https://clawhub.ai/user/zykkk-power)
 
-## Use Case: <br>
-External QQBot users and operators use this skill to create, list, cancel, and manage timezone-aware reminders backed by OpenClaw cron jobs. It is intended for reminder workflows where delivery should be scheduled as real cron jobs rather than promised only in chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can manage real OpenClaw cron jobs, including listing the global cron inventory and deleting jobs by raw job ID. <br>
-Mitigation: Review the script before deployment and run it with a restricted OpenClaw account or isolated environment when multiple QQ users or unrelated cron jobs share the same system. <br>
-Risk: Timezone guidance is inconsistent, which can affect time-sensitive reminders. <br>
-Mitigation: Resolve the timezone documentation conflict and require explicit IANA timezone confirmation before creating reminders. <br>
+## Use Case:
 
+QQBot operators and agents use this skill to set user timezones and create, list, or cancel one-shot and recurring QQ reminders backed by OpenClaw cron jobs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zykkk-power/qqbot-remind-absolute) <br>
-- [references.txt](references.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Short text replies with inline shell commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit per-target IANA timezone setup before first reminder creation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill creates persistent OpenClaw cron jobs for QQ reminders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review reminder target, timezone, and recurrence before scheduling, and periodically list active jobs to remove reminders that are no longer needed.
+
+Risk: Cancellation by job ID may be too broad in shared or multi-user environments.
+
+Mitigation: Confirm that a job belongs to the requesting QQ target before removing it, or add ownership checks around cancellation.
+
+Risk: Scheduled reminder agents could run with broader access than the reminder task requires.
+
+Mitigation: Run scheduled reminders with minimal tools and without access to sensitive files or credentials.
+
+## Reference(s):
+
+- [Artifact reference notes](references.txt)
+- [ClawHub skill page](https://clawhub.ai/zykkk-power/skills/qqbot-remind-absolute)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and manages persistent OpenClaw cron jobs for QQ reminder delivery.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

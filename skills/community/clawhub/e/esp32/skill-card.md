@@ -1,36 +1,48 @@
-## Description: <br>
-Avoid common ESP32 mistakes, including GPIO conflicts, WiFi and ADC2 limitations, deep sleep gotchas, and FreeRTOS pitfalls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Avoid common ESP32 mistakes - GPIO conflicts, WiFi+ADC2 trap, deep sleep gotchas, and FreeRTOS pitfalls.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill as a quick ESP32 reference for common hardware, firmware, WiFi, FreeRTOS, OTA, memory, peripheral, and power issues. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Embedded-development guidance may not match a specific ESP32 board, pinout, partition scheme, power design, or firmware environment. <br>
-Mitigation: Verify board-specific pin, power, partition, and firmware details against the actual hardware documentation before applying the guidance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and engineers use this skill as a compact ESP32 reference for avoiding common GPIO, WiFi, deep sleep, FreeRTOS, memory, peripheral, OTA, and power mistakes.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown reference guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reference-only guidance with no evidenced code execution, credential access, network use, or persistence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: General ESP32 hardware guidance may not match a specific board, module revision, pinout, or power design.
+
+Mitigation: Verify board-specific pinouts, RTC GPIO support, partition layout, and power requirements before applying the guidance to real hardware.
+
+## Reference(s):
+
+- [ESP32 ClawHub Skill](https://clawhub.ai/ivangdavila/skills/esp32)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Configuration instructions]
+
+**Output Format:** [Markdown with inline code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Concise ESP32 implementation notes and hardware cautions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

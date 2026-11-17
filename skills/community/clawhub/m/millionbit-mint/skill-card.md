@@ -1,40 +1,52 @@
-## Description: <br>
-Mint an image as an NFT plot on the Million Bit Homepage, a permanent 1024x1024 pixel canvas on the Base blockchain, with image resizing, availability checks, price queries, pixel encoding, and transaction preparation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mint an image as an NFT plot on the Million Bit Homepage, a permanent 1024x1024 pixel canvas on the Base blockchain.
 
-## Publisher: <br>
-[millionbithomepage](https://clawhub.ai/user/millionbithomepage) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[millionbithomepage](https://clawhub.ai/user/millionbithomepage)
 
-## Use Case: <br>
-External users and developers use this skill to prepare Million Bit Homepage NFT plot mints on Base, including choosing grid-aligned coordinates, checking price and availability, encoding image data, and producing transaction JSON for an EVM wallet skill. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A crafted image filename could cause unintended local JavaScript execution during mint preparation. <br>
-Mitigation: Use only trusted, plainly named local image files and review the skill before installing or running mint preparation. <br>
-Risk: A submitted mint spends real ETH plus gas and publishes the image, URL, and metadata on Base in a way that is effectively irreversible. <br>
-Mitigation: Inspect the prepared transaction fields, price, target contract, chainId, coordinates, URL, and image content before approving the transaction in an EVM wallet skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/millionbithomepage/millionbit-mint) <br>
-- [Publisher profile](https://clawhub.ai/user/millionbithomepage) <br>
+## Use Case:
 
+Developers, agents, and project operators use this skill to check Million Bit Homepage plot pricing and availability, resize an image, and prepare a Base-chain NFT mint transaction for wallet submission.
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Code, Configuration, Guidance] <br>
-**Output Format:** [JSON transaction objects and Markdown guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prepared mint transactions target Base chainId 8453 and require separate wallet review and submission.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: User-controlled image paths, filenames, and coordinate strings can expose local code execution risks when passed into shell and Node scripts.
+
+Mitigation: Run the skill only with trusted local image paths and plain numeric coordinates, and do not let untrusted users supply filenames or coordinate strings.
+
+Risk: Prepared mint transactions can spend ETH and permanently publish image and URL content on Base.
+
+Mitigation: Before wallet submission, verify the Base chain ID, contract address, ETH value, URL, image, and permanence of the on-chain publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/millionbithomepage/skills/millionbit-mint)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, code, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON transaction outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prepared mint transactions include Base chain ID, contract address, ETH value, calldata, and metadata for wallet review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

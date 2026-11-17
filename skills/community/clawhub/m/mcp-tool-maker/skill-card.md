@@ -1,42 +1,59 @@
-## Description: <br>
-MCP Tool Maker helps agents scan Python files for functions and generate MCP tool registration code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates MCP tool registration code from top-level functions in Python source files.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and automation builders use this skill to convert top-level Python functions into MCP tool wrappers, optionally writing generated registration code for integration with an MCP server. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated integration code can add broad local import paths or wrap unintended local modules. <br>
-Mitigation: Review generated files and destination paths before writes, and use the skill only with an explicit allowlist of source files. <br>
-Risk: Generated MCP wrappers may expose functions that were not intended to become agent-accessible tools. <br>
-Mitigation: Inspect the discovered function list and generated wrappers before adding them to an MCP server. <br>
+## Use Case:
 
+Developers and engineers use this skill to scan Python files, identify callable top-level functions, and generate MCP-compatible wrapper code for local server integration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/mcp-tool-maker) <br>
-- [Bilibili Tool Use and MCP reference](https://www.bilibili.com/video/BV1vhV36ZEFu) <br>
-- [Bilibili MCP agent reference](https://www.bilibili.com/video/BV1aQPrzYEhJ) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with Python code and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write generated Python files when an output path is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Generated wrappers can expose broad local Python functions as MCP tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated code and approve each wrapped function before adding it to an MCP server.
+
+Risk: Untrusted source files or manipulated module names can influence generated Python imports and wrapper behavior.
+
+Mitigation: Use trusted source files with simple valid module names and scan generated output before execution.
+
+Risk: Writing generated output over an existing server file can replace or weaken server behavior.
+
+Mitigation: Write to a new review file first and merge changes manually after inspection.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/mcp-tool-maker)
+- [Bilibili MCP and tool-use reference](https://www.bilibili.com/video/BV1vhV36ZEFu)
+- [Bilibili MCP agent reference](https://www.bilibili.com/video/BV1aQPrzYEhJ)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with Python code and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write generated MCP wrapper code to a Python file when an output path is provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

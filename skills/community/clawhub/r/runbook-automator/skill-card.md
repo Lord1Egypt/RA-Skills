@@ -1,41 +1,57 @@
-## Description: <br>
-Convert manual incident runbooks into automated, executable playbooks. Parse existing runbooks, generate scripts for each step, add health checks, rollback procedures, and notification hooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert manual incident runbooks into automated, executable playbooks. Parse existing runbooks, generate scripts for each step, add health checks, rollback procedures, and notification hooks.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and on-call engineers use this skill to convert manual incident runbooks into executable playbooks, audit existing runbooks for automation gaps, dry-run generated playbooks, and create structured incident-response templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated playbooks can run operational commands that may affect production systems. <br>
-Mitigation: Review generated scripts before running them, keep dry-run enabled during validation, and execute with least-privilege operational credentials. <br>
-Risk: Optional Slack or PagerDuty notifications can send incident details to external destinations. <br>
-Mitigation: Confirm notification destinations before use and avoid sending sensitive incident details to unapproved external channels. <br>
-Risk: Generated automation may contain incorrect commands, stale assumptions, or misleading operational guidance. <br>
-Mitigation: Validate commands, prerequisites, health checks, rollback steps, and escalation criteria against the source runbook before deployment. <br>
+## Use Case:
 
+Developers and site reliability engineers use this skill to convert incident runbooks into executable playbooks, audit existing runbooks for automation gaps, dry-run generated playbooks, and create structured runbook templates.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash code blocks and generated shell scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated playbooks should be reviewed before execution and validated with dry-run mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Generated playbooks can translate operational documentation into live Bash commands that affect production systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require qualified operator review and explicit approval before execution; default generated scripts to DRY_RUN=true.
+
+Risk: Source runbooks may contain stale, unsafe, or untrusted operational steps.
+
+Mitigation: Treat source runbooks as untrusted input and inspect each generated command, health check, decision point, and rollback step before use.
+
+Risk: Notification hooks can expose incident details or credentials if misconfigured.
+
+Mitigation: Verify webhook destinations before sending incident details and run generated playbooks with least-privileged credentials in a controlled environment.
+
+## Reference(s):
+
+- [Runbook Automator on ClawHub](https://clawhub.ai/charlie-morrison/skills/runbook-automator)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash code blocks, audit tables, templates, and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated playbooks may include DRY_RUN controls, health checks, rollback steps, and notification hooks.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

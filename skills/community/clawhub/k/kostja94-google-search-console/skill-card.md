@@ -1,41 +1,56 @@
-## Description: <br>
-Guides analysis of Google Search Console data, Search Console API usage, and search performance interpretation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides analysis of Google Search Console data, including search performance, indexing, sitemaps, Core Web Vitals, enhancements, and Search Console API usage.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-SEO practitioners, developers, and analysts use this skill to interpret Google Search Console reports, investigate indexing and search performance changes, and prepare prioritized follow-up actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad SEO wording or general Search Console terminology. <br>
-Mitigation: Use it when Google Search Console analysis is intended and confirm the site property and date range before relying on real data. <br>
-Risk: Reports, screenshots, or exported metrics can contain sensitive site performance information. <br>
-Mitigation: Store exported reports and screenshots only in approved locations and review outputs before sharing them. <br>
+## Use Case:
 
+External users, SEO practitioners, and developers use this skill to interpret Google Search Console exports or API results and turn search performance, indexing, and technical SEO signals into prioritized actions.
 
-## Reference(s): <br>
-- [Search Console API](https://developers.google.com/webmaster-tools/about) <br>
-- [Search Analytics Query Method](https://developers.google.com/webmaster-tools/v1/how-tos/search_analytics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with summaries, metrics, CTR analysis, action items, and next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance-only; no hidden code, install hooks, or automatic data access are identified in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill may activate on broad SEO or Search Console phrases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when the request specifically involves Google Search Console analysis, GSC exports, Search Console API usage, or related search performance reports.
+
+Risk: Search Console data can reveal sensitive site performance, indexing, and query information.
+
+Mitigation: Provide only GSC exports or API access for properties the user is authorized to analyze.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/kostja94-google-search-console)
+- [Publisher profile](https://clawhub.ai/user/kostja94)
+- [Search Console API](https://developers.google.com/webmaster-tools/about)
+- [Search Analytics query method](https://developers.google.com/webmaster-tools/v1/how-tos/search_analytics)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, API calls]
+
+**Output Format:** [Markdown guidance with tables, checklists, and inline API references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces analysis summaries, metrics interpretation, CTR analysis, prioritized action items, correlation notes, and monitoring next steps.]
+
+## Skill Version(s):
+
+1.3.0 (source: server evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

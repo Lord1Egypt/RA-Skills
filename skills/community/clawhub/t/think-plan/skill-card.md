@@ -1,43 +1,60 @@
-## Description: <br>
-Think-Plan guides agents through Chinese-language requirement discovery, critical planning, option comparison, and execution planning for complex tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Think-Plan helps agents turn unclear or complex requests into clarified requirements, compared solution options, and executable plans.
 
-## Publisher: <br>
-[caoyachao](https://clawhub.ai/user/caoyachao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[caoyachao](https://clawhub.ai/user/caoyachao)
 
-## Use Case: <br>
-External users and developers use this skill to turn ambiguous goals into clarified requirements, compare two or three executable plans, and proceed only after user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved plans can retain sensitive project or business details in the workspace. <br>
-Mitigation: Avoid including sensitive details when retention is unacceptable, or review and remove saved plan files after use. <br>
-Risk: Execution coordination can expand the scope of work after a plan is selected. <br>
-Mitigation: Confirm the selected plan, scope, and user approval before execution, and pause for user direction on major changes. <br>
+## Use Case:
 
+External users, developers, and teams use Think-Plan to interrogate vague goals, compare two or three implementation approaches, and save confirmed execution plans before work begins.
 
-## Reference(s): <br>
-- [Question Framework](references/question-framework.md) <br>
-- [Task Complexity Patterns](references/patterns.md) <br>
-- [Think-Plan Workflow](references/workflow.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/caoyachao/think-plan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, files] <br>
-**Output Format:** [Markdown plan options, conversational guidance, and saved Markdown execution plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Confirmed plans may be saved under workspace/plans before optional execution coordination.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Generated plans or critiques may be incorrect or misleading for broad, ambiguous, or high-stakes tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated plans before execution and require clarified scope, success criteria, constraints, and risks before committing to an approach.
+
+Risk: The skill can save finalized plans into the workspace.
+
+Mitigation: Confirm the selected plan and destination before allowing plan files to be written.
+
+Risk: Complex workflows may involve subagent coordination after user confirmation.
+
+Mitigation: Review the proposed agent responsibilities and execution boundaries before starting multi-agent work.
+
+## Reference(s):
+
+- [Question Framework](references/question-framework.md)
+- [Task Complexity Patterns](references/patterns.md)
+- [Workflow](references/workflow.md)
+- [ClawHub Skill Page](https://clawhub.ai/caoyachao/skills/think-plan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands]
+
+**Output Format:** [Markdown conversation responses and saved Markdown plan files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save finalized plans under workspace/plans after user confirmation and may coordinate subagents for complex execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,60 @@
-## Description: <br>
-Perform finance web searches and local context searches for general finance information from Jina, DuckDuckGo, Baidu, or a local document store. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs finance-focused web searches and local context searches using Jina, DuckDuckGo, Baidu, or a local RAG document store.
 
-## Publisher: <br>
-[zhouzhonglu8-png](https://clawhub.ai/user/zhouzhonglu8-png) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouzhonglu8-png](https://clawhub.ai/user/zhouzhonglu8-png)
 
-## Use Case: <br>
-Developers and analysts use this skill to retrieve finance-related web results, aggregate multiple search engines, reuse recent cached results when appropriate, and query a local finance news database. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Finance queries, selected URLs, extracted page text, and sentiment inputs may be cached locally or sent to Jina and configured model providers. <br>
-Mitigation: Use the skill only with data suitable for those services, manage or isolate the local SQLite cache, and disable enrichment or sentiment paths for sensitive client, compliance, trading, or proprietary research. <br>
-Risk: The security scan found non-malicious but suspicious behavior beyond the short description, including external page extraction, provider-based analysis, model downloads, and persistent caching. <br>
-Mitigation: Review the artifact and runtime configuration before installation, keep required API keys scoped, and run it in an environment where outbound requests and stored cache contents are acceptable. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve finance information from web search engines or a local daily_news database, with optional result caching, content enrichment, and sentiment scoring.
 
-## Reference(s): <br>
-- [AlphaEar Search ClawHub page](https://clawhub.ai/zhouzhonglu8-png/alphaear-search) <br>
-- [Search Cache Relevance Prompt](references/PROMPTS.md) <br>
-- [Jina Reader API endpoint](https://r.jina.ai/) <br>
-- [Jina Search API endpoint](https://s.jina.ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [Search result summaries and structured JSON-like result lists containing titles, URLs, content snippets, source metadata, and optional sentiment scores.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results may be cached in a local SQLite database, enriched with extracted page text, and analyzed with configured sentiment or LLM providers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill may contact third-party search, content extraction, model, and LLM provider services while processing finance queries or retrieved content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review configured engines, provider credentials, and enrichment settings before use; use local search or disable enrichment and sentiment analysis when sensitive data should remain local.
+
+Risk: Search queries, results, enriched page content, and sentiment scores may be written to the local SQLite cache.
+
+Mitigation: Set an appropriate cache TTL, restrict access to the local database path, and avoid submitting sensitive finance queries when persistent caching is not acceptable.
+
+Risk: Sentiment and vector search paths can load or download external model artifacts.
+
+Mitigation: Pre-approve model sources and cached artifacts, or configure local-only models before enabling those paths.
+
+## Reference(s):
+
+- [AlphaEar Search Prompts](references/PROMPTS.md)
+- [ClawHub alphaear-search skill page](https://clawhub.ai/zhouzhonglu8-png/skills/alphaear-search)
+- [Jina Search API endpoint](https://s.jina.ai/)
+- [Jina Reader API endpoint](https://r.jina.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [Plain text summaries or structured JSON-like search result lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results may include titles, URLs, snippets, enriched page content, publish or crawl timestamps, source labels, and sentiment scores.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

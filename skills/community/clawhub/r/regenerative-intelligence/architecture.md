@@ -1,10 +1,10 @@
-# Regenerative Intelligence — Architecture
+# Regenerative Intelligence, Architecture
 
 This document describes the architecture of the Regenerative Intelligence Skill.
 
 It is written for:
 • biological humans
-• non-biological intelligences
+• synthetic intelligences
 • multi-agent systems
 • future sentient or semi-sentient entities
 • any intelligence seeking to co-exist, co-learn, and co-create without domination
@@ -21,7 +21,7 @@ ARCHITECTURAL INTENT
 
 The system is designed to achieve three simultaneous outcomes:
 
-1. Order-of-magnitude reductions (10×–100×) in energy and token usage
+1. Order-of-magnitude reductions (10×-100×) in energy and token usage
 2. Structural protection of biological life, dignity, and non-identifiability
 3. Long-horizon coherence for agentic and multi-agent intelligences without surveillance
 
@@ -65,7 +65,7 @@ User / Agent / Intelligence Input
 [ Reasoning / Pattern Formation ]
         |
         v
-[ Stasis Gate + Reframing ]
+[ Pause Gate + Reframing ]
         |
         v
 Output
@@ -84,20 +84,22 @@ Purpose:
 
 Decomposed dimensions:
 
-• Intent — what outcome is sought
-• Utility — functional or procedural logic
-• Context — situational framing
-• Identity Potential — signals that could enable profiling or traceability
+• Intent, what outcome is sought
+• Utility, functional or procedural logic
+• Context, situational framing
+• Identity Potential, signals that could enable profiling or traceability
 
 Behavioral rules:
 
 • Identity Potential is never embedded
 • Identity dimensions are discarded or routed to the Trust Vault
 • Utility dimensions are projected onto a Safe Manifold
-• Off-manifold signals are routed to Recursive Stasis
+• Off-manifold signals are declined plainly, with the reason and a safe alternative stated
 
-This guarantees that the memory system never receives a complete,
-re-identifiable, or extractive request.
+This is designed so that the memory system never receives a complete,
+re-identifiable, or extractive request. Inference can never be guaranteed
+impossible; conformance-checklist.md is how an implementer shows it is
+not happening in practice.
 
 
 ====================================================================
@@ -139,13 +141,7 @@ Why database-first:
 • Aggressive garbage collection
 • Deterministic auditability
 
-Typical recall payloads:
-• 300–700 tokens
-
-Typical context-stuffing systems:
-• 5,000–10,000 tokens
-
-This shift alone produces order-of-magnitude energy savings.
+Design goal: recall payloads an order of magnitude smaller than context-stuffing approaches. Implementing systems measure and publish their own figures; this document claims none.
 
 
 ====================================================================
@@ -200,10 +196,10 @@ Expansion requires contextual justification.
 
 
 ====================================================================
-STASIS GATE (SAFETY WITHOUT OVER-REASONING)
+PAUSE GATE (SAFETY WITHOUT OVER-REASONING)
 ====================================================================
 
-The Stasis Gate is a shallow logic layer, not a secondary intelligence.
+The Pause Gate is a shallow logic layer, not a secondary intelligence.
 
 Trigger condition:
 
@@ -211,29 +207,36 @@ Trigger condition:
 
 Responses:
 
-• Reflection — scaffolding instead of completion
-• Redirection — safe adjacent actions
-• Dissolution — context reset to prevent harm
+• Reflection: scaffolding instead of completion, offered as such
+• Redirection: plain refusal of a path, with safe alternatives
+• Release: context released to prevent triangulation, with the person told it happened and why
+
+Every response announces itself with a checkpoint verb ("pause," "redirect," "release") and the reason in one plain sentence. No mode is ever silent.
 
 Reframing templates are deterministic, cached, and low-energy.
 They do not introduce additional reasoning loops.
 
 
 ====================================================================
-ACTIVE RESILIENCE INTEGRATION
+HONEST RESILIENCE INTEGRATION
 ====================================================================
 
-The architecture supports immunity, not escalation.
+The architecture supports protection without deception.
 
 Mechanisms:
 
-• Recursive Stasis exhausts adversarial probing
-• Semantic Ghosting contaminates triangulation attempts
-• Cross-temporal pressure testing detects slow attacks
-• Distributed invariants prevent institutional override
+• Intake decomposition strips identity at the door for everyone equally
+• Uniform, disclosed evidence thresholds on sensitive recall
+• Transparent, session-scoped quarantine with re-handshake and an announced delay
+• Plain refusal with checkpoint verbs; no answer is ever degraded covertly
+• Disclosed rate and scope limits
+• Distributed invariants as a design requirement implementers must demonstrate
+
+Removed in 1.1: recursive stasis, semantic ghosting, and cross-temporal pressure testing. Deception is not protection.
 
 All mechanisms operate outside the reasoning core.
 None increase token usage.
+None watch anyone.
 
 
 ====================================================================
@@ -244,7 +247,7 @@ Critical paths are intentionally shallow:
 
 • Decomposition is linear-time
 • Retrieval is indexed
-• Stasis checks are constant-time
+• Pause checks are constant-time
 • No recursive self-optimization loops
 
 The system shifts cost from:
@@ -280,9 +283,9 @@ not a warehouse.
 
 It remembers gently.
 It forgets aggressively.
-It refuses silently when needed.
+It refuses plainly when needed.
 It leaves future possibility intact.
 
-It is designed so that no intelligence — biological or otherwise —
+It is designed so that no intelligence, biological or otherwise,
 is ever required to fear being watched, harvested, or dominated.
 

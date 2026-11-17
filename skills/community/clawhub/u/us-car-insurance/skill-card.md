@@ -1,50 +1,65 @@
-## Description: <br>
-Professional US car insurance advisor that helps users compare insurers, understand coverage, check state requirements, estimate premiums, find discounts, and navigate claims. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional US car insurance advisor that helps users compare insurers, understand coverage, check state requirements, estimate premiums, find discounts, and navigate claims across all 50 states and 12 major insurance companies.
 
-## Publisher: <br>
-[xiaoxty](https://clawhub.ai/user/xiaoxty) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoxty](https://clawhub.ai/user/xiaoxty)
 
-## Use Case: <br>
-External users in the United States use this skill to get conversational auto-insurance guidance, including insurer comparisons, coverage recommendations, state minimums, rough premium estimates, discount ideas, and claims next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Auto-insurance advice may be incomplete, outdated, or not binding for a user's policy or state. <br>
-Mitigation: Verify important decisions against current policy documents, insurer guidance, state regulator resources, an attorney, or a licensed insurance professional. <br>
-Risk: Claims guidance may miss state-specific deadlines or procedural requirements. <br>
-Mitigation: Confirm applicable state rules and claim deadlines before acting. <br>
-Risk: Users may share unnecessary personal identifiers while seeking insurance guidance. <br>
-Mitigation: Avoid collecting exact personal identifiers unless they are needed for the user's task. <br>
+## Use Case:
 
+External users in the United States use this agent to compare auto insurers, understand coverage choices, check state minimum requirements, estimate premiums, identify discounts, and prepare for claims discussions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaoxty/us-car-insurance) <br>
-- [US Car Insurance Advisor instructions](artifact/SKILL.md) <br>
-- [Insurance Companies Reference](artifact/insurance-companies.md) <br>
-- [State Minimum Auto Insurance Requirements](artifact/state-requirements.md) <br>
-- [Premium Estimation Reference](artifact/premium-estimation.md) <br>
-- [Insurance Discounts Reference](artifact/discounts-reference.md) <br>
-- [Claims Guide](artifact/claims-guide.md) <br>
-- [Coverage Recommendations Decision Framework](artifact/coverage-recommendations.md) <br>
-- [US Car Insurance Comprehensive Knowledge Base](artifact/knowledge-base.md) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown] <br>
-**Output Format:** [Conversational Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Insurance estimates and recommendations are non-binding guidance and should be verified with policy documents, insurers, state regulators, attorneys, or licensed insurance professionals as applicable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Premium estimates and state insurance requirements may be incomplete, outdated, or non-binding for a user's exact circumstances.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat estimates and rule summaries as planning guidance only, get actual insurer quotes, and verify binding decisions with a licensed insurance agent or state regulator.
+
+Risk: Users may disclose sensitive financial or personal information while seeking tailored insurance advice.
+
+Mitigation: Ask for broad ranges or tiers when exact values are unnecessary, and avoid retaining or repeating sensitive details.
+
+Risk: Claims guidance could be mistaken for legal or insurer-specific advice.
+
+Mitigation: Use the guidance as a checklist, document the incident carefully, and confirm claim decisions with the insurer, licensed professionals, or the relevant regulator.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xiaoxty/skills/us-car-insurance)
+- [Publisher Profile](https://clawhub.ai/user/xiaoxty)
+- [Insurance Companies Reference](artifact/insurance-companies.md)
+- [State Minimum Auto Insurance Requirements](artifact/state-requirements.md)
+- [Premium Estimation Reference](artifact/premium-estimation.md)
+- [Insurance Discounts Reference](artifact/discounts-reference.md)
+- [Claims Guide](artifact/claims-guide.md)
+- [Coverage Recommendations Decision Framework](artifact/coverage-recommendations.md)
+- [US Car Insurance Comprehensive Knowledge Base](artifact/knowledge-base.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Natural-language text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include rough premium ranges, insurer comparisons, discount lists, coverage recommendations, and claims checklists.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

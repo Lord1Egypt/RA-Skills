@@ -1,46 +1,58 @@
-## Description: <br>
-OMOC runtime for /goal, /ralplan, /team, /ralph, memory, leases, verifiers, and non-overlapping loops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OMOC runtime for /goal, /ralplan, /team, /ralph, memory, leases, verifiers, and non-overlapping loops.
 
-## Publisher: <br>
-[jkobject](https://clawhub.ai/user/jkobject) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jkobject](https://clawhub.ai/user/jkobject)
 
-## Use Case: <br>
-Developers and engineers use OMOC to coordinate long-running OpenClaw work with durable goals, planning, task state, memory compaction, leases, verifier lanes, and review gates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OMOC writes durable project state under .omoc, and those files can contain sensitive planning notes, task details, mailbox entries, goals, and memory. <br>
-Mitigation: Treat .omoc as project-sensitive state, review it before sharing a workspace, and avoid committing or publishing it unless the contents are intended to be disclosed. <br>
-Risk: The workflow can guide long-running local agent work, so accidental external messages, deploys, spending, or public actions would carry higher impact. <br>
-Mitigation: Keep the documented confirmation boundary: require explicit approval before external messages, deploys, spending, or public actions. <br>
-Risk: Completion claims may be unreliable if verifier or review evidence is skipped. <br>
-Mitigation: Use the verifier lane and review gates before marking work complete, and record evidence in memory or task state. <br>
+## Use Case:
 
+Developers and OpenClaw users use OMOC to coordinate durable planning, team execution, bounded Ralph cycles, memory compaction, and verification gates for long-running agent work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jkobject/omoc) <br>
-- [README](README.md) <br>
-- [Ralph cycle prompt template](templates/ralph-cycle.md) <br>
-- [Team worker prompt template](templates/team-worker.md) <br>
-- [Verifier prompt template](templates/verifier.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON-backed local state files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local .omoc workflow, memory, goal, team, Ralph, lease, mailbox, and review artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: Mailbox commands can be aimed outside the intended state folder to read or modify JSON files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid untrusted worker or mailbox names and fix path validation before using this skill in a sensitive workspace.
+
+Risk: The runtime writes workflow state under .omoc/ in the current project.
+
+Mitigation: Use it only in workspaces where local state writes are acceptable and review generated .omoc/ files before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jkobject/skills/omoc)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+- [OMOC Ralph Cycle Prompt](artifact/templates/ralph-cycle.md)
+- [OMOC Team Worker Prompt](artifact/templates/team-worker.md)
+- [OMOC Verifier Prompt](artifact/templates/verifier.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance, shell command examples, JSON state files, and command-line JSON output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local workflow, memory, goal, team, mailbox, Ralph, and review state under .omoc/.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-Prompt Compress helps agents analyze and shorten prompts by extracting keywords, removing redundant wording, and preserving the prompt's intended meaning to reduce token use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prompt Compress helps agents analyze prompts, extract keywords, remove redundant wording, and produce shorter prompts that preserve the user's intended meaning while reducing token use.
 
-## Publisher: <br>
-[jackzh1982](https://clawhub.ai/user/jackzh1982) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jackzh1982](https://clawhub.ai/user/jackzh1982)
 
-## Use Case: <br>
-Developers, prompt engineers, and other agent users use this skill to compress long prompts, extract core requirements, and reduce token cost while retaining the original task intent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Compressed prompts can drop nuance, constraints, or context in sensitive or complex instructions. <br>
-Mitigation: Review compressed prompts before sending them onward, especially for legal, medical, security, or other high-impact tasks. <br>
-Risk: Token counts are estimates and may differ from model-specific tokenizer results. <br>
-Mitigation: Verify final token counts with the tokenizer for the target model when exact limits or costs matter. <br>
+## Use Case:
 
+Developers, prompt authors, and agent users can use this skill to shorten long prompts, extract core requirements, structure task instructions, and estimate token savings before sending prompts to a model.
 
-## Reference(s): <br>
-- [Token Calculation Reference](references/token-calculation.md) <br>
-- [ClawHub release page](https://clawhub.ai/jackzh1982/prompt-compress) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with token estimates, savings percentage, and compressed prompt text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses approximate token estimates and supports multiple compression levels from light to minimal.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Aggressive prompt compression can omit context, change nuance, or produce instructions that no longer fully match the original request.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review compressed prompts before sending them onward, especially when using heavy or minimal compression levels.
+
+Risk: Token counts are estimated with simplified Chinese, English, and other-character heuristics and may differ from a target model's tokenizer.
+
+Mitigation: Treat token savings as approximate and verify with the deployment model's tokenizer for budget-sensitive workflows.
+
+## Reference(s):
+
+- [Token calculation reference](references/token-calculation.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown text with compressed prompt content, token estimates, keyword analysis, and optional local Python command output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Compression levels include light, medium, heavy, and minimal; token counts are estimates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

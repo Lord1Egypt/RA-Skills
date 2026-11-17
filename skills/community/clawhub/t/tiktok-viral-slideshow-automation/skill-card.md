@@ -1,41 +1,58 @@
-## Description: <br>
-Automates creation, analytics-informed iteration, and AutomateClips upload of educational TikTok slideshow content using a user-selected image generation method. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates educational TikTok slideshow creation, AI image generation setup, AutomateClips uploads, scheduling guidance, and performance tracking for an app or product.
 
-## Publisher: <br>
-[julianriss](https://clawhub.ai/user/julianriss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[julianriss](https://clawhub.ai/user/julianriss)
 
-## Use Case: <br>
-Marketing operators, founders, and content agents use this skill to plan, generate, upload, schedule, and track TikTok slideshow campaigns for an app or product. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can upload or schedule public TikTok slideshow content using AutomateClips credentials. <br>
-Mitigation: Use scoped, revocable API keys and require explicit approval before every upload or recurring scheduled run. <br>
-Risk: Generated helper scripts and image prompts may behave differently from the user's intent. <br>
-Mitigation: Start with a draft or test workflow, inspect generated scripts and prompts, and review the first generated slide before producing or uploading the full slideshow. <br>
+## Use Case:
 
+External creators, marketers, and growth teams use this skill to set up and run a repeatable TikTok slideshow workflow for promoting apps or products. It helps collect campaign inputs, generate slide plans and image prompts, upload finished slideshows through AutomateClips, and log performance for later iteration.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/julianriss/tiktok-viral-slideshow-automation) <br>
-- [AutomateClips Application](https://app.automateclips.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code snippets, shell commands, JSON tracking records, and upload instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce helper scripts, slideshow plans, image prompts, tracking JSON entries, scheduling prompts, and API upload commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can spend image-generation credits while producing slideshow assets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated API credentials, monitor provider usage, and set billing or rate limits before running recurring workflows.
+
+Risk: The skill can publish TikTok content through AutomateClips, including on a recurring schedule.
+
+Mitigation: Review generated slides, captions, and upload settings manually during dry runs before enabling any schedule.
+
+Risk: The custom generation option can run user-pasted commands with limited guardrails.
+
+Mitigation: Use a dedicated project directory, provide only minimal environment variables, and run custom commands only after reviewing and trusting them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/julianriss/skills/tiktok-viral-slideshow-automation)
+- [Publisher profile](https://clawhub.ai/user/julianriss)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON snippets, Python examples, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local project files, slideshow tracking JSON entries, image generation prompts, upload commands, and optional scheduling prompts.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

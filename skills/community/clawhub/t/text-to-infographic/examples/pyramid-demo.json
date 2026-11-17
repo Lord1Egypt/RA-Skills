@@ -1,0 +1,12 @@
+{
+  "version": "1.0",
+  "meta": { "title": "AI 价值金字塔", "footer": "从工具到护城河" },
+  "layout": "pyramid",
+  "visual_system": { "palette": "ink" },
+  "blocks": [
+    { "id": "l1", "title": "会用工具", "text": "ChatGPT / 即梦" },
+    { "id": "l2", "title": "搭工作流", "text": "把手工活模板化" },
+    { "id": "l3", "title": "建方法论", "text": "可迁移、可教授" },
+    { "id": "l4", "title": "成个人 IP", "text": "别人因为方法论找你" }
+  ]
+}

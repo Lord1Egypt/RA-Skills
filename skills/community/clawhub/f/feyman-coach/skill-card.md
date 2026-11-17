@@ -1,44 +1,59 @@
-## Description: <br>
-A personal knowledge coach based on the Feynman learning technique that helps users review concepts, diagnose weak points, and generate personalized study suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A personal knowledge coach based on the Feynman technique that helps users review concepts, diagnose weak points, receive study suggestions, and optionally schedule daily reviews.
 
-## Publisher: <br>
-[LewisBase](https://clawhub.ai/user/LewisBase) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lewisbase](https://clawhub.ai/user/lewisbase)
 
-## Use Case: <br>
-Employees, external learners, and developers use this skill to apply the Feynman technique to personal notes, run guided concept reviews, identify weak areas, and create follow-up study material. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The daily review script scans Markdown files in the configured vault and can surface note metadata in generated review tasks. <br>
-Mitigation: Set vault_path narrowly, review the selected notes with --list, and run --dry-run before writing review files. <br>
-Risk: Generated review files are written under Z_Utils/feynman-coach and may contain titles, paths, or study prompts derived from private notes. <br>
-Mitigation: Review generated files before sharing or committing them, and avoid broad or public repositories for sensitive note vaults. <br>
-Risk: The documented GitHub Actions workflow can commit and push generated review files if users enable it. <br>
-Mitigation: Enable automated push only when repository visibility and generated note metadata are acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/LewisBase/feyman-coach) <br>
-- [Feynman Technique reference](https://fs.blog/feyman-technique/) <br>
-- [Obsidian Spaced Repetition plugin](https://github.com/st3v3nmw/obsidian-spaced-repetition) <br>
-- [Anki flashcard software](https://apps.ankiweb.net/) <br>
+## Use Case:
 
+External users and developers use this skill to run Feynman-technique study reviews over a Markdown note vault, generate diagnostic reports, practice weak points, and create review tasks or flashcards.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional shell commands, configuration snippets, diagnostic reports, review tasks, and flashcard-style study material.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local Markdown review files under Z_Utils/feynman-coach when the daily review script is run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can scan a Markdown note vault and write generated review files.
+
+Mitigation: Use a narrow vault path, run with dry-run or manual review first, and confirm where generated notes will be written before enabling routine use.
+
+Risk: The documentation recommends persistent automation through scheduled tasks and GitHub Actions.
+
+Mitigation: Do not enable scheduled tasks, repository pushes, or third-party sync until the exact command, target path, and write behavior have been reviewed.
+
+Risk: The setup guidance includes administrator PowerShell usage that may be unnecessary for normal operation.
+
+Mitigation: Prefer non-administrator manual execution where possible and avoid elevated setup unless the environment requires it.
+
+## Reference(s):
+
+- [Published ClawHub skill page](https://clawhub.ai/lewisbase/skills/feyman-coach)
+- [Feynman Technique reference](https://fs.blog/feyman-technique/)
+- [Obsidian Spaced Repetition plugin](https://github.com/st3v3nmw/obsidian-spaced-repetition)
+- [Anki flashcards](https://apps.ankiweb.net/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate Markdown review tasks, diagnostic reports, study suggestions, and flashcard-style review content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

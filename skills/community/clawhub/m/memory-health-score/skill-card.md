@@ -1,41 +1,56 @@
-## Description: <br>
-Provides a 0-100 health score for an agent memory system across completeness, freshness, structure, density, and consistency. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a 0-100 health score for an agent memory system across completeness, freshness, structure, density, and consistency.
 
-## Publisher: <br>
-[weidadong2359](https://clawhub.ai/user/weidadong2359) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[weidadong2359](https://clawhub.ai/user/weidadong2359)
 
-## Use Case: <br>
-Developers and agent operators use this skill to evaluate workspace memory files, spot stale or inconsistent memory state, and generate improvement recommendations before relying on agent memory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Low health scores may lead to memory compression, index rebuilds, or issue cleanup that changes workspace state. <br>
-Mitigation: Use report-only scoring by default and require explicit approval before compression, index rebuild, or issue cleanup. <br>
-Risk: The health check reads local memory and issue files and writes a score report into the workspace. <br>
-Mitigation: Run it only in the intended workspace and review the generated memory/health-score.json before relying on it. <br>
+## Use Case:
 
+Developers and agent operators use this skill to evaluate memory-system hygiene, identify missing or stale memory artifacts, and generate concrete recommendations for improving memory quality.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/weidadong2359/memory-health-score) <br>
-- [Agent amnesia prevention guide](artifact/agent-amnesia-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown instructions and JSON score reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled health check writes memory/health-score.json when run in a workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/package.json) <br>
+Risk: Recurring unattended runs may perform agent activity without active user review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run check-health.mjs manually or schedule only the audited checker until the recurring agent workflow has explicit approval and disable controls.
+
+Risk: Automatic repair actions may change memory files or issue state without clear rollback controls.
+
+Mitigation: Enable repair actions only after adding confirmation prompts, backups, and a documented rollback path.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/weidadong2359/skills/memory-health-score)
+- [Publisher Profile](https://clawhub.ai/user/weidadong2359)
+- [SKILL.md](SKILL.md)
+- [Agent Amnesia Guide](agent-amnesia-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON health score report with Markdown guidance and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled checker writes memory/health-score.json in the target workspace when run.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

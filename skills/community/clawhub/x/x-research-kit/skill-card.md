@@ -1,41 +1,56 @@
-## Description: <br>
-Extract and analyze X (Twitter) content using yt-dlp and gallery-dl, including tweet metadata, video extraction, thread retrieval, profile analysis, and Spaces information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts and analyzes X/Twitter posts, profiles, and Spaces using yt-dlp and gallery-dl for metadata, text, engagement, media, thread, and profile research.
 
-## Publisher: <br>
-[xuya227939](https://clawhub.ai/user/xuya227939) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuya227939](https://clawhub.ai/user/xuya227939)
 
-## Use Case: <br>
-Social media analysts, content creators, researchers, and developers use this skill to extract structured data from public X/Twitter posts, profiles, timelines, and Spaces for content research and engagement analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using browser cookies can expose or act through a logged-in X/Twitter account session. <br>
-Mitigation: Use unauthenticated extraction first; use browser cookies only intentionally, avoid private or unauthorized content, and keep cookie-derived logs and outputs private. <br>
+## Use Case:
 
+External users, analysts, creators, and researchers use this skill to extract structured X/Twitter content and engagement data without an API key. It supports single posts, user timelines, media metadata, Spaces metadata, and local keyword filtering workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xuya227939/x-research-kit) <br>
-- [Publisher profile](https://clawhub.ai/user/xuya227939) <br>
-- [Project support](https://github.com/xuya227939/x-research-kit/issues) <br>
-- [Project homepage](https://snapvee.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands, JSON field mappings, and summary tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local command guidance for yt-dlp and gallery-dl, plus parsed summaries of X/Twitter metadata when the tools are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: Authenticated X/Twitter extraction may expose browser cookies to command-line tools, and those cookies can act like login credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use unauthenticated extraction where possible; when cookies are required, use a dedicated browser profile with only the needed X session and avoid logging, storing, or sharing cookie material.
+
+Risk: The workflow depends on local third-party tools, so untrusted or outdated installations can increase supply-chain and execution risk.
+
+Mitigation: Install yt-dlp and gallery-dl from trusted sources, keep them updated or pinned to reviewed versions, and review commands before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xuya227939/skills/x-research-kit)
+- [Publisher profile](https://clawhub.ai/user/xuya227939)
+- [Project homepage](https://snapvee.com)
+- [Support issues](https://github.com/xuya227939/x-research-kit/issues)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and structured tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May summarize JSON fields returned by yt-dlp or gallery-dl; does not directly download media unless the user asks for separate yt-dlp guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

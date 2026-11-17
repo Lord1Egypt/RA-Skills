@@ -1,0 +1,25 @@
+{
+  "author": "AKA张猩猩",
+  "author_icon": "",
+  "description": "分析 AI 对任意行业的冲击，先产出结构化信号报告（四级判级：S/A/B/噪音，含核实状态），经用户确认后产出多平台内容素材（公众号长文/小红书文案/抖音脚本 + 三平台发布配文/封面提示词）并落盘成文件。当用户说「AI 情报车间」「AI 行业影响分析」「分析 AI 对 XX 行业的影响/冲击/机会」，或需要分析 AI 对某行业的影响、产出行业 AI 冲击信号报告、多平台内容素材时，必须使用此 skill。",
+  "detail_describe": "两阶段流程：信号报告 → 素材产出\n四级判级（S/A/B/噪音）+ 三类冲击归类\n信息源检测与多源交叉验证\n3 主内容 + 6 配套多平台素材\n去 AI 味硬性规则与可用率自查",
+  "display_description": "AI 行业冲击分析：信号报告 + 多平台内容素材",
+  "display_name": "AI 情报车间",
+  "download_count": 0,
+  "download_url": "",
+  "icon": "",
+  "id": 0,
+  "is_downloaded": true,
+  "last_modified_time": "2026-08-17 20:40:00",
+  "name": "ai-intel-workshop",
+  "scope": [
+    "main"
+  ],
+  "type": "内容创作",
+  "use_cases": [
+    "AI 对会计行业有什么影响",
+    "分析一下 AI 对客服的冲击",
+    "AI 情报车间，分析教育行业"
+  ],
+  "version": "3.0.0"
+}

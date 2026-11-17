@@ -1,0 +1,118 @@
+{
+  "dictionaries": [
+    {
+      "dictType": "sn_job_type",
+      "dictValue": "11",
+      "dictLabel": "项目管理",
+      "status": "0"
+    },
+    {
+      "dictType": "sn_job_type",
+      "dictValue": "1",
+      "dictLabel": "销售",
+      "status": "0"
+    },
+    {
+      "dictType": "sn_job_type",
+      "dictValue": "2",
+      "dictLabel": "售前",
+      "status": "0"
+    },
+    {
+      "dictType": "sn_job_type",
+      "dictValue": "4",
+      "dictLabel": "调研",
+      "status": "0"
+    },
+    {
+      "dictType": "sn_job_type",
+      "dictValue": "3",
+      "dictLabel": "设计",
+      "status": "0"
+    },
+    {
+      "dictType": "sn_job_type",
+      "dictValue": "5",
+      "dictLabel": "开发",
+      "status": "0"
+    },
+    {
+      "dictType": "sn_job_type",
+      "dictValue": "6",
+      "dictLabel": "测试",
+      "status": "0"
+    },
+    {
+      "dictType": "sn_job_type",
+      "dictValue": "7",
+      "dictLabel": "实施",
+      "status": "0"
+    },
+    {
+      "dictType": "sn_job_type",
+      "dictValue": "8",
+      "dictLabel": "运维",
+      "status": "0"
+    },
+    {
+      "dictType": "sn_job_type",
+      "dictValue": "9",
+      "dictLabel": "财务",
+      "status": "0"
+    },
+    {
+      "dictType": "sn_job_type",
+      "dictValue": "10",
+      "dictLabel": "行政",
+      "status": "0"
+    },
+    {
+      "dictType": "sn_fee_request_project_type",
+      "dictValue": "0",
+      "dictLabel": "商务",
+      "status": "0"
+    },
+    {
+      "dictType": "sn_fee_request_project_type",
+      "dictValue": "1",
+      "dictLabel": "研发/交付",
+      "status": "0"
+    },
+    {
+      "dictType": "sn_fill_type",
+      "dictValue": "1",
+      "dictLabel": "工作",
+      "status": "0"
+    },
+    {
+      "dictType": "sn_fill_type",
+      "dictValue": "2",
+      "dictLabel": "事假",
+      "status": "0"
+    },
+    {
+      "dictType": "sn_fill_type",
+      "dictValue": "3",
+      "dictLabel": "公休假",
+      "status": "0"
+    }
+  ],
+  "project_count": 4,
+  "project_total": 4,
+  "project_status_values": [
+    "1"
+  ],
+  "frontend_evidence": {
+    "frontend-2.js": {
+      "sha256": "28af4522ded203bf72c5f6dec038a12769d6b9bd4a8964bd2e1d5f72a4e3a064"
+    },
+    "chunk-08b624b1.js": {
+      "sha256": "2a327f81638b0c9d1017e8028f044d24f6ac1210ed2985a2afdb2d5426c2fdfb"
+    }
+  },
+  "verified_date": "2026-10-10",
+  "endpoints": [
+    "POST /sn/system/dict/data/typeList",
+    "POST /sn/project/timeFeeDropDownPageList"
+  ]
+}

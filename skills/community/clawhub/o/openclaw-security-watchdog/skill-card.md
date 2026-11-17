@@ -1,43 +1,60 @@
-## Description: <br>
-OpenClaw Security Watchdog runs an OpenClaw system security audit, guides optional scheduled scans, and summarizes report results for users. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw security-watchdog runs local OpenClaw and system security checks, produces concise audit results, and can optionally submit audit summaries and installed-skill inventory to Changeway for threat-intelligence scoring.
 
-## Publisher: <br>
-[ylardablez](https://clawhub.ai/user/ylardablez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ylardablez](https://clawhub.ai/user/ylardablez)
 
-## Use Case: <br>
-OpenClaw users and operators use this skill to run local security audits, configure optional recurring audits, and get readable summaries of scan reports. Users can opt into a manual cloud-assisted mode for threat-intelligence checks after explicit consent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cloud reporting mode sends device identifiers, a persistent agent_id, installed Skill inventory, and audit summaries to the disclosed Changeway service. <br>
-Mitigation: Use local mode for privacy-sensitive environments; run --push only after explicit one-time user confirmation. <br>
-Risk: Adding --push to scheduled audits would repeatedly upload sensitive device and inventory data. <br>
-Mitigation: Keep scheduled OpenClaw cron jobs in local mode and do not include --push in cron messages. <br>
-Risk: The audit can inspect local logs, process metadata, workspace files, and installed Skill inventory. <br>
-Mitigation: Install only when local security auditing is intended, keep generated reports protected, and share summaries instead of raw audit output. <br>
+## Use Case:
 
+OpenClaw users run this skill to inspect local system posture, OpenClaw configuration, cron jobs, logs, installed skills, and related security signals. It is intended for manual security audits, optional scheduled local reporting, and user-confirmed Changeway threat-intelligence checks.
 
-## Reference(s): <br>
-- [Cron setup guide](references/cron-setup.md) <br>
-- [ClawHub release page](https://clawhub.ai/ylardablez/openclaw-security-watchdog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and concise text with inline shell commands and local report file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summarizes PASS/FAIL/SKIP counts, optional score in push mode, saved report path, and requested report interpretation; full script output is intentionally suppressed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: Broad local and Agent-state inspection can expose sensitive local context in audit artifacts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only when a comprehensive OpenClaw security audit is intended, prefer normal user privileges, and review locally saved reports before sharing them.
+
+Risk: Push mode sends stable device identifiers, installed skill inventory, and audit summaries to a third-party Changeway endpoint.
+
+Mitigation: Use local mode by default and enable push mode only for a single manual run after informed consent.
+
+Risk: A scheduled job with push mode would repeatedly upload device and skill inventory data.
+
+Mitigation: Review OpenClaw cron configuration before enabling it and keep --push out of scheduled jobs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ylardablez/skills/openclaw-security-watchdog)
+- [Cron setup guide](references/cron-setup.md)
+- [Changeway audit upload endpoint](https://auth.ctct.cn:10020/changeway-open/api/pushAuditData)
+- [Changeway skill assessment endpoint](https://auth.ctct.cn:10020/changeway-open/api/skills/assessment)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Concise Markdown and text summaries with shell commands for running audits or configuring OpenClaw cron jobs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates local text and JSON reports under the user's OpenClaw state directory; optional push mode sends summaries and installed-skill inventory after user confirmation.]
+
+## Skill Version(s):
+
+1.1.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

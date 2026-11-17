@@ -1,42 +1,60 @@
-## Description: <br>
-clawgrep is a grep-like CLI skill for hybrid semantic and keyword search across code, documents, and large folders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+clawgrep helps agents use a local grep-compatible CLI that combines semantic embedding search with keyword matching for code and document retrieval.
 
-## Publisher: <br>
-[schonhoffer](https://clawhub.ai/user/schonhoffer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[schonhoffer](https://clawhub.ai/user/schonhoffer)
 
-## Use Case: <br>
-Developers and agents use clawgrep to find relevant code or document passages when the exact wording is unknown, while keeping output compatible with grep-style parsing and scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on installing or invoking a third-party local CLI package. <br>
-Mitigation: Verify that the clawgrep package or repository is the intended trusted source before installing or running it. <br>
-Risk: First use downloads an ONNX embedding model and local caching can persist model data and search indexes. <br>
-Mitigation: Expect the first-run download, search the narrowest practical paths, and use --no-cache or a dedicated cache directory for sensitive temporary content. <br>
+## Use Case:
 
+Developers and agents use this skill to search codebases, notes, and document folders when exact wording is unknown or plain grep misses relevant results.
 
-## Reference(s): <br>
-- [CLI Reference](references/cli-reference.md) <br>
-- [Examples](references/examples.md) <br>
-- [clawgrep Repository](https://github.com/Schonhoffer/clawgrep) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and grep-compatible text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results are ranked by relevance and may include file paths, line numbers, context lines, counts, filenames, scores, or exit codes depending on CLI flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: ClawHub release metadata) <br>
+Risk: Unpinned installation commands can introduce ordinary package supply-chain risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the publisher and package source before installation, and prefer a pinned or reviewed release in controlled environments.
+
+Risk: The first run downloads an embedding model from Hugging Face and writes a local cache.
+
+Mitigation: Allow external model download only when expected, persist the cache for later offline use, and review cache location policies for the environment.
+
+Risk: Semantic indexing may process private notes or repositories outside the intended scope.
+
+Mitigation: Search only the specific directories intended for indexing, especially when working with private or sensitive content.
+
+## Reference(s):
+
+- [CLI reference](references/cli-reference.md)
+- [Examples](references/examples.md)
+- [clawgrep repository](https://github.com/Schonhoffer/clawgrep)
+- [ClawHub skill page](https://clawhub.ai/schonhoffer/skills/clawgrep)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and grep-compatible text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results are one line per match in file:line:text form; context lines use grep-style separators.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

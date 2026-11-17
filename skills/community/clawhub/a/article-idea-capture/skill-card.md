@@ -1,41 +1,54 @@
-## Description: <br>
-Article Idea Capture records public-account article ideas, topics, hooks, titles, and half-formed viewpoints, then helps organize them into outlines or drafts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Record WeChat public-account article ideas, topics, hooks, titles, and rough viewpoints, then organize them into outlines or drafts.
 
-## Publisher: <br>
-[G-Hanasq](https://clawhub.ai/user/G-Hanasq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[g-hanasq](https://clawhub.ai/user/g-hanasq)
 
-## Use Case: <br>
-External writers and content creators use this skill to capture raw article ideas into structured idea cards, save them to an ongoing idea pool, and later rank, cluster, outline, or draft from those saved ideas. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad capture triggers may save writing ideas that the user did not intend to persist. <br>
-Mitigation: Use explicit save commands and review the destination document or local fallback file periodically for unwanted entries. <br>
-Risk: Captured ideas may be stored in a fixed Feishu document or local fallback path. <br>
-Mitigation: Avoid saving sensitive drafts unless that storage location is acceptable for the intended workflow. <br>
+## Use Case:
 
+Writers and content creators use this skill to quickly capture raw article ideas with minimal friction, preserve the original insight, and later rank, cluster, outline, draft, or generate title options from saved ideas.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/G-Hanasq/article-idea-capture) <br>
-- [Feishu idea pool document](https://www.feishu.cn/docx/BwAFdeJZdoEeeWxfbkbcZVpWnOe) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown idea cards and brief confirmation messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May append captured ideas to a Feishu document or a local markdown fallback when the required tools are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Captured article ideas may be appended to a fixed Feishu document whose owner and collaborators are not necessarily the installing user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that destination is intended and acceptable; prefer a version that asks the user to choose or approve the external destination before writing.
+
+Risk: The local fallback path is user-specific and outside a typical workspace-scoped location.
+
+Mitigation: Use a workspace-scoped fallback file or confirm the local storage path before appending.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/g-hanasq/skills/article-idea-capture)
+- [Configured Feishu idea pool](https://www.feishu.cn/docx/BwAFdeJZdoEeeWxfbkbcZVpWnOe)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Text]
+
+**Output Format:** [Markdown idea cards, outlines, drafts, rankings, and brief confirmation messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May append captured ideas to the configured Feishu document, or to a local markdown fallback when Feishu tools are unavailable.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

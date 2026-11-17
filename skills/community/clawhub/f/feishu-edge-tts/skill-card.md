@@ -1,44 +1,58 @@
-## Description: <br>
-使用微软 Edge TTS（免费）生成语音，发送到飞书。无需 API key，音质优秀，支持多语言多音色。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates speech with Microsoft Edge TTS and sends the resulting audio message to a configured Feishu chat.
 
-## Publisher: <br>
-[Anightmare2](https://clawhub.ai/user/Anightmare2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[anightmare2](https://clawhub.ai/user/anightmare2)
 
-## Use Case: <br>
-Developers and operators use this skill to generate spoken audio from supplied text with Edge TTS, optionally tune voice, speed, and pitch, and send the resulting audio message to a configured Feishu chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Provided text is sent to Edge TTS for speech generation. <br>
-Mitigation: Install only if you are comfortable sending that text to Edge TTS, and avoid using sensitive text unless approved for the target environment. <br>
-Risk: Generated audio is uploaded to Feishu and sent to the configured chat. <br>
-Mitigation: Verify FEISHU_CHAT_ID before sending, and use --no-send when only local audio generation is intended. <br>
-Risk: FEISHU_APP_SECRET is required for sending messages. <br>
-Mitigation: Protect FEISHU_APP_SECRET and use a least-privilege Feishu app. <br>
+## Use Case:
 
+Developers and operators use this skill to generate spoken messages from text and deliver them into Feishu chats. It supports voice selection, rate and pitch adjustment, local audio output, and optional sending through Feishu app credentials.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Anightmare2/feishu-edge-tts) <br>
-- [Skill usage guide](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, environment configuration, and command-line output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can generate a local OPUS audio file with --no-send or send the audio to Feishu when credentials and chat ID are configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, clawhub.yaml, package.json) <br>
+Risk: Feishu app credentials are required for sending audio messages and could be exposed through shared shell history or committed configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a low-privilege Feishu app and avoid putting secrets in shared shell history or committed files.
+
+Risk: Provided text and generated audio are sent through Edge TTS and Feishu when message delivery is enabled.
+
+Mitigation: Install only when that data flow is acceptable for the intended content and chat recipients.
+
+Risk: The edge-tts dependency is installed from the Python environment used by the operator.
+
+Mitigation: Prefer a virtual environment or pinned dependency install for edge-tts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anightmare2/skills/feishu-edge-tts)
+- [Publisher profile](https://clawhub.ai/user/anightmare2)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Files, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and generated audio file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can generate local audio only or upload and send the audio through Feishu when credentials are configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, clawhub.yaml, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

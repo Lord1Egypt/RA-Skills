@@ -1,38 +1,54 @@
-## Description: <br>
-Agent Network is a multi-agent group chat collaboration system for structured communication, task delegation, decision voting, and group coordination. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Network provides a local multi-agent collaboration system with group chat, mentions, task assignment, decision voting, inbox notifications, and SQLite-backed coordination records.
 
-## Publisher: <br>
-[howtimeschange](https://clawhub.ai/user/howtimeschange) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[howtimeschange](https://clawhub.ai/user/howtimeschange)
 
-## Use Case: <br>
-Developers and engineers use this skill to build local multi-agent collaboration workflows with group chat, mentions, task assignment, voting, and coordinator-managed message routing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Message routing, local persistence, task and decision mutation, and optional webhook forwarding can expose or act on sensitive collaboration data. <br>
-Mitigation: Use only trusted local deployments unless group membership checks, authenticated agent identity, retention and deletion controls, mutation audit logging, and explicit webhook opt-in or redaction are added. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Advanced Usage Guide](artifact/references/ADVANCED.md) <br>
-- [Database Schema](artifact/references/schema.sql) <br>
+## Use Case:
 
+Developers and engineers use this skill to add local multi-agent collaboration workflows with group chat, mentions, task assignment, decision voting, inbox notifications, and SQLite-backed coordination records.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local SQLite-backed workflow guidance and CLI usage patterns.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Any caller with package access can impersonate agents or read, alter, or delete shared collaboration records because the skill lacks access controls.
+
+Mitigation: Use only in trusted, local or single-operator workflows until authentication, authorization, membership checks, audit logging, scoped reads, and deletion recovery controls are added.
+
+Risk: Webhook and state-persistence examples may expose sensitive collaboration content if adapted directly.
+
+Mitigation: Harden integrations before use with sensitive content, including secret handling, destination validation, access scoping, and review of persisted data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/howtimeschange/skills/agent-network)
+- [Advanced Usage Guide](references/ADVANCED.md)
+- [Database Schema](references/schema.sql)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to run local scripts and persist collaboration state in SQLite.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

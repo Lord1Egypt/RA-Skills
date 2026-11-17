@@ -1,42 +1,62 @@
-## Description: <br>
-Trade Polymarket markets based on valuation divergence. When your probability model differs from Polymarket's price by >threshold, enter using Kelly sizing. Works with any probability model (Simmer AI consensus, user model, external API). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade Polymarket markets based on valuation divergence. When your probability model differs from Polymarket's price by >threshold, enter using Kelly sizing. Works with any probability model (Simmer AI consensus, user model, external API).
 
-## Publisher: <br>
-[adlai88](https://clawhub.ai/user/adlai88) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adlai88](https://clawhub.ai/user/adlai88)
 
-## Use Case: <br>
-External developers and trading operators use this skill to scan Polymarket markets, compare market prices against a probability model, and prepare or execute Kelly-sized trades when the configured edge threshold is met. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place real Polymarket trades when run with live mode. <br>
-Mitigation: Start with dry runs, confirm the account and market behavior, and use live mode only after reviewing the configured position and trade limits. <br>
-Risk: Unattended live execution can continue trading without immediate human review. <br>
-Mitigation: Avoid unattended `--live --quiet` use unless monitoring and loss controls are in place. <br>
-Risk: Poor model calibration, market movement, or liquidity can turn an apparent edge into losses. <br>
-Mitigation: Review `max_position_usd`, `max_trades_per_run`, edge thresholds, and safeguards before deployment. <br>
+## Use Case:
 
+External users and developers use this skill to scan Polymarket markets for divergence between a probability model and market prices, size potential positions with Kelly-style limits, and optionally execute trades through Simmer.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/adlai88/polymarket-valuation-divergence) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, code, guidance] <br>
-**Output Format:** [Console text and Markdown documentation with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dry-run mode reports candidate trades; live mode can submit trades through the configured Simmer/Polymarket account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill requires a Simmer API key that may read account data and can place trades when live mode is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start in dry-run mode and use a dedicated low-limit or read-only key where possible.
+
+Risk: Live mode can execute real Polymarket trades.
+
+Mitigation: Use live mode only after reviewing the configuration, edge threshold, position cap, trade limit, and model behavior.
+
+Risk: The required simmer-sdk dependency is not pinned in the release metadata.
+
+Mitigation: Pin and review the simmer-sdk version before deployment.
+
+Risk: Non-Simmer probability models are described as customization options but require code edits before use.
+
+Mitigation: Review and test any custom probability model changes before enabling live trading.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/adlai88/skills/polymarket-valuation-divergence)
+- [Publisher profile](https://clawhub.ai/user/adlai88)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and terminal status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce dry-run trading signals, live execution status, configuration summaries, and portfolio status output.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

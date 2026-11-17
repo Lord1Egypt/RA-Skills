@@ -1,41 +1,57 @@
-## Description: <br>
-When the user uploads 发票.zip and 火车票.zip, use the included data tables to calculate eligible business-trip subsidy records, split related vs remaining files, create output workbooks, package two result zips, and report progress at every key step. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+When the user uploads 发票.zip and 火车票.zip, use the included data tables to calculate eligible business-trip subsidy records, split related vs remaining files, create output workbooks, package two result zips, and report progress at every key step.
 
-## Publisher: <br>
-[AttorneyTao](https://clawhub.ai/user/AttorneyTao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[attorneytao](https://clawhub.ai/user/attorneytao)
 
-## Use Case: <br>
-Employees and finance or operations staff use this skill to process invoice and train-ticket archives, calculate eligible business-trip subsidy records, separate excluded records, and package the resulting workbooks and files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Uploaded reimbursement archives may contain sensitive business-trip, invoice, route, lodging, and payment information. <br>
-Mitigation: Use trusted archives, keep processing local, review generated subsidy calculations before submission, and delete the local run directory when the documents are sensitive. <br>
-Risk: Ambiguous cities, dates, lodging evidence, or itinerary continuity can lead to incorrect subsidy eligibility. <br>
-Mitigation: Prefer structured table data, exclude uncertain records from subsidy calculations, place unresolved records in the remaining set, and document the reason in the output workbook. <br>
-Risk: Archive contents, filenames, and table values are untrusted inputs. <br>
-Mitigation: Protect against zip slip and path traversal, never execute extracted files, and write only under the dedicated run directory. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/AttorneyTao/travel-subsidy) <br>
+## Use Case:
 
+Employees and finance operations users can use this skill to process Chinese invoice and train-ticket archives for business-trip subsidy calculation. It organizes eligible supporting records separately from remaining files and creates reviewable workbooks and zip packages.
 
-## Skill Output: <br>
-**Output Type(s):** [text, files, markdown, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Progress messages plus generated workbooks and zip archives] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces subsidy and remaining-record zip packages from user-provided reimbursement archives; outputs should be reviewed before submission.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The workflow reads and reorganizes potentially sensitive travel and financial records.
+
+Mitigation: Use it only with the intended invoice and train-ticket archives, keep processing local, and restrict access to generated spreadsheets and zip files.
+
+Risk: Generated subsidy totals and eligibility decisions may affect reimbursement outcomes.
+
+Mitigation: Review the generated workbooks, unresolved cases, and excluded-record reasons before relying on the totals.
+
+Risk: Uploaded archives and filenames are untrusted inputs.
+
+Mitigation: Extract only into a dedicated run directory, protect against path traversal, and do not execute extracted files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/attorneytao/skills/travel-subsidy)
+- [Publisher profile](https://clawhub.ai/user/attorneytao)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text, Guidance]
+
+**Output Format:** [Two zip archives containing XLSX workbooks and organized ticket/invoice files, plus visible progress and summary text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processes local uploaded archives and writes outputs under a dedicated run directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

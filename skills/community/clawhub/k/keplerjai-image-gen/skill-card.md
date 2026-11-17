@@ -1,44 +1,58 @@
-## Description: <br>
-Generates images through ThinkZone AI when users request image creation or image-to-image workflows, supporting Gemini, MiniMax, and Seedream models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates images through ThinkZone AI when an agent is asked to draw, create, or transform an image, with support for Gemini, MiniMax, and Seedream image models.
 
-## Publisher: <br>
-[renjicode](https://clawhub.ai/user/renjicode) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[renjicode](https://clawhub.ai/user/renjicode)
 
-## Use Case: <br>
-Developers and agent users use this skill to generate images or image variants from prompts and optional reference images through ThinkZone AI models. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled ThinkZone API keys appear in code and documentation. <br>
-Mitigation: Do not use bundled keys; the publisher should revoke and remove them, and users should provide their own THINKZONE_API_KEY. <br>
-Risk: Prompts and reference images may be sent to a paid external image-generation service. <br>
-Mitigation: Use only approved data and account policies; avoid private, regulated, or confidential content unless policy allows it. <br>
-Risk: External image generation may incur charges or fail when the ThinkZone account lacks balance. <br>
-Mitigation: Confirm account balance and cost expectations before running image generation. <br>
+## Use Case:
 
+External users and developers use this skill to have an agent generate image assets from prompts or reference images through the configured ThinkZone AI API.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/renjicode/keplerjai-image-gen) <br>
-- [ThinkZone AI platform](https://open.thinkzoneai.com) <br>
-- [ThinkZone image generation endpoint](https://open.thinkzoneai.com/v3/images/generations) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; generated images are saved as image files with JSON metadata.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires THINKZONE_API_KEY and sends prompts or reference images to ThinkZone for external image-generation calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Bundled plaintext API credentials may be exposed or reused.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove bundled keys, rotate any exposed ThinkZone credentials, and configure a user-owned THINKZONE_API_KEY at runtime.
+
+Risk: Prompts and reference images may be uploaded to the configured external API endpoint.
+
+Mitigation: Avoid sensitive prompts or private reference images unless the user intends to send them to the ThinkZone endpoint.
+
+Risk: Loosely scoped API base URL configuration can redirect requests.
+
+Mitigation: Review THINKZONE_BASE_URL before use and keep it set to the intended ThinkZone AI endpoint.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/renjicode/skills/keplerjai-image-gen)
+- [ThinkZone AI platform](https://open.thinkzoneai.com)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Image files with JSON metadata and Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires THINKZONE_API_KEY and may upload prompts or reference images to the configured external API endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

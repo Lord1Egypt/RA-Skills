@@ -1,46 +1,62 @@
-## Description: <br>
-定时获取档案行业最新情报、政策法规、技术动态和行业资讯。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+定时获取档案行业最新情报、政策法规、技术动态和行业资讯。当用户需要获取档案行业新闻、政策更新、技术趋势或设置定时情报收集任务时使用此技能。
 
-## Publisher: <br>
-[lijie012](https://clawhub.ai/user/lijie012) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lijie012](https://clawhub.ai/user/lijie012)
 
-## Use Case: <br>
-Archive professionals, researchers, and operations teams use this skill to gather archive-sector policy updates, industry news, technology trends, and academic developments. It also helps prepare recurring daily, weekly, or monthly intelligence reports from configured sources and keywords. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring scheduled execution may run local collection jobs more often than intended. <br>
-Mitigation: Create scheduled tasks only when recurring reports are needed, and review the schedule before enabling automation. <br>
-Risk: The helper script writes report files to the configured output directory. <br>
-Mitigation: Review the configured output path and file permissions before running the script. <br>
-Risk: The security review notes that the provided helper script may need fixing before it works reliably. <br>
-Mitigation: Test the script in a controlled environment and correct runtime issues before relying on generated reports. <br>
+## Use Case:
 
+External users and developers use this skill to collect, summarize, and periodically report archive-sector policy updates, industry news, technology trends, and academic research. It supports ad-hoc intelligence requests and configuration-driven recurring report generation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lijie012/archive-intelligence) <br>
-- [National Archives Administration of China](https://www.saac.gov.cn) <br>
-- [State Council policy database](https://www.gov.cn/zhengce/zhengceku/) <br>
-- [CNKI](https://www.cnki.net) <br>
-- [Wanfang Data](https://www.wanfangdata.com.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, shell commands, guidance] <br>
-**Output Format:** [Markdown reports with JSON configuration examples and scheduling commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated reports include collection time, selected sources, keywords, categorized findings, and source links when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The examples encourage creating recurring Windows scheduled tasks or cron jobs, which can cause ongoing automatic execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only create scheduled tasks after explicitly confirming the desired schedule, script path, config path, and removal procedure.
+
+Risk: The bundled script is identified by server security guidance as syntactically broken and not actually collecting intelligence.
+
+Mitigation: Review and test the script before use, and treat generated reports as templates unless collection behavior has been verified.
+
+Risk: Archive-sector intelligence summaries may include stale, inaccurate, copyrighted, or sensitive information from external sources.
+
+Mitigation: Prefer official sources, preserve links and publication dates, verify important claims, and avoid collecting or redistributing confidential material.
+
+## Reference(s):
+
+- [Skill page](https://clawhub.ai/lijie012/skills/archive-intelligence)
+- [Publisher profile](https://clawhub.ai/user/lijie012)
+- [State Archives Administration of China](https://www.saac.gov.cn)
+- [Government policy database](https://www.gov.cn/zhengce/zhengceku/)
+- [CNKI](https://www.cnki.net)
+- [Wanfang Data](https://www.wanfangdata.com.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown reports, JSON configuration examples, and command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write generated Markdown reports to configured local output directories when the bundled script is run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

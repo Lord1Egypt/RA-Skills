@@ -1,38 +1,53 @@
-## Description: <br>
-A fix is proposed without first identifying the root cause; the symptom is masked rather than resolved. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A fix is proposed without first identifying the root cause; the symptom is masked rather than resolved.
 
-## Publisher: <br>
-[mvogt99](https://clawhub.ai/user/mvogt99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mvogt99](https://clawhub.ai/user/mvogt99)
 
-## Use Case: <br>
-Developers and engineers use this skill during bug-fix review to check whether a proposed change explains the root cause, links the cause to the symptom, and addresses the cause rather than masking it. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bug-fix guidance can be applied too rigidly when an urgent downstream patch is necessary. <br>
-Mitigation: Use the skill's own guidance to document when an upstream fix is out of reach and why the downstream patch is acceptable. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to avoid superficial bug fixes by first stating the root cause, explaining how the symptom follows, and confirming that the fix addresses the cause.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mvogt99/bugfix-without-diagnosis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; provides concise review guidance for diagnosing bug-fix root causes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can shape bug-fix recommendations even when the available evidence is incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the agent to state the root cause and cause-to-symptom chain before accepting proposed code changes.
+
+Risk: A downstream patch may still be proposed when the upstream cause is out of reach.
+
+Mitigation: Document why the upstream fix is not feasible and leave a comment linking the symptom to the cause.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mvogt99/skills/bugfix-without-diagnosis)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown guidance with concise diagnostic reasoning and code-review recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompts the agent to state root cause, trace cause to symptom, and justify any downstream patch.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

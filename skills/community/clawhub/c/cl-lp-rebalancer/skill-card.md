@@ -1,46 +1,61 @@
-## Description: <br>
-Automates Uniswap V3 concentrated-liquidity LP rebalancing on EVM L2 chains using volatility-adaptive ranges, trend-aware asymmetry, and OnchainOS-driven claim, redeem, swap, and deposit actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uniswap V3 concentrated-liquidity LP automation skill that uses volatility-adaptive range sizing, trend-aware asymmetric ranges, and an onchainos-driven claim, remove, swap, and deposit workflow for EVM L2 LP management.
 
-## Publisher: <br>
-[synththoughts](https://clawhub.ai/user/synththoughts) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[synththoughts](https://clawhub.ai/user/synththoughts)
 
-## Use Case: <br>
-Developers and advanced DeFi operators use this skill to configure and run an agent-assisted Uniswap V3 LP rebalancer that monitors prices, computes ranges, manages positions, and reports portfolio status and performance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate an automated trading bot with live wallet authority. <br>
-Mitigation: Use a dedicated limited-funds wallet, verify behavior manually with read-only/status commands first, and enable scheduled execution only after reviewing the configured pool and wallet permissions. <br>
-Risk: The skill can send notifications and query balances across external services when those settings or credentials are present. <br>
-Mitigation: Configure Discord, Telegram, Binance, and Hyperliquid variables only when those integrations are intended, and avoid shared notification destinations for private portfolio data. <br>
-Risk: Automated swaps, liquidity removal, and deposits can lose funds through market movement, slippage, gas costs, or failed transactions. <br>
-Mitigation: Keep slippage, gas, stop-loss, rebalance-frequency, and circuit-breaker controls enabled, and monitor state after initial deployment and failed rebalance attempts. <br>
+## Use Case:
 
+External users and agent operators use this skill to monitor and rebalance Uniswap V3 concentrated-liquidity positions on EVM L2 networks. It supports pool setup, position status, market analysis, scheduled rebalancing, daily reporting, and manual close or reset workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/synththoughts/cl-lp-rebalancer) <br>
-- [README](README.md) <br>
-- [Range Algorithm Documentation](references/range-algorithm.md) <br>
-- [Reference configuration](references/config.json) <br>
-- [Rebalancer implementation](references/cl_lp.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands and structured JSON notification blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May perform live wallet-changing DeFi actions when configured with credentials; status output can use a five-minute cache.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.9.2 (source: evidence release metadata and skill frontmatter) <br>
+Risk: The skill can move funds through unattended DeFi operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated wallet with limited funds and avoid unattended cron execution until transaction validation and confirmation gates are reviewed.
+
+Risk: Wallet approvals and credentials may create broad exposure if reused across accounts or left active after testing.
+
+Mitigation: Provide only dedicated least-privilege credentials, use a dedicated wallet, and revoke token allowances after testing.
+
+Risk: Dry-run mode should not be treated as a complete safety boundary for live trading workflows.
+
+Mitigation: Review generated transactions and operational settings before enabling live execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/synththoughts/skills/cl-lp-rebalancer)
+- [README.md](README.md)
+- [range-algorithm.md](references/range-algorithm.md)
+- [config.json](references/config.json)
+- [test_triggers.py](references/test_triggers.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions, shell commands, configuration JSON, terminal text, and structured JSON events with optional notification payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces status summaries, analysis reports, rebalance decisions, risk alerts, daily reports, and command guidance for onchainos-based LP workflows.]
+
+## Skill Version(s):
+
+3.9.2 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

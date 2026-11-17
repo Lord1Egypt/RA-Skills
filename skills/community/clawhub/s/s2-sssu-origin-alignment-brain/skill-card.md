@@ -1,45 +1,63 @@
-## Description: <br>
-S2 Spatial Twin & Origin Alignment Brain. Hybrid Python-Runtime skill enforcing Z-axis reduction and mandatory 2D grid translation via the main entrance anchor. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+S2 Spatial Twin & Origin Alignment Brain. Hybrid Python-Runtime skill enforcing Z-axis reduction and mandatory 2D grid translation via the main entrance anchor.
 
-## Publisher: <br>
-[spacesq](https://clawhub.ai/user/spacesq) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spacesq](https://clawhub.ai/user/spacesq)
 
-## Use Case: <br>
-Developers and robotics or smart-space teams use this skill to align a local SLAM coordinate frame to an S2 main-entrance anchor and obtain JSON responses for grid alignment, access visa requests, navigation steps, and sandboxed spatial simulation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+S2-SWM Custom License Agreement (S2-CLA)
 
-## Known Risks and Mitigations: <br>
-Risk: The skill combines origin alignment with robotics control-plane behavior. <br>
-Mitigation: Review behavior before use and keep evaluation isolated from real robots and home devices until operator approval gates are added. <br>
-Risk: The skill can handle sensor, geolocation, and spatial-state data. <br>
-Mitigation: Define scoped network access plus privacy and retention rules before deployment. <br>
-Risk: Safety paths may affect navigation halt or control decisions. <br>
-Mitigation: Add tests that confirm the intended safety paths run before connecting the skill to physical devices. <br>
+## Use Case:
 
+Developers and engineers use this skill to align heterogeneous robot SLAM coordinates to an S2 smart-space doorway anchor, request access visas, and simulate or evaluate navigation steps in a spatial digital twin. Security evidence says it should be treated as research/demo code until reviewed and hardened for real robots, smart-home systems, or fleet-control workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/spacesq/s2-sssu-origin-alignment-brain) <br>
-- [Publisher profile](https://clawhub.ai/user/spacesq) <br>
-- [S2-SWM Indoor Spatial Frame Alignment & Origin Anchoring Specification](docs/s2-sssu-origin-alignment-whitepaper.md) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, text, configuration, guidance] <br>
-**Output Format:** [JSON strings returned by local Python tool actions, with human-readable status and instruction fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include a 2D transform matrix, WGS84 anchor data, visa status, generated spatial state, or navigation halt status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.5 (source: server release metadata, SKILL.md frontmatter, openclaw.plugin.json, CHANGELOG top entry released 2026-04-24) <br>
+Risk: Robotics and navigation control logic may produce unsafe authorization, peer-verification, or navigation-success decisions before review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in isolated test environments and not in real robot, smart-home, or fleet-control workflows until navigation fails closed and visa and peer-signature handling are cryptographically scoped.
+
+Risk: Host-agent directives and executable packaging can affect agent behavior if loaded directly into an agent runtime.
+
+Mitigation: Review and remove host-agent directives before deployment, and validate the executable entry point in a sandbox.
+
+Risk: Synthetic sensor or simulation output may be mistaken for real-world observations.
+
+Mitigation: Label synthetic sensors and simulation-only outputs, and gate physical actuation behind independent runtime safety checks.
+
+Risk: Dependencies and local-network access require operational hardening.
+
+Mitigation: Lock dependency versions and keep network permissions restricted to localhost and the dedicated S2 Swarm VLAN stated in package metadata.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/spacesq/skills/s2-sssu-origin-alignment-brain)
+- [Taohuayuan World Model Whitepaper](docs/s2-sssu-origin-alignment-whitepaper.md)
+- [README](README.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Guidance, Configuration]
+
+**Output Format:** [JSON string responses from executable tool calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Actions include ALIGN_SPATIAL_GRID, REQUEST_VISA, NAVIGATE_STEP, and TRIGGER_MICRO_SIMULATION; S2_SWARM_PKI_ROOT is required for swarm PKI configuration.]
+
+## Skill Version(s):
+
+1.2.5 (source: frontmatter, openclaw.plugin.json, CHANGELOG released 2026-04-24)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

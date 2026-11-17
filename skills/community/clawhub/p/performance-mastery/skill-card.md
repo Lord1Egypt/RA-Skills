@@ -1,59 +1,77 @@
-## Description: <br>
-Performance Mastery helps agents diagnose and tune Linux, container, and application performance across CPU, memory, disk, network, kernel, compiler, and language runtimes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performance Mastery helps agents diagnose and tune Linux system, container, Kubernetes, and application performance across CPU, memory, disk I/O, networking, kernel parameters, compiler optimization, eBPF tracing, benchmarking, and major programming languages.
 
-## Publisher: <br>
-[husttsq](https://clawhub.ai/user/husttsq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[husttsq](https://clawhub.ai/user/husttsq)
 
-## Use Case: <br>
-Developers, SREs, and performance engineers use this skill to investigate system slowdowns, resource bottlenecks, runtime hotspots, benchmark regressions, and tuning options before applying measured changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may suggest privileged Linux performance changes that persist across reboots or affect the whole system. <br>
-Mitigation: Review every /etc, /sys, /proc, systemd, udev, fstab, and sysctl change before running it; record current values and prepare rollback steps. <br>
-Risk: Copy-paste diagnostic or tuning commands may be unsafe as defaults for production systems. <br>
-Mitigation: Treat commands as examples, test in staging first, and apply one measured change at a time. <br>
-Risk: Load tests, benchmarks, snapshots, and diagnostic dumps may disrupt services or expose sensitive operational data. <br>
-Mitigation: Run production load tests only with approval and protect collected snapshots, benchmark output, and diagnostic dumps. <br>
+## Use Case:
 
+Developers, SREs, platform engineers, and performance engineers use this skill to collect baselines, interpret performance tool output, identify bottlenecks, propose tuning changes, and validate changes with benchmark comparisons. It is suited to Linux hosts, containers, Kubernetes workloads, and applications written in Python, Go, Java, Rust, C/C++, or Node.js.
 
-## Reference(s): <br>
-- [Performance Mastery release page](https://clawhub.ai/husttsq/performance-mastery) <br>
-- [Benchmarking tools](references/benchmarking.md) <br>
-- [C/C++ performance analysis and optimization](references/c_cpp_performance.md) <br>
-- [Linux performance case studies](references/case_studies.md) <br>
-- [Compiler optimization](references/compile_optimization.md) <br>
-- [Container and Kubernetes performance](references/container_k8s.md) <br>
-- [CPU performance](references/cpu.md) <br>
-- [Disk I/O tuning](references/disk_io.md) <br>
-- [eBPF and bpftrace](references/ebpf_bpftrace.md) <br>
-- [Go performance](references/go_performance.md) <br>
-- [Java performance](references/java_performance.md) <br>
-- [Kernel parameters](references/kernel_params.md) <br>
-- [Memory performance](references/memory.md) <br>
-- [Network tuning](references/network.md) <br>
-- [Node.js performance](references/nodejs_performance.md) <br>
-- [Python performance](references/python_performance.md) <br>
-- [Rust performance](references/rust_performance.md) <br>
-- [Performance tool output guide](references/tool_output_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, diagnostic checklists, configuration snippets, and benchmark comparison guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose privileged Linux, container, sysctl, systemd, udev, fstab, and benchmark commands that require human review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.8.1 (source: server release metadata; artifact frontmatter reports 3.8.0) <br>
+Risk: Administrator-level tuning commands can permanently alter Linux host behavior or reduce service stability.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Begin with read-only diagnostics, test one change at a time outside production, record original values, and keep rollback commands ready.
+
+Risk: Persistent changes to /etc, systemctl, udev, cron, fstab, or sysctl configuration can survive restarts and be hard to unwind during incidents.
+
+Mitigation: Avoid persistent configuration changes on production hosts without backups, a reviewed change plan, and a tested rollback path.
+
+Risk: Benchmark and load-generation examples such as fio, sysbench, iperf3, and wrk can stress systems or affect shared environments.
+
+Mitigation: Run benchmarks against isolated test targets or agreed maintenance windows, and bound duration, concurrency, and data paths.
+
+Risk: Downloaded or external profiling tools can introduce supply-chain risk.
+
+Mitigation: Pin versions and verify downloads before installing or running profiling tools.
+
+## Reference(s):
+
+- [CPU Tuning Reference](references/cpu.md)
+- [Memory Tuning Reference](references/memory.md)
+- [Disk I/O Tuning Reference](references/disk_io.md)
+- [Network Tuning Reference](references/network.md)
+- [Kernel Parameter Quick Reference](references/kernel_params.md)
+- [Container and Kubernetes Performance Tuning](references/container_k8s.md)
+- [eBPF, bpftrace, and BCC Advanced Tracing](references/ebpf_bpftrace.md)
+- [Benchmarking Toolkit](references/benchmarking.md)
+- [Compiler Optimization Reference](references/compile_optimization.md)
+- [Performance Tool Output Guide](references/tool_output_guide.md)
+- [Linux Performance Case Studies](references/case_studies.md)
+- [Python Performance Guide](references/python_performance.md)
+- [Go Performance Guide](references/go_performance.md)
+- [Java Performance Guide](references/java_performance.md)
+- [Rust Performance Guide](references/rust_performance.md)
+- [C/C++ Performance Guide](references/c_cpp_performance.md)
+- [Node.js Performance Guide](references/nodejs_performance.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with diagnostic explanations, report tables, and inline shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose administrator-level Linux tuning commands and validation or rollback steps; review commands before execution.]
+
+## Skill Version(s):
+
+3.8.1 (source: ClawHub release metadata; artifact frontmatter says 3.8.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,60 @@
-## Description: <br>
-Queries JD International logistics tracking data and supply-chain or cross-border parcel performance indicators for OpenClaw agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+JD International Logistics data query skill for shipment tracking, international supply-chain operating metrics, and cross-border small-parcel experience metrics.
 
-## Publisher: <br>
-[jdl-external-skills](https://clawhub.ai/user/jdl-external-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jdl-external-skills](https://clawhub.ai/user/jdl-external-skills)
 
-## Use Case: <br>
-External logistics and operations users use this skill to check international shipment tracking details, supply-chain operating metrics, and cross-border parcel fulfillment performance. Agents use it to map natural-language requests to supported parameters, run the bundled Node.js query scripts, and summarize returned logistics data without fabricating missing values. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Token-backed API calls can expose sensitive logistics credentials if the token is over-privileged, logged, or reused outside this skill. <br>
-Mitigation: Use a dedicated, least-privilege JD logistics token, keep it in the runtime environment rather than prompts or shared files, and rotate it after exposure or publisher changes. <br>
-Risk: The bundled scripts disable TLS certificate verification, which weakens protection for shipment and operations data sent to external APIs. <br>
-Mitigation: Remove rejectUnauthorized:false and require normal certificate validation before using real shipment, customer, or business data. <br>
-Risk: Shipment identifiers and operations metrics are sent to JD/Ochama API endpoints during lookups. <br>
-Mitigation: Confirm what data categories are approved for these APIs and avoid submitting restricted customer or shipment data until the maintainer documents data handling expectations. <br>
+## Use Case:
 
+External logistics operators and developers use this skill to query JD international shipment traces, supply-chain operations indicators, and cross-border small-parcel experience indicators through OpenClaw agents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jdl-external-skills/i-logisitics-skill) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/jdl-external-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command templates and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a JD logistics token in the runtime environment and returns shipment or operations data from external JD/Ochama APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill uses JD logistics tokens to call external logistics APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only narrowly scoped tokens, avoid storing secrets in shared user profiles or ~/.env, and rotate credentials if exposure is suspected.
+
+Risk: The bundled security evidence flags TLS bypass behavior as a production concern.
+
+Mitigation: Restore certificate verification before production deployment and review outbound API endpoints during installation.
+
+Risk: Command templates accept user-supplied query values.
+
+Mitigation: Validate and quote user-provided values before command execution, and do not run templates with raw user input.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jdl-external-skills/skills/i-logisitics-skill)
+- [Setup guide](artifact/README.md)
+- [Logistics trace skill documentation](artifact/skills/joy-logistics-trace/SKILL.md)
+- [Logistics indicator skill documentation](artifact/skills/joy-logistics-indicator/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include logistics tracking records, metric query results, command templates, and setup instructions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

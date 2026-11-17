@@ -1,40 +1,59 @@
-## Description: <br>
-Playwright CLI is a browser automation skill for controlling browsers, taking screenshots, filling forms, clicking elements, running code, managing sessions, intercepting network requests, and recording video or traces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Playwright CLI automates browser testing and web interaction through command-line controls for navigation, screenshots, form filling, clicking, code execution, session management, network interception, and video recording.
 
-## Publisher: <br>
-[chensu1234](https://clawhub.ai/user/chensu1234) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chensu1234](https://clawhub.ai/user/chensu1234)
 
-## Use Case: <br>
-Developers and AI agents use this skill to automate browser testing, web interaction, data collection, screenshots, PDF export, network interception, and session workflows through Playwright CLI commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad browser control, including stored data, uploads, page code execution, network capture, tracing, video, persistent state, and destructive session commands. <br>
-Mitigation: Use a separate browser profile and test accounts, avoid sensitive logged-in sessions, and require explicit approval before run-code, uploads, cookie or storage changes, network capture, tracing, video, persistent state, delete-data, close-all, or kill-all. <br>
-Risk: The npm package can affect local browser behavior and generated files if installed or run without verification. <br>
-Mitigation: Pin and verify the npm package before installation and review commands before execution. <br>
+## Use Case:
 
+Developers, testers, and agent builders use this skill to drive browser sessions from shell commands for web testing, data collection, screenshots, PDF export, network inspection, and repeatable UI interactions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chensu1234/playwright-cli-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON configuration examples, and generated browser artifacts such as screenshots, PDFs, traces, videos, snapshots, cookies, and storage state.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify browser session state, local files, cookies, localStorage, network routes, trace files, and video recordings depending on the invoked command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill asks users to install mutable global tooling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, reviewed package version and avoid running installation commands with elevated privileges.
+
+Risk: Browser state files, cookies, localStorage, screenshots, PDFs, traces, videos, and network logs may contain sensitive information.
+
+Mitigation: Run commands only on approved sites, avoid production authenticated sessions unless needed, and clean up generated artifacts and session data after use.
+
+Risk: The skill exposes browser controls for storage changes, network interception, code execution, and destructive session operations.
+
+Mitigation: Review planned commands before execution and scope them to intended test sessions, approved domains, and disposable browser profiles where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chensu1234/skills/playwright-cli-tool)
+- [Publisher profile](https://clawhub.ai/user/chensu1234)
+- [Playwright TodoMVC demo used in examples](https://demo.playwright.dev/todomvc/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Code, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce browser artifacts such as screenshots, PDFs, traces, videos, storage state files, and network logs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

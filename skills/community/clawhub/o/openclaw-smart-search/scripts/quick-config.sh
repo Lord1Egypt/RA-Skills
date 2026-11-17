@@ -21,7 +21,7 @@ echo "2. 配置 API Keys..."
 node -e "
 const { SecretManager } = require('./dist/src/key-manager');
 const keys = {
-  bailian: 'sk-ef1af58f5f404d8fa1cf8f059cdf7c58',
+  bailian: 'REDACTED-SECRET',
   tavily: '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',
   serper: '5fa9da861fc7ebba1498ddd80d9bb4344b62be01',
   exa: '6e2df264-282d-444e-a051-9b70717520b7',

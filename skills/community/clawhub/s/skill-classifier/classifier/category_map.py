@@ -4,7 +4,42 @@
 统一管理所有技能的分类映射，消除重复定义
 """
 from typing import Dict, Tuple
-from utils.config import CATEGORY_RULES
+import json
+import logging
+import os
+from utils.config import CATEGORY_RULES, CATEGORY_OVERLAY_FILE
+
+logger = logging.getLogger(__name__)
+
+# 用户自定义分类覆盖层缓存
+_overlay_cache: Dict[str, object] = {'mtime': None, 'data': {}}
+
+
+def load_category_overlay() -> Dict[str, Tuple[str, str]]:
+    """
+    加载用户自定义分类覆盖层 ~/.openclaw/skill_categories.json
+    格式: {"技能名": ["大类", "子类"]}，带 mtime 缓存，文件不存在时为空
+    """
+    try:
+        mtime = os.path.getmtime(CATEGORY_OVERLAY_FILE)
+    except OSError:
+        _overlay_cache['mtime'] = None
+        _overlay_cache['data'] = {}
+        return {}
+    if _overlay_cache['mtime'] == mtime:
+        return _overlay_cache['data']
+    data: Dict[str, Tuple[str, str]] = {}
+    try:
+        with open(CATEGORY_OVERLAY_FILE, 'r', encoding='utf-8') as f:
+            raw = json.load(f)
+        for k, v in raw.items():
+            if isinstance(v, (list, tuple)) and len(v) == 2:
+                data[str(k)] = (str(v[0]), str(v[1]))
+    except Exception as e:
+        logger.warning(f"读取分类覆盖层失败 {CATEGORY_OVERLAY_FILE}: {e}")
+    _overlay_cache['mtime'] = mtime
+    _overlay_cache['data'] = data
+    return data
 
 # 核心分类映射表
 # 格式: { skill_name: (大类, 子类) }
@@ -156,7 +191,7 @@ CATEGORY_MAP: Dict[str, Tuple[str, str]] = {
     "taskflow": ("系统工具", "定时任务"),
     "taskflow-inbox-triage": ("系统工具", "定时任务"),
     "verify-and-delete-multiple-agents": ("系统工具", "定时任务"),
-    "kt_skill_list_skill": ("系统工具", "定时任务"),
+    "openclaw-skill-manager": ("系统工具", "定时任务"),
     "kt_skill_model_summary": ("系统工具", "定时任务"),
     
     # ====== 系统工具 - 效率工具 ======
@@ -193,7 +228,6 @@ CATEGORY_MAP: Dict[str, Tuple[str, str]] = {
     "github": ("GitHub集成", "GitHub操作"),
     
     # ====== 消息与通信 ======
-    # ====== 消息与通信 ======
     "discord": ("消息与通信", "即时通讯"),
     "slack": ("消息与通信", "即时通讯"),
     "voice-call": ("消息与通信", "即时通讯"),
@@ -226,7 +260,12 @@ def get_category(skill_name: str) -> Tuple[str, str]:
     Returns:
         (大类, 子类)
     """
-    # 1. 精确匹配
+    # 1. 用户自定义覆盖层优先
+    overlay = load_category_overlay()
+    if skill_name in overlay:
+        return overlay[skill_name]
+
+    # 2. 精确匹配
     if skill_name in CATEGORY_MAP:
         return CATEGORY_MAP[skill_name]
     
@@ -237,14 +276,3 @@ def get_category(skill_name: str) -> Tuple[str, str]:
     
     # 3. 默认分类
     return ("其他", "其他")
-
-
-def add_to_category_map(skill_name: str, category: Tuple[str, str]):
-    """
-    动态添加分类映射（用于自动学习）
-    
-    Args:
-        skill_name: 技能名称
-        category: (大类, 子类)
-    """
-    CATEGORY_MAP[skill_name] = category

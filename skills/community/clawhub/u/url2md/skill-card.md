@@ -1,43 +1,53 @@
-## Description: <br>
-Converts HTTP or HTTPS web pages into clean, readable Markdown, with support for single-page conversion, batch conversion, frontmatter, templates, and local image downloads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+URL to Markdown converts static HTTP/HTTPS web pages into clean Markdown, with optional batch conversion, YAML frontmatter, templates, filename generation, and image downloading.
 
-## Publisher: <br>
-[rwonly](https://clawhub.ai/user/rwonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rwonly](https://clawhub.ai/user/rwonly)
 
-## Use Case: <br>
-Developers, documentation maintainers, and knowledge-base builders use this skill to convert static HTML pages into Markdown for local reference, archiving, documentation, or batch export workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches remote web content and can send URLs or embedded credentials to remote servers. <br>
-Mitigation: Only provide URLs and authentication tokens for destinations you trust; avoid secrets in URLs and prefer short-lived or least-privilege tokens. <br>
-Risk: Fetching private internal endpoints can expose sensitive network locations or content through agent-driven requests. <br>
-Mitigation: Do not fetch private internal endpoints unless the user understands what will be sent to the remote server. <br>
-Risk: Static HTML conversion does not execute JavaScript and may lose fidelity on complex, login-required, paywalled, or rate-limited pages. <br>
-Mitigation: Use the output as a readable conversion artifact and review it when page structure, access controls, or repeated requests may affect completeness. <br>
+## Use Case:
 
+Developers, technical writers, and knowledge-base maintainers use this skill to convert individual web pages or URL lists into Markdown files for documentation, archiving, notes, and static content workflows.
 
-## Reference(s): <br>
-- [URL to Markdown on ClawHub](https://clawhub.ai/rwonly/url2md) <br>
-- [rwonly ClawHub Profile](https://clawhub.ai/user/rwonly) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, guidance] <br>
-**Output Format:** [Markdown output, optional Markdown files, and CLI guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can include YAML frontmatter, templated Markdown content, resolved links, localized image references, and batch-created Markdown files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.2 (source: server release metadata and script version) <br>
+Risk: URL fetching is broad and can reach local or internal resources when supplied with crafted URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted public HTTP/HTTPS URLs only, and avoid running the skill in environments that can reach internal services, cloud metadata endpoints, or sensitive local resources.
+
+Risk: Batch mode and image downloads can trigger many outbound requests and write many files.
+
+Mitigation: Review URL lists before use, limit batch inputs, choose output directories deliberately, and use --download-images only when the remote content and destination are trusted.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rwonly/skills/url2md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text or Markdown files, optionally with YAML frontmatter and local image assets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports stdout output, single-file output, batch directory output, custom templates, generated filenames, and optional image downloads.]
+
+## Skill Version(s):
+
+2.1.2 (source: server evidence and script __version__)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

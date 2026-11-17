@@ -32,7 +32,7 @@ Scoring rationale:
 
 ## Evidence
 
-- stackexchange-stackoverflow (2026-06-07T19:06:00+00:00): [Why Rust is taking a ton of my disk space and how to make it use less](https://stackoverflow.com/questions/79952745/why-rust-is-taking-a-ton-of-my-disk-space-and-how-to-make-it-use-less)
+- stackexchange-stackoverflow (2026-06-07T19:06:00+00:00): [Why Rust is taking a ton of my disk space and how to make it use less](https://stackoverflow.com/questions/79952745/why-rust-is-taking-a-ton-of-my-diREDACTED-SECRET)
 - stackexchange-stackoverflow (2026-06-07T09:06:40+00:00): [Why is `as.logical()` much faster than `logical(0)`?](https://stackoverflow.com/questions/79952588/why-is-as-logical-much-faster-than-logical0)
 - stackexchange-softwareengineering (2026-06-03T13:34:47+00:00): [How do authors of custom URI schemas prevent confliction with those registered with IANA in the future?](https://softwareengineering.stackexchange.com/questions/461238/how-do-authors-of-custom-uri-schemas-prevent-confliction-with-those-registered-w)
 - stackexchange-stackoverflow (2026-06-12T18:32:41+00:00): [Why does C++26 add `CHAR_WIDTH` when we already have `CHAR_BIT`?](https://stackoverflow.com/questions/79957275/why-does-c26-add-char-width-when-we-already-have-char-bit)

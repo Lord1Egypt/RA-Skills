@@ -1,43 +1,63 @@
-## Description: <br>
-使用灵雀AI设计产品推广海报、信息图和PPT页面，根据用户提供的文字描述和图片素材调用灵雀AI生成营销海报、信息图和PPT页面。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+使用灵雀AI设计产品推广海报、信息图和PPT页面，根据用户提供的文字描述和图片素材调用灵雀AI的广告平面设计功能生成营销海报、信息图和PPT页面。
 
-## Publisher: <br>
-[lujiang-web](https://clawhub.ai/user/lujiang-web) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lujiang-web](https://clawhub.ai/user/lujiang-web)
 
-## Use Case: <br>
-External users and content teams use this skill to turn product, campaign, brand, or presentation requirements into design prompts and generated poster, infographic, or PPT-page image outputs through Lingque AI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles Lingque account passwords and stores the saved password with reversible obfuscation. <br>
-Mitigation: Use a dedicated Lingque account, avoid reusing important passwords, prefer environment variables when possible, and delete or protect config.json after use. <br>
-Risk: The skill may ask for SMS verification codes during registration or login. <br>
-Mitigation: Complete login directly when possible and avoid sharing SMS codes with an agent unless the user has explicitly accepted that workflow. <br>
-Risk: Design prompts and image URLs are sent to Lingque/Pinza external services. <br>
-Mitigation: Do not submit confidential prompts, unreleased product details, or private image assets unless external processing is approved. <br>
+## Use Case:
 
+Marketers, creators, designers, and business teams use this skill to turn product descriptions, campaign copy, and optional logo or image URLs into generated poster, infographic, or PPT page designs through Lingque AI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lujiang-web/poster-ppt-designer) <br>
-- [Lingque AI](https://lqai.net/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON request data and shell command examples; runtime scripts return generated image URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Lingque account credentials and optional logo image URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+Risk: Lingque AI credentials and tokens are handled by local scripts and may be exposed through configuration files, logs, or command history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use tightly permissioned local configuration or environment variables, treat config.json as sensitive, and rotate credentials or tokens if exposure is suspected.
+
+Risk: Prompts, text, logo/image URLs, and generated-design requests are sent to a third-party service.
+
+Mitigation: Avoid submitting confidential assets, regulated data, or private campaign material unless the service is approved for that data.
+
+Risk: The artifact describes collecting SMS verification codes during registration.
+
+Mitigation: Complete login or registration directly on the official service and do not share SMS verification codes with the agent.
+
+Risk: The saved password is only obfuscated and can be recovered from the included code.
+
+Mitigation: Do not treat the encoded password as secure storage; restrict file access or use short-lived credentials where possible.
+
+## Reference(s):
+
+- [Lingque AI](https://lqai.net/)
+- [ClawHub skill page](https://clawhub.ai/lujiang-web/skills/poster-ppt-designer)
+- [Publisher profile](https://clawhub.ai/user/lujiang-web)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON payload examples and shell commands; successful generation returns an image URL.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Lingque AI credentials and sends prompts, text, logo/image URLs, and generated-design requests to server.pinza.com.cn.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

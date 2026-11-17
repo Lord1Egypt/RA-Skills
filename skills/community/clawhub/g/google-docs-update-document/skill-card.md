@@ -1,40 +1,57 @@
-## Description: <br>
-Atomic node skill to update a Google Doc using the gog CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Atomic node skill to update a Google Doc using the gog CLI.
 
-## Publisher: <br>
-[zvirb](https://clawhub.ai/user/zvirb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zvirb](https://clawhub.ai/user/zvirb)
 
-## Use Case: <br>
-Developers and agents use this skill to write, insert, or replace text in an existing Google Doc through the configured gog CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify Google Docs through the user's configured gog access. <br>
-Mitigation: Before approving use, confirm the Google account, exact document ID or URL, and the text to write or replace. <br>
-Risk: Shared or sensitive documents may be changed unintentionally if the target is not verified. <br>
-Mitigation: Verify the target document and requested edit before execution. <br>
+## Use Case:
 
+Agents use this skill to write, insert, or replace text in an existing Google Doc through the gog command-line tool.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zvirb/google-docs-update-document) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Text] <br>
-**Output Format:** [Shell command with a JSON object or confirmation string] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires configured gog CLI access to Google Docs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata) <br>
+Risk: The skill can permanently change Google Docs content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the exact document ID and intended edit before running the gog command.
+
+Risk: Raw shell command construction can mishandle document text or replacement strings.
+
+Mitigation: Prefer structured argument execution or stdin/file input instead of interpolating untrusted document text into a shell command.
+
+Risk: Google Docs credentials may grant access beyond the intended document.
+
+Mitigation: Use only trusted gog credentials with the minimum access needed for the target document.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zvirb/skills/google-docs-update-document)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance, text]
+
+**Output Format:** [JSON object or confirmation string]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gog CLI and trusted Google Docs credentials.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

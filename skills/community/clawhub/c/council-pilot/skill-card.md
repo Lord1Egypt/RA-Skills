@@ -1,48 +1,70 @@
-## Description: <br>
-Council Pilot builds an expert forum from public sources, uses it to score project maturity, generates code, debugs, rescores, and can submit the resulting project to GitHub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Council Pilot is an autonomous expert-forum and project-maturity engine that distills public expert sources, builds project code, scores maturity, debugs, and iterates toward a GitHub-ready result.
 
-## Publisher: <br>
-[wd041216-bit](https://clawhub.ai/user/wd041216-bit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wd041216-bit](https://clawhub.ai/user/wd041216-bit)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn a project idea into an expert-guided build loop that researches public sources, forms an advisory council, scores maturity, generates code, verifies the result, and prepares a GitHub submission. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can autonomously research online, edit repositories, run shell commands, and potentially publish a GitHub pull request. <br>
-Mitigation: Run it in a sandbox or disposable branch, review generated files and build logs, and require manual confirmation before git push or PR creation. <br>
-Risk: Generated repository changes or logs could accidentally include secrets or private details. <br>
-Mitigation: Review all generated files and build logs for secrets or private information before deployment or publication. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn an idea or domain brief into an expert-guided project build loop with research, scoring, debugging, maturity reporting, and optional GitHub PR submission.
 
-## Reference(s): <br>
-- [Council Pilot ClawHub page](https://clawhub.ai/wd041216-bit/council-pilot) <br>
-- [Project homepage from ClawHub metadata](https://github.com/wd041216-bit/council-pilot) <br>
-- [Build Integration](references/build-integration.md) <br>
-- [Council Protocol](references/council-protocol.md) <br>
-- [GitHub Submission](references/github-submission.md) <br>
-- [Loop State Machine](references/loop-state-machine.md) <br>
-- [Expert Profile Contract](references/profile-contract.md) <br>
-- [Maturity Scoring Rubric](references/scoring-rubric.md) <br>
-- [Source Gates](references/source-gates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance, JSON state and report files, code changes, shell commands, and GitHub PR metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May edit repositories, run verification commands, and prepare or create GitHub pull requests depending on the active agent permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can autonomously change repository files and generate project code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in repositories where autonomous edits are acceptable, review diffs before accepting changes, and require approval before file writes in sensitive workspaces.
+
+Risk: The workflow can create commits, push branches, and open GitHub PRs.
+
+Mitigation: Require manual approval before git commits, pushes, or PR creation, and review the generated maturity report before submission.
+
+Risk: Forum state, build logs, and generated reports may persist private paths, secrets, or unwanted source-derived content.
+
+Mitigation: Inspect generated data and logs before committing or sharing them, and scan for secrets, private code, internal paths, and inappropriate source-derived content.
+
+Risk: Expert profiles are distilled from public sources and may overstate, misattribute, or stale-date an expert's views.
+
+Mitigation: Treat expert profiles as analysis lenses, preserve source links and freshness metadata, avoid fabricated quotes, and prefer current project evidence over distilled expert memory.
+
+## Reference(s):
+
+- [Council Pilot ClawHub page](https://clawhub.ai/wd041216-bit/skills/council-pilot)
+- [Council Pilot repository](https://github.com/wd041216-bit/council-pilot)
+- [README](artifact/README.md)
+- [Build Integration](artifact/references/build-integration.md)
+- [Council Protocol](artifact/references/council-protocol.md)
+- [GitHub Submission](artifact/references/github-submission.md)
+- [Loop State Machine](artifact/references/loop-state-machine.md)
+- [Expert Profile Contract](artifact/references/profile-contract.md)
+- [Maturity Scoring Rubric](artifact/references/scoring-rubric.md)
+- [Source Gates](artifact/references/source-gates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands, generated code, JSON state files, Markdown reports, and GitHub PR metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces and updates repository files, forum state, expert profiles, scoring reports, gap analyses, build logs, maturity reports, and optional GitHub branch/PR records.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release, target metadata, frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

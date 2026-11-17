@@ -1,42 +1,51 @@
-## Description: <br>
-Aggiornamenti sportivi in tempo reale tramite TheSportsDB e API-Football. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides real-time sports updates through TheSportsDB and API-Football.
 
-## Publisher: <br>
-[jakah2551](https://clawhub.ai/user/jakah2551) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jakah2551](https://clawhub.ai/user/jakah2551)
 
-## Use Case: <br>
-External users and agents use this skill to look up live scores, today's matches, recent results, upcoming team fixtures, and team or player search results across supported sports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs an included Python script and makes network requests to external sports APIs. <br>
-Mitigation: Install only in environments where Python execution and outbound requests to TheSportsDB and API-Football are acceptable. <br>
-Risk: Football-specific commands require a private API-Football key. <br>
-Mitigation: Treat the key as sensitive, do not ask the agent to print it, and rotate it if exposed. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve live scores, today's fixtures, upcoming matches, recent team results, and team or player search results across supported sports. Football-specific live and daily fixture lookups can use API-Football when the user provides an API key.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jakah2551/sports-live) <br>
-- [TheSportsDB API endpoint](https://www.thesportsdb.com/api/v1/json/1/) <br>
-- [API-Football registration](https://dashboard.api-football.com/register) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style text with command-backed sports results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results depend on live responses from TheSportsDB and API-Football; football-specific commands require a private API-Football key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: API-Football commands accept an API key as a command-line argument, which can expose that key in local process metadata or command logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the TheSportsDB-only commands when possible; for API-Football, prefer a version that reads the key from a safer secret mechanism and avoid echoing or persisting the key.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jakah2551/skills/sports-live)
+- [TheSportsDB API endpoint](https://www.thesportsdb.com/api/v1/json/1/)
+- [API-Football registration](https://dashboard.api-football.com/register)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown or plain text with sports results and brief command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3; optional API-Football commands require a user-provided API key.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

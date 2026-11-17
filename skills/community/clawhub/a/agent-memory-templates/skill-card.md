@@ -1,43 +1,56 @@
-## Description: <br>
-Production-tested memory templates for AI agents. Includes SOUL.md personality templates, memory checkpoint patterns, observational memory configs, and 100 power prompts. From the creators of ClawVault. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Production-tested memory templates for AI agents. Includes SOUL.md personality templates, memory checkpoint patterns, observational memory configs, and 100 power prompts. From the creators of ClawVault.
 
-## Publisher: <br>
-[G9Pedro](https://clawhub.ai/user/G9Pedro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[g9pedro](https://clawhub.ai/user/g9pedro)
 
-## Use Case: <br>
-Developers and agent builders use this skill as a set of memory templates, checkpoint patterns, session handoff formats, context recovery notes, and decision logs for AI agent workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The linked ClawVault CLI and external paid or free content were not reviewed as part of this package. <br>
-Mitigation: Review external tools, checkout pages, and downloaded materials separately before installing, purchasing, or relying on them. <br>
-Risk: Memory templates and example commands may encourage saving sensitive information for later agent sessions. <br>
-Mitigation: Avoid storing secrets, credentials, private customer data, or other information that should not be reused in future sessions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/G9Pedro/agent-memory-templates) <br>
-- [ClawVault](https://clawvault.dev) <br>
-- [Versatly Store](https://store.versatlygroup.com) <br>
-- [Free Cheat Sheet](https://cheatsheet.versatlygroup.com) <br>
-- [Free Prompt Preview](https://prompts.versatlygroup.com) <br>
+## Use Case:
 
+Developers and agent builders use this skill to apply reusable memory templates, handoff patterns, recovery notes, and decision logging formats to AI-agent workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and external links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only package; no bundled executable code.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Using the linked ClawVault workflow may involve providing sensitive project, business, or personal task details.
+
+Mitigation: Review task details before use and avoid sharing confidential or personal information unless the destination is approved for that data.
+
+Risk: The skill links to third-party purchase, cheat-sheet, and prompt-preview destinations.
+
+Mitigation: Treat external links as third-party destinations and review them before purchase, signup, or data submission.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/g9pedro/skills/agent-memory-templates)
+- [ClawVault](https://clawvault.dev)
+- [Versatly Store](https://store.versatlygroup.com)
+- [Free Cheat Sheet](https://cheatsheet.versatlygroup.com)
+- [Free Prompt Preview](https://prompts.versatlygroup.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides template guidance and example ClawVault commands; no executable code is bundled.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

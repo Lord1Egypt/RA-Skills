@@ -1,45 +1,61 @@
-## Description: <br>
-Zero Token helps OpenClaw agents use a Free-Way fallback gateway so free-tier LLM providers can take over when a primary model fails or token budget is exhausted. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zero Token configures an OpenClaw fallback through the Free-Way gateway so an agent can continue on free-tier LLM providers when its primary model fails or token budget is exhausted.
 
-## Publisher: <br>
-[mtmpss](https://clawhub.ai/user/mtmpss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtmpss](https://clawhub.ai/user/mtmpss)
 
-## Use Case: <br>
-Developers and agent operators use Zero Token to configure OpenClaw fallback behavior through a local Free-Way gateway when a primary LLM is unavailable or quota-limited. It is most relevant for agents where continuity matters and operators can manage provider API keys and data-routing choices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts may be routed to third-party free-tier LLM providers during fallback, each with its own privacy and retention terms. <br>
-Mitigation: Review the configured providers before use, avoid sensitive or regulated prompts unless all provider terms are acceptable, and inform operators and affected users when fallback providers may be used. <br>
-Risk: The setup flow requires API keys and installs the third-party Free-Way gateway from a pinned external project. <br>
-Mitigation: Review the setup script and pinned Free-Way commit before installing, and use disposable or free-tier provider keys rather than production credentials. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add a local fallback endpoint for OpenClaw so work can continue when a primary model is unavailable or out of tokens.
 
-## Reference(s): <br>
-- [Zero Token ClawHub Page](https://clawhub.ai/mtmpss/zero-token) <br>
-- [Zero Token Homepage](https://github.com/mtmpss/zero-token) <br>
-- [Free-Way Gateway](https://github.com/GoDiao/Free-Way) <br>
-- [I-Lang Protocol](https://ilang.ai) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [Poor Man's Opus](https://github.com/mtmpss/poor-mans-opus) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes setup and operator guidance for configuring fallback LLM providers and API keys.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The local fallback gateway can receive fallback prompts and provider API keys.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use disposable or tightly scoped free-tier keys, review each provider's terms, and avoid confidential workloads unless the gateway and providers have been approved.
+
+Risk: The setup script installs and runs a third-party gateway locally.
+
+Mitigation: Review the pinned Free-Way source and commit before running setup, and keep the gateway bound to localhost unless a separate network review approves broader exposure.
+
+Risk: The bundled SOUL behavior instructions are broad for a fallback utility.
+
+Mitigation: Inspect, narrow, or remove global behavior instructions before deployment if the host agent already has its own behavior, security, or policy controls.
+
+## Reference(s):
+
+- [Zero Token ClawHub listing](https://clawhub.ai/mtmpss/skills/zero-token)
+- [Zero Token homepage](https://github.com/mtmpss/zero-token)
+- [Free-Way gateway](https://github.com/GoDiao/Free-Way)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [I-Lang protocol](https://ilang.ai)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Configures a local fallback gateway and provider keys outside the skill card generation flow.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

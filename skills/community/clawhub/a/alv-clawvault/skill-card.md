@@ -1,45 +1,62 @@
-## Description: <br>
-Agent memory system with graph-aware context profiles, checkpoint/recover, semantic search, and structured markdown storage for managing session knowledge locally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawVault is an agent memory system with a memory graph, context profiles, checkpoint and recovery workflows, structured storage, semantic search, and observational memory.
 
-## Publisher: <br>
-[alvisdunlop](https://clawhub.ai/user/alvisdunlop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alvisdunlop](https://clawhub.ai/user/alvisdunlop)
 
-## Use Case: <br>
-Developers and agent operators use this skill to store and retrieve agent memories, checkpoint work, recover context after interrupted sessions, and configure OpenClaw memory workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on external CLI and hook code that was not included in the reviewed artifact. <br>
-Mitigation: Inspect the installed npm package and OpenClaw hook handler locally before enabling hooks, and pin package versions where possible. <br>
-Risk: Persistent hooks and repair workflows can access or modify OpenClaw session transcripts. <br>
-Mitigation: Enable hooks only after review, keep backups enabled for transcript repair, and run diagnostics before relying on runtime integration. <br>
-Risk: Memory files and transcript observations may contain sensitive information. <br>
-Mitigation: Set an explicit CLAWVAULT_PATH, avoid storing secrets in memories, and use compression only for transcripts that may be sent to the configured LLM provider. <br>
+## Use Case:
 
+Developers and agent operators use this skill to store, search, recover, and retrieve structured session memory for OpenClaw workflows. It is intended for graph-aware context retrieval, checkpointing, handoff continuity, semantic memory search, and transcript repair rather than general file I/O.
 
-## Reference(s): <br>
-- [ClawVault homepage](https://clawvault.dev) <br>
-- [ClawVault npm package](https://www.npmjs.com/package/clawvault) <br>
-- [qmd dependency](https://github.com/tobi/qmd) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local markdown memory files and OpenClaw hook configuration when the referenced CLI and hooks are installed and run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 2.5.11) <br>
+Risk: The installation flow can fetch unpinned external code for the CLI and qmd dependency.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin exact package versions and review package metadata before installing.
+
+Risk: The OpenClaw lifecycle hook can run during gateway, command, session, compaction, and cron events, while the hook source is not included in the published bundle.
+
+Mitigation: Install the hook without enabling it, inspect the locally installed hook source, then enable it only after review.
+
+Risk: Transcript repair and observe compression can access local session transcripts, and observe compression may use an API key for LLM calls.
+
+Mitigation: Use transcript repair only with backups enabled and use observe compression only when local transcript and optional API-key exposure are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alvisdunlop/skills/alv-clawvault)
+- [ClawVault homepage](https://clawvault.dev)
+- [ClawVault npm package](https://www.npmjs.com/package/clawvault)
+- [ClawVault GitHub repository](https://github.com/Versatly/clawvault)
+- [OpenClaw](https://openclaw.ai)
+- [qmd dependency](https://github.com/tobi/qmd)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to install and run local CLI tools, configure environment variables, inspect lifecycle hooks, and manage local memory files.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter reports 2.5.11)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,61 @@
-## Description: <br>
-Automatically downloads the latest video, multiple recent videos, or metadata from a public TikTok account using yt-dlp. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically downloads the latest video, multiple recent videos, or metadata from a public TikTok account or direct TikTok video URL using yt-dlp.
 
-## Publisher: <br>
-[stoxca](https://clawhub.ai/user/stoxca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[stoxca](https://clawhub.ai/user/stoxca)
 
-## Use Case: <br>
-Developers and external users use this skill to retrieve public TikTok videos or video metadata from an account or direct video URL. It supports single-video downloads, recent-video batches, metadata-only checks, and output-file confirmation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can run yt-dlp commands that download media and write files to the local filesystem. <br>
-Mitigation: Review target accounts, output directories, and generated commands before execution; use an isolated workspace for downloads. <br>
-Risk: The documented install commands can modify the host environment, including system Python packages or ffmpeg installation. <br>
-Mitigation: Prefer a virtual environment or container and require explicit approval before installing or updating packages. <br>
-Risk: Cookie-based downloads can expose active browser session tokens through browser cookie export or cookies.txt files. <br>
-Mitigation: Use cookies only when required, keep cookie files private, never commit or share them, and delete them after use. <br>
-Risk: Advanced options include proxies, geo-bypass, custom headers, and authentication that can change privacy, policy, or compliance exposure. <br>
-Mitigation: Require explicit user approval before authenticated downloads, proxy use, geo-bypass, or custom request headers. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stoxca/downloader-tiktok-videos) <br>
-- [Advanced Techniques](advanced.md) <br>
+## Use Case:
 
+External users and developers use this skill to retrieve public TikTok videos, bulk-download recent posts, or collect video metadata for archiving and content workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional Python command usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local MP4 media files, metadata JSON, archive files, and file-path confirmations when commands are executed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata and _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can use browser-session cookies or cookies.txt files that act like active account credentials.
+
+Mitigation: Keep cookie files private, avoid sharing or committing them, delete them after use, and prefer isolated environments when authenticated access is required.
+
+Risk: The skill can make network requests to TikTok through yt-dlp and write downloaded content to local storage.
+
+Mitigation: Review targets before execution, choose an explicit output directory, and run downloads in an environment where local file writes and network access are acceptable.
+
+Risk: Bypass, proxy, and geo-bypass guidance can be misused to evade platform restrictions.
+
+Mitigation: Use the skill only for authorized content retrieval and do not apply bypass or proxy options to circumvent access controls or platform terms.
+
+Risk: Installing or updating host tools such as yt-dlp or ffmpeg can modify the runtime environment.
+
+Mitigation: Review installation commands before running them, prefer pinned dependencies, and use a virtual environment or container where practical.
+
+## Reference(s):
+
+- [Advanced Techniques](artifact/advanced.md)
+- [ClawHub skill page](https://clawhub.ai/stoxca/skills/downloader-tiktok-videos)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Code, Files, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, Python helper usage, metadata text, JSON metadata files, and downloaded media files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires yt-dlp; ffmpeg is optional but needed for some audio/video merging workflows.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

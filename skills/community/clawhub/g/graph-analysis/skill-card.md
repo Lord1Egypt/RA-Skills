@@ -1,41 +1,53 @@
-## Description: <br>
-Analyze graphs and networks using Python NetworkX - centrality, shortest paths, community detection, and visualization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze graphs and networks using Python NetworkX -- centrality, shortest paths, community detection, and visualization.
 
-## Publisher: <br>
-[owenciantar](https://clawhub.ai/user/owenciantar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[owenciantar](https://clawhub.ai/user/owenciantar)
 
-## Use Case: <br>
-Developers, analysts, and engineers use this skill to build graphs from structured data, calculate network metrics, find paths and communities, and create PNG visualizations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing Python dependencies into system Python can affect the host environment. <br>
-Mitigation: Install NetworkX, matplotlib, and numpy in a virtual environment before using the skill. <br>
-Risk: Graph analysis may process sensitive user-provided relationship data. <br>
-Mitigation: Only provide graph data files that are intended for analysis in the current environment. <br>
+## Use Case:
 
+Developers and analysts use this skill to build graphs from structured relationship data, compute centrality and path metrics, detect communities, and generate network visualizations.
 
-## Reference(s): <br>
-- [Graph Analysis on ClawHub](https://clawhub.ai/owenciantar/graph-analysis) <br>
-- [owenciantar publisher profile](https://clawhub.ai/user/owenciantar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation of PNG graph visualizations from user-provided graph data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The setup guidance uses unpinned Python packages and --break-system-packages, which can modify a system Python environment or make installs less reproducible.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install dependencies in an isolated virtual environment or container, avoid --break-system-packages, and pin dependency versions when reproducibility matters.
+
+Risk: Generated visualization code may write to default filenames such as graph.png or communities.png and overwrite existing files.
+
+Mitigation: Choose explicit output paths or check for existing files before saving generated visualizations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/owenciantar/skills/graph-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce PNG graph visualization files when the generated code is executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-Kuuila Game is an interactive game framework for text adventures, puzzle play, card-driven scenes, multiplayer wuxia sessions, themed story generation, and persistent endless-mode worlds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kuuila Game is a Chinese-language interactive game framework for text adventures, puzzle games, multiplayer wuxia sessions, card-driven storytelling, themed scenarios, and persistent endless-mode play.
 
-## Publisher: <br>
-[kukuxnd](https://clawhub.ai/user/kukuxnd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kukuxnd](https://clawhub.ai/user/kukuxnd)
 
-## Use Case: <br>
-External users and developers use this skill to run interactive game sessions, generate narrative game content, manage cards and turns, and maintain multiplayer or endless-mode state. It is suited to entertainment, role-play, and community game workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release metadata lists crypto and purchase capabilities that are not explained by the game framework evidence. <br>
-Mitigation: Review the capability tags with the publisher and either remove them or document why they are required before broad use. <br>
-Risk: The skill manages multiplayer and persistent game state, so incorrect commands or generated events can affect ongoing sessions. <br>
-Mitigation: Use host or administrator controls, review state-changing commands, and keep backups of persistent world data. <br>
+## Use Case:
 
+Developers and agents use this skill to run or facilitate Chinese-language interactive game sessions with state, turns, cards, scenarios, multiplayer wuxia modes, and daily endless-mode progression. It is suited for entertainment, group play, long-running shared worlds, and story-generation workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kukuxnd/kuuila-game) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
-- [Release package metadata](artifact/package.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Guidance] <br>
-**Output Format:** [Markdown-facing text with JSON-like game state objects and command responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include persistent game state, generated narrative content, command menus, and status summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: server release metadata; artifact package.json lists 3.1.0) <br>
+Risk: Shared or hosted multiplayer use may expose weak input validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Fix and test multiplayer input validation before deploying the skill in a shared game service.
+
+Risk: Artifact publishing notes contain stale OpenClaw references that are not supported by server-resolved provenance.
+
+Mitigation: Use only the server-resolved provenance status for release provenance and treat those artifact references as unverified.
+
+Risk: The skill bundles sample game state and Catholic saint/feast source text.
+
+Mitigation: Review the bundled content for suitability and rights before using it in a public or commercial game experience.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kukuxnd/skills/kuuila-game)
+- [ClawHub publisher profile](https://clawhub.ai/user/kukuxnd)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and structured text with optional JavaScript code and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language game content with bundled sample state and saint/feast records]
+
+## Skill Version(s):
+
+3.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

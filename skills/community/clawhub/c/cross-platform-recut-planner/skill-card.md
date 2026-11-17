@@ -1,41 +1,54 @@
-## Description: <br>
-Repackage one core content idea into platform-native versions for TikTok, Instagram Reels, and YouTube Shorts while adapting tone, pacing, hooks, calls to action, and production notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Repackage one core content idea into platform-native versions for TikTok, Instagram Reels, and YouTube Shorts.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-CC BY-NC-SA 4.0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Creators, marketers, and content teams use this skill to turn one source concept or short-form video idea into platform-specific scripts, edit notes, posting sequence guidance, and KPI checks for TikTok, Instagram Reels, and YouTube Shorts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC BY-NC-SA 4.0
 
-## Known Risks and Mitigations: <br>
-Risk: Source concepts, scripts, video details, or brand assets shared with the agent may contain sensitive campaign information. <br>
-Mitigation: Only provide content you are comfortable sharing with the agent, and remove confidential details before planning recuts. <br>
-Risk: The skill text states CC BY-NC-SA 4.0 non-commercial terms and requires a separate paid license for commercial use. <br>
-Mitigation: Review the license terms and obtain the required commercial permission before using the skill output in commercial workflows. <br>
+## Use Case:
 
+External creators, content teams, and marketing operators use this skill to turn one source video or concept into platform-native TikTok, Instagram Reels, and YouTube Shorts scripts with hooks, CTAs, edit notes, and posting guidance.
 
-## Reference(s): <br>
-- [Cross Platform Recut Planner on ClawHub](https://clawhub.ai/Leooooooow/cross-platform-recut-planner) <br>
-- [Recut Matrix Template](references/recut-matrix-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown production pack with platform-specific scripts, recut matrix fields, edit notes, posting sequence, and KPI check suggestions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code, shell commands, or account access are produced by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: User-provided source concepts, video details, channel goals, or constraints may contain information the user does not want broadly shared.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only content planning details that are appropriate to share with the agent and omit sensitive campaign, audience, or unpublished business information unless needed.
+
+Risk: Commercial use may be affected by the non-commercial CC BY-NC-SA terms identified in the artifact and security guidance.
+
+Mitigation: Confirm the authoritative license terms before commercial deployment and obtain any required commercial license from the rights holder.
+
+## Reference(s):
+
+- [Recut Matrix Template](references/recut-matrix-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/leooooooow/skills/cross-platform-recut-planner)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown production plan with platform-specific scripts, edit notes, posting sequence, and KPI suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the provided source concept, video details, channel goals, and constraints to produce coordinated short-form content variants.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

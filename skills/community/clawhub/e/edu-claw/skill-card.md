@@ -1,41 +1,57 @@
-## Description: <br>
-EduClaw is a multi-subject tutoring agent that routes students to English or math practice with personalized encouragement, scoring, and points. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+EduClaw is a Chinese-language tutoring router that directs learners to English and math tutor agents with encouragement, scoring, and points-based practice.
 
-## Publisher: <br>
-[xiaohuiing](https://clawhub.ai/user/xiaohuiing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaohuiing](https://clawhub.ai/user/xiaohuiing)
 
-## Use Case: <br>
-Students and parents can use this skill for elementary English and math tutoring, including vocabulary, sentence practice, calculations, word problems, feedback, and point-based motivation. The skill is intended for conversational learning support, not as a substitute for adult supervision or formal assessment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may store or remember basic child learning context such as name, grade, interests, points, and learning history. <br>
-Mitigation: Install only when this learning context is appropriate for the deployment, and avoid entering sensitive personal information. <br>
-Risk: The math authorization text should not be treated as a real access-control system. <br>
-Mitigation: Use platform-level access controls for paid or restricted subjects, and review ambiguous routing before switching subjects. <br>
+## Use Case:
 
+Students use this skill for interactive elementary English and math practice, including word or sentence exercises, calculation practice, supportive feedback, scoring, and points-based motivation. Parents and guardians should review the subject-access and profile-memory behavior before use with children.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaohuiing/edu-claw) <br>
-- [Publisher profile](https://clawhub.ai/user/xiaohuiing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Conversational text with tutoring prompts, scoring feedback, routing responses, and encouragement] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only tutoring output; no tools are declared by the included subject agents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.44.0 (source: server release metadata) <br>
+Risk: The public docs do not clearly disclose the paid or private upgrade path for additional subjects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Clearly state which subjects are free, which require authorization or payment, and what parent or guardian approval is needed before routing students to restricted subjects.
+
+Risk: The skill may remember child profile details without stated privacy controls.
+
+Mitigation: Limit stored child details to what tutoring requires, disclose retention behavior to parents or guardians, and provide review and deletion controls.
+
+Risk: Math access can trigger an authorization or contact flow.
+
+Mitigation: Make the authorization flow explicit and parent-directed before use, avoiding private contact instructions inside a child-facing tutoring exchange.
+
+## Reference(s):
+
+- [EduClaw ClawHub skill page](https://clawhub.ai/xiaohuiing/skills/edu-claw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Conversational tutoring text with practice prompts, scoring feedback, and point updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable tool output; the included agent configs declare empty tool lists.]
+
+## Skill Version(s):
+
+2.44.0 (source: server release metadata; artifact VERSION.md states 2.43.0 and README.md states v2.29.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

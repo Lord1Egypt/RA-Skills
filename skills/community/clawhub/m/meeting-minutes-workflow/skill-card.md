@@ -1,41 +1,54 @@
-## Description: <br>
-Generates structured meeting minutes from discussion notes, optionally syncs them to Feishu docs, and tracks action items. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate structured meeting minutes from discussion notes, optionally sync them to Feishu docs, and manage action items.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Teams and agents use this skill to turn meeting notes into structured Markdown minutes, optionally sync them to Feishu, and track follow-up action items. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting notes can contain confidential or personal information and may be sent to Feishu during sync. <br>
-Mitigation: Keep output local unless sync is explicitly requested, and confirm the target Feishu document owner, sharing settings, and attendee access before syncing. <br>
-Risk: Action items may be saved locally with sensitive names, deadlines, or follow-up details. <br>
-Mitigation: Confirm whether action items should be saved, choose an appropriate storage location, and omit sensitive details when local retention is not needed. <br>
+## Use Case:
 
+Employees and team leads use this skill to turn meeting notes or discussion context into formal minutes with agendas, decisions, next steps, and trackable action items.
 
-## Reference(s): <br>
-- [Meeting types reference](references/meeting-types.md) <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/meeting-minutes-workflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands] <br>
-**Output Format:** [Markdown meeting minutes, JSON action-item records, and optional shell commands for Feishu document creation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create Feishu documents when sync is requested and may save action-item records locally for follow-up tracking.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: ClawHub release metadata) <br>
+Risk: Meeting minutes can contain sensitive content that may be synced to Feishu or saved locally without clear consent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each Feishu sync and local action-item save before execution, and confirm the intended audience and sharing settings before publishing minutes.
+
+Risk: The documented Feishu shell command can be unsafe when populated with untrusted meeting text.
+
+Mitigation: Do not run the command with untrusted meeting text; use a safer argument-array or file-based workflow and inspect the rendered content before execution.
+
+## Reference(s):
+
+- [Meeting Types Reference](references/meeting-types.md)
+- [ClawHub Skill Page](https://clawhub.ai/terrycarter1985/skills/meeting-minutes-workflow)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown meeting minutes with optional JSON action-item records and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Template-driven output can include meeting metadata, agendas, decisions, attachments, next steps, and action-item status fields.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

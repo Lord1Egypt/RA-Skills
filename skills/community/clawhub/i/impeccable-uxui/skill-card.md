@@ -1,45 +1,61 @@
-## Description: <br>
-Guides agents building or reviewing UI to gather design context, apply distinctive visual direction, and use typography, color, layout, motion, interaction, responsive design, and UX writing references to avoid generic frontend output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The design language that makes AI better at frontend design, with domain-specific references, steering commands, and curated anti-patterns for building or reviewing UI.
 
-## Publisher: <br>
-[maryambahri](https://clawhub.ai/user/maryambahri) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maryambahri](https://clawhub.ai/user/maryambahri)
 
-## Use Case: <br>
-Developers, designers, and agent users use this skill when building, reviewing, auditing, or polishing frontend interfaces that need a distinctive, production-grade UX/UI direction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may direct an agent to run teach-impeccable before UI work. <br>
-Mitigation: Allow that command only when it comes from a trusted source and is appropriate for the project environment. <br>
-Risk: Project design context files can accidentally include secrets or private credentials. <br>
-Mitigation: Keep secrets and private credentials out of design context files such as .impeccable.md. <br>
+## Use Case:
 
+Developers and designers use this skill to guide AI agents toward distinctive, production-grade frontend interfaces, including stronger typography, color, layout, motion, interaction, responsive design, and UX writing choices.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/maryambahri/impeccable-uxui) <br>
-- [Homepage from metadata](https://github.com/pbakaus/impeccable) <br>
-- [Impeccable website](https://impeccable.style) <br>
-- [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/) <br>
-- [Polypane](https://polypane.app/) <br>
-- [Wakamai Fondue](https://wakamaifondue.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional code and shell-command recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask for design context and may direct the agent to use a project design context file before UI work.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can influence most UI-related work, which may steer an agent away from established product requirements or design systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated UI against the product brief, accessibility requirements, and any existing design system before shipping.
+
+Risk: The skill may ask the agent to read a project-local .impeccable.md file or invoke a context setup command when design context is missing.
+
+Mitigation: Inspect project-local design context and setup commands before relying on them in sensitive repositories.
+
+Risk: The UX-writing guidance is primarily English-language guidance and may not fit localized products.
+
+Mitigation: Adapt labels, errors, and interaction copy to the target locale and review translations with native speakers or localization tooling.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maryambahri/skills/impeccable-uxui)
+- [Impeccable homepage](https://github.com/pbakaus/impeccable)
+- [Impeccable website](https://impeccable.style)
+- [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/)
+- [Polypane](https://polypane.app/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with implementation recommendations and occasional inline commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide broad UI-related agent behavior and request project-specific design context before work begins.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

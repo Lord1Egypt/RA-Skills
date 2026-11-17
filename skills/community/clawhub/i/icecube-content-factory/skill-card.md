@@ -1,43 +1,49 @@
-## Description: <br>
-IceCube Content Factory helps agents turn a topic into platform-aware social content drafts, including hooks, threads, posts, content series, and engagement-oriented optimization guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+IceCube Content Factory helps agents turn a topic into hooks, threads, social posts, and platform-adapted content using engagement psychology.
 
-## Publisher: <br>
-[ares521521-design](https://clawhub.ai/user/ares521521-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ares521521-design](https://clawhub.ai/user/ares521521-design)
 
-## Use Case: <br>
-External users, creators, marketers, and developers use this skill to draft social media content from a topic, choose hooks and post structures, adapt tone by platform, and prepare content for review before posting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may shape broad content-writing requests toward viral social-media formats even when the user only wants ordinary drafting help. <br>
-Mitigation: Invoke it only when social content generation, hook writing, or engagement optimization is intended, and review the final framing before use. <br>
-Risk: Generated drafts or memory-style output may contain confidential campaign plans, proprietary topics, or unpublished messaging. <br>
-Mitigation: Avoid sensitive source material unless local retention is acceptable, and remove or secure generated draft files according to the user's data-handling needs. <br>
-Risk: Engagement optimization can produce clickbait, over-promising, or platform-inappropriate claims. <br>
-Mitigation: Check generated posts for substantiated claims, audience fit, and the skill's own anti-pattern guidance before publishing. <br>
+## Use Case:
 
+External creators, marketers, founders, and developers can use this skill to draft attention-focused social media content from a topic, including hooks, post structures, platform-specific formatting, content remixes, and calls to action.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ares521521-design/icecube-content-factory) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown content drafts with hooks, post structures, platform notes, and review checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use a local memory/content/YYYY-MM-DD.md draft format for generated content and later performance notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated posts may overstate claims, use unsuitable platform language, or optimize too strongly for attention.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated posts before publishing, especially platform-specific wording, hashtags, claims, engagement hooks, and localization.
+
+## Reference(s):
+
+- [ClawHub Skill Page: IceCube Content Factory](https://clawhub.ai/ares521521-design/skills/icecube-content-factory)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown and structured text with platform-specific content drafts, hooks, outlines, and optimization guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated content should be reviewed before publishing for claims, tone, localization, hashtags, and platform fit.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

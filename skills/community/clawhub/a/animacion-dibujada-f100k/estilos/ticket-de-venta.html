@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Ticket de venta</title>
+<style>
+  html,body{margin:0;background:#141210;display:grid;place-items:center;height:100vh}
+  canvas{height:100vh;width:auto;max-width:100vw}
+</style>
+</head>
+<body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script>
+// ====================== LO QUE PUEDES CAMBIAR ======================
+const ENCABEZADO = 'mesa cuatro';                     // lo más grande del ticket (máx. ~24 letras)
+const LINEAS = [                                      // los renglones que va imprimiendo (3 a 5, máx. ~50 letras c/u)
+  'el que pide lo mismo de siempre',
+  'el que pregunta si es muy grande y pide dos',
+  'el que pide la cuenta y se queda una hora más',
+];
+const TOTAL = { etiqueta: 'TOTAL', valor: '' };       // valor '' = sin renglón de total. SOLO cifras que diga el guion
+const FRASE_FINAL = 'otra vez la mesa cuatro';        // al pie del ticket ('' = nada)
+const SELLO = 'VOLVIÓ';                               // el sello que cae al final (máx. ~10 letras)
+const COLORES = {
+  pared: '#2f3a4a',     // el fondo
+  impresora: '#e9e4da', // el cuerpo de la impresora
+  papel: '#fbfaf5',
+  tinta: '#26262e',     // lo impreso
+  sello: '#d6312a',
+  luz: '#39d98a',       // el foquito mientras imprime
+};
+// ===================================================================
+
+const W = 1080, H = 1920, FPS = 30;
+</script>
+<script>
+// Tiempos: dependen de cuánto papel sale, así que se calculan antes del núcleo (DUR lo necesita).
+// El alto real se mide después; aquí basta una estimación generosa por renglón.
+const _renglones = 3 + LINEAS.reduce((a, l) => a + Math.ceil(l.length / 26), 0) + (TOTAL.valor ? 1.5 : 0) + (FRASE_FINAL ? 1.5 : 0);
+const T_IMPRIME = .45, T_IMPRIME_DUR = Math.min(3.2, .9 + _renglones * .2);
+const T_CORTE = T_IMPRIME + T_IMPRIME_DUR + .15, T_SELLO = T_CORTE + .5;
+const DUR = +(T_SELLO + .3 + 1.6).toFixed(2);
+</script>
+<script src="../nucleo/nucleo.js"></script>
+<script>
+const MONO = '"Menlo", "SF Mono", "Consolas", "Courier New", monospace';
+const SLOT = 1222;                                    // la ranura por donde sale el papel
+const PW = 720, PX = (W - PW) / 2;                    // ancho y borde izquierdo del papel
+const MAX_LARGO = SLOT - 300;                         // el papel nunca sube más allá de la zona segura
+
+// ---------- el sello: se pinta una vez, con la tinta gastada ----------
+const SELLO_C = (() => {
+  const c = document.createElement('canvas'), p = c.getContext('2d');
+  p.font = `900 10px ${LETRA_LIMPIA}`;
+  let s = 140; p.font = `900 ${s}px ${LETRA_LIMPIA}`;
+  while (p.measureText(SELLO).width > 440 && s > 60) { s -= 6; p.font = `900 ${s}px ${LETRA_LIMPIA}`; }
+  const tw = p.measureText(SELLO).width, w = tw + 120, h = s + 110;
+  c.width = w + 20; c.height = h + 20;
+  p.translate(10, 10); p.strokeStyle = p.fillStyle = COLORES.sello;
+  p.lineWidth = 12; p.beginPath(); p.roundRect(6, 6, w - 12, h - 12, 26); p.stroke();
+  p.lineWidth = 4; p.beginPath(); p.roundRect(24, 24, w - 48, h - 48, 16); p.stroke();
+  p.font = `900 ${s}px ${LETRA_LIMPIA}`; p.textAlign = 'center'; p.textBaseline = 'middle'; p.fillText(SELLO, w / 2, h / 2 + s * .05);
+  // tinta gastada: huecos y grumos
+  p.globalCompositeOperation = 'destination-out'; const r = rng(5);
+  for (let i = 0; i < 900; i++) { p.globalAlpha = .25 + r() * .6; p.beginPath(); p.arc(r() * w, r() * h, .8 + r() * 3.2, 0, 6.29); p.fill(); }
+  for (let i = 0; i < 6; i++) { p.globalAlpha = .35; p.lineWidth = 2 + r() * 4; p.beginPath(); const y = r() * h; p.moveTo(0, y); p.lineTo(w, y + (r() - .5) * 40); p.stroke(); }
+  return c;
+})();
+
+// ---------- el contenido del ticket, medido en renglones ----------
+function construir(k) {                              // k = escala de letra; baja hasta que todo cabe
+  const filas = [], pad = 48, ancho = PW - 2 * pad;
+  const sep = () => filas.push({ h: 34 * k, pinta: y => {
+    ctx.save(); ctx.strokeStyle = COLORES.tinta; ctx.globalAlpha = .55; ctx.lineWidth = 3; ctx.setLineDash([10, 9]);
+    ctx.beginPath(); ctx.moveTo(PX + pad, y + 17 * k); ctx.lineTo(PX + PW - pad, y + 17 * k); ctx.stroke(); ctx.restore(); } });
+  filas.push({ h: 40 * k, pinta: () => {} });
+  // estrellitas de arriba
+  filas.push({ h: 40 * k, pinta: y => texto('* * * * * * * * *', PX + PW / 2, y + 28 * k, `400 ${26 * k}px ${MONO}`, 'center', .6) });
+  const enc = autoajuste(ENCABEZADO.toUpperCase(), MONO, 800, ancho, 2, 66 * k, 30 * k);
+  enc.rs.forEach(r => filas.push({ h: enc.size * 1.2, pinta: y => texto(r, PX + PW / 2, y + enc.size, enc.font, 'center') }));
+  filas.push({ h: 14 * k, pinta: () => {} });
+  sep();
+  const fl = `500 ${33 * k}px ${MONO}`, num = 58 * k;
+  LINEAS.forEach((l, i) => {
+    const rs = renglones(l, fl, ancho - num);
+    rs.forEach((r, j) => filas.push({ h: 33 * k * 1.3, pinta: y => {
+      if (!j) texto(String(i + 1).padStart(2, '0'), PX + pad, y + 33 * k, `700 ${33 * k}px ${MONO}`, 'left', .75);
+      texto(r, PX + pad + num, y + 33 * k, fl, 'left');
+    } }));
+    filas.push({ h: 12 * k, pinta: () => {} });
+  });
+  sep();
+  if (TOTAL.valor) {
+    const ft = `800 ${50 * k}px ${MONO}`;
+    filas.push({ h: 50 * k * 1.3, pinta: y => { texto(TOTAL.etiqueta, PX + pad, y + 50 * k, ft, 'left'); texto(TOTAL.valor, PX + PW - pad, y + 50 * k, ft, 'right'); } });
+    sep();
+  }
+  if (FRASE_FINAL) {
+    const ff = autoajuste(FRASE_FINAL, MONO, 700, ancho, 2, 38 * k, 24 * k);
+    ff.rs.forEach(r => filas.push({ h: ff.size * 1.3, pinta: y => texto(r, PX + PW / 2, y + ff.size, ff.font, 'center') }));
+    filas.push({ h: 20 * k, pinta: () => {} });
+  }
+  // hueco donde cae el sello (así no tapa lo impreso)
+  filas.push({ h: SELLO_C.height + SELLO_C.width * .1, sello: true, pinta: () => {} });
+  // código de barras (dibujado, sin datos)
+  filas.push({ h: 96 * k, pinta: y => {
+    ctx.save(); ctx.fillStyle = COLORES.tinta; ctx.globalAlpha = .88;
+    let x = PX + 130; const fin = PX + PW - 130;
+    for (let i = 0; x < fin; i++) { const w = 3 + Math.floor(hash2(i, 77) * 4) * 2.5; if (hash2(i, 78) > .35) ctx.fillRect(x, y + 12 * k, w, 72 * k); x += w + 3 + hash2(i, 79) * 5; }
+    ctx.restore(); } });
+  filas.push({ h: 44 * k, pinta: () => {} });
+  let o = 0; for (const f of filas) { f.o = o; o += f.h; }
+  return { filas, largo: o };
+}
+function texto(s, x, y, font, align, alpha = 1) {
+  ctx.save(); ctx.font = font; ctx.fillStyle = COLORES.tinta; ctx.textAlign = align; ctx.textBaseline = 'alphabetic';
+  ctx.globalAlpha = .92 * alpha; ctx.fillText(s, x, y); ctx.restore();
+}
+let TK; for (let k = 1.4; k >= .6; k -= .05) { TK = construir(k); if (TK.largo <= MAX_LARGO) break; }
+const LARGO = TK.largo;
+
+// cuánto papel ha salido: avanza a tirones, renglón por renglón, como una térmica
+function salido(t) {
+  const p = prog(t, T_IMPRIME, T_IMPRIME + T_IMPRIME_DUR);
+  const pasos = TK.filas.length, x = p * pasos, i = Math.floor(x), f = x - i;
+  const hasta = j => j >= pasos ? LARGO : TK.filas[j].o;
+  return p >= 1 ? LARGO : lerp(hasta(i), hasta(i + 1), ease(clamp(f * 1.6)));
+}
+
+// ---------- escena ----------
+const PARED = hacerPapel(COLORES.pared, { grano: true, fibras: false, viñeta: .45, semilla: 4 });
+
+function sombraSuave(pts, dx, dy, blur, a) {
+  ctx.save(); ctx.filter = `blur(${blur}px)`; fill(pts.map(([x, y]) => [x + dx, y + dy]), `rgba(0,0,0,${a})`, { amp: 0 }); ctx.restore();
+}
+function dientes(x0, x1, y, hacia, alto = 12) {        // borde cortado en zigzag
+  const out = [], paso = 20;
+  for (let x = x0; x <= x1 + .1; x += paso / 2) out.push([x, y + ((Math.round((x - x0) / (paso / 2)) % 2) ? hacia * alto : 0)]);
+  return out;
+}
+
+function papel(t, largo, libre) {
+  // libre: 0 = pegado a la ranura, 1 = ya cortado y suelto
+  const sube = ease(libre) * 36, gira = -ease(libre) * .045 + Math.sin(t * 2.4) * .004 * (1 - libre) * largo / 900;
+  const abajo = SLOT - sube, arriba = abajo - largo;
+  ctx.save(); ctx.translate(W / 2, abajo); ctx.rotate(gira); ctx.translate(-W / 2, -abajo);
+  const borde = [...dientes(PX, PX + PW, arriba, -1), ...(libre > 0 ? dientes(PX, PX + PW, abajo, 1).reverse() : [[PX + PW, abajo + 30], [PX, abajo + 30]])];
+  sombraSuave(borde, 22 + libre * 16, 18 + libre * 26, 14 + libre * 10, .35 + libre * .1);
+  ctx.save();
+  if (!libre) { ctx.beginPath(); ctx.rect(0, 0, W, SLOT); ctx.clip(); }
+  ctx.beginPath(); borde.forEach(([x, y], i) => i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)); ctx.closePath();
+  ctx.fillStyle = COLORES.papel; ctx.fill(); ctx.save(); ctx.clip();
+  // curvatura del papel: orillas un poco más oscuras y brillo al centro
+  const g = ctx.createLinearGradient(PX, 0, PX + PW, 0);
+  g.addColorStop(0, 'rgba(0,0,0,.09)'); g.addColorStop(.18, 'rgba(0,0,0,0)'); g.addColorStop(.55, 'rgba(255,255,255,.35)'); g.addColorStop(.85, 'rgba(0,0,0,0)'); g.addColorStop(1, 'rgba(0,0,0,.12)');
+  ctx.fillStyle = g; ctx.fillRect(PX, arriba - 20, PW, largo + 60);
+  for (const f of TK.filas) f.pinta(arriba + f.o);
+  // lo recién impreso sale un poquito más claro (la térmica aún no oscurece)
+  if (!libre) { const gg = ctx.createLinearGradient(0, SLOT - 90, 0, SLOT); gg.addColorStop(0, 'rgba(251,250,245,0)'); gg.addColorStop(1, 'rgba(251,250,245,.55)'); ctx.fillStyle = gg; ctx.fillRect(PX, SLOT - 90, PW, 90); }
+  ctx.restore();
+  ctx.restore();
+  ctx.restore();
+  return { arriba, abajo, gira };
+}
+
+function impresora(t, imprimiendo, corte) {
+  const x = 120, y = 1150, w = 840, h = 330;
+  const zum = imprimiendo ? (hash2(Math.floor(t * 60), 3) - .5) * 2.4 : 0;
+  ctx.save(); ctx.translate(zum, 0);
+  // mostrador
+  fill(resample([[-20, 1440], [W + 20, 1440], [W + 20, H + 20], [-20, H + 20]], 30, true), '#5b4638', { amp: 1 });
+  fill(rect(-20, 1440, W + 40, 16), 'rgba(255,255,255,.12)', { amp: 0 });
+  // cuerpo
+  const cuerpo = roundRect(x, y, w, h, 56);
+  sombraSuave(cuerpo, 0, 40, 30, .5);
+  fill(cuerpo, COLORES.impresora, { amp: .8, seed: 2 });
+  ctx.save(); tracePath(cuerpo, true); ctx.clip();
+  const g = ctx.createLinearGradient(0, y, 0, y + h); g.addColorStop(0, 'rgba(255,255,255,.55)'); g.addColorStop(.3, 'rgba(255,255,255,0)'); g.addColorStop(1, 'rgba(0,0,0,.18)');
+  ctx.fillStyle = g; ctx.fillRect(x, y, w, h);
+  ctx.restore();
+  // tapa superior (donde está la ranura)
+  fill(roundRect(x + 40, y + 28, w - 80, 112, 34), 'rgba(0,0,0,.07)', { amp: .5, seed: 5 });
+  fill(roundRect(PX - 34, SLOT - 12, PW + 68, 30, 12), '#2a2a31', { amp: .4, seed: 6 });   // la ranura
+  // ventanita con el rollo de papel
+  const rx = x + 150, ry = y + 225;
+  fill(roundRect(rx - 95, ry - 58, 190, 116, 26), '#39363f', { amp: .5, seed: 9 });
+  ctx.save(); ctx.beginPath(); ctx.roundRect(rx - 88, ry - 51, 176, 102, 22); ctx.clip();
+  const gira = t * 9 * (imprimiendo ? 1 : 0) + (imprimiendo ? 0 : T_IMPRIME_DUR * 9);
+  fill(circle(rx, ry + 12, 70), '#f4f1e8', { amp: 0 });
+  for (let k = 1; k < 6; k++) ink(circle(rx, ry + 12, 70 - k * 11), { closed: true, w: 1.5, col: 'rgba(0,0,0,.14)', passes: 1, amp: 0 });
+  fill(circle(rx, ry + 12, 16), '#8b8795', { amp: 0 });
+  ink(line(rx + Math.cos(gira) * 18, ry + 12 + Math.sin(gira) * 18, rx + Math.cos(gira) * 62, ry + 12 + Math.sin(gira) * 62), { w: 3, col: 'rgba(0,0,0,.2)', passes: 1, amp: 0 });
+  const vidrio = ctx.createLinearGradient(rx - 88, ry - 51, rx + 88, ry + 51); vidrio.addColorStop(0, 'rgba(255,255,255,.35)'); vidrio.addColorStop(.4, 'rgba(255,255,255,0)');
+  ctx.fillStyle = vidrio; ctx.fillRect(rx - 90, ry - 55, 180, 110);
+  ctx.restore();
+  // botón y foquito
+  const bx = x + w - 150, by = y + 225;
+  fill(circle(bx, by + 6, 44), 'rgba(0,0,0,.2)', { amp: 0 });
+  fill(circle(bx, by, 44), '#d9d3c7', { amp: .6, seed: 12 });
+  fill(circle(bx, by - 4, 34), '#efeae0', { amp: .4, seed: 13 });
+  const prende = imprimiendo ? (Math.floor(t * 8) % 2 ? 1 : .35) : (corte > 0 ? 1 : .25);
+  fill(circle(bx - 110, by, 14), prende > .5 ? COLORES.luz : '#4b5a52', { amp: 0 });
+  if (prende > .5) glow(bx - 110, by, 60, '57,217,138', .5 * prende);
+  // borde de corte (dientes metálicos) delante del papel
+  const barra = [[PX - 20, SLOT + 10], [PX + PW + 20, SLOT + 10], ...dientes(PX - 20, PX + PW + 20, SLOT + 24, 1, 9).reverse()];
+  fill(barra, '#a7a9b3', { amp: 0 });
+  fill(rect(PX - 20, SLOT + 10, PW + 40, 5), 'rgba(255,255,255,.6)', { amp: 0 });
+  if (corte > 0 && corte < 1) {                         // destello del corte
+    const xg = lerp(PX - 20, PX + PW + 20, corte);
+    glow(xg, SLOT + 14, 90, '255,255,255', .9 * Math.sin(corte * Math.PI));
+  }
+  ink(cuerpo, { closed: true, w: 3, col: 'rgba(0,0,0,.25)', passes: 1, amp: .8, seed: 2 });
+  ctx.restore();
+}
+
+function sello(t, ticket) {
+  const p = prog(t, T_SELLO, T_SELLO + .2);
+  if (p <= 0) return;
+  const k = easeOut(p), esc = lerp(2.6, 1, k);
+  const fs = TK.filas.find(f => f.sello), cx = W / 2 + 6, cy = ticket.arriba + fs.o + fs.h / 2;
+  ctx.save(); ctx.translate(cx, cy); ctx.rotate(-.13 + ticket.gira); ctx.scale(esc, esc);
+  ctx.globalAlpha = clamp(p * 2.5) * .93;
+  if (p < 1) { ctx.save(); ctx.filter = `blur(${(1 - k) * 18}px)`; ctx.globalAlpha *= .35; ctx.drawImage(SELLO_C, -SELLO_C.width / 2 + 30 * (1 - k), -SELLO_C.height / 2 + 60 * (1 - k)); ctx.restore(); }
+  ctx.globalCompositeOperation = 'multiply';
+  ctx.drawImage(SELLO_C, -SELLO_C.width / 2, -SELLO_C.height / 2);
+  ctx.restore();
+  // salpicaduras de tinta al golpe
+  if (p >= 1) {
+    const q = prog(t, T_SELLO + .2, T_SELLO + .5);
+    for (let i = 0; i < 14; i++) {
+      const a = hash2(i, 5) * 6.28, d = (SELLO_C.width * .42 + hash2(i, 6) * 90) * (.6 + .4 * easeOut(q));
+      ctx.save(); ctx.globalAlpha = .75; ctx.fillStyle = COLORES.sello;
+      ctx.beginPath(); ctx.arc(cx + Math.cos(a) * d, cy + Math.sin(a) * d * .55, 2 + hash2(i, 7) * 6, 0, 6.29); ctx.fill(); ctx.restore();
+    }
+  }
+}
+
+arrancar(frame => {
+  const t = frame / FPS;
+  BOIL = Math.floor(frame / 4);
+  ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.filter = 'none'; ctx.globalCompositeOperation = 'source-over';
+  // golpe de cámara cuando cae el sello
+  const g = prog(t, T_SELLO + .2, T_SELLO + .55), sac = g > 0 && g < 1 ? Math.sin(g * Math.PI * 5) * (1 - g) * 18 : 0;
+  const zoom = 1 + (g > 0 ? .02 * (1 - g) : 0);
+  ctx.translate(W / 2, H / 2); ctx.scale(zoom, zoom); ctx.translate(-W / 2 + sac * .4, -H / 2 + sac);
+  ctx.drawImage(PARED, -20, -20, W + 40, H + 40);
+  glow(W / 2, 760, 700, '255,236,200', .12);
+  const largo = salido(t), corte = prog(t, T_CORTE, T_CORTE + .25), libre = prog(t, T_CORTE + .2, T_CORTE + .6);
+  const imprimiendo = t > T_IMPRIME && t < T_IMPRIME + T_IMPRIME_DUR;
+  const ticket = largo > 0 ? papel(t, largo, libre) : { arriba: SLOT, abajo: SLOT, gira: 0 };
+  impresora(t, imprimiendo, corte);
+  if (libre > 0) papel(t, largo, libre);              // ya suelto: pasa por delante de la impresora
+  sello(t, ticket);
+});
+</script>
+</body>
+</html>

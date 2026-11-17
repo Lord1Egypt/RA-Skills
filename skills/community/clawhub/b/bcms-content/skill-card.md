@@ -1,48 +1,64 @@
-## Description: <br>
-Run BCMS content operations from the command line with a thin CLI that lets agents create, update, delete, and list entries and upload media using a BCMS API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run BCMS content operations from the command line; this thin CLI wraps the official @thebcms/client SDK for agents to create, update, delete, and list entries and upload media using a BCMS API key.
 
-## Publisher: <br>
-[bcms](https://clawhub.ai/user/bcms) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bcms](https://clawhub.ai/user/bcms)
 
-## Use Case: <br>
-Developers, editors, and agent operators use this skill to run deterministic BCMS entry and media operations from terminals, CI jobs, and agent workflows. It is intended for content tasks where command output and JSON results are preferable to interactive dashboard work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a sensitive BCMS API key that can be exposed through repository configs, logs, browser history, shared config, or chat. <br>
-Mitigation: Use a dedicated least-privilege key from environment variables or a secret manager, keep keys out of repo configs, and rotate any key that may have been exposed. <br>
-Risk: The CLI can change or delete CMS content when the provided key has content-management permissions. <br>
-Mitigation: Scope keys to the needed templates and operations, confirm entry IDs with list commands before deletes, and avoid production delete permissions unless they are required. <br>
+## Use Case:
 
+External developers and content teams use this skill to run deterministic BCMS entry and media operations from terminals, CI jobs, and agent workflows. It is suited for scripted content creation, updates, listing, deletion, and media uploads when a least-privilege BCMS API key is available.
 
-## Reference(s): <br>
-- [BCMS Content Skill Page](https://clawhub.ai/bcms/bcms-content) <br>
-- [BCMS Agent Setup Guide](https://thebcms.com/agents) <br>
-- [BCMS Documentation](https://thebcms.com/docs) <br>
-- [BCMS MCP Guide](https://thebcms.com/docs/mcp) <br>
-- [BCMS Entries](references/entries.md) <br>
-- [BCMS Media](references/media.md) <br>
-- [BCMS Permissions](references/permissions.md) <br>
-- [BCMS Properties](references/properties.md) <br>
-- [BCMS Model Context Protocol](references/mcp.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown guidance with bash and JSON examples; CLI runs print a short status line followed by JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a scoped BCMS API key and can modify or delete BCMS content when the key has those permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The CLI can create, update, delete, and publish CMS content when used with a sufficiently privileged BCMS API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege API keys, separate keys by environment, and require human confirmation before production deletes or publishes.
+
+Risk: BCMS API keys grant access to content operations and could expose or mutate CMS data if hard-coded, committed, or reused broadly.
+
+Mitigation: Keep keys in environment variables or secret managers, rotate them regularly, and avoid committing key material to repositories.
+
+Risk: Unpinned or remote package execution can introduce supply-chain and invocation risk.
+
+Mitigation: Prefer the checked-in local CLI after reviewing dependencies and avoid unpinned npx execution in production workflows.
+
+## Reference(s):
+
+- [BCMS Agents Setup Guide](https://thebcms.com/agents)
+- [BCMS Documentation](https://thebcms.com/docs)
+- [BCMS MCP Guide](https://thebcms.com/docs/mcp)
+- [Entries Reference](references/entries.md)
+- [Media Reference](references/media.md)
+- [Permissions Reference](references/permissions.md)
+- [Properties Reference](references/properties.md)
+- [MCP Reference](references/mcp.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON examples; CLI commands return status text and JSON payloads.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 20 or newer, npm dependencies, and a BCMS_API_KEY with permissions for the target content or media operation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

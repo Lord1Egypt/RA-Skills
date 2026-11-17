@@ -1,0 +1,10 @@
+.pytest_cache/
+__pycache__/
+*.pyc
+REVIEW-APPROVAL-*.html
+.tmp-pub/
+*.egg-info/
+# 个人辅助脚本（含凭据，禁止进入技能发布包）
+send_*.py
+*_email*.py
+

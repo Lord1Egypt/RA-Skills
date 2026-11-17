@@ -1,46 +1,59 @@
-## Description: <br>
-A strict binary communication protocol for high-density, agent-to-agent interactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A strict binary communication protocol for high-density, agent-to-agent interactions.
 
-## Publisher: <br>
-[agentandbot-design](https://clawhub.ai/user/agentandbot-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[agentandbot-design](https://clawhub.ai/user/agentandbot-design)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure agents for compact binary agent-to-agent messaging, opcode handling, and offline oversight of protocol traffic. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Opaque binary swarm messaging can make agent behavior difficult to audit in transit. <br>
-Mitigation: Require human-readable logs or decompiled traces before deployment and review those logs during operation. <br>
-Risk: Dynamic opcode or skill-definition updates can change agent behavior without enough review controls. <br>
-Mitigation: Require human approval for new opcodes and skill definitions before agents accept or broadcast them. <br>
-Risk: The referenced abl.one canonical contract is missing from the artifact evidence. <br>
-Mitigation: Do not enable the protocol until the abl.one contract is supplied and reviewed. <br>
-Risk: Swarm broadcasting may expand the impact of malformed or unsafe protocol messages. <br>
-Mitigation: Keep swarm broadcasting disabled unless it is explicitly needed and reviewed for the deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/agentandbot-design/dil) <br>
-- [README.md](README.md) <br>
-- [ClawSpeak Protocol Specification v1.0 (ABL.ONE)](spec.md) <br>
-- [UMP v0.1 Specification](ump/protocol.md) <br>
+## Use Case:
 
+Developers and agent builders use this skill to enable agents to parse, understand, and transmit ABL.ONE binary frames for agent-to-agent communication.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, Binary protocol frames] <br>
-**Output Format:** [Markdown guidance with binary frame specifications and examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Frames use compact agent IDs, opcodes, payload arguments, and CRC32 integrity checks.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, manifest, release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Dynamic opcode and SKILL_DEFINE adoption could change agent behavior through swarm consensus.
+
+Mitigation: Require explicit human approval, authenticated participants, and review before accepting dynamic opcode or SKILL_DEFINE updates.
+
+Risk: The artifact refers to a canonical abl.one contract file that is not included in the artifact file hashes.
+
+Mitigation: Deploy only with a packaged, digest-pinned abl.one file and verify it before agents bootstrap protocol rules.
+
+Risk: Binary swarm communication can reduce inline human readability during transit.
+
+Mitigation: Constrain network and swarm access and require offline audit or decompilation workflows for captured protocol traffic.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/agentandbot-design/skills/dil)
+- [ABL.ONE Protocol README](artifact/README.md)
+- [ClawSpeak Protocol Specification v1.0](artifact/spec.md)
+- [UMP v0.1 Specification](artifact/ump/protocol.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown instructions and protocol frame examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Frames are described as compact binary agent-to-agent messages with offline human-readable audit mapping.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release, frontmatter, manifest.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

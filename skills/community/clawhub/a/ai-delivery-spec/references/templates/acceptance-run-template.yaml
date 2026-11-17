@@ -1,0 +1,28 @@
+artifact: acceptance_run
+artifact_role: main
+stage: acceptance
+applicable_stages: [acceptance]
+applies_when: 记录已执行的验收及证据；不把计划当验收完成。
+schema_version: 5.1.0
+run_id: ARUN-CORE-001
+baseline_version: "1.0"
+environment: "{acceptance environment}"
+executor: "{executor}"
+executed_at: null # 未执行不填写时间；执行后填写实际时间
+evidence_catalog: []
+# 执行后登记真实证据：id、uri（及可选 sha256）。
+items:
+  - id: ARITEM-CORE-001
+    acceptance_ref: AC-CORE-001
+    requirement_refs: [REQ-CORE-001]
+    mandatory: true
+    result: not_run
+    actual_result: ""
+    evidence_refs: []
+    defect_refs: []
+residual_issues: []
+# 已发现问题才填写 description、owner 和真实决定的 disposition，不能默认延期。
+conclusion: pending
+conditions: []
+sign_offs: []
+# 签认后填写 role、actor、decision、at；接受结论须绑定真实 evidence_ref。

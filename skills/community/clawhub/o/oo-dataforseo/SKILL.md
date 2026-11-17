@@ -1,11 +1,11 @@
 ---
 name: oo-dataforseo
-description: "DataForSEO (dataforseo.com). Use this skill for ANY DataForSEO request — searching and reading data. Whenever a task involves DataForSEO, use this skill instead of calling the API directly."
+description: "DataForSEO (dataforseo.com). Use this skill for ANY DataForSEO request — reading, creating, and updating data. Whenever a task involves DataForSEO, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "DataForSEO"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["dataforseo"]
   icon: "https://static.oomol.com/logo/third-party/dataforseo.png"
 ---
@@ -41,6 +41,9 @@ Each action is listed below with a one-line description; actions that change sta
 - `backlinks_list_live` — Retrieve DataForSEO Backlinks records for a domain, subdomain, or page.
 - `backlinks_referring_domains_live` — Retrieve DataForSEO Backlinks referring domains for a domain, subdomain, or page.
 - `backlinks_summary_live` — Retrieve DataForSEO Backlinks summary metrics for a domain, subdomain, or page.
+- `get_amazon_asins_task` — Retrieve the status and Advanced results of one DataForSEO Amazon ASIN task.
+- `get_amazon_products_task` — Retrieve the status and Advanced results of one DataForSEO Amazon Products task.
+- `get_amazon_sellers_task` — Retrieve the status and Advanced results of one DataForSEO Amazon Sellers task.
 - `get_user_data` — Retrieve DataForSEO account details, balance, rates, limits, and usage data.
 - `google_ads_search_volume_live` — Retrieve Google Ads search volume metrics from DataForSEO for one batch of keywords.
 - `google_domain_rank_overview_live` — Retrieve DataForSEO Labs Google ranking and traffic overview for a domain.
@@ -51,6 +54,10 @@ Each action is listed below with a one-line description; actions that change sta
 - `google_organic_live_advanced` — Run a DataForSEO Google Organic SERP Live Advanced request for one search keyword.
 - `google_relevant_pages_live` — Retrieve ranking and traffic metrics for the most relevant pages of a domain.
 - `google_serp_competitors_live` — Retrieve domains competing in Google SERPs for the specified keywords.
+- `list_amazon_tasks_ready` — List uncollected completed Amazon Products, ASIN, and Sellers tasks from DataForSEO Merchant API.
+- `submit_amazon_asins_task` — Submit one Standard DataForSEO Amazon ASIN task for asynchronous product variant research. [write]
+- `submit_amazon_products_task` — Submit one Standard DataForSEO Amazon Products task for asynchronous product listing research. [write]
+- `submit_amazon_sellers_task` — Submit one Standard DataForSEO Amazon Sellers task for asynchronous offer and seller research. [write]
 
 ## Safety
 
@@ -81,11 +88,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — DataForSEO is not connected, or the connection expired or lacks a scope. Connect once (auth type: custom credential) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=dataforseo
+  https://console.oomol.com/connections/dataforseo
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - DataForSEO homepage: https://dataforseo.com
+- API documentation: https://docs.dataforseo.com/v3/

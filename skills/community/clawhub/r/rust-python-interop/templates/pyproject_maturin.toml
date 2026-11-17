@@ -1,0 +1,13 @@
+[build-system]
+requires = ["maturin>=1.7,<2"]
+build-backend = "maturin"
+
+[project]
+name = "fastcore"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = []
+
+[tool.maturin]
+module-name = "fastcore"
+features = ["pyo3/extension-module"]

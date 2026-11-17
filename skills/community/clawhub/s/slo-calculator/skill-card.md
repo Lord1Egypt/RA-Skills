@@ -1,40 +1,49 @@
-## Description: <br>
-Calculates SLO/SLA error budgets, allowed downtime, burn rates, uptime metrics, target comparisons, and reference tables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculate SLO/SLA error budgets, allowed downtime, burn rates, and uptime metrics.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-SREs, platform engineers, and developers use this skill to select and run local SLO calculator commands for error-budget, burn-rate, uptime, and availability-target analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides an agent toward running a local Python command-line calculator. <br>
-Mitigation: Review proposed commands before execution and run them in a least-privileged workspace. <br>
-Risk: SLO and SLA results depend on user-provided inputs and the calculator's fixed period assumptions. <br>
-Mitigation: Confirm period definitions, downtime inputs, and contractual SLA terms before using results for operational or customer-facing decisions. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to calculate SLO/SLA error budgets, allowed downtime, burn rates, observed uptime, and comparisons across common availability targets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/slo-calculator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Text, JSON, Markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands; calculator output can be text, JSON, or Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Pure Python stdlib CLI; accepts SLO targets, period/window selections, durations, and output format flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact script reports VERSION = 1.0.0) <br>
+Risk: Availability or uptime wording may invoke this skill for advisory SLO/SLA calculations where service-specific assumptions matter.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the input period, SLO target, and resulting budget or burn-rate output before using the calculation in operational or contractual decisions.
+
+## Reference(s):
+
+- [Slo Calculator on ClawHub](https://clawhub.ai/charlie-morrison/skills/slo-calculator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Text, JSON, or Markdown calculation results with optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Pure Python standard-library calculator; supports budget, burn, compare, uptime, multi-window, and table commands.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,63 @@
-## Description: <br>
-Control Meta/Facebook/Instagram ads through Meta's official `meta ads ...` CLI for read-only audits, reporting, safe planning, and approved one-step mutations of campaigns, ad sets, ads, creatives, catalog/product assets, datasets/pixels, and insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Meta/Facebook/Instagram ads through Meta's official `meta ads ...` CLI for read-only audits, reporting, safe planning, and approved one-step mutations of campaigns, ad sets, ads, creatives, catalog/product assets, datasets/pixels, and insights.
 
-## Publisher: <br>
-[tristanmanchester](https://clawhub.ai/user/tristanmanchester) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tristanmanchester](https://clawhub.ai/user/tristanmanchester)
 
-## Use Case: <br>
-External users and developers use this skill to let shell-capable agents inspect, report on, plan, and carefully operate Meta advertising accounts through the official Meta Ads CLI. It is intended for workflows where reads are routine but mutations, spend changes, activation, deletion, catalog or dataset changes, and media uploads require explicit review and approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate Meta ad accounts and may affect budgets, delivery status, campaign assets, catalogs, datasets, or media. <br>
-Mitigation: Use a token scoped to the intended account, prefer read-only credentials for reporting, and approve only commands that clearly name the account, object ID, action, and values. <br>
-Risk: Budget changes, activation, deletion, and other write actions can create spend or business impact if approved without review. <br>
-Mitigation: Review each proposed write command before execution, require specific approval text, and execute one guarded mutation at a time followed by verification. <br>
-Risk: Sensitive credentials may be exposed if passed through chat, command arguments, files, or logs. <br>
-Mitigation: Keep tokens in environment variables or official auth storage, do not pass secret flags on commands, and leave persistent logging disabled unless a protected audit path is explicitly configured. <br>
+## Use Case:
 
+Developers, marketers, and operations teams use this skill to inspect Meta ad accounts, produce campaign performance reports, prepare safe command plans, and execute approved single-step changes through the official Meta Ads CLI.
 
-## Reference(s): <br>
-- [Meta Ads CLI overview](https://developers.facebook.com/documentation/ads-commerce/ads-ai-connectors/ads-cli/ads-cli-overview) <br>
-- [Meta Ads 1.0.1 PyPI package](https://pypi.org/project/meta-ads/1.0.1/) <br>
-- [Meta Ads 1.0.1 PyPI JSON](https://pypi.org/pypi/meta-ads/1.0.1/json) <br>
-- [ClawHub skill page](https://clawhub.ai/tristanmanchester/meta-ads-cli) <br>
-- [Artifact provenance metadata](resources/provenance.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON-oriented command plans, and concise reporting summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read results should be summarized with date ranges, account or object IDs, metrics, caveats, and recommendations separated from any approved changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can perform spend-affecting ad changes and asset mutations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use read-only Meta tokens for reporting, require fresh specific approval for each write, verify the exact account, object ID, and values, and run one mutation followed by verification before continuing.
+
+Risk: A reusable approval value could allow unintended writes if left in the environment.
+
+Mitigation: Avoid setting `META_ADS_AGENT_APPROVED`; pass approval text only for the single reviewed command or plan step that needs it.
+
+Risk: Budget, activation, and destructive actions carry higher operational risk.
+
+Mitigation: Require the relevant extra gate (`--allow-budget`, `--allow-active`, or `--allow-destructive`) only after reviewing the object state and intended before/after values.
+
+Risk: The skill depends on the pinned Meta Ads CLI package and can expose ad-account metadata through command output or logs.
+
+Mitigation: Install dependencies from locked and hash-verified sources, keep persistent logging disabled unless needed, and protect or delete logs that include account IDs, object IDs, or result metadata.
+
+## Reference(s):
+
+- [Meta Ads CLI overview](https://developers.facebook.com/documentation/ads-commerce/ads-ai-connectors/ads-cli/ads-cli-overview)
+- [meta-ads 1.0.1 on PyPI](https://pypi.org/project/meta-ads/1.0.1/)
+- [meta-ads 1.0.1 PyPI JSON metadata](https://pypi.org/pypi/meta-ads/1.0.1/json)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Markdown, JSON, Configuration]
+
+**Output Format:** [Markdown summaries and JSON command plans with guarded shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports should separate recommendations from executed changes and include redacted commands, object IDs, before/after values, and verification results for writes.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

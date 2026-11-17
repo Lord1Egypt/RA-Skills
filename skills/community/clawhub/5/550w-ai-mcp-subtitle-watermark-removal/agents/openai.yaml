@@ -1,0 +1,5 @@
+interface:
+  display_name: "550W Watermark & Text Eraser"
+  short_description: "Erase image text, video subtitles and watermarks; resolve links"
+  icon_small: "./assets/logo.png"
+  icon_large: "./assets/logo.png"

@@ -1,0 +1,163 @@
+{
+  "schema": "samedaydesk.original-task-correspondence.v1",
+  "title": "Original task help through existing private correspondence",
+  "thisDescriptorPerformsNoRequest": true,
+  "visitorEntry": "https://samedaydesk.com/api/correspondence/v1/visitor-entry",
+  "entrySchema": "neomorphic.foundry.entry.v1",
+  "requestSchema": "samedaydesk.original-task-request.v1",
+  "dispositionSchema": "samedaydesk.original-task-disposition.v1",
+  "contributionRequired": false,
+  "identityProofRequired": false,
+  "walletRequired": false,
+  "benchmarkRequired": false,
+  "exampleConsentDefault": false,
+  "defaultDisposition": "pending_qualification",
+  "deliveryPromise": false,
+  "fundedJob": false,
+  "acceptance": false,
+  "payment": false,
+  "client": "server/lib/original-task/cli.mjs",
+  "clientCommand": "node server/lib/original-task/cli.mjs describe",
+  "submitCommand": "node server/lib/original-task/cli.mjs submit --base-url https://samedaydesk.com/api/correspondence --directory <private-directory> --task-file <task.json>",
+  "readCommand": "node server/lib/original-task/cli.mjs read --directory <private-directory>",
+  "acquisition": {
+    "kind": "public-archive",
+    "requiresProductCheckout": false,
+    "checkoutIsNotAcquisition": true,
+    "node": ">=22",
+    "deliveryPromise": false,
+    "archive": {
+      "path": "/for-agents/original-task/original-task-client.tar.gz",
+      "url": "https://samedaydesk.com/for-agents/original-task/original-task-client.tar.gz"
+    },
+    "recipe": [
+      "curl -fsSL --max-time 60 -o original-task-client.tar.gz https://samedaydesk.com/for-agents/original-task/original-task-client.tar.gz",
+      "Check acquisition.archive.sha256 and acquisition.archive.bytes before extract.",
+      "Save this discovery document. The extracted describe output omits sha256 and cannot bind the archive.",
+      "tar -xzf original-task-client.tar.gz",
+      "node server/lib/original-task/cli.mjs describe",
+      "node server/lib/original-task/cli.mjs map --discovery-file <discovery.json> --archive <original-task-client.tar.gz> --task-file <task.json>"
+    ]
+  },
+  "requestFields": [
+    "objective",
+    "publicInput",
+    "usefulOutput",
+    "friction"
+  ],
+  "publicInputKinds": [
+    "https_url",
+    "nonsecret_example"
+  ],
+  "operator": {
+    "method": "GET",
+    "path": "/api/correspondence/v1/operator/original-tasks",
+    "dispositionMethod": "POST",
+    "dispositionPath": "/api/correspondence/v1/operator/original-tasks/:projectId/disposition",
+    "authorization": "Bearer CORRESPONDENCE_ADMIN_TOKEN",
+    "credentialLocator": "The samedaydesk.com Node process env CORRESPONDENCE_ADMIN_TOKEN. It is not in this repository.",
+    "onDemand": true,
+    "residentPoller": false,
+    "requiresEnabledCorrespondence": true,
+    "continuation": "GET may return complete false and nextCursor. Repeat with ?after=<nextCursor> until complete is true. A short page is not the whole queue."
+  },
+  "notes": [
+    "Public acquisition is the archive in this document. The client command is what to run after that archive is extracted. Cloning the website is not the acquisition.",
+    "Pass an explicit https service origin or loopback base URL. Describe does not call the network. Credentialed URLs, malformed origins, and redirects are refused.",
+    "Validate the task, persist one local attempt, register, and post one request event with the writer grant. An invalid task does not register.",
+    "Read the same private attempt later. A scoped result or useful refusal is written only in that directory. Pending qualification is the default.",
+    "A reply is not acceptance or reuse. Example consent is a separate correction and defaults off.",
+    "The operator lists task-bearing projects with the existing admin credential and follows nextCursor. This file does not call the network.",
+    "Run map with the saved discovery file and the archive before submit. Describe output from the archive omits sha256 and is not a binding discovery. A declared source label is not authentication. Spend, hosted execution, and other surfaces are refusals."
+  ],
+  "mapCommand": "node server/lib/original-task/cli.mjs map --discovery-file <discovery.json> --archive <original-task-client.tar.gz> --task-file <task.json>",
+  "taskAction": {
+    "schema": "samedaydesk.original-task-action.v1",
+    "payment": false,
+    "universalCapability": false,
+    "mcpSkill": false,
+    "command": "node server/lib/original-task/cli.mjs map --discovery-file <discovery.json> --archive <original-task-client.tar.gz> --task-file <task.json>",
+    "supported": [
+      {
+        "id": "qualify_public_original_task",
+        "intent": "original_correspondence",
+        "nextAction": "submit_existing_correspondence",
+        "route": "existing visitor correspondence",
+        "fields": [
+          "objective",
+          "publicInput",
+          "usefulOutput",
+          "friction"
+        ]
+      },
+      {
+        "id": "retrieve_same_attempt",
+        "intent": "retrieve_continuation",
+        "nextAction": "read_existing_attempt",
+        "route": "same private directory",
+        "handle": "continuation projectId scoped to that directory"
+      }
+    ],
+    "refusals": [
+      {
+        "id": "unrelated_task",
+        "when": "The body is another surface: MCP, paid gateway, observatory, or other."
+      },
+      {
+        "id": "stale_discovery",
+        "when": "The discovery schema, entry, commands, or archive binding is not current."
+      },
+      {
+        "id": "archive_refused",
+        "when": "Archive bytes or sha256 do not match the discovery document."
+      },
+      {
+        "id": "dependency_refused",
+        "when": "Archive bytes match but contain a server or database dependency."
+      },
+      {
+        "id": "missing_private_authority",
+        "when": "Read or continuation has no private attempt, secret, and continuation."
+      },
+      {
+        "id": "missing_execution_authority",
+        "when": "The intent asks this client to execute a hosted task."
+      },
+      {
+        "id": "handle_scope",
+        "when": "A project id is presented outside the private directory that holds it."
+      },
+      {
+        "id": "source_label_untrusted",
+        "when": "A declared source, role, or agent label is present on the task itself. It is not authentication."
+      },
+      {
+        "id": "no_spend",
+        "when": "The intent is spend, or the task carries a payment, wallet, or checkout field."
+      }
+    ],
+    "examples": [
+      {
+        "id": "qualify_public_original_task",
+        "task": {
+          "objective": "Qualify one public page change.",
+          "publicInput": {
+            "kind": "nonsecret_example",
+            "example": "synthetic public example"
+          },
+          "usefulOutput": "A qualification or a useful refusal.",
+          "friction": "No wallet and no hosted execution."
+        },
+        "nextAction": "submit_existing_correspondence",
+        "payment": false
+      },
+      {
+        "id": "spend_request",
+        "intent": "spend",
+        "nextAction": "refuse",
+        "code": "no_spend",
+        "payment": false
+      }
+    ]
+  }
+}

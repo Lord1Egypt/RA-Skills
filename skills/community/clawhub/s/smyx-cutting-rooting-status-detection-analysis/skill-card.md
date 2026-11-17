@@ -1,45 +1,58 @@
-## Description: <br>
-Analyzes plant-cutting images or videos captured through transparent containers to identify root primordia, classify rooting stage, and return monitoring guidance with report links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes images or videos of plant cuttings in transparent containers to assess visible root development and suggest when to transplant.
 
-## Publisher: <br>
-[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui)
 
-## Use Case: <br>
-Developers and end users use this skill to submit plant-cutting media from transparent propagation containers for non-invasive rooting progress assessment. It can also query cloud-hosted report history and return structured results, report links, and transplant-timing guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends plant images, videos, or supplied media URLs to Life Emergence cloud services for analysis. <br>
-Mitigation: Use only media that is appropriate for external cloud processing; avoid private camera feeds, internal URLs, sensitive research media, or confidential facility imagery. <br>
-Risk: The skill silently creates or reuses an account identity and stores service tokens in the local workspace for report history access. <br>
-Mitigation: Install only in workspaces where silent account persistence is acceptable, and isolate or clear the workspace when shared use or token retention is not desired. <br>
-Risk: The skill can query cloud-hosted analysis history associated with the internally resolved identity. <br>
-Mitigation: Review who can access the workspace and skill execution context before enabling report-history queries. <br>
+## Use Case:
 
+Home propagators, growers, and agricultural researchers use images or videos of cuttings in transparent containers to monitor rooting stages without disturbing the plants and inform transplant timing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-cutting-rooting-status-detection-analysis) <br>
-- [Skill demo](https://lifeemergence.com/sample.html) <br>
-- [API documentation](references/api_doc.md) <br>
-- [Shared analysis API documentation](skills/smyx_analysis/references/api_doc.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown or structured JSON text with report links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include rooting-stage classifications, root-point counts or distribution notes, transplant-timing guidance, cloud report history, and exported report URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Images or media URLs are sent to lifeemergence.com services, and cloud report history can be retrieved.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the data-sharing and cloud-history behavior before installation; use only media approved for external processing.
+
+Risk: The skill silently creates or reuses a local account identity and stores authentication tokens in a workspace SQLite database.
+
+Mitigation: Use only if account-linked processing and local credential persistence are acceptable; protect access to the workspace.
+
+Risk: Unrelated pet and generic analysis artifacts remain in the package.
+
+Mitigation: Review the installed package and prefer a plant-only release with explicit privacy controls.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/smyx-sunjinhui/skills/smyx-cutting-rooting-status-detection-analysis)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured analysis report or Markdown table of historical reports; optional JSON or saved file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include root-stage assessments, transplant suggestions, and links to cloud reports.]
+
+## Skill Version(s):
+
+1.0.13 (source: ClawHub release metadata; bundled SKILL.md states 1.0.18)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

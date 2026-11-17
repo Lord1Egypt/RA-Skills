@@ -1,41 +1,59 @@
-## Description: <br>
-Mount remote storage over SMB/CIFS, FTP, SFTP, or WebDAV as a local directory on Debian/Ubuntu Linux, with user confirmation required before privileged commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mounts remote storage over SMB/CIFS, FTP, SFTP, or WebDAV as a local directory on Debian or Ubuntu Linux, with user confirmation required before privileged commands.
 
-## Publisher: <br>
-[Leochens](https://clawhub.ai/user/Leochens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leochens](https://clawhub.ai/user/leochens)
 
-## Use Case: <br>
-Developers and operators use this skill to collect remote storage connection details, check Linux dependencies, create mount points, and prepare protocol-specific mount and unmount commands for remote shares. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Privileged package installation and mount commands can affect the host system. <br>
-Mitigation: Ask the user to approve sudo commands before execution and install only the package needed for the selected protocol. <br>
-Risk: SMB credential-file instructions can expose or leave behind passwords. <br>
-Mitigation: Prefer SSH keys or interactive prompts where possible, avoid reusable passwords, restrict credential-file permissions, and remove any SMB credential file immediately after use. <br>
-Risk: Mounting untrusted remote storage can expose local files or create unsafe filesystem access. <br>
-Mitigation: Mount only trusted servers, use a dedicated mount point, and keep permissions limited to the intended user. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Remote Disk Mount on ClawHub](https://clawhub.ai/Leochens/remote-disk-mount) <br>
+## Use Case:
+
+Developers and operators use this skill to collect remote storage connection details, install required Linux mount utilities, create a local mount point, and prepare protocol-specific mount or unmount commands. It is intended for Debian and Ubuntu systems where the user can review and approve privileged commands.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated mount and dependency-install commands can require sudo or otherwise change system-level storage state.
+
+Mitigation: Review the fully expanded command, confirm the target server and mount point, and require explicit user approval before running privileged commands.
+
+Risk: FTP and HTTP WebDAV examples can send data or credentials over cleartext channels.
+
+Mitigation: Prefer SFTP or HTTPS WebDAV, and avoid cleartext FTP or HTTP WebDAV unless the user accepts the network exposure.
+
+Risk: Credential handling can expose passwords if secrets are placed directly in shell commands or long-lived files.
+
+Mitigation: Use interactive prompts, SSH keys, or temporary credential files with strict permissions, and remove sensitive credential files after use.
+
+Risk: Mounting untrusted remote storage can expose local workflows to unexpected or malicious remote content.
+
+Mitigation: Validate the server and mount-point inputs, mount only trusted storage, and inspect protocol-specific options before use.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Debian/Ubuntu Linux and user confirmation before sudo commands.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release evidence) <br>
+**Output Type(s):** [guidance, shell commands, configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Linux-specific command guidance that should be reviewed before execution, especially when sudo, credentials, or cleartext protocols are involved.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

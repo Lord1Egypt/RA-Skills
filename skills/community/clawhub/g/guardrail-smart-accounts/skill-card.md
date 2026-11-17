@@ -1,43 +1,59 @@
-## Description: <br>
-Give AI agents on-chain spending guardrails by deploying ERC-4337 smart accounts with policy-enforced limits at the contract level. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Give AI agents on-chain spending guardrails. Deploy ERC-4337 smart accounts with policy-enforced limits - agents cannot move funds beyond what you authorize, enforced at the contract level, not just in software.
 
-## Publisher: <br>
-[shawnwollenberg](https://clawhub.ai/user/shawnwollenberg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shawnwollenberg](https://clawhub.ai/user/shawnwollenberg)
 
-## Use Case: <br>
-Developers and teams building AI agents that transact on-chain use this skill to prepare smart account, policy, permission, validation, audit, and setup guidance for AgentGuardrail workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agent workflows can prepare or trigger blockchain operations involving real funds. <br>
-Mitigation: Use testnet or small limits first, review actions before execution, and enable autonomous execution only after secure signing and policy limits are configured. <br>
-Risk: RPC URLs, signer tokens, dashboard API keys, private keys, or seed phrases can expose wallet authority if mishandled. <br>
-Mitigation: Use secure secret storage, prefer an external signer or wallet approval, and never paste private keys or seed phrases into chat. <br>
-Risk: Incorrect provider identity or contract addresses can cause transactions to target the wrong service or contracts. <br>
-Mitigation: Independently verify provider identity and contract addresses before using mainnet funds. <br>
+## Use Case:
 
+Developers and operators use this skill to configure ERC-4337 smart accounts, policies, permissions, validation, and audit workflows for AI agents that need constrained on-chain spending authority.
 
-## Reference(s): <br>
-- [AgentGuardrail homepage](https://agentguardrail.xyz) <br>
-- [ClawHub skill page](https://clawhub.ai/shawnwollenberg/guardrail-smart-accounts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with Solidity and JavaScript code examples, configuration tables, and API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include blockchain transaction preparation guidance and environment variable requirements; does not handle private keys directly.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: frontmatter and server release metadata) <br>
+Risk: The skill supports workflows involving financial authority through smart accounts and transaction signing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start on testnet, use explicit allowlists and low spending limits, and enable autonomous execution only with secure signing configured.
+
+Risk: Dashboard credentials and planned transaction details may be sent to AgentGuardrail or a configured API endpoint.
+
+Mitigation: Install only when the API endpoint is trusted, use scoped and revocable API keys, and do not set GUARDRAIL_API_URL to an endpoint you do not control or trust.
+
+Risk: Signer tokens and RPC URLs can grant sensitive access or contain embedded credentials.
+
+Mitigation: Store signer tokens, dashboard API keys, and RPC URLs in secure secret storage and avoid exposing them in chat, prompts, logs, or long-lived agent memory.
+
+## Reference(s):
+
+- [AgentGuardrail homepage](https://agentguardrail.xyz)
+- [ClawHub skill page](https://clawhub.ai/shawnwollenberg/skills/guardrail-smart-accounts)
+- [Publisher profile](https://clawhub.ai/user/shawnwollenberg)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code blocks and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include smart contract addresses, environment variable requirements, API request examples, and safety guidance for signing and credentials.]
+
+## Skill Version(s):
+
+1.1.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

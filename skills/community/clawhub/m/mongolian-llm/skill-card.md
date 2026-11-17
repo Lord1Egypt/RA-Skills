@@ -1,52 +1,69 @@
-## Description: <br>
-Connects OpenClaw agents to mongol.open-idea.net for Chinese, Traditional Mongolian, and Cyrillic Mongolian translation, Mongolian chat and writing, TTS, ASR, OCR, and Word/PDF document translation using the user's API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Mongolian-language translation across Chinese, Traditional Mongolian, and Cyrillic Mongolian, plus Mongolian chat, writing, text-to-speech, speech recognition, OCR, and Word/PDF document translation through the Mongol AI API.
 
-## Publisher: <br>
-[knixie](https://clawhub.ai/user/knixie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[knixie](https://clawhub.ai/user/knixie)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to route Mongolian-language translation, generation, speech, OCR, and document tasks through Mongol AI's API while preserving key-handling, routing, and billing-response rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends requested text, images, audio, and documents to the disclosed mongol.open-idea.net service. <br>
-Mitigation: Use it only for content that may be sent to that service, and require confirmation before sensitive OCR, ASR, document-translation, batch, or large jobs. <br>
-Risk: The skill requires a paid user API key and can incur charges for successful API calls. <br>
-Mitigation: Keep MONGOL_AI_SKILL_API_KEY in OpenClaw configuration, avoid pasting it into chat, and show billing details from response headers or body when available. <br>
-Risk: Retrying the same paid request after a successful or partially successful response can duplicate charges. <br>
-Mitigation: Do not retry the same content or file after a successful response without explaining the risk and obtaining user confirmation. <br>
+## Use Case:
 
+External users and developers use this skill to route Mongolian translation, conversation, OCR, ASR, TTS, and document translation requests to Mongol AI while preserving API-key handling, billing disclosure, and endpoint-specific output rules.
 
-## Reference(s): <br>
-- [Mongol AI homepage](https://mongol.open-idea.net) <br>
-- [HTTP request templates](references/HTTP-REQUESTS.md) <br>
-- [Interface routing](references/INTERFACE-ROUTING.md) <br>
-- [Translation](references/TRANSLATION.md) <br>
-- [Chat completions](references/CHAT-COMPLETIONS.md) <br>
-- [OCR](references/OCR.md) <br>
-- [ASR](references/ASR.md) <br>
-- [TTS](references/TTS.md) <br>
-- [Document translation](references/DOCUMENT-TRANSLATION.md) <br>
-- [API key setup](references/API-KEY.md) <br>
-- [Behavior rules](references/BEHAVIOR-RULES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with API request examples, final text responses, and optional audio file output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Successful user-facing responses include business content plus a billing line when billing fields are returned; TTS decodes audioBase64 to WAV instead of displaying raw audio data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.36 (source: server release metadata) <br>
+Risk: User text, files, images, or audio may be sent to the third-party Mongol AI service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill on non-sensitive content unless the user trusts that service and accepts its handling of submitted data.
+
+Risk: The skill uses a paid API under the user's own API key and billing account.
+
+Mitigation: Follow the skill's confirmation and billing-output rules for long, batch, file, OCR, or audio requests, and report only billing fields returned by successful responses.
+
+Risk: API keys could be exposed if pasted into chat or echoed in logs.
+
+Mitigation: Keep MONGOL_AI_SKILL_API_KEY in local OpenClaw configuration and avoid asking users to paste keys into the conversation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/knixie/skills/mongolian-llm)
+- [Publisher profile](https://clawhub.ai/user/knixie)
+- [Mongol AI homepage](https://mongol.open-idea.net)
+- [API Key](references/API-KEY.md)
+- [HTTP Requests](references/HTTP-REQUESTS.md)
+- [Interface Routing](references/INTERFACE-ROUTING.md)
+- [Translation](references/TRANSLATION.md)
+- [Chat Completions](references/CHAT-COMPLETIONS.md)
+- [OCR](references/OCR.md)
+- [ASR](references/ASR.md)
+- [TTS](references/TTS.md)
+- [Document Translation](references/DOCUMENT-TRANSLATION.md)
+- [Behavior Rules](references/BEHAVIOR-RULES.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, API calls, audio files]
+
+**Output Format:** [Markdown text with endpoint-specific response fields, billing lines, JSON or curl examples, and decoded WAV output for TTS when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MONGOL_AI_SKILL_API_KEY and may send user text, files, images, or audio to mongol.open-idea.net under the user's account.]
+
+## Skill Version(s):
+
+1.0.36 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

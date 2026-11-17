@@ -1,41 +1,50 @@
-## Description: <br>
-Official Strava OAuth integration for OpenClaw. Use to connect/authorize Strava, store+refresh tokens, and fetch workout/activity data (runs/rides/etc.) for today/yesterday or a date range. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Official Strava OAuth integration for OpenClaw. Use to connect/authorize Strava, store+refresh tokens, and fetch workout/activity data (runs/rides/etc.) for today/yesterday or a date range.
 
-## Publisher: <br>
-[swang62](https://clawhub.ai/user/swang62) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[swang62](https://clawhub.ai/user/swang62)
 
-## Use Case: <br>
-Developers and agent users use this skill to authorize Strava, refresh stored tokens, and fetch workout activity data for daily summaries, weekly mileage, activity lists, or wellness workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles Strava OAuth credentials, refresh tokens, and workout activity data. <br>
-Mitigation: Install only if the publisher is trusted, keep the token file private, and set STRAVA_TOKEN_PATH to an appropriate private location. <br>
-Risk: Loopback OAuth mode can expose authorization flow risk if used with a non-local redirect URI. <br>
-Mitigation: Use loopback mode only with a localhost or 127.0.0.1 redirect URI, as documented by the skill. <br>
+## Use Case:
 
+Developers and agents use this skill to authorize Strava access, refresh stored tokens, and fetch normalized activity data for training summaries, weekly mileage, activity lists, or wellness workflows.
 
-## Reference(s): <br>
-- [Strava API Quick Reference](references/strava_api.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/swang62/strava-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON activity output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Strava OAuth configuration and writes fetched activity data to a caller-specified JSON file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill handles Strava OAuth tokens and private fitness data in local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private token path with restrictive permissions, avoid shared export paths, and revoke or rotate Strava credentials if token files are exposed.
+
+## Reference(s):
+
+- [Strava API Quick Reference](references/strava_api.md)
+- [Strava Api ClawHub Page](https://clawhub.ai/swang62/skills/strava-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON activity files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Strava OAuth credentials and writes fetched activity data to a user-specified JSON file.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

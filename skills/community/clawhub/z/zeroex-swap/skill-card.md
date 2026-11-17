@@ -1,44 +1,60 @@
-## Description: <br>
-Execute token swaps using the 0x API with support for price quotes, gasless meta-transactions, and on-chain trade history retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute token swaps using the 0x API with support for price quotes, gasless meta-transactions, and on-chain trade history retrieval.
 
-## Publisher: <br>
-[aviclaw](https://clawhub.ai/user/aviclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aviclaw](https://clawhub.ai/user/aviclaw)
 
-## Use Case: <br>
-Developers and crypto automation operators use this skill to fetch 0x token swap quotes, execute ERC-20 swaps from a configured wallet, and inspect swap history on supported EVM chains. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can spend real funds and gas through irreversible cryptocurrency transactions. <br>
-Mitigation: Use a dedicated low-balance hot wallet and review chain, token addresses, amount, spender, and transaction target before every swap. <br>
-Risk: The swap flow uses a raw wallet private key. <br>
-Mitigation: Never use a primary wallet key; store only a dedicated hot-wallet key in the runtime environment and rotate it if exposed. <br>
-Risk: swap.js can submit a transaction without an explicit human confirmation or dry-run step. <br>
-Mitigation: Add a confirmation or dry-run gate before allowing an agent to execute swap.js. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aviclaw/zeroex-swap) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/aviclaw) <br>
-- [0x developer dashboard](https://dashboard.0x.org/) <br>
-- [0x Swap API endpoint](https://api.0x.org/) <br>
+## Use Case:
 
+Developers and agents use this skill to fetch 0x swap quotes, prepare token-swap commands, and execute ERC-20 swaps across supported EVM chains using configured API keys and wallet credentials.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and JavaScript execution output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ZEROEX_API_KEY and a wallet private key; swap execution can submit irreversible on-chain transactions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can spend real wallet funds automatically and was classified as suspicious by the authoritative security evidence because transaction checks are weak.
+
+Mitigation: Review each transaction before signing, inspect quote destination, calldata, value, RPC chain, and token decimals, and use a dry-run or explicit confirmation workflow before using real funds.
+
+Risk: The skill requires private wallet credentials in environment variables.
+
+Mitigation: Use a dedicated low-balance wallet, avoid exporting valuable private keys in shared shells, and keep credentials out of logs and persistent shell history.
+
+Risk: Dependency or API behavior could change without a pinned lockfile.
+
+Mitigation: Install from a reviewed dependency set, prefer a pinned lockfile, and review changes to 0x API responses before executing swaps.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aviclaw/skills/zeroex-swap)
+- [0x Developer Dashboard](https://dashboard.0x.org/)
+- [0x Swap API](https://api.0x.org/swap/permit2/quote)
+- [0x Gasless API](https://api.0x.org/gasless/quote)
+- [0x Trade Analytics Swap API](https://api.0x.org/trade-analytics/swap)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JavaScript examples, API request examples, and transaction status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate live 0x API requests and signed blockchain transactions when used with real API keys, RPC endpoints, and wallet credentials.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

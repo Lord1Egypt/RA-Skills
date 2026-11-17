@@ -1,47 +1,61 @@
-## Description: <br>
-Provides Whisper-based ASR and Edge TTS helpers for OpenClaw, including agent-specific voices and an optional Telegram voice reply script. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adds voice input through local Whisper ASR and voice output through Edge TTS, with agent-specific voices and an optional helper for sending Telegram voice replies.
 
-## Publisher: <br>
-[believe3344](https://clawhub.ai/user/believe3344) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[believe3344](https://clawhub.ai/user/believe3344)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to transcribe incoming audio to text, synthesize replies as MP3 speech, and send Telegram voice replies when explicitly invoked. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Voice content may be processed by local Whisper and cloud Edge TTS. <br>
-Mitigation: Review data handling requirements before deployment and avoid sensitive audio or reply text unless this processing path is approved. <br>
-Risk: Telegram bot tokens are read from OpenClaw config, command-line input, or environment variables, and messages are sent to supplied chat IDs. <br>
-Mitigation: Use scoped bot tokens, verify chat IDs before sending, restrict token access, rotate credentials when needed, and prefer explicit channel allowlists. <br>
-Risk: Local OpenClaw configuration is evaluated as code. <br>
-Mitigation: Use strict JSON config parsing and review local configuration files before installing or enabling the skill. <br>
-Risk: Successful ASR can copy inbound audio into the workspace and delete the original inbound file. <br>
-Mitigation: Use opt-in non-destructive archiving or a retention policy that preserves required originals before deletion. <br>
-Risk: Transcripts are emitted in agent-facing text that may steer later agent behavior. <br>
-Mitigation: Treat transcript text as untrusted user content and require user or application validation before following transcript-embedded instructions. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to transcribe incoming voice messages, synthesize spoken replies, and optionally send generated voice messages through Telegram.
 
-## Reference(s): <br>
-- [Voice TTS/ASR ClawHub Page](https://clawhub.ai/believe3344/voice-tts) <br>
-- [Node.js](https://nodejs.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, Shell commands, Configuration] <br>
-**Output Format:** [Plain text transcripts, MP3 audio files, JSON status objects, and Markdown command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18 or newer, Python 3, ffmpeg, edge-tts, whisper, and click; Telegram sending requires a bot token and target chat ID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+Risk: Voice text or audio may be sent to Edge TTS and Telegram services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Deploy only where those data flows are acceptable, and avoid using the skill for confidential voice content unless external transmission has been reviewed.
+
+Risk: Telegram bot tokens may be read from local OpenClaw configuration or environment variables.
+
+Mitigation: Protect ~/.openclaw/openclaw.json and token-bearing environments with least-privilege file permissions and rotate tokens if exposure is suspected.
+
+Risk: Inbound audio can be moved and deleted after successful transcription.
+
+Mitigation: Keep separate backups or retention controls for audio that must be preserved for audit, retry, or user-support workflows.
+
+Risk: The security review flags unsafe code/config handling, ASR output isolation concerns, dependency pinning gaps, and missing helper scripts.
+
+Mitigation: Review scripts before execution, avoid untrusted installer arguments, pin dependencies for deployment, and resolve missing helper scripts before broad use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/believe3344/skills/voice-tts)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text, JSON status objects, shell commands, and generated audio file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 18 or newer, Python 3, ffmpeg, edge-tts, whisper, and click.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Validate and lint PHP Composer composer.json files for structure, dependencies, autoload, and best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate and lint PHP Composer composer.json files for structure, dependencies, autoload, and best practices.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect PHP Composer composer.json files, catch dependency and autoload issues, and produce text, JSON, or Markdown validation reports for local review or CI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Validation output may be used to fail CI or guide dependency changes. <br>
-Mitigation: Review findings before relying on them in automation, and use --strict only when warning-level findings should fail the build. <br>
-Risk: The bundled Python script reads user-selected Composer files. <br>
-Mitigation: Run it only against files you intend to inspect; evidence.security reports no network access, credential use, persistence, or file mutation. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect PHP Composer composer.json files for structural issues, dependency hygiene, autoload configuration, lifecycle-script concerns, and project configuration best practices.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/composer-json-validator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Text, JSON, or Markdown reports with command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local file analysis only; strict mode can make warning-level findings fail automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: Composer lifecycle scripts can execute arbitrary commands during install or update.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill as a convenience linter and manually review lifecycle scripts before running composer install or composer update, especially commands invoking shells, interpreters, URLs, or downloaded content.
+
+Risk: The validator is not a complete Composer security audit.
+
+Mitigation: Treat clean output as a starting point and supplement it with project-specific dependency, script, and package-source review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/composer-json-validator)
+- [Publisher profile](https://clawhub.ai/user/charlie-morrison)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, code, shell commands, guidance]
+
+**Output Format:** [Plain text, JSON, or Markdown reports with issue summaries and command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports lint, dependencies, scripts, and validate commands; strict mode can fail on warnings for CI use.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

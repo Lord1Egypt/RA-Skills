@@ -1,42 +1,53 @@
-## Description: <br>
-Naver Search lets an agent retrieve Naver web, news, shopping, image, video, booking, and local search results through SerpAPI-backed command-line scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Naver Search helps agents retrieve Naver web, news, shopping, image, video, and booking or place results through SerpAPI-backed command-line scripts.
 
-## Publisher: <br>
-[downwind7clawd-ctrl](https://clawhub.ai/user/downwind7clawd-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[downwind7clawd-ctrl](https://clawhub.ai/user/downwind7clawd-ctrl)
 
-## Use Case: <br>
-Agents and developers use this skill to gather Naver search evidence across web, news, shopping, images, video, and local or booking categories. It supports compact human-facing summaries and JSON output for downstream analysis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to SerpAPI and Naver, which can expose sensitive or confidential query content. <br>
-Mitigation: Avoid secrets, personal data, and confidential internal terms in queries; use accounts and API keys approved for the data being searched. <br>
-Risk: The skill requires a SERPAPI_API_KEY that may be stored in the environment or a local .env file. <br>
-Mitigation: Keep the key private, restrict access to any .env file, and rotate the key if exposure is suspected. <br>
-Risk: The serpapi dependency is not pinned in requirements.txt, which can reduce reproducibility. <br>
-Mitigation: Pin and review the dependency version before production deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/downwind7clawd-ctrl/naver-search) <br>
-- [Publisher profile](https://clawhub.ai/user/downwind7clawd-ctrl) <br>
+## Use Case:
 
+External users, developers, and agents use this skill to collect Korean search results across Naver categories for research, comparison, and answer preparation. It can return compact summaries for reading or JSON for downstream analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Compact text summaries or raw JSON from command-line scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports compact, full, and json output modes; requires SERPAPI_API_KEY.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Dependency loading may prefer user-site Python packages, which can expose the SerpAPI key and search terms if the local environment is unsafe.
+
+Mitigation: Pin and verify the serpapi dependency, remove user-site sys.path precedence before deployment, and run the skill in a dedicated virtual environment.
+
+Risk: Search queries and the SerpAPI key are sent through a third-party search provider.
+
+Mitigation: Avoid sensitive or private queries, store SERPAPI_API_KEY securely, and review provider terms before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/downwind7clawd-ctrl/skills/naver-search)
+- [Publisher profile](https://clawhub.ai/user/downwind7clawd-ctrl)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Compact Korean text summaries or JSON search-result objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SERPAPI_API_KEY; search queries and the SerpAPI key are sent through a third-party search provider.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

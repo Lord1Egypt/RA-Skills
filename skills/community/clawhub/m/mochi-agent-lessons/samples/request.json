@@ -1,0 +1,10 @@
+{
+  "action": "record",
+  "id": "demo-command",
+  "situation": "Demo flag failed",
+  "correction": "Read the CLI help first",
+  "evidence": "Synthetic exit code 2",
+  "tags": [
+    "demo"
+  ]
+}

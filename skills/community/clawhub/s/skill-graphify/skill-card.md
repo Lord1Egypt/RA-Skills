@@ -1,41 +1,54 @@
-## Description: <br>
-Turn any folder of code, docs, papers, or images into a queryable knowledge graph. Cross-platform wrapper for graphify CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns folders of code, docs, papers, or images into queryable knowledge graphs through a cross-platform wrapper for the graphify CLI.
 
-## Publisher: <br>
-[flobo3](https://clawhub.ai/user/flobo3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flobo3](https://clawhub.ai/user/flobo3)
 
-## Use Case: <br>
-Developers and engineers use this skill to map unfamiliar codebases or mixed project folders into a knowledge graph, then inspect generated reports, JSON, and interactive graph output to understand relationships across files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The wrapper can install the unpinned graphifyy Python package at runtime. <br>
-Mitigation: Install and run it in a virtual environment, and review the package source or pin an approved version before use in controlled environments. <br>
-Risk: Generated graph, report, HTML, and cache files may contain indexed project content from the target folder. <br>
-Mitigation: Run it only on folders appropriate for indexing, use .graphifyignore for secrets or private files, and review or delete graphify-out before sharing. <br>
+## Use Case:
 
+Developers and engineers use this skill to map relationships across unfamiliar codebases or mixed document folders, inspect generated graph artifacts, and query how concepts connect.
 
-## Reference(s): <br>
-- [Graphify GitHub Repository](https://github.com/safishamsi/graphify) <br>
-- [ClawHub Skill Page](https://clawhub.ai/flobo3/skill-graphify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with Python and CLI commands; generated artifacts include HTML, Markdown, JSON, and cache files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes graphify-out/graph.html, graphify-out/GRAPH_REPORT.md, graphify-out/graph.json, and graphify-out/cache/ under the target project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can automatically install the unpinned third-party Python package graphifyy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in an isolated virtual environment or sandbox, and review or pin the graphifyy dependency before use.
+
+Risk: The skill can analyze and write graph outputs in arbitrary target folders.
+
+Mitigation: Run it only on explicit folders approved for indexing, and review graph.json and GRAPH_REPORT.md before sharing generated outputs.
+
+## Reference(s):
+
+- [Skill Graphify on ClawHub](https://clawhub.ai/flobo3/skills/skill-graphify)
+- [graphify upstream project](https://github.com/safishamsi/graphify)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and generated graph/report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Build commands produce graph.html, graph.json, GRAPH_REPORT.md, and cache files in graphify-out/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

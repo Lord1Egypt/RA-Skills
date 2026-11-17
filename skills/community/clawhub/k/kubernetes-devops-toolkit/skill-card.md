@@ -1,44 +1,55 @@
-## Description: <br>
-Manage, deploy, monitor, and troubleshoot Kubernetes clusters with tools for multi-cluster control, resource monitoring, log aggregation, diagnostics, and Helm release operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage, deploy, monitor, and troubleshoot Kubernetes clusters with multi-cluster control, resource monitoring, log aggregation, diagnostics, and Helm lifecycle support.
 
-## Publisher: <br>
-[kaiyuelv](https://clawhub.ai/user/kaiyuelv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaiyuelv](https://clawhub.ai/user/kaiyuelv)
 
-## Use Case: <br>
-Developers and platform engineers use this skill to inspect Kubernetes clusters, review pod and node status, collect logs and events, diagnose common workload failures, and run Helm release actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use live Kubernetes credentials and access cluster logs. <br>
-Mitigation: Use a restricted kubeconfig and RBAC role, and limit access to clusters and namespaces the agent is intended to operate on. <br>
-Risk: Helm install, upgrade, and rollback actions can change running workloads. <br>
-Mitigation: Test changes against non-production clusters first, verify the active context and namespace, and review release names, chart versions, and values before execution. <br>
-Risk: Dependency updates could change behavior in stricter environments. <br>
-Mitigation: Use pinned or locked dependencies when deploying the skill in controlled or production workflows. <br>
+## Use Case:
 
+Developers and DevOps engineers use this skill to operate Kubernetes clusters, deploy applications, monitor resources, aggregate logs, diagnose pod issues, and manage Helm releases across development and production environments.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kaiyuelv/kubernetes-devops-toolkit) <br>
-- [Publisher Profile](https://clawhub.ai/user/kaiyuelv) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python examples, shell commands, configuration notes, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference kubeconfig contexts, namespaces, pod names, Helm releases, chart names, and diagnostic log excerpts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Helm install, upgrade, rollback, or list operations can target the wrong cluster because the configured kubeconfig is not passed to Helm commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated kubeconfig and context, verify the active Helm context before changes, and prefer a patched version that passes the selected kubeconfig explicitly to every Helm command.
+
+Risk: Using the toolkit with production Kubernetes access can read or modify live cluster resources.
+
+Mitigation: Review carefully before installation, restrict the kubeconfig to the minimum required permissions, and test operations in a non-production context before production use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kaiyuelv/skills/kubernetes-devops-toolkit)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May perform live Kubernetes API and Helm operations when connected to cluster credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

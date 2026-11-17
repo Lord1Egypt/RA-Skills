@@ -1,41 +1,53 @@
-## Description: <br>
-解读用户提供的中文对话、聊天记录或邮件中的言外之意，并在背景不足时先追问关键信息。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interprets subtext in Chinese conversations, chats, and emails when the user provides enough context to assess whether a phrase is a polite refusal, hint, complaint, pleasantry, probe, or other indirect intent.
 
-## Publisher: <br>
-[chujindan-dotcom](https://clawhub.ai/user/chujindan-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chujindan-dotcom](https://clawhub.ai/user/chujindan-dotcom)
 
-## Use Case: <br>
-External users and agents use this skill to analyze Chinese conversational subtext across workplace, business, relationship, family, and social scenarios, with grounded explanations and optional response guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate broadly on conversational-subtext requests and may receive private chats or emails. <br>
-Mitigation: Share only content you are authorized to analyze, omit sensitive details where possible, and disable or narrow the skill if its trigger phrases activate during unrelated conversations. <br>
-Risk: The skill can produce confident interpretations of social intent that are not factual proof. <br>
-Mitigation: Use its analysis as conversational guidance, and confirm directly with the people involved before making major personal, employment, legal, or financial decisions. <br>
+## Use Case:
 
+External users use this skill to understand likely subtext in Chinese interpersonal, workplace, business, family, and social conversations. The skill asks for missing relationship, scene, exact wording, and prior-context details before giving a grounded reading.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chujindan-dotcom/chinese-subtext) <br>
-- [Scenario patterns reference](references/scenarios.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown sections with quoted source snippets, subtext analysis, supporting rationale, emotional stance, and optional response suggestions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided conversation context; asks follow-up questions when relationship, scenario, exact wording, or prior context is missing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may present subjective social readings too confidently for relationships, workplace disputes, legal issues, or other major decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as hypotheses based only on the supplied conversation and verify important matters through direct communication or appropriate professional advice.
+
+Risk: Users may provide sensitive conversation text for analysis.
+
+Mitigation: Share only conversation content that is appropriate to disclose to the agent and avoid unnecessary private, confidential, or identifying details.
+
+## Reference(s):
+
+- [High-Frequency Chinese Subtext Scenario Patterns](references/scenarios.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown analysis with quoted phrase-by-phrase interpretation and optional response guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided conversation context; includes a fixed disclaimer that readings are not factual determinations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

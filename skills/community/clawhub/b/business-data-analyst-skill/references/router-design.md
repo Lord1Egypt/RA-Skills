@@ -1,140 +1,46 @@
-# 路由设计说明
+# 路由设计与实现
 
-## 目的
+## 职责
 
-该文档用于约定未来 `src/router.js` 的职责边界，确保业务分析类请求在进入模型前能够被稳定分流。
+`src/router.js` 是一个可解释的关键词路由层，判断请求是否属于商业分析，并在命中后分到一个分析子场景。它只返回意图、置信度、原因和提示语，不读取业务数据、不执行分析，也不调用搜索工具。
 
-目标不是做复杂的自然语言理解系统，而是先提供一层可维护、可解释、可扩展的轻量路由。
+## 输入与输出
 
-## 适用场景
+公开入口 `routeSkillIntent(input)` 接受字符串，或至少包含 `message` 字符串的对象。对象中的其他字段（例如 `locale`、`metadata`）目前不会参与判断。
 
-未来 `src/router.js` 适合处理以下两类判断：
-
-- 是否应命中 `business-data-analyst-skill`
-- 命中后应进入哪类分析子场景
-
-建议优先覆盖的子场景：
-
-- 增长分析
-- 漏斗分析
-- 留存分析
-- 收入或利润分析
-- 运营效率分析
-- 经营复盘或异常诊断
-
-## 推荐输入
-
-建议路由函数至少接收以下字段：
+命中时返回：
 
 ```js
 {
-  message: string,
-  locale?: string,
-  metadata?: {
-    source?: string,
-    channel?: string,
-    userRole?: string
-  }
+  matched: true,
+  intent: "retention_analysis",
+  confidence: 0.72,
+  reason: "命中留存分析，检测到相关问题模式和关键词。",
+  promptHint: "优先做 cohort、续费和流失阶段拆解。"
 }
 ```
 
-其中 `message` 是主判断依据，`metadata` 只用于辅助，不应反向覆盖文本语义。
+未命中时 `intent` 和 `promptHint` 为 `null`。`detectBusinessAnalysis(message)` 用于单独检查是否属于业务分析；`detectIntent(message)` 用于单独识别子场景。
 
-## 推荐输出
+## 当前意图与优先级
 
-建议 `src/router.js` 输出统一结构，避免上层调用方自行猜测：
+路由目前覆盖：
 
-```js
-{
-  matched: boolean,
-  intent: string | null,
-  confidence: number,
-  reason: string,
-  promptHint?: string
-}
-```
+- `growth_analysis`：增长分析
+- `funnel_analysis`：漏斗分析
+- `retention_analysis`：留存分析
+- `revenue_analysis`：收入利润分析
+- `efficiency_analysis`：运营效率分析
+- `business_diagnosis`：经营诊断
+- `market_research`：市场调研
 
-字段建议：
+意图分数为命中的非重叠关键词数。同一较长关键词中包含的短关键词不会重复计分。分数相同时按规则中显式声明的 `priority` 选择，不依赖数组排列；置信度仍是规则匹配分数的启发式映射，不代表校准后的概率。
 
-- `matched`: 是否命中当前 skill
-- `intent`: 命中的分析意图，例如 `growth_analysis`
-- `confidence`: `0` 到 `1` 的置信度
-- `reason`: 简短解释命中原因，便于调试
-- `promptHint`: 可选，提供给上层的提示词片段或模式建议
+业务场景门控要求至少命中一个业务信号，且综合分数达到 0.2。纯技术或通用写作请求应排除。未识别到具体子场景但已通过业务门控时，默认进入 `business_diagnosis`。
 
-## 推荐路由策略
+## 维护约定
 
-建议按以下顺序判断：
-
-1. 先识别是否为业务分析问题
-2. 再识别具体分析子类型
-3. 最后补充输出结构化解释
-
-### 第一步：识别业务分析问题
-
-优先识别以下信号：
-
-- 指标词：GMV、转化率、留存、ROI、LTV、客单价、复购、人效、毛利
-- 诊断词：为什么下降、定位原因、拆解、归因、复盘、分析波动
-- 决策词：给建议、下一步动作、实验方案、优化优先级
-
-反向排除以下场景：
-
-- 纯闲聊
-- 纯代码报错排查
-- 通用写作润色
-- 与经营分析无关的知识问答
-
-### 第二步：识别子场景
-
-建议用关键词和问题结构组合判断，而不是只靠单一词命中。
-
-示例映射：
-
-- `增长`、`新增`、`活跃`、`GMV`、`增长放缓` -> `growth_analysis`
-- `漏斗`、`转化`、`注册`、`下单`、`激活` -> `funnel_analysis`
-- `留存`、`复购`、`续费`、`流失`、`cohort` -> `retention_analysis`
-- `收入`、`利润`、`毛利`、`价格`、`折扣` -> `revenue_analysis`
-- `人效`、`库存`、`交付`、`客服效率`、`门店效率` -> `efficiency_analysis`
-- `复盘`、`异常`、`波动`、`经营诊断` -> `business_diagnosis`
-
-### 第三步：输出解释
-
-`reason` 字段不要只写“keyword matched”，应尽量保留可读性，例如：
-
-```txt
-命中留存分析：请求同时包含“续费率下降”和“定位原因”，符合经营诊断场景。
-```
-
-## 实现建议
-
-推荐先从纯规则实现开始，不要一开始引入复杂分类器。
-
-建议拆成三个函数：
-
-```js
-function detectBusinessAnalysis(message) {}
-function detectIntent(message) {}
-function route(message, metadata) {}
-```
-
-如果后续规则变多，可以把关键词字典单独拆到配置文件。
-
-## 最小可用版本
-
-`src/router.js` 的第一版至少应满足：
-
-- 能判断是否命中当前 skill
-- 能识别 3 到 6 个核心分析意图
-- 能返回统一结构
-- 能给出简单可读的命中原因
-
-## 与文档内容的关系
-
-路由只负责分流，不负责生成最终分析结论。
-
-真正的分析过程仍应遵守以下文档：
-
-- [../SKILL.md](../SKILL.md)
-- [examples.md](examples.md)
-- [metric-playbook.md](metric-playbook.md)
+- 新增关键词或意图时，在 `test/router.test.js` 增加真实输入与预期路由的测试。
+- 为会同时命中多个意图的输入明确优先级，并用测试锁定结果。
+- 路由规则保持轻量和可解释；路由只负责分流，最终分析仍遵守 [SKILL.md](../SKILL.md)。
+- 市场调研所需的数据和网页搜索能力由宿主提供；路由提示语不会执行这些操作。

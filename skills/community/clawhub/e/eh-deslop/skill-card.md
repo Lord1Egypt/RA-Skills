@@ -1,42 +1,60 @@
-## Description: <br>
-Deslop helps agents diagnose and rewrite Chinese or English articles, documents, and sharing drafts that sound AI-generated, using a two-pass process that removes obvious AI patterns and restores natural rhythm and specificity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deslop rewrites Chinese and English prose in two passes to reduce AI-like wording, structure, and tone while preserving the original facts and argument.
 
-## Publisher: <br>
-[lanyasheng](https://clawhub.ai/user/lanyasheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanyasheng](https://clawhub.ai/user/lanyasheng)
 
-## Use Case: <br>
-Writers, editors, and developers use this skill to review articles, documentation, blogs, and talk drafts for AI-like wording, then produce a scored two-pass rewrite that preserves facts while improving specificity, rhythm, and voice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally changes style and may alter tone or emphasis in user-provided writing. <br>
-Mitigation: Review the final rewrite against the original facts and author intent before publishing or sharing it. <br>
-Risk: Broad writing-improvement triggers may activate when the user only wants generic editing. <br>
-Mitigation: Use it for explicit de-AI-tone rewriting or score-only review, and choose a more specific writing skill for other editing modes. <br>
+## Use Case:
 
+Writers, documentation authors, and developers use this skill after drafting articles, documents, blogs, or technical talks to diagnose AI-like prose, rewrite it in two passes, score the result, and produce a concise change log.
 
-## Reference(s): <br>
-- [Full Pattern Catalog](references/full-pattern-catalog.md) <br>
-- [Chinese AI vs Human Writing Examples](references/writing-patterns-zh.md) <br>
-- [Tone Guide](references/tone-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown report with scores, two rewrite passes, residual AI-trace notes, and a change log.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves source facts and asks for confirmation when a rewrite may overstep the original text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release evidence) <br>
+Risk: Broad writing-related triggers may activate the skill when the user did not intend to rewrite prose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when prose humanization or AI-trace cleanup is explicitly desired, and confirm the target text before replacing it.
+
+Risk: A rewrite may alter the author's meaning, tone, or factual claims.
+
+Mitigation: Review the final rewritten text against the original and keep uncertain edits marked for user confirmation.
+
+Risk: The skill is not intended for code comments, commit messages, academic work, or pure document generation.
+
+Mitigation: Use a separately supported workflow for those tasks or require additional review before applying the output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lanyasheng/skills/eh-deslop)
+- [Full pattern catalog](references/full-pattern-catalog.md)
+- [Chinese AI vs human writing examples](references/writing-patterns-zh.md)
+- [Tone guide](references/tone-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with rewritten prose, AI-trace findings, scores, and a change log]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include score-only analysis when requested; otherwise returns a two-pass rewrite and review notes.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

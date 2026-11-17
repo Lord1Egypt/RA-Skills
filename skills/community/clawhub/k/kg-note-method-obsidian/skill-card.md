@@ -1,41 +1,59 @@
-## Description: <br>
-Organizes Obsidian vaults with the KG note method, including note typing, link rules, relationship notes, naming checks, deduplication, enrichment, and layered loading. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organizes Obsidian vault notes with the KG note method by classifying note types, normalizing naming and links, deduplicating relationships, and preparing checklist-driven corrections and enrichments.
 
-## Publisher: <br>
-[realpda](https://clawhub.ai/user/realpda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[realpda](https://clawhub.ai/user/realpda)
 
-## Use Case: <br>
-Obsidian users and agents use this skill to audit, reorganize, and enrich Markdown notes while preserving original wording where possible. It guides note classification, relationship-note creation, YAML validation, duplicate handling, and task checklist tracking for KG-style vault maintenance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify notes and filenames in an Obsidian vault. <br>
-Mitigation: Use kg 检查 for preview-before-edit behavior, keep backups or version control, and review _working task files before resuming old work. <br>
-Risk: Web, image lookup, or enrichment steps may expose private note topics or URLs externally. <br>
-Mitigation: Avoid lookup and enrichment steps for private notes unless that external disclosure is acceptable. <br>
+## Use Case:
 
+Obsidian users and agents use this skill to inspect, reorganize, and enrich Markdown vault notes into KG-style concept, object, skill, and relation notes. It is intended for checklist-driven note maintenance, relationship cleanup, YAML validation, and controlled vault edits.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/realpda/kg-note-method-obsidian) <br>
-- [YAML Frontmatter Parsing Pitfalls](references/yaml-parsing-pitfalls.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown checklists, Obsidian note edits, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update Markdown files under the user's Obsidian vault and _working task directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.23.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can directly modify, rename, delete, and enrich Obsidian vault notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the explicit kg 检查 preview flow before applying changes, keep vault backups, and review generated execution checklists before file edits.
+
+Risk: File operations could affect notes outside the intended workspace if the working path is too broad.
+
+Mitigation: Restrict the working path to the intended Obsidian vault and verify checklist files are created under that vault's _working directory.
+
+Risk: Enrichment can append externally sourced or unreviewed content to notes.
+
+Mitigation: Preview enrichment output with --stdout and review external search results before appending them to vault files.
+
+## Reference(s):
+
+- [YAML Frontmatter Parsing Pitfalls](references/yaml-parsing-pitfalls.md)
+- [ClawHub skill page](https://clawhub.ai/realpda/skills/kg-note-method-obsidian)
+- [Publisher profile](https://clawhub.ai/user/realpda)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown notes and checklists with inline shell commands and Python helper script guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create, modify, rename, delete, validate, or enrich Obsidian Markdown files in the selected vault.]
+
+## Skill Version(s):
+
+3.23.0 (source: evidence.release and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

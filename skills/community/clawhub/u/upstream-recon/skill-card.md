@@ -1,41 +1,53 @@
-## Description: <br>
-Investigate an open-source project before interacting with it through PRs, issues, or comments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Investigate open-source projects before filing issues, pull requests, or comments, using GitHub repository signals to identify duplicates, maintainer sentiment, and likely next steps.
 
-## Publisher: <br>
-[SeMmyT](https://clawhub.ai/user/SeMmyT) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[semmyt](https://clawhub.ai/user/semmyt)
 
-## Use Case: <br>
-Developers and engineers use this skill before filing issues, submitting pull requests, or commenting on open-source repositories. It helps them review existing issues and pull requests, maintainer response patterns, merge velocity, and topic overlap before choosing the next action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read public GitHub issues, pull requests, comments, and repository metadata through the GitHub CLI. <br>
-Mitigation: Install only from a trusted source and review the proposed GitHub CLI commands before use. <br>
-Risk: Follow-up actions such as opening an issue, submitting a pull request, or posting a comment can affect a user's GitHub account or an upstream project. <br>
-Mitigation: Keep those write actions under explicit user control; the skill should advise on them rather than perform them without direction. <br>
+## Use Case:
 
+Developers and maintainers use this skill before engaging with open-source repositories they do not maintain. It helps them inspect existing issues and pull requests, maintainer responsiveness, merge patterns, and topic overlap before deciding whether to file an issue, open a pull request, comment on an existing thread, or avoid a duplicate.
 
-## Reference(s): <br>
-- [Claude Code skills documentation](https://docs.anthropic.com/en/docs/claude-code/skills) <br>
-- [ClawHub skill page](https://clawhub.ai/SeMmyT/upstream-recon) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, Shell commands, Markdown] <br>
-**Output Format:** [Markdown report with recommendation labels and concrete next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses GitHub CLI queries to inspect public repository metadata, issues, pull requests, comments, and contributor patterns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill may query GitHub through the GitHub CLI using the user's existing GitHub CLI login.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only when repository reconnaissance is intended, and confirm the GitHub CLI account and repository scope before use.
+
+Risk: Installing from an unpinned or untrusted source can make the reviewed skill content differ from the content that later runs.
+
+Mitigation: Install manually from the reviewed artifact or use a pinned, trusted installer source.
+
+## Reference(s):
+
+- [Claude Code Skills documentation](https://docs.anthropic.com/en/docs/claude-code/skills)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with a recommendation label and concrete next steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses GitHub CLI repository data available to the user's current public or authenticated GitHub context.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

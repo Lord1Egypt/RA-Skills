@@ -1,44 +1,59 @@
-## Description: <br>
-Read and send email via IMAP/SMTP. Check for new/unread messages, fetch content, search mailboxes, mark as read/unread, and send emails with attachments. Supports multiple accounts. Works with any IMAP/SMTP server including Gmail, Outlook, 163.com, vip.163.com, 126.com, vip.126.com, 188.com, and vip.188.com. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read and send email via IMAP/SMTP, including checking unread messages, fetching content, searching mailboxes, marking messages read or unread, and sending email with attachments across multiple accounts.
 
-## Publisher: <br>
-[arry8](https://clawhub.ai/user/arry8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arry8](https://clawhub.ai/user/arry8)
 
-## Use Case: <br>
-Developers and external users use this skill to let an agent inspect, search, manage, and send email through configured IMAP and SMTP accounts. It is suited for workflows that need mailbox access, attachment handling, and outbound messages across common mail providers or custom servers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access an email account that reads mail and sends real messages. <br>
-Mitigation: Install only for accounts where that access is acceptable, and prefer app-specific credentials instead of primary account passwords. <br>
-Risk: Default configuration and setup behavior may create credential and TLS safety concerns. <br>
-Mitigation: Replace the bundled config.env with user-specific settings, keep certificate verification enabled, and ensure ~/.openclaw/.env exists with restrictive permissions before running setup. <br>
-Risk: Credentials may be exposed if setup prints them because ~/.openclaw/.env is missing. <br>
-Mitigation: Create ~/.openclaw/.env with owner-only permissions before setup, and rotate the email credential if it was ever printed in terminal output. <br>
+## Use Case:
 
+Developers and external users can use this skill to let an agent interact with configured IMAP and SMTP mailboxes for reading, searching, status changes, attachment handling, and outbound email. It is intended for mailbox automation where users can supply their own provider settings and credentials.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arry8/imap-smtp-email-fixed) <br>
-- [Google App Passwords](https://myaccount.google.com/apppasswords) <br>
-- [Yahoo account security](https://login.yahoo.com/account/security) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and email operation results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read mailbox content, download attachments to allowed directories, and send email through configured accounts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The skill requires mailbox credentials and can read, send, and modify email state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated app passwords or authorization codes, scope accounts narrowly, and review command intent before mailbox operations.
+
+Risk: The published artifact includes insecure defaults and credential-handling concerns that could expose mailbox access.
+
+Mitigation: Enable certificate verification, replace bundled account settings, and avoid running setup where terminal output is logged until the password-printing fallback is fixed.
+
+Risk: Attachment and message-body file operations can touch local files if directory allowlists are broad.
+
+Mitigation: Restrict ALLOWED_READ_DIRS and ALLOWED_WRITE_DIRS to the minimum required directories before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arry8/skills/imap-smtp-email-fixed)
+- [Google App Passwords](https://myaccount.google.com/apppasswords)
+- [Yahoo account security](https://login.yahoo.com/account/security)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read mailbox content, send email, modify message state, and read or write local files within configured allowlists.]
+
+## Skill Version(s):
+
+2.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,56 @@
-## Description: <br>
-ERPNext helps agents read, create, update, and delete ERPNext documents through the OOMOL oo CLI connector instead of calling the ERPNext API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate ERPNext through an existing OOMOL-connected account using the oo CLI.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users, developers, and business operators use this skill to manage ERPNext DocTypes and documents from an agent workflow through an OOMOL-connected account. It supports document lookup, listing, counts, field reads, creation, updates, field setting, and deletion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup flow includes optional remote installer commands that execute downloaded shell or PowerShell scripts. <br>
-Mitigation: Prefer official verified installation steps, or inspect and verify the installer before running any remote script in a shell. <br>
-Risk: The skill requires a connected ERPNext account and may use sensitive credentials handled through the OOMOL connection. <br>
-Mitigation: Install only when the OOMOL publisher and connected ERPNext account are trusted, and avoid exposing raw tokens or credentials in prompts, logs, or payloads. <br>
-Risk: Write and destructive ERPNext actions can change or delete business records. <br>
-Mitigation: Confirm the exact DocType, document name, payload, and intended effect with the user before running write or destructive actions. <br>
+## Use Case:
 
+Employees and developers use this skill to read and manage ERPNext records through an existing OOMOL connection. It guides action schema checks and requires confirmation before writes or deletions.
 
-## Reference(s): <br>
-- [ERPNext homepage](https://erpnext.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-erpnext) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON connector payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before action execution; command responses include JSON data and execution metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The automatic setup workflow installs remote CLI software, and the downloaded installers and hosted runtime were not independently verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and explicitly approve CLI installation before setup; prefer a verified, version-pinned release and check whether it installs skills into other agents.
+
+Risk: The OOMOL connection can access ERPNext business data, and writes or deletions can change or remove records.
+
+Mitigation: Use narrowly scoped ERPNext credentials, consider OOMOL's access to business data, and retain confirmation of the exact effect before writes or deletions.
+
+## Reference(s):
+
+- [ERPNext](https://erpnext.com)
+- [Frappe REST API documentation](https://docs.frappe.io/framework/user/en/api/rest)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [ERPNext skill page](https://clawhub.ai/oomol/skills/oo-erpnext)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Guidance]
+
+**Output Format:** [oo CLI commands and JSON payloads; ERPNext action results returned as JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Available results depend on the ERPNext action. Writes and deletions require user confirmation.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

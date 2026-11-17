@@ -1,42 +1,51 @@
-## Description: <br>
-Builds session-scoped temporary memory palaces for extended conversations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds session-scoped temporary memory palaces for extended conversations
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and other agent users use this skill to structure long or interrupted conversations into temporary memory palaces that track decisions, artifacts, progress, issues, and next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording may activate the skill when session or context-state topics are mentioned without explicit intent. <br>
-Mitigation: Invoke the skill explicitly or narrow activation phrases when your agent supports trigger customization. <br>
-Risk: Temporary session palaces may be mistaken for durable knowledge structures. <br>
-Mitigation: Export important concepts to a permanent memory palace when long-term retention is needed. <br>
+## Use Case:
 
+Developers and other knowledge workers use the skill to organize temporary project or conversation state, including decisions, artifacts, issues, and next steps, and recover that context after interruptions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/athola/skills/nm-memory-palace-session-palace-builder) <br>
-- [Memory Palace Homepage](https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace) <br>
-- [Session Palace Templates](modules/templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with structured lists, workflows, and session palace templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Session-scoped guidance for temporary state organization] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: ClawHub release evidence) <br>
+Risk: Session palaces may contain sensitive conversation details, code, requirements, or research that could be retained in exported or archived state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep credentials and private data out of session state, and review palace contents before exporting or archiving them.
+
+## Reference(s):
+
+- [Session palace templates](modules/templates.md)
+- [Skill homepage (metadata)](https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace)
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-memory-palace-session-palace-builder)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured text or Markdown organized into named rooms and project-state sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Session-scoped organization for decisions, progress, issues, artifacts, and next steps, with checkpoint guidance.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter; ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

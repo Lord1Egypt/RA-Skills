@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Cloudflare Worker"
   author: "OOMOL"
-  version: "1.0.3"
+  version: "1.0.9"
   services: ["cloudflare_worker"]
   icon: "https://static.oomol.com/logo/third-party/Cloudflare.svg"
 ---
@@ -37,25 +37,31 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
+- `cancel_build` — Cancel a queued or running Workers Builds job. [destructive]
+- `create_manual_build` — Start a Workers Builds job from a configured trigger and branch or commit. [write]
 - `create_worker` — Create a Cloudflare Worker using the Workers beta API. [write]
 - `delete_worker` — Delete a Cloudflare Worker and its associated resources using the Workers beta API. [destructive]
 - `delete_worker_script` — Delete a Cloudflare Worker script. [destructive]
 - `delete_worker_script_secret` — Delete a secret binding from a Cloudflare Worker script. [destructive]
 - `edit_worker` — Partially update a Cloudflare Worker using the Workers beta API while leaving omitted fields unchanged. [write]
+- `get_build` — Get the current status and outcome of one Workers Builds job.
+- `get_build_logs` — Get one page of log lines for a Workers Builds job.
 - `get_worker` — Get one Worker by Worker ID using the Workers beta API.
 - `get_worker_script_content` — Fetch the raw source content for a Cloudflare Worker script.
 - `get_worker_script_secret` — Get one secret binding attached to a Cloudflare Worker script.
 - `get_worker_script_settings` — Get Worker metadata and configuration for a Cloudflare Worker script.
 - `list_accounts` — List Cloudflare accounts visible to the current credential.
+- `list_build_triggers` — List Workers Builds triggers configured for one Worker script tag.
+- `list_builds` — List Workers Builds jobs for one Worker script tag.
 - `list_worker_script_secrets` — List secret bindings attached to a Cloudflare Worker script.
 - `list_worker_scripts` — List Worker scripts in a Cloudflare account.
 - `list_workers` — List Workers in a Cloudflare account using the Workers beta API.
 - `patch_worker_script_settings` — Patch Worker metadata and configuration for a Cloudflare Worker script. [write]
-- `put_worker_script_content` — Replace only the content of a Cloudflare Worker script without changing metadata. [write]
-- `put_worker_script_secret` — Add or replace a secret_text binding on a Cloudflare Worker script. [write]
+- `put_worker_script_content` — Replace only the content of a Cloudflare Worker script without changing metadata. [destructive]
+- `put_worker_script_secret` — Add or replace a secret_text binding on a Cloudflare Worker script. [destructive]
 - `search_worker_scripts` — Search Worker scripts in a Cloudflare account by name or script tag.
-- `update_worker` — Replace a Cloudflare Worker using the Workers beta API, setting omitted fields to API defaults. [write]
-- `upload_worker_script` — Create or replace a Cloudflare Worker script by uploading a module bundle as multipart/form-data. [write]
+- `update_worker` — Replace a Cloudflare Worker using the Workers beta API, setting omitted fields to API defaults. [destructive]
+- `upload_worker_script` — Create or replace a Cloudflare Worker script by uploading a module bundle as multipart/form-data. [destructive]
 
 ## Safety
 
@@ -86,11 +92,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Cloudflare Worker is not connected, or the connection expired or lacks a scope. Connect once (auth type: custom credential, OAuth2) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=cloudflare_worker
+  https://console.oomol.com/connections/cloudflare_worker
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Cloudflare Worker homepage: https://workers.cloudflare.com
+- API documentation: https://developers.cloudflare.com/workers/

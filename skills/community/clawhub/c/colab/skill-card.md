@@ -1,50 +1,60 @@
-## Description: <br>
-Execute Python code on Google Colab GPU runtimes, manage Google Drive persistence, and run GPU-heavy workflows such as ML experiments, inference, training, and F5-TTS voice synthesis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute code on Google Colab GPU runtimes (T4/L4/A100/H100) and manage persistent storage via Google Drive.
 
-## Publisher: <br>
-[isotrivial](https://clawhub.ai/user/isotrivial) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[isotrivial](https://clawhub.ai/user/isotrivial)
 
-## Use Case: <br>
-Developers and engineers use this skill to run GPU-dependent Python workloads on Colab when local hardware is insufficient. It supports runtime management, Google Drive checkpoint transfer, and voice synthesis workflows that need remote GPU compute. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can execute code on remote Colab runtimes and consume Colab resources. <br>
-Mitigation: Review scripts before execution, avoid untrusted generated code, and stop kept-alive runtimes when work is complete. <br>
-Risk: The skill can read the local Colab OAuth token and inject it into remote runtime scripts for Drive access. <br>
-Mitigation: Use token injection only with reviewed scripts, limit Drive access to the documented drive.file scope, and revoke or rotate exposed tokens. <br>
-Risk: Voice samples or transcripts may be sent to remote services during TTS workflows. <br>
-Mitigation: Avoid sensitive voice data, obtain appropriate consent for voice cloning, and review remote service use before running TTS commands. <br>
-Risk: The skill installs Python dependencies into a local virtual environment during first use. <br>
-Mitigation: Run it in an isolated environment and pin or review dependencies where repeatability or supply-chain control matters. <br>
+## Use Case:
 
+Developers and engineers use this skill to run GPU-backed experiments, model training, inference, text-to-speech generation, and Drive-backed checkpoint workflows on Google Colab when local hardware is insufficient.
 
-## Reference(s): <br>
-- [Colab Examples](references/examples.md) <br>
-- [googlecolab/colab-mcp](https://github.com/googlecolab/colab-mcp) <br>
-- [Google Drive API](https://console.developers.google.com/apis/api/drive.googleapis.com) <br>
-- [Google Colab](https://colab.research.google.com) <br>
-- [ElevenLabs Voices API](https://api.elevenlabs.io/v1/voices/{voice_id}) <br>
-- [ClawHub Skill Page](https://clawhub.ai/isotrivial/colab) <br>
-- [Publisher Profile](https://clawhub.ai/user/isotrivial) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, Python snippets, runtime output, and file paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce Colab execution output, Drive transfer results, runtime state, checkpoints, and audio files depending on the invoked workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+Risk: The skill uses reusable Google OAuth credentials for Colab and optional Drive access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Google account or project where practical, grant only the needed scopes, and revoke or rotate tokens after use.
+
+Risk: Code and token-bearing scripts may be transmitted to Colab runtimes, and Drive workflows can move files into Google Drive.
+
+Mitigation: Review scripts before execution, avoid embedding sensitive secrets in submitted code, and use Drive persistence only for files intended to leave the local machine.
+
+Risk: Voice workflows can send voice identifiers, reference audio, text, or API credentials to ElevenLabs and Colab-backed TTS tooling.
+
+Mitigation: Use non-sensitive voice data, avoid passing real API keys as command-line arguments, and confirm that voice data use is authorized.
+
+## Reference(s):
+
+- [Colab examples](references/examples.md)
+- [Google Colab MCP](https://github.com/googlecolab/colab-mcp)
+- [Google Drive API](https://console.developers.google.com/apis/api/drive.googleapis.com)
+- [ClawHub skill page](https://clawhub.ai/isotrivial/skills/colab)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and code snippets; runtime commands may return text, JSON markers, base64 audio markers, or generated files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or transfer local files, Google Drive files, Colab runtime state, virtual environment dependencies, and audio outputs depending on the selected command.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

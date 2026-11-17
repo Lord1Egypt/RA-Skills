@@ -1,40 +1,60 @@
-## Description: <br>
-Send Slybroadcast ringless voicemail campaigns from OpenClaw/LLMs using CLI or MCP, including AI voice generation (ElevenLabs or generic HTTP voice API) and campaign controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send Slybroadcast ringless voicemail campaigns from OpenClaw/LLMs using CLI or MCP, including AI voice generation (ElevenLabs or generic HTTP voice API) and campaign controls.
 
-## Publisher: <br>
-[danielfoch](https://clawhub.ai/user/danielfoch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[danielfoch](https://clawhub.ai/user/danielfoch)
 
-## Use Case: <br>
-External users, operators, and developers use this skill to prepare and send Slybroadcast ringless voicemail campaigns from an agent workflow, including selecting recipients, choosing or generating audio, scheduling delivery, and checking campaign status. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send voicemail campaigns and control campaign state, creating legal, cost, recipient, and reputational impact if used without authorization or review. <br>
-Mitigation: Before any send or campaign-control action, require manual confirmation of recipients or list IDs, caller ID, message or audio source, schedule, cost or quota impact, and legal authorization to contact the recipients. <br>
-Risk: Slybroadcast and ElevenLabs credentials, voicemail text, and voicemail audio may be exposed through prompts, logs, or public staging URLs. <br>
-Mitigation: Store credentials securely, redact them from prompts and logs, and avoid placing sensitive voicemail audio or text in publicly reachable staging URLs. <br>
-Risk: The security review notes high-impact sending authority without enough reviewed implementation detail for the local CLI or MCP behavior. <br>
-Mitigation: Install only if you trust the local CLI or MCP implementation, inspect it before use, and require human approval for send and campaign-control actions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and operations teams use this skill to configure and run Slybroadcast voicemail campaigns through CLI or MCP tools, including account recordings, public audio URLs, uploaded lists, and AI-generated voice recordings.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and MCP tool names] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Slybroadcast credentials; public audio staging and ElevenLabs credentials are optional depending on audio source.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill enables mass voicemail campaigns.
+
+Mitigation: Use only for campaigns with lawful authority and recipient consent.
+
+Risk: Campaign inputs may include phone numbers and message content.
+
+Mitigation: Keep recipient data and message content minimal and handle them according to applicable privacy requirements.
+
+Risk: The skill relies on API credentials for Slybroadcast and optional voice providers.
+
+Mitigation: Store credentials in protected environment variables or a secrets manager.
+
+Risk: Local or AI-generated audio may need to be staged at a public URL for Slybroadcast to fetch.
+
+Mitigation: Use private, unguessable, short-lived staging URLs and delete staged audio promptly after use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/danielfoch/skills/slybroadcast-voicemail)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to call CLI or MCP tools that send, inspect, or control voicemail campaigns.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

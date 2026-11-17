@@ -1,0 +1,55 @@
+{
+  "name": "study-abroad-assistant",
+  "version": "1.1.0",
+  "type": "skill",
+  "description": "留学助理 · 美国研究生申请（美国·理工大类 CS/EE/Data）— 引擎增强版专家 skill。仅在用户明确要求留学申请帮助（竞争力评估/选校/教授短名单/申请计划/文书反馈/套磁）时激活。免费；画像/文书/套磁/报告按次匿名试用（5 次/7 天），选校检索与申请计划不消耗额度；额度用尽自动引导注册获取 API Key 继续使用。能力来自云端留学引擎 compliancehub.cn/api/study（知识库 Top60 校 + 画像 + 计划引擎）；引擎不可达时自动降级为通用知识模式。",
+  "language": "zh-CN",
+  "warnings": [
+    "运行环境：需要 Python 3.10+（脚本使用 PEP 604 注解）；macOS 可用 /opt/homebrew/bin/python3.13。",
+    "云端引擎：竞争力画像/选校/计划由云端留学引擎（compliancehub.cn/api/study）提供；画像/选校/文书等输入会经 HTTPS 发送到该引擎做计算。引擎不可达时自动降级为通用知识模式并提示，不假装有知识库结果。",
+    "匿名试用：本地生成 anon_id 并存于 ~/.study-abroad/（仅用于额度与进度延续），画像/文书/套磁/报告共 5 次/7 天匿名额度；选校检索与计划生成不消耗额度。注册后 API Key 也保存在 ~/.study-abroad/api_key（0600）。本 skill 不在终端创建账号或收集密码。",
+    "生成水印：文书反馈/套磁草稿均为 AI 草稿，带「请自行核实定稿」提示；不代写代申、不保录取，录取以官网为准。",
+    "数据核实：知识库中 deadline/学费/录取率/GRE 要求等字段部分为待核实状态，以各校官网为准。"
+  ],
+  "author": "CQDev",
+  "license": "MIT",
+  "homepage": "https://compliancehub.cn",
+  "permissions": {
+    "network": [
+      "https://compliancehub.cn",
+      "http://127.0.0.1:8100"
+    ],
+    "filesystem": {
+      "write": [
+        "~/.study-abroad"
+      ]
+    },
+    "env": [
+      "STUDY_ENGINE_URL",
+      "LLM_API_KEY",
+      "STUDY_CONFIG_DIR"
+    ]
+  },
+  "openclaw": {
+    "displayName": "留学助理 · 美国研究生申请",
+    "category": "education",
+    "pricing": "free",
+    "points": 1,
+    "permissions": {
+      "network": [
+        "https://compliancehub.cn",
+        "http://127.0.0.1:8100"
+      ],
+      "filesystem": {
+        "write": [
+          "~/.study-abroad"
+        ]
+      },
+      "env": [
+        "STUDY_ENGINE_URL",
+        "LLM_API_KEY",
+        "STUDY_CONFIG_DIR"
+      ]
+    }
+  }
+}

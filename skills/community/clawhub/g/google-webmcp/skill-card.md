@@ -1,43 +1,60 @@
-## Description: <br>
-Connects to Google Search and Gemini through the built-in local-mcp Google adapter and a fixed UXC link for searches, Gemini chat, and generated image downloads from an authenticated browser profile. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect to Google Search and Gemini through the built-in local-mcp Google adapter and one fixed UXC link. Use when the user wants to run Google searches, chat with Gemini, or download generated Gemini images from an authenticated browser profile.
 
-## Publisher: <br>
-[jolestar](https://clawhub.ai/user/jolestar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jolestar](https://clawhub.ai/user/jolestar)
 
-## Use Case: <br>
-Developers and agent users use this skill to run Google web searches, interact with Gemini, check authentication state, and download visible generated images through a managed Google browser profile. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a persistent authenticated Google browser profile. <br>
-Mitigation: Use an isolated Google profile or account and verify authentication state before running Gemini actions. <br>
-Risk: Gemini image generation can save generated images locally. <br>
-Mitigation: Check where downloads are saved before using the skill with sensitive prompts or content. <br>
-Risk: Browser navigation outside the intended Google surfaces could expose the managed profile to unrelated sites. <br>
-Mitigation: Keep navigation on Google-owned hosts and use the fixed Google link created by the helper script. <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect an agent to Google Search and Gemini through an authenticated local browser profile for search, chat, and generated image download workflows.
 
-## Reference(s): <br>
-- [Usage Patterns](references/usage-patterns.md) <br>
-- [Link Creation Helper](scripts/ensure-links.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash commands and JSON command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands use JSON arguments and expect JSON responses with ok/data or ok/error envelopes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill uses an authenticated Google browser profile for Search and Gemini.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Google profile that is separate from personal browsing and avoid secrets or regulated data in prompts and searches.
+
+Risk: Fresh installs may resolve the latest Playwright package through npx.
+
+Mitigation: Prefer a pinned or lockfile-managed Playwright install before using the bridge.
+
+Risk: Gemini may require sign-in before tools work through the managed profile.
+
+Mitigation: Check authentication state first and use the documented bootstrap or headed session flow when the profile is not ready.
+
+## Reference(s):
+
+- [Usage Patterns](references/usage-patterns.md)
+- [Google Search](https://www.google.com)
+- [Gemini](https://gemini.google.com)
+- [ClawHub Skill Page](https://clawhub.ai/jolestar/skills/google-webmcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tool results are expected as JSON with ok/data on success and ok/error on failure.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

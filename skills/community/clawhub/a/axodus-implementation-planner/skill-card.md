@@ -1,41 +1,54 @@
-## Description: <br>
-Turn a feature idea into a concrete technical implementation plan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn a feature idea into a concrete technical implementation plan.
 
-## Publisher: <br>
-[mzfshark](https://clawhub.ai/user/mzfshark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzfshark](https://clawhub.ai/user/mzfshark)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn feature ideas, architecture requests, and multi-component changes into implementation plans covering modules, interfaces, data flow, validation, rollout, and open questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Malformed activation metadata can make automatic invocation behavior unclear. <br>
-Mitigation: Replace the malformed System.Object[] trigger with explicit implementation-planning activation phrases before relying on automatic invocation. <br>
-Risk: Implementation plans can propose changes that do not fit a user's production constraints. <br>
-Mitigation: Review plans against stated constraints and require explicit gating for any deployment path that could affect production. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn feature ideas into practical implementation plans covering architecture, modules, interfaces, validation, rollout, assumptions, and open questions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mzfshark/axodus-implementation-planner) <br>
-- [Publisher profile](https://clawhub.ai/user/mzfshark) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Structured Markdown plan with YAML-style examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Plans may include architecture, modules, interfaces, validation steps, rollout guardrails, and open questions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.yml) <br>
+Risk: Malformed or ambiguous trigger metadata may cause the skill to activate unpredictably.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and correct the trigger definition before relying on automatic activation.
+
+Risk: Implementation plans may include incorrect assumptions or guidance if the user's constraints or existing architecture are incomplete.
+
+Mitigation: Review generated plans against project constraints, architecture boundaries, and validation requirements before implementation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mzfshark/skills/axodus-implementation-planner)
+- [Publisher Profile](https://clawhub.ai/user/mzfshark)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Structured Markdown plan with YAML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include assumptions, validation steps, rollout guardrails, and open questions.]
+
+## Skill Version(s):
+
+1.0.0 (source: skill.yml and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

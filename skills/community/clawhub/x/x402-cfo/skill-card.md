@@ -1,43 +1,58 @@
-## Description: <br>
-Financial brain for x402 payments: budget enforcement, cost policies, spend analytics, anomaly detection, and audit trail for autonomous agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Financial brain for x402 payments: budget enforcement, cost policies, spend analytics, anomaly detection, and audit trail for autonomous agents.
 
-## Publisher: <br>
-[Upn-130guthub](https://clawhub.ai/user/Upn-130guthub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[upn-130guthub](https://clawhub.ai/user/upn-130guthub)
 
-## Use Case: <br>
-Developers and autonomous-agent operators use this skill to route x402 paid API requests through budget checks, payment policy enforcement, spend analytics, anomaly alerts, and an audit ledger. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An agent can install or use an unpinned payment package. <br>
-Mitigation: Pin and review the x402-cfo npm package version before enabling the skill. <br>
-Risk: An agent can automatically spend wallet funds within broad default budget limits. <br>
-Mitigation: Use a dedicated low-balance wallet, lower the default hourly, daily, session, and per-request budgets, and configure allowed networks and blocklists. <br>
-Risk: The generated ledger can contain payment history and operational details. <br>
-Mitigation: Keep the x402-cfo ledger out of source control and review audit records before sharing logs. <br>
+## Use Case:
 
+Developers and autonomous-agent operators use this skill to route x402 paid API calls through AgentCFO so budgets, per-request policies, spend analytics, anomaly alerts, and audit logs are applied before wallet payments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Upn-130guthub/x402-cfo) <br>
-- [Publisher profile](https://clawhub.ai/user/Upn-130guthub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash and TypeScript code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides agents to initialize x402-cfo, route paid requests through cfo.fetch(), inspect spend summaries, and react to budget events.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter says 0.2.0) <br>
+Risk: The skill delegates wallet-based payment authority and the security summary flags broad defaults.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict the wallet or session key to small limits and approved recipients, add an explicit destination allowlist, and require confirmation before the first payment to any new endpoint.
+
+Risk: The setup command installs x402-cfo without a pinned version.
+
+Mitigation: Use a pinned and audited x402-cfo version, preferably installed with npm ci and a committed lockfile.
+
+Risk: The local ledger records payment audit details.
+
+Mitigation: Decide before use whether ./x402-cfo-ledger.json is acceptable in the project and handle it according to the project's data retention and privacy expectations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/upn-130guthub/skills/x402-cfo)
+- [Publisher profile](https://clawhub.ai/user/upn-130guthub)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with TypeScript and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes budget policy guidance, spend summary and audit guidance, event-handling guidance, and environment variable configuration.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter and release changelog mention 0.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

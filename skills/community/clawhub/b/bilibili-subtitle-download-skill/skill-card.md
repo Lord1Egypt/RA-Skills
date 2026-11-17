@@ -1,43 +1,59 @@
-## Description: <br>
-Downloads Bilibili video subtitles, chunks them for LLM processing, and supports summarization workflows for BV videos and SS/EP course episodes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads Bilibili video and course subtitles, splits transcript text into large chunks for LLM processing, and provides a prompt pattern for structured summaries.
 
-## Publisher: <br>
-[DavinciEvans](https://clawhub.ai/user/DavinciEvans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[davincievans](https://clawhub.ai/user/davincievans)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve Bilibili subtitles, split long subtitle text into manageable chunks, and prepare those chunks for structured LLM summaries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill stores reusable Bilibili login cookies or session data in local plaintext files. <br>
-Mitigation: Use the QR login only in trusted workspaces and delete ~/.openclaw/workspace/bilibili_cookie.txt and bilibili_cheese_session.json after use when credentials no longer need to persist. <br>
-Risk: Untrusted or malformed Bilibili video, season, or episode IDs may cause unexpected API requests or failures. <br>
-Mitigation: Validate BV, SS, and EP identifiers before running the downloader scripts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DavinciEvans/bilibili-subtitle-download-skill) <br>
-- [Bilibili](https://www.bilibili.com/) <br>
-- [Bilibili web-interface view API](https://api.bilibili.com/x/web-interface/view) <br>
-- [Bilibili player API](https://api.bilibili.com/x/player/v2) <br>
-- [Bilibili course episode API](https://api.bilibili.com/pugv/view/web/episode) <br>
+## Use Case:
 
+Developers and agent users use this skill to retrieve subtitles from Bilibili videos or course episodes and split them into text chunks for LLM-based summarization, key point extraction, and detailed content analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands plus RESULT_JSON metadata and chunked subtitle text files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes subtitle chunks under bili_temp and reports chunk paths in RESULT_JSON.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires Bilibili account authentication and stores reusable cookie or session files in plaintext.
+
+Mitigation: Run it only in a private, non-shared workspace and treat generated cookie/session files as secrets.
+
+Risk: Plaintext credential files may remain after subtitle extraction.
+
+Mitigation: Delete ~/.openclaw/workspace/bilibili_cookie.txt and any bilibili_cheese_session.json file when finished.
+
+Risk: Credential files and downloaded subtitle chunks could be exposed from synced or source-controlled directories.
+
+Mitigation: Avoid running the skill from synced or source-controlled directories until credential storage and URL validation are improved.
+
+## Reference(s):
+
+- [Bilibili website](https://www.bilibili.com/)
+- [Bilibili video metadata API](https://api.bilibili.com/x/web-interface/view)
+- [Bilibili player subtitle API](https://api.bilibili.com/x/player/v2)
+- [ClawHub skill page](https://clawhub.ai/davincievans/skills/bilibili-subtitle-download-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON-reported chunk file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local subtitle chunk text files under bili_temp and may emit QR-code login status messages.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

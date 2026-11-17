@@ -1,0 +1,33 @@
+'''
+65获取持股数据
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+#获取持仓信息{code.market:手数}
+def get_position(c,accountid,datatype):
+	'''
+	获取持股数据
+	'''
+	positions = get_trade_detail_data(accountid,datatype, 'position')
+	data=pd.DataFrame()
+	print('持股数量{}'.format(len(positions)))
+	if len(positions)>0:
+		df=pd.DataFrame()
+		try:
+			for dt in positions:
+				df['股票代码']=[dt.m_strInstrumentID]
+				df['市场类型']=[dt.m_strExchangeID]
+				df['证券代码']=df['股票代码']+'.'+df['市场类型']
+				df['证券名称']=[dt.m_strInstrumentName]
+				df['持仓量']=[dt.m_nVolume]
+				df['可用数量']=[dt.m_nCanUseVolume]
+				df['成本价']=[dt.m_dOpenPrice]
+				df['市值']=[dt.m_dInstrumentValue]
+				df['持仓成本']=[dt.m_dPositionCost]
+				df['盈亏']=[dt.m_dPositionProfit]
+				data=pd.concat([data,df],ignore_index=True)
+		except Exception as e:
+			print('获取持股股票池有问题')
+			data=pd.DataFrame()
+	else:
+		data=pd.DataFrame()
+	return data 

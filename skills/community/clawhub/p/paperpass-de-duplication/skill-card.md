@@ -1,41 +1,53 @@
-## Description: <br>
-Helps users parse PaperPass similarity reports and rewrite flagged Chinese academic-paper passages with strategy notes and overall reduction suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps an agent analyze PaperPass plagiarism-similarity reports for Chinese academic papers and rewrite high-similarity passages into lower-similarity academic prose while preserving the original meaning.
 
-## Publisher: <br>
-[lzgztth-debug](https://clawhub.ai/user/lzgztth-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lzgztth-debug](https://clawhub.ai/user/lzgztth-debug)
 
-## Use Case: <br>
-External users can use this skill to review PaperPass report text or PDFs, identify passages marked with similarity percentages, and receive rewritten Chinese academic prose plus a summary of the applied editing strategy. It should be used for legitimate editing with proper citation, quotation, and original analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to lower plagiarism-check similarity scores in academic writing and could be misused to disguise copied work or bypass academic-integrity rules. <br>
-Mitigation: Use it only for legitimate editing with proper citation, quotation, and original analysis, and review outputs against institutional academic-integrity requirements. <br>
-Risk: Rewritten academic passages may alter nuance, terminology, or claims from the source text. <br>
-Mitigation: Review each rewritten passage for accuracy, citation support, and consistency with the user's original research conclusions before submission. <br>
+## Use Case:
 
+Students, researchers, editors, and academic writing assistants use this skill to process PaperPass PDF or text reports, prioritize high-similarity passages, and produce rewritten paragraphs with strategy notes and overall reduction guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lzgztth-debug/paperpass-de-duplication) <br>
-- [Publisher profile](https://clawhub.ai/user/lzgztth-debug) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text with rewritten passages, strategy notes, comparisons, and summary recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution or external tool calls are indicated by the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can be used to disguise copied academic work by rewriting text to lower PaperPass similarity scores.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for legitimate revision of the user's own writing, preserve citations and quoted material, and treat rewriting as part of original synthesis rather than a way to bypass plagiarism checks.
+
+Risk: Academic meaning, terminology, or cited claims may change during rewriting.
+
+Mitigation: Review each rewritten passage for semantic equivalence, citation integrity, and field-specific accuracy before submission or publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lzgztth-debug/skills/paperpass-de-duplication)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with rewritten passages, similarity estimates, strategy notes, and summary recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tool calls, shell commands, configuration files, or system access are produced by the skill itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

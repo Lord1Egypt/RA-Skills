@@ -1,10 +1,20 @@
 {
   "name": "github-contribution",
-  "version": "1.4.0",
+  "version": "1.7.2",
   "description": "Automated GitHub contribution workflow with fork protection, clean state enforcement, change plan module, and high merge success rate best practices",
   "author": "Linux2010",
   "license": "MIT",
-  "keywords": ["github", "contribution", "fork", "pr", "protection", "merge-success", "quality", "change-plan", "bugfix"],
+  "keywords": [
+    "github",
+    "contribution",
+    "fork",
+    "pr",
+    "protection",
+    "merge-success",
+    "quality",
+    "change-plan",
+    "bugfix"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/Linux2010/openclaw-skills"

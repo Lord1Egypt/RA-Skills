@@ -1,44 +1,57 @@
-## Description: <br>
-Use the internet to search, read, and interact with web pages and supported platforms including Twitter/X, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu, Douyin, WeChat Articles, LinkedIn, Boss Zhipin, RSS, and Exa web search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Edison Agent Reach guides agents to search, read, and interact with web pages and supported platforms including Twitter/X, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu, Douyin, WeChat Articles, LinkedIn, Boss Zhipin, RSS, and Exa web search.
 
-## Publisher: <br>
-[EdisonChenAI](https://clawhub.ai/user/EdisonChenAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edisonchenai](https://clawhub.ai/user/edisonchenai)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to search online sources, read URLs and platform content, retrieve transcripts or feeds, interact with supported platforms, and configure platform channels when requested. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can use account cookies or browser profiles for logged-in platform access. <br>
-Mitigation: Use isolated browser profiles or test accounts, avoid valuable account cookies, and review access before configuring any channel. <br>
-Risk: The skill can post, comment, publish, or otherwise change account state on supported platforms. <br>
-Mitigation: Require explicit user confirmation before any posting, commenting, publishing, or account-changing action. <br>
-Risk: Setup instructions are fetched from a mutable remote install guide and helper code. <br>
-Mitigation: Review the remote install guide and helper code before setup, and pin or archive trusted setup instructions for controlled deployments. <br>
-Risk: Some workflows involve anti-bot bypass tooling. <br>
-Mitigation: Avoid anti-bot bypass workflows unless they are authorized and consistent with the target platform's terms and the user's policy. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/EdisonChenAI/edison-agent-reach) <br>
-- [Agent Reach install guide](https://raw.githubusercontent.com/Panniantong/agent-reach/main/docs/install.md) <br>
+## Use Case:
 
+External users, developers, and agents use this skill to research online information, inspect shared platform URLs, operate supported platform search and read tools, and configure platform channels when needed. The skill also covers account-bound platform interactions such as posting or commenting where supported.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with shell, Python, curl, and API-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct agents to call local platform tools, use /tmp for temporary output, diagnose channels with agent-reach doctor, and configure channels that can require cookies or browser profiles.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can involve logged-in platform sessions, cookies, or account-bound services.
+
+Mitigation: Use only reviewed credentials and require explicit user confirmation before cookie use or account-bound access.
+
+Risk: The skill includes workflows that may publish, comment, or otherwise change public or account-bound platform state.
+
+Mitigation: Require an explicit preview and user confirmation before any publish, comment, or other mutating platform action.
+
+Risk: Setup workflows may rely on package installation, Docker operations, proxy changes, anti-bot workarounds, or mutable online instructions.
+
+Mitigation: Review setup steps before execution, prefer pinned or locally reviewed instructions, and confirm before package installation, Docker use, proxy changes, or anti-bot workarounds.
+
+## Reference(s):
+
+- [Edison Agent Reach ClawHub Skill Page](https://clawhub.ai/edisonchenai/skills/edison-agent-reach)
+- [Agent Reach Install Guide](https://raw.githubusercontent.com/Panniantong/agent-reach/main/docs/install.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown usage guidance with shell and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may depend on platform credentials, cookies, proxies, and installed third-party tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

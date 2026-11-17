@@ -1,42 +1,60 @@
-## Description: <br>
-ClawPulse connects an OpenClaw agent to a community analytics dashboard and pushes aggregate usage statistics without message content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawPulse connects an OpenClaw agent to the ClawPulse community analytics dashboard and can collect and push aggregate token, model, tool, cost, message, and session statistics without message content.
 
-## Publisher: <br>
-[pierreeurope](https://clawhub.ai/user/pierreeurope) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pierreeurope](https://clawhub.ai/user/pierreeurope)
 
-## Use Case: <br>
-External OpenClaw users and developers use this skill to install and configure ClawPulse, authenticate with GitHub, push aggregate usage metrics to a dashboard, and optionally schedule recurring pushes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may reuse and persist an existing GitHub token in a local ClawPulse config file. <br>
-Mitigation: Prefer the dedicated ClawPulse device-flow setup with minimal scopes, and only allow token reuse when the user explicitly accepts the account-access risk. <br>
-Risk: The skill configures recurring pushes of aggregate usage data to clawpulse.vercel.app. <br>
-Mitigation: Confirm exactly what aggregate data is uploaded before enabling cron jobs, and disable scheduled pushes when ongoing collection is not desired. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/pierreeurope/clawpulse) <br>
-- [ClawPulse Dashboard](https://clawpulse.vercel.app) <br>
-- [ClawPulse npm Package](https://www.npmjs.com/package/openclaw-pulse) <br>
-- [ClawPulse Source Link](https://github.com/pierreeurope/clawpulse) <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to install and configure ClawPulse, authenticate with GitHub, push aggregate local session statistics, and optionally schedule recurring updates to the community dashboard.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and npx; may configure a local ClawPulse config file and OpenClaw cron jobs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: GitHub credential reuse could grant the CLI access through an existing GitHub CLI token.
+
+Mitigation: Prefer the documented interactive device-flow setup and confirm requested GitHub scopes before storing a token.
+
+Risk: Silent recurring cron pushes can create ongoing telemetry from local session files.
+
+Mitigation: Enable scheduled pushes only after confirming the aggregate data collected and the desired recurrence.
+
+Risk: The globally installed openclaw-pulse package runs with access to local session files and stored credentials.
+
+Mitigation: Inspect or pin the package version before installation and before granting access to session data or credentials.
+
+## Reference(s):
+
+- [ClawPulse dashboard](https://clawpulse.vercel.app)
+- [ClawPulse personal dashboard](https://clawpulse.vercel.app/dashboard)
+- [ClawPulse community leaderboard](https://clawpulse.vercel.app/community)
+- [openclaw-pulse npm package](https://www.npmjs.com/package/openclaw-pulse)
+- [Project source link listed by skill](https://github.com/pierreeurope/clawpulse)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with bash and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes setup, authentication, data collection, and cron scheduling guidance.]
+
+## Skill Version(s):
+
+0.3.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

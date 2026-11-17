@@ -1,46 +1,63 @@
-## Description: <br>
-Guides an agent through using a logged-in Google Gemini web session to generate and download images, then optionally remove Gemini watermarks with GeminiWatermarkTool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through using the Gemini web app to generate and download images, then using GeminiWatermarkTool to remove Gemini watermarks.
 
-## Publisher: <br>
-[imkingjh999](https://clawhub.ai/user/imkingjh999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imkingjh999](https://clawhub.ai/user/imkingjh999)
 
-## Use Case: <br>
-Developers and operators use this skill to automate Google Gemini web image generation, download generated images, and optionally remove watermarks before sharing or further processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill instructs an agent to control a logged-in Google browser session for Gemini. <br>
-Mitigation: Install and run it only when browser automation for that account is intended, and review agent actions before prompts, downloads, or account-affecting steps. <br>
-Risk: Watermark removal can alter image provenance and may be inappropriate for images the user is not authorized to modify. <br>
-Mitigation: Use watermark removal only on images the user is authorized to modify, and retain the original generated image when provenance needs to be preserved. <br>
-Risk: The optional Feishu sharing snippet includes a hard-coded recipient path and sends images and captions to an external service. <br>
-Mitigation: Do not run the sharing snippet unless the recipient is replaced and confirmed and the user accepts sending the image and caption to Feishu. <br>
-Risk: The workflow depends on installing or using GeminiWatermarkTool, a third-party binary or package. <br>
-Mitigation: Verify the GeminiWatermarkTool source and release before installation or execution. <br>
+## Use Case:
 
+Developers and content operators use this skill to control a logged-in browser session for Gemini image generation, download the generated image, and optionally run a watermark-removal utility before sharing or using the output.
 
-## Reference(s): <br>
-- [Google Gemini](https://gemini.google.com) <br>
-- [GeminiWatermarkTool](https://github.com/allenk/GeminiWatermarkTool) <br>
-- [GeminiWatermarkTool Releases](https://github.com/allenk/GeminiWatermarkTool/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with browser-tool examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a logged-in Google browser session, OpenClaw Browser Tool access, and optional third-party watermark-removal tooling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill directs an agent to operate a logged-in Gemini browser session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in an intended browser profile and review browser actions before submitting prompts, downloading files, or closing tabs.
+
+Risk: The workflow installs or runs an unpinned third-party watermark-removal executable.
+
+Mitigation: Use a trusted, reviewed binary or pinned release and scan it before execution.
+
+Risk: The artifact includes an optional Feishu sharing example with a hard-coded recipient identifier.
+
+Mitigation: Require an explicit recipient and confirmation before uploading or sharing any generated image.
+
+Risk: Removing watermarks can create rights, attribution, or terms-of-service concerns.
+
+Mitigation: Confirm that the user is permitted to modify and use the generated image before removing or distributing watermark-free output.
+
+## Reference(s):
+
+- [Google Gemini](https://gemini.google.com)
+- [GeminiWatermarkTool](https://github.com/allenk/GeminiWatermarkTool)
+- [GeminiWatermarkTool Releases](https://github.com/allenk/GeminiWatermarkTool/releases)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown with browser tool calls, shell commands, and a Python example]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a logged-in Google account browser profile, OpenClaw Browser Tool access, and local image download handling.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

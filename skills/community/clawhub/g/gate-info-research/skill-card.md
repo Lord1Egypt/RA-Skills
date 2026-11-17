@@ -1,44 +1,60 @@
-## Description: <br>
-Market Research Copilot produces structured crypto market research reports across market overview, coin analysis, comparisons, technical trends, event attribution, sentiment, and token risk checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Produces structured, citation-backed crypto market research reports for market overviews, coin analysis, coin comparisons, technical trends, event attribution, and token risk checks.
 
-## Publisher: <br>
-[gate-exchange](https://clawhub.ai/user/gate-exchange) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gate-exchange](https://clawhub.ai/user/gate-exchange)
 
-## Use Case: <br>
-External users and agents use this skill to research crypto markets, compare coins, and combine fundamentals, technicals, news, sentiment, and risk signals before making their own decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market research output could be mistaken for investment advice. <br>
-Mitigation: Treat reports as research only, preserve the investment-advice disclaimer, and verify important claims against trusted sources before acting. <br>
-Risk: The skill depends on Gate MCP market and news lookups; a separately installed or misconfigured component could request permissions this skill does not need. <br>
-Mitigation: Install Gate MCP components only from the trusted publisher and do not grant trading permissions, secrets, or account-changing access for this read-only research skill. <br>
-Risk: Market, news, sentiment, or risk data may be unavailable, stale, or conflicting. <br>
-Mitigation: Label data times, disclose missing sections or conflicting sources, and avoid fabricating values when a lookup fails. <br>
+## Use Case:
 
+External users use this skill to understand crypto markets, compare coins, review technical and news signals, and assess token risks before making their own decisions. It is for data-driven research only and does not place trades, move funds, or provide investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gate-exchange/gate-info-research) <br>
-- [MCP orchestration specification](references/mcp.md) <br>
-- [Research scenarios](references/scenarios.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown research report with tables, data-source notes, and disclaimers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only market and news analysis; sections may be omitted or marked unavailable when supporting data is missing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill refers to mutable remote runtime rules and says they have highest priority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the referenced runtime rules before installation and prefer a vendored or pinned version controlled with the release.
+
+Risk: The workflow may ask for a session credential if authentication is required.
+
+Mitigation: Do not paste session tokens, cookies, API keys, or account credentials into chat; use only approved authentication channels.
+
+Risk: Crypto market data can be stale, incomplete, or conflicting across data dimensions.
+
+Mitigation: Treat outputs as research, verify important facts against current market sources, and do not rely on the report as investment advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gate-exchange/skills/gate-info-research)
+- [Gate Research Copilot MCP Specification](references/mcp.md)
+- [Scenarios and Prompt Examples](references/scenarios.md)
+- [Gate runtime rules](https://github.com/gate/gate-skills/blob/master/skills/gate-runtime-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown research reports with citations, timestamps, missing-data notes, and a non-investment-advice disclaimer]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include market summaries, comparison tables, technical summaries, event attribution, risk checks, and explicit data-gap annotations.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter reports 2026.3.23-1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

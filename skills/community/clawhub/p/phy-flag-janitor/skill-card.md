@@ -1,41 +1,59 @@
-## Description: <br>
-Phy Flag Janitor helps agents scan local source and configuration files for stale, undefined, unused, or hardcoded feature flags and produce a prioritized cleanup report with code locations and confirmation commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Phy Flag Janitor helps agents audit local source and configuration files for stale, permanently enabled or disabled, undefined, and unreferenced feature flags, then produce prioritized cleanup guidance with code locations and confirmation commands.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to audit feature-flag debt in a local codebase and plan cleanup work for permanently enabled, permanently disabled, undefined, unused, or test-only flags. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill inspects local repository contents, which may include sensitive configuration or .env-style files. <br>
-Mitigation: Use it only in repositories where the agent is allowed to inspect local files, and avoid sharing generated reports that expose sensitive paths or values. <br>
-Risk: Generated cleanup commands and refactor suggestions could remove active flags or code paths if applied without review. <br>
-Mitigation: Review matched flags and target files, commit or back up changes first, and run the relevant test suite after applying cleanup changes. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to identify stale feature flags, compare code references with configuration, and plan cleanup work before removing dead branches or flag entries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-flag-janitor) <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with inline shell commands and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Analyzes local repository files and git history; generated cleanup commands are intended for review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill may inspect local source, configuration files, .env-style feature-flag entries, and git history for the selected project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in intended workspaces and review the scope before sharing generated reports.
+
+Risk: Cleanup recommendations and commands can affect source code, environment examples, or flag configuration if applied without review.
+
+Mitigation: Review proposed removals, confirm production intent, and run the relevant test suite before committing changes.
+
+Risk: Reports can expose internal flag names, code locations, environment variable names, and rollout assumptions.
+
+Mitigation: Treat generated reports as project-sensitive and redact them before sending outside the team.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-flag-janitor)
+- [Canlah AI homepage](https://canlah.ai)
+- [Publisher profile](https://clawhub.ai/user/phy041)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with code snippets and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local-file analysis; no external API behavior reported by evidence.]
+
+## Skill Version(s):
+
+1.0.3 (source: server evidence release.version, skill metadata, and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

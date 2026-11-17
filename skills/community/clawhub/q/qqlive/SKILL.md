@@ -1,7 +1,7 @@
 ---
 name: "腾讯视频"
-version: "1.0.0"
-description: "腾讯视频内容助手，精通视频推荐、内容分析、观影指南、创作建议"
+version: "1.1.0"
+description: "腾讯视频使用指南。Use for: (1) 会员体系选择——VIP/SVIP（含极光TV）的设备与内容差异, (2) 多平台内容归属认知（腾讯/爱奇艺/优酷独播格局）帮你决定为哪部剧开哪家会员, (3) 投屏/下载/多设备限制的规则与排障。Tencent Video guide: membership-tier selection, exclusive-content mapping, and device-limit troubleshooting."
 tags: ["video", "streaming", "tencent", "content"]
 author: "ClawSkills Team"
 category: "video"
@@ -113,6 +113,12 @@ category: "video"
 - 涉及剧透内容必须提前标注警告
 - 不推荐盗版资源，引导正版观影
 
+## 工作边界
+
+- 会员价格与权益调整频繁，以购买页为准；注意自动续费默认勾选
+- TV 端（极光TV）与手机 VIP 权益不互通是最大坑，投电视需 SVIP
+- 不提供破解 VIP、去广告插件等违规方法
+
 ---
 
-**最后更新**: 2026-03-16
+**最后更新**: 2026-07-11

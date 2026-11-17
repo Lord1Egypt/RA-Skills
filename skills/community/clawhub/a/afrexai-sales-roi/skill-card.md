@@ -1,41 +1,54 @@
-## Description: <br>
-Calculates comprehensive ROI analysis with payback period and risk scenarios for business investments like software, hiring, marketing, or automation projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculates ROI, payback period, annual savings, break-even point, and risk-adjusted scenarios for business investments such as software, hiring, marketing, automation, and tool adoption.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Business users and operators use this skill to estimate return on investment, payback period, annual savings, break-even timing, and risk-adjusted outcomes for purchases, hiring, marketing, automation, and tool adoption decisions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: ROI outputs can be misleading if assumptions, costs, benefits, or time-savings estimates are inaccurate. <br>
-Mitigation: Verify input assumptions and calculations before using the result for business planning. <br>
-Risk: The skill's GO, CONDITIONAL, or PASS verdicts may be mistaken for professional financial, tax, accounting, or investment advice. <br>
-Mitigation: Treat verdicts as planning aids and seek qualified review for consequential decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-sales-roi) <br>
-- [AI automation context packs](https://afrexai-cto.github.io/context-packs/) <br>
-- [AI revenue leak calculator](https://afrexai-cto.github.io/ai-revenue-calculator/) <br>
+## Use Case:
 
+Business operators, finance teams, consultants, and agents use this skill to evaluate proposed investments with structured ROI, payback, and scenario analysis. It is most useful when a user needs a numeric recommendation for a purchase, hiring decision, marketing spend, automation project, or tool adoption.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style ROI analysis with formulas, scenario summaries, and a GO, CONDITIONAL, or PASS verdict] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided or default assumptions for costs, benefits, timeline, and hourly rate.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: ROI outputs may be misleading if assumptions, formulas, or claimed benefits are inaccurate.
+
+Mitigation: Verify all inputs, formulas, and conclusions before using the analysis for high-stakes business decisions.
+
+Risk: Users may mistake the skill's output for financial advice.
+
+Mitigation: Present results as a calculation aid and require independent review before acting on the recommendation.
+
+## Reference(s):
+
+- [Sales ROI Calculator ClawHub listing](https://clawhub.ai/1kalin/skills/afrexai-sales-roi)
+- [AI automation context packs](https://afrexai-cto.github.io/context-packs/)
+- [AI revenue leak calculator](https://afrexai-cto.github.io/ai-revenue-calculator/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown ROI analysis with formulas, scenario summaries, and a GO, CONDITIONAL, or PASS verdict]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-provided or default assumptions for costs, benefits, timeline, and hourly rates; outputs are calculation aids and should be verified for high-stakes decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-中国小红书平台内容算法优化工具，针对小红书推荐逻辑优化笔记标题、内容、标签、首图文案，提高笔记曝光量、互动率和流量扶持。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+中国小红书平台内容算法优化工具，针对小红书推荐逻辑优化笔记标题、内容、标签、首图文案，提高笔记曝光量、互动率和流量扶持。
 
-## Publisher: <br>
-[duzhilei951](https://clawhub.ai/user/duzhilei951) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duzhilei951](https://clawhub.ai/user/duzhilei951)
 
-## Use Case: <br>
-External creators and content teams use this skill to plan, revise, and diagnose Xiaohongshu posts by improving titles, structure, hashtags, first-image copy, and topic selection. It is intended for content guidance and should be reviewed before publication, especially for regulated or sensitive topics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing or platform-growth advice could be inaccurate, misleading, or inconsistent with Xiaohongshu policy. <br>
-Mitigation: Review generated recommendations for factual accuracy, platform policy compliance, and appropriate claims before publishing. <br>
-Risk: Content guidance could be misused for regulated or sensitive promotions. <br>
-Mitigation: Avoid using the skill for medical, financial, tobacco, adult, or other sensitive content unless reviewed by qualified policy and legal reviewers. <br>
+## Use Case:
 
+External content creators and social-commerce teams use this skill to improve Xiaohongshu note titles, copy structure, tags, first-image text, and topic plans. It is tailored to Chinese-language Xiaohongshu content workflows and low-traffic note diagnosis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/duzhilei951/xiaohongshu-algorithm-optimizer) <br>
-- [Publisher profile](https://clawhub.ai/user/duzhilei951) <br>
-- [Forbidden words reference](artifact/references/forbidden-words.md) <br>
-- [Hot title examples](artifact/references/hot-title-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style structured recommendations with titles, first-image copy, content revisions, hashtag combinations, and extra optimization advice] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No tool calls, shell commands, or file writes are described by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill is tailored to Chinese Xiaohongshu social-commerce copywriting and may not satisfy multilingual content needs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it primarily for Chinese Xiaohongshu content, and have a fluent reviewer adapt outputs before using them in other languages or platforms.
+
+Risk: The skill may make unsupported traffic-improvement or algorithm-performance claims.
+
+Mitigation: Treat percentage uplifts and algorithm guidance as heuristic copywriting advice, not guaranteed performance outcomes.
+
+Risk: Advertising, medical, financial, and other regulated wording can create compliance risk.
+
+Mitigation: Review generated copy against the included forbidden-words guidance and applicable advertising or platform rules before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/duzhilei951/skills/xiaohongshu-algorithm-optimizer)
+- [小红书违禁词/违规表述清单](references/forbidden-words.md)
+- [小红书各赛道爆款标题案例库](references/hot-title-examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured Chinese copywriting recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include optimized titles, first-image copy, content structure changes, tag combinations, and extra optimization suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

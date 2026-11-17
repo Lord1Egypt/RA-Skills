@@ -1,40 +1,55 @@
-## Description: <br>
-ADK Skill Patterns documents five agent skill design patterns from Google's ADK, with templates, decision trees, and composition guidance for building reliable, composable skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ADK Skill Patterns provides five agent skill design patterns from Google's ADK with templates, decision trees, and composition guides for building reliable, composable skills.
 
-## Publisher: <br>
-[maxlauriehutchinson](https://clawhub.ai/user/maxlauriehutchinson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maxlauriehutchinson](https://clawhub.ai/user/maxlauriehutchinson)
 
-## Use Case: <br>
-Developers and skill authors use this reference skill to choose and apply Tool Wrapper, Generator, Reviewer, Inversion, and Pipeline patterns when designing reliable agent skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Copied templates with broad descriptions or activation rules could run for tasks outside their intended scope. <br>
-Mitigation: Narrow each adapted template's description and activation rules, then review and scan the resulting skill before deployment. <br>
+## Use Case:
 
+Developers and skill authors use this skill to choose and compose agent skill design patterns for reliable tool wrappers, generators, reviewers, requirement-gathering flows, and sequential pipelines.
 
-## Reference(s): <br>
-- [Pattern Selection Checklist](references/pattern-selection-checklist.md) <br>
-- [Google Cloud Tech source article](https://x.com/GoogleCloudTech/status/2033953579824758855) <br>
-- [ClawHub skill page](https://clawhub.ai/maxlauriehutchinson/adk-skill-patterns) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with reusable SKILL.md templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes pattern-selection advice, composition guidance, and template files for adapting the patterns into active skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and skill metadata) <br>
+Risk: Reused templates with broad descriptions or activation conditions could trigger on unrelated user requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow each derived skill description to the exact domain, audience, and activation conditions before publishing or installing it.
+
+Risk: Pattern guidance or generated templates could be applied incorrectly when creating a new skill.
+
+Mitigation: Review and scan derived skills before deployment, using the release security guidance as the baseline.
+
+## Reference(s):
+
+- [Pattern Selection Checklist](references/pattern-selection-checklist.md)
+- [Google Cloud Tech source post](https://x.com/GoogleCloudTech/status/2033953579824758855)
+- [ClawHub skill page](https://clawhub.ai/maxlauriehutchinson/skills/adk-skill-patterns)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown guidance with reusable SKILL.md templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only pattern reference; no hidden execution, persistence, or data access behavior found in security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

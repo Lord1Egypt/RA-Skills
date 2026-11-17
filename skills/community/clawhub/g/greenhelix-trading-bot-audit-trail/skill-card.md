@@ -1,46 +1,63 @@
-## Description: <br>
-Guides agents through implementing tamper-evident audit trails for autonomous trading bots using GreenHelix event logging, Merkle claim chains, compliance reports, and webhook forwarding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tamper-Proof Audit Trails for Trading Bots. EU AI Act, MiFID II, and SEC 17a-4 compliance audit trail implementation for autonomous trading bots. Includes detailed Python code examples with full API integration.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and compliance engineers use this guide to add signed, append-only audit logging, Merkle verification, event schemas, retention manifests, compliance reporting, and webhook forwarding to trading bot workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API examples may be adapted directly into production trading or compliance workflows. <br>
-Mitigation: Review and modify examples before use, start with test credentials, and confirm endpoint behavior before connecting production accounts. <br>
-Risk: Event payloads, reports, and webhooks may expose sensitive trading, account, or strategy data. <br>
-Mitigation: Redact sensitive fields before logging, reporting, or forwarding events, and apply access controls to audit outputs. <br>
-Risk: The skill depends on a signing key for agent identity. <br>
-Mitigation: Store AGENT_SIGNING_KEY in a secrets manager, rotate it when needed, and avoid committing generated private keys or API credentials. <br>
-Risk: Sample validation and retention code may not satisfy compliance requirements as written. <br>
-Mitigation: Have compliance and security reviewers validate signature checks, retention policies, and WORM storage behavior before relying on the implementation. <br>
+## Use Case:
 
+Developers and engineers use this guide to design tamper-evident audit trails for autonomous trading bots, including event schemas, signed trade events, Merkle claim chains, webhook forwarding, local buffering, and compliance report examples for financial audit workflows.
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/mirni/greenhelix-trading-bot-audit-trail) <br>
-- [GreenHelix sandbox endpoint](https://sandbox.greenhelix.net) <br>
-- [GreenHelix API endpoint](https://api.greenhelix.net/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guide with Python and shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires users to supply and protect AGENT_SIGNING_KEY for Ed25519 request signing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata and artifact frontmatter) <br>
+Risk: Examples handle private signing keys used for agent identity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not print or log private signing keys; store keys in a secrets manager and rotate keys through a controlled process.
+
+Risk: Audit events may contain sensitive trading, account, or strategy data.
+
+Mitigation: Redact sensitive fields before sending audit events and confirm platform data handling, retention, and regulatory suitability with compliance counsel.
+
+Risk: Local outage buffers can expose audit data or allow tampering if stored insecurely.
+
+Mitigation: Use restrictive filesystem permissions, encryption at rest, replay controls, and integrity checks for buffered audit events.
+
+Risk: Compliance examples may be incomplete for a specific jurisdiction or trading venue.
+
+Mitigation: Treat the guide as implementation guidance and have compliance counsel validate obligations, retention, data residency, and reporting formats before production use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mirni/skills/greenhelix-trading-bot-audit-trail)
+- [GreenHelix Sandbox](https://sandbox.greenhelix.net)
+- [GreenHelix API Reference](https://api.greenhelix.net/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guide with Python examples, shell commands, JSON payloads, and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executing guide; references AGENT_SIGNING_KEY as the primary required environment variable.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

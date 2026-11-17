@@ -1,39 +1,49 @@
-## Description: <br>
-agentcli-go framework reference for building Go CLI tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+agentcli-go framework reference for building Go CLI tools.
 
-## Publisher: <br>
-[gh-xj](https://clawhub.ai/user/gh-xj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gh-xj](https://clawhub.ai/user/gh-xj)
 
-## Use Case: <br>
-Developers and engineers use this skill when working on agentcli-go projects, scaffolding Go CLI tools, adding commands, integrating cobrax/configx patterns, or debugging framework behavior. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill discusses command execution and file-writing workflows for Go CLI development. <br>
-Mitigation: Review generated commands and files before running or applying them. <br>
-Risk: The skill can be misapplied to repositories that are not agentcli-go projects. <br>
-Mitigation: Use it only for active agentcli-go work or Go CLI scaffolding where the framework is relevant. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gh-xj/agentcli-go) <br>
+## Use Case:
 
+Developers and engineers use this skill when building or maintaining Go CLI tools with agentcli-go, including project scaffolding, command additions, cobrax/configx patterns, lifecycle hooks, and framework debugging.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe file layouts, generated project files, Taskfile tasks, Go API usage, and CLI command patterns.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generic trigger phrases may cause the skill to appear for unrelated CLI tasks.
+
+Mitigation: Verify that the task is actually about agentcli-go before following scaffold guidance or command examples.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gh-xj/skills/agentcli-go)
+- [Publisher profile](https://clawhub.ai/user/gh-xj)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only agent guidance; no bundled executable code.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata; artifact frontmatter version is 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

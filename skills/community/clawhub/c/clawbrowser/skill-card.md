@@ -1,41 +1,58 @@
-## Description: <br>
-Clawbrowser guides agents in using the Microsoft Playwright CLI (`playwright-cli`) to navigate pages, interact with forms, capture evidence, manage sessions, extract data, and debug browser workflows without a full MCP browser. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the agent needs to drive a browser through the Microsoft Playwright CLI (`playwright-cli`) for navigation, form interactions, screenshots, recordings, data extraction, session management, or debugging without loading a full MCP browser.
 
-## Publisher: <br>
-[tezatezaz](https://clawhub.ai/user/tezatezaz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tezatezaz](https://clawhub.ai/user/tezatezaz)
 
-## Use Case: <br>
-Developers and agent operators use this skill to run scripted browser automation, inspect web pages, capture screenshots and traces, and manage Playwright CLI sessions during testing or debugging. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Browser automation may expose sensitive authenticated content through sessions, screenshots, PDFs, traces, videos, or saved state. <br>
-Mitigation: Use temporary or isolated sessions for sensitive work and delete saved browser artifacts and state files when the task is complete. <br>
-Risk: Persistent Playwright CLI sessions can retain authentication state, history, storage, and open tabs between commands. <br>
-Mitigation: Name sessions intentionally, stop or delete sessions after use, and avoid saving authentication state unless the workflow requires it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tezatezaz/clawbrowser) <br>
-- [ClawAudit report f4d4fb45](https://clawaudit.duckdns.org/audit/f4d4fb45-ed25-4659-8235-2459d0dc8189) <br>
-- [ClawAudit report a55cb413](https://clawaudit.duckdns.org/audit/a55cb413-b111-4f1a-9f39-a5c857090ebf) <br>
+## Use Case:
 
+Developers and agent operators use this skill to control browser sessions with Playwright CLI for navigation, form interactions, debugging, screenshots, recordings, and extraction workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance targets playwright-cli workflows and may lead agents to create browser session state or files such as screenshots, PDFs, traces, videos, and snapshots.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Browser sessions can retain cookies, storage, history, authentication state, and tabs between commands.
+
+Mitigation: Use isolated sessions for sensitive sites and delete named sessions after authenticated work.
+
+Risk: Screenshots, PDFs, traces, videos, snapshots, console output, and network logs may contain sensitive data.
+
+Mitigation: Treat captured browser artifacts as sensitive files and review them before sharing or retaining them.
+
+Risk: Installing the Playwright CLI from an untrusted or floating npm source can introduce supply-chain uncertainty.
+
+Mitigation: Install only from a trusted npm registry and prefer a pinned Playwright CLI version.
+
+## Reference(s):
+
+- [Clawbrowser ClawHub listing](https://clawhub.ai/tezatezaz/skills/clawbrowser)
+- [ClawAudit report f4d4fb45-ed25-4659-8235-2459d0dc8189](https://clawaudit.duckdns.org/audit/f4d4fb45-ed25-4659-8235-2459d0dc8189)
+- [ClawAudit report a55cb413-b111-4f1a-9f39-a5c857090ebf](https://clawaudit.duckdns.org/audit/a55cb413-b111-4f1a-9f39-a5c857090ebf)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide generation of screenshots, PDFs, traces, videos, snapshots, console logs, and network logs as browser automation artifacts.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

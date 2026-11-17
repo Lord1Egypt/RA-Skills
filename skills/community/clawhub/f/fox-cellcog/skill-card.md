@@ -1,44 +1,60 @@
-## Description: <br>
-Any-to-any AI for agents that combines deep reasoning with multimodal inputs and outputs including research, videos, images, audio, dashboards, presentations, spreadsheets, and related deliverables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+#1 on DeepResearch Bench (Feb 2026). Any-to-Any AI for agents. Combines deep reasoning with all modalities through sophisticated multi-agent orchestration. Research, videos, images, audio, dashboards, presentations, spreadsheets, and more.
 
-## Publisher: <br>
-[qinthqod](https://clawhub.ai/user/qinthqod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qinthqod](https://clawhub.ai/user/qinthqod)
 
-## Use Case: <br>
-Developers and external users use this skill to send selected files and prompts to CellCog for cloud-based multimodal analysis and generation. It is intended for tasks such as research reports, dashboards, presentations, spreadsheets, audio, video, and other generated deliverables. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected local files may be uploaded to CellCog's cloud service. <br>
-Mitigation: Reference only files that are approved for CellCog processing and avoid secrets or regulated data unless CellCog is authorized for that data. <br>
-Risk: Tasks can consume CellCog credits and run asynchronously in the background. <br>
-Mitigation: Use deliberate task prompts, monitor credit use, and reserve higher-cost modes for work that justifies the added expense. <br>
-Risk: Remote-generated files can be written to user-specified local paths. <br>
-Mitigation: Direct generated outputs to controlled project directories and review them before using them in workflows or startup locations. <br>
+## Use Case:
 
+Developers and agents use this skill to create and manage CellCog cloud tasks for multimodal research, analysis, and generated deliverables such as reports, dashboards, presentations, spreadsheets, images, audio, and video.
 
-## Reference(s): <br>
-- [Fox Cellcog on ClawHub](https://clawhub.ai/qinthqod/fox-cellcog) <br>
-- [DeepResearch Bench Leaderboard](https://huggingface.co/spaces/muset-ai/DeepResearch-Bench-Leaderboard) <br>
-- [CellCog](https://cellcog.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell snippets; generated task results may include downloaded files in requested formats.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CELLCOG_API_KEY and may create asynchronous cloud tasks that consume CellCog credits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Tagged local files may be uploaded to a third-party cloud service for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only tag files approved for upload, and avoid secrets or regulated data unless the user has appropriate authorization.
+
+Risk: Generated files can be downloaded or written locally and may contain unexpected or unsafe content.
+
+Mitigation: Review generated files before opening or executing them, especially code, scripts, documents with active content, and downloaded artifacts.
+
+Risk: The CellCog SDK is installed as an unpinned package.
+
+Mitigation: Consider installing and running the SDK in an isolated environment and pinning a reviewed package version for managed deployments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/qinthqod/skills/fox-cellcog)
+- [CellCog](https://cellcog.ai)
+- [CellCog API Keys](https://cellcog.ai/profile?tab=api-keys)
+- [DeepResearch Bench Leaderboard](https://huggingface.co/spaces/muset-ai/DeepResearch-Bench-Leaderboard)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples; CellCog tasks may return generated local files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CELLCOG_API_KEY and the CellCog Python SDK; task results are delivered asynchronously or by waiting for completion.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

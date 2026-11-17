@@ -1,45 +1,60 @@
-## Description: <br>
-Feishu helps agents organize Feishu messages, approvals, meetings, documents, bitables, calendars, and email into prioritized summaries, drafts, and action recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feishu is a workplace collaboration orchestration skill that turns Feishu messages, approvals, meetings, documents, tables, calendars, and email into prioritized, executable action chains.
 
-## Publisher: <br>
-[AGIsearch](https://clawhub.ai/user/AGIsearch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agisearch](https://clawhub.ai/user/agisearch)
 
-## Use Case: <br>
-Employees, managers, and project leads use this skill to triage Feishu collaboration data, draft workplace communications, prepare meeting notes, review approvals, and turn chat, document, calendar, and bitable context into prioritized action plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad Feishu connector access could expose sensitive workplace messages, approvals, calendars, documents, or bitables if over-permissioned. <br>
-Mitigation: Install with a dedicated least-privilege Feishu app and keep counselor/read-only mode unless execution is explicitly needed. <br>
-Risk: Drafted or executable actions such as messages, approval decisions, calendar changes, and table edits could affect workplace workflows. <br>
-Mitigation: Review drafted content and require explicit confirmation, with second confirmation for high-sensitivity actions. <br>
-Risk: Ordinary workplace phrases could accidentally activate the skill in contexts where Feishu access was not intended. <br>
-Mitigation: Use explicit Feishu-scoped requests before invoking connector-backed actions. <br>
-Risk: Missing credentials, insufficient permissions, or incomplete task context could lead to unsupported or misleading execution claims. <br>
-Mitigation: Fall back to advice mode, request missing authorization or context, and avoid claiming Feishu access until the host connector is available. <br>
+## Use Case:
 
+Employees, managers, project leads, and cross-functional coordination owners use this skill to summarize Feishu activity, diagnose collaboration bottlenecks, draft follow-ups, extract meeting actions, analyze tables, and coordinate next steps while preserving authorization boundaries.
 
-## Reference(s): <br>
-- [ClawHub Feishu release](https://clawhub.ai/AGIsearch/feishu) <br>
-- [AGIsearch publisher profile](https://clawhub.ai/user/AGIsearch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown summaries, ranked lists, draft messages, meeting notes, approval reviews, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Feishu app credentials through the host connector and defaults to counselor/read-only mode until the user confirms execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: frontmatter, skill.json, server release evidence) <br>
+Risk: Broad workplace integration can expose or modify sensitive Feishu messages, approvals, calendars, documents, and table records if configured with excessive app scopes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only with Feishu app scopes that match the intended use, and keep default operation in counselor mode for read-only summaries and drafts.
+
+Risk: Confirmed write actions such as sending messages, editing tables, coordinating schedules, or advancing approvals can affect workplace decisions and relationships.
+
+Mitigation: Use executive mode only after explicit authorization, and require second confirmation for upward reporting, cross-department public reminders, final approval decisions, key table edits, and irreversible schedule changes.
+
+Risk: Missing context can lead to premature reminders, incorrect ownership assumptions, or updates that conflict with the current source of truth.
+
+Mitigation: Diagnose the collaboration layer first, ask for missing group, approval, document, table, or stakeholder context, and prefer drafts or recommendations until the relevant facts are confirmed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/agisearch/skills/feishu)
+- [Skill Instructions](artifact/skill.md)
+- [Examples](artifact/examples.md)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown with structured summaries, draft messages, action lists, risk notes, and confirmation prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FEISHU_APP_ID and FEISHU_APP_SECRET in the host environment for Feishu-connected operation; otherwise it should fall back to general advice mode.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata, skill frontmatter, and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

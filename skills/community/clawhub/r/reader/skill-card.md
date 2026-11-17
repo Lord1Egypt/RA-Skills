@@ -1,39 +1,49 @@
-## Description: <br>
-Local-first reading and distillation engine for documents and pasted text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local-first reading and distillation engine for documents and pasted text.
 
-## Publisher: <br>
-[ProjectSnowWork](https://clawhub.ai/user/ProjectSnowWork) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[projectsnowwork](https://clawhub.ai/user/projectsnowwork)
 
-## Use Case: <br>
-Employees, external users, and developers use Reader to summarize local documents or pasted text, extract key points, action items, and open questions, and compare drafts without external sync or credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A local history file may record which document paths were summarized, briefed, or compared and when. <br>
-Mitigation: Avoid highly sensitive files unless that local retention is acceptable, and delete the Reader history file when you want to clear the record. <br>
+## Use Case:
 
+Developers and other agent users use Reader to read local text-like files or pasted text, summarize documents, extract key points and action items, and compare drafts or reports without external sync or credentials.
 
-## Reference(s): <br>
-- [Reader Philosophy](references/philosophy.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ProjectSnowWork/reader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown-style summaries, briefs, comparisons, and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local file and pasted-text inputs; no external sync or credentials evidenced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill.json) <br>
+Risk: Summaries, briefs, and comparisons can leave a local history record containing filenames or paths and timestamps.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using the skill on highly sensitive documents if retaining that metadata locally is unacceptable.
+
+## Reference(s):
+
+- [Reader Philosophy](references/philosophy.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown and plain text summaries, briefs, comparisons, and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local-first outputs; summary, brief, and comparison workflows may record local history with filenames or paths and timestamps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

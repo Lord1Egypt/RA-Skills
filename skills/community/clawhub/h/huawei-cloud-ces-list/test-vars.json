@@ -1,0 +1,42 @@
+{
+  "skill_name": "huawei-cloud-ces-list",
+  "service": "CES",
+  "mode": "CLI",
+  "test_cases": [
+    {
+      "name": "list - 基础列表查询（默认区域）",
+      "command": "python3 scripts/huawei-cloud-ces-list.py list --region cn-north-4",
+      "method": "GET",
+      "category": "readonly",
+      "expected": "JSON {count, total, marker, metrics}，空列表时 count=0"
+    },
+    {
+      "name": "list - 按命名空间过滤",
+      "command": "python3 scripts/huawei-cloud-ces-list.py list --region cn-north-4 --namespace SYS.ECS",
+      "method": "GET",
+      "category": "readonly",
+      "expected": "JSON {count, total, marker, metrics}，无匹配时 count=0"
+    },
+    {
+      "name": "list - 按命名空间+指标名+维度组合过滤",
+      "command": "python3 scripts/huawei-cloud-ces-list.py list --region cn-north-4 --namespace SYS.ECS --metric-name cpu_util --dim.0 instance_id,6f3c6f91-4b24-4e1b-b7d1-a94ac1cb011d",
+      "method": "GET",
+      "category": "readonly",
+      "expected": "JSON {count, total, marker, metrics}"
+    },
+    {
+      "name": "show - 查询指标数据点",
+      "command": "python3 scripts/huawei-cloud-ces-list.py show --region cn-north-4 --namespace SYS.OBS --metric-name capacity_archive --dim.0 bucket_name,demo-aac --filter average --period 3600 --from 1607146998177 --to 1607150598177",
+      "method": "GET",
+      "category": "readonly",
+      "expected": "JSON {metric_name, datapoints}"
+    },
+    {
+      "name": "capability-list - 能力列表",
+      "command": "python3 scripts/huawei-cloud-ces-list.py capability-list",
+      "method": "GET",
+      "category": "readonly",
+      "expected": "JSON {skill, service, mode, operations}"
+    }
+  ]
+}

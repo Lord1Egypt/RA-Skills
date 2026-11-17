@@ -1,39 +1,50 @@
-## Description: <br>
-Dev Skill generates SwiftUI iOS application code from PRD documents, including architecture, UI components, data models, and QA handoff. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates SwiftUI iOS application code from PRD documents, including project structure, MVVM components, data management, and build and QA handoff guidance.
 
-## Publisher: <br>
-[tc1993](https://clawhub.ai/user/tc1993) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tc1993](https://clawhub.ai/user/tc1993)
 
-## Use Case: <br>
-Developers and engineers use this skill to transform PRD markdown into a SwiftUI iOS app project with MVVM structure, data models, views, services, tests, and build guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates project files under dev-output/. <br>
-Mitigation: Review generated files before adding them to a repository or build pipeline. <br>
-Risk: Generated code is handed to qa-skill after creation. <br>
-Mitigation: Avoid confidential PRDs unless that downstream handoff is acceptable. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn PRD markdown into a SwiftUI iOS project with models, view models, views, services, persistence, networking, and build guidance.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Generated Swift and project files with Markdown build instructions and next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates project files under dev-output/ and hands generated code to qa-skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Generated project files are expected to be written into dev-output/ and may conflict with existing workspace contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a workspace where dev-output/ is acceptable and check for existing files before generation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tc1993/skills/dev-skill)
+- [Publisher Profile](https://clawhub.ai/user/tc1993)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Files, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with generated Swift and Xcode project files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a multi-file Xcode project in dev-output/ and hands generated code to qa-skill.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

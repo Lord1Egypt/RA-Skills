@@ -1,41 +1,53 @@
-## Description: <br>
-WORKSTATION.md guides an agent to create, access, manage, and publish content from a temporary public Linux server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and SSH into cloud Linux servers with root access, instantly hosting websites on https://<name>.workstation.md via nginx on port 80.
 
-## Publisher: <br>
-[renning22](https://clawhub.ai/user/renning22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[renning22](https://clawhub.ai/user/renning22)
 
-## Use Case: <br>
-Developers and AI agents use this skill to provision a temporary Ubuntu server, connect over SSH, run commands, copy files, and expose web content through a public workstation.md URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead an agent to create and control a public Linux server with root access. <br>
-Mitigation: Use it only for tasks where public server creation is intended, and confirm the workstation name, SSH key, and deployment before provisioning. <br>
-Risk: Public hosting can expose private files, secrets, or unfinished services. <br>
-Mitigation: Use a dedicated throwaway SSH key, keep secrets out of served directories, and destroy the workstation when the task is complete. <br>
+## Use Case:
 
+Developers and AI agent operators use this skill to provision temporary Linux workstations, connect over SSH, run commands as root, and publish web output behind a workstation.md URL.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/renning22/workstation) <br>
-- [Publisher profile](https://clawhub.ai/user/renning22) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational steps for creating, using, extending, and destroying a public Linux workstation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill gives an agent authority to install a global npm CLI, create or reuse SSH keys, provision a public internet server, and run commands as root.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated SSH key, require explicit approval before provisioning or publishing, prefer pinned package versions, and destroy the workstation when finished.
+
+Risk: Public deployment and broad infrastructure access can expose unfinished services or sensitive files if commands are run without review.
+
+Mitigation: Review proposed commands and deployed files before execution, restrict secrets from the workspace, and clean up public resources with the destroy command.
+
+## Reference(s):
+
+- [WORKSTATION.md ClawHub Skill](https://clawhub.ai/renning22/skills/workstation)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides an agent through npm CLI installation, SSH key setup, workstation provisioning, SSH/SCP usage, web hosting, extension, listing, and teardown commands.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

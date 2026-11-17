@@ -1,41 +1,53 @@
-## Description: <br>
-Controlled autonomous self-evolution grants an agent authority to improve its own memory, skills, tool rules, and configuration through tiered permissions, audit trails, rollback steps, and human oversight checkpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controlled autonomous self-evolution: grants the agent authority to self-improve through a tiered safety system with mandatory audit trails, rollback capabilities, and human oversight checkpoints for critical modifications.
 
-## Publisher: <br>
-[niveroviero](https://clawhub.ai/user/niveroviero) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[niveroviero](https://clawhub.ai/user/niveroviero)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent propose and perform bounded self-improvements while recording what changed, why it changed, and how to roll it back. It is intended for environments where persistent changes to agent behavior are explicitly expected and reviewed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent authority to make persistent self-improvements to memory, skills, tool rules, and configuration, including some behavior-changing edits before explicit user approval. <br>
-Mitigation: Require explicit approval for every change to skills, tool rules, configuration, memory, or active behavior unless the deployment has separately authorized automated self-modification. <br>
-Risk: The server evidence reports a listing mismatch between bacon and self-evolve, which can make it harder to confirm that the reviewed artifact matches the intended release. <br>
-Mitigation: Verify that the bacon listing is expected to contain the self-evolve artifact before trusting or deploying the skill. <br>
+## Use Case:
 
+Developers and agent operators use this skill to define bounded self-improvement workflows for an agent, including tiered permissions, audit logs, backups, rollbacks, and human oversight for critical changes.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/niveroviero/bacon) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/niveroviero) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with audit-log entries, rollback commands, and change notifications] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May cause the agent to create or edit persistent workspace files when permitted by the host agent and user approvals.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact declares 2.0.0) <br>
+Risk: The skill enables an agent to maintain and change its own memory, skills, and tool-use rules, with some changes applied before user approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where agent self-maintenance is intended; require explicit approval before edits to memory, SKILLS.md, TOOLS.md, configuration, or newly created skills take effect, and review logs and backups closely.
+
+Risk: Self-modification can introduce incorrect guidance or weaken expected behavior.
+
+Mitigation: Review and scan proposed skill changes before deployment, keep rollback artifacts, and preserve approval checkpoints for critical changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/niveroviero/skills/bacon)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with checklists and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Proposes audit, backup, rollback, sandboxing, and approval practices; it does not itself execute changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

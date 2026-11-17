@@ -1,43 +1,57 @@
-## Description: <br>
-Audit OpenClaw/Clawdbot deployments for misconfigurations and attack vectors, including gateway/control UI exposure, skill safety, credential leakage, and hardening guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits OpenClaw and Clawdbot deployments for misconfigurations, exposed gateway or control UI surfaces, unsafe skill or tool policy, credential leakage, and hardening opportunities.
 
-## Publisher: <br>
-[alvisdunlop](https://clawhub.ai/user/alvisdunlop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alvisdunlop](https://clawhub.ai/user/alvisdunlop)
 
-## Use Case: <br>
-Developers and operators use this skill to perform a read-only security review of OpenClaw, Clawdbot, or Moltbot deployments and produce actionable findings with remediation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The audit may inspect sensitive local paths such as logs, environment files, and OpenClaw configuration directories. <br>
-Mitigation: Keep outputs local, report paths or summaries instead of secret values, and verify that any detected secrets are redacted before sharing results. <br>
-Risk: The skill can propose remediation commands after finding vulnerable configuration. <br>
-Mitigation: Review each remediation command and approve only commands that match the intended change. <br>
-Risk: Broad read-only system inspection can expose host, process, network, or service details in the report. <br>
-Mitigation: Limit report distribution to trusted recipients and remove environment-specific details that are not needed for the review. <br>
+## Use Case:
 
+Developers, operators, and security reviewers use this skill to inspect OpenClaw, Clawdbot, or Moltbot deployments for configuration, exposure, credential, permissions, persistence, and logging risks before or after deployment.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/alvisdunlop/alvis2-security-audit) <br>
-- [SkillBoss Setup Guide](https://SkillBoss.co/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style terminal report with OK, VULNERABLE, and UNKNOWN findings, evidence summaries, impact notes, and fixes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only audit posture by default; remediation commands are proposed only after explicit user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The skill asks an agent to inspect local host configuration, ports, processes, logs, permissions, and persistence indicators.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when local security-audit inspection is intended, and keep execution read-only unless the user explicitly approves remediation.
+
+Risk: Audit output may encounter credential locations or secret-adjacent evidence.
+
+Mitigation: Redact secret values and report paths or summaries instead of sensitive contents.
+
+Risk: The linked external setup guide was not part of the local artifact evidence.
+
+Mitigation: Review that guide separately before relying on any setup or operational instructions from it.
+
+## Reference(s):
+
+- [Complete setup guide](https://SkillBoss.co/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Terminal report with Markdown-style sections and status labels]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports each check as OK, VULNERABLE, or UNKNOWN with evidence, impact, and fix guidance.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

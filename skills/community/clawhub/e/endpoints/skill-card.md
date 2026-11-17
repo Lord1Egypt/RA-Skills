@@ -1,44 +1,60 @@
-## Description: <br>
-Endpoints document management API toolkit. Scan documents with AI extraction and organize structured data into categorized endpoints. Use when the user asks to: scan a document, upload a file, list endpoints, inspect endpoint data, check usage stats, create or delete endpoints, get file URLs, or manage document metadata. Requires ENDPOINTS_API_KEY from endpoints.work dashboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Endpoints document management API toolkit for scanning documents with AI extraction, organizing structured data into categorized endpoints, managing endpoint metadata, retrieving file URLs, and checking usage stats.
 
-## Publisher: <br>
-[adamkristopher](https://clawhub.ai/user/adamkristopher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[adamkristopher](https://clawhub.ai/user/adamkristopher)
 
-## Use Case: <br>
-Developers and agents use this skill to interact with the Endpoints document management API: scan local files or text, organize extracted data into endpoints, inspect endpoint metadata, retrieve file URLs, and check account usage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send local files and text to the external endpoints.work API. <br>
-Mitigation: Use it only with documents and text intended for that API, verify ENDPOINTS_API_URL before use, and avoid processing sensitive files without approval. <br>
-Risk: Delete functions can remove remote endpoint or item data without built-in confirmation safeguards. <br>
-Mitigation: Require explicit user confirmation and exact target paths or item IDs before calling deleteEndpoint or deleteItem. <br>
-Risk: API credentials and saved results may expose private account data or document content. <br>
-Mitigation: Keep ENDPOINTS_API_KEY private and clean up the results/ directory after processing sensitive documents. <br>
+## Use Case:
 
+Developers and agents use this skill to interact with the Endpoints.work document-management API: scan files or text, create and inspect endpoints, remove endpoint data, retrieve file URLs, and summarize saved JSON results.
 
-## Reference(s): <br>
-- [Endpoints API Reference](references/api-reference.md) <br>
-- [Endpoints API](https://endpoints.work/api) <br>
-- [Endpoints API Keys](https://endpoints.work/api-keys) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [JSON files and Markdown summaries with TypeScript function calls and setup commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Automatically saves API results under results/{category}/ and expects ENDPOINTS_API_KEY to be configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and scripts/package.json) <br>
+Risk: File scanning can upload selected local documents or text to the Endpoints.work service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the selected file or text, account, API key, and intended HTTPS API host before running scan operations.
+
+Risk: Delete operations can remove remote endpoints, associated files, or individual metadata items.
+
+Mitigation: Require explicit confirmation of the exact endpoint path or item ID before calling deleteEndpoint or deleteItem.
+
+Risk: An unintended ENDPOINTS_API_URL could send requests and bearer credentials to the wrong service.
+
+Mitigation: Verify ENDPOINTS_API_URL is exactly the intended HTTPS host before using the skill.
+
+## Reference(s):
+
+- [Endpoints API Reference](references/api-reference.md)
+- [Endpoints API](https://endpoints.work/api)
+- [Endpoints API Keys](https://endpoints.work/api-keys)
+- [ClawHub Skill Page](https://clawhub.ai/adamkristopher/skills/endpoints)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with TypeScript examples and JSON result files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ENDPOINTS_API_KEY and may write API responses under results/{category}/.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

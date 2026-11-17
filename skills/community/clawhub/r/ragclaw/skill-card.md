@@ -1,42 +1,53 @@
-## Description: <br>
-Local-first knowledge base skill for indexing, searching, and managing documents, code, and web pages with offline embeddings and SQLite storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local-first knowledge base to index, search, and manage documents and web pages offline using SQLite and local embedding models.
 
-## Publisher: <br>
-[emdzej](https://clawhub.ai/user/emdzej) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emdzej](https://clawhub.ai/user/emdzej)
 
-## Use Case: <br>
-Developers and agents use this skill to build and query a local knowledge base from project files, documentation, and selected web pages without relying on external APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can index local files and URLs, which may capture sensitive or unintended content if broad paths or crawl settings are used. <br>
-Mitigation: Index narrow folders and known URLs, avoid secrets and broad home directories, use include/exclude filters and crawl limits, and remove or prune unintended sources. <br>
-Risk: The skill depends on the external @emdzej/ragclaw-cli package for execution. <br>
-Mitigation: Install and run the CLI only when the publisher and package are trusted. <br>
-Risk: Web crawling can fetch more pages than intended if crawl scope is not constrained. <br>
-Mitigation: Prefer explicit /kb add commands, keep same-origin crawling enabled, and set crawl depth, page, concurrency, and delay limits. <br>
+## Use Case:
 
+Developers and agents use this skill to build and query a local knowledge base from selected files, directories, URLs, images, PDFs, and code. It supports offline document retrieval, reindexing, source management, embedder management, and knowledge-base maintenance through the RagClaw CLI.
 
-## Reference(s): <br>
-- [RagClaw Knowledge Base on ClawHub](https://clawhub.ai/emdzej/ragclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, JSON, Configuration, Guidance] <br>
-**Output Format:** [Markdown and command output, with JSON available for search results when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local SQLite knowledge bases and local embedding models; output depends on the invoked /kb command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.0 (source: server release metadata and artifact/skill.json) <br>
+Risk: The skill relies on an unpinned globally installed third-party ragclaw CLI resolved from PATH.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted publisher, prefer an exact pinned CLI version, and review which executable RAGCLAW_BIN or PATH resolves before use.
+
+Risk: Broad indexing commands can ingest local directories, URLs, images, PDFs, and code into persistent local databases.
+
+Mitigation: Use explicit /kb commands with narrow include and exclude patterns, max-depth, and max-files settings before indexing private material.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/emdzej/skills/ragclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and command-line text; optional machine-readable JSON for search results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can create or update local SQLite knowledge-base files and local configuration when RagClaw commands are executed.]
+
+## Skill Version(s):
+
+0.5.0 (source: server release metadata and artifact skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

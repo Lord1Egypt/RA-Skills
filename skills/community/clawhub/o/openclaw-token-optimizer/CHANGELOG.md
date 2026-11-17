@@ -1,5 +1,48 @@
 # Changelog
 
+## v4.1.1
+
+- Lead with natural-language requests and plain-language benefits instead of Python commands.
+- Give agents a context-first OpenClaw/Hermes workflow with focused ambiguity handling.
+- Move technical steps into a lazy-loaded quick-start reference; keep all audits read-only.
+- Clarify missing profile/job evidence, installation needs and report expectations.
+
+## v4.1.0
+
+- Add explicit Hermes read-only adapter and isolated upstream cron-store compatibility test.
+- Resolve file-evidenced cron model precedence including creation snapshots.
+- Recognize no_agent/paused jobs; keep auth, runtime overlays and savings unverified.
+- Share the analysis engine and preserve OpenClaw behavior and existing installation slug.
+- Document runtime-specific requirements and compatibility boundaries.
+
+
+## v4.0.2 — 2026-09-19
+
+- Fix false unknown-kind findings for native heartbeat and systemEvent jobs.
+- Keep agent-turn-only checks scoped to agent turns; preserve unknown-kind reporting.
+- Add three regression tests for native kinds, future kinds and agent-turn linting.
+- Rewrite README and ClawHub description for clear OpenClaw token optimization,
+  AI cost auditing, model routing and automation discovery, without savings guarantees.
+
+## v4.0.1 — 2026-09-19
+
+- Ship LICENSE.txt and SHA256SUMS.txt through extension-filtering registry clients.
+- Pin the installation example; verify actual published file hashes.
+- No change to the read-only audit behavior.
+
+## v4.0.0 — 2026-09-19
+
+- Combined compatibility refresh and native-aware audit core.
+- Added read-only audit/plan, ordered policy routing, context sizing/duplicates,
+  automation linting, coverage flags and honest missing-usage handling.
+- Added optional fixed-command OpenClaw adapter and offline JSON mode.
+- Removed obsolete static model/pricing tables, blanket 55-minute cache guidance,
+  generated workspace instructions, and unmeasured percentage-saving claims.
+- Preserved MIT license; unified slug/version; added regression tests and CI.
+- Breaking: legacy entrypoints now delegate to explicit v4 CLI arguments.
+- Native usage ingestion, automatic budgets, auto-apply and benchmarking remain outside v4.0.
+
+
 All notable changes to OpenClaw Token Optimizer are documented here.
 
 ## [3.2.0] - 2026-06-22

@@ -1,47 +1,59 @@
-## Description: <br>
-Use when the user needs to add or redesign an agent-data-cli source for RSS, news, social media, finance, APIs, scraping, browser automation, authentication, or remote content sync. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user needs to add or redesign an agent-data-cli source for RSS, news, social media, finance, APIs, scraping, browser automation, authentication, or remote content sync.
 
-## Publisher: <br>
-[severinzhong](https://clawhub.ai/user/severinzhong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[severinzhong](https://clawhub.ai/user/severinzhong)
 
-## Use Case: <br>
-Developers and engineers use this skill to research, specify, implement, and verify agent-data-cli sources for RSS, APIs, scraping, browser automation, authentication, finance, news, social media, and remote sync workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested setup commands can clone repositories and install dependencies. <br>
-Mitigation: Review the repository and dependency files before running git clone, uv sync, or related install commands. <br>
-Risk: Authenticated or interact-capable sources may use credentials or trigger remote side effects. <br>
-Mitigation: Keep credentials explicit, require user-directed actions, and preserve audit checks for interact operations. <br>
+## Use Case:
 
+Developers and engineers use this skill to research, specify, implement, and verify new or redesigned agent-data-cli sources. It is intended for source work involving RSS, APIs, scraping, browser automation, authentication, remote sync, and explicit interaction flows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/severinzhong/authoring-data-cli-source) <br>
-- [Source Contract](references/source-contract.md) <br>
-- [Source Testing](references/source-testing.md) <br>
-- [Source Review Checklist](references/source-review-checklist.md) <br>
-- [API Source Guidance](references/source-type-api.md) <br>
-- [Browser Source Guidance](references/source-type-browser.md) <br>
-- [Interact Source Guidance](references/source-type-interact.md) <br>
-- [RSS Source Guidance](references/source-type-rss.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with code, shell command, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include staged research, specifications, implementation plans, test guidance, and verification notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Unpinned remote install commands may install a changing upstream version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned release or reviewed commit and run setup in a restricted environment without production credentials.
+
+Risk: Authenticated, browser, scraping, or interact-capable sources may handle credentials or trigger remote side effects.
+
+Mitigation: Confirm user authorization, keep credentials least-privilege, and require explicit confirmation before remote side effects.
+
+## Reference(s):
+
+- [Source Contract](artifact/references/source-contract.md)
+- [Source Testing](artifact/references/source-testing.md)
+- [API Source Guidance](artifact/references/source-type-api.md)
+- [Browser Source Guidance](artifact/references/source-type-browser.md)
+- [Interact Source Guidance](artifact/references/source-type-interact.md)
+- [RSS Source Guidance](artifact/references/source-type-rss.md)
+- [Source Review Checklist](artifact/references/source-review-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown prose with code blocks, command examples, implementation plans, and verification notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Follows a staged research, spec, plan, approval, implement, and verify workflow for source-authoring tasks.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

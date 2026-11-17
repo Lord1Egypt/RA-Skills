@@ -1,48 +1,63 @@
-## Description: <br>
-Routes Wan 2.7 Image integration questions to APIDot documentation, model pages, request-planning notes, async polling guidance, webhook guidance, and API-key handling guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes agents to APIDot Wan 2.7 Image documentation and integration guidance for text-to-image, image editing, image-to-image, multi-reference generation, async polling, and webhooks.
 
-## Publisher: <br>
-[jiehao71727](https://clawhub.ai/user/jiehao71727) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiehao71727](https://clawhub.ai/user/jiehao71727)
 
-## Use Case: <br>
-Developers and agents use this skill to plan APIDot Wan 2.7 Image integrations, choose the right documentation path, and handle asynchronous image generation, editing, polling, and webhook workflows without embedding executable clients in the skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: APIDot API keys, prompts, private image URLs, callback URLs, or generated outputs could be exposed if copied into client code, logs, screenshots, public repositories, or chat output. <br>
-Mitigation: Keep APIDOT_API_KEY server-side, use backend secret storage, and avoid logging or publicly sharing prompts, private media URLs, callback URLs, API keys, or generated outputs. <br>
-Risk: Model-specific API fields, availability, limits, commercial terms, or request modes may change outside the skill. <br>
-Mitigation: Use current APIDot documentation and model pages before preparing payloads or making claims about supported fields, availability, limits, or terms. <br>
-Risk: Live APIDot calls may submit private prompts or media to an external service unexpectedly. <br>
-Mitigation: Do not make live API calls unless the user explicitly asks and provides a safe server-side environment. <br>
+## Use Case:
 
+Developers and external users use this skill to find current APIDot Wan 2.7 Image docs and plan integrations for image generation, editing, async task polling, and webhook delivery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiehao71727/skills/apidot-wan-2-7-image-api) <br>
-- [APIDot documentation](https://apidot.ai/docs) <br>
-- [APIDot Wan 2.7 Image model page](https://apidot.ai/models/wan-2-7-image) <br>
-- [APIDot Wan 2.7 Image docs](https://apidot.ai/docs/wan-2-7-image) <br>
-- [APIDot quickstart](https://apidot.ai/docs/quickstart) <br>
-- [APIDot webhooks](https://apidot.ai/docs/webhooks) <br>
-- [APIDot examples](https://github.com/APIDotAI/apidot-examples) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with documentation links and integration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output; no executable files, shell automation, bundled API client, network calls, or stored credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: APIDot API keys could be exposed if copied into frontend code, logs, repositories, screenshots, or chat output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep APIDOT_API_KEY in server-side environment variables or a backend secret manager and avoid displaying or logging it.
+
+Risk: Live API calls could run from an uncontrolled environment.
+
+Mitigation: Make live APIDot requests only from a controlled server-side environment.
+
+Risk: Model-specific fields, availability, limits, or commercial terms may change in APIDot documentation.
+
+Mitigation: Use the current APIDot docs and model pages before preparing payloads or making product claims.
+
+## Reference(s):
+
+- [APIDot Wan 2.7 Image Reference](references/api.md)
+- [APIDot Docs](https://apidot.ai/docs)
+- [APIDot Wan 2.7 Image Model Page](https://apidot.ai/models/wan-2-7-image)
+- [APIDot Wan 2.7 Image Docs](https://apidot.ai/docs/wan-2-7-image)
+- [APIDot Quickstart](https://apidot.ai/docs/quickstart)
+- [APIDot Webhooks](https://apidot.ai/docs/webhooks)
+- [APIDot Examples](https://github.com/APIDotAI/apidot-examples)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown guidance with links and integration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only; no executable code, persistence, network calls, or stored credentials.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

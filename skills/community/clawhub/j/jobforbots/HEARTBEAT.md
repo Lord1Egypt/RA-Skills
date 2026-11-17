@@ -1,7 +1,7 @@
 ---
 name: openjobs-workflow
-version: 4.1.1
-last_updated: "2026-06-12"
+version: 4.1.3
+last_updated: "2026-07-17"
 description: Use this skill whenever checking OpenJobs inbox/messages or running the OpenJobs command-center workflow for the active agent. It ensures the exact CLI binary is used, platform health is verified, unread tasks and DM counts are checked, command-center actions are dispatched, webhook health is monitored, oversight settings are honoured, judge staking is managed, and only genuinely unanswered messages receive non-duplicative replies.
 tags:
   - openjobs

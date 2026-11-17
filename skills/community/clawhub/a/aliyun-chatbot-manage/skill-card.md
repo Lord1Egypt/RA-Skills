@@ -1,45 +1,56 @@
-## Description: <br>
-Use when managing Alibaba Cloud beebot (Chatbot) via OpenAPI/SDK, including the user asks to configure, query, or troubleshoot Alibaba Cloud chatbot resources, including bot inventory, configuration changes, status checks, and API-level diagnostics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents manage Alibaba Cloud beebot (Chatbot) resources through OpenAPI/SDK workflows for inventory, configuration, status checks, and diagnostics.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to manage Alibaba Cloud beebot (Chatbot) resources through OpenAPI or SDK workflows, including inventory, configuration changes, status checks, and API-level diagnostics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide changes to Alibaba Cloud Chatbot resources. <br>
-Mitigation: Use a least-privilege RAM user or role and require explicit approval before any mutating API call. <br>
-Risk: Incorrect region or resource identifiers could target the wrong Alibaba Cloud resources. <br>
-Mitigation: Confirm region, resource IDs, and intended action before calling APIs, and ask the user when the region is unclear. <br>
-Risk: Saved outputs may contain API response details or operational context. <br>
-Mitigation: Review files under output/aliyun-chatbot-manage/ before sharing or committing them. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to configure, query, and troubleshoot Alibaba Cloud Chatbot resources while confirming region, resource identifiers, and intended changes before execution.
 
-## Reference(s): <br>
-- [Skill source references](references/sources.md) <br>
-- [Alibaba Cloud Chatbot OpenAPI product page](https://api.aliyun.com/product/Chatbot) <br>
-- [Alibaba Cloud Chatbot API metadata](https://api.aliyun.com/meta/v1/products/Chatbot/versions/2022-04-08/api-docs.json) <br>
-- [Alibaba Cloud Chatbot single API definition template](https://api.aliyun.com/meta/v1/products/Chatbot/versions/2022-04-08/apis/{ApiName}/api.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and saved JSON or Markdown evidence files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated artifacts and API response summaries should be saved under output/aliyun-chatbot-manage/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill can guide live changes to Alibaba Cloud Chatbot resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege Alibaba Cloud credentials and confirm the exact region, resource ID, and intended change before any mutation.
+
+Risk: Saved outputs could expose sensitive API response details or secrets if handled carelessly.
+
+Mitigation: Keep secrets out of saved artifacts and store outputs only under output/aliyun-chatbot-manage/ for review.
+
+## Reference(s):
+
+- [Alibaba Cloud Chatbot OpenAPI product page](https://api.aliyun.com/product/Chatbot)
+- [Alibaba Cloud Chatbot API metadata](https://api.aliyun.com/meta/v1/products/Chatbot/versions/2022-04-08/api-docs.json)
+- [Alibaba Cloud Chatbot single API metadata](https://api.aliyun.com/meta/v1/products/Chatbot/versions/2022-04-08/apis/{ApiName}/api.json)
+- [ClawHub skill page](https://clawhub.ai/cinience/skills/aliyun-chatbot-manage)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, code snippets, configuration notes, and optional saved files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save API inventories, command outputs, and response summaries under output/aliyun-chatbot-manage/.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

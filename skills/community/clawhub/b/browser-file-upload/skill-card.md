@@ -1,38 +1,57 @@
-## Description: <br>
-Browser automation skill for uploading files to web pages with flexible path specification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates uploading files to web pages via agent-browser CLI, with support for file input selectors and flexible local path formats.
 
-## Publisher: <br>
-[weixizi](https://clawhub.ai/user/weixizi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weixizi](https://clawhub.ai/user/weixizi)
 
-## Use Case: <br>
-Developers and automation users use this skill to upload a selected local file into web forms through agent-browser commands or the bundled Python helper. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload local files to web pages, including files selected through home-directory, environment-variable, or workspace-relative paths. <br>
-Mitigation: Confirm the destination website is trusted and verify the exact resolved file path before executing upload commands. <br>
+## Use Case:
 
+Developers and automation agents use this skill to upload local files into browser-based forms, either through direct agent-browser commands or the bundled helper script.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/weixizi/browser-file-upload) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with shell command examples and Python helper usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce agent-browser commands that act on user-selected URLs, selectors, and local file paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can upload local files to a website selected by the user or agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the destination domain is trusted and verify the selected file does not contain secrets, credentials, private workspace data, or other sensitive content before upload.
+
+Risk: Automatic file-input discovery may select the wrong element on complex pages.
+
+Mitigation: Prefer explicit CSS selectors such as input[type=file] or a known file input id when available.
+
+Risk: The bundled Python helper may be unreliable because release security guidance notes a syntax issue from unescaped Windows paths in its docstring.
+
+Mitigation: Use direct agent-browser commands until the helper script is fixed or validated in the target runtime.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/weixizi/skills/browser-file-upload)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Code, Guidance]
+
+**Output Format:** [Markdown with bash command examples and Python helper script usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces browser upload commands and path-resolution guidance; upload behavior depends on the target page and agent-browser availability.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

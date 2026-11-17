@@ -1,43 +1,58 @@
-## Description: <br>
-Seamless Restart defines an OpenClaw gateway restart protocol that saves current state, notifies the user, schedules recovery, and resumes work after intentional restarts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Seamless gateway restart with automatic context recovery and post-restart notification.
 
-## Publisher: <br>
-[zihaofeng2001](https://clawhub.ai/user/zihaofeng2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zihaofeng2001](https://clawhub.ai/user/zihaofeng2001)
 
-## Use Case: <br>
-Developers and operators use this skill when an agent must intentionally restart or reconfigure the OpenClaw gateway while preserving task context and notifying the user when service resumes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead an agent to restart or reconfigure the OpenClaw gateway with broad authority. <br>
-Mitigation: Require explicit user approval before every gateway restart or config.patch action, and review configuration changes before applying them. <br>
-Risk: NOW.md may contain stale, excessive, or untrusted recovery notes after a restart. <br>
-Mitigation: Keep NOW.md minimal, clear post-restart actions after recovery, and treat the file as recovery context rather than authoritative instructions. <br>
-Risk: Adding the suggested persistent rule may cause future agents to enforce this workflow automatically. <br>
-Mitigation: Add the AGENTS.md or User Rules entry only when the workspace owner wants this restart workflow enforced for future sessions. <br>
+## Use Case:
 
+Developers and operators use this skill to coordinate intentional OpenClaw gateway restarts while preserving task state, notifying the user, and restoring context after the restart completes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zihaofeng2001/seamless-restart) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline command examples and a NOW.md state snapshot template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces restart steps, notification and cron command examples, and recovery notes; it does not execute the restart by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill grants an agent broad authority to restart a gateway, schedule recovery, send messages, and persist recovery state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for explicitly approved gateway restart workflows and require fresh user confirmation before applying configuration changes or resuming side-effecting tasks after restart.
+
+Risk: Restart state can contain sensitive or private context if the agent writes too much to NOW.md.
+
+Mitigation: Keep NOW.md concise, avoid secrets and private message contents, and delete recovery state after it is no longer needed.
+
+Risk: Automatic recovery may resume interrupted work without enough human awareness.
+
+Mitigation: Notify the user after restart, summarize the recovered state, and ask before continuing actions that change systems, configuration, or external services.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zihaofeng2001/skills/seamless-restart)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/zihaofeng2001)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline command and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces state-capture, notification, recovery scheduling, and restart guidance for a single agent workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

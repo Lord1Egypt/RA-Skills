@@ -1,41 +1,54 @@
-## Description: <br>
-Awublack Personal Memory System syncs a user's MEMORY.md notes into SQLite and helps an agent query them in natural language, with documented Obsidian and Git synchronization for redundancy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A local personal memory system that syncs MEMORY.md into a searchable SQLite database and helps an agent answer natural-language questions from stored notes.
 
-## Publisher: <br>
-[awublack](https://clawhub.ai/user/awublack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[awublack](https://clawhub.ai/user/awublack)
 
-## Use Case: <br>
-External users and developers use this skill to maintain a personal, queryable memory base from local Markdown notes and retrieve prior thoughts or decisions through an assistant. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release security summary says the documented background Git sync may push private personal notes to a remote repository while the skill also describes local-only storage. <br>
-Mitigation: Review git_sync_on_save.sh before starting it, confirm the exact repository and files it will push, and avoid storing secrets or highly sensitive notes in MEMORY.md. <br>
-Risk: The artifact uses hard-coded workspace paths under /home/awu, so the scripts may fail or access unintended files outside that expected environment. <br>
-Mitigation: Inspect and adapt local paths before installation, then verify MEMORY.md, memory.db, the Obsidian vault, and sync logs point to the intended workspace. <br>
+## Use Case:
 
+External users and developers use this skill to maintain a local, queryable personal knowledge base for notes, decisions, and past views. It is intended for OpenClaw-style assistants that can sync Markdown memory entries into SQLite and summarize matching records.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/awublack/awublack-personal-memory-system) <br>
-- [Publisher profile](https://clawhub.ai/user/awublack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Natural-language answers and Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Queries local SQLite memory records derived from MEMORY.md; setup depends on user-specific local paths and optional Git synchronization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: A persistent Git sync process may commit private memory notes to durable Git history while the skill also presents itself as local-only.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the sync script before enabling it, verify the remote repository is yours and private, and confirm you are comfortable with notes being committed.
+
+Risk: Personal memory files can contain secrets or sensitive personal data that are difficult to remove after synchronization.
+
+Mitigation: Avoid storing secrets or highly sensitive data in synchronized notes, and review MEMORY.md, the Obsidian vault, Git history, and sync logs before sharing or deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/awublack/skills/awublack-personal-memory-system)
+- [Publisher profile](https://clawhub.ai/user/awublack)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and plain text with shell command examples and Python-backed query output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are based on locally stored MEMORY.md and SQLite records; query results are limited by the bundled retrieval script.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

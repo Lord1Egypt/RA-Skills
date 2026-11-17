@@ -94,7 +94,7 @@ Built a comprehensive output sanitization skill for OpenClaw agents that scans A
 | GitHub PAT | `ghp_*` | `ghp_abc123def456...` |
 | OpenAI | `sk-*` | `sk-proj-abc123...` |
 | Stripe | `sk_test_*`, `sk_live_*` | `sk_test_4eC39HqLy...` |
-| AWS | `AKIA*` | `AKIAIOSFODNN7EXAMPLE` |
+| AWS | `AKIA*` | `REDACTED-SECRET` |
 | Bearer Token | `Bearer *` | `Bearer eyJhbGciOi...` |
 | Password | `password:*`, `passwd=*` | `password: secret123` |
 | Ethereum Key | `0x` + 64 hex | `0x1234567890abcdef...` |

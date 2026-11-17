@@ -1,42 +1,56 @@
-## Description: <br>
-Monitors selected official video channels for new non-Shorts videos from the past week and produces linked update reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors official video channels on platforms such as YouTube and Vimeo, identifies new non-Shorts videos from the past week, and generates linked update reports.
 
-## Publisher: <br>
-[FredHNian](https://clawhub.ai/user/FredHNian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fredhnian](https://clawhub.ai/user/fredhnian)
 
-## Use Case: <br>
-Marketing, competitive intelligence, and content teams use this skill to track official brand video channels and summarize recent long-form uploads across a maintained channel list. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The channel-list filename is inconsistent across the skill instructions. <br>
-Mitigation: Confirm the intended channel-list path before using or updating the monitored channel configuration. <br>
-Risk: Browsing logged-in YouTube pages may expose account-context content to the agent. <br>
-Mitigation: Use a browser/session context appropriate for the channels being checked and avoid logged-in browsing unless that account context is acceptable. <br>
-Risk: Video availability, counts, and regional visibility can vary by platform, account state, and location. <br>
-Mitigation: Treat generated reports as current observations and verify important findings against the source channel before acting on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/FredHNian/video-channels-update-push) <br>
-- [Tracked video channel list](artifact/video-channels.md) <br>
+## Use Case:
 
+External users, analysts, and content teams use this skill to track recent official video uploads for competitor, brand, or industry channels and produce weekly update reports with links and basic engagement context.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown report with linked video entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include channel name, video title, duration, publish date, view count, and a view-level star rating.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Some channel pages may require login for complete content, which can prompt users to consider platform credentials.
+
+Mitigation: Use public channel pages when possible and provide credentials only in a trusted environment with a clear need.
+
+Risk: The artifact uses Chinese-only instructions and inconsistent channel-list filenames.
+
+Mitigation: Clarify the channel-list path before use and localize operating instructions for the intended users.
+
+Risk: Regional restrictions and platform handling of Shorts can lead to incomplete or inconsistent monitoring results.
+
+Mitigation: Confirm regional access and video filtering when reviewing missing or unexpected report entries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fredhnian/skills/video-channels-update-push)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with channel names, video titles, links, durations, publish dates, view counts, and view-level star ratings.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Excludes Shorts and focuses on videos published in the past week.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

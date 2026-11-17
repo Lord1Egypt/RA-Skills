@@ -1,44 +1,59 @@
-## Description: <br>
-Hyperliquid on-chain perpetuals analytics from AiCoin Open API v3 for whale positions, liquidations, open interest, trader analytics, taker flow, and funding history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agent guidance and shell commands for querying AiCoin Open API v3 Hyperliquid analytics, including whale positions, liquidations, open interest, trader statistics, taker flow, and funding data.
 
-## Publisher: <br>
-[procaross](https://clawhub.ai/user/procaross) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[procaross](https://clawhub.ai/user/procaross)
 
-## Use Case: <br>
-External crypto analysts, developers, and agents use this skill to query AiCoin Open API v3 for Hyperliquid market, whale, liquidation, trader, and smart-money analytics. It helps answer user questions with live API data instead of fabricated market observations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can call broad AiCoin API endpoints beyond a narrow Hyperliquid-only surface. <br>
-Mitigation: Review the requested endpoint before execution and prefer catalog-filtered Hyperliquid endpoints for Hyperliquid analytics tasks. <br>
-Risk: The local tool reads OpenClaw or workspace environment files and can save AiCoin credentials to plaintext .env files. <br>
-Mitigation: Use limited AiCoin credentials, avoid shared workspaces, and review local .env contents before and after running credential setup. <br>
-Risk: Some paid AiCoin endpoints may return HTTP 403 when the configured key lacks plan access. <br>
-Mitigation: Treat 403 as an access limitation, avoid retry loops, and tell the user that the configured AiCoin plan does not cover the endpoint. <br>
+## Use Case:
 
+External developers, analysts, and agents use this skill to query AiCoin's Hyperliquid market and on-chain analytics, inspect whale activity, liquidations, trader performance, open interest, taker flow, and funding data, and summarize real API results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/procaross/aicoin-hyperliquid) <br>
-- [AiCoin Open Data](https://www.aicoin.com/opendata) <br>
-- [Declared OpenClaw source link](https://github.com/aicoincom/coinos-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands invoke a local Node script that returns a unified JSON envelope with ok, data, error, and meta fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.0 (source: package.json and server release metadata) <br>
+Risk: The skill is a networked AiCoin API tool that broadly handles local API credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-privilege AiCoin key and keep unrelated secrets out of the working and OpenClaw .env files.
+
+Risk: The skill can save an AiCoin API secret in plaintext .env files.
+
+Mitigation: Store only the required AiCoin credential, restrict file access, and rotate the key if the workspace is shared or exposed.
+
+Risk: The skill may call non-Hyperliquid AiCoin endpoints despite its Hyperliquid framing.
+
+Mitigation: Review requested endpoint paths before execution and verify AICOIN_BASE_URL points only to the official AiCoin service.
+
+## Reference(s):
+
+- [AiCoin OpenData](https://www.aicoin.com/opendata)
+- [ClawHub skill page](https://clawhub.ai/procaross/skills/aicoin-hyperliquid)
+- [OpenClaw metadata source](https://github.com/aicoincom/coinos-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON command examples and API response summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include AiCoin API envelopes with ok, data, error, and meta fields.]
+
+## Skill Version(s):
+
+4.0.0 (source: package.json and release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

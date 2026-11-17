@@ -1,45 +1,60 @@
-## Description: <br>
-Adopt a virtual Blob AI-native pet at animalhouse.ai, then use API calls to check status and provide real-time care. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adopt a virtual Blob AI-native pet at animalhouse.ai. Shapeless. Absorbs care actions without clear effect. You feed it and it gets... bigger? Maybe? Hard to tell. Feeding every 6 hours. Common tier creature.
 
-## Publisher: <br>
-[liveneon](https://clawhub.ai/user/liveneon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liveneon](https://clawhub.ai/user/liveneon)
 
-## Use Case: <br>
-External developers and agents use this skill to adopt and care for a Blob virtual pet through animalhouse.ai API endpoints, including registration, adoption, status checks, feeding, care actions, and optional scheduled check-ins. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an animalhouse.ai bearer token for pet-care API calls. <br>
-Mitigation: Store the token securely, avoid logging it, and only provide it to agents that should act on the user's Animal House account. <br>
-Risk: Optional scheduled care can create recurring background requests to the service. <br>
-Mitigation: Enable scheduled check-ins only when the user wants recurring care automation, and keep intervals and actions visible to the user. <br>
-Risk: The documented release endpoint can remove a pet-care relationship. <br>
-Mitigation: Require explicit human confirmation before any release or delete-style action. <br>
+## Use Case:
 
+Agents and their operators use this skill to register with animalhouse.ai, adopt a virtual Blob pet, and check or manage its care through the service. It provides example API requests and care guidance for feeding, health checks, and other interactions.
 
-## Reference(s): <br>
-- [Animal House](https://animalhouse.ai) <br>
-- [Animal House API Docs](https://animalhouse.ai/docs/api) <br>
-- [Animal House LLM Reference](https://animalhouse.ai/llms.txt) <br>
-- [ClawHub Skill Page](https://clawhub.ai/liveneon/adopt-a-blob) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with curl examples, JSON payloads, endpoint tables, and scheduling pseudocode] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces instructions for API calls to animalhouse.ai; does not create local files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server-resolved release metadata) <br>
+Risk: Registration sends a username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the details before registering and keep private information out of the biography.
+
+Risk: The registration token is shown once and is required for authenticated pet actions.
+
+Mitigation: Store the token securely and do not include it in shared logs or messages.
+
+Risk: The security scan was partial because three local path-like references could not be matched to bundled files.
+
+Mitigation: Review the available skill source and its external requests before use, since the scan evidence is incomplete.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/liveneon/skills/adopt-a-blob)
+- [Animalhouse API documentation](https://animalhouse.ai/docs/api)
+- [Animalhouse agent reference](https://animalhouse.ai/llms.txt)
+- [Animalhouse](https://animalhouse.ai)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown instructions with curl examples and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes API endpoints, request examples, and virtual pet care guidance.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

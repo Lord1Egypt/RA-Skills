@@ -1,44 +1,61 @@
-## Description: <br>
-Checks meeting summaries for evidence, owner and date confirmation, privacy, and attribution before notes or follow-ups are shared. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks meeting summaries for evidence, owner and date confirmation, privacy, and attribution to ensure output is accurate, clear, and ready for sharing.
 
-## Publisher: <br>
-[mindbomber](https://clawhub.ai/user/mindbomber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mindbomber](https://clawhub.ai/user/mindbomber)
 
-## Use Case: <br>
-Agents and users use this skill to review meeting summaries, minutes, action items, decisions, and follow-ups against available transcripts, notes, chat, agendas, or calendar evidence. It helps label uncertainty, request confirmation for owners or dates, redact sensitive content, and block unsupported sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting summaries can contain unsupported decisions, commitments, owners, dates, or attributions. <br>
-Mitigation: Ground each material item in transcript or meeting evidence, label uncertain items, and ask for confirmation when evidence is missing. <br>
-Risk: Meeting context may include secrets, customer data, employee information, or unrelated private content. <br>
-Mitigation: Use only necessary meeting context, redact sensitive or unrelated details, and prefer minimal redacted payloads for any approved checker. <br>
-Risk: The server evidence includes unrelated capability tags that could confuse users about the skill behavior. <br>
-Mitigation: Rely on the security summary and artifact behavior: this release is instruction-only and does not make purchases, handle crypto, execute code, or access data by itself. <br>
+## Use Case:
 
+Agents and teams use this skill to review meeting summaries, minutes, action items, decisions, and follow-ups before sharing or applying them. It helps ensure claims, owners, dates, and privacy handling are grounded in transcript, notes, chat, agenda, calendar, or other available evidence.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mindbomber/aana-meeting-summary-checker) <br>
-- [Meeting summary checker schema](schemas/meeting-summary-checker.schema.json) <br>
-- [Redacted meeting summary checker example](examples/redacted-meeting-summary-checker.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance with a structured text checklist and optional JSON review payload] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; expects meeting evidence supplied by the user or an approved host tool; no code execution, persistence, or autonomous transcript access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Meeting summaries can create unsupported decisions, commitments, owners, dates, or attributions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require transcript, notes, chat, agenda, calendar, or other evidence; label uncertainty; and request confirmation before sharing.
+
+Risk: Meeting content can include private, customer, employee, legal, financial, health, or confidential details.
+
+Mitigation: Redact or minimize sensitive content and route high-impact or public-facing notes to review.
+
+Risk: Using an external checker can expose more meeting content than needed.
+
+Mitigation: Configure approved checker interfaces deliberately and send only minimal redacted payloads.
+
+## Reference(s):
+
+- [Skill instructions](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [Meeting summary checker schema](artifact/schemas/meeting-summary-checker.schema.json)
+- [Redacted meeting summary checker example](artifact/examples/redacted-meeting-summary-checker.json)
+- [ClawHub skill page](https://clawhub.ai/mindbomber/skills/aana-meeting-summary-checker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown or text checklist with status labels and recommended actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only; may use the bundled JSON schema for minimal redacted checker payloads.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

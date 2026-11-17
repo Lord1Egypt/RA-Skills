@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>门店自助诊断工具</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0d0d1a;color:#e0e0f0;font-family:'PingFang SC','Microsoft YaHei',sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:20px}
+.container{max-width:640px;width:100%}
+.header{text-align:center;margin-bottom:24px}
+.header h1{font-size:22px;background:linear-gradient(90deg,#f7971e,#ffd200);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.header p{color:#8888bb;font-size:13px;margin-top:6px;line-height:1.6}
+.steps{display:flex;gap:4px;margin-bottom:24px;overflow-x:auto;padding:4px 0}
+.step-dot{flex:1;min-width:0;height:4px;border-radius:2px;background:rgba(255,255,255,0.1);transition:.3s}
+.step-dot.active{background:linear-gradient(90deg,#f7971e,#ffd200)}
+.step-dot.done{background:#22c55e}
+.card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:20px;margin-bottom:16px;display:none}
+.card.active{display:block}
+.card h2{font-size:16px;color:#ffd200;margin-bottom:4px}
+.card .sub{color:#8888bb;font-size:12px;margin-bottom:16px}
+.q-item{margin-bottom:14px;padding:12px;border-radius:10px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06)}
+.q-item:last-child{margin-bottom:0}
+.q-label{font-size:14px;color:#e0e0f0;margin-bottom:8px;line-height:1.5}
+.q-options{display:flex;flex-wrap:wrap;gap:6px}
+.q-opt{padding:6px 14px;border-radius:8px;border:1px solid rgba(255,255,255,0.15);background:transparent;color:#ccccee;font-size:13px;cursor:pointer;transition:.2s;font-family:inherit}
+.q-opt:hover{border-color:#ffd200;color:#ffd200}
+.q-opt.selected{background:rgba(255,210,0,0.15);border-color:#ffd200;color:#ffd200}
+.btn-row{display:flex;gap:10px;margin-top:16px}
+.btn{padding:10px 24px;border-radius:10px;border:none;font-size:14px;cursor:pointer;transition:.2s;font-family:inherit;flex:1}
+.btn-primary{background:linear-gradient(135deg,#f7971e,#ffd200);color:#0d0d1a;font-weight:600}
+.btn-primary:hover{opacity:.9}
+.btn-primary:disabled{opacity:.4;cursor:default}
+.btn-secondary{background:rgba(255,255,255,0.06);color:#ccccee;border:1px solid rgba(255,255,255,0.1)}
+.btn-secondary:hover{background:rgba(255,255,255,0.1)}
+.report{display:none}
+.report.active{display:block}
+.score-ring{width:140px;height:140px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;position:relative}
+.score-ring .inner{width:104px;height:104px;border-radius:50%;background:#0d0d1a;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.score-ring .inner .num{font-size:38px;font-weight:700;background:linear-gradient(90deg,#ffd200,#f7971e);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.score-ring .inner .lbl{font-size:12px;color:#8888aa;margin-top:2px}
+.dim-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+.dim-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:12px}
+.dim-card .dn{font-size:12px;color:#aabbdd;margin-bottom:4px}
+.dim-card .ds{font-size:18px;font-weight:700}
+.dim-card .bar{height:4px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;margin-top:4px}
+.dim-card .bar-f{height:100%;border-radius:2px;transition:width 1s}
+.result-section{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin-bottom:12px}
+.result-section h3{font-size:14px;color:#ffd200;margin-bottom:8px}
+.result-section p,.result-section li{font-size:13px;color:#ccccee;line-height:1.7}
+.result-section ul{padding-left:18px}
+.result-section li{margin-bottom:4px}
+.footer{text-align:center;color:#444477;font-size:11px;padding:20px 0;line-height:1.8}
+.footer a{color:#f7971e;text-decoration:none}
+@media(max-width:500px){.dim-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="container" id="app">
+  <div class="header">
+    <h1>🏪 门店自助诊断</h1>
+    <p>回答20个问题，自动生成诊断报告</p>
+  </div>
+  <div class="steps" id="steps"></div>
+  <div id="questionArea"></div>
+  <div class="report" id="reportArea"></div>
+</div>
+<script>
+const GROUPS = [
+  {id:'A',title:'门店基本面',sub:'先了解一下你的店',questions:[
+    {id:'A1',text:'你是什么类型的店？',opts:['餐饮','美业','酒旅','亲子','零售','其他'],scores:[0,0,0,0,0,0]},
+    {id:'A2',text:'现在每天大概有多少客人进店？',opts:['0-10人','10-30人','30-50人','50人以上'],scores:[1,2,3,4]},
+    {id:'A3',text:'平均客单价大概多少？',opts:['0-20元','20-50元','50-100元','100元以上'],scores:[1,2,3,4]}
+  ]},
+  {id:'B',title:'线上意识',sub:'你尝试过线上运营吗',questions:[
+    {id:'B1',text:'你开过抖音/美团直播吗？',opts:['没开过','试过几次','定期在播'],scores:[0,2,4]},
+    {id:'B2',text:'你有发短视频吗？',opts:['没发过','偶尔发','定期在发'],scores:[0,2,4]},
+    {id:'B3',text:'你有微信私域群吗？',opts:['没有','有但没怎么管','有且维护着'],scores:[0,2,4]}
+  ]},
+  {id:'C',title:'引流品',sub:'你的产品引流能力',questions:[
+    {id:'C1',text:'你现在有团购/外卖链接在线上卖吗？',opts:['有','没有'],scores:[3,0]},
+    {id:'C2',text:'最便宜的引流品卖多少钱？',opts:['1-9.9元','10-29.9元','30元以上','没有引流品'],scores:[4,3,2,0]},
+    {id:'C3',text:'顾客到店一般还会再买点别的吗？',opts:['基本只核销团购','偶尔会加','来了就不空手走'],scores:[0,2,4]}
+  ]},
+  {id:'D',title:'直播质量',sub:'如果你在播，回答这组',questions:[
+    {id:'D1',text:'直播时有贴片（店名+福利+地址）吗？',opts:['有','没有','没播/不知道'],scores:[4,0,1]},
+    {id:'D2',text:'你固定时间开播吗？',opts:['固定每天','固定偶尔','想播就播','没播'],scores:[4,3,1,0]},
+    {id:'D3',text:'直播时有主推的品吗？',opts:['有明确的','随口讲','没有','没播'],scores:[4,2,0,0]},
+    {id:'D4',text:'直播话术有框架吗？',opts:['有框架','大概知道','想到哪说到哪','没播'],scores:[4,2,0,0]}
+  ]},
+  {id:'E',title:'到店体验',sub:'店能不能接住人',questions:[
+    {id:'E1',text:'顾客到店后核销流程方便吗？',opts:['很方便','还可以','有点麻烦','不清楚'],scores:[3,2,0,1]},
+    {id:'E2',text:'店里有地方让顾客多待一会儿吗？',opts:['有座位/体验区','只有柜台','纯外卖/无门店'],scores:[3,1,0]},
+    {id:'E3',text:'店里有东西值得顾客拍照发朋友圈吗？',opts:['有','一般','没有'],scores:[3,1,0]}
+  ]},
+  {id:'F',title:'精力意愿',sub:'你愿意投入多少',questions:[
+    {id:'F1',text:'你每天能花多少时间在线上？',opts:['1小时以上','30分钟左右','基本没时间'],scores:[4,2,0]},
+    {id:'F2',text:'你觉得店未来最大的问题是？',opts:['没人知道','人来了留不住','利润太薄','竞争太大'],scores:[2,1,1,1]}
+  ]}
+];
+let answers = {}; let currentGroup = 0;
+function init(){renderSteps();renderGroup(0);}
+function renderSteps(){document.getElementById('steps').innerHTML=GROUPS.map((g,i)=>'<div class="step-dot" id="dot'+i+'"></div>').join('');}
+function renderGroup(idx){const g=GROUPS[idx];
+  document.getElementById('steps').querySelectorAll('.step-dot').forEach((e,i)=>{e.className='step-dot';if(i===idx)e.classList.add('active');else if(answers[GROUPS[i].questions[0]?.id]!==undefined)e.classList.add('done');});
+  const area=document.getElementById('questionArea');
+  area.innerHTML='<div class="card active"><h2>'+g.id+'组 · '+g.title+'</h2><div class="sub">'+g.sub+'</div>'+g.questions.map(q=>'<div class="q-item"><div class="q-label">'+q.text+'</div><div class="q-options" data-q="'+q.id+'">'+q.opts.map((o,i)=>'<button class="q-opt'+(answers[q.id]===i?' selected':'')+'" onclick="selectOpt(\''+q.id+'\','+i+')">'+o+'</button>').join('')+'</div></div>').join('')+'<div class="btn-row">'+(idx>0?'<button class="btn btn-secondary" onclick="prevGroup()">上一组</button>':'')+'<button class="btn btn-primary" id="nextBtn" onclick="nextGroup()" '+(allAnswered(idx)?'':'disabled')+'>'+(idx<GROUPS.length-1?'下一组':'生成报告')+'</button></div></div>';
+}
+function selectOpt(qid,val){answers[qid]=val;document.querySelectorAll('[data-q="'+qid+'"] .q-opt').forEach((b,i)=>{b.classList.toggle('selected',i===val);});const btn=document.getElementById('nextBtn');if(btn)btn.disabled=!allAnswered(currentGroup);}
+function allAnswered(idx){return GROUPS[idx].questions.every(q=>answers[q.id]!==undefined);}
+function prevGroup(){if(currentGroup>0){currentGroup--;renderGroup(currentGroup);}}
+function nextGroup(){if(!allAnswered(currentGroup))return;if(currentGroup<GROUPS.length-1){currentGroup++;renderGroup(currentGroup);}else generateReport();}
+function generateReport(){
+  document.getElementById('questionArea').innerHTML='';document.getElementById('steps').innerHTML='';
+  const online=(answers['B1']||0)+(answers['B2']||0)+(answers['B3']||0);
+  const product=(answers['C1']||0)+(answers['C2']||0)+(answers['C3']||0);
+  const live=(answers['D1']||0)+(answers['D2']||0)+(answers['D3']||0)+(answers['D4']||0);
+  const store=(answers['E1']||0)+(answers['E2']||0)+(answers['E3']||0);
+  const energy=(answers['F1']||0)+(answers['F2']||0);
+  const overall=Math.round(((online/12*20)+(product/11*20)+(live/16*25)+(store/9*20)+(energy/8*15)));
+  const level=overall>=80?'成熟':overall>=60?'成长':overall>=40?'起步':'萌芽';
+  const color=overall>=80?'#22c55e':overall>=60?'#ffd200':overall>=40?'#f59e0b':'#ef4444';
+  const deg=(overall/100)*360;
+  const eScore=store;const canCatch=eScore>=6;
+  const hasLive=answers['D1']!==undefined&&answers['D1']!==null;
+  let leverage='';
+  if(!canCatch)leverage='店接不住人，先解决核销流程和到店体验，再考虑拉人';
+  else if(!hasLive||live<20)leverage='店能接人，问题在拉人——先开播，用福袋+引流品拉人到店';
+  else if(live<60)leverage='在播但效果差——优化直播节奏（福袋蓄水→塑品→放单→到店引导）';
+  else leverage='店能接人，直播也还行——加大短视频引流，让更多人知道你的店';
+  let actions=[];
+  if(!canCatch)actions=['简化核销流程：让顾客到店报手机号就能核销，不超过10秒','提升到店体验：至少让顾客有地方坐、有东西值得拍照','先不发视频，改好了再拉人——拉来的人留不住等于白做'];
+  else if(!hasLive||live<20)actions=['明天开一场直播：30分钟，福袋发小礼品，卖最低价的引流品','设置福袋：奖品选店里最受欢迎的便宜商品，5分钟倒计时','开播前2小时发一条短视频预告："今天下午X点直播，有福利"'];
+  else if(live<60)actions=['固定开播时间：每天同一时间播，让用户养成习惯','加贴片：直播画面上必须有店名+福利+地址，用手机APP就能加','按3轮节奏走：福袋→塑品→放单→预告下一轮，每轮10分钟'];
+  else actions=['每天发1条短视频：内容拍店里最热闹的瞬间，坚持30天','引导到店顾客加微信：核销时说"加微信下次直接预定"','每场直播后复盘：记录场观、成交、核销数，下周比这周好'];
+  const r=document.getElementById('reportArea');
+  r.className='report active';
+  r.innerHTML='<div class="header"><h1>📋 门店诊断报告</h1></div>'+
+    '<div class="score-ring" style="background:conic-gradient('+color+' '+deg+'deg,#1a1a3a '+deg+'deg)"><div class="inner"><div class="num">'+overall+'</div><div class="lbl">'+level+'</div></div></div>'+
+    '<div class="dim-grid">'+
+      '<div class="dim-card"><div class="dn">线上意识</div><div class="ds '+(online>=8?'g':online>=5?'o':'r')+'">'+online+'/12</div><div class="bar"><div class="bar-f" style="width:'+online/12*100+'%;background:'+(online>=8?'#22c55e':online>=5?'#ffd200':'#ef4444')+'"></div></div></div>'+
+      '<div class="dim-card"><div class="dn">产品引流</div><div class="ds '+(product>=7?'g':product>=4?'o':'r')+'">'+product+'/11</div><div class="bar"><div class="bar-f" style="width:'+product/11*100+'%"></div></div></div>'+
+      '<div class="dim-card"><div class="dn">直播质量</div><div class="ds '+(live>=12?'g':live>=7?'o':'r')+'">'+live+'/16</div><div class="bar"><div class="bar-f" style="width:'+live/16*100+'%"></div></div></div>'+
+      '<div class="dim-card"><div class="dn">到店体验</div><div class="ds '+(store>=7?'g':store>=4?'o':'r')+'">'+store+'/9</div><div class="bar"><div class="bar-f" style="width:'+store/9*100+'%"></div></div></div>'+
+      '<div class="dim-card"><div class="dn">精力意愿</div><div class="ds '+(energy>=5?'g':energy>=3?'o':'r')+'">'+energy+'/8</div><div class="bar"><div class="bar-f" style="width:'+energy/8*100+'%"></div></div></div>'+
+    '</div>'+
+    '<div class="result-section"><h3>🔍 核心判断</h3><p>'+leverage+'</p></div>'+
+    '<div class="result-section"><h3>🎯 明天做这三件事</h3><ul>'+actions.map(a=>'<li>'+a+'</li>').join('')+'</ul></div>'+
+    '<div class="result-section" style="border-color:rgba(247,151,30,0.3);background:rgba(247,151,30,0.05)"><h3>📮 需要人工深度分析？</h3><p>加微信 <strong>15610568699</strong>，发送诊断结果截图<br>免费帮你分析一次，看看怎么落地执行</p></div>'+
+    '<div class="footer">李鑫 · 门店诊断工具 v2.0<br>数据仅存于你的浏览器，不会上传</div>';
+}
+init();
+</script>
+</body>
+</html>

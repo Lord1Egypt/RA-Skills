@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Mem0"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["mem0"]
   icon: "https://static.oomol.com/logo/third-party/Mem0.svg"
 ---
@@ -45,7 +45,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `get_memory` — Get a single memory from Mem0 by memory ID.
 - `get_memory_history` — Get the change history of a Mem0 memory by memory ID.
 - `get_users` — List user entities from Mem0, optionally scoped by org and project.
-- `search_memories` — Search memories in Mem0 with semantic query and optional filters.
+- `search_memories` — Search memories in Mem0 with a semantic query and required non-empty filters.
 - `update_memory` — Update text or metadata of a Mem0 memory by memory ID. [write]
 
 ## Safety
@@ -77,11 +77,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Mem0 is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=mem0
+  https://console.oomol.com/connections/mem0
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Mem0 homepage: https://mem0.ai
+- API documentation: https://docs.mem0.ai/platform/quickstart

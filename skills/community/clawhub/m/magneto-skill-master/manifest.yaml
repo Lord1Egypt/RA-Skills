@@ -1,0 +1,24 @@
+name: magneto-skill-master
+display_name: 万磁王技能万事通
+version: 1.0.0
+description: 从 GitHub / Gitee 安全下载、审计并安装外部 Agent Skill 到本机 WorkBuddy 用户级技能目录，覆盖定位、安全审计（P0/P1/P2）、格式适配（受管 venv / run_script.sh / 中文乱码修复）、依赖安装与验证全流程。
+category: productivity
+author: yehuzi2026
+homepage: https://github.com/yehuzi2026/magneto-skill-master
+license: MIT
+triggers:
+  - 从 GitHub 下载技能
+  - 从 Gitee 安装技能
+  - 帮我装个标书技能
+  - 给 WorkBuddy 加个技能
+  - 安装外部 skill
+  - install skill
+  - download skill from github
+  - add a skill to workbuddy
+dependencies: []
+files:
+  - SKILL.md
+  - manifest.yaml
+  - README.md
+  - references/audit_patterns.md
+  - references/run_script_template.sh

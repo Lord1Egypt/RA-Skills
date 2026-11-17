@@ -1,164 +1,164 @@
 # Hiking — Spain
 
-## Rutas Imprescindibles
+## Must-Do Routes
 
-### Nivel Fácil (Cualquiera)
+### Easy Level (Anyone)
 
-| Ruta | Dónde | Distancia | Tiempo | Highlight |
+| Route | Where | Distance | Time | Highlight |
 |------|-------|-----------|--------|-----------|
-| Senda del Oso | Asturias | 22km (lineal) | 5-6h (bici mejor) | Osos, túneles |
-| Lagos de Covadonga | Asturias | 6km circular | 2-3h | Lagos glaciares |
-| Monasterio de Piedra | Zaragoza | 5km | 2h | Cascadas |
-| Nacimiento Río Mundo | Albacete | 4km | 1.5h | Cascada impresionante |
-| Cap de Creus | Girona | 8km | 3h | Costa rocosa, Dalí |
-| Caminito del Rey (pasarela) | Málaga | 8km | 3-4h | Vértigo, espectacular |
+| Senda del Oso | Asturias | 22km (linear) | 5-6h (bike better) | Bears, tunnels |
+| Lagos de Covadonga | Asturias | 6km loop | 2-3h | Glacial lakes |
+| Monasterio de Piedra | Zaragoza | 5km | 2h | Waterfalls |
+| Río Mundo source | Albacete | 4km | 1.5h | Impressive waterfall |
+| Cap de Creus | Girona | 8km | 3h | Rocky coast, Dalí |
+| Caminito del Rey (walkway) | Málaga | 8km | 3-4h | Vertigo, spectacular |
 
-### Nivel Medio (Experiencia básica)
+### Medium Level (Basic Experience)
 
-| Ruta | Dónde | Distancia | Tiempo | Highlight |
+| Route | Where | Distance | Time | Highlight |
 |------|-------|-----------|--------|-----------|
-| Ruta del Cares | Picos Europa | 22km (ida/vuelta) | 6-8h | Garganta impresionante |
-| Sierra de Grazalema | Cádiz | Varias | 4-6h | Bosque pinsapos |
-| Montseny | Barcelona | Varias | 4-6h | Bosque cerca BCN |
-| Bardenas Reales | Navarra | 15-30km | 5-8h | Desierto surreal |
-| Ruta del Flysch | País Vasco | 10km | 4h | Acantilados geológicos |
-| Sierra de Cazorla | Jaén | Varias | 4-6h | Mayor parque España |
+| Ruta del Cares | Picos de Europa | 22km (round trip) | 6-8h | Stunning gorge |
+| Sierra de Grazalema | Cádiz | Several | 4-6h | Spanish fir forest |
+| Montseny | Barcelona | Several | 4-6h | Forest near BCN |
+| Bardenas Reales | Navarre | 15-30km | 5-8h | Surreal desert |
+| Flysch Route | Basque Country | 10km | 4h | Geological cliffs |
+| Sierra de Cazorla | Jaén | Several | 4-6h | Largest park in Spain |
 
-### Nivel Alto (Montañeros)
+### High Level (Mountaineers)
 
-| Ruta | Dónde | Distancia | Tiempo | Nota |
+| Route | Where | Distance | Time | Note |
 |------|-------|-----------|--------|------|
-| Naranjo de Bulnes | Picos Europa | 20km | 8-10h | Icónico, exigente |
-| Aneto (pico) | Pirineos | 20km | 10-12h | Techo Pirineos (3.404m) |
-| Mulhacén | Sierra Nevada | 19km | 8-10h | Techo península (3.479m) |
-| GR11 (etapas) | Pirineos | ~800km | Semanas | Costa a costa |
-| Picos Tres Mares | Cantabria | 14km | 6-7h | Nacimiento ríos |
+| Naranjo de Bulnes | Picos de Europa | 20km | 8-10h | Iconic, demanding |
+| Aneto (peak) | Pyrenees | 20km | 10-12h | Highest Pyrenees (3,404m) |
+| Mulhacén | Sierra Nevada | 19km | 8-10h | Highest on the peninsula (3,479m) |
+| GR11 (stages) | Pyrenees | ~800km | Weeks | Coast to coast |
+| Picos Tres Mares | Cantabria | 14km | 6-7h | River sources |
 
-## Parques Nacionales
+## National Parks
 
-| Parque | Dónde | Mejor época | Para qué |
+| Park | Where | Best season | For what |
 |--------|-------|-------------|----------|
-| Picos de Europa | Asturias/Cantabria/León | Jun-sept | Alta montaña, rutas |
-| Ordesa | Pirineos | Jun-sept | Cañones, cascadas |
-| Aigüestortes | Pirineos | Jun-sept | Lagos glaciares |
-| Sierra Nevada | Granada | May-jun, sept-oct | Altura, esquí |
-| Doñana | Huelva | Primavera/otoño | Marismas, aves |
-| Teide | Tenerife | Todo el año | Volcánico, luna |
-| Cabañeros | Ciudad Real | Primavera | Fauna, dehesa |
-| Monfragüe | Cáceres | Primavera | Buitres, aves |
-| Garajonay | La Gomera | Todo el año | Laurisilva, niebla |
-| Caldera Taburiente | La Palma | Todo el año | Cráter enorme |
+| Picos de Europa | Asturias/Cantabria/León | Jun-Sep | High mountain, routes |
+| Ordesa | Pyrenees | Jun-Sep | Canyons, waterfalls |
+| Aigüestortes | Pyrenees | Jun-Sep | Glacial lakes |
+| Sierra Nevada | Granada | May-Jun, Sep-Oct | Altitude, skiing |
+| Doñana | Huelva | Spring/autumn | Marshes, birds |
+| Teide | Tenerife | Year-round | Volcanic, lunar |
+| Cabañeros | Ciudad Real | Spring | Wildlife, dehesa |
+| Monfragüe | Cáceres | Spring | Vultures, birds |
+| Garajonay | La Gomera | Year-round | Laurel forest, mist |
+| Caldera de Taburiente | La Palma | Year-round | Huge crater |
 
-## Por Regiones
+## By Region
 
-### Norte (Verde, Lluvia)
+### North (Green, Rain)
 
 **Asturias:**
-- Lagos de Covadonga (fácil)
-- Ruta del Cares (medio)
-- Senda del Oso (fácil, bici)
+- Lagos de Covadonga (easy)
+- Ruta del Cares (medium)
+- Senda del Oso (easy, bike)
 
 **Picos de Europa:**
-- Funicular Bulnes + paseo
-- Mirador del Cable (teleférico)
+- Bulnes funicular + walk
+- Mirador del Cable (cable car)
 - Ruta del Cares
 
-**País Vasco:**
-- Flysch Zumaia (fácil-medio)
-- San Juan de Gaztelugatxe (escaleras)
-- Monte Urgull San Sebastián (fácil)
+**Basque Country:**
+- Flysch Zumaia (easy-medium)
+- San Juan de Gaztelugatxe (stairs)
+- Monte Urgull San Sebastián (easy)
 
-### Pirineos
+### Pyrenees
 
 **Aragón:**
-- Valle de Ordesa (varias dificultades)
-- Ibones de Anayet (medio)
-- Cola de Caballo (fácil-medio)
+- Ordesa Valley (various difficulties)
+- Ibones de Anayet (medium)
+- Cola de Caballo (easy-medium)
 
-**Cataluña:**
-- Aigüestortes lagos (medio)
-- Vall de Núria (fácil)
-- Montserrat (fácil-medio)
+**Catalonia:**
+- Aigüestortes lakes (medium)
+- Vall de Núria (easy)
+- Montserrat (easy-medium)
 
-### Centro
+### Center
 
 **Sierra de Guadarrama (Madrid):**
-- Peñalara (medio)
-- La Pedriza (escalada, rutas)
-- Puerto de Navacerrada (fácil)
+- Peñalara (medium)
+- La Pedriza (climbing, routes)
+- Puerto de Navacerrada (easy)
 
 **Sierra de Gredos:**
-- Laguna Grande (medio)
-- Circo de Gredos (medio-alto)
+- Laguna Grande (medium)
+- Circo de Gredos (medium-high)
 
-### Sur
+### South
 
-**Andalucía:**
-- Caminito del Rey (fácil pero vértigo)
-- Torcal de Antequera (fácil, paisaje lunar)
-- Sierra Nevada (todas dificultades)
-- Grazalema (medio)
-- Cazorla (varias)
+**Andalusia:**
+- Caminito del Rey (easy but vertigo)
+- Torcal de Antequera (easy, lunar landscape)
+- Sierra Nevada (all difficulties)
+- Grazalema (medium)
+- Cazorla (various)
 
-### Islas
+### Islands
 
-**Canarias:**
-- Teide subida (medio-alto, permiso)
-- Roque Nublo Gran Canaria (fácil)
-- Garajonay La Gomera (fácil-medio)
-- Caldera Taburiente (medio-alto)
+**Canaries:**
+- Teide ascent (medium-high, permit)
+- Roque Nublo Gran Canaria (easy)
+- Garajonay La Gomera (easy-medium)
+- Caldera de Taburiente (medium-high)
 
-**Baleares:**
-- Serra de Tramuntana Mallorca (varias)
-- Camí de Cavalls Menorca (largo, etapas)
+**Balearics:**
+- Serra de Tramuntana Mallorca (various)
+- Camí de Cavalls Menorca (long, stages)
 
-## Equipamiento Básico
+## Basic Gear
 
-| Item | Cuándo |
+| Item | When |
 |------|--------|
-| Botas montaña | Rutas medio-alto |
-| Zapatillas trail | Rutas fáciles |
-| Agua (2L mínimo) | Siempre |
-| Protección solar | Siempre |
-| Chubasquero | Norte siempre, sur invierno |
-| Capas | Montaña (cambia rápido) |
-| Mapa/GPS | Rutas largas |
-| Comida | Rutas +3h |
+| Mountain boots | Medium-high routes |
+| Trail shoes | Easy routes |
+| Water (2L minimum) | Always |
+| Sun protection | Always |
+| Rain jacket | North always, south in winter |
+| Layers | Mountains (changes fast) |
+| Map/GPS | Long routes |
+| Food | Routes over 3h |
 
-## Apps Útiles
+## Useful Apps
 
-| App | Para qué |
+| App | For what |
 |-----|----------|
-| Wikiloc | Rutas GPS, tracks |
-| AllTrails | Rutas, reviews |
+| Wikiloc | GPS routes, tracks |
+| AllTrails | Routes, reviews |
 | Maps.me | Offline |
-| AEMET | Meteorología |
+| AEMET | Weather |
 
-## Seguridad
+## Safety
 
-1. **Avisar** a alguien de tu ruta
-2. **Hora vuelta** antes de oscurecer
-3. **Tiempo** puede cambiar rápido en montaña
-4. **Agua** siempre más de la que crees
-5. **Teléfono** cargado pero no confiar en cobertura
-6. **112** emergencias (funciona sin cobertura a veces)
+1. **Tell** someone your route
+2. **Return time** before dark
+3. **Weather** can change fast in the mountains
+4. **Water** always more than you think
+5. **Phone** charged but don't rely on coverage
+6. **112** for emergencies (works without coverage sometimes)
 
-## Restricciones
+## Restrictions
 
-| Parque | Restricción |
+| Park | Restriction |
 |--------|-------------|
-| Teide (pico) | Permiso online gratuito |
-| Islas Cíes | Autorización online |
-| Caminito del Rey | Entrada reservada |
-| Aigüestortes | Acceso coche regulado |
-| Playa de las Catedrales | Reserva temporada alta |
+| Teide (peak) | Free online permit |
+| Cíes Islands | Online authorization |
+| Caminito del Rey | Booked entry |
+| Aigüestortes | Regulated car access |
+| Playa de las Catedrales | Booking in high season |
 
-## Mejor Época
+## Best Season
 
-| Zona | Mejor | Evitar |
+| Area | Best | Avoid |
 |------|-------|--------|
-| Norte | Jun-sept | Nov-feb (lluvia) |
-| Pirineos | Jul-sept | Dic-abr (nieve) |
-| Centro | Abr-jun, sept-nov | Jul-ago (calor) |
-| Sur | Mar-may, oct-nov | Jul-ago (40°C+) |
-| Canarias | Todo el año | — |
+| North | Jun-Sep | Nov-Feb (rain) |
+| Pyrenees | Jul-Sep | Dec-Apr (snow) |
+| Center | Apr-Jun, Sep-Nov | Jul-Aug (heat) |
+| South | Mar-May, Oct-Nov | Jul-Aug (40°C+) |
+| Canaries | Year-round | — |

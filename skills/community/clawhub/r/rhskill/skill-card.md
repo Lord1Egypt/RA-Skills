@@ -1,45 +1,59 @@
-## Description: <br>
-RHSkill lets OpenClaw agents call the RunningHub AI Platform directly for text-to-image, image-to-image, video, audio, storage, and chained workflow tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RHSkill lets an OpenClaw agent call the RunningHub AI platform directly to run image, video, audio, and chained generation workflows with configurable output storage.
 
-## Publisher: <br>
-[airix315](https://clawhub.ai/user/airix315) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[airix315](https://clawhub.ai/user/airix315)
 
-## Use Case: <br>
-External developers and OpenClaw users use this skill to submit RunningHub AI app jobs, query task status, pass outputs between chained workflows, and optionally route generated media to Baidu Netdisk or Google Drive. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, input media, and generated outputs may be sent to RunningHub and, when cloud storage is selected, to Baidu Netdisk or Google Drive. <br>
-Mitigation: Use storage mode none for sensitive work, avoid regulated or confidential media, and review third-party service terms before deployment. <br>
-Risk: The skill can download outputs, extract ZIP files, and invoke local shell commands for cloud upload paths. <br>
-Mitigation: Review outputs before extraction or upload, restrict project names to safe values, and run the skill in a least-privilege agent environment. <br>
+## Use Case:
 
+Developers and external OpenClaw users use this skill to list RunningHub apps, submit synchronous or asynchronous AI generation tasks, query task status, and route generated outputs to direct URLs or optional cloud storage.
 
-## Reference(s): <br>
-- [RunningHub](https://www.runninghub.cn) <br>
-- [RunningHub International](https://www.runninghub.ai) <br>
-- [OpenClaw Docs](https://docs.openclaw.ai) <br>
-- [RHMCP GitHub](https://github.com/AIRix315/RHMCP) <br>
-- [Shared RunningHub Apps](references/shared-apps.json) <br>
-- [Configuration Template](references/config-template.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [JSON task results, URLs, cloud storage links, and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires RUNNINGHUB_API_KEY and may return RunningHub-hosted URLs, local paths, or cloud storage URLs depending on storage mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Unsafe command and network handling could expose credentials, generated content, or the local agent account if the skill is misconfigured or invoked with hostile inputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation, use it only with trusted prompts and configuration, keep RUNNINGHUB_BASE_URL set to an official RunningHub host, and avoid untrusted projectName or outputPath values until host validation and shell command handling are fixed.
+
+Risk: Cloud storage mode can move generated outputs to Baidu Netdisk or Google Drive, which may be inappropriate for sensitive content.
+
+Mitigation: Use cloud mode only for non-sensitive outputs and prefer direct RunningHub URLs when outputs do not need to be saved externally.
+
+## Reference(s):
+
+- [RHSkill ClawHub Release](https://clawhub.ai/airix315/skills/rhskill)
+- [RHMCP](https://github.com/AIRix315/RHMCP)
+- [RunningHub China](https://www.runninghub.cn)
+- [RunningHub International](https://www.runninghub.ai)
+- [OpenClaw Docs](https://docs.openclaw.ai)
+- [Shared Apps](references/shared-apps.json)
+- [Configuration Template](references/config-template.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript examples, JSON configuration, shell commands, and JSON task results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated task outputs may be returned as RunningHub URLs, local file paths, or cloud storage URLs depending on storage mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

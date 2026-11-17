@@ -1,42 +1,52 @@
-## Description: <br>
-Schema for tracking code review outcomes to enable feedback-driven skill improvement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Schema for tracking code review outcomes to enable feedback-driven skill improvement.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[anderskev](https://clawhub.ai/user/anderskev)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineering teams use this skill to log code review outcomes, verdicts, rationales, and rule sources in a consistent CSV format for later review-quality analysis.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Feedback log entries may include repository file paths, line numbers, and issue rationales.
+
+Mitigation: Review the chosen feedback-log destination and access controls before storing review outcomes.
+
+Risk: Incorrect or weak rationales can reduce the usefulness of review-quality analysis.
+
+Mitigation: Apply the skill's gates before appending a row, including evidence binding, attributable rule sources, artifact-backed verdicts, and valid CSV shape.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and code review maintainers use this skill to log review findings, verdicts, and rationales in a consistent CSV schema for later quality analysis and skill improvement. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, text]
 
-## Known Risks and Mitigations: <br>
-Risk: Feedback rows can become misleading if they are logged without checking the referenced code and review evidence. <br>
-Mitigation: Use the skill's gates to bind each row to repo-relative files, opened line numbers, attributable rule sources, and checkable rationales before appending it. <br>
-Risk: Downstream workflows may write CSV rows to an unintended location because this skill only defines the schema and validation guidance. <br>
-Mitigation: Have the surrounding workflow explicitly choose and review the target feedback log file before making any file changes. <br>
+**Output Format:** [Markdown guidance with CSV schema, validation gates, taxonomy tables, and example feedback rows]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/anderskev/review-feedback-schema) <br>
-- [review-verification-protocol](../review-verification-protocol/SKILL.md) <br>
-- [review-skill-improver](../review-skill-improver/SKILL.md) <br>
+**Other Properties Related to Output:** [Defines a nine-field feedback log row for review findings and human verdicts.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown with CSV schema, tables, and examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defines a nine-field CSV feedback log schema and validation gates for review outcomes.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

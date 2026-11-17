@@ -1,41 +1,58 @@
-## Description: <br>
-Comprehensive electronic components industry supplier guide for international buyers that provides information about China's semiconductor, passive component, PCB, connector, and sensor manufacturing clusters, supply chain structure, regional specializations, and 2026 industry trends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive electronic components industry suppliers guide for international buyers that provides information about China's semiconductor, passive component, PCB, connector, and sensor manufacturing clusters, supply chain structure, regional specializations, and industry trends.
 
-## Publisher: <br>
-[findhappy7](https://clawhub.ai/user/findhappy7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[findhappy7](https://clawhub.ai/user/findhappy7)
 
-## Use Case: <br>
-External electronics buyers, sourcing teams, and developers use this skill to understand China's electronic components manufacturing clusters, supplier categories, subsectors, and sourcing evaluation practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Supplier or contact details may be outdated, incorrect, or unsuitable for procurement decisions. <br>
-Mitigation: Verify supplier details, certifications, and contact channels independently before procurement or outreach. <br>
-Risk: The bundled data includes direct company contact emails despite documentation describing the data as cluster-level intelligence. <br>
-Mitigation: Review contact information before sharing outputs externally and apply the organization's procurement, privacy, and outreach policies. <br>
+## Use Case:
 
+External buyers, sourcing teams, and developers use this skill to retrieve reference guidance about China's electronic components manufacturing regions, subsectors, supply chain structure, and supplier evaluation practices.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/findhappy7/china-electronic-components-suppliers) <br>
-- [Publisher profile](https://clawhub.ai/user/findhappy7) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Natural-language Markdown and structured Python dictionary data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes cluster, subsector, supplier-evaluation, and contact-channel information where present in the bundled data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: Bundled supplier contact, certification, and capacity claims may be incomplete, stale, or unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify supplier identities, certifications, contacts, and production claims independently before using the information for sourcing or procurement decisions.
+
+Risk: The skill can be mistaken for a procurement authority even though the evidence classifies it as reference data.
+
+Mitigation: Use the output as preliminary market intelligence and route supplier selection through human procurement, compliance, and legal review.
+
+Risk: Industry statistics and policy references are time-sensitive and centered on 2026/Q1 2026 source claims.
+
+Mitigation: Compare results against current official and industry sources before relying on them for commercial planning.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/findhappy7/skills/china-electronic-components-suppliers)
+- [Bundled industry data](artifact/data.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Code]
+
+**Output Format:** [Markdown summaries and Python dict/list results from local helper functions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reference-data output only; supplier identities, certifications, contacts, and capacity claims require independent verification before procurement use.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

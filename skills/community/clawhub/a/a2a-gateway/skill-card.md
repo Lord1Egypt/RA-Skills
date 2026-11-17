@@ -1,43 +1,54 @@
-## Description: <br>
-A2a Gateway provides a local agent service bus for registering agent cards, routing work to matching agents, tracking delegated tasks, recording audit events, and checking agent health. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A2A Gateway provides an OpenClaw agent collaboration bus for registering agent cards, routing delegated tasks, tracking task state, reviewing audit trails, and checking agent health.
 
-## Publisher: <br>
-[perrykono-debug](https://clawhub.ai/user/perrykono-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[perrykono-debug](https://clawhub.ai/user/perrykono-debug)
 
-## Use Case: <br>
-Developers and operators use this skill to manage an OpenClaw multi-agent network: register agent capabilities, route user intents to agents, track task lifecycle events, review audit trails, and run health or performance checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill keeps local audit and task history for the agent bus. <br>
-Mitigation: Review what data will be written before use, avoid storing sensitive task content unless needed, and periodically inspect or prune local audit and task records. <br>
-Risk: Running setup-cron.sh can add a recurring health-check cron job. <br>
-Mitigation: Inspect the cron command first, run the setup only after consent, and verify or remove the entry with crontab if scheduled checks are not wanted. <br>
-Risk: pending_spawn.json behavior may enable automatic spawning or dispatch validation. <br>
-Mitigation: Review pending_spawn.json before allowing automatic spawning, and keep spawning disabled unless the target agent and task are expected. <br>
+## Use Case:
 
+Developers and operators use this skill to manage an OpenClaw multi-agent network, including agent discovery, capability-based routing, delegated task lifecycle tracking, collaboration audit logs, and health monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/perrykono-debug/a2a-gateway) <br>
-- [Publisher profile](https://clawhub.ai/user/perrykono-debug) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and local JSON or JSONL records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local agent registry, routing, task, audit, health, and performance artifacts under the configured workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: The release security summary flags under-scoped persistent cron execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scripts/setup-cron.sh before use and run it only when the referenced health.py path and twice-daily user crontab execution are intended.
+
+Risk: The release security guidance warns that local collaboration logs and pending spawn files may contain sensitive task content.
+
+Mitigation: Avoid placing secrets in task descriptions, task results, errors, or pending spawn files, and review local log retention before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/perrykono-debug/skills/a2a-gateway)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local JSON or JSONL registry, task, audit, performance, knowledge, and cron-related files when the bundled scripts are run.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

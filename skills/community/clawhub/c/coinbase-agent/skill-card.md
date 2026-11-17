@@ -1,41 +1,49 @@
-## Description: <br>
-Autonomous Coinbase integration for portfolio tracking, trading, and on-chain payments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous Coinbase integration for portfolio tracking, trading, and on-chain payments.
 
-## Publisher: <br>
-[stienski](https://clawhub.ai/user/stienski) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stienski](https://clawhub.ai/user/stienski)
 
-## Use Case: <br>
-External users use this skill to check Coinbase balances, review portfolio values, execute trades, and initiate crypto transfers through an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent authority over Coinbase trading and crypto transfers. <br>
-Mitigation: Use restricted Coinbase API keys, avoid transfer or withdrawal permissions unless required, and keep transaction limits very low. <br>
-Risk: Incorrect asset, amount, fee, network, or destination details could cause financial loss. <br>
-Mitigation: Manually verify every trade or transfer detail before execution, including the destination wallet and network. <br>
+## Use Case:
 
+External users use this skill to review Coinbase balances, request trades, and initiate on-chain payments through an agent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stienski/coinbase-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/stienski) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown or text responses with balance reports, trade confirmations, and transaction hashes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may summarize live Coinbase portfolio data or confirm agent-initiated trades and transfers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill can act on live Coinbase trading and crypto transfer workflows without enough confirmation or safety scoping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use tightly scoped Coinbase API keys, disable withdrawals or transfers unless required, and require per-transaction confirmation for every trade, swap, or crypto transfer.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/stienski/skills/coinbase-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown]
+
+**Output Format:** [Markdown or plain text with balance reports, trade confirmations, and transaction hashes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include live Coinbase account, portfolio, and transaction data when authenticated.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

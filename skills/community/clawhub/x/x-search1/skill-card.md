@@ -1,39 +1,60 @@
-## Description: <br>
-Search X (Twitter) posts using the xAI API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search X (Twitter) posts using the xAI API when users want to find tweets, look up what people are saying on X, or find social media posts about a topic.
 
-## Publisher: <br>
-[github2cao](https://clawhub.ai/user/github2cao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[github2cao](https://clawhub.ai/user/github2cao)
 
-## Use Case: <br>
-Developers and external users use this skill to search X/Twitter posts through xAI, optionally filtering by handles, exclusions, date range, images, or video, and receive summarized results with citations to original posts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms and filters are sent to xAI under the user's API key and quota. <br>
-Mitigation: Use a dedicated or least-privilege xAI API key, avoid sensitive queries, and store the key with appropriate local access controls. <br>
+## Use Case:
 
+Developers and external users use this skill to run real-time X/Twitter searches through xAI, with optional handle filters, date ranges, media understanding, and citations to original posts.
 
-## Reference(s): <br>
-- [xAI X Search documentation](https://docs.x.ai/developers/tools/x-search) <br>
-- [xAI Console](https://console.x.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON emitted by a Python command-line script, with text, citations, search count, and token usage fields.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3 and XAI_API_KEY; supports handle filters, exclusion filters, date bounds, image understanding, and video understanding flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Search queries, handles, date filters, and media options are sent to xAI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using secrets, confidential business data, private incident details, or sensitive personal information in searches.
+
+Risk: Search results and summaries may be incomplete, time-sensitive, or misleading.
+
+Mitigation: Review cited original X posts before acting on results or presenting them as authoritative.
+
+Risk: The skill depends on an xAI API key and external network access.
+
+Mitigation: Use an API key with only the access needed for xAI search and rotate or revoke it if exposed.
+
+## Reference(s):
+
+- [xAI X Search documentation](https://docs.x.ai/developers/tools/x-search)
+- [xAI console](https://console.x.ai)
+- [xAI Responses API endpoint](https://api.x.ai/v1/responses)
+- [ClawHub skill page](https://clawhub.ai/github2cao/skills/x-search1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON results containing status, query text, response text, citations, search count, and token usage; agent-facing guidance may be presented as Markdown with shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3 and XAI_API_KEY; supports allowed or excluded handles, date ranges, image understanding, and video understanding.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

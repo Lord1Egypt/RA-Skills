@@ -1,43 +1,54 @@
-## Description: <br>
-Natural language financial information search over EastMoney/Miaoxiang sources for news, announcements, research reports, policies, and market events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mx Finance Search lets agents use natural-language queries to retrieve Eastmoney financial news, announcements, research reports, and policy updates for market monitoring and investment analysis.
 
-## Publisher: <br>
-[akiry09](https://clawhub.ai/user/akiry09) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[akiry09](https://clawhub.ai/user/akiry09)
 
-## Use Case: <br>
-External users and analysts use this skill to query timely financial news, announcements, research, and policy updates for companies, sectors, themes, and macro events. It supports event tracking, market sentiment monitoring, announcement review, and investment research workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries and EM_API_KEY are sent to the EastMoney/Miaoxiang service. <br>
-Mitigation: Use only trusted EastMoney/Miaoxiang credentials and keep the key revocable and rotatable. <br>
-Risk: Returned content is written to disk by default. <br>
-Mitigation: Use no-save behavior for sensitive searches and manage any generated text files according to local data handling policy. <br>
-Risk: Financial search results may be time-sensitive or incomplete. <br>
-Mitigation: Verify important facts against primary market, issuer, or regulator sources before relying on the output. <br>
+## Use Case:
 
+Developers, analysts, and agent operators use this skill to query timely financial information from Eastmoney for event tracking, sentiment monitoring, announcement review, research-report summaries, and market context gathering.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/akiry09/mx-mx-finance-search) <br>
-- [EastMoney Miaoxiang service](https://ai.eastmoney.com/mxClaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, files, JSON] <br>
-**Output Format:** [Plain text financial search results, optional .txt output file, and JSON-compatible Python dictionary fields for programmatic use.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EM_API_KEY; writes results to a local text file by default unless no-save behavior is requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Financial search queries and the EM_API_KEY are sent to Eastmoney's service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a revocable API key with appropriate scope and submit only queries suitable for that external service.
+
+Risk: Returned financial search content may be written to local text files by default.
+
+Mitigation: Use --no-save for sensitive research or manage the output directory according to local data-handling requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/akiry09/skills/mx-mx-finance-search)
+- [Eastmoney Miaoxiang service](https://ai.eastmoney.com/mxClaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files, JSON]
+
+**Output Format:** [Plain text search results, optional local .txt file, and JSON-compatible Python result fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires EM_API_KEY; saves mx_finance_search_<ID>.txt by default unless --no-save is used.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

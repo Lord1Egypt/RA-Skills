@@ -1,40 +1,55 @@
-## Description: <br>
-Query the Civitai public REST API to search models, inspect creators, fetch model or version details, reverse-lookup models by hash, list images or tags, and build authenticated download URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query the Civitai public REST API to search models, inspect creators, fetch model or version details, reverse-lookup models by hash, list images or tags, and build authenticated download URLs.
 
-## Publisher: <br>
-[stanestane](https://clawhub.ai/user/stanestane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stanestane](https://clawhub.ai/user/stanestane)
 
-## Use Case: <br>
-Developers and automation builders use this skill to query Civitai assets from an agent workflow, inspect model metadata, identify files by hash, and construct download URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated download URLs may include the user's Civitai API token and should be treated as credentials. <br>
-Mitigation: Keep CIVITAI_API_KEY out of source control, avoid placing unrelated secrets in the .env file read by the script, and do not share generated download URLs. <br>
+## Use Case:
 
+Developers and automation builders use this skill to query Civitai assets from an agent workflow, inspect model metadata, identify model versions by hash, and create authenticated download URLs.
 
-## Reference(s): <br>
-- [Civitai Public REST API notes](references/api-notes.md) <br>
-- [Civitai Public REST API documentation](https://developer.civitai.com/docs/api/public-rest) <br>
-- [Civitai](https://civitai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON API output from the bundled script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce authenticated download URLs that include a Civitai API token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A Civitai API token may be stored in the workspace or passed to the helper script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the token in a local .env file or environment variable, avoid committing it, and keep the .env file limited to the Civitai token when possible.
+
+Risk: Generated download URLs may include a token in the query string.
+
+Mitigation: Treat generated download URLs as credentials and avoid echoing, logging, or sharing them unless explicitly required.
+
+## Reference(s):
+
+- [Civitai Public REST API notes](references/api-notes.md)
+- [Civitai Public REST API documentation](https://developer.civitai.com/docs/api/public-rest)
+- [Civitai](https://civitai.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses from the bundled helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce authenticated download URLs that contain a Civitai API token and should be treated as secrets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

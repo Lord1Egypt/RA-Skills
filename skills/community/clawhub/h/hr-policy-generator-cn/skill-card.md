@@ -1,38 +1,48 @@
-## Description: <br>
-综合性 HR 政策设计工具，覆盖考勤、休假、加班、远程办公及合规要求。根据公司规模、办公模式、适用法律等输入，生成完整的政策文档、法律合规清单、例外处理机制及员工沟通方案。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+综合性 HR 政策设计工具，覆盖考勤、休假、加班、远程办公及合规要求。根据公司规模、办公模式、适用法律等输入，生成完整的政策文档、法律合规清单、例外处理机制及员工沟通方案。
 
-## Publisher: <br>
-[1970168137](https://clawhub.ai/user/1970168137) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[1970168137](https://clawhub.ai/user/1970168137)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+HR teams and business operators use this skill to draft attendance, leave, overtime, remote-work, exception-handling, compliance, and employee communication materials for a specified company context and jurisdiction.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated HR policies may be incorrect or incomplete for the user's jurisdiction.
+
+Mitigation: Confirm the jurisdiction and have legal or HR counsel review the output before relying on it.
+
+## Reference(s):
 
 
-## Use Case: <br>
-HR teams and operations leaders use this Chinese-language skill to draft attendance, leave, overtime, remote-work, exception-handling, compliance checklist, and employee communication materials from company and jurisdiction inputs. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HR policies and compliance checklists may be incomplete or inaccurate for a specific jurisdiction. <br>
-Mitigation: Use the output as drafting assistance only and have local HR or legal reviewers validate policies before adoption. <br>
+**Output Format:** [Markdown or structured text policy drafts and checklists]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1970168137/hr-policy-generator-cn) <br>
+**Other Properties Related to Output:** [Outputs should be reviewed by qualified HR or legal counsel before use.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text with structured HR policy sections and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Drafting assistance for HR policy and compliance review.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,51 @@
-## Description: <br>
-Fetch, analyze, and compare trending posts from Moltbook to inform your content strategy. Generates virality reports with real statistical benchmarks from 36k+ posts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch, analyze, and compare trending posts from Moltbook to inform your content strategy. Generates virality reports with real statistical benchmarks from 36k+ posts.
 
-## Publisher: <br>
-[smarvr](https://clawhub.ai/user/smarvr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smarvr](https://clawhub.ai/user/smarvr)
 
-## Use Case: <br>
-Developers, content strategists, and agent operators use this skill to fetch public Moltbook trending data, analyze post velocity and engagement patterns, and generate posting guidance from current snapshots. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A custom DELAY_MS value may be evaluated by the fetch script before numeric validation. <br>
-Mitigation: Run only with trusted environment variables, keep the default delay when possible, and review any custom DELAY_MS value before execution. <br>
-Risk: The skill makes outbound network requests to Moltbook and writes local snapshot and report files. <br>
-Mitigation: Use it in an environment where access to the Moltbook public API is allowed and the data/snapshots/ and reports/ directories are expected writable outputs. <br>
+## Use Case:
 
+Developers, creators, and content strategists use this skill to fetch Moltbook trending-post snapshots, analyze virality and author momentum, and generate markdown briefings for posting decisions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/smarvr/analyze-moltbook-trending-posts) <br>
-- [Moltbook](https://www.moltbook.com) <br>
-- [Moltbook public API](https://www.moltbook.com/api/v1) <br>
-- [OpenClaw](https://github.com/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON snapshot files, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes timestamped snapshot JSON files under data/snapshots/ and markdown analysis or comparison reports under reports/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill runs local shell and Python scripts and its security evidence reports that DELAY_MS can be abused to execute arbitrary local code when the fetch script is invoked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a trusted, disposable workspace; prevent untrusted automation from setting environment variables; keep SNAPSHOT_DIR pointed at an intended output folder; and validate DELAY_MS as a bounded integer before invoking the fetch workflow.
+
+## Reference(s):
+
+- [Moltbook](https://www.moltbook.com)
+- [Moltbook API](https://www.moltbook.com/api/v1)
+- [ClawHub Skill Page](https://clawhub.ai/smarvr/skills/analyze-moltbook-trending-posts)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, terminal output, JSON snapshots, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates timestamped snapshot files under data/snapshots/ and report files under reports/ when run in a writable skill directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,58 @@
-## Description: <br>
-Qq helps developers work with QQ bots, channel development, mini-programs, and Open Platform APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+QQ bot and open-platform development guide covering official Bot API route selection, authentication, WebSocket gateway events, message formats, Mini Program basics, OAuth, and the community OneBot ecosystem.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-Developers use this skill to plan and implement QQ bot, QQ channel, mini-program, and OAuth integrations with example authentication, messaging, WebSocket event handling, and channel-management patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AppSecret values, access tokens, or OAuth credentials may be exposed if copied into prompts, logs, frontend code, or shared examples. <br>
-Mitigation: Keep secrets on the server, avoid logging raw credentials, and redact tokens before sharing code or diagnostic output. <br>
-Risk: Messaging, moderation, or OAuth examples can affect real QQ users, groups, channels, or user data if tested directly in production. <br>
-Mitigation: Test posting and moderation flows in a sandbox, request only needed intents and scopes, and review rate limits before enabling production workflows. <br>
-Risk: Private, group, or OAuth user data may be retained by application logs or downstream code created from the examples. <br>
-Mitigation: Minimize collected user data, avoid logging raw private or group messages, and apply retention controls appropriate to the deployment. <br>
+## Use Case:
 
+Developers use this skill to plan and implement QQ integrations, especially to choose between the official Bot API and community OneBot routes, configure bot authentication and event handling, and sketch Mini Program or OAuth flows.
 
-## Reference(s): <br>
-- [QQ Open Platform](https://q.qq.com) <br>
-- [QQ Bot Access Token Endpoint](https://bots.qq.com/app/getAppAccessToken) <br>
-- [QQ Bot API Base](https://api.sgroup.qq.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown with Python and JavaScript code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; examples may require user-supplied QQ application credentials and sandbox validation before production use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, server release metadata) <br>
+Risk: Sample credential and event-handling snippets could expose AppSecret values, access tokens, or full event payloads if copied directly into production logging or client-side code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep AppSecret values server-side, redact logs, avoid printing full event payloads, protect access tokens, and use least-privilege intents.
+
+Risk: Skeleton API snippets may not cover all current QQ platform requirements, review states, OAuth parameters, or rate-limit behavior.
+
+Mitigation: Validate permissions, OAuth parameters, endpoint behavior, and rate limits against current official QQ documentation before production use.
+
+Risk: Community OneBot routes can carry account enforcement and compliance risk for external or commercial services.
+
+Mitigation: Use the official Bot API for external or commercial products, and limit community implementations to personal or internal use where that risk is acceptable.
+
+## Reference(s):
+
+- [QQ Open Platform](https://q.qq.com)
+- [QQ Bot API Documentation](https://bot.q.qq.com/wiki/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown guidance with Python and JavaScript code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes route-selection advice, API skeletons, configuration notes, and security hardening guidance.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

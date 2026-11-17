@@ -1,45 +1,60 @@
-## Description: <br>
-实时竞品监控虾 helps agents track competitor prices, reviews, promotions, and product launches, then produce alerts and periodic competitor reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+实时竞品监控虾 helps agents track competitor prices, ratings, review counts, promotions, and price-change events, using the bundled local workflow and analysis references.
 
-## Publisher: <br>
-[tujinsama](https://clawhub.ai/user/tujinsama) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tujinsama](https://clawhub.ai/user/tujinsama)
 
-## Use Case: <br>
-Commercial and operations teams use this skill to monitor public competitor pricing, review signals, promotions, and launch activity, then summarize changes into alerts and weekly or monthly reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store competitor targets, product URLs, alert thresholds, owners, and price history in a local SQLite database. <br>
-Mitigation: Confirm this storage is approved for the team and avoid adding sensitive internal notes to competitor records. <br>
-Risk: Feishu alerts can expose competitor monitoring details to visible workspaces or channels. <br>
-Mitigation: Use approved Feishu workspaces and channels and minimize sensitive information in alert messages. <br>
-Risk: Replacing the simulated fetcher with live scraping can introduce platform compliance, rate-limit, cookie, proxy, and credential-storage risks. <br>
-Mitigation: Review platform rules, rate limits, session handling, proxy use, and credential storage before enabling real collection. <br>
+## Use Case:
 
+External users and business analysts use this skill to maintain competitor watchlists, run local price checks, inspect price-change events, and generate periodic competitor reports. Developers can adapt the simulated collector into a production data collector after legal, platform-access, and notification-scope review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tujinsama/competitor-monitor-claw) <br>
-- [Competitor Analysis Framework](references/competitor-analysis-framework.md) <br>
-- [Industry Benchmarks](references/industry-benchmarks.md) <br>
-- [Platform Scraping Rules](references/platform-scraping-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated text reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local SQLite price history; the bundled script uses simulated fetch data until replaced with approved collection logic.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Monitoring output may be mistaken for live marketplace intelligence while the bundled collector uses simulated data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated prices, ratings, and review counts as demonstration data until the collector is replaced with a reviewed production data source.
+
+Risk: Future real scraping, cookie, proxy, or platform-access setup may create legal, terms-of-service, or account-risk exposure.
+
+Mitigation: Review platform permissions, rate limits, credential handling, and collection scope before enabling real scraping.
+
+Risk: Price alerts sent to Feishu or other messaging channels may reach unintended recipients or expose competitor-monitoring strategy.
+
+Mitigation: Limit notification recipients, review message contents, and confirm channel authorization before forwarding alerts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tujinsama/skills/competitor-monitor-claw)
+- [Competitor analysis framework](references/competitor-analysis-framework.md)
+- [Industry benchmarks](references/industry-benchmarks.md)
+- [Platform scraping rules](references/platform-scraping-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, CSV configuration, SQLite-backed local reports, and terminal output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses simulated collection data by default; local history is stored in SQLite under data/competitor_monitor.db.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,50 @@
-## Description: <br>
-Reviews sqlx database code for compile-time query checking, connection pool management, migration patterns, and PostgreSQL-specific usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews Rust sqlx database code for compile-time query checking, connection pool management, migration safety, type mapping, and PostgreSQL-specific usage.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and code reviewers use this skill to review Rust projects that use sqlx for query safety, type mapping, connection pool management, transactions, and migrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review guidance can be misleading if applied without inspecting the relevant Cargo.toml, sqlx configuration, and source lines. <br>
-Mitigation: The skill requires scope checks, file-line anchors, and evidence gates before assigning high-severity findings. <br>
+## Use Case:
 
+Developers and code reviewers use this skill to review Rust projects that use sqlx for query safety, connection pooling, migrations, transaction handling, and PostgreSQL type mapping.
 
-## Reference(s): <br>
-- [Queries](references/queries.md) <br>
-- [Migrations and Pool Management](references/migrations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown review findings with file-line anchors and severity labels] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires concrete inspected paths and line references before assigning Critical or Major severity.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill depends on a separate unbundled review-verification-protocol skill that was not included in the reviewed package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and vendor the referenced protocol, or otherwise control its content and integrity, before installation.
+
+## Reference(s):
+
+- [Migrations and Pool Management](references/migrations.md)
+- [Queries](references/queries.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown review findings with file-line anchors and severity labels]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings are gated by inspected evidence and reported with Critical, Major, Minor, or Informational severity when issues are present.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

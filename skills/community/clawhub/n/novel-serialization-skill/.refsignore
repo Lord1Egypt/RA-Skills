@@ -1,0 +1,29 @@
+# check_refs.py exemptions — one regex per line, '#' starts a comment.
+#
+# A pattern here says: this target is described in prose but does not exist in
+# this repository, and that is correct. Exempting it is a decision, so each
+# line carries the reason. Every remaining MISSING is a real defect.
+#
+# Read by: scripts/check_refs.py (default), .pre-commit-config.yaml, CI.
+# Override with --ignore-file '' to see the unexempted list.
+
+# Subproject state files. The Skill contract describes state/*.md; the files
+# only exist inside a novel subproject.
+^state/
+
+# Setting and character documents quoted as examples in the module contracts.
+^worldbuilding/
+^characters/
+^issues/
+^notes-personal/
+
+# README FOR AI.md is written from the subproject's point of view, so its
+# paths are relative to a tree this repository does not contain.
+^README_FOR_AI_Audit_Report
+^filepath$
+^(\.\./)+references/
+^method-patterns-(worldbuilding|character|chapter|continuity|publishing)\.md$
+
+# CHANGELOG.md quotes the path it used to contain, in the entry announcing the
+# fix. It is a historical record, not a live link.
+^\.\./CHANGELOG\.md$

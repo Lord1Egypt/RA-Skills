@@ -1,40 +1,54 @@
-## Description: <br>
-Photo Editor Pro helps agents perform AI-assisted photo editing workflows including enhancement, background removal, color correction, batch processing, resizing, and format conversion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Photo Editor Pro offers AI-enhanced photo editing, background removal, color grading, batch processing, and format conversion for professional image workflows.
 
-## Publisher: <br>
-[larios613-hub](https://clawhub.ai/user/larios613-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[larios613-hub](https://clawhub.ai/user/larios613-hub)
 
-## Use Case: <br>
-Social media managers, content creators, e-commerce teams, small businesses, freelancers, and marketing teams use this skill to prepare, enhance, resize, and export image assets for campaigns, product listings, thumbnails, and brand materials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may modify or overwrite local image files during editing, conversion, or batch processing. <br>
-Mitigation: Limit access to intended folders, keep originals when needed, and require confirmation before overwriting files. <br>
-Risk: Image exports can send photos to cloud storage or social platforms. <br>
-Mitigation: Connect only intended accounts and confirm before uploading or posting images to third-party services. <br>
+## Use Case:
 
+Social media managers, content creators, e-commerce teams, small businesses, freelancers, and marketing teams use this skill to prepare, enhance, resize, and export images for brand, product, campaign, and personal content workflows.
 
-## Reference(s): <br>
-- [Photo Editor Pro on ClawHub](https://clawhub.ai/larios613-hub/photo-editor-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Guidance] <br>
-**Output Format:** [Edited image files with concise text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and write common image formats and export to connected cloud storage or social platforms when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and artifact version) <br>
+Risk: Images selected for editing may contain sensitive visual content or metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with images intended for editing, and review exported files before sharing.
+
+Risk: Cloud saves and social uploads can send images or metadata to external services.
+
+Mitigation: Confirm the destination and sharing settings before using cloud storage or social platform integrations.
+
+## Reference(s):
+
+- [Photo Editor Pro on ClawHub](https://clawhub.ai/larios613-hub/skills/photo-editor-pro)
+- [larios613-hub Publisher Profile](https://clawhub.ai/user/larios613-hub)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, files]
+
+**Output Format:** [Markdown guidance and edited image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports PNG, JPG, WebP, GIF, BMP, and TIFF workflows with optional cloud storage and social export actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

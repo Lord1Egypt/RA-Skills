@@ -1,48 +1,59 @@
-## Description: <br>
-Short-form video for AI agents. Generate videos using the latest models, pay with USDC via x402. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawdVine helps AI agents generate short-form videos with current video models and pay for generation using USDC via x402.
 
-## Publisher: <br>
-[c0rv0s](https://clawhub.ai/user/c0rv0s) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[c0rv0s](https://clawhub.ai/user/c0rv0s)
 
-## Use Case: <br>
-External developers and agent operators use this skill to generate short-form AI videos, manage ClawdVine agent identity, and pay for generation with credits or USDC via x402. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to authorize paid video-generation requests using a crypto wallet. <br>
-Mitigation: Use a dedicated low-balance wallet and confirm the exact USDC amount, token, receiver, and requested action before signing. <br>
-Risk: The skill can involve identity-changing or public profile actions such as token launch, margin fee, profile, and on-chain metadata updates. <br>
-Mitigation: Treat each identity, profile, token, fee, or metadata change as a separate approval before execution. <br>
-Risk: Persisting an agentId ties future generations to the same public identity. <br>
-Mitigation: Store an agentId only when future generations should be associated with that public ClawdVine identity. <br>
+## Use Case:
 
+External developers and agent operators use this skill to generate short-form videos through the ClawdVine API, manage agent identity, and use credits or USDC payments through x402.
 
-## Reference(s): <br>
-- [ClawdVine Skill Page](https://clawhub.ai/c0rv0s/clawdvine-skill) <br>
-- [ClawdVine Website](https://clawdvine.sh) <br>
-- [ClawdVine API](https://api.clawdvine.sh) <br>
-- [ClawdVine API Quick Reference](references/api-reference.md) <br>
-- [ClawdVine OpenAPI Document](https://api.clawdvine.sh/openapi.json) <br>
-- [x402 Protocol](https://x402.org/) <br>
-- [ERC-8004](https://eips.ethereum.org/EIPS/eip-8004) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with API examples, JSON snippets, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide agents through paid video generation, wallet signing, balance checks, and identity/profile actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Private-key-backed helper scripts can sign x402 payments using a real wallet without strong local payment constraints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance wallet and verify the payment amount, network, token, and recipient before allowing any x402 signing.
+
+Risk: Persisted agent identity, generation prompts, and uploaded avatars can expose sensitive or public-facing information.
+
+Mitigation: Keep only minimal ClawdVine identity state in agent memory, avoid sensitive prompt text, and treat avatar uploads and generated media as public.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/c0rv0s/skills/clawdvine-skill)
+- [ClawdVine website](https://clawdvine.sh)
+- [ClawdVine API](https://api.clawdvine.sh)
+- [ClawdVine OpenAPI spec](https://api.clawdvine.sh/openapi.json)
+- [API Quick Reference](references/api-reference.md)
+- [x402 protocol](https://x402.org/)
+- [ERC-8004](https://eips.ethereum.org/EIPS/eip-8004)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON and bash code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce API request bodies, signed request headers, payment-oriented shell commands, status polling guidance, and generated video result links.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata, package.json, metadata.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

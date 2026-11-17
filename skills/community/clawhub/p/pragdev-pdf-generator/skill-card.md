@@ -1,38 +1,58 @@
-## Description: <br>
-Generate professional PDF documents from structured JSON data for styled titles, tables, lists, highlights, images, and page breaks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate professional PDF documents from structured JSON data, including styled titles, tables, lists, highlights, images, and page breaks.
 
-## Publisher: <br>
-[flexrox](https://clawhub.ai/user/flexrox) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flexrox](https://clawhub.ai/user/flexrox)
 
-## Use Case: <br>
-Developers and agents use this skill to turn structured JSON content into styled PDF reports with text, headings, callouts, lists, tables, images, and page breaks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Untrusted JSON can point image sections at sensitive local file paths. <br>
-Mitigation: Use trusted JSON inputs and review image paths before generating PDFs. <br>
+## Use Case:
 
+Developers and agent users use this skill to convert structured report data into a local PDF file with headings, tables, lists, callouts, images, and page breaks.
 
-## Reference(s): <br>
-- [PDF Generator Schema Reference](references/schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration] <br>
-**Output Format:** [PDF file generated from JSON input] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes to the CLI --output path, data.output path, or output.pdf by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The local script writes a PDF to the path supplied by the user or JSON data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the output path before running the skill and avoid writing into sensitive or unintended locations.
+
+Risk: The script reads JSON files and image paths supplied in the input data.
+
+Mitigation: Use trusted local input files and confirm referenced image paths before execution.
+
+Risk: Built-in author and date labels appear in German.
+
+Mitigation: Account for the localized labels in generated documents or update the skill before using it for audiences that require another language.
+
+## Reference(s):
+
+- [PDF Generator Schema Reference](references/schema.md)
+- [ClawHub Skill Page](https://clawhub.ai/flexrox/skills/pragdev-pdf-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON examples and shell commands; the skill's script writes PDF files to the requested output path.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses structured JSON input with optional title, subtitle, author, date, colors, style overrides, sections, image paths, and output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

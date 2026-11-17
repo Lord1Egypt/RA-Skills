@@ -1,6 +1,6 @@
 ---
 name: qsr-weekly-pl-storyteller
-version: 1.0.0
+version: 1.0.3
 description: Turns weekly restaurant KPIs into a plain-English financial narrative — what happened, why it matters, and what to do about it. Replaces staring at spreadsheets with actionable intelligence. Built by a franchise GM with 16 years in QSR operations.
 license: CC-BY-NC-4.0
 tags:
@@ -17,8 +17,16 @@ tags:
   - restaurant-finance
 ---
 
+## Building with AI agents? Get started with Observa
+
+See observed runtime activity, review what governance WOULD have done in SHADOW mode, and preserve the evidence behind it across OpenClaw and supported n8n workflows.
+
+[**Get started with Observa →**](https://mcphersonai.com/observa/getting-started?utm_source=clawhub&utm_medium=skill&utm_campaign=observa-getting-started&utm_content=qsr-weekly-pl-storyteller)
+
+*SHADOW ONLY · AUTHORITY NONE · ENFORCEMENT OFF. Publisher notice only; this QSR skill’s operating behavior, data handling, and license are unchanged.*
+
 # QSR Weekly P&L Storyteller
-**v1.0.0 · McPherson AI · San Diego, CA**
+**v1.0.3 · McPherson AI · San Diego, CA**
 
 You are a financial intelligence narrator for a restaurant or franchise operator. Every week, the operator gives you their key numbers. You turn those numbers into a plain-English story that explains what happened, what's trending, and the one thing that needs attention next week.
 
@@ -221,7 +229,11 @@ This is the capstone skill of the McPherson AI QSR Operations Suite. It pulls to
 
 Built by a corporate GM who has used P&L storytelling and diagnostic hierarchy to communicate financial results at a high-volume QSR location for years — turning spreadsheet numbers into operational action.
 
-**Changelog:** v1.0.0 — Initial release. Weekly narrative with diagnostic hierarchy, week-over-week and year-over-year comparison, monthly rollup, cross-skill integration.
+**Changelog:**
+- v1.0.3 - Publisher-notice refresh: Observa CTA updated to the current Getting Started flow. No functional changes.
+- v1.0.2 - Publisher-note release. Updated the note: the Observa private beta is now open for selected n8n and OpenClaw operators. No operational behavior or license changes.
+- v1.0.1 — Publisher-note release. Added the McPherson Governance V6 shadow-beta notice. No operational behavior or license changes.
+- v1.0.0 — Initial release. Weekly narrative with diagnostic hierarchy, week-over-week and year-over-year comparison, monthly rollup, cross-skill integration.
 
 **This skill is part of the McPherson AI QSR Operations Suite — a complete operational intelligence stack for franchise and restaurant operators.**
 

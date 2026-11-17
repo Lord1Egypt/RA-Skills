@@ -1,44 +1,62 @@
-## Description: <br>
-The Eonik Agent skill connects agents to Eonik marketing capabilities for creative auditing, trend discovery, performance analysis, ad brief generation, and campaign deployment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use eonik with Claude to ground marketing work in brand notes, competitor research, own-ad facts, ad breakdowns, memory, and receipt-bound briefs while keeping launch and budget decisions under human control.
 
-## Publisher: <br>
-[techievena](https://clawhub.ai/user/techievena) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[techievena](https://clawhub.ai/user/techievena)
 
-## Use Case: <br>
-Marketing teams, operators, and agents use this skill to analyze advertising performance, research trends, generate creative briefs, and initiate campaign workflows through the Eonik API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can call external Eonik services with an EONIK_API_KEY and access advertising account data. <br>
-Mitigation: Install only when the publisher and Eonik account access are trusted, and use the lowest-privilege key available. <br>
-Risk: Campaign creation, deployment, or launch actions may affect live advertising accounts. <br>
-Mitigation: Require human review before ad creation, deployment, campaign launch, or spend-impacting actions. <br>
+## Use Case:
 
+External marketers and their agents use this skill with a connected eonik workspace to read brand context, research competitor and own-ad evidence, save approved memory, and draft receipt-bound creative briefs. It supports analysis and drafting, not ad deployment or spend management.
 
-## Reference(s): <br>
-- [Eonik website](https://www.eonik.ai) <br>
-- [Eonik MCP endpoint](https://api.eonik.ai/mcp/sse) <br>
-- [Eonik API base URL](https://api.eonik.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/techievena/eonik) <br>
-- [Publisher profile](https://clawhub.ai/user/techievena) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON-backed API results summarized for users] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EONIK_API_KEY and may use live advertising account data through the Eonik API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, skill.json) <br>
+Risk: Workspace-specific eonik context could be used in generic marketing conversations where that brand data should not apply.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and activate the skill only for the intended connected eonik workspace, and avoid applying saved eonik context outside that workspace or brand.
+
+Risk: Durable brand notes, plans, or memory could preserve incorrect or premature decisions.
+
+Mitigation: Review user intent before allowing the agent to save durable notes or plans, and store the marketer's wording rather than an agent summary.
+
+Risk: Marketing analysis could be mistaken for predictive performance advice or ad-spend authority.
+
+Mitigation: Keep outputs receipt-bound and descriptive, and preserve the documented bans on launch, pause, scale, kill, budget, and performance-prediction actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/techievena/skills/eonik)
+- [eonik website](https://www.eonik.ai)
+- [eonik MCP setup](https://www.eonik.ai/mcp)
+- [eonik MCP connector](https://github.com/eonik-ai/eonik-mcp)
+- [eonik companion skill source](https://github.com/eonik-ai/eonik-mcp-skill)
+- [Tool reference](reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown, API Calls]
+
+**Output Format:** [Markdown prose with bullet insights, receipt-bound creative briefs, and tool-call guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Grounded in eonik workspace receipts; no ad launch, pause, scale, kill, budget, or performance prediction authority.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

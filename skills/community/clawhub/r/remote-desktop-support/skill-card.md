@@ -1,46 +1,58 @@
-## Description: <br>
-Linux/Fedora-GNOME-first, early but safety-tested skill for short-lived browser-based remote desktop support links using local-only VNC/Guacamole and outbound tunnels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Linux/Fedora-GNOME-first, early but safety-tested skill for short-lived browser-based remote desktop support links using local-only VNC/Guacamole and outbound tunnels.
 
-## Publisher: <br>
-[tommyclawd](https://clawhub.ai/user/tommyclawd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tommyclawd](https://clawhub.ai/user/tommyclawd)
 
-## Use Case: <br>
-Support operators and trusted helpers use this skill to create temporary browser-based access to the publisher's current live Fedora/GNOME desktop for troubleshooting. It is intended for deliberate, short sessions with preflight checks, view-only default behavior, and explicit cleanup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The live desktop can be exposed through a temporary browser link. <br>
-Mitigation: Use only deliberate, short support sessions; default to view-only mode; share the one-click URL only with the intended helper and treat it as password-equivalent. <br>
-Risk: Opening access can weaken local lock or VNC protections during the session. <br>
-Mitigation: Run preflight and dry-run before opening access; require explicit approval for control or unlocking the current session. <br>
-Risk: Automatic expiry may not reliably close the session in every environment. <br>
-Mitigation: Verify the expiry method is active, then run close followed by status when support ends or the TTL expires. <br>
-Risk: Containers, credentials, listeners, or GNOME VNC state could remain after use. <br>
-Mitigation: Use the close workflow and confirm status reports closed; use uninstall --purge when removing runtime state is appropriate. <br>
+## Use Case:
 
+External support users and operators use this skill to open temporary browser-based access to a Linux/Fedora GNOME live desktop for troubleshooting. It is designed for supervised sessions with short TTLs, view-only default access, and explicit cleanup.
 
-## Reference(s): <br>
-- [Remote Desktop Support Security Model](references/security-model.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/tommyclawd/remote-desktop-support) <br>
-- [Publisher Profile](https://clawhub.ai/user/tommyclawd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON status] <br>
-**Output Format:** [Markdown guidance with bash commands; helper script emits JSON for lifecycle commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Linux with python3 and podman; designed for Fedora/GNOME current-session support.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: The skill can expose a live desktop session through a temporary public tunnel.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run preflight and status before opening access, use view-only unless control is explicitly needed, supervise the session, and treat one-click URLs as password-equivalent.
+
+Risk: A desktop backend, tunnel, credential, or container could remain active after support ends.
+
+Mitigation: Use short TTLs, run close when the session ends, and manually verify status reports closed with no remaining skill-owned containers or listeners.
+
+Risk: Unlocking the current session through the skill weakens local desktop protections.
+
+Mitigation: Avoid unlock-current-session unless explicitly approved for the support task and the operator accepts the risk.
+
+## Reference(s):
+
+- [Remote Desktop Support Security Model](references/security-model.md)
+- [ClawHub skill page](https://clawhub.ai/tommyclawd/skills/remote-desktop-support)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON command output from the helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Linux/Fedora GNOME, python3, and podman; open sessions are intended to be time-limited and view-only by default.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

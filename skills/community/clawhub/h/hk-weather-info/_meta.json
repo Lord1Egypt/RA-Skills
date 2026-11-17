@@ -1,6 +1,13 @@
 {
-  "ownerId": "kn7440a45t98tzq87bk5f06ge582vpkm",
-  "slug": "hk-weather-info",
-  "version": "1.0.1",
-  "publishedAt": 1780646123492
+  "name": "hk-weather-info",
+  "version": "1.1.0",
+  "description": "Hong Kong weather information — current conditions, forecasts, warnings, and alerts from HKO (Hong Kong Observatory).",
+  "author": "Steven Ho",
+  "license": "MIT",
+  "github": "https://github.com/StevenHo1394/openclaw/tree/main/skills/hk-weather-info",
+  "skill-categories": ["weather"],
+  "compatibility": {
+    "openclaw": ">=1.0.0",
+    "hermes": ">=1.0.0"
+  }
 }

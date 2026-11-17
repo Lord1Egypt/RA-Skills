@@ -1,40 +1,57 @@
-## Description: <br>
-Batch read/write Google Sheets using the gspread Python library with service account authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch read/write Google Sheets using the gspread Python library with service account authentication.
 
-## Publisher: <br>
-[nuokunkeji](https://clawhub.ai/user/nuokunkeji) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nuokunkeji](https://clawhub.ai/user/nuokunkeji)
 
-## Use Case: <br>
-Developers and automation users use this skill to read, write, update, clear, append, and manage Google Sheets data through the gspread Python library instead of browser automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Service-account credentials can access spreadsheets shared with that account and may expose or modify sensitive sheet data if mishandled. <br>
-Mitigation: Use a dedicated service account, keep the JSON key secret and out of source control, share only intended spreadsheets with the account, and use the narrowest Google scopes that support the workflow. <br>
-Risk: Bulk update, clear, replace, worksheet delete, and sync patterns can make large spreadsheet changes quickly. <br>
-Mitigation: Require exact spreadsheet IDs, worksheet names, ranges, and confirmation before destructive or high-volume write operations. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to generate Python guidance for reading, writing, updating, clearing, and managing Google Sheets through gspread with service account authentication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nuokunkeji/gspread-sheets) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Examples require gspread, google-auth, and a Google service account shared with the target spreadsheet.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Service account credentials can expose spreadsheets if stored or shared insecurely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store the service-account key securely, use a dedicated virtual environment, pin dependencies for production, and share only the specific spreadsheets the service account needs.
+
+Risk: Clear, overwrite, or delete operations can remove or corrupt sheet data.
+
+Mitigation: Require explicit confirmation before destructive sheet actions and prefer scoped ranges over whole-sheet operations.
+
+Risk: Broad Google API scopes can grant more access than a workflow requires.
+
+Mitigation: Prefer narrower OAuth scopes where they work for the intended read, write, or worksheet management task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nuokunkeji/skills/gspread-sheets)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes examples for service account authentication, spreadsheet access, batch reads and writes, worksheet management, formatting, and API error handling.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

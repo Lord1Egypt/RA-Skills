@@ -1,43 +1,60 @@
-## Description: <br>
-Converts topics or articles into high-density Xiaohongshu/RedNote knowledge carousel PNG images for entrepreneurs, business owners, and knowledge IP creators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts a topic or article into a multi-image Xiaohongshu/RedNote knowledge carousel with 3:4 PNG slides for business owners, entrepreneurs, and knowledge creators.
 
-## Publisher: <br>
-[horisony](https://clawhub.ai/user/horisony) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[horisony](https://clawhub.ai/user/horisony)
 
-## Use Case: <br>
-External creators, business users, and agents use this skill to turn business or knowledge content into structured RedNote carousel assets with cover hooks, dense body slides, and a closing call to action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an external API key and may send relevant prompt or layout content to the LibTV/Liblib provider. <br>
-Mitigation: Install only if the provider is trusted, store the access key as a secret, and avoid sending sensitive or confidential content unless approved. <br>
-Risk: The artifact behavior includes local file cleanup and generated output paths that need clear containment. <br>
-Mitigation: Run the skill in a sandboxed workspace and confirm output and cleanup directories are scoped to the intended folder before execution. <br>
-Risk: Server security evidence marks the release as suspicious because credential use and file cleanup are not clearly disclosed. <br>
-Mitigation: Review the skill before installation and inspect generated HTML, shell commands, and file operations before relying on the output. <br>
+## Use Case:
 
+External users and content creators use this skill to turn source topics or articles into dense, polished RedNote/Xiaohongshu knowledge carousels for professional or entrepreneurial audiences. It plans slide structure, visual style, and image export expectations for 1080x1440 PNG output.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/horisony/snapdesign-rednote) <br>
-- [Liblib AI API provider](https://liblib.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with HTML/CSS/JavaScript and Python/Playwright snippets; PNG files when executed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces 1080x1440 3:4 PNG carousel images and requires a LibTV/Liblib access key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: ClawHub release evidence) <br>
+Risk: The scanner summary says the skill asks for an unexplained LibTV/Liblib API key requirement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the API key requirement before installation, avoid placing real credentials in TOOLS.md, and prefer environment variables or a secret manager when credentials are needed.
+
+Risk: The scanner summary says the skill may add fixed BaoAI branding and engagement prompts without clear user control.
+
+Mitigation: Review generated slides before publication and remove or revise branding and calls to action when they do not match the user's account or consent.
+
+Risk: The scanner guidance flags external Google Fonts usage for confidential content.
+
+Mitigation: Disable external font loading or use local fonts when working with confidential or restricted material.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/horisony/skills/snapdesign-rednote)
+- [Publisher profile](https://clawhub.ai/user/horisony)
+- [Liblib API key provider](https://liblib.ai)
+- [Google Fonts stylesheet dependency](https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with HTML/CSS/JavaScript and shell or Python command snippets for generating PNG image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Expected agent output is a set of 3:4 PNG carousel images, typically 1080x1440 pixels, plus any supporting local generation files.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,52 @@
-## Description: <br>
-Updates CSPR preference memory from accumulated feedback and recent newspaper outcomes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Update cspr preference memory from accumulated feedback and recent newspaper outcomes.
 
-## Publisher: <br>
-[happywalkers](https://clawhub.ai/user/happywalkers) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[happywalkers](https://clawhub.ai/user/happywalkers)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to curate CSPR preference memory from accumulated feedback and recent newspaper outputs, updating topics, source preferences, and disliked patterns conservatively.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Persistent preference-memory updates can influence future CSPR sessions if broad changes are applied without review.
+
+Mitigation: Ask the agent to show the proposed profile diff and get user confirmation before running prefmem update.
+
+Risk: Preference updates based on a single reaction can overfit topics, sources, or disliked patterns.
+
+Mitigation: Keep updates conservative and base them on accumulated feedback or several recent runs.
+
+## Reference(s):
 
 
-## Use Case: <br>
-CSPR users and their agents use this skill after feedback or several runs to maintain a conservative preference profile for topics, source preferences, and disliked patterns. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Preference profile updates can affect future news selection, source visibility, and topic weighting. <br>
-Mitigation: Review generated profile updates before applying them, especially changes involving hidden sources, disliked patterns, or long-term topic preferences. <br>
-Risk: Overfitting to a single feedback action could make preferences too narrow. <br>
-Mitigation: Keep updates conservative and base durable preference changes on accumulated feedback rather than one reaction. <br>
+**Output Format:** [Markdown with inline shell commands and YAML configuration references]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [CSPR Memory Curator on ClawHub](https://clawhub.ai/happywalkers/skills/cspr-memory-curator) <br>
+**Other Properties Related to Output:** [May write a complete updated CSPR profile YAML to a run folder and apply it with prefmem update.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell command examples and YAML profile update instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a complete updated CSPR preference profile for review before applying with prefmem.] <br>
+1.0.0 (source: ClawHub release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

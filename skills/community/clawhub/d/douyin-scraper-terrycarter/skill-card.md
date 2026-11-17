@@ -1,43 +1,58 @@
-## Description: <br>
-Assists agents with Douyin keyword search and hot-list workflows by running scraper commands that can emit JSON or CSV video metadata. <br>
+## Description:
 
-This skill is for research and development only. <br>
+为代理提供抖音关键词搜索和热榜查询命令，可输出视频标题、作者、互动计数、链接和标签字段；当前实现可能返回模拟示例数据。
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-External users and developers use this skill to turn natural-language Douyin search or hot-list requests into runnable scraper commands and saved result files. The release should be treated as research and development evidence because the package itself says it is for learning or research and the security summary reports simulated results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release may present invented sample data as scraped Douyin results. <br>
-Mitigation: Treat JSON and CSV outputs as mock data unless the publisher supplies verified extraction behavior and clearly labels simulated output. <br>
-Risk: Collected creator or content metadata may trigger platform-rule, privacy, or local-law obligations. <br>
-Mitigation: Check Douyin terms, privacy requirements, and applicable law before saving, sharing, or relying on metadata. <br>
-Risk: Automated browser access can fail or degrade to simulated data. <br>
-Mitigation: Review stderr notices and validate outputs against live sources before using the results for business or research decisions. <br>
+## Use Case:
 
+Developers and external users can ask an agent in Chinese to run Douyin keyword search or hot-list collection workflows and save video-style result records for analysis. Treat outputs as example data unless the publisher verifies real extraction.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/douyin-scraper-terrycarter) <br>
-- [Playwright documentation](https://playwright.dev/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, JSON, CSV, files, guidance] <br>
-**Output Format:** [Shell command guidance with optional JSON or CSV output files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Result fields include title, description, author, engagement counts, URL, tags, and publish time; browser failures fall back to simulated data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: The skill advertises Douyin scraping while current search and hot-list results may be synthetic example data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat results as examples unless the publisher verifies extraction, and disclose uncertainty when using the data.
+
+Risk: The skill may contact Douyin, install browser automation components, and create local output files.
+
+Mitigation: Run it only in an isolated environment, review install scripts before execution, avoid logging into accounts, and comply with platform rules.
+
+Risk: Browser setup includes risky automation choices that should be contained before installation.
+
+Mitigation: Prefer a sandboxed container or other restricted runtime and review browser launch flags before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/douyin-scraper-terrycarter)
+- [Playwright documentation](https://playwright.dev/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, JSON, CSV files, guidance]
+
+**Output Format:** [Console text and optional JSON or CSV output files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Records include title, description, author, play_count, like_count, comment_count, share_count, url, tags, and publish_time; browser fallback can produce synthetic examples.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

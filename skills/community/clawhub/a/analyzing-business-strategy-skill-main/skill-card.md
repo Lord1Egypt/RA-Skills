@@ -1,44 +1,61 @@
-## Description: <br>
-Captures learnings, errors, and corrections to enable continuous improvement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures learnings, errors, corrections, and feature requests so coding agents can log session outcomes and promote broadly applicable guidance into persistent instruction files.
 
-## Publisher: <br>
-[dinuscxj](https://clawhub.ai/user/dinuscxj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinuscxj](https://clawhub.ai/user/dinuscxj)
 
-## Use Case: <br>
-Developers and AI coding-agent users use this skill to capture corrections, command failures, feature requests, and repeatable practices in learning logs. It helps teams promote broadly applicable lessons into project or workspace memory for future agent sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Conversation-derived context may persist in learning files or shared workspace memory without enough privacy and scope controls. <br>
-Mitigation: Use the skill only in trusted workspaces, store sanitized summaries, and avoid logging secrets, tokens, personal data, private transcripts, raw command output, internal URLs, or proprietary details. <br>
-Risk: Optional hooks and promotion workflows can carry learning reminders or persisted guidance into future sessions. <br>
-Mitigation: Scope hooks to specific projects, avoid global always-on setup unless needed, and review entries before promoting them into agent instruction or workspace memory files. <br>
+## Use Case:
 
+External developers and agent users use this skill to record command failures, user corrections, missing capabilities, outdated knowledge, and recurring practices. It also provides optional hook setup guidance for reminding agents to capture and promote high-value learnings.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dinuscxj/analyzing-business-strategy-skill-main) <br>
-- [OpenClaw Integration](references/openclaw-integration.md) <br>
-- [Hook Setup Guide](references/hooks-setup.md) <br>
-- [Examples](references/examples.md) <br>
-- [Agent Skills Specification](https://agentskills.io/specification) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update learning-log markdown files and optional hook reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill encourages retaining session-derived content in persistent learning logs, which can capture secrets, personal data, or sensitive project details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact secrets and personal data before writing logs, and keep learning files project-local unless they have been reviewed for sharing.
+
+Risk: Always-on hooks can repeatedly inject reminders or inspect command output in ways that affect agent context and workflow behavior.
+
+Mitigation: Enable hooks explicitly, keep them project-local, avoid broad empty matchers where possible, and review hook scripts before activation.
+
+Risk: Promoting learnings into persistent instruction files can preserve incorrect, misleading, or overly broad guidance.
+
+Mitigation: Require human review before promotion and keep promoted rules concise, evidence-based, and scoped to the relevant project or agent workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinuscxj/skills/analyzing-business-strategy-skill-main)
+- [OpenClaw integration guide](artifact/references/openclaw-integration.md)
+- [Hook setup guide](artifact/references/hooks-setup.md)
+- [Examples](artifact/references/examples.md)
+- [Agent Skills specification](https://agentskills.io/specification)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, hook code, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces persistent learning log entries and optional reminders; users should review entries before promoting them into instruction files.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

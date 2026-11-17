@@ -1,43 +1,48 @@
-## Description: <br>
-Safe OpenClaw config change workflow with backup, minimal edits, validation, health checks, and rollback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safe OpenClaw config change workflow with backup, minimal edits, validation, health checks, and rollback. Single-instance first; secondary instance optional.
 
-## Publisher: <br>
-[1987566643](https://clawhub.ai/user/1987566643) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[1987566643](https://clawhub.ai/user/1987566643)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill to make OpenClaw configuration changes through a backup-first workflow with validation, health checks, and rollback steps.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The safety script changes OpenClaw configuration and service state, and automatic rollback may not cover every failure path.
+
+Mitigation: Review the shell script before production use, keep known-good backups, and verify OpenClaw status and gateway health after each change.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to route OpenClaw configuration changes through a backup, validation, health-check, and rollback workflow. It is intended for single-instance changes by default, with optional secondary-instance validation for higher-risk updates. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [markdown, shell commands, code, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: A change script can alter OpenClaw configuration in a way that fails validation or disrupts the gateway. <br>
-Mitigation: Create timestamped backups before edits, run OpenClaw validation immediately, and restore backups with a gateway restart on failure. <br>
-Risk: Unreviewed edit scripts could make broader configuration changes than intended. <br>
-Mitigation: Review edit-main.sh and edit-secondary.sh before running the wrapper and keep changes limited to necessary keys. <br>
-Risk: Secondary-instance validation requires a token and could expose credentials if handled carelessly. <br>
-Mitigation: Provide SECONDARY_TOKEN only through the environment when secondary validation is intentionally enabled, and do not hardcode secrets. <br>
+**Output Format:** [Markdown with bash command examples and script-file workflow guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/1987566643/openclaw-safe-change-flow) <br>
-- [Publisher profile](https://clawhub.ai/user/1987566643) <br>
+**Other Properties Related to Output:** [None]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces workflow guidance and script-file commands for OpenClaw configuration changes; no structured API output.] <br>
+1.1.0 (source: ClawHub release evidence)
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

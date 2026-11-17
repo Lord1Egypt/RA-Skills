@@ -36,7 +36,7 @@ Daily auto-scan of AI-related Xiaohongshu posts, filtering the hottest content b
 ## API Key Acquisition & Security
 
 - This skill requires the environment variable: `REDFOX_API_KEY`.
-- `REDFOX_API_KEY` is provided by [RedFoxHub](https://redfox.hk/settings/api-keys?source=skillhub) (`https://redfox.hk`).
+- `REDFOX_API_KEY` is provided by [RedFoxHub](https://redfox.hk/settings/api-keys?source=clawhub) (`https://redfox.hk`).
 - Visit [RedFoxHub](https://redfox.hk?source=github) to register and get your `REDFOX_API_KEY`.
 - Configure the `REDFOX_API_KEY` environment variable on your device before using this skill.
 - Before providing your key, verify the source, scope, validity period, and whether it supports reset/revocation.

@@ -1,46 +1,60 @@
-## Description: <br>
-Google Workspace BYOK gives an agent direct OAuth2 access to Google Calendar and Gmail through the user's own Google Cloud project credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Workspace BYOK connects agents to Google Calendar and Gmail through a user's own Google Cloud OAuth client for calendar, email, attachment, and account-management workflows.
 
-## Publisher: <br>
-[kyesh](https://clawhub.ai/user/kyesh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
 
+[kyesh](https://clawhub.ai/user/kyesh)
 
-## Use Case: <br>
-Developers, employees, and external users can use this skill to connect an agent to their own Google accounts, inspect Gmail messages and attachments, and read calendar availability or events. It is intended for BYOK workflows where users manage the Google Cloud project, OAuth credentials, and authorized accounts themselves. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: The default authorization flow requests full Google Calendar access and Gmail read access. <br>
-Mitigation: Use --readonly unless calendar write access is required, and authorize only the Google accounts needed for the task. <br>
-Risk: OAuth credentials and account tokens are stored locally under the user's home directory. <br>
-Mitigation: Install and run the skill only on a trusted machine, protect the credential and token files, and remove them when no longer needed. <br>
-Risk: Downloaded email attachments can contain untrusted content. <br>
-Mitigation: Download attachments only from trusted messages and place them in a dedicated temporary directory before inspection. <br>
+## Use Case:
 
+Users and developers use this skill to let an agent inspect Gmail and Google Calendar data, search messages, read events, check free/busy time, manage connected accounts, and download email attachments using user-provided Google Cloud OAuth credentials.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kyesh/google-workspace-byok) <br>
-- [Publisher profile](https://clawhub.ai/user/kyesh) <br>
-- [Google Cloud Console](https://console.cloud.google.com) <br>
-- [Google Auth Platform Audience](https://console.cloud.google.com/auth/audience) <br>
-- [Google Auth Platform Clients](https://console.cloud.google.com/auth/clients) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, files] <br>
-**Output Format:** [Markdown instructions with shell commands; scripts return JSON and may write downloaded attachment files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local Node.js scripts, Google OAuth2 credentials, and per-account token files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, scripts/package.json) <br>
+Risk: The skill stores Google OAuth credentials and tokens for Gmail and Calendar access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep ~/.openclaw/google-workspace-byok owner-only, avoid shared machines, and revoke the Google OAuth grant when access is no longer needed.
+
+Risk: Default authorization can request full Calendar read/write access along with Gmail read access.
+
+Mitigation: Use the --readonly authorization mode unless Calendar writes are required for the intended workflow.
+
+Risk: Downloaded email attachments may be written using filenames supplied by email content.
+
+Mitigation: Download attachments only into a controlled directory, inspect filenames before use, and avoid processing unexpected attachments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kyesh/skills/google-workspace-byok)
+- [Google Cloud Console](https://console.cloud.google.com)
+- [Google Auth Platform Audience](https://console.cloud.google.com/auth/audience)
+- [Google Auth Platform Clients](https://console.cloud.google.com/auth/clients)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON command output, and downloaded attachment files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Gmail message reads truncate long bodies to 5000 characters; attachment actions can write downloaded files to a user-selected output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

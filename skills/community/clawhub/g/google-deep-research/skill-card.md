@@ -1,43 +1,54 @@
-## Description: <br>
-Uses Gemini Deep Research Agent to perform autonomous multi-step research and produce detailed Markdown research reports with citations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses Gemini Deep Research Agent to run autonomous multi-step research and produce detailed Markdown reports with citations.
 
-## Publisher: <br>
-[juan-xin-cai](https://clawhub.ai/user/juan-xin-cai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[juan-xin-cai](https://clawhub.ai/user/juan-xin-cai)
 
-## Use Case: <br>
-Developers, analysts, and agent users use this skill to run long-form Gemini Deep Research sessions, refine vague research topics, and return cited Markdown reports with optional follow-up questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research prompts and follow-up questions are sent to an external Gemini service. <br>
-Mitigation: Use explicit user-approved research topics and avoid sending secrets, regulated data, or confidential material unless the deployment policy allows it. <br>
-Risk: GOOGLE_GENAI_SDK_PATH can point the runtime at locally selected executable SDK code. <br>
-Mitigation: Prefer the npm-published @google/genai package; set GOOGLE_GENAI_SDK_PATH only to a trusted, reviewed SDK path. <br>
-Risk: Deep research runs can be broad and long-running, which may create cost, latency, or scope surprises. <br>
-Mitigation: Confirm the research scope before execution and use timeout or narrower queries when the task needs bounded runtime. <br>
+## Use Case:
 
+Developers and agent users use this skill to turn a research topic into a long-running Gemini Deep Research session, then present the resulting cited Markdown report and support follow-up questions.
 
-## Reference(s): <br>
-- [@google/genai npm package](https://www.npmjs.com/package/@google/genai) <br>
-- [ClawHub release page](https://clawhub.ai/juan-xin-cai/google-deep-research) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown research report on stdout, with progress and interaction status on stderr] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GEMINI_API_KEY; optional GOOGLE_GENAI_SDK_PATH, timeout, streaming, and follow-up settings are supported.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill requires a Gemini API key and sends research prompts to Gemini.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an approved Gemini API key and avoid submitting secrets or sensitive data unless that use is authorized.
+
+Risk: The optional GOOGLE_GENAI_SDK_PATH override can execute local JavaScript with the same environment as the skill, including access to the Gemini API key.
+
+Mitigation: Prefer the default @google/genai package, or set GOOGLE_GENAI_SDK_PATH only to a fully trusted SDK file.
+
+## Reference(s):
+
+- [@google/genai NPM package](https://www.npmjs.com/package/@google/genai)
+- [ClawHub skill page](https://clawhub.ai/juan-xin-cai/skills/google-deep-research)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report on stdout, with progress status and follow-up interaction ID on stderr]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include citation links; runs can be streamed or polled and may take 5-20 minutes.]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -76,7 +76,7 @@ curl -F "reqtype=fileupload" -F "fileToUpload=@~/Desktop/generated_image.png" ht
 ## 完整流程示例
 
 ```bash
-export DASHSCOPE_API_KEY="sk-ec70253d8fb14e53a679726ad2e1563c"
+export DASHSCOPE_API_KEY="REDACTED-SECRET"
 
 # 1. 生成图片
 RESPONSE=$(curl -s --location 'https://dashscope-intl.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation' \

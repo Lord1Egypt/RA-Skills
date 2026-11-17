@@ -1,0 +1,117 @@
+# packs/ecommerce.yaml — E-commerce industry pack
+# Ontology Agent · Tianjin Weishu Artificial Intelligence Technology Co., Ltd.
+# Bilingual note: the Chinese counterpart of this file is `ecommerce.zh.yaml`.
+# Same paradigm as opc.yaml; industry-specific entities (shop / product / order / inventory /
+# after-sales / promotion) are defined here, the base semantic layer comes from semantic.yaml.
+
+meta:
+  pack_id: ecommerce
+  display_name: E-commerce
+  version: 0.1.0
+  base_layer_ref: references/semantic.yaml
+  logic_ref: references/logic.yaml
+  decision_ref: references/decision.yaml
+  match_keywords: [e-commerce, online store, webshop, marketplace seller, livestream selling, DTC, independent store, dropshipping]
+  description: >
+    For enterprises selling goods on platforms or through an independent store. Its entities differ
+    most from a one-person company (extra shop / product / order / inventory), and it is used to
+    validate whether the template adapts horizontally when "industry entities differ greatly".
+
+# ── 1. Industry-specific entities ──
+entities_extra:
+  - type: Shop
+    extends: Account
+    properties:
+      - { name: platform, type: enum, enum: [Taobao, Douyin, Pinduoduo, Tmall, JD, independent store], required: true }
+      - { name: shop_name, type: string, required: true }
+    relations:
+      - { to: Organization, type: operated_by, cardinality: many_to_one }
+  - type: Product
+    extends: Document
+    properties:
+      - { name: sku, type: string, required: true }
+      - { name: price, type: number }
+      - { name: stock, type: integer }
+    relations:
+      - { to: Shop, type: listed_in, cardinality: many_to_one }
+  - type: Order
+    extends: Task
+    properties:
+      - { name: order_no, type: string, required: true }
+      - { name: amount, type: number, required: true }
+      - { name: status, type: enum, enum: [pending payment, paid, shipped, completed, refunding], required: true }
+    relations:
+      - { to: Customer, type: placed_by, cardinality: many_to_one }
+      - { to: Product, type: contains, cardinality: many_to_many }
+  - type: Inventory
+    extends: Account
+    properties:
+      - { name: warehouse, type: string }
+      - { name: quantity, type: integer }
+    relations:
+      - { to: Product, type: tracks, cardinality: one_to_one }
+  - type: Aftersale
+    extends: Event
+    properties:
+      - { name: reason, type: string }
+    relations:
+      - { to: Order, type: for_order, cardinality: many_to_one }
+  - type: Promotion
+    extends: Goal
+    properties:
+      - { name: channel, type: string }
+      - { name: budget, type: number }
+
+# ── 2. Recommended departments (12-department framework; e-commerce emphasizes sales/channel/content/data) ──
+recommended_departments:
+  - { code: lead,        name: Executive Decision }
+  - { code: admin,       name: Administration }
+  - { code: hr,          name: Human Resources }
+  - { code: finance,     name: Finance & Tax }
+  - { code: legal,       name: Legal & Compliance }
+  - { code: rnd,         name: R&D }
+  - { code: mkt_content, name: Content Marketing }
+  - { code: mkt_dist,    name: Channel Distribution }
+  - { code: mkt_seo,     name: SEO & Promotion }
+  - { code: sales,       name: Sales }
+  - { code: data,        name: Data }
+  - { code: strategy,    name: Strategy }
+
+# ── 3. Default workflow ──
+default_workflow: ecommerce_ops
+workflow_bindings:
+  ecommerce_ops:
+    stages: [discovery, design, build, validate, operate, grow]
+    core_loop: [listing, order intake, shipping, ratings & reviews, repurchase, retrospective]
+
+# ── 4. Localization policy hooks ──
+policy_hooks:
+  region: nationwide
+  redline_refs:
+    - compliance_redlines.ecommerce_law     # display business licence / permits, no false advertising, retain transaction records
+    - compliance_redlines.tax               # invoicing / tax filing compliance
+  local_services: []
+
+# ── 5. Layer-B flavor (injected into personas as "industry red lines", keyed by department, default as fallback) ──
+flavor:
+  default: >-
+    You serve an e-commerce enterprise; transaction compliance and platform rules are its lifeline.
+    Display the business licence and any required administrative permits, prohibit false advertising,
+    fake-order review manipulation and induced positive reviews; retain transactions and invoices as
+    required. Platform rules change frequently, so the latest platform policy must be checked before
+    every major promotion.
+  legal: E-commerce law requires displaying the licence and administrative permits; prohibit false advertising and fake-order manipulation; 7-day no-reason returns; protect user personal information as required.
+  mkt_content: Content must be truthful and verifiable; no superlative claims or fake discounts; livestream selling must disclose the selling entity and prices.
+  mkt_dist: Promotional spend must be compliant; never hide the selling entity or fees from users; price-protection and after-sales rules for major promotions must be disclosed up front.
+  sales: Prices must be clearly marked with no hidden fees; after-sales messaging must match platform rules.
+  finance: Platform settlement flows must be reconciled transaction by transaction and invoiced per platform rules; fake-order revenue must never be booked; stay tax compliant.
+  data: User privacy (phone numbers / addresses) must be stored as required and never persisted in plain text; order data used for repurchase analysis must be de-identified.
+  hr: Warehousing / customer service roles must be employment-compliant; temporary staff must sign agreements.
+  strategy: Run a multi-platform matrix to avoid concentrating platform policy risk.
+
+# ── 6. Instantiation prompts ──
+instance_prompts:
+  - "Please describe the platforms you operate on (Taobao / Douyin / Pinduoduo / independent store, etc.) and your shops"
+  - "Please introduce the enterprise (legal entity, region, whether you hire staff)"
+  - "Which departments do you want to build (12 by default; e-commerce may add customer service / warehousing perspectives)"
+  - "Core business logic (e.g. listing → order intake → shipping → review → repurchase)"

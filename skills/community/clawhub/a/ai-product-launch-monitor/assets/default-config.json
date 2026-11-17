@@ -1,0 +1,18 @@
+{
+  "feeds": [
+    "https://techcrunch.com/category/artificial-intelligence/feed/",
+    "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
+    "https://venturebeat.com/category/ai/feed/",
+    "https://feeds.feedburner.com/ProductHunt",
+    "https://www.artificialintelligence-news.com/feed/",
+    "https://huggingface.co/blog/feed.xml"
+  ],
+  "query_terms": [
+    "AI product launch",
+    "new AI tool release",
+    "AI startup announcement",
+    "generative AI product",
+    "LLM launch"
+  ],
+  "days": 3
+}

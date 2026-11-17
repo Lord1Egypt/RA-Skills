@@ -1,45 +1,60 @@
-## Description: <br>
-DeFi yield optimization, impermanent loss tracking, and portfolio management for Base blockchain. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DeFi yield optimization, impermanent loss tracking, and portfolio management for Base blockchain.
 
-## Publisher: <br>
-[supah-based](https://clawhub.ai/user/supah-based) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[supah-based](https://clawhub.ai/user/supah-based)
 
-## Use Case: <br>
-External users and agents use this skill to query SUPAH's paid DeFi service for Base wallet positions, APY comparisons, impermanent loss calculations, and rebalancing suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends wallet or liquidity-position identifiers to a remote DeFi service. <br>
-Mitigation: Use only wallet or position identifiers you are comfortable sharing with SUPAH and its data providers. <br>
-Risk: Calls may trigger automatic x402 USDC charges. <br>
-Mitigation: Use a low-limit payment wallet or spending cap and verify each charge before execution. <br>
-Risk: SUPAH_API_BASE can redirect requests to an alternate endpoint. <br>
-Mitigation: Leave SUPAH_API_BASE unset unless you intentionally trust the alternate endpoint. <br>
+## Use Case:
 
+External developers and agents use this skill to query SUPAH's Base DeFi API for wallet position scans, APY comparisons, impermanent loss calculations, and optimization or rebalance suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/supah-based/supah-defi-optimizer) <br>
-- [SUPAH website](https://supah.ai) <br>
-- [SUPAH API endpoint](https://api.supah.ai) <br>
-- [x402 protocol](https://www.x402.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and CLI JSON responses from the SUPAH API] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, curl, outbound access to api.supah.ai, and an x402-compatible payment flow using USDC on Base.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+Risk: The skill sends wallet or position identifiers to SUPAH's remote DeFi API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only wallet or position identifiers appropriate for sharing with that service and review outbound network access before installing.
+
+Risk: Automatic x402 USDC payments on Base can incur charges, and the published per-action pricing is inconsistent across the evidence.
+
+Mitigation: Run in an environment where spending can be confirmed or capped, and verify current prices before use.
+
+Risk: The authoritative security verdict is suspicious because the paid API calls have weak runtime controls.
+
+Mitigation: Review the skill and execution environment before installing, especially API access and payment configuration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/supah-based/skills/supah-defi-optimizer)
+- [SUPAH website](https://supah.ai)
+- [SUPAH API endpoint](https://api.supah.ai)
+- [x402 documentation](https://www.x402.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js, curl, SUPAH_API_BASE when overriding the default API endpoint, outbound access to api.supah.ai, and an x402-compatible payment environment for USDC payments on Base.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence; artifact package.json reports 1.0.0 and runtime help reports 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

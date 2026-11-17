@@ -1,40 +1,57 @@
-## Description: <br>
-Answers simple lookup and factual Q&A questions from Java-specified personal or team Research KB repositories with source-grounded citations for a desktop source list. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Answer Research KB questions from the team Gitea-backed knowledge base with OpenClaw reasoning, optional reference attachments, stable citations, OpenClaw-led evidence selection, and optional high-value Q&A persistence.
 
-## Publisher: <br>
-[myd2002](https://clawhub.ai/user/myd2002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[myd2002](https://clawhub.ai/user/myd2002)
 
-## Use Case: <br>
-Developers and knowledge-base users use this skill to answer simple factual questions from one or two Java-selected personal or team Research KB repositories. It reads relevant Markdown pages from the selected repositories and returns answers with structured citations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Gitea credential for repository reads without enforcing its own repository allowlist. <br>
-Mitigation: Install only when the Java backend tightly controls kbTargets and the Gitea credential is a read-only token scoped to intended KB repositories. <br>
-Risk: Private or business-sensitive knowledge bases could be exposed if transport, repository scope, or dependencies are not controlled. <br>
-Mitigation: Confirm repository allowlisting, HTTPS configuration, and pinned dependencies before using the skill with sensitive knowledge bases. <br>
+## Use Case:
 
+Developers and research-team KB users use this skill to answer questions against a team Gitea-backed knowledge base, optionally using temporary attachments for context and persisting reusable high-value Q&A entries when policy allows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/myd2002/skills/kb-query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, guidance] <br>
-**Output Format:** [JSON object with answer text, citations, used scopes, read pages, and errors] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Citations must reference pages read during the task; insufficient evidence responses return empty citations and label general guidance as non-KB.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill uses a bot token to read and write a Gitea-backed knowledge base.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only with trusted backend payloads and a tightly scoped bot account limited to the intended KB repository.
+
+Risk: Payload or environment configuration can select the Gitea host used by the helper scripts.
+
+Mitigation: Require an allowlisted HTTPS Gitea host before production use.
+
+Risk: The skill reads attachment paths and writes result paths supplied through backend payloads.
+
+Mitigation: Constrain attachment and result paths to trusted directories and reject symlinks or path traversal.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/myd2002/skills/kb-query)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown answer text with JSON result files and cited KB sources]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update high-value Q&A pages, catalog entries, and index entries when policy and evidence gates allow.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

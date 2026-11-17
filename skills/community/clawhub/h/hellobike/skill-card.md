@@ -1,41 +1,58 @@
-## Description: <br>
-Summarizes public service details, announcements, and city-specific information from Hellobike official pages without accessing user accounts or orders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarizes public service details, announcements, and city-specific information from Hellobike's official pages without accessing user accounts or orders.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-External users and analysts use this skill to summarize public Hellobike service descriptions, announcements, news, city coverage, prices, and activity information. The skill is limited to public pages and excludes account login, ride operations, order management, private user data, and restriction bypass. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill could be misapplied to account login, order management, ride operations, private user data, or bypassing platform restrictions. <br>
-Mitigation: Use it only for public Hellobike service and announcement pages, and do not provide credentials or request account, order, or ride actions. <br>
-Risk: Automated extraction from public pages can create inaccurate summaries or excessive site access if pages load dynamically or change over time. <br>
-Mitigation: Wait for page loading before extraction, keep access frequency controlled, respect platform limits, and review summaries against the public source pages. <br>
+## Use Case:
 
+External users and analysts use this skill to organize public Hellobike service, announcement, news, pricing, and city-coverage information into concise summaries.
 
-## Reference(s): <br>
-- [Hellobike Official Website](https://www.hellobike.com/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/codenova58/hellobike) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown summaries and structured extraction guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code or account access; outputs should cite public source links when summarizing announcements or city-specific details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill could be misapplied to account, order, payment, or private user-data workflows that are outside its intended scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for public Hellobike pages and reject tasks requiring login, order actions, payment operations, permission bypass, or private user data.
+
+Risk: Summaries of dynamic public pages may become incomplete or stale if page content changes or loading is not complete.
+
+Mitigation: Wait for pages to load, include source links and collection time where relevant, and ask users to verify time-sensitive service, price, or city-coverage details before acting on them.
+
+Risk: The artifact is written in Chinese, which may not match every user's preferred output language.
+
+Mitigation: Ask the agent for output in the user's preferred language when summaries need to be localized.
+
+## Reference(s):
+
+- [Hellobike official website](https://www.hellobike.com/)
+- [ClawHub skill page](https://clawhub.ai/codenova58/skills/hellobike)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summaries and structured text lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be limited to public-page information and exclude account, order, payment, or private user-data workflows.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

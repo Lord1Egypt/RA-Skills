@@ -1,47 +1,62 @@
-## Description: <br>
-DeepSeek API Toolkit helps agents guide developers through DeepSeek API integration, cost optimization, prompt engineering, and model selection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language guidance, code examples, cost optimization advice, prompt engineering patterns, and model selection support for integrating DeepSeek APIs.
 
-## Publisher: <br>
-[caingao](https://clawhub.ai/user/caingao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[caingao](https://clawhub.ai/user/caingao)
 
-## Use Case: <br>
-Developers and AI engineers use this skill to generate DeepSeek API setup guidance, migration examples, cost-saving recommendations, prompt improvements, and model-selection advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API keys or other secrets could be exposed if copied into prompts, examples, or logs. <br>
-Mitigation: Keep real API keys in environment variables or a secrets manager, and avoid pasting secrets into examples or logs. <br>
-Risk: Prompts and requests may send confidential, regulated, personal, or proprietary content to DeepSeek as a third-party API provider. <br>
-Mitigation: Use the skill only when DeepSeek is approved for the intended data flow, and avoid sending sensitive content unless that use case has been reviewed. <br>
-Risk: DeepSeek model availability, prices, and limits can change after the packaged guidance was written. <br>
-Mitigation: Confirm current DeepSeek pricing, model IDs, rate limits, and policy requirements before relying on generated integration or cost guidance. <br>
+## Use Case:
 
+Developers and AI engineers use this skill to integrate DeepSeek APIs, choose appropriate DeepSeek models, optimize API cost, and improve prompts for Chinese-language and coding workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/caingao/deepseek-toolkit) <br>
-- [DeepSeek API pricing](https://api-docs.deepseek.com/zh-cn/quick_start/pricing) <br>
-- [DeepSeek API guide](deepseek-api-guide.md) <br>
-- [Cost optimization guide](cost-optimization.md) <br>
-- [Prompt engineering guide](prompt-engineering.md) <br>
-- [Model comparison guide](model-comparison.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline code blocks and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include estimates, model recommendations, API examples, retry patterns, and security reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: API keys could be exposed if pasted into source code or shell history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use environment variables or an approved secrets manager, and avoid committing or logging real DeepSeek API keys.
+
+Risk: Sensitive, regulated, proprietary, or secret data may be sent to DeepSeek through prompts or API examples.
+
+Mitigation: Use this skill only for approved data categories and obtain organizational approval before sending sensitive data to DeepSeek.
+
+Risk: Model pricing, rate limits, and availability can change after the artifact documentation was written.
+
+Mitigation: Verify current DeepSeek documentation before relying on cost estimates, routing decisions, or production limits.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/caingao/skills/deepseek-toolkit)
+- [DeepSeek API pricing](https://api-docs.deepseek.com/zh-cn/quick_start/pricing)
+- [DeepSeek API guide](artifact/deepseek-api-guide.md)
+- [Cost optimization guide](artifact/cost-optimization.md)
+- [Prompt engineering guide](artifact/prompt-engineering.md)
+- [Model comparison guide](artifact/model-comparison.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with code blocks, command snippets, tables, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language guidance; DeepSeek prices, model availability, and rate limits should be checked against current official documentation before production use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

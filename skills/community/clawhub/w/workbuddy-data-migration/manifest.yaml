@@ -1,0 +1,13 @@
+name: workbuddy-data-migration
+version: 0.1.0
+description: 将 WorkBuddy 数据目录（默认 C:\Users\USERNAME\.workbuddy）用 Windows 目录联接(junction)迁移到非系统盘，释放系统盘空间，且以后新增数据与运行时也自动落非系统盘。脚本自动探测目标盘，无需管理员权限。
+triggers:
+  - "迁移 WorkBuddy 数据目录"
+  - "把 WorkBuddy 挪出 C 盘"
+  - "WorkBuddy 数据迁移"
+  - "move WorkBuddy data off C drive"
+  - "don't let WorkBuddy use the system disk"
+category: system-utility
+platform: windows
+author: WorkBuddy user
+license: MIT

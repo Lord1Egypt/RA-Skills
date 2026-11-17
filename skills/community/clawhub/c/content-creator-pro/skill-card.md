@@ -1,46 +1,62 @@
-## Description: <br>
-Content Creator Pro helps agents draft and queue platform-native social posts, threads, newsletters, articles, and short-form video scripts using brand voice, hook frameworks, scheduling, and performance tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Content Creator Pro helps agents draft platform-native posts, threads, newsletters, long-form articles, and short-form video scripts while maintaining brand voice, queuing content, and tracking performance.
 
-## Publisher: <br>
-[georges91560](https://clawhub.ai/user/georges91560) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[georges91560](https://clawhub.ai/user/georges91560)
 
-## Use Case: <br>
-Agents and operators use this skill to create human-facing content for Twitter/X, LinkedIn, Reddit, Substack, and short-form video workflows. It is intended to prepare and queue public-facing drafts while tracking hooks, calendar slots, and performance data for later review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can generate and queue ready-to-publish public content on a schedule. <br>
-Mitigation: Review every generated post, thread, newsletter, article, or script before publication and keep publishing integrations gated by human approval. <br>
-Risk: The skill persists brand voice, calendar, hook, performance, learning, error, queue, library, and audit records in local workspace files. <br>
-Mitigation: Keep secrets, customer data, and unverifiable personal claims out of these files, and review stored records before sharing or publishing content derived from them. <br>
-Risk: The bundled Python tracker updates performance files, hook records, audit logs, and error logs. <br>
-Mitigation: Run the tracker only after explicit opt-in, inspect its target paths, and avoid enabling cron or other unattended execution until the local workflow has been reviewed. <br>
+## Use Case:
 
+Developers, operators, and external ClawHub users can use this skill when an agent needs to create, queue, and refine marketing or social content across Twitter/X, LinkedIn, Reddit, Substack, and short-form video. It is also intended to maintain local brand voice, calendar, hook, performance, learning, error, and audit records.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/georges91560/content-creator-pro) <br>
-- [README](artifact/README.md) <br>
-- [Human writing guide](artifact/human_writing.md) <br>
-- [Hooks library](artifact/hooks.md) <br>
-- [Content tracker script](artifact/content_tracker.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON-backed content files with optional Python CLI status output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces public-facing drafts and local tracking records under /workspace/content and /workspace/.learnings paths; release metadata reports no direct network requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Generated posts may contain inaccurate, misleading, off-brand, or unsuitable marketing claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated content before publication, especially before allowing a connected publishing skill to post publicly.
+
+Risk: The skill writes voice, performance, hook, queue, library, learning, error, and audit records in the workspace.
+
+Mitigation: Confirm the workspace paths are appropriate for the agent environment and define retention rules for generated content and logs.
+
+Risk: Queued drafts may be published by another skill after handoff.
+
+Mitigation: Keep a human or policy review step between queued content and any automated publishing workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/georges91560/skills/content-creator-pro)
+- [Publisher profile](https://clawhub.ai/user/georges91560)
+- [README.md](artifact/README.md)
+- [human_writing.md](artifact/human_writing.md)
+- [voice.md](artifact/voice.md)
+- [hooks.md](artifact/hooks.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, platform-native text drafts, JSON queue and performance records, and optional Python CLI commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes generated content and tracking records to local workspace paths; no network access is indicated by the server security evidence.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

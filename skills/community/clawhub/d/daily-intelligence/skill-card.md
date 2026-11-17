@@ -1,42 +1,53 @@
-## Description: <br>
-A fully automated daily intelligence briefing system that searches AI/tech news, curates content, generates 3600px infographics and edge-tts voice narration, uploads to Feishu/Lark docs, and delivers scheduled briefings via cron. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fully automated daily intelligence briefing system that searches news, generates high-res infographics, creates edge-tts voice narration, uploads to Feishu/Lark docs, and delivers via cron.
 
-## Publisher: <br>
-[xiongwang11](https://clawhub.ai/user/xiongwang11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiongwang11](https://clawhub.ai/user/xiongwang11)
 
-## Use Case: <br>
-Developers, operators, and business users use this skill to automate daily AI/tech intelligence briefings, including news curation, infographic rendering, Chinese voice narration, Feishu/Lark document creation, and scheduled delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can upload generated briefing materials to Feishu/Lark and send them to configured recipients. <br>
-Mitigation: Verify credentials, recipient IDs, document visibility, and delivery targets in a local or test run before enabling delivery. <br>
-Risk: Cron automation can repeatedly distribute stale, incorrect, or incomplete briefings if a run fails or source content is poor. <br>
-Mitigation: Keep delivery disabled until the checklist passes, review generated materials before unattended runs, and monitor scheduled executions. <br>
-Risk: External search, text-to-speech, and collaboration services can return inaccurate results, fail, or change behavior. <br>
-Mitigation: Review source summaries before distribution and keep output local until service behavior and generated content are verified. <br>
+## Use Case:
 
+Developers and operators use this skill to generate and deliver daily AI and technology intelligence briefings with curated modules, high-resolution infographics, Chinese voice narration, Feishu/Lark documents, and scheduled delivery.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xiongwang11/daily-intelligence) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON, CSS, and bash code blocks; generated briefing materials may include images, MP3 narration, and Feishu/Lark document links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create external service documents and scheduled delivery actions when credentials and recipients are configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and target metadata) <br>
+Risk: Recurring autonomous delivery through external services may send briefings without adequate recipient scoping or consent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a constrained workspace, least-privilege Feishu/Lark and messaging credentials, confirm recipients before sending, and run one-time previews before enabling delivery.
+
+Risk: Scheduled cron jobs may continue running after the intended release or evaluation period.
+
+Mitigation: Create scheduled jobs only with an explicit expiration and maintain a documented removal process.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiongwang11/skills/daily-intelligence)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, and generated briefing assets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include 3600px infographic images, Chinese MP3 narration, Feishu/Lark document links, and cron scheduling configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

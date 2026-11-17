@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Knowledge Graph Splitter V2</title>
+<style>
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f5f4f0;
+    color: #1a1a18;
+    min-height: 100vh;
+    padding: 2rem 1.5rem;
+  }
+  .header {
+    max-width: 860px;
+    margin: 0 auto 2rem;
+  }
+  .header h1 {
+    font-size: 1.55rem;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: #1a1a18;
+    margin-bottom: 0.4rem;
+  }
+  .header p {
+    font-size: 0.92rem;
+    color: #5f5e5a;
+    line-height: 1.6;
+    max-width: 680px;
+  }
+  .header code {
+    background: #ebe9e2;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 0.85em;
+  }
+  .card {
+    background: #fff;
+    border: 0.5px solid #d3d1c7;
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    max-width: 860px;
+    margin: 0 auto 1rem;
+  }
+  .card-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #888780;
+    margin-bottom: 0.9rem;
+  }
+  .drop-zone {
+    border: 1.5px dashed #b4b2a9;
+    border-radius: 8px;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .drop-zone:hover, .drop-zone.drag-over {
+    border-color: #534AB7;
+    background: #EEEDFE;
+  }
+  .drop-zone .icon {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    display: block;
+    color: #888780;
+  }
+  .drop-zone.drag-over .icon { color: #534AB7; }
+  .drop-zone p {
+    font-size: 0.9rem;
+    color: #5f5e5a;
+  }
+  .drop-zone strong { color: #534AB7; cursor: pointer; }
+  input[type="file"] { display: none; }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 10px;
+    margin-bottom: 1.25rem;
+  }
+  .stat {
+    background: #f1efe8;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+  }
+  .stat-label {
+    font-size: 0.72rem;
+    color: #888780;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.2rem;
+  }
+  .stat-value {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #1a1a18;
+    line-height: 1.2;
+  }
+  .stat-value.accent { color: #534AB7; }
+  .section-label {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: #444441;
+    margin-bottom: 0.6rem;
+    margin-top: 1.1rem;
+  }
+  .controls {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 1.1rem;
+  }
+  .controls label { font-size: 0.85rem; color: #5f5e5a; }
+  select, input[type="number"] {
+    border: 0.5px solid #b4b2a9;
+    border-radius: 6px;
+    padding: 0.4rem 0.65rem;
+    font-size: 0.85rem;
+    background: #fff;
+    color: #1a1a18;
+    outline: none;
+    transition: border-color 0.12s;
+  }
+  select:focus, input[type="number"]:focus {
+    border-color: #534AB7;
+    box-shadow: 0 0 0 2px #EEEDFE;
+  }
+  input[type="number"] { width: 90px; }
+  .preview-list {
+    border: 0.5px solid #d3d1c7;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1.25rem;
+  }
+  .preview-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.6rem 1rem;
+    font-size: 0.83rem;
+    border-bottom: 0.5px solid #ebe9e2;
+    gap: 1rem;
+  }
+  .preview-item:last-child { border-bottom: none; }
+  .preview-item:nth-child(even) { background: #faf9f7; }
+  .seg-name {
+    font-family: 'SF Mono', 'Consolas', monospace;
+    font-size: 0.78rem;
+    color: #3C3489;
+    min-width: 230px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .seg-count {
+    color: #5f5e5a;
+    flex: 1;
+    text-align: right;
+    white-space: nowrap;
+  }
+  .seg-badge {
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .badge-context { background: #EEEDFE; color: #3C3489; }
+  .badge-entities { background: #E1F5EE; color: #0F6E56; }
+  .badge-relations { background: #FAEEDA; color: #854F0B; }
+  .btn-row { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  button {
+    border: 0.5px solid #b4b2a9;
+    border-radius: 8px;
+    padding: 0.55rem 1.1rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    background: #fff;
+    color: #1a1a18;
+    cursor: pointer;
+    transition: background 0.12s, border-color 0.12s;
+  }
+  button:hover { background: #f1efe8; border-color: #888780; }
+  button:active { transform: scale(0.98); }
+  button.primary { background: #534AB7; border-color: #534AB7; color: #fff; }
+  button.primary:hover { background: #3C3489; border-color: #3C3489; }
+  button:disabled { opacity: 0.4; cursor: not-allowed; }
+  .mode-toggle {
+    display: flex;
+    gap: 4px;
+    background: #f1efe8;
+    border-radius: 8px;
+    padding: 3px;
+  }
+  .mode-btn {
+    border: none;
+    border-radius: 6px;
+    padding: 0.35rem 0.85rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    color: #5f5e5a;
+    background: transparent;
+    transition: background 0.12s, color 0.12s;
+  }
+  .mode-btn.active {
+    background: #fff;
+    color: #1a1a18;
+    border: 0.5px solid #d3d1c7;
+  }
+  .mode-btn:hover:not(.active) { background: #e8e6df; }
+  .info-box {
+    background: #EEEDFE;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    font-size: 0.82rem;
+    color: #3C3489;
+    line-height: 1.55;
+    margin-bottom: 1.1rem;
+  }
+  .info-box strong { color: #26215C; }
+  .progress-bar-wrap {
+    background: #f1efe8;
+    border-radius: 4px;
+    height: 6px;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+  }
+  .progress-bar {
+    height: 100%;
+    background: #534AB7;
+    border-radius: 4px;
+    transition: width 0.2s;
+    width: 0%;
+  }
+  .log {
+    font-family: 'SF Mono', 'Consolas', monospace;
+    font-size: 0.75rem;
+    color: #5f5e5a;
+    background: #faf9f7;
+    border: 0.5px solid #d3d1c7;
+    border-radius: 6px;
+    padding: 0.75rem;
+    max-height: 180px;
+    overflow-y: auto;
+    line-height: 1.7;
+  }
+  .log-line.ok { color: #0F6E56; }
+  .log-line.warn { color: #854F0B; }
+  .log-line.err { color: #A32D2D; }
+  #section-configure, #section-download { display: none; }
+  .footer {
+    max-width: 860px;
+    margin: 2rem auto 0;
+    font-size: 0.78rem;
+    color: #888780;
+    line-height: 1.5;
+    text-align: center;
+  }
+  .footer a { color: #534AB7; text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+
+  /* --- V2 additions --- */
+  #viewToggleBtn {
+    position: fixed;
+    top: 1.2rem;
+    right: 1.5rem;
+    z-index: 1000;
+    background: #1a1a18;
+    color: #fff;
+    border: 0.5px solid #1a1a18;
+    border-radius: 999px;
+    padding: 0.5rem 0.95rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    display: none;
+  }
+  #viewToggleBtn:hover { background: #2a2a28; }
+  .simple-badge {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    background: #E1F5EE;
+    color: #0F6E56;
+    padding: 3px 8px;
+    border-radius: 999px;
+    margin-left: 0.6rem;
+    vertical-align: middle;
+  }
+  .simple-only { display: none; }
+  body.simple-view .simple-only { display: block; }
+  body.simple-view .simple-only.flex { display: flex; }
+  body.simple-view .complex-only { display: none !important; }
+  .simple-intro {
+    background: #f1efe8;
+    border-radius: 8px;
+    padding: 0.85rem 1rem;
+    font-size: 0.86rem;
+    line-height: 1.5;
+    color: #444441;
+    margin-bottom: 1.1rem;
+  }
+  .simple-intro strong { color: #1a1a18; }
+  .simple-fixed-mode {
+    background:#EEEDFE; color:#3C3489; border-radius:8px;
+    padding:0.6rem 0.9rem; font-size:0.83rem; font-weight:500;
+    margin-bottom:1.1rem;
+  }
+  /* Modal */
+  .modal-overlay {
+    position: fixed; inset:0;
+    background: rgba(26,26,24,0.45);
+    display:none; align-items:center; justify-content:center;
+    z-index:2000; padding:1rem;
+  }
+  .modal-overlay.open { display:flex; }
+  .modal {
+    background:#fff; border-radius:12px;
+    padding:1.25rem 1.25rem 1rem;
+    max-width:420px; width:100%;
+    box-shadow:0 12px 32px rgba(0,0,0,0.18);
+  }
+  .modal h3 { font-size:0.95rem; font-weight:700; margin-bottom:0.5rem; color:#1a1a18; }
+  .modal p { font-size:0.86rem; color:#5f5e5a; line-height:1.5; margin-bottom:1rem; }
+
+</style>
+</head>
+<body>
+
+<button id="viewToggleBtn">Switch to the more complex view</button>
+
+<div class="header">
+  <h1>Knowledge Graph Splitter <span id="viewBadge" class="simple-badge" style="display:none">Simple View</span></h1>
+  <p>Split large knowledge graph JSON files — like <code>graph.json</code> — into smaller, AI-ready chunks. Designed for iterative development, focused editing, and preparing graphs for tools like LLMs. Works with any graph using <code>entities / relations</code>, <code>nodes / edges</code>, or similar structures.</p>
+</div>
+
+<div class="card" id="section-upload">
+  <div class="card-title">1 — Load graph file</div>
+  <div class="drop-zone" id="dropZone">
+    <span class="icon">📂</span>
+    <p>Drop your JSON file here or <strong id="browseLink">browse files</strong></p>
+    <input type="file" id="fileInput" accept=".json,application/json">
+  </div>
+</div>
+
+<div class="card" id="section-configure">
+  <div class="card-title">2 — Analysis & split configuration</div>
+
+  <div class="stats-grid">
+    <div class="stat"><div class="stat-label">Entities / Nodes</div><div class="stat-value accent" id="st-entities">—</div></div>
+    <div class="stat"><div class="stat-label">Relations / Edges</div><div class="stat-value accent" id="st-relations">—</div></div>
+    <div class="stat"><div class="stat-label">File size</div><div class="stat-value" id="st-size">—</div></div>
+    <div class="stat"><div class="stat-label">Groups detected</div><div class="stat-value" id="st-prefixes">—</div></div>
+    <div class="stat"><div class="stat-label">Bridge nodes</div><div class="stat-value" id="st-bridges">—</div></div>
+  </div>
+
+  <div class="simple-only">
+    <div class="simple-intro">
+      <strong>Simple mode active.</strong> Your graph will be split <strong>by counts into 4 equal segments</strong>. This is the recommended, error-proof workflow. You can change the number below, but 4 segments are recommended.
+    </div>
+    <div class="section-label">Split Mode</div>
+    <div class="simple-fixed-mode">By Counts (N segments) — fixed in simple view</div>
+  </div>
+
+  <div class="complex-only">
+    <div class="section-label">Split mode</div>
+    <div class="mode-toggle" style="margin-bottom:1rem;">
+      <button class="mode-btn active" id="modeCount" onclick="setMode('count')">By count (N segments)</button>
+      <button class="mode-btn" id="modeSize" onclick="setMode('size')">By size (N entities per segment)</button>
+      <button class="mode-btn" id="modePrefix" onclick="setMode('prefix')">By groups (prefix / type)</button>
+    </div>
+  </div>
+
+  <!-- Number of segments: visible in BOTH views, but warning only in simple view logic handled in JS (applies to both) -->
+  <div id="opt-count" class="controls"><label>Number of segments:</label><input type="number" id="numSegments" value="4" min="2" max="20"></div>
+  <div id="opt-size" class="controls complex-only" style="display:none;"><label>Entities per segment:</label><input type="number" id="entitiesPerSegment" value="80" min="10" max="500"></div>
+  <div id="opt-prefix" class="controls complex-only" style="display:none;"><label>Context entities per segment (bridges / hubs):</label><input type="number" id="contextEntities" value="10" min="0" max="50"></div>
+
+  <div class="info-box" id="infoBox"></div>
+
+  <div class="section-label">Segment preview</div>
+  <div class="preview-list" id="previewList"></div>
+
+  <div class="btn-row">
+    <button class="primary" id="btnGenerate" onclick="generateSegments()">⬇ Generate & download segments</button>
+    <button onclick="resetTool()">Load another file</button>
+  </div>
+</div>
+
+<div class="card" id="section-download">
+  <div class="card-title">3 — Download progress</div>
+  <div class="progress-bar-wrap"><div class="progress-bar" id="progressBar"></div></div>
+  <div class="log" id="logBox"></div>
+  <div class="btn-row" style="margin-top:1rem;"><button id="btnReset" onclick="resetTool()">Load another file</button></div>
+</div>
+
+<div class="footer">
+  Knowledge Graph Splitter — open source utility for ClawHub. Splits large graphs to enable focused, iterative development with AI models.<br>
+  Outputs include <code>_meta</code> with traceability info (source, index, split mode). MIT licensed.
+</div>
+
+<div class="modal-overlay" id="segmentWarningOverlay">
+  <div class="modal">
+    <h3>Change number of segments?</h3>
+    <p>4 segments are recommended. Do you really want to change the number? </p>
+    <div class="btn-row" style="justify-content:flex-end">
+      <button id="btnWarnCancel">Cancel</button>
+      <button class="primary" id="btnWarnConfirm">Yes, change it</button>
+    </div>
+  </div>
+</div>
+
+<script>
+
+// --- State ---
+let graph = null; // normalized: { entities: [], relations: [], _original: ... }
+let splitMode = 'count';
+let fileName = 'graph';
+
+// --- Helpers ---
+const $ = id => document.getElementById(id);
+
+$('dropZone').addEventListener('dragover', e => { e.preventDefault(); $('dropZone').classList.add('drag-over'); });
+$('dropZone').addEventListener('dragleave', () => $('dropZone').classList.remove('drag-over'));
+$('dropZone').addEventListener('drop', e => { e.preventDefault(); $('dropZone').classList.remove('drag-over'); loadFile(e.dataTransfer.files[0]); });
+$('browseLink').addEventListener('click', () => $('fileInput').click());
+$('fileInput').addEventListener('change', e => loadFile(e.target.files[0]));
+
+$('numSegments').addEventListener('input', updatePreview);
+$('entitiesPerSegment').addEventListener('input', updatePreview);
+$('contextEntities').addEventListener('input', updatePreview);
+
+function setMode(m) {
+  splitMode = m;
+  ['count','size','prefix'].forEach(k => {
+    $('mode'+k.charAt(0).toUpperCase()+k.slice(1)).classList.toggle('active', k === m);
+    $('opt-'+k).style.display = k === m ? 'flex' : 'none';
+  });
+  updatePreview();
+}
+
+// Normalize different graph formats to a common structure
+function normalizeGraph(raw) {
+  // Case 1: already { entities, relations }
+  if (raw && Array.isArray(raw.entities) && Array.isArray(raw.relations)) {
+    return { entities: raw.entities, relations: raw.relations, _original: raw };
+  }
+  // Case 2: { nodes, edges }
+  if (raw && Array.isArray(raw.nodes) && Array.isArray(raw.edges)) {
+    return { entities: raw.nodes, relations: raw.edges, _original: raw };
+  }
+  // Case 3: { nodes, links }
+  if (raw && Array.isArray(raw.nodes) && Array.isArray(raw.links)) {
+    return { entities: raw.nodes, relations: raw.links, _original: raw };
+  }
+  // Case 4: plain array = list of entities
+  if (Array.isArray(raw)) {
+    return { entities: raw, relations: [], _original: { entities: raw, relations: [] } };
+  }
+  // Case 5: try to find biggest arrays inside object
+  if (raw && typeof raw === 'object') {
+    let bestEntities = null, bestRelations = [];
+    for (const key of Object.keys(raw)) {
+      const val = raw[key];
+      if (Array.isArray(val) && val.length > 0) {
+        const isEntityLike = typeof val[0] === 'object' && (val[0].id !== undefined || val[0].type !== undefined || val[0].label !== undefined);
+        if (isEntityLike && (!bestEntities || val.length > bestEntities.length)) {
+          bestEntities = val;
+        }
+      }
+    }
+    if (bestEntities) {
+      // try to find relations array
+      for (const key of ['relations','edges','links','connections']) {
+        if (Array.isArray(raw[key])) bestRelations = raw[key];
+      }
+      return { entities: bestEntities, relations: bestRelations, _original: raw };
+    }
+  }
+  throw new Error('Unrecognized graph format. Expected { entities, relations } or { nodes, edges } or an array of nodes.');
+}
+
+function loadFile(file) {
+  if (!file) return;
+  fileName = file.name.replace(/\.json$/i, '');
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      const raw = JSON.parse(e.target.result);
+      const normalized = normalizeGraph(raw);
+      if (!normalized.entities.length) throw new Error('No entities/nodes found');
+      graph = normalized;
+      analyzeGraph();
+      $('section-upload').style.display = 'none';
+      $('section-configure').style.display = 'block';
+    } catch (err) {
+      alert('Failed to read file: ' + err.message);
+    }
+  };
+  reader.readAsText(file);
+}
+
+function analyzeGraph() {
+  const entities = graph.entities;
+  const relations = graph.relations;
+
+  const prefixMap = {};
+  const typeMap = {};
+  const bridgeSet = new Set();
+
+  entities.forEach(e => {
+    // prefix detection: original pattern A1, B23 etc., but also generic prefix before _ or -
+    const idStr = (e.id || e.label || '').toString();
+    const raw = idStr.split(' ')[0];
+    const parts = raw.split(',').map(p => p.trim()).filter(p => /^[A-Z][0-9]+$/.test(p));
+    if (parts.length > 1) bridgeSet.add(e.id || e.label);
+
+    // count prefixes
+    parts.forEach(p => { prefixMap[p] = (prefixMap[p] || 0) + 1; });
+
+    // fallback grouping by type
+    const t = (e.type || 'unknown').toString();
+    typeMap[t] = (typeMap[t] || 0) + 1;
+  });
+
+  // Decide which grouping to use for "groups" mode
+  const hasPrefixGroups = Object.keys(prefixMap).length > 0;
+  const groupsForDisplay = hasPrefixGroups ? prefixMap : typeMap;
+
+  graph._analysis = {
+    entityCount: entities.length,
+    relationCount: relations.length,
+    prefixMap: groupsForDisplay,
+    rawPrefixMap: prefixMap,
+    typeMap,
+    prefixes: Object.keys(groupsForDisplay).sort(),
+    hasPrefixGroups,
+    bridgeIds: [...bridgeSet]
+  };
+
+  $('st-entities').textContent = entities.length.toLocaleString('en');
+  $('st-relations').textContent = relations.length.toLocaleString('en');
+  $('st-size').textContent = formatBytes(JSON.stringify(graph._original).length);
+  $('st-prefixes').textContent = Object.keys(groupsForDisplay).length;
+  $('st-bridges').textContent = bridgeSet.size;
+
+  $('numSegments').value = Math.min(Math.max(Math.ceil(entities.length / 80), 2), 10);
+  $('entitiesPerSegment').value = 80;
+
+  updatePreview();
+}
+
+function formatBytes(b) {
+  if (b > 1048576) return (b/1048576).toFixed(1) + ' MB';
+  return (b/1024).toFixed(0) + ' KB';
+}
+
+function getEntityId(e) {
+  return e.id || e.label || e.name || JSON.stringify(e).slice(0,50);
+}
+
+function planSegments() {
+  const entities = graph.entities;
+  const a = graph._analysis;
+  let segments = [];
+
+  if (splitMode === 'count') {
+    const n = Math.max(2, Math.min(20, parseInt($('numSegments').value) || 4));
+    const chunkSize = Math.ceil(entities.length / n);
+    for (let i = 0; i < n; i++) {
+      const chunk = entities.slice(i * chunkSize, (i+1) * chunkSize);
+      if (chunk.length) segments.push({ label: `Part_${i+1}_of_${n}`, entities: chunk });
+    }
+  } else if (splitMode === 'size') {
+    const sz = Math.max(10, Math.min(500, parseInt($('entitiesPerSegment').value) || 80));
+    let i = 0, part = 1;
+    while (i < entities.length) {
+      const chunk = entities.slice(i, i + sz);
+      segments.push({ label: `Part_${part}`, entities: chunk });
+      i += sz; part++;
+    }
+  } else {
+    // groups mode
+    const contextN = Math.max(0, parseInt($('contextEntities').value) || 10);
+    const contextEntities = entities.filter(e => a.bridgeIds.includes(getEntityId(e))).slice(0, contextN);
+
+    if (a.hasPrefixGroups) {
+      // group by prefix pattern
+      a.prefixes.forEach(prefix => {
+        const chunk = entities.filter(e => {
+          const raw = (getEntityId(e) || '').split(' ')[0];
+          const parts = raw.split(',').map(p => p.trim());
+          return parts.includes(prefix);
+        });
+        if (chunk.length) {
+          const extra = contextEntities.filter(ce => !chunk.find(x => getEntityId(x) === getEntityId(ce)));
+          segments.push({ label: `Group_${prefix}`, entities: chunk, context: extra });
+        }
+      });
+      if (segments.length === 0) {
+        // fallback to type grouping if prefix filtering produced nothing
+        Object.keys(a.typeMap).forEach(t => {
+          const chunk = entities.filter(e => (e.type || 'unknown') === t);
+          if (chunk.length) segments.push({ label: `Type_${t.replace(/[^a-zA-Z0-9]/g,'_')}`, entities: chunk });
+        });
+      }
+    } else {
+      // group by type (generic knowledge graphs)
+      Object.keys(a.typeMap).forEach(t => {
+        const chunk = entities.filter(e => (e.type || 'unknown') === t);
+        if (chunk.length) segments.push({ label: `Type_${t.replace(/[^a-zA-Z0-9]/g,'_').slice(0,40)}`, entities: chunk });
+      });
+    }
+  }
+
+  return segments;
+}
+
+function getRelationsForIds(ids) {
+  const idSet = new Set(ids);
+  // support different relation shapes: subject/object, source/target, from/to
+  return graph.relations.filter(r => {
+    const s = r.subject || r.source || r.from;
+    const o = r.object || r.target || r.to || r.objectId;
+    return idSet.has(s) || idSet.has(o);
+  });
+}
+
+function updatePreview() {
+  if (!graph) return;
+  const segments = planSegments();
+  const list = $('previewList');
+  list.innerHTML = '';
+
+  segments.forEach((seg, i) => {
+    const allEntityIds = [...seg.entities.map(e => getEntityId(e)), ...(seg.context||[]).map(e => getEntityId(e))];
+    const rels = getRelationsForIds(allEntityIds);
+    const div = document.createElement('div');
+    div.className = 'preview-item';
+    div.innerHTML = `
+      <span class="seg-name">${fileName}_${seg.label}.json</span>
+      <span class="seg-count">${seg.entities.length} entities · ${rels.length} relations${seg.context&&seg.context.length ? ` · +${seg.context.length} context` : ''}</span>
+      <span class="seg-badge ${i===0?'badge-entities':i===segments.length-1?'badge-relations':'badge-context'}">Seg. ${i+1}</span>
+    `;
+    list.appendChild(div);
+  });
+
+  const info = splitMode === 'prefix'
+    ? (graph._analysis.hasPrefixGroups
+        ? `Each segment contains all entities of one prefix/type cluster plus up to <strong>${$('contextEntities').value}</strong> bridge nodes as context.`
+        : `Grouping by entity <code>type</code> (no prefix codes detected). Each segment contains one type cluster.`)
+    : `Each segment contains a balanced slice of entities and all relations where at least one endpoint lies inside the segment. Ideal for LLM processing and targeted iteration.`;
+  $('infoBox').innerHTML = info;
+}
+
+async function generateSegments() {
+  const segments = planSegments();
+  $('section-configure').style.display = 'none';
+  $('section-download').style.display = 'block';
+
+  const logBox = $('logBox');
+  const bar = $('progressBar');
+  logBox.innerHTML = '';
+
+  function log(msg, cls='') {
+    const d = document.createElement('div');
+    d.className = 'log-line ' + cls;
+    d.textContent = msg;
+    logBox.appendChild(d);
+    logBox.scrollTop = logBox.scrollHeight;
+  }
+
+  log(`Starting generation of ${segments.length} segments…`);
+
+  for (let i = 0; i < segments.length; i++) {
+    const seg = segments[i];
+    const allEntities = [...seg.entities, ...(seg.context||[])];
+    const allEntityIds = allEntities.map(e => getEntityId(e));
+    const rels = getRelationsForIds(allEntityIds);
+
+    const segGraph = {
+      _meta: {
+        source: fileName + '.json',
+        segment: seg.label,
+        segment_index: i + 1,
+        segment_total: segments.length,
+        entity_count: seg.entities.length,
+        context_count: (seg.context||[]).length,
+        relation_count: rels.length,
+        split_mode: splitMode,
+        generated: new Date().toISOString().slice(0,10),
+        tool: 'knowledge-graph-splitter',
+        compatible_with: ['graph.json', 'nodes/edges', 'entities/relations']
+      },
+      entities: allEntities,
+      relations: rels
+    };
+
+    const blob = new Blob([JSON.stringify(segGraph, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${fileName}_${seg.label}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+
+    const pct = Math.round(((i+1) / segments.length) * 100);
+    bar.style.width = pct + '%';
+    log(`✓ ${a.download}  (${seg.entities.length} entities + ${rels.length} relations)`, 'ok');
+
+    await new Promise(r => setTimeout(r, 120));
+  }
+
+  log('');
+  log(`Done! ${segments.length} files downloaded.`, 'ok');
+  log('Note: Each file contains _meta with traceability info for later reassembly.', 'warn');
+}
+
+function resetTool() {
+  graph = null;
+  $('fileInput').value = '';
+  $('section-upload').style.display = 'block';
+  $('section-configure').style.display = 'none';
+  $('section-download').style.display = 'none';
+  $('dropZone').classList.remove('drag-over');
+}
+
+
+
+// --- V2: Simple / Complex view logic ---
+let currentView = 'simple'; // default after load
+let lastConfirmedSegmentCount = 4;
+let pendingSegmentCount = null;
+
+function applyView() {
+  if (currentView === 'simple') {
+    document.body.classList.add('simple-view');
+    document.body.classList.remove('complex-view');
+    document.getElementById('viewToggleBtn').textContent = 'Switch to the more complex view';
+    document.getElementById('viewBadge').style.display = 'inline-block';
+    // Enforce count mode in simple view
+    splitMode = 'count';
+    // Update mode buttons UI (for when we switch back)
+    ['count','size','prefix'].forEach(k => {
+      const btn = document.getElementById('mode'+k.charAt(0).toUpperCase()+k.slice(1));
+      if (btn) btn.classList.toggle('active', k === 'count');
+    });
+    document.getElementById('opt-count').style.display = 'flex';
+    // Hide complex-only is handled by CSS
+  } else {
+    document.body.classList.remove('simple-view');
+    document.body.classList.add('complex-view');
+    document.getElementById('viewToggleBtn').textContent = 'Switch to simple view';
+    document.getElementById('viewBadge').style.display = 'none';
+  }
+  if (typeof updatePreview === 'function') updatePreview();
+}
+
+function toggleView() {
+  currentView = currentView === 'simple' ? 'complex' : 'simple';
+  applyView();
+}
+
+document.getElementById('viewToggleBtn').addEventListener('click', toggleView);
+
+// Override analyzeGraph's numSegments preset to always 4 in V2
+const _origAnalyze = analyzeGraph;
+analyzeGraph = function() {
+  _origAnalyze();
+  // V2 requirement: Number of segments always preset to 4
+  const ns = document.getElementById('numSegments');
+  if (ns) ns.value = 4;
+  lastConfirmedSegmentCount = 4;
+  pendingSegmentCount = null;
+  // Show toggle button and switch to simple view after load
+  document.getElementById('viewToggleBtn').style.display = 'block';
+  currentView = 'simple';
+  applyView();
+};
+
+// Warning logic for segment count
+function showSegmentWarning(newVal) {
+  pendingSegmentCount = newVal;
+  document.getElementById('segmentWarningOverlay').classList.add('open');
+}
+function hideSegmentWarning() {
+  document.getElementById('segmentWarningOverlay').classList.remove('open');
+  pendingSegmentCount = null;
+}
+function confirmSegmentChange() {
+  if (pendingSegmentCount !== null) {
+    lastConfirmedSegmentCount = pendingSegmentCount;
+    document.getElementById('numSegments').value = pendingSegmentCount;
+    if (typeof updatePreview === 'function') updatePreview();
+  }
+  hideSegmentWarning();
+}
+function cancelSegmentChange() {
+  document.getElementById('numSegments').value = lastConfirmedSegmentCount;
+  if (typeof updatePreview === 'function') updatePreview();
+  hideSegmentWarning();
+}
+document.getElementById('btnWarnConfirm').addEventListener('click', confirmSegmentChange);
+document.getElementById('btnWarnCancel').addEventListener('click', cancelSegmentChange);
+document.getElementById('segmentWarningOverlay').addEventListener('click', (e) => {
+  if (e.target.id === 'segmentWarningOverlay') cancelSegmentChange();
+});
+
+// Intercept numSegments change
+const _numInput = document.getElementById('numSegments');
+_numInput.addEventListener('change', (e) => {
+  let val = parseInt(e.target.value);
+  if (isNaN(val)) return;
+  val = Math.max(2, Math.min(20, val));
+  if (val === 4) {
+    lastConfirmedSegmentCount = 4;
+    e.target.value = 4;
+    updatePreview();
+    return;
+  }
+  // Any deviation from 4 triggers warning
+  e.target.value = lastConfirmedSegmentCount; // revert visually until confirmed
+  showSegmentWarning(val);
+});
+
+// Also handle input via Enter or manual typing: prevent immediate update
+// Keep original input listener but override after warning logic
+// Remove old listener duplication: ensure updatePreview not called before confirm
+// The original listener was on 'input' -> we replace with our controlled flow
+// For complex view size/context inputs, keep normal preview updates (already attached)
+
+// Ensure reset also resets view
+const _origReset = resetTool;
+resetTool = function() {
+  _origReset();
+  currentView = 'simple';
+  lastConfirmedSegmentCount = 4;
+  pendingSegmentCount = null;
+  const ns = document.getElementById('numSegments');
+  if (ns) ns.value = 4;
+  document.body.classList.remove('simple-view','complex-view');
+  document.getElementById('viewToggleBtn').style.display = 'none';
+  document.getElementById('viewBadge').style.display = 'none';
+  document.getElementById('segmentWarningOverlay').classList.remove('open');
+};
+
+</script>
+</body>
+</html>

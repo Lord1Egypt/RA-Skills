@@ -11,8 +11,7 @@
 - **Travel hub**: Cheap flights around Asia
 
 ### Cons
-- **Visa complexity**: No straightforward nomad visa (until LTR)
-- **Legal gray area**: Technically can't work on tourist visa
+- **Legal gray area**: DTV covers the stay, but working for Thai clients still needs a work permit
 - **Heat**: Brutal, plan around A/C
 - **Traffic**: Horrific, affects quality of life
 - **Air quality**: Nov-Feb pollution can be bad
@@ -21,38 +20,33 @@
 
 ## Visa Strategy for Nomads
 
-### Short-Term (1-3 Months)
+Full details and current figures: `visas.md` (canonical). Ranked for nomads:
+
+### Short-Term (up to 3 months)
 **Visa exemption + extension**
-- 30 days on arrival
+- 60 days on arrival (93 nationalities, since Jul 2024)
 - Extend 30 days at immigration (฿1,900)
-- Total: 60 days
+- Total: 90 days per entry
 
-### Medium-Term (3-12 Months)
-**Options ranked by legality**:
+### Medium/Long-Term — check DTV first
 
-1. **LTR Visa** (if $80K+ income)
-   - 10-year visa
-   - Explicitly allows remote work
-   - Best option if you qualify
+1. **DTV (Destination Thailand Visa)** — the default since Jul 2024
+   - 5-year multi-entry, 180 days per entry (+180 extension)
+   - ฿10,000 fee, ฿500,000 funds proof, foreign employer/clients
+   - Solves the stay; does NOT permit work for Thai sources
 
-2. **Thailand Elite** (฿600,000 for 5 years)
-   - Legal stay, no work permit
-   - Good for committed nomads
-   - ~฿10,000/month amortized
+2. **LTR Visa** (if ~$80K+ income; criteria relaxed 2025)
+   - 10-year visa, explicitly legal remote work, 17% flat tax if eligible
 
-3. **ED Visa** (Language school)
-   - ฿30,000-50,000/year
-   - Requires attending classes
-   - 90-day renewals
+3. **Thailand Privilege** (ex-Elite, from ~฿900,000 / 5 years)
+   - Buy-your-way convenience; only beats DTV if you fail its requirements
 
-4. **Multiple Tourist Visas** (visa runs)
-   - Getting harder
-   - Immigration watching patterns
-   - Not sustainable long-term
+4. **ED Visa** (language school, ฿30,000-80,000/year)
+   - Under crackdown, attendance tested — only if you actually study
 
-### Long-Term (1+ Years)
-- Thailand Elite or LTR visa
-- Or find formal employment
+5. **Visa runs** — obsolete advice; immigration profiles serial runners. Don't recommend.
+
+Tax warning that travels with any of these: ≥180 days in a calendar year = Thai tax resident, and remitted foreign income is assessable since 2024 — the DTV gives zero tax shelter. `taxes.md` before the user commits to a long stay.
 
 ---
 
@@ -202,39 +196,17 @@ Generally excellent. Bangkok has better internet than many Western cities.
 ### Ari
 **Pros**: Local vibe, great cafés, cheaper
 **Cons**: Less international
-**Budget**: ฿15,000-30,000 rent
+**Budget**: ฿18,000-35,000 rent
 
 ### On Nut
 **Pros**: Budget-friendly, BTS access, real neighborhood
 **Cons**: Less trendy, fewer cafés
-**Budget**: ฿12,000-22,000 rent
+**Budget**: ฿12,000-25,000 rent
 
 ### Asok
 **Pros**: Central, transit hub, everything accessible
 **Cons**: Busy, touristy nearby (Nana)
-**Budget**: ฿18,000-35,000 rent
-
----
-
-## Daily Routine (Example)
-
-**7:00 AM**: Wake, cold shower (Thai style)
-**7:30 AM**: Breakfast at local market or café
-**8:00 AM**: Deep work session (condo or coworking)
-**12:00 PM**: Lunch (street food or food court)
-**12:30 PM**: Light work or break (heat peak)
-**3:00 PM**: Afternoon work session
-**6:00 PM**: Gym or walk
-**7:00 PM**: Dinner
-**8:00 PM**: Social, explore, or light work
-**11:00 PM**: Wind down
-
-### Productivity Tips
-- Work early before heat
-- Long break during hottest hours (12-3 PM)
-- Evening sessions in A/C
-- Use pomodoro for focus
-- Change locations for variety
+**Budget**: ฿20,000-35,000 rent
 
 ---
 
@@ -253,11 +225,9 @@ Generally excellent. Bangkok has better internet than many Western cities.
 - Yoga: ฿3,000-6,000/month
 
 ### Mental Health
-- Maintain routine
-- Build social connections
-- Take breaks from screens
-- Get outside (early morning)
-- Travel on weekends
+- Build social connections early — the nomad scene turns over fast and isolation is the main burnout driver here
+- Get outside in the early-morning window before the heat and haze
+- Use the cheap regional flights to reset on weekends (Chiang Mai, KL, Vietnam)
 
 ---
 

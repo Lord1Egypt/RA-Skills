@@ -1,42 +1,50 @@
-## Description: <br>
-Vienna public transport (Wiener Linien) real-time data. Use when asking about departures, schedules, disruptions, elevator status, or directions in Vienna's public transport (U-Bahn, tram, bus, night bus). Queries stops, lines, and traffic info. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Vienna public transport (Wiener Linien) real-time data. Use when asking about departures, schedules, disruptions, elevator status, or directions in Vienna's public transport (U-Bahn, tram, bus, night bus). Queries stops, lines, and traffic info.
 
-## Publisher: <br>
-[hjanuschka](https://clawhub.ai/user/hjanuschka) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hjanuschka](https://clawhub.ai/user/hjanuschka)
 
-## Use Case: <br>
-External users and developers use this skill to look up Vienna public transport departures, stop identifiers, service disruptions, and elevator outages from public Wiener Linien data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound HTTPS requests to wienerlinien.at. <br>
-Mitigation: Install and run it only in environments where public Wiener Linien transit lookups and outbound network access to that domain are acceptable. <br>
-Risk: The helper scripts depend on curl and jq being present. <br>
-Mitigation: Confirm curl and jq are installed before use so API responses can be fetched and parsed as expected. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Wiener Linien Skill on ClawHub](https://clawhub.ai/hjanuschka/wienerlinien) <br>
-- [Wiener Linien Open Data](https://www.wienerlinien.at/open-data) <br>
-- [Wiener Linien Real-Time API](https://www.wienerlinien.at/ogd_realtime) <br>
-- [Wiener Linien Stops CSV](https://www.wienerlinien.at/ogd_realtime/doku/ogd/wienerlinien-ogd-haltepunkte.csv) <br>
+## Use Case:
 
+External users and developers use this skill to query Vienna public transport stops, departures, disruptions, and elevator outage information from Wiener Linien public real-time data.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON output from Wiener Linien API calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq; makes outbound HTTPS requests to wienerlinien.at and should not require credentials or private local data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Stop-name searches may treat user input as grep options or regular expressions.
+
+Mitigation: Harden search-stop.sh by using literal matching, for example grep -iF -- "$QUERY", and use normal stop names, line names, and stop IDs as inputs.
+
+## Reference(s):
+
+- [Wiener Linien OGD Realtime API](https://www.wienerlinien.at/ogd_realtime)
+- [Wiener Linien Stop Reference CSV](https://www.wienerlinien.at/ogd_realtime/doku/ogd/wienerlinien-ogd-haltepunkte.csv)
+- [ClawHub Skill Page](https://clawhub.ai/hjanuschka/skills/wienerlinien)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public Wiener Linien API responses; scripts require curl and jq.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

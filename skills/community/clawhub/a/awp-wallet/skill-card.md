@@ -1,45 +1,59 @@
-## Description: <br>
-AWP Wallet gives agents an EVM wallet CLI for transfers, balance checks, approvals, message signing, gas estimates, transaction status, and gasless operations across configured EVM chains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AWP Wallet helps agents handle EVM wallet tasks such as balance checks, transfers, token approvals, message signing, gas estimation, and transaction history across EVM chains.
 
-## Publisher: <br>
-[kilb](https://clawhub.ai/user/kilb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kilb](https://clawhub.ai/user/kilb)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent operate an EVM wallet for balance queries, token transfers, approvals, signing, transaction history, and gasless transaction workflows. It is intended for wallet operations that require explicit user confirmation before high-impact actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can authorize wallet transfers, approvals, signatures, batch operations, API-key persistence, and EIP-7702 actions. <br>
-Mitigation: Require explicit human review before every transfer, approval, signature, batch operation, API-key persistence action, and EIP-7702 operation. <br>
-Risk: Using an existing or high-value wallet could expose significant funds to agent mistakes or misuse. <br>
-Mitigation: Use a dedicated low-value wallet and avoid importing an existing seed phrase. <br>
-Risk: Local secret-management behavior and installation choices affect wallet security. <br>
-Mitigation: Avoid sudo installation, inspect ~/.openclaw-wallet storage before use, and configure recipient restrictions where possible. <br>
+## Use Case:
 
+Developers and agent operators use this skill when an agent needs to check wallet state, prepare or submit EVM transactions, approve token spending, sign messages, estimate gas, or inspect transaction status. The skill is intended for wallet operations that require careful user confirmation because they can affect funds or authorizations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kilb/awp-wallet) <br>
-- [Publisher profile](https://clawhub.ai/user/kilb) <br>
-- [Project homepage](https://github.com/awp-core/awp-wallet) <br>
-- [Node package install metadata](npm:awp-wallet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands; CLI commands return JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses session tokens for wallet operations and optional environment variables for wallet password, gasless providers, and wallet isolation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.15.0 (source: package.json and server release evidence) <br>
+Risk: The skill can move funds, approve token spending, or sign data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation that includes the chain, asset, amount, recipient or spender, and requested signing action before execution.
+
+Risk: Installer and session handling are under-scoped for wallet authority.
+
+Mitigation: Review before installing, do not run the installer with sudo, and use separate low-value wallet profiles until the installation and session handling concerns are resolved.
+
+Risk: Secrets or session tokens may be exposed if passed in logged command lines.
+
+Mitigation: Avoid passing seed phrases, passwords, API keys, or session tokens in logged command lines; prefer controlled environment handling and lock sessions when work is complete.
+
+## Reference(s):
+
+- [AWP Wallet ClawHub Skill](https://clawhub.ai/kilb/skills/awp-wallet)
+- [AWP Wallet Homepage](https://github.com/awp-core/awp-wallet)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/kilb)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples; awp-wallet commands return JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local Node.js CLI installation and wallet/session configuration; operations may interact with live EVM networks.]
+
+## Skill Version(s):
+
+0.15.0 (source: package.json and ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

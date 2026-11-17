@@ -1,39 +1,49 @@
-## Description: <br>
-Analyzes images, URLs, or descriptions and helps recreate Flatsome theme pages with UXBuilder shortcodes, CSS, and WordPress setup guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze images, URLs, or descriptions to recreate Flatsome WordPress pages with UXBuilder shortcodes, CSS, and WordPress setup guidance.
 
-## Publisher: <br>
-[hungphamwp](https://clawhub.ai/user/hungphamwp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hungphamwp](https://clawhub.ai/user/hungphamwp)
 
-## Use Case: <br>
-Developers and WordPress builders use this skill to analyze a reference design and generate Flatsome UXBuilder shortcode, CSS, and WP-CLI setup guidance for recreating complete pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: WP-CLI guidance can mutate a real WordPress site, including plugin activation, option changes, remote media imports, and forced page deletion. <br>
-Mitigation: Use a staging site first, keep a backup, and require explicit approval for the exact site, page ID, title, and command before any mutating WP-CLI action. <br>
-Risk: Commands using destructive flags such as `--force` can permanently delete content. <br>
-Mitigation: Do not run destructive commands unless the user has reviewed the target resource and approved the exact command. <br>
+## Use Case:
 
+Developers and site builders use this skill to convert reference designs into Flatsome UXBuilder page structures, CSS, WP-CLI commands, and configuration guidance for WordPress sites.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with Flatsome UXBuilder shortcodes, CSS blocks, and inline bash/WP-CLI commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include WordPress page IDs, image/form placeholders, and commands requiring site-specific review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can guide an agent to run admin-level WP-CLI operations, including irreversible page deletion and published-content changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a staging site and current backups, confirm the WordPress path and post IDs, avoid --force deletion unless explicitly approved, and review plugin installs, theme changes, and publishing actions before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hungphamwp/skills/flatsome-wordpress)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with UXBuilder shortcodes, CSS snippets, WP-CLI command blocks, and setup checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include page structure plans, shortcode templates, theme configuration steps, and validation checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

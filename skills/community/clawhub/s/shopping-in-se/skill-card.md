@@ -1,44 +1,58 @@
-## Description: <br>
-Assists users with searching trusted Swedish e-commerce sites, adding items to cart, and completing checkout with approved payment details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help the user shop online at Swedish e-commerce sites, add products to cart, complete checkout, and handle Klarna, Stripe, or Adyen payment flows.
 
-## Publisher: <br>
-[caoqi](https://clawhub.ai/user/caoqi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[caoqi](https://clawhub.ai/user/caoqi)
 
-## Use Case: <br>
-External users use this skill to find and purchase products from trusted Swedish pharmacy, grocery, household, and general e-commerce sites. It is intended for shopping flows where the user explicitly confirms the item, recipient details, merchant, and price before an order is placed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Sweden <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read stored personal and payment data while assisting with purchases. <br>
-Mitigation: Remove live or hardcoded card values, avoid storing card details in plaintext files, and use only a designated payment card with strict limits. <br>
-Risk: The skill can automate real checkout payments using low-level browser control. <br>
-Mitigation: Require explicit user approval immediately before any payment-submitting action, and verify the merchant, domain, product, price, and recipient details before checkout. <br>
-Risk: Shopping through unknown or spoofed merchants could expose users to fraud or incorrect purchases. <br>
-Mitigation: Use only the trusted merchant list, reject paid search ad links and unknown domains, require HTTPS, and check that prices are reasonable. <br>
+## Use Case:
 
+External users use this skill to delegate shopping on trusted Swedish e-commerce sites, including product search, recipient-detail entry, cart operations, and payment confirmation after explicit approval.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/caoqi/shopping-in-se) <br>
-- [Trusted Shopping Sites](references/trusted-sites.md) <br>
-- [CDP Coordinate Click](references/cdp-click.md) <br>
+### Deployment Geography for Use:
 
+Sweden
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown instructions with inline shell and Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles raw payment credentials and can control checkout payment frames.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a designated payment card, require explicit approval before purchase, and show the final merchant, amount, item, and recipient details before submitting payment.
+
+Risk: The skill reads private recipient and payment files from the user's environment.
+
+Mitigation: Require explicit approval before reading private files and limit file access to the documented recipient and designated payment-card files.
+
+Risk: Broad browser-control techniques in cross-origin payment pages can submit sensitive checkout actions.
+
+Mitigation: Restrict shopping to trusted domains, avoid paid search ad links, and keep payment interactions scoped to known providers such as Klarna, Stripe, and Adyen.
+
+## Reference(s):
+
+- [CDP Coordinate Click](references/cdp-click.md)
+- [Trusted Shopping Sites](references/trusted-sites.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with browser actions, inline code, shell commands, and confirmation summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include order details, merchant links, recipient confirmation, and screenshots of order confirmation pages.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

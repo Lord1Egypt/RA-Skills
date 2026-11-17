@@ -1,39 +1,54 @@
-## Description: <br>
-Validates generated test cases before final output by checking factual grounding, consistency, executability, and traceability against the provided requirements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validates AI-generated test cases against requirements for factual accuracy, consistency, executability, and traceability before final delivery.
 
-## Publisher: <br>
-[kokxi](https://clawhub.ai/user/kokxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kokxi](https://clawhub.ai/user/kokxi)
 
-## Use Case: <br>
-QA engineers, developers, and agents use this skill as a final guard before publishing generated test cases. It returns pass/fail validation with fact-check, consistency, executability, issue-list, and traceability findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad quality-check requests may activate this skill when a different review was intended. <br>
-Mitigation: Confirm that the task is final test-case validation against requirements before applying its findings. <br>
-Risk: Validation quality depends on the supplied requirements decomposition and generated test cases. <br>
-Mitigation: Return unresolved or missing-source items in the issue list and require correction before final output. <br>
+## Use Case:
 
+QA practitioners and developers use this skill to check generated test cases against source requirements before delivery, flagging unsupported claims, contradictions, unworkable steps, and missing traceability.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown validation report with pass/fail status, tables, issue lists, and traceability notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only QA checklist; expected inputs include generated test cases and a requirements decomposition table.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: frontmatter and release evidence) <br>
+Risk: Incorrectly flagged cases could lead to deletion of valid tests or requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm findings against source requirements and back up originals before deleting or changing cases.
+
+Risk: The companion installation command may execute publisher-supplied code.
+
+Mitigation: Review the package or pinned source and trust the publisher before running the command.
+
+## Reference(s):
+
+- [Validation dimensions](references/validation-dimensions.md)
+- [ClawHub skill listing](https://clawhub.ai/kokxi/skills/qa-output-validation)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown validation report with pass/fail results, findings, and source traceability]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings refer to existing test case IDs; coverage statements identify their source scope and gaps.]
+
+## Skill Version(s):
+
+1.8.0 (source: skill frontmatter and ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,55 @@
-## Description: <br>
-Fetches BlockBeats crypto news, filters items by keyword, removes HTML from text fields, formats timestamps, and returns structured JSON for downstream automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches BlockBeats crypto flash news, filters items by keyword, and returns cleaned, timestamp-normalized JSON for downstream agent workflows.
 
-## Publisher: <br>
-[leesen86](https://clawhub.ai/user/leesen86) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leesen86](https://clawhub.ai/user/leesen86)
 
-## Use Case: <br>
-Developers and automation builders use this skill to retrieve recent BlockBeats crypto news, filter it by one or more keywords, and pass the cleaned JSON results into summarization, translation, notification, or other workflow steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled Feishu push scripts include hardcoded gateway credentials and a default recipient. <br>
-Mitigation: Use only the core news fetcher unless Feishu delivery is explicitly needed; remove or rotate embedded credentials and require explicit recipient selection before sending messages. <br>
-Risk: The push script invokes the news fetcher through shell command construction. <br>
-Mitigation: Prefer argument-based process execution and validate user-provided keyword and count inputs before enabling push automation. <br>
-Risk: Fetched news depends on the BlockBeats API shape and availability. <br>
-Mitigation: Treat returned fields as variable, validate the JSON array before downstream processing, and handle API failures or empty results. <br>
+## Use Case:
 
+Developers and agent operators use this skill to collect recent crypto news from BlockBeats, filter by one or more keywords, and pass structured JSON into follow-on automation such as summarization, translation, or notification workflows.
 
-## Reference(s): <br>
-- [BlockBeats Open Flash API](https://api.theblockbeats.news/v1/open-api/open-flash) <br>
-- [ClawHub release page](https://clawhub.ai/leesen86/get-news) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, API Calls, Shell commands, Guidance] <br>
-**Output Format:** [JSON array emitted to stdout, with command examples documented in Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [News items have text fields cleaned of HTML and timestamp fields formatted while preserving raw timestamp values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The package includes under-disclosed scripts that can send Feishu messages through a local OpenClaw gateway using a credential embedded in source.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the documented news-fetching script only unless Feishu delivery is intentional; before using messaging scripts, rotate or replace the exposed token and confirm the target recipient and gateway permissions.
+
+Risk: Additional package behavior and dependency hygiene need review, including a shell execution issue and an unused ws dependency identified by the security guidance.
+
+Mitigation: Review push-news.js and send-feishu.js before execution, fix the shell execution issue, and remove or update the unused dependency before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leesen86/skills/get-news)
+- [ClawHub publisher profile](https://clawhub.ai/user/leesen86)
+- [BlockBeats open flash API](https://api.theblockbeats.news/v1/open-api/open-flash)
+
+## Skill Output:
+
+**Output Type(s):** [json, shell commands, text]
+
+**Output Format:** [JSON array written to stdout, with optional shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Items may include cleaned text fields, formatted timestamp fields, original timestamp values with _raw suffixes, titles, IDs, and links.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

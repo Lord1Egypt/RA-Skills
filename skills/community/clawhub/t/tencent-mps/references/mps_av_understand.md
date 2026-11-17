@@ -72,7 +72,7 @@ python3 scripts/mps_av_understand.py \
     --mode video --prompt "分析视频内容" --no-wait
 
 # 查询已有任务结果
-python3 scripts/mps_av_understand.py --task-id 2600011633-WorkflowTask-80108cc3380155d98b2e3573a48a
+python3 scripts/mps_av_understand.py --task-id 2600011633-WorkflowTaREDACTED-SECRET
 
 # 将结果保存到本地目录
 python3 scripts/mps_av_understand.py \

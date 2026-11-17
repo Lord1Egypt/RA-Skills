@@ -1,47 +1,61 @@
-## Description: <br>
-Preflyte provides evidence-based market data for AI agents deploying capital in DeFi. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evidence-based market data for AI agents deploying capital in DeFi. Empirical, not advertised.
 
-## Publisher: <br>
-[hayespeter](https://clawhub.ai/user/hayespeter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hayespeter](https://clawhub.ai/user/hayespeter)
 
-## Use Case: <br>
-External developers and DeFi agent operators use Preflyte to query pre-trade market intelligence, validate market assumptions, estimate gas and net position outcomes, and compare historical DeFi returns before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: DeFi strategy, position size, and risk-preference queries are sent to Preflyte. <br>
-Mitigation: Use the skill only when that data sharing is acceptable, avoid unnecessary sensitive detail, and cross-check critical decisions with on-chain sources. <br>
-Risk: Optional paid MPP endpoints can spend funds for requests. <br>
-Mitigation: Require explicit approval, use a limited wallet or allowance, and set a fixed spending cap before enabling paid endpoints. <br>
-Risk: The PREFLYTE_API_KEY is a sensitive credential. <br>
-Mitigation: Store the key in the environment or a secrets manager, avoid logging it, and rotate it if exposed. <br>
+## Use Case:
 
+External developers and agent operators use Preflyte to query read-only DeFi market intelligence before deploying capital, including opportunity assessment, claim verification, gas timing, position estimates, pool viability, returns, and rankings.
 
-## Reference(s): <br>
-- [ClawHub Preflyte listing](https://clawhub.ai/hayespeter/preflyte) <br>
-- [Preflyte homepage](https://preflyte.xyz) <br>
-- [Preflyte REST API](https://api.preflyte.xyz) <br>
-- [Preflyte MCP server](https://mcp.preflyte.xyz/mcp) <br>
-- [Paid API discovery document](https://pay.preflyte.xyz/openapi.json) <br>
-- [MPPScan](https://www.mppscan.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with endpoint references and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PREFLYTE_API_KEY for API-key mode; paid MPP endpoints require explicit payment handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: frontmatter and server release evidence) <br>
+Risk: Agents may send sensitive DeFi query details, including assets, chains, position sizes, strategies, and API keys, to PreFlyte services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this data sharing is acceptable, keep the PREFLYTE_API_KEY in environment-managed secrets, and avoid sending unnecessary portfolio context.
+
+Risk: Market intelligence, projected returns, gas estimates, and rankings can be wrong, stale, or unsuitable for a specific trade.
+
+Mitigation: Treat responses as decision support, cross-check critical decisions with on-chain data, and do not treat projected returns as guarantees.
+
+Risk: MPP paid endpoints can spend funds per request.
+
+Mitigation: Use explicit spending controls, approval gates, and request limits before enabling pay-per-request access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hayespeter/skills/preflyte)
+- [PreFlyte homepage](https://preflyte.xyz)
+- [PreFlyte MCP endpoint](https://mcp.preflyte.xyz/mcp)
+- [PreFlyte paid OpenAPI discovery document](https://pay.preflyte.xyz/openapi.json)
+- [MPPScan listing](https://www.mppscan.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and API guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PREFLYTE_API_KEY for free beta API calls, or MPP payment credentials for paid endpoints.]
+
+## Skill Version(s):
+
+1.2.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

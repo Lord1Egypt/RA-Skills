@@ -109,9 +109,10 @@ answer = ones + tenMinus
 
 2. `split_to_10`：摆成两排  
    - childText：`{a} = {ones} + 10`
-   - 家长说：`破十法先把{a}摆成两排：第一排10个，第二排{ones}个。第二排有几个？`
+   - 家长说：`破十法先把{a}拆成{ones}和10。{a}里面有几个单独的？`
    - expected：`{ones}`
-   - wrongHint：`第一排固定摆10个，剩下的都放第二排。`
+   - wrongHint：`{a}就是10再多{ones}个，所以可以写成{ones}加10。`
+   - 画面：第一排固定 10 个，第二排 `{ones}` 个；此步只摆开、不分色、不灰掉。
 
 3. `borrow_from_ten`：第一排 10 个减少  
    - childText：`10 - {b} = ?`
@@ -266,31 +267,47 @@ answer = 10 - remain
 
 ### 步骤模板
 
+**顺序必须固定为：先拆减数 → 再减到 10 → 再减剩余。** 拆减数在前，孩子才先建立“要减的 b 被分成两段”的概念。
+
 1. `intro`：展示主问题  
    - childText：`{a} - {b}`
    - 家长说：`{character}有{a}{itemName}，{goal}要{removeVerb}{b}{itemName}。我们来算算还剩几。`
+   - 画面：`{a}` 个物品全部**同一种颜色（绿框）**，表示它们都属于同一个被减数。
 
-2. `subtract_to_ten`：先减到10  
-   - childText：`{a} - ? = 10`
-   - 家长说：`我们先把{a}减到10。{a}先减几可以变成10？`
-   - expected：`{toTen}`
-   - wrongHint：`{a}里面有10和{toTen}，多出来的是{toTen}，先减掉{toTen}就变成10。`
-
-3. `split_subtrahend`：拆减数  
+2. `split_subtrahend`：拆减数  
    - childText：`{b} = {toTen} + {remain}`
-   - 家长说：`一共要减{b}，刚才已经减了{toTen}，还要再减几？`
+   - 家长说：`先看要减的{b}。为了把{a}先减到10，要先减{toTen}，所以把{b}分成{toTen}和几？`
    - expected：`{remain}`
-   - wrongHint：`想一想：{toTen}加几等于{b}？`
+   - wrongHint：`第二排有{toTen}{itemName}，第三排里先拿出同样多的{toTen}{itemName}，剩下就是{remain}。`
+   - 画面：**此步才开始分色**。第二排 `{toTen}` 个标**红框**；第三排 `{b}` 个里，前 `{toTen}` 个也是红框，剩下 `{remain}` 个是绿框。红框合计正好等于 `{b}`。这一小步先分成两段即可，**不要在这里灰掉任何物品**。
+   - 注意：拆分步不要先减第二排，家长还在带孩子建立 `{b} = {toTen} + {remain}`。
 
-4. `continue_subtract`：继续从10减  
+3. `subtract_to_ten`：先减到 10  
+   - childText：`{a} - {toTen} = 10`
+   - 家长说：`先从{a}里面{removeVerb}{toTen}{itemName}，就正好退到10。{a}减{toTen}等于几？`
+   - expected：`10`
+   - wrongHint：`{a}里面有10和{toTen}，先把多出来的{toTen}减掉，就变成10。`
+   - 画面：**先灰掉第二排的红框 `{toTen}` 个**（也就是“与第二排颜色相同的部分”），第一排最后 `{remain}` 个红框暂不动。
+
+4. `continue_subtract`：继续从 10 减  
    - childText：`10 - {remain} = ?`
-   - 家长说：`现在从10里面再减{remain}，还剩几？`
+   - 家长说：`刚才{b}里面还剩{remain}{itemName}没减。现在从10里面再{removeVerb}{remain}{itemName}，还剩几？`
    - expected：`{answer}`
    - wrongHint：`从10往回数{remain}步。`
+   - 画面：再灰掉第一排最后 `{remain}` 个红框。
 
 5. `summary`：总结  
    - childText：`{a} - {b} = {answer}`
-   - 家长说：`我们先把{a}减到10，再继续减剩下的{remain}，所以{a}减{b}等于{answer}。这就是平十法。`
+   - 家长说：`我们先把要减的{b}分成{toTen}和{remain}，先减{toTen}到10，再从10里减{remain}，所以{a}减{b}等于{answer}。这就是平十法。`
+
+### 平十法配色铁律
+
+以 `15 - 8` 为例（`toTen = 5`，`remain = 3`）：
+
+- 初始页：15 个全部绿框。
+- 点“开始摆出来”后：第二排 5 个红框 + 第一排最后 3 个红框，红框合计 8 个 = 要减掉的数。第一排前面的 7 个**绝不能标红**。
+- 减到 10 时：先灰第二排红框 5 个；最后才灰第一排最后 3 个红框。顺序反了就是教错。
+- 不要一开始就分色，也不要把第二排画成非红框。
 
 ---
 

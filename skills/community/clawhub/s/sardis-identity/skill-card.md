@@ -1,44 +1,56 @@
-## Description: <br>
-Agent identity management with TAP protocol verification and reputation tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent identity management with TAP protocol verification and reputation tracking.
 
-## Publisher: <br>
-[EfeDurmaz16](https://clawhub.ai/user/EfeDurmaz16) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[efedurmaz16](https://clawhub.ai/user/efedurmaz16)
 
-## Use Case: <br>
-Developers and agent operators use this skill to register AI agents, retrieve verified identity records, submit or query reputation data, and generate shareable identity cards for marketplace, compliance, and transaction workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can create payment-linked identity and reputation records without clear confirmation or rollback guidance. <br>
-Mitigation: Require manual approval before registering agents, assigning payment or refund capabilities, or submitting reputation comments and transaction IDs. <br>
-Risk: The skill depends on a Sardis API key that may allow sensitive identity or reputation operations. <br>
-Mitigation: Use a least-privilege Sardis API key and test outside production before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/EfeDurmaz16/sardis-identity) <br>
-- [EfeDurmaz16 Publisher Profile](https://clawhub.ai/user/EfeDurmaz16) <br>
-- [Sardis Homepage](https://sardis.sh) <br>
-- [Sardis Identity Documentation](https://sardis.sh/docs/identity) <br>
-- [Sardis TAP Protocol Documentation](https://sardis.sh/docs/tap) <br>
-- [Sardis API Reference](https://api.sardis.sh/v2/docs) <br>
+## Use Case:
 
+Developers and agent operators use this skill to register and verify AI agent identities, retrieve identity status, manage reputation scores, and generate shareable identity cards for agent marketplaces or transaction workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code, markdown] <br>
-**Output Format:** [Markdown with bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces curl and jq command patterns for Sardis identity, verification, reputation, and identity card workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can submit payment-linked agent identity and reputation data to an external Sardis service.
+
+Mitigation: Use a scoped Sardis API key, confirm before registration or reputation POST requests, and avoid submitting sensitive comments or regulated transaction identifiers unless approved.
+
+Risk: The release depends on Sardis API credentials and references the @sardis/sdk package.
+
+Mitigation: Review installation before use and prefer a pinned, reviewed @sardis/sdk version.
+
+## Reference(s):
+
+- [Sardis Homepage](https://sardis.sh)
+- [Sardis Identity Documentation](https://sardis.sh/docs/identity)
+- [TAP Protocol Documentation](https://sardis.sh/docs/tap)
+- [Sardis API Reference](https://api.sardis.sh/v2/docs)
+- [ClawHub Skill Page](https://clawhub.ai/efedurmaz16/skills/sardis-identity)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SARDIS_API_KEY and the curl and jq command-line tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

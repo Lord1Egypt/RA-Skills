@@ -1,42 +1,54 @@
-## Description: <br>
-Git Manager helps agents guide advanced Git operations such as bisecting regressions, cleaning up branches, managing stashes, analyzing history, and handling destructive or history-rewriting commands safely. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides advanced Git operations support for bisecting regressions, cleaning branches, managing stashes, analyzing history, and handling destructive or history-rewriting commands with explicit safety checks.
 
-## Publisher: <br>
-[ppopen](https://clawhub.ai/user/ppopen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ppopen](https://clawhub.ai/user/ppopen)
 
-## Use Case: <br>
-Developers and repository operators use this skill to plan and execute advanced Git diagnostics, branch cleanup, stash recovery, log analysis, and history-rewriting workflows with explicit safety checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Destructive Git commands such as branch deletion, reset --hard, git clean, stash drop/pop, rebase, and forced push can delete work or rewrite history. <br>
-Mitigation: Confirm the current branch, HEAD commit, target commit or branch, remote tracking state, and backup plan before approval; require explicit confirmation before execution. <br>
-Risk: History-rewriting or forced-push workflows can affect collaborators and remote branches. <br>
-Mitigation: Prefer git push --force-with-lease when a forced update is required and verify the remote tracking state before approving the command. <br>
+## Use Case:
 
+Developers and operators use this skill inside Git repositories to plan and review bisect, branch cleanup, stash recovery, and commit history workflows before executing commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ppopen/openclaw-skill-git-manager) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown responses with Git command blocks and safety checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes explicit confirmations for destructive Git operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Destructive Git operations such as hard resets, cleanups, branch deletion, rebases, or forced pushes can lose work or rewrite shared history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the current branch and HEAD, verify target commits, and create a backup branch, tag, stash, or patch before approving execution.
+
+Risk: Incorrect branch, stash, or commit selection can cause the user to act on the wrong repository state.
+
+Mitigation: Require explicit confirmation of the exact branch, commit, stash entry, and remote tracking state before running the proposed command.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ppopen/skills/openclaw-skill-git-manager)
+- [README.md](README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline Git shell commands and safety checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit user confirmation before destructive Git operations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

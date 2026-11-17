@@ -1,39 +1,54 @@
-## Description: <br>
-Vwap reference tool. Use when working with vwap in finance contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Vwap reference tool. Use when working with vwap in finance contexts.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-External users and finance practitioners use this skill as a quick VWAP-oriented reference for formulas, compliance topics, risks, instruments, strategies, glossary terms, and checklist-style guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may provide generic or misleading VWAP finance reference material. <br>
-Mitigation: Treat outputs as a rough placeholder and verify formulas, compliance notes, and checklists against authoritative financial sources before making trading, financial analysis, or operational decisions. <br>
+## Use Case:
 
+External users and finance practitioners use this skill for quick VWAP-oriented reference material, command-driven checklists, formulas, glossary entries, and risk notes.
 
-## Reference(s): <br>
-- [Vwap on ClawHub](https://clawhub.ai/ckchzh/vwap) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference text for VWAP topics including formulas, regulations, risks, instruments, strategies, glossary terms, and checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill is labeled as VWAP-specific but contains mostly generic placeholder finance material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify all VWAP formulas, trading guidance, compliance statements, and educational content against authoritative finance sources before relying on it.
+
+Risk: Users could over-rely on static reference output for trading, compliance, or education decisions.
+
+Mitigation: Use the skill as a starting reference only, and require independent review before applying its content to financial workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/vwap)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown text returned by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference content with command-specific sections for intro, formulas, regulations, risks, instruments, strategies, glossary, and checklist.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

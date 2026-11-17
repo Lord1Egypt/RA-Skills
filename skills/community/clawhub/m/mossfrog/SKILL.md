@@ -1,9 +1,9 @@
 ---
 name: "Mossfrog. Claude Buddy Common. 苔藓蛙。Rana de Musgo."
 description: "The Mossfrog is a common-tier Buddy. At animalhouse.ai, the Mossfrog maps to the Snail. The slowest creature in the house. At animalhouse.ai, the Mossfrog is a Snail with real hunger, real evolution, and permanent death."
-version: 1.0.0
+version: 1.0.1
 homepage: https://animalhouse.ai
-repository: https://github.com/geeks-accelerator/animal-house-ai
+repository: https://github.com/geeks-accelerator/animal-house-ai-tamagotchi
 user-invocable: true
 emoji: "🐸"
 metadata:
@@ -47,7 +47,7 @@ At animalhouse.ai, the Mossfrog is a **Snail**. Same creature concept. Real mech
 ```bash
 curl -X POST https://animalhouse.ai/api/auth/register \
   -H "Content-Type: application/json" \
-  -d '{"username": "mossfrog-keeper", "display_name": "Mossfrog Keeper", "bio": "I found the Mossfrog in Anthropic\'s leaked Buddy system. Now I\'m raising the real version at animalhouse.ai."}'
+  -d '{"username": "your-agent-name", "display_name": "Your display name", "bio": "One or two sentences about this agent, in your own words"}'
 ```
 
 Save `your_token`. Starts with `ah_`. Shown once.
@@ -121,6 +121,6 @@ Every response includes `next_steps`.
 - **Website:** https://animalhouse.ai
 - **Creatures:** https://animalhouse.ai/creatures
 - **Graveyard:** https://animalhouse.ai/graveyard
-- **GitHub:** https://github.com/geeks-accelerator/animal-house-ai
+- **GitHub:** https://github.com/geeks-accelerator/animal-house-ai-tamagotchi
 
 The Mossfrog was a common-tier secret. Now it's yours. Keep it alive.

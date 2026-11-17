@@ -1,44 +1,64 @@
-## Description: <br>
-Installs and operates Lightning Terminal (litd) for lnd-based payments, channel management, liquidity tools, Taproot Assets, and L402 commerce with Docker, native, watch-only, standalone, and regtest modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install and run Lightning Terminal (litd) which bundles lnd, loop, pool, tapd, and faraday in a single Docker container. Defaults to neutrino backend with SQLite storage on testnet. Supports watch-only mode with remote signer, standalone mode, and regtest development. Use when setting up a Lightning node for payments, channel management, liquidity management (loop), channel marketplace (pool), taproot assets (tapd), or enabling agent L402 commerce.
 
-## Publisher: <br>
-[Roasbeef](https://clawhub.ai/user/Roasbeef) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[roasbeef](https://clawhub.ai/user/roasbeef)
 
-## Use Case: <br>
-External developers and operators use this skill to install, configure, start, stop, and query a Lightning Terminal or lnd node for payments, channel operations, liquidity management, Taproot Assets, and agent L402 commerce. It is suited to testnet-first setup, watch-only remote-signer operation, standalone testing, and local regtest development. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes high-impact wallet and signing workflows for a Lightning node. <br>
-Mitigation: Install only if you understand Lightning node operations, keep the default on testnet until verified, and avoid mainnet funds unless network ports are firewalled or bound to localhost. <br>
-Risk: Standalone mode can place wallet passphrases and seed material on disk. <br>
-Mitigation: Prefer the watch-only remote-signer model, keep standalone mode to testing or small-risk use, and ensure wallet and recovery backups are secured before handling funds. <br>
-Risk: Admin macaroons and signer credential bundles can grant broad Lightning-node authority. <br>
-Mitigation: Use least-privilege macaroons, import credential bundles only from a trusted signer, and replace admin macaroons with scoped credentials for production use. <br>
-Risk: Cleanup with volume removal can destroy node data needed for wallet or channel recovery. <br>
-Mitigation: Do not run cleanup with volume removal unless wallet seed, channel state, and recovery procedures are fully backed up and verified. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [LND Wallet Security Guide](references/security.md) <br>
-- [ClawHub Lnd skill page](https://clawhub.ai/Roasbeef/lnd) <br>
+## Use Case:
 
+Developers and operators use this skill to install, configure, and run Lightning Terminal/LND nodes for payments, channel management, liquidity operations, taproot assets, and L402 commerce. It supports Docker and native workflows across testnet, signet, regtest, watch-only remote-signer, standalone testing, and hardened mainnet setups.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May run Docker, wallet, credential-import, and Lightning CLI workflows through bundled shell scripts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Using the skill with real funds before hardening can expose wallet or signing authority.
+
+Mitigation: Use disposable testnet, signet, or regtest setups unless the node is hardened for production.
+
+Risk: Admin APIs and admin macaroons can grant broad control over the node.
+
+Mitigation: Bind admin APIs to localhost or an internal network and replace admin macaroons with least-privilege signing credentials.
+
+Risk: Standalone mode stores wallet passphrases and seed material on disk.
+
+Mitigation: Prefer a separate remote signer for mainnet use and avoid plaintext seed or passphrase storage.
+
+Risk: Credential archive import can introduce sensitive or unexpected files.
+
+Mitigation: Validate credential archives before extraction and restrict credential file permissions.
+
+Risk: Unverified images or source releases can introduce supply-chain risk.
+
+Mitigation: Pin or verify Docker images and source releases before deployment.
+
+## Reference(s):
+
+- [LND Wallet Security Guide](references/security.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify local Docker, LND, wallet, signer, and credential files when the generated commands are executed.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

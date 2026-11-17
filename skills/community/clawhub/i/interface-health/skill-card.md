@@ -1,40 +1,55 @@
-## Description: <br>
-Interface and link health assessment for Cisco IOS-XE/NX-OS, Juniper JunOS, and Arista EOS, covering error counters, optical power, discards, resets, flaps, and utilization against severity-tiered thresholds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interface and link health assessment with error counter analysis, optical power monitoring, discard diagnosis, and utilization trending for Cisco IOS-XE/NX-OS, Juniper JunOS, and Arista EOS.
 
-## Publisher: <br>
-[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan)
 
-## Use Case: <br>
-Network engineers and operations teams use this skill to diagnose link degradation, packet loss, interface flaps, optical alarms, and utilization issues across Cisco, Juniper, and Arista devices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is labeled read-only while including commands that can reset counters or disrupt live interfaces. <br>
-Mitigation: Use read-only accounts for diagnosis, preserve counter snapshots, and require human change-control approval before clearing counters, shutting interfaces, or re-enabling ports. <br>
+## Use Case:
 
+Network engineers and operations teams use this skill to assess interface and link health, investigate packet loss or degraded throughput, and produce severity-ranked findings for errors, discards, optical readings, resets, flaps, and utilization.
 
-## Reference(s): <br>
-- [Interface Health CLI Reference](artifact/references/cli-reference.md) <br>
-- [Interface Health Threshold Tables](artifact/references/threshold-tables.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/vahagn-madatyan/interface-health) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown guidance with vendor-specific CLI command blocks, threshold tables, decision trees, and a report template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Diagnostic workflow for interface health assessment; no structured machine-readable output is specified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The release security evidence says the read-only label is contradicted by commands and recommendations that can change or disrupt network devices.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for observation and reporting only unless a human approves the exact command, device, interface, timing, and rollback plan.
+
+Risk: Counter-clearing, shutdown/no shutdown, and other remediation advice can remove diagnostic state or interrupt production links if executed without review.
+
+Mitigation: Require explicit human approval before allowing an agent to execute counter-clearing, interface recovery, or remediation steps.
+
+## Reference(s):
+
+- [Interface Health CLI Reference](artifact/references/cli-reference.md)
+- [Interface Health Threshold Tables](artifact/references/threshold-tables.md)
+- [ClawHub Skill Page](https://clawhub.ai/vahagn-madatyan/skills/interface-health)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with inline CLI command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include severity-ranked findings, threshold comparisons, diagnostic interpretation, and remediation recommendations for human review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,7 +1,7 @@
 ---
 name: jubjub
-description: Publish content across TikTok, Instagram, YouTube, Facebook, LinkedIn, Vimeo, Vimeo OTT, and Mux. Manage team workflows, collaborate with your team, and track verified publish history.
-version: 1.2.0
+description: Media ownership and payment infrastructure over MCP. Publish a video to TikTok, Instagram, YouTube, Facebook, LinkedIn, Vimeo, Vimeo OTT, Mux and Farcaster in one launch, get an on-chain ownership record when it goes out, and search or buy media metadata per use over x402 or MPP.
+version: 1.3.0
 metadata:
   clawdbot:
     emoji: "🎬"
@@ -13,297 +13,181 @@ metadata:
 
 # JubJub
 
-## 1. OVERVIEW
+## 1. Overview
 
-JubJub is a content publishing and team collaboration platform for creators. Upload video content, collaborate with team members through threaded messaging and notifications, and publish across multiple platforms — TikTok, Instagram, YouTube, Facebook, LinkedIn, Vimeo, Vimeo OTT, and Mux — from a single workflow. Every publish creates a verified on-chain record on Base, giving creators immutable proof of ownership and publish history.
+JubJub is media ownership and payment infrastructure. One launch publishes a piece to every platform it is set up for. When the piece goes out, JubJub writes its ownership record on Base, and payment for it routes to every rights holder.
 
-Supported platforms: TikTok, Instagram, YouTube, LinkedIn, Facebook, Vimeo, Vimeo OTT, Mux. JubJub does not currently support X/Twitter.
+Agents reach all of it over one MCP server:
 
-## 2. CONFIRMATION REQUIRED
+```
+https://api.jubjubapp.com/v2/mcp
+```
 
-Several JubJub actions are high-impact, public, destructive, or financial. Before invoking any of the following tools, the agent MUST surface the planned action to the user — including target platforms, visibility, schedule, account, and any cost — and wait for explicit confirmation. Do not chain these actions inside multi-step workflows without a confirmation step.
+What an agent can do through this skill:
 
-**Public publishing** (fans out to external platforms, hard to fully undo):
+- Publish a video to TikTok, Instagram, YouTube, Facebook, LinkedIn, Vimeo, Vimeo OTT, Mux and Farcaster from one launch, now or on a schedule. X is not supported.
+- Read each destination's result, and send a failed destination again.
+- Read the ownership record of a piece and who holds it.
+- Search the JubJub media catalogue for free, then buy a piece's metadata or the piece itself per use.
+- Track analytics per piece and across a whole catalogue.
+- Run a team: workspaces, versions, reviewers and approvals, comments, share links.
+
+## 2. Confirmation required
+
+Several JubJub actions are public, destructive or financial. Before calling any tool below, the agent MUST show the user the planned action (target platforms, account, visibility, schedule, and whether the call moves money) and wait for an explicit yes. Do not chain these inside a multi-step workflow without a confirmation step.
+
+**Public publishing** (goes out to outside platforms and is hard to fully undo):
 - `launches_create`, `launches_retry`, `launches_reschedule`
 
 **Destructive** (permanent or hard to reverse):
-- `contents_delete`, `workspaces_delete`, `teams_delete`, `launches_cancel`, `credentials_delete`, `teams_members_remove`, `communication_delete`
+- `contents_delete`, `media_delete`, `workspaces_delete`, `workspaces_transfer`, `teams_delete`, `teams_transfer`, `teams_members_remove`, `launches_cancel`, `credentials_delete`, `platform_configs_delete`, `communication_delete`, `notifications_delete`, `agents_delete`, `contents_share_link_revoke`
 
-**External-facing** (sends email or creates shareable links):
-- `teams_invite`, `workspaces_invite_link_create`
+**External-facing** (sends email or creates a link anyone can open):
+- `teams_invite`, `workspaces_invite_link_create`, `contents_share_link_create`, `teams_connect_email_send`
 
-**Financial / on-chain** (mints tokens, transfers value, or charges credits):
-- `catalogue_proposals_accept`, `catalogue_proposals_reject`, `team_splits_set`, `workspace_splits_set`, `register_content_for_revenue`, `generate_platform_key`
+**Financial and on-chain** (spends, routes money, or changes who owns what):
+- `purchase_metadata`, `purchase_content`, `cards_mint`, `cards_top_up`, `catalogue_proposals_accept`, `catalogue_proposals_reject`, `team_splits_set`, `workspace_splits_set`, `workspace_ownership_opt_out`, `workspace_ownership_opt_in`, `register_content_for_revenue`, `generate_platform_key`, `meta_ads_select`, `meta_ads_request_activation`
 
-For each invocation, confirm: (a) the exact target (platform, account, workspace, content), (b) visibility and schedule where relevant, (c) any associated cost or credit consumption. The user's approval applies to a single invocation only — re-confirm on each call.
+For each call, confirm (a) the exact target (platform, account, workspace, content), (b) visibility and schedule where they apply, and (c) whether the call spends or routes money. One yes covers one call only. Ask again for the next one.
 
-## 3. AUTHENTICATION
+## 3. Connect
 
-- **Get your key:** jubjubapp.com → Profile → Agents → Create New Agent
-- **Header:** `X-JubJub-Agent-Key: jjagent_YOUR_KEY`
-- **Base URL:** `https://api.jubjubapp.com`
+- **MCP endpoint:** `https://api.jubjubapp.com/v2/mcp` (streamable HTTP).
+- **Agent key:** jubjubapp.com, then Profile, Agents, Create new agent. The key starts with `jjagent_`. Send it as the header `X-JubJub-Agent-Key: jjagent_YOUR_KEY`.
+- **OAuth:** an MCP client that supports OAuth can add the endpoint with no key and sign in when asked.
+- **No account yet:** a person signs up free at https://studio.jubjubapp.com/auth. An agent with its own wallet can create an account itself, free, with `get_wallet_signin_nonce` then `create_jubjub_account_with_wallet`.
 
-## 4. PRICING
+On connect the server lists a core set of tools. Every other tool is still there: `jubjub_find_tools` lists the areas and returns any tool's schema, and `jubjub_call_tool` calls any tool by name.
 
-JubJub uses two unrelated pricing models. Which one applies depends entirely on who is calling.
+## 4. How payment works
 
-### 4.1 Humans — SaaS subscription (AUD via Stripe)
+- Publishing, analytics, ownership reads, team work and catalogue search cost an agent nothing.
+- Agents pay per use only to unlock a piece from the catalogue: `purchase_metadata` for its structured metadata, `purchase_content` for the full piece. Each has a fixed price, set by JubJub and quoted by the server in its payment challenge before anything is charged.
+- Two payment rails: x402 (USDC on Base) and MPP (USDC on Tempo). Pass an x402 credential at `_meta["x402-payment"]` or an MPP credential at `_meta["org.paymentauth/credential"]`. A call without one gets the challenge back, with both rails, so the agent can show the user what it will pay before paying.
+- Every account can turn agent discovery and purchase off. With it off, that account's work does not appear in agent search and cannot be bought by agents. The switch is in account settings, or `profiles_update` with `ai_agent_discovery` set to false.
+- People never pay to use JubJub. JubJub earns a small fee on settled revenue, when money moves.
 
-For humans signed in at studio.jubjubapp.com. All plans include unlimited multi-platform publishing, on-chain records, and unmetered access to every tool. Plans differ in workspace permanence, storage, and collaboration features. Human users never pay per-action USDC fees regardless of plan.
+Never quote a price from memory. Read it from the payment challenge the server returns.
 
-| Plan    | Monthly (AUD) | Annual (AUD/mo) | Workspace TTL | Collections |
-|---------|---------------|------------------|---------------|-------------|
-| Free    | $0            | $0               | 7 days        | No          |
-| Creator | $39           | $31 (20% off)    | Permanent     | Yes         |
-| Studio  | $199          | $159 (20% off)   | Permanent     | Yes         |
+## 5. Tools
 
-Sign up: studio.jubjubapp.com/auth?tab=signup
-Creator: studio.jubjubapp.com/checkout?plan=creator
-Studio: studio.jubjubapp.com/checkout?plan=studio
+Names below are as the server registers them today. Call `jubjub_find_tools` for each tool's full schema.
 
-### 4.2 Agents — per-action (USDC via x402 or MPP)
+### Start and discovery
 
-For autonomous agents calling the MCP server without a human session. Each priced tool charges a small USDC fee on invocation. Creator AND Studio subscribers are both exempt — pass a session credential and pay nothing per call.
-
-| Tool                          | Cost (USDC) | Rails                      |
-|-------------------------------|-------------|----------------------------|
-| contents_create               | $0.25       | x402, MPP, HTTP            |
-| launches_create               | $0.25       | x402, MPP, HTTP            |
-| get_publish_recommendations   | $0.002      | x402, MPP, HTTP            |
-| get_content_analytics         | $0.005      | x402, MPP, HTTP            |
-| get_platform_comparison       | $0.005      | x402, MPP, HTTP            |
-| get_content_ownership         | $0.005      | x402, MPP, HTTP            |
-| get_content_revenue           | $0.005      | x402, MPP, HTTP            |
-| get_creator_intelligence      | $0.005      | x402, MPP (MCP rail only)  |
-
-Payment rails:
-- **x402** — USDC on Base. Credential passed at `_meta["x402-payment"]`.
-- **MPP** — USDC on Tempo. Credential passed at `_meta["org.paymentauth/credential"]`.
-
-All MCP-served priced tools surface both rails via the JSON-RPC -32042 challenge. The HTTP `/v2/paid/{tool}` surface is x402-only and live for every priced tool except `get_creator_intelligence` (HTTP route currently disabled pending an upstream fix).
-
-To bypass per-action pricing entirely, subscribe to Creator or Studio: studio.jubjubapp.com/profile/subscription
-
-## 5. TOOLS
-
-### Workspaces (6 tools)
-
-| Tool | Description |
+| Tool | What it does |
 |------|-------------|
-| `workspaces_create` | Create a new workspace. Required: `name`. Optional: `description`. |
-| `workspaces_list` | List workspaces for the current user. Optional filters: `team_id`, `role`, `limit`, `offset`. |
-| `workspaces_get` | Get workspace details. Required: `workspace_id`. |
-| `workspaces_update` | Update workspace name or description. Required: `workspace_id`. Optional: `name`, `description`. |
-| `workspaces_delete` | Delete a workspace. Required: `workspace_id`. Destructive. |
-| `workspaces_invite_link_create` | Generate a shareable invite link for a workspace — recipients can view content without an account and are prompted to sign up free to comment or approve. |
+| `welcome` | A short orientation and what to try first. |
+| `mcp_version` | Server version and recent changes. Use it to check the connection. |
+| `get_signup_url` | The sign-up link to give a person with no account. |
+| `get_wallet_signin_nonce`, `create_jubjub_account_with_wallet` | An agent signs in with its wallet and creates its own account, free. |
 
-### Content (5 tools)
+### Catalogue and purchase
 
-| Tool | Description |
+| Tool | What it does |
 |------|-------------|
-| `contents_create` | Create a content item. Required: `workspace_id`, `title`, `video_id`. Optional: `description`, `thumbnail_id`, `tags`, `language`, `is_made_for_kids`. **Payment required** for agent callers without an active subscription ($0.25 USDC). Pass x402 credential at `_meta["x402-payment"]` or MPP credential at `_meta["org.paymentauth/credential"]`. Returns `_payment` with `payment_verified`, `protocol`, `payment_id` on success. Subscribe to avoid per-action charges: studio.jubjubapp.com/profile/subscription |
-| `contents_list` | List content in a workspace. Required: `workspace_id`. Optional: `status`, `limit`, `offset`. |
-| `contents_get` | Get content details. Required: `content_id`. |
-| `contents_update` | Update content fields. Required: `content_id`. Optional: `title`, `description`, `tags`, `video_id`, `thumbnail_id`, `language`, `is_made_for_kids`. |
-| `contents_delete` | Delete content and associated resources. Required: `content_id`. Optional: `force` (bool). Destructive. |
+| `media_search` | Search the catalogue. Free. |
+| `jubjub_catalogue_manifest` | What the catalogue holds and how to buy from it. Free. |
+| `purchase_metadata` | Unlock one piece's structured metadata. Paid per use over x402 or MPP. Confirm first. |
+| `purchase_content` | Unlock one piece in full. Paid per use over x402 or MPP. Confirm first. |
+| `content_playback_get` | How to play a piece, and whether playback is paid. |
 
-### Platform Configs (3 tools)
+### Workspaces and content
 
-| Tool | Description |
+| Tool | What it does |
 |------|-------------|
-| `platform_configs_create` | Create a platform configuration linking content to a credential. Required: `content_id`, `platform` (tiktok/instagram/youtube/facebook/linkedin/vimeo/vimeo_ott/mux), `credential_id`. Optional: `settings`, `visibility`/`privacy`. Mux defaults: playback_policy=public, mp4_support=standard. |
-| `platform_configs_list` | List platform configs for a content item. Optional: `content_id`. |
-| `platform_configs_update` | Update platform config settings. Required: `config_id`. Optional: `settings`. |
+| `workspaces_create`, `workspaces_list`, `workspaces_get`, `workspaces_update` | Create and manage workspaces. |
+| `workspaces_archive`, `workspaces_unarchive` | Archive a workspace and bring it back. |
+| `contents_create`, `contents_list`, `contents_get`, `contents_update` | Create and manage content items. `contents_create` needs a `video_id` from an upload. |
+| `contents_versions_list`, `contents_versions_add`, `contents_versions_make_current`, `contents_versions_review` | Versions of a piece, and a reviewer's approval or change request. |
+| `contents_share_link_create`, `contents_share_link_get` | One link that plays one piece, no sign-in. Confirm before creating. |
+| `upload_sessions_create_link`, `upload_sessions_get` | A browser upload link for the user, then its status. |
+| `media_ingest_url` | Bring in media from a public URL. |
 
-### Launches (5 tools)
+### Publishing
 
-| Tool | Description |
+| Tool | What it does |
 |------|-------------|
-| `launches_create` | Create a launch to publish or schedule content. Required: `content_id`, `platform_config_ids` (array). Optional: `scheduled_for` (ISO 8601 with timezone offset). **Payment required** for agent callers without an active subscription ($0.25 USDC). Pass x402 credential at `_meta["x402-payment"]` or MPP credential at `_meta["org.paymentauth/credential"]`. Returns `_payment` with `payment_verified`, `protocol`, `payment_id` and `_ownership` with on-chain proof details (transaction hash available in Vault once the onchain worker confirms). Subscribe to avoid per-action charges: studio.jubjubapp.com/profile/subscription |
-| `launches_get` | Get launch details including per-platform status. Required: `launch_id`. |
-| `launches_list` | List launches. Required: `workspace_id`. Optional: `limit`, `offset`. |
-| `launches_cancel` | Cancel a scheduled launch. Required: `launch_id`. Destructive. |
-| `launches_retry` | Retry a failed launch. Required: `launch_id`. Optional: `data` (object). |
+| `credentials_list`, `credentials_connect`, `credentials_connect_token` | See connected accounts; connect a platform by OAuth, or Mux and Vimeo OTT by token. |
+| `connect_farcaster` | Connect Farcaster. |
+| `platform_configs_create`, `platform_configs_list`, `platform_configs_update` | One config per destination, all on the same content item. |
+| `platform_configs_get_schemas`, `platform_configs_get_requirements` | What each platform's config accepts and needs. |
+| `launches_validate` | Check a launch before it goes out. |
+| `launches_create` | Publish now, or at `scheduled_for`. Confirm first. |
+| `launches_get`, `launches_list` | Each destination's result. |
+| `launches_retry`, `launches_reschedule`, `launches_cancel` | Send a failed destination again, move a scheduled launch, or cancel it. Confirm first. |
 
-### Analytics & Intelligence (8 tools)
+### Ownership, analytics and money
 
-| Tool | Description |
-|---|---|
-| get_publish_recommendations | Get personalised data-driven recommendations for a video before publishing, based on the creator's historical performance. Required: content_id. **$0.002 USDC for agent callers without an active subscription.** Pass x402 credential at `_meta["x402-payment"]` or MPP credential at `_meta["org.paymentauth/credential"]`. |
-| get_content_analytics | Retrieve performance analytics for a piece of content across all platforms it was published to. Required: content_id. **$0.005 USDC for agent callers without an active subscription.** |
-| refresh_content_analytics | Trigger a fresh analytics fetch right now for a piece of content, pulling latest stats from all connected platforms. Required: content_id. Free. |
-| get_platform_comparison | Compare performance of a piece of content across every platform it was published to. Required: content_id. **$0.005 USDC for agent callers without an active subscription.** |
-| get_portfolio_analytics | Retrieve aggregated performance analytics across all content a user has published. Free. |
-| get_content_ownership | Get on-chain ownership details for a piece of content — token holders, percentages, contract addresses. Required: content_id. **$0.005 USDC for agent callers without an active subscription.** |
-| get_content_revenue | Get streaming revenue stats for a content item directly from the smart contract. Required: content_id. **$0.005 USDC for agent callers without an active subscription.** |
-| get_creator_intelligence | Retrieve the full content intelligence profile for a creator — personalised patterns derived from their channel history. Required: profile_id. **$0.005 USDC for agent callers without an active subscription. MCP rail only — HTTP route disabled pending upstream fix.** |
-
-### Wallet & Holdings (3 tools)
-
-| Tool | Description |
-|---|---|
-| get_my_tokens | List all content where the current user holds ownership tokens — full token portfolio with percentages and contract addresses. Free. |
-| get_my_claimable | Total claimable USDC balance across all content the user holds tokens for, broken down by content. Reads live from smart contracts on Base. Free. |
-| get_wallet_balance | Current user's total spendable USDC balance — smart wallet balance plus pending claimable. Free. |
-
-### Teams (14 tools)
-
-| Tool | Description |
+| Tool | What it does |
 |------|-------------|
-| `teams_create` | Create a new team. Required: `name`. Optional: `description`. |
-| `teams_list` | List teams for the current user. |
-| `teams_get` | Get team details. Required: `team_id`. |
-| `teams_update` | Update team name, description, or avatar. Required: `team_id`. Optional: `name`, `description`, `avatar_url`. |
-| `teams_delete` | Delete a team. Required: `team_id`. Destructive. |
-| `teams_transfer` | Transfer team ownership. Required: `team_id`, `new_owner_profile_id`. Destructive. |
-| `teams_members_list` | List team members. Required: `team_id`. |
-| `teams_members_update` | Update a member's role. Required: `team_id`, `member_profile_id`, `role`. Optional: `custom_permissions`. |
-| `teams_members_remove` | Remove a member from a team. Required: `team_id`, `member_profile_id`. Destructive. |
-| `teams_leave` | Leave a team. Required: `team_id`. Destructive. |
-| `teams_permissions` | Get your permissions for a team. Required: `team_id`. |
-| `teams_stats` | Get team statistics. Required: `team_id`. |
-| `teams_search` | Search teams by name. Required: `query`. |
-| `teams_activity` | Get recent team activity. Required: `team_id`. |
+| `get_content_ownership` | The on-chain ownership record of a piece and its holders. |
+| `get_content_revenue` | Revenue recorded for a piece. |
+| `get_content_analytics`, `get_platform_comparison`, `refresh_content_analytics` | One piece's numbers, by platform. |
+| `get_portfolio_analytics` | Numbers across everything published. |
+| `catalogue_get` | The account's catalogue. |
+| `get_wallet_balance`, `get_my_claimable`, `get_my_tokens` | Balance, what can be claimed, and holdings. |
+| `cards_contract_info`, `cards_mint_quote`, `cards_mint`, `cards_top_up`, `cards_get`, `cards_list` | A prepaid card on Base for paid viewing. Confirm before minting or topping up. |
 
-### Team Invites (6 tools)
+### Teams and collaboration
 
-| Tool | Description |
+| Tool | What it does |
 |------|-------------|
-| `teams_invite` | Invite someone to a team by email. Required: `team_id`, `invitee_email`, `role`. Optional: `custom_permissions`. |
-| `teams_invites_list` | List invitations for a team. Required: `team_id`. Optional: `status`. |
-| `teams_invites_cancel` | Cancel a pending invite. Required: `team_id`, `invite_id`. Destructive. |
-| `teams_invites_pending` | List pending invites for the current user. |
-| `teams_invites_accept` | Accept a team invitation. Required: `invite_id`. |
-| `teams_invites_reject` | Reject a team invitation. Required: `invite_id`. |
+| `teams_create`, `teams_list`, `teams_get`, `teams_update`, `teams_members_list`, `teams_members_update` | Create and run a team. |
+| `teams_invite`, `teams_invites_list`, `teams_invites_pending`, `teams_invites_accept`, `teams_invites_reject` | Invitations. `teams_invite` sends an email: confirm first. |
+| `teams_workspaces_link`, `teams_workspaces_list` | Put a workspace under a team. |
+| `communication_create`, `communication_list`, `communication_get`, `communication_resolve` | Comments and decisions on a team, workspace or piece. |
+| `approvals_get_pending`, `approvals_decide` | Approvals waiting on the user. |
+| `notifications_list`, `notifications_mark_read` | Notifications. |
 
-### Team Workspaces (3 tools)
+## 6. Key ideas
 
-| Tool | Description |
-|------|-------------|
-| `teams_workspaces_link` | Link an existing workspace to a team. Required: `team_id`, `workspace_id`. |
-| `teams_workspaces_unlink` | Unlink a workspace from a team. Required: `team_id`, `workspace_id`. Destructive. |
-| `teams_workspaces_list` | List workspaces linked to a team. Required: `team_id`. |
+- **Workspace.** Holds content, media and conversation. Created on its own; link it to a team with `teams_workspaces_link`.
+- **Content item.** One piece to publish. It needs a `video_id` from an upload.
+- **Platform config.** Ties a content item to one connected account, with that platform's settings.
+- **Launch.** The publish. Takes a `content_id` and a list of `platform_config_ids`, now or at `scheduled_for`.
+- **Ownership record.** Written on Base when a piece goes out, never at upload.
 
-### Communication (6 tools)
-
-| Tool | Description |
-|------|-------------|
-| `communication_create` | Send a message in a scope (team, workspace, content, media, or collection). Required: `scope_type`, `scope_id`, `body`. Optional: `parent_message_id`, `thread_root_id`, `message_type`, `decision_type`, `mentions`, `metadata`. |
-| `communication_list` | List messages by scope. Required: `scope_type`, `scope_id`. Optional: `limit`, `cursor`, `thread_root_id`. |
-| `communication_get` | Get a single message by ID. Required: `message_id`. Useful for fetching messages referenced in notifications without knowing the scope. |
-| `communication_edit` | Edit a message. Required: `message_id`. Optional: `body`, `mentions`, `metadata`. |
-| `communication_delete` | Soft-delete a message. Required: `message_id`. Destructive. |
-| `communication_resolve` | Resolve a decision message (approve/reject/withdraw). Required: `message_id`, `decision_status`. Optional: `resolution`. |
-
-### Notifications (2 tools)
-
-| Tool | Description |
-|------|-------------|
-| `notifications_list` | List notifications for the current user. Optional: `cursor`, `limit`, `unread_only`. |
-| `notifications_mark_read` | Mark a notification as read. Required: `notification_id`. |
-
-### Credentials (4 tools)
-
-| Tool | Description |
-|------|-------------|
-| `credentials_list` | List all connected platform credentials. Optional: `platform` filter. |
-| `credentials_list_by_platform` | List credentials grouped by platform. Returns all platforms with their connected accounts. |
-| `credentials_connect` | Start OAuth flow to connect a platform account. Required: `platform` (tiktok/instagram/youtube/facebook/linkedin/vimeo). Returns an auth URL the user must open in their browser. |
-| `credentials_connect_token` | Connect a token-based platform (Mux or Vimeo OTT) using API credentials. Required: `platform` (mux or vimeo_ott), `token_id`, `token_secret`. Optional: `nickname`. |
-
-### Profiles (3 tools)
-
-| Tool | Description |
-|------|-------------|
-| `profiles_search` | Look up a user profile by email. Required: `email`. Returns profile_id for use in team and member operations. |
-| `profiles_get` | Get a user profile by ID. Required: `profile_id`. |
-| `profiles_batch` | Batch get multiple profiles. Required: `ids` (array or comma-separated string, max 50). |
-
-### Media & Uploads (5 tools)
-
-| Tool | Description |
-|------|-------------|
-| `media_ingest_url` | Ingest media from a public URL (server-side fetch). Required: `url`, `workspace_id`. Optional: `filename`. |
-| `upload_sessions_create_link` | Create a browser upload link. Required: `workspace_id`. Returns a URL the user must open to upload files. |
-| `upload_sessions_get` | Get upload session status and groupings. Required: `upload_session_id`, `token`. Poll until status reaches `groupings_inferred`. |
-| `upload_sessions_infer_groupings` | Trigger grouping inference on an upload session. Required: `upload_session_id`, `token`. |
-| `upload_sessions_confirm_groupings` | Confirm inferred groupings. Required: `upload_session_id`, `token`, `groupings`. |
-
-### Collections (3 tools)
-
-| Tool | Description |
-|------|-------------|
-| `collections_create` | Create a collection in a workspace. Required: `workspace_id`, `name`. Optional: `description`. |
-| `collections_list` | List collections in a workspace. Required: `workspace_id`. |
-| `collections_get` | Get collection details. Required: `collection_id`. |
-
-### System (1 tool)
-
-| Tool | Description |
-|------|-------------|
-| `mcp_version` | Returns the MCP server version. No parameters. Use to verify connectivity. |
-
-## 6. KEY CONCEPTS
-
-- **Workspace** — Container for content, media, and collaboration. Created unlinked; link to a team via `teams_workspaces_link`.
-- **Content item** — A single publishable piece. One content item maps to one publishing event. Requires a `video_id` from an uploaded file.
-- **Platform config** — Links a content item to a platform credential with platform-specific settings. Create one per platform, all on the same content item.
-- **Launch** — The publish event. Takes a `content_id` and `platform_config_ids`. Can be immediate or scheduled via `scheduled_for`.
-- **On-chain record** — Every launch creates a verified record on Base blockchain for proof of ownership.
-
-## 7. COMMON WORKFLOWS
+## 7. Common workflows
 
 **Publish a video:**
 1. `workspaces_create`
-2. `upload_sessions_create_link`
-3. User uploads
-4. Poll `upload_sessions_get`
-5. `contents_create` with `video_id` from groupings
-6. `platform_configs_create` per platform
-7. **Confirm with the user before publishing.** Surface the target platforms, visibility, schedule, and account to the user. Wait for explicit approval before invoking `launches_create`.
-8. `launches_create`
+2. `upload_sessions_create_link`, and the user uploads in the browser
+3. Poll `upload_sessions_get` until the upload is grouped
+4. `contents_create` with the `video_id` from the grouping
+5. `platform_configs_create`, once per destination
+6. `launches_validate`
+7. **Confirm with the user:** platforms, accounts, visibility and schedule. Wait for a yes.
+8. `launches_create`, then `launches_get` for each destination's result
+
+**Find and buy a piece's metadata:**
+1. `media_search` (free)
+2. Call `purchase_metadata` with no credential to get the payment challenge
+3. **Confirm with the user:** the piece and the price the challenge quotes. Wait for a yes.
+4. Call `purchase_metadata` again with the x402 or MPP credential
+
+**Connect a platform:**
+1. OAuth platforms: `credentials_connect`, the user opens the link, then poll `credentials_list`
+2. Mux or Vimeo OTT: `credentials_connect_token` with the token id and secret
 
 **Invite a team member:**
-1. `teams_invite` with their email → they accept via `teams_invites_accept`
+1. **Confirm the email address with the user**, then `teams_invite`. They accept with `teams_invites_accept`.
 
-**Connect a platform (OAuth — TikTok, Instagram, YouTube, Facebook, LinkedIn, Vimeo):**
-1. `credentials_connect` → user opens auth URL in browser → poll `credentials_list` to confirm
+## 8. Example prompts
 
-**Connect a platform (API token — Mux, Vimeo OTT):**
-1. `credentials_connect_token` with platform, token_id, token_secret → connection confirmed immediately
+1. "Publish my latest video to TikTok and Instagram at 3pm tomorrow."
+2. "Schedule this video to YouTube and LinkedIn for Monday at 9am."
+3. "What happened with my last launch? Retry anything that failed."
+4. "Who holds the ownership record for this video?"
+5. "How did my videos do this month across every platform?"
+6. "Find 3 clips about street food in the JubJub catalogue."
+7. "Add jamie@example.com to my content team as an editor."
+8. "Turn off agent purchase on my account."
 
-## 8. EXAMPLE PROMPTS
+## 9. Notes
 
-1. "Publish my latest video to TikTok and Instagram at 3pm EST tomorrow."
-2. "Create a new workspace called 'March Campaign' for my marketing team."
-3. "Send a message to the Spring Launch workspace saying the video is ready for review."
-4. "What's the status of my last launch?"
-5. "Schedule this video to YouTube and LinkedIn for next Monday at 9am PST."
-6. "Add jamie@example.com to my content team as an editor."
-7. "Check my unread notifications."
-8. "List all my workspaces."
-9. "Connect my TikTok account."
-10. "Show me all pending team invitations."
-
-## 9. ON-CHAIN ECONOMICS
-
-These flows are separate from sections 4.1 and 4.2 — neither humans nor agents pay these directly.
-
-**Treasury-paid gas.** JubJub pays all on-chain gas from the operator wallet — contract deploys, token mints, wallet registrations, publish-ledger writes (recordLaunch), streaming session create/settle/close, and recovery worker retries. Users and agents never pay gas.
-
-**Immutable 97/3 revenue split.** Streaming revenue is split inside JubJubPaymentRouter on-chain: 97% to the content's rights holders (routed through the content contract and catalogue to token holders), 3% to JubJub treasury. This is enforced in the smart contract and cannot be turned off, renegotiated, or set per content.
-
-**Viewer-paid streaming.** Viewers watching monetised playback pay $0.005 USDC per minute, capped at $2.00 per session, settled to chain every 60 seconds. This is the viewer's spend, not the agent's or the creator's. USDC flows: viewer → Router → content contract → catalogue → token holders, with the 3% treasury slice diverted along the way.
-
-The agent must never initiate any on-chain operation without surfacing the relevant context to the user. The smart contract may execute autonomously once triggered, so user confirmation must happen before invocation, not after.
-
-## 10. NOTES
-
-- The `video_id` field in `contents_create` comes from upload session groupings (`video_media_id`) or `media_ingest_url`.
-- `scheduled_for` must include a timezone offset (e.g., `2026-03-15T15:00:00-05:00`). Naive datetimes default to UTC.
-- Upload sessions produce a browser URL — the user must open it to upload. The agent polls `upload_sessions_get` until groupings are ready.
-- `credentials_connect` returns an auth URL — the user must complete OAuth in their browser. The agent polls `credentials_list` to confirm connection.
-- Team roles: OWNER > ADMIN > MANAGER > EDITOR > PUBLISHER > VIEWER.
-- Workspaces are always created unlinked. Use `teams_workspaces_link` to associate a workspace with a team.
-- Profile tools (`profiles_search`, `profiles_get`, `profiles_batch`) resolve human-readable emails to `profile_id` values needed by team and member operations.
-- Free plan workspaces expire after 7 days. Upgrade to Creator or Studio for permanent workspaces.
+- `scheduled_for` needs a timezone offset, for example `2026-12-01T15:00:00+11:00`. A time with no offset is read as UTC.
+- Uploads and OAuth both happen in the user's browser. The agent gives the link and polls for the result.
+- People are named only by display name, avatar and handle, or by an opaque `member_ref`. No tool returns another person's email or profile id. Member, split, transfer and mention tools take `member_ref`.
+- Team roles, highest first: owner, admin, manager, editor, publisher, viewer.
+- If a tool seems missing, call `mcp_version`, then `jubjub_find_tools` with its name. If it is still missing, reconnect the MCP server.

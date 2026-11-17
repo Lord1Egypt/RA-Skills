@@ -1,41 +1,54 @@
-## Description: <br>
-WorkCRM is a local-first OpenClaw CRM skill that drafts contact, activity, and task updates and writes them only after explicit user confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Workcrm is a local-first CRM skill that drafts contact, activity, and task changes and requires explicit user confirmation before saving them.
 
-## Publisher: <br>
-[extraterrest](https://clawhub.ai/user/extraterrest) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[extraterrest](https://clawhub.ai/user/extraterrest)
 
-## Use Case: <br>
-Agents and OpenClaw users use WorkCRM to turn chat notes into auditable local CRM drafts, then confirm or reject each proposed write before records are saved. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local CRM records and draft history may contain sensitive business or personal information. <br>
-Mitigation: Choose the SQLite database location deliberately, protect the local data directory, and avoid storing sensitive records on shared or unmanaged machines. <br>
-Risk: Drafted CRM changes could be incorrect if the source chat note is ambiguous. <br>
-Mitigation: Review each draft before replying with the explicit confirmation token that commits the write. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Workcrm release page](https://clawhub.ai/extraterrest/workcrm) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+## Use Case:
 
+Developers and OpenClaw users use Workcrm to capture CRM notes, follow-up tasks, participants, assignees, and project activity into a local SQLite database after reviewing a draft and confirming the write.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [Plain text user messages and JSON payloads for drafts, pending actions, and write results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit confirmation before saving CRM records; stores local SQLite data and draft history.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0-alpha.4 (source: server release evidence and pyproject.toml) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Local SQLite storage retains CRM records and draft content, including rejected drafts.
+
+Mitigation: Use a deliberate local database path, apply local access controls and retention practices, and avoid entering sensitive CRM data unless local persistence is acceptable.
+
+Risk: The exact confirmation words and family or personal prefixes can affect whether and where records are saved.
+
+Mitigation: Review each draft before confirming with `记`, use `不记` to reject unintended drafts, and verify the intended profile or database path when using family or personal prefixes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/extraterrest/skills/workcrm)
+- [Artifact Skill Instructions](artifact/SKILL.md)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance, configuration]
+
+**Output Format:** [Human-facing messages with JSON payloads and local SQLite records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Drafts are retained for auditability; confirmed writes are stored locally in SQLite.]
+
+## Skill Version(s):
+
+0.1.0-alpha.4 (source: server release metadata and pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -10,7 +10,7 @@ export const secretPatterns: SecurityPattern[] = [
     language: 'all',
     description: 'Anthropic API key',
     examples: [
-      'sk-ant-api03-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+      'REDACTED-SECRET'
     ],
     falsePositiveRisk: 'low',
     enabled: true,
@@ -25,7 +25,7 @@ export const secretPatterns: SecurityPattern[] = [
     language: 'all',
     description: 'OpenAI API key',
     examples: [
-      'sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+      'REDACTED-SECRET'
     ],
     falsePositiveRisk: 'medium',
     enabled: true,
@@ -40,11 +40,11 @@ export const secretPatterns: SecurityPattern[] = [
     language: 'all',
     description: 'GitHub personal access token',
     examples: [
-      'ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-      'gho_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-      'ghu_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-      'ghs_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-      'ghr_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+      'REDACTED-SECRET',
+      'REDACTED-SECRET',
+      'REDACTED-SECRET',
+      'REDACTED-SECRET',
+      'REDACTED-SECRET'
     ],
     falsePositiveRisk: 'low',
     enabled: true,
@@ -59,7 +59,7 @@ export const secretPatterns: SecurityPattern[] = [
     language: 'all',
     description: 'GitHub OAuth access token',
     examples: [
-      'gho_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+      'REDACTED-SECRET'
     ],
     falsePositiveRisk: 'low',
     enabled: true,
@@ -74,7 +74,7 @@ export const secretPatterns: SecurityPattern[] = [
     language: 'all',
     description: 'AWS access key ID',
     examples: [
-      'AKIAIOSFODNN7EXAMPLE',
+      'REDACTED-SECRET',
       'ASIATESTACCESSKEYID',
       'AIDAI23KAKVEXAMPLEID'
     ],
@@ -122,7 +122,7 @@ export const secretPatterns: SecurityPattern[] = [
     language: 'all',
     description: 'Google API key',
     examples: [
-      'AIzaSyDxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+      'REDACTED-SECRETx'
     ],
     falsePositiveRisk: 'low',
     enabled: true,
@@ -152,11 +152,11 @@ export const secretPatterns: SecurityPattern[] = [
     language: 'all',
     description: 'Slack token',
     examples: [
-      'xoxb-1111111111111-2222222222222-FAKE1EXAMPLE2TESTING3456',
-      'xoxa-1111111111111-2222222222222-FAKE1EXAMPLE2TESTING3456',
-      'xoxp-1111111111111-2222222222222-FAKE1EXAMPLE2TESTING3456',
-      'xoxr-1111111111111-2222222222222-FAKE1EXAMPLE2TESTING3456',
-      'xoxs-1111111111111-2222222222222-FAKE1EXAMPLE2TESTING3456'
+      'REDACTED-SECRET',
+      'REDACTED-SECRET',
+      'REDACTED-SECRET',
+      'REDACTED-SECRET',
+      'REDACTED-SECRET'
     ],
     falsePositiveRisk: 'low',
     enabled: true,
@@ -171,7 +171,7 @@ export const secretPatterns: SecurityPattern[] = [
     language: 'all',
     description: 'Slack webhook URL',
     examples: [
-      'https://hooks.slack.com/services/TFAKETEST1/BFAKETEST2/FAKE3EXAMPLE4TESTING56789'
+      'REDACTED-SECRET'
     ],
     falsePositiveRisk: 'low',
     enabled: true,
@@ -186,7 +186,7 @@ export const secretPatterns: SecurityPattern[] = [
     language: 'all',
     description: 'Stripe API key',
     examples: [
-      'sk_live_FAKE1EXAMPLE2TESTING345',
+      'REDACTED-SECRET',
       'pk_live_FAKE1EXAMPLE2TESTING345',
       'sk_test_FAKE1EXAMPLE2TESTING345',
       'pk_test_FAKE1EXAMPLE2TESTING345'
@@ -378,7 +378,7 @@ export const secretPatterns: SecurityPattern[] = [
     language: 'all',
     description: 'GitLab personal access token',
     examples: [
-      'glpat-xxxxxxxxxxxxxxxxxxxx'
+      'REDACTED-SECRET'
     ],
     falsePositiveRisk: 'low',
     enabled: true,

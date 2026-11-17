@@ -1,43 +1,57 @@
-## Description: <br>
-Transcribe audio files with ElevenLabs Speech-to-Text (Scribe v2) from the local CLI, with support for diarization, events, JSON output, webhooks, and advanced STT options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribes audio files with ElevenLabs Speech-to-Text (Scribe v2) from the local CLI, supporting diarization, events, JSON output, webhooks, and advanced STT options.
 
-## Publisher: <br>
-[xHUNx](https://clawhub.ai/user/xHUNx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xhunx](https://clawhub.ai/user/xhunx)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to transcribe local audio files, HTTPS audio URLs, or realtime microphone streams with ElevenLabs Speech-to-Text from shell commands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Audio files, microphone streams, transcript text, and webhook metadata may be sent to ElevenLabs or configured webhook endpoints. <br>
-Mitigation: Use the skill only with audio and metadata you are authorized to send, avoid sensitive recordings unless consent is clear, and review webhook destinations before use. <br>
-Risk: ElevenLabs API keys may be exposed through local process or shell handling. <br>
-Mitigation: Run on a single-user machine where possible, avoid sharing shell history or process listings, and rotate the API key if exposure is suspected. <br>
-Risk: Live listener modes can continuously capture microphone audio. <br>
-Mitigation: Prefer toggle mode or disable live listening when not needed, and confirm the selected microphone device before starting a session. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release: ElevenLabs STT OpenClaw](https://clawhub.ai/xHUNx/elevenlabs-stt-openclaw) <br>
-- [Publisher profile: xHUNx](https://clawhub.ai/user/xHUNx) <br>
-- [Artifact README](artifact/README.md) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to transcribe local files, hosted audio, or realtime microphone audio with ElevenLabs Speech-to-Text. It is suited for CLI-based transcription workflows that need diarization, audio event tags, JSON output, webhook processing, or realtime transcript text.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Plain text transcripts or JSON responses from CLI and realtime streaming commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can include diarization, word or character timestamps, audio event tags, webhook metadata, realtime microphone transcripts, and optional TTS playback.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Audio and transcript content may be sent to ElevenLabs or a configured webhook endpoint.
+
+Mitigation: Use the skill only for audio you are allowed to send to those services, and review webhook destinations before enabling asynchronous delivery.
+
+Risk: Live-listen and always-on microphone modes can capture private conversations.
+
+Mitigation: Use toggle mode where possible, avoid sensitive environments, and stop the listener when transcription is no longer needed.
+
+Risk: The current scripts can expose the ElevenLabs API key through subprocess arguments.
+
+Mitigation: Run on a single-user machine and use a restricted ElevenLabs API key that can be rotated if exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xhunx/skills/elevenlabs-stt-openclaw)
+- [ClawHub publisher profile](https://clawhub.ai/user/xhunx)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Plain text transcript or JSON response, with CLI usage guidance in Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include word timings, speaker diarization, audio event tags, webhook metadata, or realtime transcript text depending on selected flags.]
+
+## Skill Version(s):
+
+1.2.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

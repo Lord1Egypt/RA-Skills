@@ -1,45 +1,60 @@
-## Description: <br>
-哈啰顺风车乘客助手覆盖询价比价、下单、邀请车主、行程追踪、确认上车和到达的完整拼车流程，并从日常出行表达中识别真实顺风车需求。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+哈啰顺风车乘客助手，支持通过对话完成地点搜索、询价比价、运力选择、下单、邀请车主、订单查询、司机位置跟踪、取消订单、确认上车和确认到达等乘客侧顺风车流程。
 
-## Publisher: <br>
-[zhujianjie-kevin](https://clawhub.ai/user/zhujianjie-kevin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhujianjie-kevin](https://clawhub.ai/user/zhujianjie-kevin)
 
-## Use Case: <br>
-External passengers use this skill with OpenClaw to plan and manage Hello Hitch ride-sharing trips, including price checks, order creation, driver invitations, status tracking, cancellation, and trip completion. It is intended for real ride-hailing workflows rather than software development, navigation-app control, or general travel advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Mainland China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can initiate real ride-hailing actions such as booking, cancellation, driver invitation, and trip-completion confirmation. <br>
-Mitigation: Require explicit user confirmation before each real-world state-changing action and present prices, route details, wait time, and driver options before proceeding. <br>
-Risk: API credentials are required to connect the OpenClaw MCP server. <br>
-Mitigation: Configure the API key through OpenClaw MCP configuration and avoid pasting secrets into ordinary chat messages. <br>
-Risk: Cron-based ride tasks can trigger delayed background ride actions. <br>
-Mitigation: Create scheduled tasks only when the user clearly requests them, include complete origin and destination details, and review or disable scheduled tasks when automatic execution is not desired. <br>
+## Use Case:
 
+External riders use this skill to coordinate Hello Hitch trips through an agent, including route lookup, price comparison, booking, driver invitation, trip tracking, cancellation, and ride-completion confirmations. Developers or operators can also use it as OpenClaw guidance for configuring the Hello Hitch MCP server.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhujianjie-kevin/hello-hitch-skill) <br>
-- [哈啰 AI 开放平台](https://aiopen.hellobike.com) <br>
-- [API reference](references/api.md) <br>
-- [Operations guide](references/operations.md) <br>
+### Deployment Geography for Use:
 
+Mainland China cities where Hello Hitch operates.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces user-facing ride status, options, confirmations, links, and configuration guidance; may also instruct the agent to call MCP tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill can schedule future automatic ride orders and run cron commands for real-world transportation transactions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated, revocable API key and avoid enabling cron-based automatic booking unless the user accepts future background order creation.
+
+Risk: Real ride orders, cancellations, driver invitations, and ride-completion confirmations can affect cost, travel, and trip status.
+
+Mitigation: Prefer interactive booking that shows the exact route, price, capacity, wait time, and irreversible trip action before the user confirms.
+
+Risk: API credentials may be exposed if copied into chat or reused broadly.
+
+Mitigation: Configure credentials through the MCP server settings and avoid pasting secrets into agent conversations.
+
+## Reference(s):
+
+- [Hello Hitch Skill on ClawHub](https://clawhub.ai/zhujianjie-kevin/skills/hello-hitch-skill)
+- [Hello AI Open Platform](https://aiopen.hellobike.com)
+- [API Reference](references/api.md)
+- [Operations Guide](references/operations.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with JSON snippets and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide real ride-booking actions and scheduled OpenClaw cron tasks after user confirmation.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

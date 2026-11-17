@@ -1,40 +1,49 @@
-## Description: <br>
-hotnews is a CLI skill that fetches trending news and hot topics from Chinese platforms and GitHub and returns structured items with titles, URLs, ranks, and metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+hotnews fetches trending news and hot topics from Chinese platforms and GitHub, returning structured items with titles, URLs, rankings, and metadata.
 
-## Publisher: <br>
-[zhengzhuangpro](https://clawhub.ai/user/zhengzhuangpro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhengzhuangpro](https://clawhub.ai/user/zhengzhuangpro)
 
-## Use Case: <br>
-Developers, analysts, and other users use this skill to list available hot-news sources and fetch recent trending topics as readable text or JSON for monitoring and downstream processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run the external hotnews npm CLI, which was not included in the reviewed artifact. <br>
-Mitigation: Confirm the package name and provenance before first use, install it from a trusted source, and keep normal package-review controls in place. <br>
-Risk: Fetched news and trending-topic content comes from public sources and should not be treated as trusted input. <br>
-Mitigation: Review results before relying on them for decisions or passing them into downstream automation. <br>
+## Use Case:
 
+Agents and developers use hotnews to list supported trend sources and fetch ranked news or hot topics from social, news, finance, developer, and GitHub sources for monitoring or downstream JSON processing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhengzhuangpro/hotnews) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and optional JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports source selection and a 1-50 item limit; JSON mode returns title, url, hot, and rank fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.6 (source: server release evidence) <br>
+Risk: The skill permits execution of an unpinned external npm CLI through npx, so the reviewed artifact may not fully define the code that runs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, prefer a pinned and verified hotnews package version or bundled reviewed implementation, and run npm/npx in a restricted runtime.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhengzhuangpro/skills/hotnews)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; command results may be human-readable text or JSON arrays.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [JSON results include title, URL, optional hot metric, and rank; --limit accepts 1-50 items with a default of 10.]
+
+## Skill Version(s):
+
+0.1.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

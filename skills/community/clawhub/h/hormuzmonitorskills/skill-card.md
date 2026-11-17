@@ -1,43 +1,57 @@
-## Description: <br>
-Monitor Strait of Hormuz shipping traffic from JMIC, Iranian sources, and news aggregation, write findings to MONITOR_LOG.md, and auto-update website data after each cycle. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors Strait of Hormuz shipping traffic, market indicators, Iranian sources, and news aggregation, then writes Mandarin-formatted updates to MONITOR_LOG.md and updates website data.
 
-## Publisher: <br>
-[xingpt88](https://clawhub.ai/user/xingpt88) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xingpt88](https://clawhub.ai/user/xingpt88)
 
-## Use Case: <br>
-Analysts and operators use this skill to collect current Strait of Hormuz maritime, geopolitical, and market signals, append a structured monitoring entry, and publish updated website data after each cycle. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a local deployment script that can push data to GitHub and trigger a public website update. <br>
-Mitigation: Inspect ~/hormuz-website/scripts/update_and_deploy.sh before use, confirm the target repository and branch, and run it only with credentials scoped to the intended site. <br>
-Risk: The workflow trims MONITOR_LOG.md entries older than 7 days. <br>
-Mitigation: Keep a separate backup or archive of MONITOR_LOG.md if older monitoring history must be retained. <br>
+## Use Case:
 
+External users and operators can use this skill to collect current Strait of Hormuz maritime, geopolitical, insurance, and market signals and maintain a structured monitoring log for a website. It is intended for recurring situational updates rather than authoritative maritime or financial advice.
 
-## Reference(s): <br>
-- [JMIC Products](https://www.ukmto.org/partner-products/jmic-products) <br>
-- [Windward Maritime Intelligence Blog](https://windward.ai/blog/) <br>
-- [Tasnim News English](https://www.tasnimnews.ir/en/) <br>
-- [Fars News English](https://www.farsnews.ir/en) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands] <br>
-**Output Format:** [Markdown monitoring log entries with concise text summaries and an optional alert summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Updates MONITOR_LOG.md, trims entries older than 7 days, and may run a local deployment script after each monitoring cycle.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and release evidence) <br>
+Risk: The skill can run a local deployment script that pushes website data to GitHub and triggers Vercel without a clear approval step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a controlled repository where the deployment script is reviewed and trusted, and require manual review before push or deployment.
+
+Risk: The skill modifies MONITOR_LOG.md and deletes entries older than seven days.
+
+Mitigation: Keep source control history or backups for the log and review generated entries before allowing downstream website updates.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xingpt88/skills/hormuzmonitorskills)
+- [UKMTO JMIC products](https://www.ukmto.org/partner-products/jmic-products)
+- [Windward maritime intelligence blog](https://windward.ai/blog/)
+- [Tasnim News English](https://www.tasnimnews.ir/en/)
+- [Fars News English](https://www.farsnews.ir/en)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown log entries and brief alert summaries, with shell command execution guidance for website data updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Mandarin summary fields, strict MONITOR_LOG.md formatting, seven-day log trimming, and flash alert checks for oil, vessel-count, ceasefire, breakthrough, or attack signals]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

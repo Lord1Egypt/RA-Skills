@@ -1,42 +1,64 @@
-## Description: <br>
-Control OriginLab Origin Pro through the origin-pro MCP server for worksheets, graphs, publication styling, fitting, LabTalk, and verified figure export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates OriginLab Origin Pro through the origin-pro MCP server for worksheets, graphs, publication styling, fitting, LabTalk, and verified figure export.
 
-## Publisher: <br>
-[leima-max](https://clawhub.ai/user/leima-max) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leima-max](https://clawhub.ai/user/leima-max)
 
-## Use Case: <br>
-Developers, engineers, and researchers use this skill to automate Origin Pro workflows through a local MCP server, including worksheet operations, scientific plotting, curve fitting, LabTalk execution, and figure export. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad unsandboxed control over a running Origin Pro session and local project/files. <br>
-Mitigation: Install only from a trusted publisher, keep important Origin projects saved or backed up, and avoid use with untrusted prompts, labels, names, or paths. <br>
-Risk: Raw LabTalk execution, project creation, project load/save, imports, and exports can change the current Origin session or overwrite local files. <br>
-Mitigation: Require explicit confirmation before LabTalk, new_project, project load/save, imports, or exports over existing files. <br>
+## Use Case:
 
+Developers and researchers use this skill to automate Origin Pro workflows from an agent, including worksheet creation, scientific plotting, curve fitting, publication figure styling, LabTalk execution, and figure export.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leima-max/origin-pro-mcp) <br>
-- [Security notes](docs/SECURITY.md) <br>
-- [Publication figure workflow](skills/publication-figure.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON configuration snippets, MCP tool calls, and generated Origin project or figure files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Windows, Windows Python, Origin Pro 2020 or newer, and the local origin-pro MCP server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release evidence and pyproject.toml) <br>
+Risk: LabTalk execution can perform powerful Origin operations when prompted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted prompts and data, and avoid or disable run_labtalk unless the workflow explicitly requires it.
+
+Risk: Project and worksheet tools can change or clear local Origin work.
+
+Mitigation: Keep backups, confirm before starting a new project, and prefer disposable Origin projects for testing.
+
+Risk: Graph export operations write files to local paths.
+
+Mitigation: Verify export paths before execution and prefer a constrained output directory.
+
+Risk: Origin modal dialogs or cold-start behavior can cause MCP calls to hang or time out.
+
+Mitigation: Start Origin Pro before COM-dependent operations and check for blocking dialogs if a call stalls.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/leima-max/skills/origin-pro-mcp)
+- [Security Notes](docs/SECURITY.md)
+- [Publication Figure Workflow](skills/publication-figure.md)
+- [Project homepage](https://github.com/leima-max/origin-pro-mcp-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code blocks, MCP tool calls, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include Origin project, worksheet, graph, fitting, styling, LabTalk, and export instructions that act on a local Windows Origin Pro session.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release metadata and pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,11 @@
+interface:
+  display_name: "SocQ Pinterest Research"
+  short_description: "Collect and analyze public Pinterest data"
+  default_prompt: "Use $socq-pinterest-research to collect and analyze this public Pinterest research request."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "socq"
+      description: "Hosted SocQ Pinterest data tools"
+      transport: "streamable_http"
+      url: "https://api.socq.ai/mcp?platforms=pinterest"

@@ -1,7 +1,7 @@
 ---
 name: clear-context
 description: Manages context overflow by handing off to a fresh subagent at 80% usage
-version: 1.9.8
+version: 1.10.3
 triggers:
   - context pressure is critical and work must continue uninterrupted
 metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/conserve", "emoji": "\ud83e\udd9e"}}
@@ -9,18 +9,8 @@ source: claude-night-market
 source_plugin: conserve
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/conserve](https://github.com/athola/claude-night-market/tree/master/plugins/conserve). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/conserve](https://github.com/athola/claude-night-market/tree/master/plugins/conserve). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
-
-## Table of Contents
-
-- [Quick Start](#quick-start)
-- [When to Use](#when-to-use)
-- [The Auto-Clear Pattern](#the-auto-clear-pattern)
-- [Thresholds](#thresholds)
-- [Auto-Clear Workflow](#auto-clear-workflow)
-- [Integration with Existing Hooks](#integration-with-existing-hooks)
-- [Self-Monitoring Pattern](#self-monitoring-pattern)
 
 # Clear Context Skill
 
@@ -47,7 +37,7 @@ Skill(conserve:clear-context)
 - Mid-critical-operation where handoff would lose state
 - **Consider "Summarize from here" first** (Claude Code 2.1.32+): Before full auto-clear,
   try partial summarization via the message selector. This compresses older context while
-  preserving recent work — often sufficient to relieve pressure without a full handoff.
+  preserving recent work, often sufficient to relieve pressure without a full handoff.
 
 ## The Auto-Clear Pattern
 
@@ -84,15 +74,15 @@ Before triggering auto-clear, gather:
 - Progress made so far
 - Key decisions and rationale
 - Files being actively worked on
-- Open TodoWrite items
+- Open progress items
 
 ### Step 1.5: Finalize Task List Before Handoff
 
 **Important**: Before saving state or spawning a continuation agent, reconcile the task list:
 
 1. **Review all tasks** via `TaskList`
-2. **Mark completed tasks** as `completed` via `TaskUpdate` — do NOT leave done work as `in_progress`
-3. **Record existing task IDs** — collect all task IDs (pending and in_progress) to pass in the session state so the continuation agent references them instead of creating duplicates
+2. **Mark completed tasks** as `completed` via `TaskUpdate`: do NOT leave done work as `in_progress`
+3. **Record existing task IDs**: collect all task IDs (pending and in_progress) to pass in the session state so the continuation agent references them instead of creating duplicates
 4. **Include task IDs in session state** under the `existing_task_ids` field (see Step 2)
 
 This prevents the continuation agent from creating duplicate tasks.
@@ -134,7 +124,7 @@ Reason: Context threshold exceeded (80%+)
 - path/to/file1.py - [status]
 - path/to/file2.md - [status]
 
-## Pending TodoWrite Items
+## Pending Progress Items
 - [ ] Item 1
 - [ ] Item 2
 
@@ -159,7 +149,7 @@ execution_mode = {
     "auto_continue": False,
     "source_command": None,
     "remaining_tasks": [],
-    "dangerous_mode": False
+    "dangerous_mode": False,
 }
 
 # Check for dangerous/unattended mode indicators
@@ -175,6 +165,39 @@ elif os.environ.get("CLAUDE_UNATTENDED") == "1":
 if parent_state and parent_state.get("execution_mode"):
     execution_mode = parent_state["execution_mode"]
 ```
+
+### Step 2.5: Verify Session-State Clarity Before Handoff
+
+A continuation agent inherits only what `session-state.md` says. If
+the draft is ambiguous, the new agent starts from corrupted task
+state. Before spawning, gate the handoff on the belief-clarity check
+(the `belief-clarity` module of `Skill(conserve:context-optimization)`),
+which asks two anchor questions against the draft state:
+
+1. **Progress probe**: what is the current task progress: what is
+   done, and what state is the task in now?
+2. **Gap probe**: what information is still needed to finish: a
+   bounded list of concrete open items.
+
+Gate logic:
+
+- Both answers specific and bounded: save and proceed to Step 3.
+- Gap probe open-ended or progress probe hedging: append the failing
+  probe's answer to `session-state.md` as explicit `Current state:`
+  and `Still needed:` bullets, then re-score. Re-score at most twice.
+  A draft that fails a third time is handed to the user with both
+  probe answers, not handed off: the writer of the state file is
+  also its grader here, and a loop of self-grading converges on
+  confidence, not on clarity.
+- Progress probe vague or empty: do not hand off. Confirm current
+  state with the user (or `imbue:proof-of-work` in unattended mode)
+  before writing state and retrying.
+
+When `memory-palace:memory-clarity-probe` is installed, delegate the
+dual-probe evaluation to it and use its "Proceed" composite as the
+gate. This check is qualitative: it catches drift and omission, not
+confidently-wrong state, so pair it with task-state verification for
+high-stakes handoffs.
 
 ### Step 3: Spawn Continuation Agent
 
@@ -198,6 +221,10 @@ Instructions:
 6. Continue from where the previous agent left off
 7. If you also approach 80% context, repeat this handoff process
    - PRESERVE the execution mode when creating your own checkpoint
+   - Increment `handoff_depth` in `session-state.md`. At depth 3,
+     stop and report to the user instead of spawning again: three
+     continuations without finishing is a task that needs splitting,
+     and each handoff loses state the probes cannot see
 
 The session state file contains all necessary context to continue without interruption.
 
@@ -242,7 +269,7 @@ If Task tool is unavailable (permissions, context restrictions):
 3. **Let auto-compact handle continuation** - Claude Code compresses context automatically
 4. **Manual continuation options**:
    - `claude --continue` to resume session
-   - New session + `/catchup` to understand changes
+   - New session and `/catchup` to understand changes
    - Read `.claude/session-state.md` for saved context
 
 > **Fixed in 2.1.63**: `/clear` now properly resets cached skills. Previously, stale skill content could persist into the new conversation. The `/clear` and `/catchup` pattern is now fully reliable.
@@ -321,14 +348,15 @@ For hooks where speed matters, use heuristics:
 ## Best Practices
 
 1. **Checkpoint Frequently**: During long tasks, save state at natural breakpoints
-2. **Clear Instructions**: Continuation agent needs specific, actionable guidance
+2. **Clear Instructions**: Continuation agent needs specific, concrete guidance
 3. **Verify Handoff**: Ensure state file is written before spawning subagent
-4. **Monitor Recursion**: Continuation agents can also hit limits - design for chaining
+4. **Bound Recursion**: Continuation agents can also hit limits. `handoff_depth`
+   in the state file caps the chain at 3; past it, report to the user
 
 ## Troubleshooting
 
 ### Continuation agent doesn't have full context
-- Ensure session-state.md is comprehensive
+- Ensure session-state.md is complete
 - Include all relevant file paths
 - Document implicit assumptions
 
@@ -358,3 +386,15 @@ Configure thresholds via environment:
 - `CONSERVE_EMERGENCY_THRESHOLD`: Override 80% default (e.g., "0.75")
 - `CONSERVE_CONTEXT_ESTIMATION`: Set to "0" to disable fallback
 - `CONSERVE_CONTEXT_WINDOW_BYTES`: Override 800000 byte estimate
+
+## Exit Criteria
+
+- [ ] The task list is reconciled (completed tasks marked, open task
+  IDs recorded) before any state is written
+- [ ] `.claude/session-state.md` exists and records current task,
+  progress, execution mode, and continuation instructions
+- [ ] The session-state clarity gate (Step 2.5) passed, or the failing
+  probe's answer was appended and re-scored, before handoff
+- [ ] A continuation agent was spawned with the execution mode and the
+  existing task IDs passed through (no duplicate task creation)
+- [ ] Handoff is refused when the progress probe is vague or empty

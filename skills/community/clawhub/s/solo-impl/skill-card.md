@@ -1,47 +1,60 @@
-## Description: <br>
-Autonomous executor for Solo CLI that runs setup, calibration, teleoperation, dataset recording, policy training, and inference commands in the user's terminal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Solo Impl is an autonomous executor for Solo CLI that runs setup, calibration, teleoperation, dataset recording, policy training, and inference commands in a user's terminal.
 
-## Publisher: <br>
-[samarthshukla6](https://clawhub.ai/user/samarthshukla6) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samarthshukla6](https://clawhub.ai/user/samarthshukla6)
 
-## Use Case: <br>
-Developers and robot operators use this skill to have an agent execute Solo CLI workflows for local setup, robot calibration, teleoperation, dataset capture, policy training, replay, diagnostics, and inference. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run shell commands and control attached robot hardware. <br>
-Mitigation: Install only when the user intends agent-driven Solo CLI execution, stay physically present, keep the robot workspace clear, and review displayed commands before execution. <br>
-Risk: Parameterized command values such as names, paths, and tasks may be unsafe if they contain shell-special characters. <br>
-Mitigation: Use simple names and paths without shell metacharacters and review full commands before terminal execution. <br>
-Risk: Dataset or model workflows can upload to external services when push or logging options are enabled. <br>
-Mitigation: Prefer local-only workflows unless upload is intended, and use least-privilege HuggingFace and Weights & Biases credentials. <br>
-Risk: Several high-impact robot actions depend on user observation rather than scanner-verifiable outcomes. <br>
-Mitigation: Require physical confirmation that robot movement, calibration, replay, teleoperation, or inference completed correctly before treating the action as successful. <br>
+## Use Case:
 
+Developers and robotics operators use Solo Impl to have an agent execute Solo CLI workflows for supported robot arms, from environment setup and calibration through dataset recording, training, and inference.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/samarthshukla6/solo-impl) <br>
-- [Solo CLI documentation](https://docs.getsolo.tech) <br>
-- [Solo-claw project homepage](https://github.com/GetSoloTech/Solo-claw) <br>
-- [solo-cli source repository](https://github.com/GetSoloTech/solo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Markdown] <br>
-**Output Format:** [Markdown status updates with inline shell commands and terminal execution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May open terminal windows for interactive robot workflows and may use conditional HuggingFace or Weights & Biases credentials when the selected workflow requires them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: ClawHub release metadata) <br>
+Risk: The skill can run Solo CLI commands that affect connected robot arms and local robot configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review displayed commands before execution, keep the robot workspace clear, and require physical confirmation for robot movement.
+
+Risk: The skill can install mutable third-party code, including a remote installer and source checkout.
+
+Mitigation: Use only when comfortable with those installs, prefer pinned or package-manager installs where possible, and review installer commands before running them.
+
+Risk: Dataset/model pushes and training logs can use HuggingFace or Weights & Biases credentials.
+
+Mitigation: Enable Hub or W&B operations only intentionally, confirm the destination, and avoid exposing credentials in terminal output or logs.
+
+## Reference(s):
+
+- [Solo Impl on ClawHub](https://clawhub.ai/samarthshukla6/skills/solo-impl)
+- [Solo CLI documentation](https://docs.getsolo.tech)
+- [Solo Claw homepage](https://github.com/GetSoloTech/Solo-claw)
+- [Solo CLI source repository](https://github.com/GetSoloTech/solo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with inline shell commands and terminal status updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May open terminal windows, run long-running commands, and report validation status for robot workflows.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata; artifact/skill.json reports 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

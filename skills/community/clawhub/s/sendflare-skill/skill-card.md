@@ -1,47 +1,60 @@
-## Description: <br>
-Sendflare sends email through the Sendflare SDK and supports basic contact-list workflows with API-token authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sendflare lets an agent send email through a configured Sendflare account and exposes experimental contact-management commands.
 
-## Publisher: <br>
-[keepchen](https://clawhub.ai/user/keepchen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[keepchen](https://clawhub.ai/user/keepchen)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to send Sendflare emails from natural-language commands and to access contact-management workflows when the required Sendflare configuration is available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send real emails from parsed natural-language commands without a separate confirmation step. <br>
-Mitigation: Verify the recipient, subject, and body before issuing send commands, and use human approval for workflows that send outbound email. <br>
-Risk: The skill requires a Sendflare API token. <br>
-Mitigation: Use a limited or revocable token where possible, store it only in secure configuration, and rotate it if exposure is suspected. <br>
-Risk: The configured sender must be valid for the Sendflare account and verified domain. <br>
-Mitigation: Confirm the sender domain and account settings in Sendflare before relying on successful delivery. <br>
-Risk: Contact management is experimental and attachments are not supported. <br>
-Mitigation: Avoid relying on contact changes or attachment workflows in critical usage unless those behaviors are separately verified. <br>
+## Use Case:
 
+Developers and end users use this skill to send email from a Sendflare account with natural-language commands. Contact list actions are exposed but should be treated as experimental or incomplete in this version.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/keepchen/sendflare-skill) <br>
-- [Sendflare](https://Sendflare.com) <br>
-- [Sendflare Node.js SDK documentation](https://docs.Sendflare.com/docs/sdk/nodejs/) <br>
-- [Sendflare API documentation](https://docs.Sendflare.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, API calls, guidance] <br>
-**Output Format:** [Plain text status messages and suggested actions from Sendflare email or contact operations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Sendflare API token; email sending is stable, contact management is experimental, and attachments are not supported.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release evidence and package.json) <br>
+Risk: The skill can send email immediately after parsing a command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recipients, subject lines, and message bodies carefully before asking the agent to send.
+
+Risk: Messages may contain secrets, personal data, or regulated information that would be processed by Sendflare.
+
+Mitigation: Avoid placing sensitive or regulated data in messages unless that processing is acceptable for the account and use case.
+
+Risk: Contact-management commands are unreliable or incomplete in this version.
+
+Mitigation: Treat contact actions as experimental and verify contact state in Sendflare before relying on the result.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/keepchen/skills/sendflare-skill)
+- [Sendflare](https://Sendflare.com)
+- [Sendflare Node.js SDK documentation](https://docs.Sendflare.com/docs/sdk/nodejs/)
+- [Sendflare API documentation](https://docs.Sendflare.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance, API calls]
+
+**Output Format:** [Plain text status messages with optional suggested actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May send email through the configured Sendflare account; contact-management commands may return setup or limitation guidance.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

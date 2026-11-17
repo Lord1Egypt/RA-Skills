@@ -1,18 +1,18 @@
 ---
-name: homestay-finder
+name: 特色民宿
 display_name: 特色民宿
 description: 特色民宿搜索与AI智能推荐，覆盖景区民宿、古镇客栈、乡村精品民宿，多旅游平台数据直连，零配置即装即用。暑期避暑民宿推荐，古镇乡村特色住宿搜索
-version: 1.2.3
+version: 1.2.13
 tags: [民宿搜索, 特色民宿, 民宿推荐, 客栈推荐, 旅行住宿]
 tools:
-  - name: search_homestay
+  - name: searchHomestay
     description: 特色民宿结构化搜索，支持按目的地、关键词、景点、日期、价格筛选，返回民宿列表含价格评分地址预订链接
     parameters:
       - name: params
         type: string
         description: 含dest_name/key_words/poi_name/check_in_date/check_out_date/max_price/sort字段
         required: true
-  - name: recommend_homestay
+  - name: recommendHomestay
     description: AI语义推荐特色民宿，用自然语言描述需求即可获得智能推荐
     parameters:
       - name: params

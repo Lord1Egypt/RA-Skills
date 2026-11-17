@@ -1,44 +1,65 @@
-## Description: <br>
-Generates daily A-share market momentum reports with market stance, candidate watchlists, position sizing, and risk controls for small-capital trading workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates daily A-share momentum reports with market stance, watchlists, position sizing guidance, and risk notes for small-capital intraday trading workflows.
 
-## Publisher: <br>
-[ycyjy](https://clawhub.ai/user/ycyjy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ycyjy](https://clawhub.ai/user/ycyjy)
 
-## Use Case: <br>
-Developers and traders use this skill to produce informational A-share pre-market reports from configured market data sources, including market stance, scored watchlists, and suggested position parameters. It is intended as analysis support and not as investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill claims automatic report pushing and includes optional email, webhook, JoinQuant, iFinD, and Tushare credential fields. <br>
-Mitigation: Review configuration before installing, leave optional credentials blank unless their use is documented, and confirm whether any scheduled job or push destination is enabled. <br>
-Risk: The skill presents win-rate estimates and trading position suggestions that could be mistaken for guaranteed outcomes or investment advice. <br>
-Mitigation: Use the reports only as informational analysis, independently verify market data and assumptions, and avoid relying on stated win rates for trading decisions. <br>
+## Use Case:
 
+External users and trading-tool developers can use this skill to generate daily A-share market momentum reports, candidate watchlists, and position-sizing guidance. Outputs are informational and should be reviewed before any trading decision.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ycyjy/marcus-a-stock) <br>
-- [Tushare Pro registration](https://tushare.pro/register) <br>
-- [JoinQuant](https://www.joinquant.com/) <br>
-- [iFinD](https://www.51ifind.com/) <br>
-- [ServerChan](http://sc.ftqq.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown report with console status output and optional saved Markdown file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Report content includes financial-market observations, scored stock candidates, position sizing, and risk reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Plaintext credentials may be stored in YAML configuration for data providers, email, or webhook services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use environment variables or a local secret manager, and review where configuration files are stored and backed up before adding credentials.
+
+Risk: Scheduled execution can generate or send financial reports without an explicit per-run review.
+
+Mitigation: Check any cron job before enabling the skill and require manual review of generated reports before acting on them.
+
+Risk: Generated financial reports may be persisted locally by default.
+
+Mitigation: Review and manage files saved under ~/.openclaw/workspace/reports, especially on shared or backed-up systems.
+
+Risk: Market reports and win-rate estimates may be incorrect, stale, or misleading.
+
+Mitigation: Treat outputs as informational only, verify data against trusted market sources, and make independent trading decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ycyjy/skills/marcus-a-stock)
+- [Tushare registration](https://tushare.pro/register)
+- [JoinQuant](https://www.joinquant.com/)
+- [iFinD](https://www.51ifind.com/)
+- [ServerChan](http://sc.ftqq.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown report with tables, console text, and optional saved markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save generated reports under ~/.openclaw/workspace/reports and can use local YAML configuration for data-provider and notification settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

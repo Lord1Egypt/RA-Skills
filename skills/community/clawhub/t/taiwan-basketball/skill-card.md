@@ -1,45 +1,60 @@
-## Description: <br>
-Taiwan professional basketball stats, scores, schedules, player data, live scores, box scores, notifications, and transactions for PLG and TPBL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Taiwan professional basketball stats, scores, schedules, player data, live scores, box scores, notifications, and transactions for PLG and TPBL.
 
-## Publisher: <br>
-[ichendong](https://clawhub.ai/user/ichendong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ichendong](https://clawhub.ai/user/ichendong)
 
-## Use Case: <br>
-External users and developers use this skill to query Taiwan professional basketball schedules, standings, live scores, box scores, player statistics, transactions, and team notifications for PLG and TPBL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes network requests to PLG, TPBL, and Taiwan Basketball Wiki sources, including pages accessed with a stealth browser-style fetcher. <br>
-Mitigation: Review the target domains and scraping behavior before installation, and run the skill only in environments where those outbound requests are acceptable. <br>
-Risk: Some wiki and box score behavior relies on a separate CPBL skill virtual environment for the stealth fetcher. <br>
-Mitigation: Install and update that dependency chain deliberately, and keep this skill isolated from unrelated credentials or sensitive local data. <br>
-Risk: Live scores and scraped sports data can be stale or inaccurate because source sites, cache TTLs, and live-game status handling can change. <br>
-Mitigation: Use no-cache or short-cache modes for time-sensitive checks and verify important game status against official league sources. <br>
+## Use Case:
 
+Sports analysts, fans, and agents use this skill to retrieve Taiwan professional basketball schedules, scores, standings, player statistics, box scores, reminders, and transaction updates for PLG and TPBL.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ichendong/taiwan-basketball) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Release README](artifact/README.md) <br>
-- [Taiwan Basketball Wiki example](https://wikibasketball.dils.tku.edu.tw/wiki/index.php?title=林書豪) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and CLI output that can be returned as JSON or text tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local cache and SQLite storage for sports data; freshness depends on source availability, cache settings, and live-game status handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.6 (source: frontmatter, README, skill.json, server release evidence) <br>
+Risk: The security scan reports an isolation risk because wiki and TPBL box-score scraping depend on Scrapling from a shared CPBL virtual environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Vendor or declare Scrapling in this skill's own isolated environment before deployment, and review that dependency path during installation.
+
+Risk: The skill writes a local cache and SQLite database under the user's home directory.
+
+Mitigation: Run it with an appropriate user account and review stored subscriptions, cached sports data, and database permissions before scheduled or shared use.
+
+Risk: Scraping and live-score results can be incomplete or stale when source sites change or when PLG live scores are estimated from schedule windows.
+
+Mitigation: Treat outputs as informational and verify time-sensitive scores or box scores against the official PLG or TPBL source when accuracy matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ichendong/skills/taiwan-basketball)
+- [PLG official website](https://pleagueofficial.com)
+- [TPBL official API](https://api.tpbl.basketball/api)
+- [Taiwan Basketball Wiki](https://wikibasketball.dils.tku.edu.tw/wiki/index.php)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown or JSON/table CLI output, depending on the invoked script and format option]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read live web data, use cached data, and write local SQLite records for subscriptions, transactions, schedules, and results.]
+
+## Skill Version(s):
+
+1.3.6 (source: frontmatter, README, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

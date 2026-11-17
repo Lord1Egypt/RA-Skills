@@ -10,6 +10,19 @@ Convert Markdown documents to Chinese government official document format (GB/T 
 
 This tool only provides formatting functionality and does not review content. Please ensure that the official documents generated using this tool comply with relevant regulations and requirements.
 
+### Network Access Disclosure for Image Download
+
+- When the Markdown contains remote images via `![alt](http/https URL)`, this tool will **automatically issue outbound network requests** to download and embed them into the Word document.
+- Only `http://`, `https://`, and `data:image` schemes are allowed; other schemes (e.g., `file://`, `ftp://`) are silently skipped to prevent SSRF.
+- **Privacy & Compliance Notice**: In restricted network environments (intranet, classified networks, air-gapped systems), disable remote image download by passing `download_images=False`:
+
+```python
+md_to_docx(md_content, output_path, download_images=False)
+# When disabled, remote images are replaced with a [Image: alt] text placeholder, with no network requests made.
+```
+
+- For untrusted Markdown sources, review image URLs beforehand to avoid leaking network metadata to attacker-controlled endpoints.
+
 ---
 
 ## ✨ Features
@@ -31,7 +44,7 @@ This tool only provides formatting functionality and does not review content. Pl
 - Smart `#` heading detection: a single `#` is treated as a main title (centered, no numbering); multiple `#` headings are treated as first-level headings (with numbering)
 - First line indent precisely aligned with national standard (640 twips = width of 2 Size-3 Chinese characters)
 - Added support for **tables, images, hyperlinks, code blocks, and nested lists**
-- **Bold text** is automatically converted to SimHei (黑体); *italic text* is automatically converted to KaiTi (楷体)
+- **Bold text** is automatically converted to KaiTi_GB2312 bold (楷体加粗); *italic text* is automatically converted to KaiTi (楷体)
 
 ---
 
@@ -43,13 +56,13 @@ This tool only provides formatting functionality and does not review content. Pl
 |-----------|-------------|
 | OS | Windows 10/11, Linux, macOS |
 | Python | 3.8+ (3.11 / 3.12 / 3.13 supported) |
-| Dependency | python-docx >= 1.1.0, markdown-it-py >= 3.0.0 |
+| Dependency | python-docx ~= 1.1.0, markdown-it-py ~= 3.0.0 |
 
 ### Installation
 
 **Method 1: Using pip**
 ```bash
-pip install python-docx>=1.1.0 markdown-it-py>=3.0.0
+pip install "python-docx~=1.1.0" "markdown-it-py~=3.0.0"
 ```
 
 **Method 2: Clone repository**
@@ -110,7 +123,7 @@ print("Conversion successful" if success else "Conversion failed")
 |---------|----------|------|------|
 | Title | `#` (single) | Fangzheng Xiaobiao Song | 2nd |
 | Heading 1 | `##` / `#` (multiple) | Hei Ti | 3rd |
-| Heading 2 | `###` | Kai Ti_GB2312 | 3rd |
+| Heading 2 | `###` | Kai Ti_GB2312 bold | 3rd |
 | Heading 3 | `####` | Fang Song_GB2312 | 3rd |
 | Body | Normal | Fang Song_GB2312 | 3rd |
 | Page Number | - | Song Ti | 4th |
@@ -135,7 +148,7 @@ print("Conversion successful" if success else "Conversion failed")
 | Table | `\| col \| col \|` | Full table support |
 | Image | `![alt](url)` | Inline image |
 | Link | `[text](url)` | Hyperlink |
-| Bold | `**text**` | Auto-convert to Hei Ti |
+| Bold | `**text**` | Auto-convert to KaiTi_GB2312 bold |
 | Italic | `*text*` | Auto-convert to Kai Ti |
 | Code Block | `` ```code``` `` | Monospace formatting |
 | Horizontal Rule | `---` | Page separator |

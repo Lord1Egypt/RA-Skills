@@ -1,0 +1,61 @@
+{
+  "title": "AIFLC PDLC Dashboard Data",
+  "description": "Schema for dashboard-data.json consumed by the AIFLC PDLC Dashboard UI",
+  "type": "object",
+  "required": ["generated", "projects", "health"],
+  "properties": {
+    "generated": {
+      "type": "string",
+      "description": "ISO timestamp of when data was generated"
+    },
+    "projects": {
+      "type": "array",
+      "description": "Array of project objects with packages, edges, mgmt data",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "status", "progress", "packages"],
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "status": { "type": "string", "enum": ["active", "complete", "pending", "blocked"] },
+          "priority": { "type": "integer" },
+          "progress": { "type": "integer" },
+          "lastActivity": { "type": "string" },
+          "packages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["code", "status", "phase", "progress", "stage"],
+              "properties": {
+                "code": { "type": "string", "description": "Package code e.g. AI-PILC" },
+                "status": { "type": "string", "enum": ["complete", "active", "pending", "blocked", "skipped"] },
+                "phase": { "type": "object", "description": "{ c: current, t: total, name: string }" },
+                "progress": { "type": "object", "description": "{ pct: 0-100, done: int, total: int }" },
+                "stage": { "type": "object", "description": "{ name: string }" },
+                "blockers": { "type": "array", "items": { "type": "string" } },
+                "artifacts": { "type": "array" }
+              }
+            }
+          },
+          "edges": { "type": "array", "description": "Chain edges: { from, to, type, label }" },
+          "mgmt": { "type": "object", "description": "Counts: decisions, risks, changes, actions, issues, lessons" },
+          "mgmtDetail": { "type": "object", "description": "Detail arrays per register type" },
+          "po": { "description": "Product Ownership data or null" },
+          "arch": { "description": "Architecture data or null" },
+          "ux": { "description": "UX Design data or null" }
+        }
+      }
+    },
+    "ideas": { "type": "array", "description": "Idea lifecycle items with stage, score, route" },
+    "ppm": { "type": "object", "description": "Portfolio-level metrics" },
+    "health": {
+      "type": "object",
+      "required": ["totalBlockers", "stalledProjects", "overallProgress"],
+      "properties": {
+        "totalBlockers": { "type": "integer" },
+        "stalledProjects": { "type": "integer" },
+        "overallProgress": { "type": "integer" }
+      }
+    }
+  }
+}

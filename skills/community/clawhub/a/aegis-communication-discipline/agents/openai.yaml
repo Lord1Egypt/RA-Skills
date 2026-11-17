@@ -1,0 +1,7 @@
+interface:
+  display_name: "Aegis Communication Discipline"
+  short_description: "Keep project execution status sparse, proof-aware, and ledger-backed"
+  default_prompt: "Use $aegis-communication-discipline to keep project execution updates concise and proof-aware."
+
+policy:
+  allow_implicit_invocation: false

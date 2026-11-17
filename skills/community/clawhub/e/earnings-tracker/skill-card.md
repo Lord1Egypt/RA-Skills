@@ -1,42 +1,57 @@
-## Description: <br>
-Tracks earnings calendars and company financial-report signals for configured stock watchlists, with an emphasis on A-share data via AKShare. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans Chinese A-share earnings calendars and performance forecasts for configured stock watchlists.
 
-## Publisher: <br>
-[sunnyhot](https://clawhub.ai/user/sunnyhot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunnyhot](https://clawhub.ai/user/sunnyhot)
 
-## Use Case: <br>
-Developers and market analysts can use this skill to scan configured earnings watchlists and produce a concise earnings-calendar report. The shipped code focuses on China A-share earnings data and writes a local JSON report for downstream agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner verdict is suspicious because the documentation does not match the shipped code. <br>
-Mitigation: Use the Python command from package.json and review expected behavior before installing or running the skill. <br>
-Risk: The script writes results to a hard-coded local OpenClaw memory path. <br>
-Mitigation: Change or remove the hard-coded output path before running it in a different environment. <br>
-Risk: Documented US-market tracking and Discord or Telegram alert behavior may not be implemented by the shipped code. <br>
-Mitigation: Treat the current release as an A-share scanner unless the artifact is updated and retested. <br>
+## Use Case:
 
+External users and developers use this skill to scan earnings-related data for configured stock watchlists and summarize matching Chinese A-share earnings calendar and forecast items.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sunnyhot/earnings-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, shell commands] <br>
-**Output Format:** [Console text and JSON file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a configured stock watchlist and writes earnings-calendar results to a local JSON file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and package.json) <br>
+Risk: Documented U.S. market scanning, scheduling, and Discord/Telegram delivery may not work as advertised.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as a Chinese A-share scanner unless reviewed code and tests demonstrate the additional documented integrations.
+
+Risk: The scanner writes persistent output to a fixed OpenClaw memory path without clear user control.
+
+Mitigation: Review and change the output path to an explicit, user-approved location before running the skill in a shared or sensitive environment.
+
+Risk: The skill depends on akshare for market data retrieval.
+
+Mitigation: Pin and review the akshare dependency and run the scanner in an isolated environment before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunnyhot/skills/earnings-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance, shell commands, console text, and JSON result files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The scanner uses a configured watchlist and can write earnings scan results to a local JSON file.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and package.json; SKILL.md frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

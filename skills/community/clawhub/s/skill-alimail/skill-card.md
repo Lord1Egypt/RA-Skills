@@ -1,45 +1,59 @@
-## Description: <br>
-Provides AliMail API access for querying mailbox users, retrieving message details, and searching mail with KQL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides AliMail API access for querying enterprise mailbox user information, retrieving message details, and searching messages.
 
-## Publisher: <br>
-[vber](https://clawhub.ai/user/vber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vber](https://clawhub.ai/user/vber)
 
-## Use Case: <br>
-Administrators and support engineers use this skill to inspect authorized AliMail tenant user profiles and mailbox records for operational troubleshooting, compliance review, or message lookup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read sensitive AliMail user and mailbox data. <br>
-Mitigation: Install only for authorized AliMail tenant administration and use the minimum read-only permissions needed. <br>
-Risk: ALMAIL_SECRET exposure could allow unauthorized access through the configured AliMail app. <br>
-Mitigation: Protect and rotate ALMAIL_SECRET and avoid storing it in prompts, logs, or committed files. <br>
-Risk: Full message bodies may contain sensitive or regulated content. <br>
-Mitigation: Avoid retrieving or logging full message bodies unless there is a clear business need. <br>
-Risk: The npm SDK dependency affects the security posture of runtime API calls. <br>
-Mitigation: Pin or review the alimail-node-sdk version before deployment. <br>
+## Use Case:
 
+Developers and workspace administrators use this skill to run AliMail SDK scripts that inspect enterprise mailbox users, retrieve individual messages, and search mail with KQL when they have authorized credentials.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/vber/skill-alimail) <br>
-- [AliMail API reference](references/alimail-api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ALMAIL_APP_ID and ALMAIL_SECRET for OAuth2 client credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: The skill handles organization mailbox data and can print user profile data or full email content to the terminal.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only with an authorized AliMail application, restrict access to users with a business need, and treat terminal output and logs as sensitive.
+
+Risk: Credentialed API access may be over-privileged if read-write scopes are granted for read-oriented scripts.
+
+Mitigation: Grant least-privilege read-only scopes where possible and avoid read-write scopes unless a specific workflow requires them.
+
+Risk: The skill installs and executes the alimail-node-sdk npm dependency.
+
+Mitigation: Pin and review the npm dependency before installation and before accepting updates.
+
+## Reference(s):
+
+- [AliMail API Reference](references/alimail-api.md)
+- [AliMail API Endpoint](https://alimail-cn.aliyuncs.com)
+- [ClawHub Skill Page](https://clawhub.ai/vber/skills/skill-alimail)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown summaries with shell commands and JSON API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ALMAIL_APP_ID and ALMAIL_SECRET; script output may include user profile data and full email content.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Enhanced Suno song creator with reference song analysis, lyric optimization, and support for Chinese classical rhyme and tonal patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates Suno song packages by analyzing reference tracks, drafting and optimizing lyrics, and supporting Chinese classical rhyme and tonal patterns.
 
-## Publisher: <br>
-[Skyni8568](https://clawhub.ai/user/Skyni8568) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skyni8568](https://clawhub.ai/user/skyni8568)
 
-## Use Case: <br>
-Songwriters, creators, and agents use this skill to turn themes, reference songs, and poetry into Suno-ready lyrics, style tags, and revision guidance. It is especially useful for iterative lyric refinement and Chinese classical-style songwriting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use web search, browser automation, Gemini, image analysis, or Suno with user-provided creative material. <br>
-Mitigation: Use public reference songs or non-sensitive prompts, and avoid sharing unreleased lyrics, private demos, account details, or confidential creative direction. <br>
-Risk: Reference-song analysis and classical poetry adaptation can lead to overly close imitation, missing attribution, or culturally insensitive use. <br>
-Mitigation: Analyze style without copying lyrics, credit original poets when adapting works, respect Suno terms, and review culturally specific output before use. <br>
+## Use Case:
 
+External creators and developers use this skill to create AI-generated songs with Suno, analyze reference-song style, produce lyrics and style tags, and refine song drafts from feedback. It also supports Chinese classical-style lyric work using rhyme, tonal, and couplet guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Skyni8568/suno-poetry-music-creator) <br>
-- [Chinese rhyme reference](references/chinese-rhyme.md) <br>
-- [Lyric optimization examples](references/lyric-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown lyric packages with reference analysis, Suno style tags, and revision guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include bilingual lyrics, Chinese rhyme guidance, arrangement notes, and up to three optimization iterations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Browser automation with Suno or related services could perform actions outside the user's intent or conflict with service terms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep browser actions under user control and confirm that any Suno or third-party-service usage complies with the applicable terms.
+
+Risk: Reference-song analysis and lyric generation could copy protected lyrics or imitate an artist too closely.
+
+Mitigation: Use reference material for high-level style traits, avoid copying lyrics, and credit original poets when adapting classical works.
+
+Risk: Chinese classical lyric adaptation can mishandle rhyme, tonal patterns, meaning, or cultural context.
+
+Mitigation: Use the bundled Chinese rhyme reference and review culturally specific adaptations before final use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/skyni8568/skills/suno-poetry-music-creator)
+- [Chinese classical rhyme reference](artifact/references/chinese-rhyme.md)
+- [Lyric optimization examples](artifact/references/lyric-examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown song package with lyric drafts, Suno style tags, reference-song analysis, and revision guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Chinese classical rhyme guidance, musical arrangement notes, and iterative lyric refinements.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

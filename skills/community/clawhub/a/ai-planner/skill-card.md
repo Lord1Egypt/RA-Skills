@@ -1,38 +1,50 @@
-## Description: <br>
-Analyzes Chinese e-commerce image requests and produces creative briefs with prompts, negative prompts, platform requirements, tool recommendations, and generation quantities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ai Planner analyzes Chinese ecommerce image-generation requests and produces structured creative briefs with prompt guidance, negative prompts, tool recommendations, and generation quantities.
 
-## Publisher: <br>
-[duzhihai123](https://clawhub.ai/user/duzhihai123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duzhihai123](https://clawhub.ai/user/duzhihai123)
 
-## Use Case: <br>
-E-commerce creative teams and image-generation operators use this skill to turn Chinese natural-language product image requests into structured creative briefs for marketplace and social media assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated brief history may retain confidential product launch, campaign, customer, or business strategy details locally. <br>
-Mitigation: Use an isolated workspace for sensitive work, avoid confidential inputs unless history storage is acceptable, and review or clear memory/brief_history.md after use. <br>
+## Use Case:
 
+External users and ecommerce creative teams use this skill to turn Chinese product-image requirements into concise creative briefs for marketplace, product-detail, poster, and social-media image work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/duzhihai123/ai-planner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance, configuration] <br>
-**Output Format:** [JSON creative brief or clarification request] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language e-commerce image brief with prompt, negative prompt, platform requirements, tool recommendation, and quantity; may return clarification questions when product type and scenario are missing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence, skill.json, SKILL.md) <br>
+Risk: Generated brief details may be appended to a local plaintext history file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering confidential product, campaign, or strategy details unless local plaintext history storage is acceptable, and clear or protect the history file according to workspace policy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/duzhihai123/skills/ai-planner)
+- [Publisher profile](https://clawhub.ai/user/duzhihai123)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance]
+
+**Output Format:** [JSON creative brief or clarification questions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language outputs include prompt text, negative prompt text, platform requirements, recommended generation tool, and suggested quantity.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

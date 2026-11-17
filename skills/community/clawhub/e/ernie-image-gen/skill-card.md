@@ -1,45 +1,64 @@
-## Description: <br>
-Generates local PNG images with Baidu AI Studio's ERNIE-Image and ERNIE-Image-Turbo models from text prompts, with support for batch generation, size selection, seeds, inference steps, guidance scale, and prompt enhancement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Baidu ERNIE-Image text-to-image generation skill for creating local PNG images through Baidu AI Studio's ERNIE-Image and ERNIE-Image-Turbo models.
 
-## Publisher: <br>
-[aiwork4me](https://clawhub.ai/user/aiwork4me) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aiwork4me](https://clawhub.ai/user/aiwork4me)
 
-## Use Case: <br>
-Developers and external users use this skill to generate image assets through Baidu AI Studio when they need ERNIE image generation, Chinese-language prompts, Chinese-style imagery, or local PNG outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and generation parameters are sent to Baidu AI Studio. <br>
-Mitigation: Avoid private personal data, secrets, and confidential business data in prompts, and follow Baidu AI Studio terms and applicable platform rules. <br>
-Risk: The skill requires a sensitive API key. <br>
-Mitigation: Keep AI_STUDIO_API_KEY in the environment and out of chat or generated logs. <br>
-Risk: Generated files are written to local storage. <br>
-Mitigation: Choose or confirm the output directory before generation and review generated PNG files before use. <br>
+## Use Case:
 
+External users and developers use this skill to generate images from Chinese or English prompts with Baidu AI Studio ERNIE-Image models, including batch generation, size selection, seed control, and local PNG output.
 
-## Reference(s): <br>
-- [ERNIE-Image API Reference](references/api-guide.md) <br>
-- [Baidu AI Studio Access Token](https://aistudio.baidu.com/account/accessToken) <br>
-- [Baidu AI Studio OpenAI-Compatible API Endpoint](https://aistudio.baidu.com/llm/lmapi/v3) <br>
-- [ClawHub Skill Page](https://clawhub.ai/aiwork4me/ernie-image-gen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, JSON, Guidance] <br>
-**Output Format:** [PNG image files with MEDIA lines, optional JSON status output, and Markdown guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AI_STUDIO_API_KEY in the environment; accepts prompt, model, size, count, seed, steps, guidance, prompt enhancement, output directory, and filename prefix options; avoids overwriting existing files by adding numeric suffixes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: Image prompts and generation parameters are sent to Baidu AI Studio, and the Python process reads AI_STUDIO_API_KEY from the environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not include secrets, private personal data, or confidential business data in prompts; run the skill only where exposing the Baidu API key to the process is acceptable.
+
+Risk: The documented uv installation path includes an unverified curl-to-shell command.
+
+Mitigation: Install uv through a trusted and verified channel before using the skill.
+
+Risk: Runtime dependency resolution uses an unpinned lower-bound openai dependency.
+
+Mitigation: Pin or lock the openai dependency in the execution environment before production use.
+
+Risk: Generated files are written to a local output directory.
+
+Mitigation: Confirm the output directory before generation and run the skill in a constrained workspace.
+
+## Reference(s):
+
+- [ERNIE-Image API Reference](references/api-guide.md)
+- [Baidu AI Studio API endpoint](https://aistudio.baidu.com/llm/lmapi/v3)
+- [Baidu AI Studio access token page](https://aistudio.baidu.com/account/accessToken)
+- [ClawHub skill page](https://clawhub.ai/aiwork4me/skills/ernie-image-gen)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON, Shell commands, Guidance]
+
+**Output Format:** [Local PNG image files with MEDIA path lines; optional structured JSON result]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates 1-4 images per request, supports seven image sizes, seed control, prompt enhancement, inference steps, guidance scale, and non-overwriting filename suffixes.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,53 @@
-## Description: <br>
-Design and analyze user experiences that are intuitive, efficient, and aligned with user mental models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design and analyze user experiences that are intuitive, efficient, and aligned with user mental models.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Designers, product teams, and agent developers use this skill to review user flows, reduce interaction friction, improve accessibility coverage, and align interface decisions with user mental models. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The UX guidance may not match a team's preferred design style or product-specific standards. <br>
-Mitigation: Review the guidance against the team's UX, brand, accessibility, and product requirements before adopting recommendations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/ux) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
 
+Designers, developers, and product teams use this skill to review user flows, reduce friction, align interface patterns with user expectations, and improve accessibility, feedback, error handling, copy, and consistency.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown or plain text UX guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: UX recommendations may encourage designs that rely on account context or autosave.
+
+Mitigation: Review implementations that use this guidance for normal privacy, consent, and data-retention expectations before release.
+
+Risk: General UX guidance can be applied incorrectly to a specific product flow.
+
+Mitigation: Review the agent's proposed design changes against the product's user needs, accessibility requirements, and implementation constraints.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/ux)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; guidance should be reviewed before implementation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,51 @@
-## Description: <br>
-Quit vaping with nicotine-free streak tracking, craving tools, and health milestones <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quit vaping with nicotine-free streak tracking, craving tools, and health milestones.
 
-## Publisher: <br>
-[jhillin8](https://clawhub.ai/user/jhillin8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jhillin8](https://clawhub.ai/user/jhillin8)
 
-## Use Case: <br>
-External users use this skill to plan and sustain a quit-vaping effort by tracking a quit date, monitoring progress, responding to cravings, and reviewing health and savings milestones. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may help record quit dates, cravings, triggers, and progress, which can be personal health-related information. <br>
-Mitigation: Use local memory and data controls to review, limit, or delete stored quit-vaping information when needed. <br>
-Risk: Health milestone content may be used as motivation but is not a substitute for individualized medical advice. <br>
-Mitigation: Treat milestone guidance as general support and consult a qualified health professional for medical concerns or cessation treatment decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Quit Vaping on ClawHub](https://clawhub.ai/jhillin8/quit-vaping) <br>
-- [jhillin8 ClawHub profile](https://clawhub.ai/user/jhillin8) <br>
+## Use Case:
+
+External users use this skill to track vaping cessation progress, manage cravings, review health recovery milestones, and estimate money saved after quitting.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may keep local notes about quit date, cravings, and progress.
+
+Mitigation: Keep this information local, tell users what is being stored, and avoid adding network sync or sharing without explicit user consent.
+
+Risk: Health timeline content could be mistaken for medical care.
+
+Mitigation: Present the timeline as motivational guidance and direct users to qualified professionals for medical or urgent cessation support.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include user-specific progress summaries, craving-response prompts, health milestone summaries, and local tracking guidance.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with tracking prompts, craving-management steps, progress summaries, and health milestone descriptions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, network behavior, or hidden privilege requests were identified in the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

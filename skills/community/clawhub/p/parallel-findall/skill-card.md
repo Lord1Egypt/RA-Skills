@@ -1,47 +1,57 @@
-## Description: <br>
-Discover entities (companies, people, products) matching a natural-language description via the Parallel FindAll API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover entities matching a natural-language description through the Parallel FindAll API and return structured lists rather than webpages or prose.
 
-## Publisher: <br>
-[normallygaussian](https://clawhub.ai/user/normallygaussian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[normallygaussian](https://clawhub.ai/user/normallygaussian)
 
-## Use Case: <br>
-Developers and analysts use this skill to run Parallel FindAll entity-discovery jobs from an authenticated CLI and return structured lists of matching companies, people, products, papers, or similar enumerable entities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: FindAll runs use an external Parallel API through an authenticated CLI and may expose objectives or saved result files to Parallel and helper agents. <br>
-Mitigation: Confirm the authenticated account before use and avoid submitting sensitive objectives or result files unless that sharing is acceptable. <br>
-Risk: Large match limits or pro-tier generator runs may consume quota. <br>
-Mitigation: Choose the smallest match limit and generator tier that satisfies the user's request, and warn users before high-volume or pro-tier runs. <br>
-Risk: Lower-quality runs can return noisy entities, empty URLs, duplicate sources, or category placeholders. <br>
-Mitigation: Filter noisy matches, group large result sets by source domain, and preserve the FindAll run identifier so users can extend, inspect, or cancel the run. <br>
+## Use Case:
 
+External users, developers, and research analysts use this skill to ask an agent for enumerable entities such as companies, people, products, or papers that match natural-language criteria. It helps the agent run Parallel FindAll, manage result limits and generator tiers, and relay structured matches.
 
-## Reference(s): <br>
-- [Parallel Homepage](https://parallel.ai) <br>
-- [Parallel API Docs](https://docs.parallel.ai) <br>
-- [Parallel FindAll API Reference](https://docs.parallel.ai/api-reference/findall) <br>
-- [Parallel CLI Integration Docs](https://docs.parallel.ai/integrations/cli) <br>
-- [ClawHub Skill Page](https://clawhub.ai/normallygaussian/parallel-findall) <br>
-- [Publisher Profile](https://clawhub.ai/user/normallygaussian) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, API Calls, JSON, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON result handling] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [FindAll results may include a run identifier, status, generated schema, and matches array; large runs can be saved to a file for later summarization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Shell command examples can become command-injection risks if an agent inserts raw user objectives directly into a command string.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use structured argument invocation or carefully escape user-provided objectives before calling parallel-cli.
+
+Risk: Base generator results may include noisy entries such as empty URLs, query-echo names, or category placeholders.
+
+Mitigation: Filter noisy matches before relaying results and prefer the core or pro generator when coverage or precision matters.
+
+## Reference(s):
+
+- [Parallel](https://parallel.ai)
+- [Parallel API Documentation](https://docs.parallel.ai)
+- [FindAll API Reference](https://docs.parallel.ai/api-reference/findall)
+- [Parallel CLI Integration](https://docs.parallel.ai/integrations/cli)
+- [ClawHub Skill Page](https://clawhub.ai/normallygaussian/skills/parallel-findall)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Markdown, JSON, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured JSON result descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill instructs agents to preserve FindAll run IDs, filter noisy matches, and group large result sets for easier review.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

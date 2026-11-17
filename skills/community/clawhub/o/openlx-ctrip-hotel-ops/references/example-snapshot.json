@@ -1,0 +1,98 @@
+{
+  "hotel": {
+    "id": "example-hotel",
+    "name": "示例湖畔客栈（演示）",
+    "destination": "示例目的地",
+    "description": "用于演示经营报告结构，不代表真实门店。"
+  },
+  "source": {
+    "type": "MOCK",
+    "reference": "随包演示夹具"
+  },
+  "observed_at": "2026-09-05T17:59:15.319Z",
+  "rooms": [
+    {
+      "id": "double",
+      "name": "庭院大床房",
+      "area_sqm": 28,
+      "breakfast": "需按实际套餐核实"
+    }
+  ],
+  "rates": [
+    {
+      "room_id": "double",
+      "plan_id": "base",
+      "date": "2026-09-12",
+      "price_fen": 19800,
+      "floor_fen": 20800
+    }
+  ],
+  "inventory": [
+    {
+      "room_id": "double",
+      "date": "2026-09-12",
+      "available": 2
+    }
+  ],
+  "inventory_authority": null,
+  "orders": [
+    {
+      "id": "sample-order",
+      "status": "PENDING",
+      "arrival": "2026-09-12",
+      "room_nights": 2
+    }
+  ],
+  "reviews": [
+    {
+      "id": "sample-positive",
+      "rating": 5,
+      "text": "非常满意，干净整洁！",
+      "replied": false
+    },
+    {
+      "id": "sample-mixed",
+      "rating": 5,
+      "text": "服务不错，但是隔音需要改善。",
+      "replied": false
+    }
+  ],
+  "promotions": [
+    {
+      "id": "sample-promo",
+      "name": "演示早餐套餐",
+      "gross_fen": 19800
+    }
+  ],
+  "competitors": [
+    {
+      "hotel_name": "同行示例A",
+      "status": "SOLD_OUT",
+      "checkin": "2026-09-12",
+      "source_reference": "模拟快照"
+    },
+    {
+      "hotel_name": "同行示例B",
+      "status": "NETWORK_ERROR",
+      "checkin": "2026-09-12"
+    }
+  ],
+  "events": null,
+  "facts": [
+    {
+      "id": "f1",
+      "text": "示例客栈设置了一处阅读空间。",
+      "verified": true,
+      "source_reference": "演示事实，非真实门店承诺"
+    }
+  ],
+  "content": null,
+  "metrics": {
+    "scope": "CTRIP",
+    "period": "演示统计期",
+    "basis": "预订进度",
+    "available_room_nights": 60,
+    "sold_room_nights": 24,
+    "room_revenue_fen": 475200
+  }
+}

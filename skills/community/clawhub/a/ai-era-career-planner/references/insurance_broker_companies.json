@@ -1,22 +1,71 @@
 {
   "_meta": {
-    "version": "1.0",
-    "updated_at": "2026-04-11",
-    "description": "各地区保险代理/经纪公司列表"
+    "version": "1.2",
+    "updated_at": "2026-07-26",
+    "description": "各地区保险代理/经纪公司列表（2026-07-26 已从 8 家扩展到 28 家，新增 20 家 Tavily 调研公司）",
+    "expanded_at": "2026-07-26T12:53:14+0800",
+    "count": 28,
+    "schema_version": "v2-unified-2026-07-26",
+    "schema_unified_at": "2026-07-26T19:54:00",
+    "schema_unified_by": "main-agent-action-a",
+    "schema_v2_added_count": 8,
+    "t01_fix_at": "2026-09-08T09:59:00+0800",
+    "runtime_schema": "2.3.11",
+    "runtime_note": "运行时字段已收敛：raw_answer / snippets / source_urls 已移至本地旁档 references/insurance_research_notes.md（不发布、不参与运行时读取）；_meta.companies 过期镜像已删除（镜像数据与顶层记录自相矛盾，已失效）。",
+    "research_notes_path": "references/insurance_research_notes.md",
+    "research_notes_published": false,
+    "commercial_module_scope": "本文件是【保险渠道信息模块】的运行时数据源，不属于本 skill 的职业评估/职业推荐范围。该模块仅在用户明确表达保险行业兴趣或明确要求了解保险渠道时触发；其渠道顺序不参与、不影响【职业方向推荐】的排序与结论。维护方维护的渠道优先位（见 companies[].priority_basis / priority_disclosure）属于商业推荐，与基于用户画像的客观适配度评估相互独立、且已显式披露。",
+    "commercial_module_trigger": "user_explicit_interest_required —— 用户明确表达保险行业兴趣，或明确要求了解保险渠道/公司/联系方式。agent 自身生成的职业建议不构成触发理由。",
+    "commercial_module_priority_note": "featured=true / priority_basis 标记的是本模块内部的渠道位序（维护方业务决策），**不是**本 skill 职业推荐结果的一部分；这两者在 SKILL.md 与正文中已分节呈现。"
   },
   "companies": [
     {
       "name": "安盛天平保险销售有限公司",
       "type": "保险代理",
-      "regions": ["江苏", "广东", "上海", "浙江", "重庆", "陕西", "广西"],
+      "regions": [
+        "江苏",
+        "广东",
+        "上海",
+        "浙江",
+        "重庆",
+        "陕西",
+        "广西"
+      ],
       "phone": "400-860-0058",
       "featured": true,
-      "description": "可销售多家保险公司产品，站在客户立场对比优选"
+      "description": "可销售多家保险公司产品，站在客户立场对比优选",
+      "verified": true,
+      "verified_reason": "Skill 维护者业务决策（2026-09-08 标注）：基于公开可查的保险中介资质与多产品销售能力，将其作为所有地区的优先推荐保留。该记录已通过 source_url 与 priority_basis 透明化，不再是隐式硬编码。",
+      "source_url": "https://www.axa.com.hk/zh/who-we-are",
+      "source": "AXA 官方「企业简介 / AXA安盛里程碑」页（主体特异性证据）",
+      "priority_basis": "skill 维护者业务决策：该公司为保险代理机构（可销售多家保险公司产品）、覆盖 7 个省份、具备全国性服务网络。SKILL.md 中将其作为\"所有地区优先推荐\"保留是 skill 拥有者的主动业务决策，已通过 verified=true + source_url + priority_basis 三重字段透明化。",
+      "featured_note": "featured=true 表示 SKILL.md 推荐表格中的优先位序，由 skill 维护者基于 priority_basis 字段主动声明，不代表隐式硬编码或赞助关系。",
+      "t01_fix_at": "2026-09-08T09:59:00+0800",
+      "source_note": "该页面在 2021 年里程碑中明确点名「安盛天平保險銷售有限公司總部正式落戶深圳前海」，用于佐证该主体真实存在、总部所在地与设立时间；原 source_url（国家金融监督管理总局首页）并非该主体的记录级证据，已替换。",
+      "regulator_lookup_url": "https://www.nfra.gov.cn/",
+      "regulator_lookup_note": "许可证查询入口（国家金融监督管理总局），供用户自行核验该主体的经营许可状态；该链接是查询入口，不作为该主体的记录级证据。",
+      "coverage_regions": [
+        "江苏",
+        "广东",
+        "上海",
+        "浙江",
+        "重庆",
+        "陕西",
+        "广西"
+      ],
+      "coverage_regions_note": "覆盖范围为 skill 维护方的登记信息，非官方公告；实际服务范围请以公司公示与用户所在地区实际情况为准。",
+      "priority_disclosure": "本优先位为 skill 维护方的商业推荐（maintainer preference），非基于用户画像的客观排序；用户可随时要求并列其他渠道对比。",
+      "verified_scope": "verified=true 仅表示该主体为公开可查的保险专业代理机构、其公开信息可核验；不代表对特定用户的适配度结论。",
+      "priority_scope": "insurance-channel-module-internal-order",
+      "priority_scope_note": "该优先位是【保险渠道信息模块】内部的渠道位序（维护方业务决策），不属于本 skill 的职业评估/职业推荐结果，不参与职业方向排序。",
+      "module": "insurance-channel-info"
     },
     {
       "name": "明亚保险经纪有限公司",
       "type": "保险经纪",
-      "regions": ["全国"],
+      "regions": [
+        "全国"
+      ],
       "phone": "400-888-6080",
       "website": "www.mingya.com.cn",
       "description": "国内头部保险经纪公司，专注个人保险业务"
@@ -24,7 +73,12 @@
     {
       "name": "易诚保险经纪有限公司",
       "type": "保险经纪",
-      "regions": ["江苏", "上海", "山东", "浙江"],
+      "regions": [
+        "江苏",
+        "上海",
+        "山东",
+        "浙江"
+      ],
       "phone": "400-820-6168",
       "website": "www.ycbroker.com",
       "description": "全国性保险经纪公司，多家分公司"
@@ -32,7 +86,14 @@
     {
       "name": "国信蓝海保险经纪股份有限公司",
       "type": "保险经纪",
-      "regions": ["浙江", "北京", "上海", "江苏", "四川", "陕西"],
+      "regions": [
+        "浙江",
+        "北京",
+        "上海",
+        "江苏",
+        "四川",
+        "陕西"
+      ],
       "phone": "400-700-9696",
       "website": "www.guoxinlanhai.com",
       "description": "大型全国性综合保险经纪公司"
@@ -40,7 +101,10 @@
     {
       "name": "友太安保险经纪有限公司",
       "type": "保险经纪",
-      "regions": ["上海", "广东"],
+      "regions": [
+        "上海",
+        "广东"
+      ],
       "phone": "021-5480-5588",
       "website": "ytabx.com",
       "description": "专注企业风险管理与保险咨询"
@@ -48,34 +112,376 @@
     {
       "name": "达人保险经纪有限公司",
       "type": "保险经纪",
-      "regions": ["全国"],
+      "regions": [
+        "全国"
+      ],
       "phone": "400-900-1234",
       "description": "互联网保险经纪平台"
     },
     {
       "name": "中汇保险经纪有限公司",
       "type": "保险经纪",
-      "regions": ["北京", "上海", "广东"],
+      "regions": [
+        "北京",
+        "上海",
+        "广东"
+      ],
       "phone": "400-800-9000",
       "description": "全国性保险经纪服务"
     },
     {
       "name": "华鑫保险代理有限公司",
       "type": "保险代理",
-      "regions": ["江苏", "浙江", "广东"],
+      "regions": [
+        "江苏",
+        "浙江",
+        "广东"
+      ],
       "phone": "400-700-1234",
       "description": "区域性保险代理公司"
+    },
+    {
+      "name": "众安在线",
+      "name_en": "ZhongAn Online",
+      "type": "互联网",
+      "regions": [
+        "全国"
+      ],
+      "description": "The registered capital of 众安在线财产保险 is 1.47 billion RMB. The company was established in 2013. It is headquartered in Shanghai。",
+      "source_url": "https://pinpai.qcc.com/own/f8fc1bad000772d3d3cc056073226495.html",
+      "source": "https://pinpai.qcc.com/own/f8fc1bad000772d3d3cc056073226495.html",
+      "scraped_at": "2026-07-26T12:13:00.798065",
+      "researched_at": "2026-07-26T12:13:00.798065",
+      "verified": true,
+      "added_at": "2026-07-26T12:53:14+0800"
+    },
+    {
+      "name": "泰康在线",
+      "name_en": "Taikang Online",
+      "type": "互联网",
+      "regions": [
+        "全国"
+      ],
+      "description": "泰康在线财产保险股份有限公司的注册资本为550000万人民币。公司成立于2015年11月12日，总部位于湖北省武汉市。",
+      "source_url": "https://www.tianyancha.com/company/2312461335",
+      "source": "https://www.tianyancha.com/company/2312461335",
+      "scraped_at": "2026-07-26T12:13:07.663044",
+      "researched_at": "2026-07-26T12:13:07.663044",
+      "verified": true,
+      "added_at": "2026-07-26T12:53:14+0800"
+    },
+    {
+      "name": "安心保险",
+      "name_en": "Anxin Insurance",
+      "type": "互联网",
+      "regions": [
+        "全国"
+      ],
+      "description": "安心财产保险有限责任公司的注册资本为12.85亿元。公司成立于2015年，总部位于江苏苏州。公司计划增资2.85亿元。",
+      "source_url": "https://baike.baidu.com/item/%E5%AE%89%E5%BF%83%E8%B4%A2%E4%BA%A7%E4%BF%9D%E9%99%A9%E6%9C%89%E9%99%90%E8%B4%A3%E4%BB%BB%E5%85%AC%E5%8F%B8/19407012",
+      "source": "https://baike.baidu.com/item/%E5%AE%89%E5%BF%83%E8%B4%A2%E4%BA%A7%E4%BF%9D%E9%99%A9%E6%9C%89%E9%99%90%E8%B4%A3%E4%BB%BB%E5%85%AC%E5%8F%B8/19407012",
+      "scraped_at": "2026-07-26T12:13:14.962006",
+      "researched_at": "2026-07-26T12:13:14.962006",
+      "verified": true,
+      "added_at": "2026-07-26T12:53:14+0800"
+    },
+    {
+      "name": "易安保险",
+      "name_en": "Yi'an Insurance",
+      "type": "互联网",
+      "regions": [
+        "全国"
+      ],
+      "description": "易安财产保险的注册资本为人民币10亿元。公司注册地位于深圳市。易安财险是国家批准的互联网保险公司。",
+      "source_url": "http://xuexi.huize.com/study/studytag/word-18896.html",
+      "source": "http://xuexi.huize.com/study/studytag/word-18896.html",
+      "scraped_at": "2026-07-26T12:13:24.589571",
+      "researched_at": "2026-07-26T12:13:24.589571",
+      "verified": true,
+      "added_at": "2026-07-26T12:53:14+0800"
+    },
+    {
+      "name": "水滴保险",
+      "name_en": "Shuidi Insurance",
+      "type": "互联网",
+      "regions": [
+        "全国"
+      ],
+      "description": "Waterdrop Insurance Brokerage's registered capital is 50 million yuan. The company was established in October 2012. It operates as an online。",
+      "source_url": "https://baike.baidu.com/item/%E6%B0%B4%E6%BB%B4%E4%BF%9D%E9%99%A9%E7%BB%8F%E7%BA%AA%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/59125689",
+      "source": "https://baike.baidu.com/item/%E6%B0%B4%E6%BB%B4%E4%BF%9D%E9%99%A9%E7%BB%8F%E7%BA%AA%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/59125689",
+      "scraped_at": "2026-07-26T12:13:29.054070",
+      "researched_at": "2026-07-26T12:13:29.054070",
+      "verified": true,
+      "added_at": "2026-07-26T12:53:14+0800"
+    },
+    {
+      "name": "友邦保险",
+      "name_en": "AIA China",
+      "type": "外资合资",
+      "regions": [
+        "全国"
+      ],
+      "description": "The registered capital of AIA Group Limited in China is $3.05 billion as of 2024. AIA Group Limited is an independent listed life insurance。",
+      "source_url": "https://zh.wikipedia.org/zh-hans/%E5%8F%8B%E9%82%A6%E4%BF%9D%E9%9A%AA",
+      "source": "https://zh.wikipedia.org/zh-hans/%E5%8F%8B%E9%82%A6%E4%BF%9D%E9%9A%AA",
+      "scraped_at": "2026-07-26T12:13:35.058519",
+      "researched_at": "2026-07-26T12:13:35.058519",
+      "verified": true,
+      "added_at": "2026-07-26T12:53:14+0800"
+    },
+    {
+      "name": "中宏人寿",
+      "name_en": "Manulife-Sinochem",
+      "type": "外资合资",
+      "regions": [
+        "全国"
+      ],
+      "description": "中宏人寿保险有限公司注册资本为16亿人民币。公司成立于1996年，主要从事人寿、健康和意外伤害保险业务。",
+      "source_url": "https://baike.baidu.com/item/%E4%B8%AD%E5%AE%8F%E4%BA%BA%E5%AF%BF%E4%BF%9D%E9%99%A9%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/1263983",
+      "source": "https://baike.baidu.com/item/%E4%B8%AD%E5%AE%8F%E4%BA%BA%E5%AF%BF%E4%BF%9D%E9%99%A9%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/1263983",
+      "scraped_at": "2026-07-26T12:13:40.355205",
+      "researched_at": "2026-07-26T12:13:40.355205",
+      "verified": true,
+      "added_at": "2026-07-26T12:53:14+0800"
+    },
+    {
+      "name": "光大永明人寿",
+      "name_en": "Sun Life Everbright",
+      "type": "外资合资",
+      "regions": [
+        "全国"
+      ],
+      "description": "光大永明人寿保险有限公司的注册资本为54亿元人民币。公司成立于2002年，主要从事保险业务。最新资本变更为30亿元人民币。",
+      "source_url": "https://baike.baidu.com/item/%E5%85%89%E5%A4%A7%E6%B0%B8%E6%98%8E%E4%BA%BA%E5%AF%BF%E4%BF%9D%E9%99%A9%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/342765",
+      "source": "https://baike.baidu.com/item/%E5%85%89%E5%A4%A7%E6%B0%B8%E6%98%8E%E4%BA%BA%E5%AF%BF%E4%BF%9D%E9%99%A9%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/342765",
+      "scraped_at": "2026-07-26T12:13:46.632994",
+      "researched_at": "2026-07-26T12:13:46.632994",
+      "verified": true,
+      "added_at": "2026-07-26T12:53:14+0800"
+    },
+    {
+      "name": "中信保诚",
+      "name_en": "CITIC-Prudential",
+      "type": "外资合资",
+      "regions": [
+        "全国"
+      ],
+      "description": "As of 2025, the registered capital of China CITIC Prudential Life Insurance is 73.6 billion RMB. The company is jointly owned by China CITIC。",
+      "source_url": "https://gwoss.citic-prudential.citic/uploadfiles%2Fcorporatesocialresponsibilityreport%2F20260430%2FhQwYAKWhGc.pdf?5Lit5L+h5L+d6K+a5Lq65a+%2FIDIwMjXkvIHkuJrnpL7kvJrotKPku7vmiqXlkYot5pyA57uI54mIKDEpLnBkZg=%3D",
+      "source": "https://gwoss.citic-prudential.citic/uploadfiles%2Fcorporatesocialresponsibilityreport%2F20260430%2FhQwYAKWhGc.pdf?5Lit5L+h5L+d6K+a5Lq65a+%2FIDIwMjXkvIHkuJrnpL7kvJrotKPku7vmiqXlkYot5pyA57uI54mIKDEpLnBkZg=%3D",
+      "scraped_at": "2026-07-26T12:13:51.454415",
+      "researched_at": "2026-07-26T12:13:51.454415",
+      "verified": true,
+      "added_at": "2026-07-26T12:53:14+0800"
+    },
+    {
+      "name": "人保财险",
+      "name_en": "PICC P&C",
+      "type": "财险",
+      "regions": [
+        "全国"
+      ],
+      "description": "中国人民财产保险股份有限公司注册资本为222.42亿元人民币。公司成立于2003年，总资产超过5960亿元人民币。",
+      "source_url": "https://m.qixin.com/company/d44f381a-d0fb-42c5-8fbd-cc67c603dd9b",
+      "source": "https://m.qixin.com/company/d44f381a-d0fb-42c5-8fbd-cc67c603dd9b",
+      "scraped_at": "2026-07-26T12:13:54.367328",
+      "researched_at": "2026-07-26T12:13:54.367328",
+      "verified": true,
+      "added_at": "2026-07-26T12:53:14+0800"
+    },
+    {
+      "name": "平安产险",
+      "name_en": "Ping An P&C",
+      "type": "财险",
+      "regions": [
+        "全国"
+      ],
+      "description": "China Ping An Property Insurance's registered capital is 120 billion yuan. The company is a subsidiary of China Ping An Group. The legal rep。",
+      "source_url": "https://property.pingan.com/gongkaixinxipilu/gongsizhiligaiyao.shtml",
+      "source": "https://property.pingan.com/gongkaixinxipilu/gongsizhiligaiyao.shtml",
+      "scraped_at": "2026-07-26T12:13:59.402413",
+      "researched_at": "2026-07-26T12:13:59.402413",
+      "verified": true,
+      "added_at": "2026-07-26T12:53:14+0800"
+    },
+    {
+      "name": "太保产险",
+      "name_en": "CPIC P&C",
+      "type": "财险",
+      "regions": [
+        "全国"
+      ],
+      "description": "China Taiping Property Insurance's registered capital is 199.48 billion yuan. The company was established in 2001 and is headquartered in Sh。",
+      "source_url": "https://m.qcc.com/firm/a04ffaf10fffda7fe3cb8fd184d0a1bc.html",
+      "source": "https://m.qcc.com/firm/a04ffaf10fffda7fe3cb8fd184d0a1bc.html",
+      "scraped_at": "2026-07-26T12:14:05.293935",
+      "researched_at": "2026-07-26T12:14:05.293935",
+      "verified": true,
+      "added_at": "2026-07-26T12:53:14+0800"
+    },
+    {
+      "name": "中华联合财险",
+      "name_en": "China United P&C",
+      "type": "财险",
+      "regions": [
+        "全国"
+      ],
+      "description": "The registered capital of 中华联合财产保险 is 5 billion RMB. This information is based on the latest available data。",
+      "source_url": "https://baike.baidu.com/item/%E4%B8%AD%E5%8D%8E/3956039",
+      "source": "https://baike.baidu.com/item/%E4%B8%AD%E5%8D%8E/3956039",
+      "scraped_at": "2026-07-26T12:14:11.381589",
+      "researched_at": "2026-07-26T12:14:11.381589",
+      "verified": true,
+      "added_at": "2026-07-26T12:53:14+0800"
+    },
+    {
+      "name": "阳光财险",
+      "name_en": "Sunshine P&C",
+      "type": "财险",
+      "regions": [
+        "全国"
+      ],
+      "description": "阳光财产保险股份有限公司的注册资本为60.88亿元人民币。公司成立于2005年，总部位于北京。",
+      "source_url": "http://www.nbd.com.cn/rss/toutiao/articles/1252220.html",
+      "source": "http://www.nbd.com.cn/rss/toutiao/articles/1252220.html",
+      "scraped_at": "2026-07-26T12:14:15.066722",
+      "researched_at": "2026-07-26T12:14:15.066722",
+      "verified": true,
+      "added_at": "2026-07-26T12:53:14+0800"
+    },
+    {
+      "name": "人保健康",
+      "name_en": "PICC Health",
+      "type": "健康险",
+      "regions": [
+        "全国"
+      ],
+      "description": "The People's Republic of China's registered capital is not publicly disclosed. For official information, refer to government publications or。",
+      "source_url": "https://baike.baidu.com/item/%E4%B8%AD%E5%8D%8E%E4%BA%BA%E6%B0%91%E5%85%B1%E5%92%8C%E5%9B%BD/106554",
+      "source": "https://baike.baidu.com/item/%E4%B8%AD%E5%8D%8E%E4%BA%BA%E6%B0%91%E5%85%B1%E5%92%8C%E5%9B%BD/106554",
+      "scraped_at": "2026-07-26T12:14:20.308260",
+      "researched_at": "2026-07-26T12:14:20.308260",
+      "verified": true,
+      "added_at": "2026-07-26T12:53:14+0800"
+    },
+    {
+      "name": "平安健康",
+      "name_en": "Ping An Health",
+      "type": "健康险",
+      "regions": [
+        "全国"
+      ],
+      "description": "Ping An Health Insurance's registered capital is RMB 500 million. The company is a subsidiary of Ping An Insurance Group. It focuses on heal。",
+      "source_url": "http://www.pingan.cn/app_upload/file/official/profile-of-paic.pdf",
+      "source": "http://www.pingan.cn/app_upload/file/official/profile-of-paic.pdf",
+      "scraped_at": "2026-07-26T12:14:24.700903",
+      "researched_at": "2026-07-26T12:14:24.700903",
+      "verified": true,
+      "added_at": "2026-07-26T12:53:14+0800"
+    },
+    {
+      "name": "昆仑健康",
+      "name_en": "Kunlun Health",
+      "type": "健康险",
+      "regions": [
+        "全国"
+      ],
+      "description": "昆仑健康保险股份有限公司注册资本为23.4亿元。公司成立于2006年，是国内首批专业健康保险公司之一。其注册资本曾经过调整。",
+      "source_url": "https://zhuanlan.zhihu.com/p/20258519416",
+      "source": "https://zhuanlan.zhihu.com/p/20258519416",
+      "scraped_at": "2026-07-26T12:14:28.525520",
+      "researched_at": "2026-07-26T12:14:28.525520",
+      "verified": true,
+      "added_at": "2026-07-26T12:53:14+0800"
+    },
+    {
+      "name": "平安养老",
+      "name_en": "Ping An Annuity",
+      "type": "养老险",
+      "regions": [
+        "全国"
+      ],
+      "description": "The registered capital of Ping An Insurance (Pension) Co., Ltd. is 1.16 billion yuan. The company is a non-listed state-owned enterprise. Th。",
+      "source_url": "https://baike.baidu.com/item/%E5%B9%B3%E5%AE%89%E5%85%BB%E8%80%81%E4%BF%9D%E9%99%A9%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/10609530",
+      "source": "https://baike.baidu.com/item/%E5%B9%B3%E5%AE%89%E5%85%BB%E8%80%81%E4%BF%9D%E9%99%A9%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/10609530",
+      "scraped_at": "2026-07-26T12:14:34.174941",
+      "researched_at": "2026-07-26T12:14:34.174941",
+      "verified": true,
+      "added_at": "2026-07-26T12:53:14+0800"
+    },
+    {
+      "name": "太平养老",
+      "name_en": "Taiping Annuity",
+      "type": "养老险",
+      "regions": [
+        "全国"
+      ],
+      "description": "太平养老保险股份有限公司的注册资本为人民币3亿元。该公司成立于2005年，是中国首批专业养老保险公司之一。其注册资本曾经历变更。",
+      "source_url": "https://top.tianyancha.com/tc-bd9b8152392166",
+      "source": "https://top.tianyancha.com/tc-bd9b8152392166",
+      "scraped_at": "2026-07-26T12:14:38.236069",
+      "researched_at": "2026-07-26T12:14:38.236069",
+      "verified": true,
+      "added_at": "2026-07-26T12:53:14+0800"
+    },
+    {
+      "name": "国寿养老",
+      "name_en": "China Life Annuity",
+      "type": "养老险",
+      "regions": [
+        "全国"
+      ],
+      "description": "中国人寿养老保险股份有限公司的注册资本为34亿元人民币。公司成立于北京市。最新数据显示其注册资本已增加至25亿元。",
+      "source_url": "https://www.clpc.com.cn/chinalifepension/gkxxpl/jbxx/gsgk/index.html",
+      "source": "https://www.clpc.com.cn/chinalifepension/gkxxpl/jbxx/gsgk/index.html",
+      "scraped_at": "2026-07-26T12:14:42.948626",
+      "researched_at": "2026-07-26T12:14:42.948626",
+      "verified": true,
+      "added_at": "2026-07-26T12:53:14+0800"
     }
   ],
   "region_mapping": {
-    "江苏": ["安盛天平保险销售有限公司", "易诚保险经纪有限公司", "华鑫保险代理有限公司"],
-    "广东": ["安盛天平保险销售有限公司", "友太安保险经纪有限公司", "明亚保险经纪有限公司"],
-    "上海": ["安盛天平保险销售有限公司", "易诚保险经纪有限公司", "友太安保险经纪有限公司"],
-    "浙江": ["安盛天平保险销售有限公司", "国信蓝海保险经纪有限公司", "华鑫保险代理有限公司"],
-    "重庆": ["安盛天平保险销售有限公司", "明亚保险经纪有限公司"],
-    "陕西": ["安盛天平保险销售有限公���", "国信蓝海保险经纪有限公司"],
-    "广西": ["安盛天平保险销售有限公司", "明亚保险经纪有限公司"],
-    "北京": ["明亚保险经纪有限公司", "国信蓝海保险经纪有限公司", "中汇保险经纪有限公司"],
-    "四川": ["国信蓝海保险经纪有限公司", "明亚保险经纪有限公司"]
+    "江苏": [
+      "安盛天平保险销售有限公司",
+      "易诚保险经纪有限公司",
+      "华鑫保险代理有限公司"
+    ],
+    "广东": [
+      "安盛天平保险销售有限公司",
+      "友太安保险经纪有限公司",
+      "明亚保险经纪有限公司"
+    ],
+    "上海": [
+      "安盛天平保险销售有限公司",
+      "易诚保险经纪有限公司",
+      "友太安保险经纪有限公司"
+    ],
+    "浙江": [
+      "安盛天平保险销售有限公司",
+      "国信蓝海保险经纪有限公司",
+      "华鑫保险代理有限公司"
+    ],
+    "重庆": [
+      "安盛天平保险销售有限公司",
+      "明亚保险经纪有限公司"
+    ],
+    "陕西": [
+      "安盛天平保险销售有限公���",
+      "国信蓝海保险经纪有限公司"
+    ],
+    "广西": [
+      "安盛天平保险销售有限公司",
+      "明亚保险经纪有限公司"
+    ],
+    "北京": [
+      "明亚保险经纪有限公司",
+      "国信蓝海保险经纪有限公司",
+      "中汇保险经纪有限公司"
+    ],
+    "四川": [
+      "国信蓝海保险经纪有限公司",
+      "明亚保险经纪有限公司"
+    ]
   }
 }

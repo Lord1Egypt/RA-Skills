@@ -1,53 +1,81 @@
-## Description: <br>
-Provides OpenClaw self-hosted AI agent framework guidance for installation, configuration, channel setup, memory tuning, Docker deployment, troubleshooting, and security hardening. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw self-hosted AI agent framework expert covering installation, configuration, channels, memory, multi-agent routing, Docker deployment, troubleshooting, and security hardening.
 
-## Publisher: <br>
-[arn0ld87](https://clawhub.ai/user/arn0ld87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arn0ld87](https://clawhub.ai/user/arn0ld87)
 
-## Use Case: <br>
-Developers and operators use this skill to configure, administer, troubleshoot, secure, and deploy OpenClaw self-hosted AI agent installations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Examples may lead users or agents to run unverified remote code. <br>
-Mitigation: Review commands before running them and prefer package-manager or signed-release installation paths over curl-to-shell snippets. <br>
-Risk: Configuration examples may cause secrets or tokens to be stored unsafely. <br>
-Mitigation: Use SecretRef or equivalent secret-management patterns and avoid placing real tokens in config examples. <br>
-Risk: Memory, embeddings, webhooks, and logging integrations may persist or export sensitive data. <br>
-Mitigation: Treat those integrations as sensitive data flows and restrict broad triggers, channels, and logging where possible. <br>
+## Use Case:
 
+Developers, operators, and self-hosting administrators use this skill for OpenClaw setup, configuration, channel integration, memory tuning, multi-agent routing, Docker deployment, troubleshooting, and security hardening.
 
-## Reference(s): <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [OpenClaw Docker installation](https://docs.openclaw.ai/install/docker) <br>
-- [OpenClaw agent workspace](https://docs.openclaw.ai/concepts/agent-workspace) <br>
-- [OpenClaw memory](https://docs.openclaw.ai/concepts/memory) <br>
-- [OpenClaw multi-agent](https://docs.openclaw.ai/concepts/multi-agent) <br>
-- [OpenClaw secrets](https://docs.openclaw.ai/gateway/secrets) <br>
-- [OpenClaw configuration](https://docs.openclaw.ai/gateway/configuration) <br>
-- [OpenClaw security](https://docs.openclaw.ai/security) <br>
-- [Quick reference](references/quick-reference.md) <br>
-- [Security hardening](references/security-hardening.md) <br>
-- [CLI reference](references/cli-reference.md) <br>
-- [Configuration reference](references/config-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON/JSON5 configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent responses may include operational commands and configuration examples that should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and artifact/skill.json) <br>
+Risk: The security review marks the skill suspicious because it is documentation-only but recommends high-impact installation and permission commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution, avoid blind curl-to-shell, sudo bash, chmod -R 777, and shell profile helper commands, and prefer official package-manager installs or pinned and checksummed downloads.
+
+Risk: OpenClaw administration guidance may involve credentials, gateway exposure, and persistent configuration changes.
+
+Mitigation: Use restrictive permissions, SecretRef-based credential handling, backups before changes, and OpenClaw validation commands before restarting services.
+
+## Reference(s):
+
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [OpenClaw Docker Documentation](https://docs.openclaw.ai/install/docker)
+- [OpenClaw Agent Workspace Documentation](https://docs.openclaw.ai/concepts/agent-workspace)
+- [OpenClaw Memory Documentation](https://docs.openclaw.ai/concepts/memory)
+- [OpenClaw Multi-Agent Documentation](https://docs.openclaw.ai/concepts/multi-agent)
+- [OpenClaw Session Documentation](https://docs.openclaw.ai/concepts/session)
+- [OpenClaw Cron Jobs Documentation](https://docs.openclaw.ai/automation/cron-jobs)
+- [OpenClaw Secrets Documentation](https://docs.openclaw.ai/gateway/secrets)
+- [OpenClaw Configuration Documentation](https://docs.openclaw.ai/gateway/configuration)
+- [OpenClaw Models Documentation](https://docs.openclaw.ai/models)
+- [OpenClaw Skills Documentation](https://docs.openclaw.ai/tools/skills)
+- [OpenClaw Security Documentation](https://docs.openclaw.ai/security)
+- [Quick Reference](references/quick-reference.md)
+- [Installation & Erste Schritte](references/installation.md)
+- [Config-Referenz](references/config-reference.md)
+- [Dashboard / Control UI](references/dashboard.md)
+- [Workspace-Dateien](references/workspace-files.md)
+- [Channels](references/channels.md)
+- [Memory-System](references/memory-system.md)
+- [Docker-Deployment](references/docker-setup.md)
+- [Security-Hardening](references/security-hardening.md)
+- [Skills](references/skills-guide.md)
+- [Multi-Agent-Routing](references/multi-agent.md)
+- [OpenClaw CLI-Referenz](references/cli-reference.md)
+- [Nodes & Remote Access](references/nodes-and-remote.md)
+- [Tailscale-Integration](references/tailscale-integration.md)
+- [Praxis-Beispiele](references/examples.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [Tricks & Hacks](references/tricks-and-hacks.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only agent assistance; users should review commands and configuration changes before execution.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

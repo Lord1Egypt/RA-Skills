@@ -1,45 +1,60 @@
-## Description: <br>
-Career Companion helps users search live frontier-tech job openings, tailor resumes and CVs, practice interviews, and research salary information across AI, space, aerospace, robotics, drones, defense, and autonomy roles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Career Companion helps users search live frontier-tech job openings, tailor resumes and CVs, prepare for interviews, and research salaries across AI, space, aerospace, robotics, drones, defense, and autonomy.
 
-## Publisher: <br>
-[mishafyi](https://clawhub.ai/user/mishafyi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mishafyi](https://clawhub.ai/user/mishafyi)
 
-## Use Case: <br>
-External users and career coaches use this skill to find frontier-tech job listings, review or tailor resumes, prepare for interviews, and compare compensation signals. It can query Zero G Talent for public job data and then use role descriptions to guide resume and interview preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live searches send job-search terms such as role, company, location, and filters to Zero G Talent. <br>
-Mitigation: Avoid entering sensitive search terms unless needed for the task, and tell users when a live search will be performed. <br>
-Risk: Resume review may expose personal contact details or private identifiers. <br>
-Mitigation: Ask users to redact unnecessary personal details such as phone number, address, and private identifiers before sharing a resume. <br>
-Risk: Career, salary, and interview guidance may be incomplete or not tailored to a user's full circumstances. <br>
-Mitigation: Present guidance as decision support, use current job-description evidence when available, and encourage users to verify compensation and application details with primary sources. <br>
+## Use Case:
 
+External users and career-focused agents use this skill to find frontier-tech roles, review or tailor resumes, prepare for interviews, and compare salary information using live job listings where available.
 
-## Reference(s): <br>
-- [Zero G Talent](https://zerogtalent.com) <br>
-- [Zero G Talent API Reference](references/api.md) <br>
-- [Company Slugs Reference](references/companies.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mishafyi/career-companion) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown job listings, resume feedback, interview prompts, salary summaries, and inline curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Live job searches may send role, company, location, and filter terms to Zero G Talent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.1 (source: ClawHub release evidence; artifact frontmatter lists 1.0.0) <br>
+Risk: User-provided search values may be interpolated into Bash curl commands for job searches.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit URL encoding or a structured HTTP client before issuing requests, and review generated commands before execution.
+
+Risk: Fetched job descriptions are external content and may contain misleading or adversarial text.
+
+Mitigation: Treat job descriptions as untrusted input, verify important claims against primary sources, and avoid letting fetched content override higher-priority instructions.
+
+Risk: Resume and job-search workflows may expose personal information.
+
+Mitigation: Share only the resume details needed for the task and avoid unnecessary personal, contact, or sensitive information.
+
+## Reference(s):
+
+- [Zero G Talent API Reference](references/api.md)
+- [Company Slugs Reference](references/companies.md)
+- [Zero G Talent](https://zerogtalent.com)
+- [ClawHub Skill Page](https://clawhub.ai/mishafyi/skills/career-companion)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance, API calls]
+
+**Output Format:** [Markdown job listings, resume feedback, interview prompts, salary summaries, and inline shell commands for public job-search API calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Job search output is capped at 10 listings per request and may include links, salary ranges when available, and follow-up guidance.]
+
+## Skill Version(s):
+
+1.5.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-Creates tailored content strategies with topic clusters, keyword targeting, content calendars, competitor gap analysis, and distribution plans for a user's niche. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates tailored content strategies with topic clusters, keyword targeting, content calendars, competitor gap analysis, and distribution plans for a user's niche.
 
-## Publisher: <br>
-[amdf01-debug](https://clawhub.ai/user/amdf01-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amdf01-debug](https://clawhub.ai/user/amdf01-debug)
 
-## Use Case: <br>
-Content marketers, founders, and editorial teams use this skill to turn a niche, audience, and goals into a practical content strategy with pillar topics, cluster ideas, publishing cadence, quick wins, and competitor gaps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Content strategy work can involve confidential business strategy, proprietary analytics, unreleased plans, or sensitive customer data. <br>
-Mitigation: Avoid sharing sensitive business or customer information unless it is appropriate to use that information as context for recommendations. <br>
-Risk: Keyword, competitor, and content-priority recommendations may become stale or inaccurate if they are not grounded in current market data. <br>
-Mitigation: Review recommendations against current analytics, search data, and competitor research before using them for publishing decisions. <br>
+## Use Case:
 
+Content marketers, founders, creators, and editorial teams use this skill to plan what to publish for a niche, audience, and business goal. It helps turn initial context into topic clusters, keyword priorities, publishing cadence, quick wins, competitor gaps, and distribution recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/amdf01-debug/sw-content-strategy) <br>
-- [Publisher profile](https://clawhub.ai/user/amdf01-debug) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown strategy document with tables and prioritized recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include topic clusters, keyword targeting, content calendar entries, quick wins, competitor gaps, and distribution recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can activate for broad content-idea requests and may use web research when building strategy recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user's niche, audience, goals, and acceptable research scope before producing recommendations.
+
+Risk: Content planning guidance may be incomplete or misleading if based on insufficient market, audience, or competitor context.
+
+Mitigation: Review generated topic priorities, keyword assumptions, competitor gaps, and publishing cadence before using the strategy operationally.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/amdf01-debug/skills/sw-content-strategy)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown strategy document]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include audience summaries, pillar topics, cluster recommendations, keyword targets, content calendar tables, quick wins, competitor gaps, and distribution plans.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

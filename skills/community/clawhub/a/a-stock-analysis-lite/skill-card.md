@@ -1,47 +1,56 @@
-## Description: <br>
-Generates Chinese A-share stock strategy research reports in HTML/PDF-ready form from public market, financial, capital-flow, industry, and disclosure data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese-language A-share strategy research reports in HTML/PDF format from public market, financial, capital-flow, industry, and event data.
 
-## Publisher: <br>
-[bill-lib](https://clawhub.ai/user/bill-lib) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bill-lib](https://clawhub.ai/user/bill-lib)
 
-## Use Case: <br>
-External users and agent operators use this skill to turn an A-share stock code or company name into a structured Chinese strategy research report covering price structure, fundamentals, scenarios, risks, and summary judgment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial figures or market data may be stale, unavailable, or inconsistent across public data sources. <br>
-Mitigation: Verify prices, fundamentals, and event data against authoritative finance sources before relying on the report. <br>
-Risk: Generated strategy commentary could be mistaken for investment advice. <br>
-Mitigation: Treat the report as analytical assistance only and require human financial judgment before any trading or investment decision. <br>
-Risk: The skill may trigger on simple stock-code mentions and perform multiple external finance-site lookups. <br>
-Mitigation: Confirm user intent for stock research workflows and monitor external lookups in environments with network or compliance constraints. <br>
+## Use Case:
 
+External users and agents use this skill to generate Chinese A-share individual-stock strategy reports, including market data, valuation, capital-flow context, scenario analysis, risk factors, and a PDF-ready HTML report.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/bill-lib/a-stock-analysis-lite) <br>
-- [Publisher profile](https://clawhub.ai/user/bill-lib) <br>
-- [README](README.md) <br>
-- [Data sources and collection rules](references/data-sources.md) <br>
-- [Analysis prompts](references/analysis-prompts.md) <br>
-- [HTML report template and quality checklist](references/report-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Chinese Markdown analysis with HTML report output that can be printed or saved as PDF] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public finance-site lookups and a fixed report structure with quality checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The output is financial analysis and could be mistaken for investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat reports as informational analysis only and verify market data independently before making financial decisions.
+
+Risk: The skill may activate on simple stock-code or stock-name mentions.
+
+Mitigation: Confirm the user wants a stock research report before generating or acting on the output.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bill-lib/skills/a-stock-analysis-lite)
+- [Data Sources](artifact/references/data-sources.md)
+- [Analysis Prompts](artifact/references/analysis-prompts.md)
+- [Report Template](artifact/references/report-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Chinese-language HTML report content with structured tables and PDF export guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces financial analysis from public data and local HTML output; output should not be treated as investment advice.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

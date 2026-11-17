@@ -1,41 +1,55 @@
-## Description: <br>
-A secure sanitization system to strip instructions from external content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A secure sanitization system to strip instructions from external content.
 
-## Publisher: <br>
-[Quarantiine](https://clawhub.ai/user/Quarantiine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[quarantiine](https://clawhub.ai/user/quarantiine)
 
-## Use Case: <br>
-Developers and agent users use this skill to summarize untrusted external content while stripping or marking prompt-injection instructions before the content is used in a conversation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompt-injection examples in the artifact may appear risky when viewed in isolation. <br>
-Mitigation: Treat those examples as defensive negative constraints, consistent with the server security verdict that the release is clean and the flagged phrases support the skill's stated safety purpose. <br>
-Risk: Prompt-based sanitization does not guarantee removal of all adversarial instructions. <br>
-Mitigation: Review sanitized summaries before state-changing actions and use isolated sub-agents or sandboxes for high-risk workflows, as recommended by the artifact security documentation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Quarantiine/prompt-inject-removal) <br>
-- [Prompt Inject Removal Security Documentation](references/security.md) <br>
-- [Hardened Sanitization Prompt](PROMPT.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill to sanitize summaries of untrusted external content before the main agent uses that information in a conversation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Concise sanitized summary text, with an optional [INJECTION_ATTEMPT_REMOVED] marker when blatant prompt injection is detected.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [If no usable content is present, the prompt specifies the exact fallback string: [Prompt Inject Removal: No content to process].] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompt-based sanitization is a defense-in-depth aid, not a complete security boundary.
+
+Mitigation: Use read-only browsing or fetch tools where possible, review summaries before state-changing actions, and prefer sandboxed or subagent execution for high-risk untrusted content.
+
+Risk: A sanitized summary can still carry misleading or malicious content into the main agent's reasoning.
+
+Mitigation: Treat sanitized summaries as untrusted until reviewed and avoid automatic writes, deletes, sends, or other state-changing actions based only on the summary.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/quarantiine/skills/prompt-inject-removal)
+- [ClawHub metadata homepage](https://clawhub.ai/Quarantiine/prompt-inject-removal)
+- [Prompt Inject Removal Security Documentation](artifact/references/security.md)
+- [Hardened System Prompt](artifact/PROMPT.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Concise sanitized Markdown summary with optional injection marker.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May emit [INJECTION_ATTEMPT_REMOVED] when blatant injection text is detected, or a no-content sentinel when input is empty or unintelligible.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

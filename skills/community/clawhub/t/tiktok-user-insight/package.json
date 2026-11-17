@@ -1,0 +1,27 @@
+{
+  "name": "tiktok-user-insight",
+  "version": "1.1.1",
+  "description": "TikTok高赞视频搜索工具。支持关键词获取TikTok实时高赞视频数据，助力创作者发现热门趋势、获取创作灵感。",
+  "keywords": [
+    "tiktok",
+    "search",
+    "keyword",
+    "content-analysis",
+    "competitor-analysis"
+  ],
+  "author": "um-why",
+  "license": "MIT",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=16.14.0"
+  },
+  "scripts": {
+    "search": "node scripts/tiktok/search-cli.js",
+    "post": "node scripts/tiktok/post-cli.js",
+    "comment": "node scripts/tiktok/comment-cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/um-why/tiktok-skill.git"
+  }
+}

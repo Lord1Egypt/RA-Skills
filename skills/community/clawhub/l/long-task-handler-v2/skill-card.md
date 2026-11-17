@@ -1,40 +1,53 @@
-## Description: <br>
-Long Task Handler V2 helps an agent estimate, background, monitor, and report progress for tasks expected to run longer than about 60 seconds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Long Task Handler V2 helps agents manage work expected to run longer than 60 seconds by estimating duration, running appropriate tasks in the background, reporting quantified progress, and surfacing completion or issues.
 
-## Publisher: <br>
-[chrislawyeryounger-spec](https://clawhub.ai/user/chrislawyeryounger-spec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chrislawyeryounger-spec](https://clawhub.ai/user/chrislawyeryounger-spec)
 
-## Use Case: <br>
-Developers, engineers, and agent users use this skill to keep long-running compile, deploy, training, migration, data-processing, crawling, and multi-step writing tasks visible through early estimates, periodic progress updates, completion notices, and transparent issue reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can encourage backgrounding or delegating long-running tasks, which may reduce user visibility into active commands if the agent does not confirm the execution posture. <br>
-Mitigation: Ask the agent to confirm before backgrounding tasks or using sub-agents, and require periodic progress updates for long-running work. <br>
-Risk: The artifact's progress-message examples are primarily in Chinese, which may not match every user's preferred language. <br>
-Mitigation: Request the preferred reporting language before relying on the skill's default status-message style. <br>
+## Use Case:
 
+Developers and agent users use this skill to keep long-running compile, deploy, training, migration, data processing, search, crawling, and multi-step writing tasks visible through early estimates, regular progress reports, and explicit completion or issue notifications.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/chrislawyeryounger-spec/long-task-handler-v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown progress messages with optional shell-command handling and YAML-style configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses time estimates, quantified progress, reporting intervals, silent-task warnings, and completion status messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad activation rules may cause an agent to move likely long-running work into background execution or sub-agent handling without the user's explicit confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the activation rules and require explicit confirmation for background execution or sub-agent use in environments that need tighter operator control.
+
+Risk: Progress estimates and percentages may be approximate for tasks with unclear step counts, silent commands, rate limits, or network delays.
+
+Mitigation: Treat estimates as status guidance, require issue reports for silence or errors, and verify final command results before relying on task completion.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chrislawyeryounger-spec/skills/long-task-handler-v2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown progress updates with inline status, estimates, completion notices, and YAML configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Periodic reporting defaults to two-minute progress updates and a five-minute silent-task warning threshold.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

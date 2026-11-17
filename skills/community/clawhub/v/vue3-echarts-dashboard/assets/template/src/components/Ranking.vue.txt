@@ -1,0 +1,90 @@
+<template>
+  <div class="ranking">
+    <div v-for="(item, i) in list" :key="item.name" class="ranking__row">
+      <span class="ranking__idx" :class="{ 'ranking__idx--top': i < 3 }">{{ i + 1 }}</span>
+      <span class="ranking__name" :title="item.name">{{ item.name }}</span>
+      <div class="ranking__bar-wrap">
+        <div class="ranking__bar" :style="{ width: pct(item.value) + '%' }" />
+      </div>
+      <span class="ranking__val">{{ item.value.toLocaleString() }}</span>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { computed } from 'vue'
+import type { PieItem } from '@/api/types'
+
+const props = defineProps<{ data: { title?: string; list: PieItem[] } | null }>()
+
+const list = computed(() => props.data?.list ?? [])
+const max = computed(() => Math.max(1, ...list.value.map((d) => d.value)))
+
+function pct(v: number) {
+  return Math.round((v / max.value) * 100)
+}
+</script>
+
+<style scoped>
+.ranking {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+  gap: 6px;
+}
+
+.ranking__row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+}
+
+.ranking__idx {
+  flex: 0 0 22px;
+  height: 22px;
+  line-height: 22px;
+  text-align: center;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--c-text);
+  font-weight: 600;
+}
+
+.ranking__idx--top {
+  background: var(--c-primary);
+  color: #02060f;
+}
+
+.ranking__name {
+  flex: 0 0 120px;
+  color: var(--c-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ranking__bar-wrap {
+  flex: 1;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.ranking__bar {
+  height: 100%;
+  border-radius: 5px;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--c-primary) 40%, transparent), var(--c-primary));
+  transition: width 0.6s ease;
+}
+
+.ranking__val {
+  flex: 0 0 64px;
+  text-align: right;
+  color: var(--c-primary);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+</style>

@@ -1,15 +1,15 @@
 <div align="center">
 
-# Cozinha.skill
+# BrainHarness · Cozinha
 
 > Se você não sabe o que cozinhar, comece dizendo o que quer comer e o que existe na geladeira.
 
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-Skill-blueviolet)](https://claude.ai/code)
 [![Agent Skill](https://img.shields.io/badge/Skill-Cooking-green)](#)
-[![Status](https://img.shields.io/badge/status-v0.1.0-orange)](#)
+[![Status](https://img.shields.io/badge/status-v0.2.0-orange)](#)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-`cooking.skill` é uma skill de cozinha que faz poucas perguntas úteis e depois entrega uma receita realmente executável.
+`brainharness-cooking` é uma skill de cozinha que faz poucas perguntas úteis e depois entrega uma receita realmente executável.
 
 </div>
 
@@ -54,22 +54,22 @@ Quando necessário, pergunta no máximo duas coisas:
 Instalação universal:
 
 ```bash
-npx skills add zning1994/cooking-skill
+npx skills add zning1994/brainharness-cooking
 ```
 
 OpenClaw / ClawHub:
 
 ```bash
-openclaw skills install cooking-skill
+npx clawhub@0.23.3 install brainharness-cooking
 ```
 
 ```bash
 mkdir -p .claude/skills
-git clone https://github.com/zning1994/cooking-skill .claude/skills/cooking-skill
+git clone https://github.com/zning1994/brainharness-cooking .claude/skills/brainharness-cooking
 ```
 
 Instalação global:
 
 ```bash
-git clone https://github.com/zning1994/cooking-skill ~/.claude/skills/cooking-skill
+git clone https://github.com/zning1994/brainharness-cooking ~/.claude/skills/brainharness-cooking
 ```

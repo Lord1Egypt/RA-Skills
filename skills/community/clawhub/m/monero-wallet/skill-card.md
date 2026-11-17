@@ -1,46 +1,68 @@
-## Description: <br>
-Official KYC-rip Monero Agent Skill. Manage XMR wallets on Mainnet/Stagenet via Ripley Gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Official KYC-rip Monero Agent Skill. Manage XMR wallets on Mainnet/Stagenet via Ripley Gateway.
 
-## Publisher: <br>
-[xbtoshi](https://clawhub.ai/user/xbtoshi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xbtoshi](https://clawhub.ai/user/xbtoshi)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent check Monero wallet status, generate subaddresses, and initiate XMR transfers or XMR402 payments through a local Ripley Gateway. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can let an agent spend real cryptocurrency through the configured Monero wallet gateway. <br>
-Mitigation: Require manual approval for every transfer and XMR402 payment, verify the recipient, amount, and site, and keep gateway spending limits low. <br>
-Risk: The gateway API key authorizes wallet actions if exposed to an untrusted endpoint or operator. <br>
-Mitigation: Protect AGENT_API_KEY, use the local gateway binding, and run the Docker gateway only from a trusted source. <br>
-Risk: Duplicate XMR402 payment attempts can spend funds more than once for the same challenge. <br>
-Mitigation: Check the transaction log for an existing matching nonce and recover proof from the prior transaction instead of paying again. <br>
+## Use Case:
 
+External developers and wallet operators use this skill to let an agent check Monero wallet status, create subaddresses, send XMR, and handle XMR402 payment challenges through a local Ripley Gateway.
 
-## Reference(s): <br>
-- [ClawHub Monero Wallet Skill](https://clawhub.ai/xbtoshi/monero-wallet) <br>
-- [Ripley XMR Gateway](https://github.com/KYC-rip/ripley-xmr-gateway) <br>
-- [Ripley Gateway Setup](https://kyc.rip/ripley) <br>
-- [XMR402 Protocol](https://xmr402.org) <br>
-- [KYC-rip Swap](https://kyc.rip/swap) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses AGENT_API_KEY and a local Ripley Gateway at 127.0.0.1:38084.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release metadata) <br>
+Risk: The skill can authorize irreversible Monero transfers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a minimally funded wallet, enforce gateway spending limits, and require manual approval for every transfer.
+
+Risk: XMR402 payment flows can be triggered by outside websites.
+
+Mitigation: Restrict paywalled requests to trusted HTTPS origins and require manual approval before paying any challenge.
+
+Risk: Duplicate or replayed payment challenges can cause repeated spending.
+
+Mitigation: Check the transaction log for an existing matching nonce before paying and recover proof instead of paying again.
+
+Risk: AGENT_API_KEY grants wallet gateway authority.
+
+Mitigation: Provide the key through the environment, avoid command-line exposure, and keep gateway access bound to the local trusted service.
+
+Risk: The setup depends on external Docker components and Python dependencies.
+
+Mitigation: Review or pin the external Docker setup and Python dependencies before use.
+
+## Reference(s):
+
+- [Ripley XMR Gateway](https://github.com/KYC-rip/ripley-xmr-gateway)
+- [Ripley setup](https://kyc.rip/ripley)
+- [XMR402 protocol](https://xmr402.org)
+- [Monero Wallet skill page](https://clawhub.ai/xbtoshi/skills/monero-wallet)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local Ripley Gateway, python3, curl, requests, and AGENT_API_KEY.]
+
+## Skill Version(s):
+
+1.0.12 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

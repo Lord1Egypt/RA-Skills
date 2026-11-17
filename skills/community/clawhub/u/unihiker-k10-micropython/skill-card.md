@@ -1,44 +1,55 @@
-## Description: <br>
-Use when programming Unihiker K10 board with MicroPython, uploading code, flashing firmware, or accessing K10 MicroPython APIs for screen, sensors, RGB, audio, and AI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when programming Unihiker K10 board with MicroPython, uploading code, flashing firmware, or accessing K10 MicroPython APIs (screen, sensors, RGB, audio, AI).
 
-## Publisher: <br>
-[rockets-cn](https://clawhub.ai/user/rockets-cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rockets-cn](https://clawhub.ai/user/rockets-cn)
 
-## Use Case: <br>
-Developers and hardware engineers use this skill to prepare a K10 development environment, detect serial ports, flash MicroPython firmware, upload Python files, and consult K10 MicroPython API guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup script may install developer tools from network sources and change local Arduino and Python tooling. <br>
-Mitigation: Review setup.sh before execution, run it in a controlled development environment, and approve network installers, sudo fallback, Python package changes, and Arduino CLI configuration changes. <br>
-Risk: Tool installation and Arduino CLI configuration can leave persistent files and caches on the developer machine. <br>
-Mitigation: Use a disposable or dedicated environment when possible, and inspect the configured K10 and Arduino paths before reusing the environment. <br>
-Risk: Firmware flashing changes the attached K10 board state. <br>
-Mitigation: Confirm the target serial port, board mode, and intended MicroPython firmware before flashing. <br>
+## Use Case:
 
+Developers and engineers use this skill to work with Unihiker K10 boards: uploading MicroPython code, flashing MicroPython firmware, detecting serial ports, troubleshooting connectivity, and looking up K10 APIs for screen, sensor, RGB, audio, and AI features.
 
-## Reference(s): <br>
-- [K10 MicroPython API Reference](references/micropython-api.md) <br>
-- [DFRobot UNIHIKER Board Manager Package Index](https://downloadcd.dfrobot.com.cn/UNIHIKER/package_unihiker_index.json) <br>
-- [Arduino CLI Installation](https://arduino.github.io/arduino-cli/latest/installation/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and MicroPython code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local scripts and device-specific serial ports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The setup script can run live downloaded installer code, install unpinned packages, alter Arduino configuration, and possibly request system-wide installation privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scripts/setup.sh before running it, use a sandbox where practical, pin and verify dependencies, and prefer user-local installation.
+
+Risk: Example workflows can involve audio recording, face recognition, HID keystrokes, or sample WiFi/MQTT credentials.
+
+Mitigation: Review examples before deployment, remove or replace sample credentials, and confirm privacy and device-control behavior for the intended environment.
+
+## Reference(s):
+
+- [MicroPython API reference](references/micropython-api.md)
+- [DFRobot Gravity I2C ADS1115 16-bit ADC module](https://www.dfrobot.com.cn/goods-1734.html)
+- [Arduino CLI installation documentation](https://arduino.github.io/arduino-cli/latest/installation/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide host setup, firmware flashing, MicroPython upload, device port detection, and K10 API usage.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

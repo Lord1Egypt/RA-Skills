@@ -1,42 +1,54 @@
-## Description: <br>
-Monitor OpenClaw API costs in real time, set budget alerts, optimize model spending, track token usage by session and model, and prevent budget overruns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides OpenClaw cost-reference guidance, budget-alert suggestions, and model-spending optimization tips for token usage reviews.
 
-## Publisher: <br>
-[redwoo](https://clawhub.ai/user/redwoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redwoo](https://clawhub.ai/user/redwoo)
 
-## Use Case: <br>
-Developers and engineers use this skill to review OpenClaw API spending, set cost thresholds, identify expensive usage patterns, and choose lower-cost model routing for routine work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cost and usage summaries can expose sensitive operational patterns if sent to notification channels. <br>
-Mitigation: Confirm recipients before enabling Slack, Discord, or email examples, and share only the minimum cost detail needed. <br>
-Risk: Webhook URLs or notification credentials can be exposed if pasted directly into scripts or chat transcripts. <br>
-Mitigation: Store webhook URLs in a secret manager or environment variable and avoid committing them to skill files. <br>
+## Use Case:
 
+External OpenClaw users and developers use this skill to review token-cost patterns, set budget guidance, and identify model-routing or context-management changes that may reduce API spend.
 
-## Reference(s): <br>
-- [Token Cost Monitor on ClawHub](https://clawhub.ai/redwoo/token-cost-monitor) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [Publisher Profile](https://clawhub.ai/user/redwoo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local cost-monitoring guidance, budget alert examples, model routing recommendations, and a shell-based pricing reference.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may overstate active monitoring, alerting, and budget-control capabilities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as guidance and verify actual usage, alerting, and enforcement through OpenClaw session data or separate budget controls.
+
+Risk: Optional Slack and email alert examples could disclose cost data if run with real endpoints or unsanitized values.
+
+Mitigation: Run external alert examples only with explicit user intent, approved destinations, and sanitized cost summaries.
+
+## Reference(s):
+
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [Token Cost Monitor on ClawHub](https://clawhub.ai/redwoo/skills/token-cost-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes local cost-reference output from a shell script; does not provide live enforcement of budget limits.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Compare AI inference costs across providers, inventory current usage, query GPU-Bridge pricing, and benchmark alternatives for LLMs, embeddings, image generation, speech, vision, video, document parsing, and reranking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compare your AI inference costs across providers and test cheaper alternatives with real data. Analyze what you spend on LLM, embeddings, image generation, TTS, transcription, OCR, video, and reranking, then benchmark a unified API with 30 services and $1 free trial credits.
 
-## Publisher: <br>
-[fjnunezp75](https://clawhub.ai/user/fjnunezp75) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fjnunezp75](https://clawhub.ai/user/fjnunezp75)
 
-## Use Case: <br>
-Developers, engineering teams, and infrastructure reviewers use this skill to audit AI inference spend, compare provider pricing, and decide whether to test or consolidate services through GPU-Bridge. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill promotes a third-party inference service and may encourage benchmarking with real prompts or business data. <br>
-Mitigation: Use sanitized or synthetic prompts by default, and send customer data, proprietary documents, regulated content, credentials, wallet data, or payment details only after organizational approval of the provider and data flow. <br>
-Risk: Cost comparisons and benchmark results can be misleading if pricing, latency, quality, or reliability assumptions do not match the user's workload. <br>
-Mitigation: Validate pricing against current provider terms, benchmark representative non-sensitive workloads, and present partial migration or no-migration recommendations when results do not justify a change. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to inventory AI inference providers, compare monthly spend against GPU-Bridge pricing, and benchmark alternative services before deciding whether to migrate or consolidate API usage.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fjnunezp75/inference-audit) <br>
-- [GPU-Bridge documentation](https://gpubridge.io) <br>
-- [GPU-Bridge catalog](https://api.gpubridge.io/catalog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with comparison tables and inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include cost estimates, benchmark steps, provider recommendations, latency and quality observations, and migration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill may send prompts, documents, audio, source code, customer data, or regulated data to GPU-Bridge during benchmarking.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use synthetic or approved test data unless the data disclosure has been reviewed and the provider's privacy and retention terms are acceptable.
+
+Risk: The skill frames recommendations around GPU-Bridge pricing and may produce vendor-specific conclusions.
+
+Mitigation: Treat results as one vendor comparison and review recommendations against current requirements, quality needs, reliability needs, and alternative providers before migration.
+
+## Reference(s):
+
+- [GPU-Bridge API Docs](https://gpubridge.io)
+- [GPU-Bridge Service Catalog](https://api.gpubridge.io/catalog)
+- [GPU-Bridge Cost Estimator](https://api.gpubridge.io/catalog/estimate?service=llm-4090)
+- [ClawHub Skill Page](https://clawhub.ai/fjnunezp75/skills/inference-audit)
+- [Publisher Profile](https://clawhub.ai/user/fjnunezp75)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with comparison tables and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include cost estimates, benchmark observations, and migration recommendations based on user-provided provider usage.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Explicit-invocation ChatGPT/Codex web-login bridge for using an already-authenticated local Codex CLI session without copying credentials into the skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an explicit-invocation bridge for agents to use an already-authenticated local Codex ChatGPT login without copying credentials, while warning that prompt text is sent to the provider.
 
-## Publisher: <br>
-[uncmatteth](https://clawhub.ai/user/uncmatteth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[uncmatteth](https://clawhub.ai/user/uncmatteth)
 
-## Use Case: <br>
-Developers and agent operators use this skill when they explicitly want an agent or another skill to call a locally authenticated Codex/ChatGPT provider without handling raw tokens, cookies, API keys, or local auth files. It is intended for prompts the user is comfortable sending to the authenticated provider account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompt text sent through ask or smoke is transmitted to the authenticated provider account. <br>
-Mitigation: Use ask and smoke only for prompt content the user explicitly accepts sending to the provider; do not send secrets, private documents, cookies, API keys, or regulated personal data. <br>
-Risk: The skill depends on an already-authenticated local Codex/ChatGPT session and cannot provide service when that local provider is unavailable. <br>
-Mitigation: Run status first and stop if the authenticated provider cannot be confirmed instead of requesting or copying credentials. <br>
+## Use Case:
 
+Developers and operators use this skill to check local Codex ChatGPT login availability and send approved prompts through the authenticated provider without handling raw credentials. It is intended for explicit bridge or setup requests where the user accepts provider exposure for the prompt text.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/uncmatteth/unclemattconnecttogptwebloginoffireforwebgptlogingtoyourshit) <br>
-- [Publisher profile](https://clawhub.ai/user/uncmatteth) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and plain-text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bridge status command avoids printing auth mode, token presence, API-key presence, local paths, or other sensitive environment metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.420.69 (source: server release metadata) <br>
+Risk: Prompt-controlled Codex runs may cause readable workspace files or environment values to be processed by the authenticated provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill from a clean, minimal working directory with a sanitized shell environment, and do not run ask on untrusted prompts or in projects containing secrets.
+
+Risk: The ask and smoke commands send prompt text to the authenticated Codex/ChatGPT provider account.
+
+Mitigation: Confirm the prompt is safe for provider processing before forwarding it, and remove passwords, API keys, cookies, private documents, regulated personal data, and other sensitive material.
+
+Risk: The skill invokes a locally authenticated provider account.
+
+Mitigation: Run status first to confirm bridge availability, and install or use the skill only when that authenticated-account behavior is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/uncmatteth/skills/unclemattconnecttogptwebloginoffireforwebgptlogingtoyourshit)
+- [Publisher profile](https://clawhub.ai/user/uncmatteth)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Console text and Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bridge supports status, smoke, and ask commands; ask and smoke send prompt text to the authenticated provider.]
+
+## Skill Version(s):
+
+1.420.69 (source: release evidence and skill documentation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

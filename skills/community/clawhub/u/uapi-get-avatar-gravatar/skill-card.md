@@ -1,47 +1,53 @@
-## Description: <br>
-使用 UAPI 的“获取Gravatar头像”单接口 skill，处理 获取Gravatar头像、头像获取 等请求。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the UAPI GET /avatar/gravatar endpoint to look up Gravatar avatar images and explain parameters, calling behavior, and response codes.
 
-## Publisher: <br>
-[shuakami](https://clawhub.ai/user/shuakami) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shuakami](https://clawhub.ai/user/shuakami)
 
-## Use Case: <br>
-Developers and agents use this skill to decide when and how to call UAPI's GET /avatar/gravatar endpoint for Gravatar avatar lookup. It helps confirm required email or hash inputs, optional image parameters, authentication fallback, and common response codes before making the API request. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Email addresses or Gravatar hashes submitted to the endpoint are personal data sent to an external service. <br>
-Mitigation: Prefer a precomputed lowercase MD5 Gravatar hash when possible and avoid sending raw email addresses unless needed. <br>
-Risk: Anonymous or free-tier UAPI requests may hit quota limits or require authentication. <br>
-Mitigation: When the endpoint returns 429 or a quota-related error, use a UAPI account key and retry within the service's limits. <br>
-Risk: Incomplete requests fail when neither email nor hash is supplied. <br>
-Mitigation: Confirm that either email or hash is present before calling GET /avatar/gravatar. <br>
+## Use Case:
 
+Developers and agents use this skill when a user asks for a Gravatar avatar lookup through UAPI. It helps confirm required query parameters, choose email or MD5 hash input, and prepare the GET /avatar/gravatar request.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shuakami/uapi-get-avatar-gravatar) <br>
-- [Quick Start](references/quick-start.md) <br>
-- [获取Gravatar头像](references/operations/get-avatar-gravatar.md) <br>
-- [Image 分类接口](references/resources/Image.md) <br>
-- [UAPI base URL](https://uapis.cn/api/v1) <br>
-- [UAPI registration](https://uapis.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, configuration] <br>
-**Output Format:** [Markdown guidance with endpoint details and request parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce endpoint selection guidance, query parameter recommendations, authentication fallback advice, and response-code handling notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Email-based lookups send an email identifier to an external avatar API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the lowercased MD5 hash parameter when available, and avoid submitting another person's raw email address unless sharing that identifier is appropriate.
+
+## Reference(s):
+
+- [Quick Start](references/quick-start.md)
+- [Get Gravatar Avatar Operation](references/operations/get-avatar-gravatar.md)
+- [Image Resource](references/resources/Image.md)
+- [UAPI Base API](https://uapis.cn/api/v1)
+- [UAPI](https://uapis.cn)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API Calls, configuration]
+
+**Output Format:** [Markdown guidance with endpoint, parameter, authentication, and response-code details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide calls that return image binary data from the external avatar API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

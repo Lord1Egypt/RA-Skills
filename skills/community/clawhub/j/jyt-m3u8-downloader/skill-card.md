@@ -1,43 +1,57 @@
-## Description: <br>
-Downloads videos from M3U8/HLS streaming URLs by parsing playlists, downloading TS segments concurrently, handling AES-128 keys, and merging segments into MP4 files with ffmpeg. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads M3U8/HLS video streams by parsing playlists, downloading TS segments concurrently, handling AES-128 keys, and merging segments into MP4 files with ffmpeg.
 
-## Publisher: <br>
-[jyt2018](https://clawhub.ai/user/jyt2018) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jyt2018](https://clawhub.ai/user/jyt2018)
 
-## Use Case: <br>
-Developers and technical users use this skill to download authorized HLS video from M3U8 playlists, including nested playlists and AES-128 encrypted streams, and save the result as an MP4 file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The downloader disables HTTPS certificate validation while retrieving playlists, segments, and keys. <br>
-Mitigation: Use only trusted M3U8 sources, avoid hostile or public networks, and review the source URL before running downloads. <br>
-Risk: Downloaded media and keys are processed by ffmpeg after retrieval from remote sources. <br>
-Mitigation: Keep ffmpeg updated and use the skill only with media sources the user is authorized to access and trusts. <br>
-Risk: Cleanup removes temporary TS, key, and M3U8 files for the selected output name after a size check. <br>
-Mitigation: Use a new dedicated output name or folder for each download so cleanup cannot remove preexisting temporary files. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve videos from user-provided M3U8/HLS playlist URLs, including nested playlists and encrypted streams when a key is available. It supports preparing the Python environment, invoking the downloader, and producing an MP4 output through ffmpeg.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jyt2018/jyt-m3u8-downloader) <br>
-- [Publisher profile](https://clawhub.ai/user/jyt2018) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Files] <br>
-**Output Format:** [Markdown with Python and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The workflow can produce an MP4 file plus temporary TS, key, and M3U8 files during download and merge operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release security summary reports unsafe network and file handling in the downloader code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing or fixing the downloader, and use it with trusted M3U8 URLs in a sandbox with limited network and filesystem access.
+
+Risk: Downloader behavior may write media and temporary files to user-selected paths.
+
+Mitigation: Avoid sensitive output paths and verify the destination before execution.
+
+Risk: The security guidance calls out TLS bypasses and URL/path validation gaps.
+
+Mitigation: Remove TLS bypasses and add URL and path validation before routine use.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/jyt2018/skills/jyt-m3u8-downloader)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [When the bundled downloader is executed, it can create local MP4 files plus temporary TS segments, key files, and M3U8 playlists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

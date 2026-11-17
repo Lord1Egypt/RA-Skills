@@ -1,41 +1,53 @@
-## Description: <br>
-Deterministic rainfall and climate formatting for SWMM that converts rainfall inputs into SWMM-ready TIMESERIES lines, RAINGAGES snippets, and audit JSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deterministic rainfall/climate formatting for SWMM that converts timestamped rainfall CSV files into SWMM-ready [TIMESERIES] lines and [RAINGAGES] helper snippets for swmm-builder.
 
-## Publisher: <br>
-[zhonghao1995](https://clawhub.ai/user/zhonghao1995) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhonghao1995](https://clawhub.ai/user/zhonghao1995)
 
-## Use Case: <br>
-Developers and civil or stormwater engineers use this skill to prepare rainfall time series, raingage helper sections, and design-storm inputs for SWMM workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled scripts write to user-selected output paths and may create directories or overwrite files. <br>
-Mitigation: Review output paths before execution and run the skill in a controlled project workspace. <br>
-Risk: The skill documentation mentions an MCP wrapper, but the server evidence says that wrapper is not included in this artifact version. <br>
-Mitigation: Use the bundled command-line scripts directly unless a separately reviewed MCP wrapper is available. <br>
+## Use Case:
 
+Developers and stormwater engineers use this skill to prepare measured or synthetic rainfall data for SWMM workflows, producing deterministic timeseries text, raingage snippets, and audit JSON for model assembly.
 
-## Reference(s): <br>
-- [Agentic SWMM Workflow](https://github.com/Zhonghao1995/agentic-swmm-workflow) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhonghao1995/swmm-climate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands plus generated text and JSON file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces SWMM TIMESERIES text, RAINGAGES text snippets, and JSON summaries from user-provided rainfall inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.7.3 (source: server release metadata) <br>
+Risk: Malformed or untrusted station IDs, gage IDs, or series-name templates can corrupt or alter generated SWMM configuration fragments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate identifiers to simple SWMM-safe names and review generated [TIMESERIES] and [RAINGAGES] outputs before adding them to a model.
+
+Risk: Untrusted CSV or DAT rainfall inputs can produce misleading model inputs even when conversion is deterministic.
+
+Mitigation: Use trusted rainfall sources where possible, validate input units and time windows, and compare the generated JSON summary against the source data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhonghao1995/skills/swmm-climate)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with command examples; generated SWMM text and JSON files when scripts are run]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Deterministic local file outputs; no hidden network, credential, or persistence behavior reported by security evidence]
+
+## Skill Version(s):
+
+0.7.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="endBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1A2744;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0F1A2E;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="1280" height="720" fill="url(#endBgGrad)" />
+  <rect x="0" y="0" width="1280" height="6" fill="#CFAC6A" />
+  <text x="640" y="330" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="48" font-weight="bold" fill="#CFAC6A">感谢聆听</text>
+  <text x="640" y="380" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#FFFFFF" fill-opacity="0.7">Thank You</text>
+  <line x1="440" y1="410" x2="840" y2="410" stroke="#CFAC6A" stroke-width="1" stroke-opacity="0.5" />
+  <text x="640" y="480" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="18" fill="#FFFFFF" fill-opacity="0.6">{{CONTACT_INFO}}</text>
+  <rect x="0" y="710" width="1280" height="10" fill="#CFAC6A" fill-opacity="0.3" />
+</svg>

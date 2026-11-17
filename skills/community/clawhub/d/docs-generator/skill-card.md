@@ -1,41 +1,59 @@
-## Description: <br>
-Automated documentation generator for API docs, README, CHANGELOG, contributing guides, architecture docs, tutorials, FAQ, and reference manuals for REST and GraphQL projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated documentation generator for API docs, README files, changelogs, contributing guides, architecture docs, tutorials, FAQs, and reference manuals for REST and GraphQL projects.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and technical writers use this skill to generate starter documentation templates for APIs, project READMEs, changelogs, contributor guides, architecture notes, tutorials, FAQs, and reference manuals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package includes an auxiliary generic utility script that stores user-supplied entries and command history in a local data directory. <br>
-Mitigation: Use scripts/docs-generator.sh for documentation templates, avoid entering sensitive notes or secrets into scripts/script.sh, and remove or clearly document the auxiliary utility before deployment. <br>
-Risk: Generated documentation contains template placeholders, sample endpoints, and example credentials that may be inaccurate if published unchanged. <br>
-Mitigation: Review generated output before publication and replace placeholder URLs, API fields, credentials, and operational details with project-specific values. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate starter documentation for software projects, including API references, READMEs, changelogs, contribution guides, architecture descriptions, tutorials, FAQs, and reference manuals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/docs-generator) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown and plain text printed to stdout, including code blocks, tables, command examples, and template sections.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates documentation templates for REST and GraphQL APIs, README files, changelogs, contributing guides, architecture documents, tutorials, FAQs, and reference manuals.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The bundled local utility can persistently store and log user-provided text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not pass secrets, credentials, proprietary content, or confidential text to script.sh; review its local data directory before sharing logs or artifacts.
+
+Risk: Generated documentation includes hardcoded BytesAgain attribution.
+
+Mitigation: Review generated documents before committing or publishing them and remove or adjust attribution where project policy requires.
+
+Risk: The release security verdict is suspicious.
+
+Mitigation: Review the skill before installation and run it in a controlled workspace until the bundled utility behavior is accepted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/docs-generator)
+- [BytesAgain homepage](https://bytesagain.com)
+- [BytesAgain feedback](https://bytesagain.com/feedback)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text emitted by shell commands, with example code blocks and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated documents include hardcoded BytesAgain attribution in the bundled templates.]
+
+## Skill Version(s):
+
+2.0.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

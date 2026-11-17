@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "1.0.0",
+  "metadata": {
+    "sourceVariant": "original",
+    "timelineFps": 30,
+    "automaticWrapAllowed": true,
+    "projectId": "fixture-project",
+    "timelineId": "fixture-timeline",
+    "timelineRevision": "fixture-timeline-revision",
+    "sourceAssetId": "fixture-source-asset",
+    "sourceRevision": "fixture-source-revision",
+    "pagination": {
+      "maxLines": 2,
+      "maxCharactersPerLine": 22
+    }
+  },
+  "pages": [
+    {
+      "index": 1,
+      "startFrame": 0,
+      "endFrame": 30,
+      "text": "第一行\n第二行",
+      "lines": 1,
+      "words": [
+        {
+          "key": "word-0001",
+          "sourceAssetId": "fixture-source-asset",
+          "sourceRevision": "fixture-source-revision",
+          "sourceWordKey": "source-word-0001",
+          "sourceText": "第一行第二行",
+          "text": "第一行第二行",
+          "startFrame": 0,
+          "endFrame": 30
+        }
+      ]
+    }
+  ]
+}

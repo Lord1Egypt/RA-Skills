@@ -1,44 +1,54 @@
-## Description: <br>
-Automate social media publishing, engagement, scheduling, content generation, and analytics across major social platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates social media publishing, engagement, analytics, scheduling, content generation, and cross-platform formatting across major social platforms.
 
-## Publisher: <br>
-[Fuczy](https://clawhub.ai/user/Fuczy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fuczy](https://clawhub.ai/user/fuczy)
 
-## Use Case: <br>
-Marketing teams, creators, agencies, and developers use this skill to configure cross-platform social publishing workflows, draft or schedule posts from content sources, manage engagement actions, and review analytics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Account tokens and social API credentials may be exposed if configuration files are committed, shared, or broadly readable. <br>
-Mitigation: Use limited-scope tokens, keep configuration files out of repositories and shared folders, and restrict file permissions before connecting accounts. <br>
-Risk: Automated posts, replies, follows, reposts, and scheduled campaigns can publish unwanted content under connected accounts. <br>
-Mitigation: Start in preview or draft mode and require human approval before generated replies, follows, reposts, or scheduled posts are made public. <br>
-Risk: Publishing workflows may continue running after setup if operators do not know how to pause or stop them. <br>
-Mitigation: Verify pause and stop procedures before connecting real accounts, and monitor scheduled workflows during initial use. <br>
+## Use Case:
 
+Marketing teams, agencies, creators, and developers use this skill to plan, generate, schedule, publish, engage with, and report on social content across multiple platforms.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Fuczy/clawd-social-publisher) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/Fuczy) <br>
-- [Skill homepage](https://clawhub.com/skills/social-publisher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Configuration, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with YAML configuration examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include draft social content, scheduling plans, engagement rules, analytics/reporting configuration, and preview/start commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can involve powerful social-media account credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use test accounts or draft/preview mode first, and do not store real social-media credentials in plaintext project files or commit them to source control.
+
+Risk: The skill can automate public posting and engagement actions.
+
+Mitigation: Require approval controls, configure rate limits, and avoid fully automated engagement until the workflow has been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fuczy/skills/clawd-social-publisher)
+- [Skill homepage](https://clawhub.com/skills/social-publisher)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with YAML examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces social publishing workflows, configuration examples, scheduling guidance, engagement automation guidance, and analytics/reporting setup guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

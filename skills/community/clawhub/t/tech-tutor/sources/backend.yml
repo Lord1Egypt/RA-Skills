@@ -1,0 +1,117 @@
+name: backend
+description: Backend development authoritative sources
+
+categories:
+  official_docs:
+    - name: Node.js Docs
+      url: https://nodejs.org/docs/latest/api/
+      type: official-docs
+      description: Node.js API documentation
+
+    - name: Go Docs
+      url: https://go.dev/doc/
+      type: official-docs
+      description: Go programming language docs
+
+    - name: Python Docs
+      url: https://docs.python.org/3/
+      type: official-docs
+      description: Python documentation
+
+    - name: Rust Docs
+      url: https://doc.rust-lang.org/
+      type: official-docs
+      description: Rust programming language docs
+
+    - name: PostgreSQL Docs
+      url: https://www.postgresql.org/docs/
+      type: official-docs
+      description: PostgreSQL documentation
+
+    - name: Redis Docs
+      url: https://redis.io/docs/
+      type: official-docs
+      description: Redis documentation
+
+    - name: MySQL Docs
+      url: https://dev.mysql.com/doc/
+      type: official-docs
+      description: MySQL documentation
+
+    - name: Docker Docs
+      url: https://docs.docker.com/
+      type: official-docs
+      description: Containerization
+
+    - name: Kubernetes Docs
+      url: https://kubernetes.io/docs/
+      type: official-docs
+      description: Container orchestration
+
+  official_blogs:
+    - name: Go Blog
+      url: https://go.dev/blog/
+      type: official-blog
+      description: Go official blog
+
+    - name: Rust Blog
+      url: https://blog.rust-lang.org/
+      type: official-blog
+      description: Rust official blog
+
+    - name: Node.js Blog
+      url: https://nodejs.org/en/blog/
+      type: official-blog
+      description: Node.js updates
+
+    - name: Netflix Tech Blog
+      url: https://netflixtechblog.com/
+      type: official-blog
+      description: Large-scale systems
+
+    - name: Uber Engineering
+      url: https://www.uber.com/en-US/blog/engineering/
+      type: official-blog
+      description: Engineering practices
+
+    - name: ByteDance Tech
+      url: https://tech.bytedance.net/
+      type: official-blog
+      description: ByteDance tech blog
+
+    - name: Meituan Tech
+      url: https://tech.meituan.com/
+      type: official-blog
+      description: Meituan tech blog
+
+    - name: Alibaba Tech
+      url: https://www.taobao.com/go/tech/
+      type: official-blog
+      description: Alibaba tech blog
+
+  conferences:
+    - name: OSDI
+      url: https://www.usenix.org/conferences/byname/147
+      type: top-conference
+      description: Operating Systems Design and Implementation
+
+    - name: SOSP
+      url: https://www.sigops.org/conferences/sosp/
+      type: top-conference
+      description: Symposium on Operating Systems Principles
+
+    - name: NSDI
+      url: https://www.usenix.org/conferences/byname/117
+      type: top-conference
+      description: Networked Systems Design and Implementation
+
+    - name: SIGCOMM
+      url: https://www.sigcomm.org/
+      type: top-conference
+      description: ACM SIGCOMM
+
+  communities:
+    - name: Stack Overflow
+      url: https://stackoverflow.com/
+      type: community
+      description: Q&A for developers

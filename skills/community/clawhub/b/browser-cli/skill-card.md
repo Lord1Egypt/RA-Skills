@@ -1,46 +1,63 @@
-## Description: <br>
-browser-cli helps agents automate browser-use CLI workflows for navigation, interaction, screenshots, JavaScript execution, tab and cookie management, cloud browsers, Chrome profiles, and local tunnels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates browser tasks from the command line with browser-use, including navigation, interaction, screenshots, tabs, cookies, JavaScript, cloud browsing, and local tunneling.
 
-## Publisher: <br>
-[zdstudios](https://clawhub.ai/user/zdstudios) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zdstudios](https://clawhub.ai/user/zdstudios)
 
-## Use Case: <br>
-Developers and automation agents use this skill to operate browser-use from the command line for web navigation, form filling, page inspection, screenshots, session handling, cloud browser access, and local app testing through tunnels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents can access live browser sessions, cookies, and authenticated Chrome profiles. <br>
-Mitigation: Use isolated test browser profiles and test accounts, avoid synced personal or privileged profiles, and close sessions when work is complete. <br>
-Risk: Cookie export, cloud login, and cloud browser workflows can expose sensitive credentials or session material. <br>
-Mitigation: Treat exported cookies and API keys as secrets, store them only where required, and remove cloud credentials when no longer needed. <br>
-Risk: Local tunnel commands can expose development services to public HTTPS URLs. <br>
-Mitigation: Do not tunnel admin, debug, or sensitive local services; stop tunnels promptly after testing. <br>
-Risk: The one-line installer executes a remote shell script for browser-use. <br>
-Mitigation: Install only when the browser-use installer and package source are trusted in the deployment environment. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to drive browser-use CLI workflows for web navigation, inspection, form interaction, screenshots, JavaScript execution, cookie and tab management, cloud browser sessions, and local app testing through tunnels.
 
-## Reference(s): <br>
-- [ClawHub release page for browser-cli](https://clawhub.ai/zdstudios/browser-cli) <br>
-- [Publisher profile: zdstudios](https://clawhub.ai/user/zdstudios) <br>
-- [browser-use CLI installer](https://browser-use.com/cli/install.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands, code snippets, command recipes, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may involve live browser sessions, local files, cookies, Chrome profiles, API keys, cloud browser sessions, and public localhost tunnels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill directs users to run remote installer code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the browser-use publisher is trusted; prefer an isolated Python environment and manual installation when stronger review is needed.
+
+Risk: Browser automation can access pages, cookies, and local browser profiles.
+
+Mitigation: Use a dedicated low-privilege browser profile and avoid syncing personal or work profiles.
+
+Risk: Cloud browser and tunnel workflows can expose local services or sensitive browsing state.
+
+Mitigation: Avoid public tunnels for sensitive local apps, and close daemons, tunnels, and cloud browsers when work is complete.
+
+Risk: Diagnostics, screenshots, logs, and exported cookies may contain sensitive data.
+
+Mitigation: Redact diagnostic output and generated files before sharing or storing them outside the trusted workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zdstudios/skills/browser-cli)
+- [Publisher profile](https://clawhub.ai/user/zdstudios)
+- [browser-use CLI installer](https://browser-use.com/cli/install.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration paths, and command recipes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands that start daemon sessions, use browser profiles, manage cookies, call cloud APIs, or open public tunnels.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

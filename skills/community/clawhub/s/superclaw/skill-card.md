@@ -1,45 +1,59 @@
-## Description: <br>
-Complete software development workflow enforcing design → plan → execution with checkpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete software development workflow enforcing design → plan → execution with checkpoints.
 
-## Publisher: <br>
-[brothaakhee](https://clawhub.ai/user/brothaakhee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[brothaakhee](https://clawhub.ai/user/brothaakhee)
 
-## Use Case: <br>
-Developers and engineering agents use Superclaw to slow coding work into an explicit design, implementation plan, and checkpointed execution workflow. It is intended for software-building tasks where reviewable plans, workspace memory, and batch checkpoints reduce rushed or untracked changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read workspace memory and context while preparing software designs and plans. <br>
-Mitigation: Install it only in workspaces where that context access is acceptable, and review generated designs before approval. <br>
-Risk: The skill can write design, plan, and progress files and modify project files during implementation batches. <br>
-Mitigation: Review checkpoint summaries and workspace diffs before continuing to later batches. <br>
-Risk: The skill can spawn task agents for isolated implementation work. <br>
-Mitigation: Use its batching and checkpoint process to inspect spawned-agent outputs before approving further execution. <br>
+## Use Case:
 
+Developers and engineering agents use Superclaw to structure software work into design approval, implementation planning, and checkpointed execution. It is intended to slow direct coding when a task needs requirements clarification, plans, persistent progress notes, or batch review.
 
-## Reference(s): <br>
-- [Superclaw on ClawHub](https://clawhub.ai/brothaakhee/superclaw) <br>
-- [Publisher Profile](https://clawhub.ai/user/brothaakhee) <br>
-- [Superpowers methodology](https://github.com/obra/superpowers) <br>
-- [OpenClaw Docs](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with saved design, plan, progress, code, command, and configuration artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create workspace design and plan files, update progress logs, and propose or execute code changes through checkpointed batches.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The skill can delay direct coding by enforcing a strict design, planning, and checkpoint workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only for workspaces where that disciplined workflow is desired, and narrow activation if fast direct edits are expected.
+
+Risk: The skill reads agent memory and profile files for context.
+
+Mitigation: Review memory access expectations before use in workspaces with sensitive context.
+
+Risk: The skill can spawn subagents and write persistent planning or progress logs.
+
+Mitigation: Use a pinned, reviewed installer version and review generated plans, logs, and subagent activity before relying on them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/brothaakhee/skills/superclaw)
+- [Original Superpowers Framework](https://github.com/obra/superpowers)
+- [OpenClaw Docs](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline commands and structured plan or progress documents]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce design documents, implementation plans, checkpoint summaries, and progress log entries.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

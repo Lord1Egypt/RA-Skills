@@ -1,43 +1,55 @@
-## Description: <br>
-Omnia helps agents apply molt-life-kernel patterns for persistent memory, crash recovery, append-only audit logging, heartbeat monitoring, coherence checks, and human approval for critical actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Omnia helps agents use continuity infrastructure for persistent memory, crash recovery, audit trails, heartbeat monitoring, coherence checks, and witness-gated critical actions.
 
-## Publisher: <br>
-[arturoaguileraa](https://clawhub.ai/user/arturoaguileraa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT + Attribution Required <br>
+## Publisher:
 
+[arturoaguileraa](https://clawhub.ai/user/arturoaguileraa)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add continuity, recovery, audit trails, heartbeat checks, coherence monitoring, and witness-gated approval patterns to persistent AI agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT + Attribution Required
 
-## Known Risks and Mitigations: <br>
-Risk: Durable append-only logging can retain secrets, personal data, or regulated information longer than intended. <br>
-Mitigation: Define retention, deletion, and redaction practices before use, and avoid storing secrets or regulated data in the ledger. <br>
-Risk: The skill directs agents to use an external npm/GitHub package. <br>
-Mitigation: Review the external package, repository, and dependency behavior before installation or execution. <br>
+## Use Case:
 
+Developers and agent operators use Omnia to add or reason about persistent agent memory, recovery snapshots, audit trails, heartbeat monitoring, coherence checks, and human approval gates for critical actions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/arturoaguileraa/test-omnia) <br>
-- [molt-life-kernel GitHub repository](https://github.com/X-Loop3Labs/molt-life-kernel) <br>
-- [molt.church](https://molt.church) <br>
-- [X-Loop3 Labs](https://x-loop3.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with JavaScript and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose persistent logging, snapshot recovery, heartbeat checks, coherence monitoring, and human approval workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Persistent memory and append-only audit logs can capture sensitive data without clear privacy, deletion, or scoping controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only where persistent memory and audit logs are explicitly wanted; avoid logging secrets or raw prompts by default, define retention and deletion procedures, and restrict file permissions.
+
+Risk: The skill directs agents toward installing an external package.
+
+Mitigation: Pin or audit the external package version before installation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/arturoaguileraa/skills/test-omnia)
+- [Molt Project Site](https://molt.church)
+- [X-Loop3 Labs](https://x-loop3.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JavaScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

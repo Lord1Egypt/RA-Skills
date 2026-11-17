@@ -1,45 +1,55 @@
-## Description: <br>
-Prepares signed AICADE gateway service-management requests for service registration, service detail queries, and service disable operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when preparing signed AICADE gateway service-management requests for service registration, service detail queries, or service disable operations, especially when collecting service metadata, auth config, billing, rate limits, JSON Schemas, serviceId, or signed curl output.
 
-## Publisher: <br>
-[aicadegalaxy](https://clawhub.ai/user/aicadegalaxy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aicadegalaxy](https://clawhub.ai/user/aicadegalaxy)
 
-## Use Case: <br>
-Developers and service operators use this skill to gather AICADE service metadata, validate registration inputs, and generate signed curl commands for register/update, detail, and disable operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated curl commands may contain an API key, signature, timestamp, and nonce. <br>
-Mitigation: Treat generated commands as sensitive and review them before running or sharing. <br>
-Risk: Disable requests can change service availability if a user runs the generated command. <br>
-Mitigation: Confirm the serviceId and disable operation with the user before generating the final signed curl. <br>
-Risk: Registration flows may involve upstream service secrets. <br>
-Mitigation: Prefer placeholders for upstream credentials unless the user intentionally provides real values. <br>
+## Use Case:
 
+Developers and operators use this skill to collect AICADE gateway service-management inputs, validate service registration details, and generate signed curl commands for registration, detail lookup, or disable operations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/aicadegalaxy/aicade-create-service) <br>
-- [Service Management API Reference](references/service-management-api.md) <br>
-- [Register Service Guided Intake](references/register-intake.md) <br>
-- [Service Operations Guided Intake](references/service-operations-intake.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JSON and signed curl command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated curl commands may include API keys and signatures; the skill prints requests and does not call the remote API by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill can reuse local AICADE_API_KEY and AICADE_API_SECRET_KEY values and print authenticated curl commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated commands before sharing or running them, prefer redacted or environment-variable-based output, and avoid putting real API keys or secrets in chat transcripts or logs.
+
+Risk: Generated disable commands can affect an existing service when the base URL or serviceId is wrong.
+
+Mitigation: Confirm the base URL and serviceId before generating or executing disable operations.
+
+## Reference(s):
+
+- [Service Management API Reference](references/service-management-api.md)
+- [Register Service Guided Intake](references/register-intake.md)
+- [Service Operations Guided Intake](references/service-operations-intake.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON snippets and signed curl commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated commands may include authentication headers; the bundled script prints requests and does not call the remote API.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

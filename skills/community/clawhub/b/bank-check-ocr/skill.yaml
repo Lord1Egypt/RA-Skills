@@ -1,11 +1,12 @@
 name: bank_check_ocr
-version: 1.0.1
-description: 支持银行支票识别,精准提取支票号码、出票日期、大小写金额及出票人签章等。
+version: 1.0.2
+description: 仅在用户明确提及“银行支票”、“支票号码”、“支票金额”、“支票识别”等特定词汇时触发，用于识别银行支票上的关键信息（号码、日期、大小写金额、签章等）。不适用于通用 OCR 或非支票类图像识别。
 author: SCNet
 license: MIT
 tags:
   - ocr
-  - 文字提取
+  - 银行支票
+  - 支票提取
 required_env_vars:
   - SCNET_API_KEY
 
@@ -14,8 +15,13 @@ optional_env_vars:
 
 primary_credential: SCNET_API_KEY
 
-# 增加项目主页，解决 missing homepage 警告
-homepage: https://github.com/SCNet-sugon/bank_check_ocr.git  # 请替换为实际仓库地址
+permissions:
+  - read: local image files provided by the user
+  - execute: python3 subprocess to run scripts/main.py
+  - network: transmit the provided image to the configured SCNET_API_BASE (default https://api.scnet.cn/api/llm/v1)
+  - env: read SCNET_API_KEY and SCNET_API_BASE from the process environment or config/.env
+
+homepage: https://github.com/SCNet-sugon/bank_check_ocr.git
 dependencies:
   - python3
   - requests

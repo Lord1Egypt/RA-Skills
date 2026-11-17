@@ -1,42 +1,60 @@
-## Description: <br>
-Provides a complete AI agent observability solution with structured logs, metrics, distributed tracing, alert management, and a real-time monitoring dashboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a complete AI agent observability solution with structured logs, metrics, distributed tracing, alert management, and a real-time monitoring dashboard.
 
-## Publisher: <br>
-[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add observability to AI agents, including structured logging, metrics, tracing, alerting, and a local monitoring dashboard for LLM, MCP, and A2A activity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local dashboard exposes telemetry APIs and recent logs without built-in authentication. <br>
-Mitigation: Bind it to localhost or place it behind access control before using it with sensitive agent telemetry. <br>
-Risk: Logs and trace metadata can persist prompts, tokens, payload details, or other sensitive operational data. <br>
-Mitigation: Disable file or debug logging when handling secrets, and avoid sending prompts, tokens, or raw payloads into trace metadata. <br>
-Risk: Webhook alerting can send observability data to external endpoints. <br>
-Mitigation: Configure webhook notifications only for trusted destinations and review the alert payloads before enabling them. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add structured logs, metrics, traces, alerting, and dashboard visibility to AI agent systems. It is suited for monitoring LLM calls, MCP tool activity, A2A messages, latency, errors, and operational health.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuyonghao-123/yuyonghao-observability) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript and shell command examples; runtime telemetry is emitted as logs, metrics, traces, dashboard views, and JSON or Prometheus API responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The dashboard defaults to a local HTTP service and log files unless configured otherwise.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: release evidence and package.json) <br>
+Risk: The dashboard and logs can expose sensitive operational telemetry, prompts, tool payloads, or agent activity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat logs and dashboard output as sensitive, avoid logging secrets or raw prompts/tool payloads, and add redaction before use with real agent traffic.
+
+Risk: Dashboard endpoints can expose monitoring data if reachable by untrusted users.
+
+Mitigation: Run the dashboard on loopback or behind authentication and network access controls.
+
+Risk: Webhook alerting can send telemetry to external destinations.
+
+Mitigation: Disable webhooks by default or restrict them to trusted HTTPS endpoints.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yuyonghao-123/skills/yuyonghao-observability)
+- [SKILL.md](SKILL.md)
+- [README.md](README.md)
+- [package.json](package.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript examples, shell commands, runtime logs, metrics, traces, alerts, dashboard views, and JSON or Prometheus API output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 18 or newer and the Winston dependency declared by the package.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,2 @@
+{"name": "chat", "private": true, "main": "server.js",
+ "dependencies": {"express": "4.19.2", "cors": "2.8.5", "openai": "4.60.0"}}

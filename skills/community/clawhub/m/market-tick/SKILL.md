@@ -1,6 +1,6 @@
 ---
 name: market-tick
-description: Cross-asset market tick: price, volume, and spread snapshot
+description: "Paid x402 endpoint: $0.014 USDC per call on Base. Returns BTC, ETH and SOL prices, market regime, Fear & Greed, and a momentum label."
 metadata:
   openclaw:
     requires:
@@ -13,12 +13,12 @@ metadata:
 # market-tick
 
 ## What It Does
-Cross-asset market tick: price, volume, and spread snapshot. This signal is computed in real time from APEX Runner's live autonomous trading system operating across Kraken, Coinbase Advanced Trade, and Hyperliquid — not from backtests or third-party aggregators.
+Minimal live tick in one small JSON object: BTC, ETH and SOL prices, a one-word market regime, the Fear & Greed value, and a momentum label. Prices are Hyperliquid mid prices (with a secondary feed if Hyperliquid does not price a coin); regime is APEX's BTC regime classification; momentum is an ADX + volume label on BTC. If any input is unavailable the endpoint answers 503 and you are not charged.
 
 ## When to Use
-- For a cross-asset snapshot in a single call
-- When building portfolio dashboards
-- To monitor spread and volume simultaneously
+- For a cheap, frequent BTC/ETH/SOL price check
+- To read the current market regime and sentiment in one call
+- As a lightweight polling input for a trading agent
 
 ## How to Use
 The agent makes an x402-authenticated GET request to:
@@ -27,16 +27,25 @@ The agent makes an x402-authenticated GET request to:
 https://apexrunner.ai/signals/market-tick
 ```
 
-The x402 client handles payment authorisation automatically. No API key, no account, no subscription required — just an EVM wallet with USDC on Base mainnet.
+The x402 client handles payment automatically. No API key, no account, no subscription — just an EVM wallet with USDC on Base mainnet (no ETH needed).
 
 ```python
-# Example using the x402-python client
-from x402.client import x402_get
+# pip install "x402[evm,requests]"
+import os
 
-response = x402_get(
-    url="https://apexrunner.ai/signals/market-tick",
-    private_key=os.environ["EVM_PRIVATE_KEY"]
-)
+import requests
+from eth_account import Account
+from x402 import max_amount, x402ClientSync
+from x402.http.clients import wrapRequestsWithPayment
+from x402.mechanisms.evm.exact import register_exact_evm_client
+from x402.mechanisms.evm.signers import EthAccountSigner
+
+client = x402ClientSync()
+register_exact_evm_client(client, EthAccountSigner(Account.from_key(os.environ["EVM_PRIVATE_KEY"])))
+client.register_policy(max_amount(20000))  # never sign more than the list price ($0.02 USDC)
+
+session = wrapRequestsWithPayment(requests.Session(), client)
+response = session.get("https://apexrunner.ai/signals/market-tick")
 print(response.json())
 ```
 
@@ -54,15 +63,11 @@ print(response.json())
 ```
 
 ## Pricing
-**$0.01/call** — standard price
+**$0.02/call** — standard price
 
-Early adopters automatically receive 30% off ($0.01/call) until 2026-09-21. Discount tiers apply automatically based on wallet call history:
-- Early Adopter (0–9 calls): 30% off
-- Engaged (10–49 calls): 15% off
-- Loyal (50–199 calls): 15% permanent
-- VIP (200+ calls): 20% permanent
-
-Check your tier: `https://apexrunner.ai/signals/my-pricing`
+Every caller is charged $0.014/call until 2027-01-01 under the
+early-adopter discount (30% off the standard price). No tier, no wallet
+history, no enrolment — that is simply the price.
 
 ## Related Signals
 - [btc-price-tick](https://apexrunner.ai/signals/btc-price-tick)

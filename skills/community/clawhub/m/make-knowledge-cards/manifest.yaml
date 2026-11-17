@@ -1,0 +1,30 @@
+name: make-knowledge-cards
+slug: make-knowledge-cards
+version: 1.0.0
+category: 知识与学习
+author: WorkBuddy User
+description: "将粘贴的文章、本地 Markdown/TXT 文件或 PDF 文档转化为 5-8 张精炼知识卡片。每张卡片包含标题、核心知识、简要解释和示例/自测题，适合高效复习和自测。"
+trigger:
+  - "制作知识卡片"
+  - "生成知识卡片"
+  - "做成知识卡片"
+  - "make knowledge cards"
+  - "study cards"
+  - "flashcards"
+  - "总结成卡片"
+  - "知识卡片"
+tags:
+  - 知识管理
+  - 学习辅助
+  - 文档总结
+  - PDF处理
+  - 卡片笔记
+dependency:
+  - "Python 3.8+"
+  - "pypdf>=4.0.0"
+pricing: 免费
+platforms:
+  - workbuddy
+  - claude-code
+  - cursor
+  - ima

@@ -1,50 +1,60 @@
-## Description: <br>
-Homebase coordinates household calendars, morning briefings, school email intake, grocery and meal planning, restaurant tracking, medication logs, and trip preparation through an OpenClaw and WhatsApp workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Family household coordinator: calendar, briefings, kids' meals, school email, groceries, health log, receipts.
 
-## Publisher: <br>
-[hchawla](https://clawhub.ai/user/hchawla) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hchawla](https://clawhub.ai/user/hchawla)
 
-## Use Case: <br>
-External household users install this skill to let an OpenClaw agent help manage family logistics, including schedule summaries, school messages, meal planning, shopping lists, trip preparation, restaurant notes, and medication or symptom logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Google Calendar read/write access, Gmail read access for configured school senders, WhatsApp delivery through OpenClaw, and local storage of sensitive family and child health data. <br>
-Mitigation: Review the configured OAuth scopes, WhatsApp targets, and scheduled messages before use; restrict permissions on .env, config.json, household/, and calendar_data/. <br>
-Risk: Local state can include family calendars, kid profiles, meal history, restaurant notes, shopping lists, and medication or symptom logs. <br>
-Mitigation: Run the skill under the intended local user account, keep state directories private on multi-user systems, and avoid committing generated household or calendar data. <br>
-Risk: Weather and trip-preparation features may disclose location or trip context to Open-Meteo and to family WhatsApp recipients. <br>
-Mitigation: Confirm the configured location, trip-detection behavior, and briefing recipients match the household's privacy expectations. <br>
-Risk: Medication logging and dose-window reminders can affect health decisions. <br>
-Mitigation: Keep child weights and medicine concentrations current, treat outputs as caregiver aids, and verify medication decisions with appropriate medical guidance. <br>
+## Use Case:
 
+Families and their agents use this skill to coordinate household logistics through local tools for calendars, school email queues, meal planning, groceries, health logs, receipts, weather, and trip preparation.
 
-## Reference(s): <br>
-- [Homebase ClawHub Skill Page](https://clawhub.ai/hchawla/homebase) <br>
-- [hchawla Publisher Profile](https://clawhub.ai/user/hchawla) <br>
-- [README](artifact/README.md) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
-- [Configuration Example](artifact/config.example.json) <br>
-- [Google Calendar OAuth Scope](https://www.googleapis.com/auth/calendar) <br>
-- [Gmail Read-Only OAuth Scope](https://www.googleapis.com/auth/gmail.readonly) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [WhatsApp-ready text, Markdown instructions, JSON-backed local state, and shell command invocations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns household coordination outputs through OpenClaw; Python tools return data and formatted strings without bundled LLM calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.2 (source: ClawHub release evidence; artifact pyproject.toml reports 0.2.5) <br>
+Risk: Queued school email-derived events can be written to Google Calendar without a technical approval gate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Call confirm_pending_school_events only after explicit family approval for the exact pending events, and keep automated runners from invoking it without that check.
+
+Risk: The skill stores family PII locally in configuration and household state files.
+
+Mitigation: Keep config.json private, use restrictive file permissions, and review local state files before sharing or publishing an installation.
+
+Risk: Gmail and Google Calendar access depends on the external gog integration.
+
+Mitigation: Install only when the operator is comfortable granting gog those permissions, and verify gog authentication status during setup and maintenance.
+
+## Reference(s):
+
+- [Homebase skill page](https://clawhub.ai/hchawla/skills/homebase)
+- [Agent tool reference](references/agent.md)
+- [README](README.md)
+- [CHANGELOG](CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [CLI tool responses as JSON or concise text; documentation as Markdown with shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local JSON state and depends on Python 3.12+ plus the external gog CLI for Gmail and Google Calendar access.]
+
+## Skill Version(s):
+
+0.6.1 (source: release metadata and pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,980 @@
+{
+  "meta": {
+    "name": "老子語錄資料庫",
+    "name_en": "Laozi Quotes Database",
+    "version": "1.0.0",
+    "created": "2026-08-10",
+    "description": "老子道德經81章 + 精選語錄，支援繁體/簡體/英文三語",
+    "languages": ["zh-TW", "zh-CN", "en"]
+  },
+
+  "chapters": [
+    {
+      "chapter": 1,
+      "title": "第一章",
+      "title_en": "Chapter 1",
+      "keywords": ["道", "無為", "玄", "起源"],
+      "keywords_en": ["Tao", "Non-action", "Mystery", "Origin"],
+      "zh_TW": "道可道，非常道；名可名，非常名。無名天地之始，有名萬物之母。故常無欲，以觀其妙；常有欲，以觀其徼。此兩者同出而異名，同謂之玄，玄之又玄，眾妙之門。",
+      "zh_CN": "道可道，非常道；名可名，非常名。无名天地之始，有名万物之母。故常无欲，以观其妙；常有欲，以观其徼。此两者同出而异名，同谓之玄，玄之又玄，众妙之门。",
+      "en": "The Tao that can be told is not the eternal Tao. The name that can be named is not the eternal name. The nameless is the beginning of heaven and earth. The named is the mother of all things. Therefore, always desireless, you see the mystery; ever desiring, you see the manifestations. These two are the same — when they appear they differ in name. The same is called the Mystery. Mystery upon mystery — the gateway to all wonders."
+    },
+    {
+      "chapter": 2,
+      "title": "第二章",
+      "title_en": "Chapter 2",
+      "keywords": ["相對", "無為", "美醜"],
+      "keywords_en": ["Relativity", "Non-action", "Beauty"],
+      "zh_TW": "天下皆知美之為美，斯惡已；皆知善之為善，斯不善已。故有無相生，難易相成，長短相形，高下相傾，音聲相和，前後相隨。是以聖人處無為之事，行不言之教；萬物作焉而不辭，生而不有，為而不恃，功成而弗居。夫唯弗居，是以不去。",
+      "zh_CN": "天下皆知美之为美，斯恶已；皆知善之为善，斯不善已。故有无相生，难易相成，长短相形，高下相倾，音声相和，前后相随。是以圣人处无为之事，行不言之教；万物作焉而不辞，生而不有，为而不恃，功成而弗居。夫唯弗居，是以不去。",
+      "en": "When the world has it, cease to do. When officials are appointed, the people are ruined. When tasks are underway, the work is done. When plans are made, confusion results. Therefore the sage: does nothing, so the people govern themselves; loves silence, so the people find their own way; has no projects, so the people are not ruined; desires nothing, so the people become rich."
+    },
+    {
+      "chapter": 3,
+      "title": "第三章",
+      "title_en": "Chapter 3",
+      "keywords": ["無為而治", "不爭", "虛其心"],
+      "keywords_en": ["Govern by Non-action", "Peace", "Humility"],
+      "zh_TW": "不上賢，使民不爭；不貴難得之貨，使民不為盜；不見可欲，使民心不亂。是以聖人之治，虛其心，實其腹；弱其志，強其骨。常使民無知無欲，使夫智者不敢為也。為無為，則無不治。",
+      "zh_CN": "不尚贤，使民不争；不贵难得之货，使民不为盗；不见可欲，使民心不乱。是以圣人之治，虚其心，实其腹；弱其志，强其骨。常使民无知无欲，使夫智者不敢为也。为无为，则无不治。",
+      "en": "Not praising the worthy prevents contention; not prizing rare treasures prevents theft; not displaying the desirable prevents loss of the heart. Thus, when the sage governs, he empties the people's hearts and fills their bellies; he weakens their ambitions and strengthens their bones. He keeps the people innocent of knowledge and desire, and the clever ones dare not interfere."
+    },
+    {
+      "chapter": 4,
+      "title": "第四章",
+      "title_en": "Chapter 4",
+      "keywords": ["道", "虛", "淵", "根本"],
+      "keywords_en": ["Tao", "Emptiness", "Depth", "Origin"],
+      "zh_TW": "道沖而用之或不盈，淵兮似萬物之宗。挫其銳，解其紛，和其光，同其塵。湛兮似或存，吾不知誰之子，象帝之先。",
+      "zh_CN": "道冲而用之或不盈，渊兮似万物之宗。挫其锐，解其纷，和其光，同其尘。湛兮似或存，吾不知谁之子，象帝之先。",
+      "en": "The Tao is an empty vessel; use it and it is never filled. O fathomless source of all things! It blunts sharp edges, unties tangles, softens glare, and becomes one with the dusty world. Hidden in the deep, yet present everywhere — I do not know whose child it is; it seems to precede the Emperor."
+    },
+    {
+      "chapter": 5,
+      "title": "第五章",
+      "title_en": "Chapter 5",
+      "keywords": ["不仁", "虛", "守中", "無為"],
+      "keywords_en": ["Impartiality", "Emptiness", "Moderation"],
+      "zh_TW": "天地不仁，以萬物為芻狗；聖人不仁，以百姓為芻狗。天地之間，其猶橐籥乎？虛而不屈，動而愈出。多言數窮，不如守中。",
+      "zh_CN": "天地不仁，以万物为刍狗；圣人不仁，以百姓为刍狗。天地之间，其犹橐龠乎？虚而不屈，动而愈出。多言数穷，不如守中。",
+      "en": "Heaven and earth are impartial; they treat all things as straw dogs. The sage is impartial; he treats all people as straw dogs. Is not the space between heaven and earth like a bellows? Empty, yet never exhausted; the more it moves, the more comes forth. Much speech exhausts the breath — better to hold fast to the center."
+    },
+    {
+      "chapter": 6,
+      "title": "第六章",
+      "title_en": "Chapter 6",
+      "keywords": ["谷神", "玄牝", "永恆", "根源"],
+      "keywords_en": ["Valley Spirit", "Eternity", "Source"],
+      "zh_TW": "谷神不死，是謂玄牝，玄牝之門，是謂天地根。綿綿若存，用之不勤。",
+      "zh_CN": "谷神不死，是谓玄牝，玄牝之门，是谓天地根。绵绵若存，用之不勤。",
+      "en": "The valley spirit never dies — call it the mysterious female. The gateway of the mysterious female is the root of heaven and earth. It flows continuously, almost out of sight, and when used, is never exhausted."
+    },
+    {
+      "chapter": 7,
+      "title": "第七章",
+      "title_en": "Chapter 7",
+      "keywords": ["無私", "長久", "後其身"],
+      "keywords_en": ["Selflessness", "Eternity", "Humility"],
+      "zh_TW": "天長地久。天地所以能長且久者，以其不自生，故能長生。是以聖人後其身而身先，外其身而身存。非以其無私邪？故能成其私。",
+      "zh_CN": "天长地久。天地所以能长且久者，以其不自生，故能长生。是以圣人后其身而身先，外其身而身存。非以其无私邪？故能成其私。",
+      "en": "Heaven and earth are eternal. The reason they endure is that they do not exist for themselves. Therefore the sage puts himself behind, and so ends up ahead; puts himself out, and so survives. Is it not because he has no self-interest that his self-interest is fulfilled?"
+    },
+    {
+      "chapter": 8,
+      "title": "第八章",
+      "title_en": "Chapter 8",
+      "keywords": ["上善若水", "不爭", "柔弱"],
+      "keywords_en": ["Highest Good Like Water", "Non-contention", "Flexibility"],
+      "zh_TW": "上善若水。水善利萬物而不爭，處眾人之所惡，故幾於道。居善地，心善淵，與善仁，言善信，正善治，事善能，動善時。夫唯不爭，故無尤。",
+      "zh_CN": "上善若水。水善利万物而不争，处众人之所恶，故几于道。居善地，心善渊，与善仁，言善信，正善治，事善能，动善时。夫唯不争，故无尤。",
+      "en": "The highest good is like water, which benefits all things without striving. It dwells in low places that others shun — which is why it is close to the Tao. The good man dwelling in the good place, his heart in depth; in generosity, his kindness; in speech, his sincerity; in rule, his order; in work, his ability; in action, his timing. He does not contend — and so is never faulted."
+    },
+    {
+      "chapter": 9,
+      "title": "第九章",
+      "title_en": "Chapter 9",
+      "keywords": ["知足", "功成身退", "持盈"],
+      "keywords_en": ["Contentment", "Retreat After Success", "Moderation"],
+      "zh_TW": "持而盈之，不如其已。揣而銳之，不可長保。金玉滿堂，莫之能守。富貴而驕，自遺其咎。功成身退，天之道。",
+      "zh_CN": "持而盈之，不如其已。揣而锐之，不可长保。金玉满堂，莫之能守。富贵而骄，自遗其咎。功成身退，天之道。",
+      "en": "Stop — better than filling. Temper the sharp, the untempered cannot be kept. Heap up gold and jade, no one can guard it. Wealth and pride breed their own ruin. When the work is done, retire — this is the way of heaven."
+    },
+    {
+      "chapter": 10,
+      "title": "第十章",
+      "title_en": "Chapter 10",
+      "keywords": ["營魄抱一", "嬰兒", "玄德"],
+      "keywords_en": ["Unity", "Innocence", "Mysterious Virtue"],
+      "zh_TW": "載營魄抱一，能無離乎？專氣致柔，能嬰兒乎？滌除玄覽，能無疵乎？愛民治國，能無知乎？天門開闔，能無雌乎？明白四達，能無為乎？生之、畜之，生而不有，為而不恃，長而不宰，是謂玄德。",
+      "zh_CN": "载营魄抱一，能无离乎？专气致柔，能婴儿乎？涤除玄览，能无疵乎？爱民治国，能无知乎？天门开阖，能无雌乎？明白四达，能无为乎？生之、畜之，生而不有，为而不恃，长而不宰，是谓玄德。",
+      "en": "Can you keep the soul embrace the One without分离? Can you concentrate your breath to become soft as a infant? Can you cleanse your vision to see the mystery? Can you love the people and govern them without干涉? The sage gives life to all things, rears them, produces them without claiming them, acts without taking credit, leads without commanding — this is called the mysterious virtue."
+    },
+    {
+      "chapter": 11,
+      "title": "第十一章",
+      "title_en": "Chapter 11",
+      "keywords": ["有之為利", "無之為用", "虛無"],
+      "keywords_en": ["Use of Emptiness", "Utility of Nothing"],
+      "zh_TW": "三十輻共一轂，當其無，有車之用。埏埴以為器，當其無，有器之用。鑿戶牖以為室，當其無，有室之用。故有之以為利，無之以為用。",
+      "zh_CN": "三十辐共一毂，当其无，有车之用。埏埴以为器，当其无，有器之用。凿户牖以为室，当其无，有室之用。故有之以为利，无之以为用。",
+      "en": "Thirty spokes meet at the hub — but only the empty center allows the wheel to function. Clay is molded into a vessel — but only the empty interior holds water. Doors and windows are cut to form a room — but only the empty space gives it use. Therefore, what has presence is for profit; what has absence is for use."
+    },
+    {
+      "chapter": 12,
+      "title": "第十二章",
+      "title_en": "Chapter 12",
+      "keywords": ["五色", "去彼取此", "為腹不為目"],
+      "keywords_en": ["Sensory Desire", "Inner Peace", "Simplicity"],
+      "zh_TW": "五色令人目盲，五音令人耳聾，五味令人口爽，馳騁畋獵令人心發狂，難得之貨令人行妨。是以聖人為腹不為目，故去彼取此。",
+      "zh_CN": "五色令人目盲，五音令人耳聋，五味令人口爽，驰骋田猎令人心发狂，难得之货令人行妨。是以圣人为腹不为目，故去彼取此。",
+      "en": "The five colors blind the eye; the five tones deafen the ear; the five flavors dull the taste. Racing and hunting madness disturbs the heart; rare goods cause people to act wrongly. Therefore the sage satisfies the belly rather than the eyes — he chooses the inner rather than the outer."
+    },
+    {
+      "chapter": 13,
+      "title": "第十三章",
+      "title_en": "Chapter 13",
+      "keywords": ["寵辱若驚", "貴身", "無身"],
+      "keywords_en": ["Honor and Disgrace", "Self-body", "Detachment"],
+      "zh_TW": "寵辱若驚，貴大患若身。何謂寵辱若驚？寵為下，得之若驚，失之若驚，是謂寵辱若驚。何謂貴大患若身？吾所以有大患者，為吾有身，及吾無身，吾有何患！故貴以身為天下，若可寄天下；愛以身為天下，若可托天下。",
+      "zh_CN": "宠辱若惊，贵大患若身。何谓宠辱若惊？宠为下，得之若惊，失之若惊，是谓宠辱若惊。何谓贵大患若身？吾所以有大患者，为吾有身，及吾无身，吾有何患！故贵以身为天下，若可寄天下；爱以身为天下，若可托天下。",
+      "en": "Favor and disgrace startle us alike; honor and disaster weigh upon our hearts. What is meant by 'favor and disgrace startle'? To receive favor is to be in a subordinate position — gaining it causes alarm, losing it causes alarm. This is 'favor and disgrace startle.' What is meant by 'honor and disaster weigh upon our hearts'? The reason we have disaster is that we have a self. If we had no self, what disaster could touch us? Those who value their self as the world — the world can be entrusted to them. Those who love their self as the world — the world can be given to them."
+    },
+    {
+      "chapter": 14,
+      "title": "第十四章",
+      "title_en": "Chapter 14",
+      "keywords": ["道紀", "夷希微", "無形", "恍惚"],
+      "keywords_en": ["Tao's Trace", "Formless", "Ethereal"],
+      "zh_TW": "視之不見名曰夷，聽之不聞名曰希，搏之不得名曰微。此三者不可致詰，故混而為一。其上不皦，其下不昧。繩繩不可名，復歸於無物。是謂無狀之狀，無物之象。是謂惚恍。迎之不見其首，隨之不見其後。執古之道，以御今之有，能知古始，是謂道紀。",
+      "zh_CN": "视之不见名曰夷，听之不闻名曰希，搏之不得名曰微。此三者不可致诘，故混而为一。其上不皦，其下不昧。绳绳不可名，复归于无物。是谓无状之状，无物之象。是谓惚恍。迎之不见其首，随之不见其后。执古之道，以御今之有，能知古始，是谓道纪。",
+      "en": "Looked at but not seen — it is called colorless. Listened to but not heard — it is called soundless. Grasped but not touched — it is called formless. These three cannot be fully described; so they merge into one. Its up is not bright; its down is not dark. Unceasing, unnameable, it returns to nothingness. It is the form of the formless, the image of the imageless — it is called the elusive countenance. Approaching it, there is no beginning; following it, there is no end. Seize the ancient Tao to guide present things — knowing the beginning, understanding the endings — this is the Tao's trace."
+    },
+    {
+      "chapter": 15,
+      "title": "第十五章",
+      "title_en": "Chapter 15",
+      "keywords": ["微妙玄通", "古之善為士", "深不可識"],
+      "keywords_en": ["Ancient Sages", "Mysterious Understanding", "Humility"],
+      "zh_TW": "古之善為士者，微妙玄通，深不可識。夫唯不可識，故強為之容。豫焉若冬涉川，猶兮若畏四鄰，儼兮其若容，渙兮若冰之將釋，敦兮其若樸，曠兮其若谷，混兮其若濁。孰能濁以靜之徐清？孰能安以久動之徐生？保此道者不欲盈，夫唯不盈，故能蔽不新成。",
+      "zh_CN": "古之善为士者，微妙玄通，深不可识。夫唯不可识，故强为之容。豫焉若冬涉川，犹兮若畏四邻，俨兮其若容，涣兮若冰之将释，敦兮其若朴，旷兮其若谷，混兮其若浊。孰能浊以静之徐清？孰能安以久动之徐生？保此道者不欲盈，夫唯不盈，故能蔽不新成。",
+      "en": "The ancient masters were subtle, mysterious, profound, beyond understanding. Because they are beyond understanding, I can only describe them with care. Cautious like crossing a winter river; vigilant like threatened by neighbors; dignified as a guest; fluid as melting ice; whole as an uncarved block of wood; vast as a valley; muddy as a torrent. Who can be still until the mud settles? Who can be active until rest comes? Those who hold this Tao do not wish to be full. Precisely because they are not full, they can be renewed and not newly made."
+    },
+    {
+      "chapter": 16,
+      "title": "第十六章",
+      "title_en": "Chapter 16",
+      "keywords": ["致虛極", "守靜篤", "歸根復命", "知常"],
+      "keywords_en": ["Stillness", "Return to Root", "Understanding Eternity"],
+      "zh_TW": "致虛極，守靜篤，萬物並作，吾以觀復。夫物芸芸，各復歸其根。歸根曰靜，是謂復命。復命曰常，知常曰明，不知常，妄作，凶。知常容，容乃公，公乃王，王乃天，天乃道，道乃久，沒身不殆。",
+      "zh_CN": "致虚极，守静笃，万物并作，吾以观复。夫物芸芸，各复归其根。归根曰静，是谓复命。复命曰常，知常曰明，不知常，妄作，凶。知常容，容乃公，公乃王，王乃天，天乃道，道乃久，没身不殆。",
+      "en": "Reach the ultimate emptiness; hold to perfect stillness. All things arise together — I watch their return. Though all things flourish, each returns to its root. Returning to the root is called stillness — this is what is meant by returning to destiny. Returning to destiny is constancy; knowing constancy is called enlightenment. Those who do not know constancy run blindly into disaster. Knowing constancy brings tolerance; tolerance brings impartiality; impartiality becomes the sovereign of all; the sovereign becomes one with heaven; heaven becomes one with the Tao; the Tao becomes eternal — and the self is preserved from danger."
+    },
+    {
+      "chapter": 17,
+      "title": "第十七章",
+      "title_en": "Chapter 17",
+      "keywords": ["太上", "自然", "功成事遂"],
+      "keywords_en": ["Best Governance", "Naturalness", "Effortless Success"],
+      "zh_TW": "太上，下知有之。其次，親而譽之。其次，畏之。其次，侮之。信不足焉，有不信焉。悠兮其貴言。功成事遂，百姓皆謂我自然。",
+      "zh_CN": "太上，下知有之。其次，亲而誉之。其次，畏之。其次，侮之。信不足焉，有不信焉。悠兮其贵言。功成事遂，百姓皆谓我自然。",
+      "en": "The best rulers are those whose existence is merely known. The next best are those who are loved and praised. The next are those who are feared. The worst are those who are despised. Where trust is insufficient, trust cannot be obtained. How they value their words! At the completion of the task, the people all say: we did this ourselves."
+    },
+    {
+      "chapter": 18,
+      "title": "第十八章",
+      "title_en": "Chapter 18",
+      "keywords": ["大道廢", "仁義", "孝慈"],
+      "keywords_en": ["Decline of Tao", "Artificial Virtue", "Corruption"],
+      "zh_TW": "大道廢，有仁義；慧智出，有大偽；六親不和，有孝慈；國家昏亂，有忠臣。",
+      "zh_CN": "大道废，有仁义；慧智出，有大伪；六亲不和，有孝慈；国家昏乱，有忠臣。",
+      "en": "When the great Tao is forgotten, kindness and righteousness appear. When wisdom and intelligence are born, great hypocrisy follows. When family relations lose their harmony, filial piety and parental love arise. When the country falls into chaos, loyal ministers appear."
+    },
+    {
+      "chapter": 19,
+      "title": "第十九章",
+      "title_en": "Chapter 19",
+      "keywords": ["絕聖棄智", "見素抱樸", "少私寡欲"],
+      "keywords_en": ["Return to Simplicity", "Abandon Cleverness", "Pure Heart"],
+      "zh_TW": "絕聖棄智，民利百倍；絕仁棄義，民復孝慈；絕巧棄利，盜賊無有此三者以為文不足，故令有所屬，見素抱樸，少私寡欲。",
+      "zh_CN": "绝圣弃智，民利百倍；绝仁弃义，民复孝慈；绝巧弃利，盗贼无有此三者以为文不足，故令有所属，见素抱朴，少私寡欲。",
+      "en": "Abandon sageliness and discard wisdom — the people will benefit a hundredfold. Abandon kindness and discard righteousness — the people will return to filial piety and parental love. Abandon skill and discard profit —盗贼 will have no more. These three are outward ornament and are not enough. Make them abide in plainness: embrace simplicity, reduce selfishness, diminish desires."
+    },
+    {
+      "chapter": 20,
+      "title": "第二十章",
+      "title_en": "Chapter 20",
+      "keywords": ["絕學無憂", "昏昏悶悶", "貴食母"],
+      "keywords_en": ["Abandon Learning", "Solitude", "Following the Mother"],
+      "zh_TW": "絕學無憂。唯之與阿，相去幾何？善之與惡，相去若何？人之所畏，不可不畏。荒兮其未央哉！眾人熙熙，如享太牢，如春登臺。我獨泊兮其未兆，如嬰兒之未孩。累累兮若無歸。眾人皆有餘，而我獨若遺。我愚人之心也哉！沌沌兮！俗人昭昭，我獨昏昏；俗人察察，我獨悶悶。澹兮其若海，飂兮若無止。眾人皆有以，而我獨頑似鄙。我獨異於人，而貴食母。",
+      "zh_CN": "绝学无忧。唯之与阿，相去几何？善之与恶，相去若何？人之所畏，不可不畏。荒兮其未央哉！众人熙熙，如享太牢，如春登台。我独泊兮其未兆，如婴儿之未孩。累累兮若无所归。众人皆有余，而我独若遗。我愚人之心也哉！沌沌兮！俗人昭昭，我独昏昏；俗人察察，我独闷闷。澹兮其若海，飂兮若无止。众人皆有以，而我独顽似鄙。我独异于人，而贵食母。",
+      "en": "Abandon learning and you will be free from worry. How much difference is there between 'yes' and 'okay'? How much between good and evil? What the people fear, I cannot but fear. How barren and vast — no end in sight! All the people are celebrating as if at a great feast or climbing a tower in spring. I alone am still, showing no sign, like an infant before it can smile. Lost, as if I had nowhere to go. All the people have enough to spare; I alone am in want. I have the heart of a fool — how muddled! The masses are sharp and clear; I alone am in darkness. The masses are discriminating; I alone am in confusion. I drift like an ocean; I blow about without rest. Everyone else has a purpose; I alone am dull and crude. I am different from others — I value nursing at the Mother's breast."
+    },
+    {
+      "chapter": 21,
+      "title": "第二十一章",
+      "title_en": "Chapter 21",
+      "keywords": ["孔德", "惟道是從", "恍惚", "精"],
+      "keywords_en": ["Great Virtue", "Following Tao", "Mystery"],
+      "zh_TW": "孔德之容，惟道是從。道之為物，惟恍惟惚。惚兮恍兮，其中有象；恍兮惚兮，其中有物；窈兮冥兮，其中有精；其精甚真，其中有信。自古及今，其名不去，以閱眾甫。吾何以知眾甫之狀哉？以此。",
+      "zh_CN": "孔德之容，惟道是从。道之为物，惟恍惟惚。惚兮恍兮，其中有象；恍兮惚兮，其中有物；窈兮冥兮，其中有精；其精甚真，其中有信。自古及今，其名不去，以阅众甫。吾何以知众甫之状哉？以此。",
+      "en": "The full scope of great virtue follows the Tao alone. The Tao, as a thing, is vague and intangible. How vague and intangible — yet within it there is form. How dim and obscure — yet within it there is substance. How deep and mysterious — yet within it there is essence. This essence is genuine — within it is something that can be attested to. From the past until now, its name has never been forgotten. Through it I perceive all things as they originate. How do I know the way all things originate? By this."
+    },
+    {
+      "chapter": 22,
+      "title": "第二十二章",
+      "title_en": "Chapter 22",
+      "keywords": ["曲則全", "不自見", "不爭"],
+      "keywords_en": ["Yield and Win", "Humility", "Non-contention"],
+      "zh_TW": "曲則全，枉則直，窪則盈，敝則新，少則得，多則惑。是以聖人抱一，為天下式。不自見故明，不自是故彰，不自伐故有功，不自矜故長。夫唯不爭，故天下莫能與之爭。古之所謂曲則全者，豈虛言哉！誠全而歸之。",
+      "zh_CN": "曲则全，枉则直，洼则盈，敝则新，少则得，多则惑。是以圣人抱一，为天下式。不自见故明，不自是故彰，不自伐故有功，不自矜故长。夫唯不争，故天下莫能与之争。古之所谓曲则全者，岂虚言哉！诚全而归之。",
+      "en": "Yield and the world follows; be crooked and you become straight. Empty and you are filled; be worn and you become new. Have little and you gain; have much and you are confused. Therefore the sage embraces the one and becomes the model for the world. Because he does not display himself, he shines; because he does not affirm himself, his merit is known; because he does not boast, he is credited; because he does not assert, he endures. It is precisely because he does not contend that no one in the world can contend with him."
+    },
+    {
+      "chapter": 23,
+      "title": "第二十三章",
+      "title_en": "Chapter 23",
+      "keywords": ["希言自然", "飄風暴雨", "同於道"],
+      "keywords_en": ["Few Words", "Nature's Way", "Unity"],
+      "zh_TW": "希言自然。故飄風不終朝，驟雨不終日。孰為此者？天地。天地尚不能久，而況於人乎？故從事於道者，道者同於道，德者同於德，失者同於失。同於道者，道亦樂得之；同於德者，德亦樂得之；同於失者，失亦樂得之。信不足焉，有不信焉。",
+      "zh_CN": "希言自然。故飘风不终朝，骤雨不终日。孰为此者？天地。天地尚不能久，而况于人乎？故从事于道者，道者同于道，德者同于德，失者同于失。同于道者，道亦乐得之；同于德者，德亦乐得之；同于失者，失亦乐得之。信不足焉，有不信焉。",
+      "en": "Few words follow nature's course. A violent wind does not last a morning; a violent rain does not last a day. Who makes these? Heaven and earth. If heaven and earth cannot make them last, how much less can people! Therefore, those who follow the Tao are one with the Tao. Those who follow virtue are one with virtue. Those who follow loss are one with loss. Those who are one with the Tao — the Tao gladly receives them. Those who are one with virtue — virtue gladly receives them. Those who are one with loss — loss gladly receives them."
+    },
+    {
+      "chapter": 24,
+      "title": "第二十四章",
+      "title_en": "Chapter 24",
+      "keywords": ["餘食贅行", "不處", "自見不明"],
+      "keywords_en": ["Excess", "Stand on One's Own", "Ego"],
+      "zh_TW": "企者不立，跨者不行，自見者不明，自是者不彰，自伐者無功，自矜者不長。其在道也，曰餘食贅行，物或惡之，故有道者不處。",
+      "zh_CN": "企者不立，跨者不行，自见者不明，自是者不彰，自伐者无功，自矜者不长。其在道也，曰余食赘行，物或恶之，故有道者不处。",
+      "en": "Those who stand on tiptoe are not firmly planted; those who stride cannot maintain the pace. Those who show off their insight are not enlightened; those who assert themselves are not distinguished. Those who flatter cannot command; those who brag are not given credit. From the Tao's point of view, these are called 'remnants of food' and 'tumors' — things disgusting to others. Therefore those who possess the Tao do not linger here."
+    },
+    {
+      "chapter": 25,
+      "title": "第二十五章",
+      "title_en": "Chapter 25",
+      "keywords": ["四大", "道法自然", "有物混成"],
+      "keywords_en": ["Four Greats", "Tao is Natural", "Cosmic Order"],
+      "zh_TW": "有物混成，先天地生。寂兮寥兮，獨立不改，周行而不殆，可以為天下母。吾不知其名，字之曰道，強為之名曰大。大曰逝，逝曰遠，遠曰反。故道大，天大，地大，王亦大。域中有四大，而王居其一焉。人法地，地法天，天法道，道法自然。",
+      "zh_CN": "有物混成，先天地生。寂兮寥兮，独立不改，周行而不殆，可以为天下母。吾不知其名，字之曰道，强为之名曰大。大曰逝，逝曰远，远曰反。故道大，天大，地大，王亦大。域中有四大，而王居其一焉。人法地，地法天，天法道，道法自然。",
+      "en": "There is a thing混沌existing before heaven and earth — silent and empty, standing alone without change, moving universally without exhaustion. It may be regarded as the mother of heaven and earth. I do not know its name; I call it Tao. If forced to give it a title, I would call it 'Great.' Great means going forth; going forth means going far; going far means returning. Therefore Tao is great; heaven is great; earth is great; the sovereign is also great. Within our realm there are four greatnesses, and the sovereign occupies one of them. Humans follow the earth; the earth follows heaven; heaven follows the Tao; the Tao follows only itself."
+    },
+    {
+      "chapter": 26,
+      "title": "第二十六章",
+      "title_en": "Chapter 26",
+      "keywords": ["重為輕根", "靜為躁君", "輕則失本"],
+      "keywords_en": ["Root of Lightness", "Master of Restlessness", "Gravity"],
+      "zh_TW": "重為輕根，靜為躁君。是以聖人終日行不離輜重。雖有榮觀，燕處超然，奈何萬乘之主，而以身輕天下？輕則失本，躁則失君。",
+      "zh_CN": "重为轻根，静为躁君。是以圣人终日行不离辎重。虽有荣观，燕处超然，奈何万乘之主，而以身轻天下？轻则失本，躁则失君。",
+      "en": "Gravity is the root of lightness; stillness is the master of restlessness. Therefore the sage travels all day without putting down his heavy load. Though he may have magnificent views, he remains serene and unperturbed. How can a ruler of ten thousand chariots behave so lightly in relation to the world? To be light is to lose one's root; to be restless is to lose one's mastery."
+    },
+    {
+      "chapter": 27,
+      "title": "第二十七章",
+      "title_en": "Chapter 27",
+      "keywords": ["善行無轍跡", "襲明", "不貴其師"],
+      "keywords_en": ["Skillful Action", "Invisible Aid", "Enlightenment"],
+      "zh_TW": "善行無轍跡，善言無瑕謫，善數不用籌策，善閉無關楗而不可開，善結無繩約而不可解。是以聖人常善救人，故無棄人；常善救物，故無棄物，是謂襲明。故善人者，不善人之師；不善人者，善人之資。不貴其師，不愛其資，雖智大迷，是謂要妙。",
+      "zh_CN": "善行无辙迹，善言无瑕谪，善数不用筹策，善闭无关楗而不可开，善结无绳约而不可解。是以圣人常善救人，故无弃人；常善救物，故无弃物，是谓袭明。故善人者，不善人之师；不善人者，善人之资。不贵其师，不爱其资，虽智大迷，是谓要妙。",
+      "en": "Good walking leaves no tracks; good speech leaves no flaws; good counting requires no counters. The best door has no lock, yet cannot be opened; the best knot has no rope, yet cannot be undone. Therefore the sage always saves others and so abandons no one; always saves things and so abandons nothing. This is called following the light. The good teacher instructs others and thereby awakens their intelligence; the unworthy teacher instructs others and thereby dulls their minds. Those who do not value their teacher or love their material — however wise — are greatly mistaken."
+    },
+    {
+      "chapter": 28,
+      "title": "第二十八章",
+      "title_en": "Chapter 28",
+      "keywords": ["知其雄守其雌", "歸於嬰兒", "歸於樸"],
+      "keywords_en": ["Knowing the Male", "Return to Simplicity", "Feminine Strength"],
+      "zh_TW": "知其雄，守其雌，為天下谿。為天下谿，常德不離，復歸於嬰兒。知其白，守其黑，為天下式。為天下式，常德不忒，復歸於無極。知其榮，守其辱，為天下谷。為天下谷，常德乃足，復歸於樸。樸散則為器，聖人用之則為官長，故大制不割。",
+      "zh_CN": "知其雄，守其雌，为天下溪。为天下溪，常德不离，复归于婴儿。知其白，守其黑，为天下式。为天下式，常德不忒，复归于无极。知其荣，守其辱，为天下谷。为天下谷，常德乃足，复归于朴。朴散则为器，圣人用之则为官长，故大制不割。",
+      "en": "Know the male, keep to the female — be the valley of the world. Being the valley of the world, eternal virtue will not desert you, and you will return to the state of the infant. Know the white, keep to the black — be the pattern for the world. Being the pattern for the world, eternal virtue will not err, and you will return to the infinite. Know honor, keep to humility — be the valley of the world. Being the valley of the world, eternal virtue will be sufficient, and you will return to the uncarved block. When the block is broken, it becomes vessels; the sage uses these and becomes the leader of officials. Great carving does not cut."
+    },
+    {
+      "chapter": 29,
+      "title": "第二十九章",
+      "title_en": "Chapter 29",
+      "keywords": ["天下神器", "去甚去奢去泰", "無為"],
+      "keywords_en": ["World is Sacred", "Moderation", "Non-interference"],
+      "zh_TW": "將欲取天下而為之，吾見其不得已。天下神器，不可為也。為者敗之，執者失之。故物或行或隨，或歔或吹，或強或羸，或挫或隳。是以聖人去甚，去奢，去泰。",
+      "zh_CN": "将欲取天下而为之，吾见其不得已。天下神器，不可为也。为者败之，执者失之。故物或行或随，或歔或吹，或强或羸，或挫或隳。是以圣人去甚，去奢，去泰。",
+      "en": "If you try to take the world and act upon it, I see you will fail — the world is a sacred vessel and cannot be acted upon. Those who act upon it ruin it; those who grasp it lose it. Among things, some go forward, some follow; some blow gently, some blow strong; some are strong, some weak; some overflow, some collapse. Therefore the sage puts away excess, puts away extravagance, puts away arrogance."
+    },
+    {
+      "chapter": 30,
+      "title": "第三十章",
+      "title_en": "Chapter 30",
+      "keywords": ["不以兵強天下", "其事好還", "物壯則老"],
+      "keywords_en": ["Against War", "Return of Violence", "Strength Fades"],
+      "zh_TW": "以道佐人主者，不以兵強天下，其事好還。師之所處，荊棘生焉。大軍之後，必有凶年。善有果而已，不敢以取強。果而勿矜，果而勿伐，果而勿驕，果而不得已，果而勿強。物壯則老，是謂不道，不道早已。",
+      "zh_CN": "以道佐人主者，不以兵强天下，其事好还。师之所处，荆棘生焉。大军之后，必有凶年。善有果而已，不敢以取强。果而勿矜，果而勿伐，果而勿骄，果而不得已，果而勿强。物壮则老，是谓不道，不道早已。",
+      "en": "Those who advise rulers with the Tao do not use weapons to compel the world — such things are prone to rebound. Where armies are stationed, thorns grow; after great wars, years of famine follow. The good general achieves victory and stops — no further force. Achieve it without pride; achieve it without boasting; achieve it because it cannot be avoided; achieve it without arrogance. All things flourish and then decay — this is called not following the Tao; what does not follow the Tao ends early."
+    },
+    {
+      "chapter": 31,
+      "title": "第三十一章",
+      "title_en": "Chapter 31",
+      "keywords": ["佳兵不祥", "恬淡為上", "喪禮處之"],
+      "keywords_en": ["Weapons are Ill-omened", "Peace Over War", "Restraint"],
+      "zh_TW": "夫佳兵者，不祥之器，物或惡之，故有道者不處。君子居則貴左，用兵則貴右。兵者，不祥之器，非君子之器。不得已而用之，恬淡為上，勝而不美。而美之者，是樂殺人。夫樂殺人者，則不可以得志於天下矣。吉事尚左，凶事尚右。偏將軍居左，上將軍居右，言以喪禮處之。殺人之眾，以哀悲泣之，戰勝，以喪禮處之。",
+      "zh_CN": "夫佳兵者，不祥之器，物或恶之，故有道者不处。君子居则贵左，用兵则贵右。兵者，不祥之器，非君子之器。不得已而用之，恬淡为上，胜而不美。而美之者，是乐杀人。夫乐杀人者，则不可以得志于天下矣。吉事尚左，凶事尚右。偏将军居左，上将军居右，言以丧礼处之。杀人之众，以哀悲泣之，战胜，以丧礼处之。",
+      "en": "Fine weapons are ill-omened instruments — not the tools of superior people. When forced to use them, the best policy is to hold to stillness. Even in victory there is no beauty — to glorify the killing of people is to delight in it. Those who delight in killing cannot achieve their ambitions in the world. On auspicious occasions, the left is honored; on inauspicious occasions, the right is. The junior general stands on the left; the senior general stands on the right. This is to conduct war as a funeral rite. Many dead must be mourned with grief; in victory, treat it as a funeral."
+    },
+    {
+      "chapter": 32,
+      "title": "第三十二章",
+      "title_en": "Chapter 32",
+      "keywords": ["道常無名", "知止不殆", "川谷江海"],
+      "keywords_en": ["Tao is Nameless", "Knowing When to Stop", "Humble Flow"],
+      "zh_TW": "道常無名，樸雖小，天下莫能臣也。侯王若能守之，萬物將自賓。天地相合以降甘露，民莫之令而自均。始制有名，名亦既有，夫亦將知止。知止可以不殆。譬道之在天下，猶川谷之於江海。",
+      "zh_CN": "道常无名，朴虽小，天下莫能臣也。侯王若能守之，万物将自宾。天地相合以降甘露，民莫之令而自均。始制有名，名亦既有，夫亦将知止。知止可以不殆。譬道之在天下，犹川谷之于江海。",
+      "en": "The Tao is eternally nameless. Though the uncarved block seems small, no one in the world dare make it their servant. If lords and princes could hold to it, all things would submit spontaneously. Heaven and earth would unite to send down sweet dew; people would have no one to command it — it would fall evenly of its own accord. When carving begins, names arise; once names exist, know when to stop. Knowing when to stop, one is free from danger. The Tao in the world is like streams flowing to the valleys and rivers to the sea."
+    },
+    {
+      "chapter": 33,
+      "title": "第三十三章",
+      "title_en": "Chapter 33",
+      "keywords": ["知人者智", "自知者明", "知足者富"],
+      "keywords_en": ["Self-knowledge", "Contentment", "True Strength"],
+      "zh_TW": "知人者智，自知者明。勝人者有力，自勝者強。知足者富，強力行者有志，不失其所者久，死而不亡者壽。",
+      "zh_CN": "知人者智，自知者明。胜人者有力，自胜者强。知足者富，强行者有志，不失其所者久，死而不亡者寿。",
+      "en": "Knowing others is intelligence; knowing yourself is true wisdom. Conquering others is strength; conquering yourself is true power. Knowing contentment is wealth; pushing on is will. One who does not lose their ground endures; one who dies but does not truly perish enjoys longevity."
+    },
+    {
+      "chapter": 34,
+      "title": "第三十四章",
+      "title_en": "Chapter 34",
+      "keywords": ["大道氾兮", "衣養萬物", "終不自為大"],
+      "keywords_en": ["Tao's Generosity", "Humility", "All-encompassing"],
+      "zh_TW": "大道氾兮，其可左右。萬物恃之而生而不辭，功成不名有，衣養萬物而不為主，常無欲，可名於小；萬物歸焉而不為主，可名為大。以其終不自為大，故能成其大。",
+      "zh_CN": "大道泛兮，其可左右。万物恃之而生而不辞，功成不名有，衣养万物而不为主，常无欲，可名于小；万物归焉而不为主，可名为大。以其终不自为大，故能成其大。",
+      "en": "The great Tao flows everywhere, both to the left and to the right. All things depend on it for life, and it does not turn away from them; it accomplishes its task but never claims credit. It clothes and nourishes all things, yet does not rule over them. Having no desires, it may be called 'the minor'; all things return to it, yet it does not rule over them — it may be called 'the great.' Because it never strives to be great, its greatness is achieved."
+    },
+    {
+      "chapter": 35,
+      "title": "第三十五章",
+      "title_en": "Chapter 35",
+      "keywords": ["執大象", "道之出口淡乎無味", "安平太"],
+      "keywords_en": ["Holding the Great Image", "Peace and Calm", "Simplicity"],
+      "zh_TW": "執大象，天下往；往而不害，安平太。樂與餌，過客止。道之出口，淡乎其無味，視之不足見，聽之不足聞，用之不足既。",
+      "zh_CN": "执大象，天下往；往而不害，安平太。乐与饵，过客止。道之出口，淡乎其无味，视之不足见，听之不足闻，用之不足既。",
+      "en": "Hold the great image and the world comes to you — comes and is unharmed, finding peace and safety. Music and delicacies make passing travelers stop; the Tao as it leaves the mouth is flavorless, seen but invisible, used but inexhaustible."
+    },
+    {
+      "chapter": 36,
+      "title": "第三十六章",
+      "title_en": "Chapter 36",
+      "keywords": ["將欲歙之必固張之", "柔弱勝剛強", "魚不可脫於淵"],
+      "keywords_en": ["Reversal", "Weakness Over Strength", "Concealment"],
+      "zh_TW": "將欲歙之，必固張之；將欲弱之，必固強之；將欲廢之，必固興之；將欲奪之，必固與之，是謂微明。柔弱勝剛強。魚不可脫於淵，國之利器不可以示人。",
+      "zh_CN": "将欲歙之，必固张之；将欲弱之，必固强之；将欲废之，必固兴之；将欲夺之，必固与之，是谓微明。柔弱胜刚强。鱼不可脱于渊，国之利器不可以示人。",
+      "en": "What is to be contracted must first be expanded; what is to be weakened must first be strengthened; what is to be thrown down must first be raised; what is to be taken must first be given — this is called subtle understanding. The weak overcomes the strong; the soft overcomes the hard. A fish should not leave the deep waters; a nation's sharpest weapons should not be displayed."
+    },
+    {
+      "chapter": 37,
+      "title": "第三十七章",
+      "title_en": "Chapter 37",
+      "keywords": ["道常無為", "萬物自化", "天下將自定"],
+      "keywords_en": ["Non-action", "Natural Order", "Self-governing"],
+      "zh_TW": "道常無為而無不為，侯王若能守之，萬物將自化。化而欲作，吾將鎮之以無名之樸。無名之樸，夫亦將無欲。不欲以靜，天下將自定。",
+      "zh_CN": "道常无为而无不为，侯王若能守之，万物将自化。化而欲作，吾将镇之以无名之朴。无名之朴，夫亦将无欲。不欲以静，天下将自定。",
+      "en": "The Tao does nothing, yet nothing is left undone. If lords and princes could hold to it, all things would transform spontaneously. When they act from desire, I would quiet them with the nameless uncarved block. The nameless uncarved block — within it desire is quieted. Through desire quieted, stillness is achieved — and the world settles of itself."
+    },
+    {
+      "chapter": 38,
+      "title": "第三十八章",
+      "title_en": "Chapter 38",
+      "keywords": ["上德不德", "失道而後德", "大丈夫"],
+      "keywords_en": ["Higher and Lower Virtue", "Return to Source", "Authentic Person"],
+      "zh_TW": "上德不德，是以有德；下德不失德，是以無德。上德無為而無以為；下德為之而有以為。上仁為之而無以為；上義為之而有以為。上禮為之而莫之應，則攘臂而扔之。故失道而後德，失德而後仁，失仁而後義，失義而後禮。夫禮者，忠信之薄而亂之首。前識者，道之華而愚之始。是以大丈夫處其厚，不居其薄；處其實，不居其華。故去彼取此。",
+      "zh_CN": "上德不德，是以有德；下德不失德，是以无德。上德无为而无以为；下德为之而有以为。上仁为之而无以为；上义为之而有以为。上礼为之而莫之应，则攘臂而扔之。故失道而后德，失德而后仁，失仁而后义，失义而后礼。夫礼者，忠信之薄而乱之首。前识者，道之华而愚之始。是以大丈夫处其厚，不居其薄；处其实，不居其华。故去彼取此。",
+      "en": "The highest virtue is not virtuous — therefore it has virtue. The lowest virtue never fails to be virtuous — therefore it has no virtue. The highest virtue acts without purpose; the highest kindness acts with purpose. The highest justice acts with purpose; the highest ritual acts and no one responds — so it demands arm-baring. Therefore, when the Tao was lost, virtue appeared; when virtue was lost, kindness appeared; when kindness was lost, righteousness appeared; when righteousness was lost, ritual appeared. Ritual is the thinning of loyalty and good faith, the beginning of disorder. The authentic person values the substance, not the form; values the fruit, not the flower. Therefore reject the latter and take the former."
+    },
+    {
+      "chapter": 39,
+      "title": "第三十九章",
+      "title_en": "Chapter 39",
+      "keywords": ["昔之得一者", "賤為本", "致數輿無輿"],
+      "keywords_en": ["Unity", "Humility", "Foundation"],
+      "zh_TW": "昔之得一者：天得一以清，地得一以寧，神得一以靈，谷得一以盈，萬物得一以生，侯王得一以為天下貞。其致之。天無以清將恐裂，地無以寧將恐發，神無以靈將恐歇，谷無以盈將恐竭，萬物無以生將恐滅，侯王無以貴高將恐蹶。故貴以賤為本，高以下為基。是以侯王自謂孤寡不穀。此非以賤為本邪？非乎？故致數輿無輿。不欲琭琭如玉，珞珞如石。",
+      "zh_CN": "昔之得一者：天得一以清，地得一以宁，神得一以灵，谷得一以盈，万物得一以生，侯王得一以为天下贞。其致之。天无以清将恐裂，地无以宁将恐发，神无以灵将恐歇，谷无以盈将恐竭，万物无以生将恐灭，侯王无以贵高将恐蹶。故贵以贱为本，高以下为基。是以侯王自谓孤寡不谷。此非以贱为本邪？非乎？故致数舆无舆。不欲琭琭如玉，珞珞如石。",
+      "en": "In ancient times those who attained unity: heaven attained unity and became pure; earth attained unity and became tranquil; spirits attained unity and became divine; valleys attained unity and became full; all things attained unity and came to life; lords and princes attained unity and became leaders of the world. Without unity, heaven would split, earth would crumble, spirits would fade, valleys would run dry, all things would perish, lords and princes would fall. Thus, nobility has lowness as its root; height has lowness as its foundation. Lords and princes call themselves 'the orphaned,' 'the widowed,' 'the grainless.' Is this not using lowness as their root? — yes. Counting many carriages does not make a carriage. Rather, desire not to be like jade — polished stone, but stone."
+    },
+    {
+      "chapter": 40,
+      "title": "第四十章",
+      "title_en": "Chapter 40",
+      "keywords": ["反者道之動", "弱者道之用", "有生於無"],
+      "keywords_en": ["Return", "Weakness", "Being from Non-being"],
+      "zh_TW": "反者，道之動；弱者，道之用。天下萬物生於有，有生於無。",
+      "zh_CN": "反者，道之动；弱者，道之用。天下万物生于有，有生于无。",
+      "en": "Reversal is the movement of the Tao. Weakness is the function of the Tao. All things in the world are born from being; being is born from non-being."
+    },
+    {
+      "chapter": 41,
+      "title": "第四十一章",
+      "title_en": "Chapter 41",
+      "keywords": ["上士聞道勤而行之", "明道若昧", "大音希聲"],
+      "keywords_en": ["Hearing the Tao", "Hidden Wisdom", "Great Sound"],
+      "zh_TW": "上士聞道，勤而行之；中士聞道，若存若亡；下士聞道，大笑之，不笑不足以為道。故建言有之：明道若昧，進道若退，夷道若類，上德若谷，大白若辱，廣德若不足，建德若偷，質真若渝，大方無隅，大器晚成，大音希聲，大象無形，道隱無名，夫唯道善貸且成。",
+      "zh_CN": "上士闻道，勤而行之；中士闻道，若存若亡；下士闻道，大笑之，不笑不足以为道。故建言有之：明道若昧，进道若退，夷道若类，上德若谷，大白若辱，广德若不足，建德若偷，质真若渝，大方无隅，大器晚成，大音希声，大象无形，道隐无名，夫唯道善贷且成。",
+      "en": "The best student hears the Tao and practices it diligently; the average student hears the Tao and gives it fleeting attention; the lowest student hears the Tao and laughs loudly at it. Without that laughter, the Tao would not be the Tao. Therefore the ancients said: the clear Tao appears unclear; the advancing Tao appears retreating; the even Tao appears uneven; the highest virtue appears as valleys; the purest whiteness appears stained; the most abundant virtue appears insufficient; the firmest virtue appears timid; the truest nature appears changeable. The great square has no corners; the great vessel is fashioned late; the great sound is rarely heard; the great form has no shape; the Tao is hidden and nameless. Yet it is the Tao alone that generously gives and completes."
+    },
+    {
+      "chapter": 42,
+      "title": "第四十二章",
+      "title_en": "Chapter 42",
+      "keywords": ["道生一", "萬物負陰抱陽", "強梁者不得其死"],
+      "keywords_en": ["Tao Creates", "Yin-Yang", "Violence Fails"],
+      "zh_TW": "道生一，一生二，二生三，三生萬物。萬物負陰而抱陽，沖氣以為和。人之所惡，唯孤寡不穀，而王公以為稱。故物，或損之而益，或益之而損。人之所教，我亦教之。強梁者不得其死，吾將以為教父。",
+      "zh_CN": "道生一，一生二，二生三，三生万物。万物负阴而抱阳，冲气以为和。人之所恶，唯孤寡不谷，而王公以为称。故物，或损之而益，或益之而损。人之所教，我亦教之。强梁者不得其死，吾将为教父。",
+      "en": "The Tao gives birth to the one; the one gives birth to two; two gives birth to three; three gives birth to the ten thousand things. All things carry yin and embrace yang; through their union, harmony is achieved. What people despise most is being orphaned, widowed, and grainless — yet kings and lords use these titles for themselves. Thus, some things are increased by being diminished; others are diminished by being increased. The teaching of others is my teaching: violent ones do not die their natural death — I will make this the father of my teaching."
+    },
+    {
+      "chapter": 43,
+      "title": "第四十三章",
+      "title_en": "Chapter 43",
+      "keywords": ["天下之至柔", "馳騁天下之至堅", "無為之益"],
+      "keywords_en": ["Softness", "Penetration", "Benefit of Non-action"],
+      "zh_TW": "天下之至柔，馳騁天下之至堅，無有入無間，吾是以知無為之有益。不言之教，無為之益，天下希及之。",
+      "zh_CN": "天下之至柔，驰骋天下之至坚，无有入无间，我是以知无为之有益。不言之教，无为之益，天下希及之。",
+      "en": "The softest thing in the world gallops through the hardest; the intangible enters where there is no space. Through this I know the benefit of non-action. Teaching without words, the benefit of non-action — few in the world can attain this."
+    },
+    {
+      "chapter": 44,
+      "title": "第四十四章",
+      "title_en": "Chapter 44",
+      "keywords": ["名與身孰親", "知足不辱", "知止不殆"],
+      "keywords_en": ["Fame vs Self", "Contentment", "Moderation"],
+      "zh_TW": "名與身孰親？身與貨孰多？得與亡孰病？是故甚愛必大費，多藏必厚亡。知足不辱，知止不殆，可以長久。",
+      "zh_CN": "名与身孰亲？身与货孰多？得与亡孰病？是故甚爱必大费，多藏必厚亡。知足不辱，知止不殆，可以长久。",
+      "en": "Which is more important — fame or self? Which is more precious — self or wealth? Which brings more harm — gain or loss? Therefore excessive love must lead to great expense; hoarded wealth must lead to heavy loss. Contentment prevents disgrace; knowing when to stop prevents danger — and so one endures long."
+    },
+    {
+      "chapter": 45,
+      "title": "第四十五章",
+      "title_en": "Chapter 45",
+      "keywords": ["大成若缺", "大盈若沖", "清靜為天下正"],
+      "keywords_en": ["Perfection Appears Flawed", "Stillness Rules", "Calmness"],
+      "zh_TW": "大成若缺，其用不弊。大盈若沖，其用不窮。大直若屈，大巧若拙，大辯若訥。躁勝寒，靜勝熱。清靜為天下正。",
+      "zh_CN": "大成若缺，其用不弊。大盈若冲，其用不穷。大直若屈，大巧若拙，大辩若讷。躁胜寒，静胜热。清静为天下正。",
+      "en": "The greatest perfection seems imperfect, yet its use is inexhaustible. The greatest fullness seems empty, yet its use is boundless. The greatest straightness seems crooked; the greatest skill seems clumsy; the greatest eloquence seems hesitant. Activity conquers cold; stillness conquers heat. Clarity and stillness can set the world in order."
+    },
+    {
+      "chapter": 46,
+      "title": "第四十六章",
+      "title_en": "Chapter 46",
+      "keywords": ["天下有道", "知足之足常足", "禍莫大於不知足"],
+      "keywords_en": ["World at Peace", "Contentment", "Greed"],
+      "zh_TW": "天下有道，卻走馬以糞；天下無道，戎馬生於郊。禍莫大於不知足，咎莫大於欲得，故知足之足，常足矣。",
+      "zh_CN": "天下有道，却走马以粪；天下无道，戎马生于郊。祸莫大于不知足，咎莫大于欲得，故知足之足，常足矣。",
+      "en": "When the world follows the Tao, swift horses are retired to fertilize the fields. When the world does not follow the Tao, war-horses are bred in the countryside. No disaster is greater than not knowing contentment; no greater curse than the desire for more. Therefore the contentment of knowing enough is permanent contentment."
+    },
+    {
+      "chapter": 47,
+      "title": "第四十七章",
+      "title_en": "Chapter 47",
+      "keywords": ["不出戶知天下", "其出彌遠其知彌少", "不行而成"],
+      "keywords_en": ["Inner Knowledge", "Effortless Understanding", "World's Way"],
+      "zh_TW": "不出戶，知天下；不窺牖，見天道。其出彌遠，其知彌少。是以聖人不行而知，不見而名，不為而成。",
+      "zh_CN": "不出户，知天下；不窥牖，见天道。其出弥远，其知弥少。是以圣人不行而知，不见而名，不为而成。",
+      "en": "Without leaving his door, he knows what happens in the world; without looking out his window, he sees the Tao of heaven. The further one goes, the less one knows. Therefore the sage knows without traveling; names things without looking at them; accomplishes without effort."
+    },
+    {
+      "chapter": 48,
+      "title": "第四十八章",
+      "title_en": "Chapter 48",
+      "keywords": ["為學日益", "為道日損", "無為無不為"],
+      "keywords_en": ["Learning vs Tao", "Reduction", "Effortless Achievement"],
+      "zh_TW": "為學日益，為道日損。損之又損，以至於無為，無為而無不為。取天下常以有事，及其有事，不足以取天下。",
+      "zh_CN": "为学日益，为道日损。损之又损，以至于无为，无为而无不为。取天下常以无事，及其有事，不足以取天下。",
+      "en": "In learning, every day something is acquired; in following the Tao, every day something is dropped. Less and less is done until non-action is achieved. By non-action, everything can be done. Those who wish to take the world through effort will fail — the world must be taken as it is."
+    },
+    {
+      "chapter": 49,
+      "title": "第四十九章",
+      "title_en": "Chapter 49",
+      "keywords": ["聖人無常心", "以百姓心為心", "渾其心"],
+      "keywords_en": ["Sage's Impartiality", "All-inclusive Heart", "Children of the World"],
+      "zh_TW": "聖人無常心，以百姓心為心。善者，吾善之；不善者，吾亦善之，德善。信者，吾信之；不信者，吾亦信之，德信。聖人在天下歙歙，為天下渾其心。（百姓皆注其耳目），聖人皆孩之。",
+      "zh_CN": "圣人无常心，以百姓心为心。善者，吾善之；不善者，吾亦善之，德善。信者，吾信之；不信者，吾亦信之，德信。圣人在天下歙歙，为天下浑其心。（百姓皆注其耳目），圣人皆孩之。",
+      "en": "The sage has no fixed mind; he takes the people's mind as his mind. For the good, I am good; for the not-good, I am also good — thus virtue is perfected. For the trustworthy, I am trustworthy; for the not-trustworthy, I am also trustworthy — thus virtue is trusted. The sage dwells in the world harmoniously,浑 its heart for the world. The people fix their eyes and ears upon him; the sage makes them all as children."
+    },
+    {
+      "chapter": 50,
+      "title": "第五十章",
+      "title_en": "Chapter 50",
+      "keywords": ["出生入死", "善攝生者", "無死地"],
+      "keywords_en": ["Life and Death", "Master of Living", "No Place of Death"],
+      "zh_TW": "出生入死。生之徒十有三；死之徒十有三；人之生動之死地，亦十有三。夫何故？以其生生之厚。蓋聞善攝生者，陸行不遇兕虎，入軍不被甲兵，兕無所投其角，虎無所措其爪，兵無所容其刃。夫何故？以其無死地。",
+      "zh_CN": "出生入死。生之徒十有三；死之徒十有三；人之生动之死地，亦十有三。夫何故？以其生生之厚。盖闻善摄生者，陆行不遇兕虎，入军不被甲兵，兕无所投其角，虎无所措其爪，兵无所容其刃。夫何故？以其无死地。",
+      "en": "From birth to death, three in ten are wanderers on the path of life; three in ten are wanderers on the path of death; three in ten move from life toward death, drawn by their own excessive living. Why is this? Because they live too strenuously. I have heard that the best escaper from death walks safely among wild oxen and tigers, enters a battle without weapons — the rhinoceros finds no place to thrust its horn, the tiger finds no place to set its claw, the weapon finds no place to receive its blade. Why is this? Because there is no place of death for him."
+    },
+    {
+      "chapter": 51,
+      "title": "第五十一章",
+      "title_en": "Chapter 51",
+      "keywords": ["道生之德畜之", "生而不有", "玄德"],
+      "keywords_en": ["Birth and Nurture", "Non-possession", "Mysterious Virtue"],
+      "zh_TW": "道生之，德畜之，物形之，勢成之。是以萬物莫不尊道而貴德。道之尊，德之貴，夫莫之命而常自然。故道生之，德畜之，長之育之，亭之毒之，養之覆之。生而不有，為而不恃，長而不宰，是謂玄德。",
+      "zh_CN": "道生之，德畜之，物形之，势成之。是以万物莫不尊道而贵德。道之尊，德之贵，夫莫之命而常自然。故道生之，德畜之，长之育之，亭之毒之，养之覆之。生而不有，为而不恃，长而不宰，是谓玄德。",
+      "en": "The Tao gives birth to all things; virtue rears them; circumstances shape them; completion perfects them. Therefore all things honor the Tao and value virtue. The Tao's honor and virtue's value come not from command but from their natural being. The Tao gives them birth; virtue nurtures them; it rears them, completes them, shelters them, carries them, covers them, protects them. It gives birth but does not possess; it acts but does not depend; it leads but does not rule — this is called mysterious virtue."
+    },
+    {
+      "chapter": 52,
+      "title": "第五十二章",
+      "title_en": "Chapter 52",
+      "keywords": ["天下有始", "塞其兌閉其門", "用其光復歸其明"],
+      "keywords_en": ["Knowing the Mother", "Inner Vision", "Return to Clarity"],
+      "zh_TW": "天下有始，以為天下母。既得其母，以知其子；既知其子，復守其母，沒身不殆。塞其兌，閉其門，終身不勤。開其兌，濟其事，終身不救。見小曰明，守柔曰強。用其光，復歸其明，無遺身殃，是為襲常。",
+      "zh_CN": "天下有始，以为天下母。既得其母，以知其子；既知其子，复守其母，没身不殆。塞其兑，闭其门，终身不勤。开其兑，济其事，终身不救。见小曰明，守柔曰强。用其光，复归其明，无遗身殃，是为袭常。",
+      "en": "The world has a beginning — it is the mother of all things. Knowing the mother, you know her children; knowing the children, return to the mother — and you live without danger. Stop up the openings, shut the doors, and the whole life you need no effort. Open the openings, busy yourself with the world, and the whole life you cannot be saved. Seeing the small is called clarity; holding the soft is called strength. Use the light; return to clarity; do not bring calamity upon yourself — this is called practicing constancy."
+    },
+    {
+      "chapter": 53,
+      "title": "第五十三章",
+      "title_en": "Chapter 53",
+      "keywords": ["使我介然有知", "大道甚夷", "盜夸"],
+      "keywords_en": ["The Right Path", "Corrupt Rulers", "Robber Barons"],
+      "zh_TW": "使我介然有知，行於大道，唯施是畏。大道甚夷，而民好徑。朝甚除，田甚蕪，倉甚虛。服文彩，帶利劍，厭飲食，財貨有餘，是為盜夸。非道也哉！",
+      "zh_CN": "使我介然有知，行于大道，唯施是畏。大道甚夷，而民好径。朝甚除，田甚芜，仓甚虚。服文彩，带利剑，厌饮食，财货有余，是为盗夸。非道也哉！",
+      "en": "If I possessed any knowledge, walking the great way, my only fear would be to deviate from it. The great way is smooth and easy, yet people prefer the byways. The palace is spotless; the fields are overgrown with weeds; the granaries are empty. They wear fine clothes, carry sharp swords, glut themselves with food and drink, and hoard wealth beyond measure — this is called theft and arrogance — not the Tao at all!"
+    },
+    {
+      "chapter": 54,
+      "title": "第五十四章",
+      "title_en": "Chapter 54",
+      "keywords": ["善建者不拔", "修德", "以身觀身"],
+      "keywords_en": ["Rooted Virtue", "Cultivation", "Expanding from Self"],
+      "zh_TW": "善建者不拔，善抱者不脫，子孫以祭祀不輟。修之於身，其德乃真；修之於家，其德乃餘；修之於鄉，其德乃長；修之於國，其德乃豐；修之於天下，其德乃普。故以身觀身，以家觀家，以鄉觀鄉，以國觀國，以天下觀天下。吾何以知天下然哉？以此。",
+      "zh_CN": "善建者不拔，善抱者不脱，子孙以祭祀不辍。修之于身，其德乃真；修之于家，其德乃余；修之于乡，其德乃长；修之于国，其德乃丰；修之于天下，其德乃普。故以身观身，以家观家，以乡观乡，以国观国，以天下观天下。吾何以知天下然哉？以此。",
+      "en": "What is well established cannot be uprooted; what is well embraced cannot slip away — generation after generation it continues without end. Cultivate virtue in yourself, and it becomes genuine; cultivate it in the family, and it becomes abundant; cultivate it in the village, and it grows long; cultivate it in the nation, and it becomes plentiful; cultivate it in the world, and it becomes universal. Use yourself to observe yourself; use the family to observe families; use the village to observe villages; use nations to observe nations; use the world to observe the world. How do I know the world is as it is? By this."
+    },
+    {
+      "chapter": 55,
+      "title": "第五十五章",
+      "title_en": "Chapter 55",
+      "keywords": ["含德之厚比於赤子", "精之至", "物壯則老"],
+      "keywords_en": ["Infant Virtue", "Inner Strength", "Excess Brings Decline"],
+      "zh_TW": "含德之厚，比於赤子。蜂蠆蛇不螫，猛獸不據，攫鳥不搏。骨弱筋柔而握固。未知牝牡之合而朘作，精之至也。終日號而不嗄，和之至也。知和曰常，知常曰明，益生曰祥，心使氣曰強。物壯則老，謂之不道，不道早已。",
+      "zh_CN": "含德之厚，比于赤子。蜂虿蛇不螫，猛兽不据，攫鸟不搏。骨弱筋柔而握固。未知牝牡之合而朘作，精之至也。终日号而不嗄，和之至也。知和曰常，知常曰明，益生曰祥，心使气曰强。物壮则老，谓之不道，不道早已。",
+      "en": "Those who hold the deepest virtue are like newborns — wasps and scorpions do not sting them, wild beasts do not claw them, birds of prey do not strike them. Their bones are soft, their muscles tender, yet their grasp is firm. They know nothing of the union of male and female, yet their organs are fully formed — this is the极致 of vital essence. They cry all day without hoarseness — this is the极致 of harmony. Knowing harmony is called constancy; knowing constancy is called clarity. Excessive vitality brings misfortune — the heart driving the breath is called forcing. All things reach their strength and then grow old — this is called contrary to the Tao; what is contrary to the Tao ends early."
+    },
+    {
+      "chapter": 56,
+      "title": "第五十六章",
+      "title_en": "Chapter 56",
+      "keywords": ["知者不言", "玄同", "天下貴"],
+      "keywords_en": ["Those Who Know Do Not Speak", "Mysterious Equality", "Beyond Distinction"],
+      "zh_TW": "知者不言，言者不知。塞其兌，閉其門，挫其銳；解其紛，和其光，同其塵，是謂玄同。故不可得而親，不可得而疏；不可得而利，不可得而害；不可得而貴，不可得而賤，故為天下貴。",
+      "zh_CN": "知者不言，言者不知。塞其兑，闭其门，挫其锐；解其纷，和其光，同其尘，是谓玄同。故不可得而亲，不可得而疏；不可得而利，不可得而害；不可得而贵，不可得而贱，故为天下贵。",
+      "en": "Those who know do not speak; those who speak do not know. Stop up the openings, close the doors; blunt the sharp, untie the tangles; harmonize the glare, become one with the dust — this is called mysterious equality. Therefore, from this one cannot obtain intimacy or distance, advantage or harm, honor or disgrace. This is why it is honored above all under heaven."
+    },
+    {
+      "chapter": 57,
+      "title": "第五十七章",
+      "title_en": "Chapter 57",
+      "keywords": ["以正治國", "我無為而民自化", "奇物滋起"],
+      "keywords_en": ["Govern with Rectitude", "Non-action Governs", "Simplicity"],
+      "zh_TW": "以正治國，以奇用兵，以無事取天下。吾何以知其然哉？以此。天下多忌諱，而民彌貧；民多利器，國家滋昏；人多伎巧，奇物滋起；法令滋彰，盜賊多有。故聖人云：我無為而民自化，我好靜而民自正，我無事而民自富，我無欲而民自樸。",
+      "zh_CN": "以正治国，以奇用兵，以无事取天下。吾何以知其然哉？以此。天下多忌讳，而民弥贫；民多利器，国家滋昏；人多伎巧，奇物滋起；法令滋彰，盗贼多有。故圣人云：我无为而民自化，我好静而民自正，我无事而民自富，我无欲而民自朴。",
+      "en": "Govern the country with rectitude; use surprise in war; win the world through non-interference. How do I know this is so? The more prohibitions there are, the poorer the people grow; the sharper the weapons, the more the nation is in chaos; the more crafts, the more strange goods appear; the more laws, the more thieves and bandits. Therefore the sage says: I practice non-action, and the people transform themselves; I favor stillness, and the people correct themselves; I take no part in affairs, and the people prosper themselves; I am free from desire, and the people return to simplicity themselves."
+    },
+    {
+      "chapter": 58,
+      "title": "第五十八章",
+      "title_en": "Chapter 58",
+      "keywords": ["其政悶悶", "禍兮福所倚", "方正而不割"],
+      "keywords_en": ["Lenient Government", "Fate's Reversals", "True Integrity"],
+      "zh_TW": "其政悶悶，其民淳淳；其政察察，其民缺缺。禍兮福之所倚，福兮禍之所伏。孰知其極？其無正。正復為奇，善復為妖，人之迷，其日固久。是以聖人方而不割，廉而不劌，直而不肆，光而不耀。",
+      "zh_CN": "其政闷闷，其民淳淳；其政察察，其民缺缺。祸兮福之所倚，福兮祸之所伏。孰知其极？其无正。正复为奇，善复为妖，人之迷，其日固久。是以圣人方而不割，廉而不刿，直而不肆，光而不耀。",
+      "en": "Where the government is lazy, the people are genial; where the government is discriminating, the people are dissatisfied. Misfortune rests upon fortune; fortune conceals within misfortune. Who knows the limit? There is no fixed norm. Right becomes strange; good becomes evil; people's confusion has lasted long. Therefore the sage is square without cutting, sharp without wounding, straight without forcing, bright without dazzling."
+    },
+    {
+      "chapter": 59,
+      "title": "第五十九章",
+      "title_en": "Chapter 59",
+      "keywords": ["治人事天莫若嗇", "重積德", "深根固柢"],
+      "keywords_en": ["Economy of Virtue", "Accumulate Merit", "Deep Roots"],
+      "zh_TW": "治人事天莫若嗇。夫唯嗇，是謂早服。早服謂之重積德，重積德則無不克，無不克則莫知其極，莫知其極，可以有國。有國之母，可以長久。是謂深根固柢，長生久視之道。",
+      "zh_CN": "治人事天莫若啬。夫唯啬，是谓早服。早服谓之重积德，重积德则无不克，无不克则莫知其极，莫知其极，可以有国。有国之母，可以长久。是谓深根固柢，长生久视之道。",
+      "en": "In governing people and serving heaven, nothing is better than economy. Only through economy can one prepare early; early preparation is called repeatedly cultivating virtue. Repeated cultivation of virtue leaves nothing that cannot be overcome. Nothing that cannot be overcome is beyond knowing the limit. Being beyond limit, one can possess the nation. The mother of possessing the nation is lasting — this is called establishing deep roots and a firm foundation, the way of long life and enduring sight."
+    },
+    {
+      "chapter": 60,
+      "title": "第六十章",
+      "title_en": "Chapter 60",
+      "keywords": ["治大國若烹小鮮", "其鬼不神", "雨露不傷人"],
+      "keywords_en": ["Ruling a Great Nation", "Small Fish Simile", "No Harm"],
+      "zh_TW": "治大國若烹小鮮。以道蒞天下，其鬼不神。非其鬼不神，其神不傷人；非其神不傷人，聖人亦不傷人。夫兩不相傷，故德交歸焉。",
+      "zh_CN": "治大国若烹小鲜。以道莅天下，其鬼不神。非其鬼不神，其神不伤人；非其神不伤人，圣人亦不伤人。夫两不相伤，故德交归焉。",
+      "en": "Govern a large nation as you would cook a small fish. Approach the world with the Tao, and evil spirits have no power. Not that they have no power, but their power does no harm to people; not only does their power do no harm, the sage also does no harm. When both do no harm, virtue gathers and returns to its source."
+    },
+    {
+      "chapter": 61,
+      "title": "第六十一章",
+      "title_en": "Chapter 61",
+      "keywords": ["大國者下流", "牝常以靜勝牡", "各得其所欲"],
+      "keywords_en": ["Great Nations Flow Down", "Stillness Wins", "Mutual Benefit"],
+      "zh_TW": "大國者下流。天下之交，天下之牝。牝常以靜勝牡，以靜為下。故大國以下小國，則取小國；小國以下大國，則取大國。故或下以取，或下而取。大國不過欲兼畜人，小國不過欲入事人，夫兩者各得其所欲，大者宜為下。",
+      "zh_CN": "大国者下流。天下之交，天下之牝。牝常以静胜牡，以静为下。故大国以下小国，则取小国；小国以下大国，则取大国。故或下以取，或下而取。大国不过欲兼畜人，小国不过欲入事人，夫两者各得其所欲，大者宜为下。",
+      "en": "A great nation flows downward — it is the meeting place of the world, the female of the world. The female always conquers the male by stillness; she takes the lower position. Therefore, when a great nation takes the lower position toward a small nation, it conquers the small nation; when a small nation takes the lower position toward a great nation, it conquers the great nation. One conquers by taking the lower position. Great nations desire only to gather and protect; small nations desire only to serve and find refuge. Both get what they want — the great nation should take the lower position."
+    },
+    {
+      "chapter": 62,
+      "title": "第六十二章",
+      "title_en": "Chapter 62",
+      "keywords": ["道者萬物之奧", "不善人之所保", "坐進此道"],
+      "keywords_en": ["Tao is the Hidden Treasure", "All Seek It", "Humility"],
+      "zh_TW": "道者萬物之奧，善人之寶，不善人之所保。美言可以市，尊行可以加人。人之不善，何棄之有！故立天子，置三公，雖有拱璧以先駟馬，不如坐進此道。古之所以貴此道者何？不曰以求得，有罪以免邪？故為天下貴。",
+      "zh_CN": "道者万物之奥，善人之宝，不善人之所保。美言可以市，尊行可以加人。人之不善，何弃之有！故立天子，置三公，虽有拱璧以先驷马，不如坐进此道。古之所以贵此道者何？不曰以求得，有罪以免邪？故为天下贵。",
+      "en": "The Tao is the hidden treasure of all things — it is the jewel of the good and the refuge of the bad. Fine words can buy anything; noble conduct can raise one's standing. Even those who are not good — how can they be abandoned? Therefore, when the Son of Heaven is enthroned and the three ministers are appointed, though there are those who offer jade discs and four-horse chariots ahead of all, it is better to advance this Tao. Why was this Tao valued in ancient times? Is it not said: through it, one seeks and obtains; through it, one's sins are forgiven? Therefore it is the most honored under heaven."
+    },
+    {
+      "chapter": 63,
+      "title": "第六十三章",
+      "title_en": "Chapter 63",
+      "keywords": ["為無為", "圖難於其易", "終無難矣"],
+      "keywords_en": ["Act Without Acting", "Difficult from Easy", "Taste the Flavourless"],
+      "zh_TW": "為無為，事無事，味無味。大小多少，報怨以德。圖難於其易，為大於其細。天下難事必作於易，天下大事必作於細，是以聖人終不為大，故能成其大。夫輕諾必寡信，多易必多難，是以聖人猶難之。故終無難矣。",
+      "zh_CN": "为无为，事无事，味无味。大小多少，报怨以德。图难于其易，为大于其细。天下难事必作于易，天下大事必作于细，是以圣人终不为大，故能成其大。夫轻诺必寡信，多易必多难，是以圣人犹难之。故终无难矣。",
+      "en": "Act without action; manage without trouble; taste without flavor. Reduce the large to the small; respond to bitterness with virtue. Achieve the difficult through the easy; achieve the great through the细微. All difficult things in the world arise from the easy; all great things arise from the small. Therefore the sage never aims at the great — and so achieves greatness. Light promises are seldom kept; excessive ease leads to excessive difficulty. Therefore even the sage treats things as difficult — and so encounters no difficulty in the end."
+    },
+    {
+      "chapter": 64,
+      "title": "第六十四章",
+      "title_en": "Chapter 64",
+      "keywords": ["其安易持", "千里之行始於足下", "慎終如始"],
+      "keywords_en": ["Stability", "Small Steps", "Caution at the End"],
+      "zh_TW": "其安易持，其未兆易謀，其脆易泮，其微易散。為之於未有，治之於未亂。合抱之木，生於毫末；九層之臺，起於累土；千里之行，始於足下。為者敗之，執者失之。是以聖人無為，故無敗；無執，故無失。民之從事，常於幾成而敗之。慎終如始，則無敗事。是以聖人欲不欲，不貴難得之貨。學不學，復眾人之所過。以輔萬物之自然，而不敢為。",
+      "zh_CN": "其安易持，其未兆易谋，其脆易泮，其微易散。为之于未有，治之于未乱。合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。为者败之，执者失之。是以圣人无为，故无败；无执，故无失。民之从事，常于几成而败之。慎终如始，则无败事。是以圣人欲不欲，不贵难得之货。学不学，复众人之所过。以辅万物之自然，而不敢为。",
+      "en": "What is at rest is easy to hold; before trouble begins, it is easy to plan. What is fragile is easily shattered; what is minute is easily scattered. Act before things occur; govern before chaos arises. A tree that fills one's embrace grows from a tiny shoot; a nine-story tower rises from a heap of earth; a thousand-mile journey begins with a single step. Those who act destroy; those who grasp lose — therefore the sage does nothing and so does not destroy; grasps nothing and so does not lose. People in their affairs often come to ruin near completion. Be as careful at the end as at the beginning — and no failure. The sage desires not to desire; does not prize rare goods; learns not to learn; returns to what the people have passed through. He helps all things find their own nature, yet dares not act."
+    },
+    {
+      "chapter": 65,
+      "title": "第六十五章",
+      "title_en": "Chapter 65",
+      "keywords": ["非以明民將以愚之", "以智治國國之賊", "玄德深矣遠矣"],
+      "keywords_en": ["Govern by Simplicity", "Wisdom is Harmful", "Mysterious Virtue"],
+      "zh_TW": "古之善為道者，非以明民，將以愚之。民之難治，以其智多。故以智治國，國之賊；不以智治國，國之福。知此兩者，亦稽式。常知稽式，是謂玄德。玄德深矣，遠矣，與物反矣，然後乃至大順。",
+      "zh_CN": "古之善为道者，非以明民，将以愚之。民之难治，以其智多。故以智治国，国之贼；不以智治国，国之福。知此两者，亦稽式。常知稽式，是谓玄德。玄德深矣，远矣，与物反矣，然后乃至大顺。",
+      "en": "The ancient masters of the Tao did not use it to enlighten the people but to make them simple. The reason people are difficult to govern is that they have too much cleverness. Therefore, using cleverness to govern a nation is the nation's disaster; not using cleverness is its blessing. Those who know these two things also know the proper rule. Always knowing the proper rule — this is called mysterious virtue. Mysterious virtue is deep and far — it leads all things back, and only then does it achieve great compliance."
+    },
+    {
+      "chapter": 66,
+      "title": "第六十六章",
+      "title_en": "Chapter 66",
+      "keywords": ["江海所以能為百谷王", "欲上民必以言下之", "天下莫能與之爭"],
+      "keywords_en": ["Sea is King of Valleys", "Lead by Following", "Non-contention Wins"],
+      "zh_TW": "江海所以能為百谷王者，以其善下之，故能為百谷王。是以欲上民，必以言下之；欲先民，必以身後之。是以聖人處上而民不重，處前而民不害，是以天下樂推而不厭。以其不爭，故天下莫能與之爭。",
+      "zh_CN": "江海所以能为百谷王者，以其善下之，故能为百谷王。是以欲上民，必以言下之；欲先民，必以身后之。是以圣人处上而民不重，处前而民不害，是以天下乐推而不厌。以其不争，故天下莫能与之争。",
+      "en": "The reason the sea can be king of all valleys is that it lies below them — therefore it can be their king. Thus, if the sage wishes to be above the people, he must speak from below them; if he wishes to lead the people, he must stand behind them. The sage dwells above, yet the people do not feel his weight; he leads, yet the people do not feel his obstruction. The world delights in praising him and never tires of him. Because he does not contend, no one in the world can contend with him."
+    },
+    {
+      "chapter": 67,
+      "title": "第六十七章",
+      "title_en": "Chapter 67",
+      "keywords": ["我有三寶", "一曰慈", "不敢為天下先"],
+      "keywords_en": ["Three Treasures", "Compassion", "Courage Through Gentleness"],
+      "zh_TW": "天下皆謂我道大，似不肖。夫唯大，故似不肖。若肖，久矣其細也夫。我有三寶，持而保之。一曰慈，二曰儉，三曰不敢為天下先。慈，故能勇；儉，故能廣；不敢為天下先，故能成器長。今舍慈且勇，舍儉且廣，舍後且先，死矣！夫慈，以戰則勝，以守則固，天將救之，以慈衛之。",
+      "zh_CN": "天下皆谓我道大，似不肖。夫唯大，故似不肖。若肖，久矣其细也夫。我有三宝，持而保之。一曰慈，二曰俭，三曰不敢为天下先。慈，故能勇；俭，故能广；不敢为天下先，故能成器长。今舍慈且勇，舍俭且广，舍后且先，死矣！夫慈，以战则胜，以守则固，天将救之，以慈卫之。",
+      "en": "All the world says that my Tao is great, but it does not resemble anything. Just because it is great, it does not resemble anything — if it resembled anything, it would have been small long ago. I have three treasures that I hold and protect: the first is compassion; the second is economy; the third is daring not to be first in the world. Compassion makes one brave; economy makes one generous; not being first makes one the leader of all things. Now, to be brave without compassion, generous without economy, or leading without being behind — this is death. With compassion, in battle one wins; in defense one is firm. Heaven will save them — guarded by compassion."
+    },
+    {
+      "chapter": 68,
+      "title": "第六十八章",
+      "title_en": "Chapter 68",
+      "keywords": ["善為士者不武", "善勝敵者不與", "配天古之極"],
+      "keywords_en": ["Best Warriors Don't Fight", "Conquer Without Contending", "Follow Heaven"],
+      "zh_TW": "善為士者不武，善戰者不怒，善勝敵者不與，善用人者為之下。是謂不爭之德，是謂用人之力，是謂配天古之極。",
+      "zh_CN": "善为士者不武，善战者不怒，善胜敌者不与，善用人为之下。是谓不争之德，是谓用人之力，是谓配天古之极。",
+      "en": "The best general does not display valor; the best fighter does not show anger; the best conqueror does not engage the enemy; the best employer of people places himself below them. This is called the virtue of non-contention; this is called the ability to use others; this is called matching heaven — the highest achievement of antiquity."
+    },
+    {
+      "chapter": 69,
+      "title": "第六十九章",
+      "title_en": "Chapter 69",
+      "keywords": ["不敢為主而為客", "退尺", "哀者勝"],
+      "keywords_en": ["Be Guest Not Host", "Retreat Strategy", "The Mourning Army Wins"],
+      "zh_TW": "用兵有言，吾不敢為主而為客，不敢進寸而退尺。是謂行無行，攘無臂，扔無敵，執無兵。禍莫大於輕敵，輕敵幾喪吾寶。故抗兵相加，哀者勝矣。",
+      "zh_CN": "用兵有言，吾不敢为主而为客，不敢进寸而退尺。是谓行无行，攘无臂，扔无敌，执无兵。祸莫大于轻敌，轻敌几丧吾宝。故抗兵相加，哀者胜矣。",
+      "en": "There is a saying among generals: I would rather be a guest than a host, rather retreat an inch than advance a foot. This is called marching without appearing to march, rolling up sleeves without showing arms, presenting a weapon without holding it. The greatest misfortune is to undervalue the enemy — undervaluing the enemy nearly destroys my treasure. When two armies oppose each other, the one that is sad conquers."
+    },
+    {
+      "chapter": 70,
+      "title": "第七十章",
+      "title_en": "Chapter 70",
+      "keywords": ["吾言甚易知", "被褐懷玉", "知我者希"],
+      "keywords_en": ["My Words are Simple", "Coarse Clothes, Hidden Jade", "Understood by Few"],
+      "zh_TW": "吾言甚易知，甚易行，天下莫能知，莫能行。言有宗，事有君。夫唯無知，是以不我知。知我者希，則我者貴，是以聖人被褐懷玉。",
+      "zh_CN": "吾言甚易知，甚易行，天下莫能知，莫能行。言有宗，事有君。夫唯无知，是以不我知。知我者希，则我者贵，是以圣人被褐怀玉。",
+      "en": "My words are very easy to understand, very easy to practice — yet no one in the world can understand them, no one can practice them. Words have a source; affairs have a master. Only because of ignorance do people not understand me. Those who understand me are few; those who follow me are honored. Therefore the sage wears coarse clothes but carries jade within."
+    },
+    {
+      "chapter": 71,
+      "title": "第七十一章",
+      "title_en": "Chapter 71",
+      "keywords": ["知不知上", "不知知病", "聖人不病"],
+      "keywords_en": ["Knowing Ignorance", "Pretending Knowledge is Illness", "Sage's Humility"],
+      "zh_TW": "知不知，上；不知知，病。夫唯病病，是以不病。聖人不病，以其病病，是以不病。",
+      "zh_CN": "知不知，上；不知知，病。夫唯病病，是以不病。圣人不病，以其病病，是以不病。",
+      "en": "To know that you do not know is the highest; to pretend to know when you do not is illness. Only by recognizing this illness as illness can one be free from it. The sage is free from illness — because he recognizes illness as illness — and so is free from it."
+    },
+    {
+      "chapter": 72,
+      "title": "第七十二章",
+      "title_en": "Chapter 72",
+      "keywords": ["民不畏威", "自知不自見", "自愛不自貴"],
+      "keywords_en": ["Fear None's Power", "Self-knowledge", "Humility Over Honor"],
+      "zh_TW": "民不畏威，則大威至。無狎其所居，無厭其所生。夫唯不厭，是以不厭。是以聖人自知，不自見；自愛，不自貴。故去彼取此。",
+      "zh_CN": "民不畏威，则大威至。无狎其所居，无厌其所生。夫唯不厌，是以不厌。是以圣人自知，不自见；自爱，不自贵。故去彼取此。",
+      "en": "When the people do not fear authority, great authority arrives. Do not restrict their dwellings; do not weary their lives. Only by not wearying them are they not weary of you. Therefore the sage knows himself but does not display himself; loves himself but does not elevate himself. Therefore he rejects that and takes this."
+    },
+    {
+      "chapter": 73,
+      "title": "第七十三章",
+      "title_en": "Chapter 73",
+      "keywords": ["勇於敢則殺", "天網恢恢疏而不失", "不爭而善勝"],
+      "keywords_en": ["Courage and Cowardice", "Heaven's Net", "Effortless Victory"],
+      "zh_TW": "勇於敢則殺，勇於不敢則活。此兩者，或利或害。天之所惡，孰知其故？是以聖人猶難之。天之道，不爭而善勝，不言而善應，不召而自來，繟然而善謀。天網恢恢，疏而不失。",
+      "zh_CN": "勇于敢则杀，勇于不敢则活。此两者，或利或害。天之所恶，孰知其故？是以圣人犹难之。天之道，不争而善胜，不言而善应，不召而自来，繟然而善谋。天网恢恢，疏而不失。",
+      "en": "Courage to act leads to death; courage not to act leads to life. These two either benefit or harm. Who knows why heaven hates what it hates? Even the sage finds this difficult. The Tao of heaven: does not contend, yet wins; does not speak, yet responds; does not call, yet arrives; is relaxed, yet plans well. Heaven's net is vast — its mesh is wide, yet nothing slips through."
+    },
+    {
+      "chapter": 74,
+      "title": "第七十四章",
+      "title_en": "Chapter 74",
+      "keywords": ["民不畏死奈何以死懼之", "代司殺者殺", "希有不傷其手"],
+      "keywords_en": ["Death Penalty", "Do Not Usurp Heaven's Role", "The Executioner"],
+      "zh_TW": "民不畏死，奈何以死懼之！若使民常畏死，而為奇者，吾得執而殺之，孰敢？常有司殺者殺，夫代司殺者殺，是謂代大匠斫。夫代大匠斫者，希有不傷其手矣。",
+      "zh_CN": "民不畏死，奈何以死惧之！若使民常畏死，而为奇者，吾得执而杀之，孰敢？常有司杀者杀，夫代司杀者杀，是谓代大匠斫。夫代大匠斫者，希有不伤其手矣。",
+      "en": "If the people do not fear death, why threaten them with it? Suppose the people always feared death and those who acted wrongly could be seized and killed — who would dare? There is always the official executioner who carries out executions. To replace the official executioner and do the cutting yourself is to carve blocks instead of a master carpenter. Among those who carve blocks, few do not hurt their own hands."
+    },
+    {
+      "chapter": 75,
+      "title": "第七十五章",
+      "title_en": "Chapter 75",
+      "keywords": ["民之饑以其上食稅之多", "求生之厚", "賢於貴生"],
+      "keywords_en": ["Taxation and Hunger", "Excessive Living", "True Wealth"],
+      "zh_TW": "民之饑，以其上食稅之多，是以饑。民之難治，以其上之有為，是以難治。民之輕死，以其求生之厚，是以輕死。夫唯無以生為者，是賢於貴生。",
+      "zh_CN": "民之饥，以其上食税之多，是以饥。民之难治，以其上之有为，是以难治。民之轻死，以其求生之厚，是以轻死。夫唯无以生为者，是贤于贵生。",
+      "en": "The people starve because their rulers tax them heavily — therefore they starve. The people are difficult to govern because their rulers act upon them — therefore they are hard to govern. The people make light of death because they seek life too desperately — therefore they make light of death. Those who do not make life their business are superior to those who treasure life."
+    },
+    {
+      "chapter": 76,
+      "title": "第七十六章",
+      "title_en": "Chapter 76",
+      "keywords": ["人之生也柔弱", "堅強處下", "柔弱處上"],
+      "keywords_en": ["Life is Soft", "Strength is Weakness", "Yielding Rises"],
+      "zh_TW": "人之生也柔弱，其死也堅強。萬物草木之生也柔脆，其死也枯槁。故堅強者死之徒，柔弱者生之徒。是以兵強則不勝，木強則兵。強大處下，柔弱處上。",
+      "zh_CN": "人之生也柔弱，其死也坚强。万物草木之生也柔脆，其死也枯槁。故坚强者死之徒，柔弱者生之徒。是以兵强则不胜，木强则兵。强大处下，柔弱处上。",
+      "en": "People are alive and soft when born; they are dead and rigid when they die. All creatures and plants are tender and fragile when alive; they are withered and dry when dead. Therefore the rigid and strong are followers of death; the soft and weak are followers of life. Hence the army that is strong cannot conquer; the tree that is strong breaks. The great position is below; the soft and weak are above."
+    },
+    {
+      "chapter": 77,
+      "title": "第七十七章",
+      "title_en": "Chapter 77",
+      "keywords": ["天之道損有餘補不足", "有餘以奉天下", "聖人為而不恃"],
+      "keywords_en": ["Nature's Balance", "Give to the Needy", "The Sage Does Not Claim"],
+      "zh_TW": "天之道，其猶張弓與！高者抑之，下者舉之；有餘者損之，不足者補之。天之道，損有餘而補不足。人之道則不然，損不足以奉有餘。孰能有餘以奉天下？唯有道者。是以聖人為而不恃，功成而不處，其不欲見賢。",
+      "zh_CN": "天之道，其犹张弓与！高者抑之，下者举之；有余者损之，不足者补之。天之道，损有余而补不足。人之道则不然，损不足以奉有余。谁能有余以奉天下？唯有道者。是以圣人为而不恃，功成而不处，其不欲见贤。",
+      "en": "Is not the Tao of heaven like drawing a bow? The high it presses down; the low it raises up; the excess it reduces; the deficient it fills. The Tao of heaven reduces the excess and fills the deficient. The way of people is not so — it takes from the deficient to serve the excess. Who can serve the world by giving from the excess? Only those who have the Tao. Therefore the sage acts but does not claim; accomplishes but does not dwell; has no desire to display virtue."
+    },
+    {
+      "chapter": 78,
+      "title": "第七十八章",
+      "title_en": "Chapter 78",
+      "keywords": ["天下莫柔弱於水", "弱之勝強", "正言若反"],
+      "keywords_en": ["Water is Weakest", "Weak Conquers Strong", "True Words Seem Paradoxical"],
+      "zh_TW": "天下莫柔弱於水，而攻堅強者莫之能勝，其無以易之。弱之勝強，柔之勝剛，天下莫不知，莫能行。是以聖人云：受國之垢，是謂社稷主；受國不祥，是為天下王。正言若反。",
+      "zh_CN": "天下莫柔弱于水，而攻坚强者莫之能胜，其无以易之。弱之胜强，柔之胜刚，天下莫不知，莫能行。是以圣人云：受国之垢，是谓社稷主；受国不祥，是为天下王。正言若反。",
+      "en": "Nothing in the world is softer than water, yet nothing is better at overcoming the hard — nothing can replace it. The weak overcomes the strong; the soft overcomes the hard — everyone in the world knows this, yet no one practices it. Therefore the sage says: he who accepts the nation's humiliation is fit to be its lord; he who accepts the nation's misfortune is fit to be king of the world. True words seem paradoxical."
+    },
+    {
+      "chapter": 79,
+      "title": "第七十九章",
+      "title_en": "Chapter 79",
+      "keywords": ["和 大怨", "執左契", "天道無親常與善人"],
+      "keywords_en": ["Reconcile Great Grievances", "Hold the Contract", "Heaven's Impartiality"],
+      "zh_TW": "和大怨，必有餘怨，安可以為善？是以聖人執左契，而不責於人。有德司契，無德司徹。天道無親，常與善人。",
+      "zh_CN": "和大怨，必有余怨，安可以为善？是以圣人执左契，而不责于人。有德司契，无德司彻。天道无亲，常与善人。",
+      "en": "When great grievances are reconciled, there are always remaining grievances — how can this be called good? Therefore the sage holds the left-hand contract but does not demand payment from others. Those who have virtue manage the contract; those without virtue manage the tax. The Tao of heaven shows no favoritism — it always stays with the good person."
+    },
+    {
+      "chapter": 80,
+      "title": "第八十章",
+      "title_en": "Chapter 80",
+      "keywords": ["小國寡民", "甘其食美其服", "雞犬之聲相聞老死不相往來"],
+      "keywords_en": ["Small Nation", "Simple Life", "Return to Simplicity"],
+      "zh_TW": "小國寡民，使有什伯之器而不用，使民重死而不遠徙。雖有舟輿，無所乘之；雖有甲兵，無所陳之；使人復結繩而用之。甘其食，美其服，安其居，樂其俗。鄰國相望，雞犬之聲相聞，民至老死不相往來。",
+      "zh_CN": "小国寡民，使有什伯之器而不用，使民重死而不远徙。虽有舟舆，无所乘之；虽有甲兵，无所陈之；使人复结绳而用之。甘其食，美其服，安其居，乐其俗。邻国相望，鸡犬之声相闻，民至老死不相往来。",
+      "en": "Let there be a small country with few people. Let them have ten times a hundred devices, but none be used. Let them notice death, and refrain from traveling far. Though they have boats and carriages, let them have no occasion to ride them. Though they have weapons and armor, let them have no one to display them. Let the people return to the use of knotted ropes. Let them find food sweet, clothes beautiful, homes comfortable, their customs pleasant. Though neighboring states are within sight and the sound of roosters and dogs reaches them from one to the other, they grow old and die without ever visiting each other."
+    },
+    {
+      "chapter": 81,
+      "title": "第八十一章",
+      "title_en": "Chapter 81",
+      "keywords": ["信言不美", "為而不爭", "天之道利而不害"],
+      "keywords_en": ["True Words Are Not Beautiful", "Act Without Contending", "Heaven Benefits Without Harming"],
+      "zh_TW": "信言不美，美言不信；善者不辯，辯者不善；知者不博，博者不知。聖人不積，既以為人，己愈有；既以與人，己愈多。天之道，利而不害；聖人之道，為而不爭。",
+      "zh_CN": "信言不美，美言不信；善者不辩，辩者不善；知者不博，博者不知。圣人不积，既以为人，己愈有；既以与人，己愈多。天之道，利而不害；圣人之道，为而不争。",
+      "en": "True words are not beautiful; beautiful words are not true. Good people do not argue; those who argue are not good. Those who know are not learned; the learned do not know. The sage does not hoard — the more she gives to others, the more she has; the more she gives to the world, the more she gains. The Tao of heaven benefits all without harming; the Tao of the sage accomplishes without contending."
+    }
+  ],
+
+  "quotes": [
+    {
+      "id": "q001",
+      "theme": "道法自然",
+      "theme_en": "Follow the Nature",
+      "zh_TW": "人法地，地法天，天法道，道法自然。",
+      "zh_CN": "人法地，地法天，天法道，道法自然。",
+      "en": "Humans follow the earth; the earth follows heaven; heaven follows the Tao; the Tao follows only itself.",
+      "source_chapter": 25
+    },
+    {
+      "id": "q002",
+      "theme": "上善若水",
+      "theme_en": "Highest Good Like Water",
+      "zh_TW": "上善若水，水善利萬物而不爭，處眾人之所惡，故幾於道。",
+      "zh_CN": "上善若水，水善利万物而不争，处众人之所恶，故几于道。",
+      "en": "The highest good is like water, which benefits all things without striving. It dwells in low places that others shun — which is why it is close to the Tao.",
+      "source_chapter": 8
+    },
+    {
+      "id": "q003",
+      "theme": "無為而治",
+      "theme_en": "Govern by Non-action",
+      "zh_TW": "為學日益，為道日損，損之又損，以至於無為，無為而無不為。",
+      "zh_CN": "为学日益，为道日损，损之又损，以至于无为，无为而无不为。",
+      "en": "In learning, every day something is acquired; in following the Tao, every day something is dropped. Less and less is done until non-action is achieved. By non-action, everything can be done.",
+      "source_chapter": 48
+    },
+    {
+      "id": "q004",
+      "theme": "柔弱勝剛強",
+      "theme_en": "Weakness Overcomes Strength",
+      "zh_TW": "天下莫柔弱於水，而攻堅強者莫之能勝，其無以易之。弱之勝強，柔之勝剛，天下莫不知，莫能行。",
+      "zh_CN": "天下莫柔弱于水，而攻坚强者莫之能胜，其无以易之。弱之胜强，柔之胜刚，天下莫不知，莫能行。",
+      "en": "Nothing in the world is softer than water, yet nothing is better at overcoming the hard — nothing can replace it. The weak overcomes the strong; the soft overcomes the hard — everyone knows this, yet no one practices it.",
+      "source_chapter": 78
+    },
+    {
+      "id": "q005",
+      "theme": "知足常樂",
+      "theme_en": "Contentment and Joy",
+      "zh_TW": "知足者富。",
+      "zh_CN": "知足者富。",
+      "en": "Those who know contentment are rich.",
+      "source_chapter": 33
+    },
+    {
+      "id": "q006",
+      "theme": "自知者明",
+      "theme_en": "Self-knowledge is Wisdom",
+      "zh_TW": "知人者智，自知者明。勝人者有力，自勝者強。",
+      "zh_CN": "知人者智，自知者明。胜人者有力，自胜者强。",
+      "en": "Knowing others is intelligence; knowing yourself is true wisdom. Conquering others is strength; conquering yourself is true power.",
+      "source_chapter": 33
+    },
+    {
+      "id": "q007",
+      "theme": "功成身退",
+      "theme_en": "Retreat After Success",
+      "zh_TW": "富貴而驕，自遺其咎。功成身退，天之道。",
+      "zh_CN": "富贵而骄，自遗其咎。功成身退，天之道。",
+      "en": "Wealth and honor through arrogance invite ruin. When the work is done, retire — this is the way of heaven.",
+      "source_chapter": 9
+    },
+    {
+      "id": "q008",
+      "theme": "禍福相依",
+      "theme_en": "Misfortune and Fortune Depend on Each Other",
+      "zh_TW": "禍兮福之所倚，福兮禍之所伏。",
+      "zh_CN": "祸兮福之所倚，福兮祸之所伏。",
+      "en": "Misfortune rests upon fortune; fortune conceals within misfortune.",
+      "source_chapter": 58
+    },
+    {
+      "id": "q009",
+      "theme": "知足之足",
+      "theme_en": "True Contentment",
+      "zh_TW": "禍莫大於不知足，咎莫大於欲得，故知足之足，常足矣。",
+      "zh_CN": "祸莫大于不知足，咎莫大于欲得，故知足之足，常足矣。",
+      "en": "No disaster is greater than not knowing contentment; no greater curse than the desire for more. Therefore the contentment of knowing enough is permanent contentment.",
+      "source_chapter": 46
+    },
+    {
+      "id": "q010",
+      "theme": "天網恢恢",
+      "theme_en": "Heaven's Vast Net",
+      "zh_TW": "天網恢恢，疏而不失。",
+      "zh_CN": "天网恢恢，疏而不失。",
+      "en": "Heaven's net is vast — its mesh is wide, yet nothing slips through.",
+      "source_chapter": 73
+    },
+    {
+      "id": "q011",
+      "theme": "歸根復命",
+      "theme_en": "Return to the Root",
+      "zh_TW": "致虛極，守靜篤，萬物並作，吾以觀復。夫物芸芸，各復歸其根。歸根曰靜，是謂復命。",
+      "zh_CN": "致虚极，守静笃，万物并作，吾以观复。夫物芸芸，各复归其根。归根曰静，是谓复命。",
+      "en": "Reach the ultimate emptiness; hold to perfect stillness. All things arise together — I watch their return. Though all things flourish, each returns to its root. Returning to the root is called stillness — this is what is meant by returning to destiny.",
+      "source_chapter": 16
+    },
+    {
+      "id": "q012",
+      "theme": "不爭",
+      "theme_en": "Non-contention",
+      "zh_TW": "夫唯不爭，故天下莫能與之爭。",
+      "zh_CN": "夫唯不争，故天下莫能与之争。",
+      "en": "It is precisely because he does not contend that no one in the world can contend with him.",
+      "source_chapter": 22
+    },
+    {
+      "id": "q013",
+      "theme": "聖人無常心",
+      "theme_en": "Sage's Impartial Mind",
+      "zh_TW": "聖人無常心，以百姓心為心。",
+      "zh_CN": "圣人无常心，以百姓心为心。",
+      "en": "The sage has no fixed mind; he takes the people's mind as his mind.",
+      "source_chapter": 49
+    },
+    {
+      "id": "q014",
+      "theme": "我有三寶",
+      "theme_en": "Three Treasures",
+      "zh_TW": "我有三寶，持而保之。一曰慈，二曰儉，三曰不敢為天下先。",
+      "zh_CN": "我有三宝，持而保之。一曰慈，二曰俭，三曰不敢为天下先。",
+      "en": "I have three treasures that I hold and protect: the first is compassion; the second is economy; the third is daring not to be first in the world.",
+      "source_chapter": 67
+    },
+    {
+      "id": "q015",
+      "theme": "知足不辱",
+      "theme_en": "Contentment Prevents Disgrace",
+      "zh_TW": "知足不辱，知止不殆，可以長久。",
+      "zh_CN": "知足不辱，知止不殆，可以长久。",
+      "en": "Contentment prevents disgrace; knowing when to stop prevents danger — and so one endures long.",
+      "source_chapter": 44
+    }
+  ],
+
+  "about": {
+    "name": "老子",
+    "name_en": "Laozi",
+    "born": "約公元前571年",
+    "born_en": "c. 571 BCE",
+    "origin": "春秋時期楚國",
+    "origin_en": "State of Chu, Spring and Autumn Period",
+    "title": "《道德經》/ 《老子》",
+    "title_en": "Tao Te Ching / Dao De Jing",
+    "chapters": 81,
+    "total_characters": "約5000字",
+    "total_characters_en": "Approximately 5,000 Chinese characters",
+    "structure": "道經（1-37章）+ 德經（38-81章）",
+    "structure_en": "Tao Ching (Chapters 1-37) + Te Ching (Chapters 38-81)",
+    "description_zh_TW": "老子，又稱老聃，道家創始人，與孔子同期。相傳為《道德經》作者，全文約五千字，含81章。前37章論「道」，後44章論「德」。其思想核心：道法自然、無為而治、柔弱勝剛強、知足常樂、反璞歸真。",
+    "description_zh_CN": "老子，又称老聃，道家创始人，与孔子同期。相传为《道德经》作者，全文约五千字，含81章。前37章论「道」，后44章论「德」。其思想核心：道法自然、无为而治、柔弱胜刚强、知足常乐、返璞归真。",
+    "description_en": "Laozi, also known as Lao Tzu, is traditionally regarded as the founder of Taoism and a contemporary of Confucius. He is credited with authoring the Tao Te Ching, a text of approximately 5,000 characters across 81 chapters. The first 37 chapters discuss the Tao (the Way); the remaining 44 discuss Te (Virtue). Core teachings: follow nature, govern through non-action, softness overcomes hardness, contentment brings joy, and return to simplicity."
+  }
+}

@@ -1,46 +1,63 @@
-## Description: <br>
-Game server real-time monitoring: query TPS, online users, JVM heap from Scouter Collector; detect alerts; send notifications; generate reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Game server real-time monitoring for checking game server health, querying TPS, online users, and JVM heap from Scouter Collector, detecting alerts, sending notifications, and generating reports.
 
-## Publisher: <br>
-[freepengyang](https://clawhub.ai/user/freepengyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freepengyang](https://clawhub.ai/user/freepengyang)
 
-## Use Case: <br>
-Game operations engineers use this skill to query Scouter Collector metrics for JVM-based game servers, identify TPS and heap alerts, inspect single-server health, and generate operational status reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can query operational game-server metrics from a configured Scouter Collector. <br>
-Mitigation: Install it only in agent environments authorized for game operations monitoring and verify that SCOUTER_COLLECTOR_URL points to a trusted Collector. <br>
-Risk: Recurring alert workflows may send operational data to Feishu or DingTalk webhooks. <br>
-Mitigation: Review webhook destinations, cronjob prompts, alert frequency, and cooldown settings before enabling automated notifications. <br>
-Risk: Collector responses provide object hashes that are later used in shell commands. <br>
-Mitigation: Keep the documented hex validation for objHash values before using them in curl URLs. <br>
+## Use Case:
 
+Game operations engineers use this skill to inspect JVM-based game server health, including TPS, online-user counters, heap usage, and alert-oriented performance reports from Scouter Collector telemetry.
 
-## Reference(s): <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [Scouter Project](https://github.com/scouter-project/scouter) <br>
-- [Quick Start](references/quickstart.md) <br>
-- [Alert Workflow](references/alert-workflow.md) <br>
-- [Port Notes](references/PORT_NOTES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with operational summaries, tables, and inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Scouter Collector API queries, metric calculations, alert summaries, notification setup guidance, and troubleshooting notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release metadata) <br>
+Risk: The skill can expose broad game-server telemetry to an agent through Scouter Collector queries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where that telemetry access is intended, and limit Collector access to the server scope needed for operations.
+
+Risk: Persistent alerting can run on an under-scoped schedule or send notifications to the wrong destination.
+
+Mitigation: Confirm the alert schedule, server scope, webhook destination, cooldown behavior, and disable path before enabling cron-based monitoring.
+
+Risk: Setup examples include Collector transport and release download steps that need operational hardening.
+
+Mitigation: Prefer HTTPS or authenticated Collector access, protect webhook URLs as secrets, and verify downloaded Scouter releases before extracting or running them.
+
+## Reference(s):
+
+- [Game Ops Monitor skill page](https://clawhub.ai/freepengyang/skills/game-ops-monitor)
+- [OpenClaw homepage](https://github.com/openclaw/openclaw)
+- [Scouter project](https://github.com/scouter-project/scouter)
+- [Scouter releases](https://github.com/scouter-project/scouter/releases)
+- [Port Notes](references/PORT_NOTES.md)
+- [Quick Start](references/quickstart.md)
+- [Alert Workflow](references/alert-workflow.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, tabular status summaries, and alert/report text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include Scouter Collector API calls, metric calculations, threshold classifications, and webhook-alert setup guidance.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,129 +1,96 @@
-# Language Learning with Anki
+# Languages — Vocabulary, Audio, Scripts, And Sentence Mining
 
-## Vocabulary Card Template
+Anki is a vocabulary and pattern machine. It does not produce fluency; it removes the lookup that stops you mid-sentence. Design the deck around that boundary and it works for years.
 
-**Minimum fields:**
-- Word (target language)
-- Translation/meaning
-- Example sentence
-- Audio (if available)
+## The Vocabulary Note
 
-**Recommended additions:**
-- IPA/pronunciation guide
-- Part of speech
-- Gender/plural (for gendered languages)
-- Frequency level (A1-C2)
-- Collocations
+| Field | Required | Why |
+|---|---|---|
+| Target word | yes | With its article/gender/tone baked in: `die Tür`, `el problema`, `māma (mā)` — a bare noun teaches half the word |
+| Meaning | yes | The ONE sense you met, not the dictionary entry (`run` has dozens; card the one you read) |
+| Example sentence | yes | The sentence you actually met it in; it is what makes the meaning stick |
+| Audio | if the language is spoken | Generated once into a media file, never rendered live |
+| Pronunciation / IPA / tone | script or tonal languages | Tone is part of the word, not decoration |
+| Part of speech + inflection | inflected languages | Plural, past form, aspect pair — the irregularity is the fact |
+| Frequency / CEFR tag | yes | Drives study order and lets you cut the tail later |
 
-## Audio Integration
+## Frequency Order Is The Highest-Leverage Choice
 
-**Sources:**
-- Forvo (human pronunciation, multiple accents)
-- Google TTS (robotic but consistent)
-- Native speaker recordings (best quality)
+Word-frequency coverage (Nation's vocabulary research, general corpora): the most frequent ~1,000 word families cover the large majority of everyday spoken discourse; ~2,000-3,000 gets you into comfortable conversation coverage; beyond ~5,000 you are buying diminishing, domain-specific returns. Exact percentages vary by corpus and by what counts as a word — the ordering is what matters and it is stable across every corpus.
 
-**Auto-generation:**
-- AwesomeTTS add-on integrates multiple TTS services
-- Download once, embed in card
+Consequences: study a frequency list before mining, tag every card with its band (`freq::1k`, `freq::3k`), and never let rare words from an interesting text jump the queue. When workload gets heavy, you delete from the bottom of the frequency order, not at random.
 
-**Trap:** Don't rely on audio alone. Visual recognition matters too.
+## Recognition vs Production
 
-## Sentence Cards vs Word Cards
+Two different skills, two different cards, twice the cost — so choose per word.
 
-**Word cards (isolated vocabulary):**
-- ✅ Fast to create
-- ✅ Good for recognition
-- ❌ No context = poor production
-- ❌ Interference between similar words
+| Word type | Cards to make |
+|---|---|
+| Everything you read | L2 → L1 recognition only |
+| The 1-2k core you must speak | Both directions |
+| Words you keep failing to produce | L1 → L2 with a first-letter hint in the question |
+| Passive/technical vocabulary | Recognition only, forever |
 
-**Sentence cards (word in context):**
-- ✅ Shows real usage
-- ✅ Tests comprehension
-- ❌ Slower to create
-- ❌ Might pass by understanding context, not word
+Production cards need controlled prompts: "say 'to give up' (phrasal, informal)" beats "say 'quit'", which has five acceptable answers and will be graded inconsistently — and inconsistent grading is what breaks the scheduler (SKILL.md The Four Buttons).
 
-**Best approach:** Start with word + example sentence. Add sentence cards for confusing words.
+## Sentence Mining
 
-## Cloze for Languages
+The i+1 principle: mine sentences where exactly ONE element is unknown. Two unknowns make a card that fails for reasons you cannot attribute.
 
-**Good uses:**
-```
-Ich {{c1::fahre}} mit dem Bus. (I go/drive by bus)
-El libro está {{c1::sobre}} la mesa. (The book is on the table)
-```
+1. Read or watch real material; capture sentences containing one unknown word.
+2. Make a cloze over that word, keeping the whole sentence visible.
+3. Add audio of the full sentence, not the isolated word — prosody is part of the memory.
+4. Cap the intake: mining generates faster than you can review; the frequency band decides which mined sentences get in.
 
-**Bad uses:**
-```
-{{c1::Je m'appelle Marie.}} (entire sentence — tests nothing specific)
-J'{{c1::ai}} {{c2::mangé}}. (multiple clozes testing different things)
-```
+Popup-dictionary and mining tools push cards into Anki through AnkiConnect, which is why field discipline matters — automated cards inherit whatever template you set up once.
 
-## Conjugation Tables
+## Audio
 
-**Don't make one card per conjugation.** Instead:
+- Generate to media files once; do not depend on a runtime add-on, which does not exist on mobile clients.
+- Human recordings (community pronunciation databases, native speakers, the source audio of what you mined) beat TTS for prosody; TTS beats nothing and is consistent.
+- **Listening cards** are a separate card, not a field: audio on the front, meaning on the back. If you only ever see the word, you will not recognize it spoken — this is the single most common gap in self-built decks.
+- Audio on the ANSWER side of every card costs nothing and reinforces pronunciation at zero extra review time.
 
-1. **Pattern recognition cards:**
-   - "What's the present tense ending for -AR verbs, yo?" → `-o`
-   
-2. **High-frequency forms:**
-   - Only conjugations you'll actually use
-   - "How do you say 'I went' in Spanish?" → `Fui`
+## Grammar
 
-3. **Reference table (on back):**
-   - Show full table but test individual forms
-
-## False Friends
-
-Cards that explicitly contrast confusing pairs:
+Do not card rules. Card examples that instantiate the rule, and one card for the rule's trigger.
 
 ```
-Front: [ES→EN] "Embarazada" means...
-Back: Pregnant (NOT embarrassed — that's "avergonzada")
+Bad :  When is the subjunctive used in Spanish?
+Good:  Espero que {{c1::vengas}} mañana.        (esperar que → subjunctive)
+Good:  [ES grammar] Which mood follows "espero que"? → subjunctive
 ```
 
+Conjugation tables: card the pattern (one card per ending set), plus the high-frequency irregular forms you will actually say. One card per cell of a 6×12 table is 72 cards for a pattern you can learn in two.
+
+## Scripts And Tones
+
+- Character languages: card the character → meaning+reading, and separately the word → character (production) only for what you must write. Components/radicals get their own small deck — they are the alphabet of the system and pay back across thousands of characters.
+- Handwriting is a motor skill: use paper, and keep Anki for recognition and readings (SKILL.md, When Anki Is The Wrong Tool).
+- Tonal languages: the tone belongs inside the answer and inside the audio. A card graded correct with the wrong tone is teaching the wrong word.
+- Minimal pairs deserve contrast cards: two words differing only in tone, length, or one phoneme, tested against each other rather than separately.
+
+## False Friends And Confusable Pairs
+
 ```
-Front: [Warning] "Actualmente" in Spanish means...
-Back: Currently (NOT "actually" — that's "en realidad")
-```
-
-## Frequency-Based Learning
-
-**Priority order:**
-1. Top 1000 words (covers 85% of daily speech)
-2. Top 3000 words (covers 95%)
-3. Domain-specific vocabulary
-
-**Tag by frequency:** `#A1`, `#A2`, `#B1`, `#B2`, `#C1`
-
-**Study order:** Learn high-frequency first. Don't waste time on rare words early.
-
-## Bidirectional Cards
-
-**Recognition (L2→L1):** See target language, recall meaning
-**Production (L1→L2):** See native language, produce target
-
-**Both are necessary but different skills.**
-
-**Tip:** Make production cards slightly easier:
-- Include first letter hint
-- Show related words
-- Accept synonyms as correct
-
-## Regional Variations
-
-Track when words differ by region:
-```
-Front: How do you say "car" in Spanish?
-Back: Coche (Spain) / Carro (Latin America) / Auto (Argentina)
+[ES→EN] "embarazada" means…       → pregnant  (embarrassed = avergonzada)
+[ES→EN] "actualmente" means…      → currently (actually = en realidad)
 ```
 
-Or use tags: `#spain`, `#latam`, `#neutral`
+Always name the trap on the answer. A false-friend card without the contrast teaches the correct meaning and leaves the wrong association intact.
 
-## Common Mistakes to Prevent
+## Regional Variation
 
-- **Misspelled cards** — Check source before adding
-- **Translation without context** — "Run" has 20 meanings
-- **Ignoring pronunciation** — Add audio or IPA
-- **Skipping gender** — "El problema" (masc) not "la problema"
-- **Lists as cards** — "Days of the week" should be 7 cards
-- **Only recognition** — Test production too
+Pick one variety as the default for your deck and tag the exceptions (`region::latam`, `region::rioplatense`). Cards that list three regional synonyms as the answer are list cards; the card that works is "which word for 'car' in Spain?" with the region in the question.
+
+## Traps
+
+| Trap | Why it fails | Do instead |
+|---|---|---|
+| Bare noun without article/gender | You learn half a word and produce it wrong | Bake the article into the target field |
+| Dictionary entry as the answer | Five senses on one card = list card | One sense per card, the one you met |
+| Both directions for every word | Doubles a deck you will abandon | Production only for the core you must speak |
+| No listening cards | Words recognized on paper vanish in speech | Audio-front cards for the core vocabulary |
+| Mining faster than reviewing | The backlog kills the habit within a month | Cap intake by frequency band (SKILL.md rule 5) |
+| Sentence cards with two unknowns | Failure cannot be attributed | i+1 only |
+| Grading a production card loosely | Synonym today, strict tomorrow: the scheduler fits noise | Controlled prompts, one accepted answer |

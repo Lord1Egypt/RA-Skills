@@ -1,39 +1,54 @@
-## Description: <br>
-Queries public ClawHub skill statistics such as stars, downloads, current installs, and all-time installs through curl and the ClawHub API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query any ClawHub skill's statistics, including stars, downloads, current installs, all-time installs, comments, and versions, via curl and the public ClawHub API.
 
-## Publisher: <br>
-[tjefferson](https://clawhub.ai/user/tjefferson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tjefferson](https://clawhub.ai/user/tjefferson)
 
-## Use Case: <br>
-Developers, maintainers, and marketplace operators use this skill to check and compare public ClawHub skill popularity and usage metrics without opening the web UI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Skill slugs or search terms are sent to ClawHub when the generated commands are run. <br>
-Mitigation: Use only public or acceptable-to-share slugs and search terms, and review the generated curl commands before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tjefferson/skills-stats) <br>
-- [ClawHub Skill API Endpoint](https://clawhub.ai/api/skill?slug={slug}) <br>
-- [ClawHub Search API Endpoint](https://clawhub.ai/api/search?q=SEARCH_TERM) <br>
+## Use Case:
 
+Developers and ClawHub users use this skill to inspect a skill's popularity metrics, compare multiple skill slugs, or search for skills by keyword without opening the ClawHub web UI.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, code, guidance] <br>
-**Output Format:** [Markdown with bash commands and inline Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and python3; queries public ClawHub endpoints without credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Command examples contain user-filled slug and search placeholders that are pasted into shell commands.
+
+Mitigation: Use normal ClawHub slugs or URL-encoded search terms and avoid untrusted shell metacharacters in placeholder values.
+
+Risk: The skill depends on public ClawHub API responses and local JSON parsing.
+
+Mitigation: Review terminal output for missing or unexpected fields before relying on the reported popularity metrics.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/tjefferson/skills/skills-stats)
+- [ClawHub skill API endpoint](https://clawhub.ai/api/skill?slug={slug})
+- [ClawHub search API endpoint](https://clawhub.ai/api/search?q=SEARCH_TERM)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Code, Guidance]
+
+**Output Format:** [Markdown with inline bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces terminal commands that fetch public ClawHub API responses and summarize stats locally.]
+
+## Skill Version(s):
+
+1.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

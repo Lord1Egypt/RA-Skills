@@ -1,48 +1,62 @@
-## Description: <br>
-A Ren Zhengfei-style management persona that summarizes public Huawei and Ren Zhengfei materials into mental models for analyzing organizational evolution, crisis response, and management change. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language management-advice persona that helps an agent analyze organization evolution, crisis response, and management change through a Ren Zhengfei-style management philosophy lens.
 
-## Publisher: <br>
-[golngod](https://clawhub.ai/user/golngod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[golngod](https://clawhub.ai/user/golngod)
 
-## Use Case: <br>
-External users and organizational advisors use this skill to generate roleplayed management analysis in a Ren Zhengfei-inspired style for questions about organizational inertia, customer focus, crisis response, and management reform. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill roleplays in first person and could be mistaken for current, official, or endorsed statements from Ren Zhengfei or Huawei. <br>
-Mitigation: Label outputs as simulated analysis based on public materials and verify factual or business-critical claims against authoritative current sources. <br>
-Risk: Management recommendations may overfit Huawei-specific practices, culture, and scale. <br>
-Mitigation: Treat advice as a perspective for comparison, and adapt decisions to the user's organization, jurisdiction, workforce context, and risk tolerance. <br>
+## Use Case:
 
+External users can use this skill to generate AI-written management perspective analysis in Chinese, framed around Ren Zhengfei-style concepts such as gray management, entropy reduction, customer focus, self-criticism, and crisis response. Outputs should be treated as simulated perspective writing rather than authentic statements from Ren Zhengfei.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/golngod/renzhengfei-perspective) <br>
-- [README](README.md) <br>
-- [任正非 · 核心论点库](references/01-核心论点库.md) <br>
-- [任正非 · 即兴反应库](references/02-即兴反应库.md) <br>
-- [任正非 · 句式指纹库](references/03-句式指纹库.md) <br>
-- [任正非 · 外部观察模式库](references/04-外部观察模式库.md) <br>
-- [任正非 · 逻辑权重矩阵](references/05-逻辑权重矩阵.md) <br>
-- [任正非 · 思想演化时间线](references/06-思想演化时间线.md) <br>
-- [任正非 · 三重验证报告](references/07-三重验证报告.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Analysis] <br>
-**Output Format:** [Markdown or plain text conversational responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Roleplayed first-person management advice should be treated as generated simulation, not official guidance from Ren Zhengfei or Huawei.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill directs first-person responses as a real living business figure, which may be mistaken for authentic statements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disclose that outputs are AI-generated perspective writing and avoid using them where authentic source attribution or public representation of Ren Zhengfei's views matters.
+
+Risk: The artifact states that the management models have cultural, organizational-scale, and information-lag limitations.
+
+Mitigation: Use outputs as decision support only, and review advice against the user's current organization, culture, and available primary sources before acting.
+
+## Reference(s):
+
+- [Skill definition](SKILL.md)
+- [README](README.md)
+- [任正非 · 核心论点库](references/01-核心论点库.md)
+- [任正非 · 即兴反应库](references/02-即兴反应库.md)
+- [任正非 · 句式指纹库](references/03-句式指纹库.md)
+- [任正非 · 外部观察模式库](references/04-外部观察模式库.md)
+- [任正非 · 逻辑权重矩阵](references/05-逻辑权重矩阵.md)
+- [任正非 · 思想演化时间线](references/06-思想演化时间线.md)
+- [任正非 · 三重验证报告](references/07-三重验证报告.md)
+- [ClawHub skill page](https://clawhub.ai/golngod/skills/renzhengfei-perspective)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese prose or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persona-style management analysis based on bundled reference material]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

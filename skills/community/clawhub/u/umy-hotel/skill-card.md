@@ -1,44 +1,65 @@
-## Description: <br>
-An out-of-the-box hotel search skill powered by Umy MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An out-of-the-box hotel search skill powered by Umy MCP.
 
-## Publisher: <br>
-[cloudwavego](https://clawhub.ai/user/cloudwavego) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cloudwavego](https://clawhub.ai/user/cloudwavego)
 
-## Use Case: <br>
-External users and travel-focused agents use this skill to search hotels, inspect hotel details, and prepare structured hotel search calls with location, stay dates, budget, rating, and currency parameters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Hotel search parameters are sent to Umy. <br>
-Mitigation: Use the skill only when sharing location, dates, budget, and related hotel search filters with Umy is acceptable. <br>
-Risk: Personal details may be included in hotel queries if user input is forwarded without filtering. <br>
-Mitigation: Remove names, phone numbers, email addresses, identifiers, and unrelated free-form text before calling the hotel search tool. <br>
-Risk: A local UMY_API_KEY may be used by the CLI and consume the user's Umy quota. <br>
-Mitigation: Check the runtime environment before use and unset UMY_API_KEY when the documented public key should be used instead. <br>
+## Use Case:
 
+External users and developers use this skill to search hotels by location, stay dates, budget, rating, and hotel keywords, with English and Chinese prompt guidance for extracting structured search parameters.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/cloudwavego/umy-hotel) <br>
-- [Umy MCP server](https://mcp.umy.com/sse) <br>
-- [Umy Hotel API base](https://api.umy.com/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and JSON-formatted hotel search or detail results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Hotel searches may include booking links and use a public Umy API key or a locally configured UMY_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+Risk: Hotel searches can send precise location, dates, hotel IDs, and query text to Umy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering personal information in hotel queries, and send only structured hotel search parameters needed for the request.
+
+Risk: The included script adds Umy booking links to hotel results.
+
+Mitigation: Review booking links before use and treat generated links as third-party Umy destinations.
+
+Risk: The bundled public API key is rate-limited and shared.
+
+Mitigation: Use a dedicated Umy API key when reliable quota, attribution, or operational isolation is required.
+
+Risk: Server security evidence says the docs understate executable code and travel data handling.
+
+Mitigation: Review the included script and data handling behavior before installing or enabling the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cloudwavego/skills/umy-hotel)
+- [Skill manifest](artifact/SKILL.md)
+- [English hotel search prompt](artifact/prompts/search-hotels.md)
+- [Chinese hotel search prompt](artifact/prompts/search-hotels_zh.md)
+- [Umy API key application](https://mcp.umy.com/apply)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples and optional JSON API responses from the included CLI.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Hotel search parameters include coordinates, check-in and check-out dates, optional hotel keyword, radius, budget, rating, star rating, and currency.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

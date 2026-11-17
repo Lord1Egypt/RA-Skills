@@ -1,0 +1,477 @@
+{
+  "type": "token-lab-template",
+  "version": 1,
+  "name": "progressive-tool-no-compress",
+  "description": "MCP Full tools/list vs Hosted Tool Search vs Progressive Tool Schema",
+  "config": {
+    "unit": "K",
+    "baselineId": "plan-full",
+    "plans": [
+      {
+        "id": "plan-full",
+        "name": "MCP Full tools/list",
+        "color": "#5c9ebd",
+        "description": "Full schema loading: preload {{toolsTotalCount}} tool schemas; {{turnTotalCount}} turns; no compaction.",
+        "estimateDuration": true,
+        "simulation": {
+          "flow": {
+            "initial": [
+              {
+                "type": "action",
+                "text": "agent prompt",
+                "token": "initialContext.agentPromptToken"
+              },
+              {
+                "type": "action",
+                "text": "skills discover list",
+                "token": "skillIndexToken * skillsTotalCount"
+              },
+              {
+                "type": "action",
+                "text": "tools discover list",
+                "token": "toolsTotalCount * toolsIndexToken"
+              },
+              {
+                "type": "action",
+                "text": "tools schema list",
+                "token": "toolsTotalCount * toolSchemaToken"
+              }
+            ],
+            "turn": [
+              {
+                "type": "action",
+                "text": "user_message",
+                "token": "userMessageToken"
+              },
+              {
+                "type": "llm",
+                "text": "read_skills_plan",
+                "token": "readSkillPlanToken"
+              },
+              {
+                "type": "action",
+                "text": "read_skills",
+                "token": "skillDetailToken * turnAvgSkillsCount"
+              },
+              {
+                "type": "llm",
+                "text": "call_tools_plan",
+                "token": "callToolsPlanToken"
+              },
+              {
+                "type": "action",
+                "text": "call_tools",
+                "token": "toolResultToken * turnAvgToolsCount"
+              },
+              {
+                "type": "llm",
+                "text": "agent_result",
+                "token": "agentResult"
+              }
+            ]
+          },
+          "variables": {},
+          "initialContext": {
+            "agentPromptToken": 4
+          },
+          "turnTotalCount": 25,
+          "expectedPrefixCacheHitRate": 0.9,
+          "skillsTotalCount": 30,
+          "toolsTotalCount": 120,
+          "turnAvgSkillsCount": 0.33,
+          "turnAvgToolsCount": 1.5,
+          "skillIndexToken": 0.1,
+          "toolsIndexToken": 0.013,
+          "toolSchemaToken": 0.51,
+          "userMessageToken": 0.1,
+          "skillDetailToken": 3,
+          "toolResultToken": 3,
+          "readSkillPlanToken": 0.1,
+          "schemaPlanToken": 0.1,
+          "callToolsPlanToken": 0.3,
+          "agentResult": 1,
+          "compressionThresholdType": "TURN",
+          "compressionThresholdToken": 100,
+          "compressionThresholdTurnCount": 26,
+          "compressionTargetToken": 4,
+          "compressionKeepTurns": 1
+        },
+        "model": {
+          "name": "OpenAI · GPT-6 Astra · Short Context",
+          "currency": "$",
+          "inputCachedPrice": 1,
+          "inputNotCachedPrice": 10,
+          "outputPrice": 50
+        },
+        "pricing": {
+          "id": "openai:gpt-6-astra:tier-1",
+          "label": "Official USD Pricing Snapshot",
+          "source": "https://developers.openai.com/api/docs/pricing",
+          "date": "2026-10-27",
+          "note": "Standard text pricing with a manually selected context tier. No automatic tier switching; excludes cache-write fees, tool fees and regional surcharges. The selected tier applies to the whole simulated session."
+        },
+        "useGlobal": {
+          "turnTotalCount": true,
+          "skillsTotalCount": true,
+          "toolsTotalCount": true,
+          "turnAvgSkillsCount": true,
+          "turnAvgToolsCount": true,
+          "expectedPrefixCacheHitRate": true,
+          "initialContext.agentPromptToken": true,
+          "skillIndexToken": true,
+          "toolsIndexToken": true,
+          "toolSchemaToken": true,
+          "userMessageToken": true,
+          "skillDetailToken": true,
+          "toolResultToken": true,
+          "readSkillPlanToken": true,
+          "schemaPlanToken": true,
+          "callToolsPlanToken": true,
+          "agentResult": true,
+          "compressionThresholdTurnCount": true,
+          "compressionThresholdToken": true,
+          "compressionKeepTurns": true,
+          "compressionTargetToken": true,
+          "compressionThresholdType": true,
+          "model": true
+        }
+      },
+      {
+        "id": "plan-hosted",
+        "name": "Hosted Tool Search",
+        "description": "Hosted Tool Search: retrieve Top {{toolSearchTopK}} from {{toolsTotalCount}} tools on demand; {{turnTotalCount}} turns; no compaction.",
+        "color": "#c77891",
+        "estimateDuration": true,
+        "simulation": {
+          "flow": {
+            "initial": [
+              {
+                "type": "action",
+                "text": "agent prompt",
+                "token": "initialContext.agentPromptToken",
+                "durationSeconds": 0
+              },
+              {
+                "type": "action",
+                "text": "skills discover list",
+                "token": "skillsTotalCount * skillIndexToken",
+                "durationSeconds": 0
+              },
+              {
+                "type": "action",
+                "text": "Tool Search entry schema",
+                "token": "toolSearchEntryToken",
+                "durationSeconds": 0
+              }
+            ],
+            "turn": [
+              {
+                "type": "action",
+                "text": "user_message",
+                "token": "userMessageToken",
+                "durationSeconds": 0
+              },
+              {
+                "type": "llm",
+                "text": "read_skills_plan",
+                "token": "readSkillPlanToken",
+                "durationSeconds": 1.8
+              },
+              {
+                "type": "action",
+                "text": "read_skills",
+                "token": "skillDetailToken * turnAvgSkillsCount",
+                "durationSeconds": 0.3
+              },
+              {
+                "type": "llm",
+                "text": "Generate Tool Search query",
+                "token": "schemaPlanToken",
+                "durationSeconds": 1.8
+              },
+              {
+                "type": "action",
+                "text": "Tool Search retrieval and schema expansion",
+                "token": "toolSearchTopK * toolSchemaToken",
+                "durationSeconds": 0.35
+              },
+              {
+                "type": "llm",
+                "text": "call_tools_plan",
+                "token": "callToolsPlanToken",
+                "durationSeconds": 1.8
+              },
+              {
+                "type": "action",
+                "text": "call_tools",
+                "token": "toolResultToken * turnAvgToolsCount",
+                "durationSeconds": 1
+              },
+              {
+                "type": "llm",
+                "text": "agent_result",
+                "token": "agentResult",
+                "durationSeconds": 1.8
+              }
+            ]
+          },
+          "variables": {
+            "toolSearchEntryToken": {
+              "label": "Tool Search entry schema (K)",
+              "value": 0.4
+            },
+            "toolSearchTopK": {
+              "label": "Tool Search results per turn (tools)",
+              "value": 5
+            }
+          },
+          "initialContext": {
+            "agentPromptToken": 4
+          },
+          "turnTotalCount": 25,
+          "expectedPrefixCacheHitRate": 0.9,
+          "skillsTotalCount": 30,
+          "toolsTotalCount": 120,
+          "turnAvgSkillsCount": 0.33,
+          "turnAvgToolsCount": 1.5,
+          "skillIndexToken": 0.1,
+          "toolsIndexToken": 0.013,
+          "toolSchemaToken": 0.51,
+          "userMessageToken": 0.1,
+          "skillDetailToken": 3,
+          "toolResultToken": 3,
+          "readSkillPlanToken": 0.1,
+          "schemaPlanToken": 0.1,
+          "callToolsPlanToken": 0.3,
+          "agentResult": 1,
+          "compressionThresholdType": "TURN",
+          "compressionThresholdToken": 100,
+          "compressionThresholdTurnCount": 26,
+          "compressionTargetToken": 4,
+          "compressionKeepTurns": 1
+        },
+        "model": {
+          "name": "OpenAI · GPT-6 Astra · Short Context",
+          "currency": "$",
+          "inputCachedPrice": 1,
+          "inputNotCachedPrice": 10,
+          "outputPrice": 50
+        },
+        "pricing": {
+          "id": "openai:gpt-6-astra:tier-1",
+          "label": "Official USD Pricing Snapshot",
+          "source": "https://developers.openai.com/api/docs/pricing",
+          "date": "2026-10-27",
+          "note": "Standard text pricing with a manually selected context tier. No automatic tier switching; excludes cache-write fees, tool fees and regional surcharges. The selected tier applies to the whole simulated session."
+        },
+        "useGlobal": {
+          "turnTotalCount": true,
+          "skillsTotalCount": true,
+          "toolsTotalCount": true,
+          "turnAvgSkillsCount": true,
+          "turnAvgToolsCount": true,
+          "expectedPrefixCacheHitRate": true,
+          "initialContext.agentPromptToken": true,
+          "skillIndexToken": true,
+          "toolsIndexToken": true,
+          "toolSchemaToken": true,
+          "userMessageToken": true,
+          "skillDetailToken": true,
+          "toolResultToken": true,
+          "readSkillPlanToken": true,
+          "schemaPlanToken": true,
+          "callToolsPlanToken": true,
+          "agentResult": true,
+          "compressionThresholdTurnCount": true,
+          "compressionThresholdToken": true,
+          "compressionKeepTurns": true,
+          "compressionTargetToken": true,
+          "compressionThresholdType": true,
+          "model": true,
+          "variables.toolSearchEntryToken": false,
+          "variables.toolSearchTopK": false
+        }
+      },
+      {
+        "id": "plan-lazy",
+        "name": "Progressive Tool Schema",
+        "color": "#9a76c3",
+        "description": "Progressive schemas: index {{toolsTotalCount}} tools and load ~{{turnAvgToolsCount}} schemas per turn; {{turnTotalCount}} turns; no compaction.",
+        "estimateDuration": true,
+        "simulation": {
+          "flow": {
+            "initial": [
+              {
+                "type": "action",
+                "text": "agent prompt",
+                "token": "initialContext.agentPromptToken"
+              },
+              {
+                "type": "action",
+                "text": "skills discover list",
+                "token": "skillIndexToken * skillsTotalCount"
+              },
+              {
+                "type": "action",
+                "text": "tools discover list",
+                "token": "toolsTotalCount * toolsIndexToken"
+              }
+            ],
+            "turn": [
+              {
+                "type": "action",
+                "text": "user_message",
+                "token": "userMessageToken"
+              },
+              {
+                "type": "llm",
+                "text": "read_skills_plan",
+                "token": "readSkillPlanToken"
+              },
+              {
+                "type": "action",
+                "text": "read_skills",
+                "token": "skillDetailToken * turnAvgSkillsCount"
+              },
+              {
+                "type": "llm",
+                "text": "get_tools_schema_plan",
+                "token": "schemaPlanToken"
+              },
+              {
+                "type": "action",
+                "text": "get_tools_schema",
+                "token": "toolSchemaToken * turnAvgToolsCount"
+              },
+              {
+                "type": "llm",
+                "text": "call_tools_plan",
+                "token": "callToolsPlanToken"
+              },
+              {
+                "type": "action",
+                "text": "call_tools",
+                "token": "toolResultToken * turnAvgToolsCount"
+              },
+              {
+                "type": "llm",
+                "text": "agent_result",
+                "token": "agentResult"
+              }
+            ]
+          },
+          "variables": {},
+          "initialContext": {
+            "agentPromptToken": 4
+          },
+          "turnTotalCount": 25,
+          "expectedPrefixCacheHitRate": 0.9,
+          "skillsTotalCount": 30,
+          "toolsTotalCount": 120,
+          "turnAvgSkillsCount": 0.33,
+          "turnAvgToolsCount": 1.5,
+          "skillIndexToken": 0.1,
+          "toolsIndexToken": 0.013,
+          "toolSchemaToken": 0.51,
+          "userMessageToken": 0.1,
+          "skillDetailToken": 3,
+          "toolResultToken": 3,
+          "readSkillPlanToken": 0.1,
+          "schemaPlanToken": 0.1,
+          "callToolsPlanToken": 0.3,
+          "agentResult": 1,
+          "compressionThresholdType": "TURN",
+          "compressionThresholdToken": 100,
+          "compressionThresholdTurnCount": 26,
+          "compressionTargetToken": 4,
+          "compressionKeepTurns": 1
+        },
+        "model": {
+          "name": "OpenAI · GPT-6 Astra · Short Context",
+          "currency": "$",
+          "inputCachedPrice": 1,
+          "inputNotCachedPrice": 10,
+          "outputPrice": 50
+        },
+        "pricing": {
+          "id": "openai:gpt-6-astra:tier-1",
+          "label": "Official USD Pricing Snapshot",
+          "source": "https://developers.openai.com/api/docs/pricing",
+          "date": "2026-10-27",
+          "note": "Standard text pricing with a manually selected context tier. No automatic tier switching; excludes cache-write fees, tool fees and regional surcharges. The selected tier applies to the whole simulated session."
+        },
+        "useGlobal": {
+          "turnTotalCount": true,
+          "skillsTotalCount": true,
+          "toolsTotalCount": true,
+          "turnAvgSkillsCount": true,
+          "turnAvgToolsCount": true,
+          "expectedPrefixCacheHitRate": true,
+          "initialContext.agentPromptToken": true,
+          "skillIndexToken": true,
+          "toolsIndexToken": true,
+          "toolSchemaToken": true,
+          "userMessageToken": true,
+          "skillDetailToken": true,
+          "toolResultToken": true,
+          "readSkillPlanToken": true,
+          "schemaPlanToken": true,
+          "callToolsPlanToken": true,
+          "agentResult": true,
+          "compressionThresholdTurnCount": true,
+          "compressionThresholdToken": true,
+          "compressionKeepTurns": true,
+          "compressionTargetToken": true,
+          "compressionThresholdType": true,
+          "model": true
+        }
+      }
+    ],
+    "globalSimulation": {
+      "initialContext": {
+        "agentPromptToken": 4
+      },
+      "variables": {},
+      "estimateDuration": true,
+      "turnTotalCount": 25,
+      "skillsTotalCount": 30,
+      "toolsTotalCount": 120,
+      "turnAvgSkillsCount": 0.33,
+      "turnAvgToolsCount": 1.5,
+      "expectedPrefixCacheHitRate": 0.9,
+      "skillIndexToken": 0.1,
+      "toolsIndexToken": 0.013,
+      "toolSchemaToken": 0.51,
+      "userMessageToken": 0.1,
+      "skillDetailToken": 3,
+      "toolResultToken": 3,
+      "readSkillPlanToken": 0.1,
+      "schemaPlanToken": 0.1,
+      "callToolsPlanToken": 0.3,
+      "agentResult": 1,
+      "compressionThresholdTurnCount": 26,
+      "compressionThresholdToken": 100,
+      "compressionKeepTurns": 1,
+      "compressionTargetToken": 4,
+      "compressionThresholdType": "TURN"
+    },
+    "globalModelId": "openai:gpt-6-astra:tier-1",
+    "globalModel": {
+      "model": {
+        "name": "OpenAI · GPT-6 Astra · Short Context",
+        "currency": "$",
+        "inputCachedPrice": 1,
+        "inputNotCachedPrice": 10,
+        "outputPrice": 50
+      },
+      "pricing": {
+        "id": "openai:gpt-6-astra:tier-1",
+        "label": "Official USD Pricing Snapshot",
+        "source": "https://developers.openai.com/api/docs/pricing",
+        "date": "2026-10-27",
+        "note": "Standard text pricing with a manually selected context tier. No automatic tier switching; excludes cache-write fees, tool fees and regional surcharges. The selected tier applies to the whole simulated session."
+      }
+    },
+    "baselineMode": "auto"
+  }
+}

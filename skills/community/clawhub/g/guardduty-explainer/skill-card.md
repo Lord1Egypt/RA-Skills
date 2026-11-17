@@ -1,39 +1,51 @@
-## Description: <br>
-Translate GuardDuty findings into plain-English incident summaries with actionable response steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Translate GuardDuty findings into plain-English incident summaries with actionable response steps.
 
-## Publisher: <br>
-[anmolnagpal](https://clawhub.ai/user/anmolnagpal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[anmolnagpal](https://clawhub.ai/user/anmolnagpal)
 
-## Use Case: <br>
-Security analysts and cloud engineers use this skill to turn exported AWS GuardDuty findings into incident summaries, false-positive assessments, MITRE ATT&CK mappings, and prioritized response playbooks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may paste AWS credentials, access keys, secret keys, or session tokens with finding data. <br>
-Mitigation: Use only exported findings or console text and check inputs for credentials before analysis. <br>
-Risk: Generated containment or remediation AWS CLI commands could affect live cloud resources if run without review. <br>
-Mitigation: Review and adapt generated commands with an AWS operator before running them in a real account. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anmolnagpal/guardduty-explainer) <br>
+## Use Case:
+
+Security engineers and incident responders use this skill to interpret exported AWS GuardDuty findings, assess severity and false-positive likelihood, map activity to MITRE ATT&CK, and produce prioritized response steps.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: GuardDuty exports can contain sensitive operational identifiers.
+
+Mitigation: Review exports before use and remove unnecessary account IDs, resource IDs, IP addresses, hostnames, bucket or object names, usernames, and similar identifiers.
+
+Risk: Credentials or session material could be pasted alongside security findings.
+
+Mitigation: Do not include credentials, access keys, secret keys, or session tokens in the provided data.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with structured sections and inline AWS CLI commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided GuardDuty data only; generated AWS CLI commands should be reviewed before execution.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with incident summaries, response playbooks, and inline AWS CLI command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only analysis of user-provided GuardDuty exports or console text; no direct AWS account access.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

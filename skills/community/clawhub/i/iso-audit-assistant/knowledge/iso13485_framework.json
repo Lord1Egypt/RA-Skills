@@ -1,0 +1,38 @@
+{
+  "standard": "ISO 13485:2016 医疗器械质量管理体系",
+  "clause_keywords": {
+    "4": ["组织环境", "质量管理体系", "软件确认"],
+    "5": ["管理职责", "质量方针", "法规"],
+    "6": ["资源", "人员", "基础设施", "污染控制"],
+    "7": ["产品实现", "设计开发", "采购", "生产", "可追溯性", "灭菌"],
+    "8": ["测量分析改进", "反馈", "投诉", "警戒", "内部审核", "管理评审"]
+  },
+  "high_voltage_lines": [
+    {"id": "hv-md-design", "name_zh": "设计开发控制与确认", "name_en": "Design & development",
+     "keywords_zh": ["设计开发", "设计验证", "设计确认", "DHF"], "keywords_en": ["design control", "design validation"],
+     "description_zh": "医疗器械设计开发须有完整策划、验证、确认与转换，保留设计历史文件。",
+     "compliance_statement": ["已建立设计开发程序并形成DHF", "设计验证/确认已完成并有报告"]},
+    {"id": "hv-md-trace", "name_zh": "可追溯性（医疗器械）", "name_en": "Traceability",
+     "keywords_zh": ["可追溯", "追溯", "UDI", "唯一标识"], "keywords_en": ["traceability", "UDI"],
+     "description_zh": "须按法规要求建立医疗器械可追溯性，覆盖原料至成品及植入/高风险器械。",
+     "compliance_statement": ["已建立可追溯性程序", "高风险器械实现唯一标识追溯"]},
+    {"id": "hv-md-sterile", "name_zh": "灭菌过程确认与污染控制", "name_en": "Sterilization & contamination",
+     "keywords_zh": ["灭菌", "无菌", "污染控制", "洁净区"], "keywords_en": ["sterilization", "aseptic"],
+     "description_zh": "无菌器械须进行灭菌过程确认，并严格控制生产环境洁净与污染。",
+     "compliance_statement": ["灭菌过程已确认并再确认", "洁净区环境监测符合要求"]},
+    {"id": "hv-md-feedback", "name_zh": "反馈、投诉与警戒系统", "name_en": "Feedback & vigilance",
+     "keywords_zh": ["反馈", "投诉", "不良事件", "警戒", "召回"], "keywords_en": ["feedback", "complaint", "vigilance"],
+     "description_zh": "须建立反馈与投诉处理、不良事件报告（警戒）及召回机制。",
+     "compliance_statement": ["已建立投诉与反馈处理程序", "不良事件按法规上报"]}
+  ],
+  "required_procedures": [
+    {"id": "GP-DOC", "name": "文件控制程序", "clause": "4.2.4", "match_keywords": ["文件控制"], "priority": "high"},
+    {"id": "GP-REC", "name": "记录控制程序", "clause": "4.2.5", "match_keywords": ["记录控制"], "priority": "high"},
+    {"id": "GP-IA", "name": "内部审核程序", "clause": "8.2.4", "match_keywords": ["内部审核"], "priority": "high"},
+    {"id": "GP-MR", "name": "管理评审程序", "clause": "5.6", "match_keywords": ["管理评审"], "priority": "high"},
+    {"id": "SP-MD-001", "name": "设计开发控制程序", "clause": "7.3", "match_keywords": ["设计开发", "设计验证"], "priority": "high"},
+    {"id": "SP-MD-002", "name": "采购控制与供应商管理程序", "clause": "7.4", "match_keywords": ["采购控制", "供应商"], "priority": "high"},
+    {"id": "SP-MD-003", "name": "生产与服务控制程序（含可追溯性）", "clause": "7.5", "match_keywords": ["生产控制", "可追溯"], "priority": "high"},
+    {"id": "SP-MD-004", "name": "反馈与投诉、警戒控制程序", "clause": "8.2.1/8.2.2", "match_keywords": ["投诉", "反馈", "不良事件"], "priority": "high"}
+  ]
+}

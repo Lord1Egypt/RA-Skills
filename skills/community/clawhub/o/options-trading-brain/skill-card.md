@@ -1,40 +1,52 @@
-## Description: <br>
-Options Trading Brain generates options-trading signal analysis by combining whale-flow, Elliott Wave, Bollinger Band, trend, and liquidity-zone signals for a requested ticker. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Options Trading Brain is an options trading signal generator that combines whale flow, Elliott Wave, Bollinger Band, multi-timeframe trend, and liquidity-zone analysis into ticker-level trading signals.
 
-## Publisher: <br>
-[ssidharhubble](https://clawhub.ai/user/ssidharhubble) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ssidharhubble](https://clawhub.ai/user/ssidharhubble)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External traders and agent users use this skill to request options signals, stock analysis, trading setups, or ticker checks. Outputs should be treated as informational analysis requiring independent human review before any financial decision.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill gives broad, actionable options-trading signals while overstating how its analysis works.
+
+Mitigation: Treat outputs as informational analysis only, and require independent human review before any trade or portfolio decision.
+
+Risk: The skill's trading outputs are described by security evidence as overconfident and incompletely implemented.
+
+Mitigation: Validate market data, assumptions, and risk controls with trusted tools before relying on any generated setup.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and trading-focused agents use this skill to analyze a ticker and produce options setup guidance from market-data-derived signals. Outputs should be treated as informational analysis rather than verified financial advice. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Ticker lookups are sent to yfinance/Yahoo Finance data sources. <br>
-Mitigation: Use the skill only for tickers you are comfortable sharing with those market data services. <br>
-Risk: Generated options signals may be incomplete, delayed, or unsuitable for a specific trading decision. <br>
-Mitigation: Treat outputs as informational analysis and independently review any trade idea before acting. <br>
+**Output Format:** [Markdown with embedded Python and shell command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Options Trading Brain on ClawHub](https://clawhub.ai/ssidharhubble/options-trading-brain) <br>
+**Other Properties Related to Output:** [Trading outputs are generated from the skill's documented analysis dimensions and may depend on available market data.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with embedded Python and bash code blocks, plus concise ticker analysis text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on yfinance/Yahoo Finance market data availability; no API keys are required for core analysis.] <br>
+1.0.16 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.16 (source: SKILL.md frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

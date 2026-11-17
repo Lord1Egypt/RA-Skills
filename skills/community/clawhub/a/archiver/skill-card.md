@@ -1,39 +1,54 @@
-## Description: <br>
-Use the Archiver library for streaming archive packaging in Node.js, including ZIP/TAR archives, streams, strings, buffers, file paths, directories, glob patterns, and custom formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the Archiver library for streaming archive packaging in Node.js. Supports creating ZIP/TAR archives, appending content from streams, strings, buffers, file paths, directories, and glob patterns, as well as registering custom formats.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers use this skill to write Node.js archive-packaging code and guidance for ZIP/TAR creation, streaming downloads, directory packaging, file filtering, event handling, and custom archive formats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Archive packaging can unintentionally include sensitive or bulky paths when broad directory inputs are used. <br>
-Mitigation: Review selected files and prefer glob ignore patterns for paths such as .git, node_modules, secrets, and build outputs before creating archives. <br>
+## Use Case:
 
+Developers and engineers use this skill to create ZIP and TAR archives in Node.js, including streaming HTTP responses, in-memory archives, directory packaging, glob-based file selection, and custom archive formats.
 
-## Reference(s): <br>
-- [Archiver API Reference](references/api-reference.md) <br>
-- [ClawHub skill page](https://clawhub.ai/openlark/archiver) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with JavaScript and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Broad directory packaging can unintentionally include private files such as .git, .env, credentials, node_modules, or generated build output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Specify exact source and output paths, prefer glob allowlists or explicit ignore patterns, and review archive contents before sharing.
+
+Risk: Using archive.directory() for bulk packaging does not provide ignore or filter patterns.
+
+Mitigation: Use archive.glob() with ignore patterns or a reviewed file list when exclusions are required.
+
+## Reference(s):
+
+- [Archiver API Reference](references/api-reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/openlark/skills/archiver)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JavaScript and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes guidance on path selection, glob filtering, archive options, and error handling.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

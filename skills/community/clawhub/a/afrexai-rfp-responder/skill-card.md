@@ -1,39 +1,55 @@
-## Description: <br>
-Generates structured RFP responses including executive summary, requirements matrix, pricing, risk mitigation, timeline, and differentiators from user-provided RFP and company inputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured RFP responses including executive summaries, requirements matrices, pricing options, risk mitigation sections, timelines, and differentiators from user-provided RFP and company information.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Agencies, B2B service companies, and consultancies use this skill to draft proposal responses from RFPs, RFIs, or key requirements. It helps organize bid content into an executive summary, compliance matrix, pricing options, risk mitigation, timeline, and differentiators for human review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: RFPs, budgets, client names, pricing, contract identifiers, and past-win details may be confidential. <br>
-Mitigation: Use sanitized excerpts or approved summaries unless the organization has cleared the material for use with the agent. <br>
-Risk: Proposal drafts may contain inaccurate claims, incomplete compliance mapping, or unsupported differentiators. <br>
-Mitigation: Review generated responses against the source RFP, company evidence, pricing approvals, and legal or procurement requirements before submission. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-rfp-responder) <br>
+## Use Case:
 
+Agencies, B2B service companies, and consultancies use this skill to turn RFP, RFI, and proposal requirements into review-ready response drafts with compliance, pricing, risk, timeline, and differentiator sections.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown proposal draft with structured sections and review guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated content should be reviewed for accuracy, compliance, confidentiality, and bid strategy before submission.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may paste confidential pricing, customer names, regulated data, export-controlled details, or nonpublic win/loss information into the agent environment.
+
+Mitigation: Use only RFP and company information approved for the agent environment, and redact sensitive business or regulated information unless the workflow is authorized.
+
+Risk: Generated proposal drafts can contain inaccurate claims, unsupported differentiators, or misleading commitments.
+
+Mitigation: Review the response against the source RFP, company evidence, pricing approvals, and compliance requirements before submission.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-rfp-responder)
+- [AI Context Packs](https://afrexai-cto.github.io/context-packs/)
+- [Revenue Leak Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/)
+- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown proposal draft with structured sections and optional checklist-style review outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided RFP requirements and company details; generated proposal content should be reviewed before submission.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

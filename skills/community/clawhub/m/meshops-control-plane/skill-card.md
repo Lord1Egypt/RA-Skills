@@ -1,47 +1,64 @@
-## Description: <br>
-Distributed agent mesh for OpenClaw: ring-of-trust admission, CRDT-synced coordination across gateways, capability-contract routing, and governed task delegation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MeshOps Control Plane is a distributed agent mesh for OpenClaw with ring-of-trust admission, CRDT-synced coordination across gateways, capability-contract routing, and governed task delegation.
 
-## Publisher: <br>
-[likesjx](https://clawhub.ai/user/likesjx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[likesjx](https://clawhub.ai/user/likesjx)
 
-## Use Case: <br>
-OpenClaw operators use this skill to coordinate distributed agent systems across gateways with explicit trust controls, durable routing, and auditable delegation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: High-impact deployment and command actions can alter an OpenClaw environment when enabled. <br>
-Mitigation: Keep high-risk gates disabled by default and enable them only for trusted callers with an explicit operational need. <br>
-Risk: Downloaded deployment artifacts and smoke tests may execute code on the target host. <br>
-Mitigation: Restrict deploy sources, require expected SHA-256 hashes, and run downloaded artifact smoke tests only in a sandboxed or otherwise trusted environment. <br>
-Risk: Command execution is sensitive to task creation controls and environment configuration. <br>
-Mitigation: Use a strict command allowlist, tightly control operator accounts, and review environment variables before installation. <br>
+## Use Case:
 
+OpenClaw operators use this skill to coordinate work across multiple gateways, manage trust and delegation policy, bootstrap or repair the ansible plugin, and keep mesh operations auditable.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/likesjx/meshops-control-plane) <br>
-- [OpenClaw](https://openclaw.ai/) <br>
-- [OpenClaw Ansible plugin](https://github.com/likesjx/openclaw-plugin-ansible) <br>
-- [OpenClaw Ansible skill repository](https://github.com/likesjx/openclaw-skill-ansible) <br>
-- [Operator runbook](docs/operator-runbook.md) <br>
-- [Ansible coordination mesh specification](docs/ansible-mesh-spec.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown instructions with shell command examples and JSON task artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Coordinates OpenClaw mesh operations and emits task/action results through configured artifact files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.7 (source: server release metadata and artifact metadata.yaml) <br>
+Risk: Task-driven authority over plugin installs, skill deployment, gateway restarts, and command execution can affect operator-controlled gateways.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in an operator-controlled OpenClaw environment, keep high-risk gates disabled by default, and enable them only after caller identity is authenticated outside the task body.
+
+Risk: Untrusted task files, path fields, or deployment archives could expand the skill's operational scope.
+
+Mitigation: Accept task files only from trusted orchestration, strictly validate task and path fields, require SHA-256 archive checks, and harden archive extraction before enabling deployment.
+
+Risk: Command execution can exceed intended scope if command allowlists are broad or stale.
+
+Mitigation: Use exact command allowlists, keep command execution disabled unless needed, and review generated stdout, stderr, and status artifacts.
+
+## Reference(s):
+
+- [MeshOps Control Plane ClawHub Page](https://clawhub.ai/likesjx/skills/meshops-control-plane)
+- [OpenClaw](https://openclaw.ai/)
+- [openclaw-plugin-ansible](https://github.com/likesjx/openclaw-plugin-ansible)
+- [README](README.md)
+- [Operator Runbook](docs/operator-runbook.md)
+- [Runbook](docs/runbook.md)
+- [Plugin Capability Inventory](docs/plugin-capabilities-actual-v2026-03-03.md)
+- [Ansible Coordination Mesh Specification](docs/ansible-mesh-spec.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text, json]
+
+**Output Format:** [Markdown guidance with inline shell commands plus JSON and text artifacts from operational actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OpenClaw, the ansible plugin, jq, curl, tar, a SHA-256 tool, timeout, git, and operator-controlled environment gates for high-risk actions.]
+
+## Skill Version(s):
+
+0.1.7 (source: server release metadata and artifact metadata.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

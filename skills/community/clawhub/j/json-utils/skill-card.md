@@ -1,43 +1,59 @@
-## Description: <br>
-JSON Utils helps agents parse, repair, validate, and batch-process JSON from files, JSONL, tool calls, and unreliable LLM outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Robust JSON parsing and validation with Pydantic schemas, JSON Schema validation, batch processing, and automatic JSON repair for LLM outputs.
 
-## Publisher: <br>
-[kikikari](https://clawhub.ai/user/kikikari) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kikikari](https://clawhub.ai/user/kikikari)
 
-## Use Case: <br>
-Developers and agent operators use this skill to make JSON handling more reliable when consuming LLM output, validating tool-call payloads, or processing groups of JSON and NDJSON files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The command-line batch processor can read multiple local files and write a JSONL output file when an output path is supplied. <br>
-Mitigation: Run it only on intended files and review output paths before execution. <br>
-Risk: The skill depends on Python packages such as pydantic, json-repair, and jsonschema. <br>
-Mitigation: Install documented dependencies from trusted package sources and pin versions where reproducibility is required. <br>
-Risk: Automatic JSON repair may accept malformed model output by changing syntax. <br>
-Mitigation: Validate repaired data against a Pydantic model or JSON Schema before using it in downstream tools. <br>
+## Use Case:
 
+Developers and engineers use this skill to parse, repair, validate, and batch-process JSON from files, tool outputs, LLM responses, and JSON-Lines workflows.
 
-## Reference(s): <br>
-- [JSON Utils API Reference](references/api_reference.md) <br>
-- [ClawHub skill page](https://clawhub.ai/kikikari/json-utils) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell examples; CLI tools can emit JSON, JSONL, pretty-printed JSON, and validation summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Batch processing can parallelize local JSON file handling and optionally write JSONL result files when an output path is supplied.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Dependency version drift could change parsing or validation behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the skill in a virtual environment and pin pydantic, json-repair, and jsonschema versions before use.
+
+Risk: validate_tool_output.py is a convenience validator and may not meet strict JSON Schema enforcement needs.
+
+Mitigation: Use json_schema_validator.py for full JSON Schema validation when strict schema enforcement is required.
+
+Risk: German-heavy documentation may be misunderstood by non-German users.
+
+Mitigation: Review the API reference and script behavior carefully, or translate the documentation before operational use.
+
+## Reference(s):
+
+- [JSON Utils API Reference](references/api_reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/kikikari/skills/json-utils)
+- [Publisher Profile](https://clawhub.ai/user/kikikari)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline Python, shell, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce parsed JSON objects, validation results, batch result summaries, and error messages.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

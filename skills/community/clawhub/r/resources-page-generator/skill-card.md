@@ -1,40 +1,53 @@
-## Description: <br>
-When the user wants to create, optimize, or audit resources page or content hub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides creation, optimization, and auditing of resource pages and content hubs for discovery, structure, SEO, and related page strategy.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-External site teams, marketers, and builders use this skill to plan resources pages and content hubs that organize content types, navigation, filters, internal links, and SEO metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Project-context files may contain sensitive business or audience information that the skill can use to tailor recommendations. <br>
-Mitigation: Keep secrets and confidential data out of project-context files before invoking the skill. <br>
-Risk: Generated SEO, navigation, and content-structure guidance may be incorrect or unsuitable for a specific site. <br>
-Mitigation: Review recommendations before publishing changes to public resources pages or content hubs. <br>
+## Use Case:
 
+Developers, site builders, and marketing or content teams use this skill to plan resource centers, learning centers, content libraries, and related hubs with clear navigation, content organization, internal links, and SEO metadata.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/resources-page-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with structured sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces planning recommendations for resource hub structure, navigation, content types, internal linking, and SEO metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md metadata and release evidence) <br>
+Risk: Broad resource-related triggers may invoke the skill when a user intends a different resource or content-hub task.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the requested page type and defer to related content-strategy or tools-page-generator guidance when the request is about broader content strategy or standalone tools.
+
+Risk: The skill may read local project context files if they exist.
+
+Mitigation: Review project context files for sensitive or stale information before using them to shape externally shared resource-page guidance.
+
+## Reference(s):
+
+- [ClawHub skill page: resources-page-generator](https://clawhub.ai/kostja94/skills/resources-page-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with structured recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence release and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -28,6 +28,7 @@ ensure_package.pip("torchvision")
 ensure_package.pip("git+https://github.com/haoheliu/versatile_audio_super_resolution.git",
                    fallback_zip="versatile_audio_super_resolution-main.zip")
 ensure_package.pip("huggingface_hub")
+ensure_package.pip("torchcodec")
 
 from audiosr import build_model, super_resolution, save_wave
 import importlib.metadata
@@ -70,7 +71,7 @@ def enhance_audio_with_audiosr(
     MODEL_DIR.mkdir(exist_ok=True)  # 确保模型目录存在
 
     model = build_model(ckpt_path=MODEL_DIR, model_name=model_name, device=device)
-
+    print(f"1.**********************{output_path}************************")
     # 自动生成输出路径（如果未指定）
     if output_path is None:
         input_path = Path(input_path)
@@ -79,9 +80,15 @@ def enhance_audio_with_audiosr(
         output_dir.mkdir(exist_ok=True)
         output_path = output_dir / f"{base_name}_enhanced_48k.wav"# 默认输出到输入目录自动加 _enhanced_48k 后缀
     else:
-        output_path = Path(output_path)
-        output_path.parent.mkdir(parents=True, exist_ok=True)
-
+        # 传了路径 → 输出到你指定的目录
+        input_path = Path(input_path)
+        base_name = input_path.stem
+        # 把传入的 output_path 当作【目录】
+        output_dir = Path(output_path)
+        output_dir.mkdir(exist_ok=True)  # 创建你指定的目录
+        # 最终文件 = 指定目录 / 原名.wav
+        output_path = output_dir / f"{base_name}.wav"
+    print(f"2.**********************{output_path}************************")
     logger.info(f"开始超级分辨率增强... (steps={ddim_steps}, guidance={guidance_scale})")
     
     # 执行增强
@@ -140,10 +147,10 @@ def process_directory(input_dir: str, output_dir: str = None, **kwargs):
     for audio_file in audio_files:
         try:
             if output_dir:
-                out_path = Path(output_dir) / f"{audio_file.stem}_enhanced_48k.wav"
+                out_path = Path(output_dir) 
             else:
                 out_path = input_path.parent / f"{input_path.name}_enhanced_48k"# 默认输出到输入目录自动加 _enhanced_48k 后缀
-            
+            print(f"0.**********************{out_path}************************")
             enhance_audio_with_audiosr(
                 input_path=str(audio_file),
                 output_path=str(out_path) if out_path else None,

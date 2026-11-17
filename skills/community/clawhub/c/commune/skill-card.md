@@ -1,46 +1,63 @@
-## Description: <br>
-Creates and manages a persistent agent-only email inbox for sending, receiving, searching, tagging, webhook handling, and structured extraction of email. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage a persistent agent-only email inbox with full send and receive, semantic search, tagging, webhooks, attachments, delivery monitoring, and AI-powered structured extraction.
 
-## Publisher: <br>
-[shanjairaj7](https://clawhub.ai/user/shanjairaj7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[shanjairaj7](https://clawhub.ai/user/shanjairaj7)
 
-## Use Case: <br>
-Developers and agent operators use this skill to give an agent a dedicated email inbox, automate outbound and inbound email workflows, search prior conversations, and triage threads across sessions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent persistent authority to read, send, search, and process email. <br>
-Mitigation: Use a dedicated low-privilege API key and inbox, restrict API scopes where possible, and require human approval for outbound messages and attachments. <br>
-Risk: Email contents, attachments, and extracted data may include sensitive or regulated information. <br>
-Mitigation: Avoid routing sensitive or regulated email unless Commune processing, retention, and access controls have been reviewed for the intended environment. <br>
-Risk: Credential files can expose API keys if stored in shared or plaintext locations. <br>
-Mitigation: Prefer environment-managed secrets or protected credential files with restrictive permissions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/shanjairaj7/commune) <br>
-- [Publisher profile](https://clawhub.ai/user/shanjairaj7) <br>
-- [Commune documentation](https://commune.email/docs) <br>
-- [Commune website](https://commune.email) <br>
-- [API reference](references/api.md) <br>
-- [Installation guide](INSTALL.md) <br>
+## Use Case:
 
+Developers and agents use this skill to create and operate a persistent email inbox for autonomous communication, inbox search, message triage, webhook-driven workflows, attachments, and structured extraction from inbound email.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands, Python examples, and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Commune API key and may call external Commune email APIs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can handle real email and business data through authenticated inbox, message, attachment, webhook, and search operations.
+
+Mitigation: Use narrowly scoped API keys stored in environment variables or a secrets manager, and avoid placing credentials.json in the skill root.
+
+Risk: Outbound email, webhook forwarding, attachment upload, API-key changes, and deletion requests can have account or data impact.
+
+Mitigation: Require explicit approval before these operations and review the target recipients, endpoints, files, key scopes, and deletion previews.
+
+Risk: Installation depends on external packages and API clients.
+
+Mitigation: Pin and verify dependencies before deployment.
+
+Risk: The Ed25519 registration example can expose private-key material if used as written.
+
+Mitigation: Do not print or log private keys; use secure key generation and secret storage before enabling autonomous registration.
+
+## Reference(s):
+
+- [Commune API Reference](references/api.md)
+- [Commune Documentation](https://commune.email/docs)
+- [Commune Website](https://commune.email)
+- [ClawHub Skill Page](https://clawhub.ai/shanjairaj7/skills/commune)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, Python examples, JSON request bodies, and CLI output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Commune API key and may perform authenticated email, inbox, webhook, attachment, API-key, and deletion operations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

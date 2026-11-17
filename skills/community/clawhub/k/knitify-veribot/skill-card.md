@@ -1,43 +1,58 @@
-## Description: <br>
-Your research-backed health expert. Providing cited insights across PubMed, Clinical Trials, pet health, and pharmacology to help you make informed decisions with verifiable data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Knitify Health Chatbot provides cited health, pet-health, pharmacology, product, PubMed, and ClinicalTrials.gov research responses through Knitify's API.
 
-## Publisher: <br>
-[lingjun-li](https://clawhub.ai/user/lingjun-li) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lingjun-li](https://clawhub.ai/user/lingjun-li)
 
-## Use Case: <br>
-External users use this skill to ask health, science, pet health, drug, and product-research questions through Knitify and receive cited, chat-oriented research responses. Developers and agent operators can also use it to sign up for a Knitify API key and configure the required OpenClaw environment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Health questions, product URLs, and signup email addresses are sent to Knitify's service. <br>
-Mitigation: Avoid unnecessary personal identifiers or highly sensitive medical details in prompts, and review returned information before relying on it. <br>
-Risk: The skill requires a Knitify API key for research and product-analysis calls. <br>
-Mitigation: Store the key in OpenClaw configuration rather than chat, and rotate it if it is exposed. <br>
-Risk: Health, drug, and pet-health responses may be incomplete or unsuitable for a specific individual or animal. <br>
-Mitigation: Treat outputs as research assistance rather than medical or veterinary advice, and consult qualified professionals for decisions. <br>
+## Use Case:
 
+External users and agents use this skill to sign up for Knitify access and query Knitify for cited health, pet-health, drug, and product research responses. It supports research-oriented conversations and product analysis, not replacement of professional medical or veterinary advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lingjun-li/knitify-veribot) <br>
-- [Knitify service](https://knitify.innovohealthlabs.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Chat-oriented Markdown with JSON tool responses and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses may include citations, reference metadata, and credits-used fields when returned by the Knitify API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.9 (source: frontmatter and server release evidence) <br>
+Risk: Health, medication, pet-health, wellness, science, product URL, or email data may be sent to Knitify when the skill is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the signup and research tools only when the user is comfortable sharing that information; avoid entering sensitive personal medical details unless necessary.
+
+Risk: The security summary notes broad automatic triggers and limited consent/scoping for health-related questions.
+
+Mitigation: Confirm the user's intent before sending health, pet-health, drug, product, or wellness questions to the external Knitify service.
+
+Risk: Changing KNITIFY_API_URL can redirect requests and API-key-bearing traffic away from the expected service.
+
+Mitigation: Keep KNITIFY_API_URL pinned to the official HTTPS Knitify endpoint.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lingjun-li/skills/knitify-veribot)
+- [Knitify API service](https://knitify.innovohealthlabs.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON tool responses and markdown chat guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node and KNITIFY_API_KEY; signup collects an email address, and research or product calls send questions or product URLs to Knitify.]
+
+## Skill Version(s):
+
+1.1.9 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

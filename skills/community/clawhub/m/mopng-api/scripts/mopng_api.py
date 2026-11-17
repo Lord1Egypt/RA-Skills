@@ -3,18 +3,22 @@
 
 import argparse
 import ipaddress
-import json
-import mimetypes
 import os
 import struct
 import sys
 import time
-import uuid
 from pathlib import Path
-from urllib import error, request, parse
+from urllib import request, parse
 
-BASE_URL = "https://mo-api.mopng.cn"
-UPSCALE_URL = "https://mo-api.mopng.cn"
+try:
+    from _http import JsonHttpClient
+except ImportError:  # executed as a module (`python -m scripts.mopng_api`)
+    from scripts._http import JsonHttpClient
+
+DEFAULT_API_BASE_URL = "https://mo-api.mopng.cn"
+BASE_URL = os.getenv("MOPNG_API_BASE_URL", DEFAULT_API_BASE_URL).rstrip("/")
+# Separate entry so upscale can move to its own host without touching call sites.
+UPSCALE_URL = os.getenv("MOPNG_UPSCALE_BASE_URL", BASE_URL).rstrip("/")
 ALLOWED_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp"}
 MAX_BYTES = 25 * 1024 * 1024
 MAX_DIMENSION = 12000
@@ -35,13 +39,30 @@ _FORBIDDEN_RESULT_HOSTS = frozenset(
 
 
 def _workspace_root() -> Path:
+    """Workspace boundary for input/output paths.
+
+    Resolved once (no CWD fallback) so the security boundary does not drift with
+    the process working directory. Falls back to the checkout that contains these
+    scripts, then to CWD for callers outside the OpenClaw layout.
+    """
     env_root = os.getenv("OPENCLAW_WORKSPACE")
-    return Path(env_root).resolve() if env_root else Path.cwd().resolve()
+    if env_root:
+        return Path(env_root).expanduser().resolve()
+    # Layout: <root>/scripts/mopng_api.py — only use it when that layout holds.
+    script_file = Path(__file__).resolve()
+    if script_file.parent.name == "scripts":
+        return script_file.parent.parent
+    return Path.cwd().resolve()
 
 
 def _ensure_within(path: Path, root: Path, label: str) -> None:
+    """Reject paths whose fully resolved form escapes ``root``.
+
+    Both sides are normalised: ``..`` segments and symlinks are resolved before
+    the prefix check, so a literal path under the root cannot point outside it.
+    """
     try:
-        path.relative_to(root)
+        path.resolve(strict=False).relative_to(root.resolve())
     except ValueError:
         raise ValueError(f"{label} must be inside workspace: {root}")
 
@@ -264,51 +285,8 @@ def _validate_input_image(path: Path) -> bytes:
 def _api_request(method: str, endpoint: str, api_key: str, data: dict | None = None,
                  files: dict | None = None, timeout: int = 90, base_url: str = BASE_URL) -> dict:
     """Make API request with proper auth"""
-    url = f"{base_url}{endpoint}"
-    headers = {"Authorization": f"Bearer {api_key}"}
-    
-    if files:
-        # Multipart form data
-        boundary = f"----OpenClaw{uuid.uuid4().hex}"
-        body = bytearray()
-        
-        for k, v in (data or {}).items():
-            body.extend(f"--{boundary}\r\n".encode())
-            body.extend(f'Content-Disposition: form-data; name="{k}"\r\n\r\n'.encode())
-            body.extend(str(v).encode())
-            body.extend(b"\r\n")
-        
-        for field_name, (file_path, file_data) in files.items():
-            mime = mimetypes.guess_type(str(file_path))[0] or "application/octet-stream"
-            body.extend(f"--{boundary}\r\n".encode())
-            body.extend(
-                f'Content-Disposition: form-data; name="{field_name}"; filename="{file_path.name}"\r\n'.encode()
-            )
-            body.extend(f"Content-Type: {mime}\r\n\r\n".encode())
-            body.extend(file_data)
-            body.extend(b"\r\n")
-        
-        body.extend(f"--{boundary}--\r\n".encode())
-        headers["Content-Type"] = f"multipart/form-data; boundary={boundary}"
-        req = request.Request(url, method=method, data=bytes(body), headers=headers)
-    elif data:
-        # JSON data
-        body = json.dumps(data).encode()
-        headers["Content-Type"] = "application/json"
-        req = request.Request(url, method=method, data=body, headers=headers)
-    else:
-        req = request.Request(url, method=method, headers=headers)
-    
-    try:
-        with request.urlopen(req, timeout=timeout) as resp:  # nosec B310 — URL is fixed API host + path
-            return json.loads(resp.read().decode())
-    except error.HTTPError as e:
-        body = e.read().decode("utf-8", "ignore")
-        try:
-            parsed = json.loads(body)
-            raise RuntimeError(f"API error: {parsed.get('message', body)}")
-        except json.JSONDecodeError:
-            raise RuntimeError(f"HTTP {e.code}: {body}")
+    client = JsonHttpClient(base_url, {"Authorization": f"Bearer {api_key}"}, timeout)
+    return client.request(method, endpoint, data=data, files=files)
 
 
 def _upload_image(image_path: Path, api_key: str) -> str:

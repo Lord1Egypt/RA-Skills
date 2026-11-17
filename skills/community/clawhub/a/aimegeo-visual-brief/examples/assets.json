@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "assets": [
+    {
+      "id": "diagram-1",
+      "file": null,
+      "intended_use": "帮助读者理解流程关系",
+      "description": "待补充实际图片的可见内容描述",
+      "alt_text": "草稿：等待检查图片后填写",
+      "rights_source": "待记录来源",
+      "review": "needs_review"
+    }
+  ]
+}

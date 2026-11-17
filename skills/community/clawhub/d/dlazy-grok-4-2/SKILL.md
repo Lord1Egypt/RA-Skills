@@ -1,17 +1,17 @@
 ---
 name: dlazy-grok-4.2
-version: 1.2.0
-description: Efficient text generation, dialogue QA, and logical reasoning using Grok 4.2 text model.
+version: 1.3.4
+description: "Efficient text generation, dialogue QA, and logical reasoning using Grok 4.2 text model. 使用 Grok 4.2 文本大模型，进行高效的文本生成、对话问答与逻辑推理。"
 metadata:
   {
     'clawdbot':
       {
         'emoji': '🤖',
         'requires': { 'bins': ['npm', 'npx'] },
-        'install': 'npm install -g @dlazy/cli@latest',
-        'installAlternative': 'npx @dlazy/cli@latest',
-        'homepage': 'https://github.com/dlazyai/cli',
-        'source': 'https://github.com/dlazyai/cli',
+        'install': 'npm install -g @dlazy/cli@1.2.3',
+        'installAlternative': 'npx @dlazy/cli@1.2.3',
+        'homepage': 'https://github.com/dlazy-ai/cli',
+        'source': 'https://github.com/dlazy-ai/cli',
         'author': 'dlazyai',
         'license': 'see-repo',
         'npm': 'https://www.npmjs.com/package/@dlazy/cli',
@@ -22,7 +22,7 @@ metadata:
   }
 ---
 
-# dlazy-grok-4.2
+# 文本生成 Grok 4.2
 
 [English](./SKILL.md) · [中文](./SKILL-cn.md)
 
@@ -65,18 +65,18 @@ Each key is scoped to your dLazy organization and can be **rotated or revoked at
 
 ## About & Provenance
 
-- **CLI source code**: [github.com/dlazyai/cli](https://github.com/dlazyai/cli)
+- **CLI source code**: [github.com/dlazy-ai/cli](https://github.com/dlazy-ai/cli)
 - **Maintainer**: dlazyai
-- **npm package**: `@dlazy/cli` (pinned to `1.0.9` in this skill's install spec)
+- **npm package**: `@dlazy/cli` (pinned to `1.2.3` in this skill's install spec)
 - **Homepage**: [dlazy.com](https://dlazy.com)
 
 You can install on demand without persisting a global binary by running:
 
 ```bash
-npx @dlazy/cli@latest <command>
+npx @dlazy/cli@1.2.3 <command>
 ```
 
-Or, if you prefer a global install, the skill's `metadata.clawdbot.install` field declares the exact pinned version (`npm install -g @dlazy/cli@latest`). Review the GitHub source before installing.
+Or, if you prefer a global install, the skill's `metadata.clawdbot.install` field declares the exact pinned version (`npm install -g @dlazy/cli@1.2.3`). Review the GitHub source before installing.
 
 ## How It Works
 

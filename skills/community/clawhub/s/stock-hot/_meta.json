@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn77pgys59maz0wrb0584j5y8s8437yn",
+  "source": "github",
+  "owner": "0xjordansg-yolo",
+  "repo": "stock-analysis-aisa-claude",
+  "githubUrl": "https://github.com/0xjordansg-yolo/stock-analysis-aisa-claude",
+  "convertedFrom": "public/downloads/github/0xjordansg-yolo/stock-analysis-aisa-claude-skills-stock-hot.tar.gz",
+  "language": "en",
   "slug": "stock-hot",
-  "version": "1.0.0",
-  "publishedAt": 1776440152665
+  "version": "1.0.0"
 }

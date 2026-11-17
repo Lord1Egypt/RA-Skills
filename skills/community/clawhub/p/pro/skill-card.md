@@ -1,41 +1,56 @@
-## Description: <br>
-Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an existing skill) that extends Claude's capabilities with specialized knowledge, workflows, or tool integrations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an existing skill) that extends Claude's capabilities with specialized knowledge, workflows, or tool integrations.
 
-## Publisher: <br>
-[jash2368-collab](https://clawhub.ai/user/jash2368-collab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[jash2368-collab](https://clawhub.ai/user/jash2368-collab)
 
-## Use Case: <br>
-Developers and skill authors use this skill to plan, create, validate, package, and iterate on agent skills with concise instructions and reusable bundled resources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or updated skill content can introduce incorrect, overly broad, or misleading guidance. <br>
-Mitigation: Review generated SKILL.md and bundled resources before using or publishing the skill. <br>
-Risk: Packaging can include private or unrelated files from the selected skill directory. <br>
-Mitigation: Run packaging on a clean, dedicated skill folder and inspect generated .skill archives before sharing. <br>
+## Use Case:
 
+Developers and skill authors use this skill to design, create, validate, package, and iterate on agent skills with reusable instructions, references, scripts, and assets.
 
-## Reference(s): <br>
-- [Workflow Patterns](references/workflows.md) <br>
-- [Output Patterns](references/output-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline code blocks and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or package skill files when helper scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Bundled scripts can create directories, write files, and produce archives in user-selected locations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the scripts only in trusted workspaces on skill names and paths you control; avoid absolute paths and parent-directory path components.
+
+Risk: Packaging an untrusted skill folder can include unexpected local content in a .skill archive.
+
+Mitigation: Package only trusted skill folders and inspect the directory contents, including symlinks, before creating an archive.
+
+## Reference(s):
+
+- [Workflow Patterns](references/workflows.md)
+- [Output Patterns](references/output-patterns.md)
+- [ClawHub skill page](https://clawhub.ai/jash2368-collab/skills/pro)
+- [ClawHub publisher profile](https://clawhub.ai/user/jash2368-collab)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated skill files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local skill directories, example resource files, validation messages, and .skill archives when its bundled scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

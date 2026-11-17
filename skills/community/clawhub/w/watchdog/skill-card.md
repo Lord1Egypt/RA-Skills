@@ -1,44 +1,59 @@
-## Description: <br>
-Monitors websites, APIs, and cron jobs through Watch.dog, with tools to create, inspect, pause, resume, and delete monitors and watchdogs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors websites, APIs, ports, and scheduled tasks through Watch.dog, with tools to create checks, review status and uptime history, manage monitors and watchdogs, and configure public status pages.
 
-## Publisher: <br>
-[joseshiru](https://clawhub.ai/user/joseshiru) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joseshiru](https://clawhub.ai/user/joseshiru)
 
-## Use Case: <br>
-External users, developers, and site reliability teams use this skill to connect an agent to a Watch.dog account, review uptime or heartbeat status, and manage monitors, watchdogs, and public status pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store a Watch.dog API key locally and use it to access the user's monitoring account. <br>
-Mitigation: Use a revocable or scoped API key when available, protect the generated .env file, and install the skill only when account management is intended. <br>
-Risk: Authorized actions can create, pause, resume, delete, or publish monitoring resources. <br>
-Mitigation: Carefully confirm delete, pause, resume, create, and public status-page update requests before tool execution. <br>
-Risk: An incorrect WATCHDOG_API_URL could send credentials or account requests to the wrong endpoint. <br>
-Mitigation: Verify WATCHDOG_API_URL before entering credentials or testing the connection. <br>
+## Use Case:
 
+External users and developers use this skill to connect an agent to Watch.dog for uptime monitoring and heartbeat operations, including creating checks, viewing status, reviewing history, and managing public tracker pages.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/joseshiru/watchdog) <br>
-- [Watch.dog](https://watch.dog) <br>
-- [Watch.dog MCP endpoint](https://api.watch.dog/api/mcp_server.php) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown-oriented text responses with tool-returned status data, URLs, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Watch.dog API key and API URL; destructive and account-changing actions should be confirmed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, SKILL.md frontmatter, and package.json) <br>
+Risk: The skill handles Watch.dog API credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited-scope API key when available and protect any local .env file containing WATCHDOG_API_KEY.
+
+Risk: The remote API URL is configurable.
+
+Mitigation: Verify that WATCHDOG_API_URL points only to the intended Watch.dog endpoint before use.
+
+Risk: Delete and public status page operations can change account state, and confirmation is described but not enforced in code.
+
+Mitigation: Require explicit user confirmation before delete operations and review public tracker page changes before applying them.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/joseshiru/skills/watchdog)
+- [ClawHub publisher profile](https://clawhub.ai/user/joseshiru)
+- [Watch.dog](https://watch.dog)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries and setup guidance with tool-backed text results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include monitor IDs, uptime summaries, watchdog endpoint URLs, status page links, and setup instructions for WATCHDOG_API_KEY and WATCHDOG_API_URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

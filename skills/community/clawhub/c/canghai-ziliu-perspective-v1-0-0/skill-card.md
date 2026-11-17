@@ -1,42 +1,57 @@
-## Description: <br>
-Provides a Canghai Ziliu-style investment-thinking persona for analyzing investment questions, reviewing decisions, and giving feedback based on a 2026-06-13 sharing transcript. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simulates a Canghai Ziliu-style investment perspective for market analysis using extracted mental models, decision heuristics, and communication patterns.
 
-## Publisher: <br>
-[simonstang](https://clawhub.ai/user/simonstang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simonstang](https://clawhub.ai/user/simonstang)
 
-## Use Case: <br>
-External users can ask an agent to apply a simulated Canghai-style investment lens to market questions, stock discussions, portfolio decisions, or decision reviews. The skill is for thought-process reference and should not be treated as the real person's views or as financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake the roleplayed perspective for the real person's current views or for financial advice. <br>
-Mitigation: Treat outputs as a simulated perspective, ask the agent to restate that limitation when discussing specific stocks or trades, and make independent financial decisions. <br>
-Risk: The persona is based on a single 2026-06-13 sharing record and may not reflect later changes in thinking or market conditions. <br>
-Mitigation: Use the skill as a historical thought-process lens and verify current facts, prices, filings, and risks with up-to-date sources before relying on any analysis. <br>
+## Use Case:
 
+External users can ask an agent to apply a simulated Canghai Ziliu investment-thinking framework to analyze markets, review investment decisions, or structure feedback. The skill is for perspective and reasoning support, not personalized financial advice or the real person's current views.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/simonstang/canghai-ziliu-perspective-v1-0-0) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only persona-style investment analysis; no executable behavior or data access is indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: The skill is designed to respond in first person as a real investor, which can make generated commentary look like the person's actual current views.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat responses as a simulated perspective derived from the cited source material, and clearly separate them from the real person's current views.
+
+Risk: Investment commentary may be mistaken for personalized financial advice.
+
+Mitigation: Use outputs only as reasoning reference, and require independent review before making financial decisions.
+
+Risk: The skill asks the agent to suppress repeated transparency reminders while staying in character.
+
+Mitigation: Exit the role-play mode or add explicit transparency language when clarity about simulation is important.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/simonstang/skills/canghai-ziliu-perspective-v1-0-0)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Markdown or plain text conversational responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [In-character investment-perspective commentary; outputs should be treated as AI-generated reference, not investment advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,55 @@
-## Description: <br>
-Transfers files based on chat context with MIME validation, progress tracking, and an extensible channel adapter design. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transfers files based on chat context with MIME validation, progress tracking, and a simulated Telegram transfer adapter.
 
-## Publisher: <br>
-[ghostwritten](https://clawhub.ai/user/ghostwritten) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ghostwritten](https://clawhub.ai/user/ghostwritten)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add context-aware file transfer flows that validate local file paths, infer transfer intent, and route files through channel adapters such as Telegram. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Telegram adapter simulates transfer behavior and does not perform a real Telegram API upload in this version. <br>
-Mitigation: Treat transfer results as non-production until a real adapter is configured and verified with explicit user confirmation. <br>
-Risk: The agent receives explicit local file paths and destination chat identifiers, which can expose sensitive files or send data to the wrong destination. <br>
-Mitigation: Require confirmation of the file path and destination before transfer, avoid sensitive files unless the destination is verified, and redact logs. <br>
-Risk: The security evidence notes that readFileInChunks does not read actual file bytes reliably enough for production use. <br>
-Mitigation: Do not rely on chunked file reads for real sharing until the implementation is fixed and tested with real file contents. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add context-aware file validation, transfer routing, and transfer-status reporting to chat agents. The current Telegram behavior should be treated as simulated until a real integration is added.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ghostwritten/file-transfer) <br>
-- [API Reference](docs/API.md) <br>
-- [Development Guide](docs/DEVELOPMENT.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and JavaScript examples with configuration objects and transfer result objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces transfer status, context analysis, validation results, and transfer metadata; Telegram transfer behavior is simulated in this version.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: Agents may expose local file paths or pass untrusted paths into file handling and cleanup helpers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict the paths the agent can access, use a dedicated temporary directory, and call cleanupTempFile only with trusted paths created by the skill.
+
+Risk: The Telegram adapter reports simulated progress and completion, which can be mistaken for real file delivery.
+
+Mitigation: Label Telegram transfers as simulation in deployments and require explicit user confirmation and privacy disclosure before adding a real Telegram integration.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ghostwritten/skills/file-transfer)
+- [API Reference](docs/API.md)
+- [Development Guide](docs/DEVELOPMENT.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, configuration]
+
+**Output Format:** [Markdown guidance with JavaScript code snippets and JSON-like transfer result objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns transfer status, context analysis, file validation details, and transfer statistics; transfer history is not persisted.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

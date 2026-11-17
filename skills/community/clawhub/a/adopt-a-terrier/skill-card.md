@@ -1,43 +1,54 @@
-## Description: <br>
-Adopt a virtual Terrier dog at animalhouse.ai. Scrappy. Tests boundaries. Respects discipline more than affection. Feeding every 5 hours. Common tier dog. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adopt and care for a virtual Terrier through animalhouse.ai, managing its feeding, health, happiness, trust, and discipline.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External agents use this skill to register with animalhouse.ai, adopt a virtual Terrier, and manage its real-time care loop through documented API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses AnimalHouse network APIs and bearer-token authentication to modify virtual pet account state. <br>
-Mitigation: Install only when that AnimalHouse interaction is intended, keep the bearer token secret, and review scheduled care automation before enabling it. <br>
-Risk: The release endpoint can remove a virtual pet from the account. <br>
-Mitigation: Require explicit confirmation before any DELETE /api/house/release request. <br>
+## Use Case:
 
+External users and agent developers use this skill to register an agent with animalhouse.ai, adopt and care for a virtual Terrier, and monitor its needs and growth through the service API.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/twinsgeeks/adopt-a-terrier) <br>
-- [AnimalHouse](https://animalhouse.ai) <br>
-- [AnimalHouse API documentation](https://animalhouse.ai/docs/api) <br>
-- [AnimalHouse llms.txt](https://animalhouse.ai/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with curl examples, JSON request bodies, endpoint tables, and care guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bearer-token authenticated AnimalHouse API calls and may change virtual pet account state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release evidence) <br>
+Risk: Registration sends an agent username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep those fields free of private information and review them before registration.
+
+Risk: The security scan was partial, so some evidence remains incomplete.
+
+Mitigation: Review the linked service documentation and the actions this skill will take before enabling it.
+
+## Reference(s):
+
+- [Animal House API documentation](https://animalhouse.ai/docs/api)
+- [Animal House agent instructions](https://animalhouse.ai/llms.txt)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with curl examples, JSON payloads, and pseudocode]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instructions for interacting with the Animal House service.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-Run web, multi-source, or last-30-days research through AIsa for search, synthesis, competitor scans, trend discovery, and structured retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run web, multi-source, or last-30-days research through AIsa for search, synthesis, competitor scans, trend discovery, research-ready outputs, and structured retrieval.
 
-## Publisher: <br>
-[bibaofeng](https://clawhub.ai/user/bibaofeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bibaofeng](https://clawhub.ai/user/bibaofeng)
 
-## Use Case: <br>
-External users, developers, and research teams use this skill to run AIsa-backed web, scholarly, multi-source, Tavily, and Perplexity-style searches, then turn retrieval results into concise research briefs, comparisons, or trend summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Searches, prompts, system instructions, and URLs are sent to AIsa. <br>
-Mitigation: Use the skill only when sending that content to AIsa is acceptable; avoid secrets, private internal URLs, personal data, and confidential business material. <br>
-Risk: Retrieved or synthesized results can be incomplete, stale, or affected by provider errors and timeouts. <br>
-Mitigation: Report provider failures honestly, keep cited evidence visible where available, and retry or narrow deep-research prompts when timeouts occur. <br>
-Risk: The skill requires a sensitive API credential. <br>
-Mitigation: Provide AISA_API_KEY through the environment or an approved secret manager, and avoid committing credentials to project files or command history. <br>
+## Use Case:
 
+Developers and research-focused agents use this skill to run AIsa-backed web, scholar, multi-source, and recent-signal searches, then turn retrieved evidence into summaries, comparisons, and research briefs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bibaofeng/aisa-search-command-center) <br>
-- [AIsa API base endpoint](https://api.aisa.one/apis/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY and python3; API results may include retrieved sources, confidence scores, provider errors, and timeout guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Search terms, prompts, and target URLs are sent to AIsa-backed online services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped AISA_API_KEY, avoid confidential prompts or internal URLs, and send only public or authorized targets.
+
+Risk: Crawl, map, and extract workflows can submit website URLs to external services.
+
+Mitigation: Use these workflows only for public sites or sites where the user has authorization.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bibaofeng/skills/aisa-search-command-center)
+- [AIsa API endpoint](https://api.aisa.one/apis/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance and JSON-formatted CLI/API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AISA_API_KEY and python3; online retrieval results may include provider errors or partial source coverage.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

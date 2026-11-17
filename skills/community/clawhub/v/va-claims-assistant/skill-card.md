@@ -1,45 +1,60 @@
-## Description: <br>
-Researches and guides VA disability claims for U.S. military veterans across filing, evidence gathering, rating estimates, C&P exam preparation, supplemental claims, and appeals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research and guide VA disability claims for U.S. military veterans across filing, evidence preparation, appeals, combined rating calculations, and related benefits questions.
 
-## Publisher: <br>
-[Vanyanski](https://clawhub.ai/user/Vanyanski) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vanyanski](https://clawhub.ai/user/vanyanski)
 
-## Use Case: <br>
-Veterans, claims helpers, and representatives can use this skill to understand VA disability claim options, organize supporting evidence, estimate combined ratings, prepare nexus materials, and plan appeals. It is an educational aid and should not replace VA.gov, accredited representation, legal advice, medical advice, or official VA determinations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake estimated combined ratings, TDIU checks, PACT Act assumptions, or filing strategy for official VA decisions. <br>
-Mitigation: Present outputs as educational estimates and verify decisions with VA.gov, a VSO, or an accredited representative before filing or appealing. <br>
-Risk: The workflow may involve sensitive service, medical, and disability information. <br>
-Mitigation: Share only the personal health or service details needed for the task and avoid unnecessary disclosure in prompts or generated materials. <br>
-Risk: Claim guidance could be misunderstood as legal, medical, or official VA advice. <br>
-Mitigation: State that the skill is an educational aid and route legal, medical, and official eligibility questions to qualified professionals or VA sources. <br>
+## Use Case:
 
+External users and assisting agents use this skill to prepare VA disability claim conversations: identify claim paths, organize evidence, draft nexus-letter guidance, calculate estimated combined ratings, and plan appeals. It is informational and should be checked against VA.gov or an accredited representative before relying on claims strategy.
 
-## Reference(s): <br>
-- [VA Claims Assistant on ClawHub](https://clawhub.ai/Vanyanski/va-claims-assistant) <br>
-- [Common VA Conditions & Service Connection](references/conditions.md) <br>
-- [Nexus Letter Template & Guidance](references/nexus-template.md) <br>
-- [VA Combined Rating Math](references/rating-math.md) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown with optional shell command examples and structured checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include educational claim strategy notes, document checklists, nexus letter drafting guidance, and rating calculation command examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Benefits, filing strategy, TDIU eligibility, presumptive-condition rules, and rating estimates may be incomplete, outdated, or misapplied to a veteran's facts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as a claims-preparation aid only and verify important decisions with VA.gov or an accredited VSO, claims agent, or attorney.
+
+Risk: The rating calculator produces estimates that may be mistaken for official VA determinations.
+
+Mitigation: Present calculator results as informational estimates and confirm official ratings through VA decisions or VA.gov.
+
+Risk: Nexus-letter and medical-condition guidance can affect legal or medical decisions if treated as professional advice.
+
+Mitigation: Have medical opinions prepared or reviewed by qualified providers and claims strategy reviewed by an accredited representative.
+
+## Reference(s):
+
+- [Common VA Conditions & Service Connection](references/conditions.md)
+- [Nexus Letter Template & Guidance](references/nexus-template.md)
+- [VA Combined Rating Math](references/rating-math.md)
+- [ClawHub Skill Page](https://clawhub.ai/vanyanski/skills/va-claims-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands]
+
+**Output Format:** [Markdown guidance with optional command examples and JSON or text output from the rating calculator]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke the included local VA rating calculator script when individual disability percentages are provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

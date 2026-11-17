@@ -1,47 +1,56 @@
-## Description: <br>
-Send XCH to Twitter users via Go4Me address lookup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send XCH to Twitter users via Go4Me address lookup.
 
-## Publisher: <br>
-[Koba42Corp](https://clawhub.ai/user/Koba42Corp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[koba42corp](https://clawhub.ai/user/koba42corp)
 
-## Use Case: <br>
-External users and developers use this skill to resolve Go4Me profiles from Twitter-style handles, view the associated XCH address, and prepare or submit Chia payments through sage-wallet after confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can submit real XCH wallet transfers. <br>
-Mitigation: Verify the full resolved XCH address and payment amount before confirming any send or tip action. <br>
-Risk: Recipient lookup is not tightly scoped enough for the level of transfer risk. <br>
-Mitigation: Use only normal Twitter-style handles and reject unexpected handle formats before lookup. <br>
-Risk: Wallet certificate and key paths are sensitive secrets. <br>
-Mitigation: Keep wallet certificate and key paths private and avoid exposing them in prompts, logs, or shared transcripts. <br>
-Risk: The transfer workflow depends on sage-wallet. <br>
-Mitigation: Install sage-wallet only from a trusted source before using this skill for wallet operations. <br>
+## Use Case:
 
+External users and developers use this skill to resolve a Twitter handle to a Go4Me Chia address, review the resolved profile details, and send or tip XCH through Sage Wallet after confirmation.
 
-## Reference(s): <br>
-- [Go4Me Skill Page](https://clawhub.ai/Koba42Corp/go4me) <br>
-- [Go4Me](https://go4.me/) <br>
-- [Sage Wallet](https://github.com/xch-dev/sage) <br>
-- [Chia Network](https://www.chia.net/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON lookup results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May display resolved Go4Me profile fields, XCH addresses, wallet confirmation prompts, and transaction status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can help submit irreversible Chia transactions after user confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the resolved XCH address, recipient handle, exact mojo amount, and fee before approving any send or tip action.
+
+Risk: Natural-language payment requests can be ambiguous or misread.
+
+Mitigation: Use explicit command syntax for payment actions and avoid sending funds from vague requests until stricter handle validation, address validation, and amount limits are added.
+
+## Reference(s):
+
+- [Go4Me skill page](https://clawhub.ai/koba42corp/skills/go4me)
+- [Go4Me](https://go4.me/)
+- [Chia Network](https://www.chia.net/)
+- [Sage Wallet](https://github.com/xch-dev/sage)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown and command output with JSON lookup results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Sage Wallet for XCH transaction submission.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

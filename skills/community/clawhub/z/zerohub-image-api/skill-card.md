@@ -1,45 +1,59 @@
-## Description: <br>
-zeroHub image generation API skill that uses a user-provided ZEROHUB_API_KEY to check balance, submit image generation jobs, poll results, and optionally download generated images to a user-selected directory with HTTPS, zeroHub-host, and size limits by default. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+zeroHub Image API helps agents use a user-provided ZEROHUB_API_KEY to check balance, submit image generation jobs, poll results, and optionally download generated images to a user-selected directory.
 
-## Publisher: <br>
-[chenzihao0731](https://clawhub.ai/user/chenzihao0731) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenzihao0731](https://clawhub.ai/user/chenzihao0731)
 
-## Use Case: <br>
-Developers and automation users use this skill to connect agents or scripts to the zeroHub image generation API, including balance checks, image generation task submission, polling, and controlled download of generated image files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a sensitive ZEROHUB_API_KEY for API calls. <br>
-Mitigation: Provide the key through the ZEROHUB_API_KEY environment variable, avoid command tracing or logs that expose it, and install only if you trust zeroHub. <br>
-Risk: Generated image downloads create files in a local output directory. <br>
-Mitigation: Choose the output directory intentionally and rely on the default user-specified directory behavior rather than writing to unspecified locations. <br>
-Risk: Relaxing download controls can allow untrusted hosts or HTTP URLs. <br>
-Mitigation: Keep the default HTTPS and zeroHub-host restrictions for normal use; avoid --allowed-host or --allow-http with untrusted URLs. <br>
+## Use Case:
 
+Developers and external users use this skill to connect an agent workflow to zeroHub image generation, including balance checks, task submission, polling, and controlled local downloads of generated files.
 
-## Reference(s): <br>
-- [zeroHub homepage](https://zerohub.zhyy.ltd) <br>
-- [zeroHub API documentation](https://zerohub.zhyy.ltd/docs) <br>
-- [ClawHub skill page](https://clawhub.ai/chenzihao0731/zerohub-image-api) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/chenzihao0731) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, files] <br>
-**Output Format:** [Markdown guidance with shell commands and structured JSON command output; optional downloaded image files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ZEROHUB_API_KEY for API calls and writes downloaded files only to the user-specified output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: evidence release and skill frontmatter) <br>
+Risk: The skill uses a billing credential for zeroHub image generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat ZEROHUB_API_KEY as a billing credential, keep command tracing disabled, and confirm image-generation requests before execution.
+
+Risk: Changing ZEROHUB_BASE_URL, --allowed-host, or --allow-http can relax the default network and download protections.
+
+Mitigation: Use the default zeroHub endpoint and HTTPS-only host policy unless the alternate host or download URL is fully trusted.
+
+Risk: Downloaded image files are written to a user-selected directory.
+
+Mitigation: Choose an output directory private to the current user and review downloaded files before sharing them onward.
+
+## Reference(s):
+
+- [zeroHub website](https://zerohub.zhyy.ltd)
+- [zeroHub API documentation](https://zerohub.zhyy.ltd/docs)
+- [ClawHub skill page](https://clawhub.ai/chenzihao0731/skills/zerohub-image-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with shell commands and structured JSON from the helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local image files when downloads are requested.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

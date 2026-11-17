@@ -1,42 +1,54 @@
-## Description: <br>
-Manage Shopify orders, customers, products, and inventory through a Python MCP server connected to the Shopify Admin REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Shopify orders, customers, products, and inventory via natural language using the Shopify Admin REST API through a Python MCP server.
 
-## Publisher: <br>
-[dzunglaviet](https://clawhub.ai/user/dzunglaviet) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dzunglaviet](https://clawhub.ai/user/dzunglaviet)
 
-## Use Case: <br>
-Developers and operators use this skill to configure and interact with a Shopify MCP server so an agent can inspect and update store data such as orders, customers, products, inventory, and fulfillments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The configured MCP server can receive powerful Shopify Admin access that may change orders, fulfillments, customers, products, or inventory. <br>
-Mitigation: Use a dedicated Shopify app with only the required scopes, start with read-only scopes where possible, and explicitly confirm the target store and action before any mutation. <br>
-Risk: Shopify access tokens and multi-store credentials are sensitive and can expose store data or administrative actions if leaked. <br>
-Mitigation: Keep environment files out of source control and rotate or revoke tokens if they are exposed or no longer needed. <br>
-Risk: The setup depends on an external MCP server repository that is not included in this skill artifact. <br>
-Mitigation: Review and pin the external repository before use, then re-check its behavior and dependencies before granting Shopify Admin access. <br>
+## Use Case:
 
+Store operators, support teams, and developers use this skill to connect an agent to a Shopify MCP server for order, customer, product, fulfillment, and inventory administration across one or more stores.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dzunglaviet/shopify-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code blocks and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Shopify Admin credentials and an MCP server configured outside the skill artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The skill asks users to run unpinned third-party code with powerful Shopify credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned and audited shopify-mcp revision, lock dependencies, protect the Shopify token as a secret, and grant only the scopes needed.
+
+Risk: The skill can support high-impact store changes such as order cancellation, fulfillment, customer updates, and inventory changes.
+
+Mitigation: Require explicit confirmation before executing order cancellation, fulfillment, customer update, or inventory change actions.
+
+## Reference(s):
+
+- [Shopify MCP ClawHub listing](https://clawhub.ai/dzunglaviet/skills/shopify-mcp)
+- [shopify-mcp repository](https://github.com/dzunglaviet/shopify-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May trigger Shopify Admin REST API actions through configured MCP tools.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

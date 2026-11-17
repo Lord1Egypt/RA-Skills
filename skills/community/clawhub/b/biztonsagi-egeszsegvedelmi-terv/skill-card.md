@@ -1,42 +1,54 @@
-## Description: <br>
-Generates Hungarian construction safety and health plans (BET) with project data collection, risk assessment, safety requirements, and regulatory references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Hungarian Biztonsági és Egészségvédelmi Terv materials for construction projects, including required plan sections, safety controls, risk assessment structure, and intake questions.
 
-## Publisher: <br>
-[Izsook](https://clawhub.ai/user/Izsook) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[izsook](https://clawhub.ai/user/izsook)
 
-## Use Case: <br>
-Construction planners, contractors, and occupational safety professionals use this skill to collect project details and draft a Hungarian Biztonsági és Egészségvédelmi Terv. The final BET should be reviewed by a qualified occupational safety professional before use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Hungary <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A generated BET may be incomplete, legally insufficient, or mismatched to site-specific hazards. <br>
-Mitigation: Have a qualified occupational safety professional review the final BET before relying on it. <br>
-Risk: Project inputs can include personal, permit, plan, report, contract, or other confidential information. <br>
-Mitigation: Provide only the details needed for the plan, redact unnecessary sensitive information, and use a secure channel for sharing project materials. <br>
+## Use Case:
 
+Construction planners, contractors, and occupational safety professionals use this skill to draft Hungarian BET documentation and collect project-specific safety inputs for construction or execution projects.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Izsook/biztonsagi-egeszsegvedelmi-terv) <br>
-- [BET skill documentation](artifact/SKILL.md) <br>
-- [BET data collection checklist](artifact/BET-ADATLISTA.md) <br>
+### Deployment Geography for Use:
 
+Hungary
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance and structured document content for BET drafting] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe expected .docx, .pdf, and .xlsx deliverables for downstream document preparation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Completed intake forms may contain business-sensitive project information, tax IDs, contact details, permits, and construction documents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Handle collected inputs as business-sensitive material and share them only with authorized project participants.
+
+Risk: The generated BET may be incomplete or unsuitable for a specific construction site if used without professional review.
+
+Mitigation: Review the generated BET with a qualified occupational safety professional before relying on it for construction work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/izsook/skills/biztonsagi-egeszsegvedelmi-terv)
+- [Publisher profile](https://clawhub.ai/user/izsook)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance and document outlines for BET drafting]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe .docx, .pdf, and .xlsx deliverables for downstream document preparation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

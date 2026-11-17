@@ -1,45 +1,63 @@
-## Description: <br>
-Tracks package delivery status, queries logistics updates by tracking number, stores local delivery history, and supports phone-number binding for express monitoring workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+快递监控Skill - 查询快递物流、绑定手机号自动获取快递、同步到飞书
 
-## Publisher: <br>
-[hongjiahao371-pixel](https://clawhub.ai/user/hongjiahao371-pixel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hongjiahao371-pixel](https://clawhub.ai/user/hongjiahao371-pixel)
 
-## Use Case: <br>
-External users and agent operators use this skill to query package tracking numbers, review recent delivery history, and manage locally stored phone bindings for delivery monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Phone numbers and delivery history are stored locally in readable JSON despite documentation claiming encrypted phone storage. <br>
-Mitigation: Review the local data directory before use, avoid storing sensitive phone numbers on shared systems, and require implementation updates before relying on encrypted storage claims. <br>
-Risk: Tracking numbers are sent to Kuaidi100 endpoints for company detection and logistics lookup. <br>
-Mitigation: Use the skill only when users consent to sending tracking identifiers to Kuaidi100 and when that service is acceptable for the deployment environment. <br>
-Risk: Advertised automatic phone-based monitoring and Feishu synchronization are not fully supported by the artifact behavior. <br>
-Mitigation: Treat phone-based monitoring and Feishu sync as unavailable unless the maintainer updates the implementation and documentation. <br>
+## Use Case:
 
+External users and operators can use this skill to query courier tracking numbers, bind a phone number for delivery monitoring, view local shipment history, and summarize package statuses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hongjiahao371-pixel/express-monitor) <br>
-- [Kuaidi100 mobile site](https://m.kuaidi100.com/) <br>
-- [Kuaidi100 query endpoint](https://m.kuaidi100.com/query) <br>
-- [Kuaidi100 auto-detect endpoint](https://m.kuaidi100.com/apicenter/kdquerytools.do?method=autoComNum) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text command output and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local JSON files for phone bindings and delivery history under ~/.openclaw/workspace/data/express/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Tracking numbers are sent to Kuaidi100, and phone numbers plus shipment history are stored locally under the OpenClaw workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when users accept this data flow; disclose the Kuaidi100 lookup and local storage behavior before use.
+
+Risk: The artifact claims phone data is encrypted, but the security evidence says phone numbers are stored in plaintext.
+
+Mitigation: Remove the encryption claim until encryption is implemented, or add real protection and data minimization for stored phone numbers.
+
+Risk: Automatic sync and Feishu-related release claims are not fully supported by the artifact behavior described in the security guidance.
+
+Mitigation: Revise the skill before broad use to remove unsupported claims or implement the missing behavior.
+
+Risk: There is no delete or unbind workflow for locally stored phone data.
+
+Mitigation: Add a delete or unbind command so users can remove stored phone numbers and shipment history.
+
+## Reference(s):
+
+- [express-monitor ClawHub page](https://clawhub.ai/hongjiahao371-pixel/skills/express-monitor)
+- [Publisher profile](https://clawhub.ai/user/hongjiahao371-pixel)
+- [Kuaidi100 mobile query service](https://m.kuaidi100.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text and command-line output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs courier company, shipment status, recent tracking events, bound phone list, and local history summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

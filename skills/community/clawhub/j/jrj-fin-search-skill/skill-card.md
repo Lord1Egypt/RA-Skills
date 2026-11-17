@@ -1,43 +1,54 @@
-## Description: <br>
-Searches Chinese A-share financial news and research report summaries by keyword, source, and date range so agents can retrieve current market, company, and industry information from JRJ-backed endpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Chinese A-share financial news and research-report summaries by keyword, source, and time range so agents can retrieve current market, company, and industry information.
 
-## Publisher: <br>
-[haomanjia](https://clawhub.ai/user/haomanjia) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haomanjia](https://clawhub.ai/user/haomanjia)
 
-## Use Case: <br>
-External users and agents use this skill to search recent A-share market news, company updates, industry coverage, and brokerage research summaries. It is useful for financial question answering, market review, and information checking, but returned material should be treated as reference information rather than investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a JRJ API key and sends it as a request header to JRJ endpoints. <br>
-Mitigation: Store JRJ_API_KEY as an environment secret and do not paste real keys into prompts, logs, or client-side code. <br>
-Risk: Financial news and research report results may be incomplete, time-sensitive, or unsuitable as direct investment advice. <br>
-Mitigation: Treat returned financial information as reference material, verify important claims against authoritative sources, and avoid presenting results as investment recommendations. <br>
+## Use Case:
 
+External users and agents use this skill to search JRJ-backed A-share news and research-report summaries before answering finance, stock, market-event, or industry-research questions. It supports company tracking, industry monitoring, event review, source checking, and finance recap workflows.
 
-## Reference(s): <br>
-- [JRJ Claw homepage](https://ai.jrj.com.cn/claw) <br>
-- [API reference](references/api-reference.md) <br>
-- [ClawHub release page](https://clawhub.ai/haomanjia/jrj-fin-search-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/haomanjia) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Markdown, Guidance] <br>
-**Output Format:** [JSON or Markdown search results returned by a Node.js command-line tool] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JRJ_API_KEY and supports keyword, start time, optional end time, source, limit, and format arguments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill has an undocumented endpoint override that can send the API key and search terms to an arbitrary or unencrypted server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep JRJ_API_URL unset unless the endpoint is fully controlled, require HTTPS, store JRJ_API_KEY as a secret, and rotate the key if it was used with an untrusted or plaintext endpoint.
+
+Risk: Financial news and research-report summaries may be incomplete, time-sensitive, or unsuitable as investment advice.
+
+Mitigation: Treat outputs as informational, verify cited source links and dates, and require independent judgment before financial decisions.
+
+## Reference(s):
+
+- [API 接口参考](references/api-reference.md)
+- [JRJ Claw homepage](https://ai.jrj.com.cn/claw)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Markdown, Shell commands, Configuration instructions, API Calls]
+
+**Output Format:** [JSON or Markdown search results from a Node.js command-line script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JRJ_API_KEY. Results may be truncated and can include titles, dates, sources, links, summaries, organizations, and abstracts.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

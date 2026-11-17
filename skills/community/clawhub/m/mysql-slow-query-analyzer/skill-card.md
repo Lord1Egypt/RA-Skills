@@ -1,44 +1,58 @@
-## Description: <br>
-Analyzes MySQL EXPLAIN output and slow query logs to identify query performance bottlenecks and suggest indexes, SQL rewrites, and performance metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes MySQL EXPLAIN output and slow query logs to identify performance bottlenecks and suggest indexes, SQL rewrites, and query-quality metrics.
 
-## Publisher: <br>
-[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png)
 
-## Use Case: <br>
-Developers, DBAs, and engineering reviewers use this skill to inspect MySQL EXPLAIN output, slow query logs, and SQL snippets before or during performance troubleshooting. It helps prioritize slow queries and produces practical index, rewrite, and metric-based optimization guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Production slow logs, schemas, and SQL literals may contain sensitive customer data, hostnames, or business identifiers. <br>
-Mitigation: Redact sensitive values before pasting data into the skill or storing its outputs. <br>
-Risk: Index and SQL rewrite recommendations are heuristic and may be incorrect for a specific schema, workload, or MySQL version. <br>
-Mitigation: Review suggestions with EXPLAIN or EXPLAIN ANALYZE, test them in a non-production environment, and get DBA review before applying changes. <br>
-Risk: The artifact states limitations for stored procedures, triggers, complex multi-statement transactions, and optimality of index advice. <br>
-Mitigation: Use the skill as triage guidance for supported single-query cases and rely on database-native diagnostics for unsupported query forms. <br>
+## Use Case:
 
+Developers, database engineers, and DBAs use this skill to review MySQL queries, EXPLAIN plans, and slow-query log entries before release or during performance troubleshooting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shenghoo123-png/mysql-slow-query-analyzer) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown-style analysis reports, human-readable CLI text, and structured Python dictionaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces heuristic query optimization advice for local review; no network upload is indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Index and SQL rewrite recommendations are heuristic and may not be optimal for a production database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations with a DBA and validate them against representative data, EXPLAIN output, and workload behavior before applying changes.
+
+Risk: The parser accepts user-provided SQL, EXPLAIN output, and slow-query log text.
+
+Mitigation: Do not expose the parser as a long-running public service without input validation, size limits, and exception handling.
+
+Risk: The skill's guidance and examples are primarily Chinese-language.
+
+Mitigation: Install only when Chinese-language MySQL performance guidance is acceptable for the target users.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shenghoo123-png/skills/mysql-slow-query-analyzer)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown and JSON-style analysis reports with optional CLI command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are heuristic MySQL performance findings and should be reviewed before production database changes.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

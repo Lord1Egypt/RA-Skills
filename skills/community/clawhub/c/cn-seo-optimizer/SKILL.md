@@ -24,54 +24,6 @@ Most Chinese content skills are just generators. You are a **quality gate** — 
 
 ---
 
-## 🔄 Mandatory Workflow — Process Over Prose
-
-**You MUST follow this workflow for EVERY piece of content. No skipping steps.**
-
-### Analyze Mode (检查模式) — 6 Steps
-
-| Step | Action | Exit Criteria |
-|------|--------|---------------|
-| 1 | **Banned words scan** — Call API `/check` to scan for 广告法违禁词 | API response received, all violations listed |
-| 2 | **Severity classification** — Mark each violation 🔴High/🟡Medium/🔵Low | Every violation has severity label |
-| 3 | **Safe replacement** — Provide compliant alternative for EVERY banned word | Zero banned words remain in content |
-| 4 | **SEO audit** — Check keyword density, title length, content length per platform rules | SEO score ≥70/100 |
-| 5 | **Platform-specific check** — Verify against target platform's unique rules | All platform rules satisfied |
-| 6 | **Final verification** — Re-scan modified content via API | API returns `compliant: true` OR all remaining issues documented |
-
-### Generate Mode (创作模式) — 7 Steps
-
-| Step | Action | Exit Criteria |
-|------|--------|---------------|
-| 1 | **Clarify platform** — Identify target (Baidu/小红书/抖音/淘宝/京东) | Platform confirmed |
-| 2 | **Gather inputs** — Topic, keywords, audience, goal | All 4 inputs collected |
-| 3 | **Draft content** — Write following platform-specific rules below | Draft complete |
-| 4 | **Auto-compliance scan** — Call API `/check` on draft | API response received |
-| 5 | **Fix violations** — Replace ALL banned words with safe alternatives | Zero violations remain |
-| 6 | **SEO optimization** — Adjust keyword density, title, structure per platform | SEO score ≥70/100 |
-| 7 | **Final verification** — Re-scan via API, output compliance report | API returns `compliant: true` |
-
-**⛔ NEVER skip Step 4 (auto-compliance scan). Human review misses 23/23 violations in real cases.**
-
----
-
-## 🛡️ Anti-Rationalization Table
-
-**LLMs (and tired humans) will try to skip steps. Here are pre-written rebuttals:**
-
-| Excuse | Rebuttal |
-|--------|----------|
-| "This content looks fine, no need to scan" | Human reviewers missed 23 violations in a single Douyin script. Visual inspection is unreliable. API scan takes 3 seconds. |
-| "It's just a draft, I'll check compliance later" | "Later" never comes. Check NOW while the content is in front of you. Fixing after publish = ¥200K-1M fine. |
-| "The banned word list is enough, no API needed" | The list covers obvious words. API catches semantic equivalents: "全网zui低" (pinyin), "绝对有效" (implied absolute), "医院推荐" (implied authority). |
-| "This platform doesn't enforce strictly" | Douyin removed 12M+ videos in 2025 for compliance violations. Enforcement is increasing, not decreasing. |
-| "I only changed one word, no need to re-scan" | One word change can create new violations in context. Re-scan takes 3 seconds. Skipping it risks ¥200K. |
-| "SEO score 60 is good enough" | Score <70 means content won't rank on Baidu first page. The difference between page 1 and page 2 is 95% traffic loss. |
-| "I'll optimize SEO after publishing" | Post-publish optimization means lost indexing time. Baidu re-crawls every 1-4 weeks. Get it right the first time. |
-| "This is for a small account, compliance doesn't matter" | Small accounts get penalized MORE — no brand authority to buffer. One violation = account shadow-banned. |
-
----
-
 ## 🚀 API-Powered Detection (NEW)
 
 This skill includes **executable scripts** that connect to a real-time compliance API:
@@ -133,6 +85,31 @@ CN_SEO_TOKEN=your-token-here  # Optional: unlimited checks
 - User wants to **write** Chinese content for Baidu / Xiaohongshu / Douyin / Taobao / JD
 - User mentions 违禁词, 广告法, 合规, 关键词密度, or any Chinese platform SEO term
 - User has existing Chinese content that needs optimization
+
+---
+
+## Two Modes of Operation
+
+### Mode 1: Analyze (检查模式)
+
+When the user provides existing content to check:
+
+1. **Banned words scan** — Check for 广告法违禁词 (advertising law violations) via API
+2. **Keyword density analysis** — Check if keywords are within optimal range
+3. **Title placement check** — Verify keyword position in title per platform rules
+4. **Content length check** — Verify content meets platform expectations
+5. **Platform-specific issues** — Check for platform-specific SEO problems
+6. **Output**: Detailed report with specific fixes
+
+### Mode 2: Generate (创作模式)
+
+When the user wants new content:
+
+1. **Clarify platform** (Baidu / Xiaohongshu / Douyin / Taobao / JD)
+2. **Gather info** (topic, keywords, audience, goal)
+3. **Generate content** following platform-specific rules below
+4. **Auto-check** the generated content against all compliance rules (use API)
+5. **Output**: Optimized content + compliance report
 
 ---
 

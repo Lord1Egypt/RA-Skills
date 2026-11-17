@@ -1,42 +1,57 @@
-## Description: <br>
-Swap or trade tokens via decentralized exchanges on supported chains using authenticated wallet commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Swap Tokens helps an agent guide and execute token swaps through decentralized exchanges on supported chains using fdx commands.
 
-## Publisher: <br>
-[rachidjarray-hk-qa-fdt](https://clawhub.ai/user/rachidjarray-hk-qa-fdt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rachidjarray-hk-qa-fdt](https://clawhub.ai/user/rachidjarray-hk-qa-fdt)
 
-## Use Case: <br>
-External users and developers use this skill to prepare and execute token swaps through decentralized exchanges after confirming authentication, balances, token identifiers, amounts, chain, and slippage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can execute real crypto trades from an authenticated wallet. <br>
-Mitigation: Require human confirmation of the chain, token symbols or contract addresses, input amount, expected output, and slippage before approving a swap. <br>
-Risk: A vague request for token information could be interpreted as permission to swap. <br>
-Mitigation: Use explicit wording for price, balance, or general token questions when no trade should be executed. <br>
-Risk: Insufficient balance, unavailable liquidity, or slippage can cause a swap to fail or produce a different output than expected. <br>
-Mitigation: Check wallet authentication and balances first, use explicit token identifiers where needed, and set max slippage for sensitive or large swaps. <br>
+## Use Case:
 
+Developers and wallet operators use this skill to have an agent check authentication and balances, confirm trade details, and prepare or run fdx token-swap commands for DEX swaps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rachidjarray-hk-qa-fdt/swap-tokens) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces fdx status, wallet overview, and swapTokens command guidance; does not define a structured machine-readable output format.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: A proposed swap is a financial transaction that can move wallet value.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify token addresses, chain, amount, slippage, and destination asset before approving execution.
+
+Risk: Broad trading language can trigger swap assistance even when intent is ambiguous.
+
+Mitigation: Confirm the user's intent and swap details before running value-moving fdx commands.
+
+Risk: DEX swaps can produce different final output because of slippage or liquidity conditions.
+
+Mitigation: Use explicit slippage controls for sensitive swaps and review the proposed route before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rachidjarray-hk-qa-fdt/skills/swap-tokens)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires human confirmation before value-moving swap execution.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

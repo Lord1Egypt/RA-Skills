@@ -1,44 +1,53 @@
-## Description: <br>
-Paper Code HTML guides agents to analyze a research paper and its corresponding codebase, then generate an academic-style HTML report covering methodology, experiments, implementation details, and paper-code consistency. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+论文与代码深度解析。当用户需要生成精美科研风格HTML文档来解析论文与其对应代码实现时使用。涵盖论文的理论贡献、方法框架、实验评估，以及代码实现与论文的一致性分析。
 
-## Publisher: <br>
-[leogoat2004](https://clawhub.ai/user/leogoat2004) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leogoat2004](https://clawhub.ai/user/leogoat2004)
 
-## Use Case: <br>
-Developers, researchers, and technical writers use this skill to turn a paper plus its implementation into a structured HTML explainer. It helps compare theory, experiments, core code, and paper-code alignment for review or documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow reads user-supplied paper and code paths and writes an HTML report. <br>
-Mitigation: Provide only the specific files or directories needed for the report, and avoid broad or confidential paths unless the full workflow is trusted. <br>
-Risk: The generated report can include sensitive code details, paper excerpts, or project-specific analysis. <br>
-Mitigation: Review the HTML before sharing it and use only papers and codebases you are authorized to analyze. <br>
-Risk: Paper and code interpretation may be incomplete or inaccurate. <br>
-Mitigation: Verify technical claims, experiment summaries, and code-paper consistency findings against the original paper and source code before relying on the report. <br>
-Risk: The skill expects a referenced frontend-design workflow for higher-quality HTML output. <br>
-Mitigation: Proceed with a simplified HTML fallback only when acceptable, and inspect the final report for layout and content quality. <br>
+## Use Case:
 
+Developers, researchers, and technical readers use this skill to turn a research paper and corresponding codebase into a structured academic-style HTML analysis report. The report covers research background, method design, experiments, implementation details, and paper-code alignment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leogoat2004/paper-code-html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, files, guidance] <br>
-**Output Format:** [HTML report file with structured analytical prose and generated HTML/CSS/JavaScript as needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided paper path, code path, and HTML output path; validates paths before writing and may use a frontend-design skill when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill reads user-provided papers and source code and summarizes them into an HTML report, which may expose sensitive or private material if used on confidential inputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only papers and code that are approved for analysis and review the generated report before sharing it.
+
+Risk: The skill writes an HTML file to a user-selected location.
+
+Mitigation: Validate the output path and write only to an allowed, user-approved directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leogoat2004/skills/paper-code-html)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, configuration, guidance]
+
+**Output Format:** [HTML document]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a single HTML report to a validated user-approved output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

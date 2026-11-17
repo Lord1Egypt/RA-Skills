@@ -1,46 +1,54 @@
-## Description: <br>
-抖音全网实时热点 helps content creators, operators, e-commerce teams, and marketers retrieve current Douyin hotlist topics and rising discussion signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+查询并整理抖音实时热榜与热搜总榜，提供热点词、排名、热度值和更新时间，支持内容运营、电商营销和选题跟进。
 
-## Publisher: <br>
-[allinherog-star](https://clawhub.ai/user/allinherog-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[allinherog-star](https://clawhub.ai/user/allinherog-star)
 
-## Use Case: <br>
-Content creators, operations teams, e-commerce teams, and marketers use this skill to check current Douyin hotlist entries and identify timely topics for daily trend scans, content planning, and follow-up analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a sensitive API key and sends requests to ai-skills.ai. <br>
-Mitigation: Provide only the required AI Skills API key through environment variables and avoid sharing it in prompts or parameters. <br>
-Risk: Business context sent in parameters could be exposed to an external service. <br>
-Mitigation: Avoid confidential business context and review parameters before invocation. <br>
-Risk: Implicit invocation may call the external service unexpectedly in permissive agent environments. <br>
-Mitigation: Narrow or disable implicit invocation where supported. <br>
+## Use Case:
 
+内容创作者、运营和营销人员可用它查看抖音当前热点，为热点速览、日报整理和当日选题收集线索。
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/allinherog-star/douyin-hotlist-overall) <br>
-- [AI Skills](https://ai-skills.ai) <br>
-- [Douyin hot search endpoint](https://www.douyin.com/aweme/v1/web/hot/search/list/) <br>
-- [Skill configuration](references/skill.json) <br>
-- [Input schema](references/form-schema.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON data, text, guidance] <br>
-**Output Format:** [JSON response with hotlist entries, timestamps, ranking positions, heat values, and execution metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISKILLS_API_KEY and calls ai-skills.ai for Douyin hotlist results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The API key and tenant ID are sent to ai-skills.ai, and API use may incur charges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an API key you control and check usage charges.
+
+Risk: Server-side processing and any separate installer are outside this artifact review.
+
+Mitigation: Review separate installer code before running it and account for remote processing.
+
+## Reference(s):
+
+- [AI Skills skill page](https://ai-skills.ai/zh/skills/douyin-hotlist-overall)
+- [Douyin hot search endpoint](https://www.douyin.com/aweme/v1/web/hot/search/list/)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Analysis, Guidance]
+
+**Output Format:** [Structured JSON data with concise text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include hot topics, rankings, heat values, update times, and optional keyword-filter results.]
+
+## Skill Version(s):
+
+1.0.8 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,63 @@
-## Description: <br>
-Extracts structured JSON from shipping booking notes and shipping instructions in PDFs, images, scans, Word, Excel, and RTF files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts structured JSON from sea-shipping booking notes and shipping instructions in PDF, image, scanned, Word, Excel, and RTF formats.
 
-## Publisher: <br>
-[brucezhouzhou](https://clawhub.ai/user/brucezhouzhou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucezhouzhou](https://clawhub.ai/user/brucezhouzhou)
 
-## Use Case: <br>
-Logistics teams and external users use this skill to extract booking and shipping-instruction fields from uploaded transport documents into a structured JSON record for review or downstream entry. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Uploaded booking-document text or images are sent to the configured AI provider for extraction. <br>
-Mitigation: Confirm the selected provider and API key before use, avoid unrelated or highly sensitive files, and follow the provider's data-handling terms. <br>
-Risk: Document parsers process PDFs, Office files, images, and RTF content from user uploads. <br>
-Mitigation: Use patched parser dependencies, prefer pinned versions, and scan files before processing in sensitive environments. <br>
+## Use Case:
 
+External logistics teams and agents use this skill to turn uploaded shipping booking files into a standardized booking JSON, with low-confidence fields flagged for human review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brucezhouzhou/shipping-booking) <br>
-- [Booking Note Schema](references/schema.md) <br>
-- [Anthropic API host](https://api.anthropic.com) <br>
-- [OpenAI API host](https://api.openai.com) <br>
-- [DeepSeek API endpoint](https://api.deepseek.com/v1) <br>
-- [DashScope OpenAI-compatible endpoint](https://dashscope.aliyuncs.com/compatible-mode/v1) <br>
-- [Moonshot API endpoint](https://api.moonshot.cn/v1) <br>
-- [Zhipu GLM API endpoint](https://open.bigmodel.cn/api/paas/v4) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON in a Markdown code block, with optional low-confidence guidance text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a booking or shipping-instruction file and an Anthropic or OpenAI-compatible API key; document text or images may be sent to the configured AI provider.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: Sensitive booking documents, including commercial and personal shipping details, can be sent to the configured AI provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that data transfer is acceptable and use a trusted provider endpoint.
+
+Risk: OPENAI_BASE_URL can direct model requests to an untrusted host.
+
+Mitigation: Avoid untrusted custom endpoints and configure only trusted provider URLs.
+
+Risk: The skill can auto-read local OpenClaw auth profiles to find API credentials.
+
+Mitigation: Review OpenClaw auth-profile access before use, especially in shared or sensitive environments.
+
+Risk: Sensitive workflows may be affected by unpinned Python dependencies.
+
+Mitigation: Use an isolated environment with pinned dependencies for production or sensitive document processing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brucezhouzhou/skills/shipping-booking)
+- [Publisher profile](https://clawhub.ai/user/brucezhouzhou)
+- [Booking Note Schema](artifact/references/schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Standardized JSON with optional human-review warnings in Markdown text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports low-confidence fields and rejects files that do not appear to be shipping booking documents.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

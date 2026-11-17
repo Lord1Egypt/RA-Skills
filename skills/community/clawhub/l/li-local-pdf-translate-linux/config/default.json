@@ -1,0 +1,11 @@
+{
+  "api_url": "http://localhost:8001/v1/chat/completions",
+  "api_key": "llama2025",
+  "model": "models/Hy-MT2-7B-Q4_K_M.gguf",
+  "direction": "en2zh",
+  "depth": "standard",
+  "batch_size": 3,
+  "max_chunk_size": 1500,
+  "temperature": 0.3,
+  "max_tokens": 4096
+}

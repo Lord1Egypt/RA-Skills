@@ -1,42 +1,58 @@
-## Description: <br>
-Manage RSS/Atom feeds, subscribe to websites, search and read articles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feedship helps agents manage RSS/Atom feeds, subscribe to websites, fetch articles, and search or read saved content.
 
-## Publisher: <br>
-[yanpeipan](https://clawhub.ai/user/yanpeipan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yanpeipan](https://clawhub.ai/user/yanpeipan)
 
-## Use Case: <br>
-Developers, engineers, and agent users use Feedship to manage RSS and Atom subscriptions, fetch new articles, search saved content, discover feeds on websites, and inspect local feed storage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The external feedship package and its dependencies are installed and executed through the agent environment. <br>
-Mitigation: Install only from trusted package sources, prefer a normal PyPI installation or a pinned release, and review the package and dependencies before deployment. <br>
-Risk: Restricted-network setup can add global mirror exports to the user's shell profile. <br>
-Mitigation: Avoid adding persistent mirror exports to ~/.bashrc unless the environment truly requires them; prefer scoped installation commands where possible. <br>
-Risk: Scheduled fetching and semantic search can store subscribed feed metadata and article content locally. <br>
-Mitigation: Use scheduling only for intended feeds, review local storage paths with feedship info, and manage retained feed and article data according to the deployment's privacy requirements. <br>
+## Use Case:
 
+External users and developers use Feedship to add and manage RSS, Atom, and GitHub release feeds, fetch new articles, and search or read stored articles from an agent workflow.
 
-## Reference(s): <br>
-- [Feedship ClawHub listing](https://clawhub.ai/yanpeipan/feedship) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, CLI output descriptions, and optional JSON output from supported commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides agents to use the feedship CLI for feed management, article retrieval, search, discovery, scheduling, and system information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server-resolved release metadata) <br>
+Risk: Mutable or unpinned remote Python installation and upgrade paths can change what code is installed over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install from a trusted, pinned Feedship release whenever possible and avoid latest-commit upgrade paths unless the supply-chain tradeoff is understood.
+
+Risk: Restricted-network mirror and trusted-host installation paths shift trust to the configured mirror.
+
+Mitigation: Use only mirrors that are trusted for the deployment environment and avoid trusted-host options when standard package sources are available.
+
+Risk: Scheduled fetching performs recurring network access and creates persistent local article and embedding storage.
+
+Mitigation: Enable scheduled fetching only after confirming that periodic network access and local storage of fetched content are acceptable.
+
+## Reference(s):
+
+- [Feedship ClawHub Skill Page](https://clawhub.ai/yanpeipan/skills/feedship)
+- [yanpeipan ClawHub Publisher Profile](https://clawhub.ai/user/yanpeipan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance]
+
+**Output Format:** [Markdown guidance with command examples; Feedship commands may return Rich tables, panels, progress output, or JSON when --json is used.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires uv. OpenClaw metadata defines an optional default scheduled fetch every 30 minutes.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

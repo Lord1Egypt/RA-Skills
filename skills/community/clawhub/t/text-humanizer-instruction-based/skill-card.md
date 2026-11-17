@@ -1,42 +1,58 @@
-## Description: <br>
-Detect and rewrite AI-generated writing patterns, em dashes, rule-of-three lists, sycophantic openers, hollow buzzwords like "delve" and "landscape", and replace them with direct, human-sounding prose. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect and rewrite AI-generated writing patterns, em dashes, rule-of-three lists, sycophantic openers, hollow buzzwords like "delve" and "landscape", and replace them with direct, human-sounding prose.
 
-## Publisher: <br>
-[arbazex](https://clawhub.ai/user/arbazex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arbazex](https://clawhub.ai/user/arbazex)
 
-## Use Case: <br>
-Writers, students, job applicants, and content creators use this skill to revise pasted prose that sounds AI-generated into more direct, natural language while preserving meaning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Rewritten prose may alter nuance, factual claims, or the author's intended voice. <br>
-Mitigation: Review the output against the source text before using it in coursework, job applications, publications, or workplace materials. <br>
-Risk: The pattern list is geared toward English AI-writing tells and may be less reliable for non-English or highly specialized prose. <br>
-Mitigation: Use human review and domain-specific editing for non-English, legal, technical, or formal-register material. <br>
-Risk: Using edited AI-assisted text where disclosure is required may create policy or compliance issues. <br>
-Mitigation: Check applicable AI-use disclosure rules before submitting or publishing the revised text. <br>
+## Use Case:
 
+External users and employees use this skill to revise submitted English text so it sounds less machine-written while preserving the original meaning, format, and factual claims. It is intended for drafts such as job applications, articles, academic work, social posts, and similar prose where stylistic rewriting is allowed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arbazex/text-humanizer-instruction-based) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text matching the user's input format] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include an optional detection report when requested; otherwise returns rewritten text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill is designed to make text sound less AI-written, which can be inappropriate where disclosure, academic integrity, platform, or workplace rules require the user to identify AI assistance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when stylistic rewriting is allowed, and follow any applicable disclosure, academic, platform, or workplace requirements.
+
+Risk: Sensitive-topic language in the artifact could be misread as overriding broader safety or policy requirements.
+
+Mitigation: Treat the skill as a style editor only; normal safety, integrity, and content policies still apply.
+
+Risk: Over-editing may change factual claims or the author's intended voice.
+
+Mitigation: Review rewritten text before use and verify that facts, meaning, and voice have been preserved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arbazex/skills/text-humanizer-instruction-based)
+- [Publisher profile](https://clawhub.ai/user/arbazex)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Rewritten prose or Markdown, optionally with a detection report listing matched pattern codes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves the input structure when appropriate and may include a brief note naming the main pattern categories addressed.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

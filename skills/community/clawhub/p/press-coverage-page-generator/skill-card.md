@@ -1,38 +1,54 @@
-## Description: <br>
-Guides agents in creating a press coverage page, "As Seen In" section, or media mentions aggregation that showcases third-party coverage from authoritative sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps create a press coverage page, "As Seen In" section, or media mentions aggregation, and routes pitching journalists or press releases to a public-relations skill.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Marketing, communications, and web teams use this skill to decide whether to publish a full press page or a compact credibility section, then structure coverage, media mentions, logos, quotes, links, and SEO treatment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated press claims, publication logos, quotes, or links may be inaccurate or unsuitable for publication. <br>
-Mitigation: Review generated claims, publication logos, quotes, and links for accuracy and usage permission before publishing. <br>
+## Use Case:
 
+Developers, marketers, and site authors use this skill to decide whether to build a full press coverage page or a compact credibility section, then structure copy, placement, links, and SEO treatment for third-party media mentions.
 
-## Reference(s): <br>
-- [Press Coverage Page Reference](reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with page structure, copy, placement, and SEO recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; generated claims, publication logos, quotes, and links should be reviewed before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Broad invocation wording may route general press or trust-logo requests to this skill when a more specific skill would fit better.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review routing descriptions during installation and prefer adjacent skills for media kits, public relations, homepages, or trust badges when those tasks are primary.
+
+Risk: Tailored page copy may rely on existing project context files and could amplify outdated or incorrect messaging.
+
+Mitigation: Review generated press coverage copy, source links, dates, outlet authority, and SEO recommendations before publishing.
+
+## Reference(s):
+
+- [Press Coverage Page Reference](reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/kostja94/skills/press-coverage-page-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with recommended page or section structure, copy, placement, and SEO notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read existing project context files when present to tailor messaging.]
+
+## Skill Version(s):
+
+1.1.0 (source: server evidence and frontmatter metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

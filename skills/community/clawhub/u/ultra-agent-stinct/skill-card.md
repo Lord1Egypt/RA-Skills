@@ -1,43 +1,56 @@
-## Description: <br>
-Autonomously handles debugging and coding recovery workflows when an agent encounters code errors, build failures, stack traces, or unexpected behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ultra Agent Stinct guides coding agents through debugging, code changes, tests, git checks, and escalation when a task hits errors or unexpected behavior.
 
-## Publisher: <br>
-[grimmjoww](https://clawhub.ai/user/grimmjoww) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[grimmjoww](https://clawhub.ai/user/grimmjoww)
 
-## Use Case: <br>
-Developers and agent operators use this skill to guide coding agents through debugging, test reruns, minimal code edits, git checks, and escalation to dedicated coding agents when a task becomes complex. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can encourage broad automatic repair behavior, including file edits, command execution, and background delegation. <br>
-Mitigation: Use it in a branch or disposable workspace and require confirmation before file edits, package installs, destructive commands, or background delegation. <br>
-Risk: Spawned coding agents may make changes outside the main agent's immediate context. <br>
-Mitigation: Review diffs and spawned-agent logs before accepting changes. <br>
+## Use Case:
 
+Developers and coding-agent operators use this skill to give agents a structured recovery workflow when builds, tests, scripts, or code edits fail during normal software tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/grimmjoww/ultra-agent-stinct) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [Git Workflow Reference](references/git-workflow.md) <br>
-- [Escalation Guide](references/escalation-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline code and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: The skill can activate broadly during debugging and may guide an agent to run project commands or edit code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that always-on debugging behavior is acceptable, keep changes reviewable, and require explicit approval for destructive, commit, push, or deletion actions.
+
+Risk: The skill can recommend spawning external coding agents for large tasks, which may expose repository content, credentials, or network access if not scoped.
+
+Mitigation: Require explicit approval before delegation, pass delegated prompts without shell string interpolation, and run delegated agents with limited repository, credential, and network access.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/grimmjoww/skills/ultra-agent-stinct)
+- [Git Workflow Reference](references/git-workflow.md)
+- [Escalation Guide](references/escalation-guide.md)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent-facing workflow guidance; may lead the agent to run commands, edit files, or delegate work when invoked.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

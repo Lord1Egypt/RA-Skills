@@ -1,44 +1,59 @@
-## Description: <br>
-Publish, discover, and manage AI skills, agents, workflows, souls and prompts from the AgentVerse marketplace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish, discover, and manage AI skills, agents, workflows, souls and prompts from the AgentVerse marketplace.
 
-## Publisher: <br>
-[loonghao](https://clawhub.ai/user/loonghao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loonghao](https://clawhub.ai/user/loonghao)
 
-## Use Case: <br>
-Developers and AI agents use this skill to discover, publish, authenticate, and manage AgentVerse marketplace artifacts through the agentverse CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installer scripts and self-update commands can execute downloaded code. <br>
-Mitigation: Use verified release binaries when available, inspect installer scripts before running them, and require explicit approval before install or self-update commands. <br>
-Risk: Saved credentials and tokens such as AGENTVERSE_TOKEN or GitHub tokens can authorize account actions. <br>
-Mitigation: Protect tokens, avoid logging them, prefer least-privilege credentials, and clear or rotate credentials when no longer needed. <br>
-Risk: Publish, update, deprecate, comment, rate, learn, benchmark, login, and self-update commands can change public marketplace or account state. <br>
-Mitigation: Require explicit user approval, review command targets and payloads, and confirm the active server before executing state-changing commands. <br>
+## Use Case:
 
+Developers and agents use this skill to operate the agentverse CLI for marketplace discovery, publishing, authentication, social actions, benchmarking, and self-updates.
 
-## Reference(s): <br>
-- [AgentVerse repository](https://github.com/loonghao/agentverse) <br>
-- [AgentVerse API documentation](https://github.com/loonghao/agentverse#api-documentation) <br>
-- [ClawHub release page](https://clawhub.ai/loonghao/agentverse-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and CLI examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands that authenticate, publish, mutate marketplace state, or self-update; require explicit approval before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release metadata, target metadata, SKILL.md frontmatter, skill.json) <br>
+Risk: Installation examples execute remote shell or PowerShell scripts from a mutable branch.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer versioned GitHub release binaries and verify checksums or signatures when available.
+
+Risk: Authenticated marketplace commands may handle tokens or saved credentials.
+
+Mitigation: Avoid passing real tokens directly on the command line and confirm where the CLI stores login credentials before use.
+
+Risk: Self-update behavior can change the installed CLI after initial review.
+
+Mitigation: Check the target version before updating and review release artifacts before installation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/loonghao/skills/agentverse-cli)
+- [AgentVerse Repository](https://github.com/loonghao/agentverse)
+- [AgentVerse API Documentation](https://github.com/loonghao/agentverse#api-documentation)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include marketplace artifact identifiers, authentication commands, server URL settings, and version-pinning examples.]
+
+## Skill Version(s):
+
+0.1.4 (source: evidence release metadata, SKILL.md frontmatter, and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

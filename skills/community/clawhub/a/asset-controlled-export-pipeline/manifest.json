@@ -1,0 +1,9 @@
+{
+  "name": "asset-controlled-export-pipeline",
+  "normalizedName": "asset-controlled-export-pipeline",
+  "description": "把 Ardot 画布上的品牌 / 社媒设计资产批量导出为受控本地素材库，用于回答「素材外发怎么防盗用」「VI 资料怎么受控分发」「这张图是谁做的、什么时候做的」这类问题。PNG + SVG 双格式落盘、自动注入版权 / 溯源 / 许可元数据（可选接本地大模型逐张生成中文声明文案），并在画布存档页生成自描述受控索引。资产权属按注册方法论（Registration Methodology）登记为可被第三方核验的属性，导出链路按证据链审计留痕。适用公司 VI 资料 / 社媒素材包需要受控分发、可追溯、合规审计的场景。触发词：素材批量导出、受控素材库、VI 资料分发、社媒素材包、版权元数据、资产溯源、设计资产管理、asset export、controlled assets。本技能为通用方法论工具，非医疗器械 / 非医疗软件，无疗效或临床声明；详见包内免责声明。",
+  "author": "诺声(Logos)@SynomosAI",
+  "copyright": "SynomosAI",
+  "version": "1.0.0",
+  "license": "MIT"
+}

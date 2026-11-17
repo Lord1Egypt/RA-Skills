@@ -1,44 +1,59 @@
-## Description: <br>
-Fetches current Zhihu hot-list topics from a public GitHub data source and outputs them as Markdown, JSON, or simple text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+知乎热榜监控 - 获取知乎热门话题、问题和趋势分析（Quora 中国版）
 
-## Publisher: <br>
-[guohongbin-git](https://clawhub.ai/user/guohongbin-git) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[guohongbin-git](https://clawhub.ai/user/guohongbin-git)
 
-## Use Case: <br>
-Developers, analysts, and content teams use this skill to inspect public Zhihu trending topics for content discovery, market research, public-opinion monitoring, or general awareness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes an outbound request to GitHub and returns third-party Zhihu hot-list content. <br>
-Mitigation: Allow network access only where this data source is acceptable, and review returned topics and links before relying on them. <br>
-Risk: Some advertised category filtering and trend-analysis commands are not present in the provided artifact. <br>
-Mitigation: Use the reviewed get-hot.sh options only, or separately provide and review the missing scripts before use. <br>
-Risk: The script can fail when the public data source is unavailable or its README format changes. <br>
-Mitigation: Handle fetch or parsing failures in the calling workflow and verify the source format before operational use. <br>
+## Use Case:
 
+Developers, analysts, and content teams can use this skill to fetch Zhihu hot-list topics from public data sources and format them for trend review, content planning, or market monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guohongbin-git/zhihu-hot-cn) <br>
-- [zhihu-hot-questions public data source](https://github.com/towelong/zhihu-hot-questions) <br>
-- [SnailDev zhihu-hot-hub archive](https://github.com/SnailDev/zhihu-hot-hub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands] <br>
-**Output Format:** [Markdown, JSON, or simple newline-delimited text from a shell script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports --limit and --format json|markdown|simple; category filtering and trend-analysis commands are not present in the provided artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata and package.json) <br>
+Risk: The skill fetches mutable public data from GitHub, so results can change independently of the skill release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review fetched data before using it in decisions or downstream automation.
+
+Risk: The security guidance notes that JSON output should not be used for security-sensitive automation without stronger escaping and input validation.
+
+Mitigation: Add proper JSON escaping and input validation before consuming the output in security-sensitive workflows.
+
+Risk: The security summary notes some overstated documentation, so advertised behavior may exceed the implemented script.
+
+Mitigation: Validate required options against the shipped artifact before relying on them in production workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guohongbin-git/skills/zhihu-hot-cn)
+- [zhihu-hot-questions](https://github.com/towelong/zhihu-hot-questions)
+- [SnailDev/zhihu-hot-hub](https://github.com/SnailDev/zhihu-hot-hub)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown, JSON, or simple text hot-list output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches mutable public GitHub-hosted source data and formats it locally.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

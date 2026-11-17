@@ -1,47 +1,61 @@
-## Description: <br>
-Drafts and reviews foreign trade contracts, Proforma Invoices, Sales Contracts, MOUs, NDAs, and related clauses for payment, delivery, Incoterms, and risk allocation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drafts and reviews foreign trade contracts, sales agreements, Proforma Invoices, Sales Contracts, MOUs, NDAs, and related clauses for payment, delivery, and risk allocation.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-External trade, sales, and compliance users use this skill to draft bilingual trade contract materials and review contract clauses for payment, delivery, dispute-resolution, and allocation-of-risk issues. Agents can also use its bundled analyzer to produce structured JSON risk reports for payment terms, Incoterms, and clause completeness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Confidential contract details may be sent to the Yunlv TradeGPT external API. <br>
-Mitigation: Use a dedicated API key, submit only the contract information needed for the task, and confirm the provider's retention and privacy terms before using the skill for sensitive matters. <br>
-Risk: Drafts, signed copies, review reports, and logs may be retained locally under the skill's data directory. <br>
-Mitigation: Clean up local drafts, signed copies, reviews, and logs after use, especially when processing confidential contracts. <br>
-Risk: Generated contract language and risk analysis may be incomplete or unsuitable as legal advice. <br>
-Mitigation: Use the output as drafting and review assistance only, and route high-value, regulated, or complex agreements through qualified legal review. <br>
+## Use Case:
 
+External trade teams and business users use this skill to draft bilingual international trade contract documents and review contract clauses for payment, delivery, Incoterms, and risk allocation issues.
 
-## Reference(s): <br>
-- [Yunlv Contract Draft on ClawHub](https://clawhub.ai/wangm-a3/yunlv-contract-draft) <br>
-- [Yunlv Homepage](https://yunlvai.com) <br>
-- [Yunlv TradeGPT API](https://api.yunlvai.com) <br>
-- [Contract Type Templates](references/contract_type_templates.md) <br>
-- [Clause Risk Checklist](references/clause_risk_checklist.md) <br>
-- [International Commercial Law Reference](references/international_commercial_law.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [Markdown contract drafts and review guidance, plus JSON risk reports from the bundled analyzer.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and TRADEGPT_API_KEY for API-backed contract generation or analysis workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and clawhub.yaml) <br>
+Risk: Confidential contract drafts and commercial details may be sent to the Yunlv TradeGPT API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if this external API use is acceptable, and redact bank account details, personal data, and unnecessary confidential terms before use.
+
+Risk: Generated contracts and clause reviews may be incomplete or legally incorrect.
+
+Mitigation: Treat outputs as drafts and obtain qualified legal review before signing or relying on them for regulated, high-value, or complex transactions.
+
+Risk: The skill depends on a bearer token in TRADEGPT_API_KEY.
+
+Mitigation: Scope access to the minimum needed, avoid exposing the key in prompts or logs, and rotate it if disclosure is suspected.
+
+## Reference(s):
+
+- [Yunlv AI homepage](https://yunlvai.com)
+- [Yunlv TradeGPT API](https://api.yunlvai.com)
+- [Contract Type Templates](references/contract_type_templates.md)
+- [Clause Risk Checklist](references/clause_risk_checklist.md)
+- [International Commercial Law](references/international_commercial_law.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown contract drafts and review guidance, with JSON risk reports from the included analyzer script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call the Yunlv TradeGPT API with TRADEGPT_API_KEY and may generate draft contract text, clause reviews, negotiation priorities, and risk scores.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release and clawhub.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

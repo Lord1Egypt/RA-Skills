@@ -1,42 +1,53 @@
-## Description: <br>
-Control LG smart appliances via ThinQ API, including checking status, changing refrigerator temperatures, toggling express and eco modes, and monitoring door status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control LG smart appliances via ThinQ API. Use when user asks about their fridge, washer, dryer, AC, or other LG appliances. Supports checking status, changing temperature, toggling modes (express, eco), and monitoring door status.
 
-## Publisher: <br>
-[kaiofreitas](https://clawhub.ai/user/kaiofreitas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kaiofreitas](https://clawhub.ai/user/kaiofreitas)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent inspect and control their LG ThinQ appliances through the ThinQ Connect API. It is intended for appliance status checks, refrigerator temperature updates, mode toggles, and washer or dryer monitoring. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send unrestricted raw control commands to real appliances using the user's ThinQ account token. <br>
-Mitigation: Avoid the raw command unless the exact payload and target device have been personally reviewed. <br>
-Risk: The ThinQ token file grants appliance-control access if exposed. <br>
-Mitigation: Store the token file securely and install the skill only when you trust the publisher. <br>
-Risk: The bundled CLI depends on the external thinqconnect package. <br>
-Mitigation: Verify the thinqconnect package before installing or running the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [LG ThinQ Personal Access Token Portal](https://connect-pat.lgthinq.com) <br>
-- [ClawHub LG ThinQ Skill Page](https://clawhub.ai/kaiofreitas/lg-thinq) <br>
+## Use Case:
 
+External users and agents use this skill to inspect and control LG ThinQ-connected appliances, including refrigerators, washers, dryers, and air conditioners. It supports device listing, status checks, refrigerator temperature changes, mode toggles, and limited washer or dryer monitoring.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and CLI text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke ThinQ API calls that read appliance status or send appliance-control commands when the agent runs the bundled CLI.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The raw command can send arbitrary authenticated control payloads to connected appliances.
+
+Mitigation: Avoid the raw command unless the payload and device impact are understood; prefer bounded commands that validate state-changing inputs.
+
+Risk: The skill requires a ThinQ personal access token for appliance control.
+
+Mitigation: Use a dedicated or least-privileged token if available and store it with restrictive file permissions.
+
+## Reference(s):
+
+- [ClawHub LG ThinQ Skill Page](https://clawhub.ai/kaiofreitas/skills/lg-thinq)
+- [LG ThinQ Personal Access Token Portal](https://connect-pat.lgthinq.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, API calls, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and command output descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return appliance status text or JSON-like device status data depending on the command.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

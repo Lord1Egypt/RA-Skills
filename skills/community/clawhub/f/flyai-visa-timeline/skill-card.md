@@ -1,48 +1,74 @@
-## Description: <br>
-签证进度规划与提醒助手。输入目的地和出行日期，倒推生成签证办理时间线、材料清单和每步截止日期。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+签证进度规划与提醒助手，输入目的地和出行日期后倒推生成签证办理时间线、材料清单和每步截止日期。
 
-## Publisher: <br>
-[hello-ahang](https://clawhub.ai/user/hello-ahang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hello-ahang](https://clawhub.ai/user/hello-ahang)
 
-## Use Case: <br>
-Travelers and travel-planning agents use this skill to plan visa preparation from a destination and travel date. It produces a backward-planned visa timeline, material checklist, deadline guidance, and optional flight or hotel preorder search commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask an agent to install or upgrade external FlyAI CLI software globally, including with elevated permissions. <br>
-Mitigation: Review installation steps before execution and prefer a pinned, user-local FlyAI CLI rather than global or sudo installation. <br>
-Risk: The skill includes a TLS-disable workaround for certificate errors. <br>
-Mitigation: Do not run the TLS-disable workaround; resolve certificate or network trust issues before using external search commands. <br>
-Risk: The skill can read or update persistent travel profile data. <br>
-Mitigation: Check and limit saved profile data, and require user confirmation before reading, saving, or updating travel preferences. <br>
+## Use Case:
 
+External travelers and travel-assistance agents use this skill to plan visa preparation schedules, collect visa-relevant trip details, estimate whether timing is sufficient, and produce personalized document checklists.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hello-ahang/flyai-visa-timeline) <br>
-- [Core workflow](reference/core-workflow.md) <br>
-- [Tool instructions](reference/tools.md) <br>
-- [Keyword search reference](reference/keyword-search.md) <br>
-- [Flight search reference](reference/search-flight.md) <br>
-- [Hotel search reference](reference/search-hotel.md) <br>
-- [User profile storage](reference/user-profile-storage.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with timeline sections, checklists, risk notes, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include FlyAI search commands and user-specific visa deadlines based on the collected destination, travel date, passport region, visa preference, occupation, and travel history.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill may ask users to install or upgrade mutable global Node software, including a sudo-based fallback.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, reviewed, user-local CLI setup and avoid sudo or unreviewed global installs during deployment.
+
+Risk: The skill includes a TLS-bypass command for certificate errors.
+
+Mitigation: Do not disable TLS certificate verification; resolve local CA, proxy, or registry trust configuration before running network commands.
+
+Risk: The skill can use persistent travel-profile data.
+
+Mitigation: Store only user-approved, minimal travel preferences; avoid unnecessary passport, visa, financial, or identity details, and provide a clear deletion path.
+
+Risk: The artifact includes broad travel-search references beyond the core visa-planning workflow.
+
+Mitigation: Review and narrow enabled commands to the visa-planning use case before routine use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hello-ahang/skills/flyai-visa-timeline)
+- [SKILL.md](SKILL.md)
+- [核心工作流](reference/core-workflow.md)
+- [工具说明](reference/tools.md)
+- [用户画像存储规范（双模式）](reference/user-profile-storage.md)
+- [示例对话](reference/examples.md)
+- [keyword-search ref](reference/keyword-search.md)
+- [search-flight ref](reference/search-flight.md)
+- [search-hotel ref](reference/search-hotel.md)
+- [ai-search ref](reference/ai-search.md)
+- [search-poi ref](reference/search-poi.md)
+- [search-train ref](reference/search-train.md)
+- [search-marriott-hotel ref](reference/search-marriott-hotel.md)
+- [search-marriott-package ref](reference/search-marriott-package.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with timeline sections, checklist items, risk notes, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include visa timeline dates, material checklist items, travel-search command suggestions, and user-profile storage guidance.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

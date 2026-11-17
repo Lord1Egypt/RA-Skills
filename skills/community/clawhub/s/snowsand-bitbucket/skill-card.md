@@ -1,45 +1,60 @@
-## Description: <br>
-Interact with Bitbucket Cloud via REST API for repository management, pull request operations, branch management, commit history, pipeline status, and workspace or team queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with Bitbucket Cloud via REST API for repository management, pull request operations, branch management, commit history, pipeline status, and workspace/team queries.
 
-## Publisher: <br>
-[snowsand-enterprises](https://clawhub.ai/user/snowsand-enterprises) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snowsand-enterprises](https://clawhub.ai/user/snowsand-enterprises)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to let an agent inspect and operate on Bitbucket Cloud repositories, pull requests, branches, commits, pipelines, workspaces, and account information through the bundled CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform live write operations on Bitbucket Cloud repositories, pull requests, branches, and pipelines. <br>
-Mitigation: Use a narrowly scoped Bitbucket token, prefer a limited workspace or test repository first, and review commands before allowing repository creation, branch deletion, PR decline, PR merge, comments, approvals, or pipeline triggers. <br>
-Risk: Credential scope may exceed the specific repository or workflow the agent needs. <br>
-Mitigation: Grant only the minimum Bitbucket permissions required for the intended task and rotate the token if it is exposed. <br>
-Risk: Pipeline triggers and pull request merges can affect CI/CD workflows and protected branches. <br>
-Mitigation: Confirm the target repository, branch, pull request, merge strategy, and pipeline selector before approving execution. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to let an agent inspect and manage Bitbucket Cloud repositories, pull requests, branches, commits, pipelines, workspaces, and users through authenticated API calls.
 
-## Reference(s): <br>
-- [Bitbucket Cloud API Reference](references/api.md) <br>
-- [Atlassian Bitbucket Cloud REST API](https://developer.atlassian.com/cloud/bitbucket/rest/) <br>
-- [Atlassian API Tokens](https://id.atlassian.com/manage-profile/security/api-tokens) <br>
-- [Bitbucket App Passwords](https://bitbucket.org/account/settings/app-passwords/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Bitbucket Cloud credentials and workspace configuration through environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill gives an agent direct write access to Bitbucket repositories and pull requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the narrowest Bitbucket token scopes and workspace access possible, and require explicit human confirmation before write operations.
+
+Risk: Repository creation, branch deletion, pull request approval, merge, decline, comment, raw curl, and pipeline-run actions can change project state.
+
+Mitigation: Review the exact target workspace, repository, branch, pull request, and command arguments before allowing those actions to run.
+
+Risk: Credentials are supplied through environment variables and may authorize access beyond the intended repository.
+
+Mitigation: Provide credentials only for the intended workspace, rotate tokens regularly, and avoid broad account-level permissions.
+
+## Reference(s):
+
+- [Bitbucket Cloud API Reference](references/api.md)
+- [Bitbucket Cloud REST API documentation](https://developer.atlassian.com/cloud/bitbucket/rest/)
+- [Atlassian API tokens](https://id.atlassian.com/manage-profile/security/api-tokens)
+- [Bitbucket App Passwords](https://bitbucket.org/account/settings/app-passwords/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses from the helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Bitbucket workspace and credential environment variables; API responses depend on the authenticated account permissions.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,56 @@
-## Description: <br>
-A 124-skill histology and embryology education pack based on the PMPH 10th Edition textbook, covering tissue structure, embryonic development, congenital malformations, and clinical-pathological correlation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a multilingual medical education skill pack with 124 histology and embryology skills covering tissue structure, embryonic development, congenital malformations, and clinical-pathological correlations.
 
-## Publisher: <br>
-[xllgreen](https://clawhub.ai/user/xllgreen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xllgreen](https://clawhub.ai/user/xllgreen)
 
-## Use Case: <br>
-Medical students, educators, researchers, and clinicians use this skill pack as an educational reference for histology, embryology, congenital malformations, and clinically oriented morphology questions. It should support study and review workflows rather than replace qualified medical judgment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill pack includes medical education content that may be mistaken for diagnosis, treatment, pregnancy, transfusion, immunotherapy, surgical, emergency, or hazardous laboratory guidance. <br>
-Mitigation: Use outputs only as educational or reference material and verify any medical, laboratory, or clinical decision with qualified professionals, current local guidelines, and authoritative sources. <br>
-Risk: Several subskills provide direct clinical or lab-procedure guidance without sufficient runtime safety boundaries. <br>
-Mitigation: Review relevant subskill outputs before use in sensitive settings and add deployment guardrails that route diagnosis, treatment, and procedure decisions to qualified oversight. <br>
+## Use Case:
 
+Medical students, educators, researchers, and clinicians use this skill pack to retrieve structured histology and embryology explanations, mechanism walkthroughs, and clinical-pathological correlations for learning and specialist-reviewed reference.
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/xllgreen/histology-and-embryology-pmph-10edition) <br>
-- [Publisher profile](https://clawhub.ai/user/xllgreen) <br>
-- [Skill pack manifest](artifact/SKILL.md) <br>
-- [Project README](artifact/README.md) <br>
-- [Skill index](artifact/index.md) <br>
-- [English README](artifact/README_EN.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose, tables, and structured educational explanations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include clinical and laboratory education context that requires professional review before real-world use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact frontmatter) <br>
+Risk: Medical education content may be mistaken for independent clinical decision support, including diagnosis, prenatal screening, surgery, transplant, oncology treatment, or medication decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as educational reference material only and require clinician or specialist review for patient-care decisions.
+
+Risk: Several included skills provide specific diagnosis, procedure, or treatment guidance without consistent clinician-supervision limits at the individual skill level.
+
+Mitigation: Review the relevant skill before installation or use in workflows that may answer real patient questions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xllgreen/skills/histology-and-embryology-pmph-10edition)
+- [Publisher profile](https://clawhub.ai/user/xllgreen)
+- [Skill registry](artifact/SKILL.md)
+- [English README](artifact/README_EN.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text educational explanations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include clinically oriented explanations that require specialist review before use in care decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, created 2026-06-06)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

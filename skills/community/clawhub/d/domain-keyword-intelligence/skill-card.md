@@ -1,45 +1,60 @@
-## Description: <br>
-Discover domain investment opportunities from emerging keyword spikes. Filters junk signals from real multi-party market activity using registration profiling, catalyst research, and NRDS position analysis. Powered by DomainKits MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Domain Keyword Intelligence helps domain investors identify emerging keyword registration trends by filtering junk signals, researching catalysts, and analyzing NRDS registration patterns with DomainKits MCP.
 
-## Publisher: <br>
-[abtdomain](https://clawhub.ai/user/abtdomain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abtdomain](https://clawhub.ai/user/abtdomain)
 
-## Use Case: <br>
-External users, domain investors, and domain research teams use this skill to identify emerging registration trends, separate multi-party demand from low-quality spikes, and investigate catalysts before pursuing domain opportunities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional DomainKits API key is an account credential. <br>
-Mitigation: Store the key in the agent or MCP environment as DOMAINKITS_API_KEY and avoid pasting it into prompts, logs, or shared outputs. <br>
-Risk: Domain research prompts may disclose confidential acquisition plans or client strategy to DomainKits or web search services. <br>
-Mitigation: Avoid entering confidential plans, client names, or private strategy unless those disclosures are approved for the connected services. <br>
-Risk: Connecting to an unintended MCP endpoint could expose requests or credentials. <br>
-Mitigation: Verify the DomainKits MCP endpoint before connecting it and use the documented service URL from the skill references. <br>
+## Use Case:
 
+External domain investors and developers use this skill to screen emerging domain-keyword registration spikes, verify catalysts with web search, and decide which keywords merit deeper NRDS exploration.
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/abtdomain/domain-keyword-intelligence) <br>
-- [DomainKits MCP documentation](https://domainkits.com/mcp) <br>
-- [DomainKits MCP GitHub repository](https://github.com/ABTdomain/domainkits-mcp) <br>
-- [ABTdomain](https://abtdomain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown analysis with tables, concise profile summaries, cited catalyst links, and optional MCP configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DomainKits MCP and web search access; optional DOMAINKITS_API_KEY can raise service limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Domain research queries are sent to DomainKits and catalyst checks use web search.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if that external access is acceptable, and review DomainKits account, quota, and privacy terms before adding an API key.
+
+Risk: Outputs are market research and may be incomplete, time-sensitive, or unsuitable as investment advice.
+
+Mitigation: Verify source URLs, registration data, and market assumptions before making domain purchases or portfolio decisions.
+
+Risk: Optional API-key use can affect account quota and expose activity under the connected DomainKits account.
+
+Mitigation: Use the platform connector or guest quota when appropriate, and limit sensitive research to usage allowed by account and privacy terms.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abtdomain/skills/domain-keyword-intelligence)
+- [DomainKits MCP](https://domainkits.com/mcp)
+- [DomainKits pricing and quotas](https://domainkits.com/pricing)
+- [ABTdomain](https://abtdomain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with tables, source links, and optional JSON MCP configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Catalyst findings should include live source URLs, and domain-market conclusions should be treated as research rather than investment guarantees.]
+
+## Skill Version(s):
+
+1.1.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Tamper-resistant audit watchdog for Clawdbot agents. Detects and logs suspicious filesystem activity with HMAC-chained evidence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tamper-resistant audit watchdog for Clawdbot agents. Detects and logs suspicious filesystem activity with HMAC-chained evidence.
 
-## Publisher: <br>
-[apollostreetcompany](https://clawhub.ai/user/apollostreetcompany) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[apollostreetcompany](https://clawhub.ai/user/apollostreetcompany)
 
-## Use Case: <br>
-Developers and operators running Clawdbot on Linux use Clauditor to install, configure, and operate a systemd watchdog that records tamper-evident audit logs and digest reports for suspicious filesystem and command activity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The installer sets up a privileged, persistent Linux systemd monitor with broad host visibility. <br>
-Mitigation: Install only when this monitoring posture is intentional, inspect every sudo command first, and confirm uninstall coverage for services, user, keys, and logs. <br>
-Risk: The artifact uses stealth-oriented service and log paths that can obscure what is running on the host. <br>
-Mitigation: Prefer transparent service names where operationally possible and document the installed binary, unit files, config, key, and log locations. <br>
-Risk: The security guidance notes missing dist assets that affect installation trust. <br>
-Mitigation: Verify required dist assets from a trusted source before starting the service or relying on generated configuration. <br>
+## Use Case:
 
+Developers and operators use Clauditor to install and operate a Linux systemd watchdog for Clawdbot activity. It monitors selected command and filesystem activity, writes tamper-evident audit logs, and produces status, digest, and alert outputs for suspicious behavior.
 
-## Reference(s): <br>
-- [Clauditor ClawHub release page](https://clawhub.ai/apollostreetcompany/clauditor) <br>
-- [Clauditor project homepage](https://github.com/apollostreetcompany/clauditor) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, JSON] <br>
-**Output Format:** [Markdown guidance with bash commands; CLI subcommands can emit JSON or Markdown digest reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Linux with systemd plus cargo for building; installation steps require root privileges.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: The release installs boot-persistent services with hidden-looking systemd names.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only on Linux hosts where this monitoring is intentional, review the service names and unit files before enabling them, and prefer transparent naming in managed environments.
+
+Risk: Installation and privileged monitoring require root or equivalent system capabilities.
+
+Mitigation: Build as an unprivileged user, review installer commands before running them with sudo, and restrict watch paths and target UID to the intended account.
+
+Risk: Command details, logs, and alerts can retain or forward sensitive command-line data.
+
+Mitigation: Treat logs and alert queues as sensitive, avoid logging full command arguments unless accepted by policy, and disable or tightly control remote and command alert channels.
+
+## Reference(s):
+
+- [Clauditor ClawHub Skill Page](https://clawhub.ai/apollostreetcompany/skills/clauditor)
+- [Declared Project Homepage](https://github.com/apollostreetcompany/clauditor)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text guidance with inline shell commands, JSON status responses, and Markdown or JSON digest reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Linux with systemd, Cargo for building, and root-assisted installation for persistent monitoring.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

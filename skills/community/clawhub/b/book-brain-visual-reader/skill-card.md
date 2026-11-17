@@ -1,44 +1,53 @@
-## Description: <br>
-Helps visual-capable agents design and maintain a 3-brain filesystem and memory system with LEFT/RIGHT visual, text, and API cross-checking for verification and retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enhanced BOOK BRAIN for LYGO Havens with visual capability. Use to design and maintain a 3-brain filesystem + memory system that also integrates LEFT/RIGHT brain visual checking (browser, images, screenshots) with text and API data for deeper verification and retrieval. Recommended for agents with visual tools or browser automation; use original book-brain only on non-visual systems.
 
-## Publisher: <br>
-[DeepSeekOracle](https://clawhub.ai/user/DeepSeekOracle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[deepseekoracle](https://clawhub.ai/user/deepseekoracle)
 
-## Use Case: <br>
-External developers and visual-capable agents use this skill to organize local memory folders, reference stubs, visual evidence, and reconciliation notes for LYGO Haven workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local notes, indexes, logs, and screenshots can persist sensitive information from private documents, dashboards, or account pages. <br>
-Mitigation: Use a dedicated workspace and avoid saving private pages unless persistence is acceptable; review visual artifacts and logs before sharing. <br>
-Risk: Visual observations can conflict with structured API data or receipt-based records. <br>
-Mitigation: Log discrepancies explicitly and prefer auditable receipts or APIs over UI-only observations when sources disagree. <br>
-Risk: Filesystem setup can add folders, indexes, logs, or visual evidence files to an existing workspace. <br>
-Mitigation: Ask before structural changes, extend existing folders when present, and avoid deleting or overwriting existing files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [BOOK BRAIN VISUAL READER examples](references/book-brain-visual-examples.md) <br>
-- [ClawHub skill page](https://clawhub.ai/DeepSeekOracle/book-brain-visual-reader) <br>
-- [Eternal Haven portal](https://EternalHaven.ca) <br>
-- [LYGO Champion Hub](https://deepseekoracle.github.io/Excavationpro/LYGO-Network/champions.html#champions) <br>
+## Use Case:
 
+External developers and agents use this skill to set up a non-destructive 3-brain workspace memory layout and a visual/text/API checking workflow. It helps visual-capable agents organize screenshots, indexes, logs, and reference stubs for later verification and retrieval.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with filesystem paths, reference stubs, log entry templates, and optional JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; agents may propose or create local folders, indexes, notes, and selected screenshots when the user approves.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may lead an agent to create or maintain local notes, indexes, logs, and selected screenshots in a workspace that contains sensitive material.
+
+Mitigation: Review proposed folders and files before approving setup, and avoid storing screenshots or notes that expose sensitive project data.
+
+Risk: Visual checks can disagree with structured data or APIs.
+
+Mitigation: Log discrepancies explicitly and prefer auditable receipts or authoritative APIs over user interface displays when sources conflict.
+
+## Reference(s):
+
+- [BOOK BRAIN VISUAL READER examples](references/book-brain-visual-examples.md)
+- [ClawHub skill page](https://clawhub.ai/deepseekoracle/skills/book-brain-visual-reader)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with filesystem trees, text snippets, setup steps, and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agents should propose local folder, index, log, and screenshot organization without overwriting existing files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

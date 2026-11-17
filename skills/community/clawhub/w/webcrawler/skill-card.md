@@ -1,46 +1,59 @@
-## Description: <br>
-Scrape a single page or crawl a full website using WebCrawlerAPI to return or save markdown content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scrape a single page or crawl a full website using WebCrawlerAPI and return or save the results as markdown.
 
-## Publisher: <br>
-[n10ty](https://clawhub.ai/user/n10ty) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[n10ty](https://clawhub.ai/user/n10ty)
 
-## Use Case: <br>
-Developers and external users can use this skill to retrieve markdown from a specific URL or crawl a website into local markdown files. It is useful when an agent needs webpage content in a text format for review, summarization, or follow-up work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends requested URLs and crawled content to WebCrawlerAPI. <br>
-Mitigation: Use it only for sites whose content may be shared with WebCrawlerAPI, and avoid private or internal sites unless that use is approved. <br>
-Risk: The skill requires a WebCrawlerAPI API key. <br>
-Mitigation: Store the key in WEBCRAWLERAPI_API_KEY, keep it out of source files and prompts, and prefer a revocable or scoped key when possible. <br>
-Risk: Crawl mode stores markdown files locally. <br>
-Mitigation: Review generated files under .webcrawlerapi/<hostname>/ before relying on them or sharing them. <br>
-Risk: Broad web search or web fetch wording may trigger the skill outside the intended scrape or crawl use case. <br>
-Mitigation: Confirm the target URL and whether the user wants a single-page scrape or a website crawl before running commands. <br>
+## Use Case:
 
+Developers and other ClawHub users use GetMarkdown to fetch public web page content as markdown or crawl public websites into local markdown files via WebCrawlerAPI.
 
-## Reference(s): <br>
-- [WebCrawlerAPI](https://webcrawlerapi.com/) <br>
-- [WebCrawlerAPI dashboard access](https://dash.webcrawlerapi.com/access) <br>
-- [ClawHub skill page](https://clawhub.ai/n10ty/webcrawler) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, files, guidance] <br>
-**Output Format:** [Markdown returned in conversation for single-page scrape, or markdown files saved under .webcrawlerapi/<hostname>/ for crawls.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Crawl mode defaults to 25 pages and reports crawl totals, success and failure counts, and saved file paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Requested URLs are sent to WebCrawlerAPI and may disclose sensitive targets if users submit internal or authenticated pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for public pages, avoid internal or authenticated URLs, and review each URL before requesting a scrape or crawl.
+
+Risk: Full-site crawls can collect unintended pages and store crawl output in the working directory.
+
+Mitigation: Review crawl scope before use, keep the default item limit unless broader coverage is needed, and inspect files saved under .webcrawlerapi/<hostname>/ before reuse.
+
+Risk: The skill requires a WebCrawlerAPI API key.
+
+Mitigation: Provide the key through WEBCRAWLERAPI_API_KEY and do not hardcode it in commands, files, or shared logs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/n10ty/skills/webcrawler)
+- [WebCrawlerAPI](https://webcrawlerapi.com/)
+- [WebCrawlerAPI dashboard access](https://dash.webcrawlerapi.com/access)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown responses and local .md files, with Bash/curl commands for WebCrawlerAPI calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single-page scrape returns markdown directly; full-site crawl saves .md files under .webcrawlerapi/<hostname>/ with a default 25-page limit.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

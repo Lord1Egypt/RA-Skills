@@ -1,44 +1,59 @@
-## Description: <br>
-输入视频主题、关键词和产品信息，生成面向 FridayParts 维修科普视频的 5 分钟双语分镜脚本，并内置技术准确性和安全表述规范。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+输入视频主题、关键词和产品信息，生成 5 分钟 YouTube 维修科普视频的 10 列中英分镜脚本，并内置技术准确性和安全提示规范。
 
-## Publisher: <br>
-[zhuxirui677](https://clawhub.ai/user/zhuxirui677) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuxirui677](https://clawhub.ai/user/zhuxirui677)
 
-## Use Case: <br>
-Marketing and operations teams use this skill to turn a repair-video topic, required keywords, and product information into a structured YouTube script for North American heavy-equipment audiences. Technical or operations staff should still review repair details, product fit, and safety guidance before publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated repair scripts could contain inaccurate technical explanations, unsafe steps, or product-fit assumptions if published without review. <br>
-Mitigation: Have qualified operations or technical staff verify repair logic, safety warnings, and product/model details before filming or publishing. <br>
-Risk: The prompt is specialized for FridayParts heavy-equipment repair content and may steer generic YouTube script requests toward that brand and domain. <br>
-Mitigation: Confirm the repair-video context before use, or narrow invocation triggers when deploying alongside general script-writing skills. <br>
+## Use Case:
 
+Content and operations teams creating FridayParts-style heavy-equipment repair videos use this skill to turn a topic, keywords, and product information into a structured bilingual shot-by-shot script. The output is intended as a draft for technical review before filming or publication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhuxirui677/skills/fp-youtube-script) <br>
-- [README](artifact/README.md) <br>
-- [GetClawHub import guide](artifact/docs/如何导入GetClawHub.md) <br>
-- [Example water pump and thermostat script](artifact/examples/example_water_pump_thermostat.md) <br>
-- [Manual validation checklist](artifact/reference/人工验证checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown table-style script with bilingual dialogue, image-generation prompts, and production notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs follow HOOK, BODY, SUMMARY, and ENDING sections and include human-review checkpoints for technical accuracy and safety.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated repair explanations or product-fit details may be inaccurate or incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have technical staff verify working principles, inspection steps, safety warnings, and product model fit before publication.
+
+Risk: The skill uses broad video-script triggers and a model setting selected for branded repair-script generation.
+
+Mitigation: Review the triggers and model configuration before import, and install only when a FridayParts-branded repair-video script generator is intended.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhuxirui677/skills/fp-youtube-script)
+- [Publisher Profile](https://clawhub.ai/user/zhuxirui677)
+- [README](artifact/README.md)
+- [Skill Definition](artifact/skill/SKILL.md)
+- [Human Verification Checklist](artifact/reference/人工验证checklist.md)
+- [Example Output: Water Pump vs Thermostat](artifact/examples/example_water_pump_thermostat.md)
+- [Validation Comparison](artifact/examples/对比说明_规范生效验证.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Guidance]
+
+**Output Format:** [Markdown table with bilingual script text, image-generation prompts, and shot guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Targets 5-minute repair explainer scripts, approximately 750-850 English voiceover words, using fixed HOOK, BODY, SUMMARY, and ENDING sections.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence; artifact frontmatter says 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

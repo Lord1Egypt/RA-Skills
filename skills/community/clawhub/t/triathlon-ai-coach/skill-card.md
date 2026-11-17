@@ -1,44 +1,60 @@
-## Description: <br>
-Generates and adjusts personalized daily triathlon training plans from TrainingPeaks, Garmin health data, race goals, and weather, with optional daily push or note export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ai Coach generates Chinese-language personalized triathlon training plans from TrainingPeaks, Garmin, weather, and race-goal data, with daily plan and review outputs.
 
-## Publisher: <br>
-[ciaefengye](https://clawhub.ai/user/ciaefengye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ciaefengye](https://clawhub.ai/user/ciaefengye)
 
-## Use Case: <br>
-Triathletes or coaches use this skill to generate daily swim, bike, and run plans plus training recaps that adapt to race calendars, TrainingPeaks load metrics, Garmin readiness data, and weather. It is intended as training assistance and should be reviewed before acting on intense or health-sensitive recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access TrainingPeaks cookies, Garmin credentials, health metrics, workout history, weather lookups, and external note uploads. <br>
-Mitigation: Grant access only after review, store credentials in environment variables or protected local files, and restrict cookie, token, and cache file permissions. <br>
-Risk: The security scan reports weak credential boundaries, including IMA credential handling. <br>
-Mitigation: Replace bundled or hardcoded IMA credentials with user-controlled secure configuration and rotate any exposed credentials before use. <br>
-Risk: Generated training plans and recaps may include health or performance-sensitive data and may be uploaded externally. <br>
-Mitigation: Inspect output destinations, disable external uploads unless needed, and review generated training guidance before following it. <br>
+## Use Case:
 
+External triathlon athletes use this skill to generate and adjust daily swim, bike, run, rest, and race-preparation plans from personal training goals and connected account data. Agents can use it to produce daily coaching guidance, training reviews, configuration steps, and command examples.
 
-## Reference(s): <br>
-- [Ai Coach on ClawHub](https://clawhub.ai/ciaefengye/triathlon-ai-coach) <br>
-- [TrainingPeaks Web App](https://tpstack.trainingpeaks.com) <br>
-- [IMA note import endpoint](https://ima.qq.com/openapi/note/v1/import_doc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown training plans and recaps, console text, and JSON configuration or cache files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local plan, health, and training cache files and upload Markdown note content when notification or IMA export is configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: ClawHub release metadata) <br>
+Risk: The skill handles health, training, and account data with under-scoped storage and sharing behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing; use private per-user storage for tokens and caches, define deletion controls, and limit connected-account permissions before using real data.
+
+Risk: Credential and API-key handling is security-sensitive, including Garmin password storage and IMA API keys.
+
+Mitigation: Replace password storage with a secure credential store, remove bundled API keys, rotate any exposed credentials, and require user-provided credentials through protected configuration.
+
+Risk: Generated training plans can influence physical training load and recovery decisions.
+
+Mitigation: Treat outputs as coaching support, review high-intensity or recovery-changing recommendations, and avoid relying on the skill as medical or professional sports advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ciaefengye/skills/triathlon-ai-coach)
+- [TrainingPeaks login](https://tpstack.trainingpeaks.com)
+- [IMA note import API endpoint](https://ima.qq.com/openapi/note/v1/import_doc)
+- [Weather data endpoint](https://wttr.in/Beijing?format=j1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown daily plans, console text, JSON and YAML configuration snippets, Python code examples, and shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language output; may write local JSON or Markdown files and call external account, note, and weather APIs when configured.]
+
+## Skill Version(s):
+
+3.2.0 (source: server release evidence and target metadata; artifact/config.json reports 3.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

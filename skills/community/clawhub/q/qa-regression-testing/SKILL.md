@@ -1,49 +1,34 @@
 ---
 name: qa-regression-testing
-version: 1.5.0
 description: >-
-  根据变更范围、风险等级和时间约束制定分级精准回归方案。当版本迭代了、代码改动了、你需要确定"到底哪些功能要重新测一遍"的时候使用此技能。回归的时间永远不够——此技能帮你做出取舍决策：冒烟回归（P0核心流程）、核心回归（高影响区域）、全量回归（有余力时）。基于变更分析和风险评估选择最省时的回归策略，而不是盲目全量回归。
-
-when_to_use: 用户说"回归测试"、"回归策略"、"回归范围"、"回归用例"、"冒烟测试"、"全量回归"、"回归不够时间"、"哪些要回归"、版本迭代需要确定回归范围时
+  根据变更范围、风险等级和时间约束制定分级精准回归方案。当版本迭代了、代码改动了、你需要确定"到底哪些功能要重新测一遍"的时候使用此技能。回归的时间永远不够——此技能帮你做出取舍决策：冒烟回归（P0核心流程）、核心回归（高影响区域）、全量回归（有余力时）。基于变更分析和风险评估选择最省时的回归策略，而不是盲目全量回归。 触发场景：回归测试、回归策略、回归范围、回归用例、冒烟测试、全量回归、回归不够时间、哪些要回归、版本迭代需要确定回归范围时。 Use when the user asks about: regression scope and strategy for a release — smoke, core, and full regression selected by change impact and risk when time is short.
+license: MIT
 allowed-tools: Read Grep Glob
-related_skills:
-  upstream:
-    - qa-code-review-for-test      # 输入：变更影响范围
-    - qa-risk-intuition            # 输入：风险等级判断
-    - qa-test-case-design          # 输入：测试用例库
-  downstream:
-    - qa-ci-cd-testing             # 输出：回归策略配置到CI/CD
-    - qa-test-strategy-design      # 输出：回归策略纳入整体测试策略
-input_format:
-  required:
-    - name: 变更范围
-      type: string
-      description: 本次变更的功能和代码范围
-    - name: 历史用例集
-      type: array
-      description: 全部历史测试用例
-  optional:
-    - name: 风险评估
-      type: object
-      description: 变更风险评估
-    - name: 时间约束
-      type: string
-      description: 回归测试时间限制
-output_format:
-  structure:
-    - regression_plan: 回归测试方案
-    - selected_cases: 选取用例清单
-    - risk_based_priority: 基于风险的优先级
-    - execution_strategy: 执行策略
+metadata:
+  display-name: "Regression Testing"
+  version: "1.8.0"
+  when-to-use: "用户说\"回归测试\"、\"回归策略\"、\"回归范围\"、\"回归用例\"、\"冒烟测试\"、\"全量回归\"、\"回归不够时间\"、\"哪些要回归\"、版本迭代需要确定回归范围时"
+  related-skills: "{\"upstream\":[\"qa-code-review-for-test\",\"qa-risk-intuition\",\"qa-test-case-design\"],\"downstream\":[\"qa-ci-cd-testing\",\"qa-test-strategy-design\"]}"
+  references: "[\"references/regression-selection.md\"]"
+  input-format: "{\"required\":[{\"name\":\"变更范围\",\"type\":\"string\",\"description\":\"本次变更的功能和代码范围\"},{\"name\":\"历史用例集\",\"type\":\"array\",\"description\":\"全部历史测试用例\"}],\"optional\":[{\"name\":\"风险评估\",\"type\":\"object\",\"description\":\"变更风险评估\"},{\"name\":\"时间约束\",\"type\":\"string\",\"description\":\"回归测试时间限制\"}]}"
+  output-format: "{\"traceability\":[\"回归用例沿用原始ID（TC_{模块缩写}_{功能缩写}_{序号}，如 TC_API_LOGIN_001）\",\"标注回归级别（冒烟/核心/全量）\"],\"structure\":[\"覆盖率：标注口径（基于现有需求/输入文档），禁止\\\"全覆盖/100%\\\"绝对化表述；缺失模块标注\\\"未覆盖+原因\\\"\",{\"regression_plan\":\"回归测试方案\"},{\"selected_cases\":\"选取用例清单\"},{\"risk_based_priority\":\"基于风险的优先级\"},{\"execution_strategy\":\"执行策略\"}]}"
+  error-recovery-guidance: "{\"on_failure\":\"回归范围遗漏高风险区域时回退到风险评估补充\",\"retry_behavior\":\"补充风险评估后重新选取回归用例\"}"
+  categories: "[\"Development\",\"Testing\",\"DevOps\"]"
+  depth-requirement: "{\"reference_value\":\"根据变更范围调整回归深度：简单×1/中等×2/复杂×3\",\"minimum\":\"至少完成冒烟回归、核心回归、选择全量回归3级策略\"}"
 ---
+> ⚠️ 本技能单独使用效果有限，建议配合完整技能集（12 步工作流）使用。安装：npx skills add Kokxi/qa-test-skills
+
+> **⚠️ 安全警告**：本技能的示例可能涉及发布阻塞策略和回归用例分级。
+> 实际使用时请勿直接阻塞发布，先与项目经理和开发确认风险等级和发布窗口。
+> 本技能仅在 workspace/ 输出评估文件，不持久化、不外传、不跨会话复用。
 
 # 回归测试策略
 
+> **无代码评审时的替代方案**：如果 `qa-code-review-for-test` 的输出不可用（代码评审不在本次工作流路径中），可直接根据用户提供的变更描述、版本 diff 或功能变更列表来确定变更影响范围和回归重点。上游依赖为可选，不阻塞工作流执行。
+
 ## 核心原则
 
-你是一位回归测试专家，擅长在有限时间内用最少的用例覆盖最大的回归风险。
-**核心原则**：回归不是全量重测，而是「判断哪些不用测」比「决定哪些要测」更重要。
-本技能覆盖回归金字塔分层、用例筛选策略、增量与全量决策、用例维护。
+回归不是全量重测，而是「判断哪些不用测」比「决定哪些要测」更重要。
 
 ## 回归金字塔
 
@@ -113,78 +98,13 @@ output_format:
 └─ 结果用于发版决策
 ```
 
-## 回归用例筛选策略
+## 加载时机
 
-### 策略1：基于变更的筛选（Change-Based）
+| 什么时候读 | 读哪个 |
+|-----------|--------|
+| 确定"回归哪些"时 | [`references/regression-selection.md`](references/regression-selection.md) |
 
-```text
-适用场景：小迭代 / Bugfix版本
-核心逻辑：代码变更 = 需要回归的区域
-
-执行步骤：
-1. 获取代码变更列表（Diff / Commit）
-2. 确定变更影响的模块和接口
-3. 从用例库中提取覆盖这些模块的用例
-4. 增加模块间调用链上的关联用例
-5. 增加历史缺陷中同类变更的相关用例
-
-适用条件：
-├─ 有代码评审结果（qa-code-review-for-test）
-├─ 用例与代码有映射关系
-└─ 变更边界清晰
-
-优点：精准、用例量少
-缺点：依赖代码映射、可能遗漏间接影响
-```
-
-### 策略2：基于风险的筛选（Risk-Based）
-
-```text
-适用场景：大版本 / 重构 / 新功能上线
-核心逻辑：高风险区域 = 必须回归
-
-执行步骤：
-1. 引用风险评估结果（qa-risk-intuition）
-2. 高风险区域 → 全量回归（P0-P2全覆盖）
-3. 中风险区域 → 核心回归（P0-P1）
-4. 低风险区域 → 冒烟回归（P0）
-5. 历史缺陷高发模块 → 增加额外覆盖
-
-适用条件：
-├─ 有风险评估报告
-├─ 用例库有优先级标注
-└─ 回归时间有限
-
-优点：时间弹性大、可裁剪
-缺点：依赖风险判断的准确性
-```
-
-### 策略3：基于时间的筛选（Time-Boxed）
-
-```text
-适用场景：回归时间严重不足 / 紧急发布
-核心逻辑：时间限制 = 用例上限，按价值排序
-
-执行步骤：
-1. 计算可用回归时间
-2. 按优先级倒序裁减：
-   ├─ 先保冒烟（P0，必须过）
-   ├─ 再保核心（P0+P1，尽量过）
-   └─ 最后全量（P0-P2，能过多少算多少）
-3. 标记未覆盖的风险区域
-4. 输出回归风险报告
-
-优点：总能给出可执行的方案
-缺点：覆盖率随裁剪下降，需显式暴露风险
-```
-
-### 策略比较速查
-
-| 策略 | 适用场景 | 用例量 | 依赖 | 风险暴露 |
-|------|---------|-------|------|---------|
-| 变更驱动 | 小迭代/Bugfix | 少 | 代码映射 | 低 |
-| 风险驱动 | 大版本/重构 | 中 | 风险评估 | 中 |
-| 时间驱动 | 紧急发布 | 灵活 | 时间预估 | 高（显式暴露） |
+> `回归用例筛选策略`的完整内容已下沉至 `references/regression-selection.md`，避免每次触发都占用上下文。
 
 ## 增量 vs 全量 决策
 
@@ -269,5 +189,3 @@ output_format:
 - [ ] 回归用例库是否持续维护？
 - [ ] 回归效率是否有量化指标？
 - [ ] 每个历史Bug是否有复测用例？
-
-

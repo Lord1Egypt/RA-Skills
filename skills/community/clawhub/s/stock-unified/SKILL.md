@@ -3,9 +3,15 @@ name: stock-unified
 description: 多源统一股票数据接口，整合通达信(pytdx)/同花顺/东方财富(新版API)/akshare五大股票数据源，自动降级切换。用于A股实时行情查询、K线历史、板块排行与成分股、财务数据、板块搜索等场景。当用户查询股价、板块排行、成分股、K线、财务数据时使用。
 ---
 
-# 🐂 UnifiedStock — 多源统一股票数据接口
+# 🐂 UnifiedStock — 多源统一股票数据接口 v3.0
 
 A股 5 大数据源自动整合：通达信(pytdx) + 东方财富(新版datacenter API) + 同花顺(ths) + akshare + 新浪财经。
+
+**🆕 v3.0 更新**：
+- ✅ 实时行情改新浪优先（快+稳），通达信补充交易时段数据
+- ✅ 指数代码支持：000001→上证指数、399001→深证成指、399006→创业板指等
+- ✅ 开盘前智能显示：⏰ 未开盘 + 昨收价，不再空白
+- ✅ 上证的盘前参考价自动识别并显示
 
 ## 安装依赖
 
@@ -16,7 +22,7 @@ pip install pytdx akshare requests pandas
 ## 数据源自动降级策略
 
 ```
-实时行情:    通达信(pytdx) → akshare
+实时行情:    新浪财经(sina) → 通达信(pytdx) → akshare
 K线历史:    通达信(pytdx) → akshare
 板块排行:    同花顺(ths) → akshare
 板块成分股:  东方财富(datacenter) → akshare
@@ -27,13 +33,15 @@ K线历史:    通达信(pytdx) → akshare
 
 ## 快速上手指南
 
-### 1️⃣ 查实时行情
+### 1️⃣ 查实时行情（支持股票+指数）
 
 ```bash
-python3 scripts/unified_stock.py --realtime 600839,002156,002475
+python3 scripts/unified_stock.py --realtime 000001,600839,002156
 ```
 
-输出：代码、最新价、涨跌幅、昨收、开盘、最高、最低、成交量
+⚠️ `000001` 自动识别为上证指数（不是平安银行）， `399001` → 深证成指
+
+输出：代码、最新价、涨跌幅、昨收、成交量、未开盘标记
 
 ### 2️⃣ 查K线
 

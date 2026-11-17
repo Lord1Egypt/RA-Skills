@@ -1,47 +1,56 @@
-## Description: <br>
-Baidu Netdisk file management for OpenClaw, including file listing, search, download-link retrieval, upload, and OAuth 2.0 authorization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Baidu Netdisk file management for OpenClaw - List, search, download, upload with OAuth 2.0 (百度网盘文件管理 - OAuth 一键授权).
 
-## Publisher: <br>
-[niukesi](https://clawhub.ai/user/niukesi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[niukesi](https://clawhub.ai/user/niukesi)
 
-## Use Case: <br>
-External users and developers use this skill to connect an agent to Baidu Netdisk, list and search cloud files, retrieve download links, and upload selected local files through OAuth or configured API credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles long-lived Baidu Netdisk access and refresh tokens. <br>
-Mitigation: Prefer the OAuth flow or environment variables over command-line secrets, set a unique ENCRYPTION_KEY before use, and protect the local config file. <br>
-Risk: Upload behavior can write to remote Baidu Netdisk paths and may overwrite existing remote files. <br>
-Mitigation: Review upload targets carefully before execution and use least-privilege Baidu API credentials where available. <br>
-Risk: The release security verdict is suspicious because security details are overstated or under-disclosed. <br>
-Mitigation: Review the published security guidance and scan results before deployment, especially credential storage and remote file-write behavior. <br>
-Risk: Local test or configuration commands may expose secrets in shared logs. <br>
-Mitigation: Avoid running test or setup commands with visible secrets in shared terminals, CI logs, or shell history. <br>
+## Use Case:
 
+Developers and external users use this skill to let an agent authenticate with Baidu Netdisk, list and search cloud files, retrieve download links, and upload files through command-line workflows.
 
-## Reference(s): <br>
-- [Baidu Netdisk Skill on ClawHub](https://clawhub.ai/niukesi/baidu-netdisk-skill) <br>
-- [Quick Start Guide](docs/QUICKSTART.md) <br>
-- [Security Notes](SECURITY.md) <br>
-- [Baidu Open Platform Console](https://pan.baidu.com/union/console) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text with file metadata, status messages, configuration prompts, and download URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read local files for upload and may write encrypted OAuth tokens to local config storage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.10 (source: server release evidence and package.json) <br>
+Risk: Credential handling may expose Baidu API keys or tokens through local config files, shell history, terminal logs, or process listings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use OAuth with a strong ENCRYPTION_KEY, avoid passing secrets on the command line, protect local config and logs, and rotate any credentials previously configured this way.
+
+Risk: The skill can perform Baidu Netdisk read and write operations, including uploads, after authorization.
+
+Mitigation: Review the requested basic and netdisk scopes before use and run the skill only in environments where those file-management permissions are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/niukesi/skills/baidu-netdisk-skill)
+- [Baidu Netdisk Open Platform console](https://pan.baidu.com/union/console)
+- [Quickstart guide](docs/QUICKSTART.md)
+- [Security notes](SECURITY.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and command output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide execution of Baidu Netdisk CLI commands that read, search, download, upload, authenticate, and manage local configuration.]
+
+## Skill Version(s):
+
+1.0.10 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

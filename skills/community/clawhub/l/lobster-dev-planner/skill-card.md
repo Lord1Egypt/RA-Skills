@@ -1,44 +1,61 @@
-## Description: <br>
-Lobster Dev Planner guides software project planning, produces detailed development documentation, and coordinates agent-assisted implementation workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lobster Dev Planner helps agents collect software requirements through guided conversation, generate detailed development documentation, and coordinate agent-assisted implementation with connected tools.
 
-## Publisher: <br>
-[wangxiaofei860208-source](https://clawhub.ai/user/wangxiaofei860208-source) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangxiaofei860208-source](https://clawhub.ai/user/wangxiaofei860208-source)
 
-## Use Case: <br>
-Developers and builders use this skill to turn informal software ideas into structured plans, implementation documents, API and style guidance, and coordinated agent tasking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can move from planning into broad file, repository, database, deployment, and notification actions. <br>
-Mitigation: Use it in a sandbox or clearly scoped repository, connect least-privilege MCP accounts, and prefer development databases. <br>
-Risk: Automatic commits, pushes, SQL writes, deployments, shell commands, or external notifications could create unintended changes. <br>
-Mitigation: Require explicit approval before those actions and review generated plans and documents before implementation. <br>
+## Use Case:
 
+Developers, builders, and nontechnical users use this skill to turn vague software ideas into structured plans, development documents, API and style references, and coordinated implementation steps. It is intended for supervised project planning and agent orchestration workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wangxiaofei860208-source/lobster-dev-planner) <br>
-- [Plan template](references/plan-template.md) <br>
-- [Development document template](references/dev-doc-template.md) <br>
-- [API document template](references/api-doc-template.md) <br>
-- [Style guide template](references/style-guide-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown plans, documentation templates, implementation task briefs, and command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May coordinate file, repository, database, deployment, and notification tools when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill encourages broad automatic use of repository, database, deployment, filesystem, and notification tools after development begins.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use project-scoped or disposable credentials and require human review before commits, pushes, SQL writes, deployments, file changes outside the project, and outbound messages.
+
+Risk: Generated documentation can include weak example credentials or operational assumptions that may be copied into real environments.
+
+Mitigation: Replace all example credentials, review environment variables and secrets handling, and validate security-sensitive documentation before implementation.
+
+Risk: Automated planning and agent delegation can produce incorrect technical choices or unsafe execution steps for the user's project context.
+
+Mitigation: Keep the workflow supervised, review generated plans and task assignments, and run tests and security checks before accepting generated changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangxiaofei860208-source/skills/lobster-dev-planner)
+- [Plan template](references/plan-template.md)
+- [Development document template](references/dev-doc-template.md)
+- [API document template](references/api-doc-template.md)
+- [Style guide template](references/style-guide-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with structured plans, document templates, implementation tasks, and inline commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce project documentation, implementation checklists, tool-use plans, progress reports, and delivery summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

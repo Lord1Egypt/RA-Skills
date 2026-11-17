@@ -1,43 +1,57 @@
-## Description: <br>
-Catalyst Calendar tracks upcoming market-moving macro, crypto, regulatory, exchange, conference, and earnings events and pre-flags relevant assets 7-14 days before each event. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track upcoming market-moving events (macro, crypto protocol, exchange listings, regulatory decisions, conference keynotes, ETF approvals) and pre-flag relevant assets 7-14 days before the event.
 
-## Publisher: <br>
-[Zero2Ai-hub](https://clawhub.ai/user/Zero2Ai-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zero2ai-hub](https://clawhub.ai/user/zero2ai-hub)
 
-## Use Case: <br>
-External users and developers use this skill to maintain a forward-looking trading catalyst calendar, add or scan high-impact events, and flag pre-positioning windows for affected assets. It supports human review of market catalysts and should not be used to automate trades without oversight. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incorrect or stale catalyst entries could mislead trading analysis. <br>
-Mitigation: Verify event sources and review proposed calendar additions before saving them. <br>
-Risk: Downstream trading tools could overreact to pre-positioning signals. <br>
-Mitigation: Keep trading decisions under human review and do not allow automated trade execution from these entries alone. <br>
-Risk: The skill updates a local trading calendar file. <br>
-Mitigation: Install only when an agent-maintained file under ~/.openclaw/workspace/trading/ is expected, and inspect changes to catalyst-calendar.json. <br>
+## Use Case:
 
+External traders, analysts, and agent builders use this skill to maintain a forward-looking catalyst calendar, review upcoming market events, and flag assets during pre-positioning windows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Zero2Ai-hub/skill-catalyst-calendar) <br>
-- [Publisher profile](https://clawhub.ai/user/Zero2Ai-hub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples and shell or cron-style commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces and updates a local JSON catalyst calendar when the agent follows the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Catalyst alerts may be based on incomplete, stale, or incorrect event data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review event sources and calendar updates before making trading decisions based on alerts.
+
+Risk: Weekly scans and daily checks can create recurring local updates.
+
+Mitigation: Enable cron-style workflows only when recurring scans and persistent local calendar updates are intended.
+
+Risk: Pre-positioning guidance can be mistaken for standalone trading advice.
+
+Mitigation: Treat alerts as review prompts and compare them with portfolio thresholds, journal context, and independent analysis.
+
+## Reference(s):
+
+- [Catalyst Calendar ClawHub Skill Page](https://clawhub.ai/zero2ai-hub/skills/skill-catalyst-calendar)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with JSON examples and shell-style scheduling guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local calendar update guidance, catalyst alerts, and integration notes for trading-related workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

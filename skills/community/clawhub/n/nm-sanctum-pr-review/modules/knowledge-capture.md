@@ -39,11 +39,13 @@ def extract_candidates(findings, pr_info):
         score = evaluate_finding(finding, pr_info)
 
         if score >= 60:
-            candidates.append({
-                "finding": finding,
-                "score": score,
-                "room_type": classify_room_type(finding),
-            })
+            candidates.append(
+                {
+                    "finding": finding,
+                    "score": score,
+                    "room_type": classify_room_type(finding),
+                }
+            )
 
     return candidates
 ```
@@ -120,6 +122,7 @@ from memory_palace.project_palace import (
     capture_pr_review_knowledge,
 )
 
+
 def store_findings(findings, pr_info):
     """Store findings in project palace."""
 
@@ -157,6 +160,18 @@ def store_findings(findings, pr_info):
 
     return created
 ```
+
+### Record the Tradeoff (decision journal)
+
+When this step settles a decision with real alternatives, record it to
+`docs/tradeoffs.md` while the reasoning is live (draft and confirm):
+
+- If leyline is installed, invoke `Skill(leyline:decision-journal)` and append
+  a tradeoff entry (the decision, the options weighed, and what was
+  sacrificed, with `phase` set to `review`). Show the draft and append on
+  confirmation.
+- Fallback (leyline absent): append to `docs/tradeoffs.md` using the in-file
+  ENTRY TEMPLATE and assign the next `TR-NNN` id.
 
 ## Output Integration
 
@@ -252,6 +267,6 @@ Uses `memory-palace:review-chamber` evaluation framework:
 
 ## Dependencies
 
-- `memory-palace:project-palace` - Project palace management
+- `memory-palace:memory-palace-architect` - Palace structure design
 - `memory-palace:review-chamber` - Room structure and evaluation
 - `memory-palace:knowledge-intake` - Evaluation framework

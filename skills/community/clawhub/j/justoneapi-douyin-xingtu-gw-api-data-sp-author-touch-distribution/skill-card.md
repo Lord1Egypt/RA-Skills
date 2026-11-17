@@ -1,41 +1,55 @@
-## Description: <br>
-Call GET /api/douyin-xingtu/gw/api/data_sp/author_touch_distribution/v1 for Douyin Creator Marketplace (Xingtu) Audience Touchpoint Distribution through JustOneAPI with oAuthorId. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/douyin-xingtu/gw/api/data_sp/author_touch_distribution/v1 for Douyin Creator Marketplace (Xingtu) Audience Touchpoint Distribution through JustOneAPI with oAuthorId.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-External developers and marketplace analysts use this skill to retrieve Douyin Creator Marketplace (Xingtu) audience touchpoint distribution data for a creator identified by oAuthorId, supporting creator evaluation, campaign planning, and marketplace research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The JustOneAPI token is sent in the request URL query string, where it may appear in logs, browser histories, proxies, or screenshots. <br>
-Mitigation: Use a scoped token when possible, avoid logging full request URLs, keep token values out of chat and screenshots, and rotate the token if exposure is suspected. <br>
+## Use Case:
 
+External developers and marketing analysts use this skill to query JustOneAPI for Douyin Creator Marketplace (Xingtu) audience touchpoint distribution data for creator evaluation, campaign planning, and marketplace research.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/justoneapi/justoneapi-douyin-xingtu-gw-api-data-sp-author-touch-distribution) <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_gw_api_data_sp_author_touch_distribution&utm_content=project_link) <br>
-- [JustOneAPI dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_gw_api_data_sp_author_touch_distribution&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, JSON] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and JUST_ONE_API_TOKEN; the endpoint requires oAuthorId and supports an optional platform enum.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The JustOneAPI token can be exposed through command-line process listings or full request URL logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped, revocable token, avoid logging command lines or full request URLs, and rotate the token if exposure is suspected.
+
+Risk: The skill sends the token and query parameters to the JustOneAPI Douyin/Xingtu endpoint.
+
+Mitigation: Install and run the skill only when sharing the token and requested creator identifier with JustOneAPI is acceptable for the intended workflow.
+
+## Reference(s):
+
+- [JustOneAPI API Homepage](https://api.justoneapi.com)
+- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_gw_api_data_sp_author_touch_distribution&utm_content=project_link)
+- [ClawHub Skill Page](https://clawhub.ai/justoneapi/skills/justoneapi-douyin-xingtu-gw-api-data-sp-author-touch-distribution)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, API calls]
+
+**Output Format:** [Markdown summary with optional raw JSON response from the API helper]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a JustOneAPI token and an oAuthorId query parameter; platform defaults to SHORT_VIDEO when omitted.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

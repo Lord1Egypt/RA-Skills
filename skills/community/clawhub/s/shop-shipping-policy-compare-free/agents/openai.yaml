@@ -1,0 +1,8 @@
+interface:
+  display_name: 店铺配送政策对照
+  short_description: 读取公开政策页，输出可追溯配送条件对照、冲突提示与缺项
+  default_prompt: "请使用 $shop-shipping-policy-compare-free，只读对照以下 2–3 个公开配送或售后政策页：{urls}。使用我指定的 browserId，输出发货时效、适用地区、费用条件和缺失条款；保留来源，不推断运费、送达或交易结论。"
+  icon_small: icon-512.png
+  icon_large: icon-512.png
+policy:
+  allow_implicit_invocation: true

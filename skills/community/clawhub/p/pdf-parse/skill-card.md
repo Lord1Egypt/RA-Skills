@@ -1,43 +1,50 @@
-## Description: <br>
-Parse a PDF into structured JSON: text, layout-aware blocks with bounding boxes, tables, and image metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parse a PDF into structured JSON: text, layout-aware blocks with bounding boxes, tables, and image metadata.
 
-## Publisher: <br>
-[rishabhdugar](https://clawhub.ai/user/rishabhdugar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rishabhdugar](https://clawhub.ai/user/rishabhdugar)
 
-## Use Case: <br>
-Developers and agents use this skill to extract text, tables, image metadata, and layout-aware blocks from PDFs for document processing workflows such as invoices, forms, reports, contracts, resumes, and research papers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected PDFs or PDF URLs are sent to pdfapihub.com for parsing. <br>
-Mitigation: Use the skill only with documents approved for that provider, and avoid confidential or regulated PDFs unless your organization has approved the workflow. <br>
-Risk: The skill requires a CLIENT-API-KEY credential. <br>
-Mitigation: Store and transmit the API key as a sensitive secret, rotate it if exposed, and avoid placing real keys in prompts, examples, or logs. <br>
+## Use Case:
 
+Developers and engineers use this skill to extract text, layout blocks, tables, and image metadata from PDFs into machine-readable JSON for document processing workflows.
 
-## Reference(s): <br>
-- [PDF API Hub](https://pdfapihub.com) <br>
-- [PDF API Hub Documentation](https://pdfapihub.com/docs) <br>
-- [ClawHub Skill Page](https://clawhub.ai/rishabhdugar/pdf-parse) <br>
-- [Publisher Profile](https://clawhub.ai/user/rishabhdugar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON request and response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces guidance for invoking an external PDF parsing API that returns structured JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: PDF files or public PDF URLs are processed by pdfapihub.com, which may expose confidential, regulated, or highly personal document content to a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved documents for this service, avoid sensitive PDFs unless third-party processing is authorized, and verify the API key handling requirements before deployment.
+
+## Reference(s):
+
+- [PDF API Hub](https://pdfapihub.com)
+- [PDF API Hub Documentation](https://pdfapihub.com/docs)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, API Calls, Shell commands, Guidance]
+
+**Output Format:** [Structured JSON responses and Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports text, layout, tables, and full parsing modes with optional page selection.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

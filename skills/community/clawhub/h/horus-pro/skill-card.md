@@ -1,43 +1,54 @@
-## Description: <br>
-Horus Pro -- Full Meeting Intelligence Suite. Summary, decisions, action tracker, stakeholder-specific briefs, next meeting agenda, risk flags, and follow-up emails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Horus Pro generates meeting summaries, decisions, action trackers, stakeholder-specific briefs, next meeting agendas, risk flags, and follow-up emails from meeting notes or transcripts.
 
-## Publisher: <br>
-[occupythemilkyway](https://clawhub.ai/user/occupythemilkyway) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[occupythemilkyway](https://clawhub.ai/user/occupythemilkyway)
 
-## Use Case: <br>
-Employees, external collaborators, and operations teams use this skill to turn raw meeting notes or transcripts into a complete meeting intelligence package with a brief, decisions, action tracker, stakeholder briefs, next agenda, risk flags, and follow-up email. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Confidential meeting notes may appear in local terminal output during processing. <br>
-Mitigation: Use the skill only in private sessions, avoid shared terminals and CI logs, and remove or suppress raw MEETING_NOTES printing for confidential meetings. <br>
-Risk: Generated meeting documents may contain sensitive decisions, action items, or stakeholder-specific information. <br>
-Mitigation: Set OUTPUT_DIR to a private location with appropriate access controls and review generated files before sharing. <br>
-Risk: Meeting summaries, risks, and action items may be incomplete or misleading if the transcript is unclear or incomplete. <br>
-Mitigation: Have a meeting owner review the generated brief, tracker, agenda, and emails before using them as records or sending them externally. <br>
+## Use Case:
 
+External users and workplace teams use this skill to turn raw meeting notes or transcripts into a meeting brief, action tracker, follow-up email, next agenda, and stakeholder-specific briefs.
 
-## Reference(s): <br>
-- [Horus Pro ClawHub listing](https://clawhub.ai/occupythemilkyway/horus-pro) <br>
-- [occupythemilkyway publisher profile](https://clawhub.ai/user/occupythemilkyway) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, configuration] <br>
-**Output Format:** [Markdown documents saved to an output directory, with setup and validation commands shown in shell and Python blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces five meeting documents: meeting brief, action tracker, follow-up email, next meeting agenda, and stakeholder briefs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The install step changes the host Python environment by installing an unpinned package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a virtual environment and pin the dependency version before use.
+
+Risk: Generated files may contain sensitive meeting, personnel, customer, or business information.
+
+Mitigation: Use a private OUTPUT_DIR and review access controls before sharing or syncing outputs.
+
+## Reference(s):
+
+- [Horus Pro ClawHub Skill Page](https://clawhub.ai/occupythemilkyway/skills/horus-pro)
+- [Horus Pro Homepage](https://clawhub.ai/occupythemilkyway/horus-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration]
+
+**Output Format:** [Markdown files with setup shell commands and environment-variable configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces five Markdown documents in OUTPUT_DIR; generated files may contain sensitive meeting, personnel, customer, or business information.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,64 @@
-## Description: <br>
-Silent tax advisor that checks every trade for wash sales, PDT triggers, and optimization, logs results, and delivers a daily tax risk and opportunity report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rhetra TaxGuard checks trading-agent orders for wash-sale, pattern-day-trader, holding-period, and tax-loss-harvesting issues, then supports daily tax-risk reports and optional Guardian Mode blocking.
 
-## Publisher: <br>
-[aaronahadi23](https://clawhub.ai/user/aaronahadi23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaronahadi23](https://clawhub.ai/user/aaronahadi23)
 
-## Use Case: <br>
-Trading agents and their operators use this skill to check planned trades for tax, wash-sale, pattern day trader, and holding-period issues before execution, then summarize accumulated findings in daily and year-end reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends detailed trade, account, portfolio, and tax context to Rhetra and creates local logs. <br>
-Mitigation: Review Rhetra consent, storage, deletion, retention, and sharing terms before installation, and avoid sending account or tax details that are not needed for the check. <br>
-Risk: If TaxGuard is unreachable, the skill proceeds with the trade and records the gap only in the daily report. <br>
-Mitigation: Decide before use whether fail-open behavior is acceptable for the trading setup, and configure Guardian Mode or external controls for risks that should block execution. <br>
+## Use Case:
 
+External traders and agent developers use this skill to add pre-trade tax and trading-compliance checks to trading agents and to produce daily tax-risk summaries from checked activity.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/aaronahadi23/rhetra-taxguard) <br>
-- [Rhetra TaxGuard signup](https://rhetra.io/trading) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown reports and guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a Node.js helper command and Rhetra API responses to produce trade checks, blocking guidance in Guardian Mode, strategy assessments, CSV export guidance, and daily tax summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and clawhub.json) <br>
+Risk: The skill sends detailed trading, account, income, and tax context to Rhetra for every checked trade.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review data-sharing requirements before installation, collect trader consent, and send only the fields needed for the chosen check.
+
+Risk: API keys and sensitive trading context may be exposed if stored in ordinary agent memory or shell history.
+
+Mitigation: Store the Rhetra API key in a real secret store or protected environment variable and avoid placing secrets in prompts, logs, or command history.
+
+Risk: Guardian Mode can proceed silently when TaxGuard is unreachable, so a protected trade may execute without a compliance check.
+
+Mitigation: For protected workflows, configure outages to fail closed or require explicit trader confirmation before an unchecked trade proceeds.
+
+Risk: Tax and trading-compliance guidance can affect financial decisions.
+
+Mitigation: Treat reports as decision support and have qualified tax or compliance professionals review material actions and end-of-year outputs.
+
+## Reference(s):
+
+- [Rhetra TaxGuard ClawHub listing](https://clawhub.ai/aaronahadi23/skills/rhetra-taxguard)
+- [aaronahadi23 ClawHub publisher profile](https://clawhub.ai/user/aaronahadi23)
+- [Rhetra trading signup](https://rhetra.io/trading)
+- [Rhetra website](https://rhetra.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports and plain-text trade check output with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guardian Mode may block selected risks before trade execution; daily reports summarize accumulated trade checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

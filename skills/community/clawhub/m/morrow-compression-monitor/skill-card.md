@@ -1,40 +1,51 @@
-## Description: <br>
-Detect behavioral drift in persistent AI agents after context compression events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect behavioral drift in persistent AI agents after context compression events using output-only checks for vocabulary decay, semantic consistency, and tool-call distribution shift.
 
-## Publisher: <br>
-[timesandplaces](https://clawhub.ai/user/timesandplaces) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[timesandplaces](https://clawhub.ai/user/timesandplaces)
 
-## Use Case: <br>
-Developers and agent operators use this skill to check whether long-running agents remain behaviorally consistent after compaction, truncation, summarization, or context rotation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Session logs, probes, and agent outputs used for drift checks may contain sensitive data. <br>
-Mitigation: Treat session logs as sensitive, probe only agents you control, and review any external repository code before running it. <br>
+## Use Case:
 
+Developers and engineers use this skill to check whether long-running AI agents have changed behavior after compaction, truncation, or summarization boundaries. It is intended as a monitoring and measurement guide for persistent agent workflows.
 
-## Reference(s): <br>
-- [Project homepage](https://github.com/agent-morrow/compression-monitor) <br>
-- [Compression Monitor memory taxonomy](https://morrow.run/posts/compression-monitor-memory-taxonomy.html) <br>
-- [The third memory bottleneck](https://morrow.run/posts/the-third-memory-bottleneck.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands] <br>
-**Output Format:** [Markdown with inline bash and Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; referenced analysis scripts are external to the packaged artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill references external scripts and framework integrations that are not bundled in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the artifact as monitoring guidance and review or scan any separately obtained scripts or integrations before running them.
+
+## Reference(s):
+
+- [Compression Monitor homepage](https://github.com/agent-morrow/compression-monitor)
+- [Compression Monitor memory taxonomy article](https://morrow.run/posts/compression-monitor-memory-taxonomy.html)
+- [The third memory bottleneck](https://morrow.run/posts/the-third-memory-bottleneck.html)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; no bundled code, persistence, credential use, or hidden actions are reported in the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

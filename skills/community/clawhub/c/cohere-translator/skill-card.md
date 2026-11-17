@@ -1,45 +1,55 @@
-## Description: <br>
-Neural machine translation supporting 23 languages using Cohere's Command A Translate model, optimized for file-based input to minimize agent context usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cohere Translator helps agents translate text and files across 23 languages using Cohere's Command A Translate model.
 
-## Publisher: <br>
-[lykeion-dev](https://clawhub.ai/user/lykeion-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lykeion-dev](https://clawhub.ai/user/lykeion-dev)
 
-## Use Case: <br>
-Developers and agent users use this skill to translate short text, stdin, or files between supported languages through Cohere's hosted translation model. It is especially suited to file translation workflows where the agent should issue a command without reading the source document into its own context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Translated text and selected files are sent to Cohere's external API. <br>
-Mitigation: Do not use the skill for secrets, credentials, regulated data, or confidential documents unless the organization has approved that data flow. <br>
-Risk: Passing an API key on the command line can expose it through shared shell history or process listings. <br>
-Mitigation: Prefer setting COHERE_API_KEY in the environment rather than using the --api-key argument. <br>
-Risk: The skill can incur Cohere API usage and depends on account limits or billing terms. <br>
-Mitigation: Confirm Cohere account limits and production billing before using it in automated or high-volume workflows. <br>
+## Use Case:
 
+Developers and agent users use this skill to translate short text, files, or stdin/stdout streams while keeping large file contents outside the agent context window. It is suited to multilingual documentation, operational text, markdown, and code-adjacent translation workflows that can use the Cohere API.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lykeion-dev/cohere-translator) <br>
-- [Cohere API keys](https://dashboard.cohere.com/api-keys) <br>
-- [Cohere Labs CC-BY-NC license](https://cohere.com/cohere-labs-cc-by-nc-license) <br>
-- [Research notes](RESEARCH.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, files, json, shell commands, configuration] <br>
-**Output Format:** [Translated text, translated output files, or optional JSON with token counts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires COHERE_API_KEY or an explicit API key argument; file mode can write translations to stdout or an output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Translated text and file contents are sent to Cohere.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill for secrets, regulated data, or confidential files unless that external processing is approved.
+
+Risk: The Cohere API key can be exposed to local process inspection when passed through the curl command invocation.
+
+Mitigation: Prefer COHERE_API_KEY over --api-key and run the skill only in trusted local environments.
+
+## Reference(s):
+
+- [Cohere API Keys](https://dashboard.cohere.com/api-keys)
+- [Cohere Labs Non-Commercial License](https://cohere.com/cohere-labs-cc-by-nc-license)
+- [ClawHub Skill Page](https://clawhub.ai/lykeion-dev/skills/cohere-translator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text, translated files, or JSON metadata with token counts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports file, stdin, stdout, and JSON modes; large file inputs are automatically chunked with rate-limit pacing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

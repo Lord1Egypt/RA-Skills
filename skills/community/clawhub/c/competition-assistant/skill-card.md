@@ -1,42 +1,51 @@
-## Description: <br>
-Competition Assistant helps college students generate competition calendars and find teammates using recognized competition references and local matchmaking records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Competition Assistant helps college students build competition calendars from official sources and manage local team-matching requests with masked contact details.
 
-## Publisher: <br>
-[smallkeyboy](https://clawhub.ai/user/smallkeyboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smallkeyboy](https://clawhub.ai/user/smallkeyboy)
 
-## Use Case: <br>
-Students and education-focused assistants use this skill to look up university competition schedules, build near-term event calendars, and manage teammate requests for matching. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Matchmaking records may persist locally across sessions and include raw student contact details. <br>
-Mitigation: Ask for explicit consent before saving matchmaking data, store only the minimum needed contact information, and provide clear deletion or expiry controls. <br>
-Risk: Match recommendations may expose contact details more broadly than users expect. <br>
-Mitigation: Return only sanitized match results, mask contact data by default, and reveal direct contact details only when users have agreed to share them. <br>
+## Use Case:
 
+External users, especially college students and campus competition participants, use this skill to find upcoming competitions, verify dates against official sources, and identify potential teammates by competition, skill fit, and availability.
 
-## Reference(s): <br>
-- [Competition list reference](references/competitions.md) <br>
-- [Teaming schema reference](references/teaming-schema.md) <br>
-- [ClawHub skill page](https://clawhub.ai/smallkeyboy/competition-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown tables and guidance, with JSON from the local teaming script when invoked] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and write local matchmaking records under ~/.openclaw/workspace/memory/teaming-requests.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill stores raw phone, email, QQ, or WeChat details in persistent local team-matching records, and helper outputs can expose complete personal records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing; avoid real contact details unless persistent local storage is acceptable, and add explicit consent, retention, deletion, restrictive file permissions, and masked-only list and match outputs before broad use.
+
+## Reference(s):
+
+- [Competition Reference List](artifact/references/competitions.md)
+- [Teaming Data Schema and Matching Rules](artifact/references/teaming-schema.md)
+- [ClawHub Skill Page](https://clawhub.ai/smallkeyboy/skills/competition-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown tables and concise guidance, with optional JSON from the local teaming helper.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Competition dates should be verified against official sources; team-matching output should mask contact details.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

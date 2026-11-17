@@ -1,45 +1,58 @@
-## Description: <br>
-BondInformation queries FEEDAX bond market news and filters by bond type, sentiment, and time range to support bond credit risk monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BondInformation helps agents query FEEDAX bond-market news and credit-risk signals by keyword, bond type, sentiment, time range, and sorting preference.
 
-## Publisher: <br>
-[longgggggg](https://clawhub.ai/user/longgggggg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[longgggggg](https://clawhub.ai/user/longgggggg)
 
-## Use Case: <br>
-External users and analysts use this skill to search bond-market news, monitor default risk, track rating changes, and analyze issuer sentiment from FEEDAX data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API keys may be exposed through chat, full .env reads, plaintext config files, or command-line arguments. <br>
-Mitigation: Provide credentials through a protected environment variable or secret manager, avoid pasting keys into chat, and do not ask the agent to read full credential files. <br>
-Risk: Bond-news queries can be retained in generated CSV and Markdown output files by default. <br>
-Mitigation: Use --no-output for sensitive searches or write outputs only to a protected directory with appropriate retention controls. <br>
-Risk: The documented FEEDAX endpoint uses HTTP, which may not protect real credentials or sensitive query data in transit. <br>
-Mitigation: Confirm a trusted HTTPS endpoint with FEEDAX before using production credentials or sensitive search terms. <br>
+## Use Case:
 
+External users and finance analysts use this skill to monitor bond news, issuer sentiment, default risk, rating changes, and market developments from FEEDAX data. It is suited for research workflows that need brief chat summaries plus full exported result files.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/longgggggg/bond-information) <br>
-- [Publisher profile](https://clawhub.ai/user/longgggggg) <br>
-- [FEEDAX](https://www.feedax.cn) <br>
-- [FEEDAX bond news API endpoint](http://221.6.15.90:18011/data-service/v1/news/bond/external/query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files] <br>
-**Output Format:** [Terminal summaries plus CSV and Markdown files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a FEEDAX API key; generated result files can be disabled with --no-output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill sends bond-search terms and a FEEDAX API key to the FEEDAX service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use protected environment-variable injection or a controlled configuration file, avoid pasting API keys into chat, and install only when FEEDAX data sharing is acceptable.
+
+Risk: The release evidence flags API-key handling as risky because production credentials may be exposed through URL-based HTTP requests.
+
+Mitigation: Avoid production credentials unless the endpoint is changed to HTTPS and API keys are removed from URLs.
+
+Risk: Default CSV and Markdown exports may persist sensitive bond research or query results locally.
+
+Mitigation: Use --no-output for sensitive lookups or set --output-dir to a controlled storage location.
+
+## Reference(s):
+
+- [FEEDAX](https://www.feedax.cn)
+- [FEEDAX bond news API endpoint](http://221.6.15.90:18011/data-service/v1/news/bond/external/query)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance, terminal text summaries, CSV files, and Markdown result reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Shows the first five results in chat and can export full query results to timestamped CSV and Markdown files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

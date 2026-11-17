@@ -1,46 +1,54 @@
-## Description: <br>
-Screen startup pitch decks from a VC or angel investor perspective by parsing deck structure with SoMark, researching key claims with web search, and producing a concise pre-meeting investment memo with an investment signal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Screens startup pitch decks by parsing PDFs, PowerPoint files, or images with SoMark, researching key claims, and producing a concise pre-meeting investment memo with an investment signal.
 
-## Publisher: <br>
-[soul-code](https://clawhub.ai/user/soul-code) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[soul-code](https://clawhub.ai/user/soul-code)
 
-## Use Case: <br>
-Investors, analysts, and startup evaluators use this skill to screen inbound pitch decks, prepare for founder meetings, and compare deck claims against external research before deciding whether to proceed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pitch decks are sent to SoMark for parsing. <br>
-Mitigation: Use the skill only for decks whose confidentiality requirements are compatible with SoMark's privacy, retention, and security terms. <br>
-Risk: Company and founder details may be used in external web searches. <br>
-Mitigation: Avoid searching sensitive or NDA-restricted details unless external research is permitted for the deck. <br>
-Risk: The skill requires SOMARK_API_KEY. <br>
-Mitigation: Store the API key as a secret, do not paste it into chat, and rotate it if exposure is suspected. <br>
-Risk: Parsed deck outputs are written to a local output directory. <br>
-Mitigation: Choose an appropriate local directory, restrict access where needed, and remove generated files when they are no longer required. <br>
+## Use Case:
 
+External investors, analysts, and venture teams use this skill to screen inbound pitch decks, prepare before meetings, and batch-review demo day or accelerator decks by combining deck parsing with background research and a concise investment memo.
 
-## Reference(s): <br>
-- [Pitch Screener on ClawHub](https://clawhub.ai/soul-code/pitch-screener) <br>
-- [SoMark Login](https://somark.tech/login) <br>
-- [SoMark Workbench Purchase](https://somark.tech/workbench/purchase) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown investment memo with parser output files in Markdown and JSON, plus shell command examples for deck parsing.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local pitch deck file path and SOMARK_API_KEY; parsed outputs are written to the selected local output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence and _meta.json) <br>
+Risk: Pitch decks and extracted company or founder details may contain confidential financials, customer names, personal founder information, or non-public strategy and may be sent to external services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only after confirming the deck is appropriate for SoMark parsing and web search; request explicit confirmation or a local-only workflow for sensitive decks.
+
+Risk: The generated investment memo could be incomplete or misleading if deck content is missing, external search is unavailable, or claims cannot be independently verified.
+
+Mitigation: Require the memo to distinguish deck evidence, search evidence, contradictions, and unavailable information, and treat the memo as internal screening analysis rather than investment advice.
+
+## Reference(s):
+
+- [Pitch Screener ClawHub page](https://clawhub.ai/soul-code/skills/pitch-screener)
+- [SoMark API endpoint](https://somark.tech/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown investment memo with generated Markdown and JSON deck parse files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SOMARK_API_KEY; parsed deck content may be sent to SoMark and extracted company or founder details may be used in web searches.]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

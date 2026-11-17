@@ -1,40 +1,53 @@
-## Description: <br>
-Use this skill only when the user explicitly asks for a dry-run cleanup inventory, disk-space cleanup, deletion review, or recoverable archiving of generated workspace artifacts in a coding repo, such as caches, logs, test reports, screenshots, temporary databases, eval outputs, build outputs, or agent scratch files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents inventory generated workspace artifacts and plan dry-run cleanup, review, or recoverable archiving inside a coding repo.
 
-## Publisher: <br>
-[hollis9087](https://clawhub.ai/user/hollis9087) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hollis9087](https://clawhub.ai/user/hollis9087)
 
-## Use Case: <br>
-Developers and coding agents use this skill to inventory, review, archive, or remove generated workspace artifacts while preserving source changes, secrets, datasets, and other review-required files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Workspace cleanup can affect high-value local files or privileged workflow outputs if commands are approved without review. <br>
-Mitigation: Use the skill's dry-run inventory first, review exact paths and actions before cleanup, keep activity inside the resolved workspace root, and prefer recoverable archives unless permanent deletion is explicitly requested. <br>
-Risk: Sensitive credentials, private keys, token files, local databases, datasets, and tracked source changes may be present in the workspace. <br>
-Mitigation: Follow the security guidance and skill rules that classify secret-looking paths and tracked changes as protected, and treat databases, datasets, archives, and unclear files as review-required. <br>
+## Use Case:
 
+Developers and coding agents use this skill when a user explicitly asks to inventory, review, archive, or delete generated workspace artifacts without touching source changes or sensitive files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hollis9087/agent-workspace-hygiene) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with concise reports, inline shell commands, and optional JSON inventory summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to dry-run inventory, asks for confirmation before file changes, and prefers recoverable archives over permanent deletion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: Cleanup reports can expose local project paths, filenames, and generated artifact names.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat reports as potentially sensitive and avoid sharing them outside the intended workspace context.
+
+Risk: Archive or deletion actions could remove useful generated outputs if paths are approved without review.
+
+Mitigation: Review the proposed paths before approving changes, prefer recoverable archive, and keep tracked changes, data, databases, credentials, and secret-looking files protected or review-required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hollis9087/skills/agent-workspace-hygiene)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text or Markdown cleanup reports with optional shell commands and JSON inventory summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only inventory by default; archive or deletion actions require explicit user confirmation.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,60 @@
-## Description: <br>
-Provides lightweight summaries of public Lagou job listings and company pages without supporting login, application submission, or bulk scraping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides lightweight retrieval, analysis, and summaries for public Lagou job listings and company pages.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-Employees, external users, and developers can use this skill to inspect public Lagou job and company pages, summarize roles by keyword or city, and compare details such as salary, experience, education, requirements, tags, benefits, industry, company size, and technology stack. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Use beyond public, user-directed inspection could violate platform rules or trigger anti-automation controls. <br>
-Mitigation: Keep usage small and user-directed, avoid bulk scraping, do not bypass human checks, and follow Lagou platform rules. <br>
-Risk: Automating account access or job applications could create unauthorized actions on behalf of a user. <br>
-Mitigation: Do not use the skill to log in, submit applications, or perform account-bound actions. <br>
+## Use Case:
 
+Developers and agents use this skill to summarize public Lagou job listings, job details, and company pages for internal analysis and reminders. It is scoped to lightweight public-page analysis and excludes login automation, applications, API calls, and bulk scraping.
 
-## Reference(s): <br>
-- [Lagou Skill Page](https://clawhub.ai/CodeKungfu/lagou) <br>
-- [Lagou Homepage](https://www.lagou.com/) <br>
-- [Lagou Job Search](https://www.lagou.com/jobs/list_) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown summaries and comparison notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should identify public-page collection time and avoid login, application submission, bypassing checks, or bulk scraping.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: The agent may browse or parse public Lagou pages in ways that conflict with platform rules or create excessive traffic.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep use lightweight, avoid bulk scraping and API calls, apply frequency controls, and follow Lagou platform rules.
+
+Risk: The agent may attempt logged-in actions or job applications outside the skill's intended scope.
+
+Mitigation: Do not automate login, account actions, or applications; limit use to public job and company pages.
+
+Risk: Dynamic pages and human verification can make extracted job information incomplete or stale.
+
+Mitigation: Open pages manually when required, review extracted summaries before use, and include the collection time in outputs.
+
+## Reference(s):
+
+- [Lagou Homepage](https://www.lagou.com/)
+- [Lagou Job Search](https://www.lagou.com/jobs/list_)
+- [ClawHub Skill Page](https://clawhub.ai/codekungfu/skills/lagou)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/codekungfu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include job titles, salary ranges, city, experience, education, job type, posting time, responsibilities, requirements, skill tags, benefits, company profile details, source links, and collection time.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,55 @@
-## Description: <br>
-Helps veterinary clinics optimize appointment scheduling, draft follow-up workflows, manage supply reorder alerts, and summarize daily clinic performance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operational assistant for veterinary clinics that helps plan scheduling, client follow-ups, inventory reorder alerts, daily reports, and retention outreach.
 
-## Publisher: <br>
-[afrexai-cto](https://clawhub.ai/user/afrexai-cto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[afrexai-cto](https://clawhub.ai/user/afrexai-cto)
 
-## Use Case: <br>
-Veterinary clinic operators and front-desk teams use this skill to generate scheduling recommendations, reminder and follow-up templates, inventory checklists, daily reports, and retention metrics. It is not intended for diagnosis, treatment decisions, controlled substance tracking, insurance claims, or regulated records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Client communications may include personal data or medical record details if users paste them into prompts. <br>
-Mitigation: Share only the minimum necessary client information, use approved clinic communication systems, and review messages before sending. <br>
-Risk: Generated workflow text could be mistaken for veterinary medical, controlled-substance, insurance, or regulated-record guidance. <br>
-Mitigation: Keep diagnosis, treatment, controlled substance tracking, insurance, and regulated records in compliant systems with qualified human review. <br>
+## Use Case:
 
+Veterinary clinic owners, practice managers, and operations staff use this skill to draft operational workflows for appointment reminders, post-care follow-ups, inventory checks, daily reports, and client re-engagement.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/afrexai-cto/afrexai-vet-clinic-ops) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with operational templates, checklists, and summary tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [User-provided clinic details drive generated recommendations and templates. Review client communications and operational outputs before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Client messages and clinic workflows may include private, medical, or financial information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated messages as drafts, verify recipients, use approved clinic systems, include only the minimum necessary information, and honor SMS/email consent and opt-out requirements.
+
+Risk: The skill is not intended for veterinary medical diagnosis, treatment decisions, controlled substance tracking, or insurance claims processing.
+
+Mitigation: Use licensed veterinary judgment and compliant clinic systems for medical decisions, controlled substances, claims, and other regulated workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/afrexai-cto/skills/afrexai-vet-clinic-ops)
+- [AfrexAI consultation page](https://afrexai.com/book)
+- [AfrexAI website](https://afrexai.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown templates, checklists, summaries, and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are drafts for clinic review before use with clients or operational systems.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

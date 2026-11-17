@@ -1,41 +1,54 @@
-## Description: <br>
-Dev Mentor is a cross-domain learning companion for experienced developers that guides them through building complete projects while learning backend development, databases, server deployment, or Rust. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides experienced developers through learning an unfamiliar technical field by building a project from start to finish.
 
-## Publisher: <br>
-[z-zihan](https://clawhub.ai/user/z-zihan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[z-zihan](https://clawhub.ai/user/z-zihan)
 
-## Use Case: <br>
-Developers and engineers use this skill to learn an unfamiliar development domain through a guided project lifecycle, from planning and implementation through testing, deployment, monitoring, and next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may write a local dev-mentor-projects.json file containing project context and server summary information. <br>
-Mitigation: Do not store passwords, tokens, private keys, or detailed server access information in that file, and delete it when cross-session project memory is no longer needed. <br>
-Risk: The skill can guide purchases such as cloud servers or domains during deployment learning. <br>
-Mitigation: Review costs, provider terms, and configuration choices before making purchases or provisioning paid infrastructure. <br>
+## Use Case:
 
+Developers use this skill as a conversational mentor when they want to learn an unfamiliar development area through a hands-on project. It currently guides learning in backend development, databases, server deployment, and Rust.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/z-zihan/dev-mentor) <br>
-- [Homepage](https://github.com/z-Zihan/awesome-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with explanations, code blocks, shell commands, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create and update a local dev-mentor-projects.json file to track learning-project state across sessions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Database migration guidance could affect existing data if applied without safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up the database, review the migration and rollback plan, and test it in a staging environment before applying it to production data.
+
+Risk: SSH hardening steps could lock the operator out of a server.
+
+Mitigation: Keep the current SSH session open, confirm alternate console access, and test a new SSH connection before closing the existing session.
+
+## Reference(s):
+
+- [Dev Mentor on ClawHub](https://clawhub.ai/z-zihan/skills/dev-mentor)
+- [Project homepage](https://github.com/z-Zihan/awesome-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Conversational Markdown with explanations, code examples, and commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Adapts explanations to the learner's experience and pauses between project steps for feedback.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter, ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

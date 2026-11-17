@@ -1,12 +1,12 @@
 <div align="center">
 
-# Cooking.skill
+# BrainHarness Cooking
 
 > If you do not know what to cook, start by being honest about your cravings and your fridge.
 
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-Skill-blueviolet)](https://claude.ai/code)
 [![Agent Skill](https://img.shields.io/badge/Skill-Cooking-green)](#)
-[![Status](https://img.shields.io/badge/status-v0.1.0-orange)](#)
+[![Status](https://img.shields.io/badge/status-v0.2.0-orange)](#)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 A cooking skill that asks only a couple of useful questions, then gives you a recipe you can actually execute.
@@ -56,26 +56,26 @@ The default answer includes:
 Universal:
 
 ```bash
-npx skills add zning1994/cooking-skill
+npx skills add zning1994/brainharness-cooking
 ```
 
 OpenClaw / ClawHub:
 
 ```bash
-openclaw skills install cooking-skill
+npx clawhub@0.23.3 install brainharness-cooking
 ```
 
 For the current project:
 
 ```bash
 mkdir -p .claude/skills
-git clone https://github.com/zning1994/cooking-skill .claude/skills/cooking-skill
+git clone https://github.com/zning1994/brainharness-cooking .claude/skills/brainharness-cooking
 ```
 
 Global install:
 
 ```bash
-git clone https://github.com/zning1994/cooking-skill ~/.claude/skills/cooking-skill
+git clone https://github.com/zning1994/brainharness-cooking ~/.claude/skills/brainharness-cooking
 ```
 
 ## Example prompts
@@ -90,7 +90,7 @@ What can I do if I do not have cooking wine?
 ## Project structure
 
 ```text
-cooking.skill/
+brainharness-cooking/
 ├── SKILL.md
 ├── agents/openai.yaml
 └── references/

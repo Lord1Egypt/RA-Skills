@@ -1,42 +1,59 @@
-## Description: <br>
-Generate high-quality AI images using Google Imagen 4 via Media.io OpenAPI. Produces photorealistic, detailed images from text prompts with advanced text rendering accuracy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate high-quality, photorealistic images from text prompts using Google Imagen 4 via Media.io OpenAPI.
 
-## Publisher: <br>
-[wondershare-boop](https://clawhub.ai/user/wondershare-boop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wondershare-boop](https://clawhub.ai/user/wondershare-boop)
 
-## Use Case: <br>
-External developers and creators use this skill to submit text prompts to Media.io's Imagen 4 API and retrieve image generation task identifiers and results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image prompts and task IDs are sent to Media.io. <br>
-Mitigation: Avoid including secrets, private personal data, or proprietary content in prompts or task identifiers. <br>
-Risk: The skill requires a Media.io API key and generation may consume paid credits. <br>
-Mitigation: Use a revocable or limited API key, monitor usage, and install only if you trust Media.io. <br>
+## Use Case:
 
+External developers and agents use this skill to call Media.io OpenAPI for Imagen 4 text-to-image generation and to retrieve generation task results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wondershare-boop/mediaio-imagen4-image-generator) <br>
-- [Media.io API documentation](https://platform.media.io/docs/) <br>
-- [Media.io developer portal](https://developer.media.io/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell command examples; API calls return JSON response payloads.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Media.io API key in API_KEY and sends prompts and task IDs to Media.io.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill requires a Media.io API key and sends prompts to Media.io OpenAPI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated, limited-privilege API key if available, avoid sensitive prompt content, and review generated outputs before use.
+
+Risk: The artifact includes a credit-balance API in addition to the advertised image-generation workflow.
+
+Mitigation: Review the credits endpoint before installation or execution and restrict use to the APIs expected for the deployment.
+
+Risk: The quick-start dependency example installs requests without a pinned version.
+
+Mitigation: Install dependencies from a pinned, reviewed environment for production or shared deployments.
+
+## Reference(s):
+
+- [Media.io API documentation](https://platform.media.io/docs/)
+- [Media.io developer portal](https://developer.media.io/)
+- [ClawHub skill listing](https://clawhub.ai/wondershare-boop/skills/mediaio-imagen4-image-generator)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Text, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown guidance with Python and shell examples; API responses are JSON payloads.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Media.io API key supplied through API_KEY or passed explicitly.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

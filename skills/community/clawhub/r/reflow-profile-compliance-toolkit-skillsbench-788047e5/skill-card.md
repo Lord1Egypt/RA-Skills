@@ -1,37 +1,52 @@
-## Description: <br>
-Deterministic handbook-grounded retrieval and thermocouple computations for reflow profile compliance outputs such as ramp, TAL, peak, feasibility, and selection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deterministic handbook-grounded retrieval and thermocouple computations for reflow profile compliance outputs such as ramp, TAL, peak, feasibility, and selection.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wu-uk](https://clawhub.ai/user/wu-uk)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and manufacturing engineers use this skill to retrieve handbook limits and compute deterministic reflow profile compliance metrics from thermocouple, MES, or defect data. It supports ramp, time-above-liquidus, peak temperature, conveyor feasibility, and sensor-selection analysis.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Ambiguous handbook limits or multiple applicable constraints could lead to incorrect compliance conclusions.
+
+Mitigation: Review outputs as engineering analysis and apply the stricter documented constraint when multiple limits apply.
+
+Risk: Missing or non-monotonic thermocouple data can make computed metrics incomplete or misleading.
+
+Mitigation: Sort samples deterministically, ignore non-positive time deltas, use null for unavailable metrics, and avoid claiming pass status without valid supporting data.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Manufacturing engineers and process developers use this skill to extract handbook-defined reflow limits and compute deterministic compliance metrics from thermocouple, MES, or defect data. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Incorrect handbook limits or thermocouple calculations could affect manufacturing or compliance decisions. <br>
-Mitigation: Use only handbook, MES, and thermocouple data intended for the agent to read, and validate outputs before using them for manufacturing or compliance decisions. <br>
+**Output Format:** [Markdown with Python code blocks and structured JSON guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Sorts identifiers deterministically, rounds numeric outputs to 2 decimals, and uses null for missing or invalid numeric values.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code snippets and JSON-style configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Specifies deterministic sorting, interpolation, stable tie-breaks, 2-decimal rounding, and nulls for unavailable metrics.] <br>
+0.1.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

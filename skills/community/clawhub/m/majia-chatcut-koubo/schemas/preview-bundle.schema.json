@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/preview-bundle.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schemaVersion",
+    "previewBundleId",
+    "projectId",
+    "runId",
+    "timelineId",
+    "timelineRevision",
+    "timelineRange",
+    "planHash",
+    "styleFingerprint",
+    "requiredReasons",
+    "windows",
+    "status"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "previewBundleId": {
+      "$ref": "creator-os-common.schema.json#/$defs/identifier"
+    },
+    "projectId": {
+      "$ref": "creator-os-common.schema.json#/$defs/identifier"
+    },
+    "runId": {
+      "$ref": "creator-os-common.schema.json#/$defs/identifier"
+    },
+    "timelineId": {
+      "$ref": "creator-os-common.schema.json#/$defs/identifier"
+    },
+    "timelineRevision": {
+      "$ref": "creator-os-common.schema.json#/$defs/revision"
+    },
+    "timelineRange": {
+      "$ref": "creator-os-common.schema.json#/$defs/timeRange"
+    },
+    "planHash": {
+      "$ref": "creator-os-common.schema.json#/$defs/sha256"
+    },
+    "styleFingerprint": {
+      "$ref": "creator-os-common.schema.json#/$defs/sha256"
+    },
+    "requiredReasons": {
+      "type": "array",
+      "minItems": 3,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "opening-60s",
+          "complex-operation",
+          "privacy-risk",
+          "ending"
+        ]
+      }
+    },
+    "windows": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "windowId",
+          "reason",
+          "range",
+          "subjectRefs"
+        ],
+        "properties": {
+          "windowId": {
+            "$ref": "creator-os-common.schema.json#/$defs/identifier"
+          },
+          "reason": {
+            "enum": [
+              "opening-60s",
+              "complex-operation",
+              "privacy-risk",
+              "ending"
+            ]
+          },
+          "range": {
+            "$ref": "creator-os-common.schema.json#/$defs/timeRange"
+          },
+          "subjectRefs": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "$ref": "creator-os-common.schema.json#/$defs/identifier"
+            }
+          }
+        }
+      }
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "ready"
+      ]
+    }
+  }
+}

@@ -1,43 +1,49 @@
-## Description: <br>
-Creates design-forward visual art as PNG or PDF artifacts by first drafting a visual philosophy and then expressing it on a canvas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates original visual design artifacts in Markdown, PNG, and PDF formats using a generated design philosophy.
 
-## Publisher: <br>
-[Theo-jobs](https://clawhub.ai/user/Theo-jobs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[theo-jobs](https://clawhub.ai/user/theo-jobs)
 
-## Use Case: <br>
-External users and creative practitioners use this skill to direct an agent to produce polished static art, posters, and design pieces with minimal text and a strong visual concept. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask the agent to download external fonts for visual design work. <br>
-Mitigation: Use bundled, already-installed, or explicitly approved fonts, and require confirmation before any external font download. <br>
-Risk: Generated visual work can unintentionally resemble existing artists or copyrighted designs if prompts are too specific. <br>
-Mitigation: Create original visual directions and avoid copying named artists, protected works, or exact visual identities. <br>
+## Use Case:
 
+External users and creative agents use this skill to produce design-forward posters, artwork, and other static visual pieces with an accompanying design philosophy.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/Theo-jobs/hamster-canvas-design-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/Theo-jobs) <br>
-- [Bundled skill instructions](artifact/SKILL.md) <br>
-- [Bundled font licenses](artifact/canvas-fonts/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown guidance and generated artifact files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Typically produces a design philosophy Markdown file plus a single-page PNG or PDF visual artifact unless additional pages are requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill may ask the agent to fetch fonts from the internet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer installed or bundled trusted fonts, and require approval plus source and hash details before downloading or embedding any new font.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/theo-jobs/skills/hamster-canvas-design-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, image, pdf, guidance]
+
+**Output Format:** [Markdown design philosophy plus PNG or PDF visual artifact]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Normally produces one page unless the user requests multiple pages.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,76 +1,498 @@
 ---
 name: enterprise-service-assistant
-description: 园区企业服务智能助手（完全自包含版）。一站式提供客户管理、费用催缴、合同续租预警、工单分派、库存监控、C+服务匹配、走访计划管理、退租管理、运营数据报表、投诉管理10大核心功能。基于Excel台账数据（[你的园区数据.xlsx]），自动生成风险预警和日报推送。当用户需要管理园区企业服务事务时使用此skill。
+description: 园区企业服务智能助手。覆盖今日工作、服务企业、事项跟进三大板块，优先查询本地SQLite数据库（<0.1秒，零token消耗），支持定时同步腾讯文档数据。当用户需要管理园区企业服务事务时使用此skill。
+version: 3.6.0
 ---
 
 # 企服助手 (Enterprise Service Assistant)
 
 ## 📋 概述
 
-企服助手是面向园区运营管理的智能助手，基于《C+基础保障服务手册》设计，覆盖10大核心业务模块：
+企服助手是面向园区运营管理的智能助手，基于《C+基础保障服务手册》设计，按照企服人员的日常工作组织：
 
-| 模块 | 功能 | 数据源 |
+> 每日常工作只有四个步骤：今日工作（看什么）→ 企业情况（为什么）→ 办理业务（怎么做）→ 处理完成（自动归档）
+
+## 三板块
+
+| 板块 | 职责 | 数据源 |
 |------|------|--------|
-| 客户管理 | 客户档案、企业画像、风险标记、时间线 | 👨客户管理👨 + 多表关联 |
-| 费用催缴 | 逾期分级、催缴话术、合并通知 | 👨💼费用收缴👨💼 |
-| 合同续租预警 | 三级预警、续租方案生成、稳租策略 | 👨客户管理👨 |
-| 工单分派 | 自动分派、SLA监控、超时升级 | 🛠️报修情况汇总🛠️ |
-| 库存监控 | 水位计算、补货提醒、出入库记录 | 📦库存管理📦秩序环境 |
-| C+服务匹配 | 需求挖掘、服务推荐、跟进闭环 | C+服务记录 |
-| 走访计划管理 | 智能排程、质量评分、闭环追踪 | C+服务记录 + 👨客户管理👨 |
-| 退租管理 | 原因分析、趋势监控、挽回策略 | 退租汇总 + 👨客户管理👨 |
-| 运营数据报表 | KPI看板、同环比分析、自动报告 | 全表聚合 |
-| 投诉管理 | 投诉分类、流程跟踪、回访闭环 | 投诉记录 + 🛠️报修情况汇总🛠️ |
+| **今日工作** | 筛选今天需要处理的工作项，按紧急度排序 | 全部表 |
+| **服务企业** | 管家直接执行：查询企业、催缴费用、沟通续租、处理投诉、协调退租、C+增值服务、客户微信工单 | 👨客户管理👨、👨💼费用收缴👨💼、💡能耗汇总💡、C+服务记录（含政策日历、认股权台账）、投诉记录、退租汇总、📋客户工单台账、⚙️处理人员配置 |
+| **事项跟进** | 管家推进别人做：跟进报修、督办整改、提醒保养、协调库存/资产/工程、跟进能耗、客户工单SLA监控 | 🛠️报修情况汇总、安全巡检计划、设备保养台账、📦库存管理📦秩序环境、秩序环境入库/出库、库存-工程、库存-固定资产、📋客户工单台账、⚙️处理人员配置 |
+
+> 管家不做报修、巡检、保养、库存这些事，但负责推进——AI帮盯时限、防遗漏。政策日历、认股权台账均属于C+增值服务，不独立成模块。
+
+---
+
+## 🛡️ 自由度—可控性声明（出厂标配）
+
+> 依据 `writing-for-agents` v1.2.0 第 8 项自检：每个 skill 必须显式声明其「自由度—可控性」位置。高自由度 ≠ 拥有控制权。
+
+| 维度 | 本 Skill 声明 |
+|------|--------------|
+| **自由度** | 中—高（高自主执行辅助，不获决策权）。主动同步、本地落盘、定时推送均为既定设计 |
+| **执行权** | 用户确认后执行：对客财务/法律动作（费用催缴、分派通知、涉及客户告知的敏感外部推送）；限自主执行：数据同步（腾讯文档→SQLite）、写本地DB/缓存/JSON、内部提醒推送（每日日报/风险提醒/工单SLA升级） |
+| **人在环** | 必须 confirm：催缴、分派、任何对客户有财务/法律影响的对外消息；已授权自动化：每日定时推送（用户首次配置即授权）、工单SLA超时@all升级 |
+| **Memory** | `agent-writable`：可写 SQLite(tracking/completion_log/sync_log)、本地缓存JSON、本地JSON；不可写 腾讯文档源数据（只读同步不写回）、IMA知识库（只读源）、已确认工单结论、外发未授权第三方 |
+| **外部行动** | 允许触达：腾讯文档MCP（读/拉取同步）、本地SQLite写、本地缓存写、本地JSON写、企微webhook推送（已配置key）、Python(sqlite3)；禁止触达：邮件/短信/未授权第三方、写回腾讯文档源、外部API（除已配置企微webhook）、暴露隐私数据（铁律） |
+| **不可越界** | 不替客户/管家做法律·财务决定（减免/赔付）；不修改腾讯文档源数据；不向未配置webhook外的地址发消息；不替代人工审批/签收 |
 
 ---
 
 ## ⚠️ AI执行原则（重要）
 
-**本skill是完全自包含的，所有逻辑由AI直接执行，不调用任何外部skill。**
+**本skill通过腾讯文档MCP工具读取数据，支持本地缓存加速，所有逻辑由AI直接执行。**
 
-- ❌ 禁止：`call_skill("customer-management", ...)`
-- ❌ 禁止：`call_skill("fee-collection", ...)`
-- ✅ 所有数据直接从Excel读取（使用Python/openpyxl）
-- ✅ 所有计算逻辑由AI阅读本文档后执行
-- ✅ 所有推送模板在本文档中定义
+### 缓存机制（必须遵循）
 
-### 通用执行流程
+每次查询前，AI 必须按以下顺序执行：
 
 ```
-Step 1 → Python直接读取Excel
-         import openpyxl
-         wb = openpyxl.load_workbook('[请配置你的Excel文件路径]')
-         ws = wb['工作表名']
+Step 0 → 检查本地缓存（最快，<0.001秒）
+         cache_file = ~/.workbuddy/workspace/enterprise-service-assistant/cache/{table_name}.json
+         检查 cache_file 是否存在 且 修改时间 <30分钟前
+         → 若存在且未过期 → 直接使用，跳过 Step 1
 
-Step 2 → 按本文档中的逻辑处理数据
+Step 1 → 缓存未命中，调用腾讯文档MCP工具读取数据
+         方式A（推荐，无需sheet_id）：mcp__tencent-docs__get_content(file_id)
+         方式B（需sheet_id）：mcp__tencent-docs__smartsheet.list_records(file_id, sheet_id)
+         方式C：mcp__tencent-docs__smartsheet.get_cell_data(doc_id, table_id, record_id, field_id)
+         💡 get_content 不需要sheet_id，一次调用返回所有子表markdown数据，优先使用
+
+Step 2 → 将数据写入本地缓存
+         cache_file = ~/.workbuddy/workspace/enterprise-service-assistant/cache/{table_name}.json
+         写入格式：{"updated_at": "ISO时间戳", "data": [...]}
+
+Step 3 → 按本文档中的逻辑处理数据
          - 计算、判断、分级
 
-Step 3 → 格式化输出（使用本文档中的模板）
+Step 4 → 格式化输出（使用本文档中的模板）
 
-Step 4 → 推送企微（如需要，使用本文档中的webhook配置）
+Step 5 → 推送企微（如需要，使用本文档中的webhook配置）
+```
+
+### 缓存TTL配置
+
+| 表格 | 缓存TTL | 说明 |
+|-------|---------|------|
+| 客户管理 | 60分钟 | 客户信息变化频率低 |
+| 费用收缴 | 30分钟 | 缴费状态变化较频繁 |
+| 能耗汇总 | 30分钟 | 能耗欠费变化频繁 |
+| 报修情况汇总 | 15分钟 | 工单状态变化频繁 |
+| 📋客户工单台账 | 5分钟 | 微信工单实时性要求高 |
+| ⚙️处理人员配置 | 1440分钟(24h) | 人员配置几乎不变 |
+| 库存管理 | 60分钟 | 库存变化频率低 |
+| C+服务记录 | 30分钟 | 走访记录变化频率中等 |
+| 认股权台账 | 60分钟 | 行权状态变化频率低 |
+| 安全巡检计划 | 60分钟 | 巡检记录变化频率低 |
+| 设备保养台账 | 60分钟 | 保养记录变化频率低 |
+
+### 快速模式（用户主动触发）
+
+**触发词（任选一）：**
+- 「快速查询 XX」
+- 「用缓存，别调MCP」
+- 「本地数据有吗？先看本地的」
+
+**AI 行为：**
+- 只读取 `~/.workbuddy/workspace/enterprise-service-assistant/cache/` 中的 JSON 文件
+- **完全不调用 MCP**
+- 响应时间：**<0.1秒**
+
+### 缓存刷新（用户主动触发）
+
+**触发词（任选一）：**
+- 「刷新」
+- 「重新读取」
+- 「调MCP」
+- 「更新缓存」
+
+**AI 行为：**
+- 删除对应的缓存文件
+- 重新调用 MCP 读取最新数据
+- 写入新缓存
+
+---
+
+## 🗄️ 本地数据库模式 (SQLite) — 推荐
+
+**核心优势：**
+- 查询速度：**<0.1秒**（直接读本地DB，无需API调用）
+- Token消耗：**0**（查询时不调用任何MCP工具）
+- 支持复杂查询：SQL联表、聚合、筛选
+
+### 数据库路径
+
+```
+~/.workbuddy/workspace/enterprise-service-assistant/local_db.sqlite
+```
+
+### AI执行优先级（必须遵循）
+
+```
+Step -1 → 读取配置 force_local / mcp_available（来自 knowledge_base_config.json）
+          if config.get("force_local") is True or config.get("mcp_available") is False:
+              → 跳过所有 MCP 调用，直接查本地 SQLite（Step 3）
+              → 适用场景：腾讯文档 MCP 未连接 / 单机演示 / 弱网环境
+              → 这是最快路径，响应 <5ms，零网络等待
+
+Step 0 → 检查本地数据库是否存在且新鲜（<24小时）
+
+```
+Step 0 → 检查本地数据库是否存在且新鲜（<24小时）
+         DB_PATH = ~/.workbuddy/workspace/enterprise-service-assistant/local_db.sqlite
+         → 若存在且新鲜 → 直接查SQLite（Step 3）
+         → 若否则过期 → 先同步（Step 1），再查询（Step 3）
+
+Step 1 → 同步腾讯文档数据到SQLite（仅在DB不存在/过期时）
+         调用 mcp__tencent-docs__smartsheet.list_records 读取数据
+         写入SQLite（见"同步逻辑"章节）
+
+Step 2 → 标记同步完成
+         更新 sync_log 表
+
+Step 3 → 查询SQLite（超快，零token）
+         使用 Python + sqlite3 模块查询
+         格式化输出
+```
+
+### 同步逻辑
+
+**触发词：**
+- 「同步数据库」
+- 「刷新数据库」
+- 「更新本地数据」
+
+**AI行为：**
+1. 调用 `mcp__tencent-docs__get_content(file_id)` 读取所有工作表数据（不需要sheet_id）
+2. 用Python解析返回的markdown表格数据
+3. **同步校验（data-security-verifier 能力③，铁律）**：覆盖前对比 源表行数 vs 目标表行数、主键去重、必填字段非空率（单元号/企业名/金额）
+   - 校验通过 → 才执行覆盖写入
+   - **校验失败 → 不覆盖**：保留旧库，`sync_log.status='failed'`，输出差异明细，等人工确认
+4. 更新 `sync_log` 表记录同步时间（含 `data_as_of` 时间戳，供时效分级使用）
+
+**💡 为什么用 get_content 不用 list_records：**
+- `get_content` 只需要 `file_id`，不需要 `sheet_id`
+- 一次调用返回所有子表数据（客户管理、费用收缴、报修情况汇总、库存管理、C+服务记录、能耗汇总、投诉记录、退租汇总等）
+- 没有分页问题，没有权限门槛
+- 解析markdown表格比调多个MCP更简单可靠
+
+**AI同步流程（AI执行）：**
+
+```python
+import sqlite3
+from pathlib import Path
+
+DB_PATH = Path.home() / ".workbuddy" / "workspace" / "enterprise-service-assistant" / "local_db.sqlite"
+
+# 连接数据库
+conn = sqlite3.connect(str(DB_PATH))
+cursor = conn.cursor()
+
+# 通过get_content读取所有数据（不需要sheet_id）
+content_result = mcp__tencent-docs__get_content(file_id="YOUR_DOC_ID")
+# content_result 包含所有子表的markdown表格
+
+# 解析markdown表格（按子表标题分割）
+tables = parse_markdown_tables(content_result.get('content', ''))
+
+# 写入各表
+for table_name, data in tables.items():
+    # 清空并写入
+    cursor.execute(f"DELETE FROM {table_name}")
+    for row in data:
+        # 根据表名映射字段，insert into
+        pass
+
+# 记录同步日志
+cursor.execute("""
+    INSERT INTO sync_log (table_name, sync_time, record_count, status)
+    VALUES (?, ?, ?, ?)
+""", (table_name, datetime.now().isoformat(), len(data), 'success'))
+
+conn.commit()
+conn.close()
+
+print("✅ 同步完成")
+```
+
+### 查询逻辑
+
+**触发词（任选一）：**
+- 普通查询（如「查询客户 T1-601」）
+- 「快速查询」（明确指定读DB）
+
+**AI行为：**
+1. 检查DB是否存在且新鲜（<24小时）
+2. 若新鲜 → 直接查SQLite
+3. 若否则过期 → 先同步，再查询
+
+**示例代码（AI执行）：**
+
+```python
+import sqlite3
+from pathlib import Path
+from datetime import datetime, timedelta
+
+DB_PATH = Path.home() / ".workbuddy" / "workspace" / "enterprise-service-assistant" / "local_db.sqlite"
+
+# 检查DB是否新鲜
+def is_db_fresh():
+    if not DB_PATH.exists():
+        return False
+    
+    try:
+        conn = sqlite3.connect(str(DB_PATH))
+        cursor = conn.cursor()
+        cursor.execute("SELECT MAX(sync_time) FROM sync_log WHERE status = 'success'")
+        result = cursor.fetchone()
+        conn.close()
+    except sqlite3.OperationalError:
+        # sync_log 表缺失或损坏：降级为「本地可用」，不抛异常、不触发 MCP
+        return False
+    
+    if not result or not result[0]:
+        return False
+    
+    last_sync = datetime.fromisoformat(result[0])
+    return datetime.now() - last_sync < timedelta(hours=24)
+
+# 查询客户
+def query_customer(unit_no):
+    conn = sqlite3.connect(str(DB_PATH))
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM customers WHERE unit_no = ?", (unit_no,))
+    result = cursor.fetchone()
+    conn.close()
+    return result
+
+# 主逻辑
+if not is_db_fresh():
+    print("⚠️  数据库已过期，正在同步...")
+    # 调用同步逻辑（见上）
+    
+result = query_customer("T1-601")
+print(result)
+```
+
+### 数据库表结构
+
+| 表名 | 说明 | 主要字段 |
+|------|------|---------|
+| `customers` | 客户管理 | unit_no (UNIQUE), tenant_name, level, end_date, phone**（脱敏存储 138\*\*\*\*1234）**, contact**（姓+首字）** |
+| `fees` | 费用收缴 | unit_no, fee_type, receivable_amount, status |
+| `repair_orders` | 报修情况汇总 | unit_no, urgency, status, report_time |
+| `work_orders` | 📋客户工单台账 | work_order_id (UNIQUE), unit_no, type, status, handler |
+| `staff_assignment` | ⚙️处理人员配置 | work_type, keywords, default_handler, sla_urgent_hours |
+| `inventory` | 库存管理 | name (UNIQUE), current_stock, monthly_usage |
+| `cservice_records` | C+服务记录 | tenant_name, visit_time, service_type, detail |
+| `equity_warrants` | 认股权台账 | company_name, unit_no, expiry_date, status |
+| `sync_log` | 同步日志 | table_name, sync_time, status, data_as_of |
+
+> 🛡️ **脱敏字段说明**：`customers.phone` / `contact` 落库即脱敏（见「注意事项 3 落库脱敏策略」）；完整号码需用时从腾讯文档源实时读取。
+
+### 定时同步设置
+
+**创建每日同步任务：**
+
+```
+@WorkBuddy 创建一个定时任务，名称"企服数据同步"，每天08:00执行，提示词："同步企服助手所有表数据（客户管理、费用收缴、报修情况、库存管理、C+服务记录、认股权台账）到本地SQLite数据库"
+```
+
+**automation_update 参数：**
+- scheduleType: "recurring"
+- rrule: "FREQ=DAILY;BYHOUR=8;BYMINUTE=0"
+- prompt: "同步企服助手所有表数据到本地SQLite数据库，使用mcp__tencent-docs__smartsheet.list_records读取数据，写入~/.workbuddy/workspace/enterprise-service-assistant/local_db.sqlite"
+- status: "ACTIVE"
+
+---
+
+### 原有执行规则（仍然有效）
+
+- ✅ 使用 `mcp__tencent-docs__smartsheet.list_records` 等MCP工具读取数据（仅在同步时）
+- ✅ 所有计算逻辑由AI阅读本文档后执行
+- ✅ 所有推送模板在本文档中定义
+- ❌ 禁止：直接读取Excel文件（应使用MCP工具或SQLite）
+
+---
+
+## ⚙️ 知识库配置
+
+**数据通过知识库模块读取，支持三种数据源：**
+
+### ⚠️ 重要：配置文件在技能目录外
+
+配置文件路径：`~/.workbuddy/config/enterprise-service-assistant/knowledge_base_config.json`
+
+**这样做的好处**：
+- ✅ 打包分享时**不会泄露**您的知识库配置
+- ✅ 每个用户需要**自己配置**数据源
+- ✅ 配置文件与技能分离，更安全
+
+### 1. 创建配置文件
+
+**第一步**：创建配置目录
+```bash
+mkdir -p ~/.workbuddy/config/enterprise-service-assistant
+```
+
+**第二步**：复制示例配置
+```bash
+cp knowledge_base_config.example.json ~/.workbuddy/config/enterprise-service-assistant/knowledge_base_config.json
+```
+
+**第三步**：编辑配置文件
+```bash
+# macOS
+open ~/.workbuddy/config/enterprise-service-assistant/knowledge_base_config.json
+
+# 或手动编辑，填入实际配置
+```
+
+### 2. 数据源类型
+
+| 类型 | source_type | source_config | 说明 |
+|------|-------------|---------------|------|
+| 本地文件 | `local` | `{"file_path": "path/to/file.xlsx"}` | 支持.xlsx/.csv |
+| IMA知识库 | `ima` | `{"kb_id": "xxx"}` | 需要IMA MCP连接 |
+| 腾讯文档 | `tencent_docs` | `{"doc_id": "xxx"}` | 需要腾讯文档MCP连接 |
+
+### 3. 配置示例
+
+**本地Excel文件**：
+```json
+{
+  "source_type": "local",
+  "source_config": {
+    "file_path": "path/to/园区数据.xlsx"
+  }
+}
+```
+
+**腾讯文档**：
+```json
+{
+  "source_type": "tencent_docs",
+  "source_config": {
+    "doc_id": "YOUR_DOC_ID"
+  },
+  "force_local": false,
+  "mcp_available": true
+}
+```
+
+> ⚡ **离线/弱网加速开关**（新增）：当腾讯文档 MCP 未连接、或希望完全本地化运行时，设 `"force_local": true` 且 `"mcp_available": false`。此时 AI 跳过所有 MCP 调用，直接读本地 SQLite，响应 <5ms，零网络等待。恢复联网同步后改回 `false` 即可。
+
+**IMA知识库**：
+```json
+{
+  "source_type": "ima",
+  "source_config": {
+    "kb_id": "your-ima-kb-id"
+  }
+}
+```
+
+### 4. AI自动加载配置
+
+配置完成后，AI会自动从外部路径加载配置：
+
+```python
+# 不需要传入config，自动从 ~/.workbuddy/config/enterprise-service-assistant/knowledge_base_config.json 加载
+# 或使用自定义配置（可选）
+custom_config = {...}
+
 ```
 
 ---
 
-## ⚙️ 数据源配置
+## 🗂️ 缓存目录设置
 
-**主数据源**：`[请配置你的Excel文件路径]`
+**AI 首次执行查询时，自动创建缓存目录：**
 
-### 工作表映射
+```bash
+mkdir -p ~/.workbuddy/workspace/enterprise-service-assistant/cache/
+```
 
-| 工作表名 | 用途 | 关键字段 |
-|-----------|------|----------|
-| 👨客户管理👨 | 客户档案、合同信息 | 单元号、租户名、截至日期、等级 |
-| 👨💼费用收缴👨💼 | 费用数据 | 单元号、费项项目、应收/已收金额、是否支付 |
-| 👨💼能耗收缴👨💼 | 能耗费用数据 | 单元号、应收/已收金额、是否支付 |
-| 🛠️报修情况汇总🛠️ | 报修工单 | 楼层/单元、紧急程度、维修跟进状态 |
-| 📦库存管理📦秩序环境 | 库存物资 | 名称、现库存、月使用量 |
-| C+服务记录 | 走访服务数据 | 租户名、走访时间、客户情绪、服务类别 |
-| 退租汇总 | 退租数据 | 单元号、退租日期 |
+**缓存文件命名规则：**
+```
+~/.workbuddy/workspace/enterprise-service-assistant/cache/
+├── 客户管理.json
+├── 费用收缴.json
+├── 报修情况汇总.json
+├── 📋客户工单台账.json
+├── ⚙️处理人员配置.json
+├── 库存管理.json
+├── C+服务记录.json
+└── 认股权台账.json
+```
+
+**缓存文件格式：**
+```json
+{
+  "updated_at": "2026-06-13T13:00:00",
+  "ttl_minutes": 30,
+  "data": [...]
+}
+```
+
+**AI 查询时检查缓存的逻辑：**
+1. 检查 `{table_name}.json` 是否存在
+2. 检查 `updated_at` 距离现在是否超过 `ttl_minutes`
+3. 若未过期 → 直接读取 JSON，不调 MCP（<0.1秒）
+4. 若已过期或不存在 → 调 MCP，更新缓存
 
 ---
 
-## 📦 模块一：客户管理 (Customer Management)
+## ⚙️ 腾讯文档配置
+
+**本Skill通过腾讯文档MCP工具直接读取数据。**
+
+> ⚡ **性能说明**：
+> - 首次查询（缓存未命中）：2-3秒（调MCP API）
+> - 缓存命中后查询：<0.1秒（读本地JSON缓存）
+> - **推荐**：首次查询后，使用「快速查询」触发词，体验秒回
+
+> 💡 **更快的方式（推荐）**：
+> 使用**本地文件模式**（见「知识库配置」章节），直接读取本地Excel/CSV文件，**无需API调用**，查询速度 <0.05秒。
+
+### 配置步骤
+
+**第1步**：在腾讯文档创建智能表格，包含以下工作表：
+- 👨客户管理👨
+- 👨💼费用收缴👨💼
+- 💡能耗汇总💡
+- C+服务记录（含政策日历、认股权台账）
+- 投诉记录
+- 退租汇总
+- 🛠️报修情况汇总🛠️
+- 安全巡检计划
+- 设备保养台账
+- 📦库存管理📦秩序环境
+- 秩序环境入库
+- 秩序环境出库
+- 库存-工程
+- 库存-固定资产
+- 📋客户工单台账
+- ⚙️处理人员配置
+
+**第2步**：复制文档ID（URL中 `/s/` 后面的部分）
+
+**第3步**：在以下代码示例中，将 `YOUR_DOC_ID` 替换为实际的文档ID：
+```python
+# 示例：读取客户管理表
+mcp__tencent-docs__smartsheet.list_records(
+    file_id="YOUR_DOC_ID",
+    sheet_id="m3LDSO"  # 👨客户管理👨 的 sheet_id
+)
+```
+
+> 💡 **提示**：首次使用时，AI会自动帮你获取各个工作表的 `sheet_id`，你只需要提供 `file_id`。
+
+---
+---
+
+## 📦 模块一：服务企业 (Enterprise Service)
 
 ### 功能
 
@@ -89,7 +511,7 @@ Step 4 → 推送企微（如需要，使用本文档中的webhook配置）
 | 4 | 计租面积 | ㎡ |
 | 5 | 单元号 | 主键（如T1-601） |
 | 6 | 租户名 | 企业名称 |
-| 7 | 合同编号 | 如{TODO: 填写合同编号} |
+| 7 | 合同编号 | 如ZJML-2024-12260010 |
 | 8 | 招商 | 招商人员 |
 | 11 | 开始日期 | 合同起始 |
 | 12 | 截至日期 | 合同截止（续租预警用） |
@@ -105,140 +527,22 @@ Step 4 → 推送企微（如需要，使用本文档中的webhook配置）
 #### 1. 查询客户档案
 
 ```python
-def query_customer(unit_no=None, tenant_name=None, contract_no=None):
-    wb = openpyxl.load_workbook('[请配置你的Excel文件路径]')
-    ws = wb['👨客户管理👨']
-    headers = [cell.value for cell in ws[1]]
-    for row in ws.iter_rows(min_row=2, values_only=True):
-        if unit_no and row[5] == unit_no:
-            return dict(zip(headers, row))
-        if tenant_name and tenant_name in str(row[6]):
-            return dict(zip(headers, row))
-        if contract_no and row[4] == contract_no:
-            return dict(zip(headers, row))
-    return None
-```
+import json
 
-#### 2. 构建客户画像
 
-读取以下工作表，按`单元号`或`租户名`关联聚合：
-- **C+服务记录** → 服务记录（走访时间、客户情绪、成交情况、服务类别、成交金额）
-- **👨💼费用收缴👨💼** → 费用记录（费项项目、应收金额、已收金额、欠收金额、是否支付、月份）
-- **👨💼能耗收缴👨💼** → 能耗记录（应收金额、已收金额、欠费金额、是否支付、月份）
-- **🛠️报修情况汇总🛠️** → 报修记录（紧急程度、报修细节描述、维修跟进状态）
 
-#### 3. 风险标记计算
-
-| 风险类型 | 判断条件 | 标记格式 |
-|---------|---------|---------|
-| 高欠费风险 | 欠费总额 > ¥50,000 | 🚨 高欠费风险（欠费¥XX,XXX.XX） |
-| 中度欠费风险 | 欠费 ¥10,000-50,000 | ⚠️ 中度欠费风险（欠费¥XX,XXX.XX） |
-| 轻度欠费提醒 | 欠费 < ¥10,000 | 📢 轻度欠费提醒（欠费¥XX.XX） |
-| 流失风险 | 合同剩余 ≤ 30天 | 🚨 流失风险（合同剩余XX天） |
-| 续租预警 | 合同剩余 ≤ 90天 | ⚠️ 续租预警（合同剩余XX天） |
-| 高频报修 | 报修次数 ≥ 3次 | ⚠️ 高频报修（X次） |
-| 低满意度 | 满意率 < 50% | ⚠️ 低满意度（满意率XX.X%） |
-
-#### 4. 客户时间线生成
-
-按时间倒序，合并以下事件类型：
-- 合同签约（开始日期）
-- C+服务（走访时间）
-- 费用收缴（月份）
-- 能耗收缴（月份）
-- 报修工单（报修时间）
-
-### 触发场景
-
-- `@企服助手 查询客户 T1-601`
-- `@企服助手 客户画像 示例企业`
-- `@企服助手 查询风险客户`
-- `@企服助手 客户时间线 T1-601`
-
-### 输出模板
-
-```
-━━━━━━━━━━━━━━━
-【客户画像】{租户名}
-
-📍 单元：{unit_no} | 状态：{状态}
-
-━━━ 企业标签 ━━━
-等级：{等级} | 企业类型：{企业类型}
-纳税人资质：{纳税人资质} | 天眼评分：{天眼评分}
-
-━━━ 服务记录（{次数}次）━━━
-最近走访：{走访时间} | 管家：{走访管家}
-客户情绪：{客户情绪} | 成交情况：{成交情况}
-
-━━━ 费用记录 ━━━
-应收总额：¥{应收:.2f} | 已收总额：¥{已收:.2f}
-欠费金额：¥{欠费:.2f} | 支付状态：{支付状态}
-
-━━━ 风险标记 ━━━
-{risk_tags 或 "无风险"}
-
-⚡ 操作链接：[腾讯文档-客户管理]
-━━━━━━━━━━━━━━━
-```
-
----
-
-## 📦 模块二：费用催缴 (Fee Collection)
-
-### 功能
-
-1. **逾期分级** — 1-7天（静默）/ 8-30天（提醒）/ 31天+（升级@all）
-2. **催缴话术生成** — 根据逾期阶段、费用类型、历史缴费记录个性化生成
-3. **能耗欠费合并计算** — 同一客户多个欠费合并通知
-4. **定时检查** — 每天10:00自动检查并推送
-
-### 费用收缴表字段映射（👨💼费用收缴👨💼）
-
-| 列号 | 字段名 | 说明 |
-|------|--------|------|
-| 1 | 合同编号 | 关联客户管理表 |
-| 2 | 单元号 | 主键 |
-| 3 | 租户名 | 企业名称 |
-| 4 | 费项项目 | 管理费/电费/租金等 |
-| 5 | 应收金额 | 应收总额 |
-| 7 | 已收金额 | 已支付金额 |
-| 9 | 欠收金额 | 欠费金额 |
-| 10 | 是否支付 | 是/否 |
-| 14 | 月份 | 费用所属月份 |
-
-### 三级逾期分级体系
-
-| 级别 | 逾期天数 | 处理方式 | 推送对象 |
-|------|---------|---------|---------|
-| 静默处理 | 1-7天 | 仅记录，不推送 | 无 |
-| 提醒通知 | 8-30天 | 推送催缴通知 | 财务、企服 |
-| 升级处理 | 31天+ | @all通知，升级处理 | @all |
-
-### 催缴话术模板
-
-**首次逾期**：`您有费用已逾期{X}天，请尽快处理，避免产生滞纳金。`
-
-**多次逾期**：`您已多次逾期，请高度重视，尽快安排缴纳。`
-
-**费用类型话术**：
-- 管理费：`物业管理费是园区正常运营的基础，请按时缴纳。`
-- 电费：`电费欠费可能影响用电服务，请尽快缴纳。`
-- 租金：`租金是合同义务，请按时履行。`
-
-### 核心逻辑
-
-#### 逾期天数计算
-
-```python
-today = datetime.now().date()
-# Excel日期格式多样，需统一解析
 def parse_excel_date(val):
     if isinstance(val, datetime): return val.date()
     if isinstance(val, str): return datetime.strptime(val, "%Y年%m月%d日").date()
     return None
 
-overdue_days = (today - parse_excel_date(row[应收到期日])).days
+# 从知识库读取费用数据
+fee_data = mcp__tencent-docs__smartsheet.list_records(doc_id, table_id='👨💼费用收缴👨💼')
+
+today = datetime.now().date()
+for row in fee_data:
+    overdue_days = (today - parse_excel_date(row.get('应收到期日'))).days
+    # 后续处理...
 ```
 
 #### 欠费合并计算
@@ -271,7 +575,7 @@ overdue_days = (today - parse_excel_date(row[应收到期日])).days
 
 ---
 
-## 📦 模块三：合同续租预警 (Contract Renewal)
+## 📦 模块二：沟通续租 (Contract Renewal)
 
 ### 功能
 
@@ -358,7 +662,7 @@ overdue_days = (today - parse_excel_date(row[应收到期日])).days
 
 ---
 
-## 📦 模块四：工单分派 (Workorder Dispatch)
+## 📦 模块三：跟进报修 (Workorder Follow-up)
 
 ### 功能
 
@@ -383,6 +687,12 @@ overdue_days = (today - parse_excel_date(row[应收到期日])).days
 | 12 | 维修用时天数 | 天数 |
 
 ### 维修人员分派规则
+
+**分派逻辑优先顺序：**
+1. 优先查 `⚙️处理人员配置` 表，按「工单类型 + 子类关键词」匹配
+2. 若配置表无匹配，回退到以下硬编码规则
+
+**硬编码回退规则：**
 
 | 专业领域 | 关键词 | 维修人员 |
 |---------|--------|---------|
@@ -423,7 +733,7 @@ overdue_days = (today - parse_excel_date(row[应收到期日])).days
 
 ---
 
-## 📦 模块五：库存监控 (Inventory Monitor)
+## 📦 模块四：事项跟进 · 协调库存 / 资产 / 工程 (Inventory & Asset Coordination)
 
 ### 功能
 
@@ -488,7 +798,7 @@ available_months = 现库存 / 月使用量 if 月使用量 > 0 else 999
 
 ---
 
-## 📦 模块六：C+服务匹配 (Service Matching)
+## 📦 模块五：C+增值服务 (C+ Value-Added Service)
 
 ### 功能
 
@@ -534,7 +844,7 @@ available_months = 现库存 / 月使用量 if 月使用量 > 0 else 999
 ### 触发场景
 
 - 每天10:00定时任务分析昨日走访记录
-- `@企服助手 服务匹配 示例企业`
+- `@企服助手 服务匹配 上海铭尤力`
 - `@企服助手 分析服务需求`
 
 ### 输出模板
@@ -561,7 +871,203 @@ available_months = 现库存 / 月使用量 if 月使用量 > 0 else 999
 
 ---
 
-## 📦 模块七：走访计划管理 (Visit Management)
+## 📦 模块六：客户微信工单处理 (Customer WeChat Workorder)
+
+### 功能
+
+1. **客户消息接收** — 通过企微MCP（或管家转发）接收客户微信消息
+2. **意图识别与分类** — AI自动判断工单类型（报修/投诉/咨询/催缴/续租/其他）+ 子类（如"水管漏水"）
+3. **自动分派** — 查 `⚙️处理人员配置` 表匹配处理人
+4. **工单创建** — 写入 `📋客户工单台账`，生成完整记录
+5. **进度跟踪与闭环** — 状态更新、SLA监控、完成推送
+
+### 工作流程
+
+```
+客户通过企微客服号私聊发消息
+    ↓
+[1] 企服助手接收消息（企微MCP回调或管家粘贴转发）
+    ↓
+[2] AI意图识别
+    - 类型：报修/投诉/咨询/催缴/续租/其他
+    - 子类：AI从消息中提取关键词判断
+    - 紧急程度：含"爆""漏""着火"等→紧急
+    - 位置提取：T1-601 等
+    ↓
+[3] 查询分派规则
+    调用：mcp__tencent-docs__smartsheet.list_records(
+        file_id="DOC_ID",
+        sheet_id="⚙️处理人员配置的sheet_id"
+    )
+    匹配规则：工单类型 + 子类关键词包含
+    ↓
+[4] 创建工单
+    写入：mcp__tencent-docs__smartsheet.add_records(
+        file_id="DOC_ID",
+        sheet_id="📋客户工单台账的sheet_id",
+        records=[{...}]
+    )
+    同时写入本地 tracking/completion_log.json
+    ↓
+[5] 推送通知
+    - @处理人：新工单信息
+    - 回执客户：已登记+预计处理时间
+    ↓
+[6] 状态更新（后续）
+    客户或管家说「WO-001 处理完了」
+    → 更新台账状态为"已完成"
+    → 推送客户告知完成
+```
+
+### 📋客户工单台账字段映射
+
+| 字段名 | 字段类型 | 填入逻辑 |
+|--------|---------|---------|
+| 工单编号 | 自动编号 | 系统自增（对外展示用 `WO-{日期}-{序号}` ） |
+| 工单来源 | 单选 | 微信反馈（默认）/电话/现场/巡检 |
+| 客户名称 | 文本 | 企微客户昵称 或 管家输入 |
+| 单元号 | 文本 | AI从消息中提取（如T1-601） |
+| 工单类型 | 单选 | AI分类结果 |
+| 子类 | 文本 | AI关键词匹配结果 |
+| 紧急程度 | 单选 | AI判断（紧急/普通/不紧急） |
+| 问题描述 | 文本 | 客户原始消息原文 |
+| 处理人 | 文本 | 查配置表匹配后填入 |
+| 工单状态 | 单选 | 创建时="待处理" |
+| 创建时间 | 日期时间 | 自动填入（当前时间） |
+| SLA截止时间 | 日期时间 | 创建时间+SLA时效（查配置表） |
+| 处理开始时间 | 日期时间 | 处理人接单后更新 |
+| 完成时间 | 日期时间 | 处理完后更新 |
+| 处理时长(小时) | 数字 | 自动计算（完成时间-创建时间） |
+| 处理结果 | 文本 | 处理人填写 |
+| 客户满意度 | 单选 | 完成后客户评价 |
+| 备注 | 文本 | 特殊情况 |
+
+### ⚙️处理人员配置表字段映射
+
+| 字段名 | 字段类型 | 说明 |
+|--------|---------|------|
+| 工单类型 | 单选 | 分派匹配用 |
+| 子类关键词 | 文本 | 逗号分隔，AI用于文本匹配 |
+| 默认处理人 | 文本 | 优先分派给此人 |
+| 备用处理人 | 文本 | 默认处理人不在时 |
+| SLA紧急_小时 | 数字 | 紧急工单SLA上限(小时) |
+| SLA普通_小时 | 数字 | 普通工单SLA上限(小时) |
+
+### 自动分派逻辑（AI执行）
+
+```python
+# Step 1: 从配置表读取分派规则
+def get_assignment_rules():
+    response = mcp__tencent-docs__smartsheet.list_records(
+        file_id="DOC_ID",
+        sheet_id="⚙️处理人员配置的sheet_id"
+    )
+    return response  # 返回所有行
+
+# Step 2: 匹配规则（按行号顺序优先匹配）
+def match_rule(rules, work_type, description):
+    """
+    匹配规则：先匹配工单类型，再匹配子类关键词
+    例：type="报修-水电", keywords="水,漏水,水管"
+    若 description 包含任一关键词 → 匹配成功
+    """
+    for rule in rules:
+        if rule.get('工单类型') != work_type:
+            continue
+        keywords = rule.get('子类关键词', '').split(',')
+        for kw in keywords:
+            kw = kw.strip()
+            if kw and kw in description:
+                return rule
+    return None
+
+# Step 3: 根据配置表中的SLA计算截止时间
+def calc_sla_deadline(rule, urgency):
+    if urgency == '紧急':
+        hours = rule.get('SLA紧急_小时', 1)
+    else:
+        hours = rule.get('SLA普通_小时', 24)
+    from datetime import datetime, timedelta
+    return (datetime.now() + timedelta(hours=hours)).isoformat()
+```
+
+### 文本分类逻辑
+
+企服助手在接到客户消息后，按以下流程进行意图识别：
+
+**Step 1 → 类型判断**（关键词优先，AI兜底）
+
+| 类型 | 触发关键词 |
+|------|-----------|
+| 报修 | 坏、坏掉、漏水、爆、跳闸、不亮、不制冷、坏了、修、维修、修一下 |
+| 投诉 | 投诉、态度差、服务差、吵、噪音、脏、投诉、不满 |
+| 咨询 | 问一下、咨询、请问、费用、租金、多少钱、了解 |
+| 催缴 | 交费、已转账、已打款、没有这个费用、收据、发票 |
+| 续租 | 续租、合同到期、续签、继续租、扩租 |
+| 其他 | （兜底） |
+
+**Step 2 → 子类提取**：从消息中提取具体内容，填入「子类」字段
+
+**Step 3 → 位置提取**：正则匹配 `T\d+-\d+`、`X栋X单元` 等模式
+
+### 触发场景
+
+| 触发方式 | 说明 |
+|---------|------|
+| 管家转发 | 管家收到客户微信消息，复制粘贴给企服助手：「创工单 T1-601 空调坏了」 |
+| 企微MCP回调 | 企微MCP连接后，客户消息自动进入（需连接企微MCP） |
+| 「查工单 WO-001」 | 查询工单状态 |
+| 「WO-001 处理完了」 | 更新工单状态为已完成 |
+| 每小时定时 | SLA超时监控 |
+
+### 输出模板
+
+```
+━━━━━━━━━━━━━━━
+【新工单已创建】
+
+📋 工单编号：{work_order_id}
+📍 单元：{unit_no}
+📝 类型：{work_type} - {sub_type}
+🚨 紧急程度：{urgency}
+📄 问题描述：{description}
+
+👤 客户：{customer_name}
+👷 已分派：{handler}
+⏰ SLA截止：{sla_deadline}
+
+🔄 当前状态：{status}
+━━━━━━━━━━━━━━━
+```
+
+**客户回执模板：**
+```
+✅ 收到！已为您登记工单，编号：{work_order_id}
+👷 已安排{handler}师傅处理
+⏰ 预计{estimated_time}内到场处理
+📌 后续可发送「查工单 {work_order_id}」查询进度
+```
+
+**分派通知模板（推送给处理人）：**
+```
+【新工单】{work_order_id} · {work_type}
+📍 {unit_no} | 🚨 {urgency}
+📝 {description}
+⏰ SLA截止：{sla_deadline}
+⚠️ 请及时处理！
+```
+
+**SLA超时升级模板：**
+```
+🚨【SLA超时】工单 {work_order_id}
+📍 {unit_no} | 类型：{work_type}
+👷 处理人：{handler}
+⏰ 已超时 {overdue_minutes} 分钟
+📝 问题描述：{description}
+
+⚠️ @all 请主管介入！
+━━━━━━━━━━━━━━━
+```
 
 ### 功能
 
@@ -632,555 +1138,312 @@ available_months = 现库存 / 月使用量 if 月使用量 > 0 else 999
 
 ---
 
-## 📦 模块八：退租管理 (Lease Termination Management)
+## 📊 认股权管理 (Equity Warrant Management)
 
 ### 功能
 
-1. **退租原因统计分析** — 按退租原因大类分类统计数量和占比
-2. **退租率趋势监控** — 月度/季度退租率变化趋势
-3. **退租影响评估** — 退租造成的直接租金损失、面积占比、连锁风险评估
-4. **挽回策略生成** — 针对不同退租原因自动生成差异化挽回建议
+1. **认股权台账** — 记录每笔认股权的企业、金额、比例、估值上限、到期日
+2. **到期提醒** — 认股权到期前90天提醒企服人员跟进
+3. **行权条件监控** — 监控企业是否完成合格融资（工商变更/增资协议）
+4. **转让退出管理** — 记录认股权转让给第三方投资机构的价格、税费
+5. **回购义务追踪** — 企业未融资时，追踪创始股东回购履约情况
 
-### 退租汇总表字段映射
+### 腾讯文档数据结构（建议新增工作表：认股权台账）
 
-| 列号 | 字段名 | 说明 |
-|------|--------|------|
-| 1 | 单元号 | 关联客户管理表 |
-| 2 | 租户名 | 企业名称 |
-| 3 | 退租日期 | 实际退租日期 |
-| 4 | 退租原因 | 迁址/扩张/成本/经营不善/园区因素/合同到期/其他 |
-| 5 | 退租面积 | ㎡ |
-| 6 | 原合同到期日 | 合同原始到期日期 |
-
-### 退租原因分类体系
-
-| 退租原因大类 | 典型子原因 | 挽回可能性 | 关联数据 |
-|------------|-----------|-----------|---------|
-| 经营调整 | 迁址、扩张、收缩、业务转型 | 中 | 企业类型、经营范围 |
-| 成本因素 | 租金过高、运营成本上升 | 高（可谈价） | 费用记录、租金水平 |
-| 经营不善 | 倒闭、亏损、注销 | 低 | 缴费准时率 |
-| 园区因素 | 配套不足、服务不满意、环境问题 | 高（可改善） | 走访满意度、报修记录 |
-| 合同到期 | 自然到期不续 | 中 | 客户价值评估 |
-| 其他 | 政策变化、不可抗力、未知 | 低 | - |
-
-### 退租影响评估算法
-
-| 评估维度 | 计算方式 | 高风险阈值 |
-|---------|---------|-----------|
-| 直接租金损失 | 月租金 × 预计空置月数（历史均值3个月） | >¥100,000 |
-| 面积占比 | 退租面积 / 可租总面积 × 100% | >5% |
-| 楼层集中度 | 同楼层退租单元数 / 楼层总单元数 | >30% |
-| 连锁风险 | 同类型企业同时退租数量 | ≥3家 |
-
-### 挽回策略矩阵
-
-| 退租原因 | 挽回策略 | 谈判筹码 |
-|---------|---------|---------|
-| 租金过高 | 租金优惠方案、分期付款、租金锁定 | 续租折扣、免租期 |
-| 配套不足 | 承诺改善时间表、过渡性服务补偿 | 免费增值服务 |
-| 服务不满意 | 升级管家服务、专属服务通道 | 服务承诺书、满意度保障 |
-| 扩张需求 | 推荐园区内更大单元、优先扩租权 | 内部调配免中介费 |
-| 合同到期 | 续租优惠、提前锁定价格 | 装修补贴、设备升级 |
+| 列名 | 字段名 | 说明 | 示例 |
+|------|--------|------|------|
+| 企业名称 | company_name | 关联客户管理表 | 上海景峰制药有限公司 |
+| 单元号 | unit_no | 关联客户管理表 | T1-603.05 |
+| 认股权比例 | warrant_ratio | 2-8% | 5% |
+| 估值上限 | valuation_cap | 如1亿元 | 100000000 |
+| 行权折扣 | discount | 如70% | 70 |
+| 授予日期 | grant_date | 协议签署日 | 2026-06-11 |
+| 到期日期 | expiry_date | 通常3年 | 2029-06-11 |
+| 状态 | status | 待触发/已行权/已转让/已回购/已失效 | 待触发 |
+| 让利金额 | concession_amount | 免租/降租总额 | 3000000 |
+| 融资进展 | financing_progress | 未启动/对接中/TS阶段/DD阶段/已交割 | 未启动 |
+| 备注 | remarks | 融资进展、回购谈判等 | 正在对接启明创投 |
 
 ### 核心逻辑
 
-```python
-def analyze_termination(wb, month=None):
-    """退租分析"""
-    ws = wb['退租汇总']
-    
-    # 1. 按月筛选
-    terminations = []
-    for row in ws.iter_rows(min_row=2, values_only=True):
-        term_date = parse_excel_date(row[2])
-        if month and term_date.month != month:
-            continue
-        # 关联客户管理表获取企业画像
-        customer = query_customer(unit_no=row[0])
-        terminations.append({
-            'unit_no': row[0],
-            'tenant': row[1],
-            'date': term_date,
-            'reason': row[3],
-            'area': row[4],
-            'customer_profile': customer
-        })
-    
-    # 2. 原因分类统计
-    reason_stats = {}
-    for t in terminations:
-        reason = classify_reason(t['reason'])
-        reason_stats[reason] = reason_stats.get(reason, 0) + 1
-    
-    # 3. 退租率计算
-    total_units = get_total_units(wb)
-    churn_rate = len(terminations) / total_units * 100
-    
-    # 4. 影响评估
-    total_loss = sum(t['area'] * get_unit_rent(t['unit_no']) * 3 for t in terminations)
-    
-    return {
-        'count': len(terminations),
-        'rate': churn_rate,
-        'reason_stats': reason_stats,
-        'total_loss': total_loss,
-        'high_impact': [t for t in terminations if t['area'] > 500]
-    }
+#### 1. 认股权台账管理
+
+**新增认股权（调用 `mcp__tencent-docs__smartsheet.add_records`）：**
+
 ```
+调用 mcp__tencent-docs__smartsheet.add_records
+  file_id: "YOUR_DOC_ID"
+  sheet_id: "认股权台账的sheet_id"
+  records: [{
+    "fields": {
+      "企业名称": "上海景峰制药有限公司",
+      "单元号": "T1-603.05",
+      "认股权比例": 5,
+      "估值上限": 100000000,
+      "行权折扣": 70,
+      "授予日期": "2026-06-11",
+      "到期日期": "2029-06-11",
+      "状态": "待触发",
+      "让利金额": 3000000,
+      "融资进展": "未启动",
+      "备注": ""
+    }
+  }]
+```
+
+#### 2. 到期提醒（定时任务）
+
+**检查逻辑（每日执行）：**
+
+```python
+from datetime import datetime, timedelta
+
+# 读取认股权台账
+warrant_data = mcp__tencent-docs__smartsheet.list_records(
+    file_id="YOUR_DOC_ID",
+    sheet_id="认股权台账的sheet_id"
+)
+
+today = datetime.now().date()
+for record in warrant_data:
+    expiry_date = datetime.strptime(record['到期日期'], '%Y-%m-%d').date()
+    days_left = (expiry_date - today).days
+    
+    if 0 <= days_left <= 90:
+        # 到期前90天内，提醒跟进
+        print(f"⚠️ 认股权即将到期：{record['企业名称']}（{days_left}天）")
+        
+        # 检查融资进展
+        if record['融资进展'] == '未启动':
+            print(f"  ⚠️ 融资进展：未启动，建议立即对接投资机构")
+        elif record['融资进展'] in ['对接中', 'TS阶段', 'DD阶段']:
+            print(f"  ✅ 融资进展：{record['融资进展']}，继续跟进")
+        elif record['融资进展'] == '已交割':
+            print(f"  ✅ 融资已完成，可行权")
+```
+
+#### 3. 行权条件监控
+
+**触发条件：**
+- 企业完成合格融资（工商变更/增资协议）
+- 融资估值 ≥ 估值上限 × 行权折扣
+
+**行权方式（三选一）：**
+1. **行权获股权** — 按约定比例获得企业股权
+2. **转让获利** — 将认股权转让给第三方投资机构
+3. **放弃行权** — 认股权失效
+
+**操作流程：**
+
+```
+Step 1 → 监控企业融资进展（从C+服务记录中获取）
+         mcp__tencent-docs__smartsheet.list_records(
+             file_id="YOUR_DOC_ID",
+             sheet_id="C+服务记录"
+         )
+         筛选：服务类别 = "融资对接" AND 企业名称 = "XX公司"
+
+Step 2 → 确认合格融资（工商变更完成 + 融资额 ≥ 最低要求）
+         若合格 → 更新认股权台账，状态改为"可行权"
+
+Step 3 → 与企业协商行权方式
+         - 若行权获股权 → 签署股权转让协议，完成工商变更
+         - 若转让获利 → 寻找第三方投资机构，签署转让协议
+         - 若放弃行权 → 认股权失效，更新台账
+
+Step 4 → 更新认股权台账
+         mcp__tencent-docs__smartsheet.update_records(
+             file_id="YOUR_DOC_ID",
+             sheet_id="认股权台账的sheet_id",
+             records=[{
+               "record_id": "xxx",
+               "fields": {
+                 "状态": "已行权",  # 或"已转让"/"已失效"
+                 "备注": "2026-12-01 行权获股权5%"
+               }
+             }]
+         )
+```
+
+#### 4. 回购义务追踪
+
+**触发条件：**
+- 认股权到期（到期日期 < 今天）
+- 且企业未完成合格融资
+
+**操作流程：**
+
+```
+Step 1 → 检查到期未行权的认股权
+         筛选：状态 = "待触发" AND 到期日期 < 今天
+
+Step 2 → 联系企业创始股东，触发回购义务
+         回购金额 = 让利金额 + 利息（如年化5%）
+
+Step 3 → 追踪回购履约情况
+         - 若已支付 → 更新台账，状态改为"已回购"
+         - 若未支付 → 发送律师函，准备诉讼
+```
+
+### 适用企业筛选标准
+
+| 企业类型 | 认股权比例 | 筛选标准 |
+|---------|------------|---------|
+| A类企业 | 5-8% | 高新技术/专精特新、营收增长≥30%、有核心技术、融资意向明确 |
+| B类企业 | 3-5% | 核心技术企业（营收增长10-30%）、稳定增长企业 |
+| C类企业 | 暂不推荐 | 传统低附加值行业、营收下滑、无核心技术壁垒 |
+
+### 筛选数据来源
+
+**从C+服务记录中读取以下字段，用于筛选A/B/C类企业：**
+
+| 字段名 | 字段类型 | 说明 | 筛选用途 |
+|---------|---------|------|---------|
+| `营收增长%` | percentage | 近2年营收增速（如35.5表示35.5%） | A类≥30%，B类10-30%，C类<10%或下滑 |
+| `融资意向` | singleSelect | 无/有/强烈 | A类需"有"或"强烈"，B/C类不要求 |
+
+**读取方式（AI自动执行）：**
+
+```
+Step 1 → 读取C+服务记录
+         mcp__tencent-docs__smartsheet.list_records(
+             file_id="YOUR_DOC_ID",
+             sheet_id="iSs70V"  # C+服务记录 的 sheet_id
+         )
+
+Step 2 → 提取最新一条记录的"营收增长%"和"融资意向"字段
+         # 按"服务日期"排序，取最新一条
+         latest_record = max(records, key=lambda x: x['服务日期'])
+
+Step 3 → 根据筛选标准分类
+         if latest_record['营收增长%'] >= 30 and latest_record['融资意向'] in ['有', '强烈']:
+             category = "A类"
+         elif 10 <= latest_record['营收增长%'] < 30:
+             category = "B类"
+         else:
+             category = "C类"
+```
+
+> 💡 **提示**：若C+服务记录中无"营收增长%"或"融资意向"数据，AI应主动询问用户，或建议企服人员在下次走访时补充。
+
+### 风险控制
+
+| 风险类型 | 风险等级 | 应对措施 |
+|---------|---------|---------|
+| 企业未融资导致认股权失效 | 🟡 中 | 设置创始股东回购义务（让利金额+利息） |
+| 估值偏差导致权益不对等 | 🟡 中 | 采用"估值上限+下一轮折扣"双轨制 |
+| 国资流失认定风险 | 🔴 高 | **严格履行"三重一大"决策程序**，让利金额量化可追溯 |
+| 企业拒绝配合行权 | 🟡 中 | 协议明确"完成合格融资"为触发条件，约定违约责任 |
+| 认股权转让流动性不足 | 🟢 低 | 优先选择广东股权交易中心登记，依托平台转让 |
 
 ### 触发场景
 
-- 每月1号09:00定时任务自动生成退租月报
-- `@企服助手 退租分析`
-- `@企服助手 退租原因统计`
-- `@企服助手 退租影响评估 T1-601`
-- `@企服助手 退租挽回建议 T1-601`
-
-### 输出模板
-
-```
-━━━━━━━━━━━━━━━
-【退租分析月报】{month}
-
-━━━ 📊 退租概览 ━━━
-本月退租：{count}个单元 | 退租面积：{area}㎡
-退租率：{rate*100:.1f}% | 租金损失预估：¥{loss:,.2f}/月
-预计空置期总损失：¥{total_loss:,.2f}
-
-━━━ 📋 退租原因分布 ━━━
-经营调整：{adj}个（{adj_pct*100:.1f}%）
-成本因素：{cost}个（{cost_pct*100:.1f}%）
-经营不善：{fail}个（{fail_pct*100:.1f}%）
-园区因素：{park}个（{park_pct*100:.1f}%）
-合同到期：{expire}个（{expire_pct*100:.1f}%）
-其他：{other}个（{other_pct*100:.1f}%）
-
-━━━ 🚨 高影响退租 ━━━
-{high_impact_list 或 "无"}
-
-━━━ 📈 趋势对比 ━━━
-上月退租率：{last_month_rate*100:.1f}%
-去年同期：{last_year_rate*100:.1f}%
-趋势：{trend_desc}
-
-━━━ 💡 挽回建议 ━━━
-{retention_suggestions}
-
-⚡ 操作链接：[腾讯文档-退租汇总]
-━━━━━━━━━━━━━━━
-```
+| 用户说了什么 | 执行动作 |
+|-------------|----------|
+| 「查一下认股权台账」 | 读取认股权台账，列出所有认股权记录 |
+| 「XX公司认股权快到期了」 | 检查到期日，提醒跟进融资进展 |
+| 「XX公司完成融资了」 | 更新融资进展，标记"可行权" |
+| 「我们要行权」 | 启动行权流程，协商行权方式 |
+| 「XX公司没融到资」 | 触发回购义务，联系创始股东 |
+| 每天10:00定时任务 | 自动检查到期提醒，推送企微 |
 
 ---
 
-## 📦 模块九：运营数据报表 (Operations Analytics & Reporting)
-
-### 功能
-
-1. **月度KPI仪表盘** — 一站式展示入驻率/收缴率/满意率/退租率/能耗趋势等核心指标
-2. **同环比趋势分析** — 各项关键指标的月度/季度/年度对比
-3. **多维度交叉分析** — 按楼层/企业类型/客户等级的多维数据钻取
-4. **自动报告生成** — 日报/周报/月报/季报分层自动化输出
-
-### 月度KPI指标定义
-
-| KPI指标 | 计算公式 | 数据来源 | 健康范围 |
-|---------|---------|---------|---------|
-| 入驻率 | 已租面积 / 可租总面积 × 100% | 👨客户管理👨 | ≥85% |
-| 租金收缴率 | 已收租金 / 应收租金 × 100% | 👨💼费用收缴👨💼 | ≥95% |
-| 客户满意率 | 满意走访数 / 总走访数 × 100% | C+服务记录 | ≥80% |
-| 退租率 | 本月退租单元 / 总单元数 × 100% | 退租汇总 | ≤5% |
-| 能耗同比 | (本月能耗 - 去年同月能耗) / 去年同月能耗 × 100% | 👨💼能耗收缴👨💼 | ±10% |
-| 工单完成率 | 已完成工单 / 总工单 × 100% | 🛠️报修情况汇总🛠️ | ≥90% |
-| 成交转化率 | 成交服务数 / 推荐服务数 × 100% | C+服务记录 | ≥20% |
-| 投诉解决率 | 已解决投诉 / 总投诉 × 100% | 投诉记录 | ≥90% |
-
-### 报表分层结构
-
-| 报表层级 | 频率 | 内容 | 推送对象 |
-|---------|------|------|---------|
-| 日报 | 每日09:00 | 风险客户提醒、催缴日报、库存预警、投诉日报 | 管家、财务 |
-| 周报 | 每周一09:00 | 走访计划、工单SLA统计、投诉周报、收缴周报 | 管家、运营主管 |
-| 月报 | 每月1号09:00 | 完整KPI看板、退租分析、财务概览、多维分析 | 管理层、招商 |
-| 季报 | 每季首月1号 | 季度经营分析、趋势预测、战略建议 | 管理层 |
-
-### 收入分析维度
-
-| 收入类型 | 数据来源 | 分析指标 |
-|---------|---------|---------|
-| 租金收入 | 👨💼费用收缴👨💼（费项=租金） | 收缴率、同比、客单价 |
-| 管理费收入 | 👨💼费用收缴👨💼（费项=管理费） | 收缴率、坪效 |
-| 能耗收入 | 👨💼能耗收缴👨💼 | 收缴率、单位能耗成本 |
-| C+增值收入 | C+服务记录（成交金额） | 转化率、客单价、品类分布 |
-
-### 核心逻辑
-
-```python
-def generate_monthly_report(wb, month, project_name):
-    """生成月度运营报告"""
-    
-    # 1. 入驻率
-    total_area = get_total_rental_area(wb)
-    rented_area = get_rented_area(wb)
-    occupancy = rented_area / total_area
-    
-    # 2. 收缴率
-    fee_ws = wb['👨💼费用收缴👨💼']
-    total_receivable = sum(row[4] for row in fee_ws.iter_rows(min_row=2, values_only=True) 
-                          if row[4] and is_current_month(row[-1], month))
-    total_collected = sum(row[6] for row in fee_ws.iter_rows(min_row=2, values_only=True) 
-                         if row[6] and is_current_month(row[-1], month))
-    collection_rate = total_collected / total_receivable if total_receivable > 0 else 0
-    
-    # 3. 满意率
-    service_ws = wb['C+服务记录']
-    visits = [(row[3], row[4]) for row in service_ws.iter_rows(min_row=2, values_only=True)
-              if row[3] and is_current_month(row[1], month)]
-    satisfaction = sum(1 for mood, _ in visits if mood == '满意') / len(visits) if visits else 0
-    
-    # 4. 同环比计算（需历史数据）
-    last_month = get_last_month_data(wb, month - 1)
-    last_year = get_last_year_data(wb, month, previous_year=True)
-    
-    return {
-        'occupancy': occupancy,
-        'collection_rate': collection_rate,
-        'satisfaction': satisfaction,
-        'mom_change': compute_mom(report, last_month),
-        'yoy_change': compute_yoy(report, last_year)
-    }
-```
-
-### 触发场景
-
-- 每月1号09:00定时任务自动生成月报
-- `@企服助手 生成本月运营月报`
-- `@企服助手 运营KPI看板`
-- `@企服助手 收入分析`
-- `@企服助手 生成Q2季度报告`
-
-### 输出模板
-
-```
-━━━━━━━━━━━━━━━
-【{month}运营月报】{project_name}
-
-━━━ 📊 KPI仪表盘 ━━━
-入驻率：{occupancy*100:.1f}%（环比{occ_mom:+.1f}%）
-租金收缴率：{collection*100:.1f}%（环比{col_mom:+.1f}%）
-客户满意率：{satisfaction*100:.1f}%（环比{sat_mom:+.1f}%）
-退租率：{churn*100:.1f}%（环比{churn_mom:+.1f}%）
-工单完成率：{workorder*100:.1f}%
-投诉解决率：{complaint_resolve*100:.1f}%
-
-━━━ 💰 财务概览 ━━━
-本月应收：¥{receivable:,.2f}
-本月实收：¥{collected:,.2f}（收缴率{collection*100:.1f}%）
-欠费总额：¥{arrears:,.2f}
-能耗总费用：¥{energy:,.2f}
-C+增值收入：¥{cplus_revenue:,.2f}
-
-━━━ 🏢 客户动态 ━━━
-新签：{new_sign}个 | 续租：{renewal}个
-退租：{termination}个 | 净增长：{net_growth}个
-活跃客户总数：{total_active}
-
-━━━ ⚠️ 风险聚焦 ━━━
-高欠费客户：{high_arrears}个（欠费总额¥{arrears_total:,.2f}）
-流失风险：{churn_risk}个 | 续租预警：{renewal_alert}个
-高频报修：{freq_repair}个 | 低满意度：{low_sat}个
-
-━━━ 📈 同环比趋势 ━━━
-{trend_table}
-
-━━━ 💡 本月建议 ━━━
-{suggestions}
-
-⚡ 操作链接：[腾讯文档-运营看板]
-━━━━━━━━━━━━━━━
-```
-
----
-
-## 📦 模块十：投诉管理 (Complaint Management)
-
-### 功能
-
-1. **投诉登记与分类** — 按投诉类型（设施故障/噪音/服务/安全/环境/邻里纠纷/建议）自动分类
-2. **全流程跟踪** — 受理→处理中→已解决→回访，全链路状态追踪
-3. **SLA超时监控** — 四级SLA体系（紧急4h/普通24h/一般72h/建议7天）
-4. **满意度回访闭环** — 投诉解决后自动触发满意度回访
-5. **与工单系统联动** — 设施故障类投诉可自动转为报修工单
-
-### 投诉分类体系
-
-| 投诉类型 | 关键词 | 默认SLA | 处理部门 |
-|---------|--------|---------|---------|
-| 设施故障 | 漏水、停电、空调、电梯、门禁、网络 | 🚨 紧急（4h） | 工程部 |
-| 噪音扰民 | 噪音、施工、装修、吵闹、音响 | ⚠️ 普通（24h） | 物业部 |
-| 服务质量 | 态度、响应慢、不专业、推诿 | 📢 一般（72h） | 运营部 |
-| 安全隐患 | 消防、电线裸露、结构裂缝、可疑人员 | 🚨 紧急（4h） | 安保部 |
-| 环境卫生 | 垃圾、异味、虫害、清洁、漏水 | ⚠️ 普通（24h） | 保洁部 |
-| 邻里纠纷 | 占道、占用、争议、纠纷 | 📢 一般（72h） | 运营部 |
-| 建议意见 | 建议、意见、希望、改善 | 💡 建议（7天） | 运营部 |
-
-### 投诉处理全流程
-
-```
-受理登记 → 分类分级 → 分派处理人 → 处理中 → 解决确认 → 客户回访 → 关闭归档
-   ↓           ↓           ↓           ↓         ↓          ↓          ↓
- 登记时间   关键词匹配   按类型分派   SLA计时   处理结果   满意度评分  进入知识库
- 投诉内容   自动分级    发送通知     超时升级   整改措施   回访记录   统计分析
- 投诉渠道   关联客户    明确时限     进度更新   客户确认   闭环标记   改进建议
-```
-
-### 投诉SLA分级与升级规则
-
-| 级别 | SLA时限 | 超时阈值 | 一级升级 | 二级升级 |
-|------|---------|---------|---------|---------|
-| 🚨 紧急 | 4小时 | 超1小时 | @运营主管 @物业经理 | @项目经理 @all |
-| ⚠️ 普通 | 24小时 | 超4小时 | @运营主管 | @项目经理 |
-| 📢 一般 | 72小时 | 超12小时 | @管家组长 | @运营主管 |
-| 💡 建议 | 7天 | 不升级 | 周报汇总 | - |
-
-### 投诉与工单联动规则
-
-| 投诉类型 | 联动动作 | 工单类型 |
-|---------|---------|---------|
-| 设施故障 | 自动创建报修工单 | 紧急维修 |
-| 安全隐患 | 自动创建安保工单 | 安全巡检 |
-| 环境卫生 | 自动创建保洁工单 | 深度清洁 |
-| 噪音扰民 | 不转工单，人工协调 | - |
-| 服务质量 | 不转工单，运营处理 | - |
-
-### 核心逻辑
-
-```python
-def register_complaint(unit_no, description, channel='企业微信'):
-    """登记投诉"""
-    complaint_type = classify_complaint(description)
-    sla_level = get_sla_level(complaint_type)
-    sla_hours = get_sla_hours(sla_level)
-    
-    complaint = {
-        'id': generate_complaint_id(),
-        'unit_no': unit_no,
-        'tenant': get_tenant_name(unit_no),
-        'type': complaint_type,
-        'level': sla_level,
-        'description': description,
-        'channel': channel,
-        'status': '已受理',
-        'handler': assign_handler(complaint_type),
-        'created_at': datetime.now(),
-        'sla_deadline': datetime.now() + timedelta(hours=sla_hours),
-        'follow_ups': []
-    }
-    
-    # 设施故障类投诉自动创建工单
-    if complaint_type == '设施故障':
-        auto_create_workorder(unit_no, description, '紧急')
-    
-    return complaint
-
-def check_complaint_sla(complaints):
-    """检查投诉SLA"""
-    now = datetime.now()
-    alerts = []
-    for c in complaints:
-        if c['status'] in ['已解决', '已关闭']:
-            continue
-        elapsed = (now - c['created_at']).total_seconds() / 3600
-        if elapsed > c['sla_hours']:
-            escalate_level = get_escalation(elapsed, c['level'])
-            alerts.append({
-                'complaint_id': c['id'],
-                'unit_no': c['unit_no'],
-                'elapsed': elapsed,
-                'sla': c['sla_hours'],
-                'escalation': escalate_level
-            })
-    return alerts
-```
-
-### 触发场景
-
-- 每4小时定时任务检查投诉SLA状态
-- `@企服助手 登记投诉 T1-601 空调不制冷`
-- `@企服助手 投诉列表`
-- `@企服助手 投诉SLA检查`
-- `@企服助手 投诉详情 #C2024001`
-- `@企服助手 投诉周报`
-
-### 输出模板
-
-```
-━━━━━━━━━━━━━━━
-【投诉处理日报】{today}
-
-━━━ 🆕 新增投诉 ━━━
-{new_complaints 或 "今日无新增投诉"}
-
-1. #{id} | {unit_no} {tenant_name}
-   类型：{complaint_type} | 级别：{level}
-   描述：{description}
-   状态：已受理 → 处理人：{handler}
-   SLA截止：{sla_deadline}
-
-━━━ 🔄 处理中（{N}个）━━━
-1. #{id} | {unit_no} | 已处理{hours}小时
-   进度：{progress} | 剩余SLA：{remaining}h
-   {sla_warning}
-
-━━━ ⚠️ SLA预警 ━━━
-{sla_alert_list 或 "无超时投诉 ✅"}
-
-━━━ ✅ 今日已解决（{M}个）━━━
-1. #{id} | {unit_no} | 用时{h}小时
-   回访状态：{followup_status}
-
-━━━ 📊 统计 ━━━
-新增：{new} | 处理中：{in_progress} | 已解决：{resolved}
-SLA达标率：{sla_rate*100:.1f}% | 平均解决时间：{avg_hours:.1f}h
-客户满意率：{satisfaction_rate*100:.1f}%
-累计未关闭：{backlog}
-━━━━━━━━━━━━━━━
-```
 
 ---
 
 ## ⏰ 定时任务配置
 
-在OpenClaw中配置以下10个定时任务：
+在 WorkBuddy 中使用 `automation_update` 工具配置以下定时任务：
 
 ### 1. 每日风险客户提醒（09:00）
 
-```json
-{
-  "name": "风险客户提醒日报",
-  "schedule": { "kind": "cron", "expr": "0 9 * * *", "tz": "Asia/Shanghai" },
-  "payload": { "kind": "agentTurn", "message": "扫描所有客户风险（欠费、续租预警、高频报修、低满意度），生成风险提醒日报并推送企微群" },
-  "sessionTarget": "isolated",
-  "delivery": { "mode": "announce" }
-}
+**创建方式**：在 WorkBuddy 中执行：
 ```
+@WorkBuddy 创建一个定时任务，名称"风险客户提醒日报"，每天09:00执行，提示词："扫描所有客户风险（欠费、续租预警、高频报修、低满意度），生成风险提醒日报并推送企微群"
+```
+
+**automation_update 参数参考**：
+- scheduleType: "recurring"
+- rrule: "FREQ=DAILY;BYHOUR=9;BYMINUTE=0"
+- prompt: "扫描所有客户风险（欠费、续租预警、高频报修、低满意度），生成风险提醒日报并推送企微群"
+- status: "ACTIVE"
 
 ### 2. 合同续租预警（09:00）
 
-```json
-{
-  "name": "合同续租预警",
-  "schedule": { "kind": "cron", "expr": "0 9 * * *", "tz": "Asia/Shanghai" },
-  "payload": { "kind": "agentTurn", "message": "检查合同到期日期，提前3个月标记续租预警，提前2个月生成续租方案" },
-  "sessionTarget": "isolated",
-  "delivery": { "mode": "announce" }
-}
+**创建方式**：
+```
+@WorkBuddy 创建一个定时任务，名称"合同续租预警"，每天09:00执行，提示词："检查合同到期日期，提前3个月标记续租预警，提前2个月生成续租方案"
 ```
 
 ### 3. 费用催缴检查（10:00）
 
-```json
-{
-  "name": "费用催缴检查",
-  "schedule": { "kind": "cron", "expr": "0 10 * * *", "tz": "Asia/Shanghai" },
-  "payload": { "kind": "agentTurn", "message": "检查费用收缴状态，按三级分级体系（1-7天静默/8-30天提醒/31天+升级）生成催缴报告" },
-  "sessionTarget": "isolated",
-  "delivery": { "mode": "announce" }
-}
+**创建方式**：
+```
+@WorkBuddy 创建一个定时任务，名称"费用催缴检查"，每天10:00执行，提示词："检查费用收缴状态，按三级分级体系（1-7天静默/8-30天提醒/31天+升级）生成催缴报告"
 ```
 
 ### 4. C+服务需求分析（10:00）
 
-```json
-{
-  "name": "C+服务需求分析",
-  "schedule": { "kind": "cron", "expr": "0 10 * * *", "tz": "Asia/Shanghai" },
-  "payload": { "kind": "agentTurn", "message": "分析昨日C+服务走访记录，从详情记录中提取企业需求，根据企业类型匹配服务资源，生成推荐方案" },
-  "sessionTarget": "isolated",
-  "delivery": { "mode": "announce" }
-}
+**创建方式**：
+```
+@WorkBuddy 创建一个定时任务，名称"C+服务需求分析"，每天10:00执行，提示词："分析昨日C+服务走访记录，从详情记录中提取企业需求，根据企业类型匹配服务资源，生成推荐方案"
 ```
 
 ### 5. 库存监控检查（09:00）
 
-```json
-{
-  "name": "库存监控检查",
-  "schedule": { "kind": "cron", "expr": "0 9 * * *", "tz": "Asia/Shanghai" },
-  "payload": { "kind": "agentTurn", "message": "检查所有物资的库存水位（可用月数=现库存/月使用量），生成补货提醒（缺货/预警/关注三级）并推送" },
-  "sessionTarget": "isolated",
-  "delivery": { "mode": "announce" }
-}
+**创建方式**：
+```
+@WorkBuddy 创建一个定时任务，名称"库存监控检查"，每天09:00执行，提示词："检查所有物资的库存水位（可用月数=现库存/月使用量），生成补货提醒（缺货/预警/关注三级）并推送"
 ```
 
 ### 6. 工单SLA监控（每小时）
 
-```json
-{
-  "name": "工单SLA监控",
-  "schedule": { "kind": "cron", "expr": "0 * * * *", "tz": "Asia/Shanghai" },
-  "payload": { "kind": "agentTurn", "message": "检查待处理工单的SLA状态，紧急工单超过1小时或普通工单超过24小时立即升级推送" },
-  "sessionTarget": "isolated",
-  "delivery": { "mode": "announce" }
-}
+**创建方式**：
 ```
+@WorkBuddy 创建一个定时任务，名称"工单SLA监控"，每小时执行，提示词："同时检查「🛠️报修情况汇总」和「📋客户工单台账」两张表中待处理工单的SLA状态，紧急工单超过1小时或普通工单超过24小时立即升级推送"
+```
+
+**automation_update 参数参考**：
+- scheduleType: "recurring"
+- rrule: "FREQ=HOURLY"
+- prompt: "检查「报修情况汇总」和「客户工单台账」中待处理工单的SLA状态，紧急工单超过1小时或普通工单超过24小时立即升级推送"
+- status: "ACTIVE"
 
 ### 7. 每周走访计划生成（周一09:00）
 
-```json
-{
-  "name": "走访计划生成",
-  "schedule": { "kind": "cron", "expr": "0 9 * * 1", "tz": "Asia/Shanghai" },
-  "payload": { "kind": "agentTurn", "message": "生成本周走访计划，根据企业等级（A级每月/B级每季度）、续租预警（剩余≤60天）、欠费风险智能规划走访任务，分配高/中/低优先级" },
-  "sessionTarget": "isolated",
-  "delivery": { "mode": "announce" }
-}
+**创建方式**：
 ```
-
-### 8. 退租分析月报（每月1号09:00）
-
-```json
-{
-  "name": "退租分析月报",
-  "schedule": { "kind": "cron", "expr": "0 9 1 * *", "tz": "Asia/Shanghai" },
-  "payload": { "kind": "agentTurn", "message": "分析上月退租数据，按退租原因分类统计，计算退租率和租金损失，生成挽回策略建议并推送" },
-  "sessionTarget": "isolated",
-  "delivery": { "mode": "announce" }
-}
-```
-
-### 9. 运营月报生成（每月1号09:00）
-
-```json
-{
-  "name": "运营月报生成",
-  "schedule": { "kind": "cron", "expr": "0 9 1 * *", "tz": "Asia/Shanghai" },
-  "payload": { "kind": "agentTurn", "message": "生成上月运营月报，包含KPI仪表盘（入驻率/收缴率/满意率/退租率/能耗趋势）、财务概览、客户动态、风险聚焦、同环比趋势分析" },
-  "sessionTarget": "isolated",
-  "delivery": { "mode": "announce" }
-}
-```
-
-### 10. 投诉SLA监控（每4小时）
-
-```json
-{
-  "name": "投诉SLA监控",
-  "schedule": { "kind": "cron", "expr": "0 */4 * * *", "tz": "Asia/Shanghai" },
-  "payload": { "kind": "agentTurn", "message": "检查所有待处理投诉的SLA状态，紧急投诉超时1小时或普通投诉超时4小时立即升级推送" },
-  "sessionTarget": "isolated",
-  "delivery": { "mode": "announce" }
-}
+@WorkBuddy 创建一个定时任务，名称"走访计划生成"，每周一09:00执行，提示词："生成本周走访计划，根据企业等级（A级每月/B级每季度）、续租预警（剩余≤60天）、欠费风险智能规划走访任务，分配高/中/低优先级"
 ```
 
 ---
 
 ## 💬 企微推送配置
 
-### Webhook地址
+### Webhook 地址（外部配置，不写入包）
 
+> 🔒 **安全修复（2026-08-17）**：webhook key 不再硬编码在 SKILL.md 内（防止 skill 分享时密钥泄露）。改为从外部配置读取，配置路径与 knowledge_base_config.json 同级，不进包、不随分享泄露。
+
+**配置步骤**：
+
+1. 创建配置目录与文件：
+```bash
+mkdir -p ~/.workbuddy/config/enterprise-service-assistant
+cp wecom_webhook.example.json ~/.workbuddy/config/enterprise-service-assistant/wecom_webhook.json
 ```
-https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=14fb1170-2119-4f29-b400-67da770e3a3c
+
+2. 编辑 `~/.workbuddy/config/enterprise-service-assistant/wecom_webhook.json`，填入真实 webhook：
+```json
+{
+  "webhook_url": "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=YOUR_WEBHOOK_KEY"
+}
 ```
+
+**推送前读取规则**：
+- 推送前读取该文件获取 `webhook_url`；
+- 文件不存在或 key 为占位符 → 提示用户先配置，**不静默失败、不内置兜底 key**；
+- 推送内容必须已过脱敏闸门（企业名 / 金额 / 单元号 XX 化，见下方「数据隐私（铁律）」）。
 
 ### 推送格式规范
 
@@ -1198,31 +1461,86 @@ https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=14fb1170-2119-4f29-b400-67d
 **用户输入**：`@企服助手 查询客户 T1-601`
 
 **执行逻辑**：
-1. 读取 `👨客户管理👨` 工作表
-2. 筛选 `单元号 = "T1-601"` 的行
-3. 格式化输出客户档案
+1. AI自动从 `~/.workbuddy/config/enterprise-service-assistant/knowledge_base_config.json` 加载配置
+3. 调用 `mcp__tencent-docs__smartsheet.list_records(doc_id, table_id='👨客户管理👨')` 读取客户数据
+4. 筛选 `单元号 = "T1-601"` 的行
+5. 格式化输出客户档案
 
 ### 示例2：检查费用催缴
 
 **用户输入**：`@企服助手 催缴检查`
 
 **执行逻辑**：
-1. 读取 `👨💼费用收缴👨💼` 工作表
-2. 计算每条记录的逾期天数
-3. 按三级分级体系分类
-4. 生成催缴报告并推送企微
+1. AI自动加载配置并初始化知识库
+2. 调用 `mcp__tencent-docs__smartsheet.list_records(doc_id, table_id='👨💼费用收缴👨💼')` 读取费用数据
+3. 计算每条记录的逾期天数
+4. 按三级分级体系分类
+5. 生成催缴报告并推送企微
 
 ### 示例3：生成续租方案
 
 **用户输入**：`@企服助手 生成续租方案 T1-601`
 
 **执行逻辑**：
-1. 查询客户档案获取企业类型和等级
-2. 读取历史费用记录计算缴费准时率
-3. 读取C+服务记录计算满意度和成交率
+1. 通过知识库查询客户档案获取企业类型和等级
+2. 通过知识库读取历史费用记录计算缴费准时率
+3. 通过知识库读取C+服务记录计算满意度和成交率
 4. 客户价值评估（5个维度，满分100）
 5. 根据决策矩阵生成续租方案
 6. 根据价值等级生成稳租策略
+
+---
+
+## 🔧 快速开始
+
+### 1. 创建配置目录
+
+```bash
+mkdir -p ~/.workbuddy/config/enterprise-service-assistant
+```
+
+### 2. 复制示例配置
+
+```bash
+cp knowledge_base_config.example.json ~/.workbuddy/config/enterprise-service-assistant/knowledge_base_config.json
+```
+
+### 3. 编辑配置文件
+
+```bash
+# macOS
+open ~/.workbuddy/config/enterprise-service-assistant/knowledge_base_config.json
+
+# 填入实际配置，例如：
+# 本地文件：
+# {
+#   "source_type": "local",
+#   "source_config": {
+#     "file_path": "/path/to/your/园区数据.xlsx"
+#   }
+# }
+#
+# 腾讯文档：
+# {
+#   "source_type": "tencent_docs",
+#   "source_config": {
+#     "doc_id": "your-doc-id"
+#   }
+# }
+```
+
+### 4. 测试配置
+
+```python
+# 不需要传config，自动从外部路径加载
+# 测试读取
+data = kb.get_all()
+print(f"✅ 成功读取 {len(data)} 条数据")
+```
+
+### 5. 使用企服助手
+
+配置完成后，AI会自动使用知识库模块读取数据。
 
 ---
 
@@ -1240,6 +1558,14 @@ https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=14fb1170-2119-4f29-b400-67d
 | `visit_manager.py` | 走访计划管理 | 走访管理 |
 | `visit_scoring.py` | 走访质量评分 | 走访管理 |
 | `daily_check_simple.py` | 每日检查入口 | 主技能 |
+| `completion_tracker.py` | **处理完成闭环追踪器** | 新模块 |
+
+**重要变更**：
+- ✅ 去掉 `knowledge_base.py` 中间层
+- ✅ 所有数据读取现在直接调用 MCP 工具（仅在缓存未命中时）
+- ✅ 支持腾讯文档/IMA知识库/本地文件（通过MCP工具）
+- ✅ **新增本地缓存机制**（v2.3.0）——首次查询后缓存30分钟内复用，响应<0.1秒
+- ✅ **新增快速模式**——用户说「快速查询」即只读缓存，完全不调MCP
 
 AI可以直接调用这些脚本，也可以根据本文档描述的逻辑直接用Python代码执行。
 
@@ -1248,10 +1574,26 @@ AI可以直接调用这些脚本，也可以根据本文档描述的逻辑直接
 ## ⚠️ 注意事项
 
 1. **Excel日期格式** — 需兼容多种格式：`2025年3月1日`、`2025-03-01`、`datetime`对象
-2. **数据隐私** — Excel包含客户敏感信息，禁止外泄到外部系统
-3. **关联字段一致性** — `单元号`、`租户名`在各工作表中的格式必须一致
-4. **SLA超时升级** — 紧急工单超时必须立即@all通知
-5. **库存月使用量为0** — 可用月数视为999（无限）
+2. **🔴 数据隐私（铁律）** — 任何时候不得在用户可看到的输出或文件中暴露以下数据：
+   - 具体项目名称（如"美兰中心""美慧城"）
+   - 具体企业名称或租户名
+   - 具体数据量（如"149家""1,244条"）
+   - doc_id、文件路径等配置信息
+   - 具体的缴费金额或逾期天数
+   
+   **输出指南文件、使用指引、演示文案时一律使用泛化示例：**
+   - ✅ 「XX科技公司」「X栋X单元」「¥XX」  
+   - ✅ 「XX制造业」「XX实业」「XXX㎡」
+   - ❌ 「上海洁韵信息科技」「T1-1103.05」「¥166,928」
+3. **🛡️ 落库脱敏策略（v3.6.0 新增）** — 本地 SQLite / 缓存 JSON 存储强 PII 时执行：
+   - **存储级脱敏字段**：电话 / 手机 → 落库即存 `138****1234` 形式；联系人姓名 → 存姓 + 首字（如 `张*`）；证件号 → 不落库
+   - **原文保留字段**：企业名 / 租户名、单元号、金额、日期（本地库不外发，输出过脱敏闸门即可）
+   - **需要完整号码时**：从腾讯文档源实时读取（只读同步，不写回），不依赖本地脱敏值
+   - **同步时执行**：腾讯文档 → SQLite 写入前，对电话 / 联系人字段做脱敏转换再落库
+   - 现有存量库：下次同步时自动按此规则重建（全量覆盖前先过校验，失败不覆盖）
+4. **关联字段一致性** — `单元号`、`租户名`在各工作表中的格式必须一致
+5. **SLA超时升级** — 紧急工单超时必须立即@all通知
+6. **库存月使用量为0** — 可用月数视为999（无限）
 
 ---
 
@@ -1259,11 +1601,221 @@ AI可以直接调用这些脚本，也可以根据本文档描述的逻辑直接
 
 | 版本 | 日期 | 变更内容 |
 |------|------|---------|
-| v2.1.0 | 2026-06-08 | 新增退租管理、运营数据报表、投诉管理三大模块；优化开场能力介绍；完善安装与使用指引 |
+| v3.6 | 2026-08-17 | **落库脱敏策略**：`customers` 表电话/联系人存储级脱敏（`138\*\*\*\*1234` / 姓+首字），证件号不落库；需要完整号码时从腾讯文档源实时读取；存量库下次同步自动重建（先校验后覆盖，失败不覆盖） |
+| v3.5 | 2026-08-17 | **安全与验证增强**：① webhook key 从 SKILL.md 硬编码迁移至外部配置 `~/.workbuddy/config/enterprise-service-assistant/wecom_webhook.json`（防分享泄露，推送前读取、未配置不静默失败）；② 同步逻辑接入 data-security-verifier 能力③：覆盖前行数/主键/非空率校验，失败不覆盖保留旧库；③ sync_log 增加 data_as_of 时间戳，催缴/续租/预警触发前做时效分级检查（🟢 才触发） |
+| v3.4 | 2026-08-12 | **新增「自由度—可控性声明」章节**（writing-for-agents v1.2.0 第8项自检）：6维度声明 + Memory=agent-writable（限本地写）+ 外部行动（腾讯文档读/企微推送）+ 不可越界；frontmatter 补 version 字段；修正正文"当前状态"版本号滞后（v3.1→v3.4） |
+| v3.2 | 2026-07-01 | **新增客户微信工单处理模块**：新增📋客户工单台账和⚙️处理人员配置两张表，支持客户微信反馈→AI识别→自动分派→工单台账→闭环全流程；报修分派规则改为优先查配置表 |
+| v3.3 | 2026-07-08 | **性能修复**：补建缺失的 `sync_log` 表（修复 `is_db_fresh()` 误判过期导致每次调用腾讯文档 MCP）；新增 `force_local`/`mcp_available` 离线开关，MCP 不可用时直接读本地 SQLite（<5ms）；`is_db_fresh()` 加异常保护降级 |
+| v3.1 | 2026-06-28 | **架构重构**：从8大模块重构为三大板块（今日工作、服务企业、事项跟进）；新增企业情况五段式输出；数据源补齐至16张表；闭环记录降级为系统自动行为；命名对齐业务语言（催缴费用、沟通续租、跟进报修、协调库存、C+增值服务）；政策日历/认股权台账归入C+增值服务 |
+| v2.3.0 | 2026-06-13 | 新增本地缓存机制，首次查询后30分钟内复用，响应<0.1秒；新增快速模式（「快速查询」触发词）；更新knowledge_base_config.example.json加入缓存配置 |
+| v2.2.0 | 2026-06-11 | 新增认股权管理模块（台账·到期提醒·行权监控·转让退出·回购追踪） |
+| v2.1.0 | 2026-06-11 | 去掉 knowledge_base.py 中间层，改为直接调MCP工具，提升运行效率 |
 | v2.0.0 | 2026-06-08 | 完全自包含版本，合并所有7个子技能，移除所有call_skill依赖 |
 | v1.5.0 | 2026-06-07 | 修复依赖断裂，更新skills列表 |
 | v1.4.0 | 2026-06-07 | 初始发布到ClawHub |
 
 ---
 
-**当前状态**：v2.1.0，完全自包含，10大模块逻辑内联，无外部skill依赖。新增退租管理、运营报表、投诉管理。
+---
+
+## ⚡ 性能优化建议（v2.3.0新增）
+
+### 为什么之前慢？
+
+| 原因 | 说明 | 影响 |
+|------|------|------|
+| 无缓存机制 | 每次查询都调腾讯文档MCP API（网络延迟 2-3秒） | 所有查询都慢 |
+| 大表全量拉取 | 费用收缴表1244条记录一次性拉取 | 首次查询特别慢 |
+| 无快速模式 | 无法跳过MCP调用 | 重复查询也慢 |
+
+### 现在快了多少？
+
+| 场景 | 优化前 | 优化后 |
+|------|---------|---------|
+| 首次查询（缓存未命中） | 2-3秒 | 2-3秒（不可避免）|
+| 缓存命中查询 | 2-3秒 | **<0.1秒** |
+| 快速模式查询 | 不支持 | **<0.1秒** |
+| 本地文件模式 | 不支持 | **<0.05秒** |
+
+### 推荐使用方式
+
+**最佳体验（推荐）：**
+1. 首次查询某张表 → 自动建立缓存（2-3秒）
+2. 之后说「**快速查询** XXX」 → 读缓存（<0.1秒）
+3. 数据更新后说「**刷新**」 → 重新调MCP更新缓存
+
+**最快方式（适合高频查询）：**
+1. 配置本地文件模式（`source_type: "local"`）
+2. 直接读取本地Excel/CSV文件（无需API调用）
+3. 查询速度：**<0.05秒**
+
+---
+
+**当前状态**：v3.4 三大板块架构，覆盖16张腾讯文档工作表，支持本地缓存加速。可直接发布到ClawHub供其他用户使用。
+
+---
+
+## 📋 v3.1 输出规范
+
+### 今日工作输出（按新格式）
+```
+今日工作（{n}）
+
+━━━━━━━━━━━━━━━
+● {企业名} — {事项类型}
+  原因：{原因简述}
+  建议：{建议动作}
+━━━━━━━━━━━━━━━
+```
+排序规则：按工作紧急度排序。每次输出不超过10条。
+
+### 企业情况输出（查询某家企业时统一使用）
+```
+━━━━━━━━━━━━━━━
+企业情况 | {租户名}
+
+━━━ 当前状态 ━━━
+{状态简述}
+
+━━━ 当前风险 ━━━
+{风险清单 或 "无风险"}
+
+━━━ 待办事项 ━━━
+{待办清单 或 "无"}
+
+━━━ 服务建议 ━━━
+{建议清单 或 "无"}
+
+━━━ 最近动态 ━━━
+{按时间倒序的事件列表}
+
+⚡ 操作链接：[腾讯文档]
+━━━━━━━━━━━━━━━
+```
+
+> 企业情况不是企业所有资料，而是AI判断「办这件事需要知道什么」。五个元素顺序固定不可调换。
+
+## 🔄 处理完成闭环（Completion Closure）
+
+**这是一个行为模块，不是一个独立页面。** 你说「办完了」，我自动记录+刷新+更新。
+
+### 触发词
+
+| 你说 | 我理解 |
+|------|--------|
+| 「办完了」「处理完成」「搞定了」 | 自动判断上下文，处理四种事件之一 |
+| 「洁韵催缴完成了，付了¥50,000首款」 | 催缴完成 + 提取金额信息 |
+| 「T1-9F女厕修好了」 | 工单确认 |
+| 「下午去走访了铭尤力，谈得不错」 | 走访完成 |
+| 「投诉处理完了」 | 投诉关闭 |
+
+### 六种事件类型
+
+| 事件 | 触发场景 | 自动执行动作 |
+|------|---------|-------------|
+| 🏆 **走访完成** | 「走访完了」「去聊过了」 | ①写入走访记录 ②刷新企业情况 ③更新今日工作 |
+| 💰 **催缴完成** | 「催缴收到钱了」「付了¥X」 | ①更新费用状态 ②从今日工作移除 ③刷新企业情况 |
+| 🔧 **工单确认** | 「修好了」「门修好了」 | ①关闭工单 ②刷新事项跟进 ③更新今日工作 |
+| 🚫 **投诉关闭** | 「投诉处理完了」 | ①关闭投诉 ②刷新企业风险 ③更新今日工作 |
+| 📝 **续租签约** | 「续租签了」「合同续了」 | ①写入续租记录 ②移除预警 ③刷新企业情况 |
+| 📦 **库存补货** | 「补货到了」「洗手液到了」 | ①更新库存 ②解除预警 ③刷新库存状态 |
+
+### AI执行流程
+
+```
+用户说「办完了」或「处理完成」
+
+Step 1 ── 解析上下文，判断事件类型
+          ↓
+Step 2 ── 调用 completion_tracker.py 处理
+          ↓
+Step 3 ── 写入本地 tracking/completion_log.json
+          ↓
+Step 4 ── 刷新三块状态：
+          · 今日工作（移除已完成项，重新排序）
+          · 企业情况（追加最近动态）
+          · 事项跟进（更新对应状态）
+          ↓
+Step 5 ── 输出闭环反馈：
+          ✅ {事件类型} · {企业名} 已处理完成
+          📝 {详情}
+          🔄 已自动执行：{动作列表}
+```
+
+### 本地记录文件
+
+```
+~/.workbuddy/workspace/enterprise-service-assistant/tracking/
+├── completion_log.json   ← 所有完成记录 + 活跃任务缓冲区
+```
+
+**completion_log.json 结构：**
+```json
+{
+  "version": "1.0",
+  "updated_at": "ISO时间戳",
+  "completions": [
+    {
+      "id": "comp-2026062823-001",
+      "type": "催缴完成",
+      "unit_no": "T1-1103.05",
+      "tenant_name": "上海洁韵信息科技有限公司",
+      "details": "分期首款¥50,000已到账",
+      "amount": 50000.0,
+      "completed_at": "2026-06-28T23:10:00",
+      "status": "completed",
+      "actions_taken": ["update_fee_status", "remove_from_today", "refresh_enterprise"]
+    }
+  ],
+  "active_tasks_buffer": {
+    "催缴完成|T1-1103.05": {
+      "status": "completed",
+      "completed_at": "...",
+      "completion_id": "comp-..."
+    }
+  }
+}
+```
+
+### 刷新逻辑（AI执行）
+
+当 completion_log.json 中有新完成记录时，AI在生成今日工作和企业情况时自动过滤已闭环项：
+
+**今日工作刷新规则：**
+```
+今日工作输出前：
+  读取 completion_log.json → 获取 active_tasks_buffer
+  用 completed 项过滤今日工作列表
+  输出剩余未完成项（最多10条）
+```
+
+**企业情况刷新规则：**
+```
+企业情况输出时：
+  读取 completion_log.json → 获取该企业完成记录
+  追加到「最近动态」列表（按时间倒序，带 ✅ 标记）
+  刷新「当前风险」和「待办事项」
+```
+
+### 与MCP的配合（未来完善）
+
+目前写入腾讯文档需要 sheet_id，当前实现：
+- ✅ 本地记录 + 状态刷新（已就绪）
+- 🔄 写入腾讯文档（需配置sheet_id后可启用）
+- 🔄 企微推送通知（需配置webhook后可启用）
+
+### 使用示例
+
+```
+用户：洁韵催缴搞定了，今天付了¥50,000首期款
+  ↓
+AI：✅ 催缴完成 · 上海洁韵信息科技有限公司 已处理完成
+    📝 分期首款¥50,000已到账，剩余¥113,916分3期
+    🔄 已自动执行：
+      ✅ 更新费用状态
+      ✅ 从今日工作移除
+      ✅ 刷新企业情况
+    
+    现在今日工作剩余：8项（已移除洁韵的催缴任务）
+    需要查看刷新后的今日工作吗？
+```

@@ -1,41 +1,62 @@
-## Description: <br>
-Use when the user wants to interact with Google Gemini or ChatGPT via browser automation; it sends the user's query to the selected chatbot and returns the response verbatim. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lets an agent send user-provided prompts to Google Gemini or ChatGPT through Playwright browser automation and return the chatbot response verbatim.
 
-## Publisher: <br>
-[ljie-PI](https://clawhub.ai/user/ljie-PI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ljie-pi](https://clawhub.ai/user/ljie-pi)
 
-## Use Case: <br>
-Developers and external users can use this skill to route prompts to Gemini or ChatGPT from an agent workflow and receive the chatbot response, including citation links when available. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A persistent logged-in Chrome profile can be controlled through a local debugging port. <br>
-Mitigation: Use a dedicated account and Chrome profile, avoid sending secrets or private data, close Chrome when finished, and delete the profile when stored sessions are no longer wanted. <br>
-Risk: Chatbot site changes or login state can prevent the browser automation from finding inputs or returning complete responses. <br>
-Mitigation: Confirm login manually when prompted, retry with a longer timeout for slow responses, and update selectors before relying on the skill after site UI changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ljie-PI/web-chat) <br>
-- [Google Gemini](https://gemini.google.com) <br>
-- [ChatGPT](https://chatgpt.com) <br>
+## Use Case:
 
+Developers and agent users use this skill when they want an assistant to ask Gemini or ChatGPT from a logged-in Chrome profile and return the response and citation links without rewriting the answer.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Plain text or JSON from the selected chatbot automation script, with citation links when found.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill is designed to return chatbot responses verbatim; operational status and error details may be emitted separately.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts are sent to Gemini or ChatGPT through a logged-in Chrome profile, so sensitive or regulated data may leave the local environment.
+
+Mitigation: Use a dedicated account or browser profile and avoid submitting secrets, credentials, or regulated data.
+
+Risk: The skill depends on Chrome remote debugging through a local CDP port and persistent browser state.
+
+Mitigation: Keep the CDP port local, close the browser profile when finished, and do not expose the debugging port to untrusted networks.
+
+Risk: The browser automation depends on third-party web UI selectors that may change.
+
+Mitigation: Treat connection, login, input-field, and timeout errors as operational failures and update selectors before relying on affected responses.
+
+Risk: The dependency requirement allows Playwright versions newer than 1.40.0.
+
+Mitigation: Pin and review Playwright versions before rebuilding the virtual environment for controlled deployments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ljie-pi/skills/web-chat)
+- [Google Gemini](https://gemini.google.com)
+- [ChatGPT](https://chatgpt.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Plain text or JSON containing chatbot response text, citation links, success status, and errors.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3, Playwright, and a locally running Chrome instance with CDP on the configured port.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

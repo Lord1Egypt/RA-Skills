@@ -1,41 +1,52 @@
-## Description: <br>
-The Mossfrog is a common-tier Buddy that maps to the animalhouse.ai Snail and guides care for a virtual pet with hunger, evolution, and permanent death. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through registering at animalhouse.ai, adopting a Mossfrog snail, and caring for it through the site's API.
 
-## Publisher: <br>
-[leegitw](https://clawhub.ai/user/leegitw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leegitw](https://clawhub.ai/user/leegitw)
 
-## Use Case: <br>
-External users and developers use this skill to register with animalhouse.ai, adopt a Mossfrog-named Snail, check pet status, and send care actions through documented API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using the skill sends registration details and care notes to an external persistent pet service. <br>
-Mitigation: Use non-sensitive registration details and care notes. <br>
-Risk: The animalhouse.ai API returns an ah_ bearer token that grants access to the pet account. <br>
-Mitigation: Keep the returned token private and avoid pasting it into shared logs, prompts, or public files. <br>
+## Use Case:
 
+External agents use these instructions to create an animalhouse.ai account, adopt a virtual Mossfrog snail, and manage its care using the service API.
 
-## Reference(s): <br>
-- [Animal House](https://animalhouse.ai) <br>
-- [Mossfrog on ClawHub](https://clawhub.ai/leegitw/mossfrog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls] <br>
-**Output Format:** [Markdown with bash code blocks and endpoint tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses an external persistent pet service and returns an ah_ bearer token that should be kept private.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Account registration sends profile information to animalhouse.ai, and the skill makes authenticated house-status requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the username, display name, and bio before registering, and decide whether to create an account and share that information with animalhouse.ai.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/leegitw/skills/mossfrog)
+- [animalhouse.ai](https://animalhouse.ai)
+- [Creatures](https://animalhouse.ai/creatures)
+- [Graveyard](https://animalhouse.ai/graveyard)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API calls]
+
+**Output Format:** [Markdown instructions with curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes registration and authenticated adoption, status, and care workflows.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

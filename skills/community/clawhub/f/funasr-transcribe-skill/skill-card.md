@@ -1,44 +1,57 @@
-## Description: <br>
-Use when the user needs local speech-to-text transcription for audio files, especially Chinese or mixed Chinese-English audio, without relying on cloud transcription APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user needs local speech-to-text transcription for audio files, especially Chinese or mixed Chinese-English audio, without relying on cloud transcription APIs.
 
-## Publisher: <br>
-[limboinf](https://clawhub.ai/user/limboinf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[limboinf](https://clawhub.ai/user/limboinf)
 
-## Use Case: <br>
-Developers and agents use this skill to transcribe local audio files, especially Chinese or mixed Chinese-English recordings, with FunASR on the local machine. It fits workflows that prefer local transcription over cloud ASR and can accept dependency and model downloads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installation and first-run transcription can download Python packages and model files from third-party upstream sources. <br>
-Mitigation: Review install.sh before installing and allow network access only when the user accepts dependency and model downloads. <br>
-Risk: The skill writes a persistent Python environment under ~/.openclaw/workspace and may recreate it when run with --force. <br>
-Mitigation: Confirm the filesystem side effects before installation and use --force only when rebuilding the environment is intended. <br>
-Risk: Successful transcription writes a .txt transcript next to the source audio file. <br>
-Mitigation: Use only audio files the user intends to process and verify the output path before handling sensitive recordings. <br>
+## Use Case:
 
+Developers, operators, and external users use this skill to transcribe local audio files, especially Chinese or mixed Chinese-English recordings, into text without relying on a cloud ASR API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/limboinf/funasr-transcribe-skill) <br>
-- [Skill homepage](https://github.com/limboinf/funasr-transcribe-skill) <br>
-- [PyPI mirror used by install script](https://pypi.tuna.tsinghua.edu.cn/simple) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text transcript plus Markdown guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a sibling .txt transcript file when transcription succeeds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: Setup and first use may download third-party packages, dependencies, and model files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the configured PyPI mirror, FunASR dependencies, and model providers are trusted.
+
+Risk: The skill creates a persistent local environment and may consume several GB of disk space.
+
+Mitigation: Confirm local storage capacity and environment location before installation.
+
+Risk: Transcription writes or overwrites a .txt file next to the selected audio file.
+
+Mitigation: Run it on intended input files and review the output path before relying on the generated transcript.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/limboinf/skills/funasr-transcribe-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text transcript plus Markdown guidance with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prints the transcript to stdout and writes a sibling .txt transcript file next to the selected audio file.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

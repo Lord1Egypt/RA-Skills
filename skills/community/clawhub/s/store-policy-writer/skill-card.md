@@ -1,45 +1,57 @@
-## Description: <br>
-Generate clear, professional, business-specific ecommerce store policies (returns, shipping, privacy, terms of service). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate clear, professional, business-specific ecommerce store policies (returns, shipping, privacy, terms of service).
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External ecommerce store owners, operators, and consultants use this skill to draft returns, shipping, privacy, and terms pages tailored to business operations, markets, platforms, and product categories. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated policies may misstate the seller's actual operations, marketplace obligations, or privacy practices. <br>
-Mitigation: Review every policy against real return windows, shipping methods, processors, ad partners, marketplaces, and contact channels before publishing. <br>
-Risk: Policies for regulated products, cross-border sales, tax, warranties, or consumer-law obligations may require legal review. <br>
-Mitigation: Route regulated categories and higher-risk jurisdictional issues to a qualified attorney before using the policy publicly. <br>
-Risk: Privacy and buyer-protection clauses can become non-compliant if they conflict with GDPR, CCPA/CPRA, EU cooling-off rules, or platform rules. <br>
-Mitigation: Use the compliance reference and quality checklist to confirm regional disclosures, consent behavior, user rights, and marketplace alignment. <br>
+## Use Case:
 
+External ecommerce sellers and store operators use this skill to draft customer-facing returns, shipping, privacy, and terms of service policies tailored to their products, fulfillment model, markets, and platforms.
 
-## Reference(s): <br>
-- [Output Template](references/output-template.md) <br>
-- [Policy Clause Library](references/policy-clause-library.md) <br>
-- [Compliance Reference](references/compliance-reference.md) <br>
-- [Policy Quality & Compliance Checklist](assets/quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown policy drafts with structured headings and plain-language clauses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include attorney-review flags for regulated products, cross-border sales, marketplace conflicts, privacy practices, and other higher-risk policy areas.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Generated policies may not match the seller's actual operations, platforms, markets, or regulated product obligations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each policy against real fulfillment, returns, data handling, marketplace, and jurisdiction requirements before publishing.
+
+Risk: First-draft policy text may be insufficient for high-risk, regulated, or cross-border legal obligations.
+
+Mitigation: Use qualified attorney review for regulated products, cross-border tax or consumer-law obligations, warranties, and other high-risk categories.
+
+## Reference(s):
+
+- [Store Policy Writer on ClawHub](https://clawhub.ai/leooooooow/skills/store-policy-writer)
+- [Output Template](artifact/references/output-template.md)
+- [Policy Clause Library](artifact/references/policy-clause-library.md)
+- [Compliance Reference](artifact/references/compliance-reference.md)
+- [Policy Quality & Compliance Checklist](artifact/assets/quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown policy drafts with structured headings, clauses, and review notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces first-draft ecommerce policy content that should be checked against actual business operations, target markets, platforms, and regulated product categories.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

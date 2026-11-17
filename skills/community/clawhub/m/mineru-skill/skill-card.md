@@ -1,48 +1,63 @@
-## Description: <br>
-MinerU PDF Parser converts PDF, Office, HTML, and image documents into clean Markdown, JSON status, optional chunks, and export files for agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MinerU PDF Parser helps agents convert PDF, Office, HTML, and image inputs into clean Markdown, optional JSON status, extracted assets, and delivery-ready content for supported knowledge tools.
 
-## Publisher: <br>
-[tsekaluk](https://clawhub.ai/user/tsekaluk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tsekaluk](https://clawhub.ai/user/tsekaluk)
 
-## Use Case: <br>
-Developers, analysts, and agent users use this skill to parse local files or URLs into Markdown, run OCR on scanned documents, batch-process folders, and send parsed content to configured knowledge or productivity tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Document contents may be sent to MinerU cloud services or to configured third-party sinks. <br>
-Mitigation: Use only approved documents and destinations; avoid confidential or regulated files unless the relevant services are approved by the organization. <br>
-Risk: The skill can use OAuth tokens and sensitive API credentials for MinerU and delivery sinks. <br>
-Mitigation: Scope credentials narrowly, store them in an approved secret mechanism, and rotate or revoke tokens that are no longer needed. <br>
-Risk: Generated Markdown can contain local image paths, and some export paths may include or expose referenced local files. <br>
-Mitigation: Review generated Markdown and assets before exporting to third-party tools, especially when using Linear or other sinks that process local image references. <br>
+## Use Case:
 
+Developers and agent users use this skill to parse documents into Markdown for review, summarization, RAG preparation, and delivery into supported note, content, and work tools.
 
-## Reference(s): <br>
-- [MinerU Skill page](https://clawhub.ai/tsekaluk/mineru-skill) <br>
-- [MinerU homepage](https://mineru.net) <br>
-- [MinerU API docs](https://mineru.net/apiManage/docs) <br>
-- [MinerU token management](https://mineru.net/apiManage/token) <br>
-- [MinerU API Reference](references/api_reference.md) <br>
-- [Delivery Integrations](references/integrations.md) <br>
-- [Competitive Comparison Reference](references/comparison.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files or stdout, JSON status and chunk sidecars, optional DOCX/HTML/LaTeX exports, and sink delivery results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local output directories with extracted images and may deliver Markdown to configured third-party sinks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.3.1 (source: server release metadata and skill frontmatter) <br>
+Risk: Remote delivery integrations can forward parsed Markdown and referenced local assets to configured third-party destinations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use remote sinks only with trusted documents and trusted destinations, and review generated Markdown and image references before delivery.
+
+Risk: Cloud parsing can upload source documents to MinerU services, which may be unsuitable for confidential, regulated, or air-gapped content.
+
+Mitigation: Avoid confidential or regulated files unless an offline path is selected and verified for the document type.
+
+Risk: The security scanner marked the release suspicious and specifically warns about local image path handling and redirect behavior.
+
+Mitigation: Review before installing, treat parsed Markdown as untrusted, and prefer pinned install commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tsekaluk/skills/mineru-skill)
+- [MinerU Home](https://mineru.net)
+- [MinerU API Docs](https://mineru.net/apiManage/docs)
+- [MinerU Token Management](https://mineru.net/apiManage/token)
+- [API Reference](references/api_reference.md)
+- [Delivery Integrations](references/integrations.md)
+- [Comparison Reference](references/comparison.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON status, local files, and concise command/configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce parsed Markdown, extracted image files, optional chunk JSON, and delivery outcomes for configured sinks.]
+
+## Skill Version(s):
+
+3.3.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

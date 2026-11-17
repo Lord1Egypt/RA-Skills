@@ -2,17 +2,25 @@
 
 from __future__ import annotations
 
+if __name__ == "__main__" and __package__ is None:
+    import os
+    import sys
+
+    sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    from recamera_intellisense._cli import main
+
+    raise SystemExit(main())
+
 import base64
 import json
 from typing import Any, Dict, List, Optional
 
-from . import _config, _http, relay as _relay
+from . import _config, _http
+from . import relay as _relay
+from ._const import IMAGE_EXTENSIONS, MAX_INLINE_BYTES
 from ._errors import RecameraError
 
 __all__ = ["list_records", "fetch_record"]
-
-_MAX_INLINE_BYTES = 5 * 1024 * 1024
-_IMAGE_EXT = {".jpg", ".jpeg", ".png", ".webp", ".bmp", ".gif"}
 
 LIST_RECORDS_DEFAULT_LIMIT = 100
 LIST_RECORDS_MAX_LIMIT = 500
@@ -28,7 +36,7 @@ def _relay_endpoint(uuid: str, rel: str, *, directory: bool = False) -> str:
 
 
 def list_records(
-    device_name: str,
+    device_name: Optional[str] = None,
     *,
     path: str = "",
     dev_path: Optional[str] = None,
@@ -37,7 +45,7 @@ def list_records(
 ) -> Dict[str, Any]:
     """List the directory at *path* (relative to the record data directory).
 
-    Returns a paginated dict (matching the MCP ``list_records`` tool)::
+    Returns a paginated dict (matching the MCP `list_records` tool)::
 
         {
           "entries": [{"name", "is_dir", "size?", "mtime?"}, ...],
@@ -48,7 +56,7 @@ def list_records(
         }
 
     Directories sort first, then entries are ordered by name for stable pagination.
-    ``limit`` defaults to 100 and is clamped to ``[1, 500]``; ``offset`` defaults to 0
+    `limit` defaults to 100 and is clamped to `[1, 500]`; `offset` defaults to 0
     and is clamped to the total entry count.
     """
     dev = _config.resolve(device_name)
@@ -117,25 +125,29 @@ def _parse_autoindex(body: bytes) -> List[Dict[str, Any]]:
 
 
 def fetch_record(
-    device_name: str,
+    device_name: Optional[str] = None,
     *,
     path: str,
     dev_path: Optional[str] = None,
-    max_inline_bytes: int = _MAX_INLINE_BYTES,
+    max_inline_bytes: int = MAX_INLINE_BYTES,
 ) -> Dict[str, Any]:
     """Fetch a recorded file via the relay.
 
     Returns one of:
-      * ``{path, content_type, content_base64, size, url}`` — images or payloads ≤ 5 MiB.
-      * ``{path, url, size, content_type, note}`` — payload too large to inline.
+      * `{path, content_type, content_base64, size, url}` — images or payloads ≤ 5 MiB.
+      * `{path, url, size, content_type, note}` — payload too large to inline.
+
+    The returned relay `url` needs no credentials, but it embeds a random UUID
+    (unguessable, capability-style) and dies with the relay TTL (device default
+    300s); still avoid sharing it.
     """
     dev = _config.resolve(device_name)
     _, uuid = _relay.ensure_relay_uuid(device_name, dev_path)
     rel = path.strip("/")
     endpoint = _relay_endpoint(uuid, rel)
     body, ct = _http.get_bytes(dev, endpoint)
-    url = _relay.build_relay_url(device_name, uuid, rel)
-    is_image = any(rel.lower().endswith(ext) for ext in _IMAGE_EXT)
+    url = _relay.build_relay_url(dev["name"], uuid, rel)
+    is_image = any(rel.lower().endswith(ext) for ext in IMAGE_EXTENSIONS)
     if is_image or len(body) <= max_inline_bytes:
         return {
             "path": rel,
@@ -149,21 +161,13 @@ def fetch_record(
         "url": url,
         "size": len(body),
         "content_type": ct,
-        "note": "payload exceeds inline budget; fetch the URL directly (relay token is bearer-free).",
+        "note": "payload exceeds inline budget; fetch the URL directly — the "
+        "relay URL needs no credentials but embeds a random UUID (unguessable) "
+        "and dies with the relay TTL (default 300s); still avoid sharing it.",
     }
 
 
 COMMANDS = {
     "list_records": list_records,
     "fetch_record": fetch_record,
-}
-COMMAND_SCHEMAS = {
-    "list_records": {
-        "required": {"device_name"},
-        "optional": {"path", "dev_path", "limit", "offset"},
-    },
-    "fetch_record": {
-        "required": {"device_name", "path"},
-        "optional": {"dev_path", "max_inline_bytes"},
-    },
 }

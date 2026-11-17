@@ -1,38 +1,53 @@
-## Description: <br>
-Generate professional Markdown invoices with multi-currency support, tax, discounts, payment details, and clear formatting for freelancers and small businesses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate professional Markdown invoices with multi-currency support, tax, discounts, payment details, and clear formatting for freelancers and small businesses.
 
-## Publisher: <br>
-[noahcraft-open](https://clawhub.ai/user/noahcraft-open) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[noahcraft-open](https://clawhub.ai/user/noahcraft-open)
 
-## Use Case: <br>
-Freelancers, consultants, and small businesses use this skill to turn invoice details into a print-ready Markdown invoice with line items, taxes, discounts, payment terms, and currency-aware totals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Invoices may include sensitive payment details if the user provides bank account, routing, or similar information. <br>
-Mitigation: Use payment links, masked details, or placeholders when possible, and review the invoice before sharing it with clients or third parties. <br>
+## Use Case:
 
+Freelancers, consultants, small businesses, and their agents use this skill to turn billing details into a print-ready Markdown invoice with line items, taxes, discounts, currency formatting, payment details, and payment terms.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/noahcraft-open/invoice-generator-jp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown invoice document] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes invoice fields, line-item tables, currency formatting, tax and discount calculations, payment details, and payment terms.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Invoices may contain sensitive business, client, and payment details, including bank account or routing information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Include only details intended for the recipient and review the invoice before sharing or converting it to PDF.
+
+Risk: Invoice totals, tax, discounts, and payment terms depend on user-provided inputs and locale-specific expectations.
+
+Mitigation: Verify amounts, tax rates, due dates, and currency formatting before sending the invoice.
+
+## Reference(s):
+
+- [Invoice Generator on ClawHub](https://clawhub.ai/noahcraft-open/skills/invoice-generator-jp)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown invoice document]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes invoice fields, line-item tables, totals, supported currency formatting, payment details, and payment terms.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

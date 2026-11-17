@@ -1,39 +1,48 @@
-## Description: <br>
-Official Doc helps users draft and review Chinese official documents, including notices, reports, requests, replies, format checks, tone checks, and templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Official Doc helps agents draft and review Chinese official documents such as notices, reports, requests, replies, meeting minutes, and work summaries.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ckchzh](https://clawhub.ai/user/ckchzh)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees, external users, and agents can use this skill to generate structured Chinese official-document drafts, check document format, review formal tone, and retrieve common templates.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The security summary flags the package as suspicious because it includes an undocumented script that persistently logs command arguments.
+
+Mitigation: Review the package before installing and avoid running scripts/script.sh unless local data-directory creation and plaintext argument history are acceptable.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees and external users drafting Chinese administrative documents can use this skill to generate structured notices, reports, requests, and replies, then check format and formal tone against provided template guidance. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: An extra unrelated script can write a local command history and may retain sensitive names or arguments if run. <br>
-Mitigation: Use the documented scripts/official.sh workflow; avoid running scripts/script.sh with secrets or sensitive internal names, and delete the local official-doc data directory if that history should not be retained. <br>
+**Output Format:** [Markdown and terminal text with example shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Official Doc tips](tips.md) <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/official-doc) <br>
+**Other Properties Related to Output:** [Produces local draft text, format-review notes, tone suggestions, and template guidance without external dependencies.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text document templates and review guidance, with Markdown documentation and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local CLI output; no external dependencies documented for the official document workflow.] <br>
+2.0.0 (source: server release metadata and skill frontmatter)
 
-## Skill Version(s): <br>
-2.0.0 (source: server release and frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

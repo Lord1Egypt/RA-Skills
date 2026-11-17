@@ -1,40 +1,52 @@
-## Description: <br>
-Guides structured help for Landing Page Copy Helper using clear templates, checks, and safe defaults (category: Web & Marketing). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides structured help for Landing Page Copy Helper using clear templates, checks, and safe defaults (category: Web & Marketing).
 
-## Publisher: <br>
-[abdullah944](https://clawhub.ai/user/abdullah944) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[abdullah944](https://clawhub.ai/user/abdullah944)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to structure landing page copy work into a concise plan, reusable checklist, next actions, and optional draft copy blocks without requesting private data.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users could paste confidential customer data, credentials, or private business information into prompts while drafting copy.
+
+Mitigation: Do not provide secrets or sensitive business data; use owned notes with minimal personal information.
+
+Risk: Generated landing page copy may include claims that are too broad or not supported by the user's source material.
+
+Mitigation: Keep outputs factual and review draft copy before publication.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Marketing writers, founders, and agents use this skill to structure landing page copy tasks into concise plans, reusable checklists, next actions, and editable draft copy blocks without collecting secrets. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, Guidance, Text]
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste confidential business plans, customer data, credentials, or private personal information into the agent session. <br>
-Mitigation: Use non-sensitive goals and constraints, omit credentials and private personal data, and only include information intended for the session. <br>
-Risk: Draft landing page copy may include inaccurate, overstated, or unsupported claims. <br>
-Mitigation: Review generated copy for factual accuracy, legal fit, and brand approval before publishing. <br>
+**Output Format:** [Markdown]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/abdullah944/landing-page-copy-helper-skill) <br>
+**Other Properties Related to Output:** [Produces a concise plan, numbered checklist, next-actions list, and optional editable draft copy blocks.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown with concise plans, numbered checklists, next actions, and optional draft copy blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Avoids requesting secrets or private data; no executable code or privileged access.] <br>
+0.1.0 (source: frontmatter, metadata, server release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: SKILL.md frontmatter and artifact metadata, released 2026-05-07) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,62 @@
-## Description: <br>
-Pull tweets, threads, articles, and replies from X/Twitter. FxTwitter API primary (free), Grok x_search fallback (paid). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pull tweets, threads, articles, and replies from X/Twitter. FxTwitter API primary (free), Grok x_search fallback (paid).
 
-## Publisher: <br>
-[sanjeevneo](https://clawhub.ai/user/sanjeevneo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sanjeevneo](https://clawhub.ai/user/sanjeevneo)
 
-## Use Case: <br>
-Developers and agents use xpull to retrieve X/Twitter posts, threads, replies, article content, and search results through FxTwitter or xAI Grok-backed commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tweet URLs and search queries are sent to external FxTwitter or xAI APIs. <br>
-Mitigation: Use inputs appropriate for those services and avoid submitting sensitive or restricted content. <br>
-Risk: Grok x_search usage requires an xAI API key and may incur usage costs. <br>
-Mitigation: Set XAI_API_KEY only when Grok features are needed and use GROK_DAILY_CAP to limit daily calls. <br>
-Risk: The Grok script writes a local .grok-state.json file to track daily call limits. <br>
-Mitigation: Run it in a workspace where local state files are acceptable and reset the state file only when deliberately resetting usage tracking. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve X/Twitter posts, author threads, replies, and search results for analysis or summarization workflows. FxTwitter-backed fetches need no credential, while Grok-backed thread, reply, and search features require an xAI API key.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sanjeevneo/xpull) <br>
-- [Project repository](https://github.com/sanjeevneo/xpull) <br>
-- [xAI Console](https://console.x.ai) <br>
-- [FxTwitter API endpoint](https://api.fxtwitter.com) <br>
-- [xAI Responses API endpoint](https://api.x.ai/v1/responses) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; scripts return JSON to stdout.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Grok features require XAI_API_KEY; GROK_DAILY_CAP can limit daily Grok calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Requested X/Twitter URLs or search queries are sent to FxTwitter or xAI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for content that may be shared with those services, and avoid submitting sensitive private queries or URLs.
+
+Risk: Grok features require XAI_API_KEY and may read it from the current working directory .env file.
+
+Mitigation: Use an xAI-scoped key and keep unrelated secrets out of the working directory .env file.
+
+Risk: Grok x_search usage can incur paid API charges.
+
+Mitigation: Set and monitor GROK_DAILY_CAP before enabling Grok-backed thread, reply, or search workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sanjeevneo/skills/xpull)
+- [Publisher profile](https://clawhub.ai/user/sanjeevneo)
+- [Repository declared in skill metadata](https://github.com/sanjeevneo/xpull)
+- [xAI Console](https://console.x.ai)
+- [FxTwitter API endpoint](https://api.fxtwitter.com)
+- [xAI Responses API endpoint](https://api.x.ai/v1/responses)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; scripts emit JSON to stdout.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [FxTwitter fetches call api.fxtwitter.com without credentials; Grok features call api.x.ai with XAI_API_KEY and use GROK_DAILY_CAP for a daily usage cap.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

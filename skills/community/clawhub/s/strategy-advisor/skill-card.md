@@ -1,37 +1,53 @@
-## Description: <br>
-Strategic advisor for Evvo Labs business decisions that applies VRIO, Value Stick, Blue Ocean, McKinsey Horizons, and Strategy Diamond frameworks to questions about strategy, pricing, product priorities, partnerships, positioning, and what Evvo should do next. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Strategic advisor for Evvo Labs business decisions that applies VRIO, Value Stick, Blue Ocean, McKinsey Horizons, and Strategy Diamond frameworks to questions about what Evvo should do next.
 
-## Publisher: <br>
-[tschew72](https://clawhub.ai/user/tschew72) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tschew72](https://clawhub.ai/user/tschew72)
 
-## Use Case: <br>
-Evvo Labs leaders and advisors use this skill to evaluate business decisions such as market entry, pricing, product prioritization, resource allocation, partnerships, and competitive positioning through the bundled strategy frameworks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
-
-## Reference(s): <br>
-- [Evvo Labs Strategy Frameworks 2026](references/evvo-strategy.md) <br>
-- [ClawHub Strategy Advisor release](https://clawhub.ai/tschew72/strategy-advisor) <br>
+### License/Terms of Use:
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Concise recommendation, framework applied, Evvo context, risk or watch-out, and next action.] <br>
+## Use Case:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Evvo Labs stakeholders use this skill to get concise strategic recommendations for business decisions such as pricing, market entry, product prioritization, partnerships, and resource allocation. It applies VRIO, Value Stick, Blue Ocean, McKinsey Horizons, and Strategy Diamond frameworks against the bundled Evvo strategy reference.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The bundled strategy reference contains Evvo-specific internal business context that may be inappropriate outside Evvo strategy discussions.
+
+Mitigation: Install and use the skill only where Evvo Labs strategy material is authorized for the agent to read and apply.
+
+Risk: Strategic recommendations may be over-applied to broader Evvo business conversations because the skill is designed to make direct calls using the bundled context.
+
+Mitigation: Review recommendations against current business facts and limit use to questions where the Evvo strategy reference is relevant.
+
+## Reference(s):
+
+- [Evvo Labs Strategy Frameworks 2026](references/evvo-strategy.md)
+- [Strategy Advisor on ClawHub](https://clawhub.ai/tschew72/skills/strategy-advisor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with a concise recommendation, framework rationale, Evvo context, risk watch-out, and next action]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the bundled Evvo strategy reference before giving advice; no code execution or external access is required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

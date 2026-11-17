@@ -1,45 +1,60 @@
-## Description: <br>
-Generate images from text prompts using AI models via OpenRouter, Kie.ai, or YandexART. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images from text prompts using AI models via OpenRouter, Kie.ai, or YandexART.
 
-## Publisher: <br>
-[bzSega](https://clawhub.ai/user/bzSega) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bzsega](https://clawhub.ai/user/bzsega)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to generate or edit images from natural-language prompts through configured third-party image providers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and input images are sent to the selected external image provider. <br>
-Mitigation: Avoid sensitive prompts or private images, and choose providers according to the user's privacy and compliance requirements. <br>
-Risk: Provider API keys can incur usage charges or expose account access if mishandled. <br>
-Mitigation: Use revocable keys with spending limits, keep keys out of logs and shared output, and rotate them if exposure is suspected. <br>
-Risk: Custom output paths can write generated files outside the default skill output directory. <br>
-Mitigation: Prefer the default output directory or review explicit output paths before running generation. <br>
+## Use Case:
 
+Developers and agent users use this skill to generate or edit images from prompts through provider-backed image generation APIs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bzSega/smtools-image-generation) <br>
-- [OpenRouter](https://openrouter.ai) <br>
-- [Kie.ai](https://kie.ai) <br>
-- [Yandex Cloud](https://cloud.yandex.ru) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, code, guidance] <br>
-**Output Format:** [JSON status output with generated image files saved to disk, plus agent-facing guidance and shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and provider API credentials; default output is an image file path returned in JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.1 (source: server release evidence) <br>
+Risk: Prompts and input images may be sent to external image generation providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential prompts or private images unless the selected provider is approved for that data.
+
+Risk: Weak controls around file output paths may allow unintended writes when paths are chosen from untrusted text.
+
+Mitigation: Use a dedicated output directory and do not let untrusted text choose output paths.
+
+Risk: Downloaded image content, especially through the Kie provider, may lack URL and size validation.
+
+Mitigation: Add URL and size validation and lock dependencies before enabling the Kie provider in sensitive environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bzsega/skills/smtools-image-generation)
+- [OpenRouter](https://openrouter.ai)
+- [Kie.ai](https://kie.ai)
+- [Yandex Cloud](https://cloud.yandex.ru)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [JSON status output plus saved image files and concise user-facing text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires provider API credentials; generated images are written to a local output path.]
+
+## Skill Version(s):
+
+1.9.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

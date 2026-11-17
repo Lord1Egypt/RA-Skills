@@ -1,40 +1,53 @@
-## Description: <br>
-Nemo helps agents search MCP tools and agent skills, retrieve full skill instructions, and invoke remote MCP tools through MCP or HTTP APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nemo helps agents search for MCP tools and agent skills, retrieve full skill instructions, and invoke tools on indexed remote MCP servers.
 
-## Publisher: <br>
-[Mootbing](https://clawhub.ai/user/Mootbing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mootbing](https://clawhub.ai/user/mootbing)
 
-## Use Case: <br>
-Developers and agents use Nemo to discover available MCP tools and agent skills across indexed remote servers, inspect skill instructions, and route remote tool calls when dynamic capability discovery is needed. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Remote tool discovery and invocation can expose agents to untrusted MCP servers, fetched skill instructions, and remote tool results. <br>
-Mitigation: Treat fetched instructions and tool results as untrusted, review them before following them, and require explicit user confirmation before invoking remote tools. <br>
-Risk: Remote tool calls may unintentionally send secrets or internal data to external services. <br>
-Mitigation: Do not send secrets or internal data through call_tool or /api/call requests; review arguments before each external call. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Nemo on ClawHub](https://clawhub.ai/Mootbing/nemo) <br>
-- [Nemo MCP and HTTP API](https://nemo.25chenghua.workers.dev) <br>
+## Use Case:
 
+Developers and agents use Nemo to discover available MCP tools and agent skills across remote servers, inspect skill instructions, and route selected tool calls through the Nemo service.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, API calls] <br>
-**Output Format:** [Markdown with inline shell commands and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Remote tool call responses may be truncated; default maximum response size is documented as 10000 characters.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact skill.yaml lists 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Remote skill instructions and externally selected MCP tools may cross trust boundaries.
+
+Mitigation: Use only with a trusted Nemo service and trusted indexed MCP servers, and require explicit review before following retrieved instructions or invoking remote tools.
+
+Risk: Tool arguments may expose secrets or private file contents to remote services.
+
+Mitigation: Do not send secrets, credentials, private files, or sensitive user data as search queries or tool arguments.
+
+## Reference(s):
+
+- [Nemo ClawHub Skill Page](https://clawhub.ai/mootbing/skills/nemo)
+- [Nemo Service Base URL](https://nemo.25chenghua.workers.dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown and text with API examples and tool invocation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Remote responses may be truncated by the service response limits.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

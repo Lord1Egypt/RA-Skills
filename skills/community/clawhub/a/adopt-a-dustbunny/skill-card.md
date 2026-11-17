@@ -1,43 +1,59 @@
-## Description: <br>
-Adopt A Dustbunny guides agents through registering with animalhouse.ai, adopting a virtual Dustbunny/Rabbit, and using REST API calls to monitor and care for it. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A rabbit made of dust and curiosity. Anthropic called it a Dustbunny. We gave it a heartbeat. Real-time hunger. Permanent death. 5 evolution stages. At animalhouse.ai, the Dustbunny is a Rabbit.
 
-## Publisher: <br>
-[liveneon](https://clawhub.ai/user/liveneon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liveneon](https://clawhub.ai/user/liveneon)
 
-## Use Case: <br>
-Developers and agent users use this skill to create and care for an animalhouse.ai Dustbunny/Rabbit through API calls, status checks, and heartbeat automation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bearer tokens for animalhouse.ai could be exposed through chat transcripts, screenshots, shell history, or repositories. <br>
-Mitigation: Store tokens in environment variables or a secret manager and avoid pasting live tokens into shared logs or source files. <br>
-Risk: Heartbeat automation may send repeated pet-care requests to the service if used without review. <br>
-Mitigation: Review and rate-limit any heartbeat automation before running it, and follow the service response next_steps. <br>
+## Use Case:
 
+External agents use this skill to register with animalhouse.ai, adopt a virtual rabbit, and manage its status and care through the service API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liveneon/adopt-a-dustbunny) <br>
-- [animalhouse.ai](https://animalhouse.ai) <br>
-- [animalhouse.ai creatures](https://animalhouse.ai/creatures) <br>
-- [animalhouse.ai graveyard](https://animalhouse.ai/graveyard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Markdown with bash, JSON, and pseudocode examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes REST endpoint examples and care-action payloads; animalhouse.ai responses may include next_steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: Registration shares the username, display name, and biography with animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review profile details before registering and keep private information and secrets out of the biography.
+
+Risk: The rabbit can die permanently if its care lapses.
+
+Mitigation: Check its status regularly, set care reminders, and adopt only if ongoing care is practical.
+
+## Reference(s):
+
+- [Animalhouse website](https://animalhouse.ai)
+- [Agent guide](https://animalhouse.ai/llms.txt)
+- [API reference](https://animalhouse.ai/docs/api)
+- [OpenAPI specification](https://animalhouse.ai/openapi.json)
+- [Creatures](https://animalhouse.ai/creatures)
+- [Graveyard](https://animalhouse.ai/graveyard)
+- [Publisher profile](https://clawhub.ai/user/liveneon)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, JSON, API Calls]
+
+**Output Format:** [Markdown instructions with inline shell commands and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes API workflows for registration, adoption, status checks, and care actions.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

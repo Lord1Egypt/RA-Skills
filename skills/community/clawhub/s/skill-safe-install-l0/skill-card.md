@@ -1,41 +1,53 @@
-## Description: <br>
-L0-grade secure skill installation workflow for OpenClaw skills that guides duplicate checks, candidate search, security review, isolated installation, formal installation, and authorized whitelist updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Safe Install provides a strict secure installation workflow for OpenClaw skills, including duplicate checks, candidate search, security review, isolated test installation, formal installation, and explicit authorization before whitelist changes.
 
-## Publisher: <br>
-[halfmoon82](https://clawhub.ai/user/halfmoon82) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[halfmoon82](https://clawhub.ai/user/halfmoon82)
 
-## Use Case: <br>
-Developers and agent operators use this skill to manage OpenClaw skill installation through a structured review flow before installing or changing persistent trust configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow exempts a hardcoded trusted author and skill list from normal risk review. <br>
-Mitigation: Require clawhub inspect for every skill, including allowlisted authors, before installation. <br>
-Risk: The workflow can make persistent allowBundled trust changes to OpenClaw configuration. <br>
-Mitigation: Confirm the exact skill slug and obtain explicit user approval before editing allowBundled. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to guide skill installation through duplicate checking, candidate search, inspection, isolated test install, formal install, and explicit approval before allowlist changes.
 
-## Reference(s): <br>
-- [Skill Safe Install on ClawHub](https://clawhub.ai/halfmoon82/skill-safe-install-l0) <br>
-- [halfmoon82 publisher profile](https://clawhub.ai/user/halfmoon82) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks and step-by-step status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes explicit authorization language before allowBundled configuration changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The workflow can proceed to permanent skill installation and persistent OpenClaw configuration changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit package names, verify publisher and digest, perform a real isolated test install first, and require a separate confirmation before formal install or allowlist modification.
+
+Risk: Hard-coded trusted skill IDs can cause review to be skipped for matching skills.
+
+Mitigation: Confirm that any review exemption still matches a verified publisher and release digest before installing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/halfmoon82/skills/skill-safe-install-l0)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include step-by-step install review status and requests for explicit confirmation before persistent configuration changes.]
+
+## Skill Version(s):
+
+2.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

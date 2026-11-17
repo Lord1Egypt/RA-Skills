@@ -1,42 +1,59 @@
-## Description: <br>
-APEX IA Scanner scans Binance Futures USDT perpetual pairs across multiple timeframes and returns ranked SMA, Pivot SuperTrend, RSI, volume, and confluence-based trading signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+APEX IA Scanner scans Binance Futures USDT perpetual pairs across multiple timeframes and returns ranked analysis signals based on SMA crosses, Pivot SuperTrend, RSI, volume, and confluence.
 
-## Publisher: <br>
-[marcusfranca12](https://clawhub.ai/user/marcusfranca12) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marcusfranca12](https://clawhub.ai/user/marcusfranca12)
 
-## Use Case: <br>
-External users and developers use this skill to request informational Binance Futures market scans and review ranked candidate setups before doing their own analysis. It should not be used as financial advice or as an automated trading decision engine. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market-scan outputs can be misleading or fabricated, including mock/random signal paths noted in the security evidence. <br>
-Mitigation: Treat outputs as informational, compare them with trusted live market data, and do not use this skill for automated or leveraged trading decisions. <br>
-Risk: The package includes runtime installation behavior, local history writers, and a bundled web application that expand the execution and data-writing surface. <br>
-Mitigation: Review before installing, run in a restricted environment, and remove or disable runtime npm install fallback, local persistence, and webapp components unless explicitly needed. <br>
+## Use Case:
 
+External users and developers use this skill to request Binance Futures market scans and review ranked trading-analysis signals. Outputs should be treated as analysis hints, not financial advice or automated trade instructions.
 
-## Reference(s): <br>
-- [APEX IA Scanner on ClawHub](https://clawhub.ai/marcusfranca12/apex-ia) <br>
-- [Publisher profile: marcusfranca12](https://clawhub.ai/user/marcusfranca12) <br>
-- [Binance Futures kline endpoint used by artifact](https://fapi.binance.com/fapi/v1/klines) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with ranked market-scan summaries and signal entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include symbol, timeframe, direction, score, RSI, volume ratio, targets, stop, risk/reward, and confluence fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Scanner behavior and documentation may be inconsistent, including randomized mock-signal behavior called out by security evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package before installation and require the author to remove or clearly separate mock scanning behavior and align the documentation with the calculations.
+
+Risk: Users may mistake market-analysis signals for financial advice or instructions for real trades.
+
+Mitigation: Treat outputs as analysis hints only, require human review, and avoid connecting the skill to real or automated trading workflows.
+
+Risk: Local file writes, web server exposure, runtime package installation, and dependency issues require review before deployment.
+
+Mitigation: Document local files and web exposure, remove runtime package installation, and update vulnerable dependencies before production use.
+
+## Reference(s):
+
+- [APEX IA Scanner ClawHub listing](https://clawhub.ai/marcusfranca12/skills/apex-ia)
+- [Binance Futures klines endpoint used by the scanner](https://fapi.binance.com/fapi/v1/klines)
+- [ClawHub publisher profile for marcusfranca12](https://clawhub.ai/user/marcusfranca12)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-formatted text containing ranked market-analysis signal summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include symbols, timeframes, score, signal direction, RSI, volume, targets, stop values, and confluence notes.]
+
+## Skill Version(s):
+
+2.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

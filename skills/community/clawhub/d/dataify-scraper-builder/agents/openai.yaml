@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dataify Scraper Builder"
+  short_description: "Inspect a site and generate a Dataify scraper starter"
+  default_prompt: "Inspect this target and build the smallest reliable Dataify-based scraper."

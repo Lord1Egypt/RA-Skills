@@ -1,43 +1,59 @@
-## Description: <br>
-Automated UX/usability audit for web applications that navigates target app pages with Playwright, captures screenshots and UI metadata, evaluates them against a configurable checklist, and supports Chinese and English usability standards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates UX/usability audits for web applications by using Playwright to navigate pages, capture screenshots and UI metadata, and generate checklist-based reports.
 
-## Publisher: <br>
-[micorine](https://clawhub.ai/user/micorine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[micorine](https://clawhub.ai/user/micorine)
 
-## Use Case: <br>
-Developers, designers, QA teams, and product teams use this skill to inspect web application usability, accessibility, and UI consistency. It is suited for generating structured UX audit reports with screenshots, UI statistics, checklist findings, and prioritized issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The inspector logs into the configured target web application and can access pages available to that account. <br>
-Mitigation: Use a dedicated low-privilege test account and limit the configured target to applications approved for audit. <br>
-Risk: Generated screenshots, JSON inspection output, and Markdown reports may contain private application data. <br>
-Mitigation: Store outputs in a controlled local directory, review them before sharing, and avoid committing reports or screenshots that contain sensitive data. <br>
-Risk: Configuration files can contain target URLs and login credentials. <br>
-Mitigation: Keep credentials out of shared config files when possible and remove or rotate any test credentials after the audit. <br>
+## Use Case:
 
+Developers, QA teams, and product teams use this skill to inspect web application usability, accessibility signals, and UI consistency. It helps generate structured audit evidence and reports from authenticated application flows.
 
-## Reference(s): <br>
-- [Default usability audit checklist](artifact/references/checklist-default.md) <br>
-- [ClawHub skill page](https://clawhub.ai/micorine/ux-usability-auditor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report, JSON inspection results, PNG screenshots, and configuration-oriented guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local inspection_results.json, usability_audit_report.md, screenshots, and report assets in the configured output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Automatic page discovery can navigate beyond the intended target application.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only against systems you are authorized to test and prefer a vetted page list or same-origin URL filtering before using auto-discovery on untrusted applications.
+
+Risk: Screenshots, inspection results, and reports can contain sensitive authenticated application content.
+
+Mitigation: Use a test account with minimal permissions, set a controlled output directory, and handle generated artifacts as sensitive.
+
+Risk: The skill requires login credentials in configuration to inspect authenticated flows.
+
+Mitigation: Avoid production secrets where possible and use scoped test credentials that can be rotated after the audit.
+
+## Reference(s):
+
+- [Default Usability Audit Checklist](artifact/references/checklist-default.md)
+- [ClawHub Skill Page](https://clawhub.ai/micorine/skills/ux-usability-auditor)
+- [Publisher Profile](https://clawhub.ai/user/micorine)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown audit report, JSON inspection results, PNG screenshots, and command/configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses configurable target URL, login selectors, page list, checklist path, output directory, screenshot directory, and headless mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

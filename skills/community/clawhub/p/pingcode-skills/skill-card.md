@@ -1,45 +1,59 @@
-## Description: <br>
-PingCode research and development management platform API integration for querying work items, generating weekly reports, and managing project progress. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PingCode integrates with the PingCode R&D management API to query work items, generate weekly reports, and manage project progress.
 
-## Publisher: <br>
-[anytao](https://clawhub.ai/user/anytao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anytao](https://clawhub.ai/user/anytao)
 
-## Use Case: <br>
-Developers, engineering managers, and project leads use this skill to inspect PingCode projects and work items, generate project status reports, and update selected work-item fields through the PingCode Open API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The update script can change live PingCode work items. <br>
-Mitigation: Require user approval before write operations and verify the exact work-item ID and fields before execution. <br>
-Risk: PingCode client credentials and token request URLs may be exposed through terminal, agent, proxy, or request logs. <br>
-Mitigation: Use a narrowly scoped PingCode application, keep credentials in environment variables, avoid logging secrets or token URLs, and rotate credentials after suspected exposure. <br>
-Risk: Broad PingCode application scopes could give the skill more access than the intended project workflow needs. <br>
-Mitigation: Configure the PingCode application with the smallest data access scope that supports the intended read or update tasks. <br>
+## Use Case:
 
+Developers and project teams use this skill to retrieve PingCode tasks and project work items, generate project status reports, and update work-item ownership, dates, status, or priority through PingCode Open API.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/anytao/pingcode-skills) <br>
-- [Publisher Profile](https://clawhub.ai/user/anytao) <br>
-- [PingCode API Reference](references/api_docs.md) <br>
-- [PingCode Open API](https://open.pingcode.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Console text, optional JSON, Markdown reports, and shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PINGCODE_CLIENT_ID and PINGCODE_CLIENT_SECRET environment variables; update operations can modify live PingCode work items.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill handles PingCode client credentials and project data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in trusted environments, limit PingCode application scopes, keep credentials in environment variables, and avoid proxies or logging systems that may record request URLs.
+
+Risk: The work-item update script can change remote project data without an interactive confirmation step.
+
+Mitigation: Review command arguments and PingCode permissions before running update commands, and prefer tightly scoped credentials for write access.
+
+Risk: Abbreviated work-item IDs may resolve ambiguously.
+
+Mitigation: Use full work-item IDs where possible and verify the resolved item before applying ownership, date, status, or priority changes.
+
+## Reference(s):
+
+- [PingCode API reference](artifact/references/api_docs.md)
+- [PingCode Open API documentation](https://open.pingcode.com/)
+- [ClawHub PingCode skill page](https://clawhub.ai/anytao/skills/pingcode-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [Terminal text, optional JSON output, and Markdown weekly reports from Python CLI scripts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PINGCODE_CLIENT_ID and PINGCODE_CLIENT_SECRET environment variables; update operations depend on PingCode API permissions.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

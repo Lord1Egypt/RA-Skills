@@ -1,41 +1,58 @@
-## Description: <br>
-Calls the Volcengine Seedance video generation API for text-to-video, image-to-video, and first-frame-to-last-frame video generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calls the VolcEngine Seedance video generation API for text-to-video, image-to-video, and first/last-frame video creation.
 
-## Publisher: <br>
-[Lamuier](https://clawhub.ai/user/Lamuier) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lamuier](https://clawhub.ai/user/lamuier)
 
-## Use Case: <br>
-Developers and agent users use this skill to generate videos through Volcengine Seedance from text prompts, reference images, or first and last frame inputs. It is useful when an agent should submit a video generation task, poll for completion, and return a local video file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and reference images are sent to Volcengine, and API usage may consume quota or incur charges. <br>
-Mitigation: Use a Volcengine API key scoped for the intended environment, keep it out of shared files and logs, and review usage before running generation requests. <br>
-Risk: The script can download generated video content to a local output directory. <br>
-Mitigation: Review the output directory before relying on generated files, and consider adding URL validation, request timeouts, and size limits for sensitive environments. <br>
+## Use Case:
 
+Developers and external users use this skill to generate videos through VolcEngine Seedance from text prompts, image URLs, or first/last-frame inputs, then retrieve the generated video URL and optional local MP4 file.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Lamuier/doubao-seedance-skill) <br>
-- [Volcengine Seedance task API endpoint](https://ark.cn-beijing.volces.com/api/v3/contents/generations/tasks) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, API Calls, Files, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and generated video files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires VOLCENGINE_API_KEY and may save generated MP4 files to a local output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Prompts and image URLs are sent to VolcEngine Seedance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive prompts or private image URLs unless this is permitted by your data policy.
+
+Risk: The skill depends on VOLCENGINE_API_KEY for authenticated API access.
+
+Mitigation: Keep the API key in environment configuration and avoid committing or exposing it in shared logs.
+
+Risk: Generated video downloads depend on remote URLs returned by the service.
+
+Mitigation: Consider adding request timeouts, bounded streaming, and video URL validation before shared or production use.
+
+## Reference(s):
+
+- [ClawHub release page for doubao-seedance-skill](https://clawhub.ai/lamuier/skills/doubao-seedance-skill)
+- [VolcEngine Seedance task API endpoint](https://ark.cn-beijing.volces.com/api/v3/contents/generations/tasks)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Files, Shell commands, Configuration instructions]
+
+**Output Format:** [Terminal text and structured Python dictionary values with generated video URLs and local file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires VOLCENGINE_API_KEY and may save generated MP4 files to a local output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

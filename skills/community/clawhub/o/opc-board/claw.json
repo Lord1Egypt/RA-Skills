@@ -1,0 +1,28 @@
+{
+  "name": "opc-board",
+  "version": "1.4.2",
+  "tagline": "OPC Board: 5 advisors stress-test your solo business idea / 一人董事会：五位专业顾问压测你的想法",
+  "description": "Friends say 'sounds great.' AI says 'wonderful idea.' What you need is someone willing to push back. OPC Board gives you 5 professional advisors who stress-test your solo idea across 5 dimensions — 25 sub-items, formula-scored, no guesswork — and output a Go/No-Go feasibility report with OPC Decision Card, MoSCoW scoping, Pre-Mortem risks, and action plan. 朋友说好棒，AI 说 wonderful idea，你真正需要的是愿意拍砖的人。一人董事会为你召集 5 位专业顾问，五维 25 子项确定性打分，输出 Go/No-Go 评估报告和行动清单。",
+  "category": "productivity",
+  "tags": [
+    "one-person-company",
+    "opc",
+    "indie-developer",
+    "solo-founder",
+    "decision-making",
+    "feasibility",
+    "stress-test",
+    "lean-canvas",
+    "pre-mortem",
+    "moscow",
+    "north-star-metric",
+    "customer-journey-map",
+    "chinese"
+  ],
+  "license": "MIT",
+  "author": "Chris1Wang3",
+  "pricing": "free",
+  "entry": "SKILL.md",
+  "support_url": "https://github.com/Chris1Wang3/HammerRoom-Skills/issues",
+  "homepage": "https://github.com/Chris1Wang3/HammerRoom-Skills/tree/master/opc-board"
+}

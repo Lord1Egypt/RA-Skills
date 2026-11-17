@@ -1,0 +1,7 @@
+interface:
+  display_name: "Presenton — PPTX, PDF & PNG"
+  short_description: "Create decks with download and preview links"
+  default_prompt: "Use $presenton to create a PPTX, PDF, or PNG file and return its download and shareable preview URLs."
+
+policy:
+  allow_implicit_invocation: true

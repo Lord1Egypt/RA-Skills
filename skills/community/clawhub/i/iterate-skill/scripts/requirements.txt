@@ -1,0 +1,5 @@
+# iterate-skill 校验脚本与安装脚本依赖
+# 许可证：MIT / Apache-2.0 / BSD 等宽松许可
+jsonschema==4.26.0
+PyYAML==6.0.2
+rich==13.7.1

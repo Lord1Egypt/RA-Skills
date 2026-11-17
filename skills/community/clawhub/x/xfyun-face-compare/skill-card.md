@@ -1,40 +1,53 @@
-## Description: <br>
-Compare two face images and return similarity score using iFlytek Face Recognition API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compare two face images and return similarity score using iFlytek Face Recognition API.
 
-## Publisher: <br>
-[Dzy-1026](https://clawhub.ai/user/Dzy-1026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dzy-1026](https://clawhub.ai/user/dzy-1026)
 
-## Use Case: <br>
-Developers and automation users use this skill to compare two face images for identity verification, access control, duplicate-account checks, photo matching, security authentication, or attendance workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected face images are sent to iFlytek for processing. <br>
-Mitigation: Use the skill only with permission to process the subjects' biometric data and review iFlytek privacy and retention terms before security-sensitive use. <br>
-Risk: Required API credentials could be exposed if mishandled. <br>
-Mitigation: Store XF_FACE_APP_ID, XF_FACE_API_KEY, and XF_FACE_API_SECRET in protected environment configuration and avoid logging or sharing credential values. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [iFlytek Face Recognition API documentation](https://www.xfyun.cn/doc/face/xf-silent-in-vivo-detection/API.html) <br>
-- [ClawHub skill page](https://clawhub.ai/Dzy-1026/xfyun-face-compare) <br>
+## Use Case:
 
+Developers and external operators use this skill to compare two face images for identity verification, authentication, duplicate account detection, and security workflows through the iFLYTEK Face Recognition API.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration] <br>
-**Output Format:** [JSON response printed to stdout with status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires two local image paths and iFlytek API credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends selected face images to iFLYTEK for remote biometric processing.
+
+Mitigation: Use it only with appropriate consent and approval for biometric processing, and avoid running it on images that should not leave the local environment.
+
+Risk: The security summary identifies avoidable credential and logging exposure risks.
+
+Mitigation: Use dedicated, restricted iFLYTEK credentials and avoid logging or sharing failures until signed URL and exception redaction are improved.
+
+## Reference(s):
+
+- [iFLYTEK Face Recognition API documentation](https://www.xfyun.cn/doc/face/xf-silent-in-vivo-detection/API.html)
+- [ClawHub skill page](https://clawhub.ai/dzy-1026/skills/xfyun-face-compare)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text, Guidance]
+
+**Output Format:** [JSON with plain-text status and error messages printed to standard output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes similarity score, comparison result, confidence, face detection status, and raw API response when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

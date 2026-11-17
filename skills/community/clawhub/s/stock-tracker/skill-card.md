@@ -1,48 +1,67 @@
-## Description: <br>
-Tracks Eastmoney self-selected stock announcements, filters low-value notices, uses optional LLM classification and summaries, and can present results through an agent digest or local web dashboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stock Tracker monitors Eastmoney self-selected stock announcements, applies rule-based and optional LLM filtering, creates classified summaries, and can present results as scheduled digests or a local web dashboard.
 
-## Publisher: <br>
-[54lynnn](https://clawhub.ai/user/54lynnn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[54lynnn](https://clawhub.ai/user/54lynnn)
 
-## Use Case: <br>
-Investors, analysts, and agents use this skill to monitor selected A-share and Hong Kong stock announcements, prioritize higher-value disclosures, and produce concise summaries or a dashboard view for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles live account cookies and .env API keys. <br>
-Mitigation: Treat cookie.txt and .env as secrets, keep them out of commits, and restrict local file permissions. <br>
-Risk: Announcement data may be sent to configurable external LLM or webhook endpoints. <br>
-Mitigation: Enable LLM and webhook features only when sending the selected announcement data to those endpoints is acceptable. <br>
-Risk: Automatic scheduling can repeatedly run network and notification workflows. <br>
-Mitigation: Review and confirm cron entries manually before enabling scheduled runs. <br>
-Risk: The dashboard exposes announcement data through a local web service. <br>
-Mitigation: Bind the dashboard to localhost unless intentional network exposure has been reviewed. <br>
+## Use Case:
 
+Investors, analysts, and agent operators use this skill to track announcements for configured stock groups, filter low-value notices, summarize important updates, and review results through digest output or a dashboard.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/54lynnn/skills/stock-tracker) <br>
-- [System architecture](references/architecture.md) <br>
-- [Announcement classification system](references/classification.md) <br>
-- [Text cleaning rules](references/text-cleaning.md) <br>
-- [Token cost analysis](references/token-cost.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain-text digest output, Markdown-style summaries, shell command guidance, configuration instructions, and optional dashboard CSV export.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can run scheduled agent digests or launch a local Flask dashboard for interactive review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill handles Eastmoney session cookies and LLM API keys.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated environment, restrict access to cookie.txt and .env, and rotate credentials if they may have been exposed.
+
+Risk: The setup script can install recurring cron jobs.
+
+Mitigation: Run scripts/setup.sh only after review and inspect the user crontab after setup.
+
+Risk: The dashboard is unauthenticated and may be reachable beyond localhost if exposed.
+
+Mitigation: Run dashboard mode only on loopback or place it behind access controls.
+
+Risk: LLM features send announcement titles and text to the configured model endpoint and may incur API costs.
+
+Mitigation: Review config.json before use, disable LLM features when not needed, and monitor provider usage.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/54lynnn/skills/stock-tracker)
+- [ClawHub publisher profile](https://clawhub.ai/user/54lynnn)
+- [System architecture](references/architecture.md)
+- [Announcement classification](references/classification.md)
+- [Text cleaning rules](references/text-cleaning.md)
+- [Token cost analysis](references/token-cost.md)
+- [Eastmoney self-selected stocks](https://quote.eastmoney.com/zixuan/lite.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and digest text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Dashboard mode can serve local HTML views and CSV exports; scheduled mode emits digest lines for an agent to forward.]
+
+## Skill Version(s):
+
+2.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

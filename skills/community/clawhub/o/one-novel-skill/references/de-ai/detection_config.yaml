@@ -1,0 +1,245 @@
+# one-novel-skill 检测配置
+# 融合源: Humanizer-zh (24模式) + story-deslop + 原生检测
+# 内联默认值在 run_all_detectors.py 中维护; 此文件为可选的单一真相源
+version: 1.0.0
+
+# === P0 绝对禁用词 ===
+banned_p0:
+- 毋庸置疑
+- 不可否认
+- 值得一提的是
+- 总而言之
+- 众所周知
+- 命运的齿轮
+- 从某种意义上说
+- 在某种程度上
+- 由此可见
+- 综上所述
+- 不可忽视的是
+
+banned_direct_report:
+- 他知道
+- 她知道
+- 他感到
+- 她感到
+- 他觉得
+
+banned_endings:
+- 他终于明白了
+- 她终于懂得
+- 他不知道的是
+- 更大的挑战还在后面
+- 总的来说
+
+banned_templates:
+  不是: 2
+  而是: 2
+  仿佛: 2
+  犹如: 2
+  宛若: 2
+  眼中闪过一丝: 1
+  嘴角勾起一抹: 1
+
+ai_connectives:
+- 随着
+- 首先
+- 其次
+- 最后
+- 因此
+- 此外
+- 总之
+- 然而
+
+template_openings:
+- 随着
+- 在当今
+- 众所周知
+
+# === Humanizer-zh 完整24模式配置 (from Wikipedia:Signs of AI writing) ===
+humanizer_zh:
+  # 1: 夸大意义/遗产/趋势
+  significance:
+    keywords: [作为, 充当, 标志着, 见证了, 的体现, 的证明, 的提醒, 极其重要, 至关重要, 核心, 关键性, 凸显, 彰显, 反映了更广泛的, 象征着, 不可磨灭, 深深植根于, 不断演变, 格局, 关键转折点]
+    threshold: 2  # 命中次数超过此值触发
+
+  # 2: 强调知名度/媒体报道
+  prominence:
+    keywords: [独立报道, 地方媒体, 区域媒体, 国家媒体, 知名专家, 活跃的社交媒体, 被引用, 采访中表示, 拥有超过, 万粉丝]
+    threshold: 1
+
+  # 3: -ing肤浅分析 (中文表现为"确保""促进""反映"等动词引导的补充说明)
+  shallow_analysis:
+    keywords: [确保, 促进, 培养, 涵盖, 展示, 突出, 强调, 彰显, 反映, 象征]
+    threshold: 3
+
+  # 4: 宣传/广告式语言
+  promotional:
+    keywords: [充满活力, 丰富的, 深刻的, 增强其, 展示, 体现, 致力于, 自然之美, 坐落于, 位于中心, 开创性的, 著名的, 令人叹为观止, 必游之地, 迷人的, 拥有, 坐落]
+    threshold: 2
+
+  # 5: 模糊归因
+  vague_attribution:
+    keywords: [行业报告显示, 观察者指出, 专家认为, 一些批评者认为, 多个来源, 据报道, 据了解, 业内人士表示, 分析师指出]
+    threshold: 1
+
+  # 6: 提纲式挑战/展望
+  challenge_template:
+    keywords: [面临若干挑战, 尽管存在这些挑战, 挑战与遗产, 未来展望, 挑战与机遇, 挑战与前景, 尽管如此仍有挑战]
+    threshold: 1
+
+  # 7: AI特征词堆叠 (QMAI增强版)
+  ai_vocabs:
+    - 此外
+    - 至关重要
+    - 深入探讨
+    - 强调
+    - 持久的
+    - 增强
+    - 培养
+    - 获得
+    - 突出
+    - 相互作用
+    - 复杂
+    - 复杂性
+    - 关键
+    - 格局
+    - 关键性的
+    - 展示
+    - 织锦
+    - 证明
+    - 宝贵的
+    - 充满活力的
+    - 深刻的
+    - 广泛的
+    - 显著的
+    - 革命性的
+    - 前所未有的
+    threshold: 5  # 累计出现超过5次触发
+
+  # 8: 系动词回避 -- 中文表现为"作为""拥有""提供"替代"是""有"
+  copula_avoidance:
+    patterns:
+      - "作为.*(?:是|为)"
+      - "拥有.*(?:功能|能力|特性)"
+      - "提供.*(?:服务|功能|支持)"
+    threshold: 2
+
+  # 9: 否定式排比
+  not_only_but_also:
+    patterns:
+      - "不仅.*而且"
+      - "不只是.*而是"
+      - "不仅仅.*更是"
+      - "这不仅仅是.*更是"
+      - "不仅是.*更是一种"
+    threshold: 1
+
+  # 10: 三段式法则
+  rule_of_three:
+    patterns:
+      - "[，、][^，、]{2,8}[，、][^，、]{2,8}和[^，、]{2,8}"
+      - "[，、][^，、]{2,8}[，、][^，、]{2,8}与[^，、]{2,8}"
+    threshold: 3  # 连续三段式结构超过3次
+
+  # 11: 同义词循环
+  synonym_cycling:
+    keywords: [主人公, 主角, 主要角色, 中心人物, 英雄, 男主, 女主]
+    threshold: 3  # 同一段内同义词替换超过3次
+
+  # 12: 虚假范围
+  false_range:
+    patterns:
+      - "从.*到.*从.*到.*"  # 双重"从X到Y"
+    threshold: 1
+
+  # 13: 破折号过度使用
+  dash_overuse:
+    threshold: 3  # 破折号(—或--)超过3次
+    per_1000_chars: 1.5  # 每千字超过1.5个
+
+  # 14-18: 格式残留 (结合story-deslop的自然化要求)
+  format_issues:
+    bold_residue: true       # 粗体**残留
+    emoji_misuse: true       # 表情符号滥用
+    list_style_md: true      # 内联标题垂直列表
+    chat_collab_trace: true  # 协作交流痕迹保留
+    curly_quotes: true       # 弯引号
+
+  # 19: 协作交流痕迹
+  chat_collab:
+    keywords: [希望对您有帮助, 当然！, 一定！, 你说得完全正确, 您想要, 请告诉我, 这是一个, 好的!, 非常棒的问题]
+    threshold: 1
+
+  # 20: 知识截止免责声明
+  knowledge_cutoff:
+    keywords: [根据我最后的训练, 根据我的知识截止, 虽然具体细节有限, 基于可用信息, 截至我的知识]
+    threshold: 1
+
+  # 21: 谄媚语气
+  ingratiating:
+    keywords: [好问题！, 你说得完全正确, 这是一个很好的, 非常好, 令人印象深刻, 你提到了一个很好的点]
+    threshold: 2
+
+  # 22: 填充短语
+  filler_phrases:
+    keywords: [为了实现这一目标, 由于的事实, 在这个时间点, 值得注意的是, 值得一提的是, 需要强调的是, 可以观察到的是, 我们需要认识到, 我们必须注意到, 不可忽视的是]
+    threshold: 1
+
+  # 23: 过度限定
+  over_qualification:
+    keywords: [可能, 也许, 大概, 或许, 有可能, 似乎, 某些情况下, 在某种程度上]
+    threshold: 6  # 在一段内超过6次
+
+  # 24: 通用积极结论
+  generic_positive:
+    keywords: [看起来光明, 激动人心, 追求卓越, 正确方向, 迈出重要一步, 充满希望, 必将, 将会有更多, 值得期待]
+    threshold: 2
+
+# === story-deslop 去AI味方法论配置 ===
+deslop:
+  # 删除比例上限（按AI味等级）
+  delete_thresholds:
+    mild: 0.15      # 轻度AI味 ≤15%
+    moderate: 0.25  # 中度AI味 ≤25%
+    severe: 0.35    # 重度AI味 ≤35%
+
+  # 自然文本基准（deslop式）
+  natural_baselines:
+    paragraph_sentences_min: 1
+    paragraph_sentences_max: 3   # 自然文本每段1-3句
+    dialog_tag_ratio_min: 0.6    # 60%+对话无标签
+    emotion_by_action: true      # 情绪通过动作展示
+    metaphor_type: daily          # 比喻生活化 vs 文学化
+    colloquial_particles: true   # 语气词："嘤""嘶""靠""行吧"
+    ellipsis_used: true          # 有省略，非面面俱到
+    parallelism_max: 2            # 排比不超过2个
+    ending_type: action_dialog   # 结尾: 动作/对话收尾
+
+  # 替换参考（deslop式自然表达映射）
+  replacements:
+    深吸一口气: [胸口起伏了一下, 直接删掉]
+    眼中闪过一丝: [他垂下眼, 眯起眼, 眼神动了动]
+    嘴角勾起一抹: [笑了一下没到眼底, 乐了, 扯了扯嘴角]
+    仿佛: [像, 白描]
+    不禁: [直接写动作]
+    缓缓开口: [说, 用动作引出对话]
+
+# === story-review 审查rubric配置 ===
+review:
+  quality_rubric:
+    dimensions:
+      - name: 节奏
+        weight: 3
+        metrics: [钩子密度, 段落字数方差, 情绪曲线]
+      - name: 角色
+        weight: 2
+        metrics: [声线差异, 行为一致性, 成长感]
+      - name: 文字
+        weight: 2
+        metrics: [句长方差, 感官密度, 冗余比例]
+      - name: 结构
+        weight: 2
+        metrics: [伏笔回收, 冲突递进, 章末钩子]
+      - name: 对抗AI
+        weight: 3
+        metrics: [禁用词命中, AI词汇密度, 人均句长]

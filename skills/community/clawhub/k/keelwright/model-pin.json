@@ -1,0 +1,16 @@
+{
+  "comment": "T16 (v1.8.0) — run-contract model pin. Update when you intentionally change the model. R9 drift check.",
+  "allowed_models": [
+    "nous/tencent-hy3:free",
+    "nous/upstage/solar-pro4:free",
+    "nous/stepfun/step-3.7-flash:free",
+    "nous/meituan/longcat-2.0:free"
+  ],
+  "roles": {
+    "architect": "nous/tencent-hy3:free",
+    "coder": "nous/tencent-hy3:free",
+    "tester": "nous/tencent-hy3:free",
+    "reviewer": "nous/tencent-hy3:free",
+    "security-gate": "nous/tencent-hy3:free"
+  }
+}

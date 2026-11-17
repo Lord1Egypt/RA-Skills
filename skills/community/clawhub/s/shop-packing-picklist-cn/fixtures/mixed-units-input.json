@@ -1,0 +1,14 @@
+{
+  "orders": [
+    {"id": "D-9002", "items": [
+      {"sku": "BEANS", "quantity": 2, "unit": "箱"},
+      {"sku": "BEANS", "quantity": 2, "unit": "个"},
+      {"sku": "KIT-STRAP", "quantity": 1, "unit": "套"},
+      {"sku": "EXTRA", "quantity": 1, "unit": "个"}
+    ]}
+  ],
+  "kits": {"KIT-STRAP": [{"sku": "STRAP", "quantity": 1, "unit": "条"}]},
+  "gifts": [
+    {"qualifying_sku": "BEANS", "min_order_quantity": 3, "min_order_unit": "个", "sku": "GIFT", "quantity": 1, "unit": "个"}
+  ]
+}

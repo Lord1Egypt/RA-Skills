@@ -1,44 +1,55 @@
-## Description: <br>
-Subscribes to WeChat public accounts and other feed sources to retrieve raw articles for daily digest assembly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Subscribes to WeChat public accounts and other sources through the Plotlake Open Channel API, then retrieves raw article content for an agent to assemble daily digests.
 
-## Publisher: <br>
-[eggyrooch-blip](https://clawhub.ai/user/eggyrooch-blip) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eggyrooch-blip](https://clawhub.ai/user/eggyrooch-blip)
 
-## Use Case: <br>
-Developers and agents use this skill to create Plotlake channels, subscribe to curated or manually supplied feed sources, and fetch article content for LLM-generated daily digests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: External API calls and submitted feed URLs may expose channel activity or sensitive private links to Plotlake. <br>
-Mitigation: Use public RSS or website URLs, avoid sensitive private links, and confirm the data-sharing posture before adding sources. <br>
-Risk: The skill includes DELETE commands for removing channel sources. <br>
-Mitigation: Review the channel ID and source ID before running deletion commands. <br>
-Risk: Fetched article content may be passed to an LLM for daily digest generation. <br>
-Mitigation: Review copyright, privacy, and internal data-handling requirements before summarizing or redistributing fetched content. <br>
+## Use Case:
 
+External users and developers use this skill to create Plotlake channels, subscribe curated or custom feed sources, fetch raw articles, and have an agent summarize them into daily digests.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eggyrooch-blip/plotlake) <br>
-- [Project homepage](https://github.com/eggyrooch-blip/wewerss) <br>
-- [Plotlake Open Channel API](https://api.plotlake.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API calls, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses curl and jq; no API key environment variable is documented.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Feed choices, channel names, and submitted feed or website URLs are sent to Plotlake.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing those values with Plotlake is acceptable, and avoid private intranet, authenticated, staging, or tokenized URLs.
+
+Risk: Example commands can create, subscribe, add, or delete remote channel sources.
+
+Mitigation: Review mutating curl commands before execution and confirm the target channel, source, and bundle identifiers.
+
+## Reference(s):
+
+- [Plotlake ClawHub Skill Page](https://clawhub.ai/eggyrooch-blip/skills/plotlake)
+- [Project homepage](https://github.com/eggyrooch-blip/wewerss)
+- [Plotlake Open Channel API](https://api.plotlake.com)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with bash and curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses curl and jq; no credential environment variables are documented.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

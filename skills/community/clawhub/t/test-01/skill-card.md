@@ -1,41 +1,55 @@
-## Description: <br>
-Search the web using Baidu AI Search Engine (BDSE). Use for live information, documentation, or research topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search the web using Baidu AI Search Engine (BDSE). Use for live information, documentation, or research topics.
 
-## Publisher: <br>
-[ide-rea](https://clawhub.ai/user/ide-rea) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ide-rea](https://clawhub.ai/user/ide-rea)
 
-## Use Case: <br>
-Developers and agents use this skill to run Baidu web searches for live information, documentation, and research topics through a configured BAIDU_API_KEY. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user-provided search queries to Baidu. <br>
-Mitigation: Avoid submitting secrets, private documents, regulated data, confidential research terms, or other sensitive information as search queries. <br>
-Risk: The BAIDU_API_KEY is required for API access. <br>
-Mitigation: Provide the key only through the environment and treat it as sensitive credential material. <br>
+## Use Case:
 
+Developers and agent users can use this skill to submit live web-search queries to Baidu and retrieve current research, documentation, or topic results. It is useful when an agent needs external search results with optional count and freshness filters.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ide-rea/test-01) <br>
-- [Baidu AI Search web_search endpoint](https://qianfan.baidubce.com/v2/ai_search/web_search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [JSON search results printed by a Python CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and BAIDU_API_KEY; accepts query, count, and freshness parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Search terms are sent to Baidu's external API and may be retained or exposed according to that service's handling of requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit secrets, credentials, regulated personal data, confidential project names, or other sensitive queries through this skill.
+
+Risk: The script prints the parsed request body to stdout, so submitted queries may appear in agent logs or terminal history.
+
+Mitigation: Review logs and avoid using the skill for sensitive searches; remove or suppress request echoing before deployment in environments with stricter logging controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ide-rea/skills/test-01)
+- [Publisher profile](https://clawhub.ai/user/ide-rea)
+- [Baidu Qianfan AI Search API endpoint](https://qianfan.baidubce.com/v2/ai_search/web_search)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON search results printed to stdout, with Markdown usage examples in the skill documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and BAIDU_API_KEY; accepts query, count, and freshness parameters. The script removes snippet fields from returned references.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

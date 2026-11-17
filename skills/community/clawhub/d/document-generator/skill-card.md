@@ -1,43 +1,59 @@
-## Description: <br>
-Generate professional Word, Excel, and PDF documents with rich formatting, tables, images, and layouts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate professional Word, Excel, and PDF documents with rich formatting, tables, images, and layouts.
 
-## Publisher: <br>
-[lnblxj](https://clawhub.ai/user/lnblxj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lnblxj](https://clawhub.ai/user/lnblxj)
 
-## Use Case: <br>
-Developers, analysts, and operators use this skill to generate local DOCX, XLSX, and PDF reports, invoices, spreadsheets, and formatted exports from JSON configurations and optional templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dependency installation and local file generation can affect the user's environment or write to unintended paths. <br>
-Mitigation: Install Python dependencies in a trusted environment and confirm configuration, template, image, and output paths before running the generators. <br>
-Risk: Excel values beginning with '=' are interpreted as formulas. <br>
-Mitigation: Use formula-prefixed values only when formulas are intended; sanitize or escape untrusted spreadsheet text before generation. <br>
+## Use Case:
 
+Developers and external users use this skill to create formatted Word documents, Excel spreadsheets, and PDFs from JSON configurations for reports, invoices, data exports, templates, and similar document workflows.
 
-## Reference(s): <br>
-- [Word Document Configuration Schema](references/word_schema.md) <br>
-- [Excel Spreadsheet Configuration Schema](references/excel_schema.md) <br>
-- [PDF Document Configuration Schema](references/pdf_schema.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/lnblxj/document-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Configuration, Shell commands, Guidance] <br>
-**Output Format:** [JSON configurations and local DOCX, XLSX, or PDF files, with Markdown guidance and shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates files at user-specified output paths; supports optional template and image paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata) <br>
+Risk: Generated documents can read templates or images and write output files at configured paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use safe, intended input and output paths and review them before running a generation script.
+
+Risk: Spreadsheet formulas supplied from untrusted data may execute or recalculate when the workbook is opened.
+
+Mitigation: Review spreadsheet formulas before generation and treat untrusted formula-like values as text unless formulas are explicitly intended.
+
+Risk: Dependency or font differences can affect local rendering behavior, especially for PDF and multilingual output.
+
+Mitigation: Install the skill in a virtual environment with pinned dependencies and verify generated documents before distribution.
+
+## Reference(s):
+
+- [Word document configuration schema](references/word_schema.md)
+- [Excel spreadsheet configuration schema](references/excel_schema.md)
+- [PDF document configuration schema](references/pdf_schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples, shell commands, and generated DOCX/XLSX/PDF files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated files are written to user-selected output paths and may use local templates, images, fonts, and Python document libraries.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

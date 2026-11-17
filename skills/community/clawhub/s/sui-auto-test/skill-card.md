@@ -1,39 +1,51 @@
-## Description: <br>
-Analyze Sui Move test coverage, identify untested code, write missing tests, and perform security audits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze Sui Move test coverage, identify untested code, write missing tests, and perform security audits.
 
-## Publisher: <br>
-[EasonC13](https://clawhub.ai/user/EasonC13) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[easonc13](https://clawhub.ai/user/easonc13)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect Sui Move test coverage, identify untested functions, branches, and assertions, generate missing tests, and document security review findings. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill instructs the agent to commit generated test changes automatically. <br>
-Mitigation: Use the skill on a branch, review coverage reports and test diffs, and approve any git commit only after inspecting the changes. <br>
-Risk: Generated tests or security recommendations may be incomplete or incorrect for the target Sui Move contract. <br>
-Mitigation: Run the Sui test and coverage commands after changes, review the generated report, and validate security findings against the contract's intended behavior. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/EasonC13/sui-auto-test) <br>
+## Use Case:
+
+Developers and engineers use this skill to analyze Sui Move coverage, identify untested functions, assertions, and branches, and guide creation of missing tests with security-focused edge cases.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may cause an agent to run local Sui coverage commands and write or modify repository test files.
+
+Mitigation: Install and run it only for intended Sui Move repositories, then review generated coverage reports and diffs before accepting file changes.
+
+Risk: The artifact workflow includes staging and committing test improvements.
+
+Mitigation: Do not allow staging or commits unless you have explicitly approved the final diff and commit message.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown reports, Move test code, JSON or Markdown coverage summaries, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write coverage reports and test changes in a local Sui Move project.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, json, code, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown, JSON, terminal text, Move test code, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write coverage reports such as coverage.md when the agent is directed to run the included tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

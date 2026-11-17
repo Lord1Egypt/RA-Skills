@@ -1,4 +1,3 @@
-# Contributing
 
 Contributions are welcome! Here's how to help:
 

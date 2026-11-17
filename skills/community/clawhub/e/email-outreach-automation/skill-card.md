@@ -1,43 +1,66 @@
-## Description: <br>
-Cold email outreach pipeline with multi-step sequences, reply tracking, bounce handling, and campaign analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cold email outreach pipeline with multi-step sequences, reply tracking, bounce handling, and campaign analytics. 4 production-ready n8n workflows with Google Sheets CRM and SMTP integration.
 
-## Publisher: <br>
-[mhmalvi](https://clawhub.ai/user/mhmalvi) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-CC BY-NC-SA 4.0 <br>
+## Publisher:
 
+[mhmalvi](https://clawhub.ai/user/mhmalvi)
 
-## Use Case: <br>
-External sales, recruiting, agency, freelance, and founder teams use this skill to run a self-hosted n8n outreach pipeline for prospect import, sequenced follow-up, reply tracking, and campaign reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC BY-NC-SA 4.0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflows can automatically send cold emails, creating compliance, reputation, and abuse risk if enabled without controls. <br>
-Mitigation: Use a dedicated SMTP account, add send limits and campaign approval, enforce unsubscribe and suppression handling, and test with a small non-production list before enabling schedules. <br>
-Risk: Webhook controls are weak, including a default secret fallback and an unauthenticated reply webhook. <br>
-Mitigation: Remove the default secret fallback, require authentication on both webhooks, and keep OUTREACH_SECRET configured as a deployment secret. <br>
-Risk: Prospect and reply data is stored in Google Sheets and may include personal or business contact data. <br>
-Mitigation: Use a scoped Google Sheet and least-privilege Google Sheets OAuth2 credentials. <br>
+## Use Case:
 
+Developers, operators, agencies, founders, recruiters, and sales teams use this skill to import prospects, run sequenced outreach, track replies, and receive campaign analytics in a self-hosted n8n setup backed by Google Sheets and SMTP.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mhmalvi/email-outreach-automation) <br>
-- [Publisher Profile](https://clawhub.ai/user/mhmalvi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with n8n workflow JSON files and example shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces deployable n8n workflow configuration that requires Google Sheets OAuth2, SMTP credentials, OUTREACH_SECRET, and OUTREACH_ADMIN_EMAIL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: Public webhooks can modify prospect records or trigger notifications without sufficient safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a strong OUTREACH_SECRET, fail closed when it is missing, add webhook authentication or signature verification, and enforce rate limits and request-size limits.
+
+Risk: Automated outreach can be misused with unlawful or non-consent-aware prospect lists.
+
+Mitigation: Use only lawful, consent-aware prospect lists and maintain suppression and opt-out handling before activating campaigns.
+
+Risk: Google Sheets and SMTP credentials can expose prospect data or sending capability if over-privileged.
+
+Mitigation: Restrict Google Sheets and SMTP credentials to the minimum permissions and accounts needed for the outreach workflows.
+
+Risk: Reply content and report recipients can expose sensitive information if handled unsafely.
+
+Mitigation: Validate admin report recipients and avoid rendering raw reply content as HTML.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mhmalvi/skills/email-outreach-automation)
+- [Skill Definition](artifact/SKILL.md)
+- [Prospect Import Workflow](artifact/workflows/01-prospect-import.json)
+- [Outreach Sequence Workflow](artifact/workflows/02-outreach-sequence.json)
+- [Reply Tracker Workflow](artifact/workflows/03-reply-tracker.json)
+- [Campaign Report Workflow](artifact/workflows/04-campaign-report.json)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Configuration instructions, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with n8n workflow JSON files and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires n8n v2.4+, Google Sheets OAuth2 credentials, SMTP credentials, OUTREACH_SECRET, and OUTREACH_ADMIN_EMAIL.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

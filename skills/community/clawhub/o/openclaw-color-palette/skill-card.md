@@ -1,43 +1,57 @@
-## Description: <br>
-Design-grade color processing suite for generating harmonious palettes, checking WCAG 2.1 AA/AAA contrast, converting color formats, simulating color vision deficiencies, and extracting dominant colors from images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Color Palette provides MCP-accessible color tools for generating harmonious palettes, checking WCAG contrast, converting color formats, simulating color vision deficiencies, and extracting dominant colors from images.
 
-## Publisher: <br>
-[yedanyagamiai-cmd](https://clawhub.ai/user/yedanyagamiai-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yedanyagamiai-cmd](https://clawhub.ai/user/yedanyagamiai-cmd)
 
-## Use Case: <br>
-Developers, designers, and agents use this skill to create color palettes, verify contrast accessibility, convert color formats, simulate color vision deficiency views, and extract brand colors from images or logos. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Color values, image URLs, screenshots, logos, or base64 image data may be sent to the disclosed remote MCP service for processing. <br>
-Mitigation: Avoid sensitive or proprietary visuals unless you trust the provider and its no-storage claims; use non-sensitive assets for routine palette work. <br>
-Risk: Image extraction depends on remote processing and documented size constraints. <br>
-Mitigation: Resize or compress images before submission, especially when extracting palettes from screenshots, logos, or large artwork. <br>
-Risk: Color vision deficiency simulation and contrast checks can inform accessibility work but do not replace full accessibility review. <br>
-Mitigation: Use the generated results as design guidance and validate final interfaces with broader accessibility checks. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yedanyagamiai-cmd/openclaw-color-palette) <br>
-- [Project homepage](https://github.com/yedanyagamiai-cmd/openclaw-mcp-servers) <br>
-- [Color Palette MCP endpoint](https://color-palette-mcp.yagami8095.workers.dev/mcp) <br>
+## Use Case:
 
+Developers, designers, and agents use this skill to generate design palettes, evaluate color accessibility, convert color values, simulate color vision deficiencies, and extract brand colors from images or logos.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON MCP configuration and structured color results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces palettes, conversions, WCAG contrast checks, color vision deficiency simulations, and dominant image colors; image and color inputs may be sent to the disclosed remote MCP service.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Color values and submitted image data are sent to a remote MCP service for processing.
+
+Mitigation: Avoid sending private or sensitive images unless the service operator is trusted.
+
+Risk: Broad color-related trigger phrases may activate the skill when a request does not require remote color processing.
+
+Mitigation: Prefer explicit color-related requests and review tool calls before submitting data.
+
+Risk: Color vision deficiency simulation is illustrative and not clinically calibrated.
+
+Mitigation: Do not use simulation output for medical diagnosis; consult appropriate clinical expertise for medical questions.
+
+## Reference(s):
+
+- [OpenClaw MCP Servers](https://github.com/yedanyagamiai-cmd/openclaw-mcp-servers)
+- [OpenClaw Color Palette on ClawHub](https://clawhub.ai/yedanyagamiai-cmd/skills/openclaw-color-palette)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with structured color values, JSON-like tool results, and CSS custom property snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include hex, RGB, HSL, HSV, CMYK, CSS named colors, WCAG contrast results, simulated color values, and extracted palette percentages.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

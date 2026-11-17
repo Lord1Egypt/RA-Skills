@@ -1,44 +1,61 @@
-## Description: <br>
-Generate, review, and publish social media content through MCP with AgentAuth and workspace token authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate, review, and publish social media content through MCP with AgentAuth and workspace token authentication.
 
-## Publisher: <br>
-[tourmind](https://clawhub.ai/user/tourmind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tourmind](https://clawhub.ai/user/tourmind)
 
-## Use Case: <br>
-Hotel marketing teams and their agents use this skill to generate, review, publish, and schedule social media posts for connected hotel brand accounts. It supports draft selection, regeneration, account confirmation, publishing status checks, and optional Feishu notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish or schedule live social media posts using sensitive workspace and user tokens. <br>
-Mitigation: Use least-privilege or dedicated tokens, store uk_* and hp_sk_* values as secrets, and require the agent to show the final draft, destination accounts, platform list, and scheduled time before publishing or scheduling. <br>
-Risk: Incorrect credentials or workspace selection can send actions to the wrong HotelPost workspace or fail authorization. <br>
-Mitigation: Confirm the AgentAuth user key, HotelPost workspace token, MCP server headers, and connected social accounts before generating or publishing content. <br>
+## Use Case:
 
+Hotel marketing teams and their agents use this skill to generate, review, publish, schedule, and monitor social media posts for hotel brands across connected social accounts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tourmind/hotel-social-automator) <br>
-- [User Onboarding Guide](references/user-onboarding.md) <br>
-- [Error Handling](references/error-handling.md) <br>
-- [Conversation Examples](references/conversation-examples.md) <br>
-- [Feishu Platform Sending Guide](references/feishu-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with MCP tool calls, configuration snippets, and status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include draft content, image handling steps, social account selections, publish or schedule confirmations, and Feishu notification guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can publish or schedule public social media content for a brand.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require a final human preview and explicit approval before publish or schedule actions.
+
+Risk: The workflow depends on workspace and user tokens that authorize brand-specific access.
+
+Mitigation: Treat uk_* and hp_sk_* values as secrets and use the skill only in workspaces where those tokens are approved for the intended brand.
+
+Risk: The security scan reports unsafe command and credential-handling guidance around a high-impact posting workflow.
+
+Mitigation: Review before installing, validate image URLs before download, and use unique private temporary files for downloaded assets.
+
+## Reference(s):
+
+- [User Onboarding](references/user-onboarding.md)
+- [Error Handling](references/error-handling.md)
+- [Conversation Examples](references/conversation-examples.md)
+- [Feishu Platform Sending Guide](references/feishu-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/tourmind/skills/hotel-social-automator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and structured tool-call guidance with inline configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated social copy, review prompts, publishing status summaries, and setup guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

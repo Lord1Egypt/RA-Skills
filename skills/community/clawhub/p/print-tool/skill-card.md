@@ -1,39 +1,49 @@
-## Description: <br>
-Output text and variable values to standard output for displaying messages, script output, and debug information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Output text and variable values to standard output. Use for displaying messages, script output, and debug information.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and agents use this skill to print supplied text or variable values to standard output for simple messaging, script output, and debugging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The documented -n, -e, and multi-argument behavior is not implemented by the bundled script. <br>
-Mitigation: Use the skill only for single-argument plain-text output unless implementation support is added and reviewed. <br>
-Risk: Values passed to the tool are written to standard output, which can expose secrets in logs or transcripts. <br>
-Mitigation: Do not pass credentials, tokens, or other secrets unless intentional disclosure to standard output is acceptable. <br>
+## Use Case:
 
+Developers and agents use this skill to emit simple text values to standard output for messages, script output, and debugging.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands] <br>
-**Output Format:** [Plain text on standard output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled script prints one positional argument; documented flags and multi-argument behavior are not implemented.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Documented print-tool options such as multiple arguments, -n, and -e may not work in the provided implementation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use simple single-argument output unless the implementation is expanded, and test expected command forms before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/print-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text output with Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The provided implementation is minimal and supports simple single-argument output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

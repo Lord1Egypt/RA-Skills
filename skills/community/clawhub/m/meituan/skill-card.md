@@ -1,41 +1,58 @@
-## Description: <br>
-Meituan public local-life decision assistant. Compare visible merchant, fee, discount, ETA, review-risk, threshold, and refund-friction signals, then recommend whether to order, switch, add a useful item, wait, or skip. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Meituan public local-life decision assistant that compares visible merchant, fee, discount, ETA, review-risk, threshold, and refund-friction signals, then recommends whether to order, switch, add a useful item, wait, or skip.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users and coding agents use this skill to compare public Meituan food-delivery or local-life deal evidence and choose a practical next action before ordering. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private account, address, coupon, order, checkout, or payment details could be exposed if the skill is used on authenticated Meituan pages. <br>
-Mitigation: Use only public pages, screenshots, or user-provided visible details, and have the user personally verify final price, ETA, stock, refund terms, and payment details before ordering. <br>
-Risk: Recommendations based on visible prices, fees, ETA, stock, or coupons can become stale before checkout. <br>
-Mitigation: Present the recommendation as decision support and call out final payable amount, address-based ETA, account coupon eligibility, item options, stock, and refund terms as manual checks. <br>
+## Use Case:
 
+External users use this skill to decide whether a Meituan food delivery or local-life offer is worth acting on from public pages, screenshots, or copied cart details. It helps compare real payable tradeoffs, delivery timing, merchant trust, threshold discounts, and manual pre-order checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/meituan) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/harrylabsj) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, analysis] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a concise recommendation with checkout reality, risk check, confidence gaps, and user-only checks before ordering.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server evidence, SKILL.md frontmatter, package.json, clawhub.json, CHANGELOG.md) <br>
+Risk: Final price, ETA, stock, coupon eligibility, refund terms, and payment state may depend on account or checkout state that the skill does not access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify final payable amount, address-based ETA, account coupon eligibility, item options, stock, refund or after-sales rule, delivery note, and payment details in Meituan before ordering.
+
+Risk: Screenshots or copied order details may contain personal data.
+
+Mitigation: Redact phone numbers, addresses, names, order IDs, and payment details before sharing screenshots or copied text with an agent.
+
+Risk: Authenticated account actions, cart changes, checkout, or payment could create unwanted platform or purchase effects.
+
+Mitigation: Keep use to visible public evidence and user-provided details; stop at login, CAPTCHA, address selection, coupon wallet, order, checkout, or payment screens.
+
+## Reference(s):
+
+- [ClawHub Meituan Skill Page](https://clawhub.ai/harrylabsj/skills/meituan)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/harrylabsj)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, analysis, markdown]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns a concise decision, checkout-reality analysis, risk check, confidence level, evidence gaps, and user-only checks before ordering.]
+
+## Skill Version(s):
+
+2.2.0 (source: frontmatter, package.json, CHANGELOG, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

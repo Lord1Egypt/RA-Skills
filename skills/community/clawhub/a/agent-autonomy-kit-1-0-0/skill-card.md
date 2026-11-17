@@ -1,44 +1,53 @@
-## Description: <br>
-Agent Autonomy Kit helps agents keep working between prompts with task queues, proactive heartbeat routines, and scheduled autonomous workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents keep working from task queues, heartbeat routines, and recurring schedules instead of waiting for prompts.
 
-## Publisher: <br>
-[123oo123442](https://clawhub.ai/user/123oo123442) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[123oo123442](https://clawhub.ai/user/123oo123442)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure agents to pull from a task queue, run proactive heartbeat routines, coordinate status updates, and schedule unattended work sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unattended heartbeats and cron jobs can make persistent workspace edits or take scheduled actions without timely human review. <br>
-Mitigation: Enable the skill only for approved task types, restrict writable paths, and require human approval for destructive, financial, production, public-posting, or external actions. <br>
-Risk: Autonomous work loops can consume token budget or communication channel capacity faster than expected. <br>
-Mitigation: Monitor token and channel usage, set conservative schedules, and require handoff notes when limits are approached. <br>
-Risk: Server evidence does not include resolved import provenance for this version. <br>
-Mitigation: Verify the project source before installation and review the artifact contents against the intended release. <br>
+## Use Case:
 
+Developers and agent operators use this skill to set up persistent task queues, proactive heartbeat routines, and scheduled work so agents can make progress between human prompts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/123oo123442/agent-autonomy-kit-1-0-0) <br>
-- [Declared project homepage](https://github.com/itskai-dev/agent-autonomy-kit) <br>
-- [README project link](https://github.com/reflectt/agent-autonomy-kit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide updates to task queues, heartbeat routines, memory logs, team channels, and cron configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Unattended agents can continue work from shared queues or recurring schedules without active human prompting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated workspace, restrict writable paths and tools, require approval for sensitive or external actions, control who can edit the task queue, limit team-channel posting, and document how to list and remove scheduled jobs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/123oo123442/skills/agent-autonomy-kit-1-0-0)
+- [Artifact README](artifact/README.md)
+- [Proactive heartbeat template](artifact/templates/HEARTBEAT.md)
+- [Task queue template](artifact/templates/QUEUE.md)
+- [Skill homepage](https://github.com/itskai-dev/agent-autonomy-kit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples, configuration snippets, and reusable templates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes task queue and heartbeat templates; may recommend recurring scheduled jobs for autonomous operation.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,63 @@
-## Description: <br>
-Provides a patient-facing general health education entry point that matches user topics and keywords against article content and generates concise educational summaries with source references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Patient-facing health education skill that matches health topics and keywords to provided article content, then uses a remote medical model to produce Markdown summaries with source references and a medical disclaimer.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-External users and care-support teams use this skill to find patient-facing health education content from provided article lists by topic or keyword. It returns matched articles, short Markdown explanations, source URLs when available, and a reminder that education content does not replace clinical diagnosis or treatment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Health topics, keywords, and matched article content can be sent to the documented remote medical-model API. <br>
-Mitigation: Use only approved app keys and avoid submitting private medical records or PHI unless that remote service is approved for the intended use. <br>
-Risk: Office, PDF, and image inputs may invoke local parsers, converters, or OCR tools on user-selected files. <br>
-Mitigation: Prefer JSON or trusted files; process untrusted documents only in a patched, sandboxed environment. <br>
-Risk: Generated health education summaries could be mistaken for clinical diagnosis or individualized treatment advice. <br>
-Mitigation: Keep the documented disclaimer and review outputs for medical appropriateness before user-facing deployment. <br>
+## Use Case:
 
+External patient-facing applications and developers use this skill to turn a health topic, keywords, and article list into general health education summaries. It is limited to education and source-oriented summaries, not diagnosis or individualized treatment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-health-education) <br>
-- [Referenced WellAlly health knowledge-base skill](https://agent-skills.md/skills/huifer/WellAlly-health/wellally-tech) <br>
-- [Configured medical-model API endpoint](https://maas-api.hivoice.cn/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [UTF-8 JSON containing structured matched-article data and Markdown natural-language health education text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an app key for the remote medical-model API; supports JSON, text, table, document, PDF, and image inputs through preprocessing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Health-related topics and matched article content are sent to a fixed remote model API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when that data sharing is acceptable, avoid sensitive patient information unless separately approved, and disclose remote processing in the deployment context.
+
+Risk: The required API key can be exposed through shell history or process logs when passed directly on the command line.
+
+Mitigation: Protect the key outside shell history and logs, rotate it if exposed, and prefer a secret-management mechanism in production wrappers.
+
+Risk: Document parsing handles multiple file formats and may invoke local converters or OCR tools.
+
+Mitigation: Run preprocessing in a constrained environment and process only trusted or scanned files.
+
+Risk: The script can fall back to external shared Python code outside the skill package.
+
+Mitigation: Remove the fallback or integrity-pin and review the shared module before using the skill in production or with sensitive patient information.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/unisound-llm/skills/unisound-health-education)
+- [WellAlly health skill reference](https://agent-skills.md/skills/huifer/WellAlly-health/wellally-tech)
+- [Remote medical model API endpoint](https://maas-api.hivoice.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [UTF-8 JSON with structured data and a Markdown text field]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes matched articles, source URLs when present, and a disclaimer that education content does not replace clinical care.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

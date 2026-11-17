@@ -1,44 +1,65 @@
-## Description: <br>
-记一下 helps users capture ideas, knowledge, expenses, diary entries, tasks, and quotes like messages, with AI classification, tags, links, and local note views. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+像发消息一样记录灵感、想法、知识、收支、日记、任务和引用，并让 the agent classify, tag, title, store, search, summarize, and export those notes.
 
-## Publisher: <br>
-[yankj](https://clawhub.ai/user/yankj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yankj](https://clawhub.ai/user/yankj)
 
-## Use Case: <br>
-External users and developers use this skill to capture WeChat, Feishu, or CLI notes into a local Markdown knowledge base, then query, summarize, and export those records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist sensitive personal, financial, work, or message content as local notes. <br>
-Mitigation: Route only content intended for capture, avoid secrets or sensitive records unless local protections are in place, and review retention or deletion controls before enabling WeChat or Feishu capture. <br>
-Risk: The release relies on a just-note command-line executable that evidence says is unreviewed or missing. <br>
-Mitigation: Confirm which just-note executable will run and inspect it before installing or routing messages to it. <br>
+## Use Case:
 
+External users and developers use this skill to capture short messages as structured personal notes, expenses, diary entries, tasks, quotes, and knowledge snippets. The agent classifies each entry, generates tags and titles, writes Markdown records, and supports search, summaries, statistics, and export workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yankj/just-note-ai) <br>
-- [README](README.md) <br>
-- [AI message handling guide](AI-HANDLER.md) <br>
-- [Examples](EXAMPLES.md) <br>
-- [Test report](TEST-REPORT.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown notes with YAML frontmatter, CLI command guidance, summaries, and export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores captured notes under memory/just-note and may export JSONL, Markdown, or CSV formats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: ClawHub release evidence and CHANGELOG; package.json lists 0.1.0) <br>
+Risk: The skill may persist sensitive chat, diary, task, and financial content in local note files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid recording secrets, review saved files under memory/just-note, and configure storage and backup practices before routine use.
+
+Risk: Automatic or low-friction capture can save content the user did not intend to retain.
+
+Mitigation: Use an explicit invocation habit and review newly created notes before treating them as a durable personal record.
+
+Risk: Installation and publishing examples use @latest ClawHub CLI commands.
+
+Mitigation: Pin or verify CLI versions and commands before copying them into an installation or release workflow.
+
+Risk: The release is described by security evidence as unfinished and under-scoped for privacy and installation safety.
+
+Mitigation: Test installation and note-writing behavior in a non-sensitive workspace before deploying it for regular use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yankj/skills/just-note-ai)
+- [Skill Definition](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [AI Message Handler Guide](artifact/AI-HANDLER.md)
+- [Test Report](artifact/TEST-REPORT.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown notes with YAML frontmatter, JSON classification objects, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes records under memory/just-note and may include generated titles, tags, observations, amount, currency, and source metadata.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata and CHANGELOG.md, released 2026-03-26)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

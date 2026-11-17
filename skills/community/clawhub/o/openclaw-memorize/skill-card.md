@@ -1,40 +1,54 @@
-## Description: <br>
-Simple memory management for OpenClaw that saves, retrieves, searches, lists, and deletes key-value memories across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simple memory management for OpenClaw. Save, retrieve, and search important information. Store facts, decisions, preferences, and anything you want to remember across sessions. Use when you need to persist information for future reference.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to persist decisions, preferences, metrics, ideas, links, and other small key-value notes for future agent sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved memories persist in a local plaintext memories.json file and may be printed by the CLI. <br>
-Mitigation: Do not save secrets, tokens, passwords, regulated data, or private notes unless local retention and CLI display are intentional. <br>
-Risk: Publisher and source transparency are limited because server-resolved provenance is unavailable. <br>
-Mitigation: Review future updates before installing and periodically delete old memories that are no longer needed. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to save, retrieve, search, list, and delete lightweight key-value memories across sessions, such as project decisions, preferences, metrics, ideas, and links.
 
-## Reference(s): <br>
-- [Openclaw Memorize ClawHub listing](https://clawhub.ai/yang1002378395-cmyk/openclaw-memorize) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files] <br>
-**Output Format:** [Plain text CLI output with JSON-backed local memory records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists key-value memories in a local plaintext memories.json file under the OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Stored memories are plaintext local data and may expose sensitive information if secrets or private data are saved.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not store passwords, API keys, private keys, access tokens, or sensitive personal data unless the local storage file is separately protected.
+
+Risk: Installing or running the skill from an untrusted package source could execute unexpected code.
+
+Mitigation: Install only from a trusted ClawHub/npm source or pin the installer version when possible.
+
+## Reference(s):
+
+- [OpenClaw Memorize on ClawHub](https://clawhub.ai/yang1002378395-cmyk/skills/openclaw-memorize)
+- [Publisher profile](https://clawhub.ai/user/yang1002378395-cmyk)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [CLI text output and Markdown command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores key-value memory records in a local JSON file under the OpenClaw workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

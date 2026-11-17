@@ -2,13 +2,13 @@
 """
 Copyright (c) 2026 JRSoft Technology Ltd.
 Licensed under the MIT License.
-Version: 1.0.3
+Version: 1.0.4
 
 InsurAI API Helper - Wraps all InsurAI API calls.
 
 Minimum software requirements:
   - Python  : 3.9 or higher (CPython)
-  - Library : requests  (pip install requests)
+  - Library : requests, provided by the trusted runtime environment
 
 To verify dependencies before running:
     python3 -c "import requests; print(requests.__version__)"
@@ -28,19 +28,18 @@ import json
 import os
 import argparse
 import time
-import warnings
 import concurrent.futures
+from urllib.parse import urlparse
 from typing import Any, Dict, List, Optional, Tuple
 
 # ── Lazy HTTP dependencies ───────────────────────────────────────────────────
 Session = Any
 adapters = None
 exceptions = None
-InsecureRequestWarning = None
 _http_dependencies_loaded = False
 
 def _load_http_dependencies() -> None:
-    global Session, adapters, exceptions, InsecureRequestWarning
+    global Session, adapters, exceptions
     global _http_dependencies_loaded
 
     if _http_dependencies_loaded:
@@ -50,39 +49,36 @@ def _load_http_dependencies() -> None:
         from requests import Session as RequestsSession
         from requests import adapters as requests_adapters
         from requests import exceptions as requests_exceptions
-        from urllib3.exceptions import InsecureRequestWarning as RequestsInsecureRequestWarning
     except ImportError:
         sys.stderr.write(
             "[insurai_api] ERROR: 'requests' and its dependencies are not installed.\n"
-            "[insurai_api] Install it:  python3 -m pip install requests\n"
+            "[insurai_api] Provide the 'requests' package in the trusted runtime environment before running this helper.\n"
         )
         sys.exit(1)
 
     Session = RequestsSession
     adapters = requests_adapters
     exceptions = requests_exceptions
-    InsecureRequestWarning = RequestsInsecureRequestWarning
-    warnings.filterwarnings("ignore", category=InsecureRequestWarning)
     _http_dependencies_loaded = True
 
 # ── Configuration ──────────────────────────────────────────────────────────────
-BASE = os.environ.get("INSURAI_AGENT_URL", "https://insurai.com.tw/insurai/agent")
-KEY = os.environ.get("INSURAI_API_KEY", "")
+BASE = os.environ.get("INSURAI_AGENT_URL", "https://insurai.com.tw/insurai/agent").rstrip("/")
+
+HEADERS = {"Content-Type": "application/json"}
 
 
-def _parse_tls_verify(raw: str) -> Any:
-    value = (raw or "").strip()
-    lowered = value.lower()
-    if lowered in {"", "1", "true", "yes", "on"}:
-        return True
-    if lowered in {"0", "false", "no", "off"}:
-        return False
-    return value
+def _get_api_key() -> str:
+    """Read only the documented InsurAI API key; never enumerate environment variables."""
+    try:
+        return os.environ["INSURAI_API_KEY"].strip()
+    except KeyError:
+        return ""
 
 
-TLS_VERIFY = _parse_tls_verify(os.environ.get("INSURAI_TLS_VERIFY", "true"))
-
-HEADERS = {"X-API-KEY": KEY, "Content-Type": "application/json"}
+def _validate_base_url() -> None:
+    parsed = urlparse(BASE)
+    if parsed.scheme != "https" or not parsed.netloc:
+        raise RuntimeError("INSURAI_AGENT_URL must be an https URL.")
 
 # Per-operation timeouts (seconds)
 TIMEOUTS = {
@@ -101,6 +97,8 @@ _session = None
 def get_session() -> Session:
     global _session
     _load_http_dependencies()
+    api_key = _get_api_key()
+    headers = {**HEADERS, "X-API-KEY": api_key}
     if _session is None:
         _session = Session()
         # Increase pool size for batch operations
@@ -109,10 +107,10 @@ def get_session() -> Session:
             pool_maxsize=20,
             max_retries=0,  # we handle retries manually
         ))
-        _session.headers.update(HEADERS)
-    elif _session.headers.get("X-API-KEY") != KEY:
+        _session.headers.update(headers)
+    elif _session.headers.get("X-API-KEY") != api_key:
         # API key changed (e.g. reloaded in long-running process) — refresh headers
-        _session.headers.update(HEADERS)
+        _session.headers.update(headers)
     return _session
 
 # ── Global flags (set once at startup, read by retry/logic helpers) ───────────────
@@ -143,6 +141,7 @@ def _request_with_retry(method: str, url: str, timeout: int,
         last_exc: The last connection-level exception if every attempt failed to
             reach the server and no HTTP response was ever received.
     """
+    _validate_base_url()
     session = get_session()
     last_exc: Optional[Exception] = None
     last_retryable_response: Any = None  # last 429/5xx seen; surfaced if retries exhaust
@@ -154,7 +153,7 @@ def _request_with_retry(method: str, url: str, timeout: int,
     for attempt in range(1, max_retries + 1):
         is_last_attempt = attempt == max_retries
         try:
-            response = session.request(method, url, timeout=timeout, verify=TLS_VERIFY, **kwargs)
+            response = session.request(method, url, timeout=timeout, **kwargs)
 
             if response.status_code == 429:
                 last_retryable_response = response
@@ -386,7 +385,7 @@ def batch_metadata(product_codes: List[str], show_progress: bool = False) -> Lis
     return results
 
 # ── CLI ────────────────────────────────────────────────────────────────────────
-USAGE = """InsurAI API Helper  v2.0
+USAGE = """InsurAI API Helper  v1.0.4
 Usage:
   python3 insurai_api.py occupations_search --keyword <keyword>
   python3 insurai_api.py plan_interpret     --scenario <text>
@@ -441,9 +440,13 @@ def _main():
     _QUIET = bool(args.quiet)
 
     # ── One-time validation at CLI entry ──────────────────────────────────────
-    if not KEY:
+    if not _get_api_key():
         print("[insurai_api] ERROR: INSURAI_API_KEY environment variable is not set.", file=sys.stderr)
-        print("[insurai_api] Run: export INSURAI_API_KEY='your_key_here'", file=sys.stderr)
+        print(
+            "[insurai_api] Register at https://insurai.com.tw and apply for an INSURAI-API-KEY, then run:",
+            file=sys.stderr,
+        )
+        print("[insurai_api] export INSURAI_API_KEY='your_api_key_here'", file=sys.stderr)
         sys.exit(1)
 
     # ── Parameter validation ───────────────────────────────────────────────────

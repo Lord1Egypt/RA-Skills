@@ -1,46 +1,62 @@
-## Description: <br>
-分阶段支持科幻小说的策划、世界观构建、情节设计、角色塑造、写作、润色和稿件输出。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users plan, draft, revise, and package science fiction stories through staged worldbuilding, plot design, character development, writing, and editing guidance.
 
-## Publisher: <br>
-[hfaltgg2021](https://clawhub.ai/user/hfaltgg2021) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hfaltgg2021](https://clawhub.ai/user/hfaltgg2021)
 
-## Use Case: <br>
-Writers and agents use this skill to plan, draft, revise, and package science-fiction stories across short, medium, and long forms. It supports worldbuilding, plot design, character work, chapter drafting, consistency checks, and markdown or document-oriented final output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The included project initialization script creates local draft files under a path derived from the project name. <br>
-Mitigation: Use a simple project name containing only letters, numbers, underscores, or hyphens; avoid slashes and '..'. <br>
-Risk: Generated fiction planning, scientific premises, and revision advice may contain inconsistencies or misleading details. <br>
-Mitigation: Review worldbuilding, plot continuity, and scientific claims before relying on the generated manuscript. <br>
+## Use Case:
 
+External users and writers use this skill to develop science fiction projects from idea generation through worldbuilding, plot structure, character design, chapter drafting, revision, and final manuscript output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hfaltgg2021/sf-novel-writer) <br>
-- [第一阶段：规划与构思（世界构建）](references/phase1_worldbuilding.md) <br>
-- [第二阶段：剧情设计](references/phase2_plot_design.md) <br>
-- [第三阶段：角色设计](references/phase3_character.md) <br>
-- [第四阶段：编写](references/phase4_writing.md) <br>
-- [第五阶段：修订](references/phase5_revision.md) <br>
-- [科幻子类型指南](references/sf_genre_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance, draft prose, project files, and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local project draft files when the initialization script is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The project setup script can write outside the intended folder if a project name contains path traversal or path separator characters.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use simple project names containing only letters, numbers, hyphens, or underscores; avoid path characters such as / and ..; confirm file paths before writes.
+
+Risk: The skill can create local manuscript and project files, and some file-writing behavior is under-scoped.
+
+Mitigation: Run it in a constrained workspace and review generated file paths and file contents before relying on them.
+
+Risk: The README includes account-ban avoidance wording.
+
+Mitigation: Treat that wording as unacceptable operational guidance and follow the relevant platform terms and organizational policy.
+
+## Reference(s):
+
+- [Phase 1: Worldbuilding](artifact/references/phase1_worldbuilding.md)
+- [Phase 2: Plot Design](artifact/references/phase2_plot_design.md)
+- [Phase 3: Character Design](artifact/references/phase3_character.md)
+- [Phase 4: Writing](artifact/references/phase4_writing.md)
+- [Phase 5: Revision](artifact/references/phase5_revision.md)
+- [Science Fiction Genre Guide](artifact/references/sf_genre_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown prose, outlines, manuscript files, and occasional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local project files when the initialization script is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

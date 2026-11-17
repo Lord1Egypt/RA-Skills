@@ -1,45 +1,65 @@
-## Description: <br>
-Create, edit, and manage WeChat Official Account articles via the official WeChat API, including access token handling, image uploads, draft creation and updates, publishing, and WeChat-compatible HTML formatting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, edit, format, and publish WeChat Official Account articles through the official WeChat API, including image uploads, draft management, publishing, and mobile-oriented HTML checks.
 
-## Publisher: <br>
-[slientrain-new](https://clawhub.ai/user/slientrain-new) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[slientrain-new](https://clawhub.ai/user/slientrain-new)
 
-## Use Case: <br>
-Content creators, editors, and developers use this skill to draft, format, validate, upload media for, and publish WeChat Official Account articles through the official API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles WeChat Official Account credentials and access tokens. <br>
-Mitigation: Keep credentials scoped and private, and provide tokens only when the agent needs to perform an explicit WeChat API action. <br>
-Risk: The skill can change or publish official-account content. <br>
-Mitigation: Require explicit human confirmation before uploads, draft updates, publication, or deletion, and review generated article content and API payloads before submission. <br>
-Risk: Bundled drafts and idea notes may be mistaken for operational instructions. <br>
-Mitigation: Treat bundled drafts and notes as evidence or examples only, and base operational actions on the user's current request. <br>
+## Use Case:
 
+Developers, operators, and content teams use this skill to prepare WeChat Official Account articles, upload media, create or update drafts, validate formatting, and submit content for publication.
 
-## Reference(s): <br>
-- [WeChat layout template](references/templates.md) <br>
-- [Editorial review checklist](references/review-checklist.md) <br>
-- [Prompt examples](references/prompt-examples.md) <br>
-- [Image generation helper](scripts/generate_images.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON payloads, HTML article content, Python snippets, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce WeChat API payloads, generated article assets, draft IDs, media IDs, and preflight check results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can modify live WeChat Official Account drafts and submit content for publication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before draft submission or publication, then perform API return-code and readback validation before treating the content as ready.
+
+Risk: Access tokens passed on the command line or through shared temporary files can be exposed.
+
+Mitigation: Use protected local secret storage or environment handling, avoid shell history exposure, and remove temporary payloads that contain credentials or publication data.
+
+Risk: The workflow mandates a fixed brand footer for \u5de1\u68a6\u4eba.
+
+Mitigation: Install and use the skill only for accounts where that branding is intended, or review and adapt the template before deployment.
+
+Risk: Generated article claims may contain incorrect product attribution or stale facts.
+
+Mitigation: Follow the bundled editorial checklist: confirm entities, verify factual claims, grep for excluded residual terms, and review mobile output before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/slientrain-new/skills/wechat-mp-editor)
+- [Layout template](references/templates.md)
+- [Editorial review checklist](references/review-checklist.md)
+- [Prompt examples](references/prompt-examples.md)
+- [Image generation helper](scripts/generate_images.py)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown prose, inline HTML/CSS, JSON payloads, and shell or Python command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include WeChat API draft IDs, uploaded media URLs or media IDs, and preflight validation results.]
+
+## Skill Version(s):
+
+1.0.2 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

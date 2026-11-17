@@ -1,45 +1,59 @@
-## Description: <br>
-GenderAPI.io helps an agent use OOMOL's GenderAPI.io connector to infer likely gender from a first name, email address, username, or nickname. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Look up GenderAPI.io data by email address, first name, or username through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agent operators use this skill to run read-only GenderAPI.io lookups through an OOMOL-connected account. It is intended for tasks that need likely gender inference from names, email addresses, usernames, or nicknames. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a connected GenderAPI.io API key through OOMOL. <br>
-Mitigation: Confirm the user trusts OOMOL as the connector provider before installing or using the skill. <br>
-Risk: Connector actions may change over time even though the current skill lists only read actions. <br>
-Mitigation: Inspect the live connector schema before building payloads and get separate approval for any future write or destructive action. <br>
-Risk: Gender inference can produce sensitive or inaccurate classifications. <br>
-Mitigation: Use results as probabilistic signals, avoid treating them as identity facts, and apply appropriate review for privacy-sensitive workflows. <br>
+## Use Case:
 
+Developers and agents use the connected GenderAPI.io service to request likely gender lookups for an email address, first name, or username.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-genderapi-io) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
-- [GenderAPI.io homepage](https://www.genderapi.io) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, JSON, configuration guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill directs the agent to inspect live connector schemas before execution and to use OOMOL-managed credentials rather than handling raw GenderAPI.io tokens.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and frontmatter) <br>
+Risk: The documented CLI installation runs remote code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI installation separately and use a verified release.
+
+Risk: The CLI may change other installed agent skills at startup.
+
+Mitigation: For connector-only use, set OO_SKILLS_SYNC_DISABLED=1 before invoking oo.
+
+Risk: Lookup requests may contain email addresses, names, or usernames.
+
+Mitigation: Submit only identifiers you are authorized to share with OOMOL and GenderAPI.io.
+
+## Reference(s):
+
+- [GenderAPI.io](https://www.genderapi.io)
+- [GenderAPI.io API documentation](https://www.genderapi.io/api-documentation)
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON lookup responses with concise usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Response fields depend on the selected lookup action.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

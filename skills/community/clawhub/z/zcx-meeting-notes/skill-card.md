@@ -1,37 +1,58 @@
-## Description: <br>
-Generates structured meeting minutes from transcripts or raw notes, extracting agenda items, decisions, action items, owners, and follow-ups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate structured meeting minutes from transcripts or raw notes by extracting key decisions, action items, owners, and follow-ups.
 
-## Publisher: <br>
-[zhaocaixia888](https://clawhub.ai/user/zhaocaixia888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaocaixia888](https://clawhub.ai/user/zhaocaixia888)
 
-## Use Case: <br>
-Employees and teams use this skill to turn meeting transcripts, raw notes, or summaries into shareable meeting minutes and saved Markdown archives. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting notes may contain confidential or sensitive information and are saved locally under meetings/. <br>
-Mitigation: Confirm the destination path and avoid storing sensitive transcripts or notes in shared workspaces unless that is intended. <br>
+## Use Case:
 
+Employees, external collaborators, and team leads use this skill to turn transcripts, raw notes, or concise summaries into structured meeting records for standups, 1:1s, client meetings, design reviews, retrospectives, and steering meetings.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown meeting notes saved as local files, with concise text summaries and action-item tables.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create files under meetings/ and may review prior notes in that folder for recurring meeting continuity.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Meeting notes may be written to a local meetings/ folder and retained there.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using the skill for confidential meetings unless local retention is acceptable, or instruct the agent not to save the notes.
+
+Risk: For recurring meetings, prior notes in meetings/ may be read for continuity.
+
+Mitigation: Review existing notes in that folder and remove sensitive or irrelevant material before using recurrence continuity.
+
+Risk: Generated minutes may contain uncertain decisions, owners, deadlines, or follow-ups when the source transcript is incomplete or ambiguous.
+
+Mitigation: Review the generated notes before distribution and ask the agent to mark uncertain items for confirmation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaocaixia888/skills/zcx-meeting-notes)
+- [Publisher profile](https://clawhub.ai/user/zhaocaixia888)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Guidance]
+
+**Output Format:** [Markdown meeting notes saved as local .md files with structured sections and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save notes under meetings/YYYY-MM-DD_[topic-slug].md and may use prior notes in meetings/ for recurring-meeting continuity.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

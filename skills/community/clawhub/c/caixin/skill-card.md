@@ -1,43 +1,58 @@
-## Description: <br>
-Retrieves and summarizes public news and trending topics from Caixin's open channels using keyword search, channel pages, and topic collections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieves and summarizes public news and trending topics from Caixin's open channels using keyword search, channel stats, and topic collections.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-External users and agents use this skill to collect lightweight summaries of public Caixin search results, channel hot items, and topic-page article lists. It is intended for visible public content only, with source links, publish times, tags, and collection time preserved in the output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may encounter Caixin content that is paid, login-only, or otherwise restricted. <br>
-Mitigation: Use the skill only on visible public pages and do not bypass paywalls, login requirements, or access controls. <br>
-Risk: Frequent or broad collection could conflict with site rules or create unintended scraping behavior. <br>
-Mitigation: Keep collection lightweight and rate-limited, avoid batch scraping, and follow Caixin platform rules. <br>
-Risk: Automated news summaries can omit context or misstate article details. <br>
-Mitigation: Preserve source links, publish times, tags, and collection time so users can review summaries against the original public pages. <br>
+## Use Case:
 
+External users and analysts use this skill to summarize public Caixin news search results, channel hot items, and topic article collections without accessing paid or login-only content.
 
-## Reference(s): <br>
-- [Caixin homepage](https://www.caixin.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/codenova58/caixin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown summaries and structured lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should identify source links, publish times, tags, and collection time when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill could be misused to request paid, login-only, or otherwise restricted Caixin content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for publicly available Caixin pages and do not attempt paywall, login, or access-control circumvention.
+
+Risk: Broad trigger wording may lead to overly broad collection or irrelevant automation.
+
+Mitigation: Keep requests narrow, avoid batch scraping, and follow Caixin platform rules and rate expectations.
+
+Risk: Dynamic pages may produce incomplete or stale summaries if collected before content finishes loading.
+
+Mitigation: Wait for page loading before summarizing and include source links and collection time in results.
+
+## Reference(s):
+
+- [Caixin homepage](https://www.caixin.com/)
+- [ClawHub skill page](https://clawhub.ai/codenova58/skills/caixin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown summaries and structured text lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results should include source links and collection time when available.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

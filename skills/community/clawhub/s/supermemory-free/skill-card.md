@@ -1,44 +1,59 @@
-## Description: <br>
-Cloud knowledge backup and retrieval using Supermemory.ai free tier. Store high-value insights to the cloud and search them back when local memory is insufficient. Uses standard /v3/documents and /v3/search endpoints (no Pro-only features). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cloud knowledge backup and retrieval using Supermemory.ai free tier.
 
-## Publisher: <br>
-[Broedkrummen](https://clawhub.ai/user/Broedkrummen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[broedkrummen](https://clawhub.ai/user/broedkrummen)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to store selected session knowledge in Supermemory.ai and retrieve it later when local memory is insufficient. It also supports optional daily auto-capture of high-value memory-log entries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected local session-memory content and search queries may be sent to Supermemory.ai. <br>
-Mitigation: Review candidate content before upload, start with auto_capture.py --dry-run, and avoid storing secrets or sensitive locations. <br>
-Risk: The cron installer can persist daily uploads from the workspace. <br>
-Mitigation: Enable cron only after reviewing the exact upload behavior, and use install_cron.sh --remove when persistent capture is no longer intended. <br>
-Risk: The skill requires a bearer API key for Supermemory.ai. <br>
-Mitigation: Keep SUPERMEMORY_OPENCLAW_API_KEY in the environment or local .env only, and rotate it if it is exposed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Broedkrummen/supermemory-free) <br>
-- [Supermemory.ai](https://supermemory.ai) <br>
-- [Supermemory API base](https://api.supermemory.ai) <br>
-- [Supermemory console](https://console.supermemory.ai) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to store selected session knowledge in Supermemory.ai and retrieve it later when local memory is insufficient.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and optional JSON responses from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SUPERMEMORY_OPENCLAW_API_KEY; can store, search, dry-run auto-capture, or install a daily cron job.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Selected OpenClaw memory-log content may be uploaded to Supermemory.ai, including sensitive material if it is present in session memory.
+
+Mitigation: Review memory contents before upload, prefer dry-run or manual storage, and avoid using this skill with secrets, credentials, private customer data, or regulated information.
+
+Risk: The optional cron job can perform ongoing unattended uploads.
+
+Mitigation: Do not enable cron until you have reviewed the memory directory and accepted recurring uploads; use manual commands when unattended capture is not required.
+
+Risk: The scanner flags .env sourcing and weak redaction as risks.
+
+Mitigation: Keep credentials out of session memory, keep the API key scoped to Supermemory usage, and review extracted content before cloud storage.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/broedkrummen/skills/supermemory-free)
+- [Supermemory.ai](https://supermemory.ai)
+- [Supermemory Documents Endpoint](https://api.supermemory.ai/v3/documents)
+- [Supermemory Search Endpoint](https://api.supermemory.ai/v3/search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and optional JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SUPERMEMORY_OPENCLAW_API_KEY and sends selected content to Supermemory.ai.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

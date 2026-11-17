@@ -1,40 +1,57 @@
-## Description: <br>
-Env Config Manager helps agents manage local environment files by loading, switching, setting, validating, and diffing configuration values. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage environment configuration files with loading, switching, validation, diffing, and documented secret-handling workflows for .env, YAML, and JSON formats.
 
-## Publisher: <br>
-[kaiyuelv](https://clawhub.ai/user/kaiyuelv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaiyuelv](https://clawhub.ai/user/kaiyuelv)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect and update project environment configuration files, compare environments, and validate required variables before running local or deployment workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads and modifies local .env files and can expose secret values through terminal output or logs. <br>
-Mitigation: Use it only with files you intend to inspect, prefer private terminals, redact output before sharing, and review file changes before relying on them. <br>
-Risk: Security evidence warns not to rely on the advertised encryption, key rotation, or team-safe sharing behavior from these artifacts. <br>
-Mitigation: Verify any secret-protection implementation before using it with real credentials, and use an established secrets manager for production secrets. <br>
+## Use Case:
 
+Developers and engineers use this skill to manage local and multi-environment configuration files, validate required variables, compare environments, and work with secret-bearing settings during application development.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaiyuelv/env-config-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with shell and Python examples; CLI commands may produce plain text output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Handles local environment configuration values and may display sensitive variables if commands are run without redaction.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release version and artifact metadata) <br>
+Risk: The skill handles secret-bearing environment data and may print raw values to logs or transcripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution, avoid running against production .env files by default, and redact or suppress secret values in shared transcripts.
+
+Risk: The release evidence says advertised encryption and export features are overstated or not fully implemented.
+
+Mitigation: Do not rely on the documented encryption, key rotation, or team-sharing workflows until the implementation is independently reviewed and tested.
+
+Risk: Environment files may be written with inappropriate local permissions.
+
+Mitigation: Use restrictive file permissions and store generated configuration files only in approved, access-controlled locations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kaiyuelv/skills/env-config-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or print environment variable values; review outputs before using with real secrets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

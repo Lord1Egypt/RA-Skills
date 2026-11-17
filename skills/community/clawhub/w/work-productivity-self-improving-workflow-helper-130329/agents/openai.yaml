@@ -1,0 +1,7 @@
+interface:
+  display_name: "Work Productivity Self Improving Workflow Helper"
+  short_description: "Helps with Agent users show strong demand for Self-Improving..."
+  default_prompt: "Use $work-productivity-self-improving-workflow-helper to help me Agent users show strong demand for Self-Improving + Proactive Agent-style workflows on Clawhub. They need practical help."
+
+policy:
+  allow_implicit_invocation: true

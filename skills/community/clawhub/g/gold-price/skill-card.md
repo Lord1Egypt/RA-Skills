@@ -1,43 +1,54 @@
-## Description: <br>
-查询当前黄金大盘价格，帮助用户查看银行金条、黄金回收价、首饰品牌金价和贵金属行情等参考价格。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+查询当前黄金大盘价格。用于回答关于黄金价格、金价走势、贵金属行情的问题。包括国内金价（银行金条、回收价、首饰品牌价）和国际金价。不需要 API key。
 
-## Publisher: <br>
-[xiaojuhao1020-debug](https://clawhub.ai/user/xiaojuhao1020-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaojuhao1020-debug](https://clawhub.ai/user/xiaojuhao1020-debug)
 
-## Use Case: <br>
-External users and agents use this skill to answer gold price and precious-metal market questions with current reference prices from a public API. It is suitable for informational price checks, not investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prices come from a third-party public API and may be stale, unavailable, or different from transaction prices. <br>
-Mitigation: Treat prices as informational and verify with banks, exchanges, or jewelers before financial decisions or transactions. <br>
-Risk: The formatting examples use jq, which is not declared as a required binary. <br>
-Mitigation: Install jq separately only when running the formatting examples, or parse the API JSON with existing tooling. <br>
-Risk: Gold price answers could be mistaken for investment advice. <br>
-Mitigation: Present results as reference market data and avoid buy, sell, or allocation recommendations. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve current gold and precious-metal price data, especially domestic bank gold bars, jewelry brand prices, and recycle prices. It is for price lookup and summary, not historical market analysis or investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaojuhao1020-debug/gold-price) <br>
-- [Gold price API endpoint](https://v2.xxapi.cn/api/goldprice) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return prices in CNY per gram and API JSON fields for bank gold bars, recycling prices, and jewelry brand prices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Price data may be delayed, unavailable, or different from official transaction quotes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present prices as reference-only and advise users to verify with official banks, jewelry brands, exchanges, or other authoritative channels before any transaction or investment decision.
+
+Risk: The skill depends on an external public API for current prices.
+
+Mitigation: Disclose the external API dependency, avoid sending sensitive user data, and handle failed, stale, or malformed API responses before presenting results.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xiaojuhao1020-debug/skills/gold-price)
+- [Gold Price API Endpoint](https://v2.xxapi.cn/api/goldprice)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown or plain text with curl commands and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl; jq is used in optional parsing examples; no API key is required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

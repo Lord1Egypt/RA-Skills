@@ -1,0 +1,137 @@
+name: ai-infra
+description: AI Infrastructure authoritative sources
+
+categories:
+  official_docs:
+    - name: PyTorch Docs
+      url: https://pytorch.org/docs/
+      type: official-docs
+      description: PyTorch deep learning framework
+
+    - name: TensorFlow Docs
+      url: https://www.tensorflow.org/api_docs
+      type: official-docs
+      description: TensorFlow deep learning framework
+
+    - name: Hugging Face Docs
+      url: https://huggingface.co/docs
+      type: official-docs
+      description: Transformers and ML ecosystem
+
+    - name: JAX Docs
+      url: https://jax.readthedocs.io/
+      type: official-docs
+      description: JAX automatic differentiation
+
+    - name: CUDA Docs
+      url: https://docs.nvidia.com/cuda/
+      type: official-docs
+      description: NVIDIA CUDA programming
+
+    - name: cuDNN Docs
+      url: https://docs.nvidia.com/deeplearning/cudnn/
+      type: official-docs
+      description: NVIDIA cuDNN
+
+    - name: Ray Docs
+      url: https://docs.ray.io/
+      type: official-docs
+      description: Distributed computing framework
+
+    - name: Apache Spark MLlib
+      url: https://spark.apache.org/mllib/
+      type: official-docs
+      description: Distributed ML
+
+    - name: Kubernetes Docs
+      url: https://kubernetes.io/docs/
+      type: official-docs
+      description: Container orchestration for AI
+
+    - name: MLflow Docs
+      url: https://mlflow.org/docs/latest/
+      type: official-docs
+      description: ML lifecycle management
+
+    - name: Prometheus Docs
+      url: https://prometheus.io/docs/
+      type: official-docs
+      description: Monitoring for AI systems
+
+  official_blogs:
+    - name: NVIDIA Developer Blog
+      url: https://developer.nvidia.com/blog/
+      type: official-blog
+      description: GPU computing and AI
+
+    - name: Hugging Face Blog
+      url: https://huggingface.co/blog
+      type: official-blog
+      description: Transformers and NLP tutorials
+
+    - name: PyTorch Blog
+      url: https://pytorch.org/blog/
+      type: official-blog
+      description: PyTorch updates
+
+    - name: TensorFlow Blog
+      url: https://blog.tensorflow.org/
+      type: official-blog
+      description: TensorFlow updates
+
+    - name: AWS Machine Learning Blog
+      url: https://aws.amazon.com/blogs/machine-learning/
+      type: official-blog
+      description: AWS ML services
+
+    - name: Google Cloud AI Blog
+      url: https://cloud.google.com/blog/products/ai-machine-learning
+      type: official-blog
+      description: Google Cloud AI
+
+    - name: Meta AI Research
+      url: https://ai.meta.com/blog/
+      type: official-blog
+      description: Meta AI infrastructure
+
+    - name: Databricks Blog
+      url: https://www.databricks.com/blog/
+      type: official-blog
+      description: Data and ML infrastructure
+
+  conferences:
+    - name: NeurIPS
+      url: https://neurips.cc/
+      type: top-conference
+      description: Neural Information Processing Systems
+
+    - name: ICML
+      url: https://icml.cc/
+      type: top-conference
+      description: International Conference on Machine Learning
+
+    - name: ICLR
+      url: https://iclr.cc/
+      type: top-conference
+      description: International Conference on Learning Representations
+
+    - name: MLSys
+      url: https://mlsys.org/
+      type: top-conference
+      description: Machine Learning Systems
+
+    - name: ASPLOS
+      url: https://www.asplos-conference.org/
+      type: top-conference
+      description: Architectural Support for PL
+
+  papers:
+    - name: arXiv cs.LG
+      url: https://arxiv.org/list/cs.LG/recent
+      type: preprint
+      description: Machine Learning preprints
+
+    - name: Papers with Code
+      url: https://paperswithcode.com/
+      type: aggregator
+      description: Papers with code implementations

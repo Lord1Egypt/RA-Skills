@@ -1,44 +1,54 @@
-## Description: <br>
-Explore, filter, summarize, and visualize CSV data directly in terminal with interactive queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explore, filter, summarize, and visualize CSV data directly in terminal with interactive queries.
 
-## Publisher: <br>
-[Derick001](https://clawhub.ai/user/Derick001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[derick001](https://clawhub.ai/user/derick001)
 
-## Use Case: <br>
-Developers, analysts, and engineers use this skill to inspect CSV files, filter rows, select columns, calculate basic statistics, generate simple terminal visualizations, and export results from a command line workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The tool reads user-specified CSV files that may contain private or business-sensitive data. <br>
-Mitigation: Run it only on files you intend to analyze and handle previews, summaries, and generated reports according to the sensitivity of the source data. <br>
-Risk: Export commands can write CSV, JSON, or PNG files to user-selected paths. <br>
-Mitigation: Choose output paths carefully and avoid overwriting important files. <br>
-Risk: Large CSV files may be slow or memory-intensive because processing scales with file size. <br>
-Mitigation: Use smaller files or filter data before running broader statistics or visualization workflows. <br>
+## Use Case:
 
+Developers, analysts, and engineers use this skill to inspect CSV files in a terminal, filter and select rows or columns, calculate basic statistics, create simple histograms, and export filtered results.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Derick001/csv-data-explorer) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local CSV, JSON, and PNG files when users run export or matplotlib histogram commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: The filter feature is flagged by the authoritative security evidence as capable of running unintended code if given a malicious condition.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not run filter conditions copied from untrusted sources; review conditions before execution and constrain or disable filtering in higher-risk environments.
+
+Risk: The skill can export CSV or JSON files to user-supplied paths, and exported CSVs from untrusted input may be unsafe to open directly in spreadsheet software.
+
+Mitigation: Use fresh output filenames in a controlled directory and sanitize exported CSVs before opening them in spreadsheet tools.
+
+## Reference(s):
+
+- [CSV Data Explorer README](artifact/README.md)
+- [ClawHub skill page](https://clawhub.ai/derick001/skills/csv-data-explorer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files, Guidance]
+
+**Output Format:** [Terminal text with optional CSV, JSON, or PNG output files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3; pandas is used for analysis, filtering, and export, and matplotlib is optional for enhanced charts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,50 @@
-## Description: <br>
-Generates Chinese ecommerce product titles, descriptions, promotional copy, campaign slogans, and review responses for Taobao, JD, and Pinduoduo. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents draft Chinese ecommerce product titles, descriptions, promotional copy, and campaign slogans for Taobao, JD, and Pinduoduo.
 
-## Publisher: <br>
-[tobewin](https://clawhub.ai/user/tobewin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-Ecommerce operators, marketers, and agents use this skill to draft Chinese marketplace listing copy, product descriptions, sales promotions, selling points, and customer-review response templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketplace copy may be inaccurate, overstate claims, or fail to satisfy platform rules and advertising law. <br>
-Mitigation: Review important marketing copy before publication and check it against the applicable Taobao, JD, Pinduoduo, and advertising compliance requirements. <br>
-Risk: The available scan evidence is clean, but generated content quality can vary by model and prompt context. <br>
-Mitigation: Treat outputs as drafts, verify factual product details, and provide only the product information needed for the copywriting task. <br>
+## Use Case:
 
+External sellers and ecommerce operators use this skill to draft Chinese marketplace copy for product listings, detail pages, promotions, selling points, and review replies on Taobao, JD, and Pinduoduo.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text or Markdown copy drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Chinese ecommerce copy tailored to Taobao, JD, and Pinduoduo.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Generated ecommerce copy may include inaccurate marketing claims or claims that do not comply with platform rules or advertising law.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review all generated titles, descriptions, and promotional claims for factual accuracy, platform policy compliance, and legal compliance before publishing.
+
+## Reference(s):
+
+- [China Ecommerce Copywriter on ClawHub](https://clawhub.ai/tobewin/skills/china-ecommerce-copywriter)
+- [Publisher profile: tobewin](https://clawhub.ai/user/tobewin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown or plain text with optional code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated marketing copy should be reviewed for factual accuracy, platform rules, and advertising-law compliance before publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -19,6 +19,26 @@ class StatCalculator:
         self.db = db
 
     @staticmethod
+    def _filter_by_date_range(stats, start_date, end_date):
+        filtered_stats = []
+        for row in stats:
+            row_date = row[0]
+            if isinstance(row_date, str):
+                if '-' in row_date:
+                    rd = datetime.strptime(row_date, "%Y-%m-%d").date()
+                else:
+                    rd = date(int(row_date), 12, 31)
+            else:
+                rd = row_date
+            
+            if start_date is not None and rd < start_date:
+                continue
+            if end_date is not None and rd > end_date:
+                continue
+            filtered_stats.append(row)
+        return filtered_stats
+
+    @staticmethod
     def _modified_dietz_hpr(deposit, total_gainloss, value, start_date, parsed_cfs, today):
         """
         Compute Modified Dietz Holding Period Return (HPR) for a single cohort.
@@ -68,7 +88,82 @@ class StatCalculator:
         if (1 + hpr) >= 0 and years_elapsed > 0:
             return 100 * ((1 + hpr) ** (1 / years_elapsed) - 1)
         return None
-    
+
+    @staticmethod
+    def _deposit_weighted_year_start(year_str, accounts, cur, fallback):
+        """
+        Compute the deposit-weighted average date of cash deposits in a year,
+        for use as the TWRR start date for yearly APY.
+
+        Replaces the fixed July 1 heuristic. The weighted average is the
+        "center of mass" of the year's deposits — the same intuition July 1
+        approximated for a full year of even flows, but derived from real
+        deposit timing so partial years no longer explode. Falls back to
+        `fallback` when no deposits are recorded in the year.
+        """
+        placeholders = ",".join("?" * len(accounts))
+        cur.execute(f"""
+            SELECT date, total
+            FROM transactions
+            WHERE strftime('%Y', date) = ?
+              AND account IN ({placeholders})
+              AND transaction_type IN ('Insättning', 'Autogiroinsättning')
+              AND total > 0
+        """, (year_str,) + tuple(accounts))
+        rows = cur.fetchall()
+
+        total_weight = 0.0
+        weighted_ordinal = 0.0
+        for tx_date, total in rows:
+            if not total or total <= 0:
+                continue
+            d = datetime.strptime(tx_date, "%Y-%m-%d").date() if isinstance(tx_date, str) else tx_date
+            total_weight += total
+            weighted_ordinal += total * d.toordinal()
+
+        if total_weight > 0:
+            return date.fromordinal(int(round(weighted_ordinal / total_weight)))
+        return fallback
+
+    @staticmethod
+    def _deposit_weighted_cohort_start(cohort_month, accounts, cur, fallback):
+        """
+        Compute the deposit-weighted average date of deposits allocated to a
+        specific cohort month, for use as the start date for monthly APY.
+
+        Replaces the fixed 15th-of-month heuristic with the real deposit
+        center-of-mass. Matches the bucketing in DataParser.allocate_to_month
+        (cutoff_days=10): a transaction lands in cohort month M if it is on
+        day > 10 of M, or day <= 10 of M+1. Falls back to `fallback` when no
+        deposits are recorded for the cohort.
+        """
+        range_start = cohort_month.replace(day=11)
+        range_end = (cohort_month.replace(day=1) + timedelta(days=32)).replace(day=10)
+
+        placeholders = ",".join("?" * len(accounts))
+        cur.execute(f"""
+            SELECT date, total
+            FROM transactions
+            WHERE date BETWEEN ? AND ?
+              AND account IN ({placeholders})
+              AND transaction_type IN ('Insättning', 'Autogiroinsättning')
+              AND total > 0
+        """, (range_start.isoformat(), range_end.isoformat()) + tuple(accounts))
+        rows = cur.fetchall()
+
+        total_weight = 0.0
+        weighted_ordinal = 0.0
+        for tx_date, total in rows:
+            if not total or total <= 0:
+                continue
+            d = datetime.strptime(tx_date, "%Y-%m-%d").date() if isinstance(tx_date, str) else tx_date
+            total_weight += total
+            weighted_ordinal += total * d.toordinal()
+
+        if total_weight > 0:
+            return date.fromordinal(int(round(weighted_ordinal / total_weight)))
+        return fallback
+
     def _ensure_per_account_tables(self):
         """Create per-account statistics tables if they don't exist."""
         self.db.connect()
@@ -157,7 +252,7 @@ class StatCalculator:
         Calculate APY using the specified mode.
         
         Parameters:
-        apy_mode (str): 'modified-dietz' or 'twrr'
+        apy_mode (str): 'mwrr' or 'twrr'
         active_base (float): TWRR active base value
         value (float): Current position value
         deposit (float): Total deposits
@@ -215,7 +310,7 @@ class StatCalculator:
         Calculate APY for merged multi-account stats.
         
         Parameters:
-        apy_mode (str): 'modified-dietz' or 'twrr'
+        apy_mode (str): 'mwrr' or 'twrr'
         accounts (list): List of account strings
         Other params: same as _calc_apy
         
@@ -325,13 +420,13 @@ class StatCalculator:
             deposit, total_gainloss, value, start_date, parsed_cfs, today)
         return self._annualize_hpr(hpr, total_days)
 
-    def calculate_cohort_stats(self, apy_mode='modified-dietz'):
+    def calculate_cohort_stats(self, apy_mode='mwrr', today=None):
         """
         Calculate monthly stats such as capital transfers and gain/loss.
         Stores results in account_cohort_stats table (per account).
         
         Parameters:
-        apy_mode (str): 'modified-dietz' or 'twrr'
+        apy_mode (str): 'mwrr' or 'twrr'
         """
         self._ensure_per_account_tables()
         self.db.connect()
@@ -340,7 +435,8 @@ class StatCalculator:
         self.db.reset_table("account_cohort_stats")
         
         cur = self.db.get_cursor()
-        today = datetime.today().date()
+        if today is None:
+            today = datetime.today().date()
         
         # Get all accounts
         accounts = [row[0] for row in cur.execute(
@@ -426,7 +522,8 @@ class StatCalculator:
                     month_date = month_str
 
                 active_base = active_base or 0.0
-                start_date = month_date.replace(day=15)
+                start_date = self._deposit_weighted_cohort_start(
+                    month_date, [account], cur, month_date.replace(day=15))
                 annual_per_yield = self._calc_apy(
                     apy_mode, active_base, value, deposit, total_gainloss,
                     month_str, account, start_date, today, cur, closed_return=closed_return)
@@ -466,13 +563,13 @@ class StatCalculator:
         self.db.commit()
         logging.info(f"Monthly stats calculated for {len(accounts)} accounts")
             
-    def calculate_year_stats(self, apy_mode='modified-dietz'):
+    def calculate_year_stats(self, apy_mode='mwrr', today=None):
         """
         Calculate yearly stats from monthly stats.
         Stores results in account_year_stats table (per account).
         
         Parameters:
-        apy_mode (str): 'modified-dietz' or 'twrr'
+        apy_mode (str): 'mwrr' or 'twrr'
         """
         self._ensure_per_account_tables()
         self.db.connect()
@@ -481,7 +578,8 @@ class StatCalculator:
         self.db.reset_table("account_year_stats")
         
         cur = self.db.get_cursor()
-        today = datetime.today().date()
+        if today is None:
+            today = datetime.today().date()
         
         # Get all accounts
         accounts = [row[0] for row in cur.execute(
@@ -575,8 +673,12 @@ class StatCalculator:
                 if last_month:
                     year_date = f"{year_str}-01-01"
                     
-                    # Calculate APY using year-level cohort cash flows
-                    start_date = datetime(year=int(year_str), month=7, day=1).date()
+                    # Calculate APY using year-level cohort cash flows.
+                    # Start date is the deposit-weighted average cash-flow date
+                    # of the year (falls back to July 1 when no flows exist).
+                    july_first = datetime(year=int(year_str), month=7, day=1).date()
+                    start_date = self._deposit_weighted_year_start(
+                        year_str, [account], cur, july_first)
                     
                     if apy_mode == 'twrr':
                         if active_base > 1e-4 and value > 0:
@@ -632,17 +734,17 @@ class StatCalculator:
         self.db.commit()
         logging.info(f"Yearly stats calculated for {len(accounts)} accounts")
         
-    def calculate_stats(self, apy_mode='modified-dietz'):
+    def calculate_stats(self, apy_mode='mwrr'):
         """
         Calculate monthly and yearly stats such as capital transfers and gain/loss.
         
         Parameters:
-        apy_mode (str): 'modified-dietz' or 'twrr'
+        apy_mode (str): 'mwrr' or 'twrr'
         """
         self.calculate_cohort_stats(apy_mode=apy_mode)
         self.calculate_year_stats(apy_mode=apy_mode)
 
-    def get_stats(self, accounts=None, period: str = "month", deposits: str = "current", apy_mode: str = "modified-dietz") -> list:
+    def get_stats(self, accounts=None, period: str = "month", deposits: str = "current", apy_mode: str = "mwrr", start_date=None, end_date=None) -> list:
         """
         Get stats such as capital transfers and gain/loss for either months or years.
         "deposits" determine if only months/years with non-withdrawn capital are returned or all months/years.
@@ -704,6 +806,10 @@ class StatCalculator:
             # Filter by deposits parameter
             if deposits == "current":
                 stats = [row for row in stats if row[3] > 0]  # value > 0
+                
+            # Filter by date range if start_date/end_date is specified
+            if start_date is not None or end_date is not None:
+                stats = self._filter_by_date_range(stats, start_date, end_date)
             
             return stats
         
@@ -730,7 +836,13 @@ class StatCalculator:
             
             # Recalculate percentages and APY
             stats = []
-            today = datetime.today().date()
+            if end_date is not None:
+                if isinstance(end_date, str):
+                    today = datetime.strptime(end_date, "%Y-%m-%d").date()
+                else:
+                    today = end_date
+            else:
+                today = datetime.today().date()
             
             for row in rows:
                 month = row[0]
@@ -756,10 +868,11 @@ class StatCalculator:
                 else:
                     month_date = month
 
-                start_date = month_date.replace(day=15)
+                cohort_start_date = self._deposit_weighted_cohort_start(
+                    month_date, accounts, cur, month_date.replace(day=15))
                 annual_per_yield = self._calc_apy_multi(
                     apy_mode, accounts, value, deposit, total_gainloss,
-                    month, start_date, today, cur)
+                    month, cohort_start_date, today, cur)
                 
                 stats.append((
                     month_date, deposit, withdrawal, value,
@@ -788,7 +901,13 @@ class StatCalculator:
             
             # Recalculate percentages and APY
             stats = []
-            today = datetime.today().date()
+            if end_date is not None:
+                if isinstance(end_date, str):
+                    today = datetime.strptime(end_date, "%Y-%m-%d").date()
+                else:
+                    today = end_date
+            else:
+                today = datetime.today().date()
             
             for row in rows:
                 year_str = row[0]
@@ -816,10 +935,11 @@ class StatCalculator:
                     realized_gainloss_per = 0.0
                     unrealized_gainloss_per = 0.0
                 
-                start_date = datetime(year=year, month=7, day=1).date()
+                cohort_start_date = self._deposit_weighted_year_start(
+                    str(year), accounts, cur, datetime(year=year, month=7, day=1).date())
                 annual_per_yield = self._calc_apy_year_multi(
                     apy_mode, accounts, value, deposit, total_gainloss,
-                    str(year), start_date, today, cur)
+                    str(year), cohort_start_date, today, cur)
                 
                 stats.append((
                     date(year, 1, 1), deposit, withdrawal, value,
@@ -831,10 +951,14 @@ class StatCalculator:
         # Filter by deposits parameter
         if deposits == "current":
             stats = [row for row in stats if row[3] > 0]  # value > 0
+            
+        # Filter by start_date / end_date range
+        if start_date is not None or end_date is not None:
+            stats = self._filter_by_date_range(stats, start_date, end_date)
         
         return stats
 
-    def get_accumulated(self, accounts=None, period: str = "month", deposits: str = "current", apy_mode: str = "modified-dietz") -> list:
+    def get_accumulated(self, accounts=None, period: str = "month", deposits: str = "current", apy_mode: str = "mwrr", start_date=None, end_date=None) -> list:
         """
         Get accumulated stats such as capital transfers and gain/loss for either months or years.
         "deposits" determine if only months/years with non-withdrawn capital are returned or all months/years.
@@ -882,6 +1006,10 @@ class StatCalculator:
                 if deposits == "current" and row[2] <= 0:  # acc_value <= 0
                     continue
                 stats.append(tuple(row))
+                
+            # Filter by date range if start_date/end_date is specified
+            if start_date is not None or end_date is not None:
+                stats = self._filter_by_date_range(stats, start_date, end_date)
             
             return stats
         
@@ -929,6 +1057,10 @@ class StatCalculator:
                 continue
                 
             stats.append((time_val, total_deposit, total_value, total_gainloss))
+            
+        # Filter by start_date / end_date range
+        if start_date is not None or end_date is not None:
+            stats = self._filter_by_date_range(stats, start_date, end_date)
         
         return stats
 
@@ -1159,33 +1291,39 @@ class StatCalculator:
                     display_name = get_display_name(account)
                     print(f"  {display_name}: {percentage:.1f}%")
 
-    def update_prices(self, force: bool = False):
+    def update_prices(self, force: bool = False, update_all: bool = False):
         """
         Update prices in database. Prices are fetched from external site. 
         Prices are only updated if they are older than 1 day, unless force is True.
 
         Parameters:
         force (bool): If True, update prices even if they are already up to date.
+        update_all (bool): If True, update all assets regardless of whether they are currently held.
         """
         self.db.connect()
         cur = self.db.get_cursor()
 
         today = datetime.today().date()
 
+        # Build condition depending on whether we update all assets or only held ones
+        condition = "" if update_all else "WHERE amount > 0"
+
         if not force:
-            # Check if prices are already up to date for all currently held assets
-            # First check: any held assets missing prices?
-            result = cur.execute(
-                "SELECT COUNT(*) FROM assets WHERE amount > 0 AND latest_price_date IS NULL"
-            ).fetchone()
+            # Check if prices are already up to date for target assets
+            missing_query = f"SELECT COUNT(*) FROM assets {condition}"
+            if condition:
+                missing_query += " AND latest_price_date IS NULL"
+            else:
+                missing_query += " WHERE latest_price_date IS NULL"
+                
+            result = cur.execute(missing_query).fetchone()
             
             if result and result[0] > 0:
-                logging.debug(f"Price update needed: {result[0]} held assets missing prices")
+                logging.debug(f"Price update needed: {result[0]} assets missing prices")
             else:
-                # Second check: get oldest price date for assets with amount > 0
-                (latest_price_date_str,) = cur.execute("SELECT MIN(latest_price_date) FROM assets WHERE amount > 0").fetchone()
-                # Even with detect_types=sqlite3.PARSE_DECLTYPES, the MIN function returns a string instead of a date object
-                # Therefore, we need to convert the string to a date object, if it exists
+                # Second check: get oldest price date for target assets
+                oldest_query = f"SELECT MIN(latest_price_date) FROM assets {condition}"
+                (latest_price_date_str,) = cur.execute(oldest_query).fetchone()
                 if latest_price_date_str is not None:
                     latest_price_date = datetime.strptime(latest_price_date_str, '%Y-%m-%d').date()
                 else:
@@ -1197,7 +1335,8 @@ class StatCalculator:
                     return
         
 
-        assets = cur.execute("SELECT asset,asset_id FROM assets WHERE amount > 0").fetchall()
+        assets_query = f"SELECT asset,asset_id FROM assets {condition}"
+        assets = cur.execute(assets_query).fetchall()
         
         # Current working endpoint (discovered 2026-02-27)
         url = "https://www.avanza.se/_api/search/filtered-search"
@@ -1210,8 +1349,42 @@ class StatCalculator:
             "Accept": "application/json",
         }
 
+        # FX rate cache for this run: currency -> SEK per 1 unit.
+        # Fetched lazily from the Avanza INDEX search (e.g. "EUR/SEK" spot).
+        # Rates are persisted in exchange_rates for the historical record.
+        fx_rates = {}
+
+        def get_fx_rate(currency):
+            """Return the live SEK rate for 1 unit of `currency`, or None."""
+            if currency in fx_rates:
+                return fx_rates[currency]
+            try:
+                r = requests.post(url, headers=headers, timeout=10, json={
+                    "query": f"{currency}/SEK",
+                    "searchFilter": {"types": ["INDEX"]},
+                    "pagination": {"from": 0, "size": 1},
+                })
+                time.sleep(0.05)
+                if r.status_code == 200:
+                    hits = r.json().get("hits", [])
+                    if hits and hits[0].get("price", {}).get("last"):
+                        rate_str = hits[0]["price"]["last"]
+                        rate = float(rate_str.replace("\u00a0", "").replace(" ", "").replace(",", "."))
+                        fx_rates[currency] = rate
+                        cur.execute(
+                            "INSERT OR REPLACE INTO exchange_rates (currency, rate_date, rate, source) "
+                            "VALUES (?, ?, ?, 'avanza-index')",
+                            (currency, today, rate))
+                        logging.info(f"FX rate: 1 {currency} = {rate} SEK")
+                        return rate
+            except Exception as e:
+                logging.warning(f"Failed to fetch FX rate for {currency}: {e}")
+            fx_rates[currency] = None
+            return None
+
         for (asset,asset_id) in assets:
             r = requests.post(url, headers=headers, json={"query": asset, "limit": 5}, timeout=10)
+            time.sleep(0.05)
 
             if r.status_code == 200:
                 resp = r.json()
@@ -1224,8 +1397,60 @@ class StatCalculator:
                         raw_price = price_str.replace("\u00a0", "").replace(" ", "").replace(",", ".")
                         try:
                             price = float(raw_price)
+                            price_date = today
+                            detail_success = False
+
+                            # Try to query detailed endpoints to resolve actual date and price
+                            asset_type = hit.get("type")
+                            order_book_id = hit.get("orderBookId")
+
+                            if asset_type and order_book_id:
+                                try:
+                                    if asset_type == "FUND":
+                                        fund_url = f"https://www.avanza.se/_api/fund-reference/reference/{order_book_id}"
+                                        r_detail = requests.get(fund_url, headers=headers, timeout=10)
+                                        time.sleep(0.05)
+                                        if r_detail.status_code == 200:
+                                            detail_data = r_detail.json()
+                                            nav = detail_data.get("nav")
+                                            nav_date_str = detail_data.get("navDate")
+                                            if nav is not None and nav_date_str:
+                                                price = float(nav)
+                                                price_date = datetime.strptime(nav_date_str[:10], "%Y-%m-%d").date()
+                                                detail_success = True
+                                    elif asset_type in ("STOCK", "CERTIFICATE"):
+                                        detail_url = f"https://www.avanza.se/_api/market-guide/{asset_type.lower()}/{order_book_id}"
+                                        r_detail = requests.get(detail_url, headers=headers, timeout=10)
+                                        time.sleep(0.05)
+                                        if r_detail.status_code == 200:
+                                            detail_data = r_detail.json()
+                                            quote = detail_data.get("quote")
+                                            if quote and isinstance(quote, dict):
+                                                last_val = quote.get("last")
+                                                updated_ts = quote.get("updated")
+                                                if last_val is not None and updated_ts is not None:
+                                                    price = float(last_val)
+                                                    price_date = datetime.fromtimestamp(updated_ts / 1000.0).date()
+                                                    detail_success = True
+                                except Exception as e:
+                                    logging.debug(f"Failed to fetch detail for {asset} ({asset_type}): {e}")
+
+                            # Convert native-currency price to SEK (issue #81).
+                            # The search hit carries price.currency ("EUR",
+                            # "DKK", etc.); null or "SEK" means no conversion.
+                            currency = hit.get("price", {}).get("currency")
+                            if currency and currency != "SEK":
+                                fx_rate = get_fx_rate(currency)
+                                if fx_rate and fx_rate > 0:
+                                    price = price * fx_rate
+                                else:
+                                    logging.warning(
+                                        f"No FX rate for {currency}; storing native price for {asset}")
+
                             cur.execute("UPDATE assets SET latest_price = ?, latest_price_date = ? WHERE asset_id = ?",
-                                        (price, today, asset_id))
+                                        (price, price_date, asset_id))
+                            cur.execute("INSERT OR REPLACE INTO asset_prices (asset_id, price_date, price, source) VALUES (?, ?, ?, 'external')",
+                                        (asset_id, price_date, price))
                         except ValueError:
                             logging.warning(f"Could not parse price '{price_str}' for asset {asset}")
                     else:
@@ -1239,6 +1464,147 @@ class StatCalculator:
             time.sleep(0.05)
 
         self.db.commit()
+
+    def calculate_account_apy(self, account, apy_mode='mwrr', end_date=None, current_value=None):
+        """
+        Calculate overall APY (Money-Weighted or Time-Weighted) for one or more accounts.
+        """
+        self.db.connect()
+        cur = self.db.get_cursor()
+        
+        if end_date is None:
+            today = datetime.today().date()
+        elif isinstance(end_date, str):
+            today = datetime.strptime(end_date, "%Y-%m-%d").date()
+        else:
+            today = end_date
+            
+        # Parse accounts list
+        if account is None or account == 'all':
+            cur.execute("SELECT DISTINCT account FROM cohort_data")
+            accounts = [row[0] for row in cur.fetchall()]
+        elif isinstance(account, str):
+            accounts = [account]
+        else:
+            accounts = list(account)
+            
+        if not accounts:
+            return None, 0
+            
+        # 1. Determine evaluation value (cash + assets)
+        if current_value is not None:
+            eval_value = current_value
+        else:
+            # Cash: sum total from transactions up to end_date
+            cash_placeholders = ",".join("?" * len(accounts))
+            cash_query = f"SELECT SUM(total) FROM transactions WHERE account IN ({cash_placeholders})"
+            cash_params = list(accounts)
+            if end_date:
+                cash_query += " AND date <= ?"
+                cash_params.append(end_date.isoformat() if hasattr(end_date, 'isoformat') else str(end_date))
+            cur.execute(cash_query, cash_params)
+            cash_row = cur.fetchone()
+            cash = cash_row[0] if cash_row and cash_row[0] is not None else 0.0
+            
+            # Assets: sum cohort assets at latest price
+            assets_value = 0.0
+            for acc in accounts:
+                cur.execute("""
+                    SELECT ma.asset_id, SUM(ma.amount)
+                    FROM cohort_assets ma
+                    WHERE ma.account = ? AND ma.amount > 0.0001
+                    GROUP BY ma.asset_id
+                """, (acc,))
+                holdings = cur.fetchall()
+                for asset_id, amount in holdings:
+                    price, _, _, _ = self.db.get_price(asset_id, end_date)
+                    assets_value += amount * price
+            eval_value = cash + assets_value
+            
+        # 2. Calculate APY based on mode
+        cash_placeholders = ",".join("?" * len(accounts))
+        if apy_mode == 'twrr':
+            # Sum active_base across all cohorts of these accounts
+            ab_query = f"SELECT SUM(active_base) FROM cohort_data WHERE account IN ({cash_placeholders})"
+            cur.execute(ab_query, list(accounts))
+            ab_row = cur.fetchone()
+            active_base = ab_row[0] if ab_row and ab_row[0] else 0.0
+            
+            # Start date: min month from cohort_data for these accounts
+            cur.execute(f"SELECT MIN(month) FROM cohort_data WHERE account IN ({cash_placeholders})", list(accounts))
+            min_month_row = cur.fetchone()
+            if not min_month_row or not min_month_row[0]:
+                return 0.0, 0
+            start_date = datetime.strptime(min_month_row[0], "%Y-%m-%d").date()
+            
+            if active_base > 1e-4 and eval_value > 0:
+                total_return = eval_value / active_base
+                total_days = (today - start_date).days
+                if total_days > 0:
+                    apy = 100 * (total_return ** (365.25 / total_days) - 1)
+                    return apy, total_days
+            
+            # Check for closed return snapshot
+            cur.execute(f"""
+                SELECT SUM(deposit * closed_return), SUM(deposit)
+                FROM cohort_data
+                WHERE account IN ({cash_placeholders}) AND closed_return IS NOT NULL
+            """, list(accounts))
+            cr_row = cur.fetchone()
+            if cr_row and cr_row[0] and cr_row[1] and cr_row[1] > 0:
+                weighted_cr = cr_row[0] / cr_row[1]
+                total_days = (today - start_date).days
+                if total_days > 0:
+                    apy = 100 * (weighted_cr ** (365.25 / total_days) - 1)
+                    return apy, total_days
+            return 0.0, 0
+            
+        else: # MWRR / Modified Dietz
+            # Query all flows
+            flows_query = f"""
+                SELECT date, flow_amount FROM v_external_capital_flows
+                WHERE account IN ({cash_placeholders})
+            """
+            flows_params = list(accounts)
+            if end_date:
+                flows_query += " AND date <= ?"
+                flows_params.append(end_date.isoformat() if hasattr(end_date, 'isoformat') else str(end_date))
+            flows_query += " ORDER BY date ASC"
+            
+            cur.execute(flows_query, flows_params)
+            rows = cur.fetchall()
+            if not rows:
+                return None, 0
+                
+            cash_flows = []
+            for date_str, flow_amount in rows:
+                cf_date = datetime.strptime(date_str, "%Y-%m-%d").date() if isinstance(date_str, str) else date_str
+                cash_flows.append((cf_date, flow_amount))
+                
+            start_date = cash_flows[0][0]
+            total_days = (today - start_date).days
+            if total_days <= 0:
+                return 0.0, 0
+                
+            sum_w_cf = 0.0
+            total_cf = 0.0
+            for cf_date, cf_amount in cash_flows:
+                days_elapsed = (cf_date - start_date).days
+                days_elapsed = max(0, min(days_elapsed, total_days))
+                weight = (total_days - days_elapsed) / total_days
+                sum_w_cf += weight * cf_amount
+                total_cf += cf_amount
+                
+            total_gainloss = eval_value - total_cf
+            if sum_w_cf <= 0.001:
+                if total_cf > 0:
+                    return (total_gainloss / total_cf * 100), total_days
+                return 0.0, total_days
+                
+            hpr = total_gainloss / sum_w_cf
+            apy = self._annualize_hpr(hpr, total_days)
+            return apy, total_days
+
 
 if __name__ == "__main__":
     db = DatabaseHandler("data/asset_data.db")

@@ -1,44 +1,58 @@
-## Description: <br>
-提供剑桥考试（IGCSE & AS & A Level）监考员2026年全流程指导，包括考前准备、监考职责、违规处理、标准朗读指令、考场巡检清单及AI违规识别等最新要求。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供剑桥考试（IGCSE & AS & A Level）监考员2026年全流程指导，包括考前准备、监考职责、违规处理、标准朗读指令、考场巡检清单及AI违规识别等最新要求。
 
-## Publisher: <br>
-[maxliu1979](https://clawhub.ai/user/maxliu1979) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maxliu1979](https://clawhub.ai/user/maxliu1979)
 
-## Use Case: <br>
-Exam officers, school staff, and invigilators use this skill to prepare for and conduct Cambridge International IGCSE, AS, and A Level exam sessions, including room checks, invigilation duties, candidate instructions, suspected malpractice handling, and AI-related misconduct awareness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Operational exam guidance can become outdated or vary by centre policy. <br>
-Mitigation: Before live exam use, confirm key times, scripts, AI and misconduct procedures, safeguarding language, and referenced documents against current Cambridge International guidance and the centre's exam officer. <br>
+## Use Case:
 
+Exam officers, invigilators, and school staff use this skill as a Cambridge IGCSE, AS, and A Level exam-day reference for invigilation preparation, room checks, official announcements, malpractice handling, and AI-related policy reminders.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/maxliu1979/cie-exam) <br>
-- [Cambridge Handbook 2026](https://www.cambridgeinternational.org/Images/746922-cambridge-handbook-2026.pdf) <br>
-- [Cambridge Handbook 2026 sections 4 and 5 abridged](https://www.cambridgeinternational.org/Images/746924-cambridge-handbook-2026-sections-4-and-5-abridged-.pdf) <br>
-- [Cambridge Additional Exam Materials List](https://www.cambridgeinternational.org/database) <br>
-- [Cambridge Exam Day Checklist](https://www.cambridgeinternational.org/Images/86454-exam-day-checklist.pdf) <br>
-- [Invigilating Cambridge exams 2026 trainer instructions](https://www.cambridgeinternational.org/Images/750642-invigilating-cambridge-exams-2026-trainer-instructions.pdf) <br>
-- [Changes for the 2026 Cambridge Handbook](https://www.cambridgeinternational.org/exam-administration/cambridge-exams-officers-guide/changes-for-2026-cambridge-handbook/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Checklists, Instructions] <br>
-**Output Format:** [Markdown guidance with tables, checklists, and scripted exam-room instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only content; no code, credentials, tools, or system access requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Cambridge exam procedures, key times, announcement scripts, and AI or malpractice rules may change by exam series.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm operational details against the current official Cambridge documents before using the skill for live exam administration.
+
+Risk: The skill may activate on broad exam-management wording outside the Cambridge context.
+
+Mitigation: Check that the request concerns Cambridge International exams before relying on the guidance.
+
+## Reference(s):
+
+- [Cambridge Handbook 2026](https://www.cambridgeinternational.org/Images/746922-cambridge-handbook-2026.pdf)
+- [Cambridge Handbook 2026 Sections 4 and 5](https://www.cambridgeinternational.org/Images/746924-cambridge-handbook-2026-sections-4-and-5-abridged-.pdf)
+- [Additional Exam Materials List](https://www.cambridgeinternational.org/database)
+- [Exam Day Checklist](https://www.cambridgeinternational.org/Images/86454-exam-day-checklist.pdf)
+- [Invigilating Cambridge Exams 2026 Trainer Instructions](https://www.cambridgeinternational.org/Images/750642-invigilating-cambridge-exams-2026-trainer-instructions.pdf)
+- [Changes for the 2026 Cambridge Handbook](https://www.cambridgeinternational.org/exam-administration/cambridge-exams-officers-guide/changes-for-2026-cambridge-handbook/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown reference guidance with checklists, tables, and scripted announcement text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language guidance with selected official English announcement scripts]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

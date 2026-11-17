@@ -1,0 +1,36 @@
+{
+  "data_mode": "tdx",
+  "stock_universe": "sectors",
+  "full_market_kline_limit": 0,
+  "cache_minutes": 5,
+  "scan_timeout_seconds": 5,
+  "retry_count": 3,
+  "tdx_servers": [
+    {
+      "name": "server_1",
+      "ip": "119.6.200.40",
+      "port": 7709
+    },
+    {
+      "name": "server_2",
+      "ip": "182.140.139.191",
+      "port": 7709
+    },
+    {
+      "name": "server_3",
+      "ip": "218.200.222.134",
+      "port": 7709
+    },
+    {
+      "name": "server_4",
+      "ip": "182.150.28.166",
+      "port": 7709
+    }
+  ],
+  "score_weights": {
+    "trend": 35,
+    "momentum": 25,
+    "volume": 20,
+    "position": 20
+  }
+}

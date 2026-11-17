@@ -1,44 +1,55 @@
-## Description: <br>
-A budget-tracking library for AI agents that records expenses, income, budgets, savings goals, recurring transactions, reports, and SkillBoss-powered insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligent Budget Tracker helps AI agents track expenses, income, budgets, savings goals, recurring transactions, and financial insights using SkillBoss API Hub-powered parsing and analysis.
 
-## Publisher: <br>
-[marjoriebroad](https://clawhub.ai/user/marjoriebroad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marjoriebroad](https://clawhub.ai/user/marjoriebroad)
 
-## Use Case: <br>
-Developers and AI agents use this skill to manage budget records programmatically, including expenses, income, budgets, savings goals, recurring transactions, analytics, exports, backups, and optional SkillBoss-powered natural-language parsing or insights. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial data may be stored in the local data directory and included in exports or backups. <br>
-Mitigation: Store the data directory, exports, and backups in protected locations and use CLAWHUB_DATA_PATH when a controlled storage path is required. <br>
-Risk: Natural-language parsing and AI insights may send financial data to the SkillBoss API. <br>
-Mitigation: Enable those features only for data you are comfortable sending to SkillBoss. <br>
-Risk: The skill requires a sensitive SkillBoss API key for AI-powered features. <br>
-Mitigation: Use a dedicated or revocable SkillBoss API key and keep it in environment configuration rather than committed files. <br>
+## Use Case:
 
+Developers and external AI agent operators use this skill to add programmatic budget tracking, reporting, backups, and savings-goal workflows to agent or bot systems. AI-assisted parsing and insight features require sharing relevant financial details with SkillBoss API Hub.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/marjoriebroad/intelligent-budget-tracker-2) <br>
-- [SkillBoss skill page](https://skillboss.co/skills/intelligent-budget-tracker) <br>
-- [SkillBoss API Hub /v1/pilot](https://api.skillboss.com/v1/pilot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration, files] <br>
-**Output Format:** [Markdown documentation with TypeScript examples, JSON-like return shapes, and local export or backup files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY for natural-language parsing and AI insights; stores financial data locally and supports exports and backups.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: AI parsing and insight features may send detailed budget and transaction information to the third-party SkillBoss API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use these features only with appropriate consent, avoid entering unnecessary sensitive records, and confirm privacy terms or redaction options before processing financial data.
+
+Risk: The security summary warns that the release installs mutable external code without enough scoping or privacy controls.
+
+Mitigation: Prefer a pinned, reviewed package version, install in an isolated agent environment, and review storage and network behavior before using real financial records.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marjoriebroad/skills/intelligent-budget-tracker-2)
+- [SkillBoss skill information](https://skillboss.co/skills/intelligent-budget-tracker)
+- [SkillBoss API Hub endpoint](https://api.skillboss.com/v1/pilot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY for natural language parsing and AI insights; CLAWHUB_DATA_PATH can override local storage.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

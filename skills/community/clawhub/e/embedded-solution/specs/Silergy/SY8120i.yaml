@@ -1,0 +1,46 @@
+part: SY8120i
+link_status: verified_2026-07-01 (datasheet-pdf-mirror-extracted)
+expected_family: Silergy SY8120i — 3A synchronous step-down DC/DC
+main_page: https://www.silergy.com/product/sy8120i
+datasheet_path_expected: ../../references/semiconductor-vendor/Silergy/datasheet/SY8120i_mirror.pdf
+datasheet_source_url: https://xonstorage.z8.web.core.windows.net/pdf/silergy_sy8120iabc_xonjuly20_20_link.pdf
+datasheet_source_note: Azure Blob storage (xonstorage) of Silergy SY8120I Application
+  Note (Rev. 0.9, 11.4 MB; first 10 pages contain full spec table). Mirror verified
+  locally on 2026-07-01 — pdfplumber text extraction confirmed all 5 spec fields
+  (package, vin_v_min, vin_v_max, iout_a_max, switching_freq_mhz). 2.0A continuous
+  output current (3A is for SY8120 family member SY8120I peak, not continuous), 4.2-18V
+  input range, 500 kHz switching, SOT-23-6 package.
+created_at: '2026-06-27T20:39:00+08:00'
+specs:
+  package: SOT23-6
+  topology: Synchronous buck (integrated high-side + low-side FET)
+  vin_v_min: 4.2
+  vin_v_max: 18.0
+  iout_a_max: 2.0
+  switching_freq_mhz: 0.5
+unverified: []
+notes:
+- Promoted from placeholder to verified on 2026-06-28 — extracted 6 spec fields from
+  datasheet.
+- SY8120i — 3A Silergy synchronous buck. For higher-current rails (USB, motor driver,
+  LED).
+- 'Family differentiator vs SY8089: 3A vs 2A, similar package, slightly higher cost.'
+- 'Cross-reference: comparable to TI TPS62133 / MPS MP2161 in same tier.'
+- 'Verified 2026-07-01 against xonstorage Azure Blob mirror PDF via pdfplumber keyword
+  search; all 5 spec fields matched. See references/semiconductor-vendor/Silergy/datasheet/SY8120i_mirror.pdf
+  for the source PDF (gitignored, 11.4 MB).'
+extracted_at: '2026-06-28T10:05:25+08:00'
+extracted_from_pages:
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+- 7
+- 8
+- 9
+- 10
+- 11
+- 12
+extraction_method: pdfplumber Key Features / General Description

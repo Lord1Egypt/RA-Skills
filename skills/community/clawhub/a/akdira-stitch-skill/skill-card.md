@@ -1,39 +1,54 @@
-## Description: <br>
-Stitch Skill generates agent-facing DESIGN.md guidance for Google Stitch that encodes a premium, anti-generic visual system with typography, color, layout, motion, and component rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Semantic Design System Skill for Google Stitch that generates agent-friendly DESIGN.md files enforcing strict typography, calibrated color, asymmetric layouts, motion intent, and anti-generic UI standards.
 
-## Publisher: <br>
-[akdira](https://clawhub.ai/user/akdira) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[akdira](https://clawhub.ai/user/akdira)
 
-## Use Case: <br>
-Designers, developers, and agents use this skill to produce DESIGN.md files that guide Google Stitch toward consistent, polished screen generation. It is most useful when a project needs explicit visual taste rules rather than generic UI defaults. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is strongly opinionated and may steer generated interfaces toward aesthetic constraints that do not fit every product or brand. <br>
-Mitigation: Review the generated DESIGN.md for project fit before using it as the design source of truth. <br>
+## Use Case:
 
+Developers and product designers use this skill to generate agent-friendly DESIGN.md guidance for Google Stitch screens, encoding a curated visual system with color, typography, layout, motion intent, and explicit UI anti-patterns.
 
-## Reference(s): <br>
-- [Google Stitch](https://labs.google/stitch) <br>
-- [ClawHub skill page](https://clawhub.ai/akdira/akdira-stitch-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, guidance, configuration] <br>
-**Output Format:** [Markdown DESIGN.md guidance with structured design-system sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces human-readable design constraints, banned patterns, and implementation-oriented UI guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence) <br>
+Risk: The skill applies strong opinionated design rules that may conflict with an existing brand, accessibility standard, localization requirement, or design system.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit the included font, color, layout, and anti-pattern rules before applying them to projects with established requirements.
+
+Risk: Motion guidance is intended for downstream implementation even though Stitch generates static screens.
+
+Mitigation: Treat motion specifications as handoff guidance and verify performance, accessibility, and reduced-motion behavior during implementation.
+
+## Reference(s):
+
+- [Stitch Skill on ClawHub](https://clawhub.ai/akdira/skills/akdira-stitch-skill)
+- [Google Stitch](https://labs.google/stitch)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown file named DESIGN.md]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable design guidance covering visual atmosphere, color, typography, components, layout, responsive behavior, motion intent, and banned UI patterns.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and auto changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

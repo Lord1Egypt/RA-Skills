@@ -1,41 +1,59 @@
-## Description: <br>
-Context Continuity Protocol session update for end-of-session operations: updates STATUS.md, posts to a Notion daily log, syncs an Obsidian vault, and creates Plane issues for new work items. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Context Continuity Protocol session update: the ops sequence Liv runs at the end of every significant session to update STATUS.md, post to Notion, sync an Obsidian vault, and create Plane issues.
 
-## Publisher: <br>
-[nissan](https://clawhub.ai/user/nissan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nissan](https://clawhub.ai/user/nissan)
 
-## Use Case: <br>
-Developers and operators use this skill to close out a work session by preserving project status, logging activity, updating knowledge-base notes, and tracking follow-up work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make persistent updates to status files, Notion, Obsidian notes, and Plane issues. <br>
-Mitigation: Review the intended changes and target workspaces before execution, and keep STATUS.md as the reviewed source of truth for downstream updates. <br>
-Risk: The skill requires sensitive credentials and environment-specific resources. <br>
-Mitigation: Install only in environments where you control the referenced Notion database, vault, Docker Plane instance, and projects; configure credential access explicitly before use. <br>
+## Use Case:
 
+Developers and operators use this skill to close significant work sessions by preserving project state across STATUS.md, Notion, Obsidian, and Plane so future agents can resume with minimal context loss.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nissan/ccp-session-update) <br>
-- [Notion Pages API endpoint](https://api.notion.com/v1/pages) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, API calls, Configuration guidance] <br>
-**Output Format:** [Markdown with inline shell commands and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update local project status files, personal knowledge-base notes, Notion pages, and Plane issues when run with the required credentials and environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter) <br>
+Risk: The workflow can persist project summaries to local files, cloud services, and synced notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review session content before sync and redact sensitive material from STATUS.md, Notion, and Obsidian outputs.
+
+Risk: The workflow depends on access to a Notion credential and may interact with a password manager.
+
+Mitigation: Use a narrowly scoped injected secret where possible and avoid exposing broad password-manager access to untrusted agents.
+
+Risk: The workflow uses Docker access to mutate Plane issue data.
+
+Mitigation: Run it only in trusted environments and prefer a supported Plane API or narrowly scoped helper for issue updates.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nissan/skills/ccp-session-update)
+- [Publisher profile](https://clawhub.ai/user/nissan)
+- [Notion pages API endpoint](https://api.notion.com/v1/pages)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Docker and NOTION_API_KEY; may write local files and call network services when executed by an agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

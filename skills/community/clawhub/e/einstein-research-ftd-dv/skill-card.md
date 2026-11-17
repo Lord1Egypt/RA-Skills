@@ -1,42 +1,60 @@
-## Description: <br>
-Detects Follow-Through Day signals for market bottom confirmation using William O'Neil's methodology, with dual-index tracking and post-signal health monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects Follow-Through Day (FTD) signals for market bottom confirmation using William O'Neil's methodology, with dual-index tracking, rally-attempt state management, FTD qualification, and post-FTD health monitoring.
 
-## Publisher: <br>
-[clawdiri-ai](https://clawhub.ai/user/clawdiri-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawdiri-ai](https://clawhub.ai/user/clawdiri-ai)
 
-## Use Case: <br>
-External users and developers use this skill to analyze broad-market rally attempts, Follow-Through Day confirmations, and post-FTD health before considering equity exposure changes. Its outputs are informational market-timing research, not personalized financial advice or automated trading. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill produces investment-timing guidance and exposure ranges that could be mistaken for personalized financial advice. <br>
-Mitigation: Treat outputs as informational market analysis, review generated reports before acting, and apply independent risk management and position sizing. <br>
-Risk: The CLI can use an FMP API key to fetch market data. <br>
-Mitigation: Run in a dedicated Python environment, provide only the needed API key, and avoid storing secrets in generated reports or shared logs. <br>
+## Use Case:
 
+External users and market-analysis developers use this skill to evaluate broad-market re-entry signals after corrections and generate FTD status, quality scores, exposure guidance, and watch levels for S&P 500/SPY and NASDAQ/QQQ.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/clawdiri-ai/einstein-research-ftd-dv) <br>
-- [FTD Methodology](references/ftd_methodology.md) <br>
-- [Post-FTD Guide](references/post_ftd_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Console status text plus generated JSON and Markdown reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use an FMP API key and cached market data; reports include quality scores, market state, exposure ranges, and risk-management guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill provides concrete market exposure guidance that could be mistaken for financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational market-analysis only and require human review before trading or allocation decisions.
+
+Risk: The security review notes under-disclosed data-source and credential handling, especially for users expecting a Yahoo-only workflow.
+
+Mitigation: Review data-source requirements before installation and provide FMP_API_KEY through the environment instead of passing secrets on the command line.
+
+Risk: The security verdict is suspicious because the release combines market-analysis behavior with investment exposure recommendations.
+
+Mitigation: Review the skill before deployment, keep position-sizing decisions outside automated execution, and apply normal risk-management controls.
+
+## Reference(s):
+
+- [Follow-Through Day (FTD) Methodology](references/ftd_methodology.md)
+- [Post-FTD Monitoring Guide](references/post_ftd_guide.md)
+- [Financial Modeling Prep API](https://financialmodelingprep.com/api/v3)
+- [ClawHub Skill Page](https://clawhub.ai/clawdiri-ai/skills/einstein-research-ftd-dv)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, JSON, Files, Guidance]
+
+**Output Format:** [Natural-language analysis plus JSON and Markdown report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call Financial Modeling Prep using FMP_API_KEY and writes timestamped report files to the selected output directory.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

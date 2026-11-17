@@ -1,0 +1,9 @@
+{
+  "name": "agent-guard-scripts",
+  "version": "1.0.25",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@hypelens/hypelens-agent-guard": "0.1.18"
+  }
+}

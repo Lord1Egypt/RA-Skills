@@ -1,46 +1,63 @@
-## Description: <br>
-Generate a structured change management plan for AI adoption, digital transformation, or major technology rollouts, covering stakeholder analysis, communication strategy, training plans, resistance mitigation, and success metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured change management plans for AI adoption, digital transformation, and major technology rollouts, covering stakeholder analysis, communication strategy, training, resistance mitigation, and success metrics.
 
-## Publisher: <br>
-[afrexai-cto](https://clawhub.ai/user/afrexai-cto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[afrexai-cto](https://clawhub.ai/user/afrexai-cto)
 
-## Use Case: <br>
-External users, developers, and enterprise teams use this skill to draft structured change management plans for AI adoption, digital transformation, SaaS rollouts, compliance changes, and other technology initiatives where people need to change how they work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include confidential rollout details, staffing concerns, budgets, or internal risk information in prompts. <br>
-Mitigation: Avoid sharing sensitive organizational information unless it is appropriate for the AI agent and any connected tools it may use. <br>
-Risk: Generated plans are planning aids and may not reflect all organizational, legal, labor, compliance, or operational constraints. <br>
-Mitigation: Have responsible stakeholders review and adapt the plan before using it for an actual rollout. <br>
+## Use Case:
 
+Employees, consultants, and transformation teams use this skill to create tailored rollout plans for AI adoption, digital transformation, SaaS migration, compliance rollouts, and other initiatives where people need to change how they work.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/afrexai-cto/afrexai-change-management-plan) <br>
-- [AfrexAI](https://afrexai.com) <br>
-- [AI Adoption Readiness](https://clawhub.com/skills/afrexai-ai-adoption-readiness) <br>
-- [Compliance Readiness](https://clawhub.com/skills/afrexai-compliance-readiness) <br>
-- [Vendor Risk Assessment](https://clawhub.com/skills/afrexai-vendor-risk-assessment) <br>
-- [Incident Response Plan](https://clawhub.com/skills/afrexai-incident-response-plan) <br>
-- [SLA Monitor](https://clawhub.com/skills/afrexai-sla-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown document with an executive summary, full plan sections, checklist, and appendix template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Tailored to user-provided initiative, organization, scope, timeline, sponsor, concerns, and prior rollout context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Users may share sensitive organizational, staffing, budget, or rollout details while requesting a tailored plan.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive internal details unless the AI environment is approved for that information.
+
+Risk: Generated timelines, budgets, and people-impact recommendations may be incomplete or unsuitable for operational use without local review.
+
+Mitigation: Review and adapt the generated plan with the relevant business, legal, security, HR, and change leadership stakeholders before execution.
+
+Risk: The skill may infer defaults when critical change-management details are missing.
+
+Mitigation: Provide initiative and scope details at minimum, and answer clarifying questions before relying on the plan.
+
+## Reference(s):
+
+- [Change Management Plan on ClawHub](https://clawhub.ai/afrexai-cto/skills/afrexai-change-management-plan)
+- [AfrexAI](https://afrexai.com)
+- [AI Adoption Readiness](https://clawhub.com/skills/afrexai-ai-adoption-readiness)
+- [Compliance Readiness](https://clawhub.com/skills/afrexai-compliance-readiness)
+- [Vendor Risk Assessment](https://clawhub.com/skills/afrexai-vendor-risk-assessment)
+- [Incident Response Plan](https://clawhub.com/skills/afrexai-incident-response-plan)
+- [SLA Monitor](https://clawhub.com/skills/afrexai-sla-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown plan with tables, checklists, timeline, risk register, budget estimate, and appendix.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tailored to user-provided initiative, organization, scope, timeline, sponsor, concerns, and previous attempts.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter metadata.version is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

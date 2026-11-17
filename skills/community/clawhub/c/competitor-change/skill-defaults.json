@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "channel": "competitor-change",
+  "workflow": "watch",
+  "focus": "competitor",
+  "outputTemplate": "watch_digest",
+  "requiredCapabilities": [
+    "product-detail",
+    "product-snapshots",
+    "competitor-product-detail"
+  ]
+}

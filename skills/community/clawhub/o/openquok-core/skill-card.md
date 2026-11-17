@@ -1,48 +1,56 @@
-## Description: <br>
-Schedule and manage social posts with the openquok CLI: authenticate, upload media, create drafts and scheduled posts, and read channel analytics for integrations in an OpenQuok workspace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents authenticate to OpenQuok, upload media, draft and schedule social posts, manage engagement plugs, and view channel analytics through the OpenQuok CLI.
 
-## Publisher: <br>
-[ratimon](https://clawhub.ai/user/ratimon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ratimon](https://clawhub.ai/user/ratimon)
 
-## Use Case: <br>
-Developers, operators, and social media teams use this skill to have an agent prepare and run OpenQuok CLI workflows for authenticated social channel posting, scheduling, media upload, drafts, status changes, and analytics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can affect connected social accounts by posting, scheduling, uploading media, deleting queued posts, changing draft or scheduled status, and reading analytics. <br>
-Mitigation: Install and use it only for OpenQuok workspaces where the agent is expected to manage connected social channels, and review planned publishing actions before execution. <br>
-Risk: Media uploads or URL-based fetches may expose confidential, private, or embargoed assets through provider workflows or public-fetch requirements. <br>
-Mitigation: Use only approved media sources and avoid confidential, private, or embargoed media URLs unless the workspace owner accepts the public-fetch and timing behavior. <br>
-Risk: Authenticated CLI credentials authorize API actions in the selected OpenQuok workspace. <br>
-Mitigation: Use the intended workspace, prefer device login or scoped programmatic tokens, and rotate or revoke tokens that are no longer needed. <br>
+## Use Case:
 
+Social media teams and their agents use this skill to prepare, schedule, update, and analyze posts across connected OpenQuok channels, including automated follow-up engagement.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ratimon/skills/openquok-core) <br>
-- [OpenQuok CLI package](https://www.npmjs.com/package/@openquok/auto-cli) <br>
-- [OpenQuok](https://www.openquok.com/) <br>
-- [Command reference](resources/command-reference.md) <br>
-- [Provider settings](resources/provider-settings.md) <br>
-- [Workflow recipes](resources/patterns.md) <br>
-- [JSON post examples](resources/examples/EXAMPLES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Markdown] <br>
-**Output Format:** [Markdown guidance with openquok shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the openquok binary and authenticated OpenQuok workspace credentials for API actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: An agent can schedule, modify, delete, or automate social posts in connected channels.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm target integrations, post and plug IDs, scheduled times, and privacy changes before approving write actions.
+
+Risk: OpenQuok credentials may be exposed in chat or logs.
+
+Mitigation: Prefer device OAuth, keep tokens out of chat and logs, and rotate any token that may have been exposed.
+
+## Reference(s):
+
+- [OpenQuok Core on ClawHub](https://clawhub.ai/ratimon/skills/openquok-core)
+- [OpenQuok CLI package](https://www.npmjs.com/package/@openquok/auto-cli)
+- [OpenQuok command reference](artifact/resources/command-reference.md)
+- [OpenQuok Bluesky integration documentation](https://www.openquok.com/docs/social-integration/bluesky)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with CLI commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the separately installed OpenQuok CLI and access to an OpenQuok workspace.]
+
+## Skill Version(s):
+
+1.0.9 (source: ClawHub release metadata; packaged frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

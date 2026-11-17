@@ -1,0 +1,56 @@
+{
+  "_comment": "account-manager 扩展参考数据",
+  "input_format": {
+    "action": "switch_account",
+    "agent_id": "agent_002",
+    "platform": "wechat",
+    "old_account": "wx_001",
+    "new_account": "wx_002",
+    "phone_number": "138****0002",
+    "banned_reason": "频繁加人",
+    "banned_date": "2026-04-15T10:30:00Z",
+    "screenshot": "d:/JueJin/screenshots/wx_001_banned.png"
+  },
+  "output_format": {
+    "success": true,
+    "agent_id": "agent_002",
+    "platform": "wechat",
+    "old_account": {"id": "wx_001", "status": "banned", "banned_date": "", "banned_reason": ""},
+    "new_account": {"id": "wx_002", "status": "active", "created_date": "", "phone_number": ""},
+    "inherited_data": {"friends_count": 150, "memory_lines": 5000, "persona_preserved": true},
+    "lost_data": {"chat_history": true, "moments": true, "followers": true},
+    "message": "账号切换成功：wx_001(banned) → wx_002(active)"
+  },
+  "error_codes": [
+    {"code": "ACCOUNT_NOT_FOUND", "scene": "旧账号不存在", "action": "检查账号ID"},
+    {"code": "ACCOUNT_ALREADY_EXISTS", "scene": "新账号已存在", "action": "使用其他账号ID"},
+    {"code": "DEVICE_LOGIN_FAILED", "scene": "设备登录失败", "action": "重试或检查设备状态"},
+    {"code": "DATA_MIGRATION_FAILED", "scene": "数据迁移失败", "action": "部分迁移或手动迁移"},
+    {"code": "PLATFORM_NOT_SUPPORTED", "scene": "平台不支持", "action": "添加平台支持"},
+    {"code": "MCP_NOT_CONNECTED", "scene": "MCP未连接", "action": "检查MCP配置并重启Gateway"},
+    {"code": "PHONE_NUMBER_INVALID", "scene": "手机号格式错误", "action": "检查手机号格式"},
+    {"code": "AGENT_NOT_FOUND", "scene": "员工不存在", "action": "检查员工ID"}
+  ],
+  "test_cases": [
+    {"id": "TC-01", "title": "微信封号换号(正常)", "input": "agent_002 wx_001→wx_002", "expected": "旧号banned，新号active，好友继承150个", "status": "待测试"},
+    {"id": "TC-02", "title": "抖音封号换号(正常)", "input": "agent_015 dy_001→dy_002", "expected": "旧号banned，新号active，视频模板继承25个", "status": "待测试"},
+    {"id": "TC-03", "title": "闲鱼封号换号(正常)", "input": "agent_002 xy_001→xy_002", "expected": "旧号banned，新号active", "status": "待测试"},
+    {"id": "TC-04", "title": "2个平台同时封号(并发)", "input": "wx_001和xy_001同时封号", "expected": "分别处理，互不影响", "status": "待测试"},
+    {"id": "TC-05", "title": "封号后自动切换", "input": "检测到wx_001封号", "expected": "自动切换到wx_002", "status": "待测试"},
+    {"id": "TC-06", "title": "账号不存在(异常)", "input": "wx_999", "expected": "ACCOUNT_NOT_FOUND", "status": "待测试"},
+    {"id": "TC-07", "title": "新账号已存在(异常)", "input": "wx_002已存在", "expected": "ACCOUNT_ALREADY_EXISTS", "status": "待测试"},
+    {"id": "TC-08", "title": "设备登录失败(异常)", "input": "device_001登录失败", "expected": "DEVICE_LOGIN_FAILED", "status": "待测试"},
+    {"id": "TC-09", "title": "数据迁移失败(异常)", "input": "API限流", "expected": "DATA_MIGRATION_FAILED", "status": "待测试"},
+    {"id": "TC-10", "title": "平台不支持(异常)", "input": "tiktok", "expected": "PLATFORM_NOT_SUPPORTED", "status": "待测试"}
+  ],
+  "dependencies": {
+    "mcps": ["account-manager", "device-operations"],
+    "skills": ["friend-manager", "device-scheduler"],
+    "config_files": ["workspace/persona/agent_002.json", "workspace/devices/device_001.json", "workspace/accounts/wx_001.json"]
+  },
+  "related_docs": [
+    "docs/design/mcps/11_account-manager-mcp.md",
+    "docs/design/10_多员工多平台账号管理架构.md",
+    "docs/design/00_全面详细设计补充与修正.md (SUP-24)"
+  ]
+}

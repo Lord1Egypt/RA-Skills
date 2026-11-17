@@ -1,45 +1,61 @@
-## Description: <br>
-Gate VIP tier and trading fee query skill for checking a user's Gate VIP level and trading fee rates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents answer Gate users' VIP tier and spot or futures trading fee questions by querying read-only Gate MCP account and wallet fee tools.
 
-## Publisher: <br>
-[gate-exchange](https://clawhub.ai/user/gate-exchange) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gate-exchange](https://clawhub.ai/user/gate-exchange)
 
-## Use Case: <br>
-External Gate users use this skill to query their current VIP tier and spot or futures maker/taker fee rates through read-only Gate MCP account and wallet tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill delegates mandatory runtime behavior to an unpinned remote GitHub rules file. <br>
-Mitigation: Review the remote runtime rules before installation or execution, and pin or vendor a reviewed copy where deployment policy requires immutable instructions. <br>
-Risk: The skill accesses user-specific Gate account and wallet fee data through authenticated MCP tools. <br>
-Mitigation: Use only Gate OAuth or read-only Gate API keys with Account:Read and Wallet:Read permissions; do not grant trading or withdrawal permissions. <br>
+## Use Case:
 
+External Gate users use this skill to retrieve their current VIP tier and spot or futures maker/taker fee rates through read-only Gate MCP queries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gate-exchange/gate-exchange-vip-fee) <br>
-- [Gate publisher profile](https://clawhub.ai/user/gate-exchange) <br>
-- [MCP execution specification](references/mcp.md) <br>
-- [Usage scenarios](references/scenarios.md) <br>
-- [Gate MCP](https://github.com/gateio/gate-mcp) <br>
-- [Gate API key management](https://www.gate.io/myaccount/profile/api-key/manage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, guidance] <br>
-**Output Format:** [Markdown tables and structured summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports only queried VIP and fee fields, keeps values as returned by the API, and includes scope notes when pair-specific fee requests may still return account-level fees.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill may read account details during setup or detection even when the user asks only for fee data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a Gate credential limited to Account:Read and Wallet:Read, with no trading or withdrawal permissions.
+
+Risk: The skill depends on mutable external runtime rules that can change outside this package.
+
+Mitigation: Review the linked runtime rules before installing or updating the skill.
+
+Risk: Fee results are account-level, and an invalid trading pair can still return default account fee values.
+
+Mitigation: Label returned rates as account-level fees and note that a requested pair may not have been validated.
+
+## Reference(s):
+
+- [Gate VIP Fee MCP Specification](references/mcp.md)
+- [Gate VIP & Fee Query Scenarios](references/scenarios.md)
+- [Gate MCP](https://github.com/gateio/gate-mcp)
+- [Gate Runtime Rules](https://github.com/gate/gate-skills/blob/master/skills/gate-runtime-rules.md)
+- [Gate API Key Management](https://www.gate.io/myaccount/profile/api-key/manage)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only responses summarize VIP level and spot or futures maker/taker fees; account values are user-specific and API keys must not be exposed.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

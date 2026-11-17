@@ -1,48 +1,61 @@
-## Description: <br>
-Intelligent sensitive data detection and masking. Uses Microsoft Presidio + SQLite for automatic PII redaction with local restoration support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligent sensitive data detection and masking using Microsoft Presidio with SQLite storage and local restoration support.
 
-## Publisher: <br>
-[STJ001](https://clawhub.ai/user/STJ001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[stj001](https://clawhub.ai/user/stj001)
 
-## Use Case: <br>
-Developers and operators use this skill to detect and mask sensitive message content before it is sent to an LLM, while retaining local mappings for restoration during task execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Masking may fail silently or be misconfigured, allowing sensitive data to reach downstream services. <br>
-Mitigation: Review before installing and verify that the hook masks a representative test message before use. <br>
-Risk: Restorable secrets are retained in local mappings. <br>
-Mitigation: Reduce or disable restoration retention where possible, and protect the mapping database and encryption key like a secrets store. <br>
-Risk: Secrets passed through command-line arguments can be exposed by process listings or shell history. <br>
-Mitigation: Avoid sending secrets through command-line arguments; use safer local input paths for testing and restoration workflows. <br>
-Risk: Missing cryptography support or a Python module-name mismatch can prevent secure operation. <br>
-Mitigation: Fix the cryptography dependency and module-name mismatch before deployment, then retest masking and restoration end to end. <br>
+## Use Case:
 
+External users and developers use this skill to mask passwords, API keys, PII, and other sensitive values in received messages before downstream API processing, while retaining local mappings that can restore the original values for task execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/STJ001/sensitive-data-masker) <br>
-- [Skill homepage](https://gitee.com/subline/onepeace/tree/develop/src/skills/sensitive-data-masker) <br>
-- [Microsoft Presidio](https://github.com/microsoft/presidio) <br>
-- [spaCy](https://spacy.io/) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Plain text masking and restoration results with Markdown documentation and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores temporary local mappings for restoration; default retention is 7 days.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: evidence release metadata and _meta.json) <br>
+Risk: Masking may fail open and allow original sensitive messages to continue downstream.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and test message:received masking end-to-end before installation; disable the hook if masking failures are observed.
+
+Risk: Recoverable secret mappings may remain in local storage longer than users expect unless cleaned.
+
+Mitigation: Set an appropriate TTL, run the cleanup or clear commands when needed, and protect the local data directory and encryption key.
+
+Risk: The server security verdict is suspicious for this release.
+
+Mitigation: Review this skill carefully before installing and rely on the server-provided security guidance as the authoritative risk source.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/stj001/skills/sensitive-data-masker)
+- [Source Homepage](https://gitee.com/subline/onepeace/tree/develop/src/skills/sensitive-data-masker)
+- [Microsoft Presidio](https://github.com/microsoft/presidio)
+- [spaCy](https://spacy.io/)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Masked or restored text, JSON command output, and Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local SQLite mappings with a default 7-day TTL; requires python3, Microsoft Presidio, spaCy, and the zh_core_web_sm spaCy model.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release evidence and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

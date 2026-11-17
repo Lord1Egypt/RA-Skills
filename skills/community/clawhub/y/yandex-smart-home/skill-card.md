@@ -1,45 +1,59 @@
-## Description: <br>
-This skill lets an agent inspect and control Yandex Smart Home devices, groups, and scenarios through the official Yandex IoT API using a user-provided OAuth token. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent use Yandex's official IoT API to list Yandex Smart Home devices, read device state, change device or group settings, and run scenarios with a user-provided OAuth token.
 
-## Publisher: <br>
-[dima-online](https://clawhub.ai/user/dima-online) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dima-online](https://clawhub.ai/user/dima-online)
 
-## Use Case: <br>
-External users and agent developers use this skill to list Yandex Smart Home devices, read device state, change supported device capabilities such as power, brightness, color temperature, RGB color, thermostat temperature, and modes, and launch configured scenarios. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Yandex OAuth token that can view and control smart-home devices. <br>
-Mitigation: Install only when the user is comfortable giving the agent this level of access, and store the token in the documented YANDEX_IOT_TOKEN environment variable rather than sharing it in chat. <br>
-Risk: State-changing commands can affect real household devices, groups, thermostats, or scenarios. <br>
-Mitigation: Require manual confirmation before any device action, group action, thermostat change, scenario launch, or request that affects many devices. <br>
-Risk: The /user/info response can reveal household layout, device names, room structure, ownership, and scenario details. <br>
-Mitigation: Avoid sharing raw /user/info output; summarize only the device or room details needed for the user's request. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent inspect Yandex Smart Home inventory, issue supported device or group commands, and start named scenarios through Yandex's IoT API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dima-online/yandex-smart-home) <br>
-- [Publisher profile](https://clawhub.ai/user/dima-online) <br>
-- [Yandex Smart Home IoT API](https://api.iot.yandex.net) <br>
-- [Yandex OAuth application registration](https://oauth.yandex.ru/client/new) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline curl commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and a Yandex OAuth token supplied through YANDEX_IOT_TOKEN with iot:view and iot:control scopes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The agent can directly control physical smart-home devices and launch scenarios.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before device, group, or scenario actions, especially broad commands such as turning everything off.
+
+Risk: Exposure of the YANDEX_IOT_TOKEN could let another party inspect or control the user's devices.
+
+Mitigation: Keep the token out of chats, logs, and shared files; use the least-privilege token available and revoke or rotate it if exposed.
+
+Risk: Ambiguous natural-language requests can target the wrong device, group, or scenario.
+
+Mitigation: Fetch the current device inventory and confirm the matched target before sending commands when the user's request is ambiguous.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dima-online/skills/yandex-smart-home)
+- [Yandex Smart Home IoT API endpoint](https://api.iot.yandex.net/v1.0)
+- [Yandex OAuth application registration](https://oauth.yandex.ru/client/new)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions, API Calls]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires YANDEX_IOT_TOKEN and curl; API results depend on the user's Yandex Smart Home account and token scopes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

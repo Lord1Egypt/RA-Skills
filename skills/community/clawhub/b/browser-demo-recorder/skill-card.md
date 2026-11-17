@@ -1,42 +1,64 @@
-## Description: <br>
-Records browser demo videos from a plain-language brief by planning the flow, driving the OpenClaw browser, encoding an MP4, and returning the media file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Record browser demo videos from a plain-language brief by turning the requested flow into a plan, driving the OpenClaw browser via CDP, encoding an MP4, writing the output into the workspace `media/` directory, and returning it with the MEDIA protocol.
 
-## Publisher: <br>
-[smile618](https://clawhub.ai/user/smile618) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smile618](https://clawhub.ai/user/smile618)
 
-## Use Case: <br>
-Developers, product teams, and content creators use this skill to create browser walkthroughs, product demos, landing-page captures, and search or click-flow recordings from a short brief. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recording plans can control an active browser, including navigation, clicks, typing, scrolling, and page-side evaluation. <br>
-Mitigation: Review generated plans before running them, use public or throwaway demo pages, and avoid evaluate steps unless the code is trusted. <br>
-Risk: Recordings and debug files can save sensitive browsing details to disk. <br>
-Mitigation: Do not type secrets during recordings, prefer a clean browser profile, keep the output directory under workspace media, and delete debug JSON files when finished. <br>
+## Use Case:
 
+Developers and agents use this skill to turn a browser walkthrough request into a repeatable recording plan, execute it in an OpenClaw browser, and return a recorded demo video. It is suited for product demos, site walkthroughs, landing-page captures, and hover, click, search, typing, or scroll flows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/smile618/browser-demo-recorder) <br>
-- [Plan Schema](references/plan-schema.md) <br>
-- [Example Recording Plan](references/example-skills-video-plan.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands, files] <br>
-**Output Format:** [Markdown status with a MEDIA line, plus generated MP4 and debug JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes outputs to the workspace media directory unless the user requests a different safe location.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Recording plans can execute page-side JavaScript.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only plans from trusted sources and review any evaluate steps before running the recorder.
+
+Risk: The skill can control and record browser pages, including pages opened in the configured browser profile.
+
+Mitigation: Run it with a dedicated, non-authenticated browser profile and avoid recording sensitive sessions.
+
+Risk: Typed text may be persisted in debug logs.
+
+Mitigation: Do not put passwords, tokens, or other secrets in recording plans, and review debug JSON before sharing outputs.
+
+Risk: Plans can choose browser endpoints and output paths.
+
+Mitigation: Keep the browser endpoint local and keep outputs inside the workspace media directory.
+
+## Reference(s):
+
+- [Plan Schema](references/plan-schema.md)
+- [Example Skills Video Plan](references/example-skills-video-plan.json)
+- [ClawHub skill page](https://clawhub.ai/smile618/skills/browser-demo-recorder)
+- [Publisher profile](https://clawhub.ai/user/smile618)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files, JSON, Shell commands, Configuration]
+
+**Output Format:** [Short text status with a MEDIA path, plus an MP4 video file and debug JSON written to the configured media directory.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The recording plan may include URLs, viewport settings, timed browser steps, output directory, browser endpoint, and typed text.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

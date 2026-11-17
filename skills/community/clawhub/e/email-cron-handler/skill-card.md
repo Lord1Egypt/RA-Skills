@@ -1,43 +1,54 @@
-## Description: <br>
-Email Cron Handler monitors a configured mailbox through IMAP/SMTP, filters allowed senders, and helps an agent process email-delivered commands and reply with execution results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Email Cron Handler monitors a configured mailbox via IMAP/SMTP, filters command emails from a whitelisted sender, and returns execution results by email.
 
-## Publisher: <br>
-[PebblerWon](https://clawhub.ai/user/PebblerWon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pebblerwon](https://clawhub.ai/user/pebblerwon)
 
-## Use Case: <br>
-Developers and agent operators use this skill to let a scheduled agent check an inbox, process commands from an allowed sender, and send success, failure, or timeout feedback by email. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Email messages can trigger agent actions and send results back without strong controls. <br>
-Mitigation: Use a dedicated low-privilege mailbox, require a non-empty sender allowlist, add stronger authentication where possible, and restrict which commands the agent may run. <br>
-Risk: Mailbox credentials and cron payloads may expose sensitive access details. <br>
-Mitigation: Keep real credentials out of prompts and shared payloads, store secrets in protected configuration, and redact sensitive content from email replies. <br>
-Risk: A scheduled email automation loop can continue acting after misconfiguration or compromise. <br>
-Mitigation: Define and test a simple way to disable the cron jobs before enabling the workflow. <br>
+## Use Case:
 
+Developers and operators use this skill to connect scheduled mailbox monitoring to agent work, where messages from an approved sender can trigger tasks and receive success, failure, or timeout results by email.
 
-## Reference(s): <br>
-- [Email Cron Handler configuration template](references/01-config-template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/PebblerWon/email-cron-handler) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, and Python helper script usage.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The workflow can produce email replies containing command execution status and results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Incoming email can trigger unattended agent work and unintended side effects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated mailbox and app password, fail closed unless a verified sender is configured, restrict commands to a small allowlist, and require approval for file access or side effects.
+
+Risk: Email replies can expose sensitive command output, secrets, or detailed errors.
+
+Mitigation: Do not place secrets in prompts or cron payloads, sanitize results before replying, and avoid emailing raw outputs or detailed error traces.
+
+## Reference(s):
+
+- [Email Cron Handler configuration template](references/01-config-template.md)
+- [ClawHub skill page](https://clawhub.ai/pebblerwon/skills/email-cron-handler)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON-style configuration examples, and Python helper script usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces mailbox polling instructions, cron payload examples, command-fetch/reply/mark script usage, and email status feedback content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

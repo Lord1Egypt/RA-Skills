@@ -1,45 +1,65 @@
-## Description: <br>
-Post-upgrade verification system for OpenClaw that defines a model, cron, and channel ground truth file plus a 5-phase automated verification flow with auto-repair for config and cron drift. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verify OpenClaw after upgrades against an operator-maintained model, cron, and channel ground truth. Use for report-only config integrity, provider liveness, cron integrity, session smoke tests, and channel checks; require explicit approval before applying repairs.
 
-## Publisher: <br>
-[JonathanJing](https://clawhub.ai/user/JonathanJing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jonathanjing](https://clawhub.ai/user/jonathanjing)
 
-## Use Case: <br>
-Developers and operators use this skill after OpenClaw upgrades or suspected drift to compare runtime configuration, model routing, cron jobs, sessions, and channels against a maintained ground truth file. It can generate verification reports and, when not in dry-run mode, repair non-sensitive config and cron drift. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify runtime configuration and recurring cron jobs. <br>
-Mitigation: Run in dry-run or report-only mode first, review proposed changes, and require human confirmation when more than three fields need repair in a phase. <br>
-Risk: Runtime configuration checks could expose credentials or sensitive settings in reports or memory files. <br>
-Mitigation: Use the documented zero-secret logging protocol: strip auth, plugins, and credentials after config reads, redact sensitive mismatches, and validate provider liveness through functional sessions rather than literal key comparison. <br>
-Risk: A stale ground truth file could cause incorrect drift reports or repairs. <br>
-Mitigation: Keep MODEL_GROUND_TRUTH.md synchronized after config, model, cron, channel, or ACP changes before using auto-fix behavior. <br>
+## Use Case:
 
+Developers and operators use this skill after OpenClaw upgrades or during periodic health checks to compare runtime configuration, recurring cron jobs, model liveness, sessions, and channels against maintained ground truth. It produces reports by default and requires explicit operator approval before bounded config or cron repairs.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/JonathanJing/ground-control) <br>
-- [MODEL_GROUND_TRUTH.md template](templates/MODEL_GROUND_TRUTH.md) <br>
-- [Post-upgrade verification workflow](scripts/post-upgrade-verify.md) <br>
-- [Upgrade SOP](scripts/UPGRADE_SOP.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with YAML and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce verification reports, local memory summaries, and proposed or executed OpenClaw config and cron repair actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.5 (source: frontmatter, release evidence) <br>
+Risk: The skill can access full OpenClaw runtime configuration, which may include secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer metadata-only config access where available and follow the documented zero-secret logging behavior for redaction, sensitive drift reporting, and no credential persistence.
+
+Risk: The skill can send liveness test messages to configured channels.
+
+Mitigation: Use dedicated ops or test channels for liveness checks and review channel targets before running verification.
+
+Risk: The skill can propose config and cron repairs that change runtime behavior.
+
+Mitigation: Keep runs report-only until an operator reviews the redacted repair plan and explicitly approves each bounded change.
+
+Risk: Upgrade verification depends on the installed OpenClaw and skill versions.
+
+Mitigation: Pin OpenClaw or skill versions for production upgrade workflows when repeatability is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jonathanjing/skills/ground-control)
+- [ClawHub homepage metadata](https://clawhub.ai/jonathanjing/ground-control)
+- [Ground truth template](artifact/templates/MODEL_GROUND_TRUTH.md)
+- [Post-upgrade verification prompt](artifact/scripts/post-upgrade-verify.md)
+- [Upgrade SOP](artifact/scripts/UPGRADE_SOP.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown verification reports with inline command and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Report-only by default; bounded config and cron repair steps require explicit operator approval.]
+
+## Skill Version(s):
+
+0.3.6 (source: server release metadata, SKILL.md metadata, CHANGELOG released 2026-08-03)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

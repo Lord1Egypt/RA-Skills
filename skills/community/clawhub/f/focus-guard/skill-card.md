@@ -1,41 +1,53 @@
-## Description: <br>
-Session coherence protocol for Claude \u2014 track decisions, resist scope creep, flag drift. Keeps long AI sessions on track without losing what was already decided. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Session coherence protocol for Claude — track decisions, resist scope creep, flag drift. Keeps long AI sessions on track without losing what was already decided.
 
-## Publisher: <br>
-[jiajiaoy](https://clawhub.ai/user/jiajiaoy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiajiaoy](https://clawhub.ai/user/jiajiaoy)
 
-## Use Case: <br>
-Developers, operators, and collaborative AI users use Focus Guard to keep multi-step Claude sessions aligned with the agreed goal, decisions, and scope. It is most useful for longer debugging, refactoring, migration, or planning sessions where context drift and unapproved scope expansion would be costly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Additional scope checks and decision-log prompts can become noisy for quick tasks. <br>
-Mitigation: Use the skill for multi-step or high-stakes sessions and disable or skip it for quick one-shot tasks. <br>
-Risk: The scope gate may pause legitimate new work until the user confirms a scope change. <br>
-Mitigation: Confirm intentional scope expansion explicitly, then continue with the updated session anchor and decision log. <br>
+## Use Case:
 
+External users, developers, and collaborative AI operators use Focus Guard to keep multi-step sessions anchored to an agreed goal, decision log, and scope boundaries. It is most useful when scope creep, context drift, or forgotten decisions would create costly rework.
 
-## Reference(s): <br>
-- [Focus Guard on ClawHub](https://clawhub.ai/jiajiaoy/focus-guard) <br>
-- [Skill homepage](https://clawhub.ai/skills/focus-guard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text with session anchors, decision logs, scope flags, progress check-ins, and close summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no files, network calls, credentials, or code execution requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can add scope checks and decision logs that may feel restrictive during intentionally open-ended exploration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for multi-step, high-stakes, or collaborative sessions, and skip it for quick one-shot tasks or intentionally open exploration.
+
+Risk: Session anchors and decision logs can become stale when goals change without an explicit update.
+
+Mitigation: When scope changes, confirm the change with the user and update the anchor or decision log before continuing.
+
+## Reference(s):
+
+- [ClawHub skill homepage](https://clawhub.ai/skills/focus-guard)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown templates and concise session status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, API calls, or file access are requested by the skill itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,61 @@
-## Description: <br>
-Bailian Ai Toolkit helps agents use the Bailian CLI to call Alibaba Cloud Bailian AI services for image, video, speech, vision, text, web search, and file upload tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents use a project-pinned Alibaba Cloud Bailian CLI for generation, understanding, speech, search, and file-processing tasks after explicit user selection and per-file privacy checks.
 
-## Publisher: <br>
-[cryptocxf](https://clawhub.ai/user/cryptocxf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cryptocxf](https://clawhub.ai/user/cryptocxf)
 
-## Use Case: <br>
-Developers and agent users use this skill to generate Bailian CLI commands and configuration guidance for Alibaba Cloud Bailian AI workflows, including media generation, speech processing, vision analysis, text chat, web search, and file upload. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local file paths supplied to supported commands may be uploaded to Alibaba Cloud/Bailian services for processing. <br>
-Mitigation: Treat local file paths as remote uploads and avoid confidential or regulated data unless approved for that service. <br>
-Risk: The skill depends on a sensitive Bailian API key and an external bailian-cli package. <br>
-Mitigation: Install the CLI only from a trusted source and use a dedicated, limited-scope API key where possible. <br>
+## Use Case:
 
+Developers and AI-agent operators use this skill to route explicitly authorized Alibaba Cloud Bailian tasks through a pinned local CLI, including text, image, video, speech, vision, web search, and single-file upload workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cryptocxf/bailian-ai-toolkit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and CLI usage tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a trusted bailian-cli installation and a configured Alibaba Cloud Bailian API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Prompts, URLs, search queries, generated content, and explicitly approved local files can be sent to Alibaba Cloud Bailian.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with accounts, prompts, URLs, and files the user has explicitly approved for that service; disclose destination, expected output, possible cost, and unknown retention before transfer.
+
+Risk: OAuth login can save a cloud service session locally.
+
+Mitigation: Run login only after the user requests it, prefer OAuth over pasted secrets, and avoid placing API keys or access secrets in chat, commands, logs, or configuration examples.
+
+Risk: Dependency lifecycle scripts could run during installation if the local npm safeguards are bypassed.
+
+Mitigation: Install with the bundled lockfile and `.npmrc` settings, keep `ignore-scripts=true`, use the pinned `bailian-cli@1.26.0`, and review/test any version upgrade before use.
+
+Risk: Private, credential-bearing, or internal URLs could expose sensitive data if submitted to the cloud service.
+
+Mitigation: Allow only public credential-free HTTPS URLs, and reject localhost, loopback, private network, link-local, cloud metadata, and tokenized URLs.
+
+## Reference(s):
+
+- [Bailian AI Toolkit on ClawHub](https://clawhub.ai/cryptocxf/skills/bailian-ai-toolkit)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown with inline bash code blocks and output path summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference generated media, search results, uploaded-file results, models, and error summaries returned by the Alibaba Cloud Bailian CLI.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

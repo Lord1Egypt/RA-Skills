@@ -1,43 +1,59 @@
-## Description: <br>
-This skill helps higher-education instructors generate course slide-deck content, lesson-preparation PPTs, teaching presentations, and lab-guide structures for data science, Python, AI, machine learning, and related subjects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates illustrated course presentation content for teachers, including structured slides, teaching points, examples, homework, and required AI-assisted creation attribution.
 
-## Publisher: <br>
-[taoj2025](https://clawhub.ai/user/taoj2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[taoj2025](https://clawhub.ai/user/taoj2025)
 
-## Use Case: <br>
-Higher-education instructors use this skill to turn a course topic, subject area, course type, audience, and page target into a structured teaching slide deck with cover, agenda, chapter content, summary, homework, and AI disclosure pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Slide titles, bullets, and related prompt content may be sent to external image-generation services. <br>
-Mitigation: Avoid confidential, regulated, or proprietary content unless networked image generation is disabled or controlled. <br>
-Risk: Prompts or generated content may be retained in local prompt files or PPTX speaker notes. <br>
-Mitigation: Review generated notes and output files before sharing PPTX files outside the project. <br>
-Risk: The artifact includes unsafe generation guidance without clear user control. <br>
-Mitigation: Review and scan the skill before deployment, and keep any Git identity setup project-scoped rather than global. <br>
+## Use Case:
 
+Teachers and course creators use this skill to turn course topics or content outlines into classroom-ready PPT structures for lectures, labs, review sessions, academic talks, and illustrated teaching materials.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/taoj2025/course-ppt-generator) <br>
-- [课程PPT生成技能 - 使用指南](artifact/course-ppt-generator/references/使用指南.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Files, Guidance] <br>
-**Output Format:** [Markdown guidance and JSON slide structures, with optional generated PPT-related files when dependencies are available] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated decks include course structure, chapter content, code-example placeholders for programming courses, visual-layout guidance, and an AI-assisted creation disclosure page.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; skill frontmatter reports 1.0.0) <br>
+Risk: Generated decks may include unwanted TJMtaotao, MEITUSTYLE, or Guangzhou Huashang attribution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every deck before sharing and remove or replace attribution that does not apply to the user or organization.
+
+Risk: The release uses network, browser, and package-install workflows without tight user control.
+
+Mitigation: Run the skill in a sandbox, review generated commands before execution, and pin or vet package installations before use.
+
+Risk: Course prompts or source material may be sent to MiniMax or search providers and may be stored in generated artifacts.
+
+Mitigation: Avoid sensitive course, business, or personal content unless the user accepts the external service and artifact retention risks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/taoj2025/skills/course-ppt-generator)
+- [Publisher profile](https://clawhub.ai/user/taoj2025)
+- [课程PPT生成技能 - 使用指南](artifact/course-ppt-generator/references/使用指南.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions and structured slide content, with code or command snippets when needed for PPT generation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or guide creation of PPTX course decks with illustrated slides and AI-assisted creation attribution.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

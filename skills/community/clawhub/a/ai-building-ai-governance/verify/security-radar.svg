@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 600" font-family="Microsoft YaHei, PingFang SC, sans-serif">
+<rect width="680" height="600" fill="#fafafa"/>
+<polygon points="340.0,261.0 373.8,280.5 373.8,319.5 340.0,339.0 306.2,319.5 306.2,280.5" fill="#d9d9d9" stroke="#cccccc" stroke-width="0.8"/>
+<polygon points="340.0,222.0 407.5,261.0 407.5,339.0 340.0,378.0 272.5,339.0 272.5,261.0" fill="#ececec" stroke="#cccccc" stroke-width="0.8"/>
+<polygon points="340.0,183.0 441.3,241.5 441.3,358.5 340.0,417.0 238.7,358.5 238.7,241.5" fill="#d9d9d9" stroke="#cccccc" stroke-width="0.8"/>
+<polygon points="340.0,144.0 475.1,222.0 475.1,378.0 340.0,456.0 204.9,378.0 204.9,222.0" fill="#ececec" stroke="#cccccc" stroke-width="0.8"/>
+<polygon points="340.0,105.0 508.9,202.5 508.9,397.5 340.0,495.0 171.1,397.5 171.1,202.5" fill="#d9d9d9" stroke="#cccccc" stroke-width="0.8"/>
+<line x1="340.0" y1="300.0" x2="340.0" y2="105.0" stroke="#cccccc" stroke-width="0.8"/>
+<line x1="340.0" y1="300.0" x2="508.9" y2="202.5" stroke="#cccccc" stroke-width="0.8"/>
+<line x1="340.0" y1="300.0" x2="508.9" y2="397.5" stroke="#cccccc" stroke-width="0.8"/>
+<line x1="340.0" y1="300.0" x2="340.0" y2="495.0" stroke="#cccccc" stroke-width="0.8"/>
+<line x1="340.0" y1="300.0" x2="171.1" y2="397.5" stroke="#cccccc" stroke-width="0.8"/>
+<line x1="340.0" y1="300.0" x2="171.1" y2="202.5" stroke="#cccccc" stroke-width="0.8"/>
+<text x="340.0" y="71.0" fill="#222222" font-size="15" font-weight="bold" text-anchor="middle" dominant-baseline="middle">法规时效性</text>
+<text x="538.3" y="185.5" fill="#222222" font-size="15" font-weight="bold" text-anchor="start" dominant-baseline="middle">覆盖完整性</text>
+<text x="538.3" y="414.5" fill="#222222" font-size="15" font-weight="bold" text-anchor="start" dominant-baseline="middle">模板可用性</text>
+<text x="340.0" y="529.0" fill="#222222" font-size="15" font-weight="bold" text-anchor="middle" dominant-baseline="middle">风险分级准确性</text>
+<text x="141.7" y="414.5" fill="#222222" font-size="15" font-weight="bold" text-anchor="end" dominant-baseline="middle">结构规范性</text>
+<text x="141.7" y="185.5" fill="#222222" font-size="15" font-weight="bold" text-anchor="end" dominant-baseline="middle">安全净度</text>
+<text x="348.0" y="265.0" fill="#999999" font-size="11" text-anchor="start">1</text>
+<text x="348.0" y="226.0" fill="#999999" font-size="11" text-anchor="start">2</text>
+<text x="348.0" y="187.0" fill="#999999" font-size="11" text-anchor="start">3</text>
+<text x="348.0" y="148.0" fill="#999999" font-size="11" text-anchor="start">4</text>
+<text x="348.0" y="109.0" fill="#999999" font-size="11" text-anchor="start">5</text>
+<polygon points="340.0,105.0 508.9,202.5 508.9,397.5 340.0,495.0 171.1,397.5 171.1,202.5" fill="#e63f3f33" stroke="#e63f3f" stroke-width="2.2"/>
+<circle cx="340.0" cy="105.0" r="3.5" fill="#e63f3f"/>
+<circle cx="508.9" cy="202.5" r="3.5" fill="#e63f3f"/>
+<circle cx="508.9" cy="397.5" r="3.5" fill="#e63f3f"/>
+<circle cx="340.0" cy="495.0" r="3.5" fill="#e63f3f"/>
+<circle cx="171.1" cy="397.5" r="3.5" fill="#e63f3f"/>
+<circle cx="171.1" cy="202.5" r="3.5" fill="#e63f3f"/>
+<polygon points="340.0,183.0 448.1,237.6 441.3,358.5 340.0,432.6 231.9,362.4 238.7,241.5" fill="#f5b94233" stroke="#f5b942" stroke-width="2.2" stroke-dasharray="6 4"/>
+<circle cx="340.0" cy="183.0" r="3.5" fill="#f5b942"/>
+<circle cx="448.1" cy="237.6" r="3.5" fill="#f5b942"/>
+<circle cx="441.3" cy="358.5" r="3.5" fill="#f5b942"/>
+<circle cx="340.0" cy="432.6" r="3.5" fill="#f5b942"/>
+<circle cx="231.9" cy="362.4" r="3.5" fill="#f5b942"/>
+<circle cx="238.7" cy="241.5" r="3.5" fill="#f5b942"/>
+<polygon points="340.0,124.5 492.0,212.2 492.0,387.8 340.0,475.5 188.0,387.8 188.0,212.2" fill="#3d7bfd33" stroke="#3d7bfd" stroke-width="2.2"/>
+<circle cx="340.0" cy="124.5" r="3.5" fill="#3d7bfd"/>
+<circle cx="492.0" cy="212.2" r="3.5" fill="#3d7bfd"/>
+<circle cx="492.0" cy="387.8" r="3.5" fill="#3d7bfd"/>
+<circle cx="340.0" cy="475.5" r="3.5" fill="#3d7bfd"/>
+<circle cx="188.0" cy="387.8" r="3.5" fill="#3d7bfd"/>
+<circle cx="188.0" cy="212.2" r="3.5" fill="#3d7bfd"/>
+<text x="340" y="28" fill="#111111" font-size="20" font-weight="bold" text-anchor="middle">AI 造 AI 治理与安全 · 质量与安全稳定性实测（6 维度 0-5 分）</text>
+<line x1="180" y1="32" x2="210" y2="32" stroke="#e63f3f" stroke-width="3"/>
+<text x="218" y="36" fill="#333333" font-size="13">我们实测</text>
+<line x1="180" y1="56" x2="210" y2="56" stroke="#f5b942" stroke-width="3" stroke-dasharray="6 4"/>
+<text x="218" y="60" fill="#333333" font-size="13">行业基线</text>
+<line x1="180" y1="80" x2="210" y2="80" stroke="#3d7bfd" stroke-width="3"/>
+<text x="218" y="84" fill="#333333" font-size="13">企业级标准</text>
+<text x="656" y="586" fill="#999999" font-size="11" text-anchor="end">本地闭环验证 · 零网络零采集 · 可重复 · 基准日 2026-08-27</text>
+</svg>

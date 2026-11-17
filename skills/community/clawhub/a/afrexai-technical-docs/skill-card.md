@@ -1,38 +1,53 @@
-## Description: <br>
-Complete technical documentation system for planning, auditing, generating, scoring, automating, and maintaining READMEs, API docs, guides, architecture docs, runbooks, and developer portals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete technical documentation system for planning, auditing, generating, scoring, automating, and maintaining READMEs, API docs, guides, architecture docs, runbooks, and developer portals.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Developers, engineers, and technical writers use this skill to audit existing documentation, generate common developer docs, and set up docs-as-code maintenance workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated documentation or docs-as-code changes may contain incorrect guidance or alter repository behavior if accepted without review. <br>
-Mitigation: Use the skill only on intended projects, provide explicit target files or directories, and review generated documentation and CI or pipeline changes before committing them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-technical-docs) <br>
-- [Semantic Versioning](https://semver.org/) <br>
+## Use Case:
 
+Developers, engineers, and documentation maintainers use this skill to audit, generate, score, and maintain technical documentation for software projects, APIs, operations, and developer portals.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown documents, structured scorecards, templates, and docs-as-code configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include audits, generated documentation, rubrics, maintenance plans, and proposed pipeline configuration for human review.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated runbooks, migration guides, and docs-as-code pipeline steps may include operational commands that affect real systems if executed without review.
+
+Mitigation: Treat generated commands as drafts and review scope, target environment, backups, and approvals before running them.
+
+Risk: Generated documentation can become inaccurate if project behavior, APIs, or deployment procedures differ from the skill's templates.
+
+Mitigation: Validate generated docs against the current codebase, API specifications, and operational owners before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-technical-docs)
+- [Publisher profile](https://clawhub.ai/user/1kalin)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with structured scorecards, templates, tables, and inline code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include draft operational commands, documentation pipeline configuration, and review rubrics for human validation.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

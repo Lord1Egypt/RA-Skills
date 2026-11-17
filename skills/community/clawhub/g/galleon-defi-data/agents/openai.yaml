@@ -1,0 +1,4 @@
+interface:
+  display_name: "Galleon DeFi Data"
+  short_description: "Connect and validate DeFi market data sources"
+  default_prompt: "Use $galleon-defi-data to connect official data tools and verify the identity, freshness, and methodology of the evidence."

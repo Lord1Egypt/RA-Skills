@@ -1,43 +1,59 @@
-## Description: <br>
-Fetch construction material prices from open APIs, track price trends and regional variations, and update cost databases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch construction material prices from open APIs. Track price trends, regional variations, and update cost databases.
 
-## Publisher: <br>
-[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction)
 
-## Use Case: <br>
-Construction estimators, cost managers, procurement teams, and developers use this skill to retrieve public material price data, analyze trends, adjust prices by region, and prepare cost database updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Cost database updates could apply incorrect or stale material prices to project estimates. <br>
-Mitigation: Review proposed updates before applying them and keep backups of important pricing files. <br>
-Risk: Optional API credentials may be exposed if hard-coded or shared in prompts, files, or examples. <br>
-Mitigation: Store any FRED API key outside shared artifacts and avoid including it in exported reports or conversations. <br>
+## Use Case:
 
+Developers, estimators, and construction cost teams use this skill to fetch construction material price data, analyze trends and regional factors, and prepare updates for cost databases from user-provided project or pricing data.
 
-## Reference(s): <br>
-- [Price Api on ClawHub](https://clawhub.ai/datadrivenconstruction/price-api) <br>
-- [Publisher Profile](https://clawhub.ai/user/datadrivenconstruction) <br>
-- [Data Driven Construction](https://datadrivenconstruction.io) <br>
-- [FRED API Documentation](https://fred.stlouisfed.org/docs/api/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with tables and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include proposed CSV, Excel, or JSON exports when relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence) <br>
+Risk: FRED API keys may be exposed if full request URLs or parameters are logged.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited API key and avoid logging full URLs or request parameters that include credentials.
+
+Risk: Generated price updates may change business cost records based on incomplete or stale market data.
+
+Mitigation: Validate price updates against trusted sources and back up cost datasets before applying changes.
+
+Risk: Network requests to FRED may fail, return incomplete data, or be unavailable in some environments.
+
+Mitigation: Handle empty or failed API responses explicitly and document when estimates rely on fallback or user-provided data.
+
+## Reference(s):
+
+- [Data Driven Construction](https://datadrivenconstruction.io)
+- [FRED API Documentation](https://fred.stlouisfed.org/docs/api/)
+- [Price Api on ClawHub](https://clawhub.ai/datadrivenconstruction/skills/price-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with structured tables and Python code or configuration guidance when relevant]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe optional exports to Excel, CSV, or JSON based on user-provided data.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

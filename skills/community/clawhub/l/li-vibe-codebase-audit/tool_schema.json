@@ -1,0 +1,448 @@
+{
+  "skill_name": "li_vibe_codebase-audit",
+  "version": "1.0.0",
+  "description": "Comprehensive security auditing for AI-generated codebases - Multi-agent support for OpenCode, Hermes, OpenClaw",
+  "author": "Vibe Coding Community",
+  "license": "MIT",
+  "tags": ["security", "audit", "vibe-coding", "multi-model", "ai-generated-code"],
+  
+  "tools": [
+    {
+      "name": "vibe_audit_scan",
+      "description": "Fast local security scan using pattern matching and static analysis. Detects API keys, secrets, personal data, security vulnerabilities, and code quality issues.",
+      "category": "security",
+      "priority": "high",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "project_path": {
+            "type": "string",
+            "description": "Path to the project directory to audit",
+            "required": true
+          },
+          "output_format": {
+            "type": "string",
+            "enum": ["json", "markdown", "console"],
+            "default": "json",
+            "description": "Report output format"
+          },
+          "severity_threshold": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5,
+            "default": 3,
+            "description": "Minimum severity level to report (1=info, 5=critical)"
+          },
+          "custom_patterns": {
+            "type": "object",
+            "description": "Custom security patterns to check (pattern_name: regex_pattern)",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        },
+        "required": ["project_path"]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "project": {"type": "string"},
+          "timestamp": {"type": "string", "format": "date-time"},
+          "files_scanned": {"type": "integer"},
+          "risk_score": {"type": "integer", "minimum": 0, "maximum": 100},
+          "risk_level": {"type": "string", "enum": ["SAFE", "LOW", "MEDIUM", "HIGH", "CRITICAL"]},
+          "total_findings": {"type": "integer"},
+          "findings_by_severity": {
+            "type": "object",
+            "properties": {
+              "critical": {"type": "integer"},
+              "high": {"type": "integer"},
+              "medium": {"type": "integer"},
+              "low": {"type": "integer"},
+              "info": {"type": "integer"}
+            }
+          },
+          "findings": {
+            "type": "object",
+            "description": "Detailed findings by severity"
+          },
+          "recommendations": {
+            "type": "array",
+            "items": {"type": "string"}
+          }
+        }
+      },
+      "examples": [
+        {
+          "description": "Basic security scan",
+          "input": {
+            "project_path": "/path/to/project"
+          }
+        },
+        {
+          "description": "Scan with custom patterns and markdown output",
+          "input": {
+            "project_path": "/path/to/project",
+            "output_format": "markdown",
+            "custom_patterns": {
+              "CustomAPIKey": "my_api_key_[a-zA-Z0-9]{32}"
+            }
+          }
+        }
+      ],
+      "agent_compatibility": {
+        "opencode": {
+          "auto_discovery": true,
+          "execution_mode": "python"
+        },
+        "hermes": {
+          "plugin_type": "static_analysis",
+          "trigger": "pre_commit"
+        },
+        "openclaw": {
+          "module_path": "vibe_audit_tools",
+          "function": "vibe_audit_scan"
+        },
+        "mcp": {
+          "protocol_version": "1.0",
+          "transport": "stdio"
+        }
+      }
+    },
+    {
+      "name": "vibe_audit_multi_model",
+      "description": "Multi-model AI consensus audit using Claude, GPT-4, and Gemini via OpenRouter API. Provides independent security reviews from multiple AI models.",
+      "category": "security",
+      "priority": "medium",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "project_path": {
+            "type": "string",
+            "description": "Path to the project directory to audit",
+            "required": true
+          },
+          "models": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["claude", "gpt4", "gemini"]
+            },
+            "default": ["claude", "gpt4", "gemini"],
+            "description": "AI models to use for auditing"
+          },
+          "openrouter_api_key": {
+            "type": "string",
+            "description": "OpenRouter API key (or use OPENROUTER_API_KEY env var)"
+          },
+          "consensus_mode": {
+            "type": "string",
+            "enum": ["conservative", "average"],
+            "default": "conservative",
+            "description": "How to calculate consensus risk score (conservative uses max, average uses mean)"
+          },
+          "output_format": {
+            "type": "string",
+            "enum": ["json", "markdown", "console"],
+            "default": "json",
+            "description": "Report output format"
+          }
+        },
+        "required": ["project_path"]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "timestamp": {"type": "string", "format": "date-time"},
+          "consensus_risk_score": {"type": "integer", "minimum": 0, "maximum": 100},
+          "consensus_risk_level": {"type": "string", "enum": ["SAFE", "LOW", "MEDIUM", "HIGH", "CRITICAL"]},
+          "private_data_found": {"type": "boolean"},
+          "consensus_publish_recommendation": {"type": "string", "enum": ["YES", "NO", "WITH_FIXES"]},
+          "all_findings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "severity": {"type": "string"},
+                "issue": {"type": "string"},
+                "file": {"type": "string"},
+                "explanation": {"type": "string"},
+                "detected_by": {"type": "string"}
+              }
+            }
+          },
+          "model_results": {
+            "type": "object",
+            "description": "Individual results from each AI model"
+          },
+          "models_audited": {
+            "type": "array",
+            "items": {"type": "string"}
+          }
+        }
+      },
+      "requirements": {
+        "api_key": {
+          "env_var": "OPENROUTER_API_KEY",
+          "description": "OpenRouter API key required for multi-model audit",
+          "get_key_url": "https://openrouter.ai/keys"
+        },
+        "dependencies": ["requests"]
+      },
+      "examples": [
+        {
+          "description": "Multi-model audit with default models",
+          "input": {
+            "project_path": "/path/to/project"
+          }
+        },
+        {
+          "description": "Custom model selection with conservative consensus",
+          "input": {
+            "project_path": "/path/to/project",
+            "models": ["claude", "gpt4"],
+            "consensus_mode": "conservative"
+          }
+        }
+      ],
+      "agent_compatibility": {
+        "opencode": {
+          "auto_discovery": true,
+          "execution_mode": "python",
+          "env_setup": "Set OPENROUTER_API_KEY environment variable"
+        },
+        "hermes": {
+          "plugin_type": "consensus_audit",
+          "trigger": "pre_publish"
+        },
+        "openclaw": {
+          "module_path": "vibe_audit_tools",
+          "function": "vibe_audit_multi_model"
+        },
+        "mcp": {
+          "protocol_version": "1.0",
+          "transport": "stdio"
+        }
+      }
+    },
+    {
+      "name": "vibe_audit_full",
+      "description": "Complete security workflow - automated scan followed by multi-model consensus audit. Recommended for pre-publish validation.",
+      "category": "security",
+      "priority": "high",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "project_path": {
+            "type": "string",
+            "description": "Path to the project directory to audit",
+            "required": true
+          },
+          "auto_fix_suggestions": {
+            "type": "boolean",
+            "default": true,
+            "description": "Generate fix suggestions for identified issues"
+          },
+          "output_format": {
+            "type": "string",
+            "enum": ["json", "markdown", "console"],
+            "default": "json",
+            "description": "Report output format"
+          },
+          "models": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["claude", "gpt4", "gemini"]
+            },
+            "description": "AI models for multi-model audit"
+          },
+          "openrouter_api_key": {
+            "type": "string",
+            "description": "OpenRouter API key (or use OPENROUTER_API_KEY env var)"
+          }
+        },
+        "required": ["project_path"]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "project_path": {"type": "string"},
+          "timestamp": {"type": "string", "format": "date-time"},
+          "automated_scan": {
+            "type": "object",
+            "description": "Results from automated pattern scanner"
+          },
+          "multi_model_audit": {
+            "type": "object",
+            "description": "Results from multi-model consensus audit"
+          },
+          "workflow_recommendation": {
+            "type": "object",
+            "properties": {
+              "safe_to_publish": {"type": "boolean"},
+              "action_required": {
+                "type": "array",
+                "items": {"type": "string"}
+              },
+              "priority": {"type": "string", "enum": ["low", "medium", "high", "critical"]}
+            }
+          },
+          "fix_suggestions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "file": {"type": "string"},
+                "issue": {"type": "string"},
+                "suggestion": {"type": "string"},
+                "severity": {"type": "string"}
+              }
+            }
+          }
+        }
+      },
+      "workflow": {
+        "steps": [
+          "Run automated scan",
+          "If risk_score > 20, flag for review",
+          "Run multi-model audit",
+          "Generate comprehensive report with fix suggestions"
+        ]
+      },
+      "examples": [
+        {
+          "description": "Complete audit workflow",
+          "input": {
+            "project_path": "/path/to/project",
+            "auto_fix_suggestions": true
+          }
+        }
+      ],
+      "agent_compatibility": {
+        "opencode": {
+          "auto_discovery": true,
+          "execution_mode": "python",
+          "recommended_for": "pre_publish"
+        },
+        "hermes": {
+          "plugin_type": "full_workflow",
+          "trigger": ["pre_commit", "pre_publish"]
+        },
+        "openclaw": {
+          "module_path": "vibe_audit_tools",
+          "function": "vibe_audit_full"
+        },
+        "mcp": {
+          "protocol_version": "1.0",
+          "transport": "stdio"
+        }
+      }
+    }
+  ],
+  
+  "risk_levels": {
+    "SAFE": {
+      "score_range": [0, 0],
+      "emoji": "✅",
+      "action": "Safe to publish"
+    },
+    "LOW": {
+      "score_range": [1, 19],
+      "emoji": "🟢",
+      "action": "Minor issues, review recommended"
+    },
+    "MEDIUM": {
+      "score_range": [20, 49],
+      "emoji": "🟡",
+      "action": "Review and fix issues before publishing"
+    },
+    "HIGH": {
+      "score_range": [50, 79],
+      "emoji": "🟠",
+      "action": "Significant issues, fixes required"
+    },
+    "CRITICAL": {
+      "score_range": [80, 100],
+      "emoji": "🔴",
+      "action": "DO NOT PUBLISH - severe security risks"
+    }
+  },
+  
+  "detection_categories": {
+    "secrets_and_credentials": [
+      "API keys (OpenAI, Anthropic, AWS, GitHub, etc.)",
+      "Authentication tokens and bearer tokens",
+      "Database credentials and passwords",
+      "SSH keys and certificates",
+      "OpenRouter API keys"
+    ],
+    "personal_data": [
+      "Email addresses",
+      "Phone numbers",
+      "SSN and credit card numbers",
+      "File paths revealing user directories",
+      "Obsidian vault references"
+    ],
+    "security_vulnerabilities": [
+      "Command injection risks",
+      "SQL injection patterns",
+      "Path traversal vulnerabilities",
+      "Unsafe deserialization",
+      "Weak cryptography usage",
+      "Debug mode enabled"
+    ],
+    "code_quality": [
+      "Security-related TODOs/FIXMEs",
+      "Incomplete security implementations"
+    ]
+  },
+  
+  "integration_guides": {
+    "opencode": {
+      "setup": "Add to ~/.config/opencode/skills/",
+      "usage": "Automatically discovered and available as tools",
+      "example": "Use vibe_audit_scan or vibe_audit_full directly"
+    },
+    "hermes": {
+      "setup": "Install as Hermes plugin",
+      "usage": "Configure triggers in hermes config",
+      "triggers": ["pre_commit", "pre_publish"]
+    },
+    "openclaw": {
+      "setup": "Import module: from vibe_audit_tools import vibe_audit_scan",
+      "usage": "Call functions directly in OpenClaw workflows",
+      "example": "result = vibe_audit_scan('/project/path')"
+    },
+    "mcp_generic": {
+      "setup": "Configure as MCP server in client config",
+      "usage": "Tools accessible via MCP protocol",
+      "protocol_version": "1.0"
+    }
+  },
+  
+  "environment_variables": {
+    "OPENROUTER_API_KEY": {
+      "description": "API key for OpenRouter (required for multi-model audit)",
+      "required_for": ["vibe_audit_multi_model", "vibe_audit_full"],
+      "get_from": "https://openrouter.ai/keys"
+    },
+    "VIBE_AUDIT_VERBOSE": {
+      "description": "Enable verbose output",
+      "default": "false",
+      "optional": true
+    },
+    "VIBE_AUDIT_MAX_FILE_SIZE": {
+      "description": "Maximum file size to scan in bytes",
+      "default": "1000000",
+      "optional": true
+    }
+  },
+  
+  "metadata": {
+    "repository": "https://github.com/csmoove530/vibe-codebase-audit",
+    "documentation": "See SKILL.md for detailed documentation",
+    "changelog": "Initial release supporting multi-agent integration",
+    "support": "https://github.com/csmoove530/vibe-codebase-audit/issues"
+  }
+}

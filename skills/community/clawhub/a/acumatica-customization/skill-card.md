@@ -1,42 +1,53 @@
-## Description: <br>
-Manage Acumatica ERP customization projects via the CustomizationApi web API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Acumatica ERP customization projects through the CustomizationApi web API for export, import, publish, validation, deletion, status checks, and maintenance-mode workflows.
 
-## Publisher: <br>
-[allanwei](https://clawhub.ai/user/allanwei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[allanwei](https://clawhub.ai/user/allanwei)
 
-## Use Case: <br>
-Developers and Acumatica administrators use this skill to list, export, import, validate, publish, unpublish, delete, and check customization projects, and to toggle maintenance mode during customization lifecycle work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help run ERP-changing operations such as import, publish, unpublish, delete, and maintenance-mode commands. <br>
-Mitigation: Require explicit human approval before those commands, especially for production systems or all-tenant scope. <br>
-Risk: The helper uses local Acumatica credentials and session-based authentication. <br>
-Mitigation: Use HTTPS, least-privileged Acumatica accounts, keep acumatica.conf out of source control, and restrict it with chmod 600. <br>
+## Use Case:
 
+Developers and ERP administrators use this skill to automate Acumatica customization project lifecycle tasks across development, promotion, backup, publication, and maintenance workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/allanwei/acumatica-customization) <br>
-- [README](README.md) <br>
-- [Skill definition](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce commands that call Acumatica REST endpoints and require local acumatica.conf credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Commands can make production-impacting Acumatica changes, including publish, unpublish, delete, import, and maintenance-mode actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target instance and tenant before execution, use a least-privileged Customizer account, and review planned operations before applying them to production.
+
+Risk: Credentials may be exposed if the Acumatica instance URL uses plaintext HTTP or if the local configuration file is not protected.
+
+Mitigation: Use a trusted HTTPS Acumatica URL, store credentials only in a protected acumatica.conf file, and restrict local file permissions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/allanwei/skills/acumatica-customization)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide commands that call Acumatica REST endpoints and read local configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

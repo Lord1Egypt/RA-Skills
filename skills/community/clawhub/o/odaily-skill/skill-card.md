@@ -1,45 +1,66 @@
-## Description: <br>
-Odaily Skill helps an agent retrieve and summarize live crypto news, market data, upcoming events, Polymarket whale-trade signals, and raw Odaily API content for decision-oriented market analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Odaily Skill helps agents retrieve and structure Odaily crypto news, market data, upcoming events, Polymarket whale signals, and raw API module outputs for crypto-market analysis.
 
-## Publisher: <br>
-[odaily](https://clawhub.ai/user/odaily) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[odaily](https://clawhub.ai/user/odaily)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent for structured crypto market briefings, live news summaries, macro and event calendars, prediction-market whale signals, and API-oriented source content for further analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run Python tools, install Python dependencies, and make live network calls for crypto news and market-data analysis. <br>
-Mitigation: Review and pin requirements before installation, and run the skill only in environments where live network access for market and news sources is acceptable. <br>
-Risk: Broad auto-invocation from generic market or news trigger words could cause the agent to run the skill when the user intended a different workflow. <br>
-Mitigation: Configure invocation rules narrowly and confirm intent before using the skill in sensitive environments. <br>
-Risk: Optional Supabase configuration can write whale-trade records to a user-controlled database. <br>
-Mitigation: Configure Supabase only when persistent storage is intended, and use scoped credentials for that database. <br>
+## Use Case:
 
+External crypto-market users and developers use this skill to ask an agent for current Odaily news, crypto market analysis, upcoming event watchlists, Polymarket whale-trade signals, and raw article or newsflash data. Outputs are informational and should not be treated as investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/odaily/odaily-skill) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/odaily) <br>
-- [Odaily](https://www.odaily.news) <br>
-- [Odaily newsflash API](https://web-api.odaily.news/newsflash/page) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with structured sections, tables, links, and occasional inline shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include live-data caveats and investment-advice disclaimers where the artifact behavior specifies them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.10 (source: ClawHub release evidence; artifact frontmatter reports 4.0.0) <br>
+Risk: The invocation pattern can discover and run local code from an unintended similarly named directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the skill into a controlled path and invoke the expected artifact directory directly instead of relying on broad path discovery.
+
+Risk: The skill can reinstall unpinned Python dependencies during use.
+
+Mitigation: Pin dependencies and install them in a managed virtual environment before deployment.
+
+Risk: The skill makes outbound calls to crypto, news, and market-data APIs, and may write whale-trade data to Supabase when credentials are configured.
+
+Mitigation: Run in an isolated environment with network access reviewed and only configure Supabase credentials when persistence is intended.
+
+Risk: Crypto-market outputs may be time-sensitive, incomplete, or misleading if upstream APIs fail or markets move quickly.
+
+Mitigation: Treat outputs as informational, verify important signals against primary sources, and avoid using the skill as investment advice.
+
+## Reference(s):
+
+- [Odaily Skill on ClawHub](https://clawhub.ai/odaily/skills/odaily-skill)
+- [Odaily](https://www.odaily.news)
+- [Odaily Newsflash API](https://web-api.odaily.news/newsflash/page)
+- [CoinGecko](https://www.coingecko.com)
+- [Polymarket](https://polymarket.com)
+- [Odaily Seer](https://t.me/Odaily_Seer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with inline tables, source links, timestamps, and Python command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes live-data summaries, source links, market analysis, and non-investment-advice disclaimers.]
+
+## Skill Version(s):
+
+1.0.10 (source: server release metadata; artifact frontmatter reports 4.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

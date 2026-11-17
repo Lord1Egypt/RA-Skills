@@ -1,34 +1,78 @@
 #!/usr/bin/env node
 
-const constants = require("../config/constants");
-const key = require("../utils/key");
-const log = require("../utils/log");
 const search = require("../api/search");
+const key = require("../utils/key");
 const utils = require("../utils/utils");
 const validator = require("../validate/keyword");
+const { parseArgs, buildHelp } = require("../utils/args");
+const {
+  emitError,
+  emitEmpty,
+  buildSuccessEnvelope,
+  finishSuccess,
+  emitUncaught,
+} = require("../utils/output");
+
+const SCHEMA = {
+  flags: {
+    "--keyword": {
+      alias: "-k",
+      key: "keyword",
+      type: "string",
+      required: true,
+      desc: "搜索关键词",
+    },
+    "--type": {
+      alias: "-t",
+      key: "type",
+      type: "number",
+      default: 0,
+      transform: (v) => Number(v),
+      desc: "内容类型, 0: 全部(默认), 1: 视频, 2: 图文",
+    },
+    "--sort": {
+      alias: "-s",
+      key: "sort",
+      type: "number",
+      default: 0,
+      transform: (v) => Number(v),
+      desc: "排序规则, 0: 综合(默认), 1: 最新, 2: 最多点赞, 3: 最多评论, 4: 最多收藏",
+    },
+    "--time": {
+      alias: "-i",
+      key: "time",
+      type: "number",
+      default: 0,
+      transform: (v) => Number(v),
+      desc: "发布时间, 0: 全部(默认), 1: 一天内, 2: 一周内, 3: 半年内",
+    },
+    "--limit": {
+      alias: "-l",
+      key: "limit",
+      type: "number",
+      default: 20,
+      transform: (v) => Number(v),
+      desc: "搜索数量, 1-10000；包月 Token 实际最多 40",
+    },
+  },
+  positionalKey: "keyword",
+};
+
+const AUTH_MESSAGE =
+  "GUAIKEI_API_TOKEN 未配置或格式无效。须为 16-256 位字母、数字、下划线或连字符; 可通过 https://www.guaikei.com 自助开通";
 
 function printHelp() {
-  console.log(`
-用法: node src/xiaohongshu/search-cli.js <关键词> [选项]
-
-选项:
-  --keyword -k \t<关键词> \t搜索关键词
-  --type -t \t<类型> \t内容类型, 0: 全部(默认), 1: 视频, 2: 图文
-  --sort -s \t<排序> \t排序规则, 0: 综合(默认), 1: 最新, 2: 最多点赞, 3: 最多评论, 4: 最多收藏
-  --limit -l \t<数量> \t搜索数量 (默认 10, 最大 60)
-  --output -o \t<格式> \t输出格式, json, markdown (默认 json)
-  --help -h \t显示帮助信息
-
-示例1: node src/xiaohongshu/search-cli.js AI
-示例2: node src/xiaohongshu/search-cli.js "AI 模型"
-示例3: node src/xiaohongshu/search-cli.js --keyword AI --type 0 --sort 0 --limit 10 --output json
-示例4: node src/xiaohongshu/search-cli.js --keyword "AI 模型" --type 1 --sort 2 --limit 20 --output markdown
-
-注意: 
-  - 关键词建议 2-50 个汉字，避免特殊符号
-  - 请确保环境变量 GUAIKEI_API_TOKEN 已配置
-  - 所有参数都会自动清洗和验证
-`);
+  process.stderr.write(
+    buildHelp(SCHEMA, "node src/xiaohongshu/search-cli.js <关键词> [选项]", [
+      'node src/xiaohongshu/search-cli.js --keyword "露营装备"',
+      "node src/xiaohongshu/search-cli.js --keyword 露营装备 --type 2 --sort 2 --time 2 --limit 20",
+    ]) +
+      "\n\n注意:\n" +
+      "  - 关键词 1-50 个字符，不能是链接，不含 < > \" '\n" +
+      "  - 类型、排序、时间和数量若不在允许范围内，命令会直接失败，不会改成默认值后继续搜索\n" +
+      "  - 数量 1-10000；包月 Token 实际最多 40，超限返回 PLAN_LIMIT\n" +
+      "  - 关键词以 - 开头时写成 --keyword=-AI，或在 -- 后面写位置参数\n",
+  );
 }
 
 async function main() {
@@ -36,146 +80,147 @@ async function main() {
   const args = process.argv.slice(2);
   if (args.length === 0) {
     printHelp();
+    emitError("search", "INVALID_ARGS", "缺少命令参数", 2, startTime);
     return;
   }
 
-  let keyword = "",
-    type = 0,
-    sort = 0,
-    limit = 10,
-    output = "json";
-  args.forEach((arg, index) => {
-    if (arg === "--keyword" || arg === "-k") {
-      keyword = args[index + 1] || "";
-    } else if (arg === "--type" || arg === "-t") {
-      type = args[index + 1] || 0;
-      type = Number(type);
-    } else if (arg === "--sort" || arg === "-s") {
-      sort = args[index + 1] || 0;
-      sort = Number(sort);
-    } else if (arg === "--limit" || arg === "-l") {
-      limit = args[index + 1] || 10;
-      limit = Number(limit);
-    } else if (arg === "--output" || arg === "-o") {
-      output = args[index + 1] || "json";
-    } else if (arg === "--help" || arg === "-h") {
-      printHelp();
-      process.exit(0);
-    } else if (arg.startsWith("-") === false && keyword === "") {
-      keyword = arg;
-    }
-  });
-  if (keyword === "") {
-    utils.printError(`未提供关键词`);
+  let parsed;
+  try {
+    parsed = parseArgs(args, SCHEMA);
+  } catch (error) {
+    utils.printError(`参数解析错误: ${error.message}`);
+    printHelp();
+    emitError(
+      "search",
+      "INVALID_ARGS",
+      `参数解析错误: ${error.message}`,
+      2,
+      startTime,
+    );
+    return;
+  }
+  if (parsed._help) {
     printHelp();
     return;
   }
 
+  let { keyword, type, sort, time, limit } = parsed;
+  const keywordRaw = keyword;
+
   utils.printBanner();
-  utils.printInfo(`原始关键词: ${keyword}`);
-  const isRight = validator.isKeywordValid(keyword);
-  if (!isRight) {
+  utils.printInfo(`原始关键词: ${keywordRaw}`);
+  keyword = validator.normalizeKeyword(keyword);
+  if (!validator.isKeywordValid(keyword)) {
+    emitError(
+      "search",
+      "INVALID_KEYWORD",
+      "关键词不合法: 需 1-50 个字符, 不能是链接, 不含 < > \" '",
+      1,
+      startTime,
+      {
+        command: "search",
+        keyword_raw: keywordRaw,
+        keyword,
+        type,
+        sort,
+        time,
+        limit,
+      },
+    );
     return;
   }
-  keyword = validator.cleanKeyword(keyword);
   utils.printInfo(`清洗后关键词: ${keyword}`);
-
-  [type, sort, limit, output] = validator.optionFormat(
-    type,
-    sort,
-    limit,
-    output,
-  );
+  try {
+    [type, sort, time, limit] = validator.assertSearchOptions(
+      type,
+      sort,
+      time,
+      limit,
+    );
+  } catch (error) {
+    utils.printError(error.message);
+    emitError("search", "INVALID_ARGS", error.message, 2, startTime, {
+      command: "search",
+      keyword_raw: keywordRaw,
+      keyword,
+      type,
+      sort,
+      time,
+      limit,
+    });
+    return;
+  }
   utils.printInfo(
-    `内容类型: ${type}, 排序规则: ${sort}, 数量: ${limit}, 输出格式: ${output}`,
+    `内容类型: ${type}, 排序规则: ${sort}, 发布时间: ${time}, 数量: ${limit}`,
   );
 
   const token = key.skillKey(process.env.GUAIKEI_API_TOKEN);
+  if (token === "") {
+    emitError("search", "AUTH_REQUIRED", AUTH_MESSAGE, 3, startTime, {
+      command: "search",
+      keyword_raw: keywordRaw,
+      keyword,
+      type,
+      sort,
+      time,
+      limit,
+    });
+    return;
+  }
+
+  const searchRequest = {
+    command: "search",
+    keyword_raw: keywordRaw,
+    keyword,
+    type,
+    sort,
+    time,
+    limit,
+  };
   let searchTask = null;
   try {
-    const status = await search.createSearchTask(
+    await search.createSearchTask(token, keyword, type, sort, time, limit);
+    utils.printSuccess("搜索任务创建成功, 正在搜索中...");
+    searchTask = await search.getSearchTask(
       token,
       keyword,
       type,
       sort,
+      time,
       limit,
     );
-    if (status.errcode !== 0) {
-      throw new Error(
-        `搜索任务创建时, 遇到未知错误, 请反馈给开发者 ${status} - ${Date.now()}`,
-      );
-    }
-    utils.printSuccess(`搜索任务创建成功, 正在搜索中...`);
-
-    searchTask = await search.getSearchTask(token, keyword, type, sort, limit);
   } catch (error) {
-    const errorOutput = {
-      status: "error",
-      keyword: keyword,
-      message: error.message,
-      error_code: error.code || "UNKNOWN",
-      type: type,
-      sort: sort,
-      limit: limit,
-      output_format: output,
-      timestamp: new Date().toLocaleString(),
-      results: [],
-    };
-    console.log(JSON.stringify(errorOutput, null, 2));
-    return;
-  }
-  if (!searchTask || !Array.isArray(searchTask) || searchTask.length === 0) {
-    utils.printError(`搜索任务没有返回结果, 请稍后重试或联系开发者`);
-    const emptyOutput = {
-      status: "empty",
-      keyword: keyword,
-      message: "没有找到匹配的视频或图文内容",
-      error_code: "NO_MATCH",
-      type: type,
-      sort: sort,
-      limit: limit,
-      output_format: output,
-      timestamp: new Date().toLocaleString(),
-      results: [],
-    };
-    console.log(JSON.stringify(emptyOutput, null, 2));
+    utils.printError(`搜索失败: ${error.message}`);
+    emitError(
+      "search",
+      error.code || "UNKNOWN",
+      error.message,
+      error.name === "AuthError" ? 3 : 1,
+      startTime,
+      searchRequest,
+    );
     return;
   }
 
-  // 输出搜索结果
-  const finalOutput = {
-    status: "success",
-    keyword: keyword,
-    message: "搜索任务完成",
-    type: type,
-    sort: sort,
-    limit: limit,
-    output_format: output,
-    total: searchTask.length,
-    timestamp: new Date().toLocaleString(),
-    openclaw_metadata: {
-      skill_version: constants.VERSION,
-      runtime_version: process.versions.node,
-      execution_time: Date.now() - startTime,
-    },
-    results: searchTask,
-  };
-  if (output === "markdown") {
-    const message = validator.formatMessage(keyword, searchTask);
-    utils.printInfo(message);
-    utils.printSuccess(`搜索任务完成, 共返回 ${finalOutput.total} 条结果`);
-  } else {
-    console.log(JSON.stringify(finalOutput, null, 2));
-    utils.printSuccess(`搜索任务完成, 共返回 ${finalOutput.total} 条结果`);
+  if (!Array.isArray(searchTask) || searchTask.length === 0) {
+    utils.printInfo("没有找到匹配的笔记");
+    emitEmpty("没有找到匹配的笔记", startTime, searchRequest);
+    return;
   }
 
-  await log.taskWrite(
-    `${startTime}_${keyword}_${type}_${sort}_${limit}_search.json`,
-    JSON.stringify(finalOutput, null, 2),
+  const finalOutput = buildSuccessEnvelope(
+    "搜索任务完成",
+    startTime,
+    searchRequest,
+    searchTask,
   );
+  await finishSuccess(finalOutput, {
+    logFilename: `${startTime}_${keyword}_${type}_${sort}_${time}_${limit}_search.json`,
+    stderrMessage: `搜索任务完成, 共返回 ${finalOutput.results.length} 条结果`,
+  });
 }
 
 main().catch((error) => {
-  utils.printError(error);
-  process.exit(1);
+  utils.printError(error.message || String(error));
+  emitUncaught("search", error);
 });

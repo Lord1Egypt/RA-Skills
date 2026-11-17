@@ -1,47 +1,70 @@
-## Description: <br>
-Amazon Store Report helps agents request, poll, download, and decompress Amazon Seller and Vendor reports such as inventory, orders, sales traffic, FBA, finance, and Brand Analytics reports through an authorized LinkFox Amazon store connection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieves and downloads Amazon Seller Central store reports for inventory, orders, sales and traffic, FBA, settlements, returns, Brand Analytics, and related structured business data.
 
-## Publisher: <br>
-[linkfox-ai](https://clawhub.ai/user/linkfox-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linkfox-ai](https://clawhub.ai/user/linkfox-ai)
 
-## Use Case: <br>
-External sellers, vendors, and agents use this skill to retrieve structured Amazon store reports for inventory, orders, sales, traffic, FBA, finance, returns, and Brand Analytics workflows after store authorization is handled by the dependency skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can retrieve sensitive seller, business, and customer report data. <br>
-Mitigation: Confirm the seller, marketplace, date range, and report type before execution, and keep API keys, OAuth tokens, and report contents out of chats and logs. <br>
-Risk: Downloaded reports may be exposed through the default short-lived localhost file server or left in temporary storage. <br>
-Mitigation: Disable local HTTP serving for sensitive reports when possible, share only local paths with intended users, and delete temporary report files after use. <br>
-Risk: Automatic feedback submissions could include private business or customer details if copied into feedback content. <br>
-Mitigation: Review feedback content before submission and remove seller identifiers, customer data, credentials, and private report values. <br>
+## Use Case:
 
+External Amazon sellers and their agents use this skill to request, poll, download, decompress, and inspect Amazon Seller Central reports over selected marketplaces and date ranges. It is suited for bulk operational exports rather than small real-time order, product, or price lookups.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/linkfox-ai/linkfox-amazon-store-report) <br>
-- [API Reference](references/api.md) <br>
-- [Report Types](references/report-types.md) <br>
-- [Report Request Schemas](references/report-requests/README.md) <br>
-- [Amazon SP-API Report Type Values](https://developer-docs.amazon.com/sp-api/docs/report-type-values) <br>
-- [Amazon Selling Partner API Report Schemas](https://github.com/amzn/selling-partner-api-models/tree/main/schemas/reports) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON report metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local report files, file URIs, and optional short-lived localhost download links for extracted report data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill can handle sensitive Amazon seller data, including API keys, seller identifiers, report requests, and downloaded business reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in environments where LinkFox is trusted for that data, and review access controls before using it with real seller accounts.
+
+Risk: Downloaded reports may be served through a temporary unauthenticated local HTTP endpoint.
+
+Mitigation: Keep report serving bound to 127.0.0.1, keep serve durations short, and disable the local HTTP download server when a file path is sufficient.
+
+Risk: Feedback behavior can send task context to LinkFox.
+
+Mitigation: Disable automatic feedback or require explicit user approval before sending feedback that may contain seller or report context.
+
+Risk: The artifact includes account and payment onboarding flows beyond the narrow report retrieval task.
+
+Mitigation: Use those flows only after clear user confirmation and review whether they are appropriate for the deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linkfox-ai/skills/linkfox-amazon-store-report)
+- [Publisher profile](https://clawhub.ai/user/linkfox-ai)
+- [Artifact README](artifact/README.md)
+- [API reference](artifact/references/api.md)
+- [Report types](artifact/references/report-types.md)
+- [Common report types](artifact/references/report-types-basic.md)
+- [Report request index](artifact/references/report-requests/README.md)
+- [Report type request index](artifact/references/report-requests/types/README.md)
+- [Amazon SP-API report type values](https://developer-docs.amazon.com/sp-api/docs/report-type-values)
+- [Amazon Selling Partner API report schemas](https://github.com/amzn/selling-partner-api-models/tree/main/schemas/reports)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON results; successful report runs save decompressed report files locally and may provide a temporary local download URL.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Report output can include report IDs, document IDs, local file paths, file URIs, file names, file size, compression metadata, and short-lived local HTTP download details.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

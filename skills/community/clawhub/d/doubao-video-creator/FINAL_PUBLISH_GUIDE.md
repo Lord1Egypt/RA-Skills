@@ -30,7 +30,7 @@ git push -u origin main
 **推送时会提示输入凭证**：
 ```
 Username: 465367@qq.com
-Password: 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
+Password: REDACTED-SECRET
 ```
 
 **注意**：输入密码时不会显示字符，这是正常的！

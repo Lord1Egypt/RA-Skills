@@ -1,47 +1,60 @@
-## Description: <br>
-Monitors websites, APIs, servers, and scheduled tasks through Watch.dog, including status checks, uptime history, resource management, and public status page updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors websites, APIs, and cron jobs using Watch.dog, including status checks, uptime review, monitor creation, watchdog setup, and monitored-resource management.
 
-## Publisher: <br>
-[Robinson0594](https://clawhub.ai/user/Robinson0594) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[robinson0594](https://clawhub.ai/user/robinson0594)
 
-## Use Case: <br>
-External users and developers use this skill to connect an agent to Watch.dog so they can check monitor and watchdog status, review uptime history, create monitoring resources, pause or resume monitors, delete resources after confirmation, and configure public tracker pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores the Watch.dog API key in a local .env file in the skill directory. <br>
-Mitigation: Use a revocable, least-privilege API key if available and restrict access to the local skill directory. <br>
-Risk: Changing credentials triggers an immediate account monitor listing to test the connection. <br>
-Mitigation: Install only when this automatic account query is acceptable for the target Watch.dog account. <br>
-Risk: The skill can create, pause, resume, delete, and publish monitoring resources through the Watch.dog API. <br>
-Mitigation: Review account-changing actions before approval, and require explicit confirmation before deletion operations. <br>
-Risk: A custom WATCHDOG_API_URL could send credentials and tool requests to a non-official server. <br>
-Mitigation: Keep the API URL set to the official Watch.dog endpoint unless you intentionally trust another server. <br>
+## Use Case:
 
+External users, developers, and operations teams use this skill to connect an agent to Watch.dog for uptime monitoring, heartbeat watchdogs, status summaries, and monitor or status-page management.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Robinson0594/oda-monitor) <br>
-- [Publisher Profile](https://clawhub.ai/user/Robinson0594) <br>
-- [Watch.dog](https://watch.dog) <br>
-- [Watch.dog MCP API endpoint](https://api.watch.dog/api/mcp_server.php) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, API Calls, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown summaries, tool results, setup instructions, and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Watch.dog account data returned by remote API calls; some actions can create, pause, resume, delete, or publish monitoring resources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, release metadata) <br>
+Risk: The skill requires a Watch.dog API key that can access and manage monitoring resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use environment-injected secrets where possible, avoid committing skill-local .env files, and prefer narrowly scoped API keys if Watch.dog supports them.
+
+Risk: The skill can delete monitors or watchdogs and change public status-page configuration.
+
+Mitigation: Require explicit user confirmation before deletions or public status-page changes and manually review the affected monitor, watchdog, or page before execution.
+
+Risk: Changing WATCHDOG_API_URL can direct credentials and tool calls to a non-default endpoint.
+
+Mitigation: Keep WATCHDOG_API_URL pinned to the official Watch.dog endpoint unless the alternative endpoint is fully trusted.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/robinson0594/skills/oda-monitor)
+- [Publisher Profile](https://clawhub.ai/user/robinson0594)
+- [Watch.dog](https://watch.dog)
+- [Watch.dog MCP API Endpoint](https://api.watch.dog/api/mcp_server.php)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text responses with configuration values, status summaries, and command or endpoint instructions when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include monitor IDs, public status-page links, uptime summaries, or watchdog endpoint URLs returned by Watch.dog.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

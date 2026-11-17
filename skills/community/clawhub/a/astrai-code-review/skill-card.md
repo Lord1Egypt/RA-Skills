@@ -1,41 +1,54 @@
-## Description: <br>
-AI-powered code review with intelligent model routing -- saves 40%+ vs always using the most expensive model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered code review with intelligent model routing that returns structured findings while optimizing model cost.
 
-## Publisher: <br>
-[beee003](https://clawhub.ai/user/beee003) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[beee003](https://clawhub.ai/user/beee003)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to review code diffs, staged changes, pull requests, or individual files for bugs, quality issues, and security concerns. It returns structured findings with severity, location, summary, and concrete remediation guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Reviewed code and diffs are sent to Astrai for routing and model inference. <br>
-Mitigation: Run reviews only on code that policy allows you to transmit to Astrai and selected providers; avoid sending sensitive private code unless approved. <br>
-Risk: Configured provider API keys can be forwarded to Astrai in BYOK mode. <br>
-Mitigation: Prefer hosted routing with only ASTRAI_API_KEY, or use restricted low-quota provider keys dedicated to this service and unset unrelated provider keys before running reviews. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/beee003/astrai-code-review) <br>
-- [Astrai Service](https://as-trai.com) <br>
-- [Astrai Chat Completions Endpoint](https://as-trai.com/v1/chat/completions) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to review diffs, pull requests, or individual files for bugs, security issues, style concerns, and suggested fixes. It supports standard, strict, and security-focused review modes.
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance, configuration] <br>
-**Output Format:** [Structured JSON issues with a summary, model, cost, and savings metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings include file, line, severity, message, and suggested fix.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Reviewed code, diffs, and optional provider API keys can be sent to Astrai and routed to third-party model providers.
+
+Mitigation: Use tightly scoped Astrai and provider keys, start with non-sensitive repositories, and confirm the credential disclosure model before enabling BYOK routing.
+
+Risk: A configurable ASTRAI_BASE_URL can redirect code and credentials to a different endpoint.
+
+Mitigation: Do not set ASTRAI_BASE_URL unless the destination is fully trusted, and avoid running the skill in environments that contain unrelated LLM provider keys.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/beee003/skills/astrai-code-review)
+- [Astrai homepage](https://as-trai.com)
+- [Astrai chat completions endpoint](https://as-trai.com/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance]
+
+**Output Format:** [Structured JSON review results with issue lists, severity, summary text, model used, cost, and savings fields.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ASTRAI_API_KEY; optional provider keys enable BYOK routing; REVIEW_STRICTNESS controls standard, strict, or security review mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

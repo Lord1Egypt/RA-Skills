@@ -1,41 +1,57 @@
-## Description: <br>
-Clawng Term Memory version-controls OpenClaw agent identity, memory, operating rules, and installed skills in git, with commands to commit, push, inspect history, diff files, revert changes, and gather multi-agent memories for synthesis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clawng Term Memory helps OpenClaw agents persist and restore core knowledge by version-controlling memory files and pushing changes to a private Git repository.
 
-## Publisher: <br>
-[davidharket](https://clawhub.ai/user/davidharket) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[davidharket](https://clawhub.ai/user/davidharket)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to persist and restore agent memory across machines by committing core knowledge files to a private GitHub repository. It also supports multi-machine memory collection for a daily synthesis workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill backs up agent memory, rules, identity files, and installed skills to a GitHub repository, which can expose sensitive agent context if the repository or credentials are misconfigured. <br>
-Mitigation: Use a private repository, least-privilege SSH or repo-scoped credentials, review diffs before pushing, and keep secrets out of tracked files. <br>
-Risk: Automatic commit, push, and synthesis workflows can preserve or propagate incorrect or sensitive memory with limited review safeguards. <br>
-Mitigation: Require human review for staged changes and avoid the automatic merge or synthesis flow until review controls are in place. <br>
-Risk: The merge workflow writes collected memory to /tmp and prints it to stdout, which can disclose memory contents on shared or logged systems. <br>
-Mitigation: Run the merge workflow only in trusted environments, restrict access to logs and temporary files, and clean up staging output after review. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/davidharket/clawng-term-memory) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to preserve agent identity, memory, operating rules, and installed skills across machines through Git-backed commits and pushes. It also supports reviewing history, diffing memory files, reverting previous versions, and aggregating per-machine memories for synthesis.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with bash commands; shell scripts produce git commits, git history output, and memory staging text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May commit and push tracked OpenClaw knowledge files and write aggregated MEMORY.md contents to /tmp for synthesis.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can push sensitive agent state and core knowledge files to a remote Git repository.
+
+Mitigation: Review memory files before enabling the skill, use a private repository, and configure least-privilege credentials.
+
+Risk: The merge workflow aggregates and displays memory content from all configured agent branches.
+
+Mitigation: Run the merge workflow only when cross-agent memory aggregation is intended and the configured remote is trusted.
+
+Risk: Stored Git credentials could expose repository access if the workspace is compromised.
+
+Mitigation: Prefer SSH or a secure credential manager and avoid git credential.helper store.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/davidharket/skills/clawng-term-memory)
+- [Publisher profile](https://clawhub.ai/user/davidharket)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May commit selected agent memory and skill files, push to an agent-specific Git branch, and print aggregated memory content during merge collection.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

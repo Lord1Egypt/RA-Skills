@@ -5,10 +5,6 @@
 		"description": "Query basic account information. Including account ID, email, direct superior, department information, etc.",
 		"parameters": {
 			"type": "object",
-			"oneOf": [
-		        { "required": ["idList"] },
-		        { "required": ["nameList"] }
-		      ],
 			"properties": {
 				"idList": {
 					"type": "array",
@@ -25,6 +21,14 @@
 						"description": "Account name"
 					},
 					"description": "Account name list"
+				},
+				"pageIndex": {
+					"type": "integer",
+					"description": "Page number, starting from 1, default 1"
+				},
+				"pageSize": {
+					"type": "integer",
+					"description": "Number of items per page"
 				}
 			}
 		}

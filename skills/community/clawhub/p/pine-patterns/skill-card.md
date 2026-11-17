@@ -1,39 +1,53 @@
-## Description: <br>
-Pine Patterns provides a Pine Script v5/v6 indicator scaffold and reusable patterns, with guidance to verify current TradingView syntax before generating code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pine Script v5/v6 indicator scaffold and patterns. Provides structure guidance and triggers doc-researcher for current syntax verification. Use when developing TradingView indicators.
 
-## Publisher: <br>
-[zhengxinjipai](https://clawhub.ai/user/zhengxinjipai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zhengxinjipai](https://clawhub.ai/user/zhengxinjipai)
 
-## Use Case: <br>
-Developers and trading-indicator builders use this skill to scaffold TradingView Pine Script indicators with consistent inputs, session handling, state management, moving averages, VWAP patterns, and defensive checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Mozilla Public License 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to consult configured documentation tools for syntax checks, which may expose proprietary trading logic to those tools. <br>
-Mitigation: Confirm trust boundaries for doc-researcher or Ref MCP tooling before using the skill with proprietary strategies or indicator code. <br>
-Risk: The artifact includes an author-local reference path that is not available to other users. <br>
-Mitigation: Treat the path as an illustrative example and replace it with a packaged or generic reference when adapting the skill. <br>
+## Use Case:
 
+Developers and engineers use this skill to draft and review TradingView Pine Script indicators with reusable patterns for inputs, sessions, VWAP, moving averages, theming, and error handling.
 
-## Reference(s): <br>
-- [Pine Patterns ClawHub release page](https://clawhub.ai/zhengxinjipai/pine-patterns) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown with Pine Script code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompts the agent to verify current Pine Script syntax with configured documentation tools before generating code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and skill.json) <br>
+Risk: Generated Pine Script examples may preserve the artifact's author name, filename convention, MPL-2.0 header, timezone, or US-market session defaults.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated scripts and replace author, license, filename, timezone, and market-session settings before using them for personal or client work.
+
+Risk: TradingView Pine Script syntax and function behavior can change across v5 and v6.
+
+Mitigation: Verify current Pine Script reference material before relying on generated indicator code.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhengxinjipai/skills/pine-patterns)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Markdown, Configuration]
+
+**Output Format:** [Markdown with Pine Script code blocks and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompts the agent to verify current Pine Script syntax and deprecations before generating code.]
+
+## Skill Version(s):
+
+1.0.0 (source: skill.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

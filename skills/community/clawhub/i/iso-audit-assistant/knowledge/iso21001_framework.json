@@ -1,0 +1,35 @@
+{
+  "standard": "ISO 21001:2018 教育组织管理体系",
+  "clause_keywords": {
+    "4": ["组织环境", "学习者", "相关方"],
+    "5": ["领导作用", "教育方针", "学习者导向"],
+    "6": ["策划", "教育目标", "风险机遇"],
+    "7": ["支持", "能力", "师资", "意识", "沟通"],
+    "8": ["运行", "教育过程", "课程设计", "学习者评价"],
+    "9": ["绩效评价", "学习者满意度", "内部审核", "管理评审"],
+    "10": ["改进", "不符合", "纠正措施"]
+  },
+  "high_voltage_lines": [
+    {"id": "hv-ed-learner", "name_zh": "学习者导向与权益", "name_en": "Learner focus",
+     "keywords_zh": ["学习者", "学员", "学生", "权益", "满意度"], "keywords_en": ["learner", "student"],
+     "description_zh": "须以学习者为中心，保障其权益并提升满意度。",
+     "compliance_statement": ["已建立学习者权益保障机制", "持续测量学习者满意度"]},
+    {"id": "hv-ed-process", "name_zh": "教育/培训过程控制", "name_en": "Educational process",
+     "keywords_zh": ["教学过程", "课程设计", "培训过程", "授课"], "keywords_en": ["curriculum", "training process"],
+     "description_zh": "须对课程设计、交付与学习者评价实施受控。",
+     "compliance_statement": ["已建立课程设计与评审流程", "教学过程有记录可查"]},
+    {"id": "hv-ed-competence", "name_zh": "师资能力与评价", "name_en": "Educator competence",
+     "keywords_zh": ["师资", "教师能力", "教员", "资格"], "keywords_en": ["faculty", "trainer"],
+     "description_zh": "教学人员须具备相应能力与资格，并定期评价。",
+     "compliance_statement": ["已建立师资能力标准", "教员经评价授权"]}
+  ],
+  "required_procedures": [
+    {"id": "GP-DOC", "name": "文件控制程序", "clause": "7.5", "match_keywords": ["文件控制"], "priority": "high"},
+    {"id": "GP-REC", "name": "记录控制程序", "clause": "7.5", "match_keywords": ["记录控制"], "priority": "high"},
+    {"id": "GP-CAP", "name": "不合格与纠正措施控制程序", "clause": "10.2", "match_keywords": ["纠正措施"], "priority": "high"},
+    {"id": "GP-IA", "name": "内部审核程序", "clause": "9.2", "match_keywords": ["内部审核"], "priority": "high"},
+    {"id": "GP-MR", "name": "管理评审程序", "clause": "9.3", "match_keywords": ["管理评审"], "priority": "high"},
+    {"id": "SP-ED-001", "name": "课程设计与开发控制程序", "clause": "8.3", "match_keywords": ["课程设计", "教学设计"], "priority": "high"},
+    {"id": "SP-ED-002", "name": "教学/培训服务提供控制程序", "clause": "8.4", "match_keywords": ["教学过程", "培训过程", "授课"], "priority": "high"}
+  ]
+}

@@ -1,41 +1,54 @@
-## Description: <br>
-Generate AI videos from text or image inputs using Google Veo 3 and Veo 3.1 through the Media.io OpenAPI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate cinematic-quality AI videos from text and image inputs using Google Veo 3.1 through the Media.io OpenAPI.
 
-## Publisher: <br>
-[wondershare-boop](https://clawhub.ai/user/wondershare-boop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wondershare-boop](https://clawhub.ai/user/wondershare-boop)
 
-## Use Case: <br>
-Developers and agent users use this skill to submit Google Veo video-generation jobs to Media.io, check available credits, and poll task results with their own Media.io API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Media.io OpenAPI key to call the hosted service. <br>
-Mitigation: Use a scoped or dedicated API key when possible, keep it in the API_KEY environment variable or pass it explicitly at runtime, and rotate it if exposed. <br>
-Risk: Video generation requests and task polling are delegated to Media.io's OpenAPI service. <br>
-Mitigation: Review Media.io account controls, data-retention settings, and approval practices before submitting sensitive prompts, images, or production workloads. <br>
+## Use Case:
 
+Developers and external creators use this skill to connect an agent to Media.io for Google Veo image-to-video generation, credit checks, and task-result polling.
 
-## Reference(s): <br>
-- [Media.io OpenAPI documentation](https://platform.media.io/docs/) <br>
-- [ClawHub skill page](https://clawhub.ai/wondershare-boop/mediaio-google-veo-video-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Python examples and JSON API response payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Media.io OpenAPI key supplied through API_KEY or an explicit api_key argument.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: Prompts, image URLs, task IDs, and the API key are sent to Media.io's external API when the skill is invoked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for intended Media.io workflows, keep API keys out of logs, shell history, and source control, and avoid confidential prompts, private image URLs, or sensitive task IDs unless Media.io processing is acceptable.
+
+Risk: A missing or mishandled API key can prevent use or expose account credentials.
+
+Mitigation: Provide the key through API_KEY or an explicit runtime parameter, and rotate the key if it is shared or exposed.
+
+## Reference(s):
+
+- [Media.io OpenAPI documentation](https://platform.media.io/docs/)
+- [ClawHub skill page](https://clawhub.ai/wondershare-boop/skills/mediaio-google-veo-video-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and shell examples; API responses are JSON objects.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires API_KEY. Generation calls return a task_id that should be polled with Task Result.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

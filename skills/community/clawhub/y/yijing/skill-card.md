@@ -1,49 +1,63 @@
-## Description: <br>
-A business decision-analysis skill that maps commercial questions to I Ching hexagram situation models and cross-checks them with Western strategy, innovation, and management frameworks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+雄韬易经 is a Chinese-language business decision analysis skill that maps user business questions to I Ching hexagram models and cross-checks them with Western strategy, management, innovation, and risk frameworks.
 
-## Publisher: <br>
-[xtoyun](https://clawhub.ai/user/xtoyun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xtoyun](https://clawhub.ai/user/xtoyun)
 
-## Use Case: <br>
-External users and business operators use this skill to analyze strategic choices, competition, organizational management, startup challenges, and crisis response through a structured seven-part business framework. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Business guidance may be over-applied or mistaken for prediction because the skill uses I Ching-derived situation models. <br>
-Mitigation: Treat outputs as decision-support framing, not as financial, legal, or professional advice; validate recommendations against business data and expert judgment. <br>
-Risk: Report or PDF workflows may write a local HTML file. <br>
-Mitigation: Confirm the output path before generation and avoid overwriting important files. <br>
-Risk: The reference library covers 38 selected hexagram models, so some situations may not map directly. <br>
-Mitigation: When no direct match exists, state the coverage gap and avoid forcing an unsupported interpretation. <br>
+## Use Case:
 
+External users and business operators use this skill to structure strategic choices, organization questions, competition, growth, crisis response, and startup decisions in modern business language. The skill provides reflective decision guidance and optional report output, not prediction or professional legal, financial, or personnel advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xtoyun/yijing) <br>
-- [Publisher Profile](https://clawhub.ai/user/xtoyun) <br>
-- [XTOCN Homepage](https://www.xtocn.com) <br>
-- [Hexagram Situation Index](references/index.md) <br>
-- [Western Theory Mapping](references/western-mapping.md) <br>
-- [Quick Reference Cheat Sheet](references/frameworks/cheatsheet.md) <br>
-- [Business Analysis Template](references/frameworks/analysis-template.md) <br>
-- [Report Generator Guide](references/frameworks/report-generator.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown analysis, optionally with HTML report content or SVG image references when the user asks for reports or diagrams.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default response length is 500-800 Chinese characters; report/PDF requests may produce a local HTML file for browser printing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Business, personnel, legal, or financial recommendations may be mistaken or over-relied on as final advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as strategic reflection and have qualified decision makers or advisors review high-impact actions before execution.
+
+Risk: Optional HTML reports may include sensitive business details and fixed XTOCN branding.
+
+Mitigation: Review, redact, and approve generated reports before sharing them outside the intended audience.
+
+Risk: Broad trigger wording can cause the skill to frame many business questions through this analysis model.
+
+Mitigation: Confirm the user wants the I Ching-style business framework and clearly state when the situation does not match the covered models.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xtoyun/skills/yijing)
+- [Publisher profile](https://clawhub.ai/user/xtoyun)
+- [XTOCN homepage](https://www.xtocn.com)
+- [Reference index](references/index.md)
+- [Western mapping](references/western-mapping.md)
+- [Analysis template](references/frameworks/analysis-template.md)
+- [Report generator](references/frameworks/report-generator.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Chinese-language markdown analysis with optional SVG image references and optional HTML report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default first response is concise and action-oriented, typically 500-800 Chinese characters; expanded detail is provided on follow-up.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

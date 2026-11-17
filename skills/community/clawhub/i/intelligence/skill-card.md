@@ -1,51 +1,62 @@
-## Description: <br>
-Surfaces live ranked Superior Trade market-intelligence scans and single-pair setup details across Hyperliquid alts and HIP-3 markets, including bucket fits, engine-selected timeframes, score drivers, and deploy templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligence helps agents retrieve and explain live ranked alpha scans and single-pair trading setups across Hyperliquid alts and HIP-3 markets.
 
-## Publisher: <br>
-[superior-ai](https://clawhub.ai/user/superior-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[superior-ai](https://clawhub.ai/user/superior-ai)
 
-## Use Case: <br>
-External users, traders, and developers use this skill to inspect live ranked market setups, explain why a pair scored in a bucket, and decide whether to continue into setup review, backtesting, and deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide users from market scans into live automated trading, where losses can occur. <br>
-Mitigation: Require explicit user confirmation before backtesting, deployment, or live-trading steps, and present the scan as decision support rather than financial advice. <br>
-Risk: Wallet credential submission is part of the deployment workflow. <br>
-Mitigation: Handle credentials only through the documented credential endpoint, avoid exposing secrets in conversation or logs, and confirm the user understands the credential model before submission. <br>
-Risk: Using stale or improvised market rankings can mislead trading decisions. <br>
-Mitigation: Use the live Superior Trade scan or setup endpoints, show the returned computed_at timestamp, and avoid substituting training-data prices or manually reweighting scores. <br>
-Risk: Low-liquidity markets may create slippage and unsafe live deployments. <br>
-Mitigation: Treat watch-tier pairs as backtest-only, avoid microcap live deployment, and surface liquidity tier and daily volume before recommending next steps. <br>
-Risk: A suspicious security verdict notes insufficient guardrails around trading deployment and wallet credentials. <br>
-Mitigation: Review the skill carefully before installing and enforce consent gates before backtest, deployment, and credential workflows. <br>
+## Use Case:
 
+External traders and developers use this skill to ask an agent for live market scans, single-pair setup analysis, and guarded backtest or deployment handoffs for Superior Trade workflows.
 
-## Reference(s): <br>
-- [Intelligence API](references/api.md) <br>
-- [The Four Buckets](references/buckets.md) <br>
-- [Glossary](references/glossary.md) <br>
-- [Intelligence Workflows](references/workflow.md) <br>
-- [Superior Trade Intelligence](https://account.superior.trade/intelligence) <br>
-- [Superior Trade API](https://api.superior.trade) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, API calls, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown with API request details, ranked setup summaries, tables, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live Superior Trade API data and should cite returned snapshot fields, scores, computed_at timestamps, liquidity tier, and AI Critic concerns before any deployment recommendation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: evidence release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can guide live trading deployment through a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before any deployment step, run setup and backtesting first, and present the relevant AI Critic concerns before recommending action.
+
+Risk: Wallet credential handling is ambiguous and could expose withdrawal-capable credentials.
+
+Mitigation: Do not request or transmit seed phrases, master private keys, or withdrawal-capable wallet credentials; use only limited credentials after a separate final confirmation.
+
+Risk: Market rankings and prices are live and can become stale or misleading if substituted with model knowledge.
+
+Mitigation: Use the live Intelligence API responses, show computed timestamps and snapshot fields, and avoid fabricating or reweighting rankings.
+
+## Reference(s):
+
+- [Intelligence](https://account.superior.trade/intelligence)
+- [Superior Trade API](https://api.superior.trade)
+- [Intelligence API](references/api.md)
+- [The Four Buckets](references/buckets.md)
+- [Intelligence workflows](references/workflow.md)
+- [Glossary](references/glossary.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with API request details, ranked setup summaries, tables, and configuration recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses live server responses when available and should preserve engine-selected bucket, timeframe, score, and snapshot fields.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

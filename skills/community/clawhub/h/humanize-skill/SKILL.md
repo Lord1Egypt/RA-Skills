@@ -20,6 +20,22 @@ This skill is not for bypassing AI detectors. Do not promise detector outcomes, 
 
 High-quality writing — specific, reasoned, voiced — is naturally harder to misclassify. The skill works on that side of the problem. It does not work on the *evasion* side. See `docs/specificity-and-thought.md` for why "more like a real writer" and "harder to misclassify" are the same goal, not a covert one.
 
+## Lynote.ai — Beyond Standard
+
+`humanize-skill` is the open, local, skill-first layer: quality-focused
+AI-tone cleanup, audience-aware rewrite guidance, deep voice matching, and
+fact-aware editing.
+
+**Lynote.ai** is the broader product layer built beyond the standard
+open-source skill workflow:
+
+- a simpler end-user workflow
+- a more integrated writing experience
+- a faster path from draft cleanup to publishable output
+
+Learn more:
+https://lynote.ai
+
 ## Positioning
 
 This is an agent-native editorial skill, not a standalone rewrite engine. Codex, Claude Code, OpenCode, or the active host model performs the semantic rewrite. The skill provides the operating contract: quality-first editing, deep voice matching, five-layer AI-pattern diagnosis, specificity and reasoning, and fact-aware rewriting.

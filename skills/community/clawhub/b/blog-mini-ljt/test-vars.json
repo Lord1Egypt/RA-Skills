@@ -1,0 +1,128 @@
+{
+  "skill_name": "blog-mini-ljt",
+  "entry_file": "scripts/blog-mini-ljt.py",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "health-check",
+      "command": "python3 scripts/blog-mini-ljt.py health-check",
+      "expected": "{\"status\":\"ok\",\"service\":\"blog-api\",\"version\":\"1.0.0\"}",
+      "method": "GET",
+      "category": "readonly",
+      "description": "检查 API 可达性"
+    },
+    {
+      "id": "TC-02",
+      "name": "capability-list",
+      "command": "python3 scripts/blog-mini-ljt.py capability-list",
+      "expected": "{\"capability\":\"capability-list\",\"skill\":\"blog-mini-ljt\",\"subcommand_count\":30}",
+      "method": "GET",
+      "category": "readonly",
+      "description": "列出本 skill 所有能力项"
+    },
+    {
+      "id": "TC-03",
+      "name": "list-articles",
+      "command": "python3 scripts/blog-mini-ljt.py list-articles --page 1 --size 5",
+      "expected": "{\"code\":200,\"data\":[...],\"total\":N}",
+      "method": "GET",
+      "category": "readonly",
+      "description": "分页查询文章列表"
+    },
+    {
+      "id": "TC-04",
+      "name": "list-labels",
+      "command": "python3 scripts/blog-mini-ljt.py list-labels",
+      "expected": "{\"code\":200,\"data\":[{\"id\":1,\"lname\":\"技术\"},...]}",
+      "method": "GET",
+      "category": "readonly",
+      "description": "获取所有标签（端点实际路径 /api/lables）"
+    },
+    {
+      "id": "TC-05",
+      "name": "list-users",
+      "command": "python3 scripts/blog-mini-ljt.py list-users",
+      "expected": "{\"code\":200,\"data\":[{\"id\":1,\"uname\":\"admin\",...}]}",
+      "method": "GET",
+      "category": "readonly",
+      "description": "获取用户列表"
+    },
+    {
+      "id": "TC-06",
+      "name": "list-moods",
+      "command": "python3 scripts/blog-mini-ljt.py list-moods",
+      "expected": "{\"code\":200,\"data\":[...]}",
+      "method": "GET",
+      "category": "readonly",
+      "description": "获取说说列表"
+    },
+    {
+      "id": "TC-07",
+      "name": "list-messages",
+      "command": "python3 scripts/blog-mini-ljt.py list-messages",
+      "expected": "{\"code\":200,\"data\":[...]}",
+      "method": "GET",
+      "category": "readonly",
+      "description": "获取留言列表（含回复）"
+    },
+    {
+      "id": "TC-08",
+      "name": "list-uploads",
+      "command": "python3 scripts/blog-mini-ljt.py list-uploads",
+      "expected": "{\"code\":200,\"data\":[...]}",
+      "method": "GET",
+      "category": "readonly",
+      "description": "列出所有已上传文件"
+    },
+    {
+      "id": "TC-09",
+      "name": "top-articles",
+      "command": "python3 scripts/blog-mini-ljt.py top-articles --limit 3",
+      "expected": "{\"code\":200,\"data\":[{\"id\":N,\"title\":\"...\",\"heat\":N}]}",
+      "method": "GET",
+      "category": "readonly",
+      "description": "获取热门文章 Top 3"
+    },
+    {
+      "id": "TC-10",
+      "name": "create-label",
+      "command": "python3 scripts/blog-mini-ljt.py create-label --lname test-label-skill",
+      "expected": "{\"code\":200,\"data\":{\"id\":N,\"lname\":\"test-label-skill\"}}",
+      "method": "POST",
+      "category": "mutable",
+      "description": "创建测试标签（验证完整流程第一步）",
+      "cleanup": "标签无删除端点，创建的测试标签保留不影响功能；如需清理可登录数据库手动删除"
+    },
+    {
+      "id": "TC-11",
+      "name": "create-article",
+      "command": "python3 scripts/blog-mini-ljt.py create-article --title skill-test-article --content test-content --lid 1",
+      "expected": "{\"code\":200,\"message\":\"文章发布成功\",\"data\":{\"id\":N}}",
+      "method": "POST",
+      "category": "mutable",
+      "description": "创建测试文章（验证完整流程第二步）",
+      "cleanup": "执行 delete-article --id <返回的id> --soft true 软删除测试文章"
+    },
+    {
+      "id": "TC-12",
+      "name": "create-comment",
+      "command": "python3 scripts/blog-mini-ljt.py create-comment --uid 1 --aid <article_id> --content test-comment",
+      "expected": "{\"code\":200,\"data\":{\"id\":N}}",
+      "method": "POST",
+      "category": "mutable",
+      "description": "创建测试评论（验证完整流程第三步，需先创建文章获取 aid）",
+      "cleanup": "执行 delete-comment --id <返回的id> 删除测试评论，并删除关联的测试文章"
+    },
+    {
+      "id": "TC-13",
+      "name": "admin-login",
+      "command": "python3 scripts/blog-mini-ljt.py admin-login --username admin --password admin",
+      "expected": "{\"code\":200,\"data\":{\"token\":\"...\"},\"message\":\"登录成功\"}",
+      "method": "POST",
+      "category": "readonly",
+      "description": "后台登录获取 token（默认账号 admin/admin）"
+    }
+  ],
+  "env_vars_required": ["BLOG_MINI_LJT_BASE_URL（API 地址，可选——脚本内置默认地址无配置即可用）"],
+  "notes": "本 API 为无认证公开 API，不需要凭据环境变量。base_url 脚本内置默认地址，无配置即可用；如需指向其他实例，设置 BLOG_MINI_LJT_BASE_URL 环境变量或在 .project-info/ 下 JSON 配置文件 config.BLOG_MINI_LJT_BASE_URL 字段。Admin 模块的 admin/admin 为系统默认账号（非凭据），直接在命令行参数传入。"
+}

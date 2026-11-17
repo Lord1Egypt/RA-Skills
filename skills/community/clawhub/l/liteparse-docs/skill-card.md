@@ -1,41 +1,53 @@
-## Description: <br>
-Use when parsing PDFs, DOCX, PPTX, XLSX, or images locally, with support for text extraction, JSON output with bounding boxes, batch processing, and page screenshots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when parsing PDFs, DOCX, PPTX, XLSX, or images locally. Supports text extraction, JSON output with bounding boxes, batch processing, and page screenshots. No cloud dependencies.
 
-## Publisher: <br>
-[ricanwarfare](https://clawhub.ai/user/ricanwarfare) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ricanwarfare](https://clawhub.ai/user/ricanwarfare)
 
-## Use Case: <br>
-Developers and agents use this skill to parse local documents into text, structured JSON, or page screenshots for downstream review and processing without cloud or LLM dependencies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing the local parser through Homebrew can depend on the resolved package source. <br>
-Mitigation: Verify the Homebrew package source before installation. <br>
-Risk: Batch parsing broad directories can create local output files containing extracted sensitive document content. <br>
-Mitigation: Limit input directories to intended documents and protect generated output files according to the document sensitivity. <br>
+## Use Case:
 
+Developers and engineers use this skill to operate the local LiteParse CLI for document text extraction, JSON parsing with bounding boxes, selective page processing, batch parsing, and screenshot generation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ricanwarfare/liteparse-docs) <br>
-- [Skill source](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct local commands that write parsed text, JSON, or screenshots to user-selected output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Installing the LiteParse CLI through Homebrew depends on external package provenance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the Homebrew package source and install path before using the CLI in managed environments.
+
+Risk: Parsing and screenshot commands can write output files and may overwrite existing files at chosen paths.
+
+Mitigation: Direct outputs to intentional or disposable directories and review target paths before batch processing.
+
+## Reference(s):
+
+- [LiteParse Document Parser on ClawHub](https://clawhub.ai/ricanwarfare/skills/liteparse-docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell command examples and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The referenced CLI may produce text, JSON with bounding boxes, and page screenshots from local documents.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

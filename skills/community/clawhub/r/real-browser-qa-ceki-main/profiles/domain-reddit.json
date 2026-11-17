@@ -1,0 +1,86 @@
+{
+  "id": "domain-reddit",
+  "label": "Reddit — Thread & Comment Browser",
+  "emoji": "🤖",
+  "domain": "reddit.com",
+  "description": "Extracted from: ceki-marketing session analysis (89 mentions), ceki_sdk/examples/reddit_signup.py. New Reddit UI (shreddit) uses WebComponents — flaky selectors. Old reddit selectors deprecated but more stable for automation. Old.reddit.com recommended for reliable scraping. Login gate for full comment rendering. Registration: email-only (no phone required), IMAP verification, captcha delegation via provider chat.",
+  "source_patterns": [
+    "Feed: scroll medium-fast, skim titles, pause 2-5s on interesting posts",
+    "Post page: scroll through comments — lazy-loads, requires login to fully render",
+    "'Show more' on long comment chains (old UI): click → 1-2s load → continue",
+    "Vote: click upvote → 200-500ms pause (habitual)",
+    "Search: type → 2-3s → scroll results → click"
+  ],
+  "active_hours": {
+    "description": "All day — peak US evening",
+    "peak": [9, 12, 15, 18, 23],
+    "off_peak_min": 4
+  },
+  "typing": {
+    "wpm": { "min": 70, "max": 110 },
+    "profile": "natural",
+    "think_prob": 0.012,
+    "think_ms": [300, 1500],
+    "backspace_freq": 0.03
+  },
+  "scroll": {
+    "passes": 4,
+    "description": "Feed-style: fast horizontal/vertical scroll, pause on interesting content",
+    "speed_px_per_ms": { "min": 25, "max": 60 },
+    "pause_between_passes_ms": { "min": 1000, "max": 4000 },
+    "depth_per_pass": { "min": 0.3, "max": 0.6 }
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 1000, "max": 3000 },
+    "pre_click_pause_ms": { "min": 200, "max": 700 },
+    "inter_action_pause_ms": { "min": 300, "max": 1200 },
+    "post_expand_pause_ms": { "min": 1000, "max": 2000 }
+  },
+  "mouse": {
+    "speed": 1.0,
+    "curvature": 0.15,
+    "jitter": 0.3,
+    "description": "Moderate — simple interaction targets"
+  },
+  "platform_specific": {
+    "comment_chain_handling": {
+      "description": "Long threads collapse. New UI (shreddit): comment tree is a WebComponent. Old UI: click 'Show more' / 'Continue this thread'.",
+      "click_strategy": "⚠️ New Reddit uses shreddit WebComponents. DOM selectors differ from old.reddit.com. Login likely required to see comments fully. Use text-content matching for buttons: [...document.querySelectorAll('button')].find(e => /more/i.test(e.textContent))",
+      "requires_login": true
+    },
+    "selectors_css": {
+      "more_comments_old": "a[role='button']:has-text('more')",
+      "upvote_old": "div[data-click-id='text'] button[aria-label='upvote']",
+      "register_email": "input[name='email']",
+      "register_username": "input[name='username']",
+      "register_password": "input[name='password']",
+      "note": "NEW UI (shreddit) — selectors TBD. Use old.reddit.com for reliable automation. Registration form selectors are stable on both UIs."
+    },
+    "registration_flow": {
+      "description": "Reddit registration requires email only (NO phone). Full CDP-based flow from ceki_sdk/examples/reddit_signup.py.",
+      "steps": [
+        "1. Navigate to https://www.reddit.com/register",
+        "2. Fill form via CDP Runtime.evaluate (React controlled inputs — use nativeValueSetter)",
+        "3. Detect captcha: check for iframe[src*=\"captcha\"] or [data-testid=\"captcha\"]",
+        "4. If captcha present: screenshot → send to provider via chat → wait for solve",
+        "5. Submit form — wait for redirect to email verification page",
+        "6. IMAP: connect postal.ittribe.org:993 → search for 'reddit' confirmation email → extract link → navigate to verify",
+        "7. Profile export for persistence"
+      ],
+      "captcha_handling": "Delegated to browser provider via ceki chat. screenshot → chat.send_image → chat.wait_for_reply(timeout=120). Captcha types: reCAPTCHA v2 checkbox most common, image grid possible.",
+      "imap_config": {
+        "host": "postal.ittribe.org",
+        "port": 993,
+        "search_pattern": "reddit",
+        "max_wait_seconds": 120
+      }
+    },
+    "rate_limits": {
+      "posts": "1 per 10 minutes (per subreddit for new accounts)",
+      "comments": "1 per 8-10 minutes (new accounts) — enforced server-side, not UI",
+      "upvotes": "~40/24h before rate limited",
+      "note": "New accounts heavily rate-limited. Use aged accounts for any real scraping."
+    },
+    "sequence_hint": "⚠️ Use old.reddit.com/r/subreddit for reliable automation without login. navigate subreddit/feed → scroll 3-5 passes → click post → wait load → scroll comments → click expand via text-matching → vote → back → next. For registration: email-only flow + IMAP + captcha delegation."
+  }
+}

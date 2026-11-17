@@ -1,41 +1,54 @@
-## Description: <br>
-探索模式 (Explore Mode) guides an agent through read-only, systematic exploration of a codebase, system, or topic before answering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+深度探索模式 - 系统性调研代码库、系统或话题，只读不改，借鉴 Claude Code 的 Explore Agent。
 
-## Publisher: <br>
-[jobzhao15](https://clawhub.ai/user/jobzhao15) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jobzhao15](https://clawhub.ai/user/jobzhao15)
 
-## Use Case: <br>
-Developers and engineers use this skill to understand unfamiliar repositories, trace feature implementations, investigate bugs, and produce a structured exploration report without modifying files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read and summarize repository contents, including sensitive code or business context present in the workspace. <br>
-Mitigation: Use normal care with private repositories and remove secrets or confidential material before asking an agent to explore them. <br>
-Risk: Exploration findings can be incomplete or mistaken if the agent samples too narrowly or fails to distinguish evidence from inference. <br>
-Mitigation: Review cited file paths and line references, and ask for follow-up verification before acting on high-impact findings. <br>
+## Use Case:
 
+Developers and engineers use this skill to investigate unfamiliar codebases, systems, or implementation questions before answering. It guides a read-only exploration workflow that scans broadly, follows relevant details, and returns a structured exploration report with file references.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jobzhao15/enhance-explore-mode) <br>
-- [Project homepage](https://github.com/jobzhao15/openclaw-enhance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown exploration report with findings, direct answers, and optional recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only workflow; no files are modified by the skill itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill may lead an agent to inspect repository files and git history that contain sensitive material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in workspaces where read-only code and history review is appropriate, and give the agent a clear exploration scope.
+
+Risk: Exploration reports can include mistaken conclusions if the agent reviews too narrow a slice of the system.
+
+Mitigation: Require cross-checking across relevant files, tests, and call paths, and distinguish observed facts from inference in the report.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jobzhao15/skills/enhance-explore-mode)
+- [Skill Homepage](https://github.com/jobzhao15/openclaw-enhance)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown exploration report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include concise findings, direct answers, recommendations, and file paths or line references when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

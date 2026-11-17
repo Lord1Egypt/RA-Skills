@@ -1,42 +1,55 @@
-## Description: <br>
-Rewrite English prose sentence by sentence into a more academic version using the bundled AWL/NAWL vocabulary list while preserving meaning, tense, claims, and document structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rewrite English prose sentence by sentence into a more academic version using the bundled AWL/NAWL vocabulary list while preserving meaning, tense, claims, and document structure.
 
-## Publisher: <br>
-[junwugit](https://clawhub.ai/user/junwugit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junwugit](https://clawhub.ai/user/junwugit)
 
-## Use Case: <br>
-External users and writers use this skill to revise English text into a more academic register while keeping the original meaning, factual scope, citations, and structure intact. It is suited for requests that need both a sentence-level change report and a complete revised Markdown document. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes predictable Markdown output filenames, which could overwrite existing files with matching names. <br>
-Mitigation: Run it in a working directory where those filenames are acceptable, check for existing files first, or ask the agent to use alternate filenames. <br>
-Risk: Academic vocabulary substitutions can unintentionally shift meaning, certainty, tense, or factual scope. <br>
-Mitigation: Use the required sentence-level change report to review each revision against the source text before relying on the revised document. <br>
+## Use Case:
 
+External users and writing-focused agents use this skill to revise English prose into a more academic register. It produces a sentence-level change report and a complete revised document while checking selected AWL/NAWL headwords against bundled references.
 
-## Reference(s): <br>
-- [AWL/NAWL headword list](references/awl-headwords.txt) <br>
-- [AWL/NAWL vocabulary table](references/awl.csv) <br>
-- [ClawHub skill page](https://clawhub.ai/junwugit/awl-academic-rewriter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown files with a sentence-level change table and a complete revised document] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses predictable output filenames unless the user asks for a different format.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The revised document may unintentionally change meaning because vocabulary substitutions rely on model judgment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the sentence-level change report against the source text before using the revised document.
+
+Risk: Input files are rewritten into saved Markdown outputs.
+
+Mitigation: Provide only source files intended for processing and inspect the generated Markdown before sharing or publishing it.
+
+## Reference(s):
+
+- [AWL/NAWL Headwords](references/awl-headwords.txt)
+- [AWL/NAWL CSV Reference](references/awl.csv)
+- [ClawHub Skill Page](https://clawhub.ai/junwugit/skills/awl-academic-rewriter)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown files with sentence-level table output and a complete revised document]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces two Markdown files by default unless the user asks for a different format.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

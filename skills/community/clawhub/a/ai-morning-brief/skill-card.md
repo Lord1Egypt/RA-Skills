@@ -1,48 +1,71 @@
-## Description: <br>
-Generates a daily AI news brief by collecting multiple AI and product feeds, using an LLM to select the most valuable items, and delivering a concise Telegram-ready briefing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Morning Brief collects AI news from RSS feeds, configured blogwatcher sources, ClawdChat tool gateways, and OpenRouter ranking snapshots, then uses an LLM to select up to 10 high-value items for a Telegram daily brief.
 
-## Publisher: <br>
-[min870809](https://clawhub.ai/user/min870809) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[min870809](https://clawhub.ai/user/min870809)
 
-## Use Case: <br>
-External users and developers use this skill to automate a personalized daily AI news briefing, reduce low-signal feed noise, and highlight competitor, market, and monetization opportunities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires API and Telegram credentials and can expose them if they are hard-coded or logged. <br>
-Mitigation: Store API_HUB_KEY, Telegram credentials, and optional tool gateway tokens in environment variables or a secret store, and avoid committing configured copies of the script. <br>
-Risk: Briefing content is sent through external RSS/tool services, an LLM API, and Telegram. <br>
-Mitigation: Use only public or non-sensitive feeds unless those external processing and delivery paths are approved for the data. <br>
-Risk: A misconfigured API_HUB_BASE_URL could route requests to an untrusted service. <br>
-Mitigation: Confirm API_HUB_BASE_URL uses a trusted HTTPS provider before running scheduled jobs. <br>
-Risk: Scheduled automation could repeatedly send incorrect, noisy, or unwanted Telegram briefings. <br>
-Mitigation: Run the skill manually once and review the selected items before enabling the daily schedule. <br>
+## Use Case:
 
+External users and automation operators use this skill to generate a scheduled, personalized AI industry morning brief, reducing low-signal news while highlighting competitor updates and monetization opportunities.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/min870809/ai-morning-brief) <br>
-- [Hugging Face Blog Feed](https://huggingface.co/blog/feed.xml) <br>
-- [人人都是产品经理 Feed](https://www.woshipm.com/feed) <br>
-- [OpenRouter Apps](https://openrouter.ai/apps) <br>
-- [ClawdChat Tool Gateway](https://clawdchat.cn/api/v1/tools/call) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown-formatted Telegram message with setup commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces up to 10 selected briefing items and may truncate long Telegram messages near the platform message limit.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill automatically sends LLM-selected content to Telegram, which may be inappropriate for shared or public destinations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private Telegram destination or require human review before scheduled delivery.
+
+Risk: API and Telegram credentials are needed to run the workflow.
+
+Mitigation: Store tokens in environment variables or a secret manager, and avoid hardcoding secrets in the script.
+
+Risk: The skill depends on API Hub and ClawdChat services as third-party data and tool providers.
+
+Mitigation: Confirm those services are acceptable for the deployment before enabling the skill.
+
+Risk: The workflow broadly marks blogwatcher items read after sending a brief.
+
+Mitigation: Remove or narrow `blogwatcher read-all`, or add review before items are marked read.
+
+Risk: Links and Telegram Markdown formatting may affect how generated brief content is displayed.
+
+Mitigation: Validate links and escape Telegram formatting before scheduled delivery.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/min870809/skills/ai-morning-brief)
+- [Publisher profile](https://clawhub.ai/user/min870809)
+- [Hugging Face Blog RSS](https://huggingface.co/blog/feed.xml)
+- [人人都是产品经理 RSS](https://www.woshipm.com/feed)
+- [OpenRouter Global Top Apps](https://openrouter.ai/apps)
+- [ClawdChat tool gateway](https://clawdchat.cn/api/v1/tools/call)
+- [API Hub default endpoint](https://api.mulerun.com)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown-formatted AI news brief sent to Telegram, with setup and scheduling guidance in the skill documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Selects up to 10 items and truncates Telegram messages near 4,000 characters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

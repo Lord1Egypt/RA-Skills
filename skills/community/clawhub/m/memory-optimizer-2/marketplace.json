@@ -1,0 +1,13 @@
+{
+  "name": "Agent Memory Optimizer",
+  "price": 3.99,
+  "category": "agent-tools",
+  "description": "Analyzes AI agent memory files for duplicates, stale information, structural issues, and missing indexes. Generates optimization reports and can auto-fix common issues.",
+  "version": "1.0.0",
+  "author": "Peru 🇵🇪",
+  "tags": ["memory", "optimization", "deduplication", "agent", "markdown", "analysis", "cleanup"],
+  "requirements": ["python3 3.8+"],
+  "license": "MIT",
+  "files": ["SKILL.md", "analyze.py", "optimize.py", "marketplace.json"],
+  "entrypoint": "analyze.py"
+}

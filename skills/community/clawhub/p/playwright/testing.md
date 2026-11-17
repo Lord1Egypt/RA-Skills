@@ -1,148 +1,86 @@
-# Testing Patterns
+# Testing — What Earns A Test, And How To Assert It
 
-## What to Test First
+Which tests are worth their runtime, and the assertion craft that decides whether a green run means anything. Config and projects: `config.md`. Fixtures, page objects, and data: `fixtures.md`. Login flows: `auth.md`. Mocks: `network.md`.
 
-Prioritize critical user journeys, auth boundaries, payments, file upload or download flows, and state transitions that are expensive to break.
+## What Earns An E2E Test
 
-Do not spend E2E budget on trivial presentational details that cheaper unit or component tests can cover.
+| Test it end to end | Test it cheaper |
+|---|---|
+| Signup, login, permission boundaries | Field-level validation rules |
+| Checkout and payment (against a sandbox) | Currency formatting |
+| Upload → process → download round trip | File-parser edge cases |
+| Multi-step flows with server state between steps | Component render states |
+| Anything a regression would cost real money | Copy, spacing, hover styles |
+| The one integration you cannot mock away | Everything you can mock away |
 
-Prefer assertions on what the user can observe: visible state, text, URL, enabled or disabled controls, downloads, navigation, and persisted app state.
+Cost model: an E2E test costs its runtime **every run, forever**, plus its share of maintenance on every UI change. A 20-second test in a suite that runs 40 times a day is 13 minutes of machine time daily — worth it for checkout, absurd for a tooltip.
 
-## Test Structure
+## Structure And Assertions
 
 ```typescript
 import { test, expect } from '@playwright/test';
 
-test.describe('Checkout Flow', () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto('/products');
-  });
+test.describe('Checkout', () => {
+  test.beforeEach(async ({ page }) => { await page.goto('/products'); });
 
-  test('completes purchase with valid card', async ({ page }) => {
-    await page.getByTestId('product-card')
-      .filter({ hasText: 'Product A' })
-      .click();
-    await page.getByRole('button', { name: 'Add to Cart' }).click();
+  test('completes purchase with a valid card', async ({ page }) => {
+    await test.step('add to cart', async () => {
+      await page.getByRole('listitem').filter({ hasText: 'Product A' }).click();
+      await page.getByRole('button', { name: 'Add to Cart' }).click();
+    });
     await page.getByRole('link', { name: 'Checkout' }).click();
     await expect(page.getByRole('heading', { name: 'Order Summary' })).toBeVisible();
+    await expect(page).toHaveURL(/\/checkout/);
   });
 });
 ```
 
-## Page Object Model
+`test.step` costs one line and turns a 30-step failure in the report into a named stage — the difference between "checkout test failed" and "failed while adding to cart".
 
-Use page objects when a flow is reused across many tests. Do not build a giant abstraction layer before duplication is real.
+Assertion vocabulary worth knowing beyond `toBeVisible`:
 
 ```typescript
-export class CheckoutPage {
-  constructor(private page: Page) {}
-
-  readonly cartItems = this.page.getByTestId('cart-item');
-  readonly checkoutButton = this.page.getByRole('button', { name: 'Checkout' });
-  readonly totalPrice = this.page.getByTestId('total-price');
-
-  async removeItem(name: string) {
-    await this.cartItems
-      .filter({ hasText: name })
-      .getByRole('button', { name: 'Remove' })
-      .click();
-  }
-
-  async expectTotal(amount: string) {
-    await expect(this.totalPrice).toHaveText(amount);
-  }
-}
+await expect(rows).toHaveCount(3);
+await expect(rows).toHaveText([/Alice/, /Bob/]);          // whole list, ordered
+await expect(input).toHaveValue('42');
+await expect(button).toBeDisabled();
+await expect(banner).toHaveAttribute('role', 'alert');
+await expect(el).toHaveCSS('background-color', 'rgb(255, 0, 0)');
+await expect(page.getByText('Deleted')).toBeHidden();     // not .not.toBeVisible() for "gone"
+await expect.soft(price).toHaveText('$42');               // record and continue
+expect(test.info().errors).toHaveLength(0);               // after soft assertions, if you need the gate
 ```
 
-## Fixtures
+`toBeHidden()` passes for missing **or** invisible; `not.toBeVisible()` passes for the same set but reads as a negation and tempts a race. Prefer the positive form of what you mean.
+
+Soft assertions are for report quality — checking five fields on one page and reporting all failures — never for skipping a hard gate.
+
+## Asserting The Outcome, Not The Action
+
+The passing test that hides a broken feature always has the same shape: it asserts that something was clicked, requested, or rendered, never that the user got what they came for.
+
+| Weak assertion | What it misses | Assert instead |
+|---|---|---|
+| `await expect(saveButton).toBeVisible()` after clicking Save | The save failed server-side | The saved value after a reload, or the success state the server drives |
+| `await expect(page).toHaveURL(/\/orders/)` alone | The order list is empty or errored | The new order's row, by its own identifier |
+| `expect(response.ok()).toBeTruthy()` | The UI never showed it | The rendered consequence of that response |
+| A count that matches whatever rendered | Fixture drift; the seed changed | A count derived from what the test itself created |
+
+## Skipping A Case On Purpose
 
 ```typescript
-import { test as base } from '@playwright/test';
-import { CheckoutPage } from './pages/checkout.page';
-
-type Fixtures = {
-  checkoutPage: CheckoutPage;
-};
-
-export const test = base.extend<Fixtures>({
-  checkoutPage: async ({ page }, use) => {
-    await page.goto('/checkout');
-    await use(new CheckoutPage(page));
-  },
+test.skip(browserName === 'webkit', 'clipboard API is Chromium-only');   // conditional, with a reason
+test.fixme('drag handle drops on Firefox');                               // known broken: does not run, stays visible
+test('legacy import fails', { annotation: { type: 'issue', description: 'PROJ-812' } }, async () => {
+  test.fail();                                                            // must fail; passing turns the test red
 });
 ```
 
-## Isolation Rules
+- `test.skip(condition, reason)` is the mechanism for engine or environment exclusions (`browsers.md`) — the reason string is what stops it from becoming permanent.
+- `test.fixme` says "this should work and does not"; unlike a commented-out test, it stays in the report as a number someone can watch.
+- `test.fail()` asserts a known failure and flips red when the bug is fixed — the only annotation that tells you to delete it.
+- A skip with no condition and no reason is a deleted test with extra steps.
 
-- Keep tests independent so they can run alone, in parallel, or after retries without hidden dependencies.
-- If tests mutate shared backend state, use dedicated accounts, seeded data, or per-worker isolation instead of reusing one mutable user everywhere.
-- When auth is shared, prefer the Playwright setup-project pattern or one account per worker over ad hoc state reuse.
+## Component Tests
 
-## Mock What You Do Not Need to Re-Test
-
-```typescript
-test('shows error on API failure', async ({ page }) => {
-  await page.route('**/api/checkout', route => {
-    route.fulfill({
-      status: 500,
-      body: JSON.stringify({ error: 'Payment failed' }),
-    });
-  });
-
-  await page.goto('/checkout');
-  await page.getByRole('button', { name: 'Pay' }).click();
-  await expect(page.getByText('Payment failed')).toBeVisible();
-});
-```
-
-Avoid testing third-party widgets, analytics, payment processors, or upstream APIs end to end unless the point of the test is that exact integration.
-
-## Visual Regression
-
-Use visual assertions for layout or rendering regressions that humans would otherwise miss. Keep viewport, fonts, and animations deterministic.
-
-```typescript
-test('matches snapshot', async ({ page }) => {
-  await page.goto('/dashboard');
-  await expect(page).toHaveScreenshot('dashboard.png', {
-    maxDiffPixels: 100,
-  });
-});
-```
-
-## Parallelization
-
-```typescript
-export default defineConfig({
-  workers: process.env.CI ? 4 : undefined,
-  fullyParallel: true,
-});
-
-test.describe.configure({ mode: 'parallel' });
-test.describe.configure({ mode: 'serial' });
-```
-
-## Authentication State
-
-Persist auth only when the suite already standardizes that pattern and the stored state is safe to reuse.
-
-```typescript
-const authFile = 'playwright/.auth/user.json';
-// Reuse a saved auth file only in suites that intentionally standardize it.
-```
-
-For one-off debugging, privileged accounts, or stateful flows that mutate backend data, prefer logging in inside the test or using isolated worker accounts instead of carrying one shared session everywhere.
-
-## Assertions
-
-```typescript
-await expect(locator).toBeVisible();
-await expect(locator).toHaveText('Expected');
-await expect(locator).toBeEnabled();
-await expect(locator).toHaveAttribute('href', '/path');
-await expect(page).toHaveURL(/dashboard/);
-
-await expect.poll(async () => {
-  return await page.evaluate(() => window.dataLoaded);
-}).toBe(true);
-```
+Playwright can mount components directly (an experimental part of the runner). It fits when a component has real browser behavior — drag, focus trapping, canvas, intersection observers — and a JSDOM-based runner keeps lying to you. It does not replace journey tests, and it costs a second toolchain in the repo: adopt it only for the components where JSDOM actually failed you.

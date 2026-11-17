@@ -1,0 +1,96 @@
+{
+  "standard": "通用管理体系（Annex SL 通用模板）",
+  "note": "兜底模板：当某标准暂无专属 templates 时，generate_document.py 自动回退到此处。覆盖任何管理体系都需要的通用程序。",
+  "templates": [
+    {"id": "GP-DOC", "name": "文件控制程序", "name_en": "Document Control Procedure", "clause": "7.5",
+     "meta": {"owner": "综合部/体系部", "frequency": "持续"},
+     "sections": [
+       {"title": "1 目的", "content": "对管理体系文件进行有效控制，确保各使用场所获得适用文件的有效版本，防止作废文件误用。"},
+       {"title": "2 适用范围", "content": "适用于{org}管理体系所有文件（手册、程序、作业指导书、记录表单）的编制、审批、发放、更改与作废。"},
+       {"title": "3 职责", "content": "3.1 最高管理者批准管理手册与方针；3.2 体系主管部门负责文件归口管理与受控标识；3.3 各部门负责本部门文件的使用与保管。"},
+       {"title": "4 工作程序", "content": "4.1 文件编制与审批：按模板编制，经授权人审批后发布；4.2 受控发放：加盖受控章/编号，登记发放记录；4.3 更改：填写更改申请，评审后更新版本（如 A/0→A/1）；4.4 作废：加盖\"作废\"标识，保留一份存档；4.5 外来文件：识别、分发并控制。"}
+     ],
+     "high_voltage_check": ["hv-doc-control"]},
+    {"id": "GP-REC", "name": "记录控制程序", "name_en": "Record Control Procedure", "clause": "7.5",
+     "meta": {"owner": "体系部", "frequency": "持续"},
+     "sections": [
+       {"title": "1 目的", "content": "对记录进行有效控制，提供管理体系运行符合性与有效性的证据。"},
+       {"title": "2 适用范围", "content": "适用于{org}管理体系运行过程中形成的各类记录（表单、报告、台账等）。"},
+       {"title": "3 职责", "content": "3.1 体系主管部门建立《记录清单》并规定保存期限；3.2 各部门按职责填写、收集、归档本部门记录。"},
+       {"title": "4 工作程序", "content": "4.1 记录填写应真实、清晰、及时，不得随意涂改（改错划改并签名）；4.2 标识与检索：按编号规则标识，便于检索；4.3 储存与保护：防潮防火防盗，电子记录定期备份；4.4 保留与处置：按保存期归档，到期审批后销毁。"}
+     ],
+     "high_voltage_check": ["hv-doc-control"]},
+    {"id": "GP-RA", "name": "风险与机遇管理程序", "name_en": "Risk and Opportunity Procedure", "clause": "6.1",
+     "meta": {"owner": "体系部/风险管理部门", "frequency": "每年/变更时"},
+     "sections": [
+       {"title": "1 目的", "content": "建立系统的风险与机遇识别、评价与应对机制，确保体系预期结果实现。"},
+       {"title": "2 适用范围", "content": "适用于{org}管理体系策划及运行全过程的风险与机遇管理。"},
+       {"title": "3 职责", "content": "3.1 最高管理者提供资源并审批重大风险应对方案；3.2 体系主管部门组织风险评估；3.3 各部门负责本部门风险识别与措施落实。"},
+       {"title": "4 工作程序", "content": "4.1 识别：采用SWOT、FMEA、检查表等方法识别风险与机遇；4.2 评价：按可能性×严重性分级；4.3 应对：制定规避/降低/接受/转移措施及机遇把握计划；4.4 跟踪：纳入目标与审核，定期评审有效性。"}
+     ],
+     "high_voltage_check": ["hv-risk"]},
+    {"id": "GP-CAP", "name": "不合格与纠正措施控制程序", "name_en": "Nonconformity & Corrective Action Procedure", "clause": "10.2",
+     "meta": {"owner": "体系部/质量部", "frequency": "发生时不定期"},
+     "sections": [
+       {"title": "1 目的", "content": "对发生的不合格进行控制，通过根因分析采取纠正措施，防止再发生。"},
+       {"title": "2 适用范围", "content": "适用于{org}产品、过程、体系中不合格及客户投诉的处理。"},
+       {"title": "3 职责", "content": "3.1 责任部门负责不合格隔离、根因分析与措施实施；3.2 体系主管部门验证措施有效性；3.3 最高管理者审批重大纠正措施。"},
+       {"title": "4 工作程序", "content": "4.1 识别与隔离：记录不合格并标识隔离；4.2 评审与处置：让步/返工/报废；4.3 根因分析：5Why/鱼骨图；4.4 措施：制定纠正+纠正措施；4.5 验证：确认有效后关闭；4.6 举一反三：更新风险与文件。"}
+     ],
+     "high_voltage_check": ["hv-nc-cap"]},
+    {"id": "GP-IA", "name": "内部审核程序", "name_en": "Internal Audit Procedure", "clause": "9.2",
+     "meta": {"owner": "体系部", "frequency": "每年至少一次"},
+     "sections": [
+       {"title": "1 目的", "content": "通过有计划的内部审核，确定管理体系是否符合策划安排与标准要求，是否有效实施与保持。"},
+       {"title": "2 适用范围", "content": "适用于{org}管理体系的内部审核策划、实施与报告。"},
+       {"title": "3 职责", "content": "3.1 最高管理者批准年度审核方案；3.2 体系主管部门任命审核组长、组建审核组（独立于被审核活动）；3.3 受审核部门配合并整改。"},
+       {"title": "4 工作程序", "content": "4.1 策划：编制年度方案与单次计划，覆盖全部条款/部门；4.2 准备：编制检查表；4.3 实施：首次会→现场审核→开具不符合项→末次会；4.4 报告：编制审核报告；4.5 跟踪：责任部门按期整改，验证关闭。"}
+     ],
+     "high_voltage_check": ["hv-internal-audit"]},
+    {"id": "GP-MR", "name": "管理评审程序", "name_en": "Management Review Procedure", "clause": "9.3",
+     "meta": {"owner": "最高管理者/体系部", "frequency": "每年至少一次"},
+     "sections": [
+       {"title": "1 目的", "content": "由最高管理者评审管理体系的适宜性、充分性与有效性，确定改进机会与资源需求。"},
+       {"title": "2 适用范围", "content": "适用于{org}管理体系的管理评审。"},
+       {"title": "3 职责", "content": "3.1 最高管理者主持评审并决策；3.2 体系主管部门组织收集输入、编制纪要；3.3 各部门提供评审输入并落实输出。"},
+       {"title": "4 工作程序", "content": "4.1 输入：目标达成、审核结果、客户反馈、风险变化、改进建议等；4.2 评审：最高管理者主持会议；4.3 输出：体系改进、资源需求、方针目标调整决策；4.4 跟踪：决议纳入计划并验证。"}
+     ],
+     "high_voltage_check": ["hv-mgmt-review"]},
+    {"id": "GP-CMP", "name": "能力、培训与意识管理程序", "name_en": "Competence, Training & Awareness Procedure", "clause": "7.2",
+     "meta": {"owner": "人力资源部", "frequency": "年度/入职时"},
+     "sections": [
+       {"title": "1 目的", "content": "确保从事影响体系绩效人员具备所需能力，并通过培训提升意识。"},
+       {"title": "2 适用范围", "content": "适用于{org}所有与体系运行相关岗位的人员。"},
+       {"title": "3 职责", "content": "3.1 人力资源部建立岗位能力矩阵并组织培训；3.2 各部门提出培训需求；3.3 最高管理者保障资源。"},
+       {"title": "4 工作程序", "content": "4.1 识别能力需求（岗位说明书）；4.2 能力评价：教育/培训/经验；4.3 措施：招聘或培训；4.4 意识：传达方针、作用、不符合后果；4.5 保留教育、培训、经历适当证据。"}
+     ],
+     "high_voltage_check": ["hv-competence"]},
+    {"id": "GP-COMM", "name": "沟通管理程序", "name_en": "Communication Procedure", "clause": "7.4",
+     "meta": {"owner": "综合部/体系部", "frequency": "持续"},
+     "sections": [
+       {"title": "1 目的", "content": "建立内外部沟通机制，确保管理体系相关信息有效传递。"},
+       {"title": "2 适用范围", "content": "适用于{org}管理体系相关的内部沟通及与相关方的外部沟通。"},
+       {"title": "3 职责", "content": "3.1 体系主管部门统筹重大沟通；3.2 各部门负责职责范围内沟通。"},
+       {"title": "4 工作程序", "content": "4.1 确定沟通内容、对象、时机、方式；4.2 内部沟通：会议、公告、平台；4.3 外部沟通：客户、监管、供方，保留记录。"}
+     ],
+     "high_voltage_check": []},
+    {"id": "GP-OBJ", "name": "目标指标与管理方案程序", "name_en": "Objectives & Management Program Procedure", "clause": "6.2",
+     "meta": {"owner": "体系部", "frequency": "年度"},
+     "sections": [
+       {"title": "1 目的", "content": "建立可测量的目标指标及实现方案，支撑方针落地与持续改进。"},
+       {"title": "2 适用范围", "content": "适用于{org}各层级管理体系目标的制定、分解与考核。"},
+       {"title": "3 职责", "content": "3.1 最高管理者确保目标与方针一致；3.2 体系主管部门组织分解与目标跟踪；3.3 各部门落实管理方案。"},
+       {"title": "4 工作程序", "content": "4.1 目标制定：符合SMART，与方针及风险一致；4.2 分解：部门/岗位指标；4.3 管理方案：明确措施、资源、时限、责任人；4.4 监视：定期统计考核，未达标分析原因并改进。"}
+     ],
+     "high_voltage_check": ["hv-policy"]},
+    {"id": "GP-CTX", "name": "组织环境与相关方管理程序", "name_en": "Context & Interested Parties Procedure", "clause": "4.1",
+     "meta": {"owner": "体系部", "frequency": "年度/变更时"},
+     "sections": [
+       {"title": "1 目的", "content": "识别组织内外部环境与相关方需求，作为体系策划输入。"},
+       {"title": "2 适用范围", "content": "适用于{org}管理体系范围确定及战略环境分析。"},
+       {"title": "3 职责", "content": "3.1 最高管理者批准体系范围；3.2 体系主管部门组织环境与相关方分析。"},
+       {"title": "4 工作程序", "content": "4.1 外部环境：法规、市场、技术、竞争；4.2 内部环境：文化、资源、知识；4.3 相关方：客户、监管、员工、供方及其需求；4.4 输出《组织环境分析报告》并定期更新。"}
+     ],
+     "high_voltage_check": ["hv-leadership"]}
+  ]
+}

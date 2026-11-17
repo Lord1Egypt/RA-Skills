@@ -1,44 +1,58 @@
-## Description: <br>
-Xueqiu Combo Report guides agents through collecting Xueqiu self-selected combo holdings from a logged-in browser session, merging and patching batches, ranking stocks by combo ownership, and exporting JSON, Markdown, HTML, and PDF reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xueqiu Combo Report guides agents through collecting Xueqiu combo holdings from a logged-in browser session, merging and patching batches, ranking held stocks, and exporting JSON, Markdown, HTML, and PDF reports.
 
-## Publisher: <br>
-[ning-kun](https://clawhub.ai/user/ning-kun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ning-kun](https://clawhub.ai/user/ning-kun)
 
-## Use Case: <br>
-External users, analysts, and developers use this skill to turn Xueqiu self-selected combo holdings batches into a ranked stock summary and final report files. It is intended for authorized Xueqiu sessions and locally held holdings data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The collection workflow depends on a logged-in Xueqiu browser session and may access account-specific holdings data. <br>
-Mitigation: Use only accounts and data you are authorized to access, and keep collection batches short and explicit. <br>
-Risk: Exported holdings files can contain sensitive financial information. <br>
-Mitigation: Store generated JSON, Markdown, HTML, and PDF files locally with appropriate access controls. <br>
-Risk: Rendering untrusted JSON to PDF through Chrome or Chromium can expose the local environment to unsafe input. <br>
-Mitigation: Render only trusted or reviewed JSON, or run the Chrome step in a trusted isolated environment. <br>
+## Use Case:
 
+Developers and analysts use this skill to turn Xueqiu self-selected combo holdings batches into ranked portfolio-style reports while documenting collection limits, failures, and manual patches.
 
-## Reference(s): <br>
-- [Data formats](references/data-format.md) <br>
-- [End-to-end workflow](references/end-to-end.md) <br>
-- [ClawHub skill page](https://clawhub.ai/ning-kun/xueqiu-combo-report) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, text, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell and browser-side code snippets; generated workflow artifacts may include JSON, Markdown, HTML, and PDF files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [PDF export depends on local Chrome or Chromium availability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The collection workflow depends on a logged-in Xueqiu financial browser session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted sessions and trusted input files, keep browser-side fetches scoped to the intended Xueqiu holdings workflow, and review collected data before reporting.
+
+Risk: Generated holdings reports may persist portfolio-style financial data.
+
+Mitigation: Keep generated JSON, Markdown, HTML, and PDF reports out of shared or published repositories unless disclosure is intentional.
+
+Risk: PDF generation currently involves unescaped report data and Chrome sandboxing concerns.
+
+Mitigation: Avoid PDF generation until HTML escaping and Chrome sandboxing issues are fixed; prefer reviewed JSON, Markdown, or HTML outputs in the meantime.
+
+## Reference(s):
+
+- [End-to-end workflow](references/end-to-end.md)
+- [Data formats](references/data-format.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, markdown, configuration]
+
+**Output Format:** [Markdown guidance with bash and JavaScript snippets; generated report files may be JSON, Markdown, HTML, and PDF.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Report generation depends on trusted input data, a logged-in Xueqiu browser session for collection, and Chrome or Chromium for optional PDF export.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

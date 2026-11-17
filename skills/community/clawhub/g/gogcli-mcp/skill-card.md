@@ -1,42 +1,54 @@
-## Description: <br>
-This skill helps agents configure and use gogcli-backed MCP servers for Google Workspace automation across Docs, Sheets, Slides, Drive, and Classroom. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents configure and use gogcli-backed MCP servers for Google Workspace automation across Docs, Sheets, Slides, Drive, and Classroom.
 
-## Publisher: <br>
-[chrischall](https://clawhub.ai/user/chrischall) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chrischall](https://clawhub.ai/user/chrischall)
 
-## Use Case: <br>
-Developers and users who connect agents to Google Workspace use this skill to install and configure gogcli MCP servers for document, spreadsheet, presentation, file, and Classroom workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can enable broad Google Workspace actions through the user's gogcli account. <br>
-Mitigation: Install only for intended Google Workspace automation, use the least-privileged Google account possible, and scope GOG_ACCOUNT explicitly when multiple accounts exist. <br>
-Risk: Workspace edits, sharing changes, deletions, grade changes, and Classroom operations can affect real user data. <br>
-Mitigation: Require explicit confirmation before sensitive actions and verify document, file, course, and assignment IDs before execution. <br>
-Risk: Server security evidence flags the release as suspicious because of broad scope and limited safety guidance. <br>
-Mitigation: Review the skill before installation and apply the server guidance for confirmations and least-privilege account use. <br>
+## Use Case:
 
+Developers and agent users use this skill to set up gogcli MCP servers and route Google Workspace requests for document editing, spreadsheet work, slide authoring, Drive file operations, and Classroom tasks.
 
-## Reference(s): <br>
-- [gogcli GitHub repository](https://github.com/chrischall/gogcli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON configuration examples and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes MCP server configuration, gogcli authentication guidance, and package selection guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.10.0 (source: server release metadata) <br>
+Risk: The skill can guide agents to use npm MCP packages with a locally authenticated Google account that may affect real Google Workspace data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only trusted, reviewed package versions and use a dedicated Google account or least-privilege OAuth scopes where possible.
+
+Risk: Generated actions may edit, delete, share, upload, download, or otherwise change Google Workspace resources.
+
+Mitigation: Require explicit confirmation before edits, deletes, permission changes, uploads, downloads, or Classroom actions.
+
+## Reference(s):
+
+- [gogcli repository](https://github.com/chrischall/gogcli)
+- [ClawHub skill page](https://clawhub.ai/chrischall/skills/gogcli-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include MCP server configuration snippets, gogcli authentication commands, and task-specific Google Workspace guidance.]
+
+## Skill Version(s):
+
+2.28.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

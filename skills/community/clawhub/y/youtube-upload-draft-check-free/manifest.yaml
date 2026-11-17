@@ -1,0 +1,29 @@
+name: youtube-upload-draft-check-free
+slug: youtube-upload-draft-check-free
+display_name: YouTube 上传草稿检查
+description: 使用用户明确指定的 Easy WebBridge browserId，只读核对本人 YouTube Studio 单个草稿或发布目标的可见字段，交付标题、简介、缩略图、受众、可见性与字幕缺项清单及逐条来源；登录、所有权或稿件选择不明确时立即停止，不发布、不改可见性。适合发布前人工复核与交接。
+version: 1.0.2
+icon: icon-512.png
+repository: https://github.com/xxjrq/youtube-upload-draft-check-free
+license: MIT-0
+tags:
+  - "youtube"
+  - "youtube-studio"
+  - "draft-review"
+  - "publishing-checklist"
+  - "metadata"
+trigger_words:
+  - "YouTube 草稿检查"
+  - "上传前检查"
+  - "Studio 草稿缺项"
+triggers:
+  - "检查我的 YouTube Studio 草稿还缺什么"
+  - "整理视频上传前的元数据和可见性问题"
+  - "只读核对 YouTube 草稿发布信息"
+interface:
+  display_name: "YouTube 上传草稿检查"
+  short_description: "只读核对本人 Studio 草稿字段并生成发布前缺项清单"
+  default_prompt: "使用 $youtube-upload-draft-check-free，只读核对我指定 browserId 中本人唯一明确的 YouTube Studio 草稿，逐项给出可见状态、缺项与真实来源；不发布或改动内容。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+self_test: python3 scripts/self_test.py

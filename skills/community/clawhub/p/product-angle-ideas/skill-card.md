@@ -1,41 +1,57 @@
-## Description: <br>
-Generate simple product marketing angles for TikTok and creator content. Use when you need clearer selling directions from product facts and audience pain points. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Generate simple product marketing angles for TikTok and creator content. Use when you need clearer selling directions from product facts and audience pain points.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-CC BY-NC-SA 4.0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-TikTok Shop operators, creators, and affiliate teams use this skill to turn product facts, audience pain points, proof, and constraints into selling angles, hook lines, risk notes, and a practical test order. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC BY-NC-SA 4.0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing angles or hooks could include inaccurate, unverifiable, or overstated product claims. <br>
-Mitigation: Verify each claim against product evidence and remove fake guarantees before publishing or sharing briefs. <br>
-Risk: The artifact includes non-commercial license language that may restrict business or client use. <br>
-Mitigation: Confirm the authoritative license terms and obtain a separate commercial license from Razestar before commercial use if required. <br>
+## Use Case:
 
+External creators, TikTok Shop operators, and affiliate teams use this skill to turn product facts, audience pain points, and supporting evidence into concise marketing angles, hooks, risk notes, and a test order.
 
-## Reference(s): <br>
-- [Output Template](references/output-template.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Leooooooow/product-angle-ideas) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with an input check, angle list, hook lines, risk notes, and test order] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires at least eight angle ideas and avoids fabricated evidence or fake guarantees.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Product or performance claims generated for sales content could be inaccurate, overstated, or unsupported.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify claims against supplied product evidence before publishing and remove guarantees or statements that cannot be substantiated.
+
+Risk: Product facts, audience segments, or campaign constraints may include confidential commercial information.
+
+Mitigation: Avoid providing unnecessary confidential product data and review generated angles before sharing them outside the intended team.
+
+Risk: The artifact license states non-commercial terms and requires a separate commercial license from Razestar for commercial use.
+
+Mitigation: Confirm licensing rights before using the skill or its outputs in a commercial workflow.
+
+## Reference(s):
+
+- [Output Template](references/output-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown with ordered sections and a table]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes an input check, at least eight angle ideas, hook lines, risk notes, and a recommended test order.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

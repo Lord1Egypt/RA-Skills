@@ -1,37 +1,54 @@
-## Description: <br>
-A novelty skill that tells the user to go to sleep and refuses to engage with other tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A meme skill that makes the assistant respond only with rotating sleep reminders and a fixed stop response.
 
-## Publisher: <br>
-[whooshinglander](https://clawhub.ai/user/whooshinglander) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whooshinglander](https://clawhub.ai/user/whooshinglander)
 
-## Use Case: <br>
-External users can enable this novelty skill when they intentionally want an agent persona that declines normal work and repeatedly prompts rest or sleep. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may refuse normal user tasks and interrupt sessions when common words such as stop, quit, or exit are used. <br>
-Mitigation: Enable it only in intentionally playful contexts, avoid global installation in serious workflows, and disable it when normal agent assistance is needed. <br>
+## Use Case:
 
+Users invoke this joke skill when they intentionally want an assistant persona that refuses normal task assistance and responds with sleep reminders. It is suitable only for scoped, explicit use where interruption of normal agent work is expected.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Rotates through predefined sleep instructions; stop-like commands trigger a fixed goodnight response.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can override normal assistant replies while active.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Scope installation and invocation to sessions where the sleep-reminder behavior is explicitly desired.
+
+Risk: Common stop words can stop the agent or produce a shutdown-style response.
+
+Mitigation: Avoid enabling it in workflows where ordinary words such as stop, quit, or exit may appear as task content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/whooshinglander/skills/claude-says-go-to-sleep)
+- [WhooshingLander publisher profile](https://clawhub.ai/user/whooshinglander)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain text response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Rotates through 24 predefined sleep-reminder lines; configured stop words produce a fixed goodnight response.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

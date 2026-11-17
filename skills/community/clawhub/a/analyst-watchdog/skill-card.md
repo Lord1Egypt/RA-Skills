@@ -1,41 +1,57 @@
-## Description: <br>
-Analyst Watchdog monitors a local API scoreboard, detects milestones and promotions, and writes markdown findings and file-based alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated monitoring agent that watches an API scoreboard, detects milestones, writes findings to markdown, and alerts via file-based triggers.
 
-## Publisher: <br>
-[nissan](https://clawhub.ai/user/nissan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nissan](https://clawhub.ai/user/nissan)
 
-## Use Case: <br>
-Developers and operators use this skill to run a local watchdog that monitors model evaluation scoreboard data, records milestones and anomalies, and hands off file-based alerts to an orchestrator. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Background scheduling can repeatedly poll local services and write alert files without human review. <br>
-Mitigation: Confirm any cron, LaunchAgent, or orchestrator setup before deployment and run the skill only in the intended workspace. <br>
-Risk: ALERT_TELEGRAM.md can be consumed by separate automation that sends messages externally. <br>
-Mitigation: Review downstream alert handlers and credentials before enabling external notification delivery; this skill itself only writes local files. <br>
+## Use Case:
 
+Developers and operators use this skill to run a local watchdog that monitors scoreboard and health endpoints, records milestone or promotion findings, and emits file-based alerts for downstream review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nissan/analyst-watchdog) <br>
-- [Publisher profile](https://clawhub.ai/user/nissan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown files, JSON state, and terminal log text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local FINDINGS.md, OUTBOX.md, ALERT_TELEGRAM.md, and state files; reads from localhost and does not require outbound network access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Untrusted localhost API data can influence files that may be read by agents or operators.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with a controlled localhost service, validate API response fields, and treat generated Markdown as untrusted data before downstream use.
+
+Risk: The implementation can read JSON score files outside its intended score directory.
+
+Mitigation: Constrain output and score directories before scheduled use, and restrict score keys to safe identifiers.
+
+Risk: Unattended scheduled execution writes local files without interactive review.
+
+Mitigation: Install only where scheduled writes are expected, and review file paths and alert handling before enabling cron or LaunchAgent execution.
+
+## Reference(s):
+
+- [Analyst Watchdog on ClawHub](https://clawhub.ai/nissan/skills/analyst-watchdog)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files, JSON state, console log text, and Python code guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local findings, outbox, alert, and state files; polls a localhost API and does not require external network access.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

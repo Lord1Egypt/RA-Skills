@@ -1,48 +1,64 @@
-## Description: <br>
-Opinionated creative production system for image/video generation, image editing, motion scenes, voiceovers, music, and Remotion assembly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shellbot Creative helps agents plan and orchestrate creative production workflows for image and video generation, image editing, motion scenes, voiceovers, music, and Remotion assembly.
 
-## Publisher: <br>
-[cohnen](https://clawhub.ai/user/cohnen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cohnen](https://clawhub.ai/user/cohnen)
 
-## Use Case: <br>
-Developers, creators, and marketing teams use this skill to turn a creative brief into storyboard plans, provider routing, generated media commands, audio guidance, and Remotion-ready assembly assets for product marketing videos, explainers, social ads, and reusable visual pipelines. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Creative briefs, prompts, image URLs, narration text, and project details may be sent to external AI providers. <br>
-Mitigation: Use only data approved for those providers, avoid confidential launches or customer data unless permitted, and confirm provider terms before running generation workflows. <br>
-Risk: Generated shell plans can make authenticated external API calls. <br>
-Mitigation: Review command plans before execution and run them only with intended provider credentials and project inputs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cohnen/shellbot-creative) <br>
-- [OpenClaw skills documentation](https://docs.openclaw.ai/tools/skills) <br>
-- [OpenClaw slash command behavior](https://docs.openclaw.ai/tools/slash-commands) <br>
-- [OpenClaw metadata config](https://docs.openclaw.ai/tools/skills-config) <br>
-- [OpenClaw creating skills guide](https://docs.openclaw.ai/tools/creating-skills) <br>
-- [Creative Guidelines](references/creative-guidelines.md) <br>
-- [Provider Matrix](references/provider-matrix.md) <br>
-- [Workflow Recipes](references/workflow-recipes.md) <br>
-- [Remotion Playbook](references/remotion-playbook.md) <br>
-- [Samples](references/samples.md) <br>
+## Use Case:
 
+Developers, creators, and marketing teams use this skill to turn a brief into storyboards, provider routing, generated asset plans, audio steps, and Remotion-ready assembly guidance for explainers, product marketing videos, social ads, and reusable creative asset pipelines.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands, JSON manifests, and Remotion TypeScript/Python helper code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local project files under creative-output and provider API command plans when credentials are configured.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated shell plans may execute unsafe commands if a brief or prompt is crafted maliciously.
+
+Mitigation: Review generated shell plans before running them, especially when the brief came from another person or an untrusted source.
+
+Risk: Prompts and media may be sent to external creative providers.
+
+Mitigation: Do not include secrets, unreleased campaign details, customer data, or private media unless sharing them with the selected provider is acceptable.
+
+Risk: The Remotion setup path may use npx create-video@latest, which can change over time.
+
+Mitigation: Pin or avoid npx create-video@latest in controlled environments.
+
+## Reference(s):
+
+- [Creative Guidelines](references/creative-guidelines.md)
+- [Provider Matrix](references/provider-matrix.md)
+- [Remotion Playbook](references/remotion-playbook.md)
+- [Samples](references/samples.md)
+- [Workflow Recipes](references/workflow-recipes.md)
+- [OpenClaw Skills Documentation](https://docs.openclaw.ai/tools/skills)
+- [OpenClaw Slash Commands](https://docs.openclaw.ai/tools/slash-commands)
+- [OpenClaw Skills Config](https://docs.openclaw.ai/tools/skills-config)
+- [OpenClaw Creating Skills Guide](https://docs.openclaw.ai/tools/creating-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON manifests, Python and TypeScript starter code, and shell command plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce dry-run artifacts such as storyboards, provider routing summaries, Remotion manifests, and executable API plans for user review.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

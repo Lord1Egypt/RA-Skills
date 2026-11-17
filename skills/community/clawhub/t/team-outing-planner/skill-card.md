@@ -1,45 +1,56 @@
-## Description: <br>
-Helps company teams plan group outing destinations by collecting member preferences, analyzing activity, budget, timing, and accessibility needs, and querying flyai for destination details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮助公司团队规划团建活动目的地。收集团队成员的偏好（活动类型、预算、时间等），综合分析推荐最佳目的地，并通过flyai查询详细信息。适用于团建规划、集体出游、公司活动等场景。
 
-## Publisher: <br>
-[shiguan1](https://clawhub.ai/user/shiguan1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shiguan1](https://clawhub.ai/user/shiguan1)
 
-## Use Case: <br>
-Employees and team coordinators use this skill to collect group outing requirements, compare destination options, and produce a shareable recommendation report for company team-building activities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Team outing preferences may include personal names, accessibility needs, travel constraints, or other sensitive information. <br>
-Mitigation: Use summarized or anonymized preferences where possible and avoid storing names or sensitive needs unless necessary. <br>
-Risk: Travel queries are sent to the flyai CLI/provider. <br>
-Mitigation: Confirm the installer trusts the flyai provider and is comfortable with sending travel queries to that service before use. <br>
-Risk: The generated HTML report may contain sensitive team preferences or planning details. <br>
-Mitigation: Review the HTML before sharing it and delete ~/team-outing-recommendation.html when it is no longer needed. <br>
+## Use Case:
 
+Employees and team coordinators use this skill to collect outing constraints and member preferences, compare candidate destinations, and prepare a shareable team outing recommendation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shiguan1/team-outing-planner) <br>
-- [README](README.md) <br>
-- [Preference collection template](preferences-template.md) <br>
-- [HTML report template](html-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown recommendations plus a local HTML report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May query travel data through flyai and generate ~/team-outing-recommendation.html.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Risk: The skill directs agents to run external flyai CLI searches with team outing details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive team details, confirm fly.ai data sharing is acceptable, and prefer a pinned local flyai-cli install with safe argument-based execution.
+
+Risk: The skill instructs agents to create and automatically open an HTML recommendation report.
+
+Mitigation: Ask before creating or opening files, sanitize generated HTML content and links, and review the report before sharing it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shiguan1/skills/team-outing-planner)
+- [README.md](artifact/README.md)
+- [preferences-template.md](artifact/preferences-template.md)
+- [html-template.md](artifact/html-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown recommendations with inline shell commands and generated HTML.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a local HTML report at ~/team-outing-recommendation.html and open it in a browser when followed.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,54 @@
-## Description: <br>
-LegalBot - AI法律小助手，日常法律咨询、合同风险扫描、诉讼成本评估、法律文书生成、时效提醒。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LegalBot - AI法律小助手，日常法律咨询、合同风险扫描、诉讼成本评估、法律文书生成、时效提醒。
 
-## Publisher: <br>
-[webpenbot](https://clawhub.ai/user/webpenbot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[webpenbot](https://clawhub.ai/user/webpenbot)
 
-## Use Case: <br>
-External users can use this skill for everyday Chinese-language legal reference tasks such as issue triage, contract risk review, litigation cost estimates, deadline reminders, and document drafting. It is drafting and reference support only and does not replace advice from a qualified lawyer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; content is focused on Chinese legal scenarios. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Legal guidance, templates, cost estimates, or deadline reminders may be incomplete or unsuitable for a user's facts or jurisdiction. <br>
-Mitigation: Use the skill as drafting and reference support only, and have a qualified lawyer review important documents, deadlines, and legal decisions. <br>
-Risk: Legal drafting workflows may involve personal, financial, or case-specific information. <br>
-Mitigation: Avoid sharing unnecessary sensitive information when using the skill. <br>
+## Use Case:
 
+External users use this skill for Chinese-language legal reference tasks such as everyday legal Q&A, contract risk review, litigation cost estimates, limitation-period reminders, and drafting common legal documents. It is reference material and does not replace professional legal advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/webpenbot/legalbot) <br>
-- [Skill definition](SKILL.md) <br>
-- [Contract risk keywords](data/contract_risk_keywords.json) <br>
-- [Statute of limitations reference](data/statute_of_limitations.json) <br>
-- [Document templates](templates/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text legal guidance and document drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bundled reference data and document templates; no executable code was identified in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: A rental-contract template contains realistic-looking identity, phone, address, and bank-account details that users could accidentally reuse.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace those details with placeholders or verified user-provided information before using or sharing generated documents.
+
+Risk: Users may treat Chinese-language legal reference guidance or templates as professional legal advice.
+
+Mitigation: Present outputs as PRC/Chinese-language reference material and recommend review by a qualified lawyer for case-specific decisions.
+
+## Reference(s):
+
+- [LegalBot ClawHub skill page](https://clawhub.ai/webpenbot/skills/legalbot)
+- [webpenbot ClawHub publisher profile](https://clawhub.ai/user/webpenbot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown and structured text templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include Chinese-language legal reference guidance, risk summaries, cost estimates, deadline reminders, and draft document templates.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

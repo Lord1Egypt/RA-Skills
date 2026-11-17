@@ -1,40 +1,55 @@
-## Description: <br>
-AI-powered agent that aggregates, summarizes, and analyzes cryptocurrency news to produce daily sentiment, top-coin, and market insight reports for traders and creators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered agent that daily aggregates, summarizes, and analyzes crypto news to deliver sentiment, top coins, and market insights for traders and creators.
 
-## Publisher: <br>
-[ariesbalweell](https://clawhub.ai/user/ariesbalweell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ariesbalweell](https://clawhub.ai/user/ariesbalweell)
 
-## Use Case: <br>
-Traders, crypto content creators, and Web3 automation builders use this skill to turn recent cryptocurrency news into daily reports with summaries, sentiment, mentioned coins, and publishable insights. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may send crypto-news queries or article content to external AI and news providers. <br>
-Mitigation: Install only after approving the required providers and API keys; avoid submitting sensitive private information in news queries or prompts. <br>
-Risk: Generated market insights could be mistaken for trading or investment advice. <br>
-Mitigation: Keep trading and posting decisions manual unless separate reviewed integrations add explicit approval, rate limits, and compliance checks. <br>
+## Use Case:
 
+Traders, crypto content creators, and Web3 automation builders use this skill to turn recent cryptocurrency news into concise daily market reports with summaries, sentiment, mentioned coins, and publishable insight text.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ariesbalweell/crypto-news-ai-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown-style daily crypto report with optional structured JSON fields for summary, sentiment, top coins, and insight.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires external news and AI provider API keys; outputs are informational and should not be treated as financial advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Scheduled runs or future account-connected extensions could post, message, or trade without enough user oversight.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep scheduled runs opt-in, use scoped API keys, and require manual approval before enabling social posting, messaging, or trading features.
+
+Risk: No executable implementation is bundled in the artifact, so users cannot verify runtime behavior from this release package alone.
+
+Mitigation: Verify any later implementation before installation or deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ariesbalweell/skills/crypto-news-ai-agent)
+- [README.md](artifact/README.md)
+- [skill.md](artifact/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, plain text, JSON examples, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces informational crypto-news summaries and sentiment-oriented reports; not financial advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

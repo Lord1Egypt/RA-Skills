@@ -1,46 +1,65 @@
-## Description: <br>
-Finance OCR Pro extracts structured Markdown, HTML, DOCX, and Excel from scanned documents, images, and office files by sending rendered page images and OCR prompts to a configured OpenAI-compatible vision-language model endpoint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finance OCR Pro helps agents OCR, transcribe, extract, or convert scanned PDFs, images, and office documents into Markdown, HTML, DOCX, and Excel using a configured OpenAI-compatible vision-language model endpoint.
 
-## Publisher: <br>
-[rizmoon](https://clawhub.ai/user/rizmoon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rizmoon](https://clawhub.ai/user/rizmoon)
 
-## Use Case: <br>
-Developers, analysts, and agent users use this skill to OCR and convert visually complex financial documents such as annual reports, prospectuses, regulatory filings, research reports, and investor presentations into reviewable and editable outputs. It is best suited to documents with dense tables, charts, graphs, formulas, footnotes, and multi-part layouts where plain text extraction is insufficient. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OCR sends rendered document page images and prompts to the configured BASE_URL, which may expose sensitive financial or internal content to that endpoint. <br>
-Mitigation: Use a trusted local or approved provider endpoint for sensitive files and verify BASE_URL before running OCR. <br>
-Risk: The required API_KEY is a sensitive credential. <br>
-Mitigation: Keep API_KEY out of shared files, use local environment configuration, and do not commit populated .env files. <br>
-Risk: Generated HTML reports are derived from document content and may contain sensitive or untrusted content. <br>
-Mitigation: Review generated HTML before sharing or opening broadly, especially for confidential source documents. <br>
+## Use Case:
 
+Developers and agents use this skill to turn scanned or visually complex financial documents, office files, and images into reviewable Markdown, HTML, DOCX, and Excel outputs. It is intended for workflows where page layout, tables, charts, formulas, and long-running OCR jobs matter.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rizmoon/finance-ocr-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/rizmoon) <br>
-- [README](artifact/README.md) <br>
-- [Security notes](artifact/SECURITY.md) <br>
-- [Third-party notices](artifact/THIRD_PARTY_NOTICES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated document artifacts including Markdown, HTML, DOCX, and Excel] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires API_KEY, BASE_URL, and VLM_MODEL; default execution uses a local background OCR job and one OCR thread unless the configured endpoint supports safe parallel requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: frontmatter, release evidence) <br>
+Risk: Document page images and OCR prompts are sent to the configured VLM endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with a trusted BASE_URL, and point BASE_URL to a trusted local service when documents require local-only processing.
+
+Risk: Generated HTML reports may carry unsafe active content from OCR Markdown or Mermaid output.
+
+Mitigation: Avoid opening or sharing generated HTML reports from untrusted documents until report sanitization has been reviewed.
+
+Risk: API credentials are required for the VLM endpoint.
+
+Mitigation: Keep API_KEY local, do not commit populated .env files, and use .env.example only as a template.
+
+Risk: Long-running OCR jobs may leave sensitive results on disk.
+
+Mitigation: Monitor background jobs and remove ~/.semantic-ocr/jobs artifacts when results are no longer needed.
+
+## Reference(s):
+
+- [Finance OCR Pro README](artifact/README.md)
+- [Security Notes](artifact/SECURITY.md)
+- [Third-Party Notices](artifact/THIRD_PARTY_NOTICES.md)
+- [ClawHub Skill Page](https://clawhub.ai/rizmoon/skills/finance-ocr-pro)
+- [Publisher Profile](https://clawhub.ai/user/rizmoon)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with shell commands and generated Markdown, HTML, DOCX, and Excel files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires API_KEY, BASE_URL, and VLM_MODEL; default OCR jobs write results under ~/.semantic-ocr/jobs/<job_id>/results/.]
+
+## Skill Version(s):
+
+1.0.7 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

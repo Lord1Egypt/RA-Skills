@@ -1,46 +1,63 @@
-## Description: <br>
-双搜索功能 (Tavily + Kimi) - 支持并行搜索和结果合并 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+双搜索功能 (Tavily + Kimi) - 支持并行搜索和结果合并
 
-## Publisher: <br>
-[wjs028-coder](https://clawhub.ai/user/wjs028-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wjs028-coder](https://clawhub.ai/user/wjs028-coder)
 
-## Use Case: <br>
-Developers and agents use this skill to run parallel web searches through Tavily and Kimi/Moonshot, then combine per-source results into a single response for research, content creation, market analysis, and technical lookup workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to Tavily and Moonshot/Kimi external services. <br>
-Mitigation: Use only with provider-approved data and avoid submitting secrets, private internal text, regulated data, or personal information as queries. <br>
-Risk: The installer can print partial API key prefixes and run a networked test query. <br>
-Mitigation: Review install.sh before execution and run it only in an environment where partial key prefixes and test traffic are acceptable. <br>
-Risk: The skill depends on API keys and third-party service availability. <br>
-Mitigation: Configure TAVILY_API_KEY and, when needed, KIMI_API_KEY through trusted secret handling and expect reduced functionality if a provider fails or is unavailable. <br>
+## Use Case:
 
+Developers and agents use this skill to run a search query through Tavily and Kimi, then receive merged or source-separated results for research, content preparation, technical lookup, or market analysis workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wjs028-coder/double-search) <br>
-- [Publisher profile](https://clawhub.ai/user/wjs028-coder) <br>
-- [Tavily API endpoint](https://api.tavily.com/search) <br>
-- [Tavily API key setup](https://app.tavily.com/) <br>
-- [Moonshot/Kimi API](https://api.moonshot.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Python dictionaries containing query, merged_results, and source_breakdown fields, plus console text and Markdown usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TAVILY_API_KEY and optionally KIMI_API_KEY; sends search queries to external Tavily and Moonshot/Kimi APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact documentation) <br>
+Risk: Search queries are sent to Tavily and, when configured, Moonshot/Kimi.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting secrets, private customer data, or confidential business text as search queries.
+
+Risk: The installer prints partial API key prefixes while checking configuration.
+
+Mitigation: Run installation only in controlled terminals and avoid shared logs or recorded sessions when credentials are present.
+
+Risk: Runtime behavior depends on external API availability, credentials, and response formats.
+
+Mitigation: Validate provider credentials and result parsing in the deployment environment before relying on the skill for production workflows.
+
+Risk: The installer installs Python dependencies without pinned versions.
+
+Mitigation: Pin and review aiohttp and python-dotenv versions before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wjs028-coder/skills/double-search)
+- [Tavily API dashboard](https://app.tavily.com/)
+- [Moonshot/Kimi API](https://api.moonshot.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON-like Python dictionaries, text logs, and Markdown documentation with inline Python and shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results include query text, merged result items, and per-source result breakdowns when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

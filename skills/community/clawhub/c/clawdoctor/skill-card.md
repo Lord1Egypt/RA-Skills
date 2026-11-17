@@ -1,45 +1,60 @@
-## Description: <br>
-Behavioral cost coach for OpenClaw fleets. Analyzes your sessions, shows what you did that cost money, and coaches you on what to do differently. Finds both technical waste (wrong model, no tool budget) and behavioral waste (blind retries, over-scheduled crons). Run daily via cron or trigger manually. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawDoctor is a behavioral cost coach for OpenClaw fleets that analyzes sessions, identifies technical and behavioral cost waste, and produces cost reports with optional configuration fixes.
 
-## Publisher: <br>
-[nabilrehman](https://clawhub.ai/user/nabilrehman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nabilrehman](https://clawhub.ai/user/nabilrehman)
 
-## Use Case: <br>
-Developers, operators, and teams running OpenClaw fleets use ClawDoctor to review session costs, identify expensive usage habits, and produce cost-saving recommendations or configuration fixes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can read recent OpenClaw session transcripts, which may contain private operational or user data. <br>
-Mitigation: Install only in environments where transcript access is acceptable, and review the scope of session data before running analysis. <br>
-Risk: The skill can apply live fleet configuration changes from broad conversational approvals. <br>
-Mitigation: Require explicit approval for the affected agents, exact patch payload, expected savings, and rollback steps before applying a fix. <br>
-Risk: The skill saves local cost-analysis state and pending fixes. <br>
-Mitigation: Protect the workspace state files and review them for sensitive cost or fleet information before sharing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/nabilrehman/clawdoctor) <br>
-- [Publisher profile](https://clawhub.ai/user/nabilrehman) <br>
-- [Faan AI](https://faan.ai) <br>
-- [Report Formats](references/report-formats.md) <br>
-- [Fix Payloads & Model Tiers](references/fix-payloads.md) <br>
+## Use Case:
 
+Developers and OpenClaw fleet operators use ClawDoctor to review agent usage costs, understand costly session patterns, and decide whether to apply cost-saving configuration changes.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports with inline shell commands and JSON state files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local analysis state and pending fix records after reviewing OpenClaw fleet and session data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-4.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can read private chat histories and fleet usage data during cost analysis.
+
+Mitigation: Run it manually first, limit use to environments where transcript access is acceptable, and confirm consent and retention expectations before scheduled runs.
+
+Risk: The skill can change fleet settings through configuration patches with weak confirmation controls.
+
+Mitigation: Review the exact patch, affected agents, global impact, and rollback plan before allowing any fix to be applied.
+
+Risk: Daily cron execution may repeatedly analyze sensitive history and incur avoidable analysis cost.
+
+Mitigation: Avoid daily cron until the team has approved access, retention, and expected run cost for the fleet.
+
+## Reference(s):
+
+- [ClawDoctor Skill Page](https://clawhub.ai/nabilrehman/skills/clawdoctor)
+- [Fix Payloads & Model Tiers](artifact/references/fix-payloads.md)
+- [Report Formats](artifact/references/report-formats.md)
+- [Faan AI](https://faan.ai)
+- [Nabil Rehman](https://www.linkedin.com/in/nabilrehman)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with inline shell commands and JSON configuration/state files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write pending-fixes and last-analysis state files; can propose or apply OpenClaw configuration patches after user review.]
+
+## Skill Version(s):
+
+4.0.0 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,58 @@
-## Description: <br>
-Skill Gatekeeper audits OpenClaw skills with local pattern checks, optional VirusTotal hash lookups, and quarantine handling before allowing use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits OpenCode and OpenClaw skills with local pattern scanning and optional VirusTotal hash checks before approving, warning on, or quarantining them.
 
-## Publisher: <br>
-[lanew197894fun-cmd](https://clawhub.ai/user/lanew197894fun-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanew197894fun-cmd](https://clawhub.ai/user/lanew197894fun-cmd)
 
-## Use Case: <br>
-Developers and skill administrators use this skill to review, install, and quarantine OpenClaw skills with local checks and optional VirusTotal file-hash reputation. It is best treated as a supplemental security review workflow rather than a complete isolation boundary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install a target skill before the audit completes, so the review boundary is not fully pre-installation. <br>
-Mitigation: Use only trusted slugs and perform an independent review before running unknown skills; do not treat a passing result as sole approval. <br>
-Risk: Quarantine behavior can remove live installed skill directories. <br>
-Mitigation: Run audits against disposable or backed-up skill directories when testing untrusted skills, especially during bulk audit. <br>
-Risk: The install flow builds a shell command from the provided slug. <br>
-Mitigation: Use server-resolved or otherwise trusted slugs only, and avoid unreviewed user-supplied values. <br>
-Risk: VirusTotal checks use a locally stored API key and file-hash lookups. <br>
-Mitigation: Avoid sensitive or private skills unless hash reputation lookups are acceptable, and protect the configured API key. <br>
-Risk: The documented sandbox behavior copies files for scanning but should not be treated as real process isolation. <br>
-Mitigation: Run reviews for untrusted skills in an isolated operating-system account, container, or disposable environment. <br>
+## Use Case:
 
+Developers and operators managing OpenCode or OpenClaw skill installations can use this skill to audit skills, gate installs, configure VirusTotal checks, and quarantine skills flagged by its review flow.
 
-## Reference(s): <br>
-- [Skill Gatekeeper on ClawHub](https://clawhub.ai/lanew197894fun-cmd/skill-gatekeeper) <br>
-- [Publisher profile: lanew197894fun-cmd](https://clawhub.ai/user/lanew197894fun-cmd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text and Markdown guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Bun; may use a locally configured VirusTotal API key for file-hash lookups.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The release evidence reports unsafe install behavior for untrusted slugs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the implementation before use and avoid the install command with untrusted slugs.
+
+Risk: The release evidence reports quarantine and audit-all behavior that can move or delete local skill directories.
+
+Mitigation: Run only on disposable or test skill directories until path validation and confirmation controls are added.
+
+Risk: The release evidence says the sandbox protections are overstated.
+
+Mitigation: Treat sandboxing as a file-copy review workflow, not real isolation; use operating-system isolation when evaluating untrusted skills.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lanew197894fun-cmd/skills/skill-gatekeeper)
+- [VirusTotal file report API](https://www.virustotal.com/api/v3/files/{hash})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown usage guidance with bash examples and terminal text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Bun; optional VirusTotal API key enables cloud hash checks.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

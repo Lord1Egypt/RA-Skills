@@ -1,41 +1,58 @@
-## Description: <br>
-A maternal and newborn care assistant that generates an interactive HTML dashboard for 28-day postpartum workflows, including care logs, health monitoring, meal planning, medication tracking, reports, and handoff summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+月嫂助手 generates an interactive HTML dashboard for maternity nurses, confinement centers, and maternal-care teams to manage newborn care, postpartum care, meal planning, health monitoring, medication tracking, daily logs, family reports, and handoff summaries.
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-Caregivers, maternity centers, and maternal-newborn care teams use this skill to create a browser-based dashboard for recording postpartum and newborn care activities, tracking daily health data, and preparing family reports or handoff summaries. Users should treat stored and exported records as sensitive health information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive family and health records in browser storage and exported JSON files. <br>
-Mitigation: Use only on a trusted device and browser profile, avoid shared computers, and treat exported JSON backups as sensitive medical records. <br>
-Risk: The release evidence reports overbroad agent permissions and an undisclosed third-party script load. <br>
-Mitigation: Review the skill before installing, prefer removing unnecessary Bash permission, and bundle Chart.js locally or use integrity protections. <br>
+## Use Case:
 
+External maternity-care providers use this skill to create a local browser dashboard for tracking a 28-day postpartum service period, including infant and mother health metrics, meals, medications, care notes, family-facing reports, and final handoff records.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/nanny-assistant) <br>
-- [Publisher profile](https://clawhub.ai/user/bettermen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance plus a single-page HTML dashboard with browser localStorage and JSON import/export support] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The generated dashboard stores maternal and newborn care data locally in the browser, can export JSON backups, and loads Chart.js from a third-party CDN.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact frontmatter lists 1.0.0) <br>
+Risk: Sensitive mother and infant health data may be stored locally without enough privacy disclosure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on trusted private devices, avoid regulated medical records, and add clear privacy notices before broader deployment.
+
+Risk: Browser-side rendering and JSON import behavior may expose users to unsafe imported content.
+
+Mitigation: Import backups only from trusted sources and add validation plus input/output escaping before production use.
+
+Risk: Bash access is allowed even though the dashboard primarily uses a local HTML artifact.
+
+Mitigation: Remove unnecessary Bash access or require review of any shell commands before installation or execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/nanny-assistant)
+- [Chart.js 4.4.0 browser dependency](https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, configuration, guidance]
+
+**Output Format:** [Interactive HTML dashboard with local JSON persistence and copyable text reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses browser localStorage for care records and supports JSON backup import/export.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,57 @@
-## Description: <br>
-This skill should be used when browsing or automating web pages that expose tools via the WebMCP API (window.navigator.modelContext). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill should be used when browsing or automating web pages that expose tools via the WebMCP API (window.navigator.modelContext). It teaches agents how to discover, inspect, and invoke WebMCP tools on websites instead of relying on DOM scraping or UI actuation.
 
-## Publisher: <br>
-[brunobuddy](https://clawhub.ai/user/brunobuddy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[brunobuddy](https://clawhub.ai/user/brunobuddy)
 
-## Use Case: <br>
-Developers and agents use this skill to discover, inspect, and invoke structured tools exposed by websites through WebMCP instead of relying only on DOM scraping or UI actuation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Website-provided tools may perform sensitive actions such as purchases, account changes, posting, or deleting content. <br>
-Mitigation: Use the skill on trusted sites and keep explicit user confirmation for sensitive operations. <br>
-Risk: WebMCP tools are dynamic, page-scoped, and permission-gated, so available tools can change after navigation or SPA state updates. <br>
-Mitigation: Re-discover available tools after page transitions and invoke only tools whose name, description, and JSON Schema match the user's goal. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [WebMCP specification](https://github.com/webmachinelearning/webmcp) <br>
+## Use Case:
 
+Developers and agents use this skill to identify websites that expose WebMCP tools, inspect their JSON Schema inputs, invoke suitable page-provided tools, and fall back to DOM interaction when no suitable tool is available.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, API Calls] <br>
-**Output Format:** [Markdown with inline JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses JSON Schema parameters exposed by each website; requires a live browser context.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Website-provided tools may perform sensitive actions such as purchases or account changes.
+
+Mitigation: Require browser prompts and explicit user confirmation before executing sensitive tool calls, and respect user denials without retrying cancelled calls.
+
+Risk: Page tools are dynamic and may change after navigation or single-page application state updates.
+
+Mitigation: Re-discover available tools after page transitions or state changes before choosing and invoking a tool.
+
+Risk: A tool call may fail or be inappropriate if parameters do not match the exposed JSON Schema.
+
+Mitigation: Inspect each tool's input schema and invoke tools only with parameters that match required fields and declared types.
+
+## Reference(s):
+
+- [WebMCP specification](https://github.com/webmachinelearning/webmcp)
+- [ClawHub skill page](https://clawhub.ai/brunobuddy/skills/webmcp)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JavaScript examples and structured tool-call recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on the tools exposed by the active browser page and may require explicit user confirmation for sensitive actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

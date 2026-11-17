@@ -1,41 +1,54 @@
-## Description: <br>
-Send local files and documents to a Telegram user via a bot, with path handling and 50MB size-limit zipping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends local files or notes up to 50 MB to a Telegram user through a configured bot, with path handling and automatic zipping when needed.
 
-## Publisher: <br>
-[daowuu](https://clawhub.ai/user/daowuu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daowuu](https://clawhub.ai/user/daowuu)
 
-## Use Case: <br>
-Developers and agents use this skill when a user asks to send a local file, note, or document to Telegram through a configured bot. It prepares the selected file path, handles Telegram's 50MB document limit, and provides the values needed for the Telegram message send action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can prepare any readable local file path for transfer to Telegram. <br>
-Mitigation: Before each send, verify the exact source path, destination chat ID, and bot accountId, and avoid secrets, credentials, private system files, or files the user has not explicitly chosen to share. <br>
-Risk: A file may be sent to the wrong Telegram chat or through the wrong bot account if identifiers are misconfigured. <br>
-Mitigation: Confirm the target user's Telegram chat ID and bot accountId before invoking the message send action. <br>
+## Use Case:
 
+External users and developers use this skill to have an agent prepare and send a specified local file, note, or document to a Telegram chat through a configured bot account.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/daowuu/telegram-file-sender) <br>
-- [Skill Homepage](https://clawhub.ai/skills/telegram-file-sender) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, key-value helper output, and a JSON message-tool payload] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Helper output includes SEND_PATH, SEND_FILENAME, TARGET, CAPTION, ACCOUNT_ID, and READY for agent parsing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill can upload arbitrary local files to Telegram, so using a broad or incorrect path could disclose sensitive content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the exact file path, recipient chat ID, and bot account before sending, and use it only with non-sensitive files intentionally selected for upload.
+
+Risk: Temporary-file cleanup and output parsing are part of the workflow and may leave avoidable exposure if not completed or reviewed.
+
+Mitigation: Review script output before the send action and verify cleanup after successful delivery.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daowuu/skills/telegram-file-sender)
+- [Skill homepage](https://clawhub.ai/skills/telegram-file-sender)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown instructions with bash commands, key-value script output, and JSON tool payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prepares a temporary file path for Telegram document sending; files over 50 MB are zipped when compression brings them within the limit.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

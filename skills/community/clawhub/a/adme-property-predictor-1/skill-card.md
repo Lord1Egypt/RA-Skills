@@ -1,42 +1,66 @@
-## Description: <br>
-Analyze data with `adme-property-predictor` using a reproducible workflow, explicit validation, and structured outputs for review-ready interpretation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Predicts small-molecule ADME properties and drug-likeness from SMILES or CSV inputs using a reproducible RDKit-based workflow.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Developers, data analysts, and cheminformatics users use this skill to estimate small-molecule ADME properties, drug-likeness, and candidate prioritization outputs from SMILES strings or CSV files. It is suited for local, reviewable early-stage analysis, not experimental or regulatory evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ADME predictions may be mistaken for experimental or regulatory-grade evidence. <br>
-Mitigation: Use the outputs only for early prioritization, compare against experimental data where available, and document assumptions and model limitations before decisions. <br>
-Risk: Invalid, unsupported, or out-of-domain molecular inputs can produce errors or unreliable estimates. <br>
-Mitigation: Validate and canonicalize SMILES or CSV input before execution, check the molecule against the documented small-molecule scope, and stop when required inputs are missing. <br>
-Risk: Unpinned local dependencies can affect reproducibility or installation reliability. <br>
-Mitigation: Run in a virtual environment and pin or review dependencies, especially RDKit, before using results in a repeatable workflow. <br>
+## Use Case:
 
+Developers and scientists use this skill to screen small-molecule drug candidates for predicted absorption, distribution, metabolism, excretion, and drug-likeness properties before prioritizing follow-up review or experiments.
 
-## Reference(s): <br>
-- [Runtime Checklist](references/runtime_checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, markdown, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; script output can be JSON or table-formatted text and may be written to a JSON file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires valid SMILES strings or CSV files with SMILES data; outputs are rough local estimates intended for review and prioritization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Unpinned dependencies can change runtime behavior or supply-chain exposure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated environment and pin or review RDKit before use; remove the unnecessary dataclasses dependency for Python 3.10+.
+
+Risk: Untrusted molecule inputs or CSV files may produce unreliable runs or expose local file handling issues.
+
+Mitigation: Provide only trusted CSV files or molecule SMILES, and validate inputs before execution.
+
+Risk: The script can overwrite files at the selected output path.
+
+Mitigation: Use explicit output paths and check for existing files before writing results.
+
+Risk: The --properties option should not be relied on to limit calculation scope.
+
+Mitigation: Assume the current implementation may calculate the full ADME result set until the option behavior is fixed and verified.
+
+Risk: Predicted ADME values can be mistaken for experimental or clinical evidence.
+
+Mitigation: Treat outputs as screening estimates for prioritization and require experimental validation before scientific, clinical, or regulatory decisions.
+
+## Reference(s):
+
+- [Runtime Checklist](references/runtime_checklist.md)
+- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/skills/adme-property-predictor-1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; execution can produce JSON, CSV, or table-formatted ADME reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces screening estimates for small molecules and may write results to a user-specified output file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

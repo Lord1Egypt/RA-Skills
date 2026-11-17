@@ -1,45 +1,60 @@
-## Description: <br>
-Automatically extracts marriage-certificate holder, registration date, certificate number, names, birth dates, identity numbers, and related fields. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts marriage certificate holder, registration date, certificate number, names, birthdates, and identity numbers from local document images using the Sugon-Scnet OCR API.
 
-## Publisher: <br>
-[scnet-sugon](https://clawhub.ai/user/scnet-sugon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[scnet-sugon](https://clawhub.ai/user/scnet-sugon)
 
-## Use Case: <br>
-External users and developers use this skill to submit a local marriage-certificate image or PDF to Scnet's OCR service and receive structured recognition results. It is intended for extracting key certificate fields and confidence data into JSON for downstream review or processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends marriage-certificate files and extracted identity details to Scnet's OCR service. <br>
-Mitigation: Use it only with appropriate consent and a valid privacy or compliance basis for processing the documents. <br>
-Risk: A misconfigured API base URL could send sensitive documents to an unintended endpoint. <br>
-Mitigation: Verify SCNET_API_BASE before use and keep the default service endpoint unless a trusted alternate endpoint is required. <br>
-Risk: The SCNET_API_KEY is a sensitive credential. <br>
-Mitigation: Store the key in the local config/.env file with restricted permissions and do not paste it into chat transcripts or shared logs. <br>
+## Use Case:
 
+External users and developers use this skill to send a local marriage certificate image or PDF to Sugon-Scnet OCR and receive structured extracted fields for downstream review or workflow automation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/scnet-sugon/marriage-certificate-ocr) <br>
-- [Sugon-Scnet OCR API documentation summary](references/api-docs.md) <br>
-- [Marriage certificate field summary](assets/templates/fields-summary.md) <br>
-- [Scnet website](https://www.scnet.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, API Calls, Shell commands, Configuration instructions] <br>
-**Output Format:** [Structured JSON written to standard output, with friendly error text when calls fail] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SCNET_API_KEY; optional SCNET_API_BASE controls the OCR API endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, skill.yaml, changelog, release metadata) <br>
+Risk: The skill uploads sensitive marriage-certificate documents to an external OCR provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for documents the user is allowed to send to Scnet, with consent and a valid data-handling reason.
+
+Risk: The OCR API token and uploaded document data are sent to a configurable endpoint.
+
+Mitigation: Keep SCNET_API_BASE set to the official HTTPS api.scnet.cn endpoint and avoid untrusted alternate endpoints.
+
+Risk: The provider privacy and retention terms are not established by the release evidence.
+
+Mitigation: Verify Scnet privacy and retention terms before processing real identity documents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/scnet-sugon/skills/marriage-certificate-ocr)
+- [Scnet website](https://www.scnet.cn)
+- [Sugon-Scnet OCR API docs](references/api-docs.md)
+- [Marriage certificate field summary](assets/templates/fields-summary.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration]
+
+**Output Format:** [JSON printed to standard output, with text error messages on failure]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SCNET_API_KEY and accepts an optional SCNET_API_BASE endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, skill.yaml, changelog, and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

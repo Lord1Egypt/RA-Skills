@@ -1,43 +1,64 @@
-## Description: <br>
-Enhanced memory system for agentic workflows with automatic memory extraction, memory type classification, temporal decay and archival, session-scoped temporary cache, and HOT RAM working memory with a WAL protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart Memory (Zero Dep) helps an agent maintain local working and long-term memory through session state, daily notes, memory type classification, extraction prompts, and decay or archival workflows.
 
-## Publisher: <br>
-[zgjq](https://clawhub.ai/user/zgjq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zgjq](https://clawhub.ai/user/zgjq)
 
-## Use Case: <br>
-Developers and agent users use this skill to persist useful conversation-derived memory, manage current task state, classify and promote durable notes, and maintain local memory hygiene across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill persistently stores conversation-derived preferences, project facts, lessons, and task state on local disk. <br>
-Mitigation: Use it only for conversations suitable for durable local memory, require confirmation before durable writes or cleanup, and avoid running it on sensitive conversations or credentials. <br>
-Risk: A restore feature can load arbitrary local files into active agent memory. <br>
-Mitigation: Restrict restore operations to the session-snapshots directory and confirm the target file before loading it. <br>
+## Use Case:
 
+Developers and agent operators use this skill to preserve task state, extract durable conversation memories, organize memory files by type, and run maintenance such as classification, promotion, health checks, and archival.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zgjq/smart-memory-zero-dep) <br>
-- [Memory Schema Reference](references/memory_schema.md) <br>
-- [Memory Extraction Prompt Template](references/extraction_prompt.md) <br>
-- [Decay & Archival Rules](references/decay_rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell and Python command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local memory files, session state, cache entries, health reports, classification suggestions, and archival actions when invoked through its scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata) <br>
+Risk: The skill can persist conversation data into local memory files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a private workspace, require explicit user opt-in for automatic extraction, and avoid storing secrets, credentials, private third-party conversations, or information the user asked not to remember.
+
+Risk: Session restore can overwrite current memory state.
+
+Mitigation: Review and validate snapshot files before restore, and limit restore operations to expected snapshot paths.
+
+Risk: The session cache uses /tmp and the health script inspects /tmp cache files.
+
+Mitigation: Harden temporary-file permissions and avoid shared-machine use until cache and health-script handling are reviewed.
+
+Risk: Saved memories may later be read by an agent and influence behavior.
+
+Mitigation: Treat memory contents as untrusted data and review them before using them as operational instructions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zgjq/skills/smart-memory-zero-dep)
+- [Memory Schema Reference](artifact/references/memory_schema.md)
+- [Decay & Archival Rules](artifact/references/decay_rules.md)
+- [Memory Extraction Prompt Template](artifact/references/extraction_prompt.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with command examples and local file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local memory files and reports; no external dependencies or network calls are described in the artifact.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

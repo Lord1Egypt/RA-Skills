@@ -1,0 +1,1044 @@
+[
+ {
+  "page": "L1-坏 温度乱窜(3转向)",
+  "zones": [
+   [
+    "CD605A",
+    0.3
+   ],
+   [
+    "DDEDFF",
+    0.25
+   ],
+   [
+    "5294E6",
+    0.05
+   ],
+   [
+    "EECB9A",
+    0.22
+   ],
+   [
+    "092F52",
+    0.18
+   ]
+  ],
+  "expected": "FAIL",
+  "acts": [
+   [
+    [
+     "CD605A",
+     0.3
+    ]
+   ],
+   [
+    [
+     "DDEDFF",
+     0.25
+    ],
+    [
+     "5294E6",
+     0.05
+    ]
+   ],
+   [
+    [
+     "EECB9A",
+     0.22
+    ]
+   ],
+   [
+    [
+     "092F52",
+     0.18
+    ]
+   ]
+  ],
+  "bold": false,
+  "last_act_loud": null
+ },
+ {
+  "page": "L1-好 单调变暖(0转向)",
+  "zones": [
+   [
+    "0F2228",
+    0.32
+   ],
+   [
+    "EFF1E9",
+    0.29
+   ],
+   [
+    "C65B4C",
+    0.03
+   ],
+   [
+    "E7DFCE",
+    0.22
+   ],
+   [
+    "410C00",
+    0.14
+   ]
+  ],
+  "expected": "PASS",
+  "acts": [
+   [
+    [
+     "0F2228",
+     0.32
+    ]
+   ],
+   [
+    [
+     "EFF1E9",
+     0.29
+    ],
+    [
+     "C65B4C",
+     0.03
+    ]
+   ],
+   [
+    [
+     "E7DFCE",
+     0.22
+    ]
+   ],
+   [
+    [
+     "410C00",
+     0.14
+    ]
+   ]
+  ],
+  "bold": false,
+  "last_act_loud": null
+ },
+ {
+  "page": "L2-坏 响亮区散布(3声部)",
+  "zones": [
+   [
+    "F8F3E9",
+    0.42
+   ],
+   [
+    "FCFBF8",
+    0.18
+   ],
+   [
+    "FFFFFF",
+    0.08
+   ],
+   [
+    "C8584D",
+    0.03
+   ],
+   [
+    "E77F3E",
+    0.06
+   ],
+   [
+    "CA5794",
+    0.03
+   ],
+   [
+    "C8584D",
+    0.06
+   ],
+   [
+    "F8F3E9",
+    0.14
+   ]
+  ],
+  "expected": "FAIL",
+  "bold": false,
+  "last_act_loud": null
+ },
+ {
+  "page": "L2-好 静场单峰(1声部)",
+  "zones": [
+   [
+    "F8F3E9",
+    0.5
+   ],
+   [
+    "FCFBF8",
+    0.22
+   ],
+   [
+    "FFFFFF",
+    0.1
+   ],
+   [
+    "C8584D",
+    0.07
+   ],
+   [
+    "C8584D",
+    0.01
+   ],
+   [
+    "F8F3E9",
+    0.1
+   ]
+  ],
+  "expected": "PASS",
+  "focal": [
+   "C8584D",
+   "F8F3E9"
+  ],
+  "bold": false,
+  "last_act_loud": null
+ },
+ {
+  "page": "L3-坏 响亮色淹了 42%",
+  "zones": [
+   [
+    "F8F3E9",
+    0.28
+   ],
+   [
+    "D66F56",
+    0.42
+   ],
+   [
+    "F8F3E9",
+    0.2
+   ],
+   [
+    "FFFFFF",
+    0.1
+   ]
+  ],
+  "expected": "FAIL",
+  "bold": false,
+  "last_act_loud": null
+ },
+ {
+  "page": "L3-好 响亮色占 9%",
+  "zones": [
+   [
+    "F8F3E9",
+    0.55
+   ],
+   [
+    "D66F56",
+    0.09
+   ],
+   [
+    "F8F3E9",
+    0.26
+   ],
+   [
+    "FFFFFF",
+    0.1
+   ]
+  ],
+  "expected": "PASS",
+  "bold": false,
+  "last_act_loud": null
+ },
+ {
+  "page": "L4-焦点坏 暖底配暖钮",
+  "zones": [
+   [
+    "B39A7D",
+    0.85
+   ],
+   [
+    "E3AD4B",
+    0.15
+   ]
+  ],
+  "expected": "FAIL",
+  "focal": [
+   "E3AD4B",
+   "B39A7D"
+  ],
+  "bold": false,
+  "last_act_loud": null,
+  "only": [
+   "R7 冷暖焦点"
+  ]
+ },
+ {
+  "page": "L4-焦点好 冷底配暖钮",
+  "zones": [
+   [
+    "384F68",
+    0.85
+   ],
+   [
+    "E3AD4B",
+    0.15
+   ]
+  ],
+  "expected": "PASS",
+  "focal": [
+   "E3AD4B",
+   "384F68"
+  ],
+  "bold": false,
+  "last_act_loud": null,
+  "only": [
+   "R7 冷暖焦点"
+  ]
+ },
+ {
+  "page": "L4-振动坏 珊瑚贴橘",
+  "zones": [
+   [
+    "DC655F",
+    0.5
+   ],
+   [
+    "DE7949",
+    0.5
+   ]
+  ],
+  "expected": "FAIL",
+  "bold": false,
+  "last_act_loud": null,
+  "only": [
+   "R6 邻接振动"
+  ]
+ },
+ {
+  "page": "L4-振动好 中性缓冲",
+  "zones": [
+   [
+    "DC655F",
+    0.45
+   ],
+   [
+    "F3EEE6",
+    0.1
+   ],
+   [
+    "DE7949",
+    0.45
+   ]
+  ],
+  "expected": "PASS",
+  "bold": false,
+  "last_act_loud": null,
+  "only": [
+   "R6 邻接振动"
+  ]
+ },
+ {
+  "page": "L5-A 品牌即色彩 36%",
+  "zones": [
+   [
+    "5A0006",
+    0.36
+   ],
+   [
+    "F7EFE5",
+    0.42
+   ],
+   [
+    "3A2A1D",
+    0.08
+   ],
+   [
+    "FFFFFF",
+    0.14
+   ]
+  ],
+  "expected": "PASS",
+  "bold": true,
+  "last_act_loud": null,
+  "accent_share": 0.36,
+  "palette": [
+   "5A0006",
+   "F7EFE5",
+   "3A2A1D"
+  ]
+ },
+ {
+  "page": "L5-B 点睛 8%",
+  "zones": [
+   [
+    "F7EFE5",
+    0.6
+   ],
+   [
+    "FFFFFF",
+    0.22
+   ],
+   [
+    "3A2A1D",
+    0.04
+   ],
+   [
+    "5A0006",
+    0.08
+   ],
+   [
+    "7E6E61",
+    0.06
+   ]
+  ],
+  "expected": "PASS",
+  "bold": false,
+  "last_act_loud": null,
+  "accent_share": 0.08,
+  "palette": [
+   "F7EFE5",
+   "3A2A1D",
+   "5A0006"
+  ]
+ },
+ {
+  "page": "L5-C 线与字 3%",
+  "zones": [
+   [
+    "EAE4D7",
+    0.72
+   ],
+   [
+    "FFFFFF",
+    0.16
+   ],
+   [
+    "3A2A1D",
+    0.06
+   ],
+   [
+    "5A0006",
+    0.03
+   ],
+   [
+    "7E6E61",
+    0.03
+   ]
+  ],
+  "expected": "PASS",
+  "bold": false,
+  "last_act_loud": null,
+  "accent_share": 0.03,
+  "palette": [
+   "EAE4D7",
+   "3C3023",
+   "5A0006"
+  ]
+ },
+ {
+  "page": "L6-莫兰迪",
+  "zones": [
+   [
+    "E5D4C7",
+    0.44
+   ],
+   [
+    "DDBAB9",
+    0.22
+   ],
+   [
+    "9EB4CA",
+    0.14
+   ],
+   [
+    "96AC91",
+    0.1
+   ],
+   [
+    "534439",
+    0.06
+   ],
+   [
+    "A77878",
+    0.04
+   ]
+  ],
+  "expected": "PASS",
+  "bold": null,
+  "last_act_loud": null,
+  "accent_share": 0.04,
+  "palette": [
+   "E5D4C7",
+   "DDBAB9",
+   "9EB4CA",
+   "96AC91",
+   "534439",
+   "A77878"
+  ]
+ },
+ {
+  "page": "L6-国风水墨",
+  "zones": [
+   [
+    "F3F0EA",
+    0.58
+   ],
+   [
+    "D0CDC8",
+    0.1
+   ],
+   [
+    "8B857D",
+    0.12
+   ],
+   [
+    "474239",
+    0.08
+   ],
+   [
+    "1F1A11",
+    0.06
+   ],
+   [
+    "A43C2F",
+    0.01
+   ],
+   [
+    "FFFFFF",
+    0.05
+   ]
+  ],
+  "expected": "PASS",
+  "bold": null,
+  "last_act_loud": null,
+  "accent_share": 0.01,
+  "palette": [
+   "F3F0EA",
+   "D0CDC8",
+   "8B857D",
+   "474239",
+   "1F1A11",
+   "A43C2F"
+  ]
+ },
+ {
+  "page": "L6-宋韵",
+  "zones": [
+   [
+    "EEEBE4",
+    0.55
+   ],
+   [
+    "3E7F73",
+    0.1
+   ],
+   [
+    "C8B590",
+    0.04
+   ],
+   [
+    "D5D1C1",
+    0.14
+   ],
+   [
+    "342D20",
+    0.12
+   ],
+   [
+    "98352C",
+    0.01
+   ],
+   [
+    "FFFFFF",
+    0.04
+   ]
+  ],
+  "expected": "PASS",
+  "bold": null,
+  "last_act_loud": null,
+  "accent_share": 0.01,
+  "palette": [
+   "EEEBE4",
+   "3E7F73",
+   "C8B590",
+   "D5D1C1",
+   "342D20",
+   "98352C"
+  ]
+ },
+ {
+  "page": "L6-老钱风",
+  "zones": [
+   [
+    "192B20",
+    0.58
+   ],
+   [
+    "293A2F",
+    0.16
+   ],
+   [
+    "465C4A",
+    0.1
+   ],
+   [
+    "E2DED2",
+    0.11
+   ],
+   [
+    "DAB975",
+    0.05
+   ]
+  ],
+  "expected": "PASS",
+  "bold": null,
+  "last_act_loud": null,
+  "accent_share": 0.05,
+  "palette": [
+   "192B20",
+   "293A2F",
+   "DAB975",
+   "465C4A",
+   "E2DED2",
+   "DAB975"
+  ]
+ },
+ {
+  "page": "L6-多巴胺",
+  "zones": [
+   [
+    "F5EEE0",
+    0.45
+   ],
+   [
+    "E3645E",
+    0.15
+   ],
+   [
+    "E3C23B",
+    0.1
+   ],
+   [
+    "0693C1",
+    0.06
+   ],
+   [
+    "452C23",
+    0.06
+   ],
+   [
+    "E3DDD1",
+    0.18
+   ]
+  ],
+  "expected": "PASS",
+  "bold": true,
+  "last_act_loud": null,
+  "accent_share": 0.15,
+  "palette": [
+   "F5EEE0",
+   "E3645E",
+   "E3C23B",
+   "0693C1",
+   "452C23",
+   "E3645E"
+  ]
+ },
+ {
+  "page": "L6-侘寂",
+  "zones": [
+   [
+    "E3DDD2",
+    0.6
+   ],
+   [
+    "BDAE9E",
+    0.18
+   ],
+   [
+    "5F6F50",
+    0.03
+   ],
+   [
+    "CFCABC",
+    0.09
+   ],
+   [
+    "342D21",
+    0.1
+   ]
+  ],
+  "expected": "PASS",
+  "bold": null,
+  "last_act_loud": null,
+  "accent_share": 0.03,
+  "palette": [
+   "E3DDD2",
+   "BDAE9E",
+   "5F6F50",
+   "CFCABC",
+   "342D21",
+   "BDAE9E"
+  ]
+ },
+ {
+  "page": "L6-奶油风",
+  "zones": [
+   [
+    "F4ECDE",
+    0.46
+   ],
+   [
+    "F8F3E9",
+    0.22
+   ],
+   [
+    "CB9A60",
+    0.08
+   ],
+   [
+    "DDCFBC",
+    0.13
+   ],
+   [
+    "584B38",
+    0.06
+   ],
+   [
+    "CB9A60",
+    0.03
+   ],
+   [
+    "FFFFFF",
+    0.02
+   ]
+  ],
+  "expected": "PASS",
+  "bold": null,
+  "last_act_loud": null,
+  "accent_share": 0.11,
+  "palette": [
+   "F4ECDE",
+   "F8F3E9",
+   "CB9A60",
+   "DDCFBC",
+   "584B38",
+   "F8F3E9"
+  ]
+ },
+ {
+  "page": "L6-赛博",
+  "zones": [
+   [
+    "141521",
+    0.5
+   ],
+   [
+    "212232",
+    0.28
+   ],
+   [
+    "20DFDF",
+    0.04
+   ],
+   [
+    "DA5AB6",
+    0.02
+   ],
+   [
+    "D6D7DF",
+    0.16
+   ]
+  ],
+  "expected": "PASS",
+  "bold": true,
+  "last_act_loud": null,
+  "accent_share": 0.06,
+  "palette": [
+   "141521",
+   "212232",
+   "20DFDF",
+   "DA5AB6",
+   "D6D7DF",
+   "212232"
+  ]
+ },
+ {
+  "page": "L7-高级感·好",
+  "zones": [
+   [
+    "EDEBE7",
+    0.6
+   ],
+   [
+    "23211D",
+    0.12
+   ],
+   [
+    "A37E53",
+    0.04
+   ],
+   [
+    "FFFFFF",
+    0.24
+   ]
+  ],
+  "expected": "PASS",
+  "bold": false,
+  "last_act_loud": null
+ },
+ {
+  "page": "L7-高级感·坏",
+  "zones": [
+   [
+    "99714F",
+    0.55
+   ],
+   [
+    "2971C6",
+    0.12
+   ],
+   [
+    "E2726B",
+    0.12
+   ],
+   [
+    "FFFFFF",
+    0.21
+   ]
+  ],
+  "expected": "FAIL",
+  "bold": false,
+  "last_act_loud": null
+ },
+ {
+  "page": "L7-治愈·好",
+  "zones": [
+   [
+    "F0E6DA",
+    0.55
+   ],
+   [
+    "BBCAAD",
+    0.22
+   ],
+   [
+    "EAACA1",
+    0.06
+   ],
+   [
+    "544438",
+    0.17
+   ]
+  ],
+  "expected": "PASS",
+  "acts": [
+   [
+    [
+     "F0E6DA",
+     0.55
+    ]
+   ],
+   [
+    [
+     "BBCAAD",
+     0.22
+    ]
+   ],
+   [
+    [
+     "EAACA1",
+     0.06
+    ],
+    [
+     "544438",
+     0.17
+    ]
+   ]
+  ],
+  "bold": false,
+  "last_act_loud": null
+ },
+ {
+  "page": "L7-治愈·坏",
+  "zones": [
+   [
+    "FFFFFF",
+    0.58
+   ],
+   [
+    "F164AF",
+    0.22
+   ],
+   [
+    "C1E4F7",
+    0.1
+   ],
+   [
+    "222222",
+    0.1
+   ]
+  ],
+  "expected": "FAIL",
+  "bold": false,
+  "last_act_loud": null
+ },
+ {
+  "page": "L7-专业·好",
+  "zones": [
+   [
+    "F0F4F9",
+    0.62
+   ],
+   [
+    "1E2F44",
+    0.12
+   ],
+   [
+    "3A73B9",
+    0.06
+   ],
+   [
+    "6F7C8C",
+    0.2
+   ]
+  ],
+  "expected": "PASS",
+  "bold": false,
+  "last_act_loud": null
+ },
+ {
+  "page": "L7-活力·好",
+  "zones": [
+   [
+    "F5EEE0",
+    0.52
+   ],
+   [
+    "E3645E",
+    0.14
+   ],
+   [
+    "E3C23B",
+    0.12
+   ],
+   [
+    "0693C1",
+    0.06
+   ],
+   [
+    "33302A",
+    0.16
+   ]
+  ],
+  "expected": "PASS",
+  "bold": true,
+  "last_act_loud": null
+ },
+ {
+  "page": "L7-活力·坏",
+  "zones": [
+   [
+    "E3645E",
+    0.4
+   ],
+   [
+    "E3C23B",
+    0.1
+   ],
+   [
+    "0693C1",
+    0.08
+   ],
+   [
+    "449630",
+    0.08
+   ],
+   [
+    "CB73C4",
+    0.08
+   ],
+   [
+    "FFFFFF",
+    0.26
+   ]
+  ],
+  "expected": "FAIL",
+  "bold": true,
+  "last_act_loud": null
+ },
+ {
+  "page": "L7-沉思·好",
+  "zones": [
+   [
+    "172128",
+    0.68
+   ],
+   [
+    "D1D9DF",
+    0.2
+   ],
+   [
+    "6BA3AA",
+    0.03
+   ],
+   [
+    "FFFFFF",
+    0.09
+   ]
+  ],
+  "expected": "PASS",
+  "bold": false,
+  "last_act_loud": null
+ },
+ {
+  "page": "L5-C2-好 低饱 accent 10%(渲染实证 drama-8)",
+  "zones": [
+   [
+    "EFF6E0",
+    0.55
+   ],
+   [
+    "AEC3B0",
+    0.18
+   ],
+   [
+    "124559",
+    0.1
+   ],
+   [
+    "F8FBF1",
+    0.17
+   ]
+  ],
+  "palette": [
+   "01161E",
+   "124559",
+   "598392",
+   "AEC3B0",
+   "EFF6E0"
+  ],
+  "accent_share": 0.1,
+  "expected": "PASS"
+ },
+ {
+  "page": "L5-C3-坏 低饱 accent 22% 成墙",
+  "zones": [
+   [
+    "124559",
+    0.22
+   ],
+   [
+    "EFF6E0",
+    0.45
+   ],
+   [
+    "AEC3B0",
+    0.18
+   ],
+   [
+    "F8FBF1",
+    0.15
+   ]
+  ],
+  "palette": [
+   "01161E",
+   "124559",
+   "598392",
+   "AEC3B0",
+   "EFF6E0"
+  ],
+  "accent_share": 0.22,
+  "expected": "FAIL"
+ }
+]

@@ -1,0 +1,6 @@
+interface:
+  display_name: "抽奖工具 · 抽奖活动创建助手"
+  short_description: "把日常需求对应到开奖、参与、邀请和额外奖励设置，再策划、创建、查询或导出抽奖活动。"
+  icon_small: "https://cdn.zhinizhushou.com/material/lib/2026-08-18/1f9de3589ae211f193435254007e44e8.png"
+  icon_large: "https://cdn.zhinizhushou.com/material/lib/2026-08-18/1f9de3589ae211f193435254007e44e8.png"
+  default_prompt: "我想创建一个抽奖活动，你一步步帮我配置奖项、玩法和开奖时间"

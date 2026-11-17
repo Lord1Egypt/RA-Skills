@@ -4,6 +4,7 @@ const INTENT_RULES = [
   {
     intent: "growth_analysis",
     label: "增长分析",
+    priority: 70,
     keywords: [
       "增长",
       "新增",
@@ -19,6 +20,7 @@ const INTENT_RULES = [
   {
     intent: "funnel_analysis",
     label: "漏斗分析",
+    priority: 60,
     keywords: [
       "漏斗",
       "转化",
@@ -34,6 +36,7 @@ const INTENT_RULES = [
   {
     intent: "retention_analysis",
     label: "留存分析",
+    priority: 50,
     keywords: [
       "留存",
       "复购",
@@ -49,6 +52,7 @@ const INTENT_RULES = [
   {
     intent: "revenue_analysis",
     label: "收入利润分析",
+    priority: 40,
     keywords: [
       "收入",
       "利润",
@@ -64,6 +68,7 @@ const INTENT_RULES = [
   {
     intent: "efficiency_analysis",
     label: "运营效率分析",
+    priority: 30,
     keywords: [
       "人效",
       "效率",
@@ -79,6 +84,7 @@ const INTENT_RULES = [
   {
     intent: "business_diagnosis",
     label: "经营诊断",
+    priority: 20,
     keywords: [
       "复盘",
       "诊断",
@@ -94,6 +100,7 @@ const INTENT_RULES = [
   {
     intent: "market_research",
     label: "市场调研",
+    priority: 10,
     keywords: [
       "市场调研",
       "市场研究",
@@ -191,9 +198,22 @@ function normalizeText(input) {
 }
 
 function countMatches(text, keywords) {
-  return keywords.reduce((count, keyword) => {
-    return count + (text.includes(keyword.toLowerCase()) ? 1 : 0);
-  }, 0);
+  const matches = keywords
+    .filter((keyword) => text.includes(keyword.toLowerCase()))
+    .sort((a, b) => b.length - a.length);
+  const nonOverlappingMatches = [];
+
+  for (const keyword of matches) {
+    if (
+      !nonOverlappingMatches.some((match) =>
+        match.toLowerCase().includes(keyword.toLowerCase())
+      )
+    ) {
+      nonOverlappingMatches.push(keyword);
+    }
+  }
+
+  return nonOverlappingMatches.length;
 }
 
 function detectBusinessAnalysis(message) {
@@ -230,7 +250,10 @@ function detectIntent(message) {
 
   for (const rule of INTENT_RULES) {
     const score = countMatches(text, rule.keywords);
-    if (score > bestScore) {
+    if (
+      score > bestScore ||
+      (score === bestScore && score > 0 && rule.priority > bestRule.priority)
+    ) {
       bestScore = score;
       bestRule = rule;
     }

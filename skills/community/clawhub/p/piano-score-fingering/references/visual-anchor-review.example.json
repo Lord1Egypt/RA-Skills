@@ -1,0 +1,9 @@
+{
+  "schema_version": "visual-anchor-review-v1",
+  "anchors": [
+    {"note_id": "<every candidate note_id>", "confirmed": true}
+  ],
+  "rests": [
+    {"rest_id": "<every candidate rest_id>", "confirmed": true, "page_x": 0, "page_y": 0}
+  ]
+}

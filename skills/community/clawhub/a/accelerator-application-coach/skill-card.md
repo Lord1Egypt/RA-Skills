@@ -1,42 +1,53 @@
-## Description: <br>
-Guides founders through deciding whether to apply to startup accelerators, preparing applications and interviews, and evaluating offers or rejections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+End-to-end coach for founders applying to startup accelerators, covering application strategy, accelerator fit, application writing, video pitch preparation, interviews, equity terms, offer decisions, and rejection follow-up.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-External founders use this skill to assess accelerator fit, strengthen applications and video pitches, prepare for partner interviews, and evaluate accelerator offers or rejections. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Founder inputs may include confidential startup metrics, investor details, full application drafts, or immigration information. <br>
-Mitigation: Ask users to share only information needed for coaching, avoid unnecessary sensitive detail, and treat provided application materials as confidential. <br>
-Risk: Accelerator terms, deadlines, program requirements, and offer structures can change. <br>
-Mitigation: Verify accelerator-specific terms and deadlines against current official sources before relying on them for application or financing decisions. <br>
-Risk: Coaching about equity and accelerator offers can influence financial decisions. <br>
-Mitigation: Frame output as decision support, not legal or financial advice, and recommend qualified review before signing investment or accelerator agreements. <br>
+## Use Case:
 
+External founders use this skill to decide whether to apply to startup accelerators and to prepare stronger applications, video pitches, interviews, and accept-or-decline decisions. It is especially useful when comparing programs such as Y Combinator, Techstars, 500 Global, Antler, a16z Crypto Speedrun, Plug and Play, MassChallenge, SOSV, Founder Institute, Entrepreneur First, regional accelerators, and vertical accelerators.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/charlie-morrison/accelerator-application-coach) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown coaching response with diagnostic questions, verdicts, checklists, and decision frameworks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include application gap analysis, interview preparation prompts, equity/offer evaluation guidance, and 30/60/90-day milestones.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Accelerator terms, deadlines, and current program requirements may change after the skill release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify program terms, deadlines, and eligibility requirements against official accelerator sources before making funding, equity, travel, or application decisions.
+
+Risk: Coaching sessions may involve sensitive company details such as traction, revenue, runway, founder background, or fundraising plans.
+
+Mitigation: Share only the confidential company information needed for the coaching task and avoid disclosing unnecessary sensitive details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/accelerator-application-coach)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Markdown]
+
+**Output Format:** [Markdown with structured recommendations, checklists, decision frameworks, and concise coaching notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces founder-specific accelerator recommendations, application gap analysis, interview prep questions, equity decision framing, anti-pattern flags, milestones, and a single next action.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

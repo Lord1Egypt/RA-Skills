@@ -1,48 +1,65 @@
-## Description: <br>
-Get笔记 helps an agent save, search, and manage a user's personal notes, tags, and knowledge bases through the Getnote API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get笔记 helps agents save, search, and manage personal notes and knowledge bases.
 
-## Publisher: <br>
-[horisony](https://clawhub.ai/user/horisony) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[horisony](https://clawhub.ai/user/horisony)
 
-## Use Case: <br>
-External users and agents use this skill to save links, images, and text as Getnote notes; search private notes or knowledge bases; and manage note metadata such as tags and collections. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent access to private notes and supports delete and public-share actions without strong confirmation safeguards. <br>
-Mitigation: Install only when the publisher and Getnote are trusted, and require confirmation of the exact note title or ID before updates, deletion, image upload, or public share-link creation. <br>
-Risk: The skill uses sensitive Getnote credentials and may be used in shared or group contexts. <br>
-Mitigation: Configure GETNOTE_OWNER_ID where multiple users may interact with the agent, and deny note operations when the sender does not match the configured owner. <br>
+## Use Case:
 
+External users and agents use this skill to connect to Getnote, save text, link, and image notes, search private notes, and manage tags and knowledge-base membership through the Getnote OpenAPI.
 
-## Reference(s): <br>
-- [Getnote Homepage](https://biji.com) <br>
-- [Getnote OpenAPI Base URL](https://openapi.biji.com) <br>
-- [Getnote API Details](references/api-details.md) <br>
-- [Save Notes](references/save.md) <br>
-- [Search Notes](references/search.md) <br>
-- [List and Manage Notes](references/list.md) <br>
-- [Tags](references/tags.md) <br>
-- [OAuth Configuration](references/oauth.md) <br>
-- [Knowledge Base Management](references/knowledge.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance with API request details and configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Getnote note IDs, search results, update confirmations, deletion confirmations, upload steps, or share-link results depending on the user request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can access private note content and perform remote account changes with under-scoped authorization and confirmation safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after review, configure an owner identity, and use the least-privileged Getnote API scopes available.
+
+Risk: The skill can delete notes, change tags or knowledge-base membership, follow live content, upload images, and create public share links.
+
+Mitigation: Require clear user confirmation before any destructive, public-sharing, upload, subscription, or knowledge-base membership action.
+
+Risk: The skill may expose private note content in shared agent, group chat, or workspace contexts.
+
+Mitigation: Avoid displaying private note content in shared contexts unless the configured owner identity matches the requesting user.
+
+## Reference(s):
+
+- [Getnote homepage](https://biji.com)
+- [Getnote OpenAPI base URL](https://openapi.biji.com)
+- [Get笔记 API detailed reference](references/api-details.md)
+- [Save notes reference](references/save.md)
+- [Search reference](references/search.md)
+- [Note list and detail reference](references/list.md)
+- [Tag management reference](references/tags.md)
+- [Knowledge-base management reference](references/knowledge.md)
+- [Authorization configuration reference](references/oauth.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Markdown, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown guidance with API request examples and JSON handling rules]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Getnote credentials and may operate on private notes, tags, knowledge bases, uploads, and public share links.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

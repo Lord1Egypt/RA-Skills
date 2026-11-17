@@ -1,42 +1,53 @@
-## Description: <br>
-BanditDB is an in-memory decision database for AI agents that learns from outcomes to tune notification timing, model routing, and prompt selection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BanditDB is an in-memory decision database for AI agents - real-time learning from outcomes, used to auto-tune notification timing, model routing, or prompt selection.
 
-## Publisher: <br>
-[simeonlukov](https://clawhub.ai/user/simeonlukov) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simeonlukov](https://clawhub.ai/user/simeonlukov)
 
-## Use Case: <br>
-Developers and agent builders use BanditDB to add outcome-based decision learning to agents for choices such as notification timing, tool routing, model selection, and response style. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: External BanditDB binaries, Docker images, or SDKs may change outside the skill artifact. <br>
-Mitigation: Verify the external release source and pin versions before installation. <br>
-Risk: Context vectors and reward data can encode sensitive user or workflow behavior. <br>
-Mitigation: Use minimal non-sensitive features, obtain user consent when appropriate, and define retention and deletion practices. <br>
-Risk: Learned rewards can steer agents toward unsuitable behavior if used for manipulation or high-risk decisions. <br>
-Mitigation: Keep BanditDB out of high-risk decision workflows and review reward definitions for user-aligned outcomes. <br>
+## Use Case:
 
+Developers and agent builders use this skill to connect agents to a self-hosted BanditDB service for contextual bandit decisions, predictions, rewards, and campaign diagnostics. It supports adaptive workflows such as notification timing, tool routing, model selection, prompt strategy selection, and response style tuning.
 
-## Reference(s): <br>
-- [BanditDB API Reference](references/api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with API endpoint examples and configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local service setup guidance, MCP tool registration notes, and reward-loop API usage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.6 (source: server-resolved release metadata) <br>
+Risk: Installing from unpinned release, container, or package sources can create supply-chain exposure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a specific reviewed BanditDB release or image digest where possible, and verify checksums or signatures when provided.
+
+Risk: Campaign deletion and reward recording are state-changing operations that can remove campaigns or alter learning outcomes.
+
+Mitigation: Run BanditDB with least privilege and expose DELETE and reward-recording tools only to agents trusted to manage BanditDB campaigns.
+
+## Reference(s):
+
+- [BanditDB API Reference](references/api.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Configuration]
+
+**Output Format:** [Markdown with API endpoint examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes setup guidance, campaign creation, prediction, reward recording, export, and MCP tool registration details.]
+
+## Skill Version(s):
+
+0.1.6 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,59 @@
-## Description: <br>
-法大大电子签完整签署技能。覆盖合同发起、已有流程查询、撤回、下载等全生命周期操作。当用户说"发合同"、"查合同"、"查流程"、"查任务"、"撤回合同"、"撤销签署"、"下载合同"、"下载已签合同"等时触发。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fadada Document Sign helps an agent manage the Fadada FASC API 5.0 e-signature lifecycle, including contract upload, signature initiation, template lookup, task query, cancellation, and signed-contract download.
 
-## Publisher: <br>
-[fadada-esign](https://clawhub.ai/user/fadada-esign) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[fadada-esign](https://clawhub.ai/user/fadada-esign)
 
-## Use Case: <br>
-External users, business teams, and developers use this skill to send contracts through Fadada e-signature workflows, query signing tasks, withdraw eligible tasks, and download completed signed contracts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles contracts, credentials, signer data, and signing or download links. <br>
-Mitigation: Use a dedicated least-privilege Fadada app, store credentials in a secret manager or protected environment configuration, and treat signing links and downloaded contracts as sensitive legal documents. <br>
-Risk: Security evidence says safeguards are under-scoped for real account use. <br>
-Mitigation: Review and preferably patch the skill before installing it in a real account, then rotate any credential matching the README example. <br>
-Risk: Verbose API response logging may expose sensitive workflow, signer, or document information. <br>
-Mitigation: Disable verbose response logging or redact sensitive fields before operational use. <br>
+## Use Case:
 
+External users and developers use this skill to route contract-signing requests through Fadada, collect signer information, start or monitor e-signature tasks, cancel eligible tasks, and retrieve completed contracts.
 
-## Reference(s): <br>
-- [FASC API Reference](references/FASC_API_Reference.md) <br>
-- [Fadada API credential guide](https://dev.fadada.com/api-guide/YYNLQW2Z2W/9QMQ2MU4FGK3AOXA) <br>
-- [Fadada production API base URL](https://api.fadada.com/api/v5) <br>
-- [Fadada UAT API base URL](https://uat-api.fadada.com/api/v5) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, API Calls, Files, Guidance] <br>
-**Output Format:** [Markdown instructions, JSON card payloads, shell command examples, API responses, signing links, and downloaded contract files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Handles contracts, signer contact data, credentials, signing URLs, and downloaded legal documents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The release evidence reports production-looking Fadada credentials and a suspicious security verdict.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Rotate or verify that the published credentials are not real, avoid production credentials until resolved, and restrict the Fadada API app to least privilege.
+
+Risk: Signing, upload, download, and local contract handling can expose sensitive contract links or files.
+
+Mitigation: Treat logs, links, and downloaded contracts as sensitive; limit access, use controlled save paths, and avoid sharing generated URLs.
+
+Risk: Production signing submission and cancellation actions can affect real contract workflows.
+
+Mitigation: Require explicit human confirmation before creating production signing tasks, cancelling tasks, or downloading signed contracts.
+
+## Reference(s):
+
+- [FASC API 5.0 Reference](artifact/references/FASC_API_Reference.md)
+- [Fadada API credential guide](https://dev.fadada.com/api-guide/YYNLQW2Z2W/9QMQ2MU4FGK3AOXA)
+- [ClawHub skill page](https://clawhub.ai/fadada-esign/skills/fadada-document-sign)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Files]
+
+**Output Format:** [Markdown guidance with shell command examples, JSON card payloads, and file outputs for downloaded contracts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May trigger Fadada API operations that upload files, create or cancel signing tasks, query status, and download signed contracts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

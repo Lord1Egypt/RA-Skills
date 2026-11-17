@@ -1,39 +1,52 @@
-## Description: <br>
-Generate and adapt a sea-duty daily routine with watch rotations, sleep protection, duty handovers, internet-budgeted work blocks, and role-specific tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and adapt a sea-duty daily routine with watch rotations, sleep protection, duty handovers, internet-budgeted work blocks, and role-specific tasks.
 
-## Publisher: <br>
-[VladMatys](https://clawhub.ai/user/VladMatys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vladmatys](https://clawhub.ai/user/vladmatys)
 
-## Use Case: <br>
-External maritime users use this skill to build concise onboard 24-hour routines by vessel type, role, timezone, watch model, fatigue constraints, and internet limits. It is planning assistance for watch schedules, sleep protection, handovers, safety scans, and low-bandwidth work blocks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated watch and rest schedules could be mistaken for authoritative maritime safety guidance. <br>
-Mitigation: Treat schedules as planning assistance and verify watchkeeping, rest, and safety decisions against vessel policy, local law, and qualified maritime judgment. <br>
-Risk: The release references helper materials that are not included in the artifact. <br>
-Mitigation: Review generated plans for assumptions and confirm watch models, safety anchors, and internet budgeting before relying on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/VladMatys/marine-watch-planner) <br>
+## Use Case:
 
+Maritime workers, vessel operators, and onboard crew use this skill to create concise 24-hour routines that fit watch rotations, role duties, fatigue constraints, safety handovers, and limited internet budgets.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with a status line, 24-hour plan bullets, non-negotiables, and traffic budget] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Concise operational schedule; no credential or external tool output is expected.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The artifact refers to local reference files and a starter-plan script that are not included, so generated routines may miss intended watch-model, safety, or bandwidth details.
+
+Mitigation: Review generated schedules against onboard procedures and the crew's actual watch model before relying on them.
+
+Risk: The skill produces operational planning guidance for marine watch routines, where incorrect assumptions about fatigue, duties, or safety checks could create unsafe schedules.
+
+Mitigation: Treat outputs as planning drafts and have a qualified crew member confirm watch coverage, rest protection, handovers, and required safety scans.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vladmatys/skills/marine-watch-planner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Concise Markdown schedule with status, 24h plan, non-negotiables, and traffic budget sections.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responds in the user language and keeps the plan short and operational.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

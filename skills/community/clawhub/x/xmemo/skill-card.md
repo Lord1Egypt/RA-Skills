@@ -1,42 +1,59 @@
-## Description: <br>
-Persistent user-owned memory for agents with standalone runtime execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent, user-owned memory for agents. Use the standalone runtime to remember, recall, search, preserve restart continuity, manage TODOs and expenses, inspect account overview, activity and stats diagnostics, read user Cloud Skills (read-only) and Dream-run digests (read-only), configure agent instructions, check for updates or upgrade runtime, or diagnose XMemo when MCP tools are unavailable. Not for codebase search, web search, or short-lived in-session notes.
 
-## Publisher: <br>
-[xmemo](https://clawhub.ai/user/xmemo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xmemo](https://clawhub.ai/user/xmemo)
 
-## Use Case: <br>
-Developers and agent users use XMemo to let agents recall, search, update, and preserve durable user-owned memory across sessions, including handoff state, TODOs, troubleshooting context, and expense records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected memory, task-state, TODO, or expense content may be sent to and stored by the hosted XMemo service. <br>
-Mitigation: Use the skill only for content appropriate for remote storage, and do not store secrets, credentials, private customer data, or sensitive internal context unless the service privacy and retention terms have been reviewed. <br>
-Risk: Credential handling can expose XMemo tokens if users paste them into chat, logs, screenshots, repositories, or command history. <br>
-Mitigation: Use the login flow or stdin-based credential import, keep credentials out of project files and shared logs, and run the diagnostic commands when authentication fails. <br>
+## Use Case:
 
+People using AI agents can use XMemo to save and retrieve durable project context across sessions, preserve task continuity, manage action items and expenses, and inspect account or runtime status. Developers can use the standalone Node.js runtime when XMemo MCP tools are unavailable.
 
-## Reference(s): <br>
-- [XMemo Skill Operations](references/operations.md) <br>
-- [XMemo Skill Troubleshooting](references/troubleshooting.md) <br>
-- [XMemo hosted service](https://xmemo.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; the bundled script can return plain text or JSON with --json.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Standalone Node.js runtime commands call the hosted XMemo service and require a valid credential for authenticated memory operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: ClawScan rates the release suspicious with medium confidence because it could not fully inspect many executable files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Consider postponing installation until the executable files have been fully inspected and the required tool scope is clear.
+
+Risk: The first-run login flow can save an authentication token unencrypted on the local computer.
+
+Mitigation: Prefer XMEMO_KEY from a managed secret store, or proceed with local sign-in only after accepting that local processes may read the credential file.
+
+## Reference(s):
+
+- [XMemo website](https://xmemo.dev)
+- [Memory operations](references/memory-operations.md)
+- [Authentication setup](references/auth-setup.md)
+- [Command details](references/command-details.md)
+- [Ledger operations](references/ledger-operations.md)
+- [Runtime operations](references/runtime-operations.md)
+- [Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown guidance and command examples; memory results and diagnostics are returned as text or structured data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include retrieved memories, task continuity notes, action items, ledger information, or runtime diagnostics.]
+
+## Skill Version(s):
+
+1.1.53 (source: release evidence and CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

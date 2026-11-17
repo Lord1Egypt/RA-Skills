@@ -1,43 +1,56 @@
-## Description: <br>
-Generate reusable Cypher or SPARQL query templates for common graph database operations such as finding nodes, relationships, paths, and aggregations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate reusable Cypher or SPARQL query templates for common graph database operations such as finding nodes, relationships, paths, and aggregations.
 
-## Publisher: <br>
-[fisa712](https://clawhub.ai/user/fisa712) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fisa712](https://clawhub.ai/user/fisa712)
 
-## Use Case: <br>
-Developers and engineers use this skill to scaffold reusable Cypher or SPARQL templates for node lookup, relationship traversal, path discovery, aggregation, filtering, and graph exploration workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated graph queries may be unsafe or misleading if labels, properties, relationship types, predicates, operators, or IRIs come from untrusted input. <br>
-Mitigation: Review generated queries before execution and use strict allowlists for graph identifiers, predicates, operators, and IRIs. <br>
-Risk: Templates may expose sensitive graph data or run expensive traversals when used directly in production. <br>
-Mitigation: Use least-privilege database roles, result limits, auditing, privacy controls, and bounded traversal depth. <br>
+## Use Case:
 
+Developers and engineers use this skill to scaffold reusable Cypher or SPARQL templates for node lookup, relationship traversal, path discovery, filtering, aggregation, and graph exploration workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fisa712/graph-template-query-generator) <br>
-- [ClawHub project homepage](https://clawhub.com) <br>
-- [Template patterns](references/template-patterns.md) <br>
-- [Template examples](examples/template-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with Cypher, SPARQL, JSON, and Python code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs commonly include reusable query templates, parameter lists, usage examples, query explanations, performance notes, and index recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Generated Cypher or SPARQL may include labels, relationship types, property names, operators, predicates, or traversal depth values that are unsuitable for a production graph schema.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate generated query structure against the application schema and allowlist acceptable labels, relationships, properties, predicates, operators, and traversal depths before use.
+
+Risk: Starter examples may be copied into workflows that handle sensitive data without appropriate controls.
+
+Mitigation: Apply authorization, minimization, auditing, and access controls before adapting templates to sensitive datasets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fisa712/skills/graph-template-query-generator)
+- [ClawHub homepage](https://clawhub.com)
+- [Template patterns](references/template-patterns.md)
+- [Template examples](examples/template-examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with Cypher, SPARQL, JSON, and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs commonly include a query template, parameter list, plain-English explanation, usage example, and performance notes.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

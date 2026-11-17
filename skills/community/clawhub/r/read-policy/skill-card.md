@@ -1,40 +1,53 @@
-## Description: <br>
-Read OpenClaw policies from PostgreSQL through the local Supabase Docker stack. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read OpenClaw policy values from PostgreSQL through the local Supabase Docker stack for inspecting keys such as auto_approve, priority_routing, or available_skills.
 
-## Publisher: <br>
-[EcosincronIA](https://clawhub.ai/user/EcosincronIA) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ecosincronia](https://clawhub.ai/user/ecosincronia)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect OpenClaw policy keys and values from a local Supabase PostgreSQL database, such as auto_approve, priority_routing, and available_skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper reads policy values from a local database container, which may expose operational policy contents to the user running it. <br>
-Mitigation: Run it only in trusted local environments and limit use to users authorized to inspect OpenClaw policies. <br>
-Risk: The command depends on the local supabase-db Docker container and public.openclaw_policies table being the intended database target. <br>
-Mitigation: Confirm the active Docker context and database container before running list or get commands. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect OpenClaw policy keys and read policy values from a local Supabase PostgreSQL database during operational review.
 
-## Reference(s): <br>
-- [ClawHub Read Policy release](https://clawhub.ai/EcosincronIA/read-policy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local policy data through docker exec against the supabase-db container.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill reads local OpenClaw policy configuration that may contain sensitive operational information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only where an agent is permitted to inspect OpenClaw policy data.
+
+Risk: The script requires Docker access to the local Supabase database container, which is a meaningful local privilege.
+
+Mitigation: Restrict execution to trusted environments and review commands before running them against the local Docker stack.
+
+## Reference(s):
+
+- [Read Policy on ClawHub](https://clawhub.ai/ecosincronia/skills/read-policy)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [Plain text or pretty-printed JSON returned by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on the local OpenClaw policy rows available in the Supabase PostgreSQL database.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

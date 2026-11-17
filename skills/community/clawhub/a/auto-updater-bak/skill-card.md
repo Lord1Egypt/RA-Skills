@@ -1,45 +1,58 @@
-## Description: <br>
-Automatically update Clawdbot and all installed skills once daily. Runs via cron, checks for updates, applies them, and messages the user with a summary of what changed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically update Clawdbot and all installed skills once daily. Runs via cron, checks for updates, applies them, and messages the user with a summary of what changed.
 
-## Publisher: <br>
-[kellanlab](https://clawhub.ai/user/kellanlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kellanlab](https://clawhub.ai/user/kellanlab)
 
-## Use Case: <br>
-Developers and Clawdbot users use this skill to configure a scheduled updater that keeps Clawdbot and installed skills current and reports what changed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A recurring update job can change Clawdbot and installed skills without per-update review. <br>
-Mitigation: Install only when automatic updates are intended, run documented dry-run or manual checks first, and keep the Daily Auto-Update cron job easy to remove. <br>
-Risk: An automatic update may break a local setup or pull changes from sources the user has not reviewed. <br>
-Mitigation: Restrict updates to trusted sources where possible, review the delivered update summary, and use manual update commands when failures or unexpected changes appear. <br>
+## Use Case:
 
+Developers and Clawdbot users use this skill to configure daily automated checks that update Clawdbot and installed skills, then receive a concise update summary.
 
-## Reference(s): <br>
-- [Agent Implementation Guide](references/agent-guide.md) <br>
-- [Update Summary Examples](references/summary-examples.md) <br>
-- [ClawHub skill page](https://clawhub.ai/kellanlab/auto-updater-bak) <br>
-- [Clawdbot Updating Guide](https://docs.clawd.bot/install/updating) <br>
-- [ClawdHub CLI](https://docs.clawd.bot/tools/clawdhub) <br>
-- [Cron Jobs](https://docs.clawd.bot/cron) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and cron configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces scheduled update setup guidance and concise update summaries for the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and skill metadata) <br>
+Risk: The skill can create a persistent daily cron job that updates Clawdbot and installed skills without per-update approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run a dry run first, review update changelogs, limit automatic updates to trusted skills where possible, and confirm the cron job schedule before enabling it.
+
+Risk: Automatic updates can change every installed skill and may introduce unexpected behavior.
+
+Mitigation: Keep a record of installed versions, review the delivered update summary after each run, and remove the `Daily Auto-Update` cron job if unexpected changes occur.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kellanlab/skills/auto-updater-bak)
+- [Clawdbot Updating Guide](https://docs.clawd.bot/install/updating)
+- [ClawdHub CLI](https://docs.clawd.bot/tools/clawdhub)
+- [Cron Jobs](https://docs.clawd.bot/cron)
+- [Agent Implementation Guide](references/agent-guide.md)
+- [Update Summary Examples](references/summary-examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup, verification, troubleshooting, and summary-reporting guidance for an agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

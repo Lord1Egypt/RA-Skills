@@ -1,46 +1,60 @@
-## Description: <br>
-专为OPC导师设计，系统化管理季度项目路演活动，从项目筛选到精准匹配全流程管控 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+专为OPC导师设计，系统化管理季度项目路演活动，从项目筛选到精准匹配全流程管控。
 
-## Publisher: <br>
-[golngod](https://clawhub.ai/user/golngod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[golngod](https://clawhub.ai/user/golngod)
 
-## Use Case: <br>
-OPC mentors and roadshow operators use this skill to plan quarterly investment roadshows, screen projects, manage weekly live sessions, summarize meetings, analyze investor Q&A, and match projects with investment institutions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Roadshow notes, Q&A logs, replay links, contact records, and investor-intent forms may contain sensitive founder, company, investor, or financing information. <br>
-Mitigation: Define authorized access before use, restrict sharing to approved recipients, and set retention and deletion periods for event records. <br>
-Risk: Using the skill with real events may expose participant information through AI-assisted summarization or analysis workflows. <br>
-Mitigation: Use approved AI services only, obtain any required participant consent, and redact sensitive details where practical. <br>
+## Use Case:
 
+OPC mentors and roadshow operators use this skill to plan quarterly investment roadshows, screen projects, manage live-session records, analyze investor questions, and match selected projects with investment institutions.
 
-## Reference(s): <br>
-- [会议纪要模板](references/会议纪要模板.md) <br>
-- [常见问答记录模板](references/常见问答记录模板.md) <br>
-- [投资人关注度分析框架](references/投资人关注度分析框架.md) <br>
-- [投资机构匹配数据库](references/投资机构匹配数据库.md) <br>
-- [路演直播流程SOP](references/路演直播流程SOP.md) <br>
-- [路演项目筛选标准](references/路演项目筛选标准.md) <br>
-- [项目筛选决策树](references/项目筛选决策树.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance, templates, SOPs, decision frameworks, and tabular records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces structured roadshow plans, screening criteria, meeting minutes, Q&A records, investor attention analysis, and matching guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill is intended for roadshow workflows that may include project records, investor contacts, commercial information, replay data, and Q&A records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before using it with real projects or investors, define storage locations, access controls, sharing rules, and deletion timelines for exported data and records.
+
+Risk: Roadshow screening and matching guidance can influence investment follow-up decisions if treated as final diligence.
+
+Mitigation: Review generated summaries, risk notes, and investor-matching outputs with qualified human reviewers before making funding or outreach decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/golngod/skills/opc-roadshow-management)
+- [会议纪要模板](references/会议纪要模板.md)
+- [常见问答记录模板](references/常见问答记录模板.md)
+- [投资人关注度分析框架](references/投资人关注度分析框架.md)
+- [投资机构匹配数据库](references/投资机构匹配数据库.md)
+- [路演直播流程SOP](references/路演直播流程SOP.md)
+- [路演项目筛选标准](references/路演项目筛选标准.md)
+- [项目筛选决策树](references/项目筛选决策树.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown templates and structured workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language roadshow planning, screening, meeting-record, Q&A analysis, and investor-matching materials]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

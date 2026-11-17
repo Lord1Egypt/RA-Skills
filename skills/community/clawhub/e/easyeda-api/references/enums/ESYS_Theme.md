@@ -1,11 +1,11 @@
 # ESYS\_Theme enum
 
-主题
+Theme
 
 ## Signature
 
 ```typescript
-declare enum ESYS_Theme 
+enum ESYS_Theme
 ```
 
 ## Enumeration Members
@@ -14,48 +14,35 @@ declare enum ESYS_Theme
 
 Member
 
-
 </th><th>
 
 Value
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 DARK
 
-
 </td><td>
 
-`"dark"`
-
+`'dark'`
 
 </td><td>
-
-深色
-
 
 </td></tr>
 <tr><td>
 
 LIGHT
 
-
 </td><td>
 
-`"light"`
-
+`'light'`
 
 </td><td>
-
-浅色
-
 
 </td></tr>
 </tbody></table>

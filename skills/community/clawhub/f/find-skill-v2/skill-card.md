@@ -1,41 +1,53 @@
-## Description: <br>
-Helps users discover and install agent skills when they ask for specialized functionality or ways to extend an agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users discover and install agent skills when they ask questions like "how do I do X", "find a skill for X", "is there a skill that can...", or express interest in extending capabilities.
 
-## Publisher: <br>
-[KylinJackson](https://clawhub.ai/user/KylinJackson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kylinjackson](https://clawhub.ai/user/kylinjackson)
 
-## Use Case: <br>
-Developers and agent users use this skill to find relevant installable skills, present marketplace options, and optionally install selected skills with the Skills CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can steer broad requests toward external third-party skill recommendations and global installation commands. <br>
-Mitigation: Use it only when external skill recommendations are intended, review the package source and contents before installation, and prefer non-global installation unless user-level persistence is desired. <br>
-Risk: The documented install example uses a confirmation-skipping flag. <br>
-Mitigation: Avoid confirmation-skipping flags unless the exact package and install command have already been reviewed and approved. <br>
+## Use Case:
 
+Developers and agent users use this skill to search for installable skills, present matching options, and install selected skills when they want to extend agent capabilities.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/KylinJackson/find-skill-v2) <br>
-- [Skills marketplace](https://skills.sh/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include marketplace links and install commands; users should review package sources before installation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and artifact metadata) <br>
+Risk: The skill encourages external package execution and global skill installation with confirmation prompts disabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the need for an external skill, inspect the source and publisher, prefer pinned trusted versions, and avoid global unattended installs unless explicitly intended.
+
+Risk: Search results or install recommendations may lead users to third-party skills that have not been independently reviewed.
+
+Mitigation: Review the publisher profile, source, and scan results before installation, and run third-party installers in a restricted environment when possible.
+
+## Reference(s):
+
+- [Skills marketplace](https://skills.sh/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include skill search results, install commands, and links for further review.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,58 @@
-## Description: <br>
-Provides practical token-saving guidance for controlling context, trimming skill files, cleaning sessions, and writing lightweight cron prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+节省 Token 的实战技巧 — 优化 AI 对话成本，提升性价比
 
-## Publisher: <br>
-[smseow001](https://clawhub.ai/user/smseow001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smseow001](https://clawhub.ai/user/smseow001)
 
-## Use Case: <br>
-Developers and agent users use this skill to reduce AI conversation cost by applying context search, skill-size cleanup, session hygiene, and shorter cron prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Editing installed skill files can degrade future agent behavior or remove safety or authentication instructions. <br>
-Mitigation: Review every proposed skill change as a diff, keep backups or exports, and avoid deleting safety or authentication guidance. <br>
-Risk: Automated session archiving can make useful history harder to find or restore. <br>
-Mitigation: Do not enable cleanup cron jobs until the archive scope, restore path, and disable procedure are understood. <br>
+## Use Case:
 
+External users and developers use this skill for practical guidance on reducing AI conversation token usage through context control, skill-file trimming, session cleanup, and lightweight cron prompts.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes cost-saving estimates and manual review guidance; does not execute changes directly.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad changes to installed skills may remove useful content or alter behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each proposed skill edit, keep backups, and patch only explicitly selected skill files.
+
+Risk: Exporting conversation history to external notes can expose sensitive information.
+
+Mitigation: Check exported sessions for secrets or private data before moving them outside the agent environment.
+
+Risk: Recurring automated session archival can hide or remove context that is still needed.
+
+Mitigation: Enable cleanup only after choosing exact retention targets, preserving important sessions, and confirming how to undo archival.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smseow001/skills/token-saving-mastery)
+- [Publisher profile](https://clawhub.ai/user/smseow001)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown guidance with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes practical token-saving strategies, estimated savings ranges, and verification commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

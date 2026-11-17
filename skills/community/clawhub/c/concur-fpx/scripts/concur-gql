@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Run a Concur spend-graphql query through the signed-in browser tab (fpx).
+#   concur-gql <query.graphql | query-name> ['{"var":"value"}']
+# Env: CONCUR_DC (default us2), CONCUR_FPX_PROFILE (default concur)
+set -euo pipefail
+dc="${CONCUR_DC:-us2}"
+profile="${CONCUR_FPX_PROFILE:-concur}"
+here="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+q="${1:?usage: concur-gql <query.graphql|name> [vars-json]}"
+vars="${2:-}"; [[ -n "$vars" ]] || vars='{}'
+[[ -f "$q" ]] || q="$here/queries/${q%.graphql}.graphql"
+[[ -f "$q" ]] || { echo "concur-gql: no query file $1" >&2; exit 1; }
+body="$(jq -nc --rawfile query "$q" --argjson variables "$vars" '{query: $query, variables: $variables}')"
+fpx post-json "https://www-${dc}.api.concursolutions.com/spend-graphql/graphql" "$body" \
+  -p "$profile" --via-tab "https://${dc}.concursolutions.com/"

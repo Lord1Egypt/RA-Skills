@@ -1,11 +1,11 @@
 # ESYS\_RightPanelTab enum
 
-右侧面板标签页
+Right panel tab
 
 ## Signature
 
 ```typescript
-declare enum ESYS_RightPanelTab 
+enum ESYS_RightPanelTab
 ```
 
 ## Enumeration Members
@@ -14,272 +14,189 @@ declare enum ESYS_RightPanelTab
 
 Member
 
-
 </th><th>
 
 Value
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 ANNOTATION
 
-
 </td><td>
 
-`"annotation"`
-
+`'annotation'`
 
 </td><td>
-
-批注
-
 
 </td></tr>
 <tr><td>
 
 PANEL\_3D\_PREVIEW\_ATTR
 
-
 </td><td>
 
-`"panel3d-attr"`
-
+`'panel3d-attr'`
 
 </td><td>
-
-面板 3D 预览：属性
-
 
 </td></tr>
 <tr><td>
 
 PANEL\_3D\_PREVIEW\_LAYER
 
-
 </td><td>
 
-`"panel3d-layer"`
-
+`'panel3d-layer'`
 
 </td><td>
-
-面板 3D 预览：图层
-
 
 </td></tr>
 <tr><td>
 
 PANEL\_ATTR
 
-
 </td><td>
 
-`"panel-attr"`
-
+`'panel-attr'`
 
 </td><td>
-
-面板：属性
-
 
 </td></tr>
 <tr><td>
 
 PANEL\_FILTER
 
-
 </td><td>
 
-`"panel-filter"`
-
+`'panel-filter'`
 
 </td><td>
-
-面板：过滤
-
 
 </td></tr>
 <tr><td>
 
 PANEL\_LAYER
 
-
 </td><td>
 
-`"panel-layer"`
-
+`'panel-layer'`
 
 </td><td>
-
-面板：图层
-
 
 </td></tr>
 <tr><td>
 
 PCB\_2D\_PREVIEW\_ATTR
 
-
 </td><td>
 
-`"pcb2d-attr"`
-
+`'pcb2d-attr'`
 
 </td><td>
-
-PCB 2D 预览：属性
-
 
 </td></tr>
 <tr><td>
 
 PCB\_3D\_PREVIEW\_ATTR
 
-
 </td><td>
 
-`"pcb3d-attr"`
-
+`'pcb3d-attr'`
 
 </td><td>
-
-PCB 3D 预览：属性
-
 
 </td></tr>
 <tr><td>
 
 PCB\_3D\_PREVIEW\_LAYER
 
-
 </td><td>
 
-`"pcb3d-layer"`
-
+`'pcb3d-layer'`
 
 </td><td>
-
-PCB 3D 预览：图层
-
 
 </td></tr>
 <tr><td>
 
 PCB\_ATTR
 
-
 </td><td>
 
-`"pcb-attr"`
-
+`'pcb-attr'`
 
 </td><td>
-
-PCB：属性
-
 
 </td></tr>
 <tr><td>
 
 PCB\_FILTER
 
-
 </td><td>
 
-`"pcb-filter"`
-
+`'pcb-filter'`
 
 </td><td>
-
-PCB：过滤
-
 
 </td></tr>
 <tr><td>
 
 PCB\_LAYER
 
-
 </td><td>
 
-`"pcb-layer"`
-
+`'pcb-layer'`
 
 </td><td>
-
-PCB：图层
-
 
 </td></tr>
 <tr><td>
 
 PCB\_SKETCHER\_ATTR
 
-
 </td><td>
 
-`"pcb-sketcher-attr"`
-
+`'pcb-sketcher-attr'`
 
 </td><td>
-
-PCB：测量对象属性
-
 
 </td></tr>
 <tr><td>
 
 PROJECT\_ATTR
 
-
 </td><td>
 
-`"project-attr"`
-
+`'project-attr'`
 
 </td><td>
-
-工程：属性
-
 
 </td></tr>
 <tr><td>
 
 SCH\_ATTR
 
-
 </td><td>
 
-`"sch-attr"`
-
+`'sch-attr'`
 
 </td><td>
-
-原理图：属性
-
 
 </td></tr>
 <tr><td>
 
 SCH\_FILTER
 
-
 </td><td>
 
-`"sch-filter"`
-
+`'sch-filter'`
 
 </td><td>
-
-原理图：过滤
-
 
 </td></tr>
 </tbody></table>

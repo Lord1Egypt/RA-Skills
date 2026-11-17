@@ -14,6 +14,10 @@
 					"type": "string",
 					"description": "API's access path (excluding appId)"
 				},
+				"parentId": {
+					"type": "string",
+					"description": "Parent group directory id (nullable = root level). Returned by _api_create_directory; groups APIs to avoid a flat exploded list."
+				},
 				"method": {
 					"type": "string",
 					"description": "HTTP method, such as GET, POST, empty value means no restriction."
@@ -44,7 +48,7 @@
 				},
 				"scriptFunc": {
 					"type": "string",
-					"description": "Script function name"
+					"description": "Script function name. IMPORTANT: The function must exist in the script file specified by scriptId and must be exported using `export function`. Do NOT provide a function name that does not exist or is not exported."
 				},
 				"afterScriptId": {
 					"type": "string",

@@ -1,44 +1,60 @@
-## Description: <br>
-Control Assimilate Live FX / SCRATCH - professional color grading, compositing, and virtual production software - via MCP with 88 tools across 14 categories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Assimilate Live FX / SCRATCH — professional color grading, compositing, and virtual production software — via MCP. 88 tools across 14 categories.
 
-## Publisher: <br>
-[ergopooka](https://clawhub.ai/user/ergopooka) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ergopooka](https://clawhub.ai/user/ergopooka)
 
-## Use Case: <br>
-External users, developers, and post-production operators use this skill to let an AI assistant operate Assimilate Live FX or SCRATCH through MCP for project navigation, media import, grading, playback, snapshots, output setup, and rendering. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can let an assistant change project state, modify grades, import files, create outputs, or start renders in Assimilate Live FX/SCRATCH. <br>
-Mitigation: Require explicit user confirmation before state-changing, file-import, grading, output, or render actions. <br>
-Risk: A reachable HTTP server or exposed authorization key could allow unwanted control of the connected Assimilate environment. <br>
-Mitigation: Keep the HTTP server bound to localhost where possible, protect any authorization key, and use SSH tunnels only to trusted hosts. <br>
-Risk: Installing and running the MCP server executes the third-party assimilate-mcp npm package. <br>
-Mitigation: Install only when the publisher and npm package are trusted for the deployment environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ergopooka/assimilate-mcp) <br>
-- [Assimilate MCP npm package](https://www.npmjs.com/package/assimilate-mcp) <br>
-- [Assimilate REST API](https://github.com/Assimilate-Inc/Assimilate-REST) <br>
-- [Assimilate Inc](https://assimilateinc.com) <br>
+## Use Case:
 
+Developers and media-production operators use this skill to connect an AI assistant to Assimilate Live FX or SCRATCH through MCP for project navigation, media import, color grading, playback, rendering, output setup, snapshots, and file-management workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces MCP setup and operational guidance for an assistant that calls Assimilate Live FX/SCRATCH tools.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs and runs an unpinned npm MCP server.
+
+Mitigation: Pin assimilate-mcp to a reviewed version where possible and review the package before production installation.
+
+Risk: The skill can perform high-impact Assimilate operations such as importing media, changing grades, configuring outputs, and starting renders.
+
+Mitigation: Run with least privilege and require explicit confirmation before edit, output, import, or render actions.
+
+Risk: The skill may use ASSIMILATE_KEY to authorize access to the target Live FX or SCRATCH server.
+
+Mitigation: Protect ASSIMILATE_KEY as a secret and avoid exposing it in shared configuration or logs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ergopooka/skills/assimilate-mcp)
+- [GitHub Repository](https://github.com/amac-roguelabs/assimilate-mcp)
+- [npm Package](https://www.npmjs.com/package/assimilate-mcp)
+- [Assimilate REST API](https://github.com/Assimilate-Inc/Assimilate-REST)
+- [Assimilate Inc](https://assimilateinc.com)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can include MCP server configuration and natural-language guidance for invoking Assimilate MCP tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

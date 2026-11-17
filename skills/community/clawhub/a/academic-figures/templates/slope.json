@@ -1,0 +1,22 @@
+{
+  "_command": "python3 scripts/gen_figure.py -t slope -d templates/slope.json -o slope.png --cjk",
+  "left_label": "基线（T0）",
+  "right_label": "12 周（T1）",
+  "items": {
+    "药物A": [
+      72,
+      85
+    ],
+    "药物B": [
+      65,
+      61
+    ],
+    "对照": [
+      70,
+      71
+    ]
+  },
+  "_scene": "两时点前后比较（治疗前后/基线→随访），每项恰好 [左值, 右值]",
+  "_chart_type": "slope",
+  "_note": "最大上升项自动主题色强调、最大下降项暖橙；三次及以上测量改用 line"
+}

@@ -1,0 +1,82 @@
+{
+  "slides": [
+    {
+      "type": "starting_slide",
+      "heading": "3 habits of fast teams",
+      "sub_heading": "Remote work",
+      "description": "The ones that actually stick.",
+      "cta_button": "Watch on",
+      "background_image": "https://skfhtbmyanoeqbvrtxqa.supabase.co/storage/v1/object/public/media/static/postnitro-on-the-moon.png"
+    },
+    {
+      "type": "body_slide",
+      "heading": "Write things down",
+      "description": "Decisions live in docs, not in calls.",
+      "image": "https://skfhtbmyanoeqbvrtxqa.supabase.co/storage/v1/object/public/media/static/postnitro-on-the-moon.png"
+    },
+    {
+      "type": "body_slide",
+      "heading": "Default to async",
+      "description": "Protect deep work; meet only when it changes a decision.",
+      "layoutType": "infographic",
+      "layoutConfig": {
+        "hasHeader": true,
+        "columnCount": 2,
+        "displayCounterAs": "counter",
+        "columnDisplay": "grid",
+        "columnData": [
+          {
+            "id": "col-1",
+            "header": "Do",
+            "content": [
+              {
+                "id": "item-1",
+                "icon": null,
+                "title": "Write the update",
+                "description": "<p dir=\"ltr\">A doc beats a stand-up for anything not urgent.</p>",
+                "titleEnabled": true,
+                "descriptionEnabled": true
+              },
+              {
+                "id": "item-2",
+                "icon": null,
+                "title": "Batch replies",
+                "description": "<p dir=\"ltr\">Two windows a day, not two minutes an hour.</p>",
+                "titleEnabled": true,
+                "descriptionEnabled": true
+              }
+            ]
+          },
+          {
+            "id": "col-2",
+            "header": "Don't",
+            "content": [
+              {
+                "id": "item-3",
+                "icon": null,
+                "title": "Meet to decide",
+                "description": "<p dir=\"ltr\">Bring the decision to the meeting, not the debate.</p>",
+                "titleEnabled": true,
+                "descriptionEnabled": true
+              },
+              {
+                "id": "item-4",
+                "icon": null,
+                "title": "Ping for status",
+                "description": "<p dir=\"ltr\">If it's worth asking, it's worth writing down once.</p>",
+                "titleEnabled": true,
+                "descriptionEnabled": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "ending_slide",
+      "heading": "Try one this week",
+      "description": "Pick the habit your team misses most.",
+      "cta_button": "Follow for more"
+    }
+  ]
+}

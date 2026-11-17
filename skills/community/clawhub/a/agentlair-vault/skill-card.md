@@ -1,48 +1,61 @@
-## Description: <br>
-Store and fetch credentials securely at runtime via AgentLair Vault REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Store and fetch credentials securely at runtime via AgentLair Vault REST API.
 
-## Publisher: <br>
-[hawkaa](https://clawhub.ai/user/hawkaa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hawkaa](https://clawhub.ai/user/hawkaa)
 
-## Use Case: <br>
-Developers and agent operators use this skill to store, fetch, rotate, list, and revoke credentials through AgentLair Vault instead of keeping third-party API keys in local agent configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to handle secrets through AgentLair Vault, so users must trust AgentLair with the credentials they store unless they use client-side encryption. <br>
-Mitigation: Install only after accepting that trust relationship, and use the documented client-side encryption option when zero-knowledge handling is required. <br>
-Risk: AGENTLAIR_API_KEY grants access to vault operations and is highly sensitive. <br>
-Mitigation: Keep AGENTLAIR_API_KEY out of committed files and long-lived shared environments, and protect it with the same care as other production credentials. <br>
-Risk: Metadata can accidentally disclose sensitive context even when it is not the secret value. <br>
-Mitigation: Store only labels, service names, and non-secret operational hints in metadata. <br>
-Risk: Rotate and delete operations can change or remove credentials that agents depend on. <br>
-Mitigation: Require explicit user confirmation before rotating or deleting credentials, and use version history for rollback where available. <br>
+## Use Case:
 
+Developers and agent operators use this skill to store, fetch, rotate, list, and revoke runtime credentials through AgentLair Vault instead of placing third-party API keys in local agent configuration or environment files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hawkaa/agentlair-vault) <br>
-- [AgentLair homepage](https://agentlair.dev) <br>
-- [AgentLair security documentation](https://agentlair.dev/security) <br>
-- [AgentLair trust model blog](https://agentlair.dev/blog) <br>
-- [agentlair-vault-crypto source](https://github.com/piiiico/agentlair-vault-crypto) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational instructions for using AgentLair Vault REST endpoints with AGENTLAIR_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill stores high-impact API keys with a hosted credential custodian and evidence reports under-disclosed plaintext handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the user accepts AgentLair as custodian; store least-privileged, revocable credentials and avoid live financial or administrator tokens unless necessary.
+
+Risk: Rotate and delete actions can change or remove credentials used by agents and downstream services.
+
+Mitigation: Require explicit user confirmation before rotating, revoking, or deleting secrets, and use descriptive key names and metadata that do not contain secret values.
+
+Risk: The optional AES-CBC shell example should not be treated as sufficient zero-knowledge storage guidance.
+
+Mitigation: Use a reviewed client-side encryption library or security-reviewed encryption workflow when zero-knowledge storage is required, and keep local passphrases out of the vault.
+
+## Reference(s):
+
+- [AgentLair homepage](https://agentlair.dev)
+- [AgentLair security documentation](https://agentlair.dev/security)
+- [AgentLair trust model blog](https://agentlair.dev/blog)
+- [agentlair-vault-crypto](https://github.com/piiiico/agentlair-vault-crypto)
+- [ClawHub AgentLair Vault skill page](https://clawhub.ai/hawkaa/skills/agentlair-vault)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AGENTLAIR_API_KEY and curl.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

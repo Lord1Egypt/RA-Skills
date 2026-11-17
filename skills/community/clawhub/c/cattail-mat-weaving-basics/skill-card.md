@@ -1,42 +1,56 @@
-## Description: <br>
-Guides an agent in helping users plan, track, and document cattail mat weaving while the human performs harvesting, sorting, weaving, binding, and testing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent-assisted workflow for making durable cattail-leaf mats by helping identify suitable reeds, calculate material needs, plan harvest, soak, weave, and dry schedules, track tests, and produce inventory or barter templates.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to plan and document the creation of cattail-leaf floor mats, bedding pads, wall insulation, or trade goods while keeping harvesting, weaving, tactile judgment, and safety decisions human-controlled.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The install command is an unpinned remote CLI execution path.
+
+Mitigation: Use a pinned and trusted clawhub version or an organization-approved install path before installation.
+
+Risk: Filesystem use may store sensitive photos, GPS-derived notes, schedules, progress logs, inventory records, or pattern templates.
+
+Mitigation: Limit filesystem access to a dedicated project folder and avoid retaining unnecessary sensitive location or personal data.
+
+Risk: The physical workflow can involve toxic plant look-alikes, polluted harvesting sites, sharp tools, skin irritation, mold, and repetitive strain.
+
+Mitigation: Require human verification of plant and site safety, follow local foraging rules, wear gloves, use sharp-tool precautions, store mats dry, and stop work on rash or strain.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users with access to safe cattail stands use this skill to plan and document a 21-day first-mat cycle, including plant checks, material estimates, schedules, progress logs, safety checks, and barter or inventory templates. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask for photos, GPS or nearby-location details, and local project records. <br>
-Mitigation: Share only the location and image detail needed for plant and site checks, avoid sensitive exact locations when possible, and review generated project records before storing or sharing them. <br>
-Risk: Wild plant misidentification, polluted harvesting sites, or local foraging restrictions can make harvesting unsafe or noncompliant. <br>
-Mitigation: Confirm plant identity and site suitability before harvesting, avoid polluted or chemically treated water, and check local harvesting rules. <br>
-Risk: Harvesting and weaving can involve sharp tools, skin irritation, repetitive strain, and mold if mats are not dried and stored properly. <br>
-Mitigation: Use gloves and safe blade handling, take ergonomic breaks, stop if rash or wrist strain develops, and dry and store finished mats flat in a dry place. <br>
+**Output Format:** [Markdown guidance with schedules, checklists, logs, templates, and safety notes]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/howtousehumans/cattail-mat-weaving-basics) <br>
+**Other Properties Related to Output:** [May create or maintain project files such as photos or GPS-derived notes, schedules, progress logs, inventory records, and pattern templates.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with an inline install command and plain-text templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include user-supplied photos, nearby-location details, project logs, schedules, and barter or inventory records.] <br>
+1.0.0 (source: server release metadata and changelog)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

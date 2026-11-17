@@ -1,48 +1,70 @@
-## Description: <br>
-当用户想去某个地方吃饭、探店，或者询问附近有什么好吃的时使用。能根据用户位置、时间、口味偏好和预算推荐合适的餐厅。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+当用户想去某个地方吃饭、探店，或者询问附近有什么好吃的时使用。能根据用户位置、时间（早/中/晚）、口味偏好、预算推荐合适的餐厅。
 
-## Publisher: <br>
-[newobject11](https://clawhub.ai/user/newobject11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[newobject11](https://clawhub.ai/user/newobject11)
 
-## Use Case: <br>
-External users use this skill to find nearby restaurants based on location, meal time, cuisine preference, and budget. It can call Baidu Maps for live nearby search and falls back to bundled city food data when live lookup is unavailable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; recommendations are most complete for Chinese cities covered by Baidu Maps and the bundled fallback data. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user-provided address, landmark, or area text and food search terms to Baidu Maps for live restaurant lookup. <br>
-Mitigation: Prefer a neighborhood or landmark over an exact home address, and install only if this data sharing is acceptable. <br>
-Risk: Live restaurant details may be stale or unavailable, especially for hours, pricing, ratings, and phone numbers. <br>
-Mitigation: Confirm important details with the restaurant before traveling or making plans. <br>
-Risk: The Baidu Maps API key is a sensitive credential required for live lookup. <br>
-Mitigation: Provide it through BAIDU_MAP_API_KEY, use a restricted key, and avoid hardcoding it in files or prompts. <br>
+## Use Case:
 
+External users use this skill to get nearby restaurant recommendations from a location, meal timing, cuisine preference, and budget. It can query Baidu Maps for live place data and fall back to bundled city food data when the API is unavailable.
 
-## Reference(s): <br>
-- [百度地图API文档参考](references/baidu_map_api.md) <br>
-- [城市美食数据库格式说明](references/city_food_db.md) <br>
-- [Baidu Maps API documentation](https://lbsyun.baidu.com/) <br>
-- [Baidu Maps geocoding API guide](https://lbsyun.baidu.com/index.php?title=webapi/guide/webservice-geocoding) <br>
-- [Baidu Maps place search API guide](https://lbsyun.baidu.com/index.php?title=webapi/guide/webservice-placeapi) <br>
-- [Baidu Maps API key console](https://lbsyun.baidu.com/apiconsole/key) <br>
-- [ClawHub release page](https://clawhub.ai/newobject11/food-explorer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, API Calls, Guidance] <br>
-**Output Format:** [Markdown-style restaurant recommendations with optional Python usage examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ranked restaurant lists, addresses, phone numbers, prices, ratings, distances, local tips, and fallback recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: User-provided locations and restaurant preferences may be sent to Baidu Maps during geocoding and nearby search.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use coarse locations where possible and disclose the external Baidu Maps lookup before sending sensitive location details.
+
+Risk: A Baidu Maps API key is required for live search and could be exposed if hardcoded.
+
+Mitigation: Store BAIDU_MAP_API_KEY in the environment or a secret manager and avoid embedding it in skill files or prompts.
+
+Risk: The requests dependency is not version-pinned in the artifact metadata.
+
+Mitigation: Pin and review dependency versions before production deployment.
+
+Risk: Budget filtering is not a strict constraint in this version.
+
+Mitigation: Treat budget values as guidance and verify price information before acting on a recommendation.
+
+Risk: Restaurant data from Baidu Maps or the bundled fallback database may be stale.
+
+Mitigation: Ask users to confirm business hours, availability, and queue conditions before visiting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/newobject11/skills/food-explorer)
+- [Baidu Map API reference](references/baidu_map_api.md)
+- [City food database reference](references/city_food_db.md)
+- [Baidu Maps developer documentation](https://lbsyun.baidu.com/)
+- [Baidu Maps geocoding guide](https://lbsyun.baidu.com/index.php?title=webapi/guide/webservice-geocoding)
+- [Baidu Maps place search guide](https://lbsyun.baidu.com/index.php?title=webapi/guide/webservice-placeapi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown-style text with ranked restaurant recommendations and practical visit tips]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include restaurant names, ratings, prices, distance estimates, addresses, phone numbers, fallback recommendations, and reminders to confirm current details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

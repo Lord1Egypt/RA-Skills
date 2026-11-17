@@ -1,46 +1,59 @@
-## Description: <br>
-Generates vertical 9:16 videos for Sing The Hook song templates through a two-stage MCP video pipeline with trimming, GCS upload, and database updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate vertical 9:16 videos for Sing The Hook song templates using a two-stage pipeline with MCP, trimming, uploading to GCS, and database updates.
 
-## Publisher: <br>
-[zhuyinzhuyin](https://clawhub.ai/user/zhuyinzhuyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuyinzhuyin](https://clawhub.ai/user/zhuyinzhuyin)
 
-## Use Case: <br>
-Developers and operators managing Sing The Hook song templates use this skill to process CSV batches, generate lip-synced vertical videos from template images, prompts, and audio mixes, and write resulting video URLs back to the target database. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can persistently update PostgreSQL song template records and CSV status fields. <br>
-Mitigation: Run it only against an intended test or least-privileged database, and review the CSV input before execution. <br>
-Risk: The workflow sends prompts and media URLs to an external MCP video-processing endpoint and downloads returned media. <br>
-Mitigation: Use only approved media URLs and MCP credentials, restrict outbound network access where possible, and verify generated URLs before upload or database update. <br>
-Risk: The workflow uploads trimmed videos to GCS using a service-account key. <br>
-Mitigation: Use a least-privileged service account scoped to the intended bucket and rotate or remove credentials after batch work. <br>
+## Use Case:
 
+Developers and operators use this skill to process CSV-listed Sing The Hook song templates, generate lip-synced vertical videos, and record resulting video URLs and statuses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhuyinzhuyin/sth-video-gen) <br>
-- [Publisher profile](https://clawhub.ai/user/zhuyinzhuyin) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [fetch_asset_examples.md](artifact/fetch_asset_examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code, files] <br>
-**Output Format:** [Markdown instructions with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [When executed, the bundled scripts can update CSV rows, local JSON state, log files, GCS video files, and PostgreSQL video URL/status fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: The skill can send data to outside services, upload media, and modify PostgreSQL records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in controlled staging or approved production environments with explicit operator approval before uploads or database updates.
+
+Risk: CSV input, database URLs, and MCP responses may be untrusted.
+
+Mitigation: Require preview or dry-run review, validate inputs and returned URLs, and add SQL parameterization and URL allowlisting before broad production use.
+
+Risk: Database, MCP, and GCS credentials could grant more access than the workflow requires.
+
+Mitigation: Use least-privilege PostgreSQL and GCS credentials and avoid production API keys or broad database accounts until rollback controls are clear.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhuyinzhuyin/skills/sth-video-gen)
+- [Publisher profile](https://clawhub.ai/user/zhuyinzhuyin)
+- [MCP fetch-asset endpoint examples](artifact/fetch_asset_examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with inline bash commands and status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The workflow can generate video URLs, update CSV status fields, upload media, and update PostgreSQL records.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

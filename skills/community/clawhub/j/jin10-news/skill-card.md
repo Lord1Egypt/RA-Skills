@@ -1,44 +1,59 @@
-## Description: <br>
-Provides Jin10 financial news alerts, cached recent item browsing, detail lookup, and impact analysis for Hong Kong equities and related markets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供金十金融快讯及详情，支持本地缓存浏览和对港股、恒生科技及相关个股的影响分析。
 
-## Publisher: <br>
-[akinding](https://clawhub.ai/user/akinding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[akinding](https://clawhub.ai/user/akinding)
 
-## Use Case: <br>
-Developers and agent users use this skill to retrieve Jin10 financial news, inspect item details, and request concise impact analysis for Hong Kong stocks, the Hang Seng Tech Index, Tencent, and Alibaba. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package references Python scripts and TOOLS.md that are not included in the artifact, so the runtime behavior is not fully reviewable from this release. <br>
-Mitigation: Ask the publisher to include the referenced scripts and documentation, then review the complete package before installation. <br>
-Risk: The skill describes token use and a background fetcher without explicit controls for lifecycle or cleanup. <br>
-Mitigation: Document token handling and provide clear start, stop, disable, and cleanup controls before running the background fetcher. <br>
-Risk: Financial impact analysis and related stock recommendations may be incomplete or unsuitable for trading decisions. <br>
-Mitigation: Treat outputs as informational, verify against authoritative market sources, and apply human review before acting on financial conclusions. <br>
+## Use Case:
 
+Agents supporting financial-news workflows use this skill to retrieve recent Jin10 updates, inspect item details, and generate impact analysis for Hong Kong equities and selected stocks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/akinding/jin10-news) <br>
-- [Publisher profile](https://clawhub.ai/user/akinding) <br>
-- [Jin10 data source](https://www.jin10.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown text with command examples, news summaries, item details, and impact analysis.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recent alerts are read from a local cache when available; detail and deep-analysis outputs are selected by item number.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill invokes unbundled absolute-path scripts whose actual behavior is not present in the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing the scripts under /root/.openclaw/workspace/scripts and confirming they match the intended Jin10 fetch, cache, detail, and analysis behavior.
+
+Risk: The documented background fetcher may make periodic network requests and write cache files under /tmp.
+
+Mitigation: Run it only in an environment where those network requests and cache writes are expected, monitored, and allowed by local policy.
+
+Risk: The artifact references a Jin10 access token but does not show how the token is stored or transmitted.
+
+Mitigation: Verify token handling before use, keep credentials out of prompts and logs, and rotate the token if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/akinding/skills/jin10-news)
+- [Publisher profile](https://clawhub.ai/user/akinding)
+- [Jin10](https://jin10.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text financial-news summaries with command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads recent news from local cache when available; detail and deep-analysis commands operate on selected news items.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

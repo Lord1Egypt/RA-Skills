@@ -1,50 +1,63 @@
-## Description: <br>
-A local-first knowledge-base maintenance and retrieval skill for knowledge workers, with PPT/PDF support, keyword plus AI semantic retrieval, and progressive description evolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A local-first document search skill with PPT/PDF support, dual-channel retrieval through keyword and AI semantic search, and progressive description evolution for large local file collections.
 
-## Publisher: <br>
-[kittitys](https://clawhub.ai/user/kittitys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kittitys](https://clawhub.ai/user/kittitys)
 
-## Use Case: <br>
-Knowledge workers, consultants, and developers use this skill to initialize and query local document collections, locate relevant files, and produce cited answers from supported local formats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent local indexes and extracted-text caches may contain sensitive document content or path metadata. <br>
-Mitigation: Install only for folders you are comfortable indexing locally, keep the workspace in a trusted location, and inspect or clean caches when needed. <br>
-Risk: Selected file content may be passed to the user's chosen LLM provider during semantic analysis. <br>
-Mitigation: Use only trusted or approved model providers, and avoid sensitive client or regulated documents unless that provider is approved for the data. <br>
-Risk: Dependency setup or repair can require package installation commands. <br>
-Mitigation: Review any dependency-install prompt before approving it; ordinary search should not silently install dependencies. <br>
-Risk: Indexing or searching files in cloud-synced folders may trigger local downloads of online-only files. <br>
-Mitigation: Confirm the source and workspace paths before initialization and account for cloud-sync behavior before indexing. <br>
+## Use Case:
 
+External users, consultants, knowledge workers, and agents use this skill to create a local knowledge base from user-approved folders and answer questions with cited retrieval from PDFs, PPTX, DOCX, spreadsheets, images, and text files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kittitys/local-knowledge-retrieval) <br>
-- [Project homepage](https://github.com/kittitys/knowledge-retrieval) <br>
-- [Knowledge base conventions](references/knowledge-base-conventions.md) <br>
-- [Phase execution](references/phase-execution.md) <br>
-- [File handling](references/file-handling.md) <br>
-- [Environment setup](references/environment-setup.md) <br>
-- [Degradation behavior](references/degradation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown responses with source citations, plus local index and cache files when initialized.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local knowledge-base metadata, BM25 indexes, extracted-text caches, and shortcuts after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.8 (source: server release metadata) <br>
+Risk: The skill reads local files and stores extracted text caches and source paths for approved folders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on folders the user is authorized to process, and review or clear generated caches when documents are sensitive.
+
+Risk: Selected file contents may be sent to the model provider chosen by the user during semantic analysis or answer generation.
+
+Mitigation: Use an approved model provider for sensitive material and avoid indexing folders whose contents cannot be shared with that provider.
+
+Risk: Dependency installation changes the local Python environment.
+
+Mitigation: Install only the listed pinned packages after explicit user approval.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/kittitys/skills/local-knowledge-retrieval)
+- [Project homepage](https://github.com/kittitys/knowledge-retrieval)
+- [Environment setup](artifact/references/environment-setup.md)
+- [Knowledge base conventions](artifact/references/knowledge-base-conventions.md)
+- [Phase execution](artifact/references/phase-execution.md)
+- [File handling](artifact/references/file-handling.md)
+- [Degradation and cleanup](artifact/references/degradation.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance and answers with cited sources, plus JSON output from helper search scripts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local manifests, BM25 indexes, shortcut links, and extracted-text caches under knowledge-base after user approval.]
+
+## Skill Version(s):
+
+3.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

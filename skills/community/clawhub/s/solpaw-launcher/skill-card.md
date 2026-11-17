@@ -1,44 +1,61 @@
-## Description: <br>
-Launch Solana tokens on Pump.fun via the SolPaw platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Launch Solana tokens on Pump.fun via the SolPaw platform. 0.1 SOL one-time fee. Your wallet is the onchain creator.
 
-## Publisher: <br>
-[LvcidPsyche](https://clawhub.ai/user/LvcidPsyche) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lvcidpsyche](https://clawhub.ai/user/lvcidpsyche)
 
-## Use Case: <br>
-Developers and agent operators use this skill to launch Solana tokens through SolPaw and Pump.fun after explicitly confirming token details, wallet settings, and payment information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can spend SOL and create irreversible public tokens through a third-party service. <br>
-Mitigation: Use a fresh wallet with only the funds needed for the launch and require explicit confirmation of token details, creator wallet, fee signature, endpoint, and initial buy before every launch. <br>
-Risk: The documentation and SDK disagree about who signs the launch and who becomes the on-chain creator. <br>
-Mitigation: Avoid relying on the SDK launch path until the publisher reconciles the conflict, and prefer the documented local-signing flow when evaluating or using the skill. <br>
-Risk: The skill depends on sensitive API keys and a Solana private key in environment variables. <br>
-Mitigation: Keep secrets out of code and chat logs, never use a main wallet key, and rotate credentials if they are exposed. <br>
+## Use Case:
 
+External developers and OpenClaw agent operators use this skill to launch Solana tokens on Pump.fun through SolPaw after confirming token details, funding a dedicated wallet, and supplying the required API key and wallet configuration.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/LvcidPsyche/solpaw-launcher) <br>
-- [SolPaw homepage](https://solpaw.fun) <br>
-- [SolPaw API reference](references/api-docs.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell commands, TypeScript snippets, configuration values, and API response fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user invocation and environment variables for the SolPaw API key, creator wallet, Solana private key, and API URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.2 (source: ClawHub release metadata) <br>
+Risk: The skill asks users to configure SOLANA_PRIVATE_KEY for a paid Solana token launch.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a dedicated low-balance launch wallet, never provide a main wallet private key, and keep secrets in environment variables rather than code or chat.
+
+Risk: The security evidence says the skill claims local signing while the shipped code uses a server-signed launch path.
+
+Mitigation: Treat installation as sensitive until the publisher clarifies server-signed versus local-signing behavior, and require explicit human confirmation for every fee payment and token launch.
+
+Risk: Raw exec dispatch can run commands that make authenticated API requests and trigger paid onchain actions.
+
+Mitigation: Review the skill before deployment, restrict invocation to explicit user requests, and confirm token name, symbol, description, and fee payment before execution.
+
+## Reference(s):
+
+- [SolPaw API Reference](artifact/references/api-docs.md)
+- [SolPaw Website](https://solpaw.fun)
+- [SolPaw API Base URL](https://api.solpaw.fun/api/v1)
+- [ClawHub Skill Listing](https://clawhub.ai/lvcidpsyche/skills/solpaw-launcher)
+- [Pump.fun](https://pump.fun)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with TypeScript, JSON, YAML, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include launch status, token mint addresses, Pump.fun URLs, Solscan URLs, and API error messages.]
+
+## Skill Version(s):
+
+3.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

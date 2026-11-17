@@ -1,41 +1,57 @@
-## Description: <br>
-Octo Mention helps agents build and maintain confidence-scored nickname, alias, and mention mappings for OpenClaw group members using authoritative member fields and message-history evidence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes DMWork/OpenClaw group members and message history to build confidence-scored nickname, alias, and bot-name mappings with evidence, conflicts, and incremental merge support.
 
-## Publisher: <br>
-[lovejing0306](https://clawhub.ai/user/lovejing0306) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lovejing0306](https://clawhub.ai/user/lovejing0306)
 
-## Use Case: <br>
-Developers and operators of OpenClaw group agents use this skill to identify group members by uid, aliases, nicknames, and bot names, then maintain a local mention mapping database for later lookup. It is most useful when an agent needs to resolve ambiguous human-facing names into stable member identities across one or more groups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated mapping files can expose group member identities, aliases, group context, and message evidence. <br>
-Mitigation: Keep openclaw.json and openclaw.md private, avoid committing generated files, and restrict filesystem access to the mapping database and lookup script. <br>
-Risk: Nickname and alias mappings may be wrong, ambiguous, stale, or based on limited message evidence. <br>
-Mitigation: Use confidence scores, evidence counts, conflicts, rejected aliases, and manual correction or locking workflows before relying on a mapping in sensitive workflows. <br>
+## Use Case:
 
+Developers and operators using DMWork/OpenClaw group data use this skill to identify member nicknames, aliases, common forms of address, and bot names, then maintain a person-centered mention mapping across groups.
 
-## Reference(s): <br>
-- [Octo Mention on ClawHub](https://clawhub.ai/lovejing0306/octo-mention) <br>
-- [Publisher profile](https://clawhub.ai/user/lovejing0306) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON mention mappings, Markdown summaries, command-line guidance, and lookup results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces and updates a local persons database keyed by uid, with confidence scores, evidence snippets, conflicts, group provenance, manual corrections, and optional time-decayed lookup results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The generated mapping database can contain names, aliases, group IDs, uid links, and message evidence snippets for people across multiple groups.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with appropriate group consent, keep the database on a private account or machine, restrict file permissions, and avoid publishing generated JSON or Markdown outputs.
+
+Risk: Local plaintext storage of group-chat identity evidence may persist longer than intended.
+
+Mitigation: Define a retention and cleanup process for generated files under the mention database path before deployment.
+
+Risk: Alias inference may misbind a nickname or common word to the wrong person.
+
+Mitigation: Review conflicts and low-confidence candidates, use the manual correction workflow to lock confirmed aliases, and reject terms that should not be collected.
+
+## Reference(s):
+
+- [Octo Mention ClawHub Skill Page](https://clawhub.ai/lovejing0306/skills/octo-mention)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [JSON mention databases, Markdown summaries, and command-line guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores member aliases, uid links, group IDs, confidence scores, evidence snippets, conflicts, and manual corrections in local files.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

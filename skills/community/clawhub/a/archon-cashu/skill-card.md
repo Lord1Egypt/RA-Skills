@@ -1,41 +1,60 @@
-## Description: <br>
-Cashu ecash operations integrated with Archon DID for P2PK-locked tokens. Send and receive sats using DID-derived pubkeys, backup wallets to vault. Use for Cashu token operations, DID-locked payments, or ecash wallet management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Archon Cashu helps agents manage Cashu ecash wallets, send and receive sats, and create Archon DID-based P2PK-locked tokens.
 
-## Publisher: <br>
-[macterra](https://clawhub.ai/user/macterra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[macterra](https://clawhub.ai/user/macterra)
 
-## Use Case: <br>
-Developers and operators use this skill to manage Cashu ecash wallets, mint and send tokens, create DID-locked payments, receive tokens from dmail, and configure wallet backup or npub.cash workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Wallet backup can expose sensitive wallet data by uploading an unencrypted archive to IPFS while describing it as encrypted vault backup. <br>
-Mitigation: Do not run backup.sh for a real wallet unless client-side encryption is added first or IPFS upload is disabled. <br>
-Risk: Fund-moving commands depend on local configuration, npx package execution, and wallet paths. <br>
-Mitigation: Use small funds until the scripts, package sources, and config file paths have been reviewed in the target environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Nutshell Cashu CLI](https://github.com/cashubtc/nutshell) <br>
-- [Archon](https://github.com/ArcHive-tech/archon) <br>
-- [LNbits](https://lnbits.com) <br>
+## Use Case:
 
+Developers and operators who use Archon DID identities and Cashu wallets use this skill to configure wallets, mint or receive sats, send DID-locked ecash, and manage wallet backups.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce fund-moving command guidance that depends on local Archon, Cashu, npx, curl, jq, and node setup.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Wallet backups can expose sensitive wallet material if backup data is uploaded before local encryption is fixed.
+
+Mitigation: Do not run backup.sh with real wallet data until local encryption before IPFS upload is implemented and verified.
+
+Risk: Unpinned npx workflows can execute changing remote package code.
+
+Mitigation: Pin dependency versions, review packages before use, and run the workflows in an isolated environment when funds or wallet keys are involved.
+
+Risk: LNbits auto-pay can spend funds without strong user confirmation or invoice validation.
+
+Mitigation: Use manual invoice payment for real funds until explicit confirmations and validation are added to the payment path.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/macterra/skills/archon-cashu)
+- [Nutshell Cashu CLI](https://github.com/cashubtc/nutshell)
+- [Archon project](https://github.com/ArcHive-tech/archon)
+- [LNbits](https://lnbits.com)
+- [npub.cash LNURL endpoint](https://npub.cash/.well-known/lnurlp/$NPUB)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include DIDs, sat amounts, Cashu tokens, wallet paths, and environment variable names.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

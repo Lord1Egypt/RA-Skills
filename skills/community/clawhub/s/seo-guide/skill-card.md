@@ -1,54 +1,64 @@
-## Description: <br>
-Provides a Chinese-language SEO workflow for website audits, keyword research, on-page optimization, technical SEO, content strategy, link building, local SEO, and optional PDF report generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lesishu SEO Guide helps agents provide SEO guidance for site diagnosis, on-page optimization, technical SEO, content strategy, keyword research, structured data, local SEO, link building, and optional PDF reporting.
 
-## Publisher: <br>
-[lesishu](https://clawhub.ai/user/lesishu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lesishu](https://clawhub.ai/user/lesishu)
 
-## Use Case: <br>
-SEO practitioners, marketers, and site owners use this skill to diagnose websites, improve pages and technical SEO, plan keyword and content work, consult Google, Moz, and Ahrefs references, and generate an SEO audit PDF when explicitly requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence marks the release suspicious because the advertised capability labels include wallet, purchase, crypto, and sensitive-credential authority that do not match an SEO guide. <br>
-Mitigation: Review capability labels before installation and avoid granting wallet, purchase, crypto, or sensitive-credential authority unless a separate trusted operational need is proven. <br>
-Risk: PDF report generation installs and runs local dependencies. <br>
-Mitigation: Keep PDF generation user-initiated, install dependencies from trusted sources, and review generated report data before sharing. <br>
-Risk: SEO outreach and link-building guidance can create legal, privacy, or anti-spam exposure if applied indiscriminately. <br>
-Mitigation: Apply outreach guidance only to lawful, business-appropriate contacts with consent, opt-out handling, and anti-spam and privacy compliance. <br>
+## Use Case:
 
+External users, marketers, content teams, and developers use this skill to plan, diagnose, and improve SEO workflows using bundled Google, Moz, Ahrefs, and local reference material. The skill can also guide optional local generation of SEO audit PDF reports when explicitly requested.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/lesishu/seo-guide) <br>
-- [SEO audit guide](references/seo-audit.md) <br>
-- [SEO principles](references/seo-principles.md) <br>
-- [TKD standard](references/tkd-standard.md) <br>
-- [Technical SEO](references/technical-seo.md) <br>
-- [Keyword research](references/keyword-research.md) <br>
-- [Content strategy](references/content-strategy.md) <br>
-- [Google Search Central reference index](references-google/INDEX.md) <br>
-- [Moz learning summary](references-moz/MOZ-LEARNING-SUMMARY.md) <br>
-- [Ahrefs content marketing course](https://ahrefs.com/academy/content-marketing-course) <br>
-- [Ahrefs digital marketing course](https://ahrefs.com/academy/digital-marketing-course) <br>
-- [Ahrefs video marketing course](https://ahrefs.com/academy/video-marketing-course) <br>
-- [PDF report generation](scripts/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with optional Python snippets, shell commands, and a generated PDF report file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [PDF generation is user-initiated and requires local Python dependencies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: SEO recommendations may be inaccurate, outdated, or misleading if applied without checking the target site and current search guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations against the bundled official references and the site's current data before implementation.
+
+Risk: PDF report generation requires a local dependency and writes a local output file.
+
+Mitigation: Install ReportLab in a virtual environment and generate PDFs only when the user explicitly requests a report.
+
+Risk: SEO audits, outreach, email collection, or third-party domain inspection can create privacy, platform, authorization, or anti-spam concerns.
+
+Mitigation: Inspect only authorized domains and do not collect emails or send outreach unless the user has authorization and complies with applicable rules.
+
+## Reference(s):
+
+- [SEO Guide Skill Source](artifact/SKILL.md)
+- [Google Search Central Reference Index](artifact/references-google/INDEX.md)
+- [Moz Beginner's Guide Reference Index](artifact/references-moz/INDEX.md)
+- [Ahrefs Academy Reference Index](artifact/references-ahrefs/INDEX.md)
+- [SEO Diagnostic PDF Report Instructions](artifact/scripts/README.md)
+- [Ahrefs Content Marketing Course](https://ahrefs.com/academy/content-marketing-course)
+- [Ahrefs Digital Marketing Course](https://ahrefs.com/academy/digital-marketing-course)
+- [Ahrefs Video Marketing Course](https://ahrefs.com/academy/video-marketing-course)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Files]
+
+**Output Format:** [Markdown guidance with optional Python or shell command snippets and optional PDF report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [PDF report generation is optional, local, and should run only when explicitly requested; ReportLab may be installed in a virtual environment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

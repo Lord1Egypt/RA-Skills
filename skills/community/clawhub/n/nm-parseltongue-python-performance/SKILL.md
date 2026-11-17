@@ -1,7 +1,7 @@
 ---
 name: python-performance
 description: Profiles Python code for performance bottlenecks and memory issues
-version: 1.9.8
+version: 1.10.3
 triggers:
   - python
   - performance
@@ -15,24 +15,21 @@ source: claude-night-market
 source_plugin: parseltongue
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/parseltongue](https://github.com/athola/claude-night-market/tree/master/plugins/parseltongue). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/parseltongue](https://github.com/athola/claude-night-market/tree/master/plugins/parseltongue). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Python Performance Optimization
 
 Profiling and optimization patterns for Python code.
 
-## Table of Contents
-
-1. [Quick Start](#quick-start)
-
 ## Quick Start
 
 ```python
 # Basic timing
 import timeit
+
 time = timeit.timeit("sum(range(1000000))", number=100)
-print(f"Average: {time/100:.6f}s")
+print(f"Average: {time / 100:.6f}s")
 ```
 **Verification:** Run the command with `--help` flag to verify availability.
 
@@ -62,7 +59,7 @@ This skill is organized into focused modules for progressive loading:
 CPU profiling with cProfile, line profiling, memory profiling, and production profiling with py-spy. Essential for identifying where your code spends time and memory.
 
 ### [optimization-patterns](modules/optimization-patterns.md)
-Ten proven optimization patterns including list comprehensions, generators, caching, string concatenation, data structures, NumPy, multiprocessing, and database operations.
+Eleven proven optimization patterns including list comprehensions, generators, caching, string concatenation, data structures, NumPy, multiprocessing, database operations, and loop transformations (what works in Python vs the compiler).
 
 ### [memory-management](modules/memory-management.md)
 Memory optimization techniques including leak tracking with tracemalloc and weak references for caches. Depends on profiling-tools.
@@ -75,8 +72,8 @@ Best practices, common pitfalls, and exit criteria for performance optimization 
 
 ## Exit Criteria
 
-- Profiled code to identify bottlenecks
-- Applied appropriate optimization patterns
-- Verified improvements with benchmarks
-- Memory usage acceptable
-- No performance regressions
+- [ ] Profiled code to identify bottlenecks
+- [ ] Applied appropriate optimization patterns
+- [ ] Verified improvements with benchmarks
+- [ ] Memory usage acceptable
+- [ ] No performance regressions

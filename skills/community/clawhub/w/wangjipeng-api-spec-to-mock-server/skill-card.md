@@ -1,41 +1,58 @@
-## Description: <br>
-Use when a user provides an API spec in OpenAPI or Swagger format and needs a runnable mock server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when a user provides an API specification in OpenAPI or Swagger format and needs a runnable mock server.
 
-## Publisher: <br>
-[wangjipeng977](https://clawhub.ai/user/wangjipeng977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangjipeng977](https://clawhub.ai/user/wangjipeng977)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn OpenAPI or Swagger API specifications into runnable mock server code, endpoint smoke tests, curl examples, and run instructions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated mock server files may reflect sensitive API details or credential requirements contained in the supplied specification. <br>
-Mitigation: Provide only API specifications suitable for agent processing, keep credentials in environment variables, and review generated server files before running them. <br>
-Risk: Template-like README content may not match the actual activation scope. <br>
-Mitigation: Use SKILL.md as the source for activation scope and confirm generated run commands before execution. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn OpenAPI or Swagger specifications into runnable mock servers with endpoint handlers, realistic mock responses, request validation, smoke-test guidance, and run instructions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wangjipeng977/wangjipeng-api-spec-to-mock-server) <br>
-- [Skill reference index](artifact/references/index.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with generated server code, shell commands, configuration notes, and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated output depends on the supplied API specification and should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated mock-server files may contain rough scaffold code or assumptions that do not fully match the API contract.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated files and run endpoint smoke tests before using the mock server in a workflow.
+
+Risk: The skill may choose common mock-server dependencies such as Prism, Mockoon, Express, or Flask without publisher-pinned trust guidance.
+
+Mitigation: Use trusted, pinned dependencies and inspect install or run commands before executing them.
+
+Risk: The README contains API_KEY and read/write examples that are not clearly tied to the mock-server workflow.
+
+Mitigation: Use dummy local credentials for mock-server testing and clarify any required configuration before using real values.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangjipeng977/skills/wangjipeng-api-spec-to-mock-server)
+- [Metadata source repository](https://github.com/MiniMax-AI/skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with generated server code, inline shell commands, configuration notes, and curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include assumptions, validation notes, endpoint smoke-test results, and follow-up customization options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

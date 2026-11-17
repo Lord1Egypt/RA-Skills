@@ -1,42 +1,51 @@
-## Description: <br>
-A Chinese-language novel writing workflow that helps plan, draft, continue, rewrite, and quality-check fiction projects from short stories to long-form series. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language novel-writing workflow that helps agents plan, draft, continue, rewrite, and quality-check fiction from short stories through long-form novels.
 
-## Publisher: <br>
-[lwl2005](https://clawhub.ai/user/lwl2005) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lwl2005](https://clawhub.ai/user/lwl2005)
 
-## Use Case: <br>
-External users and writers use this skill to create novel outlines, character and worldbuilding files, chapter drafts, continuation plans, rewrites, and quality checks. It is especially oriented toward structured Chinese web-novel workflows with outline gates, plot-hook tracking, multi-POV management, and anti-AI-style checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may read, save, or rewrite manuscript and chapter files as part of normal novel project management. <br>
-Mitigation: Use a dedicated project folder, keep backups or version history, and confirm filenames and overwrites before continuing or rewriting existing work. <br>
-Risk: Generated story content, outlines, continuity state, and quality scores may still be inaccurate or inconsistent with the author's intent. <br>
-Mitigation: Review generated material before relying on it, and use the built-in outline confirmation gates and quality checks as review aids rather than final approval. <br>
+## Use Case:
 
+External writers and agents use this skill to structure Chinese fiction projects, build outlines and character/state records, draft chapters, continue existing manuscripts, rewrite chapters, and run staged quality checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lwl2005/novel-writer-engine) <br>
-- [Writing style guide](references/writing-styles.md) <br>
-- [Genre templates](references/genre-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text, with JSON-like writing state when maintaining long-form projects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read manuscript/context files and save or rewrite chapter files when the user asks it to continue, import, or rewrite a project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: server evidence) <br>
+Risk: Draft, rewrite, continuation, or state-saving workflows may overwrite manuscript or state files if the target paths are unclear.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before file-saving or continuation steps, specify the manuscript folder and files, and ask the agent to confirm filenames before writing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lwl2005/skills/novel-writer-engine)
+- [Writing Style Guide](artifact/references/writing-styles.md)
+- [Genre Templates](artifact/references/genre-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown prose with optional JSON state snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update manuscript drafts and state files when the user asks the agent to save progress.]
+
+## Skill Version(s):
+
+3.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,61 @@
-## Description: <br>
-Delegate coding tasks to Codex, Claude Code, or Pi agents via background process. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Delegate coding tasks to Codex, Claude Code, or Pi agents via background process.
 
-## Publisher: <br>
-[utromaya-code](https://clawhub.ai/user/utromaya-code) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[utromaya-code](https://clawhub.ai/user/utromaya-code)
 
-## Use Case: <br>
-Developers and engineers use this skill to delegate coding implementation, review, refactoring, and exploratory development tasks to background coding-agent CLIs while monitoring and managing their sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill normalizes high-autonomy coding agents that can modify repositories, install dependencies, push branches, create PRs, or post GitHub comments. <br>
-Mitigation: Use temp clones or git worktrees, avoid directories containing secrets, monitor background logs, and require explicit approval before enabling broad autonomy or external side effects. <br>
-Risk: Bypass or full-auto modes can reduce review gates around generated code and shell commands. <br>
-Mitigation: Review proposed changes and command output before merging, pushing, publishing, or running commands outside an isolated workspace. <br>
+## Use Case:
 
+Developers and engineers use this skill to delegate coding, review, refactoring, and app-building tasks to background coding agents while managing execution mode, workspace isolation, and session monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/utromaya-code/coding-delegate-agent) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/utromaya-code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include background-session management steps, workspace isolation guidance, and tool-specific execution modes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can lead an agent to launch other coding agents with broad file, command, network, and repository authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in disposable worktrees or containers, with explicit review of the spawned agent's intended scope.
+
+Risk: The skill describes bypassed approval and unsandboxed execution modes.
+
+Mitigation: Avoid bypass and yolo-style modes unless that level of authority is intentionally approved for the workspace.
+
+Risk: Delegated coding workflows may perform repository actions such as commits, pushes, PR comments, or package installs.
+
+Mitigation: Review generated changes and commands before any commit, push, PR comment, or global package installation.
+
+Risk: Untrusted issue text or prompts could be copied into shell commands.
+
+Mitigation: Do not paste untrusted text directly into executable shell commands; quote, sanitize, or summarize it first.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/utromaya-code/skills/coding-delegate-agent)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational guidance for launching and monitoring coding agents; no structured machine-readable output is specified.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

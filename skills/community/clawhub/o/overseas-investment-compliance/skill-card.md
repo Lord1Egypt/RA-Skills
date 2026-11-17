@@ -1,45 +1,62 @@
-## Description: <br>
-Guides agents through China-related overseas investment compliance triage, including asset-flow classification, regulatory path selection, risk flags, document checklists, timelines, and cost estimates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+对外投资合规诊断与方案规划。当用户涉及对外投资、境外投资、海外投资、合规审查、政策对标、地缘政治风险、离岸公司、资金出境、外商投资、外资入华等场景时使用。覆盖央国企/民企/个人三类主体，提供资产流向判定、合规判定、审批路径、风险标记、推荐合规方案、材料清单和时间周期。
 
-## Publisher: <br>
-[golngod](https://clawhub.ai/user/golngod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[golngod](https://clawhub.ai/user/golngod)
 
-## Use Case: <br>
-External users and business teams use this skill to structure cross-border investment compliance questions, distinguish outbound, inbound, Hong Kong/Macau, and offshore flows, and generate planning guidance for approvals, risks, documents, timing, and costs. It is a planning aid and should not be treated as legal advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; content focuses on China-related cross-border investment flows. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides overseas investment compliance planning, which can become outdated or incomplete as laws, regulator practice, and official filing requirements change. <br>
-Mitigation: Use it as a planning aid only, share only needed investment details, and verify current rules with counsel or official sources before acting. <br>
-Risk: Ambiguous investment direction can lead to the wrong compliance framework, such as applying ODI filing logic to inbound investment or offshore-to-offshore scenarios. <br>
-Mitigation: Confirm where the assets are now and where they will go before selecting a regulatory path or producing recommendations. <br>
+## Use Case:
 
+External users and agents use this skill to triage PRC outbound, inbound, and Hong Kong/Macau-related investment scenarios by first identifying asset flow direction, then producing compliance ratings, approval paths, risk labels, document lists, timelines, and cost estimates. It is suited for preliminary compliance planning and should be paired with current official-source review and qualified counsel for real transactions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/golngod/overseas-investment-compliance) <br>
-- [Policy framework](references/policy_framework.md) <br>
-- [Compliance matrix](references/compliance_matrix.md) <br>
-- [Country risk](references/country_risk.md) <br>
-- [Business process](references/business_process.md) <br>
-- [Case studies](references/case_studies.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown compliance triage with ratings, process steps, risk flags, document checklists, timelines, and cost estimates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Use as planning support only; verify time-sensitive legal and regulatory details with counsel or official sources before relying on the result.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may treat preliminary compliance triage as legal advice for a live investment transaction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Make clear that outputs are planning guidance only and require review against current official rules and qualified counsel before action.
+
+Risk: Regulatory details, approval paths, timelines, costs, and risk ratings may become outdated or vary by jurisdiction, industry, and transaction facts.
+
+Mitigation: Verify current requirements with official authorities and local advisors before relying on a generated path, timeline, or cost estimate.
+
+Risk: Incorrect asset-flow classification can route the user to the wrong compliance framework.
+
+Mitigation: Confirm where the assets or funds are currently located and the intended destination before applying ODI, foreign-investment, Hong Kong/Macau, or offshore-framework guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/golngod/skills/overseas-investment-compliance)
+- [Policy framework](references/policy_framework.md)
+- [Compliance matrix](references/compliance_matrix.md)
+- [Country risk](references/country_risk.md)
+- [Business process](references/business_process.md)
+- [Case studies](references/case_studies.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, analysis, markdown]
+
+**Output Format:** [Markdown compliance triage with ratings, approval paths, risk tags, document checklists, timelines, and cost estimates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language guidance; no executable code, persistence, credential access, or tool calls]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

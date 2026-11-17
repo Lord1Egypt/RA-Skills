@@ -1,41 +1,58 @@
-## Description: <br>
-Searches Eastmoney for real-time A-share market and financial news and returns readable article summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides real-time A-share market and financial news from Eastmoney for market-trend, stock-update, and finance-news queries.
 
-## Publisher: <br>
-[njbilly007-lab](https://clawhub.ai/user/njbilly007-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[njbilly007-lab](https://clawhub.ai/user/njbilly007-lab)
 
-## Use Case: <br>
-Developers and agents use this skill to answer user requests about today's A-share market movement, finance news, sector rotation, and stock-specific news by querying Eastmoney and summarizing returned articles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A shared API key is published in the artifact. <br>
-Mitigation: Rotate the exposed key and move authentication to a managed or user-provided credential before broad use. <br>
-Risk: Finance search terms are sent to a hardcoded external Eastmoney service. <br>
-Mitigation: Disclose this data flow to users, avoid sensitive queries, and require user approval or configuration before sending requests. <br>
+## Use Case:
 
+External users and agents use this skill to search A-share market and finance news, then present readable summaries with article title, content excerpt, date, and source.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/njbilly007-lab/eastmoney-news) <br>
-- [Eastmoney news search API endpoint](https://mkapi2.dfcfs.com/finskillshub/api/claw/news-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Readable article summaries with title, content, date, and source; the helper script can emit JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Queries are sent to a hardcoded Eastmoney API endpoint; the helper script truncates article content to 200 characters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Finance search terms are sent to a third-party API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if sending finance queries to that service is acceptable for the intended use.
+
+Risk: The package ships a reusable API key.
+
+Mitigation: Rotate the exposed API key, remove it from the package and documentation, and manage credentials outside the skill.
+
+Risk: The generic news trigger may activate for broad news requests.
+
+Mitigation: Narrow the trigger wording before treating the skill as a routine install.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/njbilly007-lab/skills/eastmoney-news)
+- [Publisher Profile](https://clawhub.ai/user/njbilly007-lab)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown or JSON-derived text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summaries include title, content excerpt, date, and source when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

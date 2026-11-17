@@ -1,43 +1,54 @@
-## Description: <br>
-个股舆情/公告/研报催化分析：基于 news 命令做信息收集、噪音过滤、信源分级与影响评分。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于 daxiapi-cli news 命令，对 A 股个股舆情、公告和研报进行信息收集、噪音过滤、信源分级、影响评分，并生成结构化消息面跟踪报告。
 
-## Publisher: <br>
-[ksky521](https://clawhub.ai/user/ksky521) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ksky521](https://clawhub.ai/user/ksky521)
 
-## Use Case: <br>
-External users and agents use this skill to evaluate recent A-share stock news, announcements, and research reports for likely positive or negative catalysts. It helps structure evidence collection, noise filtering, source ranking, event scoring, and a concise investment-information report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on the external daxiapi-cli npm package and DaxiAPI service. <br>
-Mitigation: Install and use the external CLI only when the package and service are trusted. <br>
-Risk: API tokens may be exposed if users paste them into chat or logs. <br>
-Mitigation: Configure tokens locally and keep credentials out of prompts, reports, and shared logs. <br>
-Risk: Generated stock analysis can be incomplete, stale, or unsuitable as investment advice. <br>
-Mitigation: Treat outputs as informational, verify against official announcements and current market data, and keep the included disclaimer. <br>
+## Use Case:
 
+External users and analysts use this skill to assess recent A-share stock-news catalysts by combining sentiment items, exchange announcements, and research reports into a concise, evidence-traceable report. It is intended for stock-specific news and catalyst analysis, not technical-indicator teaching or non-A-share markets.
 
-## Reference(s): <br>
-- [Report template](assets/report-template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/ksky521/xiapi-news-catalyst-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with tables, scores, risk notes, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces informational stock-news catalyst analysis and requires user review before investment decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The workflow runs a mutable npm CLI with token access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin a reviewed daxiapi-cli version, use a minimally scoped revocable DaxiAPI token, avoid exposing token values in chat or logs, and run the CLI in a restricted environment.
+
+Risk: Stock-news conclusions can be distorted by noisy sentiment items, stale events, or overconfident scoring.
+
+Mitigation: Apply the documented noise filtering, source ranking, recency scoring, and disclaimer requirements; treat generated reports as reference material rather than investment advice.
+
+## Reference(s):
+
+- [Report template](assets/report-template.md)
+- [ClawHub skill page](https://clawhub.ai/ksky521/skills/xiapi-news-catalyst-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with inline shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured DaxiAPI token and a confirmed A-share stock code.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

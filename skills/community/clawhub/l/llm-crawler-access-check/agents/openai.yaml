@@ -1,0 +1,10 @@
+interface:
+  display_name: "AI crawler access check"
+  short_description: "Check robots.txt for AI crawlers"
+  icon_small: "assets/composer-icon.png"
+  brand_color: "#1c63ff"
+  default_prompt: "Check whether our robots.txt is blocking AI search crawlers."
+policy:
+  products:
+    - CHAT
+  allow_implicit_invocation: true

@@ -1,45 +1,60 @@
-## Description: <br>
-Generates multi-voice ElevenLabs dialogue audio by assigning voices to dialogue lines and supporting audio tags for character effects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates ElevenLabs eleven_v3 multi-voice dialogue audio from per-line text and voice assignments, with support for up to 10 voices and expressive audio tags.
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-External users and developers use this skill to invoke the dLazy CLI for ElevenLabs multi-speaker dialogue generation for character dialogue, podcasts, and short skits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a dLazy API key that may be saved in local CLI configuration. <br>
-Mitigation: Use DLAZY_API_KEY for per-invocation authentication when persistence is not desired, protect the local config file, and rotate or revoke keys from the dLazy dashboard when needed. <br>
-Risk: The install instructions use the third-party @dlazy/cli package at @latest, so installed CLI behavior may change over time. <br>
-Mitigation: Review the @dlazy/cli package before installing and prefer npx for one-off execution when a persistent global install is unnecessary. <br>
-Risk: Local files passed to media fields are uploaded to dLazy-hosted storage for processing. <br>
-Mitigation: Avoid passing local file paths unless the user intends those files to be uploaded to dLazy. <br>
+## Use Case:
 
+External creators and developers can use the skill to synthesize dialogue, podcasts, and short skits with assigned voices and expressive tags.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dlazyai/dlazy-elevenlabs-dialogue) <br>
-- [dLazy CLI source](https://github.com/dlazyai/cli) <br>
-- [@dlazy/cli npm package](https://www.npmjs.com/package/@dlazy/cli) <br>
-- [dLazy homepage](https://dlazy.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON CLI results containing generated media URLs or async task status] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a dLazy API key; generated outputs are hosted on files.dlazy.com and async tasks may require polling with dlazy status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and ClawHub release evidence) <br>
+Risk: The release is described as ElevenLabs dialogue generation, while its supplied instructions focus on dLazy login and authentication; scanner coverage is partial.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the command's documented behavior and returned asset type before relying on it.
+
+Risk: Prompts and local media passed through the CLI are sent to dLazy-hosted services.
+
+Mitigation: Avoid sending sensitive content unless its use with that service is approved.
+
+Risk: The CLI requires a dLazy API key.
+
+Mitigation: Use an organization-approved key, keep it confidential, and rotate or revoke it if exposed.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/dlazyai/skills/dlazy-elevenlabs-dialogue)
+- [CLI repository (listed in skill metadata)](https://github.com/dlazy-ai/cli)
+- [@dlazy/cli on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy](https://dlazy.com)
+
+## Skill Output:
+
+**Output Type(s):** [Audio, JSON]
+
+**Output Format:** [Generated audio asset or hosted audio URL, with JSON generation metadata and status.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The description specifies up to 20 dialogue lines and 10 unique voices. Async mode can return task status before the audio is ready; the result can also be saved locally.]
+
+## Skill Version(s):
+
+1.3.41 (source: server-resolved ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

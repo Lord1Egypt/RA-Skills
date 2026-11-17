@@ -1,42 +1,59 @@
-## Description: <br>
-Quickly saves web content as formatted Markdown from URLs including YouTube, Twitter/X, WeChat, Bilibili, Telegram, RSS, and general web pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quickly save web content as formatted Markdown.
 
-## Publisher: <br>
-[1coos](https://clawhub.ai/user/1coos) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1coos](https://clawhub.ai/user/1coos)
 
-## Use Case: <br>
-Developers and note-taking users use this skill to clip URL content into local Markdown notes, optionally preserving raw extraction output or applying Obsidian-style formatting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs an external GitHub-hosted x-reader dependency through uvx at runtime. <br>
-Mitigation: Install only when comfortable with that dependency path, and pin or review the external dependency when stronger supply-chain control is required. <br>
-Risk: The reader makes network requests to the provided URL and platform-specific APIs. <br>
-Mitigation: Avoid clipping sensitive URLs in stricter environments and use explicit clipping commands so the intended URL is clear before execution. <br>
+## Use Case:
 
+External users and developers use this skill to clip a URL from pasted text, extract readable content from supported web platforms, and save the result as local Markdown notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1coos/1coos-quickie) <br>
-- [x-reader GitHub repository](https://github.com/runesleo/x-reader) <br>
-- [uv installation guide](https://docs.astral.sh/uv/getting-started/installation/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, shell commands, configuration] <br>
-**Output Format:** [Markdown files with terminal status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes extracted content to a configured local directory; raw mode skips Obsidian-style formatting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill runs mutable third-party x-reader code from GitHub at runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only after reviewing and trusting the x-reader source; prefer a pinned and sandboxed extractor for stricter environments.
+
+Risk: The skill can fetch arbitrary web addresses from the agent's network context.
+
+Mitigation: Avoid localhost, private-network, cloud-metadata, and sensitive internal URLs unless the environment is sandboxed.
+
+Risk: Extracted content is written to a configured local output directory.
+
+Mitigation: Choose the output directory deliberately and review generated Markdown before sharing or importing it into other systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1coos/skills/1coos-quickie)
+- [x-reader repository](https://github.com/runesleo/x-reader)
+- [uv installation documentation](https://docs.astral.sh/uv/getting-started/installation/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown file plus a short text summary with output path, extracted title, and content summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports raw extractor output or Obsidian-style formatting; writes to a configured local output directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

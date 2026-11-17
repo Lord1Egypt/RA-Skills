@@ -1,8 +1,8 @@
 {
   "name": "eu-ai-act-compliance",
-  "version": "1.0.0",
-  "description": "EU AI Act compliance checker for HR and recruitment systems with Irish regulatory context",
+  "version": "1.1.0",
+  "description": "EU AI Act compliance checker for HR and recruitment systems with Irish regulatory context. Updated July 2026 with Digital Omnibus timeline changes and UK DUAA 2025 divergence.",
   "author": "rochyroch",
-  "tags": ["eu-ai-act", "hr", "compliance", "gdpr", "recruitment", "ireland", "risk-classification"],
+  "tags": ["eu-ai-act", "hr", "compliance", "gdpr", "recruitment", "ireland", "risk-classification", "uk-duaa", "digital-omnibus"],
   "category": "compliance"
 }

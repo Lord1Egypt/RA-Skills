@@ -1,46 +1,63 @@
-## Description: <br>
-dfseo-cli helps agents use DataForSEO APIs from the terminal for SERP analysis, keyword research, site audits, backlink analysis, and related SEO workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SEO data from the terminal using DataForSEO APIs for keyword rankings, SERP analysis, site audits, backlink profiles, competitor comparisons, link gap analysis, keyword difficulty, search volume, on-page SEO, and Lighthouse checks.
 
-## Publisher: <br>
-[ricca91](https://clawhub.ai/user/ricca91) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ricca91](https://clawhub.ai/user/ricca91)
 
-## Use Case: <br>
-SEO practitioners, developers, and agents use this skill to run DataForSEO-backed keyword, SERP, site audit, and backlink workflows from a command-line interface. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: DataForSEO credentials or local dfseo configuration could be exposed if handled carelessly. <br>
-Mitigation: Use environment variables or interactive setup, avoid passing passwords on the command line, and protect ~/.config/dfseo/config.toml. <br>
-Risk: Large target files or broad SEO jobs may submit unintended domains or incur billable API usage. <br>
-Mitigation: Review --from-file inputs before execution and use --dry-run or explicit limits for large jobs. <br>
-Risk: The skill depends on the external dfseo package and a DataForSEO account. <br>
-Mitigation: Install only when the dfseo package source and DataForSEO account usage are trusted. <br>
+## Use Case:
 
+External users, developers, SEO practitioners, and marketing teams use this skill to run DataForSEO-backed terminal workflows for keyword research, SERP review, technical site audits, and backlink analysis.
 
-## Reference(s): <br>
-- [dfseo SERP Commands Reference](references/serp.md) <br>
-- [dfseo Keywords Commands Reference](references/keywords.md) <br>
-- [dfseo Site Audit Commands Reference](references/site.md) <br>
-- [dfseo Backlinks Commands Reference](references/backlinks.md) <br>
-- [ClawHub release page](https://clawhub.ai/ricca91/dfseo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Text] <br>
-**Output Format:** [Markdown with inline shell commands; generated dfseo commands commonly return JSON, table, or CSV output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [dfseo defaults to JSON on stdout, uses stderr for errors and progress, and supports dry-run for cost estimates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The install script installs the unpinned third-party dfseo package with pip.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use an isolated environment such as pipx or a virtual environment, avoid running installation as root, and prefer a pinned or otherwise verified dfseo package.
+
+Risk: DataForSEO credentials may be exposed through command-line flags, environment handling, shell history, or local configuration.
+
+Mitigation: Use safer credential handling where available, avoid pasting real API passwords into command-line flags on shared or logged systems, and inspect or remove ~/.config/dfseo/config.toml after interactive setup.
+
+Risk: SEO workflows can send sensitive internal URLs, customer domains, private keyword lists, or regulated data to DataForSEO.
+
+Mitigation: Confirm organizational approval before submitting sensitive or regulated data to DataForSEO-backed commands.
+
+## Reference(s):
+
+- [dfseo SERP Commands Reference](references/serp.md)
+- [dfseo Keywords Commands Reference](references/keywords.md)
+- [dfseo Site Audit Commands Reference](references/site.md)
+- [dfseo Backlinks Commands Reference](references/backlinks.md)
+- [DataForSEO API Access](https://app.dataforseo.com/api-access)
+- [ClawHub Skill Page](https://clawhub.ai/ricca91/skills/dfseo)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/ricca91)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and references to JSON, table, and CSV CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default CLI result output is JSON on stdout; table and CSV formats are also documented.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

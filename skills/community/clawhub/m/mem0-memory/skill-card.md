@@ -1,41 +1,54 @@
-## Description: <br>
-mem0 local memory layer for semantic memory storage, retrieval, and management with WAL-style workflow guidance, SESSION-STATE priority, and user, session, and agent memory levels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mem0 Memory provides a local semantic memory layer for storing, retrieving, updating, and reusing user, session, and agent memories.
 
-## Publisher: <br>
-[chircken891](https://clawhub.ai/user/chircken891) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chircken891](https://clawhub.ai/user/chircken891)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add persistent local semantic memory workflows, including memory add, search, update, history, deletion, and memory-augmented chat commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to persist and reuse conversation details, which can include personal details, secrets, business data, URLs, and file paths. <br>
-Mitigation: Install only when persistent memory is intended, inspect the referenced memory implementation before use, and ensure users can review, edit, disable, and delete saved memories. <br>
-Risk: Memory-augmented chat may send conversation content to the configured LLM. <br>
-Mitigation: Confirm whether MiniMax or any configured LLM receives conversation content before using the skill with sensitive information. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add persistent semantic memory workflows to an agent, including memory extraction, search, updates, history, batch deletion, and memory-augmented chat.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chircken891/mem0-memory) <br>
-- [ZejunCao/bilibili_code Mem0 reference](https://github.com/ZejunCao/bilibili_code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Describes command patterns for persistent memory operations and memory-augmented chat.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter states 2.1.0) <br>
+Risk: The skill can retain conversation-derived facts and task state across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where persistent memory is acceptable and users understand that remembered facts may be reused later.
+
+Risk: Sensitive content could be stored or reused without enough user control or safety boundaries.
+
+Mitigation: Avoid secrets, private URLs, credentials, sensitive business data, and prompt-like instructions unless consent, redaction, review/delete controls, and clear handling for MiniMax requests are added.
+
+## Reference(s):
+
+- [ClawHub Mem0 Memory release](https://clawhub.ai/chircken891/skills/mem0-memory)
+- [ZejunCao/bilibili_code Mem0 framework reference](https://github.com/ZejunCao/bilibili_code)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce memory-management commands and guidance for add, search, update, delete, reset, and chat workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter states 2.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

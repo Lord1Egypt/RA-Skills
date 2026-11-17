@@ -1,0 +1,31 @@
+{
+  "skill_name": "human-gates",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Design approvals for an invoice workflow. Humans currently review every invoice, but only amounts above €50k require director approval.",
+      "expected_output": "A minimal gate design that preserves required authority without retaining blanket manual review.",
+      "assertions": [
+        "The director gate is tied to the threshold",
+        "Routine deterministic checks are not unnecessarily assigned to humans",
+        "Gate inputs and outcomes are explicit"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Keep a human in every step because this is important.",
+      "expected_output": "The skill challenges blanket human involvement and asks or infers the actual authority/risk reasons.",
+      "assertions": [
+        "Importance alone is not accepted as justification for a human gate"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Historical contracts show legal accepted this clause twice. Can the agent auto-approve it now?",
+      "expected_output": "The answer distinguishes precedent from delegated authority and retains approval unless current authority rules permit automation.",
+      "assertions": [
+        "Precedent is not treated as authorization"
+      ]
+    }
+  ]
+}

@@ -1,41 +1,66 @@
-## Description: <br>
-Douyin Search helps an agent collect Douyin video, user, work, comment, and optional video-download data through documented Python commands, with comment harvesting requiring a logged-in Douyin cookie. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches and collects Douyin content, including video search results, user videos, video metadata, comments, and optional video downloads, using HTTP APIs and agent-browser for logged-in comment harvesting.
 
-## Publisher: <br>
-[excalibursssooo](https://clawhub.ai/user/excalibursssooo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[excalibursssooo](https://clawhub.ai/user/excalibursssooo)
 
-## Use Case: <br>
-Developers and agents use this skill to run repeatable Douyin search, profile, video-detail, comment-harvest, aggregation, and optional download workflows. It is useful for topic research and local analysis when the user can provide and protect a valid Douyin login session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/excalibursssooo/douyin-universal) <br>
-- [Publisher Profile](https://clawhub.ai/user/excalibursssooo) <br>
-- [Declared Homepage](https://github.com/excalibursssooo/douyin-search) <br>
-- [agent-browser Dependency](https://github.com/vercel-labs/agent-browser) <br>
-- [Douyin Website](https://www.douyin.com/) <br>
+External users, researchers, and developers use this skill for small-scale Douyin content research, trend discovery, comment collection, aggregation, and local export of results. It is not positioned for large-scale scraping services or 24/7 monitoring.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Code, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; generated artifacts include JSON, CSV, summary JSON, and optional local video files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and agent-browser; comment harvesting depends on a local Douyin cookie/session file. Security evidence recommends protecting and deleting cookie/state files when done and reviewing command-execution handling before shared-machine use.] <br>
+Global
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and changelog, released 2026-06-18) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill uses full Douyin login cookies and authenticated browser state for comment harvesting.
+
+Mitigation: Create cookie files locally, avoid pasting credentials into chat, store credentials outside committed files when possible, restrict file permissions, and remove stale session data when no longer needed.
+
+Risk: Generated CSV and JSON exports may contain untrusted user-supplied content from Douyin.
+
+Mitigation: Treat exported data as untrusted input, inspect it before reuse, and avoid directly executing or importing generated values into downstream systems.
+
+Risk: Scraping and downloading Douyin content may violate service terms, privacy obligations, rate limits, or content rights if misused.
+
+Mitigation: Use the skill only for compliant small-scale research or analysis, respect platform terms and applicable data protection laws, and avoid commercial resale or unauthorized republication of collected content.
+
+Risk: Aggressive or large-scale collection can trigger anti-abuse controls and is outside the documented operating posture.
+
+Mitigation: Prefer the default lower-risk mode, keep harvesting serial, limit volume, and stop when cookies expire, captcha appears, or the scripts report authentication failures.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/excalibursssooo/skills/douyin-universal)
+- [Publisher Profile](https://clawhub.ai/user/excalibursssooo)
+- [README](README.md)
+- [Developer Pitfalls](docs/pitfalls.md)
+- [agent-browser](https://github.com/vercel-labs/agent-browser)
+- [Douyin](https://www.douyin.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, JSON, CSV, Files]
+
+**Output Format:** [Markdown guidance with shell commands; runtime scripts emit JSON, CSV, and local video files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and agent-browser; comment harvesting requires a locally managed Douyin cookie file or browser state.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and changelog, released 2026-06-18)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

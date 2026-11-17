@@ -1,0 +1,34 @@
+# 图片转知识库系统 - Python依赖
+
+# 核心依赖（必须）
+requests>=2.28.0  # HTTP请求（腾讯云/百度云OCR）
+python-dotenv>=0.21.0  # .env文件支持
+
+# 图像处理
+opencv-python>=4.5.0
+Pillow>=8.0.0
+numpy>=1.19.0
+
+# OCR
+pytesseract>=0.3.8
+
+# 机器学习
+scikit-learn>=0.24.0
+scipy>=1.6.0
+
+# 数据处理
+pandas>=1.2.0
+
+# 配置管理
+PyYAML>=5.4.0
+
+# 工具库
+tqdm>=4.60.0
+python-dateutil>=2.8.0
+
+# 文档生成（可选）
+# python-docx>=0.8.11  # Word文档生成
+
+# 可选依赖（用于高级功能）
+# jieba>=0.42.1  # 中文分词（可选）
+# matplotlib>=3.3.0  # 数据可视化（可选）

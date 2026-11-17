@@ -1,40 +1,49 @@
-## Description: <br>
-Choose which Claude model responds to your Telegram chats. Pick Opus for depth, Sonnet for balance, or Haiku for speed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Choose which Claude model responds to your Telegram chats. Pick Opus for depth, Sonnet for balance, or Haiku for speed.
 
-## Publisher: <br>
-[josephtandle](https://clawhub.ai/user/josephtandle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[josephtandle](https://clawhub.ai/user/josephtandle)
 
-## Use Case: <br>
-Telegram chatbot operators and users use this skill to check and change which Claude model handles Telegram chat responses, choosing Opus, Sonnet, or Haiku based on quality and speed needs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Changing the active model can affect response quality, latency, and cost in the host environment. <br>
-Mitigation: Use the status command to confirm the active model and choose Opus, Sonnet, or Haiku according to task needs and host cost policy. <br>
-Risk: Model changes may apply only after a brief restart. <br>
-Mitigation: Allow the routing service to restart before relying on the newly selected model. <br>
+## Use Case:
 
+External users use this skill to check and switch which Claude model handles their Telegram chats, choosing between deeper reasoning, balanced everyday responses, or faster replies.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/josephtandle/tg-model-switcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, configuration] <br>
-**Output Format:** [Markdown with Telegram slash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; commands report or change the active Claude model routing for Telegram chats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Switching models may change response quality, speed, and cost in the surrounding Telegram integration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check the active model with /telegram-routing status and select Opus, Sonnet, or Haiku according to the conversation's quality and latency needs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/josephtandle/skills/tg-model-switcher)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration instructions]
+
+**Output Format:** [Markdown with slash-command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [User-invoked Telegram routing commands for status checks and Opus, Sonnet, or Haiku selection.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

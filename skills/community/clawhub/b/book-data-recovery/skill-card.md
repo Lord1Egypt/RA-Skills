@@ -1,40 +1,53 @@
-## Description: <br>
-Book Data Recovery helps users find and book data-recovery services through Lokuli MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book Data Recovery helps agents search for and book data-recovery services through Lokuli's MCP server.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users use this skill to search for data-recovery providers, check availability, and create bookings through Lokuli after confirming service and contact details. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send contact details to an external booking service when creating a booking. <br>
-Mitigation: Confirm the provider, service, time slot, name, email, and phone number before creating a booking, and do not share contact details unless the user intends them to be sent. <br>
-Risk: Booking through Lokuli depends on an external MCP endpoint and provider availability. <br>
-Mitigation: Use the search and availability tools before booking, and clearly present available providers and time slots for user confirmation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Lokuli MCP Endpoint](https://lokuli.com/mcp/sse) <br>
-- [ClawHub Skill Page](https://clawhub.ai/edwardrodriguez703-design/book-data-recovery) <br>
+## Use Case:
 
+External users and agents use this skill to find data-recovery services, check provider availability, and submit booking requests through Lokuli.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [JSON-RPC tool calls with concise user-facing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Lokuli MCP search, availability, and booking tools; booking requests may include customer name, email, and phone number.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can contact an external booking service and send customer contact details.
+
+Mitigation: Use it only when the user intends to search for or schedule data-recovery service, and confirm contact details before sending them.
+
+Risk: The skill can create bookings without enough explicit scoping or consent guidance.
+
+Mitigation: Confirm the selected provider, service, time slot, and user consent before allowing a booking request.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/edwardrodriguez703-design/skills/book-data-recovery)
+- [Lokuli MCP Endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API calls, configuration]
+
+**Output Format:** [Markdown with JSON-RPC examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May involve external service searches, availability checks, and booking requests that include customer contact details.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata, released 2026-02-06)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

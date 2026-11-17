@@ -1,48 +1,62 @@
-## Description: <br>
-Automate web browser interactions using natural language via CLI commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate web browser interactions using natural language via CLI commands.
 
-## Publisher: <br>
-[peytoncasper](https://clawhub.ai/user/peytoncasper) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[peytoncasper](https://clawhub.ai/user/peytoncasper)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent navigate websites, interact with page elements, extract structured page data, capture screenshots, and manage browser sessions through CLI commands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill gives the agent broad browser control. <br>
-Mitigation: Install and use it only when broad browser automation is acceptable, and review browser state or screenshots before continuing sensitive workflows. <br>
-Risk: Remote Browserbase mode can be selected automatically when Browserbase API keys are configured. <br>
-Mitigation: Confirm whether remote mode is active before using sensitive sites or entering credentials. <br>
-Risk: Logged-in browser sessions can persist in the local .chrome-profile directory. <br>
-Mitigation: Clear or isolate .chrome-profile between tasks, especially after authenticated browsing. <br>
-Risk: Screenshots can capture sensitive page content. <br>
-Mitigation: Review screenshots before storing, sharing, or sending them to another system. <br>
-Risk: Downloaded files are saved automatically. <br>
-Mitigation: Treat files in ./agent/downloads as untrusted until they are verified. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Browser Automation CLI Reference](artifact/REFERENCE.md) <br>
-- [Browser Automation Examples](artifact/EXAMPLES.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/peytoncasper/browser-pc) <br>
-- [Publisher Profile](https://clawhub.ai/user/peytoncasper) <br>
+## Use Case:
 
+Developers and external agents use this skill to automate browser navigation, page actions, structured data extraction, element discovery, screenshots, form workflows, and browser cleanup from CLI commands.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, JSON, files, configuration, guidance] <br>
-**Output Format:** [CLI commands with JSON responses, PNG screenshots, downloaded files, and setup guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Screenshots are saved under ./agent/browser_screenshots; downloads are saved under ./agent/downloads; local browser sessions may persist in .chrome-profile.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The setup flow installs dependencies and globally links an unaudited CLI.
+
+Mitigation: Review the package files before running npm install or npm link, and install only inside a sandbox or trusted project.
+
+Risk: Remote Browserbase mode can process browsing data outside the local machine.
+
+Mitigation: Prefer local-only mode unless remote browsing is intentional and the data being browsed is appropriate for Browserbase processing.
+
+Risk: Persistent browser profiles can retain saved passwords, cookies, and sessions.
+
+Mitigation: Use isolated browser profiles and avoid persistent profiles for sensitive accounts or confidential browsing workflows.
+
+Risk: The CLI can submit forms, log in, and download files through automated browser actions.
+
+Mitigation: Confirm before submitting forms, logging in, or downloading files, and verify downloaded file integrity before opening or using them.
+
+## Reference(s):
+
+- [Browser Automation CLI ClawHub Page](https://clawhub.ai/peytoncasper/skills/browser-pc)
+- [EXAMPLES.md](artifact/EXAMPLES.md)
+- [REFERENCE.md](artifact/REFERENCE.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance, JSON, Files]
+
+**Output Format:** [Markdown guidance with inline bash examples; browser commands return JSON status or data and may create screenshot or download files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Screenshots are PNG files, downloads are saved to a local downloads directory, and browser sessions may use a persistent Chrome profile.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

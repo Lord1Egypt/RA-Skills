@@ -1,46 +1,61 @@
-## Description: <br>
-Template-driven multi-platform content pipeline for indie iOS developers that generates and schedules a full week of social posts for TikTok, YouTube Shorts, X/Twitter, and Facebook from a reusable content bank. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Template-driven multi-platform content pipeline for indie iOS developers that generates and schedules a full week of social posts for TikTok, YouTube Shorts, X/Twitter, and Facebook from a reusable content bank with zero LLM calls per day.
 
-## Publisher: <br>
-[zakmcintyre](https://clawhub.ai/user/zakmcintyre) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zakmcintyre](https://clawhub.ai/user/zakmcintyre)
 
-## Use Case: <br>
-External developers and indie iOS app builders use this skill to create a reusable social content bank, generate weekly posting plans, and schedule daily posts through Postiz with optional video-generation integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The daily publisher can queue live posts on connected social accounts through Postiz. <br>
-Mitigation: Use the weekly planner and daily publisher dry-run modes first, review generated plans and content, and only run live publishing after confirming platform integration IDs and scheduled times. <br>
-Risk: The setup flow can write a local .env file containing a Postiz API key. <br>
-Mitigation: Protect the generated .env file, avoid committing it, and prefer environment-specific secret management when available. <br>
-Risk: The optional video-generation script path can execute a configured local command. <br>
-Mitigation: Do not enable config.videoGen.script until the command construction is fixed or the script path and inputs are tightly controlled. <br>
+## Use Case:
 
+Indie iOS app developers use this skill to plan reusable social content, generate weekly posting plans, and schedule daily posts through Postiz across TikTok, YouTube Shorts, X/Twitter, and Facebook.
 
-## Reference(s): <br>
-- [Content Bank Guide](references/content-bank-guide.md) <br>
-- [Platform Strategy](references/platform-strategy.md) <br>
-- [Postiz docs](https://docs.postiz.com) <br>
-- [ClawHub skill page](https://clawhub.ai/zakmcintyre/indie-app-marketing-pipeline) <br>
-- [Publisher profile](https://clawhub.ai/user/zakmcintyre) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands plus generated JSON configuration and weekly plan files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and a Postiz API key; supports dry-run preview modes before live scheduling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Editable content and configured video-generation commands can lead to local command execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review all content-bank, plan, and configuration files before live runs; replace command-string execution with argument-based execFile or spawn before production use.
+
+Risk: The setup flow stores a Postiz API key in a local .env file without strong safeguards.
+
+Mitigation: Use a least-privilege Postiz key, protect the .env file with owner-only permissions, add it to .gitignore, and avoid overwriting existing secrets.
+
+Risk: Automated cron publishing can post incorrect or unreviewed content to connected social accounts.
+
+Mitigation: Dry-run the weekly planner and daily publisher, validate generated plans and content banks, and enable cron only after manual review.
+
+## Reference(s):
+
+- [Content Bank Guide](references/content-bank-guide.md)
+- [Platform Strategy](references/platform-strategy.md)
+- [Postiz](https://postiz.com)
+- [Postiz docs](https://docs.postiz.com)
+- [ClawHub skill page](https://clawhub.ai/zakmcintyre/skills/indie-app-marketing-pipeline)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated JSON plan/configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and a Postiz API key; writes local planning, configuration, history, and log files when scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

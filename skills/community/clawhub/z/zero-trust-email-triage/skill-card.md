@@ -1,41 +1,54 @@
-## Description: <br>
-Zero-trust email triage prioritizes inbox messages by sender trust tier, surfaces customer and active-contact emails, batches newsletters and notifications, and treats unknown-sender urgency claims cautiously. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Email Triage helps agents prioritize inboxes by sender trust tier, surface paying customers and active contacts, batch low-priority mail, and elevate unknown senders only when objective evidence is already available.
 
-## Publisher: <br>
-[stevenobiajulu](https://clawhub.ai/user/stevenobiajulu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stevenobiajulu](https://clawhub.ai/user/stevenobiajulu)
 
-## Use Case: <br>
-People using an email-capable agent use this skill to triage unread inboxes by sender trust, identify priority customer or active-contact messages, and batch lower-priority notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad triage activation can expose email metadata and limited previews to the agent. <br>
-Mitigation: Install only where that access is acceptable, use explicit prompts such as "triage my inbox", and confirm whether connected CRM or customer-directory data should be used. <br>
-Risk: Sender-priority rules can misclassify unknown but important messages. <br>
-Mitigation: Review the priority sender list and exception-lane elevations before acting on triage results. <br>
+## Use Case:
 
+Employees and external users can use this skill to triage unread email by relationship importance instead of arrival order or self-claimed urgency. It is intended for agents that already have email access through the user's runtime or email client.
 
-## Reference(s): <br>
-- [Homepage](https://github.com/UseJunior/email-agent-mcp) <br>
-- [ClawHub skill page](https://clawhub.ai/stevenobiajulu/zero-trust-email-triage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown triage summaries with grouped priority lists and action flags] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; relies on email data already available to the agent runtime and does not request credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence and skill frontmatter) <br>
+Risk: The skill may inspect recent unread email metadata and short previews when invoked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit triage prompts and install only where the agent is allowed to use existing email access for this purpose.
+
+Risk: Unknown senders may use self-claimed urgency or name-dropping to appear important.
+
+Mitigation: Classify by sender trust tier and elevate unknown senders only when objective evidence is already available to the runtime.
+
+## Reference(s):
+
+- [Email Agent MCP GitHub Repository](https://github.com/UseJunior/email-agent-mcp)
+- [ClawHub Skill Page](https://clawhub.ai/stevenobiajulu/skills/zero-trust-email-triage)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown triage summary grouped by sender trust tier]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses email metadata first and short previews for priority senders only when the runtime already exposes access.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

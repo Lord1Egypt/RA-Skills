@@ -1,42 +1,57 @@
-## Description: <br>
-Fetch handwritten notes, sketches, and drawings from a reMarkable tablet via Cloud API (rmapi), then process content by refining artwork with AI image generation, extracting handwritten text to memory or journal files, or using sketches as input for other workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches handwritten notes, sketches, and drawings from a reMarkable tablet via rmapi, then helps process them into extracted text, journal or project entries, refined artwork, or other workflow inputs.
 
-## Publisher: <br>
-[coolmanns](https://clawhub.ai/user/coolmanns) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[coolmanns](https://clawhub.ai/user/coolmanns)
 
-## Use Case: <br>
-Developers and agent users use this skill to bring selected reMarkable tablet notes, sketches, drawings, and journal entries into project workflows for interpretation, refinement, documentation, or memory capture. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The agent can access and download notes or sketches from reMarkable Cloud once authenticated. <br>
-Mitigation: Use a dedicated sharing folder, explicit share tag, or starred-item workflow, and preview matched files before downloading. <br>
-Risk: Extracted handwriting may contain private or sensitive content before it is saved to memory or project files. <br>
-Mitigation: Review interpreted handwriting before saving it to memory, journals, or project documentation. <br>
-Risk: The rmapi token in ~/.rmapi enables future automatic access. <br>
-Mitigation: Protect or remove ~/.rmapi when automatic access is no longer intended. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/coolmanns/remarkable-tablet) <br>
-- [reMarkable desktop connection](https://my.remarkable.com/connect/desktop) <br>
+## Use Case:
 
+External users and developers use this skill to sync selected reMarkable notes and sketches into projects, extract handwritten text, and prepare visual content for AI-assisted refinement or documentation.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide fetching PDF or PNG tablet exports, interpreting handwriting, saving notes, or refining sketches with image generation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Synced notes, sketches, and journal entries may contain sensitive personal or project information.
+
+Mitigation: Limit agent access to the selected folder, tag, or starred items and review content before sending it to external AI services.
+
+Risk: Extracted handwriting may be saved into persistent memory, journals, or project files.
+
+Mitigation: Confirm the storage location and retention expectations before saving extracted text.
+
+Risk: The rmapi device token enables future cloud access from the configured environment.
+
+Mitigation: Keep the token file private, restrict filesystem permissions, and rotate or revoke access if the environment is shared or compromised.
+
+## Reference(s):
+
+- [reMarkable desktop connection](https://my.remarkable.com/connect/desktop)
+- [ClawHub skill page](https://clawhub.ai/coolmanns/skills/remarkable-tablet)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands and file path examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide downloading PDF or PNG files and extracting handwriting into user-selected memory, journal, or project files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

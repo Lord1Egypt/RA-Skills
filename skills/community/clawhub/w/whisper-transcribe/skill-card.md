@@ -1,39 +1,51 @@
-## Description: <br>
-Transcribe audio files to text using OpenAI Whisper with auto language detection, multiple output formats, batch processing, and model selection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribe audio files to text using OpenAI Whisper with auto language detection, multiple transcript formats, batch processing, and model selection.
 
-## Publisher: <br>
-[JosunLP](https://clawhub.ai/user/JosunLP) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[josunlp](https://clawhub.ai/user/josunlp)
 
-## Use Case: <br>
-Developers, creators, and operators use this skill to transcribe audio or video recordings such as meetings, lectures, podcasts, voice messages, and interviews into text, subtitle, or JSON outputs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local transcription depends on Whisper, ffmpeg, and downloaded model files. <br>
-Mitigation: Install Whisper, ffmpeg, and model dependencies from trusted sources before use. <br>
-Risk: Transcripts and subtitle files are written to the selected output directory. <br>
-Mitigation: Review output paths before running the script, especially when processing sensitive audio. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JosunLP/whisper-transcribe) <br>
+## Use Case:
+
+Developers, creators, and teams use this skill to transcribe recordings, meetings, lectures, podcasts, voice messages, and supported audio or video files into text or subtitle formats.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The Whisper dependency is installed from the Python package ecosystem and may be unpinned by default.
+
+Mitigation: Install in a virtual environment and pin openai-whisper plus dependencies when stricter supply-chain control is required.
+
+Risk: Transcription creates local output files near the source audio or in the chosen output directory, which may contain sensitive transcript content.
+
+Mitigation: Choose an explicit output directory for sensitive work and review local file handling and retention before use.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The transcribe script can generate txt, srt, vtt, json, or all supported transcript formats for local input files.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with inline shell commands; the wrapped CLI can produce txt, srt, vtt, json, or all transcript files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports tiny, base, small, medium, and large Whisper models; optional language selection, output directory selection, batch inputs, and word-level timestamps.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

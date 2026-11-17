@@ -1,43 +1,58 @@
-## Description: <br>
-This skill enables an agent to search the web and find images using the Serper API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill lets an agent search the web and find images through the Serper API.
 
-## Publisher: <br>
-[twodogegg](https://clawhub.ai/user/twodogegg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twodogegg](https://clawhub.ai/user/twodogegg)
 
-## Use Case: <br>
-Developers and agent users use this skill to retrieve current web or image search results, including news, organic results, related questions, and image metadata, through Serper-backed Google search endpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries, parameters, and related context are sent to Serper.dev using the user's API key. <br>
-Mitigation: Use a dedicated API key and avoid searching for secrets, sensitive personal data, or confidential internal information. <br>
-Risk: Persisting the Serper API key in shell startup files can expose the key to other local processes or account compromise. <br>
-Mitigation: Store the key only where appropriate for the deployment environment and review shell configuration before making the setting permanent. <br>
+## Use Case:
 
+Developers and external users use this skill to give an agent current web, news, image, and other Serper-backed search results with links and source metadata.
 
-## Reference(s): <br>
-- [Serper API](https://serper.dev) <br>
-- [API response reference](references/api_response.md) <br>
-- [ClawHub release page](https://clawhub.ai/twodogegg/google-serper-search) <br>
-- [Publisher profile](https://clawhub.ai/user/twodogegg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries and JSON search results from the Serper API] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a SERPER_API_KEY environment variable and sends search queries and parameters to Serper.dev.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server-resolved release evidence) <br>
+Risk: Search queries are sent to Serper.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for queries that are appropriate to share with Serper.
+
+Risk: Persistent shell configuration can expose or spread SERPER_API_KEY handling beyond a single project.
+
+Mitigation: Prefer per-project environment setup or a secrets manager for SERPER_API_KEY instead of permanently writing it into shell startup files.
+
+Risk: Installing by an unpinned source can make later source changes harder to audit.
+
+Mitigation: Pin or verify the installer source before use when deploying in controlled environments.
+
+## Reference(s):
+
+- [Serper API](https://serper.dev)
+- [Serper API Response Format](references/api_response.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries with source links, plus JSON from the Serper search script when the agent runs a search.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SERPER_API_KEY; search terms are sent to Serper.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata, created 2026-03-11)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

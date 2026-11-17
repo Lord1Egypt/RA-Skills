@@ -1,41 +1,50 @@
-## Description: <br>
-Help agents ship usable, stable solutions faster for non-technical but goal-clear users, then improve them through real-world usage instead of over-engineering upfront. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents deliver usable, stable solutions quickly for non-technical but goal-clear users, then improve them through real-world usage instead of over-engineering upfront.
 
-## Publisher: <br>
-[cutexsoda](https://clawhub.ai/user/cutexsoda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cutexsoda](https://clawhub.ai/user/cutexsoda)
 
-## Use Case: <br>
-External users, builders, and agent operators use this skill to keep agent delivery focused on usable, stable first versions for non-technical but goal-clear users. It helps agents defer speculative polish, ship practical workflows sooner, and improve only when real usage exposes friction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can encourage narrower scope and earlier stopping, which may be inappropriate for work requiring completeness, formal assurance, security review, compliance, or exhaustive edge-case handling. <br>
-Mitigation: Use it for practical usability and stability prioritization, and require separate review criteria when the task has security, compliance, assurance, or exhaustive coverage requirements. <br>
-Risk: The artifact guides agents to defer polish and optional layers, which could omit improvements that later prove important to users. <br>
-Mitigation: Track real usage, repeated friction, and failed tasks, then iterate with small, reversible changes when evidence supports the extra work. <br>
+## Use Case:
 
+Developers, agent operators, and builders use this skill to keep MVP-style internal tools, workflows, knowledge systems, and multi-agent delivery focused on usability, stability, and evidence-based iteration.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cutexsoda/usable-stability-loop) <br>
-- [Publisher Profile](https://clawhub.ai/user/cutexsoda) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Planning] <br>
-**Output Format:** [Markdown prose with ordered recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill asks agents to present what is already enough, what is required for usability and stability, what should wait, and what can be learned from real usage later.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill could underemphasize stricter validation when applied as the dominant rule for security-sensitive, compliance-bound, or high-risk engineering tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pair it with explicit security, compliance, and quality requirements for high-risk work, and require review before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cutexsoda/skills/usable-stability-loop)
+- [artifact/SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown guidance for agent responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only delivery rules; no tools, shell commands, or configuration files produced by the skill itself.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

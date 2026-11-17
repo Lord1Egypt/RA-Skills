@@ -1,46 +1,58 @@
-## Description: <br>
-Manage MikroTik RouterOS devices via API to view status, firewall rules, network configuration, logs, users, backups, traffic details, and execute custom RouterOS commands across one or more devices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage MikroTik RouterOS devices via API to view status, firewall rules, network configuration, logs, users, backups, and run custom commands across multiple devices.
 
-## Publisher: <br>
-[drodecker](https://clawhub.ai/user/drodecker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[drodecker](https://clawhub.ai/user/drodecker)
 
-## Use Case: <br>
-Network administrators and infrastructure engineers use this skill to inspect and administer MikroTik RouterOS devices from an agent workflow, including status checks, firewall and network review, user and service inspection, backups, scans, and custom RouterOS commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad router administration and credential-handling authority. <br>
-Mitigation: Use a least-privilege RouterOS account, operate only on authorized devices, and require explicit human approval before custom commands, backups, cleanup, reboot, shutdown, or configuration changes. <br>
-Risk: Router credentials may be exposed through CLI password arguments or plaintext workspace notes. <br>
-Mitigation: Avoid CLI password arguments and plaintext TOOLS.md secrets; prefer environment variables or a managed secret flow and rotate temporary credentials after use. <br>
-Risk: Network scans can generate discovery traffic and may trigger monitoring alerts. <br>
-Mitigation: Run scans only on networks where scanning is approved, preferably in a trusted or test segment, and document the scope before execution. <br>
-Risk: RouterOS API access may use cleartext transport unless a TLS-capable path is configured. <br>
-Mitigation: Prefer a trusted network or TLS-capable client configuration when connecting to RouterOS API services. <br>
+## Use Case:
 
+Developers and network administrators use this skill to inspect and manage MikroTik RouterOS devices, including status, firewall, interface, routing, user, log, backup, and custom command workflows across one or more configured routers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/drodecker/mikrotik-routeros) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text summaries with RouterOS command output and optional inline shell or RouterOS command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include live device status, firewall and network configuration summaries, scan results, backup guidance, or custom command results depending on the requested RouterOS operation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2026.3.30 (source: server release metadata) <br>
+Risk: Router credentials may grant broad control over network infrastructure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated least-privileged RouterOS accounts, avoid admin or empty passwords, and do not place router passwords in TOOLS.md or command-line arguments.
+
+Risk: Custom commands and lifecycle operations can change, interrupt, or expose router configuration.
+
+Mitigation: Require explicit user approval before custom commands, reboot, shutdown, backup, cleanup, or other high-impact actions.
+
+Risk: Network scanning and unauthenticated or weakly protected connections may expose activity on untrusted networks.
+
+Mitigation: Run scans only on authorized networks and avoid untrusted networks until TLS support and certificate validation are implemented.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/drodecker/skills/mikrotik-routeros)
+- [MikroTik RouterOS API documentation](https://help.mikrotik.com/docs/display/ROS/API)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with RouterOS command paths, Python snippets, shell commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include device-specific command output, RouterOS API paths, and network or credential handling guidance.]
+
+## Skill Version(s):
+
+2026.3.30 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

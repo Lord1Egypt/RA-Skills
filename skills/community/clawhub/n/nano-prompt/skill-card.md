@@ -1,37 +1,53 @@
-## Description: <br>
-NanoBanana E-commerce Image Generation Prompt Engineering <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in writing professional e-commerce image generation prompts for Nano Banana and Gemini image models.
 
-## Publisher: <br>
-[zhongkedy-del](https://clawhub.ai/user/zhongkedy-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhongkedy-del](https://clawhub.ai/user/zhongkedy-del)
 
-## Use Case: <br>
-E-commerce merchants, digital designers, and external agents use this skill to draft product image generation prompts for catalog shots, lifestyle scenes, banners, apparel try-ons, packaging mockups, and iterative image edits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may expose confidential product photos, unreleased designs, or customer data when applying these prompts with an image provider. <br>
-Mitigation: Use only approved image providers for sensitive content and avoid uploading confidential product photos, unreleased designs, or customer data unless that provider is approved for the content. <br>
+## Use Case:
 
+External e-commerce merchants, digital designers, and agent users use this skill to draft platform-specific prompts for product photography, banners, apparel presentations, packaging mockups, and iterative image edits.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with prompt templates and example prompt text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompts are tailored by e-commerce scenario, platform audience, aspect ratio, resolution, lighting, composition, and editing intent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Generated e-commerce prompts may produce incorrect or misleading product visuals if accepted without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated prompts and resulting imagery against product facts, brand requirements, and marketplace policies before publication.
+
+Risk: The artifact guidance notes practical limits around long labels and non-English packaging text.
+
+Mitigation: Keep generated label text short and add complex or non-English copy during post-production when needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhongkedy-del/skills/nano-prompt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with prompt templates and examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not run code, request access, persist data, or hide behavior; English-only label guidance may require post-production adaptation for non-English packaging text.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

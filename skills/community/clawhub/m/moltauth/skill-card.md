@@ -1,46 +1,60 @@
-## Description: <br>
-MoltAuth helps agents and Molt app developers authenticate requests with Ed25519 signatures for token-free identity and request verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MoltAuth helps developers authenticate and verify Molt agent requests using Ed25519 signatures for token-free access across Molt Apps.
 
-## Publisher: <br>
-[bhoshaga](https://clawhub.ai/user/bhoshaga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bhoshaga](https://clawhub.ai/user/bhoshaga)
 
-## Use Case: <br>
-Developers and agent builders use MoltAuth to register agent identities, sign outbound requests, and verify signed requests from Molt agents in Python or Node.js applications. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: External package provenance could be mistaken or drift over time. <br>
-Mitigation: Verify the PyPI or npm package provenance before installing and pin package versions where appropriate. <br>
-Risk: Generated private keys can grant persistent agent identity access if exposed. <br>
-Mitigation: Store generated private keys in a protected secret store and avoid logging or sharing them. <br>
-Risk: Signed requests associate payloads and destinations with a persistent Molt agent identity. <br>
-Mitigation: Send signed requests only to destinations and with payloads the user is comfortable associating with that identity. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [MoltAuth ClawHub release](https://clawhub.ai/bhoshaga/moltauth) <br>
-- [bhoshaga publisher profile](https://clawhub.ai/user/bhoshaga) <br>
-- [MoltTribe](https://molttribe.com) <br>
-- [MoltAuth on PyPI](https://pypi.org/project/moltauth/) <br>
-- [MoltAuth on npm](https://www.npmjs.com/package/moltauth) <br>
-- [MoltAuth GitHub project](https://github.com/bhoshaga/moltauth) <br>
+## Use Case:
 
+Developers and agent builders use MoltAuth to add Ed25519 request verification to Molt Apps, register agents, and make signed requests without token or password flows.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with package installation commands and Python and TypeScript code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes authentication setup, registration, signing, and verification examples.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Examples show unpinned package installation commands, which can expose users to unexpected dependency changes.
+
+Mitigation: Pin and verify the moltauth package version before installation, especially in production or shared environments.
+
+Risk: Examples print generated private keys, which can lead to secret disclosure through logs, terminals, chat transcripts, or commits.
+
+Mitigation: Store generated private keys in a secret manager, OS keychain, or tightly permissioned local secret store, and rotate any key that may have been exposed.
+
+Risk: The server security verdict is suspicious because the integration guide contains risky private-key handling and unpinned install examples.
+
+Mitigation: Review the skill guidance before use, avoid copying unsafe secret-handling patterns, and run examples in a least-privileged environment.
+
+## Reference(s):
+
+- [MoltAuth ClawHub Skill](https://clawhub.ai/bhoshaga/skills/moltauth)
+- [MoltAuth GitHub Repository](https://github.com/bhoshaga/moltauth)
+- [MoltAuth on PyPI](https://pypi.org/project/moltauth/)
+- [MoltAuth on npm](https://www.npmjs.com/package/moltauth)
+- [MoltTribe](https://molttribe.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with Python, TypeScript, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Examples include installation commands, request verification snippets, agent registration snippets, and signed request usage patterns.]
+
+## Skill Version(s):
+
+1.0.1 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-Audit Appian application objects for missing descriptions. Given an application UUID, reports every object whose description field is empty or absent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit Appian application objects for missing descriptions. Given an application UUID, reports every object whose description field is empty or absent.
 
-## Publisher: <br>
-[solarspiker](https://clawhub.ai/user/solarspiker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[solarspiker](https://clawhub.ai/user/solarspiker)
 
-## Use Case: <br>
-Developers and Appian administrators use this skill to audit an Appian application by UUID and identify objects with empty or absent description fields. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a user-configured local Node runner through APPIAN_RUNNER. <br>
-Mitigation: Confirm APPIAN_RUNNER points to a trusted local script before use. <br>
-Risk: The skill connects to the Appian environment named by APPIAN_PROC_URL and prints full audit output. <br>
-Mitigation: Verify APPIAN_PROC_URL targets the intended environment and use the skill only for Appian applications you are authorized to inspect. <br>
+## Use Case:
 
+Developers and Appian administrators use this skill to audit an Appian application for objects whose description field is empty or absent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/solarspiker/appian-missingdescr) <br>
-- [Publisher profile](https://clawhub.ai/user/solarspiker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, text, guidance] <br>
-**Output Format:** [Markdown with inline shell command and verbatim command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires APPIAN_PROC_URL, APPIAN_RUNNER, and the node binary; the skill reports the runner output without summarizing or omitting lines.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.10 (source: server release evidence) <br>
+Risk: The skill runs a configured APPIAN_RUNNER against a target Appian environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only when the APPIAN_RUNNER script and the Appian environment are trusted.
+
+Risk: An invalid or unquoted application identifier could lead to incorrect execution behavior.
+
+Mitigation: Validate that the application identifier is a UUID and prefer quoted or shell-free argument passing for the runner path and UUID.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/solarspiker/skills/appian-missingdescr)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text with an inline shell command and verbatim runner output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires APPIAN_PROC_URL, APPIAN_RUNNER, node, and an Appian application UUID.]
+
+## Skill Version(s):
+
+1.5.10 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

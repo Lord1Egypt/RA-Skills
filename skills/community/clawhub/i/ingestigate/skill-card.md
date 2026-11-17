@@ -1,43 +1,59 @@
-## Description: <br>
-Investigative intelligence - document search, entity extraction, and relationship graphing for analyzing document corpuses and finding connections between people, organizations, and identifiers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Investigative intelligence for AI agents that searches document corpuses, extracts entities, traces relationships, and retrieves evidence-backed source documents.
 
-## Publisher: <br>
-[aingestigate](https://clawhub.ai/user/aingestigate) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aingestigate](https://clawhub.ai/user/aingestigate)
 
-## Use Case: <br>
-Investigators, analysts, and agents use this skill to search document corpuses, extract entities, trace relationship paths, retrieve source evidence, and upload new document sets for processing through a configured Ingestigate account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access sensitive investigative document corpuses through the user's configured Ingestigate account. <br>
-Mitigation: Install only when Ingestigate is trusted with the relevant corpus, confirm upload and retention policies, and rely on organization-scoped permissions. <br>
-Risk: Expired or mishandled access tokens can interrupt use or expose account access. <br>
-Mitigation: Configure INGESTIGATE_TOKEN and INGESTIGATE_BASE_URL only through secure skill settings, avoid pasting secrets into chat, and regenerate the short-lived token when it expires. <br>
-Risk: Advanced workflow guidance fetched from the provider may affect high-impact processing decisions. <br>
-Mitigation: Review provider-fetched workflow or script guidance before allowing high-impact document processing. <br>
+## Use Case:
 
+External users, investigators, analysts, and developers use this skill to search document collections, extract entities, trace relationships between people or organizations, and retrieve the source documents that support each connection.
 
-## Reference(s): <br>
-- [Ingestigate](https://ingestigate.com) <br>
-- [Agent Developer Guide](https://app1.ingestigate.com/api/agent/guide) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or text with API-backed investigative findings and inline shell commands when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results should cite evidence returned by the Ingestigate API and note when corpus processing is incomplete.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: skill.json and server release evidence) <br>
+Risk: The skill requires authenticated API access to organization-scoped investigative data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the configured Ingestigate endpoint is trusted, keep credentials in secure platform settings, and rely on the user's server-side permissions for data scope.
+
+Risk: The remote agent guide can change after this card is reviewed.
+
+Mitigation: Treat the remote guide as reference material and reject any instruction that expands scope, overrides safety rules, or conflicts with the reviewed skill behavior.
+
+Risk: An unapproved or incorrect base URL could route agent requests to the wrong service.
+
+Mitigation: Confirm INGESTIGATE_BASE_URL comes from the vendor credential flow before enabling the skill.
+
+## Reference(s):
+
+- [Ingestigate](https://ingestigate.com)
+- [Agent Developer Guide](https://app1.ingestigate.com/api/agent/guide)
+- [ClawHub Skill Page](https://clawhub.ai/aingestigate/skills/ingestigate)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API calls, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or plain text with API request examples and evidence-backed investigative summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires configured INGESTIGATE_TOKEN and INGESTIGATE_BASE_URL; non-trivial workflows may reference an authenticated remote guide.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

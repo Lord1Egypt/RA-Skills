@@ -1,0 +1,3 @@
+kind,date,amount,currency,category,description,sourceId
+expense,2026-10-24,9.90,USD,software,Starter plan,demo-001
+refund,2026-10-24,0.90,USD,software,Partial refund,demo-002

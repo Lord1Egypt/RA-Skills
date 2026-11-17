@@ -1,37 +1,50 @@
-## Description: <br>
-Translate or delete characters from input streams. Use for character substitution, deletion, and squeezing repeated characters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Translate or delete characters from input streams. Use for character substitution, deletion, and squeezing repeated characters.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and engineers use this skill to transform character streams from standard input, such as changing character ranges or preparing simple text substitutions in shell workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The documentation shows delete and squeeze examples, but the included script only implements direct character translation. <br>
-Mitigation: Test workflows before relying on the documented -d or -s behavior, or limit use to simple stdin character substitution. <br>
+## Use Case:
 
+Developers and agents use this skill for simple local character translation in text streams, such as converting lowercase input to uppercase. The evidence notes that documented deletion and squeezing behavior should not be relied on unless the implementation is updated to support it.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text and Markdown with inline shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes standard input and emits transformed text to standard output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The artifact documents delete and squeeze examples, but security evidence reports a functionality mismatch for those behaviors.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for basic character substitution until the implementation is updated and revalidated for delete and squeeze support.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/tr-tool)
+- [Publisher profile](https://clawhub.ai/user/dinghaibin)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and text examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local standard-input text transformation guidance; no network, credential, persistence, or privileged behavior is evidenced.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

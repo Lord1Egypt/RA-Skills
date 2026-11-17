@@ -11,6 +11,10 @@ BeforeAll {
     $testJson   = Join-Path $PSScriptRoot 'synthetic-bloodhound.json'
     $raw        = Get-Content -Path $testJson -Raw | ConvertFrom-Json
     $script:Paths = $raw.paths
+
+    $adcsJson       = Join-Path $PSScriptRoot 'synthetic-adcs.json'
+    $adcsRaw        = Get-Content -Path $adcsJson -Raw | ConvertFrom-Json
+    $script:AdcsPaths = $adcsRaw.paths
 }
 
 Describe 'SeverityClassifier' {
@@ -118,6 +122,79 @@ Describe 'SeverityClassifier' {
         }
     }
 
+
+    Describe 'v1.0.2 regression guard - 1.0.1 severities must not drift' {
+        # These five paths were classified by v1.0.1 as 3 Critical / 2 High.
+        # Activating previously-dead edge weights must not silently re-rate
+        # historical findings; a client comparing two reports would see
+        # severity inflation with no change in their environment.
+        BeforeAll { $script:Baseline = Invoke-SeverityClassification -Paths $script:Paths }
+
+        It 'path-001 remains Critical' { ($script:Baseline | Where-Object PathId -eq 'path-001').Severity | Should -Be 'Critical' }
+        It 'path-002 remains Critical' { ($script:Baseline | Where-Object PathId -eq 'path-002').Severity | Should -Be 'Critical' }
+        It 'path-003 remains Critical' { ($script:Baseline | Where-Object PathId -eq 'path-003').Severity | Should -Be 'Critical' }
+        It 'path-004 remains High'     { ($script:Baseline | Where-Object PathId -eq 'path-004').Severity | Should -Be 'High' }
+        It 'path-005 remains High'     { ($script:Baseline | Where-Object PathId -eq 'path-005').Severity | Should -Be 'High' }
+    }
+
+    Describe 'v1.0.2 score ceiling' {
+        It 'Never reports a score above 100' {
+            $all = Invoke-SeverityClassification -Paths $script:Paths
+            ($all | Measure-Object -Property Score -Maximum).Maximum | Should -BeLessOrEqual 100
+        }
+        It 'Flags a capped path and preserves the raw score' {
+            $p3 = (Invoke-SeverityClassification -Paths $script:Paths | Where-Object PathId -eq 'path-003')
+            $p3.ScoreCapped | Should -BeTrue
+            $p3.RawScore    | Should -BeGreaterThan 100
+        }
+    }
+
+    Describe 'v1.0.2 AD CS detection' {
+        BeforeAll { $script:Adcs = Invoke-SeverityClassification -Paths $script:AdcsPaths }
+
+        It 'Classifies ESC1 as Critical'            { ($script:Adcs | Where-Object PathId -eq 'adcs-001').Severity | Should -Be 'Critical' }
+        It 'Emits the ADCSESC1 factor'              { ($script:Adcs | Where-Object PathId -eq 'adcs-001').Factors  | Should -Contain 'ADCSESC1' }
+        It 'Classifies ESC4 as Critical'            { ($script:Adcs | Where-Object PathId -eq 'adcs-002').Severity | Should -Be 'Critical' }
+        It 'Emits PKITemplateAbuse for flag writes' { ($script:Adcs | Where-Object PathId -eq 'adcs-002').Factors  | Should -Contain 'PKITemplateAbuse' }
+    }
+
+    Describe 'v1.0.2 delegation and credential detection' {
+        BeforeAll { $script:Adcs = Invoke-SeverityClassification -Paths $script:AdcsPaths }
+
+        It 'Detects RBCD via AddAllowedToAct' { ($script:Adcs | Where-Object PathId -eq 'adcs-003').Factors | Should -Contain 'RBCD' }
+        It 'Rates the RBCD path at least High' { ($script:Adcs | Where-Object PathId -eq 'adcs-003').Severity | Should -BeIn @('High','Critical') }
+        It 'Detects shadow credentials'        { ($script:Adcs | Where-Object PathId -eq 'adcs-004').Factors | Should -Contain 'ShadowCredentials' }
+        It 'Detects LAPS password read'        { ($script:Adcs | Where-Object PathId -eq 'adcs-004').Factors | Should -Contain 'ReadLAPSPassword' }
+    }
+
+    Describe 'v1.0.2 robustness' {
+        BeforeAll { $script:Adcs = Invoke-SeverityClassification -Paths $script:AdcsPaths }
+
+        It 'Does not throw on an unparseable pwdlastset' {
+            { Get-PathSeverity -Path ($script:AdcsPaths | Where-Object { $_.id -eq 'adcs-004' }) } | Should -Not -Throw
+        }
+        It 'Flags the unparseable date as a factor' {
+            ($script:Adcs | Where-Object PathId -eq 'adcs-004').Factors | Should -Contain 'UnparseablePwdLastSet'
+        }
+        It 'Collects unrecognised edge labels' {
+            Get-UnknownEdgeLabels | Should -Contain 'SomeFutureEdgeV7'
+        }
+        It 'Does not flag structural AD CS edges as unknown' {
+            Get-UnknownEdgeLabels | Should -Not -Contain 'PublishedTo'
+        }
+        It 'Survives an edge referencing a node absent from the path' {
+            $orphan = [PSCustomObject]@{
+                id = 'orphan-1'; description = 'Edge with unresolved endpoint'
+                nodes = @(
+                    [PSCustomObject]@{ id = 'a'; label = 'User';  props = [PSCustomObject]@{ name = 'U1@CORP.LOCAL' } },
+                    [PSCustomObject]@{ id = 'b'; label = 'Group'; props = [PSCustomObject]@{ name = 'DOMAIN ADMINS@CORP.LOCAL'; admincount = $true } }
+                )
+                edges = @( [PSCustomObject]@{ id = 'e1'; source = 'a'; target = 'MISSING'; label = 'GenericAll' } )
+            }
+            { Get-PathSeverity -Path $orphan } | Should -Not -Throw
+        }
+    }
+
     Describe 'Get-PathSeverity edge cases' {
         It 'Handles a path with no critical edges gracefully' {
             $minimalPath = [PSCustomObject]@{
@@ -193,6 +270,20 @@ Describe 'NarrativeTemplates' {
 
         It 'Contains remediation steps for sensitive data' {
             $script:Report | Should -Match 'Isolate Sensitive Data Assets'
+        }
+
+        It 'Maps Tier 0-qualified factors to remediation guidance' {
+            # v1.0.1 emitted factors such as GenericAllOnTier0 and then failed
+            # to find a matching guidance key, silently omitting remediation
+            # from the highest-severity findings.
+            Resolve-RemediationKey -Factor 'GenericAllOnTier0' | Should -Be 'GenericAll'
+            Resolve-RemediationKey -Factor 'WriteDaclOnTier0'  | Should -Be 'WriteDacl'
+        }
+
+        It 'Renders remediation for a Tier 0 GenericAll path' {
+            $p2  = ($script:Classified | Where-Object PathId -eq 'path-002')
+            $out = Get-TechnicalRemediation -ClassifiedPath $p2
+            $out | Should -Match 'Revoke GenericAll Permissions'
         }
 
         It 'Contains the local-analysis footer' {

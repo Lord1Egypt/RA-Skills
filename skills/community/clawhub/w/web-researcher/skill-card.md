@@ -1,37 +1,51 @@
-## Description: <br>
-Use this skill for deep research, fact-checking, or finding the latest technical news. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill for deep research, fact-checking, or finding the latest technical news.
 
-## Publisher: <br>
-[aokikaito79](https://clawhub.ai/user/aokikaito79) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aokikaito79](https://clawhub.ai/user/aokikaito79)
 
-## Use Case: <br>
-External users and developers use this skill when they need an agent to run web research, verify facts beyond local training data, or summarize current technical news with citations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Research prompts and fetched pages may reveal sensitive topics to external search or page providers. <br>
-Mitigation: Avoid including confidential information in research prompts, and review citations before relying on the generated brief. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aokikaito79/web-researcher) <br>
+## Use Case:
+
+External users, developers, and research-oriented agents use this skill to structure web research, fact-checking, and current technical news discovery with source-backed summaries.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may trigger external web browsing for broad research-related requests.
+
+Mitigation: Confirm browsing is appropriate for the task and avoid sending sensitive private data in research queries.
+
+Risk: Research summaries may reflect incomplete, outdated, or conflicting source material.
+
+Mitigation: Review the cited sources directly before relying on the brief for important decisions.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown research brief with bullets and citations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Groups findings into key facts, timeline, and contradictions when applicable; lists the URLs actually read.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown research brief with grouped findings and cited source URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include key facts, timelines, contradictions, breaking-news notes, critical alerts, and a list of accessed URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

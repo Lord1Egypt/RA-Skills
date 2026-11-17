@@ -1,43 +1,58 @@
-## Description: <br>
-Creates and edits WeCom documents and smart sheets through mcporter and a configured WeCom document MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates and edits WeCom documents and smart sheets through the wecom-doc MCP server using mcporter.
 
-## Publisher: <br>
-[boge-net](https://clawhub.ai/user/boge-net) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[boge-net](https://clawhub.ai/user/boge-net)
 
-## Use Case: <br>
-Developers and employees use this skill to create WeCom documents and smart sheets, configure the required mcporter bridge, and write structured document or table content through the WeCom document MCP server. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generic document requests may be routed to WeCom in the active environment. <br>
-Mitigation: Install and enable the skill only where WeCom should be the default document platform, and confirm routing expectations for sensitive workflows. <br>
-Risk: The skill depends on mcporter and a configured wecom-doc MCP server that may access business content. <br>
-Mitigation: Verify the mcporter package, MCP server configuration, and WeCom/OpenClaw settings are trusted before processing sensitive content. <br>
-Risk: Document edit operations may overwrite the whole skill-created document instead of appending. <br>
-Mitigation: Review existing content or keep a backup before edit operations that replace document content. <br>
+## Use Case:
 
+Employees and developers use this skill to create WeCom documents or smart sheets by default for document requests, then add content, sub-sheets, fields, and records through mcporter-mediated MCP calls.
 
-## Reference(s): <br>
-- [WeCom document API reference](references/doc-api.md) <br>
-- [ClawHub release page](https://clawhub.ai/boge-net/wecom-ccuniverse-leo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance, API calls] <br>
-**Output Format:** [Markdown with inline bash commands and JSON arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke mcporter to create or edit WeCom documents and smart sheets after required configuration is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: The skill can install persistent tooling through npm.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing the mcporter package source and approving the package for the target environment.
+
+Risk: A user-provided StreamableHttp URL or JSON config may route document content to an untrusted service.
+
+Mitigation: Use only official or enterprise-approved HTTPS MCP endpoints and reject unknown configuration URLs.
+
+Risk: Document edit operations may overwrite existing content.
+
+Mitigation: Confirm the target document ID and preserve or read existing content before applying full-document edits.
+
+## Reference(s):
+
+- [Enterprise WeCom document API reference](references/doc-api.md)
+- [ClawHub skill page](https://clawhub.ai/boge-net/skills/wecom-ccuniverse-leo)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON arguments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires mcporter and a configured wecom-doc MCP endpoint; document edits may overwrite content and depend on document IDs created during the session.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

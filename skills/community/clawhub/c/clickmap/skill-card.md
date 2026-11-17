@@ -1,41 +1,55 @@
-## Description: <br>
-ClickMap helps agents save named on-screen browser targets and reuse them for deterministic click and type actions when selectors are brittle. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chrome UI automation skill for saving named on-screen targets and reusing them with reliable click/type actions when browser selectors break or deterministic named-point flows are needed.
 
-## Publisher: <br>
-[jayton123456789-hub](https://clawhub.ai/user/jayton123456789-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jayton123456789-hub](https://clawhub.ai/user/jayton123456789-hub)
 
-## Use Case: <br>
-Developers and automation users use ClickMap to capture named points of interest in Chrome and run repeatable click and type flows for web tools, dashboards, and forms. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Saved POIs may include selectors, labels, text snippets, URLs, and coordinates from pages the user visits. <br>
-Mitigation: Use ClickMap only on sites where storing this browser UI data is acceptable, and review saved POIs before reuse. <br>
-Risk: The local bridge is unauthenticated by default and reachable from browser pages. <br>
-Mitigation: Set a strong CLICKMAP_TOKEN, avoid exposing or autostarting the bridge unnecessarily, and keep the bridge URL local unless remote sharing is intentional. <br>
-Risk: Automated click and type actions can trigger sensitive operations such as submitting, purchasing, deleting, or logging in. <br>
-Mitigation: Re-check saved points before using ClickMap for sensitive actions and require human review for workflows with irreversible effects. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClickMap ClawHub listing](https://clawhub.ai/jayton123456789-hub/clickmap) <br>
+## Use Case:
+
+Developers and automation users use ClickMap to mark named browser UI points, sync them through a local bridge, and have an agent list, click, type into, or click-type those saved targets for repetitive web tasks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The Chrome extension can be active on all sites and saved POIs may include page targets, selectors, viewport coordinates, and screen coordinates.
+
+Mitigation: Use the skill only on pages where mapping UI targets is acceptable, avoid mapping sensitive pages when possible, and review stored POIs before automation runs.
+
+Risk: The local bridge stores browser automation targets and the security summary reports unsafe default access controls.
+
+Mitigation: Set CLICKMAP_TOKEN, keep the bridge bound to localhost, and do not expose the bridge port beyond the local machine.
+
+Risk: Synced or imported POIs can change where future automation clicks or types.
+
+Mitigation: Treat imported or synced POI data as operationally sensitive and verify target names and coordinates before executing click or type actions.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell command examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent instructions for saving and reusing named browser points of interest; the skill also includes Chrome extension assets, a local bridge script, and POI JSON data.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with PowerShell command examples and JSON POI data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May rely on named POIs with screen coordinates and local bridge state.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -18,6 +18,40 @@
 - 每日 15:20 自动推送收盘日报（权益、持仓、成交、风控提示）
 - 首次运行自动编译接口层、自动引导账户配置，开箱即用
 
+## 写操作幂等性
+
+所有会改变交易、订阅、条件单、定时任务或 daemon 状态的命令默认具备幂等性。`order`、`cancel`、`cancel-all`、`subscribe`、`unsubscribe`、`alert`、`alert-order`、`remove-alert`、`schedule-order`、`schedule-login`、`remove-schedule` 和 `stop` 支持 `--idempotency-key`；省略时系统根据完整请求自动生成稳定键，相同请求重试不会重复执行。
+
+同一个显式幂等键不能用于不同参数的请求。若要有意再次执行完全相同的操作（尤其是再次下单），必须显式换一个新的键。若进程在请求结果返回前异常退出，重试会提示状态未知，请先查询委托/成交后再决定是否使用新键。
+
+条件单和定时任务会保存在项目根目录的 `.clawtrader_runtime.json`，幂等请求日志保存在 `.clawtrader_idempotency.json`；这两个文件包含运行状态，不应提交或分享。`start` 在 daemon 已运行时返回现状而不重复启动，`setup` 在动态库已存在时默认跳过，`config` 在配置内容未变化时不重复写入；明确使用 `setup --force` 才会重新编译。
+
+## 多账户、MCP 与 Web
+
+服务器部署采用“一个账户一个实例”：A、B、C、D、E 分别拥有独立的配置、CTP 流文件、daemon、状态、幂等账本和日志。agent 不由平台替用户决定组合策略，而是通过 MCP 工具显式传入 `account_id` 自己调度；同一台服务器可同时运行多个账户，账户租约会阻止同一真实 CTP 账户被重复启动。
+
+复制 `accounts.example.json` 为 `accounts.json` 后，可用下面的命令查看账户并逐个初始化：
+
+```bash
+python3 scripts/clawtrader.py --registry accounts.json accounts
+python3 scripts/clawtrader.py --registry accounts.json --account A config
+python3 scripts/clawtrader.py --registry accounts.json --account A start
+```
+
+MCP 服务提供账户状态、资金、持仓、委托、成交、行情、订阅、准备下单、下单、撤单和全撤工具：
+
+```bash
+python3 scripts/mcp_server.py --registry accounts.json --transport streamable-http --port 17880
+```
+
+Web 界面提供账户切换、行情、下单、二次确认、撤单、全撤、持仓/委托/成交查询和实时事件推送。开发或单机使用：
+
+```bash
+python3 scripts/web_server.py --registry accounts.json --host 127.0.0.1 --port 17890
+```
+
+打开 `http://127.0.0.1:17890/`。非本机监听必须设置 `CLAW_WEB_TOKEN`；完整的 systemd 部署示例见 [`deploy/README.md`](deploy/README.md)。
+
 ---
 
 ## 安装

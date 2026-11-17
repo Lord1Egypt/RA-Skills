@@ -1,40 +1,53 @@
-## Description: <br>
-Answers questions about a Bible passage, person, or topic with background, key verses, and application. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Answers Bible questions about passages, people, or topics with historical and literary background, key verses cited by translation, and brief pastoral application.
 
-## Publisher: <br>
-[cheniOS](https://clawhub.ai/user/cheniOS) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenios](https://clawhub.ai/user/chenios)
 
-## Use Case: <br>
-External users such as pastors, elders, church teachers, and Bible study leaders use this skill to answer questions about passages, people, or themes with context, key verses, and brief application. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The default ESV translation and Evangelical framing may not fit every user's theological tradition or translation preference. <br>
-Mitigation: Ask for or honor the user's requested translation and tradition; disclose the defaults when they matter. <br>
-Risk: Bible answers can become misleading if verses are quoted inaccurately or used outside their context. <br>
-Mitigation: Cite verses with translation, preserve context, and label applications that are not direct scripture. <br>
+## Use Case:
 
+External users such as pastors, elders, church teachers, and Bible study leaders use this skill to answer questions about Bible passages, characters, and themes with context, key verses, and pastoral application.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cheniOS/bible-qa) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text by default; Markdown or DOCX only when requested by the user.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [English output; defaults to ESV translation and Evangelical framing unless the user requests otherwise.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: clawhub.json, release evidence) <br>
+Risk: The default English, ESV, Evangelical framing may not fit users who need another language, translation, or interpretive tradition.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for the desired language, translation, or tradition explicitly before relying on the answer.
+
+Risk: Pastoral application may go beyond what a passage directly states.
+
+Mitigation: Label applications without direct textual basis as reference application / not direct scripture.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenios/skills/bible-qa)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain text by default; Markdown or DOCX only when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [English-only by default; ESV and Evangelical defaults unless the user specifies another translation or tradition]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence and artifact manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

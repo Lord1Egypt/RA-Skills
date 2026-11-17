@@ -39,8 +39,6 @@ from . import (
     truthsocial,
     xai_x,
     xiaohongshu_api,
-    xquik,
-    xurl_x,
     youtube_yt,
 )
 from .cluster import cluster_candidates
@@ -58,7 +56,6 @@ SEARCH_ALIAS = {
     "truth": "truthsocial",
     "web": "grounding",
     "xhs": "xiaohongshu",
-    "xquik": "xquik",
 }
 
 MAX_SOURCE_FETCHES: dict[str, int] = {"x": 2}
@@ -77,7 +74,6 @@ MOCK_AVAILABLE_SOURCES = [
     "xiaohongshu",
     "github",
     "perplexity",
-    "xquik",
 ]
 
 
@@ -121,8 +117,6 @@ def available_sources(config: dict[str, Any], requested_sources: list[str] | Non
         available.append("threads")
     if requested_sources and "pinterest" in requested_sources and env.is_pinterest_available(config):
         available.append("pinterest")
-    if env.is_xquik_available(config):
-        available.append("xquik")
     return available
 
 
@@ -178,7 +172,6 @@ def run(
     lookback_days: int = 30,
     github_user: str | None = None,
     github_repos: list[str] | None = None,
-    internal_subrun: bool = False,
 ) -> schema.Report:
     settings = DEPTH_SETTINGS[depth]
     requested_sources = normalize_requested_sources(requested_sources)
@@ -206,7 +199,7 @@ def run(
         plan = planner._sanitize_plan(
             external_plan, topic, available, requested_sources, depth,
         )
-        plan_source = "external"
+        print(f"[Planner] Using external plan ({len(plan.subqueries)} subqueries)", file=sys.stderr)
     else:
         plan = planner.plan_query(
             topic=topic,
@@ -216,16 +209,7 @@ def run(
             provider=None if mock else reasoning_provider,
             model=None if mock else runtime.planner_model,
             context=config.get("_auto_resolve_context", ""),
-            internal_subrun=internal_subrun,
         )
-        # Source labelling: the fallback path annotates notes with "fallback-plan"
-        # or "deterministic-comparison-plan"; anything else came from the LLM.
-        if any("fallback" in note or "deterministic" in note for note in (plan.notes or [])):
-            plan_source = "deterministic"
-        elif not mock and reasoning_provider and runtime.planner_model:
-            plan_source = "llm"
-        else:
-            plan_source = "deterministic"
 
     # Safety net: ensure grounding appears in all subqueries even if the planner
     # omits it. This is redundant when the planner includes grounding via
@@ -235,32 +219,7 @@ def run(
             if "grounding" not in sq.sources:
                 sq.sources.append("grounding")
 
-    # Always-on planner trace. Emits one summary line plus one per subquery
-    # so retrieval-breadth failures like the 2026-04-19 Hermes Agent Use Cases
-    # disaster are visible without --debug. Stderr only; does not leak into
-    # the user-facing stdout synthesis.
-    print(
-        f"[Planner] Plan: intent={plan.intent}, freshness={plan.freshness_mode}, "
-        f"cluster_mode={plan.cluster_mode}, subqueries={len(plan.subqueries)}, "
-        f"source={plan_source}",
-        file=sys.stderr,
-    )
-    if plan.subqueries:
-        for index, sq in enumerate(plan.subqueries, start=1):
-            sources_str = ",".join(sq.sources) if sq.sources else "(none)"
-            print(
-                f"[Planner]   sq{index} label={sq.label} "
-                f'search="{sq.search_query}" sources=[{sources_str}]',
-                file=sys.stderr,
-            )
-    else:
-        print("[Planner]   (no subqueries in plan)", file=sys.stderr)
-
     bundle = schema.RetrievalBundle(artifacts={"grounding": []})
-    # Expose plan_source to the renderer so render_compact can emit the
-    # DEGRADED RUN banner when a named-entity topic was invoked bare
-    # (source=deterministic AND no pre-research flags). LAW 7 backstop.
-    bundle.artifacts["plan_source"] = plan_source
 
     # Project-mode or person-mode GitHub: run once before the main subquery loop
     _github_custom_done = False
@@ -443,7 +402,7 @@ def run(
         if bundle.items_by_source.get(source):
             del bundle.errors_by_source[source]
 
-    items_by_source = _finalize_items_by_source(bundle.items_by_source, topic=topic, config=config)
+    items_by_source = _finalize_items_by_source(bundle.items_by_source)
     candidates = weighted_rrf(bundle.items_by_source_and_query, plan, pool_limit=settings["pool_limit"])
     ranked_candidates = rerank.rerank_candidates(
         topic=topic,
@@ -508,28 +467,11 @@ def _normalize_score_dedupe(
     return normalized
 
 
-def _finalize_items_by_source(
-    items_by_source_raw: dict[str, list[schema.SourceItem]],
-    topic: str = "",
-    config: dict | None = None,
-) -> dict[str, list[schema.SourceItem]]:
+def _finalize_items_by_source(items_by_source_raw: dict[str, list[schema.SourceItem]]) -> dict[str, list[schema.SourceItem]]:
     finalized = {}
     for source, items in items_by_source_raw.items():
         items = sorted(items, key=lambda item: item.local_rank_score or 0.0, reverse=True)
-        items = dedupe.dedupe_items(items)
-        # Post-merge topic-relevance filter for Polymarket: comparison queries
-        # fan out into per-entity subqueries ("Hermes", "OpenClaw") whose topic
-        # is too narrow for Gamma API to filter meaningfully. Re-validating the
-        # merged list against the full original topic drops off-topic markets
-        # (e.g., WTI crude oil, Elon tweet counts) before footer emission.
-        if source == "polymarket" and topic:
-            items = polymarket.filter_items_against_topic(topic, items)
-            # --polymarket-keywords (via config): additional keyword filter
-            # for ambiguous single-token topics (e.g., "Warriors" → nba,gsw).
-            keywords = config.get("_polymarket_keywords") if isinstance(config, dict) else None
-            if keywords:
-                items = polymarket.filter_items_against_keywords(items, keywords)
-        finalized[source] = items
+        finalized[source] = dedupe.dedupe_items(items)
     return finalized
 
 
@@ -777,49 +719,44 @@ def _retry_thin_sources(
         weight=0.3,
     )
 
-    def _retry_one_source(source: str) -> tuple[str, list[schema.SourceItem]]:
-        raw_items, _artifact = _retrieve_stream(
-            topic=topic,
-            subquery=retry_subquery,
-            source=source,
-            config=config,
-            depth=depth,
-            date_range=date_range,
-            runtime=runtime,
-            mock=mock,
-            rate_limited_sources=rate_limited_sources,
-            rate_limit_lock=rate_limit_lock,
-            web_backend=web_backend,
-            raw_topic=topic,
-        )
-        normalized = _normalize_score_dedupe(
-            source,
-            raw_items,
-            from_date,
-            to_date,
-            freshness_mode=plan.freshness_mode,
-            ranking_query=retry_subquery.ranking_query,
-        )
-        return source, normalized[:settings["per_stream_limit"]]
+    for source in thin_sources:
+        if source in rate_limited_sources:
+            continue
+        try:
+            raw_items, _artifact = _retrieve_stream(
+                topic=topic,
+                subquery=retry_subquery,
+                source=source,
+                config=config,
+                depth=depth,
+                date_range=date_range,
+                runtime=runtime,
+                mock=mock,
+                rate_limited_sources=rate_limited_sources,
+                rate_limit_lock=rate_limit_lock,
+                web_backend=web_backend,
+                raw_topic=topic,
+            )
+            normalized = _normalize_score_dedupe(
+                source,
+                raw_items,
+                from_date,
+                to_date,
+                freshness_mode=plan.freshness_mode,
+                ranking_query=retry_subquery.ranking_query,
+            )
+            normalized = normalized[:settings["per_stream_limit"]]
 
-    retryable = [s for s in thin_sources if s not in rate_limited_sources]
+            existing_urls = {item.url for item in bundle.items_by_source.get(source, []) if item.url}
+            new_items = [item for item in normalized if item.url not in existing_urls]
 
-    from concurrent.futures import ThreadPoolExecutor, as_completed
-    with ThreadPoolExecutor(max_workers=min(4, len(retryable) or 1)) as executor:
-        futures = {executor.submit(_retry_one_source, s): s for s in retryable}
-        for future in as_completed(futures):
-            source = futures[future]
-            try:
-                source, normalized = future.result()
-                existing_urls = {item.url for item in bundle.items_by_source.get(source, []) if item.url}
-                new_items = [item for item in normalized if item.url not in existing_urls]
-
-                if new_items:
-                    bundle.items_by_source.setdefault(source, []).extend(new_items)
-                    primary_label = plan.subqueries[0].label if plan.subqueries else "primary"
-                    bundle.items_by_source_and_query.setdefault((primary_label, source), []).extend(new_items)
-            except Exception as exc:
-                print(f"[Pipeline] Retry failed for {source}: {type(exc).__name__}: {exc}", file=sys.stderr)
+            if new_items:
+                bundle.items_by_source.setdefault(source, []).extend(new_items)
+                primary_label = plan.subqueries[0].label if plan.subqueries else "primary"
+                existing = bundle.items_by_source_and_query.get((primary_label, source), [])
+                bundle.items_by_source_and_query[(primary_label, source)] = existing + new_items
+        except Exception as exc:
+            print(f"[Pipeline] Retry failed for {source}: {type(exc).__name__}: {exc}", file=sys.stderr)
 
 
 def _retrieve_stream(
@@ -904,9 +841,6 @@ def _retrieve_stream(
                 depth=depth,
             )
             return xai_x.parse_x_response(result), {}
-        if backend == "xurl":
-            result = xurl_x.search_x(subquery.search_query, depth=depth)
-            return xurl_x.parse_x_response(result, topic=subquery.search_query), {}
         raise RuntimeError("No X backend is available.")
     if source == "youtube":
         # Use raw_topic so expand_youtube_queries() generates diverse variants
@@ -943,11 +877,7 @@ def _retrieve_stream(
             hashtags=tiktok_hashtags,
             creators=tiktok_creators,
         )
-        items = tiktok.parse_tiktok_response(result)
-        if items and env.is_tiktok_comments_available(config):
-            sc_token = config.get("SCRAPECREATORS_API_KEY", "")
-            tiktok.enrich_with_comments(items, token=sc_token)
-        return items, {}
+        return tiktok.parse_tiktok_response(result), {}
     if source == "instagram":
         # Use raw_topic so expand_instagram_queries() generates diverse variants
         # from the original user topic, not the planner's narrowed search_query.
@@ -1000,13 +930,6 @@ def _retrieve_stream(
         ), {}
     if source == "perplexity":
         return perplexity.search(subquery.search_query, date_range, config, deep=config.get("_deep_research", False))
-    if source == "xquik":
-        result = xquik.search_xquik(
-            subquery.search_query, from_date, to_date,
-            depth=depth,
-            token=env.get_xquik_token(config),
-        )
-        return xquik.parse_xquik_response(result), {}
     raise RuntimeError(f"Unsupported source: {source}")
 
 

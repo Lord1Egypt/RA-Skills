@@ -1,40 +1,57 @@
-## Description: <br>
-Integracja KeePassXC z Cursorem do bezpiecznego zarządzania sekretami (hasła, tokeny API, klucze SSH) <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents use KeePassXC with Cursor to manage secrets such as passwords, API tokens, and SSH keys.
 
-## Publisher: <br>
-[theanswerss](https://clawhub.ai/user/theanswerss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[theanswerss](https://clawhub.ai/user/theanswerss)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure and operate KeePassXC-backed secret management for Cursor across Windows and WSL, including retrieving, adding, updating, and organizing passwords, API tokens, and SSH keys. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables an agent to access sensitive KeePassXC vault secrets. <br>
-Mitigation: Use a separate minimal vault and require explicit approval before any secret is read, added, edited, or deleted. <br>
-Risk: The security summary identifies an unsafe and inconsistently described master-password fallback. <br>
-Mitigation: Review the referenced local helper scripts before use and avoid storing the vault master password inside the same vault. <br>
+## Use Case:
 
+Developers and engineers use this skill to retrieve, add, update, and structure KeePassXC secrets from Cursor-oriented Windows and WSL workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/theanswerss/tianchenwei4) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash and PowerShell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes operational instructions for KeePassXC, keyring setup, SSH Agent use, and troubleshooting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill tells users to run local helper scripts that handle secrets, but those scripts are not bundled in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the helper scripts' contents, source, ownership, permissions, and symlink status before running them with real secrets.
+
+Risk: The artifact includes an unsafe example that pipes a literal database password into keepassxc-cli.
+
+Mitigation: Use an interactive prompt or a trusted keyring flow instead of embedding a password in shell history or command output.
+
+Risk: The documented KeePassXC database paths are personal environment paths.
+
+Mitigation: Replace the hardcoded paths with paths that match the user's own Windows or WSL environment.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/theanswerss/skills/tianchenwei4)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include KeePassXC CLI commands, Windows or WSL setup steps, and secret-management workflow guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

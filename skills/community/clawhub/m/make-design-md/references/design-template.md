@@ -13,6 +13,7 @@ name: "设计系统名称"
 description: "简短描述"             # 可选
 colors:
   primary: "#533afd"                # 必须：主品牌色
+  primary-hover: "#4330e0"          # 主色悬停态
   secondary: "#00d4ff"
   background: "#ffffff"
   background-subtle: "#f5f5f7"
@@ -92,7 +93,7 @@ spacing:
   16: "64px"
   20: "80px"
 rounded:
-  none: "0"
+  none: "0px"
   sm: "4px"
   md: "8px"
   lg: "12px"
@@ -108,6 +109,8 @@ components:
     rounded: "{rounded.md}"
     padding: "{spacing.2} {spacing.4}"
     height: "40px"
+  button-primary-hover:
+    backgroundColor: "{colors.primary-hover}"
   button-secondary:
     backgroundColor: "transparent"
     textColor: "{colors.primary}"
@@ -128,6 +131,11 @@ components:
     height: "40px"
 ---
 ```
+
+**组件属性说明**
+- 规范内的组件属性：`backgroundColor`, `textColor`, `typography`, `rounded`, `padding`, `size`, `height`, `width`
+- 其他属性（如 `borderColor`, `backdropFilter`）会被接受，但 lint 时产生警告
+- 交互状态变体（hover、active、pressed）用独立条目表示，命名与基础组件关联，如 `button-primary-hover`
 
 ## Markdown Body 章节顺序
 
@@ -448,9 +456,16 @@ Atmospheric Glass captures the ethereal beauty of weather through a glassmorphis
 npx @google/design.md lint DESIGN.md
 ```
 
-常见 lint 错误：
-- `broken-ref` - 令牌引用无法解析
-- `missing-primary` - 缺少 primary 颜色定义
-- `contrast-ratio` - 颜色对比度不符合 WCAG AA
-- `orphaned-tokens` - 存在未使用的颜色令牌
-- `section-order` - 章节顺序不符合规范
+Lint 规则一览（共 9 条）：
+
+| 规则 | 级别 | 检查内容 |
+|------|------|---------|
+| `broken-ref` | error | 令牌引用无法解析 |
+| `missing-primary` | warning | 定义了 colors 但缺少 primary 颜色 |
+| `contrast-ratio` | warning | 颜色对比度低于 WCAG AA（4.5:1） |
+| `orphaned-tokens` | warning | 定义了但未被组件引用的颜色令牌 |
+| `token-summary` | info | 各部分令牌数量统计 |
+| `missing-sections` | info | 缺少可选部分（spacing、rounded） |
+| `missing-typography` | warning | 定义了 colors 但没有 typography 令牌 |
+| `section-order` | warning | 章节顺序不符合规范 |
+| `unknown-key` | warning | 顶层 YAML 键疑似拼写错误 |

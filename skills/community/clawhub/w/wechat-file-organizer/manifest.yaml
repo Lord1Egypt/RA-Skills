@@ -1,0 +1,24 @@
+name: wechat-file-organizer
+display_name: 微信文件自动归类
+version: 2.1.0
+author: oracis
+category: 办公效率
+license: MIT
+homepage: https://github.com/oracis/wechat-file-organizer
+description: 扫描微信接收文件目录（新版 xwechat_files 与旧版 WeChat Files 可并存、多账号合并扫描、macOS 沙盒目录），按类型/月份归类、内容去重、生成空间占用报告。零依赖、默认只读（dry-run）、清理源文件走回收站可恢复、绝不永久删除。报告与归类目录名支持中英文切换（--lang zh|en）。扫描逻辑与 GUI 应用 wechat-file-organizer-gui 同步。
+triggers:
+  - 整理微信接收的文件
+  - 微信文件太乱了
+  - 微信文件归类
+  - 清理微信下载的文件
+  - 微信里重复文件好多
+  - 帮我看看微信都收了些什么文件
+  - organize wechat files
+  - wechat files report
+tags:
+  - 微信
+  - 文件整理
+  - 去重
+  - 本地工具
+  - 效率
+  - i18n

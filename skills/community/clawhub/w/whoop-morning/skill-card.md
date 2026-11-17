@@ -1,45 +1,58 @@
-## Description: <br>
-Check WHOOP recovery/sleep/strain each morning and send suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check WHOOP recovery/sleep/strain each morning and send suggestions.
 
-## Publisher: <br>
-[Borahm](https://clawhub.ai/user/Borahm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[borahm](https://clawhub.ai/user/borahm)
 
-## Use Case: <br>
-External users use this skill to retrieve recent WHOOP recovery, sleep, and strain data and produce a short morning wellness report with day-level suggestions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requests persistent WHOOP OAuth access to health and wellness data. <br>
-Mitigation: Install only after confirming the requested scopes and keep WHOOP credentials, refresh tokens, and cached tokens in private, access-controlled storage. <br>
-Risk: The reviewed package references `whoop-auth` and `whoop-morning` executables that are not included in the artifact. <br>
-Mitigation: Verify those executables from a trusted source before authorizing WHOOP access or scheduling the skill. <br>
-Risk: Scheduled morning reports may expose personal health data if routed to a shared destination. <br>
-Mitigation: Send automated reports only to private destinations and review cron or Gateway routing before enabling automation. <br>
-Risk: WHOOP refresh-token rotation can fail or be disrupted by concurrent refreshes. <br>
-Mitigation: Avoid parallel token refresh jobs and re-run authorization if WHOOP returns token refresh errors. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Borahm/whoop-morning) <br>
-- [WHOOP OAuth authorization endpoint](https://api.prod.whoop.com/oauth/oauth2/auth) <br>
-- [WHOOP OAuth token endpoint](https://api.prod.whoop.com/oauth/oauth2/token) <br>
+## Use Case:
 
+External users use this skill to retrieve recent WHOOP recovery, sleep, and strain data and receive a short morning plan. It supports one-time OAuth setup and recurring morning automation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown or plain text morning report with setup and execution commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WHOOP OAuth environment variables and may use a local token cache for refreshed access tokens.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles sensitive WHOOP health-account tokens and stores token material locally.
+
+Mitigation: Use a dedicated WHOOP OAuth app, restrict permissions on ~/.clawdbot/.env and ~/.cache/whoop-morning/tokens.json, and avoid sharing backups or logs containing those files.
+
+Risk: The referenced auth and report executables were not present in the reviewed artifact.
+
+Mitigation: Review the installed executables before running the OAuth flow or scheduled morning report.
+
+Risk: WHOOP refresh tokens rotate, and parallel refreshes can invalidate expected token state.
+
+Mitigation: Avoid running multiple refresh operations at the same time and re-run authorization if token refresh returns 401 or 400.
+
+## Reference(s):
+
+- [WHOOP OAuth authorization endpoint](https://api.prod.whoop.com/oauth/oauth2/auth)
+- [WHOOP OAuth token endpoint](https://api.prod.whoop.com/oauth/oauth2/token)
+- [ClawHub skill page](https://clawhub.ai/borahm/skills/whoop-morning)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash commands and generated morning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WHOOP OAuth credentials and a refresh token.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

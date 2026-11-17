@@ -1,0 +1,36 @@
+id: docker-compose-deploy
+title: Docker Compose 单机部署流程
+description: 用 Docker Compose 在单台服务器部署内部轻量服务，包含目录、端口、数据卷和回滚要求。
+category: deploy
+scope: domain
+status: active
+maturity: stable
+domains:
+  - devops
+owners:
+  - devops
+languages:
+  - Docker
+audience:
+  - 项目负责人
+  - DevOps
+inputs:
+  - 服务器 SSH 信息
+  - 应用端口
+  - 环境变量
+outputs:
+  - 可运行的 Docker Compose 服务
+  - 健康检查结果
+success_metrics:
+  - 部署后健康检查通过
+  - 数据目录可持久化
+automation_ready: true
+scenarios:
+  - 单机部署
+  - 轻量内部工具上线
+  - 服务升级和回滚
+tags:
+  - docker
+  - compose
+  - deploy
+review_cycle_days: 60

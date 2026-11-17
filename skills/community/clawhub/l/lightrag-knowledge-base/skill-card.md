@@ -1,44 +1,62 @@
-## Description: <br>
-Deploy LightRAG as a shared knowledge graph for OpenClaw agents to query cross-agent knowledge, auto-index daily logs, and search entity relationships. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy LightRAG as a shared knowledge graph for OpenClaw agents, enabling cross-agent knowledge queries, daily log indexing, and entity relationship search when memory_search is not enough.
 
-## Publisher: <br>
-[mosoonpi-ai](https://clawhub.ai/user/mosoonpi-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mosoonpi-ai](https://clawhub.ai/user/mosoonpi-ai)
 
-## Use Case: <br>
-Developers and agent operators use this skill to deploy a shared LightRAG-backed knowledge graph so multiple OpenClaw agents can search historical decisions, daily logs, entities, and relationships across workspaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private agent files, secrets, or personal data could be indexed into a persistent cross-agent graph. <br>
-Mitigation: Use explicit file allowlists, redact secrets and personal data before indexing, and document how to remove mistakenly indexed content. <br>
-Risk: A shared memory service can expose stored knowledge to agents that should not read or write it. <br>
-Mitigation: Protect API keys, decide which agents may access the service, keep credentials separate, and bind the service to localhost unless a reviewed network design requires otherwise. <br>
-Risk: Automatic daily-log indexing can ingest new content before review. <br>
-Mitigation: Keep cron-based indexing disabled until reviewed, then enable it only for approved workspaces and file patterns. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to deploy and operate a shared LightRAG knowledge graph across multiple agent workspaces. It helps agents query historical decisions, cross-agent findings, and entity relationships from indexed logs and documents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mosoonpi-ai/lightrag-knowledge-base) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Docker Compose, environment, Python, Bash, and cron examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides setup of a persistent shared memory service; users must provide their own API keys, model endpoints, and file selection policy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Centralizing multiple agents' memory into a persistent graph can expose sensitive or private information across workspaces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit file allowlists, skip profile, private, security, and trading logs unless reviewed, and define deletion and access-control procedures before indexing real data.
+
+Risk: Indexed text may be processed by an OpenAI-compatible provider when non-local models are configured.
+
+Mitigation: Prefer local models for sensitive data and review provider settings before sending logs, documents, or agent memory to an external service.
+
+Risk: Optional daily auto-indexing can continuously ingest new logs without human review.
+
+Mitigation: Disable the cron job by default or restrict it to reviewed paths with clear retention and deletion procedures.
+
+Risk: Using a floating container image tag can pull unreviewed runtime changes.
+
+Mitigation: Pin the LightRAG container image to a reviewed digest before production use.
+
+## Reference(s):
+
+- [Skill README](artifact/README.md)
+- [ClawHub Skill Page](https://clawhub.ai/mosoonpi-ai/skills/lightrag-knowledge-base)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guide with Docker Compose, environment configuration, Python scripts, Bash commands, and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes deployment steps, query and insert scripts, optional cron auto-indexing, monitoring checks, and security guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

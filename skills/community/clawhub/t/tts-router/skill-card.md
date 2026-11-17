@@ -1,46 +1,60 @@
-## Description: <br>
-Local TTS router for Apple Silicon that helps agents pull models, serve OpenAI-compatible APIs, synthesize speech, and clone voices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local TTS router for Apple Silicon that helps agents pull models, serve OpenAI-compatible speech APIs, synthesize speech, and clone voices.
 
-## Publisher: <br>
-[hrhrng](https://clawhub.ai/user/hrhrng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hrhrng](https://clawhub.ai/user/hrhrng)
 
-## Use Case: <br>
-Developers and agent operators on macOS with Apple Silicon use this skill to install and operate tts-router, pull local TTS models, serve OpenAI-compatible APIs, synthesize speech, and perform consented voice-cloning workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Voice-cloning workflows can use arbitrary online media or uploaded audio without built-in consent checks. <br>
-Mitigation: Use only reference audio from speakers who explicitly permitted cloning; avoid public videos, podcasts, or links unless you have rights to that audio; disclose generated speech as synthetic. <br>
-Risk: The skill can start a local server with speech-generation, reference-upload, and reference-fetch endpoints. <br>
-Mitigation: Keep the server local or restricted to trusted networks, review requests before execution, and avoid processing sensitive audio unless authorized. <br>
-Risk: The workflow installs an external tts-router package and downloads model weights from HuggingFace Hub. <br>
-Mitigation: Install only when you trust the package and selected models, review model sources before use, and keep model serving local unless a deployment review approves broader exposure. <br>
+## Use Case:
 
+Developers and agents use this skill on macOS Apple Silicon systems to install and operate a local text-to-speech router, start a compatible API server, generate speech files, and configure OpenClaw TTS integration.
 
-## Reference(s): <br>
-- [Tts Router ClawHub release](https://clawhub.ai/hrhrng/tts-router) <br>
-- [OpenClaw Integration](references/openclaw.md) <br>
-- [Voice Cloning - Advanced Guide](references/voice-cloning.md) <br>
-- [OpenClaw TTS configuration docs](https://docs.openclaw.ai/gateway/configuration-reference#tts-text-to-speech) <br>
-- [uv installation docs](https://docs.astral.sh/uv/getting-started/installation/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash, JSON, and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local audio files or local API requests when the user executes the suggested commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: Voice cloning can be used on online or uploaded speaker audio without built-in consent safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Clone voices only when the speaker has clearly authorized that use, and avoid generating impersonation or misleading speech.
+
+Risk: The install examples use executable package flows without pinned versions.
+
+Mitigation: Review the package before use and pin known-good versions in isolated environments.
+
+Risk: Reference audio can be fetched from arbitrary online media URLs.
+
+Mitigation: Use trusted URLs only and avoid processing unknown or unauthorized media sources.
+
+## Reference(s):
+
+- [OpenClaw Integration](references/openclaw.md)
+- [Voice Cloning Advanced Guide](references/voice-cloning.md)
+- [OpenClaw TTS configuration reference](https://docs.openclaw.ai/gateway/configuration-reference#tts-text-to-speech)
+- [uv installation guide](https://docs.astral.sh/uv/getting-started/installation/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown with inline shell, JSON, and curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include local service commands, API request examples, OpenClaw configuration snippets, and generated audio file paths.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

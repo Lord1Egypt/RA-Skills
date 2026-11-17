@@ -1,41 +1,54 @@
-## Description: <br>
-Generate release notes from git commit history using the Conventional Commits convention, with categorized Markdown output, date or version filtering, and optional file output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Markdown release notes from git commit history using Conventional Commits, with category grouping, date or version filters, and optional file output.
 
-## Publisher: <br>
-[rogue-agent1](https://clawhub.ai/user/rogue-agent1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rogue-agent1](https://clawhub.ai/user/rogue-agent1)
 
-## Use Case: <br>
-Developers and release managers use this skill to summarize repository commit history into categorized release notes for changelogs, release preparation, or version announcements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads commit history from repositories the user points it at. <br>
-Mitigation: Run it only on repositories whose history you are authorized to inspect. <br>
-Risk: The output option writes a generated Markdown file and may overwrite an existing file at the chosen path. <br>
-Mitigation: Choose the output path deliberately and check for existing files before using the output option. <br>
+## Use Case:
 
+Developers and release maintainers use this skill to generate categorized release notes or changelog drafts from a repository's git history.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rogue-agent1/releasenotes) <br>
-- [Publisher profile](https://clawhub.ai/user/rogue-agent1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Files, Shell commands] <br>
-**Output Format:** [Markdown release notes printed to console or written to a user-selected Markdown file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Categorizes commits by Conventional Commits type and includes abbreviated commit hash and author.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated release notes may include misleading or untrusted commit text before publication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and sanitize generated Markdown before publishing, especially for repositories with untrusted contributors.
+
+Risk: The output option writes release notes to a user-supplied path.
+
+Mitigation: Choose output paths deliberately and review generated files before committing or publishing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rogue-agent1/skills/releasenotes)
+- [README.md](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, text, shell commands, guidance]
+
+**Output Format:** [Markdown release notes and CLI usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Release notes may include commit hashes, authors, generated timestamp, and optional file output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

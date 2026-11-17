@@ -1,44 +1,57 @@
-## Description: <br>
-Asset Allocation helps agents produce CFA-style investment planning workflows covering financial diagnosis, risk assessment, goal-based portfolio construction, fund and ETF selection, purchase guidance, and ongoing rebalancing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional investment advisory skill based on a CFA-style framework for financial diagnosis, risk assessment, goal-based planning, portfolio construction, product selection, and ongoing rebalancing.
 
-## Publisher: <br>
-[codeblackhole1024](https://clawhub.ai/user/codeblackhole1024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[codeblackhole1024](https://clawhub.ai/user/codeblackhole1024)
 
-## Use Case: <br>
-External users and agents use this skill for educational investment-planning support, including client profile collection, risk tolerance assessment, strategic asset allocation, product selection criteria, execution planning, and monitoring discipline. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may treat generated investment allocations, product codes, or purchase steps as licensed financial advice. <br>
-Mitigation: Use the skill as educational planning support only and independently verify suitability, fees, product codes, platform legitimacy, tax or regulatory fit, and personal constraints before acting. <br>
-Risk: Market conditions, product availability, platform flows, and China-focused purchase details can change after release. <br>
-Mitigation: Confirm current market data, product terms, platform instructions, and local regulatory requirements before executing any transaction. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Asset Allocation on ClawHub](https://clawhub.ai/codeblackhole1024/asset-allocation) <br>
-- [Product Selection Reference](references/product-selection.md) <br>
-- [Rebalancing Protocol](references/rebalancing-protocol.md) <br>
-- [Macro Framework](references/macro-framework.md) <br>
-- [Behavioral Biases Reference](references/behavioral-biases.md) <br>
-- [Investment Product Purchase Guide](references/purchase-guide.md) <br>
+## Use Case:
 
+External users use this skill to prepare an investment policy style report covering financial profile, risk tolerance, goals, asset allocation, product selection, execution planning, and rebalancing. The skill is intended as educational guidance and should not replace suitability review by a qualified professional.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown investment planning report and step-by-step guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include allocation tables, product selection criteria, purchase steps, stress testing, and monitoring rules.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: evidence.release.version) <br>
+Mainland China
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can produce personalized investment allocations and purchase guidance without strong suitability boundaries.
+
+Mitigation: Use outputs as educational prompts only and require qualified professional review for regulated or personalized financial advice.
+
+Risk: The skill includes Mainland China platform flows, product names, product codes, and rates that may be stale or inappropriate in other jurisdictions.
+
+Mitigation: Verify current product data, licensing, availability, and local rules before acting, especially outside Mainland China.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codeblackhole1024/skills/asset-allocation)
+- [Product Selection](references/product-selection.md)
+- [Purchase Guide](references/purchase-guide.md)
+- [Rebalancing Protocol](references/rebalancing-protocol.md)
+- [Macro Framework](references/macro-framework.md)
+- [Behavioral Biases](references/behavioral-biases.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown investment policy report with allocation tables, product-selection criteria, execution steps, and monitoring rules]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include localized product names, product codes, platform steps, risk warnings, and rebalancing thresholds.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

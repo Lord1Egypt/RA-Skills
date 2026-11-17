@@ -1,0 +1,324 @@
+{
+  "id": "candidate-01",
+  "variant": "pin-gap(8.00)",
+  "module": "can-decoupling",
+  "strategy": "pin-satellites",
+  "placements": [
+    {
+      "ref": "C12",
+      "primitiveId": "8b94ad8f223ac406",
+      "xMil": 2375,
+      "yMil": 988.5715,
+      "rotationDeg": 270,
+      "layer": 1,
+      "bbox": {
+        "minX": 2336.425,
+        "minY": 908.2645,
+        "maxX": 2413.575,
+        "maxY": 1068.8785
+      },
+      "pads": [
+        {
+          "primitiveId": "8b94ad8f223ac406e15",
+          "padNumber": "2",
+          "net": "GND",
+          "layer": 1,
+          "x": 2375,
+          "y": 949.1715,
+          "width": 53.1,
+          "height": 55.5,
+          "rotation": 270
+        },
+        {
+          "primitiveId": "8b94ad8f223ac406e16",
+          "padNumber": "1",
+          "net": "+3V3",
+          "layer": 1,
+          "x": 2375,
+          "y": 1027.9715,
+          "width": 53.1,
+          "height": 55.5,
+          "rotation": 270
+        }
+      ]
+    },
+    {
+      "ref": "C13",
+      "primitiveId": "5e7771b59fae170f",
+      "xMil": 2375,
+      "yMil": 1136.6035,
+      "rotationDeg": 270,
+      "layer": 1,
+      "bbox": {
+        "minX": 2342.046,
+        "minY": 1076.8785,
+        "maxX": 2407.957,
+        "maxY": 1196.3245
+      },
+      "pads": [
+        {
+          "primitiveId": "5e7771b59fae170fe14",
+          "padNumber": "2",
+          "net": "GND",
+          "layer": 1,
+          "x": 2375,
+          "y": 1109.0035,
+          "width": 35.4,
+          "height": 31.5,
+          "rotation": 270
+        },
+        {
+          "primitiveId": "5e7771b59fae170fe15",
+          "padNumber": "1",
+          "net": "+3V3",
+          "layer": 1,
+          "x": 2375,
+          "y": 1164.2035,
+          "width": 35.4,
+          "height": 31.5,
+          "rotation": 270
+        }
+      ]
+    },
+    {
+      "ref": "U5",
+      "primitiveId": "6f2bfd9dd5162850",
+      "xMil": 2350,
+      "yMil": 1350,
+      "rotationDeg": 0,
+      "layer": 1,
+      "bbox": {
+        "minX": 2232.9735,
+        "minY": 1204.3245,
+        "maxX": 2454.422,
+        "maxY": 1492.3225
+      },
+      "pads": [
+        {
+          "primitiveId": "6f2bfd9dd5162850e25",
+          "padNumber": "1",
+          "net": "PA12",
+          "layer": 1,
+          "x": 2275,
+          "y": 1244.4,
+          "width": 24.8,
+          "height": 73.4
+        },
+        {
+          "primitiveId": "6f2bfd9dd5162850e26",
+          "padNumber": "2",
+          "net": "GND",
+          "layer": 1,
+          "x": 2325,
+          "y": 1244.4,
+          "width": 24.8,
+          "height": 73.4
+        },
+        {
+          "primitiveId": "6f2bfd9dd5162850e27",
+          "padNumber": "3",
+          "net": "+3V3",
+          "layer": 1,
+          "x": 2375,
+          "y": 1244.4,
+          "width": 24.8,
+          "height": 73.4
+        },
+        {
+          "primitiveId": "6f2bfd9dd5162850e28",
+          "padNumber": "4",
+          "net": "PA11",
+          "layer": 1,
+          "x": 2425,
+          "y": 1244.4,
+          "width": 24.8,
+          "height": 73.4
+        },
+        {
+          "primitiveId": "6f2bfd9dd5162850e29",
+          "padNumber": "8",
+          "net": "GND",
+          "layer": 1,
+          "x": 2275,
+          "y": 1455.6,
+          "width": 24.8,
+          "height": 73.4
+        },
+        {
+          "primitiveId": "6f2bfd9dd5162850e30",
+          "padNumber": "7",
+          "net": "CANH",
+          "layer": 1,
+          "x": 2325,
+          "y": 1455.6,
+          "width": 24.8,
+          "height": 73.4
+        },
+        {
+          "primitiveId": "6f2bfd9dd5162850e31",
+          "padNumber": "6",
+          "net": "CANL",
+          "layer": 1,
+          "x": 2375,
+          "y": 1455.6,
+          "width": 24.8,
+          "height": 73.4
+        },
+        {
+          "primitiveId": "6f2bfd9dd5162850e32",
+          "padNumber": "5",
+          "net": "",
+          "layer": 1,
+          "x": 2425,
+          "y": 1455.6,
+          "width": 24.8,
+          "height": 73.4
+        }
+      ]
+    }
+  ],
+  "measurements": {
+    "moduleBounds": {
+      "minX": 2232.9735,
+      "minY": 908.2645,
+      "maxX": 2454.422,
+      "maxY": 1492.3225
+    },
+    "moduleWidthMil": 221.4485,
+    "moduleHeightMil": 584.058,
+    "minInternalGapMil": 8,
+    "closestInternalGap": {
+      "from": "C12",
+      "to": "C13",
+      "distanceMil": 8
+    },
+    "minExternalComponentGapMil": 105.744,
+    "closestExternalComponentGap": {
+      "from": "U5",
+      "to": "CN1",
+      "distanceMil": 105.744
+    },
+    "pinDistances": [
+      {
+        "member": "C13",
+        "memberPad": "1",
+        "owner": "U5",
+        "ownerPad": "3",
+        "net": "+3V3",
+        "distanceMil": 80.1965,
+        "source": "原理图.pdf 第1页：C13 100nF服务U5.3 VCC，作为近端小电容"
+      },
+      {
+        "member": "C12",
+        "memberPad": "1",
+        "owner": "C13",
+        "ownerPad": "1",
+        "net": "+3V3",
+        "distanceMil": 136.232,
+        "source": "考试说明.pdf 第4页：C12 10uF位于C13外侧，保持先大后小的供电布局次序"
+      }
+    ],
+    "edgeDistances": [
+      {
+        "ref": "C12",
+        "nearestEdge": "top",
+        "distanceMil": 899.6215,
+        "source": "polygon"
+      },
+      {
+        "ref": "C13",
+        "nearestEdge": "top",
+        "distanceMil": 772.1755,
+        "source": "polygon"
+      },
+      {
+        "ref": "U5",
+        "nearestEdge": "top",
+        "distanceMil": 476.1775,
+        "source": "polygon"
+      }
+    ],
+    "limitations": [
+      "15 routed line(s) exist; copper geometry was not checked"
+    ]
+  },
+  "actions": [
+    {
+      "id": "place-C12",
+      "action": "pcb.component.modify",
+      "payload": {
+        "patch": {
+          "rotation": 270,
+          "x": 2375,
+          "y": 988.5715
+        },
+        "primitiveId": "8b94ad8f223ac406"
+      }
+    },
+    {
+      "id": "place-C13",
+      "action": "pcb.component.modify",
+      "payload": {
+        "patch": {
+          "rotation": 270,
+          "x": 2375,
+          "y": 1136.6035
+        },
+        "primitiveId": "5e7771b59fae170f"
+      }
+    },
+    {
+      "id": "save",
+      "action": "pcb.save",
+      "payload": {}
+    }
+  ],
+  "apply": {
+    "version": 1,
+    "meta": {
+      "name": "can-decoupling candidate-01",
+      "description": "Generated by easyeda pcb layout-plan; footprint-anchor coordinates; boardSha256=cb388635cadbb6c689e7fb3a8555375a307a92d90b2a1df726855d340f21a65f; layoutSha256=23c3595ccd9c5cabce9b53d059d09f3371ad5c363e0b65614e9c6a6700d009f4; hashSemantic=sha256(raw-file-bytes)",
+      "project": "ceshi",
+      "doc": "2e719e9419653c72"
+    },
+    "defaults": {},
+    "steps": [
+      {
+        "id": "place-C12",
+        "name": "place C12",
+        "action": "pcb.component.modify",
+        "payload": {
+          "patch": {
+            "rotation": 270,
+            "x": 2375,
+            "y": 988.5715
+          },
+          "primitiveId": "8b94ad8f223ac406"
+        }
+      },
+      {
+        "id": "place-C13",
+        "name": "place C13",
+        "action": "pcb.component.modify",
+        "payload": {
+          "patch": {
+            "rotation": 270,
+            "x": 2375,
+            "y": 1136.6035
+          },
+          "primitiveId": "5e7771b59fae170f"
+        }
+      },
+      {
+        "id": "save",
+        "name": "save PCB checkpoint",
+        "action": "pcb.save"
+      }
+    ]
+  },
+  "files": {
+    "apply": "candidate-01.apply.json",
+    "candidate": "candidate-01.json",
+    "preview": "candidate-01.svg"
+  }
+}

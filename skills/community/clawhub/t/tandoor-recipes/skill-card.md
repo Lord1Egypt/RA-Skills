@@ -1,39 +1,53 @@
-## Description: <br>
-Manage recipes, meal plans, and shopping lists in Tandoor Recipe Manager. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage recipes, meal plans, and shopping lists in Tandoor Recipe Manager.
 
-## Publisher: <br>
-[itsnikhil](https://clawhub.ai/user/itsnikhil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[itsnikhil](https://clawhub.ai/user/itsnikhil)
 
-## Use Case: <br>
-External users and agents use this skill to manage a configured Tandoor Recipe Manager instance, including recipe search and creation, meal planning, and shopping-list updates. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can create recipes, schedule meals, check off shopping-list items, and delete shopping-list entries in the configured Tandoor instance. <br>
-Mitigation: Require user confirmation before mutation or deletion actions and verify the target item IDs and dates before execution. <br>
-Risk: The skill uses a Tandoor API token and configured instance URL. <br>
-Mitigation: Use the least-privileged token Tandoor supports, confirm TANDOOR_URL points to the intended instance, and avoid pasting or logging the token. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Tandoor API Quick Reference](references/API.md) <br>
+## Use Case:
 
+External users and agents use this skill to search Tandoor recipes, inspect recipe details, plan meals, create recipes, and manage shopping-list entries through command-line actions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and Tandoor API result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js plus TANDOOR_URL and TANDOOR_API_TOKEN for live Tandoor API operations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and scripts/package.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The Tandoor API token could be sent over a non-HTTPS URL.
+
+Mitigation: Set TANDOOR_URL to an HTTPS endpoint except for tightly controlled local testing.
+
+Risk: The skill can create recipes, add meal-plan entries, and modify or delete shopping-list items.
+
+Mitigation: Use the narrowest Tandoor API token available and review requested write actions before execution.
+
+## Reference(s):
+
+- [Tandoor API Quick Reference](references/API.md)
+- [ClawHub skill page](https://clawhub.ai/itsnikhil/skills/tandoor-recipes)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Plain text and JSON from command-line output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node, TANDOOR_URL, and TANDOOR_API_TOKEN.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and scripts/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

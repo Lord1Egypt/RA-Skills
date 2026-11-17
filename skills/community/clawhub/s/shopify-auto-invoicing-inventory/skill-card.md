@@ -1,43 +1,57 @@
-## Description: <br>
-Lightweight Shopify order invoicing and inventory operations workflow for detecting new orders, preparing invoice-ready billing data, updating stock tables, and producing simple monthly summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lightweight Shopify order invoicing and inventory operations workflow for detecting new orders, preparing invoice-ready billing data, updating stock tables, and producing simple monthly summaries.
 
-## Publisher: <br>
-[gaelbuenobarthe](https://clawhub.ai/user/gaelbuenobarthe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaelbuenobarthe](https://clawhub.ai/user/gaelbuenobarthe)
 
-## Use Case: <br>
-External Shopify merchants and operators use this skill to review orders, prepare invoice-ready billing rows, reconcile stock after sales, and produce monthly operations summaries before taking external accounting or fulfillment action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow processes Shopify order, billing, tax, and customer contact data. <br>
-Mitigation: Use only data the operator is authorized to process and store generated invoice and report files in protected locations. <br>
-Risk: Bundled scripts create or overwrite CSV files at user-supplied output paths. <br>
-Mitigation: Review output paths before running scripts and write exports to a controlled working directory. <br>
-Risk: Draft invoice rows and stock changes may be incomplete or inaccurate when source order, tax, billing, SKU, or refund data is missing. <br>
-Mitigation: Keep the skill's review-first workflow: flag exceptions, avoid inventing tax data, and have a qualified reviewer confirm uncertain invoice or tax treatment before external use. <br>
+## Use Case:
 
+External Shopify merchants and back-office operators use this skill to review new orders, prepare invoice-ready billing data, reconcile inventory, flag exceptions, and generate monthly operations summaries before taking external accounting or fulfillment actions.
 
-## Reference(s): <br>
-- [Invoice and report templates](artifact/references/templates.md) <br>
-- [ClawHub skill page](https://clawhub.ai/gaelbuenobarthe/shopify-auto-invoicing-inventory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown tables, CSV-ready rows, and local CSV files produced by bundled Python scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review-first outputs; generated invoice, inventory, and report files may contain customer billing, tax, and order data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: CSV exports may contain spreadsheet formulas or customer-controlled values that execute when opened in spreadsheet software.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect inputs and exports, avoid opening files with formula execution enabled, and add spreadsheet-safe escaping before using customer-controlled order or product data.
+
+Risk: Draft invoice data or tax treatment could be mistaken for official accounting compliance.
+
+Mitigation: Keep outputs review-first, avoid claiming invoices were sent, and require accountant review when tax treatment is uncertain.
+
+Risk: Missing billing, SKU, currency, or stock fields can lead to incorrect invoicing or inventory updates.
+
+Mitigation: Flag incomplete orders and negative or low stock as exceptions that require human review before external action.
+
+## Reference(s):
+
+- [Invoice and Report Templates](artifact/references/templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with compact tables, CSV-ready rows, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Review-first outputs; generated CSV files should be inspected before business use.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,80 +1,77 @@
 ---
-name: agntdata-x
-description: "Use one API key to pull X data (posts, profiles, and social graph data) for agents, automations, and analytics. Structured JSON, credit-based pricing, no separa"
-version: 1.0.15
+name: x-twitter-data
+description: "X posts, profiles, followers, and search for agents — audience research and social listening as structured JSON."
+version: 2.0.14
+author: superagnt
+license: MIT-0
+platforms: [macos, linux, windows]
+required_environment_variables:
+  - SUPERAGNT_API_KEY
 metadata:
+  hermes:
+    tags: [twitter-data, x-data, social-listening, research]
   openclaw:
     requires:
       env:
-        - AGNTDATA_API_KEY
+        - SUPERAGNT_API_KEY
       bins:
         - curl
-    primaryEnv: AGNTDATA_API_KEY
+    primaryEnv: SUPERAGNT_API_KEY
     emoji: "⚡"
-    homepage: https://agnt.mintlify.app/apis/social/x
+    homepage: https://superagnt.com/r/ch-x-twitter-data-docs
 ---
 
-# X (Twitter) API
+# X (Twitter) Data
 
-The agntdata X API wraps X surface areas into a single integration. Instead of managing multiple keys, proxies, and rate limits yourself, you call agntdata with one credential and consume structured JSON optimized for downstream AI and analytics. Whether you are building a social listening agent, a content research pipeline, or a creator-intelligence product, this API gives you consistent access to tweets, user profiles, followers, search, and hashtag streams with predictable billing and operational simplicity.
+The superagnt X API wraps X surface areas into a single integration. Instead of managing multiple keys, proxies, and rate limits yourself, you call superagnt with one credential and consume structured JSON optimized for downstream AI and analytics. Whether you are building a social listening agent, a content research pipeline, or a creator-intelligence product, this API gives you consistent access to tweets, user profiles, followers, search, and hashtag streams with predictable billing and operational simplicity.
 
-## Recommended: Install the Plugin
+## Alternative install: the scoped MCP server
 
-**For the best experience, install the OpenClaw plugin for X (Twitter) API instead of this skill.** The plugin provides native MCP tools, automatic authentication, and structured parameter validation.
+If this client speaks MCP, you can connect the X (Twitter) Data facet
+server instead of using this skill's curl calls — the same endpoints below as
+native MCP tools with structured parameters and OAuth sign-in, scoped to this
+capability:
 
-Skill (this document):
-
-```bash
-clawhub install agntdata-x
+```
+https://mcp.superagnt.com/mcp/x
 ```
 
-Plugin (native tools; npm package matches `package.json`):
+That URL publishes full OAuth discovery: an MCP-capable client needs the URL
+and nothing else (approve once in the browser). On clients that hold a bearer
+instead, add it as an `Authorization: Bearer` header. Per-client setup lines:
+https://www.superagnt.com/install?facet=x
 
-```bash
-openclaw plugins install @agntdata/openclaw-x
-```
-
-This skill is useful for environments where plugins are not supported.
+This skill document stays fully usable on curl-only environments — everything
+below works with just the API key.
 
 ## Authentication
 
-Before making API calls, you need an API key. Get one from the [agntdata dashboard](https://app.agntdata.dev/dashboard).
-
-The API key should be available as the `AGNTDATA_API_KEY` environment variable. Every request must include it as a Bearer token:
+Get an API key from the [superagnt app](https://superagnt.com/r/ch-x-twitter-data-key) and export it as
+`SUPERAGNT_API_KEY`. Every request sends it as a Bearer token:
 
 ```
-Authorization: Bearer $AGNTDATA_API_KEY
+Authorization: Bearer $SUPERAGNT_API_KEY
 ```
 
-If the environment variable is not set, ask the user to provide their API key or direct them to https://app.agntdata.dev/dashboard to create one.
+If the variable is not set, ask the user for their key or point them at
+https://superagnt.com/r/ch-x-twitter-data-key.
 
-## API Key Activation
+## Verify the install (do this first)
 
-After setting your API key, activate it by calling the registration endpoint. This only needs to be done once per key:
+One call proves the key, the credit balance, and this source end to end:
 
 ```bash
-curl -X POST https://api.agntdata.dev/v1/register \
-  -H "Authorization: Bearer $AGNTDATA_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{"intendedApis": ["x"], "useCase": "Brief description of your use case"}'
+curl -s https://api.superagnt.com/v1/credits \
+  -H &#x27;Authorization: Bearer $SUPERAGNT_API_KEY&#x27;
 ```
 
-Replace the `useCase` value with a short description of how you plan to use this API.
-
-## Discovery Endpoints
-
-These public endpoints (no API key required) let you explore this platform's capabilities:
-
-```bash
-curl https://api.agntdata.dev/v1/platforms/x
-```
-
-Returns: full endpoint list, OpenAPI spec, features, and use cases.
+A JSON result means you are live. A 401 means the key is wrong or missing; a
+402 means the workspace is out of credits — the superagnt app shows both.
 
 ## Base URL
 
 ```
-https://api.agntdata.dev/v1/data/x
+https://api.superagnt.com/v1/data/x
 ```
 
 ## Available Endpoints
@@ -136,12 +133,13 @@ https://api.agntdata.dev/v1/data/x
 
 ## Tool Schemas
 
-The following JSON defines all available tools with their parameters. Each tool maps to an API endpoint.
+The following JSON defines every operation with its parameters. Each tool maps
+to an API endpoint under the base URL.
 
 ```json
 [
   {
-    "name": "agntdata_x_user_medias_continuation_get",
+    "name": "superagnt_x_user_medias_continuation_get",
     "description": "Continuation User's Media",
     "method": "GET",
     "path": "/user/medias/continuation",
@@ -168,7 +166,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_user_medias_continuation_post",
+    "name": "superagnt_x_user_medias_continuation_post",
     "description": "Continuation User's Media",
     "method": "POST",
     "path": "/user/medias/continuation",
@@ -191,7 +189,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_User_s_Media_get__user_medias",
+    "name": "superagnt_x_User_s_Media_get__user_medias",
     "description": "User's Media",
     "method": "GET",
     "path": "/user/medias",
@@ -213,7 +211,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_User_s_Media_post__user_medias",
+    "name": "superagnt_x_User_s_Media_post__user_medias",
     "description": "User's Media",
     "method": "POST",
     "path": "/user/medias",
@@ -232,7 +230,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_user_likes_continuation_get",
+    "name": "superagnt_x_user_likes_continuation_get",
     "description": "Continuation User's Likes",
     "method": "GET",
     "path": "/user/likes/continuation",
@@ -259,7 +257,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_user_likes_continuation_post",
+    "name": "superagnt_x_user_likes_continuation_post",
     "description": "Continuation User's Likes",
     "method": "POST",
     "path": "/user/likes/continuation",
@@ -282,7 +280,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_User_s_Likes_get__user_likes",
+    "name": "superagnt_x_User_s_Likes_get__user_likes",
     "description": "User's Likes",
     "method": "GET",
     "path": "/user/likes",
@@ -304,7 +302,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_User_s_Likes_post__user_likes",
+    "name": "superagnt_x_User_s_Likes_post__user_likes",
     "description": "User's Likes",
     "method": "POST",
     "path": "/user/likes",
@@ -323,7 +321,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_user_followers_continuation_get",
+    "name": "superagnt_x_user_followers_continuation_get",
     "description": "Continuation User's Followers",
     "method": "GET",
     "path": "/user/followers/continuation",
@@ -350,7 +348,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_user_followers_continuation_post",
+    "name": "superagnt_x_user_followers_continuation_post",
     "description": "Continuation User's Followers",
     "method": "POST",
     "path": "/user/followers/continuation",
@@ -373,7 +371,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_User_s_Followers_get__user_followers",
+    "name": "superagnt_x_User_s_Followers_get__user_followers",
     "description": "User's Followers",
     "method": "GET",
     "path": "/user/followers",
@@ -395,7 +393,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_User_s_Followers_post__user_followers",
+    "name": "superagnt_x_User_s_Followers_post__user_followers",
     "description": "User's Followers",
     "method": "POST",
     "path": "/user/followers",
@@ -414,7 +412,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_user_following_continuation_get",
+    "name": "superagnt_x_user_following_continuation_get",
     "description": "User's Following Continuation",
     "method": "GET",
     "path": "/user/following/continuation",
@@ -441,7 +439,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_user_following_continuation_post",
+    "name": "superagnt_x_user_following_continuation_post",
     "description": "User's Following Continuation",
     "method": "POST",
     "path": "/user/following/continuation",
@@ -460,7 +458,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_User_s_Tweets_get__user_tweets",
+    "name": "superagnt_x_User_s_Tweets_get__user_tweets",
     "description": "User's Tweets",
     "method": "GET",
     "path": "/user/tweets",
@@ -491,7 +489,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_User_s_Tweets_post__user_tweets",
+    "name": "superagnt_x_User_s_Tweets_post__user_tweets",
     "description": "User's Tweets",
     "method": "POST",
     "path": "/user/tweets",
@@ -518,7 +516,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_user_tweets_continuation_get",
+    "name": "superagnt_x_user_tweets_continuation_get",
     "description": "User's Tweets Continuation",
     "method": "GET",
     "path": "/user/tweets/continuation",
@@ -552,7 +550,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_user_tweets_continuation_post",
+    "name": "superagnt_x_user_tweets_continuation_post",
     "description": "User's Tweets Continuation",
     "method": "POST",
     "path": "/user/tweets/continuation",
@@ -583,7 +581,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_User_Details_get__user_details",
+    "name": "superagnt_x_User_Details_get__user_details",
     "description": "User Details",
     "method": "GET",
     "path": "/user/details",
@@ -602,7 +600,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_User_Details_post__user_details",
+    "name": "superagnt_x_User_Details_post__user_details",
     "description": "User Details",
     "method": "POST",
     "path": "/user/details",
@@ -617,7 +615,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_User_About_get__user_about",
+    "name": "superagnt_x_User_About_get__user_about",
     "description": "User About",
     "method": "GET",
     "path": "/user/about",
@@ -635,7 +633,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_tweet_replies_continuation_get",
+    "name": "superagnt_x_tweet_replies_continuation_get",
     "description": "Tweet Replies Continuation",
     "method": "GET",
     "path": "/tweet/replies/continuation",
@@ -658,7 +656,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_tweet_replies_continuation_post",
+    "name": "superagnt_x_tweet_replies_continuation_post",
     "description": "Tweet Replies Continuation",
     "method": "POST",
     "path": "/tweet/replies/continuation",
@@ -677,7 +675,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_tweet_favoriters_continuation_get",
+    "name": "superagnt_x_tweet_favoriters_continuation_get",
     "description": "Tweet User Favoriters Continuation",
     "method": "GET",
     "path": "/tweet/favoriters/continuation",
@@ -700,7 +698,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_tweet_retweets_continuation_get",
+    "name": "superagnt_x_tweet_retweets_continuation_get",
     "description": "Tweet User Retweets Continuation",
     "method": "GET",
     "path": "/tweet/retweets/continuation",
@@ -727,7 +725,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_Tweet_Details_get__tweet_details",
+    "name": "superagnt_x_Tweet_Details_get__tweet_details",
     "description": "Tweet Details",
     "method": "GET",
     "path": "/tweet/details",
@@ -745,7 +743,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_Tweet_Details_post__tweet_details",
+    "name": "superagnt_x_Tweet_Details_post__tweet_details",
     "description": "Tweet Details",
     "method": "POST",
     "path": "/tweet/details",
@@ -760,7 +758,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_Tweet_User_Favoriters_get__tweet_favoriters",
+    "name": "superagnt_x_Tweet_User_Favoriters_get__tweet_favoriters",
     "description": "Tweet User Favoriters",
     "method": "GET",
     "path": "/tweet/favoriters",
@@ -778,7 +776,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_Tweet_User_Retweets_get__tweet_retweets",
+    "name": "superagnt_x_Tweet_User_Retweets_get__tweet_retweets",
     "description": "Tweet User Retweets",
     "method": "GET",
     "path": "/tweet/retweets",
@@ -800,7 +798,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_Tweet_Replies_get__tweet_replies",
+    "name": "superagnt_x_Tweet_Replies_get__tweet_replies",
     "description": "Tweet Replies",
     "method": "GET",
     "path": "/tweet/replies",
@@ -818,7 +816,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_Tweet_Replies_post__tweet_replies",
+    "name": "superagnt_x_Tweet_Replies_post__tweet_replies",
     "description": "Tweet Replies",
     "method": "POST",
     "path": "/tweet/replies",
@@ -833,7 +831,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_User_s_Following_get__user_following",
+    "name": "superagnt_x_User_s_Following_get__user_following",
     "description": "User's Following",
     "method": "GET",
     "path": "/user/following",
@@ -855,7 +853,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_User_s_Following_post__user_following",
+    "name": "superagnt_x_User_s_Following_post__user_following",
     "description": "User's Following",
     "method": "POST",
     "path": "/user/following",
@@ -874,7 +872,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_lists_tweets_continuation_get",
+    "name": "superagnt_x_lists_tweets_continuation_get",
     "description": "Lists Tweets Continuation",
     "method": "GET",
     "path": "/lists/tweets/continuation",
@@ -901,7 +899,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_search_continuation_get",
+    "name": "superagnt_x_search_continuation_get",
     "description": "Search Continuation",
     "method": "GET",
     "path": "/search/search/continuation",
@@ -956,7 +954,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_search_continuation_post",
+    "name": "superagnt_x_search_continuation_post",
     "description": "Search Continuation",
     "method": "POST",
     "path": "/search/search/continuation",
@@ -999,7 +997,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_Topic_Classification_get__ai_topic_classification",
+    "name": "superagnt_x_ai_topic_classification",
     "description": "Topic Classification",
     "method": "GET",
     "path": "/ai/topic-classification",
@@ -1017,7 +1015,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_Detect_post__translate_detect",
+    "name": "superagnt_x_Detect_post__translate_detect",
     "description": "Detect",
     "method": "POST",
     "path": "/translate/detect",
@@ -1032,7 +1030,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_ai_named_entity_recognition",
+    "name": "superagnt_x_ai_named_entity_recognition",
     "description": "Named Entity Recognition",
     "method": "GET",
     "path": "/ai/named-entity-recognition",
@@ -1050,7 +1048,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_Sentiment_Analysis_get__ai_sentiment_analysis",
+    "name": "superagnt_x_Sentiment_Analysis_get__ai_sentiment_analysis",
     "description": "Sentiment Analysis",
     "method": "GET",
     "path": "/ai/sentiment-analysis",
@@ -1068,7 +1066,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_Translate_post__translate",
+    "name": "superagnt_x_Translate_post__translate",
     "description": "Translate",
     "method": "POST",
     "path": "/translate",
@@ -1087,7 +1085,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_Available_Locations___Beta__get__trends_available",
+    "name": "superagnt_x_trends_available_locations",
     "description": "Available Locations (Beta)",
     "method": "GET",
     "path": "/trends/available",
@@ -1097,7 +1095,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_Get_trends_near_a_location__Beta__get__trends",
+    "name": "superagnt_x_Get_trends_near_a_location__Beta__get__trends",
     "description": "Get trends near a location (Beta)",
     "method": "GET",
     "path": "/trends/",
@@ -1115,7 +1113,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_Geo_Search___Beta__get__search_geo",
+    "name": "superagnt_x_Geo_Search___Beta__get__search_geo",
     "description": "Geo Search (Beta)",
     "method": "GET",
     "path": "/search/geo",
@@ -1157,7 +1155,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_Lists_Tweets_get__lists_tweets",
+    "name": "superagnt_x_Lists_Tweets_get__lists_tweets",
     "description": "Lists Tweets",
     "method": "GET",
     "path": "/lists/tweets",
@@ -1179,7 +1177,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_Lists_Details_get__lists_details",
+    "name": "superagnt_x_Lists_Details_get__lists_details",
     "description": "Lists Details",
     "method": "GET",
     "path": "/lists/details",
@@ -1197,7 +1195,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_Search_get__search_search",
+    "name": "superagnt_x_Search_get__search_search",
     "description": "Search",
     "method": "GET",
     "path": "/search/search",
@@ -1247,7 +1245,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_Search_post__search_search",
+    "name": "superagnt_x_Search_post__search_search",
     "description": "Search",
     "method": "POST",
     "path": "/search/search",
@@ -1286,7 +1284,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_Hashtag_get__hashtag_hashtag",
+    "name": "superagnt_x_Hashtag_get__hashtag_hashtag",
     "description": "Hashtag",
     "method": "GET",
     "path": "/hashtag/hashtag",
@@ -1312,7 +1310,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_Hashtag_post__hashtag_hashtag",
+    "name": "superagnt_x_Hashtag_post__hashtag_hashtag",
     "description": "Hashtag",
     "method": "POST",
     "path": "/hashtag/hashtag",
@@ -1339,7 +1337,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_hashtag_continuation_get",
+    "name": "superagnt_x_hashtag_continuation_get",
     "description": "Hashtag Continuation",
     "method": "GET",
     "path": "/hashtag/hashtag/continuation",
@@ -1370,7 +1368,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_x_hashtag_continuation_post",
+    "name": "superagnt_x_hashtag_continuation_post",
     "description": "Hashtag Continuation",
     "method": "POST",
     "path": "/hashtag/hashtag/continuation",
@@ -1406,8 +1404,8 @@ The following JSON defines all available tools with their parameters. Each tool 
 ## Example
 
 ```bash
-curl -X GET &#x27;https://api.agntdata.dev/v1/data/x&#x27; \
-  -H &#x27;X-API-Key: your_api_key_here&#x27; \
+curl -X GET &#x27;https://api.superagnt.com/v1/data/x&#x27; \
+  -H &#x27;Authorization: Bearer $SUPERAGNT_API_KEY&#x27; \
   -H &#x27;Content-Type: application/json&#x27;
 ```
 
@@ -1419,18 +1417,16 @@ curl -X GET &#x27;https://api.agntdata.dev/v1/data/x&#x27; \
 - Developers prototyping LLM tools that need live network data
 - Data teams joining X signals with CRM or warehouse data
 
-## Other Platforms
+## Scope
 
-agntdata provides unified access to social data across multiple platforms. Explore other available APIs:
-
-```bash
-curl https://api.agntdata.dev/v1/platforms
-```
-
-Available platforms: LinkedIn, YouTube, TikTok, X, Instagram, Reddit, Facebook. Each uses the same API key and follows the same patterns.
+This skill covers X (Twitter) Data only — the endpoints listed above,
+nothing else. The same API key also works with superagnt's other data sources
+and platform tools, but those are separate listings that the user installs or
+enables themselves; this skill does not add or enable anything beyond what is
+documented here. The public catalog is at `https://api.superagnt.com/v1/platforms`.
 
 ## Links
 
-- [Documentation](https://agnt.mintlify.app)
-- [API Reference](https://agnt.mintlify.app/apis/social/x)
-- [ClawHub skill](https://clawhub.ai/agntdata/agntdata-x)
+- [Documentation](https://superagnt.com/r/ch-x-twitter-data-docs)
+- [superagnt app / API keys](https://superagnt.com/r/ch-x-twitter-data-key)
+- [This listing](https://clawhub.ai/superagnt/skills/x-twitter-data)

@@ -1,45 +1,60 @@
-## Description: <br>
-TrendRadar scans social media and community sources to identify rising product trends and timing signals before they peak. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TrendRadar scans Xiaohongshu, Weibo, Reddit, Google Trends, and Product Hunt to spot trending products before they peak, then assigns trend direction and buy, wait, or skip signals.
 
-## Publisher: <br>
-[jiajiaoy](https://clawhub.ai/user/jiajiaoy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiajiaoy](https://clawhub.ai/user/jiajiaoy)
 
-## Use Case: <br>
-Developers and consumers use this skill to scan public trend sources for products that are surging, rising, stable, or cooling, then decide whether to analyze, buy, wait, or skip. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases may activate the skill when the user did not intend to run product trend scanning. <br>
-Mitigation: Review or narrow the trigger phrases before installation if accidental activation would be disruptive. <br>
-Risk: The daily briefing command can create recurring notifications if scheduled through cron. <br>
-Mitigation: Add the cron job only when recurring daily trend briefings are desired, and choose the intended channel and region options. <br>
-Risk: The skill depends on live public web and community sources, so trend signals can be incomplete, stale, or platform-dependent. <br>
-Mitigation: Treat outputs as decision support and verify important purchases or business decisions against current source pages before acting. <br>
+## Use Case:
 
+External shoppers, consumer researchers, and shopping-agent developers use TrendRadar to scan live social and community sources for rising product trends, daily hot-item briefings, and follow-up buy or coupon actions.
 
-## Reference(s): <br>
-- [TrendRadar on ClawHub](https://clawhub.ai/jiajiaoy/trendradar) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [Artifact README](README.md) <br>
-- [Artifact Skill Definition](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown trend briefings with source links, trend direction labels, commercial signals, and suggested OpenClaw commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports keyword or all-category scans, region selection for cn/us/global/all, and zh/en output language.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: server release evidence and package.json) <br>
+Risk: The artifact asks agents to append an unrelated promotional feedback link.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ignore or remove the feedback instruction when neutral user-facing responses are required.
+
+Risk: Broad trigger phrases may cause the skill to activate for loosely related trend or shopping queries.
+
+Mitigation: Prefer explicit invocations and keep the documented sibling-skill boundaries for price analysis, coupons, and travel.
+
+Risk: The optional cron example can create recurring Telegram briefings.
+
+Mitigation: Add the cron job only when recurring briefings are intentional and the operator knows how to remove the schedule.
+
+## Reference(s):
+
+- [TrendRadar on ClawHub](https://clawhub.ai/jiajiaoy/skills/trendradar)
+- [OpenClaw](https://openclaw.ai)
+- [Google Trends](https://trends.google.com/trending?geo=US)
+- [Product Hunt](https://www.producthunt.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown text with product rankings, trend signals, commercial timing guidance, and suggested OpenClaw follow-up commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include live web or browser navigation prompts; no API keys are required by the artifact.]
+
+## Skill Version(s):
+
+1.1.5 (source: package.json, _meta.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

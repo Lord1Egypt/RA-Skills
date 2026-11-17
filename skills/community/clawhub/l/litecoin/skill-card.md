@@ -1,39 +1,51 @@
-## Description: <br>
-Assist with Litecoin LTC transactions, address formats, fees, and MWEB privacy features. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assist with Litecoin LTC transactions, address formats, fees, and MWEB privacy features.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and developers use this skill as a concise Litecoin reference for address formats, transaction behavior, fees, wallet options, exchange compatibility, and MWEB privacy considerations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Cryptocurrency transfers are irreversible and address or MWEB support can vary by wallet and exchange. <br>
-Mitigation: Independently verify recipient addresses, wallet compatibility, fees, and exchange support before acting on guidance. <br>
-Risk: Seed phrases and private keys can permanently expose funds if shared. <br>
-Mitigation: Never share seed phrases or private keys, and use cold storage or hardware wallets for large amounts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/litecoin) <br>
+## Use Case:
+
+External users and developers use this skill for concise guidance on Litecoin transactions, address formats, wallet considerations, fees, confirmations, and optional MWEB privacy behavior.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Fee, exchange-support, wallet-support, and MWEB-support statements may not reflect current network or service conditions.
+
+Mitigation: Treat the skill as informational and verify live fees, recipient addresses, wallet behavior, and exchange MWEB support before making transactions.
+
+Risk: Incorrect or unsupported address formats can lead to failed transfers or loss of funds.
+
+Mitigation: Verify destination addresses and service-supported Litecoin address formats before sending funds.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational guidance only; does not execute commands, access wallets, or request credentials.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+**Output Type(s):** [text, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown or plain text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Informational cryptocurrency guidance; not live financial, fee, wallet-support, or exchange-support data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

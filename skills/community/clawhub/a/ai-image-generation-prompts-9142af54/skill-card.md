@@ -1,38 +1,49 @@
-## Description: <br>
-Generate an image of a whimsical, fairytale-inspired floral arch with pastel-colored flowers and delicate ivy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a single English image-generation prompt for creating a whimsical, fairytale-inspired floral arch with pastel-colored flowers and delicate ivy.
 
-## Publisher: <br>
-[starpixel89-svg](https://clawhub.ai/user/starpixel89-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[starpixel89-svg](https://clawhub.ai/user/starpixel89-svg)
 
-## Use Case: <br>
-External users and creators can use this prompt skill to ask an agent for a ready-to-use image generation prompt for a whimsical floral arch scene. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill is static prompt content sourced from an external PDF, so users may need to confirm the prompt fits their brand, rights, and image-generation policy before use. <br>
-Mitigation: Review generated images and the referenced source before publishing or commercial deployment; the scanner found no code execution, sensitive access, or persistence. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/starpixel89-svg/ai-image-generation-prompts-9142af54) <br>
-- [Source PDF referenced by metadata](https://blog.detailsflowers.com/hubfs/AI Image Generation Prompts.pdf) <br>
+## Use Case:
 
+External users and agents use this skill to retrieve a focused image-generation prompt for producing a fairytale-style floral arch image.
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown or plain text prompt] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static image-generation prompt content; no runtime tools or credentials required.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and artifact metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill provides one specific English image prompt, which may not match users who expect multilingual or broader prompt options.
+
+Mitigation: Adapt the prompt language and details before use when a different locale, style, or image-generation target is needed.
+
+## Reference(s):
+
+- [Original source PDF: AI Image Generation Prompts](https://blog.detailsflowers.com/hubfs/AI%20Image%20Generation%20Prompts.pdf)
+- [ClawHub skill page](https://clawhub.ai/starpixel89-svg/skills/ai-image-generation-prompts-9142af54)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Markdown prompt text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single English prompt; no code, credentials, persistence, or external tool calls indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and artifact metadata.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

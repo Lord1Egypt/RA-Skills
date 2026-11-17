@@ -1,42 +1,60 @@
-## Description: <br>
-Generates local Draw.io architecture and flowchart files from preset templates, including e-commerce and CEX exchange architecture diagrams, and can open them in a local Draw.io installation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates editable Draw.io architecture and flowchart files from preset templates or short descriptions, detects a local Draw.io installation, and can open the generated diagram for editing.
 
-## Publisher: <br>
-[coder-knock](https://clawhub.ai/user/coder-knock) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[coder-knock](https://clawhub.ai/user/coder-knock)
 
-## Use Case: <br>
-Developers and architects use this skill to generate editable Draw.io diagrams for system architecture and common process flows. It is useful for quickly creating local diagram artifacts that can be opened, reviewed, and exported in Draw.io. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates local diagram files and may open the local Draw.io application. <br>
-Mitigation: Use a workspace intended for generated diagrams and review generated files before sharing or committing them. <br>
-Risk: Opening diagrams depends on the Draw.io executable found on the local machine. <br>
-Mitigation: Confirm that the Draw.io executable on PATH or in the system install location is legitimate before enabling automatic opening. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate editable Draw.io diagrams for ecommerce systems, CEX exchange architecture, login flows, order flows, approval flows, and generic process documentation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/coder-knock/drawio-coderknock) <br>
-- [Draw.io desktop releases](https://github.com/jgraph/drawio-desktop/releases) <br>
-- [diagrams.net online editor](https://app.diagrams.net/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python commands and generated .drawio or .mmd files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated files are written to the selected workspace and may be opened in the local Draw.io application when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: Local file handling is under-scoped when generating diagram files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a dedicated workspace and review generated output paths before execution.
+
+Risk: Untrusted descriptions or template names may affect generated file names or diagram content.
+
+Mitigation: Use trusted inputs, enforce an allowlist for template values, and ensure XML attribute escaping before broader deployment.
+
+Risk: The skill may auto-open generated files in a local Draw.io installation.
+
+Mitigation: Require explicit confirmation before allowing an agent to open local applications or generated files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/coder-knock/skills/drawio-coderknock)
+- [Publisher profile](https://clawhub.ai/user/coder-knock)
+- [Draw.io desktop releases](https://github.com/jgraph/drawio-desktop/releases)
+- [diagrams.net online editor](https://app.diagrams.net/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with Python commands and generated .drawio or .mmd files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local diagram files in the selected workspace and may attempt to open Draw.io when installed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

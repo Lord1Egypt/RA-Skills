@@ -1,45 +1,55 @@
-## Description: <br>
-You.com connector helper for searching, fetching webpage content, producing cited research and finance answers, and checking account balance through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+You.com (you.com). Use this skill for ANY You.com request — reading, creating, and updating data. Whenever a task involves You.com, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agent users use this skill to route You.com search, content fetching, research, finance research, and account balance requests through the OOMOL oo CLI after inspecting the live connector schema. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a connected You.com account and may involve sensitive account permissions. <br>
-Mitigation: Install and use it only when You.com access through an OOMOL-connected account is intended; review connected account permissions before use. <br>
-Risk: First-time setup may require installing the OOMOL oo CLI. <br>
-Mitigation: Review the installer path and install the CLI only after an auth, connection, CLI, or credit error requires setup. <br>
-Risk: Broad You.com-related requests may select this skill automatically. <br>
-Mitigation: Confirm that the requested task should use You.com through OOMOL before running connector actions. <br>
+## Use Case:
 
+Developers and agents use the skill to search You.com, fetch webpage content, check account balance, and request cited research or finance research through a connected account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-you) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [You.com](https://you.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before constructing action payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence and skill metadata) <br>
+Risk: The required CLI may synchronize additional agent skills beyond this setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI setup and use a verified release; set OO_SKILLS_SYNC_DISABLED=1 for every oo invocation to prevent startup skill synchronization.
+
+Risk: Connected You.com requests may consume credits.
+
+Mitigation: Check the connected account balance and consider credit use before running research or finance research actions.
+
+## Reference(s):
+
+- [You.com API documentation](https://you.com/docs)
+- [oo CLI command reference and environment variables](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md#environment-variables)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Markdown, Guidance]
+
+**Output Format:** [Connector results as JSON, including text answers, citations, fetched webpage content, or account balance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Research responses may include citations; fetched content may be HTML, Markdown, or metadata.]
+
+## Skill Version(s):
+
+1.0.7 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

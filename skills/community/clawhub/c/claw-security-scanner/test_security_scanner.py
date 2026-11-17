@@ -27,7 +27,7 @@ def create_test_skill() -> str:
 API_KEY = "sk_test_1234567890abcdef1234567890abcdef"
 SECRET_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
 database_url = "mysql://user:password123@localhost/db"
-AWS_ACCESS_KEY_ID = "AKIAIOSFODNN7EXAMPLE"
+AWS_ACCESS_KEY_ID = "REDACTED-SECRET"
         """,
         
         # 恶意代码测试

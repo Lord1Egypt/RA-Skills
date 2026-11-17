@@ -1,45 +1,59 @@
-## Description: <br>
-AgentImgHost REST API for uploading, listing, and deleting images, returning direct public CDN URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentImgHost REST API for uploading, listing, and deleting images. Returns direct public CDN URLs.
 
-## Publisher: <br>
-[JacobMaldonado](https://clawhub.ai/user/JacobMaldonado) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jacobmaldonado](https://clawhub.ai/user/jacobmaldonado)
 
-## Use Case: <br>
-Developers, agents, bots, and scripts use this skill to upload images to AgentImgHost, receive public CDN URLs, manage hosted image IDs, and delete images when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Uploaded images are returned as direct public CDN URLs and may expose sensitive visual content. <br>
-Mitigation: Upload only selected images intended for public sharing and review files before upload. <br>
-Risk: The AgentImgHost API key can authorize image-hosting operations if exposed. <br>
-Mitigation: Keep AGENTIMGHOST_API_KEY private and avoid embedding the bearer token in shared logs, prompts, or public artifacts. <br>
-Risk: Deleting the wrong image ID or relying on circular overwrite can remove hosted images unexpectedly. <br>
-Mitigation: Confirm the exact image ID before deletion and disable circular overwrite when preserving older hosted images matters. <br>
+## Use Case:
 
+Developers and agents use this skill to upload image files to AgentImgHost, retrieve direct public CDN URLs, and manage hosted image deletion through the REST API.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/JacobMaldonado/agent-image-hosting) <br>
-- [AgentImgHost Homepage](https://agent-img.com) <br>
-- [AgentImgHost Account Dashboard](https://agent-img.com/account) <br>
-- [AgentImgHost Settings](https://agent-img.com/config) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with REST API endpoints, curl commands, JSON response examples, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AGENTIMGHOST_API_KEY; uploaded images return public CDN URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Uploaded images become publicly accessible by direct URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not upload screenshots or files containing secrets, personal data, customer data, or sensitive metadata.
+
+Risk: Quota limits can automatically delete older hosted images when circular overwrite is enabled.
+
+Mitigation: Disable circular overwrite when older hosted images must be retained.
+
+Risk: The skill requires an AgentImgHost API key that grants upload and management access.
+
+Mitigation: Provide the key only to trusted agents and rotate it if it may have been exposed.
+
+## Reference(s):
+
+- [AgentImgHost](https://agent-img.com)
+- [AgentImgHost upload endpoint](https://agent-img.com/api/upload)
+- [ClawHub skill page](https://clawhub.ai/jacobmaldonado/skills/agent-image-hosting)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AGENTIMGHOST_API_KEY; uploaded images are publicly accessible by direct URL.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

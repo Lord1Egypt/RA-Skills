@@ -1,6 +1,6 @@
 {
   "name": "openclaw-tally",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "type": "module",
   "description": "Task-level efficiency analytics for OpenClaw. Know what your AI actually did — and what it cost.",
   "main": "src/index.js",
@@ -18,13 +18,13 @@
     "migrate": "node -e \"import('./src/ledger.js').then(m => new m.TaskLedger().init())\""
   },
   "dependencies": {
-    "better-sqlite3": "^11.0.0",
-    "zod": "^3.23.0"
+    "better-sqlite3": "^13.0.2",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
-    "vitest": "^2.0.0"
+    "vitest": "^4.1.10"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=22"
   }
 }

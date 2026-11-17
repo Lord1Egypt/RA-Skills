@@ -1,45 +1,56 @@
-## Description: <br>
-4R error recovery framework for recognizing failures, attempting bounded recovery, reporting unresolved issues, and remembering fixes so agent work is not lost silently. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+4R error recovery framework. Recognize, Rescue, Report, Remember. Never lose work silently. Trigger on: 'error', 'failed', 'crash', 'something went wrong', 'retry'.
 
-## Publisher: <br>
-[aptratcn](https://clawhub.ai/user/aptratcn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[aptratcn](https://clawhub.ai/user/aptratcn)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent operators use this skill to recognize task failures, attempt bounded recovery, report unresolved errors, and preserve recovery notes so work is not silently lost.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Persistent error logs may capture sensitive task details, credentials, or other confidential context.
+
+Mitigation: Record only necessary error details, redact secrets, and require approval before writing persistent memory or error logs.
+
+Risk: Updating AGENTS.md, skill files, or workflow guidance can change future agent behavior beyond the current task.
+
+Mitigation: Require human review before modifying agent guidance, skill instructions, or workflow files.
+
+Risk: Recovery steps may involve alternate authentication paths, elevated permissions, package installs, or repeated operations.
+
+Mitigation: Require explicit approval before using credentials, requesting elevated permissions, installing packages, or retrying destructive operations.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use this skill to make agents stop on errors, diagnose common failures, retry only when appropriate, and report clear recovery status to the human user. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic recovery may touch authentication, permissions, workflow files, or other sensitive state. <br>
-Mitigation: Require human approval before using tokens, changing authentication, running privileged fixes, or modifying workflow files. <br>
-Risk: Error reports or saved recovery logs may contain credentials, paths, or other sensitive details. <br>
-Mitigation: Redact secrets and sensitive identifiers before reporting or storing error records. <br>
-Risk: Repeated retries can make a failure worse or obscure the original cause. <br>
-Mitigation: Limit retries to the documented maximum of three attempts and escalate to the human user when recovery fails. <br>
+**Output Format:** [Markdown/text guidance with optional shell command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aptratcn/xiaobai-error-recovery) <br>
-- [README](artifact/README.md) <br>
-- [README_EN](artifact/README_EN.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+**Other Properties Related to Output:** [May include diagnostic categories, bounded retry steps, human escalation notes, and persistent error-log guidance.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with diagnostic text and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include bounded retry plans, error reports, recovery status, and suggested follow-up actions.] <br>
+2.0.0 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-2.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

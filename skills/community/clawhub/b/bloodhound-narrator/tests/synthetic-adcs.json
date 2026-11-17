@@ -1,0 +1,195 @@
+{
+  "meta": {
+    "query": "MATCH p=(n)-[:ADCSESC1|ADCSESC4|ADCSESC6a|AddAllowedToAct|AddKeyCredentialLink|ReadLAPSPassword*1..]->(m) RETURN p",
+    "exportDate": "2026-07-24T09:12:44Z",
+    "bloodhoundVersion": "6.2.0",
+    "domain": "YOURBANK.LOCAL",
+    "note": "SYNTHETIC AD CS / delegation fixture. No real environment."
+  },
+  "paths": [
+    {
+      "id": "adcs-001",
+      "description": "ESC1 - enrollee-supplied subject on a client authentication template",
+      "nodes": [
+        {
+          "id": "n-3001",
+          "label": "Group",
+          "props": {
+            "name": "DOMAIN USERS@YOURBANK.LOCAL",
+            "description": "All domain users",
+            "admincount": false
+          }
+        },
+        {
+          "id": "n-3002",
+          "label": "CertTemplate",
+          "props": {
+            "name": "CORPUSER-AUTH@YOURBANK.LOCAL",
+            "description": "Standard user authentication template",
+            "enrolleesuppliessubject": true,
+            "authenticationenabled": true,
+            "requiresmanagerapproval": false,
+            "schemaversion": 2
+          }
+        },
+        {
+          "id": "n-3003",
+          "label": "EnterpriseCA",
+          "props": {
+            "name": "YOURBANK-ISSUING-CA@YOURBANK.LOCAL",
+            "description": "Issuing certification authority"
+          }
+        },
+        {
+          "id": "n-3004",
+          "label": "Group",
+          "props": {
+            "name": "DOMAIN ADMINS@YOURBANK.LOCAL",
+            "admincount": true,
+            "description": "Domain administrators"
+          }
+        }
+      ],
+      "edges": [
+        { "id": "e-4001", "source": "n-3001", "target": "n-3002", "label": "Enroll" },
+        { "id": "e-4002", "source": "n-3002", "target": "n-3003", "label": "PublishedTo" },
+        { "id": "e-4003", "source": "n-3001", "target": "n-3004", "label": "ADCSESC1" }
+      ]
+    },
+    {
+      "id": "adcs-002",
+      "description": "ESC4 - write access to certificate template enables on-demand ESC1",
+      "nodes": [
+        {
+          "id": "n-3010",
+          "label": "User",
+          "props": {
+            "name": "PKI-OPERATOR@YOURBANK.LOCAL",
+            "description": "PKI operations account",
+            "enabled": true,
+            "hasspn": false,
+            "admincount": false,
+            "pwdlastset": "2023-02-14T10:00:00Z"
+          }
+        },
+        {
+          "id": "n-3011",
+          "label": "CertTemplate",
+          "props": {
+            "name": "WORKSTATION-AUTH@YOURBANK.LOCAL",
+            "description": "Workstation authentication template"
+          }
+        },
+        {
+          "id": "n-3012",
+          "label": "Group",
+          "props": {
+            "name": "DOMAIN ADMINS@YOURBANK.LOCAL",
+            "admincount": true
+          }
+        }
+      ],
+      "edges": [
+        { "id": "e-4010", "source": "n-3010", "target": "n-3011", "label": "WritePKIEnrollmentFlag" },
+        { "id": "e-4011", "source": "n-3010", "target": "n-3012", "label": "ADCSESC4" }
+      ]
+    },
+    {
+      "id": "adcs-003",
+      "description": "RBCD - write access to computer account enables delegation takeover",
+      "nodes": [
+        {
+          "id": "n-3020",
+          "label": "User",
+          "props": {
+            "name": "SVC-DEPLOY@YOURBANK.LOCAL",
+            "description": "Deployment service account",
+            "enabled": true,
+            "hasspn": true,
+            "admincount": false,
+            "pwdlastset": "2021-01-05T07:30:00Z"
+          }
+        },
+        {
+          "id": "n-3021",
+          "label": "Computer",
+          "props": {
+            "name": "FILESRV11.YOURBANK.LOCAL",
+            "description": "Departmental file server",
+            "enabled": true,
+            "unconstraineddelegation": false
+          }
+        }
+      ],
+      "edges": [
+        { "id": "e-4020", "source": "n-3020", "target": "n-3021", "label": "AddAllowedToAct" }
+      ]
+    },
+    {
+      "id": "adcs-004",
+      "description": "Shadow credentials and LAPS read on a Tier 0 adjacent host",
+      "nodes": [
+        {
+          "id": "n-3030",
+          "label": "User",
+          "props": {
+            "name": "HELPDESK-L2@YOURBANK.LOCAL",
+            "description": "Second line support account",
+            "enabled": true,
+            "hasspn": false,
+            "admincount": false,
+            "pwdlastset": "not-a-date"
+          }
+        },
+        {
+          "id": "n-3031",
+          "label": "Computer",
+          "props": {
+            "name": "ADMINJUMP01.YOURBANK.LOCAL",
+            "description": "Administrative jump host holding cached credentials",
+            "enabled": true
+          }
+        },
+        {
+          "id": "n-3032",
+          "label": "Group",
+          "props": {
+            "name": "BACKUP OPERATORS@YOURBANK.LOCAL",
+            "admincount": true,
+            "description": "Backup operators"
+          }
+        }
+      ],
+      "edges": [
+        { "id": "e-4030", "source": "n-3030", "target": "n-3031", "label": "ReadLAPSPassword" },
+        { "id": "e-4031", "source": "n-3030", "target": "n-3031", "label": "AddKeyCredentialLink" },
+        { "id": "e-4032", "source": "n-3031", "target": "n-3032", "label": "MemberOf" }
+      ]
+    },
+    {
+      "id": "adcs-005",
+      "description": "Unrecognised edge label from a newer BloodHound schema",
+      "nodes": [
+        {
+          "id": "n-3040",
+          "label": "User",
+          "props": {
+            "name": "TESTER01@YOURBANK.LOCAL",
+            "enabled": true
+          }
+        },
+        {
+          "id": "n-3041",
+          "label": "Computer",
+          "props": {
+            "name": "LAB01.YOURBANK.LOCAL",
+            "enabled": true
+          }
+        }
+      ],
+      "edges": [
+        { "id": "e-4040", "source": "n-3040", "target": "n-3041", "label": "SomeFutureEdgeV7" }
+      ]
+    }
+  ]
+}

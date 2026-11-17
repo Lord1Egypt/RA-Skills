@@ -1,45 +1,56 @@
-## Description: <br>
-Fast response and generation of short videos with Google Veo 3.1 Fast. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fast response and generation of short videos with Google Veo 3.1 Fast.
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-Developers and external users use this skill to invoke the dLazy CLI for Google Veo 3.1 Fast short video generation from text, image frames, or video-extension inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive credentials for the dLazy API and stores authentication in local CLI configuration or accepts DLAZY_API_KEY per invocation. <br>
-Mitigation: Install and run it only in an environment intended for dLazy access, rotate or revoke API keys from the dLazy dashboard when needed, and avoid exposing local CLI configuration to unrelated agents. <br>
-Risk: The authoritative security verdict is suspicious and warns about high-authority workflows and approval bypass in the scanned skill set. <br>
-Mitigation: Review commands before execution, avoid approval-bypass modes, and limit the environment to credentials and account permissions that are appropriate for the requested generation task. <br>
-Risk: Prompts and referenced local media files are sent to dLazy API and file-hosting endpoints for processing. <br>
-Mitigation: Do not submit confidential or restricted prompts, images, videos, or audio unless the user has approved use of the external dLazy service. <br>
+## Use Case:
 
+Developers and agent users can create short videos from text prompts or supplied frames, or extend an existing video, through dLazy's hosted generation service.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dlazyai/dlazy-veo-3-1-fast) <br>
-- [dLazy CLI Source](https://github.com/dlazyai/cli) <br>
-- [dLazy CLI npm Package](https://www.npmjs.com/package/@dlazy/cli) <br>
-- [dLazy Homepage](https://dlazy.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return generated media URLs or an asynchronous task identifier from the dLazy service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and release evidence) <br>
+Risk: Prompts and local image, video, or audio inputs are sent to dLazy's hosted API or media storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending confidential material and review dLazy's service terms and data handling before use.
+
+Risk: The security review is partial and does not establish how the login step supports video generation.
+
+Mitigation: Review the CLI login flow and disclosures, and use the service only if you trust the dLazy CLI and API.
+
+## Reference(s):
+
+- [dLazy CLI source code (metadata link)](https://github.com/dlazy-ai/cli)
+- [dLazy CLI on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy service](https://dlazy.com)
+- [dLazy API key dashboard](https://dlazy.com/dashboard/organization/api-key)
+
+## Skill Output:
+
+**Output Type(s):** [Video, JSON, Files]
+
+**Output Format:** [JSON response with generated media URLs, or a saved media file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generation mode, duration, aspect ratio, and resolution are configurable; asynchronous jobs can return a task identifier.]
+
+## Skill Version(s):
+
+1.3.40 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-Headless Google Meet bot that joins meetings and captures live captions as transcripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Headless Google Meet bot that joins meetings and captures live captions as transcripts.
 
-## Publisher: <br>
-[sumansid](https://clawhub.ai/user/sumansid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sumansid](https://clawhub.ai/user/sumansid)
 
-## Use Case: <br>
-Developers and agent users use this skill to join Google Meet calls with a meeting bot, capture live captions as transcripts, and request meeting screenshots for visual context. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The bot can capture and share sensitive meeting visuals and transcripts. <br>
-Mitigation: Use only with appropriate participant consent, set a duration or stop the bot when done, and protect or delete saved transcripts and screenshots after use. <br>
-Risk: A saved Google session can be reused by the bot. <br>
-Mitigation: Prefer guest mode or a dedicated low-privilege Google account, and protect or delete ~/.openutter/auth.json after use. <br>
-Risk: The release evidence reports an unsafe shell command path and browser automation that may disguise automation. <br>
-Mitigation: Review commands before execution, run in a constrained environment, and install only after accepting the security guidance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sumansid/openutter) <br>
-- [OpenUtter homepage](https://github.com/sumansid/openutter) <br>
-- [Recall.ai Google Meet bot reference](https://www.recall.ai/blog/how-i-built-an-in-house-google-meet-bot) <br>
+## Use Case:
 
+Developers and agents use this skill to join authorized Google Meet sessions, capture live-caption transcripts, retrieve meeting summaries, and send meeting screenshots when visual context is requested.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and transcript or screenshot file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local transcript text files and meeting screenshot image files during bot operation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can join meetings, capture transcripts, take screenshots, and save a reusable Google session on disk.
+
+Mitigation: Use it only for meetings where bot attendance, recording, transcription, and screenshot capture are authorized; protect or delete ~/.openutter/auth.json when it is no longer needed.
+
+Risk: Server security evidence reports a confirmed shell-command injection risk.
+
+Mitigation: Avoid untrusted channel or target values, prefer pinned local dependencies, and review execution paths before using the skill in sensitive environments.
+
+Risk: Meeting transcripts and screenshots may contain sensitive content.
+
+Mitigation: Limit access to the local OpenUtter workspace and review transcript or image contents before sharing them outside the meeting context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sumansid/skills/openutter)
+- [OpenUtter homepage](https://github.com/sumansid/openutter)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Text, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, transcript text, status messages, and screenshot file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates meeting transcript text files, screenshot images, and optional saved browser session files on the local machine.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

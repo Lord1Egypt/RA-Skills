@@ -1,39 +1,52 @@
-## Description: <br>
-提供SEM投放的可落地指南与SOP。在开展SEM投放相关工作时调用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides actionable SEM campaign guidance and SOPs for account structure, bidding, budgeting, optimization, reporting, and compliance.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[codekungfu](https://clawhub.ai/user/codekungfu)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Marketing practitioners and growth teams use this skill to plan, run, and review SEM campaigns across paid search channels such as Baidu and Google. It helps structure accounts, select bidding and budget approaches, optimize campaigns, and maintain compliance checks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Advertising guidance may be applied without checking current platform-specific policies or regulated-industry rules.
+
+Mitigation: Verify current ad platform policies, legal advertising requirements, and required industry credentials before acting on the guidance.
+
+Risk: SEM recommendations can affect campaign spend and return on investment if treated as automated account instructions.
+
+Mitigation: Use the skill as advisory guidance only and have a qualified campaign owner review budgets, bids, and campaign changes before implementation.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Marketing practitioners and business teams use this skill to plan and optimize SEM campaigns, including account structure, bidding, budgets, tracking, reporting, and compliance review. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: SEM campaign changes can affect budgets, landing pages, tracking, and regulated-industry compliance. <br>
-Mitigation: Manually review real campaign changes before applying them in an ad platform, especially for budgets, landing pages, tracking setup, and regulated-industry requirements. <br>
+**Output Format:** [Markdown guidance with bullet-point SOPs]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CodeKungfu/sem-ads) <br>
-- [Publisher profile](https://clawhub.ai/user/CodeKungfu) <br>
+**Other Properties Related to Output:** [Advisory content only; no executable code, account automation, persistence, or credential handling.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance and SOP text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces planning, optimization, reporting, and compliance guidance for SEM work; it does not directly control ad accounts.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

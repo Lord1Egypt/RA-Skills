@@ -1,40 +1,53 @@
-## Description: <br>
-Generates a daily AI digest from current GitHub and Hacker News signals, formats practical project analysis, and delivers plus archives the report in Feishu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily AI digest skill that fetches trending GitHub AI/LLM/agent projects and Hacker News discussions, formats a structured report with value analysis, sends it to a user via Feishu, and prepends it to a Feishu document.
 
-## Publisher: <br>
-[ssyvonne](https://clawhub.ai/user/ssyvonne) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ssyvonne](https://clawhub.ai/user/ssyvonne)
 
-## Use Case: <br>
-Developers, researchers, and product teams use this skill to monitor AI agent, LLM, and automation projects and receive a concise daily report with practical follow-up recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reports may be sent or archived to the wrong Feishu user or document if placeholders are not configured correctly. <br>
-Mitigation: Set the Feishu user ID and document tokens only to intended destinations before use, and keep a dedicated archive or backlog document so mistaken inserts are easy to find and reverse. <br>
-Risk: Trending-project summaries may be incomplete or misleading if used without review. <br>
-Mitigation: Review the generated report and recommended quick-start project before relying on it for planning or adoption decisions. <br>
+## Use Case:
 
+External users and developers use this skill to generate a daily AI trend digest, deliver it through Feishu, and maintain a newest-first Feishu document archive with optional backlog entries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ssyvonne/github-ai-daily-report) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with delivery and archive status summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes selected projects, value analysis, a recommended quick-start project, Feishu delivery status, and archive status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Automated report content can be written to unintended Feishu users or documents if destination identifiers are configured incorrectly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the Feishu open_id and document tokens before use, and enable the optional backlog token only when project-tracking entries should be written outside the daily archive.
+
+Risk: Daily trend reports depend on public search results and may include outdated, low-signal, or misleading project descriptions.
+
+Mitigation: Review the generated report before acting on recommendations or adding projects to a backlog.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ssyvonne/skills/github-ai-daily-report)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with concise completion summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Report content is delivered to a configured Feishu user and prepended to a configured Feishu document when the required tokens are available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

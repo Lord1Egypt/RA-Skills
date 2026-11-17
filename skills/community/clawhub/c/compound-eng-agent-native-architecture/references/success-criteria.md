@@ -10,7 +10,7 @@ You've built an agent-native application when:
 - [ ] Changing behavior means editing prompts, not refactoring code
 
 ## Implementation
-- [ ] System prompt includes dynamic context about app state
+- [ ] Dynamic app state reaches the provider as labeled runtime data or tool results, outside trusted instructions; follow [dynamic-context-injection.md](./dynamic-context-injection.md)
 - [ ] Every UI action has a corresponding agent tool (action parity)
 - [ ] Agent tools are documented in system prompt with user vocabulary
 - [ ] Agent and user work in the same data space (shared workspace)
@@ -41,4 +41,4 @@ Can it figure out how to accomplish it, operating in a loop until it succeeds?
 
 If yes, you've built something agent-native.
 
-If it says "I don't have a feature for that" -- your architecture is still too constrained.
+If it says "I don't have a feature for that", your architecture is still too constrained.

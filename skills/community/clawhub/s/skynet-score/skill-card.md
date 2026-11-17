@@ -1,41 +1,54 @@
-## Description: <br>
-Use for searching CertiK Skynet project scores, looking up blockchain project security ratings, comparing score breakdowns, and integrating the public Skynet project search endpoint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search CertiK Skynet project scores, retrieve blockchain project security ratings, compare score breakdowns, and show integration examples for the public project search endpoint.
 
-## Publisher: <br>
-[certik-ai](https://clawhub.ai/user/certik-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[certik-ai](https://clawhub.ai/user/certik-ai)
 
-## Use Case: <br>
-Developers, analysts, and agent users use this skill to search blockchain projects by keyword and summarize CertiK Skynet scores, tiers, update times, and score breakdowns. It can also provide minimal Python or curl examples for integrating the public project search endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends project keywords supplied by the user to CertiK's public API. <br>
-Mitigation: Avoid submitting confidential or sensitive project names unless sharing them with CertiK's public API is acceptable. <br>
-Risk: The skill relies on executing a bundled Python script with outbound HTTPS access. <br>
-Mitigation: Review the script and run it only in environments where outbound requests to open.api.certik.com are permitted. <br>
+## Use Case:
 
+Developers, analysts, and external users use this skill to look up blockchain project Skynet scores, tiers, update times, and component score breakdowns from CertiK's public project search API.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/certik-ai/skynet-score) <br>
-- [CertiK public project API](https://open.api.certik.com/projects) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown summaries with optional bash, Python, curl, or JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns score data from CertiK's public API and should not invent scores when no match is returned.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Project search keywords are sent to CertiK's public API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that requested project names or keywords are appropriate to send to the public endpoint before execution.
+
+Risk: The skill runs a bundled Python script with outbound HTTPS access.
+
+Mitigation: Review the script and permit network access only when the user intends to query CertiK's public API.
+
+## Reference(s):
+
+- [CertiK Public Projects API](https://open.api.certik.com/projects)
+- [CertiK Public API Base URL](https://open.api.certik.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown summaries with optional JSON, Python, or curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include raw API payload excerpts when requested; results depend on the public CertiK API response.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,48 @@
-## Description: <br>
-Deep risk assessment workflow--identifying risks, likelihood and impact, mitigation plans, owners, residual risk acceptance, and tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep risk assessment workflow-identifying risks, likelihood and impact, mitigation plans, owners, residual risk acceptance, and tracking.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mike47512](https://clawhub.ai/user/mike47512)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees, external collaborators, developers, and project owners use this skill to structure risk assessments for launches, migrations, vendors, audit requests, and operational changes. It guides them from scope and stakeholder alignment through risk identification, scoring, mitigation ownership, residual risk acceptance, and review tracking.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Risk assessments may include sensitive business, legal, financial, security, or operational information.
+
+Mitigation: Use the skill only in workspaces and model settings appropriate for the sensitivity of the data, and avoid sharing confidential details when those controls are not in place.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Teams use this skill to structure risk assessments for launches, migrations, vendor changes, audit requests, and operational changes. It guides scope definition, stakeholder alignment, risk identification, analysis, mitigation planning, ownership, and review tracking. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, text]
 
-## Known Risks and Mitigations: <br>
-Risk: Risk assessment discussions may include sensitive project, vendor, security, legal, or operational details. <br>
-Mitigation: Use normal care when sharing sensitive risk details in agent conversations and follow the organization's data handling rules. <br>
+**Output Format:** [Markdown guidance with checklists and structured assessment steps]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mike47512/risk) <br>
-- [Publisher profile](https://clawhub.ai/user/mike47512) <br>
+**Other Properties Related to Output:** [Produces advisory risk-assessment structure; no tool calls, code execution, persistence, or unusual access are requested.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance, checklists, and risk assessment prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, external access, or persistence behavior is introduced by the artifact.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,64 @@
-## Description: <br>
-Helps agents create, query, copy, update, change status for, and manage creatives and related materials for Lingqu banner promotions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through Lingqu Banner promotion creation, querying, copying, updates, status transitions, creative setup, and linked material management.
 
-## Publisher: <br>
-[cloudmusiccio](https://clawhub.ai/user/cloudmusiccio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cloudmusiccio](https://clawhub.ai/user/cloudmusiccio)
 
-## Use Case: <br>
-Promotion operators and their agents use this skill to manage Lingqu banner promotion workflows, including creation, reservation, copying, status changes, creative material updates, image validation, and promotion lookup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change real promotion and administrator state. <br>
-Mitigation: Use it only in controlled environments with expected MWS access, require explicit user intent before create, copy, update, status, or admin actions, and review write actions before execution. <br>
-Risk: Helper scripts can automatically install packages while processing images. <br>
-Mitigation: Preinstall and pin Pillow and requests in the runtime environment instead of allowing runtime package installation. <br>
-Risk: Image processing can fetch user-supplied URLs. <br>
-Mitigation: Restrict image URLs to trusted sources where possible and validate images before upload or promotion material updates. <br>
+## Use Case:
 
+Employees and operations agents use this skill to manage Lingqu Banner promotions through MWS, including schedule reservation, admin assignment, creative payload validation, and image upload workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cloudmusiccio/skills/promotion-apply-skills) <br>
-- [Creative Dynamic Material Reference](artifact/references/creative-dynamic-material.md) <br>
-- [Image Upload NOS Reference](artifact/references/image-upload-nos.md) <br>
-- [MWS Shared Reference](artifact/references/mws-shared.md) <br>
-- [Phase One Reserve Reference](artifact/references/phase-one-reserve.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON payload examples, and Python helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate local intermediate files for promotion details, payload validation, and image resizing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.11 (source: server release metadata) <br>
+Risk: The skill can make real banner promotion changes, add promotion admins, and upload assets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a trusted MWS environment with appropriate authorization, dry-run checks where supported, and human confirmation before write operations.
+
+Risk: Helper scripts may install Python dependencies at runtime.
+
+Mitigation: Remove runtime package installation before deployment and pin required dependencies in the execution environment.
+
+Risk: Image tooling can download remote image URLs without an allowlist.
+
+Mitigation: Restrict remote image downloads to approved domains or require local files before processing and upload.
+
+Risk: NOS upload tokens are used during image upload workflows.
+
+Mitigation: Store tokens only in a private temporary directory and clean them up immediately after upload.
+
+## Reference(s):
+
+- [Creative Dynamic Material Reference](references/creative-dynamic-material.md)
+- [Image Upload NOS Reference](references/image-upload-nos.md)
+- [MWS Shared Reference](references/mws-shared.md)
+- [Phase One Reserve Reference](references/phase-one-reserve.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Markdown]
+
+**Output Format:** [Markdown guidance with MWS shell commands, JSON payloads, and validation instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local validation files, resized image assets, and promotion-update payloads during agent execution.]
+
+## Skill Version(s):
+
+1.0.11 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

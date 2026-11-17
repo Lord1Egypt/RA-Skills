@@ -1,42 +1,57 @@
-## Description: <br>
-OpenClaw Skills Weekly tracks trending ClawHub skills and generates GitHubAwesome-style YouTube video scripts with two-track ranking for Movers and Rockets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Skills Weekly tracks trending ClawHub skills and generates GitHubAwesome-style YouTube video scripts with two-track ranking for Movers and Rockets.
 
-## Publisher: <br>
-[ademczuk](https://clawhub.ai/user/ademczuk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ademczuk](https://clawhub.ai/user/ademczuk)
 
-## Use Case: <br>
-Developers and content operators use this skill to collect ClawHub skill metrics, rank weekly movers and new releases, and generate Markdown reports plus voice-ready video scripts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The default workflow can make broad external API calls and use API keys for script generation and optional X/Twitter capture. <br>
-Mitigation: Review before installing, run only where external calls are acceptable, prefer --skip-x unless X/Twitter capture is required, and provide least-privilege API keys. <br>
-Risk: The workflow can copy or replace a local metrics database from a Docker container. <br>
-Mitigation: Use --no-bridge unless Docker-to-host database copying is explicitly intended, and keep backups of local metrics data. <br>
-Risk: The skill may install Python packages and write local reports, JSON output, and SQLite snapshot data. <br>
-Mitigation: Run in a controlled workspace where package installation and local report or database writes are expected. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ademczuk/skills-weekly) <br>
-- [ClawHub public skills API](https://clawhub.ai/api/v1/skills) <br>
+## Use Case:
 
+Developers and content operators use this skill to snapshot ClawHub skill metrics, rank weekly movement, harvest source material, and produce Markdown reports plus voice-ready video scripts.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown reports, voice-ready plain text scripts, structured JSON, and CLI status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May also write local SQLite snapshot data for ranking history.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Default execution can install mutable Python dependencies and make multiple external API calls.
+
+Mitigation: Run in an isolated environment, review dependencies before installation, and use limited-scope API tokens.
+
+Risk: The full pipeline can attempt X/Twitter capture and use API keys from the environment.
+
+Mitigation: Use --skip-x unless social signal capture is required, and provide only the environment variables needed for the selected mode.
+
+Risk: The default runner can attempt Docker/container database access through its bridge step.
+
+Mitigation: Use --no-bridge unless container history import is explicitly required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ademczuk/skills/skills-weekly)
+- [ClawHub skills API](https://clawhub.ai/api/v1/skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, voice-ready text scripts, structured JSON, and terminal status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local SQLite history and dated report artifacts when run.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

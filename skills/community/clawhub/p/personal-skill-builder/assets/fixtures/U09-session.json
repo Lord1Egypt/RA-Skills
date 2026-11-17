@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "mode": "quick",
+  "skill_name": "family-inspection-cards",
+  "display_name": "家庭巡检卡片",
+  "domain": "家庭记录",
+  "task": "把用户提供的待看事项整理成日常巡检卡片，不操作家电。",
+  "audience": "",
+  "inputs": ["事项编号", "事项描述", "用户提供的照片（可选）"],
+  "output": "简体中文 Markdown 卡片，逐项保留编号，标待确认项。",
+  "preferences": ["短句"],
+  "success_criteria": ["每个事项保留原编号", "未知完成情况写待确认", "不把待看事项写成已检查"],
+  "constraints": ["只整理输入", "不操作家电", "不推断现场状态"],
+  "permissions": ["允许在本次指定测试目录写入技能与制作记录"],
+  "materials": [],
+  "assumptions": [],
+  "answers": [{"question":"交付什么？","answer":"Markdown卡片","source":"旧会话第2轮"}],
+  "open_questions": [{"id":"G01","question":"卡片给谁使用？","blocking":false,"reason":"决定表达方式","status":"open"}],
+  "stage": "interview",
+  "pending_question": "卡片给谁使用？",
+  "next_action": "ask_one_question"
+}

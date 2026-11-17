@@ -1,44 +1,58 @@
-## Description: <br>
-数据分析技能包 - 自动抓取、清洗、可视化、生成报告。适合数据分析师、运营人员，告别 Excel 手工操作。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+数据分析技能包 - 自动抓取、清洗、可视化、生成报告。适合数据分析师、运营人员，告别 Excel 手工操作。
 
-## Publisher: <br>
-[gdp6539](https://clawhub.ai/user/gdp6539) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[gdp6539](https://clawhub.ai/user/gdp6539)
 
-## Use Case: <br>
-Data analysts, operations teams, market researchers, product managers, and finance users use this skill to fetch data, clean datasets, create visualizations, and generate analysis reports from common web, API, database, CSV, JSON, and Excel sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can fetch data from web, API, and database sources that may require credentials or authorization. <br>
-Mitigation: Use only authorized data sources and keep API tokens, database passwords, and other secrets in environment variables or a secret manager instead of hardcoding them in configuration. <br>
-Risk: Generated analysis reports may include sensitive data or conclusions that need human review. <br>
-Mitigation: Review generated reports before sharing them and confirm that the underlying data, charts, and conclusions are appropriate for the audience. <br>
-Risk: PDF export calls an external command-line tool. <br>
-Mitigation: Use PDF export only in a reviewed local environment and confirm the external tool and output paths before generating or distributing PDF reports. <br>
+## Use Case:
 
+External data analysts, operations staff, and business users use this skill to automate data collection, dataset cleaning, chart creation, and report generation from web, API, CSV, and JSON sources.
 
-## Reference(s): <br>
-- [Artifact README](artifact/README.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/gdp6539/data-analysis-skill) <br>
-- [Publisher Profile](https://clawhub.ai/user/gdp6539) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript command examples, JSON configuration examples, generated charts, and Markdown, HTML, or PDF reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes cleaned datasets, visualization files, and reports to local output paths selected by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The server security summary marks the release suspicious because it overstates capabilities and includes under-scoped network, file-writing, and shell-execution behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and constrain execution before installing; use dedicated input/output folders and run it only against trusted URLs and datasets.
+
+Risk: Input sources, command arguments, or checked-in configuration can expose secrets or sensitive data.
+
+Mitigation: Avoid passing secrets in command-line arguments or committed config files; use managed credentials and redact outputs before sharing reports.
+
+Risk: PDF generation is specifically discouraged by the server security guidance until shell execution and filename validation are fixed.
+
+Mitigation: Generate Markdown or HTML reports, or disable PDF output, until the publisher provides validation fixes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gdp6539/skills/data-analysis-skill)
+- [Publisher profile](https://clawhub.ai/user/gdp6539)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, and generated CSV, SVG, HTML, Markdown, or PDF files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May fetch data from URLs or APIs and write generated datasets, charts, and reports to local output paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

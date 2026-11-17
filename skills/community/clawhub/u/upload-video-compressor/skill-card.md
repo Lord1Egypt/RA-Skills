@@ -1,40 +1,54 @@
-## Description: <br>
-Compress oversized videos into upload-ready files for creators, ecommerce teams, and operators while keeping practical clarity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compress oversized videos into upload-ready files for creators, ecommerce teams, and operators while keeping practical clarity.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Creators, ecommerce teams, and operators use this skill to choose upload-safe video compression settings, estimate size reductions, and explain quality tradeoffs before publishing or handoff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Compression can reduce quality or overwrite a valuable source video if applied destructively. <br>
-Mitigation: Keep the original video unchanged, write compressed outputs to a new filename, and confirm before replacing any existing file. <br>
+## Use Case:
 
+Creators, ecommerce teams, operators, and external users use this skill to choose practical video compression settings when files are too large for uploads, publishing, review handoff, or transfer limits.
 
-## Reference(s): <br>
-- [Output Template](references/output-template.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Leooooooow/upload-video-compressor) <br>
-- [Publisher Profile](https://clawhub.ai/user/Leooooooow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown compression plan with an input summary, output profile, estimated reduction, and quality tradeoff notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a recommended next compression step when the first profile is still too large.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill may require an agent to work with user-provided video files that contain sensitive or proprietary content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installing or using it, confirm you are comfortable letting the agent work with the specific video files you provide.
+
+Risk: Compression choices can affect quality, platform compatibility, and whether the final file meets upload size limits.
+
+Mitigation: Review compression settings and size-quality tradeoffs when quality, platform compatibility, or file-size limits matter.
+
+## Reference(s):
+
+- [Output Template](references/output-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/leooooooow/skills/upload-video-compressor)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown compression plan with output profile, estimates, and tradeoffs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include estimated output size, estimated reduction, quality tradeoffs, and a next compression step.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

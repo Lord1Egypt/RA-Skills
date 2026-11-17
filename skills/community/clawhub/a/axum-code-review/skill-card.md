@@ -1,44 +1,56 @@
-## Description: <br>
-Reviews axum web framework code for routing patterns, extractor usage, middleware, state management, and error handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews axum web framework code for routing patterns, extractor usage, middleware, state management, and error handling.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill to review Rust HTTP services that use axum, tower, or hyper, with checks for routing, extractors, state, middleware, and error handling before reporting findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides an agent to inspect Rust project files for review evidence. <br>
-Mitigation: Use it in environments where reading the target codebase is acceptable. <br>
-Risk: The workflow references a separate review-verification-protocol skill for category-specific checks. <br>
-Mitigation: Use that referenced skill only when it is available and trusted in the review environment. <br>
-Risk: Code review findings can be misleading when they are not grounded in the current project tree. <br>
-Mitigation: Require Cargo.toml version and edition checks plus current file-line citations before reporting findings. <br>
+## Use Case:
 
+Developers and engineers use this skill to review Rust Axum services for routing, extractor ordering, state handling, middleware, and response/error handling issues before submitting findings.
 
-## Reference(s): <br>
-- [Routing](references/routing.md) <br>
-- [Extractors](references/extractors.md) <br>
-- [Middleware](references/middleware.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown code review findings with file-line citations and severity labels] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings should cite current-tree evidence and include severity.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill prompts an agent to read project code and produce review findings, so unsupported or stale evidence could lead to misleading results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require each finding to cite the current file and line and to pass the skill's documented review gates before reporting.
+
+Risk: The skill may rely on a separate review-verification-protocol skill when available, which can affect the depth of category-specific checks.
+
+Mitigation: Confirm whether the companion verification protocol is available and document any review categories that could not be checked with it.
+
+## Reference(s):
+
+- [Axum Code Review skill page](https://clawhub.ai/anderskev/skills/axum-code-review)
+- [Routing reference](references/routing.md)
+- [Extractors reference](references/extractors.md)
+- [Middleware reference](references/middleware.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown review findings with file and line citations, severity, and concise issue descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings are gated on reading current project files and matching category-specific review checks before reporting.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

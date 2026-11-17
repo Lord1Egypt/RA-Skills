@@ -1,0 +1,46 @@
+# macOS and editor files
+.DS_Store
+*.swp
+*.swo
+
+# Python caches and local environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Secrets and browser credentials
+.env
+.env.*
+!.env.example
+cookies.txt
+cookies*.txt
+Cookies
+Cookies-journal
+
+# Backups, temporary files, and logs
+*.bak
+*.bak.*
+*.bak[0-9]*
+*.bak*
+*.tmp
+*.log
+*.part
+*.ytdl
+
+# Default output directory
+downloads/
+
+# Downloaded media and generated transcripts
+*.mp4
+*.mov
+*.mkv
+*.webm
+*.wav
+*.mp3
+*.m4a
+transcript.txt
+transcript.srt
+transcript.*.json
+post_caption.txt
+metadata.json

@@ -1,43 +1,61 @@
-## Description: <br>
-Collect Indeed job listings through Dataify Scraper API from one or more Indeed job URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collect structured Indeed job-posting data from a known Indeed job URL. Do not use for company profiles or broad job discovery without an Indeed URL.
 
-## Publisher: <br>
-[dataify-server](https://clawhub.ai/user/dataify-server) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataify-server](https://clawhub.ai/user/dataify-server)
 
-## Use Case: <br>
-Developers, analysts, and recruiting teams use this skill to create Dataify collection tasks for Indeed job listings by URL. It helps users review required parameters, confirm defaults, submit Dataify builder requests, and report task identifiers and status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dataify API tokens are sensitive and may be exposed if passed or displayed carelessly. <br>
-Mitigation: Use DATAIFY_API_TOKEN through a secure local environment or secret mechanism when possible, avoid echoing tokens, and only save a provided token after explicit user consent. <br>
-Risk: The skill can submit Indeed job URLs to Dataify and create external collection tasks. <br>
-Mitigation: Show the required Markdown confirmation table, review exact parameters with the user, and call the API only after explicit confirmation. <br>
+## Use Case:
 
+External users and developers use this skill to collect structured job listing data from explicit Indeed job URLs through Dataify and retrieve the final JSON result when available.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dataify-server/dataify-indeed-job-listings) <br>
-- [Dataify dashboard](https://dashboard.dataify.com?utm_source=skill) <br>
-- [Dataify login](https://dashboard.dataify.com/login?utm_source=skill) <br>
-- [Dataify builder endpoint](https://scraperapi.dataify.com/builder?platform=1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, confirmation tables, shell commands, and JSON API responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompts users to confirm parameters before API calls and reports task ID or status fields when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill handles Dataify API tokens and can accept a token on the command line.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid passing tokens with --token; use a session-scoped environment variable or credential manager and never print token values.
+
+Risk: The skill loads sibling dataify-task-operations code at runtime to monitor and download task results.
+
+Mitigation: Install only after reviewing and trusting the sibling dataify-task-operations code that will run in the same environment.
+
+Risk: Persistent shell-profile token setup may leave credentials stored longer than intended.
+
+Mitigation: If a token was saved persistently, remove it from the shell profile, rotate the token, and prefer session-scoped setup for future use.
+
+Risk: Using the skill for broad discovery or non-job URLs can produce unsuitable or costly collection tasks.
+
+Mitigation: Use the skill only with explicit Indeed job URLs and confirm high-volume or ambiguous requests before submission.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dataify-server/skills/dataify-indeed-job-listings)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON task results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return a summarized result for large payloads while preserving access to the raw JSON result.]
+
+## Skill Version(s):
+
+1.3.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

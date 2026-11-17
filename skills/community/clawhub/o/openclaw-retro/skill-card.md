@@ -1,41 +1,52 @@
-## Description: <br>
-Openclaw Retro generates periodic engineering delivery retrospectives from git history and code quality signals across 24h, 7d, 14d, and 30d windows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Weekly/periodic engineering retrospective skill that generates delivery reviews based on git history and code quality metrics, with 24h, 7d, 14d, and 30d windows plus contributor analysis and growth recommendations.
 
-## Publisher: <br>
-[x-rayluan](https://clawhub.ai/user/x-rayluan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[x-rayluan](https://clawhub.ai/user/x-rayluan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineering teams use this skill to generate periodic delivery retrospectives from repository git history, code-change metrics, contributor activity, and backlog notes.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill reads git history, contributor identity metadata, changed-file paths, and TODOs from the target repository.
+
+Mitigation: Use it only in repositories where those details may be analyzed by the agent and review the retrospective before sharing it outside the intended team.
+
+Risk: The skill runs a normal git fetch against the configured origin before producing the retrospective.
+
+Mitigation: Run it only in repositories with an expected origin remote and network behavior.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineering teams use this skill to generate periodic retrospectives that summarize delivery metrics, contributor activity, hotspots, backlog health, and next-focus recommendations from repository history. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, Shell commands, Analysis, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated retrospectives may include contributor metadata, git history, test structure, TODO/backlog notes, or confidential roadmap details. <br>
-Mitigation: Run the skill only on repositories where that inspection is acceptable, and review the generated retro before sharing it outside the team. <br>
-Risk: Repository inspection can surface sensitive personal contributor data or project details in the output. <br>
-Mitigation: Avoid using the skill on repositories containing sensitive personal data or confidential roadmap information unless that disclosure is acceptable. <br>
+**Output Format:** [Markdown retrospective report with tables, histograms, contributor summaries, backlog review, and next-focus recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Openclaw Retro on ClawHub](https://clawhub.ai/x-rayluan/openclaw-retro) <br>
-- [Publisher profile](https://clawhub.ai/user/x-rayluan) <br>
+**Other Properties Related to Output:** [Supports /retro, /retro 24h, /retro 14d, and /retro 30d time windows; default window is 7 days.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with metrics tables, contributor sections, histograms, hotspot analysis, backlog review, summary, and status.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports 24h, 7d, 14d, and 30d windows; defaults to 7d when no window is provided.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,52 @@
-## Description: <br>
-Analyzes a given URL and automatically generates comprehensive functional, UI, and boundary test cases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes a given URL and automatically generates comprehensive functional, UI, and boundary test cases.
 
-## Publisher: <br>
-[kushanlk](https://clawhub.ai/user/kushanlk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kushanlk](https://clawhub.ai/user/kushanlk)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and quality engineers use this skill to generate Markdown test plans for a target URL, including functional, UI, and boundary coverage based on interactive DOM elements.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The analyzer script is empty, so the skill may fail or produce no useful DOM evidence for test generation.
+
+Mitigation: Implement and review analyze-dom.js before relying on generated test plans, then verify outputs against the target application.
+
+Risk: Future Playwright-based browsing could access sensitive internal or authenticated pages if used without boundaries.
+
+Mitigation: Pin Playwright, review future analyzer changes, and limit execution to approved non-sensitive test environments or URLs.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and QA engineers use this skill to turn a target URL into a Markdown test plan covering functional, UI, and boundary scenarios. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may not work as described because the required DOM analysis script is empty in this version. <br>
-Mitigation: Only install this version with that limitation understood, and review any future analyzer implementation before running it against URLs. <br>
-Risk: Future DOM analysis may open user-provided URLs through local browser automation. <br>
-Mitigation: Run the skill only against URLs you are comfortable opening locally and review analyzer behavior before use. <br>
+**Output Format:** [Markdown test plan with steps to reproduce, expected results, and edge cases.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kushanlk/ss-ss) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/kushanlk) <br>
+**Other Properties Related to Output:** [Takes a target URL and depends on DOM analysis from analyze-dom.js; the current artifact includes an empty analyzer script.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown test plan with steps to reproduce, expected results, and edge cases.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a URL input. The release security summary says the required DOM analysis script is empty in this version.] <br>
+1.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

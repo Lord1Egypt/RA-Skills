@@ -1,42 +1,63 @@
-## Description: <br>
-A practitioner cookbook for testing and monitoring agent commerce systems with tool contract tests, workflow saga tests, chaos injection, OpenTelemetry tracing, health checks, alerting, and CI/CD pipelines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Practitioner cookbook for testing and monitoring agent commerce: tool contract tests, workflow saga tests, chaos injection, OpenTelemetry tracing, health checks, alerting, and CI/CD pipelines.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and engineers use this guide to design tests, observability, alerts, incident response practices, and CI/CD checks for agent commerce systems before copying patterns into their own projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Examples reference agent-commerce operations, wallets, purchases, escrow, and sensitive credentials. <br>
-Mitigation: Use the guide as documentation first, copy examples only into sandbox or test environments, and avoid production escrow or release operations unless financial side effects are intended. <br>
-Risk: Trace, alerting, or test examples may include request inputs, outputs, API keys, or signing material if copied without adaptation. <br>
-Mitigation: Protect signing keys, use least-privilege credentials, and redact trace inputs and outputs before sharing logs or telemetry. <br>
+## Use Case:
 
+Developers and engineers use this guide to design tests, observability, alerting, chaos exercises, and CI/CD checks for agent commerce systems that interact with GreenHelix-style escrow, payment, and trust workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mirni/greenhelix-agent-testing-observability) <br>
-- [GreenHelix sandbox](https://sandbox.greenhelix.net) <br>
-- [GreenHelix API documentation](https://api.greenhelix.net/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guide with inline Python, YAML, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executing educational content; examples may reference GreenHelix credentials and sandbox endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata and frontmatter) <br>
+Risk: Examples handle API keys and payment actions and may be copied into real environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass secrets through environment variables, review copied templates before use, and avoid inline credentials in source or CI configuration.
+
+Risk: Configurable endpoints and session-wide bearer headers can expose credentials if pointed at untrusted origins.
+
+Mitigation: Restrict base URLs to trusted GreenHelix hosts and avoid reusing bearer-authenticated sessions across configurable origins.
+
+Risk: Tracing and transaction capture can expose raw payment or request details.
+
+Mitigation: Redact or disable raw transaction input capture in production traces.
+
+Risk: Reusable examples may depend on unpinned packages or patterns that drift over time.
+
+Mitigation: Pin dependencies and run review, security scanning, and sandbox tests before production use.
+
+## Reference(s):
+
+- [GreenHelix API Documentation](https://api.greenhelix.net/docs)
+- [GreenHelix Sandbox](https://sandbox.greenhelix.net)
+- [ClawHub Skill Release](https://clawhub.ai/mirni/skills/greenhelix-agent-testing-observability)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guide with Python examples, shell commands, CI configuration, and observability templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executing educational guide; referenced credentials are supplied by the user environment.]
+
+## Skill Version(s):
+
+1.3.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

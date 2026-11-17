@@ -1,45 +1,60 @@
-## Description: <br>
-Run long-horizon, multi-step browser automation by delegating to the Microsoft webwright CLI, which writes and executes Playwright scripts to drive a real Chromium browser. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run long-horizon, multi-step browser automation by delegating to the Microsoft webwright CLI, which writes and executes Playwright scripts to drive a real Chromium browser.
 
-## Publisher: <br>
-[hansraj316](https://clawhub.ai/user/hansraj316) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hansraj316](https://clawhub.ai/user/hansraj316)
 
-## Use Case: <br>
-Developers and operators use Webwright to delegate authorized multi-step browser workflows, including logins, forms, checkout or wizard flows, and repeatable site navigation, to a real browser automation CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser automation can take real actions on live sites and spend model-provider tokens. <br>
-Mitigation: Use the skill only for user-authorized sites and tasks, keep the task and start URL scoped, avoid destructive actions, and review outputs before reuse. <br>
-Risk: Secret values in task text, configuration, logs, or run artifacts can be exposed to the model provider or stored locally. <br>
-Mitigation: Pass credentials through environment variable names or an intentionally chosen browser profile, and never put literal passwords or tokens in the task text. <br>
-Risk: A mismatched local Python, Playwright, or Chromium setup can cause generated browser scripts to fail or write outputs in the wrong place. <br>
-Mitigation: Use an isolated CLI install, run setup checks before use, and keep the output directory inside the current workspace. <br>
+## Use Case:
 
+Developers and engineers use this skill to run authorized, repeatable browser automation for multi-step web flows such as logins, forms, checkout or wizard flows, and cross-page navigation where a generated Playwright script is useful.
 
-## Reference(s): <br>
-- [ClawHub Webwright skill page](https://clawhub.ai/hansraj316/webwright) <br>
-- [Webwright upstream project](https://github.com/microsoft/webwright) <br>
-- [CLI reference](artifact/references/cli.md) <br>
-- [Setup guide](artifact/references/setup.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and generated Python/Playwright scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Run artifacts may include generated scripts, plans, logs, and screenshots in the selected workspace output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The delegated browser automation can take real actions on live websites and consume model-provider tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only user-authorized, scoped tasks, avoid destructive actions, and review generated plans and artifacts before relying on results.
+
+Risk: Credentials or tokens placed in task text can be sent to the model provider and recorded in run artifacts.
+
+Mitigation: Provide only environment variable names or use a user-controlled browser profile; do not place literal secrets in task text or config.
+
+Risk: Generated scripts may write artifacts or execute with an unexpected Python or Playwright installation.
+
+Mitigation: Keep output directories inside the workspace and run Webwright from a verified virtual environment with Chromium installed.
+
+## Reference(s):
+
+- [Webwright project homepage](https://github.com/microsoft/webwright)
+- [Webwright CLI reference](references/cli.md)
+- [Webwright setup](references/setup.md)
+- [ClawHub skill page](https://clawhub.ai/hansraj316/skills/webwright)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and generated script paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports Webwright run artifacts such as generated Playwright scripts, plans, logs, screenshots, and result summaries when available.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

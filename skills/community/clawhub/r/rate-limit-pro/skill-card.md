@@ -1,37 +1,53 @@
-## Description: <br>
-Advanced rate limiting with tiered controls and quota management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advanced rate limiting with tiered controls and quota management.
 
-## Publisher: <br>
-[raghulpasupathi](https://clawhub.ai/user/raghulpasupathi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[raghulpasupathi](https://clawhub.ai/user/raghulpasupathi)
 
-## Use Case: <br>
-Developers use this skill to add an in-memory JavaScript rate limiter with tier-based request quotas, rolling time windows, user resets, and basic usage statistics. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Usage counters are stored in memory, so limits do not persist across process restarts and are not coordinated across multiple servers. <br>
-Mitigation: Use shared storage and coordination when applying this pattern in production across restarts or multiple server instances. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Rate Limit Pro on ClawHub](https://clawhub.ai/raghulpasupathi/rate-limit-pro) <br>
+## Use Case:
 
+Developers and engineers use this skill to add configurable per-user rate limiting, tiered request quotas, usage resets, and request statistics to agent-integrated JavaScript workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Configuration, Guidance] <br>
-**Output Format:** [JavaScript and JSON examples in Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Exports a RateLimiter class with configurable tiers and in-memory request tracking.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Exposed or long-running services can accumulate tracked identities and stale request history in memory.
+
+Mitigation: Add TTL cleanup and a maximum number of tracked identities before relying on the helper in production.
+
+Risk: Unvalidated user identifiers can create unbounded key growth or unexpected rate-limit buckets.
+
+Mitigation: Validate the source and length of userId values before calling the rate limiter.
+
+## Reference(s):
+
+- [Rate Limit Pro on ClawHub](https://clawhub.ai/raghulpasupathi/skills/rate-limit-pro)
+- [raghulpasupathi publisher profile](https://clawhub.ai/user/raghulpasupathi)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with JavaScript and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a JavaScript RateLimiter helper with tier configuration examples and usage guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

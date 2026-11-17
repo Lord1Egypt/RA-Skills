@@ -1,40 +1,58 @@
-## Description: <br>
-Interact with TruCheq P2P commerce protocol - browse verified marketplace listings, chat with sellers via XMTP, pay via x402 on Base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with TruCheq P2P commerce protocol - browse verified marketplace listings, chat with sellers via XMTP, pay via x402 on Base.
 
-## Publisher: <br>
-[vduda](https://clawhub.ai/user/vduda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vduda](https://clawhub.ai/user/vduda)
 
-## Use Case: <br>
-External users and developers use this skill to browse verified peer-to-peer marketplace listings, inspect seller trust indicators, create listings, message sellers through XMTP, and initiate x402 payments through the TruCheq API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide payment actions through x402 marketplace endpoints. <br>
-Mitigation: Require explicit user confirmation before any payment request or payment proof is sent, and use only a trusted TRUCHEQ_API_URL. <br>
-Risk: The skill can guide uploads, World ID proof verification, and XMTP seller messaging. <br>
-Mitigation: Require explicit confirmation before uploads, proof verification, or XMTP messages, and do not provide private keys or secrets to the skill. <br>
+## Use Case:
 
+External users, developers, and marketplace agents use this skill to browse P2P listings, inspect seller trust indicators, create listings, exchange XMTP messages, and prepare x402 payments through the configured TruCheq API.
 
-## Reference(s): <br>
-- [TruCheq Protocol ClawHub listing](https://clawhub.ai/vduda/trucheq-protocol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API calls, configuration] <br>
-**Output Format:** [Markdown with HTTP endpoints, JSON payloads, and curl-oriented command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, TRUCHEQ_API_URL, and XMTP_ENV configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Identity proofs, images, messages, wallet addresses, and payment data are routed through the configured TruCheq API endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted HTTPS TRUCHEQ_API_URL and confirm where sensitive identity, listing, messaging, wallet, and payment data will be sent before using the skill.
+
+Risk: Marketplace purchases involve direct seller payments without escrow.
+
+Mitigation: Independently verify listing details, seller address, chain, token, amount, and refund expectations before paying.
+
+Risk: The skill is configured for Base Sepolia and XMTP dev environment behavior.
+
+Mitigation: Confirm that testnet and development messaging settings match the intended transaction environment before executing marketplace flows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/vduda/skills/trucheq-protocol)
+- [Publisher Profile](https://clawhub.ai/user/vduda)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Shell commands, Configuration]
+
+**Output Format:** [Markdown with HTTP examples, JSON snippets, and curl-oriented instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl plus TRUCHEQ_API_URL and XMTP_ENV configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

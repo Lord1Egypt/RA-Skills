@@ -1,39 +1,55 @@
-## Description: <br>
-Use Serpshot Google Search API to perform web searches and image searches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Serpshot Google Search API to perform web searches and image searches.
 
-## Publisher: <br>
-[downdawn](https://clawhub.ai/user/downdawn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[downdawn](https://clawhub.ai/user/downdawn)
 
-## Use Case: <br>
-Developers and agents use serpshot to run current Google web and image searches through Serpshot when live information or image results are needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and the SERPSHOT_API_KEY are used with Serpshot's external search service. <br>
-Mitigation: Use the skill only for queries appropriate to share with Serpshot, avoid secrets or confidential identifiers in queries, and monitor API credit usage. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve current Google web and image search results through the Serpshot API when live information is needed.
 
-## Reference(s): <br>
-- [Serpshot homepage](https://serpshot.com) <br>
-- [Serpshot API documentation](https://serpshot.com/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code blocks and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SERPSHOT_API_KEY; search queries use Serpshot credits and may return web or image results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Search queries are transmitted to Serpshot as a third-party search provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit secrets, private internal URLs, confidential research topics, or personal data unless sharing them with Serpshot under the configured API key is acceptable.
+
+Risk: Use requires a Serpshot API key and may consume paid or limited API credits.
+
+Mitigation: Store SERPSHOT_API_KEY in the environment, avoid logging the key, monitor available credits, and handle 402 and 429 API responses before repeated use.
+
+## Reference(s):
+
+- [Serpshot Homepage](https://serpshot.com)
+- [Serpshot API Documentation](https://serpshot.com/docs)
+- [ClawHub Skill Page](https://clawhub.ai/downdawn/skills/serpshot)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SERPSHOT_API_KEY. Search queries are sent to Serpshot, and each query may consume API credits.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

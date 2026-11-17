@@ -1,43 +1,58 @@
-## Description: <br>
-Captures learnings, errors, and corrections to enable continuous improvement for coding agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures learnings, errors, and corrections in project markdown files so coding agents can review, resolve, and promote reusable knowledge.
 
-## Publisher: <br>
-[zhihongyee](https://clawhub.ai/user/zhihongyee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhihongyee](https://clawhub.ai/user/zhihongyee)
 
-## Use Case: <br>
-Developers and agent operators use this skill to capture corrections, command failures, feature requests, and recurring lessons in local markdown files so future agent work can reuse the learning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may preserve sensitive conversation details, command errors, or project context in durable local markdown files. <br>
-Mitigation: Set a clear retention policy for .learnings, redact secrets and personal or customer data before writing entries, and decide whether the directory should be gitignored. <br>
-Risk: Promoted learning entries can spread incorrect or over-specific guidance into persistent project instructions. <br>
-Mitigation: Require human review before promoting entries to project memory files and keep promoted rules concise, general, and source-aware. <br>
-Risk: Optional hook integrations can run automatically during agent workflows. <br>
-Mitigation: Enable hooks only after inspecting the referenced scripts and confirming they create sanitized summaries appropriate for the workspace. <br>
+## Use Case:
 
+Developers and agent users use this skill to record command failures, corrections, missing capabilities, outdated knowledge, and reusable practices so later agents can inspect or promote them into project guidance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zhihongyee/self-improvement-2) <br>
-- [Agent Skills specification](https://agentskills.io/specification) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local learning, error, and feature-request records for later review or promotion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server evidence) <br>
+Risk: Persistent learning files may capture sensitive conversation, error, personal, customer, or secret data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep .learnings local by default and redact sensitive data before writing any learning, error, or feature request entry.
+
+Risk: Promoting entries into agent instruction files can change future agent behavior based on unreviewed or misleading guidance.
+
+Mitigation: Require explicit trusted-owner approval and review diffs before promoting learnings into CLAUDE.md, AGENTS.md, .github/copilot-instructions.md, or similar files.
+
+Risk: The artifact includes unpinned npx install commands, which can resolve to changing remote content.
+
+Mitigation: Use a pinned and reviewed source before installation, especially in CI or shared environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhihongyee/skills/self-improvement-2)
+- [Agent Skills specification](https://agentskills.io/specification)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update persistent .learnings markdown files and promote selected entries into agent instruction files.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

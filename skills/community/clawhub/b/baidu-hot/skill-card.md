@@ -1,41 +1,54 @@
-## Description: <br>
-Fetches current Baidu hot-search topics from Baidu's public ranking endpoint and prints a ranked terminal list. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor and fetch real-time Baidu hot search topics, rankings, trends, and keyword popularity without needing an API key.
 
-## Publisher: <br>
-[piaomiao123](https://clawhub.ai/user/piaomiao123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[piaomiao123](https://clawhub.ai/user/piaomiao123)
 
-## Use Case: <br>
-Developers and agents use this skill to check Baidu trending search topics during market, news, or content research without an API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts Baidu to retrieve public trending-search data. <br>
-Mitigation: Install only in environments where outbound requests to top.baidu.com are acceptable. <br>
-Risk: The documentation describes options such as output files and history that the script does not implement. <br>
-Mitigation: Rely on the current script behavior for ranked terminal output, and review documentation before advertising additional features. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve current Baidu hot-search rankings and topic names for monitoring public trends.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/piaomiao123/baidu-hot) <br>
-- [Baidu hot-search API endpoint](https://top.baidu.com/api/board?platform=wise&tab=realtime) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Terminal text with ranked hot-search topics] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and outbound network access to top.baidu.com; no API key is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence and artifact metadata) <br>
+Risk: The skill contacts Baidu when invoked, which may disclose that the user or agent requested hot-search data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and invoke it only in environments where outbound requests to top.baidu.com are acceptable.
+
+Risk: Broad trigger terms can cause accidental activation.
+
+Mitigation: Prefer explicit invocations such as baidu-hot or Baidu hot-search ranking.
+
+## Reference(s):
+
+- [Baidu Hot ClawHub skill page](https://clawhub.ai/piaomiao123/skills/baidu-hot)
+- [Baidu realtime board API endpoint](https://top.baidu.com/api/board?platform=wise&tab=realtime)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration]
+
+**Output Format:** [Plain text terminal output with ranked Baidu hot-search topics]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and network access to top.baidu.com; default output is the top 20 items unless a positional count is supplied.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

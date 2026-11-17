@@ -1,0 +1,13 @@
+# config/cookies.json — 真实 cookie，绝不提交
+config/cookies.json
+
+# Python
+__pycache__/
+*.pyc
+
+# 调查工作区（用户运行产生）
+work/
+
+# 系统
+.DS_Store
+Thumbs.db

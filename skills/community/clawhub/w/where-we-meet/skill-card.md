@@ -1,41 +1,55 @@
-## Description: <br>
-Where We Meet helps agents recommend up to five fair meeting places for a group based on each person's starting location, city, travel mode, and food or entertainment preferences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Where We Meet helps an agent recommend up to five meetup locations for a group based on each person's starting point, city, travel mode, and food or entertainment preferences.
 
-## Publisher: <br>
-[gggggyyyyy000](https://clawhub.ai/user/gggggyyyyy000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gggggyyyyy000](https://clawhub.ai/user/gggggyyyyy000)
 
-## Use Case: <br>
-External users and their agents use this skill to turn a group meeting request into candidate restaurants or activity areas with commute comparisons, nearby similar-place counts, and map handoff details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The packaged artifact does not include the local Node script that the skill instructs the agent to run. <br>
-Mitigation: Install only when the script source is known and independently verified before execution. <br>
-Risk: The skill processes people's addresses, map API keys, and generated local request, QR, or HTML files. <br>
-Mitigation: Use appropriate local containment, protect Amap credentials, and confirm that generated files and map handoff artifacts are acceptable for the deployment environment. <br>
+## Use Case:
 
+External users can use this skill through an agent to choose fair meetup, dining, or activity locations for people starting from different places. The skill prepares the request for the bundled location planner and returns the generated venue comparison without rewriting it.
 
-## Reference(s): <br>
-- [Server-resolved GitHub provenance](https://github.com/GggggYyyyy000/where-we-meet) <br>
-- [ClawHub skill page](https://clawhub.ai/gggggyyyyy000/skills/where-we-meet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files] <br>
-**Output Format:** [Markdown text with map links, optional MEDIA attachment line, and local HTML file path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce a QR-code PNG attachment and a PC HTML comparison page; output should be forwarded as generated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill can send sensitive location data, such as home or work addresses, to Amap.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use approximate landmarks when possible and proceed only when users are comfortable sharing the provided locations with Amap.
+
+Risk: The release evidence reports that the local script implementation is not packaged with the skill artifact.
+
+Mitigation: Verify that scripts/where-we-meet.js is supplied from a trusted source before running the skill.
+
+## Reference(s):
+
+- [Server-resolved GitHub source](https://github.com/GggggYyyyy000/where-we-meet)
+- [ClawHub skill page](https://clawhub.ai/gggggyyyyy000/skills/where-we-meet)
+- [Publisher profile](https://clawhub.ai/user/gggggyyyyy000)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Final response text, optional MEDIA line for a QR code PNG, mobile map schema URL, and PC HTML comparison file path]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default output includes five candidate locations, travel-time comparisons, representative venues, nearby similar venue counts, and map access details when available.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

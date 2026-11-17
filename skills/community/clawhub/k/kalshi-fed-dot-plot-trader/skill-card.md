@@ -1,45 +1,56 @@
-## Description: <br>
-Trades Fed rate markets on Kalshi by comparing market prices with FOMC dot-plot-implied cut or hike probabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades Fed rate markets on Kalshi using FOMC dot plot median implied rate path, computes fair probability of cut or hike per meeting, and trades when market prices diverge.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External developers and trading agents use this skill to evaluate Kalshi Fed rate markets, run dry-run opportunity checks, and optionally execute constrained live trades when configured with credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can place real-money Kalshi trades using wallet and trading credentials. <br>
-Mitigation: Run dry-run first, enable --live only intentionally, and use a dedicated low-balance wallet with a constrained API key. <br>
-Risk: The skill depends on simmer-sdk and market execution services before using live credentials. <br>
-Mitigation: Review or pin simmer-sdk before supplying credentials, and keep position size, max trades, slippage, and liquidity limits conservative. <br>
-Risk: The default strategy uses a static dot plot signal that can become stale or diverge from current market expectations. <br>
-Mitigation: Review and update the dot plot assumptions with current SEP, Fed funds futures, or OIS-implied data before relying on live trades. <br>
+## Use Case:
 
+External users and developers use this skill to evaluate and optionally trade Kalshi Fed rate markets from a dot-plot-implied rate path, with configurable risk limits and a dry-run default.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/diagnostikon/kalshi-fed-dot-plot-trader) <br>
-- [Simmer Markets Skills](https://simmer.markets/skills) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk Repository](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration] <br>
-**Output Format:** [CLI text output with optional JSON automaton reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to dry-run; live trading requires --live, SIMMER_API_KEY, and SOLANA_PRIVATE_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: Live mode can move real funds, and server security evidence reports unsafe trade scoping and fail-open safeguards that need review before use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run mode or a dedicated low-balance account until exit filtering requires verified strategy ownership and market-context failures block live trades.
+
+Risk: Trading credentials and dependency trust are material because the skill requires SIMMER_API_KEY, SOLANA_PRIVATE_KEY, and simmer-sdk.
+
+Mitigation: Scope credentials to live runs only and pin simmer-sdk to an audited version before providing live credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/kalshi-fed-dot-plot-trader)
+- [Simmer skills homepage](https://simmer.markets/skills)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration]
+
+**Output Format:** [CLI output with JSON automaton reports and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Dry-run mode is the default; live trading requires the --live flag and configured credentials.]
+
+## Skill Version(s):
+
+1.0.4 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

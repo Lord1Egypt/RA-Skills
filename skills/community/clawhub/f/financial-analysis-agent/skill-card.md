@@ -1,42 +1,58 @@
-## Description: <br>
-Financial Analysis Agent guides agents through variance analysis, cash flow forecasting, month-end close automation, CFO commentary, budget-versus-actual review, and financial statement checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Financial Analysis Agent helps agents draft defensible financial analysis outputs, including variance analysis, cash flow forecasting, month-end close checklists, CFO commentary, budget-to-actual analysis, and financial statement review.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
 
-## Use Case: <br>
-Finance, FP&A, accounting, and operator-facing agents use this skill to draft financial analysis outputs such as variance analysis, 13-week cash forecasts, month-end close checklists, CFO commentary, budget-versus-actual reports, aging analyses, bank reconciliations, and financial statement review checklists. It is not intended for tax preparation, audit opinions, regulatory filings, valuation work, payroll processing, or decisions that require qualified specialist review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial outputs may contain incorrect calculations, assumptions, or commentary if source data is incomplete or model reasoning is not reviewed. <br>
-Mitigation: Use the skill for drafting and analysis support only, then verify calculations, assumptions, and conclusions with qualified finance or accounting reviewers before relying on the output. <br>
-Risk: The skill covers adjacent finance workflows but is not suitable for tax, audit, regulatory filing, valuation, or payroll decisions. <br>
-Mitigation: Route those activities to qualified specialists or dedicated compliance workflows, and keep this skill limited to financial analysis and drafting support. <br>
-Risk: Financial analysis tasks may involve sensitive company, customer, vendor, payroll, or banking data. <br>
-Mitigation: Share only the financial data needed for the task and apply the organization-specific controls required for confidential finance data. <br>
+## Use Case:
 
+Finance and operations teams can use agents with this skill to draft and check recurring financial analysis, management commentary, close support, cash flow forecasts, and account review outputs. Human review remains required for filings, audit, tax, payments, and final financial decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/financial-analysis-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and structured text with formulas, tables, templates, checklists, and review guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only financial analysis guidance; no executable code, install steps, credential use, or network calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-98.0.1 (source: server release metadata) <br>
+Risk: The skill may be used with sensitive business financial data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use appropriate data controls and limit input data to what is needed for the analysis.
+
+Risk: Draft financial outputs may be mistaken for tax, audit, regulatory filing, payment, or final decision support.
+
+Mitigation: Keep human review for filings, audit, tax, payments, and final financial decisions, and do not use this skill as a substitute for specialized compliance review.
+
+Risk: Forecasts, reconciliations, and commentary can be misleading when source data or assumptions are incomplete.
+
+Mitigation: Tie outputs back to source records, document assumptions, and reconcile material variances before sharing results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/skills/financial-analysis-agent)
+- [ClawHub publisher profile](https://clawhub.ai/user/samledger67-dotcom)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown and structured plain text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces financial analysis templates, checklists, commentary drafts, calculations, review guidance, and risk flags; does not execute code or access external systems.]
+
+## Skill Version(s):
+
+98.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

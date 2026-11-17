@@ -1,43 +1,60 @@
-## Description: <br>
-Rewrites user-provided text through the Claw0x API to make AI-drafted writing sound more natural, with an LLM path and deterministic regex fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Text Humanizer rewrites submitted text through the Claw0x API to reduce common signs of AI-generated writing, using an LLM path with a regex fallback.
 
-## Publisher: <br>
-[kennyzir](https://clawhub.ai/user/kennyzir) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kennyzir](https://clawhub.ai/user/kennyzir)
 
-## Use Case: <br>
-External users, content teams, and agent builders use this skill to turn AI-drafted text into more natural prose while preserving the original meaning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted text may leave the local environment for Claw0x and potentially Gemini processing. <br>
-Mitigation: Do not submit secrets, regulated data, or confidential drafts unless those providers' terms and data handling are acceptable. <br>
-Risk: The skill requires an API key for use. <br>
-Mitigation: Store CLAW0X_API_KEY in an environment variable or secret manager, and do not embed it in prompts, source code, or version-controlled files. <br>
-Risk: Rewriting can change tone, emphasis, or nuance even when the intended meaning is preserved. <br>
-Mitigation: Review the humanized text before publication or use in sensitive communications. <br>
+## Use Case:
 
+External users, content teams, and agent pipelines use this skill to rewrite AI-drafted text so it sounds more natural while preserving the original meaning.
 
-## Reference(s): <br>
-- [AI Text Humanizer on ClawHub](https://clawhub.ai/kennyzir/humanizer-plus) <br>
-- [Claw0x](https://claw0x.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON] <br>
-**Output Format:** [JSON response containing humanized_text, length counts, and processing method.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CLAW0X_API_KEY and may use LLM processing or a regex fallback.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Submitted text is sent to external AI services for rewriting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with text approved for external processing; avoid secrets, regulated data, confidential drafts, and private customer information unless that processing is approved.
+
+Risk: The skill requires API credentials for Claw0x authentication.
+
+Mitigation: Store CLAW0X_API_KEY in a secure environment variable or secret manager, and do not place keys in prompts, source files, or version-controlled configuration.
+
+Risk: Automated rewriting can change tone, emphasis, or nuance.
+
+Mitigation: Review the rewritten output before publication or customer-facing use.
+
+## Reference(s):
+
+- [AI Text Humanizer on ClawHub](https://clawhub.ai/kennyzir/skills/humanizer-plus)
+- [Publisher profile](https://clawhub.ai/user/kennyzir)
+- [Claw0x](https://claw0x.com)
+- [Claw0x API endpoint](https://claw0x.com/v1/call)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [JSON response containing rewritten text, length metadata, and the processing method.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CLAW0X_API_KEY. Submitted text is sent to Claw0x and may be processed by Gemini on the LLM path.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

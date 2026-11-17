@@ -11,32 +11,23 @@ Covers:
 """
 import base64
 import json
+import contextlib
 import os
 import sys
 from pathlib import Path
-from unittest.mock import MagicMock, patch, call
+from unittest.mock import MagicMock, patch
 
-import pytest
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-for mod in ("google", "google.oauth2", "google.oauth2.credentials",
-            "google.auth", "google.auth.transport", "google.auth.transport.requests",
-            "googleapiclient", "googleapiclient.discovery"):
-    sys.modules.setdefault(mod, MagicMock())
 
 # Make `from google.oauth2.credentials import Credentials` resolvable from
 # the MagicMock stubs (otherwise Python's importlib refuses on "unknown location").
-sys.modules["google.oauth2.credentials"].Credentials = MagicMock()
-sys.modules["google.auth.transport.requests"].Request = MagicMock()
-sys.modules["googleapiclient.discovery"].build = MagicMock()
 
-with patch("core.keychain_secrets.load_google_secrets", return_value=None), \
-     patch("core.config_loader._load_config") as _mc:
+with patch("core.config_loader._load_config") as _mc:
     from conftest import MINIMAL_CONFIG
     from core.config_loader import Config
     _mc.return_value = Config(MINIMAL_CONFIG)
-    import features.school.school_email_monitor as school_email_monitor
     from features.school.school_email_monitor import SchoolEmailMonitor
 
 
@@ -46,7 +37,9 @@ def _make_monitor(tmp_path):
     """Create a SchoolEmailMonitor pointing at a tmp directory."""
     config_path = tmp_path / "config.json"
     config_path.write_text(json.dumps({"email_body_context_limit": 2000}))
-    cal_dir = tmp_path / "calendar_data"; cal_dir.mkdir()
+    # exist_ok: several tests build a second monitor over the same tmp_path
+    # to assert what actually survived a reload.
+    cal_dir = tmp_path / "calendar_data"; cal_dir.mkdir(exist_ok=True)
     m = SchoolEmailMonitor(base_path=str(tmp_path))
     return m
 
@@ -91,78 +84,78 @@ class TestAuthErrorDeduplication:
 
 # ─── get_gmail_service auth error notify-once ────────────────────────────────
 
-class TestGetGmailServiceAuthError:
-    def _env(self):
-        return {
-            "GOOGLE_CLIENT_ID": "test-id",
-            "GOOGLE_CLIENT_SECRET": "test-secret",
-            "GOOGLE_REFRESH_TOKEN": "test-token"
-        }
+class TestAuthFailureAlert:
+    """The one-shot auth alert, asserted through the surface that now raises it.
 
-    def test_first_auth_error_prints_whatsapp_message(self, tmp_path, capsys):
-        """Regression: first auth failure should print the WhatsApp alert."""
+    Replaces TestGetGmailServiceAuthError. That class drove `get_gmail_service`,
+    which built a Google client from GOOGLE_* env vars; since 2026-09-07 the
+    credentials belong to the `gog` CLI and a failure arrives as an exception
+    out of core.gmail instead.
+
+    Two of its cases went with the method: `env_broken` (this interpreter has
+    no `keyring`) and `no_creds` (the env vars are empty) were distinctions
+    about homebase's OWN credential handling, and homebase no longer has any.
+    `gog auth status` answers the equivalent about gog. What survives is the
+    part that protects the family from an alert on every run, four times a day.
+    """
+
+    @contextlib.contextmanager
+    def _fetchable(self, m):
+        """Config with a usable school query, so a fetch reaches the Gmail call
+        rather than short-circuiting on `no_query`.
+
+        Patches the whole `config` object rather than the attribute, because
+        `school_email_query` is a read-only property and setattr on it raises.
+        """
+        with patch("core.config_loader.config") as cfg:
+            cfg.school_email_query = "from:school@example.com"
+            yield
+
+    def test_first_auth_error_offers_the_alert_once(self, tmp_path, capsys):
+        """Regression: first auth failure exposes the WhatsApp alert."""
         m = _make_monitor(tmp_path)
+        with self._fetchable(m), \
+             patch("core.gmail.search", side_effect=Exception("Token expired")):
+            assert m.fetch_recent_school_emails() == []
 
-        creds_mock = MagicMock()
-        creds_mock.refresh.side_effect = Exception("Token expired")
-
-        with patch.dict(os.environ, self._env()), \
-             patch("google.oauth2.credentials.Credentials", return_value=creds_mock), \
-             patch("google.auth.transport.requests.Request"):
-            result = m.get_gmail_service()
-
-        assert result is None
-        captured = capsys.readouterr()
-        assert "auth error" in captured.out.lower() or "expired" in captured.out.lower() \
-               or "refresh token" in captured.out.lower() or "Google" in captured.out
+        assert m.auth_status == "auth_failed"
+        assert m.auth_message is not None
+        assert "auth error" in m.auth_message.lower()
+        # The alert must never reach stdout: these tools' stdout IS their
+        # return value, and a WhatsApp message printed in front of the JSON is
+        # what this contract was changed to stop.
+        assert capsys.readouterr().out == ""
 
     def test_subsequent_auth_error_is_silent(self, tmp_path, capsys):
-        """Regression: after first notification, further auth errors must print NO_REPLY."""
-        m = _make_monitor(tmp_path)
-        m._set_auth_error_notified(True)  # already notified
-
-        creds_mock = MagicMock()
-        creds_mock.refresh.side_effect = Exception("Token still expired")
-
-        with patch.dict(os.environ, self._env()), \
-             patch("google.oauth2.credentials.Credentials", return_value=creds_mock), \
-             patch("google.auth.transport.requests.Request"):
-            result = m.get_gmail_service()
-
-        assert result is None
-        captured = capsys.readouterr()
-        # Should print NO_REPLY or auth-suppressed, NOT the full error message
-        assert "NO_REPLY" in captured.out or "auth-suppressed" in captured.out
-
-    def test_successful_auth_clears_error_flag(self, tmp_path):
-        """After successful auth, the notified flag should be cleared."""
+        """After the first notification, later failures carry no message."""
         m = _make_monitor(tmp_path)
         m._set_auth_error_notified(True)
+        with self._fetchable(m), \
+             patch("core.gmail.search", side_effect=Exception("Still expired")):
+            assert m.fetch_recent_school_emails() == []
 
-        creds_mock = MagicMock()
-        creds_mock.refresh.return_value = None  # success
+        assert m.auth_status == "auth_failed"
+        assert m.auth_message is None
+        assert capsys.readouterr().out == ""
 
-        gmail_service_mock = MagicMock()
-
-        with patch.dict(os.environ, self._env()), \
-             patch("google.oauth2.credentials.Credentials", return_value=creds_mock), \
-             patch("google.auth.transport.requests.Request"), \
-             patch("googleapiclient.discovery.build", return_value=gmail_service_mock):
-            result = m.get_gmail_service()
-
-        assert result is not None
+    def test_a_successful_fetch_rearms_the_alert(self, tmp_path):
+        """A token that breaks, is fixed, then breaks again must be reported
+        the second time. Only a successful fetch clears the flag."""
+        m = _make_monitor(tmp_path)
+        m._set_auth_error_notified(True)
+        with self._fetchable(m), patch("core.gmail.search", return_value=[]):
+            m.fetch_recent_school_emails()
         assert m._is_auth_error_notified() is False
 
-    def test_returns_none_when_credentials_missing(self, tmp_path, monkeypatch):
+    def test_a_failed_fetch_is_not_an_empty_inbox(self, tmp_path):
+        """[] with no status is how a broken token looked like a quiet day —
+        the same silent-drop family as the `none` bucket and has:attachment."""
         m = _make_monitor(tmp_path)
-        monkeypatch.delenv("GOOGLE_CLIENT_ID", raising=False)
-        monkeypatch.delenv("GOOGLE_CLIENT_SECRET", raising=False)
-        monkeypatch.delenv("GOOGLE_REFRESH_TOKEN", raising=False)
-        result = m.get_gmail_service()
-        assert result is None
+        with self._fetchable(m), \
+             patch("core.gmail.search", side_effect=Exception("boom")):
+            assert m.fetch_recent_school_emails() == []
+        assert m.auth_status == "auth_failed"
 
-
-# ─── _extract_body_and_attachments ───────────────────────────────────────────
 
 class TestExtractBodyAndAttachments:
     def test_extracts_plain_text(self, tmp_path):
@@ -172,15 +165,25 @@ class TestExtractBodyAndAttachments:
             "mimeType": "text/plain",
             "body": {"data": _b64_encode_text(text)}
         }
-        body, has_pdf = m._extract_body_and_attachments(payload)
+        body, has_pdf, has_image = m._extract_body_and_attachments(payload)
         assert text in body
         assert has_pdf is False
+        assert has_image is False
 
     def test_detects_pdf_attachment(self, tmp_path):
         m = _make_monitor(tmp_path)
         payload = {"mimeType": "application/pdf", "body": {}}
-        body, has_pdf = m._extract_body_and_attachments(payload)
+        body, has_pdf, has_image = m._extract_body_and_attachments(payload)
         assert has_pdf is True
+        assert has_image is False
+        assert body == ""
+
+    def test_detects_inline_image(self, tmp_path):
+        m = _make_monitor(tmp_path)
+        payload = {"mimeType": "image/jpeg", "body": {"attachmentId": "att123"}}
+        body, has_pdf, has_image = m._extract_body_and_attachments(payload)
+        assert has_image is True
+        assert has_pdf is False
         assert body == ""
 
     def test_handles_nested_multipart(self, tmp_path):
@@ -202,15 +205,33 @@ class TestExtractBodyAndAttachments:
                 {"mimeType": "application/pdf", "body": {}}
             ]
         }
-        body, has_pdf = m._extract_body_and_attachments(payload)
+        body, has_pdf, has_image = m._extract_body_and_attachments(payload)
         assert inner_text in body
         assert has_pdf is True
+        assert has_image is False
+
+    def test_nested_multipart_with_image_and_pdf(self, tmp_path):
+        """Multipart with both a PDF and an inline image detects both."""
+        m = _make_monitor(tmp_path)
+        payload = {
+            "mimeType": "multipart/mixed",
+            "parts": [
+                {"mimeType": "text/plain", "body": {"data": _b64_encode_text("text")}},
+                {"mimeType": "application/pdf", "body": {}},
+                {"mimeType": "image/png", "body": {"attachmentId": "att456"}},
+            ]
+        }
+        body, has_pdf, has_image = m._extract_body_and_attachments(payload)
+        assert has_pdf is True
+        assert has_image is True
+        assert "text" in body
 
     def test_empty_payload_returns_empty(self, tmp_path):
         m = _make_monitor(tmp_path)
-        body, has_pdf = m._extract_body_and_attachments({"mimeType": "text/html", "body": {}})
+        body, has_pdf, has_image = m._extract_body_and_attachments({"mimeType": "text/html", "body": {}})
         assert body == ""
         assert has_pdf is False
+        assert has_image is False
 
 
 # ─── _mark_processed / _load_processed_ids ───────────────────────────────────
@@ -237,6 +258,147 @@ class TestProcessedIds:
         pf.unlink(missing_ok=True)
         m2 = SchoolEmailMonitor(base_path=str(tmp_path))
         assert m2.processed_ids == set()
+
+
+# ─── fetch_recent_school_emails skip_processed ──────────────────────────────
+
+class TestFetchSkipProcessed:
+    """Regression: fetch_school_emails must skip already-processed emails by default."""
+
+    @contextlib.contextmanager
+    def _gmail_returning(self, msg_ids):
+        """Install the core.gmail seam for these message ids.
+
+        Was `_mock_gmail_list`, which faked a Gmail service object. Since
+        2026-09-07 the monitor calls core.gmail.search (ids) and
+        core.gmail.get_message (raw Gmail message) — both gog subprocesses —
+        so there is no service to fake. The message fixtures are unchanged
+        because gog returns Google's own shape.
+        """
+        def _get(mid, fmt="full"):
+            return {
+                "id": mid,
+                "payload": {
+                    "headers": [
+                        {"name": "Subject", "value": f"Email {mid}"},
+                        {"name": "From", "value": "school@school.example.com"},
+                        {"name": "Date", "value": "Mon, 13 Apr 2026 10:00:00 -0700"},
+                    ],
+                    "mimeType": "text/plain",
+                    "body": {"data": _b64_encode_text(f"Body of {mid}")},
+                },
+            }
+
+        with patch("core.gmail.search", return_value=list(msg_ids)), \
+             patch("core.gmail.get_message", side_effect=_get):
+            yield
+
+
+    def test_skip_processed_true_skips_known_ids(self, tmp_path):
+        m = _make_monitor(tmp_path)
+        m._mark_processed("msg_old")
+        with self._gmail_returning(["msg_old", "msg_new"]), \
+             patch("core.config_loader.config") as mock_cfg:
+            mock_cfg.school_email_query = "from:school.example.com"
+            emails = m.fetch_recent_school_emails(skip_processed=True)
+
+        ids = [e["id"] for e in emails]
+        assert "msg_new" in ids
+        assert "msg_old" not in ids
+
+    def test_skip_processed_false_returns_all(self, tmp_path):
+        m = _make_monitor(tmp_path)
+        m._mark_processed("msg_old")
+        with self._gmail_returning(["msg_old", "msg_new"]), \
+             patch("core.config_loader.config") as mock_cfg:
+            mock_cfg.school_email_query = "from:school.example.com"
+            emails = m.fetch_recent_school_emails(skip_processed=False)
+
+        ids = [e["id"] for e in emails]
+        assert "msg_new" in ids
+        assert "msg_old" in ids
+
+    def test_daily_summary_emails_are_skipped_and_marked(self, tmp_path):
+        """Emails with 'daily summary' or 'checked in' should be auto-skipped."""
+        m = _make_monitor(tmp_path)
+        summary = {
+            "id": "summary_msg",
+            "payload": {
+                "headers": [
+                    {"name": "Subject", "value": "Daily Summary"},
+                    {"name": "From", "value": "school@school.example.com"},
+                    {"name": "Date", "value": "Mon, 13 Apr 2026 10:00:00 -0700"},
+                ],
+                "mimeType": "text/plain",
+                "body": {"data": _b64_encode_text("Your child checked in at 8am")},
+            },
+        }
+
+        with patch("core.gmail.search", return_value=["summary_msg"]), \
+             patch("core.gmail.get_message", return_value=summary), \
+             patch("core.config_loader.config") as mock_cfg:
+            mock_cfg.school_email_query = "from:school.example.com"
+            emails = m.fetch_recent_school_emails(skip_processed=True)
+
+        assert len(emails) == 0
+        assert "summary_msg" in m.processed_ids
+
+    def test_actionable_email_not_marked_processed_on_fetch(self, tmp_path):
+        """Regression: fetching an actionable email must NOT mark it processed.
+        Only mark_email_synced() may do that — otherwise an agent that bails
+        out after fetching (crash, hallucinated tool call, silent no-op)
+        loses the email forever with no retry."""
+        m = _make_monitor(tmp_path)
+        with self._gmail_returning(["msg_new"]), \
+             patch("core.config_loader.config") as mock_cfg:
+            mock_cfg.school_email_query = "from:school.example.com"
+            emails = m.fetch_recent_school_emails(skip_processed=True)
+
+        assert len(emails) == 1
+        assert "msg_new" not in m.processed_ids
+
+        # A second fetch (simulating the agent never calling mark_email_synced,
+        # e.g. it bailed early) must return the same email again, not drop it.
+        with self._gmail_returning(["msg_new"]), \
+             patch("core.config_loader.config") as mock_cfg:
+            mock_cfg.school_email_query = "from:school.example.com"
+            emails_again = m.fetch_recent_school_emails(skip_processed=True)
+        assert len(emails_again) == 1
+
+
+# ─── tools.py fetch_school_emails uses skip_processed=True ───────────────────
+
+class TestToolsFetchUsesSkipProcessed:
+    """Regression: tools.py fetch_school_emails must use skip_processed=True."""
+
+    def test_tools_fetch_calls_skip_processed_true(self):
+        # Read the actual source to verify the flag
+        tools_path = Path(__file__).parent.parent / "tools.py"
+        source = tools_path.read_text()
+        # Find the fetch_school_emails function and check skip_processed
+        assert "skip_processed=True" in source, \
+            "tools.py fetch_school_emails must call fetch_recent_school_emails(skip_processed=True)"
+        assert "skip_processed=False" not in source, \
+            "tools.py must NOT use skip_processed=False (causes duplicate processing)"
+
+
+# ─── mark_email_synced gates re-fetch ────────────────────────────────────────
+
+class TestMarkEmailSyncedGatesRefetch:
+    """Regression: mark_email_synced() must be the thing that stops an email
+    from being re-fetched — since fetch_recent_school_emails() no longer
+    marks processed on its own (see test_actionable_email_not_marked_processed_on_fetch)."""
+
+    def test_tools_mark_email_synced_calls_mark_processed(self):
+        tools_path = Path(__file__).parent.parent / "tools.py"
+        source = tools_path.read_text()
+        start = source.index("def mark_email_synced")
+        end = source.index("\ndef ", start + 1)
+        body = source[start:end]
+        assert "_mark_processed(" in body, \
+            "mark_email_synced must call monitor._mark_processed() so the " \
+            "email is actually excluded from future fetches, not just " \
+            "recorded in calendar_synced_ids (which fetch never checks)."
 
 
 # ─── format_for_whatsapp ─────────────────────────────────────────────────────
@@ -280,3 +442,84 @@ class TestFormatForWhatsapp:
         result = m.format_for_whatsapp(emails)
         assert "Email 1" in result
         assert "Email 2" in result
+
+
+# ─── Ordered ID ledgers ──────────────────────────────────────────────────────
+
+class TestIdLedgersKeepNewest:
+    """Regression: both ledgers capped with `list(self.processed_ids)[-500:]`.
+    A set has no order, so that kept an arbitrary 500, not the newest 500. Past
+    the cap it silently drops recent IDs, and a dropped ID re-surfaces an email
+    already handled — a duplicate school calendar proposal for the family."""
+
+    def test_processed_ids_keeps_the_newest_500(self, tmp_path):
+        m = _make_monitor(tmp_path)
+        for i in range(600):
+            m._mark_processed(f"msg-{i:04d}")
+
+        reloaded = _make_monitor(tmp_path)
+        assert len(reloaded.processed_ids) == 500
+        assert "msg-0099" not in reloaded.processed_ids
+        assert all(f"msg-{i:04d}" in reloaded.processed_ids for i in range(100, 600))
+
+    def test_calendar_synced_ids_keeps_the_newest_500(self, tmp_path):
+        m = _make_monitor(tmp_path)
+        for i in range(600):
+            m.mark_calendar_synced(f"cal-{i:04d}")
+
+        reloaded = _make_monitor(tmp_path)
+        assert len(reloaded.calendar_synced_ids) == 500
+        assert "cal-0099" not in reloaded.calendar_synced_ids
+        assert "cal-0599" in reloaded.calendar_synced_ids
+
+    def test_on_disk_order_is_preserved(self, tmp_path):
+        m = _make_monitor(tmp_path)
+        for msg_id in ("a", "b", "c"):
+            m._mark_processed(msg_id)
+        assert json.loads(open(m.processed_ids_file).read()) == ["a", "b", "c"]
+
+
+class TestToolsAuthBranch:
+    """A dead token and a quiet inbox were indistinguishable from
+    tools.fetch_school_emails — both returned "[]" — so the runner logged a
+    quiet day forever. The branch that separates them had no test, and a
+    regression removing it would have left the whole suite green."""
+
+    def _monitor(self, auth_status=None, auth_detail=None, auth_message=None):
+        from unittest.mock import MagicMock as _MM
+        m = _MM()
+        m.fetch_recent_school_emails.return_value = []
+        m.auth_status = auth_status
+        m.auth_detail = auth_detail
+        m.auth_message = auth_message
+        return m
+
+    def test_a_broken_token_is_not_reported_as_an_empty_inbox(self):
+        import json as _json
+        import tools
+        m = self._monitor("auth_failed", "invalid_grant")
+        with patch("features.school.school_email_monitor.SchoolEmailMonitor",
+                   return_value=m):
+            payload = _json.loads(tools.fetch_school_emails())
+        assert payload["status"] == "auth_failed"
+        assert payload["emails"] == []
+
+    def test_the_first_failure_carries_the_one_shot_alert(self):
+        """get_gmail_service sets auth_message and persists the notified flag
+        together, so the alert is single-use. Dropping it here spent it on a
+        caller that never delivered it, and every later run stayed silent."""
+        import json as _json
+        import tools
+        m = self._monitor("auth_failed", "invalid_grant", "GOOGLE AUTH ERROR")
+        with patch("features.school.school_email_monitor.SchoolEmailMonitor",
+                   return_value=m):
+            payload = _json.loads(tools.fetch_school_emails())
+        assert payload["summary"] == "GOOGLE AUTH ERROR"
+
+    def test_a_genuinely_quiet_inbox_still_returns_a_list(self):
+        import json as _json
+        import tools
+        m = self._monitor()
+        with patch("features.school.school_email_monitor.SchoolEmailMonitor",
+                   return_value=m):
+            assert _json.loads(tools.fetch_school_emails()) == []

@@ -1,41 +1,54 @@
-## Description: <br>
-Workflow Optimizer helps agents analyze task workflows, identify bottlenecks, recommend process improvements, suggest automation opportunities, and track optimization effects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes workflows to identify process steps, bottlenecks, automation candidates, and practical optimization recommendations.
 
-## Publisher: <br>
-[pagoda111king](https://clawhub.ai/user/pagoda111king) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pagoda111king](https://clawhub.ai/user/pagoda111king)
 
-## Use Case: <br>
-Developers, technical teams, and workflow owners use this skill to break down task flows, find slow or error-prone steps, and generate practical optimization and automation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Workflow analysis may expose sensitive business or personal task data to the agent. <br>
-Mitigation: Limit the workflow details supplied to the agent and exclude secrets, credentials, private customer data, and unnecessary personal information. <br>
-Risk: Automation suggestions such as scripts, scheduled jobs, webhooks, or monitoring changes could affect production workflows if implemented without review. <br>
-Mitigation: Review and test generated automation plans in a controlled environment before adopting them for business or personal workflows. <br>
+## Use Case:
 
+Developers, operations teams, consultants, and workflow owners use this skill to break down task flows, find slow or error-prone steps, and plan efficiency improvements or automation.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/pagoda111king/workflow-optimizer) <br>
-- [Workflow Optimizer documentation](https://docs.cloud-shrimp.com/workflow-optimizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with workflow breakdowns, bottleneck findings, optimization recommendations, automation ideas, and effect-tracking summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include example scripts, cron jobs, webhook ideas, or monitoring suggestions that should be reviewed before implementation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: Workflow and task execution details may include business, client, or operationally sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm what workflow data will be shared with the agent and redact sensitive details before use.
+
+Risk: Optimization recommendations can be affected by incomplete workflow data, subjective judgment, or underestimated implementation cost.
+
+Mitigation: Review recommendations with the workflow owner and validate expected savings before changing production or client-facing processes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/pagoda111king/skills/workflow-optimizer)
+- [Workflow Optimizer Documentation](https://docs.cloud-shrimp.com/workflow-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown reports with workflow breakdowns, bottleneck notes, optimization recommendations, automation candidates, and before/after metrics.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include estimated time savings, implementation difficulty, error-rate observations, and tracking metrics.]
+
+## Skill Version(s):
+
+0.2.0 (source: ClawHub release evidence; artifact text lists v0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Argus provides incremental backend API and frontend browser testing with persistent memory, monitoring commits, enriching insufficient commit messages, and running targeted tests scoped to changed files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Incremental backend API and frontend browser testing with persistent memory for monitoring commits, enriching insufficient commit messages, and running targeted tests scoped to changed files.
 
-## Publisher: <br>
-[tiansyao](https://clawhub.ai/user/tiansyao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tiansyao](https://clawhub.ai/user/tiansyao)
 
-## Use Case: <br>
-Developers and engineering teams use Argus to maintain persistent regression-test memory, generate backend and frontend tests from routes and commits, run targeted test suites, and produce health reports for changed code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Argus can persist repository-level automation through a Git post-commit hook. <br>
-Mitigation: Review .git/hooks/post-commit after initialization and disable or remove the hook if commit-time automation is not desired. <br>
-Risk: Argus can amend local commits while enriching insufficient commit messages. <br>
-Mitigation: Require manual approval before any git commit --amend and avoid using amendment behavior on shared or already-pushed branches. <br>
-Risk: Argus may install browser-testing dependencies and run local backend or frontend tests. <br>
-Mitigation: Run it in a virtual environment or container with local test services and minimal test credentials. <br>
+## Use Case:
 
+Developers and engineers use Argus to bootstrap and maintain backend API and frontend browser regression tests from source routes, bug-fix history, and branch diffs. It records persistent test catalogs, runs targeted pytest and Playwright checks, and reports health scores and failing tests.
 
-## Reference(s): <br>
-- [Argus on ClawHub](https://clawhub.ai/tiansyao/argus-qa) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated Python test code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create or update .argus state, pytest and Playwright tests, reports, and a Git post-commit hook.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Installs persistent Git automation and may amend commit messages before push.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review .argus/commit-hook.sh and .git/hooks/post-commit after initialization, and avoid shared or signed-commit workflows unless hook and amendment behavior are explicitly approved.
+
+Risk: Can install Python and Playwright dependencies during frontend test setup.
+
+Mitigation: Run in a controlled development environment and review dependency installation before using the skill in an active repository.
+
+Risk: Generated tests and reports can modify repository state under .argus and tests directories.
+
+Mitigation: Inspect generated files before committing them and keep locked regression tests under human review.
+
+## Reference(s):
+
+- [ClawHub argus release page](https://clawhub.ai/tiansyao/skills/argus-qa)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown reports, generated Python test code, shell commands, and repository configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create persistent .argus state, generated tests, reports, and a Git post-commit hook.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,60 @@
-## Description: <br>
-AIMPACT fetches AI news, morning and evening briefings, 24-hour hot-news rankings, and selected AI content from documented ME News API endpoints, then formats the results for agent users. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AIMPACT retrieves AI morning and evening reports, 24-hour hot-news rankings, and curated AI content from configured ME News APIs, ranks items by AI score, and can optionally send reports through an existing OpenClaw message channel.
 
-## Publisher: <br>
-[jamesmenews](https://clawhub.ai/user/jamesmenews) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jamesmenews](https://clawhub.ai/user/jamesmenews)
 
-## Use Case: <br>
-External users and agent operators use this skill to retrieve concise AI news digests, 24-hour trend rankings, and category-organized reports. It can optionally send the generated report through a messaging channel that the host environment has already configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches content from ME News API endpoints, so report quality and availability depend on those endpoints. <br>
-Mitigation: Install and run it only if the ME News API endpoints listed in sources.md are trusted for the intended workflow. <br>
-Risk: Optional scheduled push can send generated news reports outside the active agent session. <br>
-Mitigation: Confirm the host environment's configured message channel and credentials before enabling scheduled push. <br>
-Risk: The skill requires curl for primary API access and may fall back to web_fetch only when available. <br>
-Mitigation: Verify curl is installed in the runtime environment and keep requests limited to the documented sources.md endpoints. <br>
+## Use Case:
 
+External users and developers use this skill to fetch and format Chinese AI news briefings, hot-news rankings, and curated AI content from ME News sources. Teams can also configure recurring local scheduling when they want routine delivery through their existing OpenClaw message setup.
 
-## Reference(s): <br>
-- [AIMPACT ClawHub page](https://clawhub.ai/jamesmenews/aimpact) <br>
-- [MetaEra AI flash API](https://agent.me.news/skill/flash/list?page=1&size=20&category=ai) <br>
-- [AIMPACT AI articles API](https://agent.me.news/skill/aimpact/articles?page=1&size=20&category=ai) <br>
-- [AIMPACT OpenClaw articles API](https://agent.me.news/skill/aimpact/articles?page=1&size=20&category=openclaw) <br>
-- [AIMPACT events API](https://agent.me.news/skill/aimpact/events) <br>
-- [sources.md](artifact/sources.md) <br>
-- [format.md](artifact/format.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown news digest with optional shell command examples for scheduling] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are organized by AI-news category, sorted by available AI score, and limited to the current query window.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.8.1 (source: frontmatter and server release metadata) <br>
+Risk: Recurring scheduled runs may repeatedly post AI news reports through an already configured OpenClaw message channel.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure cron or Windows scheduled tasks only when recurring delivery is intended, and review the selected message channel and OpenClaw permissions before enabling scheduled runs.
+
+Risk: The skill retrieves external ME News API content and turns it into AI news reports.
+
+Mitigation: Review generated reports and their source links before relying on or redistributing the information.
+
+## Reference(s):
+
+- [AIMPACT ClawHub Skill Page](https://clawhub.ai/jamesmenews/skills/aimpact)
+- [Publisher Profile](https://clawhub.ai/user/jamesmenews)
+- [ME News Sources Configuration](artifact/sources.md)
+- [Output Format Template](artifact/format.md)
+- [MetaEra AI Flash API](https://agent.me.news/skill/flash/list?page=1&size=20&category=ai)
+- [AIMPACT AI News API](https://agent.me.news/skill/aimpact/articles?page=1&size=20&category=ai)
+- [AIMPACT OpenClaw News API](https://agent.me.news/skill/aimpact/articles?page=1&size=20&category=openclaw)
+- [AIMPACT Events API](https://agent.me.news/skill/aimpact/events)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Chinese Markdown news report with source links, plus optional shell command examples for scheduling.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl for ME News API retrieval; can optionally use web_fetch as a fallback and message for delivery when configured.]
+
+## Skill Version(s):
+
+0.8.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

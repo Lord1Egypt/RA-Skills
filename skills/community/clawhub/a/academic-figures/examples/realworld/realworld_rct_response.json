@@ -1,0 +1,10 @@
+{
+  "_note": "真实科研场景示例：中重度类风湿关节炎 RCT（n=240，1:1:1 随机，48 周主要终点）。数据为模拟值，量级与分布参照真实试验报告惯例（ACR20/50/70 应答率逐级递减）。",
+  "_command": "python3 scripts/gen_figure.py -t grouped_bar -d examples/realworld/realworld_rct_response.json -o fig1_rct.png --cjk --show-values",
+  "labels": ["ACR20 应答", "ACR50 应答", "ACR70 应答", "DAS28≤3.2 达标", "HAQ-DI 改善≥0.22"],
+  "series": {
+    "安慰剂组 (n=80)": [22.5, 8.8, 3.8, 15.0, 21.3],
+    "阿达木单抗 (n=80)": [58.8, 33.8, 17.5, 38.8, 47.5],
+    "联合治疗组 (n=80)": [71.3, 47.5, 27.5, 51.3, 62.5]
+  }
+}

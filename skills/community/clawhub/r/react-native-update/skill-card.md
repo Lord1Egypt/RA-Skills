@@ -1,43 +1,62 @@
-## Description: <br>
-Integrate and troubleshoot React Native Update OTA for Pushy and Cresc. Use when wiring react-native-update into React Native CLI, Expo prebuild, HarmonyOS, brownfield, monorepo, or mixed native apps; configuring update.json/appKey, Pushy/Cresc clients, UpdateProvider/useUpdate, iOS/Android/Harmony bundle loading, release baseline upload, checkStrategy/updateStrategy, canary/metaInfo flows, expo-updates conflicts, or OTA diagnostics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrate and troubleshoot React Native Update OTA for Pushy and Cresc.
 
-## Publisher: <br>
-[sunnylqm](https://clawhub.ai/user/sunnylqm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunnylqm](https://clawhub.ai/user/sunnylqm)
 
-## Use Case: <br>
-Developers and engineers use this skill to integrate React Native Update OTA workflows into React Native, Expo prebuild, HarmonyOS, brownfield, monorepo, and mixed native apps. It guides service selection, native bundle loading, provider wiring, release baseline upload, update publishing, and troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide package installs, native project edits, release builds, and uploads to Pushy or Cresc. <br>
-Mitigation: Review generated configuration, service/account choices, and native changes before applying them to a production app. <br>
-Risk: The diagnostic script inspects the app directory supplied by the user. <br>
-Mitigation: Run the diagnostic script only against the React Native app intended for inspection. <br>
-Risk: OTA behavior depends on matching the CLI, dashboard app records, update.json values, and JavaScript client service. <br>
-Mitigation: Keep Pushy or Cresc choices consistent across CLI commands, dashboard records, update.json, and the initialized client. <br>
+## Use Case:
 
+Developers and engineers use this skill to integrate and troubleshoot React Native Update OTA flows across React Native CLI, Expo prebuild, HarmonyOS, brownfield, monorepo, and mixed native applications. It helps produce minimal integration diffs, verification checklists, and targeted troubleshooting guidance for Pushy or Cresc releases.
 
-## Reference(s): <br>
-- [React Native Update integration playbook](references/integration-playbook.md) <br>
-- [React Native Update on ClawHub](https://clawhub.ai/sunnylqm/react-native-update) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include minimal integration diffs, verification checklists, troubleshooting guidance, and diagnostic command output interpretation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release evidence) <br>
+Risk: The app may be wired to the wrong OTA service if Pushy and Cresc commands, dashboard records, app keys, or JS client classes are mixed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm whether the app should use Pushy or Cresc before applying changes, and keep the CLI, dashboard, update.json records, and client class on the same service.
+
+Risk: Package installation or CLI setup may introduce unreviewed dependency changes.
+
+Mitigation: Prefer pinned project-local dependencies when the workflow allows it, and review lockfile changes before committing.
+
+Risk: Release baseline upload and hot-update publishing can affect distributed app behavior.
+
+Mitigation: Treat baseline uploads and hot-update publishing as reviewed release actions, and verify the uploaded baseline matches the package distributed to users.
+
+Risk: Local update state may be committed unintentionally.
+
+Mitigation: Do not commit the .update file; confirm it is ignored when present.
+
+## Reference(s):
+
+- [React Native Update integration playbook](references/integration-playbook.md)
+- [ClawHub skill page](https://clawhub.ai/sunnylqm/skills/react-native-update)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code snippets, shell commands, file-specific diffs, checklists, and troubleshooting notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include release-build verification steps, baseline upload checks, and Pushy/Cresc service selection guidance.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

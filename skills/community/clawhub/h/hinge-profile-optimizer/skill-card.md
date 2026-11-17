@@ -1,48 +1,59 @@
-## Description: <br>
-Comprehensive, research-backed Hinge dating profile optimization for improving profiles, auditing existing content, writing prompts and captions, selecting and ordering photos, reviewing settings, and understanding match quality issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive, research-backed Hinge dating profile optimization for auditing profiles, improving prompts and captions, selecting and ordering photos, reviewing settings, and developing post-launch strategy.
 
-## Publisher: <br>
-[b1rdmania](https://clawhub.ai/user/b1rdmania) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[b1rdmania](https://clawhub.ai/user/b1rdmania)
 
-## Use Case: <br>
-External users use this skill to audit and improve a Hinge dating profile through a structured coaching process covering discovery, profile copy, photo strategy, settings, implementation, and post-launch habits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share sensitive dating-profile material, private conversations, exact locations, names, or third-party faces during coaching. <br>
-Mitigation: Share only what is needed, redact names, exact locations, private conversations, sensitive identifiers, and third-party faces before providing screenshots or examples. <br>
-Risk: Market and demographic guidance could be treated as objective judgment rather than optional coaching. <br>
-Mitigation: Treat profile and settings advice as subjective coaching; review recommendations for fit, fairness, and personal comfort before applying them. <br>
+## Use Case:
 
+External users use this skill to improve a Hinge dating profile through a structured coaching workflow: profile audit, discovery interview, market reality check, photo strategy, prompt and caption writing, settings cleanup, implementation support, and early post-launch guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/b1rdmania/hinge-profile-optimizer) <br>
-- [README](README.md) <br>
-- [Profile Audit Criteria](references/audit-criteria.md) <br>
-- [Copy Principles](references/copy-principles.md) <br>
-- [Discovery Questions](references/discovery-questions.md) <br>
-- [Hinge Prompts - Current Options](references/hinge-prompts-current.md) <br>
-- [Hinge Settings Guide](references/hinge-settings.md) <br>
-- [Photo Guidelines](references/photo-guidelines.md) <br>
-- [Research Findings](references/research-findings.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown and conversational guidance with profile audit notes, prompt copy, photo ordering recommendations, settings checklist, and implementation steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only coaching output; no code execution or external service calls are evidenced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The workflow may ask for sensitive dating-profile screenshots, photos, preferences, and personal stories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only what is needed, avoid exact addresses, workplace badges, documents, children, non-consenting third parties, and anything unsuitable for a public dating profile.
+
+Risk: Profile recommendations may include personalized copy, settings changes, or photo guidance that could misrepresent the user if applied without review.
+
+Mitigation: Review all proposed copy, photo selections, captions, and settings before publishing so the final profile remains accurate and comfortable for the user.
+
+## Reference(s):
+
+- [Research Findings](references/research-findings.md)
+- [Audit Criteria](references/audit-criteria.md)
+- [Discovery Questions](references/discovery-questions.md)
+- [Copy Principles](references/copy-principles.md)
+- [Photo Guidelines](references/photo-guidelines.md)
+- [Hinge Prompts Current](references/hinge-prompts-current.md)
+- [Hinge Settings Guide](references/hinge-settings.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with profile audit notes, interview questions, copy-ready prompt and caption text, photo ordering recommendations, settings checklist, and implementation steps.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May request dating-profile screenshots, photos, preferences, and personal stories from the user.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

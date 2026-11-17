@@ -1,44 +1,58 @@
-## Description: <br>
-Actuator is advertised as an actuator selection and sizing calculator, but security review identifies the artifact as a local data manager for storing, searching, deleting, and exporting user-entered records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Actuator is presented as an actuator selection and sizing calculator, but the artifact evidence shows a command-line local record manager for adding, listing, searching, removing, exporting, and configuring entries.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-External developers and engineers can use this skill as a shell-based local record manager for adding, listing, searching, deleting, and exporting user-entered entries. The advertised actuator sizing purpose should be verified before relying on the skill for engineering calculations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is advertised as an actuator sizing calculator, but security evidence says the artifact behaves as a local data manager. <br>
-Mitigation: Review the function before installing and do not rely on it for actuator sizing decisions without independent validation. <br>
-Risk: User-entered records are stored locally in JSONL under ~/.actuator by default and can be exported to files. <br>
-Mitigation: Avoid entering sensitive engineering, business, or operational data; set ACTUATOR_DIR to a controlled location when testing. <br>
-Risk: Records can be deleted by line number. <br>
-Mitigation: Back up data before using remove operations or test with disposable data. <br>
+## Use Case:
 
+External users and developers can run the skill as a CLI-style local entry manager for storing, searching, exporting, and deleting user-provided records. Do not rely on it for actuator sizing or operational engineering decisions unless the implementation is corrected to match that advertised purpose.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/actuator) <br>
-- [Publisher profile](https://clawhub.ai/user/ckchzh) <br>
-- [Publisher homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [Structured stdout text, JSONL records, and optional JSON or CSV exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores data under ~/.actuator by default; ACTUATOR_DIR can override the data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The advertised actuator sizing purpose does not match the artifact behavior, which operates as a persistent local record manager.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the implementation against the advertised engineering use case before using outputs for actuator selection, sizing, or operational decisions.
+
+Risk: The config command is identified by the security evidence as unsafe with untrusted input and capable of executing injected shell commands.
+
+Mitigation: Avoid untrusted config keys and values, do not run the skill in automated workflows, and require implementation changes before production deployment.
+
+Risk: The skill stores user-provided entries locally and can export or delete them.
+
+Mitigation: Do not store sensitive operational notes, and scope ACTUATOR_DIR to an isolated directory when evaluating the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/actuator)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Plain text CLI output and JSONL/CSV files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores entries under the ACTUATOR_DIR path, defaulting to ~/.actuator/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,49 @@
-## Description: <br>
-Full-stack social media management skill covering content creation, review, scheduling, publishing, funnel management, analytics, audience insights, competitor tracking, engagement, brand voice, A/B testing, campaign management, and growth strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Social Media Commander helps an agent manage social media content creation, review, scheduling, publishing, funnel management, analytics, audience insights, competitor tracking, engagement, brand voice, A/B testing, campaigns, and growth strategy.
 
-## Publisher: <br>
-[cyber-bye](https://clawhub.ai/user/cyber-bye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyber-bye](https://clawhub.ai/user/cyber-bye)
 
-## Use Case: <br>
-External users and social media operators use this skill to maintain a local social media operations workspace for drafting, reviewing, scheduling, analytics tracking, campaign planning, and recurring strategy reviews across major platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create and update local drafts, calendars, analytics records, recurring reviews, and state files over time. <br>
-Mitigation: Install it only in a workspace where those records are desired, and test in a sandbox workspace if unexpected local draft or report creation would be disruptive. <br>
-Risk: Real account posting, direct-message handling, or platform integrations could affect live social accounts if connected outside the skill. <br>
-Mitigation: Keep publishing, DM handling, and platform integrations behind explicit user approval. <br>
+## Use Case:
 
+External users and social media operators use this skill to manage a multi-platform content pipeline from idea capture through draft review, scheduling, publishing, analytics review, and strategy updates.
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/cyber-bye/social-media-commander) <br>
-- [Publisher profile](https://clawhub.ai/user/cyber-bye) <br>
-- [Skill source overview](artifact/SKILL.md) <br>
-- [Agent behavior rules](artifact/AGENT.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown files and structured local workspace records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces drafts, review checklists, content calendars, analytics summaries, campaign notes, strategy updates, and recurring review guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: skill frontmatter and server release evidence) <br>
+Risk: Active scheduled automation and broad write triggers can create persistent social-media reports, drafts, analytics updates, and audience records without clear cancellation or approval boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, disable or remove active cron files unless recurring updates are intended, and use only in workspaces where these writes are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cyber-bye/skills/social-media-commander)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown files and structured workspace entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates social media plans, drafts, analytics summaries, logs, and memory records in the workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

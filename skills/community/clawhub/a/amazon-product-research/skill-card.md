@@ -1,42 +1,54 @@
-## Description: <br>
-Amazon 产品全链路深度研究助手，可从一句产品名、ASIN, or description run product search, review collection, AI tagging, keyword expansion, VOC clustering, competitor analysis, opportunity analysis, and produce an interactive HTML report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Amazon 产品全链路深度研究助手，可从一句产品名、ASIN或描述自动完成产品搜索、评论采集、AI情感打标、关键词扩展、VOC痛点聚类、竞品分析、新品机会分析，并生成交互式HTML可视化报告。
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-External users, product researchers, and ecommerce operators use this skill to research Amazon product categories, compare competitors, analyze customer reviews, identify VOC pain points, expand keywords, and generate product opportunity reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Real runs can send queries, product and review text, and generated analysis to selected API providers. <br>
-Mitigation: Use mock mode for demonstrations or confidential research, and only provide API keys when sharing that data with the selected providers is acceptable. <br>
-Risk: Generated HTML reports may load remote scripts or images when opened. <br>
-Mitigation: Treat reports as local files, review them before sharing, and open them in an environment appropriate for remote resource loading. <br>
+## Use Case:
 
+External sellers, product researchers, and ecommerce operators use this skill to investigate Amazon product categories, compare competitors, identify review-derived pain points, expand keywords, and evaluate new product opportunities.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/amazon-product-research) <br>
-- [Publisher profile](https://clawhub.ai/user/bettermen) <br>
-- [RapidAPI Amazon hub](https://rapidapi.com/hub/amazon) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands, Python script outputs, structured analysis data, and interactive HTML reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Report output defaults to a local product_research timestamped HTML file; mock mode can run without API keys.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill can send product ideas, review text, and LLM API credentials to a configured OpenAI-compatible provider endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted HTTPS provider endpoints, avoid unknown api_base values, and provide credentials with the minimum scope needed for the run.
+
+Risk: Generated reports may include content derived from live marketplace data and are automatically opened as local HTML.
+
+Mitigation: Prefer mock mode for demonstrations and review generated HTML from live data carefully until the escaping issue identified by the security scan is fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/amazon-product-research)
+- [Amazon APIs on RapidAPI](https://rapidapi.com/hub/amazon)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, HTML files]
+
+**Output Format:** [Markdown guidance with shell commands, Python-driven analysis output, and generated interactive HTML reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use mock data without API keys; live analysis can call RapidAPI and an OpenAI-compatible LLM endpoint.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

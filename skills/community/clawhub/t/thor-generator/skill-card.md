@@ -1,37 +1,51 @@
-## Description: <br>
-Generate high-quality images locally using the ComfyUI Thor pipeline from user-provided text prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate high-quality images locally using the ComfyUI Thor pipeline from user-provided text prompts.
 
-## Publisher: <br>
-[thortheai1-hash](https://clawhub.ai/user/thortheai1-hash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[thortheai1-hash](https://clawhub.ai/user/thortheai1-hash)
 
-## Use Case: <br>
-Developers and agent users use this skill to turn text prompts into local image files through an existing ComfyUI Thor setup. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill tells the agent to run a local shell command with user prompt text interpolated into the command. <br>
-Mitigation: Install only after trusting the local ~/ComfyUI setup and inspecting thor_generate_image.py; avoid arbitrary or untrusted prompt text unless argument passing, path validation, and confirmation are added. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/thortheai1-hash/thor-generator) <br>
+## Use Case:
+
+Developers and creators use this skill to ask an agent to generate images from text prompts through a local ComfyUI Thor setup and save the resulting image file on the workstation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: A user-provided image prompt is interpolated into a shell command, which can cause unintended local command execution.
+
+Mitigation: Use a non-shell argument-array call or a fixed wrapper that passes the prompt as data before running the skill with untrusted prompts.
+
+Risk: The skill runs a local image-generation pipeline and writes output to the Desktop, so installation and execution affect the local workstation.
+
+Mitigation: Review the skill before installation, confirm the ComfyUI Thor environment and output path, and run it only in an environment where local file writes are acceptable.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files] <br>
-**Output Format:** [Shell command execution that produces a local image file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local ~/ComfyUI environment and thor_generate_image.py; generated images are saved to ~/Desktop/bring_img.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown or text guidance that may include a shell command for local image generation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a local image file saved to ~/Desktop/bring_img when the required ComfyUI Thor environment is present.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

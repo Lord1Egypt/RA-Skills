@@ -1,43 +1,65 @@
-## Description: <br>
-Enables an agent to proactively send WeChat text messages and selected attachments through the wxclawbot CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lets an agent proactively send WeChat text messages, images, videos, and files through the wxclawbot CLI.
 
-## Publisher: <br>
-[lroolle](https://clawhub.ai/user/lroolle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lroolle](https://clawhub.ai/user/lroolle)
 
-## Use Case: <br>
-Agents, developers, and operators use this skill to send WeChat reminders, alerts, reports, and media or file notifications from an automated workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent authority to send WeChat messages and attachments using configured bot credentials. <br>
-Mitigation: Install only when this sending authority is intended, keep bot tokens and account files private, and require explicit approval before sending sensitive content. <br>
-Risk: Messages or files can be sent to the wrong recipient or sent unintentionally during uncertain workflows. <br>
-Mitigation: Verify the recipient before sending and use --dry-run for uncertain messages or attachments. <br>
+## Use Case:
 
+Developers and operators use this skill to have an OpenClaw agent send proactive WeChat reminders, alerts, reports, and attachments to configured users.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lroolle/wxclawbot-send) <br>
-- [wxclawbot-cli repository](https://github.com/lroolle/wxclawbot-cli) <br>
-- [wxclawbot-cli npm package](https://www.npmjs.com/package/@claw-lab/wxclawbot-cli) <br>
-- [Programmatic API reference](references/programmatic-api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples, TypeScript snippets, and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Use --json for programmatic calls; supports dry-run previews and text, image, video, or file sends.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.2 (source: server release, SKILL.md frontmatter, package.json) <br>
+Risk: The skill can send WeChat messages and attachments to external recipients.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run or explicit confirmation before sending sensitive files, reports, or user data.
+
+Risk: WXCLAW_TOKEN and local OpenClaw account files grant messaging access.
+
+Mitigation: Keep tokens and account files secret, restrict filesystem access, and rotate credentials if exposed.
+
+Risk: Custom base URLs and URL attachments can route data through untrusted endpoints or fetch untrusted content.
+
+Mitigation: Use only trusted WXCLAW_BASE_URL/account baseUrl values and only send URL attachments from trusted sources.
+
+Risk: A successful CLI run does not always prove the message was delivered or actively pushed.
+
+Mitigation: Request JSON output, inspect the ok field, and verify account context tokens when proactive push behavior matters.
+
+## Reference(s):
+
+- [Programmatic API](references/programmatic-api.md)
+- [ClawHub skill page](https://clawhub.ai/lroolle/skills/wxclawbot-send)
+- [wxclawbot-cli repository](https://github.com/lroolle/wxclawbot-cli)
+- [npm package](https://www.npmjs.com/package/@claw-lab/wxclawbot-cli)
+- [WeChat Integration Tutorial](https://mp.weixin.qq.com/s/nYDQ1obQEHe1WavGpNzasQ)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Programmatic use should request JSON output and inspect the ok field.]
+
+## Skill Version(s):
+
+0.5.2 (source: SKILL.md frontmatter, package.json, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

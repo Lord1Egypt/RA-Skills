@@ -1,42 +1,60 @@
-## Description: <br>
-X Creat Agent standardizes OpenClaw agent creation by collecting agent details, running a creation script, generating workspace files, registering the agent, and optionally pairing a Feishu bot. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users through creating an OpenClaw Agent, running a creation script, and optionally pairing a Feishu bot with supplied credentials.
 
-## Publisher: <br>
-[snlcc](https://clawhub.ai/user/snlcc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snlcc](https://clawhub.ai/user/snlcc)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to create standardized OpenClaw agents, generate required workspace files, register agents in openclaw.json, and optionally configure Feishu bot pairing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Feishu AppID and AppSecret can be written to openclaw.json as local credentials. <br>
-Mitigation: Use a private terminal, avoid sharing command history or logs, and treat openclaw.json as sensitive. <br>
-Risk: The creation script modifies local OpenClaw configuration and creates agent workspace files. <br>
-Mitigation: Review the displayed path summary before confirming creation and run the script only in the intended OpenClaw home directory. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to collect agent details, create a standardized OpenClaw agent workspace, register it in openclaw.json, and optionally pair a Feishu bot.
 
-## Reference(s): <br>
-- [X Creat Agent on ClawHub](https://clawhub.ai/snlcc/x-creat-agent) <br>
-- [Feishu agent creation](https://open.feishu.cn/page/launcher?from=backend_oneclick) <br>
-- [Feishu bot creation](https://open.feishu.cn/page/openclaw?form=multiAgent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and generated local files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates OpenClaw workspace files and may update openclaw.json with Feishu credentials when supplied.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.14 (source: frontmatter and server release evidence) <br>
+Risk: The skill can write persistent workspace instructions and update openclaw.json.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated workspace templates and configuration changes before installation or execution.
+
+Risk: Feishu AppSecrets may be passed on the command line and saved as plaintext configuration.
+
+Mitigation: Avoid passing real secrets on the command line when possible, treat saved credentials as sensitive plaintext, and rotate or remove them if exposed.
+
+Risk: Generated proactive monitoring and commit or push instructions may create behavior broader than intended.
+
+Mitigation: Remove or narrow those instructions unless that behavior is explicitly desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/snlcc/skills/x-creat-agent)
+- [ClawHub publisher profile](https://clawhub.ai/user/snlcc)
+- [Feishu agent creation](https://open.feishu.cn/page/launcher?from=backend_oneclick)
+- [Feishu bot creation](https://open.feishu.cn/page/openclaw?form=multiAgent)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide execution of a Python script that creates workspace files and updates OpenClaw configuration.]
+
+## Skill Version(s):
+
+1.2.14 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

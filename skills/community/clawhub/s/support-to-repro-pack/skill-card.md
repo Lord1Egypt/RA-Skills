@@ -1,40 +1,57 @@
-## Description: <br>
-Convert support tickets, logs, and screenshots into sanitized, reproducible engineering issue packs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert support tickets, logs, and screenshots into sanitized, reproducible engineering issue packs.
 
-## Publisher: <br>
-[mshs01156](https://clawhub.ai/user/mshs01156) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mshs01156](https://clawhub.ai/user/mshs01156)
 
-## Use Case: <br>
-Developers and support engineers use this skill to convert messy customer support tickets, logs, screenshots, and related context into sanitized engineering handoff materials. It helps produce reproducible issue packs with extracted facts, timelines, severity assessment, follow-up questions, internal escalation notes, and a customer-safe reply. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive customer data may remain in generated outputs because the release security evidence says the sanitization promises are stronger than the artifacts support. <br>
-Mitigation: Use only authorized inputs, inspect every generated file before sharing, avoid ZIP packaging until outputs are checked, and do not rely on automated redaction as complete protection for logs, screenshots, URLs, tokens, derived timelines, or stack-trace files. <br>
+## Use Case:
 
+Support engineers and developers use this skill to turn messy tickets, logs, screenshots, and chat context into sanitized engineering handoff packs with facts, timelines, redaction reports, and customer-safe communication drafts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mshs01156/support-to-repro-pack) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown documents, JSON reports, sanitized text files, and optional ZIP archive] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces an engineering issue, internal escalation summary, customer reply, facts report, timeline, redaction report, and sanitized ticket and log artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Sensitive raw details may remain in generated files or ZIP archives.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use private per-run temp and output directories, inspect every generated file and archive before sharing, and require a final whole-pack scan that blocks leaks.
+
+Risk: Real customer tickets, logs, screenshots, or credentials may be exposed during early use.
+
+Mitigation: Avoid real customer data until raw-derived output paths are verified redacted; use synthetic or already-approved samples for validation.
+
+Risk: Dependency drift may reduce reproducibility of installs and generated packs.
+
+Mitigation: Pin dependencies for reproducible installs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mshs01156/skills/support-to-repro-pack)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated repro-pack files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces sanitized tickets, logs, JSON facts, timelines, redaction reports, engineering issue drafts, internal escalation summaries, and customer replies.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,53 @@
-## Description: <br>
-Convert Markdown files with slide separators into PowerPoint (PPTX) presentations, saving to an active Obsidian vault by default when available. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Markdown files with slide separators into PowerPoint (PPTX) presentations and can save output to an active Obsidian vault by default.
 
-## Publisher: <br>
-[zhcanyu4](https://clawhub.ai/user/zhcanyu4) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhcanyu4](https://clawhub.ai/user/zhcanyu4)
 
-## Use Case: <br>
-Developers, writers, and knowledge workers use this skill to turn Markdown slide drafts into PPTX presentations, including Markdown files separated by --- slide delimiters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated PPTX files are saved to the active Obsidian vault by default when no output path is provided. <br>
-Mitigation: Provide an explicit output path when the presentation should be written somewhere else. <br>
-Risk: Conversion depends on local LibreOffice or Pandoc executables found on PATH. <br>
-Mitigation: Use trusted local installations of LibreOffice or Pandoc before running conversion commands. <br>
+## Use Case:
 
+Developers and end users use this skill to convert Markdown slide decks into PPTX presentations, with optional custom output paths and a default Obsidian vault destination when configured.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands that produce a PPTX file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create an intermediate HTML file and writes PPTX output to the active Obsidian vault by default, or to a caller-specified path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The converter reads Obsidian configuration and may write PPTX output into the active vault by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if this behavior is acceptable, or pass an explicit output path for each conversion.
+
+Risk: The intermediate HTML file is written next to the input Markdown file and can overwrite an existing sibling HTML path.
+
+Mitigation: Avoid running the converter on Markdown files in directories writable by other users, and check for an existing sibling HTML file before conversion.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhcanyu4/skills/md-to-pptx)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [PPTX files with terminal status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output defaults to the active Obsidian vault when no explicit output path is provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

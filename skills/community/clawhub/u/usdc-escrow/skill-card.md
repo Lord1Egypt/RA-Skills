@@ -1,43 +1,54 @@
-## Description: <br>
-Trustless USDC escrow for agent-to-agent payments on Base. Create, release, dispute escrows via simple commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trustless USDC escrow for agent-to-agent payments on Base. Create, release, dispute escrows via simple commands.
 
-## Publisher: <br>
-[zeroaddresss](https://clawhub.ai/user/zeroaddresss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zeroaddresss](https://clawhub.ai/user/zeroaddresss)
 
-## Use Case: <br>
-External developers and agent operators use this skill to create and manage USDC escrow payments between agents on Base Sepolia. It supports escrow creation, lookup, release, dispute, dispute resolution, and expired escrow claims through shell commands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Agents can invoke escrow actions that move or affect funds through the API. <br>
-Mitigation: Require explicit human approval before create, release, dispute, resolve, or claim-expired commands are executed. <br>
-Risk: The skill depends on trust in the operator of api.payclawback.xyz and the configured escrow endpoint. <br>
-Mitigation: Install only when the operator is trusted, and verify the API endpoint, network, and contract details before use. <br>
-Risk: Escrow descriptions and command parameters may expose sensitive transaction context. <br>
-Mitigation: Avoid confidential descriptions and verify escrow IDs, recipients, amounts, and deadlines before submitting commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [USDC Escrow API Documentation](references/api-docs.md) <br>
-- [Verified Base Sepolia Escrow Contract](https://sepolia.basescan.org/address/0x2a27844f3775c3a446d32c06f4ebc3a02bb52e04) <br>
-- [USDC Escrow ClawHub Listing](https://clawhub.ai/zeroaddresss/usdc-escrow) <br>
+## Use Case:
 
+External developers and agents use this skill to create, inspect, release, dispute, resolve, and reclaim USDC escrows for agent-to-agent payments on Base Sepolia.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq; commands call the configured escrow API endpoint.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Escrow create, release, resolve, and claim commands can affect funds through unauthenticated API calls.
+
+Mitigation: Require explicit human approval before fund-moving commands and verify the escrow ID, beneficiary address, amount, and deadline before execution.
+
+Risk: The skill depends on a third-party escrow API and configurable backend URL.
+
+Mitigation: Verify ESCROW_API_URL, the Base Sepolia network, and the documented escrow contract before use.
+
+## Reference(s):
+
+- [USDC Escrow API Documentation](references/api-docs.md)
+- [Base Sepolia Escrow Contract](https://sepolia.basescan.org/address/0x2a27844f3775c3a446d32c06f4ebc3a02bb52e04)
+- [ClawHub Skill Page](https://clawhub.ai/zeroaddresss/skills/usdc-escrow)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance, Configuration]
+
+**Output Format:** [Markdown with inline bash commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq; ESCROW_API_URL can override the default API backend.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

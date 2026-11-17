@@ -1,42 +1,56 @@
-## Description: <br>
-Aggregates global technology, stock market, AI paper, military technology, and policy news from public sources into structured intelligence-style summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aggregates global technology, finance, AI research, military technology, and policy news from multiple public sources into concise intelligence-style reports.
 
-## Publisher: <br>
-[bodysuperman](https://clawhub.ai/user/bodysuperman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bodysuperman](https://clawhub.ai/user/bodysuperman)
 
-## Use Case: <br>
-Developers and OpenClaw users can use this skill to gather recent public news and research links across technology, finance, AI, military technology, and policy topics, then receive concise Markdown or JSON summaries for situational awareness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper script contacts third-party public news and feed sites, which can expose query topics and depend on external source availability. <br>
-Mitigation: Use explicit commands for sensitive research topics and review returned links and summaries before relying on them. <br>
-Risk: The helper script may install Python dependencies automatically when required packages are missing. <br>
-Mitigation: Run it in a virtual environment or sandbox to avoid changing the main Python environment. <br>
+## Use Case:
 
+OpenClaw users, analysts, and developers use this skill to collect recent public news and research items across preset topics, filter by source or time window, and receive structured summaries for situational awareness.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bodysuperman/world-news-aggregator-skill) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reports or JSON records printed by a command-line helper] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include source names, timestamps when available, summaries, links, and feed status details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and target metadata) <br>
+Risk: The helper script can automatically install Python dependencies and the dependency specifications are not pinned to exact versions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill in an isolated virtual environment or container, review dependencies before use, and install reviewed versions explicitly instead of relying on the script's automatic pip path.
+
+Risk: Fetched article text and links come from external news and feed sources, including at least one source requested over non-HTTPS.
+
+Mitigation: Treat retrieved content and links as untrusted, review the configured sources before deployment, and prefer HTTPS feeds where available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bodysuperman/skills/world-news-aggregator-skill)
+- [OpenClaw project](https://github.com/openclaw/openclaw)
+- [Artifact README](README.md)
+- [Artifact skill definition](SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown report or JSON payload with article titles, sources, timestamps, summaries, links, and source-status information.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Configurable by topic/source selection, result limit, time window, and brief, summary, or detailed output mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

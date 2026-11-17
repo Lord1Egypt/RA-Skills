@@ -1,39 +1,52 @@
-## Description: <br>
-Magyar helyesirasi es nyelvtani ellenorzest, ragozasi segitseget, szabailymagyarazatot es mondatszerkezeti elemzest ad. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Magyar helyesírási és nyelvtani ellenőrzés, igeragozás, névszóragozás, nyelvtani szabálymagyarázat és mondatrészek elemzése.
 
-## Publisher: <br>
-[Izsook](https://clawhub.ai/user/Izsook) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[izsook](https://clawhub.ai/user/izsook)
 
-## Use Case: <br>
-Hungarian-language writers, editors, students, and agents use this skill to check spelling and grammar, explain Hungarian grammar rules, generate inflection guidance, and analyze sentence parts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [MTA - A magyar helyesiras szabalyai (12. kiadas)](references/akh12.md) <br>
-- [Pontos Magyar Fogalmazas](references/fogalmazas.md) <br>
-- [MTA Helyesiras](https://helyesiras.mta.hu/helyesiras/default/akh12) <br>
+Hungarian writers, editors, students, and agents use this skill to check spelling and grammar, explain Hungarian grammar rules, analyze sentence structure, and improve Hungarian wording.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text explanations, corrections, and examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The artifact references optional scripts and reference files that are not included in the release, so agents may overstate available automation or source coverage.
+
+Mitigation: Treat the bundled Markdown files as the available evidence, verify important language guidance against authoritative Hungarian sources, and do not assume missing scripts or files exist.
+
+## Reference(s):
+
+- [MTA - A magyar helyesírás szabályai (12. kiadás)](https://helyesiras.mta.hu/helyesiras/default/akh12)
+- [AKH.12 reference notes](artifact/references/akh12.md)
+- [Pontos Magyar Fogalmazas](artifact/references/fogalmazas.md)
+- [ClawHub skill page](https://clawhub.ai/izsook/skills/magyar-nyelvtan)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text responses with corrections, explanations, examples, and suggested wording]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable artifact is produced by the skill itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

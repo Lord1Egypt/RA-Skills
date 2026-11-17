@@ -1,42 +1,57 @@
-## Description: <br>
-Manage Todoist tasks using the `todoist` CLI to add, list, and complete tasks from the command line. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Todoist tasks using the `todoist` CLI. Add, list, and complete tasks from the command line.
 
-## Publisher: <br>
-[Xejrax](https://clawhub.ai/user/Xejrax) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xejrax](https://clawhub.ai/user/xejrax)
 
-## Use Case: <br>
-Developers and agents use this skill to manage Todoist tasks by listing pending items, adding tasks with optional due dates, and marking tasks complete through a CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and modify Todoist tasks when task-account credentials are available. <br>
-Mitigation: Use a narrowly scoped Todoist token and enable the skill only where task reads and writes are expected. <br>
-Risk: The artifact mentions Microsoft Graph token use, but server security guidance says the Microsoft To-Do behavior is unclear. <br>
-Mitigation: Do not provide a Microsoft Graph token unless the publisher clearly documents and validates Microsoft To-Do support. <br>
-Risk: Installation depends on a Todoist CLI provided through the `todoist-api-python` package. <br>
-Mitigation: Verify the package source and installed `todoist` command before enabling the skill for an agent. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Xejrax/brainz-tasks) <br>
-- [Publisher profile](https://clawhub.ai/user/Xejrax) <br>
+## Use Case:
 
+Developers and task-management users use this skill to list, create, and complete tasks from an agent workflow through the Todoist command line interface.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and environment-variable guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the `todoist` command and a supported task-service token before task commands can run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to expose task titles, due dates, identifiers, and completion actions to a task service.
+
+Mitigation: Use only if that data exposure is acceptable, and prefer a narrowly scoped Todoist token.
+
+Risk: The install metadata covers Todoist only, while the artifact also claims Microsoft To-Do and Microsoft Graph token support.
+
+Mitigation: Avoid providing a broad Microsoft Graph token unless the publisher documents that integration and scope requirements.
+
+Risk: The dependency installation example does not pin a reviewed package version.
+
+Mitigation: Install the dependency in an isolated environment with a reviewed pinned version where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xejrax/skills/brainz-tasks)
+- [Publisher profile](https://clawhub.ai/user/xejrax)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes task-service credential setup guidance and command examples for listing, adding, and completing tasks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

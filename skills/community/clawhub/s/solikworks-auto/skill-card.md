@@ -1,41 +1,54 @@
-## Description: <br>
-Generates Python pywin32 code that controls SolidWorks through its official COM interface to automate part creation, sketching, feature generation, drawing export, and file saving. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Python automation scripts that control SolidWorks through pywin32 and the SolidWorks COM interface for part creation, sketching, feature generation, drawing export, and file saving.
 
-## Publisher: <br>
-[2009730](https://clawhub.ai/user/2009730) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[2009730](https://clawhub.ai/user/2009730)
 
-## Use Case: <br>
-Mechanical designers, engineers, and agents use this skill to turn SolidWorks modeling or drawing requests into runnable Python scripts and execution guidance for local SolidWorks automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Python scripts can control SolidWorks and write files. <br>
-Mitigation: Review dimensions, filenames, output paths, overwrite behavior, and the generated code before running it locally. <br>
-Risk: The workflow depends on pywin32 and local COM automation access. <br>
-Mitigation: Install pywin32 only from trusted sources and run the script in an environment where SolidWorks automation is expected. <br>
+## Use Case:
 
+CAD users, mechanical engineers, and developers use this skill to turn SolidWorks modeling and drawing-export requests into runnable Python automation code with setup, execution, and result-checking guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/2009730/solikworks-auto) <br>
-- [Publisher profile](https://clawhub.ai/user/2009730) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, markdown, guidance] <br>
-**Output Format:** [Markdown with Python code blocks and step-by-step run and verification guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated scripts are intended for local Windows SolidWorks environments with Python, pywin32, and COM access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Generated automation can create, modify, export, save, or overwrite CAD files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target model, dimensions, save and export paths, filenames, and overwrite behavior before running the script.
+
+Risk: A script generated for the wrong part, dimensions, or file path could produce incorrect CAD output or affect important files.
+
+Mitigation: Test generated automation on copies of important CAD files before using it on production models.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/2009730/skills/solikworks-auto)
+- [ClawHub publisher profile](https://clawhub.ai/user/2009730)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with Python code blocks and step-by-step operating guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated code is expected to include Chinese comments, COM initialization, SolidWorks connection handling, exception handling, and user-specified dimensions, filenames, paths, and save/export behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

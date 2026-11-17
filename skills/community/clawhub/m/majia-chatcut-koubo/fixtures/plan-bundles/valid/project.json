@@ -1,0 +1,43 @@
+{
+  "$schema": "../../../schemas/project-manifest.schema.json",
+  "schemaVersion": "1.0.0",
+  "projectId": "proj_demo",
+  "runId": "run_demo",
+  "timeline": {
+    "timelineId": "timeline_demo",
+    "revision": "rev_demo",
+    "duration": {
+      "domain": "timeline",
+      "rate": {
+        "numerator": 30,
+        "denominator": 1
+      },
+      "start": 0,
+      "end": 180
+    },
+    "resolution": {
+      "width": 1080,
+      "height": 1920
+    }
+  },
+  "sources": [
+    {
+      "assetId": "asset_speaker",
+      "role": "speaker",
+      "revision": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "duration": {
+        "domain": "source",
+        "rate": {
+          "numerator": 30,
+          "denominator": 1
+        },
+        "start": 0,
+        "end": 300
+      }
+    }
+  ],
+  "contracts": {
+    "policyVersion": "1.2.0",
+    "registryVersion": "1.1.0"
+  }
+}

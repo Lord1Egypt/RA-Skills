@@ -1,41 +1,53 @@
-## Description: <br>
-Browse, search, and explore Art Blocks projects, collections, and collector portfolios using artblocks-mcp. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browse, search, and explore Art Blocks projects, collections, and collector portfolios using artblocks-mcp.
 
-## Publisher: <br>
-[ryley-o](https://clawhub.ai/user/ryley-o) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryley-o](https://clawhub.ai/user/ryley-o)
 
-## Use Case: <br>
-External users and collectors use this skill to discover Art Blocks projects, inspect minting status and upcoming releases, explore artist project lists, and summarize collector wallets or token holdings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may lead agents from discovery into purchase-transaction follow-up tools that are outside the core browsing use case. <br>
-Mitigation: Keep transaction-building or purchase actions out of scope unless the user explicitly requests them and independently reviews all transaction details before execution. <br>
-Risk: Collector wallet and profile lookups may expose or aggregate public wallet holdings through the external artblocks-mcp server. <br>
-Mitigation: Use wallet/profile queries only when the user requests them and is comfortable sending those identifiers to the external MCP server. <br>
+## Use Case:
 
+External users and developers use this skill to guide agents in finding Art Blocks projects, live mints, upcoming drops, artist portfolios, and collector wallet summaries across supported chains.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryley-o/discover-artblocks-projects) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/ryley-o) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Text, Markdown] <br>
-**Output Format:** [Markdown or text responses summarizing Art Blocks project, mint, artist, tag, and wallet data returned by MCP tools.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include project metadata, floor prices, mint progress, token traits, wallet summaries, media links, and Art Blocks links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Agents may move from discovery into broader GraphQL or purchase-related tool references outside the stated discovery tool set.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep use informational by default and require explicit user direction before following purchase-related or broader data-query paths.
+
+Risk: Collector username lookups can aggregate holdings across linked wallets.
+
+Mitigation: Only request or summarize wallet and username portfolio data when the user has clearly asked for that collector view.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ryley-o/skills/discover-artblocks-projects)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text]
+
+**Output Format:** [Markdown guidance with tool names and parameter descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Art Blocks project metadata, artist details, mint status, floor prices, links, token details, and wallet portfolio summaries when the underlying tools are available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

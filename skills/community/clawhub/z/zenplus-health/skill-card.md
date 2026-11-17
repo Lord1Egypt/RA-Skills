@@ -1,46 +1,60 @@
-## Description: <br>
-Workplace wellness for stress, anxiety, and burnout - mindfulness exercises, breathing techniques, mood check-ins, notifications, timeline, and a full wellbeing catalogue from Zen+ Health. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Workplace wellness for stress, anxiety, and burnout - mindfulness exercises, breathing techniques, mood check-ins, notifications, timeline, and a full wellbeing catalogue from Zen+ Health.
 
-## Publisher: <br>
-[ollieparsley](https://clawhub.ai/user/ollieparsley) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Proprietary <br>
+## Publisher:
 
+[ollieparsley](https://clawhub.ai/user/ollieparsley)
 
-## Use Case: <br>
-Employees and Zen+ Health users use this skill in OpenClaw to view wellness notifications, activity timeline, profile preferences, and the wellbeing catalogue. It can help select mindfulness or breathing exercises when users ask for support with stress, anxiety, relaxation, or burnout. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Proprietary
 
-## Known Risks and Mitigations: <br>
-Risk: Wellness notifications, timeline, profile, and preference data may be exposed in shared chats, logs, or poorly scoped OpenClaw environments. <br>
-Mitigation: Use the skill only in trusted environments, avoid sharing API responses in public or shared contexts, and review local logging settings before deployment. <br>
-Risk: ZEN_API_KEY exposure could allow read access to the user's Zen+ Health data within the key's scopes. <br>
-Mitigation: Store ZEN_API_KEY as a secret, do not hardcode or paste it into chat logs, and revoke or rotate the key immediately if exposure is suspected. <br>
-Risk: Requests sent to an unintended API host could disclose the API key or wellness data. <br>
-Mitigation: Keep ZEN_API_BASE_URL set to the official Zen+ Health API host: https://api.zenplus.health. <br>
+## Use Case:
 
+Employees and external users use this skill to access Zen+ Health wellness notifications, activity timelines, profile preferences, and catalogue exercises from an agent workflow. It supports read-only wellness check-ins, stress and anxiety support prompts, and browsing mindfulness or breathing activities.
 
-## Reference(s): <br>
-- [Zen+ Health API Documentation](https://zenplus.health/api/docs) <br>
-- [Zen+ Health OpenClaw Skill](https://zenplus.health/openclaw) <br>
-- [Zen+ Health API Key Settings](https://zenplus.health/settings/api-keys) <br>
-- [Security Guidelines](SECURITY.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ollieparsley/zenplus-health) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with curl commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ZEN_API_KEY, ZEN_API_BASE_URL, curl, and jq; API access is documented as read-only and rate-limited.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: frontmatter and server release metadata) <br>
+Risk: The skill can expose sensitive health-adjacent account data such as wellness notifications, timeline entries, profile information, and working-hours preferences.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in trusted workspaces, avoid shared or logged sessions for personal wellness queries, and require user confirmation before fetching profile, notification, timeline, or schedule data.
+
+Risk: The API key is sent to the endpoint configured in ZEN_API_BASE_URL.
+
+Mitigation: Set ZEN_API_BASE_URL exactly to the official HTTPS API endpoint and use a dedicated, revocable read-only Zen+ Health API key.
+
+Risk: Broad stress, anxiety, and wellness triggers may cause the agent to fetch account data when the user expected only general guidance.
+
+Mitigation: Ask for confirmation before account-specific API calls and offer catalogue-only or general wellness guidance when account access is not needed.
+
+## Reference(s):
+
+- [Zen+ Health API Documentation](https://zenplus.health/api/docs)
+- [Zen+ Health API Key Settings](https://zenplus.health/settings/api-keys)
+- [Zen+ Health OpenClaw Skill](https://zenplus.health/openclaw)
+- [ClawHub Skill Page](https://clawhub.ai/ollieparsley/skills/zenplus-health)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, ZEN_API_KEY, and ZEN_API_BASE_URL; API access is documented as read-only and rate-limited.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

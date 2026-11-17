@@ -11,6 +11,7 @@ import os
 import re
 import secrets
 import shutil
+import stat
 import subprocess
 import time
 import uuid
@@ -19,20 +20,67 @@ from typing import Any, Dict, Optional
 from eth_account import Account
 from eth_account.messages import encode_defunct
 
+# Pinned so a wallet operation never runs whatever version the registry happens to serve.
+# Kept in step with scripts/ows_cli.py.
+OWS_PINNED_PACKAGE = "@open-wallet-standard/core@0.5.0"
+
 USDC_ADDRESS = "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
 USDC_NAME = "USD Coin"
 USDC_VERSION = "2"
 BASE_CHAIN_ID = 8453
 BASE_CAIP2 = "eip155:8453"
 
+# Robinhood Chain (Arbitrum L2) — USDG stablecoin, EIP-3009 transferWithAuthorization.
+# Same "exact" scheme as Base USDC; only the EIP-712 domain differs. The domain
+# name/version below are verified against the USDG contract's on-chain
+# DOMAIN_SEPARATOR (name="Global Dollar", version="1", chainId=4663).
+USDG_ADDRESS = "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168"
+USDG_NAME = "Global Dollar"
+USDG_VERSION = "1"
+ROBINHOOD_CHAIN_ID = 4663
+ROBINHOOD_CAIP2 = "eip155:4663"
 
-def load_dotenv_if_available() -> None:
-    try:
-        from dotenv import load_dotenv  # type: ignore
+# Arc (Circle's L1) — native USDC, EIP-3009 transferWithAuthorization. Gas is
+# denominated in USDC on this chain, which is why the platform floors credit
+# top-ups at $5 there. The domain name/version below are verified against the
+# token's on-chain DOMAIN_SEPARATOR (name="USDC", version="2", chainId=5042).
+ARC_USDC_ADDRESS = "0x3600000000000000000000000000000000000000"
+ARC_USDC_NAME = "USDC"
+ARC_USDC_VERSION = "2"
+ARC_CHAIN_ID = 5042
+ARC_CAIP2 = "eip155:5042"
 
-        load_dotenv()
-    except Exception:
-        pass
+# network label -> EIP-712 domain + settlement network for the x402 payload.
+EVM_ASSETS = {
+    "base": {
+        "address": USDC_ADDRESS, "name": USDC_NAME, "version": USDC_VERSION,
+        "chain_id": BASE_CHAIN_ID, "network": "base",
+    },
+    "robinhood": {
+        "address": USDG_ADDRESS, "name": USDG_NAME, "version": USDG_VERSION,
+        "chain_id": ROBINHOOD_CHAIN_ID, "network": "robinhood",
+    },
+    "arc": {
+        "address": ARC_USDC_ADDRESS, "name": ARC_USDC_NAME, "version": ARC_USDC_VERSION,
+        "chain_id": ARC_CHAIN_ID, "network": "arc",
+    },
+}
+
+
+# NO .env AUTO-LOADING. Credentials come only from the process environment the caller
+# explicitly exported.
+#
+# This used to call a third-party env-file loader, which walks UP from THIS FILE's directory
+# looking for a .env. The default install path is ./x402-compute inside the user's project, so
+# that walk reached the project's own .env and every parent's. A signing module has no business
+# picking up secrets based on where it happens to be unpacked.
+#
+# The sharp edge was not the key material — it was OWS_BIN. A .env anywhere above the install
+# dir could set OWS_WALLET (which flips load_compute_auth_mode() to "ows") plus OWS_BIN, and
+# _run_ows would then subprocess.run whatever that pointed at. Two lines in a file we never
+# asked the user to create, and we execute an arbitrary binary.
+#
+# Every documented setup path already says `export`. See the same removal in x402-layer v1.3.1.
 
 
 def _load_solders_keypair() -> Any:
@@ -41,7 +89,6 @@ def _load_solders_keypair() -> Any:
     except ImportError as exc:
         raise ValueError("Solana signing requires solders. Install solders>=0.20.0") from exc
 
-    load_dotenv_if_available()
     secret_key = (os.getenv("SOLANA_SECRET_KEY") or "").strip()
     if not secret_key:
         raise ValueError("Set SOLANA_SECRET_KEY for Solana signing")
@@ -61,7 +108,6 @@ def _load_solders_keypair() -> Any:
 
 
 def load_solana_wallet_address(required: bool = True) -> Optional[str]:
-    load_dotenv_if_available()
     explicit = (os.getenv("SOLANA_WALLET_ADDRESS") or os.getenv("WALLET_ADDRESS_SECONDARY") or "").strip()
     if explicit:
         return explicit
@@ -76,7 +122,6 @@ def load_solana_wallet_address(required: bool = True) -> Optional[str]:
 
 
 def load_wallet_address(required: bool = True) -> Optional[str]:
-    load_dotenv_if_available()
     wallet = os.getenv("WALLET_ADDRESS")
 
     if required and not wallet:
@@ -93,7 +138,6 @@ def load_compute_chain() -> str:
     3) SOLANA credentials present => solana
     4) default base
     """
-    load_dotenv_if_available()
     explicit = (os.getenv("COMPUTE_AUTH_CHAIN") or "").strip().lower()
     if explicit in ("base", "solana"):
         return explicit
@@ -114,7 +158,6 @@ def load_compute_auth_mode() -> str:
     - private-key: force local signing
     - ows: force Open Wallet Standard message signing
     """
-    load_dotenv_if_available()
     explicit = (os.getenv("COMPUTE_AUTH_MODE") or "auto").strip().lower()
     if explicit in {"private-key", "ows"}:
         return explicit
@@ -127,22 +170,64 @@ def is_ows_mode() -> bool:
     return load_compute_auth_mode() == "ows"
 
 
+def _resolve_ows_bin(explicit_bin: str) -> str:
+    """
+    OWS_BIN names a program we are about to execute, so it gets checked rather than trusted.
+
+    An absolute path is required: a bare name like "ows" would resolve through PATH, and a
+    relative one like "./ows" through the current directory, either of which can be steered by
+    whatever the caller happened to cd into. Requiring an absolute path to a file that already
+    exists means the value has to name a real, deliberately-chosen program.
+    """
+    expanded = os.path.expanduser(explicit_bin)
+    if not os.path.isabs(expanded):
+        raise ValueError(
+            f"OWS_BIN must be an absolute path to the ows executable (got {explicit_bin!r}). "
+            "A bare or relative name would be resolved against PATH or the current directory."
+        )
+
+    # Resolve symlinks and hand the RESOLVED path to subprocess. Checking one path and
+    # executing another is the gap a symlink swap walks through; there is still a TOCTOU
+    # window between these checks and exec, but resolving first keeps the thing we validated
+    # and the thing we run the same file.
+    resolved = os.path.realpath(expanded)
+    if not os.path.isfile(resolved):
+        raise ValueError(f"OWS_BIN points at {expanded!r}, which is not an existing file")
+    if not os.access(resolved, os.X_OK):
+        raise ValueError(f"OWS_BIN points at {resolved!r}, which is not executable")
+
+    # A world-writable binary, or one in a world-writable directory, can be replaced by any
+    # local user between now and the next signing call.
+    for path, label in ((resolved, "file"), (os.path.dirname(resolved), "parent directory")):
+        try:
+            if os.stat(path).st_mode & stat.S_IWOTH:
+                raise ValueError(
+                    f"OWS_BIN refuses {resolved!r}: its {label} is world-writable, so another "
+                    "local user could swap the binary that signs your transactions."
+                )
+        except OSError:
+            raise ValueError(f"OWS_BIN could not stat {path!r}")
+    return resolved
+
+
 def _build_ows_command(args: list[str]) -> list[str]:
     explicit_bin = (os.getenv("OWS_BIN") or "").strip()
     if explicit_bin:
-        return [explicit_bin, *args]
+        return [_resolve_ows_bin(explicit_bin), *args]
 
     local_ows = shutil.which("ows")
     if local_ows:
         return [local_ows, *args]
 
-    npx_bin = shutil.which("npx")
-    if npx_bin:
-        return [npx_bin, "-y", "@open-wallet-standard/core", *args]
-
+    # NO npx FALLBACK. This used to run `npx -y @open-wallet-standard/core`, which downloads
+    # and executes whatever the registry currently serves for an UNPINNED package — and then
+    # hands it a wallet operation. A signing path must never fetch its own signer at runtime.
+    # ows_cli.py already took this stance; the two now agree.
     raise ValueError(
-        "OWS binary not found. Install it with `npm install -g @open-wallet-standard/core`, "
-        "ensure `npx` is available, or set OWS_BIN to the full executable path."
+        "OWS binary not found. Install it explicitly:\n"
+        f"  npm install -g {OWS_PINNED_PACKAGE}\n"
+        "Then ensure `ows` is on PATH, or set OWS_BIN to its absolute path.\n"
+        "Runtime npx downloads are deliberately not used for wallet operations."
     )
 
 
@@ -159,7 +244,6 @@ def _run_ows(args: list[str], timeout: int = 180) -> str:
 
 
 def _load_ows_wallet_name(cli_wallet: Optional[str] = None) -> str:
-    load_dotenv_if_available()
     wallet = (cli_wallet or os.getenv("OWS_WALLET") or "").strip()
     if not wallet:
         raise ValueError("Set OWS_WALLET or pass an explicit OWS wallet name/ID")
@@ -239,7 +323,11 @@ class PaymentSigner:
         valid_after: int = 0,
         valid_before: Optional[int] = None,
         nonce: Optional[str] = None,
+        network: str = "base",
     ) -> Dict[str, Any]:
+        asset = EVM_ASSETS.get(network.lower())
+        if asset is None:
+            raise ValueError(f"Unsupported EVM payment network '{network}' (expected: {', '.join(EVM_ASSETS)})")
         if valid_before is None:
             valid_before = int(time.time()) + 3600
         if nonce is None:
@@ -264,10 +352,10 @@ class PaymentSigner:
             },
             "primaryType": "TransferWithAuthorization",
             "domain": {
-                "name": USDC_NAME,
-                "version": USDC_VERSION,
-                "chainId": BASE_CHAIN_ID,
-                "verifyingContract": USDC_ADDRESS,
+                "name": asset["name"],
+                "version": asset["version"],
+                "chainId": asset["chain_id"],
+                "verifyingContract": asset["address"],
             },
             "message": {
                 "from": self.wallet,
@@ -284,7 +372,7 @@ class PaymentSigner:
         return {
             "x402Version": 1,
             "scheme": "exact",
-            "network": "base",
+            "network": asset["network"],
             "payload": {
                 "signature": signature,
                 "authorization": {
@@ -298,13 +386,12 @@ class PaymentSigner:
             },
         }
 
-    def create_x402_payment_header(self, pay_to: str, amount: int) -> str:
-        payload = self.create_x402_payment_payload(pay_to=pay_to, amount=amount)
+    def create_x402_payment_header(self, pay_to: str, amount: int, network: str = "base") -> str:
+        payload = self.create_x402_payment_payload(pay_to=pay_to, amount=amount, network=network)
         return base64.b64encode(json.dumps(payload).encode()).decode()
 
 
 def load_payment_signer() -> PaymentSigner:
-    load_dotenv_if_available()
 
     if is_ows_mode():
         raise ValueError(

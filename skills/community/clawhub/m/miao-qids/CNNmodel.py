@@ -1,4 +1,5 @@
 import os,sys,pickle,random
+sys.path.append('/home/sherryyann/.local/lib/python3.12/site-packages')
 import torch,torch.nn as nn,torch.optim as optim
 import numpy as np
 from fileload import FileLoader,attacktypes
@@ -15,24 +16,27 @@ class CNN_MTD(nn.Module):
 		self.device=torch.device(DEVICE_TYPE if torch.cuda.is_available()else'cpu')
 		self.centers=nn.Parameter(torch.randn(len(attacktypes),latent_dim))
 		
-		# 编码器
+		#编码器
 		self.encoder=nn.Sequential(
 			nn.Linear(input_dim,1024),nn.ReLU(inplace=True),
+			nn.Linear(1024,1024),nn.ReLU(inplace=True),
+			nn.Linear(1024,1024),nn.ReLU(inplace=True),
 			nn.Linear(1024,512),nn.ReLU(inplace=True),
 			nn.Linear(512,256),nn.ReLU(inplace=True),
 			nn.Linear(256,128),nn.ReLU(inplace=True),
 			nn.Linear(128,latent_dim),nn.Tanh())
 		
-		# 解码器
+		#解码器
 		self.decoder=nn.Sequential(
 			nn.Linear(latent_dim,128),nn.ReLU(inplace=True),
 			nn.Linear(128,256),nn.ReLU(inplace=True),
 			nn.Linear(256,512),nn.ReLU(inplace=True),
 			nn.Linear(512,1024),nn.ReLU(inplace=True),
+			nn.Linear(1024,1024),nn.ReLU(inplace=True),
+			nn.Linear(1024,1024),nn.ReLU(inplace=True),
 			nn.Linear(1024,input_dim))
 		
 		self.to(self.device)
-		print(f"CNN_MTD初始化完成,设备:{self.device},输入维度:{input_dim},潜在维度:{latent_dim}")
 	
 	def forward(self,x):
 		latent=self.encoder(x)
@@ -60,13 +64,13 @@ class CNN_MTD(nn.Module):
 			if not pos_indices or not neg_indices:
 				continue
 			
-			# 选择最难正样本
+			#选择最难正样本
 			pos_dists=[torch.norm(anchor_latent-latents[j])**2 for j in pos_indices]
 			#先将张量移动到CPU，然后转换为Python标量
 			pos_dists_cpu=[dist.item()for dist in pos_dists]
 			hardest_pos=pos_indices[np.argmax(pos_dists_cpu)]
 			
-			# 选择最难负样本
+			#选择最难负样本
 			neg_dists=[torch.norm(anchor_latent-latents[j])**2 for j in neg_indices]
 			#先将张量移动到CPU，然后转换为Python标量
 			neg_dists_cpu=[dist.item()for dist in neg_dists]
@@ -113,7 +117,7 @@ class CNN_MTD(nn.Module):
 				optimizer.zero_grad()
 				latents,reconstructed=self.forward(batch_data)
 				
-				# 计算三种损失
+				#计算三种损失
 				recon_loss=recon_criterion(reconstructed,batch_data)
 				center_loss=self.compute_center_loss(latents,batch_labels)
 				triplet_loss=self.compute_triplet_loss(latents,batch_labels)
@@ -150,7 +154,7 @@ class CNN_MTD(nn.Module):
 		
 		if not all_data:return[],[]
 		
-		# 打乱数据顺序
+		#打乱数据顺序
 		indices=list(range(len(all_data)))
 		random.shuffle(indices)
 		all_data=[all_data[i]for i in indices]

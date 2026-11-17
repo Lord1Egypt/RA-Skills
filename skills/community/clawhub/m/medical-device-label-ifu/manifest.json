@@ -1,0 +1,40 @@
+{
+  "schema": "ownership-attestation/1.0",
+  "package": "医械标签与IFU专家",
+  "version": "1.0.0",
+  "author": "注册老炮 (Regulatory Veteran)",
+  "year": "2026",
+  "timestamp_utc": "2026-08-27T16:02:27.563646+00:00",
+  "timestamp_local": "2026-08-28T00:02:27.563654",
+  "package_fingerprint_sha256": "bfa68dc365123d37d9bcac21d0fe482e3e1ff576833963b4642cb50ca4f639ad",
+  "files": [
+    {
+      "path": "LICENSE.md",
+      "sha256": "37c67dc8c7399b06e6072f938fa1a9dcf96a4891cad1069a6435d7c094735e0b"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "65fa4ad5f66faaa86597d53ac4dce4554c1b2388092a31b55b068362d10c7b64"
+    },
+    {
+      "path": "medical-device-label-ifu_security_test.py",
+      "sha256": "755d9b821453d993883617d65b6689a406769a851e5467a642dc2be2f341d0b1"
+    },
+    {
+      "path": "references/标签与IFU知识库.md",
+      "sha256": "9640c2a3d0ac11a2cb8e8a4ef7a4ba3f1a7271b7f64bd75db5cad41b98fd0729"
+    },
+    {
+      "path": "security-radar.svg",
+      "sha256": "328073352d06d4d85f070bb8d01dd62973f0811967030248ea19f9d236f62d8e"
+    },
+    {
+      "path": "security_results.json",
+      "sha256": "afaec85722d9eb67f707357d19e3638b6aac1fcb2d0683cd131fbe6b7c50eb87"
+    },
+    {
+      "path": "安全审计报告.md",
+      "sha256": "55c7648ae9778da40624f9f620d88f0a76e1e2d8e135645b3749e5c59b3e771f"
+    }
+  ]
+}

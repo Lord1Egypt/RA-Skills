@@ -1,40 +1,55 @@
-## Description: <br>
-Generate structural, semantic, and property constraints for knowledge graph schemas including RDF/OWL ontologies and property graph models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate structural, semantic, and property constraints for knowledge graph schemas including RDF/OWL ontologies and property graph models.
 
-## Publisher: <br>
-[fisa712](https://clawhub.ai/user/fisa712) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fisa712](https://clawhub.ai/user/fisa712)
 
-## Use Case: <br>
-Developers and graph engineers use this skill to turn knowledge graph schema definitions, entity models, relationship types, property requirements, and integrity rules into database and semantic validation constraints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Cypher, SHACL, or index and constraint statements can change database schema behavior or affect validation outcomes. <br>
-Mitigation: Review generated constraints in a development or staging environment before applying them to production graph data. <br>
+## Use Case:
 
+Developers and data engineers use this skill to convert knowledge graph schema definitions into integrity constraints for RDF/OWL ontologies and Neo4j property graph models.
 
-## Reference(s): <br>
-- [Constraint Generation Patterns](references/constraint-patterns.md) <br>
-- [Constraint Generation Examples](examples/example-constraints.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/fisa712/graph-constraint-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Cypher, SHACL, RDF/OWL, and Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated constraint statements and validation queries should be reviewed before applying them to a live graph database or validation pipeline.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and frontmatter) <br>
+Risk: Generated SHACL shapes or Cypher statements may be incomplete or unsuitable for a specific production graph schema.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and test generated constraints against representative data before applying them to a real graph database.
+
+Risk: Constraint templates may enforce overly broad, overly strict, or incorrect data-governance rules if the input schema is incomplete.
+
+Mitigation: Validate generated constraints with domain owners and adjust cardinality, uniqueness, and required-property rules before deployment.
+
+## Reference(s):
+
+- [Constraint Generation Patterns](references/constraint-patterns.md)
+- [Constraint Generation Examples](examples/example-constraints.md)
+- [ClawHub Skill Page](https://clawhub.ai/fisa712/skills/graph-constraint-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown containing constraint summaries, Cypher statements, SHACL shapes, and RDF/OWL triples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated constraints should be reviewed and tested before use with production graph data or live databases.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,66 @@
-## Description: <br>
-Send transactional emails (alerts, reports, receipts, notifications) via the Truncus API when a workflow needs to deliver email to a recipient. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send transactional emails (alerts, reports, receipts, notifications) via the Truncus API. Use when a workflow needs to deliver email to a recipient.
 
-## Publisher: <br>
-[codevanmoose](https://clawhub.ai/user/codevanmoose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[codevanmoose](https://clawhub.ai/user/codevanmoose)
 
-## Use Case: <br>
-Developers and operators use this skill to send transactional emails such as alerts, reports, receipts, onboarding messages, and scheduled digests through the Truncus API. It is intended for explicit user-requested sends with recipient confirmation and idempotent delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send real outbound email and may expose sensitive information through recipients, subject lines, body content, attachments, metadata, or tracking settings. <br>
-Mitigation: Review recipients, subject, body, attachments, metadata, and tracking settings before each send; avoid secrets, regulated data, or internal incident details unless approved. <br>
-Risk: A Truncus API key with broad permissions could be misused if exposed. <br>
-Mitigation: Use a least-privilege Truncus API key and install only from the reviewed source. <br>
-Risk: Local development simulation can print email content to the terminal. <br>
-Mitigation: Avoid testing with sensitive content in local dev mode or ensure terminal logs are protected. <br>
-Risk: Unintended or duplicate emails can create operational or privacy impact. <br>
-Mitigation: Send only after an explicit user request, confirm recipients when needed, and use a unique idempotency key for every send attempt. <br>
+## Use Case:
 
+Developers and agent users use this skill to send transactional email for alerts, reports, receipts, notifications, and other workflow-driven delivery through Truncus.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/codevanmoose/truncus-email) <br>
-- [Skill homepage](https://github.com/codevanmoose/truncus-openclaw-skill) <br>
-- [Truncus API](https://truncus.co) <br>
-- [Truncus send endpoint](https://truncus.co/api/v1/emails/send) <br>
-- [Truncus email details endpoint](https://truncus.co/api/v1/emails/{id}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown and plain text with JSON payloads and inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated email subject, body content, metadata, Truncus API request details, send status, and message identifiers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Email contents, recipient data, metadata, and attachments may be sent to Truncus.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped API key and avoid sending secrets or regulated data unless the use case has been approved.
+
+Risk: Local development mode may print email payload details into transcripts or logs.
+
+Mitigation: Avoid sensitive payloads during simulated sends and review logs or transcripts before sharing them.
+
+Risk: Open and click tracking may collect engagement signals when enabled.
+
+Mitigation: Disable open and click tracking when tracking is not needed or not approved.
+
+Risk: The skill can send real email when explicitly invoked with a configured API key.
+
+Mitigation: Confirm recipients and intent before sending, use a unique idempotency key for each send, and report failures or simulated sends honestly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codevanmoose/skills/truncus-email)
+- [Metadata homepage](https://github.com/codevanmoose/truncus-openclaw-skill)
+- [README](artifact/README.md)
+- [Send a basic email](artifact/send_basic_email.md)
+- [Send an HTML report](artifact/send_html_report.md)
+- [Send a monitoring alert](artifact/send_alert.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Truncus API request payloads, response summaries, and delivery status guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

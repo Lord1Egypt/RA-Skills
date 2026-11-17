@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn7dxr58ktjh28y80xrgmypzg582wtg5",
-  "slug": "wechat-article-gen-pro",
+  "name": "wechat-article-gen-pro",
+  "displayName": "公众号文章生成器 Pro",
   "version": "1.0.0",
-  "publishedAt": 1775207227184
+  "slug": "wechat-article-gen-pro",
+  "description": "AI 微信公众号文章自动生成工具，一键生成爆款文章，支持标题优化、正文生成、排版美化",
+  "author": "@bingze00000",
+  "license": "MIT",
+  "tags": ["wechat", "article", "ai", "content", "generator", "social", "marketing", "pro"],
+  "pricing": {
+    "type": "paid",
+    "amount": 39,
+    "currency": "CNY"
+  },
+  "requirements": ["requests", "openai"],
+  "category": "content-creation"
 }

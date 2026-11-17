@@ -1,39 +1,53 @@
-## Description: <br>
-When the user wants to choose or execute third-party platform SEO (high-authority sites for rankings or backlinks). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users in choosing and executing third-party platform SEO on high-authority sites for rankings, backlinks, and AI citation visibility.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-External users and marketing practitioners use this skill to choose third-party publishing platforms, plan keyword and content strategy, and structure links for parasite SEO campaigns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide policy-sensitive third-party platform SEO tactics that may conflict with search-engine or platform rules. <br>
-Mitigation: Review current search-engine and platform policies before publishing, and use the guidance only for genuinely useful content rather than manipulation. <br>
-Risk: Automating posting or account actions around this guidance could introduce credential and account-suspension risk. <br>
-Mitigation: Separately review any posting automation tool, especially tools that handle account credentials or publish content on the user's behalf. <br>
+## Use Case:
 
+External users and SEO practitioners use this skill to select suitable third-party publishing platforms, plan keyword and content structure, and shape link strategies for hosted content. It is intended for policy-compliant SEO planning rather than spam, deception, or platform abuse.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance with tables and structured recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces platform selection, keyword strategy, content structure, link strategy, and related-skill recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and release evidence) <br>
+Risk: SEO guidance could be used for thin, deceptive, or spammy hosted content that violates search-engine or platform rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for useful, policy-compliant content and review each target platform's rules before posting.
+
+Risk: Third-party publishing and backlink strategies can become misleading or manipulative if applied without review.
+
+Mitigation: Review outputs before execution and adapt recommendations to the audience, target platform policies, and search-engine guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/parasite-seo)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown guidance with platform selection, keyword strategy, content structure, link strategy, and related skill recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, credentials, persistence, or hidden behavior identified in server security evidence.]
+
+## Skill Version(s):
+
+1.1.0 (source: evidence release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

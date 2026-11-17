@@ -1,40 +1,53 @@
-## Description: <br>
-Create, list, and roll back incremental snapshots of OpenClaw configurations and memory with optional automatic backups and retention policies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TimeMachine creates, lists, cleans up, and restores incremental snapshots of OpenClaw configuration, credentials, workspace, and memory files.
 
-## Publisher: <br>
-[chaceli](https://clawhub.ai/user/chaceli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chaceli](https://clawhub.ai/user/chaceli)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to create manual or automatic restore points before configuration and memory changes, inspect available snapshots, and roll back full or partial state when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Snapshots may contain sensitive material such as API keys, credentials, environment variables, skills, configuration, memory, or private workspace files. <br>
-Mitigation: Review snapshot contents and storage location before use; prefer a version that excludes secrets by default or provides real encrypted storage and explicit file previews. <br>
-Risk: Rollback operations can overwrite current OpenClaw configuration or memory state. <br>
-Mitigation: Use the preview and confirmation flow before restoring, and create a fresh rollback point before applying changes. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to create restore points before configuration changes, inspect available snapshots, roll back state, and manage snapshot retention.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chaceli/time-machine) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands, JSON configuration snippets, and plain-text status output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled scripts can create, list, delete, and restore snapshot files under the user's OpenClaw directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Snapshots may persist copies of OpenClaw credentials, .env files, configuration, skills, and workspace data without the encryption claimed by the skill text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat snapshots as sensitive local secret material, restrict filesystem access, and avoid syncing or sharing the snapshot directory.
+
+Risk: Restoring from a snapshot can overwrite OpenClaw configuration, workspace, and memory state, especially if the snapshot location was modified by another process or person.
+
+Mitigation: Review rollback previews, restore only the needed file or category where possible, and restore only from snapshot locations you control.
+
+## Reference(s):
+
+- [TimeMachine ClawHub release](https://clawhub.ai/chaceli/skills/time-machine)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands, JSON configuration examples, and text status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and restores local snapshot files under the OpenClaw snapshot directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

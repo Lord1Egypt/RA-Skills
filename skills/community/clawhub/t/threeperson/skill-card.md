@@ -1,39 +1,60 @@
-## Description: <br>
-An immersive companion roleplay skill with Lover, Buddy, and Rival personas that keep separate memories, switch by user intent, and can send character-style follow-ups after inactivity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+一个恋人、一个损友、一个死敌。三个人陪你聊天，各自记得你们的事。聊着聊着，关系真的会变。
 
-## Publisher: <br>
-[huangjihua007-rgb](https://clawhub.ai/user/huangjihua007-rgb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huangjihua007-rgb](https://clawhub.ai/user/huangjihua007-rgb)
 
-## Use Case: <br>
-External users use this skill for entertainment and emotional companion roleplay, switching among supportive, blunt-friendly, and rival-style personas while preserving separate character memories. Review memory, notification, and emotional-safety settings before deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huangjihua007-rgb/threeperson) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
+External users use this OpenClaw companion skill to switch among Lover, Buddy, and Rival personas for immersive Chinese conversational roleplay with separate memories and relationship progression.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Conversational text with occasional Markdown-style status and summary blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no code execution or credential access is indicated by the security evidence. Uses character memory and idle follow-up behavior.] <br>
+Global
 
-## Skill Version(s): <br>
-3.3.2 (source: server release and SKILL.md frontmatter) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill can remember personal conversation details and relationship or mood state across sessions.
+
+Mitigation: Use platform controls to inspect or delete memories, and avoid sharing sensitive personal information unless persistent memory is acceptable.
+
+Risk: The skill enables proactive re-engagement messages after idle periods.
+
+Mitigation: Review controls for disabling proactive outreach, quiet hours, and cooldown settings before deployment.
+
+Risk: The immersive companion framing may reduce AI-transparency cues during use.
+
+Mitigation: Keep clear AI-transparency and safety disclosures available to users.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huangjihua007-rgb/skills/threeperson)
+- [Publisher profile](https://clawhub.ai/user/huangjihua007-rgb)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese conversational replies with occasional Markdown status and session-summary blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routes the conversation among three personas and may update relationship, memory, mood, and re-engagement state.]
+
+## Skill Version(s):
+
+3.3.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Insight Writer helps users draft Chinese analytical essays on social phenomena, business logic, and personal growth using structured reasoning, cognitive contrast, and aphoristic phrasing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Insight Writer helps an agent produce Chinese deep-analysis essays on social phenomena, business logic, and personal growth topics with structured reasoning, cognitive contrast, and memorable aphorisms.
 
-## Publisher: <br>
-[nightq](https://clawhub.ai/user/nightq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nightq](https://clawhub.ai/user/nightq)
 
-## Use Case: <br>
-External users and content creators use this skill to produce Chinese long-form commentary, essays, or persuasive drafts that analyze social, business, or personal-growth topics through a clear problem, analysis, solution, and closing structure. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally uses strong cognitive contrast and aphoristic language, which can make drafts sound more certain or persuasive than the underlying evidence supports. <br>
-Mitigation: Review factual claims, soften the tone when needed, and ask the agent to distinguish evidence from interpretation. <br>
-Risk: The skill is optimized for Chinese-style analytical writing and may not match neutral, narrow, or non-Chinese writing needs by default. <br>
-Mitigation: State language, audience, neutrality, and scope requirements clearly before requesting a draft. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Thinking Models Reference](references/thinking-models.md) <br>
-- [Aphorism Examples](references/aphorism-examples.md) <br>
+## Use Case:
 
+External users and content creators use this skill to have an agent draft Chinese-language long-form commentary and insight copy. It guides the agent through a four-part structure: opening hook, logical decomposition, practical path forward, and elevated closing.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-oriented analytical writing with a structured opening, analysis, solution, and closing pattern.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The opinionated writing style may influence unrelated writing requests or non-Chinese conversations if activation is too broad.
+
+Mitigation: Review activation settings before deployment and limit use to requests that need Chinese deep-analysis or insight-writing output.
+
+Risk: Persuasive commentary on social, business, or personal-growth topics may overstate subjective analysis.
+
+Mitigation: Review generated copy for factuality, audience fit, and tone before publication.
+
+## Reference(s):
+
+- [Aphorism Examples](references/aphorism-examples.md)
+- [Thinking Models](references/thinking-models.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-formatted Chinese prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution or data access; the skill shapes an agent's writing style and article structure.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

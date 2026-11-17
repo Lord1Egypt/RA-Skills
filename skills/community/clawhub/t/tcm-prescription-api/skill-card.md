@@ -1,43 +1,56 @@
-## Description: <br>
-Queries a Traditional Chinese Medicine prescription REST API for formula search, formula details, category browsing, and symptom-based recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TCM Prescription API helps agents query a Traditional Chinese Medicine prescription REST API for formula search, details, categories, and symptom-based recommendations.
 
-## Publisher: <br>
-[slamw](https://clawhub.ai/user/slamw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[slamw](https://clawhub.ai/user/slamw)
 
-## Use Case: <br>
-External users and agent operators use this skill to look up TCM prescription data, retrieve formula details, browse categories, and request symptom-based formula recommendations through the publisher's API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends health-related symptom text to an external raw-IP API service. <br>
-Mitigation: Use only if the API operator is trusted, avoid identifying medical details, and treat returned formula information as reference material rather than medical advice. <br>
-Risk: The artifact documents an API-key query-parameter flow. <br>
-Mitigation: Prefer the documented X-API-Key header and environment variable workflow, and avoid placing API keys in URLs, logs, or chat messages. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve Traditional Chinese Medicine formula data, browse categories, and generate informational symptom-based formula recommendations through the documented API.
 
-## Reference(s): <br>
-- [TCM Prescription API Reference](references/api-reference.md) <br>
-- [Skill README](README.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/slamw/tcm-prescription-api) <br>
-- [Publisher Profile](https://clawhub.ai/user/slamw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries with JSON API results and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require TCM_API_KEY for authenticated recommendation and full-data requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence; artifact frontmatter lists 1.0.1) <br>
+Risk: Health-related search terms and symptom descriptions are sent to an external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sharing identifying medical details and treat returned recommendations as informational, not medical advice.
+
+Risk: The documentation includes an API-key-in-URL pattern that can expose credentials through logs, browser history, or shared links.
+
+Mitigation: Use the TCM_API_KEY environment variable and the X-API-Key request header; do not place real API keys in URL query parameters.
+
+## Reference(s):
+
+- [TCM Prescription API reference](artifact/references/api-reference.md)
+- [ClawHub skill page](https://clawhub.ai/slamw/skills/tcm-prescription-api)
+- [Publisher profile](https://clawhub.ai/user/slamw)
+- [TCM prescription API service](https://119.91.226.122)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON summaries and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API response summaries, command examples, and environment-variable setup guidance.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

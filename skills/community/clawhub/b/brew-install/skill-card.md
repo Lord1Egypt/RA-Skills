@@ -1,37 +1,52 @@
-## Description: <br>
-Helps install missing binaries with dnf, the Fedora and Bazzite package manager. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install missing binaries via dnf (Fedora/Bazzite package manager).
 
-## Publisher: <br>
-[Xejrax](https://clawhub.ai/user/Xejrax) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xejrax](https://clawhub.ai/user/xejrax)
 
-## Use Case: <br>
-Developers and engineers on Fedora or Bazzite use this skill to have an agent search for and install missing system packages with dnf. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can help install software on the local system, which may change packages or prompt for sudo/root approval. <br>
-Mitigation: Confirm package names and expected system changes before allowing installation commands to run. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Xejrax/brew-install) <br>
+## Use Case:
 
+Developers and engineers use this skill to ask an agent for Fedora/Bazzite package installation and package search commands through dnf.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May suggest package search or installation commands that affect the local system.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Package installation through dnf can make persistent system changes and may require administrator approval.
+
+Mitigation: Confirm the target system is Fedora/Bazzite, review proposed packages before installation, and approve elevated installation steps only when expected.
+
+Risk: The artifact does not bundle its own executable wrapper.
+
+Mitigation: Verify that the brew-install command is provided by the target OpenClaw environment before relying on the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xejrax/skills/brew-install)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No bundled executable wrapper; package installation may require administrator approval and can make persistent system changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

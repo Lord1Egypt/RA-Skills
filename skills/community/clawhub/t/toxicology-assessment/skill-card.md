@@ -1,41 +1,53 @@
-## Description: <br>
-毒理学评估技能。覆盖TRA/PDE/TTC/QSAR/NAMs/毒理学数据库/SDS/GHS。适用化妆品/食品/药品/医疗器械/化学品安全评估。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+毒理学评估技能。覆盖TRA/PDE/TTC/QSAR/NAMs/毒理学数据库/SDS/GHS。适用化妆品/食品/药品/医疗器械/化学品安全评估。
 
-## Publisher: <br>
-[mxp0125-rgb](https://clawhub.ai/user/mxp0125-rgb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mxp0125-rgb](https://clawhub.ai/user/mxp0125-rgb)
 
-## Use Case: <br>
-External users, developers, and safety assessors use this skill for toxicology-oriented assessment guidance covering TRA, PDE, TTC, QSAR, NAMs, toxicology databases, SDS/GHS, and regulatory safety review across cosmetics, food, pharmaceuticals, medical devices, and chemicals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill covers toxicology, regulatory, and safety-critical assessment topics where incorrect conclusions can affect compliance or product safety. <br>
-Mitigation: Verify safety-critical or compliance conclusions against official sources and qualified experts before relying on them. <br>
-Risk: The artifact provides reference guidance and threshold-style summaries that may not fit every jurisdiction, product type, exposure pathway, or current regulatory update. <br>
-Mitigation: Use the guidance as a starting point and confirm current jurisdiction-specific requirements and source data before final decisions. <br>
+## Use Case:
 
+External users and developers use this Chinese-language reference skill to structure toxicology risk assessments for cosmetics, food, pharmaceuticals, medical devices, and chemicals using TRA, PDE, TTC, QSAR, NAMs, SDS, and GHS concepts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mxp0125-rgb/toxicology-assessment) <br>
-- [毒理学数据库与QSAR工具参考](references/qsar-databases.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance and structured assessment notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only reference skill; no code execution, autonomous behavior, hidden access requests, or external tool calls are evidenced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence and artifact body) <br>
+Risk: Toxicology thresholds, regulatory requirements, and database references may be outdated, incomplete, or misapplied to a specific product or jurisdiction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify important conclusions against current official sources and qualified toxicology or regulatory experts before using them for product, clinical, or compliance decisions.
+
+Risk: The skill provides reference guidance rather than executable validation or authoritative safety determinations.
+
+Mitigation: Use the output as a starting point for expert review and document the underlying data sources, assumptions, and uncertainty factors for each assessment.
+
+## Reference(s):
+
+- [毒理学数据库与QSAR工具参考](references/qsar-databases.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language toxicology reference output; users should verify important conclusions against current official sources and qualified experts.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata and artifact text)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,49 @@
-## Description: <br>
-Systematically improve code through structured analysis-mutation-evaluation loops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Systematically improve code through disciplined analysis, targeted mutations, verification, scoring, and logging to iteratively enhance quality and design.
 
-## Publisher: <br>
-[aaronjmars](https://clawhub.ai/user/aaronjmars) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aaronjmars](https://clawhub.ai/user/aaronjmars)
 
-## Use Case: <br>
-Developers and engineers use this skill to improve code through structured analyze, plan, mutate, verify, score, and archive cycles. It is intended for optimization, persistent debugging, and disciplined design evolution after initial attempts have not been sufficient. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed for development workspaces where an agent may edit files, run tests or code, and maintain an .evolution/ history. <br>
-Mitigation: Install it only in trusted workspaces, keep normal sandboxing and approval controls active for sensitive repositories, and review generated changes before accepting them. <br>
-Risk: Iterative mutations can introduce regressions or misleading guidance if changes are accepted without verification. <br>
-Mitigation: Use the skill's verify and score phases, compare each variant against its parent, and preserve failure notes in the evolution log. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ALMA research framework](https://yimingxiong.me/alma) <br>
-- [ClawHub skill page](https://clawhub.ai/aaronjmars/iterative-code-evolution) <br>
+## Use Case:
 
+Developers and engineers use this skill when code, prompts, pipelines, or agent workflows need disciplined multi-cycle improvement rather than one-shot edits.
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with code, shell commands, and JSON logging structures] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update a local .evolution/ history when applied in a development workspace.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Evolution logs and archived variants can contain sensitive implementation details, credentials, production data, or failure notes if the agent records them during iterative work.
+
+Mitigation: Use the skill only in repositories where local experiment logs are acceptable, add `.evolution/` to `.gitignore` for private work, review log contents before sharing, and keep secrets out of archived notes and variants.
+
+## Reference(s):
+
+- [ALMA research framework](https://yimingxiong.me/alma)
+- [ClawHub skill page](https://clawhub.ai/aaronjmars/skills/iterative-code-evolution)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with code, shell-command, and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local .evolution/ logs and variant files during iterative work.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -10,7 +10,7 @@
 #   bash scripts/grep_antipatterns.sh .
 #   bash scripts/grep_antipatterns.sh ~/.openclaw/workspace/skills/some-skill
 
-set -u
+set -euo pipefail
 
 TARGET="${1:-.}"
 
@@ -113,7 +113,9 @@ if [ -d "$TARGET" ]; then
     find "$TARGET" -name "*.json.md" 2>/dev/null | head -5
     found=1
   fi
-  [ "$found" -eq 0 ] && echo "✅ OK: no obvious build/runtime artifacts found"
+  if [ "$found" -eq 0 ]; then
+    echo "✅ OK: no obvious build/runtime artifacts found"
+  fi
 fi
 
 # I-Skill: cross-section reference probe (broken section numbers)

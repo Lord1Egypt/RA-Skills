@@ -1,43 +1,58 @@
-## Description: <br>
-Converts uploaded novels or story text into structured film script material, including character profiles, episode outlines, and storyboard/script excerpts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+剧本生成技能V4 converts uploaded novels or story files into structured film and storyboard scripts.
 
-## Publisher: <br>
-[liyayong000-sketch](https://clawhub.ai/user/liyayong000-sketch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liyayong000-sketch](https://clawhub.ai/user/liyayong000-sketch)
 
-## Use Case: <br>
-External users and content creators use this skill to transform source manuscripts or stories into screenplay planning assets through the Zeelin service. The agent uploads a supported document, submits a script-generation job, polls for completion, and formats the returned result as Markdown. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Uploaded documents and the Zeelin App-Key are sent to a plain-HTTP IP service. <br>
-Mitigation: Use only non-sensitive documents unless the publisher and endpoint are trusted and verified; prefer a dedicated low-privilege App-Key. <br>
-Risk: Script generation may deduct Zeelin credits from the user's account. <br>
-Mitigation: Confirm expected credit usage before submitting jobs and follow the documented polling interval to avoid unnecessary cost. <br>
-Risk: Private or proprietary manuscripts may be exposed to an external service with unclear data-handling terms. <br>
-Mitigation: Avoid private manuscripts until the service provides verified HTTPS and clearer retention and handling commitments. <br>
+## Use Case:
 
+External users and creators use this skill to upload manuscript files and request conversion into character profiles, episode outlines, and storyboard-style script content. It is intended for script-generation workflows that depend on the Zeelin service and user-provided App-Key configuration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liyayong000-sketch/zeelin-script-gen-skill) <br>
-- [Zeelin platform](https://skills.zeelin.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, API Calls, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with structured sections and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Formats only fields returned by the service and may save the final result as an md file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Manuscripts and the Zeelin App-Key may be sent to a raw HTTP service endpoint without transport protection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive manuscripts and avoid real credentials until the service uses HTTPS with an authenticated hostname.
+
+Risk: Submitting generation tasks can consume Zeelin account quota.
+
+Mitigation: Confirm expected cost and polling behavior before submitting tasks, especially for long manuscripts.
+
+Risk: The artifact does not provide a clear privacy or retention policy for uploaded manuscripts.
+
+Mitigation: Do not upload private or unpublished text unless the service's privacy and retention terms are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liyayong000-sketch/skills/zeelin-script-gen-skill)
+- [Zeelin website](https://skills.zeelin.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell command examples and generated script summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce downloadable Markdown script files after polling the Zeelin task status.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

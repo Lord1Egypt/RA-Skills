@@ -1,50 +1,67 @@
-## Description: <br>
-Crypto Algo Execution & TCA by QuantumExecute (QE) supports crypto algorithmic execution workflows across Binance, OKX, LTP, Deribit, Hyperliquid, and other supported exchanges, with TWAP/VWAP/POV tools for order execution, balances, positions, lifecycle control, and TCA reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crypto Algo Execution & TCA by QuantumExecute (QE) supports crypto algorithmic execution workflows across Binance, OKX, LTP, Deribit, Hyperliquid, and other supported exchanges, with TWAP, VWAP, POV, order lifecycle, balance and position, and TCA/reporting workflows.
 
-## Publisher: <br>
-[l-kai890](https://clawhub.ai/user/l-kai890) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[l-kai890](https://clawhub.ai/user/l-kai890)
 
-## Use Case: <br>
-External users, developers, and trading operations teams use this skill to inspect crypto exchange account state, prepare and manage QuantumExecute algorithmic orders, and review execution quality through TCA reports. It is intended for credentialed QuantumExecute accounts with exchange API bindings already configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authenticated trading scripts can create, update, or cancel live orders through QuantumExecute and bound exchange accounts. <br>
-Mitigation: Require explicit confirmation for create, update, and cancel operations, review final parameters before execution, use restricted API keys, disable withdrawals, and apply exchange IP allowlists where available. <br>
-Risk: Notification workflows can send order details to webhook destinations or execute a configured local command. <br>
-Mitigation: Use webhook notifications only with trusted destinations, avoid the command notification channel unless the executable path and environment are fully controlled, and prefer direct status queries in hosted agents. <br>
-Risk: Excel exports may contain trading history, fills, balances, positions, or other account-related data. <br>
-Mitigation: Write reports only to trusted local folders and delete exported files when they are no longer needed. <br>
+## Use Case:
 
+External developers and trading teams can use this skill to operate QuantumExecute crypto execution workflows, inspect balances and positions, manage orders, and generate TCA reports through authenticated scripts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/l-kai890/quantumexecute-skill) <br>
-- [QuantumExecute Homepage](https://www.quantumexecute.com/) <br>
-- [QuantumExecute API Docs](https://api.quantumexecute.com/trading-api) <br>
-- [Safety Reference](references/safety.md) <br>
-- [Trading Reference](references/trading.md) <br>
-- [Balance Reference](references/balance.md) <br>
-- [Tools Reference](references/tools.md) <br>
-- [Output Formats Reference](references/output-formats.md) <br>
-- [Error and Anti-Fabrication Reference](references/errors.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown and plain text with JSON script outputs, shell commands, and generated Excel report files when export scripts are used] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Authenticated workflows require QE_API_KEY and QE_API_SECRET environment variables; generated reports may be written under QE_WORKSPACE or the local workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter reports 1.0.1) <br>
+Risk: The skill can create, update, cancel, and pair live crypto orders through authenticated QuantumExecute APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for users intended to have live crypto-trading authority, use restricted and IP-whitelisted QE/exchange keys, separate read-only from trade-enabled credentials, and require explicit human confirmation before order-write commands.
+
+Risk: Optional notification paths may send private order details to destinations or commands outside the agent session.
+
+Mitigation: Avoid webhook and command notification channels unless the destination or executable is fully controlled and approved.
+
+Risk: Generated Excel reports may contain trading history, fills, balances, positions, or other account-related data.
+
+Mitigation: Write reports only to trusted local folders such as QE_WORKSPACE and delete exported reports when no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/l-kai890/skills/quantumexecute-skill)
+- [QuantumExecute homepage](https://www.quantumexecute.com/)
+- [QuantumExecute API docs](https://api.quantumexecute.com/trading-api)
+- [QuantumExecute Python SDK](https://github.com/Quantum-Execute/qe-connector-python)
+- [QuantumExecute Go SDK](https://github.com/Quantum-Execute/qe-connector-go)
+- [Trading Reference](references/trading.md)
+- [Safety Reference](references/safety.md)
+- [Balance Reference](references/balance.md)
+- [Tools Reference](references/tools.md)
+- [Error and Anti-Fabrication Reference](references/errors.md)
+- [Fixed Output Formats](references/output-formats.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown and text with shell command examples, JSON script outputs, and generated Excel report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Order and TCA responses should preserve script output precision and stable field order; Excel exports may be written to QE_WORKSPACE or the local workspace.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence; artifact frontmatter says 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

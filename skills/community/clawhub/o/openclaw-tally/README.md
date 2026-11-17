@@ -6,35 +6,34 @@
 
 ## 🛠️ Installation
 
-### 1. Ask OpenClaw (Recommended)
-Tell OpenClaw: *"Install the openclaw-tally skill."* The agent will handle the installation and configuration automatically.
-
-### 2. Manual Installation (CLI)
-If you prefer the terminal, run:
+Install the owner-qualified release:
 ```bash
-clawhub install openclaw-tally
+openclaw skills install @jonathanjing/openclaw-tally
 ```
 
 ## Quick Start
 
 ```bash
+# Requires Node.js 22+
+
 # 1. Install dependencies
 npm install
 
 # 2. Initialize the database
 npm run migrate
 
-# 3. Start using in OpenClaw
-#    The skill hooks into message-post automatically.
-#    Use /tasks commands to view analytics.
+# 3. Run the test suite
+npm test
 ```
+
+Installing this skill does not register an OpenClaw hook or slash command. Connect the exported library through an explicit plugin or operator-owned integration before processing runtime events.
 
 ## Security & Privacy
 
 - **Local only**: All data stays on your machine. No external network calls.
 - **No message content stored**: Only metadata (token count, model, session_id).
-- **Sandboxed writes**: Database is hardcoded to `~/.openclaw/tally/tally.db`.
-- **Hook scope**: Registered on `message-post` — processes every message's metadata only.
+- **Sandboxed writes**: Database defaults to `~/.openclaw/tally/tally.db`; tests may use an explicit path under `/tmp`.
+- **Hook scope**: No hook is registered by the skill. A future integration must disclose its event scope before enablement.
 
 ## Core Concepts
 
@@ -57,7 +56,7 @@ Higher is better. A TES > 2.0 means excellent value; < 0.5 means you're overpayi
 - **L3 (Mission)**: Multiple tools + file I/O + external APIs
 - **L4 (Campaign)**: Sub-agents + cron + cross-session continuity
 
-## CLI Commands
+## Proposed integration commands
 
 - `/tasks list [--level L3] [--status completed]` — List recent tasks
 - `/tasks stats [--period 30d]` — Summary statistics
@@ -76,7 +75,9 @@ Three-layer design:
 
 ## Full Specification
 
-See [PRD.md](./PRD.md) for the complete product requirements document.
+These commands are design targets in the PRD, not commands registered by the current skill bundle.
+
+See `{baseDir}/PRD.md` for the complete product requirements document.
 
 ## License
 

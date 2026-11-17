@@ -28,7 +28,8 @@ from pathlib import Path
 import re
 
 from core.common import resolve_memory_root, run_main_with_argv
-from scripts.rebuild import main as rebuild_main
+from scripts.rebuild import main as rebuild_main, preflight_rebuild
+from core.safe_fs import atomic_write_text, safe_exists
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 
@@ -100,11 +101,11 @@ def build_note_content(title: str, memory_type: str, importance: str, tags: list
 - {today}
 
 ## Session signals
-- current_session_hits: 1
-- recent_session_hits: 1
-- cross_session_repeat_count: 1
-- consecutive_session_count: 1
-- last_activated: {today}
+- current_session_hits: 0
+- recent_session_hits: 0
+- cross_session_repeat_count: 0
+- consecutive_session_count: 0
+- last_activated: -
 
 ## Related tags
 {tags_block}
@@ -143,7 +144,7 @@ def main() -> int:
     args = parser.parse_args()
 
     memory_root = resolve_memory_root(args.memory_root)
-    if not memory_root.exists():
+    if not safe_exists(memory_root, kind="directory"):
         print(f"Error: memory root not found: {memory_root}")
         print("Run first-time setup, or pass --memory-root to specify a different path.")
         return 1
@@ -156,13 +157,15 @@ def main() -> int:
         return 1
 
     note_path = memory_root / f"{slug}.md"
-    if note_path.exists():
+    if safe_exists(note_path):
         print(f"Error: a note already exists at: {note_path}")
         print("Use a different title or edit the existing note directly.")
         return 1
 
     content = build_note_content(args.title, args.memory_type, args.importance, tags)
-    note_path.write_text(content, encoding="utf-8")
+    if not args.no_rebuild:
+        preflight_rebuild(memory_root, memory_root.parent / "heartbeat-state.json")
+    atomic_write_text(note_path, content, exclusive=True)
 
     tomorrow = (date.today() + timedelta(days=1)).isoformat()
     print(f"Created:      {note_path}")

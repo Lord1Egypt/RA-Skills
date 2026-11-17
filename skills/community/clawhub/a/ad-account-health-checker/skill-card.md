@@ -1,42 +1,53 @@
-## Description: <br>
-Assess ad account readiness and risk status across Meta (Facebook/Instagram), Google Ads, TikTok Ads, YouTube Ads, Amazon Ads, and DSP/programmatic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assess ad account readiness and risk status across Meta (Facebook/Instagram), Google Ads, TikTok Ads, YouTube Ads, Amazon Ads, and DSP/programmatic.
 
-## Publisher: <br>
-[danyangliu-sandwichlab](https://clawhub.ai/user/danyangliu-sandwichlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[danyangliu-sandwichlab](https://clawhub.ai/user/danyangliu-sandwichlab)
 
-## Use Case: <br>
-Marketing operators, growth teams, and agents use this skill to assess ad account health, launch readiness, and risk across major ad platforms before creating or scaling campaigns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for broad marketing or growth requests where the user has not supplied enough account context. <br>
-Mitigation: Confirm business goal, platform scope, timeline, KPI targets, and missing critical data before giving final recommendations. <br>
-Risk: Advisory recommendations could influence paid campaign spend, policy posture, billing readiness, or account settings if applied without review. <br>
-Mitigation: Treat output as advisory, validate facts and assumptions, and manually review recommendations before changing paid campaigns or account configuration. <br>
-Risk: Users may share unnecessary billing, credential, or account-access details while requesting an account health review. <br>
-Mitigation: Use non-sensitive account status and performance context only; do not request or include credentials, payment details, or secrets. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/danyangliu-sandwichlab/ad-account-health-checker) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/danyangliu-sandwichlab) <br>
+## Use Case:
 
+External marketing, growth, and advertising operators use this skill to assess ad account structure, permissions, policy risk, billing state, and launch readiness before running or scaling campaigns.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown with structured findings, prioritized actions, risks, guardrails, and a compact handoff payload.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory checklist output; no code execution, credential access, persistence, or automatic account changes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Budget, bidding, billing, policy, or launch recommendations can affect real advertising accounts and spend.
+
+Mitigation: Verify source data, platform permissions, compliance constraints, and a rollback plan before applying recommendations.
+
+Risk: Low-quality or incomplete account data can lead to overconfident campaign guidance.
+
+Mitigation: Treat missing inputs as assumptions, request critical follow-up fields, and prefer reversible low-risk actions when uncertainty is high.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/danyangliu-sandwichlab/skills/ad-account-health-checker)
+- [Publisher profile](https://clawhub.ai/user/danyangliu-sandwichlab)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured sections for intent summary, findings, action plan, risks and guardrails, and handoff payload.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory output should separate facts from assumptions and avoid applying budget, bidding, billing, policy, or launch changes without verification.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

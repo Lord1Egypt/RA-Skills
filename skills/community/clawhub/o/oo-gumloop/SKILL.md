@@ -1,11 +1,11 @@
 ---
 name: oo-gumloop
-description: "Gumloop (gumloop.com). Use this skill for ANY Gumloop request — reading, creating, and updating data. Whenever a task involves Gumloop, use this skill instead of calling the API directly."
+description: "Gumloop (gumloop.com). Use this skill for ANY Gumloop request — reading, creating, updating, and deleting data. Whenever a task involves Gumloop, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "Gumloop"
   author: "OOMOL"
-  version: "1.0.0"
+  version: "1.0.5"
   services: ["gumloop"]
   icon: "https://static.oomol.com/logo/third-party/gumloop.svg"
 ---
@@ -39,7 +39,7 @@ Each action is listed below with a one-line description; actions that change sta
 
 - `get_input_schema` — Retrieve the input schema for a Gumloop saved flow.
 - `get_run_details` — Poll a Gumloop flow run and retrieve state, logs, and output node values.
-- `kill_flow_run` — Kill a Gumloop flow run and its subflow runs.
+- `kill_flow_run` — Kill a Gumloop flow run and its subflow runs. [destructive]
 - `list_run_history` — Retrieve recent Gumloop run history for a workbook or saved flow.
 - `list_saved_flows` — List Gumloop saved flows for a user or team.
 - `list_workbooks` — List Gumloop workbooks and their saved flows for a user or team.
@@ -74,11 +74,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Gumloop is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=gumloop
+  https://console.oomol.com/connections/gumloop
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Gumloop homepage: https://www.gumloop.com
+- API documentation: https://docs.gumloop.com/api-reference/authentication

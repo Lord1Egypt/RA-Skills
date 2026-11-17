@@ -1,38 +1,49 @@
-## Description: <br>
-Rewrite vague, rough, or lengthy user input into a clear, structured, and execution-friendly form based on conversation context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rewrite vague, rough, or lengthy user input into a clear, structured, and execution-friendly form based on conversation context.
 
-## Publisher: <br>
-[stephensu66](https://clawhub.ai/user/stephensu66) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stephensu66](https://clawhub.ai/user/stephensu66)
 
-## Use Case: <br>
-Developers, prompt authors, and agent users use this skill to turn vague or disorganized input into a clearer request while preserving the original intent. It is especially useful before passing user text to another model, agent, collaborator, or workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Refined wording may lose nuance, alter emphasis, or reorder details in ways that change how downstream readers or models interpret the request. <br>
-Mitigation: Review the refined output before using it downstream, especially when exact wording, priority, or constraints matter. <br>
+## Use Case:
 
+Developers, operators, and agent users use this skill to turn vague, messy, or long requests into clear, prioritized instructions for a downstream model, agent, or collaborator.
 
-## Reference(s): <br>
-- [Input Refiner on ClawHub](https://clawhub.ai/stephensu66/input-refiner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown-style text with Intent, Refined Input, Alternative Versions, and Why sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves original intent, avoids unsupported requirements, and may order multi-point input by priority.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2026.3.26 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The skill may activate for ordinary vague or rough messages and produce wording that subtly shifts the user's intended meaning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Compare the refined wording with the original request before using it as downstream instructions.
+
+## Reference(s):
+
+- [Input Refiner on ClawHub](https://clawhub.ai/stephensu66/skills/input-refiner)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with labeled sections for intent, refined input, alternatives, and improvement rationale]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves original intent and may organize multi-point input into prioritized ordered lists.]
+
+## Skill Version(s):
+
+2026.3.26 (source: release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

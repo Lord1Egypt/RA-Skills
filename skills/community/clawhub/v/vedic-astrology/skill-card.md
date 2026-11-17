@@ -1,44 +1,56 @@
-## Description: <br>
-A Vedic astrology (Jyotish) analyzer that estimates sidereal birth-chart placements and produces Nakshatra, Vimshottari Dasha, and Navagraha interpretations from user-provided birth details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Vedic Astrology helps agents produce Jyotish readings using sidereal chart estimates, Nakshatra analysis, Vimshottari Dasha timing, and Navagraha interpretations from user-provided birth details.
 
-## Publisher: <br>
-[eamanc-lab](https://clawhub.ai/user/eamanc-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eamanc-lab](https://clawhub.ai/user/eamanc-lab)
 
-## Use Case: <br>
-External users use this skill to request self-reflection-oriented Jyotish readings from birth date, birth time, and birthplace. Agents use it to produce approximate chart summaries, Dasha timelines, and interpretive guidance while disclosing calculation limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can save birth date, birth time, birthplace, timezone, and chart estimates in a local MEMORY.md file for reuse. <br>
-Mitigation: Use only when local reuse is acceptable; review or delete MEMORY.md in shared environments or keep readings session-only. <br>
-Risk: Chart positions are approximate and may be wrong near sign boundaries or when precise degree-level placements are needed. <br>
-Mitigation: Label positions as estimates and recommend verification with a dedicated astronomical engine for precision-sensitive readings. <br>
-Risk: Astrology output can be overread as certainty or professional advice. <br>
-Mitigation: Keep interpretations exploratory, preserve user agency, and avoid medical, legal, financial, fatalistic, or fear-based claims. <br>
+## Use Case:
 
+External users and agents use this skill to generate reflective Vedic astrology readings from birth date, birth time, and birthplace, including Nakshatra, Dasha, and planetary summaries. It is intended for entertainment and personal exploration, not professional advice or precision astronomy.
 
-## Reference(s): <br>
-- [Vedic Astrology Calculation Rules](references/calculation-rules.md) <br>
-- [Vedic Astrology Interpretation Guide](references/interpretation-guide.md) <br>
-- [Project homepage](https://github.com/eamanc-lab/fortune-telling-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, files] <br>
-**Output Format:** [Markdown report with optional local MEMORY.md profile and chart cache] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should label chart positions as approximate and avoid fatalistic or professional-advice claims.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Birth details may be saved or reused from local skill memory without fresh user confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask before reading or writing memory, show the birth-profile values that will be used, and provide clear options to skip, correct, or delete stored data.
+
+Risk: Approximate astrology outputs may be mistaken for precise chart calculations or professional advice.
+
+Mitigation: Label chart positions as estimates, recommend a dedicated astronomical engine for degree-level precision, and keep the entertainment and personal-exploration disclaimer visible.
+
+## Reference(s):
+
+- [Calculation Rules](references/calculation-rules.md)
+- [Interpretation Guide](references/interpretation-guide.md)
+- [Project homepage](https://github.com/eamanc-lab/fortune-telling-skills)
+- [ClawHub skill page](https://clawhub.ai/eamanc-lab/skills/vedic-astrology)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown readings with tables and optional local MEMORY.md profile/cache entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are generated from user-provided birth details, use approximate chart estimates, and may be localized in English or Chinese.]
+
+## Skill Version(s):
+
+1.2.0 (source: ClawHub release evidence; artifact frontmatter metadata is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

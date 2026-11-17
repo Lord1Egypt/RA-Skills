@@ -1,50 +1,70 @@
-## Description: <br>
-DataWorks Workspace Lifecycle Management Skill for creating workspaces, querying workspace information, and adding workspace members with role authorization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DataWorks Workspace Lifecycle Management Skill for creating workspaces, querying workspace information, and adding workspace members with role authorization.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to manage allowed Alibaba Cloud DataWorks workspace lifecycle tasks, including workspace creation, workspace and member lookup, member addition, and role grants. It is intended to keep destructive workspace and membership changes out of the agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup guidance can lead to broader Alibaba Cloud permissions than the skill needs. <br>
-Mitigation: Use a dedicated least-privilege RAM user or role, remove dataworks:UpdateProject from copied policies, and avoid AliyunDataWorksFullAccess unless it is truly necessary. <br>
-Risk: Mutating workspace or membership commands can affect the wrong region, workspace, user, or role if parameters are not checked. <br>
-Mitigation: Explicitly verify the region, workspace, target user, and role codes before running any mutating command. <br>
-Risk: Unsupported destructive actions could update or delete workspaces, remove members, or revoke roles. <br>
-Mitigation: Do not perform or generate commands for UpdateProject, DeleteProject, DeleteProjectMember, or RevokeMemberProjectRoles; direct users to the DataWorks Console for those actions. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to administer Alibaba Cloud DataWorks workspaces through Aliyun CLI workflows for workspace creation, workspace lookup, member addition, and role grants.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sdk-team/alibabacloud-dataworks-workspace-manage) <br>
-- [DataWorks Workspace Management](https://help.aliyun.com/zh/dataworks/user-guide/workspace-management/) <br>
-- [Add Workspace Members](https://help.aliyun.com/zh/dataworks/user-guide/add-workspace-members-and-assign-roles-to-them) <br>
-- [DataWorks OpenAPI Reference](https://help.aliyun.com/zh/dataworks/developer-reference/api-dataworks-public-2024-05-18-overview) <br>
-- [DataWorks Workspace Management - API and CLI Command Reference](references/related-apis.md) <br>
-- [DataWorks Workspace Management - RAM Permission Policies](references/ram-policies.md) <br>
-- [DataWorks Service Endpoints](references/endpoint-regions.md) <br>
-- [DataWorks Workspace Management - Operation Verification Methods](references/verification-method.md) <br>
-- [Aliyun CLI Installation & Configuration Guide](references/cli-installation-guide.md) <br>
+### Deployment Geography for Use:
 
+Global, subject to Alibaba Cloud DataWorks regional availability.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash command examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands should include explicit region, endpoint, user-agent, and timeout parameters where applicable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: release evidence) <br>
+Risk: Cloud account exposure from broad DataWorks permissions or unreviewed workspace administration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review requested RAM permissions before use, remove UpdateProject and FullAccess-style permissions unless approved outside the skill, and prefer narrowly scoped or short-lived credentials.
+
+Risk: Credential leakage through command-line handling or local shell history.
+
+Mitigation: Use the default credential chain, avoid entering cloud secrets on command lines, and confirm credential status without exposing access keys.
+
+Risk: Supply-chain exposure from CLI installation and automatic plugin installation.
+
+Mitigation: Use a verified and pinned Aliyun CLI installation and keep automatic plugin installation disabled unless separately reviewed.
+
+Risk: Irreversible or unsupported workspace changes could affect production environments.
+
+Mitigation: Do not perform prohibited update, delete, member-removal, or role-revocation operations through the skill; use the DataWorks Console for unsupported changes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sdk-team/skills/alibabacloud-dataworks-workspace-manage)
+- [Acceptance Criteria](references/acceptance-criteria.md)
+- [Aliyun CLI Installation and Configuration Guide](references/cli-installation-guide.md)
+- [DataWorks Service Endpoints](references/endpoint-regions.md)
+- [DataWorks Workspace Management RAM Permission Policies](references/ram-policies.md)
+- [DataWorks Workspace Management API and CLI Command Reference](references/related-apis.md)
+- [DataWorks Workspace Management Operation Verification Methods](references/verification-method.md)
+- [DataWorks Workspace Management](https://help.aliyun.com/zh/dataworks/user-guide/workspace-management/)
+- [Add Workspace Members](https://help.aliyun.com/zh/dataworks/user-guide/add-workspace-members-and-assign-roles-to-them)
+- [DataWorks OpenAPI Reference](https://help.aliyun.com/zh/dataworks/developer-reference/api-dataworks-public-2024-05-18-overview)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Aliyun CLI command patterns with confirmed user parameters, DataWorks endpoints, and role-code guidance.]
+
+## Skill Version(s):
+
+0.0.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

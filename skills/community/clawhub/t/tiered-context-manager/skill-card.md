@@ -1,41 +1,57 @@
-## Description: <br>
-Manages long OpenClaw agent conversations with tiered L1/L2/L3 context compression, memory tiering, cross-agent knowledge sharing, monitoring, and reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tiered Context Manager helps OpenClaw agents manage long multi-agent conversations with L1/L2/L3 context compression, memory tiering, cross-agent knowledge sharing, real-time monitoring, statistics, and reporting.
 
-## Publisher: <br>
-[scorpioxyb](https://clawhub.ai/user/scorpioxyb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scorpioxyb](https://clawhub.ai/user/scorpioxyb)
 
-## Use Case: <br>
-Developers and engineers use this skill to manage long-running OpenClaw agent sessions by compacting context, organizing memories by retention tier, sharing selected knowledge across agents, and producing compression statistics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read, rewrite, delete, archive, and share local OpenClaw conversation-derived data. <br>
-Mitigation: Run dry-run or inspection modes first, keep restorable backups, and limit execution to workspaces where broad context management is intended. <br>
-Risk: Hardcoded OpenClaw and shared-memory paths may affect the wrong local storage location or expose data across agents. <br>
-Mitigation: Review and adjust paths before use, and add access controls or redaction before processing private, credential-bearing, or confidential sessions. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to compress long agent sessions, organize retained memories by lifecycle, share selected context across agents, and generate monitoring or compression reports.
 
-## Reference(s): <br>
-- [Tiered Context Manager Architecture](references/architecture.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/scorpioxyb/tiered-context-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JavaScript API examples, and generated reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read, rewrite, compact, archive, and share local OpenClaw conversation and memory files when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and scripts/package.json) <br>
+Risk: Live operation can rewrite session content and create backups.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start with dry-run operation and restrict filesystem permissions to approved OpenClaw session and backup directories.
+
+Risk: Conversation content may be summarized, persisted, or copied into shared agent memory and inbox files.
+
+Mitigation: Use only on non-sensitive sessions unless users have consented and content has been reviewed or redacted.
+
+Risk: Cross-agent handoffs and weak path scoping can expose integrity and data-sharing risks.
+
+Mitigation: Keep cross-agent handoffs disabled until consent, redaction, path validation, and session rewrite issues are addressed.
+
+## Reference(s):
+
+- [Tiered Context Manager Architecture](references/architecture.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, and generated text or Markdown reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write compressed session content, backups, statistics, reports, memory files, and inbox tasks when run in live mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, scripts/package.json, and architecture version history)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

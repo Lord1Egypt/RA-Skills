@@ -1,43 +1,59 @@
-## Description: <br>
-Access 398+ datasets from the City of Montreal open data portal. Search, fetch, and analyze city data on crime, transit, environment, permits, and more via the CKAN API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access 398+ datasets from the City of Montreal open data portal. Search, fetch, and analyze city data on crime, transit, environment, permits, and more via the CKAN API.
 
-## Publisher: <br>
-[raychanpmp](https://clawhub.ai/user/raychanpmp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raychanpmp](https://clawhub.ai/user/raychanpmp)
 
-## Use Case: <br>
-Developers, analysts, and public-sector data users use this skill to search, inspect, and fetch City of Montreal open datasets through the CKAN API for analysis or reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill has Bash permission while its visible function is public open-data retrieval. <br>
-Mitigation: Review the included Python script before installation and restrict use to the expected commands that call donnees.montreal.ca, print dataset results, and write the local cache. <br>
-Risk: Dataset search and metadata are primarily in French, which can lead to missed or misunderstood results. <br>
-Mitigation: Use French search terms where possible and verify dataset metadata before relying on fetched records. <br>
+## Use Case:
 
+External users, developers, and data analysts use this skill to search Montreal's open data catalog, inspect dataset metadata, and fetch queryable CKAN resources for analysis.
 
-## Reference(s): <br>
-- [City of Montreal open data portal](https://donnees.montreal.ca) <br>
-- [Montreal Open Data - Popular Datasets](references/datasets.md) <br>
-- [City of Montreal CKAN API endpoint](https://donnees.montreal.ca/api/3/action) <br>
-- [ClawHub skill page](https://clawhub.ai/raychanpmp/montreal-opendata) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and CLI output in JSON, CSV, or plain text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The included CLI can print dataset metadata, search results, datastore records, or CSV-formatted rows, and it writes a small local catalog cache.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The bundled Python CLI queries donnees.montreal.ca over the network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill only in environments where public CKAN API access to donnees.montreal.ca is acceptable.
+
+Risk: CSV exports contain untrusted remote data and may be unsafe to open directly in spreadsheet software.
+
+Mitigation: Review or sanitize exported CSV data before opening it in spreadsheet tools or sharing it downstream.
+
+Risk: Broad Montreal-related activation prompts could lead the agent to run data-query commands unexpectedly.
+
+Mitigation: Review proposed commands before execution, especially fetch and CSV export commands.
+
+## Reference(s):
+
+- [Montreal Open Data Portal](https://donnees.montreal.ca)
+- [CKAN API Endpoint](https://donnees.montreal.ca/api/3/action)
+- [Popular Datasets Reference](references/datasets.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; CLI commands can return text, JSON, or CSV.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public CKAN API responses and can cache catalog metadata in the skill script directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

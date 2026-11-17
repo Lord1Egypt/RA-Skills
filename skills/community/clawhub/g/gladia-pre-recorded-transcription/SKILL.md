@@ -1,6 +1,6 @@
 ---
 name: gladia-pre-recorded-transcription
-description: Transcribe pre-recorded audio files or URLs with Gladia. Use when the user needs batch/async transcription, speaker diarization, subtitles (SRT/VTT), PII redaction, translation, NER, summarization, chapterization, audio-to-LLM, or any audio intelligence on pre-recorded content. Always prefer the official SDK; fall back to raw REST only when SDK cannot satisfy the requirement.
+description: Transcribe pre-recorded audio files or URLs with Gladia. Use when the user needs batch/async transcription, speaker diarization, subtitles (SRT/VTT), PII redaction, translation, NER, summarization, audio-to-LLM, or any audio intelligence on pre-recorded content. Always prefer the official SDK; fall back to raw REST only when SDK cannot satisfy the requirement.
 license: MIT
 ---
 
@@ -16,7 +16,7 @@ Gladia's pre-recorded API transcribes audio and video files asynchronously.
 - Batch or asynchronous transcription workflows
 - Pre-recorded-only features: diarization, PII redaction, subtitles
 
-**When NOT to use:** If the user needs real-time / live transcription of a stream, microphone, or ongoing audio feed, use the [gladia-live-transcription skill](../gladia-live-transcription/SKILL.md) instead. Live transcription uses WebSocket sessions, not the pre-recorded API.
+**When NOT to use:** If the user needs real-time / live transcription of a stream, microphone, or ongoing audio feed, use the [gladia-live-transcription skill](../gladia-live-transcription/SKILL.md) instead. Live transcription uses WebSocket sessions, not the pre-recorded API. If the user has gladia-cli installed and wants a quick terminal workflow without writing code, use [gladia-using-cli](../gladia-using-cli/SKILL.md) instead.
 
 ## References
 
@@ -26,6 +26,7 @@ Consult these resources as needed:
 - ./references/managing-jobs.md -- `get`, `list`, `getFile`, `delete`
 - ./references/delivery-and-response.md -- Response shape and events
 - ../gladia-audio-intelligence/SKILL.md -- Feature availability and config
+- ../gladia-using-cli/SKILL.md -- Terminal workflow with gladia-cli
 - ../gladia-sdk-integration/SKILL.md -- Setup, config, SDK vs raw API
 - ../gladia-sdk-integration/references/sdk-versions.md -- Current SDK versions
 - ../gladia-troubleshooting/SKILL.md -- Errors and diagnostics

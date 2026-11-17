@@ -1,43 +1,61 @@
-## Description: <br>
-Uploads one or many MP4 videos to YouTube using OAuth, metadata from UPLOAD_META.md or command-line flags, resumable uploads, and proxy-aware retries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uploads single MP4 files or batches from a final/ directory to YouTube, using metadata from UPLOAD_META.md or command-line flags and resumable uploads that can run through a proxy.
 
-## Publisher: <br>
-[jianshuo](https://clawhub.ai/user/jianshuo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jianshuo](https://clawhub.ai/user/jianshuo)
 
-## Use Case: <br>
-Creators and operators use this skill to upload finished MP4 files or final/ directories to YouTube while preserving titles, descriptions, tags, privacy settings, playlist placement, and scheduled publishing choices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Google OAuth access and stores a reusable YouTube upload token. <br>
-Mitigation: Create the OAuth client yourself, keep credentials.json and token.json private with user-only file access, and avoid syncing or committing them. <br>
-Risk: Batch uploads can publish incorrect files or metadata to a YouTube account. <br>
-Mitigation: Run --dry-run for batches, review files and metadata first, and keep uploads unlisted until they have been checked. <br>
+## Use Case:
 
+Developers and content operators use this skill to publish finished MP4 videos or batch-upload a final/ directory to YouTube with titles, descriptions, tags, privacy settings, playlists, and optional scheduled publishing.
 
-## Reference(s): <br>
-- [Google Cloud OAuth setup for YouTube upload](references/credentials-setup.md) <br>
-- [ClawHub skill page](https://clawhub.ai/jianshuo/wjs-uploading-video) <br>
-- [Google Cloud Console](https://console.cloud.google.com) <br>
-- [YouTube upload OAuth scope](https://www.googleapis.com/auth/youtube.upload) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Markdown, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with bash commands and upload result summaries; the upload script writes JSON results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Google OAuth credentials and token files, supports dry-run mode, and defaults uploads to unlisted.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The skill uses long-lived YouTube OAuth credentials and tokens that can upload videos to the user's account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store credentials.json and token.json with restrictive permissions, limit who can access the machine, and delete or re-authorize the token when upload access should be revoked.
+
+Risk: Proxy URLs may contain embedded credentials and the uploader can print the selected proxy value.
+
+Mitigation: Prefer proxy URLs without embedded passwords, keep upload logs private, and redact proxy values before sharing logs.
+
+Risk: Incorrect privacy, playlist, or scheduling flags can publish or organize videos differently than intended.
+
+Mitigation: Run --dry-run before batch uploads and verify --privacy, --playlist, and --publish-at before live upload.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jianshuo/skills/wjs-uploading-video)
+- [Google Cloud OAuth setup for YouTube upload](artifact/references/credentials-setup.md)
+- [Google Cloud Console](https://console.cloud.google.com)
+- [YouTube upload endpoint](https://www.googleapis.com/upload/youtube/v3/videos)
+- [YouTube upload OAuth scope](https://www.googleapis.com/auth/youtube.upload)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON upload-result files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call the YouTube Data API, cache OAuth tokens locally, use proxy environment variables, and write per-video upload results.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

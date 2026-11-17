@@ -1,41 +1,57 @@
-## Description: <br>
-When the user wants to design, optimize, or audit masonry (Pinterest-style) layouts for content display. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+When the user wants to design, optimize, or audit masonry (Pinterest-style) layouts for content display.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Designers, developers, and content teams use this skill to decide when masonry layouts fit image-heavy or discovery-focused interfaces and how to handle accessibility, performance, and crawlability tradeoffs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Masonry layouts can create accessibility issues when visual order differs from logical DOM or reading order. <br>
-Mitigation: Keep DOM order logical and verify screen reader and keyboard navigation before using masonry in production interfaces. <br>
-Risk: Masonry galleries paired with infinite scroll or lazy loading can hide content from crawlers. <br>
-Mitigation: Use crawlable pagination, stable URLs, and HTML-reachable content for SEO-critical galleries. <br>
+## Use Case:
 
+Developers and designers use this skill to choose, implement, optimize, or audit masonry layouts for galleries, portfolios, discovery feeds, and image-heavy pages with varied item heights.
 
-## Reference(s): <br>
-- [Google Search Central - Infinite scroll search-friendly recommendations](https://developers.google.com/search/blog/2014/02/infinite-scroll-search-friendly) <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/masonry) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown prose and comparison tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credentials, or special permissions required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: frontmatter and release evidence) <br>
+Risk: Generated masonry implementations can harm accessibility if visual order differs from logical DOM or screen reader order.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated layout code for logical DOM order and keyboard and screen reader behavior before deployment.
+
+Risk: Masonry galleries using infinite scroll or lazy loading can make SEO-critical content difficult for crawlers to discover.
+
+Mitigation: Use crawlable pagination, reachable links, and search-friendly lazy-loading patterns for content that must be indexed.
+
+Risk: Image-heavy masonry pages can introduce performance issues.
+
+Mitigation: Review generated implementations for image sizing, lazy loading, layout stability, and page performance before release.
+
+## Reference(s):
+
+- [Google Search Central: Infinite scroll search-friendly recommendations](https://developers.google.com/search/blog/2014/02/infinite-scroll-search-friendly)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown prose with tables and implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; no code execution, persistence, or sensitive access.]
+
+## Skill Version(s):
+
+1.1.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

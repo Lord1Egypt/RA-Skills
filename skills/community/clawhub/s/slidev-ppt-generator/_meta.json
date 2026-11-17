@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn76rtfgw6tbtv0s00mn7sxkf182d2z2",
+  "owner": "laofahai",
   "slug": "slidev-ppt-generator",
-  "version": "1.4.0",
-  "publishedAt": 1773478035231
+  "displayName": "Slidev PPT Generator",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1741910400000
+  },
+  "history": []
 }

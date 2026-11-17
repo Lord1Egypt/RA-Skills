@@ -1,6 +1,6 @@
 ---
 name: kids-points-v2
-version: 2.0.6
+version: 2.0.7
 description: 儿童积分管理 V2 - SQLite 存储 + LLM 语义分析 + CLI 接口，飞书群聊与单聊全量支持
 metadata: {"openclaw":{"emoji":"📊","requires":{"bins":["python3"]}}}
 tags: [kids, points, family, sqlite, llm, feishu, chinese, parenting]
@@ -148,3 +148,41 @@ export KIDS_POINTS_RUNTIME_DIR=/path/to/your/kids-points-runtime
 ---
 
 _用心记录每一次进步。_ 🌟
+
+---
+
+## 🌐 English Summary
+
+**Kids Points V2** is a lightweight, reliable family-points tracker that lives in your Feishu (Lark) chat. Send a natural-language sentence — "completed 2 Chinese copybook pages, got all math flashcards right" — and the bot extracts intent, writes to a SQLite ledger, and replies with the result.
+
+**Why V2 (vs. the 1.x line)**
+
+- **SQLite storage** replaces plain-text ledgers: concurrent writes and power-loss no longer corrupt the book.
+- **LLM-based intent parsing** via `llm_config.py` adapts to colloquial Chinese, regional phrasing, and each family's wording, instead of brittle regexes.
+- **CLI-first**: `runtime/cli.py` exposes `balance` / `today` / `history` and the full pipeline, so agents, cron jobs, and shell scripts can drive the ledger without going through OpenClaw.
+- **Feishu full coverage**: group chats *and* direct messages — V1 was DMs only.
+- **Deduplication by `messageId`**: idempotent under retries and replays.
+- **Lighter footprint**: ASR/TTS is delegated to Feishu itself, so the skill no longer ships an embedded voice pipeline.
+
+**Install (3 steps)**
+
+```bash
+cp runtime/config.yaml.example runtime/config.yaml   # then fill in api_url / model / key_source
+clawhub install kids-points-v2
+# Configure your OpenClaw dispatch to route Feishu messages to the skill handler
+```
+
+**CLI quick reference**
+
+```bash
+python3 runtime/cli.py "added 1 point for math today"   # full pipeline
+python3 runtime/cli.py balance                          # current balance (no LLM)
+python3 runtime/cli.py today                            # today's earnings
+python3 runtime/cli.py history                          # recent ledger entries
+```
+
+Exit codes: `0` success / `1` database error / `2` argument error.
+
+**Requirements**: Python 3.8+, OpenClaw for Feishu dispatch, any LLM API speaking the OpenAI Chat Completions protocol.
+
+See `README.en.md` in the repository for the full English README, including the optional HUB75 LED-matrix dashboard extension under `extensions/`.

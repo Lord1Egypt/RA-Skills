@@ -1,6 +1,6 @@
 {
   "id": "fec-ui-design",
-  "name": "UI 设计",
+  "name": "UI design",
   "category": "design-ui",
   "tags": [
     "ui-design",
@@ -16,7 +16,7 @@
     "chart-ux"
   ],
   "summary": "Product-context UI direction with anti-generic design dials, distinctive visual identity, media strategy, interaction states, and visual QA.",
-  "version": "2.7.0",
+  "version": "2.9.0",
   "license": "MIT",
   "homepage": "https://github.com/bovinphang/frontend-craft",
   "repository": "https://github.com/bovinphang/frontend-craft",
@@ -47,7 +47,7 @@
     "openclaw",
     "generic-skill-runtime"
   ],
-  "description": "Use when building, reviewing, or improving frontend UI that needs product-specific design direction, design-system generation, Master/Page overrides, distinctive visual identity, anti-generic interface choices, first-screen hierarchy, UI polish, chart UX, interaction states, responsive behavior, or visual QA. When an external design file is authoritative, implement from that source instead of inventing direction; Chinese triggers include UI 设计, 设计系统, 视觉风格, 不要模板化, 高级感, 界面打磨, 交互状态.",
+  "description": "Use when building, reviewing, or improving frontend UI that needs product-specific design direction, design-system generation, Master/Page overrides, distinctive visual identity, anti-generic interface choices, first-screen hierarchy, UI polish, chart UX, interaction states, responsive behavior, or visual QA. Interface polishing, interactive state.",
   "source": "skills/fec-ui-design",
   "references": [
     "data/product-rules.json",

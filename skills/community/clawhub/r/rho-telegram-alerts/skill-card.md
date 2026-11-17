@@ -1,39 +1,52 @@
-## Description: <br>
-Send formatted trading alerts, portfolio updates, and market signals via Telegram. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send formatted trading alerts, portfolio updates, and market signals via Telegram, including price alerts, stop-loss notifications, win/loss reporting, and scheduled summaries.
 
-## Publisher: <br>
-[JamieRossouw](https://clawhub.ai/user/JamieRossouw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jamierossouw](https://clawhub.ai/user/jamierossouw)
 
-## Use Case: <br>
-Developers and traders use this skill to draft Telegram notifications for trade entries and exits, price thresholds, portfolio summaries, stop-loss warnings, win/loss streaks, and scheduled trading reports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Telegram bot tokens and chat IDs can expose notification channels if committed, logged, or shared. <br>
-Mitigation: Use a dedicated bot, keep credentials in environment variables or a secrets manager, avoid logging them, and rotate the token if exposure is suspected. <br>
-Risk: Trading alerts and portfolio summaries may disclose sensitive trading or portfolio details to the configured Telegram chat. <br>
-Mitigation: Verify the chat ID before use and limit alert content to information appropriate for that Telegram recipient. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JamieRossouw/rho-telegram-alerts) <br>
+## Use Case:
 
+External users and developers use this skill to draft Telegram notifications for trading events, price thresholds, portfolio summaries, stop-loss warnings, win/loss streaks, and scheduled trading reports.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown or plain text alert content with setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID for Telegram delivery.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Telegram messages may expose sensitive trading, portfolio, holdings, or trading-behavior information.
+
+Mitigation: Send only information suitable for Telegram, restrict the bot and chat to intended recipients, and avoid unnecessary sensitive details in scheduled reports.
+
+Risk: The Telegram bot token and chat ID can enable unauthorized message delivery if exposed.
+
+Mitigation: Keep TELEGRAM_BOT_TOKEN private, store secrets outside committed files, and do not commit .env files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jamierossouw/skills/rho-telegram-alerts)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown text with Telegram-ready alert content and setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID for Telegram delivery.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

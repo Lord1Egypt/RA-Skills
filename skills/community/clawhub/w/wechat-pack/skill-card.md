@@ -1,39 +1,52 @@
-## Description: <br>
-Convert local .docx or Markdown files into WeChat-ready HTML and generate a publish folder with source files, assets, cover images, WeChat HTML, and metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts local .docx, Markdown, or HTML files into WeChat-ready HTML and a publish folder containing source files, local assets, optional cover images, and metadata.
 
-## Publisher: <br>
-[rockbotclub](https://clawhub.ai/user/rockbotclub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rockbotclub](https://clawhub.ai/user/rockbotclub)
 
-## Use Case: <br>
-External users and developers use this skill to package local .docx, Markdown, or HTML articles into WeChat public account publishing folders with localized assets and copy-paste-ready HTML. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Crafted documents or HTML image references can trigger outbound URL fetches or copy local files into the generated publish folder. <br>
-Mitigation: Run the skill only on trusted documents and cover URLs, and inspect the generated assets and cover directories before sharing or publishing. <br>
-Risk: .docx conversion depends on a local pandoc executable and may fail when pandoc is unavailable. <br>
-Mitigation: Confirm pandoc is installed before using .docx inputs, or use Markdown or HTML inputs when pandoc is not available. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/rockbotclub/wechat-pack) <br>
+## Use Case:
 
+Developers and content publishers use this skill to package local articles for WeChat public account publishing with local asset copies and copy-paste HTML output.
 
-## Skill Output: <br>
-**Output Type(s):** [Files, HTML, JSON metadata, Shell commands, Guidance] <br>
-**Output Format:** [Publish folder containing source, assets, cover, wechat/article.html, and meta.json] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pandoc for .docx conversion; can download external images and optionally generate cover variants when Pillow is available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Unsafe asset handling could copy unintended local files or fetch unsafe remote URLs when processing untrusted documents.
+
+Mitigation: Use only trusted local inputs, avoid documents with remote image URLs or unusual local image paths, and inspect generated assets before sharing or publishing.
+
+Risk: Generated HTML from untrusted source documents may carry unsafe or unexpected content.
+
+Mitigation: Do not open generated HTML from untrusted inputs in a sensitive browser context; review the output before pasting it into WeChat.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rockbotclub/skills/wechat-pack)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Publish folder containing source files, local assets, optional cover variants, WeChat-ready HTML, and meta.json]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pandoc for .docx conversion; Pillow enables optional cover image variants.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

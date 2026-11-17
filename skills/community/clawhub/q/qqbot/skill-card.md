@@ -1,45 +1,60 @@
-## Description: <br>
-Configures and runs a QQ Official Bot with WebSocket messaging, OpenClaw AI handoff, daemon management, and troubleshooting guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configures and manages a QQ Official Bot with QQ platform setup, IP allowlist guidance, WebSocket connectivity, and OpenClaw AI integration.
 
-## Publisher: <br>
-[byzgpc](https://clawhub.ai/user/byzgpc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[byzgpc](https://clawhub.ai/user/byzgpc)
 
-## Use Case: <br>
-Developers and operators use this skill to set up a QQ Official Bot, connect it to QQ messaging events, and route incoming chat messages through an OpenClaw workspace workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The release includes a real-looking QQ credential in config.example.json. <br>
-Mitigation: Replace and rotate any QQ credentials before use, and treat the example credential as exposed if it is real. <br>
-Risk: Chat content and replies are written through files under ~/.openclaw/workspace. <br>
-Mitigation: Use restrictive permissions on the OpenClaw workspace and avoid sensitive chats until log and queue retention are understood. <br>
-Risk: The package includes ClawHub publishing helper scripts unrelated to running the bot. <br>
-Mitigation: Remove or ignore the publishing scripts when installing only the QQ bot runtime. <br>
+## Use Case:
 
+Developers and operators use this skill to deploy a QQ Official Bot that connects private, group, and channel messages to OpenClaw AI. It provides setup steps for QQ app credentials, IP allowlisting, bot runtime scripts, and troubleshooting.
 
-## Reference(s): <br>
-- [QQ Bot Platform Documentation](https://bot.q.qq.com/wiki) <br>
-- [QQ Bot API Documentation](https://bot.q.qq.com/wiki/develop/api/) <br>
-- [QQ Bot Gateway Intents](https://bot.q.qq.com/wiki/develop/api/gateway/intents.html) <br>
-- [ClawHub Skill Page](https://clawhub.ai/byzgpc/qqbot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with Python, shell, and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes daemon commands, QQ credential configuration, queue-file handoff behavior, and troubleshooting steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, _meta.json, package metadata) <br>
+Risk: A packaged credential-like QQ client secret could be copied into a deployment or reused accidentally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace and rotate any QQ AppSecret that matches the packaged example, and keep bot secrets outside source-controlled files.
+
+Risk: QQ messages, user identifiers, and replies may be written to local logs or queue files in plaintext.
+
+Mitigation: Run the bot only where plaintext chat data is acceptable; use restrictive file permissions, log redaction or rotation, and explicit consent for private or group chat processing.
+
+Risk: The skill runs networked bot code and installs unpinned Python dependencies.
+
+Mitigation: Review the scripts before execution, pin and audit dependencies, and deploy from an isolated account or workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/byzgpc/skills/qqbot)
+- [QQ Bot platform documentation](https://bot.q.qq.com/wiki)
+- [QQ Bot API documentation](https://bot.q.qq.com/wiki/develop/api/)
+- [QQ Bot gateway intents](https://bot.q.qq.com/wiki/develop/api/gateway/intents.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown documentation with inline JSON, Python, and shell snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes runnable QQ bot and helper scripts; requires local credential and IP allowlist configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

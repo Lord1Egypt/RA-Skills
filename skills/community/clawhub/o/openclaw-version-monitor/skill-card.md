@@ -1,42 +1,55 @@
-## Description: <br>
-Monitors OpenClaw GitHub releases, retrieves the latest release notes, translates them into Chinese, and prepares update notifications for Telegram and Feishu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors OpenClaw GitHub releases, summarizes and translates release notes into Chinese, and formats notifications for Telegram and Feishu.
 
-## Publisher: <br>
-[00010110](https://clawhub.ai/user/00010110) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[00010110](https://clawhub.ai/user/00010110)
 
-## Use Case: <br>
-Developers and maintainers use this skill to check OpenClaw release updates, compare the monitored version with the latest release, translate release notes into Chinese, and format notifications for Telegram and Feishu. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Notifications could be sent to an unintended Telegram chat or Feishu destination if channel identifiers are reused without verification. <br>
-Mitigation: Confirm that Telegram chat ID 8290054457 and the Feishu destination belong to the installer before enabling notifications. <br>
-Risk: Scheduled checks can automatically send release notifications through external services. <br>
-Mitigation: Use limited-purpose Telegram bot or Feishu app credentials and enable schedules only for intended notification channels. <br>
+## Use Case:
 
+Developers and operators use this skill to check OpenClaw release updates, compare versions, translate release notes into Chinese, and prepare update notifications for Telegram or Feishu.
 
-## Reference(s): <br>
-- [Push Templates](references/push-templates.md) <br>
-- [OpenClaw Latest Release API](https://api.github.com/repos/openclaw/openclaw/releases/latest) <br>
-- [OpenClaw Releases](https://github.com/openclaw/openclaw/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and notification templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Chinese release-note summaries and channel-specific notification text; Telegram messages should stay within the documented 4096-character limit.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Notifications may be sent to an unintended Telegram chat or Feishu target if IDs are reused without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm Telegram chat ID and Feishu target ownership before enabling automated schedules.
+
+Risk: Automated schedules can distribute unreviewed translated release notes.
+
+Mitigation: Review formatted messages before enabling unattended push workflows.
+
+## Reference(s):
+
+- [OpenClaw latest release API](https://api.github.com/repos/openclaw/openclaw/releases/latest)
+- [OpenClaw releases](https://github.com/openclaw/openclaw/releases)
+- [Push templates](artifact/references/push-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and notification templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Telegram message length guidance and schedule examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

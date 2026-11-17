@@ -1,4 +1,4 @@
-"""实战 98: 东方财富实时报价 scraper
+"""v20.98: 东方财富实时报价 scraper
 - 公开 API: push2.eastmoney.com/api/qt/stock/get
 - secid: 0.002594 (上证)/ 1.002594 (深证) / 0.00700 (港股) / 105.AAPL (美股)
 - fields: f43=现价 f44=最高 f45=最低 f46=昨收 f60=今开 f170=涨跌幅(%)
@@ -11,11 +11,11 @@ import urllib.request
 import urllib.error
 from typing import Dict, Optional
 
-# 实战 98: 缓存
+# v20.98: 缓存
 _CACHE = {}
 _CACHE_TTL = 300  # 5 min
 
-# secid 映射 (实战 98: 从 STOCK_MAP 推导)
+# secid 映射 (v20.98: 从 STOCK_MAP 推导)
 def get_secid(code: str, market: str) -> Optional[str]:
     """从 code + market 推 secid
     - SZ (深证) → 1.XXXXXX
@@ -87,7 +87,7 @@ def fetch_quote(code: str, market: str) -> Optional[Dict]:
 
 
 def get_quote_with_real(symbol_or_name: str) -> Dict:
-    """实战 98: 替代 realtime.get_quote, 真接东财 API"""
+    """v20.98: 替代 realtime.get_quote, 真接东财 API"""
     import realtime as _rt
     # 1) 先 mock 找 code
     mock = _rt.get_quote(symbol_or_name)
@@ -102,6 +102,27 @@ def get_quote_with_real(symbol_or_name: str) -> Dict:
             'query': symbol_or_name,
             'error': f'{mock.get("name")} 未上市, 无实时报价',
             'realtime_links': mock.get('realtime_links'),
+        }
+    if market == 'CRYPTO':
+        # v20.99 A: 加密货币 - 东财不支持, 公网 CoinGecko/Binance/Coincap 都被墙
+        # 用 TradingView 链接 + 火币/OKX 搜索 (国内可访问)
+        crypto_name = mock.get('name', '').replace('加密', '').strip() or code
+        return {
+            'success': True,
+            'query': symbol_or_name,
+            'name': crypto_name,
+            'code': code,
+            'market': 'CRYPTO',
+            'quote': {
+                'price': None,
+                'change_pct': None,
+                'note': 'v20.99 A: 加密货币实时 API 需直连 (CoinGecko/Binance 国内被墙), 请查询下方链接',
+            },
+            'realtime_links': [
+                f'📊 TradingView: https://www.tradingview.com/symbols/{code.replace("-USD", "USD")}/',
+                f'📈 火币: https://www.htx.com/zh-cn/trade/{code.split("-")[0].lower()}_usdt/',
+                f'💰 非小号: https://www.feixiaohao.com/coin/{code.split("-")[0].lower()}/',
+            ],
         }
 
     # 2) 真接东财

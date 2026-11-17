@@ -1,42 +1,56 @@
-## Description: <br>
-World-class systematic trading research - backtesting, alpha generation, factor models, statistical arbitrage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides quantitative trading research guidance for backtesting, alpha generation, factor models, and statistical arbitrage.
 
-## Publisher: <br>
-[zhengxinjipai](https://clawhub.ai/user/zhengxinjipai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zhengxinjipai](https://clawhub.ai/user/zhengxinjipai)
 
-## Use Case: <br>
-External users, developers, and research teams use this skill for quantitative trading research guidance, including backtesting, alpha generation, factor models, statistical arbitrage, regime detection, and strategy validation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may treat quantitative research outputs as financial advice or permission to trade. <br>
-Mitigation: Use outputs as educational or analytical support only, and independently verify assumptions, data quality, costs, and risk before acting. <br>
-Risk: Backtests, alpha signals, and factor analyses may be misleading if affected by overfitting, look-ahead bias, weak sample sizes, or missing transaction costs. <br>
-Mitigation: Validate strategies with train/test separation, out-of-sample testing, realistic costs, sufficient trade counts, statistical significance checks, and regime-aware review. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhengxinjipai/quantitative-research) <br>
-- [Quantitative Research Patterns](references/patterns.md) <br>
-- [Quantitative Research Sharp Edges](references/sharp_edges.md) <br>
-- [Quantitative Research Validations](references/validations.md) <br>
+## Use Case:
 
+External users and developers use this skill for quantitative finance research support, including strategy backtesting, alpha-signal validation, factor modeling, statistical arbitrage analysis, and regime-aware portfolio research.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown guidance with optional Python code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no code execution, credentials, persistence, or trading-account control were identified by security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Quantitative finance outputs may be mistaken for trading advice or relied on without independent review.
+
+Mitigation: Treat strategy logic, thresholds, market data assumptions, and conclusions as research assistance only; require user-controlled review before any trading decision.
+
+Risk: Backtests and alpha signals can be misleading because of overfitting, look-ahead bias, transaction costs, survivorship bias, or weak statistical significance.
+
+Mitigation: Use the artifact's validation guidance for train/test splits, out-of-sample testing, transaction-cost modeling, sample-size checks, and significance testing.
+
+## Reference(s):
+
+- [Quantitative Research Skill Page](https://clawhub.ai/zhengxinjipai/skills/quantitative-research)
+- [Publisher Profile](https://clawhub.ai/user/zhengxinjipai)
+- [Quantitative Research Patterns](references/patterns.md)
+- [Quantitative Research Sharp Edges](references/sharp_edges.md)
+- [Quantitative Research Validations](references/validations.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Code, Shell commands, Markdown]
+
+**Output Format:** [Markdown with optional code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Finance research guidance only; users should independently verify market data, assumptions, and any proposed strategy before trading.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

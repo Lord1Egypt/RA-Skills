@@ -1,44 +1,61 @@
-## Description: <br>
-Speech To Text With Speakers lets agents transcribe audio from a file ID or HTTPS URL into text, SRT, WebVTT, or JSON with optional speaker labels and word timestamps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribes audio from an uploaded file_id or public HTTPS URL into text, SRT, WebVTT, or JSON with optional word timestamps, profanity filtering, alternatives, and speaker diarization through AgentPMT-hosted remote calls.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent transcribe meetings, interviews, podcasts, webinars, voice memos, and videos through AgentPMT-hosted speech-to-text tool calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audio files and public media URLs submitted for transcription may contain confidential, regulated, personal, or third-party content. <br>
-Mitigation: Install and use the skill only when authorized to send the selected audio or URL to AgentPMT-hosted transcription workflows, and review provider privacy, retention, logging, and billing terms before use. <br>
-Risk: Transcription may involve downstream speech-to-text providers and can produce sensitive transcript text, subtitles, timestamps, or speaker labels. <br>
-Mitigation: Keep inputs scoped to the minimum content needed, avoid placing secrets in prompts or logs, and handle returned transcripts and subtitle files as sensitive data. <br>
+## Use Case:
 
+Developers and agents use this skill to submit meeting recordings, voice memos, interviews, podcasts, webinars, and similar audio for transcription, then poll task status and retrieve transcript outputs with optional speaker labels and timing data.
 
-## Reference(s): <br>
-- [Speech To Text With Speakers on ClawHub](https://clawhub.ai/agentpmt/skills/speech-to-text-with-speakers) <br>
-- [AgentPMT Speech To Text With Speakers](https://www.agentpmt.com/marketplace/speech-to-text-with-speakers) <br>
-- [Speech To Text With Speakers Schema](schema.md) <br>
-- [AgentPMT Account MCP/REST Setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
-- [What AgentPMT Is](https://clawhub.ai/agentpmt/what-is-agentpmt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Text, Markdown, JSON] <br>
-**Output Format:** [Markdown instructions with JSON tool-call examples; remote calls can return text, SRT, WebVTT, or JSON transcripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill supports quick, standard, and extended transcription tiers for recordings up to 15, 30, or 60 minutes, with optional diarization, word timestamps, profanity filtering, and alternative transcripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Audio supplied by file_id or public URL is processed by AgentPMT and transcription providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential or regulated recordings unless the user's organization permits that processing.
+
+Risk: npx-based setup steps may introduce supply-chain exposure.
+
+Mitigation: Prefer the OpenClaw install route, or verify and pin setup dependencies before running npx commands.
+
+Risk: Selecting a tier below the recording length can fail after submission and may still consume credits.
+
+Mitigation: Choose the tier from the known recording length and review error_details.recommended_actions before resubmitting.
+
+## Reference(s):
+
+- [Speech To Text With Speakers ClawHub Page](https://clawhub.ai/agentpmt/skills/speech-to-text-with-speakers)
+- [AgentPMT Marketplace Product](https://www.agentpmt.com/marketplace/speech-to-text-with-speakers)
+- [Speech To Text With Speakers Schema](artifact/schema.md)
+- [AgentPMT Account MCP/REST Setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup)
+- [AgentPMT File Management](https://clawhub.ai/agentpmt/file-management)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Configuration guidance]
+
+**Output Format:** [Markdown guidance with JSON tool-call examples; task outputs may include plain text, SRT, WebVTT, or structured JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Transcription jobs run asynchronously; completed tasks can include inline transcript content, speaker data, timing metadata, and File Manager artifact identifiers.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Python patterns for CLI tools, async concurrency, and backend services. Use when working with Python code, building CLI apps, FastAPI services, async with asyncio, background jobs, or configuring uv, ruff, ty, pytest, or pyproject.toml. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Python patterns for CLI tools, async concurrency, and backend services, including FastAPI, background jobs, and common Python tooling.
 
-## Publisher: <br>
-[iliaal](https://clawhub.ai/user/iliaal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iliaal](https://clawhub.ai/user/iliaal)
 
-## Use Case: <br>
-Developers and engineers use this skill for Python service and CLI work, including project tooling, async concurrency decisions, FastAPI structure, background jobs, resilience, observability, API design, migrations, and testing practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Package-management, migration, and backend-service guidance may lead an agent to change dependencies, database schemas, or application behavior. <br>
-Mitigation: Review proposed code and configuration changes, run the relevant tests and scanners, and verify migration behavior before deployment. <br>
+## Use Case:
 
+Developers use this skill for practical Python guidance when building CLI tools and FastAPI services, working with asyncio and background jobs, or configuring project tooling.
 
-## Reference(s): <br>
-- [Python CLI Tools](artifact/references/cli-tools.md) <br>
-- [FastAPI Services](artifact/references/fastapi.md) <br>
-- [ClawHub skill page](https://clawhub.ai/iliaal/compound-eng-python-services) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline code and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces development guidance for Python projects; generated changes should be reviewed and tested before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.1.4 (source: server evidence release.version) <br>
+Risk: The security guidance says the implementation and side effects of evaluation and diagnostic commands could not be established.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review those commands and their effects before running them.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/iliaal/skills/compound-eng-python-services)
+- [Python CLI tools](artifact/references/cli-tools.md)
+- [Concurrency and resilience](artifact/references/concurrency-and-resilience.md)
+- [FastAPI services](artifact/references/fastapi.md)
+- [Service boundaries](artifact/references/service-boundaries.md)
+- [Tooling and tests](artifact/references/tooling-and-tests.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline Python, shell, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+5.1.5 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

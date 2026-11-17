@@ -1,39 +1,58 @@
-## Description: <br>
-Helps users discover and install agent skills when they ask questions like "how do I do X", "find a skill for X", "is there a skill that can...", or express interest in extending capabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users discover and install agent skills when they ask questions like "how do I do X", "find a skill for X", "is there a skill that can...", or express interest in extending capabilities.
 
-## Publisher: <br>
-[sundayslove](https://clawhub.ai/user/sundayslove) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sundayslove](https://clawhub.ai/user/sundayslove)
 
-## Use Case: <br>
-Agents use this skill to help users find relevant installable skills, present matching options, and suggest Skills CLI commands for search, installation, updates, or creating a new skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested installs may use global installation or skipped prompts, which can persist a skill before the user has reviewed it. <br>
-Mitigation: Check the exact package name, publisher, repository, and skills page before installation; avoid -g or -y unless persistent user-level installation is intended. <br>
+## Use Case:
 
+Developers and agent users use this skill to discover existing installable skills for specialized tasks and get guidance on finding, presenting, and installing relevant options.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sundayslove/testskillhhh) <br>
-- [Skills directory](https://skills.sh/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, markdown] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include skill names, install commands, links, and next-step guidance for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The skill steers agents toward mutable remote CLI execution for discovering and installing skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, trusted Skills CLI before running install commands.
+
+Risk: Global installs and skipped confirmations can change the user's agent environment broadly.
+
+Mitigation: Prefer local or scoped installs and avoid skipped confirmations unless that behavior is intentional.
+
+Risk: Installed skills can introduce incorrect, misleading, or unsafe instructions.
+
+Mitigation: Inspect target skill source before installation and review or scan skills before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sundayslove/skills/testskillhhh)
+- [Skills directory](https://skills.sh/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include skill search suggestions, install commands, and links to skill listings.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

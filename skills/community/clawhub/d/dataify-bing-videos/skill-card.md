@@ -1,43 +1,55 @@
-## Description: <br>
-Use when a user run a Bing video search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Bing Videos for video results. Do not use for general Bing web search or media-file downloads.
 
-## Publisher: <br>
-[dataify-server](https://clawhub.ai/user/dataify-server) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataify-server](https://clawhub.ai/user/dataify-server)
 
-## Use Case: <br>
-External users and developers use this skill to turn natural-language Bing video search requests into Dataify Bing Videos API parameters, confirm the request, and run the Dataify API call through the bundled script. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to the Dataify service during live Bing Videos API calls. <br>
-Mitigation: Avoid sensitive search terms and use the dry-run confirmation table before approving a live API call. <br>
-Risk: Live calls require a Dataify bearer token. <br>
-Mitigation: Use a dedicated, least-privilege token and avoid sharing tokens in conversation history or persistent command logs. <br>
-Risk: The bundled script stores the resolved bearer token in process-wide environment state during execution. <br>
-Mitigation: Prefer running the skill in an isolated session and rotate the token if it may have been exposed. <br>
+## Use Case:
 
+External users and developers use this skill to turn a Bing Videos search request into Dataify Scraper API parameters and receive video search results. It supports filters such as market, language, duration, freshness, resolution, source site, and price when those constraints are requested.
 
-## Reference(s): <br>
-- [Dataify Bing Videos API Reference](references/api.md) <br>
-- [ClawHub skill page](https://clawhub.ai/dataify-server/dataify-bing-videos) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown confirmation tables, shell command guidance, and direct API response text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Live calls require a Dataify API bearer token and send search parameters to the Dataify Bing Videos API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+Risk: API-token handling and setup guidance require review before installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a short-lived or least-privilege Dataify token, avoid passing it with --token, and prefer a session-scoped environment variable.
+
+Risk: Search queries are sent to Dataify's service during live API calls.
+
+Mitigation: Do not submit sensitive queries unless the user is comfortable sending them to Dataify.
+
+## Reference(s):
+
+- [Dataify Bing Videos API Reference](artifact/references/api.md)
+- [ClawHub Skill Page](https://clawhub.ai/dataify-server/skills/dataify-bing-videos)
+- [Dataify Publisher Profile](https://clawhub.ai/user/dataify-server)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, parameter tables, and API results as JSON or HTML when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses DATAIFY_API_TOKEN for live API calls; returns raw JSON or HTML only when explicitly requested.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

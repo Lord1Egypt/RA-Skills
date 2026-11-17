@@ -1,39 +1,54 @@
-## Description: <br>
-Helps HR teams, recruiters, and hiring managers compare resumes against role requirements, produce structured candidate scores, rank applicants, and identify interview priorities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Applicant Screening Zh helps Chinese-language HR users compare resumes against job requirements, score candidates, rank interview priority, and summarize fit concerns.
 
-## Publisher: <br>
-[olina1ye](https://clawhub.ai/user/olina1ye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[olina1ye](https://clawhub.ai/user/olina1ye)
 
-## Use Case: <br>
-HR staff, recruiters, hiring managers, and talent evaluators use this skill to screen resumes in batches, compare applicants with job requirements, assign structured scores, and decide interview priority. It is intended to support review workflows, not replace human hiring judgment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Resume screening can affect hiring outcomes and may produce inaccurate or unfair rankings if job criteria or resume content are incomplete, biased, or misread. <br>
-Mitigation: Use the skill only with applicant data the user is authorized to process, review scores for accuracy and fairness, and do not treat automated scores as final hiring decisions. <br>
+## Use Case:
 
+HR recruiters, hiring managers, and headhunters use this skill to screen Chinese-language resumes against role requirements, compare candidates, assign structured scores, and prioritize interviews. It is intended as decision support for hiring workflows, with human review before acting on recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/olina1ye/applicant-screening-zh) <br>
-- [Publisher profile](https://clawhub.ai/user/olina1ye) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown candidate evaluation report with scoring tables, rankings, recommendations, and review notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use extracted resume text and document structure from user-provided PDF or DOCX files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Resume screening may involve sensitive candidate personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only the resume content needed for evaluation, avoid unnecessary personal data, and follow applicable privacy requirements.
+
+Risk: Automated scoring or ranking could influence hiring decisions unfairly if accepted without review.
+
+Mitigation: Use the output as decision support, require human review, and apply relevant hiring fairness rules before taking action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/olina1ye/skills/applicant-screening-zh)
+- [Publisher profile](https://clawhub.ai/user/olina1ye)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown candidate evaluation report with structured scoring tables and interview recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May rely on extracted resume text from PDF or DOCX inputs; outputs should be reviewed by a human hiring stakeholder.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

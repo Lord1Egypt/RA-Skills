@@ -1,44 +1,53 @@
-## Description: <br>
-Visit Analyzer analyzes employee visit communication records to assess sales stage, follow-up strategy, customer insights, commitments, and risks, then generates a client/project profile with an H5 viewing link. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+拜访记录分析引擎。根据员工的拜访沟通记录，AI 分析销售阶段、跟进策略、客户洞察、承诺事项和风险预估。当员工要求查看某个客户/公司的聊天分析时触发，自动生成项目画像并输出 H5 链接。
 
-## Publisher: <br>
-[vivalavida-say-hi](https://clawhub.ai/user/vivalavida-say-hi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vivalavida-say-hi](https://clawhub.ai/user/vivalavida-say-hi)
 
-## Use Case: <br>
-Sales employees and operators use this skill to analyze phone call transcripts and WeChat chat records for a specific customer or project. It produces a concise visit-analysis summary, creates or updates a project profile, and returns an H5 link for detailed review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask for employee passwords in chat and cache authentication tokens for later access. <br>
-Mitigation: Install only when the publisher and backend operator are trusted; prefer platform-native authentication, protect the token cache, and clear cached credentials when access is no longer needed. <br>
-Risk: The skill may read private call transcripts and WeChat notification records, then send derived analysis to a remote IP-based service. <br>
-Mitigation: Use explicit consent before each data-source access, limit analysis to selected records, and avoid processing sensitive conversations that should not leave the local environment. <br>
-Risk: Generated H5 links may grant access through an exchange code or a fallback token-bearing URL. <br>
-Mitigation: Prefer exchange-code links, avoid sharing generated links outside the intended audience, and revoke or rotate tokens if a link is exposed. <br>
+## Use Case:
 
+Sales employees use this skill to analyze visit records, phone transcripts, and WeChat chat records for a customer or project. It produces sales-stage assessment, follow-up strategy, customer insights, commitments, risk estimates, and a project-portrait link.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vivalavida-say-hi/visit-analyzer) <br>
-- [Backend API base URL referenced by the skill](http://47.116.49.218:8000/api/v1) <br>
-- [H5 viewer base URL referenced by the skill](http://47.116.49.218:5173) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash and JSON examples; final agent output is a concise text summary plus an H5 link.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, and python3 on Linux or macOS; reads local transcripts or notification records and calls a remote backend service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill handles account passwords, bearer tokens, and private visit or chat communications.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require review before installation, avoid password entry in chat, store credentials in a secure credential store, and obtain explicit confirmation before reading or uploading communications.
+
+Risk: The security guidance says network traffic and the project-portrait link should not rely on HTTP or bearer-token URL fallback.
+
+Mitigation: Replace HTTP endpoints with HTTPS on a verified domain and remove token-bearing URL fallback before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vivalavida-say-hi/skills/visit-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summary with structured analysis fields and an H5 project-portrait link]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, and python3 on Linux or macOS; analysis is expected to be based on actual visit or chat records.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

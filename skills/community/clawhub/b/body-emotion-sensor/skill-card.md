@@ -1,42 +1,59 @@
-## Description: <br>
-Body Emotion Sensor gives an agent a persistent body-emotion state system that converts structured AnalysisInput JSON into runtime prompt tags and workspace state updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Give an agent a persistent body-emotion state system that converts structured AnalysisInput JSON into runtime prompt tags and workspace state updates.
 
-## Publisher: <br>
-[askkumptenchen](https://clawhub.ai/user/askkumptenchen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[askkumptenchen](https://clawhub.ai/user/askkumptenchen)
 
-## Use Case: <br>
-Developers and agent builders use this skill to help an agent explain, initialize, and operate a local Body Emotion Sensor runtime for persistent per-workspace emotion state, session bootstrap tags, and turn-by-turn prompt fields. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may lead an agent to install or invoke a local CLI package before the environment is verified. <br>
-Mitigation: Confirm the package source, ask for user approval before installation, and verify readiness with the CLI before claiming the runtime is active. <br>
-Risk: The runtime writes persistent local state and may change a user language setting. <br>
-Mitigation: Tell users where local state and configuration files are written, and confirm before changing language settings or writing persistent state. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add local persistent body-emotion state, session bootstrap payloads, and turn-by-turn reply-shaping fields to an agent while verifying that the local bes CLI runtime is ready.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/askkumptenchen/body-emotion-sensor) <br>
-- [Publisher profile](https://clawhub.ai/user/askkumptenchen) <br>
-- [Declared package source repository](https://github.com/AskKumptenchen/body-emotion-sensor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline JSON field names and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local JSON state files and CLI readiness checks when the runtime is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Installing the package without pinning or review may introduce unexpected local runtime behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated virtual environment, review or pin the body-emotion-sensor package version, and require user approval before installation.
+
+Risk: The skill can persist emotion state, history, and language preferences in local workspace and user configuration files.
+
+Mitigation: Disclose the local storage locations, keep workspace and agent identifiers stable and intentional, and require explicit confirmation before commands that change persistent preferences.
+
+Risk: An agent may overstate runtime availability if the bes CLI is missing or not initialized.
+
+Mitigation: Check that bes is installed and only treat the runtime as ready when bes check-init returns ready true.
+
+## Reference(s):
+
+- [Body Emotion Sensor ClawHub Skill Page](https://clawhub.ai/askkumptenchen/skills/body-emotion-sensor)
+- [Publisher Profile](https://clawhub.ai/user/askkumptenchen)
+- [Package source repository referenced by the skill](https://github.com/AskKumptenchen/body-emotion-sensor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON field names]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe workspace-specific CLI commands, local state paths, and runtime fields such as TURN_CHANGE_TAGS, BODY_TAG, and BASELINE_PERSONA.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

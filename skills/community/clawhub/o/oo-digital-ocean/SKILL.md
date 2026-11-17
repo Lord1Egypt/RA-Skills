@@ -1,11 +1,11 @@
 ---
 name: oo-digital-ocean
-description: "DigitalOcean (digitalocean.com). Use this skill for ANY DigitalOcean request — searching and reading data. Whenever a task involves DigitalOcean, use this skill instead of calling the API directly."
+description: "DigitalOcean (digitalocean.com). Use this skill for ANY DigitalOcean request — reading, creating, updating, and deleting data. Whenever a task involves DigitalOcean, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "DigitalOcean"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["digital_ocean"]
   icon: "https://static.oomol.com/logo/third-party/DigitalOcean.svg"
 ---
@@ -47,7 +47,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `list_firewalls` — List DigitalOcean cloud firewalls with pagination.
 - `list_load_balancers` — List DigitalOcean load balancers with pagination.
 - `list_vpcs` — List DigitalOcean VPC networks with pagination.
-- `manage_droplet_lifecycle` — Initiate a basic DigitalOcean Droplet lifecycle action such as reboot, shutdown, or power cycle.
+- `manage_droplet_lifecycle` — Initiate a basic DigitalOcean Droplet lifecycle action such as reboot, shutdown, or power cycle. [destructive]
 
 ## Safety
 
@@ -78,11 +78,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — DigitalOcean is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=digital_ocean
+  https://console.oomol.com/connections/digital_ocean
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - DigitalOcean homepage: https://www.digitalocean.com
+- API documentation: https://docs.digitalocean.com/reference/api/

@@ -1,40 +1,52 @@
-## Description: <br>
-Ad Manager helps marketing and ecommerce operators manage ad campaigns, optimize ROI, and generate reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+广告投放管理 - 自动管理广告投放、优化ROI、生成报告。适合：营销人员、电商运营。
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Marketing teams and ecommerce operators use this skill to plan, analyze, and optimize advertising campaigns, including budget allocation, bidding, ROI analysis, conversion tracking, A/B testing, audience optimization, and creative suggestions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill describes automatic budget, bid, and pricing changes without clear confirmation or rollback boundaries.
+
+Mitigation: Run it in analysis or recommendation mode by default, and require explicit user confirmation before changing budgets, bids, audiences, pricing, or live campaign status.
+
+Risk: Use against real ad accounts could affect campaign spend or delivery if optimization advice is applied without review.
+
+Mitigation: Review proposed campaign changes against business goals and account constraints before applying them, and keep a rollback path for live campaigns.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Marketing teams and ecommerce operators use this skill to create ad campaign plans, analyze recent ad performance, allocate budget, optimize bids and audiences, and prepare reporting guidance. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can launch or change paid campaigns from broad natural-language requests without a clear final confirmation step. <br>
-Mitigation: Use a test agent first, connect real ad accounts only deliberately, and require final human approval before creating campaigns, uploading creatives, changing status, or reallocating budget. <br>
-Risk: Incorrect performance analysis or optimization recommendations could misallocate advertising spend. <br>
-Mitigation: Review generated plans, ROI calculations, audience changes, bid changes, and budget recommendations before applying them to production campaigns. <br>
+**Output Format:** [Markdown or text recommendations for campaign plans, performance analysis, and optimization steps]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Ad Manager page](https://clawhub.ai/yang1002378395-cmyk/ad-manager) <br>
+**Other Properties Related to Output:** [May propose budget, bid, audience, pricing, or live campaign status changes; real-account changes should require explicit user confirmation.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text with campaign plans, performance analysis, optimization recommendations, and reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose ad account changes or budget reallocations that require human approval before execution.] <br>
+1.2.4 (source: server release metadata and SKILL.md frontmatter)
 
-## Skill Version(s): <br>
-1.2.4 (source: server release metadata and SKILL.md frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

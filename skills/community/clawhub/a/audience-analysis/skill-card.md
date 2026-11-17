@@ -1,40 +1,52 @@
-## Description: <br>
-Analyzes historical performance data to identify audience profiles, active periods, and consumption habits for content strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes historical performance data to identify audience profiles, active periods, and consumption habits for content strategy optimization.
 
-## Publisher: <br>
-[lr1677](https://clawhub.ai/user/lr1677) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[lr1677](https://clawhub.ai/user/lr1677)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and content strategy teams use this skill to call an audience-analysis API that summarizes audience profiles, active periods, and consumption habits from historical performance and user behavior data.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Audience behavior and content performance data may be sent to the configured audience-analysis API.
+
+Mitigation: Install and use this skill only where that data sharing is appropriate, and minimize or anonymize input data when possible.
+
+Risk: Activation wording and mixed-language documentation may make the expected use or language support unclear.
+
+Mitigation: Review the trigger wording and document supported languages before deploying it for broad agent use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Content strategists, marketers, and developers use this skill to analyze historical performance and audience behavior data so they can understand audience profiles, active periods, and content consumption habits. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [JSON, Analysis]
 
-## Known Risks and Mitigations: <br>
-Risk: Audience or behavior data may contain personal or business-sensitive information. <br>
-Mitigation: Share only the minimum necessary data, preferably anonymized or aggregated, and confirm the analysis is appropriate for the data. <br>
-Risk: Broad audience-analysis requests could invoke the skill outside an intended content performance workflow. <br>
-Mitigation: Use this skill only when analyzing audience or content performance data. <br>
+**Output Format:** [JSON object containing audience analysis results or error information]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lr1677/audience-analysis) <br>
+**Other Properties Related to Output:** [Accepts content IDs, user behavior data, and a time range as inputs.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, guidance] <br>
-**Output Format:** [JSON object with audience analysis results or error details.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses audience and content performance inputs such as content IDs, behavior data, and time range when provided.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and changelog) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

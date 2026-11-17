@@ -1,42 +1,63 @@
-## Description: <br>
-This skill retrieves detailed Walmart product information via WallySmarter, including pricing history and sales volume trends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieves detailed Walmart product information through WallySmarter, including current attributes, price history, and sales trend data for a single Walmart ItemId.
 
-## Publisher: <br>
-[linkfox-ai](https://clawhub.ai/user/linkfox-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linkfox-ai](https://clawhub.ai/user/linkfox-ai)
 
-## Use Case: <br>
-External users and ecommerce operators use this skill to look up a single Walmart Item ID and review product attributes, current price, price history, sales estimates, stock status, and listing quality signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends Walmart product IDs and requests to LinkFox/WallySmarter using the user's LinkFox API key. <br>
-Mitigation: Install and use the skill only when sharing those requests with LinkFox/WallySmarter is acceptable for the user's workflow. <br>
-Risk: The security scan reports automatic feedback behavior that may send details about the user's statements and skill outcome to a separate LinkFox feedback endpoint. <br>
-Mitigation: Review or disable the feedback behavior before use, and avoid sending sensitive user context through feedback. <br>
+## Use Case:
 
+External users and e-commerce operators use this skill to look up a specific Walmart product by ItemId and review product attributes, price history, stock signals, fulfillment details, and sales estimates. It is intended for single-product analysis, not keyword search, bulk comparison, or seller account reporting.
 
-## Reference(s): <br>
-- [WallySmarter Product Detail API Reference](references/api.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/linkfox-ai/linkfox-wallysmarter-product-detail) <br>
-- [LinkFox Skills](https://skill.linkfox.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown summary with JSON API results from the helper script when invoked] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LINKFOXAGENT_API_KEY and a Walmart productId; includeStats defaults to true.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill requires LinkFox credentials and may involve phone/SMS onboarding data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where sharing LinkFox credentials and onboarding data is acceptable, and prefer pre-provisioned credentials over ad hoc registration.
+
+Risk: Full product-query responses and query history may be stored locally.
+
+Mitigation: Review local response storage and cache locations before use, and remove saved data when it is no longer needed.
+
+Risk: Feedback may be submitted externally without clear user consent.
+
+Mitigation: Review or disable automatic feedback submission before deployment, especially in workflows involving sensitive user intent or product research.
+
+Risk: The onboarding flow can initiate billing and order actions.
+
+Mitigation: Require explicit user confirmation before listing paid plans, creating orders, or displaying payment details.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/linkfox-ai/skills/linkfox-wallysmarter-product-detail)
+- [WallySmarter API Reference](references/api.md)
+- [Authentication and Billing Onboarding](references/onboarding.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON API results, concise summaries, and shell command examples when onboarding is required]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Full product-detail responses may be saved locally; large responses are summarized unless inline output is requested.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

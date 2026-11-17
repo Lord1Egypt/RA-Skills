@@ -1,43 +1,58 @@
-## Description: <br>
-Generates a structured daily Markdown report from monitored X/Twitter activity by AI organizations and industry influencers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+X Daily Report monitors a curated set of AI organizations and influencers on X/Twitter and produces a structured daily intelligence report.
 
-## Publisher: <br>
-[kongxiaodan20001201-alt](https://clawhub.ai/user/kongxiaodan20001201-alt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kongxiaodan20001201-alt](https://clawhub.ai/user/kongxiaodan20001201-alt)
 
-## Use Case: <br>
-External users and developers use this skill to monitor selected AI-related X/Twitter accounts and generate a daily intelligence brief with highlighted updates, activity summaries, and follow-up recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may reuse an existing Chrome X/Twitter login session. <br>
-Mitigation: Run it only from a reviewed browser profile, preferably a dedicated profile or throwaway X account. <br>
-Risk: Scheduled reporting and Feishu/Bitable destinations may send data outside the local workspace. <br>
-Mitigation: Verify every destination and disable scheduled jobs until the configuration has been reviewed. <br>
-Risk: The optional official API path includes mock tweet generation behavior. <br>
-Mitigation: Confirm the API mode returns real live data before relying on reports generated through that path. <br>
+## Use Case:
 
+External users and developers use this skill to collect recent X/Twitter activity from AI companies, labs, and public figures, then summarize the most important updates, account activity, and follow-up priorities in a daily report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kongxiaodan20001201-alt/x-daily-report) <br>
-- [Monitored account list](references/account-list.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown report with command snippets and optional local report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read live X/Twitter content through a browser session or optional API path and may save dated Markdown reports locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: The free scraper can reuse Chrome login cookies through a third-party scraping dependency.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only with a dedicated browser profile or test X account, and avoid exposing a primary logged-in browser session.
+
+Risk: The official API path is described as higher reliability, but evidence indicates it still uses mock tweet data for report generation.
+
+Mitigation: Do not rely on official API mode for operational reports until mock-data behavior is replaced and verified.
+
+Risk: Credential-like values and service identifiers appear in script configuration.
+
+Mitigation: Move credentials and service tokens to environment variables or secret storage before operational use.
+
+## Reference(s):
+
+- [Account list](references/account-list.md)
+- [ClawHub skill page](https://clawhub.ai/kongxiaodan20001201-alt/skills/x-daily-report)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with account summary tables, prioritized updates, and follow-up recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write a dated Markdown report file when the bundled scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

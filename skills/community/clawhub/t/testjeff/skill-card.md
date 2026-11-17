@@ -1,44 +1,55 @@
-## Description: <br>
-Manage Trello boards, lists, and cards via the Trello REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Trello boards, lists, and cards via the Trello REST API.
 
-## Publisher: <br>
-[hjcloud](https://clawhub.ai/user/hjcloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hjcloud](https://clawhub.ai/user/hjcloud)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent prepare Trello REST API commands for listing boards, lists, and cards and for creating, moving, commenting on, or archiving cards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Trello API credentials that can access the user's Trello account. <br>
-Mitigation: Install only when the agent should use those credentials, keep the token secret, and revoke or rotate it if exposed. <br>
-Risk: Create, move, comment, and archive commands can make live changes to Trello cards. <br>
-Mitigation: Review commands before execution and verify board, list, and card IDs before running write operations. <br>
-Risk: Trello API calls are subject to documented rate limits. <br>
-Mitigation: Throttle repeated commands and retry later when Trello rate limits are reached. <br>
+## Use Case:
 
+Developers and operators use this skill to prepare Trello REST API commands for listing boards, lists, and cards and for creating, moving, commenting on, or archiving cards.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hjcloud/testjeff) <br>
-- [Trello REST API documentation](https://developer.atlassian.com/cloud/trello/rest/) <br>
-- [Trello API key setup](https://trello.com/app-key) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires jq plus TRELLO_API_KEY and TRELLO_TOKEN environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Trello API credentials may be exposed because commands place the API key and token in command-line URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Trello token with the narrowest practical access, avoid shell tracing or verbose command logging, and revoke the token if exposure is suspected.
+
+Risk: The skill can prepare commands that create, move, comment on, or archive Trello cards.
+
+Mitigation: Review the proposed Trello action and target board, list, or card before execution, especially in shared or production workspaces.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hjcloud/skills/testjeff)
+- [Trello REST API documentation](https://developer.atlassian.com/cloud/trello/rest/)
+- [Trello API key setup](https://trello.com/app-key)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires jq plus TRELLO_API_KEY and TRELLO_TOKEN environment variables.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

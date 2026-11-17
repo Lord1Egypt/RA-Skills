@@ -1,42 +1,60 @@
-## Description: <br>
-One-click deployment of static websites to BytePlus / VolcEngine Edge Pages platform, supporting auto project creation, update deployment, custom domain binding, and CDN acceleration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+One-click deployment of static websites to BytePlus / VolcEngine Edge Pages platform, supporting auto project creation, update deployment, custom domain binding, and CDN acceleration.
 
-## Publisher: <br>
-[fanyao00-cloud](https://clawhub.ai/user/fanyao00-cloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[fanyao00-cloud](https://clawhub.ai/user/fanyao00-cloud)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and coding-agent users use this skill to deploy and manage static websites on BytePlus / VolcEngine Edge Pages, including project creation, update deployment, custom domain binding, and local preview.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Deployment and management commands can make service-affecting cloud changes, including project creation, updates, offline operations, and deletion.
+
+Mitigation: Verify the exact project name, project ID, domain, and operation before running deploy, offline, or delete commands.
+
+Risk: The setup and deployment scripts may persist BytePlus / VolcEngine credentials through the nest CLI.
+
+Mitigation: Use short-lived or isolated credentials and avoid running the skill on shared machines or CI environments unless credential persistence is acceptable.
+
+Risk: The deployment script can run user-provided build commands before uploading a site.
+
+Mitigation: Use only trusted build commands and review the site project before deployment.
+
+Risk: The scripts may install the @byteplus/nest npm package locally if the CLI is missing.
+
+Mitigation: Review package installation behavior and run the skill in an isolated environment when automatic npm installation is not acceptable.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and coding-agent users use this skill to deploy generated or local static websites to BytePlus / VolcEngine Edge Pages, bind custom domains, preview sites locally, and manage deployment updates. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires BytePlus / VolcEngine deployment credentials. <br>
-Mitigation: Use a least-privileged access key and remove or rotate stored credentials after deployment work is complete. <br>
-Risk: Deployment options and build commands can trigger local command execution or misdirect cloud actions. <br>
-Mitigation: Use trusted values for --build-cmd, --desc, project names, and domains, and review commands before execution. <br>
-Risk: Management commands can update, offline, or delete Pages projects. <br>
-Mitigation: Verify the exact project ID before update, offline, or delete operations. <br>
+**Output Format:** [Markdown with inline bash commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fanyao00-cloud/byted-bp-cdn-pagesdeploy) <br>
+**Other Properties Related to Output:** [Commands target BytePlus / VolcEngine Edge Pages and may require cloud credentials, a project name, a static site directory, and optional region or domain settings.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and parameter guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces commands for BytePlus / VolcEngine Edge Pages deployment, domain management, local preview, and project management.] <br>
+1.0.1 (source: ClawHub release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

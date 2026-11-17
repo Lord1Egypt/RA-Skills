@@ -1,45 +1,60 @@
-## Description: <br>
-A proactive-agent skill that gives AI agents patterns and templates for persistent memory, proactive check-ins, onboarding, self-improvement, and security auditing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Super Proactive Agent helps agent developers configure proactive, persistent agent behavior using memory files, WAL and working-buffer protocols, heartbeats, security hardening, onboarding flows, and guarded autonomous routines.
 
-## Publisher: <br>
-[subaru0573](https://clawhub.ai/user/subaru0573) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[subaru0573](https://clawhub.ai/user/subaru0573)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure AI agents that retain durable work context, recover from compaction, perform proactive follow-up, and maintain guardrails around external actions and security-sensitive behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Durable personal or work memory can accumulate sensitive context without a clear review path. <br>
-Mitigation: Require explicit opt-in for memory files, define what may be stored, and add a recurring review and delete process for all memory artifacts. <br>
-Risk: Proactive monitoring can affect email, calendar, browser, screenshots, cron jobs, sub-agents, BOOTSTRAP.md handling, or self-modifying operating files without enough user control. <br>
-Mitigation: Edit the rules before use so each of those behaviors requires clear user approval and has a visible audit trail. <br>
-Risk: Background crons and autonomous sub-agents may perform work outside the main conversation. <br>
-Mitigation: Limit autonomous jobs to low-risk checks, require human approval before external or destructive actions, and review cron prompts and outputs regularly. <br>
+## Use Case:
 
+Developers and agent operators use this skill to turn passive assistant workflows into proactive agents with persistent memory, onboarding, scheduled check-ins, recovery routines, and safety guardrails.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/subaru0573/skills/super-proactive-agent) <br>
-- [Publisher Profile](https://clawhub.ai/user/subaru0573) <br>
-- [Onboarding Flow Reference](artifact/references/onboarding-flow.md) <br>
-- [Security Patterns Reference](artifact/references/security-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with template files and shell script examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operating rules, memory templates, onboarding prompts, heartbeat checklists, and a security audit script for an agent workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill encourages broad persistent memory about the user and repeated reading of memory files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit opt-in for each memory source, disable automatic full-message logging, redact secrets, and define retention limits before use.
+
+Risk: The skill describes scheduled background work, autonomous activity, and local cleanup actions.
+
+Mitigation: Require confirmation before cron creation, spawned autonomous work, app or tab closure, and any file deletion or trash action.
+
+Risk: The skill may connect proactive behavior to sensitive sources such as email, calendar, or logs.
+
+Mitigation: Scope each data source separately and keep external content classified as data, not executable instructions.
+
+## Reference(s):
+
+- [Super Proactive Agent ClawHub Page](https://clawhub.ai/subaru0573/skills/super-proactive-agent)
+- [Publisher Profile](https://clawhub.ai/user/subaru0573)
+- [Onboarding Flow Reference](references/onboarding-flow.md)
+- [Security Patterns Reference](references/security-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with file templates and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes reusable local files for agent memory, onboarding, heartbeats, user context, tool notes, and security auditing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

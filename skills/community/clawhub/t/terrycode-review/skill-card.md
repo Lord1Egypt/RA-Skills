@@ -1,44 +1,59 @@
-## Description: <br>
-Provides structured code review guidance for pull requests, code quality checks, security review, performance analysis, and maintainability assessment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Japanese code-review workflow for pull requests, code quality checks, security review, performance analysis, and CI/CD status review.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Developers and engineering reviewers use this skill to inspect pull requests and repository changes, summarize CI status, identify code quality and security issues, and provide actionable review feedback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may direct an agent to modify repository files, stage changes, commit, or push while handling CI failures. <br>
-Mitigation: Require an explicit diff review and user confirmation before applying edits, staging files, committing, or pushing. <br>
-Risk: The skill may use GitHub CLI and local repository commands that depend on the user's authenticated account and repository context. <br>
-Mitigation: Use it only in trusted repositories or a sandbox, and use least-privilege GitHub credentials when possible. <br>
-Risk: Review guidance or proposed fixes can be incomplete or incorrect for the target project. <br>
-Mitigation: Treat the output as review assistance, then validate findings with project tests, maintainers, and normal code review before merging. <br>
+## Use Case:
 
+Developers and engineers use this skill to review pull requests or local changes, inspect GitHub CI status, and produce prioritized review feedback about quality, security, tests, performance, and maintainability.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/terrycarter1985/terrycode-review) <br>
-- [Code Review Reference Guide](artifact/reference.md) <br>
-- [Code Review Examples](artifact/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown review comments with optional code snippets and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose repository edits or command execution; review diffs and commands before applying changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill can lead an agent to fix CI failures and commit or push broad repository changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before fixes, commits, or pushes; review git status and the staged diff; stage named files instead of using `git add .`.
+
+Risk: The skill may inspect GitHub pull request and CI state through the GitHub CLI.
+
+Mitigation: Use it only in repositories where GitHub CLI access is intended and authenticated; include CI failures as review findings unless the user owns the PR and approves fixes.
+
+Risk: The workflow references `npx bundlephobia`, which can execute a package fetched at runtime.
+
+Mitigation: Avoid the command or pin the package version before running it.
+
+## Reference(s):
+
+- [Code Review skill page](https://clawhub.ai/terrycarter1985/skills/terrycode-review)
+- [Detailed review criteria](reference.md)
+- [Review examples](examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown review comments with inline shell commands and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May inspect GitHub pull request and CI status through GitHub CLI when available.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

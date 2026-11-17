@@ -1,42 +1,58 @@
-## Description: <br>
-OPC Playbook helps Chinese-speaking founders evaluate one-person AI company ideas with a 0-100 feasibility score and plan viable ideas through a four-stage execution framework. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language playbook that helps users evaluate one-person AI company ideas with a 0-100 OPC feasibility score, then plan execution through a four-stage build framework with psychological support.
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
 
-## Use Case: <br>
-External founders, solo founders, and independent developers use this skill to pressure-test AI-native one-person company ideas, decide GO/NO-GO, and move viable ideas into staged MVP, launch, and scaling plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may trigger on broad startup-related prompts and steer the conversation into OPC evaluation when the user intended a general startup discussion. <br>
-Mitigation: Specify whether the OPC playbook should be applied, skipped, or limited to a particular part of the discussion. <br>
-Risk: The 0-100 feasibility score can be mistaken for a definitive business decision. <br>
-Mitigation: Treat the score as decision support and validate it with customer interviews, market data, and financial assumptions before acting. <br>
+## Use Case:
 
+External founders, solo founders, and independent developers use this skill to assess OPC ideas, identify validation gaps, and convert viable ideas into stage-based action plans.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nic-yuan/opc-playbook) <br>
-- [The Founder's Playbook: Building an AI-Native Startup](https://claude.com/blog/the-founders-playbook) <br>
-- [Chinese translation of The Founder's Playbook](https://baoyu.io/translations/2026-05-16/the-founders-playbook-building-an-ai-native-startup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown advisory reports, scoring tables, checklists, and action plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language guidance; no executable code or tool calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release and skill frontmatter) <br>
+Risk: The skill may activate on broad solo-founder or entrepreneurship prompts and steer the conversation toward the OPC framework.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user wants OPC evaluation or planning before applying its scoring and stage framework.
+
+Risk: The skill defaults to Chinese-language guidance unless the user requests another language.
+
+Mitigation: Match the user's requested language or ask before switching language.
+
+Risk: Startup scores and GO/NO-GO outputs can be mistaken for financial or business certainty.
+
+Mitigation: Present scores as qualitative decision support and encourage users to validate assumptions with market and customer evidence.
+
+## Reference(s):
+
+- [The Founder's Playbook: Building an AI-Native Startup](https://claude.com/blog/the-founders-playbook)
+- [创始人手册：打造 AI 原生初创公司](https://baoyu.io/translations/2026-05-16/the-founders-playbook-building-an-ai-native-startup)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured scoring tables, diagnostics, and action checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only guidance; Chinese-language by default.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

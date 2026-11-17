@@ -1,44 +1,60 @@
-## Description: <br>
-Autonomous Solana wallet agent for wallet status, policy checks, SOL transfers, approvals, chat commands, and mode switching under spend limits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous Solana wallet agent -- AI reasons, Rust signs. Transfers, swaps, staking, chat, and mode switching under constitutional spend limits.
 
-## Publisher: <br>
-[Neocryptoquant](https://clawhub.ai/user/Neocryptoquant) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neocryptoquant](https://clawhub.ai/user/neocryptoquant)
 
-## Use Case: <br>
-Developers and external users use this skill to connect an OpenClaw-compatible agent to a local SONA wallet service for Solana wallet status, policy review, assisted approvals, and authenticated wallet actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent authenticated control over irreversible wallet actions. <br>
-Mitigation: Use devnet or very small balances, review actions before execution, and avoid god mode or automated approvals unless separate transaction review and monitoring are in place. <br>
-Risk: A stolen or misdirected SONA_TOKEN could authorize state-changing wallet operations. <br>
-Mitigation: Keep SONA_API_URL on localhost, protect and rotate SONA_TOKEN, and verify the local SONA service before use. <br>
-Risk: Claimed wallet limits and signer controls are enforced outside the skill. <br>
-Mitigation: Independently verify that the SONA service and signer enforce the claimed spend limits and policy rules before relying on them. <br>
+## Use Case:
 
+Developers and wallet operators use this skill to let an OpenClaw-compatible agent inspect a local SONA wallet agent, retrieve wallet and policy status, and submit authenticated wallet commands such as transfers, approvals, chat, and mode changes.
 
-## Reference(s): <br>
-- [Sona website](https://www.sonawallet.xyz) <br>
-- [Declared SONA repository](https://github.com/Ubuntu-Technologies/sona) <br>
-- [ClawHub skill page](https://clawhub.ai/Neocryptoquant/sona-wallet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Guidance] <br>
-**Output Format:** [Plain text tool responses from OpenClaw tool calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local SONA service; state-changing tools use SONA_TOKEN authentication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence; artifact package.json and SKILL.md list 1.0.1) <br>
+Risk: The skill can enable state-changing wallet actions when SONA_TOKEN is configured, including transfers, approvals, chat-driven actions, and mode changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when intentional, protect SONA_TOKEN like a session credential, keep standard or assisted mode unless autonomous execution is deliberate, and review policy limits before using transfer, approve, chat, or god mode.
+
+Risk: A misconfigured service URL could expose wallet session credentials to a remote host.
+
+Mitigation: The plugin restricts SONA_API_URL to localhost-style hosts and falls back to http://localhost:3000 when a remote host is configured.
+
+Risk: Autonomous god mode can execute wallet actions within the configured limits.
+
+Mitigation: Use assisted approvals for sensitive transactions and require the explicit god-mode acknowledgement before enabling autonomous execution.
+
+## Reference(s):
+
+- [SONA homepage](https://www.sonawallet.xyz)
+- [ClawHub skill page](https://clawhub.ai/neocryptoquant/skills/sona-wallet)
+- [Publisher profile](https://clawhub.ai/user/neocryptoquant)
+- [Repository](https://github.com/Ubuntu-Technologies/sona)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown-formatted tool responses with setup commands and configuration values.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local SONA service; authenticated state-changing actions use SONA_TOKEN.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

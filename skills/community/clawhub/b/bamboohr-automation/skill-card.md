@@ -1,42 +1,52 @@
-## Description: <br>
-Automate BambooHR tasks via Rube MCP (Composio): employees, time-off, benefits, dependents, employee updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate BambooHR tasks via Rube MCP (Composio): employees, time-off, benefits, dependents, employee updates. Always search tools first for current schemas.
 
-## Publisher: <br>
-[sohamganatra](https://clawhub.ai/user/sohamganatra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sohamganatra](https://clawhub.ai/user/sohamganatra)
 
-## Use Case: <br>
-HR operators, managers, and developers use this skill to guide BambooHR employee lookup, incremental sync, time-off management, employee updates, dependent lookup, and benefit coverage workflows through Rube MCP. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can access sensitive BambooHR employee, dependent, benefit, and time-off data. <br>
-Mitigation: Use a least-privilege BambooHR/Rube connection and avoid broad employee or dependent queries unless the task specifically requires them. <br>
-Risk: The skill can guide changes to employee records and time-off decisions. <br>
-Mitigation: Require explicit user confirmation before employee updates, time-off request creation, approval, denial, cancellation, or other state-changing actions. <br>
-Risk: Returned HR data may include PII or other confidential employee information. <br>
-Mitigation: Limit requested fields to the minimum needed, handle responses as confidential HR data, and avoid exposing BambooHR output in shared logs or unsecured channels. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sohamganatra/bamboohr-automation) <br>
-- [Rube MCP endpoint](https://rube.app/mcp) <br>
+## Use Case:
 
+HR operations users and developers use this skill to guide BambooHR workflows through Rube MCP, including employee lookup, employee changes, time-off management, dependents, and benefits coverage tasks.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, API Calls] <br>
-**Output Format:** [Markdown guidance with tool sequences, parameter notes, configuration steps, and workflow patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance depends on live Rube MCP tool schemas and the connected BambooHR account permissions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can expose sensitive HR records, including employee and dependent PII.
+
+Mitigation: Install only for authorized BambooHR users, request the minimum fields needed, and avoid displaying unnecessary PII in agent responses.
+
+Risk: The skill can change employee records or time-off request status.
+
+Mitigation: Require the agent to verify the exact employee or request, summarize intended changes, and obtain explicit confirmation before performing updates.
+
+## Reference(s):
+
+- [Rube MCP server](https://rube.app/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with tool sequences, parameter notes, and workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an active Rube MCP BambooHR connection and current tool schema lookup before use.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

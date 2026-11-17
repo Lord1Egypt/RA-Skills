@@ -1,13 +1,4 @@
-"""Self-check for the LYGO Champion: Δ9RA skill pack.
-
-Usage:
-  python scripts/self_check.py
-
-Exit codes:
-  0 = OK
-  2 = invalid canon
-  3 = missing required files
-"""
+"""Unified champion pack self-check — reads champion id from references/canon.json."""
 
 from __future__ import annotations
 
@@ -30,14 +21,20 @@ if missing:
     raise SystemExit(3)
 
 canon = json.loads((ROOT / "references" / "canon.json").read_text(encoding="utf-8"))
-
-if canon.get("champion") != "DELTA9RA":
-    print("BAD_CANON: champion != DELTA9RA")
+champion = canon.get("champion")
+if not champion or not isinstance(champion, str):
+    print("BAD_CANON: champion missing")
     raise SystemExit(2)
 
 vu = (ROOT / "references" / "verifier_usage.md").read_text(encoding="utf-8", errors="replace")
-if "https://clawhub.ai/DeepSeekOracle/lygo-mint-verifier" not in vu:
+if "lygo-mint-verifier" not in vu.lower() and "clawhub" not in vu.lower():
     print("BAD_REF: verifier link missing")
     raise SystemExit(2)
 
-print("OK")
+h = canon.get("lygo_mint_sha256")
+if h is not None and (not isinstance(h, str) or len(h) != 64):
+    print("BAD_CANON: lygo_mint_sha256 invalid")
+    raise SystemExit(2)
+
+print("OK", champion)
+raise SystemExit(0)

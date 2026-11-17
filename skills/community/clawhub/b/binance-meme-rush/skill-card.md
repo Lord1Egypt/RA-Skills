@@ -1,42 +1,55 @@
-## Description: <br>
-Fetches real-time meme-token and market-topic rankings from Binance Web3 for Solana and BSC launchpad activity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time meme token lists from Pump.fun, Four.meme and other launchpads. Use when asked about new meme tokens, trending tokens, pump.fun tokens, bonding curve, migration status, or market hot topics.
 
-## Publisher: <br>
-[dexploarer](https://clawhub.ai/user/dexploarer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dexploarer](https://clawhub.ai/user/dexploarer)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve current meme-token launches, migration stages, and hot market topics for Solana and BSC. It is intended for market-data lookup and summarization, not investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live third-party market data may be incomplete, delayed, volatile, or unsuitable as trading advice. <br>
-Mitigation: Treat outputs as informational market data, verify important results against primary sources, and avoid presenting results as investment recommendations. <br>
-Risk: The artifact contains strong run-now wording that could encourage network lookups when the user only wants general discussion. <br>
-Mitigation: Invoke the scripts only when the user asks for current meme-token or topic rankings; otherwise answer from the documentation without live calls. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve current meme-token rankings and market topic lists across supported Solana and BSC launchpads. It helps agents summarize new launches, migration status, holder distribution, liquidity, volume, market-cap, and topic-inflow signals from Binance Web3 APIs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dexploarer/binance-meme-rush) <br>
-- [Binance Web3 Meme Rush rank API](https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/market/token/pulse/rank/list/ai) <br>
-- [Binance Web3 Topic Rush rank API](https://web3.binance.com/bapi/defi/v2/public/wallet-direct/buw/wallet/market/token/social-rush/rank/list/ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON] <br>
-**Output Format:** [JSON returned by shell scripts, typically summarized as Markdown prose by the agent] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public Binance Web3 network calls and accepts chain, stage, sort, and limit arguments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill uses live third-party market data that may be stale, incomplete, or unsuitable for trading decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat results as informational market data, verify token details independently, and do not rely on summaries as financial advice.
+
+Risk: Running the skill sends requests to Binance Web3 API endpoints.
+
+Mitigation: Install and run only when live requests to Binance Web3 for token and topic rankings are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dexploarer/skills/binance-meme-rush)
+- [Binance Web3 Meme Rush rank API](https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/market/token/pulse/rank/list/ai)
+- [Binance Web3 Topic Rush rank API](https://web3.binance.com/bapi/defi/v2/public/wallet-direct/buw/wallet/market/token/social-rush/rank/list/ai)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Analysis, Guidance]
+
+**Output Format:** [Markdown summaries derived from JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches live third-party market data and does not require credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

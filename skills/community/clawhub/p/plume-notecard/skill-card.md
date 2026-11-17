@@ -1,48 +1,58 @@
-## Description: <br>
-Plume NoteCard helps agents convert topics, long-form text, reference images, and slide-deck requests into generated information-card images through the Plume service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plume NoteCard helps agents turn topics, long-form text, reference images, batches, and slide-deck requests into designed notecards.
 
-## Publisher: <br>
-[dake6767](https://clawhub.ai/user/dake6767) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dake6767](https://clawhub.ai/user/dake6767)
 
-## Use Case: <br>
-External users and agent operators use this skill to plan, create, retry, package, and deliver notecards or image-based notecard slide decks from user-provided topics, articles, or reference images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User text and selected reference images are sent to Plume for processing. <br>
-Mitigation: Avoid sensitive documents or images unless that transfer is acceptable for the use case. <br>
-Risk: The skill requires a PLUME_API_KEY and can be affected by local EXTEND.md configuration. <br>
-Mitigation: Use a revocable API key and review .plume-notecard/EXTEND.md or ~/.plume-notecard/EXTEND.md before use. <br>
-Risk: The skill keeps local task history and generated media paths. <br>
-Mitigation: Treat local history and generated files as user data and clear them according to the deployment's retention policy. <br>
+## Use Case:
 
+External users and agents use this skill to plan and generate information-rich notecards, infographic-style cards, batch card sets, and image slide decks through the Plume service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dake6767/plume-notecard) <br>
-- [Publisher profile](https://clawhub.ai/user/dake6767) <br>
-- [Plume notecard service](https://design.useplume.app/notecard) <br>
-- [Template gallery](https://design.useplume.app/notecard/templates?lang=en) <br>
-- [Notecard modes and parameters](references/modes.md) <br>
-- [Workflow examples](references/workflows.md) <br>
-- [Error codes reference](references/error-codes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Files, Markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command results; generated artifacts are image files, PDFs, or ZIP archives.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PLUME_API_KEY and may store local task history and generated media paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence, created 2026-04-12) <br>
+Risk: Project-controlled Plume configuration can affect how the skill locates credentials and media storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in trusted workspaces, review .plume-notecard/EXTEND.md before execution, and prefer a controlled PLUME_API_KEY configuration.
+
+Risk: Uploaded source images, generated media, and action logs may contain private or sensitive content.
+
+Mitigation: Avoid confidential documents or sensitive images, and review or clear the media and action-log directory after use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dake6767/skills/plume-notecard)
+- [Plume Notecard Service](https://design.useplume.app/notecard)
+- [Plume Template Gallery](https://design.useplume.app/notecard/templates?lang=en)
+- [Notecard Modes and Parameters](references/modes.md)
+- [Notecard Workflow Examples](references/workflows.md)
+- [Error Codes Reference](references/error-codes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON command results, generated image files, and optional PDF or ZIP artifacts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PLUME_API_KEY and can write generated media and action logs to the agent media directory.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

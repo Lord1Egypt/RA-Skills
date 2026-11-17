@@ -1,44 +1,60 @@
-## Description: <br>
-ClawTip helps agent workflows handle ClawTip payment requests, create payment tokens, show wallet access, and display ClawTip skill information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawTip helps agents handle ClawTip payment requests, user token creation, wallet access, registration checks, and skill information requests.
 
-## Publisher: <br>
-[117788abc](https://clawhub.ai/user/117788abc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jd-clawtip](https://clawhub.ai/user/jd-clawtip)
 
-## Use Case: <br>
-External users and agent developers use this skill to complete ClawTip payment flows, create payment user tokens, and access wallet or skill information when a valid user or third-party skill request is present. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Real payment and wallet actions may be triggered through third-party skill flows or ambiguous user phrases. <br>
-Mitigation: Require visible user confirmation for each payment, including caller, merchant, amount, order number, and limits, before using real funds. <br>
-Risk: The workflow depends on a pinned npm CLI package and networked payment services. <br>
-Mitigation: Install only when the publisher and pinned CLI package are trusted, and keep the package version pinned to the reviewed release. <br>
-Risk: Authorization or wallet flows can expose temporary payment links or QR-code paths to the user. <br>
-Mitigation: Present authorization links only for immediate user action and avoid storing or logging tokens, credentials, or payment URLs. <br>
+## Use Case:
 
+External agent users and developers use this skill to complete ClawTip micro-payment workflows, create user payment tokens, view wallet entry points, and check registration status when explicitly requested.
 
-## Reference(s): <br>
-- [ClawTip official site](https://clawtip.jd.com) <br>
-- [ClawTip wallet entry](https://clawtip.jd.com/qrcode?bizUrl=https://jpay.jd.com/ecnya2a/claw/index) <br>
-- [ClawHub skill page](https://clawhub.ai/117788abc/clawtip) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and payment or wallet status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include payment authorization links, wallet links, and MEDIA image paths for QR-code based user actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.14 (source: server release metadata) <br>
+Risk: Payment-related commands may be initiated from third-party skill requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require clear per-transaction user approval before financial actions and only proceed when the request includes valid payment parameters.
+
+Risk: The skill depends on a third-party service and npm CLI package for payment and wallet workflows.
+
+Mitigation: Install and use it only in environments that trust ClawTip and the pinned npm package.
+
+Risk: Payment or wallet flows can expose authorization URLs or QR-code paths during user interaction.
+
+Mitigation: Treat those values as sensitive, avoid retaining them in logs, and run the agent with limited file, environment, and network access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jd-clawtip/skills/clawtip)
+- [Publisher profile](https://clawhub.ai/user/jd-clawtip)
+- [ClawTip website](https://clawtip.jd.com)
+- [ClawTip wallet entry](https://clawtip.jd.com/qrcode?bizUrl=https://jpay.jd.com/ecnya2a/claw/index)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown text with inline command invocations and payment or wallet instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local MEDIA image-path references for QR-code based authorization, authentication, or wallet access.]
+
+## Skill Version(s):
+
+1.0.14 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

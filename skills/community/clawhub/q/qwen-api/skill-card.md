@@ -1,43 +1,57 @@
-## Description: <br>
-A Qwen and DashScope API guide for integrating Alibaba Cloud Qwen models with OpenAI-compatible SDK calls, multimodal requests, function calling, and long-document workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers through Qwen and DashScope API integration, including OpenAI-compatible calls, multimodal examples, function calling, long-document handling, and pricing notes.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-Developers and agent builders use this skill to configure Qwen API access through DashScope, select suitable Qwen models, and draft OpenAI-compatible calls for text, vision, audio, function calling, and long-context document tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill documents disabling DashScope provider content inspection, which can reduce safety controls around model inputs and outputs. <br>
-Mitigation: Keep provider safety controls enabled unless the user has explicit authorization and a compliant reason to change them. <br>
-Risk: API keys, uploaded documents, images, audio, or video supplied to examples may be sent to DashScope endpoints. <br>
-Mitigation: Protect API keys and avoid sending sensitive or private data unless the user intends that data to be processed by DashScope. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan and implement Alibaba Cloud Qwen/DashScope model calls, including OpenAI-compatible SDK setup, multimodal prompts, function calling, and long-document workflows.
 
-## Reference(s): <br>
-- [ClawHub Qwen Api release](https://clawhub.ai/zhangifonly/qwen-api) <br>
-- [DashScope international OpenAI-compatible endpoint](https://dashscope-intl.aliyuncs.com/compatible-mode/v1) <br>
-- [DashScope China OpenAI-compatible endpoint](https://dashscope.aliyuncs.com/compatible-mode/v1) <br>
-- [DashScope US OpenAI-compatible endpoint](https://dashscope-us.aliyuncs.com/compatible-mode/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes endpoint, model-selection, multimodal, function-calling, file-upload, and pricing guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill includes guidance for disabling provider content inspection on the international endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use inspection-disabling headers unless an approved use case, organizational authorization, and compensating safety controls are in place.
+
+Risk: The skill describes uploading long documents to a third-party model provider.
+
+Mitigation: Check provider handling and retention terms before uploading confidential, personal, regulated, or proprietary data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangifonly/skills/qwen-api)
+- [ClawHub publisher profile](https://clawhub.ai/user/zhangifonly)
+- [DashScope international OpenAI-compatible endpoint](https://dashscope-intl.aliyuncs.com/compatible-mode/v1)
+- [DashScope China OpenAI-compatible endpoint](https://dashscope.aliyuncs.com/compatible-mode/v1)
+- [DashScope US OpenAI-compatible endpoint](https://dashscope-us.aliyuncs.com/compatible-mode/v1)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API endpoint choices, SDK setup steps, model-selection guidance, and safety cautions for document upload or content-inspection settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

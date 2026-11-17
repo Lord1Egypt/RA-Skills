@@ -1,41 +1,57 @@
-## Description: <br>
-Safe Smart Web Fetch helps an agent fetch web pages while routing sensitive, private, local, or non-HTTP URLs through direct fetching and using third-party cleanup services only for ordinary public pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safe Smart Web Fetch retrieves web pages by using third-party cleaners for ordinary public pages while keeping URLs that appear sensitive, private, local, or non-HTTP on direct fetch only.
 
-## Publisher: <br>
-[zqh2333](https://clawhub.ai/user/zqh2333) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zqh2333](https://clawhub.ai/user/zqh2333)
 
-## Use Case: <br>
-Developers and agent users use this skill to retrieve web content with conservative handling for private URLs, token-bearing links, local hosts, and non-HTTP inputs. It is suited for fetching public pages as cleaned Markdown while avoiding third-party cleanup services for links that may expose sensitive information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ordinary public URLs may be sent to external cleanup services. <br>
-Mitigation: Use the skill only for public pages, or modify the workflow to require explicit approval or force direct fetch only. <br>
-Risk: Confidential links, private documents, invite or reset URLs, and URLs with identifiers could expose sensitive information if misclassified. <br>
-Mitigation: Avoid using the skill for these URLs unless the workflow is modified to require explicit approval or direct fetching only. <br>
+## Use Case:
 
+Developers and agents use this skill to fetch webpage content as Markdown-like text or JSON while reducing the chance that sensitive or private URLs are sent to third-party cleaning services.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zqh2333/safe-smart-web-fetch) <br>
-- [Publisher profile](https://clawhub.ai/user/zqh2333) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Plain text or JSON containing fetched page content, source, third-party-use flag, blocked reason, and errors] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use Jina Reader, markdown.new, or defuddle.md for ordinary public pages; sensitive or private-looking URLs are fetched directly without third-party cleanup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Security evidence says the safety checks are not strong enough for sensitive URLs or private-network fetching.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing in environments with access to private networks, cloud metadata, internal tools, or sensitive links.
+
+Risk: Ordinary-looking public URLs may be sent to Jina Reader, markdown.new, or defuddle.md for cleaning.
+
+Mitigation: Use the skill only with URLs that are acceptable to fetch from the agent host and acceptable to send to those cleaning services.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zqh2333/skills/safe-smart-web-fetch)
+- [Publisher profile](https://clawhub.ai/user/zqh2333)
+- [Jina Reader endpoint](https://r.jina.ai/)
+- [markdown.new](https://markdown.new)
+- [defuddle.md](https://defuddle.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON]
+
+**Output Format:** [Plain text or JSON containing fetched content, source metadata, third-party usage status, blocked reason, and error details.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use third-party cleaning services for URLs classified as ordinary public pages; sensitive, private, local, or non-HTTP URLs are fetched directly.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

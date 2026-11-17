@@ -1,0 +1,36 @@
+{
+  "schema": "ownership-attestation/1.0",
+  "package": "注册老炮·统一凭据保险库",
+  "version": "1.0.0",
+  "author": "注册老炮 (MedXpert)",
+  "year": "2026",
+  "timestamp_utc": "2026-08-25T06:58:08.234055+00:00",
+  "timestamp_local": "2026-08-25T14:58:08.234075",
+  "package_fingerprint_sha256": "d6a8ba53722d0c9acc5458cc288fe17d0fe7e795adc9c43255a8ee48d1ba54a2",
+  "files": [
+    {
+      "path": "LICENSE.md",
+      "sha256": "4be6a7ff9a6ab9dce3eb0dc73213ecc995b5ea37bd574190e66e3d69b4a4f4ad"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "93d680c76d89c8b04855e5fd6b04d832ea0666c8c8d8add5a91b09bc977c0222"
+    },
+    {
+      "path": "references/panorama-capabilities.svg",
+      "sha256": "b522f96f3f9b3b74762a8dc37bb9b1cc1dc4631ea7f1e5c5f30ed6803e76433a"
+    },
+    {
+      "path": "references/panorama-radar.svg",
+      "sha256": "1d2ffe0b5ae43382f43498ba89205551b79e5278f8a632f41e2bf8595c1cf46b"
+    },
+    {
+      "path": "references/panorama-security-radar.svg",
+      "sha256": "db24167cb0a658b685d127348c6bfdc18bfe28c3564dd92a849417ebbc73ff03"
+    },
+    {
+      "path": "安全审计报告.md",
+      "sha256": "3cede625c665fcf76b4c4bd5127f5f910e3db73cb064704fd60d9e5770d5439f"
+    }
+  ]
+}

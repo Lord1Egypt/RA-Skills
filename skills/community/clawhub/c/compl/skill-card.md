@@ -1,41 +1,51 @@
-## Description: <br>
-Reviews ad content for compliance by identifying misleading claims, prohibited language, and improper imagery to support adherence to advertising standards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews ad content for compliance by identifying misleading claims, prohibited language, and improper imagery to support adherence to advertising standards.
 
-## Publisher: <br>
-[benchmarker77](https://clawhub.ai/user/benchmarker77) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[benchmarker77](https://clawhub.ai/user/benchmarker77)
 
-## Use Case: <br>
-Marketing, editorial, and compliance reviewers use this skill to compare ad copy and imagery against advertising policy examples before publishing. It helps identify risky promises, click incentives, implied functions, and category-specific issues for products, automotive ads, loans, and content pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Advertising policy guidance may become outdated or vary by platform or jurisdiction. <br>
-Mitigation: Verify recommendations against current platform policies and applicable legal requirements before using them to approve or publish ads. <br>
-Risk: Users may treat compliance examples as legal advice. <br>
-Mitigation: Use the skill as review guidance and route high-risk claims, financial offers, or regulated categories through qualified legal or compliance review. <br>
+## Use Case:
 
+Developers, marketers, and ad-review teams use this skill to check ad copy and imagery against practical compliance examples before publication.
 
-## Reference(s): <br>
-- [Ad Compliance Examples](artifact/examples.md) <br>
-- [Google Policy Guidelines Reference](artifact/reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance with compliant and non-compliant ad examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no tools, credentials, or system access are requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may treat policy examples as a guarantee that an ad will be accepted by an advertising platform.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as review guidance and verify each ad against the current platform policy before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/benchmarker77/skills/compl)
+- [Ad Compliance Examples](artifact/examples.md)
+- [Google Policy Guidelines Reference](artifact/reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with compliance examples, review notes, and safer alternatives]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; users should verify recommendations against current advertising platform policies.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

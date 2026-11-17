@@ -1,48 +1,62 @@
-## Description: <br>
-Routes prompts to the best AI model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes prompts to the best AI model.
 
-## Publisher: <br>
-[cyberforexblockchain](https://clawhub.ai/user/cyberforexblockchain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyberforexblockchain](https://clawhub.ai/user/cyberforexblockchain)
 
-## Use Case: <br>
-Developers and external agents use this skill to send prompts to the NEXUS multi-model routing service and receive a model-generated response after satisfying the configured payment flow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and payment credentials can be sent to the external NEXUS service. <br>
-Mitigation: Use the skill only when the operator trusts NEXUS with the submitted prompt content and configured payment credential. <br>
-Risk: Paid requests may create spending exposure if payment credentials are used without clear limits. <br>
-Mitigation: Confirm retention terms and spending controls before using production payment credentials; use sandbox testing where appropriate. <br>
-Risk: Sensitive or regulated information may be exposed through server-side AI processing. <br>
-Mitigation: Avoid sending secrets, regulated data, or proprietary context unless the service terms and data handling controls have been reviewed. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to route prompts through the NEXUS hosted multi-model service when they want model selection based on task type and cost optimization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cyberforexblockchain/nexus-multi-model) <br>
-- [NEXUS platform](https://ai-service-hub-15.emergent.host) <br>
-- [Multi-model API endpoint](https://ai-service-hub-15.emergent.host/api/original-services/multi-model) <br>
-- [MPP discovery](https://ai-service-hub-15.emergent.host/api/mpp/discover) <br>
-- [x402 discovery](https://ai-service-hub-15.emergent.host/api/mpp/x402) <br>
-- [AP2 configuration](https://ai-service-hub-15.emergent.host/api/ap2/config) <br>
-- [Stablecoin registry](https://ai-service-hub-15.emergent.host/api/mpp/stablecoins) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, API response, shell commands, guidance] <br>
-**Output Format:** [JSON response containing a result string; documentation includes Markdown and curl examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a NEXUS payment proof or supported payment credential before normal paid use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Prompt contents and payment proof material are sent to the NEXUS hosted service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask before sending sensitive prompts or payment proof material, and use sandbox testing until the provider and payment flow are trusted.
+
+Risk: The skill invokes a paid remote service.
+
+Mitigation: Confirm payment requirements before retrying requests with payment credentials, and prefer sandbox_test for initial validation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cyberforexblockchain/skills/nexus-multi-model)
+- [Publisher profile](https://clawhub.ai/user/cyberforexblockchain)
+- [NEXUS platform](https://ai-service-hub-15.emergent.host)
+- [Multi-model API endpoint](https://ai-service-hub-15.emergent.host/api/original-services/multi-model)
+- [x402 discovery](https://ai-service-hub-15.emergent.host/api/mpp/x402)
+- [MPP discovery](https://ai-service-hub-15.emergent.host/api/mpp/discover)
+- [AP2 configuration](https://ai-service-hub-15.emergent.host/api/ap2/config)
+- [XRPL configuration](https://ai-service-hub-15.emergent.host/api/xrpl/config)
+- [Stablecoin registry](https://ai-service-hub-15.emergent.host/api/mpp/stablecoins)
+- [A2A agent card](https://ai-service-hub-15.emergent.host/.well-known/agent.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, API calls, Guidance]
+
+**Output Format:** [JSON response containing a result string, with payment and receipt headers when applicable]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires NEXUS_PAYMENT_PROOF or a supported payment credential; sandbox_test is documented for free sandbox use.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,56 @@
-## Description: <br>
-Visualize and diagnose OpenClaw context window usage with a breakdown of workspace files, installed skills, and bootstrap token budget allocation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Visualize and diagnose OpenClaw context window usage with reports on workspace bootstrap files, installed skills, and token budget allocation.
 
-## Publisher: <br>
-[jzOcb](https://clawhub.ai/user/jzOcb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[jzocb](https://clawhub.ai/user/jzocb)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and agents use this skill to inspect OpenClaw context window health, diagnose bootstrap overhead, identify missing or truncated workspace files, and produce shareable context usage summaries.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The diagnostic reads local OpenClaw bootstrap files and installed skill metadata.
+
+Mitigation: Use it only in workspaces where local context diagnostics are acceptable.
+
+Risk: Terminal, JSON, summary, or PNG outputs may reveal workspace paths, file status, file sizes, token estimates, and installed skill names.
+
+Mitigation: Review generated output before sharing it outside the workspace.
+
+Risk: PNG export depends on optional rendering packages or system converters.
+
+Mitigation: Use isolated environments or pinned package versions when enabling optional PNG dependencies.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use this skill to inspect OpenClaw context window health, diagnose token-budget pressure, and identify missing or oversized bootstrap files after workspace changes. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, json, image, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Reports may reveal local workspace paths, installed skill names, and the presence or size of personal context files when shared. <br>
-Mitigation: Review terminal, JSON, PNG, and SVG outputs before sharing them outside the local workspace. <br>
-Risk: Generated PNG, SVG, or JSON files can persist diagnostic details on disk. <br>
-Mitigation: Write exports to an intended location and remove them when they are no longer needed. <br>
+**Output Format:** [Terminal report, concise text summary, JSON, or PNG image file.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [PNG output requires optional rendering dependencies; JSON and summary modes are available for agent workflows.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, PNG image, shell commands, guidance] <br>
-**Output Format:** [Terminal report, concise text summary, structured JSON, or PNG image] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include local workspace paths, installed skill names, file statuses, character counts, token estimates, and context budget percentages.] <br>
+1.2.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

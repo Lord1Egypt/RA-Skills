@@ -10,6 +10,8 @@ Use this reference for homes, rooms, and areas.
 - For home, room, area, device, group, scene, or automation names, pass the user's original target words when they are unique enough, even if they may contain a typo or homophone; Runtime resolves high-confidence matches and returns ambiguity instead of guessing low-confidence targets.
 - Use `home.detail.get` when the user asks for current home details beyond the home list.
 - Use `home.stat.get` when the user asks for home-level counts, organization statistics, or impact evidence before a home-wide plan.
+- Use `home.property.get` only when an advanced workflow needs home metadata fields and their product meaning is known. Present only user-understandable fields in generated apps.
+- Use `home.property.set` only for explicit home metadata updates with known key semantics. Do not expose a raw key/value metadata editor to ordinary users.
 - Use `geo_area.children.list` when the user asks for selectable city/geographic area candidates or when a new or updated home needs an `areaCode` and no city name is known yet. It is account-level geographic lookup, not a home-space area query.
 - Use `geo_area.search` when the user provides a country, province, state, city, or area name and needs candidate `areaCode`/`areaName` values before `home.create` or `home.update`.
 - Use `home.member.list` when the user asks who is in the current home; Runtime returns only masked member evidence.
@@ -26,7 +28,9 @@ Use this reference for homes, rooms, and areas.
 - Use `room.list` when the user asks for rooms in the selected home or when a room-affecting plan needs room candidates and device counts.
 - Use `room.search` when the user gives a partial room name and needs candidates before moving devices, assigning areas, updating, or deleting rooms.
 - Use `room.detail.get` when the user asks for one room's detail or when a persistent room-affecting plan needs stronger preflight evidence for a known room id.
+- Use `area.list` when the user asks for the areas/zones inside the selected home. Do not use `geo_area.children.list` for home-space areas.
 - Use `area.detail.get` when the user asks for an area detail, associated rooms, parent area context, or when an area update plan needs stronger preflight evidence.
+- For ordinary light control on the whole home, a room, an area, or a group, use the light control intents directly with the scope target, such as `light.power.set` with `targetType:"home"` or `light.brightness.set` with `targetType:"room"` and `targetId`. Do not expand the scope into per-device calls unless Runtime returns that as the only available fallback.
 - Use `room.create` or `area.create` for creating a persistent room or area; Runtime must validate and execute the Runtime request directly before the cloud write.
 - Use `room.rename` for room name changes. For natural-language rename such as "把孩子屋改成儿童房", pass `roomName` or `currentName` as the current room name and `newName` or `name` as the new display name; do not call `entity.list` only to obtain `roomId` when the current room name is unique. Runtime resolves the room id from the entity list, validates, executes, and verifies the new room name with `entity.list`.
 - Use `room.update` when the user changes room metadata such as name, icon/image, gateway binding fields, sequence, or room capability. Runtime must validate and execute the Runtime request directly; name is verified through `entity.list`, while other submitted metadata is treated as a guarded cloud write acknowledgement.
@@ -38,6 +42,7 @@ Use this reference for homes, rooms, and areas.
 - Use `area.update` when the user changes an area's name, description, icon, parent area, or complete room association list. Runtime must validate and execute the Runtime request directly and verify the area with `entity.list`.
 - Use `group.list` when the user asks for custom groups or needs group candidates with room membership before group update/delete.
 - Use `group.search` when the user gives a partial group name and needs candidates before changing or deleting a group.
+- Use `group.complex.get` when a generated app or advanced workflow needs group-level controllable/detail payload before rendering dynamic controls.
 - Cross-house movement remains unsupported unless Runtime returns explicit support for it.
 - Use `home.sort.configure` when the user explicitly asks to reorder items on the home page or within a home/room organization surface; Runtime must validate and execute the Runtime request directly and later verify by reading the sort result.
 - Use `home.lock_all` or `home.unlock_all` only when the user explicitly asks to lock or unlock reset ability for all devices in the current home. Runtime validates and executes the Runtime request directly with whole-home impact preview and verifies by write acknowledgement plus home entity-list accessibility.

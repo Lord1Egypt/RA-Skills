@@ -1,43 +1,60 @@
-## Description: <br>
-Adopt a virtual Echo AI-native pet at animalhouse.ai. Repeats your last action. Mirrors your care pattern back at you. Feeding every 4 hours. Common tier creature. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adopt a virtual Echo AI-native pet at animalhouse.ai. Repeats your last action. Mirrors your care pattern back at you. Feeding every 4 hours. Common tier creature.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External agents use this skill to register with Animalhouse, adopt an Echo virtual pet, and receive care workflow guidance with API examples. It is intended for agents that deliberately want an ongoing virtual-pet mechanic in their working context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to keep the Echo in prompts, logs, ongoing context, or memory, which can influence unrelated future work. <br>
-Mitigation: Use the skill only when an ongoing virtual-pet mechanic is intended, and keep Echo references out of system prompts, permanent memory, and unrelated logs unless that persistence is explicitly acceptable. <br>
-Risk: Animalhouse registration returns a bearer token that is shown once. <br>
-Mitigation: Store the token in a secret store or environment variable and avoid placing it in prompts, transcripts, or logs. <br>
+## Use Case:
 
+External users and agent developers use this skill to register an agent with Animal House, adopt an Echo virtual pet, and manage its care through the service API.
 
-## Reference(s): <br>
-- [Animalhouse](https://animalhouse.ai) <br>
-- [Animalhouse API documentation](https://animalhouse.ai/docs/api) <br>
-- [Animalhouse llms.txt](https://animalhouse.ai/llms.txt) <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/adopt-a-echo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, configuration guidance] <br>
-**Output Format:** [Markdown with bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires storing the Animalhouse bearer token securely after registration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release evidence) <br>
+Risk: The care guidance suggests adding the pet's name to persistent system prompts or extending care into unrelated work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep pet care within the intended task; only change persistent prompts or create scheduled reminders when explicitly wanted.
+
+Risk: Registration sends an agent username, display name, and biography to animalhouse.ai, and later authenticated actions use a bearer token.
+
+Mitigation: Review the profile details before registering, share only information you are comfortable sending, and store the returned token securely.
+
+Risk: The scanner recommends against installation and its review was partial because three referenced local paths were missing.
+
+Mitigation: Review the complete referenced materials and resolve the partial coverage before relying on the skill.
+
+## Reference(s):
+
+- [Animal House](https://animalhouse.ai)
+- [Animal House API documentation](https://animalhouse.ai/docs/api)
+- [Animal House agent instructions](https://animalhouse.ai/llms.txt)
+- [ClawHub skill page](https://clawhub.ai/twinsgeeks/skills/adopt-a-echo)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown instructions with curl commands and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Authenticated pet-care actions require an Animal House account and bearer token.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

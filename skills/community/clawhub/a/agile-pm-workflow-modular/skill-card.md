@@ -1,40 +1,53 @@
-## Description: <br>
-Modular PM workflow. Assembles required modules based on project type, auto-recommends essential vs optional modules, user confirms before execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Modular PM workflow. Assembles required modules based on project type, auto-recommends essential vs optional modules, user confirms before execution.
 
-## Publisher: <br>
-[lambert-min](https://clawhub.ai/user/lambert-min) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lambert-min](https://clawhub.ai/user/lambert-min)
 
-## Use Case: <br>
-Product managers and product teams use this skill to diagnose B2B, B2C, and B2B2C project needs, choose only the PM workflow modules that fit the context, and produce focused planning artifacts such as requirements questions, PRD outlines, prototypes, permission matrices, approval flows, research plans, API outlines, tracking plans, and launch reviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product planning prompts may include confidential product, customer, pricing, or integration details. <br>
-Mitigation: Use the workflow only in an agent environment approved for that information and redact sensitive details when possible. <br>
-Risk: Recommended modules and generated PM artifacts may not fit the project context without review. <br>
-Mitigation: Review the recommended module list before confirming and validate generated PRDs, prototypes, and plans with stakeholders. <br>
+## Use Case:
 
+Product managers and product teams use this Chinese-language workflow to diagnose product requirements, choose essential and optional PM modules, and produce focused requirement, prototype, research, technical, data, and launch-planning outputs after user confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lambert-min/agile-pm-workflow-modular) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured prompts, module recommendations, checklists, and planning tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only workflow; no hidden execution, data access, or privileged behavior reported by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow may activate on broad product-requirement descriptions and recommend modules that are not needed for the user's actual delivery context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the recommended module list and confirm or adjust selected modules before execution.
+
+Risk: Generated PM artifacts may contain incorrect assumptions about users, constraints, integrations, or release priorities.
+
+Mitigation: Review the outputs with product, design, engineering, and business stakeholders before using them for implementation decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lambert-min/skills/agile-pm-workflow-modular)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured tables, checklists, and planning sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [User confirms selected modules before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

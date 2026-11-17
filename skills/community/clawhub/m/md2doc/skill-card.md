@@ -1,41 +1,53 @@
-## Description: <br>
-Markdown 转 Word/PDF/HTML 文档转换器。支持 6 种样式模板（商务蓝、技术灰、简洁白、产品红、学术风、默认），自动生成封面、目录、页眉页脚。当用户需要将 Markdown 转成 Word、PDF 或 HTML，生成带样式的文档，或提到文档导出、格式转换时，使用此技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Markdown documents into styled Word, PDF, and HTML outputs with templates, covers, tables of contents, headers, footers, embedded images, formatted tables, and styled code blocks.
 
-## Publisher: <br>
-[glory904649854](https://clawhub.ai/user/glory904649854) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[glory904649854](https://clawhub.ai/user/glory904649854)
 
-## Use Case: <br>
-Developers and document authors use this skill to convert Markdown files into styled Word, PDF, or HTML documents with optional covers, tables of contents, headers, footers, images, tables, and code block styling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Markdown documents can reference remote images, which may trigger network requests from the user's environment during conversion. <br>
-Mitigation: Review or remove remote image URLs before converting third-party Markdown, and run the converter in a virtual environment or sandbox when appropriate. <br>
-Risk: Generated HTML from untrusted Markdown may contain content that should not be treated as trusted when opened in a browser. <br>
-Mitigation: Treat generated HTML from untrusted Markdown as untrusted output and review it before sharing or opening in a privileged context. <br>
+## Use Case:
 
+External users and developers use this skill to convert Markdown files into styled .docx, optional PDF, and HTML documents for reports, product requirements, technical notes, and academic content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/glory904649854/md2doc) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [DOCX, PDF, and HTML files plus concise status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [PDF export requires Microsoft Word or LibreOffice; image handling can fetch remote image URLs referenced by the input Markdown.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; package.json reports 1.0.0) <br>
+Risk: Markdown with remote image links can trigger network fetching during conversion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Convert trusted Markdown only or run conversion in a sandboxed or offline environment; avoid untrusted remote image links until remote fetching is reviewed.
+
+Risk: Temporary image cleanup can delete existing data in a .temp_images directory under the output location.
+
+Mitigation: Use a dedicated output directory and ensure .temp_images does not contain important files before running conversion.
+
+## Reference(s):
+
+- [ClawHub skill page: md2doc](https://clawhub.ai/glory904649854/skills/md2doc)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell or Python commands; generated .docx, .pdf, and .html files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated files are written to user-specified or input-adjacent paths; PDF output depends on Microsoft Word or LibreOffice.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; artifact package.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

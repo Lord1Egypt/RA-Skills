@@ -1,44 +1,52 @@
-## Description: <br>
-The official search utility for Agnxi.com, a directory of AI agent tools, MCP servers, and skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The official search utility for Agnxi.com - The premier directory of AI Agent Tools, MCP Servers, and Skills.
 
-## Publisher: <br>
-[doanbactam](https://clawhub.ai/user/doanbactam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[doanbactam](https://clawhub.ai/user/doanbactam)
 
-## Use Case: <br>
-Agents, developers, and operators use this skill to search Agnxi for relevant agent skills, MCP servers, and tool resources, then review the returned links before using or installing them. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts Agnxi.com when used and depends on live sitemap availability and content. <br>
-Mitigation: Use it in environments where outbound access to Agnxi.com is acceptable, and treat returned links as candidates to review before installation or use. <br>
-Risk: The release has unavailable server-resolved provenance and the README contains a placeholder repository URL. <br>
-Mitigation: Verify the publisher profile and source before relying on the skill in sensitive workflows. <br>
-Risk: Unsafe query handling by a calling agent could expose shell-injection risk if raw user text is interpolated into commands. <br>
-Mitigation: Pass queries as process arguments rather than raw shell text, as recommended by the security guidance. <br>
+## Use Case:
 
+External developers and agent operators use this skill to search Agnxi for agent skills, MCP servers, and tool resources, then review returned links for relevance before using them.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/doanbactam/agnxi-search-skill) <br>
-- [Agnxi directory](https://agnxi.com) <br>
-- [Agnxi sitemap](https://agnxi.com/sitemap.xml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text search status and matching URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches the live Agnxi sitemap and prints up to 10 matching links for a query.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter reports 1.1.0) <br>
+Risk: Invoking the skill performs a live request to Agnxi, which can affect availability assumptions in tightly controlled or shared environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add timeout and response-size limits before deployment in controlled environments, and have agents verify returned links before relying on them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/doanbactam/skills/agnxi-search-skill)
+- [Agnxi Directory](https://agnxi.com)
+- [Agnxi Sitemap](https://agnxi.com/sitemap.xml)
+- [OpenClaw Standard](https://github.com/openclaw/clawhub)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Plain text search results with URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns up to 10 matching links and reports when additional matches exist.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

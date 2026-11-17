@@ -1,38 +1,52 @@
-## Description: <br>
-Self-evolving memory system that learns from verifiable tasks, retrieves relevant past experiences, and generates task-specific guidelines for coding, prediction, and analysis work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-evolving memory system that learns from verifiable tasks, retrieves relevant past experiences, and generates task-specific guidelines.
 
-## Publisher: <br>
-[Mercury7353](https://clawhub.ai/user/Mercury7353) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mercury7353](https://clawhub.ai/user/mercury7353)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve prior task experiences, synthesize task-specific guidance, and update a local experience store after verifiable outcomes or feedback. It is most applicable to coding, analysis, prediction, debugging, and problem-solving tasks where feedback can improve future attempts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill persistently saves and reuses task details in a local cross-task memory database without clear opt-in, redaction, retention, or deletion controls. <br>
-Mitigation: Avoid use with secrets, credentials, personal data, regulated information, or proprietary code unless entries are manually sanitized before storage. <br>
-Risk: Stored experiences may contain information the user does not want reused in later tasks. <br>
-Mitigation: Review the local ~/.live-evo experience store periodically and remove experiences that should not be reused. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve and apply lessons from previous verifiable tasks, including coding, analysis, predictions, debugging, and problem solving. It supports feedback-driven learning by storing task outcomes and updating experience weights when usefulness can be assessed.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash command examples and plain-text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces task-specific guidelines from local experience records and may update a persistent local JSONL experience database.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: evidence.release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent local memory may retain sensitive task content in ~/.live-evo and later surface it as guidance.
+
+Mitigation: Avoid storing secrets, proprietary code, personal data, incident details, or other sensitive content; add consent, redaction, and deletion controls before broader use.
+
+Risk: User feedback or task text stored as experience data can become future guidance without strong prompt-injection handling.
+
+Mitigation: Review retrieved guidance before applying it and treat stored experiences from untrusted inputs as untrusted content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mercury7353/skills/live-evo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSONL-backed local experience records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Retrieval and management scripts read and write persistent local experience data under ~/.live-evo.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

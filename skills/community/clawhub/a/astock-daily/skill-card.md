@@ -1,51 +1,66 @@
-## Description: <br>
-Daily emails listing recent A-share IPOs and selected stocks priced under 20 yuan, including key trading details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Astock Daily retrieves A-share IPO information and selected stocks priced under 20 yuan, then sends a daily email report.
 
-## Publisher: <br>
-[batype](https://clawhub.ai/user/batype) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[batype](https://clawhub.ai/user/batype)
 
-## Use Case: <br>
-Developers and operators use this skill to fetch A-share IPO and low-price stock data, format the results, and send the daily summary by email. The generated market data is for reference and does not constitute investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles SMTP credentials and includes a hardcoded recipient address. <br>
-Mitigation: Review and change the recipient, replace any exposed SMTP password, and use a dedicated app password or low-privilege SMTP account before running it. <br>
-Risk: Scheduled outbound email may send market summaries automatically. <br>
-Mitigation: Confirm that scheduled email is acceptable for the deployment context and review any cron or OpenClaw schedule before enabling it. <br>
-Risk: Credential exports in shell startup files can broaden secret exposure. <br>
-Mitigation: Avoid storing SMTP secrets in shell startup files; prefer a local environment file or secret manager with restricted access. <br>
-Risk: The DNS repair path can modify /etc/hosts. <br>
-Mitigation: Do not run fix-hosts.sh unless the operator understands the host-file changes and can undo them. <br>
-Risk: The SMTP TLS configuration may disable certificate validation. <br>
-Mitigation: Remove rejectUnauthorized:false before relying on SMTP credentials in regular use. <br>
+## Use Case:
 
+External users and agents use this skill to gather daily A-share IPO and low-price stock data and deliver it as an email report. The generated information is for reference and should not be treated as investment advice.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/batype/astock-daily) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
-- [Configuration guide](artifact/CONFIG.md) <br>
-- [SMTP troubleshooting](artifact/README-SMTP.md) <br>
-- [DNS fix guide](artifact/DNS-FIX.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with shell command snippets; generated HTML email and JSON data files when executed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May send scheduled outbound email and write daily data or email fallback files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata, package.json, README changelog) <br>
+Risk: Mail credentials can be exposed or mishandled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove hard-coded recipients and test credentials, rotate any exposed SMTP password, and store mail secrets in a protected secret manager or tightly permissioned configuration file.
+
+Risk: Credential-bearing configuration may be logged or stored in persistent shell configuration.
+
+Mitigation: Avoid logging full SMTP configuration and review any shell-profile changes before enabling persistent environment variables.
+
+Risk: Scheduler setup can create persistent cron jobs.
+
+Mitigation: Review the cron entry, execution path, and log destination before enabling scheduled runs.
+
+Risk: Network and mail helpers can weaken local security controls.
+
+Mitigation: Keep TLS certificate validation enabled and avoid the sudo hosts-file helper unless an administrator has reviewed the change.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/batype/skills/astock-daily)
+- [Publisher Profile](https://clawhub.ai/user/batype)
+- [README](artifact/README.md)
+- [Configuration Guide](artifact/CONFIG.md)
+- [SMTP Guide](artifact/README-SMTP.md)
+- [Cron Setup Guide](artifact/CRON-JOB.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; runtime output includes HTML email and JSON data files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches market data from external stock data sources, sends email through SMTP or sendmail, and can write local daily data files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

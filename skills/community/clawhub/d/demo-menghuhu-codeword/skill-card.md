@@ -1,39 +1,52 @@
-## Description: <br>
-用户说出或输入暗号「一顿操作猛如虎」时，用固定下句「打到小松鼠」回应，不加其它说明。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+用户说出或输入暗号「一顿操作猛如虎」时，用固定下句「打到小松鼠」回应，不加其它说明。
 
-## Publisher: <br>
-[emergenceronearth](https://clawhub.ai/user/emergenceronearth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[emergenceronearth](https://clawhub.ai/user/emergenceronearth)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to make an agent recognize the exact codeword phrase "一顿操作猛如虎" and respond only with the fixed phrase "打到小松鼠".
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill intentionally overrides normal conversational behavior when the exact codeword phrase is present.
+
+Mitigation: Review deployment contexts where fixed-response behavior could interrupt expected assistant workflows.
+
+Risk: The security guidance notes no evidence of hidden actions, sensitive-data access, file access, network use, persistence, or privilege-seeking behavior.
+
+Mitigation: Keep the skill limited to the documented fixed response and rescan if behavior changes.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users can install this skill to make an agent respond to the complete Chinese code phrase 「一顿操作猛如虎」 with the fixed one-line reply 「打到小松鼠」. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally replaces normal answers with a fixed response when the exact trigger phrase appears. <br>
-Mitigation: Install it only when this codeword behavior is desired, and keep the trigger phrase narrow and explicit. <br>
+**Output Format:** [Plain text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/emergenceronearth/demo-menghuhu-codeword) <br>
-- [Publisher profile](https://clawhub.ai/user/emergenceronearth) <br>
+**Other Properties Related to Output:** [The skill produces a single fixed response only when the exact codeword phrase is present.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text] <br>
-**Output Format:** [Plain text string] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fixed one-line Chinese response when the trigger phrase is matched.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

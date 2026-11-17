@@ -1,40 +1,53 @@
-## Description: <br>
-Identify a track from a SoundCloud Live set screenshot and find its Apple Music and Spotify links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identify a track from a SoundCloud live set screenshot or timestamp and return Apple Music and Spotify links.
 
-## Publisher: <br>
-[mjanssen19](https://clawhub.ai/user/mjanssen19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mjanssen19](https://clawhub.ai/user/mjanssen19)
 
-## Use Case: <br>
-External users can use this skill to identify songs playing at a specific timestamp in a SoundCloud live set, DJ mix, or radio show screenshot and retrieve Apple Music and Spotify links for the matched track. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries may include information extracted from screenshots, such as set names, timestamps, artists, or track titles. <br>
-Mitigation: Avoid using screenshots that contain private information the user does not want included in public search engine or music service queries. <br>
-Risk: Track matching can be uncertain near transitions or when tracklists lack exact cue times. <br>
-Mitigation: State uncertainty, mention both tracks when a timestamp is within about five seconds of a transition, and ask the user how to proceed when evidence is incomplete. <br>
+## Use Case:
 
+External users and music listeners use this skill to identify tracks playing in SoundCloud live sets, DJ mixes, or radio shows and retrieve Apple Music or Spotify links for the matched track.
 
-## Reference(s): <br>
-- [iTunes Search API](https://itunes.apple.com/search?term={artist}+{track name}&entity=song&limit=5) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text with set name, timestamp, track, artist, Apple Music link, Spotify link, and uncertainty notes when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask for clarification when the screenshot does not clearly show the set name or timestamp.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release evidence) <br>
+Risk: Track identification may be uncertain when screenshots are unclear, cue times are missing, or the timestamp is near a transition.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for clarification when required, state uncertainty in the response, and mention both nearby tracks when the timestamp falls near a transition.
+
+Risk: Public tracklist and music-link sources may be blocked, incomplete, or unavailable.
+
+Mitigation: Try the documented alternate sources, report unavailable lookups plainly, and avoid requesting credentials or bypassing access controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mjanssen19/skills/soundclawd)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text containing the set name, timestamp, track, artist, Apple Music link, Spotify link, and any uncertainty notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include clarification requests when the screenshot, timestamp, or tracklist evidence is unclear.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

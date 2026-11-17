@@ -1,42 +1,54 @@
-## Description: <br>
-AI Employee Team configures multiple AI roles for task assignment, progress monitoring, workflow coordination, and work reporting for teams automating operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organizes multiple AI roles into a virtual team for role configuration, task assignment, progress tracking, and work reporting.
 
-## Publisher: <br>
-[gdp6539](https://clawhub.ai/user/gdp6539) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[gdp6539](https://clawhub.ai/user/gdp6539)
 
-## Use Case: <br>
-Teams, operators, and developers use this skill to organize AI roles such as product, engineering, testing, operations, finance, and HR into task workflows with local status and memory records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Task history, role notes, and work records may be stored in the local memory directory. <br>
-Mitigation: Avoid entering secrets or regulated business data, and periodically review or purge stored memory. <br>
-Risk: Removing an employee archives its memory rather than erasing all traces. <br>
-Mitigation: Review archived memory and delete it manually when retention is not desired. <br>
+## Use Case:
 
+Developers, solo operators, and small teams use this skill to coordinate AI employee roles, persist their working memory, assign tasks, check team status, and generate reports for lightweight automated operations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gdp6539/ai-employee-team) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The employee manager can create local configuration and memory files when run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Local file handling can escape intended folders or copy local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in an isolated workspace and treat role, employee, and template inputs as trusted until path validation is fixed.
+
+Risk: The skill writes persistent employee state and memory files.
+
+Mitigation: Review generated files before reuse and avoid running it where the Node process can access sensitive workspace data.
+
+## Reference(s):
+
+- [AI Employee Team on ClawHub](https://clawhub.ai/gdp6539/skills/ai-employee-team)
+- [Publisher profile: gdp6539](https://clawhub.ai/user/gdp6539)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples, slash-command references, and Node.js CLI output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates local configuration, employee state, and memory files when its Node.js manager is run.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; artifact frontmatter states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

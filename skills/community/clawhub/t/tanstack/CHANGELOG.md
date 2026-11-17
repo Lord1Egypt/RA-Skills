@@ -2,92 +2,189 @@
 
 All notable changes to this skill will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/2.0.0/),
 and this skill adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
-## [0.4.0] - 2026-07-01
-
-### Fixed
-- infinite-queries.md: removed the v4-only `refetchPage` invalidation API (deleted
-  in Query v5) from three examples; replaced with the `maxPages` option, which caps
-  stored and refetched pages (TanStack Query migrating-to-v5: "Removed `refetchPage`
-  in favor of `maxPages`").
-
-### Added
-- Query: `useIsFetching` / `useIsMutating` for app-wide loading/mutating indicators
-  (query-guide.md).
-- Query: `maxPages` option to cap stored/refetched pages in infinite queries
-  (infinite-queries.md).
-- Query: `usePrefetchQuery` / `usePrefetchInfiniteQuery` render-phase prefetch hooks,
-  distinct from the imperative `queryClient.prefetchQuery` (query-performance.md).
-- Query: referential-stability footgun - `data ?? []` and per-render new objects/proxy
-  getters in queryKeys or effect deps cause infinite refetch loops / "Maximum update
-  depth exceeded"; use hoisted stable constants (query-guide.md).
-- Router: View Transitions - `viewTransition` on Link/navigate, `defaultViewTransition`
-  on the router (routing-patterns.md).
-- Router: route lifecycle callbacks `onEnter` / `onStay` / `onLeave` and `remountDeps`
-  remount control (routing-patterns.md).
-- Router: `createLink` / `useLinkProps` for custom, type-safe Link components wrapping
-  UI-library anchors (router-guide.md).
-- Start: testing a server function via curl requires the `x-tsr-serverFn: true` header,
-  else the handler never runs; thrown errors return HTTP 200 with the error framed in
-  the body (server-functions.md).
-
-Verified against: @tanstack/react-query@5.101.2, @tanstack/react-router@1.170.16, @tanstack/react-start@1.168.26
-
-## [0.3.0] - 2026-06-10
+## [0.5.0] - 2026-11-05
 
 ### Changed
-- Server functions & middleware: renamed `.inputValidator()` -> `.validator()`
-  across SKILL.md, server-functions.md, middleware.md, start-guide.md (29 call
-  sites). `validator()` is now the canonical method; `inputValidator()` is
-  deprecated and the compiler emits warnings for it (TanStack/router PR #7566).
-- start-guide.md: dropped the stale "Release Candidate" header and the "No RSC
-  support yet" claim, aligning it with SKILL.md (Pre-1.0; RSC experimental opt-in).
+- Version targets: Vite 8.3.6, plugin-react 6.2.1, React 19.3.1, Tailwind 4.3.4, Biome 2.6.5, Vitest 5.1.0, Hono 4.13.16, shadcn CLI 4.23.0, cn 0.5.2; now tracking @rolldown/plugin-babel and @hono/node-server.
+- Hono v5 is a release candidate (`hono@next`); hono.md gains a "Preparing for v5" checklist.
+- Biome 2.6: top-level `tailwind.stylesheet`, Tailwind domain needs tailwindcss >= 4, `useSortedClasses` renamed `useTailwindSortedClasses`, `noTailwindRawColors` allows black/white by default.
+- plugin-react 6.2: `oxc-transform-react` peer is now `>=0.152.0 <0.157.0`; `@rolldown/plugin-babel` `parallel` breaks with `reactCompilerPreset()`.
+- Vitest 5.1: trace view is stable with a `mode` option (default `'failure-only'`).
+- Canonical tsconfig is now `tsconfig.app.json` in a solution layout.
 
 ### Added
-- Query cross-reload persistence setup (query-performance.md):
-  `PersistQueryClientProvider` + storage persister, `gcTime >= maxAge`, `buster`
-  for cache-shape changes, and excluding credential-bearing queries via
-  `shouldDehydrateQuery`; corrected the React package name to
-  `@tanstack/react-query-persist-client`.
-- Network Mode note (`online` / `always` / `offlineFirst`) in query-performance.md.
-- `useMutationState` note for shared cross-component mutation UI in query-guide.md.
-
-Verified against: @tanstack/react-router@1.170.15, @tanstack/react-start@1.168.25, @tanstack/router-plugin@1.168.18
-
-## [0.2.0] - 2026-06-04
-
-### Changed
-- Start: dropped the "(RC)" label and the "No RSC yet" claim. The docs overview no
-  longer uses RC; React Server Components are now an experimental feature (opt-in via
-  `tanstackStart({ rsc: { enabled: true } })` + `@vitejs/plugin-rsc`, React 19 / Vite 7+).
-- Start scaffolding command updated from `pnpm create @tanstack/start@latest` to
-  `npx @tanstack/cli@latest create` (or TanStack Builder).
-- Deployment: Cloudflare, Netlify, and Railway are now the official hosting partners.
-- Sharpened the auth best practice: the security boundary is the server function /
-  server route / endpoint that touches private data, not `beforeLoad` route guards
-  (SKILL.md best practice, middleware.md, server-functions.md).
-
-### Added
-- Zod v4 note: the zod-adapter is no longer needed with Zod v4 (pass the schema
-  directly to `validateSearch`; `.catch()` retains types).
-- CSRF default-middleware caveat: defining `src/start.ts` requires re-adding
-  `createCsrfMiddleware()` explicitly for server functions.
-- `createServerFn({ strict })` serialization-check opt-out (server-functions.md, start-guide.md).
-- Native `mutationOptions()` helper (companion to `queryOptions()`) in query-guide.md.
-- Server-function Cache-Control safety: `public` only for non-identity data; authed
-  responses need `private` + `Vary` or `no-store` (server-functions.md).
-- Real-world footguns: invalidate-then-navigate stale data, queryKey runtime
-  dimensions, StrictMode double-submit, `staleTime` is not cross-reload persistence
-  (Query); dot-prefixed dirs excluded from the route tree, `Link to` rejects dynamic
-  strings, client-only-provider hydration mismatches (Router/Start).
+- Typecheck gate: Vite never type-checks; `tsc -b` with a solution-style tsconfig, plus a `check` / `check:ci` scripts layout with `biome ci --error-on-warnings`.
+- Biome 2.6 surface (`biome inspect`, Markdown/SCSS/YAML, JS plugins preview, new Tailwind rules); Vitest 5.1 `--since-last-run`, `--last-failed`, `coverage.ignoreNode`; TS 7.1 beta specifics; shadcn `info`/`view`/`build` and agent skill; `@hono/cli`; Tailwind `@source inline()` and `@reference`.
+- Testing patterns: `importOriginal` partial mocks, `vi.hoisted`, hook block bodies, import-time env, pinned clocks, environment splits, suite hygiene, fast affected-test gates.
+- Zod v4 `z.union` key-stripping footgun; shadcn `from "cn"` and DialogContent overflow troubleshooting; Hono RPC type-sharing guidance; pnpm dependency-bump practice.
 
 ### Fixed
-- Stale Start doc URLs updated to include the `/guide/` path segment.
+- Class-based dark mode: `@custom-variant dark` added to the canonical CSS; shadcn's Vite ThemeProvider replaces the next-themes advice.
+- Biome `!**/dir` ancestor-matching gotcha marked fixed in 2.6.3; TS `target` default wording.
 
-- Initial CHANGELOG; upstream tracking established.
+### Security
+- React 19.3.0 and earlier: RSC RCE GHSA-xqc2-xf4c-x3h3 (critical) and DoS GHSA-h3gv-c5rc-p453, fixed in 19.3.1.
+- Hono < 4.13.16: GHSA-4m76-xfj5-7975, GHSA-h7mg-cq63-vhpq, GHSA-4h7h-rv7c-7m2v, GHSA-3gg2-335m-rxc6, GHSA-46wx-v44x-9hh2; @hono/node-server < 2.1.6: GHSA-jpvv-r467-5p4w, GHSA-7v5p-43qr-wch5, GHSA-qv5m-9pm6-hqp3.
+- Vitest: GHSA-p458-7748-mcp3 (`@vitest/ui`/`@vitest/browser` < 5.0.5), GHSA-qxg6-89mg-rqv8 and GHSA-xp26-3454-mjgp (`@vitest/mocker` v4 < 4.1.12).
 
-Verified against: @tanstack/react-query@5.101.0, @tanstack/react-router@1.170.11, @tanstack/react-start@1.168.19, @tanstack/zod-adapter@1.167.0, @tanstack/router-plugin@1.168.14
+Verified against: vite@8.3.6, @vitejs/plugin-react@6.2.1, @rolldown/plugin-babel@0.3.0, react@19.3.1, tailwindcss@4.3.4, @biomejs/biome@2.6.5, vitest@5.1.0, hono@4.13.16, @hono/node-server@2.1.6, shadcn@4.23.0, cn@0.5.2
+
+## [0.4.1] - 2026-11-05
+
+### Removed
+
+- Per-skill `LICENSE.txt`: ClawHub licenses every published skill MIT-0.
+
+## [0.4.0] - 2026-10-06
+
+### Changed
+- **Breaking:** TypeScript target moved to 7.0 (GA); typescript.md rewritten around TS 7 with a 6.0 compat path (`@typescript/typescript6` alias pair for typescript-eslint and other API consumers; Vue/Astro/Svelte/MDX stay on 6.0).
+- **Breaking:** Vitest target moved to 5.0 (requires Vite >= 6.4, Node >= 22.12); vitest.md covers the v4->v5 migration (clearMocks default, projects inherit by default, `.vitest/` output dir, unawaited async assertions fail, strict browser locators).
+- React 19.3: `<ViewTransition>`/`addTransitionType` now stable, Fragment refs, `use(browser())`.
+- shadcn CLI 4.21: Base UI is the default base, React Aria added, Sera style, `cn` package replaces clsx+tailwind-merge in `lib/utils`; `--pointer` description corrected.
+- Hono 4.13: `hono/<adapter>` imports deprecated in favor of `@hono/<runtime>` packages; v5 in development; Node >= 20 with `@hono/node-server@2`; zod-openapi 415 on mismatched Content-Type.
+- Vite 8.2/8.3: `codeSplitting` replaces deprecated `advancedChunks`; `resolve.tsconfigPaths` caveat corrected (it does follow references); `devtools` option; ESM config `"type": "module"` warning.
+- Version targets refreshed across SKILL.md and references; effective Node floor for the stack is 22.12.
+
+### Added
+- plugin-react 6.1 experimental native React Compiler (`react({ compiler: true })`).
+- Biome: Tailwind domain rules, `useReactCompiler`, ancestor-matching `!**/` exclusion gotcha.
+- Vitest: mocking basics, `vitest doctor`/`fsModuleCache`, test-speed guidance.
+- Hono: QUERY method, Method Not Allowed and Mount middleware, `hono/dev`, Vite `server.cors: false` seam.
+
+### Fixed
+- Canonical tsconfig: `"types": ["vite/client"]` (`types: []` broke CSS side-effect imports and `import.meta.env`).
+- Biome: domains never enable nursery rules - `noFloatingPromises` and friends must be enabled individually.
+- Tailwind: invalid `mask-linear-to-b` example; Vite `build.target` list missing `ios16.4`; stray tool-call markup at the end of hono.md.
+
+### Security
+- Vitest 4.1.9 affected by GHSA-p63j-vcc4-9vmv (critical) and GHSA-82fw-gwwq-j7x9; React 19.2.0-19.2.7 RSC by GHSA-wx67-qw84-cm4g; Hono < 4.13.11 by 9 advisories, `@hono/node-server` < 2.1.3 by GHSA-rmxm-3fg6-px4f.
+
+Verified against: vite@8.3.3, @vitejs/plugin-react@6.1.2, react@19.3.0, typescript@7.0.2, tailwindcss@4.3.3, @biomejs/biome@2.5.15, vitest@5.0.3, hono@4.13.13, shadcn@4.21.3, cn@0.4.0
+
+## [0.3.5] - 2026-09-09
+
+### Changed
+- Description condensed to fit the repo's 250-character limit.
+
+## [0.3.4] - 2026-08-21
+
+### Changed
+
+- Declared ClawHub browse categories (`development`) and topics in `metadata`, so the release pipeline publishes them instead of leaving the skill in the `other` category.
+
+### Removed
+
+- `skill-card.md`. The ClawHub CLI strips a root `skill-card.md` from every publish and the registry generates its own card, so the authored file never reached ClawHub.
+
+## [0.3.3] - 2026-08-07
+
+### Changed
+
+- Trimmed the frontmatter description to what-plus-when; dropped the trailing 20-term trigger-keyword sentence.
+
+## [0.3.2] - 2026-07-22
+
+### Added
+
+- skill-card.md release record following NVIDIA's skill-card format
+- metadata.openclaw block (emoji, homepage) for ClawHub display
+
+## [0.3.1] - 2026-07-10
+
+### Changed
+- CHANGELOG preamble pinned to Keep a Changelog 2.0.0 (format unchanged; KaC 2.0.0 keeps existing changelogs valid).
+
+## [0.3.0] - 2026-07-01
+
+### Changed
+- Refreshed version pins: vite 8.0.16->8.1.2, @vitejs/plugin-react 6.0.2->6.0.3,
+  tailwindcss 4.3.0->4.3.2, @biomejs/biome 2.4.16->2.5.2, vitest 4.1.8->4.1.9,
+  hono 4.12.25->4.12.27, shadcn CLI table 4.11.0->4.12.0 (metadata.upstream + Version targets + reference intros).
+- Biome: `linter.rules.recommended` is deprecated in favor of `linter.rules.preset` (Biome 2.5);
+  updated both canonical config examples (SKILL.md + biome.md) to `"preset": "recommended"` and noted `biome migrate`.
+- Vite: HMR WebSocket options moved from `server.hmr.*` to `server.ws.*`; corrected the HMR
+  troubleshooting entry to `server.ws.clientPort` and noted the deprecation/auto-sync.
+- TypeScript: reframed the tsgo/TS 7 section - TS 7.0 is now RC (~10x faster, targeted for stable
+  "within the next month"), with `@typescript/typescript6`/`tsc6` side-by-side install and
+  `--checkers`/`--builders`/`--singleThreaded` parallelism flags.
+
+### Added
+- Vite 8.1: WASM ESM integration (stable direct `.wasm` imports), experimental Bundled Dev Mode
+  (`experimental.bundledDev`) and Chunk Import Map (`build.chunkImportMap`), Lightning CSS being
+  evaluated as the next-major default CSS transformer.
+- React: Partial Pre-rendering (`prerender`/`resume` APIs, 19.2) added to the newer-surface list.
+- Biome: `--reporter=concise` (token-saving agent reporter), read-only `--watch` mode,
+  `formatter.delimiterSpacing`, and `biome upgrade`.
+- shadcn 4.12: chat-interface components + `@shadcn/react` headless package, `scroll-fade`/`shimmer`
+  utilities, and `add` inspection flags (`--dry-run`/`--diff`/`--view`).
+- Vite caveat: `resolve.tsconfigPaths: true` does not follow tsconfig project references (solution-style
+  configs) - use an explicit `resolve.alias` there.
+- Tailwind footgun: a utility referencing a token not mapped in `@theme`/`@theme inline` emits no CSS and no error.
+
+### Security
+- Bumped Hono pin to 4.12.27, covering two SSR advisories: `hono/jsx` cross-request context
+  disclosure (GHSA-hvrm-45r6-mjfj) and `hono/css` `cx()` XSS escaping bypass (GHSA-w62v-xxxg-mg59).
+
+Verified against: vite@8.1.2, @vitejs/plugin-react@6.0.3, tailwindcss@4.3.2, @biomejs/biome@2.5.2, vitest@4.1.9, hono@4.12.27
+
+## [0.2.0] - 2026-06-09
+
+### Added
+- references/hono.md - comprehensive Hono 4.12 reference: mental model, routing, Context,
+  HonoRequest, middleware (built-in + `createMiddleware` + chained type inference), validation
+  (`hono/validator`, `@hono/zod-validator`, Standard Schema), end-to-end type-safe RPC (`hc`,
+  status-code inference, larger-app chaining, `hcWithType` IDE-perf fix), OpenAPI
+  (`@hono/zod-openapi`), error handling (`HTTPException`/`onError`), helpers (cookie, streaming/SSE,
+  JWT sign/verify/decode, context-storage `getContext`, factory), realtime WebSocket
+  (`upgradeWebSocket` + RPC `$ws`), auth middleware (basic/bearer/jwt), server-side JSX,
+  static files across runtimes, multi-runtime deployment (Workers/Node/Bun/Deno), and testing.
+  Includes a prominent pointer to Hono's `llms-full.txt`/`llms.txt` as the authoritative
+  long-tail source, plus a categorized resource/link section.
+- SKILL.md: Hono added to the stack overview, references list, and version-targets table; new
+  cross-cutting rule on the Hono RPC seam (version match, `strict: true`, status codes, no
+  `c.notFound()` on RPC routes).
+- references/shadcn.md: documented the `search`/`list` command - new `-t, --type` and `--json`
+  flags, optional `[registries]` arg (searches all registries in `components.json` when omitted),
+  and the 4.11 switch of default output from JSON to human-readable.
+
+### Changed
+- Repositioned the skill from "frontend" to full-stack TypeScript: description and intro now
+  cover the Hono backend/edge layer and its RPC integration with the React frontend.
+- Bumped documented shadcn CLI version 4.10.0 -> 4.11.0 (SKILL.md version table + shadcn.md).
+
+Verified against: hono@4.12.25, @hono/node-server@2.0.4, @hono/zod-validator@0.8.0, @hono/zod-openapi@1.4.0
+
+## [0.1.0] - 2026-06-05
+
+### Added
+- Initial release. Merges the former `vite`, `react-typescript`, `shadcn-tailwind`, and `biome`
+  skills into one cohesive TypeScript frontend skill, plus net-new Vitest coverage.
+- SKILL.md cross-cutting layer: stack overview, version targets, the rules that bite at the
+  seams between tools, and one end-to-end working setup (vite.config.ts, tsconfig.json,
+  biome.json, styles.css, a canonical component).
+- references/vite.md - Vite 8 (Rolldown default), dev server, code splitting, build, deployment.
+- references/react.md - React 19.2 patterns and the React Compiler 1.0.
+- references/typescript.md - TypeScript 6.0 config and patterns.
+- references/tailwind.md - Tailwind CSS v4.3 CSS-first config and theming.
+- references/shadcn.md - shadcn/ui CLI 4.10 and component authoring.
+- references/biome.md - Biome 2.4 lint/format/imports.
+- references/vitest.md - Vitest 4 testing (net-new; not present in any source skill).
+
+### Notes
+- Retargets the former Vite content from Vite 7 to Vite 8: Rolldown is the single default
+  bundler, object-form `manualChunks` removed in favor of Rolldown `codeSplitting`,
+  `build.rollupOptions` -> `build.rolldownOptions`, default minifiers Oxc (JS) and
+  Lightning CSS, browser target chrome111/edge111/firefox114/safari16.4, React Compiler wired
+  via `reactCompilerPreset` + `@rolldown/plugin-babel`.
+- TypeScript content advanced from 5.9 to 6.0 (strict default-on, `types: []`, module/target
+  default shifts, `baseUrl` deprecated, `erasableSyntaxOnly`, tsgo note).
+- shadcn CLI corrected from 3.0 to 4.10 (`create` is an alias of `init`, unified `radix-ui`
+  import, GitHub source registries, new styles). Tailwind advanced 4.2 -> 4.3. Biome 2.4.13 -> 2.4.16.
+
+Verified against: vite@8.0.16, @vitejs/plugin-react@6.0.2, react@19.2.7, typescript@6.0.3, tailwindcss@4.3.0, @biomejs/biome@2.4.16, vitest@4.1.8, babel-plugin-react-compiler@1.0.0, class-variance-authority@0.7.1

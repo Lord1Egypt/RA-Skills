@@ -1,40 +1,49 @@
-## Description: <br>
-Automated DeFi yield optimization across Solana, Ethereum, Arbitrum, and Base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates DeFi yield optimization across Solana, Ethereum, Arbitrum, and Base by scanning protocols for APY opportunities, risk-adjusted returns, yield traps, liquidity analytics, protocol health, and portfolio rebalancing.
 
-## Publisher: <br>
-[ssidharhubble](https://clawhub.ai/user/ssidharhubble) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ssidharhubble](https://clawhub.ai/user/ssidharhubble)
 
-## Use Case: <br>
-External users and developers can use this skill to evaluate DeFi yield opportunities, portfolio rebalancing ideas, staking rewards, liquidity providing, APY optimization, and auto-compounding workflows across supported chains and protocols. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill advertises automated DeFi portfolio actions without clear limits or confirmation safeguards. <br>
-Mitigation: Keep usage informational by default and require explicit approval for every trade, rebalance, staking, liquidity deposit, withdrawal, or compounding action. <br>
-Risk: Wallet access and DeFi execution can expose funds to loss, rug pulls, honeypots, or unsafe protocol interactions. <br>
-Mitigation: Use read-only access where possible, never share seed phrases or private keys, and use a separate low-value wallet when execution is necessary. <br>
+## Use Case:
 
+External users and agents use this skill to identify DeFi yield opportunities, compare risk-adjusted returns, monitor protocol risks, and prepare portfolio-management or rebalancing guidance across supported chains.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ssidharhubble/defi-yield-hunter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include DeFi portfolio, yield, protocol health, and rebalancing guidance; require human review before wallet or trading actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Automated DeFi portfolio management and rebalancing are advertised without documented limits or explicit user-confirmation controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require manual approval for every transaction, use scoped wallets or test accounts, and verify proposed protocol and portfolio changes before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ssidharhubble/skills/defi-yield-hunter)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text guidance with DeFi opportunity, risk, and portfolio summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include proposed rebalancing actions; require manual approval before any financial transaction.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

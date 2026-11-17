@@ -1,43 +1,59 @@
-## Description: <br>
-GDPR and AVG (Belgian data protection law) compliance handler for agency operators, data controllers, and organizations managing data subject requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nex GDPR helps agency operators and data controllers register GDPR/AVG data subject requests, scan local OpenClaw-related data locations for personal data, generate exports and response letters, process erasure workflows, and maintain audit records.
 
-## Publisher: <br>
-[nexaiguy](https://clawhub.ai/user/nexaiguy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nexaiguy](https://clawhub.ai/user/nexaiguy)
 
-## Use Case: <br>
-Agency operators, data controllers, and compliance staff use this skill to register and manage GDPR/AVG data subject requests, scan local OpenClaw-related data stores for personal data, produce exports and response letters, and maintain audit records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can broadly scan sensitive local data paths for personal data. <br>
-Mitigation: Configure scan paths narrowly, run scans manually, and review all findings before using exported results. <br>
-Risk: The skill can delete matched user-owned files when processing erasure requests. <br>
-Mitigation: Verify the data subject identity first, keep backups, and review findings before processing erasure requests. <br>
-Risk: Security evidence warns not to rely on its encryption, immutable audit, or retention-cleanup claims without independent controls. <br>
-Mitigation: Apply independent access controls, encryption, backup, and audit-retention processes around generated exports and logs. <br>
+## Use Case:
 
+Agency operators, data controllers, and organizations handling GDPR/AVG data subject requests use this skill to track request status, locate related personal data, prepare access or portability exports, record erasure actions, and generate compliance documentation.
 
-## Reference(s): <br>
-- [Nex AI homepage](https://nex-ai.be) <br>
-- [ClawHub skill page](https://clawhub.ai/nexaiguy/nex-gdpr) <br>
+### Deployment Geography for Use:
 
+Belgium and European Economic Area (EEA) GDPR contexts
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with CLI commands, JSON reports, ZIP exports, response-letter text, and local audit records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may contain personal data discovered in local files or databases and should be reviewed before processing or sharing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can scan, export, and delete sensitive local data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for authorized GDPR data processing, narrow scan paths with configuration, and review findings before processing requests.
+
+Risk: Erasure processing can remove user-owned files.
+
+Mitigation: Do not run erasure processing until backups exist and a reviewed deletion plan identifies what should be deleted or retained.
+
+Risk: Exports and the ~/.nex-gdpr database may contain plaintext sensitive data.
+
+Mitigation: Apply strict local permissions and add encryption or separate secure storage before retaining or transmitting exports.
+
+## Reference(s):
+
+- [Nex AI homepage](https://nex-ai.be)
+- [ClawHub skill page](https://clawhub.ai/nexaiguy/skills/nex-gdpr)
+- [ClawHub publisher profile](https://clawhub.ai/user/nexaiguy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON, files]
+
+**Output Format:** [Markdown guidance with inline shell commands, CLI text/table output, JSON reports, and ZIP export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [When executed, commands can create local SQLite records and export artifacts under ~/.nex-gdpr.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

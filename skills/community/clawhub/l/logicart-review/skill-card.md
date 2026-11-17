@@ -1,42 +1,55 @@
-## Description: <br>
-AI-powered code analysis via LogicArt that helps find bugs, security issues, code-quality concerns, and logic flow details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LogicArt Code Review analyzes code with LogicArt to identify bugs, security issues, complexity, suggestions, and logic flow.
 
-## Publisher: <br>
-[JPaulGrayson](https://clawhub.ai/user/JPaulGrayson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jpaulgrayson](https://clawhub.ai/user/jpaulgrayson)
 
-## Use Case: <br>
-Developers and agents use this skill to send selected code snippets or files to LogicArt for code review, bug finding, security issue detection, complexity scoring, suggestions, and logic-flow analysis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected code or file contents are uploaded to LogicArt for analysis. <br>
-Mitigation: Use the skill only for code that is approved for sharing with LogicArt, and avoid submitting secrets, private keys, credentials, regulated data, or proprietary code unless authorization is explicit. <br>
-Risk: Automated review findings may be incomplete, incorrect, or misleading. <br>
-Mitigation: Treat LogicArt results as review assistance and have a qualified developer verify critical bug, security, complexity, and logic-flow findings before making changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [LogicArt Code Review on ClawHub](https://clawhub.ai/JPaulGrayson/logicart-review) <br>
-- [LogicArt](https://logic.art) <br>
-- [LogicArt Agent Analyze API](https://logic.art/api/agent/analyze) <br>
-- [Validate Repo](https://validate-repo.replit.app) <br>
+## Use Case:
 
+Developers and engineering agents use this skill to submit selected code or local files for LogicArt analysis and present prioritized review findings.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [JSON analysis responses from LogicArt, presented to users as prioritized markdown review findings.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The helper script accepts inline code or a local file path and posts the selected contents to LogicArt.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Selected code or entire local files may be sent to LogicArt for analysis.
+
+Mitigation: Use the skill only for code you are authorized to share with LogicArt, and avoid confidential repositories, secrets, .env files, private keys, customer data, or regulated code unless approved.
+
+Risk: The artifact supports file-based analysis through --file, which can broaden the amount of local content submitted.
+
+Mitigation: Review the target file path before running analysis and prefer the smallest relevant code snippet when sensitive content may be nearby.
+
+## Reference(s):
+
+- [LogicArt](https://logic.art)
+- [LogicArt Analyze API](https://logic.art/api/agent/analyze)
+- [Validate Repo](https://validate-repo.replit.app)
+- [ClawHub Release Page](https://clawhub.ai/jpaulgrayson/skills/logicart-review)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [JSON from the analyzer, typically summarized by the agent as Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include bugs, security issues, complexity score, suggestions, and logic flow when returned by LogicArt.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

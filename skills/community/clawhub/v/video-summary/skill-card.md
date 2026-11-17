@@ -1,44 +1,64 @@
-## Description: <br>
-Video summarization for Bilibili, Xiaohongshu, Douyin, and YouTube. Extract insights from video content through transcription and summarization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Video summarization for Bilibili, Xiaohongshu, Douyin, and YouTube. Extract insights from video content through transcription and summarization.
 
-## Publisher: <br>
-[lifei68801](https://clawhub.ai/user/lifei68801) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lifei68801](https://clawhub.ai/user/lifei68801)
 
-## Use Case: <br>
-Developers and agent users use this skill to extract transcripts from supported video platforms or local media, then produce structured summary requests or transcript output for downstream summarization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan warns that transcript or audio remnants may remain in temporary storage. <br>
-Mitigation: Use the skill only with videos suitable for local processing, review temporary storage after sensitive runs, and avoid processing confidential media unless cleanup is verified. <br>
-Risk: Cookie files can contain session tokens for restricted video content. <br>
-Mitigation: Use cookies only when needed, keep cookie files private, and avoid shared or long-lived cookie files. <br>
-Risk: Extracted transcript content may be processed by the agent or a configured LLM provider. <br>
-Mitigation: Review provider configuration before summarization and avoid sending sensitive transcripts to services that are not approved for the content. <br>
+## Use Case:
 
+Developers and external users use this skill to extract transcripts from online videos or local media and produce structured summary requests, summaries, chapter breakdowns, timestamps, or raw subtitles for agent-assisted review.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/lifei68801/video-summary) <br>
-- [yt-dlp documentation](https://github.com/yt-dlp/yt-dlp) <br>
-- [OpenAI Whisper](https://github.com/openai/whisper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text, Markdown summary-request blocks, or JSON-style structured output depending on command options.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save output to a user-specified file and may reference temporary transcript files for agent or external LLM processing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.4 (source: server release evidence) <br>
+Risk: Private videos, meeting recordings, or account-restricted content may expose sensitive transcript data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Process only authorized content, review outputs before sharing, and avoid shared systems for sensitive media.
+
+Risk: Cookie files may contain session tokens and can be used by yt-dlp when accessing supported platforms.
+
+Mitigation: Use cookies only when necessary, use cookies from accounts you control, and keep cookie files private.
+
+Risk: Sensitive transcript data may remain in unsafe temporary paths until temporary-file handling is fixed.
+
+Mitigation: Run the skill in an isolated workspace or private machine and remove temporary transcript or media files after use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lifei68801/skills/video-summary)
+- [Publisher Profile](https://clawhub.ai/user/lifei68801)
+- [yt-dlp Documentation](https://github.com/yt-dlp/yt-dlp)
+- [OpenAI Whisper](https://github.com/openai/whisper)
+- [OpenAI API Keys](https://platform.openai.com/api-keys)
+- [Zhipu GLM](https://open.bigmodel.cn/)
+- [DeepSeek Platform](https://platform.deepseek.com/)
+- [Moonshot Platform](https://platform.moonshot.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text, Markdown, or JSON summary output with optional transcript-only output and structured summary requests.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires yt-dlp, jq, ffmpeg, ffprobe, and bc. Whisper, LLM API credentials, custom API endpoints, and cookies are optional depending on the source media and summarization workflow.]
+
+## Skill Version(s):
+
+1.6.4 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

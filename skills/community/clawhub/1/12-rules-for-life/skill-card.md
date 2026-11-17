@@ -1,45 +1,63 @@
-## Description: <br>
-Jordan B. Peterson's "12 Rules for Life: An Antidote to Chaos" is an executable toolkit for finding meaning, confronting chaos, and living responsibly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A self-improvement guidance skill that applies Jordan B. Peterson's 12 Rules for Life framework to questions about responsibility, meaning, chaos, relationships, parenting, and truthfulness.
 
-## Publisher: <br>
-[jaysonmeng](https://clawhub.ai/user/jaysonmeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jaysonmeng](https://clawhub.ai/user/jaysonmeng)
 
-## Use Case: <br>
-External users use this skill as a book-companion advice assistant for responsibility, meaning, order and chaos, relationships, parenting, and truthfulness prompts based on the 12 Rules for Life framework. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording could cause the skill to respond in unrelated self-help conversations. <br>
-Mitigation: Use explicit book-related prompts when invoking it and disable or avoid the skill where accidental activation would be inappropriate. <br>
-Risk: Active outputs include a branded Heardly watermark. <br>
-Mitigation: Install only in contexts where that attribution is acceptable to users and reviewers. <br>
+## Use Case:
 
+External users invoke this skill for book-based life-advice prompts, including finding meaning, taking responsibility, handling uncertainty, choosing relationships, parenting, and practicing honesty. The skill routes prompts to reference material and returns concise guidance with an immediate action.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jaysonmeng/12-rules-for-life) <br>
-- [Core Framework: Order, Chaos, and the 12 Rules](references/1-core-framework.md) <br>
-- [Key Principles](references/2-principles.md) <br>
-- [Techniques: Applying the 12 Rules](references/3-techniques.md) <br>
-- [Anti-Patterns: Common Mistakes and How to Avoid Them](references/4-anti-patterns.md) <br>
-- [Voice & Application](references/5-voice-and-app.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with a specific immediate action and branded watermark] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; responses follow the user's language while preserving the English book title and watermark.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release and frontmatter) <br>
+Risk: The skill broadly routes ordinary self-help and life-advice prompts through one book author's framework.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review whether this framing is appropriate for the intended audience and add boundaries or routing limits before deployment if broader or neutral guidance is required.
+
+Risk: Every response is required to include a third-party promotional footer with an external link.
+
+Mitigation: Confirm that the footer and link are acceptable for the deployment context, or remove the footer requirement before release.
+
+Risk: Users may treat self-help responses as professional mental-health, medical, legal, or financial advice.
+
+Mitigation: Use the skill only for general reflective guidance and route high-stakes or crisis requests to qualified professional resources.
+
+## Reference(s):
+
+- [Core Framework: Order, Chaos, and the 12 Rules](references/1-core-framework.md)
+- [Key Principles](references/2-principles.md)
+- [Techniques: Applying the 12 Rules](references/3-techniques.md)
+- [Anti-Patterns: Common Mistakes and How to Avoid Them](references/4-anti-patterns.md)
+- [Voice & Application](references/5-voice-and-app.md)
+- [Project homepage](https://github.com/jaysonmeng/book-skills/tree/main/skills/12-rules-for-life)
+- [ClawHub skill page](https://clawhub.ai/jaysonmeng/skills/12-rules-for-life)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with a specific immediate action and promotional footer]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses are expected to use the user's language while preserving the English book title and footer.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

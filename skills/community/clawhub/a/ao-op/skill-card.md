@@ -1,40 +1,54 @@
-## Description: <br>
-Ao Op helps an agent invoke a local Agent Orchestrator source checkout through a stable wrapper for health checks, service control, sessions, messaging, review checks, and updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the locally installed source version of Agent Orchestrator (AO) through a stable OpenClaw wrapper for health checks, service management, session control, review feedback, and source updates.
 
-## Publisher: <br>
-[chaoyang78](https://clawhub.ai/user/chaoyang78) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chaoyang78](https://clawhub.ai/user/chaoyang78)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to operate a local AO checkout from an agent session when managing orchestrator services, sessions, messages, review feedback, or source updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AO wrapper commands can change running sessions, local source files, dependencies, or generated build output. <br>
-Mitigation: Run only the intended AO command, confirm the target project or session first, and treat start, stop, send, update, git pull, pnpm install, and pnpm build as deliberate state-changing actions. <br>
-Risk: The wrapper depends on a documented local AO checkout path. <br>
-Mitigation: Install only where that checkout is expected, and verify the path before relying on the wrapper. <br>
+## Use Case:
 
+Developers and engineers use this skill to operate a local Agent Orchestrator checkout from OpenClaw without repeatedly typing long source-entrypoint commands. It is intended for AO status, health, service, session, messaging, review-check, and update workflows on the configured local machine.
 
-## Reference(s): <br>
-- [AO command cookbook](references/commands.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands are intended for a local AO source checkout and may affect local sessions, files, dependencies, or build output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The wrapper executes code from a local Agent Orchestrator checkout and its dependencies, including update and build commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only when you control and trust the referenced checkout; review the Git remote and pending changes before updates or dependency installation.
+
+Risk: The configured paths are hardcoded to one user's local machine layout.
+
+Mitigation: Confirm the local AO path before use and avoid installing the skill unchanged on unrelated machines.
+
+## Reference(s):
+
+- [AO command cookbook](references/commands.md)
+- [ClawHub skill page](https://clawhub.ai/chaoyang78/skills/ao-op)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides command execution against a hardcoded local AO source checkout.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -61,7 +61,7 @@ telegram-send "Page changed!"
 
 ### Webhook
 ```bash
-curl -X POST "https://hooks.slack.com/services/XXX" -d "{\"text\":\"Change detected\"}"
+curl -X POST "REDACTED-SECRET" -d "{\"text\":\"Change detected\"}"
 ```
 
 ### Email (using msmtp)

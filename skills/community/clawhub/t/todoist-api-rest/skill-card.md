@@ -1,40 +1,53 @@
-## Description: <br>
-Direct Todoist API integration via curl/jq. Lightweight, reliable, and uses working v1/v2 endpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Direct Todoist API integration via curl/jq. Lightweight, reliable, and uses working v1/v2 endpoints.
 
-## Publisher: <br>
-[NitsujY](https://clawhub.ai/user/NitsujY) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nitsujy](https://clawhub.ai/user/nitsujy)
 
-## Use Case: <br>
-Developers and Todoist users use this skill to list, create, complete, and inspect Todoist tasks, projects, and sections through direct Todoist API requests when a CLI is unavailable or failing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Todoist API tokens can be exposed through prompts, logs, or copied shell history. <br>
-Mitigation: Prefer the TODOIST_API_TOKEN environment variable, keep tokens out of prompts and logs, and rotate tokens if exposure is suspected. <br>
-Risk: Create-task and complete-task commands change the user's Todoist account. <br>
-Mitigation: Review generated write commands before execution, especially task content, due dates, project IDs, and task IDs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Todoist Developer Documentation](https://developer.todoist.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/NitsujY/todoist-api-rest) <br>
+## Use Case:
 
+Developers and productivity users use this skill to generate Todoist API requests for listing, creating, completing, and reviewing tasks, projects, and sections when the Todoist CLI is unavailable or failing.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, Configuration guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, and TODOIST_API_TOKEN.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated commands use TODOIST_API_TOKEN and can access the user's Todoist account.
+
+Mitigation: Keep the token secret, use the minimum account access needed, and review each generated curl command before running it.
+
+Risk: Create and close task operations can change the wrong Todoist item if task or project IDs are incorrect.
+
+Mitigation: Verify task, project, and section IDs before executing account-changing requests.
+
+## Reference(s):
+
+- [Todoist Developer Documentation](https://developer.todoist.com)
+- [ClawHub skill page](https://clawhub.ai/nitsujy/skills/todoist-api-rest)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, and TODOIST_API_TOKEN for generated commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

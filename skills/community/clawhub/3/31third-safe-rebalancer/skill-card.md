@@ -1,44 +1,63 @@
-## Description: <br>
-Policy-aware Safe portfolio rebalancing assistant for 31Third ExecutorModule. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The 31Third Safe Rebalancer helps agents monitor Safe portfolio drift, generate policy-aware rebalance plans, validate trades, and submit approved execution through a 31Third ExecutorModule.
 
-## Publisher: <br>
-[Phips0812](https://clawhub.ai/user/Phips0812) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phips0812](https://clawhub.ai/user/phips0812)
 
-## Use Case: <br>
-External developers and Safe operators use this skill to monitor portfolio drift, generate policy-aware rebalance plans, validate trades, and execute approved batches through the 31Third ExecutorModule. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can submit real portfolio trades for the configured Safe. <br>
-Mitigation: Install only for an intended Safe, use an executor wallet with limited authority, never provide the Safe owner private key, and run smoke, check-drift, and plan-only workflows before production execution. <br>
-Risk: Portfolio planning data may be sent to 31Third. <br>
-Mitigation: Review what portfolio data is shared with 31Third before enabling planning or automated rebalance workflows. <br>
-Risk: Automatic rebalance execution may act without the level of human review expected for production treasury operations. <br>
-Mitigation: Consider adding an operator confirmation step before enabling rebalance_now in production. <br>
+## Use Case:
 
+Developers, Safe operators, and portfolio operations teams use this skill to inspect policy-constrained allocation drift and prepare or submit 31Third ExecutorModule rebalances. It is automation infrastructure, not investment advice.
 
-## Reference(s): <br>
-- [31Third homepage](https://31third.com) <br>
-- [31Third Safe policy deployer](https://app.31third.com/safe-policy-deployer) <br>
-- [ClawHub skill page](https://clawhub.ai/Phips0812/31third-safe-rebalancer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code, JSON] <br>
-**Output Format:** [Markdown guidance, CLI commands, and JSON tool results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include rebalance plans, drift analysis, validation results, alert payloads, and transaction hashes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: package.json, skill.json, skill.yaml, server release metadata) <br>
+Risk: The skill can submit live financial transactions from a configured executor wallet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run read-only smoke and drift checks first, validate behavior in test or staging, and only enable the executor wallet after reviewing the planned trades and policy checks.
+
+Risk: Private key misuse could grant more authority than intended.
+
+Mitigation: Do not provide the Safe owner private key; configure only the executor wallet key with limited authority for the ExecutorModule.
+
+Risk: Planning data is sent to 31Third services when generating SDK-based rebalance plans.
+
+Mitigation: Review data-sharing expectations and API key handling before using planning on production Safe portfolios.
+
+Risk: The security summary notes inconsistencies in documentation, dependency lockfile, and execution behavior.
+
+Mitigation: Regenerate and verify the lockfile, confirm the supported ExecutorModule contract generation, and review execution behavior before installation.
+
+## Reference(s):
+
+- [31Third](https://31third.com)
+- [31Third Safe Policy Deployer](https://app.31third.com/safe-policy-deployer)
+- [ClawHub Skill Page](https://clawhub.ai/phips0812/skills/31third-safe-rebalancer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON result objects and Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include drift metrics, policy validation reasons, rebalance plans, preflight status, and transaction hashes; live execution requires configured RPC, API key, and executor wallet credentials.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata, skill.yaml, skill.json, and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

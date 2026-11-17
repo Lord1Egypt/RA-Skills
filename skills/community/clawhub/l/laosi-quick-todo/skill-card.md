@@ -1,38 +1,58 @@
-## Description: <br>
-待办清单是一项轻量任务管理技能，支持语音或文字添加任务、完成和删除任务、优先级排序、进度统计以及本地 JSON 存储。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+待办清单 is a lightweight to-do helper for adding tasks by voice or text, marking and deleting tasks, sorting by priority, tracking progress, and persisting tasks in local JSON.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Individuals, teams, and agents use this skill to maintain lightweight local task lists, including daily todos, shopping lists, project steps, and GTD-style task tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create or update a local quick_tasks.json file and can mark or delete todo items. <br>
-Mitigation: Review requested task changes before executing generated add, complete, or delete commands, and keep the JSON file in an expected local skill directory. <br>
+## Use Case:
 
+External users and developers use this skill to maintain lightweight personal or project task lists with priorities, completion status, due dates, and progress summaries stored locally.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/laosi-quick-todo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell command examples plus JSON task data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores task data locally in quick_tasks.json when the implementation is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Importing or running the documented helper can unexpectedly create or modify the local quick_tasks.json file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the code before use and move example operations behind an explicit main guard or into a separate example file.
+
+Risk: Delete and complete operations permanently change local task state.
+
+Mitigation: Use the skill only on local task data and review task IDs before applying destructive or completion actions.
+
+Risk: Task IDs are based on current list length and may be reused after deletion.
+
+Mitigation: Use unique or monotonic task IDs before relying on the data for persistent workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/laosi-quick-todo)
+- [Publisher profile](https://clawhub.ai/user/534422530)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify a local quick_tasks.json task file when the documented Python helper is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

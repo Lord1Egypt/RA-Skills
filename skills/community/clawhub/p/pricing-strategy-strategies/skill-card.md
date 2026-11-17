@@ -1,41 +1,54 @@
-## Description: <br>
-When the user wants to plan, design, or optimize pricing strategy and structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides pricing strategy and structure for SaaS, tools, and products, including pricing models, tier design, anchoring, and discount fit.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to choose pricing models, design tiers, apply anchoring, and decide when discounts fit a SaaS, tool, or product strategy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Project context files may contain sensitive product, competitor, or pricing information. <br>
-Mitigation: Review and redact .claude/project-context.md or .cursor/project-context.md before using the skill in shared or untrusted workspaces. <br>
-Risk: Pricing recommendations can affect commercial decisions and may not reflect current market data without user-provided context. <br>
-Mitigation: Validate proposed pricing models, tiers, and discounts against current customer research, costs, competitor pricing, and legal or finance review. <br>
-Risk: Marketplace capability tags include crypto and purchase-related labels that are not required by this instruction-only skill. <br>
-Mitigation: Do not grant purchase or financial authority based on marketplace tags; treat the skill output as advisory guidance. <br>
+## Use Case:
 
+External users, founders, marketers, and product teams use this skill to choose a pricing model, design plan tiers, frame price presentation, and decide when discounts are appropriate.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces pricing model recommendations, tier structures, anchoring guidance, discount-fit guidance, and pointers to related pricing-page or discount skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and frontmatter) <br>
+Risk: Existing project-context files may influence pricing recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the project context used by the agent and validate pricing recommendations against current product economics, market data, and business goals.
+
+Risk: Pricing guidance can be commercially consequential if applied without review.
+
+Mitigation: Have product, finance, legal, or go-to-market owners review proposed price points, discounting, and tier gates before publication.
+
+## Reference(s):
+
+- [ClawHub skill release: pricing-strategy](https://clawhub.ai/kostja94/skills/pricing-strategy-strategies)
+- [ClawHub publisher profile: kostja94](https://clawhub.ai/user/kostja94)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown guidance with structured pricing recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference related pricing-page, discount, landing-page, or localization skills when those follow-on tasks are relevant.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

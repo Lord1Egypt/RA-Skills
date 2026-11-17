@@ -1,234 +1,208 @@
 ---
-name: tencentmap-webservice-skill
-version: 1.0.2
-description: "腾讯位置服务 WebService API 开发技能。 当开发者需要通过 HTTP 接口集成地理编码、地点搜索、路线规划、天气查询、IP 定位等位置服务时，此技能提供完整的 API 调用指导。适用场景：(1) 地址与坐标互转 (2) 地点搜索与周边 POI 查询 (3) 关键词输入提示与自动补全 (4) 沿途搜索 (5) 路线规划（驾车/步行/骑行/电动车/公交）(6) 距离矩阵与批量距离计算 (7) IP 定位 (8) 天气查询 (9) 智能地址解析 (10) 坐标系转换 (11) 行政区划查询。不包含地图渲染和前端可视化，仅提供 HTTP JSON 数据接口。当用户提到地理编码、地址转坐标、逆地址解析、POI 搜索、路线规划、距离矩阵、批量距离、天气查询、IP 定位、坐标转换、行政区划、输入提示、自动补全、WebService API 时触发。"
+name: tencentmap-jsapi-gl-skill
+description: 腾讯地图 JavaScript GL（JSAPIGL）开发指南。适用于地图应用或者工具的编写。在编写、审查或调试使用腾讯地图 API的代码时应运用此技能。适用于涉及地图初始化、覆盖物展示、图层控制、事件处理、控件交互、可视化渲染、地图工具、检索、路线规划、查地址、行政区划、ip定位、几何计算、三维模型展示、性能优化的任务。当用户提及 腾讯地图、 jsapi、jsapi-gl或相关地图开发需求时自动触发。
+version: 1.0.3
+metadata: { "openclaw": { "requires": { "bins": [""], "env": ["TMAP_JSAPI_KEY"] }, "primaryEnv": "TMAP_JSAPI_KEY" } }
 ---
 
-# 腾讯位置服务 WebService API
+# 腾讯地图JSAPI GL开发技能
 
-腾讯位置服务 WebService API 是基于 HTTPS/HTTP 协议的数据接口，支持任何编程语言通过 HTTP 请求调用。
+帮助用户使用腾讯地图 JavaScript API GL 进行地图功能开发，包含基础地图功能和数据可视化功能。
 
-## 基本信息
+## 目录结构
 
-- **Base URL**: `https://apis.map.qq.com`
-- **请求方式**: GET
-- **返回格式**: JSON
-- **Key 获取**: https://lbs.qq.com/dev/console/key/manage
+### API 文档
 
-## 关键注意事项
+- **JS API 参考文档**: `references/jsapigl/docs/` (21个md文件)
+  - 概述.md - API总览和索引
+  - 地图.md - 地图核心类和配置
+  - 点标记.md - 标注点相关API
+  - 矢量图形.md - 折线、多边形、圆形、矩形、椭圆形等矢量图形
+  - 文本标记.md - 文本标注API
+  - DOM覆盖物.md - 自定义DOM覆盖物
+  - 信息窗体.md - 信息窗口API
+  - 点聚合.md - 点聚合功能
+  - 控件.md - 地图控件
+  - 自定义图层.md - 自定义栅格/矢量图层
+  - 事件.md - 地图事件系统
+  - 基础类.md - LatLng、Point等基础类
+  - 室内图.md - 室内地图功能
+  - 附加库：地图工具.md - 几何编辑器、测量工具
+  - 附加库：几何计算库.md - 距离、面积计算
+  - 附加库：服务类库.md - 地点搜索、路线规划等
+  - 附加库：地图视角附加库.md - 观察者视角
+  - 附加库：模型库.md - GLTF/3DTiles模型
+  - 附加库：天气图层.md - 气象图层
+  - 附加库：矢量数据图层.md - GeoJSON/MVT图层
+  - 环境检测.md - 浏览器环境检测
 
-- **坐标格式**: 统一使用 `纬度,经度` 顺序（不是经度,纬度）
-- **坐标系**: GCJ-02（国测局坐标系），GPS 原始坐标需先转换
-- **Key 参数**: 所有接口都需要 `key` 参数
-- **配额限制**: 每个 Key 有免费额度和 QPS 限制
+- **可视化参考文档**: `references/visualization/docs/` (15个md文件)
+  - 参考手册.md - 可视化API总览
+  - 弧线图.md - 3D弧线/流向图
+  - 散点图.md - 3D散点图
+  - 热力图.md - 经典热力图
+  - 蜂窝热力图.md - 蜂窝聚合热力图
+  - 网格热力图.md - 网格聚合热力图
+  - 轨迹图.md - 轨迹展示
+  - 区域图.md - 区域轮廓图
+  - 管道图.md - 3D管道图
+  - 辐射圈.md - 辐射圈效果
+  - 围墙面.md - 围墙面效果
+  - 水晶体.md - 3D水晶体效果
+  - 行政区划.md - 行政区划展示
+  - 事件.md - 可视化事件系统
+  - 基础类.md - 可视化基础类
 
-## 触发条件
+### 示例代码
 
-当用户表达以下任一意图时触发：
+- **JS API Demos**: `references/jsapigl/demos/` (129个html文件)
+  - 按功能分类：地图操作、点标记、文本标记、点聚合、折线、多边形、控件、信息窗口、服务类、个性化地图、几何计算、模型库、应用工具、自定义覆盖物、城市漫游等
 
-- 将地址转为坐标，或将坐标转为地址
-- 搜索地点、POI、周边商家
-- 使用关键词输入提示或自动补全
-- 规划路线（驾车、步行、骑行、电动车、公交等）
-- 批量计算距离或生成距离矩阵
-- 查询天气信息
-- 根据 IP 获取位置
-- 从非结构化文本提取地址
-- 在不同坐标系之间互转
-- 查询行政区划信息
-- 包含"地理编码"、"搜索"、"路线"、"天气"、"定位"、"坐标"、"距离矩阵"等关键词
+- **可视化 Demos**: `references/visualization/demos/` (44个html文件)
+  - 按图层类型分类：弧线图、散点图、热力图、轨迹图、蜂窝图、区域图、水晶体等
 
 ## 前置检查：API Key
 
-**仅在实际调用 API 时检查 Key**——纯咨询类问题（如"支持什么 API"）直接回答，不要求 Key。
+检查是否已有 Key（环境变量 `TMAP_JSAPI_KEY` 或 `~/.tencentmap/tempkey.json`）→ 有则直接使用
 
-需要调用但未检测到 Key（环境变量 `TMAP_WEBSERVICE_KEY` 或对话中提供）时，向用户输出以下选项：
+未检测到 Key → 读取 `tempkey-guide.md` 按其中步骤执行
 
-> - **申请临时体验 Key（推荐）**：手机验证即可，14 天有效
-> - **前往官网注册正式 Key**：https://lbs.qq.com/dev/console/key/manage （注册后需为 Key 开启 **WebService** 功能）
+## 工作流程
 
-用户选择"申请临时 Key" → 读取 `tempkey-guide.md` 按其中步骤执行
+### 1. 理解用户需求
 
----
+当用户询问腾讯地图API相关问题时：
+- 明确用户需要的功能类型（基础地图/可视化）
+- 确定具体要使用的类或功能
 
-## 场景判断
+### 2. 查询 API 文档
 
-收到用户请求后，先判断属于哪个场景：
+在 `references/jsapigl/docs/` 或 `references/visualization/docs/` 中查找相关API文档：
+- 搜索关键词（如"点标记"、"热力图"）
+- 阅读对应类的说明、配置参数、方法
 
-| 场景 | 用户意图 | 参考文档 |
-|------|----------|----------|
-| **地址服务** | 地址↔坐标互转、智能地址解析 | `references/api-geocoder.md` |
-| **搜索服务** | 地点搜索、周边 POI、沿途搜索、输入提示、行政区划 | `references/api-search.md` |
-| **路线服务** | 驾车/步行/骑行/公交路线规划、距离矩阵 | `references/api-direction.md` |
-| **定位与天气** | IP 定位、天气查询 | `references/api-location-weather.md` |
-| **坐标转换** | 其他坐标系转入腾讯地图坐标系 | `references/api-tools.md` |
+### 3. 查找示例代码
 
-### 组合场景处理
+在对应 demos 目录中查找示例：
+- JS API示例：`references/jsapigl/demos/`
+- 可视化示例：`references/visualization/demos/`
+- 示例命名格式：`功能分类_具体示例.html`
 
-如果用户请求包含多个场景，按以下优先级串联调用：
+### 4. 提供解决方案
 
-1. **先解决坐标获取**：地址解析 / IP 定位 / 坐标转换 — 确保后续操作有可用坐标
-2. **再执行目标操作**：搜索 / 路线规划 / 天气查询 — 使用第一步获取的坐标
-3. **最后处理后续操作**：沿途搜索依赖路线结果的 polyline，距离矩阵依赖坐标集合
+根据文档和示例，为用户提供：
+- API接口说明
+- 代码示例
+- 注意事项和最佳实践
 
-## 场景一：地址服务
+## 使用示例
 
-提供地址解析（地址→坐标）、逆地址解析（坐标→地址）、智能地址解析（非结构化文本→结构化地址）三种能力。
+**用户问题**: "如何在地图上添加标记点？"
 
-- **地址解析**: `GET /ws/geocoder/v1/` — 传入 `address` 参数，建议加 `region` 提高准确性
-- **逆地址解析**: `GET /ws/geocoder/v1/` — 传入 `location` 参数（纬度,经度），可用 `get_poi=1` 返回周边 POI
-- **智能地址解析**: `GET /ws/geocoder/v1/` — 使用 `smart_address` 参数（非 address），从快递单、聊天记录等文本提取地址和联系人信息。需企业认证开通
+**执行流程**:
+1. 读取 `references/jsapigl/docs/点标记.md` 了解 MultiMarker API
+2. 查看 `references/jsapigl/demos/` 中的点标记相关示例
+3. 提供完整的代码示例和说明
 
-> 📖 详细参数、响应格式和示例见 [references/api-geocoder.md](references/api-geocoder.md)
+**用户问题**: "怎么画一个热力图？"
 
-## 场景二：搜索服务
+**执行流程**:
+1. 读取 `references/visualization/docs/热力图.md` 了解 Heat API
+2. 查看 `references/visualization/demos/` 中的热力图示例
+3. 说明数据格式和配置选项
 
-提供地点搜索、沿途搜索、关键词输入提示、行政区划查询四种能力。
 
-- **地点搜索**: `GET /ws/place/v1/search` — 支持 `nearby()`/`region()`/`rectangle()` 边界格式（多边形搜索为独立接口 `/ws/place/v1/search_by_polygon`）
-- **沿途搜索**: `GET /ws/place/v1/search` — 使用 `boundary=along(polyline, distance)`，需先获取路线 polyline
-- **关键词提示**: `GET /ws/place/v1/suggestion` — 搜索框自动补全
-- **行政区划**: 三个子接口 — `GET /ws/district/v1/list`（全部列表）、`/getchildren`（下级区划）、`/search`（关键词搜索）
+## 快速开始模板
 
-> 📖 详细参数、响应格式和示例见 [references/api-search.md](references/api-search.md)
+基础地图初始化：
 
-## 场景三：路线服务
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>腾讯地图示例</title>
+    <script src="https://map.qq.com/api/gljs?v=3&key={TMAP_JSAPI_KEY}"></script>
+    <!-- 如需可视化功能，添加: &libraries=visualization -->
+</head>
+<body>
+    <div id="map" style="width:100%;height:500px;"></div>
+    <script>
+        var map = new TMap.Map("map", {
+            zoom: 12,
+            center: new TMap.LatLng(39.984104, 116.307503)
+        });
+    </script>
+</body>
+</html>
+```
 
-提供路线规划和批量距离计算能力。
+可视化图层示例（热力图）：
 
-| 出行方式 | 端点 |
-|----------|------|
-| 驾车 | `GET /ws/direction/v1/driving/` |
-| 步行 | `GET /ws/direction/v1/walking/` |
-| 骑行 | `GET /ws/direction/v1/bicycling/` |
-| 电动车 | `GET /ws/direction/v1/ebicycling/` |
-| 公交 | `GET /ws/direction/v1/transit/` |
-| 距离矩阵 | `GET /ws/distance/v1/matrix` |
+```javascript
+// 加载可视化库
+// <script src="https://map.qq.com/api/gljs?v=1.beta&libraries=visualization&key={TMAP_JSAPI_KEY}"></script>
 
-- 所有路线接口需要 `from`（起点）和 `to`（终点），格式 `纬度,经度`
-- 驾车支持 `waypoints`（途经点）和 `policy`（策略: LEAST_TIME/PICKUP/TRIP + 偏好: REAL_TRAFFIC/LEAST_FEE/AVOID_HIGHWAY/HIGHWAY_FIRST 等，逗号分隔）
-- 驾车 `duration` 单位为**分钟**，距离矩阵 `duration` 单位为**秒**
-- 距离矩阵支持 `mode`（driving/walking/bicycling）
+var heat = new TMap.visualization.Heat({
+    radius: 50,
+    height: 100,
+    gradientColor: {
+        0: '#13B06A',
+        0.4: '#13B06A', 
+        0.8: '#E9AB1D',
+        0.9: '#E9AB1D',
+        1: '#E05649'
+    }
+}).addTo(map);
 
-> 📖 详细参数、响应格式和示例见 [references/api-direction.md](references/api-direction.md)
+heat.setData([
+    { lat: 39.984104, lng: 116.307503, count: 100 },
+    { lat: 39.984504, lng: 116.307803, count: 80 }
+]);
+```
 
-## 场景四：定位与天气
+## 注意事项
 
-提供 IP 定位和天气查询能力。
+### JS API GL
 
-- **IP 定位**: `GET /ws/location/v1/ip` — 精度到城市级
-- **天气查询**: `GET /ws/weather/v1/` — 支持 `adcode` 或 `location` 查询，`type` 参数选 `now`（实况）/`future`（预报）/`hours`（逐小时），通过 `added_fields` 附加 alarm/index/air（逗号分隔）
+1. **版本**: 当前为 GL 版本，支持3D地图和WebGL渲染
+2. **浏览器兼容**: 现代浏览器，IE11+（需polyfill）
+3. **坐标系**: 使用 gcj02 坐标系
+4. **地图创建（重要）**: 地图创建的容器一定要有固定宽高，尤其是flex布局下
+5. **API使用（重要）**: 所有功能的API调用都必须使用文档中出现的接口、属性、事件，不能自己编造；
+6. **API传参（重要）**: 所有的API传入参数必须严格遵守api文档中说明的格式，如果不确定就去看看对应demo，包括demo中的数据格式；
+7. **附加库的使用**: 使用附加库需要在API加载URL中添加 `libraries` 参数
 
-> 📖 详细参数、响应格式和示例见 [references/api-location-weather.md](references/api-location-weather.md)
+| 附加库 | libraries 值 | 命名空间 | 说明 |
+|--------|-------------|----------|------|
+| 地图工具 | `tools` | `TMap.tools` | 几何编辑器、测量工具 |
+| 几何计算库 | `geometry` | `TMap.geometry` | 距离/面积计算、几何关系判断 |
+| 服务类库 | `service` | `TMap.service` | 地点搜索、路线规划、行政区划等 |
+| 地图视角附加库 | `view` | `TMap` (扩展方法) | 观察者视角操作地图 |
+| 模型库 | `model` | `TMap.model` | GLTF/3DTiles/3DMarker 模型 |
+| 天气图层 | `weather` | `TMap.weather` | 云图、温度图等气象图层 |
+| 矢量数据图层 | `vector` | `TMap.vector` | GeoJSON/MVT 矢量数据图层 |
+| 可视化库 | `visualization` | `TMap.visualization` | 可视化API的能力 |
 
-## 场景五：坐标转换
+**使用示例**：
+```html
+<!-- 加载多个附加库 -->
+<script src="https://map.qq.com/api/gljs?v=1&libraries=tools,geometry,service,model&key={TMAP_JSAPI_KEY}"></script>
+```
 
-`GET /ws/coord/v1/translate` — 将 GPS/百度/搜狗/MapBar 坐标转为腾讯地图坐标系（GCJ-02）。**仅支持单向转入**，不支持反向转出。
+### 可视化 API
 
-> 📖 详细参数和示例见 [references/api-tools.md](references/api-tools.md)
+1. **数据格式**: 可视化图层需要特定格式的数据输入
+2. **性能**: 大数据量时注意性能优化
+3. **层级**: 可视化图层可以设置显示层级
+4. **事件**: 支持点击、悬停等交互事件
+5. **API使用（重要）**: 所有功能的API调用都必须使用文档中出现的接口、属性、事件，不能自己编造
+6. **API传参（重要）**: 所有的API传入参数必须严格遵守api文档中说明的格式，如果不确定就去看看对应demo，包括demo中的数据格式；
 
-## 错误处理
-
-所有接口返回 JSON 中的 `status` 字段表示业务状态码。完整错误码参考：https://lbs.qq.com/service/webService/webServiceGuide/status
-
-### 常见错误码
-
-| 状态码 | 含义 | 处理建议 |
-|--------|------|----------|
-| `0` | 成功 | — |
-| `110` | 请求来源未被授权 | 检查 Key 的域名白名单或 IP 白名单配置 |
-| `111` | 签名验证失败 | 检查签名算法和 Secret Key |
-| `112` | IP 未被授权 | 在控制台添加服务器 IP 白名单 |
-| `113` | 此功能未被授权 | 在控制台开通对应 API 权限 |
-| `120` | QPS 限制（每秒请求量达上限） | 等待 1-2 秒后重试，或合并请求 |
-| `121` | 日调用量达上限 | 升级配额或更换 Key |
-| `190` | 无效的 Key | 确认 Key 是否已被删除或禁用 |
-| `199` | 此 Key 未开启 WebService 功能 | 在控制台为 Key 启用 WebService |
-
-### 参数错误
-
-| 状态码 | 含义 | 处理建议 |
-|--------|------|----------|
-| `300` | 缺少必要字段 | 检查必填参数是否齐全 |
-| `301` | 缺少 key 参数 | 添加 `key` 参数 |
-| `306` | 缺少参数 | 检查接口所需的必填参数 |
-| `310` | 参数格式错误 | 检查参数类型和格式（如坐标格式） |
-| `311` | Key 格式错误 | 检查 Key 是否正确 |
-| `320` | 参数数据类型错误 | 检查参数值类型 |
-| `326` | 起终点距离过近 | 起终点坐标相同或过近 |
-| `332` | 途经点个数超过限制 | 驾车途经点最多 10 个 |
-| `333` | 存在无法吸附的坐标点 | 检查坐标是否在可通行道路附近 |
-| `347` | 查询无结果 | 尝试放宽搜索条件或更换关键词 |
-| `365` | 纬度不能超过 ±90 | 检查坐标值范围 |
-| `366` | 经度不能超过 ±180 | 检查坐标值范围 |
-| `373` | 起终点距离超长 | 减小起终点距离 |
-| `375` | 局域网 IP 无法定位 | IP 定位仅支持公网 IP |
-| `396` | 距离矩阵坐标点超限 | 最多 200 个坐标点，起终点数乘积最多 625 |
-
-### 系统错误
-
-| 状态码 | 含义 | 处理建议 |
-|--------|------|----------|
-| `500` | 后端超时 | 稍后重试 |
-| `510` | 后端服务无法连接 | 稍后重试 |
-| `520` | 后端服务请求失败 | 稍后重试 |
-| `530` | 后端返回数据解析失败 | 稍后重试，若持续出现则联系客服 |
 
 ## 最佳实践
 
-1. **地址解析指定 `region`** — 提高准确性，避免跨城市歧义
-   ```
-   # ✅ 指定城市
-   GET /ws/geocoder/v1/?address=中关村大街1号&region=北京&key=YOUR_KEY
-   # ❌ 不指定城市，可能匹配到其他城市的同名地址
-   GET /ws/geocoder/v1/?address=中关村大街1号&key=YOUR_KEY
-   ```
-
-2. **逆地址解析选择合适的 `policy`** — 根据业务场景获取最相关的地址描述
-   ```
-   # 到家场景（精确到楼栋）
-   GET /ws/geocoder/v1/?location=39.984154,116.307490&get_poi=1&poi_options=policy=2&key=YOUR_KEY
-   # 出行场景（过滤不易到达 POI）
-   GET /ws/geocoder/v1/?location=39.984154,116.307490&get_poi=1&poi_options=policy=3&key=YOUR_KEY
-   ```
-
-3. **搜索使用 `boundary` 限制范围** — 提高搜索精准度和效率
-
-4. **批量距离计算用距离矩阵替代循环调用** — 显著减少请求次数
-   ```python
-   # ❌ 错误：循环调用路线接口，N*M 次请求
-   for origin in origins:
-       for dest in destinations:
-           call_direction_api(origin, dest)
-
-   # ✅ 正确：一次距离矩阵请求
-   call_distance_matrix(from=";".join(origins), to=";".join(destinations), mode="driving")
-   ```
-
-5. **GPS 坐标需先转换** — 通过坐标转换接口转为 GCJ-02 后再调用其他接口
-   ```
-   # 先转换坐标
-   GET /ws/coord/v1/translate?locations=39.984154,116.307490&type=1&key=YOUR_KEY
-   # 再用转换后的坐标调用搜索/路线等接口
-   ```
-
-6. **天气查询优先用经纬度** — 可精确到区县级，比 adcode 更灵活
-
-7. **沿途搜索需先规划路线** — 先获取 polyline，再搜索 POI，不能跳过路线规划步骤
-
-## 文档引用
-
-| 文件 | 说明 |
-|------|------|
-| [references/api-geocoder.md](references/api-geocoder.md) | 地址解析、逆地址解析、智能地址解析 |
-| [references/api-search.md](references/api-search.md) | 地点搜索、沿途搜索、关键词提示、行政区划 |
-| [references/api-direction.md](references/api-direction.md) | 路线规划（驾车/步行/骑行/公交）、距离矩阵 |
-| [references/api-location-weather.md](references/api-location-weather.md) | IP 定位、天气查询 |
-| [references/api-tools.md](references/api-tools.md) | 坐标转换、公共错误码 |
-
-## 相关链接
-
-- [官方文档](https://lbs.qq.com/service/webService/webServiceGuide/webServiceOverview)
-- [Key 管理](https://lbs.qq.com/dev/console/key/manage)
-- [配额说明](https://lbs.qq.com/dev/console/quotaImprove)
-- [状态码说明](https://lbs.qq.com/service/webService/webServiceGuide/status)
+1. **模块化加载**: 使用模块化方式按需加载API
+2. **错误处理**: 添加地图加载失败的处理逻辑
+3. **内存管理**: 及时销毁不需要的图层和覆盖物
+4. **性能优化**: 大数据集使用聚合或抽稀

@@ -1,50 +1,58 @@
-## Description: <br>
-Apply engineering judgment across systems, constraints, trade-offs, failure modes, and verification before acting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apply engineering judgment across systems, constraints, trade-offs, failure modes, and verification before acting.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Engineers, operators, and technical teams use this skill to turn broad engineering problems into bounded decisions, constraints, trade-off comparisons, failure-mode analysis, verification plans, and executable next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate broadly for technical tasks where the user only wanted a narrow answer. <br>
-Mitigation: Review activation wording and client settings; disable or narrow activation if engineering review should be explicit-only. <br>
-Risk: Optional local memory could store engineering preferences or notes when persistence is enabled. <br>
-Mitigation: Use session-only mode unless persistence is desired, and do not store credentials, proprietary drawings, regulated data, or sensitive process details. <br>
-Risk: Engineering recommendations may be wrong when evidence is incomplete or assumptions are untested. <br>
-Mitigation: Keep assumptions visible, lower confidence when validation is missing, and use the verification ladder before irreversible execution. <br>
+## Use Case:
 
+Developers, engineers, and operations teams use this skill to structure ambiguous engineering problems into constraints, interfaces, trade-offs, failure modes, execution plans, and verification evidence before acting.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/engineer) <br>
-- [Skill Homepage](https://clawic.com/skills/engineer) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Constraints First](artifact/constraints-first.md) <br>
-- [Failure Modes First](artifact/failure-modes-first.md) <br>
-- [Trade-off Matrix](artifact/trade-off-matrix.md) <br>
-- [Verification Ladder](artifact/verification-ladder.md) <br>
-- [Execution Planning](artifact/execution-planning.md) <br>
-- [Troubleshooting](artifact/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance, Configuration instructions] <br>
-**Output Format:** [Markdown with concise tables, checklists, decision records, and verification plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May optionally create local Markdown memory, decision, assumption, or verification notes only with user permission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Optional local memory can persist sensitive preferences or project details if used carelessly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable ~/engineer/ memory only after explicit user consent, and keep stored notes to non-sensitive engineering defaults.
+
+Risk: Engineering guidance can be over-trusted when source evidence is incomplete.
+
+Mitigation: State assumptions, confidence, pass/fail criteria, and the evidence that would change the recommendation.
+
+Risk: Troubleshooting or rollout advice can obscure safety, quality, or restartability constraints under time pressure.
+
+Mitigation: Use hold points, containment steps, rollback paths, and verification checks before irreversible action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/engineer)
+- [Skill homepage](https://clawic.com/skills/engineer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Concise Markdown with tables, checklists, decision records, troubleshooting plans, and verification plans when useful.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose optional local memory under ~/engineer/ only with user consent.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

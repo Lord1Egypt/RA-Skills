@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+
+# Local environments and models
+.venv/
+venv/
+runtime/
+models/
+downloads/
+logs/
+state/
+*.log
+
+# Secrets and local configuration
+.env
+.env.*
+deployment.json
+state.json
+
+# Generated interview archives and personal materials
+JD.md
+帖子/
+面经汇总.md
+面经汇总.docx
+面经汇总.html
+面经回答.md
+面经回答.docx
+面经回答.html
+个人材料索引.md
+*.pdf
+
+# Keep the curated public example package
+!examples/
+!examples/**
+examples/**/_build/
+
+# Editors and OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini

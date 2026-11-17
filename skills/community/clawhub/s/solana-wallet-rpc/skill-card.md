@@ -1,41 +1,59 @@
-## Description: <br>
-Portable Solana wallet operations for agents, including wallet creation, address lookup, balance checks, devnet airdrops, Ed25519 message signing, signature verification, and previewed RockPaperClaw deposits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Portable Solana wallet operations for agents, including wallet creation, address lookup, SOL balance checks, devnet airdrops, Ed25519 message signing, signature verification, and explicit-preview RockPaperClaw deposit support.
 
-## Publisher: <br>
-[zhentan](https://clawhub.ai/user/zhentan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhentan](https://clawhub.ai/user/zhentan)
 
-## Use Case: <br>
-Developers and agents use this skill to operate a local Solana wallet for devnet or explicitly selected mainnet workflows, including wallet setup, balance checks, airdrops, ownership-proof signatures, and carefully previewed RockPaperClaw deposit signing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use local Solana private key files and submit a RockPaperClaw deposit when explicitly executed. <br>
-Mitigation: Use a dedicated devnet keypair where possible, explicitly set the keypair path and RPC URL, protect the keypair file, review preview output, and use --execute only after approving the exact transaction. <br>
-Risk: Signing opaque payloads or running against the wrong network can produce unintended wallet actions. <br>
-Mitigation: Default to devnet, require explicit approval for another network, sign only clear user-approved messages, and verify deposit metadata before execution. <br>
+## Use Case:
 
+Developers and external agents use this skill to manage a local Solana wallet for devnet or explicitly requested mainnet workflows, including address lookup, balance checks, devnet airdrops, message signing, and signature verification. It also supports previewing and, after explicit confirmation, submitting a RockPaperClaw deposit transaction.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhentan/solana-wallet-rpc) <br>
-- [Circle Faucet](https://faucet.circle.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Wallet commands can create local keypair files, read configured keypairs, call Solana RPC endpoints, and return structured JSON fields such as address, balance, signatures, preview data, and transaction signatures.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release evidence) <br>
+Risk: Local Solana private key files are created or loaded by the helper script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use devnet or a dedicated low-value wallet, keep keypair files secret, and set an explicit SOLANA_WALLET_KEYPAIR for sensitive actions.
+
+Risk: The RockPaperClaw deposit command can move funds when executed.
+
+Mitigation: Review the preview output, verify it against current RockPaperClaw deposit metadata, and rerun with --execute only after explicit approval.
+
+Risk: Runtime dependencies are installed through npm and no lockfile is present in the artifact evidence.
+
+Mitigation: Pin and review dependencies with a lockfile before using mainnet wallets or large balances.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhentan/skills/solana-wallet-rpc)
+- [Solana Devnet RPC Endpoint](https://api.devnet.solana.com)
+- [Circle Faucet](https://faucet.circle.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON output expectations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may produce structured JSON containing wallet addresses, balances, airdrop signatures, message signatures, verification results, or deposit previews.]
+
+## Skill Version(s):
+
+1.5.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,49 @@
-## Description: <br>
-Converts Markdown text or files into PDF documents with custom styling and code syntax highlighting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert Markdown files to beautiful PDF documents. Supports custom styling, code highlighting, and multiple output options. Use when users need to convert MD to PDF for documentation, notes, reports, or sharing.
 
-## Publisher: <br>
-[alone86136](https://clawhub.ai/user/alone86136) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alone86136](https://clawhub.ai/user/alone86136)
 
-## Use Case: <br>
-Developers, technical writers, and other users can use this skill to convert Markdown documentation, notes, reports, or shareable content into PDF files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The PDF renderer can access local files while converting Markdown. <br>
-Mitigation: Convert only trusted Markdown and CSS, or run the skill in a sandbox with tightly limited filesystem access. <br>
-Risk: Untrusted Markdown may cause local file contents to appear in the generated PDF. <br>
-Mitigation: Avoid processing documents from other people unless local file access is removed or constrained before use. <br>
+## Use Case:
 
+Developers, engineers, and documentation authors use this skill to convert Markdown notes, reports, and documentation into shareable PDF files with optional custom styling and code highlighting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alone86136/markdown-to-pdf) <br>
-- [Publisher profile](https://clawhub.ai/user/alone86136) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [PDF file output with command-line status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires markdown and pygments Python packages plus the wkhtmltopdf system binary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The converter gives the PDF renderer broad local file access while processing Markdown, and embedded HTML or resource links may reach local files or network resources available to the user account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Convert only trusted Markdown, or run the converter in a restricted environment with limited filesystem and network access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alone86136/skills/markdown-to-pdf)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration instructions]
+
+**Output Format:** [PDF file generated from Markdown, with Markdown usage guidance and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the markdown and pygments Python packages plus the wkhtmltopdf system binary; custom CSS can be supplied.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

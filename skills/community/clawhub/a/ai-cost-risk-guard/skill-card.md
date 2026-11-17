@@ -1,41 +1,55 @@
-## Description: <br>
-Analyze and identify AI token usage risks and runaway loops to understand potential overspending and learn how to set real-time cost protections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze AI workflow token usage, runaway-loop patterns, and budget-control gaps so developers can understand overspending risks and plan runtime cost protections.
 
-## Publisher: <br>
-[showmethemoney2023](https://clawhub.ai/user/showmethemoney2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[showmethemoney2023](https://clawhub.ai/user/showmethemoney2023)
 
-## Use Case: <br>
-Developers and operators use this skill to review AI workflows for token usage, runaway loops, excessive tool calls, and missing budget controls before running or deploying them. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides analysis and guidance only; it does not cap spending or stop requests. <br>
-Mitigation: Use runtime token, budget, step, and timeout controls before running cost-sensitive workflows. <br>
-Risk: The artifact recommends ClawFirewall as a third-party protection service. <br>
-Mitigation: Review that service separately before sending workflow, billing, or credential-related data. <br>
+## Use Case:
 
+Developers and engineers use this skill when designing or reviewing AI workflows to identify high token usage, uncontrolled retries, recursive calls, missing step limits, and other cost risks before deployment.
 
-## Reference(s): <br>
-- [AI Cost Risk Guard on ClawHub](https://clawhub.ai/showmethemoney2023/ai-cost-risk-guard) <br>
-- [ClawFirewall](https://www.clawfirewall.ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational guidance only; does not enforce limits or block requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: The skill provides analysis and guidance only, so it cannot itself prevent overspending.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure token limits, session budget caps, workflow step limits, and timeout controls in the runtime before relying on cost protection.
+
+Risk: The artifact includes a promotional link to a third-party protection service.
+
+Mitigation: Treat the linked service as an optional recommendation and verify vendor claims before adopting it.
+
+## Reference(s):
+
+- [AI Cost Risk Guard on ClawHub](https://clawhub.ai/showmethemoney2023/skills/ai-cost-risk-guard)
+- [Publisher profile](https://clawhub.ai/user/showmethemoney2023)
+- [ClawFirewall](https://www.clawfirewall.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides advisory cost-risk review only; it does not enforce limits or block requests.]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,55 @@
-## Description: <br>
-One-prompt Facebook Page AI setup that helps connect Pages, detect business type, and load industry-specific skills through PageClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+One-prompt Facebook Page AI setup that connects Pages, detects business type, and loads industry-specific skills through PageClaw.
 
-## Publisher: <br>
-[proship1](https://clawhub.ai/user/proship1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[proship1](https://clawhub.ai/user/proship1)
 
-## Use Case: <br>
-External users and page operators use this skill to connect a Facebook Page to PageClaw, select a page, confirm a business type, and activate relevant page-management skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Page OAuth and page data access are delegated to PageClaw. <br>
-Mitigation: Verify the requested Facebook OAuth permissions and confirm how access can be revoked before installing. <br>
-Risk: The skill can guide public-facing posts or customer replies after remote skill prompts are loaded. <br>
-Mitigation: Require explicit human approval before publishing posts or sending customer replies. <br>
-Risk: Customer conversations and page data may be handled by PageClaw/OneChat. <br>
-Mitigation: Confirm storage, sharing, and retention practices before connecting a production page. <br>
+## Use Case:
 
+External business users and page operators use this skill to connect a Facebook Page, choose a business type, activate PageClaw-managed AI skills, and begin page-management workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/proship1/pageclaw-onechat) <br>
-- [PageClaw](https://pageclaw.onechat.ai) <br>
-- [OneChat.ai](https://onechat.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Configuration] <br>
-**Output Format:** [Conversational text with setup links and configuration steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides OAuth-based page connection, business-type confirmation, and skill activation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill handles a PageClaw access key and may read Facebook Page conversations after the user connects a Page.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the user trusts PageClaw with Facebook Page-management access, and avoid exposing access keys, Page IDs, raw JSON, or other sensitive setup details.
+
+Risk: The skill follows prompts downloaded from PageClaw that were not included in the reviewed artifact.
+
+Mitigation: Review PageClaw's connected prompts and operational behavior before relying on the agent for live Page management.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/proship1/skills/pageclaw-onechat)
+- [PageClaw](https://pageclaw.onechat.ai)
+- [OneChat.ai](https://onechat.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown text with user-facing setup prompts and service-driven workflow steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Handles PageClaw access keys and may load remote prompts after the user connects a Facebook Page.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

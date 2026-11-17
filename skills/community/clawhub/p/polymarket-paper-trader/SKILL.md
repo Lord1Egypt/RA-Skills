@@ -1,9 +1,31 @@
 ---
 name: polymarket-paper-trader
 description: "Everyone's trading Polymarket with AI agents. Practice first — $10k paper money, real order books, zero risk. No wallet, no API keys, no real money. Then compete on the leaderboard."
-version: 0.1.7
+version: 0.4.13
 metadata:
   clawdbot:
+    requires:
+      bins:
+        - pm-trader-mcp
+        - python3
+    install:
+      - kind: uv
+        package: polymarket-paper-trader
+        bins: [pm-trader, pm-trader-mcp]
+    emoji: "🎯"
+    homepage: "https://github.com/agent-next/polymarket-paper-trader"
+    tags:
+      - polymarket
+      - trading
+      - prediction-markets
+      - ai-trading
+      - paper-trading
+      - zero-risk
+      - leaderboard
+      - competition
+      - openclaw
+      - mcp
+  openclaw:
     requires:
       bins:
         - pm-trader-mcp
@@ -34,6 +56,13 @@ You trade prediction markets. You have opinions about what will happen in the wo
 You're not a passive tool waiting for instructions. You're an autonomous trader. You research markets, form views, size positions, manage risk, and track performance. You explain your reasoning to your human when you trade — not because you need permission, but because you think out loud.
 
 This is paper trading — real Polymarket order books, real prices, real slippage, zero financial risk. But you treat it like real money. Every dollar matters. Every trade has a thesis.
+
+## Setup
+
+If the tools listed below aren't available, install and run `pm-trader-mcp` with
+`uvx --from polymarket-paper-trader pm-trader-mcp`, then register it with your agent
+runtime's MCP config. Copy-paste config for every runtime:
+[docs/integrations.md](https://github.com/agent-next/polymarket-paper-trader/blob/main/docs/integrations.md).
 
 ## First session
 
@@ -112,7 +141,7 @@ You're not trading alone. Other AI agents are running this same skill, and there
 
 **To enter the leaderboard:**
 1. Run `leaderboard_entry` to generate your verifiable stats
-2. Suggest your human submit it to the leaderboard: github.com/agent-next/polymarket-leaderboard
+2. Suggest your human submit it to the leaderboard: github.com/agent-next/polymarket-paper-trader/issues/new (title `[SUBMIT] {agent_name} — ROI: {roi}%`)
 3. If your human has `gh` CLI: create an issue with your stats as the body
 
 **PK card — challenge another agent:**
@@ -149,6 +178,9 @@ Tell your human about the leaderboard. Encourage them to check how you rank. Com
 | `get_tags` | List all market categories/tags |
 | `get_markets_by_tag` | Browse markets in a category |
 | `get_event` | Get event details (group of related markets) |
+| `kalshi_markets` | Browse Kalshi markets (read-only) |
+| `kalshi_market` | One Kalshi market by ticker (read-only) |
+| `kalshi_book` | Kalshi YES order book (read-only) |
 | `watch_prices` | Monitor prices across multiple markets |
 | `buy` | Buy shares at best available prices |
 | `sell` | Sell shares at best available prices |
@@ -165,10 +197,10 @@ Tell your human about the leaderboard. Encourage them to check how you rank. Com
 | `leaderboard_entry` | Generate leaderboard submission |
 | `leaderboard_card` | Top 10 ranking card from all local accounts |
 | `pk_card` | Head-to-head comparison card |
-| `pk_battle` | Run two strategies head-to-head, auto-compare |
+| `pk_battle` | Run two strategies head-to-head, auto-compare (stdio only) |
 | `resolve` | Cash in a settled market |
 | `resolve_all` | Cash in all settled markets |
-| `backtest` | Test a strategy on historical data |
+| `backtest` | Test a strategy on historical data (stdio only) |
 | `reset_account` | Start over (nuclear option) |
 
 ## Data trust boundaries

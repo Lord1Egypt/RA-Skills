@@ -1,42 +1,58 @@
-## Description: <br>
-Provides a Chinese-language five-dimensional framework for retail A-share stock analysis, covering industry, business model, financial health, valuation, catalysts, position sizing, and risk warnings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language A-share stock analysis framework that helps structure mid-term stock research across industry, business quality, financial health, valuation, catalysts, retail-investor principles, and risk checks.
 
-## Publisher: <br>
-[boboy-j](https://clawhub.ai/user/boboy-j) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[boboy-j](https://clawhub.ai/user/boboy-j)
 
-## Use Case: <br>
-External users and agent operators use this skill to structure Chinese A-share stock analysis with a repeatable checklist for mid-term position decisions, risk review, and disciplined buy/sell reasoning. It is educational analysis support and does not execute trades or replace independent verification of current filings and market data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated stock ratings, position sizes, stop-loss levels, or buy/sell language may be mistaken for personalized financial advice. <br>
-Mitigation: Treat outputs as educational analysis support only; verify current market data, official filings, and personal suitability before making investment decisions. <br>
-Risk: The framework relies on current financial and market facts that may change after artifact examples or prior analyses were written. <br>
-Mitigation: Refresh all company data, announcements, regulatory filings, and price history before applying the framework to a real stock. <br>
+## Use Case:
 
+External users and finance-focused agents use this skill to organize China A-share stock research, compare fundamentals and valuation signals, and surface risk warnings before independent review. It is best used as a research checklist rather than personalized financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/boboy-j/stock-analysis-five-dimension) <br>
-- [Publisher profile](https://clawhub.ai/user/boboy-j) <br>
-- [Project homepage](https://atomgit.com/atomcode/stock-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose with tables, checklists, ratings, position suggestions, and risk warnings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language educational finance analysis; users should verify live market data and official filings independently.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: The skill can prompt concrete trading ratings, position sizes, buy/sell-style conclusions, and stop-loss suggestions for retail users.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as educational research checklists, not personalized financial advice; require independent market-data verification and qualified advice before real-money decisions.
+
+Risk: Embedded examples and market observations may become stale as prices, filings, and regulatory events change.
+
+Mitigation: Verify current prices, company announcements, financial statements, exchange notices, and other primary market data before relying on any generated analysis.
+
+Risk: The framework is tailored to China A-share stock research and a 1-3 month mid-term holding window.
+
+Mitigation: Avoid applying it directly to short-term trading predictions, non-A-share markets, or other asset classes without additional domain review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/boboy-j/skills/stock-analysis-five-dimension)
+- [Source homepage](https://atomgit.com/atomcode/stock-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown narrative with tables, checklist-style scoring, conclusions, and risk notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language stock research guidance; no code, shell commands, API calls, or configuration files are produced.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

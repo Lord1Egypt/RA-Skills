@@ -1,43 +1,58 @@
-## Description: <br>
-Speech enhancement / vocal denoising on remote (FREE) L4 GPU. Trigger when user says: denoise, remove noise, clean up audio, 去噪, 降噪, enhance audio. Takes local audio/video files and returns noise-reduced speech audio. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Speech enhancement and vocal denoising on a remote L4 GPU for local audio or video files, returning noise-reduced speech audio.
 
-## Publisher: <br>
-[speech2srt](https://clawhub.ai/user/speech2srt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[speech2srt](https://clawhub.ai/user/speech2srt)
 
-## Use Case: <br>
-Developers, creators, and media operations teams use this skill to clean speech audio from local audio or video files by uploading selected media to Modal for GPU-based denoising and downloading enhanced WAV outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected audio or video files are sent to Modal for cloud processing. <br>
-Mitigation: Use explicit file selections, avoid sensitive recordings unless external processing is acceptable, and confirm that Modal use is permitted for the data. <br>
-Risk: Directory inputs may include unintended media files. <br>
-Mitigation: List discovered media files and ask the user to confirm the exact selection before upload. <br>
-Risk: Uploaded task data may remain in the Modal volume after processing. <br>
-Mitigation: Run the documented recursive cleanup command after successful download. <br>
+## Use Case:
 
+External users and developers use this skill to clean noisy speech recordings or audio/video files by uploading selected media to Modal, running GPU speech enhancement, and retrieving enhanced WAV files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/speech2srt/speech-denoise) <br>
-- [Error Handling](references/error-handling.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Markdown, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands, local file paths, and enhanced WAV audio files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Downloads enhanced WAV files beside the original inputs and reports processed file count, result paths, sizes, and real-time factor.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server evidence release; SKILL.md frontmatter v1.3.1) <br>
+Risk: Media files are uploaded to Modal for remote processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only recordings that are appropriate to upload to Modal and avoid sensitive or confidential audio or video.
+
+Risk: Unsafe task-name path handling can affect unintended remote files or directories.
+
+Mitigation: Use a simple generated slug rather than a custom path-like value.
+
+Risk: The skill creates Modal volumes and runs remote GPU code with mutable dependencies.
+
+Mitigation: Review the skill before installing and monitor Modal resources created during use.
+
+## Reference(s):
+
+- [Error Handling](references/error-handling.md)
+- [ClawHub Skill Page](https://clawhub.ai/speech2srt/skills/speech-denoise)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and generated WAV audio files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces enhanced WAV files with an _enhanced suffix and reports processed file count, result paths, sizes, and real-time factor.]
+
+## Skill Version(s):
+
+v1.3.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

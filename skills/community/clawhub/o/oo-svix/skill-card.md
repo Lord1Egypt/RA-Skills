@@ -1,45 +1,56 @@
-## Description: <br>
-Svix helps agents read, create, update, and delete Svix data through an OOMOL-connected account using the oo CLI instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill to read, create, update, and delete Svix data through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to manage Svix applications, endpoints, event types, and messages from an agent workflow. It supports read operations as well as confirmed write and destructive actions against a connected Svix account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a connected account and sensitive credentials are injected server-side. <br>
-Mitigation: Use it only in environments where the OOMOL account and Svix connection are approved, and avoid exposing raw credentials in prompts, files, or logs. <br>
-Risk: Write actions can create or update Svix applications, endpoints, event types, and messages. <br>
-Mitigation: Fetch the live action schema first, review the exact JSON payload and expected effect, and obtain user confirmation before running write actions. <br>
-Risk: Destructive actions can delete Svix applications or endpoints. <br>
-Mitigation: Confirm the target application or endpoint identifier explicitly with the user before running destructive commands. <br>
+## Use Case:
 
+Developers use this skill to manage Svix applications, endpoints, event types, and messages through an OOMOL-connected account.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/oomol/oo-svix) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI Install Guide](https://cli.oomol.com/install-guide.md) <br>
-- [Svix Homepage](https://www.svix.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before running actions and returns connector responses as JSON when commands are executed with --json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: If the oo CLI is missing, setup runs a remote installer whose code has not been verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install a verified CLI release yourself and inspect its agent-skill synchronization settings before enabling the skill.
+
+Risk: The connector implementation and its handling of mediated credentials have not been verified.
+
+Mitigation: Connect only the Svix account you intend to use.
+
+## Reference(s):
+
+- [Svix documentation](https://docs.svix.com/)
+- [Svix homepage](https://www.svix.com)
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+- [oo CLI install guide](https://cli.oomol.com/install-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown instructions with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Actions are identified as reads, writes, or destructive operations; writes and destructive actions require confirmation.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,60 @@
-## Description: <br>
-Trade prediction markets on Simmer/Polymarket using value-based analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade prediction markets on Simmer/Polymarket using value-based analysis.
 
-## Publisher: <br>
-[czm200](https://clawhub.ai/user/czm200) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[czm200](https://clawhub.ai/user/czm200)
 
-## Use Case: <br>
-External users and agents use this skill to analyze Simmer and Polymarket prediction markets, check positions, identify value opportunities, and prepare trades with explicit reasoning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to place or cancel prediction-market trades, including real-money Polymarket trades. <br>
-Mitigation: Keep TRADING_VENUE set to sim unless real USDC trading is deliberately enabled, and require explicit approval before each trade, venue change, or order cancellation. <br>
-Risk: A SIMMER_API_KEY may authorize trading actions if exposed or misused. <br>
-Mitigation: Use a restricted and revocable API key when available, keep it in workspace secrets, and set hard spending limits outside the skill. <br>
-Risk: Market recommendations can be wrong, stale, or based on ambiguous resolution criteria. <br>
-Mitigation: Review market context, warnings, resolution criteria, and the proposed thesis before execution; pass on markets where the thesis or resolution is unclear. <br>
+## Use Case:
 
+External users and agent operators use this skill to research prediction markets, review Simmer or Polymarket positions, identify value-based opportunities, and prepare or execute trades through the Simmer API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/czm200/polymarket-value-trader) <br>
-- [Simmer Markets](https://simmer.markets) <br>
-- [Simmer API base URL](https://api.simmer.markets) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY; defaults to the sim venue unless real trading is deliberately enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can use credentials to place real-money Polymarket trades, cancel orders, and redeem positions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Default to paper-trading mode, use least-privilege credentials where available, and require explicit user confirmation before every live trade, venue switch, redemption, or order cancellation.
+
+Risk: The required API key could be exposed if printed, logged, or stored in plaintext.
+
+Mitigation: Store SIMMER_API_KEY only in approved secret storage and avoid echoing, logging, or embedding it in files.
+
+Risk: The heartbeat workflow can create recurring authenticated monitoring and trading-related prompts.
+
+Mitigation: Add heartbeat monitoring only when recurring checks are intended and document how to disable or remove the workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/czm200/skills/polymarket-value-trader)
+- [Publisher Profile](https://clawhub.ai/user/czm200)
+- [Simmer Markets](https://simmer.markets)
+- [Simmer API Base URL](https://api.simmer.markets)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown with shell command examples and concise trading analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include market tables, position summaries, trade theses, API requests, and configuration guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

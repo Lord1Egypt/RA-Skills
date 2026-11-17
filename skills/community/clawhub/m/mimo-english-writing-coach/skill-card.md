@@ -1,38 +1,53 @@
-## Description: <br>
-英文写作教练 helps Chinese-speaking writers revise English for academic, business, creative, and everyday contexts by checking grammar, improving expression and style, and explaining the changes in Chinese. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+英文写作教练 reviews English writing for grammar, expression, and style, with Chinese explanations and specialized flows for academic papers, business email, creative writing, and other everyday writing.
 
-## Publisher: <br>
-[qqyougitcom](https://clawhub.ai/user/qqyougitcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qqyougitcom](https://clawhub.ai/user/qqyougitcom)
 
-## Use Case: <br>
-Students, professionals, and other English writers use this skill to review drafted English text, receive grammar and wording corrections, adapt style for academic, business, creative, or everyday contexts, and get Chinese explanations for the changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided writing may contain confidential business, academic, or personal information. <br>
-Mitigation: Avoid submitting sensitive text unless the agent environment is approved to process that content. <br>
+## Use Case:
 
+External users and writers use this skill to improve English drafts across academic, business, creative, resume, report, and everyday communication contexts. It provides sentence-level corrections, explanations, grammar and style scoring, learning takeaways, and practice suggestions.
 
-## Reference(s): <br>
-- [Detailed writing criteria](artifact/references/details.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown feedback with correction tables, scoring, learning points, and practice suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [English revisions with Chinese explanations; no tool execution or elevated access required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and server release evidence) <br>
+Risk: Submitted writing may include personal, confidential, or business-sensitive text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Users should only provide text they are authorized to share and should redact sensitive details before requesting review.
+
+Risk: Default Chinese explanations and American English preferences may not match every reader, locale, or publication style.
+
+Mitigation: Users should specify the desired explanation language, English variant, style guide, and target audience when those constraints matter.
+
+## Reference(s):
+
+- [Detailed Writing Standards](artifact/references/details.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown feedback with tables, scores, bullet-point recommendations, corrected English, and Chinese explanations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to American English unless the user requests British English; preserves author style and domain terminology unless clearly incorrect.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

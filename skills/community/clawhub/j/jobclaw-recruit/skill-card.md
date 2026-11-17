@@ -1,43 +1,56 @@
-## Description: <br>
-Jobclaw Recruit helps recruiters publish, update, delete, and review job postings and matched candidates in the JobClaw matching system. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jobclaw Recruit helps recruiters publish, update, delete, and review job postings in JobClaw, then inspect AI-matched candidates.
 
-## Publisher: <br>
-[imluyu](https://clawhub.ai/user/imluyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[imluyu](https://clawhub.ai/user/imluyu)
 
-## Use Case: <br>
-Recruiters and hiring teams use this skill to collect job details, publish and manage postings, retrieve matched candidates, and prepare structured candidate analysis reports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can print account tokens and caches recruiter credentials locally. <br>
-Mitigation: Treat printed tokens like passwords, avoid sharing transcripts containing tokens, and clear cached credentials when they are no longer needed. <br>
-Risk: The skill can send recruiting data, job details, and candidate profile or resume data to an API endpoint, including a custom endpoint if one is provided. <br>
-Mitigation: Use only the default or another trusted JobClaw endpoint, and do not pass a custom apiUrl unless the server is approved for the recruiting data involved. <br>
-Risk: The skill can publish, update, and deactivate job postings. <br>
-Mitigation: Review job details, job IDs, and requested actions before running write operations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/imluyu/jobclaw-recruit) <br>
-- [Publisher profile](https://clawhub.ai/user/imluyu) <br>
-- [JobClaw API endpoint](https://api.jobclaw.ai) <br>
+## Use Case:
 
+Recruiters and hiring teams use this skill to collect job-posting details, publish and maintain openings in JobClaw, and review matched candidates with structured hiring analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command inputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill can include recruiter job IDs, job posting details, candidate match summaries, and hiring recommendations in the agent conversation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Recruiter authentication tokens are stored locally and may appear in command output.
+
+Mitigation: Treat command outputs and transcripts as sensitive, and rotate or revoke any token that is exposed.
+
+Risk: Job posting and candidate data is sent to JobClaw.
+
+Mitigation: Use the skill only with hiring data approved for processing by JobClaw.
+
+Risk: Custom API endpoints can redirect hiring data or tokens away from the intended service.
+
+Mitigation: Use the default JobClaw API endpoint unless a custom apiUrl is explicitly trusted.
+
+## Reference(s):
+
+- [Jobclaw Recruit ClawHub listing](https://clawhub.ai/imluyu/skills/jobclaw-recruit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command inputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include job records, candidate match details, similarity scores, and token-dependent API results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

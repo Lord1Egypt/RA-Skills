@@ -1,39 +1,59 @@
-## Description: <br>
-AI Prompt Arsenal is a prompt engineering toolkit for creating, refining, and optimizing prompts for content creation, NFT art generation, music creation, crypto research, business automation, and code generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A comprehensive AI prompt engineering toolkit for generating high-quality outputs from Claude, GPT-4, Midjourney, Suno, and other AI models.
 
-## Publisher: <br>
-[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s)
 
-## Use Case: <br>
-External users, developers, content creators, crypto founders, and indie hackers use this skill to select and customize prompt templates and prompt engineering frameworks for text, image, music, research, automation, and code-generation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crypto research and trading-bot prompts can produce output that users may mistake for personalized financial advice or deploy without sufficient review. <br>
-Mitigation: Review generated crypto and trading output before use, add risk disclaimers and verification steps, and do not treat the output as personalized financial advice. <br>
+## Use Case:
 
+External users and creators use this skill to select and customize prompt templates for content creation, image and music generation, crypto research, business automation, and code generation.
 
-## Reference(s): <br>
-- [AI Prompt Engineering Frameworks](references/frameworks.md) <br>
-- [AI Prompt Arsenal Prompt Library](references/prompts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown prompt templates, structured instructions, and code-oriented prompt text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only prompt library; variables are marked with square brackets for customization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad activation wording may cause the skill to influence unrelated agent work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only after confirming the user's requested task category and selected prompt template.
+
+Risk: The crypto trading bot prompt can lead to deployable trading automation without enough safety boundaries.
+
+Mitigation: Review, sandbox-test, and independently validate generated trading code before any live use, and require secure secret handling.
+
+Risk: Crypto research or trading outputs may be mistaken for financial advice.
+
+Mitigation: Treat outputs as drafting or technical assistance and require human review for financial, investment, or trading decisions.
+
+## Reference(s):
+
+- [AI Prompt Engineering Frameworks](references/frameworks.md)
+- [AI Prompt Arsenal Prompt Library](references/prompts.md)
+- [ClawHub Skill Page](https://clawhub.ai/fuzzyb33s/skills/ai-prompt-arsenal)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown prompt templates and generated responses, often with fenced code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses bracketed variables for user-provided task details.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

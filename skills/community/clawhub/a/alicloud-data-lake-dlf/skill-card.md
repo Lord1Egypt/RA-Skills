@@ -1,44 +1,57 @@
-## Description: <br>
-Manage Alibaba Cloud Data Lake Formation (DataLake) via OpenAPI/SDK. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Alibaba Cloud Data Lake Formation (DataLake) via OpenAPI/SDK. Use whenever the user asks for DataLake catalog resource operations, configuration updates, status queries, or troubleshooting DataLake API workflows.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to discover Alibaba Cloud Data Lake Formation APIs, manage DataLake catalog resources, update configuration, query status, and troubleshoot API workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Alibaba Cloud credentials may be exposed or overprivileged during API workflows. <br>
-Mitigation: Use least-privilege or short-lived credentials, prefer environment variables, and avoid sharing saved outputs until reviewed. <br>
-Risk: Create, update, modify, or set operations can change cloud resources. <br>
-Mitigation: Confirm region, resource identifiers, and intended changes before running mutating API calls, then verify results with describe or list APIs. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to plan and carry out Alibaba Cloud Data Lake Formation catalog operations, configuration changes, status checks, and troubleshooting with OpenAPI metadata and SDK workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cinience/alicloud-data-lake-dlf) <br>
-- [OpenAPI product page](https://api.aliyun.com/product/DataLake) <br>
-- [DataLake API metadata](https://api.aliyun.com/meta/v1/products/DataLake/versions/2020-07-10/api-docs.json) <br>
-- [DataLake API definition template](https://api.aliyun.com/meta/v1/products/DataLake/versions/2020-07-10/apis/{ApiName}/api.json) <br>
-- [sources.md](references/sources.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell and code snippets; optional JSON and Markdown files under output/alicloud-data-lake-dlf/] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save API inventory artifacts and response summaries for reproducibility.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release metadata) <br>
+Risk: User-directed Data Lake Formation changes could create, update, modify, or set cloud resources incorrectly if parameters or intent are wrong.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege Alibaba Cloud credentials and review any Create, Update, Modify, or Set operation before execution.
+
+Risk: Generated outputs may include cloud API responses or operational evidence outside the expected location.
+
+Mitigation: Keep generated outputs under output/alicloud-data-lake-dlf/ and review artifacts before sharing or reuse.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cinience/skills/alicloud-data-lake-dlf)
+- [OpenAPI Product Page](https://api.aliyun.com/product/DataLake)
+- [DataLake API List Metadata](https://api.aliyun.com/meta/v1/products/DataLake/versions/2020-07-10/api-docs.json)
+- [DataLake Single API Definition Metadata](https://api.aliyun.com/meta/v1/products/DataLake/versions/2020-07-10/apis/{ApiName}/api.json)
+- [Sources](references/sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, API calls, Files]
+
+**Output Format:** [Markdown guidance with shell commands, API call plans, JSON response artifacts, and generated Markdown summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated artifacts and response summaries should be written under output/alicloud-data-lake-dlf/.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

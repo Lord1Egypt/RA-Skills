@@ -2,9 +2,16 @@
 
 Detailed kernel dump file format reference.
 
+> **Sensitive artifact:** A vmcore can contain credentials, encryption keys,
+> process memory, hostnames, paths, and customer data. Keep raw dumps and
+> derived output access-controlled; do not upload, transmit, or paste them into
+> external services without explicit authorization and approved sanitization.
+
 ## ELF Format Basics
 
-vmcore typically uses ELF (Executable and Linkable Format):
+The kernel's `/proc/vmcore` uses ELF (Executable and Linkable Format). A saved
+dump may instead use makedumpfile's kdump-compressed format; identify it before
+choosing a parser. The following `readelf` examples require ELF input:
 
 ```bash
 # Check vmcore type
@@ -44,18 +51,19 @@ objdump -x vmcore     # All header information
 
 ## VMCOREINFO
 
-VMCOREINFO is a special ELF note section containing critical kernel information:
+VMCOREINFO is an ELF note containing critical kernel information. Core files
+can carry notes through `PT_NOTE` program headers without a section table.
 
 ```
-# View in crash
-crash> sys -i
-
-# View with readelf
+# Inspect the notes in an ELF vmcore
 readelf -n vmcore | grep -A 100 VMCOREINFO
-
-# Extract and parse
-crash> p *vmcoreinfo_data
 ```
+
+This is an inspection aid, not a complete parser: `readelf` may display a note's
+description as hexadecimal bytes, and a fixed context length may truncate it.
+Use a format-aware tool to extract and parse the full note within its recorded
+size. `crash> sys -i` displays DMI strings, not VMCOREINFO; dereferencing the
+character pointer `vmcoreinfo_data` once does not extract the whole note.
 
 ### Key Fields
 
@@ -63,9 +71,10 @@ crash> p *vmcoreinfo_data
 |-------|-------------|
 | `OSRELEASE` | Kernel version string |
 | `PAGESIZE` | Page size |
-| `init_uts_ns.name.release` | Kernel version |
-| `phys_base` | Physical address base (x86_64) |
-| `VA_BITS` | Virtual address bits (ARM64) |
+| `SYMBOL(init_uts_ns)` | Address of the kernel UTS namespace object |
+| `NUMBER(phys_base)` | Physical address base (x86_64) |
+| `NUMBER(VA_BITS)` | Maximum configured virtual address width (ARM64) |
+| `NUMBER(TCR_EL1_T1SZ)` | Runtime TTBR1 size offset; ARM64 width is `64 - T1SZ` |
 | `KERNELOFFSET` | Kernel offset (KASLR) |
 | `CRASHTIME` | Crash timestamp |
 
@@ -88,11 +97,14 @@ SIZE(list_head)=16
 ### Symbol Addresses
 
 ```
-init_uts_ns=ffffffff8283a040
-node_online_map=ffffffff8283e000
-swapper_pg_dir=ffffffff82800000
-init_task=ffffffff82812480
+SYMBOL(init_uts_ns)=ffffffff8283a040
+SYMBOL(node_online_map)=ffffffff8283e000
+SYMBOL(swapper_pg_dir)=ffffffff82800000
+SYMBOL(init_task)=ffffffff82812480
 ```
+
+Field availability and structure offsets depend on the producing kernel;
+example values are not a substitute for its actual note and matching build.
 
 ## Supported Dump Formats
 
@@ -103,8 +115,8 @@ Standard ELF format, most universal:
 ```bash
 # Features
 - Can be read directly by gdb
-- Contains complete memory layout information
-- Supports compression (ELF with gzip/xz)
+- Describes the captured memory segments; filtering or missing pages still matter
+- ELF dump output does not use makedumpfile's per-page compression
 
 # Generation method
 kdump (default configuration)
@@ -117,7 +129,7 @@ Compressed format, saves space:
 
 ```bash
 # Features
-- Default compression format
+- Default output format of makedumpfile; compression is selected separately
 - Requires crash or makedumpfile to parse
 - Supports filtering and compression levels
 
@@ -125,9 +137,11 @@ Compressed format, saves space:
 kdump (compression configuration)
 makedumpfile -c -d 31 vmcore vmcore.kdump
 
-# Decompress to ELF
-makedumpfile -E vmcore.kdump vmcore.elf
 ```
+
+Upstream makedumpfile rejects `-E` when its input is already kdump-compressed.
+Select ELF output when processing the original supported ELF input. A compressed
+dump can be re-filtered, but excluded pages cannot be restored by conversion.
 
 ### 3. diskdump
 
@@ -147,6 +161,11 @@ DUMPFILE: diskdump
 ### 4. netdump
 
 Red Hat netdump format:
+
+> Network delivery does not make a dump less sensitive. Before enabling remote
+> collection, authorize the destination, restrict receiver access, protect the
+> transport on the trusted network, and define retention and secure disposal.
+> Never send a raw production dump to an unapproved endpoint.
 
 ```bash
 # Features
@@ -175,8 +194,8 @@ Linux Kernel Crash Dump:
 Raw memory dump:
 
 ```bash
-# Startup method
-crash vmlinux ddr.bin --ram_start=0x80000000
+# Upstream syntax: a contiguous file and its verified physical start address
+crash vmlinux ddr.bin@0x80000000
 
 # Multiple memory regions
 crash vmlinux ddr1.bin@0x80000000 ddr2.bin@0x880000000
@@ -186,6 +205,13 @@ crash vmlinux ddr1.bin@0x80000000 ddr2.bin@0x880000000
 - Requires specifying physical start address
 - Common in embedded systems
 ```
+
+These addresses are examples, not ARM64 defaults. Verify the capture's segment
+map, gaps, tool version and target architecture support. `--ram_start` is not
+an upstream crash option; a vendor-specific invocation must stay labeled with
+its exact tool/build. This raw-input syntax is an authorized human's offline
+reference. Agents must keep using the wrapper's regular-file inputs and must
+not bypass it to pass unsupported memory sources or arbitrary options.
 
 ## kdump Working Principle
 
@@ -214,9 +240,13 @@ cat /sys/kernel/kexec_crash_size
 
 # GRUB configuration
 crashkernel=128M@16M      # Fixed location
-crashkernel=auto          # Auto calculation
-crashkernel=256M,high     # High memory
+crashkernel=auto          # Distribution-specific support; not universal upstream syntax
+crashkernel=256M,high     # Requires architecture/kernel support and suitable low memory
 ```
+
+Treat boot-parameter changes as persistent host mutations requiring the exact
+host/action authorization and rollback described in the main skill. Use the
+distribution-specific setup guide rather than applying these sample sizes.
 
 ### Dump Process
 
@@ -245,7 +275,7 @@ makedumpfile -p vmcore vmcore.compressed   # snappy
 # Filtering (-d levels)
 # 1: Exclude zero pages
 # 2: Exclude cache pages
-# 4: Exclude cache private pages
+# 4: Exclude all cache pages
 # 8: Exclude user data pages
 # 16: Exclude free pages
 makedumpfile -d 31 -c vmcore vmcore.small  # Minimize
@@ -253,8 +283,8 @@ makedumpfile -d 31 -c vmcore vmcore.small  # Minimize
 # Convert to ELF
 makedumpfile -E vmcore vmcore.elf
 
-# View information
-makedumpfile -f vmcore
+# View the tool version
+makedumpfile --version
 
 # Split large files
 makedumpfile --split vmcore part1 part2 part3
@@ -271,12 +301,18 @@ makedumpfile --reassemble part1 part2 part3 vmcore
 # Use file command
 file vmcore
 
-# Use crash to test load
+# Extract the advertised release; this does not test a full crash session
 crash --osrelease vmcore
 
 # Check VMCOREINFO
 readelf -n vmcore | grep VMCOREINFO
 ```
+
+Format identification and metadata extraction do not prove that all required
+pages are present or uncorrupted. Compare recorded checksums and capture size,
+then validate the dump with exact matching symbols through the supported path.
+`makedumpfile -f` means force overwrite; it is not an information or integrity
+check and should not be added to preservation or inspection commands.
 
 ### Find Matching vmlinux
 
@@ -289,15 +325,21 @@ readelf -n vmcore | grep OSRELEASE
 crash --osrelease vmcore
 ```
 
+A release string alone is not an exact-build match. Preserve and compare build
+IDs, kernel package/build provenance, modules and configuration. `strings` may
+find incidental or stale text and is not a parser for compressed dump pages.
+
 ### Handle Corrupted vmcore
 
 ```bash
-# Skip error checking
-crash --no_kallsyms vmlinux vmcore
-
-# Use minimal loading
+# Human-only offline recovery reference; reduced initialization and command set
 crash --minimal vmlinux vmcore
 ```
+
+`--minimal` may permit limited extraction from a damaged dump; it does not
+repair missing data or establish its reliability. `--no_kallsyms` controls use
+of kallsyms-generated module symbols, not dump error checking. Agents must
+report unsupported recovery needs instead of bypassing the wrapper.
 
 ### Rebuild from Partial Memory
 
@@ -305,9 +347,13 @@ crash --minimal vmlinux vmcore
 # Multiple memory regions
 crash vmlinux mem1.bin@0x0 mem2.bin@0x100000000
 
-# Use System.map instead of partial symbols
-crash -S System.map vmlinux vmcore
+# Optional supplemental map file; matching debug vmlinux is still required
+crash System.map vmlinux vmcore
 ```
+
+The raw segment map must come from the capture. `System.map` cannot reconstruct
+missing memory or replace type/debug information. Upstream `-S` takes no
+argument and selects `/boot/System.map`; it is not `-S <path>`.
 
 ## Debugging Information
 
@@ -315,10 +361,13 @@ crash -S System.map vmlinux vmcore
 
 ```
 crash> sys
-crash> sys -i           # VMCOREINFO
-crash> sys -t           # panic time
-crash> sys -n           # NMI information
+crash> sys -t           # kernel taint information
+crash> sys -i           # DMI data, if present; may include serials and UUIDs
 ```
+
+The `DATE` field in `sys` provides the recorded system time. Upstream `sys -n`
+is not an NMI-information command; inspect the actual panic/log and CPU stacks
+for NMI context instead. Do not expose DMI identifiers in external reports.
 
 ### Memory Layout
 
@@ -335,3 +384,11 @@ crash> bt -a            # all CPU call stacks
 crash> mach             # machine information
 crash> set -c <cpu>     # switch CPU context
 ```
+
+## Primary References
+
+- [crash manual](https://github.com/crash-utility/crash/blob/master/crash.8)
+- [crash sys help](https://crash-utility.github.io/help_pages/sys.html)
+- [VMCOREINFO](https://docs.kernel.org/admin-guide/kdump/vmcoreinfo.html)
+- [makedumpfile manual source](https://github.com/makedumpfile/makedumpfile/blob/master/makedumpfile.8.in)
+- [makedumpfile input/output checks](https://github.com/makedumpfile/makedumpfile/blob/master/makedumpfile.c)

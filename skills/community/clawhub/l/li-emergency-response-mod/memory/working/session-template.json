@@ -1,0 +1,52 @@
+{
+  "current_session": {
+    "incident_name": null,
+    "mode": "production",
+    "flag_format": null,
+    "scope": null,
+    "rules": null,
+    "severity": null,
+    "timezone": "Asia/Shanghai",
+    "phase": "triage",
+    "start_time": null,
+    "last_progress_time": null,
+    "sources": [],
+    "stakeholders": [],
+    "assets": [],
+    "notes": [],
+    "evidence": [],
+    "artifacts": [],
+    "attempts": [],
+    "actions": [],
+    "timeline": [],
+    "flags": [],
+    "iocs": {
+      "ip": [],
+      "domain": [],
+      "url": [],
+      "hash": [],
+      "process": [],
+      "file": [],
+      "registry": [],
+      "user": []
+    },
+    "containment": [],
+    "eradication": [],
+    "recovery": [],
+    "lessons_learned": [],
+    "next_steps": [],
+    "meta": {
+      "rules": {
+        "vbr_required": true,
+        "hitl_required_on_risky_actions": true,
+        "preserve_evidence_first": true
+      }
+    }
+  },
+  "last_error": {
+    "timestamp": null,
+    "error_message": null,
+    "context": null,
+    "root_cause_analysis": null
+  }
+}

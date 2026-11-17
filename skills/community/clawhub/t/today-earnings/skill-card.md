@@ -1,44 +1,64 @@
-## Description: <br>
-Today Earnings retrieves Yahoo Finance earnings-calendar data for a selected date through a local Chrome extension and Native Messaging flow, returning ticker, earnings timing, and market-cap data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches Yahoo Finance earnings calendar data for a single date and returns structured company earnings records, including ticker, earnings timing, and market capitalization.
 
-## Publisher: <br>
-[lhl09120](https://clawhub.ai/user/lhl09120) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lhl09120](https://clawhub.ai/user/lhl09120)
 
-## Use Case: <br>
-Developers and finance-focused agent users use this skill to install a local Chrome-based collection path and fetch a single day's public Yahoo Finance earnings-calendar entries as structured data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires loading a local Chrome extension and registering a Native Messaging host. <br>
-Mitigation: Install it only on a trusted local machine, verify the extension ID during setup, and remove the extension and native-host registration when no longer needed. <br>
-Risk: Results depend on Yahoo Finance page availability and page structure. <br>
-Mitigation: If results are empty or requests time out, verify the Yahoo Finance earnings-calendar page manually and review the documented parsing assumptions. <br>
+## Use Case:
 
+Developers and analysts use this skill to query Yahoo Finance earnings calendar entries for today or a specified date from a local Chrome-based workflow. It is useful when an agent needs JSON data for ticker symbols, BMO/AMC/TNS earnings timing, and numeric market capitalization.
 
-## Reference(s): <br>
-- [Usage Guide](references/usage_guide.md) <br>
-- [Yahoo Finance Earnings Calendar Technical Reference](references/yahoo_earnings_calendar.md) <br>
-- [Technical Design](design.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/lhl09120/today-earnings) <br>
-- [Yahoo Finance Earnings Calendar](https://finance.yahoo.com/calendar/earnings?day=YYYY-MM-DD&offset=0&size=100) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The runtime output is a JSON array with code, earningType, and numeric marketCap fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.3.4 (source: server release evidence) <br>
+Risk: The installed native host exposes an unauthenticated local socket that other local processes could use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in trusted local environments and prefer a version that uses a user-private socket path, validates local requests, authenticates callers, and limits request sizes.
+
+Risk: The workflow requires installing a Chrome extension and local Native Messaging host.
+
+Mitigation: Review the extension, native host, and install script before deployment; load the extension only under the intended browser profile and publisher release.
+
+Risk: The Ubuntu installation guidance includes a deprecated apt-key sudo pipeline.
+
+Mitigation: Use current distribution keyring practices for Chrome repository setup or install Chrome through an approved organizational package channel.
+
+Risk: Yahoo Finance page structure changes can break parsing or produce incomplete earnings records.
+
+Mitigation: Validate results against the Yahoo Finance earnings calendar after updates and review the documented DOM field assumptions when output changes unexpectedly.
+
+## Reference(s):
+
+- [Today Earnings ClawHub Release](https://clawhub.ai/lhl09120/skills/today-earnings)
+- [Usage Guide](references/usage_guide.md)
+- [Yahoo Finance Earnings Calendar Technical Reference](references/yahoo_earnings_calendar.md)
+- [Skill Design](design.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration]
+
+**Output Format:** [JSON array on stdout, with Markdown guidance and shell commands in the skill documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Each result contains code, earningType, and numeric marketCap; failures are reported on stderr with a non-zero exit code.]
+
+## Skill Version(s):
+
+4.3.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

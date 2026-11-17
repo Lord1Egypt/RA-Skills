@@ -1,0 +1,18 @@
+{
+  "$schema": "../schemas/policy.schema.json",
+  "version": "1.2.0",
+  "caption": {
+    "maxLines": 2,
+    "automaticWrapAllowed": true,
+    "allowedSourceVariants": ["original"],
+    "requireWordLevelAudit": true,
+    "hardMinDurationMs": 450,
+    "normalMinDurationMs": 800,
+    "shortCardAllowedPattern": "^[A-Za-z0-9][A-Za-z0-9+&._/ -]*$",
+    "shortCardMinCharacters": 2,
+    "shortCardMaxCharacters": 16,
+    "maxReplacementCharacters": 4,
+    "maxTraditionalChineseHits": 0,
+    "traditionalCharacters": "萬與專業東絲兩嚴喪個豐臨為麗舉麼義烏樂喬習鄉書買亂爭於虧雲亞產畝親億僅從侖倉儀們價眾優會傘偉傳傷倫偽體餘傭傾儲兒兌黨蘭關興養獸內岡冊寫軍農馮沖決況凍淨減湊凜幾鳳凱劃劇劉則剛創刪別劑勁勞勢勳勵勸匯區協單賣盧衛卻廠廳歷厲壓厭廁廈廚廢廣莊慶庫應廟龐開異棄張彌彎彈強歸錄當徹憶憂懷態慣慘慶懲戲戶撲執擴掃揚擇擔據擬攏攔攝攜數齊斷無舊時曆術機殺雜權條來楊極構標樣樹橋檔檢樓歐歡歲歷殘毀氣漢湯灣濕準溝滅滾滿漁漸潔潛瀏覽燈靈災爐爭愛爺牆獨現產畫異疊監盤盜盡眾睏矚礦碼禮離種積穩窩窮竄競筆築簡簽糧糾紀約紅級紋納純紙組細終結統絲綠維網緊練縣總績織繞繪繼續罰羅職聽腦臉臨臺與舉舊艦藝節萬華葉號蟲補裝裡製複見規視覺覽觀觸訂計訊討訓記講許設訪證評識譯議護讀變讓豐貝負財責賬貨質購貴貸費資賦趨車軟轉輪辦邊運過達違遠適選遞鄧鄭釋鑑針鈴鉤銷鎖鍋鍵鏡長門閉開間隊陽陰陣階隨難雲電靜頂項順須領頭類顧風飛飯館馬驗騰驅髮鬥魚鳥鳴麥黃點齒龍"
+  }
+}

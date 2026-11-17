@@ -46,8 +46,9 @@ async function main() {
 ${c.bold}${c.cyan}╔══════════════════════════════════════════════╗
 ║   ☎️  Amber Voice Assistant — Setup Wizard   ║
 ╚══════════════════════════════════════════════╝${c.reset}
-`);
+  `);
   info('This wizard will walk you through configuration and generate a .env file.');
+  info('Demo safety: the real setup writes credentials to runtime/.env in plaintext on your machine. Keep that file private, restrict file permissions, and do not screen-share or commit it.');
   info('Press Enter to accept defaults shown in parentheses.\n');
 
   const cfg = {};
@@ -55,6 +56,7 @@ ${c.bold}${c.cyan}╔═══════════════════�
   // Twilio
   head('Twilio Configuration');
   info('Get credentials at https://console.twilio.com');
+  info('Secret inputs are sensitive. In the real wizard, prefer a private terminal and avoid recording the setup session.');
   
   cfg.TWILIO_ACCOUNT_SID = await ask('Account SID (starts with AC)');
   cfg.TWILIO_AUTH_TOKEN = await ask('Auth Token');
@@ -68,6 +70,7 @@ ${c.bold}${c.cyan}╔═══════════════════�
   // OpenAI
   head('OpenAI Configuration');
   info('Get your API key at https://platform.openai.com/api-keys');
+  info('OpenAI keys and webhook secrets are stored locally for the runtime; rotate them if they are exposed.');
 
   cfg.OPENAI_API_KEY = await ask('API Key (starts with sk-)');
   await spinner('Validating OpenAI API key…');

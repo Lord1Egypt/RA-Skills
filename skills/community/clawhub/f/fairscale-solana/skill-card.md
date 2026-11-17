@@ -1,46 +1,60 @@
-## Description: <br>
-Provides reputation intelligence for Solana wallets so agents can ask natural-language trust, bot, whale, and eligibility questions and receive data-backed answers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FairScale Solana helps agents check Solana wallet reputation, assess transaction risk, apply custom scoring rules, and evaluate wallet lists through the FairScale API.
 
-## Publisher: <br>
-[RisheeA](https://clawhub.ai/user/RisheeA) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[risheea](https://clawhub.ai/user/risheea)
 
-## Use Case: <br>
-Developers and agent operators use this skill to assess Solana wallet reputation before trades, swaps, airdrops, whitelists, and access-control decisions. It helps agents check FairScore, tier, bot-like behavior, wallet traits, and custom eligibility criteria before taking an action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet addresses, wallet lists, custom scoring rules, and transaction amounts may be sent to FairScale for reputation checks. <br>
-Mitigation: Confirm with the user before sending sensitive wallet lists or transaction amounts, and disclose that the request will be processed by FairScale. <br>
-Risk: API keys can be exposed if passed directly on command lines or stored in prompts. <br>
-Mitigation: Store API keys in environment-backed secrets such as FAIRSCALE_API_KEY and avoid passing keys as shell arguments. <br>
-Risk: x402 wallet-funded requests or paid API tiers may incur charges. <br>
-Mitigation: Enable wallet-funded or paid calls only with explicit spending limits and per-call approval for chargeable requests. <br>
+## Use Case:
 
+Developers and agent operators use this skill to evaluate Solana wallet trustworthiness before trades, swaps, airdrops, whitelist decisions, or agent-to-agent transactions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/RisheeA/fairscale-solana) <br>
-- [FairScale API Reference](references/API.md) <br>
-- [FairScale Docs](https://docs.fairscale.xyz) <br>
-- [FairScale API Docs](https://api2.fairscale.xyz/docs) <br>
-- [FairScale API Key](https://sales.fairscale.xyz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown with natural-language answers, inline shell commands, configuration snippets, and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include wallet reputation scores, tiers, badges, feature explanations, eligibility decisions, and transaction-risk recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: Wallet addresses, transaction amounts, custom rules, and wallet lists may be sent to FairScale.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing that data with FairScale is acceptable for the user, organization, and transaction context.
+
+Risk: x402 payments or paid API usage can create spend exposure if an agent acts automatically.
+
+Mitigation: Require explicit confirmation or configured spend limits before enabling automatic wallet payments or high-volume requests.
+
+Risk: Passing a real API key as a command-line argument can expose the secret through shell history or process listings.
+
+Mitigation: Store API keys in protected environment variables or a secret manager instead of passing them directly to helper scripts.
+
+## Reference(s):
+
+- [FairScale API Reference](references/API.md)
+- [FairScale Docs](https://docs.fairscale.xyz)
+- [FairScale API Docs](https://api2.fairscale.xyz/docs)
+- [FairScale Skill Page](https://clawhub.ai/risheea/skills/fairscale-solana)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with API examples, JSON snippets, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference FairScale wallet scores, tiers, risk levels, recommendations, and API rate limits.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Amazon product differentiation strategy tool that analyzes competitor weaknesses, extracts pain points from negative reviews, identifies unique selling points from positive reviews, and generates actionable differentiation strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Amazon product differentiation strategy tool that analyzes competitor weaknesses, extracts pain points from negative reviews, identifies unique selling points from positive reviews, and generates actionable differentiation strategies.
 
-## Publisher: <br>
-[phheng](https://clawhub.ai/user/phheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phheng](https://clawhub.ai/user/phheng)
 
-## Use Case: <br>
-External e-commerce sellers and operators use this skill to compare Amazon products, mine competitor review pain points, identify differentiators, and produce a prioritized product and positioning action plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recommendations may be incomplete or incorrect because the analysis depends on user-provided product and review data and heuristic business logic. <br>
-Mitigation: Validate recommendations against current marketplace data, listing performance, and human domain judgment before changing product or marketing strategy. <br>
+## Use Case:
 
+External e-commerce sellers and their agents use this skill to compare Amazon products, mine review pain points, identify market gaps, and draft product positioning and improvement actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/phheng/product-differentiation-amazon) <br>
-- [Publisher profile](https://clawhub.ai/user/phheng) <br>
-- [Nexscope AI](https://www.nexscope.ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with comparison tables, ranked findings, positioning recommendations, and action items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are based on user-provided product, competitor, review, and market data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: The documented global install command is unpinned, so the installed package contents can change over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install from a trusted context, avoid administrator privileges, and prefer a pinned or locally reviewed installer when reproducibility matters.
+
+Risk: Product and review inputs may contain sensitive business information.
+
+Mitigation: Review input data handling before use and limit submitted data to what is necessary for the analysis.
+
+## Reference(s):
+
+- [Product Differentiation Amazon release page](https://clawhub.ai/phheng/skills/product-differentiation-amazon)
+- [Nexscope AI](https://www.nexscope.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with comparison tables, ranked pain points, differentiation opportunities, positioning recommendations, and action items.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports progressive L1-L4 analysis depth based on available product, competitor, review, and market data.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

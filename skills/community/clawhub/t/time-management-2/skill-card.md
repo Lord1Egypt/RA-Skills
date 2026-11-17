@@ -1,39 +1,47 @@
-## Description: <br>
-Manage time effectively as a solopreneur to maximize productivity and avoid burnout. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps solopreneurs manage time, focus, energy, distractions, and sustainable productivity routines to increase high-value work and avoid burnout.
 
-## Publisher: <br>
-[JK-0001](https://clawhub.ai/user/JK-0001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jk-0001](https://clawhub.ai/user/jk-0001)
 
-## Use Case: <br>
-External users and solopreneurs use this skill for structured time audits, time blocking, deep work protection, energy management, distraction reduction, and sustainable weekly planning. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for broad productivity or focus prompts and provide generic scheduling advice outside the user's context. <br>
-Mitigation: Confirm the user wants time-management coaching and adapt recommendations to the user's actual constraints before applying them. <br>
-Risk: Burnout and scheduling recommendations may be mistaken for professional medical, legal, or business advice. <br>
-Mitigation: Treat recommendations as general coaching and involve qualified professionals for health, legal, or business-critical decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JK-0001/time-management-2) <br>
+## Use Case:
+
+External solopreneurs use this skill to structure weekly and daily work with time audits, time-blocking, deep work protection, energy management, and distraction reduction.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad productivity-related trigger terms could activate the skill in more conversations than intended.
+
+Mitigation: Use the skill when the user is specifically asking about time management, productivity, focus, deep work, routines, or burnout prevention.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with checklists, schedules, and planning rules] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only coaching content; no code execution or external tool use.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+**Output Type(s):** [Guidance, Markdown]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown playbook guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static non-executable guidance; no tools, credentials, or external access requested.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

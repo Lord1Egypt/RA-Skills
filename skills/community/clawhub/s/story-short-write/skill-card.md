@@ -1,44 +1,58 @@
-## Description: <br>
-短篇网文写作。辅助短篇小说创作，从构思到成稿，聚焦情绪拉扯与节奏把控。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+短篇网文写作，辅助短篇小说创作，从构思到成稿，聚焦情绪拉扯与节奏把控。
 
-## Publisher: <br>
-[worldwonderer](https://clawhub.ai/user/worldwonderer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[worldwonderer](https://clawhub.ai/user/worldwonderer)
 
-## Use Case: <br>
-External writers and developers use this skill to plan, draft, revise, and quality-check Chinese short web-fiction projects from concept through manuscript files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to create and modify local draft files. <br>
-Mitigation: Use it in a project workspace where draft-file edits are expected, and review generated or changed files before relying on them. <br>
-Risk: Bundled local quality-check scripts may be run against draft files. <br>
-Mitigation: Review the proposed commands and run them only in the intended workspace. <br>
+## Use Case:
 
+面向中文网文作者及写作助手，用于围绕目标情绪和题材完成短篇小说构思、分节大纲、正文起草与精修。
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/worldwonderer/skills/story-short-write) <br>
-- [OpenClaw Source Metadata](https://github.com/worldwonderer/oh-story-claudecode) <br>
-- [Output Contract](references/output-contract.md) <br>
-- [Writing Workflow](references/writing-workflow.md) <br>
-- [Quality Checklist](references/quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown prose, local draft files, and optional inline shell commands for quality checks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or edit local Chinese short-fiction project files and run bundled local Node/Python quality-check scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.10 (source: ClawHub release evidence; artifact frontmatter lists 1.0.0) <br>
+Risk: The writing workflow can store author preferences across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review what preferences are retained and use the skill's author-memory controls when you want to change or remove them.
+
+Risk: The security scan was partial, and the skill includes workspace file and shell-check capabilities.
+
+Mitigation: Keep access scoped to the intended writing workspace and review file changes and commands before relying on their results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/worldwonderer/skills/story-short-write)
+- [Workflow design](references/workflow-design.md)
+- [Drafting workflow](references/workflow-draft.md)
+- [Revision workflow](references/workflow-revision.md)
+- [Short story format](references/short-format.md)
+- [Author memory guidance](references/author-memory.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese prose and Markdown story-planning and manuscript files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce story settings, section outlines, and a complete short story according to the user's requested genre, tone, and constraints.]
+
+## Skill Version(s):
+
+1.2.12 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

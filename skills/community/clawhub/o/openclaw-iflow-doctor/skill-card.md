@@ -1,46 +1,61 @@
-## Description: <br>
-AI-powered auto-repair system for OpenClaw with iflow integration that automatically diagnoses and fixes crashes, configuration errors, and model issues, and falls back to iflow-helper when needed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered auto-repair system for OpenClaw that diagnoses crashes, configuration errors, and model issues, and falls back to iflow-helper when needed.
 
-## Publisher: <br>
-[kosei-echo](https://clawhub.ai/user/kosei-echo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kosei-echo](https://clawhub.ai/user/kosei-echo)
 
-## Use Case: <br>
-Developers and operators use this skill to diagnose OpenClaw startup, gateway, memory, configuration, model, API, permission, and installation failures. It attempts automatic repair for common cases and provides reports, scripts, and iFlow-assisted guidance when manual intervention is needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install an always-on watchdog and persistent startup service. <br>
-Mitigation: Use manual or diagnosis-only mode unless continuous OpenClaw auto-repair is intentional; avoid root or SYSTEM persistence unless operationally required. <br>
-Risk: Generated repair scripts may make high-impact system or OpenClaw configuration changes. <br>
-Mitigation: Review every generated .bat or .sh file before execution and back up OpenClaw configuration and memory data first. <br>
-Risk: Logs and support context may contain API keys, settings, or other sensitive data. <br>
-Mitigation: Redact raw API keys, settings files, and logs before sharing them in support chats or external tools. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to diagnose gateway crashes, memory search failures, configuration errors, API quota issues, and agent conflicts. It attempts known repairs, records repair history, and falls back to iFlow-assisted manual troubleshooting when automatic repair is not enough.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kosei-echo/openclaw-iflow-doctor) <br>
-- [README](artifact/README.md) <br>
-- [Install Guide](artifact/INSTALL_GUIDE.md) <br>
-- [iFlow Auth Guide](artifact/docs/iflow-auth-guide.md) <br>
-- [Release Notes](artifact/RELEASE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and plain text with inline shell commands, generated repair scripts, and JSON configuration references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate local diagnosis reports, repair scripts, watchdog logs, and OpenClaw configuration changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter, release metadata) <br>
+Risk: Persistent monitoring can run with high privileges if installed through system service mechanisms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the watchdog under a least-privilege user account and avoid installing it as root or SYSTEM.
+
+Risk: Generated repair scripts may change or remove OpenClaw configuration and local files.
+
+Mitigation: Use report-only or manual review mode where possible, back up OpenClaw and iFlow configuration first, and inspect each generated script before execution.
+
+Risk: Diagnostic logs and settings files may contain API keys or other credentials.
+
+Mitigation: Redact secrets from logs, settings, and copied error output before sharing them with iFlow or other assistants.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kosei-echo/skills/openclaw-iflow-doctor)
+- [README](artifact/README.md)
+- [Installation guide](artifact/INSTALL_GUIDE.md)
+- [iFlow authentication guide](artifact/docs/iflow-auth-guide.md)
+- [Release notes](artifact/RELEASE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and text reports with inline shell commands and generated repair scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate localized diagnosis reports, repair scripts, configuration checks, and iFlow handoff guidance.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

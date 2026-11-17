@@ -1,42 +1,54 @@
-## Description: <br>
-Personalized news briefing generation skill that supports on-demand one-time briefings or recurring updates across search, filtering, organization, and output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+News Collector helps an agent generate personalized information briefs, either on demand or on a recurring schedule, by searching, filtering, organizing, and formatting source material.
 
-## Publisher: <br>
-[winsaney](https://clawhub.ai/user/winsaney) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[winsaney](https://clawhub.ai/user/winsaney)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to turn a topic, source preference, cadence, and output preference into a structured news or information briefing. It supports both immediate research briefings and recurring newsletter-style workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Briefings may include incorrect, low-quality, or insufficiently sourced information if source selection and filtering are weak. <br>
-Mitigation: Prefer high-quality, relevant sources, require source names and links in outputs, and review briefings before relying on them. <br>
-Risk: Configuring private sources or delivery through email, chat, webhooks, or other services can introduce credential and data-exposure risks. <br>
-Mitigation: Review credentials, private-source access, and delivery settings separately before enabling those integrations. <br>
+## Use Case:
 
+External users and developers use this skill to configure topics, source preferences, cadence, and templates for personalized news or research briefs. It supports one-time brief generation and recurring newsletter workflows.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/winsaney/news-collector) <br>
-- [Basic briefing template](assets/template-basic.md) <br>
-- [Advanced newsletter template](assets/template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text briefing with source links and optional reusable templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce one-time briefings, recurring briefing workflows, source lists, column structures, and customized briefing templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Periodic brief mode may browse external sites and repeatedly collect items from configured topics and sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before enabling periodic mode, confirm the source list, collection frequency, delivery channel, and whether source lists or collected items may be saved.
+
+Risk: Generated briefs can surface inaccurate, outdated, or low-quality material if the selected sources or filters are weak.
+
+Mitigation: Prioritize high-quality sources, require source links for traceability, and review generated briefs before relying on them.
+
+## Reference(s):
+
+- [Basic Newsletter Template](assets/template-basic.md)
+- [Advanced Newsletter Template](assets/template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown or plain text newsletter briefs with source links and configurable sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can include source lists, cadence settings, brief templates, summaries, and extended-reading links.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

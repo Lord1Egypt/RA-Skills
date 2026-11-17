@@ -1,41 +1,51 @@
-## Description: <br>
-Analyzes npm/yarn/pnpm, Cargo, and Go monorepos by reading manifest files to map internal dependencies, detect cycles and orphaned packages, flag coupling and version mismatches, and produce ASCII or Mermaid dependency graphs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monorepo internal dependency analyzer for npm/yarn/pnpm workspaces, Cargo workspaces, and Go multi-module repos that maps workspace dependencies, detects circular dependencies, finds orphaned packages, highlights coupling and version mismatches, and generates ASCII or Mermaid dependency graphs.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers and engineers use this skill to understand internal package relationships in monorepos before refactors, dependency cleanup, build troubleshooting, or architecture review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Repository package names, dependency relationships, or architecture details may be exposed when the agent summarizes a monorepo. <br>
-Mitigation: Use the skill only in trusted chats and repositories where sharing manifest-derived structure is acceptable. <br>
-Risk: Analysis depends on local manifest files and may miss dependency behavior that is not represented in package.json, Cargo.toml, go.mod, or workspace metadata. <br>
-Mitigation: Review generated dependency findings before acting on cleanup, refactor, or build-order recommendations. <br>
+## Use Case:
 
+Developers and engineers use this skill to analyze monorepo workspace dependencies before refactors, detect cycles and orphaned packages, and understand internal package coupling across npm, pnpm, Yarn, Cargo, and Go workspaces.
 
-## Reference(s): <br>
-- [Canlah AI](https://canlah.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-monorepo-dep-graph) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown report with ASCII dependency trees, Mermaid diagrams, tables, and inline shell or code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include suggested remediation steps, impact analysis, and test commands based on local manifest inspection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and skill frontmatter) <br>
+Risk: Workspace-discovery instructions can be steered by repository-controlled patterns to read package manifests outside the chosen project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on trusted repositories and prefer a version that rejects absolute workspace patterns, '..' path components, and symlink escapes before reading discovered manifests.
+
+## Reference(s):
+
+- [Canlah AI](https://canlah.ai)
+- [ClawHub Skill Page](https://clawhub.ai/phy041/skills/phy-monorepo-dep-graph)
+- [Publisher Profile](https://clawhub.ai/user/phy041)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with ASCII trees, Mermaid diagrams, tables, code snippets, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include dependency graphs, cycle findings, fan-in/fan-out metrics, orphaned package notes, version mismatch tables, and refactor guidance.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

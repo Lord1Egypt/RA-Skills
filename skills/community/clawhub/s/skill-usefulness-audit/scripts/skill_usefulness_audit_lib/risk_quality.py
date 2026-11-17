@@ -4,6 +4,10 @@ import importlib.util
 
 from .common import *
 
+SUBPROCESS_EXEC_CALL_NAMES = {"run", "Popen", "call", "check_call", "check_output"}
+EVIDENCE_FILE_LIST_LIMIT = 8
+
+
 def is_generated_python_cache(path: Path) -> bool:
     return "__pycache__" in {part.lower() for part in path.parts} or path.suffix.lower() in {".pyc", ".pyo"}
 
@@ -78,7 +82,7 @@ def python_exec_call_labels(text: str) -> set[str]:
                     os_aliases.add(alias.asname or alias.name)
         elif isinstance(node, ast.ImportFrom) and node.module == "subprocess":
             for alias in node.names:
-                if alias.name in {"run", "Popen", "call", "check_call", "check_output"}:
+                if alias.name in SUBPROCESS_EXEC_CALL_NAMES:
                     subprocess_call_names.add(alias.asname or alias.name)
 
     for node in ast.walk(tree):
@@ -91,7 +95,7 @@ def python_exec_call_labels(text: str) -> set[str]:
             elif func.id in {"eval", "exec"}:
                 labels.add("dynamic-exec")
         elif isinstance(func, ast.Attribute) and isinstance(func.value, ast.Name):
-            if func.value.id in subprocess_aliases and func.attr in {"run", "Popen", "call", "check_call", "check_output"}:
+            if func.value.id in subprocess_aliases and func.attr in SUBPROCESS_EXEC_CALL_NAMES:
                 labels.add("script-exec-call")
             elif func.value.id in os_aliases and func.attr == "system":
                 labels.add("script-exec-call")
@@ -118,13 +122,130 @@ def install_surface_labels(path: Path, relative: str, text: str) -> set[str]:
     return labels
 
 
+def markdown_container_line(line: str) -> tuple[str, int, int, bool]:
+    value = line
+    quote_depth = 0
+    while True:
+        quote = re.match(r"^ {0,3}>[ \t]?", value)
+        if not quote:
+            break
+        quote_depth += 1
+        value = value[quote.end() :]
+    indent = len(value) - len(value.lstrip(" \t"))
+    value = value.lstrip(" \t")
+    list_marker = re.match(r"(?:[-+*]|\d+[.)])(?:[ \t]+)", value)
+    has_list_marker = bool(list_marker)
+    if list_marker:
+        indent += list_marker.end()
+        value = value[list_marker.end() :].lstrip(" \t")
+    return value, quote_depth, indent, has_list_marker
+
+
+def preceding_list_indent(
+    lines: list[tuple[str, int, int, bool]],
+    index: int,
+    quote_depth: int,
+    opening_indent: int,
+) -> int | None:
+    if opening_indent <= 0:
+        return None
+    cursor = index - 1
+    while cursor >= 0:
+        line, current_quote_depth, indent, has_list_marker = lines[cursor]
+        if current_quote_depth != quote_depth:
+            break
+        if not line.strip():
+            cursor -= 1
+            continue
+        if has_list_marker and indent <= opening_indent:
+            return indent
+        if indent < opening_indent:
+            break
+        cursor -= 1
+    return None
+
+
+def fenced_code_blocks(text: str) -> list[str]:
+    blocks: list[str] = []
+    lines = [markdown_container_line(line) for line in text.splitlines()]
+    opening_pattern = re.compile(r"^(`{3,}|~{3,})[^\n]*$")
+    index = 0
+    while index < len(lines):
+        opening_line, opening_quote_depth, opening_indent, opening_list_marker = lines[index]
+        opening_list_container = (
+            opening_list_marker
+            or opening_indent >= 4
+            or preceding_list_indent(lines, index, opening_quote_depth, opening_indent) is not None
+        )
+        opening = opening_pattern.match(opening_line)
+        if not opening:
+            index += 1
+            continue
+        marker = opening.group(1)
+        marker_char = marker[0]
+        marker_length = len(marker)
+        closing_pattern = re.compile(rf"^{re.escape(marker_char) * marker_length}{re.escape(marker_char)}*\s*$")
+        content: list[str] = []
+        index += 1
+        container_boundary = False
+        while index < len(lines):
+            line, quote_depth, indent, _list_marker = lines[index]
+            if line.strip() and opening_quote_depth and quote_depth < opening_quote_depth:
+                container_boundary = True
+                break
+            if (
+                line.strip()
+                and opening_list_container
+                and quote_depth == opening_quote_depth
+                and indent < opening_indent
+            ):
+                container_boundary = True
+                break
+            if closing_pattern.match(line):
+                break
+            content.append(line)
+            index += 1
+        if content and "\n".join(content).strip():
+            blocks.append("\n".join(content))
+        if index < len(lines) and closing_pattern.match(lines[index][0]):
+            index += 1
+        elif container_boundary:
+            continue
+    return blocks
+
+
+def scan_risk_text(
+    hits: dict[str, dict[str, object]],
+    path: Path,
+    relative: str,
+    text: str,
+) -> None:
+    text_lower = text.lower()
+    suffix = path.suffix.lower()
+    for rule in COMPILED_RISK_RULES:
+        label = str(rule["label"])
+        if suffix == ".py" and label == "shell-exec":
+            continue
+        if any(pattern.search(text_lower) for pattern in rule["patterns"]):
+            add_risk_hit(hits, label, float(rule["severity"]), relative)
+    if suffix == ".py":
+        for label in python_exec_call_labels(text):
+            severity = 2.0 if label == "dynamic-exec" else 1.0
+            add_risk_hit(hits, label, severity, relative)
+    for label in install_surface_labels(path, relative, text):
+        severity = 2.0 if label == "install-hook" else 1.0
+        add_risk_hit(hits, label, severity, relative)
+
+
 def scan_risk(
     root: Path,
     self_relative_path: Path | None = None,
     ignored_relative_paths: set[str] | None = None,
+    skill_markdown_text: str | None = None,
 ) -> dict[str, object]:
     hits: dict[str, dict[str, object]] = {}
     ignored_paths = set(ignored_relative_paths or set())
+    linked_reference_paths = set(referenced_paths_from_body(skill_markdown_text or ""))
     if self_relative_path is not None:
         ignored_paths.add(self_relative_path.as_posix())
     for path in root.rglob("*"):
@@ -138,8 +259,22 @@ def scan_risk(
             continue
         relative_parts = {part.lower() for part in relative_path.parts}
         if "references" in relative_parts:
+            if relative not in linked_reference_paths or path.suffix.lower() not in TEXT_FILE_SUFFIXES:
+                continue
+            try:
+                if path.stat().st_size > MAX_SCAN_BYTES:
+                    continue
+            except OSError:
+                continue
+            code_blocks = fenced_code_blocks(read_text(path))
+            if code_blocks:
+                scan_risk_text(hits, path, relative, "\n".join(code_blocks))
             continue
         if path.name == "SKILL.md":
+            text = skill_markdown_text if skill_markdown_text is not None else read_text(path)
+            code_blocks = fenced_code_blocks(text)
+            if code_blocks:
+                scan_risk_text(hits, path, relative, "\n".join(code_blocks))
             continue
         if path.suffix.lower() not in RISK_SCAN_SUFFIXES:
             continue
@@ -151,20 +286,7 @@ def scan_risk(
         except OSError:
             continue
         text = read_text(path)
-        text_lower = text.lower()
-        for rule in COMPILED_RISK_RULES:
-            label = str(rule["label"])
-            if path.suffix.lower() == ".py" and label == "shell-exec":
-                continue
-            if any(pattern.search(text_lower) for pattern in rule["patterns"]):
-                add_risk_hit(hits, label, float(rule["severity"]), relative)
-        if path.suffix.lower() == ".py":
-            for label in python_exec_call_labels(text):
-                severity = 2.0 if label == "dynamic-exec" else 1.0
-                add_risk_hit(hits, label, severity, relative)
-        for label in install_surface_labels(path, relative, text):
-            severity = 2.0 if label == "install-hook" else 1.0
-            add_risk_hit(hits, label, severity, relative)
+        scan_risk_text(hits, path, relative, text)
 
     return risk_result_from_hits(hits)
 
@@ -262,6 +384,7 @@ def quality_issue(
 
 
 GENERIC_REFERENCE_STEMS = {"guide", "guides", "reference", "references", "doc", "docs", "notes", "workflow", "workflows"}
+PRIVATE_ROOT_CONTENT_SUFFIXES = {".cfg", ".conf", ".env", ".ini", ".json", ".properties", ".toml", ".yaml", ".yml"}
 
 
 def reference_is_directly_disclosed(body_lower: str, root: Path, path: Path) -> bool:
@@ -327,6 +450,31 @@ def absolute_module_available(path: Path, root: Path, module: str) -> bool:
 
 
 def python_import_error_files(root: Path, files: list[Path]) -> list[str]:
+    class SameScopeImportVisitor(ast.NodeVisitor):
+        def __init__(self) -> None:
+            self.imports: list[ast.Import | ast.ImportFrom] = []
+
+        def visit_Import(self, node: ast.Import) -> None:
+            self.imports.append(node)
+
+        def visit_ImportFrom(self, node: ast.ImportFrom) -> None:
+            self.imports.append(node)
+
+        def visit_FunctionDef(self, node: ast.FunctionDef) -> None:
+            return
+
+        def visit_AsyncFunctionDef(self, node: ast.AsyncFunctionDef) -> None:
+            return
+
+        def visit_Lambda(self, node: ast.Lambda) -> None:
+            return
+
+    def same_scope_import_ids(statements: list[ast.stmt]) -> set[int]:
+        visitor = SameScopeImportVisitor()
+        for statement in statements:
+            visitor.visit(statement)
+        return {id(node) for node in visitor.imports}
+
     matches: list[str] = []
     for path in files:
         if path.suffix.lower() != ".py" or file_size(path) > MAX_SCAN_BYTES:
@@ -335,8 +483,45 @@ def python_import_error_files(root: Path, files: list[Path]) -> list[str]:
             tree = ast.parse(read_text(path), filename=str(path))
         except SyntaxError:
             continue
+        optional_imports: set[int] = set()
+        for candidate in ast.walk(tree):
+            if isinstance(candidate, ast.If):
+                test = candidate.test
+                is_type_checking = isinstance(test, ast.Name) and test.id == "TYPE_CHECKING"
+                is_type_checking = is_type_checking or (
+                    isinstance(test, ast.Attribute)
+                    and isinstance(test.value, ast.Name)
+                    and test.value.id == "typing"
+                    and test.attr == "TYPE_CHECKING"
+                )
+                if is_type_checking:
+                    optional_imports.update(same_scope_import_ids(candidate.body))
+            elif isinstance(candidate, ast.Try):
+                catches_optional_import = any(
+                    not any(isinstance(node, ast.Raise) for statement in handler.body for node in ast.walk(statement))
+                    and (
+                        handler.type is None
+                        or (
+                            isinstance(handler.type, ast.Name)
+                            and handler.type.id in {"ImportError", "ModuleNotFoundError"}
+                        )
+                        or (
+                            isinstance(handler.type, ast.Tuple)
+                            and any(
+                                isinstance(item, ast.Name) and item.id in {"ImportError", "ModuleNotFoundError"}
+                                for item in handler.type.elts
+                            )
+                        )
+                    )
+                    for handler in candidate.handlers
+                )
+                if catches_optional_import:
+                    optional_imports.update(same_scope_import_ids(candidate.body))
+
         missing = False
         for node in ast.walk(tree):
+            if id(node) in optional_imports:
+                continue
             if isinstance(node, ast.Import):
                 for alias in node.names:
                     if not absolute_module_available(path, root, alias.name):
@@ -363,21 +548,75 @@ def python_import_error_files(root: Path, files: list[Path]) -> list[str]:
     return matches
 
 
-def private_content_files(root: Path, files: list[Path]) -> tuple[list[str], dict[str, int]]:
+EXAMPLE_CREDENTIAL_PATTERNS = (
+    re.compile(
+        r"(?:change[_-]?me|placeholder|redacted|your)(?:[_-][a-z0-9]+)*",
+        re.IGNORECASE,
+    ),
+    re.compile(
+        r"(?:demo|dummy|example|sample)[_-]"
+        r"(?:credential|key|secret|token|value|"
+        r"(?:api|access|auth|session)[_-]?(?:key|secret|token)|"
+        r"refresh[_-]?token|client[_-]?secret|secret[_-]?access[_-]?key|"
+        r"password|private[_-]?key)"
+        r"(?:[_-][a-z0-9]+)*",
+        re.IGNORECASE,
+    ),
+)
+
+
+def private_content_match_is_example(label: str, match: re.Match[str]) -> bool:
+    if label != "credential-assignment":
+        return False
+    value = match.group(1) if match.lastindex else match.group(0)
+    return any(pattern.fullmatch(value) for pattern in EXAMPLE_CREDENTIAL_PATTERNS)
+
+
+def private_content_files(
+    root: Path,
+    files: list[Path],
+    text_overrides: dict[str, str] | None = None,
+) -> tuple[list[str], dict[str, int]]:
     matches: list[str] = []
     labels: dict[str, int] = {}
     for path in files:
         if path.suffix.lower() not in TEXT_FILE_SUFFIXES or file_size(path) > MAX_SCAN_BYTES:
             continue
-        text = read_text(path)
+        override_key = os.path.normcase(str(path.resolve()))
+        text = text_overrides[override_key] if text_overrides and override_key in text_overrides else read_text(path)
         file_matched = False
         for label, pattern in PRIVATE_CONTENT_PATTERNS:
-            if pattern.search(text):
+            if any(not private_content_match_is_example(label, match) for match in pattern.finditer(text)):
                 labels[label] = labels.get(label, 0) + 1
                 file_matched = True
         if file_matched:
             matches.append(relative_label(root, path))
     return matches, labels
+
+
+def root_private_candidate_files(root: Path) -> list[Path]:
+    matches: list[Path] = []
+    for path in sorted(root.iterdir()):
+        if not path.is_file() or is_generated_python_cache(path):
+            continue
+        label = relative_label(root, path)
+        if path.name == "SKILL.md" or path.suffix.lower() in TEXT_FILE_SUFFIXES or any(
+            pattern.search(label) for pattern in PRIVATE_BUNDLE_NAME_PATTERNS
+        ):
+            matches.append(path)
+    return matches
+
+
+def unique_paths(paths: list[Path]) -> list[Path]:
+    output: list[Path] = []
+    seen: set[str] = set()
+    for path in paths:
+        key = os.path.normcase(str(path.resolve()))
+        if key in seen:
+            continue
+        seen.add(key)
+        output.append(path)
+    return output
 
 
 REFERENCE_CONTENT_POLLUTION_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
@@ -426,10 +665,12 @@ def reference_content_pollution_files(root: Path, files: list[Path]) -> tuple[li
 
 
 def referenced_paths_from_body(body: str) -> list[str]:
-    matches = re.findall(r"(?i)(?:`|\b)(\.?/?references/[^\s`)]+)", body)
+    matches = re.findall(r"(?i)(?:`|\b)((?:\{baseDir\}/)?\.?/?references/[^\s`)]+)", body)
     output: list[str] = []
     for value in matches:
         normalized = value.strip("`'\".,;:").replace("\\", "/")
+        normalized = normalized.removeprefix("{baseDir}/")
+        normalized = normalized.split("#", 1)[0].split("?", 1)[0]
         normalized = normalized[2:] if normalized.startswith("./") else normalized
         if normalized and normalized not in output:
             output.append(normalized)
@@ -447,25 +688,13 @@ def broken_reference_links(root: Path, body: str) -> list[str]:
     return broken
 
 
-def scan_static_quality(
-    root: Path,
+def _contract_quality_evidence(
     description: str,
     body: str,
-    script_files: list[Path],
-    reference_metrics: dict[str, object],
-    asset_metrics: dict[str, object],
-) -> dict[str, object]:
+    skill_units: int,
+    description_units: int,
+) -> list[dict[str, object]]:
     evidence: list[dict[str, object]] = []
-    skill_units = estimate_context_units(body)
-    description_units = estimate_context_units(description)
-    reference_count = int(reference_metrics["count"])
-    reference_units = int(reference_metrics["context_units"])
-    asset_count = int(asset_metrics["count"])
-    asset_bytes = int(asset_metrics["bytes"])
-    body_lower = body.lower()
-    reference_files = list(reference_metrics["files"])  # type: ignore[arg-type]
-    reference_profiles = dict(reference_metrics.get("text_profiles", {}))  # type: ignore[arg-type]
-    asset_files = list(asset_metrics["files"])  # type: ignore[arg-type]
     non_heading_body = "\n".join(
         line.strip()
         for line in body.splitlines()
@@ -479,7 +708,7 @@ def scan_static_quality(
             quality_issue(
                 "empty-skill-contract",
                 0.80,
-                "skill has no meaningful runtime contract beyond minimal or missing metadata",
+                "SKILL.md does not explain a usable runtime contract",
                 metrics={"description_terms": len(description_terms), "body_terms": len(body_terms)},
             )
         )
@@ -489,7 +718,7 @@ def scan_static_quality(
             quality_issue(
                 "prompt-bloat",
                 0.40,
-                "SKILL.md body is large enough to pressure the shared context budget",
+                "SKILL.md is large enough to waste shared context",
                 metrics={"skill_context_units": skill_units},
             )
         )
@@ -509,7 +738,7 @@ def scan_static_quality(
             quality_issue(
                 "broad-trigger-surface",
                 0.25,
-                "frontmatter description uses broad trigger language",
+                "frontmatter description uses broad trigger wording",
                 metrics={"description_context_units": description_units, "matches": broad_matches[:5]},
             )
         )
@@ -519,7 +748,7 @@ def scan_static_quality(
             quality_issue(
                 "description-bloat",
                 0.25,
-                "frontmatter description is too long for a routing trigger",
+                "frontmatter description is too long for clean routing",
                 metrics={"description_context_units": description_units},
             )
         )
@@ -528,10 +757,24 @@ def scan_static_quality(
             quality_issue(
                 "description-bloat",
                 0.10,
-                "frontmatter description is longer than a concise routing trigger",
+                "frontmatter description is longer than a clean routing trigger",
                 metrics={"description_context_units": description_units},
             )
         )
+    return evidence
+
+
+def _reference_quality_evidence(
+    root: Path,
+    body: str,
+    reference_metrics: dict[str, object],
+) -> list[dict[str, object]]:
+    evidence: list[dict[str, object]] = []
+    body_lower = body.lower()
+    reference_count = int(reference_metrics["count"])
+    reference_units = int(reference_metrics["context_units"])
+    reference_files = list(reference_metrics["files"])  # type: ignore[arg-type]
+    reference_profiles = dict(reference_metrics.get("text_profiles", {}))  # type: ignore[arg-type]
 
     if reference_count:
         linked_reference_count = sum(
@@ -543,7 +786,7 @@ def scan_static_quality(
                 quality_issue(
                     "reference-disclosure-gap",
                     0.30 if reference_count >= 3 else 0.10,
-                    "reference files are not directly discoverable from SKILL.md",
+                    "SKILL.md does not clearly route to its reference files",
                     metrics={"references_count": reference_count, "linked_reference_count": linked_reference_count},
                 )
             )
@@ -552,7 +795,7 @@ def scan_static_quality(
                 quality_issue(
                     "reference-disclosure-gap",
                     0.20,
-                    "few reference files are directly linked from SKILL.md",
+                    "SKILL.md links only a small part of its reference files",
                     metrics={
                         "references_count": reference_count,
                         "linked_reference_count": linked_reference_count,
@@ -567,8 +810,8 @@ def scan_static_quality(
             quality_issue(
                 "reference-link-broken",
                 0.25,
-                "SKILL.md points to reference files that do not exist",
-                files=broken_links[:8],
+                "SKILL.md points to missing reference files",
+                files=broken_links[:EVIDENCE_FILE_LIST_LIMIT],
                 metrics={"matches": len(broken_links)},
             )
         )
@@ -578,7 +821,7 @@ def scan_static_quality(
             quality_issue(
                 "reference-bloat",
                 0.50,
-                "references are large enough to encourage over-loading context",
+                "references are large enough to waste context when loaded",
                 metrics={"references_count": reference_count, "reference_context_units": reference_units},
             )
         )
@@ -587,7 +830,7 @@ def scan_static_quality(
             quality_issue(
                 "reference-bloat",
                 0.25,
-                "references need review for progressive disclosure",
+                "references need clearer progressive disclosure",
                 metrics={"references_count": reference_count, "reference_context_units": reference_units},
             )
         )
@@ -606,8 +849,8 @@ def scan_static_quality(
             quality_issue(
                 "long-reference-without-toc",
                 0.20 if len(long_reference_without_toc) >= 3 else 0.10,
-                "long reference files are missing a visible table of contents",
-                files=long_reference_without_toc[:8],
+                "long reference files need a visible table of contents",
+                files=long_reference_without_toc[:EVIDENCE_FILE_LIST_LIMIT],
                 metrics={"matches": len(long_reference_without_toc)},
             )
         )
@@ -618,21 +861,38 @@ def scan_static_quality(
             quality_issue(
                 "reference-content-pollution",
                 0.35,
-                "reference content includes advertising, upsell, unrelated text, or other-tool/skill promotion",
-                files=polluted_reference_paths[:8],
+                "reference content includes ads, upsells, unrelated text, or tool/skill promotion",
+                files=polluted_reference_paths[:EVIDENCE_FILE_LIST_LIMIT],
                 metrics={
                     "matches": len(polluted_reference_paths),
                     "signal_types": sorted(pollution_labels),
                 },
             )
         )
+    return evidence
+
+
+def _bundled_resource_quality_evidence(
+    root: Path,
+    script_files: list[Path],
+    reference_files: list[Path],
+    asset_metrics: dict[str, object],
+    skill_markdown_text: str | None,
+) -> list[dict[str, object]]:
+    evidence: list[dict[str, object]] = []
+    asset_count = int(asset_metrics["count"])
+    asset_bytes = int(asset_metrics["bytes"])
+    asset_files = list(asset_metrics["files"])  # type: ignore[arg-type]
+    private_candidate_files = unique_paths(
+        script_files + asset_files + reference_files + root_private_candidate_files(root)
+    )
 
     if asset_count >= 200 or asset_bytes >= 100 * 1024 * 1024:
         evidence.append(
             quality_issue(
                 "asset-bloat",
                 0.50,
-                "assets directory is large enough to look like a bundle dump",
+                "assets directory looks like a raw bundle dump",
                 metrics={"assets_count": asset_count, "asset_bytes": asset_bytes},
             )
         )
@@ -652,15 +912,15 @@ def scan_static_quality(
             quality_issue(
                 "vague-resource-names",
                 0.20,
-                "resource filenames are too generic for reliable selective loading",
-                files=vague_files[:8],
+                "resource filenames are too generic for selective loading",
+                files=vague_files[:EVIDENCE_FILE_LIST_LIMIT],
                 metrics={"matches": len(vague_files)},
             )
         )
 
     private_paths = [
         relative_label(root, path)
-        for path in asset_files + reference_files
+        for path in private_candidate_files
         if any(pattern.search(relative_label(root, path)) for pattern in PRIVATE_BUNDLE_NAME_PATTERNS)
     ]
     if private_paths:
@@ -668,23 +928,28 @@ def scan_static_quality(
             quality_issue(
                 "private-bundle-artifact",
                 0.60,
-                "bundle contains files that look private or environment-specific",
-                files=private_paths[:8],
+                "bundle contains private-looking or environment-specific files",
+                files=private_paths[:EVIDENCE_FILE_LIST_LIMIT],
                 metrics={"matches": len(private_paths)},
             )
         )
 
     private_content_paths, private_content_labels = private_content_files(
         root,
-        script_files + asset_files + reference_files,
+        private_candidate_files,
+        {
+            os.path.normcase(str((root / "SKILL.md").resolve())): skill_markdown_text,
+        }
+        if skill_markdown_text is not None
+        else None,
     )
     if private_content_paths:
         evidence.append(
             quality_issue(
                 "private-content-artifact",
                 0.60,
-                "bundle contains content that looks like private credentials or keys",
-                files=private_content_paths[:8],
+                "bundle contains credential-like content",
+                files=private_content_paths[:EVIDENCE_FILE_LIST_LIMIT],
                 metrics={
                     "matches": len(private_content_paths),
                     "signal_types": sorted(private_content_labels),
@@ -702,12 +967,16 @@ def scan_static_quality(
             quality_issue(
                 "executable-asset",
                 0.30,
-                "assets contain executable binaries or installers",
-                files=executable_assets[:8],
+                "assets include executables or installers",
+                files=executable_assets[:EVIDENCE_FILE_LIST_LIMIT],
                 metrics={"matches": len(executable_assets)},
             )
         )
+    return evidence
 
+
+def _script_quality_evidence(root: Path, script_files: list[Path]) -> list[dict[str, object]]:
+    evidence: list[dict[str, object]] = []
     script_smell_files: list[str] = []
     for path in script_files:
         if path.suffix.lower() not in TEXT_FILE_SUFFIXES or file_size(path) > MAX_SCAN_BYTES:
@@ -720,7 +989,7 @@ def scan_static_quality(
             quality_issue(
                 "script-count-bloat",
                 0.20 if len(script_files) >= 40 else 0.10,
-                "large script count should be reviewed for over-bundling",
+                "script count looks higher than this skill needs",
                 metrics={"scripts_count": len(script_files)},
             )
         )
@@ -730,8 +999,8 @@ def scan_static_quality(
             quality_issue(
                 "script-maintenance-smell",
                 penalty,
-                "scripts look likely to require agent repair or local adjustment",
-                files=script_smell_files[:8],
+                "scripts look likely to need local fixes",
+                files=script_smell_files[:EVIDENCE_FILE_LIST_LIMIT],
                 metrics={"scripts_count": len(script_files), "matches": len(script_smell_files)},
             )
         )
@@ -742,8 +1011,8 @@ def scan_static_quality(
             quality_issue(
                 "script-syntax-error",
                 0.50,
-                "Python scripts contain syntax errors",
-                files=syntax_error_files[:8],
+                "Python scripts have syntax errors",
+                files=syntax_error_files[:EVIDENCE_FILE_LIST_LIMIT],
                 metrics={"matches": len(syntax_error_files)},
             )
         )
@@ -753,11 +1022,42 @@ def scan_static_quality(
             quality_issue(
                 "script-import-error",
                 0.50,
-                "Python scripts import modules that are missing from the local environment or bundle",
-                files=import_error_files[:8],
+                "Python scripts import modules missing from the local environment or bundle",
+                files=import_error_files[:EVIDENCE_FILE_LIST_LIMIT],
                 metrics={"matches": len(import_error_files)},
             )
         )
+    return evidence
+
+
+def scan_static_quality(
+    root: Path,
+    description: str,
+    body: str,
+    script_files: list[Path],
+    reference_metrics: dict[str, object],
+    asset_metrics: dict[str, object],
+    skill_markdown_text: str | None = None,
+) -> dict[str, object]:
+    skill_units = estimate_context_units(body)
+    description_units = estimate_context_units(description)
+    reference_count = int(reference_metrics["count"])
+    reference_units = int(reference_metrics["context_units"])
+    asset_count = int(asset_metrics["count"])
+    asset_bytes = int(asset_metrics["bytes"])
+    reference_files = list(reference_metrics["files"])  # type: ignore[arg-type]
+    evidence = _contract_quality_evidence(description, body, skill_units, description_units)
+    evidence.extend(_reference_quality_evidence(root, body, reference_metrics))
+    evidence.extend(
+        _bundled_resource_quality_evidence(
+            root,
+            script_files,
+            reference_files,
+            asset_metrics,
+            skill_markdown_text,
+        )
+    )
+    evidence.extend(_script_quality_evidence(root, script_files))
 
     penalty = round(clamp(sum(float(item["penalty"]) for item in evidence), 0.0, 1.4), 2)
     return {
@@ -766,6 +1066,7 @@ def scan_static_quality(
         "static_quality_evidence": evidence,
         "resource_metrics": {
             "skill_context_units": skill_units,
+            "description_characters": len(description),
             "description_context_units": description_units,
             "scripts_count": len(script_files),
             "references_count": reference_count,
@@ -816,8 +1117,21 @@ def scan_skill(skill_md: Path) -> dict[str, object]:
     fingerprint = " ".join(
         [name, description, " ".join(headings), " ".join(script_files), " ".join(reference_files)]
     )
-    risk = scan_risk(root, self_relative_path=self_relative_path, ignored_relative_paths=ignored_relative_paths)
-    quality = scan_static_quality(root, description, body, quality_script_paths, reference_metrics, asset_metrics)
+    risk = scan_risk(
+        root,
+        self_relative_path=self_relative_path,
+        ignored_relative_paths=ignored_relative_paths,
+        skill_markdown_text=text,
+    )
+    quality = scan_static_quality(
+        root,
+        description,
+        body,
+        quality_script_paths,
+        reference_metrics,
+        asset_metrics,
+        skill_markdown_text=text,
+    )
     risk = promote_private_content_risk(risk, quality)
     return {
         "name": name,

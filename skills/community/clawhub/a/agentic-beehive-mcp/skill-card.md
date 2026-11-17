@@ -1,45 +1,54 @@
-## Description: <br>
-Agentic Beehive MCP Server provides situational awareness, branch scheduling, and external colony management for AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agentic Beehive MCP Server is an MCP coordination server that gives AI agents state awareness, branch routing, external colony management, alerts, and local coordination memory.
 
-## Publisher: <br>
-[hon27hon](https://clawhub.ai/user/hon27hon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hon27hon](https://clawhub.ai/user/hon27hon)
 
-## Use Case: <br>
-Developers and agent operators use this MCP server to track agent branch state, choose task-delivery or state-maintenance patterns, register external endpoints, and summarize active alerts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The server stores branch, colony, alert, and evolution state in a local SQLite database. <br>
-Mitigation: Avoid storing secrets in metadata or alerts, and periodically review or clear the local beehive.db state. <br>
-Risk: Registered external endpoints can be contacted for colony status checks. <br>
-Mitigation: Register only trusted endpoints and review endpoint behavior before polling. <br>
-Risk: The runtime depends on fastmcp, which is installed separately. <br>
-Mitigation: Pin or review the fastmcp dependency before deployment. <br>
+## Use Case:
 
+Developers and agent operators use this MCP server to maintain local coordination state, choose task branches, register external data or agent endpoints, poll their status, and track alerts or evolution requests.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hon27hon/agentic-beehive-mcp) <br>
-- [Publisher Profile](https://clawhub.ai/user/hon27hon) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance, Configuration] <br>
-**Output Format:** [JSON responses from MCP tools plus Markdown setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and pip; runtime behavior depends on fastmcp and locally registered endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and README version entry) <br>
+Risk: The MCP server can store local coordination state and poll arbitrary user-registered colony endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a restricted environment or network sandbox, and review or constrain allowed colony endpoints before exposing it to agents or users.
+
+Risk: Agents may rely on branch, colony, alert, or evolution state that has been updated by other callers.
+
+Mitigation: Review stored coordination state and scan the skill before deployment, especially in shared or multi-agent environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hon27hon/skills/agentic-beehive-mcp)
+- [Publisher profile](https://clawhub.ai/user/hon27hon)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [MCP tool responses as JSON-like dictionaries, plus setup guidance and configuration snippets in Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local SQLite state and may poll user-registered colony endpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata and README version entry)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

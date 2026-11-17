@@ -1,48 +1,64 @@
-## Description: <br>
-Use when the user asks to analyze, consult, setup, manage, configure, or design a Volcengine Landing Zone, including organization, accounts, finance, identity, cloudtrail, or network infrastructure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user asks to analyze, consult, setup, manage, configure, or design a Volcengine Landing Zone, including organization, accounts, finance, identity, cloudtrail, or network infrastructure.
 
-## Publisher: <br>
-[volc-sdk-team](https://clawhub.ai/user/volc-sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volc-sdk-team](https://clawhub.ai/user/volc-sdk-team)
 
-## Use Case: <br>
-Developers and cloud infrastructure teams use this skill to consult on, prepare, deploy, manage, and recover Volcengine Landing Zone foundations across organization, account, finance, identity, audit, network, and account baseline workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make high-impact changes to real Volcengine infrastructure. <br>
-Mitigation: Confirm the target account or profile, expected cloud changes, and workspace path before execution. <br>
-Risk: The skill may store an initial administrator password in a local markdown file. <br>
-Mitigation: Treat identity-login-info.md as sensitive, restrict file access, and rotate or replace the initial administrator password immediately after first login. <br>
-Risk: Temporary CLI profiles or login state may persist after a run. <br>
-Mitigation: Verify local CLI profile state after runs that use temporary profiles or login. <br>
+## Use Case:
 
+Developers, cloud platform engineers, and consultants use this skill to design and operate Volcengine landing zones, including organization setup, account factory workflows, baseline application, and failure recovery. It supports read-only consulting as well as gated infrastructure execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/volc-sdk-team/skills/volcengine-landing-zone) <br>
-- [Local file display protocol](references/display-protocol.md) <br>
-- [Preflight checks](references/preflight-checks.md) <br>
-- [Volcengine Landing Zone setup guide](references/landing-zone-setup/guidebook.md) <br>
-- [Account Factory workflow](references/account-factory/guidebook.md) <br>
-- [Failure recovery workflow](references/failure-recovery.md) <br>
-- [Account Factory baseline schema](references/account-factory/baseline.schema.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, generated local files, and HTML reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create workspace-local execution files, solution confirmation HTML, login information, initial password records, and summary reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: The skill can run privileged Volcengine infrastructure changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use short-lived least-privilege credentials and review Terraform plans before applying changes.
+
+Risk: Workspace baseline packages can override built-in baseline packages when names collide.
+
+Mitigation: Verify the resolved package source and review package contents before baseline apply.
+
+Risk: Credential material or generated administrator password files may be exposed if handled carelessly.
+
+Mitigation: Keep credentials outside chat and repositories, and protect or delete generated password files after first use.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/volc-sdk-team/skills/volcengine-landing-zone)
+- [Preflight Checks](references/preflight-checks.md)
+- [Volcengine Landing Zone Setup Guide](references/landing-zone-setup/guidebook.md)
+- [Account Factory Workflow](references/account-factory/guidebook.md)
+- [Failure Recovery](references/failure-recovery.md)
+- [Account Factory Baseline Schema](references/account-factory/baseline.schema.json)
+- [Volcengine CLI README](https://github.com/volcengine/volcengine-cli/blob/master/README.MD)
+- [Volcengine Terraform Provider README](https://github.com/volcengine/terraform-provider-volcenginecc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with inline shell commands, Terraform configuration guidance, JSON runtime files, and generated HTML review files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create workspace-scoped execution files, Terraform variable files, status JSON, login information, baseline plans, and setup reports during authorized runs]
+
+## Skill Version(s):
+
+1.0.3 (source: release evidence changelog and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

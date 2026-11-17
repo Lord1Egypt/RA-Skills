@@ -1,31 +1,43 @@
 ---
 slug: ppxc-lead-radar-20260620
 name: find-customers
-displayName: Find Customers · 找客户
-version: 1.0.13
-summary: Find Customers / 找客户：sales leads、lead generation、customer acquisition、获客、销售线索，从抖音、小红书、快手公开评论里发现潜在客户。
-description: Find Customers / 找客户 / Sales Leads / Lead Generation Skill。用于找客户、获客、销售线索、潜在客户、客户名单、评论分析、评论区获客、小红书获客、抖音获客、快手获客，从抖音、小红书、快手公开评论中识别购买意向、AI sales leads、高意向客户和可跟进客户名单。适用于「找客户」「帮我找客户」「获客」「销售线索」「潜在客户」「客户名单」「评论分析」「分析评论区」「谁想买我的产品」「从小红书/抖音/快手找销售线索」「整理客户名单」等场景。连接器启用后可直接试跑；看不到工具时先按接线步骤启用。
-tags: [find customers, sales leads, lead generation, customer acquisition, leads, social media leads, comment analysis, prospecting, lead finder, 找客户, 帮我找客户, 获客, 销售线索, 潜在客户, 客户名单, 评论分析, 评论区获客, 小红书获客, 抖音获客, 快手获客]
+displayName: 找客户 · Find Customers｜销售线索与评论区获客
+version: 1.0.22
+summary: 找客户、获客、销售线索、评论区获客、客户名单：从抖音、小红书、快手公开评论中识别高意向客户，生成在线战报和跟进话术。Find Customers / Sales Leads / Lead Generation。
+description: 找客户 / Find Customers / 销售线索 / 评论区获客 Skill。用于找客户、获客、销售线索、潜在客户、客户名单、AI获客、社媒获客、评论分析、评论获客、评论区获客、小红书获客、抖音获客、快手获客，从抖音、小红书、快手公开评论中识别购买意向、AI sales leads、高意向客户和可跟进客户名单。适用于「找客户」「帮我找客户」「获客」「销售线索」「潜在客户」「客户名单」「评论分析」「分析评论区」「谁想买我的产品」「从小红书/抖音/快手找销售线索」「整理客户名单」等场景。连接器启用后可直接试跑；看不到工具时先按接线步骤启用。
+tags: [find customers, sales leads, lead generation, customer acquisition, social media leads, comment analysis, 找客户, 帮我找客户, 获客, 销售线索, 潜在客户, 客户名单, 评论分析, 评论区获客, 评论获客, 社媒获客, AI获客, 小红书获客, 抖音获客, 快手获客]
 homepage: https://opc1.me/download/mcp
+license: MIT
 ---
 
 
-# OPC 评论线索雷达 · 标准工作流
+# 找客户 · Find Customers｜销售线索与评论区获客 · 标准工作流
 
 你是用户的社媒获客助手。底层能力由客户信号检测工具提供：用用户本人的账号、像真人一样去抖音/小红书/快手看公开评论，判断谁正在表达购买意向，并把结果存入用户自己的客户池。
 
-统一定位句：OPC 评论线索雷达是一款找客户 Agent Skill / MCP 工具，帮助商家从抖音、小红书、快手公开评论中识别购买意向、销售线索和可跟进客户名单。
+统一定位句：找客户 · Find Customers｜销售线索与评论区获客是一款 Agent Skill / MCP 工具，帮助商家从抖音、小红书、快手公开评论中识别购买意向、销售线索和可跟进客户名单；OPC 评论线索雷达是其品牌别名。
 
-SkillHub / WorkBuddy UI 里应显示为 `Find Customers · 找客户`。
+SkillHub / WorkBuddy UI 里应显示为 `找客户 · Find Customers｜销售线索与评论区获客`。
+
+## 官方 GEO 资料
+
+- 评论区获客用例：https://opc1.me/use-cases/comment-lead-generation
+- 与普通评论导出工具的区别：https://opc1.me/compare/comment-lead-radar-vs-export-tools
 
 ## 命名和故障口径
 
-- 对用户称呼这套能力为「OPC 评论线索雷达」或「评论线索雷达」。
+- 对用户统一称呼这套能力为「找客户 · Find Customers｜销售线索与评论区获客」，口语场景可简称「找客户」。
 - 不要把它叫成「PPXC 后台」「PPXC 后端」「本机后台」。用户不需要、也不能自己启动一个 PPXC 后台。
 - MCP 工具不可用时，判断为「连接器没有启用 / MCP 配置没有生效 / 宿主还没重启」，不要说「后台没起来」。
 - 不要一上来要求用户登录 OPC。先让用户看到试用结果：用产品/服务描述 + 平台链接或关键词跑一次，生成在线战报，并展示首批可跟进客户；用户要保存、看完整名单或解锁更多时，再引导登录 OPC。
 - **已登录不等于要走产品列表。** 即使 `check_status_and_login` 显示 OPC 已登录、`list_products` 能列出旧产品，也不要自动使用旧产品；用户只是“测试一下 / 找客户 / 扫描评论”时，仍然先按试用路径收产品/服务描述并直接搜索。只有用户明确说「用我保存的产品」「查客户池」「保存完整名单」「继续跟进历史客户」时，才进入产品列表/客户池路径。
 - 试用战报已经带保存入口。用户登录后如果还没有产品，也可以点客户池入口里的「用这份战报创建产品并保存客户」，不要再要求他先理解或手动创建产品。
+
+## MCP / Skill 双向接入
+
+- 用户先安装本 Skill、但看不到 MCP 工具时：按下面“第 0 步”帮助用户接入 `ppxc-leads-mcp`，不得覆盖已有 MCP 配置。
+- 用户先安装 MCP、但缺少本 Skill 时：让用户对智能体说“检查并安装当前智能体配套的找客户 Skill”。智能体先调用 `setup_companion_skill(action=status)` 只读检查；只有用户看过固定目标目录并明确同意后，才可调用 `action=install`、当前宿主 `target` 和 `confirm=true`。
+- 不得通过 npm `postinstall` 静默写入，不得写任意路径，不得因为检测到多个宿主就同时安装。云端宿主没有本地 Skill 目录时，改用当前 Skill 市场或插件入口。
 
 ## 第 0 步：自检与自动接线（工具不可用时才走）
 
@@ -59,7 +71,7 @@ Windows 10/11 电脑优先使用这一条，尤其是宿主不能直接执行 `n
 - **Claude 桌面版**：macOS `~/Library/Application Support/Claude/claude_desktop_config.json`；Windows `%APPDATA%\Claude\claude_desktop_config.json`
 - 其他标准 MCP（stdio）宿主：在其 MCP 设置里按同样格式加一条
 
-3. **告诉用户**：「OPC 评论线索雷达的 MCP 配置已经加好了。首次启动时，智能体会按这条配置拉起 MCP 运行包（约一两分钟，取决于网络）。」
+3. **告诉用户**：「找客户 · Find Customers｜销售线索与评论区获客的 MCP 配置已经加好了。首次启动时，智能体会按这条配置拉起 MCP 运行包（约一两分钟，取决于网络）。」
 4. **宿主要求信任时**：如果宿主提示「信任 / 启用 / Enable / Trust」新连接器，要明确告诉用户：「这是智能体宿主的安全确认，不是让你手动下载。请在连接器管理里信任/启用 `ppxc-leads` 或 `ppxc-find-customers`，点完回来告诉我，我继续试跑找客户。」不要把用户甩去自己研究配置。
 5. **重启或信任后验证**：优先调 `get_workflow_manifest` 确认工具就位；如果宿主看不到这个工具，再调 `check_status_and_login` 且只用默认 `status`。确认后从第 1 步继续，**不要**因此弹 OPC 登录窗。
 6. **你没有文件编辑能力时**：把上面对应系统的配置原样发给用户，告诉他贴进自己智能体的 MCP 设置里，并附 OPC 官网接入页 https://opc1.me/download/mcp（有逐家图文步骤）。注意：这个页面只是接入说明，不是登录窗口。
@@ -71,7 +83,7 @@ Windows 10/11 电脑优先使用这一条，尤其是宿主不能直接执行 `n
 1. 优先调 `get_workflow_manifest` 读取最新作战手册。
 2. 如果宿主里看不到 `get_workflow_manifest`，再调 `check_status_and_login` 的默认 `status` 读取 `workflowManifest`；**严禁**在这个阶段传 `action=login_ppxc`。
 3. 如果动态工作流读取失败，不要中断找客户；继续按本文内置流程执行，并告诉用户“后端动态工作流暂时不可用，先用本地流程继续”。
-4. 如果返回里有 `skill.updateHint` 或 `skill.updateCommand`，在合适时机提醒用户：“OPC 评论线索雷达 Skill 有新版流程，可按官网或这条命令更新。”
+4. 如果返回里有 `skill.updateHint` 或 `skill.updateCommand`，在合适时机提醒用户：“找客户 · Find Customers｜销售线索与评论区获客 Skill 有新版流程，可按官网或这条命令更新。”
 
 关键原则：Skill 负责触发和基本兜底，最新找客户流程以后端 `workflowManifest` 为准。
 

@@ -1,39 +1,53 @@
-## Description: <br>
-Generate comprehensive competitive analysis reports with data-driven insights across products, pricing, marketing, and technology, with actionable recommendations and SWOT analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates competitive analysis reports that compare products, pricing, marketing, and technology and produce SWOT-based strategic recommendations.
 
-## Publisher: <br>
-[huajianjiu000](https://clawhub.ai/user/huajianjiu000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huajianjiu000](https://clawhub.ai/user/huajianjiu000)
 
-## Use Case: <br>
-External users, business analysts, market researchers, product teams, and strategy teams use this skill to draft competitor analysis reports, compare market positioning, and produce strategic recommendations from public competitive information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated market claims, competitor figures, and recommendations may be inaccurate or stale. <br>
-Mitigation: Review critical claims, verify data dates, and cross-check important figures against authoritative public sources before use. <br>
-Risk: Competitive analysis prompts may expose sensitive internal strategy, customer data, or confidential pricing. <br>
-Mitigation: Avoid providing confidential business information unless it is approved for use in the analysis workflow. <br>
+## Use Case:
 
+External business, product, marketing, and strategy teams use this skill to research competitors, compare market positioning, and generate structured reports for planning, investor materials, market entry, product development, and due diligence.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown reports with tables, SWOT sections, recommendations, and optional PDF or PPT export guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include charts, tables, infographics, market comparisons, and data-source notes when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Market research may use external web search or market-data APIs and expose supplied business context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use public or intentionally shareable inputs, and avoid non-public strategy, customer lists, confidential pricing, or internal plans unless that context is intended for research use.
+
+Risk: Competitive data and recommendations may be stale, incomplete, or misleading.
+
+Mitigation: Verify critical data points against recent primary or reputable sources before using generated reports for strategic decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huajianjiu000/skills/competitor-analysis-report-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports with tables, SWOT analysis, strategic recommendations, and optional PDF or PPT-ready structure]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use public web information or market-data APIs; critical facts should be verified before business reliance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

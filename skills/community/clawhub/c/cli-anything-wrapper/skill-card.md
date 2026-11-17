@@ -1,42 +1,60 @@
-## Description: <br>
-Wraps CLI-Anything so OpenClaw can invoke CLI functions for supported local applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wraps CLI-Anything so OpenClaw can list and invoke command-line harnesses for supported desktop, AI, media, office, and research applications.
 
-## Publisher: <br>
-[ntaffffff](https://clawhub.ai/user/ntaffffff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ntaffffff](https://clawhub.ai/user/ntaffffff)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to list supported CLI-Anything application harnesses and invoke local tools such as GIMP, Blender, LibreOffice, OBS, ComfyUI, Ollama, and Zotero from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The wrapper can execute local CLI-Anything harnesses for many desktop and AI tools, which may modify files or application state. <br>
-Mitigation: Use dry-run mode first, require explicit approval for state-changing actions, and restrict use to applications and harnesses the operator has reviewed. <br>
-Risk: The install path can clone and run setup steps from a third-party GitHub repository without a pinned revision. <br>
-Mitigation: Review and pin the CLI-Anything repository before installation, or install it manually from an approved source. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to inspect supported CLI-Anything applications and invoke their command-line harnesses from an agent workflow. It is intended for workflows such as image editing, 3D rendering, document conversion, AI tooling, media editing, diagrams, and reference management when the required local tools are installed.
 
-## Reference(s): <br>
-- [CLI-Anything Wrapper Usage Guide](references/USAGE.md) <br>
-- [CLI-Anything](https://github.com/HKUDS/CLI-Anything) <br>
-- [ClawHub release page](https://clawhub.ai/ntaffffff/cli-anything-wrapper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration] <br>
-**Output Format:** [Plain text status output, optional JSON app listings, and local command execution results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May run installed local software through CLI-Anything; dry-run mode can show intended commands without executing them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The install path can clone and run setup code from a mutable third-party CLI-Anything checkout.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a manually reviewed and pinned CLI-Anything checkout instead of relying on automatic installation.
+
+Risk: Invoked harnesses can run local applications that may modify files, application state, or external service state.
+
+Mitigation: Run with dry-run first, review the selected application and arguments, and execute in a constrained workspace when handling important files.
+
+Risk: Fallback execution may run another script in a harness directory when the expected cli-anything executable is absent.
+
+Mitigation: Verify the harness directory contents and expected executable before allowing non-dry-run execution.
+
+## Reference(s):
+
+- [CLI-Anything Wrapper Usage Guide](references/USAGE.md)
+- [CLI-Anything](https://github.com/HKUDS/CLI-Anything)
+- [OpenClaw](https://openclaw.ai)
+- [ClawHub Skill Page](https://clawhub.ai/ntaffffff/skills/cli-anything-wrapper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text, JSON, and shell command output from local CLI-Anything harnesses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can list supported applications, report wrapper information, simulate execution with dry-run, install CLI-Anything, or invoke a selected local harness with user-provided arguments.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

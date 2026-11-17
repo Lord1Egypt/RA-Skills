@@ -1,0 +1,18 @@
+{
+  "name": "camofox-vault-login",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT-0",
+  "type": "module",
+  "description": "Password-blind local Bitwarden to Camofox handoff",
+  "engines": {
+    "node": ">=22"
+  },
+  "bin": {
+    "bw-camofox-bridge": "./cli.mjs"
+  },
+  "scripts": {
+    "test": "node --test",
+    "check": "node --check bridge.mjs && node --check runtime.mjs && node --check cli.mjs && node --check bridge.test.mjs && node --check packaging.test.mjs"
+  }
+}

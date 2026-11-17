@@ -1,51 +1,74 @@
-## Description: <br>
-Helps agents guide developers through sending and receiving transactional email with Cloudflare Email Service, including Workers bindings, REST API usage, Email Routing, setup, and deliverability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through sending and receiving transactional email with Cloudflare Email Service, including Workers bindings, REST API use, Email Routing, Agents SDK handling, setup, deliverability, and troubleshooting.
 
-## Publisher: <br>
-[creativerezz](https://clawhub.ai/user/creativerezz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[creativerezz](https://clawhub.ai/user/creativerezz)
 
-## Use Case: <br>
-Developers and engineers use this skill to add transactional email sending, inbound routing, and deliverability checks to Cloudflare Workers, Agents SDK apps, or external services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead an agent to send real email or change Cloudflare Email Routing. <br>
-Mitigation: Confirm the sender, recipients, content, attachments, routing changes, and whether a message will actually be sent before approving commands or API calls. <br>
-Risk: Cloudflare OAuth tokens, API tokens, or other sensitive credentials may be required. <br>
-Mitigation: Use least-privilege credentials stored in secrets or environment variables, avoid logging them, and review generated code for accidental token exposure. <br>
-Risk: Email content and routing decisions can expose sensitive information or be used outside transactional email use cases. <br>
-Mitigation: Review message content and routing destinations before use, and send sensitive content only when explicitly intended and permitted. <br>
+## Use Case:
 
+Developers and engineers use this skill to add transactional email sending, inbound email routing, Cloudflare Workers email bindings, REST API calls, and deliverability checks to applications and agent workflows.
 
-## Reference(s): <br>
-- [Cloudflare Email Service Docs](https://developers.cloudflare.com/email-service/) <br>
-- [Cloudflare Email Sending API Reference](https://developers.cloudflare.com/api/resources/email_sending) <br>
-- [Cloudflare Workers Types](https://www.npmjs.com/package/@cloudflare/workers-types) <br>
-- [Cloudflare Agents Docs](https://developers.cloudflare.com/agents/) <br>
-- [Sending Emails - Workers Binding and Agents SDK](references/sending.md) <br>
-- [Sending Emails - REST API](references/rest-api.md) <br>
-- [Receiving and Routing Inbound Email](references/routing.md) <br>
-- [CLI, MCP, and Project Setup](references/cli-and-mcp.md) <br>
-- [Email Deliverability and Best Practices](references/deliverability.md) <br>
-- [Cloudflare Email Service on ClawHub](https://clawhub.ai/creativerezz/cloudflare-email-service) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code snippets, JSON configuration, and shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend real Cloudflare email sending, routing, Wrangler, REST API, or MCP actions that require user review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Real-send email examples can send messages to unintended recipients or expose sensitive content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm recipients, sender, content, and attachments before sending, and avoid personal data or secrets unless authorized.
+
+Risk: Broad Cloudflare credentials or logged email bodies can increase the impact of mistakes or credential exposure.
+
+Mitigation: Use least-privilege Cloudflare tokens, store secrets outside source code, and avoid full email-body logging.
+
+Risk: Unpinned Wrangler or npm tooling can change behavior between runs.
+
+Mitigation: Pin Wrangler and npm dependency versions for reproducible setup and deployment.
+
+Risk: Unsanitized content inserted into HTML email can create unsafe or misleading messages.
+
+Mitigation: Escape or sanitize text before inserting it into HTML email templates.
+
+## Reference(s):
+
+- [Cloudflare Email Service docs](https://developers.cloudflare.com/email-service/)
+- [Cloudflare Email Sending API reference](https://developers.cloudflare.com/api/resources/email_sending)
+- [Cloudflare Workers types](https://www.npmjs.com/package/@cloudflare/workers-types)
+- [Cloudflare Agents SDK docs](https://developers.cloudflare.com/agents/)
+- [Cloudflare Agents email docs](https://github.com/cloudflare/agents/tree/main/docs)
+- [Cloudflare MCP server](https://github.com/cloudflare/mcp)
+- [Email deliverability docs](https://developers.cloudflare.com/email-service/concepts/deliverability/)
+- [Email authentication docs](https://developers.cloudflare.com/email-service/concepts/email-authentication/)
+- [ClawHub skill page](https://clawhub.ai/creativerezz/skills/cloudflare-email-service)
+- [Workers Binding and Agents SDK sending guide](references/sending.md)
+- [REST API sending guide](references/rest-api.md)
+- [Inbound email routing guide](references/routing.md)
+- [CLI, MCP, and setup guide](references/cli-and-mcp.md)
+- [Deliverability guide](references/deliverability.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline code blocks, shell commands, configuration snippets, and API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include real-send examples that require recipient, sender, content, attachment, token, and logging review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

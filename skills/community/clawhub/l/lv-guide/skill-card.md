@@ -1,39 +1,49 @@
-## Description: <br>
-Little Donkey Smart Calendar Assistant helps users view calendars online and responds to calendar-related prompts such as today's calendar. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lv Guide Display is a calendar assistant that helps users check dates, lunar calendar information, holidays, countdowns, and simple schedules.
 
-## Publisher: <br>
-[javaxujunxuan](https://clawhub.ai/user/javaxujunxuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[javaxujunxuan](https://clawhub.ai/user/javaxujunxuan)
 
-## Use Case: <br>
-External users use this calendar assistant to ask for dates, current time, lunar-calendar conversion, holiday checks, countdowns, and simple schedule or reminder handling through natural language. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact has noisy repeated metadata and an overbroad calendar trigger, which may make activation and user expectations unclear. <br>
-Mitigation: Clean up repeated metadata and narrow the trigger to explicit calendar, date, holiday, countdown, or schedule-management requests before broad deployment. <br>
-Risk: The skill describes schedule management, but security guidance says persistence behavior is not clearly disclosed. <br>
-Mitigation: Clarify whether schedule or reminder handling is conversational only or writes to persistent storage, and avoid sensitive calendar details until that behavior is documented. <br>
+## Use Case:
 
+External users can use this skill for everyday calendar questions, including checking current or future dates, lunar calendar conversions, holiday status, countdowns, and simple schedule reminders.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown or plain text conversational responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credential access, private calendar access, or command execution is identified in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: Noisy repeated trigger text may cause the skill to activate too often for calendar-related language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and narrow activation phrasing before deployment in environments where unintended activation would disrupt user workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/javaxujunxuan/skills/lv-guide)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Markdown or plain text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, credential access, or tool calls are evidenced in the artifact.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

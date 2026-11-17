@@ -1,40 +1,58 @@
-## Description: <br>
-Track AI agent earnings, tasks, and payments. Use when logging completed work, checking balance, viewing payment history, or generating invoices. Supports crypto (USDC/ETH) and fiat tracking with running totals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track AI agent earnings, tasks, and payments when logging completed work, checking balances, viewing payment history, or preparing invoice records.
 
-## Publisher: <br>
-[rogue-agent1](https://clawhub.ai/user/rogue-agent1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rogue-agent1](https://clawhub.ai/user/rogue-agent1)
 
-## Use Case: <br>
-External developers and CLI-based agents use Agent Ledger to record completed work, track pending and paid balances, store an optional wallet address, and export ledger data for reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ledger files, exports, and wallet settings can contain task descriptions, payment amounts, payment status, and an optional wallet address. <br>
-Mitigation: Treat ~/.agent-ledger and exported JSON or CSV files like financial records; restrict access and share exports only with intended recipients. <br>
-Risk: A task can be marked paid before the user has verified the corresponding payment. <br>
-Mitigation: Review ledger entries and payment records before running the pay command. <br>
+## Use Case:
 
+External agents and developers use this skill to record completed work, track pending and paid amounts, store a wallet address, and export local ledger data. It is best treated as a lightweight local tracker rather than a payment processor or accounting system.
 
-## Reference(s): <br>
-- [Agent Ledger on ClawHub](https://clawhub.ai/rogue-agent1/agent-ledger) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, CSV, shell commands, configuration] <br>
-**Output Format:** [CLI text output, JSON Lines ledger entries, CSV exports, and local JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local ledger and configuration files under ~/.agent-ledger by default; AGENT_LEDGER_DIR can override the storage directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Financial metadata and wallet information are stored in plaintext local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for low-sensitivity local tracking unless file permissions, backups, and retention practices are appropriate for the records being stored.
+
+Risk: Input-validation flaws could corrupt or misrepresent ledger data.
+
+Mitigation: Review ledger entries and exported JSON or CSV before using them for client records, invoices, or reconciliation.
+
+Risk: The description overstates payment and invoicing support.
+
+Mitigation: Treat the skill as a local earnings tracker, not as a payment processor, reliable invoicing system, or formal accounting tool.
+
+## Reference(s):
+
+- [Agent Ledger on ClawHub](https://clawhub.ai/rogue-agent1/skills/agent-ledger)
+- [Publisher profile](https://clawhub.ai/user/rogue-agent1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and JSON or CSV ledger export output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local JSONL ledger entries and JSON configuration under ~/.agent-ledger by default, or AGENT_LEDGER_DIR when set.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

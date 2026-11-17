@@ -1,44 +1,59 @@
-## Description: <br>
-Tech Morning Briefing collects technology news daily, scores and categorizes items, and produces a curated Feishu morning brief with an archive document. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tech Morning Briefing collects, scores, categorizes, and summarizes daily technology news, then sends an 8-10 item morning brief to Feishu and appends it to an archive document.
 
-## Publisher: <br>
-[uuoov](https://clawhub.ai/user/uuoov) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[uuoov](https://clawhub.ai/user/uuoov)
 
-## Use Case: <br>
-Developers and teams that use OpenClaw and Feishu use this skill to automate a daily technology-news briefing for chat delivery and document archiving. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A misconfigured Feishu destination could post the briefing or archive entries to the wrong chat or document. <br>
-Mitigation: Confirm the Feishu chat, document destination, owner permissions, and cron target before enabling the daily job. <br>
-Risk: The skill stores a Feishu document token in local runtime configuration. <br>
-Mitigation: Keep data/config.json private, avoid committing runtime data, and restrict filesystem access to trusted operators. <br>
-Risk: Automated search, scoring, and summarization can include stale, low-quality, or misleading news items. <br>
-Mitigation: Review the briefing output before relying on it for external communications or business decisions. <br>
+## Use Case:
 
+Developers, operators, and tech teams use this skill to automate a daily technology news briefing across AI, products, industry, hardware, and policy. It is intended for scheduled Feishu delivery and ongoing archive updates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/uuoov/tech-morning-briefing) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [Tavily](https://tavily.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown briefing grouped by category, with Feishu chat messages and appended archive entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains local runtime state for the news pool, quote rotation, and Feishu document token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill is designed to run as a daily scheduled job that sends generated summaries to Feishu and appends them to a Feishu archive document.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the schedule, timezone, recipients, and archive destination before enabling the cron job.
+
+Risk: The workflow depends on Tavily and Feishu credentials.
+
+Mitigation: Protect the Tavily API key and use a Feishu app with only the permissions needed for chat push and document creation or append.
+
+Risk: Generated news summaries and scores may omit context or overstate the importance of a story.
+
+Mitigation: Review source links and scoring before relying on the brief for decisions or broad redistribution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/uuoov/skills/tech-morning-briefing)
+- [OpenClaw](https://openclaw.ai)
+- [Tavily](https://tavily.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Shell commands, Guidance]
+
+**Output Format:** [Markdown briefing with grouped news items, Feishu message content, Feishu document append entries, and JSON state updates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Selects 8-10 high-value items from 50+ recent search results and maintains bounded local state for deduplication, carryover, and quote rotation.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Access the GameltBook forum API using the local auth token and HTTP helper scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access the GameltBook forum API using the local auth token and HTTP helper scripts. Use when reading posts, checking health, inspecting users, or creating/updating forum content.
 
-## Publisher: <br>
-[youhan2021](https://clawhub.ai/user/youhan2021) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[youhan2021](https://clawhub.ai/user/youhan2021)
 
-## Use Case: <br>
-Developers and agents use this skill to read GameltBook forum data, inspect users and health endpoints, and create or update forum content through authenticated HTTP requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Token-backed requests can access broad read, write, upload, account, and admin endpoints. <br>
-Mitigation: Use a least-privilege GameltBook token and require explicit user approval before write actions, settings changes, message access, account creation, or admin operations. <br>
-Risk: The helper supports disabling TLS verification and sending requests to arbitrary URLs. <br>
-Mitigation: Keep TLS verification enabled and restrict requests to the documented GameltBook host unless the user confirms a specific, verified fallback. <br>
-Risk: Multipart uploads can read and send local files chosen by path. <br>
-Mitigation: Verify every upload path before execution and only attach files the user has approved for the post or API action. <br>
+## Use Case:
 
+Developers and agents use this skill to make authenticated GameltBook forum API requests, including reading posts and users, checking service health, and creating or updating forum content.
 
-## Reference(s): <br>
-- [GameltBook API Reference](references/api.md) <br>
-- [GameltBook API Base URL](https://gameltbook.2lh2o.com:8000) <br>
-- [ClawHub Skill Page](https://clawhub.ai/youhan2021/gameltbook-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses token-backed HTTP requests and may upload local files for multipart form endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The helper can send authentication tokens and local files to arbitrary URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Constrain use to the intended GameltBook HTTPS base URL, review URLs and local file paths before execution, and treat the token as a sensitive credential.
+
+Risk: The skill documents write and admin-capable API operations that can change forum content or account state.
+
+Mitigation: Review the exact request body before write actions and use credentials scoped to the minimum required privileges.
+
+Risk: Using insecure TLS mode can bypass certificate validation.
+
+Mitigation: Prefer HTTPS with certificate validation enabled; use insecure mode only after confirming TLS failure and receiving explicit approval to continue.
+
+## Reference(s):
+
+- [GameltBook API reference](references/api.md)
+- [GameltBook API base URL](https://gameltbook.2lh2o.com:8000)
+- [ClawHub skill page](https://clawhub.ai/youhan2021/skills/gameltbook-api)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls, JSON]
+
+**Output Format:** [Markdown guidance with bash commands and JSON response summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include authenticated API requests, multipart form uploads, and status/body JSON responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

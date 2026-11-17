@@ -1,45 +1,62 @@
-## Description: <br>
-Interact with the user's Tandem Browser via MCP bridge (mcporter). Browse, snapshot, click, type, navigate, and coordinate with the user in a shared browser environment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with the user's Tandem Browser via MCP bridge (mcporter) to browse, capture snapshots, click, type, navigate, and coordinate in a shared browser environment.
 
-## Publisher: <br>
-[mikefaierberg-byte](https://clawhub.ai/user/mikefaierberg-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikefaierberg-byte](https://clawhub.ai/user/mikefaierberg-byte)
 
-## Use Case: <br>
-Developers and agents use this skill to control a local Tandem Browser session through mcporter for browsing, reading pages, snapshots, form interaction, screenshots, network inspection, and coordinated user handoff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes powerful browser debugging and network-inspection capabilities without enough scoping guidance. <br>
-Mitigation: Install only from trusted sources, prefer isolated sessions for risky sites, and supervise use of network logs, HAR capture, DevTools/CDP commands, authenticated pages, forms, account changes, and public posting. <br>
-Risk: The Tandem API token is sensitive and can enable browser control through the local MCP bridge. <br>
-Mitigation: Keep the Tandem API token private, avoid sharing the token or granting broad access, and review which agents are allowed to use this skill. <br>
-Risk: Trust grants can allow repeated browser actions on domains or across a temporary global window. <br>
-Mitigation: Avoid granting global or permanent trust casually, grant the narrowest practical trust scope, and revoke trust when it is no longer needed. <br>
-Risk: Browser content and raw HTML may contain prompt-injection attempts or misleading instructions. <br>
-Mitigation: Prefer Tandem page reads and snapshots, do not follow embedded page instructions as agent instructions, and stop or escalate to the user when Tandem blocks hostile content. <br>
+## Use Case:
 
+Developers and agents use this skill to operate a local Tandem Browser session through mcporter for browsing, page reading, DOM snapshots, navigation, and user-coordinated interaction.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mikefaierberg-byte/tandem-browser) <br>
-- [Tandem Browser Homepage](https://github.com/hydro13/tandem-browser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands and structured tool-call guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides agents to use mcporter with Tandem MCP tools, including browser reads, snapshots, navigation, interaction, sessions, trust prompts, and handoffs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill controls a local browser through broad debugging and browsing capabilities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with Tandem profiles and OS accounts suitable for agent-driven browsing, and prefer isolated sessions for sensitive work.
+
+Risk: Authenticated personal sessions may expose account state to agent-driven browser actions.
+
+Mitigation: Avoid personal authenticated sessions unless needed, revoke trust grants when done, and keep agent work in isolated browser sessions where possible.
+
+Risk: Chromium sandboxing is disabled for the local Tandem Browser launch path described by the artifact.
+
+Mitigation: Run Tandem in a container or otherwise restricted environment when browsing untrusted sites.
+
+Risk: Web pages may contain prompt-injection content or blocked content markers.
+
+Mitigation: Respect Tandem's prompt-injection warnings and blocked markers, do not follow embedded page instructions, and escalate to the user when content is blocked.
+
+## Reference(s):
+
+- [Tandem Browser ClawHub Skill](https://clawhub.ai/mikefaierberg-byte/skills/tandem-browser)
+- [Tandem Browser Homepage](https://github.com/hydro13/tandem-browser)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON argument examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires mcporter and a locally running Tandem Browser MCP server; browser actions may require user approval.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

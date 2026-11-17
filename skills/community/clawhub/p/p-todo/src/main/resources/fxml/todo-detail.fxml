@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:id="rootPane" fx:controller="com.teamtodo.controller.TodoDetailController"
+      spacing="12" prefWidth="420" styleClass="detail-panel" style="-fx-background-color:#FFFFFF; -fx-padding:16;">
+    <padding><Insets top="8" right="8" bottom="8" left="8"/></padding>
+
+    <!-- 标题 + 颜色 -->
+    <HBox spacing="8" alignment="CENTER_LEFT">
+        <Label fx:id="colorLabel" text="" styleClass="text-secondary" style="-fx-font-size:12px;"/>
+        <Label fx:id="titleLabel" text="选择一个待办查看详情" styleClass="detail-title"
+               HBox.hgrow="ALWAYS" wrapText="true"/>
+    </HBox>
+
+    <!-- 描述 -->
+    <Label fx:id="descriptionLabel" text="" wrapText="true" styleClass="text-secondary" style="-fx-font-size:13px;"/>
+
+    <!-- 操作按钮 -->
+    <HBox spacing="6">
+        <Button fx:id="btnEdit" text="编辑" styleClass="btn" onAction="#startEdit" maxWidth="64"/>
+        <Button fx:id="btnSave" text="保存" styleClass="btn-primary" onAction="#saveEdit" disable="true" maxWidth="64"/>
+        <Button fx:id="btnCancel" text="取消" styleClass="btn" onAction="#cancelEdit" disable="true" maxWidth="64"/>
+        <Button fx:id="btnComplete" text="标记完成" styleClass="btn-primary" onAction="#toggleComplete"
+                HBox.hgrow="ALWAYS" maxWidth="Infinity" ellipsisString="…" wrapText="true"/>
+    </HBox>
+    <HBox spacing="6">
+        <Button fx:id="btnUnclaim" text="取消认领" styleClass="btn" onAction="#toggleClaim" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+        <Button fx:id="btnDelete" text="删除任务" styleClass="btn" onAction="#deleteTodo" maxWidth="Infinity" HBox.hgrow="ALWAYS"
+                style="-fx-text-fill:#EF4444; -fx-border-color:#EF4444; -fx-border-radius:6; -fx-background-radius:6;"/>
+    </HBox>
+
+    <Separator/>
+
+    <!-- 详情表单 -->
+    <GridPane hgap="10" vgap="8">
+        <columnConstraints>
+            <ColumnConstraints minWidth="56" prefWidth="56"/>
+            <ColumnConstraints minWidth="0" prefWidth="300" hgrow="ALWAYS"/>
+        </columnConstraints>
+
+        <Label fx:id="statusFormLabel" text="状态" GridPane.rowIndex="0" styleClass="form-label"/>
+        <ComboBox fx:id="statusCombo" GridPane.rowIndex="0" GridPane.columnIndex="1" maxWidth="Infinity" disable="true"/>
+
+        <Label fx:id="priorityFormLabel" text="优先级" GridPane.rowIndex="1" styleClass="form-label"/>
+        <ComboBox fx:id="priorityCombo" GridPane.rowIndex="1" GridPane.columnIndex="1" maxWidth="Infinity" disable="true"/>
+
+        <Label fx:id="assigneeFormLabel" text="负责人" GridPane.rowIndex="2" styleClass="form-label"/>
+        <ComboBox fx:id="assigneeCombo" GridPane.rowIndex="2" GridPane.columnIndex="1" maxWidth="Infinity" disable="true"/>
+
+        <Label fx:id="dueDateFormLabel" text="截止日" GridPane.rowIndex="3" styleClass="form-label"/>
+        <HBox spacing="3" alignment="CENTER_LEFT" GridPane.rowIndex="3" GridPane.columnIndex="1" maxWidth="Infinity">
+            <ComboBox fx:id="yearCombo" editable="true" disable="true" prefWidth="90" minWidth="90"
+                      style="-fx-background-radius:6px; -fx-border-radius:6px; -fx-border-color:#E5E7EB; -fx-background-color:white;"/>
+            <Label fx:id="yearLabel" text="年" styleClass="form-label" minWidth="16" prefWidth="16"/>
+            <ComboBox fx:id="monthCombo" editable="true" disable="true" prefWidth="70" minWidth="70"
+                      style="-fx-background-radius:6px; -fx-border-radius:6px; -fx-border-color:#E5E7EB; -fx-background-color:white;"/>
+            <Label fx:id="monthLabel" text="月" styleClass="form-label" minWidth="16" prefWidth="16"/>
+            <ComboBox fx:id="dayCombo" editable="true" disable="true" prefWidth="70" minWidth="70"
+                      style="-fx-background-radius:6px; -fx-border-radius:6px; -fx-border-color:#E5E7EB; -fx-background-color:white;"/>
+            <Label fx:id="dayLabel" text="日" styleClass="form-label" minWidth="16" prefWidth="16"/>
+        </HBox>
+    </GridPane>
+
+    <!-- 元信息 -->
+    <Label fx:id="metaLabel" text="" styleClass="meta-label"/>
+
+    <Separator/>
+
+    <!-- 评论区 -->
+    <Label fx:id="commentsSectionLabel" text="评论" styleClass="section-title"/>
+    <ListView fx:id="commentList" prefHeight="140" VBox.vgrow="SOMETIMES"/>
+
+    <HBox spacing="8">
+        <TextField fx:id="commentInput" HBox.hgrow="ALWAYS" promptText="输入评论…"/>
+        <Button fx:id="btnSendComment" text="发送" styleClass="btn-primary" onAction="#sendComment"/>
+    </HBox>
+</VBox>

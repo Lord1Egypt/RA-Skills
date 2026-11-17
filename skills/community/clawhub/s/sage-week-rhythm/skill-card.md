@@ -1,40 +1,54 @@
-## Description: <br>
-Sage Week Rhythm guides personalized week-start, daily-pulse, week-end, and growth-tracking reflections using sage-cognitive profile and memory context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A personalized weekly rhythm system built on top of sage-cognitive that supports Week Start alignment, Daily Pulse reflection, Week End review, and cross-week growth tracking.
 
-## Publisher: <br>
-[EvanL1](https://clawhub.ai/user/EvanL1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evanl1](https://clawhub.ai/user/evanl1)
 
-## Use Case: <br>
-Individuals using Sage and sage-cognitive use this skill to run daily and weekly reflection conversations that calibrate priorities, energy, values alignment, and growth patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads personal profile and memory context and may store privacy-sensitive reflection data such as mood, meaningful events, weekly patterns, and growth observations. <br>
-Mitigation: Install only if comfortable with that data use, review stored memory as needed, and invoke the skill with explicit prompts such as daily pulse or week review. <br>
-Risk: Reflection guidance can overstate personal patterns when there is not enough history. <br>
-Mitigation: Surface growth observations only when the skill has enough repeated signal, frame them as observations, and avoid inventing patterns from sparse data. <br>
+## Use Case:
 
+External users use this skill to run personalized weekly reflection conversations that draw on sage-cognitive profile and memory context. It helps users align the week, capture daily signals, review whether the week matched their values, and notice longer-term growth patterns.
 
-## Reference(s): <br>
-- [Sage project homepage](https://github.com/nicholasgasior/sage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Conversational text or Markdown prompts, reflection questions, and concise memory notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May record daily energy, meaningful events, weekly patterns, and growth observations in sage-cognitive memory when used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill can read sage-cognitive profile data plus calendar or memory context and save personal work, energy, and values reflections over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit invocations, avoid sharing sensitive information unless appropriate, and confirm save-prevention and deletion behavior before recording private reflections.
+
+Risk: Broad reflection triggers and repeated memory writes may preserve personal patterns longer than the user expects.
+
+Mitigation: Review generated memory notes before saving, skip growth tracking when there is insufficient or sensitive data, and require confirmation before promoting stable observations to a core profile.
+
+## Reference(s):
+
+- [Sage homepage](https://github.com/nicholasgasior/sage)
+- [ClawHub skill page](https://clawhub.ai/evanl1/skills/sage-week-rhythm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Conversational markdown with short prompts, reflections, and optional memory notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save daily energy words, meaningful daily signals, weekly summaries, and growth observations to sage-cognitive memory when used.]
+
+## Skill Version(s):
+
+0.1.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,16 +1,16 @@
 ---
-name: hotel-smart-pro
+name: 酒店智能搜索
 display_name: "酒店智能搜索"
-description: 5项酒店搜索工具覆盖万豪品牌查询、酒店详情、套餐推荐、周边餐饮，基于飞猪与高德数据直连，零配置即装即用。暑期酒店预订智能筛选，快速匹配理想住所
-version: 1.1.2
+description: 5项酒店搜索工具覆盖万豪品牌查询、酒店详情、套餐推荐、周边餐饮，基于途牛与高德数据直连，零配置即装即用。暑期酒店预订智能筛选，快速匹配理想住所
+version: 1.1.11
 tags: [酒店搜索, 万豪酒店, 酒店推荐, 周边餐饮, 酒店套餐]
 tools:
-  - name: search_hotels
+  - name: searchHotels
     description: 搜索国内酒店，返回实时价格和预订链接
     primaryEnv: FLIGGY_PROXY_URL
     env:
       - name: FLIGGY_PROXY_URL
-        description: 飞猪代理URL（自动配置）
+        description: 途牛代理URL（自动配置）
         required: false
       - name: PROXY_TOKEN
         description: 代理认证Token（自动配置）
@@ -20,28 +20,28 @@ tools:
         type: string
         description: 自然语言查询，如"三亚亚龙湾亲子酒店"
         required: true
-  - name: search_marriott_hotels
+  - name: searchMarriottHotels
     description: 搜索万豪集团旗下品牌酒店
     parameters:
       - name: params
         type: string
         description: 自然语言查询，如"上海万豪酒店"
         required: true
-  - name: get_marriott_hotel_info
+  - name: getMarriottHotelInfo
     description: 获取万豪酒店详细信息
     parameters:
       - name: params
         type: string
         description: 酒店名称或关键词
         required: true
-  - name: search_marriott_packages
+  - name: searchMarriottPackages
     description: 搜索万豪酒店套餐产品
     parameters:
       - name: params
         type: string
         description: 自然语言查询，如"三亚万豪含早套餐"
         required: true
-  - name: search_food
+  - name: searchFood
     description: 搜索酒店周边餐饮美食
     parameters:
       - name: params
@@ -52,7 +52,7 @@ tools:
 
 # 酒店智能搜索 — 万豪全系+国内酒店+周边美食，5个工具一站搞定
 
-> 覆盖国内酒店搜索、万豪品牌搜索/详情/套餐、周边餐饮推荐，飞猪+高德双数据源，自然语言直达结果。
+> 覆盖国内酒店搜索、万豪品牌搜索/详情/套餐、周边餐饮推荐，途牛+高德双数据源，自然语言直达结果。
 
 🔥 **核心亮点：**
 - **万豪全系覆盖** — 万豪/喜来登/JW/威斯汀/丽思卡尔顿等品牌一站搜索
@@ -107,4 +107,4 @@ tools:
 
 ## 数据流向
 
-用户输入 → 本技能 → 云端代理 → 飞猪/高德API → 返回结果。代理不存储用户数据。
+用户输入 → 本技能 → 云端代理 → 途牛/高德API → 返回结果。代理不存储用户数据。

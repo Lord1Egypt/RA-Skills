@@ -1,40 +1,57 @@
-## Description: <br>
-Generates documentation from code, including API docs, README updates, architecture diagrams, and documentation sync checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates basic Python API documentation, updates README table-of-contents/API references, prints a simple Mermaid architecture diagram, and checks for missing documentation.
 
-## Publisher: <br>
-[michealxie001](https://clawhub.ai/user/michealxie001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michealxie001](https://clawhub.ai/user/michealxie001)
 
-## Use Case: <br>
-Developers and engineers use this skill to generate and maintain project documentation from source code, including API references, README tables of contents, architecture diagrams, and documentation freshness checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated documentation or README changes may be inaccurate or may not match the intended project state. <br>
-Mitigation: Run on a clean branch, inspect generated README.md and documentation changes before committing, and review the output against the source code. <br>
-Risk: The CI example can push documentation changes directly if used without safeguards. <br>
-Mitigation: Use branch protections and a restricted workflow token before enabling direct-push automation. <br>
+## Use Case:
 
+Developers and engineers can use this skill to generate Markdown API documentation from Python source, update README navigation/API links, and check for missing documentation before release.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/michealxie001/openclaw-doc-gen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown documentation, Mermaid or DOT diagram text, README edits, and console status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write or update README.md and docs files in the target project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill overstates some documentation capabilities and may not fully implement every advertised feature.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Expect basic Python API documentation, README table-of-contents/API link updates, simple diagram output, and missing-documentation checks unless additional features are implemented.
+
+Risk: Repository-writing workflows can modify README or documentation files.
+
+Mitigation: Run on a test branch or clean diff, constrain source and output paths, and review generated changes before committing.
+
+Risk: The included CI workflow example may not be safe to copy directly into a production repository.
+
+Mitigation: Adapt CI steps to local review, permissions, and branch-protection requirements before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/michealxie001/skills/openclaw-doc-gen)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown documentation, shell command examples, and status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write generated API documentation or README updates to user-specified repository paths; diagram and sync checks are basic.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

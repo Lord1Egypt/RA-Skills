@@ -1,42 +1,54 @@
-## Description: <br>
-Generate vintage-style travel posters inspired by the golden age of tourism advertising (1920s-1960s WPA, art deco, mid-century modern) featuring iconic destinations, national parks, beaches, cities, landmarks, and exotic locales. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates vintage-style travel poster images from text descriptions using the Neta AI image generation API.
 
-## Publisher: <br>
-[blammectrappora](https://clawhub.ai/user/blammectrappora) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blammectrappora](https://clawhub.ai/user/blammectrappora)
 
-## Use Case: <br>
-External creators and developers use this skill to generate retro travel poster images from text prompts for print-on-demand products, wall art, postcards, travel branding, and similar creative workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends prompts, optional reference identifiers, and the API token to api.talesofai.com while the provider disclosure is inconsistent. <br>
-Mitigation: Use only non-sensitive prompts and credentials, and require publisher documentation to clearly identify the destination domain and data sent before broader deployment. <br>
-Risk: The skill requires an external image-generation API token. <br>
-Mitigation: Use a scoped or disposable token where available, avoid sharing secrets in prompts or logs, and rotate the token if exposure is suspected. <br>
+## Use Case:
 
+External creators, sellers, and developers use this skill to generate retro travel-poster image URLs for print-on-demand products, wall art, postcards, travel branding, Airbnb listings, and related visual assets.
 
-## Reference(s): <br>
-- [Retro Travel Poster Generator on ClawHub](https://clawhub.ai/blammectrappora/retro-travel-poster-generator) <br>
-- [Neta API token setup](https://www.neta.art/open/) <br>
-- [Neta image generation endpoint](https://api.talesofai.com/v3/make_image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text image URL from a command-line workflow] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Neta API token and optional image size or reference image UUID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill sends the Neta API token, prompt text, and optional reference image ID to api.talesofai.com for image generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a low-privilege or disposable Neta token, avoid entering tokens into shell history, and review prompt and reference data before running the skill.
+
+Risk: The main skill instructions under-disclose the actual API domain receiving the token.
+
+Mitigation: Confirm comfort with sending data to api.talesofai.com and prefer a pinned release or verified artifact instead of a floating install command.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/blammectrappora/skills/retro-travel-poster-generator)
+- [Neta API Access](https://www.neta.art/open/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text image URL with Markdown usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Neta API token; supports optional size selection and reference image UUID input.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

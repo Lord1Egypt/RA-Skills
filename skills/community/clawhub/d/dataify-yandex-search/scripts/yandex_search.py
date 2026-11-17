@@ -264,7 +264,7 @@ def main() -> int:
     token = args.token or os.environ.get("DATAIFY_API_TOKEN", "")
     if not token.strip():
         print(
-            "Missing Dataify API token. Please provide a token or register at https://dashboard.dataify.com/login?utm_source=skill.",
+            "Missing Dataify API token. Please provide a token or register at https://dashboard.dataify.com/login?utm_source=skill. New accounts receive 50 free credits.",
             file=sys.stderr,
         )
         return 2

@@ -1,0 +1,196 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500">
+  <!--
+    Tool Call 执行循环模板
+    LLM → Tool Selector → Execution → Parser → 回到 LLM（含循环箭头）
+    占位符说明：
+      {{BG_COLOR}} {{TEXT_COLOR}} {{TITLE_COLOR}} {{SUBTITLE_COLOR}}
+      {{ACCENT_COLOR}} {{ACCENT2_COLOR}} {{ACCENT3_COLOR}} {{BORDER_COLOR}}
+      {{NODE_FILL}} {{NODE_STROKE}} {{ARROW_COLOR}} {{FONT_FAMILY}}
+
+    语义形状：LLM=双边框圆角矩形⚡，工具=带⚙的矩形，
+    决策=菱形，外部服务=虚线边框矩形
+    LLM 生成时参考此结构，自由增减工具和循环步骤。
+  -->
+
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="{{ARROW_COLOR}}"/>
+    </marker>
+    <marker id="arrow-loop" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="{{ACCENT3_COLOR}}"/>
+    </marker>
+    <marker id="arrow-ext" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="{{ACCENT2_COLOR}}"/>
+    </marker>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="900" height="500" fill="{{BG_COLOR}}" rx="6"/>
+
+  <!-- 标题 -->
+  <text x="450" y="38" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="20" font-weight="bold" fill="{{TITLE_COLOR}}">{{TITLE}}</text>
+
+  <!-- ====== 循环区域标注 ====== -->
+  <rect x="80" y="55" width="720" height="310" rx="16"
+        fill="{{ACCENT_COLOR}}" fill-opacity="0.03" stroke="{{ACCENT_COLOR}}" stroke-width="1.5" stroke-dasharray="10,5"/>
+  <text x="440" y="78" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{ACCENT_COLOR}}">{{LOOP_LABEL}}</text>
+
+  <!-- ====== 用户输入 ====== -->
+  <circle cx="50" cy="200" r="18" fill="{{ACCENT_COLOR}}" fill-opacity="0.15"
+          stroke="{{ACCENT_COLOR}}" stroke-width="2"/>
+  <circle cx="50" cy="193" r="6" fill="none" stroke="{{ACCENT_COLOR}}" stroke-width="1.5"/>
+  <path d="M 38 209 Q 50 220 62 209" fill="none" stroke="{{ACCENT_COLOR}}" stroke-width="1.5"/>
+  <text x="50" y="233" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{SUBTITLE_COLOR}}">{{USER_LABEL}}</text>
+
+  <line x1="70" y1="200" x2="108" y2="200" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="89" y="193" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="8" fill="{{ACCENT_COLOR}}">prompt</text>
+
+  <!-- ====== Step 1: LLM（双边框圆角矩形 + ⚡） ====== -->
+  <rect x="110" y="155" width="150" height="90" rx="14"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT_COLOR}}" stroke-width="2.5" filter="url(#shadow)"/>
+  <rect x="115" y="160" width="140" height="80" rx="11"
+        fill="none" stroke="{{ACCENT_COLOR}}" stroke-width="1" stroke-opacity="0.5"/>
+  <text x="185" y="190" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="15" font-weight="bold" fill="{{TEXT_COLOR}}">⚡ {{STEP_1}}</text>
+  <text x="185" y="210" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{SUBTITLE_COLOR}}">{{STEP_1_DESC}}</text>
+  <text x="185" y="228" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{ACCENT2_COLOR}}">{{STEP_1_DETAIL}}</text>
+
+  <!-- ====== 决策: Need Tool?（菱形） ====== -->
+  <polygon points="350,200 400,170 450,200 400,230"
+           fill="{{ACCENT2_COLOR}}" fill-opacity="0.15" stroke="{{ACCENT2_COLOR}}" stroke-width="2" filter="url(#shadow)"/>
+  <text x="400" y="197" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" font-weight="bold" fill="{{TEXT_COLOR}}">{{DECISION}}</text>
+  <text x="400" y="211" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="8" fill="{{SUBTITLE_COLOR}}">{{DECISION_DESC}}</text>
+
+  <!-- LLM → Decision -->
+  <line x1="260" y1="200" x2="348" y2="200" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="304" y="193" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="8" fill="{{ACCENT_COLOR}}">{{DECIDE_LABEL}}</text>
+
+  <!-- Decision: No → Final Response (直接输出) -->
+  <line x1="400" y1="230" x2="400" y2="410" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="415" y="320" font-family="{{FONT_FAMILY}}" font-size="9" fill="{{ACCENT3_COLOR}}">{{NO_TOOL_LABEL}}</text>
+
+  <!-- Decision: Yes → Tool Selector -->
+  <line x1="450" y1="200" x2="498" y2="200" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="474" y="193" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{ACCENT_COLOR}}">{{YES_TOOL_LABEL}}</text>
+
+  <!-- ====== Step 2: Tool Selector（⚙ 矩形） ====== -->
+  <rect x="500" y="170" width="140" height="60" rx="6"
+        fill="{{NODE_FILL}}" stroke="{{NODE_STROKE}}" stroke-width="2" filter="url(#shadow)"/>
+  <text x="570" y="195" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">⚙ {{STEP_2}}</text>
+  <text x="570" y="215" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">{{STEP_2_DESC}}</text>
+
+  <!-- ====== Step 3: Execution（⚙ 矩形，较大） ====== -->
+  <rect x="680" y="130" width="100" height="140" rx="6"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT2_COLOR}}" stroke-width="2" filter="url(#shadow)"/>
+  <text x="730" y="160" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">⚙ {{STEP_3}}</text>
+  <text x="730" y="178" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">{{STEP_3_DESC}}</text>
+
+  <!-- Tool Selector → Execution -->
+  <line x1="640" y1="190" x2="678" y2="190" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="659" y="183" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="8" fill="{{ACCENT_COLOR}}">call</text>
+
+  <!-- 外部服务（虚线边框矩形） -->
+  <rect x="830" y="150" width="55" height="35" rx="4"
+        fill="{{NODE_FILL}}" stroke="{{BORDER_COLOR}}" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="857" y="172" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="8" fill="{{SUBTITLE_COLOR}}">{{EXT_1}}</text>
+
+  <rect x="830" y="200" width="55" height="35" rx="4"
+        fill="{{NODE_FILL}}" stroke="{{BORDER_COLOR}}" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="857" y="222" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="8" fill="{{SUBTITLE_COLOR}}">{{EXT_2}}</text>
+
+  <!-- Execution → External -->
+  <line x1="780" y1="175" x2="828" y2="168" stroke="{{ACCENT2_COLOR}}" stroke-width="1.5"
+        stroke-dasharray="4,2" marker-end="url(#arrow-ext)"/>
+  <line x1="780" y1="210" x2="828" y2="217" stroke="{{ACCENT2_COLOR}}" stroke-width="1.5"
+        stroke-dasharray="4,2" marker-end="url(#arrow-ext)"/>
+
+  <!-- 工具列表（Execution 内） -->
+  <line x1="693" y1="188" x2="767" y2="188" stroke="{{BORDER_COLOR}}" stroke-width="0.6"/>
+  <text x="730" y="205" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="8" fill="{{ACCENT2_COLOR}}">{{TOOL_LIST_1}}</text>
+  <text x="730" y="218" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="8" fill="{{ACCENT2_COLOR}}">{{TOOL_LIST_2}}</text>
+  <text x="730" y="231" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="8" fill="{{ACCENT2_COLOR}}">{{TOOL_LIST_3}}</text>
+  <text x="730" y="258" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="8" fill="{{SUBTITLE_COLOR}}">...</text>
+
+  <!-- ====== Step 4: Result Parser（⚙ 矩形） ====== -->
+  <rect x="500" y="290" width="140" height="50" rx="6"
+        fill="{{NODE_FILL}}" stroke="{{NODE_STROKE}}" stroke-width="2" filter="url(#shadow)"/>
+  <text x="570" y="312" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">⚙ {{STEP_4}}</text>
+  <text x="570" y="330" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">{{STEP_4_DESC}}</text>
+
+  <!-- Execution → Parser -->
+  <line x1="730" y1="270" x2="640" y2="290" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="695" y="276" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="8" fill="{{ACCENT_COLOR}}">result</text>
+
+  <!-- ====== 循环箭头：Parser → LLM（反馈/循环曲线） ====== -->
+  <path d="M 500 315 Q 340 340 260 248" fill="none"
+        stroke="{{ACCENT3_COLOR}}" stroke-width="2" marker-end="url(#arrow-loop)"/>
+  <text x="360" y="308" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" font-weight="bold" fill="{{ACCENT3_COLOR}}">{{LOOP_BACK_LABEL}}</text>
+
+  <!-- ====== 最终输出 ====== -->
+  <rect x="340" y="410" width="120" height="44" rx="20"
+        fill="{{ACCENT_COLOR}}" fill-opacity="0.15" stroke="{{ACCENT_COLOR}}" stroke-width="2" filter="url(#shadow)"/>
+  <text x="400" y="437" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="13" font-weight="bold" fill="{{TEXT_COLOR}}">{{FINAL_OUTPUT}}</text>
+
+  <!-- ====== 迭代计数标注 ====== -->
+  <rect x="120" y="95" width="90" height="28" rx="14"
+        fill="{{ACCENT3_COLOR}}" fill-opacity="0.12" stroke="{{ACCENT3_COLOR}}" stroke-width="1.5"/>
+  <text x="165" y="114" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" font-weight="bold" fill="{{ACCENT3_COLOR}}">{{ITER_LABEL}}</text>
+
+  <!-- ====== 图例 ====== -->
+  <rect x="20" y="460" width="450" height="32" rx="6"
+        fill="{{BG_COLOR}}" stroke="{{BORDER_COLOR}}" stroke-width="1"/>
+  <text x="35" y="480" font-family="{{FONT_FAMILY}}"
+        font-size="9" font-weight="bold" fill="{{TITLE_COLOR}}">图例:</text>
+
+  <rect x="65" y="471" width="18" height="12" rx="4"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT_COLOR}}" stroke-width="1.5"/>
+  <rect x="67" y="473" width="14" height="8" rx="3" fill="none"
+        stroke="{{ACCENT_COLOR}}" stroke-width="0.5"/>
+  <text x="91" y="481" font-family="{{FONT_FAMILY}}" font-size="8" fill="{{TEXT_COLOR}}">⚡ LLM</text>
+
+  <rect x="125" y="471" width="18" height="12" rx="3"
+        fill="{{NODE_FILL}}" stroke="{{NODE_STROKE}}" stroke-width="1"/>
+  <text x="151" y="481" font-family="{{FONT_FAMILY}}" font-size="8" fill="{{TEXT_COLOR}}">⚙ 工具</text>
+
+  <polygon points="190,477 200,471 210,477 200,483"
+           fill="{{ACCENT2_COLOR}}" fill-opacity="0.3" stroke="{{ACCENT2_COLOR}}" stroke-width="1"/>
+  <text x="220" y="481" font-family="{{FONT_FAMILY}}" font-size="8" fill="{{TEXT_COLOR}}">决策</text>
+
+  <rect x="250" y="471" width="18" height="12" rx="2"
+        fill="none" stroke="{{BORDER_COLOR}}" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="276" y="481" font-family="{{FONT_FAMILY}}" font-size="8" fill="{{TEXT_COLOR}}">外部服务</text>
+
+  <path d="M 325 477 Q 335 468 345 477" fill="none"
+        stroke="{{ACCENT3_COLOR}}" stroke-width="1.5" marker-end="url(#arrow-loop)"/>
+  <text x="358" y="481" font-family="{{FONT_FAMILY}}" font-size="8" fill="{{TEXT_COLOR}}">循环迭代</text>
+</svg>

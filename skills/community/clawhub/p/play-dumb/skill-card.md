@@ -1,41 +1,54 @@
-## Description: <br>
-Play Dumb lets an agent adopt a controllable playful dumb mode with persona presets, dumbness levels, and safety boundaries that restore normal behavior for sensitive topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lets an agent intentionally lower how capable it appears by using configurable role-play personas, ten dumbness levels, delayed understanding, partial knowledge, deliberate small mistakes, and clarifying questions.
 
-## Publisher: <br>
-[dox012](https://clawhub.ai/user/dox012) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dox012](https://clawhub.ai/user/dox012)
 
-## Use Case: <br>
-Developers and agent users use this skill to make an assistant role-play lower confidence, ask simpler clarification questions, or adopt playful persona styles while keeping normal responses for safety, medical, legal, financial, or frustration-sensitive interactions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally asks obvious questions, delays answers, or makes deliberate mistakes, which can mislead users in accuracy-sensitive work. <br>
-Mitigation: Avoid enabling the mode for accuracy-sensitive tasks, and rely on the documented safety boundaries that restore normal behavior for safety, medical, legal, financial, or frustration-sensitive interactions. <br>
-Risk: Broad conversational phrases can change the mode during ordinary conversation. <br>
-Mitigation: Confirm mode changes when the phrase could be ambiguous, and disable the mode when the user asks for a serious answer or repeats a question. <br>
+## Use Case:
 
+External users and agent developers use this skill to activate a bounded role-play mode where the agent appears less certain, asks simpler questions, or uses one of several playful personas. It is intended for conversational tone control and guided interaction, not for tasks that require factual reliability.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dox012/play-dumb) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/dox012) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Natural-language responses, often in Markdown when the answer benefits from structure or examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persona choice and dumbness level affect tone, intentional uncertainty, and safety fallback behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill directs the agent to make believable mistakes and appear less capable, which can produce intentionally unreliable answers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for explicit role-play or tone-control scenarios, and disable it for factual work, production coding, or decisions where correctness matters.
+
+Risk: Safety overrides exist for medical, legal, financial, personal-safety, frustration, and repeated-query scenarios, but the scanner notes weak controls around when the behavior applies.
+
+Mitigation: Require clear activation controls and verify the mode exits or falls back to normal answering whenever a consequential or frustrated-user scenario is detected.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dox012/skills/play-dumb)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/dox012)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Natural-language agent responses, usually plain text or Markdown, with code blocks or shell commands only when the underlying user request calls for them.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may intentionally include uncertainty, simplified reasoning, clarifying questions, or believable mistakes while the mode is active.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

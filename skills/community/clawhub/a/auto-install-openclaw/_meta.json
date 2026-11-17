@@ -1,6 +1,8 @@
 {
   "ownerId": "kn7ae1669v4rf9fme22xdakcxn82bnn2",
-  "slug": "auto-install-openclaw",
+  "slug": "install-openclaw",
   "version": "1.0.0",
-  "publishedAt": 1772732696368
+  "name": "OpenClaw 全自动安装",
+  "description": "OpenClaw 全自动安装、配置和修复工具。包括：OpenClaw 安装、Claude API 中转站配置、飞书插件集成、bug 自动修复。",
+  "publishedAt": 1741280400000
 }

@@ -1,41 +1,54 @@
-## Description: <br>
-One-click AI product launch monitoring pipeline: RSS monitoring, product info search, screenshot capture, and trend analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+One-click AI product launch monitoring pipeline — RSS monitoring, product info search, screenshot capture, and trend analysis.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Developers, analysts, and product teams use this skill to monitor configured AI product launch feeds, enrich discovered launches, capture launch-page screenshots, and generate a trend report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Configured feeds and collected launch URLs can direct the pipeline to untrusted external sites. <br>
-Mitigation: Review references/feeds.yaml before running and inspect collected URLs with individual stages before screenshot capture. <br>
-Risk: The screenshot stage may access URLs from monitored feeds from the execution environment. <br>
-Mitigation: Avoid running the screenshot stage in environments that can reach private internal services. <br>
+## Use Case:
 
+Developers, product teams, and market analysts use this skill to monitor configured AI product launch feeds, enrich launches with search context, capture landing page screenshots, and produce a trend report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/ai-product-monitor) <br>
-- [RSS feed configuration](references/feeds.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [JSON launch data, PNG screenshots, and a Markdown trend report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local artifacts under data/: raw_launches.json, enriched_launches.json, screenshots, and trend_report.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release evidence) <br>
+Risk: The pipeline can browse and screenshot externally supplied links from configured feeds without URL safety checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a sandbox or network-controlled environment, and use trusted feeds or an allowlist before enabling automated browsing and screenshot capture.
+
+## Reference(s):
+
+- [Configured AI product monitoring feeds](references/feeds.yaml)
+- [OpenAI Blog RSS](https://openai.com/blog/rss.xml)
+- [Google AI Blog RSS](https://blog.google/technology/ai/rss/)
+- [Anthropic News Feed](https://www.anthropic.com/feed.xml)
+- [Meta AI Blog RSS](https://ai.meta.com/blog/rss/)
+- [Hugging Face Blog RSS](https://huggingface.co/blog/feed.xml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, plus generated JSON files, PNG screenshots, and a Markdown trend report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes pipeline outputs under data/: raw_launches.json, enriched_launches.json, screenshots/, and trend_report.md.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

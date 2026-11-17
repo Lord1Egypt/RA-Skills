@@ -1,44 +1,59 @@
-## Description: <br>
-Automatically generates daily global economic insight reports with market data, geopolitical event summaries, and outlook commentary for QQ or Feishu delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically generate and send daily global economic insight reports with market data, geopolitical news, and outlooks via QQ or Feishu.
 
-## Publisher: <br>
-[markdown777](https://clawhub.ai/user/markdown777) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[markdown777](https://clawhub.ai/user/markdown777)
 
-## Use Case: <br>
-Operators use this skill to generate a daily market and geopolitical briefing, then send or schedule it through QQ or Feishu. It is intended for recurring economic summary workflows that combine live Yahoo Finance price pulls with templated commentary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can present live price pulls together with static or templated commentary as a real-time analysis report. <br>
-Mitigation: Review and rewrite analysis sections before relying on them, and clearly distinguish live prices from templated commentary. <br>
-Risk: The artifact includes broad outbound-send instructions and a preconfigured QQ target. <br>
-Mitigation: Confirm or replace all QQ and Feishu recipients, and add an explicit confirmation step before any external message is sent. <br>
-Risk: The documentation describes installing a LaunchAgent for recurring external messages. <br>
-Mitigation: Create the LaunchAgent only when recurring delivery is intended and after recipients, timing, and content have been reviewed. <br>
+## Use Case:
 
+Agents or operators use this skill to produce a daily global economy briefing covering markets, commodities, foreign exchange, crypto, and geopolitical events, then manually run or schedule delivery to QQ or Feishu.
 
-## Reference(s): <br>
-- [Global Economy Daily artifact documentation](SKILL.md) <br>
-- [ClawHub skill page](https://clawhub.ai/markdown777/global-economy-daily) <br>
-- [Yahoo Finance chart API endpoint](https://query1.finance.yahoo.com/v8/finance/chart) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style daily report text with optional shell commands and launchd configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include live market prices, static or templated analysis, and outbound message delivery settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill documents persistent scheduled execution through a macOS LaunchAgent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only enable scheduled execution intentionally and keep an unload or removal process available.
+
+Risk: A bundled QQ recipient could misdirect reports if delivery is enabled without review.
+
+Mitigation: Remove or replace the bundled QQ recipient and confirm the resolved destination with a dry run before enabling QQ or Feishu delivery.
+
+Risk: Generated market and geopolitical outlooks may be incomplete, stale, or unsuitable for decision-making on their own.
+
+Mitigation: Review the report and source data before acting on its conclusions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/markdown777/skills/global-economy-daily)
+- [Yahoo Finance Chart API](https://query1.finance.yahoo.com/v8/finance/chart)
+- [Artifact Skill Documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown report text with optional shell commands and configuration edits]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Yahoo Finance market data and configurable QQ or Feishu delivery settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

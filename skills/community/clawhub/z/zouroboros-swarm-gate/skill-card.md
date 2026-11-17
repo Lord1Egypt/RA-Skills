@@ -1,42 +1,55 @@
-## Description: <br>
-Zero-cost task classifier (~2ms) that decides if a task needs multi-agent orchestration. 7 weighted signals, no API calls. Part of the Zouroboros ecosystem. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zouroboros Swarm Gate is a zero-cost task classifier that uses seven weighted signals to decide whether a task needs multi-agent orchestration without making API calls.
 
-## Publisher: <br>
-[marlandoj](https://clawhub.ai/user/marlandoj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marlandoj](https://clawhub.ai/user/marlandoj)
 
-## Use Case: <br>
-Developers and agent operators use this skill to classify task descriptions as DIRECT, SUGGEST, SWARM, or FORCE_SWARM before deciding whether to use multi-agent orchestration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Ordinary task wording can nudge the DIRECT, SUGGEST, or SWARM routing result. <br>
-Mitigation: Treat the classification as routing guidance and review sensitive or high-impact orchestration decisions before acting. <br>
-Risk: Minor release metadata inconsistencies may make package identity or terms unclear before installation. <br>
-Mitigation: Verify the npm package, publisher, and license terms before installing or deploying the skill. <br>
+## Use Case:
 
+Developers and agent operators use this skill to evaluate a task description before execution and decide whether it should run directly, be suggested for orchestration, or escalate to a multi-agent workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/marlandoj/zouroboros-swarm-gate) <br>
-- [OpenClaw metadata homepage](https://github.com/AlaricHQ/zouroboros-openclaw) <br>
-- [Runnable Swarm Gate starter](https://github.com/AlaricHQ/zouroboros-openclaw-examples/tree/main/examples/swarm-gate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [CLI text or JSON classification with decision, score, signals, reason, directive, and exit code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally in Node.js 22+ and does not make API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and SKILL.md frontmatter) <br>
+Risk: Unpinned package installation can introduce ordinary supply-chain drift between review and deployment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install a pinned package version or use a lockfile-managed dependency, and review the packaged source before deployment.
+
+Risk: Heuristic routing can misclassify tasks; wording such as 'just', 'quick', or 'simple' can lower the orchestration score.
+
+Mitigation: Treat the result as routing advice, review boundary cases, and tune thresholds or overrides for the receiving workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marlandoj/skills/zouroboros-swarm-gate)
+- [OpenClaw distribution homepage](https://github.com/AlaricHQ/zouroboros-openclaw)
+- [Runnable starter example](https://github.com/AlaricHQ/zouroboros-openclaw-examples/tree/main/examples/swarm-gate)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Plain text or JSON classification with decision, score, signal breakdown, reason, and optional routing directive]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CLI exit code indicates the routing decision when the skill is used from the command line.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

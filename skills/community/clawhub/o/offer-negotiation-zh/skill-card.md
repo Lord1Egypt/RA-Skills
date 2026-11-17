@@ -1,41 +1,48 @@
-## Description: <br>
-专为求职者与HR设计的Offer谈判全场景助手，覆盖薪资谈判、假期协商、岗位级别争取、股权期权沟通等核心议题，提供专业谈判话术、邮件模板与回应策略。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language offer negotiation talking points, email drafts, and response strategies for compensation, leave, level, equity, and competing-offer discussions.
 
-## Publisher: <br>
-[olina1ye](https://clawhub.ai/user/olina1ye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[olina1ye](https://clawhub.ai/user/olina1ye)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Job seekers and HR practitioners use this skill to draft professional Chinese negotiation emails, talking points, and response strategies for offer terms and compensation discussions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Negotiation drafts may contain sensitive compensation, employer, or personal details supplied by the user.
+
+Mitigation: Share only details needed for the draft and review generated emails before sending.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Job candidates, employees, and HR practitioners use this skill to draft Chinese-language offer negotiation messages, salary discussion scripts, counteroffer responses, and employment-term negotiation emails. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated negotiation messages may include inaccurate, overly aggressive, or unsuitable wording for a specific employer or jurisdiction. <br>
-Mitigation: Review and adapt each draft before sending, especially salary figures, employment terms, tone, and any claims about market compensation. <br>
-Risk: Offer and salary details can be sensitive personal or employment information. <br>
-Mitigation: Provide only the salary, offer, role, and employment details needed for the specific draft. <br>
+**Output Format:** [Markdown or plain text negotiation talking points and email drafts]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/olina1ye/offer-negotiation-zh) <br>
-- [Publisher profile](https://clawhub.ai/user/olina1ye) <br>
+**Other Properties Related to Output:** [Chinese-language output; generated drafts should be reviewed before sending.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese-language Markdown or plain text with negotiation scripts and email templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review generated negotiation messages before sending and provide only details needed for the specific draft.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

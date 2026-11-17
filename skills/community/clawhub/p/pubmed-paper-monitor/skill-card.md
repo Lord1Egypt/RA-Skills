@@ -1,43 +1,57 @@
-## Description: <br>
-Monitor journals precisely via ISSN lookup to track new PubMed papers with bilingual titles and detailed metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor journals precisely via ISSN lookup to track new PubMed papers with bilingual titles and detailed metadata.
 
-## Publisher: <br>
-[chenghan66](https://clawhub.ai/user/chenghan66) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenghan66](https://clawhub.ai/user/chenghan66)
 
-## Use Case: <br>
-Researchers, clinicians, and literature-monitoring teams use this skill to check specified journals for recent PubMed articles, retrieve PMID, year, author, title, and abstract metadata, and produce bilingual English and Chinese title output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PubMed search terms are sent to NCBI through Biopython Entrez calls. <br>
-Mitigation: Avoid submitting sensitive or confidential journal-monitoring terms, and review organizational policy before use. <br>
-Risk: The monitoring script uses an embedded Entrez contact email. <br>
-Mitigation: Replace the hardcoded email with an approved configured contact address before regular use. <br>
-Risk: Large result sets can trigger creation of a local Desktop report. <br>
-Mitigation: Ask for user consent before writing reports locally and confirm the intended output location. <br>
-Risk: The skill installs and depends on Biopython. <br>
-Mitigation: Install dependencies from trusted package sources in an isolated environment. <br>
+## Use Case:
 
+External researchers and research teams use this skill to monitor specified journals for recent PubMed papers, retrieve article metadata, and present English titles with professional Chinese translations.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown summaries with bilingual article entries, JSON from the monitoring script, shell commands for dependency setup, and optional local report files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and Biopython; may send PubMed search terms to NCBI and create a Desktop report for large result sets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, server release metadata) <br>
+Risk: PubMed queries are sent to NCBI using the bundled script's hard-coded Entrez email address.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the network disclosure and prefer a version that lets users configure the Entrez email before installation.
+
+Risk: Large result sets may be saved automatically to the user's Desktop.
+
+Mitigation: Confirm whether automatic report saving is acceptable and prefer a configurable output path for routine use.
+
+Risk: The dependency installation guidance does not pin Biopython to a reviewed version.
+
+Mitigation: Install a reviewed, pinned Biopython version in a controlled environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenghan66/skills/pubmed-paper-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries with bilingual titles and JSON data returned by the bundled PubMed monitor script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save a detailed bilingual report file for large result sets.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

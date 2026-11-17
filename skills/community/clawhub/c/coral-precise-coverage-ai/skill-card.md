@@ -1,42 +1,54 @@
-## Description: <br>
-Analyzes underwater coral reef images with YOLOv11 and MobileSAM to segment coral colonies, calculate coral coverage, and report detected colonies through the OpenClaw API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes underwater reef images with YOLOv11 and MobileSAM to segment coral colonies and calculate coral coverage metrics.
 
-## Publisher: <br>
-[mingzhuangwang](https://clawhub.ai/user/mingzhuangwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mingzhuangwang](https://clawhub.ai/user/mingzhuangwang)
 
-## Use Case: <br>
-Marine ecologists, environmental agencies, and developers use this skill to submit reef images for coral colony segmentation, coverage percentage calculation, and colony detection counts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uploads user-selected coral imagery to the OpenClaw API for analysis. <br>
-Mitigation: Confirm the endpoint and publisher before use, use a scoped OpenClaw token when available, and avoid uploading sensitive imagery unless the service terms are acceptable. <br>
-Risk: The skill is paid per invocation. <br>
-Mitigation: Confirm expected usage and billing controls before running repeated or automated calls. <br>
+## Use Case:
 
+Marine ecologists, environmental agencies, and developers use this skill to route reef images through the OpenClaw API Gateway for coral segmentation, coverage-ratio calculation, and colony counts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mingzhuangwang/coral-precise-coverage-ai) <br>
-- [Publisher Profile](https://clawhub.ai/user/mingzhuangwang) <br>
-- [OpenClaw Coral API Endpoint](https://api.openclaw.io/v1/skills/coral-precise-coverage-ai/predict) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API calls, JSON, Files, Guidance] <br>
-**Output Format:** [JSON response with coral coverage metrics and detected boxes, plus an optional decoded result image file and integration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a valid OpenClaw token and a user-selected JPEG or PNG image; invocations are paid through OpenClaw.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: Selected reef images and the OpenClaw token are sent to the OpenClaw API Gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only when this data transfer is acceptable, and avoid sending sensitive images or tokens outside approved workflows.
+
+Risk: The example script writes visual output to coral_inference_result.jpg and may overwrite an existing file with that name.
+
+Mitigation: Run the example from a directory where overwriting that filename is acceptable, or change the output filename before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mingzhuangwang/skills/coral-precise-coverage-ai)
+- [OpenClaw coral prediction endpoint](https://api.openclaw.io/v1/skills/coral-precise-coverage-ai/predict)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash and Python examples; API responses are JSON with optional base64-encoded image output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a reef image file and an OpenClaw API token.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

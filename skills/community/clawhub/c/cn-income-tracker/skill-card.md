@@ -1,43 +1,59 @@
-## Description: <br>
-Income Tracker records multi-source income, summarizes earnings, and produces trend, source, export, and prediction outputs for freelancers, creators, side-business operators, and small teams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Income Tracker records multi-source income, summarizes earnings, analyzes trends, and produces simple charts for freelancers, creators, and side-business users.
 
-## Publisher: <br>
-[onlyloveher](https://clawhub.ai/user/onlyloveher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[onlyloveher](https://clawhub.ai/user/onlyloveher)
 
-## Use Case: <br>
-External users and developers use this skill to add income records, inspect income summaries, analyze income sources, generate text charts, and export local income data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Income amounts, sources, dates, notes, and tags are stored in a local plaintext JSON file. <br>
-Mitigation: Use a private DATA_PATH, restrict filesystem permissions, avoid secrets in notes, and protect backups and exports. <br>
-Risk: CSV or JSON exports can disclose sensitive income history if shared or stored insecurely. <br>
-Mitigation: Review exported data before sharing and store exports only in approved private locations. <br>
-Risk: Future versions that add real cloud sync or live exchange-rate network calls would change the privacy and network-risk profile. <br>
-Mitigation: Review and rescan any future version before deployment, especially if network sync or live exchange-rate calls are introduced. <br>
+## Use Case:
 
+External users such as freelancers, creators, and small teams use this skill to record income from multiple platforms or projects, review period summaries, inspect source mix, and export records.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/onlyloveher/cn-income-tracker) <br>
-- [Clawdis homepage](https://clawhub.com/skills/income-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, CSV, ASCII charts, guidance] <br>
-**Output Format:** [Structured JSON responses with optional CSV export strings and ASCII chart text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads and writes local income records in a JSON file controlled by DATA_PATH.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact metadata reports 1.0.0) <br>
+Risk: Income records are stored locally in plaintext JSON and may contain sensitive financial details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private DATA_PATH on a machine or account you control, avoid shared or synced folders unless reviewed, and protect backups appropriately.
+
+Risk: The bundled lockfile references non-HTTPS npm mirror URLs.
+
+Mitigation: Regenerate the lockfile with an HTTPS npm registry before production deployment.
+
+Risk: Cloud sync and backup behavior is described as optional future functionality and is not covered by the clean security verdict.
+
+Mitigation: Review any cloud-sync or automated backup integration separately before enabling it for income data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/onlyloveher/skills/cn-income-tracker)
+- [Artifact homepage](https://clawhub.com/skills/income-tracker)
+- [Publisher profile](https://clawhub.ai/user/onlyloveher)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, CSV, Configuration]
+
+**Output Format:** [JSON responses with text summaries, ASCII charts, and optional CSV or JSON export data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores and reads income records from a local JSON data path configured by DATA_PATH.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact files declare 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

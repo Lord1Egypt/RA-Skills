@@ -1,43 +1,59 @@
-## Description: <br>
-Generate Quantity Take-Off (QTO) reports from BIM/CAD data by extracting volumes, areas, and counts, grouping elements, applying calculation rules, and creating cost estimates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate Quantity Take-Off (QTO) reports from BIM/CAD data. Extract volumes, areas, counts by category. Group elements, apply calculation rules, and create cost estimates automatically.
 
-## Publisher: <br>
-[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction)
 
-## Use Case: <br>
-Construction teams, estimators, and BIM/CAD practitioners use this skill to turn user-provided project data into structured QTO summaries, material breakdowns, and cost-estimate inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: QTO quantities and cost estimates may be incorrect or incomplete if source BIM/CAD data, unit prices, rules, or units are wrong. <br>
-Mitigation: Validate inputs, review generated quantities and cost estimates before business use, and reconcile outputs against project standards. <br>
-Risk: The skill reads user-provided project files and can write reports to output locations. <br>
-Mitigation: Provide only intended project files, choose explicit output locations, and avoid processing sensitive files that are outside the reporting task. <br>
-Risk: The server release version and artifact configuration version differ. <br>
-Mitigation: Use the server release version for this card and verify the artifact version if exact provenance or release matching is required. <br>
+## Use Case:
 
+Construction estimators, BIM specialists, and project teams use this skill to summarize quantities from BIM/CAD exports, group elements by construction attributes, apply calculation rules, and prepare cost-estimation inputs.
 
-## Reference(s): <br>
-- [Data Driven Construction](https://datadrivenconstruction.io) <br>
-- [IfcOpenShell](https://ifcopenshell.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with structured tables and optional Excel, CSV, or JSON export guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads user-provided BIM/CAD data and report parameters; supports CSV, Excel, JSON, IFC-derived data, and direct input patterns described in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata; artifact claw.json reports 2.0.0) <br>
+Risk: The skill may read user-provided BIM/CAD project data that contains confidential construction information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only intended project files and confirm data-sharing permissions before processing.
+
+Risk: Generated Excel, CSV, or JSON exports can overwrite existing files when generic names or reused output folders are selected.
+
+Mitigation: Specify explicit filenames or dedicated output folders for generated reports.
+
+Risk: Quantity and cost summaries depend on the accuracy of the source data, unit prices, and calculation rules supplied by the user.
+
+Mitigation: Review source data, units, pricing assumptions, and formulas before using outputs for estimating or project decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/datadrivenconstruction/skills/qto-report)
+- [Data Driven Construction](https://datadrivenconstruction.io)
+- [IfcOpenShell](https://ifcopenshell.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown tables and prose with Python code snippets; optional Excel, CSV, and JSON report files when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads user-provided CSV, Excel, JSON, BIM, or CAD-derived data and can create report exports in the working directory.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

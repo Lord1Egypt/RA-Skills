@@ -1,44 +1,63 @@
-## Description: <br>
-Self-reflection, self-criticism, self-learning, and self-organizing memory for agents that evaluate their work, record corrections, and improve over time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-reflection, self-criticism, self-learning, and self-organizing memory help an agent evaluate its work, catch mistakes, and carry correction patterns forward across sessions.
 
-## Publisher: <br>
-[mifashion](https://clawhub.ai/user/mifashion) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mifashion](https://clawhub.ai/user/mifashion)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent maintain local memory about corrections, preferences, and reusable work patterns. It is intended for improving agent behavior across sessions while keeping stored memory auditable and scoped. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores durable local memory about user corrections, preferences, and work patterns. <br>
-Mitigation: Review the contents of ~/self-improving/ regularly and avoid storing credentials, sensitive personal data, medical data, financial data, or third-party information. <br>
-Risk: Workspace steering files such as AGENTS.md, SOUL.md, or HEARTBEAT.md may change agent behavior after setup. <br>
-Mitigation: Review any workspace steering changes before relying on them and keep the memory mode scoped to the desired project or domain. <br>
-Risk: Forgetting or export requests may not match user expectations if the affected memory files are not checked. <br>
-Mitigation: Verify exports and deletion results by inspecting the updated memory files after the operation completes. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add local correction tracking, self-reflection, and reusable preference memory to an agent workflow. It is most relevant when agents should learn from explicit feedback, failed operations, repeated lessons, and workspace-specific behavior patterns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mifashion/self-dyxc) <br>
-- [Publisher profile](https://clawhub.ai/user/mifashion) <br>
-- [Skill homepage](https://www.sztv.com.cn/ysz/zx/zw/80706997.shtml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local memory files under ~/self-improving/ and optional workspace steering files when activated by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Persistent free-form memory can influence future agent behavior in ways the user may not expect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve what the skill writes to memory and workspace steering files, and use the documented audit, export, and forget flows to keep stored context visible.
+
+Risk: User corrections or workspace notes may accidentally include sensitive, third-party, access, financial, medical, or location information.
+
+Mitigation: Follow the security boundary guidance: avoid storing sensitive or third-party data, keep entries source-tagged, and remove stored items when requested.
+
+Risk: The optional companion install can add additional behavior beyond the core memory skill.
+
+Mitigation: Do not enable the companion install unless the user explicitly agrees and the source and version can be verified.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mifashion/skills/self-dyxc)
+- [Declared homepage](https://www.sztv.com.cn/ysz/zx/zw/80706997.shtml)
+- [Skill definition](artifact/SKILL.md)
+- [Setup guide](artifact/setup.md)
+- [Security boundaries](artifact/boundaries.md)
+- [Learning mechanics](artifact/learning.md)
+- [Memory operations](artifact/operations.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command snippets and configuration templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates local memory files under ~/self-improving/ and may propose workspace steering edits.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter reports 1.2.16)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

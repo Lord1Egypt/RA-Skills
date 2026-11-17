@@ -1,48 +1,62 @@
-## Description: <br>
-PM Agent helps AI coding-tool users critique PRDs, diagnose SaaS metrics, plan roadmaps, run discovery, coach PM career transitions, and pressure-test AI product decisions with explicit assumptions and tradeoffs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PM Agent helps AI coding assistants critique PRDs, diagnose SaaS metrics, plan roadmaps, run discovery, coach PM career growth, and pressure-test AI product decisions.
 
-## Publisher: <br>
-[Digidai](https://clawhub.ai/user/Digidai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[digidai](https://clawhub.ai/user/digidai)
 
-## Use Case: <br>
-External developers, product managers, founders, and product leads use this skill in AI coding tools to generate and critique product artifacts, diagnose SaaS metrics, plan discovery and roadmaps, and coach PM leadership transitions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share sensitive PRDs, metrics, roadmaps, or career details with their current AI environment while using the skill. <br>
-Mitigation: Use an approved AI environment and redact confidential product, customer, financial, or career information before pasting it into prompts. <br>
-Risk: Product recommendations, diagnostics, or generated artifacts may be incomplete or misleading if the user provides partial context. <br>
-Mitigation: Review outputs with responsible product, engineering, legal, finance, or leadership stakeholders before relying on them for business decisions. <br>
+## Use Case:
 
+Developers, founders, product managers, and product leads use this skill inside AI coding tools to produce and review product-management work such as PRDs, roadmaps, discovery plans, SaaS diagnostics, competitive analysis, and career coaching.
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [Skill Definition](SKILL.md) <br>
-- [Starter Prompts](STARTER-PROMPTS.md) <br>
-- [Artifacts and Delivery Knowledge](knowledge/artifacts-delivery.md) <br>
-- [Finance and Metrics Knowledge](knowledge/finance-metrics.md) <br>
-- [Discovery and Research Knowledge](knowledge/discovery-research.md) <br>
-- [Strategy and Positioning Knowledge](knowledge/strategy-positioning.md) <br>
-- [Career and Leadership Knowledge](knowledge/career-leadership.md) <br>
-- [AI Product Craft Knowledge](knowledge/ai-product-craft.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown responses and structured PM artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include assumptions, decisions, tradeoffs, and recommended next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata) <br>
+Risk: Installing outside ClawHub with the unpinned npx example could fetch an unintended source revision.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the ClawHub install path or use a pinned, reviewed source revision for non-ClawHub installation.
+
+Risk: Generated templates may include an attribution footer that is not suitable for every external document.
+
+Mitigation: Review generated PRDs, roadmaps, scorecards, and similar artifacts before sharing and remove or retain attribution according to the intended audience.
+
+Risk: Product recommendations and SaaS diagnostics can be misleading if the input metrics, assumptions, or context are incomplete.
+
+Mitigation: Validate key assumptions, metric definitions, baselines, and tradeoffs before relying on generated product decisions.
+
+## Reference(s):
+
+- [PM Agent ClawHub page](https://clawhub.ai/digidai/skills/pm-agent)
+- [README](artifact/README.md)
+- [Starter Prompts](artifact/STARTER-PROMPTS.md)
+- [PRD Review Example](artifact/examples/prd-review.md)
+- [SaaS Health Diagnostic Example](artifact/examples/saas-health-diagnostic.md)
+- [Director Coaching Example](artifact/examples/director-coaching.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, analysis]
+
+**Output Format:** [Markdown with structured product artifacts, concise bullet lists, and occasional plain-text prompts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include labeled assumptions, explicit tradeoffs, recommended next steps, and template attribution footers.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release evidence; package.json lists 1.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -3,8 +3,11 @@
  * BaseMail Registration Script
  * Registers an AI agent for a @basemail.ai email address
  * 
- * Usage: 
+ * Usage:
  *   node register.js [--basename yourname.base.eth] [--wallet /path/to/key]
+ *
+ * Flow: POST /api/auth/start → sign (EIP-191) → POST /api/auth/agent-register
+ * (registers on first run, plain login afterwards). Saves token + refresh_token.
  * 
  * Private key sources (in order of priority):
  *   1. BASEMAIL_PRIVATE_KEY environment variable (recommended ✅)
@@ -21,9 +24,7 @@ const path = require('path');
 const crypto = require('crypto');
 const readline = require('readline');
 
-const API_BASE = 'https://api.basemail.ai';
-const CONFIG_DIR = path.join(process.env.HOME, '.basemail');
-const TOKEN_FILE = path.join(CONFIG_DIR, 'token.json');
+const { API_BASE, CONFIG_DIR, TOKEN_FILE, parseResponse, describeError, saveTokenFile, jwtExpiresAt } = require('./token');
 const AUDIT_FILE = path.join(CONFIG_DIR, 'audit.log');
 
 function getArg(name) {
@@ -170,17 +171,20 @@ async function getPrivateKey() {
   process.exit(1);
 }
 
-// Simple fetch wrapper
+// Fetch wrapper that turns HTTP errors (429 rate limit, 5xx, HTML pages) into readable messages
 async function api(endpoint, options = {}) {
-  const url = `${API_BASE}${endpoint}`;
-  const res = await fetch(url, {
+  const res = await fetch(`${API_BASE}${endpoint}`, {
     ...options,
-    headers: {
-      'Content-Type': 'application/json',
-      ...options.headers,
-    },
+    headers: { 'Content-Type': 'application/json', ...(options.headers || {}) },
   });
-  return res.json();
+  const { ok, status, data, headers } = await parseResponse(res);
+  if (!ok) {
+    const err = new Error(describeError(status, data, headers));
+    err.status = status;
+    err.data = data;
+    throw err;
+  }
+  return data;
 }
 
 async function main() {
@@ -219,84 +223,60 @@ async function main() {
   const signature = await wallet.signMessage(startData.message);
   console.log('✅ 訊息已簽署');
 
-  // Step 3: Verify
-  console.log('\n3️⃣ 驗證簽名...');
-  const verifyData = await api('/api/auth/verify', {
-    method: 'POST',
-    body: JSON.stringify({
-      address,
-      message: startData.message,
-      signature,
-    }),
-  });
+  // Step 3: Verify + register in one call (creates the account if needed; idempotent afterwards)
+  console.log('\n3️⃣ 驗證簽名並註冊...');
+  let regData;
+  try {
+    regData = await api('/api/auth/agent-register', {
+      method: 'POST',
+      body: JSON.stringify(basename ? { address, message: startData.message, signature, basename } : { address, message: startData.message, signature }),
+    });
+  } catch (e) {
+    console.error('❌ 註冊失敗:', e.message);
+    logAudit('register', { wallet: address, success: false, error: `agent_register_${e.status || 'failed'}` });
+    process.exit(1);
+  }
 
-  if (!verifyData.token) {
-    console.error('❌ 驗證失敗:', verifyData);
+  if (!regData.token) {
+    console.error('❌ 驗證失敗:', regData);
     logAudit('register', { wallet: address, success: false, error: 'verify_failed' });
     process.exit(1);
   }
-  console.log('✅ 驗證成功！');
+  console.log(regData.registered && !regData.created ? '✅ 已註冊，登入成功！' : '✅ 註冊成功！');
 
-  let token = verifyData.token;
-  let email = verifyData.suggested_email;
-  let handle = verifyData.handle;
-
-  // Step 4: Register if needed
-  if (!verifyData.registered) {
-    console.log('\n4️⃣ 註冊中...');
-    const regData = await api('/api/register', {
-      method: 'POST',
-      headers: { Authorization: `Bearer ${token}` },
-      body: JSON.stringify(basename ? { basename } : {}),
-    });
-
-    if (!regData.success) {
-      console.error('❌ 註冊失敗:', regData);
-      logAudit('register', { wallet: address, success: false, error: 'register_failed' });
-      process.exit(1);
-    }
-
-    token = regData.token || token;
-    email = regData.email;
-    handle = regData.handle;
-    console.log('✅ 註冊成功！');
-  }
+  let token = regData.token;
+  let refreshToken = regData.refresh_token || null;
+  let handle = regData.handle;
+  let email = regData.email || (handle ? `${handle}@basemail.ai` : null);
 
   // Step 5: Upgrade if we have basename but got 0x handle
   if (basename && handle && handle.startsWith('0x')) {
     console.log('\n5️⃣ 升級至 Basename...');
-    const upgradeData = await api('/api/register/upgrade', {
-      method: 'PUT',
-      headers: { Authorization: `Bearer ${token}` },
-      body: JSON.stringify({ basename }),
-    });
-
-    if (upgradeData.success) {
+    try {
+      const upgradeData = await api('/api/register/upgrade', {
+        method: 'PUT',
+        headers: { Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ basename }),
+      });
       token = upgradeData.token || token;
-      email = upgradeData.email;
-      handle = upgradeData.handle;
+      email = upgradeData.email || email;
+      handle = upgradeData.handle || handle;
       console.log('✅ 升級成功！');
-    } else {
-      console.log('⚠️ 升級失敗:', upgradeData.error || upgradeData);
+    } catch (e) {
+      console.log('⚠️ 升級失敗:', e.message);
     }
   }
 
-  // Save token
-  if (!fs.existsSync(CONFIG_DIR)) {
-    fs.mkdirSync(CONFIG_DIR, { recursive: true, mode: 0o700 });
-  }
-  
-  const tokenData = {
+  // Save token (+ refresh_token so send/inbox keep working after 24 h without the private key)
+  const tokenData = saveTokenFile({
     token,
+    refresh_token: refreshToken,
     email,
     handle,
     wallet: address.toLowerCase(),
     basename: basename || null,
-    saved_at: new Date().toISOString(),
-    expires_hint: '24h', // Token expiry hint
-  };
-  
-  fs.writeFileSync(TOKEN_FILE, JSON.stringify(tokenData, null, 2), { mode: 0o600 });
+    expires_at: jwtExpiresAt(token),
+  });
 
   // Audit log
   logAudit('register', { wallet: address, success: true });
@@ -305,7 +285,7 @@ async function main() {
   console.log('🎉 成功！');
   console.log('═'.repeat(40));
   console.log(`\n📧 Email: ${email}`);
-  console.log(`🎫 Token 已存於: ${TOKEN_FILE}`);
+  console.log(`🎫 Token 已存於: ${TOKEN_FILE}${tokenData.refresh_token ? '（含 refresh_token，24 小時後自動續期）' : ''}`);
   
   console.log('\n📋 下一步：');
   console.log('   node scripts/send.js someone@basemail.ai "Hi" "Hello!"');

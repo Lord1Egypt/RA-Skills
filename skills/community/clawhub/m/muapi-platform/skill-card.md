@@ -1,40 +1,48 @@
-## Description: <br>
-Setup and utility scripts for muapi.ai: configure API keys, test connectivity, and poll for async generation results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Setup and utility scripts for muapi.ai to configure API keys, test connectivity, and poll for async generation results.
 
-## Publisher: <br>
-[Anil-matcha](https://clawhub.ai/user/Anil-matcha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[anil-matcha](https://clawhub.ai/user/anil-matcha)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to configure MuAPI credentials, verify access through the muapi CLI, and retrieve asynchronous prediction results by request ID.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The documented setup path can expose a MuAPI API key in shell history or process arguments.
+
+Mitigation: Prefer the interactive setup form, avoid passing the API key directly as a command argument, confirm where the muapi CLI stores credentials, and rotate any key previously entered through the command-line example.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to configure MuAPI credentials, verify MuAPI CLI access, and check asynchronous prediction results. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: API keys can be exposed when passed directly on the command line or stored in shell history. <br>
-Mitigation: Prefer running setup without an inline key so the MuAPI CLI can prompt securely, avoid long-lived keys in commands, and rotate any key that may have been exposed. <br>
-Risk: The scripts invoke the local muapi command, so a user could run an unexpected binary if their PATH is misconfigured. <br>
-Mitigation: Confirm which muapi command will run before executing the scripts and install the MuAPI CLI only from a trusted MuAPI source. <br>
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Anil-matcha/muapi-platform) <br>
+**Other Properties Related to Output:** [May invoke local shell scripts that call the muapi CLI and can return status text or JSON output from result polling.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include MuAPI CLI commands that configure credentials, inspect account configuration, or poll prediction results.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter says 0.1.0) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,55 @@
-## Description: <br>
-Homebrew package manager for macOS. Search, install, manage, and troubleshoot packages and casks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Homebrew package manager for macOS. Search, install, manage, and troubleshoot packages and casks.
 
-## Publisher: <br>
-[TheSethRose](https://clawhub.ai/user/TheSethRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[thesethrose](https://clawhub.ai/user/thesethrose)
 
-## Use Case: <br>
-Developers and macOS users use this skill to search for Homebrew packages, inspect package details, install or remove formulae and casks, and troubleshoot Homebrew configuration issues. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Suggested Homebrew commands can install, update, or remove software on the user's machine. <br>
-Mitigation: Review each proposed brew install, upgrade, uninstall, or cleanup command before execution. <br>
-Risk: The skill depends on the local Homebrew executable being installed and available. <br>
-Mitigation: Confirm the brew binary is present before relying on the skill for package-management workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Homebrew Documentation](https://docs.brew.sh) <br>
-- [Homebrew Core](https://github.com/Homebrew/homebrew-core) <br>
-- [Homebrew Cask](https://github.com/Homebrew/homebrew-cask) <br>
-- [ClawHub Skill Page](https://clawhub.ai/TheSethRose/homebrew) <br>
-- [Publisher Profile](https://clawhub.ai/user/TheSethRose) <br>
+## Use Case:
 
+Developers and macOS users use this skill to have an agent propose Homebrew commands for searching, installing, upgrading, uninstalling, and troubleshooting packages and casks.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance, Markdown] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands require the local brew binary.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Homebrew install, upgrade, and uninstall commands can make real changes to the local macOS environment.
+
+Mitigation: Confirm the exact formula or cask names and intended operation before executing generated commands.
+
+Risk: Troubleshooting commands such as brew config can expose local environment details.
+
+Mitigation: Review command output before sharing it externally.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/thesethrose/skills/homebrew)
+- [Official Homebrew Documentation](https://docs.brew.sh)
+- [Homebrew Core](https://github.com/Homebrew/homebrew-core)
+- [Homebrew Cask](https://github.com/Homebrew/homebrew-cask)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may perform local package installation, upgrade, removal, or troubleshooting actions when executed.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

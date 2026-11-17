@@ -1,47 +1,60 @@
-## Description: <br>
-Runs a comprehensive 11-section health check on local OpenClaw installations, diagnosing configuration errors, session bloat, model drift, cron issues, security misconfigurations, gateway problems, and system instruction token budget. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs an 11-section health check for local OpenClaw installations, diagnoses configuration, session, cron, gateway, security, resource, and system-instruction issues, and presents findings with optional fixes.
 
-## Publisher: <br>
-[bryant24hao](https://clawhub.ai/user/bryant24hao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bryant24hao](https://clawhub.ai/user/bryant24hao)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to audit local OpenClaw installations, generate a prioritized diagnostic report, and apply approved repairs to configuration, session, cron, gateway, resource, and system-instruction issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Approved fixes can change or delete local OpenClaw files. <br>
-Mitigation: Review the diagnostic report before approving fixes, prefer one-by-one repairs for config, security, and session changes, and confirm CRITICAL changes individually. <br>
-Risk: Diagnostic output may include local configuration, session, log, cron, and workspace information in the agent conversation. <br>
-Mitigation: Inspect the generated report before sharing it and rely on the skill's secret-redaction behavior for tokens, API keys, and passwords. <br>
-Risk: The demo SVG may load a third-party font when rendered in privacy-sensitive offline environments. <br>
-Mitigation: Avoid rendering the demo SVG in such environments or review the asset behavior before use. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to audit local OpenClaw installations, understand health and security findings, and decide whether to apply guided cleanup or configuration fixes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bryant24hao/oc-doctor) <br>
-- [Publisher profile](https://clawhub.ai/user/bryant24hao) <br>
-- [Project homepage](https://github.com/bryant24hao/oc-doctor) <br>
-- [User story](docs/user-story.en.md) <br>
-- [System instruction checker](scripts/sysinstruction-check.sh) <br>
-- [jq documentation](https://jqlang.github.io/jq/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown diagnostic report with severity labels, tables, inline shell commands, and interactive repair prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports redact secrets and ask for confirmation before modifying local files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill reads local OpenClaw configuration, session, cron, log, and workspace Markdown data that may contain sensitive operational context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in the intended local OpenClaw environment, review the generated report before sharing it, and confirm that secrets remain redacted.
+
+Risk: Interactive fixes may change configuration or session files, archive workspace Markdown, or delete cache and temporary data.
+
+Mitigation: Approve fixes only after the exact changes and deletion targets are shown; confirm critical changes individually.
+
+Risk: The documented global npx install command is unpinned.
+
+Mitigation: Prefer a pinned or reviewed install path before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bryant24hao/skills/oc-doctor)
+- [oc-doctor homepage](https://github.com/bryant24hao/oc-doctor)
+- [jq documentation](https://jqlang.github.io/jq/)
+- [Windows Subsystem for Linux installation](https://learn.microsoft.com/en-us/windows/wsl/install)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown diagnostic report with severity-labeled findings, tables, inline shell commands, and interactive fix prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce structured JSON internally for system-instruction analysis; secrets are expected to be redacted in user-facing output.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

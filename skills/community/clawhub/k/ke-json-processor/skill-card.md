@@ -1,39 +1,54 @@
-## Description: <br>
-Json Processor helps agents format, validate, extract fields from, and convert JSON data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+JSON Processor helps agents format, validate, extract fields from, and convert JSON data.
 
-## Publisher: <br>
-[xiaoheizp](https://clawhub.ai/user/xiaoheizp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoheizp](https://clawhub.ai/user/xiaoheizp)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect, clean up, validate, extract fields from, and transform JSON such as API responses or structured data snippets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: JSON passed directly on the command line may be retained in shell history or terminal logs. <br>
-Mitigation: Avoid placing sensitive JSON directly in command arguments; use safer input handling when processing secrets or private data. <br>
+## Use Case:
 
+Developers and agents use this skill to clean up JSON, validate syntax, extract specific fields, convert JSON into CSV or table-style output, and inspect API responses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaoheizp/ke-json-processor) <br>
-- [Publisher profile](https://clawhub.ai/user/xiaoheizp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell command examples and JSON-oriented text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires jq for JSON processing commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server evidence) <br>
+Risk: The skill depends on installing jq through package-manager commands, which may be inappropriate on shared or locked-down machines.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve the jq installation step before use, or use an already approved jq installation.
+
+Risk: The documentation is primarily in Chinese and includes private-contact donation and custom-service language.
+
+Mitigation: Have reviewers confirm the user-facing text and support expectations before publishing in environments that require clear public support channels.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaoheizp/skills/ke-json-processor)
+- [Publisher profile](https://clawhub.ai/user/xiaoheizp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell command examples and JSON-processing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires jq for the documented JSON-processing commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

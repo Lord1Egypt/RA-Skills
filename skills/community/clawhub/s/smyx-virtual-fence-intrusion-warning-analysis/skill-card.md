@@ -1,45 +1,59 @@
-## Description: <br>
-Customizes safety zones, identifies babies crawling out or approaching dangerous areas such as bedsides/windowsills, and immediately alerts to protect baby safety. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes supplied surveillance videos for virtual fence crossings and returns structured safety reports and historical results.
 
-## Publisher: <br>
-[18072937735](https://clawhub.ai/user/18072937735) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[18072937735](https://clawhub.ai/user/18072937735)
 
-## Use Case: <br>
-Parents, guardians, and agents assisting home safety monitoring use this skill to submit baby/home monitoring videos or URLs to the LifeEmergence cloud service for virtual-fence crossing analysis, alerts, and historical report lookup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive baby or home monitoring media may be uploaded to the LifeEmergence cloud service. <br>
-Mitigation: Use only media you are authorized to share, avoid unnecessary sensitive scenes, and confirm privacy and retention expectations before use. <br>
-Risk: The skill creates or reuses a local identity and stores authentication tokens locally with limited user-facing controls. <br>
-Mitigation: Run it in a controlled workspace, clear local data and tokens when decommissioning, and prefer a release with explicit account binding and token-clearing controls. <br>
-Risk: Virtual-fence analysis is an auxiliary alert and may miss events or produce false alarms. <br>
-Mitigation: Do not rely on it as the only safety mechanism; keep physical safeguards and direct human supervision in place. <br>
+## Use Case:
 
+Caregivers use the skill to review home monitoring videos for movement across configured safety boundaries and retrieve prior analysis reports. It supports safety review while human supervision remains necessary.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-virtual-fence-intrusion-warning-analysis) <br>
-- [API interface documentation](references/api_doc.md) <br>
-- [Shared analysis API documentation](skills/smyx_analysis/references/api_doc.md) <br>
-- [Skill demo](https://lifeemergence.com/sample.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Files] <br>
-**Output Format:** [Markdown or JSON analysis reports, history tables, cloud report links, and optional saved result files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts local mp4, avi, or mov files up to 10 MB, or a public video URL for cloud-side analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: frontmatter, ClawHub release metadata) <br>
+Risk: The analysis may not provide an immediate alert when an infant approaches a hazard.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not rely on the skill for time-critical supervision; maintain direct human monitoring and physical safeguards.
+
+Risk: Video may undergo external processing, with possible account or identity handling.
+
+Mitigation: Review the processing and account implications before installing the skill or sharing footage.
+
+Risk: The security assessment is incomplete because a referenced local path could not be resolved.
+
+Mitigation: Review the skill and its dependencies before installing.
+
+## Reference(s):
+
+- [API documentation](artifact/references/api_doc.md)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-virtual-fence-intrusion-warning-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON]
+
+**Output Format:** [Structured analysis report; historical report lists use Markdown tables, with JSON detail available.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports can include monitoring results, warnings, recommendations, timestamps, screenshots, and report links.]
+
+## Skill Version(s):
+
+1.0.19 (source: server-resolved release metadata; artifact frontmatter lists 1.0.26)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

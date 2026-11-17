@@ -1,44 +1,58 @@
-## Description: <br>
-WM Tipp generates German-language 2026 World Cup match tips with Polymarket odds and sends them to configured Telegram recipients. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates FIFA World Cup 2026 tips with Polymarket odds and sends daily Telegram messages.
 
-## Publisher: <br>
-[jcbuer](https://clawhub.ai/user/jcbuer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jcbuer](https://clawhub.ai/user/jcbuer)
 
-## Use Case: <br>
-Developers and personal automation users can use this skill to run a scheduled World Cup tipping workflow that reads a local schedule, fetches public Polymarket odds, and posts Markdown-formatted tips to Telegram. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Telegram recipient or gateway misconfiguration can send scheduled tips to unintended chats. <br>
-Mitigation: Review WM_CHAT_IDS and WM_TELEGRAM_API before running the script, and use a trusted local or HTTPS Telegram gateway. <br>
-Risk: Sensitive Telegram configuration in environment variables may be exposed through shell history, logs, or process inspection. <br>
-Mitigation: Store WM_CHAT_IDS and WM_TELEGRAM_API in a protected runtime environment and avoid printing or committing them. <br>
-Risk: Overriding WM_SKILL_DIR changes where the Polymarket cache file is written. <br>
-Mitigation: Leave WM_SKILL_DIR unset unless the cache location has been reviewed and is writable only by the intended user. <br>
+## Use Case:
 
+External users and developers use this skill to generate scheduled German-language FIFA World Cup 2026 match tips with market odds and deliver them to configured Telegram recipients.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jcbuer/wm-tipp) <br>
-- [Publisher profile](https://clawhub.ai/user/jcbuer) <br>
-- [Polymarket markets API](https://gamma-api.polymarket.com/markets) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown] <br>
-**Output Format:** [Markdown-formatted Telegram messages and console status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 plus WM_TELEGRAM_API and WM_CHAT_IDS environment variables; writes a local Polymarket cache under the skill data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata, SKILL.md, and package.json) <br>
+Risk: Generated World Cup tip messages may be sent to unintended Telegram recipients if WM_CHAT_IDS is misconfigured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep WM_CHAT_IDS limited to intended recipients and review the recipient list before scheduled execution.
+
+Risk: An untrusted Telegram gateway could receive generated message content or route messages unexpectedly.
+
+Mitigation: Set WM_TELEGRAM_API only to a trusted Telegram gateway endpoint.
+
+Risk: Pointing WM_SKILL_DIR at a sensitive directory changes where the skill reads and writes its schedule, tips, and cache files.
+
+Mitigation: Set WM_SKILL_DIR only to the intended skill directory and avoid sensitive filesystem locations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jcbuer/skills/wm-tipp)
+- [Polymarket Gamma markets API](https://gamma-api.polymarket.com/markets)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Telegram Markdown text with optional shell configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local JSON schedule and tip data, a one-hour Polymarket cache, and configured Telegram recipients.]
+
+## Skill Version(s):
+
+1.0.1 (source: release metadata, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

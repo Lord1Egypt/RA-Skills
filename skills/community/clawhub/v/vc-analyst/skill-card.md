@@ -1,44 +1,60 @@
-## Description: <br>
-This skill guides Chinese primary-market industrial investment analysis across founder, industry, government, financial, and industrial capability review, then structures deal-killer checks, missing-information review, confidence scoring, IC debate, comps, sensitivity analysis, history, and export-ready investment memos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes primary-market investment opportunities for VC, PE, strategic capital, industrial capital, and government-guided funds using founder, industry, government-fit, financial, industrial-capability, comparison, sensitivity, and memo workflows.
 
-## Publisher: <br>
-[perrykono-debug](https://clawhub.ai/user/perrykono-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[perrykono-debug](https://clawhub.ai/user/perrykono-debug)
 
-## Use Case: <br>
-Investment professionals, corporate strategy teams, and government-guided fund users use this skill to research private-market projects, compare opportunities, evaluate founders and sectors, and produce investment memos with explicit confidence and missing-information notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with analysis patterns tailored to China-market industrial investment. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may save or reuse confidential investment analyses and deal notes locally without clear consent or retention controls. <br>
-Mitigation: Use it only with non-confidential or approved materials unless local memory writes are disabled or tightly controlled, review saved notes, and confirm before exporting reports to external tools. <br>
+## Use Case:
 
+Investment professionals, corporate strategy teams, and government-guided fund teams use this skill to evaluate private-market projects, compare investment targets, surface diligence gaps, and draft investment memos or report-ready summaries.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/perrykono-debug/vc-analyst) <br>
-- [Publisher Profile](https://clawhub.ai/user/perrykono-debug) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
-- [Agent Workflow Reference](artifact/references/agents.md) <br>
-- [Identity Reference](artifact/references/identity.md) <br>
-- [Architecture Reference](artifact/references/soul.md) <br>
-- [Tools Reference](artifact/references/tools.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Chinese Markdown investment memo with scores, risk lists, source notes, and report sections.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include estimates, confidence labels, missing-information lists, comps analysis, sensitivity analysis, and export guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill can save investment analyses, preferences, and corrections across sessions without clear opt-in controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable or constrain memory and self-improvement behavior unless retention is explicitly intended, and define storage and deletion controls before using sensitive information.
+
+Risk: Confidential deal materials, founder diligence, financial projections, or internal investment notes may be exposed if used with unconstrained tools or persistent memory.
+
+Mitigation: Avoid non-public information unless the deployment has approved confidentiality controls, tool restrictions, and retention limits.
+
+Risk: Investment conclusions may be misleading when public data is incomplete, stale, or estimated.
+
+Mitigation: Require source checks, label estimates clearly, and treat outputs as diligence support rather than final investment decisions.
+
+## Reference(s):
+
+- [AGENTS.md - investment analyst workspace](references/agents.md)
+- [IDENTITY.md - industrial investment analyst identity](references/identity.md)
+- [SOUL.md - investment analysis workflow](references/soul.md)
+- [TOOLS.md - investment analyst tool notes](references/tools.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown investment memos, comparison tables, JSON-like scoring blocks, and optional report-ready exports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should distinguish sourced facts from estimates and include diligence gaps, confidence levels, and investment risks.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

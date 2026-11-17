@@ -1,38 +1,56 @@
-## Description: <br>
-Classifies tasks by complexity, guides planning before execution, coordinates subagents when appropriate, and reports progress and results continuously. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Classifies OpenClaw tasks by complexity, defines planning and reporting expectations, and guides agents on when to use subagents for execution.
 
-## Publisher: <br>
-[tomuiv](https://clawhub.ai/user/tomuiv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[tomuiv](https://clawhub.ai/user/tomuiv)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent operators use this skill to impose a structured task workflow for OpenClaw agents, including task classification, planning, progress reporting, subagent coordination, and result reporting.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill redirects plans and results to an undefined controller named TOM.
+
+Mitigation: Install only when TOM is the intended controller, and avoid sharing sensitive task results unless that routing is approved.
+
+Risk: The workflow encourages retries and subagent use that can become difficult to bound.
+
+Mitigation: Apply local limits for retry count, runtime, and parallel subagents before using the skill on long-running or sensitive tasks.
+
+Risk: The skill can change how an agent handles many tasks even though it has no executable payload.
+
+Mitigation: Review the workflow before installation and require explicit user approval for sensitive actions, capability inspection, and result sharing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use this skill to standardize OpenClaw task execution with upfront task classification, planning, progress reporting, retry behavior, and bounded subagent coordination. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may encourage subagent coordination, retries, and sensitive operations during task execution. <br>
-Mitigation: Keep normal limits on subagent count, retries, timeouts, and require authorization before sensitive operations. <br>
+**Output Format:** [Markdown or plain text plans, progress updates, task results, and command guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tomuiv/openclaw-task-executor) <br>
+**Other Properties Related to Output:** [No executable payload; behavior depends on the host agent's available tools and user authorization.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with task plans, progress updates, command suggestions, and result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only workflow; no hidden scripts, credential handling, or install-time behavior were reported by the security evidence.] <br>
+1.0.0 (source: server release metadata and artifact/skill.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and skill.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

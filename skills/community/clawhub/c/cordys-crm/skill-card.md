@@ -1,43 +1,60 @@
-## Description: <br>
-CordysCRM helps an agent translate natural-language CRM requests into Cordys CRM CLI commands for intent recognition, module selection, parameter completion, pagination, L2C tracing, funnel analysis, and role-aware summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CordysCRM helps agents support Cordys CRM lead-to-cash workflows with cross-module relationship tracing, funnel analysis, Customer 360 views, role-aware guidance, and CLI command mapping.
 
-## Publisher: <br>
-[fit2-zhao](https://clawhub.ai/user/fit2-zhao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fit2-zhao](https://clawhub.ai/user/fit2-zhao)
 
-## Use Case: <br>
-Employees and CRM operators use this skill to query Cordys CRM, inspect lead-to-cash workflows, review sales and finance status, and prepare command-line CRM actions with concise business summaries. It is suited for role-aware sales, manager, executive, contract administration, and finance workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can drive powerful authenticated CRM and admin actions, including approvals, batch approval operations, raw API calls, and approval-flow changes. <br>
-Mitigation: Install only from a trusted publisher, use least-privilege Cordys CRM credentials, and require explicit human confirmation before approvals, batch operations, raw API calls, or approval-flow changes. <br>
-Risk: Cordys CRM credentials are required and could be exposed if requests are sent to an untrusted CRM domain or broad admin keys are stored in the skill environment. <br>
-Mitigation: Keep CORDYS_CRM_DOMAIN restricted to a trusted Cordys CRM host, avoid enabling CORDYS_ALLOW_UNTRUSTED, and do not store broad admin keys in the skill .env file. <br>
+## Use Case:
 
+CRM users and business teams use this skill to query and update Cordys CRM records, inspect lead-to-cash pipelines, review approvals, and receive role-aware summaries and next-step guidance.
 
-## Reference(s): <br>
-- [Cordys CRM API reference](references/crm-api.md) <br>
-- [Cordys CRM CLI semantic specification](core/cli-spec.md) <br>
-- [CordysCRM ClawHub skill page](https://clawhub.ai/fit2-zhao/cordys-crm) <br>
-- [fit2-zhao publisher profile](https://clawhub.ai/user/fit2-zhao) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise tabular summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference environment variables for Cordys CRM credentials and domain configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill uses high-impact CRM credentials and write authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in trusted deployment environments and restrict CRM credentials to least privilege before use.
+
+Risk: Raw API and environment-file loading paths can expand access beyond normal guided workflows.
+
+Mitigation: Disable or harden raw API access and .env loading unless the deployment has reviewed and accepted those paths.
+
+Risk: Approval actions and other CRM writes can affect business records.
+
+Mitigation: Use non-administrator credentials for initial deployment and require confirmation for write and approval actions.
+
+## Reference(s):
+
+- [CordysCRM ClawHub release](https://clawhub.ai/fit2-zhao/skills/cordys-crm)
+- [CORDYS CRM API reference](references/crm-api.md)
+- [CLI semantic specification](core/cli-spec.md)
+- [Write operation engine](core/write-engine.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with CRM summaries, tables, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include L2C relationship views, CRM risk reminders, proposed write actions, approval actions, and configuration guidance.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata and registry.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

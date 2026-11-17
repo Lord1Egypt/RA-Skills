@@ -3,7 +3,6 @@
 const fs = require('fs');
 const path = require('path');
 const { execFileSync } = require('child_process');
-const { execWenyan } = require('./wenyan_runner');
 
 const BASE_DIR = __dirname;
 const CATALOG_PATH = path.join(BASE_DIR, 'theme_catalog.json');
@@ -49,7 +48,7 @@ function escapeHtml(value) {
 
 function getInstalledWenyanThemes() {
     try {
-        const output = execWenyan(['theme', '-l'], { encoding: 'utf-8', timeout: 20000 });
+        const output = execFileSync('wenyan', ['theme', '-l'], { encoding: 'utf-8', timeout: 20000 });
         const themes = new Map();
         for (const line of output.split('\n')) {
             const trimmed = line.trim();
@@ -147,7 +146,7 @@ function buildRenderArgs(filePath, theme) {
 }
 
 function renderTheme(theme) {
-    return execWenyan(buildRenderArgs(SAMPLE_MD_PATH, theme), {
+    return execFileSync('wenyan', buildRenderArgs(SAMPLE_MD_PATH, theme), {
         encoding: 'utf-8',
         timeout: 30000,
     }).trim();

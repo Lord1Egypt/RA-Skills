@@ -1,45 +1,59 @@
-## Description: <br>
-Reviews insurance-claim imaging or examination report text for a specified body part and asks an internal medical model to classify the injury status using the caller's required categories and output format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews insurance claim imaging or examination report text for a specified anatomical site and classifies the finding under the caller's injury categories.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Insurance claim reviewers and workflow agents use this skill to classify whether a specified body part shows chronic injury, acute injury, no injury, or no mention based on supplied medical report text. It is intended as an auxiliary review aid, not a forensic determination or final claim decision. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided medical report text is sent to the configured hivoice.cn/internal medical model endpoint. <br>
-Mitigation: Use the skill only when the publisher and endpoint are trusted and organizational policy permits the processing. <br>
-Risk: Inputs may contain names, ID numbers, imaging numbers, or other protected medical details. <br>
-Mitigation: Redact sensitive identifiers before execution; the artifact states redaction is the caller's responsibility. <br>
-Risk: The output is an auxiliary medical-claims classification and may be mistaken for a final claims or forensic decision. <br>
-Mitigation: Require qualified human review before using the result in claim decisions. <br>
-Risk: Using --output writes results locally. <br>
-Mitigation: Use --output only when a local result file is intentionally required and handled under the appropriate data controls. <br>
+## Use Case:
 
+Claims reviewers use this skill to submit de-identified imaging or examination report text and receive a structured auxiliary classification for chronic injury review. The result supports insurance review workflows and is not a forensic opinion or final claim decision.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-chronic-injury) <br>
-- [Publisher profile](https://clawhub.ai/user/unisound-llm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, files] <br>
-**Output Format:** [JSON result by default, plain model answer text with --text-only, or UTF-8 JSON/NDJSON file when --output is used.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes skill name, status, record index, metadata passthrough, input question, model name, input mode, optional input path, and the model-generated answer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact _meta.json) <br>
+Risk: Sensitive claim text or credentials could be sent to an unintended API endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted HTTPS API endpoint and protect and scope the appkey.
+
+Risk: Claim materials may contain personal or medical identifiers.
+
+Mitigation: De-identify claim materials before use.
+
+Risk: Using output persistence can store the question, metadata, and model answer on disk.
+
+Mitigation: Avoid --output unless disk storage of those contents is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-chronic-injury)
+- [Publisher profile](https://clawhub.ai/user/unisound-llm)
+- [Default medical model API endpoint](https://maas-api.hivoice.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [JSON by default, or plain text when text-only output is requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns the skill name, status, selected model, input provenance fields, optional metadata, the original question, and the model answer.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

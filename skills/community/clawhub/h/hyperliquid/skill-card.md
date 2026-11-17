@@ -1,45 +1,60 @@
-## Description: <br>
-Read-only Hyperliquid market data assistant (perps + spot optional) with support for natural-language requests and deterministic command parsing (terminal-style `hl ...` and slash-style `/hl ...`). Use to fetch quotes (mark/mid/oracle/funding/OI/volume), top movers, funding rankings, L2 order book, and candle snapshots via https://api.hyperliquid.xyz/info, and to format results for chat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read-only Hyperliquid market data assistant with natural-language, terminal-style, and slash-style requests for quotes, movers, funding rankings, order books, candle snapshots, and account views via the Hyperliquid Info API.
 
-## Publisher: <br>
-[k0nkupa](https://clawhub.ai/user/k0nkupa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[k0nkupa](https://clawhub.ai/user/k0nkupa)
 
-## Use Case: <br>
-External users and developers use this skill to query Hyperliquid market data and read-only account views from chat or terminal-style prompts. It helps inspect quotes, movers, funding, order books, candles, positions, balances, open orders, fills, and locally saved account aliases without trading or private-key handling. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Wallet addresses, positions, balances, orders, and fills can appear in chat when account views are requested. <br>
-Mitigation: Use the skill only in trusted chat contexts and avoid requesting account views on shared or logged sessions unless that disclosure is acceptable. <br>
-Risk: Saved account aliases are stored locally in `~/.clawdbot/hyperliquid/config.json` and may reveal sensitive labels or addresses on shared machines. <br>
-Mitigation: Review saved aliases regularly, avoid sensitive labels, and remove entries that should not persist locally. <br>
-Risk: Setting `HYPERLIQUID_INFO_URL` can redirect API requests to a replacement endpoint. <br>
-Mitigation: Leave `HYPERLIQUID_INFO_URL` unset unless the replacement endpoint is intentionally trusted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Hyperliquid Skill on ClawHub](https://clawhub.ai/k0nkupa/hyperliquid) <br>
-- [Hyperliquid Info API reference](references/hyperliquid-api.md) <br>
-- [Hyperliquid Info endpoint documentation](https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/api/info-endpoint) <br>
-- [Hyperliquid Perpetuals API documentation](https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/api/info-endpoint/perpetuals) <br>
-- [Hyperliquid Spot API documentation](https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/api/info-endpoint/spot) <br>
+## Use Case:
 
+Developers, traders, and analysts use this skill to retrieve read-only Hyperliquid market data and account views from chat or command-style prompts. It supports quotes, movers, funding rankings, order books, candle snapshots, positions, balances, orders, fills, and local account aliases.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Concise chat-friendly Markdown text with terminal-style command examples and formatted market or account data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only outputs may include wallet addresses, balances, positions, orders, fills, funding data, order book levels, and candle snapshots when requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Account-view requests send wallet addresses to Hyperliquid's public Info API.
+
+Mitigation: Use account queries only for addresses you are comfortable sending to the public API, and avoid account views when address privacy is required.
+
+Risk: Saved account aliases store wallet label and address mappings locally, and labels can reveal identity or strategy.
+
+Mitigation: Use non-sensitive labels, restrict access to the local config file, and remove aliases that are no longer needed.
+
+Risk: Natural-language account operations may resolve saved labels or a default account.
+
+Mitigation: Use explicit `hl` or `/hl` commands for account operations and confirm the intended address or alias before querying account data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/k0nkupa/skills/hyperliquid)
+- [Hyperliquid API notes](references/hyperliquid-api.md)
+- [Hyperliquid Info API reference](https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/api/info-endpoint)
+- [Hyperliquid perpetuals API reference](https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/api/info-endpoint/perpetuals)
+- [Hyperliquid spot API reference](https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/api/info-endpoint/spot)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text or Markdown chat responses with concise bullets and inline command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only; may call Hyperliquid's public Info API and may store local account aliases.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

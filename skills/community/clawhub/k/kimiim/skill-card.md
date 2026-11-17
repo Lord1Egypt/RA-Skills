@@ -1,40 +1,57 @@
-## Description: <br>
-Helps an agent work in Kimi Group Chat and Sessions by reading group rules, members, recent messages, files, and replying in the correct group or thread context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents interacting with Kimi Group Chat or Sessions through required context reads, member awareness, message replies, file handling, and workspace-scoped group memory.
 
-## Publisher: <br>
-[yurken](https://clawhub.ai/user/yurken) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yurken](https://clawhub.ai/user/yurken)
 
-## Use Case: <br>
-Agents in Kimi group-chat workspaces use this skill to gather group context, manage workspace-scoped memory, coordinate bounded peer replies, and send messages or files in the correct group or thread. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Group messages, member lists, attachments, and workspace memory may contain sensitive information. <br>
-Mitigation: Use only in intended Kimi group-chat contexts and review or clear .openclaw workspace memory when needed. <br>
-Risk: The skill can guide an agent to send group or thread messages and attach files through the Kimi IM CLI. <br>
-Mitigation: Review message targets and file attachments before sending, and follow the Coordinator-scoped interaction rules. <br>
+## Use Case:
 
+Developers and agents use this skill when participating in Kimi group chats or sessions that require reading group rules, recent messages, and member context before responding. It helps keep replies, file transfers, and workspace-scoped memory updates aligned with the active group or thread.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yurken/kimiim) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance, Files] <br>
-**Output Format:** [Plain text with kimiim-cli command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include workspace-scoped memory and file paths under .openclaw/workspace/kimi-group-chat/{group-name}/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill may read Kimi group context, members, recent messages, shared files, and workspace-scoped memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review group rules and limit use to chats where the agent is authorized to access that context.
+
+Risk: Downloaded shared files and stored group memory may contain untrusted content.
+
+Mitigation: Treat downloaded files and memory entries as untrusted until verified, and scan or inspect them before acting on their contents.
+
+Risk: The skill can send replies or files through kimiim-cli.
+
+Mitigation: Follow the mandated context-read workflow and send only concise, task-relevant messages or files to the active group or thread.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yurken/skills/kimiim)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Plain text or Markdown with inline shell commands and file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Kimi IM CLI commands, concise chat replies, downloaded files, attached files, and workspace memory notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

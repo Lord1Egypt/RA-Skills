@@ -1,40 +1,53 @@
-## Description: <br>
-Provides Chinese-language guidance for digital finance risk-control analysis, including Python data analysis, financial data processing, risk modeling, feature engineering, scorecards, and risk rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+数字金融科技与风控策略专家。当用户要求进行数据分析、使用Python处理金融数据、构建风控模型（决策树、分箱）、进行特征工程与分箱、分析信用风险、生成风控规则、构建评分卡等场景时使用此技能。
 
-## Publisher: <br>
-[jhinking](https://clawhub.ai/user/jhinking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jhinking](https://clawhub.ai/user/jhinking)
 
-## Use Case: <br>
-Financial analysts, risk-control practitioners, and developers use this skill for Chinese-language support with credit-risk analysis, feature engineering, scorecard construction, and model metric interpretation. Outputs should be reviewed by qualified personnel before use in operational financial decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scorecard thresholds, generated rules, or model guidance could be mistaken for automated credit-decision authority. <br>
-Mitigation: Use the skill as advisory guidance only and require qualified review before operational or customer-impacting use. <br>
-Risk: Financial modeling work may involve sensitive or unauthorized data. <br>
-Mitigation: Use only authorized datasets and protect sensitive financial information according to applicable policy and law. <br>
+## Use Case:
 
+Risk, analytics, and finance practitioners use this skill to analyze financial data, engineer credit-risk features, build risk-control models, generate decision rules, and draft scoring-card guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jhinking/fintech-risk-control) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown with Python code blocks and tabular metric guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no direct tool, credential, persistence, or API execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Financial risk analysis may involve real credit, account, or customer data containing personal identifiers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove unnecessary personal identifiers before use and follow organizational privacy controls.
+
+Risk: Generated credit-risk models, scoring-card guidance, or decision rules may affect lending and model-governance decisions.
+
+Mitigation: Review outputs against applicable privacy, lending, and model-governance requirements before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jhinking/skills/fintech-risk-control)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration instructions]
+
+**Output Format:** [Markdown with Python code snippets and tabular metric guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include model-development recommendations, feature-engineering steps, decision rules, and risk metric thresholds.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

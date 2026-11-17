@@ -1,46 +1,61 @@
-## Description: <br>
-Evaluate a franchise opportunity like an investor by analyzing Franchise Disclosure Document inputs for investment cost, fees, Item 19 performance, unit growth and closures, payback, cash-on-cash return, and red flags before producing a structured buy, hold, or pass assessment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluate a franchise opportunity from a brand name or Franchise Disclosure Document by analyzing investment, fees, royalties, Item 19 financial performance, unit growth and closures, payback period, cash-on-cash return, and red flags, then producing a structured buy / hold / pass assessment.
 
-## Publisher: <br>
-[dotcomcj2](https://clawhub.ai/user/dotcomcj2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dotcomcj2](https://clawhub.ai/user/dotcomcj2)
 
-## Use Case: <br>
-External users, franchise evaluators, and agents use this skill to screen franchise opportunities, summarize FDDs, compare brands as investments, and identify financial or disclosure risks. It supports educational due diligence and should not replace legal, accounting, or investment review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill output could be mistaken for financial or legal advice. <br>
-Mitigation: Use it as an educational screening tool and have the FDD and franchise agreement reviewed by a qualified franchise attorney and accountant before relying on the output. <br>
-Risk: Incorrect or outdated FDD source data can produce misleading investment metrics. <br>
-Mitigation: Verify the FDD year and source before analysis and confirm assumptions such as revenue, EBITDA margin, royalties, and ad fees. <br>
-Risk: Incomplete FDD inputs can make payback, cash-on-cash return, or closure analysis unreliable. <br>
-Mitigation: Treat missing Item 7, Item 19, or Item 20 values as explicit limitations and avoid filling gaps with invented numbers. <br>
+## Use Case:
 
+External users, franchise buyers, advisors, and agents use this skill to summarize FDDs, compare franchise brands as investments, calculate unit economics, and surface franchise-specific red flags. It supports analysis only and should not replace review by a qualified franchise attorney and accountant.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dotcomcj2/franchise-analyzer-skill) <br>
-- [Franchise Fast Track](https://franchisefasttrack.io) <br>
-- [Franchise Fast Track FDD database](https://franchisefasttrack.io/fdd-database) <br>
-- [Franchise Fast Track franchise directory](https://franchisefasttrack.io/franchise-directory) <br>
-- [FDD Item cheat sheet](reference/fdd-items.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown franchise analysis report with optional local calculator output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports missing FDD inputs instead of inventing figures; calculator output is deterministic for supplied numeric inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Reports may attribute conclusions to Franchise Fast Track's FDD library even when the user supplies a different FDD or source.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the generated report to name the actual FDD source used and verify source attribution before relying on the analysis.
+
+Risk: Franchise economics and FDD interpretation can affect financial and legal decisions.
+
+Mitigation: Treat outputs as analysis only and have the FDD and franchise agreement reviewed by a qualified franchise attorney and accountant before signing.
+
+Risk: Missing or selective FDD disclosures, especially Item 19 financial performance data, can make unit economics incomplete or misleading.
+
+Mitigation: Do not invent missing numbers; explicitly mark missing disclosures and use realistic inputs instead of best-case figures.
+
+## Reference(s):
+
+- [Franchise Fast Track](https://franchisefasttrack.io)
+- [Free FDD docs library](https://franchisefasttrack.io/fdd-database)
+- [Franchise directory](https://franchisefasttrack.io/franchise-directory)
+- [FDD Item cheat sheet](reference/fdd-items.md)
+- [Top franchise development companies](https://franchisefasttrack.io/blog/top-franchise-development-companies-2026)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with optional shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a buy / hold / pass verdict, investment range, fee load, unit economics, system health, red flags, bottom-line analysis, and source attribution.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,53 @@
-## Description: <br>
-Analyze HTTP security headers for user-specified URLs, grade website posture A-F, and provide OWASP-aligned recommendations and server-specific fix snippets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze HTTP security headers for URLs, assign A-F grades, and provide OWASP-aligned recommendations.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers, security engineers, and site operators use this skill to inspect HTTP response headers for websites they own or are authorized to test, identify missing or weak security controls, and generate prioritized remediation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner contacts each URL supplied by the user, including every URL in batch mode. <br>
-Mitigation: Use it only on domains or systems the user owns or is authorized to test, and review batch URL lists before execution. <br>
+## Use Case:
 
+Developers and security engineers use this skill to check website response headers, grade security posture, and generate prioritized remediation guidance for web server and CDN configurations.
 
-## Reference(s): <br>
-- [HTTP Security Headers ClawHub Page](https://clawhub.ai/charlie-morrison/http-security-headers) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Text, JSON, or Markdown reports with grades, findings, and configuration snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Batch mode can report on multiple user-supplied URLs and CI mode can return grade-based exit codes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can make outbound HTTP HEAD requests to user-provided targets, including internal or private addresses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run scans only against domains you own or are authorized to test, and avoid localhost, private/internal IP ranges, cloud metadata addresses, and URLs containing credentials or tokens.
+
+Risk: Untrusted redirecting URLs may expose the agent's network path or reach unintended targets.
+
+Mitigation: Use trusted target URLs and review redirect behavior before scanning URLs where network exposure is a concern.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/charlie-morrison/skills/http-security-headers)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Text, JSON, or Markdown reports with grades, findings, and remediation snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CI exit codes can indicate whether results meet the configured minimum grade.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

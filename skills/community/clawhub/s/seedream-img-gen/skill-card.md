@@ -1,45 +1,63 @@
-## Description: <br>
-Generates images with ByteDance Seedream models on Volcengine Ark, supporting text-to-image and image-to-image workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Seedream Img Gen helps agents generate and save images through ByteDance Seedream models on Volcengine Ark, including text-to-image and Seedream 4.0+ image-to-image workflows.
 
-## Publisher: <br>
-[anpupil](https://clawhub.ai/user/anpupil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anpupil](https://clawhub.ai/user/anpupil)
 
-## Use Case: <br>
-Developers and agents use this skill to configure Volcengine Ark credentials, choose Seedream models, and generate image assets from prompts or reference images through SDK, OpenAI-compatible, or command-line workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup guidance can expose the Volcengine Ark API key if the key is printed to logs, terminals, or shared transcripts. <br>
-Mitigation: Check for credential presence without printing secret values, keep API keys private, and avoid storing them in command history or generated artifacts. <br>
-Risk: Running the generator can consume paid Volcengine quota and download generated content to local files. <br>
-Mitigation: Confirm model choice, prompt, image count, output path, and billing expectations before execution. <br>
-Risk: The script depends on external Python packages and a remote image-generation API. <br>
-Mitigation: Install dependencies from trusted sources in an isolated environment and review network/API use before running. <br>
+## Use Case:
 
+Developers and agent users use this skill to configure Volcengine Ark credentials, choose Seedream model parameters, and call the bundled script or API examples to generate images from text or reference images.
 
-## Reference(s): <br>
-- [Seedream API Reference](artifact/references/api_reference.md) <br>
-- [Volcengine Ark Documentation](https://www.volcengine.com/docs/82379) <br>
-- [Volcengine Ark Console](https://console.volcengine.com/ark) <br>
-- [ClawHub Release Page](https://clawhub.ai/anpupil/seedream-img-gen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell and Python examples; generated image files when the bundled script is executed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Volcengine Ark API key and Python dependencies; generated images may be saved from URL or base64 responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill documentation tells users to print `ARK_API_KEY` in the terminal, which can expose secrets through shell history, logs, screen sharing, or copied output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify that the variable is set without printing the secret value, and use a dedicated, low-privilege Volcengine API key for this skill.
+
+Risk: Prompts and reference-image inputs are sent to an external Volcengine Ark image-generation service.
+
+Mitigation: Avoid including secrets, sensitive personal data, confidential source material, or regulated content in prompts and image inputs.
+
+Risk: Generated image URLs and downloaded files come from an external provider.
+
+Mitigation: Treat returned URLs and downloaded files as external content, save them to an intentional path, and review outputs before reuse or publication.
+
+Risk: The bundled script requires third-party Python dependencies.
+
+Mitigation: Install dependencies in a virtual environment and review package sources before running the script.
+
+## Reference(s):
+
+- [Seedream API Reference](artifact/references/api_reference.md)
+- [Volcengine Ark Official Documentation](https://www.volcengine.com/docs/82379)
+- [ClawHub Skill Page](https://clawhub.ai/anpupil/skills/seedream-img-gen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, image files]
+
+**Output Format:** [Markdown guidance with shell and Python code blocks; optional local image files when the generation script is executed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Volcengine Ark API access; generated image URLs and downloaded files should be treated as external-provider content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

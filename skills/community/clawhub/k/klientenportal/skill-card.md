@@ -1,42 +1,63 @@
-## Description: <br>
-Automates RZL Klientenportal.at for login and logout, uploading receipts and invoices, listing released files, and downloading accountant-provided documents via Playwright. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate RZL Klientenportal.at, a web-based portal by RZL Software for exchanging receipts, invoices, and reports with a tax accountant, including login/logout, document upload, released-file listing, and Kanzleidokumente download through Playwright.
 
-## Publisher: <br>
-[odrobnik](https://clawhub.ai/user/odrobnik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[odrobnik](https://clawhub.ai/user/odrobnik)
 
-## Use Case: <br>
-External users, accounting staff, and developers use this skill to automate document exchange with an RZL Klientenportal account, including uploading accounting documents and downloading accountant-provided files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Klientenportal credentials and can access sensitive accounting documents. <br>
-Mitigation: Prefer environment variables or a protected config file, do not commit config.json, and run logout on shared machines. <br>
-Risk: Upload and download commands can move financial documents to or from the portal. <br>
-Mitigation: Review upload patterns, document categories, and download destinations before running commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/odrobnik/klientenportal) <br>
-- [RZL Klientenportal](https://klientenportal.at) <br>
-- [RZL Software](https://www.rzl.at) <br>
-- [Setup instructions](SETUP.md) <br>
+## Use Case:
 
+External users and agents use this skill to automate routine RZL Klientenportal document exchange with a tax accountant, including uploading accounting documents, listing released or received files, and downloading portal documents.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, JSON, Files, Configuration guidance] <br>
-**Output Format:** [CLI text output, optional JSON for received-file listings, and downloaded document files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Downloads are written under /tmp/openclaw/klientenportal by default or to a workspace-/tmp-scoped output directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.5.1 (source: server release and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles tax-portal credentials and accounting documents.
+
+Mitigation: Install only in trusted workspaces, prefer short-lived environment variables or a secret manager, and keep any config file out of version control.
+
+Risk: Uploaded or downloaded files may contain sensitive financial records.
+
+Mitigation: Review files before upload and store downloads in a private directory.
+
+Risk: A persistent browser session can remain after portal automation.
+
+Mitigation: Run the logout command after use to clear the browser session.
+
+Risk: Changing the portal URL can redirect automation away from the expected Klientenportal instance.
+
+Mitigation: Use the derived portal URL from the portal ID and do not add a custom portal_url unless it has been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/odrobnik/skills/klientenportal)
+- [Klientenportal.at](https://klientenportal.at)
+- [RZL Software](https://www.rzl.at)
+- [Setup](SETUP.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Text, JSON, Files]
+
+**Output Format:** [CLI text, optional JSON listings, and downloaded portal files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3, Playwright with Chromium, and Klientenportal credentials supplied through environment variables or a private config file.]
+
+## Skill Version(s):
+
+1.5.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

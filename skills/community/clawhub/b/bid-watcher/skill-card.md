@@ -1,45 +1,65 @@
-## Description: <br>
-Bid Watcher monitors lithium battery, energy storage, and assembly-line bid opportunities, tracks four competitor companies, generates weekly reports, and can send reports by email. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors bidding opportunities in the lithium battery, energy storage, and assembly equipment sectors, tracks four named competitors, and produces weekly reports with optional email delivery.
 
-## Publisher: <br>
-[richardcoder849](https://clawhub.ai/user/richardcoder849) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[richardcoder849](https://clawhub.ai/user/richardcoder849)
 
-## Use Case: <br>
-Sales, market intelligence, and business development teams use this skill to collect bid leads in the lithium battery and energy storage equipment market, enrich them with company and priority context, and generate weekly follow-up reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill weakens HTTPS security while collecting bid data. <br>
-Mitigation: Restore normal HTTPS certificate verification before scheduled runs or production use. <br>
-Risk: Generated reports may contain sensitive bid intelligence and can be emailed through configured SMTP credentials. <br>
-Mitigation: Treat generated reports as sensitive business information, use a dedicated SMTP app password, and restrict recipient lists. <br>
-Risk: Scraped bid data and priority scores may be incomplete, stale, or require business review before action. <br>
-Mitigation: Review source links, extracted fields, and priority scores before using the report for sales or procurement decisions. <br>
+## Use Case:
 
+Business development, sales, and market intelligence teams use this skill to collect bid leads from battery and energy-storage markets, enrich them with company and budget context, prioritize follow-up, and generate weekly reports.
 
-## Reference(s): <br>
-- [ClawHub Bid Watcher release page](https://clawhub.ai/richardcoder849/bid-watcher) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/richardcoder849) <br>
-- [Bid Watcher skill definition](artifact/SKILL.md) <br>
-- [Search source configuration](artifact/scripts/search_bids.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, shell commands] <br>
-**Output Format:** [JSON data files, Markdown reports, Excel workbooks, email status text, and command-line usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are stored locally under data/ and may be sent through configured SMTP credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Scraping bid sources with disabled TLS certificate verification can expose fetched business data to interception or tampering.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restore normal HTTPS verification before operational use and restrict fetching to approved public bidding domains.
+
+Risk: Generated reports and local history files may contain business intelligence gathered from bid sources.
+
+Mitigation: Review retention, access control, and sharing rules for report and history outputs before enabling scheduled collection.
+
+Risk: SMTP delivery can send generated reports externally when credentials and recipients are configured.
+
+Mitigation: Keep email sending as an explicit opt-in step, protect SMTP credentials, and verify the recipient list before production use.
+
+Risk: Spreadsheet output can carry untrusted scraped content into downstream analysis workflows.
+
+Mitigation: Sanitize Excel output before sharing or opening it in sensitive environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/richardcoder849/skills/bid-watcher)
+- [BeiJiXing Energy Network](https://www.bjx.com.cn)
+- [Energy Storage China Network](https://www.escn.com.cn)
+- [China Power Equipment Management Network](https://www.cpem.org.cn)
+- [China Energy Network](https://www.cnenergy.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, configuration]
+
+**Output Format:** [Markdown reports, Excel spreadsheets, JSON data files, and status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can maintain local report history and send generated reports by SMTP when email settings are configured.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

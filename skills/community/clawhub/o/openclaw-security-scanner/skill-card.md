@@ -1,40 +1,49 @@
-## Description: <br>
-Run a comprehensive local security scan on your OpenClaw installation, covering configuration, network exposure, credentials, OS hardening, and agent guardrails while keeping data local. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs a local security assessment for OpenClaw installations, checking configuration, network exposure, credential hygiene, OS hardening, and agent guardrails with optional reporting and fixes.
 
-## Publisher: <br>
-[Jkahn-tr](https://clawhub.ai/user/Jkahn-tr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jkahn-tr](https://clawhub.ai/user/jkahn-tr)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to assess local OpenClaw installations, review severity-scored findings, and optionally apply prompted hardening fixes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Auto-fix mode can modify local OpenClaw-related files after user confirmation. <br>
-Mitigation: Run the default read-only scan first, then use --fix only after reviewing each displayed command. <br>
-Risk: Saved reports can reveal local paths and security findings about the user's OpenClaw setup. <br>
-Mitigation: Review --report output before sharing it outside the local environment. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to run local security scans of their own OpenClaw installation, review severity-ranked findings, and optionally generate text or JSON reports. The optional fix mode can suggest or apply selected local hardening changes after user confirmation.
 
-## Reference(s): <br>
-- [OpenClaw Security Scanner ClawHub release](https://clawhub.ai/Jkahn-tr/openclaw-security-scanner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text with optional JSON findings and optional local report file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally; default mode is read-only; --fix prompts before changes; --report writes a local report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and script VERSION) <br>
+Risk: Optional auto-fix mode uses shell evaluation that can run unintended commands in some setups.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the read-only scan first. Use --fix only after reviewing the script, with a trusted simple OPENCLAW_HOME path, and confirm only fixes you understand.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jkahn-tr/skills/openclaw-security-scanner)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance, Files]
+
+**Output Format:** [Terminal text, optional JSON, and optional timestamped text or JSON report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only by default; --fix prompts before applying changes; --report writes a local report file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and script header)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

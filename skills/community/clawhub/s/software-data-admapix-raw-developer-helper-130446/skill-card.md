@@ -1,47 +1,60 @@
-## Description: <br>
-Helps AI-agent users and skill authors turn AdMapix-style software-and-data needs into practical workflows, artifacts, checklists, analysis, code changes, and validation notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps AI-agent users, skill authors, maintainers, and teams create practical AdMapix-style software and data workflows for bug fixing, setup hardening, reliability improvements, and adjacent skill development.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-AI-agent users, skill authors, maintainers, and teams use this skill to adapt popular AdMapix-style patterns into practical software-and-data workflows for bug fixing, setup hardening, reliability work, and adjacent skill development. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger terms may activate the skill for unrelated software or data requests. <br>
-Mitigation: Prefer explicit invocation by skill name and check that the request actually needs AdMapix-style workflow help before applying the workflow. <br>
-Risk: Workflow guidance for code, data, or setup changes may be incomplete or unsuitable for a specific project. <br>
-Mitigation: Review proposed changes against the local project context and run the validation or test commands included with the output. <br>
+## Use Case:
 
+Developers, skill authors, maintainers, and agent users use this skill to turn AdMapix-style raw software and data workflow needs into concrete plans, checklists, fixes, implementation support, and verification notes.
 
-## Reference(s): <br>
-- [Requirement Plan](references/requirement-plan.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kyro-ma/software-data-admapix-raw-developer-helper-130446) <br>
-- [Popular ClawHub Skill Demand: ontology](https://clawhub.ai/skills/ontology) <br>
-- [Popular ClawHub Skill Demand: AdMapix](https://clawhub.ai/skills/admapix) <br>
-- [Popular ClawHub Skill Demand: Agent Browser](https://clawhub.ai/skills/agent-browser-clawdbot) <br>
-- [Hacker News Discussion: LM Link](https://news.ycombinator.com/item?id=48625932) <br>
-- [V2EX AI Programming Discussion](https://www.v2ex.com/t/1222066) <br>
-- [GitHub Issue: Network-Aware App Errors](https://github.com/Makerspace-Ashoka/smart-db/issues/27) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline code blocks and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include reusable workflows, checklists, assumptions, validation notes, and follow-up risks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Broad activation wording may invoke the helper for unrelated software, data, or raw-workflow requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tighten activation criteria before broad deployment so it triggers only for explicit AdMapix or closely related raw-data workflow requests.
+
+Risk: Generated guidance, code, shell commands, or configuration may be incorrect for a specific project context.
+
+Mitigation: Review proposed changes and run the included verification steps before applying them to a real workflow.
+
+## Reference(s):
+
+- [Requirement Plan](artifact/references/requirement-plan.md)
+- [ClawHub skill page](https://clawhub.ai/kyro-ma/skills/software-data-admapix-raw-developer-helper-130446)
+- [Popular ClawHub skill demand: ontology](https://clawhub.ai/skills/ontology)
+- [Popular ClawHub skill demand: AdMapix](https://clawhub.ai/skills/admapix)
+- [Popular ClawHub skill demand: Agent Browser](https://clawhub.ai/skills/agent-browser-clawdbot)
+- [LM Link - This is the future I want](https://news.ycombinator.com/item?id=48625932)
+- [V2EX AI programming discussion](https://www.v2ex.com/t/1222066)
+- [Feature Request: make app errors network-aware](https://github.com/Makerspace-Ashoka/smart-db/issues/27)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with optional code blocks, shell commands, checklists, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include assumptions, verification steps, and follow-up risks when useful.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

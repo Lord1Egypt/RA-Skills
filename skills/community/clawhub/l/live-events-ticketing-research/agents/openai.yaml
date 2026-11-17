@@ -1,0 +1,4 @@
+interface:
+  display_name: "Live-Event Ticketing Research"
+  short_description: "Compare public StubHub and SeatGeek resale snapshots"
+  default_prompt: "Use $live-events-ticketing-research to research resale ticket options for an event or venue."

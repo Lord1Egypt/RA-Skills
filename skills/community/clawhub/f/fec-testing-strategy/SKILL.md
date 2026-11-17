@@ -1,45 +1,45 @@
 ---
 name: fec-testing-strategy
-description: Use when planning or reviewing a frontend testing strategy, selecting the right test layer by risk, mapping coverage across static checks, unit tests, component tests, integration tests, E2E, Storybook/visual regression, a11y, security, performance, or CI gates. Do not use to write individual component/E2E tests or merely run existing validation commands; Chinese triggers include 测试策略, 测试分层, 测试计划, 覆盖矩阵.
+description: Use when planning or reviewing a frontend testing strategy, selecting the right test layer by risk, mapping coverage across static checks, unit tests, component tests, integration tests, E2E, Storybook/visual regression, a11y, security, performance, or CI gates. Do not use to write individual component/E2E tests or merely run existing validation commands; Chinese triggers include test strategy, test layering, test plan, coverage matrix.
 ---
 
-# 前端测试策略
+# Front-end testing strategy
 
 ## Purpose
 
-按“离代码多近 / 覆盖风险层级”选择测试方法，避免把所有风险都塞进组件测试或 E2E。
+Choose your testing approach by “closeness to code/level of risk coverage” to avoid cramming all risks into component tests or E2E.
 
 ## Procedure
 
-1. 识别改动类型：纯逻辑、UI 组件、跨模块流程、浏览器能力、视觉稳定性、专项质量风险或发布门禁。
-2. 建立测试层级矩阵，至少区分：
-   - 静态检查：TypeScript、ESLint、格式、依赖安全、构建。
-   - 单元测试：utils、hooks/composables、状态逻辑、schema、纯函数。
-   - 组件测试：props/emits、用户交互、loading/error/empty、mock 边界。
-   - 轻量集成测试：表单 + API mock + 路由/Store/Provider 上下文。
-   - E2E：真实浏览器、跨页面关键旅程、鉴权、支付、权限、CI artifacts。
-   - 视觉/交互文档：Storybook interaction、Chromatic、视觉回归基线。
-   - 专项质量：a11y、安全、性能、兼容性。
-3. 按风险分配覆盖：高频核心路径优先 E2E，复杂组件状态优先组件测试，纯逻辑优先单元测试，跨 provider 协作用轻量集成测试。
-4. 用测试金字塔控制维护成本：
-   - 越靠近纯逻辑，测试越多、越快、越稳定。
-   - E2E 只覆盖用户关键旅程和真实浏览器风险，不覆盖每个分支。
-   - 视觉、a11y、安全和性能属于专项质量层，不塞进普通组件测试。
-5. 检查是否已有命令、测试框架、目录约定和 CI 门禁；沿用项目现状，不为策略文档引入不必要工具。
-6. 规划失败证据：每个高风险项要说明失败时如何定位，例如断言、截图、trace、coverage、日志或报告。
-7. 设计测试数据与 mock 策略：共享 fixture 表达业务场景，测试数据 builder 只封装噪声字段，避免每个测试手写随机对象。
-8. 管理 flaky 风险：把时间、网络、动画、随机数、并发和外部服务标为不稳定来源，并指定隔离、重试和证据产物。
-9. 输出可执行的最小测试计划：每层覆盖什么、不覆盖什么、优先级、建议命令和责任 skill。
+1. Identify the type of change: pure logic, UI components, cross-module processes, browser capabilities, visual stability, dedicated quality risks, or release gates.
+2. Establish a test level matrix, at least distinguish:
+   - Static checking: TypeScript, ESLint, format, dependency security, build.
+   - Unit testing: utils, hooks/composables, state logic, schema, pure functions.
+   - Component testing: props/emits, user interaction, loading/error/empty, mock boundaries.
+   - Lightweight integration testing: form + API mock + routing/Store/Provider context.
+   - E2E: real browser, cross-page key journeys, authentication, payments, permissions, CI artifacts.
+   - Visual/interactive documentation: Storybook interaction, Chromatic, visual regression baseline.
+   - Special quality: a11y, security, performance, compatibility.
+3. Allocate coverage by risk: high-frequency core paths prioritize E2E, complex component status prioritizes component testing, pure logic prioritizes unit testing, and lightweight integration testing is used for cross-provider collaboration.
+4. Use the testing pyramid to control maintenance costs:
+   - The closer to pure logic, the more tests, the faster, and the more stable it is.
+   - E2E only covers key user journeys and real browser risks, not every branch.
+   - Vision, a11y, safety and performance belong to dedicated quality layers and are not included in ordinary component tests.
+5. Check whether commands, test frameworks, directory conventions, and CI gates already exist; use the current status of the project and do not introduce unnecessary tools to the policy document.
+6. Plan failure evidence: Each high-risk item should describe how to locate it when it fails, such as assertions, screenshots, traces, coverage, logs, or reports.
+7. Design test data and mock strategies: share fixtures to express business scenarios, and the test data builder only encapsulates noise fields to avoid handwriting random objects for each test.
+8. Manage flaky risks: Mark time, network, animation, nonce, concurrency, and external services as sources of instability, and specify isolation, retries, and evidence artifacts.
+9. Output the minimum executable test plan: what is covered by each layer, what is not covered, priority, recommended commands and responsibility skills.
 
 ## Constraints
 
-- 不把测试策略写成泛泛的“多写测试”；每个建议必须对应具体风险。
-- 不要求所有项目都补齐完整测试金字塔；按业务风险和团队维护能力裁剪。
-- 不把 E2E 当作单元/组件测试的替代品；不把组件测试当作真实浏览器兼容保证。
-- 不为小改动强制引入新框架；优先复用仓库已有工具和脚本。
-- 不追求没有风险说明的覆盖率数字；覆盖率只能辅助判断，不能替代场景覆盖。
-- 不把随机 fixture、共享全局状态或依赖执行顺序的测试纳入主干门禁。
+- Don't write the test strategy as a general "write more tests"; each suggestion must correspond to a specific risk.
+- All projects are not required to complete the complete testing pyramid; they are tailored according to business risks and team maintenance capabilities.
+- Do not consider E2E as a replacement for unit/component testing; do not consider component testing as a guarantee of true browser compatibility.
+- Do not force the introduction of new frameworks for small changes; give priority to reusing existing tools and scripts in the warehouse.
+- Do not pursue coverage figures without risk explanation; coverage can only assist judgment and cannot replace scene coverage.
+- Do not include random fixtures, shared global state, or tests that depend on execution order into trunk gates.
 
 ## Expected Output
 
-输出测试分层建议、风险到测试层的映射、优先级、建议命令、需新增或调整的测试文件范围，以及明确分流到哪些专项 skill 或 agent。
+Output test layering recommendations, mapping of risks to test layers, priorities, recommended commands, the scope of test files that need to be added or adjusted, and the specific skills or agents that need to be clearly diverted.

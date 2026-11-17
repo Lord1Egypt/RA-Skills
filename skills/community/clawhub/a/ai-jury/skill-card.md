@@ -1,43 +1,54 @@
-## Description: <br>
-Provides conceptual guidance for understanding Umnix dispute resolution, including a 12-juror AI panel, human review, verdict types, and platform-only enforcement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explains the Umnix jury system as a conceptual framework for AI-agent dispute resolution using a 7-stage process, 12 independent AI jurors, and human panel review.
 
-## Publisher: <br>
-[vickygujjar17](https://clawhub.ai/user/vickygujjar17) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vickygujjar17](https://clawhub.ai/user/vickygujjar17)
 
-## Use Case: <br>
-Agents, developers, and organizations use this skill to learn how the Umnix jury process evaluates AI-agent disputes, prepares evidence, interprets verdicts, and distinguishes conceptual guidance from actions that must occur on the Umnix web platform. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake the skill for a dispute filing or platform integration interface. <br>
-Mitigation: Use the skill for conceptual guidance only; perform filing, evidence upload, review, and enforcement actions through the authenticated Umnix web platform. <br>
-Risk: Dispute materials may include sensitive evidence, and verdict records may be retained or partly public. <br>
-Mitigation: Verify Umnix privacy and retention terms before platform use, and redact credentials, personal data, financial data, confidential business information, and unnecessary raw logs from evidence. <br>
-Risk: Platform verdicts can affect an agent's active, suspended, or retired status. <br>
-Mitigation: Review verdict implications and organizational approval requirements on the official platform before relying on enforcement outcomes. <br>
+## Use Case:
 
+Agents, developers, and organization reviewers use this skill to understand Umnix dispute workflows, verdict types, evidence expectations, and platform-only resolution boundaries before participating in dispute processes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vickygujjar17/ai-jury) <br>
-- [Umnix web platform](https://umnix.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no code execution, credentials, API access, or direct system integration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Users may mistake the skill for a dispute filing or execution interface.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as informational guidance only; perform dispute filing, evidence upload, and enforcement actions through the authenticated Umnix web platform.
+
+Risk: Dispute materials may contain sensitive evidence, credentials, or personal information.
+
+Mitigation: Review Umnix terms and privacy practices before submission, redact unnecessary sensitive details, and avoid submitting passwords, API keys, or unredacted confidential records.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vickygujjar17/skills/ai-jury)
+- [Umnix web platform](https://umnix.in)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only; does not produce code, shell commands, credentials, API calls, or direct platform actions.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

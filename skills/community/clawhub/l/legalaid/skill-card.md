@@ -1,43 +1,59 @@
-## Description: <br>
-全流程维权辅助技能，帮助用户识别侵权行为、整理证据、生成法律文书、规划维权路径。覆盖消费者、劳动、租房、行政、报警、互联网、人身伤害、物业、社区、教育、出行、医疗、保险等13大维权类型。关键词：维权、侵权、投诉、举报、起诉、起诉状、投诉信、证据、仲裁、调解、信访。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LegalAid helps users in China identify rights violations, organize evidence, draft rights-protection materials, and plan step-by-step paths for consumer, labor, housing, administrative, police, internet, personal-injury, property, community, education, travel, medical, insurance, and traffic-accident matters.
 
-## Publisher: <br>
-[kingdevatil](https://clawhub.ai/user/kingdevatil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kingdevatil](https://clawhub.ai/user/kingdevatil)
 
-## Use Case: <br>
-External users can use this skill to work through Chinese rights-protection scenarios step by step, including issue diagnosis, evidence organization, complaint drafting, litigation preparation, and follow-up guidance. It is support for drafting and reference, not legal representation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share sensitive legal, identity, address, medical, account, or third-party personal information while describing a case. <br>
-Mitigation: Share only the minimum facts needed and redact unnecessary ID numbers, addresses, phone numbers, medical records, account details, and third-party personal data. <br>
-Risk: Generated legal citations, filings, or strategy may be outdated, incomplete, or unsuitable for a high-stakes matter. <br>
-Mitigation: Treat outputs as drafting and reference support, then verify citations, deadlines, filings, and advice with current official sources or a qualified professional. <br>
-Risk: The skill can produce persuasive legal drafts that may be mistaken for legal representation. <br>
-Mitigation: Present outputs as assistance for user review and professional validation rather than as a substitute for a lawyer or authorized legal service. <br>
+## Use Case:
 
+External users seeking PRC legal self-help use this skill to triage rights-protection issues, gather facts and evidence, identify complaint or dispute-resolution channels, and draft supporting materials. It is not a substitute for advice from a licensed lawyer.
 
-## Reference(s): <br>
-- [LegalAid ClawHub release page](https://clawhub.ai/kingdevatil/legalaid) <br>
-- [LegalAid project homepage](https://github.com/KingDevatil/LegalAid-skill) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and structured legal drafting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce complaint letters, litigation drafts, evidence lists, analysis reports, channel guidance, and step-by-step follow-up questions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Legal guidance, deadlines, or local procedure may be incomplete, outdated, or jurisdiction-specific.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current law, limitation periods, filing rules, and local procedures with official sources or licensed counsel before acting.
+
+Risk: Drafting complaints, evidence lists, or litigation materials may involve sensitive identity, medical, employment, financial, or case details.
+
+Mitigation: Redact unnecessary identifiers while drafting and submit full ID numbers or evidence files only through verified official channels or trusted counsel.
+
+Risk: Users may treat generated legal materials as a substitute for professional representation.
+
+Mitigation: Present outputs as PRC legal self-help and recommend licensed legal advice for high-stakes, urgent, complex, or disputed matters.
+
+## Reference(s):
+
+- [LegalAid ClawHub skill page](https://clawhub.ai/kingdevatil/skills/legalaid)
+- [kingdevatil ClawHub publisher profile](https://clawhub.ai/user/kingdevatil)
+- [LegalAid source homepage](https://github.com/KingDevatil/LegalAid-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown conversation responses with legal issue analysis, evidence checklists, complaint or litigation drafts, scripts, and action plans.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stepwise interaction; the skill asks for user confirmation before moving to the next stage.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

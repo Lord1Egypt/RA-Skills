@@ -1,41 +1,53 @@
-## Description: <br>
-Helps agents reason about access-control workflows that combine face recognition, card access, role-based permissions, passage logs, and abnormal-access alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access-control management for face/card entry and permissions.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Operators and developers evaluating door-access systems can use this skill for guidance about face/card access management, permission tiers, passage logs, and alerts across enterprise, residential, campus, or lab settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review flags biometric and physical access decisions as needing careful review because privacy and safety scoping are incomplete. <br>
-Mitigation: Require documented consent, biometric retention and deletion rules, audit logs, operator review, emergency or manual override, and local legal and privacy compliance before deployment. <br>
-Risk: Using skill guidance directly with real doors, badges, cameras, or alarms could affect physical access decisions. <br>
-Mitigation: Review outputs before operational use, test in a non-production environment, and keep human authorization and fallback procedures in place. <br>
+## Use Case:
 
+Facility operators and developers use this skill to describe an access-control system covering face recognition, card or ID access, tiered authorization, entry logs, and alerts for enterprises, residential communities, campuses, and labs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/ai-intelligent-access-control) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text responses with optional shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external binaries are required by the skill metadata; real deployments need environment-specific hardware and policy review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter says 1.0.2) <br>
+Risk: Install steps execute remote code and dependencies that were not reviewed in the release evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing and pinning a trusted commit, then run in an isolated least-privileged environment.
+
+Risk: The described use case involves biometric data, ID/card data, access logs, and physical-access decisions.
+
+Mitigation: Define and enforce policies for consent, retention, encryption, administrator access, incident response, and operational review before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-intelligent-access-control)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include product-plan details, setup steps, and access-control implementation guidance.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release metadata; artifact frontmatter reports 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

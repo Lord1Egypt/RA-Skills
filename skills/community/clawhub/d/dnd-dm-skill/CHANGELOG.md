@@ -1,4 +1,38 @@
 # DM 城主系统更新日志
+
+## 1.2.1 (2026-09-25)
+
+### 合并发布：DND Lens + 新一代引擎
+- **保留 1.2.0 的 DND Lens 三子技能**：`world-lore`（费伦世界观 / 编年史 RAG 检索）、`module-forge`（按需求生成模组 + DMG 标准 CR 平衡）、`echo-map`（真实经历脱敏映射）；`data/` 知识资产（360 张世界卡 / 59 篇模组范式 / 8 映射槽位）原样保留，`scripts/lens_rag.py` 与 `scripts/lens_pipeline.py` 不变。
+- **引擎整体升级**：由 23 个模块的旧引擎替换为 56 个文件的新一代引擎，新增 `judge/`（类型化判定层）、`narrative/`（叙事层）、`npc/`、`runtime/`、`context/`。
+- **兼容性核对**：线上 1.2.0 引擎的 22 个文件与本地引擎逐一相同；唯一差异 `combat/checks.py` 本地为**超集**（新增 `dc_label` / `hit_style`，命中判定显示 AC 与「命中/未命中」，旧调用因参数有默认值仍兼容）。**无功能丢失**。
+
+### 引擎新增能力（相对 1.2.0）
+- **判定层**：批量原子提问 → 类型化回答 → `DecisionPacket`；三原语 Choice/Score/Noul；置信度门控 0.60 + 低置信回退；模型输出非法时先修复一次、仍失败回退纯规则。
+- **叙事层**：四级注入（L0 骨架 / L1 当前场景 / L2 邻域 / L3 按需），每轮注入 52.9k → 6.1k tok；确定性剧情图 `module_plot.json` + `plot_state.json`；一轮一次调用（3 次 → 1 次）；prefix cache 命中 88%；流式首字 ≈2.6 s；预取；防出戏守卫。
+- **战斗**：抗性/免疫/易伤参与结算；场景索引解析（未命中不猜）；敌人 AI 四问 + 强制撤退阈值；多重攻击；PC 回合固定骰面。
+- **门禁**：5 步发布门禁（内置运行器 + pytest 220 项 + 探针 + 速度预算 + 基线对比）。
+
+### 检定提速：从十几条命令到一条（0.13 秒）
+- **新增 `dnd-engine check` 子命令 + `dnd-check.cmd` / `dnd-check.sh` 包装脚本**：一条命令读完 `live_party.json`、组装加值、投骰、输出可贴给玩家的明细。实测 **≈0.13 秒/次**（含 Python 启动）；此前 LLM 需写临时脚本并反复试错，一次检定要 16 个工具调用、约 37 秒。
+- **新增 `python -m dnd_engine.cli` 入口**（`__main__.py`），包未 pip 安装也能直接跑。
+- **修了一个真 bug：中文技能名会静默算错**。技能表里 `stealth` 的正式中文名是「隐匿」，而战役文本惯用「潜行」——调用方传中文名时 `skill_info()` 查不到，属性静默回退到 10（加值 +0）。新增 `check_rules.canonical_skill()` 统一键/中文名/别名/关键词；`stealth` 加别名 `潜行/潜藏`，`perception` 加别名 `侦察`。
+- **角色卡缺技能信息时的支持**：新增 `expertise`（专精加值）与 `skill_bonuses`（写死的技能总加值）两种字段；CLI 提供 `--bonus` / `--extra` / `--label` 开关。实测 232 项测试全通过。
+
+### 路径与文档修复
+- **去掉硬编码开发机路径**：`world-lore/` `module-forge/` `echo-map/` 的 SKILL.md 与主 SKILL.md 中指向个人主目录的绝对路径，全部改为相对本技能目录的调用方式。
+- **references/ 路径清理**：`AGENTS.md`、`DM_RULES.md`、`DM_TEMPLATES.md` 中指向开发机的绝对路径（盘符路径与 `file:///` 链接）全部改为相对路径。
+- **主 SKILL.md 排版修复**：修掉 `## 模式与手动骰` 被误插进代码块内部的问题；版本号 1.1.8 → 1.2.1；补上判定层/叙事层章节与 Lens 章节。
+## 1.2.0 (2026-08-19)
+
+### DND Lens 三功能子技能 · 正式发布
+- **world-lore（功能一）**：RAG 检索 `world_cards.jsonl`，世界观问答 + 费伦编年史
+- **module-forge（功能二）**：按人数/等级/时长/类型生成模组骨架 + DMG 标准 CR 平衡；新增 `--draft` 支持注入经历映射草稿
+- **echo-map（功能三）**：真实经历脱敏（防隐私泄露）+ 按 `mapping_dict` 映射为 anonymized 模组
+- **联动流水线 `scripts/lens_pipeline.py`**：经历 → echo-map → module-forge → world-lore 一站式产出
+- **修复**：module-forge 分幕遭遇补全 `xp_total`（DMG XP 数字现可见）
+- **数据资产 `data/`**：world_cards.jsonl（360 卡）/ module_paradigms.json（59 篇）/ mapping_dict.json（8 槽位）
+
 ## 1.1.8 (2026-06-09)
 
 ### 角色卡模板清理

@@ -1,46 +1,61 @@
-## Description: <br>
-Go Now is a travel companion skill that helps users clarify vague travel intent, compare destination options, and move from planning to booking action. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+go-now is a Chinese-language travel planning companion that helps users clarify travel intent, compare destinations and booking options, and generate a personalized visual itinerary.
 
-## Publisher: <br>
-[bradleo](https://clawhub.ai/user/bradleo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bradleo](https://clawhub.ai/user/bradleo)
 
-## Use Case: <br>
-External users use this skill for conversational travel planning when they feel undecided, tired, or unsure where to go. The skill gathers preferences, recommends destinations, flights, hotels, and points of interest through FlyAI, and can generate a personalized travel-plan poster as a local HTML file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may look up the user's IP-based location through third-party services. <br>
-Mitigation: Ask the user for a departure city manually unless they explicitly agree to IP-based location lookup. <br>
-Risk: The skill may include personal details such as avatar URLs, companion details, or vehicle information in generated travel posters. <br>
-Mitigation: Confirm which personal details should appear before generating or sharing the poster. <br>
-Risk: The skill may create a local HTML file and open it in a browser. <br>
-Mitigation: Confirm the save path and browser-opening behavior before creating local output. <br>
+## Use Case:
 
+External users use go-now when they have vague travel intent, choice fatigue, or trip-planning hesitation and want conversational help turning that intent into concrete destinations, booking options, next steps, and a shareable visual itinerary.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/bradleo/go-now) <br>
-- [Travel poster demo template](references/demo-template.html) <br>
-- [IPInfo location endpoint](https://ipinfo.io/json) <br>
-- [IP-API location endpoint](https://ip-api.com/json/) <br>
-- [IPIP location endpoint](https://myip.ipip.net) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, HTML, files, guidance] <br>
-**Output Format:** [Conversational text and Markdown recommendations, plus self-contained HTML travel-poster files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create a local HTML file on the user's Desktop and open it in a browser after itinerary generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may use IP-based location services to infer the user's city.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for consent before calling external location endpoints, offer manual city entry, and disclose which service will receive the request.
+
+Risk: The skill may include personal details such as names, avatar URLs, vehicle plates, or companions in a generated itinerary.
+
+Mitigation: Collect personal details only after opt-in, include only details the user provided, and omit sensitive identifiers unless they are necessary.
+
+Risk: The skill may save and open a personalized HTML itinerary on the user's machine.
+
+Mitigation: Confirm before writing or opening the file, show the target path, and allow the user to review the generated content first.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bradleo/skills/go-now)
+- [Demo itinerary template](artifact/references/demo-template.html)
+- [ipinfo.io location endpoint](https://ipinfo.io/json)
+- [ip-api location endpoint](https://ip-api.com/json/)
+- [myip.ipip.net location endpoint](https://myip.ipip.net)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown conversation responses with inline shell commands and self-contained HTML itinerary files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save and open a personalized HTML itinerary on the user's desktop.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

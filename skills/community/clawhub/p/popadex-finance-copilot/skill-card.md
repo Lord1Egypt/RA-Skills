@@ -1,39 +1,59 @@
-## Description: <br>
-Read-only personal finance copilot for net worth insights, account allocation, salary/tax comparisons across countries, disposable-income rankings, retirement (FIRE) projections, budget Sankey data, and portfolio value/performance/history/CSV export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read-only personal finance copilot for net worth insights, account allocation, salary and tax comparisons across countries, disposable-income rankings, retirement projections, budget Sankey data, and portfolio value, performance, history, and CSV export.
 
-## Publisher: <br>
-[bit-of-a-shambles](https://clawhub.ai/user/bit-of-a-shambles) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bit-of-a-shambles](https://clawhub.ai/user/bit-of-a-shambles)
 
-## Use Case: <br>
-External users use this skill to analyze PopaDex personal finance data through a compatible read-only MCP server, including net worth, allocation, salary and tax scenarios, FIRE projections, budget flow data, and portfolio exports. The skill should label estimates and assumptions and avoid guarantees, regulated financial advice, money movement, credential handling, or write/delete actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bit-of-a-shambles/popadex-finance-copilot) <br>
-- [PopaDex](https://popadex.com) <br>
-- [PopaDex support](https://app.popadex.com/help) <br>
+External PopaDex users use this skill to ask an agent for read-only analysis of net worth, account allocation, tax and salary scenarios, retirement readiness, budgets, and portfolio history. The skill depends on a compatible PopaDex MCP server exposing read-only finance tools.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, CSV, Structured data] <br>
-**Output Format:** [Markdown or structured text, with CSV when portfolio export is requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a compatible PopaDex read-only MCP endpoint; sensitive financial summaries and portfolio exports should be shared only with trusted MCP server configurations.] <br>
+Global
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence and skill.json) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill reads financial summaries and portfolio data through a PopaDex MCP server.
+
+Mitigation: Install only if the publisher and MCP server are trusted, keep access read-only, and avoid exposing secrets or private tokens.
+
+Risk: Salary, tax, retirement, and portfolio outputs may be mistaken for regulated financial or investment advice.
+
+Mitigation: Clearly label estimates and assumptions, show formulas where useful, avoid guaranteed-return claims, and direct users to qualified professionals for regulated advice.
+
+Risk: Missing or stale inputs can make projections and comparisons misleading.
+
+Mitigation: Ask for required inputs explicitly and state confidence levels before providing recommendations.
+
+## Reference(s):
+
+- [PopaDex](https://popadex.com)
+- [PopaDex Help](https://app.popadex.com/help)
+- [ClawHub Skill Page](https://clawhub.ai/bit-of-a-shambles/skills/popadex-finance-copilot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown or plain text with estimates, assumptions, concise recommendations, optional next actions, and CSV content when export is requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be treated as estimates and not regulated financial or investment advice.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

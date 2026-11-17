@@ -1,47 +1,68 @@
-## Description: <br>
-Browser automation for AI agents via inference.sh, including navigation, element interaction with @e refs, screenshots, video recording, form automation, file upload, and JavaScript execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agentic Browser provides browser automation for AI agents via inference.sh, enabling navigation, element interaction with @e references, screenshots, video recording, file uploads, and JavaScript execution.
 
-## Publisher: <br>
-[xyny89](https://clawhub.ai/user/xyny89) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xyny89](https://clawhub.ai/user/xyny89)
 
-## Use Case: <br>
-Developers and automation-focused agents use this skill to drive browser sessions for web automation, data extraction, testing, research, authenticated workflows, screenshots, and recordings. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad control over browser sessions, including login, form submission, upload, JavaScript execution, screenshots, recordings, and proxy use. <br>
-Mitigation: Use only on sites and accounts the operator is authorized to automate, and require explicit approval before sensitive browser actions. <br>
-Risk: Browser sessions can involve cookies, authenticated state, uploaded files, screenshots, recordings, and proxy credentials. <br>
-Mitigation: Avoid exporting cookies, approve recording and proxy use before execution, limit uploaded files to intended paths, and close sessions promptly after each task. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Agentic Browser on ClawHub](https://clawhub.ai/xyny89/agentic-browser-0-1-2) <br>
-- [Command Reference](references/commands.md) <br>
-- [Snapshot and Refs](references/snapshot-refs.md) <br>
-- [Session Management](references/session-management.md) <br>
-- [Authentication Patterns](references/authentication.md) <br>
-- [Video Recording](references/video-recording.md) <br>
-- [Proxy Support](references/proxy-support.md) <br>
-- [inference.sh Sessions](https://inference.sh/docs/extend/sessions) <br>
-- [inference.sh Multi-function Apps](https://inference.sh/docs/extend/multi-function-apps) <br>
+## Use Case:
 
+Developers and agents use this skill to automate browser workflows such as web navigation, data extraction, form filling, browser testing, screenshots, video capture, authenticated sessions, proxy-based checks, and JavaScript-driven page inspection.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON inputs, and generated browser artifacts such as screenshots or video files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Browser sessions may return compact element refs, screenshots, session identifiers, and video files depending on the requested action.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill relies on a hosted browser service that may handle pages, credentials, files, screenshots, videos, cookies, and proxy settings.
+
+Mitigation: Use only with trusted targets and providers, prefer test or least-privilege accounts, avoid sensitive local file uploads, and limit the data sent through browser sessions.
+
+Risk: The documented installer pipes a remote script to the shell.
+
+Mitigation: Inspect or verify the installer independently before execution, or use an installation path that allows review before running code.
+
+Risk: Screenshots and video recordings can capture credentials, admin screens, private data, or regulated content.
+
+Mitigation: Disable recording for login and sensitive workflows, redact outputs before sharing, and keep recordings only as long as needed.
+
+Risk: Persistent sessions can retain cookies and authenticated browser state.
+
+Mitigation: Close sessions promptly, separate tasks into distinct sessions, and clean up sessions on errors or script exit.
+
+## Reference(s):
+
+- [Agentic Browser skill page](https://clawhub.ai/xyny89/skills/agentic-browser-0-1-2)
+- [Command Reference](references/commands.md)
+- [Snapshot and Refs](references/snapshot-refs.md)
+- [Session Management](references/session-management.md)
+- [Authentication Patterns](references/authentication.md)
+- [Video Recording](references/video-recording.md)
+- [Proxy Support](references/proxy-support.md)
+- [inference.sh Sessions](https://inference.sh/docs/extend/sessions)
+- [inference.sh Multi-function Apps](https://inference.sh/docs/extend/multi-function-apps)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON inputs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose browser sessions, screenshots, videos, extracted page text, file upload steps, proxy settings, and JavaScript snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

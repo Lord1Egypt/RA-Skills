@@ -2,7 +2,7 @@
 name: dependency-graph
 description: |
   Generates a Mermaid dependency graph showing import relationships between modules
-version: 1.9.8
+version: 1.10.3
 triggers:
   - analyzing coupling
   - finding circular deps
@@ -12,7 +12,7 @@ source: claude-night-market
 source_plugin: cartograph
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/cartograph](https://github.com/athola/claude-night-market/tree/master/plugins/cartograph). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/cartograph](https://github.com/athola/claude-night-market/tree/master/plugins/cartograph). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Dependency Graph
@@ -27,6 +27,11 @@ relationships between modules, packages, or plugins.
 - Analyzing coupling between modules
 - Planning refactoring by seeing dependency impact
 - Answering "what breaks if I change this?"
+
+## When NOT To Use
+
+- Runtime call paths (use `cartograph:call-chain`)
+- Type hierarchies (use `cartograph:class-diagram`)
 
 ## Workflow
 
@@ -111,3 +116,16 @@ Show the rendered diagram with analysis notes:
 - Most-depended-on modules (high fan-in)
 - Modules with most dependencies (high fan-out)
 - Circular dependencies if any detected
+
+## Exit Criteria
+
+- [ ] Mermaid `flowchart LR` syntax generated with directed edges
+      from dependent to dependency (A --> B means "A depends on B")
+- [ ] `mcp__claude_ai_Mermaid_Chart__validate_and_render_mermaid_diagram`
+      called and returns without error
+- [ ] Analysis notes include total module count, highest fan-in modules,
+      and highest fan-out modules
+- [ ] Circular dependencies, if detected, are highlighted with red
+      styling and listed explicitly in the analysis notes
+- [ ] External dependencies use dotted arrows (`-.->`) distinct from
+      internal dependency arrows

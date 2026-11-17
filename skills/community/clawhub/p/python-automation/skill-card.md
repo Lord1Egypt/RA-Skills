@@ -1,43 +1,59 @@
-## Description: <br>
-Python Automation helps agents plan and run Python-based file processing, data extraction, PDF and Excel automation, web scraping, and repetitive system tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full-stack Python automation toolkit for file processing, data extraction, PDF manipulation, Excel/workbook automation, web scraping, and system tasks.
 
-## Publisher: <br>
-[ericlooi504](https://clawhub.ai/user/ericlooi504) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ericlooi504](https://clawhub.ai/user/ericlooi504)
 
-## Use Case: <br>
-Developers and automation-focused agents use this skill to draft or run Python workflows for bulk file handling, CSV-to-Excel conversion, PDF/data extraction, web scraping, and quick CLI utilities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bulk file operations can rename, overwrite, or reorganize files unexpectedly. <br>
-Mitigation: Review target directories, keep backups for important data, and use dry-run mode before executing bulk renames. <br>
-Risk: Generated scraping, scheduling, cron, or file-watcher steps may access sensitive systems or run repeatedly if approved without review. <br>
-Mitigation: Approve only intended targets, avoid authenticated or sensitive sites unless required, and explicitly review any recurring automation setup. <br>
-Risk: Generated Python commands or included scripts may transform data in ways that are hard to reverse. <br>
-Mitigation: Review commands and output paths before running them, and test on sample files before applying changes to production data. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan and generate Python automation for bulk file operations, data extraction, PDF and Excel workflows, web scraping, and small CLI utilities.
 
-## Reference(s): <br>
-- [Pandas Data Analysis Quick Reference](references/pandas.md) <br>
-- [PDF Processing Patterns](references/pdf.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose file, web, scheduler, or watcher automation steps that should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: File-renaming operations can move or overwrite local files when run on important or overly broad folders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run operations on test copies first, use dry-run preview before renaming, and avoid broad target directories.
+
+Risk: Converting untrusted CSV data to Excel can create risky spreadsheet output.
+
+Mitigation: Sanitize CSV values before conversion and process untrusted data in a controlled environment.
+
+Risk: Unpinned Python dependencies can change behavior across environments.
+
+Mitigation: Install dependencies in a virtual environment and pin package versions for repeatable automation runs.
+
+## Reference(s):
+
+- [Pandas Data Analysis Quick Reference](references/pandas.md)
+- [PDF Processing Patterns](references/pdf.md)
+- [ClawHub Skill Page](https://clawhub.ai/ericlooi504/skills/python-automation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with inline code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated Python scripts, dependency installation commands, and file-processing guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

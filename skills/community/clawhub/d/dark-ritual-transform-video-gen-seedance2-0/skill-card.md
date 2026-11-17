@@ -1,45 +1,61 @@
-## Description: <br>
-Transforms text briefs or public HTTPS images into short gothic ritual-style videos with low-key lighting, candles, smoke, and black-gold-crimson styling using WeryAI Seedance 2.0. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms text briefs or public HTTPS images into short gothic mystery videos with low-key lighting, candles, smoke, a black-gold-crimson palette, and ceremonial motion using WeryAI Seedance 2.0.
 
-## Publisher: <br>
-[zoucdr](https://clawhub.ai/user/zoucdr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoucdr](https://clawhub.ai/user/zoucdr)
 
-## Use Case: <br>
-External creators and agents use this skill to expand short briefs into cinematic gothic prompts, submit text-to-video or single-image-to-video jobs to WeryAI Seedance 2.0, and return playable Markdown video links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, image URLs, or other submitted assets are sent to the external WeryAI API. <br>
-Mitigation: Do not submit secrets, private URLs, personal data, or confidential assets unless the user accepts sending them to WeryAI. <br>
-Risk: Generation requests can consume paid WeryAI credits. <br>
-Mitigation: Show the full prompt, model, duration, aspect ratio, resolution, audio setting, and image URL before submission and wait for user confirmation. <br>
-Risk: The bundled CLI requires the caller to choose the intended model and does not enforce the skill's model lock by itself. <br>
-Mitigation: Confirm that every request JSON uses model SEEDANCE_2_0 before approving execution. <br>
+## Use Case:
 
+External users and developers use this skill to turn ordinary text or image video ideas into short gothic ritual-style clips, then submit the expanded prompt to WeryAI and return playable video links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zoucdr/dark-ritual-transform-video-gen-seedance2-0) <br>
-- [WeryAI video CLI and JSON reference](resources/WERYAI_VIDEO_API.md) <br>
-- [WeryAI video API host](https://api.weryai.com) <br>
-- [WeryAI models registry host](https://api-growth-agent.weryai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown with inline video links, shell commands, and JSON status or error details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns WeryAI video URLs after polling; requires WERYAI_API_KEY, Node.js 18+, and public HTTPS image URLs for image-to-video.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: The skill requires a WERYAI_API_KEY for paid video generation, and each generation may consume credits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a separate or minimally scoped WeryAI API key where possible, review requests before confirmation, and expect credit usage for retries.
+
+Risk: Prompts and public image URLs are sent to WeryAI API hosts, so confidential prompts or private/internal image URLs could be exposed.
+
+Mitigation: Do not submit confidential prompts, private images, internal URLs, or sensitive user data through this skill.
+
+Risk: The skill instructions require SEEDANCE_2_0, but the bundled CLI does not enforce that model restriction.
+
+Mitigation: Confirm the JSON payload uses model SEEDANCE_2_0 before execution and reject edits that request another model.
+
+## Reference(s):
+
+- [WeryAI video CLI and JSON reference](resources/WERYAI_VIDEO_API.md)
+- [ClawHub skill page](https://clawhub.ai/zoucdr/skills/dark-ritual-transform-video-gen-seedance2-0)
+- [ClawHub publisher profile](https://clawhub.ai/user/zoucdr)
+- [WeryAI video API host](https://api.weryai.com)
+- [WeryAI model registry host](https://api-growth-agent.weryai.com)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with confirmation tables, JSON command payloads, inline video links, or concise error guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WERYAI_API_KEY, Node.js 18+, public HTTPS image URLs for image-to-video, and paid WeryAI API access.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter declares 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

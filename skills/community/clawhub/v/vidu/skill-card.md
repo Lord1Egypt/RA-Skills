@@ -1,45 +1,61 @@
-## Description: <br>
-Generate AI videos using Vidu with text-to-video, image-to-video, reference-to-video, and start-end-to-video workflows across Vidu Q3-Pro and Vidu 2.0 models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI videos using Vidu, including text-to-video, image-to-video, reference-to-video, and start-end-to-video workflows with Vidu Q3-Pro and Vidu 2.0 through Atlas Cloud.
 
-## Publisher: <br>
-[xixihhhh](https://clawhub.ai/user/xixihhhh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xixihhhh](https://clawhub.ai/user/xixihhhh)
 
-## Use Case: <br>
-Developers, creators, and marketing teams use this skill to generate short AI video clips, animate images, interpolate between keyframes, and create character-consistent videos through Atlas Cloud's Vidu endpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Atlas Cloud API usage can incur paid video-generation charges. <br>
-Mitigation: Confirm user intent before generation, monitor account spending, and choose draft settings such as lower resolution when appropriate. <br>
-Risk: Prompts, image URLs, uploaded media, video data, or likenesses may be processed by Atlas Cloud. <br>
-Mitigation: Avoid sending confidential, private, rights-sensitive, or unauthorized media unless the user is comfortable with Atlas Cloud processing. <br>
-Risk: The ATLASCLOUD_API_KEY grants access to models available on the user's Atlas Cloud account. <br>
-Mitigation: Store the key only in the environment, avoid logging it, and rotate it if exposure is suspected. <br>
+## Use Case:
 
+External users, developers, and content teams use this skill to generate short AI videos from prompts, images, references, or paired start and end frames. It is useful for social media clips, marketing assets, product demos, anime scenes, and other video generation workflows that can be sent to Atlas Cloud.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xixihhhh/vidu) <br>
-- [Atlas Cloud](https://www.atlascloud.ai) <br>
-- [fal.ai Vidu Q3-Pro text-to-video pricing reference](https://fal.ai/models/fal-ai/vidu/q3-pro/text-to-video) <br>
-- [Atlas Cloud video generation API endpoint](https://api.atlascloud.ai/api/v1/model/generateVideo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands, Python script usage examples, API request examples, and downloaded MP4 video files when generation succeeds.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ATLASCLOUD_API_KEY and sends prompts, image URLs, uploaded media, and generation requests to Atlas Cloud.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill can spend from the configured Atlas Cloud account because it uses ATLASCLOUD_API_KEY for generation requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an Atlas Cloud API key only from an account with acceptable billing exposure and review cost-related parameters before running generation.
+
+Risk: Prompts, image URLs, video URLs, and uploaded local media can be sent to Atlas Cloud.
+
+Mitigation: Use only prompts and media that are acceptable to share with Atlas Cloud, and review local files before using the upload command.
+
+Risk: The Vidu-focused description is narrower than the bundled script behavior, which can access broader Atlas Cloud video models.
+
+Mitigation: Confirm the selected model ID before submission and restrict usage to intended Vidu models when that is the expected workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xixihhhh/skills/vidu)
+- [Publisher profile](https://clawhub.ai/user/xixihhhh)
+- [Atlas Cloud](https://www.atlascloud.ai)
+- [Atlas Cloud video generation API](https://api.atlascloud.ai/api/v1/model/generateVideo)
+- [fal.ai Vidu Q3-Pro pricing reference](https://fal.ai/models/fal-ai/vidu/q3-pro/text-to-video)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, Python script usage, API request examples, and generated video file paths or URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or download MP4 video files after sending prompts, image URLs, video URLs, or uploaded local media to Atlas Cloud.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

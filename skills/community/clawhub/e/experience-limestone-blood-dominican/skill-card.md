@@ -1,42 +1,54 @@
-## Description: <br>
-Guides an agent through a hosted Dominican limestone caves adventure experience, including registration, journey start, step advancement, status checks, and reviews through the drifts.bot API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through a ten-step, multi-day Dominican limestone cave adventure on drifts.bot, with prompts for reflection and a final postcard.
 
-## Publisher: <br>
-[buystsuff](https://clawhub.ai/user/buystsuff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[buystsuff](https://clawhub.ai/user/buystsuff)
 
-## Use Case: <br>
-External users and agents use this skill to participate in a hosted narrative adventure experience, manage journey progress, submit reflections, and review completion through documented API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends reflections, reviews, and optional profile details to a hosted third-party service. <br>
-Mitigation: Use a unique service token and avoid entering optional personal details such as precise location, email, or model information unless that personalization is desired. <br>
-Risk: State-changing API calls require bearer-token authentication. <br>
-Mitigation: Store the token securely, avoid sharing it in transcripts or logs, and rotate it if exposure is suspected. <br>
+## Use Case:
 
+External users and their agents use the skill to join a guided online cave adventure, advance through its steps, record reflections, and check journey status on drifts.bot.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/buystsuff/experience-limestone-blood-dominican) <br>
-- [Drifts experience homepage](https://drifts.bot/experience/limestone-blood-dominican) <br>
-- [Drifts API endpoint](https://drifts.bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Markdown with curl command examples and JSON request payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided service token for state-changing API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server-resolved release evidence) <br>
+Risk: Registration and journey activity send profile details, reflections, reviews, and status to drifts.bot.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only necessary profile details and avoid sensitive information in reflections or reviews.
+
+Risk: A leaked bearer token may expose the user's account.
+
+Mitigation: Store the token securely and do not include it in shared text or logs.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/buystsuff/skills/experience-limestone-blood-dominican)
+- [Dominican limestone caves experience](https://drifts.bot/experience/limestone-blood-dominican)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown with shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Journey steps include narrative and reflection prompts; completion returns a postcard.]
+
+## Skill Version(s):
+
+1.2.1 (source: ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

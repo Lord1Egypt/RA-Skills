@@ -1,0 +1,76 @@
+{
+  "schema": "ownership-attestation/1.0",
+  "package": "LLM质量评测",
+  "version": "1.0.0",
+  "author": "注册老炮",
+  "year": "2026",
+  "timestamp_utc": "2026-08-27T17:11:15.614653+00:00",
+  "timestamp_local": "2026-08-28T01:11:15.614664",
+  "package_fingerprint_sha256": "388ddbe76204d50a726965a833b5444c1fb21f6e72c1d352e0426be95814a48d",
+  "files": [
+    {
+      "path": "LICENSE.md",
+      "sha256": "e8a66e30b55e997de5fca2cb78bbf2bdabd1a50bc739145dcac48e08b748843d"
+    },
+    {
+      "path": "SECURITY_AUDIT.md",
+      "sha256": "60d0afb708e49fc67ad5548c81162eb21aedebaa1b200466b53ddcb8b2ba91a8"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "30a34444c49cbc6f84125625f3ed8d963d296f1e794cbc2db86591fc03ccab90"
+    },
+    {
+      "path": "references/01-评测全景与指标.md",
+      "sha256": "31762553d02d42fad8748b96b211fc5618f32b7b1d0db8d88e613e39933cb951"
+    },
+    {
+      "path": "references/02-评测集构建.md",
+      "sha256": "3fe4e4b4e7cc054b0372faa27d92dc47fe737bd3d655b26f8997cc9cac9de162"
+    },
+    {
+      "path": "references/03-RAG系统评测.md",
+      "sha256": "281442dc3bc63e1960a19b837c233bed9539b4148defced21ea580517964bc7f"
+    },
+    {
+      "path": "references/04-幻觉检测与度量.md",
+      "sha256": "3b4c9ab434dd6959827c122a39541ac6494fe89a617b9f17f7e806e863c81e55"
+    },
+    {
+      "path": "references/05-Prompt回归测试.md",
+      "sha256": "9e6e1de2aa9409e888bb042ad700c300c329b30672ea6f662fbaaeb81aa0322e"
+    },
+    {
+      "path": "references/06-模型对比选型.md",
+      "sha256": "ab79e16ea5beea2d515d1d4c6cf88da7d03ea6bb29af53e0ce8c8555217b547d"
+    },
+    {
+      "path": "references/07-评测流程与报告.md",
+      "sha256": "092a0a1e908ebf70704f4eedaf4e6dc52cba8e39411f755008272cbfd576556a"
+    },
+    {
+      "path": "references/08-FAQ.md",
+      "sha256": "66f89576c3546f3e33043c5fbe6d44b3746a4009a2fdafc7aeb0554a35b2e3cc"
+    },
+    {
+      "path": "tools/llm_eval_toolkit.py",
+      "sha256": "21c87d407e90fe98cfb01db42170257bdd04b730a7cf2071c90036d174f2d5e7"
+    },
+    {
+      "path": "verify/gen_security_radar.py",
+      "sha256": "659a24f142b68b6a14555a278fea6b48c70b912875ec6ca47cdcbb2710f15513"
+    },
+    {
+      "path": "verify/llm_eval_quality_test.py",
+      "sha256": "b7d39bf5bbfd89fd42d1d8a24711d40920fc7be88ed1c7d625fed56ae7baa9a0"
+    },
+    {
+      "path": "verify/security-radar.svg",
+      "sha256": "bd8f1ba09126a110e78a35b7abfcb514327d870cb47dc9f8daeb541f7da5abd8"
+    },
+    {
+      "path": "verify/security_results.json",
+      "sha256": "bb41d277dbaddf841275841d82cff5662b80327dcd8b94d8e800b17c61775c31"
+    }
+  ]
+}

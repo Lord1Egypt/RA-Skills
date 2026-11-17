@@ -1,44 +1,55 @@
-## Description: <br>
-Transcribes audio messages, voice notes, and recordings into text in 50+ languages using Groq's Whisper API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FREE voice recognition using Groq's complimentary Whisper API. Transcribe audio messages to text in 50+ languages at no cost. Perfect for voice-to-text automation, meeting transcriptions, and accessibility features. Requires free Groq API key.
 
-## Publisher: <br>
-[huixionghexiyi](https://clawhub.ai/user/huixionghexiyi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[huixionghexiyi](https://clawhub.ai/user/huixionghexiyi)
 
-## Use Case: <br>
-Developers and users who need voice-to-text transcription can use this skill to configure Groq access and transcribe individual or folder-based audio files for messages, meetings, accessibility workflows, and automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Selected audio files are uploaded to Groq for transcription. <br>
-Mitigation: Use the skill only with audio you are authorized to send to Groq, and avoid confidential meetings or sensitive voice notes unless consent and policy allow it. <br>
-Risk: The setup guidance places a Groq API key in local configuration. <br>
-Mitigation: Keep the API key out of version control and shared documents, prefer environment variables where possible, and rotate the key if it is exposed. <br>
-Risk: Folder-wide transcription can upload more audio than intended. <br>
-Mitigation: Review the target folder and file list before batch transcription, and limit runs to files intended for external transcription. <br>
+## Use Case:
 
+Developers and external users use this skill to transcribe audio messages, voice notes, recordings, meeting audio, and accessibility-related voice input through Groq's Whisper transcription API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huixionghexiyi/free-groq-voice) <br>
-- [Groq Console](https://console.groq.com/) <br>
-- [Groq audio transcription API endpoint](https://api.groq.com/openai/v1/audio/transcriptions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text transcription output with Markdown setup guidance and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Groq API key and may use an HTTP proxy in restricted regions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: artifact/_meta.json and server release metadata) <br>
+Risk: The security review found unsafe credential-storage advice for Groq API keys.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a protected environment variable or secret manager for GROQ_API_KEY, and rotate any key that was pasted into a shared or project file.
+
+Risk: Selected audio files are sent to Groq for transcription, and the security review identified a misleading privacy claim about third-party data sharing.
+
+Mitigation: Install only when sending the selected audio to Groq is acceptable, and avoid submitting sensitive audio unless approved for the user's use case.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/huixionghexiyi/skills/free-groq-voice)
+- [Groq Console](https://console.groq.com/)
+- [Groq Audio Transcriptions API Endpoint](https://api.groq.com/openai/v1/audio/transcriptions)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text transcription output with Markdown setup guidance and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GROQ_API_KEY; accepts an audio file path, optional language hint, and optional GROQ_PROXY.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

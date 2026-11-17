@@ -2,7 +2,7 @@
 name: feature-review
 description: |
   Scores backlog items with RICE/WSJF/Kano and files GitHub issues for top candidates
-version: 1.9.8
+version: 1.10.3
 triggers:
   - feature-prioritization
   - backlog-triage
@@ -16,42 +16,12 @@ source: claude-night-market
 source_plugin: imbue
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/imbue](https://github.com/athola/claude-night-market/tree/master/plugins/imbue). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/imbue](https://github.com/athola/claude-night-market/tree/master/plugins/imbue). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
-
-## Table of Contents
-
-- [Philosophy](#philosophy)
-- [When to Use](#when-to-use)
-- [When NOT to Use](#when-not-to-use)
-- [Quick Start](#quick-start)
-- [1. Inventory Current Features](#1-inventory-current-features)
-- [2. Score and Classify](#2-score-and-classify)
-- [3. Generate Suggestions](#3-generate-suggestions)
 
 ## Verification
 
 Run `make test-feature-review` to verify scoring logic after changes.
-- [4. Upload to GitHub](#4-upload-to-github)
-- [Workflow](#workflow)
-- [Phase 1: Feature Discovery (`feature-review:inventory-complete`)](#phase-1:-feature-discovery-(feature-review:inventory-complete))
-- [Phase 2: Classification (`feature-review:classified`)](#phase-2:-classification-(feature-review:classified))
-- [Phase 3: Scoring (`feature-review:scored`)](#phase-3:-scoring-(feature-review:scored))
-- [Phase 4: Tradeoff Analysis (`feature-review:tradeoffs-analyzed`)](#phase-4:-tradeoff-analysis-(feature-review:tradeoffs-analyzed))
-- [Phase 5: Gap Analysis & Suggestions (`feature-review:suggestions-generated`)](#phase-5:-gap-analysis-&-suggestions-(feature-review:suggestions-generated))
-- [Phase 6: GitHub Integration (`feature-review:issues-created`)](#phase-6:-github-integration-(feature-review:issues-created))
-- [Configuration](#configuration)
-- [Configuration File](#configuration-file)
-- [Guardrails](#guardrails)
-- [Required TodoWrite Items](#required-todowrite-items)
-- [Integration Points](#integration-points)
-- [Output Format](#output-format)
-- [Feature Inventory Table](#feature-inventory-table)
-- [Suggestion Report](#suggestion-report)
-- [Feature Suggestions](#feature-suggestions)
-- [High Priority (Score > 2.5)](#high-priority-(score->-25))
-- [Related Skills](#related-skills)
-- [Reference](#reference)
 
 
 # Feature Review
@@ -150,13 +120,16 @@ Apply hybrid RICE+WSJF scoring:
 ```
 Feature Score = Value Score / Cost Score
 
-Value Score = (Reach + Impact + Business Value + Time Criticality) / 4
-Cost Score = (Effort + Risk + Complexity) / 3
+Value Score = weighted_avg(Reach, Impact, Business Value, Time Criticality)
+Cost Score = weighted_avg(Effort, Risk, Complexity)
 
 Adjusted Score = Feature Score * Confidence
 ```
 
 **Scoring Scale:** Fibonacci (1, 2, 3, 5, 8, 13).
+Default weights (value: reach 0.25, impact 0.30, business value 0.25,
+time criticality 0.20; cost: effort 0.40, risk 0.30, complexity 0.30)
+and how to override them are in the scoring framework module.
 
 **Thresholds:**
 - **> 2.5**: High priority.
@@ -224,7 +197,7 @@ a warning and proceeds with initial scores unchanged.
 ### Phase 6: GitHub Integration (`feature-review:issues-created`)
 
 1. Generate issue title and body from suggestions.
-2. Apply labels (feature, enhancement, priority/*).
+2. Apply labels (enhancement, feature-review, priority/*).
 3. Link to related issues.
 4. Confirm with user before creation.
 
@@ -298,7 +271,7 @@ These rules apply to all configurations:
 3. **Breaking change warning**: Require acknowledgment for API surface changes.
 4. **Backlog limit**: Limit suggestion queue to 25 items.
 
-## Required TodoWrite Items
+## Required Progress Items
 
 1. `feature-review:inventory-complete`
 2. `feature-review:classified`
@@ -373,3 +346,18 @@ These rules apply to all configurations:
 - **[research-enrichment.md](modules/research-enrichment.md)**: tome-driven score deltas, channel-to-factor mapping, graceful degradation.
 - **[multi-metric-evaluation-methodology.md](modules/multi-metric-evaluation-methodology.md)**: Combining RICE, WSJF, and Kano when no single model suffices.
 - **[configuration.md](modules/configuration.md)**: Customization options.
+
+## Exit Criteria
+
+- [ ] All 7 progress phases completed in order through
+  `feature-review:issues-created`; each phase marked complete
+  before the next begins
+- [ ] Every scored feature has a numeric Adjusted Score on the
+  Fibonacci scale and a Priority label (High/Medium/Low) matching
+  the configured thresholds (default: >2.5 High, 1.5-2.5 Medium)
+- [ ] Any suggestion with score >2.5 not acted on is captured via
+  `scripts/deferred_capture.py --source feature-review` without
+  prompting the user
+- [ ] GitHub issues created only after user confirmation; each issue
+  includes the `enhancement`, `feature-review`, and `priority/*` labels
+  and a link to related issues where applicable

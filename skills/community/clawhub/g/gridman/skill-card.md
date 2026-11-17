@@ -1,55 +1,65 @@
-## Description: <br>
-Gridman is a finance and tax assistant that routes accounting, audit, tax, investment banking, internal control, ESG, and related questions to a large Markdown knowledge base and optional MCP tools. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Gridman古立特 is a Chinese finance and tax agent skill for audit, accounting, tax, investment banking, compliance, and related workflows, with domain knowledge, execution routing, and review rules.
 
-## Publisher: <br>
-[zxcharlotte486](https://clawhub.ai/user/zxcharlotte486) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zxcharlotte486](https://clawhub.ai/user/zxcharlotte486)
 
-## Use Case: <br>
-Finance, tax, accounting, audit, and investment users use this skill for professional knowledge guidance, workflow planning, document drafting, and analysis support. With the optional MCP tool layer installed, agents can also propose or run calculations, file-producing workflows, OCR, market-data lookups, and configuration steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC BY-NC-SA 4.0 for knowledge and Markdown; MIT for scripts
 
-## Known Risks and Mitigations: <br>
-Risk: Installer instructions ask an agent to install software, execute shell commands, and edit persistent MCP configuration. <br>
-Mitigation: Do not run INSTALL.md automatically; review each command, verify the wheel or package source, and manually approve MCP configuration changes. <br>
-Risk: OCR, market data, and memory features can involve tokens, uploaded files, and sensitive financial or business context. <br>
-Mitigation: Treat uploaded files, credentials, and gridman-mind outputs as sensitive; avoid unnecessary persistence and redact or restrict access before analysis. <br>
-Risk: The skill provides audit, tax, legal, and finance guidance that could be mistaken for formal professional advice. <br>
-Mitigation: Require qualified professional review before relying on outputs for filings, audit opinions, legal positions, investment decisions, or other regulated decisions. <br>
-Risk: The security verdict is suspicious because runtime instructions grant broad authority to install tools, write configuration, and store business context. <br>
-Mitigation: Deploy in a reviewed environment with explicit user approval gates for command execution, configuration edits, credential use, and file writes. <br>
+## Use Case:
 
+External finance, audit, tax, accounting, and investment professionals can use this skill for China-focused knowledge questions, workflow-guided task planning, document review, audit workpaper preparation, tax issue analysis, and investment analysis support. Outputs are working aids and must be independently reviewed by qualified professionals before use as formal advice or deliverables.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zxcharlotte486/gridman) <br>
-- [README](artifact/README.md) <br>
-- [Installation guide](artifact/INSTALL.md) <br>
-- [Agent adaptation guide](artifact/AI适配引导.md) <br>
-- [End-to-end workflows](artifact/references/workflows.md) <br>
-- [Accounting standards knowledge base](artifact/references/accounting_core.md) <br>
-- [Audit standards and practice](artifact/references/audit.md) <br>
-- [Tax law knowledge base](artifact/references/tax_core.md) <br>
-- [MaoDocs accounting and auditing references](https://docs.maoyanqing.com/) <br>
-- [nigo-skills reference project](https://github.com/nigo81/nigo-skills) <br>
-- [tools-for-auditor reference project](https://github.com/nigo81/tools-for-auditor) <br>
-- [Anthropic financial-services cookbook reference](https://github.com/anthropics/anthropic-cookbook) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration, text] <br>
-**Output Format:** [Markdown, text, code blocks, shell commands, configuration snippets, and optional generated files from MCP tools] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Knowledge-only use produces guidance from Markdown references; optional MCP use may create files under a runtime memory/output directory and may require user-provided credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Sensitive finance or tax materials may be exposed when optional external integrations, document extraction, browser automation, or private memory are used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure memory and Tools only in user-chosen directories, avoid credentials in Mind, obtain user confirmation before uploads or external writes, and use a dedicated browser profile or sandbox for integrations.
+
+Risk: Optional host tools, MCP servers, npx tooling, MinerU, COM automation, or local CLIs may be unavailable, misconfigured, or unsuitable for the requested workflow.
+
+Mitigation: Verify each optional integration before use and degrade to knowledge guidance when required capabilities are unavailable.
+
+Risk: Finance, audit, tax, legal, or investment outputs could be mistaken for formal professional opinions.
+
+Mitigation: Present outputs as working aids and require independent review by appropriately qualified professionals before formal use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zxcharlotte486/skills/gridman)
+- [README](README.md)
+- [Installation and capability setup](INSTALL.md)
+- [Routing index](operations/routing_index.md)
+- [Execution and review flow](operations/routing_flow.md)
+- [Capability registry](operations/capability_registry.md)
+- [Source directory](operations/source_directory.md)
+- [Workflow guide](references/workflows/README.md)
+- [MinerU API documentation](https://mineru.net/apiManage/docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with optional code blocks, shell commands, configuration snippets, and generated files when host tools are available.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require user authorization before uploads, external writes, destructive actions, or use of private tools; outputs require professional review.]
+
+## Skill Version(s):
+
+3.0.1 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

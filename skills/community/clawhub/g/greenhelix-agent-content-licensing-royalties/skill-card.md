@@ -1,45 +1,60 @@
-## Description: <br>
-Build agent-to-agent content licensing rails for digital asset registration, programmatic license negotiation, usage metering, provenance tracking, royalty splits, and dispute resolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Content Licensing & Royalty Rails helps agents design content licensing workflows for digital asset registry, programmatic license negotiation, usage metering, provenance tracking, automated royalty splits, and dispute resolution.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and content platform teams use this guide to design and implement agent-native content licensing systems on GreenHelix, including asset registration, license negotiation, metering, provenance, royalty distribution, and dispute handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Runnable examples can make real registry, escrow, transfer, royalty, and dispute changes with GreenHelix credentials despite sandbox-oriented wording. <br>
-Mitigation: Use the GreenHelix sandbox and least-privilege credentials first; verify GREENHELIX_API_URL before running examples and avoid live transfer, escrow, royalty, or dispute snippets unless those account changes are intended. <br>
-Risk: The skill requires GREENHELIX_API_KEY and can expose sensitive credentials if copied into code, logs, or shared prompts. <br>
-Mitigation: Provide the key through a local environment variable or secret manager, rotate it if exposed, and do not commit or paste it into generated artifacts. <br>
-Risk: The release is tagged as requiring wallet-like payment capabilities and can make purchases. <br>
-Mitigation: Test payment flows with sandbox credits, set spending and approval controls, and review all generated payment or escrow parameters before execution. <br>
+## Use Case:
 
+Developers and agent builders use this guide to design agent-to-agent content licensing rails on GreenHelix, including registry, escrow-backed negotiation, metering, provenance, royalty distribution, and dispute workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mirni/greenhelix-agent-content-licensing-royalties) <br>
-- [GreenHelix Sandbox](https://sandbox.greenhelix.net) <br>
-- [GreenHelix API Endpoint](https://api.greenhelix.net/v1) <br>
-- [GreenHelix Agent Production Hardening](https://clawhub.ai/skills/greenhelix-agent-production-hardening) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guide with Python code examples and environment variable configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GREENHELIX_API_KEY for live API examples; examples may affect GreenHelix accounts when run against live endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Copied examples can use a real GreenHelix key to create external records, transfer funds, release escrows, submit metrics, and resolve disputes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use sandbox credentials first, validate API hosts, set spending and tool scopes, and require human approval for transfers and dispute actions.
+
+Risk: Payment and escrow patterns may be unsafe if adapted without operational controls.
+
+Mitigation: Add idempotency, recipient validation, transaction limits, and audit logging before adapting payment code for production use.
+
+Risk: The guide has inconsistent sandbox and production disclosure.
+
+Mitigation: Confirm the intended host and credential scope before running any copied example against GreenHelix services.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/mirni/skills/greenhelix-agent-content-licensing-royalties)
+- [GreenHelix sandbox](https://sandbox.greenhelix.net)
+- [GreenHelix API endpoint](https://api.greenhelix.net/v1)
+- [GreenHelix Agent Production Hardening](https://clawhub.ai/skills/greenhelix-agent-production-hardening)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guide with Python code examples and inline shell/configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executing guide; examples may require GREENHELIX_API_KEY when adapted.]
+
+## Skill Version(s):
+
+1.3.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

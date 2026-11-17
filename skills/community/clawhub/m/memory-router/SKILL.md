@@ -63,6 +63,20 @@ Then compaction kicks in and details vanish.
 └──────────────────────────────────────────────────────┘
 ```
 
+## ⚠️ Important Warnings
+
+### Automatic File Modification
+MemoryRouter automatically modifies MEMORY.md and archive files under `memory/` during `--tier`, `--audit`, and `--restore` operations. These changes are not reversible unless you have a backup. Always run `--dry-run` first to preview changes.
+
+### Destructive Flags Requiring Confirmation
+- `--tier` rewrites MEMORY.md permanently
+- `--restore` overwrites MEMORY.md with backup content
+- `--cleanup` with auto-remove can delete archived entries
+- These operations require explicit `--confirm` / `--force` flags and will refuse to run without them
+
+### Filesystem Access
+MemoryRouter reads and writes `memory/` files and directories. Ensure proper filesystem permissions and avoid running in untrusted shared directories.
+
 ## Quick Start
 
 ### Fix a bloated MEMORY.md (requires confirmation)

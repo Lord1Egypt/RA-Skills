@@ -1,46 +1,65 @@
-## Description: <br>
-自动生成中国诉讼案件的《诉讼策略与类案检索报告》，基于案情拆解争议焦点并编排法条/类案检索工具。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+自动生成中国诉讼案件的《诉讼策略与类案检索报告》，基于案情拆解争议焦点并编排法条/类案检索工具，当用户提到案件分析、诉讼策略、类案检索、法条检索或庭前准备时使用本 Skill。
 
-## Publisher: <br>
-[coolalam](https://clawhub.ai/user/coolalam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolalam](https://clawhub.ai/user/coolalam)
 
-## Use Case: <br>
-External legal professionals and agents use this skill to turn China mainland case facts into a structured litigation strategy and similar-case/legal-rule research report for pretrial preparation, client communication, and risk assessment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, for matters analyzed under the mainland China legal system. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Legal search terms, case summaries, and the configured API key are sent to the external DeliLegal API. <br>
-Mitigation: Use only when the user is comfortable sending the query to DeliLegal, avoid client-identifying or privileged details where possible, and use a scoped API key. <br>
-Risk: The bundled search scripts disable normal HTTPS certificate and hostname verification. <br>
-Mitigation: Re-enable TLS certificate and hostname verification before routine use, and review network behavior before deployment. <br>
-Risk: Legal research output can be incomplete, stale, or misleading when public case data is limited or the facts are underspecified. <br>
-Mitigation: Treat the report as an attorney-review aid, verify important statutes and cases against authoritative sources, and clearly state assumptions and uncertainty. <br>
+## Use Case:
 
+Lawyers and litigation teams use this skill to turn mainland China case facts into a structured litigation strategy and similar-case research report. It helps identify dispute issues, plan legal and case searches, summarize retrieved authorities, and frame evidence, procedural, settlement, and risk considerations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/coolalam/litigation-strategy-report) <br>
-- [Search query pattern guide](references/search-query-patterns.md) <br>
-- [DeliLegal law search API endpoint](https://platform.delilegal.com/api/v1/generice/law/list) <br>
-- [DeliLegal case search API endpoint](https://platform.delilegal.com/api/v1/generice/case/list) <br>
-- [DeliLegal API key management](https://open.delilegal.com/personal/keys) <br>
+### Deployment Geography for Use:
 
+Global; substantive legal analysis is scoped to mainland China law.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Structured Chinese Markdown report with inline command guidance and legal/case search summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured DeliLegal API key before search commands can run; report conclusions should preserve assumptions, uncertainty, and risk caveats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Legal search terms may contain sensitive, personal, or privileged case facts that are sent to DeliLegal.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact personal and privileged facts before search and use the skill only when external legal API disclosure is acceptable.
+
+Risk: The scripts disable TLS certificate verification while sending an API key and case details.
+
+Mitigation: Restore TLS certificate verification before real use and verify the endpoint certificate chain.
+
+Risk: The API key is read from a project-local config file.
+
+Mitigation: Prefer an environment variable or managed secret store and avoid committing populated config files.
+
+Risk: Generated litigation guidance or retrieved legal material may be incomplete, outdated, or misapplied to the user's facts.
+
+Mitigation: Have a qualified reviewer verify current official legal texts, case relevance, and assumptions before relying on the report.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/coolalam/skills/litigation-strategy-report)
+- [Search query patterns](references/search-query-patterns.md)
+- [DeliLegal API key management](https://open.delilegal.com/personal/keys)
+- [DeliLegal law search API endpoint](https://platform.delilegal.com/api/v1/generice/law/list)
+- [DeliLegal case search API endpoint](https://platform.delilegal.com/api/v1/generice/case/list)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with inline shell commands and legal search result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured DeliLegal API key before executing searches; legal conclusions are conditional on the user's facts and retrieved authorities.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

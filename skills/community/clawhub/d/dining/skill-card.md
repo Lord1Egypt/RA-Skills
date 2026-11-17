@@ -1,50 +1,64 @@
-## Description: <br>
-Dining OS v2.1 helps an assistant make concrete meal decisions for home cooking, dining out, delivery, gatherings, fitness goals, and special dining scenarios while respecting stated preferences, allergies, and health constraints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dining helps an agent decide what users should eat by producing concrete meal plans for home cooking, dining out, delivery, gatherings, fitness goals, and special dining scenarios while accounting for dietary restrictions and health red lines.
 
-## Publisher: <br>
-[chenchen913](https://clawhub.ai/user/chenchen913) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenchen913](https://clawhub.ai/user/chenchen913)
 
-## Use Case: <br>
-External users and assistants use this skill to choose meal plans, menus, or ordering decisions from user constraints such as headcount, dining format, dietary restrictions, health goals, cuisine preferences, and social context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask for or summarize dietary preferences and health-related dietary constraints. <br>
-Mitigation: Share only details needed for the meal decision, avoid unnecessary medical information, and review or delete any generated profile before saving or reusing it. <br>
-Risk: Meal guidance can be mistaken for medical or nutritional advice when health constraints are involved. <br>
-Mitigation: Treat recommendations as meal-planning assistance and consult an appropriate professional for medical dietary requirements. <br>
+## Use Case:
 
+External users use this skill when they want an agent to choose meals or menus instead of presenting broad options. It supports everyday meal planning, delivery selection, home-cooking schedules, gatherings, special scenarios such as hot pot or camping, and fitness-oriented meal recommendations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/chenchen913/dining) <br>
-- [README](README.md) <br>
-- [README English](README_EN.md) <br>
-- [Algorithm Engine](references/algorithm-engine.md) <br>
-- [Mode Routing](references/mode-routing.md) <br>
-- [Cuisine Profiles](references/cuisine-profiles.md) <br>
-- [Expert Cabinet](references/expert-cabinet.md) <br>
-- [Memory System](references/memory-system.md) <br>
-- [Output Schema](references/output-schema.md) <br>
-- [Heuristics](references/heuristics.md) <br>
-- [Dishes Reference](assets/dishes-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown meal recommendations with structured lists, tables, brief rationale, and optional reusable preference profile text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce deterministic menu plans, dish lists, sequencing guidance for home cooking, and concise preference summaries based on user-provided dining constraints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata) <br>
+Risk: The documented npx install command is unpinned, so users may install a moving version without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install from a pinned release or reviewed commit before deployment.
+
+Risk: The optional preference profile may include sensitive dietary or medical details that users paste into future sessions.
+
+Mitigation: Keep sensitive health details out of reusable profiles unless the user is comfortable reusing that information in later agent sessions.
+
+Risk: Health-related meal recommendations may be mistaken for medical advice.
+
+Mitigation: Treat outputs as dietary guidance and consult qualified medical or nutrition professionals for clinical conditions.
+
+## Reference(s):
+
+- [Mode Routing](artifact/references/mode-routing.md)
+- [Algorithm Engine](artifact/references/algorithm-engine.md)
+- [Cuisine Profiles](artifact/references/cuisine-profiles.md)
+- [Expert Cabinet](artifact/references/expert-cabinet.md)
+- [Memory System](artifact/references/memory-system.md)
+- [Output Schema](artifact/references/output-schema.md)
+- [Heuristics](artifact/references/heuristics.md)
+- [Dishes Reference](artifact/assets/dishes-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown meal plans with dish lists, concise rationale, and optional cooking schedule, delivery notes, expert review, or preference-profile update text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs usually provide one or two concrete meal solutions and avoid vague alternatives unless a constraint conflict requires user clarification.]
+
+## Skill Version(s):
+
+2.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

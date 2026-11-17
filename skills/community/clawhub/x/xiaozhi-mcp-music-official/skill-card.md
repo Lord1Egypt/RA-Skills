@@ -1,46 +1,61 @@
-## Description: <br>
-Official-style XiaoZhi MCP online music bridge that lets an agent search online music, return track information, and play direct audio URLs through a local player such as mpv. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xiaozhi Mcp Music Official lets a XiaoZhi MCP setup search online music, return track information, and play direct audio links through a local player such as mpv.
 
-## Publisher: <br>
-[joe12801](https://clawhub.ai/user/joe12801) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joe12801](https://clawhub.ai/user/joe12801)
 
-## Use Case: <br>
-External developers and XiaoZhi users use this skill to connect a XiaoZhi MCP endpoint to online music search, track information, and local playback controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A configured XiaoZhi MCP endpoint can direct the local music tools exposed by the bridge. <br>
-Mitigation: Install only for trusted XiaoZhi MCP endpoints and run the skill with low local privileges. <br>
-Risk: Playback controls may affect unrelated local processes that match the configured player command. <br>
-Mitigation: Set PLAYER_CMD to a specific trusted player such as mpv and avoid running the skill where matching unrelated player processes are active. <br>
-Risk: The skill depends on a third-party music API provider and its API key handling. <br>
-Mitigation: Use only trusted music API providers and manage MUSIC_API_KEY as a secret. <br>
+## Use Case:
 
+External developers and XiaoZhi operators use this skill to connect a XiaoZhi MCP endpoint to online music search and local playback controls. It supports song search, fallback across music sources, track information responses, and basic play, pause, resume, and stop workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/joe12801/xiaozhi-mcp-music-official) <br>
-- [Kuwo music API endpoint](https://api-v2.yuafeng.cn/API/kwmusic.php) <br>
-- [NetEase music API endpoint](https://api-v2.yuafeng.cn/API/wymusic.php) <br>
-- [Migu music API endpoint](https://api-v2.yuafeng.cn/API/mgmusic.php) <br>
-- [Baidu music API endpoint](https://api-v2.yuafeng.cn/API/bdmusic.php) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration] <br>
-**Output Format:** [Plain text MCP tool responses with local player control side effects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MCP_ENDPOINT, MUSIC_API_KEY, MUSIC_SOURCE, and PLAYER_CMD; playback depends on a trusted local player and music API responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Remote MCP-invoked tools can stop, pause, or resume processes that match the configured player command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted XiaoZhi MCP endpoint and a trusted, fixed PLAYER_CMD; prefer a version that tracks and signals only the player process it starts.
+
+Risk: Music searches and the MUSIC_API_KEY are sent to third-party music APIs.
+
+Mitigation: Use a trusted API provider and key, and disclose this data flow to users before deployment.
+
+Risk: Dependency versions are broad ranges rather than reviewed fixed versions.
+
+Mitigation: Pin reviewed dependency versions before operational deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/joe12801/skills/xiaozhi-mcp-music-official)
+- [Kuwo music API endpoint](https://api-v2.yuafeng.cn/API/kwmusic.php)
+- [NetEase music API endpoint](https://api-v2.yuafeng.cn/API/wymusic.php)
+- [Migu music API endpoint](https://api-v2.yuafeng.cn/API/mgmusic.php)
+- [Baidu music API endpoint](https://api-v2.yuafeng.cn/API/bdmusic.php)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration]
+
+**Output Format:** [Plain text MCP tool responses with local playback side effects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured XiaoZhi MCP endpoint, music API key, music source, and trusted local player command.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,53 @@
-## Description: <br>
-Organizes information, tasks, ideas, projects, notes, files, workflows, and priorities into clear structures that are easier to understand and act on. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organize information, tasks, ideas, projects, notes, files, workflows, and priorities into clear structures that are easier to understand and act on.
 
-## Publisher: <br>
-[AGImodel](https://clawhub.ai/user/AGImodel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agimodel](https://clawhub.ai/user/agimodel)
 
-## Use Case: <br>
-Employees and external users can use this skill to turn scattered notes, tasks, files, projects, and workflows into maintainable categories, hierarchies, cleanup plans, and next actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Organizing advice could move attention away from important files, regulated records, business workflows, or retention-sensitive material. <br>
-Mitigation: Review suggested structures before applying them to important or sensitive materials, and adapt them to internal policies and applicable requirements. <br>
-Risk: Cleanup or archiving recommendations could cause users to hide, merge, or deprioritize information that still needs active handling. <br>
-Mitigation: Confirm active, reference, and archive rules with the responsible owner before reorganizing or retiring material. <br>
+## Use Case:
 
+Employees, external users, and agents use this skill to turn scattered notes, tasks, files, projects, ideas, and workflows into practical structures for retrieval, action, cleanup, and maintenance.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include organization summaries, category structures, labeling rules, active/archive rules, maintenance steps, and risk or confusion points.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The skill can influence how agents structure organization-related answers, and broad trigger phrasing may overlap with other organization or productivity skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review trigger fit when installing alongside overlapping skills and confirm that the selected organizing logic matches the user's actual task.
+
+Risk: Outputs may be unsuitable if applied directly to regulated records, compliance, HR, accounting, legal, or sensitive information-governance workflows.
+
+Mitigation: Validate outputs against applicable jurisdictional, industry, and internal policy requirements before applying them to regulated or sensitive records.
+
+## Reference(s):
+
+- [ClawHub Organizer skill page](https://clawhub.ai/agimodel/skills/organizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown with structured sections, lists, naming rules, hierarchy recommendations, cleanup plans, and audit findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include organization summaries, folder or section architectures, categorization frameworks, workflow structures, maintenance rules, and recommended next steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

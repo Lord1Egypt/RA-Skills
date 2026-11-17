@@ -1,47 +1,63 @@
-## Description: <br>
-Fapiao Clipper helps an agent scan email and local folders for Chinese invoices, extract invoice data with local PDF text and vision-OCR workflows, verify risk signals, query stored records, and export reimbursement packages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fapiao Clipper helps agents manage Chinese invoice workflows by scanning email and local folders, extracting invoice data with local PDF and OCR engines, validating invoices, and exporting reimbursement files.
 
-## Publisher: <br>
-[alan5168](https://clawhub.ai/user/alan5168) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alan5168](https://clawhub.ai/user/alan5168)
 
-## Use Case: <br>
-External users, finance staff, and agent operators use this skill to collect Chinese invoice attachments or files, organize recognized invoice records, review reimbursement risks, and produce export files for expense workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can log in to a configured mailbox and download invoice attachments and links from messages. <br>
-Mitigation: Use a dedicated mailbox or narrowly scoped folder, review the email configuration before scanning, and disable email scanning when it is not needed. <br>
-Risk: Automatic link following may fetch invoice-like URLs from email bodies. <br>
-Mitigation: Set automatic email-link following to false unless the mailbox source is trusted, and review downloaded files before reimbursement use. <br>
-Risk: Configuration may contain mailbox or API credentials and local invoice records may contain sensitive business data. <br>
-Mitigation: Keep config.yaml and the invoice database in a restricted local directory, avoid committing them to source control, and limit access to exported files. <br>
-Risk: The Web UI can expose invoice data if made reachable beyond localhost without access controls. <br>
-Mitigation: Keep the Web UI bound to local or trusted private networks and add access controls before any broader exposure. <br>
+## Use Case:
 
+Employees, finance operators, and developers use this skill to collect, recognize, validate, query, and export Chinese fapiao records for reimbursement workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alan5168/fapiao-clipper) <br>
-- [Publisher profile](https://clawhub.ai/user/alan5168) <br>
-- [Project homepage](https://github.com/Alan5168/fapiao-clipper) <br>
-- [Issue tracker](https://github.com/Alan5168/fapiao-clipper/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, code, files, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; CLI text summaries; generated Excel and PDF export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update a local SQLite invoice database, downloaded invoice files, and reimbursement exports under user-configured folders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.2 (source: server release metadata) <br>
+Risk: Mailbox credentials may be exposed or misused when email scanning is enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated app password, keep configuration files private, and disable email scanning when it is not needed.
+
+Risk: Automatic email-link following may download files from untrusted invoice links.
+
+Mitigation: Disable automatic link following unless the mailbox sources are trusted, and review downloaded files before processing.
+
+Risk: The Streamlit web UI may expose invoice data if published beyond a trusted local network.
+
+Mitigation: Keep the UI local or behind authenticated private access, and do not expose it publicly without access controls.
+
+Risk: Generated configuration, SQLite databases, and exports contain sensitive financial records.
+
+Mitigation: Restrict filesystem permissions, protect backups, and handle exported Excel and PDF files as confidential business records.
+
+## Reference(s):
+
+- [Fapiao Clipper project homepage](https://github.com/Alan5168/fapiao-clipper)
+- [Fapiao Clipper ClawHub page](https://clawhub.ai/alan5168/skills/fapiao-clipper)
+- [Web UI preview](docs/web-ui-preview.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands; runtime outputs include SQLite records, Excel workbooks, and merged PDF files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May process email attachments, local invoice files, and exported financial records depending on configuration.]
+
+## Skill Version(s):
+
+1.5.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

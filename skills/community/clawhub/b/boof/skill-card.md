@@ -1,46 +1,57 @@
-## Description: <br>
-Convert PDFs and documents to markdown, index them locally for RAG retrieval, and analyze them token-efficiently. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Boof converts PDFs and documents to Markdown, indexes them locally for RAG retrieval, and helps agents analyze or summarize large documents using targeted chunks.
 
-## Publisher: <br>
-[chiefsegundo](https://clawhub.ai/user/chiefsegundo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chiefsegundo](https://clawhub.ai/user/chiefsegundo)
 
-## Use Case: <br>
-Developers and agents use Boof to convert local PDFs or documents into markdown, index them for local semantic retrieval, and analyze focused excerpts without placing entire documents in the model context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence reports a path-injection flaw in the script. <br>
-Mitigation: Review before installing, use only trusted files with simple filenames, and avoid unusual paths until path handling is fixed. <br>
-Risk: The security evidence reports that indexing can include more markdown files than expected. <br>
-Mitigation: Use a dedicated output directory and verify that only intended files are indexed. <br>
-Risk: The skill processes local documents through document-conversion and retrieval tooling. <br>
-Mitigation: Avoid processing untrusted documents unless the environment and dependencies are reviewed. <br>
+## Use Case:
 
+Developers and agents use Boof to convert local PDFs and documents into Markdown, build local RAG collections, and query targeted excerpts for summaries, comparisons, and document analysis.
 
-## Reference(s): <br>
-- [Boof Skill Page](https://clawhub.ai/chiefsegundo/boof) <br>
-- [Setup Guide](references/setup-guide.md) <br>
-- [Advanced Usage](references/advanced-usage.md) <br>
-- [opendataloader-pdf](https://github.com/opendataloader-project/opendataloader-pdf) <br>
-- [QMD](https://github.com/tobi/qmd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and local file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces converted markdown files and QMD collection names for later retrieval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.0 (source: server release evidence) <br>
+Risk: Crafted file paths may cause unintended Python code execution when processed by the conversion script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with trusted local file paths, avoid unusual crafted filenames, and prefer a patched version that passes paths as Python arguments.
+
+Risk: Setup instructions install external dependencies without pinned versions or commits.
+
+Mitigation: Pin dependency versions or commits and review upstream packages before installing the skill in managed environments.
+
+## Reference(s):
+
+- [Boof on ClawHub](https://clawhub.ai/chiefsegundo/skills/boof)
+- [Boof Advanced Usage](references/advanced-usage.md)
+- [Boof Setup Guide](references/setup-guide.md)
+- [opendataloader-pdf](https://github.com/opendataloader-project/opendataloader-pdf)
+- [QMD](https://github.com/tobi/qmd)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, shell commands, configuration snippets, and optional JSON query output from QMD]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local Markdown files in knowledge/boofed by default and QMD collections for retrieval.]
+
+## Skill Version(s):
+
+4.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

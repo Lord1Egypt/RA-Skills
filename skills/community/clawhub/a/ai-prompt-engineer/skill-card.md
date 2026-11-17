@@ -1,40 +1,59 @@
-## Description: <br>
-Prompt Engineer helps AI developers design, test, and refine prompts for LLM-powered applications, including system prompts, few-shot prompting, structured outputs, evaluation workflows, multimodal prompting, agent patterns, and safety guardrails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A comprehensive prompt engineering skill for AI developers building LLM-powered applications. Covers system prompt design, few-shot prompting, chain-of-thought reasoning, tool-use patterns, structured output enforcement, context management, prompt templates, evaluation frameworks, multi-turn conversation handling, multimodal prompting, agent patterns such as ReAct and plan-and-execute, and safety guardrails including prompt injection defence.
 
-## Publisher: <br>
-[royhk920](https://clawhub.ai/user/royhk920) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[royhk920](https://clawhub.ai/user/royhk920)
 
-## Use Case: <br>
-Developers and engineers use this skill as a prompt-engineering reference when building LLM-powered applications, prompt templates, structured-output workflows, agent behaviors, and evaluation harnesses. It provides guidance and examples the agent can apply when helping users craft, debug, or improve prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/royhk920/ai-prompt-engineer) <br>
-- [System Prompt Examples](examples/system-prompts.md) <br>
-- [Prompt Evaluation Framework](examples/evaluation-framework.py) <br>
-- [Prompt Project Scaffold Script](scripts/scaffold.sh) <br>
+Developers and engineers use this skill to craft, debug, and evaluate prompts for LLM-powered applications, including system prompts, structured outputs, tool use, agent patterns, multimodal prompting, and safety guardrails.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with code blocks, JSON examples, shell commands, and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Examples that call OpenAI APIs require a user-provided API key; use limited credentials and avoid proprietary, customer, or regulated data unless that provider use is acceptable.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Example evaluators can send prompts, outputs, and test inputs to OpenAI.
+
+Mitigation: Run evaluations only with non-sensitive test data and review prompts before using real user or business content.
+
+Risk: The example evaluation setup installs and imports the openai package without a pinned version.
+
+Mitigation: Use a virtual environment and pin the openai package version for reproducible evaluation behavior.
+
+Risk: The scaffold script creates local project files and an environment template.
+
+Mitigation: Review generated files before use and keep real .env secrets out of source control.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/royhk920/skills/ai-prompt-engineer)
+- [System prompt examples](artifact/examples/system-prompts.md)
+- [Prompt evaluation framework example](artifact/examples/evaluation-framework.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with prompt templates, code examples, shell commands, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Examples include local scaffold generation and OpenAI-based evaluation scripts.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

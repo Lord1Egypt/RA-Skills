@@ -1,42 +1,54 @@
-## Description: <br>
-Security check for ClawHub skills powered by Koi. Query the Clawdex API before installing any skill to verify it's safe. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security check for ClawHub skills powered by Koi. Query the Clawdex API before installing any skill to verify it's safe.
 
-## Publisher: <br>
-[wearekoi](https://clawhub.ai/user/wearekoi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[wearekoi](https://clawhub.ai/user/wearekoi)
 
-## Use Case: <br>
-Developers and agents use this skill before installing ClawHub skills to query Clawdex for a benign, malicious, or unknown verdict. It can also help audit already installed OpenClaw skills and decide when user review is needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill checks installed skill names and queries an external Clawdex/Koi security service for verdicts. <br>
-Mitigation: Install only when sharing skill names with that external service is acceptable, and avoid including unrelated sensitive context in API requests. <br>
-Risk: Clawdex results are advisory and a verdict can be unknown or incomplete. <br>
-Mitigation: Review unknown or risky skills before installation and ask for explicit user approval before taking follow-up action. <br>
+## Use Case:
 
+Developers and agent operators use this skill to check ClawHub skill verdicts through Koi's Clawdex service before installing new skills or reviewing already installed skills.
 
-## Reference(s): <br>
-- [Clawdex by Koi on ClawHub](https://clawhub.ai/wearekoi/clawdex) <br>
-- [Koi](https://www.koi.ai/) <br>
-- [Clawdex skill verdict API](https://clawdex.koi.security/api/skill/SKILL_NAME) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON verdict examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The Clawdex API returns advisory verdicts such as benign, malicious, or unknown.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact/SKILL.md frontmatter lists 1.0.0) <br>
+Risk: The skill depends on Koi's external Clawdex service and may disclose checked skill names, including installed skill names during an audit loop.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review which skill names will be sent before running checks, and avoid querying names that reveal sensitive internal usage.
+
+Risk: Clawdex verdicts may be incomplete security input for unknown or unaudited skills.
+
+Mitigation: Treat verdicts as one review signal and perform manual review before installing unknown skills.
+
+## Reference(s):
+
+- [Clawdex by Koi on ClawHub](https://clawhub.ai/wearekoi/skills/clawdex)
+- [Koi](https://www.koi.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces human-readable verdict interpretation and review guidance for benign, malicious, or unknown Clawdex API results.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

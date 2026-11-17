@@ -1,4 +1,20 @@
-# Webhooks — Stripe API
+# Webhooks — Events, Verification, Delivery
+
+**Read `## Webhook Endpoints` in `~/Clawic/data/stripe-api-integration/memory.md`** (or `webhook-endpoints.md` when `## Boxes` points there) before adding, re-pointing or debugging an endpoint: which endpoints exist, which events each subscribes to, and which API version each is pinned to. An endpoint nobody recorded is an endpoint nobody audits.
+
+**Contents:** [The Five Properties of a Correct Handler](#the-five-properties-of-a-correct-handler) · [Webhook Fundamentals](#webhook-fundamentals) · [Create Webhook Endpoint](#create-webhook-endpoint) · [Essential Events](#essential-events) · [Signature Verification](#signature-verification) · [Event Handling Pattern](#event-handling-pattern) · [Idempotency](#idempotency) · [Webhook Best Practices](#webhook-best-practices) · [List and Manage Endpoints](#list-and-manage-endpoints) · [Debugging](#debugging)
+
+## The Five Properties of a Correct Handler
+
+Everything else in this file is detail; these five are the contract.
+
+1. **Verifies against the raw body.** Any framework that parses JSON before your handler sees it breaks the signature. Configure the raw-body route explicitly, and use the secret of *that* endpoint.
+2. **Acks fast, works later.** Respond 2xx as soon as the event is persisted or queued. A handler that does the work inline gets retried mid-work and produces the duplicate it was meant to prevent.
+3. **Idempotent by `event.id`.** Store processed ids and return early on a repeat. At-least-once delivery is a design guarantee, not a rare failure.
+4. **Order-independent.** Events can arrive out of order. Compute state from the object you fetch, never from the sequence of arrivals (`debug.md`).
+5. **Fetches what it needs.** Payloads cannot be expanded and are snapshots at event time; if the handler acts on related data, it re-fetches it (`api-mechanics.md`).
+
+Practical consequences: one endpoint per concern with an explicit event list, its own secret, and a pinned API version; alerting on delivery failures, because Stripe retries for days and then disables the endpoint after its warnings; and a signature tolerance of five minutes, which means a server with a drifting clock rejects perfectly good events.
 
 ## Webhook Fundamentals
 
@@ -275,3 +291,27 @@ curl https://api.stripe.com/v1/events/evt_XXX \
 
 ### Resend Event (via Dashboard)
 Dashboard > Developers > Events > Select event > Resend
+
+## The Minimum Event Set by Business Model
+
+Subscribe to what you act on and nothing else — unhandled volume hides the events that matter.
+
+| `billing_model` | Events you cannot skip |
+|---|---|
+| one-time | `payment_intent.succeeded`, `payment_intent.payment_failed`, `charge.refunded`, `charge.dispute.created` |
+| subscription | the above, plus `checkout.session.completed`, `invoice.paid`, `invoice.payment_failed`, `customer.subscription.updated`, `customer.subscription.deleted`, `customer.subscription.trial_will_end` |
+| marketplace | plus `account.updated`, `payout.paid`, `payout.failed`, and the dispute events on whichever side holds liability (`connect.md`) |
+| invoicing | plus `invoice.finalized`, `invoice.sent`, `invoice.marked_uncollectible`, `credit_note.created` |
+| any model with bank-based methods | plus `checkout.session.async_payment_succeeded` and `checkout.session.async_payment_failed` (`payment-methods.md`) |
+| anything else | Subscribe to what a handler exists for; an event with no handler is noise that hides a failure |
+
+## When Delivery Is Not the Problem
+
+An endpoint that is healthy and an integration that is broken look the same from the outside. Two safety nets are worth building once:
+
+- **A reconciliation sweep**: periodically list objects changed since the last run and repair anything your database missed. It catches the events lost while an endpoint was down and the ones a bug swallowed with a 200.
+- **Polling as a fallback for one critical flow** — usually fulfillment. Not a replacement for webhooks; a floor under them.
+
+---
+
+**Write in the same turn**: every endpoint created, re-pointed, disabled or re-scoped goes to `## Webhook Endpoints` in `~/Clawic/data/stripe-api-integration/memory.md` — environment, URL, event count, API version, a **pointer** for its secret (`env:…`, `ssm:/…`, never the value), and status. Which events have handlers and what each one does belongs in the same section, and moves with it into `webhook-endpoints.md` at the split (`memory-template.md`). A delivery outage that lost events is a row in `incidents/<year>.md`; schedule the endpoint audit in `## Due`.

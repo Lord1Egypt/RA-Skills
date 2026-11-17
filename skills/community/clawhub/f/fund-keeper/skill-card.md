@@ -1,49 +1,64 @@
-## Description: <br>
-Chinese mutual fund intelligent advisor with real-time valuation, buy/sell suggestions, profit tracking, SIP planning, OCR recognition, and stock-fund linkage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese mutual fund intelligent advisor with real-time valuation, buy/sell suggestions, profit tracking, SIP planning, OCR recognition, and stock-fund linkage. Supports offline mode and multi-source caching.
 
-## Publisher: <br>
-[tangepier-crypto](https://clawhub.ai/user/tangepier-crypto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tangepier-crypto](https://clawhub.ai/user/tangepier-crypto)
 
-## Use Case: <br>
-External users and finance-focused agent operators use Fund Keeper to track Chinese mutual fund portfolios, review valuations and profit/loss, manage SIP plans and alerts, and generate informational buy/sell suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores portfolio amounts and transaction history in local funds files. <br>
-Mitigation: Use it only in workspaces where local portfolio records are acceptable, and avoid sharing generated funds files without review. <br>
-Risk: OCR inputs can contain account or portfolio details from screenshots. <br>
-Mitigation: Crop or redact screenshots before OCR so only the fund data needed for the task is exposed. <br>
-Risk: Some market data is fetched over unencrypted HTTP and may be stale or tampered with. <br>
-Mitigation: Treat valuations and buy/sell suggestions as informational and verify material decisions against trusted financial sources. <br>
+## Use Case:
 
+External users and agents use Fund Keeper to track Chinese mutual fund portfolios, review valuation and profit reports, manage SIP plans and alerts, and generate reference buy/sell guidance from public market data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tangepier-crypto/fund-keeper) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
-- [INSTALL.md](artifact/INSTALL.md) <br>
-- [CHANGELOG_v2.4.md](artifact/CHANGELOG_v2.4.md) <br>
-- [TTJJ real-time valuation endpoint](http://fundgz.1234567.com.cn/js/{fund_code}.js) <br>
-- [EastMoney fund page](http://fund.eastmoney.com/{fund_code}.html) <br>
-- [EastMoney fund page by code](https://fund.eastmoney.com/{code}.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and command-oriented guidance with local portfolio and configuration file examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and write local funds/*.json and funds/*.md records and may fetch public market data from declared finance domains when network access is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.6.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Financial guidance and market-data integrity
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat investment suggestions and sample stock rankings as unverified reference output; review data freshness and do not use the skill as the sole basis for investment decisions.
+
+Risk: Network access to public market-data services
+
+Mitigation: Run the skill in a dedicated environment with restricted network access to the declared market-data domains where possible.
+
+Risk: Local portfolio persistence and bundled records
+
+Mitigation: Remove bundled portfolio data before use and avoid storing sensitive financial records in shared workspaces.
+
+Risk: Recurring scheduled tasks
+
+Mitigation: Enable scheduled checks only after reviewing the commands, permissions, and output locations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tangepier-crypto/skills/fund-keeper)
+- [TTJJ fund valuation endpoint](http://fundgz.1234567.com.cn/js/{fund_code}.js)
+- [EastMoney fund page](https://fund.eastmoney.com/{code}.html)
+- [Sina Finance quotes](http://hq.sinajs.cn/list=fu_{fund_code})
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Console text and Markdown with shell command examples and JSON-backed local configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local portfolio, transaction, cache, statistics, and SIP-plan files under the funds directory.]
+
+## Skill Version(s):
+
+2.6.0 (source: frontmatter, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

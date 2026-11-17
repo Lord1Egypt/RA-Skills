@@ -1,43 +1,54 @@
-## Description: <br>
-Provides canonical patterns for autonomous agent loops with quality gates, evaluations, session persistence, and recovery controls across sequential, RFC, CI/PR, and exploratory workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides patterns for autonomous agent loops, including sequential, RFC, CI/PR, and exploratory workflows, with quality gates, evaluations, and recovery controls.
 
-## Publisher: <br>
-[djc00p](https://clawhub.ai/user/djc00p) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djc00p](https://clawhub.ai/user/djc00p)
 
-## Use Case: <br>
-Developers and agent operators use this skill to structure autonomous coding or analysis loops, define quality gates, run repository harness audits, and recover from loop churn or failing iterations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The audit helper could be run against the wrong repository or directory. <br>
-Mitigation: Set AUDIT_ROOT or pass --root to the intended project before running the audit. <br>
-Risk: Autonomous loop workflows could proceed into push, pull request, or merge actions without adequate human review. <br>
-Mitigation: Keep explicit human approval around workflows that push, open pull requests, or merge code. <br>
-Risk: Poorly bounded loops can churn, retry the same root cause, or drift in cost. <br>
-Mitigation: Define pass/fail criteria before each iteration, cap budgets, freeze on repeated failures, and reduce scope to the failing unit. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Harness Audit Command](references/harness-audit.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/djc00p/continuous-agent-loop) <br>
+## Use Case:
 
+Developers use this skill to choose and structure autonomous agent loops, define quality gates and evaluations, and recover from stalled or failing iterations. It also provides a local repository harness audit workflow and guidance for keeping human approval around long-running loops and remote changes.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON audit output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The harness audit helper can emit text or JSON scorecards for the selected scope.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A persistent loop or repository workflow could make broad changes or affect shared remote systems.
+
+Mitigation: Scope each run to one intended repository, prefer a dry run when available, and require explicit confirmation before starting persistent loops or creating, pushing, merging, or publishing remote changes.
+
+Risk: Audit scores could be mistaken for a complete security assessment.
+
+Mitigation: Treat scores as a structural checklist rather than proof of security; the provided security review did not exercise live loop behavior.
+
+## Reference(s):
+
+- [Continuous Agent Loop on ClawHub](https://clawhub.ai/djc00p/skills/continuous-agent-loop)
+- [Harness Audit Command](references/harness-audit.md)
+- [Harness Audit Script](scripts/harness-audit.js)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Text, JSON]
+
+**Output Format:** [Loop recommendations and operating guidance in Markdown; deterministic audit scorecards in text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The audit can be scoped with AUDIT_ROOT or --root. Its score is a structural checklist, not proof of security.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -13,9 +13,10 @@ from datetime import datetime
 
 try:
     import requests
+    REQUESTS_AVAILABLE = True
 except ImportError:
-    print("错误：缺少 requests 库。请运行: pip install requests")
-    sys.exit(1)
+    requests = None
+    REQUESTS_AVAILABLE = False
 
 # 添加脚本所在目录到路径，以便导入 config_manager
 _SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -34,14 +35,8 @@ try:
 except ImportError:
     _HAS_VOUCHER = False
 
-# 导入自动升级模块
-try:
-    import updater as _updater
-except ImportError:
-    _updater = None
-
-API_BASE_URL = "http://8.135.62.13:5000/AIService"
-GET_API_KEY_URL = "http://8.135.62.13:5000/"
+API_BASE_URL = "https://www.yunqi-zhilian.com/AIService"
+GET_API_KEY_URL = "https://www.yunqi-zhilian.com/"
 
 # 体验馆接口地址（游客模式，无需 API Key）
 EXPERIENCE_RUN_URL = f"{API_BASE_URL}/experience/run"
@@ -49,12 +44,17 @@ EXPERIENCE_RESULT_URL = f"{API_BASE_URL}/experience/result"
 
 
 def _get_skill_version():
-    """读取技能版本号"""
+    """读取技能版本号（从 SKILL.md frontmatter）"""
     skill_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    version_file = os.path.join(skill_dir, "version")
-    if os.path.exists(version_file):
-        with open(version_file, "r", encoding="utf-8") as f:
-            return f.read().strip()
+    skill_md = os.path.join(skill_dir, "SKILL.md")
+    try:
+        with open(skill_md, "r", encoding="utf-8") as f:
+            for line in f:
+                line = line.rstrip("\n")
+                if line.startswith("version:"):
+                    return line.split(":", 1)[1].strip()
+    except Exception:
+        pass
     return "unknown"
 
 
@@ -299,7 +299,13 @@ def _call_experience_api(interface_name, kwargs):
 
 
 def _do_request(method, url, headers, data, files, send_json=False):
-    """执行 HTTP 请求并返回 JSON 结果"""
+    """执行 HTTP 请求并返回 JSON 结果（requests 缺失时回退标准库 urllib）"""
+    if REQUESTS_AVAILABLE:
+        return _do_request_requests(method, url, headers, data, files, send_json)
+    return _do_request_urllib(method, url, headers, data, files, send_json)
+
+
+def _do_request_requests(method, url, headers, data, files, send_json=False):
     try:
         if method == "GET":
             resp = requests.get(url, headers=headers, timeout=30)
@@ -330,6 +336,70 @@ def _do_request(method, url, headers, data, files, send_json=False):
         return {"code": 5001, "msg": f"未知异常: {str(e)}"}
 
 
+def _do_request_urllib(method, url, headers, data, files, send_json=False):
+    """标准库 urllib 实现，兼容性兜底（如扣子沙箱无 requests 时）"""
+    import urllib.request
+    import urllib.error
+    import urllib.parse
+    import json as _json
+    import uuid
+
+    req_headers = dict(headers)
+    body = None
+    if method == "GET":
+        req = urllib.request.Request(url, headers=req_headers, method="GET")
+    else:
+        if files:
+            boundary = "----yqzlform" + uuid.uuid4().hex
+            parts = []
+            for k, v in (data or {}).items():
+                parts.append(f"--{boundary}\r\n".encode("utf-8"))
+                parts.append(f'Content-Disposition: form-data; name="{k}"\r\n\r\n'.encode("utf-8"))
+                parts.append(str(v).encode("utf-8"))
+                parts.append(b"\r\n")
+            for fname, fobj in files.items():
+                content = fobj.read()
+                parts.append(f"--{boundary}\r\n".encode("utf-8"))
+                parts.append(
+                    f'Content-Disposition: form-data; name="{fname}"; filename="upload.bin"\r\n'.encode("utf-8")
+                )
+                parts.append(b"Content-Type: application/octet-stream\r\n\r\n")
+                parts.append(content)
+                parts.append(b"\r\n")
+            parts.append(f"--{boundary}--\r\n".encode("utf-8"))
+            body = b"".join(parts)
+            req_headers["Content-Type"] = f"multipart/form-data; boundary={boundary}"
+        elif send_json:
+            body = _json.dumps(data).encode("utf-8")
+            req_headers["Content-Type"] = "application/json"
+        else:
+            body = urllib.parse.urlencode(data or {}).encode("utf-8")
+            req_headers["Content-Type"] = "application/x-www-form-urlencoded"
+        req = urllib.request.Request(url, data=body, headers=req_headers, method="POST")
+
+    try:
+        timeout = 120 if (method != "GET" and files) else 30
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            raw = resp.read()
+            status = getattr(resp, "status", resp.getcode())
+        return _json.loads(raw.decode("utf-8"))
+    except urllib.error.HTTPError as e:
+        if e.code == 401:
+            return {"code": 5001, "msg": "鉴权失败，请检查 API KEY"}
+        return {"code": 5001, "msg": f"服务器返回错误: {e.code}"}
+    except urllib.error.URLError as e:
+        return {"code": 5001, "msg": f"无法连接到服务器: {e.reason}"}
+    except Exception as e:
+        return {"code": 5001, "msg": f"请求异常: {str(e)}"}
+    finally:
+        if files:
+            for f in files.values():
+                try:
+                    f.close()
+                except Exception:
+                    pass
+
+
 def _extract_receipt_records(data):
     """从回单解析结果中提取单条记录列表，并保留原始 page_index
     同时把 page 级别的 companyName/companyAccount 注入到记录中（若记录自身缺失），
@@ -346,6 +416,9 @@ def _extract_receipt_records(data):
             for item in page["page_data"]:
                 if isinstance(item, dict):
                     record = dict(item)
+                    # 移除不需要展示的字段
+                    for _remove_key in ("billType", "expendBank", "incomeBank"):
+                        record.pop(_remove_key, None)
                     record["_pageIndex"] = page_index
                     if page_company_name and not record.get("companyName"):
                         record["companyName"] = page_company_name
@@ -380,18 +453,28 @@ def _extract_statement_records(data):
     return records, global_info
 
 
+def _http_get(url, timeout=15):
+    """GET 请求返回 (content_bytes, content_type)，requests 缺失时回退 urllib"""
+    if REQUESTS_AVAILABLE and requests is not None:
+        resp = requests.get(url, timeout=timeout, stream=False)
+        resp.raise_for_status()
+        return resp.content, resp.headers.get("Content-Type", "image/jpeg")
+    import urllib.request
+    req = urllib.request.Request(url, headers={"User-Agent": "yqzl-client"})
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+        return resp.read(), resp.headers.get("Content-Type", "image/jpeg")
+
+
 def _download_image_as_data_uri(url, timeout=15):
     """下载图片并转为 base64 data URI，失败时返回 None"""
     if not url:
         return None
     try:
-        resp = requests.get(url, timeout=timeout, stream=False)
-        resp.raise_for_status()
-        content_type = resp.headers.get("Content-Type", "image/jpeg")
+        content, content_type = _http_get(url, timeout)
         if "image" not in content_type:
             content_type = "image/jpeg"
         import base64
-        b64 = base64.b64encode(resp.content).decode("ascii")
+        b64 = base64.b64encode(content).decode("ascii")
         return f"data:{content_type};base64,{b64}"
     except Exception:
         return None
@@ -401,6 +484,23 @@ def generate_receipt_html(records, raw_data=None, output_path=None):
     """生成体验馆风格的回单 HTML 预览文件（回单视图 + 表单视图 + JSON 视图）"""
     if not records:
         return None
+
+    # 防御性兜底：若调用方误把整页 data（形如 [{page_index, page_data}, ...]）当作
+    # 已 flatten 的 records 传进来，自动调用 _extract_receipt_records 完成转换。
+    # 判定标准：首项是 dict 且含 page_data 字段即为整页结构。
+    if (
+        isinstance(records, list)
+        and records
+        and isinstance(records[0], dict)
+        and "page_data" in records[0]
+    ):
+        records = _extract_receipt_records(records)
+        if not records:
+            return None
+    # 若调用方没传 raw_data 但 records 已是整页结构（上面已处理）或为空，
+    # 用 records 自身作为原始数据（保证 JSON 视图至少能展示原 payload）。
+    if raw_data is None:
+        raw_data = records
 
     # 回单图片直接使用原始公网 URL，避免将 base64 数据内嵌到 <script> 中导致
     # 脚本体积过大、浏览器解析失败。_original_image_url 在 _extract_receipt_records
@@ -630,7 +730,7 @@ function escapeHtml(str) {
 }
 function syntaxHighlight(json) {
     json = escapeHtml(json);
-    return json.replace(/("(?:\\.|[^"\\\\])*")(\s*:)?/g, function(m, key, colon) {
+    return json.replace(/("(?:\\.|[^"\\\\])*")(\\s*:)?/g, function(m, key, colon) {
         let cls = 'json-string';
         if (colon) { cls = 'json-key'; }
         return '<span class="' + cls + '">' + key + '</span>' + (colon || '');
@@ -1115,7 +1215,7 @@ def _generate_voucher_from_result(result, interface_name, business_type="商贸"
         return
 
     print("\n" + "=" * 60)
-    print("记账凭证（基于 OCR 解析结果自动生成，仅供参考，请人工复核）")
+    print("记账凭证（基于云启智联专有技术解析结果自动生成，仅供参考，请人工复核）")
     print("=" * 60)
 
     if isinstance(voucher_result, VoucherBundle):
@@ -1166,13 +1266,6 @@ def _generate_voucher_from_result(result, interface_name, business_type="商贸"
 
 
 def main():
-    # 启动时检测更新（每24小时最多检测一次，提示用户可手动升级）
-    if _updater:
-        try:
-            _updater.auto_check_and_notify(verbose=True)
-        except Exception:
-            pass  # 自动检测失败不影响正常使用
-
     version = _get_skill_version()
     parser = argparse.ArgumentParser(
         description=f"云启智联AI服务接口调用客户端 (版本: {version}) [v1.2.0新增：记账凭证生成]"

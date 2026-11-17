@@ -1,44 +1,61 @@
-## Description: <br>
-Implement one-time pairing-code authentication between an OpenClaw gateway and a desktop or remote client such as OCMAP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implement one-time pairing-code authentication between an OpenClaw gateway and a desktop or remote client such as OCMAP.
 
-## Publisher: <br>
-[maverick-software](https://clawhub.ai/user/maverick-software) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maverick-software](https://clawhub.ai/user/maverick-software)
 
-## Use Case: <br>
-Developers and engineers use this skill to implement and review OpenClaw-to-OCMAP pairing flows, including one-time code exchange, short-lived bootstrap auth, signed device proof, trusted-device persistence, revocation, and recovery behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Short-lived bootstrap auth and pairing codes could be treated as durable credentials or exposed in logs. <br>
-Mitigation: Keep bootstrap auth and pairing codes temporary, use very short TTLs, avoid logging them, and complete the exchange through the normal trusted-device flow. <br>
-Risk: A long-lived trusted-device token could be exposed through renderer or browser UI state. <br>
-Mitigation: Store trusted-device tokens only in backend or keychain-style storage and keep them out of renderer localStorage, IndexedDB, logs, and plain UI state. <br>
-Risk: Revoked devices could continue reconnecting if revocation does not invalidate future trust checks. <br>
-Mitigation: Ensure server-side revocation reliably disables future reconnects and returns the client to an unpaired or revoked recovery flow. <br>
+## Use Case:
 
+Developers and engineers use this skill to implement persistent trusted-device enrollment between an OpenClaw gateway and OCMAP or another desktop client. It guides the server and client through short-lived pairing codes, bootstrap authentication, signed device proof, trusted-token persistence, and revocation flows.
 
-## Reference(s): <br>
-- [Pairing Protocol Contract](references/protocol.md) <br>
-- [Server Implementation: OpenClaw](references/server-openclaw.md) <br>
-- [Client Implementation: OCMAP or Other Desktop App](references/client-ocmap.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, Code] <br>
-**Output Format:** [Markdown guidance with protocol examples and implementation checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces implementation guidance for agents; does not execute tools or call external services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Pairing codes, nonces, or bootstrap auth values could be exposed or reused during trusted-device enrollment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep them short-lived, single-use, rate-limited, and out of logs and renderer storage.
+
+Risk: A long-lived trusted-device token could be exposed through browser or renderer UI state.
+
+Mitigation: Store the trusted token only in backend or main-process storage and provide a clear revoke or forget-device path.
+
+Risk: Server and client implementations could drift on the pairing exchange contract.
+
+Mitigation: Use the protocol contract as the source of truth for create, exchange, revoke, signed payload, structured errors, and reconnect behavior.
+
+## Reference(s):
+
+- [Protocol contract](artifact/references/protocol.md)
+- [Server implementation](artifact/references/server-openclaw.md)
+- [Client implementation](artifact/references/client-ocmap.md)
+- [ClawHub skill page](https://clawhub.ai/maverick-software/skills/ocmap-pairing-auth)
+- [Publisher profile](https://clawhub.ai/user/maverick-software)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown guidance with protocol JSON examples and implementation checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; outputs should preserve the server/client contract and security requirements.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-A Markdown-based knowledge management skill that helps AI agents create and maintain local files for personality, user preferences, workflows, tools, long-term memory, daily notes, learnings, and heartbeat tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Markdown-based knowledge management system for AI agents, covering identity, user context, operating rules, tools, long-term memory, daily logs, learnings, scheduled review tasks, and multi-agent memory coordination.
 
-## Publisher: <br>
-[wujun2081](https://clawhub.ai/user/wujun2081) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wujun2081](https://clawhub.ai/user/wujun2081)
 
-## Use Case: <br>
-Developers and agent operators use this skill to set up a local Markdown knowledge system for AI agents, including durable memory, multi-agent collaboration, context compression, and regular self-review workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent Markdown memory can accumulate personal, work, or confidential information over time. <br>
-Mitigation: Do not store passwords, API keys, regulated personal data, or confidential third-party information, and periodically review or delete stale memory entries. <br>
-Risk: Durable memory files may preserve inaccurate or outdated assumptions if entries are promoted without review. <br>
-Mitigation: Review daily notes before promoting them to long-term memory and remove obsolete facts when circumstances change. <br>
+## Use Case:
 
+Developers and agent operators use this skill to create and maintain Markdown files for agent identity, user context, operating rules, tool notes, long-term memory, daily logs, learnings, and recurring maintenance tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wujun2081/knowledge-system) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown instructions with file templates and bash snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local Markdown file and directory conventions; users choose what information to store.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill can persist task details and conversation feedback into workspace memory and future agent rules without clear approval or redaction controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in workspaces where persistent logs and agent-rule updates are acceptable, and require manual approval before changes to AGENTS.md, SOUL.md, TOOLS.md, MEMORY.md, or HEARTBEAT.md.
+
+Risk: Persistent memory files may capture secrets, personal data, customer data, or sensitive project context.
+
+Mitigation: Define redaction and retention rules before use, and review memory updates before committing or sharing workspace files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wujun2081/skills/knowledge-system)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workspace file structure guidance and reusable Markdown templates for persistent agent memory.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Kubernetes manifest security auditor that scans YAML and JSON manifests for privileged containers, risky host access, RBAC over-permission, plaintext secrets, missing network policy, and related CIS Kubernetes Benchmark and Pod Security Standards issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kubernetes manifest security auditor that scans local YAML and JSON manifests for workload, RBAC, network, and container hardening issues mapped to CIS Kubernetes Benchmark controls and Pod Security Standards.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers, platform engineers, and security teams use this skill to audit Kubernetes manifests in local repositories or CI before deployment. It helps identify container, RBAC, service account, network policy, and service exposure findings with remediation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audit reports may reveal deployment structure, file paths, Kubernetes resource names, and secret-like variable names. <br>
-Mitigation: Treat generated reports and CI logs as sensitive and review them before sharing outside the intended team. <br>
-Risk: The skill runs local Python code and reads repository directories selected for audit. <br>
-Mitigation: Install and run it only in repositories or directories you intend to scan, and install PyYAML from a trusted source. <br>
+## Use Case:
 
+Developers, platform engineers, and security engineers use this skill to audit Kubernetes manifests before deployment or in CI. It helps identify risky pod security settings, over-permissive RBAC, missing NetworkPolicies, exposed services, and related remediation guidance without requiring cluster access.
 
-## Reference(s): <br>
-- [Canlah AI](https://canlah.ai) <br>
-- [CIS Kubernetes Benchmark](https://www.cisecurity.org/benchmark/kubernetes) <br>
-- [ClawHub release page](https://clawhub.ai/PHY041/phy-k8s-security-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal audit report or JSON findings, with Markdown guidance and shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings include severity, affected resource, check identifier, details, remediation, and CIS or PSS references when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Audit results may be treated as complete compliance proof even though server security evidence says the AppArmor and PSS coverage is not fully implemented.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat findings as advisory and review high-impact Kubernetes controls with a dedicated policy or compliance process before relying on deployment approval.
+
+Risk: Copied CI examples install PyYAML without a pinned, reviewed version.
+
+Mitigation: Pin PyYAML to an approved version in CI or internal bootstrap commands before operational use.
+
+## Reference(s):
+
+- [CIS Kubernetes Benchmark](https://www.cisecurity.org/benchmark/kubernetes)
+- [Canlah AI homepage](https://canlah.ai)
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-k8s-security-audit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command snippets; scanner output may be plain text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory security findings grouped by severity with remediation text and optional CI exit behavior.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Dandan File Organizer helps agents safely scan and organize a user's desktop or folder by proposing and, after confirmation, moving files into type- or pattern-based folders without deleting or overwriting files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language desktop and folder organization skill that helps agents scan local files, propose safe classifications, and move files into type- or pattern-based folders after user confirmation.
 
-## Publisher: <br>
-[realorange1994](https://clawhub.ai/user/realorange1994) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[realorange1994](https://clawhub.ai/user/realorange1994)
 
-## Use Case: <br>
-External users and general agent users can use this skill to organize cluttered desktops or folders into safe, reviewable categories. It is intended to scan a selected directory, present a proposed organization plan, and move files only after user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may expose file names, folder paths, and proposed moves in chat or local rollback logs. <br>
-Mitigation: Review the target folder, proposed moves, and generated log path before confirming organization, and avoid highly sensitive directories unless those details are acceptable to disclose locally. <br>
-Risk: Incorrect categorization could move files into unexpected folders. <br>
-Mitigation: Use the scan-and-confirm phase before any move operation and rely on the generated operation log for rollback. <br>
+## Use Case:
 
+External users and developers use this skill to have an agent organize desktop or folder contents by scanning files, proposing categories, and producing local move operations only after review. It is intended for file organization workflows that need no deletion, no overwriting, logging, and rollback guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/realorange1994/dandan-file-organizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, markdown, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and organization summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include proposed file moves, created folder names, a local operation log path, and rollback command guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill can guide an agent to move local files, which may disrupt workflows if the source directory, destination directory, or classification plan is wrong.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require a scan-and-review phase before move commands run, and approve only plans with clear source paths, destination folders, skipped-file handling, and rollback log locations.
+
+Risk: Name collisions or sensitive-file moves could cause confusion or data handling issues.
+
+Mitigation: Use collision-safe moves or auto-renaming, skip system and occupied files, and avoid running on irreplaceable or sensitive folders without a backup.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/realorange1994/skills/dandan-file-organizer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, tables, and file organization summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include scan summaries, proposed destination folders, operation logs, skipped-file reasons, and rollback command guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

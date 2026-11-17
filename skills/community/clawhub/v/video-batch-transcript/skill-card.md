@@ -1,40 +1,59 @@
-## Description: <br>
-Batch-downloads authorized video or audio sources from yt-dlp-compatible sites, transcribes them with Whisper acceleration when available, corrects terminology, and generates structured notes and transcripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+视频批量转录 uses yt-dlp and faster-whisper to batch download authorized video or audio sources, transcribe speech with optional CUDA acceleration, correct terminology, and generate structured notes.
 
-## Publisher: <br>
-[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png)
 
-## Use Case: <br>
-External users, developers, and content teams use this skill to turn authorized videos, playlists, channels, and course materials into transcripts, Markdown study notes, and collection summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser cookies and cookie files can act like account credentials for logged-in or paid sites. <br>
-Mitigation: Review the cookie workflow before installation, use the skill only for content the user is authorized to access, prefer isolated or temporary browser profiles/accounts, keep cookie files out of repositories and shared folders, restrict file permissions, and delete cookies after use. <br>
-Risk: Downloaded media, transcripts, notes, and metadata remain on disk after processing. <br>
-Mitigation: Review the configured output directory after each run and apply the user's retention, sharing, and deletion requirements to generated files. <br>
+## Use Case:
 
+Developers, educators, and analysts use this skill to process authorized videos, playlists, channels, and course media into transcripts, structured notes, and collection summaries.
 
-## Reference(s): <br>
-- [yt-dlp supported sites](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown notes, plain-text transcripts, JSON metadata, and command-line/configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes downloaded audio, transcripts, per-video notes, collection summaries, and metadata under the configured output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Browser session cookies may be used for authenticated media sites.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid --cookies-from-browser unless needed, prefer site-scoped exported cookie files, and store cookie files outside shared folders.
+
+Risk: Remote media metadata may influence output paths, and evidence notes a path-building bug that can write outside the chosen output directory.
+
+Mitigation: Fix path sanitization before processing untrusted URLs and run the skill with a dedicated output directory.
+
+Risk: The skill downloads and transcribes external media.
+
+Mitigation: Process only content the user is authorized to download and review generated transcripts and notes before sharing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shenghoo123-png/skills/video-batch-transcript)
+- [yt-dlp supported sites](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md)
+- [Usage examples](artifact/examples/usage_examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown and text files with JSON metadata, plus shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes transcripts, notes, summaries, audio files, and metadata under the configured output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

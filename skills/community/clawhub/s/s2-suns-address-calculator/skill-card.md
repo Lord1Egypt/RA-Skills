@@ -1,39 +1,54 @@
-## Description: <br>
-Space² SUNS v3.0 品牌母体空间地址解算器，严格遵循 Mod 10 算法，为品牌计算其在数字平行宇宙中的唯一 6 段式门牌号。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Space² SUNS v3.0 品牌母体空间地址解算器。严格遵循 Mod 10 算法，为品牌计算其在数字平行宇宙中的唯一 6 段式门牌号。
 
-## Publisher: <br>
-[spacesq](https://clawhub.ai/user/spacesq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spacesq](https://clawhub.ai/user/spacesq)
 
-## Use Case: <br>
-Brand architects, founders, and Web3 or metaverse planners use this skill to convert an English brand name into a SUNS-style Space² address with transparent Mod 10 checksum steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill language may present digital deeds, anti-counterfeit protection, or cross-chain verification as stronger than the available evidence supports. <br>
-Mitigation: Treat those claims as branding unless an independent registry, legal process, or verification system is provided. <br>
+## Use Case:
 
+External users such as brand architects, founders, and digital space planners use this skill to calculate a SUNS-style six-part brand address from an English brand name. The agent returns the coordinate and the Mod 10 check-code calculation in Chinese.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/spacesq/s2-suns-address-calculator) <br>
-- [Publisher profile](https://clawhub.ai/user/spacesq) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report in Chinese with checksum calculation steps and final address] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Takes a brand name, uppercases the L4 segment, computes C = (12 + length of L4) mod 10, and returns a SUNS-style address.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill is opinionated and frames output in Chinese with Space² branding and promotional guidance, which may not suit neutral or multilingual use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated report before external use and adjust the output template if neutral or multilingual language is required.
+
+Risk: The address calculation expects an English brand name and converts the brand segment to uppercase, so unsuitable input can produce an unintended coordinate.
+
+Mitigation: Provide the intended English brand name explicitly and verify the displayed brand segment, length, and check-code calculation before relying on the coordinate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/spacesq/skills/s2-suns-address-calculator)
+- [ClawHub publisher profile](https://clawhub.ai/user/spacesq)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report in Chinese with a calculated SUNS coordinate and checksum explanation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses fixed PHYS-CN-001 address segments, uppercases the provided English brand name, and appends a one-digit Mod 10 check code.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

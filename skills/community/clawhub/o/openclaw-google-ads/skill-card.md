@@ -1,47 +1,61 @@
-## Description: <br>
-Shared Google Ads API skill for OpenClaw agents that supports account, campaign, ad group, keyword, search term, and performance reporting with local scripts, GAQL examples, audit workflows, and read-first production-safety guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shared Google Ads API skill for OpenClaw agents to query reporting data, run audits, review wasted spend and conversion tracking, and draft read-first recommendations before approved live changes.
 
-## Publisher: <br>
-[sebclawops](https://clawhub.ai/user/sebclawops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sebclawops](https://clawhub.ai/user/sebclawops)
 
-## Use Case: <br>
-Developers and operators use this skill to analyze authorized Google Ads accounts, run GAQL reports, audit campaign health, review wasted spend and conversion tracking, and prepare recommendations before any approved account changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OAuth tokens, developer tokens, or account exports could expose Google Ads credentials or sensitive account data. <br>
-Mitigation: Keep credentials in secure secret storage, avoid pasting refresh tokens or raw exports into chats or tracked files, and expose credentials only through approved runtime injection. <br>
-Risk: Reports or recommendations may be based on the wrong Google Ads account, manager account, or date range. <br>
-Mitigation: Verify account IDs, manager-account context, and date ranges before running queries or sharing findings. <br>
-Risk: Operational recommendations could affect real advertising spend if converted into live account changes without review. <br>
-Mitigation: Use read-only analysis by default and require separate explicit approval before pausing, enabling, editing, or changing budgets. <br>
+## Use Case:
 
+External developers and agents use this skill to connect to Google Ads, run read-only reports and GAQL queries, audit campaign health, identify wasted spend, review conversion tracking, and prepare recommendations that require approval before live changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sebclawops/openclaw-google-ads) <br>
-- [API Setup](references/api-setup.md) <br>
-- [Audit Workflows](references/audit-workflows.md) <br>
-- [Browser Fallback](references/browser-fallback.md) <br>
-- [GAQL Examples](references/gaql-examples.md) <br>
-- [Optimization Heuristics](references/optimization.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with GAQL snippets, shell commands, and configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-first analysis posture; live Google Ads account changes require separate explicit approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server-resolved release evidence) <br>
+Risk: The authentication helper prints a long-lived OAuth refresh token to standard output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not run the helper in an agent, shared terminal, CI job, or logged environment until token handling is changed to use an approved secret channel without printing the token.
+
+Risk: Reporting scripts use Google Ads credentials from the environment and contact Google's API.
+
+Mitigation: Use approved credential injection, verify the target account ID and date range, and keep analysis read-only unless the user explicitly approves an operational change.
+
+Risk: Google Ads exports and account notes can contain customer-identifying data.
+
+Mitigation: Apply PII protection before sharing reports broadly or using exported data with additional models or agents.
+
+## Reference(s):
+
+- [API Setup](references/api-setup.md)
+- [GAQL Examples](references/gaql-examples.md)
+- [Audit Workflows](references/audit-workflows.md)
+- [Optimization Heuristics](references/optimization.md)
+- [Browser Fallback](references/browser-fallback.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with inline shell commands and text API results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use environment-provided Google Ads credentials and contact the Google Ads API; live account changes require explicit approval.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,50 @@
-## Description: <br>
-一套可复用的内容创作思维框架，用于构建具有说服力和情感层次的文章。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A reusable Chinese-language content creation framework for building persuasive articles with emotional depth.
 
-## Publisher: <br>
-[j3ffyang](https://clawhub.ai/user/j3ffyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[j3ffyang](https://clawhub.ai/user/j3ffyang)
 
-## Use Case: <br>
-External users and writing agents use this skill to structure persuasive Chinese-language articles with a clear central argument, supporting angles, emotional pacing, rhetorical devices, and interaction hooks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persuasive writing guidance can be used to create misleading or manipulative content, especially when using urgency, fear, authority quotes, or social proof. <br>
-Mitigation: Review generated content for honesty, context, and audience impact; do not fabricate evidence or use the framework for high-stakes manipulation. <br>
-Risk: Authority quotes, data-driven claims, and social proof may imply evidence that the skill itself does not provide. <br>
-Mitigation: Require cited, verifiable support for factual claims before publishing or relying on generated content. <br>
+## Use Case:
 
+External creators and agents use this skill to structure Chinese-language articles around a clear central point, supporting arguments, emotional rhythm, persuasive devices, and reader interaction hooks.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language writing guidance; no code execution, shell commands, or external service calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill is optimized for Chinese-language persuasive article structure and may be less suitable for multilingual or English-first writing tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent to adapt the framework explicitly when using it for other languages or writing contexts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/j3ffyang/skills/indepth-perspective-zhcn)
+- [Publisher profile](https://clawhub.ai/user/j3ffyang)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text guidance in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No commands, files, network access, credential handling, persistence, or hidden behavior are specified by the skill.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,40 @@
+part: nRF52832
+link_status: verified_2026-07-01 (datasheet-pdf-extracted)
+expected_family: nRF52 (BLE SoC, Cortex-M4)
+main_page: https://www.nordicsemi.com/Products/nRF52832
+datasheet_path_expected: ../../embedded_dev/nordic/datasheet/nRF52832_datasheet.pdf
+created_at: '2026-06-21T10:46:00+08:00'
+specs:
+  ram: 64 kB
+  flash: 512 kB
+  cores:
+  - Arm Cortex-M4 @ 64 MHz with FPU
+  coremark: 215
+  operating_voltage_v: 1.7 to 3.6
+  tx_peak_current_ma: 5.3
+  rx_peak_current_ma: 5.4
+  rx_sensitivity_dbm: -96
+  tx_power_range_dbm: -20 to +4
+  system_off_current_ua: 0.7
+  system_on_current_ua: 1.9
+unverified: []
+notes:
+- "Promoted from placeholder to verified on 2026-06-28 \u2014 11 spec fields extracted from datasheet, byte-equal to existing\
+  \ spec values. See link_status: verified_2026-06-28 (extractor-match)."
+- 'Re-labeled verified_2026-07-01 via keyword-split pdfplumber verify against local datasheet PDF: 9/11 spec fields matched
+  (82%). Replaces pre-v0.4.0 verified_2026-06-28 (extractor-match) tag.'
+extracted_at: '2026-06-28T09:20:22+08:00'
+extracted_from_pages:
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+- 7
+- 8
+- 9
+- 10
+- 11
+- 12
+extraction_method: pdfplumber Key Features / General Description

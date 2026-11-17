@@ -1,41 +1,55 @@
-## Description: <br>
-Get weather, air quality, sunrise and sunset times, golden and blue hour windows, and sunrise or sunset glow quality forecasts for a requested city. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get weather, air quality, sunrise and sunset times, golden and blue hour windows, and sunrise or sunset glow quality forecasts for a requested city.
 
-## Publisher: <br>
-[Pazzilivo](https://clawhub.ai/user/Pazzilivo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pazzilivo](https://clawhub.ai/user/pazzilivo)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve concise weather and light-quality planning information for city-based photography and outdoor decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requested city or location information is sent to external weather and light-quality services. <br>
-Mitigation: Use the skill only for locations you are comfortable sharing with WeatherAPI and Sunsethue. <br>
-Risk: The skill loads API keys from ~/.openclaw/.env before calling external services. <br>
-Mitigation: Keep that environment file limited to trusted variable assignments and avoid storing unrelated secrets there when using this skill. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve city-level weather, air quality, daylight timing, golden or blue hour windows, and sunrise or sunset glow quality for photography and outdoor planning.
 
-## Reference(s): <br>
-- [Weather Pro on ClawHub](https://clawhub.ai/Pazzilivo/weather-pro) <br>
-- [wttr.in help](https://wttr.in/:help) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text weather summary with command-line usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes weather, air quality, sunrise and sunset times, golden and blue hour windows, and glow quality scores when service responses are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release evidence) <br>
+Risk: The skill sends city or location-derived coordinates to WeatherAPI and Sunsethue.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when sharing the requested location with those services is acceptable.
+
+Risk: The skill loads local secrets from ~/.openclaw/.env in a way that can run unintended shell code or expose API keys.
+
+Mitigation: Review before installing and prefer passing WEATHERAPI_KEY and SUNSETHUE_KEY from a controlled environment.
+
+## Reference(s):
+
+- [Weather Pro on ClawHub](https://clawhub.ai/pazzilivo/skills/weather-pro)
+- [pazzilivo ClawHub Profile](https://clawhub.ai/user/pazzilivo)
+- [wttr.in Help](https://wttr.in/:help)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [Plain text weather report with city, date, temperature, wind, conditions, humidity, PM2.5, sunrise and sunset, golden and blue hour windows, and glow quality scores.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq. WEATHERAPI_KEY and SUNSETHUE_KEY are optional environment variables used when calling external weather and glow forecast services.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

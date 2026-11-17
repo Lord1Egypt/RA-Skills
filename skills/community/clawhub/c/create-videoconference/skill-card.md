@@ -1,43 +1,58 @@
-## Description: <br>
-Creates Meetling video conference links for instant or scheduled calls, with share payloads for instant calls and email invite templates for scheduled calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates secure Meetling videoconference links and produces invite or share text for instant and scheduled calls.
 
-## Publisher: <br>
-[bavxhack](https://clawhub.ai/user/bavxhack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[bavxhack](https://clawhub.ai/user/bavxhack)
 
-## Use Case: <br>
-Employees, external collaborators, and agents use this skill to prepare secure Meetling invite links, recipient share payloads, and scheduled email invite text for video conferences. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads ./contacts.json from the current workspace to resolve recipients. <br>
-Mitigation: Keep contacts.json trusted, minimal, and scoped to intended recipients before running the skill. <br>
-Risk: Generated links, messages, and resolved recipients could be shared with unintended recipients if not reviewed. <br>
-Mitigation: Review the Meetling URL, message text, resolved recipients, and unresolved recipients before using any sending path. <br>
-Risk: Scheduled output does not create a Meetling dashboard meeting or Meetling-sent invitations. <br>
-Mitigation: Use the generated /m link and email invite template, or create any dashboard-managed meeting separately when required. <br>
+## Use Case:
 
+Employees, external collaborators, developers, and agents use this skill to create Meetling video conference links, generate invite text, and prepare recipient share payloads without automatically sending messages.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bavxhack/create-videoconference) <br>
-- [Meetling application](https://app.meetling.de) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [JSON containing a Meetling URL, share message, resolved and unresolved recipients, and scheduled email invite details when applicable] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instant calls return a share payload for default sending; scheduled calls return an email invite template and limitations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact frontmatter and package.json show 1.3.0) <br>
+Risk: Generated share payloads could be sent to unintended recipients if participant text or contact mappings are wrong.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated recipients and unresolved recipients before any Claw sending path uses the share payload.
+
+Risk: Participant names without a future start time are treated as an instant call.
+
+Mitigation: Provide an explicit future start_time for scheduled calls or review the returned mode before sharing the link.
+
+Risk: Missing or invalid contacts.json leaves recipients unresolved.
+
+Mitigation: Check unresolved_recipients and update ./contacts.json before sending invitations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bavxhack/skills/create-videoconference)
+- [Meetling application](https://app.meetling.de)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Markdown, Guidance]
+
+**Output Format:** [JSON object containing a Meetling URL, invite or share text, recipient resolution details, and optional scheduling limitations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instant calls return a share payload; scheduled calls return an email invite template and fallback limitations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

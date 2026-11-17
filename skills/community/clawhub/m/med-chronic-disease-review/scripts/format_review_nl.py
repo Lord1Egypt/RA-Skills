@@ -20,7 +20,7 @@ def _as_text(x: Any) -> str:
 
 def build_natural_language(resp: Dict[str, Any]) -> str:
     """
-    将 /api/v1/review/flow/by-ocr 返回组装为自然语言摘要。
+    将慢病审核响应 JSON 组装为自然语言摘要。
     返回通常包含：
     - results：数组（1 条或 2 条）
       - disease_code / review_type / scenario_code / scenario_id
@@ -76,7 +76,7 @@ def build_natural_language(resp: Dict[str, Any]) -> str:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Format /review/flow response JSON to natural language.")
+    parser = argparse.ArgumentParser(description="Format chronic disease review response JSON to natural language.")
     parser.add_argument("--input", required=True, help="Path to response JSON.")
     parser.add_argument("--output", default="", help="Optional output text file path.")
     args = parser.parse_args()

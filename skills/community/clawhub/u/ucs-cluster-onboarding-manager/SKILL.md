@@ -110,7 +110,7 @@ See [IAM Permission Policies](references/iam-policies.md) for complete policy JS
 
 ### 1. Cluster Registration & Deregistration
 
-See [Task: Cluster Registration](references/task-cluster-registration.md) for detailed workflows.
+See [Task: Cluster Registration](references/taREDACTED-SECRET.md) for detailed workflows.
 
 RegisterCluster uses Kubernetes API-style parameters (apiVersion, kind, metadata.*, spec.*).
 
@@ -357,7 +357,7 @@ See [Verification Method](references/verification-method.md) for step-by-step ve
 | [IAM Permission Policies](references/iam-policies.md)  | Required permissions and policy JSON     |
 | [Verification Method](references/verification-method.md) | Step-by-step verification              |
 | [Common Pitfalls](references/common-pitfalls.md)       | Troubleshooting guides                   |
-| [Task: Cluster Registration](references/task-cluster-registration.md) | Registration and deregistration workflows |
+| [Task: Cluster Registration](references/taREDACTED-SECRET.md) | Registration and deregistration workflows |
 | [Task: Fleet Management](references/task-fleet-management.md) | Fleet group workflows |
 | [Task: Access Management](references/task-access-management.md) | Kubeconfig and access control workflows |
 

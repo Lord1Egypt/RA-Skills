@@ -1,45 +1,62 @@
-## Description: <br>
-Triple Layer Memory helps AI agents preserve long-conversation context through local file memory, Mem0 vector recall, session compression, session handoff, and quality-gate workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Triple Layer Memory helps agents preserve long-conversation context through Mem0 retrieval, structured workspace memory files, and session compression and handoff workflows.
 
-## Publisher: <br>
-[0range-x](https://clawhub.ai/user/0range-x) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[0range-x](https://clawhub.ai/user/0range-x)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add local long-term memory, channel-aware recall, and session continuity to OpenClaw agents working through long conversations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automatically stores and reuses conversation history as local long-term memory. <br>
-Mitigation: Make memory persistence explicit and opt-in, redact secrets and personal data before writes, and provide ways to inspect, disable, expire, and delete stored memories. <br>
-Risk: Weak channel-isolation controls could allow memories to be loaded outside the intended channel. <br>
-Mitigation: Limit which files and channels can be loaded, and verify or fix Mem0 and file-layer channel isolation before enabling automatic recall. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add persistent memory, session handoff, quality gating, and channel-aware recall to OpenClaw workspaces. It is intended for long-running agent sessions where continuity across context windows matters.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0range-x/triple-layer-memory) <br>
-- [Publisher profile](https://clawhub.ai/user/0range-x) <br>
-- [README](README.md) <br>
-- [Skill instructions](SKILL.md) <br>
-- [Mem0 channel isolation guide](docs/mem0-channel-isolation.md) <br>
-- [Memory architecture template](templates/MEMORY_ARCHITECTURE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with Python and shell command examples plus generated local memory files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local memory files, metadata, session handoff summaries, and initialization artifacts in the agent workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: ClawHub release evidence) <br>
+Risk: The skill persistently changes future agent behavior through memory, agent startup, and heartbeat instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in an isolated workspace where this behavior is desired, and review or remove the MEMORY.md, AGENTS.md, and HEARTBEAT.md snippets before use.
+
+Risk: Long-lived memory files can retain secrets, regulated data, or incorrect context across sessions.
+
+Mitigation: Avoid storing secrets or regulated data, inspect memory entries regularly, and archive or delete entries that should not influence future work.
+
+Risk: Security evidence reports broken scoping controls for multi-channel or multi-user use.
+
+Mitigation: Fix channel authorization and filename validation before using the skill across multiple channels or users.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/0range-x/skills/triple-layer-memory)
+- [Skill usage guide](SKILL.md)
+- [Mem0 channel isolation guide](docs/mem0-channel-isolation.md)
+- [Memory architecture template](templates/MEMORY_ARCHITECTURE.md)
+- [Mem0](https://github.com/mem0ai/mem0)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell code blocks, plus workspace memory files and configuration snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may create or update persistent workspace memory, session handoff, heartbeat, and archive files.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

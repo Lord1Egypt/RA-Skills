@@ -1,43 +1,56 @@
-## Description: <br>
-抖音数据分析工具集，包含视频数据分析、用户画像分析、趋势统计等完整分析能力。适用于抖音数据深度挖掘和报告生成场景。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gnview Kit helps agents analyze Douyin video data, user profiles, and trends, then sync structured results and document links to Feishu Bitable.
 
-## Publisher: <br>
-[gnview](https://clawhub.ai/user/gnview) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[gnview](https://clawhub.ai/user/gnview)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and analysts use this skill to collect and normalize Douyin video metadata, coordinate related analysis/download skills, and write results into Feishu Bitable with associated cloud document links.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can write records and document links to a configured Feishu Bitable.
+
+Mitigation: Verify the Feishu base and table configuration points to the intended workspace before use.
+
+Risk: The workflow may rely on API credentials and related downloader or extraction services.
+
+Mitigation: Keep API keys in environment variables and confirm related skill configuration before processing data.
+
+Risk: The workflow may download video files during analysis.
+
+Mitigation: Use an approved download location and review storage expectations before running batch jobs.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and analysts use this skill to collect Douyin video metadata, download videos, extract scripts or captions, structure analysis results, and synchronize records and linked analysis documents into Feishu Bitable. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can write Douyin analysis records and linked documents into Feishu without clear confirmation or rollback controls. <br>
-Mitigation: Use least-privilege Feishu access, limit the target workspace/table, and require explicit preview and confirmation before batch writes or cloud document creation. <br>
-Risk: The skill can download videos to a configured local path. <br>
-Mitigation: Set a constrained download directory and require explicit confirmation before downloads. <br>
-Risk: The skill depends on related skills and API credentials for downloader and analysis workflows. <br>
-Mitigation: Review and trust the related skills first, and keep API keys in environment or secret storage rather than committed files. <br>
+**Output Format:** [Markdown guidance with configuration values and structured field specifications]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gnview/gnview-kit) <br>
-- [Publisher profile](https://clawhub.ai/user/gnview) <br>
+**Other Properties Related to Output:** [May write records and document links to a configured Feishu Bitable and may coordinate video downloads through related skills.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with structured field definitions and configuration references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Coordinates Douyin analysis outputs with Feishu Bitable records and linked cloud documents.] <br>
+1.0.1 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

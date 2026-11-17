@@ -1,40 +1,57 @@
-## Description: <br>
-Helps agents create, read, edit, validate, convert, and comment on Microsoft Word DOCX documents, including formatted documents and tracked-change workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates, reads, edits, validates, and manipulates Microsoft Word .docx documents, including formatting, tracked changes, comments, images, and content extraction.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Proprietary <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers, document operators, and agents use this skill to generate polished DOCX files, inspect existing Word documents, edit document XML, manage comments and tracked changes, and validate or convert document outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Proprietary
 
-## Known Risks and Mitigations: <br>
-Risk: The security review marks the skill suspicious because it can run LibreOffice, compile and preload a native compatibility shim, and create a local LibreOffice macro profile. <br>
-Mitigation: Install and run it only on trusted machines, review the LibreOffice and native-shim behavior before deployment, and treat conversion and accept-changes helpers as higher-risk local execution paths. <br>
-Risk: DOCX editing and tracked-change workflows can alter document history, authorship, formatting, and review state. <br>
-Mitigation: Keep originals of important documents, validate generated files, review changes before distribution, and override the author name when document history matters. <br>
+## Use Case:
 
+Developers, document authors, and document-processing agents use this skill to create polished Word documents and to inspect or modify existing .docx files. It supports workflows such as extracting content, applying formatting, managing tracked changes and comments, converting legacy Word files, and validating Office XML.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/docx-processor-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline code, shell commands, and DOCX/XML editing instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or modify local DOCX-related files when the consuming agent follows the documented commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Risky local execution patterns may allow shared temporary files or LibreOffice macro handling to hijack LibreOffice runs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or fix the temporary-file and LibreOffice macro handling before installation, run the skill in an isolated environment, and avoid shared /tmp execution.
+
+Risk: Sensitive or untrusted documents and comment text can increase exposure when processed by local document tooling.
+
+Mitigation: Use extra caution with sensitive or untrusted documents and comment text, and review outputs before relying on them.
+
+Risk: Global npm installs can make dependency behavior harder to control.
+
+Mitigation: Pin npm dependencies locally instead of relying on global installs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/docx-processor-cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with code and shell command examples; generated or edited .docx files when used for document creation or modification.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some workflows require local tooling such as docx-js, pandoc, LibreOffice, and bundled validation scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

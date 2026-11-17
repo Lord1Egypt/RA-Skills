@@ -1,43 +1,54 @@
-## Description: <br>
-MOOC automation tool for completing course video learning, detecting chapter status, and waiting for video playback to finish. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MOOC自动化学习工具 - 自动完成课程视频学习、检测章节状态、等待视频播放完成
 
-## Publisher: <br>
-[tonylemon](https://clawhub.ai/user/tonylemon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tonylemon](https://clawhub.ai/user/tonylemon)
 
-## Use Case: <br>
-External users or developers use this skill to configure and run Playwright-based automation for MOOC course videos, including chapter detection, playback monitoring, progress recovery, and learning reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The automation can act on a logged-in MOOC account and may conflict with platform rules or user expectations. <br>
-Mitigation: Install and run it only when the platform permits this automation, restrict the configured course URLs, and use an isolated browser profile. <br>
-Risk: Broad browser control and the automation-hiding flag can reduce transparency during the handoff window. <br>
-Mitigation: Avoid unrelated tabs while the script runs and remove the automation-hiding flag unless explicitly authorized. <br>
-Risk: Local progress and report files may retain course activity data. <br>
-Mitigation: Review and delete learning-progress.json and learning-report.json when they are no longer needed. <br>
+## Use Case:
 
+Learners use this skill to automate playback and completion tracking for configured MOOC course chapters, then review saved progress and study reports.
 
-## Reference(s): <br>
-- [MOOC Learner Detailed Documentation](references/README.md) <br>
-- [Node.js](https://nodejs.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript configuration snippets and shell commands; runtime artifacts are JSON progress and report files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The documented script writes learning-progress.json and learning-report.json while operating a local Chrome browser session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: ClawScan marked the skill suspicious because it broadly accepts browser confirmation dialogs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Follow the scanner's recommendation against installation; review the dialog-handling behavior before reconsidering.
+
+Risk: Only half of the components were fully inspected, and dependency versions and lockfile status are not established.
+
+Mitigation: Review the remaining components and establish dependency versions and lockfile status before considering installation.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/tonylemon/skills/learn-courses-enhanced)
+- [Publisher profile](https://clawhub.ai/user/tonylemon)
+
+## Skill Output:
+
+**Output Type(s):** [Browser actions, Files, JSON, HTML report, Text]
+
+**Output Format:** [JSON progress and statistics, an HTML report, and console text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Saves course progress for resuming and generates study summaries.]
+
+## Skill Version(s):
+
+1.0.4 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

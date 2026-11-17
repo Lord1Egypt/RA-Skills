@@ -1,46 +1,63 @@
-## Description: <br>
-Curates the top five daily GeekNews issues with emphasis on open source releases and GitHub projects, formats them as a concise Telegram brief, and supports scheduled delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Curates five daily HOT items from GeekNews with emphasis on open source releases, fast-rising GitHub projects, developer tools, infrastructure, and AI/LLM topics, then formats and sends the brief to Telegram.
 
-## Publisher: <br>
-[dongjus](https://clawhub.ai/user/dongjus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dongjus](https://clawhub.ai/user/dongjus)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to create a daily Telegram digest of GeekNews items, prioritizing open source launches, GitHub momentum, developer tools, AI, and infrastructure topics. It can be run manually or scheduled with cron after Telegram credentials are configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Telegram, Anthropic, and GitHub tokens may be exposed if stored in shared shell profiles, dotfiles, logs, or copied into messages. <br>
-Mitigation: Use a dedicated Telegram bot and chat, keep tokens in local environment configuration, avoid syncing secrets through dotfiles, and rotate any token that may have been exposed. <br>
-Risk: Scheduled cron execution can repeatedly post to the wrong chat or send unreviewed content if enabled before testing. <br>
-Mitigation: Test the recipient, generated message, and Telegram delivery path manually before enabling cron. <br>
-Risk: The daily digest can include incomplete or misleading summaries from scraped or model-generated news curation. <br>
-Mitigation: Review the generated brief before broad distribution when accuracy or audience impact matters. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to receive a concise daily Telegram brief of notable GeekNews posts, prioritizing open source launches, GitHub momentum, developer productivity, infrastructure, and AI/LLM stories. It can be run manually or scheduled for unattended daily delivery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dongjus/telegram-geeknews) <br>
-- [Telegram setup guide](references/telegram_setup.md) <br>
-- [GeekNews](https://news.hada.io) <br>
-- [GeekNews RSS feed](https://news.hada.io/rss) <br>
-- [Telegram BotFather](https://t.me/BotFather) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown Telegram message plus shell commands and setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Telegram messages are intended to stay within the 4096 character message limit.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated news briefs may be sent through Anthropic and Telegram.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if external processing and Telegram delivery are acceptable for the intended content.
+
+Risk: Setup uses persistent API credentials for Telegram, Anthropic, and optionally GitHub.
+
+Mitigation: Use narrowly scoped credentials, avoid storing tokens in global shell startup files, and configure the optional GitHub token only when needed.
+
+Risk: Scheduled execution can send messages unattended.
+
+Mitigation: Review cron schedules and test delivery behavior before enabling automated sends.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dongjus/skills/telegram-geeknews)
+- [Telegram setup guide](references/telegram_setup.md)
+- [GeekNews RSS feed](https://news.hada.io/rss)
+- [GeekNews main page](https://news.hada.io/)
+- [GeekNews topics](https://news.hada.io/topics)
+- [Telegram BotFather](https://t.me/BotFather)
+- [Anthropic Messages API](https://api.anthropic.com/v1/messages)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown brief with Telegram-compatible message text and inline shell commands for setup or scheduling]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Telegram messages should stay within the 4096 character message limit.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,49 @@
-## Description: <br>
-Start from the ideal player-facing result and work backward to the design steps, systems, and decisions required to reach it. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Start from the ideal player-facing result and work backward to the design steps, systems, and decisions required to reach it.
 
-## Publisher: <br>
-[stanestane](https://clawhub.ai/user/stanestane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stanestane](https://clawhub.ai/user/stanestane)
 
-## Use Case: <br>
-Game designers, product teams, and agents use this skill to turn an intended player-facing end state into required conditions, backward milestones, and near-term design priorities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process confidential strategy, unreleased design information, or product details supplied by the user. <br>
-Mitigation: Avoid sharing sensitive or unreleased information unless it is appropriate for the agent environment. <br>
+## Use Case:
 
+Game designers, product teams, and creative leads use this skill to define a believable target player experience, identify required conditions, work backward through dependencies, and choose immediate priorities for a feature or system.
 
-## Reference(s): <br>
-- [GROW-Derived Family Conventions](references/family-conventions.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/stanestane/game-design-ideal-outcome-backcasting) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown with structured sections for ideal outcome, required conditions, backward path, and immediate priorities] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces decision-oriented planning guidance; no code, installs, credentials, or tool calls are required by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill's planning output could be treated as a final production decision instead of design guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the output to shape game-design discussion, then have the responsible design team review assumptions, priorities, and implementation commitments.
+
+## Reference(s):
+
+- [GROW-Derived Family Conventions](references/family-conventions.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown with structured sections and lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Decision-oriented planning output; no code execution, credential use, persistence, or hidden side effects.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

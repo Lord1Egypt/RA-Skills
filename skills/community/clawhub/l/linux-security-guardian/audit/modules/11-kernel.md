@@ -41,6 +41,48 @@ sysctl net.ipv6.conf.all.accept_redirects
 | net.ipv4.conf.default.rp_filter | 1 | MEDIUM |
 | net.ipv4.conf.all.rp_filter | 1 | MEDIUM |
 
+## BPF (Berkeley Packet Filter) Security Restrictions
+
+### Commands
+```bash
+# Check BPF restrictions
+sysctl kernel.unprivileged_bpf_disabled 2>/dev/null
+sysctl net.core.bpf_jit_enable 2>/dev/null
+
+# Check if bpftool is available (for deeper inspection)
+which bpftool 2>/dev/null || echo "bpftool not installed"
+```
+
+### BPF Checks
+| Parameter | Secure Value | Severity if Wrong |
+|-----------|-------------|--------------------------|
+| kernel.unprivileged_bpf_disabled | 1 | HIGH (unprivileged users can load BPF programs) |
+| net.core.bpf_jit_enable | 0 or 1 | MEDIUM (2 = JIT hardening disabled, JIT spray risk) |
+
+### Why BPF Restrictions Matter
+- **unprivileged_bpf_disabled=0**: Any unprivileged user can load BPF programs, enabling kernel exploits via BPF
+- **bpf_jit_enable=2**: JIT hardening disabled (JIT spray attacks possible)
+- **bpf_jit_enable=1**: JIT hardening enabled (secure, but verify unprivileged_bpf_disabled=1)
+- BPF has been used in multiple privilege escalation exploits (CVE-2017-16994, CVE-2020-8835, etc.)
+
+### Auto-Fix Eligible
+- kernel.unprivileged_bpf_disabled=0 → write to /etc/sysctl.d/99-bpf-security.conf (confirm required)
+- net.core.bpf_jit_enable=2 → write to same file (confirm required)
+
+### Recommended Config
+```
+# /etc/sysctl.d/99-bpf-security.conf
+kernel.unprivileged_bpf_disabled=1
+net.core.bpf_jit_enable=1
+```
+
+### Output Format (BPF)
+```
+[HIGH] 11-kernel: unprivileged_bpf | kernel.unprivileged_bpf_disabled=0 | expected: 1 | action_id: ACT-YYYYMMDD-XXX
+[MEDIUM] 11-kernel: bpf_jit | net.core.bpf_jit_enable=2 | expected: 0 or 1 | action_id: ACT-YYYYMMDD-XXX
+[PASS] 11-kernel: bpf_restrictions | unprivileged_bpf_disabled=1, bpf_jit_enable=1 ✓
+```
+
 ## For Each Wrong Value
 - Generate proposed sysctl fix
 - Write to /etc/sysctl.d/99-security-hardening.conf (proposed)

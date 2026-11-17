@@ -1,44 +1,60 @@
-## Description: <br>
-Trade Polymarket BTC daily and weekly UP/DOWN markets with empirically-anchored exit discipline. Enters on CEX momentum divergence; exits automatically on time cap, volume spike, or target capture. Use when the user wants to trade BTC direction markets (hours/days duration), not fast 5-minute markets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade Polymarket BTC daily and weekly UP/DOWN markets with empirically-anchored exit discipline.
 
-## Publisher: <br>
-[simmer](https://clawhub.ai/user/simmer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simmer](https://clawhub.ai/user/simmer)
 
-## Use Case: <br>
-External developers and trading operators use this skill to run a Polymarket BTC daily or weekly UP/DOWN trading workflow with dry-run support, configurable position limits, and automated exit checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can place real Polymarket trades with financial loss exposure. <br>
-Mitigation: Start in dry-run mode, use small position and daily budget limits, and understand the strategy before enabling --live. <br>
-Risk: Wallet private keys and API keys are sensitive credentials. <br>
-Mitigation: Use managed wallets or a minimally funded dedicated wallet where possible, and keep private keys out of logs and chat. <br>
-Risk: Prediction-market trades and on-chain orders may be irreversible or affected by market, resolution, and operator risks. <br>
-Mitigation: Review the disclaimer, monitor positions, and keep conservative exit, position, and budget settings. <br>
+## Use Case:
 
+Traders and automation operators use this skill to scan Polymarket BTC daily and weekly direction markets, run dry-run checks, and optionally execute live entries and exits with configurable position and budget controls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/simmer/polymarket-btc-up-down-trader) <br>
-- [Publisher profile](https://clawhub.ai/user/simmer) <br>
-- [DISCLAIMER.md](artifact/DISCLAIMER.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with CLI commands, Python strategy execution, and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can run in dry-run mode by default or live mode when configured with API and wallet credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Live mode can place irreversible real-money Polymarket trades.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start in dry run, use conservative position and daily-budget settings, and enable live mode only after reviewing the strategy and account risk.
+
+Risk: Exporting WALLET_PRIVATE_KEY increases wallet custody exposure.
+
+Mitigation: Avoid setting WALLET_PRIVATE_KEY unless external-wallet live trading is required; prefer managed-wallet or dry-run operation where appropriate.
+
+Risk: Cron or looped execution can automate repeated trading decisions.
+
+Mitigation: Review cron schedules and run monitor-only or dry-run checks before enabling unattended live execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/simmer/skills/polymarket-btc-up-down-trader)
+- [Skill instructions](artifact/SKILL.md)
+- [Disclaimer](artifact/DISCLAIMER.md)
+- [Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and Python strategy execution output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May place live Polymarket trades only when explicitly run with live-trading configuration.]
+
+## Skill Version(s):
+
+1.2.5 (source: server release evidence, frontmatter, and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

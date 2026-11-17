@@ -1,0 +1,24 @@
+{
+  "posts": [
+    {
+      "content": "Full tutorial: how to plan a month of social media content in one afternoon.\n\nCaptions are available in English.",
+      "mediaItems": [
+        {
+          "key": "video/YOUR_UPLOAD_KEY.mp4",
+          "type": "VIDEO",
+          "sortOrder": 0
+        }
+      ],
+      "scheduledAt": "2026-12-15T14:00:00.000Z",
+      "socialMediaId": "YOUR_YOUTUBE_ACCOUNT_ID"
+    }
+  ],
+  "controls": {
+    "youtubeIsShort": false,
+    "youtubeTitle": "Plan a Month of Content in One Afternoon",
+    "youtubePrivacy": "PUBLIC",
+    "youtubeLanguage": "en",
+    "youtubeCaptionKey": "file/YOUR_CAPTION_KEY.srt",
+    "youtubeMadeForKids": false
+  }
+}

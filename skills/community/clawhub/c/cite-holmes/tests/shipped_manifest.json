@@ -1,0 +1,17 @@
+{
+  "description": "随包 sealed 测试子集清单（v6.5.0 F57）：本文件是「哪些测试随包分发」的唯一来源。打包器（pkg_dual_lang.sh）按 files 清单复制进包内 tests/；tools/run_tests.sh --shipped 只跑清单内文件（部分拷贝损坏即 FAIL）；tools/selfcheck.py --tests 联动执行。",
+  "policy": "准入判据（三条全过才准入）：①sealed 默认档零网络（在线用例组自带 skipUnless 自跳过）；②包态自足——只引用包内路径（scripts/ mcp/ tools/ examples/ references/ docs/ data/ SKILL.md），仓库独有文件（tests/ 老版本矩阵、SKILL_ZH.md、仓库外工装）缺席时必须自洽降级；③无硬编码版本数（留出集条数等随扩容漂移的断言一律动态化）。",
+  "boundary": "全量测试矩阵（43 个历史版本回归文件）仍留在开发侧不随包——ADR-0010 边界修订见 docs/adr/0011-shipped-sealed-test-subset.md。",
+  "files": [
+    "_mocks.py",
+    "test_v120.py",
+    "test_verify_refs.py",
+    "test_v60000.py",
+    "test_v60100.py",
+    "test_v60200.py",
+    "test_v60300.py",
+    "test_v60400.py",
+    "test_v60500.py",
+    "test_v60600.py"
+  ]
+}

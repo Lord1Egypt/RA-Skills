@@ -1,45 +1,59 @@
-## Description: <br>
-Helps agents and operators manage, inspect, and debug multiple OpenAI Codex OAuth profiles in OpenClaw, including profile switching, session overrides, usage mismatches, auth order, active-slot routing, and broken-token recovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers manage and debug multiple OpenAI Codex OAuth profiles in OpenClaw, including profile switching, session overrides, usage mismatches, auth ordering, active-slot routing, broken-token recovery, and same-email workspace selection issues.
 
-## Publisher: <br>
-[WTHH031230](https://clawhub.ai/user/WTHH031230) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wthh031230](https://clawhub.ai/user/wthh031230)
 
-## Use Case: <br>
-Developers, operators, and support engineers use this skill to diagnose and repair OpenClaw deployments that maintain more than one OpenAI Codex OAuth profile. It helps compare stored preference, auth order, session override, effective runtime profile, usage source, and display metadata before applying narrow fixes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose local account, session, workspace, usage, and profile details while diagnosing OpenClaw Codex OAuth state. <br>
-Mitigation: Run it only when local profile diagnostics are intended, prefer scoped --profile or test --state-dir runs, and redact emails, account IDs, workspace IDs, session targets, and usage output before sharing logs or screenshots. <br>
-Risk: The usage-report script can use stored OAuth tokens to query live Codex usage data, and --raw can include sensitive API response fields. <br>
-Mitigation: Avoid --raw unless necessary, limit requests to the specific profiles being debugged, and review output for sensitive identifiers before retaining or transmitting it. <br>
-Risk: Troubleshooting may lead to local auth-store or session-state edits that affect active profile selection. <br>
-Mitigation: Back up relevant OpenClaw auth/session files first, change only the inconsistent layer, and re-test profile selection, /status, and usage behavior after each change. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect and repair OpenClaw deployments that route more than one OpenAI Codex OAuth identity, especially when status, session, usage, or helper-command behavior disagrees with the intended profile.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/WTHH031230/openai-codex-multi-oauth) <br>
-- [Runtime files and inspection points](references/runtime-files.md) <br>
-- [Profile-specific usage debugging](references/usage-debugging.md) <br>
-- [Workflows](references/workflows.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, code references, and optional JSON output from bundled diagnostic scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bundled scripts inspect local OpenClaw state and can optionally fetch live usage with stored OAuth credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence) <br>
+Risk: Diagnostics can expose unredacted account, session, and usage details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run diagnostics locally, share only redacted output, and treat JSON usage reports as account metadata.
+
+Risk: Usage or status checks can report the wrong profile when local selection falls back to provider order instead of the intended identity.
+
+Mitigation: Prefer specific profile selection and verify the current session override, auth order, active slot, and usage source before patching.
+
+Risk: Editing OpenClaw auth or session state can disrupt profile routing.
+
+Mitigation: Back up the affected runtime files, change the smallest inconsistent layer, and retest status, switching, and usage after each change.
+
+## Reference(s):
+
+- [Runtime Files and Inspection Points](references/runtime-files.md)
+- [Profile-Specific Usage Debugging](references/usage-debugging.md)
+- [Workflows](references/workflows.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON diagnostics, and targeted code or configuration edits.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May inspect local OAuth profile, session, and usage files; diagnostic JSON can include account metadata.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

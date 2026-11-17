@@ -1,37 +1,48 @@
-## Description: <br>
-Gemini Android is a static informational guide summarizing Gemini AI capabilities on Android, including system integration, task automation, generative widgets, input upgrades, browser assistance, and privacy features. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarizes Gemini AI capabilities on Android, including system-level integration, cross-app task automation, generative widgets, input-method upgrades, and privacy features.
 
-## Publisher: <br>
-[smseow001](https://clawhub.ai/user/smseow001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[smseow001](https://clawhub.ai/user/smseow001)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and agents use this skill as a concise Chinese-language reference for Gemini on Android features, supported devices, quick commands, and common setup questions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Automation examples may involve forms, shopping actions, email content, or other cross-app activity without sufficient review.
+
+Mitigation: Require explicit user review and confirmation before any assistant submits forms, adds shopping items, uses emails, or acts across apps.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill as a quick reference for understanding Gemini-related Android features, supported device families, setup paths, and common usage prompts. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Users may assume every Gemini action described by the guide is local-only or private by default. <br>
-Mitigation: Review phone confirmations, privacy settings, and data-sharing prompts before using Gemini with email, shopping, web forms, or sensitive content. <br>
+**Output Format:** [Markdown guidance with quick-reference tables and FAQ entries]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Informational only; no executable code or hidden install behavior.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guide with tables, usage notes, supported-device bullets, and FAQ entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static informational content; no executable code, commands, or hidden install behavior.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

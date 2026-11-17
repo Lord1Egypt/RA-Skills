@@ -1,41 +1,59 @@
-## Description: <br>
-Thesaurus provides a local command-line history tracker for text entries with search, statistics, recent activity, and export features. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Thesaurus is advertised for synonym and related-word lookup, but the shipped artifact primarily records local command activity and exports or searches those logs.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-External users and developers can use this skill to record local command-line text entries, inspect activity and statistics, search saved history, and export logs. It should not be relied on as a functional synonym or antonym lookup tool. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Capability mismatch: security evidence says the release is labeled as a thesaurus but behaves like a local text-history tracker and does not implement real synonym or antonym lookup. <br>
-Mitigation: Use it only for local history, search, statistics, and export workflows; verify lexical alternatives with a separate trusted source. <br>
-Risk: Text retention: entered text may be retained locally under ~/.local/share/thesaurus. <br>
-Mitigation: Avoid entering confidential text unless local retention is acceptable, and review or remove the local data directory after use. <br>
+## Use Case:
 
+External users and developers can invoke the command-line skill to record thesaurus-related activity, inspect recent entries, search local logs, and export stored history. Review carefully before installation because server security evidence says the release does not provide a real thesaurus as shipped.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain3/thesaurus) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files] <br>
-**Output Format:** [Plain text terminal output and optional JSON, CSV, or TXT export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores command history and export files locally under ~/.local/share/thesaurus.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata; artifact frontmatter and script report 2.0.0) <br>
+Risk: The release is advertised as a thesaurus, but server security evidence says the included script is mostly a generic local activity and history tracker.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the script before installing and do not rely on it for synonym or antonym lookup unless the shipped behavior is acceptable.
+
+Risk: User inputs may be written to local logs under ~/.local/share/thesaurus.
+
+Mitigation: Avoid entering sensitive text or private prompts unless local activity logging is intended and acceptable.
+
+Risk: Server security guidance notes unclear and partly broken export or status behavior.
+
+Mitigation: Test export and status commands with non-sensitive sample data before depending on generated files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain3/skills/thesaurus)
+- [Publisher profile](https://clawhub.ai/user/bytesagain3)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text command output with optional JSON, CSV, or text export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local activity logs under ~/.local/share/thesaurus when commands are invoked.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

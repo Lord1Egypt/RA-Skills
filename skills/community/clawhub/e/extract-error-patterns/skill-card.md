@@ -1,43 +1,59 @@
-## Description: <br>
-Extracts error patterns from server logs and generates actionable alert rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts error patterns from server logs and generates actionable alert rules.
 
-## Publisher: <br>
-[wangjipeng977](https://clawhub.ai/user/wangjipeng977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangjipeng977](https://clawhub.ai/user/wangjipeng977)
 
-## Use Case: <br>
-Developers and site reliability engineers use this skill to analyze server logs, identify repeated error patterns, and draft alert rules with counts, severity labels, regex patterns, and supporting samples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release asks for an API key without documenting the service, purpose, transmitted data, or key handling. <br>
-Mitigation: Do not provide credentials until the publisher documents why they are required and how they are protected. <br>
-Risk: Generated alert-rule files may include copied log lines containing tokens, emails, paths, stack traces, or customer identifiers. <br>
-Mitigation: Review and redact logs before processing, store generated outputs as sensitive files, and avoid sharing outputs outside approved channels. <br>
-Risk: Write behavior is under-documented, so generated files may persist sensitive extracted content. <br>
-Mitigation: Use explicit output locations, inspect generated files after each run, and remove sensitive artifacts when they are no longer needed. <br>
+## Use Case:
 
+Developers and SREs use this skill to analyze server logs, classify recurring error patterns by severity, and draft alert rules with source samples for review.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wangjipeng977/extract-error-patterns) <br>
-- [Skill metadata source](https://github.com/MiniMax-AI/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown or JSON alert-rule output with extracted pattern counts, severity labels, regex patterns, and sample log lines.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write generated alert-rule files when an output path is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and changelog, released 2026-05-27) <br>
+Risk: Generated reports can copy sensitive log contents without redaction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use redacted or synthetic logs when possible, review outputs before sharing, and write reports only to controlled locations with appropriate access restrictions.
+
+Risk: Generated Markdown reports may contain untrusted log content.
+
+Mitigation: Review generated Markdown before rendering or publishing it, and avoid unsafe Markdown rendering paths.
+
+Risk: The artifact documentation mentions an API key requirement without explaining why it is needed.
+
+Mitigation: Do not provide an API key unless the publisher explains the requirement and the intended data flow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangjipeng977/skills/extract-error-patterns)
+- [Publisher profile](https://clawhub.ai/user/wangjipeng977)
+- [Metadata source: MiniMax-AI skills](https://github.com/MiniMax-AI/skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown report or JSON list of alert rules with regex patterns, counts, severity, and samples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include source log samples and can be written to a user-selected output path.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and changelog, released 2026-05-27)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

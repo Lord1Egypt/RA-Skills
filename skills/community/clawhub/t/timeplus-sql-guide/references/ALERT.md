@@ -33,7 +33,7 @@ import requests
 def send_star_events_to_slack(value):
     for github_id in value:
         requests.post(
-            "https://hooks.slack.com/services/T123/B456/other_id",
+            "REDACTED-SECRET",
             data=json.dumps({
                 "text": f"New 🌟 for Timeplus Proton from https://github.com/{github_id}"
             })

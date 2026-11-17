@@ -1,42 +1,55 @@
-## Description: <br>
-Convert screenshots into structured data, including visible text, UI layout, tables, and charts, with paid x402 access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert screenshots into structured data, including text, UI layout, tables, and charts, with paid access through x402.
 
-## Publisher: <br>
-[ntriq-gh](https://clawhub.ai/user/ntriq-gh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ntriq-gh](https://clawhub.ai/user/ntriq-gh)
 
-## Use Case: <br>
-Developers and agents use this skill to convert screenshot images into machine-readable text, layout descriptions, table data, chart summaries, or full JSON for downstream analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Screenshots may contain sensitive personal, financial, credential, customer, or internal business information and are sent to a third-party remote service. <br>
-Mitigation: Submit only screenshots you are authorized to process and avoid regulated or sensitive content unless provider privacy, retention, and deletion practices are acceptable. <br>
-Risk: Each API call uses paid x402 access on Base mainnet. <br>
-Mitigation: Confirm the payment amount, network, and authorization before invoking the service, and monitor agent workflows that can make repeated calls. <br>
+## Use Case:
 
+Developers and external agents use this skill to send screenshot URLs or base64 images to ntriq's x402 API and receive extracted text, UI layout, tables, charts, or structured JSON for downstream analysis.
 
-## Reference(s): <br>
-- [ntriq x402 screenshot service](https://x402.ntriq.co.kr) <br>
-- [x402 protocol](https://x402.org) <br>
-- [ClawHub skill page](https://clawhub.ai/ntriq-gh/ntriq-x402-screenshot-data) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, analysis] <br>
-**Output Format:** [JSON response with extracted text, UI layout, tables, charts, and key metrics depending on extract_type.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an image URL or base64 screenshot and supports extract_type values full, text, layout, or data plus an optional language setting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Screenshots are sent to ntriq's external API and may contain sensitive or confidential information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only screenshots approved for external processing, and avoid passwords, tokens, personal data, financial records, customer information, or confidential dashboards unless privacy and retention practices have been confirmed.
+
+Risk: The service is paid per call through x402 on Base mainnet.
+
+Mitigation: Confirm payment headers, network, and expected per-call cost before invoking the service, especially for automated or high-volume workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ntriq-gh/skills/ntriq-x402-screenshot-data)
+- [ntriq x402 screenshot service](https://x402.ntriq.co.kr)
+- [x402 protocol](https://x402.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, structured data]
+
+**Output Format:** [JSON or plain text depending on extract_type]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output can include full structured JSON, visible text, layout analysis, or table and chart data based on the requested extraction mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,53 @@
-## Description: <br>
-Search chats, list/read messages, and send messages via Beeper Desktop using the beeper-cli. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search chats, list/read messages, and send messages via Beeper Desktop using the beeper-cli.
 
-## Publisher: <br>
-[foeken](https://clawhub.ai/user/foeken) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[foeken](https://clawhub.ai/user/foeken)
 
-## Use Case: <br>
-Developers and agent users use this skill to search Beeper chats, review messages, send or edit messages, manage chats, and transfer attachments through the Beeper Desktop CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose Beeper chat contents to an agent during search and message review. <br>
-Mitigation: Use read-only commands when only search or review is needed, and quote only the minimum message content required for the task. <br>
-Risk: The skill can send, edit, archive, create, upload, download, and delete messaging-related content. <br>
-Mitigation: Review recipients, message text, chat identifiers, and file paths before executing any command that changes chats, messages, reminders, or assets. <br>
-Risk: The BEEPER_ACCESS_TOKEN grants access to the Beeper Desktop API. <br>
-Mitigation: Keep BEEPER_ACCESS_TOKEN private, store it securely, and install the skill only when the publisher is trusted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Beeper CLI release page](https://clawhub.ai/foeken/beeper-cli) <br>
-- [beeper-cli](https://github.com/foeken/beeper-cli) <br>
-- [beeper-cli releases](https://github.com/foeken/beeper-cli/releases) <br>
+## Use Case:
 
+Developers and end users can use this skill to search Beeper chats, read messages, and compose Beeper CLI commands for live messaging workflows from an agent.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the beeper binary, Beeper Desktop with API access enabled, and a BEEPER_ACCESS_TOKEN environment variable.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide broad Beeper CLI access to private chats, live message changes, chat organization actions, and file transfers.
+
+Mitigation: Use only with explicit user direction, confirm send, edit, archive, create, upload, download, and attachment actions before execution, and quote only the message content needed for the task.
+
+Risk: The release depends on an unpinned third-party Beeper CLI and a Beeper API access token.
+
+Mitigation: Pin and verify the CLI version where possible, store BEEPER_ACCESS_TOKEN securely, and keep the token scoped and revocable.
+
+## Reference(s):
+
+- [Beeper CLI](https://github.com/foeken/beeper-cli)
+- [Beeper CLI Releases](https://github.com/foeken/beeper-cli/releases)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Beeper CLI command examples and safety checks for chat, message, and attachment actions.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

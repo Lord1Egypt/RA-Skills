@@ -1,40 +1,52 @@
-## Description: <br>
-基于9000+点赞爆款结构，帮助创作者快速生成情感、职场、成长和生活方式类小红书笔记。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于高互动小红书笔记结构，帮助创作者快速生成情感、职场、成长和生活方式类中文笔记。
 
-## Publisher: <br>
-[1122525](https://clawhub.ai/user/1122525) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1122525](https://clawhub.ai/user/1122525)
 
-## Use Case: <br>
-Content creators and social media operators use this skill to draft Xiaohongshu posts with a five-part viral-note structure, title formulas, topic adaptation guidance, and hashtag suggestions. It is intended to shorten drafting time for public-facing posts while keeping final review with the user. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Draft posts or hashtags may be inaccurate, unsuitable for the brand, or inappropriate for the target account. <br>
-Mitigation: Review the final text, hashtags, and target account before approving any publication. <br>
-Risk: The artifact mentions a separate publishing skill, which could move generated copy toward public posting. <br>
-Mitigation: Keep publication approval manual and confirm the intended account and content before using any publishing workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1122525/rednote-viral-writer) <br>
-- [Publisher profile](https://clawhub.ai/user/1122525) <br>
+## Use Case:
 
+External creators and marketing teams use this skill to draft Xiaohongshu notes with a five-part structure, title formulas, hashtag guidance, and a short 5-10 minute writing workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with Chinese copy templates, checklists, example post text, and hashtag suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces draft social media writing guidance; it does not execute code or publish content by itself.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated posts may resemble the provided high-engagement example too closely.
+
+Mitigation: Rewrite drafts with original experiences, wording, and examples before publication.
+
+Risk: Generated claims, advice, or hashtags may be inaccurate or unsuitable for the target platform.
+
+Mitigation: Review each post for factual accuracy, originality, brand fit, and Xiaohongshu platform compliance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1122525/skills/rednote-viral-writer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with Chinese templates, examples, checklists, and hashtag suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Designed to produce short-form social content drafts that should be reviewed before publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

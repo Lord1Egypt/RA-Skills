@@ -1,38 +1,50 @@
-## Description: <br>
-Probe any URL and check if it's up. Returns the HTTP status code, response latency in milliseconds, and a healthy/not-healthy verdict. Configurable timeout. Useful for checking if an API is available before calling it. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Probes a URL to report HTTP status code, response latency in milliseconds, and a healthy/not-healthy verdict with a configurable timeout.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and agents use Healthprobe to check whether a URL or API endpoint is reachable before calling it, including status code, latency, and a healthy verdict. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local service can be used to contact any caller-supplied URL. <br>
-Mitigation: Keep it bound to localhost, avoid probing untrusted URLs, and add URL allowlisting or private-network and metadata-IP blocking before shared, cloud, or internet-facing use. <br>
+## Use Case:
 
+Developers and agents use Healthprobe to check whether an API or web URL is responsive before making dependent calls. It returns a simple health verdict, status code, latency, and connection error details when a probe fails.
 
-## Reference(s): <br>
-- [Healthprobe Skill Page](https://clawhub.ai/mirni/healthprobe) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON response from a local FastAPI endpoint, with Markdown usage guidance and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns healthy, status_code, latency_ms, and error fields; timeout_ms accepts 100 to 30000 milliseconds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, created 2026-04-13T08:07:13Z) <br>
+Risk: The local URL-probing service can be abused to reach internal network resources from the host running it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the service limited to localhost, avoid shared or untrusted deployments without authentication and egress controls, and block private, loopback, link-local, and cloud metadata destinations before use.
+
+## Reference(s):
+
+- [Healthprobe ClawHub skill page](https://clawhub.ai/mirni/skills/healthprobe)
+- [Publisher profile: mirni](https://clawhub.ai/user/mirni)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON]
+
+**Output Format:** [JSON response with URL, health verdict, HTTP status code, latency in milliseconds, and optional error text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Timeout is configurable from 100ms to 30000ms; status_code is -1 when a connection error occurs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

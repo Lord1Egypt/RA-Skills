@@ -1,38 +1,48 @@
-## Description: <br>
-Ultra-compressed commit message generator that cuts noise from commit messages while preserving intent and reasoning in Conventional Commits format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Caveman Commit helps an agent produce terse Conventional Commit messages that preserve intent and reasoning while avoiding noisy narration.
 
-## Publisher: <br>
-[seanford](https://clawhub.ai/user/seanford) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[seanford](https://clawhub.ai/user/seanford)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers use this skill to turn staged changes or commit-message requests into concise, ready-to-paste Conventional Commit messages. It emphasizes why a change matters, while adding a body only for breaking changes, migrations, security fixes, reversions, linked issues, or non-obvious reasoning.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Staged diffs may contain sensitive content that could be summarized into chat while generating a commit message.
+
+Mitigation: Use only in repositories where staged changes are appropriate to expose to the agent, and review the generated commit message before use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to draft terse, ready-to-paste commit messages from staged changes or commit-message requests while preserving the reason for the change when it matters. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording could make the skill read staged changes sooner than intended. <br>
-Mitigation: Review staged changes before invoking the skill and avoid using it in repositories with secrets or private work that should not enter agent context. <br>
+**Output Format:** [Markdown code block containing a Conventional Commits message]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/seanford/caveman-commit) <br>
+**Other Properties Related to Output:** [Does not run git commands, stage files, amend commits, or write files.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Guidance] <br>
-**Output Format:** [Markdown code block containing a commit message] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces only a ready-to-paste commit message and does not run git commands.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

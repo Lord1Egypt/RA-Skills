@@ -1,0 +1,17 @@
+{
+  "name": "career-toolkit",
+  "version": "1.0.0",
+  "description": "职业规划 + 简历生成 Skill Pack",
+  "author": "袁箐鸿",
+  "python": ">=3.8",
+  "dependencies": {
+    "required": ["PyYAML", "Jinja2", "jsonschema"],
+    "optional": {
+      "weasyprint": "PDF 导出支持（需要系统库 cairo/pango）"
+    }
+  },
+  "verify": [
+    "python3 modules/career-planner/scripts/score_holland.py --help",
+    "python3 modules/resume-builder/scripts/validate.py --help"
+  ]
+}

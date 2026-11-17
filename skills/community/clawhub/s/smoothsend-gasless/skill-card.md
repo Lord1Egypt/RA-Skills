@@ -1,46 +1,61 @@
-## Description: <br>
-Guides Aptos dApp developers through SmoothSend gasless transaction sponsorship, including wallet adapter setup, Script Composer stablecoin transfers, pricing, and common integration mistakes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers through sponsoring gas fees for Aptos dApp users with SmoothSend, including wallet adapter integration and fee-in-token stablecoin transfers.
 
-## Publisher: <br>
-[iskysun96](https://clawhub.ai/user/iskysun96) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iskysun96](https://clawhub.ai/user/iskysun96)
 
-## Use Case: <br>
-Developers building Aptos dApps use this skill to add SmoothSend-sponsored gasless transactions, configure wallet adapter submission, and handle paid-credit or insufficient-credit behavior before mainnet use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Frontend SmoothSend API keys and npm package trust affect the security of the integration. <br>
-Mitigation: Use only API keys intended for frontend use, keep keys in environment variables, and confirm you trust SmoothSend and the npm packages before installing. <br>
-Risk: Sponsoring every wallet-adapter transaction can create billing or abuse exposure on mainnet. <br>
-Mitigation: Start on testnet, confirm the app's billing policy, and add abuse controls before enabling mainnet sponsorship. <br>
-Risk: Insufficient SmoothSend credits can cause transaction submission failures for users. <br>
-Mitigation: Handle 402 insufficient-credit responses with a user-friendly fallback and monitor credit balance before production use. <br>
+## Use Case:
 
+Developers building Aptos dApps use this skill to integrate SmoothSend so end users can submit transactions without holding APT for gas. It covers wallet adapter setup, fee-in-token stablecoin transfers, billing-related error handling, and common integration mistakes.
 
-## Reference(s): <br>
-- [SmoothSend Docs](https://docs.smoothsend.xyz) <br>
-- [SmoothSend Pricing](https://docs.smoothsend.xyz/pricing) <br>
-- [SmoothSend Dashboard](https://dashboard.smoothsend.xyz) <br>
-- [@smoothsend/sdk on npm](https://www.npmjs.com/package/@smoothsend/sdk) <br>
-- [ClawHub Skill Page](https://clawhub.ai/iskysun96/smoothsend-gasless) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with TypeScript, TSX, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; it does not execute commands by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill advises frontend environment variables for a paid-service API key, which can expose credit-bearing credentials in public bundles.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a backend integration or vendor-supported restrictions, quotas, and transaction policy controls before exposing any key tied to mainnet credits.
+
+Risk: The skill references unpinned npm and npx package usage.
+
+Mitigation: Pin package versions, review package provenance, and avoid running unreviewed npx commands in environments with sensitive secrets.
+
+Risk: Mainnet usage depends on SmoothSend credits and can fail when credits are exhausted.
+
+Mitigation: Handle HTTP 402 or insufficient-credit errors with a clear user-facing fallback and monitor billing before enabling mainnet sponsorship.
+
+## Reference(s):
+
+- [SmoothSend Docs](https://docs.smoothsend.xyz)
+- [SmoothSend Pricing](https://docs.smoothsend.xyz/pricing)
+- [SmoothSend Dashboard](https://dashboard.smoothsend.xyz)
+- [@smoothsend/sdk on npm](https://www.npmjs.com/package/@smoothsend/sdk)
+- [ClawHub skill page](https://clawhub.ai/iskysun96/skills/smoothsend-gasless)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with TypeScript, TSX, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes environment variable names, package installation commands, service links, and integration caveats.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

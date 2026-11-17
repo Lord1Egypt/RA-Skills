@@ -1,44 +1,60 @@
-## Description: <br>
-Helps OpenClaw operators configure and troubleshoot QQBot multi-account, multi-agent routing, duplicate sessions, proactive sends, and local plugin export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+QQBot Multi-Account helps OpenClaw operators manage multi-bot, multi-agent QQBot deployments through account binding checks, duplicate-session diagnosis, proactive send guidance, and local plugin export.
 
-## Publisher: <br>
-[Naluko](https://clawhub.ai/user/Naluko) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[naluko](https://clawhub.ai/user/naluko)
 
-## Use Case: <br>
-External OpenClaw operators and developers use this skill to manage multiple QQBot accounts, verify account-to-agent bindings, diagnose duplicate sessions, send QQ messages or files through a selected account, and package a local QQBot plugin for handoff or backup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Diagnostic output may expose QQ user IDs, appIds, service details, or secret file paths. <br>
-Mitigation: Treat inspection output as private and redact these details before sharing logs or reports. <br>
-Risk: File-send examples can disclose unintended local files or send content to the wrong recipient. <br>
-Mitigation: Confirm each <qqfile> path and recipient before executing a send workflow. <br>
-Risk: Using an unpinned QQBot plugin version can reduce reproducibility across environments. <br>
-Mitigation: Pin the QQBot plugin version when reproducible behavior matters. <br>
+## Use Case:
 
+Developers and operators use this skill to configure and troubleshoot OpenClaw QQBot deployments with multiple bot accounts and multiple agents. It is especially useful for validating routing bindings, checking appId isolation, diagnosing duplicate sessions, sending through a selected bot account, and exporting a local qqbot plugin archive.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Naluko/qqbot-multi-account) <br>
-- [Multi-account routing](references/multi-account-routing.md) <br>
-- [Proactive send and file delivery](references/proactive-send.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration snippets and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local inspection or export commands; inspection output can contain private QQBot deployment details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: The inspection script can print local routing details, appId values, service status, secret file paths, and known-users data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run diagnostics only in a trusted terminal and sanitize those fields before sharing output in tickets, chats, or public reports.
+
+Risk: Installing the QQBot plugin with @latest can pull an unreviewed version.
+
+Mitigation: Install a pinned, reviewed QQBot plugin version when using this skill in normal operations.
+
+Risk: Exported qqbot plugin archives may contain local modifications or sensitive files.
+
+Mitigation: Review archive contents before handoff, backup, or release.
+
+## Reference(s):
+
+- [Multi-account routing](artifact/references/multi-account-routing.md)
+- [Proactive send and file delivery](artifact/references/proactive-send.md)
+- [ClawHub skill page](https://clawhub.ai/naluko/skills/qqbot-multi-account)
+- [Publisher profile](https://clawhub.ai/user/naluko)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local OpenClaw configuration, QQBot account identifiers, known-users data, service status, and export archives.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

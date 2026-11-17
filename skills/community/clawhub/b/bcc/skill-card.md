@@ -1,41 +1,54 @@
-## Description: <br>
-Bcc provides plain-text reference documentation for bcc in devtools contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bcc is a local reference helper that provides plain-text documentation for bcc-related devtools workflows.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers use Bcc to retrieve reference material for bcc concepts, quick starts, patterns, debugging, performance, security, migration, and cheat sheets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides general reference guidance that may be incomplete or too generic for a specific bcc environment. <br>
-Mitigation: Review the generated reference text against the target environment and authoritative project documentation before applying it. <br>
-Risk: The artifact includes a shell script entry point, even though the security evidence reports no hidden exfiltration or destructive behavior. <br>
-Mitigation: Review commands before execution and install only in environments where local reference tooling is acceptable. <br>
+## Use Case:
 
+Developers and engineers use this skill to retrieve concise bcc reference material, including introductions, quickstarts, patterns, debugging, performance, security, migration, and cheat sheet guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain1/bcc) <br>
-- [Publisher homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown-style headings and lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls, credentials, or network access are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Reference guidance may mention credentials or operational security practices in general terms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as documentation only and avoid entering secrets into the skill or generated commands.
+
+Risk: Static reference material can become outdated for real bcc environments.
+
+Mitigation: Validate operational steps against current project documentation before applying them in production.
+
+## Reference(s):
+
+- [Bcc Skill Page](https://clawhub.ai/bytesagain1/skills/bcc)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown reference documentation emitted by shell command output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static local output; no API keys, credential access, network calls, or persistent system changes are described in the security evidence.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

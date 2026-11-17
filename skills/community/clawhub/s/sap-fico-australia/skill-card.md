@@ -1,41 +1,57 @@
-## Description: <br>
-Senior SAP Finance & Controlling consultant with Australian business expertise for GST configuration, PAYG withholding, Australian banking, ABN validation, local compliance, troubleshooting, integration, and S/4HANA migration guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Senior SAP Finance & Controlling consultant with Australian business expertise, covering GST configuration, PAYG withholding, Australian banking, ABN validation, local compliance, troubleshooting, integration, and S/4HANA migration guidance.
 
-## Publisher: <br>
-[LynniGPT](https://clawhub.ai/user/LynniGPT) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lynnigpt](https://clawhub.ai/user/lynnigpt)
 
-## Use Case: <br>
-SAP finance teams, consultants, implementation partners, and accounting firms use this skill to draft SAP FI/CO configuration, troubleshooting, integration, and migration guidance for Australian business requirements. It focuses on GST, PAYG withholding, ABN validation, BAS reporting, Australian banking, and S/4HANA considerations. <br>
-
-### Deployment Geography for Use: <br>
-Australia <br>
-
-## Known Risks and Mitigations: <br>
-Risk: SAP finance, tax, payment, and compliance guidance may be incomplete, outdated, or incorrect if applied directly to production systems. <br>
-Mitigation: Verify SAP note numbers, Fiori app names, tax rates, banking requirements, and ATO guidance against current authoritative sources before making production changes. <br>
-Risk: Configuration advice can affect financial postings, tax reporting, bank payments, or statutory compliance. <br>
-Mitigation: Review recommendations with qualified SAP and finance stakeholders, test changes in a non-production system, and follow the organization's change control process. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/LynniGPT/sap-fico-australia) <br>
-- [Australian Banking Integration Reference](artifact/australian_banking.md) <br>
-- [Australian Tax Codes Reference](artifact/australian_tax_codes.md) <br>
+## Use Case:
 
+SAP finance, controlling, implementation, support, migration, and accounting teams use this skill to get Australian-market SAP FI/CO guidance for GST, PAYG withholding, ABN validation, BAS considerations, Australian banking, payment configuration, troubleshooting, integrations, and S/4HANA migration.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with structured SAP sections and optional ABAP snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses are intended to be concise advisory drafts in en-AU, with skill configuration targeting a 400-word maximum response.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and artifact/skill.json) <br>
+Australia
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Australian tax, superannuation, banking, SAP OSS note, and compliance guidance can become outdated or vary by organisation.
+
+Mitigation: Verify recommendations against current SAP documentation, ATO guidance, banking requirements, and internal controls before production use.
+
+Risk: The skill provides implementation guidance for business-critical SAP finance and compliance workflows.
+
+Mitigation: Have qualified SAP FI/CO and compliance owners review configuration, payment, reporting, and migration changes before deployment.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/lynnigpt/skills/sap-fico-australia)
+- [SAP FICO Expert - Australia skill definition](artifact/SKILL.md)
+- [Australian Banking Integration Reference](artifact/australian_banking.md)
+- [Australian Tax Codes Reference](artifact/australian_tax_codes.md)
+- [Skill runtime configuration](artifact/skill.json)
+- [Few-shot examples](artifact/examples.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown responses with SAP transaction codes, tables, configuration steps, integration notes, S/4HANA considerations, Australian compliance notes, and optional ABAP snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Configured for concise en-AU responses with a 400-word target in the artifact response schema.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

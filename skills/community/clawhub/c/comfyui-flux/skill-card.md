@@ -1,42 +1,58 @@
-## Description: <br>
-Generates images locally through ComfyUI and Flux.1 Dev, including optional PuLID face-reference generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates local images through ComfyUI with Flux.1 Dev, including standard prompt-based generation and optional PuLID face-consistent generation.
 
-## Publisher: <br>
-[chrisliu95](https://clawhub.ai/user/chrisliu95) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chrisliu95](https://clawhub.ai/user/chrisliu95)
 
-## Use Case: <br>
-Developers and external users use this skill to generate local images, presentation graphics, and face-consistent portraits through a running ComfyUI instance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and reference images can be sent to any COMFYUI_URL value, which may expose sensitive content if it points away from a trusted local ComfyUI instance. <br>
-Mitigation: Keep COMFYUI_URL pointed at a trusted local ComfyUI instance and avoid sensitive prompts or files. <br>
-Risk: PuLID generation handles face-reference images and can create face-consistent outputs. <br>
-Mitigation: Use reference face images only with consent and review generated outputs before sharing. <br>
-Risk: Downloaded image bytes are written to the default generated-images/ directory or a custom --output path. <br>
-Mitigation: Choose output paths deliberately and review file destinations before running the scripts. <br>
+## Use Case:
 
+Developers and agents use this skill to run local ComfyUI image generation for prompt-based images and presentation graphics, and to optionally produce face-consistent images when a trusted local ComfyUI/PuLID setup is available.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/chrisliu95/comfyui-flux) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [PNG image files plus MEDIA:<path> text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saves generated images to generated-images/ by default or to a user-provided --output path after polling the configured ComfyUI endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Prompts or reference face images can be sent to an arbitrary ComfyUI endpoint if COMFYUI_URL is changed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted loopback ComfyUI endpoint and check COMFYUI_URL before running the scripts.
+
+Risk: Face-consistent generation uploads reference face images to the configured ComfyUI server for processing.
+
+Mitigation: Provide face reference images only when the user is comfortable with how that ComfyUI server stores and processes them.
+
+Risk: The security scan verdict is suspicious because face-image handling is under-scoped and endpoint trust is configurable.
+
+Mitigation: Review the skill before installing and prefer tightening default endpoint guidance to loopback-only operation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chrisliu95/skills/comfyui-flux)
+- [Publisher profile](https://clawhub.ai/user/chrisliu95)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown instructions with shell commands; generated image files reported as MEDIA:<path>]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a reachable trusted ComfyUI endpoint; generated images are saved under generated-images/ or a user-specified path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

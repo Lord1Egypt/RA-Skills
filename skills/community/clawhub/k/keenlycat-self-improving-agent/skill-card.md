@@ -1,40 +1,49 @@
-## Description: <br>
-Continuously captures and applies learnings from errors, user corrections, successful tasks, and periodic reviews to improve agent performance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Continuously captures and applies learnings from errors, user corrections, successful tasks, and periodic reviews to improve agent performance.
 
-## Publisher: <br>
-[keenlycat](https://clawhub.ai/user/keenlycat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[keenlycat](https://clawhub.ai/user/keenlycat)
 
-## Use Case: <br>
-Developers and agent operators use this skill to record, search, and review learnings from command failures, user corrections, successful tasks, and insights so future OpenClaw work can avoid repeated mistakes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist task details and failed command output in local learning memory, which may include sensitive project data or secrets. <br>
-Mitigation: Avoid auto-capturing commands that may expose secrets or sensitive customer or project data, and review captured learnings before retaining them. <br>
-Risk: Persistent learning records may remain longer than intended. <br>
-Mitigation: Periodically review, edit, or delete ~/.openclaw/workspace/memory/learnings.jsonl according to the user's privacy and retention expectations. <br>
+## Use Case:
 
+Developers and agent operators use this skill to capture errors, user corrections, successes, and insights as local learnings, then search and review those learnings before related tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/keenlycat/keenlycat-self-improving-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSONL learning records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores local learning records under ~/.openclaw/workspace/memory/learnings.jsonl when the bundled scripts are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: package.json, release metadata) <br>
+Risk: Persistent local learning logs may store task context and failed command details without strong consent, redaction, or integrity safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, avoid wrapping commands that include secrets or confidential paths, and use opt-in capture with redaction, restrictive file permissions, and a clear review and deletion process.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/keenlycat/skills/keenlycat-self-improving-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, shell command examples, and local JSONL learning records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores captured learnings locally in JSONL when the bundled shell scripts are used.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,51 @@
-## Description: <br>
-Local DevOps/autonomy skill for OpenClaw (safe evolution loop with guardrails). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local DevOps/autonomy skill for OpenClaw (safe evolution loop with guardrails).
 
-## Publisher: <br>
-[Delkoman88](https://clawhub.ai/user/Delkoman88) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[delkoman88](https://clawhub.ai/user/delkoman88)
 
-## Use Case: <br>
-Developers and engineers use Evolve to run a local OpenClaw skill evolution loop that snapshots status, generates and tests candidate skills, promotes reviewed candidates, and supports rollback. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can alter active OpenClaw skills through an unspecified local controller script. <br>
-Mitigation: Install only in an isolated development OpenClaw environment after inspecting the exact evolvectl.sh that will run. <br>
-Risk: An untrusted EVOLVECTL path could delegate the workflow to unexpected local code. <br>
-Mitigation: Do not point EVOLVECTL at an untrusted path. <br>
-Risk: Generated candidate skills may introduce incorrect behavior or weaken guardrails if promoted without review. <br>
-Mitigation: Require manual review and scanning before any generated skill is promoted into active use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Delkoman88/evolve) <br>
+## Use Case:
+
+Developers and engineers use this skill to run an OpenClaw skill evolution loop that snapshots status, generates candidates, tests them, promotes candidates into active skills, and supports rollback.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The local controller can change active OpenClaw skills, and the documented safeguard boundaries are incomplete.
+
+Mitigation: Review the local evolvectl.sh implementation before use, including writable paths, promotion overwrite behavior, backup creation, and rollback behavior.
+
+Risk: Automated skill changes may be inappropriate in workspaces where active skills must remain stable.
+
+Mitigation: Use this skill only in a workspace where automated skill changes are acceptable and test generated candidates before promotion.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Delegates operation to a local evolvectl.sh controller, with EVOLVECTL available to select the controller path.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release metadata) <br>
+**Output Type(s):** [guidance, shell commands, configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational guidance for invoking a local evolvectl.sh controller; EVOLVECTL can override the controller path.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

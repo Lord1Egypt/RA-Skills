@@ -1,41 +1,58 @@
-## Description: <br>
-Vedic astrology (Jyotish) REST API skill for Panchanga, Kundali, KP system, aspects, dashas, muhurta, compatibility, transits, remedies, webhooks, and related sidereal calculations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Vedic astrology REST API integration for Panchanga, Kundali, KP system, aspects, dasha, muhurta, compatibility, transits, remedies, calendars, and related Jyotish workflows.
 
-## Publisher: <br>
-[degen0root](https://clawhub.ai/user/degen0root) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[degen0root](https://clawhub.ai/user/degen0root)
 
-## Use Case: <br>
-External users and developers use this skill to have agents call PanchangaAPI for Vedic astrology data, including daily Panchanga, birth charts, timing windows, compatibility, transit analysis, festival calendars, remedies, and webhook subscriptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may send sensitive birth, time, and location data to a third-party astrology API. <br>
-Mitigation: Use a dedicated API key and only send precise personal data when the user has explicitly agreed that it is needed for the requested calculation. <br>
-Risk: The skill describes registration, webhook setup, and paid Telegram, crypto, and x402 flows. <br>
-Mitigation: Require explicit user approval before account registration, webhook creation, or any paid flow, and enforce strict wallet spending limits for agents. <br>
+## Use Case:
 
+External users and developers use this skill to let agents register for and call PanchangaAPI endpoints for Vedic astrology readings, calendars, timing recommendations, compatibility checks, and chart analysis.
 
-## Reference(s): <br>
-- [PanchangaAPI homepage](https://api.moon-bot.cc) <br>
-- [ClawHub skill listing](https://clawhub.ai/degen0root/panchanga-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with curl examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires or can register a PANCHANGA_API_KEY; calculation requests use datetime, latitude, and longitude.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.3.0 (source: server release evidence) <br>
+Risk: Astrology requests may send sensitive birth date, birth time, and location data to api.moon-bot.cc.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with informed user consent and avoid sending more personal data than the requested astrology workflow requires.
+
+Risk: The skill describes automated paid requests and payment-link flows.
+
+Mitigation: Require explicit user approval for the amount, account, and payment method before allowing an agent to pay or create payment links.
+
+Risk: Reusable API keys may be exposed in URLs, Telegram links, logs, or shared transcripts.
+
+Mitigation: Keep API keys in headers or environment variables, redact them from logs, and avoid embedding reusable keys in URLs or chat links.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/degen0root/skills/panchanga-api)
+- [PanchangaAPI homepage](https://api.moon-bot.cc)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JSON request examples and shell command examples; API responses are JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires current date/time handling and may use PANCHANGA_API_KEY for authenticated requests.]
+
+## Skill Version(s):
+
+4.3.0 (source: ClawHub server release evidence; artifact frontmatter says 4.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

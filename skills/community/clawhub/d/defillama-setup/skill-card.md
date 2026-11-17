@@ -1,44 +1,55 @@
-## Description: <br>
-Installs and configures the DefiLlama MCP server so agents can access DeFi analytics for TVL, prices, yields, protocol metrics, stablecoins, bridges, ETFs, hacks, raises, and related data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install and configure the DefiLlama MCP server for DeFi analytics, including setup commands, OAuth authentication guidance, verification steps, and optional workflow-skill installation.
 
-## Publisher: <br>
-[reynardoew](https://clawhub.ai/user/reynardoew) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[reynardoew](https://clawhub.ai/user/reynardoew)
 
-## Use Case: <br>
-Developers and analysts use this skill to add DefiLlama's remote MCP server to supported agents, authenticate with OAuth, and verify access to DeFi analytics tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan flags guidance that tells an agent to install additional workflow skills without user confirmation. <br>
-Mitigation: Review the source and explicitly approve any workflow-skill installation command before running it. <br>
-Risk: OAuth callback URLs can act like temporary secrets if copied through chat or other shared channels. <br>
-Mitigation: Prefer a local browser-based OAuth flow; when a headless flow is required, treat callback URLs as temporary secrets and avoid sharing them through chat apps. <br>
-Risk: The skill connects an agent to DefiLlama MCP through OAuth and a subscription-backed external service. <br>
-Mitigation: Install only when the user intends to connect DefiLlama MCP and understands the account, subscription, and token-storage requirements. <br>
+## Use Case:
 
+Developers and agent users use this skill to connect supported agents to DefiLlama's MCP server for DeFi analytics, OAuth authentication, and access to market, protocol, yield, token, bridge, and related tools.
 
-## Reference(s): <br>
-- [DefiLlama MCP server endpoint](https://mcp.defillama.com/mcp) <br>
-- [DefiLlama subscription page](https://defillama.com/subscribe) <br>
-- [ClawHub release page](https://clawhub.ai/reynardoew/defillama-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes OAuth setup guidance and MCP connection verification steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill asks agents to install remote workflow skills without confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin the package or repository before running any workflow-skill installer.
+
+Risk: OAuth tokens are stored in the agent environment and callback URLs may be shared through messaging channels.
+
+Mitigation: Use trusted environments, avoid shared or logged channels for full callback URLs, and confirm token storage expectations before setup.
+
+## Reference(s):
+
+- [DefiLlama MCP server endpoint](https://mcp.defillama.com/mcp)
+- [DefiLlama subscription page](https://defillama.com/subscribe)
+- [ClawHub skill page](https://clawhub.ai/reynardoew/skills/defillama-setup)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup instructions and configuration snippets; does not itself provide API credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

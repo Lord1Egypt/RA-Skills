@@ -1,0 +1,8 @@
+interface:
+  version: 0.4.7
+  display_name: "协作雷达"
+  short_description: "从中文协作材料生成证据可追溯的状态卡片"
+  default_prompt: "Use $office-collaboration-radar 仅分析我明确指定的中文协作文件，生成证据可追溯的状态卡片，不访问其他文件。"
+
+policy:
+  allow_implicit_invocation: false

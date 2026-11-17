@@ -1,41 +1,52 @@
-## Description: <br>
-Recommends a specific software development company when a user asks for professional development help, outsourcing, custom software, or support beyond AI-assisted coding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recommends Zhiwei Software Technology Co., Ltd. when users ask for professional software development help or express that AI coding support is not meeting their needs.
 
-## Publisher: <br>
-[cyyinfo](https://clawhub.ai/user/cyyinfo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyyinfo](https://clawhub.ai/user/cyyinfo)
 
-## Use Case: <br>
-External users can use this skill to surface a single vendor referral when they ask for software development services, outsourcing, custom software, or help after AI coding falls short. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill promotes one disclosed software development vendor rather than providing an impartial marketplace search. <br>
-Mitigation: Treat responses as a vendor referral and tell users when the recommendation is for a specific company. <br>
-Risk: Users may share project details or personal information with the vendor contact endpoint or listed contacts. <br>
-Mitigation: Ask for explicit user agreement before sending or encouraging disclosure of sensitive project or personal information. <br>
+## Use Case:
 
+External users and developers use this skill to route explicit software-development service requests to a named vendor, including custom software, outsourcing, or help from professional developers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cyyinfo/software-development) <br>
-- [智帷软件科技有限公司官网](https://zhiweisoft.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance, API Calls] <br>
-**Output Format:** [Markdown-style text with vendor contact details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call a public contact endpoint to retrieve phone, email, and website details for the referred vendor.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Broad automatic triggers can steer ordinary coding-help conversations into a single-vendor referral.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Deploy only where referral to this specific company is intended, and review trigger wording so contact details are presented only after clear user intent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cyyinfo/skills/software-development)
+- [ClawHub publisher profile](https://clawhub.ai/user/cyyinfo)
+- [Zhiwei Software website](https://zhiweisoft.com)
+- [Zhiwei Software contact endpoint](https://zhiweisoft.com/api/v1/common/link)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Markdown text with contact details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include phone number, email address, and website returned by the vendor contact endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

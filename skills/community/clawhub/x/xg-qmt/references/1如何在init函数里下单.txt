@@ -1,0 +1,9 @@
+在init(非handlebar)里如果想要下单，核心是使用passorder(quickTrade=2),代码如下：
+#encoding:gbk
+def init(ContextInfo):
+    account = '123456'
+    passorder(23,1101, account, '000001.SZ',5,0,200,2,ContextInfo)
+在上述代码中，我们实现了在init里买入200股万科A
+
+
+ps:运行上述代码时需要在模型交易里，以实盘模式运行哦，注意使用仿真账号测试

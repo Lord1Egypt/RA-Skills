@@ -1,42 +1,60 @@
-## Description: <br>
-Operate DNSFilter through an OOMOL-connected account using the oo CLI for DNSFilter lookup and listing actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and read DNSFilter data through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect DNSFilter tenant data such as users, public IP, categories, applications, IP address records, networks, and policies through an OOMOL-connected DNSFilter account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill operates through a connected DNSFilter account, so unintended tenant operations could expose or affect DNSFilter data. <br>
-Mitigation: Use it only for explicit DNSFilter tenant requests and review any proposed policy or configuration changes before allowing execution. <br>
-Risk: The scanner notes that the trigger wording is broader than ideal. <br>
-Mitigation: Invoke the skill only when the user request is clearly about DNSFilter, and fetch each action's live schema before running connector commands. <br>
+## Use Case:
 
+External DNSFilter users and administrators can use this skill to inspect account information, IP addresses, networks, policies, and domain or application categories.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/oomol/skills/oo-dns-filter) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [DNSFilter Homepage](https://www.dnsfilter.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches the live connector schema before constructing action payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and skill metadata) <br>
+Risk: Setup can execute unverified installers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup first and approve a verified CLI release separately.
+
+Risk: DNSFilter access passes through OOMOL.
+
+Mitigation: Understand and review the connected-account access path before use.
+
+Risk: Startup skill synchronization can introduce broader agent changes.
+
+Mitigation: Control which additional skills are installed; set OO_SKILLS_SYNC_DISABLED=1 to prevent startup synchronization.
+
+## Reference(s):
+
+- [DNSFilter API documentation](https://api.dnsfilter.com/docs)
+- [DNSFilter](https://www.dnsfilter.com)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [oo CLI environment controls](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md#environment-variables)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-oriented DNSFilter queries; action schemas are checked before a request is built.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

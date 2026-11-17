@@ -1,0 +1,6 @@
+interface:
+  display_name: "面向智能体的 CLI 工程"
+  short_description: "以证据指导面向 Agent 的 CLI 设计、审查和重构"
+  default_prompt: "使用 $agent-dx-cli-cn 审查并评分此 CLI，再实施已授权的改进并提供可执行验证证据。"
+policy:
+  allow_implicit_invocation: false

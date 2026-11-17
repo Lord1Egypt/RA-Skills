@@ -1,37 +1,53 @@
-## Description: <br>
-Emotional support and encouragement skill that detects user frustration and provides warm, personalized motivation with multiple response styles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Emotional support and encouragement skill that detects user frustration and provides warm, personalized motivation with multiple response styles.
 
-## Publisher: <br>
-[NemoHoHaloAi](https://clawhub.ai/user/NemoHoHaloAi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nemohohaloai](https://clawhub.ai/user/nemohohaloai)
 
-## Use Case: <br>
-External users and developers use this skill to receive short supportive responses when a conversation shows frustration, overwhelm, or a manual request for encouragement. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Supportive replies may trigger when the user's wording only mildly suggests frustration or overwhelm. <br>
-Mitigation: Install only if automatic encouragement is desired, and tune or disable triggers when the response frequency does not fit the environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/NemoHoHaloAi/cheer) <br>
+## Use Case:
 
+External users and agent operators use this skill to provide automatic or manually requested encouragement when a user appears frustrated, overwhelmed, tired, or stuck.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Short encouragement message with optional response metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include an emoji, follow-up phrase, detected emotion intensity, response category, and timestamp.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may offer encouragement after mild or ambiguous wording, which can feel unsolicited to some users.
+
+Mitigation: Use manual-only activation or stricter trigger settings when users prefer not to receive automatic emotional support.
+
+Risk: Repeated automatic encouragement can interrupt the user's workflow during periods of frustration.
+
+Mitigation: Apply rate limits or cooldowns so encouragement is occasional and does not overload the conversation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nemohohaloai/skills/cheer)
+- [Publisher profile](https://clawhub.ai/user/nemohohaloai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Concise encouragement messages with optional emoji and follow-up text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include response metadata such as detected emotion intensity, response category, and timestamp when implemented by an agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

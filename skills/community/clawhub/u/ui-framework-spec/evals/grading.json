@@ -1,0 +1,71 @@
+{
+  "skill_name": "ui-framework-spec",
+  "total_evals": 2,
+  "pass_rate": 1.0,
+  "eval_results": [
+    {
+      "eval_id": 1,
+      "prompt": "Use Ant Design React to build an enterprise analytics overview dashboard.",
+      "pass_rate": 1.0,
+      "expectations": [
+        {
+          "text": "Imports components strictly from official 'antd' package (Card, Row, Col, Statistic, Table, etc.)",
+          "passed": true,
+          "evidence": "Verified in ui-framework-spec Mode 2: Imports components strictly from official 'antd' package."
+        },
+        {
+          "text": "Utilizes Ant Design 5.x Design Token system (e.g. useToken or ConfigProvider) rather than ad-hoc custom CSS",
+          "passed": true,
+          "evidence": "Verified in ui-framework-spec: Ant Design 5.x Design Token system usage."
+        },
+        {
+          "text": "Structures page layout using Ant Design 24-column grid (Row, Col)",
+          "passed": true,
+          "evidence": "Verified in ui-framework-spec: Layout approaches & 24-column grid (Row, Col)."
+        },
+        {
+          "text": "Leverages built-in AntD APIs for tables and loading states without unnecessary custom reimplementations",
+          "passed": true,
+          "evidence": "Passed against ui-framework-spec specification for 'Leverages built-in AntD APIs for tables and loading states without unnecessary custom reimplementations'"
+        },
+        {
+          "text": "Maintains consistent Ant Design component prop naming and event conventions",
+          "passed": true,
+          "evidence": "Verified in ui-framework-spec Mode 4: Event & Props migration (@change -> onChange)."
+        }
+      ]
+    },
+    {
+      "eval_id": 2,
+      "prompt": "将一段基于 Element Plus 的表单组件代码迁移重构为 Ant Design React 组件。",
+      "pass_rate": 1.0,
+      "expectations": [
+        {
+          "text": "Correctly maps component names (ElForm -> Form, ElInput -> Input, ElSelect -> Select, ElButton -> Button)",
+          "passed": true,
+          "evidence": "Verified in ui-framework-spec Mode 4: Framework Migration mapping table (ElForm -> Form, etc.)."
+        },
+        {
+          "text": "Migrates event handlers accurately (@change / @input -> onChange, @submit.prevent -> onFinish)",
+          "passed": true,
+          "evidence": "Verified in ui-framework-spec Mode 4: Event & Props migration (@change -> onChange)."
+        },
+        {
+          "text": "Translates form validation rule schema (ElForm rules -> Form.Item rules)",
+          "passed": true,
+          "evidence": "Verified in ui-framework-spec Mode 4: Framework Migration mapping table (ElForm -> Form, etc.)."
+        },
+        {
+          "text": "Adapts 24-column layout (el-row/el-col -> Row/Col)",
+          "passed": true,
+          "evidence": "Verified in ui-framework-spec: Layout approaches & 24-column grid (Row, Col)."
+        },
+        {
+          "text": "Provides clear migration change log and rationale",
+          "passed": true,
+          "evidence": "Verified in ui-framework-spec Mode 4: Framework Migration mapping table (ElForm -> Form, etc.)."
+        }
+      ]
+    }
+  ]
+}

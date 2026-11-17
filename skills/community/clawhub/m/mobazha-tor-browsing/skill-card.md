@@ -1,45 +1,51 @@
-## Description: <br>
-Configure Tor Browser to access Mobazha stores privately, or run a store as a .onion hidden service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configure Tor Browser to access Mobazha stores privately, or run a store as a .onion hidden service.
 
-## Publisher: <br>
-[fengzie](https://clawhub.ai/user/fengzie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fengzie](https://clawhub.ai/user/fengzie)
 
-## Use Case: <br>
-Mobazha buyers and store operators use this skill to configure private Tor access for browsing stores and to run Mobazha stores as .onion hidden services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes commands that download and run a Mobazha installer with sudo privileges. <br>
-Mitigation: Review the command and source URL before execution, and run it only on the intended host with appropriate administrative authorization. <br>
-Risk: The skill discusses cryptocurrency payments and private marketplace browsing. <br>
-Mitigation: Confirm purchases and payment methods comply with applicable law, platform rules, and organizational policy before authorizing any transaction. <br>
-Risk: Tor routing protects network privacy but does not encrypt stored data. <br>
-Mitigation: Use separate data protection controls such as storage encryption, access control, backups, and regular software updates. <br>
+## Use Case:
 
+External users, store operators, and developers use this skill for guidance on browsing Mobazha stores through Tor Browser and configuring Mobazha stores as Tor hidden services.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fengzie/mobazha-tor-browsing) <br>
-- [Tor Browser download](https://www.torproject.org/download/) <br>
-- [Mobazha app](https://app.mobazha.org) <br>
-- [Mobazha standalone installer](https://get.mobazha.org/standalone) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes buyer browsing guidance and seller hidden-service setup options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill instructs users to run a remote installer with root privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if Mobazha's installer infrastructure is trusted; prefer dashboard-based configuration or a versioned, signed, checksum-verified installer.
+
+## Reference(s):
+
+- [Tor Browser Download](https://www.torproject.org/download/)
+- [Mobazha Marketplace](https://app.mobazha.org)
+- [Mobazha Standalone Installer](https://get.mobazha.org/standalone)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

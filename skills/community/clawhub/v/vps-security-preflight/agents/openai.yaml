@@ -1,0 +1,4 @@
+interface:
+  display_name: "OpenClaw VPS Security Preflight"
+  short_description: "Audit OpenClaw VPS security controls safely"
+  default_prompt: "Run a read-only OpenClaw VPS security preflight and summarize the highest-priority remediation steps without exposing host secrets."

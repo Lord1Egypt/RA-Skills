@@ -1,40 +1,55 @@
-## Description: <br>
-Fetches WeChat public-account article links from the Dajiala API and saves them to an Excel file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches WeChat public-account article links from the Dajiala API and saves them to an Excel file.
 
-## Publisher: <br>
-[mabao-laodie](https://clawhub.ai/user/mabao-laodie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mabao-laodie](https://clawhub.ai/user/mabao-laodie)
 
-## Use Case: <br>
-Operators and developers use this skill to collect article titles, links, publication times, and account names for configured WeChat public accounts through the Dajiala API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Dajiala API key and sends configured public-account IDs to Dajiala. <br>
-Mitigation: Use only approved account lists and review Dajiala data-handling terms before processing confidential or sensitive lists. <br>
-Risk: The skill writes Excel exports to a configured local directory. <br>
-Mitigation: Set input and output paths appropriate for the deployment environment and restrict access to generated workbooks. <br>
+## Use Case:
 
+External users and developers use this skill to collect recent WeChat public-account article metadata from Dajiala and generate a local Excel report for review or downstream reporting.
 
-## Reference(s): <br>
-- [Dajiala API endpoint used by the skill](https://www.dajiala.com/fbmain/monitor/v3/post_condition) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text] <br>
-**Output Format:** [Excel workbook (.xlsx) with terminal status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The workbook contains public-account name, article title, article link, and publication time fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated spreadsheets contain remote article data and links that may be interpreted by spreadsheet software.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated .xlsx files before sharing or opening them in environments that evaluate formulas, links, or external content.
+
+Risk: The skill requires a Dajiala API key and writes reports to a configured local path.
+
+Mitigation: Provide DAJIALA_KEY only in trusted environments and confirm the input and output paths before execution.
+
+## Reference(s):
+
+- [Dajiala API endpoint used by the skill](https://www.dajiala.com/fbmain/monitor/v3/post_condition)
+- [ClawHub skill page](https://clawhub.ai/mabao-laodie/skills/dajiala-article-fetcher)
+- [Publisher profile](https://clawhub.ai/user/mabao-laodie)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python execution and Excel file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DAJIALA_KEY and writes generated .xlsx reports under the configured local output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

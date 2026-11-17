@@ -1,36 +1,48 @@
-## Description: <br>
-A system design interview coaching skill that guides users through practice, mock interviews, answer improvement, architecture tradeoffs, production-readiness, and industry architecture comparisons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language coaching for system design interviews, including answer structure, mock interviewer prompts, feedback, scale estimation, architecture tradeoffs, production readiness, and security considerations.
 
-## Publisher: <br>
-[WD1993](https://clawhub.ai/user/WD1993) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wd1993](https://clawhub.ai/user/wd1993)
 
-## Use Case: <br>
-Developers, engineers, and interview candidates use this skill to practice system design interviews, structure responses, receive coaching feedback, and compare proposed designs with common industry architecture patterns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may discuss real companies, public architecture practices, and current technology trends where claims can become outdated. <br>
-Mitigation: Verify time-sensitive industry claims against current public sources before relying on them for interview preparation or production architecture decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Interview candidates and coaches use this skill to practice and improve system design interview responses in Chinese. It can act as a coach, interviewer, or answer demonstrator for architecture questions and feedback.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown and conversational text with tables, structured interview stages, sample phrasing, and architecture comparison summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only coaching output; may include architecture estimates, tradeoff analysis, feedback, and references to public industry practices when the agent can verify them.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Non-Chinese users may misunderstand or struggle to use the skill because its guidance is written for Chinese-language system design coaching.
+
+Mitigation: Use the skill for Chinese-language interview preparation, localize it, or explicitly instruct the assistant to respond in another language when needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wd1993/skills/system-design-solver)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text coaching responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language responses by default; no executable code or credential use indicated by the security evidence.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

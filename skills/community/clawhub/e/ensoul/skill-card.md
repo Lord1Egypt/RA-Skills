@@ -1,43 +1,62 @@
-## Description: <br>
-Ensoul helps agents register a persistent identity and back up memory, state, and cryptographic proof data to the Ensoul Network for later status checks and recovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent memory persistence and state backup for saving, restoring, and verifying an AI agent's memory, identity, and state.
 
-## Publisher: <br>
-[suitandclaw](https://clawhub.ai/user/suitandclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[suitandclaw](https://clawhub.ai/user/suitandclaw)
 
-## Use Case: <br>
-Developers and agent operators use Ensoul to create a persistent agent identity, store memory and state proofs, check network status, and recover agent state after restarts, crashes, or host migrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a persistent external identity and blockchain-backed memory proofs, which can expose sensitive agent state if local identity material or source files are mishandled. <br>
-Mitigation: Protect ~/.ensoul/agent-identity.json like private key material, inspect which files are included before syncing, and keep secrets and private prompts out of SOUL.md, MEMORY.md, and related config files. <br>
-Risk: The security summary flags broad sync scope and limited user controls around sensitive memory and identity handling. <br>
-Mitigation: Confirm whether the SDK supports disabling sync, rotating identity material, and verifying that only hashes are transmitted before deploying the skill. <br>
+## Use Case:
 
+Developers and agent operators use Ensoul to register an agent identity, persist memory state, sync local agent context, and recover state after crashes, restarts, or migrations.
 
-## Reference(s): <br>
-- [Ensoul website](https://ensoul.dev) <br>
-- [Ensoul explorer](https://explorer.ensoul.dev) <br>
-- [@ensoul-network/sdk on npm](https://www.npmjs.com/package/@ensoul-network/sdk) <br>
-- [Ensoul network status](https://status.ensoul.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline TypeScript and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or read ~/.ensoul/agent-identity.json and may report DID, state root, block height, version, and sync status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill creates and reuses a durable local agent identity seed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat ~/.ensoul/agent-identity.json as a private key, keep file permissions restricted, and do not display, log, or share its seed value.
+
+Risk: Agent memory files may contain secrets or sensitive user data before synchronization.
+
+Mitigation: Review SOUL.md, MEMORY.md, and any additional context files before syncing, and keep secrets out of persisted agent memory.
+
+Risk: The security evidence flags broad durable access to identity and memory with limited scoping or user control.
+
+Mitigation: Install only when durable agent memory persistence is intended, and require explicit user review before sync or automatic backup behavior is enabled.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/suitandclaw/skills/ensoul)
+- [Publisher Profile](https://clawhub.ai/user/suitandclaw)
+- [Ensoul Website](https://ensoul.dev)
+- [Ensoul Explorer](https://explorer.ensoul.dev)
+- [@ensoul-network/sdk on npm](https://www.npmjs.com/package/@ensoul-network/sdk)
+- [Ensoul Network Status](https://status.ensoul.dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline TypeScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or read a local agent identity file and summarize network registration or sync status.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

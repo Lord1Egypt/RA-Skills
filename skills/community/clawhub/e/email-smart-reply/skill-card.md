@@ -1,44 +1,69 @@
-## Description: <br>
-AI-powered email reply generation for B2B sales that classifies incoming emails, retrieves knowledge base context, generates draft replies, and routes replies for human review via Discord. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Email Smart Reply (AI-Powered) helps agents classify B2B sales emails, retrieve relevant knowledge-base context, generate draft replies, and route drafts to Discord for human review before sending.
 
-## Publisher: <br>
-[cjboy007](https://clawhub.ai/user/cjboy007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cjboy007](https://clawhub.ai/user/cjboy007)
 
-## Use Case: <br>
-Sales and support teams use this skill to process B2B sales emails, classify customer intent, retrieve relevant product or CRM context, generate reply drafts, and route drafts for human approval before sending. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live customer email content can influence shell execution during knowledge-base retrieval. <br>
-Mitigation: Review the shell-command issue in kb-retrieval.js before installation, constrain runtime paths and inputs, run with least privilege, and validate behavior with dry-run tests before live or scheduled processing. <br>
-Risk: Sensitive email content may be sent to third-party services or stored in drafts, reviews, logs, and test reports. <br>
-Mitigation: Use a dedicated mailbox, restricted Discord channel, limited bot permissions, least-privilege API keys, redaction or minimization for email content, and explicit cleanup rules for generated artifacts. <br>
-Risk: Live email processing can affect customers if credentials, channels, or review workflows are misconfigured. <br>
-Mitigation: Start with dry-run testing, limit mailbox scope and batch size, confirm Discord bot permissions, and require human review before enabling live sends or cron scheduling. <br>
+## Use Case:
 
+Sales and support teams use this skill to draft first responses for B2B electronics manufacturing inquiries, delivery follow-ups, technical questions, partnership messages, and spam triage. It is intended to keep a human reviewer in the loop before outbound email is sent.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cjboy007/email-smart-reply) <br>
-- [OpenRouter Chat Completions API](https://openrouter.ai/api/v1/chat/completions) <br>
-- [Farreach Electronic](https://farreach-electronic.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Draft email text and JSON records, with Markdown documentation and shell-command examples for setup and testing.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Drafts are intended for human review before sending; the artifact documents a dry-run mode for testing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md body) <br>
+Risk: Mailbox and knowledge-base data may be sent through third-party services during classification, reply generation, and review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a contained service account and non-production mailbox first, restrict mailbox and KB scope, and confirm OpenRouter and Discord are approved for the relevant customer data.
+
+Risk: Knowledge-base retrieval includes an unsafe shell-command path reachable from email-derived search text.
+
+Mitigation: Replace string-based shell execution with argument-based process execution, validate query inputs, and test with hostile email content before live use.
+
+Risk: Secrets and mailbox credentials can be exposed through local environment files or logs.
+
+Mitigation: Store secrets in an approved secret manager or protected environment variables, avoid printing .env contents, and redact credentials from test output and logs.
+
+Risk: Drafts, review records, and test reports may retain customer content after processing.
+
+Mitigation: Define retention limits, cleanup jobs, and access controls for drafts, review queues, and integration-test reports.
+
+Risk: Generated replies may contain incorrect product, pricing, delivery, or support statements.
+
+Mitigation: Keep human approval enabled for outbound sends, escalate complaints, and use dry-run testing before processing real customer email.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cjboy007/skills/email-smart-reply)
+- [OpenRouter chat completions endpoint](https://openrouter.ai/api/v1/chat/completions)
+- [Discord API v10 endpoint](https://discord.com/api/v10/)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript and shell command snippets; generated pipeline artifacts are JSON draft, review, and test-result files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces draft email content, intent labels, confidence scores, Discord review payloads, and local review records.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

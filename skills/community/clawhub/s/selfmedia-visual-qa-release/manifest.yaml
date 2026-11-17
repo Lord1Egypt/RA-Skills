@@ -1,0 +1,12 @@
+name: selfmedia-visual-qa-release
+slug: selfmedia-visual-qa-release
+display_name: 媒体交付包校验
+description: 按显式文件和媒体合同只读检查渲染交付包；输出失败字段，不覆盖或晋级用户文件。
+version: 1.0.0
+license: MIT-0
+tags:
+  - media-qa
+  - video
+  - subtitles
+  - chinese
+self_test: python3 scripts/self_test.py

@@ -1,0 +1,241 @@
+"use strict";
+/**
+ * Zobrist hashing for position identification
+ *
+ * Zobrist hashing provides a fast way to uniquely identify board positions
+ * for use in the transposition table. Each piece on each square gets a random
+ * 64-bit number, and the hash is the XOR of all piece positions plus state.
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.initZobrist = initZobrist;
+exports.computeZobristHash = computeZobristHash;
+exports.updateHashMove = updateHashMove;
+exports.updateHashCapture = updateHashCapture;
+exports.toggleSide = toggleSide;
+exports.updateHashCastling = updateHashCastling;
+exports.updateHashEnPassant = updateHashEnPassant;
+exports.addPieceToHash = addPieceToHash;
+exports.removePieceFromHash = removePieceFromHash;
+const types_1 = require("../types");
+const constants_1 = require("../utils/constants");
+// ==================== Zobrist Key Tables ====================
+/**
+ * Random 64-bit numbers for Zobrist hashing
+ * [piece][square] -> random bigint
+ */
+let pieceKeys = [];
+/**
+ * Random number for side to move (white)
+ */
+let sideKey = 0n;
+/**
+ * Random numbers for castling rights
+ * [0] = white short, [1] = white long, [2] = black short, [3] = black long
+ */
+let castlingKeys = [];
+/**
+ * Random numbers for en passant file
+ * [file] -> random bigint (8 files)
+ */
+let enPassantKeys = [];
+// ==================== Initialization ====================
+/**
+ * Initialize Zobrist hash tables with random 64-bit numbers
+ *
+ * This should be called once at startup. Uses a simple PRNG seeded
+ * with a fixed value for deterministic hashing.
+ */
+function initZobrist() {
+    // Initialize pseudo-random number generator with seed
+    let seed = 12345n;
+    const rand64 = () => {
+        // Simple XORShift64 PRNG
+        seed ^= seed << 13n;
+        seed ^= seed >> 7n;
+        seed ^= seed << 17n;
+        return seed;
+    };
+    // Initialize piece keys [piece type][square]
+    pieceKeys = [];
+    for (let piece = 0; piece <= 12; piece++) {
+        pieceKeys[piece] = [];
+        for (let square = 0; square < constants_1.TOTAL_SQUARES; square++) {
+            pieceKeys[piece][square] = rand64();
+        }
+    }
+    // Initialize side key (for white to move)
+    sideKey = rand64();
+    // Initialize castling keys
+    castlingKeys = [
+        rand64(), // white short
+        rand64(), // white long
+        rand64(), // black short
+        rand64(), // black long
+    ];
+    // Initialize en passant keys (one per file)
+    enPassantKeys = [];
+    for (let file = 0; file < 8; file++) {
+        enPassantKeys[file] = rand64();
+    }
+}
+// ==================== Hash Computation ====================
+/**
+ * Compute the Zobrist hash for a board position
+ *
+ * @param board - Board to hash
+ * @returns 64-bit Zobrist hash
+ */
+function computeZobristHash(board) {
+    let hash = 0n;
+    // XOR piece positions
+    for (let square = 0; square < constants_1.TOTAL_SQUARES; square++) {
+        const piece = board.mailbox[square];
+        if (piece !== types_1.Piece.EMPTY) {
+            hash ^= pieceKeys[piece][square];
+        }
+    }
+    // XOR side to move (if white)
+    if (board.turn === types_1.InternalColor.WHITE) {
+        hash ^= sideKey;
+    }
+    // XOR castling rights
+    if (board.castlingRights.whiteShort) {
+        hash ^= castlingKeys[0];
+    }
+    if (board.castlingRights.whiteLong) {
+        hash ^= castlingKeys[1];
+    }
+    if (board.castlingRights.blackShort) {
+        hash ^= castlingKeys[2];
+    }
+    if (board.castlingRights.blackLong) {
+        hash ^= castlingKeys[3];
+    }
+    // XOR en passant square
+    if (board.enPassantSquare !== null) {
+        const file = board.enPassantSquare % 8;
+        hash ^= enPassantKeys[file];
+    }
+    return hash;
+}
+/**
+ * Update hash after moving a piece
+ *
+ * This is more efficient than recomputing the entire hash.
+ *
+ * @param hash - Current hash
+ * @param piece - Piece being moved
+ * @param from - Source square
+ * @param to - Destination square
+ * @returns Updated hash
+ */
+function updateHashMove(hash, piece, from, to) {
+    // Remove piece from old square
+    hash ^= pieceKeys[piece][from];
+    // Add piece to new square
+    hash ^= pieceKeys[piece][to];
+    return hash;
+}
+/**
+ * Update hash after capturing a piece
+ *
+ * @param hash - Current hash
+ * @param capturedPiece - Piece being captured
+ * @param square - Square where capture occurred
+ * @returns Updated hash
+ */
+function updateHashCapture(hash, capturedPiece, square) {
+    // Remove captured piece
+    hash ^= pieceKeys[capturedPiece][square];
+    return hash;
+}
+/**
+ * Toggle side to move in hash
+ *
+ * @param hash - Current hash
+ * @returns Updated hash with toggled side
+ */
+function toggleSide(hash) {
+    return hash ^ sideKey;
+}
+/**
+ * Update hash for castling rights change
+ *
+ * @param hash - Current hash
+ * @param whiteShortOld - Old white short castling right
+ * @param whiteShortNew - New white short castling right
+ * @param whiteLongOld - Old white long castling right
+ * @param whiteLongNew - New white long castling right
+ * @param blackShortOld - Old black short castling right
+ * @param blackShortNew - New black short castling right
+ * @param blackLongOld - Old black long castling right
+ * @param blackLongNew - New black long castling right
+ * @returns Updated hash
+ */
+function updateHashCastling(hash, whiteShortOld, whiteShortNew, whiteLongOld, whiteLongNew, blackShortOld, blackShortNew, blackLongOld, blackLongNew) {
+    // XOR out old castling rights
+    if (whiteShortOld)
+        hash ^= castlingKeys[0];
+    if (whiteLongOld)
+        hash ^= castlingKeys[1];
+    if (blackShortOld)
+        hash ^= castlingKeys[2];
+    if (blackLongOld)
+        hash ^= castlingKeys[3];
+    // XOR in new castling rights
+    if (whiteShortNew)
+        hash ^= castlingKeys[0];
+    if (whiteLongNew)
+        hash ^= castlingKeys[1];
+    if (blackShortNew)
+        hash ^= castlingKeys[2];
+    if (blackLongNew)
+        hash ^= castlingKeys[3];
+    return hash;
+}
+/**
+ * Update hash for en passant square change
+ *
+ * @param hash - Current hash
+ * @param oldSquare - Old en passant square (or null)
+ * @param newSquare - New en passant square (or null)
+ * @returns Updated hash
+ */
+function updateHashEnPassant(hash, oldSquare, newSquare) {
+    // XOR out old en passant
+    if (oldSquare !== null) {
+        const oldFile = oldSquare % 8;
+        hash ^= enPassantKeys[oldFile];
+    }
+    // XOR in new en passant
+    if (newSquare !== null) {
+        const newFile = newSquare % 8;
+        hash ^= enPassantKeys[newFile];
+    }
+    return hash;
+}
+/**
+ * Add a piece to the hash
+ *
+ * @param hash - Current hash
+ * @param piece - Piece to add
+ * @param square - Square where piece is added
+ * @returns Updated hash
+ */
+function addPieceToHash(hash, piece, square) {
+    return hash ^ pieceKeys[piece][square];
+}
+/**
+ * Remove a piece from the hash
+ *
+ * @param hash - Current hash
+ * @param piece - Piece to remove
+ * @param square - Square where piece is removed
+ * @returns Updated hash
+ */
+function removePieceFromHash(hash, piece, square) {
+    return hash ^ pieceKeys[piece][square];
+}
+// Initialize on module load
+initZobrist();
+//# sourceMappingURL=zobrist.js.map

@@ -1,47 +1,62 @@
-## Description: <br>
-Use the viral.app API from an agent with a local CLI for account analytics, tracked videos/accounts, projects, creator hub, and live data operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the viral.app API from an agent with a local CLI for account analytics, tracked videos/accounts, projects, creator hub, and live data operations.
 
-## Publisher: <br>
-[feliche93](https://clawhub.ai/user/feliche93) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[feliche93](https://clawhub.ai/user/feliche93)
 
-## Use Case: <br>
-Developers, analysts, and operations teams use this skill to query viral.app analytics, manage tracked accounts and videos, build creator and viral-video reports, and perform approval-gated resource or payout operations through the viral-app CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A sufficiently privileged viral.app API key can expose or change account, creator, project, video, and payout data. <br>
-Mitigation: Install only if the viral-app CLI is trusted, use an appropriately scoped VIRAL_API_KEY, avoid logging or committing keys, and rotate any exposed credential. <br>
-Risk: Payout initiation and other write operations can create financial or data-changing side effects. <br>
-Mitigation: Prefer read or review-first workflows, confirm intent before POST/PUT/PATCH/DELETE operations, verify recipients and amounts, and preserve the calculation payload and integrity token returned by payout calculation. <br>
-Risk: Broad analytics queries and exports can produce excessive or misleading results when filters, dates, or org-scoped IDs are wrong. <br>
-Mitigation: Collect platform IDs, org-scoped IDs, date ranges, and pagination limits first; start with narrow queries and include direct viral.app links for review. <br>
+## Use Case:
 
+External developers and operators use this skill to guide an agent that reads viral.app analytics, manages tracked entities and projects, and prepares Slack-ready leaderboard, viral video library, and creator payout reports. It also guides cautious execution of creator payout workflows through the local viral-app CLI.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/feliche93/viral-app) <br>
-- [Skill Homepage](https://github.com/fmd-labs/viral-app-skills/tree/main/viral-app) <br>
-- [viral.app Application](https://viral.app/app) <br>
-- [Leaderboard Report Template](assets/templates/leaderboard.md) <br>
-- [Viral Video Library Report Template](assets/templates/viral-video-library-report.md) <br>
-- [Creator Payments and CPM Report Template](assets/templates/creator-payments-cpm-report.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports, JSON-oriented CLI summaries, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read workflows should use narrow queries and JSON output by default; report templates produce Slack-ready Markdown.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.6 (source: server release evidence) <br>
+Risk: The external viral-app CLI and VIRAL_API_KEY can access account, project, creator, and payout data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after trusting the CLI and scope VIRAL_API_KEY permissions to the intended organization and tasks.
+
+Risk: Payout initiation and auto-approval can create financial obligations.
+
+Mitigation: Review payout amounts, recipients, campaign IDs, integrity tokens, and liability acknowledgements before allowing execution.
+
+Risk: Mutation commands can change tracked accounts, projects, creator hub resources, or refresh state.
+
+Mitigation: Confirm user intent before write actions, inspect command help for required fields, and prefer review-first behavior for payout mutations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/feliche93/skills/viral-app)
+- [Skill homepage](https://github.com/fmd-labs/viral-app-skills/tree/main/viral-app)
+- [viral.app application](https://viral.app/app)
+- [Leaderboard report template](assets/templates/leaderboard.md)
+- [Viral Video Library report template](assets/templates/viral-video-library-report.md)
+- [Creator payments + CPM report template](assets/templates/creator-payments-cpm-report.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports and CLI command guidance, with JSON-oriented command output by default]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the local viral-app CLI, VIRAL_API_KEY, and bundled Markdown templates for report-style outputs.]
+
+## Skill Version(s):
+
+0.1.6 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

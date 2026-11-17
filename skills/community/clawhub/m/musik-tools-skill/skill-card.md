@@ -1,45 +1,62 @@
-## Description: <br>
-Music discovery and creative audio planning companion for finding songs, checking singing range, drafting lyrics, and preparing AI music generation briefs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Music discovery and creative audio planning companion for finding songs, checking singing range, drafting lyrics, and preparing AI music generation briefs.
 
-## Publisher: <br>
-[eavemma5-tech](https://clawhub.ai/user/eavemma5-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eavemma5-tech](https://clawhub.ai/user/eavemma5-tech)
 
-## Use Case: <br>
-External users use this skill to turn music discovery, singing range, pitch, lyric, and AI music generation goals into clear prompts, variants, and practical next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill links to external Musik Tools and GitHub resources where users may choose to enter recordings or personal information. <br>
-Mitigation: Review linked sites separately and avoid entering sensitive recordings or personal information unless the destination is appropriate for the user's use case. <br>
+## Use Case:
 
+External users use this skill to turn music discovery needs, song clues, singing or pitch preparation, lyric direction, and AI music generation goals into structured prompts, variants, and next-step checklists.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/eavemma5-tech/skills/musik-tools-skill) <br>
-- [Musik Tools](https://musik.tools/) <br>
-- [Song Finder](https://musik.tools/song-finder) <br>
-- [Music Finder](https://musik.tools/music-finder) <br>
-- [Singing Test](https://musik.tools/singing-test) <br>
-- [Pitch Detector](https://musik.tools/pitch-detector) <br>
-- [Mureka Music](https://musik.tools/mureka-music) <br>
-- [Rap Lyrics Generator](https://musik.tools/rap-lyrics-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown response with structured prompts, useful variants, and a short checklist.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Document-only skill; no executable behavior, credential use, persistence, privileged access, or required API access is reported in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill links to external Musik Tools and GitHub pages that may change outside the skill package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review linked external pages before relying on them in production or user-facing workflows.
+
+Risk: Generic music trigger terms could activate the skill for broad music requests.
+
+Mitigation: Confirm the user's music discovery, lyric, singing, pitch, or AI music planning intent before applying the workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/eavemma5-tech/skills/musik-tools-skill)
+- [Musik Tools](https://musik.tools/)
+- [Song Finder](https://musik.tools/song-finder)
+- [Music Finder](https://musik.tools/music-finder)
+- [Singing Test](https://musik.tools/singing-test)
+- [Pitch Detector](https://musik.tools/pitch-detector)
+- [Mureka Music](https://musik.tools/mureka-music)
+- [Rap Lyrics Generator](https://musik.tools/rap-lyrics-generator)
+- [GitHub Resources](https://github.com/eavemma5-tech/musik-tools-resources)
+- [GitHub Pages](https://eavemma5-tech.github.io/musik-tools-resources/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces search prompts, creative variants, lyric direction, singing or pitch workflow checklists, and AI music briefs.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, skill.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

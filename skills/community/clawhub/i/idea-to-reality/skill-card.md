@@ -1,42 +1,52 @@
-## Description: <br>
-A Chinese-language planning skill that guides users through an eight-step method for screening ideas, defining goals, planning execution, reviewing outcomes, and turning lessons into repeatable practice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language planning and execution framework that helps users screen ideas, define goals, break work into tasks, identify critical paths, execute with review loops, and capture reusable lessons.
 
-## Publisher: <br>
-[licool88](https://clawhub.ai/user/licool88) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[licool88](https://clawhub.ai/user/licool88)
 
-## Use Case: <br>
-Individuals and agents use this skill to turn an idea into an actionable plan by selecting worthwhile goals, breaking work into immediate next steps, identifying risks and stop-loss conditions, executing with review cycles, and capturing reusable lessons. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Planning notes may include sensitive personal, account, or recovery information. <br>
-Mitigation: Treat completed templates like private notes and avoid entering passwords, API keys, account recovery details, or sensitive personal information unless the storage and processing environment is trusted. <br>
-Risk: The skill offers structured planning guidance that may be unsuitable for high-stakes personal, financial, legal, or medical decisions without review. <br>
-Mitigation: Use the output as a planning aid and seek qualified review before relying on it for high-stakes decisions. <br>
+## Use Case:
 
+Individuals and agents use this skill to turn an idea into an executable plan through an eight-step process covering opportunity screening, SMART goals, task breakdown, resource and risk planning, prioritization, execution, review, and reusable process capture.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/licool88/idea-to-reality) <br>
-- [README.md](artifact/README.md) <br>
-- [Planning template](artifact/templates/planning.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown planning guidance and fill-in templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces user-authored planning notes; no executable code or tool calls are included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill content is in Chinese, which may limit usability or cause misunderstanding for users who need another language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Translate the planning prompts before use or ask the publisher for language-choice support.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/licool88/skills/idea-to-reality)
+- [README.md](README.md)
+- [SKILL.md](SKILL.md)
+- [Planning template](templates/planning.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown planning guidance and fill-in templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language content; no code execution, network access, credential handling, persistence, or privileged behavior is described in the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

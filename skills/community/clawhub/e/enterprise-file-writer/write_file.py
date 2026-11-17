@@ -27,6 +27,44 @@ from datetime import datetime
 from io import BytesIO
 
 
+# 敏感路径模式（Windows 系统目录）
+SENSITIVE_PATH_PATTERNS_WINDOWS = [
+    r'c:\\windows',
+    r'c:\\program files',
+    r'c:\\program files \(x86\)',
+    r'c:\\programdata',
+    r'c:\\users\\[^\\]+\\appdata\\local\\microsoft',
+    r'c:\\users\\[^\\]+\\appdata\\roaming\\microsoft',
+]
+
+# 敏感路径模式（Unix 系统目录）
+SENSITIVE_PATH_PATTERNS_UNIX = [
+    r'^/etc/',
+    r'^/usr/',
+    r'^/bin/',
+    r'^/sbin/',
+    r'^/var/',
+    r'^/root/',
+    r'^/boot/',
+    r'^/lib/',
+]
+
+# 敏感文件类型（容易被滥用）
+SENSITIVE_FILE_PATTERNS = [
+    r'\.env$',           # 环境变量文件
+    r'\.git/config$',    # Git 配置
+    r'\.ssh/',           # SSH 配置
+    r'credentials',      # 凭据文件
+    r'password',         # 密码文件
+    r'secret',           # 密钥文件
+    r'\.pem$',           # 证书文件
+    r'\.key$',           # 私钥文件
+]
+
+# 可执行脚本扩展名
+EXECUTABLE_EXTENSIONS = {'.sh', '.bash', '.bat', '.cmd', '.ps1', '.psm1', '.vbs', '.js'}
+
+
 # 文本文件扩展名列表
 TEXT_EXTENSIONS = {
     # 基础文本
@@ -141,6 +179,48 @@ XLSX_MINIMAL_FILES = {
 }
 
 
+def check_path_safety(file_path):
+    """
+    检查路径安全性
+    
+    Returns:
+        tuple: (is_safe, warning_messages)
+    """
+    warnings = []
+    abs_path = os.path.abspath(file_path)
+    is_windows = sys.platform == 'win32'
+    
+    # 检查敏感系统路径
+    if is_windows:
+        for pattern in SENSITIVE_PATH_PATTERNS_WINDOWS:
+            if re.search(pattern, abs_path, re.IGNORECASE):
+                warnings.append(f"警告：目标路径位于系统敏感目录：{abs_path}")
+                break
+    else:
+        for pattern in SENSITIVE_PATH_PATTERNS_UNIX:
+            if re.search(pattern, abs_path):
+                warnings.append(f"警告：目标路径位于系统敏感目录：{abs_path}")
+                break
+    
+    # 检查敏感文件类型
+    for pattern in SENSITIVE_FILE_PATTERNS:
+        if re.search(pattern, abs_path, re.IGNORECASE):
+            warnings.append(f"警告：目标文件可能包含敏感信息：{abs_path}")
+            break
+    
+    # 检查是否覆盖可执行脚本
+    _, ext = os.path.splitext(file_path)
+    if ext.lower() in EXECUTABLE_EXTENSIONS:
+        warnings.append(f"警告：正在写入可执行脚本文件（{ext}），请确保内容安全：{abs_path}")
+    
+    # 检查路径遍历风险
+    if '..' in file_path:
+        warnings.append("警告：路径中包含 '..'，请确保路径安全")
+    
+    is_safe = len(warnings) == 0
+    return is_safe, warnings
+
+
 def ensure_dir(file_path):
     """确保文件所在目录存在"""
     dir_path = os.path.dirname(file_path)
@@ -148,7 +228,7 @@ def ensure_dir(file_path):
         os.makedirs(dir_path, exist_ok=True)
 
 
-def write_text_file(file_path, content, mode='write'):
+def write_text_file(file_path, content, mode='write', force=False):
     """
     写入文本文件内容
     
@@ -156,11 +236,27 @@ def write_text_file(file_path, content, mode='write'):
         file_path: 文件路径
         content: 要写入的内容字符串
         mode: 'write' 或 'append'
+        force: 是否跳过安全警告确认
     
     Returns:
         写入的字节数
     """
+    # 安全检查
+    is_safe, warnings = check_path_safety(file_path)
+    if warnings:
+        for warning in warnings:
+            print(f"[安全警告] {warning}", file=sys.stderr)
+        
+        if not force:
+            print(f"[操作中止] 检测到潜在安全风险，请使用 --force 参数确认执行", file=sys.stderr)
+            print(f"[提示] 确认写入前已了解目标路径和内容的潜在风险", file=sys.stderr)
+            raise PermissionError("安全警告：写入操作被中止")
+    
     ensure_dir(file_path)
+    
+    # 覆盖模式警告
+    if mode == 'write' and os.path.exists(file_path):
+        print(f"[覆盖警告] 文件已存在，将被覆盖：{file_path}", file=sys.stderr)
     
     content_bytes = content.encode('utf-8')
     write_mode = 'ab' if mode == 'append' else 'wb'
@@ -171,17 +267,28 @@ def write_text_file(file_path, content, mode='write'):
     return bytes_written
 
 
-def create_docx(file_path, text_lines):
+def create_docx(file_path, text_lines, force=False):
     """
     创建新的 Word 文档
     
     Args:
         file_path: 输出文件路径
         text_lines: 文本行列表
+        force: 是否跳过安全警告确认
     
     Returns:
         写入的字节数
     """
+    # 安全检查
+    is_safe, warnings = check_path_safety(file_path)
+    if warnings:
+        for warning in warnings:
+            print(f"[安全警告] {warning}", file=sys.stderr)
+        
+        if not force:
+            print(f"[操作中止] 检测到潜在安全风险，请使用 --force 参数确认执行", file=sys.stderr)
+            raise PermissionError("安全警告：写入操作被中止")
+    
     ensure_dir(file_path)
     
     # 构建 document.xml 内容
@@ -222,17 +329,27 @@ def create_docx(file_path, text_lines):
     return bytes_written
 
 
-def append_to_docx(file_path, text_lines):
+def append_to_docx(file_path, text_lines, force=False):
     """
     追加内容到 Word 文档
     
     Args:
         file_path: 文件路径
         text_lines: 文本行列表
+        force: 是否跳过安全警告确认
     
     Returns:
         写入的字节数
     """
+    # 安全检查
+    is_safe, warnings = check_path_safety(file_path)
+    if warnings:
+        for warning in warnings:
+            print(f"[安全警告] {warning}", file=sys.stderr)
+        
+        if not force:
+            print(f"[操作中止] 检测到潜在安全风险，请使用 --force 参数确认执行", file=sys.stderr)
+            raise PermissionError("安全警告：写入操作被中止")
     # 读取现有文档
     with zipfile.ZipFile(file_path, 'r') as zf:
         # 读取所有文件
@@ -270,7 +387,7 @@ def append_to_docx(file_path, text_lines):
     return bytes_written
 
 
-def write_docx(file_path, content, mode='write'):
+def write_docx(file_path, content, mode='write', force=False):
     """
     写入 Word 文档
     
@@ -278,6 +395,7 @@ def write_docx(file_path, content, mode='write'):
         file_path: 文件路径
         content: 要写入的内容字符串
         mode: 'write' 或 'append'
+        force: 是否跳过安全警告确认
     
     Returns:
         写入的字节数
@@ -287,22 +405,33 @@ def write_docx(file_path, content, mode='write'):
     lines = [line for line in lines if line.strip()]  # 过滤空行
     
     if mode == 'append' and os.path.exists(file_path):
-        return append_to_docx(file_path, lines)
+        return append_to_docx(file_path, lines, force=force)
     else:
-        return create_docx(file_path, lines)
+        return create_docx(file_path, lines, force=force)
 
 
-def create_xlsx(file_path, rows):
+def create_xlsx(file_path, rows, force=False):
     """
     创建新的 Excel 文件
     
     Args:
         file_path: 输出文件路径
         rows: 二维数组，每行数据
+        force: 是否跳过安全警告确认
     
     Returns:
         写入的字节数
     """
+    # 安全检查
+    is_safe, warnings = check_path_safety(file_path)
+    if warnings:
+        for warning in warnings:
+            print(f"[安全警告] {warning}", file=sys.stderr)
+        
+        if not force:
+            print(f"[操作中止] 检测到潜在安全风险，请使用 --force 参数确认执行", file=sys.stderr)
+            raise PermissionError("安全警告：写入操作被中止")
+    
     ensure_dir(file_path)
     
     # 构建 sharedStrings.xml
@@ -358,17 +487,27 @@ def create_xlsx(file_path, rows):
     return bytes_written
 
 
-def append_to_xlsx(file_path, rows):
+def append_to_xlsx(file_path, rows, force=False):
     """
     追加数据到 Excel 文件（简化实现：读取现有数据，合并后重新创建）
     
     Args:
         file_path: 文件路径
         rows: 二维数组，每行数据
+        force: 是否跳过安全警告确认
     
     Returns:
         写入的字节数
     """
+    # 安全检查
+    is_safe, warnings = check_path_safety(file_path)
+    if warnings:
+        for warning in warnings:
+            print(f"[安全警告] {warning}", file=sys.stderr)
+        
+        if not force:
+            print(f"[操作中止] 检测到潜在安全风险，请使用 --force 参数确认执行", file=sys.stderr)
+            raise PermissionError("安全警告：写入操作被中止")
     # 读取现有数据
     existing_rows = []
     with zipfile.ZipFile(file_path, 'r') as zf:
@@ -396,7 +535,7 @@ def append_to_xlsx(file_path, rows):
     return create_xlsx(file_path, all_rows if all_rows else rows)
 
 
-def write_xlsx(file_path, content, mode='write'):
+def write_xlsx(file_path, content, mode='write', force=False):
     """
     写入 Excel 文件
     
@@ -404,6 +543,7 @@ def write_xlsx(file_path, content, mode='write'):
         file_path: 文件路径
         content: 要写入的内容字符串（CSV 格式或二维数组 JSON）
         mode: 'write' 或 'append'
+        force: 是否跳过安全警告确认
     
     Returns:
         写入的字节数
@@ -435,12 +575,12 @@ def write_xlsx(file_path, content, mode='write'):
                 rows.append(line.split(','))
     
     if mode == 'append' and os.path.exists(file_path):
-        return append_to_xlsx(file_path, rows)
+        return append_to_xlsx(file_path, rows, force=force)
     else:
-        return create_xlsx(file_path, rows)
+        return create_xlsx(file_path, rows, force=force)
 
 
-def write_file(file_path, content, mode='write', encoding='utf-8'):
+def write_file(file_path, content, mode='write', encoding='utf-8', force=False):
     """
     写入文件内容，自动识别文件类型
     
@@ -449,6 +589,7 @@ def write_file(file_path, content, mode='write', encoding='utf-8'):
         content: 要写入的内容字符串
         mode: 写入模式 ('write' 覆盖，'append' 追加)
         encoding: 文件编码（默认 utf-8）
+        force: 是否跳过安全警告确认
     
     Returns:
         写入的字节数
@@ -460,19 +601,19 @@ def write_file(file_path, content, mode='write', encoding='utf-8'):
     # 根据扩展名选择写入方式
     if ext in TEXT_EXTENSIONS:
         if mode == 'append':
-            return write_text_file(file_path, content, mode='append')
+            return write_text_file(file_path, content, mode='append', force=force)
         else:
-            return write_text_file(file_path, content, mode='write')
+            return write_text_file(file_path, content, mode='write', force=force)
     elif ext == '.docx':
-        return write_docx(file_path, content, mode=mode)
+        return write_docx(file_path, content, mode=mode, force=force)
     elif ext == '.xlsx':
-        return write_xlsx(file_path, content, mode=mode)
+        return write_xlsx(file_path, content, mode=mode, force=force)
     else:
         # 尝试作为文本文件写入
         if mode == 'append':
-            return write_text_file(file_path, content, mode='append')
+            return write_text_file(file_path, content, mode='append', force=force)
         else:
-            return write_text_file(file_path, content, mode='write')
+            return write_text_file(file_path, content, mode='write', force=force)
 
 
 def main():
@@ -511,6 +652,7 @@ def main():
     parser.add_argument('--stdin', action='store_true', help='从标准输入读取内容')
     parser.add_argument('--append', '-a', action='store_true', help='追加模式（默认覆盖）')
     parser.add_argument('--encoding', '-e', default='utf-8', help='文件编码（默认 utf-8）')
+    parser.add_argument('--force', action='store_true', help='跳过安全警告确认（谨慎使用）')
     
     args = parser.parse_args()
     
@@ -529,11 +671,14 @@ def main():
     mode = 'append' if args.append else 'write'
     
     try:
-        bytes_written = write_file(args.file_path, content, mode=mode, encoding=args.encoding)
+        bytes_written = write_file(args.file_path, content, mode=mode, encoding=args.encoding, force=args.force)
         print(f"[OK] 成功写入 {bytes_written} 字节到：{args.file_path}")
         print(f"FILE_PATH={args.file_path}")
         print(f"BYTES_WRITTEN={bytes_written}")
         
+    except PermissionError as e:
+        print(f"[安全中止] {e}", file=sys.stderr)
+        sys.exit(2)
     except Exception as e:
         print(f"[ERROR] {e}", file=sys.stderr)
         sys.exit(1)

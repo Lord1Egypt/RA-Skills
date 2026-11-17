@@ -1,45 +1,57 @@
-## Description: <br>
-Skill Release Plus helps developers package and publish an agent skill to ClawHub, skillhub.cn, GitHub Releases, or a trusted custom hook from one release command. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Packages skill releases, optionally signs them, and publishes to ClawHub, skillhub.cn, GitHub Releases, or a custom hub hook.
 
-## Publisher: <br>
-[songhonglei](https://clawhub.ai/user/songhonglei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[songhonglei](https://clawhub.ai/user/songhonglei)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to prepare a clean skill package, check publishing readiness, and release the same skill to one or more supported registries with a consistent version and changelog. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish skill contents to external services and create or push GitHub repositories and releases. <br>
-Mitigation: Use --check and --dry-run before publishing, select only the intended target, and verify the resolved GitHub owner and repository before using github-release or --target all. <br>
-Risk: Custom user-hook targets execute user-supplied scripts with local environment access. <br>
-Mitigation: Run user-hook targets only from scripts that have been reviewed and are fully trusted. <br>
-Risk: Publishing tokens are required for external services. <br>
-Mitigation: Keep tokens narrowly scoped, provide only the tokens needed for the selected target, and avoid broad default target sets. <br>
+## Use Case:
 
+Developers use this skill to package a skill once, optionally sign it, then publish it to one or more supported registries or create a deterministic package without publishing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/songhonglei/skill-release-plus) <br>
-- [Documented source repository](https://github.com/Songhonglei/build-better-skills/tree/main/skills/skill-release-plus) <br>
-- [ClawHub CLI package](https://www.npmjs.com/package/clawhub) <br>
-- [SkillHub.cn](https://skillhub.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; the release script emits JSON status reports and tar.gz package files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May publish to external services when invoked without --dry-run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and SKILL.md Version field) <br>
+Risk: Publishing may expose valuable credentials or files from the publishing environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated environment with narrowly scoped, short-lived publishing credentials, and inspect the package and destination before publishing.
+
+Risk: Remote unlist and delete capabilities can remove published content beyond ordinary publishing.
+
+Mitigation: Review whether cleanup is needed and confirm the target and release before invoking remote deletion features.
+
+Risk: Security analysis coverage is incomplete because some local references could not be resolved.
+
+Mitigation: Review unresolved references and inspect the skill before installing or running it.
+
+## Reference(s):
+
+- [Clawhub CLI (npm package)](https://www.npmjs.com/package/clawhub)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, JSON, Configuration instructions]
+
+**Output Format:** [Release packages (TAR.GZ or ZIP), JSON reports, and command-line guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Package contents follow configured exclusions and may vary by target.]
+
+## Skill Version(s):
+
+1.1.1 (source: SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

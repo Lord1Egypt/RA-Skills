@@ -1,45 +1,59 @@
-## Description: <br>
-Generate music using Volcengine Imagination API. Supports vocal songs, instrumental BGM, and lyrics generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate music using Volcengine Imagination API. Supports vocal songs, instrumental BGM, and lyrics generation.
 
-## Publisher: <br>
-[volcengine-skills](https://clawhub.ai/user/volcengine-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volcengine-skills](https://clawhub.ai/user/volcengine-skills)
 
-## Use Case: <br>
-External users and developers use this skill to generate vocal songs, instrumental background music, soundtracks, and lyrics through Volcengine's music generation API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, lyrics, and generation settings are sent to Volcengine. <br>
-Mitigation: Avoid submitting sensitive or proprietary lyrics unless that use is acceptable under Volcengine's terms. <br>
-Risk: Song and BGM generation may use paid postpaid API billing by default. <br>
-Mitigation: Use a dedicated Volcengine account or key with spending limits and review billing settings before generation. <br>
-Risk: The skill requires Volcengine access keys for API calls. <br>
-Mitigation: Use least-privilege credentials and do not store keys in shared workspace files. <br>
+## Use Case:
 
+Developers and agents use this skill to generate vocal songs, instrumental background music, soundtracks, or lyrics through Volcengine's Imagination API and return generated audio URLs or lyrics to the user.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/volcengine-skills/byted-music-generate) <br>
-- [Volcengine Music Generation Docs](https://www.volcengine.com/docs/84992) <br>
-- [Volcengine API Signature Guide](https://www.volcengine.com/docs/6369/67269) <br>
-- [Volcengine Music Generation Parameters](references/parameters.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON results from the generation script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns status, mode, task_id, audio_url, duration, lyrics, and error fields when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill sends prompts, lyrics, and music metadata to Volcengine and may incur API charges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with approved content and billing expectations; avoid sensitive prompts unless the Volcengine account and data handling terms are acceptable.
+
+Risk: The skill requires VOLCENGINE_ACCESS_KEY and VOLCENGINE_SECRET_KEY and includes guidance that could lead an agent to persist credentials in workspace files.
+
+Mitigation: Configure credentials through a secure secret store or process-scoped environment variables, and do not write them into repository or workspace files.
+
+Risk: The security verdict is suspicious due to credential-handling concerns and unpinned dependencies.
+
+Mitigation: Review the skill before deployment and pin dependencies to approved versions for production use.
+
+## Reference(s):
+
+- [Volcengine Music Generation Parameters](references/parameters.md)
+- [Volcengine Music Generation Docs](https://www.volcengine.com/docs/84992)
+- [Volcengine API Signature Guide](https://www.volcengine.com/docs/6369/67269)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON result fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns an audio_url for song or BGM generation, lyrics for lyrics mode, or a task_id for timeout follow-up.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

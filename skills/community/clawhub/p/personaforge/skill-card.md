@@ -1,46 +1,59 @@
-## Description: <br>
-Persona Forge is an AI companion skill that generates personality-based characters from chat logs, images, or descriptions, remembers user traits, and lets relationships evolve over time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+情感陪伴AI | AI Companion. Upload chat logs, images, or descriptions to generate companion characters that chat based on personality, remember user preferences, and evolve over time.
 
-## Publisher: <br>
-[wgt9721](https://clawhub.ai/user/wgt9721) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wgt9721](https://clawhub.ai/user/wgt9721)
 
-## Use Case: <br>
-External users use this skill to create and interact with configurable AI companion characters. It can analyze user-provided character names, descriptions, chat logs, images, and notes to produce character profiles, maintain relationship memory, schedule proactive messages, and support optional image, TTS, STT, web search, and messaging-channel integrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create persistent local relationship and memory files. <br>
-Mitigation: Review stored state regularly and delete the state directory when the companion or its retained memory is no longer desired. <br>
-Risk: The skill may create recurring scheduled messages. <br>
-Mitigation: Review, disable, or remove cron jobs before deployment unless proactive companion messages are intended. <br>
-Risk: Uploaded chat logs may include other people's conversations or sensitive details. <br>
-Mitigation: Only upload logs with appropriate consent and avoid including sensitive third-party content. <br>
-Risk: Optional message channels, web search, image generation, TTS, and STT providers can expand data exposure. <br>
-Mitigation: Enable only the integrations needed for the deployment and review provider settings before use. <br>
+## Use Case:
 
+External users and developers use Persona Forge to create AI companion personas from names, descriptions, chat logs, notes, and images, then run personality-driven chats with local memory, proactive reminders, optional scene images, and optional voice interaction.
 
-## Reference(s): <br>
-- [Persona Forge ClawHub page](https://clawhub.ai/wgt9721/personaforge) <br>
-- [Character profile template](references/character-profile-template.md) <br>
-- [Setup guide](references/setup-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with generated character profiles, JSON state examples, setup instructions, and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local state files, relationship memory, cron-based proactive messages, and integration guidance for messaging channels, web search, image generation, TTS, and STT.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence and artifact _meta.json) <br>
+Risk: The skill may process sensitive chat logs, screenshots, images, or third-party conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use summaries instead of raw transcripts where possible, avoid sensitive or non-consensual content, and obtain consent before uploading conversations involving other people.
+
+Risk: Persistent memory and relationship state may retain personal preferences and interaction history.
+
+Mitigation: Review created state files and delete the state directory when memory should be cleared or the skill is no longer used.
+
+Risk: Scheduled proactive messages and messaging-channel setup can continue after initial configuration.
+
+Mitigation: Confirm channel and API setup before enabling it, and remove or disable cron jobs and channel bindings when stopping use.
+
+## Reference(s):
+
+- [Persona Forge ClawHub Skill Page](https://clawhub.ai/wgt9721/skills/personaforge)
+- [Character Profile Template](references/character-profile-template.md)
+- [Setup Guide](references/setup-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with character profile templates, JSON state examples, setup steps, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local state files, relationship state, channel configuration, and cron-based proactive message behavior.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

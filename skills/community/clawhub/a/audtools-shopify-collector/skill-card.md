@@ -1,41 +1,62 @@
-## Description: <br>
-AudTools Shopify Batch Collector reads category links from a CSV file and uses browser automation to submit them to AudTools with a product quantity of 9999 and a two-second interval between submissions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates AudTools batch collection by reading Shopify category URLs from a CSV, filling the AudTools collection form with each URL, setting product count to 9999, and submitting entries at two-second intervals.
 
-## Publisher: <br>
-[QirongZhang](https://clawhub.ai/user/QirongZhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qirongzhang](https://clawhub.ai/user/qirongzhang)
 
-## Use Case: <br>
-Operators and developers who use AudTools for Shopify collection workflows can use this skill to automate bulk submission of category URLs from a CSV file. It is intended for visible browser-driven collection runs where the user can log in manually and review the results before exporting data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bulk CSV submissions can send many URLs to AudTools and trigger unintended collection activity. <br>
-Mitigation: Run a small CSV first, keep the browser visible, and confirm that every CSV URL is intended for submission before running the full batch. <br>
-Risk: Dependency resolution may differ from the reviewed package-lock versions. <br>
-Mitigation: Use locked installs so Playwright and csv-parser resolve to the versions captured in package-lock.json. <br>
+## Use Case:
 
+Developers and operators use this skill to automate bulk submission of Shopify category URLs into AudTools for product collection workflows. It is intended for CSV-driven collection batches where the operator can review inputs and recover unintended submissions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/QirongZhang/audtools-shopify-collector) <br>
-- [AudTools collection page](https://www.audtools.com/users/shopns#/users/shopns/collecs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JavaScript automation files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill runs a visible Playwright browser session, reads CSV input, may pause for manual login, and reports per-link progress in console output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Bulk CSV inputs may cause many URLs to be submitted through a logged-in AudTools browser.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CSV before running and prefer a dry-run or explicit confirmation step for batches.
+
+Risk: Loose page and form matching may submit to an unintended field or page state.
+
+Mitigation: Use exact form selectors and verify the AudTools origin before each submission.
+
+Risk: Dependency sources deserve review before execution.
+
+Mitigation: Regenerate dependencies from a trusted registry and review the resolved lockfile before running.
+
+Risk: Unintended AudTools submissions may affect the operator account.
+
+Mitigation: Use an account where unintended submissions are recoverable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/qirongzhang/skills/audtools-shopify-collector)
+- [AudTools Collection Page](https://www.audtools.com/users/shopns#/users/shopns/collecs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May launch a visible browser session and submit CSV-provided URLs through a logged-in AudTools account.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

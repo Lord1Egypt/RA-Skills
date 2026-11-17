@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn72fa0gb5vsdtveq5vas4ejf5833gat",
-  "slug": "skill-fixon-homepage",
+  "name": "homepage",
   "version": "1.0.0",
-  "publishedAt": 1773833708096
+  "description": "OpenClaw 主页插件 - 让访客在你的个人主页上与 AI 助手对话",
+  "author": "OpenClaw",
+  "tags": ["plugin", "homepage", "chat", "http"]
 }

@@ -1,40 +1,58 @@
-## Description: <br>
-Read and analyze IoT sensor data from SKALE blockchain via SmartClaws. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read and analyze IoT sensor data from SKALE blockchain via SmartClaws for sensor readings, measurements, trends, thresholds, and on-chain IoT data.
 
-## Publisher: <br>
-[dmytrotkk](https://clawhub.ai/user/dmytrotkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dmytrotkk](https://clawhub.ai/user/dmytrotkk)
 
-## Use Case: <br>
-Developers, operators, and analysts use this skill to read SmartClaws sensor messages from SKALE blockchain channels and answer questions about recent readings, thresholds, averages, and trends. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [SmartClaws homepage](https://github.com/skalenetwork/smartclaws) <br>
-- [SmartClaws release download](https://github.com/skalenetwork/smartclaws/releases/latest/download/smartclaws-${PLATFORM}) <br>
-- [ClawHub skill page](https://clawhub.ai/dmytrotkk/smartclaws-reader) <br>
-- [Publisher profile](https://clawhub.ai/user/dmytrotkk) <br>
+Developers, engineers, and operators use this skill to read SmartClaws channel data, parse sensor payloads, and answer natural-language questions about measurements, trends, thresholds, and recent readings.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON parsing guidance, and concise natural-language analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Security guidance: verify trust in the SmartClaws release source before installation, prefer a user-local install path where possible, and treat ~/.smartclaws as sensitive because initialization creates wallet and configuration material.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The installation flow downloads a mutable latest-release binary and can place it in a trusted executable path.
+
+Mitigation: Install from a pinned SmartClaws release in a user-local path and verify checksums or signatures before running the binary.
+
+Risk: Sensor readings may be simulated or mock data depending on how the producer was configured.
+
+Mitigation: When answering questions, clearly state when readings come from a mock or test publisher and avoid presenting simulated data as real device data.
+
+Risk: Using the wrong channel address can produce empty, invalid, or unrelated readings.
+
+Mitigation: Confirm the channel address with the producer before reading or analyzing channel data.
+
+## Reference(s):
+
+- [SmartClaws homepage](https://github.com/skalenetwork/smartclaws)
+- [ClawHub skill page](https://clawhub.ai/dmytrotkk/skills/smartclaws-reader)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with shell commands, JSON parsing examples, and concise natural-language answers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include SmartClaws CLI commands, parsed JSON sensor readings, timestamps, basic statistics, threshold checks, and trend summaries.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

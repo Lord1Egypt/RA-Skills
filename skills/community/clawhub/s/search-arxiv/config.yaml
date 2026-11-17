@@ -1,0 +1,9 @@
+# search-arxiv configuration
+browser: brave
+homepage_url: https://arxiv.org/search/
+reuse_existing_session: true
+reuse_existing_tab: true
+avoid_duplicate_tabs: true
+verify_destination: true
+stop_at_login: true
+search_url_prefix: https://arxiv.org/search/?query=

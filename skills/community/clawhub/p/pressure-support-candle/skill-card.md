@@ -1,43 +1,58 @@
-## Description: <br>
-基于波峰波谷分析识别A股股票的压力位和支撑位，生成K线图。使用Baostock获取数据（解决AKShare东财接口限制问题） <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于波峰波谷分析识别A股股票的压力位和支撑位，并生成带标注的K线图；默认使用Baostock获取日线数据。
 
-## Publisher: <br>
-[wtjjacobj](https://clawhub.ai/user/wtjjacobj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wtjjacobj](https://clawhub.ai/user/wtjjacobj)
 
-## Use Case: <br>
-External users and developers can use this skill to fetch A-share daily market data, identify support and resistance levels with peak and valley analysis, and generate annotated candlestick charts for stock research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running the skill may send the stock code and date range to public market-data services. <br>
-Mitigation: Use only non-sensitive stock symbols and date ranges that you are comfortable sharing with those services. <br>
-Risk: The Baostock script may create or overwrite a chart PNG on the user's Desktop. <br>
-Mitigation: Review the output path before execution and move or rename any existing chart files that should be preserved. <br>
-Risk: Support and resistance levels are technical-analysis outputs and may be incorrect or misleading for investment decisions. <br>
-Mitigation: Treat the generated levels and charts as research aids and review them with independent market analysis before acting. <br>
+## Use Case:
 
+External developers, analysts, or agents use this skill to run A-share support and resistance analysis, inspect calculated levels and breakout signals, and produce annotated candlestick PNG charts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wtjjacobj/pressure-support-candle) <br>
-- [压力支撑位识别_设计文档.md](artifact/压力支撑位识别_设计文档.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, code, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance, Python execution instructions, printed support/resistance price data, and PNG candlestick chart files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May contact public market-data services with the stock code and date range; the Baostock script may create or overwrite a chart PNG on the user's Desktop.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill contacts external Baostock or AkShare-backed stock data sources depending on which bundled script is run.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that external market-data access is acceptable before installation or execution.
+
+Risk: The documented Baostock entrypoint creates chart PNG files locally, including on ~/Desktop.
+
+Mitigation: Run in a workspace where local chart-file creation is expected, or adjust the output path before use.
+
+Risk: Documentation inconsistencies may make the active data source or behavior unclear.
+
+Mitigation: Prefer the documented Baostock entrypoint and review the selected script before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wtjjacobj/skills/pressure-support-candle)
+- [压力支撑位识别_设计文档.md](artifact/压力支撑位识别_设计文档.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, code, files]
+
+**Output Format:** [Markdown guidance with shell commands and locally generated PNG chart files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May print support and resistance price data; the documented Baostock entrypoint writes chart PNG files locally, including to ~/Desktop.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

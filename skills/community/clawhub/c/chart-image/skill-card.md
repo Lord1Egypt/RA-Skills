@@ -1,44 +1,59 @@
-## Description: <br>
-Generate publication-quality line, bar, area, point, histogram, candlestick, pie/donut, heatmap, multi-series, and stacked chart images from data for reports, alerts, and time-series visualizations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate publication-quality chart images from data for line, bar, area, point, histogram, candlestick, pie/donut, heatmap, multi-series, and stacked visualizations.
 
-## Publisher: <br>
-[dannyshmueli](https://clawhub.ai/user/dannyshmueli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dannyshmueli](https://clawhub.ai/user/dannyshmueli)
 
-## Use Case: <br>
-Developers and agents use this skill to turn structured data into local chart image files for dashboards, reports, alerts, and shared messages. It is designed for headless server deployments where browser-based chart rendering is undesirable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing the skill runs npm dependency installation for the bundled chart renderer. <br>
-Mitigation: Review the included dependency manifest and lockfile before production installation, and install only in environments where those dependencies are acceptable. <br>
-Risk: User-controlled chart data, titles, labels, or file paths could be mishandled if they are interpolated into shell commands. <br>
-Mitigation: Invoke the chart script with structured argv-style process execution, pass data as JSON or through trusted temporary files, and keep output/spec paths controlled by the runtime. <br>
-Risk: Generated charts may contain sensitive data if the source dataset is sensitive. <br>
-Mitigation: Send chart images only to intended channels or storage locations, and avoid sharing sensitive chart outputs unless that disclosure is intended. <br>
+## Use Case:
 
+Developers and automation agents use this skill to generate chart image files from JSON, CSV, stdin, or custom Vega-Lite specs for reports, dashboards, alerts, and chat attachments.
 
-## Reference(s): <br>
-- [Chart Image on ClawHub](https://clawhub.ai/dannyshmueli/chart-image) <br>
-- [README](artifact/README.md) <br>
-- [Capability Definition](artifact/CAPABILITY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Images, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [PNG or SVG chart image files generated from JSON data, with Markdown and shell-command guidance for setup and invocation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates charts locally with Node.js, Vega-Lite, and Sharp; chart/spec/output paths should remain runtime-controlled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.6.35 (source: server release metadata) <br>
+Risk: Outdated rendering dependencies have current security advisories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Upgrade Sharp and Vega-family dependencies before installation or deployment, then rerun package audit and release security review.
+
+Risk: Untrusted chart specs, CSV file inputs, or output paths may cause unsafe file access or unexpected rendering behavior.
+
+Mitigation: Keep --spec, --csv-file, and --output controlled by trusted runtime code, and pass chart data through structured argv or trusted temporary files.
+
+Risk: Shell-built commands around user-controlled JSON, titles, labels, or paths can introduce command injection risk.
+
+Mitigation: Use argv-style process execution and avoid sh -c, command substitution, and inline echo patterns for untrusted chart inputs.
+
+## Reference(s):
+
+- [Chart Image on ClawHub](https://clawhub.ai/dannyshmueli/skills/chart-image)
+- [Vega-Lite Documentation](https://vega.github.io/vega-lite/)
+- [Sharp Documentation](https://sharp.pixelplumbing.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [PNG or SVG image files, with concise Markdown or text guidance for invocation and delivery.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default output is PNG; SVG output is optional; output paths should be controlled by trusted runtime code.]
+
+## Skill Version(s):
+
+2.6.35 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

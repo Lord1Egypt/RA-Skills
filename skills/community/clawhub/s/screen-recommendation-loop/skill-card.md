@@ -1,38 +1,49 @@
-## Description: <br>
-Build and run a low-friction movie/anime recommendation and follow-up loop that adapts from watched, unfinished, dropped, and rejected-title feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs a low-friction movie and anime recommendation loop that recommends one title at a time, collects minimal feedback, and adapts future picks from preference signals.
 
-## Publisher: <br>
-[GloryXia](https://clawhub.ai/user/GloryXia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gloryxia](https://clawhub.ai/user/gloryxia)
 
-## Use Case: <br>
-Users who want ongoing movie and anime recommendations use this skill to receive one title at a time, record lightweight viewing feedback, and adapt future picks over time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can keep a small long-term media-preference history for recommendations and reminders. <br>
-Mitigation: Choose where any JSON or SQLite record is stored, avoid private identifiers, and periodically review or delete the record when long-term tracking is no longer wanted. <br>
+## Use Case:
 
+External users and recommendation-focused agents use this skill to run an ongoing movie and anime recommendation cycle with short feedback, automatic follow-up timing, and lightweight preference updates.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/GloryXia/screen-recommendation-loop) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance with lightweight record schemas and follow-up prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May maintain a small JSON or SQLite preference record when the user chooses to keep long-term taste history.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Risk: Recommendation state may include watch history, preference signals, and follow-up timing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the state local or in a trusted store, and avoid adding account IDs, chat IDs, tokens, private schedules, or other direct identifiers.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gloryxia/skills/screen-recommendation-loop)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with concise recommendation messages, feedback prompts, and minimal JSON or SQLite record schemas]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains per-title state, preference signals, and content-type-based follow-up timing.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

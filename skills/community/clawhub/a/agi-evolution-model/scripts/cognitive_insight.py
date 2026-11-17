@@ -1,3 +1,9 @@
+
+# 日志记录
+__version__ = "1.0.0"
+
+import logging
+logger = logging.getLogger(__name__)
 """
 认知架构洞察组件 V2（集成概念提取扩展 - 增强版）
 
@@ -15,6 +21,8 @@ import sys
 from datetime import datetime
 from typing import List, Dict, Optional
 import hashlib
+from interfaces import TraceContext, create_trace_context
+from validation_framework import ValidationError, validate_params, validate_params
 
 # 添加脚本目录到路径
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))

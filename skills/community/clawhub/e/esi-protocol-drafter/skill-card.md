@@ -1,40 +1,58 @@
-## Description: <br>
-Use this skill when a litigation attorney, e-discovery counsel, or paralegal needs to prepare for an FRCP Rule 26(f) meet-and-confer or draft an ESI Protocol for federal civil litigation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps litigation attorneys, e-discovery counsel, and paralegals prepare for FRCP Rule 26(f) meet-and-confer sessions and draft ESI Protocols, discovery-plan sections, gap audits, and pre-conference Q&A worksheets.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Litigation-support attorneys, e-discovery counsel, and paralegals use this skill to gather Rule 26(f) ESI protocol inputs, draft a meet-and-confer-ready protocol, prepare a joint discovery-plan section, and audit gaps in an existing protocol draft. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated legal drafting output may be incomplete, inaccurate, or unsuitable for a specific matter. <br>
-Mitigation: Use the skill only under attorney supervision and review all protocol language before relying on it. <br>
-Risk: The intake workflow may involve privileged content, credentials, custodian PII, or matter-protected details if users provide them. <br>
-Mitigation: Avoid entering privileged content, credentials, full custodian PII, or unnecessary protected matter details. <br>
+## Use Case:
 
+External litigation-support attorneys, e-discovery counsel, and paralegals use this skill to structure ESI protocol intake, prepare for Rule 26(f) meet-and-confer discussions, and generate attorney-reviewable discovery drafting materials.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/esi-protocol-drafter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and plain text drafting deliverables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces an ESI Protocol draft, Rule 26(f) discovery-plan section, gap audit, and pre-conference Q&A worksheet for attorney review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: The intake process may involve privileged content, confidential case details, credentials, matter numbers, or client-identifying information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use placeholders where possible and avoid entering privileged content, unnecessary PII, credentials, real matter numbers, or confidential client-identifying details unless firm policy permits it.
+
+Risk: Drafted ESI protocol language may be incomplete, unsuitable for a particular matter, or mistaken for legal advice.
+
+Mitigation: Require supervising attorney review before relying on or circulating generated documents; the skill is for drafting support and does not provide case-specific legal advice.
+
+Risk: Cross-border data, criminal-matter ESI, ITAR, CUI, classified data, and ephemeral messaging issues may require specialized legal review.
+
+Mitigation: Flag these topics for specialized counsel review instead of resolving them through generated default language.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/archlab-space/skills/esi-protocol-drafter)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Analysis]
+
+**Output Format:** [Markdown and plain-text drafting deliverables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces an ESI Protocol draft, a Rule 26(f) discovery-plan section, a gap audit, and a pre-conference Q&A worksheet for attorney review.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Set up and maintain automatic OpenClaw + skill updates on Windows/macOS/Linux. Use when a user asks for scheduled updates, manual update runs, update health checks, or update summaries. On Windows, enforce native Windows/Git Bash flow and avoid WSL bash paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up and maintain automatic OpenClaw and skill updates on Windows, macOS, and Linux, with Windows-native Git Bash guardrails.
 
-## Publisher: <br>
-[leo220yuyaodog](https://clawhub.ai/user/leo220yuyaodog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leo220yuyaodog](https://clawhub.ai/user/leo220yuyaodog)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure manual or scheduled OpenClaw and skill updates across Windows, macOS, and Linux. It is especially focused on Windows-native update execution with Git Bash/MSYS rather than WSL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bulk or scheduled updates can change OpenClaw and installed skills without the user reviewing each package at execution time. <br>
-Mitigation: Confirm the update schedule before enabling automation, keep a rollback plan for local edits, and report updated, unchanged, and failed items after each run. <br>
-Risk: Using the wrong Windows shell path can route update steps through WSL instead of the intended native Windows/Git Bash flow. <br>
-Mitigation: Verify `where.exe bash` and `bash --version` before build steps, and ensure Git Bash/MSYS is first in PATH when bash is needed. <br>
-Risk: Force-updating a skill can overwrite local modifications. <br>
-Mitigation: Use forced skill updates only after explicit user approval and keep the normal all-skill update flow non-force by default. <br>
+## Use Case:
 
+Developers and operators use this skill to configure, run, verify, and summarize recurring OpenClaw and installed-skill updates. It is especially relevant for Windows environments that need native shell execution and Git Bash checks instead of WSL paths.
 
-## Reference(s): <br>
-- [Agent Implementation Guide](references/agent-guide.md) <br>
-- [Update Summary Examples](references/summary-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Concise update summaries listing updated, unchanged, and failed items.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Recurring no-input updates can modify OpenClaw and all installed skills through unpinned command execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use automated updates only intentionally; prefer a pinned ClawHub CLI version, a trusted registry or verified local binary, and a review step before bulk updates.
+
+Risk: Scheduled update jobs can continue applying changes after the initial setup.
+
+Mitigation: Keep the schedule conservative, deliver concise run summaries, and maintain a documented way to disable the job or roll back updates.
+
+Risk: On Windows, the wrong bash executable can route build steps through WSL instead of the expected native Git Bash/MSYS environment.
+
+Mitigation: Verify `where.exe bash` and `bash --version` before update execution, and prioritize Git Bash/MSYS in PATH for build steps that require bash.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leo220yuyaodog/skills/auto-updater-windows)
+- [Agent Implementation Guide](references/agent-guide.md)
+- [Update Summary Examples](references/summary-examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline PowerShell and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Concise update summaries covering updated, unchanged, and failed items.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

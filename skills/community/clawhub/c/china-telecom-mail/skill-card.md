@@ -1,45 +1,57 @@
-## Description: <br>
-Send and receive emails via China Telecom (POP3:995, SMTP:465), including listing today's emails, reading content, forwarding emails, and sending new emails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send and receive emails via China Telecom (POP3:995, SMTP:465). Lists today's emails, reads content, forwards emails, and sends new emails.
 
-## Publisher: <br>
-[williamwang-wh](https://clawhub.ai/user/williamwang-wh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[williamwang-wh](https://clawhub.ai/user/williamwang-wh)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to automate China Telecom mailbox workflows: checking today's messages, reading full email content, exporting summaries as JSON, sending email, and forwarding received messages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive mailbox credentials to read from POP3 and send through SMTP. <br>
-Mitigation: Use a dedicated or app-specific mailbox credential, restrict permissions on config.toml, and keep the file out of version control. <br>
-Risk: The skill can send or forward messages and attachments from command-line inputs. <br>
-Mitigation: Require explicit user confirmation before sending, forwarding, or attaching files, and verify recipients, subject, body, and attachment path before execution. <br>
-Risk: Email reads and JSON summaries may expose personal, confidential, or regulated message content. <br>
-Mitigation: Limit use to authorized mailboxes and redact or minimize email content before sharing summaries with downstream tools or logs. <br>
+## Use Case:
 
+Developers and mailbox users use this skill to automate China Telecom mailbox workflows, including listing today's messages, reading mail, generating JSON summaries, sending messages, and forwarding selected email.
 
-## Reference(s): <br>
-- [China Telecom Mail Skill Page](https://clawhub.ai/williamwang-wh/china-telecom-mail) <br>
-- [Publisher Profile: williamwang-wh](https://clawhub.ai/user/williamwang-wh) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text output and JSON email summaries; email send and forward actions run from command-line arguments.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python, uv, OpenClaw, and configured China Telecom POP3/SMTP mailbox credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: The skill can read mailbox contents from the configured China Telecom account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with a mailbox you control and review access before installation.
+
+Risk: The skill can send or forward emails and attach arbitrary local files.
+
+Mitigation: Require explicit user confirmation for each send, forward, and attachment action, and do not let untrusted email content choose recipients or file paths.
+
+Risk: Mailbox credentials are stored in a plain config.toml file.
+
+Mitigation: Prefer a revocable mail authorization code over a primary password and restrict config.toml file permissions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/williamwang-wh/skills/china-telecom-mail)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration]
+
+**Output Format:** [Plain text and JSON responses from command-line mail actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires uv and python. Reads credentials from config.toml and connects to China Telecom POP3 and SMTP servers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

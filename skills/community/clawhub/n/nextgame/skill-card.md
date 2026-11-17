@@ -1,42 +1,51 @@
-## Description: <br>
-Create and upload a mobile-compatible HTML game with wallet-linked configuration and preview image for thenext.games. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent to create and upload a mobile-compatible HTML game package with configuration, game code, and preview image files to a third-party game-hosting API.
 
-## Publisher: <br>
-[brianclan](https://clawhub.ai/user/brianclan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brianclan](https://clawhub.ai/user/brianclan)
 
-## Use Case: <br>
-Developers and game creators use this skill to prepare a mobile-compatible HTML game, create the required config.json, index.html, and preview.png files, upload them to the listed game-publishing service, and share the resulting thenext.games URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uploads game files to an external service that may make them publicly accessible. <br>
-Mitigation: Before running upload commands, inspect config.json, index.html, and preview.png, confirm the destination and gameFolder name, and do not upload secrets, private workspace files, copyrighted material, or content that should not be public. <br>
-Risk: The listed upload interfaces do not overwrite existing files, so duplicate or unintended gameFolder names can fail or publish to the wrong location. <br>
-Mitigation: Choose a unique English gameFolder name, verify it before each upload, and check API responses before sharing the resulting thenext.games URL. <br>
+## Use Case:
 
+Developers and agents use this skill to package a simple browser game and upload its required config.json, index.html, and preview.png files. The workflow is intended for publishing mobile-compatible HTML games through the documented thenext.games upload flow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brianclan/nextgame) <br>
-- [Game upload service](https://www.idlab.top) <br>
-- [Published game URL format](https://thenext.games/game/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with JSON examples and bash curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces upload instructions and file-format guidance for config.json, index.html, and preview.png.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata) <br>
+Risk: The workflow may upload game files to a third-party service and produce a public game URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only upload files intended for publication, confirm the gameFolder and destination endpoint, and review generated files before running the curl commands.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/brianclan/skills/nextgame)
+- [aigames upload API host](https://www.idlab.top)
+- [thenext.games game URL pattern](https://thenext.games/game/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides creation of config.json, index.html, and preview.png, then reports the public game URL after a successful upload.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

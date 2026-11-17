@@ -8,7 +8,9 @@ import datetime as dt
 import hashlib
 import json
 import re
+import shutil
 import sys
+import tempfile
 from pathlib import Path
 from typing import Any
 
@@ -19,6 +21,9 @@ if str(SCRIPT_DIR) not in sys.path:
 
 from run_log import Timer, append_run_log, new_run_id  # noqa: E402
 from validate_diagnosis_payload import validate_payload  # noqa: E402
+from grading_followup import normalize_payload, plan_followup  # noqa: E402
+from knowledge_assessment import assess_knowledge, render_knowledge  # noqa: E402
+from workspace_transaction import inside, record_once  # noqa: E402
 
 
 def text(value: Any, default: str = "") -> str:
@@ -174,7 +179,8 @@ def render_diagnosis(payload: dict[str, Any], diagnosis_slug: str) -> str:
         f"- 正确数：{text(payload.get('correct_items'), 'unknown')}",
         f"- 总体判断：{text(payload.get('overall'), '待补充')}",
         "",
-        "## 错题明细",
+        *render_paper_evidence(payload),
+        "## 错题与待确认项",
         "",
         "| 题号 | 题目 | 孩子答案 | 正确答案 | 结果 | 错题类型 | 可能原因 | 历史状态 | 复发判断 | 证据 | 置信度 | 补救动作 |",
         "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
@@ -236,6 +242,35 @@ def render_diagnosis(payload: dict[str, Any], diagnosis_slug: str) -> str:
         ]
     )
     return "\n".join(lines)
+
+
+def render_paper_evidence(payload: dict[str, Any]) -> list[str]:
+    lines = ["## 原始试卷", ""]
+    for index, path in enumerate(payload.get("archived_images", []), 1):
+        lines.extend([f"![原图第{index}页]({path})", ""])
+    if not payload.get("archived_images"):
+        lines.extend(["未提供原图；仅保存本次提供的文本证据。", ""])
+    items = payload.get("items")
+    if items is None:
+        return lines + ["本次为旧版错题记录，未提供完整试卷题目。", ""]
+    labels = {"correct": "正确", "wrong": "错误", "unanswered": "未作答", "need-confirmation": "待确认"}
+    lines.extend(["## 全卷逐题档案", "", f"- 覆盖范围：{payload.get('coverage', 'complete')}（partial 表示图片或题目不完整）", ""])
+    for item in items:
+        points = "、".join(point["title"] for point in item.get("knowledge_points", [])) or "待识别"
+        lines.extend([
+            f"### 题 {text(item.get('item_no'))} · {labels.get(item.get('result'), '待确认')}", "",
+            f"- 原图页码：{text(item.get('page'), '未标注')}",
+            f"- 题目：{text(item.get('question'), '待确认')}",
+            f"- 图形信息：{text(item.get('diagram_description'), '无/未提供')}",
+            f"- 孩子作答：{text(item.get('student_answer'), '未作答/未识别')}",
+            f"- 正确答案：{text(item.get('correct_answer'), '待确认')}",
+            f"- 作答步骤：{text(item.get('student_work'), '未提供')}",
+            f"- 知识点：{points}",
+            f"- 识别置信度：{text(item.get('recognition_confidence'), 'low')}",
+            f"- 是否借助提示：{text(item.get('assisted', False))}",
+            f"- 解析：{text(item.get('explanation'), '待补充')}", "",
+        ])
+    return lines
 
 
 def render_mistake_entry(payload: dict[str, Any], item: dict[str, Any]) -> str:
@@ -368,6 +403,12 @@ def append_weak_points(workspace: Path, payload: dict[str, Any]) -> list[Path]:
             continue
         path = workspace / "weak-points" / f"{slug}.md"
         if path.exists():
+            content = path.read_text(encoding="utf-8")
+            for key, label in [("status", "当前状态"), ("next_review_date", "下次复练日期"), ("priority", "复练优先级")]:
+                if wp.get(key):
+                    content = re.sub(rf"^- {label}：.*$", lambda _: f"- {label}：{text(wp[key])}", content, flags=re.MULTILINE)
+            content = re.sub(r"^- 最近证据日期：.*$", lambda _: f"- 最近证据日期：{text(payload.get('date'))}", content, flags=re.MULTILINE)
+            write_text(path, content)
             update = "\n".join(
                 [
                     f"## 证据更新：{text(payload.get('date'))}",
@@ -421,11 +462,92 @@ def write_diagnosis(workspace: Path, payload: dict[str, Any]) -> Path:
     return path
 
 
+def prepare_recording(workspace: Path, payload: dict, mode: str, warnings: list[str]) -> tuple[dict, dict]:
+    payload, decision = plan_followup(workspace, payload, mode)
+    slug = slugify(payload.get("source_slug") or payload["source"], "grading")
+    diagnosis = unique_path(inside(workspace, f"records/{payload['date']}-{slug}-diagnosis.md"))
+    diagnosis_rel = diagnosis.relative_to(workspace).as_posix()
+    stem = Path(diagnosis_rel).stem.removesuffix("-diagnosis")
+    targets = ["records/learning-progress.md", "records/next-practice.json", "records/knowledge-state.json",
+               "records/knowledge-mastery.md", source_book(payload).as_posix(),
+               "memory/short-term.md", "memory/long-term.md", "memory/active-context.md"]
+    targets.extend(f"weak-points/{slugify(wp.get('slug') or wp.get('title'), '')}.md" for wp in weak_point_payloads(payload))
+    with tempfile.TemporaryDirectory() as tmp:
+        staging = Path(tmp)
+        for rel in set(targets):
+            original = inside(workspace, rel)
+            if original.is_file():
+                target = inside(staging, rel)
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(original, target)
+        archived = []
+        image_paths = []
+        for index, source in enumerate(payload.get("source_images", []), 1):
+            original = Path(source)
+            if not original.is_absolute():
+                original = workspace / original
+            if original.suffix.lower() not in {".png", ".jpg", ".jpeg", ".webp", ".heic"} or not original.is_file():
+                raise ValueError(f"source image is missing or unsupported: {source}")
+            rel = f"records/{stem}-assets/page-{index}{original.suffix.lower()}"
+            target = inside(staging, rel)
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(original, target)
+            archived.append(Path(rel).relative_to("records").as_posix())
+            image_paths.append(target)
+        payload["archived_images"] = archived
+        payload["decision"] = decision
+        diagnosis_path = staging / diagnosis_rel
+        write_text(diagnosis_path, render_diagnosis(payload, slug))
+        evidence_path = diagnosis_path.with_suffix(".json")
+        write_text(evidence_path, json.dumps(payload, ensure_ascii=False, indent=2))
+        written = [diagnosis_path, evidence_path, *image_paths, append_progress(staging, payload)]
+        mistake_result = append_mistakes(staging, payload)
+        if mistake_result:
+            written.append(mistake_result)
+        written.extend(append_weak_points(staging, payload))
+        written.extend(append_memory_notes(staging, payload))
+        active = write_active_context(staging, payload)
+        if active:
+            written.append(active)
+        plan_path = staging / "records/next-practice.json"
+        previous = json.loads(plan_path.read_text(encoding="utf-8")) if plan_path.exists() else {}
+        reviews = {review["slug"]: review for review in previous.get("reviews", [])}
+        for review in decision["reviews"]:
+            old = reviews.get(review["slug"], {})
+            if old.get("evidence_date", "") <= review["evidence_date"]:
+                reviews[review["slug"]] = review
+        write_text(plan_path, json.dumps({"updated": max(previous.get("updated", ""), payload["date"]),
+                                        "reviews": list(reviews.values())}, ensure_ascii=False, indent=2))
+        written.append(plan_path)
+        knowledge_summary = []
+        if payload.get("items"):
+            state_path = staging / "records/knowledge-state.json"
+            previous_state = json.loads(state_path.read_text(encoding="utf-8")) if state_path.exists() else {}
+            state = assess_knowledge(previous_state, payload, diagnosis_rel)
+            write_text(state_path, json.dumps(state, ensure_ascii=False, indent=2))
+            dashboard = staging / "records/knowledge-mastery.md"
+            write_text(dashboard, render_knowledge(state))
+            written.extend([state_path, dashboard])
+            paper_ids = list(dict.fromkeys(point["id"] for item in payload["items"] for point in item.get("knowledge_points", [])))
+            knowledge_summary = [{"id": key, **{k: v for k, v in state["concepts"][key].items() if k != "recent_evidence"}}
+                                 for key in paper_ids]
+            for point in knowledge_summary:
+                key = "knowledge:" + point["id"]
+                reviews[key] = {"slug": key, "topic": point["title"], "evidence_date": point["latest_date"],
+                                "due_date": point["next_review_date"], "status": point["status"],
+                                "strategy": "diagnostic_probe" if point["status"] in {"待确认", "待观察"} else "spaced_review",
+                                "action": "按知识点安排3道独立作答的变式题，记录步骤和是否需要提示。"}
+            write_text(plan_path, json.dumps({"updated": state["updated"], "reviews": list(reviews.values())}, ensure_ascii=False, indent=2))
+        files = {path.relative_to(staging).as_posix(): path.read_bytes() for path in written}
+    return files, {"ok": True, "written": list(files), "warnings": warnings,
+                   "decision": decision, "knowledge_assessment": knowledge_summary}
+
+
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Record a zhizhi-math-coach grading diagnosis from JSON.")
     parser.add_argument("--workspace", type=Path, default=Path("."), help="Personal learning repository root.")
     parser.add_argument("--input", default="-", help="JSON payload path, or '-' for stdin.")
-    parser.add_argument("--mode", choices=["fast_grade_light_record", "full_archive"], default="fast_grade_light_record")
+    parser.add_argument("--mode", choices=["auto", "fast_grade_light_record", "full_archive"], default="auto")
     parser.add_argument("--dry-run", action="store_true", help="Validate and print planned output paths without writing.")
     parser.add_argument("--run-id", default="", help="Optional run id for .zhizhi-math-coach/run-log.jsonl.")
     parser.add_argument("--no-log", action="store_true", help="Do not append run-log.jsonl.")
@@ -447,6 +569,7 @@ def main(argv: list[str] | None = None) -> int:
         if not isinstance(payload, dict):
             raise ValueError("input JSON must be an object")
 
+        payload = normalize_payload(payload)
         errors, warnings = validate_payload(payload, mode=args.mode)
         validation_errors = errors
         validation_warnings = warnings
@@ -454,51 +577,20 @@ def main(argv: list[str] | None = None) -> int:
             print(json.dumps({"ok": False, "errors": errors, "warnings": warnings}, ensure_ascii=False, indent=2))
             return 1
 
-        ensure_workspace_dirs(workspace)
-        date = text(payload.get("date")) or dt.date.today().isoformat()
-        payload["date"] = date
-
-        diagnosis_slug = slugify(payload.get("source_slug") or payload.get("source") or payload.get("scope"), "grading")
-        diagnosis_path = unique_path(workspace / "records" / f"{date}-{diagnosis_slug}-diagnosis.md")
-        mistake_path = workspace / source_book(payload) if payload.get("mistakes") else None
-        weak_point_paths = [
-            workspace / "weak-points" / f"{slugify(wp.get('slug') or wp.get('title'), 'weak-point')}.md"
-            for wp in weak_point_payloads(payload)
-        ]
-        planned = {
-            "diagnosis": str(diagnosis_path.relative_to(workspace)),
-            "mistake_book": str(mistake_path.relative_to(workspace)) if mistake_path else "",
-            "progress": "records/learning-progress.md",
-            "active_context": "memory/active-context.md" if payload.get("active_context_md") else "",
-            "weak_points": [str(path.relative_to(workspace)) for path in weak_point_paths],
-        }
         if args.dry_run:
+            enriched, decision = plan_followup(workspace, payload, args.mode)
             ok = True
-            print(json.dumps({"ok": True, "planned": planned, "warnings": warnings}, ensure_ascii=False, indent=2))
+            print(json.dumps({"ok": True, "dry_run": True, "decision": decision,
+                              "warnings": warnings}, ensure_ascii=False, indent=2))
             return 0
 
-        write_text(diagnosis_path, render_diagnosis(payload, diagnosis_slug))
-        written = [diagnosis_path, append_progress(workspace, payload)]
-        mistake_result = append_mistakes(workspace, payload)
-        if mistake_result:
-            written.append(mistake_result)
-        written.extend(append_weak_points(workspace, payload))
-        written.extend(append_memory_notes(workspace, payload))
-        active_context_path = write_active_context(workspace, payload)
-        if active_context_path:
-            written.append(active_context_path)
-
-        seen = []
-        for path in written:
-            rel = str(path.relative_to(workspace))
-            if rel not in seen:
-                seen.append(rel)
-        written_rel = seen
+        result = record_once(workspace, payload, lambda: prepare_recording(workspace, payload, args.mode, warnings))
+        written_rel = result["written"]
         ok = True
-        print(json.dumps({"ok": True, "written": seen, "warnings": warnings}, ensure_ascii=False, indent=2))
+        print(json.dumps(result, ensure_ascii=False, indent=2))
         return 0
     finally:
-        if not args.no_log:
+        if not args.no_log and not args.dry_run:
             append_run_log(
                 workspace,
                 {

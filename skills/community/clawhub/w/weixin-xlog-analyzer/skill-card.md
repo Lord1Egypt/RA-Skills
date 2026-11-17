@@ -1,42 +1,58 @@
-## Description: <br>
-Parses and analyzes WeChat Xlog files to extract key log records, error patterns, module statistics, and diagnostic reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes WeChat Xlog log files, extracts key information, and generates diagnostic reports for troubleshooting and log statistics.
 
-## Publisher: <br>
-[hellllll0world](https://clawhub.ai/user/hellllll0world) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hellllll0world](https://clawhub.ai/user/hellllll0world)
 
-## Use Case: <br>
-Developers and engineers use this skill to parse local WeChat Xlog files, summarize log levels and modules, identify errors or warnings, and produce diagnostic guidance for troubleshooting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: WeChat Xlog files and generated JSON reports may contain private or sensitive user, device, network, or application data. <br>
-Mitigation: Analyze only logs the user is authorized to inspect, redact sensitive fields before sharing outputs, and store or delete generated reports carefully. <br>
-Risk: Encrypted Xlog files require external decryption tools that are outside this skill. <br>
-Mitigation: Use trusted external decryption tools when needed and validate decrypted files locally before running the parser. <br>
-Risk: Unquoted or untrusted file paths in shell commands can cause command-line mistakes or unintended file access. <br>
-Mitigation: Quote file paths in commands and run the scripts only against intended local log files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Xlog Analysis Guide](references/analysis_guide.md) <br>
-- [WeChat Xlog Format Reference](references/xlog_format.md) <br>
+## Use Case:
 
+Developers and support engineers use this skill to parse local WeChat Xlog files, summarize levels, modules, warnings, and errors, and produce diagnostic guidance after any required external decryption.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated reports may contain sensitive log content and should be redacted before sharing.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Decrypted WeChat Xlog files and generated JSON reports may contain sensitive account, device, network, chat, payment, or diagnostic details.
+
+Mitigation: Analyze logs locally, redact sensitive fields before sharing, and choose output paths deliberately.
+
+Risk: Encrypted Xlog files are not decrypted by this skill.
+
+Mitigation: Decrypt files with an external trusted tool before parsing and only provide plaintext logs that are appropriate for local analysis.
+
+Risk: WeChat Xlog formats may vary by client version, which can reduce parser coverage or produce UNKNOWN entries.
+
+Mitigation: Review parser output and validate key findings against representative raw log lines before acting on recommendations.
+
+## Reference(s):
+
+- [Xlog Format Reference](references/xlog_format.md)
+- [Xlog Analysis Guide](references/analysis_guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/hellllll0world/skills/weixin-xlog-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON report files produced by the bundled scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The scripts read local user-provided log files and write local JSON outputs such as parsed logs and analysis reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

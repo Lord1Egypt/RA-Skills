@@ -1,39 +1,57 @@
-## Description: <br>
-Competitor Monitor analyzes Amazon competitors from brand names or ASINs, including competitor discovery, traffic keywords, customer-review themes, market movement, and intelligence report recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors Amazon competitors by resolving brands or ASINs, analyzing traffic keywords and customer reviews, and producing competitor intelligence with action recommendations.
 
-## Publisher: <br>
-[beyondbright](https://clawhub.ai/user/beyondbright) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[beyondbright](https://clawhub.ai/user/beyondbright)
 
-## Use Case: <br>
-External marketplace operators, ecommerce teams, and developers use this skill to monitor Amazon competitors, analyze keywords and customer feedback, and generate differentiation and advertising recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses external marketplace data APIs and provider credentials. <br>
-Mitigation: Confirm the data-layer and SellerSprite helper code comes from a trusted source and understand which provider account and API key will be used before installing. <br>
-Risk: Competitive analysis inputs can expose sensitive strategy details. <br>
-Mitigation: Avoid entering confidential strategy details beyond the brands or ASINs needed for analysis. <br>
+## Use Case:
 
+External sellers, brand operators, and developers use this skill to monitor Amazon competitors by brand or ASIN, compare traffic keywords and review themes, estimate sales and revenue signals, and turn findings into positioning and advertising recommendations.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, API Calls, Code, Shell commands, Guidance] <br>
-**Output Format:** [JSON data and console or Markdown-style competitor intelligence reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses external marketplace data APIs and may depend on provider account access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The executable imports an external data-layer dependency that is not packaged with the skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill only where that dependency is trusted, packaged or pinned, and not loaded from a shared writable path.
+
+Risk: Competitor targets such as brands and ASINs may be sent to external commerce-data providers.
+
+Mitigation: Use only data that the operator is authorized to analyze and review external API data-handling requirements before deployment.
+
+Risk: Sales, revenue, keyword, and review-derived recommendations may be estimates or incomplete competitive signals.
+
+Mitigation: Treat generated recommendations as decision support and review them against authoritative marketplace and business data before acting.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/beyondbright/skills/walter-competitor-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown or structured JSON-style report with console summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Analyzes one or more Amazon brands or ASINs per request; depends on external commerce-data access.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

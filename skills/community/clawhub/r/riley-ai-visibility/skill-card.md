@@ -1,42 +1,55 @@
-## Description: <br>
-Checks whether AI assistants recommend a brand, product, or crypto token in its category and returns AI-visibility, ranking, competitor, sales qualification, and demand-signal results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks whether AI assistants recommend a brand, product, or crypto token in a category and reports visibility, competitor mentions, rankings, lead tiers, and demand signals.
 
-## Publisher: <br>
-[rccola990-cloud](https://clawhub.ai/user/rccola990-cloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rccola990-cloud](https://clawhub.ai/user/rccola990-cloud)
 
-## Use Case: <br>
-Marketing teams, GEO and SEO agencies, sales teams, crypto analysts, and agents use this skill to query a third-party x402 service for AI recommendation visibility, category share of voice, competitor mentions, lead qualification tiers, and live demand signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad or ambiguous prompts can lead an agent toward unintended paid x402 GET requests. <br>
-Mitigation: Review ambiguous activations before spending and configure x402 wallet or payment-client limits before enabling the skill. <br>
-Risk: The skill depends on a third-party AI-visibility service for results. <br>
-Mitigation: Use it only when agents are permitted to query that external service, and treat returned visibility or ranking data as service-provided evidence to review before acting. <br>
+## Use Case:
 
+External marketers, GEO/SEO agencies, sales teams, and crypto analysts use this skill to check AI recommendation visibility, compare category share of voice, qualify prospects, and monitor demand signals through the agentexchange.work API.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/rccola990-cloud/riley-ai-visibility) <br>
-- [Agent Exchange Store](https://store.agentexchange.work/) <br>
-- [Agent Exchange Samples](https://store.agentexchange.work/samples) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, API calls, guidance] <br>
-**Output Format:** [Markdown or plain text with exact GET URLs and summarized service responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses paid external x402 GET endpoints; free previews and samples are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Paid x402 API calls can spend USDC from a configured wallet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the free samples endpoint first, confirm each paid request, and set wallet or client-side spending limits before enabling paid calls.
+
+Risk: Incorrect endpoint paths or parameters can produce unintended requests or misleading visibility checks.
+
+Mitigation: Use only the documented GET endpoints or the free catalog and samples before making paid requests.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rccola990-cloud/skills/riley-ai-visibility)
+- [Agent Store API Catalog](https://store.agentexchange.work/)
+- [Agent Store Samples](https://store.agentexchange.work/samples)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Text]
+
+**Output Format:** [Markdown or plain text with x402 GET request guidance and API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May involve paid USDC x402 requests through agentcash; use free samples first and require confirmation before paid calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

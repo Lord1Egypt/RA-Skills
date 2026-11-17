@@ -1,43 +1,58 @@
-## Description: <br>
-Runtime-level grill enforcement plugin. Blocks exec/spawn calls for research/development tasks unless a valid grill token exists. Ensures agents think before they act. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runtime-level grill enforcement plugin. Blocks exec/spawn calls for research/development tasks unless a valid grill token exists. Ensures agents think before they act.
 
-## Publisher: <br>
-[tangsuann](https://clawhub.ai/user/tangsuann) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tangsuann](https://clawhub.ai/user/tangsuann)
 
-## Use Case: <br>
-Developers and agent operators use Grill Gate to enforce a design-review token check before selected OpenClaw exec or subagent-spawn actions run for research and development tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The plugin can block selected agent exec or subagent-spawn actions. <br>
-Mitigation: Install it only in environments where that enforcement is desired, and test the configured policies before relying on it. <br>
-Risk: Trigger words, exemptions, blocked commands, token directory, and token TTL may be too broad or too narrow for a deployment. <br>
-Mitigation: Review and tune those settings before use. <br>
-Risk: Tokens should not be assumed to be truly one-use unless the implementation is fixed. <br>
-Mitigation: Use a short token TTL and operational review controls until one-use token behavior is verified. <br>
+## Use Case:
 
+Developers and agent operators use Grill Gate to require a design-review token before selected OpenClaw exec or sessions_spawn activity proceeds. It is intended as a workflow guard for research and development tasks that match configured trigger terms.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tangsuann/grill-gate) <br>
-- [Publisher profile](https://clawhub.ai/user/tangsuann) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [OpenClaw plugin responses with text block reasons and JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May block selected exec or sessions_spawn calls until a valid local grill token is present.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release evidence) <br>
+Risk: The gatekeeper promise may be bypassed or forged if token issuance, token storage, one-time use, task binding, or bypass exemptions are weak.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as a lightweight workflow guard unless those controls are redesigned and reviewed for the installation.
+
+Risk: The skill can block selected exec and sessions_spawn calls, which may interrupt normal agent workflows.
+
+Mitigation: Install only where this blocking behavior is acceptable and configure triggers, exemptions, blocked commands, and token TTL for the intended workflow.
+
+Risk: Dependency behavior can affect a security-sensitive installation.
+
+Mitigation: Pin or audit dependencies before relying on the plugin in a sensitive environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tangsuann/skills/grill-gate)
+- [Publisher profile](https://clawhub.ai/user/tangsuann)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Configuration, Guidance]
+
+**Output Format:** [Plugin block or allow decisions with text guidance and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May block selected exec and sessions_spawn calls when no valid grill token is present.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

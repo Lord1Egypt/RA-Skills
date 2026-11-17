@@ -1,41 +1,54 @@
-## Description: <br>
-Uses analogies to explain complex medical concepts in accessible terms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses analogies to explain complex medical concepts in accessible terms.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Patients, students, educators, and developers can use this skill to produce accessible educational explanations of selected medical concepts for child, patient, or student audiences. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users could mistake educational medical explanations for clinical advice. <br>
-Mitigation: Treat outputs as general education and have qualified professionals review any medical decisions. <br>
-Risk: The optional output path writes JSON to the workspace. <br>
-Mitigation: Use deliberate workspace filenames and avoid sensitive or unintended paths. <br>
+## Use Case:
 
+External users, educators, and developers use this skill to generate accessible educational explanations and analogies for supported medical concepts for child, patient, or student audiences.
 
-## Reference(s): <br>
-- [Concept Explainer references](references/guidelines.md) <br>
-- [ClawHub skill page](https://clawhub.ai/AIPOCH-AI/concept-explainer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [JSON for concept explanations, or plain text when listing available concepts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The optional output argument writes JSON to a user-selected workspace file; the script does not use network access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: The optional --output path can overwrite arbitrary writable files available to the local Python process.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a sandbox or workspace-only environment and avoid absolute paths or parent-directory paths for --output.
+
+Risk: Medical explanations may be mistaken for clinical advice because the medical-use limits are under-disclosed.
+
+Mitigation: Treat outputs as educational summaries and require qualified clinical review before using them for healthcare decisions.
+
+## Reference(s):
+
+- [Concept Explainer ClawHub listing](https://clawhub.ai/aipoch-ai/skills/concept-explainer)
+- [Concept Explainer - References](references/guidelines.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, files, guidance]
+
+**Output Format:** [JSON printed to stdout or written to a user-provided output file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes concept, explanation, analogy, and audience fields; listing mode prints available concepts.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact/SKILL.md frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

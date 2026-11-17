@@ -1,44 +1,55 @@
-## Description: <br>
-Autonomous AI agent for entrepreneurs managing lead prospecting, email replies, job applications, and social media content automatically. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous business agent for entrepreneurs that manages prospecting, email replies, lead qualification, content generation, job applications, and auto-responses.
 
-## Publisher: <br>
-[okfreelancerai](https://clawhub.ai/user/okfreelancerai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[okfreelancerai](https://clawhub.ai/user/okfreelancerai)
 
-## Use Case: <br>
-Entrepreneurs, freelancers, and small sales teams use this skill to automate lead prospecting, business communications, content generation, job application responses, and follow-up workflows across connected services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may access sensitive communications and lead data through connected services. <br>
-Mitigation: Confirm every connected service before use and limit OAuth scopes to the minimum required for the intended workflow. <br>
-Risk: Autonomous outbound messages could send incorrect, unwanted, or overbroad communications. <br>
-Mitigation: Configure outbound email, messaging, and job-application workflows as draft-only or approval-required by default. <br>
-Risk: The artifacts do not fully disclose whether historical emails or business data are sent to a backend, ingested, or retained. <br>
-Mitigation: Verify data flow, backend processing, ingestion, and retention behavior before connecting production accounts. <br>
+## Use Case:
 
+External entrepreneurs, freelancers, startup founders, and small sales teams use this agent to automate repetitive business operations such as inbox handling, lead follow-up, content drafting, job applications, and channel auto-responses.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/okfreelancerai/badman-agent-rental) <br>
-- [Publisher profile](https://clawhub.ai/user/okfreelancerai) <br>
-- [Agent Rental website](https://agentrental.tiiny.site) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions, JSON configuration, and generated business communication text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce outbound drafts or sent messages when connected to communication services; approval-required sending is recommended by the security guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Autonomous email, messaging, social posting, job application, and attachment workflows can send unintended or unauthorized communications.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require draft-only defaults or per-action approval for every send, post, outreach message, job application, and attachment before installation or production use.
+
+Risk: Connected Gmail, WhatsApp, Telegram, Discord, and third-party backend services may expose business, contact, account, or attachment data.
+
+Mitigation: Confirm exact OAuth scopes, token storage and revocation details, data processing boundaries, recipient and attachment allowlists, audit logging, rate limits, and a kill switch.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/okfreelancerai/skills/badman-agent-rental)
+- [Agent Rental website](https://agentrental.tiiny.site)
+- [Publisher profile](https://clawhub.ai/user/okfreelancerai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Natural-language messages, social posts, outreach drafts, cover letters, and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May prepare or initiate outbound email, messaging, social posting, job application, and attachment workflows depending on integration permissions.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

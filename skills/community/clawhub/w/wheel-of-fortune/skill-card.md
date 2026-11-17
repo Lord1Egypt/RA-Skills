@@ -1,40 +1,49 @@
-## Description: <br>
-Generate a link to an interactive 3D decision wheel that randomly chooses among 2 to 20 user-provided options with optional weights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a link to an interactive 3D wheel that randomly chooses from 2 to 20 user-provided options, with optional weighting.
 
-## Publisher: <br>
-[peetzweg](https://clawhub.ai/user/peetzweg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[peetzweg](https://clawhub.ai/user/peetzweg)
 
-## Use Case: <br>
-External users and agents use this skill when a user wants a playful random choice among concrete options rather than a reasoned recommendation. The agent collects the options, builds a URL with encoded labels and optional weights, and returns the link for the user to open. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Option labels are placed in a URL opened on an external website, which can expose confidential names, private business options, personal data, or sensitive decisions. <br>
-Mitigation: Use only non-sensitive option labels and avoid confidential, personal, or sensitive decision content when creating the wheel link. <br>
-Risk: The skill is intended for random selection and may be inappropriate for decisions that require judgment, safety review, or a reasoned recommendation. <br>
-Mitigation: Use the skill only when randomness is explicitly welcome and provide reasoned guidance instead for consequential choices. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/peetzweg/wheel-of-fortune) <br>
-- [Decision wheel web app](https://makedecisionforme.netlify.app/) <br>
+## Use Case:
 
+External users and agents use this skill when randomness is welcome and a user wants a clickable decision wheel rather than a reasoned recommendation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown response containing a generated URL] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The URL contains user-provided option labels and optional integer weights; labels should be URL-encoded.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Option text in the generated link may be sent to the external wheel website when opened.
+
+Mitigation: Use generic labels instead of personal, confidential, workplace, medical, financial, or otherwise sensitive choices.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/peetzweg/skills/wheel-of-fortune)
+- [Decision wheel web app](https://makedecisionforme.netlify.app/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown with a generated URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated URLs encode option labels and optional integer weights in an items query parameter.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

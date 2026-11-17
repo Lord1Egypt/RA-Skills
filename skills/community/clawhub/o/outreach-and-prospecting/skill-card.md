@@ -1,36 +1,55 @@
-## Description: <br>
-Run cold and warm outreach campaigns to find and engage potential customers or partners. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run cold and warm outreach campaigns to build prospecting pipelines, write cold emails and LinkedIn messages, qualify leads, plan multi-touch sequences, and track outreach as a solopreneur.
 
-## Publisher: <br>
-[JK-0001](https://clawhub.ai/user/JK-0001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jk-0001](https://clawhub.ai/user/jk-0001)
 
-## Use Case: <br>
-External users, employees, and solo operators use this skill to define an ICP, identify and qualify leads, draft cold email or LinkedIn outreach, plan multi-touch sequences, and track a prospecting pipeline. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may mishandle prospect data or run outreach that violates applicable laws, platform rules, opt-outs, or do-not-contact requests. <br>
-Mitigation: Confirm compliance before use, honor opt-outs and do-not-contact requests, store only needed prospect data, and review every generated message before sending. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+External users and solo operators use this skill to define an ideal customer profile, source and qualify leads, craft cold email and LinkedIn outreach, sequence follow-ups, and manage a simple prospecting pipeline.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Prospecting notes or lead lists may include unnecessary personal or sensitive information.
+
+Mitigation: Track only information needed for qualification and follow-up, and avoid storing sensitive personal details in pipeline notes.
+
+Risk: Outreach campaigns may violate consent, opt-out, privacy, platform, or anti-spam requirements if applied without review.
+
+Mitigation: Review outreach plans against applicable legal, platform, consent, opt-out, privacy, and anti-spam requirements before use.
+
+Risk: Personalized outreach guidance can still result in unsolicited or reputationally damaging messages when overused.
+
+Mitigation: Use the skill's qualification, personalization, pacing, and clean-exit guidance to limit outreach to relevant prospects.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with templates, checklists, and short outreach examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No tool execution or API calls; users should review lead data handling and outreach messages before sending.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with templates, checklists, example outreach sequences, and pipeline tracking fields.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advisory outreach content only; it does not execute code, send messages, access credentials, or automate prospect collection.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-WachAI-x402 helps agents run paid WACH.AI DeFi token-risk analysis through x402 payments and AWAL wallet custody. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DeFi risk analysis toolkit powered by WACH.AI via x402 payments using AWAL wallet custody for token safety, honeypot, liquidity, holder distribution, and smart contract risk checks across Ethereum, Polygon, Base, BSC, and Solana.
 
-## Publisher: <br>
-[Akshat-Mishra101](https://clawhub.ai/user/Akshat-Mishra101) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[akshat-mishra101](https://clawhub.ai/user/akshat-mishra101)
 
-## Use Case: <br>
-External users and developers use this skill to assess token safety, honeypot patterns, liquidity quality, holder concentration, and contract risk signals across Ethereum, Polygon, Base, BSC, and Solana. The skill guides the agent through AWAL readiness checks, capped x402 payment, risk analysis, and source-linked reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Paid DeFi analysis can spend wallet funds or be run against the wrong token or chain. <br>
-Mitigation: Verify the external x402-wach CLI or npm package and publisher, use a low-balance AWAL wallet, keep the 0.01 USDC cap, and confirm the token and chain before each analysis. <br>
-Risk: Wallet-secret handling mistakes could expose credentials or signing material. <br>
-Mitigation: Do not provide private keys, seed phrases, or wallet files; this skill uses AWAL authentication and wallet custody instead. <br>
+## Use Case:
 
+Developers, agents, and DeFi users use this skill to request paid WACH.AI token risk reports, check wallet readiness through AWAL, and interpret analysis for supported EVM chains and Solana.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Akshat-Mishra101/wachai-x402) <br>
-- [WACH.AI x402 Verification Endpoint](https://x402.wach.ai/verify-token) <br>
-- [TokenSense Report URL Pattern](https://tokensense.wach.ai/<chain>/<tokenAddress>) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, TypeScript examples, and structured token-risk report sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Paid x402 analysis calls are capped at 10,000 atomic USDC by default; successful reports should include a TokenSense or source link when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Each token analysis is a paid request using AWAL/x402 custody and USDC on Base.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the default 10,000 atomic USDC cap, verify AWAL authentication and balance before paid calls, and raise spend limits only after an explicit user decision.
+
+Risk: Private key, seed phrase, or local wallet file handling could expose signing material.
+
+Mitigation: Use the AWAL-only custody path and do not request, store, expose, or suggest private keys, seed phrases, wallet export files, or wallet.json flows.
+
+Risk: Payment, parsing, or readiness failures can make a report incomplete or misleading.
+
+Mitigation: Surface payment and AWAL errors clearly, retry transient failures at most once, and claim success only when the report payload is present.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/akshat-mishra101/skills/wachai-x402)
+- [WACH.AI x402 verification endpoint](https://x402.wach.ai/verify-token)
+- [TokenSense report pattern](https://tokensense.wach.ai/<chain>/<tokenAddress>)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Markdown, Code]
+
+**Output Format:** [Markdown guidance with shell commands and optional TypeScript usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Successful reports may include market data, risk scores, honeypot analysis, holder and liquidity signals, code analysis, social and community signals, source link, and timestamp.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

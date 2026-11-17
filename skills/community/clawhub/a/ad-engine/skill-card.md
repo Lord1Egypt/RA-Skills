@@ -1,45 +1,61 @@
-## Description: <br>
-Assemble modular ads from Supabase components and deploy to Facebook Ads Manager via the Marketing API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assemble modular ads from Supabase components and deploy to Facebook Ads Manager via the Marketing API. Supports preview, single/batch deploy, and status tracking. Uses ad_components table for A/B testing at scale.
 
-## Publisher: <br>
-[aces1up](https://clawhub.ai/user/aces1up) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aces1up](https://clawhub.ai/user/aces1up)
 
-## Use Case: <br>
-Developers, marketers, and operators use this skill to assemble Facebook ad variants from Supabase-stored components, preview them, deploy them through the Meta Marketing API, and check live campaign status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence reports a hardcoded Supabase credential in the deployment script. <br>
-Mitigation: Review or remove the embedded credential before installation, rotate the database password, and use environment variables or a secrets manager for Supabase access. <br>
-Risk: The release evidence reports risky setup behavior around automatic dependency installation. <br>
-Mitigation: Move dependencies to a pinned setup step and review packages before running the skill in a production environment. <br>
-Risk: Facebook access tokens can authorize ad spend and account changes. <br>
-Mitigation: Treat the token as a secret, prefer environment variables or a secrets manager, and validate campaigns with preview or dry-run plus Ads Manager review before enabling deployment. <br>
+## Use Case:
 
+Developers and marketers use this skill to assemble Facebook and Instagram ad variants from Supabase campaign components, preview them, deploy them through the Facebook Marketing API, and check deployed ad status.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aces1up/ad-engine) <br>
-- [Facebook Ads API setup guide](artifact/FB_SETUP_GUIDE.md) <br>
-- [Facebook deployment spec](artifact/FB_DEPLOYMENT_SPEC.md) <br>
-- [Ad Engine spec](artifact/AD_ENGINE_SPEC.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and optional JSON preview/status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local Facebook credential configuration and make Supabase and Meta Marketing API calls when run with deployment or status commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The release evidence reports a hardcoded Supabase database password.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Rotate or remove the embedded database password before use and provide least-privilege database credentials through a secure environment variable.
+
+Risk: The release evidence reports runtime package installation.
+
+Mitigation: Review and pin dependencies, then run the skill in an isolated virtual environment before connecting production accounts.
+
+Risk: Facebook access tokens can create ads and spend money through the connected ad account.
+
+Mitigation: Treat tokens as high-value secrets, grant only required permissions, use dry-run and paused ads for review, and avoid URL-based token exchange when possible.
+
+## Reference(s):
+
+- [Ad Engine skill page](https://clawhub.ai/aces1up/skills/ad-engine)
+- [Ad Engine modular A/B testing system](artifact/AD_ENGINE_SPEC.md)
+- [Facebook ads deployment spec](artifact/FB_DEPLOYMENT_SPEC.md)
+- [Facebook Ads API setup guide](artifact/FB_SETUP_GUIDE.md)
+- [Meta Marketing API documentation](https://developers.facebook.com/docs/marketing-apis)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and optional JSON from CLI actions, with Markdown setup and deployment guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can create Facebook campaign, ad set, creative, and ad records, update Supabase message status, and save local Facebook credential configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

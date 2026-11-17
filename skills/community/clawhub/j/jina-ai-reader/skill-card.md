@@ -1,40 +1,52 @@
-## Description: <br>
-Fetch clean, AI-friendly Markdown content from any URL using Jina.ai Reader, including paywalled sites, Twitter/X posts, and JavaScript-heavy pages that need rendering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches web pages through Jina.ai Reader and returns readable Markdown for agents.
 
-## Publisher: <br>
-[jiangtianjiao](https://clawhub.ai/user/jiangtianjiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jiangtianjiao](https://clawhub.ai/user/jiangtianjiao)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch readable Markdown from public web pages after search or when standard fetch tools struggle with Twitter/X, paywalls, or JavaScript-rendered pages. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Submitted URLs and fetched page content are sent through Jina.ai. <br>
-Mitigation: Use the skill only for public pages and avoid internal sites, private documents, authenticated pages, signed URLs, or links containing tokens or credentials. <br>
-Risk: Using the reader on paywalled content may conflict with a site's terms. <br>
-Mitigation: Check applicable site terms and access rights before fetching or using paywalled content. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiangtianjiao/jina-ai-reader) <br>
-- [Jina.ai Reader endpoint](https://r.jina.ai/) <br>
+## Use Case:
 
+Agents and developers use this skill to read web pages as Markdown after finding a URL, including social posts and JavaScript-heavy pages.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown] <br>
-**Output Format:** [Markdown text printed to stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional flags can wait for JavaScript rendering and include image captions or links.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Submitting a URL to Jina.ai Reader may disclose sensitive pages or access tokens.
+
+Mitigation: Use only public, non-sensitive URLs; avoid confidential documents, intranet pages, and signed or tokenized links.
+
+Risk: Fetching or reusing paywalled content may conflict with site terms.
+
+Mitigation: Check and respect paywall restrictions and site terms before fetching or reusing content.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/jiangtianjiao/skills/jina-ai-reader)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown]
+
+**Output Format:** [Plain-text Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include page titles, metadata, links, and image captions when available.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

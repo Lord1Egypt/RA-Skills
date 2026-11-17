@@ -1,41 +1,53 @@
-## Description: <br>
-中国公民出境签证智能指南，提供签证要求查询、材料清单生成和最新政策速递，覆盖80+热门目的地。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+中国公民出境签证智能指南，签证要求查询、材料清单生成、最新政策速递，覆盖80+热门目的地，零配置即用。
 
-## Publisher: <br>
-[travel-skills](https://clawhub.ai/user/travel-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[travel-skills](https://clawhub.ai/user/travel-skills)
 
-## Use Case: <br>
-External travelers and travel-support agents use this skill to answer Chinese passport visa questions, prepare destination-specific application checklists, and summarize recent policy changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live policy lookup can send the destination query to Google. <br>
-Mitigation: Avoid live lookup for sensitive or private travel plans unless query exposure to Google is acceptable. <br>
-Risk: Visa rules, fees, and eligibility can change after the embedded data or search result was produced. <br>
-Mitigation: Confirm critical travel decisions against the relevant embassy, consulate, or official immigration authority before acting. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to answer visa requirement questions for Chinese citizens, generate destination-specific application material checklists, and summarize recent visa policy changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/travel-skills/visa-smart-guide) <br>
-- [Publisher profile](https://clawhub.ai/user/travel-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, guidance] <br>
-**Output Format:** [Markdown and JSON-like structured text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on destination and optional travel-purpose inputs; live policy lookup may query Google.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: Visa policy updates may include general Google snippets rather than official-only sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify visa requirements and recent policy changes against official embassy, consulate, or immigration websites before booking or traveling.
+
+Risk: Destination-based policy queries may be sent to Google when latest updates are requested.
+
+Mitigation: Install and use the skill only when this data flow is acceptable for the user's travel-planning context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/travel-skills/skills/visa-smart-guide)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, JSON]
+
+**Output Format:** [Natural-language guidance synthesized from JSON tool results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Covers visa requirements, document checklists, policy updates, rejection-risk tips, photo specifications, and e-visa links.]
+
+## Skill Version(s):
+
+2.0.19 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

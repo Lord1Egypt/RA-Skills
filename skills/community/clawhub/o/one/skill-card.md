@@ -1,38 +1,50 @@
-## Description: <br>
-Introduces the cultural meaning and symbolism of the number 1 in Chinese and English. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides concise bilingual Chinese and English explanations of the cultural meaning and symbolism of the number 1.
 
-## Publisher: <br>
-[LeoCryptoFlow](https://clawhub.ai/user/LeoCryptoFlow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leocryptoflow](https://clawhub.ai/user/leocryptoflow)
 
-## Use Case: <br>
-External users ask an agent for concise bilingual explanations of the cultural, philosophical, religious, and modern symbolism of the number 1. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides cultural and symbolic explanations that may be simplified or incomplete across traditions. <br>
-Mitigation: Treat responses as educational summaries and ask for source-backed detail when exact historical, religious, or cultural claims matter. <br>
+## Use Case:
 
+External users ask the agent for cultural, philosophical, religious, or modern interpretations of the number 1. The skill helps the agent answer in concise bilingual Chinese and English prose, with examples from Chinese and Western contexts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/LeoCryptoFlow/one) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Bilingual Markdown prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses are intended to stay concise and expand into specific cultural or philosophical angles when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The trigger wording is broad and could activate on general questions containing 'one'.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the user's request is about the cultural meaning or symbolism of the number 1 before relying on the skill's guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leocryptoflow/skills/one)
+- [Publisher profile](https://clawhub.ai/user/leocryptoflow)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text bilingual explanation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, data access, persistence, or external tool use indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

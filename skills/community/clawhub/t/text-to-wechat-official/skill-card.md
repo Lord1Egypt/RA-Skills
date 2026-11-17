@@ -1,40 +1,53 @@
-## Description: <br>
-将口语化聊天记录、素材草稿、会议纪要、读书笔记、行业分析、赛事复盘等非结构化文本整理为结构清晰、排版规范、符合微信公众号阅读习惯的 Markdown 推文草稿。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns unstructured Chinese source text such as chat logs, drafts, meeting notes, reading notes, industry analysis, or market reviews into a structured WeChat Official Account article with headings, emphasis, a risk notice, and share-oriented closing text.
 
-## Publisher: <br>
-[ninetyhe-90](https://clawhub.ai/user/ninetyhe-90) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ninetyhe-90](https://clawhub.ai/user/ninetyhe-90)
 
-## Use Case: <br>
-Content creators, editors, and operators use this skill to turn raw notes or conversational source text into a publication-ready WeChat article draft with structured sections, emphasized key points, and a standard risk disclaimer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated articles may preserve or reframe financial commentary, market opinions, or other sensitive claims from the source text. <br>
-Mitigation: Review the draft before publishing, verify factual claims, and keep the included disclaimer when the source material discusses investment topics. <br>
-Risk: The skill can save generated drafts locally, which may expose private notes if a sensitive or shared output path is used. <br>
-Mitigation: Tell the agent whether to save the result and choose a non-sensitive output directory for private chats, meeting notes, or unpublished drafts. <br>
+## Use Case:
 
+Content creators and operators use this skill to convert loosely structured Chinese text into publish-ready WeChat Official Account markdown. It is especially oriented toward preserving source viewpoints while reorganizing material into standard or premium long-form article structures.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ninetyhe-90/text-to-wechat-official) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown article draft] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports standard and premium article structures and may save the generated Markdown draft to a user-specified WeChat publishing directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Generated articles may be saved automatically to a root-owned default path without confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Edit or configure the skill before installation so saving requires explicit approval, uses a non-privileged user-selected directory, and sanitizes generated filenames.
+
+Risk: Financial market-review content generated from user material could be mistaken for investment advice.
+
+Mitigation: Keep the risk disclaimer, preserve source attribution where applicable, and require human review before publishing financial commentary.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ninetyhe-90/skills/text-to-wechat-official)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown article with section headings, bolded key points, a risk notice, and closing engagement text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The artifact asks the agent to save generated articles to a user-specified WeChat directory, with a default root-owned path.]
+
+## Skill Version(s):
+
+1.2.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

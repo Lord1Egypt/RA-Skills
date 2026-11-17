@@ -1,46 +1,58 @@
-## Description: <br>
-Analyze and optimize cloud costs across AWS, Azure, and GCP. Use when evaluating cloud spending, identifying cost optimization opportunities, analyzing cloud bills, rightsizing instances, finding unused resources, or building cloud cost reports for management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze and optimize cloud costs across AWS, Azure, and GCP.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Developers, cloud engineers, FinOps teams, and finance stakeholders use this skill to analyze AWS, Azure, or GCP spending, identify waste, and produce cloud cost optimization reports with savings estimates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends cloud provider credentials and billing data to a third-party API. <br>
-Mitigation: Use dedicated least-privilege, preferably temporary read-only credentials limited to billing and cost visibility, and install only after confirming ToolWeb's billing, privacy, and data-handling terms. <br>
-Risk: Credential exposure could affect AWS, Azure, or GCP billing and cost data. <br>
-Mitigation: Never provide root or admin credentials; rotate or revoke the credentials immediately after analysis. <br>
-Risk: The security scan reports incomplete consent and data-handling disclosures. <br>
-Mitigation: Require explicit user approval before submitting credentials or billing data to the ToolWeb API. <br>
+## Use Case:
 
+Developers, cloud operations teams, and finance stakeholders use this skill to request AWS, Azure, or GCP cost analysis, spending trends, rightsizing recommendations, unused resource detection, and savings estimates through the ToolWeb Finopsy API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/finopsy-cloud-finops) <br>
-- [ToolWeb portal](https://portal.toolweb.in) <br>
-- [Finopsy API endpoint](https://portal.toolweb.in/apis/tools/finopsy) <br>
-- [ToolWeb platform](https://toolweb.in) <br>
-- [ToolWeb OpenClaw skills](https://toolweb.in/openclaw/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with curl commands, JSON request examples, and structured cloud cost analysis results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces provider-specific cost breakdowns, trend summaries, optimization recommendations, unused resource findings, and estimated savings when the ToolWeb API call succeeds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: The skill asks users to send reusable cloud credentials to a third-party paid API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated, least-privilege, read-only, short-lived credentials; avoid root, admin, owner, or broad service-account credentials; rotate or revoke credentials after use.
+
+Risk: Retention, logging, pricing, and privacy terms for the third-party API may affect user data and cost exposure.
+
+Mitigation: Confirm ToolWeb.in retention, logging, pricing, and privacy terms before providing credentials or running paid API calls.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/finopsy-cloud-finops)
+- [ToolWeb Portal](https://portal.toolweb.in)
+- [Finopsy API Endpoint](https://portal.toolweb.in/apis/tools/finopsy)
+- [ToolWeb Platform](https://toolweb.in)
+- [ToolWeb OpenClaw Skills](https://toolweb.in/openclaw/)
+- [ToolWeb MCP Server](https://hub.toolweb.in)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown cost analysis report with curl-based API invocation guidance and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, TOOLWEB_API_KEY, and user-provided cloud provider credentials for AWS, Azure, or GCP.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

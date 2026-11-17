@@ -1,39 +1,56 @@
-## Description: <br>
-Detect AWS idle and zombie resources consuming cost with zero meaningful utilization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect AWS idle and zombie resources consuming cost with zero meaningful utilization.
 
-## Publisher: <br>
-[anmolnagpal](https://clawhub.ai/user/anmolnagpal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[anmolnagpal](https://clawhub.ai/user/anmolnagpal)
 
-## Use Case: <br>
-Cloud engineers and AWS operators use this skill to find idle AWS resources, estimate monthly and annual waste, prioritize cleanup, and prepare runbooks with AWS CLI cleanup commands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may rely on the agent's AWS CLI context and propose cleanup commands that affect cloud resources. <br>
-Mitigation: Use read-only discovery first, verify the AWS account, region, and resource IDs, and review every generated deletion or cleanup command before execution. <br>
-Risk: Resources that appear idle may still be important to production, critical, or compliance workflows. <br>
-Mitigation: Require human confirmation for cleanup actions and manually review resources marked or named as production, critical, or otherwise sensitive. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anmolnagpal/idle-resource-detector) <br>
+## Use Case:
 
+Developers, cloud engineers, and FinOps teams use this skill to identify idle AWS resources, estimate waste, prioritize cleanup, and generate reviewable AWS CLI cleanup runbooks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with resource summaries, prioritized tables, runbooks, checklists, and AWS CLI commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes estimated monthly waste, estimated annual savings, cleanup priorities, and confirmation flags for deletion-sensitive resources.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill inspects AWS resource metadata for cost analysis.
+
+Mitigation: Run it only in authorized AWS account contexts and start with read-only AWS permissions where possible.
+
+Risk: The skill can generate AWS CLI cleanup or deletion commands.
+
+Mitigation: Treat generated commands as review material and require human confirmation before execution.
+
+Risk: Critical resources could be misclassified as idle.
+
+Mitigation: Manually review resources flagged by names such as prod, production, or critical before cleanup.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/anmolnagpal/skills/idle-resource-detector)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with waste summaries, resource tables, cleanup priorities, checklists, and inline AWS CLI commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes estimated monthly waste, estimated annual savings, and confirmation flags for resources that require manual review.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

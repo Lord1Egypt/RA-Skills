@@ -1,44 +1,61 @@
-## Description: <br>
-This skill is used to send emails via the EngageLab REST API. It supports regular sending, template sending, variable replacement, attachment handling, and sending settings such as sandbox mode and tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill is used to send emails via the EngageLab REST API. It supports regular sending, template sending, variable replacement, attachment handling, and sending settings such as sandbox mode and tracking.
 
-## Publisher: <br>
-[DevEngageLab](https://clawhub.ai/user/DevEngageLab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[devengagelab](https://clawhub.ai/user/devengagelab)
 
-## Use Case: <br>
-Developers and agents use this skill to send and configure EngageLab email messages, including transactional messages, template sends, personalized content, attachments, sandbox testing, and tracking settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send real email through EngageLab when configured with valid credentials. <br>
-Mitigation: Use sandbox mode first and require manual confirmation of recipients, subject, body, attachments, tracking settings, and live-send status before sending. <br>
-Risk: The provided sender script may mishandle API credentials. <br>
-Mitigation: Fix or avoid the helper script before using real credentials, and use a restricted, rotatable API key. <br>
-Risk: Email tracking settings may collect engagement signals or change recipient-facing behavior. <br>
-Mitigation: Review open, click, and unsubscribe tracking settings for the intended audience and policy requirements before each live send. <br>
+## Use Case:
 
+Developers and agents use this skill to send EngageLab email messages, including regular email, template-style content, personalized variables, attachments, sandbox testing, and email tracking settings.
 
-## Reference(s): <br>
-- [EngageLab Email REST API Detailed Specification](references/api_spec.md) <br>
-- [EngageLab Singapore email send endpoint](https://email.api.engagelab.cc/v1/mail/send) <br>
-- [EngageLab Turkey email send endpoint](https://emailapi-tr.engagelab.com/v1/mail/send) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown with inline JSON and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or adapt email request payloads, sender script usage, sandbox settings, recipient lists, attachment metadata, and tracking configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill has a legitimate email-sending purpose, but release security evidence reports mishandled API credentials and overly broad external sending behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation, keep Authorization values out of message payloads and logs, restrict destinations to documented EngageLab endpoints, and add explicit confirmation before live sends.
+
+Risk: Email tracking and attachments can affect recipient privacy and data handling obligations.
+
+Mitigation: Document privacy expectations before use, enable tracking only when appropriate, and review attachment contents before sending.
+
+Risk: The security guidance says not to use production API keys until the send script is fixed to run.
+
+Mitigation: Test with sandbox mode and non-production credentials first, then verify the script behavior before using production EngageLab credentials.
+
+## Reference(s):
+
+- [EngageLab Email REST API Detailed Specification](references/api_spec.md)
+- [EngageLab Email API Reference](references/api_reference.md)
+- [EngageLab Singapore email send endpoint](https://email.api.engagelab.cc/v1/mail/send)
+- [EngageLab Turkey email send endpoint](https://emailapi-tr.engagelab.com/v1/mail/send)
+- [ClawHub skill page](https://clawhub.ai/devengagelab/skills/engagelab-email)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JSON payloads, Python code references, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce live EngageLab API requests when configured with credentials and non-sandbox settings.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

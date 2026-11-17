@@ -1,41 +1,53 @@
-## Description: <br>
-Provides checkout conversion optimization guidance covering guest checkout, upfront costs, payment trust signals, checkout simplification, and abandoned-cart follow-up. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides checkout conversion optimization guidance for reducing abandonment through guest checkout, early cost transparency, payment trust signals, simplified checkout flow, and abandoned-cart follow-up.
 
-## Publisher: <br>
-[wellyxy](https://clawhub.ai/user/wellyxy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wellyxy](https://clawhub.ai/user/wellyxy)
 
-## Use Case: <br>
-Product, ecommerce, and growth teams use this skill to review checkout flows and identify practical changes that may reduce abandonment and improve conversion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Conversion-lift figures and product-testing claims may not apply to every checkout flow. <br>
-Mitigation: Treat the figures as directional advice and validate changes with current analytics, user research, and controlled tests. <br>
-Risk: The skill points readers to an external waitlist/service. <br>
-Mitigation: Review the external site and privacy/compliance fit before sharing product, customer, or checkout data. <br>
+## Use Case:
 
+E-commerce operators, product managers, UX practitioners, and marketing teams use this skill to identify practical checkout changes that may reduce abandonment and improve purchase completion.
 
-## Reference(s): <br>
-- [Cro Checkout on ClawHub](https://clawhub.ai/wellyxy/cro-checkout) <br>
-- [Racoonn waitlist](https://racoonn.me) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code, credential handling, persistence, or hidden system access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may mention Racoonn as a testing option, which security evidence identifies as unrelated promotional content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the Racoonn mention as optional promotional material, not as a required checkout optimization step.
+
+Risk: The skill gives checkout optimization ranges and recommendations without server-resolved provenance for this release.
+
+Mitigation: Validate recommendations against first-party checkout analytics and current commerce UX evidence before applying them broadly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wellyxy/skills/cro-checkout)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with headings, bullet lists, and a quick-reference table]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, shell commands, privileges, persistence, or user-data access indicated by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

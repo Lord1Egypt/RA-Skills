@@ -1,47 +1,61 @@
-## Description: <br>
-Automates email inquiry handling for custom manufacturing businesses by fetching unread customer emails, translating non-target-language content, calculating quotes from configured pricing rules, and saving quote reply drafts for review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates IMAP inquiry intake for custom medal and manufacturing businesses by saving customer emails, translating non-target-language content, calculating quotes from configurable pricing rules, and generating reply templates.
 
-## Publisher: <br>
-[fankcoder](https://clawhub.ai/user/fankcoder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fankcoder](https://clawhub.ai/user/fankcoder)
 
-## Use Case: <br>
-Sales and operations teams at custom manufacturing or e-commerce businesses use this skill to triage mailbox inquiries, preserve customer email records, calculate draft prices from business rules, and prepare quote replies for human review before sending. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads customer email and requires sensitive mailbox credentials. <br>
-Mitigation: Use a dedicated least-privilege mailbox with an app password, store credentials securely, and test against a non-production inbox before deployment. <br>
-Risk: Processed email content is stored locally, including original messages, extracted text, translations, and quote drafts. <br>
-Mitigation: Restrict permissions on the storage directory and define retention and deletion procedures appropriate for customer data. <br>
-Risk: Non-target-language email content may be sent to an external translation service. <br>
-Mitigation: Disable external translation or replace it with an approved service before processing confidential or regulated mail. <br>
-Risk: Unread messages are marked as read after processing, which can hide failed or incomplete handling. <br>
-Mitigation: Review behavior in a test inbox and monitor generated manual-review files before allowing production mail to be marked as read. <br>
+## Use Case:
 
+External sales and operations users at custom manufacturing businesses use this skill to monitor inquiry mailboxes, organize customer requests, and prepare quote drafts for review before replying.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fankcoder/email-quote-automation) <br>
-- [Email template](artifact/references/email_template.html) <br>
-- [Pricing data instructions](artifact/data/README.md) <br>
-- [Example pricing rules](artifact/data/example/pricing_rules_example.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with Python scripts, configuration files, local email archives, translated text files, and quote reply drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on mailbox contents, translation settings, and user-supplied pricing rules; generated quote drafts should be reviewed before being sent to customers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Mailbox credentials and app passwords are configured in local project files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated mailbox with a revocable app password, keep SSL enabled, and avoid committing configured secrets.
+
+Risk: Customer email contents and generated quotes are stored locally.
+
+Mitigation: Store processed email folders in a private location with access controls and retention rules.
+
+Risk: External translation may send customer email content to a third-party translation service.
+
+Mitigation: Disable external translation or use it only after approval for the customer data being processed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fankcoder/skills/email-quote-automation)
+- [README.md](artifact/README.md)
+- [Data Files Instructions](artifact/data/README.md)
+- [Example Pricing Rules - Medal Customization](artifact/data/example/pricing_rules_example.md)
+- [Email quotation template](artifact/references/email_template.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated plain-text quotation files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores raw email, extracted text, translated content, and quote drafts in user-configured local folders.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

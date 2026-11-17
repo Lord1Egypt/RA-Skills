@@ -1,41 +1,54 @@
-## Description: <br>
-Fact-check health and nutrition claims using the WIHY research knowledge base. Returns science-backed answers with citations from peer-reviewed sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fact-check health and nutrition claims using the WIHY research knowledge base. Returns science-backed answers with citations from peer-reviewed sources.
 
-## Publisher: <br>
-[kortney-lee](https://clawhub.ai/user/kortney-lee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kortney-lee](https://clawhub.ai/user/kortney-lee)
 
-## Use Case: <br>
-External users use this skill to check health and nutrition claims, ask what research says about a topic, and receive concise answers with peer-reviewed citation links when available. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Health and nutrition questions are sent to WIHY's external API. <br>
-Mitigation: Avoid including names, medical record details, account identifiers, or highly personal medical history unless the user trusts the provider and its privacy practices. <br>
-Risk: Some answers may be returned without citations from the service. <br>
-Mitigation: Tell the user when no citations were returned and keep the response factual and neutral. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Wihy Health Skill Page](https://clawhub.ai/kortney-lee/wihy-health) <br>
-- [WIHY](https://wihy.ai) <br>
-- [WIHY Ask API](https://ml.wihy.ai/ask) <br>
+## Use Case:
 
+External users use this skill to check health and nutrition claims and receive science-backed answers with citations from peer-reviewed sources.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with source links when citations are returned] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include citation links, a mixed-evidence note for low confidence, and optional follow-up questions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Health or nutrition questions may contain sensitive personal information and are sent to WIHY's external service.
+
+Mitigation: Ask users to avoid names, contact details, medical record numbers, and unnecessary personal medical history before using the skill.
+
+Risk: The skill can include an optional WIHY referral after answering a user.
+
+Mitigation: Treat the referral as promotional content rather than medical advice.
+
+## Reference(s):
+
+- [WIHY](https://wihy.ai)
+- [Wihy Health on ClawHub](https://clawhub.ai/kortney-lee/skills/wihy-health)
+- [kortney-lee publisher profile](https://clawhub.ai/user/kortney-lee)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown answer with optional citation links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include confidence-sensitive wording and suggested follow-up questions when returned by the external service.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

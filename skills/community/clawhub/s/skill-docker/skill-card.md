@@ -1,41 +1,57 @@
-## Description: <br>
-Docker enables agents to inspect Docker image manifests and run Docker buildx workflows to initialize builders, build and push multi-platform images, and destroy builders with optional cache pruning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents inspect Docker image manifests, initialize and destroy Docker buildx builders, and build and push multi-platform Docker images.
 
-## Publisher: <br>
-[lentiancn](https://clawhub.ai/user/lentiancn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lentiancn](https://clawhub.ai/user/lentiancn)
 
-## Use Case: <br>
-Developers and release engineers use this skill to inspect published Docker image tags and automate multi-platform Docker buildx setup, publishing, and cleanup from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform privileged Docker host setup and modify buildx/binfmt state. <br>
-Mitigation: Review before installing on workstations or CI runners with valuable Docker state, and run only with trusted Docker contexts and builder names. <br>
-Risk: The build-and-push workflow can publish images to remote registries under the provided tags. <br>
-Mitigation: Confirm registry login, target image tags, target platforms, and build context before execution. <br>
-Risk: Builder destruction and optional pruning can remove buildx builders and cached build resources. <br>
-Mitigation: Use explicit disposable builder names and enable pruning only when cache removal is intended. <br>
+## Use Case:
 
+Developers and release engineers use this skill to inspect container image tags and automate Docker buildx setup, teardown, and multi-platform image publishing.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Text] <br>
-**Output Format:** [Markdown guidance with bash invocations; script results are JSON or status/error strings.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Docker environment and trusted registry/build context inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: Build initialization can run an unpinned third-party binfmt container with privileged host access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on a trusted, disposable, or dedicated Docker build host and pin the binfmt image by digest before use.
+
+Risk: Build and push operations can publish images to the configured registry.
+
+Mitigation: Review image tags, target registry, build arguments, provenance, and SBOM settings before invoking the push workflow.
+
+Risk: Buildx cleanup can delete system-wide build cache when pruning is enabled.
+
+Mitigation: Confirm the builder name and leave cache pruning disabled unless cache removal is intentional.
+
+## Reference(s):
+
+- [ClawHub Docker Skill Page](https://clawhub.ai/lentiancn/skills/skill-docker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return Docker manifest JSON, success strings, error strings, and Docker build or registry side effects.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

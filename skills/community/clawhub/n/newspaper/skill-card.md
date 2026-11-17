@@ -1,42 +1,60 @@
-## Description: <br>
-Render structured news content into a traditional newspaper-style HTML page with optional ComfyUI image generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NewsPaper helps agents render structured news articles into styled, responsive HTML newspaper pages with optional ComfyUI-generated imagery.
 
-## Publisher: <br>
-[spootmu](https://clawhub.ai/user/spootmu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spootmu](https://clawhub.ai/user/spootmu)
 
-## Use Case: <br>
-Developers and agents use this skill to turn provided headlines, article bodies, and optional image prompts into a locally hosted newspaper-style HTML page. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Article text, titles, and generated HTML files may be accessible to other users or processes on the same machine. <br>
-Mitigation: Avoid sensitive content in article fields and manage access to the local output directory and server port. <br>
-Risk: Image prompts are sent to the configured ComfyUI endpoint when image generation is enabled. <br>
-Mitigation: Use a trusted ComfyUI endpoint and omit sensitive details from image prompts. <br>
+## Use Case:
 
+Developers and agents use NewsPaper to turn collected or generated news, reports, announcements, or narrative content into a shareable newspaper-style HTML page. It is useful when an agent needs to package multiple articles with a masthead, responsive newspaper layout, and at most one optional ComfyUI-generated image.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/spootmu/newspaper) <br>
-- [README.md](README.md) <br>
-- [AGENT.md](AGENT.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [HTML, JSON, API calls, Guidance] <br>
-**Output Format:** [JSON response containing a local URL to the rendered HTML page and optional image generation status.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes generated HTML files locally and can send one image prompt per render request to the configured ComfyUI endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The service exposes an unauthenticated local web server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Bind the service explicitly to 127.0.0.1 and add authentication or firewalling before any shared use.
+
+Risk: Image generation and generation parameters may be reachable by untrusted callers.
+
+Mitigation: Disable or tightly limit ComfyUI generation for untrusted callers and constrain timeout, polling, width, and height values.
+
+Risk: Generated output files and logs can create persistent records of prompts, titles, article counts, and rendered content.
+
+Mitigation: Avoid sensitive article text or prompts and manage generated output files and logs as persistent data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/spootmu/skills/newspaper)
+- [Skill usage guide](artifact/SKILL.md)
+- [Agent API guide](artifact/AGENT.md)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [HTML files, JSON API responses, guidance]
+
+**Output Format:** [JSON response containing a local URL to a generated HTML5 newspaper page]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can optionally include ComfyUI image status; rendered HTML is persisted under the service output directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

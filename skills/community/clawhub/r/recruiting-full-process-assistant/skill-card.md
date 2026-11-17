@@ -1,48 +1,67 @@
-## Description: <br>
-深耕中国人才市场的全流程招聘专家，支持招聘需求分析、JD 优化、人才画像、渠道运营、简历筛选、面试协调、招聘数据看板、Offer 谈判、背调和入职管理。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+深耕中国人才市场的全流程招聘专家。精通 Boss 直聘/猎聘/智联等渠道运营、简历筛选、面试协调、人才管线管理、校招社招全链路操盘。支持需求分析、JD 优化、人才画像、招聘数据看板、Offer 谈判等全流程招聘场景。
 
-## Publisher: <br>
-[xiyinli811-crypto](https://clawhub.ai/user/xiyinli811-crypto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiyinli811-crypto](https://clawhub.ai/user/xiyinli811-crypto)
 
-## Use Case: <br>
-Recruiters, HR teams, and hiring managers use this skill to manage China-focused recruiting workflows in Feishu, including JD drafting, resume screening, interview scheduling, offer negotiation, pipeline tracking, and onboarding checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China-focused; review for local employment, privacy, and recruiting compliance before use in other regions. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive candidate data and can propose external Feishu actions such as messages, calendar invites, table creation, candidate-data storage, and onboarding document collection. <br>
-Mitigation: Require human approval before external actions, configure Feishu tables and chats with least-privilege access, limit sharing of candidate details, and set retention and deletion rules. <br>
-Risk: Recruiting guidance, salary advice, screening, and background-check workflows may create privacy, employment-law, or fairness concerns if used without review. <br>
-Mitigation: Review generated recommendations against organizational policy and applicable law, obtain candidate authorization for background checks, and avoid discriminatory criteria in job descriptions and interviews. <br>
-Risk: The artifact includes an onboarding checklist item about disclosing account passwords. <br>
-Mitigation: Do not use password-disclosure checklist items; provision accounts through approved identity and access-management processes instead. <br>
+## Use Case:
 
+HR teams and hiring managers use this skill to plan and run recruiting workflows in the China talent market, including job description drafting, resume screening, interview coordination, offer negotiation, background-check preparation, onboarding checklists, and recruiting progress reporting.
 
-## Reference(s): <br>
-- [Recruiting Full Process Assistant on ClawHub](https://clawhub.ai/xiyinli811-crypto/recruiting-full-process-assistant) <br>
-- [JD templates](references/jd-templates/README.md) <br>
-- [Interview questions](references/interview-questions/README.md) <br>
-- [Resume matching](references/resume-matching/README.md) <br>
-- [Salary benchmarks](references/salary-benchmarks/README.md) <br>
-- [Talent mapping](references/talent-mapping/README.md) <br>
-- [Onboarding checklist](references/onboarding-checklist/README.md) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance, checklists, tables, templates, and Feishu workflow instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose Feishu calendar events, Bitable tables, tasks, documents, and IM messages for human review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Candidate personal data may be written into Feishu tables, documents, onboarding files, or outbound messages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use restricted Feishu workspaces, collect only necessary data, and require manual approval before creating or sharing candidate records.
+
+Risk: Automated outreach, calendar invites, and status updates could contact candidates or interviewers prematurely or with incorrect details.
+
+Mitigation: Require human review and approval before sending messages, issuing calendar invites, or changing candidate-facing status.
+
+Risk: Background-check and onboarding workflows handle sensitive information and can create legal or compliance exposure.
+
+Mitigation: Require written candidate authorization, approved background-check vendors, and HR or legal review before initiating these workflows.
+
+Risk: Credential or account setup guidance may encourage insecure password handling.
+
+Mitigation: Use approved identity-management and password-reset workflows, and do not share passwords through chat, documents, or onboarding checklists.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiyinli811-crypto/skills/recruiting-full-process-assistant)
+- [JD 模板库](references/jd-templates/README.md)
+- [面试题库](references/interview-questions/README.md)
+- [简历匹配度评分系统](references/resume-matching/README.md)
+- [市场薪酬基准参考](references/salary-benchmarks/README.md)
+- [人才地图与竞品调研](references/talent-mapping/README.md)
+- [入职检查清单](references/onboarding-checklist/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown templates, structured tables, checklists, and concise Chinese-language guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose Feishu records, calendar events, tasks, documents, and outbound messages that require review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-Helps agents poll gym venue availability, inspect or modify the venue_polling.py order-signing flow, and run signature replay or public-key verification helpers for mini-program booking APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when the user wants to poll gym venue availability, inspect or modify the `venue_polling.py` order-signing flow, or run the bundled signature replay and public-key verification helpers for the mini-program booking APIs.
 
-## Publisher: <br>
-[ruokkkkk](https://clawhub.ai/user/ruokkkkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ruokkkkk](https://clawhub.ai/user/ruokkkkk)
 
-## Use Case: <br>
-Developers and automation operators use this skill to inspect or modify a gym mini-program venue polling workflow, debug RSA request signatures, and test booking API behavior only when they intentionally configure and authorize it. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled workflow can automatically place a live venue reservation using account credentials without a clear confirmation step. <br>
-Mitigation: Review before installing or running, disable auto-booking by default, and add an explicit confirmation step before any createOrder request. <br>
-Risk: The artifact includes embedded account tokens and captured request examples that may expose sensitive booking credentials. <br>
-Mitigation: Remove or rotate embedded tokens, sanitize captured request examples, and use only credentials that the operator controls. <br>
-Risk: The polling and signing scripts require local RSA private key material. <br>
-Mitigation: Provide keys only from a controlled local environment, keep private keys out of published artifacts and logs, and verify signing behavior with the replay helpers before live use. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect, run, or modify a gym venue availability polling workflow and debug RSA-signed booking requests for mini-program APIs.
 
-## Reference(s): <br>
-- [Venue Polling on ClawHub](https://clawhub.ai/ruokkkkk/venue-polling) <br>
-- [Create Order Analysis](references/create-order-analysis.md) <br>
-- [Captured List Area Lease Request](references/captured-list-area-lease.txt) <br>
-- [Captured Create Order Request](references/captured-create-order.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with code and shell command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct agents to edit bundled Python scripts and use local RSA key material only when intentionally provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The bundled polling workflow includes a live-looking token-user credential.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or rotate the exposed token before use and load credentials from the user's environment instead of hardcoding them.
+
+Risk: The bundled polling script can automatically submit a booking order.
+
+Mitigation: Disable automatic booking by default and require explicit user confirmation before calling createOrder.
+
+Risk: Implicit invocation could run booking-related tooling outside an intended venue-booking task.
+
+Mitigation: Limit invocation to explicit venue-booking, polling, or signature-debugging requests.
+
+## Reference(s):
+
+- [Create Order Analysis](references/create-order-analysis.md)
+- [Captured createOrder request](references/captured-create-order.txt)
+- [Captured listAreaLease request](references/captured-list-area-lease.txt)
+- [ClawHub skill page](https://clawhub.ai/ruokkkkk/skills/venue-polling)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code and shell command snippets when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May inspect or modify bundled Python scripts and local configuration for venue polling, booking signatures, and replay checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

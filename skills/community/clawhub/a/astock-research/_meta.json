@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7bdkckz2h5zcs26h4zb45y6s81tcmy",
-  "slug": "astock-research",
+  "name": "astock-research",
   "version": "1.2.0",
-  "publishedAt": 1772017608012
+  "description": "A股深度投研分析框架，包含基本面、资金面、技术面、情绪面、事件面五大维度",
+  "author": "Johnny Liu",
+  "tags": ["astock", "china", "stock", "trading", "analysis"]
 }

@@ -1,45 +1,65 @@
-## Description: <br>
-Researches a topic across multiple source types and produces a cited report, with simple inline summaries or broader orchestrated research runs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Researches a topic across web, GitHub, Reddit, government, academic, and other sources to produce cited reports, ranging from quick inline summaries to checkpointed parallel research runs.
 
-## Publisher: <br>
-[seanford](https://clawhub.ai/user/seanford) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[seanford](https://clawhub.ai/user/seanford)
 
-## Use Case: <br>
-Agents and developers use this skill to gather sources, coordinate research workers, deduplicate findings, and synthesize markdown reports for decision support, writing, or technical investigation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may spawn multiple sub-agents and contact web, search, browser, and fallback fetch services. <br>
-Mitigation: Install it only where broad research automation is intended, and review runtime configuration such as sub-agent depth and timeout limits before use. <br>
-Risk: Research topics, URLs, worker progress, retry queues, and reports may persist on disk. <br>
-Mitigation: Treat the skills-data directory as potentially sensitive and clean ~/.openclaw/workspace/skills-data/skilled-deep-research/ after confidential research runs. <br>
-Risk: Artifact behavior references hard-coded /home/sean helper-script paths for fallback fetching. <br>
-Mitigation: Review or replace those helper paths with trusted local equivalents before running standard, deep, or retry workflows. <br>
+## Use Case:
 
+Developers, researchers, and agent operators use this skill to gather multi-source evidence and produce cited research reports. It supports quick inline research as well as standard or deep workflows with parallel workers, checkpointed progress, deduplication, retries, and final Markdown report synthesis.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/seanford/skilled-deep-research) <br>
-- [Publisher Profile](https://clawhub.ai/user/seanford) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
-- [DDG Search Fallback](https://github.com/seanford/ddg-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with cited sources, inline summaries, status text, and shell command snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write checkpoint files, retry queues, metadata, and final reports under the configured OpenClaw skills-data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter states 1.1.0) <br>
+Risk: Broad auto-triggered research workflows can initiate multi-agent browsing and file-writing activity unexpectedly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, narrow activation where possible, and run only in a constrained workspace.
+
+Risk: Persistent local logs, progress files, retry queues, and reports may contain sensitive research topics, URLs, or findings.
+
+Mitigation: Avoid sensitive research topics unless persistent local logs are acceptable, restrict workspace access, and remove run data after use when appropriate.
+
+Risk: Unvalidated slugs, worker names, URLs, or output paths may create unsafe shell or file-write behavior.
+
+Mitigation: Use trusted inputs, avoid arbitrary output paths, and validate paths, URLs, slugs, and worker names before running the skill.
+
+Risk: External tools required by the workflow may change behavior across environments.
+
+Mitigation: Pin and review documented external tools before deployment, including mcporter, Playwright MCP, and search or fetch helpers.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/seanford/skills/skilled-deep-research)
+- [OpenClaw](https://openclaw.ai)
+- [OpenClaw Docs](https://docs.openclaw.ai)
+- [Declared Project Homepage](https://github.com/seanford/skilled-deep-research)
+- [ddg-search](https://github.com/seanford/ddg-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, cited summaries, command snippets, status text, and JSON progress metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write checkpoint, progress, retry queue, and final report files under the OpenClaw skills-data workspace, with an optional user-specified report copy path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter lists 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

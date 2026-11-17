@@ -1,42 +1,54 @@
-## Description: <br>
-Use PotPlayer to play local or network audio/video files, with playback control, playlist management, seeking, fullscreen mode, subtitle loading, and device access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Play local or network audio/video files with PotPlayer, including playback controls, playlists, fullscreen playback, subtitles, and device access.
 
-## Publisher: <br>
-[isaiah5818](https://clawhub.ai/user/isaiah5818) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[isaiah5818](https://clawhub.ai/user/isaiah5818)
 
-## Use Case: <br>
-External users and developers use this skill when they want an agent to produce PotPlayer commands for opening local media, network streams, playlists, subtitles, and common playback controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce commands that open network media URLs, which may expose the user to untrusted media links. <br>
-Mitigation: Require explicit user confirmation before opening network URLs and avoid untrusted media links. <br>
-Risk: The skill documents webcam, screen capture, DVD, and device input commands that could access sensitive sources. <br>
-Mitigation: Require explicit confirmation before webcam input, screen capture, DVD, or other device input is opened. <br>
-Risk: The skill can open file, folder, or URL dialogs that may reveal private paths or prompt access to sensitive locations. <br>
-Mitigation: Require explicit confirmation before opening file, folder, or URL dialogs and avoid use on screens showing private information. <br>
+## Use Case:
 
+Agents assisting Windows users can generate PotPlayer launch commands to play local media or network streams, manage playlists, control playback options, and load subtitles.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/isaiah5818/ctrl-potplayer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with PowerShell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands assume PotPlayer is installed on Windows at C:\Program Files\DAUM\PotPlayer\PotPlayerMini64.exe.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill exposes webcam and screen-capture commands without clear consent or scoping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or remove the webcam and screen-capture examples, and require explicit user confirmation before any camera input or screen recording command is run.
+
+Risk: The skill can open remote media streams.
+
+Mitigation: Require explicit confirmation before opening remote streams, and ask the user to verify the stream source before launching PotPlayer.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/isaiah5818/skills/ctrl-potplayer)
+- [Source skill instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with PowerShell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands that launch local files, remote streams, webcam input, or screen capture through PotPlayer.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

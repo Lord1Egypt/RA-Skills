@@ -1,44 +1,56 @@
-## Description: <br>
-Enterprise WeCom user-management skill for adding user permissions, automatically activating first-time users, and managing the user lifecycle. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enterprise WeChat user management skill for adding user permissions, automatically activating first-time users, and managing the user lifecycle.
 
-## Publisher: <br>
-[gwyang7](https://clawhub.ai/user/gwyang7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[gwyang7](https://clawhub.ai/user/gwyang7)
 
-## Use Case: <br>
-WeCom administrators and operations teams use this skill to add users, assign roles and store or regional access, and activate users when they first log in. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change account access and role assignments in a WeCom environment. <br>
-Mitigation: Use it only in a controlled WeCom deployment, require auditable administrator approval, and verify role, store, region, province, and city enforcement before production use. <br>
-Risk: The security review notes missing external helper modules, so the full account-management behavior could not be reviewed from this artifact alone. <br>
-Mitigation: Inspect or supply the missing helper modules before installing, and limit the WeCom MCP permissions available to the skill. <br>
-Risk: User records and activation state may be stored in users.json or synchronized configuration files. <br>
-Mitigation: Protect those files with appropriate access controls, review synchronization paths, and remove real test user details from public documentation or shared deployments. <br>
+## Use Case:
 
+Administrators and WeCom workspace operators use this skill to add users, assign role and store permissions, and activate first-time users in an Enterprise WeChat deployment.
 
-## Reference(s): <br>
-- [API user manager reference](references/api-user-manager.md) <br>
-- [WeCom developer documentation](https://developer.work.weixin.qq.com) <br>
-- [ClawHub skill page](https://clawhub.ai/gwyang7/wecom-user-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API calls, Configuration, Shell commands] <br>
-**Output Format:** [Markdown guidance with command examples and JSON-like response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and controlled access to the WeCom MCP user-management tool.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and .clawhub/manifest.json) <br>
+Risk: The security scan flags the release as suspicious because account state can be granted or changed through under-scoped, partially missing code paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Deploy only in a controlled WeCom environment after confirming missing dependency modules, import paths, activation authentication, and audit logging.
+
+Risk: The skill behavior depends on synchronizing users.json between workspace and plugin locations, which can create stale or inconsistent permissions if unmanaged.
+
+Mitigation: Define and test an approved users.json synchronization process before enabling user activation or permission changes.
+
+## Reference(s):
+
+- [API User Manager Reference](artifact/references/api-user-manager.md)
+- [ClawHub Skill Page](https://clawhub.ai/gwyang7/skills/wecom-user-manager)
+- [Enterprise WeChat Developer Documentation](https://developer.work.weixin.qq.com)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, API Calls, Configuration]
+
+**Output Format:** [Natural-language responses, confirmation-card content, and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update Enterprise WeChat user and permission configuration state.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

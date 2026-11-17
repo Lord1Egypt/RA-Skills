@@ -1,44 +1,64 @@
-## Description: <br>
-Helps solve capture-the-flag challenges when explicitly invoked by classifying web, pwn, reverse engineering, and misc tasks and producing analysis, commands, code, and exploit steps to recover the flag. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CTF-SOLVER helps agents handle authorized capture-the-flag challenges by selecting web, pwn, reverse engineering, or miscellaneous workflows and producing step-by-step solution guidance.
 
-## Publisher: <br>
-[hermes186](https://clawhub.ai/user/hermes186) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hermes186](https://clawhub.ai/user/hermes186)
 
-## Use Case: <br>
-Developers and security learners use this skill for authorized CTF or lab challenges to identify the challenge category, follow the relevant solving workflow, and produce reproducible steps toward flag recovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides broad exploit and credential-capture guidance that could be misused outside an authorized challenge or lab. <br>
-Mitigation: Install and run it only for authorized CTF or lab work, and require explicit approval before exploit execution, remote connections, or webhook-based data capture. <br>
-Risk: The workflows may install packages, run offensive tooling, execute generated code, or extract untrusted files. <br>
-Mitigation: Use a disposable VM or container with no real credentials mounted, and require explicit approval before package installs, command execution, or extraction of untrusted files. <br>
+## Use Case:
 
+Developers, security learners, and CTF participants use this skill in isolated, authorized CTF environments to analyze challenge artifacts or services and produce solution paths, commands, code snippets, and flag extraction guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hermes186/ctf-solver-claude) <br>
-- [CTF Web Reference](references/web.md) <br>
-- [CTF PWN Reference](references/pwn.md) <br>
-- [CTF Reverse Engineering Reference](references/reverse.md) <br>
-- [CTF Misc Reference](references/misc.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline code blocks and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include exploit steps, package installation commands, remote connection commands, and flag recovery notes for authorized CTF or lab use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill can produce broad exploit and data-exfiltration instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for isolated, authorized CTF targets and require explicit approval before network access, payload delivery, or callback collection.
+
+Risk: The artifact includes workflows that install tools, execute binaries, and run shell commands.
+
+Mitigation: Run in a sandboxed environment with pinned tools and review commands before execution.
+
+Risk: Some web workflows mention cloud metadata services, real sessions, and out-of-band callbacks.
+
+Mitigation: Block use against real third-party targets, real cloud metadata endpoints, real user sessions, and shared hosts unless separately authorized.
+
+## Reference(s):
+
+- [CTF MISC reference](references/misc.md)
+- [CTF PWN reference](references/pwn.md)
+- [CTF REVERSE reference](references/reverse.md)
+- [CTF WEB reference](references/web.md)
+- [Ghidra release referenced by reverse workflow](https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_11.1.2_build/ghidra_11.1.2_PUBLIC_20240709.zip)
+- [phpggc referenced by web workflow](https://github.com/ambionics/phpggc)
+- [Vigenere cipher reference tool](https://www.dcode.fr/vigenere-cipher)
+- [Hash lookup reference tool](https://crackstation.net/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include executable exploit steps, package installation commands, and network testing guidance; review before use.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

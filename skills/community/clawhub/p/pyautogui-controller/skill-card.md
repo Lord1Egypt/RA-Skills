@@ -1,44 +1,61 @@
-## Description: <br>
-Advanced Windows desktop/browser automation via a local Python controller project. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advanced Windows desktop and browser automation via a local Python controller for screenshots, opening apps, navigating browsers, clicking, typing, and simple multi-step UI workflows.
 
-## Publisher: <br>
-[hzj520lyx](https://clawhub.ai/user/hzj520lyx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hzj520lyx](https://clawhub.ai/user/hzj520lyx)
 
-## Use Case: <br>
-Developers and agent operators use this skill when direct Windows desktop or screen-based browser control is required for local UI workflows such as screenshots, opening apps, navigation, clicking, typing, and short multi-step automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control the local Windows desktop and browser, including launching programs, clicking, typing, and interacting with live sessions. <br>
-Mitigation: Run it only in a trusted test environment or separate browser profile, and avoid using it while sensitive apps, accounts, or documents are open. <br>
-Risk: Runtime screenshots, browser state, and failure logs may persist local activity details. <br>
-Mitigation: Periodically clear runtime screenshots, failure logs, and browser profile or state directories after use. <br>
-Risk: Custom DOM bridge or CDP environment variables can route browser automation through a user-specified command or endpoint. <br>
-Mitigation: Do not set custom bridge or CDP environment variables unless the command and endpoint are trusted. <br>
+## Use Case:
 
+Developers and agent users use this skill when direct Windows desktop control is needed for local app launching, screenshots, typing, clicking, browser navigation, and short natural-language UI automation tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hzj520lyx/pyautogui-controller) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON result expectations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Controller runs return JSON with success, results, runtime, and warnings fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill can move the mouse, type, click, open applications, and control browser pages on the real Windows desktop.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only when that level of local desktop control is intended, and supervise actions before allowing them on sensitive screens.
+
+Risk: The documented wrapper uses an external hard-coded local entrypoint.
+
+Mitigation: Review or fix the wrapper path before use so execution points to the expected local controller code.
+
+Risk: Persistent runtime data and browser profiles may retain screenshots, failure data, browsing state, or local controller data.
+
+Mitigation: Disable or isolate persistent browser profiles unless needed, and clean runtime/screenshots, runtime/failures, runtime/playwright_profile, and ~/.pyautogui-controller after testing.
+
+Risk: Automated UI control can interact with passwords, account pages, legal consent dialogs, CAPTCHA flows, or confidential information.
+
+Mitigation: Avoid using the skill on those workflows or screens; use lower-risk built-in browser or web tools where direct desktop control is not required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hzj520lyx/skills/pyautogui-controller)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and shell commands with JSON controller results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Windows-only; controller actions may return success, results, runtime, and warnings fields.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

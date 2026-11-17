@@ -1,45 +1,56 @@
-## Description: <br>
-Coinranking (coinranking.com). Use this skill for ANY Coinranking request: searching and reading data through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and retrieve cryptocurrency market data from Coinranking through the connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to query Coinranking cryptocurrency market data through the OOMOL oo CLI, including coin details, price history, global statistics, reference currencies, coin lists, and search suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an authenticated OOMOL connection to Coinranking and may depend on sensitive credentials managed outside the agent. <br>
-Mitigation: Use the existing OOMOL connection flow and avoid exposing raw API tokens in prompts, files, or command output. <br>
-Risk: Coinranking market data can be time-sensitive and may be incomplete or stale for financial decisions. <br>
-Mitigation: Treat returned cryptocurrency data as informational and verify critical market decisions against authoritative sources before acting. <br>
-Risk: The skill executes oo CLI shell commands against a connected external service. <br>
-Mitigation: Inspect the live action schema before building payloads and review commands before execution. <br>
+## Use Case:
 
+Developers and analysts can use the skill to search Coinranking and retrieve coin details, price history, supported reference currencies, and global market statistics. The agent can use the returned data to answer cryptocurrency research questions.
 
-## Reference(s): <br>
-- [Coinranking homepage](https://coinranking.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [Skill page](https://clawhub.ai/oomol/oo-coinranking) <br>
-- [Publisher profile](https://clawhub.ai/user/oomol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON command payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides agents to inspect each live action schema before constructing payloads and returns Coinranking connector responses as JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and skill metadata) <br>
+Risk: The first-time setup instructions can execute downloaded installer code that this review did not verify.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install a pinned, integrity-verified oo CLI yourself and prevent automatic execution of fallback installers.
+
+Risk: The oo CLI's bundled-skill synchronization runs at startup and was identified for review.
+
+Mitigation: Review its synchronization behavior; set OO_SKILLS_SYNC_DISABLED to disable startup synchronization if needed.
+
+## Reference(s):
+
+- [Coinranking homepage](https://coinranking.com)
+- [Coinranking API documentation](https://coinranking.com/api/documentation)
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+- [oo CLI environment variables and synchronization](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md#environment-variables)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON data]
+
+**Output Format:** [Coinranking response data as JSON, with text summaries as needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only search and market data retrieval]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

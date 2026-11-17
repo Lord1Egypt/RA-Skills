@@ -1,42 +1,54 @@
-## Description: <br>
-Generates interactive Gaokao English vocabulary study webpages with frequency levels, mastery tags, wrong-word warnings, search, filters, and responsive dark-themed HTML output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill generates interactive Gaokao English vocabulary frequency grading webpages that classify words and phrases by exam frequency with mastery tags, warning notes, search, filters, and a responsive dark-themed layout.
 
-## Publisher: <br>
-[xpscene-ux](https://clawhub.ai/user/xpscene-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xpscene-ux](https://clawhub.ai/user/xpscene-ux)
 
-## Use Case: <br>
-Developers and educators use this skill to generate local HTML and JavaScript vocabulary study pages for Chinese Gaokao English preparation. The generated page organizes words and phrases by exam frequency, mastery level, and review warnings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated vocabulary pages may contain inaccurate or unverified exam-frequency data if the source vocabulary list is incomplete or incorrect. <br>
-Mitigation: Review the vocabulary source data for accuracy and provenance before sharing generated pages. <br>
-Risk: The skill creates local HTML and JavaScript files that may be modified before distribution. <br>
-Mitigation: Review generated files and scan them before deployment or publication. <br>
+## Use Case:
 
+Developers and educators use this skill to produce browser-based study tools for Chinese Gaokao English preparation from structured vocabulary data.
 
-## Reference(s): <br>
-- [HTML Template Structure](references/template_structure.md) <br>
-- [Vocabulary Data Generator](scripts/generate_vocab.py) <br>
-- [ClawHub Release Page](https://clawhub.ai/xpscene-ux/gaokao-english-vocabulary) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Files, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with HTML, JavaScript, JSONL, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a local HTML page and vocab_data.js data file; generated study content should be reviewed for data accuracy before sharing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated pages may be unsafe to publish if they use untrusted vocabulary data before validation and escaping are confirmed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted vocabulary sources, validate counts and required fields, and confirm HTML escaping before hosting generated pages.
+
+Risk: The generator converts JSONL input into JavaScript data, so malformed entries can produce incomplete or misleading study content.
+
+Mitigation: Run the documented data integrity checks for required fields, mastery labels, null values, and non-empty frequency levels before release.
+
+## Reference(s):
+
+- [HTML Template Structure](artifact/references/template_structure.md)
+- [ClawHub Skill Page](https://clawhub.ai/xpscene-ux/skills/gaokao-english-vocabulary)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTML, JavaScript, and Python code outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a browser page and external vocabulary data file for local use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

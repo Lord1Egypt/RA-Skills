@@ -1,45 +1,64 @@
-## Description: <br>
-OpenClaw capability and value evaluation system that quantifies AI automation usage and generates a playful report with themes, mock-data modes, achievements, and optional poster image generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claw-Value-Judge is an OpenClaw usage assessment dashboard that quantifies AI automation activity and generates playful value reports with themed views, mock data levels, and gamified achievements.
 
-## Publisher: <br>
-[LazyYoun](https://clawhub.ai/user/LazyYoun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lazyyoun](https://clawhub.ai/user/lazyyoun)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to collect local OpenClaw usage signals, evaluate automation depth, and view a local dashboard/API with scores, value estimates, achievements, history, and optional generated poster images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local web app exposes report data without authentication. <br>
-Mitigation: Keep the service bound to localhost and do not expose it on untrusted networks. <br>
-Risk: The skill reads local OpenClaw logs, installed skill metadata, and configuration summaries, and it saves local history and generated images. <br>
-Mitigation: Install only when that local data access is acceptable, and review or remove saved history and generated images as needed. <br>
-Risk: Credential handling and clawJudge HTML content need review before broad use. <br>
-Mitigation: Provide DASHSCOPE_API_KEY only when image generation is required, and avoid opening untrusted clawJudge links while the service is running. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to run a local dashboard that summarizes OpenClaw logs, skills, sessions, configuration, automation depth, and estimated usage value. It also provides JSON API endpoints and optional generated image assets for richer reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/LazyYoun/claw-value) <br>
-- [OpenClaw logging documentation](https://docs.openclaw.ai/zh-CN/logging) <br>
-- [Alibaba Cloud Model Studio text-to-image API reference](https://help.aliyun.com/zh/model-studio/text-to-image-v2-api-reference) <br>
-- [DashScope multimodal generation endpoint](https://dashscope.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, HTML, images, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance plus Flask JSON API responses, an HTML dashboard, and generated PNG image files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs a local Flask service, reads local OpenClaw logs and configuration summaries, and can call DashScope when DASHSCOPE_API_KEY is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 2.0.0) <br>
+Risk: The dashboard can expose local OpenClaw logs, configuration, skill metadata, history, and generated image files if served beyond localhost.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it on localhost only unless authentication, access controls, and XSS fixes are added; avoid using --host 0.0.0.0 on shared or public networks.
+
+Risk: Unsafe web handling could let untrusted page input affect the local dashboard experience.
+
+Mitigation: Treat URL-provided report text as untrusted, avoid sharing crafted links, and fix client-side sanitization before broader deployment.
+
+Risk: Image generation may use a credential discovered outside the explicit DASHSCOPE_API_KEY environment variable.
+
+Mitigation: Set DASHSCOPE_API_KEY explicitly for image generation and remove the TOOLS.md credential fallback before broader use.
+
+Risk: Evaluation history and generated images are stored locally without explicit retention or deletion controls.
+
+Mitigation: Use a trusted local environment and add clear retention and deletion controls before using the skill with sensitive activity data.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/lazyyoun/skills/claw-value)
+- [OpenClaw logging documentation](https://docs.openclaw.ai/zh-CN/logging)
+- [Alibaba Cloud Model Studio text-to-image API](https://help.aliyun.com/zh/model-studio/text-to-image-v2-api-reference)
+- [DashScope multimodal generation endpoint](https://dashscope.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown setup guidance, local HTML dashboard, JSON API responses, and optional generated image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs as a local Flask service and can store evaluation history plus generated images locally.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter declares 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

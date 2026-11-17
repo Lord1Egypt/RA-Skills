@@ -1,41 +1,54 @@
-## Description: <br>
-Helps evaluate volunteer tourism opportunities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps travelers evaluate volunteer tourism opportunities for ethical impact.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External travelers and planning agents use this skill to evaluate volunteer tourism programs for ethical impact, organization transparency, skill fit, and sustainable community benefit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Volunteer tourism advice may be incomplete or outdated for a specific organization or destination. <br>
-Mitigation: Use the output as a planning framework and verify each organization independently through official policies, local partners, financial transparency, and recent third-party reporting. <br>
-Risk: Generic travel prompts may route to this skill when the user intended broader travel planning. <br>
-Mitigation: Confirm the task is about volunteer tourism ethics before relying on the skill; use a general travel planning workflow for itinerary, booking, weather, or logistics questions. <br>
+## Use Case:
 
+Travelers and travel planners use this skill to vet volunteer tourism programs, compare organizations, identify ethical red flags, and create practical questions before committing time or money.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/travel-volunteer-ethics-evaluator) <br>
-- [Publisher profile](https://clawhub.ai/user/harrylabsj) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [JSON with structured recommendations, frameworks, checklists, considerations, next steps, and an informational disclaimer.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational travel planning guidance only; no bookings, real-time data, external APIs, or professional advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact metadata differs) <br>
+Risk: Users may treat volunteer-program evaluations as authoritative decisions about organizations, fees, child protection, or travel safety.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational checklists and verify organizations, fees, policies, and travel safety information with official or primary sources.
+
+Risk: The skill does not use real-time data and may miss recent changes in program status, local conditions, prices, or advisories.
+
+Mitigation: Check current official sources and primary organization materials before booking, paying fees, or traveling.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/travel-volunteer-ethics-evaluator)
+- [ClawHub publisher profile](https://clawhub.ai/user/harrylabsj)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance]
+
+**Output Format:** [JSON or structured prose with checklists, scorecards, matrices, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Informational planning output only; no bookings, live data, network requests, or professional advice.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

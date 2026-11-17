@@ -1,40 +1,57 @@
-## Description: <br>
-Set up mlx-whisper as the local audio transcription engine for OpenClaw on Apple Silicon Macs (M1/M2/M3/M4), automatically transcribing Telegram or WhatsApp voice notes before the agent processes them. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up mlx-whisper as the local audio transcription engine for OpenClaw on Apple Silicon Macs, automatically transcribing Telegram or WhatsApp voice notes locally before the agent processes them.
 
-## Publisher: <br>
-[YinghaoJia](https://clawhub.ai/user/YinghaoJia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yinghaojia](https://clawhub.ai/user/yinghaojia)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to configure local speech-to-text for voice notes on Apple Silicon Macs without an API key. It is intended for Telegram or WhatsApp audio workflows where transcripts are passed into the agent conversation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Telegram or WhatsApp voice notes may contain sensitive personal or business information that becomes visible as transcript text in the agent conversation. <br>
-Mitigation: Use the skill only where users accept local download, local transcription, and transcript injection into the conversation; review transcript handling policies before deployment. <br>
-Risk: The first setup requires internet access to download the speech model. <br>
-Mitigation: Perform the initial model download on a trusted network, then rely on cached local model files for offline operation where appropriate. <br>
+## Use Case:
 
+External users and developers use this skill to configure local speech-to-text for OpenClaw voice messages on Apple Silicon Macs without requiring an API key.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/YinghaoJia/jimmy-claw-mlx-whisper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup guidance for a local transcription command; transcribed voice note content becomes text in the agent conversation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release evidence) <br>
+Risk: The skill can automatically process private Telegram or WhatsApp voice notes and pass transcripts into the agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that users accept local media download and transcription before enabling the integration, and review where OpenClaw stores downloaded media and transcripts.
+
+Risk: The setup depends on installing mlx-whisper and downloading a model before local inference can run.
+
+Mitigation: Use an isolated, pinned installation where practical and verify the package and model download path before operational use.
+
+Risk: The artifact references a wrapper script that is not present among the provided files.
+
+Mitigation: Verify the wrapper script contents and executable path before configuring OpenClaw to invoke it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yinghaojia/skills/jimmy-claw-mlx-whisper)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Targets macOS on Apple Silicon, requires python3 and pip3, downloads an initial local model, and runs transcription locally after setup.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

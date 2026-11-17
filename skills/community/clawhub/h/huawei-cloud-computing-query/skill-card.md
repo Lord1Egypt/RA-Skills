@@ -1,45 +1,62 @@
-## Description: <br>
-Queries Huawei Cloud ECS, BMS, IMS, and AS resources through packaged read-only Python scripts and service-specific usage guides. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries Huawei Cloud ECS, BMS, IMS, Auto Scaling, and CCE resources, returning read-only inventory and details.
 
-## Publisher: <br>
-[huaweiclouddev](https://clawhub.ai/user/huaweiclouddev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huaweicloudskill](https://clawhub.ai/user/huaweicloudskill)
 
-## Use Case: <br>
-Developers, cloud operators, and infrastructure engineers use this skill to inventory Huawei Cloud compute resources, inspect available specifications and images, and retrieve resource identifiers needed for verification or automation planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scripts may expose sensitive ECS server passwords or remote console URLs in command output. <br>
-Mitigation: Run password and console URL scripts only for authorized administrative tasks, keep outputs out of shared logs, and redact sensitive values before sharing results. <br>
-Risk: The package weakens TLS certificate verification while handling Huawei Cloud credentials. <br>
-Mitigation: Review and modify the HTTP configuration to enforce certificate verification before production use, especially outside controlled networks. <br>
-Risk: Cloud API access relies on Huawei Cloud access keys and may reveal resource inventory or account structure. <br>
-Mitigation: Use least-privilege, scoped credentials and temporary security tokens where possible; avoid broad account-level permissions for routine inventory queries. <br>
+## Use Case:
 
+Cloud administrators and engineers use it to inspect Huawei Cloud compute resources, specifications, quotas, images, scaling configuration, and cluster inventories. It is limited to read-only queries.
 
-## Reference(s): <br>
-- [Huawei Cloud Auto Scaling (AS) Query Guide](references/as/guide.md) <br>
-- [BMS (Bare Metal Server) Query Guide](references/bms/guide.md) <br>
-- [Huawei Cloud ECS Query Guide](references/ecs/guide.md) <br>
-- [Huawei Cloud IMS Query Guide](references/ims/guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with skill action command invocations and JSON query results from scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Query outputs may include cloud resource identifiers, status fields, image and flavor details, quotas, console URLs, or passwords depending on the selected script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Risk: The security scan reports cloud password-retrieval features and IAM user-listing access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review those operations before use and limit credentials to the permissions required for the intended queries.
+
+Risk: The security scan reports TLS and package-installation concerns, and notes that setup-script analysis is incomplete.
+
+Mitigation: Verify TLS checks and package-mirror authentication, pin dependencies, and review setup scripts before installing or using the skill with cloud credentials.
+
+## Reference(s):
+
+- [Huawei Cloud skill release page](https://clawhub.ai/huaweicloudskill/skills/huawei-cloud-computing-query)
+- [ECS Query Guide](references/ecs/guide.md)
+- [BMS Query Guide](references/bms/guide.md)
+- [IMS Query Guide](references/ims/guide.md)
+- [AS Query Guide](references/as/guide.md)
+- [CCE Query Guide](references/cce/guide.md)
+- [IAM Policies](references/iam-policies.md)
+- [Verification Method](references/verification-method.md)
+- [CLI Installation Guide and operation boundary](references/cli-installation-guide.md)
+- [Acceptance Criteria](references/acceptance-criteria.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Markdown tables, text summaries, or JSON query results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Resource details depend on the selected service, query, and fields.]
+
+## Skill Version(s):
+
+1.0.8 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

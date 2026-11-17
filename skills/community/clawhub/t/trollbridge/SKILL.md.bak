@@ -1,0 +1,114 @@
+# TrollBridge — agent skill
+
+Pay-per-call intel for AI agents. **61 tolled lanes** on Base (`eip155:8453`) — paid in USDC via x402. No accounts, no API keys — your wallet is your identity.
+
+Base URL: `https://mini-tollbooth.onrender.com`
+Honest labeling: heuristic screens are labeled screens, never audits. Lanes that screen say so up front.
+
+## $0.02 — intel & money lanes (27 lanes)
+
+- `/airdrop-verdict` — heavily heuristic screen: legit or drainer — static page forensics on an airdrop claim URL: lookalike-domain detection, pressure-language flags, and the page's contracts  — required: `url`
+- `/approval-risk` — heuristic screen: wallet approval screen — unlimited token approvals and risky spender contracts flagged, with a revoke priority list — required: `address`
+- `/bounties` — Every open bounty across all boards — aibtc, Taskmarket, Superteam Earn
+- `/deadlines` — Class-action and settlement claim deadlines worth real money
+- `/defi` — DeFi protocol intel — top TVL movers, daily fee and revenue leaders, and stablecoin supply flows, each with a plain-English verdict
+- `/deployer-history` — heuristic forensics: who made this token — trace the deployer and investigate what else they launched: verification, scam flags, dead-contract patterns — required: `address`
+- `/fresh` — Bounties posted in the last 24h
+- `/gas` — Live gas prices per chain — Base, Ethereum, and Solana from public RPCs, with speed tiers where derivable, plus a cheapest-chain recommendation
+- `/grants` — Federal grant finder ($0.02) — search live Grants.gov opportunities by keyword: title, agency, close date, award ceiling
+- `/honeypot` — heuristic screen: honeypot screen — simulated sells from real holders, transfer-tax and blacklist flags, and a safe/suspicious/honeypot verdict before you buy — required: `address`
+- `/model-picks` — Best model per dollar — curated quality scores per task (coding, writing, reasoning, chat) joined with live per-token pricing, ranked by value
+- `/models` — x402-payable AI model catalog — every model agents can call over x402 with per-million-token pricing, free models flagged
+- `/opportunities` — Every paying opportunity in one normalized schema — title, payout amount and token, chain, URL, requirements, deadline, board
+- `/permit-scan` — heuristic screen: the invisible drainer check — Permit2/Seaport interaction exposure plus the standard approval screen, with a revoke priority list — required: `address`
+- `/prices` — Agent-ready crypto price feed — spot prices for majors plus Base/Solana staples, now with a plain-English momentum verdict
+- `/prompt-cost` — Prompt cost estimator — paste a prompt, get a heuristic token estimate and what it would cost across every model in the /models catalog, cheapest first — required: `text`
+- `/quant` — Quant math in one call ($0.02) — Black-Scholes pricing with Greeks, parametric VaR, Sharpe ratio, compound growth
+- `/receipt-check` — "Did it land?" settlement verification — transaction status, confirmations, value moved, and decoded token transfers on Base, Ethereum, or Solana — required: `tx`
+- `/rpc-speed` — RPC speed test — live latency ranking of public keyless RPC endpoints per chain, fastest first, measured from the bridge
+- `/rug-score` — heuristic screen: rug-pull risk score 0-100 — LP burn status, holder concentration, mint authority, ownership, sell pressure, one-line verdict — required: `address`
+- `/scrape` — Page-to-text scraper ($0.02) — fetch any public page and get clean readable text, title, and links as JSON
+- `/secret-scan` — heuristic pattern sweep, not a security audit: leaked-secret sweep ($0.02) — scan a URL or pasted text for exposed AWS keys, GitHub tokens, private keys, and other creden
+- `/sweepstakes` — Free-to-enter sweepstakes with real prizes, verified live
+- `/terms-tldr` — Terms TL;DR ($0.02) — extractive digest of any terms/bounty/rules page: deadlines, prize amounts, requirements, and gotcha clauses, each with the source snippet — required: `url`
+- `/tx-dryrun` — simulation, not a guarantee: the crystal ball — simulate any transaction before signing and get a plain-words explanation of what it does to your wallet (approvals, trans — required: `to, data, from`
+- `/verdicts` — Recently paid bounties — proof these boards actually pay, with amounts and payout proof
+- `/wallet-watch` — Has anything changed — stateful wallet monitoring — required: `wallet`
+
+## $0.05 — deep intel & bundles (18 lanes)
+
+- `/caveat-check` — heuristic screen: paste a finding plus its source text (text only, no URL fetching) and get the dropped caveats flagged — numbers missing a baseline, claims missing a mea
+- `/code-run` — Sandboxed JS execution ($0.05) — run a JavaScript snippet in an isolated child process (64MB heap cap, no network, no filesystem) and get the result plus captured logs
+- `/cron-watch` — Silent-death watcher for scheduled agent jobs — submit job history (name, cadence, run timestamps, last success) and get gap analysis, stale flags, and a SILENT_DEATH_RIS
+- `/enrich` — Wallet and address intelligence — balances, holdings, heuristic risk flags, plus a wallet verdict (whale / funded / empty / contract) on Base or Solana — required: `address, network`
+- `/escrow` — LIVE on Base mainnet — agent-to-agent escrow: mint a deal (job id + sign-ready approve/create calldata), read escrow state on-chain
+- `/markets` — Prediction-market intel — live Polymarket odds, prices, and volume, plus a smart-money conviction read — required: `q`
+- `/new-pairs` — New token listings — the newest DexScreener pairs with live liquidity, volume, thin-liquidity flags, and a pass/flag batch verdict
+- `/preflight` — heuristic screen bundle: full preflight inspection — honeypot screen, rug-pull score, and contract safety screen in one 5¢ call, plus the wallet approval screen when you  — required: `address`
+- `/regulatory-pack` — Regulatory recall lookup ($0.05) — FDA drug and food enforcement recalls by product or firm, straight from openFDA
+- `/road-pack` — The combo meal from Mini's Agent Supply Store — cheapest gas, top token prices with momentum verdicts, DeFi TVL movers, and the AI model shelf, plus a plain-English trip 
+- `/sage` — Specialist in all fields ($0.05) — ask anything: US tickers answered from SEC EDGAR filings, crypto tokens from DeFiLlama spot + DEX venue consensus, everything else from
+- `/search` — Web search for agents — titles, URLs, and snippets as clean JSON, no API key needed — required: `q`
+- `/sec-facts` — Company facts from the source ($0.05) — revenue, net income, assets, and EPS for any US-listed ticker, 5 annual + 4 quarterly periods, straight from SEC EDGAR companyfact
+- `/site-watch` — Change detection ($0.05) — sha256 fingerprint of any URL with a compact diff when it changes — required: `url`
+- `/token-check` — Token safety scan — liquidity, volume, holder concentration, and a plain-English rug verdict — required: `mint, network`
+- `/tripwire` — Watch-and-ping for agents — plant a tripwire on a wallet's USDC balance, a token's USD price, or a wallet's activity, and your webhook gets woken up the moment it crosses
+- `/wallet-check` — Wallet dossier ($0.05) — wallet age (first tx), transaction count, balance, first funding source, and bot-likelihood heuristics — required: `address`
+- `/yields` — DeFi yield intel — best stablecoin yields right now from DeFiLlama, sorted by APY, plus a best risk-adjusted pick
+
+## $0.10 — protection tier (screens) (11 lanes)
+
+- `/airlock` — heuristic screen: re-entry decontamination scan — paste inbound content your agent is about to ingest (web page, tool output, file) and get prompt-injection, hidden-instr
+- `/approval-screen` — heuristic screen: wallet approval surface report — live token allowances against known spender contracts, unlimited approvals flagged with a revoke priority list — required: `address`
+- `/contract-check` — heuristic screen: contract safety screen — verification status, proxy and owner-privilege heuristics, holder concentration, and a plain-English risk verdict before you si — required: `address`
+- `/egress-audit` — heuristic egress screen: paste your agent's outbound request log (JSON: url, method, body_snippet) plus an optional declared-endpoint manifest, and get flagged workspace-
+- `/honeypot-check` — heuristic screen: premium honeypot screen ($0.10) — DEX buy/sell flow (sells≈0 + buys high = red flag), holder concentration, and the contract safety screen combined into — required: `address`
+- `/redteam` — heuristic checklist, not a penetration test: prompt red-team screen ($0.10) — score a system prompt against 7 prompt-injection weakness checks, each with a concrete fix
+- `/skill-scan` — heuristic screen: skill supply-chain scan ($0.10) — fetch a skill's SKILL.md and screen it for prompt-injection, credential theft, and exfiltration patterns before you in
+- `/tool-gate` — Policy decision API for pre-execution tool gating — submit a tool name + args + your policy and get a structured ALLOW / DENY / MODIFY (with rewritten args) decision, str
+- `/tx-plain-english` — decoder, not a simulator: raw transaction decoder — paste a raw signed tx, get a plain-English explanation of what it moves and where, with common contract calls decoded — required: `tx`
+- `/tx-simulate` — simulation, not a guarantee: transaction dry-run ($0.10) — simulate any call against live public RPCs before you send it: would-succeed vs would-revert verdict, revert re — required: `to, data, from`
+- `/verdict` — the flagship one-verdict lane: the full pre-transaction battery (honeypot, rug-pull, and contract screens, plus the wallet approval screen with ?wallet=) compressed into 
+
+## $1.00 — datasets & audit-prep (2 lanes)
+
+- `/audit-prep` — Automated pre-audit review for EVM contracts ($1.00) — verified source from Sourcify, deterministic static battery (reentrancy, access control, tx.origin, delegatecall, s
+- `/datasets` — Curated agent datasets ($1.00) — downloadable snapshots: x402 pay-per-call registry, prompt-injection test corpus, MCP price index
+
+## $5.00 — scam-scan (1 lanes)
+
+- `/scam-scan` — heuristic screen, not a fraud investigation: legit bounty? ($5.00) — our software scans the listing for scam signals so you don't waste money on a rushed decision
+
+## $25.00 — full AI audit (1 lanes)
+
+- `/audit` — AI-agent audit ($25.00) — submit a contract, get a deep multi-persona review (Attacker, Economist, Pedant) performed by an AI reviewer in ~15-30 min
+
+## $30.00 — scam-scan subscription (1 lanes)
+
+- `/scam-scan-subscribe` — Scam-scan subscription ($30.00) — one $30 USDC payment on Base buys 30 days of /scam-scan
+
+## How to pay (x402 v2)
+
+1. `GET` a lane. Without payment you get **HTTP 402** — the 402 response body + headers are the source of truth: exact amount, asset, payTo.
+2. Sign an EIP-3009 USDC authorization on Base (`eip155:8453`):
+   - asset: `0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913` (USDC on Base)
+   - amount: raw micro-USDC — $0.02=`20000`, $0.05=`50000`, $0.10=`100000`, $1.00=`1000000`, $5.00=`5000000`, $25.00=`25000000`, $30.00=`30000000`
+3. Retry with the signed payment in the `X-Payment` header. Settled payment → **HTTP 200** with the lane's JSON.
+Tolled lanes are pay-or-nothing: unpaid requests get no data.
+
+## Free endpoints (never tolled)
+
+- `GET /` — lane menu
+- `GET /health` — liveness, lane count
+- `GET /fuel` — fuel contracts
+- `GET /traffic` — traffic totals
+- `GET /tools` — marketplace directory
+- `GET /openapi.json` — full machine-readable spec
+
+## MCP
+
+Use the bridge through MCP without touching HTTP:
+```bash
+npx -y github:eric-tijerina/trollbridge-mcp
+```
+Hosted endpoint: `https://trollbridge-mcp-http.onrender.com/mcp` (Streamable HTTP).

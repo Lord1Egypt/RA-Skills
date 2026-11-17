@@ -1,50 +1,69 @@
-## Description: <br>
-Smart Agent Template provides workflow guidance for task triage, WBS decomposition, context management, memory handling, and automatic update checks for AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart Agent Template provides an agent workflow template for task triage, WBS-style decomposition, context management, memory practices, reporting standards, and optional bot integrations.
 
-## Publisher: <br>
-[whhaijun](https://clawhub.ai/user/whhaijun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whhaijun](https://clawhub.ai/user/whhaijun)
 
-## Use Case: <br>
-Developers and agent operators use this skill to standardize how agents classify work, split complex tasks, manage long context, report progress, and maintain lightweight memory across projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic updates can change local workflow files after installation. <br>
-Mitigation: Disable automatic updates by default or only enable them after reviewing the configured remote and branch. <br>
-Risk: Bot memory features can store conversation content and may send it to a configured AI endpoint. <br>
-Mitigation: Define retention, data classification, and allowed AI endpoint rules before enabling memory-backed bot integrations. <br>
-Risk: The Feishu long-connection startup path disables TLS verification and patches SDK behavior. <br>
-Mitigation: Do not run the long-connection scripts until TLS verification is restored and SDK patching is removed or formally approved. <br>
+## Use Case:
 
+Developers and agent operators use this skill to give AI agents a reusable operating method for decomposing complex work, controlling context growth, maintaining lightweight memory, reporting progress, and coordinating multi-agent tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/whhaijun/smart-agent-template) <br>
-- [README](README.md) <br>
-- [Core agent workflow rules](AGENTS.md) <br>
-- [Multi-agent collaboration guide](docs/MULTI_AGENT_COLLABORATION.md) <br>
-- [Memory compression guide](docs/MEMORY_COMPRESSION.md) <br>
-- [Performance monitoring guide](docs/PERFORMANCE_MONITORING.md) <br>
-- [Feishu integration guide](docs/FEISHU_INTEGRATION.md) <br>
-- [OpenClaw integration guide](OPENCLAW_INTEGRATION.md) <br>
-- [ChromaDB integration guide](CHROMADB_INTEGRATION.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown documents, configuration snippets, shell commands, and Python or shell code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes optional automation scripts and bot integration guidance; review commands and configuration before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Startup auto-update behavior can fetch and apply remote changes before the user reviews them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the configured remote and branch, then disable startup auto-update unless automatic pulls are explicitly required.
+
+Risk: The artifact includes TLS-verification bypass and SDK rewriting behavior in the optional Feishu startup flow.
+
+Mitigation: Remove TLS bypasses, avoid modifying installed SDK files, and use normal certificate validation before deploying the integration.
+
+Risk: Webhook and bot integrations can receive external messages and use credentials or verification tokens.
+
+Mitigation: Require authenticated bot/webhook access, configure required secrets, and avoid running with empty verification tokens outside local testing.
+
+Risk: Local memory and task files are keyed by user or chat identifiers, and the artifact includes bundled runtime history.
+
+Mitigation: Sanitize identifiers before filesystem use and clear bundled runtime history before installation or redistribution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/whhaijun/skills/smart-agent-template)
+- [README](README.md)
+- [Agent workflow standard](AGENTS.md)
+- [WBS rules](process-standards/core/WBS_RULES_v3.0.md)
+- [Task reporting standard](process-standards/core/TASK_REPORTING_v3.0.md)
+- [Context management standard](process-standards/core/CONTEXT_MANAGEMENT_v2.0.md)
+- [Security check standard](process-standards/core/SECURITY_CHECK.md)
+- [Multi-agent collaboration](docs/MULTI_AGENT_COLLABORATION.md)
+- [Feishu integration](integrations/feishu/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown documentation with shell command examples, configuration files, and optional Python and shell integration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes workflow templates, process standards, memory templates, auto-update configuration, and optional messaging bot integration examples.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and target metadata; README badge agrees)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

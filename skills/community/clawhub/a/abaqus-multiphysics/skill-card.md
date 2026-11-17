@@ -1,43 +1,55 @@
-## Description: <br>
-Abaqus Multiphysics helps agents provide reference guidance for Abaqus coupled physics workflows including thermal-mechanical, thermal-electric, structural-acoustic, CEL fluid-structure, piezoelectric-mechanical, hydrostatic fluid, thermal-fluid-mechanical, and structural-pore-pressure analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language reference guidance for Abaqus multiphysics analysis, including thermal-mechanical, thermal-electric, acoustic-structural, CEL fluid-structure, piezoelectric-mechanical, pore-pressure-structure, and fluid-cavity workflows.
 
-## Publisher: <br>
-[jijinbao-code](https://clawhub.ai/user/jijinbao-code) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jijinbao-code](https://clawhub.ai/user/jijinbao-code)
 
-## Use Case: <br>
-Engineers and simulation specialists use this skill to get concise Abaqus multiphysics modeling guidance, coupling-method selection notes, required material properties, setup considerations, and troubleshooting checks for coupled analyses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides analysis setup guidance for complex Abaqus multiphysics simulations where incorrect coupling choices, material properties, units, or boundary conditions can produce misleading engineering results. <br>
-Mitigation: Have qualified simulation engineers review assumptions, units, material data, coupling approach, and validation results before relying on outputs for engineering decisions. <br>
-Risk: The security evidence describes a powerful ClawHub/Convex maintainer skill bundle with repo, GitHub, moderation, and deployment workflows. <br>
-Mitigation: Use least-privilege credentials, review commands before execution, and avoid broad-access automation on sensitive repositories. <br>
+## Use Case:
 
+Developers and engineers use this skill as Chinese-language reference guidance when planning Abaqus multiphysics simulations and selecting coupling approaches, analysis steps, material inputs, and validation checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jijinbao-code/abaqus-multiphysics) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/jijinbao-code) <br>
-- [Abaqus Multiphysics documentation](https://www.3ds.com/products/simulia/abaqus/multiphysics) <br>
-- [SIMULIA resource center](https://www.3ds.com/products/simulia/resource-center) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown reference guidance with tables, checklists, and setup notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Users may apply the reference guidance to safety-critical simulations without confirming the engineering assumptions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify materials, units, boundary conditions, coupling choices, and results against official Abaqus documentation and qualified engineering review.
+
+Risk: Non-Chinese users may misunderstand technical details in the skill text.
+
+Mitigation: Use qualified translation or bilingual review before relying on the guidance.
+
+## Reference(s):
+
+- [Abaqus Multiphysics Documentation](https://www.3ds.com/products/simulia/abaqus/multiphysics)
+- [SIMULIA Resource Center](https://www.3ds.com/products/simulia/resource-center)
+- [ClawHub Skill Release](https://clawhub.ai/jijinbao-code/skills/abaqus-multiphysics)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown reference prose, lists, and tables in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; users should validate engineering details against official Abaqus documentation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

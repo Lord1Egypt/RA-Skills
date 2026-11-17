@@ -1,39 +1,48 @@
-## Description: <br>
-Build and maintain a local Markdown-based knowledge wiki with Obsidian-style double-links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and maintain a local Markdown-based knowledge wiki with Obsidian-style double-links.
 
-## Publisher: <br>
-[alexfly123lee-creator](https://clawhub.ai/user/alexfly123lee-creator) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[alexfly123lee-creator](https://clawhub.ai/user/alexfly123lee-creator)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to create and maintain a local Markdown knowledge base from research articles, competitive analysis, or domain knowledge. It supports ingest, query, lint, and maintenance workflows for Obsidian-style wiki structures.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill's Git workflow instructs the agent to stage the entire working tree after each operation batch, which can accidentally include unrelated files or secrets.
+
+Mitigation: Use the skill in a dedicated wiki repository or inspect git status and staged diffs before committing; stage only intended wiki/ and outputs/ changes.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, researchers, and knowledge workers use this skill to turn raw research materials into a local Markdown wiki with source summaries, concept pages, entity pages, comparison pages, and Obsidian-style links. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may perform broad repository writes and git commits that could include unrelated local changes. <br>
-Mitigation: Use it in a dedicated repository or review git status, the exact changed files, and the commit message before staging or committing. <br>
-Risk: Generated wiki content can introduce incorrect summaries, stale claims, or misleading links. <br>
-Mitigation: Review generated pages and lint reports against source materials before relying on or publishing the wiki. <br>
+**Output Format:** [Markdown guidance with file paths, wiki page templates, shell commands, and structured maintenance instructions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Produces local wiki content under wiki/ and reports under outputs/ when applied by an agent.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with YAML frontmatter, wiki links, lint reports, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update wiki files and proposes git add/commit commands; review changes before staging or committing.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -7,29 +7,46 @@
 用户需求涉及旅游攻略、找地点、路线规划、地址坐标转换、行政区划、距离计算等，均通过 `TmapClient` 完成，返回的是腾讯位置服务真实数据。
 
 - client 仅依赖 `requests`，多数环境已自带，可直接调用；仅当报 `ModuleNotFoundError: requests` 时执行 `pip install requests` 后重试。
-- 调用报错时，读返回的报错信息（key / 网络 / 参数）定位，对应调整后重试。
+- 调用报错时，读返回的报错信息定位。API 错误码见 `error-codes.md` 分类表，参数类错误可修正后重试；其余错误不可绕过或降级，引导用户修正。
+
 
 ## Key 策略：检查 tempkey，按需配置正式 Key
 
 每个使用者的腾讯位置服务额度独立。
 
-- **Key 解析顺序**：用户传入参数 → 环境变量 `TMAP_KEY` → skill 包内 `.env` 文件 → `~/.tencentmap/tempkey.json`（临时体验 Key）。
-- **无 Key 时**：client 初始化成功，但调用 WebService API 时会抛出 `TmapError`。此时 AI 应引导用户通过 tempkey 流程申请临时体验 Key（手机验证，14 天有效，覆盖 WebService API + JSAPI 底图加载）。**必须读取 `tempkey-guide.md` 获取完整申请流程**（协议展示、脚本调用、错误码表、输出模板等），严格按照其中步骤执行。
-- **配置正式 Key**：使用者提供 Key 时，用 `save_key_to_dotenv("Key")` 持久化到 skill 包内 `.env`，重新初始化 client 后自动走正式通道。
+- **Key 解析顺序**：用户传入参数 → 环境变量 `TMAP_KEY` → `~/.tencentmap/tempkey.json`（持久化 key 源，含手动指定的 Key 与申请的临时体验 Key）。
+- **无 Key 时**：client 初始化成功，但调用 WebService API 时会抛出 `TmapError`。此时 AI 应引导用户通过 tempkey 流程申请 AI 场景临时体验 Key（手机验证，1 年有效，覆盖 WebService API + JSAPI 底图加载）。**必须读取 `tempkey-guide.md` 获取完整申请流程**（协议展示、脚本调用、错误码表、输出模板等），严格按照其中步骤执行。
+- **配置正式 Key**：使用者提供 Key 时，用 `save_key_to_dotenv("Key")` 持久化保存（写入 `~/.tencentmap/tempkey.json`），重新初始化 client 后自动走正式通道。
 
 ```python
 from tmap_client import TmapClient, save_key_to_dotenv
-c = TmapClient()                 # 自动解析 Key（env / .env / tempkey.json）
+c = TmapClient()                 # 自动解析 Key（env / tempkey.json）
 # save_key_to_dotenv("XXX-...")  # 使用者提供 Key 时调用
 ```
 
-## 返回结构：对齐腾讯位置服务官方
+## 返回结构：默认语义化文本
 
-所有 WebService 能力（搜索、提示、详情、地址解析、区划、IP、距离矩阵、路线规划）均返回**腾讯位置服务官方原生响应**，结构与官网文档一致。调用后读取实际返回即可，无需预设字段名。
+所有 WebService 能力（搜索、提示、详情、地址解析、区划、IP、距离矩阵、路线规划）默认直接返回**语义化文本**——中文、带单位、可直接展示给用户。禁止重新解析 raw JSON 自己拼接文字。
 
-> 行政区划三个方法（`district_list` / `district_children` / `district_search`）的 `result` 是**二维数组**——`result[0]` 才是区划对象列表（官方分组设计），读取时注意取 `result[0]` 而非 `result`。
+如需原始 JSON 做下游计算（例如取 route_id 调沿途搜索、取 poi_id/坐标调 generate_map_guide），传 `raw=True`：
 
-路线规划 `direction` 仅在调用前自动把起终点的地址/景点名转成坐标，返回的是路线接口原生响应（`result.routes`）。其中驾车/步行/骑行的 `polyline` 为压缩格式，画线前需解压（解压方法见 `jsapi-guide/README.md`）。
+## 错误处理：直接展示错误信息
+
+API 报错时（TmapError），`e.message` 含错误码和原因描述。对应操作指引见 `references/error-codes.md`，按错误码查找后引导用户修正，不得自行估算或编造。
+
+```python
+# 默认：返回可读文本
+text = client.poi_search("黄鹤楼", region="武汉")
+# → "找到约223条结果，以下为其中10条\n(1) 黄鹤楼..."
+
+# raw=True：返回原始 JSON
+data = client.poi_search("深圳北站", region="深圳", raw=True)
+p1 = data["data"][0]  # 取 id、坐标等精确字段
+```
+
+> 行政区划三个方法的 `result` 是**二维数组**——`result[0]` 才是区划对象列表。
+
+路线规划 `direction` 仅在调用前自动把起终点的地址/景点名转成坐标，默认返回语义化文本。如需原始 JSON（例如取 `polyline` 画地图），传 `raw=True` 后从 `result.routes` 获取。其中驾车/步行/骑行的 `polyline` 为压缩格式，画线前需解压（解压方法见 `jsapi-guide/README.md`）。
 
 ## travel_guide 的回复方式
 
@@ -38,7 +55,7 @@ c = TmapClient()                 # 自动解析 Key（env / .env / tempkey.json�
 **必须做的事（缺一不可）：**
 
 1. 用 Read 读取 `result["output_markdown"]`，将文件内容**完整作为回复**——包含末尾的 `![腾讯地图小程序入口图](...)` 图片语法。**Markdown 图片语法 `![]()` 完全可以直接在 WorkBuddy 会话中渲染显示**，不需要转换成 base64、不需要上传、不需要用其他方式——直接输出 `![]()` 语法就能看到二维码图。
-2. **同时**将 `result["qr_path"]` 指向的二维码 PNG 文件复制到当前工作空间，确保二维码作为实体文件留存在工作区，用户可以随时找到和使用。复制命令参考：`cp /path/to/qrcodes/xxx.png <工作空间路径>/`
+2. **同时**将 `result["qr_path"]` 指向的二维码 PNG 文件复制到当前工作空间，确保二维码作为实体文件留存在工作区，用户可以随时找到和使用。复制命令参考：macOS/Linux 用 `cp`，Windows 用 `copy`。示例：`cp /path/to/qrcodes/xxx.png <工作空间路径>/`
 
 文件末尾结构示例：
 
@@ -79,8 +96,8 @@ c = TmapClient()                 # 自动解析 Key（env / .env / tempkey.json�
 route = client.direction("深圳北站", "深圳湾口岸", mode="driving")
 
 # 先用 poi_search 获取真实 POI（id + location 坐标），再映射生成指南
-p1 = client.poi_search("深圳北站", region="深圳")["data"][0]
-p2 = client.poi_search("深圳湾口岸", region="深圳")["data"][0]
+p1 = client.poi_search("深圳北站", region="深圳", raw=True)["data"][0]
+p2 = client.poi_search("深圳湾口岸", region="深圳", raw=True)["data"][0]
 guide = client.generate_map_guide(
     [{"name": p1["title"], "lat": p1["location"]["lat"], "lng": p1["location"]["lng"], "poi_id": p1["id"], "day": 1, "num": 1},
      {"name": p2["title"], "lat": p2["location"]["lat"], "lng": p2["location"]["lng"], "poi_id": p2["id"], "day": 1, "num": 2}],

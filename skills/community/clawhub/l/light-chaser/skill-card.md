@@ -1,44 +1,55 @@
-## Description: <br>
-Light Chaser helps travelers turn destination, date, equipment, weather, and location research into an executable travel photography shooting timeline. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Light Chaser helps travelers plan photography outings by turning destination, travel date, camera equipment, weather, and attraction research into an executable shooting timeline.
 
-## Publisher: <br>
-[ccshen722](https://clawhub.ai/user/ccshen722) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ccshen722](https://clawhub.ai/user/ccshen722)
 
-## Use Case: <br>
-External users and travel photographers use this skill to plan where, when, and how to shoot during a trip. It gathers destination, travel date, and equipment details, then combines scenic spot research, weather context, timing guidance, shooting techniques, and editing suggestions into a practical plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may send destination and travel-date context to web search or QWeather API endpoints for weather and location planning. <br>
-Mitigation: Use it only when this lookup behavior is acceptable for the itinerary, and avoid entering sensitive private travel details. <br>
-Risk: A configured QWeather API key in config.env could be exposed if unrelated secrets are stored in the same file or if the skill directory is shared. <br>
-Mitigation: Use a dedicated QWeather key and keep unrelated secrets out of config.env. <br>
-Risk: Fallback weather gathered through web search may be less precise than API weather data. <br>
-Mitigation: Treat generated timing and weather-dependent recommendations as planning guidance and verify critical conditions before travel. <br>
+## Use Case:
 
+External users and travel photographers use this skill to plan where, when, and how to shoot during a trip, including attraction selection, weather-aware timing, device-specific shooting suggestions, route ordering, styling, and post-processing guidance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ccshen722/light-chaser) <br>
-- [QWeather Developer Platform](https://dev.qweather.com/) <br>
-- [DJI Fly Safe](https://www.dji.com/cn/flysafe) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown travel photography timeline with weather summary, route-aware shooting schedule, capture guidance, wardrobe suggestions, and editing direction.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use web search or optional QWeather API configuration; weather precision depends on the configured data source.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: A configured QWeather API key could be exposed through local configuration handling or agent output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep config.env private, use a low-privilege QWeather key with quotas, and review outputs before sharing logs or plans.
+
+Risk: Destination and travel-date details may be sent to weather or search services during planning.
+
+Mitigation: Use the skill only with travel details appropriate for those services and verify the configured QWeather host is legitimate before enabling API calls.
+
+## Reference(s):
+
+- [Light Chaser ClawHub Skill Page](https://clawhub.ai/ccshen722/skills/light-chaser)
+- [QWeather Developer Platform](https://dev.qweather.com/)
+- [DJI Fly Safe](https://www.dji.com/cn/flysafe)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown travel photography plan with weather summary, shooting timeline, location recommendations, equipment guidance, styling suggestions, and editing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use QWeather API data when configured; otherwise may rely on web search for lower-precision weather information.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

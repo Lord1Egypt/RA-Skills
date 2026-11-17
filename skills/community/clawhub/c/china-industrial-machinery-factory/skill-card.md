@@ -1,38 +1,54 @@
-## Description: <br>
-Comprehensive industrial machinery industry factory guide for international buyers that provides information about China's machine tools, construction machinery, agricultural equipment, packaging lines, robotics, manufacturing clusters, supply chain structure, regional specializations, and industry trends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive industrial machinery industry factory guide for international buyers - provides detailed information about China's machine tools, construction machinery, agricultural equipment, packaging lines, robotics, and other industrial machinery manufacturing clusters, supply chain structure, regional specializations, and industry trends (2026 updated).
 
-## Publisher: <br>
-[findhappy7](https://clawhub.ai/user/findhappy7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[findhappy7](https://clawhub.ai/user/findhappy7)
 
-## Use Case: <br>
-External buyers and sourcing teams use this skill to explore China's industrial machinery clusters, supply chain structure, subsector trends, and supplier-evaluation guidance before making purchasing decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market statistics, supplier examples, and sourcing advice may be incomplete, outdated, or unsuitable for a specific procurement decision. <br>
-Mitigation: Treat the content as informational and independently verify business claims, suppliers, certifications, pricing, and lead times before purchasing. <br>
+## Use Case:
 
+External buyers, sourcing teams, and supply-chain analysts use this skill to research China's industrial machinery landscape, compare regional manufacturing clusters, understand subsectors, and get supplier-evaluation guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/findhappy7/china-industrial-machinery-factory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown or structured lookup results from bundled JSON data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only local data lookup; no external actions or credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Bundled industrial-market data may become stale.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify market figures and policy claims against current authoritative sources before using them for purchasing or strategy decisions.
+
+Risk: Supplier, certification, and payment guidance may be incomplete for a specific transaction.
+
+Mitigation: Independently validate suppliers, certifications, payment terms, and contract requirements before committing to a purchase.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/findhappy7/skills/china-industrial-machinery-factory)
+- [Publisher profile](https://clawhub.ai/user/findhappy7)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Markdown or structured JSON generated from bundled industrial machinery data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses bundled cluster-level data without individual factory contacts.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

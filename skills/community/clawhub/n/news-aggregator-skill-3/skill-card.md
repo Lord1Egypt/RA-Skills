@@ -1,42 +1,61 @@
-## Description: <br>
-Comprehensive news aggregator that fetches, filters, and deeply analyzes real-time content from 8 major sources: Hacker News, GitHub Trending, Product Hunt, 36Kr, Tencent News, WallStreetCN, V2EX, and Weibo. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive news aggregator that fetches, filters, and deeply analyzes real-time content from 8 major sources: Hacker News, GitHub Trending, Product Hunt, 36Kr, Tencent News, WallStreetCN, V2EX, and Weibo.
 
-## Publisher: <br>
-[AdministratorFung](https://clawhub.ai/user/AdministratorFung) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[administratorfung](https://clawhub.ai/user/administratorfung)
 
-## Use Case: <br>
-Developers and external users use this skill to fetch public technology, open-source, social, and finance news from supported sources, then turn the results into concise Chinese briefings or deeper topic reports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches public web sources and, in deep mode, sends network requests to article URLs that may reveal query interest through normal web traffic. <br>
-Mitigation: Use it in a normal project directory and avoid deep scans for sensitive queries when third-party sites should not see that network activity. <br>
-Risk: The skill depends on Python packages for HTTP requests and HTML parsing. <br>
-Mitigation: Review or pin dependencies before installation in controlled environments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AdministratorFung/news-aggregator-skill-3) <br>
-- [README](README.md) <br>
-- [Command templates](templates.md) <br>
-- [Repository link referenced by README](https://github.com/cclank/news-aggregator-skill) <br>
+## Use Case:
 
+External users and developers use this skill to fetch multi-source news, filter by source or keyword, deep-fetch article content when requested, and produce concise Chinese news briefings or reports.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance, files] <br>
-**Output Format:** [Markdown reports and chat responses, with JSON returned by the fetch_news.py helper script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are intended to be saved under reports/ with timestamped Markdown filenames; deep fetch may include extracted article text.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Deep-fetch mode can make outbound requests to article URLs discovered from public feeds.
+
+Mitigation: Run the skill in an isolated environment with restricted network egress and avoid --deep on untrusted or overly broad result sets.
+
+Risk: Fetched content and generated reports may contain inaccurate, stale, or misleading news summaries.
+
+Mitigation: Review generated reports before relying on or redistributing them, especially for finance, market, or breaking-news content.
+
+Risk: Reports are automatically written to the reports/ directory.
+
+Mitigation: Review saved reports for sensitive or unwanted content and manage the reports/ directory according to local data-retention expectations.
+
+Risk: Dependencies are not version-pinned in requirements.txt.
+
+Mitigation: Pin and review dependencies before installation in production or shared environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/administratorfung/skills/news-aggregator-skill-3)
+- [Publisher profile](https://clawhub.ai/user/administratorfung)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown reports in Simplified Chinese, with JSON arrays returned by fetch_news.py when invoked directly]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are saved under reports/ with timestamped filenames.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,62 @@
-## Description: <br>
-Extract structured data from websites using Zyte API with smart proxy rotation and browser rendering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract structured data from websites using Zyte API with smart proxy rotation, browser rendering, service health checks, and account usage review.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-Developers and operators use this skill to connect OpenClaw to Zyte API through ClawLink, discover available Zyte tools, extract structured data from URLs, check service health, and review account usage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a connected Zyte API account and ClawLink plugin access, so requests may use account-scoped credentials and consume paid quota. <br>
-Mitigation: Install only when the user is comfortable connecting Zyte API through ClawLink, verify the active connection before calls, and apply extra scrutiny to high-volume or cost-sensitive scraping. <br>
-Risk: URLs, request parameters, and extracted page content may be processed by ClawLink and Zyte. <br>
-Mitigation: Avoid secrets-bearing links, internal systems, private pages, regulated data, and scraping that lacks authorization or violates applicable terms. <br>
-Risk: Broad or repeated extraction can create privacy, cost, authorization, or terms-of-service issues. <br>
-Mitigation: Prefer targeted extraction, require explicit confirmation for high-volume or repeated scraping, respect robots.txt and website terms, and report real tool errors without inventing results. <br>
+## Use Case:
 
+Developers and external users use this skill to connect OpenClaw to Zyte API through ClawLink, discover available Zyte tools, and run targeted website extraction, scraping, status, incident, maintenance, account, and usage workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hith3sh/zyte-api-scraping) <br>
-- [Zyte API Documentation](https://docs.zyte.com/zyte-api/) <br>
-- [Zyte API Overview](https://www.zyte.com/zyte-api/) <br>
-- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=zyte-api-scraping) <br>
-- [ClawLink Docs](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink Verification](https://claw-link.dev/verify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with inline bash commands and JSON parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ClawLink tool calls that return structured data, service status, incidents, maintenance windows, account details, or usage information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.2 (source: server release evidence) <br>
+Risk: Scraping requests are routed through ClawLink and Zyte API using connected account credentials, which can expose URLs to external services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved URLs, avoid confidential or internal targets unless organization policy allows it, and review the ClawLink and Zyte account trust boundary before use.
+
+Risk: Large or repeated extraction jobs can affect Zyte API quotas, billing, and site-access limits.
+
+Mitigation: Prefer targeted extraction, preview high-volume or batch work, confirm cost-sensitive operations, and monitor account usage.
+
+Risk: Scraping may violate site rules or fail when sites block automated access.
+
+Mitigation: Respect robots.txt and website terms of service, avoid unauthorized extraction, and check Zyte API status or adjust extraction settings when requests fail.
+
+## Reference(s):
+
+- [Zyte API Documentation](https://docs.zyte.com/zyte-api/)
+- [Zyte API Overview](https://www.zyte.com/zyte-api/)
+- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=zyte-api-scraping)
+- [ClawLink Docs](https://docs.claw-link.dev/openclaw)
+- [ClawLink Verification](https://claw-link.dev/verify)
+- [ClawHub Skill Page](https://clawhub.ai/hith3sh/skills/zyte)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON tool parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return extraction, status, usage, account, incident, and maintenance results from the connected Zyte API account.]
+
+## Skill Version(s):
+
+0.2.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

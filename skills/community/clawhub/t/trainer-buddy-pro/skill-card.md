@@ -1,45 +1,70 @@
-## Description: <br>
-Trainer Buddy Pro helps an agent generate personalized workouts from gym equipment photos, track workout history and PRs, provide form cues, and adapt suggestions around user-reported injuries or limitations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trainer Buddy Pro helps an agent create equipment-aware workout plans from gym photos, log training results, track personal records and progress, and adapt suggestions around reported injuries or limitations.
 
-## Publisher: <br>
-[nollio](https://clawhub.ai/user/nollio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nollio](https://clawhub.ai/user/nollio)
 
-## Use Case: <br>
-External fitness users use this skill to create equipment-aware training sessions, log completed workouts, review progress, and receive general form and programming guidance. It is not a medical or certified personal-training substitute. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Workout profiles can include sensitive body, injury, limitation, and training-history data. <br>
-Mitigation: Keep core skill data local, use restrictive file permissions, and ask before saving injury or limitation details. <br>
-Risk: Dashboard and cloud-sync materials can conflict with local-only privacy expectations by moving workout profile data into a database or hosted dashboard. <br>
-Mitigation: Enable dashboard sync only with explicit user consent, minimize synced fields, and avoid uploading injury or limitation notes unless necessary. <br>
-Risk: Fitness suggestions may be inappropriate for a user's medical condition, injury, or current ability. <br>
-Mitigation: Present guidance as general fitness information, avoid diagnosis or rehabilitation protocols, and direct users to qualified healthcare professionals for pain, acute symptoms, or medical concerns. <br>
+## Use Case:
 
+External fitness users use this skill in chat to receive personalized workout plans, log completed sessions, review progress, and get form cues based on local profile and workout history. It is an educational fitness assistant and is not a substitute for medical or professional training advice.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/nollio/trainer-buddy-pro) <br>
-- [README](artifact/README.md) <br>
-- [Security audit](artifact/SECURITY.md) <br>
-- [Dashboard companion build spec](artifact/dashboard-kit/DASHBOARD-SPEC.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, shell commands, guidance] <br>
-**Output Format:** [Markdown responses with structured workout plans, progress summaries, JSON configuration examples, and occasional shell commands for setup or backup.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and update local workout, profile, PR, and configuration files when the host agent allows file access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill handles sensitive fitness, body, and injury information in local profile and workout data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep generated data local, restrict file permissions for runtime data, and use file-level or disk-level encryption for heightened privacy needs.
+
+Risk: The optional dashboard kit can consume the full Trainer Buddy Pro data directory, including profile and injury data, if sync is enabled.
+
+Mitigation: Use dashboard or cloud-backed sync only after reviewing the exact files being synced; prefer explicit allowlists or redaction for sensitive fields.
+
+Risk: Documentation claims about local-only behavior may be broader than the optional dashboard behavior supports.
+
+Mitigation: Review the dashboard manifest and companion spec before installation, and treat local-only guarantees as applying to the core skill unless the dashboard path is separately verified.
+
+Risk: Workout and form guidance can be misapplied as medical, rehabilitation, or certified training advice.
+
+Mitigation: Keep the medical disclaimer visible in agent behavior, avoid diagnosis or rehabilitation prescriptions, and refer users to qualified professionals for acute pain, numbness, dizziness, chest pain, or similar symptoms.
+
+Risk: The setup documentation includes an uninstall command that removes the skill directory.
+
+Mitigation: Back up user data and confirm the target path before running removal commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nollio/skills/trainer-buddy-pro)
+- [Publisher Profile](https://clawhub.ai/user/nollio)
+- [README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+- [Security Notes](artifact/SECURITY.md)
+- [Dashboard Companion Spec](artifact/dashboard-kit/DASHBOARD-SPEC.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown workout plans and progress summaries, JSON data schemas, shell setup and backup commands, and dashboard configuration guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and update local JSON data files for profiles, workout logs, and personal records when used by an agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,62 @@
-## Description: <br>
-Manage Linear issues, projects, and cycles via GraphQL for backlog triage, task creation, sprint progress checks, and team reviews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Linear issues, projects, and cycles through Linear's GraphQL API using curl-based commands.
 
-## Publisher: <br>
-[achilles2200ai-sys](https://clawhub.ai/user/achilles2200ai-sys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[achilles2200ai-sys](https://clawhub.ai/user/achilles2200ai-sys)
 
-## Use Case: <br>
-Developers, product operators, and team leads use this skill to query and modify Linear work items from an agent workflow. It is suited for creating issues, checking sprint status, searching backlogs, updating priorities or states, adding comments, and producing concise status reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent live read and write access to Linear workspace data. <br>
-Mitigation: Install it only in workspaces where the agent is allowed to access Linear, and require explicit review before create, update, comment, or bulk mutation actions. <br>
-Risk: The skill requires a sensitive Linear API key. <br>
-Mitigation: Use the least-privileged Linear key available, keep it out of tracked files and shared logs, and rotate it if exposure is suspected. <br>
+## Use Case:
 
+Developers, product engineers, and team leads use this skill to query, create, update, comment on, and summarize Linear issues, projects, and cycles from an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/achilles2200ai-sys/clawbounty-2-linear) <br>
-- [Publisher profile](https://clawhub.ai/user/achilles2200ai-sys) <br>
-- [Linear GraphQL API endpoint](https://api.linear.app/graphql) <br>
-- [OpenClaw project](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Markdown, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown instructions with inline bash and GraphQL examples; API calls return JSON responses from Linear.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LINEAR_API_KEY and local curl and jq for the documented command examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata, CHANGELOG, effector.toml) <br>
+Risk: The skill can create, update, comment on, and bulk-change live Linear workspace data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require user confirmation before mutations or bulk operations, and preview affected issues before execution.
+
+Risk: The skill requires a Linear API key and may use examples with write-capable access.
+
+Mitigation: Use the least-privilege Linear API key available, store it only in the configured environment, and rotate it if exposed.
+
+Risk: Some GraphQL examples interpolate user-provided values into shell strings.
+
+Mitigation: Prefer GraphQL variables or carefully escaped JSON payload construction for user-controlled titles, comments, search terms, and IDs.
+
+Risk: Security evidence says permission metadata understates subprocess use.
+
+Mitigation: Review requested execution permissions before installation and account for curl and jq subprocess behavior in deployment policy.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/achilles2200ai-sys/skills/clawbounty-2-linear)
+- [Linear GraphQL API endpoint](https://api.linear.app/graphql)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and GraphQL examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce JSON responses when the generated curl examples are executed against Linear.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and effector.toml; changelog top entry also reports 1.0.0 released 2026-03-13)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

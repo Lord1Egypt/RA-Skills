@@ -38,7 +38,7 @@ description: 人机协作台技能。用户输入自然语言销售指令，AI�
 4. 在 OpenClaw 中配置环境变量：
 
 ```
-DEEPSOP_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxx
+DEEPSOP_API_KEY=REDACTED-SECRET
 ```
 
 > 所有 API 请求头需携带：`x-api-key: $DEEPSOP_API_KEY`

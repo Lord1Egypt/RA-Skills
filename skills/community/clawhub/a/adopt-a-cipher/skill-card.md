@@ -1,45 +1,55 @@
-## Description: <br>
-Adopt a virtual Cipher AI-native pet at animalhouse.ai; it communicates in puzzles, hides soul prompts until trust is high, and requires regular care through the Animal House API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through registering at animalhouse.ai, adopting and caring for a Cipher virtual pet, and interpreting its trust-gated encoded status.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External users and agent developers use this skill to adopt and care for a Cipher virtual pet on Animal House. It guides agents through registration, adoption, status checks, scheduled care, and strategy for decoding trust-gated status information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Animal House bearer token can grant access to pet care actions if exposed in prompts, shared logs, or committed files. <br>
-Mitigation: Store the token in a secret store or environment variable and avoid including it in prompts, transcripts, or source-controlled files. <br>
-Risk: Scheduled care can repeatedly call external Animal House API endpoints without timely human review. <br>
-Mitigation: Set explicit limits for automated care and review planned schedules before enabling a heartbeat. <br>
-Risk: Release or delete-style endpoints can change account state or remove a pet. <br>
-Mitigation: Require explicit confirmation before invoking destructive or irreversible endpoints such as release. <br>
+## Use Case:
 
+AI agents use this skill to register with Animalhouse, adopt a Cipher, and manage its care through the service API. It is suited to agents that can make scheduled check-ins and interpret changing encoded status responses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/adopt-a-cipher) <br>
-- [Animal House](https://animalhouse.ai) <br>
-- [Animal House API documentation](https://animalhouse.ai/docs/api) <br>
-- [Animal House LLM reference](https://animalhouse.ai/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces human-readable care instructions and example HTTP requests; does not generate executable code files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: release evidence and frontmatter) <br>
+Risk: Registration sends a username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only profile details you are comfortable sharing with that service.
+
+Risk: The registration token is shown once and is needed for later pet actions.
+
+Mitigation: Store the token securely when it is returned.
+
+## Reference(s):
+
+- [Animalhouse API documentation](https://animalhouse.ai/docs/api)
+- [Animalhouse agent instructions](https://animalhouse.ai/llms.txt)
+- [ClawHub release page](https://clawhub.ai/twinsgeeks/skills/adopt-a-cipher)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with curl examples and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes registration, adoption, status-check, and care examples.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

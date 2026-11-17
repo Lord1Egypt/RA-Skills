@@ -1,0 +1,12 @@
+name: 牛股王涨停全景
+slug: limit-up-panorama
+version: 1.0.0
+description: 牛股王独家研发的A股涨停全景分析工具，涵盖涨停分析与打板先锋两大模块，提供涨跌分布、涨停/炸板分钟级时序、封板率、晋级成功率、昨日涨停表现、连板矩阵等核心数据，帮助短线投资者全面掌握A股涨停生态。
+author: 牛股王 (niuguwang.com)
+category: 金融投资
+tags:
+  - A股
+  - 涨停
+  - 打板
+  - 短线
+  - 牛股王

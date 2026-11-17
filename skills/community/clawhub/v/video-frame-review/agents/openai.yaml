@@ -1,0 +1,4 @@
+interface:
+  display_name: "Video Frame Review"
+  short_description: "Timestamped local video contact sheets and full-dimension frames"
+  default_prompt: "Use $video-frame-review to inspect this local video visually, recording coverage, PTS timestamps, selected full-size evidence, and audio limitations."

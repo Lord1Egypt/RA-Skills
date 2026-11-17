@@ -1,0 +1,29 @@
+{
+  "slug": "internet-time",
+  "name": "Internet Time",
+  "category": "lifestyle",
+  "description": "Get the current Swatch Internet Time in beats (@000–@999).",
+  "version": "1.0.7",
+  "author": "Ken's Agents",
+  "license": "MIT",
+  "icon": "🕐",
+  "tags": ["time", "swatch", "beats", "internet-time", "utility"],
+  "platform": ["Linux", "macOS"],
+  "required_binaries": ["python3"],
+  "required_environment_variables": [],
+  "required_privileges": "non-root",
+  "triggers": [
+    "internet time",
+    "swatch internet time",
+    "what is the time in beats",
+    "how many beats is it",
+    "what is the current beat time",
+    "beat time",
+    "current beats",
+    "swatch beats",
+    "swatch beat time",
+    "@ time",
+    "swatch time",
+    "/beats"
+  ]
+}

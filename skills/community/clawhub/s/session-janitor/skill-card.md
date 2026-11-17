@@ -1,45 +1,63 @@
-## Description: <br>
-Automated transcript trimming, LLM memory extraction, and session hygiene for OpenClaw gateways. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated transcript trimming, LLM memory extraction, and session hygiene for OpenClaw gateways.
 
-## Publisher: <br>
-[halfdeadcat](https://clawhub.ai/user/halfdeadcat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[halfdeadcat](https://clawhub.ai/user/halfdeadcat)
 
-## Use Case: <br>
-Developers and operators who run OpenClaw gateways use Session Janitor to trim oversized transcripts, archive and prune stale session data, and optionally extract structured memories from trimmed content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Background cleanup can mutate or archive OpenClaw session transcripts. <br>
-Mitigation: Back up session directories and review generated config.json before installing cron jobs or watcher services. <br>
-Risk: Generated configuration may contain gateway tokens and session paths. <br>
-Mitigation: Protect config.json as sensitive local data and avoid sharing it in logs, tickets, or repositories. <br>
-Risk: LLM extraction, mem CLI storage, Slack alerts, watchdog restart, and scene file paths may process or publish transcript-derived information. <br>
-Mitigation: Disable these options unless the operator explicitly wants transcript-derived data processed, stored, or sent outside the session files. <br>
+## Use Case:
 
+Developers and operators use Session Janitor to keep OpenClaw gateway transcripts manageable by offloading large tool results, trimming oversized JSONL sessions, extracting memories from archived content, and pruning stale or orphaned session records.
 
-## Reference(s): <br>
-- [Session Janitor on ClawHub](https://clawhub.ai/halfdeadcat/session-janitor) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [Architecture and Trimming Deep Dive](artifact/ARCHITECTURE.md) <br>
-- [Example Configuration](artifact/config.example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown instructions with shell commands and JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and jq; optional mem CLI, fswatch, or inotify-tools enable additional runtime behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.0 (source: server release metadata) <br>
+Risk: Automatic transcript rewriting and deletion can remove or alter session history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up sessions first and install only on gateways where automated cleanup is acceptable.
+
+Risk: Persistent cron and watcher jobs can continue changing session files after installation.
+
+Mitigation: Review generated configuration and installed services before enabling them, and disable cron or watcher automation when persistent cleanup is not desired.
+
+Risk: LLM extraction and memory storage can expose private transcript-derived facts, especially if a Git-backed memory directory is configured.
+
+Mitigation: Keep config.json private and user-writable only, disable LLM extraction and memory-related paths unless explicitly needed, and keep memory stores out of public repositories.
+
+Risk: Watchdog Slack alerts and auto-restart settings may disclose operational details or run restart scripts.
+
+Mitigation: Disable Slack alerts and auto-restart unless they are explicitly needed, and validate any restart scripts before use.
+
+## Reference(s):
+
+- [Session Janitor on ClawHub](https://clawhub.ai/halfdeadcat/skills/session-janitor)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [Session Janitor Architecture](artifact/ARCHITECTURE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute local cleanup scripts that rewrite or delete OpenClaw session artifacts when installed and run.]
+
+## Skill Version(s):
+
+1.6.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

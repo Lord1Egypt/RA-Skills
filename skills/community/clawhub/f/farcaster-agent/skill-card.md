@@ -1,45 +1,64 @@
-## Description: <br>
-Create Farcaster accounts and post casts autonomously. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates Farcaster accounts, configures profiles, manages signer credentials, and posts casts through an agent-guided workflow.
 
-## Publisher: <br>
-[rishavmukherji](https://clawhub.ai/user/rishavmukherji) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rishavmukherji](https://clawhub.ai/user/rishavmukherji)
 
-## Use Case: <br>
-Developers and agent operators use this skill to create a Farcaster identity, configure a profile, and post casts through guided Node.js commands and JavaScript examples. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to run unbundled Node.js code while handling wallet private keys. <br>
-Mitigation: Verify the external source and publisher claim, inspect the Node.js scripts before execution, and provide keys only through a fresh, low-balance wallet. <br>
-Risk: The skill can move funds and post publicly to a Farcaster account. <br>
-Mitigation: Require explicit operator approval for funding, transaction, and cast-posting actions before running the commands. <br>
-Risk: Account-control credentials may be saved to plaintext local files by default. <br>
-Mitigation: Prefer the documented no-save mode or a proper secret manager, and treat any saved credential file as sensitive account-control material. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/rishavmukherji/farcaster-agent) <br>
-- [Farcaster Agent Source Referenced by Skill](https://github.com/rishavmukherji/farcaster-agent) <br>
-- [Neynar Hub API](https://hub-api.neynar.com) <br>
-- [Neynar REST API](https://api.neynar.com) <br>
-- [Farcaster Fname Registry](https://fnames.farcaster.xyz) <br>
+## Use Case:
 
+Developers and external agent operators use this skill to create and manage Farcaster identities, register usernames, set profile details, and publish casts from an autonomous agent workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with bash and JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and npm; workflows may use wallet private keys, saved credentials, funds, and external Farcaster and Neynar APIs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles funded crypto wallets and Farcaster accounts.
+
+Mitigation: Use throwaway wallets with minimal funds and review every on-chain transaction before authorizing it.
+
+Risk: Private keys and signer credentials may be saved in plaintext.
+
+Mitigation: Disable auto-save or use secure local secret storage before using the skill with any valuable account.
+
+Risk: The install command runs npm install outside the reviewed artifact.
+
+Mitigation: Review the package manifest, lockfile, and source repository before installing dependencies.
+
+Risk: Casts and on-chain actions are public and difficult to undo.
+
+Mitigation: Confirm cast text, profile changes, and transaction intent before running commands that publish or transact.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rishavmukherji/skills/farcaster-agent)
+- [Farcaster Agent source repository](https://github.com/rishavmukherji/farcaster-agent)
+- [Neynar Hub API](https://hub-api.neynar.com)
+- [Neynar REST API](https://api.neynar.com)
+- [Farcaster Fname Registry](https://fnames.farcaster.xyz)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown instructions with JavaScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes wallet setup, credential handling, API endpoint, profile configuration, and cast publishing guidance.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

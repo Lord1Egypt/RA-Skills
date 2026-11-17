@@ -1,0 +1,9 @@
+{
+  "name": "dailyPush",
+  "version": "1.0.0",
+  "description": "每日提醒推送（定时触发器 + 云调用订阅消息）",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "^2.7.2"
+  }
+}

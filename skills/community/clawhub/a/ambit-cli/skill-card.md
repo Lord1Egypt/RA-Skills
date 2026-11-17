@@ -1,43 +1,61 @@
-## Description: <br>
-Helps agents use the ambit CLI to create and destroy private networks, deploy private Fly.io apps behind Tailscale, check router health, list routers, and diagnose connectivity problems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through Ambit CLI workflows for creating and destroying private networks, deploying apps, checking router health, listing routers, and diagnosing connectivity issues.
 
-## Publisher: <br>
-[ToxicPine](https://clawhub.ai/user/ToxicPine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[toxicpine](https://clawhub.ai/user/toxicpine)
 
-## Use Case: <br>
-Developers and engineers use this skill to operate Ambit workflows for private, internet-invisible application deployment on Fly.io with Tailscale-based access. It helps plan and run network creation, app deployment, router status checks, troubleshooting, and teardown commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill supports high-privilege infrastructure actions that can create, deploy, modify, or destroy Fly.io and Tailscale resources. <br>
-Mitigation: Require explicit user approval before running deploy, destroy, --yes, or --self-approve actions, and review planned changes before execution. <br>
-Risk: Ambit workflows may use a Tailscale API token and external templates or npm packages. <br>
-Mitigation: Protect and scope the Tailscale API token, avoid exposing secrets in logs or command history, review external packages, and prefer pinned template refs or commits. <br>
+## Use Case:
 
+Developers and engineers use this skill to operate Ambit CLI workflows for private Fly.io deployments reachable only through Tailscale. It supports network creation, app deployment, router status checks, troubleshooting, and teardown.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ToxicPine/ambit-cli) <br>
-- [Tailscale API keys](https://login.tailscale.com/admin/settings/keys) <br>
-- [Tailscale ACL tags](https://login.tailscale.com/admin/acls/visual/tags) <br>
-- [Fly.io flyctl installation](https://fly.io/docs/flyctl/install/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include JSON output guidance when the ambit --json flag is relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can guide high-impact Fly.io and Tailscale network changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review planned changes before execution, avoid --yes for destructive or routing operations, and confirm the Fly.io organization, Tailscale ACL tags, autoApprovers, and network names.
+
+Risk: The skill may deploy mutable third-party templates or container images.
+
+Mitigation: Use reviewed immutable commits or pinned images, and keep Fly.io and Tailscale permissions narrow.
+
+Risk: Tailscale API tokens may be exposed if passed on the command line.
+
+Mitigation: Use interactive prompts or managed secret handling, and avoid exposing tokens through shell history or shared logs.
+
+## Reference(s):
+
+- [ClawHub Ambit Cli Skill](https://clawhub.ai/toxicpine/skills/ambit-cli)
+- [Tailscale API Access Tokens](https://login.tailscale.com/admin/settings/keys)
+- [Tailscale ACL Tags](https://login.tailscale.com/admin/acls/visual/tags)
+- [Tailscale ACL Access Rules](https://login.tailscale.com/admin/acls/visual/general-access-rules)
+- [Flyctl Installation](https://fly.io/docs/flyctl/install/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON-oriented command guidance when the Ambit CLI --json flag is relevant.]
+
+## Skill Version(s):
+
+0.1.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

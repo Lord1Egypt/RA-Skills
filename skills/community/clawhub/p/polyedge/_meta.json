@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn776jwycjv3ckttq42qab1sjh80khbd",
-  "slug": "polyedge",
-  "version": "0.1.1",
-  "publishedAt": 1770498486636
+  "name": "polymarket-correlation",
+  "version": "0.1.0",
+  "description": "Detect mispriced correlations between Polymarket prediction markets",
+  "author": "GibsonXO",
+  "homepage": "https://moltbook.com/u/GibsonXO",
+  "keywords": ["polymarket", "arbitrage", "correlation", "prediction-markets", "trading"],
+  "license": "MIT"
 }

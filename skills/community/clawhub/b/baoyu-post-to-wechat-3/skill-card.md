@@ -1,47 +1,65 @@
-## Description: <br>
-Posts content to WeChat Official Account via API or Chrome CDP, supporting article posting from HTML, markdown, or plain text and image-text posting with multiple images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through preparing WeChat Official Account articles and image-text drafts from Markdown, HTML, plain text, and image inputs.
 
-## Publisher: <br>
-[tonight-su](https://clawhub.ai/user/tonight-su) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tonight-su](https://clawhub.ai/user/tonight-su)
 
-## Use Case: <br>
-Developers and content operators use this skill to prepare and post WeChat Official Account drafts from markdown, HTML, plain text, or image collections. The current release evidence says runtime posting scripts are not included, so users should treat the artifact as documentation unless implementation files are restored. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence says the documentation references posting, conversion, and environment-check scripts that are not included in the artifact. <br>
-Mitigation: Before relying on the skill for posting, verify the required scripts are present in the installed artifact or treat the release as documentation-only. <br>
-Risk: The skill asks agents to handle WeChat account credentials and persistent configuration. <br>
-Mitigation: Use a dedicated WeChat account or isolated Chrome profile, avoid storing AppSecret in project files, and exclude .baoyu-skills and secret-bearing .env files from source control. <br>
-Risk: Automated posting could target the wrong account or publish unintended content, images, or draft actions. <br>
-Mitigation: Require a manual check of the selected account, content, images, and draft action before allowing API or browser posting. <br>
+## Use Case:
 
+Developers, operators, and content publishers use this skill to have an agent prepare WeChat Official Account publishing workflows, setup preferences, article metadata, themes, image handling, and command suggestions. Users should verify the installed artifact before relying on publishing behavior.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tonight-su/baoyu-post-to-wechat-3) <br>
-- [Publisher profile](https://clawhub.ai/user/tonight-su) <br>
-- [Project homepage](https://github.com/JimLiu/baoyu-skills#baoyu-post-to-wechat) <br>
-- [Article Posting](references/article-posting.md) <br>
-- [Image-Text Posting](references/image-text-posting.md) <br>
-- [First-Time Setup](references/config/first-time-setup.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell command examples and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May instruct agents to create local preference files and WeChat draft content; this release does not include the referenced runtime scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata; artifact frontmatter says 1.56.1) <br>
+Risk: The skill may use WeChat publishing credentials or an existing logged-in Chrome profile to create drafts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated WeChat account or browser profile, limit credential scope where possible, and review generated drafts before publication.
+
+Risk: Credential material may be placed in configuration files such as EXTEND.md or environment files.
+
+Mitigation: Keep AppSecrets out of EXTEND.md and store secrets in a protected secret manager or a tightly permissioned environment file.
+
+Risk: The documented runtime fallback can execute Bun through npx.
+
+Mitigation: Prefer a preinstalled trusted Bun runtime and avoid npx -y bun unless the package source and execution context are acceptable.
+
+Risk: Server evidence says this release removed the internal scripts while the documentation still describes script-backed publishing features.
+
+Mitigation: Verify the installed artifact contains the expected scripts before attempting a publishing workflow.
+
+## Reference(s):
+
+- [Article Posting](artifact/references/article-posting.md)
+- [First-Time Setup](artifact/references/config/first-time-setup.md)
+- [Image-Text Posting](artifact/references/image-text-posting.md)
+- [ClawHub Skill Page](https://clawhub.ai/tonight-su/skills/baoyu-post-to-wechat-3)
+- [Project Homepage](https://github.com/JimLiu/baoyu-skills#baoyu-post-to-wechat)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local Markdown drafts or preference files when used by an agent with file-writing access.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata; artifact frontmatter version is 1.56.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

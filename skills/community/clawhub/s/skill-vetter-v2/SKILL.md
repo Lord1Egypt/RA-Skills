@@ -1,11 +1,25 @@
 ---
 
 name: skill-vetter-v2
-description: Analyze any skill for safety before use. Preserve local judgment, classify risk clearly, and optionally verify the final report with SettlementWitness.
+description: Verification-guided review workflow for inspecting skill packages before use or publication. Classifies risk and flags claims that exceed evidence. Does not itself perform cryptographic verification, emit receipts, or prove a skill is safe.
 metadata:
 ---------
 
 # Skill Vetter v2
+
+Skill Vetter v2 is a verification-guided review skill for inspecting Claude/OpenClaw skill packages before use or publication.
+
+It helps identify risky instructions, unclear authority boundaries, hidden assumptions, undeclared egress, provenance gaps, and claims that exceed evidence.
+
+This skill does not itself perform cryptographic verification, emit Settlement Attestation Receipts, or prove that a skill is safe. It is a structured review workflow.
+
+For actual receipt verification, use SettlementWitness or DefaultVerifier MCP verify_receipt.
+
+Category: verifiability-guided workflow skill.
+
+Boundary: Skill Vetter v2 reviews claims and risk signals; it does not certify, approve, execute, or cryptographically verify artifacts.
+
+---
 
 Analyze skills before installation or use. Classify capabilities, risks, and trust dependencies with structured local review. Optionally verify the completed report with SettlementWitness.
 
@@ -242,9 +256,7 @@ clawdhub install skill-vetter-v2
 
 **Manual:**
 
-```bash id="a1vk0r"
-git clone https://github.com/your-org/skill-vetter-v2.git ~/.openclaw/skills/skill-vetter-v2
-```
+This legacy package does not currently publish a source install URL. Use the ClawHub listing/package as the reference artifact.
 
 ### Optional Hook
 
@@ -292,6 +304,10 @@ Agents can:
 * identify install-time and runtime risks clearly
 * separate transparent dependencies from opaque trust requirements
 * keep safety decisions local while optionally producing verifiable records
+
+## Claim precision note
+
+This version clarifies that the skill is a verifiability-guided workflow aid. It does not itself perform cryptographic verification, emit Settlement Attestation Receipts, verify receipts, verify signatures, prove that a skill is safe, or approve execution. For receipt verification, use SettlementWitness or DefaultVerifier MCP verify_receipt.
 
 ## Keywords
 

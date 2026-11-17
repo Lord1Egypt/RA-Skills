@@ -1,41 +1,54 @@
-## Description: <br>
-查询中旅巴士（hkctgbus）班次、票价和余票，支持中文自然语言输入并自动解析日期、城市和站点。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries CTG Bus (hkctgbus) schedules, fares, and remaining seats from Chinese natural-language requests about cross-border bus travel.
 
-## Publisher: <br>
-[porridgec](https://clawhub.ai/user/porridgec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[porridgec](https://clawhub.ai/user/porridgec)
 
-## Use Case: <br>
-External users and agents use this skill to look up CTG Bus cross-border bus schedules, fares, remaining seats, and station details from natural-language Chinese travel requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts the disclosed hkctgbus API with travel query details. <br>
-Mitigation: Use specific CTG Bus wording only when a schedule lookup is intended, and avoid sending travel details that should not be shared with the third-party bus API. <br>
-Risk: Bus schedule, fare, and seat availability data may change after lookup. <br>
-Mitigation: Treat results as point-in-time availability and confirm before purchase or travel. <br>
+## Use Case:
 
+External users and agents use this skill to parse Chinese CTG Bus travel requests, query hkctgbus schedules between supported Hong Kong, Macau, and mainland China cities, and summarize available departures, fares, and remaining seats.
 
-## Reference(s): <br>
-- [CTG Bus on ClawHub](https://clawhub.ai/porridgec/ctg-bus) <br>
-- [hkctgbus API endpoint](https://wechat.hkctgbus.com/ctb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON] <br>
-**Output Format:** [Markdown summary derived from JSON script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The script returns schedule JSON; the agent formats all matching bus departures with route, fare, remaining-seat, and station details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Route, station, and travel-date details are sent to the hkctgbus API when queries run.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using the skill for sensitive travel plans unless sharing those query details with hkctgbus is acceptable.
+
+Risk: Generic cross-border bus wording may activate this skill when the user intended a different provider.
+
+Mitigation: Confirm the user wants CTG Bus or hkctgbus before querying when the request only mentions cross-border bus travel generally.
+
+## Reference(s):
+
+- [hkctgbus API base endpoint](https://wechat.hkctgbus.com/ctb)
+- [ClawHub skill page](https://clawhub.ai/porridgec/skills/ctg-bus)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON schedule data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The helper script returns JSON that the agent formats into a human-readable timetable including stations, dates, fares, availability, and route details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

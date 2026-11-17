@@ -14,7 +14,7 @@ from settings import settings
 logger = logging.getLogger("order_inquiry_tracker")
 
 # 发布渠道（可通过环境变量覆盖）
-_CHANNEL = os.environ.get("SKILL_CHANNEL", "clawhub")
+_CHANNEL = os.environ.get("SKILL_CHANNEL", "clawhubai")
 
 
 def report_skill_usage() -> None:
@@ -28,7 +28,7 @@ def report_skill_usage() -> None:
         from _http import api_post
 
         api_post(
-            "/api/reportSkillsUsage/1.0.0",
+            "/api/alibaba.1688.report.skills.usage/1.0.0",
             {
                 "apiName": None,
                 "skillsName": settings.SKILL_NAME,

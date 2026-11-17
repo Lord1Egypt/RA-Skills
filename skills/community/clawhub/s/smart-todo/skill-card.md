@@ -1,42 +1,54 @@
-## Description: <br>
-Smart Todo - AI智能代办管理 helps an agent create, review, update, deduplicate, remind on, and archive local todo items while preserving task context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart Todo helps an AI assistant manage todo items with priority labels, status tracking, duplicate detection, context capture, reminders, and automatic archiving.
 
-## Publisher: <br>
-[13770626440](https://clawhub.ai/user/13770626440) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[13770626440](https://clawhub.ai/user/13770626440)
 
-## Use Case: <br>
-Developers and WorkBuddy users use this skill to manage personal or project todos through natural language, including priority tracking, duplicate detection, status updates, reminders, interruption handling, and local Markdown storage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store recent conversation snippets, workspace file names, task goals, and todo context in local plaintext files. <br>
-Mitigation: Use it only in workspaces where local plaintext todo storage is acceptable, narrow context capture for confidential work, and review retention and deletion practices before deployment. <br>
-Risk: Security evidence reports that context can still be saved after a user declines creating a todo. <br>
-Mitigation: Require review or configuration changes so a refusal stops all saving before using the skill with sensitive or regulated work. <br>
+## Use Case:
 
+External users and developers use this skill to create, inspect, update, and archive todo items through natural-language interactions. It is especially useful for preserving task state during interruptions, subject to local privacy review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/13770626440/smart-todo) <br>
-- [README](artifact/README.md) <br>
-- [Todo template reference](artifact/references/todo_template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Natural-language responses and Markdown todo files with JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores active and archived todos as local Markdown files and uses configurable thresholds for reminders and duplicate detection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact README) <br>
+Risk: The skill can save conversation excerpts, workspace paths, file names, and memory-derived references in plaintext todo context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the configured storage location, avoid capturing sensitive workspaces, and redact or disable context capture before using it with confidential data.
+
+Risk: The skill instructions describe keeping context even when a user declines creating a todo.
+
+Mitigation: Constrain or edit that behavior before installation so declined todo creation does not silently persist context.
+
+## Reference(s):
+
+- [Todo Template](references/todo_template.md)
+- [ClawHub Skill Listing](https://clawhub.ai/13770626440/skills/smart-todo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, configuration, guidance]
+
+**Output Format:** [Markdown todo files and conversational text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes active and archived todo records to a local configured storage path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and README changelog, released 2026-03-31)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

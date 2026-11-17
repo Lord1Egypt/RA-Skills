@@ -1,43 +1,56 @@
-## Description: <br>
-Guides agents through structured diagnosis and repair of web and frontend issues, including UI bugs, CSS problems, responsive layout failures, JavaScript errors, broken interactions, and post-generation page checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents systematically diagnose and fix web and frontend issues, including UI defects, responsive layout problems, CSS issues, JavaScript errors, broken interactions, and post-generation page checks.
 
-## Publisher: <br>
-[aqbjqtd](https://clawhub.ai/user/aqbjqtd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aqbjqtd](https://clawhub.ai/user/aqbjqtd)
 
-## Use Case: <br>
-Developers and agents use this skill to diagnose frontend defects, form root-cause hypotheses, implement minimal fixes, and verify results across browsers, screen sizes, console output, and performance checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide an agent to modify frontend project files while debugging. <br>
-Mitigation: Give write access only in projects intended for modification, review proposed code changes, and verify fixes with the skill's browser, console, responsive, and regression checks. <br>
-Risk: Optional npm or npx setup commands may install project dependencies or browser test tooling. <br>
-Mitigation: Run dependency installation only in trusted project environments and review package changes before committing them. <br>
+## Use Case:
 
+Developers and engineers use this skill to guide agents through root-cause analysis, minimal fixes, and verification for web UI, responsiveness, JavaScript, CSS, and performance issues.
 
-## Reference(s): <br>
-- [Web Fixing Skill Page](https://clawhub.ai/aqbjqtd/web-fixing) <br>
-- [Detailed Workflow](references/workflows.md) <br>
-- [Repair Checklist](references/checklist.md) <br>
-- [Repair Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline code and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose code edits, browser checks, Playwright setup commands, Lighthouse checks, or dependency installation guidance depending on the project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Optional unpinned npm and Playwright setup commands can change installed dependencies or system packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin package versions, prefer an existing lockfile or npm ci, and avoid --with-deps outside a disposable container or explicitly approved development machine.
+
+Risk: The skill is intended for agents with normal project read and edit authority for front-end fixes.
+
+Mitigation: Install only where that project access is acceptable, review proposed edits, and scan the skill before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aqbjqtd/skills/web-fixing)
+- [Detailed workflows](artifact/references/workflows.md)
+- [Repair checklist](artifact/references/checklist.md)
+- [Repair examples](artifact/references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include verification checklists and browser or device testing steps.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

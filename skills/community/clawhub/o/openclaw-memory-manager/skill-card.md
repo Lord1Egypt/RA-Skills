@@ -1,41 +1,58 @@
-## Description: <br>
-Memory Manager helps agents maintain OpenClaw memory with snapshots, health checks, search troubleshooting, review workflows, safe archival, and provider/index diagnostics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw-native memory maintenance, snapshots, indexing health checks, and review workflows for protecting context, troubleshooting memory search, reviewing durable learnings, safely archiving old daily notes, and inspecting provider or index health.
 
-## Publisher: <br>
-[hazemelerefey](https://clawhub.ai/user/hazemelerefey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hazemelerefey](https://clawhub.ai/user/hazemelerefey)
 
-## Use Case: <br>
-Developers and agents use this skill to protect and maintain OpenClaw workspace memory before risky work, troubleshoot memory retrieval, draft durable memory reviews, and archive older daily notes safely. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill references PowerShell scripts that were not present in the artifact evidence. <br>
-Mitigation: Review the installed package before running commands and only execute scripts that exist at the resolved skill package path. <br>
-Risk: Repair, archive, and long-term memory workflows can modify persistent workspace memory files. <br>
-Mitigation: Manually approve those operations and create a snapshot before moving, rewriting, or repairing memory files. <br>
+## Use Case:
 
+Developers and engineers use this skill to maintain OpenClaw memory without changing its memory model, including health checks, snapshots before risky work, semantic search troubleshooting, review drafts from recent daily notes, and safe archival of older daily notes.
 
-## Reference(s): <br>
-- [Memory Manager workflow](references/workflow.md) <br>
-- [ClawHub skill page](https://clawhub.ai/hazemelerefey/openclaw-memory-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with PowerShell command examples and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose memory snapshots, diagnostics, review drafts, search workflows, and archive steps for user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The artifact references PowerShell scripts that are not bundled with this release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as workflow guidance unless trusted script files are supplied separately, and verify each script path before execution.
+
+Risk: Repair or archive workflows can modify memory files or move daily notes.
+
+Mitigation: Review the trusted script implementation and create a snapshot before repair, cleanup, provider, index, or archival operations.
+
+Risk: Keyword fallback search can be mistaken for semantic memory search.
+
+Mitigation: Report fallback mode clearly and avoid presenting keyword results as semantic retrieval.
+
+## Reference(s):
+
+- [Memory Manager v2 Workflow](references/workflow.md)
+- [ClawHub Skill Page](https://clawhub.ai/hazemelerefey/skills/openclaw-memory-manager)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline PowerShell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workflow guidance for existing OpenClaw memory files and may reference external PowerShell scripts that must be supplied and reviewed separately.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

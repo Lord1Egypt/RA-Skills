@@ -1,47 +1,62 @@
-## Description: <br>
-Helps agents convert audio to OPUS and send Feishu/Lark voice messages, with additional scripts for sending MP4 video messages to users or group chats through the Feishu Open API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send Feishu (Lark) voice messages from OPUS audio, with included tooling that can also send MP4 video messages.
 
-## Publisher: <br>
-[yangmiok](https://clawhub.ai/user/yangmiok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangmiok](https://clawhub.ai/user/yangmiok)
 
-## Use Case: <br>
-Developers and automation agents use this skill to prepare media, configure Feishu app credentials, and invoke CLI scripts that upload and send voice or video messages to Feishu users or group chats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Feishu/Lark app credentials can upload and send media externally if exposed or over-permissioned. <br>
-Mitigation: Use a least-privilege Feishu/Lark bot, store credentials outside shell history and logs, and rotate secrets if they are exposed. <br>
-Risk: Selected audio, video, and generated cover files may be uploaded to Feishu/Lark and delivered to the chosen recipient or group. <br>
-Mitigation: Verify the media file path, recipient user ID or chat ID, and intended audience before each send. <br>
-Risk: Video and group-chat sending are less prominent than voice-message sending in the public description. <br>
-Mitigation: Review the video and chat-targeting behavior before installation and restrict usage to expected media types and destinations. <br>
+## Use Case:
 
+Developers and operators use this skill to convert local audio to Feishu-compatible OPUS and send it as a voice message to Feishu/Lark users or chats. The artifact also includes MP4 video message sending and large-video segmentation support.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yangmiok/feishu-video) <br>
-- [OpenClaw integration reference](https://github.com/anthropics/claw) <br>
-- [Feishu tenant access token endpoint](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal) <br>
-- [Feishu file upload endpoint](https://open.feishu.cn/open-apis/im/v1/files) <br>
-- [Feishu message send endpoint](https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type=open_id) <br>
-- [Feishu image upload endpoint](https://open.feishu.cn/open-apis/im/v1/images) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code, API Calls] <br>
-**Output Format:** [Markdown guidance with shell commands and CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create converted OPUS audio files locally and may upload selected audio, video, and cover image files to Feishu/Lark when the scripts are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The package includes video-sending behavior in addition to the stated voice-message purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review whether video support is intended before installation; remove or ignore the video script and documentation if only voice messaging is needed.
+
+Risk: Examples show Feishu app secrets passed as command-line arguments, which may expose them through shell history or process listings.
+
+Mitigation: Use least-privilege Feishu app scopes and prefer a secret manager or tightly controlled environment variables for app credentials.
+
+Risk: Selected local media files are uploaded to Feishu/Lark.
+
+Mitigation: Verify the media content and recipient before sending, and only upload files that are approved for the target Feishu/Lark workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yangmiok/skills/feishu-video)
+- [OpenClaw repository](https://github.com/anthropics/claw)
+- [Feishu tenant access token endpoint](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal)
+- [Feishu file upload endpoint](https://open.feishu.cn/open-apis/im/v1/files)
+- [Feishu message send endpoint](https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type=open_id)
+- [Feishu image upload endpoint](https://open.feishu.cn/open-apis/im/v1/images)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and command output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 18+, ffmpeg, Feishu app credentials, target user or chat identifiers, and local media file paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

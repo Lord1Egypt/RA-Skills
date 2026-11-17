@@ -1,44 +1,55 @@
-## Description: <br>
-Checks the authenticity of nationwide VAT invoices by querying the official VAT invoice verification platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks nationwide VAT invoice authenticity by automating browser queries against China's official VAT invoice verification platform.
 
-## Publisher: <br>
-[serendipity2430](https://clawhub.ai/user/serendipity2430) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[serendipity2430](https://clawhub.ai/user/serendipity2430)
 
-## Use Case: <br>
-External users can ask an agent to verify Chinese VAT invoice authenticity by opening the national verification site, uploading an invoice file, completing the verification flow, and returning whether the invoice information matches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles invoice PDFs and screenshots that may contain sensitive business records. <br>
-Mitigation: Require explicit approval for each file upload, restrict access to local files, and delete or protect retained screenshots after use. <br>
-Risk: Browser security warnings may be bypassed during automation. <br>
-Mitigation: Modify the automation to fail closed on browser security warnings unless the user explicitly approves the destination and session. <br>
-Risk: The included patch script can make persistent local changes to the installed skill file. <br>
-Mitigation: Remove the patch script or require a user-confirmed backup and review step before applying any local modification. <br>
+## Use Case:
 
+Developers and operations users can use this skill to automate VAT invoice verification workflows and return whether invoice information is consistent with the verification result. The skill is most relevant where invoice documents and browser-based verification need to be handled by an agent.
 
-## Reference(s): <br>
-- [ClawHub fp-skill release page](https://clawhub.ai/serendipity2430/fp-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/serendipity2430) <br>
-- [National VAT invoice verification platform](https://inv-veri.chinatax.gov.cn/fpcygzfw/national-invoice-check) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, files] <br>
-**Output Format:** [Plain text result message with optional local browser screenshots] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Handles invoice PDFs and screenshots as sensitive business records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Risk: The skill handles sensitive invoice data through browser uploads and screenshot capture.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a tightly isolated, non-root environment and avoid real invoice data until file paths, screenshot handling, and upload confirmation behavior are reviewed.
+
+Risk: The security evidence flags unsafe browser and file behaviors, including certificate-warning handling and an auxiliary patch script that adds unverified URL fetching.
+
+Mitigation: Review the code before installation, pin the expected destination domain, preserve certificate validation, and avoid running patch_fp.py unless it has been audited.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/serendipity2430/skills/fp-skill)
+- [Publisher Profile](https://clawhub.ai/user/serendipity2430)
+- [Official VAT Invoice Verification Platform](https://inv-veri.chinatax.gov.cn/fpcygzfw/national-invoice-check)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files]
+
+**Output Format:** [Plain text result messages with optional screenshot image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May upload invoice files and save screenshots during browser automation.]
+
+## Skill Version(s):
+
+0.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,49 @@
-## Description: <br>
-Structures and writes discussion sections for academic papers and research reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structures discussion sections for academic papers and research reports by helping interpret results, connect findings to literature, address limitations, and synthesize conclusions.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Researchers, students, and academic writers use this skill to interpret findings, connect results to prior literature, address limitations, and draft publication-ready discussion sections. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read or edit academic manuscript files while helping draft discussion sections. <br>
-Mitigation: Install it only for manuscript-writing workflows where that access is acceptable, and review generated prose before saving or submitting it. <br>
-Risk: The helper script can run from the shell and write an outline to a user-provided output path. <br>
-Mitigation: Review proposed Bash commands before execution and confirm output paths before saving generated outlines. <br>
+## Use Case:
 
+Researchers, students, and academic writers use this skill to draft and revise discussion sections that interpret findings, compare results with prior literature, state limitations, and close with clear implications.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AIPOCH-AI/discussion-section-architect) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Markdown prose, outlines, revision checklists, and optional command-line outline output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and edit academic manuscript files when the user grants file access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: Generated discussion prose may overstate academic claims, citations, or conclusions if user-provided evidence is incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as drafting support and review all claims, literature comparisons, citations, limitations, and conclusions against the underlying research materials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/discussion-section-architect)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, files]
+
+**Output Format:** [Markdown and plain text outlines, revision checklists, transition phrases, and optional output files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include structured discussion-section headings, prompts, prose excerpts, and targeted revision guidance.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Feishu Notify sends text, rich text, interactive card, and image notifications to Feishu (Lark) chats through configured webhooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill should be used when users need to send notifications to Feishu (Lark) via webhook. It supports multiple message types including text, rich text, interactive cards, and images. Users must configure webhook URLs in ~/.openclaw/skills/feishu-notify/config.json before using this skill.
 
-## Publisher: <br>
-[alex098929](https://clawhub.ai/user/alex098929) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alex098929](https://clawhub.ai/user/alex098929)
 
-## Use Case: <br>
-Developers and operators use this skill to send operational alerts, status updates, task notifications, and other messages from an agent workflow to configured Feishu chats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Configured Feishu webhook URLs can post to chats and should be treated as secrets. <br>
-Mitigation: Store webhook URLs only in the user configuration file with restricted permissions, do not commit them, and rotate any exposed URLs. <br>
-Risk: An agent using this skill may send messages to sensitive channels or include sensitive content. <br>
-Mitigation: Ask the agent to preview the destination and message content, and require confirmation for sensitive or important notifications. <br>
-Risk: Message templates influence the JSON payload sent to Feishu. <br>
-Mitigation: Use templates from the bundled templates directory and avoid arbitrary external JSON templates. <br>
+## Use Case:
 
+Developers and operators use this skill to send Feishu or Lark group notifications, alerts, task updates, rich text posts, interactive cards, and image messages through configured webhooks.
 
-## Reference(s): <br>
-- [Feishu Webhook API Documentation](references/api_documentation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON message payloads and command-line script invocations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May send webhook POST requests to configured Feishu chats and returns delivery status or error details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Messages may be posted externally to Feishu without confirmed approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require manual approval before sending, and review the target webhook, destination, and message content before execution.
+
+Risk: Webhook URLs are secrets and anyone with a valid URL can send messages to the target chat.
+
+Mitigation: Use only trusted Feishu webhook URLs, do not commit config.json, restrict local file permissions, and rotate webhooks when exposure is suspected.
+
+Risk: Security evidence reports under-scoped controls around webhook destinations and template files.
+
+Mitigation: Use allowlisted webhook names and predefined templates, and harden or avoid custom template paths until destination and template controls are reviewed.
+
+## Reference(s):
+
+- [Feishu Webhook API Documentation](artifact/references/api_documentation.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown guidance, shell commands, JSON message payloads, and text delivery status]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can send external Feishu webhook POST requests using user-configured webhook URLs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

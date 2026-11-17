@@ -16,9 +16,17 @@ Self-RAG / Corrective RAG 实现
 import os
 import json
 import logging
+import re
 from dataclasses import dataclass
 from typing import List, Dict, Any, Optional, Tuple
 from enum import Enum
+
+# 统一 LLM 客户端抽象层：score() 内部处理安全数字解析 + 重试 + 缓存
+from llm_client import LLMClient, wrap_llm
+
+# HyDE 查询转换 + 重排序（已实现但未接入检索链路）
+from query_transformer import HyDETransformer, QueryTransformer
+from reranker import Reranker
 
 # 设置日志
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -65,6 +73,10 @@ class RetrievalEvaluator:
         """
         self.llm = llm_client
         self.config = config or {}
+        
+        # 用统一 LLMClient 包装原始客户端，提供 score()/classify()/generate()
+        # 内部处理安全数字解析、重试退避、LRU 缓存
+        self.llm_client = wrap_llm(llm_client)  # H23: 已是 LLMClient 则原样返回，避免重试放大
         
         # 阈值配置
         self.high_threshold = self.config.get('high_relevance_threshold', 0.7)
@@ -119,8 +131,10 @@ class RetrievalEvaluator:
     def _llm_assess_relevance(self, query: str, documents: List[str]) -> float:
         """使用LLM评估相关性"""
         if not self.llm:
-            logger.warning("LLM客户端未配置，使用默认评估")
-            return 0.5
+            # 无LLM无法评估：默认放行（fail-open），交由生成器兜底，
+            # 避免回退值落入RETRY区间(0.3~0.7)导致重试耗尽、答案丢失
+            logger.warning("LLM客户端未配置，无法评估相关性，默认接受检索结果")
+            return self.high_threshold + 0.05
         
         try:
             # 截取文档内容避免过长
@@ -145,18 +159,14 @@ class RetrievalEvaluator:
 只返回一个0到1之间的数字，不要其他内容。
 """
             
-            from coze_workload_identity import requests
-            # 假设 llm 是一个可调用的对象
-            response = self.llm.invoke(prompt) if hasattr(self.llm, 'invoke') else self.llm(prompt)
-            
-            # 解析得分
-            score_text = response.strip() if isinstance(response, str) else str(response)
-            score = float(''.join(c for c in score_text if c.isdigit() or c == '.'))
-            return max(0.0, min(1.0, score))
+            # 统一评分入口：LLMClient.score() 内部处理安全解析 + 重试 + 缓存
+            score = self.llm_client.score(prompt, default=self.high_threshold + 0.05)
+            return score
             
         except Exception as e:
             logger.error(f"LLM评估失败: {e}")
-            return 0.5
+            # fail-open：避免回退值落入RETRY区间导致重试耗尽
+            return self.high_threshold + 0.05
     
     def _vector_assess_relevance(self, query: str, documents: List[str]) -> float:
         """使用向量相似度评估相关性"""
@@ -180,7 +190,8 @@ class RetrievalEvaluator:
             
         except Exception as e:
             logger.error(f"向量评估失败: {e}")
-            return 0.5
+            # fail-open：无法评估时默认放行，避免回退值落入RETRY区间导致重试耗尽
+            return self.high_threshold + 0.05
     
     def _hybrid_assess_relevance(self, query: str, documents: List[str]) -> float:
         """混合评估：先向量筛选，再LLM精评"""
@@ -210,11 +221,18 @@ class RetrievalEvaluator:
         return coverage
     
     def _decide_action(self, relevance: float) -> CorrectionAction:
-        """根据相关性得分决定纠正动作"""
+        """根据相关性得分决定纠正动作
+        
+        Bug 10 修复：当 relevance 极低时返回 REFUSE（而非 WEB_SEARCH），
+        表示检索结果与问题完全不相关，重试也无意义。
+        """
         if relevance >= self.high_threshold:
             return CorrectionAction.ACCEPT
         elif relevance >= self.low_threshold:
             return CorrectionAction.RETRY
+        elif relevance < self.low_threshold * 0.5:
+            # 极低相关性：直接拒绝回答
+            return CorrectionAction.REFUSE
         else:
             return CorrectionAction.WEB_SEARCH
     
@@ -241,6 +259,8 @@ class GenerationEvaluator:
     def __init__(self, llm_client=None, config: Dict = None):
         self.llm = llm_client
         self.config = config or {}
+        # 用统一 LLMClient 包装
+        self.llm_client = wrap_llm(llm_client)  # H23: 已是 LLMClient 则原样返回，避免重试放大
         self.hallucination_threshold = self.config.get('hallucination_threshold', 0.5)
     
     def assess(self, query: str, answer: str, sources: List[str]) -> GenerationAssessment:
@@ -309,10 +329,9 @@ class GenerationEvaluator:
 只返回一个0到1之间的数字。
 """
             
-            response = self.llm.invoke(prompt) if hasattr(self.llm, 'invoke') else self.llm(prompt)
-            score_text = response.strip() if isinstance(response, str) else str(response)
-            score = float(''.join(c for c in score_text if c.isdigit() or c == '.'))
-            return max(0.0, min(1.0, score))
+            # 统一评分入口
+            score = self.llm_client.score(prompt, default=0.7)
+            return score
             
         except Exception as e:
             logger.error(f"忠实度评估失败: {e}")
@@ -338,10 +357,9 @@ class GenerationEvaluator:
 只返回一个0到1之间的数字。
 """
             
-            response = self.llm.invoke(prompt) if hasattr(self.llm, 'invoke') else self.llm(prompt)
-            score_text = response.strip() if isinstance(response, str) else str(response)
-            score = float(''.join(c for c in score_text if c.isdigit() or c == '.'))
-            return max(0.0, min(1.0, score))
+            # 统一评分入口
+            score = self.llm_client.score(prompt, default=0.7)
+            return score
             
         except Exception as e:
             logger.error(f"相关性评估失败: {e}")
@@ -366,15 +384,16 @@ class GenerationEvaluator:
 class CorrectiveRAG:
     """纠正性RAG系统"""
     
-    def __init__(self, retriever, generator, llm_client=None, config: Dict = None):
+    def __init__(self, retriever, generator, llm_client=None, config: Dict = None, retrievers: List = None):
         """
         初始化CRAG系统
         
         Args:
-            retriever: 检索器
+            retriever: 检索器（单个，向后兼容）
             generator: 生成器
             llm_client: LLM客户端（用于评估）
             config: 配置参数
+            retrievers: 检索器列表（Phase 1 依赖注入，可选）
         """
         self.retriever = retriever
         self.generator = generator
@@ -386,7 +405,33 @@ class CorrectiveRAG:
         
         # 重试配置
         self.max_retries = self.config.get('max_retries', 3)
-        self.retry_strategies = ['hybrid', 'bm25', 'vector']  # 不同检索策略
+        
+        # Phase 1 依赖注入：优先使用检索器列表，否则回退字符串策略
+        if retrievers:
+            self._retrievers = retrievers
+            self._use_retriever_list = True
+            logger.info(f"使用检索器列表（{len(retrievers)} 个）")
+        else:
+            self._retrievers = None
+            self._use_retriever_list = False
+            self.retry_strategies = ['hybrid', 'bm25', 'vector']  # 字符串策略（向后兼容）
+
+        # 查询转换（HyDE / 查询扩展 / 查询分解）
+        self.query_transformer = None
+        if self.config.get('query_optimization', {}).get('enabled', False):
+            mode = self.config.get('query_optimization', {}).get('mode', 'auto')
+            self.query_transformer = QueryTransformer(
+                llm_client=llm_client,
+                config=self.config.get('query_optimization', {})
+            )
+            logger.info(f"查询转换已启用（模式: {mode}）")
+
+        # 重排序器
+        self.reranker = None
+        if self.config.get('reranking', {}).get('enabled', False):
+            model = self.config.get('reranking', {}).get('model', 'BAAI/bge-reranker-base')
+            self.reranker = Reranker(model_name=model)
+            logger.info(f"重排序器已启用（模型: {model}）")
     
     def query(self, question: str, top_k: int = 5) -> Dict[str, Any]:
         """
@@ -435,9 +480,18 @@ class CorrectiveRAG:
                     'reason': assessment.reason
                 })
                 if assessment.action == CorrectionAction.REFUSE:
-                    results['answer'] = "抱歉，我无法找到相关信息来回答您的问题。"
+                    # R3: 结构化 REFUSE 响应（而非返回 None 或通用字符串）
+                    results["refused"] = True
+                    results["refused_reason"] = assessment.reason
+                    results["answer"] = None
+                    results["refusal_message"] = "抱歉，我无法找到相关信息来回答您的问题。"
                     return results
-                # 这里可以集成网络搜索，暂时用重试代替
+                # R14: WEB_SEARCH 未实现，静默降级为重试
+                if assessment.action == CorrectionAction.WEB_SEARCH:
+                    results['corrections'].append({
+                        'type': 'web_search_unavailable',
+                        'reason': "WEB_SEARCH 尚未实现，降级为重试",
+                    })
                 continue
         
         # 阶段2：生成答案
@@ -462,23 +516,92 @@ class CorrectiveRAG:
         
         return results
     
+    def _get_retriever_kwargs(self, strategy: str, attempt: int) -> dict:
+        """修复 Bug 6：当检索器仅有 BM25 时，通过改变参数实现真正的重试变体"""
+        # 仅当检索器暴露了 k1/b 属性时才传参数（兼容各种检索器）
+        if not hasattr(self.retriever, 'k1') or not hasattr(self.retriever, 'b'):
+            return {}
+        if strategy in ('bm25', 'hybrid'):
+            k1_variants = [1.5, 1.2, 1.8, 2.0]
+            b_variants = [0.75, 0.6, 0.9, 0.5]
+            idx = attempt % len(k1_variants)
+            return {'k1': k1_variants[idx], 'b': b_variants[idx]}
+        return {}
+
     def _retrieve_with_strategy(self, query: str, top_k: int, attempt: int) -> List[str]:
-        """根据尝试次数选择不同的检索策略"""
-        strategy = self.retry_strategies[attempt % len(self.retry_strategies)]
-        logger.info(f"使用检索策略: {strategy}")
+        """
+        根据尝试次数选择不同的检索器（或策略），并应用 HyDE 转换 + 重排序。
         
-        # 调用检索器（具体实现依赖检索器接口）
-        if hasattr(self.retriever, 'retrieve'):
-            return self.retriever.retrieve(query, top_k=top_k, strategy=strategy)
+        Phase 1 支持两种模式：
+        - 检索器列表模式（优先）：每个 attempt 换一个 retriever
+        - 字符串策略模式（向后兼容）：同一个 retriever 切换 strategy
+        """
+        # 阶段1：查询转换（HyDE / 查询扩展 / 查询分解）
+        search_query = query
+        if self.query_transformer:
+            result = self.query_transformer.transform(query)
+            transformed = result.get('transformed', query)
+            if isinstance(transformed, list):
+                search_query = transformed[0] if transformed else query
+            else:
+                search_query = transformed
+            logger.info(f"查询转换: [{result.get('strategy', 'none')}] {query} -> {search_query[:60]}...")
+
+        # 阶段2：检索
+        if self._use_retriever_list and self._retrievers:
+            # 检索器列表模式：每次 attempt 换不同的 retriever
+            retriever = self._retrievers[attempt % len(self._retrievers)]
+            logger.info(f"使用检索器 {attempt + 1}/{len(self._retrievers)}: {type(retriever).__name__}")
+            # R10: 可配置的候选放大因子（默认 2）
+            multiplier = self.config.get("rerank_candidates_multiplier", 2)
+            candidate_k = top_k * multiplier
+            results = retriever.retrieve(search_query, top_k=candidate_k)
+        elif hasattr(self.retriever, 'retrieve'):
+            # 字符串策略模式（向后兼容）
+            strategy = self.retry_strategies[attempt % len(self.retry_strategies)]
+            logger.info(f"使用检索策略: {strategy}")
+            # Bug 6 修复：传入可变参数避免重试退化
+            kwargs = self._get_retriever_kwargs(strategy, attempt)
+            # R10: 可配置的候选放大因子（默认 2）
+            multiplier = self.config.get("rerank_candidates_multiplier", 2)
+            candidate_k = top_k * multiplier
+            results = self.retriever.retrieve(search_query, top_k=candidate_k, strategy=strategy, **kwargs)
         else:
-            # 简单模拟
-            return [f"模拟文档{i+1} for: {query}" for i in range(top_k)]
+            results = [f"模拟文档{i+1} for: {search_query}" for i in range(top_k)]
+
+        # 阶段3：重排序
+        if self.reranker and results:
+            # 将检索结果转为重排序器需要的格式
+            candidates = []
+            for i, r in enumerate(results):
+                if hasattr(r, 'text'):
+                    candidates.append({"id": getattr(r, 'id', f"doc_{i}"),
+                                      "content": r.text,
+                                      "score": getattr(r, 'score', 0.0)})
+                elif isinstance(r, dict):
+                    candidates.append({"id": r.get('id', f"doc_{i}"),
+                                      "content": r.get('text', r.get('content', '')),
+                                      "score": r.get('score', 0.0)})
+                else:
+                    candidates.append({"id": f"doc_{i}", "content": str(r), "score": 0.0})
+
+            reranked = self.reranker.rerank(search_query, candidates, top_k=top_k)
+            results = [getattr(r, 'content', '') if hasattr(r, 'content') else r for r in reranked]
+            logger.info(f"重排序完成: {len(results)} 条结果")
+
+        # 返回文档文本列表
+        if results and hasattr(results[0], 'text'):
+            return [r.text for r in results[:top_k]]
+        elif results and isinstance(results[0], str):
+            return results[:top_k]
+        else:
+            return [str(r) for r in results[:top_k]]
 
 
 class SelfRAG:
     """Self-RAG系统（更完整的自我反思RAG）"""
     
-    def __init__(self, retriever, generator, llm_client=None, config: Dict = None):
+    def __init__(self, retriever, generator, llm_client=None, config: Dict = None, retrievers: List = None):
         """
         初始化Self-RAG系统
         
@@ -487,14 +610,15 @@ class SelfRAG:
             generator: 生成器
             llm_client: LLM客户端
             config: 配置参数
+            retrievers: 检索器列表（Phase 1 依赖注入）
         """
         self.retriever = retriever
         self.generator = generator
         self.llm = llm_client
         self.config = config or {}
         
-        # 初始化组件
-        self.crag = CorrectiveRAG(retriever, generator, llm_client, config)
+        # 初始化组件（传入 retrievers 给 CorrectiveRAG）
+        self.crag = CorrectiveRAG(retriever, generator, llm_client, config, retrievers=retrievers)
         
         # Self-RAG特有配置
         self.enable_retrieval_decision = self.config.get('enable_retrieval_decision', True)

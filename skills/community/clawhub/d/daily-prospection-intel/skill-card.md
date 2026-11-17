@@ -1,47 +1,62 @@
-## Description: <br>
-Generates a daily .docx commercial intelligence report identifying eight actionable European regulatory opportunities for ArcaScience's BRA platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a daily .docx commercial intelligence report identifying eight recent European pharma regulatory opportunities for ArcaScience's BRA platform, with target narratives and outreach email drafts.
 
-## Publisher: <br>
-[atomus42](https://clawhub.ai/user/atomus42) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[atomus42](https://clawhub.ai/user/atomus42)
 
-## Use Case: <br>
-Commercial and regulatory teams use this skill to generate daily European pharma prospecting intelligence for ArcaScience, including prioritized regulatory targets, positioning narratives, and customized outreach emails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with report content focused on Europe <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports and outreach emails may contain outdated, inaccurate, or insufficiently verified regulatory claims. <br>
-Mitigation: Review each .docx report and outreach email before sharing, and verify regulatory triggers, dates, and company details against authoritative sources. <br>
-Risk: Bundled sales, contract, and dossier references may include confidential business material. <br>
-Mitigation: Limit referenced folders to data appropriate for this report and avoid exposing confidential content unless approved. <br>
-Risk: The workflow depends on current web research and available dossier evidence, so missing or stale inputs can reduce target quality. <br>
-Mitigation: Confirm evidence freshness and dossier availability before relying on the generated target list for commercial action. <br>
+## Use Case:
 
+Commercial, business development, and regulatory teams use this skill to produce a daily European regulatory opportunity report for ArcaScience's benefit-risk assessment platform. It supports prospecting by combining recent regulatory research, target prioritization, ArcaScience positioning, and draft outreach emails.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/atomus42/daily-prospection-intel) <br>
-- [ArcaScience company context](references/arcascience-context.md) <br>
-- [ArcaScience sales package: platform and product reference](references/sales-package-platform.md) <br>
-- [ArcaScience sales package: client proposals and BRA analysis](references/sales-package-proposals.md) <br>
-- [ArcaScience sales package: buyer personae analysis](references/sales-package-personae.md) <br>
-- [ArcaScience sales package: operations and contracts](references/sales-package-operations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, files, guidance] <br>
-**Output Format:** [A professionally formatted .docx report with executive summary, target analyses, and outreach email templates; intermediate agent responses may use Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces exactly eight targets across three priority tiers and saves ArcaScience_Daily_Intel_YYYYMMDD.docx to the workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and target metadata) <br>
+Risk: The skill can rely on broad private dossier paths outside the workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace configured local dossier paths with reviewed, workspace-scoped data sources before use.
+
+Risk: Scheduled execution can run prospecting work without enough user control.
+
+Mitigation: Require confirmation or an approved schedule before recurring runs are enabled.
+
+Risk: Generated outreach emails may contain inaccurate, outdated, or overconfident claims.
+
+Mitigation: Treat every outreach email as a draft and require human review before sending.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/atomus42/skills/daily-prospection-intel)
+- [ArcaScience Company Context & Positioning](references/arcascience-context.md)
+- [ArcaScience Sales Package - Platform & Product Reference](references/sales-package-platform.md)
+- [ArcaScience Sales Package - Client Proposals & BRA Analysis](references/sales-package-proposals.md)
+- [ArcaScience Sales Package - Buyer Personae Analysis](references/sales-package-personae.md)
+- [ArcaScience Sales Package - Operations & Contracts](references/sales-package-operations.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text, Markdown, Guidance]
+
+**Output Format:** [.docx report with structured target analysis and draft outreach email templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Saves a dated ArcaScience_Daily_Intel_YYYYMMDD.docx report to the workspace; generated outreach content requires human review before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

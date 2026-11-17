@@ -1,42 +1,54 @@
-## Description: <br>
-Free Amazon listing optimizer for cross-border sellers that rewrites Chinese product information into polished English Amazon titles, bullets, and product descriptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Free Amazon listing optimizer for cross-border sellers that rewrites Chinese product information into a polished English Amazon title, five bullets, and description.
 
-## Publisher: <br>
-[kiwi-phantomworks](https://clawhub.ai/user/kiwi-phantomworks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kiwi-phantomworks](https://clawhub.ai/user/kiwi-phantomworks)
 
-## Use Case: <br>
-External cross-border sellers use this skill to turn Chinese product specs, feature notes, or rough English drafts into Amazon-ready English listing copy for Western buyers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste confidential supplier terms, customer data, or unreleased strategy into the prompt. <br>
-Mitigation: Remove sensitive commercial and customer information before asking the agent to rewrite listing copy. <br>
-Risk: Generated marketplace copy may contain inaccurate claims, trademark issues, or content that conflicts with platform policy. <br>
-Mitigation: Review the title, bullets, and description for accuracy, trademark safety, and Amazon policy compliance before publishing. <br>
+## Use Case:
 
+External cross-border sellers and ecommerce operators use this skill to turn Chinese product details or rough English drafts into English Amazon listing copy for Western buyers.
 
-## Reference(s): <br>
-- [ClawHub Listing Bridge Free Optimizer Listing](https://clawhub.ai/kiwi-phantomworks/listing-bridge-free-optimizer) <br>
-- [Listing Rewriter for Cross-Border Sellers on ClawMart](https://www.shopclawmart.com/listings/multi-platform-listing-optimizer-for-non-native-sellers-ea202e82) <br>
-- [PhantomWorks](https://phantomworks.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown listing copy with an optimized title, five benefit-led bullets, and a product description.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only workflow; users provide product details or draft listing copy and review the generated marketplace copy before publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The generated listing may default to a US-style sales voice when no target market or tone is provided.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Specify the target market and tone before use, then review the output for local marketplace expectations.
+
+Risk: Generated listing copy can overstate or misframe product features if the input is incomplete or inaccurate.
+
+Mitigation: Verify claims against product specifications and marketplace policy before publishing.
+
+## Reference(s):
+
+- [ListingBridge Free Optimizer on ClawHub](https://clawhub.ai/kiwi-phantomworks/skills/listing-bridge-free-optimizer)
+- [PhantomWorks ClawHub skills collection](https://github.com/PhantomWorksIO/clawhub-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown listing copy with an optimized title, five benefit-led bullets, and a product description]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Amazon-focused English copy; target market defaults to US unless the user specifies another market]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

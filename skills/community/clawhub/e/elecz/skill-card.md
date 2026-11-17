@@ -1,45 +1,59 @@
-## Description: <br>
-Real-time electricity prices and cheapest hours in 40 countries. Without this, AI agents guess electricity prices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time electricity prices and cheapest hours in 40 countries.
 
-## Publisher: <br>
-[zemloai-ctrl](https://clawhub.ai/user/zemloai-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zemloai-ctrl](https://clawhub.ai/user/zemloai-ctrl)
 
-## Use Case: <br>
-External users and agents use Elecz to retrieve electricity price signals, identify cheaper hours, compare supported energy contracts, and plan high-consumption tasks such as EV charging or appliance scheduling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries are sent to Elecz's remote service and may include the user's electricity zone plus optional consumption or heating details. <br>
-Mitigation: Disclose the remote request before use when appropriate, avoid sending unnecessary optional details, and follow the linked privacy policy for data-handling review. <br>
-Risk: Contract recommendations and scheduling guidance could affect real-world energy spending or device operation. <br>
-Mitigation: Treat the skill's output as advice and require explicit user approval before any separate tool performs purchases, contract changes, EV charging, appliance scheduling, or other real-world actions. <br>
-Risk: Some market outputs are wholesale or partial price signals rather than complete retail electricity costs. <br>
-Mitigation: Preserve zone-specific caveats in user-facing responses, including when grid fees, taxes, transmission, distribution, or regulated retail prices are not included. <br>
+## Use Case:
 
+External users and agents use Elecz to answer electricity spot-price, cheapest-hour, contract-comparison, and high-consumption scheduling questions for supported markets.
 
-## Reference(s): <br>
-- [Elecz homepage](https://elecz.com) <br>
-- [Elecz documentation](https://elecz.com/docs) <br>
-- [Elecz privacy policy](https://elecz.com/privacy) <br>
-- [ClawHub skill page](https://clawhub.ai/zemloai-ctrl/elecz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Guidance] <br>
-**Output Format:** [Markdown or text summaries with electricity price, cheapest-hour, contract-comparison, and scheduling guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local electricity units, local currency savings, ISO 8601 timestamps, relative cheap-hour signals, and zone-specific market notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.5 (source: frontmatter and server release evidence) <br>
+Risk: Electricity price lookups use Elecz's remote MCP service and may send zone plus optional consumption and heating inputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if use of that remote service is acceptable, avoid sending unnecessary sensitive context, and review the linked privacy policy.
+
+Risk: Price, cheapest-hour, and contract-comparison responses are advisory and may not include every retail fee, tax, grid fee, or regulated-market constraint.
+
+Mitigation: Verify important contract, billing, or automation decisions against the user's utility, provider terms, and local retail-rate details.
+
+Risk: Automating high-consumption devices from price signals can create cost, comfort, or safety impacts if data is stale or local conditions differ.
+
+Mitigation: Keep a human approval step for material device scheduling decisions and apply local safeguards before controlling EV chargers, appliances, or heating loads.
+
+## Reference(s):
+
+- [Elecz Homepage](https://elecz.com)
+- [Elecz Privacy Policy](https://elecz.com/privacy)
+- [Elecz Docs](https://elecz.com/docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, API calls]
+
+**Output Format:** [Markdown or plain text responses with electricity prices, cheapest-hour windows, savings estimates, and local-market notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a remote read-only MCP service for electricity price lookups; no API key required by the skill evidence.]
+
+## Skill Version(s):
+
+1.9.5 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

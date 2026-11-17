@@ -1,0 +1,3 @@
+display_name: Influencer Lead Discovery
+short_description: Discover, enrich, and rank creator candidates across TikTok, Instagram, and YouTube.
+default_prompt: Find high-fit creators for this campaign, enrich the top candidates with profile and content signals, then return a ranked shortlist with selection rationale and outreach next steps.

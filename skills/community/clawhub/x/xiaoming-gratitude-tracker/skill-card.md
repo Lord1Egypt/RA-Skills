@@ -1,39 +1,54 @@
-## Description: <br>
-Gratitude Tracker helps users keep gratitude journal entries, record mood, review recent activity, and export summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A gratitude tracking skill for gratitude journaling, mood recording, review, and export workflows.
 
-## Publisher: <br>
-[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1)
 
-## Use Case: <br>
-External users use this skill to keep gratitude journal entries, record mood ratings, review recent entries, and export or share summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Gratitude and mood entries can contain personal wellbeing information. <br>
-Mitigation: Review storage and export behavior before use, avoid entering sensitive data unless the deployment protects it, and inspect exports before sharing. <br>
-Risk: The artifact describes paid tiers and cloud sync without bundled service terms or data-handling details. <br>
-Mitigation: Confirm pricing, sync availability, and data-handling terms with the publisher before relying on Pro or subscription features. <br>
+## Use Case:
 
+External users use this skill to record gratitude entries and mood ratings, review recent gratitude activity, and export gratitude records.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference gratitude entries, mood ratings, review windows, and export formats described by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Installing with an unpinned `latest` ClawHub installer can make the installed code depend on a moving release target.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin or verify the ClawHub installer version before installation.
+
+Risk: The skill documentation is primarily Chinese, which may lead to command or pricing misunderstandings for non-Chinese readers.
+
+Mitigation: Have a Chinese-fluent reviewer confirm user-facing behavior, commands, and pricing before release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaising-openclaw1/skills/xiaoming-gratitude-tracker)
+- [Publisher profile](https://clawhub.ai/user/kaising-openclaw1)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

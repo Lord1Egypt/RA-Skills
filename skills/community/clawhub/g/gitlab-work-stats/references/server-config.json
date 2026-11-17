@@ -1,0 +1,14 @@
+{
+  "server": {
+    "host": "",
+    "ssh_port": 22,
+    "username": "",
+    "password": "",
+    "ssh_key_path": ""
+  },
+  "gitlab": {
+    "access_token": "",
+    "api_url": "",
+    "web_url": ""
+  }
+}

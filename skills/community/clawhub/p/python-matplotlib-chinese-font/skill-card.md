@@ -1,48 +1,58 @@
-## Description: <br>
-Configures Matplotlib to display Chinese text by adding a local Chinese font file, setting the active font family, and disabling Unicode minus rendering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps Python developers configure Matplotlib to render Chinese text and minus signs by adding a Chinese font file, setting font family rcParams, and providing setup and test code.
 
-## Publisher: <br>
-[earl-chen](https://clawhub.ai/user/earl-chen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[earl-chen](https://clawhub.ai/user/earl-chen)
 
-## Use Case: <br>
-Developers and data practitioners use this skill when Matplotlib charts render Chinese labels, titles, legends, or minus signs incorrectly. It provides setup guidance, reusable Python helpers, and test code for project-local Chinese font configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow asks users to download and use an external font file. <br>
-Mitigation: Verify the font source and license before installing or redistributing the font with a project. <br>
-Risk: The test script writes a local test_chinese_font.png file when executed. <br>
-Mitigation: Run examples in a project or temporary directory where generated image output is expected. <br>
-Risk: One optional helper file may contain a syntax issue according to the server security guidance. <br>
-Mitigation: Prefer the setup_font.py template or inspect and test helper code before copying it into a project. <br>
+## Use Case:
 
+Developers using Matplotlib use this skill when Chinese titles, labels, legends, or minus signs render as boxes. It guides them to download or reference a Chinese font and apply reusable Python configuration in their plotting code.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/earl-chen/python-matplotlib-chinese-font) <br>
-- [BabelStone Fonts](https://www.babelstone.co.uk/Fonts/Han.html) <br>
-- [Matplotlib Font Management](https://matplotlib.org/stable/api/font_manager_api.html) <br>
-- [Matplotlib Text Introduction](https://matplotlib.org/stable/tutorials/text/text_intro.html) <br>
-- [plot_utils.py](references/plot_utils.py) <br>
-- [test_chinese_font.py](references/test_chinese_font.py) <br>
-- [setup_font.py](templates/setup_font.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate or recommend local Python helper files and a test_chinese_font.png validation image when example scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill instructs users to download an external font file before configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the font source and license before use, and prefer a trusted project-local font file with an expected checksum when possible.
+
+Risk: Server security guidance notes a syntax or legacy-code issue in references/plot_utils.py.
+
+Mitigation: Prefer templates/setup_font.py for normal setup and review or test plot_utils.py before importing it into a project.
+
+## Reference(s):
+
+- [BabelStone Han font](https://www.babelstone.co.uk/Fonts/Han.html)
+- [Matplotlib font manager API](https://matplotlib.org/stable/api/font_manager_api.html)
+- [Matplotlib text tutorial](https://matplotlib.org/stable/tutorials/text/text_intro.html)
+- [plot_utils.py](references/plot_utils.py)
+- [test_chinese_font.py](references/test_chinese_font.py)
+- [setup_font.py](templates/setup_font.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with Python and shell code snippets plus Python template and reference files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the user to provide or download a compatible Chinese font file and adjust project-relative font paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

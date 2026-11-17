@@ -1,44 +1,62 @@
-## Description: <br>
-Automatically filters livestream creators in the Jinritemai selected alliance creator square using dynamic criteria and exports matching results to an Excel file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically filters livestream creators in Buyin/Jinritemai Creator Square using user-specified criteria and saves matching results to an Excel file.
 
-## Publisher: <br>
-[uncrowned-king](https://clawhub.ai/user/uncrowned-king) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[uncrowned-king](https://clawhub.ai/user/uncrowned-king)
 
-## Use Case: <br>
-Sales, merchant operations, and creator-partnership teams use this skill to search the Jinritemai creator marketplace by category, audience, follower, level, and gender filters, then export matching creator records for outreach or analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can handle third-party account credentials and keep browser sessions on disk. <br>
-Mitigation: Use it only on a trusted machine and account, prefer manual login when possible, avoid passing passwords through parameters unless necessary, and clear the created browser profile after use. <br>
-Risk: The automation uses browser controls that may conflict with the target platform's permitted usage. <br>
-Mitigation: Confirm the target platform permits this automation before running it and stop if the workflow violates account or marketplace rules. <br>
-Risk: Exported spreadsheets and debug files may contain private business or creator data. <br>
-Mitigation: Store exports in an approved location, limit sharing, and delete exported or debug files when they are no longer needed. <br>
+## Use Case:
 
+External commerce operators and agent users use this skill to search for livestream creators by category, audience, follower count, creator level, and gender, then export matching creator records for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/uncrowned-king/salesman-recommender) <br>
-- [Jinritemai creator square](https://buyin.jinritemai.com/dashboard/servicehall/daren-square) <br>
-- [Jinritemai role selection](https://buyin.jinritemai.com/mpa/account/institution-role-select) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Python script execution with console status messages and Excel .xlsx export] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Selenium browser automation with optional email and password inputs, persistent browser session storage, dynamic creator filters, and desktop spreadsheet output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: The skill automates a logged-in Buyin/Jinritemai business account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated account or browser profile when possible and verify the selected account before relying on exported results.
+
+Risk: Browser sessions are reused and API traffic is intercepted during the task.
+
+Mitigation: Run the skill only in an account context where that automation is acceptable, and avoid sharing the browser profile with unrelated work.
+
+Risk: The skill can save sensitive debug files without enough user control.
+
+Mitigation: Review and delete any Desktop debug files after each run.
+
+Risk: Generated Excel files may contain creator-controlled fields that are not formula-sanitized.
+
+Mitigation: Treat generated Excel files as untrusted and inspect or sanitize them before opening in spreadsheet software.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/uncrowned-king/skills/salesman-recommender)
+- [Buyin/Jinritemai Creator Square](https://buyin.jinritemai.com/dashboard/servicehall/daren-square)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, files]
+
+**Output Format:** [Text guidance with Python filter dictionaries and Excel (.xlsx) file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes matched creator records to an Excel file and may prompt for account login details when no active session is available.]
+
+## Skill Version(s):
+
+2.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

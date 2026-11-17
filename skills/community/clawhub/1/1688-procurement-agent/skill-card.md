@@ -1,42 +1,54 @@
-## Description: <br>
-A procurement coaching agent for global buyers sourcing from 1688.com, with frameworks for supplier assessment, negotiation, quality control, logistics planning, and professional escalation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A comprehensive procurement coaching system designed for global buyers sourcing from 1688.com.
 
-## Publisher: <br>
-[findhappy7](https://clawhub.ai/user/findhappy7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[findhappy7](https://clawhub.ai/user/findhappy7)
 
-## Use Case: <br>
-External buyers, Amazon FBA sellers, dropshippers, retail buyers, importers, exporters, and e-commerce operators use this skill to navigate 1688.com sourcing workflows from onboarding through supplier vetting, negotiation, quality control, logistics, and escalation to professional support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Procurement, supplier, pricing, compliance, logistics, and payment guidance may be incomplete or unsuitable for a specific transaction. <br>
-Mitigation: Treat the output as coaching and verify important decisions with qualified legal, customs, quality-control, logistics, or financial professionals. <br>
-Risk: Sourcing questions can include sensitive business, supplier, budget, or payment details. <br>
-Mitigation: Share only the information needed for the sourcing question and avoid unnecessary confidential or sensitive business details. <br>
-Risk: Agent responses may propose supplier, payment, or shipping next steps that still require human judgment. <br>
-Mitigation: Review recommendations before acting and keep purchasing authority, payments, and supplier commitments under user control. <br>
+## Use Case:
 
+External buyers, e-commerce operators, Amazon FBA sellers, dropshippers, retail buyers, and import/export professionals use this skill for structured 1688 sourcing guidance, supplier vetting, negotiation planning, quality checks, logistics choices, and escalation decisions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/findhappy7/1688-procurement-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown responses with tables, checklists, scripts, scorecards, and sourcing briefs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no code execution, credentials, background behavior, or autonomous purchasing authority.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Procurement guidance may be applied outside 1688 sourcing or treated as automatic purchasing authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user is asking about 1688 sourcing before applying the skill, and keep purchasing, payment, and compliance decisions under user control.
+
+Risk: Supplier, payment, shipping, or compliance details may be incomplete, outdated, mistranslated, or incorrect.
+
+Mitigation: Independently verify supplier credentials, payment accounts, shipment terms, product specifications, and market-specific compliance requirements before committing funds.
+
+## Reference(s):
+
+- [1688 Procurement Agent on ClawHub](https://clawhub.ai/findhappy7/skills/1688-procurement-agent)
+- [findhappy7 ClawHub profile](https://clawhub.ai/user/findhappy7)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Analysis, Configuration instructions]
+
+**Output Format:** [Markdown guidance with tables, checklists, templates, and decision frameworks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advisory procurement coaching only; user remains responsible for supplier, payment, compliance, and purchasing decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

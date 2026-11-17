@@ -1,44 +1,58 @@
-## Description: <br>
-Generates full content packs for 2026 World Cup matches, including previews or recaps, video scripts, social posts, and headlines for football/soccer creators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates full content packs for 2026 World Cup matches, including previews or recaps, video scripts, social posts, and headlines for football/soccer creators.
 
-## Publisher: <br>
-[stephenaiprofit](https://clawhub.ai/user/stephenaiprofit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stephenaiprofit](https://clawhub.ai/user/stephenaiprofit)
 
-## Use Case: <br>
-External football/soccer creators use this skill to turn one World Cup match into a publish-ready content pack for articles, short videos, social engagement posts, and headline hooks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Published match content may contain incorrect or stale scores, lineups, injuries, or statistics if source facts are not checked. <br>
-Mitigation: Verify scores, lineups, injuries, and statistics against reliable sources before publishing. <br>
-Risk: Prediction prompts could be mistaken for betting or gambling guidance. <br>
-Mitigation: Keep prediction posts free and for fun, and exclude odds, stakes, guarantees, and betting advice. <br>
-Risk: Ad-ready output may require sponsorship or advertising disclosures. <br>
-Mitigation: Add the appropriate disclosure for any ad, sponsor read, affiliate placement, or partnership before publishing. <br>
+## Use Case:
 
+External football/soccer content creators use this skill to turn one 2026 World Cup fixture or result into a ready-to-publish content pack across articles, short video, social discussion, and headline formats.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stephenaiprofit/skills/world-cup-content-generator) <br>
-- [How to Use - World Cup 2026 Content Factory](artifact/HOW-TO-USE-content-factory-EN.md) <br>
-- [Creator LinkedIn profile](https://www.linkedin.com/in/stephenzhaoyi/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown content pack with a long-form article, short-video script, social post, and headline hooks.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on creator-provided match facts, handle, audience wording, and whether the match is pre-match or post-match.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Published content could contain inaccurate match facts if the user supplies incomplete or unverified scores, injuries, lineups, or events.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide real match facts from official or trusted sources and review generated outputs for accuracy before publishing.
+
+Risk: Prediction prompts could be misread as betting or gambling advice if rewritten carelessly.
+
+Mitigation: Keep prediction games free and for fun, avoid odds or stakes, and review social copy before publishing.
+
+Risk: Sponsored or ad-ready content may need disclosure before publication.
+
+Mitigation: Add required sponsorship or advertising disclosures, such as #ad, according to the creator's platform and policy requirements.
+
+## Reference(s):
+
+- [How to Use - World Cup 2026 Content Factory](artifact/HOW-TO-USE-content-factory-EN.md)
+- [World Cup Content Generator on ClawHub](https://clawhub.ai/stephenaiprofit/skills/world-cup-content-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown content pack with article, short-video script, social post, and headline options]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only skill; no code execution, credential access, persistence, or hidden side effects reported by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

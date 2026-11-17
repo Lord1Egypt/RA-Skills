@@ -1,42 +1,63 @@
-## Description: <br>
-Bizyair Video helps an agent create and check asynchronous BizyAir video generation tasks for image-to-video and first/last-frame video workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BizyAir Video helps an agent create asynchronous BizyAir video-generation tasks from a source image or first and last frames, choose among five documented workflows, and return task IDs plus result links.
 
-## Publisher: <br>
-[bozoyan](https://clawhub.ai/user/bozoyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bozoyan](https://clawhub.ai/user/bozoyan)
 
-## Use Case: <br>
-External users and developers use this skill to submit BizyAir video generation jobs from image URLs, choose among supported workflow modes, and retrieve generated output links after asynchronous processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, image URLs, task IDs, generated output links, and the configured API key are used with the BizyAir service. <br>
-Mitigation: Use a dedicated revocable BizyAir API key and avoid private, internal, or sensitive media URLs. <br>
-Risk: The release evidence flags broader BizyAir workflow execution and unrelated image-angle tooling as review areas. <br>
-Mitigation: Review custom web_app_id use and do not run the bundled bozo-jiaodu scripts unless those workflows have been independently verified. <br>
+## Use Case:
 
+External users and developers use this skill to submit image-to-video and first/last-frame video tasks to BizyAir, then query asynchronous results. It is useful when an agent needs to produce shell commands, API payloads, task IDs, and Markdown result tables for generated videos.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/bozoyan/bizyair-video) <br>
-- [BizyAir create task endpoint](https://api.bizyair.cn/w/v1/webapp/task/openapi/create) <br>
-- [BizyAir task outputs endpoint](https://api.bizyair.cn/w/v1/webapp/task/openapi/outputs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with inline shell commands and generated output links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns asynchronous task IDs first, then video or image output links when queried after completion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version) <br>
+Risk: Prompts and image or frame URLs are sent to api.bizyair.cn under the user's BIZYAIR_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only intended BizyAir accounts, avoid sensitive media or prompts, and confirm data-sharing expectations before running the skill.
+
+Risk: The package bundles image-angle scripts that are under-disclosed relative to the video-generation description.
+
+Mitigation: Review or remove create_angle_task.sh and get_task_outputs.sh before deployment if image-angle workflows are not needed.
+
+Risk: Broad or arbitrary BizyAir workflow IDs can call unintended workflows or consume API quota.
+
+Mitigation: Restrict execution to reviewed workflow IDs and trusted JSON parameters unless a trusted operator approves an additional workflow.
+
+Risk: Shell scripts accept URLs, prompts, and JSON parameters that may come from users.
+
+Mitigation: Do not pass untrusted JSON, URLs, or prompts through the scripts without proper escaping and validation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bozoyan/skills/bizyair-video)
+- [BizyAir create task endpoint](https://api.bizyair.cn/w/v1/webapp/task/openapi/create)
+- [BizyAir outputs endpoint](https://api.bizyair.cn/w/v1/webapp/task/openapi/outputs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with shell commands, JSON request bodies, asynchronous task IDs, and result tables containing generated media links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BIZYAIR_API_KEY and sends prompts plus image or frame URLs to BizyAir APIs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

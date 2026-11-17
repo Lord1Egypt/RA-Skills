@@ -1,49 +1,58 @@
-## Description: <br>
-Provides concise Ionic Framework guidance for core concepts, UI components, CLI usage, theming, layout, lifecycle hooks, navigation, framework-specific Angular/React/Vue patterns, upgrading, Capacitor integration, and Capawesome Cloud workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive Ionic Framework expert skill consolidating core concepts, component reference, CLI usage, theming, layout, page lifecycle, framework-specific patterns for Angular, React, and Vue, navigation, upgrading, Capacitor integration, and Capawesome Cloud CI/CD.
 
-## Publisher: <br>
-[robingenz](https://clawhub.ai/user/robingenz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[robingenz](https://clawhub.ai/user/robingenz)
 
-## Use Case: <br>
-Developers and engineers use this skill when maintaining Ionic apps, selecting Ionic components, applying framework-specific patterns, troubleshooting lifecycle or navigation behavior, and preparing Ionic/Capacitor build or deployment workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Global npm installs and repair commands can change a developer environment or recreate project dependencies and platform files. <br>
-Mitigation: Review the command intent and run it only in the intended project or development environment. <br>
-Risk: Device build, sync, and live-reload commands can affect local platform projects or expose a development server on shared networks. <br>
-Mitigation: Confirm target platforms and network settings before running Capacitor or Ionic live-reload commands, especially with external access enabled. <br>
-Risk: Capawesome Cloud setup may require third-party accounts and deployment permissions. <br>
-Mitigation: Verify account ownership, permissions, and release targets before connecting cloud build, live update, or app store publishing workflows. <br>
+## Use Case:
 
+Developers and engineers use this skill for Ionic Framework development guidance across UI components, CLI workflows, theming, navigation, lifecycle behavior, Angular/React/Vue integration, upgrading, Capacitor integration, and Capawesome Cloud CI/CD.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/robingenz/ionic-framework) <br>
-- [Ionic app creation skill](https://github.com/capawesome-team/skills/blob/main/skills/ionic-app-creation/SKILL.md) <br>
-- [Ionic layout components reference](https://github.com/capawesome-team/skills/blob/main/skills/ionic-app-development/references/components-layout.md) <br>
-- [Ionic form components reference](https://github.com/capawesome-team/skills/blob/main/skills/ionic-app-development/references/components-form.md) <br>
-- [Ionic Angular skill](https://github.com/capawesome-team/skills/blob/main/skills/ionic-angular/SKILL.md) <br>
-- [Ionic React skill](https://github.com/capawesome-team/skills/blob/main/skills/ionic-react/SKILL.md) <br>
-- [Ionic Vue skill](https://github.com/capawesome-team/skills/blob/main/skills/ionic-vue/SKILL.md) <br>
-- [Capawesome Cloud](https://cloud.capawesome.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline code snippets and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; commands should be reviewed before execution in the target project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Suggested Ionic, npm, and Capacitor commands may install global tooling, run current npm packages, or modify local project files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution, confirm package names and versions, and run changes in a branch or disposable project when working on an important app.
+
+## Reference(s):
+
+- [Ionic app creation skill](https://github.com/capawesome-team/skills/blob/main/skills/ionic-app-creation/SKILL.md)
+- [Ionic layout components reference](https://github.com/capawesome-team/skills/blob/main/skills/ionic-app-development/references/components-layout.md)
+- [Ionic navigation components reference](https://github.com/capawesome-team/skills/blob/main/skills/ionic-app-development/references/components-navigation.md)
+- [Ionic form components reference](https://github.com/capawesome-team/skills/blob/main/skills/ionic-app-development/references/components-form.md)
+- [Ionic Angular skill](https://github.com/capawesome-team/skills/blob/main/skills/ionic-angular/SKILL.md)
+- [Ionic React skill](https://github.com/capawesome-team/skills/blob/main/skills/ionic-react/SKILL.md)
+- [Ionic Vue skill](https://github.com/capawesome-team/skills/blob/main/skills/ionic-vue/SKILL.md)
+- [Ionic app upgrades skill](https://github.com/capawesome-team/skills/blob/main/skills/ionic-app-upgrades/SKILL.md)
+- [Capawesome Cloud](https://cloud.capawesome.io)
+- [Capawesome](https://capawesome.io)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; review generated npm and Ionic commands before execution in an important app repository.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

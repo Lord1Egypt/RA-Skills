@@ -1,42 +1,65 @@
-## Description: <br>
-Tavily quota-aware multi-key search router for reliable Tavily-backed web search across multiple API keys, automatic failover for invalid or rate-limited keys, official usage-based routing via Tavily's /usage endpoint, and status visibility for each key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tavily Quota Router helps agents route Tavily searches across multiple API keys with failover, rate-limit cooldowns, usage synchronization, and key-status visibility.
 
-## Publisher: <br>
-[fangtang0206](https://clawhub.ai/user/fangtang0206) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fangtang0206](https://clawhub.ai/user/fangtang0206)
 
-## Use Case: <br>
-Developers and agents use this skill when they need quota-aware Tavily search across multiple user-provided API keys, automatic failover, and per-key usage visibility. It is useful when single-key search is not resilient enough or when quota must be balanced across keys. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads Tavily API keys from config/keys.json and uses them for outbound Tavily requests. <br>
-Mitigation: Keep config/keys.json private, use only keys you control, and do not publish configured key files. <br>
-Risk: Search queries and usage checks are sent to Tavily and may consume quota. <br>
-Mitigation: Avoid sending secrets or sensitive internal text as queries, and review key status before high-volume use. <br>
+## Use Case:
 
+Developers and agent operators use this skill when they have multiple Tavily API keys and need quota-aware search routing, per-key status checks, and controlled recovery from rate-limit or auth failures.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fangtang0206/tavily-quota-router) <br>
-- [Tavily Search API endpoint](https://api.tavily.com/search) <br>
-- [Tavily Usage API endpoint](https://api.tavily.com/usage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search and status commands may make Tavily API calls and consume quota.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Live Tavily API keys may be stored locally in config/keys.json and exposed through backups, shared skill directories, or missing ignore rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep real keys outside published artifacts, prefer environment variables or a secret manager, verify config/keys.json and state/quota.json are ignored, restrict file permissions, and rotate keys after suspected exposure.
+
+Risk: Rate-limit safety guidance may not fully match runtime failover behavior, so bursts can still consume quota or cool down multiple keys.
+
+Mitigation: Review the router before deployment, use controlled request rates, stop on the first 429, honor Retry-After cooldowns, and test behavior with non-production or low-risk keys.
+
+Risk: The scanner marked the release suspicious because local key storage and safety-rule conflicts require review.
+
+Mitigation: Install only after confirming the multi-key Tavily router is intended for the environment and after scanning the packaged files for secrets.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fangtang0206/skills/tavily-quota-router)
+- [README](README.md)
+- [Quickstart](QUICKSTART.md)
+- [Security Hardening](references/security-hardening.md)
+- [State Machine Walkthrough](references/state-machine-2026-07-08.md)
+- [Tavily 401/403 Recovery Pattern](references/tavily-401-403-recovery-pattern.md)
+- [Tavily 429 Retry-After Handling](references/tavily-429-retry-after-2026-07-17.md)
+- [Tavily Search API Endpoint](https://api.tavily.com/search)
+- [Tavily API Keys Dashboard](https://app.tavily.com/keys)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, and JSON router responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Router commands require locally configured Tavily API keys; status and search commands produce single-stream command output.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

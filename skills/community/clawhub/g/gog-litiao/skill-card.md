@@ -1,41 +1,55 @@
-## Description: <br>
-Google Workspace CLI for Gmail, Calendar, Drive, Contacts, Sheets, and Docs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Workspace CLI for Gmail, Calendar, Drive, Contacts, Sheets, and Docs.
 
-## Publisher: <br>
-[litiao1224](https://clawhub.ai/user/litiao1224) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[litiao1224](https://clawhub.ai/user/litiao1224)
 
-## Use Case: <br>
-Developers and workspace operators use this skill to run Google Workspace tasks through the gog CLI, including Gmail, Calendar, Drive, Contacts, Sheets, and Docs workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The gog CLI can access or change sensitive Google Workspace data when OAuth permissions are granted. <br>
-Mitigation: Install only if you trust the gog CLI, use the narrowest OAuth service set possible, and review where credentials are stored. <br>
-Risk: Commands can send email, create calendar events, or modify and clear Sheets data. <br>
-Mitigation: Confirm user-directed commands before running them, especially write operations and scripts using --no-input. <br>
+## Use Case:
 
+Agents and developers use this skill to prepare and run gog CLI commands for Gmail, Calendar, Drive, Contacts, Sheets, and Docs workflows after OAuth is configured.
 
-## Reference(s): <br>
-- [Gog CLI homepage](https://gogcli.sh) <br>
-- [ClawHub skill page](https://clawhub.ai/litiao1224/gog-litiao) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include gog commands that use JSON flags for scripting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill can guide commands that send mail, create calendar items, or change Sheets data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review high-impact commands before execution, especially mail sending, calendar creation, Sheets updates, and sheets clear.
+
+Risk: The gog CLI requires OAuth access to Google Workspace services including mail, calendar, drive, contacts, docs, and spreadsheets.
+
+Mitigation: Install only from trusted gog Homebrew sources and enable only the Google Workspace scopes needed for the task.
+
+## Reference(s):
+
+- [gog CLI homepage](https://gogcli.sh)
+- [ClawHub Gog Litiao skill page](https://clawhub.ai/litiao1224/skills/gog-litiao)
+- [ClawHub litiao1224 publisher profile](https://clawhub.ai/user/litiao1224)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may access Google Workspace data when executed with configured OAuth credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

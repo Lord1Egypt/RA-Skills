@@ -1,41 +1,59 @@
-## Description: <br>
-Neo helps agents browse websites, read pages, interact with web apps, call website APIs, scrape data, and automate browser tasks through the Neo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browse websites, read web pages, interact with web apps, call website APIs, and automate web tasks.
 
-## Publisher: <br>
-[4ier](https://clawhub.ai/user/4ier) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[4ier](https://clawhub.ai/user/4ier)
 
-## Use Case: <br>
-Developers and agents use Neo to inspect websites, read pages, discover captured web APIs, execute authenticated website API calls, and automate browser interactions when API access is not available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Neo can use real Chrome sessions and cookies to call website APIs, post content, manage login state, replay requests, and run page JavaScript. <br>
-Mitigation: Install only if you trust the @4ier/neo CLI with the browser profile in use, and require explicit approval before posting, API writes, cookie export/import/clear, request replay, or page JavaScript execution. <br>
-Risk: Using a primary Chrome profile can expose sensitive accounts and browsing state to browser automation. <br>
-Mitigation: Prefer a separate Chrome profile that contains only the accounts needed for the task, and avoid using the skill on sensitive sites. <br>
+## Use Case:
 
+Developers and agents use Neo to inspect websites, read pages, discover and call web app APIs, and automate browser interactions through the Neo CLI.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/4ier/neo-browser) <br>
-- [Neo npm Package](https://www.npmjs.com/package/@4ier/neo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and CLI guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include browser automation steps, API call instructions, and safety checks for Neo and Chrome sessions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata) <br>
+Risk: The skill can use real logged-in browser sessions and active website state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Chrome profile containing only accounts and data needed for the task.
+
+Risk: The skill can export cookies, clear cookies, replay captured requests, and perform authenticated API actions.
+
+Mitigation: Require manual review before cookie export/import, POST requests, replay, cookie clearing, or authenticated API actions.
+
+Risk: The install metadata uses an unpinned third-party Neo CLI package.
+
+Mitigation: Prefer a pinned and audited Neo CLI version before trusting it with active sessions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/4ier/skills/neo-browser)
+- [Publisher profile](https://clawhub.ai/user/4ier)
+- [@4ier/neo npm package](https://www.npmjs.com/package/@4ier/neo)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON or file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May operate through an authenticated Chrome profile; cookie handling and request replay require manual review.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

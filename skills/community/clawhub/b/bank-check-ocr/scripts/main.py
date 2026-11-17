@@ -19,6 +19,9 @@ from pathlib import Path
 SKILL_ROOT = Path(__file__).parent.parent.absolute()
 ENV_FILE = SKILL_ROOT / "config" / ".env"
 
+# 支持的识别类型（白名单），防止技能被滥用于通用 OCR 上传
+SUPPORTED_OCR_TYPES = {"BANK_CHECK"}
+
 # --- 新增：重试配置 ---
 MAX_RETRIES = 3            # 最大重试次数
 RETRY_BACKOFF_FACTOR = 2   # 退避因子，每次重试等待时间翻倍
@@ -78,6 +81,39 @@ def load_config():
     config.setdefault('SCNET_API_BASE', 'https://api.scnet.cn/api/llm/v1')
     return config
 
+def validate_inputs(ocr_type, file_path):
+    """严格校验输入参数，仅允许银行支票识别"""
+    if ocr_type not in SUPPORTED_OCR_TYPES:
+        sys.exit(
+            f"错误: 不支持的识别类型 '{ocr_type}'。本技能仅支持银行支票识别（BANK_CHECK）。"
+        )
+
+    if not file_path or not isinstance(file_path, str):
+        sys.exit("错误: filePath 必须是非空字符串。")
+
+    path = Path(file_path)
+    if not path.is_absolute():
+        sys.exit(f"错误: filePath 必须是绝对路径 - {file_path}")
+
+    if not path.is_file():
+        sys.exit(f"错误: 文件不存在 - {file_path}")
+
+    # 拒绝明显的非图片/非文档路径，降低被用作通用文件读取通道的风险
+    allowed_suffixes = {'.jpg', '.jpeg', '.png', '.bmp', '.tiff', '.tif', '.pdf', '.gif', '.webp'}
+    if path.suffix.lower() not in allowed_suffixes:
+        sys.exit(
+            f"错误: 不支持的文件类型 '{path.suffix}'。"
+            f"本技能仅用于支票图像识别，支持 {', '.join(sorted(allowed_suffixes))}。"
+        )
+
+    try:
+        # 解析路径，防止路径遍历或符号链接带来的意外文件读取
+        resolved = path.resolve(strict=True)
+    except (OSError, RuntimeError) as e:
+        sys.exit(f"错误: 无法解析文件路径 - {file_path}: {e}")
+
+    return resolved
+
 def recognize_with_retry(ocr_type, file_path, config, retry_count=0):
     """
     带重试机制的 OCR 识别函数。
@@ -87,15 +123,6 @@ def recognize_with_retry(ocr_type, file_path, config, retry_count=0):
     api_key = config['SCNET_API_KEY']
     url = f"{api_base}/ocr/recognize"
 
-    # 检查文件是否存在
-    if not os.path.isfile(file_path):
-        sys.exit(f"错误: 文件不存在 - {file_path}")
-
-    # 自动检测 MIME 类型
-    mime_type, _ = mimetypes.guess_type(file_path)
-    if mime_type is None:
-        mime_type = 'application/octet-stream'
-
     headers = {
         'Authorization': f'Bearer {api_key}'
     }
@@ -103,7 +130,7 @@ def recognize_with_retry(ocr_type, file_path, config, retry_count=0):
     try:
         with open(file_path, 'rb') as f:
             files = {
-                'file': (os.path.basename(file_path), f, mime_type)
+                'file': (os.path.basename(file_path), f, mimetypes.guess_type(file_path)[0] or 'application/octet-stream')
             }
             data = {
                 'ocrType': ocr_type,
@@ -182,15 +209,16 @@ def recognize_with_retry(ocr_type, file_path, config, retry_count=0):
 def main():
     if len(sys.argv) != 3:
         print("用法: python main.py <ocrType> <filePath>")
-        print("ocrType 可选值: BANK_CHECK")
+        print("ocrType 仅支持: BANK_CHECK")
         sys.exit(1)
 
     ocr_type = sys.argv[1]
     file_path = sys.argv[2]
 
     config = load_config()
+    resolved_path = validate_inputs(ocr_type, file_path)
     # 调用带重试的识别函数
-    recognize_with_retry(ocr_type, file_path, config)
+    recognize_with_retry(ocr_type, resolved_path, config)
 
 if __name__ == '__main__':
     main()

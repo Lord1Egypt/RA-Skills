@@ -1,43 +1,55 @@
-## Description: <br>
-Generate a launch-ready App Store package for a Flutter app, including bilingual Markdown feature documents, Apple-style UI design images, and a square-corner app icon. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a launch-ready app package for App Store submission: a complete Markdown feature document plus AI-generated Apple-style UI design images for each page and a square-corner app icon.
 
-## Publisher: <br>
-[chentuan7963-afk](https://clawhub.ai/user/chentuan7963-afk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chentuan7963-afk](https://clawhub.ai/user/chentuan7963-afk)
 
-## Use Case: <br>
-Developers, product designers, and app teams use this skill to draft App Store-oriented Flutter v1.0.0 feature documentation and companion visual assets before implementation or submission review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional image-generation step can send prompt-level app design details to OpenAI. <br>
-Mitigation: Avoid the OpenAI image step for confidential plans, or review and minimize prompt content before using it. <br>
-Risk: Generated App Store copy or visual assets may still need product, legal, and platform review. <br>
-Mitigation: Use the built-in approval gates and review the included App Store safety checklist before relying on the outputs. <br>
-Risk: Generated files are written into the selected output directory and can mix with prior drafts. <br>
-Mitigation: Run the skill with a dedicated output directory for each app package. <br>
+## Use Case:
 
+Developers and product builders use this skill to generate App Store submission planning artifacts for a Flutter 3.35.1, offline-first iOS app concept. It produces bilingual feature documentation, Apple-style UI design assets or prompt packages, and a square-corner app icon after explicit review gates.
 
-## Reference(s): <br>
-- [App Store Review Safety Checklist](references/review-safety-checklist.md) <br>
-- [ClawHub skill page](https://clawhub.ai/chentuan7963-afk/flutter-appstore-doc-ui-kit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Image files, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown documents, PNG/SVG image assets, shell commands, and prompt guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses staged approval gates; optional OpenAI image generation requires OPENAI_API_KEY; generated files are written to a user-selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release metadata) <br>
+Risk: The optional AI image-generation step may send page names and design constraints from an approved feature document to OpenAI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the non-API prompt-package path when the app concept or feature document contains sensitive product details or external model calls are not acceptable.
+
+Risk: App Store submission copy can be rejected if it includes exaggerated claims, unclear permission use, or incomplete privacy language.
+
+Mitigation: Apply the bundled review safety checklist and keep camera, photo library, privacy, and claims language factual, user-triggered, and local-first.
+
+## Reference(s):
+
+- [App Store Review Safety Checklist](references/review-safety-checklist.md)
+- [OpenAI Images API endpoint](https://api.openai.com/v1/images/generations)
+- [ClawHub skill page](https://clawhub.ai/chentuan7963-afk/skills/flutter-appstore-doc-ui-kit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown documents, PNG and SVG assets, prompt packages, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated artifacts are staged behind user approval gates; optional AI image generation requires OPENAI_API_KEY.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

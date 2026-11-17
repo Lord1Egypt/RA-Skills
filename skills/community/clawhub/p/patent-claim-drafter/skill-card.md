@@ -1,39 +1,57 @@
-## Description: <br>
-Helps patent practitioners turn an invention disclosure into a structured draft claim set with dependent-claim ladders, antecedent-basis checks, functional-language flags, prior-art differentiation notes, and practitioner-review notices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Patent Claim Drafter helps patent practitioners turn an invention disclosure into a draft patent claim set with antecedent-basis checks, dependency trees, means-plus-function flags, prior-art differentiation notes, and practitioner-review safeguards.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Patent agents, patent attorneys, and in-house IP counsel use this skill to convert invention disclosures into draft claim sets for licensed-practitioner review. It supports US, EPO, JPO, CNIPA, and PCT-oriented drafting flows while avoiding legal opinions on patentability, infringement, validity, or freedom to operate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Patent disclosures can contain highly confidential invention details. <br>
-Mitigation: Use the skill only in environments appropriate for confidential client or company information, and avoid sending disclosures to external services outside the drafting workflow. <br>
-Risk: Draft claims or differentiation notes may be incomplete, overbroad, or unsuitable for filing if treated as legal advice. <br>
-Mitigation: Keep the draft label in place and require review by a licensed patent practitioner before filing or relying on the output. <br>
+## Use Case:
 
+External patent agents, patent attorneys, in-house IP counsel, and their support teams use this skill to draft structured patent claim sets from invention disclosures for practitioner review. It is intended for drafting assistance and formal consistency checks, not legal opinions on patentability, infringement, validity, or freedom to operate.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown draft claim set with tables, numbered claims, findings, open questions, and practitioner notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Labels output as draft work requiring practitioner review before filing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: evidence.release.version and artifact/CHANGELOG.md, released 2026-05-28) <br>
+Risk: Users may share confidential invention details while using the skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in an environment appropriate for sensitive IP work and avoid external handling outside the drafting workflow.
+
+Risk: Draft claim language may be incorrect, incomplete, or unsuitable for filing if used without legal review.
+
+Mitigation: Have a qualified patent practitioner review all outputs before filing or relying on them.
+
+Risk: The skill could be mistaken for a source of legal opinions on patentability, infringement, validity, or freedom to operate.
+
+Mitigation: Use it only as a drafting and structural-check aid; obtain separate legal analysis for legal conclusions.
+
+## Reference(s):
+
+- [Patent Claim Drafter on ClawHub](https://clawhub.ai/archlab-space/skills/patent-claim-drafter)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces draft claim sets, check tables, prior-art differentiation notes, open questions, and practitioner-review notices.]
+
+## Skill Version(s):
+
+0.1.1 (source: release evidence and changelog, released 2026-05-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

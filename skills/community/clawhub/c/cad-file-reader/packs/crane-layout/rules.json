@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "confidence": {
+    "block_strong": 0.92,
+    "block_generic": 0.78,
+    "layer_only": 0.48,
+    "model_block": 0.9,
+    "model_text": 0.82,
+    "jib_text": 0.88
+  },
+  "block_patterns": [
+    "塔吊",
+    "塔式起重机",
+    "塔机",
+    "TOWER\\s*[_-]?\\s*CRANE",
+    "TOWERCRANE",
+    "(?<![A-Z0-9])(?:QTZ|TC\\d{3,4}|STT\\d{3,4}|XGT\\d{3,4}|ZSL\\d{3,4})(?![A-Z0-9])",
+    "(?<![A-Z0-9])CRANE(?![A-Z0-9])"
+  ],
+  "negative_patterns": [
+    "汽车吊",
+    "履带吊",
+    "桥式起重机",
+    "桥吊",
+    "门式起重机",
+    "龙门吊",
+    "BRIDGE\\s*CRANE",
+    "GANTRY",
+    "HOIST",
+    "CRANE\\s*BEAM",
+    "CRANE\\s*HOOK",
+    "CRANE\\s*RAIL"
+  ],
+  "layer_patterns": [
+    "塔吊",
+    "塔式起重机",
+    "塔机",
+    "TOWER\\s*[_-]?\\s*CRANE",
+    "(?<![A-Z0-9])(?:QTZ|TC\\d{3,4}|CRANE)(?![A-Z0-9])"
+  ],
+  "label_patterns": [
+    "塔吊",
+    "塔式起重机",
+    "塔机",
+    "TOWER\\s*CRANE",
+    "TOWERCRANE"
+  ],
+  "model_pattern": "(?<![A-Z0-9])(?:QTZ\\s*-?\\s*\\d{2,4}|TC\\s*-?\\s*\\d{3,4}[A-Z]?|STT\\s*-?\\s*\\d{3,4}[A-Z]?|XGT\\s*-?\\s*\\d{3,4}[A-Z]?|ZSL\\s*-?\\s*\\d{3,4}[A-Z]?)(?![A-Z0-9])",
+  "model_label_patterns": [
+    "型号\\s*[:：=]?\\s*",
+    "塔吊\\s*[:：=]?\\s*",
+    "塔机\\s*[:：=]?\\s*"
+  ],
+  "jib_patterns": [
+    "臂长\\s*[:：=]?\\s*(\\d+(?:\\.\\d+)?)\\s*(?:m|米)?",
+    "(\\d+(?:\\.\\d+)?)\\s*(?:m|米)\\s*(?:臂长|起重臂(?:长度|长)?)",
+    "起重臂(?:长度|长)?\\s*[:：=]?\\s*(\\d+(?:\\.\\d+)?)\\s*(?:m|米)?"
+  ],
+  "excluded_jib_keywords": ["幅度", "工作半径", "回转半径", "R\\s*="],
+  "thresholds": {
+    "model_bind_radius_m": 15.0,
+    "jib_bind_radius_m": 20.0,
+    "label_bind_radius_m": 30.0,
+    "circle_bind_radius_m": 10.0,
+    "dedupe_radius_m": 2.0,
+    "min_circle_radius_m": 0.2,
+    "max_circle_radius_m": 150.0,
+    "min_jib_m": 10.0,
+    "max_jib_m": 120.0
+  }
+}

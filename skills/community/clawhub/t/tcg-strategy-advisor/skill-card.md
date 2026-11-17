@@ -1,40 +1,54 @@
-## Description: <br>
-Helps users clarify a trading card game deck's win condition and organize it into main engine, draw, interaction, finishers, backup lines, tempo plan, and common cuts without claiming live metagame knowledge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clarify a card game win condition and turn it into a stable structure across main engine, draw, interaction, finishers, and backup lines.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External card-game players and strategy learners use this skill to structure deck ideas around win conditions, role, curve, consistency, interaction, finishers, and backup plans. It is not intended for live tier lists, exact current decklists, matchup statistics, card prices, or investment advice without separate verification from current trusted sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat structural deck advice as current metagame, matchup, pricing, or investment guidance. <br>
-Mitigation: Present outputs as general strategy framing and require separate verification from current trusted sources for tournament, price, and investment decisions. <br>
-Risk: The selected deck profile can be incomplete when the user provides vague archetype, win-condition, speed, or risk details. <br>
-Mitigation: Ask for the game, desired play pattern, win condition, expected key turn, core components, and consistency problems before giving concrete structure advice. <br>
+## Use Case:
 
+External users and developers use this skill to structure trading card game deck ideas around a clear win condition, curve, interaction plan, finishers, and backup lines. It is intended for general strategy framing rather than live metagame, tournament, matchup, or market advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/tcg-strategy-advisor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown strategy review with section headings and bullet lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No live card-pool, tournament, matchup, pricing, or investment data is accessed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and changelog; artifact frontmatter reports v1.0.0) <br>
+Risk: The skill can appear to provide current metagame, matchup-ranking, card-price, or value-retention advice even though the artifact does not include live data or market sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat those responses as structural guidance only and verify current metas, rotations, prices, and purchase decisions with fresh external sources before acting.
+
+Risk: Advice may be too generic or misaligned when the user omits the game, format, win condition, key turn, core cards, or consistency risks.
+
+Mitigation: Collect the missing deck context first and keep recommendations tied to the stated win condition, while flagging uncertainty where details are absent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/tcg-strategy-advisor)
+- [ClawHub publisher profile](https://clawhub.ai/user/harrylabsj)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown strategy review]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Dialogue-based output; no live card database, tournament feed, matchup database, or market data source is used.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

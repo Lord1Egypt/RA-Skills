@@ -1,42 +1,54 @@
-## Description: <br>
-One-click installer and configurator for Gate MCP (mcporter) in OpenClaw. Use when the user wants to install the mcporter CLI tool, configure the Gate MCP server connection, verify Gate MCP setup, or troubleshoot Gate MCP connectivity issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+One-click installer and configurator for Gate MCP (mcporter) in OpenClaw.
 
-## Publisher: <br>
-[kobin-be](https://clawhub.ai/user/kobin-be) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kobin-be](https://clawhub.ai/user/kobin-be)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to install mcporter, configure the Gate MCP endpoint, verify available tools, and recover from common setup failures. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Running the installer can install or update the global mcporter npm package. <br>
-Mitigation: Install only after deciding to trust the mcporter package and review the package source or registry metadata according to local policy. <br>
-Risk: The installer saves a persistent Gate MCP server entry for OpenClaw. <br>
-Mitigation: Remove the saved MCP configuration when Gate MCP access is no longer needed or if requests should no longer route to the external service. <br>
-Risk: Setup and verification require network connectivity to the Gate MCP service. <br>
-Mitigation: Verify the service endpoint and retry only on trusted networks; treat connection failures as setup blockers rather than partial success. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Gate MCP endpoint](https://api.gatemcp.ai/mcp) <br>
-- [Node.js](https://nodejs.org/) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to install the mcporter CLI, configure the Gate MCP server connection, verify available tools, and troubleshoot connectivity issues.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May install a global CLI and save a persistent MCP server configuration when the user runs the installer.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The installer uses an unpinned global npm install for mcporter, which can modify the user's global npm environment.
+
+Mitigation: Review the installer before running it, avoid elevated privileges, and consider pinning or independently verifying the mcporter npm package.
+
+Risk: The skill configures a home-scope MCP connection to an external Gate MCP endpoint.
+
+Mitigation: Confirm the endpoint is approved for the user's environment and inspect or remove the home-scope MCP configuration when it is no longer needed.
+
+## Reference(s):
+
+- [Gate MCP endpoint](https://api.gatemcp.ai/mcp)
+- [Node.js downloads](https://nodejs.org/)
+- [ClawHub skill page](https://clawhub.ai/kobin-be/skills/gate-mcp-installer)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash commands and troubleshooting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct users to run a Bash installer that modifies global npm packages and home-scope MCP configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

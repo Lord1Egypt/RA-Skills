@@ -1,42 +1,63 @@
-## Description: <br>
-Elective helps agents work with a Rust CLI for PKU course selection, including login and session handling, course browsing, CAPTCHA configuration, and auto-enrollment automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Elective helps agents work with the PKU course-selection CLI, including login and session tasks, course selection commands, CAPTCHA solver configuration, and auto-enrollment automation.
 
-## Publisher: <br>
-[wjsoj](https://clawhub.ai/user/wjsoj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wjsoj](https://clawhub.ai/user/wjsoj)
 
-## Use Case: <br>
-Developers and operators use this skill when maintaining or using the PKU elective CLI, debugging course-selection commands, configuring CAPTCHA recognition, or guiding auto-enrollment workflows. It is not intended for general course schedule questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents toward accessing stored PKU credentials and persisted elective sessions. <br>
-Mitigation: Confirm the account, credential source, session location, and consent before login or session-changing commands are used. <br>
-Risk: Auto-enrollment workflows can act on course targets and run polling loops that affect a student's enrollment state. <br>
-Mitigation: Confirm target course IDs, degree track, polling duration, stop conditions, and rollback or removal steps before launch. <br>
-Risk: CAPTCHA backends may send CAPTCHA images or related data to external recognition services. <br>
-Mitigation: Confirm the selected CAPTCHA backend and any service credentials before configuring or using automated recognition. <br>
+## Use Case:
 
+Developers and agents use this skill when maintaining or operating the PKU elective CLI, especially for login, dual-degree session handling, CAPTCHA solver setup, course selection commands, and auto-enrollment loops.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wjsoj/pku-elective) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe login, CAPTCHA, session, and auto-enrollment actions that should be confirmed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata; artifact frontmatter lists 2.0.0) <br>
+Risk: The skill can guide use of login flows, stored credentials, and session files for the PKU elective CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended account, credential source, and session location before using auto-login or session management commands.
+
+Risk: CAPTCHA images may be sent to external recognition services when non-manual CAPTCHA backends are configured.
+
+Mitigation: Use the manual CAPTCHA backend when challenge images should not be shared with external OCR services.
+
+Risk: Auto-enrollment guidance can trigger repeated polling and course-selection actions.
+
+Mitigation: Review target courses, polling interval, and authorization before launching auto-enrollment.
+
+Risk: Dual-degree course views can miss courses from the other program if the wrong session or command posture is used.
+
+Mitigation: Specify the correct dual-degree mode during login and use the separate schedule-focused workflow for general timetable questions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wjsoj/skills/pku-elective)
+- [Publisher profile](https://clawhub.ai/user/wjsoj)
+- [PKU elective system](https://elective.pku.edu.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration details, and code-oriented instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include operational cautions for credentials, session files, CAPTCHA backends, dual-degree logins, and auto-enrollment behavior.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; artifact frontmatter says 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

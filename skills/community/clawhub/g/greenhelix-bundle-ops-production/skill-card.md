@@ -1,39 +1,54 @@
-## Description: <br>
-Ship and operate AI agent systems in production with guidance for fleet management, production hardening, observability, testing, and incident response. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ship and operate AI agent systems in production with a five-guide bundle covering fleet management, production hardening, distributed observability, QA/chaos testing, and incident response.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers, platform engineers, and operations teams use this guide bundle to plan and run AI agent systems at production scale. It focuses on operational practices for fleet management, hardening, observability, QA, chaos testing, and incident response. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release declares GREENHELIX_API_KEY as a required sensitive credential, but the visible static guide bundle does not explain how the key is used. <br>
-Mitigation: Confirm the publisher's reason for requesting GREENHELIX_API_KEY before providing it, and avoid sharing the credential unless the use is understood and approved. <br>
+## Use Case:
 
+Developers and operations teams use this bundle for guidance on running AI agent systems at scale, including fleet operations, production hardening, observability, QA/chaos testing, and incident response.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mirni/greenhelix-bundle-ops-production) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/mirni) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance bundle] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable static guide bundle; declares GREENHELIX_API_KEY as a required environment variable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata and frontmatter) <br>
+Risk: The release requires the GREENHELIX_API_KEY environment variable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that credential requirement is expected, and scope or rotate the key according to the consuming environment's credential policy.
+
+Risk: The release is a paid production-operations guide bundle rather than executable automation.
+
+Mitigation: Confirm the purchaser expects a GreenHelix guide bundle and review guidance before applying it to production systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mirni/skills/greenhelix-bundle-ops-production)
+- [ClawHub publisher profile](https://clawhub.ai/user/mirni)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown guidance and reference text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable guide bundle; requires GREENHELIX_API_KEY metadata for OpenClaw/Clawdis use.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

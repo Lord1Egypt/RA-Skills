@@ -1,43 +1,54 @@
-## Description: <br>
-Monitors AWS Health Dashboard for active incidents and sends configurable notifications through Feishu, Telegram, Slack, Discord, and similar channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors the AWS Health Dashboard for active incidents and sends configurable notifications through Feishu, Telegram, Slack, Discord, or similar channels.
 
-## Publisher: <br>
-[Shimotsuk1-Rei](https://clawhub.ai/user/Shimotsuk1-Rei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[shimotsuk1-rei](https://clawhub.ai/user/shimotsuk1-rei)
 
-## Use Case: <br>
-Developers and operations teams use this skill to monitor active AWS Health incidents, filter watched regions and services, and configure outbound incident notifications. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The default watch scope can include all AWS regions and services, creating noisy or unwanted notifications. <br>
-Mitigation: Set AWS_HEALTH_WATCH_REGIONS and AWS_HEALTH_WATCH_SERVICES to the intended monitoring scope before enabling recurring checks. <br>
-Risk: Incident notifications are sent to the configured external channel and target. <br>
-Mitigation: Set AWS_HEALTH_NOTIFY_CHANNEL and AWS_HEALTH_NOTIFY_TARGET deliberately, and verify the recipient before running the monitor. <br>
-Risk: Adding the cron entry enables recurring network checks and repeated outbound notifications. <br>
-Mitigation: Only add the cron entry when continuous monitoring is desired, and review the local state file and log path during operation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AWS Health status page](https://health.aws.amazon.com/health/status) <br>
-- [AWS Health current events endpoint](https://health.aws.amazon.com/public/currentevents) <br>
-- [aws-health-ignore.example.json](references/aws-health-ignore.example.json) <br>
+## Use Case:
 
+Developers and operations teams use this skill to monitor AWS regional service health, configure filters for watched regions or services, and receive outage updates through an existing notification channel.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces monitoring setup guidance and notification message content; the script records local state and sends configured outbound notifications.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A misconfigured notification target can send AWS outage messages to the wrong channel or recipient.
+
+Mitigation: Set AWS_HEALTH_NOTIFY_TARGET carefully and verify the destination before enabling scheduled polling.
+
+Risk: Broad monitoring or cron scheduling can create unwanted recurring outbound requests and notifications.
+
+Mitigation: Use AWS_HEALTH_WATCH_REGIONS and AWS_HEALTH_WATCH_SERVICES filters, and add the cron entry only when continuous polling is intended.
+
+## Reference(s):
+
+- [AWS Health public current events endpoint](https://health.aws.amazon.com/public/currentevents)
+- [AWS Health status dashboard](https://health.aws.amazon.com/health/status)
+- [AWS Health ignore configuration example](references/aws-health-ignore.example.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Notifications are sent only when new incidents, changed incident messages, or resolved incidents are detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,52 @@
-## Description: <br>
-Interrogate guides an agent through adaptive clarification questions before acting on vague or complex requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guided elicitation skill that activates only when the user explicitly types /interrogate, asks 4-15 adaptive questions in batches of 2, and clarifies vague or complex requests before acting.
 
-## Publisher: <br>
-[inxan3](https://clawhub.ai/user/inxan3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[inxan3](https://clawhub.ai/user/inxan3)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users, developers, and agent operators use this skill to turn vague or complex requests into clear requirements before the agent begins work. It is useful when the user wants structured clarification, trade-off discussion, and a confirmation summary before action.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The clarification flow can add delay before the agent starts work.
+
+Mitigation: Use the skill only when explicitly invoked with /interrogate and rely on its confirmation step before proceeding.
+
+Risk: Multiple-choice options can narrow the user's framing if the available choices do not fit.
+
+Mitigation: The skill explicitly permits free-text answers and instructs the agent to adapt naturally when the user ignores the lettered options.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Users and agents use Interrogate to clarify ambiguous creative, technical, planning, or decision requests through structured question batches before the agent takes action. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The evidence includes crypto and purchase-related capability tags that the security guidance says appear inaccurate. <br>
-Mitigation: Treat the skill as a clarification workflow only and avoid granting financial, wallet, or purchasing authority based on those tags. <br>
-Risk: Adaptive questioning can delay action or narrow a task incorrectly if the user's answers are misunderstood. <br>
-Mitigation: Use the skill only through explicit /interrogate activation and require the confirmation summary before taking action. <br>
+**Output Format:** [Markdown questions, option lists, summaries, and confirmation prompts]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/inxan3/interrogate) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/inxan3) <br>
+**Other Properties Related to Output:** [Produces adaptive clarification batches and a final confirmation summary before proceeding.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown question batches, concise trade-off explanations, and confirmation summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Activates only on the explicit /interrogate command and asks up to about 15 adaptive questions in batches of two before requesting confirmation.] <br>
+1.0.0 (source: frontmatter and release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,65 @@
-## Description: <br>
-Trade Polymarket weather markets using NOAA (US) and Open-Meteo (international) forecasts via Simmer API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades Polymarket weather markets using NOAA and Open-Meteo forecasts through the Simmer API.
 
-## Publisher: <br>
-[simmer](https://clawhub.ai/user/simmer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simmer](https://clawhub.ai/user/simmer)
 
-## Use Case: <br>
-External users and agent developers use this skill to inspect and automate Polymarket weather-market trading strategies, configure forecast and risk thresholds, run dry-run or paper trading, and intentionally opt into live execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can place real orders and lose funds. <br>
-Mitigation: Start in dry-run or TRADING_VENUE=sim, review markets and thresholds, keep position caps small, and pass --live only after wallet and API setup are intentional. <br>
-Risk: Wallet and API credentials can enable trading if exposed. <br>
-Mitigation: Avoid sharing broad wallet credentials, store SIMMER_API_KEY and WALLET_PRIVATE_KEY only in the runtime environment, and use the minimum access needed for the intended venue. <br>
-Risk: Weather markets can gap at resolution with no stop-loss exit path. <br>
-Mitigation: Size positions assuming the full position can go to zero; do not rely on percentage stop-loss monitors for gap-resolving temperature buckets. <br>
-Risk: Forecast-source disagreement or missing station metadata can produce weak trade signals. <br>
-Mitigation: Keep source-agreement checks enabled, review imported markets and thresholds, and skip or use small canary sizing when sources disagree. <br>
+## Use Case:
 
+External users and developers use this skill to inspect, configure, paper-trade, or explicitly live-trade weather prediction markets based on forecast data and market prices. It also supports position checks and replay/backtest workflows for validating the trading path before adding capital.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/simmer/polymarket-weather-trader) <br>
-- [Publisher profile](https://clawhub.ai/user/simmer) <br>
-- [Wallet setup documentation](https://docs.simmer.markets/wallets) <br>
-- [Polymarket V2 migration guide](https://docs.simmer.markets/v2-migration) <br>
-- [Artifact disclaimer](artifact/DISCLAIMER.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include trading status, dry-run opportunities, position checks, and live-execution guidance depending on user intent and runtime flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.23.2 (source: release evidence and skill frontmatter) <br>
+Risk: The skill can place real-money trades when live mode is enabled, and automated trading can produce irreversible losses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start in dry-run or TRADING_VENUE=sim, keep tight platform and per-trade caps, and use --live only after accepting the trading risk.
+
+Risk: Some safeguards can be bypassed or fail open when context data is unavailable or when --no-safeguards is used.
+
+Mitigation: Keep safeguards enabled, review preflight/status output before live use, and avoid --no-safeguards unless the operator has independently verified the market context.
+
+Risk: Weather bucket markets can resolve by gapping directly to near zero, so stop-loss monitoring may not cap downside.
+
+Mitigation: Size positions assuming the full position can be lost, keep max position and max buys per market conservative, and rely on position sizing rather than stop-losses alone.
+
+Risk: External-wallet self-custody mode may require WALLET_PRIVATE_KEY, which increases credential exposure if handled casually.
+
+Mitigation: Avoid providing WALLET_PRIVATE_KEY unless external-wallet live trading is required, prefer paper or managed-wallet flows first, and keep credentials scoped to the runtime environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/simmer/skills/polymarket-weather-trader)
+- [Simmer wallet setup](https://docs.simmer.markets/wallets)
+- [Simmer V2 migration](https://docs.simmer.markets/v2-migration)
+- [Open-Meteo Previous Runs API](https://previous-runs-api.open-meteo.com/v1/forecast)
+- [NOAA Weather API](https://api.weather.gov)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, Python entrypoints, JSON configuration, and console summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May place simulated or live trading orders only when invoked with the required runtime configuration and explicit live mode.]
+
+## Skill Version(s):
+
+1.23.22 (source: server evidence, SKILL.md frontmatter, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

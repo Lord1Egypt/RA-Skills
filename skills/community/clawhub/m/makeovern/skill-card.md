@@ -1,39 +1,52 @@
-## Description: <br>
-Guides an agent to provide terminal commands for Pomodoro focus sessions, optional macOS notifications, and session logging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when a user wants to run timed focus sessions (Pomodoro technique) from the terminal.
 
-## Publisher: <br>
-[AbelJSeba](https://clawhub.ai/user/AbelJSeba) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[abeljseba](https://clawhub.ai/user/abeljseba)
 
-## Use Case: <br>
-Individuals and productivity-focused users use this skill to run Pomodoro-style focus timers, customize session duration, and review local session logs from the terminal. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The optional logging command creates or updates ~/pomodoro.log with Pomodoro session timestamps. <br>
-Mitigation: Review the log path before running the command and adjust, delete, or rotate the log according to local privacy and retention needs. <br>
-Risk: The notification command uses macOS osascript and may not work on other operating systems. <br>
-Mitigation: Use a platform-appropriate notification command or rely on terminal output when running outside macOS. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AbelJSeba/makeovern) <br>
+## Use Case:
 
+External users and developers use this skill to run Pomodoro-style focus timers from the terminal, optionally customize session length, trigger local notifications, and review a local session log.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local terminal commands that wait for timer duration, show macOS notifications, and optionally append timestamps to ~/pomodoro.log.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Local notifications rely on macOS osascript and may not work in non-macOS terminal environments.
+
+Mitigation: Review or adapt the notification command for the target operating system before relying on timer alerts.
+
+Risk: The optional logging command stores focus-session timestamps in ~/pomodoro.log.
+
+Mitigation: Avoid the logging command, or manage the log file, when users do not want a local activity trail.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abeljseba/skills/makeovern)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may run timers, trigger macOS notifications, and optionally append session timestamps to a local log file.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

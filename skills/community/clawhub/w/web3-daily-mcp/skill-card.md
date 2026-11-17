@@ -1,41 +1,58 @@
-## Description: <br>
-MCP Server for Web3 Daily - Real-time Web3 research digest with macro news, KOL sentiment, market data, and personalized wallet analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MCP Server for Web3 Daily - Real-time Web3 research digest with macro news, KOL sentiment, market data, and personalized wallet analysis.
 
-## Publisher: <br>
-[alexander10011](https://clawhub.ai/user/alexander10011) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[alexander10011](https://clawhub.ai/user/alexander10011)
 
-## Use Case: <br>
-Developers and external users use this MCP server to let compatible agents retrieve Web3 daily digests, market overviews, and optional wallet-based profile analysis in Chinese or English. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Personalized digest and wallet profile tools send wallet addresses to the disclosed J4Y backend for analysis and 24-hour profile caching. <br>
-Mitigation: Use public digest and market overview tools when wallet sharing is not acceptable; use personalized tools only for wallet addresses the user is comfortable having profiled and cached for 24 hours. <br>
-Risk: The MCP server depends on an external backend service for digests, market data, and wallet analysis. <br>
-Mitigation: Treat returned market and wallet analysis as service-provided research output and verify important financial or operational decisions against independent sources. <br>
+## Use Case:
 
+Developers and external users can connect this MCP server to an MCP-compatible agent to retrieve Web3 daily digests, crypto market summaries, and wallet-based analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alexander10011/web3-daily-mcp) <br>
-- [J4Y Backend API](https://j4y-production.up.railway.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [MCP text responses, with wallet profiles formatted as Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Tool inputs include optional language selection and, for personalized features, an EVM wallet address.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence, package.json, claw.json, and MCP server metadata) <br>
+Risk: Personalized tools send wallet addresses selected by the user to the J4Y backend for analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use personalized wallet-analysis features only with wallet addresses users are comfortable submitting to the disclosed backend.
+
+Risk: Unversioned npx installation examples can fetch a newer package than the reviewed release.
+
+Mitigation: Prefer a pinned package version or a local build when deploying this MCP server.
+
+Risk: The server depends on live backend and market-data availability, so outputs may fail or change with upstream service state.
+
+Mitigation: Treat returned market and wallet analysis as live external data and handle MCP tool errors in the calling agent workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alexander10011/skills/web3-daily-mcp)
+- [J4Y Backend API](https://j4y-production.up.railway.app)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown]
+
+**Output Format:** [Text or Markdown returned through MCP tool responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports Chinese and English output for digest and wallet-analysis tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json, claw.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

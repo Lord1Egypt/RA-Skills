@@ -1,43 +1,41 @@
 #!/usr/bin/env bash
 # Read env-supplied OAuth credentials, write to gogcli's local stores.
-# - Client creds (id+secret) → $XDG_CONFIG_HOME/gogcli/credentials-$APP_NAME.json (plaintext, 0600)
+# - Client creds (id+secret) → $XDG_CONFIG_HOME/gogcli/credentials-$MAVERICK_GOG_CLIENT.json (plaintext, 0600)
 # - Refresh token → $XDG_CONFIG_HOME/gogcli/keyring/ (file backend, jose2go-encrypted
-#   under GOG_KEYRING_PASSWORD), keyed by (client=$APP_NAME, email=$MAVERICK_GOG_EMAIL)
+#   under GOG_KEYRING_PASSWORD), keyed by (client=$MAVERICK_GOG_CLIENT, email=$MAVERICK_GOG_EMAIL)
 #
-# MVP security boundary: GOG_KEYRING_PASSWORD encrypts the refresh-token keyring
-# only. The client-creds file lands plaintext on disk and is protected solely by
-# the container filesystem and R2 access boundary, not by GOG_KEYRING_PASSWORD —
-# until gogcli upstream issue GOG1 ships. See the plan's "MVP security boundary"
-# section for the full trust model.
+# MAVERICK_GOG_CLIENT is the client name of the persisted state, not of the
+# gateway generation: the orchestrator keeps it across every gateway the state
+# outlives, so credentials seeded here stay addressable after a restore. It
+# arrives with the setup call itself, never from the container's boot env, so a
+# container started before the name existed still seeds under it.
 #
-# Backend posture: GOG_KEYRING_BACKEND is pinned to `file` as an image-level
-# constant in the deployed container's Dockerfile (cloudflare/Dockerfile in
-# maverick_openclaw). Explicit pinning insulates against future base-image
-# variants that might introduce dbus and cause gogcli's `auto` resolution to
-# attempt SecretService with a 10s cold-call timeout. See the plan's
-# `GOG_KEYRING_BACKEND` section.
+# Security boundary: GOG_KEYRING_PASSWORD encrypts the refresh-token keyring
+# only. The client-creds file lands plaintext on disk, protected by the
+# container filesystem and the R2 access boundary alone, until gogcli encrypts
+# it upstream.
 #
-# Setup-runtime prerequisites: bash, jq, gog (≥ v0.17.0). Of these, only `gog`
-# is declared in SKILL.md `requires.bins` (the field gates agent-runtime
-# eligibility, and `gog` is needed at both setup AND agent runtime). `bash` and
-# `jq` are setup-time-only and intentionally NOT in `requires.bins` — they
-# belong to the setup runtime contract, not the agent-runtime eligibility gate.
-# Matches the mcporter-skill-builder convention (see
-# `skills/mcporter-skill-builder/scripts/templates/setup.sh` header).
+# GOG_KEYRING_BACKEND is pinned to `file` as an image-level constant in
+# infra/openclaw/image/Dockerfile, so a future base image that introduces dbus
+# cannot make gogcli's `auto` resolution attempt SecretService and pay its 10s
+# cold-call timeout.
 #
-# Re-run policy: caller must only fire skills.setup when MAVERICK_GOG_REFRESH_TOKEN
-# is a fresh refresh_token from a just-completed user-side authorization callback
-# — specifically, the OAuth callback yielded a new refresh_token value (not just
-# "callback succeeded"). Google omits refresh_token from refresh-flow responses
-# and may omit it from authorization-code responses for previously-consented
-# users; those callbacks must NOT fire skills.setup. Re-firing with a stale
-# token clobbers a refresh that gogcli rotated in-keyring, breaking the
-# integration until re-authorization. Mirrors mcporter init-mcporter-oauth.sh
-# § Re-run policy.
+# Setup-runtime prerequisites: bash, jq, gog (≥ v0.17.0). Only `gog` is declared
+# in SKILL.md `requires.bins` — the field gates agent-runtime eligibility, and
+# `gog` is the only one needed there; `bash` and `jq` are setup-time-only.
+# Matches the mcporter-skill-builder convention.
+#
+# Re-run policy: fire skills.setup only when MAVERICK_GOG_REFRESH_TOKEN is a NEW
+# refresh_token value from a just-completed user-side authorization callback —
+# not merely "callback succeeded". Google omits refresh_token from refresh-flow
+# responses and may omit it from authorization-code responses for
+# previously-consented users, and re-firing with a stale token clobbers a
+# refresh that gogcli rotated in-keyring, breaking the integration until
+# re-authorization. Mirrors mcporter init-mcporter-oauth.sh § Re-run policy.
 
 set -eu
 
-: "${APP_NAME:?APP_NAME required from container env}"
+: "${MAVERICK_GOG_CLIENT:?MAVERICK_GOG_CLIENT required (the orchestrator passes it with every setup)}"
 : "${MAVERICK_GOG_CLIENT_ID:?MAVERICK_GOG_CLIENT_ID required}"
 : "${MAVERICK_GOG_CLIENT_SECRET:?MAVERICK_GOG_CLIENT_SECRET required}"
 : "${MAVERICK_GOG_EMAIL:?MAVERICK_GOG_EMAIL required}"
@@ -61,11 +59,13 @@ MAVERICK_GOG_CLIENT_SECRET="${MAVERICK_GOG_CLIENT_SECRET}" \
       client_secret: env.MAVERICK_GOG_CLIENT_SECRET
     }
   }' \
-  | gog auth credentials set - --client="${APP_NAME}" --no-input --force
+  | gog auth credentials set - --client="${MAVERICK_GOG_CLIENT}" --no-input --force
 
+# Its own stdin, as the jq call above has: it reads none, and an inherited one
+# could hold a real gog waiting on a caller's open pipe.
 gog auth import \
-  --client="${APP_NAME}" \
+  --client="${MAVERICK_GOG_CLIENT}" \
   --email="${MAVERICK_GOG_EMAIL}" \
   --refresh-token-env=MAVERICK_GOG_REFRESH_TOKEN \
   --force \
-  --no-input
+  --no-input < /dev/null

@@ -1,40 +1,54 @@
-## Description: <br>
-Data Processing Agreement reference for GDPR Article 28, processor obligations, sub-processor management, and cross-border transfers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Data Processing Agreement reference -- GDPR Article 28, processor obligations, sub-processor management, and cross-border transfers. Use when drafting or reviewing DPAs with vendors.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Privacy, legal, and vendor-management users can use this skill as a quick reference when drafting or reviewing Data Processing Agreements, GDPR Article 28 clauses, sub-processor obligations, cross-border transfer terms, and breach-handling provisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides legal and compliance guidance that may be incomplete, outdated, or unsuitable for a specific contract or jurisdiction. <br>
-Mitigation: Treat the output as informational reference material and verify current requirements with qualified counsel or authoritative legal sources before relying on it. <br>
+## Use Case:
 
+Employees, external privacy teams, and vendor-review stakeholders use this skill as a general DPA reference when drafting or reviewing vendor agreements for GDPR Article 28 terms, processor obligations, sub-processor management, cross-border transfers, breach handling, and compliance checklists.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ckchzh/dpa) <br>
-- [Publisher profile](https://clawhub.ai/user/ckchzh) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text reference output from named shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands print static DPA and GDPR reference material for the selected topic.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Users may treat general DPA reference material as legal advice or jurisdiction-specific authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have qualified legal or privacy reviewers validate DPA terms before relying on them for contracts, regulatory filings, or vendor decisions.
+
+Risk: The skill includes an executable shell script, even though the security evidence describes it as low-impact static output.
+
+Mitigation: Review the publisher and skill contents before installation or execution; use a static markdown-only copy when a narrower executable surface is required.
+
+## Reference(s):
+
+- [Dpa ClawHub Skill Page](https://clawhub.ai/ckchzh/skills/dpa)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text reference material printed by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static legal-reference content; no data, network, credential, or persistent system access is identified in the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

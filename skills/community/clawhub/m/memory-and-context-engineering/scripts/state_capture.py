@@ -47,6 +47,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any, Callable
 
+from .logging_config import get_logger
 from .type_defs import (
     CheckpointRecord,
     StateChangeEvent,
@@ -59,6 +60,8 @@ from .type_defs import (
     StateConflict,
     LayerStateSnapshot,
 )
+
+logger = get_logger(__name__)
 
 
 # ============================================================================
@@ -1259,7 +1262,7 @@ class LayerStateSync:
         # 3. 发布状态变化事件
         event = StateChangeEvent(
             event_id=f"evt_{uuid.uuid4().hex[:8]}",
-            event_type=StateEventType.LAYER_STATE_CHANGE,
+            event_type=StateEventType.STATE_CHANGE,
             checkpoint_id="",
             thread_id=f"layer_{layer}",
             previous_state=previous_state,
@@ -1401,10 +1404,23 @@ class LayerStateSync:
     def _check_consistency_async(self) -> None:
         """
         异步检查状态一致性
+        
+        在后台线程中执行一致性检查，避免阻塞主流程。
+        检查结果记录到日志，不直接返回。
         """
-        # TODO: 实现异步一致性检查
-        # 当前暂时不执行，避免性能开销
-        pass
+        try:
+            conflicts = self.check_consistency()
+            if conflicts:
+                logger.warning(f"异步一致性检查发现 {len(conflicts)} 个冲突")
+                for conflict in conflicts[:3]:  # 只记录前3个
+                    logger.warning(
+                        f"状态冲突: {conflict.layer1.value} <-> {conflict.layer2.value}, "
+                        f"类型: {conflict.conflict_type}"
+                    )
+            else:
+                logger.debug("异步一致性检查通过")
+        except Exception as e:
+            logger.error(f"异步一致性检查失败: {e}")
 
     def check_consistency(self) -> list[StateConflict]:
         """
@@ -1491,6 +1507,24 @@ class LayerStateSync:
             变化的字典
         """
         return self.compute_state_diff(previous_state, current_state)
+
+    @staticmethod
+    def compute_state_diff(
+        previous_state: dict[str, Any],
+        current_state: dict[str, Any],
+    ) -> dict[str, Any]:
+        """计算两个状态字典之间的差异。
+
+           Returns:
+               dict[str, dict]: key -> {"old": ..., "new": ...}，仅包含发生变化的键
+        """
+        changes: dict[str, Any] = {}
+        for key in set(previous_state) | set(current_state):
+            old_val = previous_state.get(key)
+            new_val = current_state.get(key)
+            if old_val != new_val:
+                changes[key] = {"old": old_val, "new": new_val}
+        return changes
 
     @staticmethod
     def _compute_checksum(state: dict[str, Any]) -> str:

@@ -1,39 +1,57 @@
-## Description: <br>
-Syncs AI coding assistant configuration files from a single canonical source into native formats for Claude Code, Codex, Gemini CLI, Cursor, GitHub Copilot, Windsurf, Cline/Roo, Aider, Kiro, Amazon Q, Goose, Trae AI, Zed, Amp, OpenCode, and Warp. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Syncs AI coding assistant configuration files from `.claude/rules/` or `CLAUDE.md` into native formats for Codex, Gemini CLI, Cursor, GitHub Copilot, Windsurf, Cline/Roo, Aider, Kiro, Amazon Q, Goose, Trae AI, Zed, Amp, OpenCode, and Warp.
 
-## Publisher: <br>
-[nadalpiantini](https://clawhub.ai/user/nadalpiantini) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nadalpiantini](https://clawhub.ai/user/nadalpiantini)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to keep AI coding assistant instructions synchronized across tools from `.claude/rules/` or `CLAUDE.md` as the canonical source. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A non-dry-run execution can write or replace assistant configuration files in the target repository. <br>
-Mitigation: Run with `--dry-run` first, limit outputs with `--tools`, and review or back up existing assistant config files before writing. <br>
-Risk: Incorrect or stale canonical rules can be propagated into multiple assistant tools. <br>
-Mitigation: Review `.claude/rules/` or `CLAUDE.md` before generation and commit generated files together so changes are auditable. <br>
+## Use Case:
 
+Developers and engineers use this skill to keep AI assistant instruction files synchronized from one canonical Claude rules source across repositories that support multiple coding assistants. It can preview changes, initialize rules from an existing `CLAUDE.md`, and generate only selected tool configurations when needed.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [configuration, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and plain-text configuration files with terminal status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports dry-run previews, selected-tool generation, and initialization from an existing CLAUDE.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Running the skill can rewrite AI assistant instruction files in the target repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it first with `--dry-run` and review generated files before committing or using them with AI coding assistants.
+
+Risk: Symlinked projects may allow reads or writes outside the intended repository.
+
+Mitigation: Use the skill only on trusted repositories and inspect the target tree for symlinks before running it.
+
+Risk: Rules copied across assistants can become persistent, always-on guidance in multiple tools.
+
+Mitigation: Review generated instructions for scope, sensitivity, and assistant-specific behavior before adoption.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nadalpiantini/skills/config-sync)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown and plain-text configuration files written to repository paths, with shell command guidance for invocation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports dry-run previews, selected tool targets, and initialization from an existing CLAUDE.md.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

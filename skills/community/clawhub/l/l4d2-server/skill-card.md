@@ -1,41 +1,57 @@
-## Description: <br>
-L4D2 Server helps agents manage Left 4 Dead 2 servers by storing server configurations, querying status through A2S, and running RCON commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents manage Left 4 Dead 2 servers by storing server aliases, querying server status over A2S, and running administrative commands over RCON.
 
-## Publisher: <br>
-[LaoYutang](https://clawhub.ai/user/LaoYutang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laoyutang](https://clawhub.ai/user/laoyutang)
 
-## Use Case: <br>
-Server administrators and agents use this skill to keep a local list of L4D2 servers, inspect live server status, and send approved RCON administration commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: RCON passwords can expose administrative control if stored insecurely or pasted into transcripts. <br>
-Mitigation: Protect the password file, avoid sharing secrets in chat or shell history, and prefer trusted networks, VPNs, or SSH tunnels for RCON access. <br>
-Risk: RCON commands can change gameplay, kick or ban players, or otherwise affect a live server. <br>
-Mitigation: Manually confirm commands that modify gameplay or affect players before execution, and install the skill only for servers you administer. <br>
+## Use Case:
 
+Server administrators and operators use this skill to keep track of Left 4 Dead 2 server connection details, check live server status, and prepare or run RCON administration commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/LaoYutang/l4d2-server) <br>
-- [Server configuration example](references/server-config.example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, and command output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include server status details and RCON command recommendations; commands that affect players or gameplay should be confirmed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: RCON grants live administrative control over a configured Left 4 Dead 2 server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only for servers you administer, and manually confirm any command that changes maps, kicks or bans players, toggles cheats, or alters server state.
+
+Risk: RCON passwords can leak through command-line arguments or readable configuration files.
+
+Mitigation: Avoid passing passwords on the command line where possible, restrict configuration file permissions to the owner, and keep secrets out of shared logs or transcripts.
+
+Risk: Exposed RCON access can permit remote server administration by unauthorized parties.
+
+Mitigation: Keep RCON off public networks, use a VPN or SSH tunnel, and restrict firewall access to trusted administrators.
+
+## Reference(s):
+
+- [server-config.example.json](references/server-config.example.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use local Python helper scripts to query A2S status or send RCON commands to configured servers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

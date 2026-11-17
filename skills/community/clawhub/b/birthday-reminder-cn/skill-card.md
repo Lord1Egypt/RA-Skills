@@ -1,43 +1,58 @@
-## Description: <br>
-管理并计算生日提醒（阳历与农历），支持每条记录单独配置和全局默认值，支持当天提醒、提前 N 天、多次提醒和提醒时间配置，默认使用北京时间。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+管理并计算生日提醒，支持阳历与农历生日、每条记录覆盖全局默认值、提前多次提醒和本地通知分发。
 
-## Publisher: <br>
-[905583906](https://clawhub.ai/user/905583906) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[905583906](https://clawhub.ai/user/905583906)
 
-## Use Case: <br>
-Personal users and agent assistants use this skill to maintain birthday reminder configuration, calculate due reminders, and prepare notification runs for scheduled execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Birthday records and notification settings may contain private dates, names, webhook URLs, bot tokens, or chat identifiers. <br>
-Mitigation: Keep birthday and notification files private, avoid committing credentials, and use trusted notification destinations. <br>
-Risk: Configured notification channels can send reminder data externally or write it to local files. <br>
-Mitigation: Run the notification bridge with --dry-run first and review the notify.json channels before enabling scheduled execution. <br>
-Risk: Scheduled automation can repeatedly trigger notifications if the schedule or reminder window is misconfigured. <br>
-Mitigation: Review the Automation schedule you enable and test the reminder window with known timestamps before relying on recurring runs. <br>
+## Use Case:
 
+External users and developers use this skill to create and maintain local birthday reminder configurations, validate due reminders, and send reminders through configured notification channels.
 
-## Reference(s): <br>
-- [Birthday Config Schema](references/config-schema.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/905583906/birthday-reminder-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples and shell commands; reminder checks may produce text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can read local birthday and notification configuration files and can send notifications through configured channels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: release evidence) <br>
+Risk: Birthday records and reminder messages can contain personal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store birthday JSON files locally with appropriate access controls and minimize personal details in messages sent to notification services.
+
+Risk: Webhook URLs, bot tokens, chat IDs, and notification endpoints can expose credentials or delivery targets.
+
+Mitigation: Protect notification credentials, avoid committing real secrets, and use dry-run checks before enabling live delivery.
+
+Risk: File output can write reminder text to shared or sensitive paths.
+
+Mitigation: Use explicit, private file paths for file notifications and avoid shared locations for logs containing personal reminders.
+
+## Reference(s):
+
+- [Birthday Config Schema](references/config-schema.md)
+- [ClawHub Skill Page](https://clawhub.ai/905583906/skills/birthday-reminder-cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local JSON configuration guidance and command-line reminder checks; notification text may be sent only through user-configured channels.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

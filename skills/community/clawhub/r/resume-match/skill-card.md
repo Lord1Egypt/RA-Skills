@@ -1,41 +1,54 @@
-## Description: <br>
-Match resume against a job description. Quantified scoring and prioritized improvement tips. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Match resume against a job description. Quantified scoring and prioritized improvement tips.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Job seekers, career advisors, and recruiting-support users use this skill to compare resumes against a specific job description, quantify fit, identify gaps, and prioritize truthful resume improvements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes resumes and job descriptions that may contain sensitive career or personal details. <br>
-Mitigation: Share only details needed for the match report and review generated resume changes before using them. <br>
-Risk: Resume rewrite suggestions could overstate or misrepresent a candidate's experience if applied without review. <br>
-Mitigation: Use only truthful edits supported by the resume and confirm all optimized wording before submission. <br>
+## Use Case:
 
+External users and career-focused agents use this skill to compare resumes against specific job descriptions, score fit, identify requirement gaps, and draft truthful resume improvements.
 
-## Reference(s): <br>
-- [Resume Match skill page](https://clawhub.ai/harrylabsj/resume-match) <br>
-- [Publisher profile](https://clawhub.ai/user/harrylabsj) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown report with score breakdowns, gap tables, prioritized changes, rewrite suggestions, and keyword comparisons] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No hidden tool, MCP, API key, or credential requirements were detected in the reviewed evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Resumes and job descriptions can contain personal, employment, and contact information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only submit materials the user is comfortable sharing with the agent or connected model/provider, and remove unnecessary sensitive details before analysis.
+
+Risk: Resume rewrites could overstate experience or imply qualifications not present in the source resume.
+
+Mitigation: Keep optimization grounded in facts supplied by the user and review rewritten sections before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/resume-match)
+- [Publisher profile](https://clawhub.ai/user/harrylabsj)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with scoring, tables, prioritized recommendations, and rewritten resume text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include an overall score, dimension breakdown, gap analysis table, 2x2 skills matrix, keyword density comparison, and side-by-side original versus optimized resume sections.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

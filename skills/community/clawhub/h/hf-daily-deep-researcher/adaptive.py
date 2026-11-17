@@ -17,7 +17,8 @@ from typing import List, Dict, Tuple
 class AdaptiveTracker:
     def __init__(self, skill_dir: str = None):
         if skill_dir is None:
-            skill_dir = os.path.expanduser("~/.openclaw/workspace/skills/hf-daily-deep-researcher")
+            # 从脚本位置推导，适配任意安装路径
+            skill_dir = os.path.dirname(os.path.abspath(__file__))
         self.skill_dir = skill_dir
         self.config_path = os.path.join(skill_dir, "config.json")
         self.keywords_path = os.path.join(skill_dir, "keywords.json")

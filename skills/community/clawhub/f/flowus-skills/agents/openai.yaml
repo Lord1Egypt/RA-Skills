@@ -1,0 +1,4 @@
+interface:
+  display_name: "FlowUs CLI"
+  short_description: "Use the FlowUs CLI safely for authorized API, content, and file tasks."
+  default_prompt: "Use $flowus-cli to inspect the FlowUs CLI and authentication state, obtain explicit approval before installing, updating, or logging in, inspect CLI help, and run authorized FlowUs commands."

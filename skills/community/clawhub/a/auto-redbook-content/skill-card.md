@@ -1,42 +1,54 @@
-## Description: <br>
-A Xiaohongshu hot-post fetching and human-style rewrite prompt helper that stores results as local JSON files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小红书热点抓取与去AI味改写工具。抓取首页热点→生成去AI味改写提示词→本地存储。
 
-## Publisher: <br>
-[Shaojie66](https://clawhub.ai/user/Shaojie66) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shaojie66](https://clawhub.ai/user/shaojie66)
 
-## Use Case: <br>
-External users and content operators use this skill to gather Xiaohongshu-style hot post data, generate rewrite prompts that sound less AI-written, and save the resulting prompt package locally for later review or editing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Fetched content and generated rewrite prompts remain in local output JSON files until removed. <br>
-Mitigation: Delete generated output files when they are no longer needed and avoid storing sensitive content in fetched or rewritten material. <br>
-Risk: Real fetching may depend on an external Xiaohongshu MCP tool supplied by the agent environment. <br>
-Mitigation: Review the MCP tool's permissions and network behavior in the target agent environment before use. <br>
+## Use Case:
 
+External creators and operators use this skill to collect Xiaohongshu-oriented note data, generate less AI-styled rewrite prompts, and save structured local JSON outputs for review or downstream drafting.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Shaojie66/auto-redbook-content) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact changelog](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, guidance] <br>
-**Output Format:** [JSON files containing source note fields, metadata, and rewrite prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local files under output/; XHS_MAX_RESULTS controls the requested note count.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.5.2 (source: frontmatter, package.json, changelog, server release metadata) <br>
+Risk: The workflow may depend on an OpenClaw-provided Xiaohongshu MCP integration for real network scraping, while the included scripts otherwise produce mock/sample data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat bundled outputs as samples unless a reviewed Xiaohongshu MCP integration is available and approved for the deployment environment.
+
+Risk: XHS_MAX_RESULTS controls requested result count, and the security guidance notes that range validation is not yet clear.
+
+Mitigation: Keep XHS_MAX_RESULTS small until explicit range validation is added and verified.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shaojie66/skills/auto-redbook-content)
+- [Publisher profile](https://clawhub.ai/user/shaojie66)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance, Configuration]
+
+**Output Format:** [JSON files containing source note fields, metadata, and rewrite prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes output/xiaohongshu_YYYYMMDD_HHMMSS.json and uses XHS_MAX_RESULTS to control the requested count.]
+
+## Skill Version(s):
+
+2.5.2 (source: frontmatter, package.json, CHANGELOG, ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

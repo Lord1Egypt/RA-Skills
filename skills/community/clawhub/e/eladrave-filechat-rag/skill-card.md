@@ -1,43 +1,64 @@
-## Description: <br>
-FileChat RAG helps agents sync Google Drive folders into local vector indexes and answer or retrieve files using semantic search over document chunks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, retrieve, and chat with documents stored in Google Drive folders using semantic vector search.
 
-## Publisher: <br>
-[eladrave](https://clawhub.ai/user/eladrave) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eladrave](https://clawhub.ai/user/eladrave)
 
-## Use Case: <br>
-Developers and end users use FileChat RAG to let an agent index selected Google Drive folders, retrieve relevant document snippets, answer questions with file citations, and download requested files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can recursively process selected Google Drive files and send document text, image contents, and search queries to Gemini or OpenAI. <br>
-Mitigation: Use a dedicated Drive folder and dedicated API keys, and avoid regulated or highly sensitive files unless policy allows third-party AI processing. <br>
-Risk: The skill keeps extracted text and embeddings in local vector_db files. <br>
-Mitigation: Limit workspace access and delete generated vector_db files when the index is no longer needed. <br>
+## Use Case:
 
+Developers and external users use this skill to index Google Drive folders, retrieve relevant document snippets, answer questions over saved files, and download or store files through an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eladrave/eladrave-filechat-rag) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
-- [OpenAI embeddings API](https://api.openai.com/v1/embeddings) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, retrieved text snippets, filenames, file IDs, and optional media attachment paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Google Drive folder ID and Gemini or OpenAI API credentials; stores per-folder vector_db JSON files locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata; artifact package.json reports 1.0.0) <br>
+Risk: The skill recursively reads Google Drive folder contents, including subfolders and shortcuts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped folder and review the folder contents before syncing.
+
+Risk: Document text, images, and search queries may be sent to Gemini or OpenAI for OCR and embeddings.
+
+Mitigation: Avoid regulated or highly confidential files unless the deployment has appropriate consent, data handling, and provider controls.
+
+Risk: The local vector index stores raw document text and API keys are kept in a local environment file.
+
+Mitigation: Protect the workspace, restrict file access, rotate exposed keys, and add deletion or cleanup controls for generated indexes.
+
+Risk: Dependencies and command-line tools are installed and executed from the Node and Google Workspace ecosystems.
+
+Mitigation: Pin and review dependencies and run the skill in an isolated environment before broader use.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/eladrave/skills/eladrave-filechat-rag)
+- [Artifact README](artifact/README.md)
+- [OpenAI embeddings API endpoint](https://api.openai.com/v1/embeddings)
+- [Gemini embedding API endpoint](https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:embedContent)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands and retrieved text snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local JSON vector index files and file attachment instructions when retrieving documents.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

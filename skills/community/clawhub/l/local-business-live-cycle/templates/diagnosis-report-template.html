@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>门店线上获客诊断报告</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0d0d1a;
+    color: #e0e0f0;
+    font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .container { max-width: 800px; width: 100%; }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .header h1 {
+    font-size: 26px;
+    background: linear-gradient(90deg, #f7971e, #ffd200);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .header .meta {
+    color: #7777aa;
+    font-size: 13px;
+    margin-top: 8px;
+  }
+  .header .store-name {
+    color: #ffd200;
+    font-size: 18px;
+    margin-top: 6px;
+  }
+
+  /* Score Ring */
+  .score-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+  .score-ring {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: conic-gradient(#ffd200 0deg, #f7971e 0deg, #1a1a3a 0deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .score-ring .inner {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: #0d0d1a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .score-ring .inner .num {
+    font-size: 42px;
+    font-weight: bold;
+    background: linear-gradient(90deg, #ffd200, #f7971e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .score-ring .inner .label {
+    font-size: 12px;
+    color: #8888aa;
+    margin-top: 4px;
+  }
+
+  /* Summary Card */
+  .summary {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+  }
+  .summary h2 {
+    font-size: 16px;
+    color: #ffd200;
+    margin-bottom: 12px;
+  }
+  .summary p {
+    line-height: 1.8;
+    color: #ccccee;
+    font-size: 14px;
+  }
+
+  /* Killer Issues */
+  .killer-box {
+    background: rgba(239,68,68,0.08);
+    border: 1px solid rgba(239,68,68,0.3);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 24px;
+  }
+  .killer-box h3 {
+    color: #ef4444;
+    font-size: 15px;
+    margin-bottom: 8px;
+  }
+  .killer-box p {
+    color: #fca5a5;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .killer-box .killer-none {
+    color: #22c55e;
+  }
+
+  /* Stress Test */
+  .stress-box {
+    background: rgba(139,92,246,0.06);
+    border: 1px solid rgba(139,92,246,0.25);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 24px;
+  }
+  .stress-box h3 {
+    color: #a78bfa;
+    font-size: 15px;
+    margin-bottom: 8px;
+  }
+  .stress-box p {
+    color: #c4b5fd;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  /* Dimension Cards */
+  .dim-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .dim-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 16px;
+  }
+  .dim-card .dim-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .dim-card .dim-name {
+    font-size: 13px;
+    color: #aabbdd;
+  }
+  .dim-card .dim-score {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .dim-card .dim-score.t1 { color: #22c55e; }
+  .dim-card .dim-score.t2 { color: #4ade80; }
+  .dim-card .dim-score.t3 { color: #ffd200; }
+  .dim-card .dim-score.t4 { color: #ef4444; }
+
+  /* Progress bar */
+  .dim-card .bar-bg {
+    height: 6px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .dim-card .bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 1s ease;
+  }
+  .dim-card .bar-fill.t1 { background: linear-gradient(90deg, #22c55e, #4ade80); }
+  .dim-card .bar-fill.t2 { background: linear-gradient(90deg, #4ade80, #ffd200); }
+  .dim-card .bar-fill.t3 { background: linear-gradient(90deg, #f59e0b, #ffd200); }
+  .dim-card .bar-fill.t4 { background: linear-gradient(90deg, #dc2626, #ef4444); }
+
+  .dim-card .dim-detail {
+    font-size: 12px;
+    color: #6666aa;
+    margin-top: 8px;
+  }
+
+  /* Radar Chart */
+  .chart-wrap {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+  .chart-wrap canvas { max-height: 320px; }
+
+  /* Actions */
+  .action-box {
+    background: linear-gradient(135deg, rgba(255,210,0,0.08), rgba(247,151,30,0.08));
+    border: 1px solid rgba(255,210,0,0.2);
+    border-radius: 16px;
+    padding: 20px 20px 10px;
+    margin-bottom: 20px;
+  }
+  .action-box h3 {
+    color: #ffd200;
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+  .action-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.03);
+  }
+  .action-badge {
+    flex-shrink: 0;
+    min-width: 56px;
+    padding: 3px 8px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 0.5px;
+  }
+  .action-badge.urgent {
+    background: rgba(239,68,68,0.2);
+    color: #ef4444;
+    border: 1px solid rgba(239,68,68,0.3);
+  }
+  .action-badge.this-week {
+    background: rgba(245,158,11,0.15);
+    color: #f59e0b;
+    border: 1px solid rgba(245,158,11,0.25);
+  }
+  .action-badge.next-week {
+    background: rgba(34,197,94,0.12);
+    color: #22c55e;
+    border: 1px solid rgba(34,197,94,0.2);
+  }
+  .action-item .action-text {
+    font-size: 14px;
+    color: #ccccee;
+    line-height: 1.5;
+    padding-top: 2px;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    color: #444477;
+    font-size: 11px;
+    padding: 20px 0;
+  }
+
+  @media (max-width: 600px) {
+    .dim-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <h1>🏪 门店线上获客诊断报告</h1>
+    <p class="store-name">门店：{store_name}</p>
+    <p class="meta">诊断日期：{diagnosis_date} | 诊断人：{diagnostician}</p>
+  </div>
+
+  <!-- Overall Score -->
+  <div class="score-wrap">
+    <div class="score-ring" style="background: conic-gradient(#ffd200 {score_deg}deg, #1a1a3a {score_deg}deg);">
+      <div class="inner">
+        <div class="num">{total_score}</div>
+        <div class="label">{stage_label}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Key Finding -->
+  <div class="summary">
+    <h2>🔍 诊断结论</h2>
+    <p>{key_finding}</p>
+  </div>
+
+  <!-- Killer Issues -->
+  <div class="killer-box">
+    <h3>🚧 致命硬伤敲警钟</h3>
+    <p>{killer_issues}</p>
+  </div>
+
+  <!-- Stress Test -->
+  <div class="stress-box">
+    <h3>⚡ 压力测试 — 如果明天变天</h3>
+    <p>{stress_test}</p>
+  </div>
+
+  <!-- Radar Chart -->
+  <div class="chart-wrap">
+    <canvas id="radarChart"></canvas>
+  </div>
+
+  <!-- Dimension Cards -->
+  <div class="dim-grid">
+    {dim_cards}
+  </div>
+
+  <!-- Action Items -->
+  <div class="action-box">
+    <h3>🎯 建议行动方案</h3>
+    {action_items}
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    本报告由 {diagnostician} 基于现场诊断生成 · {diagnosis_date}
+  </div>
+
+</div>
+
+<script>
+const ctx = document.getElementById('radarChart').getContext('2d');
+new Chart(ctx, {{
+  type: 'radar',
+  data: {{
+    labels: ['线上意识', '产品能力', '直播执行', '到店承接', '执行意愿'],
+    datasets: [{{
+      data: [{dim1}, {dim2}, {dim3}, {dim4}, {dim5}],
+      backgroundColor: 'rgba(255,210,0,0.15)',
+      borderColor: '#ffd200',
+      borderWidth: 2,
+      pointBackgroundColor: '#ffd200',
+      pointBorderColor: '#fff',
+      pointBorderWidth: 1,
+      pointRadius: 5
+    }}]
+  }},
+  options: {{
+    scales: {{
+      r: {{
+        min: 0, max: 100,
+        ticks: {{ stepSize: 20, color: '#6666aa', backdropColor: 'transparent' }},
+        grid: {{ color: 'rgba(255,255,255,0.06)' }},
+        angleLines: {{ color: 'rgba(255,255,255,0.06)' }},
+        pointLabels: {{ color: '#aabbdd', font: {{ size: 13 }} }}
+      }}
+    }},
+    plugins: {{ legend: {{ display: false }} }},
+    animation:{{duration:0}},
+    responsive: true,
+    maintainAspectRatio: true
+  }}
+}});
+</script>
+</body>
+</html>

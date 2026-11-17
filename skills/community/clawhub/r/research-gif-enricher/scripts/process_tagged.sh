@@ -87,7 +87,7 @@ if results: print(results[0].get('url', results[0].get('media', [{}])[0].get('gi
 
   # Fallback: search via web
   if [ -z "$GIF_URL" ]; then
-    GIF_URL=$(curl -s "https://tenor.googleapis.com/v2/search?q=$(python3 -c "import urllib.parse,sys; print(urllib.parse.quote(sys.argv[1]))" "$QUERY")&key=AIzaSyAyimkuYQYF_FXVALexPuGQctUWRURdCYQ&limit=1" 2>/dev/null | python3 -c "
+    GIF_URL=$(curl -s "https://tenor.googleapis.com/v2/search?q=$(python3 -c "import urllib.parse,sys; print(urllib.parse.quote(sys.argv[1]))" "$QUERY")&key=REDACTED-SECRET&limit=1" 2>/dev/null | python3 -c "
 import sys, json
 data = json.load(sys.stdin)
 results = data.get('results', [])

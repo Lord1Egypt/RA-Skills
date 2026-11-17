@@ -1,37 +1,56 @@
-## Description: <br>
-Sends Wake-on-LAN and Sleep-on-LAN packets for a configured PC on a local network. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send Wake-on-LAN and Sleep-on-LAN UDP packets for a configured PC on a local network.
 
-## Publisher: <br>
-[oblivisheee](https://clawhub.ai/user/oblivisheee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[oblivisheee](https://clawhub.ai/user/oblivisheee)
 
-## Use Case: <br>
-Developers, operators, and local-network administrators use this skill to let an agent wake or sleep a PC by sending explicit LAN power-control packets with configured MAC, broadcast address, and port values. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Misconfigured MAC, inverted MAC, broadcast address, or port values could send wake or sleep packets to the wrong target or network segment. <br>
-Mitigation: Configure only devices you control, verify all target network settings before use, and run the skill only after an explicit wake or sleep request. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oblivisheee/wol-sleep-pc) <br>
+## Use Case:
 
+Developers and technically capable users use this skill to wake or sleep a specific PC on a LAN by sending explicitly configured WOL or SOL packets.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces UDP LAN power-control actions through bundled Python scripts; requires user-provided target network settings.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Packets may be sent to the wrong device or network if MAC, sleep_mac, broadcast address, or port values are misconfigured.
+
+Mitigation: Configure these values explicitly for a PC and LAN you control, and verify the target details before executing the helper scripts.
+
+Risk: The skill does not verify target device status before or after sending WOL or SOL packets.
+
+Mitigation: Confirm the device state through an independent local check when the result matters.
+
+Risk: The optional local config file can reveal device identifiers and network details.
+
+Mitigation: Keep the config file private and avoid committing or sharing it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/oblivisheee/skills/wol-sleep-pc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute local Python helper scripts that send UDP broadcast packets when explicitly requested.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

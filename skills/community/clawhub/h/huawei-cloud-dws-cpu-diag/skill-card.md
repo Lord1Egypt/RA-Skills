@@ -1,46 +1,60 @@
-## Description: <br>
-Diagnoses high CPU conditions in Huawei Cloud DWS clusters by collecting CPU metrics through KooCLI or the DWS Autopilot MCP Server, analyzing customer-side or system-side causes, and producing a standardized diagnosis report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnoses high CPU usage in Huawei Cloud DWS clusters from monitoring and host data and produces a standardized report.
 
-## Publisher: <br>
-[huaweiclouddev](https://clawhub.ai/user/huaweiclouddev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huaweicloudskill](https://clawhub.ai/user/huaweicloudskill)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to investigate DWS cluster high CPU alarms, CPU load anomalies, and user-initiated CPU diagnosis requests. It gathers cluster metrics, host data, concurrency information, query details, and process usage before generating a factual HTML diagnosis report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installation references include OBS and obsutil setup that is not needed for DWS CPU diagnosis. <br>
-Mitigation: Follow only the DWS, KooCLI, and DWS Autopilot MCP setup steps unless OBS tooling is independently required. <br>
-Risk: Credential setup can expose Huawei Cloud AK/SK secrets if entered directly in shell commands or conversation. <br>
-Mitigation: Use interactive configuration or protected environment/config files, avoid command-line secrets, and grant only the read-only DWS permissions listed in the IAM policy reference. <br>
-Risk: Generated HTML diagnosis reports may contain operational details such as cluster identifiers, users, queries, process names, and timestamps. <br>
-Mitigation: Treat generated reports as sensitive operational data and share them only with authorized reviewers. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to investigate DWS CPU alarms, identify likely customer-side or system-side causes, and review the findings in a diagnosis report.
 
-## Reference(s): <br>
-- [CLI Installation Guide](references/cli-installation-guide.md) <br>
-- [DWS Autopilot MCP Server Installation Guide](references/dws-mcp-installation-guide.md) <br>
-- [IAM Policies](references/iam-policies.md) <br>
-- [Metric Reference](references/metric-reference.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/huaweiclouddev/skills/huawei-cloud-dws-cpu-diag) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, HTML, shell commands, API calls, configuration guidance] <br>
-**Output Format:** [Text summary and complete HTML diagnosis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The report is generated from tool-returned data, uses Beijing time for displayed timestamps, and may be saved as dws_cpu_diagnosis_report_{timestamp}.html.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server evidence release.version) <br>
+Risk: Monitoring, host, and SQL diagnostics may expose sensitive operational data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Grant only the required read permissions and restrict access to generated reports.
+
+Risk: The installation guidance can expose access keys in command history or plaintext configuration.
+
+Mitigation: Do not put keys in shell commands or chat; protect configuration files with restrictive permissions and use least-privilege credentials.
+
+Risk: Incomplete HTML escaping of dynamic report fields may allow unsafe content when a report is opened in a browser.
+
+Mitigation: Escape all dynamic fields before viewing or sharing reports from untrusted clusters, or open them with scripts disabled.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/huaweicloudskill/skills/huawei-cloud-dws-cpu-diag)
+- [DWS Autopilot MCP installation guide](artifact/references/dws-mcp-installation-guide.md)
+- [IAM policies](artifact/references/iam-policies.md)
+- [Metric reference](artifact/references/metric-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, HTML report file]
+
+**Output Format:** [HTML diagnosis report with a brief diagnosis summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Saves a local report containing cluster diagnostics and potentially sensitive SQL and host data; report times use Beijing time.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

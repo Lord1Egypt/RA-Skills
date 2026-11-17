@@ -1,0 +1,3 @@
+# Guided official Tencent OAuth/MCP route; no COS SDK required.
+-r requirements-documents.txt
+keyring>=25.0,<26

@@ -1,40 +1,52 @@
-## Description: <br>
-融合七窍玲珑、五维共振与量化闭环的交易 analysis skill for identifying trend, range, timing, signal, and risk-management conditions across XAU/USD and other tradable instruments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+融合七窍玲珑、五维共振和量化闭环的交易-analysis skill for evaluating tradable instruments with multi-factor trend confirmation, dual trend/range modes, position sizing, and risk-management review.
 
-## Publisher: <br>
-[freeman88-tch](https://clawhub.ai/user/freeman88-tch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[freeman88-tch](https://clawhub.ai/user/freeman88-tch)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and trading analysts use this skill to structure technical-analysis workflows for XAU/USD and other tradable instruments, including trend confirmation, trade planning, execution checks, risk controls, and post-trade review.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Trading guidance may be financially risky or misleading if market assumptions are stale, incomplete, or unsuitable for the user's instrument and time horizon.
+
+Mitigation: Review all trading assumptions, position sizing, and risk controls before use, and treat the skill output as decision support rather than financial advice.
+
+Risk: The artifact names a Beijing-time core trading window that may not match every user's market, liquidity conditions, or local workflow.
+
+Mitigation: Confirm that the stated trading window is appropriate for the target instrument and market context before relying on time-based signals.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and trading analysts use this skill to structure technical analysis, trade planning, risk checks, and review workflows for XAU/USD and other tradable instruments. Outputs should be treated as analysis guidance, not financial advice or guaranteed trading decisions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: Trading analysis output may be mistaken for financial advice or a guaranteed signal. <br>
-Mitigation: Review outputs independently, do not use them as the sole basis for real trades, and do not grant the agent broker access or trade-execution authority. <br>
-Risk: The skill references external knowledge-base material that is not included in the artifact. <br>
-Mitigation: Review the referenced knowledge-base material before applying the workflow to real positions. <br>
+**Output Format:** [Markdown trading-analysis guidance and structured decision support]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freeman88-tch/trading-system-v4) <br>
+**Other Properties Related to Output:** [No executable code, account access, credential use, persistence, or hidden system changes are identified in the server security evidence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code, shell commands, credentials, or system access are present in the submitted artifact.] <br>
+1.0.0 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,10 @@
+{
+  "model": "doubao-seedance-2-5-260628",
+  "prompt": "Create one five-second lifestyle ad for US customers using the exact portable projector in the supplied image. Preserve the product shape, color, lens, controls, and branding throughout. Start with a clear close-up, then move slowly into a cozy evening setting. Use no price, discount, unsupported feature claims, invented accessories, or added text.",
+  "duration_seconds": 5,
+  "resolution": "720p",
+  "aspect_ratio": "16:9",
+  "reference_image_urls": [
+    "https://example.com/projector.jpg"
+  ]
+}

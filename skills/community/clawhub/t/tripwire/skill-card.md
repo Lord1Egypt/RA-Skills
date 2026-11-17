@@ -1,41 +1,58 @@
-## Description: <br>
-Tripwire host-based IDS reference. Cryptographic key setup, database initialization, integrity checks, policy rules with severity levels, twcfg.txt configuration, and report analysis with twprint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tripwire host-based IDS reference. Cryptographic key setup, database initialization, integrity checks, policy rules with severity levels, twcfg.txt configuration, and report analysis with twprint.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers and system administrators use this skill as a Tripwire administration reference for installing Tripwire, initializing the baseline database, running integrity checks, updating policies and configuration, and reviewing reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tripwire administrative examples can affect production monitoring baselines, policies, configuration, or reporting if run without review. <br>
-Mitigation: Review and adapt commands before use, test changes in an approved environment, and avoid blindly running examples on production systems. <br>
-Risk: Tripwire keys, passphrases, plaintext policy/configuration files, and alerting webhooks can expose sensitive security controls. <br>
-Mitigation: Protect key material and webhook secrets, use approved alert destinations, and remove plaintext policy and configuration files after signing when operationally appropriate. <br>
+## Use Case:
 
+Developers and system administrators use this skill as Tripwire administration reference material for host integrity monitoring, including setup, baseline initialization, policy configuration, integrity checks, and report review.
 
-## Reference(s): <br>
-- [Tripwire on ClawHub](https://clawhub.ai/bytesagain1/tripwire) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration guidance, Text guidance] <br>
-**Output Format:** [Markdown with command tables and inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reference output is selected by command name; administrative examples require review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Package install, update, Tripwire administration, and file deletion examples can affect host configuration if copied directly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adapt commands before running them, follow normal change control, and test on non-production hosts when practical.
+
+Risk: Removing plaintext Tripwire config or policy files can make recovery harder if signed files or keys are unavailable.
+
+Mitigation: Confirm signed Tripwire files and required keys are available, and keep approved backups before deleting plaintext configuration files.
+
+Risk: Cron, email, Slack, or other alerting examples can reveal host names or integrity events.
+
+Mitigation: Use approved alert destinations, replace placeholders, and avoid exposing host details outside authorized monitoring channels.
+
+## Reference(s):
+
+- [ClawHub Tripwire Skill](https://clawhub.ai/bytesagain1/skills/tripwire)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style reference text with bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command-oriented reference output; examples require review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

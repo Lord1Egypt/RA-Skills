@@ -1,42 +1,59 @@
-## Description: <br>
-Build, evaluate, and tune a Polymarket BTC 1h Up/Down trading strategy using Binance BTCUSDT data as the resolution anchor for fair-probability modeling, regime filtering, and fill analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build, evaluate, and tune a Polymarket BTC 1h Up/Down trading strategy using Binance BTCUSDT market data as the resolution anchor.
 
-## Publisher: <br>
-[parkhyeongjoon](https://clawhub.ai/user/parkhyeongjoon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[parkhyeongjoon](https://clawhub.ai/user/parkhyeongjoon)
 
-## Use Case: <br>
-Developers and trading-system operators use this skill to analyze Polymarket BTC 1h Up/Down markets, estimate fair Up/Down probabilities from Binance BTCUSDT data, tune entry and exit parameters, and explain fills from local event logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence marks the release as suspicious. <br>
-Mitigation: Install only in a trusted environment and review the artifact files and commands before running the skill. <br>
-Risk: Bundled scripts make network requests to Binance and can use local trade-event logs. <br>
-Mitigation: Run the scripts with the intended symbol, event-log path, and network access, and review outputs before using them to inform trading decisions. <br>
+## Use Case:
 
+Developers and trading-system operators use this skill to analyze Polymarket BTC 1h Up/Down markets, estimate fair probabilities from Binance BTCUSDT data, tune entry and exit rules, and explain paper-trading fills.
 
-## Reference(s): <br>
-- [Strategy reference](references/strategy.md) <br>
-- [Binance API endpoint](https://api.binance.com) <br>
-- [ClawHub skill page](https://clawhub.ai/parkhyeongjoon/polymarket-trader-1-0-0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with Python script commands and JSON or tabular command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bundled scripts fetch public Binance market data and may read local events.jsonl files when explaining fills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Financial strategy analysis may be incorrect or unsuitable for a real trading decision.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Independently verify calculations, market assumptions, and paper-trading results before acting on any output.
+
+Risk: Live Binance requests may fail, return stale data, or be unavailable in a given environment.
+
+Mitigation: Check request status, timestamps, and the selected symbol before using generated analysis.
+
+Risk: Local fill logs may reveal sensitive trading activity.
+
+Mitigation: Run the skill only in trusted workspaces and avoid sharing generated analyses that include private fill history.
+
+## Reference(s):
+
+- [Strategy reference](references/strategy.md)
+- [Binance API](https://api.binance.com)
+- [Polymarket Trader on ClawHub](https://clawhub.ai/parkhyeongjoon/skills/polymarket-trader-1-0-0)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON or table outputs from bundled scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include live Binance market-data requests and local events.jsonl fill-log analysis.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact _meta.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

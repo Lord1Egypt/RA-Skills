@@ -1,40 +1,53 @@
-## Description: <br>
-Designs, optimizes, and audits call-to-action (CTA) buttons, including copy, placement, visual hierarchy, technical states, and accessibility checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents design, optimize, and audit call-to-action buttons with guidance on copy, visual hierarchy, placement, accessibility, and testing.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Developers, designers, and marketers use this skill to generate or review CTA copy, visual hierarchy, placement, and accessibility behavior for pages and product flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use project context files when generating CTA recommendations, which can expose sensitive or unrelated project information to the agent workflow. <br>
-Mitigation: Keep sensitive or unrelated information out of .claude/project-context.md and .cursor/project-context.md when it should not influence CTA guidance. <br>
-Risk: CTA recommendations may not improve conversion for every audience, page, or product context. <br>
-Mitigation: Validate high-impact changes with A/B testing and track click-through rate and conversion rate before broad rollout. <br>
+## Use Case:
 
+Developers, designers, and product teams use this skill to create or review conversion-focused CTA buttons across hero sections, forms, pricing pages, and product pages.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/cta-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with CTA copy suggestions, design notes, placement recommendations, and accessibility checklist items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no executable code, install steps, credentials, or broad system access are part of the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: frontmatter and release evidence) <br>
+Risk: The skill may activate for broad button-design requests where CTA-specific guidance is only partly relevant.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the request involves a conversion-oriented action before applying CTA-specific recommendations.
+
+Risk: The skill may read local project context files for conversion goals when those files exist.
+
+Mitigation: Use only the goal-level context needed for CTA guidance and avoid exposing sensitive project details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/cta-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with CTA copy suggestions, design notes, placement recommendations, accessibility checks, and small implementation snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read local project context files for conversion goals when those files exist.]
+
+## Skill Version(s):
+
+1.1.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

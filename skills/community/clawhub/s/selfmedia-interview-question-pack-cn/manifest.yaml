@@ -1,0 +1,31 @@
+name: selfmedia-interview-question-pack-cn
+slug: selfmedia-interview-question-pack-cn
+display_name: 采访问题与追问清单
+description: 输入受访者公开资料、采访主题与时长，生成一份按叙事主线排列的中文采访问题、条件式追问和录制前素材核对点。适用于人物、品牌或专题对话；只依据用户提交的材料，不编造受访者观点。缺少公开资料、主题或时长时，清楚列出缺项并提供补充格式；长材料会要求分批处理。
+version: 1.0.0
+icon: icon-512.png
+repository: https://github.com/xxjrq/selfmedia-interview-question-pack-cn
+license: MIT-0
+tags:
+  - interview
+  - content-creation
+  - chinese
+  - editorial
+  - self-media
+trigger_words:
+  - 采访提纲
+  - 采访问题
+  - 追问清单
+triggers:
+  - 为受访者生成采访问题和追问
+  - 根据公开资料编排采访提纲
+  - 制作中文人物访谈问题清单
+interface:
+  display_name: 采访问题与追问清单
+  short_description: 将公开资料整理成有主线的中文采访问题、追问与录制前核对点
+  default_prompt: 请根据我提供的受访者公开资料、采访主题和时长，生成采访问题、条件式追问和素材核对点；如缺资料请先列出缺项。
+  icon_small: icon-512.png
+  icon_large: icon-512.png
+policy:
+  allow_implicit_invocation: true
+self_test: python3 scripts/self_test.py

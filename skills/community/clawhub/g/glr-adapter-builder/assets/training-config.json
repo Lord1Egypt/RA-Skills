@@ -1,0 +1,48 @@
+{
+  "schema_version": "glr.training.v1",
+  "lifecycle": {
+    "start_mode": "reset",
+    "stop_on_done": true
+  },
+  "bridge": {
+    "required_capabilities": []
+  },
+  "knowledge_sources": [
+    {
+      "id": "runtime",
+      "authority": "authoritative",
+      "required": true,
+      "max_age_seconds": 0,
+      "max_payload_bytes": 65536
+    },
+    {
+      "id": "guide-research",
+      "authority": "advisory",
+      "required": false,
+      "max_age_seconds": 604800,
+      "max_payload_bytes": 16384
+    }
+  ],
+  "reward": {
+    "minimum": -20,
+    "maximum": 20,
+    "terms": [
+      {
+        "name": "progress",
+        "source": "runtime",
+        "weight": 1,
+        "minimum": -1,
+        "maximum": 1,
+        "required": true
+      },
+      {
+        "name": "outcome",
+        "source": "runtime",
+        "weight": 10,
+        "minimum": -1,
+        "maximum": 1,
+        "required": false
+      }
+    ]
+  }
+}

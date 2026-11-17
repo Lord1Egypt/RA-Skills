@@ -1,41 +1,55 @@
-## Description: <br>
-Autonomous inventory management and waste reduction agent for QSRs. Cross-references sales data with inventory levels to forecast ordering and flag excessive waste. Hardened with ThumbGate to prevent over-ordering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous inventory management and waste reduction agent for QSRs that cross-references sales data with inventory levels to forecast ordering, flag excessive waste, and use ThumbGate checks to prevent over-ordering.
 
-## Publisher: <br>
-[igorganapolsky](https://clawhub.ai/user/igorganapolsky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[igorganapolsky](https://clawhub.ai/user/igorganapolsky)
 
-## Use Case: <br>
-External QSR operators and inventory managers use this skill to monitor sales and inventory sheets, forecast restocking, flag waste or expiration risks, and apply ThumbGate checks before supply orders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes automated ordering and purchase-order authority without clear approval limits. <br>
-Mitigation: Start in recommendation-only or dry-run mode and require explicit human approval for each order with clear budget, vendor, and item limits. <br>
-Risk: The setup uses Google Sheets data and an npx ThumbGate command in the order-control path. <br>
-Mitigation: Connect only dedicated least-privilege Google Sheets and verify the ThumbGate npm package before running the setup command. <br>
+## Use Case:
 
+QSR operators and inventory teams use this skill to monitor sales and inventory sheets, identify waste patterns, generate restock recommendations, and block abnormal purchase workflows that exceed configured ThumbGate thresholds.
 
-## Reference(s): <br>
-- [Inventory Waste Optimizer on ClawHub](https://clawhub.ai/igorganapolsky/inventory-waste-optimizer) <br>
-- [Make.com](https://make.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and plain-text inventory recommendations or alerts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose restock actions and purchase-order creation; use only with explicit human approval and defined budget, vendor, and item limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server evidence) <br>
+Risk: Setup asks users to execute an unpinned third-party ThumbGate npm package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the package name, publisher, repository, and version before installation, then run a pinned reviewed version in a least-privilege environment.
+
+Risk: The skill may need access to business inventory, sales, ordering, or purchase-order workflows.
+
+Mitigation: Connect only the required Google Sheets, prefer read-only access unless write actions are intentionally needed, and require human approval for purchases or manual overrides.
+
+## Reference(s):
+
+- [Setup Guide](artifact/setup-guide.md)
+- [ThumbGate Prevention Rules](artifact/thumbgate-rules.md)
+- [Make.com](https://make.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and operational recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes restock recommendations, waste flags, alert-routing setup, and ThumbGate guardrail guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

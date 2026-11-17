@@ -1,42 +1,55 @@
-## Description: <br>
-Turn health notes, transcripts, or check-ins into non-diagnostic 8D pattern reviews with confidence levels and safe next steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn health notes, transcripts, or check-ins into non-diagnostic 8D pattern reviews with confidence levels and safe next steps.
 
-## Publisher: <br>
-[divinity-science](https://clawhub.ai/user/divinity-science) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[divinity-science](https://clawhub.ai/user/divinity-science)
 
-## Use Case: <br>
-External users can use this skill to turn self-reported health notes, transcripts, daily check-ins, or journal entries into concise 8D wellness signal reviews. It supports reflection, confidence-aware summaries, and low-risk next steps while avoiding diagnosis, treatment planning, medication advice, and emergency triage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may provide sensitive health notes for review. <br>
-Mitigation: Handle inputs as sensitive personal information and avoid requesting credentials, persistence, or unnecessary extra detail. <br>
-Risk: Wellness reflection could be mistaken for diagnosis, treatment advice, medication guidance, or urgent symptom triage. <br>
-Mitigation: Keep outputs non-diagnostic, use only user-provided evidence, recommend qualified medical care for diagnosis or treatment decisions, and escalate urgent symptoms to professional or emergency help. <br>
+## Use Case:
 
+External users and wellness-focused agents use this skill to turn health notes, transcripts, check-ins, or journal entries into concise, non-diagnostic 8D wellness pattern reviews. It maps supported signals to wellness dimensions, states confidence, and offers one low-risk next step while redirecting diagnosis, treatment, medication, and urgent symptoms to professional care.
 
-## Reference(s): <br>
-- [8D Dimensions Guide](8d-dimensions-guide.md) <br>
-- [Project homepage](https://github.com/divinity-science/8d-pattern-awareness) <br>
-- [ClawHub skill page](https://clawhub.ai/divinity-science/8d-wellness-awareness) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Concise Markdown-style wellness review with labeled sections, dimension abbreviations, confidence level, a narrow interpretation, one safe next step, and watch-outs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-diagnostic; uses user-provided evidence only; does not generate scores unless the input supplies a scoring framework.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill handles health-related notes and could be misused as diagnosis, treatment planning, medication guidance, or emergency triage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep outputs non-diagnostic, stay within user-provided evidence, provide only low-risk next steps, and redirect urgent or serious symptoms to clinicians or emergency services.
+
+Risk: Sparse wellness notes can lead to overconfident pattern claims.
+
+Mitigation: State confidence explicitly, narrow conclusions when evidence is thin, avoid fabricated scores, and ask for one clarifying detail when needed.
+
+## Reference(s):
+
+- [8D Dimensions Guide](artifact/8d-dimensions-guide.md)
+- [Project homepage](https://github.com/divinity-science/8d-pattern-awareness)
+- [ClawHub skill page](https://clawhub.ai/divinity-science/skills/8d-wellness-awareness)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with labeled sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-diagnostic wellness pattern review with confidence, safe next step, and watch-outs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

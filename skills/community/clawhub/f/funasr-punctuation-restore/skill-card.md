@@ -1,46 +1,58 @@
-## Description: <br>
-Restores Chinese and English punctuation for pasted text, single .txt files, or directories using the FunASR ct-punc model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Restores Chinese and English punctuation for pasted text, a single .txt file, or a directory of text files using the FunASR ct-punc model.
 
-## Publisher: <br>
-[wangminrui2022](https://clawhub.ai/user/wangminrui2022) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangminrui2022](https://clawhub.ai/user/wangminrui2022)
 
-## Use Case: <br>
-External users and developers use this skill to add punctuation to ASR transcripts, pasted text, individual UTF-8 .txt files, or batches of .txt files in a directory. It is limited to punctuation restoration and does not perform audio transcription, translation, or broader NLP tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes broad Python environment changes and downloads packages or model files at runtime. <br>
-Mitigation: Review before installing and run it only in an isolated Python environment where package changes and network downloads are acceptable. <br>
-Risk: Input text and file paths may be written to local logs during processing. <br>
-Mitigation: Avoid sensitive text if local logs are unacceptable, or review and control the log directory before use. <br>
-Risk: Directory mode recursively processes .txt files and creates a copied output tree. <br>
-Mitigation: Run directory mode only on folders intentionally selected for punctuation restoration and verify the output path before use. <br>
+## Use Case:
 
+External users and agent operators use this skill to clean up ASR transcripts or unpunctuated text by adding punctuation to direct text input, one text file, or every .txt file in a directory while preserving the original input.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangminrui2022/funasr-punctuation-restore) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/wangminrui2022) <br>
-- [FunASR ct-punc ModelScope model](https://modelscope.cn/models/damo/punc_ct-transformer_cn-en-common-vocab471067-large) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, files, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text, UTF-8 .txt files, and Markdown guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Directory mode writes a sibling _punctuated mirror directory and file mode writes a _punctuated text file without modifying the original input.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: The skill downloads and installs Python packages at runtime, including unpinned packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in an isolated environment and review dependency installation behavior before normal use.
+
+Risk: The skill creates persistent local artifacts such as a virtual environment, cached model files, logs, and punctuated output files.
+
+Mitigation: Use a workspace without sensitive credentials, review output and log locations, and avoid confidential text until logging behavior is addressed.
+
+Risk: The scanner notes unrelated audio dependencies and import-time package repair logic for a punctuation-only skill.
+
+Mitigation: Review or remove the unrelated dependencies and package repair logic before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangminrui2022/skills/funasr-punctuation-restore)
+- [FunASR ct-punc ModelScope model](https://modelscope.cn/models/damo/punc_ct-transformer_cn-en-common-vocab471067-large)
+
+## Skill Output:
+
+**Output Type(s):** [text, files, shell commands, guidance]
+
+**Output Format:** [Plain text output, UTF-8 .txt files, and Markdown command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Directory mode writes a sibling _punctuated directory and file mode writes a _punctuated.txt output without modifying the original input.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

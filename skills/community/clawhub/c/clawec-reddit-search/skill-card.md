@@ -1,42 +1,56 @@
-## Description: <br>
-Searches Reddit posts and discussions by keyword through the Clawec API for community sentiment, user-need discovery, and product research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Reddit posts and discussions by keyword through the ClawEC API to support community sentiment, user-need, and product-idea research.
 
-## Publisher: <br>
-[anyunzhong](https://clawhub.ai/user/anyunzhong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anyunzhong](https://clawhub.ai/user/anyunzhong)
 
-## Use Case: <br>
-Developers, agents, and ecommerce researchers use this skill to query public Reddit discussions by keyword, then summarize relevant posts, engagement, and product or user-need signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends Reddit search keywords and the Clawec API key to Clawec as part of its disclosed function. <br>
-Mitigation: Use only organization-approved search terms and credentials; avoid secrets, private customer data, unreleased product plans, or regulated information unless Clawec has been approved for that data. <br>
-Risk: Reddit search results are public discussions and may be anecdotal or context-dependent. <br>
-Mitigation: Treat summaries as research signals, not sales data or definitive market conclusions, and review linked discussions before making decisions. <br>
+## Use Case:
 
+External developers and agents use this skill to search public Reddit discussions through ClawEC, then summarize posts, engagement signals, and product or user-research observations.
 
-## Reference(s): <br>
-- [Reddit search response schema](references/response-schema.md) <br>
-- [ClawHub skill page](https://clawhub.ai/anyunzhong/clawec-reddit-search) <br>
-- [Clawec API base URL](https://www.clawec.com/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown summaries, tables, and optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Reddit post titles, subreddits, scores, comment counts, links, and concise research observations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Search keywords are sent to ClawEC as a third-party API provider and authenticated with CLAWEC_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive private search terms unless the use case permits it, read the key from the environment, and do not hard-code credentials.
+
+Risk: Public Reddit discussions may be incomplete, noisy, or misleading as indicators of market demand.
+
+Mitigation: Treat results as community discussion context, verify important claims, and do not present Reddit activity as sales data.
+
+## Reference(s):
+
+- [Reddit Search Response Schema](artifact/references/response-schema.md)
+- [ClawEC API Base URL](https://www.clawec.com/api)
+- [ClawEC API Key Page](https://www.clawec.com/api-key?source=q-clawhub)
+- [ClawHub Skill Page](https://clawhub.ai/anyunzhong/skills/clawec-reddit-search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown summaries with tables and optional bash commands; API responses are JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CLAWEC_API_KEY and sends the search keyword to the ClawEC API.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

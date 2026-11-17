@@ -1,48 +1,68 @@
-## Description: <br>
-Li Summarize helps agents configure and use the summarize CLI with OpenAI-compatible Chinese model providers to summarize URLs, local files, and YouTube links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarizes URLs, local files, and YouTube links through OpenAI-compatible Chinese model APIs such as Qianfan, DashScope, Hunyuan, Volcano Engine, Moonshot, and DeepSeek.
 
-## Publisher: <br>
-[43622283](https://clawhub.ai/user/43622283) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[43622283](https://clawhub.ai/user/43622283)
 
-## Use Case: <br>
-Developers and external users use this skill to install or configure the summarize CLI for OpenAI-compatible providers, especially Chinese model services. It supports summarizing web pages, local files, and YouTube links with provider-specific model and endpoint settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Summarized URLs, files, or YouTube content may be sent to the configured OpenAI-compatible model provider. <br>
-Mitigation: Use only approved providers and avoid sensitive documents, private URLs, or regulated data unless the provider is approved for that content. <br>
-Risk: The skill installs and relies on the @steipete/summarize npm package. <br>
-Mitigation: Install only when the npm package and configured model endpoint are trusted. <br>
-Risk: The summarize configuration file may store an API key and default endpoint settings under ~/.summarize/config.json. <br>
-Mitigation: Review the configuration file after setup and protect or remove stored credentials when environment variables are preferred. <br>
+## Use Case:
 
+Developers and knowledge workers use this skill to configure and run the summarize CLI for web pages, local documents, and YouTube videos using OpenAI-compatible model providers, especially China-hosted providers.
 
-## Reference(s): <br>
-- [Li Summarize on ClawHub](https://clawhub.ai/43622283/li-summarize) <br>
-- [summarize CLI](https://summarize.sh) <br>
-- [Baidu QianFan](https://cloud.baidu.com/product/wenxinworkshop) <br>
-- [Aliyun Dashscope](https://dashscope.aliyuncs.com/) <br>
-- [Tencent Hunyuan](https://cloud.tencent.com/product/hunyuan) <br>
-- [DeepSeek Platform](https://platform.deepseek.com/) <br>
-- [Zhipu AI](https://open.bigmodel.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate or update summarize CLI configuration under ~/.summarize.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: Input content and summaries may be sent to third-party model APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential local files or private videos unless the configured provider is trusted, or use a local endpoint such as Ollama.
+
+Risk: The installer can install an unpinned global npm package.
+
+Mitigation: Review the package before installation and prefer a pinned or local install of the summarize CLI.
+
+Risk: API keys may be stored in the user's summarize configuration file.
+
+Mitigation: Prefer environment variables for secrets, and restrict ~/.summarize to chmod 700 and ~/.summarize/config.json to chmod 600 if keys are stored there.
+
+Risk: Setup scripts write configuration under the user's home directory.
+
+Mitigation: Do not run the installer as root, and review generated configuration before using it with real data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/43622283/skills/li-summarize)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/43622283)
+- [summarize CLI](https://summarize.sh)
+- [Baidu QianFan](https://cloud.baidu.com/product/wenxinworkshop)
+- [Alibaba DashScope](https://dashscope.aliyuncs.com/)
+- [Tencent Hunyuan](https://cloud.tencent.com/product/hunyuan)
+- [DeepSeek Platform](https://platform.deepseek.com/)
+- [Zhipu AI](https://open.bigmodel.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can guide JSON output from the underlying summarize CLI when requested by the user.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release evidence; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

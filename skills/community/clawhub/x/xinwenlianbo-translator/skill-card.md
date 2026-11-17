@@ -1,43 +1,60 @@
-## Description: <br>
-This skill translates CCTV XinWenLianBo (新闻联播) official language into plain Chinese that educated general audiences can understand. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+新闻联播中翻中 translates CCTV XinWenLianBo official language into plain Chinese, fetching public transcripts from tv.cctv.com, decoding bureaucratic phrasing, identifying policy signals, and producing structured summaries.
 
-## Publisher: <br>
-[ltryee](https://clawhub.ai/user/ltryee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ltryee](https://clawhub.ai/user/ltryee)
 
-## Use Case: <br>
-External users and analysts use this skill to fetch, translate, explain, and summarize CCTV XinWenLianBo transcripts into plain Chinese while separating reported facts from interpretive policy-signal analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad shorthand trigger words can activate the skill when the user did not intend to analyze XinWenLianBo content. <br>
-Mitigation: Invoke it with explicit terms such as “新闻联播” or “央视新闻联播”, matching the server-provided security guidance. <br>
-Risk: Policy-signal analysis is interpretive and may be mistaken for confirmed official intent. <br>
-Mitigation: Keep facts and interpretation clearly separated, preserve uncertainty labels, and base summaries on the public CCTV transcript text. <br>
+## Use Case:
 
+External users and analysts use this skill to read, translate, explain, or summarize CCTV XinWenLianBo transcripts in accessible Chinese. It is intended for structured plain-language explanations, key information extraction, policy-signal interpretation, and daily summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ltryee/xinwenlianbo-translator) <br>
-- [CCTV XinWenLianBo transcript index](https://tv.cctv.com/lm/xwlb/index.shtml) <br>
-- [XinWenLianBo jargon dictionary](references/xinwenlianbo-jargon-dictionary.md) <br>
-- [XinWenLianBo structure guide](references/xinwenlianbo-structure-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown in plain Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes plain-language explanations, key facts, impact notes, jargon translation tables, uncertainty labels, and daily signal summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Risk: Requests that only loosely mention 联播 or policy trends may trigger the skill broadly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user's intent before fetching or interpreting XinWenLianBo content when the request is ambiguous.
+
+Risk: Policy-signal analysis is inferential and may be mistaken for an official position.
+
+Mitigation: Label interpretations as analysis, preserve source facts separately, and note uncertainty when multiple readings are possible.
+
+Risk: Fetching current or historical transcripts from public CCTV pages can fail because of network issues or unavailable archived pages.
+
+Mitigation: Report source retrieval failures clearly and avoid filling gaps with unsourced content.
+
+## Reference(s):
+
+- [CCTV XinWenLianBo page](https://tv.cctv.com/lm/xwlb/index.shtml)
+- [《新闻联播》话术词典](references/xinwenlianbo-jargon-dictionary.md)
+- [《新闻联播》节目结构与信号体系指南](references/xinwenlianbo-structure-guide.md)
+- [ClawHub skill page](https://clawhub.ai/ltryee/skills/xinwenlianbo-translator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown with headings, bullet lists, tables, and plain-language Chinese analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include daily summaries, per-story explanations, jargon translation tables, and policy-signal notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,54 @@
-## Description: <br>
-Provides business-writing assistance for industry research reports, business insights, consulting analyses, company research, competitive analysis, user research, and market analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Business Writing helps agents produce sourced business research, industry reports, consulting analyses, company research, competitive analysis, user research, and market analysis in Markdown.
 
-## Publisher: <br>
-[modestyrichards](https://clawhub.ai/user/modestyrichards) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[modestyrichards](https://clawhub.ai/user/modestyrichards)
 
-## Use Case: <br>
-Employees, external users, analysts, and consultants use this skill to draft business research, market analysis, company analysis, and consulting-style reports with relevant source citations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and source material may be sent to the disclosed SkillBoss API Hub using SKILLBOSS_API_KEY. <br>
-Mitigation: Use a scoped API key where possible, rotate exposed keys, and avoid submitting confidential company data unless that provider relationship is acceptable. <br>
+## Use Case:
 
+Employees, external users, and business analysts use this skill to draft evidence-backed business writing such as industry research reports, consulting analyses, company reports, competitive analyses, user research, and market analyses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/modestyrichards/modesty-business-writing) <br>
-- [SkillBoss API Hub endpoint](https://api.skillbossai.com/v1/pilot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with citations, tables, and Mermaid diagrams when supported by real sources] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require SKILLBOSS_API_KEY and may send prompts or source material to the SkillBoss API Hub.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Business-writing prompts or source material may be sent to the disclosed SkillBoss API dependency.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm SkillBoss API use is approved for the deployment environment and avoid confidential business data unless that use is authorized.
+
+Risk: Generated business reports could contain unsupported, irrelevant, or fabricated evidence if source use is not reviewed.
+
+Mitigation: Review cited claims and references before relying on outputs for business decisions or external publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/modestyrichards/skills/modesty-business-writing)
+- [SkillBoss API Hub endpoint](https://api.skillbossai.com/v1/pilot)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with tables, clickable numbered references, and Mermaid diagrams when supported by real data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires real, relevant sources for cited claims and may use a SKILLBOSS_API_KEY-backed external API dependency.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

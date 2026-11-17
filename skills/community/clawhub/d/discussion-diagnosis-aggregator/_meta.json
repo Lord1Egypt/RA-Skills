@@ -1,0 +1,34 @@
+{
+  "name": "discussion-diagnosis-aggregator",
+  "version": "1.0.0",
+  "description": "Aggregate the outputs of the six single-diagnosis skills (structure, cohesion, grammar, vocabulary, logic, conventions) into one unified Discussion diagnostic report for an English psychology research paper. Produces overall scoring, severity-tagged issue list, top-3 priority fixes, narrative-coherence meta-score, and example-anchored remediation suggestions.",
+  "author": "UX Course Project - Discussion Group",
+  "license": "MIT",
+  "keywords": [
+    "discussion",
+    "aggregator",
+    "diagnostic-report",
+    "academic-writing"
+  ],
+  "metadata": {
+    "clawhub": {
+      "emoji": "🎯",
+      "triggers": [
+        "run full discussion diagnosis",
+        "comprehensive discussion check",
+        "complete discussion report",
+        "全套诊断",
+        "完整讨论报告",
+        "综合讨论诊断"
+      ],
+      "requires": [
+        "discussion-structure-diagnosis",
+        "discussion-cohesion-diagnosis",
+        "discussion-grammar-diagnosis",
+        "discussion-vocabulary-diagnosis",
+        "discussion-logic-diagnosis",
+        "discussion-conventions-diagnosis"
+      ]
+    }
+  }
+}

@@ -1,41 +1,55 @@
-## Description: <br>
-Generate CSS Flexbox layouts using interactive CLI commands for responsive flex containers, rows, columns, and alignment configurations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate CSS Flexbox layouts using interactive CLI commands. Use when building responsive flex containers, rows, columns, or alignment configurations.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers and designers use Flex to create, adjust, save, and export CSS Flexbox layouts from a local command-line workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a local Bash/Python script that creates and updates layout data on disk. <br>
-Mitigation: Install only if local script execution is acceptable, and review ~/.flex/data.jsonl before relying on saved layouts. <br>
-Risk: Export can write or overwrite a CSS file at the path selected by the user. <br>
-Mitigation: Choose safe output paths and avoid storing secrets or sensitive names in layout labels. <br>
+## Use Case:
 
+Developers and engineers use Flex to create, adjust, save, and export CSS Flexbox layout configurations from a command-line workflow.
 
-## Reference(s): <br>
-- [Flex on ClawHub](https://clawhub.ai/bytesagain1/flex) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration] <br>
-**Output Format:** [CLI text output and CSS code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local JSONL layout data at ~/.flex/data.jsonl; export can write CSS to a user-selected path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Saved layouts are written to ~/.flex/data.jsonl on the local system.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review local storage expectations before use and avoid storing sensitive layout names or data in saved configurations.
+
+Risk: Exports using --output can overwrite an existing file at the selected path.
+
+Mitigation: Use stdout for review or choose a dedicated CSS export path before writing generated CSS.
+
+## Reference(s):
+
+- [Flex on ClawHub](https://clawhub.ai/bytesagain1/skills/flex)
+- [BytesAgain homepage](https://bytesagain.com)
+- [BytesAgain publisher profile](https://clawhub.ai/user/bytesagain1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with shell commands and CSS snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can save layout records locally and export CSS to stdout or a user-selected file path.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

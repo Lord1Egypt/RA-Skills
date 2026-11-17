@@ -1,42 +1,53 @@
-## Description: <br>
-Analyzes public article links for structure, memorable lines, topic logic, emotional arc, and reusable writing patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes WeChat or web articles when asked to break down, study, or learn from an article, covering structure, memorable lines, topic logic, emotional arc, and reusable writing patterns.
 
-## Publisher: <br>
-[luaqnyin](https://clawhub.ai/user/luaqnyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luaqnyin](https://clawhub.ai/user/luaqnyin)
 
-## Use Case: <br>
-Writers, editors, marketers, and content operators use this skill to break down public articles and learn repeatable title, structure, opening, ending, and quotation patterns. It can produce a full Markdown analysis report or a shorter quick breakdown. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill opens article links supplied by the user. <br>
-Mitigation: Avoid using private, internal, or sensitive URLs and only analyze links the user is comfortable sharing with the agent. <br>
-Risk: Generated analysis can be incomplete or misleading if the article is inaccessible, truncated, or interpreted incorrectly. <br>
-Mitigation: Review the analysis against the source article before reusing recommendations or publishing derivative content. <br>
-Risk: When asked to create a Feishu document, the report is stored outside the chat. <br>
-Mitigation: Confirm the report does not contain sensitive content before requesting Feishu document creation. <br>
+## Use Case:
 
+Content creators, editors, marketers, and writing-focused agents use this skill to analyze article structure, headline techniques, memorable sentences, audience fit, emotional progression, and reusable writing patterns from user-provided article links.
 
-## Reference(s): <br>
-- [Popular Title Patterns and Common Article Structures](artifact/references/patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May optionally create a Feishu document when the user asks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: Generated analysis may be based on incomplete or incorrect fetched article content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the retrieved article text and source metadata before relying on the report.
+
+Risk: When a user requests Feishu document creation, the generated report is sent to Feishu.
+
+Mitigation: Use chat output instead for content that should not be placed in Feishu.
+
+## Reference(s):
+
+- [Article headline and structure patterns](references/patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown analysis report, with optional Feishu document creation when the user requests it]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default output is chat text; quick mode returns a shorter four-part analysis.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata, created 2026-04-10)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,58 @@
-## Description: <br>
-Query Gangtise knowledge base API to search and retrieve financial/market information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Gangtise knowledge base API to search and retrieve financial/market information.
 
-## Publisher: <br>
-[hmaya](https://clawhub.ai/user/hmaya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hmaya](https://clawhub.ai/user/hmaya)
 
-## Use Case: <br>
-External users and agent developers use this skill to configure Gangtise API credentials and query Gangtise knowledge base content for stocks, companies, market concepts, financial reports, and related market information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled or mishandled credentials can expose Gangtise access keys and secret keys. <br>
-Mitigation: Remove bundled credentials, configure only scoped user-owned Gangtise keys, and keep credential files restricted. <br>
-Risk: Disabled TLS certificate validation can weaken HTTPS protections for authentication and query traffic. <br>
-Mitigation: Re-enable normal TLS certificate validation before operational use. <br>
-Risk: Passing access tokens on the command line can expose tokens through shell history or process inspection. <br>
-Mitigation: Avoid command-line token arguments and use safer credential or token handling. <br>
-Risk: Sensitive portfolio or proprietary research queries may be sent to the Gangtise API. <br>
-Mitigation: Avoid sending sensitive queries until credential handling and transport security issues are fixed. <br>
+## Use Case:
 
+Developers and external users can use this skill to configure Gangtise API access and query financial or market knowledge-base content such as company reports, analyst views, announcements, and market topics.
 
-## Reference(s): <br>
-- [Gangtise Open Platform](https://open.gangtise.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/hmaya/gangtise-kb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can return formatted search results or raw JSON from the Gangtise knowledge base API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The artifact ships plaintext API credentials in config.json.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the bundled config.json before installation, rotate any exposed Gangtise keys, and use local secret storage or environment-managed credentials.
+
+Risk: TLS certificate verification is disabled for authentication and knowledge-base query traffic.
+
+Mitigation: Restore default TLS certificate verification before using the skill with real credentials or sensitive data.
+
+Risk: Bearer tokens may be printed or passed on the command line.
+
+Mitigation: Avoid exposing tokens in terminal output, shell history, process listings, logs, or shared transcripts.
+
+## Reference(s):
+
+- [Gangtise Open Platform](https://open.gangtise.com)
+- [ClawHub Skill Page](https://clawhub.ai/hmaya/skills/gangtise-kb)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Plain text query results or raw JSON, with Markdown usage guidance and inline shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Query output may include titles, companies, industries, dates, resource types, source identifiers, and content excerpts returned by the Gangtise knowledge base API.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

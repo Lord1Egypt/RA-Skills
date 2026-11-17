@@ -1,46 +1,63 @@
-## Description: <br>
-LeafEngines provides agricultural intelligence tools for soil analysis, crop recommendations, and TurboQuant capability checks through a hosted MCP service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LeafEngines provides agricultural intelligence tools for soil analysis, crop recommendations, and TurboQuant capability checks through a remote MCP service.
 
-## Publisher: <br>
-[qwarranto](https://clawhub.ai/user/qwarranto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qwarranto](https://clawhub.ai/user/qwarranto)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to query LeafEngines' hosted agricultural service for county-level soil analysis, crop recommendations, and TurboQuant availability checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agricultural queries, county or location data, and paid API headers are sent to a hosted LeafEngines service. <br>
-Mitigation: Use the free-tier header for evaluation, avoid unnecessary sensitive farm or business details, and store paid keys only in MCP header or secret configuration. <br>
-Risk: The public test key and free-tier access should be treated as public and revocable. <br>
-Mitigation: Do not rely on the public test key for private or production workflows; use a paid key managed through secret storage when higher trust or continuity is required. <br>
-Risk: The artifact includes an install script that changes local OpenClaw configuration. <br>
-Mitigation: Review scripts/install.sh before execution and confirm the target MCP endpoint and headers match the intended deployment. <br>
+## Use Case:
 
+Developers, agricultural operators, researchers, and AI agents use this skill to request soil analysis, crop recommendations, and location-based agricultural capability checks. The skill is intended for MCP-compatible clients that can send county FIPS codes and optional paid API credentials to the LeafEngines service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qwarranto/leafengines) <br>
-- [Publisher profile](https://clawhub.ai/user/qwarranto) <br>
-- [LeafEngines MCP homepage](https://app.soilsidekickpro.com/mcp) <br>
-- [MCP server endpoint](https://wzgnxkoeqzvueypwzvyn.supabase.co/functions/v1/mcp-server) <br>
-- [API reference](references/API_REFERENCE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with MCP configuration snippets and hosted API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses county FIPS codes and optional authentication headers for paid features.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence) <br>
+Risk: Agricultural, location, and farm operational data is routed to a remote LeafEngines service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this data sharing is acceptable for the intended workflow and avoid sending sensitive operational details unless required.
+
+Risk: Paid API keys may be stored in local agent or MCP configuration.
+
+Mitigation: Store API keys only in user-private configuration or secret management and avoid world-readable config files.
+
+Risk: Documentation includes broader external setup paths and an unpinned global npm install.
+
+Mitigation: Prefer the declared ClawHub MCP endpoint and review any external installation path before execution.
+
+Risk: A shared test key appears in artifact documentation.
+
+Mitigation: Treat shared test credentials as non-secret evaluation access only and do not rely on them for protected or production workflows.
+
+## Reference(s):
+
+- [LeafEngines API Reference](references/API_REFERENCE.md)
+- [LeafEngines ClawHub Listing](https://clawhub.ai/qwarranto/skills/leafengines)
+- [LeafEngines MCP Service](https://wzgnxkoeqzvueypwzvyn.supabase.co/functions/v1/mcp-server)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with configuration snippets, shell commands, and remote MCP tool responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Remote service calls may require a free-tier header or paid API key; tool inputs center on county FIPS codes.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

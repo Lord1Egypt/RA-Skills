@@ -1,41 +1,54 @@
-## Description: <br>
-Review Arabic localization, RTL layout, bilingual wording, tone, and translation quality with clear safety and quality gates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review Arabic localization, RTL layout, bilingual wording, tone, and translation quality with clear safety and quality gates.
 
-## Publisher: <br>
-[abdullah944](https://clawhub.ai/user/abdullah944) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abdullah944](https://clawhub.ai/user/abdullah944)
 
-## Use Case: <br>
-Developers, localization reviewers, educators, and content teams use this skill to review Arabic or bilingual Arabic/English content before publishing. It helps check meaning accuracy, natural tone, RTL layout, bilingual consistency, cultural sensitivity, and release readiness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts for localization review may include private client material, secrets, or account details. <br>
-Mitigation: Ask only for content needed for review and avoid sharing passwords, tokens, private account details, user databases, or confidential client material. <br>
-Risk: The artifact includes an external donation link that is not required for the review workflow. <br>
-Mitigation: Treat the donation link as optional external support and verify the destination before using it. <br>
+## Use Case:
 
+External users, localization reviewers, and developers use this skill to assess Arabic or Arabic/English content before publication. It helps review meaning accuracy, natural Arabic wording, RTL layout behavior, bilingual consistency, and publish-readiness.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abdullah944/arabic-localization-reviewer-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/abdullah944) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain-text review notes, revised Arabic copy, QA tables, and release checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable behavior; outputs are review guidance and suggested wording for human approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release and artifact metadata) <br>
+Risk: Users may submit confidential client material, secrets, or private account details for localization review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not provide secrets or confidential client data; keep sensitive account changes and final publishing actions under explicit user control.
+
+Risk: Localization suggestions may miss legal, medical, financial, security, cultural, or marketing nuances that affect publish-readiness.
+
+Mitigation: Use the skill's safety and compliance checks, severity labels, and final checklist before publishing; escalate high-risk content to qualified human reviewers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abdullah944/skills/arabic-localization-reviewer-skill)
+- [Publisher profile](https://clawhub.ai/user/abdullah944)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Concise Markdown or text review with issues, suggested Arabic revisions, RTL notes, QA tables, and release checklists.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include readiness status, severity labels, and final yes/no checklist items.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter, metadata.json, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

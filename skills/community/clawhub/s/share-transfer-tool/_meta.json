@@ -1,6 +1,5 @@
 {
-  "ownerId": "kn78gtvscyas8xfjhqjf6sj8x1831j1y",
-  "slug": "share-transfer-tool",
-  "version": "3.0.0",
-  "publishedAt": 1773741296692
+  "name": "cloud-share-downloader",
+  "version": "1.0.0",
+  "author": "OpenClaw"
 }

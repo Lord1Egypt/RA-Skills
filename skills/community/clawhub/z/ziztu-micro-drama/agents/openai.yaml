@@ -1,0 +1,16 @@
+interface:
+  display_name: "Ziztu Micro Drama Writer"
+  short_description: "Write and make binge-worthy AI micro dramas"
+  icon_small: "./assets/ziztu-mark.svg"
+  icon_large: "./assets/ziztu-icon.png"
+  brand_color: "#F4552B"
+  default_prompt: "Use $ziztu-micro-drama to turn my idea into a micro drama series bible and write episode 1 with a hook and a cliffhanger."
+policy:
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "ziztu"
+      description: "Ziztu: plans shots from a script, prices them and makes frames, clips, music and the MP4"
+      transport: "streamable_http"
+      url: "https://getziztu.com/mcp"

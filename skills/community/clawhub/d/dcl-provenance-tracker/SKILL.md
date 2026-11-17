@@ -2,22 +2,23 @@
 name: dcl-provenance-tracker
 description: >
   Verify the integrity and version history of any ClawHub skill after an update.
-  After ClawHavoc incidents where thousands of skills silently changed behavior
-  post-install — stealing keys, injecting prompts, adding hidden network calls —
-  DCL Provenance Tracker compares two versions of a skill side-by-side, detects
-  suspicious drift across 30+ known supply chain attack patterns, and returns a
-  deterministic DCL provenance proof. Instruction-only — no external calls, no
-  data leaves the agent. Use after every skill update, on a schedule for
-  production-critical skills, or in CI/CD pipelines before agent deployment.
-  Part of the Leibniz Layer™ security suite alongside DCL Skill Auditor,
-  DCL Policy Enforcer, DCL Sentinel Trace, and DCL Semantic Drift Guard.
+  Compares two versions of a skill side-by-side, detects suspicious drift
+  across 30+ known supply chain attack patterns, and returns a deterministic
+  DCL provenance proof. 100% instruction-only for the diff itself — no
+  external calls, no data leaves the agent. Optionally cross-check a past
+  scan's on-chain integrity via the live DCL Trust Oracle MCP server. Use
+  after every skill update, on a schedule for production-critical skills, or
+  in CI/CD pipelines before agent deployment. Part of the DCL Skills security
+  suite by Fronesis Labs alongside DCL Skill Auditor, DCL Policy Enforcer,
+  DCL Sentinel Trace, and DCL Semantic Drift Guard.
+tags: [supply-chain, version-diff, update-drift, pre-deploy, instruction-only, audit-trail]
 ---
 
-# DCL Provenance Tracker
+# DCL Provenance Tracker — Leibniz Layer™
 
-**Publisher:** @daririnch · Fronesis Labs  
-**Version:** 1.0.0  
-**Part of:** Leibniz Layer™ Security Suite
+**Publisher:** @daririnch · Fronesis Labs
+**Version:** 1.1.0
+**Part of:** DCL Skills · Leibniz Layer™ Security Suite
 
 ---
 
@@ -28,9 +29,10 @@ ClawHub skills. It compares two versions of a skill — a trusted baseline and
 a candidate update — and detects behavioral drift, permission creep, and
 supply chain attack patterns introduced between versions.
 
-**This skill is 100% instruction-only.** No external network calls are made.
-No skill content leaves the agent's context. The user provides both versions
-directly; the agent analyzes them locally using the checklist below.
+**The version-diff logic is 100% instruction-only.** No external network calls are made for the
+comparison itself. No skill content leaves the agent's context. The user provides both versions
+directly; the agent analyzes them locally using the checklist below. There is no live MCP tool
+that performs this specific diff — it's a genuinely local, agent-side analysis.
 
 ### What it detects
 
@@ -61,14 +63,14 @@ directly; the agent analyzes them locally using the checklist below.
 - Typo fixes and description improvements
 - New usage examples without executable code
 - Version bumps with matching changelog entries
-- Privacy policy or compliance section additions
+- Privacy policy section additions
 
 ---
 
 ## How to run a provenance check
 
 The user provides both skill versions directly by pasting content into the
-conversation. This skill makes **no network requests** and does not fetch
+conversation. This part of the skill makes **no network requests** and does not fetch
 content from any external source.
 
 **How to get the two versions:**
@@ -129,6 +131,10 @@ analysis_hash     = SHA-256(analysis_content)
 dcl_fingerprint   = "DCL-PT-" + date + "-" + candidate_hash[:8] + "-" + analysis_hash[:8]
 ```
 
+This `dcl_fingerprint` is a self-contained, reproducible identifier — anyone with the same two
+skill versions can re-run the diff and verify the hash matches. It is not submitted anywhere by
+default; it's a local proof you can keep, share, or log yourself.
+
 ---
 
 ## Drift Checklist
@@ -150,7 +156,7 @@ dcl_fingerprint   = "DCL-PT-" + date + "-" + candidate_hash[:8] + "-" + analysis
 ### D3 — Prompt & Instruction Drift (Major)
 - [ ] New "ignore previous instructions" or override phrases
 - [ ] New role-switch language: "you are now", "act as", "DAN"
-- [ ] Removal of safety constraints or compliance checks present in baseline
+- [ ] Removal of safety constraints present in baseline
 - [ ] New instruction sections inconsistent with stated skill purpose
 
 ### D4 — Permission Creep (Major)
@@ -248,23 +254,30 @@ dcl_fingerprint   = "DCL-PT-" + date + "-" + candidate_hash[:8] + "-" + analysis
 
 ---
 
-## Optional: commit proof to DCL chain
+## Optional: cross-check a past scan's on-chain integrity
 
-The `dcl_fingerprint` is designed to be committable to the DCL Evaluator
-audit chain for permanent tamper-evident recording:
+`dcl_fingerprint` above is a **local** proof — this skill has no live endpoint of its own, and
+nothing is submitted anywhere by default. If you've *also* run one of the other DCL Skills'
+live tools (e.g. `dcl_evaluate_safety` from DCL Skill Auditor) against either version and logged
+its `tx_hash`, you can separately verify that on-chain record hasn't been tampered with since:
 
-```python
-# Optionally commit after provenance check:
-dcl_commit(
-    proof=result["dcl_fingerprint"],
-    baseline_hash=result["baseline_hash"],
-    candidate_hash=result["candidate_hash"],
-    verdict=result["verdict"]
-)
+| MCP tool | Price | What it runs |
+|---|---|---|
+| `dcl_audit_decode` | $0.10 | Retrieve a past record by `tx_hash` |
+| `dcl_audit_decode_deep` | $0.50 | Same, plus full chain-integrity verification |
+
+This is a **verification of an existing prior record**, not a version-diff tool — it doesn't
+compare two skill versions. Use it alongside this skill's own diff, not instead of it.
+
+```json
+{
+  "mcpServers": {
+    "dcl-trust-oracle": {
+      "url": "https://mcp.fronesislabs.com/mcp"
+    }
+  }
+}
 ```
-
-This step is optional and performed by the caller — not by this skill.
-DCL Provenance Tracker itself makes no external calls.
 
 ---
 
@@ -314,22 +327,17 @@ Safe to deliver
 - On a schedule (daily/weekly) for business-critical skills
 - Before agent deployment in CI/CD pipelines
 - When a skill's behavior seems to have changed unexpectedly
-- For compliance teams needing an auditable update approval trail
 - In combination with DCL Skill Auditor for full pre/post install coverage
 
 ---
 
 ## Privacy & Data Policy
 
-This skill is operated by **Fronesis Labs** and is **100% instruction-only**.
-
-**No data leaves the agent.** Both skill versions provided for comparison
-are analyzed entirely within the agent's context window. No content is
-transmitted to any server — including Fronesis Labs infrastructure.
-
-**No retention.** Nothing is stored, logged, or transmitted. The only
-artifact produced is the structured JSON output and `dcl_fingerprint`,
-which remain within the agent's session unless the caller saves them.
+This skill is operated by **Fronesis Labs**. The version-diff logic is **100% instruction-only** —
+both skill versions provided for comparison are analyzed entirely within the agent's context
+window. No content is transmitted to any server for the diff itself. The optional
+`dcl_audit_decode` cross-check (see above) only ever retrieves metadata about a record you
+already created — it does not receive either skill version as input.
 
 **How to use safely:** paste both the baseline and candidate SKILL.md
 directly into the conversation. The agent compares them locally.
@@ -341,7 +349,7 @@ Full policy: **https://fronesislabs.com/#privacy** · Questions: support@fronesi
 ## Related skills
 
 - `dcl-skill-auditor` — Pre-install static security scanner (run before install)
-- `dcl-policy-enforcer` — Compliance and jailbreak detection for AI outputs
+- `dcl-policy-enforcer` — Policy and jailbreak detection for AI outputs
 - `dcl-sentinel-trace` — PII redaction and identity exposure detection
 - `dcl-semantic-drift-guard` — Hallucination and context drift detection
 

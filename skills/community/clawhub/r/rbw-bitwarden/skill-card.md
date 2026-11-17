@@ -1,44 +1,54 @@
-## Description: <br>
-Unofficial Bitwarden CLI written in Rust. Manage passwords, TOTP codes, and secure notes from the terminal with a background agent for stateful sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unofficial Bitwarden CLI written in Rust. Manage passwords, TOTP codes, and secure notes from the terminal with a background agent for stateful sessions.
 
-## Publisher: <br>
-[sxhoio](https://clawhub.ai/user/sxhoio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sxhoio](https://clawhub.ai/user/sxhoio)
 
-## Use Case: <br>
-Developers, operators, and other terminal users can use this skill to configure and operate the rbw Bitwarden CLI for vault access, password generation, TOTP retrieval, secure notes, profiles, and SSH-agent integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides access to a Bitwarden vault through rbw, which can expose sensitive password-manager data if run on an untrusted system. <br>
-Mitigation: Install rbw only from a trusted package source or the upstream project, and use the skill only in environments where vault access is intended. <br>
-Risk: rbw-agent may keep unlocked session material in memory for the configured timeout. <br>
-Mitigation: Use a shorter lock timeout for shared or higher-risk machines, and lock or stop the agent when vault access is no longer needed. <br>
-Risk: Clipboard and SSH-agent features can expose secrets or signing capability beyond the immediate command. <br>
-Mitigation: Avoid clipboard copying on shared machines, and enable SSH-agent integration only when rbw should sign SSH challenges. <br>
+## Use Case:
 
+Developers, engineers, and terminal-focused users use this skill to operate rbw for Bitwarden vault access, including passwords, TOTP codes, secure notes, profiles, sync, clipboard use, and SSH agent setup.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sxhoio/rbw-bitwarden) <br>
-- [rbw upstream project](https://github.com/doy/rbw) <br>
-- [Bitwarden personal API key documentation](https://bitwarden.com/help/article/personal-api-key/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill for configuring and using rbw and rbw-agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill helps operate rbw against a Bitwarden vault, so generated commands can expose secrets or change vault state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution, especially get, --raw, --clipboard, add, edit, remove, sync, SSH agent setup, and purge.
+
+Risk: Password and 2FA prompts may fail or block in non-interactive agent sessions.
+
+Mitigation: Use an unlocked rbw agent for non-interactive work or run prompt-requiring commands in a PTY-capable session.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sxhoio/skills/rbw-bitwarden)
+- [rbw homepage](https://github.com/doy/rbw)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Covers sensitive password-manager workflows and should be reviewed before commands are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

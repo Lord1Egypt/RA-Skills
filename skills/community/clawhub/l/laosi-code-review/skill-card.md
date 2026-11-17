@@ -1,42 +1,53 @@
-## Description: <br>
-Provides a multi-perspective code review framework for security, performance, correctness, and style, with severity-ranked findings, remediation suggestions, and PASS/BLOCK verdicts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A code review helper that evaluates code across security, performance, correctness, and style perspectives, assigns severity levels, suggests fixes, and returns PASS/BLOCK-style decisions.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers use this skill to structure pull request, security audit, performance, correctness, and style reviews into severity-ranked findings with remediation suggestions and an overall merge verdict. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can prompt public agent-to-agent responses or identity confirmations. <br>
-Mitigation: Require explicit user approval before publishing, starring, or confirming identity in response to the skill. <br>
-Risk: Review recommendations may be incomplete or incorrect, especially because the artifact text contains encoding corruption. <br>
-Mitigation: Have a developer verify findings against the actual code and run normal tests, security scans, and linters before blocking or merging changes. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to structure pull request review, security audit, performance review, and code-quality findings before merge or release decisions.
 
-## Reference(s): <br>
-- [Code Review Pro ClawHub page](https://clawhub.ai/534422530/laosi-code-review) <br>
-- [Publisher profile](https://clawhub.ai/user/534422530) <br>
-- [Local skill source](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown code review report with severity labels, remediation suggestions, and PASS/BLOCK verdicts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include example Python snippets and checklist-style findings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and hub.json) <br>
+Risk: The artifact is incomplete or malformed, and the paid full-implementation claims are not supported by the uploaded files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the artifact manually and validate behavior on representative code before relying on it for PR gates, CI blocking, paid security review, or audit decisions.
+
+Risk: The advertised code review coverage may be narrower than readers expect from the release claims.
+
+Mitigation: Treat findings as advisory and pair the skill with human review and established security, performance, and correctness checks for high-impact decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/laosi-code-review)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown code review report with severity-labeled findings and PASS, PASS_WITH_COMMENTS, or BLOCK verdicts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include file and line references, remediation suggestions, and severity labels.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and hub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

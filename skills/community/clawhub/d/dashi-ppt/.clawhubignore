@@ -1,0 +1,19 @@
+.DS_Store
+*.log
+node_modules/
+project/node_modules/
+output/
+project/output/
+uploads/
+screens/
+screenshots/
+shots/
+scratch/
+
+# Codex-specific catalog metadata is not used by ClawHub.
+agents/
+README.md
+
+# Dashi PPT renders one theme pack per deck. The self-contained per-theme
+# bundles are retained; these multi-theme linker modules are redundant here.
+project/dist/theme-runtime/theme*.module.mjs

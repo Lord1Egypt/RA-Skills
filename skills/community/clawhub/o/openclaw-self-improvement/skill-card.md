@@ -1,48 +1,59 @@
-## Description: <br>
-A reusable operator-guided workflow improvement skill for OpenClaw and ClawLite that turns repeated failures into logged learnings, binary eval loops, SOPs, checklists, and proof-based operational improvements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A reusable operator-guided workflow improvement skill for OpenClaw and ClawLite that turns repeated failures into logged learnings, binary eval loops, SOPs, checklists, and proof-based operational improvements.
 
-## Publisher: <br>
-[x-rayluan](https://clawhub.ai/user/x-rayluan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[x-rayluan](https://clawhub.ai/user/x-rayluan)
 
-## Use Case: <br>
-Developers, operators, and multi-agent workflow teams use this skill to capture repeated failures, run lightweight eval loops on guardrails, generate scorecards or recovery tickets, and promote reviewed improvements into local operating rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Promotion can append operational guidance to AGENTS.md, TOOLS.md, or SOUL.md. <br>
-Mitigation: Review promotion targets first and use scripts/promote-learning.mjs with --dry-run before writing. <br>
-Risk: Misconfigured WORKSPACE or OBSIDIAN_LEARNINGS_DIR values can direct local writes to unintended paths. <br>
-Mitigation: Confirm both environment variables point only to locations the operator intends to modify. <br>
-Risk: Captured lessons or promoted rules can preserve incorrect guidance if accepted without review. <br>
-Mitigation: Review generated text before appending it to operating-rule files or an Obsidian vault. <br>
+## Use Case:
 
+Developers, operators, and agent teams use this skill to capture repeated workflow failures, run binary eval loops on proposed guardrails, and promote reviewed improvements into local operating rules and notes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/x-rayluan/openclaw-self-improvement) <br>
-- [Learning Schema](references/schema.md) <br>
-- [Promotion Guide](references/promotion-guide.md) <br>
-- [Eval Loop](references/eval-loop.md) <br>
-- [Decision Rules](references/decision-rules.md) <br>
-- [Examples](references/examples.md) <br>
-- [ClawLite](https://clawlite.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown entries, local files, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local-file workflow; promotion writes should be reviewed and can be previewed with --dry-run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.11 (source: package.json and server release evidence) <br>
+Risk: Promotion can append arbitrary text to persistent agent instruction files such as AGENTS.md, TOOLS.md, and SOUL.md.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat promotion as a privileged policy change and use dry-run output plus manual diff review before accepting writes.
+
+Risk: Repair-ticket and Obsidian writes can be affected by insufficient path controls or untrusted path-like inputs.
+
+Mitigation: Run only with trusted WORKSPACE, OBSIDIAN_LEARNINGS_DIR, progress reports, dates, and ticket directories.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/x-rayluan/skills/openclaw-self-improvement)
+- [ClawLite](https://clawlite.ai)
+- [Learning Schema](references/schema.md)
+- [Promotion Guide](references/promotion-guide.md)
+- [Eval Loop for Self-Improvement](references/eval-loop.md)
+- [Practical Examples for Self-Improvement Eval Loops](references/examples.md)
+- [Decision Rules for Self-Improvement](references/decision-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown, local file updates, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node and trusted WORKSPACE and OBSIDIAN_LEARNINGS_DIR values; writes are local file operations.]
+
+## Skill Version(s):
+
+0.2.11 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

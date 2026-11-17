@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>T9 - opacity 淡入效果</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, sans-serif; background: #1a1a2e; min-height: 100vh; padding: 40px; color: #eee; }
+    h1 { text-align: center; margin-bottom: 40px; font-size: 32px; }
+
+    .opacity-section { margin-bottom: 50px; }
+    .opacity-section h2 { text-align: center; margin-bottom: 24px; font-size: 22px; color: #667eea; }
+
+    .opacity-row { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+    .opacity-box {
+      width: 150px;
+      height: 100px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: white;
+    }
+    .opacity-box.o1 { opacity: 1; }
+    .opacity-box.o2 { opacity: 0.8; }
+    .opacity-box.o3 { opacity: 0.6; }
+    .opacity-box.o4 { opacity: 0.4; }
+    .opacity-box.o5 { opacity: 0.2; }
+
+    /* 渐变淡入 */
+    .fade-container { max-width: 600px; margin: 40px auto; }
+    .fade-box {
+      background: rgba(102,126,234,0.3);
+      border: 1px solid rgba(102,126,234,0.5);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+    .fade-box h3 { font-size: 18px; margin-bottom: 8px; color: #667eea; }
+    .fade-box p { font-size: 14px; color: #ccc; }
+
+    .fade-box.f1 { opacity: 1; }
+    .fade-box.f2 { opacity: 0.85; }
+    .fade-box.f3 { opacity: 0.7; }
+    .fade-box.f4 { opacity: 0.55; }
+    .fade-box.f5 { opacity: 0.4; }
+    .fade-box.f6 { opacity: 0.25; }
+    .fade-box.f7 { opacity: 0.1; }
+
+    .note { text-align: center; margin-top: 40px; opacity: 0.6; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <h1>🌫️ T9 - opacity 透明度测试</h1>
+
+  <div class="opacity-section">
+    <h2>📊 透明度渐变</h2>
+    <div class="opacity-row">
+      <div class="opacity-box o1">opacity: 1</div>
+      <div class="opacity-box o2">opacity: 0.8</div>
+      <div class="opacity-box o3">opacity: 0.6</div>
+      <div class="opacity-box o4">opacity: 0.4</div>
+      <div class="opacity-box o5">opacity: 0.2</div>
+    </div>
+  </div>
+
+  <div class="opacity-section">
+    <h2>📋 内容淡入效果</h2>
+    <div class="fade-container">
+      <div class="fade-box f1">
+        <h3>完全可见</h3>
+        <p>opacity: 1 — 内容完全可见，无透明度</p>
+      </div>
+      <div class="fade-box f2">
+        <h3>轻微透明</h3>
+        <p>opacity: 0.85 — 内容轻微淡化</p>
+      </div>
+      <div class="fade-box f3">
+        <h3>半透明</h3>
+        <p>opacity: 0.7 — 内容明显淡化</p>
+      </div>
+      <div class="fade-box f4">
+        <h3>中度透明</h3>
+        <p>opacity: 0.55 — 内容较淡</p>
+      </div>
+      <div class="fade-box f5">
+        <h3>高度透明</h3>
+        <p>opacity: 0.4 — 内容很淡</p>
+      </div>
+      <div class="fade-box f6">
+        <h3>非常透明</h3>
+        <p>opacity: 0.25 — 内容很淡，接近消失</p>
+      </div>
+      <div class="fade-box f7">
+        <h3>几乎不可见</h3>
+        <p>opacity: 0.1 — 内容几乎不可见</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="note">⚠️ 如果透明度未正确渲染（如所有盒子显示相同亮度），说明 opacity 属性未被正确应用。</p>
+</body>
+</html>

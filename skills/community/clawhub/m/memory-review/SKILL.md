@@ -1,54 +1,68 @@
 ---
 name: memory-review
-version: 1.1.0
-description: 知识沉淀自动化技能。扫描近期日记，识别可沉淀知识，自动写入知识库。触发时机：cron 定时任务或手动调用。使用方法：加载 skill 后读取 references/spec.md 获取详细规范。
+description: Review daily memory logs and consolidate durable knowledge into the existing memory hierarchy. Use for scheduled or manual knowledge review, especially when deciding whether to update an existing canonical document, create a genuinely new document, skip a duplicate, defer an unstable signal, or propose merging overlapping documents.
 ---
 
 # Memory Review
 
-扫描近期日记，生成知识沉淀提案，并自动执行沉淀。
+Turn daily logs into a small, current knowledge base. Treat daily logs as evidence, not as the authority.
 
-## 核心流程
+## Required workflow
 
-1. 读取 references/spec.md 获取详细规范
-2. 读取 AGENTS.md/MEMORY.md 获取投递配置
-3. 增量扫描近期日记（md5 比对）
-4. 识别 5 类可沉淀知识
-5. 自动写入知识库
-6. 生成报告并投递
+1. Read [references/spec.md](references/spec.md) before any write.
+2. Read the workspace `AGENTS.md` and `MEMORY.md` for current hierarchy and owner rules.
+3. Build the deterministic scan plan:
 
-## 敏感信息
+   ```bash
+   python3 skills/memory-review/scripts/memory_review.py scan \
+     --root . \
+     --output /tmp/memory-review-scan.json
+   ```
 
-**投递配置（如飞书群ID）存储在 AGENTS.md 或 MEMORY.md 中**，skill 里使用占位符。
+4. Read every file in `changed_sources`. Ignore `*-memory-review.md`; the scanner excludes them.
+5. Extract only durable signals. Exclude transient status, unverified ideas, routine execution logs, and secrets.
+6. Resolve every signal against existing memory before writing. Use exact references, `memory_search`, `rg`, and the helper when useful:
 
-读取方式：
-- 读取 `MEMORY.md`（如果存在）
-- 读取 `AGENTS.md` 中的配置
+   ```bash
+   python3 skills/memory-review/scripts/memory_review.py candidates \
+     --root . --query "主题或结论"
+   ```
 
-## 输出
+7. Create a decision plan using the schema in the spec. Validate it before editing:
 
-- 报告位置：`memory/daily/YYYY-MM-DD-memory-review.md`
-- 知识库：`memory/knowledge/fw-*.md`
-- 执行日志：`data/exec-logs/memory-review/YYYY-MM-DD.md`
+   ```bash
+   python3 skills/memory-review/scripts/memory_review.py validate-plan \
+     --root . --plan /tmp/memory-review-decisions.json
+   ```
 
-## 触发时机
+8. Apply decisions in this order:
+   - `update_existing`
+   - `skip_duplicate`
+   - `review_merge`
+   - `create_new`
+   - `defer`
+9. Verify the diff, references, and current conclusion. A second run over unchanged inputs must not change canonical memory.
+10. Write the report and execution log, then commit scan state only after all writes and checks succeed:
 
-- cron 定时任务（建议每 2 天）
-- 用户明确要求时
-- 每次会话结束前（可选）
+   ```bash
+   python3 skills/memory-review/scripts/memory_review.py commit-state \
+     --root . --scan /tmp/memory-review-scan.json
+   ```
 
-## 自动沉淀规则
+## Hard rules
 
-| 优先级 | 条件 | 行为 |
-|--------|------|------|
-| 高 | 错误/教训类 | 自动写入 post-mortems.md |
-| 中 | 技术知识类 | 自动写入 knowledge/fw-*.md |
-| 低 | 配置/偏好类 | 写入 TOOLS.md 或 AGENTS.md |
+- Update-first: prefer the best existing canonical document over creating a near-synonym.
+- Never create a third document when two candidates already overlap; emit `review_merge` instead.
+- Resolve conflicts; do not append mutually contradictory conclusions as if both were current.
+- Knowledge and hot memory outrank daily logs unless newer verified evidence explicitly supersedes them.
+- Do not automatically edit `AGENTS.md`, `MEMORY.md`, `TOOLS.md`, `USER.md`, `SOUL.md`, or `ENVIRONMENT.md`. Record a proposal unless the current request explicitly authorizes that edit.
+- Do not put dates in new `memory/knowledge/` filenames. Git history tracks time.
+- Do not advance state after partial failure.
+- Do not send reports unless the caller or cron prompt specifies a destination.
 
-## 沉淀文件命名规范
+## Outputs
 
-```
-fw-{主题}.md
-- fw = "from work" 工作产出
-- 主题：用英文或中文拼音
-```
+- Report: `memory/daily/YYYY-MM/YYYY-MM-DD-memory-review.md`
+- Execution log: `data/exec-logs/memory-review/YYYY-MM-DD.md`
+- State: `data/exec-logs/memory-review/state.json`
+- Canonical targets: `memory/knowledge/`, `memory/glossary.md`, `memory/projects/`, `memory/post-mortems.md`

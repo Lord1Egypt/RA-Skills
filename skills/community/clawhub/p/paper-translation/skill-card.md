@@ -1,44 +1,59 @@
-## Description: <br>
-Translates ArXiv papers into close-reading Chinese Markdown, preserves full paragraph-level detail, adds explicit translator notes, validates formatting, and prepares IMA Knowledge Base and Tencent Docs variants. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ArXiv 论文精读级中文翻译，同步到 IMA 知识库和腾讯文档，并提供翻译校验流程。
 
-## Publisher: <br>
-[fandywang87](https://clawhub.ai/user/fandywang87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fandywang87](https://clawhub.ai/user/fandywang87)
 
-## Use Case: <br>
-External users and developers use this skill to create complete Chinese translations of ArXiv papers with structured Markdown, formulas, figures, references, and platform-specific preparation for IMA Knowledge Base and Tencent Docs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can upload generated Markdown and images to IMA Knowledge Base and Tencent Docs. <br>
-Mitigation: Confirm upload destinations and authorization steps with the user before executing upload or token configuration commands. <br>
-Risk: Private manuscripts or restricted notes could be exposed if processed through the same upload workflow. <br>
-Mitigation: Use the workflow for public ArXiv papers unless the user explicitly approves handling and uploading restricted content. <br>
-Risk: Translation or formatting errors can misrepresent paper details, formulas, figures, references, or acronym expansions. <br>
-Mitigation: Run the included validation script and manually check first acronym expansions, figure placement, references, and LaTeX macro compatibility before publishing. <br>
+## Use Case:
 
+External users and developers use this skill to produce complete Chinese translations of public ArXiv papers, preserve paper structure and formulas, add clearly marked translator notes, validate the Markdown, and prepare IMA and Tencent Docs versions.
 
-## Reference(s): <br>
-- [Platform Compatibility and Lessons Learned](references/platform-compat.md) <br>
-- [Translation Iteration History](references/iteration-history.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/fandywang87/paper-translation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Chinese Markdown translations with inline shell command snippets and platform-specific Markdown variants] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces IMA and Tencent Docs Markdown variants; requires confirmation before upload or token configuration steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Persistent uploads to Tencent Docs and IMA can expose translated content outside the local agent session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add an explicit user confirmation step before upload and use the workflow only for public ArXiv papers or documents approved for those platforms.
+
+Risk: The workflow uses a broad trigger surface for paper translation tasks.
+
+Mitigation: Confirm the target paper, destination platforms, and upload intent before fetching, translating, or publishing content.
+
+Risk: The temporary file pattern `/tmp/args.json` can collide with other processes or leave upload payloads on disk.
+
+Mitigation: Use a unique restricted temporary file for each run and delete it immediately after the platform call completes.
+
+## Reference(s):
+
+- [平台兼容性与踩坑经验](references/platform-compat.md)
+- [翻译迭代历史（MixFormer 案例）](references/iteration-history.md)
+- [ClawHub skill page](https://clawhub.ai/fandywang87/skills/paper-translation)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and validation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces IMA and Tencent Docs oriented Markdown versions and a validation checklist.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

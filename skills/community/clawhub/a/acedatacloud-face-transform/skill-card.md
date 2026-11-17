@@ -1,43 +1,60 @@
-## Description: <br>
-Face Transform helps agents use AceDataCloud Face APIs to analyze face keypoints, beautify portraits, age or gender transform faces, swap faces, create cartoon avatars, and detect liveness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through face analysis, portrait transformations, face swaps, and liveness checks using AceDataCloud's Face APIs.
 
-## Publisher: <br>
-[Germey](https://clawhub.ai/user/Germey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[acedatacloud](https://clawhub.ai/user/acedatacloud)
 
-## Use Case: <br>
-Developers and agents use this skill to prepare authenticated AceDataCloud Face API requests for face analysis and transformation workflows on authorized images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends face images to an external API and may process sensitive biometric data. <br>
-Mitigation: Use only authorized images, obtain consent from depicted people, and confirm AceDataCloud privacy, retention, and data handling terms before using real face images or sensitive datasets. <br>
-Risk: The skill supports identity-changing edits such as face swap, age change, gender change, and cartoon avatar generation. <br>
-Mitigation: Restrict use to legitimate workflows and avoid deceptive, non-consensual, or harmful face edits. <br>
-Risk: The artifact states the APIs are in Alpha stage and interfaces may evolve. <br>
-Mitigation: Validate endpoint parameters and expected responses before relying on the skill in production workflows. <br>
+## Use Case:
 
+Developers and agents use this skill to prepare authenticated requests for face analysis, portrait editing, face swaps, and liveness checks through AceDataCloud.
 
-## Reference(s): <br>
-- [ClawHub Face Transform release](https://clawhub.ai/Germey/acedatacloud-face-transform) <br>
-- [AceDataCloud Face Analyze API endpoint](https://api.acedata.cloud/face/analyze) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with JSON and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses AceDataCloud API endpoints and requires ACEDATACLOUD_API_TOKEN.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Face image URLs and analysis results are sensitive and are sent to AceDataCloud.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only images you are authorized to process and confirm you are comfortable sharing them with AceDataCloud.
+
+Risk: Face swaps or altered likenesses can be used deceptively or without consent.
+
+Mitigation: Avoid non-consensual likeness changes and deceptive face swaps.
+
+Risk: Exposing the API key can allow unauthorized use of face-processing endpoints.
+
+Mitigation: Restrict the key to needed endpoints where possible, and do not put it in prompts or commit the .env token.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/acedatacloud/skills/face-transform)
+- [AceDataCloud application setup](https://platform.acedata.cloud/console/applications)
+- [First-run and key setup guide](https://github.com/AceDataCloud/Skills#first-run-with-clawhub-and-openclaw)
+- [AceDataCloud token instructions](https://github.com/AceDataCloud/Skills/blob/main/skills/_shared/authentication.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with shell commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an AceDataCloud API key and face image URLs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

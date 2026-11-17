@@ -1,0 +1,79 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Pipeline Template Metadata Schema",
+  "description": "预置流水线模板元数据规范，用于声明模板依赖的外部 skill、分类信息和三要素声明",
+  "type": "object",
+  "required": ["name", "description", "category", "version", "three_elements"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "模板显示名称"
+    },
+    "description": {
+      "type": "string",
+      "description": "模板功能描述"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["data-processing", "content-generation", "monitoring", "analysis", "office", "media"],
+      "description": "模板分类"
+    },
+    "version": {
+      "type": "string",
+      "description": "模板版本号"
+    },
+    "tags": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "标签列表"
+    },
+    "three_elements": {
+      "type": "object",
+      "description": "三要素声明：耗时预估/依赖需求/产物清单",
+      "required": ["time_estimate", "api_key_required", "output_files"],
+      "properties": {
+        "time_estimate": {
+          "type": "string",
+          "description": "跑一次大概多久（如 5-10 分钟）"
+        },
+        "api_key_required": {
+          "type": "string",
+          "enum": ["不需要", "可选", "必需"],
+          "description": "是否需要 API Key"
+        },
+        "output_files": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "产生什么文件列表"
+        }
+      }
+    },
+    "dependencies": {
+      "type": "array",
+      "description": "建议安装的外部 skill 列表（仅提示，不自动安装）",
+      "items": {
+        "type": "object",
+        "required": ["skill_id", "install_link", "description"],
+        "properties": {
+          "skill_id": {
+            "type": "string",
+            "description": "skill 的唯一标识"
+          },
+          "install_link": {
+            "type": "string",
+            "description": "安装链接（SkillHub 或 ClawHub）"
+          },
+          "description": {
+            "type": "string",
+            "description": "该 skill 的用途说明"
+          },
+          "required": {
+            "type": "boolean",
+            "default": false,
+            "description": "是否必需（true=缺失则对应节点标灰）"
+          }
+        }
+      }
+    }
+  }
+}

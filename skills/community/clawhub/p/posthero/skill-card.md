@@ -1,44 +1,55 @@
-## Description: <br>
-This skill helps agents create drafts, schedule, publish, update, delete, and review analytics for social media posts across LinkedIn, Twitter/X, Instagram, Facebook, YouTube, TikTok, Threads, and Bluesky using the PostHero API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Schedule and publish social media posts across LinkedIn, Twitter/X, Instagram, Facebook, YouTube, TikTok, Threads, and Bluesky using the PostHero API, with support for drafts, scheduled posts, immediate publishing, content management, and analytics.
 
-## Publisher: <br>
-[a007mr](https://clawhub.ai/user/a007mr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a007mr](https://clawhub.ai/user/a007mr)
 
-## Use Case: <br>
-External users and social media operators use this skill to manage social content from an agent conversation, including account lookup, post creation, scheduling, publishing, media upload, and analytics review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An agent with the PostHero API key can publish, schedule, update, or delete social content for connected accounts. <br>
-Mitigation: Use a revocable API key, confirm which social accounts it can access, and require the agent to show the content, target accounts, scheduled time, and action type before any publishing, update, or deletion action. <br>
-Risk: The skill requires a sensitive PostHero API key. <br>
-Mitigation: Store POSTHERO_API_KEY only in the agent's approved secret or configuration store and rotate or revoke it if access changes. <br>
-Risk: Deleting a post through the PostHero API removes it from PostHero but does not remove already-published content from the social media platform. <br>
-Mitigation: Treat deletion as a PostHero-side action and separately verify platform removal when that is the user's intent. <br>
+## Use Case:
 
+External users and developers use this skill to manage connected PostHero social accounts from an agent, including drafting, scheduling, publishing, updating, deleting, and reviewing analytics for social posts across supported platforms.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/a007mr/posthero) <br>
-- [PostHero OpenClaw page](https://posthero.ai/openclaw) <br>
-- [PostHero API base URL](https://server.posthero.ai/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires POSTHERO_API_KEY and connected social accounts; can create drafts, schedule, publish, update, delete posts, upload media, and read analytics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release and SKILL.md frontmatter) <br>
+Risk: The skill can publish posts immediately through connected PostHero social accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before publishing, require the agent to summarize the exact post text, target platforms and accounts, schedule, and whether publishing is immediate, then require clear user confirmation.
+
+Risk: The skill can delete PostHero post records.
+
+Mitigation: Before deletion, require the agent to identify the affected post ID and explain that deletion removes the record from PostHero but does not remove already published content from social platforms.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/a007mr/skills/posthero)
+- [PostHero OpenClaw homepage](https://posthero.ai/openclaw)
+- [PostHero API base URL](https://server.posthero.ai/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, API Calls, Guidance]
+
+**Output Format:** [Markdown guidance with bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires POSTHERO_API_KEY and connected PostHero social accounts.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

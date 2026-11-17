@@ -1,43 +1,58 @@
-## Description: <br>
-上传文件到内部 BS3 存储（免签名）。Use when user asks to upload files, images, documents to storage, or get a shareable URL for a file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uploads user-selected local files or binary data to internal BS3 storage and returns a shareable file URL.
 
-## Publisher: <br>
-[bagayalu](https://clawhub.ai/user/bagayalu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bagayalu](https://clawhub.ai/user/bagayalu)
 
-## Use Case: <br>
-Developers and internal users use this skill to upload local files or byte content to an internal BS3-compatible storage endpoint and return a shareable URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Internal network environments where the configured BS3 endpoint is reachable <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The storage endpoint, bucket, CDN domain, and retention behavior may not be clear enough for sensitive file-sharing decisions. <br>
-Mitigation: Verify the configured endpoint, bucket, returned domain, and retention policy before enabling the skill for users. <br>
-Risk: Uploaded files may be exposed through shareable URLs or retained only temporarily. <br>
-Mitigation: Do not use the skill for secrets, personal data, confidential reports, or regulated files unless destination access controls and retention are confirmed. <br>
-Risk: The skill depends on an internal network and BS3-compatible service availability. <br>
-Mitigation: Use it only in environments that can reach the configured internal endpoint and have the required Python dependencies installed. <br>
+## Use Case:
 
+Employees and developers use this skill when an agent needs to upload selected files, images, documents, or binary data to internal BS3 storage and return a URL for sharing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bagayalu/file-upload-test) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/bagayalu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, guidance] <br>
-**Output Format:** [Plain text URL with a retention warning; optional Markdown guidance and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returned URLs are described as temporary and valid for 7 days.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can upload arbitrary local data to shareable storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation of the exact file path and intended destination before each upload.
+
+Risk: Uploads use an unauthenticated plaintext connection with unclear scope.
+
+Mitigation: Restrict installation to environments that need this internal bucket and prefer HTTPS, authenticated uploads, and pinned dependencies before broad deployment.
+
+Risk: Uploaded content may expose secrets or regulated data through returned URLs.
+
+Mitigation: Avoid uploading secrets or regulated data and confirm a real expiry mechanism before using the skill for sensitive workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bagayalu/skills/file-upload-test)
+- [ClawHub publisher profile](https://clawhub.ai/user/bagayalu)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text URL output with Python API return strings and CLI status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns a shareable storage URL after applying an 8-character UUID prefix to the object key.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

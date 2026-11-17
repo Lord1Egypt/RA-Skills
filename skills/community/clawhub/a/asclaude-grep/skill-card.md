@@ -1,41 +1,53 @@
-## Description: <br>
-asclaude-grep searches a local OpenClaw workspace for matching file contents and filenames using grep and find. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+asclaude-grep helps agents search local OpenClaw workspaces by content or filename using grep-style regular expressions and filename patterns.
 
-## Publisher: <br>
-[miaoxingjun](https://clawhub.ai/user/miaoxingjun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[miaoxingjun](https://clawhub.ai/user/miaoxingjun)
 
-## Use Case: <br>
-Developers and workspace users use this skill to locate code, documentation, JSON, and other text matches across local OpenClaw workspaces. It helps with code review, troubleshooting, refactoring, and quick file discovery without uploading workspace data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad searches can surface matching lines or paths from secrets or sensitive documents in the agent conversation. <br>
-Mitigation: Use targeted patterns and avoid broad searches in folders that contain secrets or sensitive documents. <br>
-Risk: Search results may be incomplete because the script searches selected text file extensions and truncates output to the first 20 matches. <br>
-Mitigation: Run narrower follow-up searches or inspect files directly when completeness matters. <br>
+## Use Case:
 
+Developers and agents use this skill to locate matching code, documents, configuration files, and filenames inside a local OpenClaw workspace during review, debugging, and refactoring.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/miaoxingjun/asclaude-grep) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/miaoxingjun) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text search results and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search output is local to the workspace and may be truncated to the first 20 matches.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Search patterns that begin with command-style options can affect grep argument handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid untrusted option-like patterns and prefer a patched version that inserts a grep -- delimiter or provides fixed-string search mode.
+
+Risk: Search results can expose filenames or content from the local OpenClaw workspace.
+
+Mitigation: Install and run the skill only in workspaces where local filename and content search is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/miaoxingjun/skills/asclaude-grep)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text search results with file paths, line numbers, and concise command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results are limited to the first 20 matches and are generated from local workspace files.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

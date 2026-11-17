@@ -1,5 +1,197 @@
 # @opensea/skill
 
+## 2.32.0
+
+### Minor Changes
+
+- `opensea-api` documents `--token-id` on `opensea drops mint` and `cross-chain-mint` for ERC-1155 drops, and `mints_remaining` on `opensea drops eligibility`.
+
+## 2.31.1
+
+### Patch Changes
+
+- `opensea-wallet/references/wallet-setup.md` describes the private-key adapter as it works: it signs EIP-1559 transactions locally and broadcasts them with `eth_sendRawTransaction`, so it works with public RPCs such as `https://mainnet.base.org`. `PRIVATE_KEY` is the only required variable; `RPC_URL` is needed to send, and `WALLET_ADDRESS` is optional and never changes who signs. `.env.example` matches.
+- `opensea-swap.sh` no longer requires `WALLET_ADDRESS`.
+
+## 2.31.0
+
+### Minor Changes
+
+- `opensea-marketplace` uses the CLI's new `--dry-run` and `--send` on the order action commands: run `--dry-run`, show the user the summary and plan digest, then `--send --yes --expect-plan <digest>` only after they approve. The manual EIP-712 and transaction steps move to `references/marketplace-api.md` under "Running steps yourself". Requires `@opensea/cli` 4.1.0.
+- `opensea-swaps` saves the approved quote with `opensea swaps quote --out quote.json` and executes exactly that quote with `opensea swaps execute --quote quote.json`, which refuses an expired, edited or other-wallet quote. Requires `@opensea/cli` 4.1.0.
+- `opensea-api` Setup caches a key with `opensea auth request-key --save --if-missing` instead of exporting `OPENSEA_API_KEY`, and the CLI and every skill script fall back to the cached key in `~/.opensea/api_key`. The scripts reference says the CLI never exports its wallet token: use `opensea api request` for wallet-scoped endpoints, and set `OPENSEA_AUTH_TOKEN` only from a token obtained outside the CLI.
+- The MCP reference lists `view_social_graph`, `manage_social_graph`, `list_saved_tools`, `save_tool` and `unsave_tool`, which the server now serves.
+- ClawHub shows the skill as "OpenSea Skill".
+
+## 2.30.0
+
+### Minor Changes
+
+- Rewrite every sub-skill in a shorter, CLI-first style. `opensea-api/SKILL.md` drops from 913 to 120 lines; drops and collection pages, signals and agent accounts, the MCP server, and the script index move to `opensea-api/references/`.
+- `opensea-marketplace` runs writes through the order action endpoints or `@opensea/sdk` with a `@opensea/wallet-adapters` signer, and requires confirming the trade with the user before signing. `references/seaport.md` is removed; `references/marketplace-api.md` keeps the manual request shapes and EIP-712 signing, and no longer says the order POST builds an unsigned order.
+- `opensea-swaps` documents quote, `--dry-run`, confirm, then execute, and that `execute` re-quotes so `--slippage` bounds the executed terms. `references/token-swaps.md` is removed.
+- The MCP reference lists only tools the server serves. `get_wallet_tools`, the social graph and saved-tool/toolkit tools are dropped; `get_agent_relationships` and `manage_agent_account` are added; copied parameter tables are replaced by the server's own schemas.
+- `opensea-wallet` lists every provider env var, including `TURNKEY_RPC_URL`, `PRIVY_AUTH_SIGNING_KEY` and `PRIVY_SVM_WALLET_ID`.
+- `opensea-tool-sdk` tool discovery parameters match the API: `limit` 1-200, `cursor`, plus `source`, `collection` and `include_details`.
+- `opensea-get.sh` and `opensea-post.sh` send `OPENSEA_AUTH_TOKEN` as a bearer token when set, so wallet-scoped scripts such as `opensea-account-favorites.sh` work. `opensea-swap.sh` leaves wallet provider detection to the CLI.
+- The README gives the real ClawHub slug: `clawhub install opensea-marketplace`.
+- The public repository no longer receives the monorepo's TypeScript and Biome root configs.
+
+## 2.29.0
+
+### Minor Changes
+
+- `opensea-tool-sdk` documents `paidFetch`'s `idempotencyKey` in `references/x402.md`: a retried purchase with the same key settles at most once, because the EIP-3009 nonce is derived from the key, and it requires `allowedAssets` pinned to one USDC contract on its own network.
+
+## 2.28.0
+
+### Minor Changes
+
+- `opensea-api` documents OpenSea signals: `opensea signals get`, `list`, `create` and `delete`, and the matching `/api/v2/signals` endpoints in `references/rest-api.md`. Posting and deleting need the `write:posts` scope, which is in preview, so the docs sign in with `--private-key`.
+
+## 2.27.1
+
+### Patch Changes
+
+- Correct the NFT metadata refresh, account event and drop eligibility paths in the REST API reference. List the general events endpoint and supported REST event filters, and direct order invalidation/revalidation monitoring to the Stream API. Clarify endpoint-specific pagination, timestamp formats and token amount units.
+
+## 2.27.0
+
+### Minor Changes
+
+- `opensea-api` documents the new CLI flags that close API parity gaps: `tokens trending`/`top` `--sort-by`/`--sort-direction`, `listings all`/`best`/`best-for-nft` `--include-private-listings`, `nfts list-by-collection --has-agent-binding`, numeric-range and multi-trait `offers traits`, and `tools list`/`search` `--source`, `--collection`, `--include-details`. `references/rest-api.md` lists the matching query params.
+- `opensea-api` no longer documents `POST /api/v2/drops/{slug}/items/media/save` or the CLI's `save-item-media`. The API removed the endpoint (ProjectOpenSea/os2-core#67914). Save a drop's items with `save-item-media-batch`, or `upload-items` for a folder.
+
+## 2.26.2
+
+### Patch Changes
+
+- `opensea-wallet` and `opensea-tool-sdk` list `bankr` among the `--wallet-provider` values, which the CLI and tool-sdk already accept. The `opensea-resolve-key.sh` usage comment and the paths in `docs/policy-administration.md` no longer name the internal `packages/skill/` prefix, which does not exist in this repository.
+
+## 2.26.1
+
+### Patch Changes
+
+- Document how to clear collection page content in `opensea-api`: an empty `preview_media`, `sections` or section `media` list, `{}` for a hero slot, `modules: {}` for the overview, and `""` for description, website, Telegram, banner and logo. Note that a cleared logo falls back to the contract image and that `GET /collections/{slug}` can trail a modify, while `get-metadata` reads fresh.
+
+## 2.26.0
+
+### Minor Changes
+
+- Document collection page management in `opensea-api`: `opensea collections get-metadata`, `upload-page-media`, `set-pricing-currency`, `creator-fee-enforcement`, `set-creator-fee-enforcement` and `refresh`, `opensea drops items`, and the `metadata`, `media/{placement}`, `pricing_currency`, `creator_fee_enforcement`, `refresh` and `drops/{slug}/items` endpoints.
+
+## 2.25.0
+
+### Minor Changes
+
+- Document the drop item upload batch flow in `opensea-api`: `opensea drops upload-items`, which uploads a folder under one upload batch id and saves it by filename, `save-item-media-batch`, and the `items/media`, `items/media/save-batch` and deprecated `items/media/save` endpoints.
+
+## 2.24.0
+
+### Minor Changes
+
+- Document the drop publish flow in `opensea-api`: `opensea drops publish` and `unpublish` (with `--send`), `upload-metadata-ipfs --wait`, `metadata-ipfs-status`, `create-manifest-upload` and `upload-file`, and the endpoints behind them.
+
+## 2.23.1
+
+### Patch Changes
+
+- Correct the `WalletStateAttestationPredicate` entry in `opensea-tool-sdk/references/known-predicates.md`: the reference implementation's `hasAccess` takes the issuer's compact JWT as `data`, and a check costs about 130,000 gas.
+
+## 2.23.0
+
+### Minor Changes
+
+- Document endpoint-bound predicate authentication and the optional shared replay guard for single-use identity authorizations.
+
+## 2.22.0
+
+### Minor Changes
+
+- Add a `.grok-plugin/plugin.json` manifest and `.mcp.json` so plugin marketplaces (xAI Grok Build) can index the five sub-skills and the hosted OpenSea MCP server.
+
+## 2.21.2
+
+### Patch Changes
+
+- Pin the public release actions, include the MIT license text, and clarify credential and token-address examples so security scanners distinguish runtime values from embedded secrets.
+
+## 2.21.1
+
+### Patch Changes
+
+- Clarify that offer-action creation requires a payment token mint or contract address, and document the native SOL address instead of suggesting the `SOL` ticker symbol.
+
+## 2.21.0
+
+### Minor Changes
+
+- b68b01e: Add executable Solana order-action workflows for creating offers, fulfilling listings and offers, and cancelling orders, including exact-byte partial-signature handling, sponsored fee payers, and Jito bundles.
+
+## 2.20.0
+
+### Minor Changes
+
+- Document agent accounts: declaring an account an agent, the two-sided ownership handshake, the new `opensea agent` CLI group, and the `accounts/opensea-agent-relationships.sh` public read. Records that the writes take `write:wallets` while listing your own relationships takes `read:wallets`, so a client running the whole handshake needs both.
+
+## 2.19.2
+
+### Patch Changes
+
+- Document ERC20-denominated listing fulfillment: read prices with the `decimals` field (stablecoins commonly use 6, not 18), and check payment-token balance and conduit allowance (via ConduitController `getConduit`) before submitting.
+
+## 2.19.1
+
+### Patch Changes
+
+- Replace hardcoded supported-chain lists with a pointer to `GET /api/v2/chains`, and relax marketplace script chain validation to a format check so newer chains (e.g. `robinhood`) work.
+
+## 2.19.0
+
+### Minor Changes
+
+- cba26dd: Document cross-chain drop minting, including ordered transaction submission and receipt polling, and add a validated REST helper script.
+
+## 2.18.3
+
+### Patch Changes
+
+- f9a1961: Keep wallet authentication in task routing and reference docs instead of the top-level skill summary.
+
+## 2.18.2
+
+### Patch Changes
+
+- bf5874d: Document account token activity, tool activity, and wallet-authenticated saved-tools commands with canonical cursor parameters and auth-aware fallbacks.
+- ac24487: Require explicit private-key login scopes and streamline the wallet-auth guidance for agents.
+- 89b0531: Route wallet-auth requests to the `opensea-api` skill.
+
+## 2.18.1
+
+### Patch Changes
+
+- 06e96e1: Clarify that scoped-token management requires a revocable SIWE session, while agents can continue exchanging their PAT for short-lived scoped JWTs autonomously.
+
+## 2.18.0
+
+### Minor Changes
+
+- bbe8f9d: Add a concise agent workflow for wallet-authenticated REST and MCP, including CLI login, scoped-token refresh and revocation, wallet linking, the live OpenAPI document, and the rule that wallet endpoints require both API-key and Bearer credentials.
+- d846160: Replace the retired auth-server examples with the current OpenSea API endpoints for SIWE, scoped-token exchange, refresh, revocation, and wallet-link nonces.
+
+## 2.17.1
+
+### Patch Changes
+
+- 4bef9a5: `opensea-api`: update wallet authentication guidance to the canonical eight-scope API registry, remove the deferred `read:rewards` scope, and document scoped endpoint groups.
+- ee7cc56: Align the `opensea-tool-sdk` destination with the other rows in the README decision tree.
+
+## 2.17.0
+
+### Minor Changes
+
+- f1db520: `opensea-tool-sdk`: add Robinhood Chain (4663) to the deployed-contracts and known-predicates docs.
+
 ## 2.16.0
 
 ### Minor Changes

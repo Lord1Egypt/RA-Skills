@@ -1,41 +1,50 @@
-## Description: <br>
-Guides agents in assessing and improving mobile-first indexing, mobile SEO, responsive design, viewport metadata, mobile usability, and AMP considerations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in checking and prioritizing fixes for mobile-first indexing, responsive design, viewport setup, content parity, touch targets, font sizing, intrusive interstitials, and AMP decisions.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Developers, SEO specialists, and site maintainers use this skill to evaluate mobile usability, mobile-first indexing readiness, responsive layout behavior, viewport configuration, content parity, and AMP tradeoffs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Website changes recommended by the skill could affect SEO, accessibility, or layout behavior if applied without review. <br>
-Mitigation: Review recommendations before applying them and validate changes with mobile usability and search tooling. <br>
-Risk: Project-context files read to find a site URL could contain secrets or sensitive deployment details. <br>
-Mitigation: Avoid storing secrets in project-context files and review any shared context before using the skill. <br>
+## Use Case:
 
+Developers, SEO specialists, and site maintainers use this skill to audit mobile usability and mobile-first indexing readiness, then produce prioritized fixes for responsive layout, viewport metadata, content parity, touch targets, font sizing, and AMP tradeoffs.
 
-## Reference(s): <br>
-- [Google Mobile-Friendly Test](https://search.google.com/test/mobile-friendly) <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/mobile-friendly) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown with checklists, tables, and inline HTML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces prioritized mobile usability and SEO recommendations; no executable code is bundled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill may read existing project-context files to find a target site URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review project-context files before use and avoid storing sensitive internal details there unless they are needed for the SEO task.
+
+## Reference(s):
+
+- [Google Mobile-Friendly Test](https://search.google.com/test/mobile-friendly)
+- [ClawHub Skill Page](https://clawhub.ai/kostja94/skills/mobile-friendly)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown with checklists, tables, prioritized recommendations, and occasional HTML snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference Google Search Console or Mobile-Friendly Test results when supplied by the user.]
+
+## Skill Version(s):
+
+1.1.2 (source: server evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

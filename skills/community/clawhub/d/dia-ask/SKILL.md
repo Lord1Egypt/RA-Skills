@@ -10,6 +10,8 @@ Delegate a prompt to the AI assistant inside a locally-running [Dia](https://www
 
 **Dia is eyes, not hands:** reach for it to *read / research* what's behind a login or heavy JS; use other tools to *act* (click, submit).
 
+Built by [AgentNeo](https://agneo.app) — AI agents with operational rigor, and the open-source safety patterns to run them.
+
 ## Requirements
 
 - macOS, with **Dia installed** (runs on your own Dia + subscription — no hosted service).
@@ -35,3 +37,9 @@ node dia-ask-v2.js "extract every row of the pricing table on the page" --format
 ## Caveats
 
 Unofficial UI automation: it depends on Dia's window/Accessibility internals and can break on any Dia update. No official API. macOS only. A reference implementation, not a hardened product. See `README.md`.
+
+## About
+
+Built and maintained by [AgentNeo](https://agneo.app) — we build AI agents with operational rigor and open-source the safety patterns needed to run them in the real world.
+
+Contact: [gk@agneo.app](mailto:gk@agneo.app)

@@ -1,43 +1,61 @@
-## Description: <br>
-Produces a branded Psyke SEO and GEO audit deck for a website, including dual SEO Health and GEO Readiness scores, competitor benchmarking, AI citation analysis, and an action plan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Produces a branded Psyke SEO and GEO audit deck for a website, with dual scoring, competitor benchmarking, AI citation analysis, and Psyke-branded dark-mode slides.
 
-## Publisher: <br>
-[beebeebot](https://clawhub.ai/user/beebeebot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[beebeebot](https://clawhub.ai/user/beebeebot)
 
-## Use Case: <br>
-External marketing, SEO, and web teams use this skill to audit a client website and produce a Psyke-branded HTML presentation with SEO, GEO, AI visibility, competitor, and recommendation sections. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Client audit material may be published publicly through GitHub or Vercel without an explicit consent step. <br>
-Mitigation: Require approval before any public repository or production deployment, prefer private or local output for client work, and review the deck for confidential details before sharing. <br>
-Risk: The workflow may crawl client sites and query third-party AI or search tools with client-specific information. <br>
-Mitigation: Confirm the audit scope before using external tools, avoid submitting confidential material, and document which third-party services were used. <br>
+## Use Case:
 
+External marketing and SEO practitioners can use this skill to create client-facing Psyke audit decks that collect website evidence, score SEO and GEO readiness, benchmark competitors, and propose specific fixes.
 
-## Reference(s): <br>
-- [Psyke Audit Scoring Methodology](references/scoring.md) <br>
-- [Psyke Audit GEO Assessment Framework](references/geo-framework.md) <br>
-- [Psyke Audit Slide Structure](references/slide-structure.md) <br>
-- [Psyke Theme CSS](references/psyke-theme.css) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [HTML slide deck, markdown delivery summary, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a single index.html audit deck and may provide a deployed presentation URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Client audit material may be published publicly without a clear consent or review gate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit client approval, review staged files before deployment, and prefer private or access-controlled publishing.
+
+Risk: Website crawling and external AI or search tools may expose client information beyond the audit workspace.
+
+Mitigation: Confirm client approval before collection, limit sensitive inputs, and verify findings before sharing the deck.
+
+Risk: Unpinned deployment tooling can change behavior between audit runs.
+
+Mitigation: Pin deployment tooling where possible and review generated output before release.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/beebeebot/skills/psyke-audit)
+- [Scoring methodology](artifact/references/scoring.md)
+- [GEO assessment framework](artifact/references/geo-framework.md)
+- [Slide structure](artifact/references/slide-structure.md)
+- [Psyke theme CSS](artifact/references/psyke-theme.css)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [HTML slide deck, Markdown summaries, and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a single index.html deck for Vercel deployment with SEO and GEO scores, issue evidence, benchmark sections, and an action plan.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

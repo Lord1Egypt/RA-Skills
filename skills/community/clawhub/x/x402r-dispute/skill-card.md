@@ -1,45 +1,59 @@
-## Description: <br>
-Pay merchants and file payment disputes on the x402r refundable payments protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pay merchants and file payment disputes on the x402r refundable payments protocol.
 
-## Publisher: <br>
-[vraspar](https://clawhub.ai/user/vraspar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[vraspar](https://clawhub.ai/user/vraspar)
 
-## Use Case: <br>
-Developers, engineers, and agent operators use this CLI skill to make x402r escrow payments, file refund disputes, check dispute status, view evidence, and verify arbiter rulings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for wallet authority and can initiate payment and dispute transactions. <br>
-Mitigation: Use a dedicated low-balance test wallet and verify the configured npm package, network, RPC, operator, and arbiter before running payment or dispute commands. <br>
-Risk: Evidence and payment details may be sent to configured services and may become public or difficult to remove. <br>
-Mitigation: Review evidence content before submission and avoid submitting private or sensitive material unless disclosure is acceptable. <br>
-Risk: Production evidence pinning depends on a configured Pinata JWT; without it, the artifact falls back to a placeholder CID. <br>
-Mitigation: Configure a real Pinata JWT or another supported evidence storage path before relying on dispute evidence in production. <br>
+## Use Case:
 
+External developers and agents use this CLI to make escrow payments, file refund disputes, check dispute status, view submitted evidence, and replay arbiter rulings for the x402r refundable payments protocol.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/vraspar/x402r-dispute) <br>
-- [Publisher profile](https://clawhub.ai/user/vraspar) <br>
-- [x402r homepage](https://x402r.org) <br>
-- [Support issues](https://github.com/x402r/x402r-arbiter-eigencloud/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [CLI text output with optional JSON files and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands can write local state under ~/.x402r and optional response files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata) <br>
+Risk: Wallet credentials and payment state can put funds at risk if reused with valuable wallets or stored insecurely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a low-value dedicated test wallet, avoid passing private keys in shell commands, prefer managed secrets where possible, and restrict permissions on ~/.x402r.
+
+Risk: Payment and dispute data may be sent to arbiter, court, Pinata, merchant, RPC, and on-chain endpoints.
+
+Mitigation: Verify endpoint URLs before use and avoid submitting sensitive evidence or payment data that should not be shared with those services.
+
+Risk: Evidence pinning can fall back to a placeholder CID, which can weaken or invalidate a dispute record.
+
+Mitigation: Configure real evidence pinning, confirm the returned CID before filing disputes, and avoid valuable disputes until fail-closed evidence handling is in place.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vraspar/skills/x402r-dispute)
+- [x402r homepage](https://x402r.org)
+- [x402r support](https://github.com/x402r/x402r-arbiter-eigencloud/issues)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, text, JSON, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, CLI text output, JSON-parseable command results, and local state files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The CLI can save payment and dispute state under ~/.x402r and can write response bodies to user-selected files.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,53 @@
-## Description: <br>
-Book phone-repair services through Lokuli MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book phone-repair services through Lokuli MCP for users who need to find and book a phone-repair provider.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users use this skill to search for phone-repair providers through Lokuli, check availability, and create a booking after confirming the provider, service, time slot, and contact details. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The booking flow sends customer name, email, and phone number to an external booking service. <br>
-Mitigation: Confirm the provider, service, time slot, and contact details with the user before creating a booking. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Book Phone Repair on ClawHub](https://clawhub.ai/edwardrodriguez703-design/book-phone-repair) <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users can use this skill to search for phone-repair providers, check availability, and create a booking through Lokuli's MCP service.
 
-## Skill Output: <br>
-**Output Type(s):** [text, API calls, guidance] <br>
-**Output Format:** [Markdown or plain text with JSON-RPC tool call details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include booking search results, availability details, and booking confirmation guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Appointment and contact details may be sent to Lokuli's MCP service during booking.
+
+Mitigation: Confirm the selected provider, service, appointment time, customer name, email, and phone number with the user before creating a booking.
+
+Risk: A booking could be created for the wrong provider, service, or time slot if search and availability results are not reviewed.
+
+Mitigation: Present the chosen provider, service, and time slot for explicit user confirmation before calling the booking tool.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/edwardrodriguez703-design/skills/book-phone-repair)
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls]
+
+**Output Format:** [Markdown guidance with JSON-RPC MCP call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May send appointment and customer contact details to Lokuli's MCP service when creating bookings.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

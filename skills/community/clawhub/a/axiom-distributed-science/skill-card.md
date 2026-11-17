@@ -1,45 +1,60 @@
-## Description: <br>
-Query scientific findings, experiments, and papers from the Axiom distributed volunteer computing network (113+ hosts, 129 GPUs, 42K+ results). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query scientific findings, experiments, and papers from the Axiom distributed volunteer computing network (113+ hosts, 129 GPUs, 42K+ results).
 
-## Publisher: <br>
-[PyHelix](https://clawhub.ai/user/PyHelix) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pyhelix](https://clawhub.ai/user/pyhelix)
 
-## Use Case: <br>
-Developers, researchers, and agents use this skill to query Axiom's public science APIs for network statistics, findings, experiment listings, papers, and plain-text experiment suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries and experiment suggestions are sent to Axiom's public API endpoints. <br>
-Mitigation: Confirm that submitted ideas and author names are safe to send to axiom.heliex.net; do not include secrets, private research details, or personal data. <br>
-Risk: Scientific findings returned by the public API may be incomplete, preliminary, or unsuitable for unsupported conclusions. <br>
-Mitigation: Treat API responses as source material for review and cite the underlying Axiom pages or papers when using findings in user-facing work. <br>
-Risk: The skill can suggest curl commands that make network requests. <br>
-Mitigation: Review commands before execution and only run them in environments where outbound requests to axiom.heliex.net are allowed. <br>
+## Use Case:
 
+Developers, researchers, and technical users use this skill to query Axiom's public science APIs for distributed-computing statistics, scientific findings, active experiments, papers, and plain-text experiment suggestions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/PyHelix/axiom-distributed-science) <br>
-- [Axiom Homepage](https://axiom.heliex.net) <br>
-- [Axiom Scientific Findings](https://axiom.heliex.net/scientific_findings.php) <br>
-- [Example Axiom Paper](https://axiom.heliex.net/reactivity_localization_paper.pdf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown with inline curl commands and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl for documented API calls; the suggestion endpoint accepts plain text up to 5,000 characters and is rate limited.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and release evidence) <br>
+Risk: Using the documented examples contacts axiom.heliex.net.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outbound requests before running examples and use the APIs only in environments where contacting the public Axiom service is acceptable.
+
+Risk: Submitting an experiment suggestion sends the submitted text to the Axiom team for review.
+
+Mitigation: Do not include secrets, private research plans, personal data, or proprietary information in submitted ideas.
+
+## Reference(s):
+
+- [Axiom Homepage](https://axiom.heliex.net)
+- [Axiom Scientific Findings](https://axiom.heliex.net/scientific_findings.php)
+- [Reactivity Localization Paper](https://axiom.heliex.net/reactivity_localization_paper.pdf)
+- [Axiom Project Statistics API](https://axiom.heliex.net/api/stats.php)
+- [Axiom Findings API](https://axiom.heliex.net/api/findings.php)
+- [Axiom Experiments API](https://axiom.heliex.net/api/experiments.php)
+- [Axiom Papers API](https://axiom.heliex.net/api/papers.php)
+- [ClawHub Skill Page](https://clawhub.ai/pyhelix/skills/axiom-distributed-science)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl for the documented API examples.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,60 @@
-## Description: <br>
-Unified Google services API integration with managed OAuth for Gmail, Google Calendar, Drive, Docs, Sheets, Slides, Meet, Tasks, Photos, Maps, Google Analytics, and Google Ads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unified Google services API integration with managed OAuth for Gmail, Calendar, Drive, Docs, Sheets, Slides, Meet, Tasks, Photos, Maps, Google Analytics, and Google Ads.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-External users and developers use this skill to connect a Google account through hosted OAuth and operate across Google services from an agent workflow, including email, calendars, files, documents, spreadsheets, meetings, tasks, maps, analytics, and ads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad Google OAuth access can expose or change sensitive Google account data. <br>
-Mitigation: Review the Google OAuth consent screen, grant only needed scopes, and revoke the ClawLink connection when it is no longer needed. <br>
-Risk: Write, delete, Ads, and batch operations can create high-impact changes. <br>
-Mitigation: Use these tools only with explicit intent and confirm destructive or advertising-related actions before execution. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to connect one Google account through ClawLink and operate across Google services from chat, including email, calendar, file, document, spreadsheet, meeting, task, photo, maps, analytics, and ads workflows.
 
-## Reference(s): <br>
-- [Google Workspace APIs](https://developers.google.com/) <br>
-- [ClawLink OpenClaw Documentation](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink Google Super Connection](https://claw-link.dev/dashboard?add=google-super) <br>
-- [Google Super on ClawHub](https://clawhub.ai/hith3sh/google-super) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May trigger Google API read, write, delete, advertising, and analytics actions through ClawLink tools after OAuth connection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The skill connects broad Google access across sensitive services through a single OAuth flow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated or low-risk Google account where possible, avoid connecting production email, Drive, Ads, or Analytics accounts unless the full bundle is required, and revoke the ClawLink Google OAuth grant when finished.
+
+Risk: The install flow asks users to install and allowlist an unpinned third-party plugin.
+
+Mitigation: Review the plugin install and allowlist commands before installation, and only enable the plugin in a trusted OpenClaw workspace.
+
+Risk: Write, batch delete, clear value, and data erasure tools can modify or remove user data.
+
+Mitigation: Confirm sensitive reads and all writes yourself, with extra review for batch deletes, clear operations, sharing changes, Ads mutations, and other high-impact actions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hith3sh/skills/google-super)
+- [Google Workspace APIs](https://developers.google.com/)
+- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=google-super)
+- [ClawLink Docs](https://docs.claw-link.dev/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands and JavaScript-style tool call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes representative tool names and workflows for Google service read, write, and delete operations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,53 @@
-## Description: <br>
-Read-only assistant for BriteBooth.com. Collects product IDs, templates, and lead times. Requires human execution for cart creation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read-only assistant for BriteBooth.com. Collects product IDs, templates, and lead times. Requires human execution for cart creation.
 
-## Publisher: <br>
-[Vismonkey19](https://clawhub.ai/user/Vismonkey19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vismonkey19](https://clawhub.ai/user/vismonkey19)
 
-## Use Case: <br>
-External users use this skill to research BriteBooth trade show products, artwork templates, prices, and lead-time estimates while keeping cart creation and purchase completion under direct human control. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Live product availability, prices, closure banners, and lead times can change after the skill retrieves them. <br>
-Mitigation: Have the agent perform a fresh read-only check and ask the user to verify the final product and timeline details on BriteBooth.com before purchasing. <br>
-Risk: Checkout, payment, contact, shipping, cookie, and session handling would expose sensitive user data if performed by the agent. <br>
-Mitigation: Keep the skill limited to product and template links, and require the user to complete cart and checkout actions in their own browser session. <br>
-Risk: Tight event deadlines can make ordinary production and proofing windows insufficient. <br>
-Mitigation: Include the estimated production dates in the shopping list and direct the user to contact BriteBooth support for expedited options when the timeline is tight. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Vismonkey19/britebooth-procurement) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/Vismonkey19) <br>
+## Use Case:
 
+External users planning trade show purchases use this skill to research BriteBooth products, artwork templates, prices, and lead times while keeping cart and checkout actions manual.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown shopping list with product links, template links, prices, lead-time estimates, and status notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only output; purchase completion remains manual in the user's browser.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Live prices, lead times, facility closure banners, and shipping delays may change before purchase.
+
+Mitigation: Verify current BriteBooth product pages, templates, prices, and timing estimates before placing an order.
+
+Risk: Checkout, payment, shipping address, contact information, or account-session handling could expose personal data if automated.
+
+Mitigation: Keep cart creation, checkout, payment, shipping details, and account sessions manual in the user's own browser session.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vismonkey19/skills/britebooth-procurement)
+- [ClawHub publisher profile](https://clawhub.ai/user/vismonkey19)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown shopping list with product links, artwork template links, and timeline notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only outputs; purchase, checkout, payment, shipping, and account-session handling remain manual.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

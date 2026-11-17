@@ -1,37 +1,49 @@
-## Description: <br>
-Provides recommendation lists, check-in routes, and planning guidance for trendy toy shops and activities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides recommendation lists, check-in routes, and practical guidance for trendy toys and related outings.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-External users and agents use this skill to find trendy toy recommendations, compare venues or activities, and plan city-specific visits with price, reservation, crowding, and rule details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Venue details such as prices, opening hours, reservations, popularity, and photography or participation rules may change. <br>
-Mitigation: Verify current venue details and on-site rules before visiting, booking, or relying on a recommendation. <br>
+## Use Case:
 
+External users can use this skill to plan trendy toy shopping or visit routes, filtering by style, price, authenticity, customization services, popularity, booking requirements, and venue rules.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include shop or activity names, highlights, prices, ratings, traffic levels, addresses, opening hours, reservation methods, activity details, and social popularity signals.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Recommendations may become outdated because store hours, prices, events, booking requirements, crowd levels, and venue rules can change.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current details with the venue or official booking channel before visiting or relying on the recommendation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mike47512/skills/toys)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured text with recommendation lists and trip-planning details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include store or project names, highlights, prices, ratings, crowd levels, addresses, hours, booking methods, photo rules, fitting rules, events, pop-ups, collaborations, and social popularity signals.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-Perform safe, auditable file operations with path validation and backups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perform safe, auditable file operations with path validation and backups.
 
-## Publisher: <br>
-[mzfshark](https://clawhub.ai/user/mzfshark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzfshark](https://clawhub.ai/user/mzfshark)
 
-## Use Case: <br>
-Developers and engineers use this skill to ask an agent to read, write, update, delete, move, or copy files while validating paths, creating backups for destructive changes, and reporting the result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: File operations can delete, overwrite, or move user data if an agent is not constrained to the intended workspace. <br>
-Mitigation: Install only in agents constrained to the intended workspace and require explicit approval for delete, overwrite, recursive, or bulk operations. <br>
-Risk: Malformed activation metadata may make automatic triggering unreliable. <br>
-Mitigation: Replace malformed trigger metadata with clear trigger phrases and scope limits before relying on automatic triggering. <br>
+## Use Case:
 
+Developers and engineers use this skill when an agent needs to read, write, update, delete, move, or copy workspace files with path checks, backups, and explicit reporting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mzfshark/axodus-file-operations) <br>
-- [file-operations.md](artifact/file-operations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or YAML-style status summaries with affected paths, backup paths, result status, and notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports operation, affected paths, backup locations, result, and notes; destructive operations should be backed up when possible.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Malformed trigger metadata may make activation scope unclear for a skill that can change or delete files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and correct trigger metadata before installation, and require explicit, narrow activation rules.
+
+Risk: File operations can overwrite, move, or delete workspace content when used with broad path access.
+
+Mitigation: Limit execution to intended workspace paths, print resolved paths before action, and keep backups enabled for overwrite or delete operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mzfshark/skills/axodus-file-operations)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with structured YAML status examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports operation, affected paths, backup paths, result, and notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

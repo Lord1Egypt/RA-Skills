@@ -1,41 +1,56 @@
-## Description: <br>
-The ipdata.co skill lets an agent use the OOMOL oo CLI connector to look up IP geolocation, ASN, carrier, company, currency, language, time zone, and threat data from ipdata.co. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Looks up IP address and ASN information through ipdata.co, including location, network, and threat data.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and external users use this skill to let an agent inspect the live ipdata.co connector schema and run read-only IP intelligence lookups through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: IP addresses submitted for lookup, including current-IP requests, are processed through the OOMOL connector layer and ipdata.co. <br>
-Mitigation: Use the skill only for IP lookup data that is appropriate to share with the connected services, and avoid submitting sensitive addresses unless that processing is acceptable. <br>
-Risk: First-time setup may require installing the oo CLI before the connector can run. <br>
-Mitigation: Verify the oo CLI installer source before running setup commands. <br>
+## Use Case:
 
+Developers and analysts use this skill to retrieve location, network, threat, and ASN information for IP addresses through their connected OOMOL account.
 
-## Reference(s): <br>
-- [ipdata.co homepage](https://ipdata.co) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector responses are JSON objects containing data and execution metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: Automatic setup executes downloaded code without verification or a clear user checkpoint; the remote installer could not be inspected and hosted connector code is not bundled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install a specific, verified CLI release separately, and check its automatic skill-management behavior.
+
+Risk: Lookup parameters pass through OOMOL to ipdata.co and may consume account credit.
+
+Mitigation: Review lookup inputs and expected account-credit use before running lookups, especially bulk requests.
+
+## Reference(s):
+
+- [ipdata.co](https://ipdata.co)
+- [ipdata.co API authentication documentation](https://docs.ipdata.co/reference/authentication)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [OOMOL ipdata.co connection setup](https://console.oomol.com/connections/ipdata_co)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text]
+
+**Output Format:** [JSON and text fields returned by ipdata.co lookup actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fields depend on the selected action; bulk_lookup supports up to 100 IP addresses.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

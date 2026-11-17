@@ -1,39 +1,53 @@
-## Description: <br>
-Finds nearby bank branches when a user asks for banks near their current location. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find nearby banks. Invoke when user asks for bank branches near me.
 
-## Publisher: <br>
-[clawkk](https://clawhub.ai/user/clawkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawkk](https://clawhub.ai/user/clawkk)
 
-## Use Case: <br>
-External users use this skill to find nearby bank branches from an authorized location, with optional radius, result limit, and service filters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Precise location data can reveal sensitive user context if requested, retained, or reused unnecessarily. <br>
-Mitigation: Request explicit location permission, use coordinates only for the nearby-bank query, and avoid retaining precise coordinates; apply grid-level fuzzing when retention is necessary. <br>
-Risk: Integrations may rely on exact response fields that are not fully documented in the packaged skill because the linked standard response file is not included. <br>
-Mitigation: Confirm the expected response schema before integration and handle the documented invalid-location, radius, provider, and rate-limit errors. <br>
+## Use Case:
 
+External users and agent builders use this skill to answer nearby-bank requests with a consistent point-of-interest query shape, including location, radius, result limit, and optional filters.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON] <br>
-**Output Format:** [Structured nearby-bank result list or documented error code.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-authorized location; category is fixed to banks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: Nearby-bank lookup requires approximate or precise location data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for explicit location permission and avoid retaining exact coordinates; use coarse or grid-based location when feasible.
+
+Risk: The referenced STANDARD_RESPONSE.md file is not included in the package, so response shape may depend on host conventions.
+
+Mitigation: Confirm the expected point-of-interest response schema in the host environment before relying on integrations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clawkk/skills/banks)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text]
+
+**Output Format:** [Text guidance with structured point-of-interest response fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-authorized location; supports radius, result limit, and optional filters.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

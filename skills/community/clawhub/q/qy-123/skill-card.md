@@ -1,37 +1,50 @@
-## Description: <br>
-Mandatory coding discipline rules that prevent common AI coding anti-patterns across code writing, editing, reviewing, bug fixing, and testing tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides coding discipline guidance for agents working on code writing, editing, review, bug fixing, refactoring, debugging, and testing tasks.
 
-## Publisher: <br>
-[sayoriqwq](https://clawhub.ai/user/sayoriqwq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sayoriqwq](https://clawhub.ai/user/sayoriqwq)
 
-## Use Case: <br>
-Developers and coding agents use this skill to enforce fail-fast error handling, stronger tests, disciplined debugging, and code review guardrails during software development work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill applies broad coding-style guardrails across most development tasks, which may conflict with a team's preferred workflow. <br>
-Mitigation: Review the guidance before deployment and confirm that its fail-fast, testing, and debugging rules match the team's development practices. <br>
+## Use Case:
 
+Developers and coding agents use this skill to apply consistent engineering practices around fail-fast error handling, stronger tests, debugging workflow, and code review discipline.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown guidance with code examples and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Broad activation for coding, editing, reviewing, bug fixing, testing, and refactoring tasks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill uses broad mandatory wording that could over-apply its coding policy across most development tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and narrow the activation posture before installation, or treat the guidance as subordinate to user instructions, repository policy, and higher-priority safety rules.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sayoriqwq/skills/qy-123)
+- [Publisher profile](https://clawhub.ai/user/sayoriqwq)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code]
+
+**Output Format:** [Markdown guidance with inline code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable payload; guidance affects agent behavior during coding tasks.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

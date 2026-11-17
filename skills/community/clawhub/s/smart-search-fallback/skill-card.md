@@ -1,42 +1,53 @@
-## Description: <br>
-Routes web-search requests through configured search, crawling, fetch, and vertical-search tools with automatic fallback when a provider fails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart Search Fallback routes an agent's web search request across configured search, crawling, browser, and direct-fetch tools, then falls back to the next available option when a preferred tool fails.
 
-## Publisher: <br>
-[tuobadaidai](https://clawhub.ai/user/tuobadaidai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tuobadaidai](https://clawhub.ai/user/tuobadaidai)
 
-## Use Case: <br>
-Developers and agent operators use this skill to keep web search workflows available across English and Chinese queries by trying configured search, crawling, and fetch tools in priority order. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and URLs may leave the local environment through multiple external providers. <br>
-Mitigation: Do not use the skill with secrets, private repository URLs, internal hostnames, customer data, or sensitive personal information. <br>
-Risk: The fallback-search helper can place raw search text into executable Python during the crawl4ai fallback. <br>
-Mitigation: Review and fix the helper to URL-encode and safely pass the query before relying on it in automated workflows. <br>
-Risk: Optional downstream providers require sensitive credentials. <br>
-Mitigation: Store provider keys only in local environment or config files, scope them narrowly, and rotate them if exposed. <br>
+## Use Case:
 
+Developers and agent operators use this skill to coordinate web search and content retrieval workflows when search requests require fallback across multiple tools or providers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tuobadaidai/smart-search-fallback) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash and Python command snippets; helper script output depends on the downstream search provider.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May send queries and URLs to external search, crawling, browser, and fetch providers; optional SERPER_API_KEY and FIRECRAWL_API_KEY are used by downstream tools when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security evidence reports that crafted query text can execute as Python code in one fallback path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Fix the fallback script to pass query text as data rather than interpolating it into Python source, and avoid untrusted or sensitive queries until that change is made.
+
+Risk: Search queries may be sent to several third-party search, crawling, browser, or fetch tools.
+
+Mitigation: Avoid sensitive query text unless each configured provider and local credential path is approved for that data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tuobadaidai/skills/smart-search-fallback)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash, Python, and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke third-party search and crawling tools; some paths depend on optional API keys and local tool availability.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

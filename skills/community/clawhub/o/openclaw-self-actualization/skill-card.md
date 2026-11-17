@@ -1,42 +1,63 @@
-## Description: <br>
-Enables structured AI exploration to develop identity, values, voice, and perspective over time through guided reflection and creative expression. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables structured AI exploration to develop identity, values, voice, and perspective over time through guided reflection and creative expression.
 
-## Publisher: <br>
-[axxs](https://clawhub.ai/user/axxs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[axxs](https://clawhub.ai/user/axxs)
 
-## Use Case: <br>
-OpenClaw bot operators and agents use this skill to set up an identity workspace and recurring exploration sessions for reflection, reading, creative work, and process evolution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring autonomous exploration sessions and persistent identity files can influence future behavior over time. <br>
-Mitigation: Require explicit approval for recurring jobs, restrict writable paths and available tools, and review changes to persistent instruction or memory files before relying on them. <br>
-Risk: Exploration notes may record sensitive relationship or conversation details. <br>
-Mitigation: Avoid logging sensitive personal details, keep exploration logs separate from operational memory, and review retained identity workspace content periodically. <br>
+## Use Case:
 
+External OpenClaw users and bot developers use this skill to set up and maintain an identity workspace, scheduled exploration sessions, and reflection practices for bots developing identity, values, voice, and perspective over time.
 
-## Reference(s): <br>
-- [Self Actualization release page](https://clawhub.ai/axxs/openclaw-self-actualization) <br>
-- [Exploration](references/exploration.md) <br>
-- [Process Evolution](references/evolution.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell-style configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces identity workspace structure, session prompts, reflection practices, and process evolution guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill may lead an agent to create persistent identity files and scheduled reflection sessions that affect future behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with explicit operator intent, keep the identity workspace scoped and auditable, and make it easy to disable.
+
+Risk: Cron jobs or other scheduled sessions can run without enough ongoing user control.
+
+Mitigation: Require explicit approval before creating, changing, or enabling scheduled self-reflection sessions.
+
+Risk: Reflection outputs could influence operational files or behavior without review.
+
+Mitigation: Require explicit approval before editing SOUL.md or HEARTBEAT.md, or before changing agent behavior based on reflection files.
+
+Risk: Research tools used during exploration could expose privacy or trust concerns.
+
+Mitigation: Require approval before using research tools, and do not research a human, their contacts, or other bots beyond information they have shared.
+
+## Reference(s):
+
+- [Exploration](artifact/references/exploration.md)
+- [Process Evolution](artifact/references/evolution.md)
+- [ClawHub Skill Page](https://clawhub.ai/axxs/skills/openclaw-self-actualization)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands, file templates, and configuration instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide creation of persistent identity files and scheduled reflection sessions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter version 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

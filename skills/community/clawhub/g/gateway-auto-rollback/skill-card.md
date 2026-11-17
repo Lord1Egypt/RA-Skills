@@ -1,40 +1,56 @@
-## Description: <br>
-Automatically backs up, validates, and rolls back OpenClaw Gateway configuration files when changes fail JSON validation or gateway health checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatic configuration rollback mechanism for OpenClaw Gateway that backs up critical configuration files, validates JSON and gateway health, and can restore from backups after failed changes.
 
-## Publisher: <br>
-[halfmoon82](https://clawhub.ai/user/halfmoon82) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[halfmoon82](https://clawhub.ai/user/halfmoon82)
 
-## Use Case: <br>
-Developers and operators use this skill to protect OpenClaw Gateway configuration changes with local backups, JSON validation, gateway health checks, and rollback commands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify and restore critical OpenClaw configuration files, command approvals, and the skills registry. <br>
-Mitigation: Test it on a non-critical profile first, inspect proposed changes and backups before restoring, and confirm the restored configuration is appropriate for the active environment. <br>
-Risk: Watch or cron mode should not be treated as a complete pre-change safety net because rollback guarantees are unreliable. <br>
-Mitigation: Use manual pre-change backups for important edits, verify Gateway health after changes, and avoid relying on background monitoring alone for production recovery. <br>
-Risk: Backups under ~/.openclaw/backup may preserve sensitive or outdated permission state. <br>
-Mitigation: Protect the backup directory with appropriate local access controls and periodically prune backups that are no longer needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and operators use this skill to protect OpenClaw Gateway configuration files such as openclaw.json, exec-approvals.json, and skills.json during manual, scripted, or scheduled changes.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash, JSON, and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local files under ~/.openclaw and requires Python 3.8+ with OpenClaw Gateway available for health checks.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Security evidence says the rollback safety claims are stronger than the implementation.
+
+Mitigation: Review backups and test restore behavior before relying on automatic rollback for production configuration changes.
+
+Risk: The skill touches important OpenClaw Gateway configuration, approval, and skill registry files.
+
+Mitigation: Inspect all affected files before restoring or overwriting them, and avoid running the test script as a privileged user.
+
+Risk: The included health check only probes the local Gateway health endpoint.
+
+Mitigation: Use a stronger health check when adapting the skill for operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/halfmoon82/skills/gateway-auto-rollback)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python, shell, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational guidance and scripts for OpenClaw Gateway backup, validation, rollback, watch mode, cron setup, and testing.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

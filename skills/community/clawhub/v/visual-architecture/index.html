@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>visual-architecture gallery</title>
+  <style>
+    :root {
+      --bg: #070a10;
+      --surface: #10151f;
+      --surface-2: #141b29;
+      --surface-3: #0b111a;
+      --border: #263241;
+      --text: #edf3fb;
+      --muted: #98a6b8;
+      --primary: #5eb6ff;
+      --accent: #f5b84b;
+      --teal: #60d8c8;
+      --risk: #fb7185;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+      line-height: 1.45;
+      overflow-x: hidden;
+    }
+    a { color: var(--primary); font-weight: 650; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    button { font: inherit; }
+    main { max-width: 1440px; margin: 0 auto; padding: 18px 18px 48px; }
+    header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: end;
+      border-bottom: 1px solid var(--border);
+      padding: 12px 0 18px;
+      margin-bottom: 18px;
+    }
+    h1 { margin: 0 0 7px; font-size: clamp(32px, 4.8vw, 68px); line-height: 0.98; letter-spacing: 0; }
+    header p { max-width: 780px; margin: 0; color: var(--muted); font-size: 16px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end; }
+    .actions a, .links a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 7px 11px;
+      background: var(--surface-2);
+    }
+    .studio {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 310px;
+      gap: 14px;
+      max-width: 100%;
+      overflow: hidden;
+    }
+    .rail, .stage, .details, .index, .journey {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .rail, .details { padding: 14px; }
+    .rail { grid-column: 1 / -1; }
+    .studio > * { min-width: 0; }
+    .rail h2, .details h2, .index h2 { margin: 0 0 12px; font-size: 15px; letter-spacing: 0; color: #f8fbff; }
+    .artifact-list {
+      display: flex;
+      gap: 8px;
+      max-width: 100%;
+      overflow-x: auto;
+      padding-bottom: 0;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x proximity;
+    }
+    .artifact-list::-webkit-scrollbar { display: none; }
+    .artifact-button {
+      flex: 0 0 min(220px, 72vw);
+      text-align: left;
+      color: var(--text);
+      background: var(--surface-3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px;
+      cursor: pointer;
+      scroll-snap-align: start;
+    }
+    .artifact-button:hover { border-color: #3d4c5f; }
+    .artifact-button[aria-pressed="true"] {
+      border-color: var(--primary);
+      background: #0d1b2a;
+    }
+    .artifact-button strong { display: block; font-size: 13px; line-height: 1.25; }
+    .artifact-button span { display: block; color: var(--muted); font-size: 12px; margin-top: 4px; }
+    .stage {
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      overflow: hidden;
+      min-width: 0;
+    }
+    .stage-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface-2);
+    }
+    .badges { display: flex; flex-wrap: wrap; gap: 8px; }
+    .badge {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 4px 8px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1;
+    }
+    .badge.accent { color: #1b1303; background: var(--accent); border-color: var(--accent); font-weight: 800; }
+    .stage-frame {
+      display: grid;
+      place-items: start center;
+      padding: 18px;
+      min-height: 0;
+      min-width: 0;
+      background: #070a10;
+    }
+    .stage-frame img {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      max-height: 610px;
+      height: auto;
+      object-fit: contain;
+      border-radius: 8px;
+      background: #020617;
+    }
+    .details { max-width: 100%; }
+    .details h2 { font-size: 26px; line-height: 1.08; margin-bottom: 10px; overflow-wrap: anywhere; word-break: break-word; }
+    .details p { color: var(--muted); margin: 0 0 18px; }
+    .story, .evidence-panel { margin-top: 18px; border-top: 1px solid var(--border); padding-top: 14px; }
+    .story ol { margin: 0; padding-left: 20px; color: var(--muted); }
+    .story li { margin: 0 0 9px; }
+    .story strong { display: block; color: var(--text); font-size: 13px; }
+    .evidence-list { display: grid; gap: 8px; margin-top: 10px; }
+    .evidence-item { border: 1px solid var(--border); border-radius: 8px; background: var(--surface-3); padding: 9px; color: var(--muted); font-size: 12px; overflow-wrap: anywhere; }
+    .evidence-item strong { color: var(--text); display: block; font-size: 13px; margin-bottom: 3px; }
+    .facts { display: grid; gap: 10px; margin: 18px 0; }
+    .fact {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .fact strong { color: var(--text); font-weight: 700; }
+    .links { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 18px; }
+    .journey { margin-bottom: 14px; padding: 16px; }
+    .journey-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+    .journey-step { border: 1px solid var(--border); border-radius: 8px; padding: 11px; background: var(--surface-3); }
+    .journey-step strong { display: block; margin-bottom: 5px; }
+    .journey-step span { color: var(--muted); font-size: 13px; }
+    .index { margin-top: 32px; }
+    .index { padding: 16px; }
+    .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 8px; }
+    table { width: 100%; border-collapse: collapse; min-width: 920px; background: var(--surface-3); }
+    th, td { padding: 12px 14px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; }
+    th { color: #f0f6fc; background: var(--surface-2); font-size: 13px; }
+    td { color: var(--text); font-size: 14px; }
+    td span { display: block; color: var(--muted); margin-top: 3px; max-width: 540px; }
+    tr:last-child td { border-bottom: 0; }
+    footer { margin-top: 18px; color: var(--muted); font-size: 13px; }
+    @media (max-width: 1100px) {
+      .studio { grid-template-columns: minmax(0, 1fr); }
+      .details { grid-column: 1 / -1; }
+    }
+    @media (max-width: 760px) {
+      main { padding: 14px 14px 40px; }
+      header, .studio { grid-template-columns: 1fr; }
+      .actions { justify-content: flex-start; }
+      .stage-bar { display: grid; justify-content: stretch; }
+      #stage-open { justify-self: start; }
+      .journey-grid { grid-template-columns: 1fr; }
+      .rail { order: 1; overflow: hidden; }
+      .stage { order: 2; max-width: calc(100vw - 28px); }
+      .details { order: 3; max-width: calc(100vw - 28px); }
+      .stage-frame { padding: 12px; overflow: hidden; }
+      .stage-frame img { max-height: 360px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>visual-architecture</h1>
+        <p>Generated architecture artifacts with mode-specific visual grammar, quality receipts, source evidence, and PR delta surfaces. This gallery is built from checked JSON examples that CI validates.</p>
+      </div>
+      <nav class="actions" aria-label="Project links">
+        <a href="README.md">README</a>
+        <a href="examples/showcase-artifact-engine.json">Hero spec</a>
+        <a href="docs/diagnostics.md">Diagnostics</a>
+      </nav>
+    </header>
+    <section class="journey" aria-label="Generated artifact workflow">
+      <h2>Repo to artifact</h2>
+      <div class="journey-grid">
+        <div class="journey-step"><strong>Extract</strong><span>Read repo files and attach source evidence.</span></div>
+        <div class="journey-step"><strong>Layout</strong><span>Apply deterministic mode-aware placement.</span></div>
+        <div class="journey-step"><strong>Validate</strong><span>Score quality, routes, density, and evidence.</span></div>
+        <div class="journey-step"><strong>Bundle</strong><span>Write HTML, SVG, share card, receipt, and manifest.</span></div>
+        <div class="journey-step"><strong>Review</strong><span>Open the gallery and inspect claims with receipts.</span></div>
+      </div>
+    </section>
+    <section class="studio" aria-label="Interactive artifact viewer">
+      <aside class="rail">
+        <h2>Artifacts</h2>
+        <div id="artifact-list" class="artifact-list"></div>
+      </aside>
+      <section class="stage" aria-live="polite">
+        <div class="stage-bar">
+          <div class="badges">
+            <span id="mode-badge" class="badge">mode</span>
+            <span id="theme-badge" class="badge">theme</span>
+            <span id="feature-badge" class="badge accent">featured</span>
+          </div>
+          <a id="stage-open" href="#">Open artifact</a>
+        </div>
+        <div class="stage-frame">
+          <img id="stage-image" src="" alt="">
+        </div>
+      </section>
+      <aside class="details">
+        <h2 id="detail-title">Artifact</h2>
+        <p id="detail-summary"></p>
+        <div class="facts">
+          <div class="fact"><span>Mode</span><strong id="detail-mode"></strong></div>
+          <div class="fact"><span>Quality</span><strong id="detail-quality">loading</strong></div>
+          <div class="fact"><span>Evidence</span><strong id="detail-evidence-count"></strong></div>
+          <div class="fact"><span>Source</span><strong id="detail-source"></strong></div>
+        </div>
+        <div class="links">
+          <a id="detail-html" href="#">HTML</a>
+          <a id="detail-svg" href="#">SVG</a>
+          <a id="detail-spec" href="#">Spec</a>
+          <a id="detail-receipt" href="#">Receipt</a>
+          <a id="detail-share" href="#">Share card</a>
+        </div>
+        <div class="story">
+          <h2>Story</h2>
+          <ol id="story-list"></ol>
+        </div>
+        <div class="evidence-panel">
+          <h2>Evidence Drilldown</h2>
+          <div id="evidence-list" class="evidence-list"></div>
+        </div>
+      </aside>
+    </section>
+    <section class="index" aria-label="Artifact index">
+      <h2>Checked Artifacts</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Artifact</th><th>Mode</th><th>Theme</th><th>HTML</th><th>SVG</th><th>Spec</th><th>Receipt</th></tr></thead>
+          <tbody>
+        <tr>
+          <td><strong>Public TypeScript Monorepo Case Study</strong><span>A sanitized case-study map showing how Visual Architecture turns a dense TypeScript repo into a reviewable artifact with evidence and receipts.</span></td>
+          <td>architecture</td>
+          <td>showcase</td>
+          <td><a href="examples/showcase-typescript-monorepo-case-study.html">HTML</a></td>
+          <td><a href="examples/showcase-typescript-monorepo-case-study.svg">SVG</a></td>
+          <td><a href="examples/showcase-typescript-monorepo-case-study.json">JSON</a></td>
+          <td><a href="examples/showcase-typescript-monorepo-case-study.html.receipt.json">Receipt</a></td>
+        </tr>
+        <tr>
+          <td><strong>visual-architecture Case Study</strong><span>A source-backed map of the tool itself: spec validation, mode-aware rendering, gallery generation, receipts, and release proof.</span></td>
+          <td>architecture</td>
+          <td>showcase</td>
+          <td><a href="examples/showcase-visual-architecture-case-study.html">HTML</a></td>
+          <td><a href="examples/showcase-visual-architecture-case-study.svg">SVG</a></td>
+          <td><a href="examples/showcase-visual-architecture-case-study.json">JSON</a></td>
+          <td><a href="examples/showcase-visual-architecture-case-study.html.receipt.json">Receipt</a></td>
+        </tr>
+        <tr>
+          <td><strong>Generated TypeScript-Aware Repo Map</strong><span>Generated from language-aware repository extraction with confidence-scored source evidence on inferred architecture claims.</span></td>
+          <td>architecture</td>
+          <td>showcase</td>
+          <td><a href="examples/visual-architecture-auto.html">HTML</a></td>
+          <td><a href="examples/visual-architecture-auto.svg">SVG</a></td>
+          <td><a href="examples/visual-architecture-auto.json">JSON</a></td>
+          <td><a href="examples/visual-architecture-auto.html.receipt.json">Receipt</a></td>
+        </tr>
+        <tr>
+          <td><strong>Source-Evidence Architecture Map</strong><span>Architecture nodes and routes carry explicit source evidence so the diagram can defend its claims.</span></td>
+          <td>architecture</td>
+          <td>showcase</td>
+          <td><a href="examples/showcase-repo-evidence.html">HTML</a></td>
+          <td><a href="examples/showcase-repo-evidence.svg">SVG</a></td>
+          <td><a href="examples/showcase-repo-evidence.json">JSON</a></td>
+          <td><a href="examples/showcase-repo-evidence.html.receipt.json">Receipt</a></td>
+        </tr>
+        <tr>
+          <td><strong>Generated PR Delta Review</strong><span>Generated from git diff origin/master..HEAD: 47 files grouped into architecture concerns instead of raw filename buckets.</span></td>
+          <td>pr-delta</td>
+          <td>showcase</td>
+          <td><a href="examples/pr-delta-extracted.html">HTML</a></td>
+          <td><a href="examples/pr-delta-extracted.svg">SVG</a></td>
+          <td><a href="examples/pr-delta-extracted.json">JSON</a></td>
+          <td><a href="examples/pr-delta-extracted.html.receipt.json">Receipt</a></td>
+        </tr>
+        <tr>
+          <td><strong>PR Delta Review Surface</strong><span>Base and head architecture specs produce a compact review artifact for changed components, routes, and proof receipts.</span></td>
+          <td>pr-delta</td>
+          <td>showcase</td>
+          <td><a href="examples/showcase-pr-delta.html">HTML</a></td>
+          <td><a href="examples/showcase-pr-delta.svg">SVG</a></td>
+          <td><a href="examples/showcase-pr-delta.json">JSON</a></td>
+          <td><a href="examples/showcase-pr-delta.html.receipt.json">Receipt</a></td>
+        </tr>
+        <tr>
+          <td><strong>Architecture Artifact Engine</strong><span>A compact agent workflow: typed spec, validation, deterministic rendering, receipt, and public proof surface.</span></td>
+          <td>workflow</td>
+          <td>showcase</td>
+          <td><a href="examples/showcase-artifact-engine.html">HTML</a></td>
+          <td><a href="examples/showcase-artifact-engine.svg">SVG</a></td>
+          <td><a href="examples/showcase-artifact-engine.json">JSON</a></td>
+          <td><a href="examples/showcase-artifact-engine.html.receipt.json">Receipt</a></td>
+        </tr>
+        <tr>
+          <td><strong>Repo Evidence Architecture Map</strong><span>A reviewable map separates authored topology from source-pinned evidence and confidence.</span></td>
+          <td>architecture</td>
+          <td>classic</td>
+          <td><a href="examples/repo-evidence-map.html">HTML</a></td>
+          <td><a href="examples/repo-evidence-map.svg">SVG</a></td>
+          <td><a href="examples/repo-evidence-map.json">JSON</a></td>
+          <td><a href="examples/repo-evidence-map.html.receipt.json">Receipt</a></td>
+        </tr>
+        <tr>
+          <td><strong>Service Map</strong><span>One local request path with async work and model access.</span></td>
+          <td>architecture</td>
+          <td>classic</td>
+          <td><a href="examples/service-map.html">HTML</a></td>
+          <td><a href="examples/service-map.svg">SVG</a></td>
+          <td><a href="examples/service-map.json">JSON</a></td>
+          <td><a href="examples/service-map.html.receipt.json">Receipt</a></td>
+        </tr>
+        <tr>
+          <td><strong>Product Analytics Data Flow</strong><span>Events move from application capture through queue, warehouse, and downstream reporting.</span></td>
+          <td>dataflow</td>
+          <td>classic</td>
+          <td><a href="examples/dataflow-analytics.html">HTML</a></td>
+          <td><a href="examples/dataflow-analytics.svg">SVG</a></td>
+          <td><a href="examples/dataflow-analytics.json">JSON</a></td>
+          <td><a href="examples/dataflow-analytics.html.receipt.json">Receipt</a></td>
+        </tr>
+        <tr>
+          <td><strong>Agent Task Lifecycle</strong><span>A task moves through planning, execution, verification, repair, and terminal receipt states.</span></td>
+          <td>lifecycle</td>
+          <td>classic</td>
+          <td><a href="examples/lifecycle-agent-task.html">HTML</a></td>
+          <td><a href="examples/lifecycle-agent-task.svg">SVG</a></td>
+          <td><a href="examples/lifecycle-agent-task.json">JSON</a></td>
+          <td><a href="examples/lifecycle-agent-task.html.receipt.json">Receipt</a></td>
+        </tr>
+        <tr>
+          <td><strong>PR Delta Architecture Review</strong><span>1 nodes added, 0 removed, 2 edges added, 1 removed.</span></td>
+          <td>pr-delta</td>
+          <td>classic</td>
+          <td><a href="examples/pr-delta-generated.html">HTML</a></td>
+          <td><a href="examples/pr-delta-generated.svg">SVG</a></td>
+          <td><a href="examples/pr-delta-generated.json">JSON</a></td>
+          <td><a href="examples/pr-delta-generated.html.receipt.json">Receipt</a></td>
+        </tr>
+        <tr>
+          <td><strong>PR Delta Review Map</strong><span>A review artifact shows the base path, proposed change, and proof gate before merge.</span></td>
+          <td>pr-delta</td>
+          <td>classic</td>
+          <td><a href="examples/pr-delta-review.html">HTML</a></td>
+          <td><a href="examples/pr-delta-review.svg">SVG</a></td>
+          <td><a href="examples/pr-delta-review.json">JSON</a></td>
+          <td><a href="examples/pr-delta-review.html.receipt.json">Receipt</a></td>
+        </tr>
+        <tr>
+          <td><strong>Cache Miss Request Sequence</strong><span>A single request path shows cache lookup, database fallback, and response return.</span></td>
+          <td>sequence</td>
+          <td>classic</td>
+          <td><a href="examples/sequence-cache-miss.html">HTML</a></td>
+          <td><a href="examples/sequence-cache-miss.svg">SVG</a></td>
+          <td><a href="examples/sequence-cache-miss.json">JSON</a></td>
+          <td><a href="examples/sequence-cache-miss.html.receipt.json">Receipt</a></td>
+        </tr>
+        <tr>
+          <td><strong>Agent Runtime Proof Loop</strong><span>A local agent turns a task brief into a checked artifact with verifier feedback and durable lessons.</span></td>
+          <td>workflow</td>
+          <td>classic</td>
+          <td><a href="examples/agent-runtime.html">HTML</a></td>
+          <td><a href="examples/agent-runtime.svg">SVG</a></td>
+          <td><a href="examples/agent-runtime.json">JSON</a></td>
+          <td><a href="examples/agent-runtime.html.receipt.json">Receipt</a></td>
+        </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <footer>Generated by visual-architecture from local specs. No hosted editor, no repo upload, no hidden layout service.</footer>
+  </main>
+  <script>
+    const artifacts = [{"title": "Public TypeScript Monorepo Case Study", "summary": "A sanitized case-study map showing how Visual Architecture turns a dense TypeScript repo into a reviewable artifact with evidence and receipts.", "mode": "architecture", "theme": "showcase", "story": [{"title": "Extract the surfaces", "text": "Identify client, server, extension, backend, realtime, package, and database boundaries without exposing private names."}, {"title": "Attach evidence", "text": "Every important claim points back to the public case-study notes and carries confidence."}, {"title": "Review the artifact", "text": "The generated SVG, HTML, share card, and receipt become the human review surface."}], "evidenceCount": 9, "spec": "examples/showcase-typescript-monorepo-case-study.json", "html": "examples/showcase-typescript-monorepo-case-study.html", "svg": "examples/showcase-typescript-monorepo-case-study.svg", "share": "examples/showcase-typescript-monorepo-case-study.share-card.svg", "receipt": "examples/showcase-typescript-monorepo-case-study.html.receipt.json"}, {"title": "visual-architecture Case Study", "summary": "A source-backed map of the tool itself: spec validation, mode-aware rendering, gallery generation, receipts, and release proof.", "mode": "architecture", "theme": "showcase", "story": [{"title": "Read the repo", "text": "Use the public checkout as the source of truth, not a made-up example."}, {"title": "Cite the claims", "text": "Every important node carries file and line evidence from the current renderer or release surface."}, {"title": "Render the proof", "text": "The generated artifact, receipt, and gallery entry become the public case study."}], "evidenceCount": 8, "spec": "examples/showcase-visual-architecture-case-study.json", "html": "examples/showcase-visual-architecture-case-study.html", "svg": "examples/showcase-visual-architecture-case-study.svg", "share": "examples/showcase-visual-architecture-case-study.share-card.svg", "receipt": "examples/showcase-visual-architecture-case-study.html.receipt.json"}, {"title": "Generated TypeScript-Aware Repo Map", "summary": "Generated from language-aware repository extraction with confidence-scored source evidence on inferred architecture claims.", "mode": "architecture", "theme": "showcase", "story": [{"text": "Parse repo files by language and surface: Python, TS/TSX, workspaces, package metadata, workflows, schemas, examples, docs, and generated site files.", "title": "Extract"}, {"text": "Connect packages, app surfaces, backend/frontend/editor modules, contracts, CI, gallery, docs, and release surface with confidence-scored rules.", "title": "Infer"}, {"text": "Place nodes from inferred roles so source, contracts, runtime, proof, and release read left to right.", "title": "Layout"}, {"text": "Emit source evidence, quality receipt, share card, and gallery drilldown for every extracted claim.", "title": "Prove"}], "evidenceCount": 17, "spec": "examples/visual-architecture-auto.json", "html": "examples/visual-architecture-auto.html", "svg": "examples/visual-architecture-auto.svg", "share": "examples/visual-architecture-auto.share-card.svg", "receipt": "examples/visual-architecture-auto.html.receipt.json"}, {"title": "Source-Evidence Architecture Map", "summary": "Architecture nodes and routes carry explicit source evidence so the diagram can defend its claims.", "mode": "architecture", "theme": "showcase", "story": [{"title": "Author", "text": "A compact JSON spec declares the artifact claim."}, {"title": "Validate", "text": "Local checks verify structure, route hazards, evidence, and quality."}, {"title": "Deliver", "text": "The tool writes SVG, HTML, share card, and receipt as one reviewable unit."}], "evidenceCount": 3, "spec": "examples/showcase-repo-evidence.json", "html": "examples/showcase-repo-evidence.html", "svg": "examples/showcase-repo-evidence.svg", "share": "examples/showcase-repo-evidence.share-card.svg", "receipt": "examples/showcase-repo-evidence.html.receipt.json"}, {"title": "Generated PR Delta Review", "summary": "Generated from git diff origin/master..HEAD: 47 files grouped into architecture concerns instead of raw filename buckets.", "mode": "pr-delta", "theme": "showcase", "story": [{"text": "Read changed files from origin/master..HEAD.", "title": "Diff"}, {"text": "Map files into runtime, contract, artifact, proof, positioning, and other concerns.", "title": "Classify"}, {"text": "Show what architecture surface changed, with confidence and evidence in the receipt.", "title": "Review"}], "evidenceCount": 13, "spec": "examples/pr-delta-extracted.json", "html": "examples/pr-delta-extracted.html", "svg": "examples/pr-delta-extracted.svg", "share": "examples/pr-delta-extracted.share-card.svg", "receipt": "examples/pr-delta-extracted.html.receipt.json"}, {"title": "PR Delta Review Surface", "summary": "Base and head architecture specs produce a compact review artifact for changed components, routes, and proof receipts.", "mode": "pr-delta", "theme": "showcase", "story": [{"title": "Author", "text": "A compact JSON spec declares the artifact claim."}, {"title": "Validate", "text": "Local checks verify structure, route hazards, evidence, and quality."}, {"title": "Deliver", "text": "The tool writes SVG, HTML, share card, and receipt as one reviewable unit."}], "evidenceCount": 0, "spec": "examples/showcase-pr-delta.json", "html": "examples/showcase-pr-delta.html", "svg": "examples/showcase-pr-delta.svg", "share": "examples/showcase-pr-delta.share-card.svg", "receipt": "examples/showcase-pr-delta.html.receipt.json"}, {"title": "Architecture Artifact Engine", "summary": "A compact agent workflow: typed spec, validation, deterministic rendering, receipt, and public proof surface.", "mode": "workflow", "theme": "showcase", "story": [{"title": "Author", "text": "A compact JSON spec declares the artifact claim."}, {"title": "Validate", "text": "Local checks verify structure, route hazards, evidence, and quality."}, {"title": "Deliver", "text": "The tool writes SVG, HTML, share card, and receipt as one reviewable unit."}], "evidenceCount": 0, "spec": "examples/showcase-artifact-engine.json", "html": "examples/showcase-artifact-engine.html", "svg": "examples/showcase-artifact-engine.svg", "share": "examples/showcase-artifact-engine.share-card.svg", "receipt": "examples/showcase-artifact-engine.html.receipt.json"}, {"title": "Repo Evidence Architecture Map", "summary": "A reviewable map separates authored topology from source-pinned evidence and confidence.", "mode": "architecture", "theme": "classic", "story": [], "evidenceCount": 3, "spec": "examples/repo-evidence-map.json", "html": "examples/repo-evidence-map.html", "svg": "examples/repo-evidence-map.svg", "share": "examples/repo-evidence-map.share-card.svg", "receipt": "examples/repo-evidence-map.html.receipt.json"}, {"title": "Service Map", "summary": "One local request path with async work and model access.", "mode": "architecture", "theme": "classic", "story": [], "evidenceCount": 0, "spec": "examples/service-map.json", "html": "examples/service-map.html", "svg": "examples/service-map.svg", "share": "examples/service-map.share-card.svg", "receipt": "examples/service-map.html.receipt.json"}, {"title": "Product Analytics Data Flow", "summary": "Events move from application capture through queue, warehouse, and downstream reporting.", "mode": "dataflow", "theme": "classic", "story": [], "evidenceCount": 0, "spec": "examples/dataflow-analytics.json", "html": "examples/dataflow-analytics.html", "svg": "examples/dataflow-analytics.svg", "share": "examples/dataflow-analytics.share-card.svg", "receipt": "examples/dataflow-analytics.html.receipt.json"}, {"title": "Agent Task Lifecycle", "summary": "A task moves through planning, execution, verification, repair, and terminal receipt states.", "mode": "lifecycle", "theme": "classic", "story": [], "evidenceCount": 0, "spec": "examples/lifecycle-agent-task.json", "html": "examples/lifecycle-agent-task.html", "svg": "examples/lifecycle-agent-task.svg", "share": "examples/lifecycle-agent-task.share-card.svg", "receipt": "examples/lifecycle-agent-task.html.receipt.json"}, {"title": "PR Delta Architecture Review", "summary": "1 nodes added, 0 removed, 2 edges added, 1 removed.", "mode": "pr-delta", "theme": "classic", "story": [], "evidenceCount": 0, "spec": "examples/pr-delta-generated.json", "html": "examples/pr-delta-generated.html", "svg": "examples/pr-delta-generated.svg", "share": "examples/pr-delta-generated.share-card.svg", "receipt": "examples/pr-delta-generated.html.receipt.json"}, {"title": "PR Delta Review Map", "summary": "A review artifact shows the base path, proposed change, and proof gate before merge.", "mode": "pr-delta", "theme": "classic", "story": [], "evidenceCount": 0, "spec": "examples/pr-delta-review.json", "html": "examples/pr-delta-review.html", "svg": "examples/pr-delta-review.svg", "share": "examples/pr-delta-review.share-card.svg", "receipt": "examples/pr-delta-review.html.receipt.json"}, {"title": "Cache Miss Request Sequence", "summary": "A single request path shows cache lookup, database fallback, and response return.", "mode": "sequence", "theme": "classic", "story": [], "evidenceCount": 0, "spec": "examples/sequence-cache-miss.json", "html": "examples/sequence-cache-miss.html", "svg": "examples/sequence-cache-miss.svg", "share": "examples/sequence-cache-miss.share-card.svg", "receipt": "examples/sequence-cache-miss.html.receipt.json"}, {"title": "Agent Runtime Proof Loop", "summary": "A local agent turns a task brief into a checked artifact with verifier feedback and durable lessons.", "mode": "workflow", "theme": "classic", "story": [], "evidenceCount": 0, "spec": "examples/agent-runtime.json", "html": "examples/agent-runtime.html", "svg": "examples/agent-runtime.svg", "share": "examples/agent-runtime.share-card.svg", "receipt": "examples/agent-runtime.html.receipt.json"}];
+    const featuredTitles = new Set(["Generated TypeScript-Aware Repo Map", "Public TypeScript Monorepo Case Study", "visual-architecture Case Study"]);
+    const list = document.getElementById("artifact-list");
+    const stageImage = document.getElementById("stage-image");
+    const stageOpen = document.getElementById("stage-open");
+    const modeBadge = document.getElementById("mode-badge");
+    const themeBadge = document.getElementById("theme-badge");
+    const featureBadge = document.getElementById("feature-badge");
+    const detailTitle = document.getElementById("detail-title");
+    const detailSummary = document.getElementById("detail-summary");
+    const detailMode = document.getElementById("detail-mode");
+    const detailQuality = document.getElementById("detail-quality");
+    const detailEvidenceCount = document.getElementById("detail-evidence-count");
+    const detailSource = document.getElementById("detail-source");
+    const detailHtml = document.getElementById("detail-html");
+    const detailSvg = document.getElementById("detail-svg");
+    const detailSpec = document.getElementById("detail-spec");
+    const detailReceipt = document.getElementById("detail-receipt");
+    const detailShare = document.getElementById("detail-share");
+    const storyList = document.getElementById("story-list");
+    const evidenceList = document.getElementById("evidence-list");
+    const buttons = [];
+
+    async function selectArtifact(index) {
+      const artifact = artifacts[index];
+      buttons.forEach((button, buttonIndex) => {
+        button.setAttribute("aria-pressed", buttonIndex === index ? "true" : "false");
+      });
+      stageImage.src = artifact.svg;
+      stageImage.alt = artifact.title;
+      stageOpen.href = artifact.html;
+      modeBadge.textContent = artifact.mode;
+      themeBadge.textContent = artifact.theme;
+      featureBadge.hidden = !featuredTitles.has(artifact.title);
+      detailTitle.textContent = artifact.title;
+      detailSummary.textContent = artifact.summary;
+      detailMode.textContent = artifact.mode + " / " + artifact.theme;
+      detailEvidenceCount.textContent = String(artifact.evidenceCount || 0);
+      detailSource.textContent = artifact.spec.replace(/^.*examples\//, "examples/");
+      detailHtml.href = artifact.html;
+      detailSvg.href = artifact.svg;
+      detailSpec.href = artifact.spec;
+      detailReceipt.href = artifact.receipt;
+      detailShare.href = artifact.share;
+      storyList.innerHTML = "";
+      const story = artifact.story && artifact.story.length ? artifact.story : [{title: "Spec", text: "Structured JSON defines the claim."}, {title: "Validate", text: "Local checks score quality and evidence."}, {title: "Deliver", text: "SVG, HTML, and receipt are generated together."}];
+      story.forEach((step) => {
+        const li = document.createElement("li");
+        li.innerHTML = "<strong></strong><span></span>";
+        li.querySelector("strong").textContent = step.title || "Step";
+        li.querySelector("span").textContent = step.text || "";
+        storyList.appendChild(li);
+      });
+      evidenceList.innerHTML = "<div class='evidence-item'>Loading receipt and spec evidence.</div>";
+      detailQuality.textContent = "loading";
+      try {
+        const [specResponse, receiptResponse] = await Promise.all([fetch(artifact.spec), fetch(artifact.receipt)]);
+        const [spec, receipt] = await Promise.all([specResponse.json(), receiptResponse.json()]);
+        const quality = receipt.validation && receipt.validation.metrics && receipt.validation.metrics.quality;
+        detailQuality.textContent = quality ? quality.rating + " / " + quality.score : "unscored";
+        const evidence = [];
+        (spec.nodes || []).forEach((node) => {
+          const items = Array.isArray(node.evidence) ? node.evidence : node.evidence ? [node.evidence] : [];
+          items.forEach((item) => evidence.push({owner: node.label || node.id, item}));
+        });
+        (spec.edges || []).forEach((edge) => {
+          const items = Array.isArray(edge.evidence) ? edge.evidence : edge.evidence ? [edge.evidence] : [];
+          items.forEach((item) => evidence.push({owner: (edge.from || "edge") + " -> " + (edge.to || "edge"), item}));
+        });
+        evidenceList.innerHTML = "";
+        (evidence.length ? evidence : [{owner: "No source evidence", item: {source: "This artifact is structural only."}}]).slice(0, 8).forEach((entry) => {
+          const div = document.createElement("div");
+          div.className = "evidence-item";
+          const line = entry.item.lines ? ":" + entry.item.lines.join("-") : entry.item.line ? ":" + entry.item.line : "";
+          div.innerHTML = "<strong></strong><span></span>";
+          div.querySelector("strong").textContent = entry.owner;
+          const rule = entry.item.rule ? " / " + entry.item.rule : "";
+          const sourceType = entry.item.sourceType ? " / " + entry.item.sourceType : "";
+          div.querySelector("span").textContent = (entry.item.source || "unknown") + line + sourceType + (entry.item.confidence ? " / " + entry.item.confidence : "") + rule;
+          evidenceList.appendChild(div);
+        });
+      } catch (error) {
+        detailQuality.textContent = "unavailable";
+        evidenceList.innerHTML = "<div class='evidence-item'>Could not load local JSON receipt in this browser context.</div>";
+      }
+    }
+
+    artifacts.forEach((artifact, index) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "artifact-button";
+      button.innerHTML = "<strong></strong><span></span>";
+      button.querySelector("strong").textContent = artifact.title;
+      button.querySelector("span").textContent = artifact.mode + " / " + artifact.theme;
+      button.addEventListener("click", () => { selectArtifact(index); });
+      list.appendChild(button);
+      buttons.push(button);
+    });
+
+    const firstShowcase = artifacts.findIndex((artifact) => artifact.theme === "showcase");
+    selectArtifact(firstShowcase >= 0 ? firstShowcase : 0);
+  </script>
+</body>
+</html>

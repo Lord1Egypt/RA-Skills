@@ -1,42 +1,50 @@
-## Description: <br>
-Provides e-commerce platform guidance across online retail architecture, checkout, payments, inventory, fulfillment, customer experience, and conversion optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents on e-commerce platform architecture, checkout, payments, inventory, fulfillment, customer experience, and conversion optimization.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers, architects, and operators use this skill to plan and implement e-commerce platforms, shopping carts, checkout flows, product catalogs, inventory workflows, order fulfillment, and customer experience improvements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated e-commerce examples may affect sensitive store operations such as charges, refunds, fulfillment, inventory changes, or customer data handling if copied into production systems. <br>
-Mitigation: Use sandbox payment credentials first, scope service credentials tightly, add authentication and authorization checks, verify webhooks, avoid logging secrets or payment data, and require explicit human approval for real charges, refunds, fulfillment, inventory changes, and customer-data changes. <br>
-Risk: Payment-processing and customer-data workflows can create compliance and security exposure when adapted without review. <br>
-Mitigation: Review implementations for PCI DSS expectations, secure session management, input validation, rate limiting, webhook verification, and data-protection controls before deployment. <br>
+## Use Case:
 
+Developers and external users use this skill for e-commerce architecture and implementation guidance across storefronts, carts, checkout, payments, inventory, fulfillment, and customer experience workflows.
 
-## Reference(s): <br>
-- [Ecommerce Expert code examples](references/examples.md) <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-ecommerce-expert) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/mtsatryan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration, Shell commands] <br>
-**Output Format:** [Markdown guidance with code examples and implementation recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; examples may reference payment, search, cloud, database, and fulfillment integrations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Production-looking e-commerce examples may contain unsafe payment and account-handling patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat examples as illustrative; require sandbox credentials, provider verification, webhook validation, least-privilege service credentials, privacy review for customer and order data, and response DTOs that never expose password hashes or tokens.
+
+## Reference(s):
+
+- [Ecommerce Expert Code Examples](references/examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/mtsatryan/skills/ah-ecommerce-expert)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Configuration instructions]
+
+**Output Format:** [Markdown with TypeScript code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Examples should be treated as illustrative and reviewed before production use.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

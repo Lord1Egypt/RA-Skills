@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>蓝鲸选品 - 商品搜索结果</title>
+<style>
+:root {
+  --bg: #f0f2f5;
+  --card-bg: #fff;
+  --primary: #1a73e8;
+  --text: #1f2937;
+  --text-secondary: #6b7280;
+  --text-muted: #9ca3af;
+  --border: #e5e7eb;
+  --tag-bg: #eff6ff;
+  --tag-text: #1d4ed8;
+  --success: #059669;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --cbt: #7c3aed;
+  --local: #0891b2;
+  --shadow: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+  --shadow-hover: 0 4px 12px rgba(0,0,0,.10), 0 2px 4px rgba(0,0,0,.06);
+  --radius: 12px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans SC', sans-serif; background:var(--bg); color:var(--text); line-height:1.5; }
+
+/* Header */
+.header { background:#fff; border-bottom:1px solid var(--border); padding:16px 24px; position:sticky; top:0; z-index:100; box-shadow:var(--shadow); }
+.header-inner { max-width:1400px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+.logo { display:flex; align-items:center; gap:8px; font-size:20px; font-weight:700; color:var(--primary); }
+.logo svg { width:28px; height:28px; }
+.stats { display:flex; gap:20px; font-size:13px; color:var(--text-secondary); }
+.stat-item { display:flex; align-items:center; gap:4px; }
+.stat-value { font-weight:600; color:var(--text); }
+
+/* Container */
+.container { max-width:1400px; margin:0 auto; padding:24px; }
+
+/* Filter bar */
+.filter-bar { background:var(--card-bg); border-radius:var(--radius); padding:12px 16px; margin-bottom:20px; display:flex; flex-wrap:wrap; gap:8px; align-items:center; box-shadow:var(--shadow); }
+.filter-badge { display:inline-flex; align-items:center; gap:4px; padding:4px 12px; border-radius:20px; font-size:12px; font-weight:500; background:var(--tag-bg); color:var(--tag-text); }
+.filter-badge .label { color:var(--text-muted); }
+.filter-badge .sep { color:var(--border); margin:0 2px; }
+
+/* Product Grid */
+.product-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(340px, 1fr)); gap:16px; }
+/* Finding 2：包装 <a>，避免 link underline/蓝色字体；点击体验和原 product-card 的 cursor:pointer 一致 */
+.product-card-link { display:block; text-decoration:none; color:inherit; outline:none; }
+.product-card-link:focus-visible { box-shadow:0 0 0 3px rgba(26,115,232,.35); border-radius:var(--radius); }
+.product-card { background:var(--card-bg); border-radius:var(--radius); padding:16px; box-shadow:var(--shadow); transition: all .2s ease; cursor:pointer; display:flex; flex-direction:column; gap:12px; position:relative; overflow:hidden; }
+.product-card:hover { box-shadow:var(--shadow-hover); transform:translateY(-2px); }
+.product-card .card-header { display:flex; gap:12px; }
+.product-card .card-img { width:100px; height:100px; border-radius:8px; object-fit:cover; background:#f3f4f6; flex-shrink:0; border:1px solid var(--border); }
+.product-card .card-img-placeholder { width:100px; height:100px; border-radius:8px; background:linear-gradient(135deg, #f0f4ff, #e8f0fe); flex-shrink:0; display:flex; align-items:center; justify-content:center; color:#94a3b8; font-size:28px; }
+.product-card .card-title-area { flex:1; min-width:0; }
+.product-card .card-title { font-size:14px; font-weight:500; line-height:1.4; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; color:var(--text); }
+.product-card .card-title-cn { font-size:12px; color:var(--text-secondary); margin-top:2px; display:-webkit-box; -webkit-line-clamp:1; -webkit-box-orient:vertical; overflow:hidden; }
+.product-card .card-badges { display:flex; flex-wrap:wrap; gap:4px; margin-top:6px; }
+
+/* Badges */
+.badge { display:inline-flex; align-items:center; gap:3px; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:600; white-space:nowrap; }
+.badge-active { background:#ecfdf5; color:var(--success); }
+.badge-paused { background:#fef3c7; color:var(--warning); }
+.badge-full { background:#ede9fe; color:var(--cbt); }
+.badge-cbt { background:#ecfeff; color:var(--local); }
+.badge-local { background:#f0fdf4; color:#166534; }
+.badge-free-shipping { background:#dbeafe; color:var(--primary); }
+.badge-promotion { background:#fef2f2; color:var(--danger); }
+.badge-usa { background:#fdf4ff; color:#a21caf; }
+.badge-catalog { background:#fff7ed; color:#ea580c; }
+
+/* Price Row */
+.price-row { display:flex; align-items:baseline; gap:8px; }
+.price-main { font-size:22px; font-weight:700; color:var(--danger); }
+.price-main .currency { font-size:14px; font-weight:500; }
+.price-original { font-size:13px; color:var(--text-muted); text-decoration:line-through; }
+.price-usd { font-size:12px; color:var(--text-secondary); margin-left:auto; }
+
+/* Metrics Grid */
+.metrics { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.metric { background:#f9fafb; border-radius:6px; padding:8px 10px; }
+.metric-label { font-size:11px; color:var(--text-muted); margin-bottom:2px; }
+.metric-value { font-size:14px; font-weight:600; color:var(--text); }
+.metric-value.up { color:var(--success); }
+.metric-value.down { color:var(--danger); }
+
+/* Seller Row */
+.seller-row { display:flex; align-items:center; gap:8px; padding-top:8px; border-top:1px solid var(--border); font-size:12px; color:var(--text-secondary); }
+.seller-name { font-weight:500; color:var(--text); }
+.seller-badge { font-size:11px; padding:1px 6px; border-radius:3px; }
+
+/* Rating */
+.stars { color:#f59e0b; font-size:13px; }
+.stars .num { color:var(--text-muted); font-size:12px; margin-left:4px; }
+
+/* No results */
+.no-results { text-align:center; padding:60px 20px; color:var(--text-muted); }
+.no-results svg { width:64px; height:64px; margin-bottom:16px; opacity:.5; }
+
+/* Footer */
+.footer { text-align:center; padding:24px; color:var(--text-muted); font-size:12px; }
+
+/* Loading shimmer */
+@keyframes shimmer { 0%{background-position:-200px 0} 100%{background-position:200px 0} }
+
+@media (max-width:768px) {
+  .product-grid { grid-template-columns:1fr; }
+  .header-inner { flex-direction:column; align-items:flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="header-inner">
+    <div class="logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      蓝鲸选品
+    </div>
+    <div class="stats">
+      <div class="stat-item">
+        <span>搜索结果：</span>
+        <span class="stat-value" id="stat-total">--</span>
+        <span>条</span>
+      </div>
+      <div class="stat-item">
+        <span>耗时：</span>
+        <span class="stat-value" id="stat-cost">--</span>
+        <span>ms</span>
+      </div>
+      <div class="stat-item">
+        <span>页码：</span>
+        <span class="stat-value" id="stat-page">--</span>
+      </div>
+      <div class="stat-item">
+        <span>站点：</span>
+        <span class="stat-value" id="stat-site">--</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Container -->
+<div class="container">
+
+  <!-- Filter bar -->
+  <div class="filter-bar" id="filter-bar"></div>
+
+  <!-- Product grid -->
+  <div class="product-grid" id="product-grid"></div>
+
+  <!-- No results -->
+  <div class="no-results" id="no-results" style="display:none;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+    <p style="font-size:16px;margin-bottom:4px;">未找到符合条件的商品</p>
+    <p>请尝试调整搜索条件</p>
+  </div>
+
+</div>
+
+<div class="footer">蓝鲸选品 &copy; 2026 · 数据更新时间：<span id="footer-time">--</span></div>
+
+<script>
+// ===== Finding 2 + 6 安全工具函数（XSS sink & 不安全跳转防护）=====
+// h(): HTML escape —— 任何来自 SEARCH_DATA / SEARCH_PARAMS 的字符串在拼入 innerHTML 之前必须先过 h()，
+//                   不管是文本位置还是属性（href/src/alt 等）位置都要 escape 防止引号/尖括号逃逸。
+function h(s) {
+  if (s == null) return '';
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+// safeUrl(): URL scheme 白名单。美客多商品链接/店铺链接/图片只允许 http://、https://。
+//            直接拒绝 javascript: / data: / vbscript: / file: 等危险协议，
+//            防止攻击者控制 item.permalink/item.url/imgSrc 时注入脚本或本地文件。
+function safeUrl(raw) {
+  if (!raw || typeof raw !== 'string') return '';
+  const lower = raw.trim().toLowerCase();
+  if (lower.startsWith('http://') || lower.startsWith('https://')) return h(raw);
+  // 允许站内锚点
+  if (lower.startsWith('#')) return h(raw);
+  return '';
+}
+// sanitizeAttr(): 组合 h() + 数值/字符串校验，用在所有属性值里。
+function num(v, fallback) {
+  const n = Number(v);
+  return Number.isFinite(n) ? n : (fallback == null ? 0 : fallback);
+}
+
+// ===== 数据嵌入区域 =====
+// 脚本执行时会将此 JSON 替换为实际搜索结果
+const SEARCH_DATA = __SEARCH_DATA_PLACEHOLDER__;
+const SEARCH_PARAMS = __SEARCH_PARAMS_PLACEHOLDER__;
+
+// ===== 站点信息 =====
+const SITE_NAMES = { MLM:'墨西哥', MLB:'巴西', MLC:'智利', MLA:'阿根廷', MCO:'哥伦比亚' };
+const CURRENCY_MAP = { MLM:'MXN', MLB:'BRL', MLC:'CLP', MLA:'ARS', MCO:'COP' };
+const CURRENCY_SYMBOL = { MXN:'MX$', BRL:'R$', CLP:'CLP$', ARS:'AR$', COP:'COL$' };
+const SITE_FLAGS = { MLM:'🇲🇽', MLB:'🇧🇷', MLC:'🇨🇱', MLA:'🇦🇷', MCO:'🇨🇴' };
+
+// ===== 格式化 =====
+function fmt(n) {
+  if (n == null || n === '') return '--';
+  if (typeof n === 'number') {
+    if (n >= 1e6) return (n/1e6).toFixed(1)+'M';
+    if (n >= 1e3) return (n/1e3).toFixed(1)+'K';
+    return n.toLocaleString();
+  }
+  return n;
+}
+function fmtPrice(n, siteId) {
+  if (n == null) return '--';
+  const sym = CURRENCY_SYMBOL[siteId] || '$';
+  return sym + ' ' + Number(n).toLocaleString(undefined, {minimumFractionDigits:2,maximumFractionDigits:2});
+}
+
+// ===== 渲染 =====
+const data = SEARCH_DATA.data || {};
+const items = data.data || [];
+const pageNo = data.pageNo || SEARCH_DATA.pageNo || 1;
+const pageSize = data.pageSize || SEARCH_DATA.pageSize || 50;
+const total = data.total || SEARCH_DATA.total || 0;
+const costTime = data.costTime || SEARCH_DATA.costTime || 0;
+const siteId = SEARCH_PARAMS.siteId || (items[0] && items[0].siteId) || 'MLM';
+
+// 更新 header 统计
+document.getElementById('stat-total').textContent = fmt(total);
+document.getElementById('stat-cost').textContent = costTime;
+document.getElementById('stat-page').textContent = pageNo + '/' + Math.max(1, Math.ceil(total/pageSize));
+document.getElementById('stat-site').textContent = SITE_FLAGS[siteId]+' '+SITE_NAMES[siteId];
+document.getElementById('footer-time').textContent = new Date().toLocaleString('zh-CN');
+
+// 筛选条件标签（SEARCH_PARAMS 全部来自用户输入，必须逐个 h()）
+const filterBar = document.getElementById('filter-bar');
+const params = SEARCH_PARAMS;
+const badges = [];
+if (params.title) badges.push({label:'关键词', value:params.title});
+if (params.categoryId) badges.push({label:'类目', value:params.categoryId});
+if (params.sellerType) badges.push({label:'店铺类型', value:params.sellerType==='LOCAL'?'本土店':'跨境店'});
+if (params.storageType) badges.push({label:'仓储', value:params.storageType==='FULL'?'官方仓':'自发货'});
+if (params.priceBegin||params.priceEnd) badges.push({label:'价格', value:(params.priceBegin||'0')+' ~ '+(params.priceEnd||'∞')});
+if (params.sale30Start||params.sale30End) badges.push({label:'30天销量', value:(params.sale30Start||'0')+' ~ '+(params.sale30End||'∞')});
+if (params.sortKey) badges.push({label:'排序', value:params.sortKey+' '+(params.sortOrder||'desc')});
+if (badges.length === 0) badges.push({label:'全部商品', value:''});
+filterBar.innerHTML = badges.map(b => 
+  `<span class="filter-badge"><span class="label">${h(b.label)}</span><span class="sep">:</span>${h(b.value)}</span>`
+).join('');
+
+// 商品卡片（全量修复 Finding 2 + 6：链接加 rel 三件套、所有文本先 h()、img 做 URL scheme 校验、status/type 用常量字符串避免注入）
+const grid = document.getElementById('product-grid');
+if (!items || items.length === 0) {
+  document.getElementById('no-results').style.display = 'block';
+  grid.style.display = 'none';
+} else {
+  grid.innerHTML = items.map((item, i) => {
+    const rating = item.rating || {};
+    const shipping = item.shipping || {};
+    const stars = Math.max(0, Math.min(5, Math.round(num(rating.stars, 0))));
+    const ratingAmount = num(rating.amount, 0);
+    const hasImg = !!(item.picSmall || item.picBig);
+    const rawImgSrc = item.picSmall || item.picBig || '';
+    const imgSrc = safeUrl(rawImgSrc); // scheme 白名单
+    const statusBadge = item.itemStatus === 'active' 
+      ? '<span class="badge badge-active">● 活跃</span>' 
+      : (item.itemStatus === 'paused'
+         ? '<span class="badge badge-paused">● 暂停</span>'
+         : '');
+    
+    let typeBadges = '';
+    if (item.sellerType === 'CBT')   typeBadges += '<span class="badge badge-cbt">跨境</span>';
+    if (item.sellerType === 'LOCAL') typeBadges += '<span class="badge badge-local">本土</span>';
+    if (item.logisticType === 'FULL' || item.storageType === 'FULL')
+      typeBadges += '<span class="badge badge-full">FULL仓</span>';
+    if (shipping.freeShipping)      typeBadges += '<span class="badge badge-free-shipping">🚚 包邮</span>';
+    if (item.promotion)             typeBadges += '<span class="badge badge-promotion">🔥 促销</span>';
+    if (item.isUsaFull)             typeBadges += '<span class="badge badge-usa">🇺🇸 美国仓</span>';
+    if (item.catalogListing)        typeBadges += '<span class="badge badge-catalog">📋 目录</span>';
+
+    // Finding 2 修复：
+    //  - 不用 onclick="window.open(...)", 改用原生 <a target="_blank">
+    //  - rel="noopener noreferrer nofollow" 三件套：防 tabnabbing、切断 opener、告诉搜索引擎这是外部链接
+    //  - href 先过 safeUrl()，javascript: / data: 等危险 scheme 直接被清空
+    const rawLink = item.permalink || item.url || '';
+    const cardHref = safeUrl(rawLink);
+    const linkOpen = cardHref
+      ? `<a class="product-card-link" href="${cardHref}" target="_blank" rel="noopener noreferrer nofollow">`
+      : `<div class="product-card-link" role="article">`;
+    const linkClose = cardHref ? `</a>` : `</div>`;
+
+    const priceCurrency = CURRENCY_SYMBOL[item.siteId||siteId] || '$';
+    const showOriginal = item.basePrice && Number(item.basePrice) > Number(item.price);
+    const soldQty = num(item.soldQuantity);
+
+    return `
+    ${linkOpen}
+    <div class="product-card">
+      <div class="card-header">
+        ${hasImg 
+          ? `<img class="card-img" src="${imgSrc}" alt="${h(item.title||'商品图片')}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-img-placeholder" style="display:none">📦</div>`
+          : `<div class="card-img-placeholder">📦</div>`
+        }
+        <div class="card-title-area">
+          <div class="card-title">${h(item.title || '无标题')}</div>
+          ${item.titleCn ? `<div class="card-title-cn">${h(item.titleCn)}</div>` : ''}
+          <div class="card-badges">${statusBadge}${typeBadges}</div>
+        </div>
+      </div>
+      
+      <div class="price-row">
+        <span class="price-main"><span class="currency">${h(priceCurrency)}</span> ${h(fmt(item.price))}</span>
+        ${showOriginal ? `<span class="price-original">${h(fmtPrice(item.basePrice, item.siteId))}</span>` : ''}
+        ${item.priceUsd ? `<span class="price-usd">≈ USD ${h(Number(item.priceUsd).toFixed(2))}</span>` : ''}
+      </div>
+      
+      <div class="metrics">
+        <div class="metric">
+          <div class="metric-label">📊 30天销量</div>
+          <div class="metric-value">${h(fmt(item.sale30||item.sale30d))}</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">📈 7天销量</div>
+          <div class="metric-value">${h(fmt(item.sale7))}</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">📦 库存</div>
+          <div class="metric-value">${h(fmt(item.availableQuantity))}</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">🏆 BSR</div>
+          <div class="metric-value">${h(fmt(item.bsr))}</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">💰 30天GMV</div>
+          <div class="metric-value">${h(fmt(item.gmv30))}</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">👁 访问量</div>
+          <div class="metric-value">${h(fmt(item.visit30||item.visitTotal))}</div>
+        </div>
+      </div>
+      
+      <div class="seller-row">
+        <span>🏪</span>
+        <span class="seller-name">${h(item.sellerName || '未知店铺')}</span>
+        <span class="stars">${'★'.repeat(stars)}${'☆'.repeat(5-stars)}<span class="num">${h(num(rating.stars,0).toFixed(1))} (${h(ratingAmount)})</span></span>
+        <span style="margin-left:auto;font-size:11px;color:var(--text-muted)">${soldQty ? '总销 '+h(fmt(soldQty)) : ''}</span>
+      </div>
+    </div>
+    ${linkClose}`;
+  }).join('');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+{
+  "plug_slug": "plug-bundle-port-transfer",
+  "bundle_slug": "bundle-port-transfer",
+  "bundle_name": "Other Bundle: port-transfer-tool-pro",
+  "members": [
+    {
+      "slug": "port-transfer",
+      "name": "port-transfer-tool-pro",
+      "category": "Other",
+      "role": "primary"
+    },
+    {
+      "slug": "evolve-loop-free",
+      "name": "evolve-loop-free",
+      "category": "Other",
+      "role": "complementary"
+    },
+    {
+      "slug": "telegram-chat-manager",
+      "name": "openclaw-telegram-chat",
+      "category": "Other",
+      "role": "complementary"
+    },
+    {
+      "slug": "token-economist-free",
+      "name": "token-economist-free",
+      "category": "Other",
+      "role": "complementary"
+    }
+  ],
+  "pain_points": [
+    "手工操作效率低易出错",
+    "telegram-chat-manager: 存在门槛高问题 (复杂)",
+    "token-economist-free: 存在耗时低效问题 (重复)"
+  ],
+  "value_props": {
+    "individual_prices": [
+      {
+        "slug": "port-transfer",
+        "name": "port-transfer-tool-pro",
+        "price": 1.9,
+        "tier": "standard"
+      },
+      {
+        "slug": "evolve-loop-free",
+        "name": "evolve-loop-free",
+        "price": 0.0,
+        "tier": "free"
+      },
+      {
+        "slug": "telegram-chat-manager",
+        "name": "openclaw-telegram-chat",
+        "price": 0.0,
+        "tier": "free"
+      },
+      {
+        "slug": "token-economist-free",
+        "name": "token-economist-free",
+        "price": 0.0,
+        "tier": "free"
+      }
+    ],
+    "total_individual": 1.9,
+    "bundle_price": 1.52,
+    "savings": 0.38,
+    "savings_percent": 20.0,
+    "discount_rate": 0.2,
+    "value_statement": "4个skill单买总价1.9元，Plug捆绑价1.5元，节省0.4元 (20.0% off)"
+  },
+  "use_case": "本Plug整合4个互补skill，提供一站式解决方案：\n\n- port-transfer-tool-pro (Other): 提供 read、exec、glob、grep\n- evolve-loop-free (Other): 提供 read、exec、write、glob、grep\n- openclaw-telegram-chat (Other): 提供 read、exec、write\n- token-economist-free (Other): 提供 read、exec、write、glob、grep\n\n组合工具集: read, exec, glob, grep, write\n\n典型工作流:\n  1. 使用 port-transfer-tool-pro 的 read、exec、glob 完成相关任务\n  2. 使用 evolve-loop-free 的 read、exec、write 完成相关任务\n  3. 使用 openclaw-telegram-chat 的 read、exec、write 完成相关任务\n  4. 使用 token-economist-free 的 read、exec、write 完成相关任务\n  5. 整合各skill输出，形成完整解决方案",
+  "overall_score": 81.3,
+  "combination_reason": "4个skill组合 | 覆盖1个分类 | 3个互补 | 整体评分81.3/100",
+  "generated_at": "2026-07-31T18:17:12.319170"
+}

@@ -1,45 +1,62 @@
-## Description: <br>
-Automates accounts receivable collections workflows for accounting firms and finance teams, including aging analysis, prioritization, outreach drafts, DSO reporting, payment tracking, and bad debt reserve recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates accounts receivable collections workflows with aging analysis, prioritization, outreach drafts, DSO reporting, payment tracking, and bad debt reserve recommendations.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
 
-## Use Case: <br>
-Finance teams and accounting firms use this skill to turn QBO exports, invoice CSVs, direct QBO query results, or pasted invoice data into collection priorities, aging analysis, customer outreach drafts, KPI summaries, and bad debt recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive accounts receivable and customer payment data. <br>
-Mitigation: Use client-specific inputs only, avoid mixing client data, and delete any persisted payment promise tracker when it is no longer needed. <br>
-Risk: Collection emails or QBO changes could create external financial impact if acted on without review. <br>
-Mitigation: Keep QBO access read-only unless write access is deliberately granted, and review every collection email before sending. <br>
-Risk: Late-stage collections, legal escalation, tax treatment, and write-off execution can exceed the skill's authority. <br>
-Mitigation: Escalate legal action to an attorney, route PTIN-backed tax guidance to an authorized provider, and require authorized reviewer approval before write-offs or high-impact escalation. <br>
+## Use Case:
 
+Accounting firms and finance teams use this skill to analyze aged receivables, prioritize collections work, draft approved customer outreach, track payment promises, and prepare AR KPI reporting.
 
-## Reference(s): <br>
-- [AR KPI Formulas Reference](references/ar-kpi-formulas.md) <br>
-- [AR Collections Email Templates](references/email-templates.md) <br>
-- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/ar-collections-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/samledger67-dotcom) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, csv, guidance, configuration] <br>
-**Output Format:** [Markdown tables, CSV tables, email drafts, KPI summaries, journal entry drafts, and follow-up schedules] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Drafts and recommendations require human approval before external sending, QBO write actions, legal escalation, tax guidance, or write-off execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-98.0.1 (source: server-resolved release evidence) <br>
+Risk: Customer-facing collection messages or AR reports could contain incorrect invoice details or inappropriate escalation language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review all collection messages, invoice details, and AR summaries before sending or presenting them.
+
+Risk: Client AR data could be mixed across engagements or exposed to the wrong client.
+
+Mitigation: Keep each client's AR exports, trackers, and analysis separate throughout the workflow.
+
+Risk: QBO or accounting changes could be made without proper authority.
+
+Mitigation: Require explicit authorization and review before any QBO/accounting change, write-off, or journal-entry execution.
+
+Risk: Collections, legal, or tax boundaries could be exceeded for highly overdue accounts or bad debt deductions.
+
+Mitigation: Escalate legal collection actions to an attorney and route PTIN-backed tax guidance to an authorized tax professional.
+
+## Reference(s):
+
+- [AR KPI Formulas Reference](references/ar-kpi-formulas.md)
+- [AR Collections Email Templates](references/email-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, CSV, Guidance]
+
+**Output Format:** [Markdown tables, CSV schedules, email drafts, KPI summaries, and journal-entry recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only by default; external sends and accounting changes require approval.]
+
+## Skill Version(s):
+
+98.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

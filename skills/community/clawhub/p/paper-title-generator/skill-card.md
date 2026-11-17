@@ -1,40 +1,54 @@
-## Description: <br>
-Generate optimized paper titles for different academic venues and styles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates venue-specific academic paper title options from a draft, abstract, contribution list, or method name, with rationales, tone tags, and word-count guidance.
 
-## Publisher: <br>
-[shaopanguo](https://clawhub.ai/user/shaopanguo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shaopanguo](https://clawhub.ai/user/shaopanguo)
 
-## Use Case: <br>
-Researchers, authors, and academic teams use this skill to generate and compare venue-appropriate paper title options from a draft, abstract, key contributions, method name, or target venue list. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste confidential unpublished drafts or sensitive research details into the agent while requesting title suggestions. <br>
-Mitigation: Avoid providing confidential or sensitive draft content unless the agent/model processing environment is approved for that information. <br>
-Risk: Generated titles may be misleading, overly broad, or mismatched to the target venue. <br>
-Mitigation: Review each suggestion against the paper's actual contribution and the target venue's style before using it. <br>
+## Use Case:
 
+Students, researchers, and academic authors use this skill to generate and compare paper title options tailored to target venues such as IEEE Transactions, IFAC, ACC, CDC, Automatica, ICRA, IROS, Nature, and Science.
 
-## Reference(s): <br>
-- [Title Styles Reference Guide](references/title-styles.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates 3-5 title options per target venue with rationale, tone tags, and word-count guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Paper drafts and abstracts may contain unpublished or sensitive research details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only content the user is comfortable providing to the agent.
+
+Risk: Generated titles may misrepresent the paper or conflict with a target venue's style.
+
+Mitigation: Review title suggestions against the paper's actual contributions and the venue-specific guidance before use.
+
+## Reference(s):
+
+- [Title Styles Reference Guide](artifact/references/title-styles.md)
+- [ClawHub Skill Page](https://clawhub.ai/shaopanguo/skills/paper-title-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with title options, rationales, tone tags, and word-count guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces 3-5 title options per venue when enough draft or abstract context is provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

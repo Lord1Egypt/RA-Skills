@@ -1,42 +1,56 @@
-## Description: <br>
-Turns a vague game idea into a focused game fantasy, design pillars, player verbs, reward loop, and acceptance bar before implementation begins. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn a vague game idea into a sharp fantasy, design pillars, player verbs, and acceptance bar before implementation begins.
 
-## Publisher: <br>
-[mike007jd](https://clawhub.ai/user/mike007jd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike007jd](https://clawhub.ai/user/mike007jd)
 
-## Use Case: <br>
-Game developers, designers, and agents use this skill to turn early game ideas into planning notes that define the core fantasy, primary verbs, reward loop, design pillars, and build acceptance criteria. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated planning notes can be mistaken for final implementation requirements. <br>
-Mitigation: Review the generated concept and requirements docs before using them to guide implementation. <br>
-Risk: The workflow references companion skills that are not bundled with this release. <br>
-Mitigation: Install or invoke companion skills separately only when the broader Game Superpowers workflow is needed. <br>
+## Use Case:
 
+Game designers, developers, and teams use this skill to turn an early or blurry game idea into a focused concept brief with a core fantasy, player verbs, reward loop, design pillars, must-have moments, anti-goals, and follow-up requirements artifacts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mike007jd/game-concept-brainstorm) <br>
-- [Bundle README](artifact/README.md) <br>
-- [Concept brainstorm template](artifact/shared/templates/concept-brainstorm.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown planning documents and concise guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update docs/game-studio/concept-brainstorm.md and docs/game-studio/requirements.md when the agent has file write access; generated docs should be reviewed before use as implementation requirements.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact bundle metadata reports 1.1.0) <br>
+Risk: The skill may write planning markdown under docs/game-studio.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed document changes before accepting them into a project.
+
+Risk: The skill may recommend companion Game Superpowers skills that are not bundled with this release.
+
+Mitigation: Install and review companion skills separately before using them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mike007jd/skills/game-concept-brainstorm)
+- [README](artifact/README.md)
+- [Concept Brainstorm Template](artifact/shared/templates/concept-brainstorm.md)
+- [Usage Examples](artifact/examples/usage.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown planning documents and concise agent guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Expected deliverables are docs/game-studio/concept-brainstorm.md and docs/game-studio/requirements.md; companion skills are separate follow-up tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter, CHANGELOG, and MANIFEST report 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

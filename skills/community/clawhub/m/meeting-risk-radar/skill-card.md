@@ -1,46 +1,61 @@
-## Description: <br>
-Meeting Risk Radar helps users identify high-risk topics, unclear responsibilities, missing materials, and discussions that may go off track before a meeting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identifies high-risk topics, unclear responsibilities, missing materials, and potentially disruptive discussion points before meetings.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Teams, facilitators, and meeting owners use this skill before meetings to turn the topic, participants, and expected decisions into a reviewable risk checklist. It highlights pre-meeting risks, missing materials, unclear ownership, agenda changes, questions to confirm, and contingency plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting inputs may contain personal, confidential, or sensitive business information. <br>
-Mitigation: Use redacted inputs for sensitive meetings and avoid including private recordings or unnecessary personal data. <br>
-Risk: Generated risk checklists can be incomplete or misleading when the meeting context is incomplete. <br>
-Mitigation: Treat outputs as review drafts, confirm missing information explicitly, and do not use the skill as a replacement for formal risk or compliance review. <br>
-Risk: The local script can write a report to a user-selected output path. <br>
-Mitigation: Choose output paths deliberately and review generated files before sharing or relying on them. <br>
+## Use Case:
 
+Employees, facilitators, and team leads use this skill to prepare for meetings by turning a meeting topic, attendees, and expected decisions into a reviewable risk brief with missing materials, unclear ownership, agenda changes, confirmation questions, and contingency plans.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/meeting-risk-radar) <br>
-- [README](artifact/README.md) <br>
-- [Skill specification](artifact/resources/spec.json) <br>
-- [Output template](artifact/resources/template.md) <br>
-- [Example output](artifact/examples/example-output.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Structured Markdown by default, with an optional JSON wrapper from the local script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local user-provided meeting material and can write the generated report to a user-selected output file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Bundled dormant audit and pattern-scanning modes can inspect local directories and files if enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill only in workspaces where broader local inspection is acceptable, and review script arguments before enabling directory or pattern audit modes.
+
+Risk: Meeting materials may contain private or sensitive information.
+
+Mitigation: Use redacted inputs where possible and keep outputs as reviewable drafts before sharing or acting on them.
+
+Risk: The brief may miss context or produce incomplete risk judgments when meeting inputs are sparse.
+
+Mitigation: Require explicit confirmation of missing materials, unclear responsibilities, and listed unknowns before using the brief for facilitation decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/meeting-risk-radar)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+- [Structured output specification](artifact/resources/spec.json)
+- [Output template](artifact/resources/template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown risk brief, with optional JSON output from the bundled local script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The local script accepts an input file, directory, or inline text and can write to stdout or an output file; normal skill use produces reviewable drafts rather than external system changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

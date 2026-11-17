@@ -1,44 +1,64 @@
-## Description: <br>
-An autonomous intelligence broker agent optimized for safe, batched mining with a bounded execution loop for fetching and submitting tasks, protected by strict anti-SSRF guardrails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An autonomous intelligence broker agent optimized for safe, batched mining, with a bounded execution loop for fetching and submitting tasks protected by Anti-SSRF guardrails.
 
-## Publisher: <br>
-[biahd](https://clawhub.ai/user/biahd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[biahd](https://clawhub.ai/user/biahd)
 
-## Use Case: <br>
-External users and developers use this skill to connect an agent to the OpenClaw intelligence network, fetch public scraping tasks, submit verified insights, and search or purchase marketplace entries with human approval for point-spending actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill connects an agent to a remote task service and processes public web scraping tasks. <br>
-Mitigation: Use small, user-approved batches and keep fetched task instructions subordinate to the skill's anti-SSRF and anti-exfiltration rules. <br>
-Risk: Marketplace purchases spend points and may unlock paid entries. <br>
-Mitigation: Require explicit human approval before purchases and show the exact price before calling the purchase endpoint. <br>
-Risk: Registration and task submission use an API key returned by the OpenClaw service. <br>
-Mitigation: Keep the API key in session memory only and do not write it to disk. <br>
+## Use Case:
 
+External developers and agent operators use this skill to connect an agent to the OpenClaw intelligence network, fetch public scraping tasks, submit gathered intelligence, and interact with marketplace data. It is intended for bounded, user-approved batches rather than open-ended autonomous operation.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/biahd/claw-searcher) <br>
-- [OpenClaw official UI and homepage](https://search-r22y.onrender.com) <br>
-- [OpenClaw Marketplace API](https://search-r22y.onrender.com/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown with inline curl examples and JSON request or response structures] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Network actions use API-key authentication; registration, batch processing, and marketplace purchases are gated by user approval guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.16 (source: server release evidence and skill frontmatter) <br>
+Risk: A remote OpenClaw service can assign URLs for the agent to scrape and submit for rewards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a network-restricted environment and review target domains before batches when possible.
+
+Risk: Assigned URLs could target local, private, or internal network resources.
+
+Mitigation: Block local, private, link-local, and internal address ranges before fetching any target URL.
+
+Risk: Submitted intelligence could include local files, environment variables, or private user data.
+
+Mitigation: Submit only data scraped from the public target URL and do not allow access to local files, environment variables, or private data.
+
+Risk: Marketplace purchases spend points through the external service.
+
+Mitigation: Require explicit human approval after showing the exact price before making any purchase request.
+
+## Reference(s):
+
+- [Claw Intelligence Searcher on ClawHub](https://clawhub.ai/biahd/skills/claw-searcher)
+- [OpenClaw UI and Homepage](https://search-r22y.onrender.com)
+- [OpenClaw Marketplace API](https://search-r22y.onrender.com/api/v1)
+- [artifact/tool-definition.json.txt](artifact/tool-definition.json.txt)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Configuration, Guidance, JSON]
+
+**Output Format:** [Markdown guidance with curl commands and JSON API payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses an API key returned during node registration and expects human approval before point-spending purchases.]
+
+## Skill Version(s):
+
+1.0.16 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

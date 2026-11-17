@@ -1,41 +1,61 @@
-## Description: <br>
-Map document sections to compliance framework controls with confidence scoring and bidirectional mappings for gap analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Map document sections to compliance framework controls with confidence scoring. Produces bidirectional mappings for gap analysis.
 
-## Publisher: <br>
-[dangsllc](https://clawhub.ai/user/dangsllc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dangsllc](https://clawhub.ai/user/dangsllc)
 
-## Use Case: <br>
-Compliance analysts, security teams, and GRC practitioners use this skill to map policy or procedure sections to framework controls and summarize per-control coverage for gap analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Control mappings may be incomplete or incorrect and should not be treated as legal, audit, or compliance conclusions. <br>
-Mitigation: Use the output as analyst assistance and have a qualified reviewer verify mappings, gaps, and conclusions before relying on them. <br>
-Risk: User-provided compliance documents may contain sensitive organizational information. <br>
-Mitigation: Avoid supplying highly sensitive documents unless the agent environment is approved for that data. <br>
+## Use Case:
 
+Compliance analysts, auditors, and developers use this skill to map policy or procedure document sections to controls in frameworks such as NIST 800-53, HITRUST, HIPAA, ISO 27001, and SOC 2. The resulting bidirectional mapping supports coverage review and gap analysis.
 
-## Reference(s): <br>
-- [Framework Mapping on ClawHub](https://clawhub.ai/dangsllc/framework-mapping) <br>
-- [dangsllc publisher profile](https://clawhub.ai/user/dangsllc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown with JSON mapping structures and analyst rationale] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces per-section mappings, per-control coverage summaries, relevance scores, coverage classifications, gap notes, and confidence values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: Compliance documents can contain confidential or regulated information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in agent environments approved for the documents being analyzed, and avoid providing sensitive documents unless that access is appropriate.
+
+Risk: Generated control mappings and gap findings may be incomplete or inaccurate.
+
+Mitigation: Have a qualified compliance reviewer verify mappings, relevance scores, and gap conclusions before relying on them for audit or remediation decisions.
+
+Risk: Web fetching for framework context may retrieve external material during analysis.
+
+Mitigation: Review network access policy and framework-source requirements before using the skill in restricted environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dangsllc/skills/framework-mapping)
+- [Publisher profile](https://clawhub.ai/user/dangsllc)
+- [Rote Compliance Skills](https://github.com/Rote-Compliance/rote-compliance-skills)
+- [Dang's Solutions](https://dangssolutions.com)
+- [Rote Compliance](https://rotecompliance.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Markdown with JSON structures for per-section mappings and per-control coverage summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes relevance scores, coverage types, rationales, coverage status, unaddressed aspects, and aggregate confidence values.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata); artifact frontmatter version 1.1
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

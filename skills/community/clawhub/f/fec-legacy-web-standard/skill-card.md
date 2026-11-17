@@ -1,40 +1,54 @@
-## Description: <br>
-Guides agents in maintaining or safely modifying existing non-framework frontend code such as vanilla JavaScript, jQuery, HTML/CSS, MPA pages, server-rendered templates, and legacy plugins without migrating stacks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers in safely maintaining vanilla JavaScript, jQuery, HTML/CSS, and server-rendered frontend projects without changing their technology stack.
 
-## Publisher: <br>
-[bovinphang](https://clawhub.ai/user/bovinphang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[bovinphang](https://clawhub.ai/user/bovinphang)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to make focused maintenance changes in legacy frontend projects while preserving the existing stack, style, and architecture. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated changes can mishandle legacy DOM rendering or user input, especially around direct HTML insertion and URL parameter rendering. <br>
-Mitigation: Review generated changes for escaped output and avoid inserting user-controlled content through innerHTML or jQuery .html(). <br>
-Risk: Ajax and form updates can miss loading, error, empty, duplicate-submit, or CSRF handling in older code paths. <br>
-Mitigation: Verify request state handling, duplicate-submit protection, and CSRF token behavior before shipping changes. <br>
+## Use Case:
 
+Developers maintaining legacy frontend applications use this skill for incremental changes to events, DOM updates, Ajax, accessibility, and input handling while preserving the existing stack.
 
-## Reference(s): <br>
-- [Legacy Frontend Maintenance Patterns](references/legacy-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with inline code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.0 (source: release evidence, README.md, metadata.json, package.json) <br>
+Risk: Broad legacy frontend guidance may be mistaken for a migration, comprehensive security review, or validation workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated migration, security review, or validation workflows when those tasks are required.
+
+Risk: Unsafe rendering of user input in legacy DOM updates can introduce XSS.
+
+Mitigation: Escape untrusted input and avoid inserting it directly through innerHTML or jQuery .html().
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/bovinphang/skills/fec-legacy-web-standard)
+- [Legacy maintenance patterns](references/legacy-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code]
+
+**Output Format:** [Markdown with code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Incremental changes that preserve existing frontend behavior and conventions.]
+
+## Skill Version(s):
+
+2.9.0 (source: ClawHub release, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

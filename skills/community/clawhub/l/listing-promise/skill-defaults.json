@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "channel": "listing-promise",
+  "workflow": "listing",
+  "focus": "promise",
+  "outputTemplate": "ops_listing",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews"
+  ]
+}

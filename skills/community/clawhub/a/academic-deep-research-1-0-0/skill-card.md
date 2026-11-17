@@ -1,44 +1,61 @@
-## Description: <br>
-Transparent, rigorous research with full methodology, mandated two-cycle investigation per theme, APA 7th citations, evidence hierarchy, and user checkpoints for literature reviews, competitive intelligence, and reproducible research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transparent, rigorous research with full methodology -- not a black-box API wrapper, using mandated two-cycle research per theme, APA 7th citations, evidence hierarchy, and user checkpoints for reproducible investigation.
 
-## Publisher: <br>
-[dujch](https://clawhub.ai/user/dujch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dujch](https://clawhub.ai/user/dujch)
 
-## Use Case: <br>
-External users, researchers, analysts, developers, and other knowledge workers use this skill to plan and execute transparent multi-source deep research with explicit methodology, evidence comparison, contradiction handling, and APA-style reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research topics and source queries may be sent through web search or fetch tools, and prior memory may be consulted during the workflow. <br>
-Mitigation: Use the skill only for approved research topics, review the Phase 2 plan before execution, and constrain web or memory access for confidential, regulated, or proprietary work. <br>
-Risk: The artifact describes offline/no-cloud operation while the skill protocol directs web research and automated multi-step execution. <br>
-Mitigation: Treat the offline claim as requiring review; confirm the available tools and execution boundaries before approving Phase 3 research. <br>
+## Use Case:
 
+Researchers, analysts, developers, and other external users use this skill to run structured deep research, literature reviews, competitive intelligence, and multi-source verification workflows that require visible methodology and traceable citations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dujch/academic-deep-research-1-0-0) <br>
-- [Publisher profile](https://clawhub.ai/user/dujch) <br>
-- [README](artifact/README.md) <br>
-- [Quick reference](artifact/quickref.md) <br>
-- [Example workflow](artifact/example.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown research plans and narrative research reports with APA-style citations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes user checkpoints, source-quality confidence annotations, evidence hierarchy, contradiction analysis, and optional appendices such as search strategy and source reliability assessment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill may send research queries to web search and web fetch tools, exposing sensitive topics or investigation intent to external services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with topics approved for external research, and confirm planned queries before execution for confidential, regulated, or personally sensitive work.
+
+Risk: The skill may consult persistent memory by default, which can mix prior context into the research workflow without clear consent.
+
+Mitigation: Disable or review memory access before use, especially for confidential, regulated, or personally sensitive topics.
+
+Risk: Generated research reports can include outdated, incomplete, or misleading source interpretations despite the structured methodology.
+
+Mitigation: Review the cited sources, contradictions, and confidence annotations before relying on the report for decisions.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/dujch/skills/academic-deep-research-1-0-0)
+- [Homepage declared by skill metadata](https://github.com/kesslerio/academic-deep-research-clawhub-skill)
+- [README](artifact/README.md)
+- [Quick reference](artifact/quickref.md)
+- [Example workflow](artifact/example.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown research plans, methodology notes, and final narrative reports with APA-style citations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include clarifying questions, approval checkpoints, confidence annotations, contradiction analysis, limitations, and references.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

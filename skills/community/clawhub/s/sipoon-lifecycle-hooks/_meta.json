@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn75jkm49zm12gvyzpnm7n94d587jdbg",
-  "slug": "sipoon-lifecycle-hooks",
+  "name": "lifecycle-hooks",
+  "description": "Agent lifecycle hook 系统 — 在关键事件触发自定义动作",
   "version": "0.1.0",
-  "publishedAt": 1779977141948
+  "owner": "local-workspace-agent",
+  "tags": ["memory", "automation", "hooks"]
 }

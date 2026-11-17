@@ -1,0 +1,30 @@
+{
+  "skill_name": "huawei-cloud-aad-protected-ip-list",
+  "region": "cn-north-4",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "list AAD protected IPs (first page)",
+      "command": "hcloud AAD ListProtectedIp --cli-region={region} --limit=1 --offset=0",
+      "expected": "JSON with total/items (or empty items) and exit code 0",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-02",
+      "name": "list with IP filter",
+      "command": "hcloud AAD ListProtectedIp --cli-region={region} --ip=192.0.2.10 --limit=1",
+      "expected": "JSON with total/items returning zero or matching records",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-03",
+      "name": "list with package filter",
+      "command": "hcloud AAD ListProtectedIp --cli-region={region} --package_id=0123456789abcdef0123456789abcdef --limit=1",
+      "expected": "JSON with total/items and exit code 0; the sample package_id (32 chars) matches no record, so items is normally empty",
+      "type": "readonly",
+      "executor": "cli"
+    }
+  ]
+}

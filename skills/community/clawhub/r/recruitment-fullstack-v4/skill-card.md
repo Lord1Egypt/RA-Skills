@@ -1,43 +1,60 @@
-## Description: <br>
-Provides a structured recruiting workflow for intake, resume screening, interview design, BARS interview evaluation, calibration, and final hiring decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a structured recruiting workflow covering intake, resume screening, interview design, BARS-based evaluation, calibration, and final hiring decision support.
 
-## Publisher: <br>
-[wuritu](https://clawhub.ai/user/wuritu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuritu](https://clawhub.ai/user/wuritu)
 
-## Use Case: <br>
-Recruiters, hiring managers, and interview panels use this skill to structure candidate intake, resume review, interview scripts, evidence-based scoring, calibration discussions, and final hiring recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A corrupted final-decision module can make hiring recommendations unreliable. <br>
-Mitigation: Repair and review the final-decision file before use, and manually verify every recommendation against the full candidate evidence. <br>
-Risk: Recruiting workflows can expose sensitive candidate data and create legal or anti-discrimination risk. <br>
-Mitigation: Use the skill only with recruiter or hiring-manager direction, limit candidate-data access, and follow applicable hiring-law, privacy, retention, and anti-discrimination requirements. <br>
+## Use Case:
 
+Recruiting teams and hiring stakeholders use this skill to structure candidate intake, screening, interview questions, scorecards, calibration discussions, and final decision reports. It is decision support and should be reviewed by qualified HR or legal personnel before use in hiring decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wuritu/recruitment-fullstack-v4) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill entrypoint](artifact/SKILL.md) <br>
-- [Final-decision module](artifact/packages/07-final-decision.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Analysis, Configuration] <br>
-**Output Format:** [Markdown reports, scorecards, interview scripts, evaluation rubrics, calibration notes, and hiring recommendation templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should cite candidate evidence, include scoring details, preserve uncertainty, and avoid protected or irrelevant personal attributes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security scan reports a job-evaluation question about family or partner support.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove that question before interviewing candidates and review question banks for protected or irrelevant personal attributes.
+
+Risk: The security scan reports an unreadable corrupted final-decision package.
+
+Mitigation: Do not rely on the final-decision package until it is re-encoded, reviewed, and republished.
+
+Risk: Recruiting outputs may affect hiring outcomes if treated as automatic decisions.
+
+Mitigation: Use outputs only as decision support with human HR/legal review and authorized recruiting data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wuritu/skills/recruitment-fullstack-v4)
+- [Publisher Profile](https://clawhub.ai/user/wuritu)
+- [README](artifact/README.md)
+- [Skill Entry](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports, scorecards, interview scripts, calibration notes, decision matrices, and hiring decision guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs require human HR/legal review and depend on authorized, complete recruiting data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

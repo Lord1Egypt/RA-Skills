@@ -1,41 +1,62 @@
-## Description: <br>
-Provides Hong Kong stock company profiles, valuation metrics, basic stock views, and historical OHLC candlestick data from market.ft.tech. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches Hong Kong stock company profiles, valuation metrics, basic stock views, and daily, monthly, quarterly, or yearly candlestick history from market.ft.tech.
 
-## Publisher: <br>
-[shawn92](https://clawhub.ai/user/shawn92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shawn92](https://clawhub.ai/user/shawn92)
 
-## Use Case: <br>
-Developers and market-data agents use this skill to answer Hong Kong equity questions about company introductions, valuation ratios, market capitalization, share counts, and historical candlestick data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requested stock symbols, dates, and pagination parameters are sent to market.ft.tech. <br>
-Mitigation: Use only query parameters that are appropriate to disclose to the external market-data service. <br>
-Risk: VirusTotal was pending in the security evidence. <br>
-Mitigation: Review and scan the artifact before deployment, even though SkillSpector, static scan, and artifact review reported no issues. <br>
+## Use Case:
 
+External users and agents use this skill to answer Hong Kong stock-data questions about company introductions, valuation ratios, market capitalization, share counts, listing status, and historical OHLCV candles.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shawn92/ftshare-hk-data) <br>
-- [market.ft.tech API base](https://market.ft.tech) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [JSON API responses with concise text or command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only lookup behavior; sends selected Hong Kong stock symbols, dates, and pagination parameters to market.ft.tech.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill runs local Python handlers and makes unauthenticated HTTPS requests to market.ft.tech.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that network behavior is acceptable, run with appropriate network controls, and review the included scripts before deployment.
+
+Risk: The security guidance notes missing explicit permission metadata, request timeouts, response-size limits, and stricter redirect handling.
+
+Mitigation: Add or enforce permission metadata, request timeouts, response-size limits, and strict redirect handling before broad deployment.
+
+Risk: Market data freshness and availability depend on the external service and the Hong Kong exchange calendar; the artifact notes current-day candlestick updates after 18:00 UTC+8.
+
+Mitigation: Have the agent state the source and effective date for returned data, handle API errors explicitly, and avoid presenting the output as investment advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shawn92/skills/ftshare-hk-data)
+- [market.ft.tech API host](https://market.ft.tech)
+- [Company profile endpoint example](https://market.ft.tech/data/api/v1/market/data/hk/company-hk?trade_code=00700.HK)
+- [Candlestick endpoint example](https://market.ft.tech/data/api/v1/market/data/hk/hk-candlesticks?trade_code=00700.HK&interval_unit=day&since_date=2026-03-01&until_date=2026-03-24&limit=20)
+- [Valuation endpoint example](https://market.ft.tech/data/api/v1/market/data/hk/hk-valuatnanalyd?trade_code=00700.HK&page=1&page_size=20)
+- [Basic stock view endpoint example](https://market.ft.tech/data/api/v1/market/data/hk/hk-view?hk_code=00700.HK)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON responses printed to stdout, with agent-facing text or Markdown summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on unauthenticated HTTPS responses from market.ft.tech; date fields are interpreted against the Hong Kong exchange calendar in UTC+8.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

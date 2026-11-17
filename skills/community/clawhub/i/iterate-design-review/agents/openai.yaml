@@ -1,0 +1,4 @@
+interface:
+  display_name: "Iterate Design Review"
+  short_description: "Review designs and plans through a focused convergence loop"
+  default_prompt: "Use $iterate-design-review to refine this design or execution plan through context-grounded review until it is concise, complete, and stable."

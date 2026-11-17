@@ -1,0 +1,9 @@
+{
+  "_comment": "资源清单示例 —— 配合 scripts/check_asset_refs.py --manifest 使用。以 _ 开头的键是注释，脚本自动跳过。真实项目里 assets 列出游戏实际引用的所有资源（精灵表/glb/音频/字体），CI 里校验每个都存在，缺一个就报错。下面故意引用仓库内真实存在的文件作为格式示范（真实项目应引用贴图/模型/音频等）。",
+  "_usage": "python3 scripts/check_asset_refs.py --manifest assets/asset-manifest-example.json --root .",
+  "assets": [
+    "assets/steam-store-metadata-template.json",
+    "SKILL.md",
+    "references/asset-pipeline.md"
+  ]
+}

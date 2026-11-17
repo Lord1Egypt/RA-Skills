@@ -1,6 +1,15 @@
 {
-  "ownerId": "kn78r3ca13npsxrn5f905res8n821ssm",
-  "slug": "aliyun-oss-skill",
-  "version": "1.0.2",
-  "publishedAt": 1772817056423
+  "name": "aliyun-oss",
+  "version": "1.0.0",
+  "description": "阿里云 OSS 对象存储技能",
+  "author": "33",
+  "created": "2026-03-06",
+  "tags": ["aliyun", "oss", "cloud", "storage"],
+  "requirements": {
+    "bins": ["node", "npm"],
+    "packages": ["ali-oss"]
+  },
+  "config": {
+    "configFile": "config/oss-config.json"
+  }
 }

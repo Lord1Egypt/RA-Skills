@@ -1,38 +1,53 @@
-## Description: <br>
-Queries a local safety-regulation SQLite knowledge base to search regulations, check standard coverage, inspect clauses, report database statistics, inspect schema, and detect data quality issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safety KB Query lets agents query a local safety-review SQLite knowledge base for regulations, standards, clauses, statistics, schema details, and data-quality issues.
 
-## Publisher: <br>
-[cyz9827](https://clawhub.ai/user/cyz9827) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyz9827](https://clawhub.ai/user/cyz9827)
 
-## Use Case: <br>
-Developers and analysts use this skill to query the safety-review knowledge base for safety standards, regulation clauses, coverage gaps, database statistics, and data quality checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper queries whichever readable SQLite database is selected by KB_PATH or the default path. <br>
-Mitigation: Verify KB_PATH before use, especially on shared machines, and install only when the agent should read the safety-review SQLite database. <br>
+## Use Case:
 
+Developers, agents, and safety/compliance users use this skill to search a local safety-regulation knowledge base, check whether referenced standards exist, inspect clauses, review database statistics, and identify data-quality issues.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cyz9827/safety-kb-query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled helper emits JSON for search, check, info, clauses, stats, schema, and conflicts commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill can expose contents or schema details from whatever local SQLite database is configured as the knowledge base.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the agent should query the local safety-review knowledge base; keep KB_PATH unset or set only to the intended knowledge.db file.
+
+Risk: Schema and info commands may reveal private or unrelated data if pointed at the wrong database.
+
+Mitigation: Avoid using schema or info commands on databases that may contain private or unrelated data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cyz9827/skills/safety-kb-query)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON from the query script, with agent-facing Markdown or text summaries when presenting results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only query workflow for the configured local safety-review SQLite database.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

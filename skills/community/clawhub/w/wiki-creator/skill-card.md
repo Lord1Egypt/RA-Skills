@@ -1,42 +1,65 @@
-## Description: <br>
-Builds and maintains a persistent Markdown knowledge wiki from uploaded documents, with wiki-first querying, two-level indexes, source-cited pages, and no vector retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wiki Creator helps an agent build, update, query, and lint a local Markdown knowledge wiki from user-provided documents using full-page wiki units, two-level indexes, and explicit source citations.
 
-## Publisher: <br>
-[neuhanli](https://clawhub.ai/user/neuhanli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neuhanli](https://clawhub.ai/user/neuhanli)
 
-## Use Case: <br>
-Developers, researchers, and knowledge workers use this skill to convert uploaded documents into a structured local or global Markdown wiki, maintain it over time, and answer knowledge questions from the wiki before using web search. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Uploaded documents are copied into a persistent .wiki-creator directory and may be reused automatically in later wiki queries. <br>
-Mitigation: Use an explicit project-local root for sensitive material, confirm where the wiki is stored, add the directory to .gitignore when appropriate, and delete raw files or generated wiki data when they should no longer be retained. <br>
+## Use Case:
 
+Developers, researchers, and knowledge workers use this skill to turn uploaded documents into a structured local wiki, incrementally update it, answer questions from the wiki first, and check wiki health.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/neuhanli/skills/wiki-creator) <br>
-- [Query Mode](references/query-mode.md) <br>
-- [Page Authoring](references/page-authoring.md) <br>
-- [Schema Guide](references/schema-guide.md) <br>
-- [Cascade Update](references/cascade-update.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, generated wiki files, JSON script output, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates persistent .wiki-creator wiki data in a project-local or user-global directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; changelog source: user) <br>
+Risk: Helper scripts can operate outside their intended wiki boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an explicit --root in a non-sensitive location and add path containment and topic slug validation before routine use.
+
+Risk: The wiki persists local knowledge that may include confidential documents.
+
+Mitigation: Avoid storing confidential materials unless local persistence is acceptable, and add deletion or retention controls for managed use.
+
+Risk: Persistent wiki content may be reused automatically in later knowledge answers.
+
+Mitigation: Review cited wiki sources before relying on answers and keep source attribution visible in generated pages.
+
+Risk: Raw document parsing and generated page paths require containment controls.
+
+Mitigation: Restrict raw parsing to the wiki raw directory and scan generated pages before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/neuhanli/skills/wiki-creator)
+- [Query Mode](artifact/references/query-mode.md)
+- [Page Authoring](artifact/references/page-authoring.md)
+- [Cascade Update](artifact/references/cascade-update.md)
+- [Schema Guide](artifact/references/schema-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown wiki pages, JSON index files, shell command guidance, and concise status reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local filesystem state and generated wiki indexes; no vector retrieval is produced.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

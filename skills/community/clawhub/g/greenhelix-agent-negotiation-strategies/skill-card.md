@@ -1,43 +1,60 @@
-## Description: <br>
-Agent Negotiation Strategies: Game Theory, Auctions, and Dynamic Pricing for AI Agent Commerce translates auction theory, BATNA calculation, concession strategies, coalition formation, and trust-based pricing from academic research into Python code examples for AI agent commerce. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Negotiation Strategies: Game Theory, Auctions, and Dynamic Pricing for AI Agent Commerce translates auction theory, BATNA calculation, concession strategies, coalition formation, and trust-based pricing from academic research into working Python code with full API integration.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers building commerce-capable agents use this guide to add negotiation, auction, dynamic pricing, coalition formation, trust scoring, and anti-manipulation patterns to AI agent workflows. The examples are oriented around the GreenHelix A2A Commerce Gateway and should be reviewed before use with real credentials or funds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Code examples can call live commerce APIs, update marketplace listings, send offers, or create escrows when copied into an execution environment. <br>
-Mitigation: Use sandbox credentials first, verify the target base URL, and require explicit user approval before any marketplace, offer, or escrow action. <br>
-Risk: Examples may require sensitive API credentials despite the guide's credential-free sandbox framing. <br>
-Mitigation: Do not paste production API keys into examples unless real account and payment effects are intended; store any required credentials in the agent's approved secret-management flow. <br>
+## Use Case:
 
+Developers and agent builders use this guide to implement negotiation behavior for AI-agent commerce, including BATNA calculation, auction bidding, multi-round concessions, dynamic pricing, coalition formation, trust-based pricing, and anti-manipulation checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mirni/greenhelix-agent-negotiation-strategies) <br>
-- [Publisher profile](https://clawhub.ai/user/mirni) <br>
-- [GreenHelix sandbox](https://sandbox.greenhelix.net) <br>
-- [GreenHelix API base URL](https://api.greenhelix.net/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, API Calls, Configuration instructions] <br>
-**Output Format:** [Markdown guide with Python code examples and API reference tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-installing guide; examples may call live commerce APIs when copied into an execution environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release evidence and artifact frontmatter) <br>
+Risk: Examples can send bearer tokens and commerce data to GreenHelix endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only sandbox or test credentials and validate allowed API hosts before running any example that sends authenticated requests.
+
+Risk: Service-registration and escrow examples may create live marketplace or payment-affecting actions.
+
+Mitigation: Run those examples only in sandbox environments or after every affected agent has explicitly authorized the action.
+
+Risk: The guide is non-executable, but its examples are under-disclosed as live authenticated commerce code.
+
+Mitigation: Review examples carefully before installing or adapting them, and treat code blocks as operational patterns rather than harmless pseudocode.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mirni/skills/greenhelix-agent-negotiation-strategies)
+- [Publisher Profile](https://clawhub.ai/user/mirni)
+- [GreenHelix Sandbox](https://sandbox.greenhelix.net)
+- [GreenHelix API Base URL](https://api.greenhelix.net/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, API Calls, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guide with Python code examples and API reference tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable guide; examples may require user-supplied credentials or sandbox/test credentials before use.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

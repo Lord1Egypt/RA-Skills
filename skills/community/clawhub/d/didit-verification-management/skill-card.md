@@ -1,43 +1,65 @@
-## Description: <br>
-Manages Didit identity-verification accounts, API keys, sessions, workflows, questionnaires, users, billing, blocklists, and webhooks across the platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full Didit identity verification platform management for account creation, API keys, sessions, workflows, questionnaires, users, billing, blocklists, webhooks, and other platform administration.
 
-## Publisher: <br>
-[rosasalberto](https://clawhub.ai/user/rosasalberto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rosasalberto](https://clawhub.ai/user/rosasalberto)
 
-## Use Case: <br>
-Developers, operators, and verification administrators use this skill to manage Didit identity-verification operations, including account setup, workflow configuration, session creation and review, webhooks, billing, users, and blocklists. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can administer Didit resources and perform sensitive changes such as user/session deletion, status overrides, billing actions, webhook updates, and blocklist changes. <br>
-Mitigation: Use a least-privilege or test Didit key where possible and require explicit human approval before destructive, billing, webhook, status, or blocklist actions. <br>
-Risk: Account setup and login flows can print API keys, access tokens, organization IDs, and application IDs to terminal output. <br>
-Mitigation: Avoid running setup or login commands in logged or shared terminals; rotate exposed keys or tokens if credentials may have been captured. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Didit API Documentation](https://docs.didit.me) <br>
-- [Didit Programmatic Registration Guide](https://docs.didit.me/integration/programmatic-registration) <br>
-- [Didit Sessions API Overview](https://docs.didit.me/sessions-api/management-api) <br>
-- [Didit Webhooks Guide](https://docs.didit.me/integration/webhooks) <br>
-- [ClawHub Skill Page](https://clawhub.ai/rosasalberto/didit-verification-management) <br>
+## Use Case:
 
+Developers and operations teams use this skill to administer Didit identity-verification workflows, create and retrieve verification sessions, manage user and billing operations, configure blocklists and webhooks, and work with the bundled helper scripts.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code, shell commands, configuration examples, and JSON/API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Didit API requests and Python utility-script usage that require DIDIT_API_KEY or account credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-4.1.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can operate with a Didit administrative API key and access identity-verification records.
+
+Mitigation: Use scoped keys where available, store DIDIT_API_KEY outside shared terminals and logs, and redact API responses before sharing them.
+
+Risk: The skill covers destructive and high-impact account actions such as deleting sessions or users, changing verification status, blocklisting identities, and modifying webhooks.
+
+Mitigation: Confirm delete, status, billing, blocklist, and webhook actions manually before execution.
+
+Risk: The helper scripts may print full API responses that include credentials, verification data, or session details.
+
+Mitigation: Avoid running scripts in CI or shared terminals and review output before pasting it into chats or tickets.
+
+Risk: Billing and top-up operations can create payment flows or consume account credits.
+
+Mitigation: Check balances and intended amounts before billing operations, and require an operator confirmation for top-ups.
+
+## Reference(s):
+
+- [Didit Documentation](https://docs.didit.me)
+- [Didit API Overview](https://docs.didit.me/sessions-api/management-api)
+- [Didit Programmatic Registration Guide](https://docs.didit.me/integration/programmatic-registration)
+- [Didit Webhooks Guide](https://docs.didit.me/integration/webhooks)
+- [Didit AI Agent Integration Guide](https://docs.didit.me/integration/ai-agent-integration)
+- [ClawHub Skill Page](https://clawhub.ai/rosasalberto/skills/didit-verification-management)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline JSON, Python, and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API request examples, environment variable setup, helper-script commands, and administrative workflow guidance.]
+
+## Skill Version(s):
+
+4.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

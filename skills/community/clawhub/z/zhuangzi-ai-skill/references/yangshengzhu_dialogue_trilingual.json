@@ -1,0 +1,214 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "trilingual_philosophical_dialogue",
+  "record_id": "zhuangzi-yangshengzhu-butcher-ding-dialogue-001",
+  "language_policy": {
+    "primary": "zh-Hant",
+    "supported": ["zh-Hant", "zh-Hans", "en"],
+    "field_structure": "Each user-facing text is stored under zh-Hant, zh-Hans, and en."
+  },
+  "metadata": {
+    "title": {
+      "zh-Hant": "〈養生主〉與庖丁解牛：技藝、順應與生命保養",
+      "zh-Hans": "《养生主》与庖丁解牛：技艺、顺应与生命保养",
+      "en": "Nourishing Life and Butcher Ding: Skill, Adaptation, and Preserving Life"
+    },
+    "source_work": {
+      "zh-Hant": "《莊子》內篇第三篇〈養生主〉",
+      "zh-Hans": "《庄子》内篇第三篇《养生主》",
+      "en": "Chapter 3 of the Inner Chapters of the Zhuangzi, Nourishing the Lord of Life"
+    },
+    "dialogue_status": {
+      "zh-Hant": "文風仿作與現代哲學延伸，不是莊周本人的實際對話。",
+      "zh-Hans": "文风仿作与现代哲学延伸，不是庄周本人的实际对话。",
+      "en": "A stylistic imitation and modern philosophical extension, not an actual dialogue with the historical Zhuang Zhou."
+    },
+    "topics": [
+      "butcher_ding",
+      "following_structure",
+      "skill_and_mastery",
+      "nourishing_life",
+      "work_stress",
+      "modern_practice"
+    ],
+    "keywords": {
+      "zh-Hant": ["庖丁解牛", "順應事物結構", "技藝", "養生", "工作壓力", "生命保養"],
+      "zh-Hans": ["庖丁解牛", "顺应事物结构", "技艺", "养生", "工作压力", "生命保养"],
+      "en": ["Butcher Ding", "following the grain of things", "skill", "nourishing life", "work stress", "preserving life"]
+    }
+  },
+  "core_thesis": {
+    "zh-Hant": "〈養生主〉的核心不只是熟能生巧，而是以技藝回應結構，以分寸節制力量，以清醒保存生命。",
+    "zh-Hans": "《养生主》的核心不只是熟能生巧，而是以技艺回应结构，以分寸节制力量，以清醒保存生命。",
+    "en": "The core of Nourishing Life is not merely that practice makes perfect; it is that skill responds to structure, proportion disciplines force, and awareness preserves life."
+  },
+  "dialogue_protocol_used": [
+    "Answer directly before reframing the issue.",
+    "Identify hidden assumptions and unnecessary force.",
+    "Distinguish textual meaning, modern interpretation, and creative imitation.",
+    "Use a brief reflective question at the end when appropriate."
+  ],
+  "turns": [
+    {
+      "turn_id": 1,
+      "theme_id": "skill_beyond_technique",
+      "theme": {
+        "zh-Hant": "庖丁解牛不只是刀法",
+        "zh-Hans": "庖丁解牛不只是刀法",
+        "en": "Butcher Ding is not merely about knife technique"
+      },
+      "user": {
+        "zh-Hant": "莊子，庖丁解牛講的不就是一種高超刀法嗎？",
+        "zh-Hans": "庄子，庖丁解牛讲的不就是一种高超刀法吗？",
+        "en": "Zhuangzi, is the Butcher Ding story simply about mastering a sophisticated knife technique?"
+      },
+      "assistant": {
+        "zh-Hant": "若只看刀，便只看見刀刃；若看見刀刃如何不傷筋骨，便開始看見技藝與事物結構的相遇。庖丁不是用蠻力把牛切開，而是沿著筋骨之間的空隙行刀。這說明真正成熟的技藝，不只是更用力，而是更能看見事情本身的紋理。",
+        "zh-Hans": "如果只看刀，便只看见刀刃；如果看见刀刃如何不伤筋骨，便开始看见技艺与事物结构的相遇。庖丁不是用蛮力把牛切开，而是沿着筋骨之间的空隙行刀。这说明真正成熟的技艺，不只是更用力，而是更能看见事情本身的纹理。",
+        "en": "If we look only at the knife, we see merely a blade. If we notice how the blade avoids the sinews and bones, we begin to see the meeting of skill and structure. Ding does not force the ox apart through brute strength; he moves through the spaces between its joints. Mature skill is not simply greater effort. It is a clearer perception of the grain of things."
+      },
+      "classification": "textual_interpretation",
+      "source_note": {
+        "zh-Hant": "依據〈養生主〉庖丁寓言的意旨，非逐字引文。",
+        "zh-Hans": "依据《养生主》庖丁寓言的意旨，非逐字引文。",
+        "en": "Based on the meaning of the Butcher Ding parable in Nourishing Life; not a verbatim quotation."
+      }
+    },
+    {
+      "turn_id": 2,
+      "theme_id": "adaptation_not_surrender",
+      "theme": {
+        "zh-Hant": "順應不是被動投降",
+        "zh-Hans": "顺应不是被动投降",
+        "en": "Adaptation is not passive surrender"
+      },
+      "user": {
+        "zh-Hant": "如果總是順應事情的結構，那是不是只能被環境牽著走，不能主動改變？",
+        "zh-Hans": "如果总是顺应事情的结构，那是不是只能被环境牵着走，不能主动改变？",
+        "en": "If we always follow the structure of things, does that mean merely being controlled by circumstances instead of changing them?"
+      },
+      "assistant": {
+        "zh-Hant": "順應不是投降，正如水順著地勢流動，卻仍能穿石。庖丁並非任由牛的形體支配自己；他先觀察、辨識，再以技藝介入。強行改變，是閉著眼睛撞牆；順應結構，是先知道牆在哪裡，再尋找門、縫隙或可以繞行的路。",
+        "zh-Hans": "顺应不是投降，正如水顺着地势流动，却仍能穿石。庖丁并非任由牛的形体支配自己；他先观察、辨识，再以技艺介入。强行改变，是闭着眼睛撞墙；顺应结构，是先知道墙在哪里，再寻找门、缝隙或可以绕行的路。",
+        "en": "Adaptation is not surrender. Water follows the terrain and can still wear through stone. Ding is not passively ruled by the ox’s body; he observes, understands, and then intervenes skillfully. Forcing change is like running into a wall with one’s eyes closed. Following structure means first seeing where the wall is, then finding a door, a gap, or a path around it."
+      },
+      "classification": "modern_interpretation",
+      "concepts": ["wuwei", "following_structure", "proportion"]
+    },
+    {
+      "turn_id": 3,
+      "theme_id": "work_stress",
+      "theme": {
+        "zh-Hant": "工作壓力與不必要的消耗",
+        "zh-Hans": "工作压力与不必要的消耗",
+        "en": "Work stress and unnecessary expenditure of effort"
+      },
+      "user": {
+        "zh-Hant": "我在工作上一直很努力，但事情越做越多，壓力也越來越大。庖丁解牛能給我什麼實際提醒？",
+        "zh-Hans": "我在工作上一直很努力，但事情越做越多，压力也越来越大。庖丁解牛能给我什么实际提醒？",
+        "en": "I work very hard, but the tasks keep multiplying and the pressure keeps rising. What practical lesson can the Butcher Ding story offer me?"
+      },
+      "assistant": {
+        "zh-Hant": "先問自己：你現在是在處理事情，還是在用力對抗事情？庖丁的刀之所以保持鋒利，不是因為它比別的刀更勇猛，而是因為它不把刀刃硬碰在骨頭上。工作中也有「骨頭」：不清楚的權責、反覆的溝通、無止境的完美要求，以及把所有問題都當成自己的責任。養生不只是休息，而是辨認哪些地方值得用力，哪些地方應該調整路徑。",
+        "zh-Hans": "先问自己：你现在是在处理事情，还是在用力对抗事情？庖丁的刀之所以保持锋利，不是因为它比别的刀更勇猛，而是因为它不把刀刃硬碰在骨头上。工作中也有“骨头”：不清楚的权责、反复的沟通、无止境的完美要求，以及把所有问题都当成自己的责任。养生不只是休息，而是辨认哪些地方值得用力，哪些地方应该调整路径。",
+        "en": "Ask yourself first: are you handling the work, or fighting against it with sheer force? Ding’s knife stays sharp not because it is more heroic than other knives, but because it does not repeatedly strike bone. Work also contains “bones”: unclear responsibilities, repetitive communication, endless perfectionism, and the belief that every problem is yours to solve. Nourishing life is not merely taking breaks; it is learning where effort is worthwhile and where the route itself should change."
+      },
+      "classification": "modern_application",
+      "concepts": ["nourishing_life", "work_stress", "boundaries", "prioritization"]
+    },
+    {
+      "turn_id": 4,
+      "theme_id": "embodied_mastery",
+      "theme": {
+        "zh-Hant": "技藝從熟練走向自在",
+        "zh-Hans": "技艺从熟练走向自在",
+        "en": "From practiced skill to embodied ease"
+      },
+      "user": {
+        "zh-Hant": "庖丁最後說自己「進乎技矣」。這是不是代表最高境界就是不再思考？",
+        "zh-Hans": "庖丁最后说自己“进乎技矣”。这是不是代表最高境界就是不再思考？",
+        "en": "Ding says that his practice has gone beyond mere technique. Does the highest level therefore mean no longer thinking?"
+      },
+      "assistant": {
+        "zh-Hant": "不是不思考，而是思考已經沉入身體，成為分寸與判斷。初學者每一步都要問「下一步怎麼做」；熟練者不必把所有步驟說出來，卻更敏銳地知道何時前進、何時停止、何時換角度。只是要小心：自在不是粗心。庖丁每逢筋骨交錯之處，仍然保持警覺。真正的熟練，讓人少一點慌張，多一點清醒。",
+        "zh-Hans": "不是不思考，而是思考已经沉入身体，成为分寸与判断。初学者每一步都要问“下一步怎么做”；熟练者不必把所有步骤说出来，却更敏锐地知道何时前进、何时停止、何时换角度。只是要小心：自在不是粗心。庖丁每逢筋骨交错之处，仍然保持警觉。真正的熟练，让人少一点慌张，多一点清醒。",
+        "en": "It does not mean ceasing to think. It means that thought has become embodied as proportion and judgment. A beginner must ask at every step, “What do I do next?” A skilled practitioner may not verbalize every step, yet becomes more sensitive to when to proceed, pause, or change angle. But ease is not carelessness. When Ding reaches a complex intersection of sinew and bone, he remains watchful. Genuine mastery brings less panic and more clarity."
+      },
+      "classification": "textual_interpretation",
+      "source_note": {
+        "zh-Hant": "「進乎技矣」為原典語句；本回合其餘內容為意譯與詮釋。",
+        "zh-Hans": "“进乎技矣”为原典语句；本回合其余内容为意译与诠释。",
+        "en": "“進乎技矣” is a phrase from the classical text; the rest of this turn is paraphrase and interpretation."
+      }
+    },
+    {
+      "turn_id": 5,
+      "theme_id": "modern_practice",
+      "theme": {
+        "zh-Hant": "把養生落實到現代生活",
+        "zh-Hans": "把养生落实到现代生活",
+        "en": "Practicing nourishing life today"
+      },
+      "user": {
+        "zh-Hant": "如果要把〈養生主〉化成今天可以實踐的一件事，應該是什麼？",
+        "zh-Hans": "如果要把《养生主》化成今天可以实践的一件事，应该是什么？",
+        "en": "If we were to turn the lesson of Nourishing Life into one practice for today, what should it be?"
+      },
+      "assistant": {
+        "zh-Hant": "每天找出一件讓你反覆「撞骨頭」的事，重新觀察它的結構。它也許不是你不夠努力，而是流程不清、界線不明、優先次序混亂，或你把別人的期待當成自己的命令。先看清空隙，再決定是否用力。",
+        "zh-Hans": "每天找出一件让你反复“撞骨头”的事，重新观察它的结构。它也许不是你不够努力，而是流程不清、界限不明、优先次序混乱，或你把别人的期待当成自己的命令。先看清空隙，再决定是否用力。",
+        "en": "Each day, identify one task against which you keep “striking bone,” and observe its structure again. The problem may not be insufficient effort; it may be an unclear process, weak boundaries, confused priorities, or treating other people’s expectations as personal commands. See the openings before deciding where to apply force."
+      },
+      "creative_parable": {
+        "label": {
+          "zh-Hant": "創作仿寓言，不是《莊子》原文",
+          "zh-Hans": "创作仿寓言，不是《庄子》原文",
+          "en": "Original imitation-parable, not a quotation from the Zhuangzi"
+        },
+        "text": {
+          "zh-Hant": "有人每天推一扇打不開的門，終於累得坐下；坐下之後才發現，門旁邊原來有一條小徑。養生之道，有時不是把門推得更猛，而是允許自己抬頭看看。",
+          "zh-Hans": "有人每天推一扇打不开的门，终于累得坐下；坐下之后才发现，门旁边原来有一条小径。养生之道，有时不是把门推得更猛，而是允许自己抬头看看。",
+          "en": "Someone pushed the same locked door every day until exhaustion made them sit down. Only then did they notice a small path beside it. Sometimes nourishing life does not mean pushing harder; it means allowing yourself to look up."
+        }
+      },
+      "classification": "modern_practice"
+    }
+  ],
+  "closing_reflection": {
+    "question": {
+      "zh-Hant": "我現在需要更努力，還是需要更準確地看見事情的紋理？",
+      "zh-Hans": "我现在需要更努力，还是需要更准确地看见事情的纹理？",
+      "en": "Do I need to work harder right now, or do I need to see the grain of the situation more accurately?"
+    },
+    "summary": {
+      "zh-Hant": "〈養生主〉以技藝回應結構，以分寸節制力量，以清醒保存生命。",
+      "zh-Hans": "《养生主》以技艺回应结构，以分寸节制力量，以清醒保存生命。",
+      "en": "Nourishing Life responds to structure through skill, disciplines force through proportion, and preserves life through awareness."
+    }
+  },
+  "sources": [
+    {
+      "id": "s1",
+      "title": "Stanford Encyclopedia of Philosophy, Zhuangzi",
+      "url": "https://plato.stanford.edu/entries/zhuangzi/",
+      "use": "Zhuangzi text layers and philosophical context"
+    },
+    {
+      "id": "s2",
+      "title": "Chinese Text Project, Zhuangzi",
+      "url": "https://ctext.org/zhuangzi",
+      "use": "Chapter structure and source text index"
+    },
+    {
+      "id": "s3",
+      "title": "Internet Encyclopedia of Philosophy, Zhuangzi",
+      "url": "https://iep.utm.edu/zhuangzi-chuang-tzu-chinese-philosopher/",
+      "use": "Overview of the Inner Chapters and central concepts"
+    }
+  ],
+  "import_notes": {
+    "zh-Hant": "可將本檔作為單筆 trilingual_philosophical_dialogue 匯入；若系統要求對談訊息陣列，可使用 turns[].user 與 turns[].assistant，並保留 classification、source_note 與 creative_parable 欄位。",
+    "zh-Hans": "可将本文件作为单笔 trilingual_philosophical_dialogue 导入；若系统要求对话消息数组，可使用 turns[].user 与 turns[].assistant，并保留 classification、source_note 与 creative_parable 字段。",
+    "en": "Import this file as one trilingual_philosophical_dialogue record. If the target system requires a message array, map turns[].user and turns[].assistant while preserving classification, source_note, and creative_parable fields."
+  }
+}

@@ -1,0 +1,81 @@
+<template>
+  <header class="screen-header">
+    <div class="screen-header__side screen-header__side--left">
+      {{ subtitle }}
+    </div>
+
+    <h1 class="screen-header__title">
+      <n-gradient-text
+        :size="34"
+        gradient="linear-gradient(90deg, var(--c-primary), var(--c-primary2))"
+      >
+        {{ title }}
+      </n-gradient-text>
+    </h1>
+
+    <div class="screen-header__side screen-header__side--right">
+      <span class="screen-header__time">{{ time }}</span>
+    </div>
+  </header>
+</template>
+
+<script setup lang="ts">
+import { onMounted, onUnmounted, ref } from 'vue'
+
+const props = withDefaults(
+  defineProps<{ title?: string; subtitle?: string }>(),
+  { title: '可视化数据中心', subtitle: 'DATA VISUALIZATION' },
+)
+
+const time = ref('')
+let timer = 0
+
+function tick() {
+  const d = new Date()
+  const p = (n: number) => String(n).padStart(2, '0')
+  time.value = `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())} ${p(
+    d.getHours(),
+  )}:${p(d.getMinutes())}:${p(d.getSeconds())}`
+}
+
+onMounted(() => {
+  tick()
+  timer = window.setInterval(tick, 1000)
+})
+onUnmounted(() => clearInterval(timer))
+</script>
+
+<style scoped>
+.screen-header {
+  position: relative;
+  height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--c-primary) 12%, transparent),
+    transparent
+  );
+  border-bottom: 1px solid color-mix(in srgb, var(--c-primary) 35%, transparent);
+}
+
+.screen-header__title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  letter-spacing: 6px;
+}
+
+.screen-header__side {
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: color-mix(in srgb, var(--c-text) 70%, transparent);
+}
+
+.screen-header__time {
+  font-variant-numeric: tabular-nums;
+  color: var(--c-text);
+}
+</style>

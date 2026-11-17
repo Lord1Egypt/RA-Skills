@@ -1,0 +1,4 @@
+interface:
+  display_name: "PB Module Triage"
+  short_description: "Analyze autonomous-driving PB evidence by module"
+  default_prompt: "Use $pb-module-triage to analyze an autonomous-driving PB recording and identify the likely problem module."

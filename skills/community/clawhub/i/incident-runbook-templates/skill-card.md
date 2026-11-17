@@ -1,42 +1,56 @@
-## Description: <br>
-Provides incident response runbook templates for detection, triage, mitigation, resolution, communication, escalation, on-call onboarding, and post-incident review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Production-ready incident response runbook templates with step-by-step procedures for detection, triage, mitigation, resolution, communication, escalation, on-call onboarding, and post-incident review.
 
-## Publisher: <br>
-[solomonneas](https://clawhub.ai/user/solomonneas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[solomonneas](https://clawhub.ai/user/solomonneas)
 
-## Use Case: <br>
-Developers, SREs, platform engineers, and incident responders use this skill to create service-specific incident response procedures, escalation paths, recovery steps, and communication templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example rollback, scaling, database termination, network policy, and feature-flag commands could affect production systems if copied without adaptation. <br>
-Mitigation: Treat generated runbooks as templates; replace placeholders, confirm the target service and blast radius, and require incident commander or DBA approval before executing high-impact steps. <br>
-Risk: Generic incident procedures may omit local approval, verification, monitoring, or communication requirements. <br>
-Mitigation: Add organization-specific approval gates, dashboards, escalation contacts, and post-change verification checks before adopting a runbook. <br>
+## Use Case:
 
+Developers, site reliability engineers, incident commanders, and on-call teams use this skill to draft service-specific incident runbooks, escalation paths, recovery procedures, communication templates, and post-incident review formats.
 
-## Reference(s): <br>
-- [Google SRE Book - Incident Management](https://sre.google/sre-book/managing-incidents/) <br>
-- [PagerDuty Incident Response](https://response.pagerduty.com/) <br>
-- [Atlassian Incident Management](https://www.atlassian.com/incident-management) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell, SQL, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are templates and procedural guidance that should be adapted to the target service before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: Runbook examples include high-impact production commands such as rollbacks, scaling changes, feature flag updates, network policy changes, backend termination, and database maintenance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated runbooks as drafts and add explicit approval gates, environment and tenant scoping, owner signoff, safer alternatives, and post-action validation before operational use.
+
+Risk: Incident response templates can be copied into production workflows without enough local context for the affected service, dependencies, data sensitivity, or blast radius.
+
+Mitigation: Require responders to tailor each template with service owners, escalation paths, read-only preview steps, backup checks, rollback conditions, and verification steps before use.
+
+## Reference(s):
+
+- [Google SRE Book - Incident Management](https://sre.google/sre-book/managing-incidents/)
+- [PagerDuty Incident Response](https://response.pagerduty.com/)
+- [Atlassian Incident Management](https://www.atlassian.com/incident-management)
+- [ClawHub skill page](https://clawhub.ai/solomonneas/skills/incident-runbook-templates)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell, SQL, YAML, and checklist examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include production incident response commands and templates that require human review before operational use.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

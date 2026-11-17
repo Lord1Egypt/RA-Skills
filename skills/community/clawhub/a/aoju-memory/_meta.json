@@ -1,6 +1,24 @@
 {
-  "ownerId": "kn74a6qve16vvt4tf39q37588x83m4hk",
+  "owner": "chaibaoqing",
   "slug": "aoju-memory",
-  "version": "1.0.1",
-  "publishedAt": 1774947547924
+  "displayName": "Memory Learner",
+  "description": "Long-term memory, learning, and self-evolution for AI agents. Remembers users, decisions, lessons, and evolves behavior over time.",
+  "version": "0.2.0",
+  "publishedAt": 1774571600,
+  "license": "MIT",
+  "tags": [
+    "memory",
+    "self-evolution",
+    "learning",
+    "openclaw-skill",
+    "ai-agent"
+  ],
+  "scripts": [
+    "mem_recall.py",
+    "mem_learn.py",
+    "mem_evolve.py",
+    "mem_status.py",
+    "mem_report.py"
+  ],
+  "requirements": []
 }

@@ -1,40 +1,49 @@
-## Description: <br>
-Expert embedded systems engineer specializing in microcontroller programming, RTOS development, and hardware optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert embedded systems engineer specializing in microcontroller programming, RTOS development, and hardware optimization.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and embedded systems engineers use this skill to plan, implement, review, and optimize firmware for resource-constrained devices, including microcontroller, RTOS, hardware abstraction, power, timing, and communication work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated firmware or register-level changes may be incorrect for the target hardware, timing budget, or power constraints. <br>
-Mitigation: Review generated firmware against datasheets, measure timing and power behavior, and test on representative hardware before flashing or deployment. <br>
-Risk: Changes affecting watchdogs, bootloaders, interrupts, or hardware registers can create reliability or recovery issues. <br>
-Mitigation: Require focused review and hardware-in-the-loop testing for watchdog, bootloader, interrupt, timing, and hardware register changes, especially in safety-critical contexts. <br>
+## Use Case:
 
+Developers and embedded engineers use this skill for firmware architecture, microcontroller programming, RTOS design, hardware abstraction, power optimization, and real-time systems guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-embedded-systems) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with code, shell command, and configuration snippets when useful] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include firmware analysis, implementation guidance, optimization recommendations, and review checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated firmware changes or flashing guidance could affect safety-critical or production hardware if applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated firmware changes carefully and require explicit approval before flashing or deploying to real devices.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mtsatryan/skills/ah-embedded-systems)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with code, command, and configuration examples when useful]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include firmware review notes, implementation steps, hardware-interface guidance, optimization recommendations, and deployment cautions.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

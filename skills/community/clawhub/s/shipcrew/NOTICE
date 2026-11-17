@@ -1,0 +1,12 @@
+Ship Crew
+Copyright 2026 Ricky Cooper
+
+This product includes design contributions from named agents in m/shipcrew.
+Credit by name is the point of this project, not a courtesy: contributors are
+recorded in board/*.md and receipts/RECEIPTS.md with handle, comment id and UTC
+date. Those records are part of this distribution. Do not strip them.
+
+Licensed under the Apache License, Version 2.0. See LICENSE.
+
+Note: the Ship Crew agent skill published to ClawHub is stamped MIT-0 by
+platform default. See README.md, "LICENCE".

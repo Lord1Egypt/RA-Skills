@@ -1,43 +1,51 @@
-## Description: <br>
-Generate synced lyrics or subtitle files (LRC, SRT, WebVTT, ASS, TTML) from any audio/video URL or YouTube link using the QuickLRC AI API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate synced lyrics or subtitle files (LRC, SRT, WebVTT, ASS, TTML) from any audio/video URL or YouTube link using the QuickLRC AI API.
 
-## Publisher: <br>
-[weiqingtangx](https://clawhub.ai/user/weiqingtangx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weiqingtangx](https://clawhub.ai/user/weiqingtangx)
 
-## Use Case: <br>
-External developers, media teams, and automation agents use this skill to generate time-synced lyrics or subtitle outputs from public audio, video, or YouTube URLs through the QuickLRC API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted media URLs and optional lyrics are sent to QuickLRC for processing. <br>
-Mitigation: Avoid private, sensitive, regulated, or unauthorized copyrighted material unless use is permitted and QuickLRC terms have been reviewed. <br>
-Risk: Successful transcription requests may spend QuickLRC credits. <br>
-Mitigation: Confirm the target media and requested format before making API calls, and check remaining credits in the QuickLRC dashboard. <br>
-Risk: The skill requires a QuickLRC API key. <br>
-Mitigation: Provide the key through the QUICKLRC_API_KEY environment variable and avoid pasting credentials into shared logs, prompts, or generated files. <br>
+## Use Case:
 
+Developers and content teams use this skill to generate synchronized lyric or subtitle text from public audio, video, or YouTube URLs, with optional forced alignment and karaoke-style word timing.
 
-## Reference(s): <br>
-- [QuickLRC API Documentation](https://quicklrc.com/docs/api) <br>
-- [QuickLRC Dashboard](https://quicklrc.com/dashboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash curl examples; API responses are plain text lyric or subtitle content.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports LRC, SRT, WebVTT, ASS, TTML, and TXT outputs when requested through the QuickLRC API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Media URLs, YouTube links, and optional lyrics are sent to QuickLRC for processing under the user's API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting private, confidential, or unauthorized copyrighted material unless the user has reviewed QuickLRC terms and data handling.
+
+## Reference(s):
+
+- [QuickLRC API Documentation](https://quicklrc.com/docs/api)
+- [QuickLRC Dashboard](https://quicklrc.com/dashboard)
+- [ClawHub Skill Page](https://clawhub.ai/weiqingtangx/skills/quicklrc-transcribe)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with curl examples and plain text subtitle outputs such as LRC, SRT, WebVTT, ASS, TTML, or TXT]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires QUICKLRC_API_KEY and curl; API requests return plain text subtitle content.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn70k2c4yvdkhm0e4g47dwn7cd81qw95",
-  "slug": "three-dimensional-memory",
+  "name": "three-dimensional-memory",
   "version": "1.0.0",
-  "publishedAt": 1771835595987
+  "description": "Human-centric memory management organized by time, conversation, and topics",
+  "author": "openclaw-user",
+  "license": "MIT",
+  "keywords": ["memory", "organization", "productivity", "workflow", "files"],
+  "repository": "https://github.com/openclaw-user/three-dimensional-memory"
 }

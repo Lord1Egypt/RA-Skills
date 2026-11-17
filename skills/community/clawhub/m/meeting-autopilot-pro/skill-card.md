@@ -1,41 +1,57 @@
-## Description: <br>
-Meeting Autopilot helps professionals prepare for meetings, capture structured notes, draft approved follow-ups, and track action items and commitments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Meeting Autopilot helps an agent prepare meeting briefs, capture structured notes, draft follow-ups, track commitments, analyze meeting load, and search meeting memory.
 
-## Publisher: <br>
-[AGIstack](https://clawhub.ai/user/AGIstack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[agistack](https://clawhub.ai/user/agistack)
 
-## Use Case: <br>
-Employees, managers, founders, sales professionals, and consultants use this skill to prepare for meetings, produce summaries and follow-up drafts, and keep meeting commitments visible until closed. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may process calendars, email, documents, attendee history, meeting notes, and meeting memory automatically. <br>
-Mitigation: Use opt-in calendars and bounded data sources, and avoid confidential HR, legal, medical, financial, client, or executive meetings unless the agent environment provides access controls. <br>
-Risk: Meeting notes, action items, attendee context, and memory can contain sensitive business or personal information. <br>
-Mitigation: Review memory storage, retention, deletion, and private-meeting controls before relying on the skill for sensitive meetings. <br>
-Risk: Follow-up drafts or commitment summaries may be incomplete or inaccurate. <br>
-Mitigation: Review and approve the exact follow-up text and action-item list before sending or acting on it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AGIstack/meeting-autopilot-pro) <br>
+## Use Case:
 
+Professionals, managers, founders, sales teams, and consultants use this skill to prepare for meetings, record decisions and action items, draft approved follow-ups, and maintain searchable meeting context.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and structured text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces meeting briefs, notes, summaries, action-item lists, follow-up drafts, commitment tracking guidance, and meeting-load analysis.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks the agent to read broad calendar, email, document, conversation, and meeting-memory data.
+
+Mitigation: Enable it only where calendar, email, document, and memory access can be scoped to the intended work context.
+
+Risk: Meeting notes, attendee details, and action items may include private or sensitive information.
+
+Mitigation: Exclude sensitive events, review what is stored, and delete retained meeting notes and action items when they are no longer needed.
+
+Risk: Follow-up drafts and commitment tracking may affect colleagues, clients, or partners if used without review.
+
+Mitigation: Require explicit user approval before sending follow-ups or acting on tracked commitments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agistack/skills/meeting-autopilot-pro)
+- [Publisher profile](https://clawhub.ai/user/agistack)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown and structured text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces meeting briefs, summaries, action-item lists, follow-up drafts, workload reports, and searchable meeting-memory guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

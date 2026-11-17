@@ -1,0 +1,18 @@
+{
+  "name": "wm-report-extract",
+  "title": "财报提取 Financial Report Extractor",
+  "description": "财报 PDF（年报/半年报/季报，A 股 + 港股 IFRS）内容理解与按需可溯源提取。",
+  "version": "0.6.1",
+  "author": "WinMale",
+  "homepage": "https://github.com/open-winmale/agent-skills",
+  "tags": [
+    "financial-report",
+    "pdf-extraction",
+    "annual-report",
+    "a-share",
+    "hong-kong",
+    "docling",
+    "pymupdf",
+    "provenance"
+  ]
+}

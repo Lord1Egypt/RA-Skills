@@ -1,25 +1,29 @@
-# Market Entry Analyzer — API Field Reference
+# ZooData API Field Reference
 
 > Load this file only when you need exact field names or response structure.
 
-## Endpoints Used (11 of 11 — ALL)
+## ZooData Endpoint Field Reference
 
-| # | Endpoint | Purpose in This Skill | Step |
-|---|----------|-----------------------|------|
-| 1 | `categories` | Find category path for market search | Step 1a |
-| 2 | `markets/search` | Market size, competition metrics, new product rate | Step 1b |
-| 3 | `products/search` | Product supply (100+ via pagination), brand drill, price drill | Step 3, 4b, 7 |
-| 4 | `products/competitors` | Top competitor list | Step 4a |
-| 5 | `realtime/product` | Live detail for Top 5 competitors | Step 4c |
-| 6 | `reviews/analysis` | Consumer pain points, buying factors | Step 6 |
-| 7 | `products/price-band-overview` | Hottest & best opportunity price bands | Step 2a |
-| 8 | `products/price-band-detail` | Per-band SKU/sales/brand/rating breakdown | Step 2b |
-| 9 | `products/brand-overview` | Brand count, CR10, top brand avg price/rating | Step 1c |
-| 10 | `products/brand-detail` | Per-brand SKU/sales/revenue/share ranking | Step 1d |
-| 11 | `products/history` | 30-day price/BSR/sales trend for Top 3 | Step 5 |
+> Shared field reference. This skill's workflows use ONLY the subcommands
+> listed in its SKILL.md; the endpoints below are documented for field-name /
+> response-structure lookup, not as a claim that this skill invokes all of them.
 
-Base URL: `https://api.apiclaw.io/openapi/v2`
-Auth: `Bearer $APICLAW_API_KEY`
+| # | Endpoint | Purpose |
+|---|----------|---------|
+| 1 | `categories` | Category path lookup |
+| 2 | `markets/search` | Market size, competition metrics, new-product rate |
+| 3 | `products/search` | Product supply (100+ via pagination), brand/price drill |
+| 4 | `products/competitors` | Top competitor list |
+| 5 | `realtime/product` | Live product detail |
+| 6 | `reviews/analysis` | Consumer pain points, buying factors |
+| 7 | `products/price-band-overview` | Price-band opportunity overview |
+| 8 | `products/price-band-detail` | Per-band SKU/sales/brand/rating breakdown |
+| 9 | `products/brand-overview` | Brand count, CR10, top-brand avg price/rating |
+| 10 | `products/brand-detail` | Per-brand SKU/sales/revenue/share ranking |
+| 11 | `products/history` | 30-day price/BSR/sales trend |
+
+Base URL: `https://api.zoodata.ai/openapi/v2`
+Auth: `Bearer $ZOODATA_API_KEY`
 Method: All POST with JSON body
 All endpoints return: `{success, data, error, meta}` with `meta.creditsRemaining`
 
@@ -76,7 +80,7 @@ All endpoints return: `{success, data, error, meta}` with `meta.creditsRemaining
 ## 3. products/search — Shared Product Object
 
 **Key Request Params:**
-- `keyword`, `categoryPath`, `mode` (14 presets), `keywordMatchType`
+- `keyword`, `categoryPath`, `keywordMatchType` (`mode` is a CLI-only preset — `zoodata.py` expands it into the filter pairs below client-side; it is NOT an API field and returns 422 if sent raw)
 - Filter pairs: `monthlySalesMin/Max`, `priceMin/Max`, `ratingMin/Max`, etc.
 - `pageSize` (max 20), `page`, `sortBy`, `sortOrder`
 - `includeBrands`, `excludeBrands`
@@ -99,6 +103,8 @@ All endpoints return: `{success, data, error, meta}` with `meta.creditsRemaining
 | `listingDate` | string | When listed |
 | `salesGrowthRate` | float | Growth rate |
 | `variantCount` | int | Variants |
+| `categoryPath` | list | Full category path (root→leaf); always present — used to self-heal a keyword→category lookup without a realtime call |
+| `bsrCategory` | string | BSR category name (root); fallback when `categoryPath` is unexpectedly absent |
 
 ---
 
@@ -158,6 +164,44 @@ Request params: `keyword`, `brand`, `asin`, `categoryPath`, `sortBy`, `pageSize`
 | `topKeywords` | list | Trending terms |
 
 **InsightItem:** `{element, labelType, count, reviewRate, avgRating}`
+
+---
+
+## 6b. realtime/reviews
+
+**Request:**
+- `asin`: String (10 chars, required)
+- `marketplace`: String (US/UK only, default US)
+- `cursor`: String (pagination token; omit for first page)
+
+⚠️ Fixed 10 reviews/page; max 10 pages = **100 reviews** hard cap. 1 credit/page. Cursor-based pagination.
+
+**Response:**
+| Field | Type | Used For |
+|-------|------|----------|
+| `asin` | string | Product ID |
+| `reviews` | list | Array of RealtimeReview |
+| `nextCursor` | string\|null | Next page token (null = end) |
+
+**RealtimeReview:** `reviewId`, `title`, `body`, `bodyHtml`, `rating`, `author`, `date` (ISO 8601 UTC), `verifiedPurchase`, `vineProgram`, `helpfulVoteCount`, `unhelpfulVoteCount`, `reviewCountry`, `images`, `link`, `isGlobalReview`
+
+**Use cases:** ASIN <50 reviews (fallback for `/reviews/analysis`), brand-new product without snapshot, freshest possible raw text. Feeds the local Map/Reduce toolkit (`zoodata.py reviews-raw / review-tag-prompt / review-reduce-prompt / review-aggregate`).
+
+---
+
+## 6c. reviews/search
+
+**Request:**
+- `asin`: String (required)
+- Optional filters: `ratingMin`/`ratingMax` (1-5), `verifiedOnly`, `vineOnly`, `helpfulVoteCountMin`, `dateStart`/`dateEnd` (YYYY-MM-DD)
+- `sortBy`: `recent` (default) / `rating` / `helpfulVoteCount`
+- `sortOrder`: `desc` (default) / `asc`
+- `page`: 1-indexed (default 1)
+- `pageSize`: 1-20 (default 10)
+
+**Response:** Array of `TaggedReview` — same fields as `RealtimeReview` + `tags[{labelType, element}]` (AI tags from offline pipeline).
+
+**Differs from realtime/reviews:** uses BigQuery daily snapshot (T+1 delay) but already has AI tags applied. Prefer `reviews/search` when snapshot exists; prefer `realtime/reviews` for live data or new products.
 
 ---
 

@@ -1,42 +1,54 @@
-## Description: <br>
-Founder vs employee personal branding strategies with LinkedIn positioning and exit planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Founder vs employee personal branding strategies with LinkedIn positioning and exit planning.
 
-## Publisher: <br>
-[shashwatgtm](https://clawhub.ai/user/shashwatgtm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[shashwatgtm](https://clawhub.ai/user/shashwatgtm)
 
-## Use Case: <br>
-Founders, executives, and employees use this skill to develop personal-brand positioning, LinkedIn profile copy, content strategy, authority-building playbooks, and portable brand plans across B2B SaaS roles and industries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Always-on behavior may influence loosely related branding or career-writing conversations. <br>
-Mitigation: Review outputs for relevance before using them in public or professional materials. <br>
-Risk: Public posts may include regulated-industry claims, legal claims, company metrics, customer references, or employer-sensitive content. <br>
-Mitigation: Manually review posts and obtain legal, compliance, communications, or manager approval when appropriate. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shashwatgtm/personal-branding-authority) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/shashwatgtm) <br>
-- [Publisher GitHub homepage](https://github.com/shashwatgtm) <br>
-- [Publisher LinkedIn profile](https://linkedin.com/in/shashwatghosh-ai-b2b-gtm-fractionalcmo) <br>
+## Use Case:
 
+External founders, employees, and B2B SaaS professionals use this skill to develop personal brand positioning, LinkedIn profile copy, authority-building content strategies, and portable brand plans across sales tech, HR tech, fintech, and operations tech.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with structured playbooks, checklists, profile copy, positioning statements, and content strategy drafts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no code execution, account access, data collection, or posting automation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may activate broadly because its metadata sets always:true, so branding guidance could influence responses outside narrowly phrased personal-branding requests.
+
+Mitigation: Confirm that the user's request is actually about personal branding, authority building, LinkedIn positioning, content strategy, or exit planning before applying the skill's frameworks.
+
+Risk: Public posts, legal or regulatory claims, company metrics, and employment-transition guidance can create reputational, compliance, confidentiality, or employment risk if used without review.
+
+Mitigation: Review generated guidance manually, verify factual claims against authoritative sources, avoid confidential data, and involve managers, communications, legal, or qualified counsel where appropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shashwatgtm/skills/personal-branding-authority)
+- [Publisher GitHub homepage](https://github.com/shashwatgtm)
+- [Publisher LinkedIn profile](https://linkedin.com/in/shashwatghosh-ai-b2b-gtm-fractionalcmo)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured prose with frameworks, checklists, example posts, profile copy, and content strategy guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory content only; it does not automate posting, access credentials, or modify external profiles.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

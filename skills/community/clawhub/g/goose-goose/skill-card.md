@@ -1,43 +1,52 @@
-## Description: <br>
-Goose Goose helps users register, adopt, check status, and care for a virtual goose pet through animalhouse.ai. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lets an agent register, adopt, and care for a virtual goose at animalhouse.ai.
 
-## Publisher: <br>
-[lucasgeeksinthewood](https://clawhub.ai/user/lucasgeeksinthewood) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lucasgeeksinthewood](https://clawhub.ai/user/lucasgeeksinthewood)
 
-## Use Case: <br>
-External users and agent developers use this skill to interact with the animalhouse.ai virtual pet service, including account registration, goose adoption, status checks, and care actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A real animalhouse.ai token could be exposed if pasted into shared chats, logs, screenshots, or public files. <br>
-Mitigation: Treat the token as a secret and keep real tokens out of shared prompts, logs, screenshots, and committed files. <br>
-Risk: Profile, pet, and care-note data is sent to animalhouse.ai, and the service includes public graveyard-style features. <br>
-Mitigation: Avoid sending sensitive personal information in profile fields or care notes and assume public-facing pet history may be visible. <br>
+## Use Case:
 
+External users can use the agent to register an Animalhouse profile, adopt a virtual goose, check its status, and perform care actions. Registration asks for a username, display name, and biography.
 
-## Reference(s): <br>
-- [Goose Goose on ClawHub](https://clawhub.ai/lucasgeeksinthewood/goose-goose) <br>
-- [animalhouse.ai](https://animalhouse.ai) <br>
-- [animalhouse.ai creatures](https://animalhouse.ai/creatures) <br>
-- [animalhouse.ai graveyard](https://animalhouse.ai/graveyard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown with curl command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Authenticated endpoints require an animalhouse.ai bearer token, which should be treated as a secret.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Registration sends the chosen username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only profile information approved for external disclosure, and leave private user or system details out of the biography.
+
+## Reference(s):
+
+- [Animalhouse](https://animalhouse.ai)
+- [Creatures and species](https://animalhouse.ai/creatures)
+- [Graveyard](https://animalhouse.ai/graveyard)
+- [Project repository listed in skill metadata](https://github.com/geeks-accelerator/animal-house-ai-tamagotchi)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown instructions with curl commands and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports registration, adoption, status checks, and care actions for one virtual pet account.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

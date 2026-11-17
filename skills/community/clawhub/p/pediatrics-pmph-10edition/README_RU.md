@@ -156,7 +156,7 @@ Answer：
 
 ---
 
-**Связанный навык:** [Оценка риска неонатальной желтухи и диагностика физиологической желтухи](neonatal-jaundice-risk-assessment-diagnosis/SKILL.md)
+**Связанный навык:** [Оценка риска неонатальной желтухи и диагностика физиологической желтухи](neonatal-jaundice-riREDACTED-SECRET/SKILL.md)
 ```
 
 #### 2. **Клинический разбор**
@@ -192,7 +192,7 @@ Answer：
 
 ---
 
-**Связанные навыки:** [Оценка риска неонатальной желтухи и диагностика](neonatal-jaundice-risk-assessment-diagnosis/SKILL.md) · [Стадирование и диагностика билирубиновой энцефалопатии](bilirubin-encephalopathy-staging-and-diagnosis/SKILL.md)
+**Связанные навыки:** [Оценка риска неонатальной желтухи и диагностика](neonatal-jaundice-riREDACTED-SECRET/SKILL.md) · [Стадирование и диагностика билирубиновой энцефалопатии](bilirubin-encephalopathy-staging-and-diagnosis/SKILL.md)
 ```
 
 #### 3. **Экзаменационный вопрос**

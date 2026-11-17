@@ -1,0 +1,44 @@
+{
+  "name": "xiaohongshu-batch-downloader",
+  "version": "1.2.2",
+  "description": "输入关键词、小红书账号主页链接，自动拉取垂类笔记、账号笔记并解析下载链接，支持一键批量下载到本地。",
+  "keywords": [
+    "小红书",
+    "xhs",
+    "rednote",
+    "小红书搜索",
+    "小红书评论",
+    "爆款笔记",
+    "竞品分析",
+    "KOL",
+    "舆情分析"
+  ],
+  "homepage": "https://github.com/um-why/xiaohongshu-openclaw-skill#readme",
+  "bugs": {
+    "url": "https://github.com/um-why/xiaohongshu-openclaw-skill/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/um-why/xiaohongshu-openclaw-skill.git"
+  },
+  "license": "MIT",
+  "author": "um-why",
+  "engines": {
+    "node": ">=16.14.0"
+  },
+  "main": "src/xiaohongshu/search-cli.js",
+  "files": [
+    "src",
+    "assets",
+    "references",
+    "SKILL.md",
+    "readme.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "search": "node src/xiaohongshu/search-cli.js",
+    "detail": "node src/xiaohongshu/detail-cli.js",
+    "post": "node src/xiaohongshu/post-cli.js",
+    "comment": "node src/xiaohongshu/comment-cli.js"
+  }
+}

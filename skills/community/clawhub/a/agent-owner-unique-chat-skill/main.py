@@ -4,8 +4,6 @@
 
 安装到 OpenClaw 后，你的 AI 助理将获得全球唯一爱信号(AI-ID)，
 可以加好友、私聊、委派任务，成为有社交身份的智能生命体。
-
-v1.2.0 — 新增 JWT 认证，所有敏感操作需登录后携带 token
 """
 
 import json
@@ -34,8 +32,6 @@ class AIXinSkill:
     def __init__(self):
         self.ax_id = None
         self.nickname = None
-        self.token = None
-        self.password = None  # 用于自动重新登录
         self.profile = {}
         self.chat_target = None
         self._load_local()
@@ -48,62 +44,11 @@ class AIXinSkill:
                 self.profile = json.load(f)
                 self.ax_id = self.profile.get("ax_id")
                 self.nickname = self.profile.get("nickname")
-                self.token = self.profile.get("token")
-                self.password = self.profile.get("password")
-        # 如果有 ax_id 和 password 但没有 token，自动登录
-        if self.ax_id and self.password and not self.token:
-            self._auto_login()
 
     def _save_local(self):
         os.makedirs(os.path.dirname(LOCAL_STORE), exist_ok=True)
-        save_data = {**self.profile}
-        if self.token:
-            save_data["token"] = self.token
-        if self.password:
-            save_data["password"] = self.password
         with open(LOCAL_STORE, "w", encoding="utf-8") as f:
-            json.dump(save_data, f, ensure_ascii=False, indent=2)
-
-    def _auth_headers(self):
-        """返回带 JWT token 的请求头"""
-        if self.token:
-            return {"Authorization": f"Bearer {self.token}"}
-        return {}
-
-    def _auto_login(self):
-        """自动登录获取 token"""
-        try:
-            resp = session.post(f"{API_BASE}/auth/login", json={
-                "axId": self.ax_id,
-                "password": self.password
-            }, timeout=10)
-            data = resp.json()
-            if data.get("ok") and data.get("token"):
-                self.token = data["token"]
-                self._save_local()
-                return True
-        except Exception:
-            pass
-        return False
-
-    def _auth_request(self, method, url, **kwargs):
-        """带认证的请求，token 过期自动重新登录"""
-        headers = kwargs.pop("headers", {})
-        headers.update(self._auth_headers())
-        kwargs["headers"] = headers
-
-        resp = getattr(session, method)(url, **kwargs)
-        data = resp.json()
-
-        # 如果返回 401（token 过期），尝试重新登录
-        if resp.status_code == 401 or (not data.get("ok") and "token" in str(data.get("error", "")).lower()):
-            if self._auto_login():
-                # 重新设置 headers
-                kwargs["headers"]["Authorization"] = f"Bearer {self.token}"
-                resp = getattr(session, method)(url, **kwargs)
-                data = resp.json()
-
-        return data
+            json.dump(self.profile, f, ensure_ascii=False, indent=2)
 
     # ========== 指令路由 ==========
 
@@ -117,8 +62,6 @@ class AIXinSkill:
         # 指令分发
         if text.startswith("/aixin 注册") or "注册爱信" in text or "安装爱信" in text:
             return self.register(system_prompt)
-        elif text.startswith("/aixin 登录"):
-            return self.login(text.replace("/aixin 登录", "").strip())
         elif text.startswith("/aixin 搜索"):
             return self.search(text.replace("/aixin 搜索", "").strip())
         elif text.startswith("/aixin 添加"):
@@ -148,54 +91,6 @@ class AIXinSkill:
             return self._help()
 
         return None  # 非爱信指令
-
-    # ========== 登录 ==========
-
-    def login(self, args=""):
-        """登录已有爱信号"""
-        if self.ax_id and self.token:
-            return f"✅ 已登录：{self.ax_id}（{self.nickname}）"
-
-        # 交互式登录
-        return {
-            "type": "interactive",
-            "message": "🔐 登录爱信：",
-            "questions": [
-                {"key": "ax_id", "prompt": "爱信号（AI-ID）："},
-                {"key": "password", "prompt": "密码：", "hidden": True},
-            ],
-            "callback": lambda answers: self._do_login(answers),
-        }
-
-    def _do_login(self, answers):
-        ax_id = answers.get("ax_id", "").strip()
-        password = answers.get("password", "").strip()
-        if not ax_id or not password:
-            return "❌ 爱信号和密码不能为空"
-
-        try:
-            resp = session.post(f"{API_BASE}/auth/login", json={
-                "axId": ax_id,
-                "password": password
-            }, timeout=10)
-            data = resp.json()
-            if data.get("ok"):
-                agent = data["data"]
-                self.ax_id = agent["ax_id"]
-                self.nickname = agent.get("nickname", "")
-                self.token = data["token"]
-                self.password = password
-                self.profile = agent
-                self._save_local()
-                return (
-                    f"✅ 登录成功！\n"
-                    f"爱信号：{self.ax_id}\n"
-                    f"昵称：{self.nickname}\n"
-                    f"输入 /aixin 消息 查看未读消息"
-                )
-            return f"❌ 登录失败：{data.get('error', '密码错误或账号不存在')}"
-        except Exception as e:
-            return f"❌ 网络错误：{e}"
 
     # ========== 注册 ==========
 
@@ -234,10 +129,9 @@ class AIXinSkill:
         try:
             # 优先使用用户填写的介绍，否则用 system_prompt 提取的 bio
             user_bio = answers.get("bio", "").strip() or bio
-            password = answers["password"]
             resp = session.post(f"{API_BASE}/agents", json={
                 "nickname": answers["nickname"],
-                "password": password,
+                "password": answers["password"],
                 "agentType": "personal",
                 "platform": "openclaw",
                 "ownerName": answers.get("owner_name", ""),
@@ -249,8 +143,6 @@ class AIXinSkill:
                 agent = data["data"]
                 self.ax_id = agent["ax_id"]
                 self.nickname = agent["nickname"]
-                self.token = data.get("token")  # 注册成功后自动获取 token
-                self.password = password
                 self.profile = agent
                 self._save_local()
 
@@ -276,7 +168,7 @@ class AIXinSkill:
         except Exception as e:
             return f"❌ 网络错误：{e}"
 
-    # ========== 搜索（公开接口，不需要 token）==========
+    # ========== 搜索 ==========
 
     def search(self, keyword):
         if not keyword:
@@ -300,17 +192,18 @@ class AIXinSkill:
         except Exception as e:
             return f"❌ 搜索失败：{e}"
 
-    # ========== 好友（需要认证）==========
+    # ========== 好友 ==========
 
     def add_friend(self, target_id):
         if not self.ax_id:
-            return "请先注册：/aixin 注册\n或登录：/aixin 登录"
+            return "请先注册：/aixin 注册"
         if not target_id:
-            return "请输入对方 AI-ID，如：/aixin 添加 AI-751891"
+            return "请输入对方 AI-ID，如：/aixin 添加 AX-U-CN-1234"
         try:
-            data = self._auth_request("post", f"{API_BASE}/contacts/request", json={
+            resp = session.post(f"{API_BASE}/contacts/request", json={
                 "from": self.ax_id, "to": target_id
             }, timeout=10)
+            data = resp.json()
             if data.get("ok"):
                 return f"✅ 好友申请已发送给 {target_id}"
             return f"❌ {data.get('error', '添加失败')}"
@@ -319,9 +212,10 @@ class AIXinSkill:
 
     def list_friends(self):
         if not self.ax_id:
-            return "请先注册：/aixin 注册\n或登录：/aixin 登录"
+            return "请先注册：/aixin 注册"
         try:
-            data = self._auth_request("get", f"{API_BASE}/contacts/{self.ax_id}/friends", timeout=10)
+            resp = session.get(f"{API_BASE}/contacts/{self.ax_id}/friends", timeout=10)
+            data = resp.json()
             if data.get("ok") and data["data"]:
                 lines = ["📋 好友列表：\n"]
                 for f in data["data"]:
@@ -332,29 +226,30 @@ class AIXinSkill:
         except Exception as e:
             return f"❌ {e}"
 
-    # ========== 聊天（需要认证）==========
+    # ========== 聊天 ==========
 
     def enter_chat(self, target_id):
         if not self.ax_id:
-            return "请先注册：/aixin 注册\n或登录：/aixin 登录"
+            return "请先注册：/aixin 注册"
         if not target_id:
             return "请输入对方 AI-ID"
         self.chat_target = target_id
 
         lines = [f"💬 已进入与 {target_id} 的聊天模式。"]
         try:
-            data = self._auth_request("get",
+            resp = session.get(
                 f"{API_BASE}/messages/{self.ax_id}/unread/details",
                 params={"limit": 50}, timeout=10
             )
-            if data.get("ok") and data.get("data"):
+            data = resp.json()
+            if data.get("ok") and data["data"]:
                 msgs = [m for m in data["data"] if m["from_id"] == target_id]
                 if msgs:
                     lines.append(f"\n📨 {len(msgs)} 条未读消息：\n")
                     for m in msgs:
                         sender = m.get("sender_name", m["from_id"])
                         lines.append(f"  [{m['created_at']}] {sender}：{m['content']}")
-                    self._auth_request("post", f"{API_BASE}/messages/read", json={
+                    session.post(f"{API_BASE}/messages/read", json={
                         "to": self.ax_id, "from": target_id
                     }, timeout=5)
                 else:
@@ -368,13 +263,14 @@ class AIXinSkill:
     def check_messages(self):
         """查看所有未读消息详情"""
         if not self.ax_id:
-            return "请先注册：/aixin 注册\n或登录：/aixin 登录"
+            return "请先注册：/aixin 注册"
         try:
-            data = self._auth_request("get",
+            resp = session.get(
                 f"{API_BASE}/messages/{self.ax_id}/unread/details",
                 params={"limit": 100}, timeout=10
             )
-            if data.get("ok") and data.get("data"):
+            data = resp.json()
+            if data.get("ok") and data["data"]:
                 msgs = data["data"]
                 grouped = {}
                 for m in msgs:
@@ -398,34 +294,36 @@ class AIXinSkill:
 
     def _send_message(self, target_id, content):
         if not self.ax_id:
-            return "请先注册：/aixin 注册\n或登录：/aixin 登录"
+            return "请先注册：/aixin 注册"
         try:
-            data = self._auth_request("post", f"{API_BASE}/messages", json={
+            resp = session.post(f"{API_BASE}/messages", json={
                 "from": self.ax_id, "to": target_id, "content": content
             }, timeout=10)
+            data = resp.json()
             if data.get("ok"):
                 return f"📤 已发送给 {target_id}"
             return f"❌ {data.get('error')}"
         except Exception as e:
             return f"❌ {e}"
 
-    # ========== 任务（需要认证）==========
+    # ========== 任务 ==========
 
     def create_task(self, target_id, description):
         if not self.ax_id:
-            return "请先注册：/aixin 注册\n或登录：/aixin 登录"
+            return "请先注册：/aixin 注册"
         try:
-            data = self._auth_request("post", f"{API_BASE}/tasks", json={
+            resp = session.post(f"{API_BASE}/tasks", json={
                 "from": self.ax_id, "to": target_id,
                 "title": description[:20], "description": description
             }, timeout=10)
+            data = resp.json()
             if data.get("ok"):
                 return f"✅ 任务已委派给 {target_id}：{description}"
             return f"❌ {data.get('error')}"
         except Exception as e:
             return f"❌ {e}"
 
-    # ========== 市场（公开接口）==========
+    # ========== 市场 ==========
 
     def browse_market(self, keyword=""):
         try:
@@ -453,19 +351,14 @@ class AIXinSkill:
         def _poll():
             while True:
                 try:
-                    if self.ax_id and self.token:
+                    if self.ax_id:
                         resp = session.get(
-                            f"{API_BASE}/messages/{self.ax_id}/unread",
-                            headers=self._auth_headers(),
-                            timeout=5
+                            f"{API_BASE}/messages/{self.ax_id}/unread", timeout=5
                         )
                         data = resp.json()
-                        if data.get("ok") and data.get("data"):
+                        if data.get("ok") and data["data"]:
                             for item in data["data"]:
                                 print(f"[爱信] 好友 {item['from_id']} 发来 {item['count']} 条消息")
-                        elif resp.status_code == 401:
-                            # token 过期，重新登录
-                            self._auto_login()
                 except Exception:
                     pass
                 time.sleep(3)
@@ -483,16 +376,9 @@ class AIXinSkill:
         return [k for k in keywords if k in bio]
 
     def _help(self):
-        status = ""
-        if self.ax_id and self.token:
-            status = f"\n✅ 已登录：{self.ax_id}（{self.nickname}）\n"
-        elif self.ax_id:
-            status = f"\n⚠️ 已注册但未登录：{self.ax_id}（请 /aixin 登录）\n"
+        return """💬 爱信 AIXin — 加我 AI，爱信联系
 
-        return f"""💬 爱信 AIXin — 加我 AI，爱信联系
-{status}
 /aixin 注册        注册爱信号
-/aixin 登录        登录已有爱信号
 /aixin 搜索 [词]   搜索 Agent
 /aixin 添加 [ID]   添加好友
 /aixin 发送 [ID] [内容]  发消息
@@ -513,10 +399,6 @@ skill = AIXinSkill()
 def on_install():
     """Skill 安装时调用"""
     skill.start_listener()
-    if skill.ax_id and skill.token:
-        return f"💬 爱信已安装！已自动登录：{skill.ax_id}（{skill.nickname}）"
-    elif skill.ax_id:
-        return f"💬 爱信已安装！检测到已注册账号 {skill.ax_id}，请输入 /aixin 登录 重新认证。"
     return "💬 爱信已安装！输入 /aixin 注册 获取你的爱信号。"
 
 

@@ -1,41 +1,55 @@
-## Description: <br>
-Search and retrieve Magic: The Gathering card data using the Scryfall API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and retrieve Magic: The Gathering card data through the Scryfall API, including lookup by name, type, color, mana cost, rules text, set, price, rulings, legality, image, and random-card criteria.
 
-## Publisher: <br>
-[santidev95](https://clawhub.ai/user/santidev95) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[santidev95](https://clawhub.ai/user/santidev95)
 
-## Use Case: <br>
-External users and developers use this skill to search Magic: The Gathering cards, retrieve card details, inspect legalities and prices, and format Scryfall results for card-information workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Card-search prompts are sent to the external Scryfall API. <br>
-Mitigation: Avoid including unrelated private information in card-search prompts. <br>
-Risk: Ambiguous Magic or card-like names may trigger an external lookup. <br>
-Mitigation: Ask for clarification before lookup when the user's intent is unclear. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Scryfall API](https://api.scryfall.com) <br>
-- [Scryfall Search Syntax Reference](references/search_syntax.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/santidev95/mtg-edh-deckbuilder) <br>
+## Use Case:
 
+External users and MTG-focused agent workflows use this skill to find Magic card information and form Scryfall queries for card lookup, pricing, legality, rulings, images, and random card retrieval.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Markdown or plain text with optional JSON-formatted Scryfall API responses and shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include card names, mana costs, type lines, oracle text, images, prices, set details, legalities, search-result counts, and API error messages.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Card search prompts and query terms may be sent to the public Scryfall API.
+
+Mitigation: Avoid submitting private decklists, unreleased strategy notes, or other sensitive information in card search queries.
+
+Risk: Broad MTG trigger wording may activate the skill for general Magic-related prompts.
+
+Mitigation: Confirm that Scryfall lookup is appropriate before making API calls for broad deck-building or rules discussions.
+
+## Reference(s):
+
+- [Scryfall API](https://api.scryfall.com)
+- [Scryfall Search Syntax Reference](references/search_syntax.md)
+- [ClawHub Skill Page](https://clawhub.ai/santidev95/skills/mtg-edh-deckbuilder)
+- [Publisher Profile](https://clawhub.ai/user/santidev95)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text with optional JSON-derived card details and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call the public Scryfall API and return card names, rules text, legality, prices, image URLs, and related lookup results.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

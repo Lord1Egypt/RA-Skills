@@ -1,0 +1,378 @@
+{
+  "page": {
+    "size": "A4",
+    "orientation": "portrait",
+    "margins_cm": {
+      "top": 2.54,
+      "bottom": 2.54,
+      "left": 2.8,
+      "right": 2.6
+    }
+  },
+  "styles": {
+    "Normal": {
+      "font_cn": "宋体",
+      "font_en": "Times New Roman",
+      "size_pt": 12,
+      "bold": false,
+      "color_rgb": "#1A1A1A",
+      "line_spacing_rule": "multiple",
+      "line_spacing": 1.5,
+      "space_before_pt": 0,
+      "space_after_pt": 0,
+      "first_line_indent_chars": 2,
+      "alignment": "justify"
+    },
+    "Heading 1": {
+      "font_cn": "黑体",
+      "font_en": "Arial",
+      "size_pt": 16,
+      "bold": true,
+      "color_rgb": "#000000",
+      "line_spacing_rule": "multiple",
+      "line_spacing": 1.5,
+      "space_before_pt": 17,
+      "space_after_pt": 16,
+      "first_line_indent_chars": 0,
+      "alignment": "left"
+    },
+    "Heading 2": {
+      "font_cn": "黑体",
+      "font_en": "Arial",
+      "size_pt": 14,
+      "bold": true,
+      "color_rgb": "#000000",
+      "line_spacing_rule": "multiple",
+      "line_spacing": 1.5,
+      "space_before_pt": 13,
+      "space_after_pt": 13,
+      "first_line_indent_chars": 0,
+      "alignment": "left"
+    },
+    "Heading 3": {
+      "font_cn": "黑体",
+      "font_en": "Arial",
+      "size_pt": 12,
+      "bold": true,
+      "color_rgb": "#000000",
+      "line_spacing_rule": "multiple",
+      "line_spacing": 1.5,
+      "space_before_pt": 13,
+      "space_after_pt": 13,
+      "first_line_indent_chars": 0,
+      "alignment": "left"
+    },
+    "Note": {
+      "font_cn": "宋体",
+      "font_en": "Times New Roman",
+      "size_pt": 10.5,
+      "bold": false,
+      "color_rgb": "#595959",
+      "line_spacing_rule": "multiple",
+      "line_spacing": 1.5,
+      "space_before_pt": 4,
+      "space_after_pt": 0,
+      "first_line_indent_chars": 0,
+      "alignment": "justify"
+    },
+    "Heading 4": {
+      "font_cn": "宋体",
+      "font_en": "Times New Roman",
+      "size_pt": 12,
+      "bold": true,
+      "color_rgb": "#000000",
+      "line_spacing_rule": "multiple",
+      "line_spacing": 1.5,
+      "space_before_pt": 8,
+      "space_after_pt": 6,
+      "first_line_indent_chars": 0,
+      "alignment": "left"
+    },
+    "Heading 5": {
+      "font_cn": "宋体",
+      "font_en": "Times New Roman",
+      "size_pt": 12,
+      "bold": true,
+      "color_rgb": "#333333",
+      "line_spacing_rule": "multiple",
+      "line_spacing": 1.5,
+      "space_before_pt": 6,
+      "space_after_pt": 4,
+      "first_line_indent_chars": 0,
+      "alignment": "left"
+    },
+    "Heading 6": {
+      "font_cn": "宋体",
+      "font_en": "Times New Roman",
+      "size_pt": 12,
+      "bold": false,
+      "italic": true,
+      "color_rgb": "#333333",
+      "line_spacing_rule": "multiple",
+      "line_spacing": 1.5,
+      "space_before_pt": 4,
+      "space_after_pt": 2,
+      "first_line_indent_chars": 0,
+      "alignment": "left"
+    }
+  },
+  "table": {
+    "font_cn": "宋体",
+    "font_en": "Times New Roman",
+    "size_pt": 10.5,
+    "style": "three_line",
+    "header_bold": true,
+    "color_rgb": "#1A1A1A",
+    "header_color_rgb": "#000000",
+    "alignment": "center",
+    "zebra": false,
+    "fill_color": null
+  },
+  "figures": {
+    "caption_font_cn": "宋体",
+    "caption_size_pt": 9,
+    "caption_alignment": "center",
+    "width_cm": 15,
+    "max_width_cm": 17,
+    "min_width_cm": 11,
+    "alignment": "center",
+    "numbering": "per_chapter",
+    "image_spacing_before_pt": 6,
+    "image_spacing_after_pt": 12,
+    "image_border": true,
+    "image_border_color": "#C0C0C0",
+    "image_border_width_pt": 0.5,
+    "caption_spacing_before_pt": 4,
+    "caption_spacing_after_pt": 12,
+    "caption_color_rgb": "#595959"
+  },
+  "numbering_scheme": [
+    "一、",
+    "（一）",
+    "1.",
+    "（1）"
+  ],
+  "cleanup": {
+    "remove_fullwidth_spaces": true,
+    "normalize_empty_paragraphs": true
+  },
+  "design_language": {
+    "summary": "严肃、专业、简洁；仅以黑/白/灰为基调，不使用任何彩色（含深蓝、深红等均禁用），强调处一律用加粗或灰度层次区分，杜绝高饱和度与渐变。",
+    "palette": {
+      "ink": "#1A1A1A",
+      "heading": "#000000",
+      "note": "#595959"
+    },
+    "rule": "标题/正文/注释以字号与灰度层次区分；表格用三线表或全线表，表头加粗、无填色、无斑马纹、无彩色。"
+  },
+  "doc_type": "尽调报告类（财务尽调）",
+  "standard": "锚定证监会《保荐人尽职调查工作准则》(2022)「财务会计调查」章节 + 江苏省注协「详式财务尽职调查报告框架」。无强制法定模板，按该权威框架重建内容骨架，视觉统一为正式报告语言。",
+  "structure": [
+    "封面 / 扉页（项目名称、委托方、尽调机构、日期）",
+    "重要声明与免责",
+    "摘要（核心发现 + 重大风险）",
+    "一、公司基本情况（设立沿革 / 股权结构 / 组织治理）",
+    "二、业务与技术（行业 / 采购 / 生产 / 销售 / 研发）",
+    "三、财务会计（会计政策 / 财务比率 / 损益 / 资产 / 现金流 / 纳税）",
+    "四、同业竞争与关联交易",
+    "五、公司治理与独立性",
+    "六、重大问题和潜在风险揭示",
+    "七、尽调结论与建议",
+    "附件（财务比率表、资产负债简表等）"
+  ],
+  "common_diagrams": [
+    "财务尽调程序框架（流程图）",
+    "资产负债结构图（可选）"
+  ],
+  "manual_checks": [
+    "配色自检：全篇仅黑/白/灰，强调处用加粗或灰度层次区分，无任何彩色，无高饱和色",
+    "表格确为三线表（仅顶线/表头下细线/底线），无竖线、无填色、无斑马纹",
+    "字体层级：标题黑体加粗、正文宋体、注释灰色小字，三者区分清晰",
+    "封面：机构标识、报告名称、委托方、出具日期、密级/保密声明齐全",
+    "目录层级不超过三级，页码正确（Word 中按 F9 刷新域）",
+    "页眉含机构名称或报告简称，页脚页码格式统一",
+    "图表编号连续，图题在下、表题在上",
+    "免责声明 / 使用限制条款完整",
+    "财务数据金额单位（元/万元）全文一致，附注编号连续",
+    "风险揭示应充分（收入确认、关联交易、税务合规、或有负债为重点）",
+    "财务比率表按偿债能力/营运能力/盈利能力/成长能力分类列示"
+  ],
+  "header_footer": {
+    "header_text": "财务尽职调查报告",
+    "header_alignment": "right",
+    "header_font_cn": "宋体",
+    "header_font_en": "Times New Roman",
+    "header_size_pt": 9,
+    "header_color_rgb": "#595959",
+    "header_border": false,
+    "footer_mode": "page_of",
+    "footer_alignment": "center",
+    "footer_font_cn": "宋体",
+    "footer_font_en": "Times New Roman",
+    "footer_size_pt": 9,
+    "footer_color_rgb": "#595959",
+    "show_page_number": true,
+    "different_odd_even": false,
+    "header_client": "示例股份有限公司"
+  },
+  "cover": {
+    "title": "财务尽职调查报告",
+    "subtitle": "（2025年度）",
+    "client": "示例股份有限公司",
+    "issuer": "【尽调机构名称】",
+    "date": "【报告日期】",
+    "title_font_cn": "黑体",
+    "title_font_en": "Arial",
+    "title_size_pt": 22,
+    "subtitle_size_pt": 14,
+    "client_size_pt": 16,
+    "info_size_pt": 12,
+    "color_rgb": "#000000",
+    "client_in_title": true
+  },
+  "template_text": {
+    "disclaimer": "本财务尽职调查报告（以下简称“本报告”）仅供委托人参考使用，委托人可按实际情况将本报告抄送给有关的单位及个人，但我们对该等单位及个人不存在合同责任及义务的承诺。本报告因使用不当产生的责任与出具方无关。\n\n【目标公司名称】的责任是提供与本次财务尽职调查事宜相关的资料，并对所提供资料的真实性、合法性和完整性负责。我们的责任是在【目标公司名称】所提供资料基础上，按照行业通行的标准和方法履行调查程序、出具财务尽职调查报告。\n\n本报告所有内容是在有限时间和有限资料条件下，对【目标公司名称】的财务环境和财务情况进行书面调查、口头访谈、分析性复核和实地观察后作出的，我们的报告内容主要来源于【目标公司名称】的财务相关信息和管理层向我们的陈述，受时间、调查程序和提供资料所限，我们不保证发现【目标公司名称】的所有情况和存在的问题，对于管理层予以保留的部分我们不承担相关责任和义务，我们依赖所获得的信息和资料的真实性和完整性来完成我们的工作。\n\n财务尽职调查并非是按照《中国注册会计师审计准则》进行的审计，因此也不应像对依照审计程序所完成的工作那样予以依赖。我们的财务尽职调查与审计不同，因此存在不确定性。",
+    "preamble": "致：【委托方名称】\n\n【尽调机构名称】（以下简称“本项目组”）接受贵方委托，对【目标公司名称】（以下简称“公司”或“目标公司”）【调查期间】的财务情况进行尽职调查，并出具本财务尽职调查报告。本次调查基于贵方拟对目标公司进行【并购重组 / 投资 / IPO】之目的实施。\n\n目标公司的责任是提供与本次财务尽职调查相关的资料，并对所提供资料的真实性、合法性和完整性负责。我们的责任是在目标公司所提供资料基础上，按照行业通行的标准和方法履行调查程序、出具财务尽职调查报告。财务尽职调查并非是按照《中国注册会计师审计准则》进行的审计。",
+    "abstract_title": "摘要",
+    "abstract_guide": "摘要应简明扼要列示核心发现与重大风险，让阅读者在最短时间内获得整体性认识。建议包含：调查范围与期间、整体财务健康状况、最重大的 3–5 项风险、关键结论与建议方向。",
+    "abstract_placeholder": "【示例】经调查，目标公司【调查期间】营业收入【X】万元，同比增长【X%】；整体财务结构【稳健 / 存在改善空间】。重大风险集中于：①收入确认政策与截止性；②关联交易公允性；③税务合规与或有负债。详见正文各章节。",
+    "body_sections": [
+      {
+        "title": "一、公司基本情况",
+        "guide": "本节说明目标公司的设立沿革、股权结构、组织治理等基础信息。",
+        "subs": [
+          {
+            "title": "（一）公司简介",
+            "guide": "列示公司名称、注册资本、成立时间、法定代表人、统一社会信用代码、住所、主营业务。"
+          },
+          {
+            "title": "（二）历史沿革",
+            "guide": "说明历次股权变动及股权结构演变，关注出资瑕疵、股份代持、对赌、质押冻结等。"
+          },
+          {
+            "title": "（三）组织架构与对外投资",
+            "guide": "说明公司治理架构及对外投资路径。"
+          }
+        ]
+      },
+      {
+        "title": "二、业务与技术",
+        "guide": "本节说明行业、采购、生产、销售、研发等业务全貌。",
+        "subs": [
+          {
+            "title": "（一）主营业务与资质",
+            "guide": "说明主要产品/服务、用途、特许经营或资质要求。"
+          },
+          {
+            "title": "（二）采购与供应商",
+            "guide": "说明采购模式、主要供应商及集中度、信用政策。"
+          },
+          {
+            "title": "（三）生产与研发",
+            "guide": "说明生产模式、工艺流程、产能利用、技术与研发情况。"
+          },
+          {
+            "title": "（四）销售与客户",
+            "guide": "说明销售模式、渠道、主要客户及集中度、回款情况。"
+          }
+        ]
+      },
+      {
+        "title": "三、财务会计",
+        "guide": "本节是财务尽调核心，结合报表与比率分析目标公司财务质量。",
+        "table": {
+          "caption": "表3-1 主要财务比率",
+          "headers": [
+            "分析维度",
+            "指标",
+            "本期",
+            "上期",
+            "行业均值",
+            "简要分析"
+          ],
+          "rows": [
+            [
+              "偿债能力",
+              "流动比率",
+              "【】",
+              "【】",
+              "【】",
+              "【】"
+            ],
+            [
+              "盈利能力",
+              "净利率",
+              "【】",
+              "【】",
+              "【】",
+              "【】"
+            ],
+            [
+              "营运能力",
+              "应收账款周转天数",
+              "【】",
+              "【】",
+              "【】",
+              "【】"
+            ]
+          ]
+        },
+        "subs": [
+          {
+            "title": "（一）报表情况",
+            "guide": "列示资产负债表、利润表、现金流量表关键数据。"
+          },
+          {
+            "title": "（二）主要会计政策",
+            "guide": "说明收入确认、成本计量、减值计提、折旧摊销等重要政策。"
+          },
+          {
+            "title": "（三）资产负债主要项目",
+            "guide": "关注货币资金、应收、存货、固定资产、借款、应付款等。"
+          },
+          {
+            "title": "（四）损益与现金流",
+            "guide": "说明收入、成本、期间费用、利润及经营/投资/筹资现金流。"
+          }
+        ]
+      },
+      {
+        "title": "四、同业竞争与关联交易",
+        "guide": "本节说明关联方关系、关联交易公允性及同业竞争情况。",
+        "subs": [
+          {
+            "title": "（一）关联方及关联关系",
+            "guide": "列示关联方及关联关系。"
+          },
+          {
+            "title": "（二）关联交易",
+            "guide": "说明采购、销售、租赁、担保、资金拆借等关联交易及公允性。"
+          }
+        ]
+      },
+      {
+        "title": "五、公司治理与独立性",
+        "guide": "本节说明三会运作、内部控制及独立性。",
+        "subs": [
+          {
+            "title": "（一）治理结构",
+            "guide": "说明股东大会、董事、监事、管理层运作情况。"
+          },
+          {
+            "title": "（二）独立性",
+            "guide": "说明业务、资产、人员、财务、机构独立性。"
+          }
+        ]
+      },
+      {
+        "title": "六、重大问题和潜在风险揭示",
+        "guide": "本节充分揭示收入确认、关联交易、税务合规、或有负债等重点风险。"
+      },
+      {
+        "title": "七、尽调结论与建议",
+        "guide": "基于调查结论提出针对性、可操作建议（交易定价、结构、谈判重点、后续专项尽调）。"
+      }
+    ],
+    "closing": "（以下无正文）\n\n出具机构：【尽调机构名称】\n报告日期：【报告日期】"
+  }
+}

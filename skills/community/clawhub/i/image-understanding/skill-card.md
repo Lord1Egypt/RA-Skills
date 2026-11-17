@@ -1,43 +1,59 @@
-## Description: <br>
-Provides guidance and sample code for integrating ZhipuAI GLM-4.6V vision models for image understanding, document analysis, and multimodal tool-calling workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance for integrating Zhipu GLM-4.6V multimodal vision APIs for image understanding, document parsing, video understanding, and tool calling.
 
-## Publisher: <br>
-[IsabellaZhangYM](https://clawhub.ai/user/IsabellaZhangYM) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[isabellazhangym](https://clawhub.ai/user/isabellazhangym)
 
-## Use Case: <br>
-Developers use this skill to configure ZhipuAI API credentials, install the SDK, and call GLM-4.6V for OCR, document and presentation understanding, UI screenshot analysis, and structured visual extraction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Image, document, screenshot, or business content submitted to the vision model may include sensitive information. <br>
-Mitigation: Redact sensitive IDs, financial records, private screenshots, and confidential business content before sending inputs to the provider. <br>
-Risk: The skill depends on an external ZhipuAI SDK and API key for model calls. <br>
-Mitigation: Install the SDK from a verified package source and keep the API key in the ZHIPUAI_API_KEY environment variable instead of hard-coding credentials. <br>
+## Use Case:
 
+Developers and agent builders use this skill to connect agents to Zhipu GLM-4.6V for OCR, image understanding, long document analysis, and vision-related tool calling workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/IsabellaZhangYM/image-understanding) <br>
-- [ZhipuAI API documentation](https://open.bigmodel.cn/) <br>
-- [ZhipuAI Vision MCP documentation](https://docs.bigmodel.cn/cn/coding-plan/mcp/vision-mcp-server) <br>
-- [GLM-V repository](https://github.com/zai-org/GLM-V) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a ZHIPUAI_API_KEY environment variable and sends selected images or documents to ZhipuAI services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.4 (source: server release metadata) <br>
+Risk: Images, documents, or screenshots submitted through the skill may contain sensitive information and are sent to the Zhipu AI service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the service only when acceptable for the data involved, and redact sensitive content before model submission.
+
+Risk: The integration depends on a private API key for the Zhipu AI open platform.
+
+Mitigation: Keep ZHIPUAI_API_KEY scoped and private, provide it only through the environment, and avoid hardcoding credentials.
+
+Risk: Unpinned SDK installation can change behavior when zhipuai releases new versions.
+
+Mitigation: Use a virtual environment and pin zhipuai to a reviewed version for production or controlled deployments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/isabellazhangym/skills/image-understanding)
+- [BigModel open platform documentation](https://open.bigmodel.cn/)
+- [BigModel vision MCP server documentation](https://docs.bigmodel.cn/cn/coding-plan/mcp/vision-mcp-server)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a ZHIPUAI_API_KEY environment variable and the zhipuai Python SDK.]
+
+## Skill Version(s):
+
+0.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

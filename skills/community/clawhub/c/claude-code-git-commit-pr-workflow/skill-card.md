@@ -1,40 +1,48 @@
-## Description: <br>
-Guides an agent through branch checks, safe commits, pushing, and pull request creation or updates with a concise summary and test plan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent inspect git state, commit relevant changes, push a branch, and create or update a pull request with a concise summary and test plan.
 
-## Publisher: <br>
-[wimi321](https://clawhub.ai/user/wimi321) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wimi321](https://clawhub.ai/user/wimi321)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers use this skill to take repository changes from the working tree through a safe commit, pushed branch, and ready pull request. It is intended for normal git delivery workflows where the agent should preserve guardrails around destructive commands, force pushes, secrets, and unrelated changes.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can mutate repository and remote pull request state by staging, committing, pushing branches, and creating or updating pull requests.
+
+Mitigation: Review the diff before invoking it, limit execution to intended repositories and branches, and confirm secrets or unrelated changes are not staged.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to move a prepared working tree through a safe git delivery flow: inspect changes, commit the right files, push a branch, and create or update a pull request. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Shell commands, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can commit, push, and open or update pull requests in the current repository. <br>
-Mitigation: Confirm the repository, branch, remote, authenticated account, staged files, and diff before allowing the workflow to run. <br>
-Risk: Unrelated files or secrets could be included if the working tree is not reviewed. <br>
-Mitigation: Review staged changes and exclude unrelated or sensitive files before committing and pushing. <br>
+**Output Format:** [Markdown with git operation summaries, command results, and pull request title/body content]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wimi321/claude-code-git-commit-pr-workflow) <br>
+**Other Properties Related to Output:** [May create commits, push branches, and create or update pull requests when invoked with repository access.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Guidance] <br>
-**Output Format:** [Markdown summary with shell command execution and pull request text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create commits, push branches, and open or update pull requests in the target repository.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,61 @@
-## Description: <br>
-Discover preserved ancient towns, water villages, and traditional settlements with real-time travel data and booking links from the flyai CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover preserved ancient towns, water villages, and traditional settlements with real-time travel results and booking links through the FlyAI CLI.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-Travel-focused agent users use this skill to find ancient towns, water villages, traditional settlements, and related trip options using live flyai CLI results. The skill helps collect required parameters, run supported flyai commands, and format Markdown recommendations with booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install the flyai CLI globally without a pinned version. <br>
-Mitigation: Manually verify the CLI package and install a pinned version before enabling the skill in a shared or production environment. <br>
-Risk: Travel searches are sent to the flyai service. <br>
-Mitigation: Avoid submitting sensitive personal travel details unless the user is comfortable sharing them with that service. <br>
-Risk: Raw travel queries can be stored locally in `.flyai-execution-log.json`. <br>
-Mitigation: Disable, review, or delete the local execution log when retaining raw queries is not appropriate. <br>
+## Use Case:
 
+Travel-focused agent users use this skill to search for ancient towns, water villages, and traditional settlements, then present real-time FlyAI results with booking links. It also guides installation, parameter collection, fallback handling, and output validation for FlyAI CLI travel searches.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejinsong/ancient-town-explorer) <br>
-- [Templates](references/templates.md) <br>
-- [Playbooks](references/playbooks.md) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [Runbook](references/runbook.md) <br>
-- [Parent flyai skill referenced by artifact README](https://github.com/alibaba-flyai/flyai-skill/tree/main/skills/flyai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and booking links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Formats flyai CLI results into comparison tables and avoids raw JSON in user-facing output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter states 2.0.0) <br>
+Risk: The skill requires installing and using a third-party FlyAI CLI for travel searches.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before npm or npx commands and prefer a pinned or isolated CLI install.
+
+Risk: The skill can log raw user queries to a hidden local execution log.
+
+Mitigation: Disable or delete the local log unless query logging is intentionally desired, and avoid entering sensitive personal or booking details.
+
+Risk: The skill uses shell-style command templates with user-supplied city names and keywords.
+
+Mitigation: Review generated commands before execution and keep user inputs quoted and limited to supported parameters.
+
+## Reference(s):
+
+- [Ancient Town Explorer ClawHub Page](https://clawhub.ai/xiejinsong/skills/ancient-town-explorer)
+- [Templates](references/templates.md)
+- [Playbooks](references/playbooks.md)
+- [Fallbacks](references/fallbacks.md)
+- [Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with booking links and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FlyAI CLI output as the data source; responses should include booking links when results are shown.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata; artifact frontmatter says 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-Buy tokens at or near LP creation on Solana for sniping, bonding curve graduation, migration, new pool, LP-created, PumpFun graduation, LaunchLab, and first-buy scenarios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent prepare Solana outsmart CLI guidance for buying tokens at or near liquidity pool creation and managing exits.
 
-## Publisher: <br>
-[outsmartchad](https://clawhub.ai/user/outsmartchad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[outsmartchad](https://clawhub.ai/user/outsmartchad)
 
-## Use Case: <br>
-External users and developers use this skill to prepare Solana LP sniping and follow-on sell or liquidity actions with the outsmart CLI. It is intended for newly created or migrating pools, not slow accumulation, established-token trading, or unresearched tokens. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide use of a private key for irreversible Solana trades and liquidity actions. <br>
-Mitigation: Use a dedicated low-balance wallet, never a main wallet, and require manual review before every buy, sell, pool creation, or liquidity transaction. <br>
-Risk: LP sniping can expose users to rugs, late entries, MEV competition, and rapid losses. <br>
-Mitigation: Verify every mint and pool address, keep position sizes conservative, set spend and slippage limits where available, and avoid increasing size to chase a missed entry. <br>
-Risk: The skill depends on the outsmart CLI and mainnet endpoint configuration to perform sensitive trading actions. <br>
-Mitigation: Confirm the installed CLI package and endpoint before use, and run commands only after reviewing the exact token, pool, amount, tip, and liquidity parameters. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/outsmartchad/outsmart-lp-sniping) <br>
+## Use Case:
 
+External users and trading automation operators use this skill to recognize LP sniping scenarios on Solana and generate command-oriented guidance for rapid buys, token checks, sells, and liquidity actions.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the outsmart CLI plus PRIVATE_KEY and MAINNET_ENDPOINT environment configuration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires PRIVATE_KEY access for a Solana wallet.
+
+Mitigation: Use only a dedicated low-balance wallet and do not expose a primary private key.
+
+Risk: The skill depends on an unpinned npm CLI package.
+
+Mitigation: Verify the outsmart package identity and version before installation or execution.
+
+Risk: The skill can lead to fund-moving actions including buys, sells, pool creation, and liquidity changes.
+
+Mitigation: Require explicit transaction review before any buy, sell, pool creation, or liquidity action.
+
+## Reference(s):
+
+- [Outsmart LP Sniping on ClawHub](https://clawhub.ai/outsmartchad/skills/outsmart-lp-sniping)
+- [outsmart CLI homepage](https://github.com/outsmartchad/outsmart-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference the outsmart CLI, PRIVATE_KEY, and MAINNET_ENDPOINT runtime requirements.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

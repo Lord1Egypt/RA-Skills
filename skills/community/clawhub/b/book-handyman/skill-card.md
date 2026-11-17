@@ -1,40 +1,49 @@
-## Description: <br>
-Book handyman services through Lokuli MCP. Use when user needs to find and book handyman. Triggers on requests like "book a handyman", "find handyman near me", or any handyman service request. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book handyman services through Lokuli MCP.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users can ask an agent to search for handyman services, check appointment availability, and create a Lokuli booking after confirming provider, service, time, and contact details. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A booking could be created with the wrong provider, service, appointment time, or customer contact details. <br>
-Mitigation: Confirm the provider, service, appointment time, and exact contact details before creating a booking. <br>
-Risk: Customer name, email, and phone number may be sent to Lokuli during booking. <br>
-Mitigation: Collect and send only the contact details required for the requested booking. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Book Handyman ClawHub Page](https://clawhub.ai/edwardrodriguez703-design/book-handyman) <br>
-- [Lokuli MCP Endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users use this skill to search for handyman providers, check availability, and create bookings through Lokuli's MCP server.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, API Calls, Guidance] <br>
-**Output Format:** [Markdown or JSON-RPC tool-call arguments, depending on the agent workflow] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include provider, service, appointment, and customer contact details needed for booking.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send personal contact details to an external Lokuli booking service without explicit consent or confirmation instructions.
+
+Mitigation: Before creating a booking, show the provider, time slot, and exact contact details to be shared, then wait for explicit user confirmation.
+
+## Reference(s):
+
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+- [Book Handyman on ClawHub](https://clawhub.ai/edwardrodriguez703-design/skills/book-handyman)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Guidance, Configuration instructions]
+
+**Output Format:** [Markdown with JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use an external Lokuli MCP service to search providers, check availability, and create bookings.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

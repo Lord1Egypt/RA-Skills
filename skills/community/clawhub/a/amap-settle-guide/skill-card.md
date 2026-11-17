@@ -1,42 +1,59 @@
-## Description: <br>
-Amap Settle Guide helps users choose rental areas near a workplace by comparing commute time, nearby amenities, rental value, and listing links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Amap Settle Guide helps users choose commute-friendly rental areas by evaluating transit time, nearby amenities, rent value, specific listings, and rental search links from a workplace location.
 
-## Publisher: <br>
-[dongdongyue](https://clawhub.ai/user/dongdongyue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dongdongyue](https://clawhub.ai/user/dongdongyue)
 
-## Use Case: <br>
-External users looking for housing near a workplace use this skill to compare commute options, neighborhood amenities, rent value, and concrete listing links before choosing where to live. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML map output may expose map-related environment values to users. <br>
-Mitigation: Use only intentionally public, domain-restricted AMap browser keys, avoid sensitive server-side secrets for AMAP_JSAPI_KEY or AMAP_SECURITY_JS_CODE, and rotate any key that has already been embedded in generated HTML. <br>
-Risk: Rental listings, commute estimates, and neighborhood scores may depend on live API or scraped data that can be incomplete or outdated. <br>
-Mitigation: Review generated recommendations against source listing links and current map results before making housing decisions. <br>
+## Use Case:
 
+External users planning an internship, first job, job change, or move use this skill to compare where to live near a workplace. The skill guides an agent through AMap commute checks, amenity scoring, rent comparison, listing collection, and optional map or CSV output.
 
-## Reference(s): <br>
-- [Server-resolved source repository](https://github.com/dongdongyue/amap-settle-guide) <br>
-- [ClawHub skill page](https://clawhub.ai/dongdongyue/skills/amap-settle-guide) <br>
-- [Publisher profile](https://clawhub.ai/user/dongdongyue) <br>
+### Deployment Geography for Use:
 
+Global, with practical coverage focused on cities and rental platforms supported by AMap and the referenced Chinese rental sites.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration] <br>
-**Output Format:** [Markdown report with CSV files and optional HTML map output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AMAP_API_KEY; optional map output may use AMAP_JSAPI_KEY and AMAP_SECURITY_JS_CODE.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: release metadata) <br>
+Risk: Generated HTML maps, CSV files, or shared reports may expose AMap API keys or detailed rental listing data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use restricted API keys for generated maps and review generated files before sharing them.
+
+Risk: The skill may query AMap and scrape public rental listing sites, which can introduce third-party data and site-policy risk.
+
+Mitigation: Use public data responsibly, respect relevant site terms and rate limits, and prefer reviewed outputs over unattended scraping.
+
+Risk: Rental listings, commute times, and availability can change quickly, so recommendations may become stale.
+
+Mitigation: Verify listings, prices, and commute routes directly before making housing decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dongdongyue/skills/amap-settle-guide)
+- [Publisher profile](https://clawhub.ai/user/dongdongyue)
+- [Server-resolved GitHub source](https://github.com/dongdongyue/amap-settle-guide)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional CSV files and optional HTML map output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AMAP_API_KEY; optional AMAP_JSAPI_KEY and AMAP_SECURITY_JS_CODE support interactive HTML maps.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

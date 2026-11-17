@@ -1,46 +1,60 @@
-## Description: <br>
-Aliyun Web Search lets an agent run real-time web searches through Aliyun Open Search Platform with the Quark search engine. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides real-time web search through Aliyun Open Search Platform with the Quark engine.
 
-## Publisher: <br>
-[xiaoyunbowen](https://clawhub.ai/user/xiaoyunbowen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[xiaoyunbowen](https://clawhub.ai/user/xiaoyunbowen)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve recent Chinese web results from Aliyun and return source snippets for tasks that need current information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and any context the agent includes are sent to Aliyun. <br>
-Mitigation: Use this skill only when that data flow is acceptable, and avoid sending sensitive prompts, private documents, or regulated data unless approved. <br>
-Risk: API keys can be exposed if configured broadly or copied from examples. <br>
-Mitigation: Scope the key to this skill when supported, keep it in environment or secret configuration, avoid realistic example secrets, and rotate the key if exposure is suspected. <br>
-Risk: A plaintext or incorrect ALIYUN_SEARCH_HOST can send requests to an unsuitable endpoint. <br>
-Mitigation: Prefer an HTTPS Aliyun endpoint and verify the configured host before use. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to configure and call Aliyun real-time web search for Chinese-focused, current web results.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/xiaoyunbowen/aliyun-web-search) <br>
-- [Aliyun AI Gateway Web Search Documentation](https://help.aliyun.com/zh/api-gateway/ai-gateway/user-guide/networked-search) <br>
-- [Aliyun AI Gateway Console](https://apigw.console.aliyun.com/#/cn-hangzhou/ai-gateway) <br>
-- [Aliyun API Key Management](https://ipaas.console.aliyun.com/api-key) <br>
-- [Aliyun Formal Activation Flow](https://help.aliyun.com/document_detail/2869993.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON search results and Markdown setup guidance with shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ALIYUN_SEARCH_API_KEY and ALIYUN_SEARCH_HOST; queries are sent to the configured Aliyun endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and artifact/_meta.json) <br>
+Risk: API keys and search queries can be sent over unsafe or unvalidated endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use HTTPS Aliyun endpoints, restrict who can set ALIYUN_SEARCH_HOST, and review configuration before installation.
+
+Risk: Search prompts or conversation history may be sent to Aliyun's search service.
+
+Mitigation: Avoid sending sensitive prompts, private conversation history, or regulated data through the skill.
+
+Risk: Sample credentials or copied configuration can be exposed if committed or shared.
+
+Mitigation: Replace sample values with user-owned credentials and store API keys in environment variables or encrypted configuration.
+
+## Reference(s):
+
+- [Aliyun AI Gateway Console](https://apigw.console.aliyun.com/#/cn-hangzhou/ai-gateway)
+- [Aliyun API Key Management](https://ipaas.console.aliyun.com/api-key)
+- [Aliyun Web Search Official Docs](https://help.aliyun.com/zh/api-gateway/ai-gateway/user-guide/networked-search)
+- [Aliyun Formal Activation](https://help.aliyun.com/document_detail/2869993.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON search responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ALIYUN_SEARCH_API_KEY and ALIYUN_SEARCH_HOST; search results depend on Aliyun endpoint configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

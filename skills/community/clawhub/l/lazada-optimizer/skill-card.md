@@ -1,46 +1,60 @@
-## Description: <br>
-Apply Lazada-specific optimization tactics for product listing quality, campaign participation, seller scores, and search visibility in Southeast Asia. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apply Lazada-specific optimization tactics for product listing quality, campaign participation, seller scores, and search visibility in Southeast Asia.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External Lazada sellers, ecommerce operators, and marketplace consultants use this skill to audit listings, improve Listing Quality Score, plan campaign eligibility, stabilize seller-score components, and localize country-store expansion across MY, TH, ID, PH, SG, and VN. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Marketplace recommendations can become outdated because Lazada campaign rules, category attributes, and seller-score thresholds change. <br>
-Mitigation: Verify current rules in Lazada Seller Center before changing listings, prices, voucher setup, stock commitments, or campaign participation. <br>
-Risk: Listing, pricing, campaign, and localization guidance may affect commercial outcomes if applied without review. <br>
-Mitigation: Review recommendations against margins, inventory, seller-score data, local market conditions, and compliance requirements before implementation. <br>
-Risk: Store audits may involve private seller, customer, or order data. <br>
-Mitigation: Share only the minimum information needed for the audit and avoid providing Lazada credentials or unnecessary customer data. <br>
+## Use Case:
 
+External Lazada sellers and marketplace operators use this skill to audit listings, improve Listing Quality Score components, plan campaign eligibility, protect seller-score metrics, and localize stores across Southeast Asian Lazada markets.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/leooooooow/lazada-optimizer) <br>
-- [Output Template](artifact/output-template.md) <br>
-- [LQS Components Guide](artifact/lqs-components-guide.md) <br>
-- [Campaign Calendar Guide](artifact/campaign-calendar-guide.md) <br>
-- [Lazada Audit Checklist](artifact/lazada-audit-checklist.md) <br>
+### Deployment Geography for Use:
 
+Southeast Asia: Malaysia, Thailand, Indonesia, Philippines, Singapore, and Vietnam
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured audit findings, title rewrites, attribute gap tables, campaign eligibility maps, localization notes, prioritized actions, and measurement plans.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should trace recommendations to LQS components, seller-score components, or campaign rules and should avoid generic advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Pricing, discount, stock, and voucher recommendations may not match the seller's current campaign rules or margins.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify each recommendation in Lazada Seller Center and confirm margin math before changing prices or joining campaigns.
+
+Risk: Marketplace rules, category attributes, and campaign thresholds can change after the skill content was authored.
+
+Mitigation: Use the skill as an audit aid, then check the latest Lazada category and campaign requirements before publishing listing updates.
+
+Risk: Localized title, keyword, and customer-message guidance may be inappropriate for a specific market or audience.
+
+Mitigation: Have a local-language reviewer approve marketplace copy and customer-facing messages before deployment.
+
+## Reference(s):
+
+- [Output Template - Lazada Optimization Audit](artifact/output-template.md)
+- [LQS Components Guide - What Moves Listing Quality Score](artifact/lqs-components-guide.md)
+- [Campaign Calendar Guide - Lazada Campaign Entry Rules and Preparation](artifact/campaign-calendar-guide.md)
+- [Lazada Listing & Seller Audit Checklist](artifact/lazada-audit-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown audit reports, checklists, tables, prioritized action lists, and localized marketplace guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations should be reviewed against current Lazada Seller Center rules before pricing, campaign, or customer-message changes are applied.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,53 @@
-## Description: <br>
-Analyzes code changes between two git commits, including file modifications, additions, deletions, and commit context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes code changes between two Git commits, including file modifications, additions, deletions, and commit context.
 
-## Publisher: <br>
-[afine907](https://clawhub.ai/user/afine907) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[afine907](https://clawhub.ai/user/afine907)
 
-## Use Case: <br>
-Developers and engineers use this skill to compare two commits in a Git repository and understand commit metadata, changed files, diff details, and summary statistics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may display source code, commit history, file paths, and line-level changes from the current repository in chat. <br>
-Mitigation: Use it only in repositories whose contents are appropriate to share with the active agent session. <br>
-Risk: Commit comparisons can be misleading if the requested revisions are invalid, identical, or supplied in reverse chronological order. <br>
-Mitigation: Validate both revisions with read-only Git commands and compare them in chronological order before summarizing changes. <br>
+## Use Case:
 
+Developers and engineers use this skill to compare two Git commits and produce commit metadata, change summaries, file breakdowns, and contextual diffs for review.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and diff summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include repository commit metadata, file paths, change statistics, and line-by-line diff content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Untrusted commit, branch, or ref names could influence Git command arguments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer full or normal commit hashes for untrusted input and validate or resolve refs before running Git commands.
+
+Risk: The skill runs Git inspection commands in the user's repository.
+
+Mitigation: Use it only in repositories where Git metadata and diffs are safe for the agent to inspect.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/afine907/skills/commit-diff-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and diff summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commit metadata, file-level change summaries, diff statistics, and detailed diffs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

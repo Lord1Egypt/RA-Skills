@@ -1,40 +1,50 @@
-## Description: <br>
-Helps users discover and install agent skills when they ask questions like "how do I do X", "find a skill for X", "is there a skill that can...", or express interest in extending capabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users discover and install agent skills when they ask questions like "how do I do X", "find a skill for X", "is there a skill that can...", or express interest in extending capabilities.
 
-## Publisher: <br>
-[leochan14](https://clawhub.ai/user/leochan14) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leochan14](https://clawhub.ai/user/leochan14)
 
-## Use Case: <br>
-Developers and agent users use this skill to search for relevant installable skills, present candidate skills with install commands and reference links, and help with installation when the user chooses to proceed. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can recommend installation of third-party skills, including global no-confirm installation when a user chooses to proceed. <br>
-Mitigation: Review the exact package name, source page, publisher, and repository before installation; avoid global no-confirm installation unless the selected skill is trusted. <br>
-Risk: Skill search results may be incomplete or may not match the user's intent. <br>
-Mitigation: Present candidate skills with their names, install commands, and source links so the user can review relevance before installing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/leochan14/find-skills-0-1-0) <br>
-- [Skills Directory](https://skills.sh/) <br>
+## Use Case:
 
+Developers and agent users use this skill to discover relevant installable skills for requested tasks, compare search results, and receive installation guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include candidate skill names, install commands, source links, and direct guidance when no matching skill is found.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact _meta.json lists skill package version 0.1.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may encourage broad, global installation of third-party skills using unpinned package-manager commands.
+
+Mitigation: Review the specific skill source and publisher before installation, prefer explicit local installs, avoid `-g -y`, and pin or verify the CLI and skill version before running commands.
+
+## Reference(s):
+
+- [Skill page](https://clawhub.ai/leochan14/skills/find-skills-0-1-0)
+- [Skills CLI catalog](https://skills.sh/)
+- [Example skill result](https://skills.sh/vercel-labs/agent-skills/vercel-react-best-practices)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include skill search suggestions, install commands, and links to inspect skill sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

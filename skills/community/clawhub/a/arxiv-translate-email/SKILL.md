@@ -41,7 +41,7 @@ python3 /root/workspace/Remember/tasks/queue_manager.py clear
 
 - **pdf2zh_next**：`/root/workspace/pdf2zh2/.venv/bin/pdf2zh_next`
 - **代理**：`HTTPS_PROXY=http://127.0.0.1:7890 HTTP_PROXY=http://127.0.0.1:7890`
-- **DeepSeek API**：`sk-aea81697cdc34baa8a11727b52bbb513`
+- **DeepSeek API**：`REDACTED-SECRET`
 - **邮件 SMTP**：QQ 邮箱 smtp.qq.com:465，用户 2794002698@qq.com，授权码 ydtmhlhcraqudhcc
 
 ## 核心脚本
@@ -62,7 +62,7 @@ HTTPS_PROXY=http://127.0.0.1:7890 HTTP_PROXY=http://127.0.0.1:7890 \
 nohup env PYTHONUNBUFFERED=1 \
 setsid .venv/bin/python -u .venv/bin/pdf2zh_next \
   --deepseek \
-  --deepseek-api-key "sk-aea81697cdc34baa8a11727b52bbb513" \
+  --deepseek-api-key "REDACTED-SECRET" \
   --deepseek-model deepseek-chat \
   --lang-in en \
   --lang-out zh \

@@ -1,38 +1,52 @@
-## Description: <br>
-Hardworker prompts an agent to persist through stalled tasks using structured troubleshooting, multi-path reasoning, and end-to-end verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Forces persistent problem solving using a Striver mindset and structured breakthrough methodology. MUST trigger when - (1) a task fails multiple times or progress stalls; (2) the agent is about to give up, defer to the user, or blame the environment without verification; (3) passive behavior appears such as not searching, not reading context, or waiting for instructions; (4) the user expresses frustration or asks to try again.
 
-## Publisher: <br>
-[ucsdzehualiu](https://clawhub.ai/user/ucsdzehualiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[ucsdzehualiu](https://clawhub.ai/user/ucsdzehualiu)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and agent operators use this skill to keep an AI coding or troubleshooting agent engaged when tasks fail repeatedly, progress stalls, or the agent is tempted to defer too early.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill encourages broad autonomous troubleshooting with files, local permissions, and APIs.
+
+Mitigation: Use it cautiously in workspaces with sensitive files, live credentials, production APIs, paid services, or tasks where the agent should pause before expanding scope.
+
+Risk: Persistent problem-solving pressure can reduce user control over when the agent stops or asks for confirmation.
+
+Mitigation: Require explicit user checkpoints before high-impact actions, production changes, credential use, or paid service calls.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent users use Hardworker as a behavior-shaping skill when tasks stall, errors repeat, or an assistant is about to stop early. It guides the agent toward systematic investigation, alternative hypotheses, rapid validation, and completion checks. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Text, Markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages broad local and API investigation without clear limits or user confirmation. <br>
-Mitigation: Use it only in environments where permissions are already constrained, and review agent actions before allowing changes to local files, services, accounts, or external APIs. <br>
+**Output Format:** [Markdown instructions and trigger text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [README.md](README.md) <br>
+**Other Properties Related to Output:** [No executable payload; the skill changes agent behavior through prompt guidance.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown instructions and trigger guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Encourages assertive troubleshooting behavior; proposed actions should be reviewed before file, service, account, or external API changes.] <br>
+1.1.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,61 @@
-## Description: <br>
-谛听.skill is an installable digest skill for OpenClaw or Claude Code that helps users configure personalized ScoutX briefings with local preferences and minimal setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installable digest skill for OpenClaw or Claude Code. Use when the user wants a personalized ScoutX briefing with conversational setup, local preference storage, and minimal end-user configuration.
 
-## Publisher: <br>
-[yangchao228](https://clawhub.ai/user/yangchao228) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangchao228](https://clawhub.ai/user/yangchao228)
 
-## Use Case: <br>
-External users and developers use this skill to set up recurring or on-demand AI information digests from ScoutX curated media, X/Twitter, and podcast feeds. They configure frequency, language, topics, and delivery through conversation instead of maintaining feed URLs or raw filters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches digest content from bundled public feed endpoints. <br>
-Mitigation: Confirm the packaged feed endpoints are trusted before installation; reserve configure-service and feed URL overrides for operators. <br>
-Risk: Scheduled OpenClaw delivery can send digests to the wrong target if the schedule or channel is misconfigured. <br>
-Mitigation: Use preview or install-openclaw-cron dry run first, inspect the delivery target, and run --apply only after the schedule and destination are correct. <br>
-Risk: The skill stores schedule, delivery, topic, and language preferences locally. <br>
-Mitigation: Treat the local ~/.follow_scoutx profile as user preference data and avoid adding API tokens or credentials, which are not required for normal use. <br>
-Risk: A digest may be incomplete if one selected feed cannot be reached. <br>
-Mitigation: Check JSON preview or delivery status, failed_source_types, and errors before treating a partial run as complete. <br>
+## Use Case:
 
+External OpenClaw and Claude Code users use this skill to configure personalized AI digests from ScoutX curated media plus first-party X and podcast feeds. It stores local preferences, previews or delivers digests, and can help set up recurring OpenClaw delivery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yangchao228/follow-scoutx) <br>
-- [Publisher profile](https://clawhub.ai/user/yangchao228) <br>
-- [Bundled ScoutX public feed](https://input.reai.group/v1/public/feed) <br>
-- [Bundled ScoutX metadata endpoint](https://input.reai.group/v1/public/meta) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown digests, JSON payloads, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores local user preferences and can split long delivery output into sequential channel messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.2 (source: server release evidence) <br>
+Risk: Recurring delivery can persist OpenClaw cron jobs and send digest output to chat or external channels.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the dry-run cron payload before applying it, use explicit delivery targets, and replace existing generated jobs deliberately when schedules change.
+
+Risk: The helper fetches content from packaged feed URLs and can accept local service or environment feed URL overrides.
+
+Mitigation: Install only when the feed provider and operator are trusted, and avoid untrusted feed URL overrides.
+
+Risk: Local profile, service, and prompt files can contain user preferences or operator configuration.
+
+Mitigation: Keep secrets out of local prompt and profile files, and review local overrides before sharing or reusing the skill environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yangchao228/skills/follow-scoutx)
+- [ScoutX public feed endpoint](https://input.reai.group/v1/public/feed)
+- [ScoutX public metadata endpoint](https://input.reai.group/v1/public/meta)
+- [Follow Builders X feed](https://raw.githubusercontent.com/zarazhangrui/follow-builders/main/feed-x.json)
+- [Follow Builders podcast feed](https://raw.githubusercontent.com/zarazhangrui/follow-builders/main/feed-podcasts.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain-text digests, JSON payloads for validation, and shell commands for setup or OpenClaw delivery.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Digest output may be split into multiple message chunks for delivery; local profile, state, service override, and prompt files are stored under ~/.follow_scoutx/.]
+
+## Skill Version(s):
+
+0.2.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

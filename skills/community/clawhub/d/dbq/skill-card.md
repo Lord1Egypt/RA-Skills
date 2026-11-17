@@ -1,44 +1,58 @@
-## Description: <br>
-DBQ helps agents run configured SQL queries and controlled database writes across dev, test, and prod aliases for SQLite, MySQL, MariaDB, and PostgreSQL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DBQ is a multi-database SQL assistant for querying MySQL, PostgreSQL, SQLite, and MariaDB across dev, test, and prod environments with read-only defaults, DML/DDL gating, and EXPLAIN analysis.
 
-## Publisher: <br>
-[yinpengfei](https://clawhub.ai/user/yinpengfei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yinpengfei](https://clawhub.ai/user/yinpengfei)
 
-## Use Case: <br>
-Developers and agent operators use DBQ to let coding agents inspect schemas, run read queries, and perform permission-gated database writes through predefined aliases without sharing raw connection details in prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform high-impact database writes or schema changes when configured with write or DDL permissions. <br>
-Mitigation: Use read-only database accounts by default, keep production connections read-only unless explicitly needed, and require dry-run review before writes. <br>
-Risk: Credentials and raw SQL can be exposed through local environment files, terminal output, or query logs. <br>
-Mitigation: Prefer Keychain or managed secrets over .env files, avoid printing secrets in logged terminals, and treat the logs directory as sensitive. <br>
-Risk: Setting DB_QUERY_ASSUME_YES=1 can bypass production write confirmations in automated agent runs. <br>
-Mitigation: Do not set DB_QUERY_ASSUME_YES=1 for production unless the automation path is tightly controlled and independently reviewed. <br>
+## Use Case:
 
+Developers and engineers use this skill to let an AI coding agent run database queries, inspect schemas, test connections, and perform gated SQL changes through preconfigured database aliases across dev, test, and prod environments.
 
-## Reference(s): <br>
-- [DBQ ClawHub Skill Page](https://clawhub.ai/yinpengfei/skills/dbq) <br>
-- [README_EN.md](README_EN.md) <br>
-- [Driver Dependencies](references/drivers.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown guidance with inline shell commands; CLI output may be table, JSON, or CSV.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Database access depends on user-provided aliases and credentials; queries are logged locally by the tool.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+Risk: Production database access can expose or change sensitive live data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing for prod and use least-privileged, read-only database accounts unless write access is explicitly required.
+
+Risk: Credential exposure may occur through password retrieval commands or accessible local logs.
+
+Mitigation: Do not use --keychain-get, restrict access to logs, and disable full SQL logging where sensitive queries may appear.
+
+Risk: SQL safety controls can be weakened by confirmation bypasses or unsafe network paths.
+
+Mitigation: Avoid DB_QUERY_ASSUME_YES for writes and require verified TLS or a trusted private network for remote databases.
+
+## Reference(s):
+
+- [README_EN.md](README_EN.md)
+- [Database driver installation guide](references/drivers.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; CLI results can be table, JSON, or CSV.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Database operations are executed through local shell commands and may create local query logs.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

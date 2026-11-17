@@ -1,42 +1,59 @@
-## Description: <br>
-Generate a personalized global news briefing by asking about your interests, then searching the web and delivering a structured, readable digest. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a personalized global news briefing by asking about your interests, then searching the web and delivering a structured, readable digest.
 
-## Publisher: <br>
-[christinazhang139](https://clawhub.ai/user/christinazhang139) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[christinazhang139](https://clawhub.ai/user/christinazhang139)
 
-## Use Case: <br>
-External users, researchers, writers, analysts, and curious readers use this skill to create personalized global news briefings across selected topics, regions, languages, and depth levels. It helps compare coverage from official media and public social-media sentiment while keeping source links visible. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved preferences may reveal sensitive news interests on shared machines. <br>
-Mitigation: Use preference saving only when appropriate and remove ~/.claw/data/global-perspectives-news-prefs.json when prior interests should no longer be reused. <br>
-Risk: Live news and social-media results can include stale, incomplete, or sentiment-only information. <br>
-Mitigation: Review source links, prefer recent primary or recognized sources, and treat social-media sections as public sentiment rather than verified fact. <br>
+## Use Case:
 
+External ClawHub users use this skill to request customized global news digests across topics, source regions, languages, and briefing depth. It is aimed at readers, researchers, writers, analysts, and curious users who want multiple media perspectives in a single structured briefing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/christinazhang139/global-perspectives-news-openclaw) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [Tavily MCP](https://tavily.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown briefing with grouped story summaries, source links, a takeaway, and optional social sentiment notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Tavily MCP for live web search when connected and may offer opt-in local preference storage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The README recommends installing with an unpinned npx command, which can execute mutable package code during installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installation path, prefer a pinned ClawHub CLI version or manually reviewed installation, and avoid elevated privileges.
+
+Risk: Saved topics and language or depth preferences may be stored locally under the user's Claw data directory.
+
+Mitigation: Ask users before saving preferences and avoid entering sensitive interests when local preference persistence is not appropriate.
+
+Risk: Live news and social media results can include stale, misleading, or sentiment-only signals.
+
+Mitigation: Prefer recent recognized publications or primary sources, label social media as sentiment rather than verified fact, and flag stories older than the stated recency window.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/christinazhang139/skills/global-perspectives-news-openclaw)
+- [OpenClaw](https://openclaw.ai)
+- [Tavily MCP](https://tavily.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown briefing with grouped stories, summaries, source links, takeaway text, and optional social sentiment section.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save user-selected topics, source regions, language, and depth preferences under the local Claw data directory when the user opts in.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

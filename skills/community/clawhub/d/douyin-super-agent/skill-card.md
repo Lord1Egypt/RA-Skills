@@ -1,44 +1,59 @@
-## Description: <br>
-Processes Douyin video links and audio files to download media, extract audio, transcribe speech, and clean up transcript text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Processes Douyin video links or audio files to download media, extract audio, transcribe speech, correct common ASR errors, and save transcript and result files.
 
-## Publisher: <br>
-[pry520okgpt](https://clawhub.ai/user/pry520okgpt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pry520okgpt](https://clawhub.ai/user/pry520okgpt)
 
-## Use Case: <br>
-External users and developers use this skill to process Douyin video links or local audio into transcripts, structured results, and saved media artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Audio or video may be sent to remote ASR services such as qwen-asr or Tencent Cloud. <br>
-Mitigation: Use a clearly local Whisper-only configuration for private, confidential, copyrighted, or regulated media. <br>
-Risk: Transcript snippets may be saved into a local memory store without clear consent, retention, or deletion controls. <br>
-Mitigation: Disable or remove memory-manager writes unless consent, retention, and deletion controls are established. <br>
-Risk: The skill installs dependencies and invokes external command-line tools to process user-supplied media links. <br>
-Mitigation: Review the skill and dependencies before deployment and run it in a constrained environment appropriate for untrusted media. <br>
+## Use Case:
 
+External users and developers use this skill to turn Douyin video links or local audio files into cleaned transcripts and structured result files. It is useful for social video review, transcription, and content extraction workflows where users can control whether optional remote/cloud ASR integrations are present.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pry520okgpt/douyin-super-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/pry520okgpt) <br>
-- [Declared homepage](https://github.com/openclaw/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files, Shell commands, Guidance] <br>
-**Output Format:** [Plain text transcripts, JSON result files, downloaded media files, and command-line status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are saved under a desktop Douyin skill directory; local Whisper model files may be cached separately.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release and frontmatter) <br>
+Risk: Audio or video content may be processed by optional remote/cloud ASR integrations when qwen-asr or Tencent Cloud ASR are available.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive, private, credential-bearing, or regulated media unless remote ASR integrations are disabled or removed and local Whisper processing is used.
+
+Risk: Transcript excerpts may be stored in a persistent local memory-manager skill.
+
+Mitigation: Disable or remove the memory-manager integration, and review or clear local memory storage before handling private or regulated content.
+
+Risk: Setup installs unpinned Python dependencies and relies on external tools.
+
+Mitigation: Install in an isolated environment and pin or review dependencies and tool versions before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pry520okgpt/skills/douyin-super-agent)
+- [Publisher profile](https://clawhub.ai/user/pry520okgpt)
+- [Project homepage](https://github.com/openclaw/skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration]
+
+**Output Format:** [Plain text transcripts, Markdown reports, JSON result files, and CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes media and transcript outputs under ~/Desktop/douyin-super-agent/ and may cache Whisper models under ~/.cache/whisper/.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

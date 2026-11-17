@@ -6,6 +6,7 @@ import pytest
 
 from outlook_mcp.config import Config
 from outlook_mcp.errors import ReadOnlyError
+from outlook_mcp.tools.mail_read import RECEIVED_FLOOR
 from outlook_mcp.tools.mail_thread import copy_message, list_thread
 
 _CFG = Config(client_id="test")
@@ -77,6 +78,24 @@ class TestListThread:
         assert "conversationId eq 'conv123'" in qp.filter
         assert qp.orderby == ["receivedDateTime asc"]
         assert qp.top == 10
+
+    async def test_filter_leads_with_received_floor(self):
+        """The receivedDateTime clause MUST come first, or Graph rejects the
+        receivedDateTime $orderby with 400 InefficientFilter. Without this the
+        tool 400s on every call — assert position, not just presence.
+        """
+        mock_client = MagicMock()
+        mock_client.me.messages.get = AsyncMock(
+            return_value=MagicMock(value=[], odata_next_link=None)
+        )
+
+        await list_thread(mock_client, conversation_id="conv123", count=10)
+
+        call_kwargs = mock_client.me.messages.get.call_args
+        qp = call_kwargs.kwargs["request_configuration"].query_parameters
+        assert qp.filter == (
+            f"receivedDateTime ge {RECEIVED_FLOOR} and conversationId eq 'conv123'"
+        )
 
     async def test_list_thread_concise_strips_quoted_text(self):
         """concise=True drops everything from the first quoted-reply marker on."""
@@ -162,7 +181,10 @@ class TestCopyMessage:
         mock_client.me.mail_folders.get = AsyncMock(return_value=empty_response)
         with pytest.raises(ValueError, match="not found"):
             await copy_message(
-                mock_client, message_id="AAMkAG123=", folder="bad folder!", config=_CFG,
+                mock_client,
+                message_id="AAMkAG123=",
+                folder="bad folder!",
+                config=_CFG,
             )
 
     async def test_copy_raises_read_only(self):
@@ -170,7 +192,10 @@ class TestCopyMessage:
         mock_client = MagicMock()
         with pytest.raises(ReadOnlyError):
             await copy_message(
-                mock_client, message_id="AAMkAG123=", folder="inbox", config=_CFG_RO,
+                mock_client,
+                message_id="AAMkAG123=",
+                folder="inbox",
+                config=_CFG_RO,
             )
 
     async def test_copy_calls_post_and_returns_status(self):
@@ -179,7 +204,10 @@ class TestCopyMessage:
         mock_client.me.messages.by_message_id.return_value.copy.post = AsyncMock()
 
         result = await copy_message(
-            mock_client, message_id="AAMkAG123=", folder="archive", config=_CFG,
+            mock_client,
+            message_id="AAMkAG123=",
+            folder="archive",
+            config=_CFG,
         )
         assert result["status"] == "copied"
         assert result["folder"] == "archive"

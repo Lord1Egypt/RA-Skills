@@ -1,44 +1,55 @@
-## Description: <br>
-Helps CFOs, founders, and finance teams model AI productivity gains alongside interest rate cycles for financing, capex timing, and AI investment strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps CFOs, founders, and finance teams model AI productivity gains alongside interest rate cycles to inform financing, capex timing, and AI investment strategy.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-CFOs, founders, and finance teams use this skill to classify rate environments, time AI investments, compare financing options, stress-test scenarios, and prepare board-ready rate-adjusted AI ROI metrics. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce finance-strategy recommendations that may be mistaken for professional financial advice. <br>
-Mitigation: Use outputs as planning assistance and have qualified finance or legal reviewers validate decisions before action. <br>
-Risk: Rate-sensitive analysis may become inaccurate if current rate assumptions or market conditions are stale. <br>
-Mitigation: Validate current Fed Funds, Treasury, financing, and company-specific assumptions before relying on the analysis. <br>
-Risk: Company financial inputs may be confidential. <br>
-Mitigation: Avoid entering confidential financial data unless the agent environment is approved for that data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Interest Rate Strategy on ClawHub](https://clawhub.ai/1kalin/afrexai-rate-strategy) <br>
-- [AI Revenue Leak Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/) <br>
-- [AI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
-- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/) <br>
+## Use Case:
 
+Business operators use this skill to stress-test AI investment decisions across rate scenarios, company sizes, and industries. It is aimed at CFOs, founders, and finance teams preparing financing, capex, and board-level planning materials.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, analysis] <br>
-**Output Format:** [Markdown and structured prose with tables, scenario analysis, and board-ready metrics] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces planning guidance; outputs should be reviewed against current rates, company financials, and professional advice requirements.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Strategic finance content may be mistaken for verified financial advice.
+
+Mitigation: Validate rate forecasts, ROI claims, and financing decisions with current data and qualified professional judgment before acting.
+
+Risk: Promotional external links and unsourced economic assumptions may bias planning outputs.
+
+Mitigation: Review cited links and replace assumptions with organization-specific data before using outputs in capital allocation or board materials.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/1kalin/skills/afrexai-rate-strategy)
+- [AI Revenue Leak Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/)
+- [AI Context Packs](https://afrexai-cto.github.io/context-packs/)
+- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with tables, scenario analysis, and finance strategy recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static strategic finance content; no code execution or runtime behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Reviews AI-modified code for requirement alignment, unnecessary file changes, code quality issues, and change-impact risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews AI-generated code changes for requirement alignment, unnecessary file modifications, code quality issues, and change impact.
 
-## Publisher: <br>
-[yanghao-smile](https://clawhub.ai/user/yanghao-smile) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yanghao-smile](https://clawhub.ai/user/yanghao-smile)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to review AI-generated code changes against the original request, detect unrelated modifications, assess quality and security concerns, and produce actionable review guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads repository files and Git history, which can expose sensitive project information during review. <br>
-Mitigation: Install and run it only in repositories where that access is acceptable, and avoid using it on projects containing secrets or restricted data unless appropriate controls are in place. <br>
-Risk: The skill declares file.write permission even though its primary behavior is analysis and report generation. <br>
-Mitigation: Review generated reports or file changes before accepting them, and disable or constrain file-writing behavior where the host environment permits. <br>
-Risk: Optional pre-commit and CI snippets can run automated review commands as part of development workflows. <br>
-Mitigation: Review those snippets before enabling them and scope automation to the intended branches, events, and repositories. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to review AI-modified code against the original requirement, identify unnecessary file changes, assess code quality, and understand likely change impact.
 
-## Reference(s): <br>
-- [Code Review Guidelines](references/review-guidelines.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/yanghao-smile/easy-code-review) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/yanghao-smile) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, html, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown review reports by default, with optional JSON or HTML report output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may include requirement-fit findings, unnecessary-change findings, risk levels, quality notes, and improvement recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, skill.json) <br>
+Risk: The release security summary flags review-worthy risk around unverified CI installation examples and broad write or process authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when repository read and git inspection access are acceptable, and pin and verify any installer used in CI before execution.
+
+Risk: The skill declares file.write even though the current evidence indicates report-writing authority may be broader than needed.
+
+Mitigation: Prefer a version that removes file.write or clearly scopes report-writing behavior; otherwise run it in repositories where report output writes are expected.
+
+Risk: Review findings are advisory and can misclassify requirement alignment, security, dependency, or configuration risk.
+
+Mitigation: Require maintainer review before applying recommendations, especially for dependency, configuration, security, or broad refactoring findings.
+
+## Reference(s):
+
+- [Review Guidelines](references/review-guidelines.md)
+- [ClawHub Skill Page](https://clawhub.ai/yanghao-smile/skills/easy-code-review)
+- [Publisher Profile](https://clawhub.ai/user/yanghao-smile)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, html, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports by default, with documented JSON and HTML report options.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May inspect git diffs and repository files to produce review findings, risk levels, and improvement suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, skill.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,56 @@
-## Description: <br>
-Get swarm-aggregated DeFi and market consensus from SuperColony before making trading or investment decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get swarm-aggregated DeFi and market consensus from SuperColony before making trading or investment decisions.
 
-## Publisher: <br>
-[buildingonchain](https://clawhub.ai/user/buildingonchain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[buildingonchain](https://clawhub.ai/user/buildingonchain)
 
-## Use Case: <br>
-External users and developers use this skill to query SuperColony consensus signals, asset-specific analysis, and live market alerts as one research input before DeFi trading or investment decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: External SuperColony service and npm package trust are required. <br>
-Mitigation: Install only if you trust SuperColony and the supercolony-mcp package, and prefer a pinned package version. <br>
-Risk: Queries may reveal private portfolio, pending-trade, or strategy details to an external service. <br>
-Mitigation: Avoid sending private portfolio or pending-trade details in queries, and use only a SuperColony-specific token if one is required. <br>
-Risk: Consensus output can be mistaken for financial advice or an automatic trading signal. <br>
-Mitigation: Treat the output as research rather than financial advice, and make decisions with swarm consensus as one input rather than sole authority. <br>
+## Use Case:
 
+External users and developers use this skill to query SuperColony consensus signals, asset-specific market intelligence, and DAHR-attested evidence as one research input for DeFi and market decisions.
 
-## Reference(s): <br>
-- [SuperColony Signals API](https://www.supercolony.ai/api/signals) <br>
-- [SuperColony Feed Search API](https://www.supercolony.ai/api/feed/search?asset=ETH&category=ANALYSIS) <br>
-- [SuperColony Real-Time Feed Stream](https://www.supercolony.ai/api/feed/stream?categories=SIGNAL,ALERT&assets=BTC,ETH,SOL) <br>
-- [ClawHub Skill Page](https://clawhub.ai/buildingonchain/defi-consensus-oracle) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON configuration snippets, API examples, and decision guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces read-only market-consensus guidance; users should treat results as research input rather than financial advice or an automatic trading signal.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: skill.json and server release evidence) <br>
+Risk: Setup uses npx with automatic installation of an unpinned third-party MCP package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin supercolony-mcp to a reviewed version and run it with limited filesystem, environment-variable, and network access.
+
+Risk: DeFi consensus signals may be incomplete, stale, or misread as financial advice.
+
+Mitigation: Treat signals as research input only, verify important decisions with independent sources, and keep human review in the decision loop.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/buildingonchain/skills/defi-consensus-oracle)
+- [SuperColony signals API](https://www.supercolony.ai/api/signals)
+- [SuperColony feed search API](https://www.supercolony.ai/api/feed/search?asset=ETH&category=ANALYSIS)
+- [SuperColony live feed stream](https://www.supercolony.ai/api/feed/stream?categories=SIGNAL,ALERT&assets=BTC,ETH,SOL)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with JSON and TypeScript examples, REST endpoints, and decision-workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return DeFi consensus direction, agreement percentage, evidence details, contributing agent count, asset-specific analysis, predictions, and live signal stream guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,52 @@
-## Description: <br>
-Provides Chinese-language guidance for choosing teacher-led, student-led, or co-led teacher-student startup team structures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users through choosing teacher-led, student-led, or co-led university startup team structures based on technology maturity, team resources, and venture stage.
 
-## Publisher: <br>
-[earthwalking](https://clawhub.ai/user/earthwalking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[earthwalking](https://clawhub.ai/user/earthwalking)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users, entrepreneurship educators, and university startup teams use this skill to compare teacher-led, student-led, and co-led team models and produce a practical team formation plan.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Accidental activation in broader team-management conversations could provide teacher-student startup guidance when that context was not intended.
+
+Mitigation: Review or narrow trigger phrases before deployment if broader team-management conversations should not invoke this skill.
+
+Risk: Team-structure recommendations may be incomplete if applied without project-specific review of technology maturity, market needs, and participant roles.
+
+Mitigation: Use the generated plan as decision support and review it with team members, mentors, or advisors before making role and leadership decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users, educators, university founders, and startup mentors use this skill to compare teacher-led, student-led, and co-led university startup team models and produce a team formation plan with roles, risks, and leadership-stage adjustments. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate in broad team or entrepreneurship conversations and provide guidance outside the intended teacher-student startup context. <br>
-Mitigation: Use it for university teacher-student startup team-structure decisions and ask clarifying questions when the context is ambiguous. <br>
-Risk: Users may disclose confidential startup, intellectual property, personnel, or university relationship details while seeking team-formation advice. <br>
-Mitigation: Avoid sharing sensitive details unless appropriate for the agent environment; anonymize examples where possible. <br>
-Risk: The output is strategic advisory guidance and may not address legal, employment, investment, or institutional governance requirements. <br>
-Mitigation: Have qualified institutional, legal, or business advisors review final role allocations and founder arrangements before relying on them. <br>
+**Output Format:** [Markdown guidance with tables, recommendations, and checklists]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/earthwalking/lab2startup-team-types) <br>
+**Other Properties Related to Output:** [May include a recommended team type, role allocation table, challenge response plan, and stage-based leadership adjustment plan.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown advisory plan with tables and bullet points] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a recommended team type, rationale, role allocation table, potential challenges, mitigations, and staged leadership adjustment plan.] <br>
+1.0.0 (source: server release evidence and target metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

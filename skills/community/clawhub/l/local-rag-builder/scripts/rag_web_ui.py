@@ -11,22 +11,16 @@ import json
 import http.server
 import socketserver
 import urllib.parse
-import threading
-import time
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from config import load_config, save_config, reset_config, DEFAULT_CONFIG
 from prompt_manager import load_template, save_template, reset_template
-from embedding_model_manager import list_downloaded_models, RECOMMENDED_MODELS, download_model
+from embedding_model_manager import list_downloaded_models, RECOMMENDED_MODELS
 from knowledge_base_manager import list_knowledge_bases, get_kb_stats, get_kb_model, set_kb_model
-from router import list_kb_signatures, rebuild_all_signatures
 from rag_standalone import verify_llm_connection
 from text_splitter import STRATEGY_REGISTRY, GUARD_REGISTRY, get_all_strategies_info, SECONDARY_STRATEGIES
 from utils import cfg_dir
-
-# 下载状态跟踪 {model_id: {"status":"downloading"|"done"|"failed"|"retrying", "source":"...", "attempt":1, "message":"..."}}
-_download_tasks = {}
 
 PORT = 8765
 HTML_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "rag_settings.html")
@@ -96,38 +90,6 @@ def generate_html():
     kbs = list_knowledge_bases()
     models = list_downloaded_models()
     template = load_template()
-    router_cfg = cfg.get("router", {})
-    fb_cfg = router_cfg.get("fallback", {})
-    rerank_cfg = cfg.get("reranker", {})
-    kb_cfg = cfg.get("kb", {})
-    kb_sigs = list_kb_signatures()
-    # Build model lists
-    from embedding_model_manager import RECOMMENDED_MODELS, RECOMMENDED_RERANK_MODELS
-    dl = list_downloaded_models()
-    dl_ids = {m.get("model_id","").lower() for m in dl}
-    Q = "'"
-    def _mlist(role, models_def, current_path=""):
-        """生成模型列表：role=embedding|rerank|fb, models_def=模型定义列表"""
-        rows = []
-        default_id = models_def[0]["id"] if models_def else ""
-        for m in models_def:
-            mid=m["id"]
-            # 无配置时默认选中列表第一个
-            checked='checked' if (current_path==mid or (not current_path and mid==default_id)) else ""
-            ok=mid.lower() in dl_ids
-            st="\u5df2\u4e0b\u8f7d" if ok else "\u672a\u4e0b\u8f7d"
-            bt="" if ok else f'<button class="btn btn-primary" style="padding:4px 10px;font-size:11px;white-space:nowrap;" onclick="downloadModel({Q}{mid}{Q})">\u4e0b\u8f7d</button>'
-            if role=="fb":
-                hdl = f'onchange=onFallbackModelChange({Q}{mid}{Q})'
-            elif role=="rerank":
-                hdl = f'onchange=updateConfig("reranker","model_path",this.value)'
-            else:
-                hdl = f'onchange=updateConfig("embedding","model_path",this.value)'
-            rows.append(f'<div style="display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid #eee;"><input type="radio" name="{role}-model" value="{mid}" id="{role[:3]}-{mid}" {checked} {hdl} style="flex-shrink:0;"><label for="{role[:3]}-{mid}" style="flex:1;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="{mid}">{mid} <span style="color:#888;font-size:11px;">({m["size_mb"]}MB)</span></label><span style="font-size:11px;flex-shrink:0;color:{"#3B6D11" if ok else "#888"};">{st}</span>{bt}</div>')
-        return "\n".join(rows)
-    emb_model_html = _mlist("embedding", RECOMMENDED_MODELS, cfg.get("embedding",{}).get("model_path",""))
-    rr_model_html = _mlist("rerank", RECOMMENDED_RERANK_MODELS, rerank_cfg.get("model_path",""))
-    fb_model_html = _mlist("fb", RECOMMENDED_RERANK_MODELS, router_cfg.get("model_path_fallback",""))
     guard_labels = {"mermaid": "🧜 Mermaid", "code": "💻 代码块", "math": "∑ LaTeX公式", "table": "📊 表格", "html": "🌐 HTML结构"}
     active_guards = cfg.get("splitting", {}).get("guards", ["code"])
     guard_card_html = ""
@@ -243,7 +205,6 @@ body {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans
 .stat-card .label {{ font-size: 12px; color: #888; margin-top: 4px; }}
 .toast {{ position: fixed; bottom: 24px; right: 24px; padding: 14px 24px; border-radius: 10px; color: white; font-weight: 600; z-index: 999; animation: slideIn 0.3s ease; }}
 @keyframes slideIn {{ from {{ transform: translateY(20px); opacity: 0; }} to {{ transform: translateY(0); opacity: 1; }} }}
-@keyframes spin {{ from {{ transform: rotate(0deg); }} to {{ transform: rotate(360deg); }} }}
 .collapsible {{ background: #f0f4ff; border-radius: 10px; padding: 12px 16px; margin-top: 12px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 14px; font-weight: 600; color: #5a3e8a; user-select: none; }}
 .collapsible:hover {{ background: #e0d4f5; }}
 .collapsible-content {{ display: none; padding: 16px 0 0; }}
@@ -313,26 +274,29 @@ input:checked + .toggle-slider:before {{ transform: translateX(18px); }}
   </div>
 
   <div class="card">
-    <h2>📝 Prompt 模板</h2>
-    <div class="form-group">
-      <textarea id="prompt-template" rows="8" onchange="savePrompt(this.value)">{template}</textarea>
-    </div>
-    <button class="btn btn-secondary" onclick="resetPrompt()">↺ 重置为默认</button>
-    <span id="prompt-status" style="margin-left:12px;font-size:13px;color:#888;"></span>
-  </div>
-
-  <div class="card">
     <h2>📦 嵌入模型</h2>
-    <div style="max-height:300px;width:100%;overflow-y:auto;border:1px solid #eee;border-radius:6px;padding:8px;">
-      {emb_model_html}
+    <div class="form-group">
+      <label>当前模型</label>
+      <select id="model-select" onchange="updateConfig('embedding','model_path',this.value)">
+        {''.join(f'<option value="{m["path"]}" {"selected" if m["path"]==(cfg.get("embedding",{}).get("model_path","") or (models[0]["path"] if models else "")) else ""}>{m.get("model_id",m["path"].split(os.sep)[-1])}</option>' for m in models)}
+        <option value="" {"selected" if not cfg.get("embedding",{}).get("model_path","") and not models else ""}>-- 无可用模型 --</option>
+      </select>
+      <div style="font-size:11px;color:#888;margin-top:4px;">未配置时自动使用列表中第一个可用模型。知识库未指定模型时回退到此默认值。</div>
     </div>
-    <div class="form-row" style="margin-top:14px;">
+    <div class="form-row">
       <div class="form-group">
         <label>设备</label>
-        <select onchange="updateConfig('embedding','device',this.value)">
+        <select id="device-select" onchange="updateConfig('embedding','device',this.value)">
           <option value="auto" {"selected" if cfg.get("embedding",{}).get("device","auto")=="auto" else ""}>自动检测</option>
           <option value="cuda" {"selected" if cfg.get("embedding",{}).get("device")=="cuda" else ""}>GPU (CUDA)</option>
           <option value="cpu" {"selected" if cfg.get("embedding",{}).get("device")=="cpu" else ""}>CPU</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>推荐模型</label>
+        <select onchange="if(this.value)window.open('https://huggingface.co/'+this.value)">
+          <option value="">查看推荐模型</option>
+          {''.join(f'<option value="{m["id"]}">{m["id"]} ({m["desc"]})</option>' for m in RECOMMENDED_MODELS)}
         </select>
       </div>
     </div>
@@ -439,22 +403,23 @@ input:checked + .toggle-slider:before {{ transform: translateX(18px); }}
   </div>
 
   <div class="card">
-    <h2>📚 知识库 & 分类规则</h2>
-    <div class="form-row" style="margin-bottom:8px;">
-      <div class="form-group">
-        <label>启用多知识库路由 <span style="font-weight:400;color:#888;font-size:11px;">（关闭则路由层自动禁用）</span></label>
-        <label class="toggle-switch" onclick="toggleKB()">
-          <input type="checkbox" {"checked" if kb_cfg.get("enabled", True) else ""}><span class="toggle-slider"></span>
-        </label>
-      </div>
+    <h2>📝 Prompt 模板</h2>
+    <div class="form-group">
+      <textarea id="prompt-template" rows="8" onchange="savePrompt(this.value)">{template}</textarea>
     </div>
+    <button class="btn btn-secondary" onclick="resetPrompt()">↺ 重置为默认</button>
+    <span id="prompt-status" style="margin-left:12px;font-size:13px;color:#888;"></span>
+  </div>
+
+  <div class="card">
+    <h2>📚 知识库 & 分类规则</h2>
     <div id="kb-list" style="margin-bottom:8px;">
       {' '.join(f'''<div style="display:flex;justify-content:space-between;align-items:center;padding:8px;border-bottom:1px solid #eee;">
         <div style="flex:1;"><strong>{name}</strong> - {info.get("description","")} [{info.get("doc_count",0)} 文档]</div>
         <div style="min-width:200px;">
           <select class="kb-model-select" data-kb="{name}" style="width:100%;padding:6px 8px;border:1.5px solid #ddd;border-radius:6px;font-size:12px;" onchange="setKbModel('{name}',this.value)">
             <option value="">— 默认模型 ({models[0].get("model_id","") if models else "无"}) —</option>
-            {''.join(f'<option value="{m.get("path","")}"{" selected" if info.get("embedding_model","")==m.get("path","") else ""}>{m.get("model_id","")}</option>' for m in models)}
+            {''.join(f'<option value="{m.get("path","")}" {'selected' if info.get("embedding_model","")==m.get("path","") else ""}>{m.get("model_id","")}</option>' for m in models)}
           </select>
         </div>
       </div>''' for name, info in kbs.items())}
@@ -488,100 +453,6 @@ input:checked + .toggle-slider:before {{ transform: translateX(18px); }}
       <div style="display:flex;gap:10px;margin-top:16px;justify-content:flex-end;">
         <button class="btn btn-secondary" onclick="hideRuleEditor()">取消</button>
         <button class="btn btn-primary" onclick="saveRule()">💾 保存</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- 路由层 -->
-  <div class="card">
-    <h2>🌐 路由层 <span style="font-weight:400;color:#888;font-size:12px;">— 硬编码(来自KB规则)→语义回退→全量广播</span></h2>
-    <div class="form-row">
-      <div class="form-group">
-        <label>启用路由 <span style="font-weight:400;color:#888;font-size:11px;">（KB路由关闭时自动禁用）</span></label>
-        <label class="toggle-switch" onclick="toggleRouter()">
-          <input type="checkbox" {"checked" if router_cfg.get("enabled", True) else ""}><span class="toggle-slider"></span>
-        </label>
-      </div>
-      <div class="form-group">
-        <label>最低得分阈值</label>
-        <input type="number" value="{fb_cfg.get('min_score_threshold', 0.3)}" min="0" max="1" step="0.05" onchange="updateConfig('router','fallback_threshold',parseFloat(this.value))">
-      </div>
-    </div>
-    <div style="margin-top:12px;">
-      <div style="font-size:13px;font-weight:600;color:#555;margin-bottom:6px;">回退语义路由模型 <span style="font-weight:400;color:#888;font-size:11px;">（每个模型独立下载，选中即生效）</span></div>
-      <div style="max-height:200px;width:100%;overflow-y:auto;border:1px solid #eee;border-radius:6px;padding:8px;">
-        {fb_model_html}
-      </div>
-    </div>
-    <div class="collapsible" onclick="toggleAdvSig()" style="margin-top:8px;">
-      <span>📋 KB 签名（入库时自动归纳）</span>
-      <span id="adv-sig-arrow">▶</span>
-    </div>
-    <div class="collapsible-content" id="adv-sig-content">
-      <div style="font-size:12px;color:#888;">
-        {"".join(f'<div style="padding:4px 0;border-bottom:1px solid #eee;"><strong>{name}</strong>: <span style="color:#aaa;">{info.get("signature","")[:80]}...</span></div>' for name, info in kb_sigs.items()) if kb_sigs else '暂无签名'}
-      </div>
-      <button class="btn btn-secondary" style="padding:6px 14px;font-size:12px;margin-top:8px;" onclick="rebuildSigs()">🔄 重建所有签名</button>
-    </div>
-  </div>
-
-  <!-- Rerank 层 -->
-  <div class="card">
-    <h2>🔀 Rerank 层 <span style="font-weight:400;color:#888;font-size:12px;">— 检索完成后对结果重排序（默认关闭）</span></h2>
-    <div class="form-row">
-      <div class="form-group">
-        <label>启用 Rerank</label>
-        <label class="toggle-switch" onclick="toggleReranker()">
-          <input type="checkbox" {"checked" if rerank_cfg.get("enabled", False) else ""}><span class="toggle-slider"></span>
-        </label>
-      </div>
-      <div class="form-group">
-        <label>模式</label>
-        <select onchange="updateConfig('reranker','mode',this.value)">
-          <option value="model" {"selected" if rerank_cfg.get("mode","model")=="model" else ""}>模型排序</option>
-          <option value="rule" {"selected" if rerank_cfg.get("mode")=="rule" else ""}>规则排序</option>
-          <option value="hybrid" {"selected" if rerank_cfg.get("mode")=="hybrid" else ""}>混合（模型+规则）</option>
-        </select>
-      </div>
-    </div>
-    <div style="margin-top:12px;">
-      <div style="font-size:13px;font-weight:600;color:#555;margin-bottom:6px;">Rerank 模型</div>
-      <div style="max-height:200px;width:100%;overflow-y:auto;border:1px solid #eee;border-radius:6px;padding:8px;">
-        {rr_model_html}
-      </div>
-    </div>
-    <div class="collapsible" onclick="toggleSortRules()" style="margin-top:8px;">
-      <span>📏 排序规则 <span style="font-weight:400;color:#888;font-size:11px;">（规则/混合模式下生效）</span></span>
-      <span id="adv-rules-arrow">▶</span>
-    </div>
-    <div class="collapsible-content" id="adv-rules-content">
-      <div id="sort-rules-list" style="font-size:13px;color:#888;">加载中...</div>
-      <div style="display:flex;gap:8px;margin-top:8px;">
-        <button class="btn btn-secondary" style="padding:6px 14px;font-size:12px;" onclick="refreshSortRules()">🔄 刷新</button>
-        <button class="btn btn-secondary" style="padding:6px 14px;font-size:12px;" onclick="addSortRule()">➕ 添加规则</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- 排序规则编辑器弹窗 -->
-  <div id="sort-rule-editor-overlay" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.4);z-index:1000;align-items:center;justify-content:center;" onclick="if(event.target===this)hideSortRuleEditor()">
-    <div style="background:white;border-radius:16px;padding:28px;max-width:480px;width:90%;box-shadow:0 8px 32px rgba(0,0,0,0.2);">
-      <h3 id="sort-rule-editor-title" style="font-size:18px;color:#5a3e8a;margin-bottom:16px;">添加排序规则</h3>
-      <div class="form-group"><label>规则类型</label>
-        <select id="sort-rule-type" style="width:100%;padding:8px 10px;border:1.5px solid #ddd;border-radius:8px;font-size:14px;" onchange="onSortRuleTypeChange()">
-          <option value="">-- 请选择 --</option>
-          <option value="score_weight">score_weight — 分数加权</option>
-          <option value="recency">recency — 时间衰减</option>
-          <option value="source_weight">source_weight — 来源加权</option>
-          <option value="boost_keywords">boost_keywords — 关键词提升</option>
-        </select>
-      </div>
-      <div id="sort-rule-params" style="display:none;">
-        <div id="sort-rule-params-fields"></div>
-      </div>
-      <div style="display:flex;gap:10px;margin-top:16px;justify-content:flex-end;">
-        <button class="btn btn-secondary" onclick="hideSortRuleEditor()">取消</button>
-        <button class="btn btn-primary" onclick="saveSortRule()">💾 保存</button>
       </div>
     </div>
   </div>
@@ -957,41 +828,6 @@ function resetAll() {{
   }});
 }}
 
-function downloadModel(id){{
-  var el = document.createElement('div');
-  el.id = 'dl-status';
-  el.style.cssText = 'position:fixed;bottom:20px;left:20px;right:20px;max-width:500px;z-index:9999;background:white;border-radius:12px;padding:16px 20px;box-shadow:0 4px 20px rgba(0,0,0,0.2);font-size:13px;border-left:4px solid #667eea;';
-  el.innerHTML = '<div style=\"display:flex;align-items:center;gap:10px;\"><div style=\"width:20px;height:20px;border:3px solid #e0d4f5;border-top-color:#667eea;border-radius:50%;animation:spin 0.8s linear infinite;\"></div><div style=\"flex:1;\"><strong>下载 ' + id.split('/').pop() + '</strong><br><span id=\"dl-msg\" style=\"color:#888;font-size:12px;\">准备中...</span></div><button onclick=\"this.parentElement.parentElement.remove()\" style=\"background:none;border:none;font-size:18px;cursor:pointer;color:#aaa;\">x</button></div>';
-  document.body.appendChild(el);
-  // 启动下载
-  fetch('/api/download-model',{{method:'POST',headers:{{'Content-Type':'application/json'}},body:JSON.stringify({{model_id:id}})}});
-  // 轮询状态
-  var poll = setInterval(function(){{
-    fetch('/api/download-status',{{method:'POST',headers:{{'Content-Type':'application/json'}},body:JSON.stringify({{model_id:id}})}})
-    .then(function(r){{return r.json()}}).then(function(d){{
-      var msg = document.getElementById('dl-msg');
-      if(!msg){{clearInterval(poll);return}}
-      if(d.status==='starting') msg.textContent = '准备中...';
-      else if(d.status==='downloading'){{msg.innerHTML = (d.message||'下载中...') + '<br><span style=\"color:#aaa;font-size:11px;\">' + (d.size_mb||0) + ' MB | ' + (d.speed||'') + '</span>';}}
-      else if(d.status==='done'){{msg.textContent = '完成';el.style.borderLeftColor='#3B6D11';clearInterval(poll);setTimeout(function(){{el.remove();location.reload()}},1000);}}
-      else if(d.status==='failed'){{msg.textContent = '失败: ' + d.message;el.style.borderLeftColor='#ff6b6b';clearInterval(poll);}}
-    }});
-  }},2000);
-}}
-function toggleKB(){{fetch('/api/kb/toggle',{{method:'POST'}}).then(function(r){{return r.json()}}).then(function(d){{if(d.success){{toast('\u591a\u77e5\u8bc6\u5e93\u8def\u7531:'+(d.enabled?'\u542f\u7528':'\u7981\u7528'));setTimeout(function(){{location.reload()}},200)}}else toast(d.error,'error')}});}}
-function onFallbackModelChange(v){{updateConfig('router','model_path_fallback',v)}}
-function toggleRouter(){{fetch('/api/router/toggle',{{method:'POST'}}).then(function(r){{return r.json()}}).then(function(d){{if(d.success){{toast('\u8def\u7531:'+(d.enabled?'\u542f\u7528':'\u7981\u7528'));setTimeout(function(){{location.reload()}},200)}}else toast(d.error,'error')}});}}
-function toggleReranker(){{fetch('/api/reranker/toggle',{{method:'POST'}}).then(function(r){{return r.json()}}).then(function(d){{if(d.success){{toast('Rerank:'+(d.enabled?'\u542f\u7528':'\u7981\u7528'));setTimeout(function(){{location.reload()}},200)}}else toast(d.error,'error')}});}}
-function toggleAdvSig(){{var e=document.getElementById('adv-sig-content'),a=document.getElementById('adv-sig-arrow'),o=e.style.display==='block';e.style.display=o?'none':'block';a.textContent=o?'\u25b6':'\u25bc';}}
-function rebuildSigs(){{fetch('/api/router/rebuild-signatures',{{method:'POST'}}).then(function(r){{return r.json()}}).then(function(d){{if(d.success){{toast('\u5df2\u91cd\u5efa');setTimeout(function(){{location.reload()}},500)}}else toast(d.error,'error')}});}}
-function toggleSortRules(){{var e=document.getElementById('adv-rules-content'),a=document.getElementById('adv-rules-arrow'),o=e.style.display==='block';e.style.display=o?'none':'block';a.textContent=o?'\u25b6':'\u25bc';if(!o)refreshSortRules();}}
-function refreshSortRules(){{fetch('/api/reranker/rules',{{method:'POST'}}).then(function(r){{return r.json()}}).then(function(d){{var e=document.getElementById('sort-rules-list'),rules=d.rules||[];if(!rules.length){{e.innerHTML='<span style=\"color:#aaa;\">\u6682\u65e0</span>';return}}e.innerHTML=rules.map(function(r,i){{return'<div style=\"display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid #eee;\"><div style=\"flex:1;font-size:12px;\">#'+(i+1)+' '+JSON.stringify(r)+'</div><button class=\"btn btn-danger\" style=\"padding:2px 8px;font-size:11px;\" onclick=\"deleteSortRule('+i+')\">x</button></div>'}}).join('')}});}}
-function deleteSortRule(i){{if(!confirm('\u5220\u9664\u89c4\u5219 #'+(i+1)+'?'))return;fetch('/api/reranker/rules/delete',{{method:'POST',headers:{{'Content-Type':'application/json'}},body:JSON.stringify({{index:i}})}}).then(function(r){{return r.json()}}).then(function(d){{if(d.success){{toast('\u5df2\u5220\u9664');refreshSortRules()}}else toast(d.error,'error')}});}}
-function addSortRule(){{showSortRuleEditor()}}
-function showSortRuleEditor(){{document.getElementById('sort-rule-editor-overlay').style.display='flex';onSortRuleTypeChange();}}
-function hideSortRuleEditor(){{document.getElementById('sort-rule-editor-overlay').style.display='none';document.getElementById('sort-rule-params').style.display='none';}}
-function onSortRuleTypeChange(){{var t=document.getElementById("sort-rule-type").value;var e=document.getElementById("sort-rule-params-fields");var p=document.getElementById("sort-rule-params");if(!t){{p.style.display="none";return}}var html="";if(t==="score_weight")html='<div class=\"form-group\"><label>嵌入分权重 (embedding_score)</label><input id=\"sr-emb\" type=\"number\" value=\"0.6\" min=\"0\" max=\"1\" step=\"0.05\" style=\"width:100%;padding:8px 10px;border:1.5px solid #ddd;border-radius:8px;font-size:14px;\"></div><div class=\"form-group\"><label>Rerank分权重 (rerank_score)</label><input id=\"sr-rer\" type=\"number\" value=\"0.4\" min=\"0\" max=\"1\" step=\"0.05\" style=\"width:100%;padding:8px 10px;border:1.5px solid #ddd;border-radius:8px;font-size:14px;\"></div>';else if(t==="recency")html='<div class=\"form-group\"><label>半衰期天数 (days_halflife)</label><input id=\"sr-days\" type=\"number\" value=\"30\" min=\"1\" style=\"width:100%;padding:8px 10px;border:1.5px solid #ddd;border-radius:8px;font-size:14px;\"></div>';else if(t==="source_weight")html='<div class=\"form-group\"><label>来源加权 JSON</label><textarea id=\"sr-sources\" rows=\"3\" style=\"width:100%;padding:8px 10px;border:1.5px solid #ddd;border-radius:8px;font-size:14px;\" placeholder=\"例: {{legal_gov:1.5, baike:1.0}}\"></textarea></div>';else if(t==="boost_keywords")html='<div class=\"form-group\"><label>关键词（逗号分隔）</label><input id=\"sr-keys\" type=\"text\" style=\"width:100%;padding:8px 10px;border:1.5px solid #ddd;border-radius:8px;font-size:14px;\" placeholder=\"例: python,api,definitive\"></div><div class=\"form-group\"><label>提升倍数 (boost)</label><input id=\"sr-boost\" type=\"number\" value=\"1.2\" min=\"0\" step=\"0.1\" style=\"width:100%;padding:8px 10px;border:1.5px solid #ddd;border-radius:8px;font-size:14px;\"></div>';e.innerHTML=html;p.style.display="block";}}
-function saveSortRule(){{var t=document.getElementById('sort-rule-type').value;if(!t){{toast('\u8bf7\u9009\u62e9\u89c4\u5219\u7c7b\u578b','error');return}}var p={{type:t}};if(t==='score_weight'){{p.embedding_score=parseFloat(document.getElementById('sr-emb').value||0.6);p.rerank_score=parseFloat(document.getElementById('sr-rer').value||0.4)}}else if(t==='recency'){{p.days_halflife=parseInt(document.getElementById('sr-days').value||30)}}else if(t==='source_weight'){{try{{var v=JSON.parse(document.getElementById('sr-sources').value||'{{}}');Object.assign(p,v)}}catch(e){{toast('\u89e3\u6790\u5931\u8d25','error');return}}}}else if(t==='boost_keywords'){{var k=document.getElementById('sr-keys').value.split(',').map(function(s){{return s.trim()}}).filter(function(s){{return s}});if(!k.length){{toast('\u8bf7\u8f93\u5165\u5173\u952e\u8bcd','error');return}}p.keywords=k;p.boost=parseFloat(document.getElementById('sr-boost').value||1.2)}}fetch('/api/reranker/rules/add',{{method:'POST',headers:{{'Content-Type':'application/json'}},body:JSON.stringify({{rule:p}})}}).then(function(r){{return r.json()}}).then(function(d){{if(d.success){{toast('\u5df2\u6dfb\u52a0');hideSortRuleEditor();refreshSortRules()}}else toast(d.error,'error')}});}}
 window.onload = function() {{ updateAdvView(); refreshGeekTemplates(); refreshRules(); }};
 </script>
 </body>
@@ -1040,16 +876,9 @@ class RAGHandler(http.server.BaseHTTPRequestHandler):
                 key = data.get("key")
                 value = data.get("value")
                 cfg = load_config()
-                if section == "router":
-                    rt = cfg.setdefault("router", {}); fb = rt.setdefault("fallback", {})
-                    if key == "model_path_fallback": fb["model_path"] = value
-                    elif key == "fallback_threshold": fb["min_score_threshold"] = value
-                    else: rt[key] = value
-                elif section == "reranker":
-                    cfg.setdefault("reranker", {})[key] = value
-                else:
-                    if section not in cfg: cfg[section] = {}
-                    cfg[section][key] = value
+                if section not in cfg:
+                    cfg[section] = {}
+                cfg[section][key] = value
                 save_config(cfg)
                 self._send_json({"success": True})
 
@@ -1298,124 +1127,6 @@ class RAGHandler(http.server.BaseHTTPRequestHandler):
                 reset_template()
                 self._send_json({"success": True})
 
-            elif path == "/api/kb/toggle":
-                cfg = load_config(); kb = cfg.setdefault("kb", {}); kb["enabled"] = not kb.get("enabled", True)
-                save_config(cfg); self._send_json({"success": True, "enabled": kb["enabled"]})
-            elif path == "/api/download-model":
-                d = self._read_body(); mid = d.get("model_id","")
-                if not mid:
-                    self._send_json({"success": False, "error": "empty"})
-                    return
-                # 启动后台线程下载
-                def _dl_thread(mid):
-                    def _run():
-                        from embedding_model_manager import DOWNLOAD_SOURCES, download_model
-                        from utils import cache_directory
-                        try:
-                            _download_tasks[mid] = {"status": "starting", "source": "准备中", "attempt": 0, "message": "", "size_mb": 0, "speed": ""}
-                            # 搜集有效源
-                            sources = [s["name"] for s in DOWNLOAD_SOURCES[:4] if s["name"] != "llm_find"]
-                            _download_tasks[mid]["status"] = "downloading"
-                            _download_tasks[mid]["source"] = sources[0] if sources else "?"
-                            _download_tasks[mid]["message"] = f"正在从 {sources[0] if sources else '?'} 下载..."
-
-                            # 启动下载子线程
-                            dl_ok = [False]
-                            def _do_dl():
-                                try:
-                                    r = download_model(mid, sources=sources)
-                                    dl_ok[0] = r.get("success", False)
-                                except Exception as e:
-                                    _download_tasks[mid]["message"] = str(e)
-                                if not dl_ok[0]:
-                                    _download_tasks[mid]["status"] = "failed"
-                                    _download_tasks[mid]["message"] = "所有源均失败"
-                            t = threading.Thread(target=_do_dl, daemon=True)
-                            t.start()
-
-                            # 监控进度 — 扫描 model_downloads 下该模型的所有缓存文件
-                            last_size = 0
-                            model_cache_prefix = f"models--{mid.replace('/', '--')}"
-                            while t.is_alive():
-                                time.sleep(5)
-                                cur_size = 0
-                                dl_dir = os.path.join(cache_directory, "model_downloads")
-                                if os.path.isdir(dl_dir):
-                                    for root, _, fns in os.walk(dl_dir):
-                                        # 只统计该模型的缓存文件
-                                        if model_cache_prefix not in root:
-                                            continue
-                                        for fn in fns:
-                                            if fn.endswith('.incomplete') or fn.endswith('.lock'):
-                                                continue
-                                            fp = os.path.join(root, fn)
-                                            try:
-                                                if os.path.isfile(fp):
-                                                    cur_size += os.path.getsize(fp)
-                                            except:
-                                                pass
-                                size_mb = cur_size / (1024*1024)
-                                spd = (cur_size - last_size) / 5
-                                if spd >= 1024*1024:
-                                    spd_str = f"{spd/1024/1024:.1f} MB/s"
-                                elif spd >= 1024:
-                                    spd_str = f"{spd/1024:.0f} KB/s"
-                                else:
-                                    spd_str = f"{spd:.0f} B/s"
-                                _download_tasks[mid].update({
-                                    "size_mb": round(size_mb, 1),
-                                    "speed": spd_str,
-                                })
-                                last_size = cur_size
-
-                            # 下载完成
-                            if dl_ok[0]:
-                                _download_tasks[mid] = {"status": "done", "source": "", "attempt": 0,
-                                                        "message": "下载完成", "size_mb": _download_tasks[mid].get("size_mb", 0), "speed": ""}
-                            elif _download_tasks[mid]["status"] != "failed":
-                                _download_tasks[mid] = {"status": "failed", "source": "", "attempt": 0,
-                                                        "message": "下载失败", "size_mb": _download_tasks[mid].get("size_mb", 0), "speed": ""}
-                        except Exception as e:
-                            _download_tasks[mid] = {"status": "failed", "source": "", "attempt": 0,
-                                                    "message": str(e), "size_mb": 0, "speed": ""}
-                    t = threading.Thread(target=_run, daemon=True)
-                    t.start()
-                _dl_thread(mid)
-                self._send_json({"success": True, "message": "下载已启动"})
-
-            elif path == "/api/download-status":
-                d = self._read_body(); mid = d.get("model_id","")
-                if mid in _download_tasks:
-                    t = _download_tasks[mid]
-                    self._send_json({"success": True, "status": t.get("status",""),
-                                     "source": t.get("source",""),
-                                     "attempt": t.get("attempt",0),
-                                     "message": t.get("message",""),
-                                     "size_mb": t.get("size_mb",0),
-                                     "speed": t.get("speed","")})
-                else:
-                    self._send_json({"success": False, "status": "unknown"})
-            elif path == "/api/router/toggle":
-                cfg = load_config(); rc = cfg.setdefault("router", {}); rc["enabled"] = not rc.get("enabled", True)
-                save_config(cfg); self._send_json({"success": True, "enabled": rc["enabled"]})
-            elif path == "/api/router/rebuild-signatures":
-                try: rebuild_all_signatures(); self._send_json({"success": True})
-                except Exception as e: self._send_json({"success": False, "error": str(e)})
-            elif path == "/api/reranker/toggle":
-                cfg = load_config(); rr = cfg.setdefault("reranker", {}); rr["enabled"] = not rr.get("enabled", False)
-                save_config(cfg); self._send_json({"success": True, "enabled": rr["enabled"]})
-            elif path == "/api/reranker/rules":
-                cfg = load_config(); rules = cfg.get("reranker", {}).get("sort_rules", [])
-                self._send_json({"success": True, "rules": rules})
-            elif path == "/api/reranker/rules/add":
-                d = self._read_body(); rule = d.get("rule", {})
-                if rule: cfg = load_config(); rr = cfg.setdefault("reranker", {}); rr.setdefault("sort_rules", []).append(rule); save_config(cfg)
-                self._send_json({"success": True})
-            elif path == "/api/reranker/rules/delete":
-                d = self._read_body(); idx = d.get("index", -1)
-                cfg = load_config(); rules = cfg.get("reranker", {}).get("sort_rules", [])
-                if 0 <= idx < len(rules): rules.pop(idx); save_config(cfg)
-                self._send_json({"success": True})
             else:
                 self._send_json({"error": "unknown endpoint"}, 404)
 

@@ -1,45 +1,59 @@
-## Description: <br>
-Helps agents provide PowerShell guidance for detecting Chinese text encodings, reading and writing Chinese files safely, and fixing terminal display settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents guide PowerShell users through Chinese text encoding detection, safe file read/write workflows, and terminal display fixes.
 
-## Publisher: <br>
-[petersunpingww-droid](https://clawhub.ai/user/petersunpingww-droid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[petersunpingww-droid](https://clawhub.ai/user/petersunpingww-droid)
 
-## Use Case: <br>
-Developers and operators use this skill when working with Chinese-language files in PowerShell, especially when they need encoding detection, safe read/write examples, or terminal UTF-8 configuration guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence reports that the package references PowerShell scripts that may be missing or replaced by another source. <br>
-Mitigation: Inspect any supplied scripts before running them and do not execute replacement scripts from another source without review. <br>
-Risk: Write and batch-conversion examples can overwrite or transform user files. <br>
-Mitigation: Back up files first and prefer check, read-only, or small-sample runs before write or batch-conversion workflows. <br>
-Risk: Terminal repair examples can permanently modify PowerShell profile or terminal settings. <br>
-Mitigation: Prefer non-permanent checks first, use -Check or temporary settings where possible, and review any -Permanent profile changes before applying them. <br>
+## Use Case:
 
+Developers and engineers use this skill when diagnosing Chinese character garbling in Windows PowerShell workflows, reading or writing Chinese text files, or configuring a terminal for UTF-8 display. Users should verify the referenced PowerShell scripts are present and trusted before running the documented commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/petersunpingww-droid/chinese-encoding-handler) <br>
-- [Publisher profile](https://clawhub.ai/user/petersunpingww-droid) <br>
-- [PowerShell character encoding documentation](https://learn.microsoft.com/powershell/module/microsoft.powershell.core/about/about_character_encoding) <br>
-- [Unicode UTF-8 BOM FAQ](https://www.unicode.org/faq/utf_bom.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline PowerShell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include file paths, encoding names, and PowerShell flags such as -Check, -Reset, and -Permanent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The documentation references PowerShell scripts that are not included in the submitted artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the scripts are present in the installed package or obtain them from a trusted source before running any documented commands.
+
+Risk: Permanent terminal fixes may modify PowerShell profile or terminal settings.
+
+Mitigation: Use non-permanent checks first, review the exact changes, and back up the PowerShell profile before using a permanent option.
+
+Risk: Write and batch conversion examples can alter or overwrite files.
+
+Mitigation: Back up target files and test on copies before using write or conversion workflows on important data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/petersunpingww-droid/skills/chinese-encoding-handler)
+- [PowerShell character encoding documentation](https://learn.microsoft.com/powershell/module/microsoft.powershell.core/about/about_character_encoding)
+- [Unicode UTF-8 BOM FAQ](https://www.unicode.org/faq/utf_bom.html)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline PowerShell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include encoding names, file path examples, terminal configuration steps, and cautions for persistent profile changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

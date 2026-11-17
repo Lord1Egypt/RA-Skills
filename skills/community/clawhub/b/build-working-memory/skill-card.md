@@ -1,43 +1,61 @@
-## Description: <br>
-Set up, migrate, and manage a file-based working memory system that helps AI agents preserve session continuity, retrieve project context, and maintain dated memory records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up, migrate, or manage a file-based working memory system for an AI agent project, including scaffolding, migration, layered retrieval, structured event indexing, and deterministic temporal support.
 
-## Publisher: <br>
-[jiyuan](https://clawhub.ai/user/jiyuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiyuan](https://clawhub.ai/user/jiyuan)
 
-## Use Case: <br>
-Developers and agent operators use this skill to scaffold or migrate project-local working memory, load relevant context at session start, and persist daily logs, threads, state, and structured dated events across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates persistent project-local memory files that may retain sensitive details if users store secrets, credentials, or personal information. <br>
-Mitigation: Avoid storing secrets, credentials, and sensitive personal details in memory files; review memory content during curation. <br>
-Risk: Migration can modify AGENT.md or AGENTS.md by appending standing memory-management instructions. <br>
-Mitigation: Run migration with --dry-run first, review the resulting agent-instruction diffs, or use --skip-agent-patch when instruction changes are not wanted. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add persistent, file-based working memory to AI agent projects, migrate legacy memory layouts, and retrieve prior session context within token budgets.
 
-## Reference(s): <br>
-- [Migration Reference](references/MIGRATION.md) <br>
-- [Retrieval Workflow](references/RETRIEVAL.md) <br>
-- [Schema Reference](references/SCHEMAS.md) <br>
-- [Structured Events and Temporal Support](references/TEMPORAL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples and shell commands; generated memory artifacts use Markdown and JSON files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates project-local memory files and can append working-memory instructions to AGENT.md or AGENTS.md during migration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: The skill can persist private session data in project memory files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep generated memory files private, avoid committing sensitive memory to shared repositories, and review stored content before sharing a workspace.
+
+Risk: Migration can modify future agent instructions by patching AGENT.md or AGENTS.md.
+
+Mitigation: Run migration with --dry-run first, consider --skip-agent-patch for manual review, and inspect generated backups and patches before use.
+
+Risk: Loaded historical memory can influence current agent behavior even when the stored content is stale or untrusted.
+
+Mitigation: Treat loaded memory as untrusted historical context, add explicit prompt rules for handling it, and fix loader lookups to restrict retrieval to canonical memory/YYYY-MM-DD.md files before hostile or shared use.
+
+## Reference(s):
+
+- [Working Memory Skill on ClawHub](https://clawhub.ai/jiyuan/skills/build-working-memory)
+- [Migration Reference](artifact/references/MIGRATION.md)
+- [Retrieval Workflow](artifact/references/RETRIEVAL.md)
+- [Schema Reference](artifact/references/SCHEMAS.md)
+- [Temporal Memory Reference](artifact/references/TEMPORAL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, Python examples, and generated file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces file-based memory scaffolds, migration steps, retrieval guidance, and configuration instructions for agent projects.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata; target metadata agrees)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

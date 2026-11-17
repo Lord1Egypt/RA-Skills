@@ -1,40 +1,56 @@
-## Description: <br>
-Goal Tracker Pro helps users set goals, track progress, celebrate milestones, analyze goal data, and share achievements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Goal Tracker Pro helps users set personal goals, track progress, celebrate milestones, analyze goal data, and share achievements.
 
-## Publisher: <br>
-[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to manage personal goals across areas such as health, finance, learning, career, and personal growth.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The install command uses an unpinned clawhub installer version.
+
+Mitigation: Prefer a pinned and verified clawhub installer version when available and review installation behavior before use.
+
+Risk: The artifact declares a curl binary requirement without explaining why it is needed.
+
+Mitigation: Ask the publisher to document the curl requirement before allowing network-capable execution in restricted environments.
+
+Risk: The documentation is in Chinese, which may make review harder for operators who do not read Chinese.
+
+Mitigation: Have a qualified reviewer verify the translated instructions, pricing notes, and operational assumptions before deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users use this skill to manage personal goals by setting targets, updating progress, checking milestones, and reviewing goal categories such as health, finance, learning, career, and personal growth. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, shell commands]
 
-## Known Risks and Mitigations: <br>
-Risk: The package declares a curl binary requirement without explaining why. <br>
-Mitigation: Review the skill metadata and installation context before deployment; the supplied security evidence found no executable code, hidden actions, credential access, or persistence. <br>
-Risk: Users may enter sensitive health or financial goals. <br>
-Mitigation: Avoid submitting highly sensitive goal details unless the deployment's ClawHub data storage and sharing behavior is understood and acceptable. <br>
+**Output Format:** [Markdown with inline shell command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kaising-openclaw1/goal-tracker-pro) <br>
+**Other Properties Related to Output:** [Produces user-facing goal-tracking instructions and CLI-style examples; no executable code is embedded in the skill files.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+1.0.0 (source: server release evidence and artifact/_meta.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

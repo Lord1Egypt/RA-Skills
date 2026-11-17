@@ -1,47 +1,59 @@
-## Description: <br>
-Trade security tokens on the XCard platform by checking balances, placing orders, viewing market data, and reviewing trade history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade security tokens on the XCard platform: check balances, place orders, view market data, and review trade history.
 
-## Publisher: <br>
-[seineruo](https://clawhub.ai/user/seineruo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[seineruo](https://clawhub.ai/user/seineruo)
 
-## Use Case: <br>
-External users and developers use this skill to operate an XCard trading assistant that retrieves account, portfolio, market, order, and history information and can prepare or execute security-token orders through the XCard API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access private account, portfolio, order, trade, and transaction data. <br>
-Mitigation: Use a dedicated least-privilege XCARD_API_KEY and avoid exposing private account or history details in shared screens, logs, or transcripts. <br>
-Risk: The skill can place or cancel security-token orders through XCard. <br>
-Mitigation: Require explicit user confirmation before placing or cancelling orders, repeat the order details, and add a warning for large orders. <br>
-Risk: The security verdict is suspicious because trading actions and private financial data are under-scoped. <br>
-Mitigation: Install only when the XCard service and publisher are trusted, and limit API key permissions to required account, market, order, and history operations. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent interact with XCard trading APIs for account balances, portfolio positions, market data, order placement, order cancellation, and trade history review.
 
-## Reference(s): <br>
-- [XCard API application page](https://xcard.com/api) <br>
-- [XCard API base URL](https://api.xcard.com/v1) <br>
-- [Account & Portfolio module](artifact/api-account.md) <br>
-- [Market Data module](artifact/api-market.md) <br>
-- [Order Execution module](artifact/api-orders.md) <br>
-- [Trade History & Reports module](artifact/api-history.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Guidance] <br>
-**Output Format:** [Markdown responses with API request guidance and JSON-shaped examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires XCARD_API_KEY; order placement requires explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill can access private financial account data and trade history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped or revocable XCard API key, avoid exposing the key, and treat balances, positions, transactions, and history as private.
+
+Risk: The skill can place or cancel trading orders.
+
+Mitigation: Require explicit user confirmation for order placement and cancellation, repeat order details before execution, and warn when an order value exceeds 10% of available balance.
+
+Risk: Broad activation could route unrelated requests into financial account or trading actions.
+
+Mitigation: Use the skill only for explicit XCard trading intent and ask clarifying questions when symbols, quantities, prices, or date ranges are ambiguous.
+
+## Reference(s):
+
+- [XCard API access](https://xcard.com/api)
+- [XCard API base URL](https://api.xcard.com/v1)
+- [ClawHub skill page](https://clawhub.ai/seineruo/skills/xcard-trading)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Guidance]
+
+**Output Format:** [Markdown text with tables, concise trading guidance, and API-backed account, market, order, and history responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires XCARD_API_KEY; market data responses should include timestamps, and portfolio/history responses may include private financial information.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

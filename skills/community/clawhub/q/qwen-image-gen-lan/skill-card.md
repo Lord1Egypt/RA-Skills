@@ -1,44 +1,54 @@
-## Description: <br>
-阿里云千问文生图模型（Qwen-Image）技能，支持图像生成。当用户要求AI生成图片、画图、文生图、text-to-image，或提到千问、阿里云生图时使用。支持中英文提示词，可指定画面尺寸、风格参数等。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+阿里云千问文生图模型（Qwen-Image）技能，支持图像生成，可根据中英文提示词调用 DashScope 千问图像模型并配置尺寸、数量、提示词扩展、水印和随机种子等参数。
 
-## Publisher: <br>
-[lanlan314](https://clawhub.ai/user/lanlan314) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanlan314](https://clawhub.ai/user/lanlan314)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent prepare DashScope/Qwen image-generation requests from Chinese or English prompts, choose supported Qwen-Image models and aspect ratios, and return generated image URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with DashScope regional endpoint and API-key availability determining where requests are sent. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and generation parameters are sent to Alibaba DashScope/Qwen. <br>
-Mitigation: Avoid confidential or sensitive prompts unless the user is comfortable sending them to DashScope. <br>
-Risk: DashScope API key use can affect quota or billing. <br>
-Mitigation: Keep DASHSCOPE_API_KEY out of shared output and monitor key usage. <br>
-Risk: Generated image URLs are temporary according to the artifact documentation. <br>
-Mitigation: Save needed outputs promptly instead of relying on the returned URL remaining available. <br>
+## Use Case:
 
+Developers and agents use this skill to generate images with Alibaba Cloud DashScope Qwen-Image models from text prompts. It provides request examples, supported models, image size options, response parsing guidance, and common error handling notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lanlan314/qwen-image-gen-lan) <br>
-- [千问文生图 API 详细参考](references/api.md) <br>
-- [DashScope API key documentation](https://help.aliyun.com/zh/model-studio/get-api-key) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash and JSON examples; generated image URLs in API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DASHSCOPE_API_KEY; generated image URLs are documented as valid for 24 hours.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security summary reports unsafe shell-based prompt handling that could allow crafted prompts to run local commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use only non-sensitive prompts with a limited DashScope API key, and update request construction to use a JSON serializer or structured HTTP client.
+
+Risk: The skill requires a DashScope API key for image generation.
+
+Mitigation: Store the key in DASHSCOPE_API_KEY and avoid embedding credentials directly in prompts, command history, or shared artifacts.
+
+## Reference(s):
+
+- [千问文生图 API 详细参考](references/api.md)
+- [DashScope API key documentation](https://help.aliyun.com/zh/model-studio/get-api-key)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Configuration instructions, Markdown, JSON]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DASHSCOPE_API_KEY; generated image URLs are described as expiring after 24 hours.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

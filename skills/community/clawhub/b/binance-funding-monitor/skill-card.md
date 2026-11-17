@@ -1,45 +1,56 @@
-## Description: <br>
-币安资金费率监控是一个按次付费的 MCP skill，用于查询 Binance 合约账户总览、当前持仓、近 7 天资金费收入和完整监控报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors Binance Futures account balances, positions, funding-fee income, and profit/loss through paid MCP tools.
 
-## Publisher: <br>
-[yyu812707-wq](https://clawhub.ai/user/yyu812707-wq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[yyu812707-wq](https://clawhub.ai/user/yyu812707-wq)
 
-## Use Case: <br>
-External users and crypto operations agents use this skill to monitor a Binance futures account, review positions, and summarize funding-fee income. It requires user-provided Binance API credentials and should be used for monitoring only unless the trading behavior is explicitly reviewed and accepted. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary says this monitoring skill includes undisclosed leveraged trading code. <br>
-Mitigation: Review the artifact before installation and do not deploy it as monitoring-only unless the trading and rebalance code is removed or the publisher clearly reclassifies it as automated futures trading with explicit consent and risk controls. <br>
-Risk: The skill asks for sensitive Binance exchange credentials. <br>
-Mitigation: Use a dedicated Binance API key restricted to read-only or account-query access, keep trading and withdrawals disabled, and enable IP restrictions where possible. <br>
-Risk: The security verdict is suspicious. <br>
-Mitigation: Require manual security review before installation and ensure users understand the credential and futures-trading exposure. <br>
+## Use Case:
 
+External crypto account operators use this skill to retrieve Binance Futures account summaries, open positions, recent funding-fee income, and combined monitoring reports after configuring their Binance API credentials and SkillPay payment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yyu812707-wq/binance-funding-monitor) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/yyu812707-wq) <br>
-- [Binance Futures API endpoint](https://fapi.binance.com) <br>
-- [SkillPay API endpoint](https://api.skillpay.me/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text] <br>
-**Output Format:** [Plain text MCP responses with account, position, funding income, and full-report summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Binance API credentials and may require a SkillPay session identifier for paid calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter, skill.json, server release evidence) <br>
+Risk: The release is presented as a Binance monitoring skill but evidence.security reports that it also ships directly executable live futures trading strategy code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package before installation and avoid running the trading strategy unless intentional; for monitoring-only use, configure a dedicated Binance API key without futures-trading permission.
+
+Risk: The skill uses Binance API credentials and contacts SkillPay with session-linked payment metadata.
+
+Mitigation: Use a dedicated Binance API key with withdrawals disabled, restrict the key by IP where possible, and confirm payment-data handling before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yyu812707-wq/skills/binance-funding-monitor)
+- [ClawHub publisher profile](https://clawhub.ai/user/yyu812707-wq)
+- [Binance Futures API endpoint](https://fapi.binance.com)
+- [SkillPay API endpoint](https://api.skillpay.me/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain text MCP tool responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports can include account balances, margin use, open positions, unrealized P&L, funding-fee income, and payment-verification status.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

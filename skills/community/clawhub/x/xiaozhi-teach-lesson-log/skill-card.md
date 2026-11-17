@@ -1,43 +1,50 @@
-## Description: <br>
-Xiaozhi Teach Lesson Log helps independent teachers turn post-lesson notes into structured teaching records covering lesson content, mastery, student reaction, progress, adjustments, learning trajectory updates, lesson-hour tracking, and follow-up guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+把独立教师的课后记忆整理为结构化教学档案，记录课堂内容、掌握度、课堂反应、进步和后续调整。
 
-## Publisher: <br>
-[qizhitang](https://clawhub.ai/user/qizhitang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qizhitang](https://clawhub.ai/user/qizhitang)
 
-## Use Case: <br>
-External independent teachers use this skill after lessons to create structured lesson logs, update student learning trajectories, record lesson-hour consumption, plan the next lesson, and draft parent-facing summaries for teacher review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can update student records and lesson-hour balances from broad trigger phrases without a clear pre-write confirmation step. <br>
-Mitigation: Require explicit teacher confirmation before updating lesson records, deducting lesson hours, or preparing parent-facing briefs. <br>
-Risk: Lesson records and parent summaries may contain sensitive student information or speculative behavioral and emotional claims. <br>
-Mitigation: Use aliases only, avoid real names and family details, write behavior-based observations, and review all parent communication before sending. <br>
-Risk: Delayed lesson entry can reduce the reliability of remembered lesson details. <br>
-Mitigation: Record within the 5-minute window when possible and label delayed entries as limited-accuracy recollections. <br>
+## Use Case:
 
+Independent teachers use this skill after one-to-one or small-group lessons to create pseudonymous lesson records, review learning progress, and prepare next-lesson notes. Records and lesson-credit entries are shown to the teacher for confirmation before saving.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/qizhitang/xiaozhi-teach-lesson-log) <br>
-- [Lesson log template](references/lesson-log-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown and structured text templates for lesson logs, learning trajectory views, next-lesson suggestions, lesson-hour notes, and parent brief drafts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should use student aliases, concrete behavioral observations, delayed-entry accuracy notes, and teacher-confirmed parent communication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Release security evidence reports that schema validation may allow lesson-credit balance changes beyond the declared write scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep usedUnits and remainingUnits changes behind explicit, immediate teacher confirmation, and verify proposed changes against the declared write scope before saving.
+
+## Reference(s):
+
+- [ClawHub release](https://clawhub.ai/qizhitang/skills/xiaozhi-teach-lesson-log)
+- [Publisher profile](https://clawhub.ai/user/qizhitang)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Structured lesson records and concise teacher-facing summaries in text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses student aliases; lesson records are previewed for teacher confirmation, and lesson-credit balances change only after explicit confirmation.]
+
+## Skill Version(s):
+
+2.12.7 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

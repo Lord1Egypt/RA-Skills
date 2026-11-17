@@ -1,41 +1,53 @@
-## Description: <br>
-Guides agents using zsxq-cli through authentication, configuration diagnostics, low-level API calls, share-link construction, write/delete confirmation rules, feedback prompts, and common error handling for 知识星球. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides shared Knowledge Planet CLI guidance for authentication, diagnostics, direct API calls, share-link construction, safe write/delete rules, NPS feedback prompts, and common error handling.
 
-## Publisher: <br>
-[zsxq](https://clawhub.ai/user/zsxq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zsxq](https://clawhub.ai/user/zsxq)
 
-## Use Case: <br>
-Agents and users operating 知识星球 through zsxq-cli use this skill to log in, check CLI configuration, call supported or raw APIs, produce desktop and mobile share links, and recover from common authentication or HTTP errors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to operate zsxq-cli with a user's authenticated account. <br>
-Mitigation: Install only when the user intends agent access through zsxq-cli, and avoid sharing token or credential-bearing terminal output. <br>
-Risk: Raw API, posting, editing, deleting, or feedback-submission actions can change user-visible 知识星球 content or account state. <br>
-Mitigation: Review and explicitly approve those actions before execution, and confirm resource identifiers before write or delete operations. <br>
+## Use Case:
 
+External users and agents use this skill to operate zsxq-cli for Knowledge Planet authentication, account diagnostics, direct API calls, share-link generation, and safe handling of write or delete workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zsxq/zsxq-shared) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/zsxq) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include share-link URL templates and JSON parameter examples for zsxq-cli API commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill can guide zsxq-cli actions against a user's Knowledge Planet account, including raw API calls, writes, deletes, and NPS feedback submission.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and explicitly approve write, delete, raw API, and feedback actions before execution, and confirm resource IDs before modifying or deleting content.
+
+Risk: Authentication tokens grant account access and could be exposed if printed or shared.
+
+Mitigation: Do not display, log, or share authentication tokens; use zsxq-cli status and diagnostic commands without revealing credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zsxq/skills/zsxq-shared)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown guidance with inline shell command examples and URL templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires zsxq-cli and an authenticated Knowledge Planet account for account operations.]
+
+## Skill Version(s):
+
+1.3.1 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

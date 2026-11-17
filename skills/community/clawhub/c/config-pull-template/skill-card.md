@@ -1,44 +1,57 @@
-## Description: <br>
-Generates Android configuration-pull code templates for configuration center, whitelist, standalone API, and push-pull integration flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+生成配置拉取代码模板，用于在 Android 项目中接入配置中心、白名单、单独接口或推拉结合的配置。
 
-## Publisher: <br>
-[hefuwei-95](https://clawhub.ai/user/hefuwei-95) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hefuwei-95](https://clawhub.ai/user/hefuwei-95)
 
-## Use Case: <br>
-Developers and engineers use this skill to add Android configuration retrieval code, including managers, task or service interfaces, notification registration, and PluginModule lifecycle hooks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated code can edit Android project files and PluginModule lifecycle hooks. <br>
-Mitigation: Review the generated diff before committing and confirm lifecycle hook names, call timing, and module placement. <br>
-Risk: Generated integrations may include API URLs, push keys, credential references, or logging of configuration values. <br>
-Mitigation: Validate URLs, keys, credential references, and logging behavior before accepting the changes. <br>
+## Use Case:
 
+Android developers use this skill to generate Kotlin/Java templates for configuration fetch workflows, including config-center, whitelist, standalone API, and push-pull integration paths.
 
-## Reference(s): <br>
-- [配置拉取代码生成](https://clawhub.ai/hefuwei-95/config-pull-template) <br>
-- [配置中心 Manager 模板](references/config-center-template.md) <br>
-- [白名单 Manager 模板](references/whitelist-template.md) <br>
-- [单独接口 Manager 模板](references/api-template.md) <br>
-- [推拉结合 Manager 模板](references/push-pull-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with Kotlin and Java code written into workspace files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Android configuration integration code and PluginModule lifecycle hooks based on user-supplied configuration details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Generated app code may be written into the workspace without clear safeguards for confirmation or overwrites.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated diffs before keeping changes and only install the skill when workspace modification is expected.
+
+Risk: Untrusted names, keys, URLs, or JSON fields may produce unsafe or invalid generated code.
+
+Mitigation: Validate or escape template values before compiling generated code.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hefuwei-95/skills/config-pull-template)
+- [api-template.md](references/api-template.md)
+- [config-center-template.md](references/config-center-template.md)
+- [push-pull-template.md](references/push-pull-template.md)
+- [whitelist-template.md](references/whitelist-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Kotlin/Java code templates and generated workspace file edits]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated code should be reviewed before it is kept or compiled.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

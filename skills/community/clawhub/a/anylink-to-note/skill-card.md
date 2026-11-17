@@ -1,42 +1,57 @@
-## Description: <br>
-Turns public links into structured notes for WeChat articles, Get note shares, RSS podcasts, and general web pages, returning a title, content, short summary, tags, source name, and original URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AnyLink to Note converts shared links from WeChat articles, Get note links, RSS or podcast feeds, and public webpages into structured notes with title, content, summary, tags, source name, and URL.
 
-## Publisher: <br>
-[fanxlab](https://clawhub.ai/user/fanxlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fanxlab](https://clawhub.ai/user/fanxlab)
 
-## Use Case: <br>
-External users and agents use this skill to convert user-supplied public links into structured notes for saving, summarizing, and tagging source material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches user-provided URLs through third-party or local tooling, so private, internal, localhost, metadata-service, or token-bearing URLs could expose sensitive content. <br>
-Mitigation: Use only public links that are acceptable to fetch externally or locally; avoid private documents, internal network URLs, localhost links, cloud metadata endpoints, and URLs containing access tokens. <br>
-Risk: Some pages may require login, heavy JavaScript rendering, or block Jina Reader, which can produce incomplete or failed extraction. <br>
-Mitigation: Check extracted content before relying on the note; use the documented Playwright fallback for supported Get note links when Jina Reader is insufficient. <br>
+## Use Case:
 
+External users and developers use this skill when they want an agent to save, parse, summarize, or collect a shared URL as a structured note. It is intended for public web, WeChat, Get note, and RSS or podcast links that the user is comfortable processing through the documented extraction services.
 
-## Reference(s): <br>
-- [Supported URL Types](references/url-types.md) <br>
-- [AnyLink to Note on ClawHub](https://clawhub.ai/fanxlab/anylink-to-note) <br>
-- [Jina Reader Endpoint](https://r.jina.ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [JSON object with title, content, summary, tags, sourceName, and url; may include Markdown summaries and inline shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches public URLs with Jina Reader, Playwright, or RSS parsing depending on URL type.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Private, internal, or tokenized links may be exposed to third-party extraction services during link processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with links approved for third-party processing, and avoid private, internal, authenticated, or token-bearing URLs.
+
+Risk: Raw user-provided URLs in documented shell commands could lead to unintended local command execution if handled unsafely.
+
+Mitigation: Validate URLs before use and pass them with argument-safe execution instead of shell interpolation.
+
+Risk: Broad network fetching may retrieve unexpected or blocked content from public webpages.
+
+Mitigation: Review extracted content before relying on it, and restrict accepted URL schemes and domains where the deployment context requires tighter control.
+
+## Reference(s):
+
+- [Supported URL Types](references/url-types.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Structured note fields with Markdown guidance, JSON examples, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces title, content, summary, tags, sourceName, and url fields for extracted links.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

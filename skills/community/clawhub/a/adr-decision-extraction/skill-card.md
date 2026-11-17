@@ -1,40 +1,53 @@
-## Description: <br>
-Extracts architectural decisions from conversations, session transcripts, and design discussions by identifying problem-solution pairs, trade-off debates, technology choices, and explicit [ADR] tags before ADR writing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts architectural decisions from conversations, session transcripts, or design discussions before ADR writing by identifying problem-solution pairs, trade-offs, technology choices, and explicit [ADR] tags.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn planning conversations, transcripts, and design discussions into structured decision records for later ADR writing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Extracted decisions may be inaccurate or treated as formal ADRs before review. <br>
-Mitigation: Review extracted decisions, especially [ADR]-tagged and low-confidence items, before using them to write or publish ADRs. <br>
-Risk: Source conversations may contain names, client details, credentials, or sensitive internal plans. <br>
-Mitigation: Process and share transcripts only when disclosure is intended, and redact sensitive content before distribution. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn design discussions and session transcripts into structured decision records for downstream ADR writing. It prepares JSON decision summaries with confidence and context rather than authoring full ADR documents.
 
-## Reference(s): <br>
-- [Adr Decision Extraction on ClawHub](https://clawhub.ai/anderskev/adr-decision-extraction) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Guidance] <br>
-**Output Format:** [JSON object containing a decisions array] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Each decision includes title, problem, chosen option, alternatives, drivers, confidence, and source context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Extraction output may include confidential details or secrets from the conversations and transcripts supplied by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact source material and generated decision summaries before sharing or publishing them.
+
+Risk: Inferred architectural decisions can be incomplete or misleading when the source discussion is ambiguous.
+
+Mitigation: Verify low-confidence decisions against the original discussion before using them as ADR inputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anderskev/skills/adr-decision-extraction)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [JSON object, typically shown in a Markdown code block]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Decision objects include title, problem, chosen option, alternatives, drivers, confidence, and source context; low-confidence items should explain what was missing, weak, or contradictory.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

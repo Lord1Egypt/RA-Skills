@@ -1,40 +1,50 @@
-## Description: <br>
-Source Library helps an OpenClaw agent capture shared URLs into a persistent local research library with structured summaries, claims, quotes, tags, cross-references, freshness tracking, and search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searchable knowledge base that captures and cross-references shared URLs, saves structured source summaries with claims, quotes, analysis, tags, and freshness tracking, and helps retrieve connections, conflicts, and reading queue items.
 
-## Publisher: <br>
-[Don-GBot](https://clawhub.ai/user/Don-GBot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
 
+[don-gbot](https://clawhub.ai/user/don-gbot)
 
-## Use Case: <br>
-External users and developers use this skill to maintain a local, searchable source library from links they share with an agent. It is useful for personal research workflows that need saved summaries, claims, quotes, tags, connection mapping, conflict checks, and a reading queue. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically retain shared URLs, summaries, claims, quotes, tags, analysis, and context in a long-lived local library. <br>
-Mitigation: Avoid sharing confidential or private URLs unless they should be archived, and review or remove files under life/source when retained data is no longer appropriate. <br>
+## Use Case:
 
+External users and developers use this skill to turn shared links into a persistent local research library with searchable summaries, cross-references, conflict checks, and queue management.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Don-GBot/source-library) <br>
-- [Publisher profile](https://clawhub.ai/user/Don-GBot) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and command-line text output, including saved local Markdown source summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes persistent local files under life/source and data/source-queue.json in the user's workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release metadata and package.json) <br>
+Risk: Shared URLs and related analysis are saved as long-term local knowledge by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sharing private, internal, or sensitive URLs while the skill is active unless persistent local storage is intended; review and delete stored source files when needed.
+
+## Reference(s):
+
+- [ClawHub Source Library Skill Page](https://clawhub.ai/don-gbot/skills/source-library)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown files and plain-text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists source summaries under life/source and a reading queue under data/source-queue.json.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,15 +1,11 @@
 ---
 name: book-to-skills
-slug: book-to-skills
-displayName: "电子书拆解成技能包"
-version: "1.0.0"
-description: "This skill should be used when the user provides an electronic book (PDF, EPUB, TXT, MD) and wants to automatically extract knowledge, analyze structure, and generate multiple WorkBuddy skills. Trigger phrases: 拆解这本书, 从这本书提取技能, 把这本书变成技能, 生成技能包, book to skills. Supports three modes: Knowledge Base, Action Guide, Hybrid."
-xiaping_trigger: ["拆解这本书", "从这本书提取技能", "把电子书变成技能", "生成技能包", "book to skills", "extract skills from book", "电子书拆解", "把书变成技能"]
-xiaping_category: ["效率工具", "学习教育", "知识管理"]
-xiaping_tags: ["电子书", "PDF", "EPUB", "知识库", "技能生成", "学习方法", "知识提取", "Skill Builder"]
-agent_created: true
+description: 买了一堆电子书却没变成自己的能力？想把一本书拆成 agent 能用的技能却不知从何下手？电子书拆解成技能包（book to skills / ebook to skill / skill generator / ebook extraction）把 PDF/EPUB/TXT/MD 电子书自动提取知识、分析结构，生成多个可安装的 WorkBuddy 技能包，把读过的书变成可复用的 AI 能力。当用户提供电子书并说「帮我拆解这本书」「如何从这本书提取技能」「把这本书变成技能」「生成技能包」「我想把电子书变成技能」时触发。支持三种模式：知识库（Knowledge Base）、行动指南（Action Guide）、混合（Hybrid），按用途选模式即可。Use when you have ebooks and want to turn them into installable agent skills. Trigger phrases: 拆解这本书, 把电子书变成技能, book to skills, extract skills from book, generate skill pack from ebook.
+version: 1.0.0
+metadata:
+  openclaw:
+    requires: {}
 ---
-
 # Book to Skills — 电子书智能拆解器
 
 ## Overview

@@ -1,6 +1,21 @@
 {
-  "ownerId": "kn71qqe51cpatf65z76jzvj5v982p2m4",
   "slug": "ai-tech-intelligence-briefing",
-  "version": "1.1.1",
-  "publishedAt": 1773414187660
+  "displayName": "AI Tech Intelligence Briefing (Bilingual)",
+  "summary": "Daily AI/Tech Intelligence Briefing with bilingual support (EN/ZH), standalone Python implementation, and PayPal donation link",
+  "tags": ["ai","tech","intelligence","news","curator","openclaw","daily","bilingual","chinese","standalone"],
+  "license": "MIT",
+  "author": {
+    "handle": "greatworks",
+    "name": "Sun Wukong"
+  },
+  "version": "1.1.0",
+  "changelog": "v1.1.0 - Added bilingual support (EN/ZH), PayPal donation link (https://paypal.me/greatworks888)\nv1.0.3 - Complete security rewrite with standalone implementation",
+  "securityNotes": {
+    "networkAccess": "Read-only HTTP GET to public RSS/API endpoints",
+    "fileSystem": "Writes only to configured output directory (defaults to cwd)",
+    "subprocessCalls": "None",
+    "workspaceAccess": "None",
+    "apiKeyRequirements": "None",
+    "dataCollection": "None - does not collect or upload any user data"
+  }
 }

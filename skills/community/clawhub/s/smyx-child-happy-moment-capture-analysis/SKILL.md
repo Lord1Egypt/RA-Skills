@@ -1,7 +1,7 @@
 ---
 name: "smyx-child-happy-moment-capture-analysis"
 description: "Using fixed cameras at home, kindergartens, or playgrounds, the system analyzes children's behavior and expressions in real time to identify happy moments: big laughter (mouth corners sharply raised, eyes squinted into crescents, teeth showing), jumping (both feet off the ground), clapping (rhythmic hand clapping), and joyful reactions to praise or rewards. | 通过家庭、幼儿园或游乐场的固定摄像头，实时分析儿童的行为和表情，识别开心瞬间：大笑（面部表情：嘴角大幅度上翘、眼睛眯成月牙、露出牙齿）、蹦跳（双脚离地跳跃）、拍手（双手有节奏地拍击）、以及接收到表扬或奖励时的愉悦反应。当检测到开心事件时，自动抓拍高清图片或短视频（前后2秒），生成'开心日记'推送至家长手机APP，并播放鼓励音效（如'你真棒！"
-version: "1.0.3"
+version: "1.0.24"
 license: "MIT-0"
 ---
 

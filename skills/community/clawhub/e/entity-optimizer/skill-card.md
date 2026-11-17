@@ -1,46 +1,64 @@
-## Description: <br>
-Use when the user asks to optimize entity presence; builds Knowledge Graph, Wikidata, sameAs, and AI recognition signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Entity Optimizer helps agents audit, reconcile, and maintain machine-facing entity identity facts for Knowledge Graph, Wikidata, schema.org, sameAs, disambiguation, and AI-recognition workflows.
 
-## Publisher: <br>
-[aaron-he-zhu](https://clawhub.ai/user/aaron-he-zhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaron-he-zhu](https://clawhub.ai/user/aaron-he-zhu)
 
-## Use Case: <br>
-External users and developers use this skill to audit, build, and maintain entity identity across search engines, knowledge bases, and AI systems. It produces entity audits, gap analyses, canonical entity profiles, and handoff summaries for brand, person, organization, product, creative work, or event entities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Entity profiles can contain personal data or public-profile changes, especially for people. <br>
-Mitigation: Confirm consent or another lawful basis where relevant, keep facts neutral and sourced, and avoid storing unnecessary personal data. <br>
-Risk: Wikidata, Google, schema, or other public-profile recommendations may be incorrect or misleading if applied without review. <br>
-Mitigation: Review saved entity profiles and all proposed public-profile changes before applying them. <br>
+## Use Case:
 
+Developers, marketers, and agent operators use this skill to audit entity recognition, reconcile duplicate or conflicting identities, and prepare source-backed actions for knowledge graph, schema, and AI disambiguation workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/aaron-he-zhu/entity-optimizer) <br>
-- [Clawdis Homepage](https://github.com/aaron-he-zhu/seo-geo-claude-skills) <br>
-- [Entity Signal Checklist](references/entity-signal-checklist.md) <br>
-- [Entity Type Reference](references/entity-type-reference.md) <br>
-- [Knowledge Graph Guide](references/knowledge-graph-guide.md) <br>
-- [Knowledge Panel Wikidata Guide](references/knowledge-panel-wikidata-guide.md) <br>
-- [Example Audit Report](references/example-audit-report.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown reports, checklists, canonical entity profiles, and handoff summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include sameAs recommendations, Wikidata and schema guidance, priority action plans, and optional memory profile content when the user approves saving.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-9.9.9 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: The skill may inspect and potentially update an entity registry when authorized.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed registry changes before persistence, require explicit authorization for writes, and keep canonical updates tied to event IDs, offsets, and revisions.
+
+Risk: Entity recommendations involving people, About pages, social profiles, or public knowledge-base edits can affect public identity records.
+
+Mitigation: Confirm lawful basis for natural-person records, avoid raw contact or credential data, and use dedicated GEO or content skills for page-copy changes.
+
+Risk: Adjacent GEO and page-content guidance can be mistaken for automatic authority.
+
+Mitigation: Treat recommendations as advisory, keep Unknown distinct from failure, and verify facts against source-backed evidence before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aaron-he-zhu/skills/entity-optimizer)
+- [Publisher profile](https://clawhub.ai/user/aaron-he-zhu)
+- [Project homepage](https://github.com/aaron-he-zhu/aaron-marketing-skills)
+- [Entity Signal Checklist](artifact/references/entity-signal-checklist.md)
+- [Entity Type Reference](artifact/references/entity-type-reference.md)
+- [Knowledge Graph Guide](artifact/references/knowledge-graph-guide.md)
+- [Knowledge Panel and Wikidata Optimization Guide](artifact/references/knowledge-panel-wikidata-guide.md)
+- [Example Entity Optimization Report](artifact/references/example-audit-report.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown reports with optional JSON requests, shell commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce registry event proposals or authorized updates when host capability and user authorization are available.]
+
+## Skill Version(s):
+
+17.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

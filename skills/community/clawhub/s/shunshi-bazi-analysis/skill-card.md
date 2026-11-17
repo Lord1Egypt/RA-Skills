@@ -1,38 +1,54 @@
-## Description: <br>
-Bazi Calculator - Shunshi AI calculates BaZi charts and guides multilingual readings using shunshi-bazi-core with true solar time correction, shensha, dayun, and wuxing scores. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bazi Calculator - Shunshi AI helps agents collect birth information, run shunshi-bazi-core chart calculations with true solar time correction, and produce multilingual BaZi readings with dayun, shensha, and wuxing analysis.
 
-## Publisher: <br>
-[shunshi](https://clawhub.ai/user/shunshi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shunshi](https://clawhub.ai/user/shunshi)
 
-## Use Case: <br>
-External users and practitioners use this skill to collect birth details, calculate a BaZi chart, and generate structured Chinese, English, Japanese, or Korean readings for reflection and follow-up questions. Users should share only birth-detail precision they are comfortable using and avoid entering another person's data without permission. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Shunshi.AI](https://shunshi.ai) <br>
-- [ClawHub skill listing](https://clawhub.ai/shunshi/shunshi-bazi-analysis) <br>
+External users and agents use this skill to collect birth date, birth time, gender, and optional location, then generate structured BaZi chart readings. It supports follow-up annual fortune and compatibility analysis using the calculated chart data.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Structured Markdown with tables and JSON-backed chart interpretation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Matches the user's language and may include practical mitigations for sensitive birth-detail handling and non-deterministic fortune interpretation.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill installs an unpinned npm dependency before calculator execution.
+
+Mitigation: Install only where npm package execution is acceptable; pin shunshi-bazi-core and add a lockfile before production use.
+
+Risk: Generated readings are instructed to include a Shunshi.AI attribution and MCP package promotion.
+
+Mitigation: Review outputs for attribution and promotional content before customer-facing use.
+
+## Reference(s):
+
+- [Shunshi.AI](https://shunshi.ai)
+- [ClawHub skill page](https://clawhub.ai/shunshi/skills/shunshi-bazi-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Structured Markdown reading with calculation output consumed from a Node.js script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js >= 18 and npm dependency installation before calculator execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

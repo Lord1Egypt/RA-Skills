@@ -1,0 +1,80 @@
+{
+  "_comment": [
+    "Cell map for the forwarder's invoice template. All indices are 0-based:",
+    "row 0 = Excel row 1, col 0 = Excel column A.",
+    "",
+    "The forwarder revises this template from time to time. When they send a new",
+    "one: run `generate_invoice.py --check-template <new.xls>`, fix whatever it",
+    "flags here, then have the user upload ONE regenerated invoice as a test",
+    "before regenerating a whole batch. Do not assume a new template is",
+    "backwards compatible.",
+    "",
+    "`header` strings are only used by --check-template to detect drift; they are",
+    "matched as substrings, so partial wording changes still pass."
+  ],
+
+  "header": {
+    "waybill_number":      [2, 1],
+    "customer_reference":  [3, 1],
+    "total_packages":      [4, 1],
+    "destination_country": [5, 1],
+    "channel":             [6, 1],
+    "customs_type":        [7, 1],
+    "has_battery":         [10, 1],
+    "has_magnet":          [11, 1],
+
+    "address_code":        [2, 3],
+    "address_fields": {
+      "zip":     [3, 3],
+      "contact": [4, 3],
+      "phone":   [5, 3],
+      "city":    [6, 3],
+      "state":   [7, 3],
+      "addr1":   [8, 3],
+      "addr2":   [9, 3],
+      "company": [10, 3]
+    }
+  },
+
+  "labels": {
+    "battery_yes": "带电",
+    "battery_no":  "不带电",
+    "magnet_yes":  "带磁",
+    "magnet_no":   "不带磁"
+  },
+
+  "address_sheet": {
+    "name": "《美国AMZ地址库》",
+    "first_row": 1,
+    "columns": {
+      "code": 1, "contact": 4, "company": 5, "phone": 6,
+      "addr1": 8, "addr2": 9, "city": 11, "state": 12, "zip": 14
+    }
+  },
+
+  "data": {
+    "header_row": 13,
+    "first_row": 14,
+    "clear_columns": 23,
+    "columns": {
+      "box_seq":      {"col": 0,  "header": "箱序号"},
+      "box_code":     {"col": 1,  "header": "货箱编号"},
+      "fba_id":       {"col": 2,  "header": "FBA"},
+      "reference_id": {"col": 3,  "header": "Reference"},
+      "name_zh":      {"col": 4,  "header": "中文品名"},
+      "name_en":      {"col": 5,  "header": "英文品名"},
+      "hs_code":      {"col": 6,  "header": "HS"},
+      "unit_price":   {"col": 7,  "header": "采购单价"},
+      "qty_per_box":  {"col": 8,  "header": "单箱"},
+      "qty_total":    {"col": 9,  "header": "产品总数量"},
+      "material":     {"col": 14, "header": "材质"},
+      "use":          {"col": 15, "header": "用途"},
+      "image":        {"col": 16, "header": "产品图片"}
+    }
+  },
+
+  "image": {
+    "px": 48,
+    "dpi": 96
+  }
+}

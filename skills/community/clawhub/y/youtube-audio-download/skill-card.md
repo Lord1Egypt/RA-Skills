@@ -1,40 +1,52 @@
-## Description: <br>
-Download YouTube video audio and convert it to MP3, with optional cookies for age-restricted videos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download YouTube video audio and convert it to MP3, with optional cookies support for age-restricted videos.
 
-## Publisher: <br>
-[banner90](https://clawhub.ai/user/banner90) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[banner90](https://clawhub.ai/user/banner90)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and external users can use this OpenClaw skill to download audio from a YouTube URL as an MP3 file for downstream translation or playback workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The package entry points to an unbundled absolute-path Python file, so installation may execute or depend on code outside the packaged artifact.
+
+Mitigation: Review the package before installing, require a bundled package-relative entry path, and verify the downloader script before execution.
+
+Risk: The skill supports cookies for age-restricted videos without documented safe-handling guidance for the cookies file.
+
+Mitigation: Use cookies only with trusted code, keep the cookies file private and temporary, and delete it after the download workflow is complete.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to download YouTube audio as MP3 output for a larger translation workflow. It can pass a cookies file when the source video requires authenticated access. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Files, JSON]
 
-## Known Risks and Mitigations: <br>
-Risk: The configured tool entry points to an absolute Python file outside the reviewed artifact. <br>
-Mitigation: Review the external download_audio.py before use, or ask the publisher to include the downloader in the package with a package-relative entry path. <br>
-Risk: A cookies.txt file may contain sensitive authenticated session data. <br>
-Mitigation: Provide cookies only when necessary, keep the file out of shared storage and version control, and remove it when no longer needed. <br>
+**Output Format:** [JSON status object with an audio file path for a generated MP3 file]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Youtube Audio Download on ClawHub](https://clawhub.ai/banner90/youtube-audio-download) <br>
+**Other Properties Related to Output:** [May require a private cookies.txt file for age-restricted videos and a Windows Python environment when used as documented.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Files, Shell commands] <br>
-**Output Format:** [JSON status object with an MP3 audio file path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional cookies path and output directory parameters; expected execution is a Windows Python call from WSL.] <br>
+1.0.6 (source: server release metadata; artifact package.json and openclaw.plugin.json report 1.0.0)
 
-## Skill Version(s): <br>
-1.0.6 (source: ClawHub release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

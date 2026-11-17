@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "title": "设计图交付",
+  "revision": "r1",
+  "projectUuid": "YOUR-PROJECT-UUID",
+  "schematicDocumentUuid": "YOUR-SCHEMATIC-UUID",
+  "pcbDocumentUuid": "YOUR-PCB-UUID",
+  "readbacks": {
+    "schematic": {
+      "path": "schematic-readback.json",
+      "sha256": "<replace-with-file-sha256>",
+      "projectUuidPointer": "/context/projectUuid",
+      "documentUuidPointer": "/context/documentUuid",
+      "capturedAtPointer": "/createdAt"
+    },
+    "pcb": {
+      "path": "board.json",
+      "sha256": "<replace-with-file-sha256>",
+      "projectUuidPointer": "/capture/projectUuid",
+      "documentUuidPointer": "/capture/documentUuid",
+      "capturedAtPointer": "/capturedAt"
+    }
+  },
+  "artifacts": [
+    {
+      "role": "schematic-svg",
+      "path": "schematic.svg",
+      "sha256": "<replace-with-file-sha256>"
+    },
+    {
+      "role": "schematic-png",
+      "path": "schematic.png",
+      "sha256": "<replace-with-file-sha256>"
+    },
+    {
+      "role": "pcb-official-top-png",
+      "path": "top/snapshot.png",
+      "sha256": "<replace-with-file-sha256>",
+      "evidence": {
+        "path": "top-capture.json",
+        "sha256": "<replace-with-file-sha256>",
+        "projectUuidPointer": "/capture/projectUuid",
+        "documentUuidPointer": "/capture/documentUuid",
+        "capturedAtPointer": "/capture/completedAt",
+        "artifactSha256Pointer": "/sha256"
+      }
+    },
+    {
+      "role": "pcb-actual-top-svg",
+      "path": "actual-top.svg",
+      "sha256": "<replace-with-file-sha256>"
+    },
+    {
+      "role": "pcb-official-bottom-png",
+      "path": "bottom/snapshot.png",
+      "sha256": "<replace-with-file-sha256>",
+      "evidence": {
+        "path": "bottom-capture.json",
+        "sha256": "<replace-with-file-sha256>",
+        "projectUuidPointer": "/capture/projectUuid",
+        "documentUuidPointer": "/capture/documentUuid",
+        "capturedAtPointer": "/capture/completedAt",
+        "artifactSha256Pointer": "/sha256"
+      }
+    },
+    {
+      "role": "pcb-actual-bottom-svg",
+      "path": "actual-bottom.svg",
+      "sha256": "<replace-with-file-sha256>"
+    }
+  ],
+  "status": {
+    "layout": "candidate",
+    "routing": "unrouted",
+    "drcPassed": false,
+    "designAccepted": false,
+    "unresolved": [
+      "填写当前未解决问题；已证实无问题时使用空数组"
+    ],
+    "pcbReview": {
+      "labelDensity": "pending",
+      "textCollisions": "pending",
+      "copperGeometry": "pending"
+    }
+  }
+}

@@ -1,42 +1,54 @@
-## Description: <br>
-Provides a checkpoint API and CLI workflow for backing up local OpenClaw state before risky operations and clearing checkpoints after success. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides automatic checkpoint creation and rollback to help recover from failures during risky operations like configuration changes or updates.
 
-## Publisher: <br>
-[harman314](https://clawhub.ai/user/harman314) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[harman314](https://clawhub.ai/user/harman314)
 
-## Use Case: <br>
-Developers and agent operators use RescueClaw to create and clear local checkpoints around risky configuration changes, skill installs, or gateway updates so local recovery is possible if an operation fails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The installer downloads and installs a remote executable daemon without published integrity verification in the provided evidence. <br>
-Mitigation: Install only after reviewing the publisher and release pipeline, and prefer releases with checksums, signatures, or manual verification steps. <br>
-Risk: Checkpoint documentation may imply stronger rollback protection than the helper code can verify on its own. <br>
-Mitigation: Confirm the daemon is running and has acknowledged checkpoint requests before relying on rollback behavior for risky operations. <br>
+## Use Case:
 
+Developers and agents use RescueClaw to create checkpoints before risky operations such as configuration changes, skill installation, or gateway updates, then clear them after success so rollback remains available if the operation leaves the agent unresponsive.
 
-## Reference(s): <br>
-- [RescueClaw ClawHub listing](https://clawhub.ai/harman314/rescueclaw) <br>
-- [RescueClaw GitHub Releases](https://github.com/harman314/rescueclaw/releases) <br>
-- [Publisher profile](https://clawhub.ai/user/harman314) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JavaScript snippets and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes checkpoint, clear, status, and daemon installation guidance for user-local paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release metadata) <br>
+Risk: Installation automatically places an unverified external native executable in a command path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted publisher and prefer a release that bundles the executable or verifies it with pinned checksums or signatures.
+
+Risk: Rollback behavior can affect long-running operations if trigger and disable controls are unclear.
+
+Mitigation: Avoid using checkpoints around long-running operations until rollback windows, trigger conditions, and disable controls are understood.
+
+## Reference(s):
+
+- [RescueClaw ClawHub page](https://clawhub.ai/harman314/skills/rescueclaw)
+- [RescueClaw GitHub Releases](https://github.com/harman314/rescueclaw/releases)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript examples and CLI commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke the RescueClaw CLI for status checks and writes user-local checkpoint request data when used.]
+
+## Skill Version(s):
+
+0.2.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

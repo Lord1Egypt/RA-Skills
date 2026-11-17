@@ -1,44 +1,58 @@
-## Description: <br>
-Professional network switch security configuration generator compliant with CIS Benchmark standards for Aruba CX switches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional network switch security configuration generator compliant with CIS Benchmark standards for Aruba CX switches.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Network administrators, security teams, and infrastructure engineers use this skill to request Aruba CX switch hardening options and receive ready-to-review configuration files for authentication, encryption, access controls, logging, and network segmentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requests may send selected hardening options and session metadata to the publisher's API. <br>
-Mitigation: Avoid including secrets, internal IP addresses, live community strings, or production-only identifiers unless they are necessary. <br>
-Risk: Generated Aruba CX configurations can affect production network availability or access controls if applied without review. <br>
-Mitigation: Review generated configurations in a lab or maintenance window and keep a rollback plan before deployment. <br>
+## Use Case:
 
+Network administrators, security teams, and infrastructure engineers use this skill to request Aruba CX switch hardening configurations for authentication, encryption, access control, logging, and network segmentation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-aruba-cx-hardening) <br>
-- [ToolWeb](https://toolweb.in) <br>
-- [ToolWeb OpenClaw](https://toolweb.in/openclaw/) <br>
-- [Aruba CX hardening API route](https://api.mkkpro.com/hardening/aruba-cx) <br>
-- [Aruba CX hardening API docs](https://api.mkkpro.com:8134/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [configuration, guidance, text] <br>
-**Output Format:** [JSON responses containing Aruba CX CLI configuration file content and compliance summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated configurations should be reviewed before deployment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and OpenAPI info.version) <br>
+Risk: Security-related switch requests are sent to a third-party API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the API operator and data-handling terms are acceptable before sharing production topology, credentials, secrets, or sensitive network details.
+
+Risk: Generated switch configurations may be incomplete, unsafe for a specific environment, or incompatible with the target Aruba CX version.
+
+Mitigation: Treat generated configurations as drafts; require engineering review, lab validation, version checks, backups, and a rollback plan before production use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-aruba-cx-hardening)
+- [ToolWeb](https://toolweb.in)
+- [ToolWeb OpenClaw](https://toolweb.in/openclaw/)
+- [RapidAPI Publisher Profile](https://rapidapi.com/user/mkrishna477)
+- [Aruba CX Hardening API Route](https://api.mkkpro.com/hardening/aruba-cx)
+- [Aruba CX Hardening API Docs](https://api.mkkpro.com:8134/docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [JSON responses containing Aruba CX CLI configuration files, compliance summaries, and security summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated configurations should be reviewed and tested before deployment.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

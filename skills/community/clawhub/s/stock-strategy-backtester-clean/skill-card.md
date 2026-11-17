@@ -1,40 +1,52 @@
-## Description: <br>
-Backtests long-only stock trading strategies against historical OHLCV CSV data and reports performance metrics, transaction-cost assumptions, and trade logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backtest stock trading strategies on historical OHLCV data and report win rate, return, CAGR, drawdown, Sharpe ratio, and trade logs.
 
-## Publisher: <br>
-[taylen](https://clawhub.ai/user/taylen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[taylen](https://clawhub.ai/user/taylen)
 
-## Use Case: <br>
-Developers, analysts, and agent users use this skill to run repeatable stock strategy backtests from selected OHLCV CSV files and summarize return, drawdown, win rate, Sharpe ratio, and trade-level results. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Backtest results can be mistaken for investment advice or future performance guarantees. <br>
-Mitigation: Treat outputs as research, report downside metrics and trade count with returns, and validate strategies out of sample before relying on them. <br>
-Risk: The bundled Python script reads local CSV files selected by the user. <br>
-Mitigation: Run it only on intended market-data files and avoid using sensitive non-market datasets. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Backtest Metrics Reference](references/backtest-metrics.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/taylen/stock-strategy-backtester-clean) <br>
+## Use Case:
 
+Developers, analysts, and external users can use this skill to run repeatable long-only stock strategy backtests from daily OHLCV CSV files, compare strategy variants, and summarize return, drawdown, win rate, Sharpe ratio, costs, and trade-level results.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance, JSON] <br>
-**Output Format:** [Markdown summaries with shell command examples and JSON backtest results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-selected CSV files and reports strategy configuration, metrics, and trades.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Backtest results may be misread as investment advice or as a guarantee of future performance.
+
+Mitigation: Treat results as research, report downside metrics and trade count with returns, and avoid presenting cost-free or one-shot tuned backtests as production-ready.
+
+Risk: Incorrect CSV inputs or unrealistic transaction-cost assumptions can produce misleading strategy metrics.
+
+Mitigation: Verify the CSV path and required Date and Close columns before running, and set commission and slippage assumptions for each comparison.
+
+## Reference(s):
+
+- [Backtest Metrics Reference](references/backtest-metrics.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON backtest output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Backtest output includes strategy, period, metrics, configuration, and trades; quiet mode emits JSON-only output.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

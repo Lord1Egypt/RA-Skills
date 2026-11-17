@@ -1,40 +1,53 @@
-## Description: <br>
-Create Google Docs from Markdown files by converting Markdown to DOCX and uploading the result to Google Drive as an editable Google Doc. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates Google Docs from Markdown by converting content to DOCX and uploading it through gog and Google Drive.
 
-## Publisher: <br>
-[techlaai](https://clawhub.ai/user/techlaai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[techlaai](https://clawhub.ai/user/techlaai)
 
-## Use Case: <br>
-Developers and agents use this skill when they need to turn Markdown content into an editable Google Doc using the local gog CLI and Google Drive upload flow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The helper script uploads the selected Markdown-derived document to Google Drive using the currently authenticated gog account. <br>
-Mitigation: Confirm the active gog account and only run the skill on content intended for Google Docs. <br>
-Risk: The helper script downloads Pandoc from GitHub into /tmp when the expected local binary is absent. <br>
-Mitigation: Install Pandoc from a trusted package manager before use when tighter supply-chain control is required. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/techlaai/gdocs-markdown) <br>
-- [Pandoc 3.1.11 Linux release archive](https://github.com/jgm/pandoc/releases/download/3.1.11/pandoc-3.1.11-linux-amd64.tar.gz) <br>
+## Use Case:
 
+Developers and teams use this skill when they need an agent to create an editable Google Doc from Markdown content through an authenticated gog workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and Google Docs URL output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a Markdown file path and optional document title; the helper script returns the Google Docs link after upload.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The helper script can run an unverified Pandoc converter from a predictable /tmp path.
+
+Mitigation: Install Pandoc through a trusted package manager, or require checksum verification and a user-owned cache path before running the script.
+
+Risk: Selected Markdown content is uploaded to Google Drive through the user's authenticated gog account.
+
+Mitigation: Use the skill only for content intended to be uploaded to that Google account, and review files before running the workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/techlaai/skills/gdocs-markdown)
+- [Pandoc 3.1.11 Linux AMD64 release archive](https://github.com/jgm/pandoc/releases/download/3.1.11/pandoc-3.1.11-linux-amd64.tar.gz)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, guidance, configuration]
+
+**Output Format:** [Markdown instructions with bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a DOCX conversion and Google Drive upload workflow that returns a Google Docs link.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

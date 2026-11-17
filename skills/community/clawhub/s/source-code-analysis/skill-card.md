@@ -1,37 +1,54 @@
-## Description: <br>
-This skill provides a structured methodology for analyzing, understanding, and explaining source code repositories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill should be used when the user asks to "analyze source code", "understand this codebase", "perform code analysis", "study this project", "explain this repository", or discusses source code learning, codebase comprehension, open source project analysis, understanding software architecture, or learning from existing code.
 
-## Publisher: <br>
-[river-zhanglh](https://clawhub.ai/user/river-zhanglh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[river-zhanglh](https://clawhub.ai/user/river-zhanglh)
 
-## Use Case: <br>
-Developers, technical leads, students, and contributors use this skill to build a clear understanding of unfamiliar codebases, trace important execution paths, and produce architecture-focused analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages users to run builds, tests, or debugging while analyzing unfamiliar repositories, which can expose secrets or execute untrusted code. <br>
-Mitigation: Inspect scripts and dependencies first, avoid exposing credentials, and run unfamiliar code only in a disposable or sandboxed environment with limited filesystem and network access. <br>
+## Use Case:
 
+Developers, engineers, technical leads, contributors, and software engineering students use this skill to understand unfamiliar source repositories, analyze architecture and core pathways, and create structured codebase analysis reports.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Markdown analysis with optional inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include project summaries, pathway traces, design insights, priority reading lists, and learning recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill encourages running unfamiliar code during analysis, which can expose users to unsafe build, test, install, or startup behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with trusted code or inside an isolated sandbox, and inspect build, test, install, and startup commands before running them.
+
+Risk: Using the skill on third-party repositories without review can lead an agent to follow unsafe repository-specific instructions or commands.
+
+Mitigation: Review the skill before installing it and apply repository analysis steps selectively when working with untrusted projects.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/river-zhanglh/skills/source-code-analysis)
+- [Publisher Profile](https://clawhub.ai/user/river-zhanglh)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands]
+
+**Output Format:** [Markdown analysis reports with structured sections, file references, execution-flow notes, and learning recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include prioritized reading lists, code pathway traces, and suggested commands for validating understanding.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

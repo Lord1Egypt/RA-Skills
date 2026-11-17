@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI 通识课 · F4 伦理委员会 · 沉浸式冒险</title>
+<style>
+  body { font-family: "Microsoft YaHei", sans-serif; margin: 0; background: #0b1020; color: #e2e8f0; }
+  header { padding: 14px 20px; background: #131c33; }
+  h1 { margin: 0; font-size: 19px; }
+  .wrap { display: flex; gap: 16px; padding: 16px 20px; flex-wrap: wrap; }
+  #canvasHolder { background: #000; border-radius: 8px; }
+  .panel { background: #131c33; padding: 14px; border-radius: 8px; min-width: 300px; }
+  .q { font-size: 15px; margin-bottom: 10px; }
+  button { display: block; width: 100%; text-align: left; background: #1f2a4d; color: #e2e8f0; border: 1px solid #33406b; padding: 10px; border-radius: 6px; margin: 6px 0; cursor: pointer; }
+  button:hover { background: #2a3a68; }
+  #hud { font-size: 13px; color: #94a3b8; margin-top: 8px; }
+  #restart { background: #6366f1; width: auto; }
+  .gate { margin: 0 20px 20px; }
+</style>
+</head>
+<body>
+<header><h1>AI 通识课 · F4 伦理委员会 · 沉浸式冒险</h1></header>
+<div class="wrap">
+  <div id="canvasHolder"></div>
+  <div class="panel">
+    <div class="q" id="question">加载中…</div>
+    <div id="choices"></div>
+    <div id="hud">关卡 1 · 得分 0 · ❤❤❤</div>
+    <button id="restart">重新开始</button>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/2.0.3/p5.min.js"></script>
+<script>
+  if (typeof p5 === 'undefined') {
+    document.write('<script src="https://cdn.jsdelivr.net/npm/p5@2.0.3/lib/p5.min.js"><\/script>');
+  }
+</script>
+<script>
+const LEVELS = [
+  { q: '客服 AI 误将用户病历泄露给第三方。委员会应优先？',
+    c: [{t:'立即通知受影响用户并启动补救', ok:true},{t:'先内部评估再决定是否告知', ok:false},{t:'隐瞒以维护品牌', ok:false}] },
+  { q: '训练数据含未授权版权内容。应？',
+    c: [{t:'停用并追溯数据来源', ok:true},{t:'继续使用以保性能', ok:false},{t:'仅内部声明', ok:false}] },
+  { q: '招聘模型对女性存在偏差。应？',
+    c: [{t:'回滚并做公平性审计', ok:true},{t:'上线后观察', ok:false},{t:'调整阈值但不审计', ok:false}] },
+];
+const g = { level: 0, score: 0, hearts: 3 };
+
+// 复用固定 3 个选项按钮（仅更新文本与回调），避免每次重建 DOM 丢失状态/焦点
+const choiceBtns = [];
+function buildChoices() {
+  const box = document.getElementById('choices'); box.innerHTML = '';
+  for (let i = 0; i < 3; i++) {
+    const b = document.createElement('button');
+    b.addEventListener('click', () => choose(i));
+    box.appendChild(b); choiceBtns.push(b);
+  }
+}
+function render() {
+  const lv = LEVELS[g.level];
+  document.getElementById('question').textContent = `L${g.level+1}. ${lv.q}`;
+  lv.c.forEach((ch, i) => { choiceBtns[i].textContent = ch.t; });
+  document.getElementById('hud').textContent =
+    `关卡 ${g.level+1}/${LEVELS.length} · 得分 ${g.score} · ${'❤'.repeat(g.hearts)}${'·'.repeat(Math.max(0,3-g.hearts))}`;
+}
+function choose(i) {
+  if (LEVELS[g.level].c[i].ok) g.score += 20; else g.hearts -= 1;
+  if (g.hearts <= 0) {
+    document.getElementById('question').textContent = '💀 伦理失守，委员会解散。点击重新开始。';
+    choiceBtns.forEach(b => b.textContent = '—');
+  } else if (g.level >= LEVELS.length - 1) {
+    document.getElementById('question').textContent = `🎉 全部关卡通过！最终得分 ${g.score}`;
+  } else {
+    g.level += 1; render();
+  }
+}
+document.getElementById('restart').addEventListener('click', () => {
+  g.level = 0; g.score = 0; g.hearts = 3; render();
+});
+
+const sketch = (p) => {
+  p.setup = () => { const c = p.createCanvas(420, 320); c.parent('canvasHolder'); p.textFont('sans-serif'); };
+  p.draw = () => {
+    p.background(10, 16, 32);
+    p.fill(129, 140, 248); p.noStroke(); p.textSize(15);
+    p.text('伦理委员会 · 裁决现场', 16, 28);
+    p.fill(226); p.textSize(13);
+    p.text(`得分 ${g.score}   关卡 ${Math.min(g.level+1,LEVELS.length)}/${LEVELS.length}`, 16, 56);
+    // 漂浮粒子（画布交互视觉）
+    const t = p.frameCount * 0.02;
+    for (let i=0;i<6;i++){ p.fill(99,102,241,120); p.circle(60+i*60 + p.sin(t+i)*10, 160 + p.cos(t+i)*30, 8); }
+  };
+  p.mousePressed = () => { /* 画布点击：仅视觉反馈，不报错 */ };
+};
+new p5(sketch);
+buildChoices();
+render();
+</script>
+</body>
+</html>

@@ -1,41 +1,54 @@
-## Description: <br>
-Evaluate individual framework controls against organizational documentation with evidence extraction, severity classification, and remediation recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluate individual framework controls against organizational documentation with evidence extraction, severity classification, and remediation recommendations.
 
-## Publisher: <br>
-[dangsllc](https://clawhub.ai/user/dangsllc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dangsllc](https://clawhub.ai/user/dangsllc)
 
-## Use Case: <br>
-Compliance, security, and audit practitioners use this skill to assess whether organizational documentation satisfies specific framework controls and to identify evidence-backed gaps with severity and remediation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Release evidence flags a suspicious security verdict because one bundled review helper may run a nested reviewer with unrestricted sandbox access. <br>
-Mitigation: Install only if the publisher is trusted; before running autoreview, use `--no-yolo` or `AUTOREVIEW_YOLO=0` where appropriate and review fallback reviewer configuration. <br>
-Risk: Review workflows can expose local diffs, including sensitive code or untracked files, to the configured reviewer. <br>
-Mitigation: Review pending diffs before use and avoid running reviewer workflows on repositories containing sensitive uncommitted material. <br>
+## Use Case:
 
+Compliance, security, and audit teams use this skill to assess whether organizational documentation satisfies individual framework controls and to identify evidence, gaps, severity, and remediation recommendations.
 
-## Reference(s): <br>
-- [Control Assessment on ClawHub](https://clawhub.ai/dangsllc/control-assessment) <br>
-- [Rote Compliance Skills](https://github.com/Rote-Compliance/rote-compliance-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured JSON assessment, typically embedded in Markdown or returned as JSON when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes control identifiers, evidence quotes, coverage status, gap description, severity, recommendations, confidence, and reasoning.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: ClawHub release evidence) <br>
+Risk: The skill reads compliance documents supplied by the user and may include direct evidence quotes in its output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with documents the agent is allowed to read and quote in assessment results.
+
+Risk: The WebFetch allowance can retrieve URL-supplied documents or reference material.
+
+Mitigation: Avoid providing sensitive URLs unless external retrieval and assessment of that content is intended.
+
+## Reference(s):
+
+- [Control Assessment on ClawHub](https://clawhub.ai/dangsllc/skills/control-assessment)
+- [Publisher profile: dangsllc](https://clawhub.ai/user/dangsllc)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [Structured JSON assessment with extracted evidence, gap analysis, severity, recommendations, confidence, and reasoning.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include direct quotes from user-provided compliance documents.]
+
+## Skill Version(s):
+
+0.1.5 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

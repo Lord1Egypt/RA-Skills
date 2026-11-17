@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn70bhxwnh4pw7p1tvwe37wdmn8239gd",
-  "slug": "smartness-eval-open-source",
+  "ownerId": "yh22e",
+  "slug": "openclaw-smartness-eval",
   "version": "0.3.3",
-  "publishedAt": 1774165800590
+  "publishedAt": 1773892800000,
+  "name": "OpenClaw Smartness Eval",
+  "author": "圆规",
+  "description": "三层架构 AI Agent 智能度评估技能 v0.3.3。功能测试(70%)+系统健康(20%)+成长进化(10%)，30项自动化测试覆盖意图理解、安全意识、任务路由、响应质量、鲁棒性等11个维度。版本无关设计，升级不掉分。",
+  "keywords": ["agent-eval", "benchmark", "smartness", "openclaw", "self-assessment", "hallucination", "planning", "clear-framework"],
+  "repository": "https://github.com/yh22e/smartness-eval"
 }

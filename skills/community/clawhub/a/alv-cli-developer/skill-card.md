@@ -1,38 +1,50 @@
-## Description: <br>
-Guides agents in designing and implementing command-line tools, including argument parsing, interactive prompts, progress indicators, and shell completions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when building CLI tools, implementing argument parsing, or adding interactive prompts.
 
-## Publisher: <br>
-[alvisdunlop](https://clawhub.ai/user/alvisdunlop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alvisdunlop](https://clawhub.ai/user/alvisdunlop)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to design, implement, test, and polish command-line tools across Node.js, Python, and Go ecosystems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated commands, install steps, or shell scripts could affect a user's PATH, shell profile, package manager, or CI environment. <br>
-Mitigation: Review generated commands and configuration changes before running them, especially in local shell and CI environments. <br>
+## Use Case:
 
+Developers and engineers use this skill to design and implement command-line tools, including argument parsing, interactive prompts, progress indicators, shell completions, cross-platform behavior, and CLI testing guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alvisdunlop/alv-cli-developer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with code blocks and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include command structures, configuration handling, shell completion scripts, and brief UX rationale.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can be invoked for broad CLI or terminal-related requests, so an agent may produce commands or implementation guidance that affect local tooling or CI behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated CLI code, shell commands, and configuration changes before applying them, especially in repositories with production release or CI/CD workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alvisdunlop/skills/alv-cli-developer)
+- [ClawHub publisher profile](https://clawhub.ai/user/alvisdunlop)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with code blocks and command examples when applicable]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; no executable files are included in the release artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

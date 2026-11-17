@@ -1,0 +1,15 @@
+{
+  "apple_id": "",
+  "app_password": "",
+  "caldav_base": "https://caldav.icloud.com/",
+  "home": {
+    "name": "（你的家地址，用于算路程）",
+    "lat": 0.0,
+    "lon": 0.0
+  },
+  "city_code": "010",
+  "timezone": "Asia/Shanghai",
+  "calendars": {
+    "commitments": "（日历名，如 日程承诺）"
+  }
+}

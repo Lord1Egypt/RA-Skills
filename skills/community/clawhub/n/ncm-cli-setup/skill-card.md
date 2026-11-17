@@ -1,41 +1,59 @@
-## Description: <br>
-Installs and configures ncm-cli for NetEase Cloud Music CLI use, including API key setup, mpv player installation, player selection, login, and basic troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs and configures ncm-cli, including API key setup, optional mpv installation, default player selection, login, and basic troubleshooting.
 
-## Publisher: <br>
-[JunfengL](https://clawhub.ai/user/JunfengL) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junfengl](https://clawhub.ai/user/junfengl)
 
-## Use Case: <br>
-Developers and users use this skill to install ncm-cli, configure required API credentials, set up mpv or a local NetEase Cloud Music player, log in, and troubleshoot common setup issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing ncm-cli and mpv may run npm, package-manager, or sudo commands that modify the local system. <br>
-Mitigation: Review each installation command and package-manager prompt before approving it, and install only when ncm-cli or local playback is intended. <br>
-Risk: appId, privateKey, and login state are sensitive setup inputs. <br>
-Mitigation: Avoid entering or displaying credentials in shared, logged, or recorded terminals. <br>
+## Use Case:
 
+Developers and end users use this skill to install the NetEase Cloud Music CLI, configure credentials and playback, and resolve common setup issues across macOS, Linux, and Windows.
 
-## Reference(s): <br>
-- [NetEase Cloud Music Open Platform API key application](https://developer.music.163.com/st/developer/apply/account?type=INDIVIDUAL) <br>
-- [mpv installation](https://mpv.io/installation/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes platform-specific package-manager guidance and credential-handling cautions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill may run package-manager commands that change the host system, including sudo-backed Linux installs and repository-enabling steps.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review exact install commands before execution and confirm any sudo, repository, or package-manager change manually.
+
+Risk: The setup process stores privateKey and login-session credentials for ncm-cli.
+
+Mitigation: Treat the API privateKey and login session as sensitive credentials and avoid exposing them in shared terminals, logs, or transcripts.
+
+Risk: The npm package and mpv installer are not pinned or independently verified by the skill.
+
+Mitigation: Prefer pinning or verifying the npm package and mpv installation source before use.
+
+## Reference(s):
+
+- [NetEase Cloud Music Developer Platform API Key Application](https://developer.music.163.com/st/developer/apply/account?type=INDIVIDUAL)
+- [mpv Installation](https://mpv.io/installation/)
+- [ClawHub Skill Page](https://clawhub.ai/junfengl/skills/ncm-cli-setup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include OS-specific package-manager commands and credential-handling guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

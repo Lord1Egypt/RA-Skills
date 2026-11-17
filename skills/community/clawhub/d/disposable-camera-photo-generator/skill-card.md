@@ -1,43 +1,58 @@
-## Description: <br>
-Generate authentic disposable camera photos with harsh flash, film grain, light leaks, date stamps, and a nostalgic Y2K snapshot aesthetic via the Neta AI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates disposable-camera-style photos from text prompts using the Neta AI image generation API, with options for output size and reference-image style inheritance.
 
-## Publisher: <br>
-[blammectrappora](https://clawhub.ai/user/blammectrappora) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blammectrappora](https://clawhub.ai/user/blammectrappora)
 
-## Use Case: <br>
-External users and developers use this skill to generate disposable-camera-style images from text prompts, optionally selecting output size and a reference image UUID for style inheritance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, optional reference image UUIDs, and API tokens are sent to the external Neta/TalesOfAI service. <br>
-Mitigation: Use the skill only when the service is trusted for the prompt content and avoid sending sensitive text or private identifiers. <br>
-Risk: Passing the API token with the documented --token flag can expose the secret through shell history or process listings. <br>
-Mitigation: Run on a private machine, keep command histories protected, and rotate the token if it may have been exposed. <br>
+## Use Case:
 
+External users and developers use this skill to generate stylized disposable-camera images from text prompts. The skill supports square, portrait, landscape, and tall outputs, plus optional reference-image style inheritance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/blammectrappora/disposable-camera-photo-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/blammectrappora) <br>
-- [Neta API access](https://www.neta.art/open/) <br>
-- [TalesOfAI image generation endpoint](https://api.talesofai.com/v3/make_image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Text] <br>
-**Output Format:** [Plain text image URL printed to stdout, with status messages on stderr] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided Neta API token; supports square, portrait, landscape, and tall image sizes plus an optional reference image UUID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The Neta API token is supplied on the command line, which can expose it through shell history or local process inspection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-scope token, avoid shared shells, and rotate the token if it may have been exposed.
+
+Risk: The documented npx install path is mutable and may not always resolve to the same reviewed artifact.
+
+Mitigation: Prefer a trusted or pinned install path when available, and review the installed files before execution.
+
+Risk: Prompts and reference image identifiers are sent to an external image-generation service.
+
+Mitigation: Do not submit sensitive prompts or reference IDs unless external processing by that service is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/blammectrappora/skills/disposable-camera-photo-generator)
+- [Neta API access](https://www.neta.art/open/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands]
+
+**Output Format:** [Plain text image URL returned after command-line execution]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Status and polling messages are written to stderr; the generated image URL is written to stdout.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

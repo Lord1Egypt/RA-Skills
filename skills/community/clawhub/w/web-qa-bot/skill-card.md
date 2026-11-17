@@ -1,42 +1,60 @@
-## Description: <br>
-AI-powered automated QA for web apps. Smoke tests, accessibility, visual regression. Works with Cursor, Claude, ChatGPT, Copilot. Vibe-coding ready. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered automated QA for web apps. Smoke tests, accessibility, visual regression. Works with Cursor, Claude, ChatGPT, Copilot. Vibe-coding ready.
 
-## Publisher: <br>
-[NextFrontierBuilds](https://clawhub.ai/user/NextFrontierBuilds) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nextfrontierbuilds](https://clawhub.ai/user/nextfrontierbuilds)
 
-## Use Case: <br>
-Developers and QA engineers use this skill to run browser-based smoke tests, accessibility checks, visual regression checks, scripted web test suites, and QA reports for web applications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Crafted test inputs or report options can reach unsafe shell commands and potentially run local commands. <br>
-Mitigation: Install and run only with trusted test suites, URLs, selectors, report paths, and company/output values until shell execution is replaced with argument-vector execution and input validation. <br>
-Risk: Screenshots, console logs, generated reports, and authenticated browser sessions may expose sensitive application data. <br>
-Mitigation: Treat QA artifacts and browser sessions as sensitive, restrict access to outputs, and avoid running the skill against untrusted or unnecessary authenticated sessions. <br>
+## Use Case:
 
+Developers and QA engineers use this skill to run browser-based smoke tests, accessibility-oriented checks, visual regression workflows, and report generation for web applications before or after deployment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/NextFrontierBuilds/web-qa-bot) <br>
-- [GitHub project page](https://github.com/NextFrontierBuilds/web-qa-bot) <br>
-- [npm package](https://www.npmjs.com/package/web-qa-bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Markdown, JSON, Files] <br>
-**Output Format:** [Markdown guidance with CLI commands, YAML/JSON test suite examples, and generated Markdown, PDF, or JSON QA reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce screenshots, console logs, test reports, and browser automation output that can contain sensitive application data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: frontmatter and package.json) <br>
+Risk: Crafted URLs, YAML or JSON test steps, report paths, or company names could trigger local command execution through unsafe shell command construction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, run only trusted test suites against staging or test accounts, and fix shell command construction before broader use.
+
+Risk: Screenshots, console logs, and generated reports may capture sensitive application data.
+
+Mitigation: Use test accounts and non-production data, restrict artifact storage, and scrub or protect generated reports before sharing.
+
+Risk: PDF output depends on ai-pdf-builder behavior that is not fully reviewed, declared, and pinned in the evidence.
+
+Mitigation: Prefer Markdown or JSON reports and avoid PDF generation until ai-pdf-builder is reviewed, declared, and pinned.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nextfrontierbuilds/skills/web-qa-bot)
+- [npm package](https://www.npmjs.com/package/web-qa-bot)
+- [README](README.md)
+- [Report template](templates/report.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash, YAML, JSON, and TypeScript examples; generated QA reports may be Markdown, JSON, or PDF.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include test summaries, console findings, screenshots, and report files.]
+
+## Skill Version(s):
+
+0.1.3 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

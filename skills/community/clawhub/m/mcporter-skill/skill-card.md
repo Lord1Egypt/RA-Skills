@@ -1,38 +1,53 @@
-## Description: <br>
-Use the mcporter CLI to list, configure, authenticate, and call MCP servers and tools over HTTP or stdio, including ad-hoc servers, configuration edits, and CLI/type generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the mcporter CLI to list, configure, authenticate, and call MCP servers and tools directly over HTTP or stdio, including ad-hoc servers, config edits, and CLI or type generation.
 
-## Publisher: <br>
-[Livvux](https://clawhub.ai/user/Livvux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[livvux](https://clawhub.ai/user/livvux)
 
-## Use Case: <br>
-Developers and engineers use this skill to operate MCP servers from an agent workflow: listing configured servers, authenticating, calling tools, editing mcporter configuration, and generating typed CLI wrappers. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Configured MCP servers, authentication flows, tool calls, and configuration edits may handle credentials, change local mcporter state, or send arguments and context to local or remote servers. <br>
-Mitigation: Install mcporter only from a trusted source, configure only trusted MCP servers, and review auth, config, ad-hoc server, and tool-call commands before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Livvux/mcporter-skill) <br>
-- [mcporter homepage](https://github.com/pdxfinder/mcporter) <br>
+## Use Case:
 
+Developers and engineers use this skill to manage MCP server configuration, authenticate against MCP servers, call MCP tools, and generate CLI or type wrappers from an installed mcporter CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose mcporter commands that interact with local or remote MCP servers and local mcporter configuration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: mcporter can interact with MCP servers and tools that may access accounts, local files, or external services.
+
+Mitigation: Before authentication, configuration changes, ad-hoc server use, or tool calls, confirm the selected MCP server, target tool, and the access or changes that tool can perform.
+
+Risk: The skill depends on the mcporter CLI and Homebrew tap being trustworthy.
+
+Mitigation: Install only after reviewing and trusting the mcporter project and the pdxfinder Homebrew tap.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/livvux/skills/mcporter-skill)
+- [mcporter project homepage](https://github.com/pdxfinder/mcporter)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Code, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an installed mcporter CLI and configured MCP servers.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

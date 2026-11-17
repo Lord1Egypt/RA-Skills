@@ -1,44 +1,53 @@
-## Description: <br>
-Reviews Swift code for concurrency safety, error handling, memory management, and common mistakes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews Swift code for concurrency safety, error handling, memory management, and common mistakes.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill to review Swift changes for async/await, actor isolation, Sendable conformance, error handling, memory management, Swift Observation, and common Swift correctness issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reviews Swift source files and build settings, which may expose proprietary code or project configuration to the agent. <br>
-Mitigation: Use it only in repositories where the agent is permitted to inspect the relevant Swift files, package manifests, and Xcode build settings. <br>
-Risk: The workflow references a separate review-verification-protocol skill that is not included in this artifact. <br>
-Mitigation: Inspect and approve that referenced skill separately before relying on its verification gates. <br>
+## Use Case:
 
+Developers and engineers use this skill to review Swift changes for concurrency, Observation framework usage, error handling, memory management, and common Swift correctness issues before reporting findings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anderskev/swift-code-review) <br>
-- [Swift Concurrency](references/concurrency.md) <br>
-- [Swift Observation Framework](references/observable.md) <br>
-- [Swift Error Handling](references/error-handling.md) <br>
-- [Swift Common Mistakes](references/common-mistakes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown review findings with file and line references, severity, and explanation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings are gated by a Swift version baseline, full-symbol reading, scoped checklist selection, and pre-report verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence) <br>
+Risk: The workflow expects a separate review-verification-protocol skill; if that dependency is unavailable, reviews may be less complete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the verification protocol is available before relying on reported findings, or manually enforce full-symbol reading, usage search, caller checks, severity calibration, and file-line evidence.
+
+## Reference(s):
+
+- [Swift Code Review ClawHub Page](https://clawhub.ai/anderskev/skills/swift-code-review)
+- [Swift Common Mistakes](references/common-mistakes.md)
+- [Swift Concurrency](references/concurrency.md)
+- [Swift Error Handling](references/error-handling.md)
+- [Swift Observation Framework](references/observable.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown review findings with file and line references, severity labels, and concise explanations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, persistence, credential handling, or unrelated data access was identified in the security evidence.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

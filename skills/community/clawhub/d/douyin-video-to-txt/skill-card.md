@@ -1,40 +1,57 @@
-## Description: <br>
-抖音视频转文本知识库 — Download Douyin videos, transcribe to text via faster-whisper, save to Obsidian knowledge base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads Douyin videos, transcribes them with faster-whisper, and saves transcript notes to an Obsidian knowledge base.
 
-## Publisher: <br>
-[afeicn](https://clawhub.ai/user/afeicn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[afeicn](https://clawhub.ai/user/afeicn)
 
-## Use Case: <br>
-Developers and knowledge-base users use this skill to download a Douyin video, transcribe its speech locally with faster-whisper, and save the transcript and AI summary into an Obsidian note. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates local media, audio, transcript, and Markdown files, which may overwrite or clutter an existing notes location. <br>
-Mitigation: Set OBSIDIAN_VAULT_PATH before use and review generated destination filenames before writing notes. <br>
-Risk: Downloaded videos and generated transcripts may contain sensitive or copyrighted third-party content. <br>
-Mitigation: Use only content the user is permitted to process and keep generated files in an appropriate local vault or temporary directory. <br>
+## Use Case:
 
+Developers and knowledge workers use this skill to turn a Douyin video URL into local transcript files and an Obsidian note with metadata and an AI-generated summary.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/afeicn/douyin-video-to-txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with bash and Python snippets, plus generated transcript text and Obsidian Markdown notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local video, audio, transcript, and Markdown note files; the Obsidian destination can be controlled with OBSIDIAN_VAULT_PATH.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: server release evidence) <br>
+Risk: The release security summary flags unsafe code templating.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated commands before execution and pass video metadata through JSON or command arguments instead of interpolating it into Python code.
+
+Risk: The release security summary flags silent writes to an Obsidian vault.
+
+Mitigation: Confirm the destination vault and note path before writing, and avoid overwriting existing notes.
+
+Risk: The release security guidance limits use to trusted videos and metadata.
+
+Mitigation: Run the workflow only for Douyin URLs and metadata sources the user trusts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/afeicn/skills/douyin-video-to-txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell and Python code blocks; produced artifacts include transcript text files and an Obsidian Markdown note.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local temporary media and transcript files, then writes a note under the configured Obsidian vault path.]
+
+## Skill Version(s):
+
+2.0.3 (source: server release metadata; artifact frontmatter says 2.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

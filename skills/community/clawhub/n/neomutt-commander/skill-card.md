@@ -1,40 +1,57 @@
-## Description: <br>
-Read, search, organize, and draft email through NeoMutt and w3m while saving outgoing messages as drafts unless sending is explicitly approved. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read, search, organise, and draft emails using neomutt - a terminal IMAP client.
 
-## Publisher: <br>
-[elmoyeldo](https://clawhub.ai/user/elmoyeldo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[elmoyeldo](https://clawhub.ai/user/elmoyeldo)
 
-## Use Case: <br>
-Developers and terminal-oriented users use this skill to operate an IMAP mailbox through NeoMutt: browse and search inboxes, read HTML email via w3m, organize folders, archive messages, and draft replies or new messages. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Mailbox credentials may be exposed if stored directly in a persistent NeoMutt config that is synced or shared. <br>
-Mitigation: Use an app-specific password where available and prefer NeoMutt secret retrieval such as imap_pass_cmd, an OS keychain, or a password manager. <br>
-Risk: Agent-assisted email sending can create unintended outbound messages if sending is enabled without explicit user approval. <br>
-Mitigation: Keep sending disabled by default and save outgoing messages as drafts unless the user explicitly approves sending. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/elmoyeldo/neomutt-commander) <br>
-- [Project homepage](https://github.com/LogicalSapien/agent-skills/tree/main/clawhub/neomutt-commander) <br>
+## Use Case:
 
+External users and developers use this skill to operate an IMAP mailbox from the terminal: list and search messages, read HTML mail, manage folders, archive messages, and compose drafts.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Email sending should remain disabled unless explicitly approved; outgoing messages default to drafts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The setup example stores an IMAP password directly in the NeoMutt configuration.
+
+Mitigation: Use an app-specific token retrieved from a password manager or OS keychain where possible, and restrict permissions on the mail configuration files.
+
+Risk: The HTML mailcap handler may pass untrusted MIME charset values through the shell.
+
+Mitigation: Replace the mailcap handler with a reviewed version that does not pass untrusted MIME charset values through the shell before installing.
+
+Risk: The skill can guide email composition in a client that is capable of sending messages.
+
+Mitigation: Keep outgoing messages as drafts unless the user explicitly approves sending.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/elmoyeldo/skills/neomutt-commander)
+- [Skill homepage](https://github.com/LogicalSapien/agent-skills/tree/main/clawhub/neomutt-commander)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires neomutt and w3m; defaults outgoing email to draft creation unless sending is explicitly approved.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

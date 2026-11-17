@@ -1,44 +1,61 @@
-## Description: <br>
-AI-powered clinical operations intelligence spanning pharmaceutical development and healthcare delivery, with unified search across clinical trials, protocols, and patient care documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uplo Clinical provides AI-powered clinical operations intelligence spanning pharmaceutical development and healthcare delivery with unified search across clinical trials, protocols, and patient care documentation.
 
-## Publisher: <br>
-[RooJenkins](https://clawhub.ai/user/RooJenkins) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roojenkins](https://clawhub.ai/user/roojenkins)
 
-## Use Case: <br>
-Clinical, pharmaceutical, and healthcare operations teams use this skill to search organizational clinical knowledge, retrieve directives, investigate adverse event signals, prepare formulary reviews, and surface knowledge gaps across trials, protocols, SOPs, and patient care documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill connects to a remote clinical knowledge endpoint and may access sensitive PHI, PII, personnel data, and system inventory. <br>
-Mitigation: Install only in an approved clinical or enterprise environment where the UPLO endpoint is trusted, HTTPS is enforced, and API tokens are least-privilege. <br>
-Risk: Organization-wide exports and broad clinical searches can disclose sensitive operational or patient-related information. <br>
-Mitigation: Limit, log, and review exports; respect classification tiers and restrict access to users with appropriate clearance. <br>
-Risk: Clinical answers may affect safety, pharmacovigilance, regulatory, or care workflows if investigational and approved information is confused. <br>
-Mitigation: Require users to verify outputs against source protocols, guidelines, regulatory status, and responsible clinical or regulatory owners before action. <br>
+## Use Case:
 
+Clinical operations, pharmaceutical, healthcare, and regulatory teams use this skill to search organization-specific clinical trial protocols, patient care documentation, formulary materials, adverse event records, and operational SOPs through UPLO-backed MCP tools.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/RooJenkins/uplo-clinical) <br>
-- [UPLO](https://uplo.ai) <br>
-- [UPLO schemas](https://uplo.ai/schemas) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON MCP configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use configured UPLO MCP tools to return clinical search results, directives, organizational context, proposals, and knowledge-gap reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact skill.json) <br>
+Risk: The skill starts an unpinned MCP package while using an API token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the @agentdocs1/mcp-server package provenance before installation and pin or otherwise control the exact version that runs.
+
+Risk: Identity, directive, export, and clinical search tools can expose sensitive organizational or clinical context.
+
+Mitigation: Use a least-privilege UPLO token, restrict export and directive tools to authorized users, and retrieve identity or directives only when needed for the task.
+
+Risk: Clinical trial data and patient health information may be highly sensitive and can be misapplied if context is mixed or fabricated.
+
+Mitigation: Respect classification tiers, distinguish investigational from approved therapies, keep individual patient data separate from aggregate research findings, and surface only information present in the knowledge base.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/roojenkins/skills/uplo-clinical)
+- [UPLO](https://uplo.ai)
+- [UPLO Schemas](https://uplo.ai/schemas)
+- [README](artifact/README.md)
+- [Identity Patch](artifact/identity-patch.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell and tool-command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured UPLO instance URL and API token; tool results are governed by the connected organization's access controls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

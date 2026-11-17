@@ -1,46 +1,56 @@
-## Description: <br>
-Provides gRPC usage guidelines, protobuf organization, and production-ready patterns for Golang microservices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides gRPC usage guidelines, protobuf organization, and production-ready patterns for Golang microservices.
 
-## Publisher: <br>
-[samber](https://clawhub.ai/user/samber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samber](https://clawhub.ai/user/samber)
 
-## Use Case: <br>
-Developers and engineers use this skill to implement, review, and debug Go gRPC services and clients, including protobuf layout, code generation, interceptors, status-code handling, TLS/mTLS, graceful shutdown, streaming, and tests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can suggest shell commands and code changes that affect Go and protobuf project behavior. <br>
-Mitigation: Review generated commands, generated files, and code changes before execution or merge. <br>
-Risk: Generated gRPC examples may be adapted into production services where transport security, reflection, deadlines, and status-code handling affect reliability and exposure. <br>
-Mitigation: Confirm TLS or mTLS, disable reflection outside development, set deadlines on client calls, and test expected gRPC status codes before deployment. <br>
-Risk: Security evidence recommends installation only when the publisher and intended workflows are trusted. <br>
-Mitigation: Install from the server-resolved publisher profile and keep use scoped to Go gRPC development and review workflows. <br>
+## Use Case:
 
+Developers and engineers use this skill to implement, review, and debug Go gRPC services and clients, including protobuf layout, code generation, interceptors, error handling, TLS or mTLS, graceful shutdown, streaming, and bufconn tests.
 
-## Reference(s): <br>
-- [Protobuf & Code Generation Reference](references/protoc-reference.md) <br>
-- [gRPC Testing Reference](references/testing.md) <br>
-- [Project homepage](https://github.com/samber/cc-skills-golang) <br>
-- [ClawHub skill page](https://clawhub.ai/samber/golang-grpc) <br>
-- [Publisher profile](https://clawhub.ai/user/samber) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Go, protobuf, YAML, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands for Go tooling and protobuf generation; generated code and commands should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.4 (source: server release metadata and frontmatter) <br>
+Risk: The skill may lead an agent to run Go or protobuf tooling, fetch documentation, install dependencies, edit Go files, or use git commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed commands, generated files, dependency installs, and repository changes before allowing them in sensitive projects.
+
+Risk: Incorrect or incomplete gRPC guidance could affect production behavior, including status codes, deadlines, authentication, TLS or mTLS, reflection, health checks, and graceful shutdown.
+
+Mitigation: Validate generated code and advice against project requirements, run focused tests, and confirm security-sensitive settings before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samber/skills/golang-grpc)
+- [Project homepage](https://github.com/samber/cc-skills-golang)
+- [Protobuf & Code Generation Reference](references/protoc-reference.md)
+- [gRPC Testing Reference](references/testing.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Go, protobuf, YAML, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended for Go gRPC projects and may include review findings, implementation patterns, generated-command recommendations, and configuration snippets.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

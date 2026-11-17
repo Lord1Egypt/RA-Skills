@@ -1,43 +1,62 @@
-## Description: <br>
-Run Codex CLI, Claude Code, Kiro CLI, OpenCode, or Pi Coding Agent via background process for programmatic control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run Codex CLI, Claude Code, Kiro CLI, OpenCode, or Pi Coding Agent via background process for programmatic control.
 
-## Publisher: <br>
-[dandysuper](https://clawhub.ai/user/dandysuper) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dandysuper](https://clawhub.ai/user/dandysuper)
 
-## Use Case: <br>
-Developers and engineers use this skill to launch, monitor, and interact with coding-agent CLIs from OpenClaw while keeping each agent focused on a chosen working directory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Autonomous coding agents may make broad local code or shell changes when run with no-approval or trust-all-tools modes. <br>
-Mitigation: Use isolated workspaces, prefer scoped tool trust or sandboxed modes, and review file changes before commits, pushes, or deployment. <br>
-Risk: Running coding agents near secrets or production repositories can expose sensitive files or modify critical assets. <br>
-Mitigation: Keep secrets and production repositories outside the working directory unless strong containment and access controls are in place. <br>
+## Use Case:
 
+Developers and engineers use this skill in OpenClaw to launch, monitor, and interact with coding-agent CLIs for coding tasks, reviews, planning sessions, and project automation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dandysuper/openclaw-kirocli-coding-agent) <br>
-- [Kiro CLI installation](https://kiro.dev/docs/cli/installation) <br>
-- [Kiro CLI custom agents configuration](https://kiro.dev/docs/cli/custom-agents/configuration-reference) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires at least one supported coding-agent binary: claude, codex, opencode, pi, or kiro-cli.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release metadata and target metadata) <br>
+Risk: The skill recommends no-confirmation or unrestricted-tool modes for coding agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer confirmation-enabled or allowlisted tool modes, and reserve unrestricted modes for isolated sandboxes.
+
+Risk: Unsandboxed coding-agent execution can modify files, run commands, or affect repositories beyond the intended task.
+
+Mitigation: Run agents in a focused workdir, review changes before commit, push, or pull request actions, and avoid unsandboxed execution on sensitive projects.
+
+Risk: Pipe-to-shell or unpinned global installer patterns can introduce supply-chain risk during prerequisite setup.
+
+Mitigation: Review installer sources, prefer pinned or package-managed installs where available, and avoid pipe-to-shell setup in privileged environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dandysuper/skills/openclaw-kirocli-coding-agent)
+- [Kiro CLI](https://kiro.dev/)
+- [Kiro CLI Installation](https://kiro.dev/docs/cli/installation)
+- [Kiro Custom Agents Configuration Reference](https://kiro.dev/docs/cli/custom-agents/configuration-reference)
+- [OpenClaw Documentation](https://docs.openclaw.ai/)
+- [OpenClaw Repository](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PTY for interactive coding-agent CLIs and supports background session monitoring with stdin relay.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

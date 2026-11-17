@@ -1,46 +1,54 @@
-## Description: <br>
-Enables openai-codex/gpt-5.4 in OpenClaw through a config-layer patch with verification and rollback guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enable `openai-codex/gpt-5.4` in OpenClaw through a config-layer patch instead of rebuilding the app.
 
-## Publisher: <br>
-[youxitianguo](https://clawhub.ai/user/youxitianguo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[youxitianguo](https://clawhub.ai/user/youxitianguo)
 
-## Use Case: <br>
-External OpenClaw users and developers use this skill to enable a Codex GPT-5.4 model route when the base GPT-5.4 route is already visible but openai-codex/gpt-5.4 is blocked or missing. It guides them through backing up configuration, merging provider/model/alias/fallback settings, verifying registration, and rolling back if needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow changes local OpenClaw model routing and fallback configuration. <br>
-Mitigation: Back up ~/.openclaw/openclaw.json first, merge only the needed fields, and verify the model route with openclaw models list and session_status before relying on it. <br>
-Risk: Incorrect endpoint, API, or credential behavior can make model calls fail. <br>
-Mitigation: Review the baseUrl, api value, and API key behavior before testing, and roll back the configuration if validation fails. <br>
-Risk: OpenClaw configuration field names may vary by version. <br>
-Mitigation: Merge the example into the existing openclaw.json structure instead of replacing the whole file. <br>
+## Use Case:
 
+Developers and OpenClaw power users use this skill to add and verify the `openai-codex/gpt-5.4` provider, model, alias, and fallback entries through a reversible configuration workflow.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/youxitianguo/openclaw-codex-gpt54-enable) <br>
-- [Publisher profile](https://clawhub.ai/user/youxitianguo) <br>
-- [Project homepage](https://github.com/youxitianguo/openclaw-skill-openclaw-codex-gpt54-enable) <br>
-- [English documentation](artifact/README.md) <br>
-- [Chinese documentation](artifact/README.zh-CN.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces instructions for editing ~/.openclaw/openclaw.json and verifying OpenClaw model registration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Changing the OpenClaw configuration can affect model routing or fallback behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up `~/.openclaw/openclaw.json`, merge changes into the existing structure, and verify with `openclaw models list` and `session_status`.
+
+Risk: The `openai-codex/gpt-5.4` route may not be appropriate for every OpenClaw environment.
+
+Mitigation: Confirm the provider route, API settings, and authentication setup are appropriate before applying the workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/youxitianguo/skills/openclaw-codex-gpt54-enable)
+- [Project Homepage](https://github.com/youxitianguo/openclaw-skill-openclaw-codex-gpt54-enable)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with shell command and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes verification and rollback steps for an OpenClaw configuration change.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

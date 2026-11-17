@@ -1,48 +1,59 @@
-## Description: <br>
-Coordinates an end-to-end skill improvement pipeline that proposes, scores, optionally evaluates, executes, and gates low-risk changes with retry feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinates a full skill-improvement pipeline that proposes, scores, optionally evaluates, applies, gates, and retries changes for one or more target skills.
 
-## Publisher: <br>
-[lanyasheng](https://clawhub.ai/user/lanyasheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanyasheng](https://clawhub.ai/user/lanyasheng)
 
-## Use Case: <br>
-Developers and skill maintainers use this agent skill to run a full improvement cycle over one or more skills, including proposal generation, scoring, optional evaluation, execution, gate decisions, and retry traces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify files in the selected target skill. <br>
-Mitigation: Run it first on a test copy or tightly scoped --target, keep --state-root isolated, and review generated diffs, receipts, traces, and backups before trusting kept changes. <br>
-Risk: Accepted proposals could still add incorrect or misleading guidance to documentation or guardrail files. <br>
-Mitigation: Review gate receipts and scan the modified skill before deployment; use task suites where available to add evaluator evidence. <br>
-Risk: The current implementation only auto-keeps a narrow class of low-risk Markdown changes and may skip deeper evaluation when no task suite is provided. <br>
-Mitigation: Treat pending, rejected, and reverted candidates as review signals, and provide a task suite when higher-confidence evaluation is required. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to run an end-to-end improvement cycle across one or more skills, including proposal generation, scoring, optional evaluation, execution, gate decisions, and retry feedback.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lanyasheng/improvement-orchestrator) <br>
-- [Architecture](references/architecture.md) <br>
-- [Guardrails](references/guardrails.md) <br>
-- [Phases](references/phases.md) <br>
-- [Adapters](references/adapters.md) <br>
-- [Skill-Evaluator Adapter](references/skill-evaluator-adapter.md) <br>
-- [End-to-End Demo](references/end-to-end-demo.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON artifacts] <br>
-**Output Format:** [Markdown guidance with shell commands and machine-readable JSON artifacts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local run state, receipts, diffs, traces, and backups under the chosen state directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: The skill can modify installed skill files during execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on version-controlled targets, use a dedicated state directory, and review generated diffs, receipts, and rollback pointers before accepting changes.
+
+Risk: The security summary warns that requested evaluation may not be a mandatory safety gate.
+
+Mitigation: Do not rely on --task-suite alone for approval; require manual review or separate smoke tests before promoting generated changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lanyasheng/skills/improvement-orchestrator)
+- [Architecture](references/architecture.md)
+- [Guardrails](references/guardrails.md)
+- [End-to-End Demo](references/end-to-end-demo.md)
+- [Phases](references/phases.md)
+- [Adapters](references/adapters.md)
+- [Skill-Evaluator Adapter](references/skill-evaluator-adapter.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON artifacts, Markdown diffs, and concise terminal summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local state, trace, execution, and gate receipt files under the configured state root.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata; artifact frontmatter reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

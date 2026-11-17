@@ -1,45 +1,58 @@
-## Description: <br>
-Trading Quant provides market data and quantitative analysis for A-shares, US stocks, Hong Kong stocks, precious metals, capital flows, market anomalies, and multi-factor stock scoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trading Quant helps agents fetch and analyze real-time market data for A-shares, U.S. and Hong Kong stocks, precious metals, market anomalies, capital flows, and quantitative scoring signals.
 
-## Publisher: <br>
-[onlyloveher](https://clawhub.ai/user/onlyloveher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[onlyloveher](https://clawhub.ai/user/onlyloveher)
 
-## Use Case: <br>
-External users and developers use this skill to fetch finance and news data, analyze stock and market conditions, compare capital flows, and generate informational trading-analysis summaries. Outputs should be treated as market-analysis assistance rather than investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill produces market-analysis outputs that could be mistaken for investment advice. <br>
-Mitigation: Treat outputs as informational only and require users to make independent financial decisions. <br>
-Risk: The skill contacts third-party finance and news services and may use local watchlist symbols when no ticker is supplied. <br>
-Mitigation: Review configured symbols and network access before use, especially in sensitive environments. <br>
-Risk: Market caches and snapshots are stored locally, so stale or local data may affect analysis. <br>
-Mitigation: Check source labels and freshness indicators before relying on a result. <br>
-Risk: Some sentiment scores may fall back to keyword-based methods rather than FinBERT. <br>
-Mitigation: Use sentiment scores as directional context and verify important conclusions against source news. <br>
+## Use Case:
 
+Agents use this skill to retrieve live market data and produce quantitative trading analysis, market scans, capital-flow summaries, and risk-marked signal labels for finance research and monitoring workflows. Outputs should be treated as informational analysis, not investment advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/onlyloveher/cn-stock-analyzer) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or JSON-like command output with inline shell commands and market-analysis text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include locally cached market snapshots, source labels, scores, risk flags, and data-freshness notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill calls multiple public market and news APIs and exposes a broad command-line analysis surface.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where those external requests are acceptable, review commands before execution, and limit use to trusted agent workflows.
+
+Risk: Local temp and cache handling needs review before installation, especially on shared multi-user systems.
+
+Mitigation: Run as a non-privileged user and avoid shared multi-user hosts until temp, cache, and batch-output handling are hardened.
+
+Risk: Trading scores and signal labels can be mistaken for investment recommendations.
+
+Mitigation: Treat outputs as informational analysis and require qualified human review before financial decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/onlyloveher/skills/cn-stock-analyzer)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and structured market-analysis results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Market data and scoring results depend on external public data sources and local cache freshness.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

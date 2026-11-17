@@ -1,44 +1,56 @@
-## Description: <br>
-Helps agent users, skill authors, maintainers, and teams turn Nano Pdf-style workflow demand into practical plans, checklists, artifacts, analysis, code changes, and verification notes for PDF editing and adjacent productivity tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agent users and skill authors plan, harden, debug, and adapt Nano Pdf-style PDF workflows into practical checklists, analyses, code changes, or implementation plans.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-Agent users, skill authors, maintainers, and teams use this skill to produce practical workflows, checklists, implementation support, and review notes for Nano Pdf-style PDF editing and work-productivity tasks. It is intended for local-hardware-friendly assistance that clarifies goals, reduces manual coordination, and validates the resulting artifact against stated success criteria. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad PDF, editing, and productivity trigger language may cause the skill to be selected for tasks where a narrower workflow would be safer. <br>
-Mitigation: Invoke the skill explicitly by name for intended Nano Pdf-style work, or narrow or disable implicit triggers in mixed-task environments. <br>
-Risk: Workflow guidance can be incomplete when the user's success criteria, inputs, or constraints are underspecified. <br>
-Mitigation: Confirm material missing information, state assumptions, and validate the output against the documented review criteria before relying on it. <br>
+## Use Case:
 
+External agent users, skill authors, maintainers, and teams use this skill to turn Nano Pdf-style workflow requests into practical plans, templates, checklists, analyses, code changes, and verification notes.
 
-## Reference(s): <br>
-- [Requirement Plan](references/requirement-plan.md) <br>
-- [ClawHub release page](https://clawhub.ai/kyro-ma/skills/work-productivity-nano-pdf-workflow-helper-002325) <br>
-- [Nano Pdf demand signal](https://clawhub.ai/skills/nano-pdf) <br>
-- [PDFWix discussion](https://news.ycombinator.com/item?id=48642168) <br>
-- [Native customization surface for rule packs and instructions](https://github.com/microsoft/vscode/issues/322650) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with optional code blocks, shell commands, checklists, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only workflow helper; no executable code, credential use, persistence, or destructive behavior identified in server security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Broad activation wording may trigger the skill on generic PDF or editing requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit invocation where possible, and narrow or disable implicit invocation if the platform allows it.
+
+Risk: Workflow, checklist, or code-change guidance could be incorrect or incomplete for a user's specific PDF workflow.
+
+Mitigation: Validate outputs against the stated success criteria and review implementation changes before deployment.
+
+## Reference(s):
+
+- [Requirement Plan](references/requirement-plan.md)
+- [Popular Clawhub skill demand: Nano Pdf](https://clawhub.ai/skills/nano-pdf)
+- [PDFWix Free online PDF and document conversion Tool](https://news.ycombinator.com/item?id=48642168)
+- [Native customization surface for rule packs and instructions](https://github.com/microsoft/vscode/issues/322650)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with optional code blocks, shell commands, configuration snippets, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces tailored workflow support and a short verification note; no hidden execution behavior was identified in security evidence.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

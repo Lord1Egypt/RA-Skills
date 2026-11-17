@@ -1,45 +1,63 @@
-## Description: <br>
-Shimo Document Export AI Skill enables agents to authenticate with shimo.im, browse files and team spaces, and export Shimo documents in formats such as Markdown, PDF, Word, Excel, PowerPoint, XMind, and images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shimo Export helps agents authenticate to shimo.im, browse and search Shimo files and team spaces, and export documents in formats such as Markdown, PDF, Word, Excel, PowerPoint, XMind, and images.
 
-## Publisher: <br>
-[navyum](https://clawhub.ai/user/navyum) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[navyum](https://clawhub.ai/user/navyum)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent find, list, and export Shimo documents that are accessible to the authenticated account. It is intended for document backup, conversion, and batch download workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles a full live Shimo session cookie, which can grant broad access to personal and team documents. <br>
-Mitigation: Use the skill only on a trusted machine, never paste cookie values into chat, keep config/env.json protected with 0600 permissions, and rotate or revoke the Shimo session when finished. <br>
-Risk: The skill can scan and export broad sets of files, including all-space or team-space documents available to the account. <br>
-Mitigation: Confirm the intended scope and destination before large exports, avoid all-space exports unless necessary, and review exported content storage locations. <br>
-Risk: Credential expiry or failed authentication can interrupt export workflows. <br>
-Mitigation: Run the provided preflight check before operations and reauthenticate through the local browser login flow when the Shimo API returns an authorization error. <br>
+## Use Case:
 
+External users and agents working with Shimo documents use this skill to search, browse, and export personal or team-space files. It supports both single-document and batch export workflows when a valid Shimo session credential is available.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/navyum/shimo-export) <br>
-- [Publisher profile](https://clawhub.ai/user/navyum) <br>
-- [Export API reference](artifact/export/references/api.md) <br>
-- [File management API reference](artifact/file-management/references/api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files] <br>
-**Output Format:** [Natural-language summaries with JSON parsed from Node.js scripts and exported document files written to disk] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a valid SHIMO_COOKIE session credential; exported file formats depend on the Shimo document type.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill handles live Shimo session credentials and can access account, file metadata, team spaces, and exported document contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if granting that access is acceptable, prefer a short-lived SHIMO_COOKIE value, never paste cookie values into conversation, and keep credential storage out of source control.
+
+Risk: Broad batch exports can expose large amounts of personal or team-space document content.
+
+Mitigation: Prefer scoped keyword or folder exports, avoid all-files exports unless explicitly needed, and write exports only to controlled directories.
+
+Risk: The browser proxy login flow intercepts a session cookie locally and is called out by the security evidence as risky until replaced or hardened.
+
+Mitigation: Use the proxy only on a trusted local machine or set a short-lived credential manually through the environment, then remove the credential after use.
+
+Risk: Downloaded export files may contain sensitive Shimo document contents.
+
+Mitigation: Handle exported files according to the user's data classification requirements and delete local copies when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/navyum/skills/shimo-export)
+- [Export API Reference](artifact/export/references/api.md)
+- [File Management API Reference](artifact/file-management/references/api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance]
+
+**Output Format:** [Natural-language summaries, JSON script results, and exported document files such as Markdown, PDF, DOCX, XLSX, PPTX, XMind, and image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create single-file or batch exports in a user-selected output directory; requires a valid SHIMO_COOKIE credential.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

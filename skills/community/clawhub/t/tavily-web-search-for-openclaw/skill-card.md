@@ -1,43 +1,54 @@
-## Description: <br>
-Use this when the user asks to search the web, look up recent information, check current events, gather online sources, or research a topic using Tavily search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Tavily-powered web search for recent information, current events, online sources, and lightweight research in OpenClaw.
 
-## Publisher: <br>
-[goktugcy](https://clawhub.ai/user/goktugcy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goktugcy](https://clawhub.ai/user/goktugcy)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to run Tavily web searches for recent information, news, source gathering, and lightweight research from minimal Linux environments without installing third-party Python packages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to Tavily and may consume the user's Tavily API quota. <br>
-Mitigation: Avoid confidential queries and install only where sending queries to Tavily is acceptable. <br>
-Risk: The skill depends on a local Tavily API key. <br>
-Mitigation: Store the key in .secrets/tavily.key with restrictive permissions and keep the key on the target machine. <br>
-Risk: The advertised --api-key and TAVILY_API_KEY methods do not appear to work in this version. <br>
-Mitigation: Use the .secrets/tavily.key path until the key-loading behavior is fixed and revalidated. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to run Tavily searches from minimal Linux environments and return search results, answer summaries, image links, or raw JSON for downstream summarization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/goktugcy/tavily-web-search-for-openclaw) <br>
-- [Tavily Search API endpoint](https://api.tavily.com/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and optional JSON search results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access to Tavily and a valid Tavily API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Search queries, search options, and requested content are sent to Tavily using the configured Tavily API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in environments where Tavily use is approved, avoid sensitive internal research terms, and keep the API key out of source control.
+
+Risk: The skill reads an API key from a local secrets file or environment variable.
+
+Mitigation: Restrict the secrets directory and key file permissions to the user or service that runs the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/goktugcy/skills/tavily-web-search-for-openclaw)
+- [Tavily Search API endpoint](https://api.tavily.com/search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON]
+
+**Output Format:** [Plain text search results or raw JSON, often embedded in Markdown guidance with shell commands for setup and use.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports general or news search, basic or advanced depth, result limits, answer summaries, raw content, images, and domain filters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

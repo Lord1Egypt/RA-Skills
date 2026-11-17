@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>OpenClaw Dashboard</title>
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" sizes="180x180" href="/icon-180.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="OpenClaw">
+<meta name="theme-color" content="#0e1015">
+<script src="/marked.min.js"></script>
+<script src="/purify.min.js"></script>
+<link rel="stylesheet" href="/frontend/shared/styles.css?v=20260803e">
+</head>
+<body>
+<div class="bg-mesh"></div>
+<div class="app-shell">
+  <aside class="shell-nav" aria-label="Dashboard navigation">
+    <div class="nav-brand">
+      <img src="/icon.svg" alt="" class="nav-brand-mark">
+      <div class="nav-brand-copy">
+        <div class="logo">OpenClaw</div>
+        <div class="logo-sub">Operations Dashboard</div>
+      </div>
+    </div>
+    <div class="nav-section-label">Workspace</div>
+    <nav class="tab-bar">
+      <button class="tab-btn active" data-tab="overview" data-title="Overview" data-title-zh="总览" data-description="System activity and attention signals" data-description-zh="系统活动与待处理信号">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        <span id="tabOverviewLabel">Overview</span>
+      </button>
+      <button class="tab-btn" data-tab="copilot" data-title="Copilot" data-title-zh="会议助手" data-description="Realtime transcript, insight, and retrieval" data-description-zh="实时转写、洞察与知识检索">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a4 4 0 0 0-4 4v6a4 4 0 0 0 8 0V6a4 4 0 0 0-4-4Z"/><path d="M5 10v2a7 7 0 0 0 14 0v-2"/><path d="M12 19v3"/></svg>
+        <span id="tabCopilotLabel">Copilot</span>
+        <span class="nav-badge" id="copilotNavBadge">Beta</span>
+      </button>
+      <button class="tab-btn" data-tab="ops" data-title="Usage" data-title-zh="用量" data-description="Tokens, cost, model mix, and source analysis" data-description-zh="Token、成本、模型组合与来源分析">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9"/><path d="M10 19V5"/><path d="M16 19v-7"/><path d="M22 19V3"/></svg>
+        <span id="tabCostLabel">Usage</span>
+      </button>
+      <button class="tab-btn" data-tab="tasks" data-title="Cron" data-title-zh="定时任务" data-description="Scheduled work, runs, and cost trends" data-description-zh="计划任务、执行记录与成本趋势">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <span id="tabCronLabel">Cron</span>
+      </button>
+      <button class="tab-btn" data-tab="health" data-title="Health" data-title-zh="健康" data-description="Gateway, watchdog, and runtime signals" data-description-zh="Gateway、Watchdog 与运行状态">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l2-5 4 10 2-5h6"/><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z"/></svg>
+        <span id="tabHealthLabel">Health</span>
+      </button>
+      <button class="tab-btn" data-tab="spark" data-title="Spark" data-title-zh="算力" data-description="DGX task execution and GPU activity" data-description-zh="DGX 任务执行与 GPU 活动">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m13 2-9 12h7l-1 8 9-12h-7l1-8Z"/></svg>
+        <span id="tabSparkLabel">Spark</span>
+      </button>
+      <button class="tab-btn" data-tab="config" data-title="Config" data-title-zh="配置" data-description="Capabilities, skills, and workspace documents" data-description-zh="能力、Skills 与工作区文档">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-2.83 2.83-.06-.06A1.7 1.7 0 0 0 15 19.4a1.7 1.7 0 0 0-1 .6 1.7 1.7 0 0 0-.4 1.1V21h-4v-.1A1.7 1.7 0 0 0 8.6 19.4a1.7 1.7 0 0 0-1.88.34l-.06.06-2.83-2.83.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-.6-1 1.7 1.7 0 0 0-1.1-.4H3v-4h.1A1.7 1.7 0 0 0 4.6 8.6a1.7 1.7 0 0 0-.34-1.88l-.06-.06 2.83-2.83.06.06A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-.6 1.7 1.7 0 0 0 .4-1.1V3h4v.1A1.7 1.7 0 0 0 15.4 4a1.7 1.7 0 0 0 1.88-.34l.06-.06 2.83 2.83-.06.06A1.7 1.7 0 0 0 19.4 9c.38.27.74.6 1 .99.25.39.4.84.4 1.31V12h.1v4h-.1a1.7 1.7 0 0 0-1.4-1Z"/></svg>
+        <span id="tabConfigLabel">Config</span>
+      </button>
+    </nav>
+    <div class="nav-footer">
+      <span class="status-dot ok" id="navStatusDot" aria-hidden="true"></span>
+      <span id="navVersion">OpenClaw runtime</span>
+    </div>
+  </aside>
+
+  <div class="shell-main">
+  <!-- Header -->
+  <header class="topbar">
+    <div class="page-heading">
+      <div class="breadcrumb"><span>OpenClaw</span><span aria-hidden="true">›</span><strong id="pageTitle">Overview</strong></div>
+      <div class="page-description" id="pageDescription">System activity and attention signals</div>
+    </div>
+    <div class="header-right">
+      <span class="status-dot ok" id="statusDot"></span>
+      <span id="statusText">Connecting…</span>
+      <button class="live-indicator active" id="liveIndicator" onclick="toggleLivePolling()" title="Toggle live updates">
+        <span class="live-dot"></span> LIVE
+      </button>
+      <span class="preview-indicator" id="previewModeBadge" hidden>Preview data</span>
+      <button class="lang-btn" id="langToggleBtn" onclick="toggleLanguage()" title="Switch language">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span id="langToggleLabel">EN</span>
+      </button>
+      <button class="theme-btn" id="themeToggleBtn" onclick="toggleThemeMode()" title="Toggle theme" aria-label="Toggle theme">
+        <svg class="theme-icon-dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg>
+        <svg class="theme-icon-light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.41M17.66 6.34l1.41-1.41"/></svg>
+      </button>
+      <button class="refresh-btn" onclick="refreshCurrentTab()" title="Refresh">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+      </button>
+      <a id="controlUiLink" href="#" class="back-link" hidden>Control UI ↗</a>
+    </div>
+  </header>
+
+  <main class="container">
+  <!-- Agent Monitor Bar -->
+  <div class="agent-monitor" id="agentMonitor">
+    <div class="agent-stat stat-main">
+      <div class="agent-stat-header">
+        <span class="agent-stat-icon">💰</span>
+        <span class="agent-stat-badge idle" id="mainAgentBadge"><span class="pulse-dot"></span> today</span>
+      </div>
+      <div class="agent-stat-value val-active" id="mainAgentValue">—</div>
+      <div class="agent-stat-label">Today Cost</div>
+      <div class="agent-stat-detail" id="mainAgentDetail">Loading…</div>
+    </div>
+    <div class="agent-stat stat-subagent">
+      <div class="agent-stat-header">
+        <span class="agent-stat-icon">📊</span>
+        <span class="agent-stat-badge idle" id="subagentBadge">—</span>
+      </div>
+      <div class="agent-stat-value val-accent" id="subagentValue">—</div>
+      <div class="agent-stat-label">Today Tokens</div>
+      <div class="agent-stat-detail" id="subagentDetail">—</div>
+    </div>
+    <div class="agent-stat stat-cron">
+      <div class="agent-stat-header">
+        <span class="agent-stat-icon">🚨</span>
+        <span class="agent-stat-badge idle" id="cronBadge">—</span>
+      </div>
+      <div class="agent-stat-value val-yellow" id="cronValue">0</div>
+      <div class="agent-stat-label">Alert Snapshot</div>
+      <div class="agent-stat-detail" id="cronDetail">—</div>
+    </div>
+    <div class="agent-stat stat-hook">
+      <div class="agent-stat-header">
+        <span class="agent-stat-icon">🐶</span>
+        <span class="agent-stat-badge idle" id="hookBadge">—</span>
+      </div>
+      <div class="agent-stat-value val-blue" id="hookValue">—</div>
+      <div class="agent-stat-label">Watchdog</div>
+      <div class="agent-stat-detail" id="hookDetail">—</div>
+    </div>
+    <div class="agent-stat stat-sentinel" style="--accent:var(--blue)">
+      <div class="agent-stat-header">
+        <span class="agent-stat-icon">🖥️</span>
+        <span class="agent-stat-badge idle" id="sentinelBadge">—</span>
+      </div>
+      <div class="agent-stat-value val-accent" id="sentinelValue">—</div>
+      <div class="agent-stat-label" id="sentinelLabel">System Status</div>
+      <div class="agent-stat-detail" id="sentinelDetail">—</div>
+    </div>
+    <div class="agent-stat stat-total">
+      <div class="agent-stat-header">
+        <span class="agent-stat-icon">🧠</span>
+        <span class="agent-stat-badge idle" id="totalBadge">—</span>
+      </div>
+      <div class="agent-stat-value val-mix" id="totalValue">—</div>
+      <div class="agent-stat-label">Model Mix</div>
+      <div id="modelMixBars" style="margin-top:8px"></div>
+    </div>
+  </div>
+
+  <!-- System Info Bar (fixed, always visible) -->
+  <div id="systemInfoBar" class="glass-card" style="padding:10px 16px;margin-bottom:12px;font-size:.75rem;display:none">
+    <div style="display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center" id="systemInfoContent"></div>
+  </div>
+
+  <div id="watchdogGlobalAlert" class="glass-card" style="padding:10px 14px;margin-bottom:12px;border-color:var(--red);display:none">
+    <div style="display:flex;justify-content:space-between;gap:10px;align-items:center">
+      <div style="font-size:.8rem;color:#ffb4b4" id="watchdogGlobalText">OpenClaw Watchdog alert</div>
+      <button class="btn-secondary" id="openOpsBtn" style="padding:6px 10px;font-size:.72rem" onclick="focusHealthTab()">Open Health</button>
+    </div>
+  </div>
+
+  <!-- Today's Cron Runs -->
+  <div class="agent-sessions-panel" id="cronRunsPanel">
+    <div class="agent-sessions-header" onclick="this.classList.toggle('collapsed');this.nextElementSibling.style.maxHeight=this.classList.contains('collapsed')?'0':'400px'">
+      <div class="agent-sessions-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        <span id="cronRunsTitleText">Today's Cron Runs</span>
+      </div>
+      <span class="agent-sessions-count" id="cronRunsCount">0</span>
+    </div>
+    <div class="agent-sessions-body" id="cronRunsBody" style="max-height:400px;transition:max-height .4s"></div>
+  </div>
+
+  <!-- ═══ Copilot Panel ═══ -->
+  <div class="tab-panel" id="panel-copilot">
+    <div class="copilot-notice" id="copilotNotice" role="status">
+      Copilot is opt-in. Enable it with <code>OPENCLAW_ENABLE_COPILOT=1</code> and an API key.
+    </div>
+    <div class="copilot-layout">
+      <section class="copilot-panel copilot-transcript-panel">
+        <div class="copilot-panel-header">
+          <div>
+            <div class="card-title">Live Transcript</div>
+            <div class="card-sub">Realtime audio transcription with speaker-aware output</div>
+          </div>
+          <div class="copilot-controls">
+            <div id="audioMeter" class="audio-meter" aria-hidden="true">
+              <div id="audioMeterFill"></div>
+            </div>
+            <span id="copilotStatus" class="copilot-status">Stopped</span>
+            <button id="btnStartCopilot" class="action-btn primary" disabled>Start</button>
+            <button id="btnStopCopilot" class="action-btn danger" disabled>Stop</button>
+          </div>
+        </div>
+        <div id="copilotTranscript" class="copilot-stream">
+          <div class="empty-state compact"><p>Transcript events will appear here.</p></div>
+        </div>
+        <div class="copilot-debug">
+          <div class="copilot-debug-title">Connection log</div>
+          <div id="copilotDebugLog"></div>
+        </div>
+      </section>
+      <div class="copilot-side">
+        <section class="copilot-panel">
+          <div class="copilot-panel-header">
+            <div>
+              <div class="card-title">PM Insights</div>
+              <div class="card-sub">Decision signals and follow-up prompts</div>
+            </div>
+          </div>
+          <div id="copilotInsights" class="copilot-feed"></div>
+        </section>
+        <section class="copilot-panel">
+          <div class="copilot-panel-header">
+            <div>
+              <div class="card-title">RAG Knowledge</div>
+              <div class="card-sub">Relevant evidence retrieved during the conversation</div>
+            </div>
+          </div>
+          <div id="copilotRagHits" class="copilot-feed"></div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ Overview Panel ═══ -->
+  <div class="tab-panel active" id="panel-overview">
+    <div id="sessionsAlerts" style="margin-bottom:12px"></div>
+    <div style="display:flex;justify-content:flex-end;margin-bottom:6px;gap:8px">
+      <button id="inactiveToggleBtn" onclick="window._sessionsHideInactive=!window._sessionsHideInactive; this.textContent=window._sessionsHideInactive?'👁 显示今日无活动':'🙈 隐藏今日无活动'; loadSessions();"
+        style="font-size:.72rem;padding:3px 10px;border-radius:10px;border:1px solid var(--border);background:var(--surface);color:var(--text2);cursor:pointer">
+        🙈 隐藏今日无活动
+      </button>
+      <button id="staleToggleBtn" onclick="window._sessionsHideStale=!window._sessionsHideStale; this.textContent=window._sessionsHideStale?'👁 显示全部':'🙈 隐藏7天无活跃'; loadSessions();"
+        style="font-size:.72rem;padding:3px 10px;border-radius:10px;border:1px solid var(--border);background:var(--surface);color:var(--text2);cursor:pointer">
+        🙈 隐藏7天无活跃
+      </button>
+    </div>
+    <div id="sessionsTable" class="sessions-table-wrap">
+      <div class="skeleton skeleton-card"></div>
+    </div>
+  </div>
+
+  <!-- ═══ Cost Panel ═══ -->
+  <div class="tab-panel" id="panel-ops">
+    <div class="glass-card" style="padding:16px;margin-bottom:16px">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Today's Usage (PST)</div>
+          <div class="card-sub" id="opsTotalSub">Loading…</div>
+        </div>
+        <div class="pill-row" id="opsTotalPills"></div>
+      </div>
+      <div class="ops-model-bar" id="opsModelBar"></div>
+    </div>
+    <div class="glass-card" style="padding:16px;margin-top:16px">
+      <div class="card-header">
+        <div>
+          <div class="card-title">All-Time Usage</div>
+          <div class="card-sub" id="alltimeSub">Loading…</div>
+        </div>
+      </div>
+      <div id="alltimeModels" class="ops-channel-list" style="margin-bottom:12px"></div>
+      <div class="week-nav" id="analyticsToolbar" style="gap:8px;justify-content:space-between;flex-wrap:wrap">
+        <div style="display:flex;gap:6px;align-items:center" id="analyticsRangeFilter">
+          <button data-days="7">7d</button>
+          <button data-days="14">14d</button>
+          <button data-days="30">30d</button>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <button id="weekPrev" title="Previous window">◀</button>
+          <span class="week-label" id="weekLabel">Last 7 Days</span>
+          <button id="weekNext" title="Next window">▶</button>
+        </div>
+      </div>
+      <div class="card-title" style="font-size:.85rem;margin-bottom:8px" id="dailyChartTitle">Daily Tokens</div>
+      <canvas id="dailyChart" height="120" style="width:100%;border-radius:8px"></canvas>
+      <div class="ops-model-legend chart-legend" style="margin-top:6px"></div>
+      <div class="card-title" style="font-size:.85rem;margin:12px 0 8px" id="dailyCostTitle">Daily Cost by Model</div>
+      <canvas id="dailyCostChart" height="120" style="width:100%;border-radius:8px"></canvas>
+      <div class="ops-model-legend chart-cost-legend" style="margin-top:6px"></div>
+      <div class="card-title" style="font-size:.85rem;margin:12px 0 8px">Cost Heatmap (Model × Day)</div>
+      <div id="costHeatmap" class="cost-heatmap"></div>
+    </div>
+
+    <!-- Usage by Source Type -->
+    <div class="glass-card" style="padding:16px;margin-top:16px">
+      <div class="card-header">
+        <div>
+          <div class="card-title">📊 Usage by Source</div>
+          <div class="card-sub" id="bySourceSub">Loading…</div>
+        </div>
+      </div>
+      <div id="bySourceChart" style="margin-bottom:12px"></div>
+      <div id="bySourceList">
+        <div class="skeleton skeleton-card"></div>
+        <div class="skeleton skeleton-card"></div>
+      </div>
+    </div>
+
+    <!-- Provider Audit hidden — no useful billing API from Anthropic/Google yet -->
+    <div class="glass-card" style="padding:16px;margin-top:16px;display:none" id="auditCard">
+      <div class="card-title">🔍 Provider Audit (Official APIs)</div>
+      <div class="card-sub" style="margin-bottom:12px">Cross-reference with provider billing data</div>
+      <div id="auditContent"></div>
+    </div>
+
+  </div>
+
+  <!-- ═══ Health Panel ═══ -->
+  <div class="tab-panel" id="panel-health">
+    <div class="glass-card" style="padding:16px;margin-bottom:16px">
+      <div class="card-title" style="margin-bottom:4px">System Health</div>
+      <div class="card-sub">Gateway, host, and watchdog status</div>
+    </div>
+
+    <div class="glass-card" style="padding:16px">
+      <div class="card-title" style="margin-bottom:4px">Operations Boundary</div>
+      <div class="card-sub">This hardened dashboard is intentionally read-only.</div>
+      <div class="read-only-notice">
+        Use the authenticated OpenClaw CLI or an approved operator workflow for restart, repair, model changes, and file updates.
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ Spark Monitor Panel ═══ -->
+  <div class="tab-panel" id="panel-spark">
+    <div class="glass-card" style="padding:16px;margin-bottom:16px">
+      <div class="card-title" style="margin-bottom:4px">⚡ Spark Monitor</div>
+      <div class="card-sub">DGX Spark Agent — 任务调度 · GPU 利用率 · PR Hunter</div>
+    </div>
+
+    <!-- Today Summary Row -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:16px" id="sparkSummaryCards">
+      <div class="glass-card" style="padding:14px;text-align:center">
+        <div style="font-size:1.6rem;font-weight:700;color:var(--green)" id="sparkTasksDone">—</div>
+        <div class="card-sub" style="margin-top:4px">Tasks Done Today</div>
+      </div>
+      <div class="glass-card" style="padding:14px;text-align:center">
+        <div style="font-size:1.6rem;font-weight:700;color:var(--blue)" id="sparkTasksRunning">—</div>
+        <div class="card-sub" style="margin-top:4px">Running Now</div>
+      </div>
+      <div class="glass-card" style="padding:14px;text-align:center">
+        <div style="font-size:1.6rem;font-weight:700;color:var(--red)" id="sparkTasksError">—</div>
+        <div class="card-sub" style="margin-top:4px">Errors Today</div>
+      </div>
+      <div class="glass-card" style="padding:14px;text-align:center">
+        <div style="font-size:1.6rem;font-weight:700;color:var(--text1)" id="sparkGpuAvg">—</div>
+        <div class="card-sub" style="margin-top:4px">Avg GPU % Today</div>
+      </div>
+      <div class="glass-card" style="padding:14px;text-align:center">
+        <div style="font-size:1.6rem;font-weight:700;color:var(--text1)" id="sparkTokensTotal">—</div>
+        <div class="card-sub" style="margin-top:4px">Tokens Today</div>
+      </div>
+    </div>
+
+    <!-- Recent Tasks (Primary View) -->
+    <div class="glass-card" style="padding:16px;margin-bottom:16px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+        <div>
+          <div class="card-title" style="margin-bottom:2px">📋 24h Task History</div>
+          <div class="card-sub">Spark Agent task runs · time · duration · tokens</div>
+        </div>
+        <div style="display:flex;gap:6px">
+          <select id="sparkTaskTypeFilter" onchange="loadSparkTaskList()" style="background:var(--glass);border:1px solid var(--border);color:var(--text1);padding:4px 8px;border-radius:6px;font-size:.75rem">
+            <option value="">All Types</option>
+            <option value="pr_hunter">PR Hunter</option>
+            <option value="gpu_reporter">GPU Reporter</option>
+            <option value="community_watcher">Community</option>
+          </select>
+          <select id="sparkTaskStatusFilter" onchange="loadSparkTaskList()" style="background:var(--glass);border:1px solid var(--border);color:var(--text1);padding:4px 8px;border-radius:6px;font-size:.75rem">
+            <option value="">All Status</option>
+            <option value="running">Running</option>
+            <option value="done">Done</option>
+            <option value="error">Error</option>
+          </select>
+        </div>
+      </div>
+      <div id="sparkTaskList"><div class="skeleton skeleton-card" style="height:120px"></div></div>
+    </div>
+
+    <!-- PR Hunter Results -->
+    <div class="glass-card" style="padding:16px">
+      <div class="card-title" style="margin-bottom:4px">🔍 PR Hunter — Latest Analysis</div>
+      <div class="card-sub" style="margin-bottom:12px">OpenClaw merged PR 趋势分析 · Qwen 本地生成</div>
+      <div id="sparkPrHunterContent"><div class="skeleton skeleton-card" style="height:180px"></div></div>
+    </div>
+  </div>
+
+  <!-- ═══ Config Panel ═══ -->
+  <div class="tab-panel" id="panel-config">
+    <div class="glass-card" style="padding:16px;margin-bottom:16px">
+      <div class="card-title" style="margin-bottom:4px">Config</div>
+      <div class="card-sub" style="margin-bottom:10px">Server capabilities and loaded configuration files</div>
+      <div id="configContent"><div class="skeleton skeleton-card"></div></div>
+    </div>
+    <div class="glass-card" style="padding:16px;margin-bottom:16px">
+      <div class="card-title" style="margin-bottom:4px">Skills</div>
+      <div class="card-sub" style="margin-bottom:10px">Installed skills from workspace and system directories</div>
+      <div id="skillsContent"><div class="skeleton skeleton-card"></div></div>
+    </div>
+    <div class="glass-card" style="padding:16px">
+      <div class="card-title" style="margin-bottom:4px">Documents</div>
+      <div class="card-sub" style="margin-bottom:12px">Read-only workspace file viewer</div>
+      <div class="docs-layout">
+        <div class="glass-card" style="padding:12px">
+          <div class="file-sidebar-header">Workspace Files</div>
+          <div class="file-sidebar" id="fileSidebar"></div>
+        </div>
+        <div class="editor-area" id="editorArea">
+          <div class="editor-toolbar">
+            <div class="editor-filename" id="editorFilename">Select a file<span>to view</span></div>
+          </div>
+          <div class="md-preview" id="mdPreview">
+            <div class="md-empty-hint">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <p>Select a file from the sidebar to view its contents</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ Cron Panel ═══ -->
+  <div class="tab-panel" id="panel-tasks">
+    <!-- Cron Cost Analysis -->
+    <div class="glass-card" style="padding:16px;margin-top:16px">
+      <div class="card-title" id="cronCostTitle">💰 Cron Cost Analysis</div>
+      <div class="card-sub" id="cronCostSummary">Loading...</div>
+      <div id="cronCostContent" style="margin-top:12px"></div>
+    </div>
+
+    <!-- Cron Daily Trend -->
+    <div class="glass-card" style="padding:16px;margin-top:12px">
+      <div class="card-title" id="cronTrendTitle">📈 Cron Daily Trend</div>
+      <div class="card-sub" id="cronTrendSub">Daily cron token and cost trend over the selected window</div>
+      <canvas id="cronTrendChart" height="160" style="width:100%;margin-top:8px"></canvas>
+      <div id="cronTrendLegend" style="margin-top:6px;font-size:.72rem;display:flex;gap:16px"></div>
+    </div>
+  </div>
+  </main>
+  </div>
+</div>
+
+<!-- Task Detail Modal -->
+<div class="modal-overlay detail-modal" id="detailModal">
+  <div class="modal" style="position:relative">
+    <button class="modal-close" onclick="closeDetailModal()">✕</button>
+    <div class="detail-header">
+      <div class="detail-status-row" id="detailStatusRow"></div>
+      <div class="detail-title" id="detailTitle"></div>
+      <div class="detail-meta" id="detailMeta"></div>
+    </div>
+    <div class="detail-body" id="detailBody"></div>
+    <div class="detail-actions" id="detailActions"></div>
+  </div>
+</div>
+
+<!-- Toast Container -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- Modular JS: shared utilities first, then tab modules, then boot -->
+<script src="/frontend/shared/api.js?v=20260803e"></script>
+<script src="/frontend/shared/ui-utils.js?v=20260803e"></script>
+<script src="/frontend/tabs/overview.js?v=20260803e"></script>
+<script src="/frontend/tabs/cost.js?v=20260803e"></script>
+<script src="/frontend/tabs/cron.js?v=20260803e"></script>
+<script src="/frontend/tabs/health.js?v=20260803e"></script>
+<script src="/frontend/tabs/spark-monitor.js?v=20260803e"></script>
+<script src="/frontend/tabs/copilot.js?v=20260803e"></script>
+<script src="/frontend/tabs/config.js?v=20260803e"></script>
+<script src="/frontend/shared/boot.js?v=20260803e"></script>
+</body>
+</html>

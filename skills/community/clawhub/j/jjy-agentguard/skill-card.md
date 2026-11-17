@@ -1,45 +1,60 @@
-## Description: <br>
-AgentGuard routes command, file, and network operations through ag_* tools for rule review, auditing, and sensitive-data redaction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentGuard routes OpenClaw command, file, directory, and HTTP operations through ag_* proxy tools for daemon-backed review, redaction, approval, and audit logging.
 
-## Publisher: <br>
-[zxz333zxz](https://clawhub.ai/user/zxz333zxz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zxz333zxz](https://clawhub.ai/user/zxz333zxz)
 
-## Use Case: <br>
-Developers and agent operators use AgentGuard to mediate shell commands, file access, network requests, and plugin checks through a local security daemon before an agent action proceeds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on a privileged, long-running local daemon to mediate broad command, file, and network operations. <br>
-Mitigation: Install only when this mediation is intended, verify the native agentguard binary and checksum/provenance, and review how to stop the daemon and remove /usr/local/bin/agentguard. <br>
-Risk: Native tool bypass prevention depends on the user configuring tools.deny before relying on AgentGuard controls. <br>
-Mitigation: Confirm tools.deny blocks native command, file, edit, patch, process, and network tools before treating AgentGuard as the enforcement path. <br>
-Risk: Pointing daemonHost away from localhost could expose mediated operations to an endpoint the user does not fully trust. <br>
-Mitigation: Keep daemonHost on 127.0.0.1 unless the remote endpoint is explicitly trusted and controlled. <br>
+## Use Case:
 
+Developers and OpenClaw users use Agentguard to route shell commands, file operations, directory listing, HTTP requests, skill checks, and emergency stop or resume controls through a local AgentGuard daemon for review and audit.
 
-## Reference(s): <br>
-- [AgentGuard homepage](https://www.agentguard.site) <br>
-- [OpenClaw plugin documentation](https://docs.openclaw.ai/tools/plugin) <br>
-- [OpenClaw agent tools documentation](https://docs.openclaw.ai/plugins/agent-tools) <br>
-- [ClawHub release page](https://clawhub.ai/zxz333zxz/jjy-agentguard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, configuration, guidance] <br>
-**Output Format:** [OpenClaw tool responses as text, JSON-formatted daemon responses, and shell/file/network operation results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the local agentguard daemon and binary; artifact metadata supports darwin and linux, and setup.sh supports arm64 only.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.2 (source: server release metadata and package.json) <br>
+Risk: AgentGuard becomes the gatekeeper for agent command, file, write, and network requests through an opaque local daemon.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that control model is intentional, keep daemonHost on 127.0.0.1, and review daemon configuration before use.
+
+Risk: Setup can make persistent system changes by installing a binary to /usr/local/bin, starting a daemon, and requiring tools.deny changes in openclaw.json.
+
+Mitigation: Review setup.sh and openclaw.json changes before applying them; rollback by stopping the daemon, removing tools.deny entries, and deleting /usr/local/bin/agentguard.
+
+Risk: The inspected package did not include the referenced daemon binary, so runtime behavior cannot be fully validated from the artifact alone.
+
+Mitigation: Obtain and verify the matching daemon binary and checksum before deployment; avoid relying on the plugin when the daemon is absent or unverifiable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zxz333zxz/skills/jjy-agentguard)
+- [AgentGuard homepage](https://www.agentguard.site)
+- [OpenClaw plugin documentation](https://docs.openclaw.ai/tools/plugin)
+- [OpenClaw agent tools documentation](https://docs.openclaw.ai/plugins/agent-tools)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [OpenClaw tool responses as text, JSON-derived text, and approval or interception messages.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local AgentGuard daemon; default dashboard port is 19821; artifact metadata limits support to darwin/linux and setup.sh installs only an arm64 binary.]
+
+## Skill Version(s):
+
+1.8.2 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

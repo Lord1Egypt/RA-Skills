@@ -108,6 +108,8 @@ tr:last-child td{border-bottom:none}
 .pill.r{color:var(--red);background:var(--red-l)}
 .pill.b{color:var(--blue);background:var(--blue-l)}
 .pill.n{color:var(--s500);background:var(--s100)}
+.pill-link{text-decoration:none;transition:filter .15s,box-shadow .15s}
+.pill-link:hover{filter:brightness(.96);box-shadow:0 0 0 2px rgba(59,130,246,.12)}
 
 /* ===== FINDING ===== */
 .finding{padding:12px 14px;border-left:3px solid var(--blue);background:var(--blue-ul);border-radius:0 var(--r) var(--r) 0;margin:8px 0;font-size:13px}
@@ -337,9 +339,9 @@ a.cov-item:hover{border-color:var(--blue);box-shadow:var(--sh-m);cursor:pointer}
         </colgroup>
         <thead><tr><th>Product</th><th>Scenario / Node</th><th>Approach &amp; Highlights</th><th>Gap vs. Ours</th><th>Evidence</th></tr></thead>
         <tbody>
-          <tr><td>__bench_1_product__</td><td>__bench_1_scene__</td><td>__bench_1_detail__</td><td>__bench_1_gap__</td><td><span class="pill b">__bench_1_ev__</span></td></tr>
-          <tr><td>__bench_2_product__</td><td>__bench_2_scene__</td><td>__bench_2_detail__</td><td>__bench_2_gap__</td><td><span class="pill b">__bench_2_ev__</span></td></tr>
-          <tr><td>__bench_3_product__</td><td>__bench_3_scene__</td><td>__bench_3_detail__</td><td>__bench_3_gap__</td><td><span class="pill b">__bench_3_ev__</span></td></tr>
+          <tr><td>__bench_1_product__</td><td>__bench_1_scene__</td><td>__bench_1_detail__</td><td>__bench_1_gap__</td><td><a class="pill b pill-link" href="__bench_1_ev_url__" target="_blank" rel="noopener">__bench_1_ev__</a></td></tr>
+          <tr><td>__bench_2_product__</td><td>__bench_2_scene__</td><td>__bench_2_detail__</td><td>__bench_2_gap__</td><td><a class="pill b pill-link" href="__bench_2_ev_url__" target="_blank" rel="noopener">__bench_2_ev__</a></td></tr>
+          <tr><td>__bench_3_product__</td><td>__bench_3_scene__</td><td>__bench_3_detail__</td><td>__bench_3_gap__</td><td><a class="pill b pill-link" href="__bench_3_ev_url__" target="_blank" rel="noopener">__bench_3_ev__</a></td></tr>
         </tbody>
       </table>
     </div>
@@ -394,7 +396,7 @@ a.cov-item:hover{border-color:var(--blue);box-shadow:var(--sh-m);cursor:pointer}
       <p style="margin-top:4px;color:var(--s500);font-size:12px">__finding_1_desc__</p>
       <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap">
         <span class="pill b">__finding_1_impact__</span>
-        <span class="pill n">__finding_1_ev__</span>
+        <a class="pill n pill-link" href="__finding_1_ev_url__" target="_blank" rel="noopener">__finding_1_ev__</a>
       </div>
     </div>
     <!-- Warning-level finding -->
@@ -404,7 +406,7 @@ a.cov-item:hover{border-color:var(--blue);box-shadow:var(--sh-m);cursor:pointer}
       <p style="margin-top:4px;color:var(--s500);font-size:12px">__finding_2_desc__</p>
       <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap">
         <span class="pill w">__finding_2_impact__</span>
-        <span class="pill n">__finding_2_ev__</span>
+        <a class="pill n pill-link" href="__finding_2_ev_url__" target="_blank" rel="noopener">__finding_2_ev__</a>
       </div>
     </div>
     <!-- Risk-level finding -->
@@ -414,7 +416,7 @@ a.cov-item:hover{border-color:var(--blue);box-shadow:var(--sh-m);cursor:pointer}
       <p style="margin-top:4px;color:var(--s500);font-size:12px">__finding_3_desc__</p>
       <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap">
         <span class="pill r">__finding_3_impact__</span>
-        <span class="pill n">__finding_3_ev__</span>
+        <a class="pill n pill-link" href="__finding_3_ev_url__" target="_blank" rel="noopener">__finding_3_ev__</a>
       </div>
     </div>
   </div>
@@ -427,7 +429,7 @@ a.cov-item:hover{border-color:var(--blue);box-shadow:var(--sh-m);cursor:pointer}
       <table>
         <thead><tr><th>Scenario</th><th>UX Rules</th><th>Visual Rules</th><th>Boundaries / Risks</th><th>Evidence</th></tr></thead>
         <tbody>
-          <tr><td>__pattern_1_scene__</td><td>__pattern_1_ux__</td><td>__pattern_1_ui__</td><td>__pattern_1_risk__</td><td><span class="pill b">__pattern_1_ev__</span></td></tr>
+          <tr><td>__pattern_1_scene__</td><td>__pattern_1_ux__</td><td>__pattern_1_ui__</td><td>__pattern_1_risk__</td><td><a class="pill b pill-link" href="__pattern_1_ev_url__" target="_blank" rel="noopener">__pattern_1_ev__</a></td></tr>
         </tbody>
       </table>
     </div>
@@ -436,7 +438,7 @@ a.cov-item:hover{border-color:var(--blue);box-shadow:var(--sh-m);cursor:pointer}
       <table>
         <thead><tr><th>Scenario</th><th>UX Rules</th><th>Visual Rules</th><th>Boundaries / Risks</th><th>Evidence</th></tr></thead>
         <tbody>
-          <tr><td>__pattern_2_scene__</td><td>__pattern_2_ux__</td><td>__pattern_2_ui__</td><td>__pattern_2_risk__</td><td><span class="pill b">__pattern_2_ev__</span></td></tr>
+          <tr><td>__pattern_2_scene__</td><td>__pattern_2_ux__</td><td>__pattern_2_ui__</td><td>__pattern_2_risk__</td><td><a class="pill b pill-link" href="__pattern_2_ev_url__" target="_blank" rel="noopener">__pattern_2_ev__</a></td></tr>
         </tbody>
       </table>
     </div>
@@ -460,17 +462,17 @@ a.cov-item:hover{border-color:var(--blue);box-shadow:var(--sh-m);cursor:pointer}
     <div class="card-h">&#128206; Source Index</div>
     <div class="card-sub">&#128247; User Materials &middot; &#128279; Public Info &middot; &#128161; Industry Experience</div>
     <div class="ev-grid">
-      <div class="ev-card">
+      <div class="ev-card" id="__ev_1_id__">
         <div class="ev-id">__ev_1_id__</div>
         <div class="ev-desc">__ev_1_type__ &middot; __ev_1_product__ &middot; __ev_1_scene__ &middot; __ev_1_note__</div>
         <a class="ev-link" href="__ev_1_link__" target="_blank" rel="noopener">&#128279; View Source</a>
       </div>
-      <div class="ev-card">
+      <div class="ev-card" id="__ev_2_id__">
         <div class="ev-id">__ev_2_id__</div>
         <div class="ev-desc">__ev_2_type__ &middot; __ev_2_product__ &middot; __ev_2_scene__ &middot; __ev_2_note__</div>
         <a class="ev-link" href="__ev_2_link__" target="_blank" rel="noopener">&#128279; View Source</a>
       </div>
-      <div class="ev-card">
+      <div class="ev-card" id="__ev_3_id__">
         <div class="ev-id">__ev_3_id__</div>
         <div class="ev-desc">__ev_3_type__ &middot; __ev_3_product__ &middot; __ev_3_scene__ &middot; __ev_3_note__</div>
         <a class="ev-link" href="__ev_3_link__" target="_blank" rel="noopener">&#128279; View Source</a>

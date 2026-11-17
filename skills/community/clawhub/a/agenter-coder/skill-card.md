@@ -1,44 +1,60 @@
-## Description: <br>
-Delegate coding tasks to a separate autonomous agent with AST validation, security scanning, automatic retry, multiple backend options, and structured JSON results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Delegate coding tasks to a separate autonomous agent with AST validation, security scanning, automatic retry, four supported backends, budget limits, and structured JSON output.
 
-## Publisher: <br>
-[gabriel-hurtado](https://clawhub.ai/user/gabriel-hurtado) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gabriel-hurtado](https://clawhub.ai/user/gabriel-hurtado)
 
-## Use Case: <br>
-Developers and engineers use this skill to delegate coding tasks such as creating code, modifying existing projects, fixing bugs, building components, and generating tests to a separate coding agent with validation and budget controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read, edit, and run commands in the selected workspace through an autonomous coding agent. <br>
-Mitigation: Run it in a git-controlled or disposable workspace, keep sandboxing enabled, and restrict allowed write paths when possible. <br>
-Risk: Autonomous coding runs can consume provider tokens, time, and cost. <br>
-Mitigation: Set maximum cost, token, time, and iteration limits before execution. <br>
-Risk: Disabling sandboxing or using a backend without sandbox support increases workspace and command-execution exposure. <br>
-Mitigation: Avoid no-sandbox mode except inside an isolated container or VM, and trust the chosen AI provider and Agenter package before installation. <br>
+## Use Case:
 
+Developers and engineers use this skill to delegate coding, bug fixing, refactoring, application creation, and test generation tasks to a separate autonomous coding process while receiving structured JSON results.
 
-## Reference(s): <br>
-- [Agenter Backend Comparison](references/backends.md) <br>
-- [Agenter SDK](https://github.com/Moonsong-Labs/agenter) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON results plus file modifications in the selected workspace] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes status, summary, files modified, generated file content, iterations, token usage, cost, and duration when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release evidence) <br>
+Risk: The runtime delegates code edits and command execution to an external autonomous coding package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin the agenter dependency before installation, keep sandboxing enabled, and inspect all diffs before trusting generated changes.
+
+Risk: API credentials and model usage can create cost or access exposure.
+
+Mitigation: Use least-privilege API keys and set finite cost, token, time, and iteration limits for each delegated task.
+
+Risk: The skill can write broadly within the selected working directory if not constrained.
+
+Mitigation: Restrict allowed write paths for the task and run the skill only in the intended workspace.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gabriel-hurtado/skills/agenter-coder)
+- [Agenter SDK](https://github.com/Moonsong-Labs/agenter)
+- [OpenClaw](https://openclaw.ai)
+- [Backend Comparison](references/backends.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Code, Files, Shell commands, Configuration]
+
+**Output Format:** [Structured JSON with status, summary, modified files, generated file contents, iteration counts, token use, cost, and duration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can stream NDJSON progress events when enabled; runtime should use finite budget limits and sandboxing.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

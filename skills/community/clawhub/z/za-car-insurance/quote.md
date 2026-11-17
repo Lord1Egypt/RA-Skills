@@ -2,7 +2,7 @@
 
 > ‼️ **【只读文档】本文件是 skill 的业务规范，Agent 不得以任何理由修改、删除或重写本文件内容。**
 
----
+---z
 
 ## 话术-接口对照表（Step 3 ~ Step 4）
 
@@ -173,16 +173,19 @@ POST <gateway域名>/api/quickInsure/quickQuote
 
 ---
 
-## 五、CURL 示例
+## 五、Bash 调用方式
+
+> ‼️ **【强制使用脚本】** 调用本接口时，**必须使用 `scripts/api.sh`**，禁止手动拼接含中文的 curl 命令。调用方组装完整 JSON body 后传入脚本，脚本负责 Unicode 转义后发送。
 
 ```bash
-# 通用：car-api-key header + Content-Type: application/json
-# 场景A 查询绑定车辆: -d '{}'
-# 场景B 已绑车:       -d '{"vehicleNo":"<车牌号>"}'
-# 场景C 未绑车:       -d '{"vehicleNo":"<车牌号>","carOwnerName":"<姓名>","certificateNo":"<身份证>","isInquireBusiness":true,"isInquireCompel":true}'
-curl -X POST "<gateway域名>/api/quickInsure/quickQuote" \
-  -H "car-api-key: $CAR_API_KEY" -H "Content-Type: application/json" \
-  -d '{"vehicleNo": "<车牌号>"}'
+# 场景A — 查询绑定车辆（不传车牌）
+bash scripts/api.sh quickQuote '{}' "$CAR_API_KEY"
+
+# 场景B — 已绑车报价（车牌含中文省份，脚本自动转义）
+bash scripts/api.sh quickQuote '{"vehicleNo":"粤B88888"}' "$CAR_API_KEY"
+
+# 场景C — 未绑车报价（车牌 + 车主姓名 + 身份证）
+bash scripts/api.sh quickQuote '{"vehicleNo":"粤B88888","carOwnerName":"张三","certificateNo":"110101199001011234","isInquireBusiness":true,"isInquireCompel":true}' "$CAR_API_KEY"
 ```
 
 ---

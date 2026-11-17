@@ -1,41 +1,58 @@
-## Description: <br>
-Knowledge accumulation and tech trend analysis engine that summarizes learned concepts from user interactions, parses shared videos, articles, and images, researches recent technology and news trends, and self-iterates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Knowledge & Trends Engine summarizes learned concepts from prior interactions, parses user-shared articles, videos, and images, researches recent technology and news trends, and maintains structured memory summaries.
 
-## Publisher: <br>
-[bustes01](https://clawhub.ai/user/bustes01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bustes01](https://clawhub.ai/user/bustes01)
 
-## Use Case: <br>
-Employees, external users, developers, and agents use this skill to turn prior conversations and shared content into structured concept notes, periodic knowledge summaries, and technology trend research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory and periodic reprocessing can retain sensitive user-derived content without clear consent or deletion controls. <br>
-Mitigation: Use only with information appropriate for persistent notes, and require separate review, deletion, and privacy controls before storing confidential, personal, legal, medical, financial, or proprietary information. <br>
-Risk: External content parsing and trend research can add incorrect or stale information to the knowledge base. <br>
-Mitigation: Review source material and generated summaries before storing them as durable concept or trend records. <br>
+## Use Case:
 
+External users and developers use this skill to turn conversations and shared content into structured concept notes, trend briefings, and periodic knowledge reviews.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bustes01/knowledge-and-trends-engine) <br>
-- [OpenClaw homepage metadata](https://clawhub.ai/BusTes01/knowledge-and-trends-engine) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown summaries and structured Markdown or YAML notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update memory files, concept indexes, trend summaries, and self-review logs when paired with its required memory and self-iteration skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can build long-term memory from prior conversations and shared content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where memory is scoped per user and users can preview, redact, disable, or delete saved summaries.
+
+Risk: The skill can fetch user-provided URLs while parsing articles or videos.
+
+Mitigation: Use environments that block unsafe internal URL fetches and review fetched content before storing derived summaries.
+
+Risk: Scheduled reviews can persist summaries without tight consent or sensitivity controls.
+
+Mitigation: Enable scheduled review only after confirming consent, retention, and sensitivity handling policies for the workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bustes01/skills/knowledge-and-trends-engine)
+- [ClawHub metadata homepage](https://clawhub.ai/BusTes01/knowledge-and-trends-engine)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown summaries and structured YAML or Markdown notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include concept categories, source links, cross-links, maturity labels, trend significance, and suggested follow-up topics.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

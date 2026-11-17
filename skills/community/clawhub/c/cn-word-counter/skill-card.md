@@ -1,40 +1,53 @@
-## Description: <br>
-Counts words, characters, and lines for supplied text using a local Python standard-library script. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Counts whitespace-delimited words, characters, and lines in supplied text using a local Python script.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Developers, content teams, and agent workflows use this skill to measure text length locally and return word, character, and line counts as structured output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Word counts are based on whitespace splitting, so Chinese text without spaces may not reflect linguistic word segmentation. <br>
-Mitigation: Treat word count as approximate for unsegmented Chinese text; use the character and line counts when exact segmentation is not required. <br>
-Risk: The release metadata includes a sensitive-credential capability tag that conflicts with the security evidence. <br>
-Mitigation: Do not provision credentials for this skill unless a future release adds documented credential handling. <br>
+## Use Case:
 
+Developers and agents use this skill to count words, characters, and lines in Chinese or other supplied text locally without an API key.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-word-counter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands] <br>
-**Output Format:** [JSON object with words, chars, and lines fields; agent-facing instructions may be Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No network access or credentials are needed according to the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.7 (source: server release metadata) <br>
+Risk: Sensitive text supplied as a command-line argument may be exposed through shell history or local process inspection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid processing highly sensitive text through command-line arguments; adapt the invocation to read from a protected file or standard input if sensitive use is required.
+
+Risk: The documentation is Chinese-only and includes promotional external links that are not required for runtime use.
+
+Mitigation: Review the documented usage before deployment and rely on the local script path rather than promotional links when running the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/cn-word-counter)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples; the runtime script prints JSON counts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally with the Python standard library and requires no API key.]
+
+## Skill Version(s):
+
+1.2.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

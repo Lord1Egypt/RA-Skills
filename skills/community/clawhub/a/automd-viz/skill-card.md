@@ -1,43 +1,65 @@
-## Description: <br>
-AutoMD-Viz generates publication-quality molecular dynamics visualizations, including structures, data plots, trajectory projections, and full reports with journal-specific styles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AutoMD-Viz generates publication-quality molecular dynamics visualizations, including molecular structure figures, data plots, trajectory projections, and summary reports.
 
-## Publisher: <br>
-[billwanttobetop](https://clawhub.ai/user/billwanttobetop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[billwanttobetop](https://clawhub.ai/user/billwanttobetop)
 
-## Use Case: <br>
-Researchers, developers, and computational biology teams use this skill to create journal-ready molecular dynamics figures from structure files, time-series data, trajectory projections, and analysis outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided paths and visualization options are passed into generated plotting scripts. <br>
-Mitigation: Use trusted input files and filenames, and run the skill in a normal project directory or virtual environment. <br>
-Risk: The skill relies on local scientific visualization dependencies that may be installed separately. <br>
-Mitigation: Install dependencies from trusted package sources and keep the environment scoped to the project. <br>
+## Use Case:
 
+Developers and computational researchers use this skill to generate journal-ready figures and reports from molecular dynamics structures, trajectories, and analysis outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/billwanttobetop/automd-viz) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [publication-viz-errors.md](artifact/publication-viz-errors.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, markdown, files] <br>
-**Output Format:** [Markdown guidance and shell commands; when executed, the bundled script can generate PNG, SVG, PDF, EPS, PyMOL session, and Markdown report files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on local visualization tools and supplied molecular dynamics inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: Crafted filenames or option values may be converted into executable PyMOL or Python code by the shell workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted input files, trusted filenames, and trusted option values, preferably inside an isolated environment.
+
+Risk: Running the skill on untrusted projects can expose the user to command or script execution through generated visualization scripts.
+
+Mitigation: Review generated PyMOL and Python snippets before execution, and avoid untrusted projects until the workflow validates options and passes values as data.
+
+Risk: Unpinned scientific Python and visualization dependencies can reduce reproducibility and supply-chain control.
+
+Mitigation: Pin dependencies for release, production, or regulated workflows.
+
+## Reference(s):
+
+- [Artifact README](artifact/README.md)
+- [Artifact skill guide](artifact/SKILL.md)
+- [Publication visualization troubleshooting](artifact/publication-viz-errors.md)
+- [PyMOL Wiki](https://pymolwiki.org/)
+- [VMD User Guide](https://www.ks.uiuc.edu/Research/vmd/current/ug/)
+- [Matplotlib Gallery](https://matplotlib.org/stable/gallery/)
+- [Seaborn Tutorial](https://seaborn.pydata.org/tutorial.html)
+- [Nature final submission guidelines](https://www.nature.com/nature/for-authors/final-submission)
+- [Science manuscript preparation instructions](https://www.science.org/content/page/instructions-preparing-initial-manuscript)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated visualization files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce PNG, SVG, PDF, EPS, PyMOL session files, and visualization reports depending on the selected mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

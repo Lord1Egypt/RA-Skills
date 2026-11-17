@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--
+  Template: Foto de perfil de Página do Facebook (800x800).
+  Uso: coloque o logo.svg da marca na MESMA pasta deste HTML e renderize com Playwright:
+       viewport={'width':800,'height':800}; wait_for_timeout(1000) antes do screenshot.
+  Ajuste apenas as variáveis em :root.
+-->
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  :root {
+    --brand: #3db665;          /* cor primária da marca */
+    --bg-inner: #0d1f18;       /* centro do gradiente */
+    --bg-outer: #060b09;       /* borda do gradiente */
+    --logo-width: 520px;       /* ~65% de 800px — mantém safe-zone do recorte circular */
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 800px; height: 800px;
+    background: radial-gradient(circle at 50% 40%, var(--bg-inner) 0%, var(--bg-outer) 100%);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  /* glow radial na cor da marca */
+  .glow {
+    position: absolute; width: 500px; height: 500px;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(61,182,101,0.25) 0%, rgba(0,0,0,0) 70%);
+  }
+  .logo-box { position: relative; z-index: 2; width: var(--logo-width); }
+  .logo-box img {
+    width: 100%; height: auto;
+    filter: drop-shadow(0 15px 35px rgba(61,182,101,0.4));
+  }
+</style>
+</head>
+<body>
+  <div class="glow"></div>
+  <div class="logo-box">
+    <!-- IMPORTANTE: caminho relativo ao HTML; file:// não resolve paths absolutos de outra pasta -->
+    <img src="logo.svg" />
+  </div>
+</body>
+</html>

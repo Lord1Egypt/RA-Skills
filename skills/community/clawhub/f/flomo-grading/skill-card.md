@@ -1,44 +1,52 @@
-## Description: <br>
-Randomly presents Flomo notes for S/A/B/C/D/E scoring, learns the user's rating preferences, and keeps an evolving note-quality rubric. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Randomly presents Flomo notes for S/A/B/C/D/E rating, records the user's rating history, and updates personalized note-quality grading principles.
 
-## Publisher: <br>
-[jayshna](https://clawhub.ai/user/jayshna) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jayshna](https://clawhub.ai/user/jayshna)
 
-## Use Case: <br>
-People who keep personal notes in Flomo use this skill to review random notes, score their value, and refine a personal rubric for what makes a note worth keeping or revisiting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill broadly accesses, displays, and stores private Flomo note data. <br>
-Mitigation: Install only if this level of note access is acceptable, avoid using it on highly sensitive notes, and verify the Flomo token source and scope before use. <br>
-Risk: Bundled or generated scoring history can contain note identifiers, tags, ratings, and preference metadata. <br>
-Mitigation: Clear or replace bundled history before use when it is not yours, and decide how generated history files will be deleted or retained. <br>
+## Use Case:
 
+Flomo users can use this skill to review random notes, assign personalized quality scores, and refine grading standards over time. It is aimed at personal knowledge management workflows where the agent has access to note content and local scoring files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jayshna/flomo-grading) <br>
-- [README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Grading principles](artifact/grading-principles.md) <br>
-- [Public scoring history](artifact/scoring-history.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown responses with local Markdown and JSON file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Displays full note content during rating sessions and updates grading-principles.md and scoring-history.json as preferences are learned.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata) <br>
+Risk: The package includes note-scoring metadata that the README identifies as private local data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if broad Flomo note access and local rating-history storage are acceptable; remove scoring-history.json from public packages and provide reset or deletion guidance before treating the release as low risk.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jayshna/skills/flomo-grading)
+- [README](artifact/README.md)
+- [Skill instructions](artifact/SKILL.md)
+- [Grading principles](artifact/grading-principles.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown conversation text plus updates to local JSON and Markdown scoring files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires access to Flomo notes and stores local rating history for iterative preference learning.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

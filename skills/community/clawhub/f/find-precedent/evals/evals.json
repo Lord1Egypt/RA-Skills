@@ -1,0 +1,32 @@
+{
+  "skill_name": "find-precedent",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Have we negotiated a 150% liability cap before? Find precedent in signed contracts and tell me what I can reuse.",
+      "expected_output": "Comparable historical clauses with differences and a warning that precedent is not current approval authority.",
+      "assertions": [
+        "Comparability is explained",
+        "Material differences are visible",
+        "The output does not equate precedent with current approval"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Find a previous proposal we can copy for this new customer.",
+      "expected_output": "Relevant proposals are found, but reusable structure/rationale are separated from customer-specific or stale commitments.",
+      "assertions": [
+        "The skill identifies what is reusable",
+        "Pricing/dates/customer-specific commitments are flagged against blind copying"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "The top semantic match is a tiny pilot from 2019; our current project is a regulated nationwide rollout. Use it as precedent.",
+      "expected_output": "The skill recognizes material scale/regulatory differences and either downgrades the precedent or searches for better analogs.",
+      "assertions": [
+        "Decision-relevant differences override raw semantic similarity"
+      ]
+    }
+  ]
+}

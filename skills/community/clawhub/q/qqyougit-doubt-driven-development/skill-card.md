@@ -1,40 +1,57 @@
-## Description: <br>
-Guides agents to apply adversarial review before non-trivial decisions so overconfident assumptions, edge cases, and contract failures are challenged while changes are still cheap to correct. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through bounded adversarial review of non-trivial decisions to reduce overconfident mistakes in architecture, code, deployment, migration, and other high-risk work.
 
-## Publisher: <br>
-[qqyougitcom](https://clawhub.ai/user/qqyougitcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qqyougitcom](https://clawhub.ai/user/qqyougitcom)
 
-## Use Case: <br>
-Developers and coding agents use this skill when correctness matters more than speed, especially for architecture decisions, non-trivial code changes, production deployments, data migrations, public API changes, or claims about safety, scalability, or specification compliance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Important decisions may involve artifacts or contracts that contain sensitive information and may be shared with reviewer subagents or other models. <br>
-Mitigation: Avoid including secrets in review artifacts unless the user intentionally wants that data reviewed, and require explicit authorization before cross-model review. <br>
-Risk: Adversarial reviewers can produce noisy or context-limited findings that may mislead the main agent if accepted without reconciliation. <br>
-Mitigation: Classify each finding against the artifact text as a contract misread, valid and actionable issue, valid tradeoff, or noise before changing the artifact. <br>
+## Use Case:
 
+Developers and agent operators use this skill when correctness matters more than speed, especially for architecture choices, non-trivial code changes, production deployments, data migrations, and irreversible operations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qqyougitcom/qqyougit-doubt-driven-development) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance, checklists, adversarial-review prompts, and reconciliation notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce claims, artifact and contract summaries, reviewer prompts, finding classifications, tradeoff notes, and stopping-condition decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: server release metadata; artifact frontmatter reports 2.0.0) <br>
+Risk: The workflow can add review effort, latency, or sub-agent usage to non-trivial decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Apply it to decisions where correctness matters more than speed, and stop on minor repeated findings, after three rounds, or when the user overrides.
+
+Risk: The skill is written in Chinese, which may reduce reviewability for users who do not read Chinese.
+
+Mitigation: Use a translated or bilingual version before installation or operational use when the operator cannot read Chinese.
+
+Risk: Fresh-context or cross-model review can expose artifacts beyond the main agent context if used without care.
+
+Mitigation: Send only the artifact and contract to the reviewer, omit the author's claim and reasoning, and obtain explicit user authorization for each cross-model review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qqyougitcom/skills/qqyougit-doubt-driven-development)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown checklists, adversarial review prompts, findings classifications, and concise decision notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bounded review loop with up to three rounds unless the user overrides or the artifact is decomposed.]
+
+## Skill Version(s):
+
+3.0.1 (source: server release evidence; artifact frontmatter is 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

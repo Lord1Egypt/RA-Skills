@@ -1,42 +1,58 @@
-## Description: <br>
-Uploads user-selected files to Catbox for permanent hosting or Litterbox for temporary hosting and returns the hosted URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uploads files to catbox.moe for permanent hosting or litterbox.catbox.moe for temporary hosting and returns the resulting file URL.
 
-## Publisher: <br>
-[Microck](https://clawhub.ai/user/Microck) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[microck](https://clawhub.ai/user/microck)
 
-## Use Case: <br>
-Developers and agents use this skill to upload a chosen local file to Catbox or Litterbox and receive a shareable hosted URL. It supports temporary Litterbox uploads and permanent Catbox uploads, including optional Catbox userhash tracking. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Uploaded files are sent to external Catbox or Litterbox infrastructure and may expose secrets, private documents, or regulated data. <br>
-Mitigation: Upload only files intended for external sharing; avoid secrets, private documents, and regulated data. <br>
-Risk: Catbox uploads are permanent, and a Catbox userhash can identify or track uploads for an account. <br>
-Mitigation: Prefer Litterbox for temporary sharing and treat any Catbox userhash as sensitive account information. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Microck/catbox-upload) <br>
-- [Publisher Profile](https://clawhub.ai/user/Microck) <br>
-- [Catbox API Endpoint](https://catbox.moe/user/api.php) <br>
-- [Litterbox API Endpoint](https://litterbox.catbox.moe/resources/internals/api.php) <br>
+## Use Case:
 
+Developers and agents use this skill to upload local files to Catbox or Litterbox and retrieve a shareable URL, choosing temporary hosting when permanence is not required.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Guidance] <br>
-**Output Format:** [Markdown usage guidance and plain text hosted URL output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uploads selected file bytes to an external hosting service; Litterbox supports 1h, 12h, 24h, and 72h expirations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Files uploaded through this skill are sent to third-party hosting services and returned URLs should be treated as shareable links.
+
+Mitigation: Only upload files suitable for Catbox or Litterbox, avoid secrets and private data, and prefer temporary Litterbox uploads when permanence is not needed.
+
+Risk: Permanent Catbox uploads may persist beyond the user's intended sharing window.
+
+Mitigation: Use Litterbox with an explicit expiration time for short-lived sharing, or confirm permanence before selecting Catbox.
+
+Risk: Operational use depends on the requests package and outbound HTTP calls to Catbox or Litterbox.
+
+Mitigation: Pin dependencies and add request timeouts before relying on the uploader in production workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/microck/skills/catbox-upload)
+- [Catbox upload API endpoint](https://catbox.moe/user/api.php)
+- [Litterbox upload API endpoint](https://litterbox.catbox.moe/resources/internals/api.php)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text URL output with Markdown usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns the direct uploaded-file URL on success; supports temporary Litterbox expirations of 1h, 12h, 24h, or 72h.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

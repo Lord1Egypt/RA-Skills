@@ -1,41 +1,54 @@
-## Description: <br>
-Deadline is an offline command-line assistant for tracking, managing, and exporting content creation entries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Your personal Deadline assistant. Use when you need deadline.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Content creators and operators use Deadline to record drafts, edits, schedules, hashtags, hooks, calls to action, rewrites, translations, tone changes, headlines, and outlines from a local command-line workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Drafts, schedules, translations, and other entered text are saved locally in plaintext under ~/.local/share/deadline/. <br>
-Mitigation: Avoid entering secrets or confidential material, and review or delete the local data directory when needed. <br>
-Risk: A different deadline command on the user's PATH could run instead of the reviewed script. <br>
-Mitigation: Verify that the deadline command points to the reviewed script before relying on it. <br>
+## Use Case:
 
+External users and developers can use Deadline as an offline command-line assistant for drafting, editing, optimizing, scheduling, and reviewing content-related entries. The tool records activity locally and supports status checks, search, recent history, statistics, and exports.
 
-## Reference(s): <br>
-- [ClawHub Deadline Skill Page](https://clawhub.ai/xueyetianya/deadline) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files] <br>
-**Output Format:** [Command-line text with optional JSON, CSV, or plain-text export files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores history and exported files locally under ~/.local/share/deadline/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: User-entered text is retained on the local machine under ~/.local/share/deadline.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering passwords, credentials, private business content, or sensitive personal data unless local file permissions and retention are acceptable.
+
+Risk: Exported files may contain stored user content and should be treated as sensitive when shared or imported elsewhere.
+
+Mitigation: Review JSON, CSV, or TXT exports before sharing them, and delete local logs or exports when they are no longer needed.
+
+## Reference(s):
+
+- [Deadline on ClawHub](https://clawhub.ai/xueyetianya/skills/deadline)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files, Guidance]
+
+**Output Format:** [Plain text CLI output with optional JSON, CSV, or TXT export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores user-entered content and history locally under ~/.local/share/deadline.]
+
+## Skill Version(s):
+
+2.0.1 (source: ClawHub release metadata; artifact frontmatter and script report 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

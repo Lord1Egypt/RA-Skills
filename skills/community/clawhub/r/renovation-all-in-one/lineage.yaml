@@ -1,0 +1,81 @@
+lineage:
+  skill: 装修尺寸与布局参谋（尺寸+施工+验收+预算+合同+环保+材料+避坑）
+  version: 8.0.0
+  built_from:
+    - source_id: younini-data
+      title: 装修常用数据手册：空间布局和尺寸
+      author: 尤呢呢
+      isbn: 978-7-5713-2365-3
+      publisher: 江苏凤凰科学技术出版社
+      year: 2021.9
+      rights: personal_local
+      extraction: pymupdf 全文抽取(179/180页文本完好) -> source/data-manual.clean.txt
+    - source_id: younini-construction
+      title: 装修施工完全手册
+      author: 尤呢呢
+      isbn: 978-7-5713-3546-5
+      status: COMPLETE
+      note: 正版原件 257 页，pymupdf 抽取约 12 万字
+      extraction: pymupdf 全文抽取 -> source/construction-manual.txt -> chapters/ch01..ch09.txt -> synthesis-construction.md
+    - source_id: budget-contract-eco-synthesis
+      title: 本机专项 skill 合成（预算/合同/环保）
+      rights: local_synthesis
+      extraction: 直接合成 synthesis-budget-contract-eco.md
+    - source_id: home-ref-00
+      title: 00-家装参考文件（其余可读资料）
+      rights: personal_local
+      status: PARTIAL_COMPLETE
+      adopted:
+        - 装修福利/材料选择、装修前准备、水电攻略、竣工攻略、拆改攻略、泥木攻略、油漆攻略 pptx (图多字少，抽要点)
+        - 装修福利/二手房收房注意事项、精装房收房验房注意事项 pdf
+        - 装修福利/整装施工项目&隐性增项清单 pdf
+        - 中建八局质量通病防治手册（装饰装修篇）.docx (2019.8，筛选家装相关项)
+        - 定制家具-橱柜资料.pptx (定制家具深化)
+      rejected:
+        - 注：中建八局建筑装饰装修工程施工技术标准.pdf (632页) 此前 source/ 副本损坏+判为纯图片；本机用用户 OCR 版重检——文本层完整(53万字)，已单独采纳(见 eng-standards-full，第10章幕墙+工业地坪摈弃)
+        - 注：建筑装饰装修工程施工技术手册.pdf 此前 source/ 副本损坏误判为纯图片；本机用用户正版原件重检——475页文本层完整(52.7万字)，已单独采纳(见 eng-standards-pdf)
+        - 二次结构/砌体/节能保温/地面/门窗栏杆 PPT (建筑主体结构，非家装)
+        - 质量通病与预防 2013版 .doc (吊顶/墙地砖/涂料/隔墙，被2019版+现行取代且旧二进制不可读)
+        - 北京/深圳装饰合同 .doc (旧二进制不可读，合同要点v3已覆盖)
+        - 定制家具-衣柜资料.ppt (旧二进制不可读，橱柜资料已覆盖)
+      extraction: python-pptx/python-docx/pymupdf 批量抽取 -> scratch-ref/ -> synthesis-references.md
+    - source_id: eng-standards-full
+      title: 建筑装饰装修工程施工技术标准（中建八局 2017 企业标准 ZJQ08-SGJB 210-2017）
+      rights: personal_local
+      status: COMPLETE
+      note: 此前 source/ 副本损坏+判为纯图片；用户 OCR 后本机重检——632页/53万字文本层完整(个别字变形已忽略)
+      adopted_chapters: 第4–9、11–13章(抹灰/外墙防水/门窗/吊顶/轻质隔墙/饰面板砖/涂饰/裱糊软包/细部)；第10章幕墙+工业地坪摈弃
+      standard_correction: 2017企业标准引用旧国标处按 synthesis-standards.md §1 纠正为 GB50210-2018/GB50325-2020 等现行版；其已前瞻纳入外墙防水/集成吊顶分类与2018国标吻合
+      extraction: pymupdf 全文抽取(OCR版) -> scratch-std2/tech-standard.txt(332K字) -> synthesis-standards.md §8
+  chain:
+    - skill_section: SKILL.md 知识速查(尺寸+施工验收+预算合同环保+材料选型质量通病避坑+工程标准验收红线+施工流程六维底座)/自测(27条)
+    - concept: synthesis.md + synthesis-construction.md + synthesis-budget-contract-eco.md + synthesis-references.md (v4) + synthesis-standards.md (v5 现行规范纠正+淘汰工艺红线；v6 增 §8 中建八局企业标准实操参数补充) + synthesis-construction-flow.md (v7 六维施工流程底座：12步骤×6维度 工艺流程/材料选型/材料验收/施工质量要点/通病防治/施工验收)
+    - verified_unit: verified-units.jsonl (u01-u16)
+    - candidate_unit: candidate-units.jsonl
+    - relevance: research-questions.md (7问)
+    - source_ref: 用户正版资料 (D:\2-百度网盘\下载文件\)
+  gates_passed:
+    - module1_problem_lens: pass
+    - module2_source_map: pass
+    - module3_depth_router: full (可读性优先；纯图片/工装/旧版摈弃)
+    - module4_method_foundry: pass
+    - module5_evidence_gates: pass
+    - module6_knowledge_merge: pass (synthesis-references.md 并入 v4；synthesis-standards.md 并入 v5；synthesis-standards.md §8 中建八局企业标准补充 并入 v6；synthesis-construction-flow.md 六维施工流程底座 并入 v7)
+    - module7_action_pack: pass (skill v6 已安装)
+  coverage:
+    - 尺寸/布局/插座水路高度/灯光/物料时序: 完整
+    - 施工流程/工艺标准/验收要点/避坑: 完整(施工手册 9 章)
+    - 预算/合同/环保: 完整(专项合成)
+    - 材料选型(主辅材/板材/瓷砖/门窗/台面/五金/计价): 完整(v4)
+    - 质量通病避坑(吊顶/墙地面/电管线槽/泛碱，含管控措施): 完整(v4)
+    - 收房验房(三书一证一表/精装清单/相位等电位活线CCC): 完整(v4)
+    - 竣工与环保入住(验收标准/维保/保洁/污染物): 完整(v4)
+    - 定制家具深化(橱衣柜/环保标准现代化GB/T39600): 完整(v4)
+    - 工程标准级验收红线(GB50210-2018各工种底线/GB50325-2020污染限量/JGJ113-2015安全玻璃/GB50352-2019护栏/GB18580-2017板材): 完整(v5→v6)
+    - 淘汰/禁用于家装工艺红线(木门窗现场制作/散热器罩/107胶/现场熬沥青/纸筋石灰水刷石/石棉): 完整(v5→v6)
+    - 中建八局企业标准实操加严参数(吊顶起拱1‰~5‰/伸缩缝>100㎡或>15m/灯具重量分级>3kg吊承重结构/潮湿房石膏板≥12mm；门窗铝合金安装偏差/塑料固定点150~200mm间距≤600mm；抹灰允许偏差4/3mm): 新增(v6，编译自632页企业标准 ZJQ08-SGJB 210-2017)
+    - 施工流程六维底座(synthesis-construction-flow.md：12步骤×6维度 工艺流程/材料选型/材料验收/施工质量要点/施工质量通病防治/施工验收，作为装修工作台施工流程底座，附30步→步骤映射): 新增(v7)；v8 深化拆分为 synthesis-construction-flow.md(总览索引+门禁G1–G9) + construction-flow/01..12-*.md(12步独立细则文件，每文件六维完整展开，带现行规范号与允许偏差表)
+  open_questions:
+    - 2013版质量通病/北京深圳合同/衣柜资料 因旧二进制格式本环境无转换器，暂不可读；如用户提供 txt/可转格式可再补。
+    - 中建八局施工技术手册此前误判为图片书，已用正版原件重检为文本层完整并采纳(v5)；中建八局技术标准632页此前亦误判，本机用用户 OCR 版重检为文本层完整并采纳(v6，第10章幕墙+工业地坪摈弃)。
+

@@ -1,40 +1,52 @@
-## Description: <br>
-Uploads Instagram posts through browser automation, including image upload, caption entry, optional collaborator tagging, and sharing through an active Instagram session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill uploads Instagram image posts through browser automation in an active OpenClaw browser session, including image upload, caption entry, optional collaborator tagging, and sharing.
 
-## Publisher: <br>
-[mupengi-bot](https://clawhub.ai/user/mupengi-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mupengi-bot](https://clawhub.ai/user/mupengi-bot)
 
-## Use Case: <br>
-External creators, social media operators, and agents use this skill to prepare and publish Instagram image posts from local JPG files in a logged-in browser session. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish real posts to the currently logged-in Instagram account. <br>
-Mitigation: Before each run, verify the target account, media paths, caption, and collaborators, and do not allow unattended posting. <br>
-Risk: Browser automation can act on the wrong tab or stale Instagram UI state. <br>
-Mitigation: Confirm the active Instagram tab before publishing and verify the final shared-post confirmation in the browser. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mupengi-bot/insta-post) <br>
-- [Instagram](https://www.instagram.com/) <br>
+## Use Case:
 
+Developers and content operators use this skill to prepare and publish Instagram image posts through an active OpenClaw browser session. It supports image upload, caption entry, collaborator tagging, and sharing when the user is already logged in to Instagram.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; the bundled script emits JSON status.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a logged-in Instagram browser session and local image paths; use may publish real posts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can publish content from a real logged-in Instagram account without a built-in final approval step.
+
+Mitigation: Confirm the active Instagram account, selected images, caption, and collaborators before running the upload flow.
+
+Risk: The browser session may be logged in to an unintended Instagram account.
+
+Mitigation: Check the visible Instagram account in the browser before upload and use a dedicated browser profile for publishing workflows when practical.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mupengi-bot/skills/insta-post)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown instructions with shell commands and JavaScript automation output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Script execution may return JSON status for upload success, uncertainty, or failure.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

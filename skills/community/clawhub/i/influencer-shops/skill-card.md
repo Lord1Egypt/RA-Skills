@@ -1,37 +1,53 @@
-## Description: <br>
-提供关于网红小店的推荐清单、打卡路线与指南。用户搜索网红小店或规划相关出行时调用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供关于网红小店的推荐清单、打卡路线与指南。用户搜索网红小店或规划相关出行时调用。
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-External users and agents use this skill to plan visits to trendy shops, compare filters such as style and price, and return concise shop lists, routes, and visit guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shop hours, prices, crowd levels, events, and reservation details can change quickly. <br>
-Mitigation: Verify current details with official shop channels before traveling, making reservations, or relying on pricing. <br>
+## Use Case:
 
+External users and agent operators use this skill to generate influencer-shop recommendation lists, visit routes, and planning guidance based on style, price, services, location, and crowding preferences.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown recommendations and travel-style guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include shop names, addresses, hours, booking methods, highlights, prices, ratings, crowd levels, activity details, and visit notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Hours, prices, booking rules, crowd levels, and social-media trend claims may change before a user visits or spends money.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current details with official shop channels or booking platforms before travel or purchase decisions.
+
+Risk: Some shops or projects may restrict photography, try-ons, or require minimum spend.
+
+Mitigation: Follow posted venue rules and confirm restrictions before planning photo shoots or purchases.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/codekungfu/skills/influencer-shops)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, markdown]
+
+**Output Format:** [Markdown recommendation lists and travel-planning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes shop names, highlights, pricing, ratings, crowding, addresses, hours, booking methods, photo and try-on rules, events, collaborations, and social-media popularity signals when available.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

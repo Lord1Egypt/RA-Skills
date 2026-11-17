@@ -1,41 +1,58 @@
-## Description: <br>
-Generates automated daily technology and finance news briefings with AI commentary and delivers them through QQBot, Telegram, or Discord. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and delivers automated daily tech and finance news briefings with AI commentary via QQ, Telegram, or Discord using Baidu API or DuckDuckGo search.
 
-## Publisher: <br>
-[propn](https://clawhub.ai/user/propn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[propn](https://clawhub.ai/user/propn)
 
-## Use Case: <br>
-Developers, operators, and news-monitoring users can use this skill to schedule recurring news aggregation, generate Markdown briefings, and send summaries to configured messaging channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Delivery scripts can send generated reports to a hard-coded QQ recipient if defaults are not changed. <br>
-Mitigation: Inspect the delivery scripts, replace the QQ target with the intended recipient, and run a manual test delivery before enabling cron. <br>
-Risk: API keys and outbound delivery settings may be exposed or misrouted if placed in broad shell profiles or passed to unreviewed helpers. <br>
-Mitigation: Use a dedicated, permission-restricted config file or secret manager for API keys, and verify any external Baidu search helper before providing credentials. <br>
+## Use Case:
 
+External users and developers use this skill to generate scheduled daily technology and finance news briefings, add commentary, and deliver reports through OpenClaw-supported messaging channels.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/propn/qqbot-daily-news-briefing) <br>
-- [Configuration guide](references/CONFIGURATION.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown briefing files with shell command and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces scheduled briefing content and delivery commands; review target recipients, cron entries, and credential handling before unattended use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Delivery scripts may send generated reports to a hardcoded QQ recipient instead of the user-configured recipient.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and change the delivery scripts before installation; require an explicit user-controlled recipient and fail delivery when no recipient is configured.
+
+Risk: Automated cron delivery can repeatedly send briefings to an unintended destination.
+
+Mitigation: Keep cron disabled until a manual dry run confirms the exact destination, channel, content, and logs.
+
+Risk: Attachment delivery may send the wrong local report if the file path is not validated.
+
+Mitigation: Validate the generated briefing path before sending and restrict delivery to the expected daily report location.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/propn/skills/qqbot-daily-news-briefing)
+- [Configuration Guide](references/CONFIGURATION.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown briefing files with command and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Briefings include categorized article summaries, source links, commentary, and delivery message previews.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

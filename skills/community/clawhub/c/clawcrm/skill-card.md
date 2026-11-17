@@ -1,45 +1,61 @@
-## Description: <br>
-Agent-native CRM built for AI agents to manage sales pipelines autonomously. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent-native CRM built for AI agents to manage sales pipelines autonomously.
 
-## Publisher: <br>
-[giorgallidis](https://clawhub.ai/user/giorgallidis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[giorgallidis](https://clawhub.ai/user/giorgallidis)
 
-## Use Case: <br>
-External agents and developers use this skill to configure a ClawCRM workspace, create and enrich sales leads, send delayed email sequences, track proposal engagement, and analyze pipeline health through the ClawCRM API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent administrator-like authority over CRM records and sales workflows. <br>
-Mitigation: Use a dedicated scoped key where available, test first in a sandbox workspace, and limit access to data and actions the agent actually needs. <br>
-Risk: Lead enrichment may process personal or professional contact data without sufficient consent or retention review. <br>
-Mitigation: Require explicit human approval before enrichment and confirm consent, retention, deletion, and audit-log controls before using real contacts. <br>
-Risk: Delayed outbound email sequences could be sent without clear approval, opt-out, rate-limit, or cancellation safeguards. <br>
-Mitigation: Require human approval before any outbound sequence and verify opt-out, rate-limit, audit-log, and cancellation controls in the ClawCRM service. <br>
+## Use Case:
 
+Developers and AI agents use this skill to create and manage ClawCRM workspaces, leads, enrichment, proposal engagement, email sequences, feedback, and pipeline analytics through API calls.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/giorgallidis/clawcrm) <br>
-- [ClawCRM Homepage](https://clawcrm.ai) <br>
-- [ReadyCRM Service](https://readycrm.netlify.app) <br>
-- [ReadyCRM Repository](https://github.com/Protosome-Inc/ReadyCRM) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON request/response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a CLAWCRM_API_KEY or administrator token for authenticated ClawCRM API operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release evidence) <br>
+Risk: The skill can enable broad autonomous sales, lead enrichment, and email-sending actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use clear human approval rules for outreach and restrict the agent to authorized lead data.
+
+Risk: CRM tokens could be exposed through prompts, logs, or shell history.
+
+Mitigation: Store the ClawCRM token in a secret manager or environment variable and avoid placing it in prompts or command history.
+
+Risk: Sales outreach and enrichment workflows may trigger privacy, consent, or compliance obligations.
+
+Mitigation: Verify the applicable requirements for sales emails and data enrichment before allowing autonomous execution.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/giorgallidis/skills/clawcrm)
+- [ClawCRM homepage](https://clawcrm.ai)
+- [ClawCRM service](https://readycrm.netlify.app)
+- [ReadyCRM repository link from metadata](https://github.com/Protosome-Inc/ReadyCRM)
+- [ReadyCRM issues](https://github.com/Protosome-Inc/ReadyCRM/issues)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CLAWCRM_API_KEY and authorized ClawCRM workspace access.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release evidence; artifact _meta.json lists 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

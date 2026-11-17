@@ -4,7 +4,7 @@
 
 An **action** is a single operation you can execute without building a workflow. Use `action execute` for one record, or `action execute-batch` for multiple records.
 
-Actions come in four kinds:
+Actions come in five kinds (`action list --kind` searches the first four):
 
 | Kind        | What it does                         | Required fields                                |
 | ----------- | ------------------------------------ | ---------------------------------------------- |
@@ -12,10 +12,67 @@ Actions come in four kinds:
 | `connector` | Call a third-party service           | `integrationSlug` + `actionSlug`               |
 | `agent`     | Invoke an AI agent                   | `agentUuid` or `templateSlug` or `releaseUuid` |
 | `native`    | Run a built-in platform action       | `actionSlug`                                   |
+| `worker`    | Call a hosted worker                 | `workerUuid` + `method` + `path`               |
 
-Every action object also requires a `config` field (use `{}` for defaults).
+`config` is where a **node** keeps its configuration; a top-level action has none — its inputs go in `--data` (single) or `--records` (batch). Omit the key on `execute` / `execute-batch`: that is the shape `action list` returns, and `"config": {}` is merely tolerated there.
+
+`get-output-schema` takes the same pair — the action, plus `--data` when the output depends on the inputs (a HubSpot object type, a target sheet). Nodes, alert `--actions`, play `healthAlertActions`, and agent / MCP-server `--actions` are where `config` still belongs: it is a node's configuration, never an action's input.
 
 > **When to use actions vs workflows:** Actions are for running a **single operation** without building a workflow graph. If you need to **chain multiple operations** together (enrichment → scoring → CRM push), use `run create --nodes` or `batch create --nodes` instead. See `tools.md` for workflow examples.
+
+---
+
+## Find an action — `action list`
+
+Free: no run, no credits. Searches the integration catalog, Cargo native actions, this workspace's tools, and its agents in one call.
+
+```bash
+cargo-ai orchestration action list enrich company
+cargo-ai orchestration action list --kind tool
+cargo-ai orchestration action list send --kind connector --integration-slug slack
+cargo-ai orchestration action list verify email --limit 5
+```
+
+| Flag | Meaning |
+| --- | --- |
+| `[query...]` | Space-separated keywords. **All** terms must match (AND), against action slug, name, description, and integration. Omit to browse. |
+| `--kind` | One of `connector`, `native`, `tool`, `agent`. `tool` and `agent` need a signed-in workspace. |
+| `--integration-slug` | Restrict connector results to one integration. |
+| `--limit` | No default: omit it and every match is returned. |
+
+Response:
+
+```json
+{
+  "query": "enrich company",
+  "totalMatches": 37,
+  "results": [
+    {
+      "name": "Enrich company",
+      "description": "Return firmographics for a domain…",
+      "score": 12,
+      "action": {
+        "kind": "connector",
+        "integrationSlug": "aiArk",
+        "actionSlug": "enrichCompany",
+        "connectorUuid": "<uuid>"
+      },
+      "connectors": [{ "uuid": "<uuid>", "slug": "aiArk", "name": "AI Ark" }],
+      "credits": [{ "...": "cost table for this action" }],
+      "autocompletes": [{ "slug": "<slug>", "params": { "...": "..." } }]
+    }
+  ]
+}
+```
+
+Notes worth knowing:
+
+- **`results[].action` is the payload** — pass it verbatim to `execute`, `execute-batch`, or `get-output-schema`. `connectorUuid` is resolved to the integration's default connector (or the first one) and sits **at the top level of the action, never inside `config`**.
+- **`credits`** is the action's cost table when it bills — the cheapest pre-flight cost check there is. Cross-check a GTM provider's playbook (`../../../cargo-gtm/provider-playbooks/<slug>.md`) before fanning out.
+- **`autocompletes`** flags config fields that need a picked id (HubSpot object type, Slack channel, Metabase question). Resolve those to concrete values before running — over MCP that is the `autocomplete_action` tool; over the CLI, use the integration's own list actions.
+- Ranking: action slug/name > integration > description. `score` is comparable within one response only.
+- Structural native nodes (`start`, `end`, `branch`, `delay`, `filter`, `group`, `split`, `switch`, `note`) are excluded — they belong in a node graph, not in `action execute`. See `nodes.md`. **Excluded is not free:** they carry no provider price, but each one still bills the 0.01-credit execution charge every time it runs, like any other node ([`../troubleshooting.md`](../troubleshooting.md)).
+- `unknown command` means the CLI predates `action list` — refresh it (`npm install -g @cargo-ai/cli@…`).
 
 ---
 
@@ -24,17 +81,17 @@ Every action object also requires a `config` field (use `{}` for defaults).
 ```bash
 # Tool action
 cargo-ai orchestration action execute \
-  --action '{"kind":"tool","toolUuid":"<tool-uuid>","config":{}}' \
+  --action '{"kind":"tool","toolUuid":"<tool-uuid>"}' \
   --data '{"domain":"acme.com"}'
 
 # Connector action
 cargo-ai orchestration action execute \
-  --action '{"kind":"connector","integrationSlug":"clearbit","actionSlug":"company_enrich","config":{}}' \
+  --action '{"kind":"connector","integrationSlug":"clearbit","actionSlug":"enrichCompany"}' \
   --data '{"domain":"acme.com"}'
 
 # Agent action
 cargo-ai orchestration action execute \
-  --action '{"kind":"agent","agentUuid":"<agent-uuid>","config":{}}' \
+  --action '{"kind":"agent","agentUuid":"<agent-uuid>"}' \
   --data '{"company":"Acme Corp"}'
 ```
 
@@ -42,7 +99,7 @@ Returns a `run` object. Poll with `run get <uuid>` until terminal, or pass `--wa
 
 ```bash
 cargo-ai orchestration action execute \
-  --action '{"kind":"connector","integrationSlug":"clearbit","actionSlug":"company_enrich","config":{}}' \
+  --action '{"kind":"connector","integrationSlug":"clearbit","actionSlug":"enrichCompany"}' \
   --data '{"domain":"acme.com"}' \
   --wait-until-finished
 ```
@@ -51,7 +108,7 @@ Custom polling interval (default 5000ms):
 
 ```bash
 cargo-ai orchestration action execute \
-  --action '{"kind":"tool","toolUuid":"<tool-uuid>","config":{}}' \
+  --action '{"kind":"tool","toolUuid":"<tool-uuid>"}' \
   --data '{"domain":"acme.com"}' \
   --wait-until-finished --polling-interval 2000
 ```
@@ -81,7 +138,7 @@ With `--wait-until-finished`, the response contains the terminal run state:
 }
 ```
 
-**Status values:** `pending`, `running`, `success`, `error`, `cancelled`.
+**Status values:** `idle`, `pending`, `running`, `success`, `error`, `cancelling`, `cancelled`, `skipped`.
 
 ---
 
@@ -89,7 +146,7 @@ With `--wait-until-finished`, the response contains the terminal run state:
 
 ```bash
 cargo-ai orchestration action execute-batch \
-  --action '{"kind":"tool","toolUuid":"<tool-uuid>","config":{}}' \
+  --action '{"kind":"tool","toolUuid":"<tool-uuid>"}' \
   --records '[{"domain":"acme.com"},{"domain":"globex.com"},{"domain":"initech.com"}]'
 ```
 
@@ -97,7 +154,7 @@ Returns a `batch` object. Poll with `batch get <uuid>` until terminal, or pass `
 
 ```bash
 cargo-ai orchestration action execute-batch \
-  --action '{"kind":"connector","integrationSlug":"clearbit","actionSlug":"company_enrich","config":{}}' \
+  --action '{"kind":"connector","integrationSlug":"clearbit","actionSlug":"enrichCompany"}' \
   --records '[{"domain":"acme.com"},{"domain":"globex.com"}]' \
   --wait-until-finished
 ```
@@ -108,7 +165,7 @@ Get notified when the batch completes instead of polling:
 
 ```bash
 cargo-ai orchestration action execute-batch \
-  --action '{"kind":"tool","toolUuid":"<tool-uuid>","config":{}}' \
+  --action '{"kind":"tool","toolUuid":"<tool-uuid>"}' \
   --records '[{"domain":"acme.com"},{"domain":"globex.com"}]' \
   --webhook-url "https://hooks.example.com/done" \
   --webhook-secret "my-secret"
@@ -147,16 +204,15 @@ With `--wait-until-finished`:
 
 ## Retry configuration
 
-Add a `retry` object to the action for automatic retries on transient failures:
+Add a `retry` object to the action for automatic retries on transient failures. `initialInterval` is in seconds, not milliseconds:
 
 ```bash
 cargo-ai orchestration action execute \
   --action '{
     "kind":"connector",
     "integrationSlug":"clearbit",
-    "actionSlug":"company_enrich",
-    "config":{},
-    "retry":{"maximumAttempts":3,"initialInterval":1000,"backoffCoefficient":2}
+    "actionSlug":"enrichCompany",
+    "retry":{"maximumAttempts":3,"initialInterval":1,"backoffCoefficient":2}
   }' \
   --data '{"domain":"acme.com"}' \
   --wait-until-finished
@@ -189,16 +245,103 @@ cargo-ai connection connector list
 
 ---
 
+## Resolve an action's output schema
+
+**Never guess what an action outputs.** There are two free ways to discover what an action **produces** — no run, no credits.
+
+### 1. Connector actions: read `output.schema` from the integration catalog
+
+`integration get <slug>` (and `integration list`) return each action's output schema inline, next to its input schema:
+
+```bash
+cargo-ai connection integration get waterfall
+# → .integration.actions.verifyEmail.config.schema   — input (what you pass)
+# → .integration.actions.verifyEmail.output.schema   — output (what it emits)
+```
+
+**Not every action declares an output schema** — e.g. `waterfall.verifyEmail`, `waterfall.detectJobChange`, `clearbit.enrichCompany`, and most `hubspot` record actions do, while `waterfall.searchProspects` and `salesNavigator.searchAccounts` don't (no `output` key). When it's absent, the only way to see the real shape is `runContext` from an actual run.
+
+### 2. Any action kind: `action get-output-schema`
+
+For non-connector kinds (`tool`, `agent`, `native`) — or when you already have the action object in hand — resolve the same schema without touching the catalog:
+
+```bash
+cargo-ai orchestration action get-output-schema \
+  --action '{"kind":"connector","integrationSlug":"clearbit","actionSlug":"enrichCompany"}'
+```
+
+It accepts the same `--action` object as `action execute` — the one `action list` returns — so it works for every kind:
+
+```bash
+# Tool action — resolves the tool workflow's output-node schema
+cargo-ai orchestration action get-output-schema \
+  --action '{"kind":"tool","toolUuid":"<tool-uuid>"}'
+
+# Agent action — resolves the deployed release's output schema
+cargo-ai orchestration action get-output-schema \
+  --action '{"kind":"agent","agentUuid":"<agent-uuid>"}'
+
+# Native action
+cargo-ai orchestration action get-output-schema \
+  --action '{"kind":"native","actionSlug":"<slug>"}'
+```
+
+**When the output depends on the inputs, pass `--data`** (**CLI ≥ 1.0.67**). Some connector actions
+shape their output from what they are given — a HubSpot object type decides which
+fields come back, a Google Sheet decides the columns. `--data` takes the same
+object `action execute` does; omit it and you get the action's generic schema:
+
+```bash
+cargo-ai orchestration action get-output-schema \
+  --action '{"kind":"connector","integrationSlug":"hubspot","actionSlug":"findRecords"}' \
+  --data '{"objectType":"contacts"}'
+```
+
+### Response
+
+The JSON Schema sits under a top-level **`schema`** key (not returned bare), and for connector actions it is exactly the catalog's `output.schema` — e.g. `waterfall` / `verifyEmail` resolves to:
+
+```json
+{
+  "schema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "email": { "type": "string" },
+      "domain": { "type": "string" },
+      "email_status": { "type": "string" },
+      "smtp_provider": { "type": "string" },
+      "mx_records": { "type": "array", "items": { "type": "string" } }
+    }
+  }
+}
+```
+
+An `agent` action without a structured `output.jsonSchema` resolves to `{"schema":{"type":"object","properties":{"answer":{"type":"string"}}}}` — the free-text answer envelope. This is the authoritative confirmation that downstream references must go through `.answer` (`{{nodes.<slug>.answer}}`, or `{{nodes.<slug>.answer.<field>}}` for structured agents).
+
+Two distinct failure modes, both non-zero exit with `status: 404` and the API `reason` in the message (`Not found: <reason>. ...`):
+
+- `actionNotFound` (or `integrationNotFound` for a wrong `integrationSlug`) — the `actionSlug` / `toolUuid` / `agentUuid` doesn't exist. Slugs are exact and case-sensitive (`enrichCompany`, not `company_enrich`); list them via `integration get <slug>` → `.integration.actions` keys.
+- `actionHasNoOutput` — the action exists but declares no output schema (its catalog entry has no `output` key). Fall back to running it once and reading `runContext.<nodeSlug>` from `run get`.
+
+### Why it's useful
+
+- **Wire a node graph correctly the first time.** Know which fields exist before referencing them downstream as `{{nodes.<slug>.<field>}}` — avoids the silent-`undefined` footgun (see `../node-selection.md`).
+- **Know an agent's output envelope** (`.answer` vs structured fields) before writing branch/filter expressions against it.
+- **Map onto storage columns** ahead of a batch, without a throwaway run to inspect the output.
+
+---
+
 ## End-to-end: enrich a company with a connector action
 
 ```bash
 # 1. Find the integration and action
 cargo-ai connection integration get clearbit
-# → Find actionSlug: "company_enrich"
+# → Find actionSlug: "enrichCompany" (slugs are exact — keys of .integration.actions)
 
 # 2. Execute
 cargo-ai orchestration action execute \
-  --action '{"kind":"connector","integrationSlug":"clearbit","actionSlug":"company_enrich","config":{}}' \
+  --action '{"kind":"connector","integrationSlug":"clearbit","actionSlug":"enrichCompany"}' \
   --data '{"domain":"acme.com"}' \
   --wait-until-finished
 # → Done. Check run.status for success/error.
@@ -213,7 +356,7 @@ cargo-ai orchestration tool list
 
 # 2. Execute batch
 cargo-ai orchestration action execute-batch \
-  --action '{"kind":"tool","toolUuid":"<tool-uuid>","config":{}}' \
+  --action '{"kind":"tool","toolUuid":"<tool-uuid>"}' \
   --records '[
     {"email":"alice@acme.com","company":"Acme"},
     {"email":"bob@globex.com","company":"Globex"},

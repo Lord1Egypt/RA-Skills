@@ -16,10 +16,12 @@ JSON recipes: [examples/EXAMPLES.md](./examples/EXAMPLES.md#threads).
 | Text-only post | Yes | No attachment required |
 | Single image or video | Yes | Upload first (Rule 2); prefer JPEG/PNG; **SVG rejected** |
 | Media carousel | Yes | Multiple `-m` items → carousel container |
-| 500-character cap | Yes | Provider trims overflow before publish |
-| Scheduled follow-up replies | Yes | `threads.replies[]` with `delaySeconds` |
+| 500-character cap | Yes | **Hard limit** on schedule — main caption, `threads.replies[].message`, finisher, plugs; `posts:create -t schedule` returns **400** when over 500; drafts may exceed via API/CLI |
+| Scheduled follow-up replies | Yes | `threads.replies[]` with `delaySeconds`; optional `media` per reply |
 | Thread finisher | Yes | `threads.enabled` + `threads.message` |
-| Delayed engagement reply | Yes | `threads.internalEngagementPlug` (same account) |
+| Delayed engagement reply (internal plug, same account) | Yes | `threads.internalEngagementPlug` |
+| Cross-account comments (internal plug) | Yes | `threads.crossAccountPlugs` (`threads-cross-account-comment`); acting channels need `threads_manage_mentions` |
+| Global plugs (likes threshold → auto reply) | Yes — `plugs:*` CLI or web **Account → Plugs** | See [plugs.md](./plugs.md) |
 | Missing `release_id` recovery | Yes | `posts:missing` → `posts:connect` |
 | Channel / post analytics | Yes | `analytics:platform`, `analytics:post` |
 | Cross-post to other channels | Yes | Separate `-i` UUIDs and per-channel settings |
@@ -32,8 +34,11 @@ JSON recipes: [examples/EXAMPLES.md](./examples/EXAMPLES.md#threads).
 | Post with image or video | [threads-with-image.json](./examples/threads-with-image.json) |
 | Post a carousel | [threads-media-carousel.json](./examples/threads-media-carousel.json) |
 | Schedule a reply chain / thread | [threads-follow-up-replies.json](./examples/threads-follow-up-replies.json) |
+| Attach an image or video on a follow-up reply | [threads-follow-up-reply-with-image.json](./examples/threads-follow-up-reply-with-image.json) |
 | End with a “thanks for reading” reply | [threads-thread-finisher.json](./examples/threads-thread-finisher.json) |
-| Schedule a delayed engagement comment | [threads-engagement-plug.json](./examples/threads-engagement-plug.json) |
+| Schedule a delayed engagement comment (internal plug) | [threads-engagement-plug.json](./examples/threads-engagement-plug.json) |
+| Comment from other Threads channels (internal plug) | [threads-cross-account-plug.json](./examples/threads-cross-account-plug.json) |
+| Set global plug rules (auto reply at likes threshold) | `plugs:upsert` — see [plugs.md](./plugs.md) |
 | Fix analytics on a “missing” post | [Reconnect missing post](#reconnect-missing-post) |
 | Debug vague Meta/media errors | [threads-publish.md](./threads-publish.md) |
 | Check channel limits / tools | `openquok integrations:settings "$TH_ID"` |
@@ -44,10 +49,40 @@ Use nested keys under `threads` in `--providerSettingsByIntegrationId` (matches 
 
 | Key | Shape | When |
 | --- | --- | --- |
-| `threads.replies` | `[{ "id": "…", "message": "…", "delaySeconds": 60 }]` | Follow-up replies after root post publishes |
+| `threads.replies` | `[{ "id": "…", "message": "…", "delaySeconds": 60, "media": [...] }]` | Follow-up replies after root post publishes |
 | `threads.enabled` | `true` \| `false` | Enable thread finisher (default off) |
 | `threads.message` | string | Finisher text when `enabled` is true |
 | `threads.internalEngagementPlug` | `{ "enabled": true, "message": "…", "delaySeconds": 300 }` | Same-account engagement reply after replies + finisher |
+| `threads.crossAccountPlugs` | `[{ "plugName": "threads-cross-account-comment", "enabled": true, "delayMs": 120000, "integrationIds": ["<other-integration-id>"], "fields": { "comment": "…" } }]` | Comments from other Threads channels in the workspace |
+
+**Cross-account mentions scope:** When the acting channel differs from the publisher, OpenQuok publishes the comment using **`threads_manage_mentions`** on every acting channel (add in Meta app + reconnect after adding the scope). Default **`delayMs`** in the web composer is two minutes (`120000`). **Advanced Access** via Meta App Review is required for production cross-account comments; until approved, replies involving non-tester accounts may fail.
+
+Cross-account shape and plug ids: [provider-settings.md](./provider-settings.md#internal-plugs). Full plug guide: [plugs.md](./plugs.md).
+
+### Reply media (`threads.replies[].media`)
+
+Optional on each reply row. Same shapes as the main post: flat `media[]` or `media: { "items": [...] }`. Upload first (Rule 2); the worker resolves `path` to a public `https://` URL before Meta fetches it.
+
+- One image or one video per reply (same toolbar as the main post in the web composer).
+- Omit `media` for text-only follow-ups.
+
+**Reply with image** (upload first, then nest under `threads.replies`):
+
+```bash
+REPLY_MEDIA=$(openquok upload ./thread-part-2.jpg | jq -c '[{id: .data.id, path: (.data.path // .data.filePath)}]')
+
+openquok posts:create \
+  -s "2026-01-01T12:00:00Z" \
+  -c "Thread 1/2: Why we built this" \
+  -i "$TH_ID" \
+  --providerSettingsByIntegrationId "$(jq -nc --arg id "$TH_ID" --argjson media "$REPLY_MEDIA" '
+    { ($id): { threads: { replies: [
+      { id: "reply-1", message: "Thread 2/2: The architecture", delaySeconds: 60, media: $media }
+    ] } } }
+  ')"
+```
+
+Reply chain without media: [threads-follow-up-replies.json](./examples/threads-follow-up-replies.json). With media on a reply row: [threads-follow-up-reply-with-image.json](./examples/threads-follow-up-reply-with-image.json). Mechanics: [provider-settings.md](./provider-settings.md#scheduled-follow-up-replies).
 
 ## Run an example
 
@@ -61,7 +96,7 @@ At publish time the backend turns each stored object key into a **public `https:
 
 ## Reconnect missing post
 
-Threads sometimes omits `release_id` immediately after publish. Openquok stores `missing` until you link the real id.
+Threads sometimes omits `release_id` immediately after publish. OpenQuok stores `missing` until you link the real id.
 
 ```bash
 POST_ID=$(openquok posts:list \

@@ -1,47 +1,65 @@
-## Description: <br>
-Deeply analyzes robotics and embodied AI papers and generates illustrated technical posts using a zero-extra-installation workflow that extracts figures and captions from arXiv HTML and project pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates Chinese technical posts from robotics and embodied AI papers, including source research, method analysis, experiment summaries, and reproducible arXiv or project-page figure insertion.
 
-## Publisher: <br>
-[jessy-huang](https://clawhub.ai/user/jessy-huang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jessy-huang](https://clawhub.ai/user/jessy-huang)
 
-## Use Case: <br>
-Content creators, researchers, and developers use this skill to turn robotics or embodied AI paper titles, arXiv IDs, project pages, or paper links into structured technical posts with evidence-based summaries, resource links, and inserted figures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional local image downloading may fetch external paper images into the working directory. <br>
-Mitigation: Prefer direct arXiv figure URLs when possible; when local files are needed, inspect the download script first and write output to a scoped folder. <br>
-Risk: Generated article text may misstate paper claims, experimental numbers, or image-to-section alignment. <br>
-Mitigation: Review the final post against the original paper, project page, and selected figures before publication. <br>
+## Use Case:
 
+External authors, researchers, and technical communicators use this skill to turn robotics or embodied AI paper titles, arXiv IDs, project pages, or paper links into publication-ready Chinese technical articles with matched figures, captions, and resource links.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jessy-huang/robot-paper-post) <br>
-- [README](README.md) <br>
-- [Paper structure guide](references/paper-structure.md) <br>
-- [Technology terms glossary](references/tech-terms-glossary.md) <br>
-- [Research teams index](references/research-teams.md) <br>
-- [Classic papers index](references/classic-papers.md) <br>
-- [Image insertion workflow](references/image-insertion-workflow.md) <br>
-- [Post template](assets/post-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown technical post with figure links, captions, resource lists, and optional inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference remote arXiv figure URLs or local image paths when the user asks for offline delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release evidence and artifact metadata) <br>
+Risk: The article template can add an unsolicited Mbot promotional footer to publication-ready output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated drafts and remove or replace the footer before public use.
+
+Risk: The README recommends installing with clawhub@latest, which can make installs depend on the current installer release.
+
+Mitigation: Use a pinned, trusted ClawHub installer version when repeatability matters.
+
+Risk: The docs reference an optional local image-download script that is not included in this artifact.
+
+Mitigation: Prefer direct arXiv figure URLs, or add and review the script before promising local image downloads.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jessy-huang/skills/robot-paper-post)
+- [ClawHub Package URL](https://clawhub.ai/jessy-huang/robot-paper-post)
+- [Project Homepage](https://github.com/Jessy-Huang/robot-paper-post)
+- [Post Template](assets/post-template.md)
+- [Paper Structure Reference](references/paper-structure.md)
+- [Technology Terms Glossary](references/tech-terms-glossary.md)
+- [Research Teams Reference](references/research-teams.md)
+- [Classic Papers Reference](references/classic-papers.md)
+- [Image Insertion Workflow](references/image-insertion-workflow.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown article drafts with figure links, captions, resource lists, and optional shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include 3 to 5 selected figures, local or remote image references, and a note when code is not yet public.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release evidence, artifact metadata, clawhub.json, README changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

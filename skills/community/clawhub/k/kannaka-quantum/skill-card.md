@@ -1,42 +1,61 @@
-## Description: <br>
-Run Kannaka's memory operations on quantum backends, execute OpenQASM circuits, generate quantum random values, and manage qBraid Lab compute and remote coding agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run Kannaka memory operations on quantum backends and help agents use qBraid Lab to inspect environments, manage compute, and launch remote coding agents over SSH.
 
-## Publisher: <br>
-[nickflach](https://clawhub.ai/user/nickflach) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nickflach](https://clawhub.ai/user/nickflach)
 
-## Use Case: <br>
-Developers and quantum-computing practitioners use this skill to inspect quantum devices, run simulator or explicitly authorized hardware jobs, perform resonance recall experiments, and manage qBraid Lab compute or remote agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can start paid qBraid Lab compute that bills by wall-clock minute. <br>
-Mitigation: Confirm each paid compute start, require the documented spend opt-in and credit ceiling, list targets first, and explicitly stop compute after use. <br>
-Risk: The skill can configure SSH access, inject API keys, and launch remote coding agents. <br>
-Mitigation: Confirm SSH setup, credential injection, and agent launches with the user before execution, and limit credentials to the intended remote instance. <br>
-Risk: The skill includes environment deletion and kernel removal operations. <br>
-Mitigation: List and confirm the exact environment or kernel target before destructive operations. <br>
+## Use Case:
 
+Developers and engineers use this skill to run OpenQASM circuits, quantum random number generation, and Kannaka resonance recall on qBraid or OpenQuantum backends, with optional qBraid Lab environment, compute, and remote-agent operations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nickflach/skills/kannaka-quantum) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON command outputs and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may interact with qBraid, OpenQuantum, SSH, local environment management, and remote agent sessions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.3 (source: server release evidence) <br>
+Risk: The skill can ask agents to install an unpinned package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in an isolated environment and pin or review the package version before use.
+
+Risk: Paid quantum hardware and qBraid Lab compute can spend credits, including per-minute compute that continues until stopped.
+
+Mitigation: Require explicit spend approval, set credit ceilings, monitor balances, and stop compute instances immediately after use.
+
+Risk: The skill can use qBraid, OpenQuantum, and agent API credentials.
+
+Mitigation: Use scoped, revocable credentials and remove or rotate secrets after the task completes.
+
+Risk: Remote coding agents can be launched over SSH on provisioned instances.
+
+Mitigation: Launch remote agents only on intended instances, monitor their sessions, and terminate agents plus SSH access when finished.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nickflach/skills/kannaka-quantum)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CLI subcommands return one JSON object on stdout, including errors.]
+
+## Skill Version(s):
+
+0.2.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

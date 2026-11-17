@@ -1,17 +1,11 @@
----
-name: github-contribution
-description: "Automated GitHub contribution workflow with intelligent issue discovery via positive label detection. Use when: (1) Contributing to open source projects, (2) Discovering high-value issues via maintainer-approved labels, (3) Fork synchronization and PR submission, (4) Analyzing issue quality by label signals."
-version: "1.6.0"
----
-
 # GitHub Contribution Skill
 
 ## Purpose
-Automated GitHub contribution workflow that handles fork synchronization, branch creation, and PR submission while maintaining clean fork state. Includes intelligent issue discovery with positive label detection.
+Automated GitHub contribution workflow with intelligent issue discovery via positive label detection. Handles fork synchronization, branch creation, PR submission while maintaining clean fork state, and provides live-proof guidance for passing automated code review.
 
 ## Core Features
 
-### 1. Intelligent Issue Discovery (v1.6.0)
+### 1. Intelligent Issue Discovery (v1.7.2)
 - **Positive Label Detection**: Automatically identify high-value issues via maintainer-approved labels
 - **Priority Scoring**: Rank issues by contribution value and fix feasibility
 - **Smart Filtering**: Focus on queueable, reproducible, and high-impact issues
@@ -35,31 +29,30 @@ Automated GitHub contribution workflow that handles fork synchronization, branch
 - **Rollback Support**: Easy recovery if something goes wrong
 - **Permission Handling**: Work within GitHub token permission constraints
 
----
-
-## 🎯 Intelligent Issue Discovery (v1.6.0)
+## 🎯 Intelligent Issue Discovery (v1.7.2)
 
 ### Positive Label Detection System
 
 Modern repositories use automated labeling systems to identify **high-value, maintainer-approved issues**. These **positive labels** signal issues that are:
-- ✅ Ready for contribution (queueable-fix)
-- ✅ Reproducible and confirmed (source-repro)  
-- ✅ Impact clearly assessed (impact:*)
-- ✅ Value-rated by maintainers (issue-rating:)
+
+- ✅ Ready for contribution (`queueable-fix`)
+- ✅ Reproducible and confirmed (`source-repro`)
+- ✅ Impact clearly assessed (`impact:*`)
+- ✅ Value-rated by maintainers (`issue-rating:`)
 
 **Golden Rule**: Prioritize issues with positive labels over random bugs.
 
 ### Label Categories & Priority
 
 | Category | Label Pattern | Meaning | Priority |
-|----------|---------------|---------|----------|
-| **Queueable** | `*:queueable-fix`, `*:queue_fix_pr` | Marked as ready for PR work | ⭐⭐⭐⭐⭐ |
-| **Reproducible** | `*:source-repro`, `confirmed`, `reproducible` | Issue reproduction validated | ⭐⭐⭐⭐⭐ |
-| **Impact Assessed** | `impact:*`, `severity:*`, `priority:*` | Clear impact scope | ⭐⭐⭐⭐ |
-| **Value Rated** | `issue-rating: *`, `value:*`, `diamond`, `gold` | Official value rating | ⭐⭐⭐⭐⭐ |
-| **Implementation Clear** | `*:fix-shape-*`, `fix-shape-clear` | Clear implementation path | ⭐⭐⭐⭐ |
-| **Contributor Welcome** | `good first issue`, `help wanted`, `contributions welcome` | Explicitly inviting contributions | ⭐⭐⭐⭐ |
-| **Scope Defined** | `scope:*`, `area:*`, `module:*` | Clear modification scope | ⭐⭐⭐ |
+|----------|-------------|---------|----------|
+| Queueable | `*:queueable-fix`, `*:queue_fix_pr` | Marked as ready for PR work | ⭐⭐⭐⭐⭐ |
+| Reproducible | `*:source-repro`, `confirmed`, `reproducible` | Issue reproduction validated | ⭐⭐⭐⭐⭐ |
+| Impact Assessed | `impact:*`, `severity:*`, `priority:*` | Clear impact scope | ⭐⭐⭐⭐ |
+| Value Rated | `issue-rating: *`, `value:*`, `diamond`, `gold` | Official value rating | ⭐⭐⭐⭐⭐ |
+| Implementation Clear | `*:fix-shape-*`, `fix-shape-clear` | Clear implementation path | ⭐⭐⭐⭐ |
+| Contributor Welcome | `good first issue`, `help wanted`, `contributions welcome` | Explicitly inviting contributions | ⭐⭐⭐⭐ |
+| Scope Defined | `scope:*`, `area:*`, `module:*` | Clear modification scope | ⭐⭐⭐ |
 
 ### OpenClaw-Specific Positive Labels
 
@@ -88,53 +81,43 @@ gh issue list --repo openclaw/openclaw --label "issue-rating: *" --state open
 
 ### Issue Discovery Workflow
 
-#### Step 1: Explore Repository Labels
+**Step 1: Explore Repository Labels**
 
 ```bash
 # Discover all labels in the repository
 gh api repos/owner/repo/labels --paginate | jq '.[].name'
 
 # Filter for positive label patterns
-gh api repos/owner/repo/labels --paginate | jq '.[].name' | \
-  grep -E '(queueable|fix-shape|source-repro|impact|issue-rating|severity|priority|good-first|help-wanted|confirmed|reproducible)'
+gh api repos/owner/repo/labels --paginate | jq '.[].name' |   grep -E '(queueable|fix-shape|source-repro|impact|issue-rating|severity|priority|good-first|help-wanted|confirmed|reproducible)'
 ```
 
-#### Step 2: Query Issues with Positive Labels
+**Step 2: Query Issues with Positive Labels**
 
 ```bash
 # Single positive label
-gh issue list --repo owner/repo \
-  --label "clawsweeper:queueable-fix" \
-  --state open \
-  --json number,title,labels,createdAt
+gh issue list --repo owner/repo   --label "clawsweeper:queueable-fix"   --state open   --json number,title,labels,createdAt
 
 # Multiple positive labels (OR logic)
-gh issue list --repo owner/repo \
-  --label "queueable-fix,fix-shape-clear,source-repro" \
-  --state open \
-  --json number,title,labels,createdAt
+gh issue list --repo owner/repo   --label "queueable-fix,fix-shape-clear,source-repro"   --state open   --json number,title,labels,createdAt
 
 # Value-rated issues only
-gh issue list --repo owner/repo \
-  --label "issue-rating: *" \
-  --state open \
-  --json number,title,labels,createdAt
+gh issue list --repo owner/repo   --label "issue-rating: *"   --state open   --json number,title,labels,createdAt
 ```
 
-#### Step 3: Prioritize by Label Combination
+**Step 3: Prioritize by Label Combination**
 
 **Priority Tiers**:
 
 | Tier | Label Combination | Action |
-|------|-------------------|--------|
-| 🦞 **Diamond** | queueable-fix + source-repro + impact:* | **Fix immediately** |
-| 💎 **Gold** | fix-shape-clear + impact:* | **High priority** |
-| 🔥 **Platinum** | source-repro + severity:critical | **Urgent fix** |
-| 🥈 **Silver** | good first issue + help wanted | **Good start** |
-| ✅ **Standard** | Single positive label | **Normal queue** |
-| ⚪ **Low** | No positive labels | **Skip unless urgent** |
+|------|------------------|--------|
+| 🦞 **Diamond** | queueable-fix + source-repro + impact:* | Fix immediately |
+| 💎 **Gold** | fix-shape-clear + impact:* | High priority |
+| 🔥 **Platinum** | source-repro + severity:critical | Urgent fix |
+| � **Silver** | good first issue + help wanted | Good start |
+| ✅ **Standard** | Single positive label | Normal queue |
+| ⚪ **Low** | No positive labels | Skip unless urgent |
 
-#### Step 4: Analyze & Select
+**Step 4: Analyze & Select**
 
 ```bash
 # Get full issue details
@@ -154,19 +137,10 @@ gh pr list --repo owner/repo --state open --search "<issue-keyword>"
 
 ```bash
 # Search across multiple repositories
-gh search issues \
-  --label "queueable-fix,fix-shape-clear,source-repro" \
-  --state open \
-  --limit 50 \
-  --json repository,title,number,url
+gh search issues   --label "queueable-fix,fix-shape-clear,source-repro"   --state open   --limit 50   --json repository,title,number,url
 
 # Target specific organizations
-gh search issues \
-  --owner openclaw \
-  --label "impact:*" \
-  --state open \
-  --sort created \
-  --order desc
+gh search issues   --owner openclaw   --label "impact:*"   --state open   --sort created   --order desc
 ```
 
 ### Issue Selection Decision Matrix
@@ -195,9 +169,7 @@ gh issue list --repo openclaw/openclaw --label "clawsweeper:queueable-fix" --sta
 gh issue list --repo openclaw/openclaw --label "issue-rating: 🦞 diamond lobster" --state open
 
 # Find reproducible issues with clear implementation path
-gh issue list --repo openclaw/openclaw \
-  --label "clawsweeper:source-repro,clawsweeper:fix-shape-clear" \
-  --state open
+gh issue list --repo openclaw/openclaw   --label "clawsweeper:source-repro,clawsweeper:fix-shape-clear"   --state open
 
 # Find impact:auth issues (critical system)
 gh issue list --repo openclaw/openclaw --label "impact:auth-provider" --state open
@@ -220,7 +192,6 @@ After discovering a high-value issue:
 
 **Pro Tip**: Issues with multiple positive labels (e.g., queueable + source-repro + impact) have **90%+ merge rate** because maintainers have pre-validated the fix path.
 
----
 
 ## Usage
 
@@ -389,6 +360,71 @@ Before coding:
 - [ ] Will this change need a regression test?
 
 If you answered "no" to any question, **do more investigation before coding**.
+
+---
+
+## 🧪 Live-Proof：如何让 PR 获得官方认可
+
+> **详细案例库见 [`live-proof-cases.md`](./live-proof-cases.md)** — 记录了真实 PR 中通过 ClawSweeper 评审的 live-proof 实践，开发 PR 时必读。
+
+### 什么是 live-proof？
+
+OpenClaw 的自动评审机器人 ClawSweeper 要求 PR 提供证明修复**实际生效**的证据。仅有"单元测试通过"不算充分 proof。
+
+**目标评级**：`status: 👀 ready for maintainer look` + `proof: sufficient` + Overall ≥ 🐚 platinum hermit
+
+### 评级体系（短板效应）
+
+`Overall = Proof 和 Patch quality 中较弱者`
+
+即使 patch 质量很高，如果 proof 不足，整体评级仍会被拉低。
+
+| 评级 | 含义 |
+|------|------|
+| 🦀 challenger crab | 卓越就绪 |
+| 🦞 diamond lobster | 很强，少量审查 |
+| 🐚 platinum hermit | 良好普通 PR |
+| 🦪 silver shellfish | 信号薄弱，需改进 |
+| 🧂 unranked krab | 不可合并 |
+
+### Live-Proof 形式
+
+被合并的 PR 全部使用**终端命令输出**（不用截图/视频）：
+
+| 类型 | 命令 | 适用 |
+|------|------|------|
+| 直接验证 | `node --import tsx -e "..."` | 配置验证、纯函数 |
+| 聚焦测试 | `node scripts/run-vitest.mjs <path>` | 运行时修复 |
+| 格式检查 | `git diff --check` | 代码格式 |
+
+### 最有效模式：BEFORE vs AFTER 对比
+
+```
+BEFORE (current main) - <invalid input> passed validation with ok: true
+AFTER - <invalid input> is rejected with clear error message
+```
+
+### 提交前必查
+
+- [ ] 提供了 BEFORE vs AFTER 对比（不只是 AFTER）
+- [ ] Proof 是终端命令输出，不是只有"测试通过"
+- [ ] 覆盖了边界值（最小、最大、无效）
+- [ ] 覆盖了幂等性（如涉及迁移）
+- [ ] **修改前能复现 bug**（测试在修复前会失败）
+- [ ] 修改的代码路径在正常情况下会被走到
+
+### 关键教训
+
+1. **收紧 config 验证 = 破坏性变更**：必须配 `openclaw doctor --fix` 迁移，否则已有配置升级后报错
+2. **Doctor 迁移用替换而非删除**：`gateway.port = DEFAULT` 比 `delete gateway.port` 更安全（配置行为明确）
+3. **修改前先证明 bug 在该路径**：写一个修复前会失败的测试；如果修复前就通过，bug 不在这
+4. **诚实面对找不到根因**：硬提交无效修复会被打 🧂 unranked krab；关闭 PR + 评论 issue 更好
+
+### 详细案例
+
+- ✅ **成功案例 #110051**：配置验证 + Doctor 迁移，`🦞 diamond lobster`
+- ✅ **成功案例 #109875**：竞品学习对象，`👀 ready for maintainer look`
+- ❌ **失败案例 #109885**：修改了不可达路径，`🧂 unranked krab` -> 关闭
 
 ---
 

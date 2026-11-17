@@ -1,40 +1,53 @@
-## Description: <br>
-Navigate Vancouver as visitor, resident, tech worker, student, or entrepreneur with neighborhoods, transit, costs, immigration, and local insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Navigate Vancouver as visitor, resident, tech worker, student, or entrepreneur with neighborhoods, transit, costs, immigration, and local insights.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and agents use this skill to answer Vancouver-specific questions for travel, relocation, studying, work, business setup, neighborhoods, transportation, costs, safety, food, healthcare, education, climate, and local lifestyle planning. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill includes practical immigration, fee, processing-time, healthcare, cannabis, wildfire, heat, and safety guidance that can become outdated or context-specific. <br>
-Mitigation: Verify these topics with official sources or qualified professionals before making legal, medical, financial, relocation, or safety decisions. <br>
-Risk: Local cost, rent, salary, transit, lodging, and business figures may change after publication. <br>
-Mitigation: Treat numeric estimates as planning ranges and confirm current figures before budgeting, contracting, hiring, or booking. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/vancouver) <br>
-- [Skill homepage](https://clawic.com/skills/vancouver) <br>
+## Use Case:
 
+External users use this skill to get practical Vancouver guidance for visiting, relocating, studying, working in tech, starting a business, and comparing neighborhoods, costs, transit, healthcare, safety, immigration, and local services.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with concise explanations, tables, and practical recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credentials, persistence, or external tool requirements are indicated by the release evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill contains time-sensitive prices, immigration, tax, licensing, healthcare, and food-safety guidance that may become inaccurate or may not fit an individual user's situation.
+
+Mitigation: Use the guidance as a starting point and verify high-stakes or current details with official sources or qualified professionals.
+
+Risk: The artifact is a broad local reference guide, so destination, neighborhood, and safety recommendations may be incomplete for specific user constraints.
+
+Mitigation: Ask clarifying questions about role, timeline, budget, location preferences, accessibility needs, and risk tolerance before giving tailored advice.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/vancouver)
+- [Skill Homepage](https://clawic.com/skills/vancouver)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with tables and concise recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external tools, binaries, credential handling, persistence, or code execution are required by the skill evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

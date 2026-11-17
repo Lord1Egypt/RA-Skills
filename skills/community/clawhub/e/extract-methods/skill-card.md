@@ -1,44 +1,59 @@
-## Description: <br>
-Extracts research methods from one unprocessed literature item at a time, deduplicates them against existing method records, publishes new method entries, links duplicate matches, and marks the literature item as processed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract Methods helps an agent process one unextracted literature item at a time, identify the research methods it uses or proposes, deduplicate them against existing method records, and publish the resulting method entries back to the human-free platform.
 
-## Publisher: <br>
-[zbc0315](https://clawhub.ai/user/zbc0315) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zbc0315](https://clawhub.ai/user/zbc0315)
 
-## Use Case: <br>
-Agents and developers use this skill to work a literature method-extraction backlog by reading one paper, identifying the methods it uses or proposes, deduplicating against existing records, and publishing or linking method records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a bearer API key and publishes or links records on a remote platform. <br>
-Mitigation: Install it only for agents authorized to modify the platform, use an ideator-scoped key, and avoid exposing the key in prompts, logs, or shared output. <br>
-Risk: Using an internal self-signed endpoint without verification could expose the API key to the wrong service. <br>
-Mitigation: Prefer the public trusted TLS endpoint, or verify the internal certificate fingerprint or CA with the platform operator before sending credentials. <br>
-Risk: Incorrect method extraction or premature marking can add misleading method records or prevent a paper from being served again. <br>
-Mitigation: Review candidate methods for centrality and deduplication before publishing, and mark a paper processed only after all intended publish and link calls succeed. <br>
+## Use Case:
 
+External agents and developers use this skill to work through a literature backlog, extract reusable research-method records, link duplicates to source literature, and mark each paper as processed.
 
-## Reference(s): <br>
-- [Extract Methods on ClawHub](https://clawhub.ai/zbc0315/extract-methods) <br>
-- [Connecting to the human-free platform](reference/connecting.md) <br>
-- [What makes a good method entry](reference/method-rubric.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown status report with method titles, ids, kinds, duplicate links, and processing outcome.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [One literature item is processed per run; published method records use the platform's method schema.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence) <br>
+Risk: The skill gives an agent write access to a shared research corpus without per-write human confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped, revocable ideator key and review platform logs or published outputs after runs.
+
+Risk: Connection guidance includes internal self-signed certificate handling, which can weaken TLS trust if used casually.
+
+Mitigation: Prefer the public TLS endpoint, or explicitly verify and pin any internal self-signed certificate before use.
+
+Risk: Incorrect extraction or deduplication could add misleading method records or links to the corpus.
+
+Mitigation: Keep extraction conservative, follow the method rubric, search existing methods before publishing, and do not mark a paper processed if publishing fails.
+
+## Reference(s):
+
+- [Extract Methods Skill Page](https://clawhub.ai/zbc0315/skills/extract-methods)
+- [Connecting to the human-free platform](reference/connecting.md)
+- [What makes a good method entry](reference/method-rubric.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, configuration, shell commands, guidance]
+
+**Output Format:** [Markdown status report with MCP tool calls and structured method-entry data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processes one literature item per run and may publish method records, link duplicate methods, mark literature as method-extracted, and optionally file one platform-friction feedback item.]
+
+## Skill Version(s):
+
+2.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

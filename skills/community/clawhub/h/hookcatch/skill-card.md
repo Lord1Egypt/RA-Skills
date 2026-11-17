@@ -1,41 +1,58 @@
-## Description: <br>
-Test webhooks and expose local services using HookCatch, a developer-friendly webhook testing tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Test webhooks and expose local services using HookCatch - a developer-friendly webhook testing tool.
 
-## Publisher: <br>
-[HookCatch](https://clawhub.ai/user/HookCatch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[hookcatch](https://clawhub.ai/user/hookcatch)
 
-## Use Case: <br>
-Developers and engineers use this skill to create webhook bins, inspect captured requests, replay webhook traffic, and expose local services through HookCatch during integration testing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Webhook payloads and HookCatch API tokens can contain sensitive data. <br>
-Mitigation: Treat captured payloads and HOOKCATCH_API_KEY as sensitive, use test data where possible, and prefer private or password-protected bins for sensitive testing. <br>
-Risk: Tunnel, replay, delete, and token commands can expose local services or alter HookCatch resources. <br>
-Mitigation: Confirm tunnel, replay, delete, and token commands before running them, then stop tunnels or delete bins when testing is complete. <br>
+## Use Case:
 
+Developers and engineers use this skill to create webhook bins, inspect captured webhook requests, replay requests, and expose localhost services while testing integrations.
 
-## Reference(s): <br>
-- [HookCatch](https://hookcatch.dev) <br>
-- [HookCatch documentation](https://docs.hookcatch.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-oriented CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the HookCatch CLI and HOOKCATCH_API_KEY for authenticated operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The agent can exercise broad HookCatch CLI capabilities, including creating bins, reading captured requests, replaying requests, and exposing localhost services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in trusted workflows, review commands before execution, use test data where possible, and tunnel only services intended for external webhook testing.
+
+Risk: HookCatch tokens, webhook payloads, and local-service traffic may be exposed to the HookCatch CLI and service.
+
+Mitigation: Use scoped or short-lived tokens when available, prefer private or password-protected bins, avoid sensitive payloads, and revoke tokens after testing.
+
+Risk: The wrapper passes the process environment through to an external executable, which may include unrelated secrets.
+
+Mitigation: Run the skill in a restricted environment containing only the HookCatch credentials and configuration needed for the task.
+
+## Reference(s):
+
+- [HookCatch Homepage](https://hookcatch.dev)
+- [HookCatch Documentation](https://docs.hookcatch.dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON-oriented command output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke the HookCatch CLI or wrapper, which can emit JSON for supported commands.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

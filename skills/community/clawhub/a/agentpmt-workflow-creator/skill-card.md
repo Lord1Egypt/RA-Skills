@@ -1,44 +1,61 @@
-## Description: <br>
-AgentPMT Workflow Creator helps agents build, validate, publish, remix, and manage reusable multi-step AgentPMT workflow DAGs that orchestrate tools, prompts, loops, branches, and human notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentPMT Workflow Creator helps agents build and manage multi-step AI workflows that orchestrate tools, prompts, loops, branches, and human notifications into reusable DAG pipelines.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-For agents that need to design or maintain AgentPMT-hosted workflow skills, including drafting workflow graphs, validating node and edge structures, publishing versioned snapshots, remixing public workflows, and managing showcase examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Workflow publishing, draft deletion, and marketplace updates can change or remove user-visible AgentPMT assets. <br>
-Mitigation: Validate workflow graphs before create, update, or publish actions; confirm destructive draft deletions and publishing intent before making changes. <br>
-Risk: AgentPMT workflow prompts and attached context can transfer sensitive, secret, or regulated data to the remote workflow platform. <br>
-Mitigation: Use a scoped AgentPMT token and keep secrets or regulated data out of prompts and attached context unless the user has a clear, authorized reason. <br>
-Risk: Invented or stale tool identifiers can produce invalid workflows or connect the wrong marketplace tool. <br>
-Mitigation: Call get_instructions and fetch_tools before authoring tool nodes, and use validate before persisting graph changes. <br>
+## Use Case:
 
+Developers and automation builders use this skill to create, validate, update, publish, remix, and manage AgentPMT workflow skills for multi-step business processes. It is intended for agents that need AgentPMT-specific workflow schema, action names, and invocation guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/agentpmt-workflow-creator) <br>
-- [AgentPMT marketplace page](https://www.agentpmt.com/marketplace/agentpmt-workflow-creator) <br>
-- [AgentPMT publisher profile](https://clawhub.ai/user/agentpmt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [AgentPMT workflow plans, JSON-style action payloads, DAG node and edge definitions, validation requests, and publishing metadata.] <br>
-**Output Parameters:** [Actions include get_instructions, fetch_tools, search_public, validate, create_new, fetch_existing, update_existing, publish, remix, delete, add_showcase_example, remove_showcase_example, fetch_industry_tags, attach_context, and detach_context; key parameters include workflow nodes, edges, tool product IDs, prompt definitions, branch options, context document IDs, skill IDs, visibility, industry tags, and showcase examples.] <br>
-**Other Properties Related to Output:** [The skill uses AgentPMT-hosted remote tool calls and expects agents to fetch real tool identifiers, validate graph structure before persistence, avoid graph cycles, and use for_each nodes for iteration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 <br>
+Risk: Setup examples include unpinned npx commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer OpenClaw or ClawHub installation paths, or verify and pin the installer and source revision before use.
+
+Risk: Workflow update, publish, delete, and restore actions can change or remove workflow drafts or published snapshots.
+
+Mitigation: Require explicit user approval before these actions and confirm the current draft revision and latest saved workflow state.
+
+Risk: Workflow nodes may call external marketplace tools and handle credentials or payment-related setup.
+
+Mitigation: Keep inputs scoped to the task and avoid placing account secrets, wallet private keys, mnemonics, signatures, or payment headers in prompts or logs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/agentpmt-workflow-creator)
+- [AgentPMT marketplace page](https://www.agentpmt.com/marketplace/agentpmt-workflow-creator)
+- [Generated action schema](artifact/schema.md)
+- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup)
+- [What is AgentPMT](https://clawhub.ai/agentpmt/what-is-agentpmt)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, JSON, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown guidance with JSON action payloads and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended to guide AgentPMT-hosted remote tool calls and workflow draft management.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

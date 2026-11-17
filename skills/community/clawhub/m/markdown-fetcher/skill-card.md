@@ -1,44 +1,57 @@
-## Description: <br>
-Converts public webpage content into readable Markdown using prioritized conversion services and an optional Scrapling fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Markdown Fetcher helps an agent fetch public webpage content and convert it into readable Markdown.
 
-## Publisher: <br>
-[Jiaqi-Guo-0114](https://clawhub.ai/user/Jiaqi-Guo-0114) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiaqi-guo-0114](https://clawhub.ai/user/jiaqi-guo-0114)
 
-## Use Case: <br>
-Developers, researchers, and analysts use this skill to fetch public webpages and convert articles or web data into Markdown for reading, analysis, or note-taking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: URLs are sent to named third-party conversion services. <br>
-Mitigation: Use this skill for public webpages; avoid private intranet links, authenticated pages, confidential targets, and URLs containing tokens or secrets unless those services are approved for the data. <br>
-Risk: The optional fallback depends on installing and running Scrapling locally. <br>
-Mitigation: Review the Scrapling package before installing or using the fallback. <br>
+## Use Case:
 
+Developers, analysts, and agent users can use this skill to retrieve public web articles or pages as Markdown for reading, summarization, extraction, or downstream analysis.
 
-## Reference(s): <br>
-- [Markdown Fetcher on ClawHub](https://clawhub.ai/Jiaqi-Guo-0114/markdown-fetcher) <br>
-- [markdown.new](https://markdown.new/) <br>
-- [defuddle.md](https://defuddle.md/) <br>
-- [r.jina.ai](https://r.jina.ai/) <br>
-- [Scrapling](https://github.com/D4Vinci/Scrapling) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with service URLs and optional shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prioritizes markdown.new, defuddle.md, r.jina.ai, then Scrapling as a local fallback.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Sensitive or private URLs could expose confidential content or tokens to third-party webpage conversion services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for public webpages, and avoid private documents, authenticated pages, internal hosts, signed links, or URLs containing tokens or secrets.
+
+Risk: The optional Scrapling fallback may introduce dependency risk if installed directly and without review.
+
+Mitigation: Install Scrapling only when needed, use a disposable virtual environment or container, and prefer a pinned, reviewed version.
+
+## Reference(s):
+
+- [Markdown Fetcher ClawHub Page](https://clawhub.ai/jiaqi-guo-0114/skills/markdown-fetcher)
+- [Scrapling GitHub Repository](https://github.com/D4Vinci/Scrapling)
+- [markdown.new](https://markdown.new/)
+- [defuddle.md](https://defuddle.md/)
+- [Jina AI Reader](https://r.jina.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown with URL patterns and optional shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill prioritizes hosted webpage-to-Markdown services and suggests Scrapling only as a fallback.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

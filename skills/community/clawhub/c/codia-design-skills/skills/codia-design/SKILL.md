@@ -87,6 +87,7 @@ codia-design auth set --api-key api_key_xxx
 codia-design credits
 codia-design usage --page 1 --page_size 20
 codia-design image-to-design --image ./screenshot.png --out result.json
+codia-design image-to-design --image https://example.com/large-screen.png --poll --out result.json
 codia-design pdf-to-design --pdf ./file.pdf --pages 0,1 --out result.json
 codia-design pdf-to-ppt --pdf ./file.pdf --pages 0,1,2 --title "Deck" --poll --out deck.json
 codia-design remove-bg --image ./product.png --download-dir ./outputs --out result.json
@@ -96,7 +97,9 @@ codia-design image replace-bg --image ./product.png --prompt "clean white studio
 codia-design svg create --image ./logo.png
 ```
 
-Prefer local file paths when the user provides local assets. Image commands, background removal, image-to-design, and SVG create send local images directly to their target multipart endpoints; URL inputs still use JSON URL mode. Use `--out` for large responses.
+Prefer local file paths when the user provides local assets. Image commands, background removal, synchronous image-to-design, and SVG create send local images directly to their target multipart endpoints; URL inputs still use JSON URL mode. Use `--out` for large responses.
+
+For `image-to-design`, use the default synchronous mode for one image or a small image below 2K on the longest edge. Use `image-to-design --async` to create an `image_to_design` task without waiting, or `image-to-design --poll` to create and wait for the task, when processing multiple images or large 2K+ images. Async task mode requires `--image` to be a public HTTPS URL because the Task API accepts `input.image_url`; local files are supported by synchronous direct upload.
 
 Never print API keys or contents of `~/.codia/design-skills/config.json`.
 
@@ -144,7 +147,7 @@ For complete parameter tables, response schemas, and usage examples, use the mat
 | product asset workflow | `codia-product-assets` | Multi-step image asset set |
 | campaign asset workflow | `codia-campaign-assets` | Multi-step visual variants and sizes |
 | document/deck workflow | `codia-document-deck` | Editable design data and/or PPTX |
-| `image-to-design` | `codia-image-to-design` | VisualElement tree |
+| `image-to-design` | `codia-image-to-design` | VisualElement tree or async task |
 | `pdf-to-design` | `codia-pdf-to-design` | Multi-page VisualElement tree |
 | `pdf-to-ppt` | `codia-pdf-to-ppt` | Asynchronous task (requires polling) |
 | `remove-bg` | `codia-remove-bg` | Image URL |

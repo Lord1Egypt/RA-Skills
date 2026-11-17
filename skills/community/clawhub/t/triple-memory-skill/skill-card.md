@@ -1,43 +1,66 @@
-## Description: <br>
-Complete memory system combining LanceDB auto-recall, Git-Notes structured memory, and file-based workspace search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Triple Memory combines LanceDB auto-recall, Git-Notes structured memory, and file-based workspace search to provide persistent context across sessions and manage decisions, preferences, and tasks.
 
-## Publisher: <br>
-[ktpriyatham](https://clawhub.ai/user/ktpriyatham) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ktpriyatham](https://clawhub.ai/user/ktpriyatham)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure persistent agent memory across conversation recall, structured decision logging, and workspace-file search. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Automatic persistent memory can silently store and reuse user or workspace context with limited user visibility. <br>
-Mitigation: Enable the skill only when persistent memory is intended, remove or override silent-operation instructions, and ensure stored memories can be inspected, edited, and deleted. <br>
-Risk: Auto-capture and pre-compaction flushing can preserve sensitive conversation or workspace details. <br>
-Mitigation: Disable auto-capture and auto-flush for sensitive work and define excluded paths and data categories before deployment. <br>
-Risk: Embedding-backed memory may send text to the configured embedding provider. <br>
-Mitigation: Confirm what text is sent for embeddings and configure provider access and retention controls before using the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Triple Memory Setup Reference](references/SETUP.md) <br>
-- [Auto Flush Configuration](references/auto-flush-config.json) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ktpriyatham/triple-memory-skill) <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure persistent memory across conversation recall, structured Git-Notes records, and workspace file search. It supports preserving session context, decisions, preferences, and task state across sessions and branches.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JSON and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the memory-lancedb plugin, the git-notes-memory skill, an embedding API key for LanceDB memory, and workspace file access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Silent, broad memory capture and recall can preserve sensitive conversation or workspace context without enough user control or disclosure.
+
+Mitigation: Disable or gate autoCapture, autoRecall, and memoryFlush in sensitive workspaces, and make memory writes visible before deployment.
+
+Risk: Recalled memories can introduce stale, sensitive, or untrusted context into future agent responses.
+
+Mitigation: Treat recalled memories as untrusted context and review or prune stored memories before using them in sensitive tasks.
+
+Risk: Embedding-backed memory may send text to an external service depending on plugin configuration.
+
+Mitigation: Confirm the embedding provider and data handling path before enabling memory-lancedb for confidential work.
+
+Risk: The file-search helper writes results to a fixed temporary path.
+
+Mitigation: Replace the fixed /tmp helper file with a per-run secure temporary file before production use.
+
+Risk: The skill depends on memory-lancedb and git-notes-memory behavior outside this package.
+
+Mitigation: Pin and review those dependencies before enabling cross-session memory.
+
+## Reference(s):
+
+- [Triple Memory Setup Reference](references/SETUP.md)
+- [Auto Flush Configuration](references/auto-flush-config.json)
+- [Triple Memory ClawHub Skill Page](https://clawhub.ai/ktpriyatham/skills/triple-memory-skill)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes optional memory configuration, command examples, and a workspace search helper script.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

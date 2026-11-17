@@ -1,41 +1,54 @@
-## Description: <br>
-Enables coordinated multi-agent collaboration in Discord channels with defined speaking rules, task handoffs, progress updates, and peer reviews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables coordinated multi-agent collaboration in Discord channels with speaking rules, task handoffs, progress updates, and peer review.
 
-## Publisher: <br>
-[paulmitchell1919-hue](https://clawhub.ai/user/paulmitchell1919-hue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paulmitchell1919-hue](https://clawhub.ai/user/paulmitchell1919-hue)
 
-## Use Case: <br>
-Teams and agents use this skill to coordinate Discord group-channel collaboration, including when to speak, how to hand off work, how to provide progress updates, and how to peer review outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad Discord prompts can cause every configured agent to respond, increasing coordination noise or amplifying an unauthorized request. <br>
-Mitigation: Install only in trusted channels and reserve broad prompts such as '@everyone' for authorized users. <br>
-Risk: Role assignments and decision rights could be mistaken for approval to take real-world business action. <br>
-Mitigation: Treat the protocol as advisory and require explicit human approval for spending, public launches, partnerships, migrations, and other business decisions. <br>
+## Use Case:
 
+Agents and operators use this skill to coordinate multi-agent discussion in Discord group channels, including domain-specific responses, task handoffs, progress updates, and peer review.
 
-## Reference(s): <br>
-- [Agent Domain Mapping](references/domains.md) <br>
-- [Collaboration Patterns](references/collaboration-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown guidance with message templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only coordination protocol for Discord group-channel agent collaboration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: The protocol can steer agents toward a Paul-centered Mitch-TechWorks workflow when another team structure is intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only for that workflow, or adapt the role names, reporting path, and speaking rules before use with another team.
+
+Risk: Domain-based speaking rules can cause agents to withhold useful input if a topic is misclassified as outside their area.
+
+Mitigation: Use explicit broad requests such as @everyone or named review requests when cross-functional input is needed.
+
+## Reference(s):
+
+- [Agent Domain Mapping](references/domains.md)
+- [Collaboration Patterns](references/collaboration-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with reusable message templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution; behavior guidance for Discord group-channel collaboration.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

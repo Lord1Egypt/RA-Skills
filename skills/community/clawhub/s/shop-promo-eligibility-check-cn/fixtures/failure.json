@@ -1,0 +1,4 @@
+{
+  "currency":"CNY", "cart":[{"sku":"A","unit_price":"100","quantity":1}],
+  "promotions":[{"name":"满100减20","eligible_skus":["A"],"threshold":"100","type":"fixed"},{"name":"9折","eligible_skus":["A"],"type":"percent"}]
+}

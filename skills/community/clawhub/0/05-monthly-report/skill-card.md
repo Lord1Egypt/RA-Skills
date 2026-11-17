@@ -1,41 +1,57 @@
-## Description: <br>
-Generates structured monthly internal-control compliance reports from complaint counts, risk events, supplier scores, exception handling data, and major incident notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+05 Monthly Report helps agents draft structured monthly internal-control compliance reports from complaint, logistics exception, supplier, station, and major incident data.
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
 
-## Use Case: <br>
-Internal-control and compliance teams use this skill to turn monthly operations metrics into a management-ready compliance report covering complaints, logistics exceptions, supplier risk, major events, and next-month priorities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Monthly compliance reports may include sensitive case, supplier, legal, regulatory, or contact details. <br>
-Mitigation: Use aggregated metrics where possible and redact unnecessary identifiers before sharing or storing the generated report. <br>
-Risk: The skill's Alibaba-style role language could be mistaken for official Alibaba approval. <br>
-Mitigation: Treat the output as a drafting template and verify branding, authorization, conclusions, and recommendations with an authorized reviewer. <br>
+## Use Case:
 
+Internal compliance and operations teams use the skill to turn monthly complaint, exception, supplier, station, and incident data into a management-facing compliance report with trends, gaps, and next-month priorities.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nic-yuan/05-monthly-report) <br>
-- [Artifact Skill Definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only; uses user-provided monthly metrics and does not access systems or execute code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter reports 1.7.0) <br>
+Risk: Monthly compliance inputs may include personal data, customer identifiers, confidential legal material, or sensitive incident details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use aggregated or redacted data where possible and provide sensitive details only under approved organizational handling rules.
+
+Risk: Incomplete inputs can lead to a simplified or limited report that may not support management decisions on its own.
+
+Mitigation: Label data gaps clearly, use the skill's data-insufficient mode when minimum inputs are missing, and review the report before distribution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nic-yuan/skills/05-monthly-report)
+- [Glossary](docs/GLOSSARY.md)
+- [Insufficiency handling](docs/INSUFFICIENCY-HANDLING.md)
+- [Rule update SOP](docs/RULE-UPDATE-SOP.md)
+- [Linking SOP](docs/LINKING-SOP.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-provided monthly operational data and may produce simplified or data-insufficient reports when required inputs are incomplete.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 1.7.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

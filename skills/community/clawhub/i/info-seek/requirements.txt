@@ -1,0 +1,25 @@
+# Infoseek v1.2.0 运行时依赖（基础）
+# 用法: pip install -r requirements.txt
+# 注意:
+#   - openai/anthropic 为可选 LLM provider（无 key 时自动降级 mock 模式）
+#   - 高级浏览器抓取（playwright，4 级降级 L2/L4）已拆分为可选依赖，见 requirements-extra.txt
+#     或: pip install infoseek[browser]
+
+# ── 核心依赖（直接 import）──
+PyYAML>=6.0          # domains/*.yaml + templates.yaml 解析
+jinja2>=3.1          # 报告模板渲染（domain_orchestrator 懒导入）
+httpx>=0.27          # HTTP 客户端（wikidata_sync 等）
+
+# ── 文本分析（关键词/摘要）──
+summa>=1.2.0         # TextRank 摘要（英文友好，anchor_adapter 懒导入）
+jieba>=0.42.1        # 中文分词/TextRank（中文友好）
+pypinyin>=0.55       # 人名拼音别名（v1.9.0 GA9/GA10，person_ner 懒导入；缺失自动降级为空别名，不阻断）
+
+# ── 可选 LLM provider（无 key 时自动降级 mock）──
+openai>=1.30         # OpenAI / DeepSeek 兼容端点
+anthropic>=0.34      # Claude
+
+# ── 可选高级抓取（4 级降级 L2/L4 浏览器渲染+OCR）──
+# 已拆分到 requirements-extra.txt，避免默认安装拉起整个浏览器：
+#   pip install -r requirements-extra.txt   或   pip install infoseek[browser]
+# playwright>=1.44

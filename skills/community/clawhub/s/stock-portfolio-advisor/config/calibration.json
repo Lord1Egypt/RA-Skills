@@ -1,0 +1,23 @@
+{
+  "train_months": 36,
+  "validation_months": 24,
+  "test_months": 24,
+  "max_folds": 3,
+  "min_folds": 2,
+  "min_cross_section": 8,
+  "min_train_ic_months": 18,
+  "min_validation_ic_months": 6,
+  "min_test_ic_months": 6,
+  "grid_step": 5,
+  "grid_span": 10,
+  "shortlist": 5,
+  "alpha": 0.2,
+  "max_change_pct": 3,
+  "min_weight": 10,
+  "max_weight": 70,
+  "min_ic_gain": 0.005,
+  "min_excess_gain": 0.005,
+  "max_drawdown_worsening": 0.02,
+  "min_win_fraction": 0.6,
+  "max_turnover_ratio": 1.25
+}

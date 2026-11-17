@@ -1,40 +1,53 @@
-## Description: <br>
-This skill guides agents through paper reproduction tasks, including TeX-first extraction, modular Python implementation, experiment logging, result verification, and bilingual documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through Python-based paper reproduction, including source extraction, modular implementation, experiment logging, result verification, and bilingual documentation.
 
-## Publisher: <br>
-[celynnmoonlight](https://clawhub.ai/user/celynnmoonlight) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[celynnmoonlight](https://clawhub.ai/user/celynnmoonlight)
 
-## Use Case: <br>
-Developers and researchers use this skill to turn paper source materials or PDFs into a reproducible Python project with extraction notes, modular code, experiment outputs, and README documentation in English and Chinese. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Python, experiment outputs, logs, and documentation may be incorrect, incomplete, or unsuitable for sharing without review. <br>
-Mitigation: Use a dedicated repository or branch, review generated Python before running it, and inspect logs, result files, and translated README content before sharing or committing them. <br>
-Risk: Paper reproduction quality depends on faithful extraction from TeX, preprocessed documents, or PDFs, and missing paper details can lead to inaccurate results. <br>
-Mitigation: Prefer source TeX when available, record unresolved extraction gaps, compare reproduction metrics against paper-reported values, and document deviations with causes. <br>
+## Use Case:
 
+Developers and research engineers use this skill to convert paper sources into reproduction plans and Python implementations, then document, run, and compare experiments against paper-reported results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/celynnmoonlight/paper-repro-python) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with generated project files, Python code, logs, results, and README documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces source-derived extraction notes, modular Python implementation, experiment logs, persisted results, configuration snapshots, and bilingual README files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The workflow may read local paper sources and create or modify project files, including code, logs, results, figures, and bilingual README files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in the intended repository, review generated file changes before committing, and override bilingual README output when only one documentation language is desired.
+
+Risk: Reproduction outputs may differ from paper-reported results because of ambiguous methods, preprocessing differences, random seeds, datasets, or hyperparameters.
+
+Mitigation: Compare reproduced metrics against the paper, document discrepancies, and keep configuration snapshots and logs with each experiment run.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/celynnmoonlight/skills/paper-repro-python)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown, Python code, shell commands, configuration files, logs, and experiment outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create source-derived extraction notes, Python modules, experiment logs, result files, figures, and README files in English and Chinese.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

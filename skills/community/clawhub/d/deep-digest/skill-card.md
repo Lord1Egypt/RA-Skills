@@ -1,37 +1,54 @@
-## Description: <br>
-Extracts cognitive patterns, key insights, and action signals from any text input (messages, notes, articles, conversations). Turns raw content into structured, actionable digests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts cognitive patterns, key insights, and action signals from text input such as messages, notes, articles, and conversations, organizing results into facts, patterns, and cognitive transformations.
 
-## Publisher: <br>
-[heshengshi](https://clawhub.ai/user/heshengshi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[heshengshi](https://clawhub.ai/user/heshengshi)
 
-## Use Case: <br>
-Employees, external users, and developers can use Deep Digest to turn chat logs, meeting notes, articles, research material, or personal notes into fact summaries, pattern observations, and action signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private chats, secrets, personal notes, or confidential business material may become easier to reuse or share after summarization. <br>
-Mitigation: Avoid submitting sensitive material unless the operating environment is approved for that data, and review generated digests before sharing them. <br>
+## Use Case:
 
+External users and developers use this skill to turn long-form text, chats, meeting notes, articles, and personal notes into structured analysis with factual summaries, pattern observations, and action signals.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [JSON containing a prompt for Markdown analysis output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports full, facts-only, patterns-only, and signals-only modes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Sensitive input may be included in emitted workflow prompts or downstream logs, despite the artifact claiming redaction behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive text until redaction and runtime handling are fixed; review inputs for private notes, chats, credentials, and personal data before running the skill.
+
+Risk: The digest depends on an LLM to infer patterns and action signals, which can overinterpret weak source material.
+
+Mitigation: Review generated pattern and action sections against the original text before using them for decisions.
+
+## Reference(s):
+
+- [Deep Digest ClawHub release](https://clawhub.ai/heshengshi/skills/deep-digest)
+- [heshengshi publisher profile](https://clawhub.ai/user/heshengshi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance]
+
+**Output Format:** [JSON workflow containing prompts for Markdown digest generation and optional evaluator review]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports full, facts-only, patterns-only, and signals-only modes; default configuration enables evaluator veto with a 0.6 threshold and up to 2 retries.]
+
+## Skill Version(s):
+
+1.0.5 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

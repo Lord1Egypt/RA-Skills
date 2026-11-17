@@ -1,41 +1,58 @@
-## Description: <br>
-Fix garbled text in PDF/SVG vector graphics caused by font encoding issues, making files editable in AI tools. Supports batch processing and JSON export for manual correction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fix garbled text in PDF/SVG vector graphics caused by font encoding issues, making files editable in AI tools. Supports batch processing and JSON export for manual correction.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Developers, designers, and document-processing teams use this skill to inspect PDF or SVG files with garbled vector text, identify repair candidates, and produce structured repair reports or editable JSON for manual correction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review notes that the skill can report repaired PDF/SVG output paths even when those files were not actually written. <br>
-Mitigation: Run it on copies of documents and verify that any expected output files exist and open correctly before relying on the result. <br>
-Risk: JSON exports and repair reports may include extracted text from source documents. <br>
-Mitigation: Treat exported JSON and reports as sensitive document data and store or share them only under the same controls as the original files. <br>
-Risk: Runtime dependencies should be confirmed before use in an agent environment. <br>
-Mitigation: Pin or verify Python dependencies before running the skill, and test the CLI on non-sensitive sample files first. <br>
+## Use Case:
 
+Developers and document-repair workflows use this skill to analyze PDF or SVG vector files with garbled text, run local repair commands, and export editable JSON for manual correction.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown repair report with CLI commands and optional JSON export] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports repaired, skipped, and unresolved text blocks with confidence values; verify any claimed PDF/SVG output files before relying on them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Install dependencies are ambiguous.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review requirements before installation and replace ambiguous packages with pinned canonical packages such as PyMuPDF and beautifulsoup4.
+
+Risk: The repair command can report success without creating repaired PDF or SVG files.
+
+Mitigation: Verify that expected output files were created and inspect the repair report before treating the run as successful.
+
+Risk: JSON exports can contain extracted document text and file paths.
+
+Mitigation: Handle exported JSON as sensitive data and limit sharing to approved locations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/vector-text-fixer-1)
+- [Publisher profile](https://clawhub.ai/user/aipoch-ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, code, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and optional JSON export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May report repaired, skipped, and unresolved text blocks with confidence values and manual review recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

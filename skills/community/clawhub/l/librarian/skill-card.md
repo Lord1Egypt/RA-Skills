@@ -1,42 +1,59 @@
-## Description: <br>
-Conversational interface for semantic book search in a local Librarian library. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conversational interface for semantic book search as a companion skill for the Librarian project.
 
-## Publisher: <br>
-[nonlinear](https://clawhub.ai/user/nonlinear) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nonlinear](https://clawhub.ai/user/nonlinear)
 
-## Use Case: <br>
-People who maintain a local Librarian book library use this skill to ask natural-language questions, route them to topic or book searches, and receive cited excerpts or clear hard-stop guidance when search cannot run. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases can start shell-backed searches of private local library content too easily. <br>
-Mitigation: Keep the indexed library limited to material suitable for chat exposure, and prefer explicit invocations such as "librarian:" or "librarian search". <br>
-Risk: Search results may surface excerpts from a user's local book library in the agent conversation. <br>
-Mitigation: Review returned citations before sharing them outside the session and avoid indexing sensitive or confidential materials. <br>
+## Use Case:
 
+External users and developers use this skill to ask natural-language questions against a local Librarian book library, infer a topic or book scope, and receive cited search results or clear hard-stop messages when the search cannot run.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nonlinear/librarian) <br>
-- [Librarian project](https://github.com/nonlinear/librarian) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown responses with cited excerpts and occasional setup or troubleshooting commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Citations include book titles and locations when available; hard-stop messages report missing metadata, failed execution, or no results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Broad conversational triggers plus local shell execution may cause the skill to search local Librarian indexes when a user did not intend it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer narrowing activation to explicit librarian commands and review trigger behavior before installation.
+
+Risk: The security summary flags an unsafe temporary file pattern in librarian.sh.
+
+Mitigation: Update librarian.sh to use mktemp and direct array execution before using the skill with private libraries.
+
+Risk: The skill searches local book indexes that may contain private library content.
+
+Mitigation: Install only when local index access is acceptable and limit use to trusted workspaces.
+
+## Reference(s):
+
+- [Librarian project](https://github.com/nonlinear/librarian)
+- [ClawHub skill page](https://clawhub.ai/nonlinear/skills/librarian)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown responses with citations, hard-stop messages, and occasional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local Librarian metadata and search indexes; successful searches include cited excerpts and source information.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact package.json and SKILL.md report 0.15.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

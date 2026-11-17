@@ -1,43 +1,60 @@
-## Description: <br>
-Converts batches of place names into BD-09 longitude and latitude coordinates with Baidu Maps APIs and saves CSV and JSON results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch-converts place names and address keywords into BD-09 longitude and latitude coordinates using the Baidu Maps API, then saves the results as CSV and JSON files.
 
-## Publisher: <br>
-[ggyybb](https://clawhub.ai/user/ggyybb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ggyybb](https://clawhub.ai/user/ggyybb)
 
-## Use Case: <br>
-External users, developers, and data analysts use this skill to turn place-name lists into Baidu BD-09 coordinates for mapping workflows that rely on Baidu Maps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Searched place names and the Baidu Maps AK are sent to Baidu Maps APIs. <br>
-Mitigation: Use a restricted AK where possible and avoid processing sensitive location lists. <br>
-Risk: CSV and JSON outputs are saved locally in the run directory. <br>
-Mitigation: Treat generated files as local artifacts and delete or protect them when they contain sensitive locations. <br>
+## Use Case:
 
+Developers and agent users use this skill to collect candidate places from a search keyword, request BD-09 coordinates through Baidu Maps, and package the geocoding results for downstream mapping or data workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ggyybb/address2lnglat) <br>
-- [Baidu Maps Open Platform](https://lbsyun.baidu.com/) <br>
-- [Baidu Maps Place API endpoint](https://api.map.baidu.com/place/v2/search) <br>
-- [Baidu Maps Geocoding API endpoint](https://api.map.baidu.com/geocoding/v3/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Files, Text] <br>
-**Output Format:** [Markdown guidance with shell commands plus generated CSV and JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Baidu Maps AK and saves CSV/JSON outputs in the run directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Search terms, addresses, and the Baidu AK are sent to Baidu Maps.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with data and credentials approved for Baidu Maps, and avoid submitting sensitive location queries or credentials outside that policy.
+
+Risk: The skill installs and runs Python dependencies and writes local output files.
+
+Mitigation: Run it in a virtual environment, avoid privileged installs, and review generated CSV and JSON files before sharing or opening them in other tools.
+
+Risk: Exported CSV files contain third-party API data that may be interpreted by spreadsheet software.
+
+Mitigation: Treat exported CSV files as untrusted third-party data when opening them in spreadsheet applications.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ggyybb/skills/address2lnglat)
+- [Baidu Maps Open Platform](https://lbsyun.baidu.com/)
+- [Baidu Place API endpoint](https://api.map.baidu.com/place/v2/search)
+- [Baidu Geocoding API endpoint](https://api.map.baidu.com/geocoding/v3/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with shell commands plus generated CSV and JSON files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs BD-09 longitude and latitude rounded to 6 decimal places, with status, source, address, confidence, and type fields when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

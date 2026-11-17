@@ -1,43 +1,57 @@
-## Description: <br>
-AISkinX analyzes skin images across seven skin parameters and provides personalized skincare product recommendations and consultation guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AISkinX Skincare AI Assistant is intended to analyze local skin images, provide skincare product recommendations, and answer skincare consultation questions.
 
-## Publisher: <br>
-[znsyhandao](https://clawhub.ai/user/znsyhandao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[znsyhandao](https://clawhub.ai/user/znsyhandao)
 
-## Use Case: <br>
-External OpenClaw users use this skill to analyze skin photos, review seven skin indicators, and generate skincare routine or product recommendation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release's privacy and path-safety promises are not reliably enforced in the shipped runtime. <br>
-Mitigation: Install only after review or in a constrained environment, and do not rely on strict path restriction or URL rejection until the validation logic is fixed. <br>
-Risk: Skin photos and skincare consultation text may contain sensitive personal information. <br>
-Mitigation: Keep inputs local, minimize retained data, and review any generated reports before sharing them. <br>
+## Use Case:
 
+Consumers or agents supporting skincare workflows use this skill to turn local skin image inputs and skin-type details into analysis summaries, product recommendations, and consultation guidance. Treat the skincare analysis and advice as unverified informational guidance, not medical diagnosis or treatment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/znsyhandao/skincare-ai) <br>
-- [README.md](artifact/README.md) <br>
-- [RELEASE_NOTES.md](artifact/RELEASE_NOTES.md) <br>
-- [CHANGELOG.md](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Text, JSON, or Markdown responses with skin analysis, recommendations, and consultation guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local image inputs and configurable output format; treat skin photos and consultation text as sensitive data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence, package.json, CHANGELOG) <br>
+Risk: Security evidence rates the release as suspicious because safety and capability claims are stronger than the implementation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the source before installation and treat the skincare outputs as mock or unverified unless the publisher provides a real analyzer and resolves the cited inconsistencies.
+
+Risk: The skill handles local image paths and security evidence notes review-worthy file-validation gaps.
+
+Mitigation: Use only non-sensitive images kept inside the skill directory or configured allowed folders, and run the skill in a sandboxed environment.
+
+Risk: Skincare recommendations could be mistaken for medical or dermatological advice.
+
+Mitigation: Present results as informational skincare guidance only and direct users to qualified professionals for medical skin concerns.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/znsyhandao/skills/skincare-ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, configuration, guidance]
+
+**Output Format:** [Text, Markdown, or JSON responses containing skin analysis summaries, recommendations, status details, and guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include local-file validation messages and confidence-style skincare scoring; no verified clinical accuracy is established by the supplied evidence.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

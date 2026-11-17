@@ -4,7 +4,8 @@ Shopee Store Authorization URL Generator - LinkFox Skill
 Calls the /shopee/authorizeUrl endpoint to generate authorization URL
 
 Usage:
-  python authorize_url.py '{"shopName": "My Shop", "region": "cn"}'
+  python authorize_url.py '{"shopName": "My Shop", "region": "cn", "appType": "erp"}'
+  python authorize_url.py '{"shopName": "My Shop", "region": "cn", "appType": "ad"}'
   python authorize_url.py '{"region": "global"}'
 """
 
@@ -26,11 +27,14 @@ API_ENDPOINT = f"{API_BASE_URL}/shopee/authorizeUrl"
 
 
 def get_api_key():
+    """
+    获取配置在环境变量的API Key。
+    如果获取不到，按 SKILL.md 的 **## 解决认证和积分问题** 处理。
+    """
     key = os.environ.get("LINKFOX_AGENT_API_KEY") or os.environ.get("LINKFOXAGENT_API_KEY")
     if not key:
         print(
-            "API Key not configured. Please set the environment variable:\n"
-            "  export LINKFOXAGENT_API_KEY=your-key-here",
+            "API Key 未配置",
             file=sys.stderr,
         )
         sys.exit(1)
@@ -51,7 +55,7 @@ def call_api(params: dict) -> dict:
         method="POST",
     )
     try:
-        with urlopen(req, timeout=60) as response:
+        with urlopen(req, timeout=150) as response:
             return json.loads(response.read().decode("utf-8"))
     except HTTPError as e:
         body = e.read().decode("utf-8") if e.fp else ""
@@ -64,7 +68,11 @@ def main():
     if len(sys.argv) < 2:
         print("Usage: authorize_url.py '<JSON parameters>'", file=sys.stderr)
         print(
-            'Example: authorize_url.py \'{"shopName": "My Shop", "region": "cn"}\'',
+            'Example: authorize_url.py \'{"shopName": "My Shop", "region": "cn", "appType": "erp"}\'',
+            file=sys.stderr,
+        )
+        print(
+            'Ads auth: authorize_url.py \'{"shopName": "My Shop", "region": "cn", "appType": "ad"}\'',
             file=sys.stderr,
         )
         sys.exit(1)
@@ -85,6 +93,20 @@ def main():
         )
         sys.exit(1)
 
+    raw_app = params.get("appType")
+    if raw_app is None or (isinstance(raw_app, str) and not raw_app.strip()):
+        print("Note: 'appType' not provided, defaulting to 'erp' (see SKILL.md)", file=sys.stderr)
+        params["appType"] = "erp"
+    else:
+        app_type = str(raw_app).strip().lower()
+        if app_type not in ("erp", "ad"):
+            print(
+                f"Error: 'appType' must be 'erp' or 'ad', got {raw_app!r}",
+                file=sys.stderr,
+            )
+            sys.exit(1)
+        params["appType"] = app_type
+
     if "shopName" in params and isinstance(params["shopName"], str):
         shop_name = params["shopName"].strip()
         if shop_name:
@@ -101,8 +123,12 @@ def main():
         clipboard_ok = _copy_to_clipboard(url)
 
         print("\n✓ Authorization URL generated.", file=sys.stderr)
+        print(f"appType: {params.get('appType')}", file=sys.stderr)
+        if params.get("appType") == "ad":
+            print("这是广告（AD）应用授权，与 ERP 授权相互独立。", file=sys.stderr)
         if params.get("shopName"):
             print(f"店铺名: {params['shopName']}", file=sys.stderr)
+        print("授权地址约 1 小时有效，请勿复用旧 URL。", file=sys.stderr)
         if clipboard_ok:
             print("✓ 已写入剪贴板 —— 浏览器地址栏直接 Ctrl+V / Cmd+V", file=sys.stderr)
         if file_path:

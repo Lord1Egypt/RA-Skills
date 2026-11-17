@@ -1,44 +1,58 @@
-## Description: <br>
-OpenClaw continuity kernel for fail-open llm_input injection, deterministic runtime contracts, and shadow-mode eval receipts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw continuity kernel for fail-open llm_input injection, deterministic runtime contracts, and shadow-mode eval receipts.
 
-## Publisher: <br>
-[tkuehnl](https://clawhub.ai/user/tkuehnl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tkuehnl](https://clawhub.ai/user/tkuehnl)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add bounded continuity memory, runtime contract proofs, and shadow-mode evaluation receipts to OpenClaw workflows while preserving fail-open behavior on continuity failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent local continuity memory may be reused in future model inputs. <br>
-Mitigation: Install only when persistent continuity is desired, avoid storing highly sensitive Soul Card details, and review or clear ~/.local/state/continuity-kernel/continuity.db when needed. <br>
-Risk: Evaluation traces and receipts may contain operational context or sensitive task details. <br>
-Mitigation: Choose trace and evaluation output paths deliberately and review or clear ~/.cache/continuity-kernel when appropriate. <br>
+## Use Case:
 
+Developers and engineers use this skill to add bounded local continuity memory for OpenClaw agents, persist Soul Card and Mission Ticket state, and generate deterministic runtime and shadow-evaluation receipts for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tkuehnl/continuity-kernel) <br>
-- [Publisher profile](https://clawhub.ai/user/tkuehnl) <br>
-- [CacheForge skills homepage](https://github.com/cacheforge-ai/cacheforge-skills) <br>
-- [README](artifact/README.md) <br>
-- [Evaluation receipts](artifact/artifacts/continuity-kernel/p0-evals.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON files] <br>
-**Output Format:** [Markdown guidance with bash commands and machine-readable JSON receipts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local SQLite continuity state and cache/evaluation receipt files when the hooks or commands are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: frontmatter, changelog, server release metadata) <br>
+Risk: Durable local continuity memory can retain sensitive profile, preference, or mission data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the SQLite database path private and avoid storing secrets or highly sensitive personal data in continuity fields.
+
+Risk: Injected continuity context could influence an agent if treated as higher-priority instruction text.
+
+Mitigation: Treat continuity fields as untrusted context and ensure they cannot override system, developer, or other higher-priority instructions.
+
+Risk: Synthetic shadow-evaluation receipts are useful for regression checks but are not equivalent to observed production traces.
+
+Mitigation: Use trace-backed evaluation inputs when relying on results for release or deployment decisions.
+
+## Reference(s):
+
+- [ClawHub continuity-kernel release page](https://clawhub.ai/tkuehnl/skills/continuity-kernel)
+- [CacheForge skills repository](https://github.com/cacheforge-ai/cacheforge-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, Python code references, and JSON receipt paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local SQLite continuity state and machine-readable JSON evaluation or runtime proof receipts when its commands are run.]
+
+## Skill Version(s):
+
+0.2.0 (source: frontmatter and changelog, released 2026-02-22)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,55 @@
-## Description: <br>
-Design patterns for personal agents coordinating like executive assistants—delegation manifests, relationship handshakes, commitment tiers, trust, and OpenClaw ACP mapping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design patterns for personal agents coordinating like executive assistants-delegation manifests, relationship handshakes, commitment tiers, trust, and OpenClaw ACP mapping.
 
-## Publisher: <br>
-[madhavuf](https://clawhub.ai/user/madhavuf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[madhavuf](https://clawhub.ai/user/madhavuf)
 
-## Use Case: <br>
-Developers and agent designers use this skill to design personal-agent coordination patterns with explicit delegated authority, relationship handshakes, commitment tiers, trust records, and human escalation boundaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Delegated agent scopes may become too broad for real-world coordination. <br>
-Mitigation: Keep delegated scopes narrow and require explicit human approval for money, legal, vendor, or other binding commitments. <br>
-Risk: Agents may coordinate with an unverified or inappropriate counterpart. <br>
-Mitigation: Verify counterpart identity and use relationship records before allowing routine coordination. <br>
-Risk: Stored relationship records may contain sensitive coordination details. <br>
-Mitigation: Protect stored relationship records and limit access to the principals or systems that need them. <br>
+## Use Case:
 
+Developers and agent designers use this skill to design scoped coordination between personal agents, including delegation manifests, relationship contracts, commitment tiers, and escalation rules.
 
-## Reference(s): <br>
-- [Personal Agent Network on ClawHub](https://clawhub.ai/madhavuf/personal-agent-network) <br>
-- [OpenClaw homepage](https://github.com/openclaw/openclaw) <br>
-- [OpenClaw docs](https://docs.openclaw.ai) <br>
-- [ClawHub registry](https://clawhub.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with structured examples for manifests, relationship contracts, commitment tiers, and escalation rules] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; does not require executable code, credentials, or file writes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Personal-agent coordination can exceed a principal's intended authority for calendar, email, financial, legal, or relationship-contract actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep delegation scopes explicit, revocable, and subject to human approval for sensitive or out-of-scope commitments.
+
+Risk: Design guidance can be applied without adequate review in a real agent system.
+
+Mitigation: Review proposed manifests, relationship contracts, and escalation rules before deployment, and scan any implementation separately.
+
+## Reference(s):
+
+- [OpenClaw homepage](https://github.com/openclaw/openclaw)
+- [OpenClaw docs](https://docs.openclaw.ai)
+- [ClawHub registry](https://clawhub.com)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, text]
+
+**Output Format:** [Markdown guidance with JSON-oriented manifest examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only; no executable runtime behavior found in the submitted artifact.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

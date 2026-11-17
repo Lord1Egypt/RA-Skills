@@ -1,43 +1,54 @@
-## Description: <br>
-Telegram CLI helps agents read, search, and send Telegram messages, and look up contacts, groups, members, and admins. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Telegram CLI for reading, searching, and sending messages. Use when the user asks about Telegram messages, wants to check inbox, search chats, send messages, or look up contacts and groups.
 
-## Publisher: <br>
-[arein](https://clawhub.ai/user/arein) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[arein](https://clawhub.ai/user/arein)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent check Telegram inboxes, search chats, read messages, and send or reply to messages through the tg command-line interface. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Installing and using this skill can give an agent access to private Telegram content. <br>
-Mitigation: Authenticate only the Telegram account intended for agent use, and avoid broad search or sync commands for sensitive chats unless local copies are acceptable. <br>
-Risk: The skill can send or reply to Telegram messages as the authenticated user. <br>
-Mitigation: Confirm the recipient, chat, and message text before executing send or reply commands. <br>
-Risk: The skill depends on the @cyberdrk/tg package. <br>
-Mitigation: Install only if the package is trusted or its source has been reviewed. <br>
+## Use Case:
 
+Developers and agent users use this skill to inspect Telegram chats, search message history, check unread messages, look up contacts or group information, and send or reply to Telegram messages through a CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arein/tg) <br>
-- [Telegram API application settings](https://my.telegram.org/apps) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; Telegram CLI results may be plain text, Markdown, or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local Telegram API credentials and an authenticated tg session before message access or sending.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: The skill requires access to a Telegram account, private messages, contacts, groups, and live messaging capabilities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when account access is acceptable, inspect the installed package, prefer a pinned reviewed package version or commit, and remove stored credentials when no longer needed.
+
+Risk: Chat export, reading, search, and send operations can expose or modify sensitive Telegram content.
+
+Mitigation: Limit use to intended chats, review commands before execution, and confirm where credentials and session data are stored.
+
+## Reference(s):
+
+- [Telegram API application setup](https://my.telegram.org/apps)
+- [ClawHub skill page](https://clawhub.ai/arein/skills/tg)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; CLI commands can return JSON, Markdown, or plain text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Telegram API credentials and local session configuration.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

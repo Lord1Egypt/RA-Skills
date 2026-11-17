@@ -1,42 +1,59 @@
-## Description: <br>
-Scans PDF, OFD, and image documents and sends selected files to Xiangyun OCR to extract document text and table content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans PDF, OFD, and image documents, sends them to the Xiangyun NetOCR table OCR API, and returns recognized document content.
 
-## Publisher: <br>
-[liudengkui](https://clawhub.ai/user/liudengkui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liudengkui](https://clawhub.ai/user/liudengkui)
 
-## Use Case: <br>
-External users and developers use this skill to run OCR over selected document files or folders, especially table-heavy PDFs, OFD files, and images, through Xiangyun's OCR API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected documents are uploaded to netocr.com/Xiangyun for OCR processing. <br>
-Mitigation: Use the skill only for documents approved for that external service, and avoid confidential IDs, contracts, financial records, or regulated data unless the provider and billing model are acceptable. <br>
-Risk: The skill requires Xiangyun API credentials and its source guidance asks for secrets in chat. <br>
-Mitigation: Enter credentials through the local --config flow where possible, avoid sharing secrets in chat, and protect or delete the local config.json after use. <br>
+## Use Case:
 
+External users and developers use this skill to batch-recognize tables and text from document files through Xiangyun NetOCR, producing readable OCR output for single files or Markdown summaries for folders.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/liudengkui/doc-ocr-xy) <br>
-- [Xiangyun OCR service](https://netocr.com) <br>
-- [Xiangyun OCR API reference](https://www.netocr.com/table.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Plain text for single-file OCR, Markdown file output for folder OCR, and shell commands for configuration and execution.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create an OCR results Markdown file in the input folder and requires local Xiangyun API credentials before OCR execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Documents selected for OCR are uploaded to a third-party NetOCR service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only process documents the user is authorized to upload, and review privacy or contractual requirements before using the service for sensitive content.
+
+Risk: Xiangyun NetOCR credentials are stored in the skill directory as plaintext config.json.
+
+Mitigation: Use non-production credentials when possible, restrict file access to the skill directory, and rotate credentials if the local environment is shared or compromised.
+
+Risk: OCR use may incur provider charges.
+
+Mitigation: Confirm the account, pricing, and batch size before running folder OCR jobs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liudengkui/skills/doc-ocr-xy)
+- [NetOCR service](https://netocr.com)
+- [Xiangyun OCR API reference](https://www.netocr.com/table.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text for single-file OCR and Markdown files for folder OCR, with shell commands for configuration and execution.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local Xiangyun NetOCR credentials before OCR calls can run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

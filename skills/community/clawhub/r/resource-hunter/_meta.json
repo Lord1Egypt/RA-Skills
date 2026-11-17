@@ -1,6 +1,30 @@
 {
-  "ownerId": "kn75j4g4f6yxhaq4zwrdzkfhsn83243y",
-  "slug": "resource-hunter",
+  "name": "resource-hunter",
   "version": "2.1.1",
-  "publishedAt": 1774315904437
+  "description": "Success-first public resource hunter for pan links, torrents, magnets, and public video URLs across movies, TV, anime, music, software, and books.",
+  "author": "mnbplus",
+  "license": "MIT-0",
+  "tags": [
+    "resource",
+    "pan",
+    "torrent",
+    "magnet",
+    "video",
+    "yt-dlp",
+    "movie",
+    "anime",
+    "tv",
+    "music",
+    "software",
+    "book"
+  ],
+  "requires": {
+    "python": ">=3.10",
+    "bins": [
+      "yt-dlp"
+    ],
+    "optional_bins": [
+      "ffmpeg"
+    ]
+  }
 }

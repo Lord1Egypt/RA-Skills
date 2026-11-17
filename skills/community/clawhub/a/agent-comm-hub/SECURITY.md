@@ -1,78 +1,38 @@
 # Security Policy
 
-Agent Communication Hub takes security seriously. This document outlines our security mechanisms and how to report vulnerabilities.
+## 🛡️ Supported Versions
 
-## Supported Versions
+我们只维护最新稳定线，旧版本不再接收安全补丁：
 
-| Version | Supported          |
-|---------|--------------------|
-| 2.x     | ✅ Active development |
-| < 2.0   | ❌ Not supported      |
+| 版本线 | 状态 |
+|--------|------|
+| `v3.0.x`（最新） | ✅ 受支持 |
+| `< v3.0`（v2.5.x 及更早） | ❌ 不再维护 |
 
-## Security Features
+请始终升级到最新的 `v3.0.x` 发布以获得安全修复。
 
-### Authentication
-- **Token-based auth**: API tokens authenticated via SHA-256 hash. Raw tokens never stored in DB.
-- **Invite code system**: Time-limited invite codes (24h) for agent registration.
-- **Connection-level auth**: SSE (`/events/:agent_id?token=xxx`), WebSocket (`/ws?token=xxx`), and HTTP MCP all require valid tokens.
+## 🔐  Reporting a Vulnerability
 
-### Authorization
-- **RBAC (4 levels)**: `public` → `member` → `group_admin` → `admin`
-- Each MCP tool has an assigned permission level in `TOOL_PERMISSIONS`
-- `register_agent` is the only public tool; all others require authentication
-- `admin` role required for sensitive operations (token revocation, trust score changes, role assignment)
+**首选方式：通过 GitHub 私有漏洞报告（Private Vulnerability Reporting）。**
 
-### Audit Trail
-- All sensitive operations logged to `audit_log` table
-- **Hash chain**: Each audit record contains `prev_hash` and `record_hash`, forming an immutable chain
-- `verifyAuditChain()` validates chain integrity at any time
-- DB triggers prevent UPDATE/DELETE on committed audit records
+1. 打开仓库 **Security** 选项卡 → **Report a vulnerability**（GitHub 私有安全公告）。
+2. 提交后，维护者会在 **5 个工作日内** 确认收到并给出初步评估（严重级别、影响面、预计修复窗口）。
+3. 确认有效后，我们会在私有分支中修复，并在修复发布时：
+   - 在对应 GitHub Release 的 Release Notes 中注明安全修复；
+   - 通过 GitHub Security Advisory 发布安全公告（含 CVE 编号，如适用）；
+   - 通过漏洞报告对话私下通知原始报告者。
+4. 在公开披露前，请不要在 Issue、Discussions 或任何公开渠道透露细节，以便我们留出修复与升级窗口。
 
-### Transport Security
-- **CORS**: Whitelist-only configuration, default deny
-- **Security headers**: X-Frame-Options, X-Content-Type-Options, X-XSS-Protection, Strict-Transport-Security, Content-Security-Policy
-- **SSE injection protection**: Message content validated for SSE control sequences (`data:`, `event:`, `id:`, `retry:`)
-- **NULL byte detection**: Message content checked for `\x00` bytes
-- **Request tracing**: Every request carries a `traceId` for audit correlation
+> 我们**不**通过公开 Issue 或私人邮箱接收安全报告——请统一使用 GitHub 的私有漏洞报告机制，它能在披露前保持信息机密。
 
-### Rate Limiting
-- Per-agent rate limiting: 10 requests/second default window
-- Configurable via `RATE_LIMIT_WINDOW` and `RATE_LIMIT_MAX` env vars
+## 🏗️ 安全设计概览
 
-### Database
-- WAL journal mode for crash safety
-- DB split detection + auto-merge (three-layer protection)
-- Watchdog cron for periodic DB health checks
+Agent Communication Hub（ACH）在安全上采用「默认失败关闭（fail-closed）」原则，核心设计如下（详见 [README 安全体系章节](README.md#-安全体系)）：
 
-### File Upload
-- Base64-encoded, 10MB max file size
-- Configurable upload directory
+- **4 级 RBAC 授权**：`public → member → group_admin → admin` 四级角色，权限矩阵 fail-closed，未显式授权的操作一律拒绝。
+- **审计哈希链**：操作日志以区块链式哈希链存储（`prev_hash → record_hash`），由数据库触发器保障不可篡改，支持事后全量追溯。
+- **Token 不落盘**：认证 Token 以 SHA-256 哈希存储，原始 Token 永不写入磁盘；受保护端点仅接受 `Bearer` 头，移除 `?token=` 与 `x-api-key` 等令牌泄漏面。
+- **传输与网络**：CORS 白名单制 + `X-Frame-Options` / `CSP` / `HSTS` 等响应头加固。
+- **限流与防 DoS**：认证前置的单 IP / 全局限流，以及 `/mcp` 并发在途上限，防止令牌爆破与资源耗尽。
 
-## Reporting a Vulnerability
-
-If you discover a security vulnerability, please report it privately:
-
-1. **DO NOT** open a public GitHub issue
-2. Email the maintainer at the address listed in [package.json](client-sdk/package.json)
-3. Include:
-   - Description of the vulnerability
-   - Steps to reproduce
-   - Affected version(s)
-   - Potential impact
-
-You can expect:
-- **Acknowledgment** within 48 hours
-- **Status update** within 5 business days
-- **Fix timeline** communicated once the issue is triaged
-
-## Responsible Disclosure
-
-We request that you:
-- Give us reasonable time to fix the issue before public disclosure
-- Do not exploit the vulnerability beyond demonstrating proof of concept
-- Share any relevant test cases or fixes you develop
-
-We will:
-- Credit you in the release notes (if desired)
-- Issue a CVE if applicable
-- Notify all supported versions
+感谢你帮助 ACH 保持安全 🤖✨

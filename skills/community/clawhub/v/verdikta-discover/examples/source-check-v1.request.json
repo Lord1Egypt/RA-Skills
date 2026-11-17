@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "fixture-source-check-001",
+  "fixture_only": true,
+  "data_classification": "PUBLIC_NON_SENSITIVE",
+  "source_policy": {
+    "mode": "PROVIDED_CORPUS",
+    "allowed_sources": [
+      "https://fixture.invalid/aster-v2"
+    ],
+    "version_scope": "Aster API v2.0 synthetic fixture only",
+    "as_of": "2026-09-28",
+    "minimum_locations_per_item": 1,
+    "max_search_actions_per_item": 2,
+    "access_failure_policy": "LOG_LIMITATION_DO_NOT_FABRICATE"
+  },
+  "claims": [
+    {
+      "claim_id": "C1",
+      "text": "Aster API v2.0 uses JSON responses."
+    },
+    {
+      "claim_id": "C2",
+      "text": "Aster API v2.0 accepts 200 items in one batch."
+    },
+    {
+      "claim_id": "C3",
+      "text": "Aster API v2.0 retains input data for 30 days."
+    }
+  ]
+}

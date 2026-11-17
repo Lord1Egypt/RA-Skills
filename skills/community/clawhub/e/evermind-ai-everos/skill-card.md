@@ -1,46 +1,63 @@
-## Description: <br>
-Install and configure EverOS for OpenClaw natural-language memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs and configures the EverOS OpenClaw context-engine plugin so OpenClaw can recall and save conversation memory through a self-hosted EverOS backend.
 
-## Publisher: <br>
-[alwaysday1](https://clawhub.ai/user/alwaysday1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alwaysday1](https://clawhub.ai/user/alwaysday1)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to install and configure the EverOS context-engine plugin so conversations can recall and save persistent memory through a self-hosted EverOS backend. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Conversation content may be stored by the configured EverOS backend and may appear in logs. <br>
-Mitigation: Use only a trusted backend, verify the backend URL before use, and avoid sensitive conversations until logging and retention behavior are understood. <br>
-Risk: The installer persistently changes OpenClaw memory configuration. <br>
-Mitigation: Review ~/.openclaw/openclaw.json before and after installation and keep the generated backup for rollback. <br>
-Risk: External setup commands can install or run additional components. <br>
-Mitigation: Prefer pinned or inspected setup commands and confirm the backend source before running installers. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to install EverOS persistent memory, configure the OpenClaw context-engine slot, connect to an EverOS backend, restart OpenClaw, and verify memory through natural-language conversation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/alwaysday1/evermind-ai-everos) <br>
-- [Publisher profile](https://clawhub.ai/user/alwaysday1) <br>
-- [EverMemOS backend](https://github.com/EverMind-AI/EverMemOS) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Plugin metadata](artifact/openclaw.plugin.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides installation, OpenClaw configuration, backend health checks, restart, and natural-language verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: SKILL.md frontmatter, package.json, release metadata) <br>
+Risk: The plugin automatically persists conversation content to the configured EverOS backend.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive conversations until logging, retention, deletion, and memory-review controls are acceptable for the deployment environment.
+
+Risk: Installation modifies the local OpenClaw configuration and changes plugin slots.
+
+Mitigation: Review changes to ~/.openclaw/openclaw.json before restarting OpenClaw.
+
+Risk: Setup guidance includes remote install patterns and backend startup commands.
+
+Mitigation: Pin the npm package to the reviewed version, avoid curl-to-shell setup where possible, and install only if EverMind, the package, and the configured backend are trusted.
+
+Risk: Memory recalled from the backend is injected into the assistant context.
+
+Mitigation: Keep the backend on localhost or HTTPS and review memory contents and backend trust boundaries before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/alwaysday1/skills/evermind-ai-everos)
+- [EverMemOS Backend](https://github.com/EverMind-AI/EverMemOS)
+- [Evermemos OpenClaw Plugin Repository](https://github.com/EverMind-AI/evermemos-openclaw-plugin.git)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local OpenClaw configuration changes, backend health checks, gateway restart commands, and natural-language memory verification steps.]
+
+## Skill Version(s):
+
+1.4.0 (source: SKILL.md frontmatter, package.json, openclaw.plugin.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

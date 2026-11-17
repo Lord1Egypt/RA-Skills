@@ -1,43 +1,60 @@
-## Description: <br>
-SafeProactive is a local safety framework for autonomous agents that uses Write-Ahead Logging, proposal-first decision-making, and human approval gates to keep actions auditable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SafeProactive is a local safety framework for autonomous agents that uses Write-Ahead Logging and mandatory human approval gates to preserve auditability and oversight.
 
-## Publisher: <br>
-[rigeneproject](https://clawhub.ai/user/rigeneproject) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rigeneproject](https://clawhub.ai/user/rigeneproject)
 
-## Use Case: <br>
-Developers and operators use this skill to add local safety routines, audit logging, and explicit approval gates to agent workflows that may act proactively. It is intended for agents that need transparent proposals before execution and careful control over filesystem, credential, API, and self-modification behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation can affect routine agent interactions. <br>
-Mitigation: Review trigger settings before deployment and enable the framework only where continuous safety checks are desired. <br>
-Risk: Local WAL and audit logs can retain sensitive operational details. <br>
-Mitigation: Store log directories in a protected local path and define retention and redaction rules before use. <br>
-Risk: External API or web queries may expand the agent's exposure if enabled automatically. <br>
-Mitigation: Disable or gate external queries unless they are explicitly needed and approved for the deployment. <br>
+## Use Case:
 
+Developers and operators use SafeProactive to configure autonomous agents so intended actions are proposed, logged locally, checked against safety constraints, and routed to human approval for higher-risk capability expansion or protocol changes.
 
-## Reference(s): <br>
-- [SafeProactive on ClawHub](https://clawhub.ai/rigeneproject/safeproactive) <br>
-- [Publisher profile](https://clawhub.ai/user/rigeneproject) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration, shell commands] <br>
-**Output Format:** [Markdown instructions with configuration examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent-facing operating guidance for local audit logs, proposal gates, and safety checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Global agent governance may affect every turn and broaden the skill's influence beyond a narrow task.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow activation away from every_turn and enable the skill only in workspaces where this safety posture is intended.
+
+Risk: Unrestricted system prompt prepending can make the framework difficult to bypass when a task needs a different operating mode.
+
+Mitigation: Avoid unrestricted prompt prepending and document when the SafeProactive instructions are active.
+
+Risk: Recurring autonomous logging or actions can exceed the declared local scope if workspace, memory, network, and notification behavior are not aligned.
+
+Mitigation: Require approval for first-contact external APIs and physical actions, define log redaction rules, and align declared permissions with actual behavior.
+
+## Reference(s):
+
+- [SafeProactive ClawHub page](https://clawhub.ai/rigeneproject/skills/safeproactive)
+- [README](artifact/README.md)
+- [SKILL](artifact/SKILL.md)
+- [CLAW_HUB_METADATA](artifact/CLAW_HUB_METADATA.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline YAML and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompts agent behavior around local WAL, approval gates, and security posture; does not itself execute actions.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

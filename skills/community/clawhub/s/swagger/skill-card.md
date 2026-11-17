@@ -1,38 +1,54 @@
-## Description: <br>
-Swagger reference tool. Use when working with swagger in devtools contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Swagger reference tool. Use when working with swagger in devtools contexts.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and engineers use this skill as a quick Swagger reference for checklists, troubleshooting, security, migration, and performance guidance in devtools workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides generic Swagger guidance rather than validating or editing real Swagger or OpenAPI files. <br>
-Mitigation: Treat its output as reference material and verify API changes with project-specific tests, Swagger or OpenAPI validators, and authoritative documentation before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill for concise Swagger reference material, including quickstarts, common patterns, troubleshooting, security considerations, migration guidance, and cheat sheets.
 
-## Reference(s): <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-formatted reference text from command output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static command-specific guidance; evidence.security reports no network calls or file edits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The skill provides generic reference guidance rather than a full Swagger tool.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as starting-point guidance and verify recommendations against project-specific Swagger documentation and requirements.
+
+Risk: The documented script command may not run directly in all environments.
+
+Mitigation: Verify the package source and use executable permissions or explicit bash invocation when installing and testing the skill.
+
+## Reference(s):
+
+- [BytesAgain homepage](https://bytesagain.com)
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/swagger)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown text with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference output selected by command name.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

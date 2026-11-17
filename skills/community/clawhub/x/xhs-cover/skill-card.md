@@ -1,44 +1,55 @@
-## Description: <br>
-Generates Xiaohongshu-style social media cover images with npx xhscover, including setup, balance, and history workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Xiaohongshu-style cover images for social media posts and article artwork, with setup, balance, and history commands through the xhscover CLI.
 
-## Publisher: <br>
-[xwchris](https://clawhub.ai/user/xwchris) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xwchris](https://clawhub.ai/user/xwchris)
 
-## Use Case: <br>
-External users and developers use this skill to generate social media cover images from prompts, choose aspect ratios, check credit balance, and review generation history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on the external xhscover npm package and xhscover.cn service. <br>
-Mitigation: Install only if you trust the package and service, and review the package before use in sensitive environments. <br>
-Risk: Cover prompts and API keys are sent to api.xhscover.cn. <br>
-Mitigation: Avoid sensitive personal or business information in prompts, monitor credit usage, and remove or rotate the ~/.xhscover API key when no longer using the skill. <br>
+## Use Case:
 
+External users and agents use this skill to generate Xiaohongshu-style and social media cover images from short cover text, and to check xhscover credit balance or generation history.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xwchris/xhs-cover) <br>
-- [xhscover website](https://xhscover.cn) <br>
-- [xhscover npm package](https://www.npmjs.com/package/xhscover) <br>
-- [xhscover CLI repository](https://github.com/xwchris/xhscover-cli) <br>
-- [xhs-cover MCP repository](https://github.com/xwchris/xhs-cover-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with shell commands and generated image file references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses npx xhscover; prompts and API keys are sent to api.xhscover.cn during execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill runs an unpinned npm CLI that handles credentials and user-provided cover text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing the xhscover package, and prefer a pinned, reviewed version or lockfile-managed install before entering an API key or sending private text.
+
+Risk: Cover prompts and API credentials are sent to xhscover.cn for processing.
+
+Mitigation: Use the skill only when the user intends to use that service and accepts its data handling.
+
+## Reference(s):
+
+- [Xhs Cover Skill on ClawHub](https://clawhub.ai/xwchris/skills/xhs-cover)
+- [xhscover website](https://xhscover.cn)
+- [xhscover npm package](https://www.npmjs.com/package/xhscover)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Text, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and generated cover image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses npx xhscover to set up access, generate covers, check balance, and view history.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

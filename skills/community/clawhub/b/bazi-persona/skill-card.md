@@ -1,44 +1,62 @@
-## Description: <br>
-Creates, updates, and chats with Bazi-based personas, including Bazi charts, dynamic time-flow analysis, and almanac/calendar queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates and maintains Bazi-based AI personas for charting, ongoing persona updates, dynamic time-flow analysis, and lunar-calendar queries.
 
-## Publisher: <br>
-[xiaojxiao2021](https://clawhub.ai/user/xiaojxiao2021) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaojxiao2021](https://clawhub.ai/user/xiaojxiao2021)
 
-## Use Case: <br>
-External users and agent operators use this skill to create and maintain persona files from birth data, chat facts, and Bazi analysis, then generate conversational responses, calendar guidance, and persona updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persona facts and imported chat records may include sensitive personal information stored on local disk. <br>
-Mitigation: Review and redact private or third-party chat logs before import, and store personas only in locations appropriate for that data. <br>
-Risk: A broad base_dir or BAZI_PERSONA_HOME setting could place persona data in an unintended filesystem location. <br>
-Mitigation: Use a narrow, dedicated persona directory and verify the resolved path before creating, importing, or updating personas. <br>
-Risk: Bazi analysis and almanac guidance could be mistaken for professional advice in high-risk decisions. <br>
-Mitigation: Treat outputs as reference material only and do not use the skill as a substitute for medical, legal, investment, or other professional judgment. <br>
+## Use Case:
 
+External users and agents use this skill to create, query, update, and converse with file-backed Bazi personas, including dynamic Bazi flow and almanac lookups. It provides interpretive guidance and should not replace professional medical, legal, or investment advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xiaojxiao2021/bazi-persona) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact Skill Definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, plain text, JSON-like tool results, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local persona files under the skill personas directory or a configured base_dir.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release evidence and package.json) <br>
+Risk: Broad file-backed persona management can affect local persona data, including deletion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted, contained persona directory and review delete actions before execution.
+
+Risk: Weak path controls make arbitrary or unverified base_dir values risky.
+
+Mitigation: Avoid arbitrary base_dir values and use only verified persona storage paths.
+
+Risk: Imported private or third-party chat logs may be stored and reused as persistent persona memory.
+
+Mitigation: Import chat logs only when the user is comfortable with persistent storage and reuse of that content.
+
+Risk: The development command uses unpinned npx tooling.
+
+Mitigation: Avoid the npx development command unless the tooling has been pinned and verified.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xiaojxiao2021/skills/bazi-persona)
+- [ClawHub Package Homepage](https://clawhub.ai/xiaojxiao2021/bazi-persona)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text responses, with JSON data for persona records and Bazi/calendar tool results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [File-backed persona data may be read, updated, imported, or deleted through configured persona directories.]
+
+## Skill Version(s):
+
+0.3.0 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

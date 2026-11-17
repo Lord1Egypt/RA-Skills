@@ -1,37 +1,48 @@
-## Description: <br>
-Avoid common NestJS mistakes - DI scoping, circular dependencies, validation pipes, and module organization traps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Avoid common NestJS mistakes across dependency injection, module organization, validation, execution order, exception handling, and testing.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers use this skill as a compact NestJS reference for dependency injection, module organization, validation, execution order, exception handling, testing, and common framework pitfalls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Advice-oriented guidance may produce code changes that do not fit a target project's NestJS architecture. <br>
-Mitigation: Review proposed changes against the project's module, provider, validation, and testing patterns before applying them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/nestjs) <br>
+## Use Case:
 
+Developers and engineers use this skill as a concise NestJS quick-reference for avoiding common framework mistakes in application code, tests, and module wiring.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration] <br>
-**Output Format:** [Markdown guidance with inline NestJS code and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Framework advice may not match every project convention or NestJS version.
+
+Mitigation: Review recommendations against the target project's architecture, dependency versions, and team standards before applying them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/nestjs)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline TypeScript and NestJS code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only quick reference; no executable behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

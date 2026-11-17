@@ -1,116 +1,280 @@
-# Memory Review 详细规范
+# Memory Review Specification
 
-## 扫描范围
+## Contents
 
-- 默认扫描最近 5 天的日记
-- 可通过参数自定义天数
+1. Purpose and authority
+2. Scan state
+3. Durable-signal filter
+4. Existing-document resolution
+5. Decision actions
+6. Conflict and rewrite policy
+7. Decision-plan schema
+8. Write and verification sequence
+9. Reports
+10. Examples and boundaries
 
-## 知识识别规则
+## 1. Purpose and authority
 
-### 识别 5 类知识
+Memory review compresses operational history into durable, searchable current knowledge. It is not an archive copier.
 
-| 类型 | 特征 | 存放位置 |
-|------|------|----------|
-| 设计决策 | "选择了 X 而不是 Y，因为 Z" | memory/knowledge/fw-*.md |
-| 可复用经验 | "这个模式对 XXX 效果很好" | memory/knowledge/fw-*.md |
-| 新术语 | 首次使用的内部术语 | memory/glossary.md |
-| 实体变更 | 项目状态变更、新人物等 | memory/projects/*/ |
-| 重复模式 | 同一个操作做了 3+ 次 | memory/knowledge/fw-*.md |
+Use this authority order when sources disagree:
 
-### 优先级判断
+1. Explicit current owner decision or verified current system state
+2. Canonical knowledge, project, people, glossary, and post-mortem files
+3. `MEMORY.md` hot cache
+4. Daily logs and generated review reports
 
-```
-错误类 → 高优先级（立即沉淀）
-新技能/工具 → 高优先级
-配置优化 → 中优先级
-经验总结 → 中优先级
-待办/想法 → 低优先级（可延后）
-```
+Daily logs describe what was believed at the time and may be incomplete or wrong. A newer daily entry does not automatically replace a verified canonical conclusion.
 
-## 增量扫描逻辑
+### Automatic write boundary
 
-使用 md5 比对判断是否有新内容需要扫描：
+Allowed automatic targets:
 
-### 1. 读取上次状态
+- `memory/knowledge/**/*.md`
+- `memory/projects/**/*.md`
+- `memory/glossary.md`
+- `memory/post-mortems.md`
 
-- 读取上次执行日志 `data/exec-logs/memory-review/` 目录下最新的文件
-- 提取 `lastScanned` 字段：格式 `{ "date": "2026-03-16", "md5": "abc123" }`
+Protected by default:
 
-### 2. 判断是否需要扫描
+- `AGENTS.md`, `MEMORY.md`, `TOOLS.md`
+- `USER.md`, `SOUL.md`, `IDENTITY.md`, `ENVIRONMENT.md`
+- credentials, configuration secrets, and external workspaces
 
-- 检查 memory/daily/ 目录下是否有比 lastScanned.date 更新的文件
-- 如果有，需要扫描
-- 如果没有，检查 lastScanned.date 对应文件的当前 md5 是否变化
-- 如果 md5 变了，需要扫描
-- 否则，跳过（没有新内容）
+For protected files, report a proposed change and its evidence. Edit only when the current request explicitly authorizes it.
 
-### 3. 计算 md5
+## 2. Scan state
 
-```bash
-md5sum memory/daily/YYYY-MM-DD.md
-```
+Use `scripts/memory_review.py scan`; do not reimplement date and hash logic in the prompt.
 
-## 执行步骤
+State v2 stores a SHA-256 per pure daily log. This fixes three weaknesses of the legacy `{date, md5}` cursor:
 
-1. 读取上次的 lastScanned 状态
-2. 按上述增量逻辑判断是否需要扫描
-3. 如果需要扫描：
-   - 扫描相关日记文件
-   - 识别 5 类信号
-   - 自动写入知识库
-   - 生成报告
-4. 如果不需要扫描：输出"无新内容"
-5. 写入执行日志，包含新的 lastScanned 状态
-6. 投递报告（读取 AGENTS.md/MEMORY.md 获取配置）
+- a changed older daily log is detected;
+- multiple new or changed logs can be reviewed in one run;
+- review reports are never mistaken for source diaries.
 
-## 执行规则
+The scanner migrates safely from the newest legacy `lastScanned` block. On first use without any state, it scans the newest five pure daily logs and baselines older files.
 
-1. 所有 shell 命令必须同步执行（不使用 background 参数）
-2. 原子化写入输出文件：先写 .tmp 文件，然后 mv 到最终路径
-3. 在生成进程退出前不要读取输出文件
+Commit state only after canonical writes, report generation, and verification all succeed. `commit-state` rejects a stale plan if a source changed after scanning.
 
-## 报告格式
+## 3. Durable-signal filter
 
-```markdown
-# Memory Review 报告
+Keep a signal only when it is likely to matter beyond the current day.
 
-**生成时间**: YYYY-MM-DD HH:MM
-**扫描范围**: YYYY-MM-DD ~ YYYY-MM-DD
+Good candidates:
 
----
+- an explicit decision with rationale and scope;
+- a verified reusable technique or failure mode;
+- a stable interface, path, schema, or environment fact;
+- a project or entity state that future work must know;
+- a repeated pattern supported by multiple occurrences;
+- a post-mortem lesson with cause, impact, and prevention.
 
-## 扫描结果
+Usually skip or defer:
 
-- 扫描了 X 天的日记
-- 识别到 N 条知识
+- routine cron, backup, build, and commit results;
+- temporary health, quota, latency, and queue status;
+- unresolved hypotheses or planned work;
+- raw benchmark samples already stored in their source repository;
+- duplicate retellings of a known conclusion;
+- secrets or recovery material contents.
 
-## 已自动沉淀
+Prefer `defer` when evidence is promising but not yet stable. Prefer `skip_duplicate` when the canonical document already says the same thing.
 
-| 知识条目 | 位置 | 状态 |
-|----------|------|------|
-| xxx | memory/knowledge/fw-xxx.md | ✅ 已写入 |
+## 4. Existing-document resolution
 
-## lastScanned 状态
+Perform resolution between signal extraction and any write.
+
+### Search order
+
+1. Follow explicit paths and cross-references in the daily log.
+2. Search filenames, H1 titles, headings, aliases, and distinctive terms with `rg`.
+3. Use `memory_search` for semantic matches when available.
+4. Search the full allowed target set:
+   - `memory/knowledge/`
+   - `memory/glossary.md`
+   - `memory/projects/`
+   - `memory/post-mortems.md`
+5. Use `memory_review.py candidates` as a deterministic lexical fallback or audit trail.
+
+### Candidate assessment
+
+For each plausible document, check:
+
+- same subject or entity;
+- same operational question;
+- compatible scope and audience;
+- whether the new signal revises, extends, or merely repeats it;
+- whether another file is already more canonical;
+- whether merging would make the document clearer or less coherent.
+
+Record candidates checked and the decision reason. Filename similarity alone is not sufficient.
+
+### Canonical selection
+
+Choose one canonical target when possible. Prefer the document that:
+
+- already owns the topic's current conclusion;
+- has the clearest and broadest applicable scope;
+- is referenced by current files;
+- can absorb the new evidence without becoming a grab bag.
+
+If two existing documents materially overlap and neither is clearly canonical, do not create another file. Use `review_merge` and identify both candidates.
+
+## 5. Decision actions
+
+Every signal receives exactly one action.
+
+### `update_existing`
+
+Use when an existing canonical document can absorb the signal. Preserve useful structure, revise stale conclusions in place, and add only evidence or guidance that improves future use.
+
+### `create_new`
+
+Use only when:
+
+- no suitable document exists after a recorded search;
+- the topic has a clearly independent boundary; or
+- an intentional split is needed because an existing document combines distinct responsibilities.
+
+New knowledge filenames must be topic-based and date-free.
+
+### `skip_duplicate`
+
+Use when the canonical document already contains the same durable meaning. Do not edit merely to record that the event happened again unless repetition itself changes confidence or policy.
+
+### `review_merge`
+
+Use when two or more existing documents overlap or conflict enough to require consolidation. Report the recommended canonical target and migration plan. Do not silently merge large documents during a routine cron run.
+
+### `defer`
+
+Use for unstable, unverified, sensitive, or owner-decision-dependent signals. State what evidence or decision would unblock it.
+
+## 6. Conflict and rewrite policy
+
+Do not append contradictions chronologically and leave the reader to decide.
+
+When verified new evidence supersedes an old conclusion:
+
+1. rewrite the current conclusion;
+2. retain short historical context only when it explains a migration or pitfall;
+3. update affected cross-references;
+4. cite the newer evidence path in the decision plan/report.
+
+When authority is unclear, keep the canonical document unchanged and use `defer` or `review_merge`.
+
+## 7. Decision-plan schema
+
+Write a JSON plan before editing. The helper validates paths and action requirements.
 
 ```json
 {
-  "lastScanned": {
-    "date": "YYYY-MM-DD",
-    "md5": "abc123"
-  }
+  "schema_version": 2,
+  "source_files": [
+    "memory/daily/2026-07/2026-07-30.md"
+  ],
+  "decisions": [
+    {
+      "signal": "Codex Hosted Search is the default quality-search route",
+      "action": "update_existing",
+      "destination": "memory/knowledge/fw-web-search-quality-routing.md",
+      "source_refs": [
+        "memory/daily/2026-07/2026-07-30.md"
+      ],
+      "candidates_checked": [
+        "memory/knowledge/fw-web-search-quality-routing.md",
+        "memory/knowledge/codex-cli-usage.md"
+      ],
+      "searches_performed": [
+        "rg: web search quality routing",
+        "memory_search: Codex Hosted Search default route"
+      ],
+      "reason": "The first document already owns search-routing policy."
+    }
+  ]
 }
 ```
-```
 
-## 投递规则
+Required fields for all decisions: `signal`, `action`, `source_refs`, `reason`.
 
-从 AGENTS.md 或 MEMORY.md 读取投递配置：
+Additional rules:
+
+- `update_existing`: `destination` must exist.
+- `create_new`: `destination` must not exist; `searches_performed` must be non-empty. `candidates_checked` may be empty when the search found nothing.
+- `skip_duplicate`: identify the existing destination when known.
+- `review_merge`: list at least two `candidates_checked` paths.
+- `defer`: explain the missing evidence or authority.
+
+## 8. Write and verification sequence
+
+1. Generate scan and decision plans.
+2. Validate the decision plan.
+3. Apply only allowed automatic writes.
+4. Run `git diff --check` and inspect the full relevant diff.
+5. Search for stale filenames and conflicting current conclusions.
+6. Re-run candidate search for every new document; confirm the boundary still holds.
+7. Re-run `scan` before committing state. If a source changed, restart review.
+8. Write report and execution log atomically.
+9. Run the same scan again after `commit-state`; `changed_sources` must be empty.
+
+Idempotence means unchanged source inputs cause no canonical-memory diff. It does not require suppressing a caller-requested report, but a no-change report must say that nothing was rewritten.
+
+## 9. Reports
+
+Write:
+
+- `memory/daily/YYYY-MM/YYYY-MM-DD-memory-review.md`
+- `data/exec-logs/memory-review/YYYY-MM-DD.md`
+
+Use these sections:
 
 ```markdown
-## 报告投递
+## Updated
 
-- 渠道：feishu
-- 目标：<飞书群ID或用户ID>
+| Signal | Canonical document | Reason |
+
+## Created
+
+| Signal | New document | Why no existing document fit |
+
+## Skipped duplicates
+
+| Signal | Existing document | Reason |
+
+## Merge review
+
+| Signal | Candidates | Recommendation |
+
+## Deferred
+
+| Signal | Missing evidence or decision |
+
+## Scan state
+
+- Source files reviewed
+- Changed / unchanged counts
+- State commit result
 ```
 
-如果配置中无投递信息，可以跳过投递或询问用户。
+Do not claim `created`, `updated`, or `merged` unless the filesystem diff proves it.
+
+## 10. Examples and boundaries
+
+### Repeated topic on consecutive days
+
+Day 1 records that provider-registry loading should be lazy. No existing document fits, so review creates `memory/knowledge/fw-provider-registry-lazy-loading.md`.
+
+Day 2 adds a verified timeout case for the same registry. Resolution finds the Day 1 document. The action is `update_existing`; add the failure condition and verification, then report one update and zero creations. A near-synonym such as `fw-provider-registry-timeout.md` would be a duplicate.
+
+### Legitimate new boundary
+
+An existing `fw-provider-registry-lazy-loading.md` explains when runtime providers are initialized. A later signal defines credential-rotation policy, audit requirements, and rollback. Although both mention providers, they answer different operational questions and have different readers. After checking candidates, `create_new` for `fw-provider-credential-rotation.md` is appropriate.
+
+### Existing overlap
+
+Two documents both describe Feishu cross-app identity resolution, and a new log adds another mapping example. Use `review_merge`; do not create a third identity document. A routine review may update neither until the canonical destination is chosen.
+
+### Unverified incident
+
+A daily log suspects compaction causes media reply loss but the reproduction is incomplete. Use `defer`; keep the hypothesis in the issue/daily log until verified.

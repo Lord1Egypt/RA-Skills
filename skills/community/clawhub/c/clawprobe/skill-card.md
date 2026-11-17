@@ -1,43 +1,58 @@
-## Description: <br>
-Clawprobe monitors OpenClaw agent health, token usage, API cost, context window state, compaction events, and optimization suggestions from the CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor OpenClaw agent health, token usage, API cost, and context window in real time.
 
-## Publisher: <br>
-[liuhao6741](https://clawhub.ai/user/liuhao6741) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuhao6741](https://clawhub.ai/user/liuhao6741)
 
-## Use Case: <br>
-Developers and agent operators use this skill to inspect their own OpenClaw runtime health, context utilization, estimated costs, active suggestions, and compaction history before or during expensive work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on an external npm package and linked repository that are outside NVIDIA ownership. <br>
-Mitigation: Verify the `clawprobe` npm package, linked repository, and selected version before installation. <br>
-Risk: The monitoring daemon runs in the background after it is started. <br>
-Mitigation: Understand how to stop or uninstall the daemon before enabling monitoring in an agent environment. <br>
-Risk: JSON output from session, context, and compaction commands may expose sensitive operational details. <br>
-Mitigation: Treat command output as sensitive and avoid sharing it outside trusted logs or workflows. <br>
+## Use Case:
 
+Developers and OpenClaw agent operators use Clawprobe to monitor live agent health, context utilization, estimated API cost, compaction events, and optimization suggestions during agent sessions.
 
-## Reference(s): <br>
-- [ClawProbe homepage](https://github.com/seekcontext/ClawProbe) <br>
-- [ClawHub skill page](https://clawhub.ai/liuhao6741/clawprobe) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and structured JSON command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [JSON command output may include session, context, cost, compaction, and suggestion details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.6.9 (source: server release metadata) <br>
+Risk: The globally installed clawprobe npm package or source repository may not match the reviewed release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the npm package and source repository before installation, and prefer a pinned reviewed version.
+
+Risk: Monitoring may expose local agent session telemetry, cost estimates, and compaction history to the monitoring process.
+
+Mitigation: Run Clawprobe only in environments where that local agent-session information is acceptable to expose.
+
+Risk: Reported cost figures are estimates.
+
+Mitigation: Check exact spend against the model provider billing dashboard before relying on cost totals.
+
+## Reference(s):
+
+- [ClawProbe homepage](https://github.com/seekcontext/ClawProbe)
+- [ClawHub skill page](https://clawhub.ai/liuhao6741/skills/clawprobe)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The referenced CLI commands can emit structured JSON for programmatic monitoring; cost figures are estimates and should be checked against provider billing.]
+
+## Skill Version(s):
+
+0.6.9 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

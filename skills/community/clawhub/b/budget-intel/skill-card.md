@@ -1,38 +1,56 @@
-## Description: <br>
-Budget Intel helps sales and CSM teams estimate a company's digital and AI budget, budget composition, procurement cycle, and sales recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Budget Intel helps sales and customer success teams estimate enterprise digitalization and AI budgets, budget composition, procurement timing, and sales recommendations from public company research and local budget calculations.
 
-## Publisher: <br>
-[ken0122](https://clawhub.ai/user/ken0122) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ken0122](https://clawhub.ai/user/ken0122)
 
-## Use Case: <br>
-Sales and CSM teams use this skill to research a named company and produce a concise budget intelligence report covering IT, digital, and AI budget ranges, procurement timing, supplier context, stakeholders, and follow-up strategy. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Company research queries may be sent to external search or research tools. <br>
-Mitigation: Use public company information only and avoid confidential prospect lists, private deal strategy, or sensitive customer data. <br>
-Risk: Budget estimates and sales recommendations may be incomplete or misleading if source data is stale, indirect, or unverified. <br>
-Mitigation: Verify cited sources and treat the report as sales intelligence support rather than a definitive financial assessment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Sales, customer success, and go-to-market teams use this skill to build concise budget intelligence for named companies. It combines public-source company research with a local estimator to produce budget ranges, confidence notes, procurement-cycle context, stakeholder-role guidance, supplier context, and sales advice.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown one-page budget intelligence report with budget ranges, confidence notes, and sales recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public-company research signals and local budget calculations; estimates require source verification.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Budget, procurement, supplier, and stakeholder-role outputs are inferred estimates and may be inaccurate or outdated.
+
+Mitigation: Verify cited public sources and treat the report as sales planning input rather than a decision record.
+
+Risk: Company research workflows can drift into private personal information collection when identifying decision makers.
+
+Mitigation: Use public business information only and avoid collecting or inferring private personal information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ken0122/skills/budget-intel)
+- [Skill instructions](artifact/SKILL.md)
+- [Tool schema](artifact/tools_schema.json)
+- [Budget engine](artifact/budget_engine.py)
+- [Test cases](artifact/TEST_CASES.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with budget ranges, confidence notes, tables, and concise sales recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language one-page intelligence report; budget and stakeholder outputs are estimates that require source verification.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact MANIFEST.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

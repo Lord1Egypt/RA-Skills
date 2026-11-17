@@ -1,41 +1,54 @@
-## Description: <br>
-Provides pytest-focused guidance and examples for fixtures, mock and patch patterns, parametrized tests, coverage reports, and test data generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+pytest-test-master provides Chinese-language guidance and examples for pytest fixtures, mock/patch, parametrized tests, coverage reporting, and test data generation.
 
-## Publisher: <br>
-[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png)
 
-## Use Case: <br>
-Developers and engineers use this skill to quickly get pytest implementation guidance, runnable examples, and troubleshooting patterns for test structure, mocking, parametrization, coverage, and generated test data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup script executes local pytest tests and demo CLI commands. <br>
-Mitigation: Run setup.sh only in a normal project sandbox or virtual environment. <br>
-Risk: Example external URLs and credentials may be mistaken for production values. <br>
-Mitigation: Treat URLs and credentials shown in examples as placeholders and replace them with approved project-specific values. <br>
+## Use Case:
 
+Developers and engineers use this skill to get concise pytest reference material, runnable command examples, and testing patterns for fixtures, mocking, parametrization, coverage, and test data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shenghoo123-png/pytest-test-master-kay) <br>
-- [Publisher profile](https://clawhub.ai/user/shenghoo123-png) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown-style explanatory text with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Offline CLI guidance; setup.sh runs local pytest tests and demo CLI commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Bare dependency installation can resolve different package versions over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated Python environment and pin dependency versions before use in managed workflows.
+
+Risk: The guidance and examples are Chinese-language content.
+
+Mitigation: Review the output for language suitability before using it in teams that require another language.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shenghoo123-png/skills/pytest-test-master-kay)
+- [Publisher profile](https://clawhub.ai/user/shenghoo123-png)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown-style text with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are local reference guidance selected by CLI subcommand and topic.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

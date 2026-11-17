@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pathway-atlas.example/schemas/capability-report.schema.json",
+  "title": "Capability report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "tier",
+    "host_capabilities",
+    "available_capabilities",
+    "missing_capabilities",
+    "degradations",
+    "python_version",
+    "optional_modules"
+  ],
+  "properties": {
+    "tier": {
+      "type": "string",
+      "enum": ["full", "standard", "offline"]
+    },
+    "host_capabilities": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "available_capabilities": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "missing_capabilities": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "degradations": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "python_version": {"type": "string"},
+    "optional_modules": {
+      "type": "array",
+      "items": {"type": "string"}
+    }
+  }
+}

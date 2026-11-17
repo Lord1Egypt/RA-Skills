@@ -1,45 +1,60 @@
-## Description: <br>
-Sends Feishu voice messages by converting text or existing audio files to opus audio, uploading the file through the Feishu Open API, and sending it to a recipient open_id. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Sends Feishu voice messages by converting text or existing audio into opus audio and delivering it through the Feishu Open API.
 
-## Publisher: <br>
-[Michael-C-Matias](https://clawhub.ai/user/Michael-C-Matias) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michael-c-matias](https://clawhub.ai/user/michael-c-matias)
 
-## Use Case: <br>
-Developers and automation users can use this skill to prepare Feishu voice notifications from text or audio files and send them through a configured Feishu app. It is best suited for learning, testing, and technical exchange workflows that already have approved Feishu credentials and recipient identifiers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Feishu app credentials are used to obtain an access token and upload/send audio. <br>
-Mitigation: Use a least-privilege Feishu app, store credentials outside prompts and logs, and rotate credentials if they are exposed. <br>
-Risk: Text and generated or uploaded audio may contain sensitive information that is sent to Feishu and, for text-to-speech, processed by the configured TTS provider. <br>
-Mitigation: Avoid regulated or confidential content unless Feishu and the TTS provider are approved for that data. <br>
-Risk: A wrong recipient open_id can send audio to the wrong Feishu user. <br>
-Mitigation: Verify the open_id and message content before running the send command. <br>
+## Use Case:
 
+Developers and operators use this skill to generate or convert audio and send it as a Feishu voice message to a known open_id recipient from an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Michael-C-Matias/feishu-audio-messages) <br>
-- [Feishu tenant access token API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal) <br>
-- [Feishu file upload API](https://open.feishu.cn/open-apis/im/v1/files) <br>
-- [Feishu message send API](https://open.feishu.cn/open-apis/im/v1/messages) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash commands, parameter tables, and operational notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Feishu app credentials, a recipient open_id, curl, ffmpeg, and optionally edge-tts and jq.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Feishu app credentials, recipient open_id, message text, and audio are sensitive and are used with external services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use environment variables or tightly permissioned config files, limit Feishu app permissions, and send only content approved for the configured Feishu and TTS providers.
+
+Risk: Temporary audio files are created during conversion, and the security guidance cautions against shared hosts unless temporary-file handling is improved.
+
+Mitigation: Run on trusted single-user hosts or improve temporary-file isolation before shared-host deployment.
+
+Risk: Text-to-speech behavior depends on edge-tts and the configured TTS provider.
+
+Mitigation: Use a virtual environment with a pinned edge-tts version and validate generated audio before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/michael-c-matias/skills/feishu-audio-messages)
+- [Publisher profile](https://clawhub.ai/user/michael-c-matias)
+- [Feishu file upload API endpoint](https://open.feishu.cn/open-apis/im/v1/files)
+- [Feishu message send API endpoint](https://open.feishu.cn/open-apis/im/v1/messages)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and configuration instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Feishu app credentials, a recipient open_id, edge-tts, ffmpeg, and curl at execution time.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

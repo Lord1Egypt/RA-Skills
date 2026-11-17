@@ -1,41 +1,54 @@
-## Description: <br>
-Google Workflow: Convert a Gmail message into a Google Tasks entry. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Workflow: Convert a Gmail message into a Google Tasks entry.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-External users, developers, and productivity operators use this skill to turn a specified Gmail message into a Google Tasks entry through the gws CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can read email-derived content and create a real Google Tasks item. <br>
-Mitigation: Confirm the Gmail message ID, destination task list, and Google account before running the command. <br>
-Risk: The workflow depends on the local gws CLI and its Google authorization setup. <br>
-Mitigation: Install and run it only when the gws CLI and configured Google account are trusted for the intended workspace. <br>
+## Use Case:
 
+Employees and agents managing Google Workspace tasks use this skill to turn a specific Gmail message into a Google Tasks entry after confirming the message ID and target task list.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/gws-workflow-email-to-task) <br>
-- [Publisher profile](https://clawhub.ai/user/googleworkspace-bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gws CLI, a Gmail message ID, and Google account authorization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release metadata; artifact metadata version 0.22.5) <br>
+Risk: The skill reads part of a Gmail message and creates a new Google Task.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the Gmail message ID and target task list with the user before running the workflow.
+
+Risk: The workflow depends on the local gws Google Workspace tooling and its authenticated access.
+
+Mitigation: Install only in environments where the gws tooling is trusted and intended for use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/skills/gws-workflow-email-to-task)
+- [Publisher profile](https://clawhub.ai/user/googleworkspace-bot)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gws CLI and Google Workspace authentication; creates a Google Tasks entry from a Gmail message after user confirmation.]
+
+## Skill Version(s):
+
+1.0.12 (source: server release metadata); source skill metadata 0.22.5
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

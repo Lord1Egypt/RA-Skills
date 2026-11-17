@@ -1,43 +1,57 @@
-## Description: <br>
-钉钉/飞书集成 - 企业通讯、机器人、自动化工作流（Slack 中国版） <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DingTalk and Feishu/Lark integration guidance for enterprise messaging, bots, calendar workflows, approval flows, and automation.
 
-## Publisher: <br>
-[guohongbin-git](https://clawhub.ai/user/guohongbin-git) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[guohongbin-git](https://clawhub.ai/user/guohongbin-git)
 
-## Use Case: <br>
-Developers and enterprise automation teams use this skill for guidance on DingTalk and Feishu/Lark messaging, bot integrations, scheduling, approvals, alerts, and workflow notifications. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Webhook URLs, app IDs, app secrets, or tokens could be exposed in prompts, chats, logs, or generated examples. <br>
-Mitigation: Keep credentials out of chats and logs, use placeholders in shared examples, and store real values in approved secret-management systems. <br>
-Risk: Messages or reports sent through DingTalk or Feishu may expose local or sensitive business information to enterprise chat channels. <br>
-Mitigation: Confirm the target workspace and channel before sending, test in a low-risk channel first, and verify that the content is approved for that audience. <br>
-Risk: Automated notifications can send excessive or unintended messages. <br>
-Mitigation: Apply rate limits and review notification triggers before using the examples in production workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guohongbin-git/dingtalk-feishu-cn) <br>
-- [DingTalk robot webhook endpoint](https://oapi.dingtalk.com/robot/send?access_token=YOUR_TOKEN) <br>
-- [Feishu bot webhook endpoint](https://open.feishu.cn/open-apis/bot/v2/hook/YOUR_HOOK) <br>
+## Use Case:
 
+Developers and automation engineers use this skill to connect agents and workflows with DingTalk or Feishu/Lark messaging, webhook bots, SDK clients, schedule updates, approval processes, and operational notifications.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes webhook examples, SDK setup snippets, platform comparison notes, and usage cautions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json, release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Webhook URLs, app IDs, and app secrets can expose enterprise messaging integrations if copied into logs, tickets, repositories, or shared prompts.
+
+Mitigation: Treat these values as credentials, store them in secret managers or protected environment variables, rotate leaked tokens, and redact them from agent transcripts and CI logs.
+
+Risk: Installing SDKs directly in shared production or CI environments can introduce unreviewed dependency changes.
+
+Mitigation: Install SDKs in isolated environments and pin reviewed dependency versions before production or CI use.
+
+Risk: Automated notifications can overwhelm chat channels or approval workflows when triggers fire too often.
+
+Mitigation: Use rate limits, deduplication, batching, and clear channel ownership for alerting and workflow automation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guohongbin-git/skills/dingtalk-feishu-cn)
+- [ClawHub publisher profile](https://clawhub.ai/user/guohongbin-git)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash and Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes webhook examples, SDK setup snippets, platform comparison notes, use cases, and credential-handling reminders.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

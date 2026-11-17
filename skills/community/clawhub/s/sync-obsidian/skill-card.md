@@ -1,43 +1,53 @@
-## Description: <br>
-Turn every Claude Code session into an Obsidian note by generating structured Markdown reports and interactive Canvas visual maps with automatic project detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sync Obsidian helps Claude Code users save session plans and implementation reports to an Obsidian vault as Markdown notes and Canvas maps.
 
-## Publisher: <br>
-[ChatRichAi](https://clawhub.ai/user/ChatRichAi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chatrichai](https://clawhub.ai/user/chatrichai)
 
-## Use Case: <br>
-Developers using Claude Code use this skill to save session plans and implementation reports into an Obsidian vault as Markdown notes and Canvas maps. It is intended for local documentation of project work, design decisions, file changes, and follow-up tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Plans, file paths, design decisions, and session summaries may be saved into the configured Obsidian vault. <br>
-Mitigation: Review notes before syncing sensitive work and avoid including secrets or confidential material. <br>
-Risk: Optional auto-sync configuration can cause future sessions to sync plans or reports automatically. <br>
-Mitigation: Enable CLAUDE.md auto-sync only when persistent session documentation is desired. <br>
-Risk: Incorrect vault configuration can write files to an unintended local directory. <br>
-Mitigation: Confirm the OBSIDIAN_VAULT path before first use and review the reported output paths after each sync. <br>
+## Use Case:
 
+Developers using Claude Code can use this skill to archive project plans and completed implementation work in Obsidian. It is intended for workflows that need durable Markdown notes plus visual Canvas summaries organized by detected project.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ChatRichAi/sync-obsidian) <br>
-- [Publisher profile](https://clawhub.ai/user/ChatRichAi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown notes plus Obsidian Canvas JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local files to a user-configured Obsidian vault and reports the generated Markdown and Canvas paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Session plans, implementation summaries, file paths, and technical details may be written into the configured Obsidian vault.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated notes for secrets or confidential content and configure the vault path only for storage locations approved for that information.
+
+Risk: Optional automatic sync rules can persist session content from broad completion cues without a clear per-write confirmation step.
+
+Mitigation: Keep automatic CLAUDE.md sync setup disabled unless the user wants this behavior, or require manual review before each sync.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chatrichai/skills/sync-obsidian)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown notes and Obsidian Canvas JSON files, with setup and path guidance in agent responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces paired plan or report outputs and writes them under a configured Obsidian vault path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

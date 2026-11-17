@@ -1,42 +1,64 @@
-## Description: <br>
-Use Xquik from Hermes Agent for X search, posting, replies, likes, retweets, follows, DMs, monitors, extraction jobs, draws, media, and trends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses Xquik from Hermes Agent for X research, monitoring, and approval-gated actions.
 
-## Publisher: <br>
-[xquik](https://clawhub.ai/user/xquik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xquik](https://clawhub.ai/user/xquik)
 
-## Use Case: <br>
-Developers and operators use this skill in Hermes Agent sessions to inspect X/Twitter data and perform controlled Xquik actions such as posting, replies, follows, DMs, monitors, extraction jobs, draws, media operations, and trend checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can support externally visible X/Twitter actions such as posts, replies, likes, retweets, follows, DMs, deletes, monitors, webhooks, extraction jobs, draws, and media operations. <br>
-Mitigation: Keep action tools disabled until needed and review the exact endpoint, payload, and user intent before approving any write, private-read, or account-changing operation. <br>
-Risk: The skill depends on sensitive Xquik credentials for authenticated reads and actions. <br>
-Mitigation: Set XQUIK_API_KEY only in the Hermes runtime environment and never ask for, paste, reveal, log, or pass credentials in chat or tool arguments. <br>
-Risk: Runtime permissions depend on the separate Hermes Tweet plugin rather than this skill file alone. <br>
-Mitigation: Review the plugin separately for actual runtime permissions before deployment. <br>
+## Use Case:
 
+Developers and Hermes Agent users use this skill for X/Twitter research, monitoring, social listening, support triage, creator or brand research, and controlled publishing workflows through Xquik routes.
 
-## Reference(s): <br>
-- [Hermes Tweet on ClawHub](https://clawhub.ai/xquik/hermes-tweet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON payload examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require XQUIK_API_KEY in the Hermes runtime environment; write and private-account actions are gated by HERMES_TWEET_ENABLE_ACTIONS and user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter version 0.1.6) <br>
+Risk: The install guidance enables an unpinned external Hermes Tweet plugin that may later run with Xquik API and account-action privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin the exact Hermes Tweet plugin version before enabling it.
+
+Risk: Automated X/Twitter operations can affect real accounts or private workflow state.
+
+Mitigation: Keep HERMES_TWEET_ENABLE_ACTIONS disabled unless needed, and approve only a specific endpoint, payload, account, and side effect before using tweet_action.
+
+Risk: Credential exposure could occur if users paste API keys into chat or tool arguments.
+
+Mitigation: Configure XQUIK_API_KEY only in the Hermes runtime environment, never request or echo key values, and stop if a secret is pasted.
+
+Risk: Endpoint guessing or direct HTTP fallbacks could bypass the catalog and approval boundary.
+
+Mitigation: Use tweet_explore first, call only catalog-listed Xquik routes, and reject direct HTTP fallbacks.
+
+## Reference(s):
+
+- [Endpoint and Approval Contract](references/endpoint-contract.md)
+- [Hermes Tweet ClawHub Listing](https://clawhub.ai/xquik/skills/hermes-tweet)
+- [Xquik Hermes Tweet Guide](https://docs.xquik.com/guides/hermes-tweet)
+- [Hermes Agent Plugin Guide](https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/features/plugins.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, shell commands, configuration, guidance]
+
+**Output Format:** [Concise Markdown for humans with JSON-like tool payloads and shell command snippets when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include endpoint selections, API-result summaries, action previews, sanitized errors, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter version 0.1.7)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

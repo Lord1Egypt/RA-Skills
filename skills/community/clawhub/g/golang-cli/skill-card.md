@@ -1,41 +1,56 @@
-## Description: <br>
-Supports developers building, modifying, or reviewing Go CLI tools, including command structure, flags, configuration layering, version embedding, exit codes, I/O patterns, signal handling, shell completion, argument validation, and CLI unit testing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Golang CLI helps agents build, modify, and review Go command-line tools, including command structure, flags, configuration, versioning, exit codes, I/O, signal handling, completions, argument validation, and tests.
 
-## Publisher: <br>
-[samber](https://clawhub.ai/user/samber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samber](https://clawhub.ai/user/samber)
 
-## Use Case: <br>
-Developers and engineers use this skill to build, extend, and review Go command-line applications with predictable command trees, flags, configuration, output behavior, signal handling, completions, and tests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide an agent to edit Go source files or run Go, golangci-lint, and git commands. <br>
-Mitigation: Review generated changes and proposed git actions before applying them. <br>
-Risk: CLI guidance can produce incorrect behavior around flags, configuration, exit codes, or stdout and stderr handling if applied without project context. <br>
-Mitigation: Run the project's tests, CLI-specific tests, and linting after changes. <br>
+## Use Case:
 
+Developers and engineers use this skill to guide agents that create, extend, or review Go CLI applications. It focuses on Cobra/Viper command structure, configuration layering, Unix-friendly output, shell completions, graceful shutdown, and CLI test patterns.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/samber/golang-cli) <br>
-- [Source Homepage](https://github.com/samber/cc-skills-golang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with Go code and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose source edits and Go toolchain, golangci-lint, or git commands for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill may guide an agent to edit Go CLI code and run Go, lint, or git commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed file edits and commands before execution, especially in repositories with production release workflows.
+
+Risk: Proposed git commands could publish changes or rewrite repository history.
+
+Mitigation: Require explicit human review before running git push, force-push, reset, rebase, or history-rewriting commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samber/skills/golang-cli)
+- [Project homepage](https://github.com/samber/cc-skills-golang)
+- [Cobra](https://github.com/spf13/cobra)
+- [Viper](https://github.com/spf13/viper)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Go code examples and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include file edits, test guidance, and review findings for Go CLI projects.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

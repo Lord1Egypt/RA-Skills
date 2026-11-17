@@ -1,40 +1,54 @@
-## Description: <br>
-Compatibility entry for our in-house Baidu realtime search chain. Use for live information, documentation, or research topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Baidu Search Pro provides a compatibility alias for a Baidu realtime search chain used for live information, documentation, and research topics.
 
-## Publisher: <br>
-[wangziiiiii](https://clawhub.ai/user/wangziiiiii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangziiiiii](https://clawhub.ai/user/wangziiiiii)
 
-## Use Case: <br>
-Developers and agents use this skill to keep existing baidu-search workflows working while routing live information, documentation, or research queries through a Baidu-based realtime search chain. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The alias runs a separate local realtime-web-search implementation, so behavior depends on code outside this artifact. <br>
-Mitigation: Install only when the local realtime-web-search skill is trusted and has been reviewed. <br>
-Risk: Search queries and credentials may be exposed through Baidu API usage or endpoint overrides. <br>
-Mitigation: Use a limited Baidu API key where possible, avoid sensitive queries, and verify endpoint override variables before use. <br>
+## Use Case:
 
+Developers and agents use this skill when existing workflows need a Baidu-based realtime search alias for live information, documentation lookup, or research queries. New workflows should prefer the canonical realtime-web-search skill when available.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangziiiiii/baidu-search-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration guidance] <br>
-**Output Format:** [Text responses from a Python command invoked with JSON input] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Python 3 runtime and BAIDU_API_KEY; supports optional Baidu endpoint override environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Risk: The reviewed package delegates execution to a local realtime-web-search script that is not bundled or verified with this release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the referenced realtime-web-search script is trusted and verified, or prefer installing the canonical realtime-web-search skill directly.
+
+Risk: The skill requires a Baidu API key and may send queries to configured Baidu search or summary endpoints.
+
+Mitigation: Provide BAIDU_API_KEY through the runtime secret mechanism and review endpoint overrides before use.
+
+## Reference(s):
+
+- [Baidu Search Pro on ClawHub](https://clawhub.ai/wangziiiiii/skills/baidu-search-pro)
+- [Publisher profile](https://clawhub.ai/user/wangziiiiii)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Search responses and summaries returned through a Python script interface, with configuration via environment variables.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python and BAIDU_API_KEY; optional endpoint override environment variables are documented by the skill.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

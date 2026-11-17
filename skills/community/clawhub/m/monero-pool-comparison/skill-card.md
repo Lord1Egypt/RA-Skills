@@ -1,44 +1,56 @@
-## Description: <br>
-Compares Monero mining pools by fees, payout thresholds, payout methods, privacy, reliability, and operational fit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compare Monero mining pools by fees, payout thresholds, methods, privacy, reliability, and choose the best fit for your mining needs.
 
-## Publisher: <br>
-[liumaimiao](https://clawhub.ai/user/liumaimiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liumaimiao](https://clawhub.ai/user/liumaimiao)
 
-## Use Case: <br>
-Developers, operators, and individual miners use this skill to compare Monero pool tradeoffs and choose a pool configuration for XMRig or P2Pool-style mining. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pool domains, fees, thresholds, and payout policies may change after release. <br>
-Mitigation: Verify pool details directly with the pool operator before changing any mining configuration. <br>
-Risk: Mining pool setup can expose users to phishing or wallet-key handling mistakes. <br>
-Mitigation: Use only your own wallet address, never share private keys, and verify pool domains before connecting miners. <br>
-Risk: The artifact includes a voluntary XMR tip address. <br>
-Mitigation: Treat tips as optional and unrelated to use of the informational guidance. <br>
+## Use Case:
 
+External users and developers use this skill to compare Monero mining pool options and receive practical pool-selection, setup, switching, monitoring, privacy, and scam-avoidance guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/liumaimiao/monero-pool-comparison) <br>
-- [XMRig Pool Documentation](https://xmrig.com/docs/miner/pool) <br>
-- [Monero Community Pool List](https://www.getmonero.org/community/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with comparison tables and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational only; no executable automation is included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Cryptocurrency mining guidance can create cost, policy, and resource-impact issues if applied on employer, cloud, shared, or third-party systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the guidance only on systems where explicit permission exists and the operator understands the cost, policy, and resource implications.
+
+Risk: Pool configuration advice can direct users to incorrect or unsafe pool endpoints if domains are mistyped or outdated.
+
+Mitigation: Verify pool URLs against official project sources before configuring a miner, avoid sharing private keys or wallet secrets, and use TLS pool ports when available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liumaimiao/skills/monero-pool-comparison)
+- [ClawHub publisher profile](https://clawhub.ai/user/liumaimiao)
+- [XMRig pool documentation](https://xmrig.com/docs/miner/pool)
+- [MiningPoolStats Monero](https://miningpoolstats.stream/monero)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with comparison tables and inline configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include XMRig pool configuration snippets, pool-selection criteria, and safety guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

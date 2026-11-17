@@ -1,42 +1,59 @@
-## Description: <br>
-Helps agents use tella-cli to manage Tella videos, clips, playlists, exports, transcripts, collaborators, and webhooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Tella via CLI for videos, clips, playlists, webhooks, transcripts, thumbnails, exports, sharing, and visual edits.
 
-## Publisher: <br>
-[melvynx](https://clawhub.ai/user/melvynx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[melvynx](https://clawhub.ai/user/melvynx)
 
-## Use Case: <br>
-Developers, content teams, and workspace operators use this skill to automate Tella workspace tasks such as listing videos, editing clips, exporting recordings, retrieving transcripts, managing playlists, and configuring webhooks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Tella API key and can access workspace videos, transcripts, playlists, sharing settings, webhook secrets, and collaborator controls. <br>
-Mitigation: Use a least-privileged Tella API key where possible and avoid exposing API keys or webhook secrets in chat or logs. <br>
-Risk: The skill supports destructive or sensitive operations such as deletes, collaborator changes, sharing changes, exports, and webhook secret retrieval. <br>
-Mitigation: Require explicit confirmation before performing destructive actions or changing access, sharing, export, or webhook-secret settings. <br>
+## Use Case:
 
+Developers and content operators use this skill to manage Tella workspace videos, clips, playlists, exports, transcripts, thumbnails, sharing settings, collaborators, and webhooks from an agent-driven CLI workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/melvynx/tella-cli) <br>
-- [Tella API key settings](https://www.tella.tv/settings/api-keys) <br>
-- [Bun installer](https://bun.sh/install) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown with inline shell commands and JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent workflows should use --json for parseable command output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The setup flow can execute a mutable remote installer and npm package code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Preinstall Bun and api2cli from pinned, verified sources before using the skill, and avoid running remote installer commands blindly.
+
+Risk: The CLI can read, edit, share, export, and delete Tella workspace content.
+
+Mitigation: Confirm targets with read/list commands before destructive actions and use credentials scoped to the least privilege available.
+
+Risk: Stored API tokens and webhook signing secrets are sensitive.
+
+Mitigation: Protect local token storage, avoid exposing tokens in logs or transcripts, and rotate credentials if they may have been disclosed.
+
+## Reference(s):
+
+- [Tella API key settings](https://www.tella.tv/settings/api-keys)
+- [Bun installer](https://bun.sh/install)
+- [ClawHub skill page](https://clawhub.ai/melvynx/skills/tella-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON command output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent-driven CLI use should prefer --json output for parsing.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

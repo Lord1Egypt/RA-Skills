@@ -1,41 +1,55 @@
-## Description: <br>
-Convert short video moments into GIF-friendly snippets for demos, support, product walkthroughs, and social sharing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert short video moments into GIF-friendly snippets for demos, support, product walkthroughs, and social sharing. Use when a team needs lightweight motion previews instead of full video files.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Developers, product teams, support teams, operators, and creators use this skill to choose concise video segments, plan GIF-friendly exports, and decide when MP4 is a better format. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may recommend GIF for content where audio, fine detail, or long duration makes GIF a poor fit. <br>
-Mitigation: Review the recommended segment, duration, size strategy, and GIF-versus-MP4 recommendation before exporting or sharing. <br>
-Risk: User-supplied videos may contain sensitive or unintended visual information. <br>
-Mitigation: Inspect the selected segment and remove private or irrelevant content before creating a shareable GIF. <br>
+## Use Case:
 
+Developers, support teams, product teams, operations teams, and creators use this skill to plan concise GIF-friendly motion snippets from source videos for documentation, tickets, presentations, tutorials, demos, and social sharing.
 
-## Reference(s): <br>
-- [Video GIF Converter page](https://clawhub.ai/Leooooooow/video-gif-converter) <br>
-- [Output template](references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown planning notes using the bundled output template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a recommended GIF segment, duration, looping suitability, size strategy, and GIF-versus-MP4 recommendation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Source videos may contain sensitive or private content that should not be processed or shared from the agent environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use videos the user is comfortable processing in the agent environment and review the resulting recommendation before publishing or sharing.
+
+Risk: GIF can be the wrong format when the segment is too long, too detailed, or relies on audio.
+
+Mitigation: Review the recommended segment, duration, size strategy, and GIF-versus-MP4 recommendation before export.
+
+## Reference(s):
+
+- [Video GIF Converter Output Template](references/output-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/leooooooow/skills/video-gif-converter)
+- [Publisher Profile](https://clawhub.ai/user/leooooooow)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown plan with input summary, GIF plan, recommendation, and risks or notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a suggested GIF moment, duration recommendation, size and clarity tradeoff, looping suitability, and GIF-versus-MP4 recommendation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

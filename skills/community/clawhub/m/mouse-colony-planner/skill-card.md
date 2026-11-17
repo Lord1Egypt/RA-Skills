@@ -1,40 +1,53 @@
-## Description: <br>
-Calculate breeding timelines and cage requirements for transgenic mouse colonies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculate breeding timelines and cage requirements for transgenic mouse colonies.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-External researchers, lab staff, and developers use this skill to estimate transgenic mouse breeding timelines, cage requirements, costs, and breeding flowcharts from command-line parameters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wet-lab assumptions or input parameters may produce inaccurate colony timelines, cage counts, or cost estimates. <br>
-Mitigation: Have qualified lab staff verify breeding assumptions and parameter values before relying on the generated plan. <br>
-Risk: Unnecessary or unpinned dependencies can add avoidable installation risk. <br>
-Mitigation: Install and run the skill in a virtual environment, and remove or pin the dataclasses and enum dependencies before operational use. <br>
+## Use Case:
 
+External users and developers use this skill to estimate breeding timelines, cage requirements, and costs for transgenic mouse colony planning from command-line parameters.
 
-## Reference(s): <br>
-- [Mouse Colony Planner on ClawHub](https://clawhub.ai/aipoch-ai/mouse-colony-planner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Command-line text output with timelines, cage counts, cost estimates, and a breeding flowchart.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on user-supplied breeding scheme, colony size, timing, cage capacity, and cost parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Calculated timelines and costs are estimates and can be misleading when inputs are invalid or do not match local colony-management assumptions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate numeric inputs before use and review outputs against lab protocols, animal-care constraints, and local cost schedules.
+
+Risk: The requirements file lists unnecessary or unpinned dependencies for functionality that otherwise relies on Python standard-library modules.
+
+Mitigation: Install in an isolated Python environment and remove or pin dependencies that are truly required before operational use.
+
+## Reference(s):
+
+- [Mouse Colony Planner on ClawHub](https://clawhub.ai/aipoch-ai/skills/mouse-colony-planner)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text CLI output with command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs estimated breeding phases, cage counts, costs, breeding pairs, and expected target-genotype mice.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

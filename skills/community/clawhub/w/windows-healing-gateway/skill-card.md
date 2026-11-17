@@ -1,42 +1,57 @@
-## Description: <br>
-Automates monitoring and self-repair of OpenClaw Gateway on Windows using Task Scheduler, with AI diagnosis and Telegram alert notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates monitoring and self-repair guidance for OpenClaw Gateway on Windows using Task Scheduler, PowerShell commands, AI-assisted diagnosis, and Telegram alerts.
 
-## Publisher: <br>
-[aichiafranco](https://clawhub.ai/user/aichiafranco) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aichiafranco](https://clawhub.ai/user/aichiafranco)
 
-## Use Case: <br>
-Developers and operators who run OpenClaw Gateway on Windows use this skill to deploy scheduled monitoring, trigger repair workflows, inspect status and logs, and configure alerting for failures that need manual attention. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent PowerShell automation is installed through Windows Task Scheduler and can restart services or run repair workflows. <br>
-Mitigation: Review the PowerShell scripts before installation, test first on non-sensitive systems, and keep a documented way to disable or remove the scheduled tasks. <br>
-Risk: The repair workflow is described as having broad authority to stop, edit, disable, restart, and send alerts externally. <br>
-Mitigation: Use limited credentials, scope file and process permissions narrowly, and confirm exactly what actions the installed scripts can perform. <br>
-Risk: Environment files hold API keys and Telegram alert credentials. <br>
-Mitigation: Restrict permissions on the environment file, use least-privilege tokens, and avoid placing secrets on shared or high-sensitivity machines. <br>
+## Use Case:
 
+Developers and operators use this skill to deploy, inspect, and repair a Windows-based OpenClaw Gateway service with scheduled monitoring, repair commands, and alerting workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aichiafranco/windows-healing-gateway) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with PowerShell command snippets and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Targets Windows 10/11, PowerShell 5.1+, OpenClaw CLI, Task Scheduler access, and environment-file based credential configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact skill.json) <br>
+Risk: The package describes persistent Windows scheduled tasks and repair commands, but the reviewed artifact does not include the PowerShell scripts those tasks execute.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after the publisher provides the missing scripts and documents exactly what deployment and repair actions change.
+
+Risk: Repair workflows may affect running processes, ports, plugins, or gateway configuration.
+
+Mitigation: Require explicit confirmation, backups, and an uninstall or rollback path before enabling destructive repair behavior.
+
+Risk: AI diagnosis and Telegram alerts may expose logs or operational metadata outside the local host.
+
+Mitigation: Document what data is sent, scrub secrets from logs, and configure provider credentials through protected environment files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aichiafranco/skills/windows-healing-gateway)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with PowerShell command examples and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Windows 10/11 and PowerShell 5.1 or later are required; outputs may include commands that register persistent scheduled tasks or trigger repair actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

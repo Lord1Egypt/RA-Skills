@@ -1,45 +1,58 @@
-## Description: <br>
-北师大版小学数学二年级下册学习助手。当用户提到二年级数学、北师大版数学、数学二年级下册、数学学习、数学辅导、数学练习、数学作业辅导时使用此技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language Grade 2 spring semester math tutoring skill for the Beijing Normal University Press curriculum that helps agents explain concepts, analyze examples, generate practice, guide study plans, and support error review.
 
-## Publisher: <br>
-[liningg](https://clawhub.ai/user/liningg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liningg](https://clawhub.ai/user/liningg)
 
-## Use Case: <br>
-External students, parents, and teachers use this skill for Beijing Normal University Press grade 2 spring-semester math tutoring, including concept explanations, worked examples, practice generation, learning plans, progress review, and common-error guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may discuss or retain a child's learning progress, mistakes, and study habits in conversation context. <br>
-Mitigation: Avoid sharing identifying student details, and clear conversation or memory data when progress information should not be retained. <br>
-Risk: Tutoring guidance or generated exercises may be incomplete or mismatched to a student's actual classroom material. <br>
-Mitigation: Have a parent, teacher, or student compare important guidance with the assigned textbook and classroom instructions. <br>
+## Use Case:
 
+External users, including second-grade students, parents, and teachers, use this skill to get curriculum-aligned math explanations, practice questions, common-error guidance, study plans, and review support for the Grade 2 spring semester textbook.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liningg/math-grade2-spring) <br>
-- [README](README.md) <br>
-- [Chapter guide](references/chapter_guide.md) <br>
-- [Exercise bank](references/exercises.md) <br>
-- [Common errors](references/common_errors.md) <br>
-- [Learning tips](references/learning_tips.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text responses with examples, exercises, explanations, and study guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include optional learning progress, mistake summaries, and study plans when the conversation provides that context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Progress or wrong-answer tracking may involve child learning information if the host agent persists conversation data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before relying on those features, confirm the host agent's storage, deletion, and parent or guardian control behavior.
+
+Risk: The tutoring content is tied to a specific Beijing Normal University Press Grade 2 spring textbook edition.
+
+Mitigation: Verify the student's textbook edition before using the skill for lessons, practice, or review planning.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liningg/skills/math-grade2-spring)
+- [README](README.md)
+- [Chapter Guide](references/chapter_guide.md)
+- [Exercises](references/exercises.md)
+- [Common Errors](references/common_errors.md)
+- [Learning Tips](references/learning_tips.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text tutoring responses with worked examples, practice questions, study plans, and review guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, network access, or hidden install behavior was identified in the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

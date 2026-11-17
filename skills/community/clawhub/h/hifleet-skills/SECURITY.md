@@ -27,9 +27,11 @@
   - `{base}/pscapi/openclaw/stats/mix/compare`（PSC 旗国/检查类型占比对比，GET，需 `api_key`）
   - `{base}/portguide/getPort/token`（港口列表/检索，GET，需 `api_key`）
   - `{base}/portguide/getPortDetail/token`（港口详情，GET，需 `api_key`）
-- **无数据外传**：不向上述基址以外的地址发送数据，不上传用户文件或剪贴板。
-- **api_key 用途**：环境变量 `HIFLEET_API_KEY` 中保存的值仅作为上述 API 的授权参数（海峡通航、红海饶航等为可选，用于扩展时间范围），由用户自行配置，脚本不写入、不转发至第三方。
-- **无动态代码**：脚本仅使用 Python 标准库（`os`, `sys`, `argparse`, `urllib.request`, `urllib.parse`, `json` 等），无 `eval`/`exec`、无 base64 解码执行、无从网络加载代码。
+  - `{base}/openclaw/account/session/from-api-key`（控制台换票，POST/GET，需 `api_key`；返回 `ticket` + `consoleUrl`）
+- **浏览器打开控制台**：换票成功后可打开返回的 `consoleUrl`（主机一般为 `https://skills.hifleet.com`，仅携带 ticket）。介绍页 `https://skills.hifleet.com/` 为公开页，不携带密钥。
+- **无数据外传**：除上述 API 基址与打开 `consoleUrl` / `skills.hifleet.com` 外，不向其它地址发送数据，不上传用户文件或剪贴板。
+- **api_key 用途**：环境变量 `HIFLEET_API_KEY` 中保存的值仅作为上述 API 的授权参数（海峡通航、红海饶航等为可选，用于扩展时间范围；换票仅用于换取控制台一次性 ticket），由用户自行配置，脚本不写入、不转发至第三方。打开浏览器时仅携带 `ticket`，**不**把 `api_key` 写入地址栏。
+- **无动态代码**：脚本仅使用 Python 标准库（`os`, `sys`, `argparse`, `urllib.request`, `urllib.parse`, `json`、`webbrowser` 等），无 `eval`/`exec`、无 base64 解码执行、无从网络加载代码。
 
 ## 脚本清单
 
@@ -45,5 +47,6 @@
 | scripts/get_psc_anomalies.py | PSC 统计异常，GET pscapi/openclaw/anomalies*，需 `api_key`；可选 `HIFLEET_API_BASE` |
 | scripts/get_psc_openclaw_stats.py | PSC 宏观统计，GET pscapi/openclaw/stats/*，需 `api_key`；可选 `HIFLEET_API_BASE` |
 | scripts/get_port.py | 港口指南，GET portguide/getPort/token、getPortDetail/token，需 `api_key`；可选 `HIFLEET_API_BASE` |
+| scripts/open_console.py | 控制台 SSO：POST `{base}/openclaw/account/session/from-api-key`，打开返回的 consoleUrl |
 
 扫描或审核时可对照上述端点与行为；若需进一步说明可联系技能维护方。

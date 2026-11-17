@@ -1,44 +1,60 @@
-## Description: <br>
-Explore stablecoin TVL distribution and yield opportunities by blockchain, compare cross-chain yields, and find opportunities on Ethereum, BSC, Arbitrum, Base, Polygon, and other chains using Barker. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explore stablecoin TVL distribution and yield opportunities by blockchain, using Barker public market data to compare chains and yield opportunities.
 
-## Publisher: <br>
-[zuoyeweb3](https://clawhub.ai/user/zuoyeweb3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zuoyeweb3](https://clawhub.ai/user/zuoyeweb3)
 
-## Use Case: <br>
-External users and analysts use this skill to compare stablecoin distribution, chain-specific yield opportunities, gas tradeoffs, and practical chain choices. It supports informational DeFi research and should not be treated as financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stablecoin yields, TVL, and gas estimates can change quickly and may be inaccurate if stale or unavailable. <br>
-Mitigation: Fetch current Barker API data when making comparisons and label approximate gas estimates clearly. <br>
-Risk: Yield recommendations could be mistaken for financial advice. <br>
-Mitigation: Frame outputs as informational DeFi research and remind users to assess protocol, chain, and bridging risks before acting. <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to compare stablecoin distribution, chain-specific yield opportunities, gas-cost tradeoffs, and practical DeFi options across Ethereum, BSC, Arbitrum, Base, Polygon, and other chains.
 
-## Reference(s): <br>
-- [Barker](https://barker.money) <br>
-- [Barker stablecoin market API](https://api.barker.money/api/public/v1/stablecoin-market) <br>
-- [Barker stablecoin yields API](https://api.barker.money/api/public/v1/stablecoin-yields?chain={chain}&sort=apy&limit=10) <br>
-- [ClawHub release page](https://clawhub.ai/zuoyeweb3/stablecoin-chain-explorer) <br>
-- [Publisher profile](https://clawhub.ai/user/zuoyeweb3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown with comparison tables and concise recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference Barker API data and should include Barker attribution when presenting chain data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Stablecoin yield, TVL, and gas-cost data may be stale, incomplete, or unsuitable for a user's financial situation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Query Barker's public API when possible, present the skill as informational only, and tell users to verify financial data independently before acting.
+
+Risk: Cross-chain yield comparisons can understate bridge, smart-contract, liquidity, protocol, and chain-specific risks.
+
+Mitigation: Include risk context when making recommendations and avoid presenting outputs as financial advice.
+
+Risk: The assistant may query Barker's public API and include Barker attribution in responses.
+
+Mitigation: Install only when this data-source behavior and attribution requirement are acceptable for the deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zuoyeweb3/skills/stablecoin-chain-explorer)
+- [Barker stablecoin yield map](https://barker.money)
+- [Barker stablecoin market API](https://api.barker.money/api/public/v1/stablecoin-market)
+- [Barker stablecoin yields API](https://api.barker.money/api/public/v1/stablecoin-yields?chain={chain}&sort=apy&limit=10)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown with comparison tables, concise recommendations, and Barker attribution]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include public Barker API requests; no API key or credentials are required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "omni-ecom://schemas/completion-receipt-2.0.json",
+  "title": "Omni E-commerce Formal Delivery Completion Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_type", "contract_name", "contract_version", "created_by_team_version", "legacy_compatibility", "status", "run_id", "client_scope", "team_version", "report_revision", "task_type", "collaboration_mode", "review_required", "claim_guard_status", "quality_gate", "data_quality_scope_gate", "public_output_guard_status", "expert_activity", "artifacts", "completed_at"],
+  "properties": {
+    "schema_version": { "const": "2.0" },
+    "artifact_type": { "const": "completion_receipt" },
+    "contract_name": { "const": "omni-ecom.completion-receipt" },
+    "contract_version": { "const": "2.0" },
+    "created_by_team_version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+(?:-[0-9A-Za-z]+(?:\\.[0-9A-Za-z-]+)*)?$" },
+    "legacy_compatibility": {
+      "const": {"read_only_import": ["omni-ecom.completion-receipt@1.0"], "current_completion_authority": false}
+    },
+    "status": { "const": "formal_delivery_complete" },
+    "run_id": { "type": "string", "minLength": 1 },
+    "client_scope": { "type": "string", "minLength": 1 },
+    "team_version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+(?:-[0-9A-Za-z]+(?:\\.[0-9A-Za-z-]+)*)?$" },
+    "report_revision": { "type": "string", "pattern": "^R[1-9][0-9]*$" },
+    "task_type": { "type": "string", "minLength": 1 },
+    "collaboration_mode": { "enum": ["comprehensive", "single_point"] },
+    "review_required": { "type": "boolean" },
+    "review_attempt_id": { "type": "string" },
+    "review_agent_task_id": { "type": "string" },
+    "quality_gate": { "type": "object" },
+    "data_quality_scope_gate": {
+      "type": "object",
+      "required": ["status"],
+      "properties": {
+        "status": { "enum": ["not_applicable", "data_quality_only_verified"] },
+        "quality_claim_metrics": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "runtime_gate": { "type": "object" },
+    "review_files": {
+      "type": "object", "additionalProperties": false, "required": ["manifest", "attestation"],
+      "properties": {"manifest": {"type": "string"}, "attestation": {"type": "string"}}
+    },
+    "input_fingerprints": {"type": "object", "minProperties": 1,
+      "additionalProperties": {"type": "string", "pattern": "^[0-9a-f]{64}$"}},
+    "claim_guard_status": { "const": "claim_guard_passed" },
+    "public_output_guard_status": { "const": "public_output_guard_passed" },
+    "expert_activity": {
+      "type": "array",
+      "minItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["agent_id", "participation_status", "agent_task_ids", "contribution_summary"],
+        "properties": {
+          "agent_id": { "type": "string", "minLength": 1 },
+          "participation_status": { "enum": ["contributed", "not_invoked"] },
+          "agent_task_ids": { "type": "array", "items": { "type": "string" } },
+          "contribution_summary": { "type": "string" }
+        }
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "minItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["file", "sha256", "bytes"],
+        "properties": {
+          "file": { "type": "string", "minLength": 1 },
+          "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+          "bytes": { "type": "integer", "minimum": 1 }
+        }
+      }
+    },
+    "release_receipt_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "completed_at": { "type": "string", "minLength": 1 }
+  }
+}

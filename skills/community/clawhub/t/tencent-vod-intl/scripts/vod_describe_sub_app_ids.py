@@ -31,12 +31,23 @@ except ImportError:
     sys.exit(1)
 
 
-DEFAULT_REGION = os.getenv("TENCENTCLOUD_REGION", "ap-guangzhou")
+FALLBACK_REGION = "ap-guangzhou"
 MAX_LIMIT = 200
 
 
+def default_region() -> str:
+    """Return the default region.
+
+    Must read the environment variable at call time, not at import time:
+    .env loading happens inside get_credential(), so evaluating this at
+    module level would run before .env is loaded and silently ignore a
+    TENCENTCLOUD_REGION configured there.
+    """
+    return os.getenv("TENCENTCLOUD_REGION", FALLBACK_REGION)
+
+
 def get_credential():
-    """Get Tencent Cloud credentials"""
+    """Get Tencent Cloud credentials. Falls back to loading from dotenv files when environment variables are missing."""
     secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID")
     secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY")
 
@@ -61,9 +72,13 @@ def get_credential():
     return credential.Credential(secret_id, secret_key)
 
 
-def get_client(region=DEFAULT_REGION):
+def get_client(region=None):
     """Get VOD client"""
     cred = get_credential()
+    # The region fallback must come after get_credential(), so that a
+    # TENCENTCLOUD_REGION from .env is already in os.environ
+    if region is None:
+        region = default_region()
     http_profile = HttpProfile()
     http_profile.endpoint = "vod.tencentcloudapi.com"
     client_profile = ClientProfile()
@@ -238,7 +253,8 @@ Examples:
     )
     parser.add_argument("--offset", type=int, help="Pagination start offset, default 0")
     parser.add_argument("--limit", type=int, help="Number of results to return, range 1-200")
-    parser.add_argument("--region", default=DEFAULT_REGION, help="Region")
+    parser.add_argument("--region", default=None,
+                        help=f"Region (reads TENCENTCLOUD_REGION when omitted, falls back to {FALLBACK_REGION})")
     parser.add_argument("--json", action="store_true", help="Output in JSON format")
     parser.add_argument("--dry-run", action="store_true", help="Preview request parameters")
 

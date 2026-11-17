@@ -1,42 +1,54 @@
-## Description: <br>
-Deploys a medical image segmentation API using TotalSegmentator and MONAI for DICOM upload, CT/MRI segmentation, batch processing, 3D export, and statistics generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy and manage medical image segmentation using TotalSegmentator and MONAI with DICOM upload, batch processing, 3D export, and statistics generation.
 
-## Publisher: <br>
-[Sunshine-del-ux](https://clawhub.ai/user/Sunshine-del-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sunshine-del-ux](https://clawhub.ai/user/sunshine-del-ux)
 
-## Use Case: <br>
-Developers and medical-imaging engineers use this skill to start and operate an API for DICOM segmentation workflows backed by TotalSegmentator and MONAI. It supports upload, task-status, result, health-check, batch-processing, 3D export, and statistics workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The package is incomplete and may require files such as api_server.py and requirements.txt that are not present in the artifact. <br>
-Mitigation: Review the actual server code and dependency file before running the skill. <br>
-Risk: DICOM uploads may contain sensitive medical data. <br>
-Mitigation: Test with de-identified sample data and do not use real patient data without authentication, TLS, firewall controls, pinned dependencies, and an output cleanup policy. <br>
-Risk: The quick-start script defaults to binding the API server to 0.0.0.0. <br>
-Mitigation: Bind to localhost unless intentionally deploying the service behind appropriate network controls. <br>
+## Use Case:
 
+Developers and medical imaging engineers use this skill to stand up a DICOM segmentation API for CT/MRI analysis, including upload, segmentation task tracking, result retrieval, 3D export, and statistics generation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Sunshine-del-ux/dicom-segmentation-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and API endpoint guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide an agent to start a FastAPI service, install dependencies from requirements.txt, and configure host and port values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: artifact metadata and server release evidence) <br>
+Risk: The skill handles sensitive DICOM uploads and the security evidence notes missing privacy, access-control, and deployment-scope guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only de-identified or properly authorized DICOM data, and deploy the server only on localhost or a protected network unless authentication and TLS are in place.
+
+Risk: The security evidence advises verification before use in clinical or regulated environments.
+
+Mitigation: Review the missing server code and dependency file, then complete clinical, privacy, and regulatory validation before trusting outputs in a regulated workflow.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/sunshine-del-ux/skills/dicom-segmentation-api)
+- [Publisher profile](https://clawhub.ai/user/sunshine-del-ux)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands, endpoint descriptions, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

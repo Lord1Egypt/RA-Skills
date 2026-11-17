@@ -16,6 +16,7 @@
  */
 
 import type { Database as DatabaseType } from "better-sqlite3";
+import { getOnlineAgentIds } from "./identity.js";
 
 // ─── Counter ─────────────────────────────────────────────
 
@@ -25,21 +26,21 @@ interface CounterMetric {
   labels: Record<string, string>;
 }
 
-/** 构建 Map 复合键：name|k1=v1,k2=v2 */
-function metricKey(name: string, labels: Record<string, string>): string {
-  const sorted = Object.entries(labels).sort(([a], [b]) => a < b ? -1 : 1);
+// P2-2 修复：原为无界数组 + 每次自增线性扫描（O(N)），高基数标签下内存/延迟退化。
+// 改为 keyed Map，key = 指标名 + 排序后的 labels，查找 O(1)。
+const counters: Map<string, CounterMetric> = new Map();
+
+function counterKey(name: string, labels: Record<string, string>): string {
+  const sorted = Object.entries(labels).sort(([a], [b]) => a < b ? -1 : a > b ? 1 : 0);
   return name + "|" + sorted.map(([k, v]) => `${k}=${v}`).join(",");
 }
 
-const counters = new Map<string, CounterMetric>();
-
 function getOrCreateCounter(name: string, labels: Record<string, string>): CounterMetric {
-  const key = metricKey(name, labels);
-  let c = counters.get(key);
-  if (!c) {
-    c = { _type: "counter", value: 0, labels: { _name: name, ...labels } };
-    counters.set(key, c);
-  }
+  const key = counterKey(name, labels);
+  const existing = counters.get(key);
+  if (existing) return existing;
+  const c: CounterMetric = { _type: "counter", value: 0, labels: { _name: name, ...labels } };
+  counters.set(key, c);
   return c;
 }
 
@@ -76,23 +77,27 @@ interface HistogramMetric {
   labels: Record<string, string>;
 }
 
-const histograms = new Map<string, HistogramMetric>();
+const histograms: HistogramMetric[] = [];
 const HISTOGRAM_BUCKETS = [5, 10, 25, 50, 100, 250, 500, 1000, 2500, 5000, 10000];
 
 function getOrCreateHistogram(name: string, labels: Record<string, string>): HistogramMetric {
-  const key = metricKey(name, labels);
-  let h = histograms.get(key);
-  if (!h) {
-    h = {
-      _type: "histogram",
-      _sum: 0, _count: 0, _min: Infinity, _max: 0,
-      buckets: {},
-      labels: { _name: name, ...labels },
-    };
-    for (const b of HISTOGRAM_BUCKETS) h.buckets[String(b)] = 0;
-    h.buckets["+Inf"] = 0;
-    histograms.set(key, h);
+  for (const h of histograms) {
+    if (h.labels._name !== name) continue;
+    let match = true;
+    for (const k of Object.keys(labels)) {
+      if (h.labels[k] !== labels[k]) { match = false; break; }
+    }
+    if (match) return h;
   }
+  const h: HistogramMetric = {
+    _type: "histogram",
+    _sum: 0, _count: 0, _min: Infinity, _max: 0,
+    buckets: {},
+    labels: { _name: name, ...labels },
+  };
+  for (const b of HISTOGRAM_BUCKETS) h.buckets[String(b)] = 0;
+  h.buckets["+Inf"] = 0;
+  histograms.push(h);
   return h;
 }
 
@@ -157,7 +162,7 @@ export function getMetricsOutput(): string {
   }
 
   // Histograms
-  for (const h of histograms.values()) {
+  for (const h of histograms) {
     const name = h.labels._name;
     seenTypes.add(name);
     const lbl = formatLabels(h.labels);
@@ -214,14 +219,12 @@ function simplifyPath(path: string): string {
 export function collectHubMetrics(db: DatabaseType): string {
   const lines: string[] = [];
 
-  // 1. hub_agents_online — 在线 Agent 数量
+  // 1. hub_agents_online — 在线 Agent 数量（统一判定：SSE 连接 OR 近期心跳）
   try {
-    const row = db.prepare(
-      `SELECT COUNT(*) as cnt FROM agents WHERE status = 'online'`
-    ).get() as { cnt: number };
+    const online = getOnlineAgentIds();
     lines.push(`# TYPE hub_agents_online gauge`);
     lines.push(`# HELP hub_agents_online Number of agents currently online`);
-    lines.push(`hub_agents_online ${row.cnt}`);
+    lines.push(`hub_agents_online ${online.length}`);
   } catch (e) {
     lines.push(`# TYPE hub_agents_online gauge`);
     lines.push(`hub_agents_online 0`);
@@ -258,4 +261,27 @@ export function collectHubMetrics(db: DatabaseType): string {
   }
 
   return lines.join("\n") + "\n";
+}
+
+// ─── P2-8: 限流 Top N 查询 ─────────────────────────────
+
+/**
+ * 获取限流触发次数 Top N（按 agent_id 分组）
+ * 从 counters 中过滤 rate_limit_total 指标，按值降序排列
+ */
+export function getTopLimited(n: number = 10): Array<{ agent_id: string; count: number }> {
+  const agentCounts = new Map<string, number>();
+
+  for (const c of counters.values()) {
+    if (c.labels._name === "rate_limit_total") {
+      const agentId = c.labels.agent_id ?? "unknown";
+      const current = agentCounts.get(agentId) ?? 0;
+      agentCounts.set(agentId, current + c.value);
+    }
+  }
+
+  return Array.from(agentCounts.entries())
+    .map(([agent_id, count]) => ({ agent_id, count }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, n);
 }

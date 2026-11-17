@@ -1,50 +1,63 @@
-## Description: <br>
-Evaluates market bubble risk with a data-driven Minsky/Kindleberger framework that emphasizes objective metrics and practical risk-management posture. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluates market bubble risk through quantitative, data-driven analysis using a revised Minsky/Kindleberger framework.
 
-## Publisher: <br>
-[clawdiri-ai](https://clawhub.ai/user/clawdiri-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawdiri-ai](https://clawhub.ai/user/clawdiri-ai)
 
-## Use Case: <br>
-External users, analysts, and agent workflows use this skill to assess market-level bubble risk from quantitative indicators and documented qualitative evidence. It supports portfolio risk-posture discussions but does not replace personalized financial advice or comprehensive risk management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market-risk guidance could be mistaken for personalized financial advice. <br>
-Mitigation: Use the skill as a public-data analysis aid and do not make trades solely from its recommendations. <br>
-Risk: Stale or incomplete market metrics can distort the bubble-risk score. <br>
-Mitigation: Refresh and verify the cited market indicators before applying the output to portfolio decisions. <br>
-Risk: Running the included Python workflow may introduce local dependency or execution risk. <br>
-Mitigation: Use a contained Python environment and inspect the script or CLI before running it. <br>
-Risk: Portfolio-specific details may be sensitive. <br>
-Mitigation: Avoid sharing private portfolio details when using the skill. <br>
+## Use Case:
 
+External users and developers use this skill to assess market-level bubble risk from quantitative indicators, historical context, and limited evidence-based qualitative checks. It is intended to support risk review and portfolio posture discussions, not to provide personalized financial advice or exact market-timing predictions.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/clawdiri-ai/einstein-research-bubble-dv) <br>
-- [README](README.md) <br>
-- [Detailed Bubble Theory Framework](references/bubble_framework.md) <br>
-- [Historical Bubble Cases and Pattern Analysis](references/historical_cases.md) <br>
-- [Bubble Detector Implementation Guide](references/implementation_guide.md) <br>
-- [Bubble Detection Quick Reference](references/quick_reference.md) <br>
-- [Bubble Detection Quick Reference (English)](references/quick_reference_en.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Natural language guidance, Markdown reports, JSON summaries, and shell command snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Market-level risk assessment only; requires fresh public market data and human review before trading decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: The skill can produce concrete investment, hedging, profit-taking, and short-selling guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as educational market-risk analysis only; require human review before any portfolio action and do not use the skill as personalized financial advice.
+
+Risk: Market-risk scoring depends on current and accurate market data.
+
+Mitigation: Independently verify all indicator values, sources, and collection dates before relying on the score.
+
+Risk: Install and run commands may use unpinned Python dependencies.
+
+Mitigation: Run the skill in an isolated virtual environment and pin dependencies before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clawdiri-ai/skills/einstein-research-bubble-dv)
+- [Publisher profile](https://clawhub.ai/user/clawdiri-ai)
+- [Detailed Bubble Theory Framework](references/bubble_framework.md)
+- [Historical Bubble Cases and Pattern Analysis](references/historical_cases.md)
+- [Bubble Detector Implementation Guide](references/implementation_guide.md)
+- [Bubble Detection Quick Reference](references/quick_reference.md)
+- [Bubble Detection Quick Reference (English)](references/quick_reference_en.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Natural-language analysis with optional Markdown reports, JSON reports, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on current market data and user-supplied or freshly collected indicator values.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

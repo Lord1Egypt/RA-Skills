@@ -1,0 +1,156 @@
+<!doctype html>
+<!-- Page de lancement Memoria (app bureau). Affiche la séquence Node →
+     daemon → UI, puis bascule la webview sur l'UI servie par le daemon
+     (même origine que son API : http://127.0.0.1:<port>/ui/#token=…). -->
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Memoria</title>
+  <style>
+    :root {
+      --bg: #14141f;        /* fond — identique à packages/web */
+      --panel: #1c1c2b;
+      --text: #e8e8f0;
+      --muted: #8a8aa3;
+      --accent: #3ecf8e;    /* vert Memoria */
+      --error: #ff6b6b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; display: grid; place-items: center;
+      background: var(--bg); color: var(--text);
+      font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    main { width: min(440px, 90vw); }
+    h1 {
+      font-size: 28px; font-weight: 700; letter-spacing: .5px; margin: 0 0 4px;
+      text-align: center;
+    }
+    h1 .m { color: var(--accent); }
+    p.tagline { margin: 0 0 28px; text-align: center; color: var(--muted); }
+    ol.steps {
+      list-style: none; margin: 0; padding: 20px 24px;
+      background: var(--panel); border-radius: 12px;
+    }
+    ol.steps li {
+      display: flex; align-items: baseline; gap: 10px; padding: 6px 0;
+      color: var(--muted);
+    }
+    ol.steps li .icon { width: 1.4em; text-align: center; flex: none; }
+    ol.steps li.active { color: var(--text); }
+    ol.steps li.done { color: var(--text); }
+    ol.steps li.done .icon { color: var(--accent); }
+    ol.steps li.failed { color: var(--error); }
+    ol.steps li .detail { color: var(--muted); font-size: 13px; }
+    #error {
+      display: none; margin-top: 16px; padding: 14px 16px;
+      background: rgba(255, 107, 107, .08); border: 1px solid rgba(255, 107, 107, .35);
+      border-radius: 10px; color: var(--error); font-size: 14px;
+      white-space: pre-wrap; word-break: break-word;
+    }
+    #retry {
+      display: none; margin: 18px auto 0; padding: 9px 22px;
+      background: var(--accent); color: #0c2018; border: 0; border-radius: 8px;
+      font: 600 14px/1 inherit; cursor: pointer;
+    }
+    #retry:hover { filter: brightness(1.08); }
+    .spin { display: inline-block; animation: spin 1s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <main>
+    <h1><span class="m">M</span>emoria</h1>
+    <p class="tagline">Mémoire locale pour tes agents</p>
+
+    <ol class="steps">
+      <li id="step-node"><span class="icon">·</span><span>Node.js ≥ 20 <span class="detail" id="node-detail"></span></span></li>
+      <li id="step-daemon"><span class="icon">·</span><span>Daemon Memoria <span class="detail" id="daemon-detail"></span></span></li>
+      <li id="step-open"><span class="icon">·</span><span>Ouverture de l’interface</span></li>
+    </ol>
+
+    <div id="error"></div>
+    <button id="retry" type="button">Réessayer</button>
+  </main>
+
+  <script>
+    // withGlobalTauri = true → window.__TAURI__ injecté par la webview.
+    const invoke = window.__TAURI__?.core?.invoke
+
+    const $ = (id) => document.getElementById(id)
+    const setStep = (id, state, icon) => {
+      const li = $(id)
+      li.className = state
+      li.querySelector('.icon').innerHTML = icon
+    }
+    const RUNNING = '<span class="spin">◌</span>'
+    const DONE = '✓'
+    const FAIL = '✕'
+
+    function showError(stepId, message) {
+      setStep(stepId, 'failed', FAIL)
+      $('error').textContent = String(message)
+      $('error').style.display = 'block'
+      $('retry').style.display = 'block'
+    }
+
+    function reset() {
+      for (const id of ['step-node', 'step-daemon', 'step-open']) setStep(id, '', '·')
+      $('node-detail').textContent = ''
+      $('daemon-detail').textContent = ''
+      $('error').style.display = 'none'
+      $('retry').style.display = 'none'
+    }
+
+    async function boot() {
+      reset()
+      if (!invoke) {
+        showError('step-node', 'Cette page doit être ouverte par l’app Memoria (API Tauri absente).')
+        return
+      }
+
+      // 1. Node ≥ 20 présent sur la machine (pas de Node embarqué en v1).
+      setStep('step-node', 'active', RUNNING)
+      let node
+      try {
+        node = await invoke('check_node')
+      } catch (err) {
+        showError('step-node', err)
+        return
+      }
+      $('node-detail').textContent = `(${node.version})`
+      setStep('step-node', 'done', DONE)
+
+      // 2. Daemon : réutilisé s’il répond déjà, sinon démarré détaché.
+      setStep('step-daemon', 'active', RUNNING)
+      try {
+        const health = await invoke('daemon_health')
+        if (health && health.healthy) {
+          $('daemon-detail').textContent = `(déjà actif, port ${health.port})`
+        } else {
+          const started = await invoke('start_daemon')
+          $('daemon-detail').textContent = `(port ${started.port})`
+        }
+      } catch (err) {
+        showError('step-daemon', err)
+        return
+      }
+      setStep('step-daemon', 'done', DONE)
+
+      // 3. Bascule de la webview sur l’UI du daemon (token en fragment).
+      setStep('step-open', 'active', RUNNING)
+      try {
+        const url = await invoke('open_memoria')
+        setStep('step-open', 'done', DONE)
+        window.location.replace(url)
+      } catch (err) {
+        showError('step-open', err)
+      }
+    }
+
+    $('retry').addEventListener('click', boot)
+    boot()
+  </script>
+</body>
+</html>

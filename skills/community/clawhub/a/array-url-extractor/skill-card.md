@@ -1,38 +1,53 @@
-## Description: <br>
-Extract valid downloadable URLs from Array[String] structures, clean and standardize them, then output directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract valid downloadable URLs from Array[String] structures, clean and standardize them, then output directly.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Users use this skill to extract direct download links from JSON arrays or code snippets containing string arrays. It returns only valid HTTP or HTTPS URLs, one per line, for direct reuse. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Extracted URLs may point to untrusted or unsafe downloads. <br>
-Mitigation: Review links before fetching or downloading them, and apply normal allowlist, scanning, and trust checks for downloaded content. <br>
+## Use Case:
 
+External users and developers use this skill to extract valid HTTP and HTTPS download URLs from JSON arrays or code snippets and return them as clean, line-separated text.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openlark/array-url-extractor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text] <br>
-**Output Format:** [Plain text, one URL per line] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Filters for valid http:// and https:// URLs and avoids extra explanatory text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: User-provided arrays or snippets may contain sensitive URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only provide arrays and snippets that are appropriate for the agent to process.
+
+Risk: Extracted URLs may point to untrusted or unsafe downloads.
+
+Mitigation: Review and validate URLs before opening or downloading content.
+
+## Reference(s):
+
+- [Array Url Extractor on ClawHub](https://clawhub.ai/openlark/skills/array-url-extractor)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [Plain text with one URL per line]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No explanatory prose; only valid downloadable HTTP or HTTPS URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

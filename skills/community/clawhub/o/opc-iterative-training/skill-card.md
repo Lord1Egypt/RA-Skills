@@ -1,40 +1,53 @@
-## Description: <br>
-Skill迭代训练工具，通过双轨对照法（Freestyle vs Skill执行）持续优化Skill质量 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent improve local skills by comparing freestyle responses with skill-guided execution and turning reusable strengths into skill updates.
 
-## Publisher: <br>
-[golngod](https://clawhub.ai/user/golngod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[golngod](https://clawhub.ai/user/golngod)
 
-## Use Case: <br>
-External users and skill maintainers use this skill to train and improve other skills through paired freestyle and skill-guided runs, comparison analysis, iteration logs, and regression checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide broad, semi-automatic revisions to other skills, including SKILL.md and reference documents. <br>
-Mitigation: Restrict each run to a named target skill and review diffs before accepting any skill or reference-document change. <br>
-Risk: The workflow may request access to project-management files such as skill call records or weekly reports. <br>
-Mitigation: Require approval before reading project-management files and limit access to the files needed for the current training task. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to run training cases, compare freestyle and skill-guided outputs, and update local skill files and training logs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/golngod/opc-iterative-training) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance, comparison notes, iteration logs, and proposed skill-file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose edits to SKILL.md or reference documents; changes should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can broadly read and modify local skill files, including through passive or scheduled training triggers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval for each training run, specify the exact target skill path, and review all proposed changes before any write.
+
+Risk: Skill updates based on training comparisons could introduce incorrect guidance or regress existing behavior.
+
+Mitigation: Use version control or backups for rollback, review diffs, and backtest updated skills against prior cases before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/golngod/skills/opc-iterative-training)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance, training records, comparative analysis, and edited skill documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create training artifacts under ./Skill训练 and propose or apply updates to target skill files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

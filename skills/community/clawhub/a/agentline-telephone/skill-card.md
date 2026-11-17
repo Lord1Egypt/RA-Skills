@@ -1,44 +1,59 @@
-## Description: <br>
-Make phone calls, view received SMS, provision numbers, manage agents, and track billing through the AgentLine telephony API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Make phone calls, view received SMS, provision numbers, manage agents, and track billing through the AgentLine telephony API.
 
-## Publisher: <br>
-[sameersribot](https://clawhub.ai/user/sameersribot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sameersribot](https://clawhub.ai/user/sameersribot)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent place and manage US phone calls, inspect inbound SMS, retrieve call transcripts, configure phone agents, provision numbers, and review AgentLine billing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Paid telephony actions can create charges for phone numbers and per-minute calls. <br>
-Mitigation: Confirm user intent before provisioning numbers or placing calls, and review AgentLine billing data when cost is relevant. <br>
-Risk: The skill accesses private communications data, including inbound SMS, call transcripts, phone numbers, and billing details. <br>
-Mitigation: Install only when the user trusts AgentLine with this data, protect AGENTLINE_API_KEY, and avoid sharing transcripts or message contents beyond the user's request. <br>
-Risk: The artifact requires a long-running local event poller for inbound calls and SMS. <br>
-Mitigation: Confirm that the user wants the poller running, launch it only with the intended API key, and make clear how to stop and remove the process. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent operate AgentLine telephony workflows, including outbound calls, inbound SMS review, call transcript retrieval, phone number provisioning, agent configuration, and billing checks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sameersribot/agentline-telephone) <br>
-- [AgentLine](https://agentline.cloud) <br>
-- [AgentLine API Base URL](https://api.agentline.cloud) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local background polling commands and summaries of calls, SMS events, transcripts, agents, numbers, and billing data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: The skill can expose sensitive call transcripts, inbound SMS, billing details, and phone number records to the agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated AgentLine API key with the minimum account access practical, keep the key out of command-line arguments and logs, and review transcript or message content before sharing it further.
+
+Risk: Outbound calls and phone number provisioning can create charges or permanent account changes.
+
+Mitigation: Require explicit human confirmation before every outbound call and every number purchase, and verify billing after chargeable actions.
+
+Risk: The skill instructs the agent to run an unbounded background event poller.
+
+Mitigation: Avoid running the provided background poller by default; if polling is needed, run it in a time-limited session with visible logs and a clear stop condition.
+
+## Reference(s):
+
+- [AgentLine Website](https://agentline.cloud)
+- [AgentLine API Base URL](https://api.agentline.cloud)
+- [ClawHub Skill Page](https://clawhub.ai/sameersribot/skills/agentline-telephone)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with API endpoint references and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AGENTLINE_API_KEY and may produce summaries of call transcripts, inbound SMS events, billing details, and number provisioning results.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

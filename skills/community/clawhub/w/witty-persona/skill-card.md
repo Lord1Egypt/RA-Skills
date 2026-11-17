@@ -1,40 +1,50 @@
-## Description: <br>
-A casual conversation persona that shifts an agent into a witty, meme-literate style for informal chat while reverting to standard mode for serious, technical, medical, legal, financial, or crisis topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+witty-persona helps an agent adopt a humorous, emotionally aware casual-chat style during informal interactions while reverting to standard responses for serious topics.
 
-## Publisher: <br>
-[doctoryao0307](https://clawhub.ai/user/doctoryao0307) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[doctoryao0307](https://clawhub.ai/user/doctoryao0307)
 
-## Use Case: <br>
-External users install this persona skill to give an agent a playful, emotionally aware style for casual conversation, venting, lighthearted chat, and meme-fluent banter. The skill is designed to step back into a standard serious assistant style for technical questions, regulated-domain advice, crisis signals, or explicit requests for seriousness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Humor may be inappropriate for distress, crisis, health, legal, financial, coding, or other serious topics. <br>
-Mitigation: The skill instructs the agent to disable the persona for those topics, and users should explicitly ask for a serious response or disable the skill when needed. <br>
-Risk: A playful tone can obscure practical guidance when a user has mixed emotions or is venting. <br>
-Mitigation: The skill directs the agent to acknowledge the user's emotion first, reduce humor intensity, and avoid skipping over real struggle. <br>
+## Use Case:
 
+External users and assistant operators use this skill to make casual conversation, light venting, and meme-aware chat feel warmer and more playful. The skill is intended to exit humor mode for technical, medical, legal, financial, crisis, or explicitly serious conversations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/doctoryao0307/witty-persona) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Conversational text or Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Tone and style guidance only; no code execution, credential access, persistence, or external tool use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: ClawHub release metadata) <br>
+Risk: Automatic humor-mode activation may be too broad for serious, technical, medical, legal, financial, or emotionally sensitive conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for casual chat contexts and disable it, or revise its activation boundaries, where serious or sensitive conversations are expected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/doctoryao0307/skills/witty-persona)
+- [Publisher profile](https://clawhub.ai/user/doctoryao0307)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Natural-language assistant responses, usually plain text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, tools, credentials, persistence, or data access are included in the skill evidence.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

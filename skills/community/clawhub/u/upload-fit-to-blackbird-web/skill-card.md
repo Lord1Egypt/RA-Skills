@@ -1,41 +1,54 @@
-## Description: <br>
-Automatically batch uploads modified _GM.fit files to the Blackbird Sport web platform with login detection and upload status handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically batch uploads modified _GM.fit files to the Blackbird Cycling web platform with login detection and upload status handling.
 
-## Publisher: <br>
-[CKboss](https://clawhub.ai/user/CKboss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckboss](https://clawhub.ai/user/ckboss)
 
-## Use Case: <br>
-Developers, athletes, and activity-file maintainers use this skill to upload selected FIT files or directories to the Blackbird Sport web platform through a browser-driven workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow uploads user-selected FIT activity files to Blackbird Sport. <br>
-Mitigation: Use explicit file paths or narrow globs, review the files before upload, and run the skill only when sharing those activity files with Blackbird Sport is intended. <br>
-Risk: The browser workflow may require an interactive login to a Blackbird account. <br>
-Mitigation: Log in only on the intended Blackbird Sport domain and account, and close the browser session after verifying the upload result. <br>
+## Use Case:
 
+Cyclists and developers use this skill to run a browser-assisted workflow that uploads selected FIT activity files, especially _GM.fit files, to Blackbird Sport. It supports single-file, directory, and glob-based upload workflows while prompting for manual login when needed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CKboss/upload-fit-to-blackbird-web) <br>
-- [Blackbird Sport upload page](https://www.blackbirdsport.com/user/records/upload) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and Python execution instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Browser automation prompts for manual login when required and prints upload status to the terminal.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Passing a broad directory or glob can upload FIT files the user did not intend to send to Blackbird.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only pass directories or patterns containing FIT files intended for upload, and review the matched files before running the workflow.
+
+Risk: The workflow depends on Playwright browser automation and a manual login session with the Blackbird website.
+
+Mitigation: Install and run the skill in an isolated environment when possible, review or pin the Playwright dependency, and complete login only in the browser opened for this workflow.
+
+## Reference(s):
+
+- [Blackbird Sport](https://www.blackbirdsport.com)
+- [ClawHub skill page](https://clawhub.ai/ckboss/skills/upload-fit-to-blackbird-web)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and command-line status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompts for manual browser login when needed and reports upload status for selected FIT files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

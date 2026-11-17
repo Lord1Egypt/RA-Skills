@@ -1,41 +1,57 @@
-## Description: <br>
-Security self-check for OpenClaw deployments that audits openclaw.json configuration and host security, then outputs a 10-item PASS/WARN/FAIL report with optional fixes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security self-check for OpenClaw deployments that audits configuration and host security settings and reports PASS, WARN, FAIL, or SKIP results.
 
-## Publisher: <br>
-[guoqunabc](https://clawhub.ai/user/guoqunabc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[guoqunabc](https://clawhub.ai/user/guoqunabc)
 
-## Use Case: <br>
-Developers and operators use this skill to run a fast security audit of an OpenClaw deployment, including gateway exposure, authentication, token strength, channel policies, config permissions, plaintext secrets, firewall state, SSH hardening, and exposed ports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The security scan verdict is suspicious because the bundled script has an unsafe config-parsing bug. <br>
-Mitigation: Review or fix the parser before installing, and verify findings against the OpenClaw configuration before acting on remediation advice. <br>
-Risk: The default audit can request elevated host inspection. <br>
-Mitigation: Run the script manually only when intending to audit the deployment, review any sudo prompts, and avoid heartbeat or cron use until the sudo behavior is tightened. <br>
-Risk: Firewall, SSH, and token changes can disrupt access or paired clients if applied incorrectly. <br>
-Mitigation: Require user confirmation, back up configuration first, verify remote access in a second session, allow SSH before enabling firewall rules, and rerun the check after changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/guoqunabc/openclaw-security-check) <br>
+## Use Case:
 
+Developers and operators use this skill to run a quick OpenClaw security audit covering gateway exposure, authentication, channel policies, configuration permissions, plaintext secrets, firewall state, SSH hardening, and exposed ports.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Human-readable PASS/WARN/FAIL report, optional JSON report, and Markdown guidance with shell commands for confirmed fixes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only audit by default; optional remediation guidance requires user confirmation before changes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security evidence says the bundled audit script can execute attacker-controlled Python from a crafted OpenClaw config.
+
+Mitigation: Run only in manual review contexts as a low-privilege user and inspect openclaw.json before execution.
+
+Risk: The security evidence says important firewall, SSH, or token-strength checks can be falsely reported as safe.
+
+Mitigation: Treat PASS results as advisory and independently verify host firewall, SSH configuration, and token strength before relying on the report.
+
+Risk: The skill includes sudo remediation commands that can affect host access.
+
+Mitigation: Apply remediation as separate administrative steps only after backups, SSH access checks, and explicit user confirmation.
+
+## Reference(s):
+
+- [OpenClaw Security Check on ClawHub](https://clawhub.ai/guoqunabc/skills/openclaw-security-check)
+- [Publisher profile: guoqunabc](https://clawhub.ai/user/guoqunabc)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Human-readable audit report or JSON from the bundled shell script, with Markdown guidance for remediation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports ten security checks with PASS, WARN, FAIL, or SKIP status; optional remediation guidance requires user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

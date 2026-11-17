@@ -1,41 +1,55 @@
-## Description: <br>
-提供网易公开课/B站知识区名师课程获取指南。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language guide for finding NetEase Open Courses and Bilibili knowledge-area instructor courses.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-Learners and education-focused agents use this skill to structure guidance for finding open courses on NetEase Open Courses and Bilibili knowledge channels, including filters for learning stage, teaching format, course quality signals, and study-progress fields. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Course prices, discounts, certificates, instructor claims, and exam-alignment details may be outdated or inaccurate. <br>
-Mitigation: Verify those details on the official course platforms before enrolling, paying, or relying on certificate value. <br>
-Risk: Education workflows can involve private account or learning-record information. <br>
-Mitigation: Avoid sharing account credentials or private education records unless the user explicitly intends to provide them. <br>
+## Use Case:
 
+External learners use this skill to compare public courses by learning stage, teaching format, assessment indicators, and expected learning outputs before choosing learning resources.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mike47512/open-courses) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/mike47512) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown] <br>
-**Output Format:** [Markdown or plain-text course-selection guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no code execution, credentials, persistence, or system access requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill text asks for broad education-related fields, including progress, mistakes, mock exam results, and education verification associations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not provide account credentials, private education records, or sensitive learner data unless a future version clearly explains why the data is needed and how it is handled.
+
+Risk: Course recommendations can be incomplete or outdated because offerings, pricing, instructors, and exam requirements change.
+
+Mitigation: Verify course details, trial availability, pricing, and official exam requirements with the course provider before subscribing or relying on the guidance.
+
+## Reference(s):
+
+- [Open Courses on ClawHub](https://clawhub.ai/mike47512/skills/open-courses)
+- [Publisher profile](https://clawhub.ai/user/mike47512)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Concise Markdown or plain-language course-selection guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

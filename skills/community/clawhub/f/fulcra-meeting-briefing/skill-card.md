@@ -1,42 +1,58 @@
-## Description: <br>
-Generate private meeting briefings from Fulcra calendar data with optional CRM notes and web research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate private meeting briefings from Fulcra calendar data with optional CRM notes and web research.
 
-## Publisher: <br>
-[arc-claw-bot](https://clawhub.ai/user/arc-claw-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arc-claw-bot](https://clawhub.ai/user/arc-claw-bot)
 
-## Use Case: <br>
-Professionals use this skill to prepare for upcoming meetings with concise, private briefings built from Fulcra calendar facts, optional CRM notes, and optional public research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Calendar details, attendee information, CRM notes, locations, and generated briefings can contain private or sensitive information. <br>
-Mitigation: Use only the Fulcra and CRM sources the user has configured, keep tokens out of chat, and avoid exposing real meeting details in shared examples or public output. <br>
-Risk: Thin or ambiguous context can lead to generic or unreliable meeting briefings. <br>
-Mitigation: Fail closed when evidence is insufficient and return a short private diagnostic instead of filler. <br>
-Risk: Optional public research can introduce stale or irrelevant context. <br>
-Mitigation: Use web research only when requested or when CRM context is too thin, and ground briefing claims in available evidence. <br>
+## Use Case:
 
+Employees and external-facing teams use this skill to prepare for upcoming meetings using Fulcra calendar facts, optional CRM notes, and permitted public research. It is intended to produce concise private briefings and concrete follow-up questions while failing closed when evidence is too thin.
 
-## Reference(s): <br>
-- [Fulcra Dynamics](https://fulcradynamics.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Concise Markdown briefing or private diagnostic] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save a briefing locally only when the user requests it or an explicit output directory is configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill handles private calendar, CRM, attendee, token, and location data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep sensitive meeting details out of shared outputs and use synthetic examples for public documentation or tests.
+
+Risk: The skill asks users to run an unpinned external Fulcra CLI.
+
+Mitigation: Use only a vetted, pinned Fulcra CLI version from a trusted source and avoid running it in environments with unrelated secrets or broad file access.
+
+Risk: Briefings can become misleading when meeting context is too thin.
+
+Mitigation: Fail closed, return a short diagnostic, or say no reliable briefing can be generated instead of adding filler.
+
+## Reference(s):
+
+- [Fulcra Dynamics](https://fulcradynamics.com)
+- [ClawHub Skill Page](https://clawhub.ai/arc-claw-bot/skills/fulcra-meeting-briefing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with concise prose and optional inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Private meeting details are summarized only when supported by calendar, CRM, or permitted research evidence.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

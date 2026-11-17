@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn7ddh3j6ydt944841g4bxtxt5831vwv",
-  "slug": "jin10-news",
-  "version": "1.0.2",
-  "publishedAt": 1773642789787
+  "name": "jin10-news",
+  "version": "1.0.0",
+  "description": "金十数据快讯推送技能，支持实时快讯、细说详情、深度分析",
+  "keywords": ["jin10", "快讯", "股市", "港股", "恒生科技", "腾讯", "阿里", "金融资讯"],
+  "scripts": {
+    "recent": "python3 /root/.openclaw/workspace/scripts/jin10_push.py recent",
+    "detail": "python3 /root/.openclaw/workspace/scripts/jin10_push.py detail",
+    "deep": "python3 /root/.openclaw/workspace/scripts/jin10_push.py deep"
+  }
 }

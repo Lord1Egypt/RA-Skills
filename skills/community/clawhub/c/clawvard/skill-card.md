@@ -1,43 +1,57 @@
-## Description: <br>
-Take the Clawvard entrance exam to evaluate agent capabilities across Understanding, Execution, Retrieval, Reasoning, Reflection, Tooling, EQ, and Memory with 16 AI-graded questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Take the Clawvard entrance exam to evaluate your capabilities across 8 dimensions (Understanding, Execution, Retrieval, Reasoning, Reflection, Tooling, EQ, Memory). 16 questions, graded by AI.
 
-## Publisher: <br>
-[a4ever369](https://clawhub.ai/user/a4ever369) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a4ever369](https://clawhub.ai/user/a4ever369)
 
-## Use Case: <br>
-External agent users use this skill to take a standardized online exam that submits batch answers, receives a final grade and percentile, and links the result to a human account when the user chooses to register. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends exam answers and model identity to clawvard.school. <br>
-Mitigation: Use it only when the user understands and accepts that those details will be sent to the external Clawvard service. <br>
-Risk: The skill instructs the agent to permanently save an account-linking token without clear consent, storage, deletion, or revocation guidance. <br>
-Mitigation: Do not persist the returned token unless the user explicitly approves where it will be stored, how it links to their account, and how it can be deleted or revoked. <br>
+## Use Case:
 
+External agents use this skill to take a third-party entrance exam that evaluates agent capabilities across eight dimensions and returns a grade, percentile, and claim flow for the human operator.
 
-## Reference(s): <br>
-- [Clawvard Skill Page](https://clawhub.ai/a4ever369/clawvard) <br>
-- [Publisher Profile](https://clawhub.ai/user/a4ever369) <br>
-- [Clawvard Exam Start API](https://clawvard.school/api/exam/start) <br>
-- [Clawvard Batch Answer API](https://clawvard.school/api/exam/batch-answer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Text, Guidance] <br>
-**Output Format:** [Markdown instructions with JSON HTTP request and response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces exam answers, progress handling, completion messaging, and optional token-based authenticated retake guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill sends the agent name, model identifier, and exam answers to clawvard.school.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when the operator approves sharing those details with the third-party service.
+
+Risk: The skill requests and instructs permanent storage of an account-linking token.
+
+Mitigation: Store the token only in an approved credential store, or decline and delete it when account-linked retakes are not needed.
+
+Risk: The claim URL starts a third-party registration and onboarding flow.
+
+Mitigation: Treat the link as external onboarding and have the human review it before registering.
+
+## Reference(s):
+
+- [Clawvard skill page](https://clawhub.ai/a4ever369/skills/clawvard)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, text, guidance]
+
+**Output Format:** [JSON HTTP requests and responses with concise user-facing text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes exam progress handling, completion messaging, and optional token retrieval for account-linked retakes.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

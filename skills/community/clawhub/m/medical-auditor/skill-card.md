@@ -1,40 +1,51 @@
-## Description: <br>
-Audits hospital surgical logs against billing to find revenue leakage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits hospital surgical logs against billing to find revenue leakage.
 
-## Publisher: <br>
-[srikanth-hn](https://clawhub.ai/user/srikanth-hn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[srikanth-hn](https://clawhub.ai/user/srikanth-hn)
 
-## Use Case: <br>
-Healthcare billing and revenue-cycle staff can use this skill to compare hospital surgical notes or procedure summaries with billed items, identify possible missed charges, and draft an administrator-facing follow-up message. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated audit tables or follow-up messages may contain patient identifiers, procedure details, or financial information. <br>
-Mitigation: Review and redact sensitive information before sharing any output. <br>
-Risk: The skill suggests drafting a WhatsApp message for billing updates, which may not match an organization's approved communication practices. <br>
-Mitigation: Use the organization's approved secure communication channel for administrator follow-up. <br>
-Risk: Billing discrepancy findings may be incomplete or incorrect if the hospital log is incomplete or the notes are ambiguous. <br>
-Mitigation: Have authorized billing staff validate findings against source records before updating bills. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+External healthcare billing or revenue-cycle staff can use this skill to compare surgical notes or procedure summaries against billed items, identify potentially missed charges, and draft a concise administrator approval request.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill works with hospital logs that may contain patient-identifying, clinical, or billing-sensitive information.
+
+Mitigation: Use it only when authorized to process the data, minimize unnecessary clinical detail in outputs, and follow the organization's healthcare data handling policies.
+
+Risk: Generated discrepancy reports and WhatsApp drafts may include incorrect billing interpretations or sensitive information.
+
+Mitigation: Have a qualified reviewer check the report and draft before sharing, and use an approved communication channel for healthcare or billing information.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown table and short message draft] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include estimated revenue leakage and administrator-facing billing update guidance.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown report with a discrepancy table, estimated leakage total, and message draft]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires review before sharing because source data and generated drafts may contain sensitive healthcare or billing information.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

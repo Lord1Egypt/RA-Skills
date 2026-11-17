@@ -1,46 +1,57 @@
-## Description: <br>
-Configure and manage Foxcode AI models in OpenClaw through guided API setup, endpoint selection, model configuration, validation, and status monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configure and manage Foxcode AI models in OpenClaw with guided API setup, endpoint selection, model configuration, validation, and status monitoring.
 
-## Publisher: <br>
-[clarezoe](https://clawhub.ai/user/clarezoe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clarezoe](https://clawhub.ai/user/clarezoe)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to add Foxcode model providers, choose primary and fallback Claude models, validate configuration, and monitor endpoint availability. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles a Foxcode API token and writes it into OpenClaw auth profile configuration. <br>
-Mitigation: Use only a token intended for this setup, keep auth profile files private, and avoid placing real tokens in shared shell startup files or shared configs. <br>
-Risk: The configuration wizard can modify OpenClaw files including openclaw.json and auth-profiles.json. <br>
-Mitigation: Back up OpenClaw configuration before running the wizard and review the generated provider, model, and auth profile entries before relying on them. <br>
-Risk: Validation may contact custom baseUrl values from local configuration. <br>
-Mitigation: Do not run validation against OpenClaw configs that contain untrusted custom baseUrl values. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to configure Foxcode Claude Code endpoints, store authentication profiles, choose primary and fallback models, validate setup, and monitor endpoint status.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clarezoe/foxcode-openclaw) <br>
-- [Foxcode Endpoints Reference](references/foxcode-endpoints.md) <br>
-- [OpenClaw Configuration Reference](references/openclaw-config.md) <br>
-- [Foxcode status page](https://status.rjj.cc/status/foxcode) <br>
-- [Foxcode API keys](https://foxcode.rjj.cc/api-keys) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration snippets; bundled scripts can emit text or JSON status reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [When the user runs the bundled configuration script, it can write OpenClaw configuration and auth profile files on the local system.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.6 (source: server release metadata and skill frontmatter) <br>
+Risk: The validator may send a Foxcode API token to the configured baseUrl, including a custom or untrusted URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the configured baseUrl before running validation, use only trusted Foxcode endpoints, and rotate the token if it may have been sent to an untrusted URL.
+
+Risk: The setup wizard writes OpenClaw configuration and auth-profiles files and may overwrite existing settings without creating its own backup.
+
+Mitigation: Back up ~/.openclaw/openclaw.json and ~/.openclaw/agents/main/agent/auth-profiles.json before running the wizard, review generated changes before confirming, and keep rollback steps available.
+
+## Reference(s):
+
+- [Foxcode Endpoints Reference](references/foxcode-endpoints.md)
+- [OpenClaw Configuration Reference](references/openclaw-config.md)
+- [Foxcode Status Page](https://status.rjj.cc/status/foxcode)
+- [Foxcode API Keys](https://foxcode.rjj.cc/api-keys)
+- [ClawHub Skill Page](https://clawhub.ai/clarezoe/skills/foxcode-openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide users to run bundled Python scripts that modify OpenClaw configuration and authentication profile files.]
+
+## Skill Version(s):
+
+1.2.6 (source: server release metadata and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

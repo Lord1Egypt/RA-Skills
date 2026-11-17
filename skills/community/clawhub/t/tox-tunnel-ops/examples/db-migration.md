@@ -2,7 +2,19 @@
 
 ## Scenario
 
-A DBA needs a secure tunnel to a production or staging database for a migration, data transfer, or bulk operation. The tunnel should be strictly time-limited with full audit capability.
+A DBA needs a secure tunnel to a production or staging database for a migration,
+data transfer, or bulk operation. The tunnel should be strictly time-limited and
+logged.
+
+> **What "audited" means here.** ToxTunnel logs *tunnel* activity: which friend
+> opened a tunnel, to which `host:port`, when it closed, and how many bytes
+> flowed. Even at `level: debug` it never sees inside the stream — the payload is
+> an opaque TCP byte stream to it, so **no SQL statement, table name, row count
+> or transaction is ever recorded**. If the migration needs statement-level
+> accountability, turn on the database's own auditing (`pgaudit` or
+> `log_statement = 'all'` for PostgreSQL, the audit plugin / general query log
+> for MySQL) — that is the only place query-level evidence exists. Say this to
+> anyone who asks for "an audit trail of the migration".
 
 ## Topology
 
@@ -30,9 +42,9 @@ pg_dump / migration tool              PostgreSQL on :5432
 
 ```yaml
 mode: server
-data_dir: /etc/toxtunnel/server
+data_dir: /var/lib/toxtunnel        # mutable state — NOT under /etc
 logging:
-  level: debug                       # verbose for audit
+  level: debug                       # verbose TUNNEL-level record; not SQL
   file: /var/log/toxtunnel/migration.log
 tox:
   udp_enabled: true
@@ -40,6 +52,20 @@ tox:
 server:
   rules_file: /etc/toxtunnel/rules.yaml
 ```
+
+> **`data_dir` holds mutable state, so keep it out of `/etc`.** That directory
+> carries the Tox identity (`tox_save.dat`), the pid file, the data-directory
+> lock and the inspect socket — all written at runtime. `/var/lib/toxtunnel` is
+> what the packaged Linux unit uses (`StateDirectory=toxtunnel`,
+> `StateDirectoryMode=0750`), owned by the dedicated `toxtunnel` user; macOS
+> equivalent is `/usr/local/var/toxtunnel`. Keep `/etc/toxtunnel` for
+> `server.yaml` and `rules.yaml` only.
+>
+> **Run the daemon as that unprivileged account, not as root.** Nothing here
+> needs root once the package is installed: the Tox port is 33445 and the targets
+> are ordinary services. The packaged unit already does this; a hand-written one
+> must set `User=`, `Group=` and `StateDirectory=` itself.
+
 
 ## Rules (DBA's friend key, DB port only)
 
@@ -51,6 +77,11 @@ rules:
       - host: "127.0.0.1"
         ports: [5432]
 ```
+
+> The `friend` value is the **first 64 hex characters** of that peer's 76-char Tox ID
+> (from its `Client Tox ID: …` startup log line, or `toxtunnel print-id -c client.yaml`),
+> not the whole ID. A wrong length is rejected when the rules file loads
+> (`Invalid public key length: expected 64`).
 
 ## Client Config (DBA's workstation)
 
@@ -66,9 +97,17 @@ client:
   server_id: <PASTE_SERVER_TOX_ID_HERE>
   forwards:
     - local_port: 15432
+      local_address: 127.0.0.1
       remote_host: 127.0.0.1
       remote_port: 5432
 ```
+
+> ### ⚠️ `local_port: 15432` binds `0.0.0.0` without `local_address` (pre-v0.5.0) on the DBA workstation
+>
+> Before v0.5.0, without `local_address` a forward has no bind restriction — the listener binds every IPv4
+> interface, so anyone on the DBA's network can reach the production database
+> through that port. On **v0.4.13+** set `local_address: 127.0.0.1` (the config above does); on v0.4.12 and older no such key exists — firewall it instead. Firewall it to loopback for
+> the duration of the migration window.
 
 ## Migration Workflow
 
@@ -95,7 +134,12 @@ psql -h 127.0.0.1 -p 15432 -U migration_ro -d mydb -c "SELECT count(*) FROM migr
 
 - Tox tunnels have limited throughput compared to direct network connections
 - For large data transfers (>1 GB), consider:
-  - Tox may use TCP relay if direct UDP is not established — check logs for `Direct UDP connection`
+  - Tox may use a TCP relay if direct UDP is not established. Check which one you
+    got: `last_connection_type` in `<data_dir>/known_servers.yaml` (or
+    `toxtunnel servers list`) — `udp` is direct, `tcp` is a relay and caps bulk
+    throughput at roughly 5–10 KB/s. The log line
+    `Self connection status: connected (UDP|TCP)` describes this daemon's DHT
+    link, not the per-friend path.
   - Compress data before transfer: `pg_dump ... | gzip | ...`
   - Run during off-peak hours to minimize contention
   - For very large migrations, consider a VPN or direct connection instead
@@ -124,5 +168,13 @@ If the migration fails:
 ## Verification
 
 ```bash
-bash verify.sh 15432 postgres
+bash scripts/verify.sh 15432 postgres client.yaml
 ```
+
+Run this from the skill root (the script lives at `scripts/verify.sh`).
+Passing the client config lets it read `friends_online` from the running
+daemon instead of guessing from a local TCP accept.
+
+**Judge it by the exit code:** `0` = the remote service answered through the
+tunnel, `2` = local checks passed but end-to-end was **not** proven (do not
+report this as working), `1` = a check failed.

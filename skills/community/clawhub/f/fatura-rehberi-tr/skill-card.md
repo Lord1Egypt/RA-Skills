@@ -1,43 +1,51 @@
-## Description: <br>
-Provides Turkish invoicing and pre-accounting guidance covering e-fatura, e-arşiv, invoice rules, KDV rates, cancellation windows, and 2025 thresholds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turkiye'de fatura duzenleme, e-fatura/e-arsiv fatura turleri, fatura kesme kurallari, KDV oranlari, iptal sureleri ve on muhasebe surecleri hakkinda rehberlik saglar.
 
-## Publisher: <br>
-[ayhanagirgol](https://clawhub.ai/user/ayhanagirgol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ayhanagirgol](https://clawhub.ai/user/ayhanagirgol)
 
-## Use Case: <br>
-External users and business operators use this skill to answer questions about Turkish invoice types, e-fatura and e-arşiv requirements, invoice timing, cancellation practices, KDV handling, and when pre-accounting software may be needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Turkey <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Turkish tax and invoicing thresholds may become outdated or may not cover a user's full compliance situation. <br>
-Mitigation: Treat the skill as reference material and verify important decisions against current GİB guidance or a qualified mali müşavir. <br>
-Risk: Broad activation on invoicing or accounting questions could produce guidance beyond the artifact's scope. <br>
-Mitigation: Keep use limited to Turkish invoicing and pre-accounting reference questions, and escalate broader legal, tax, or accounting decisions to qualified professionals. <br>
+## Use Case:
 
+External users and business operators in Turkey use this skill to answer Turkish invoicing, e-fatura/e-arsiv, KDV, invoice cancellation, and pre-accounting workflow questions.
 
-## Reference(s): <br>
-- [Fatura Türleri ve 2025 Güncel Sınırlar](references/fatura_turleri.md) <br>
-- [Fatura Düzenleme Kuralları, Süreler ve Zorunlu Bilgiler](references/fatura_kurallari.md) <br>
-- [Ön Muhasebe Süreci](references/on_muhasebe.md) <br>
-- [ClawHub skill page](https://clawhub.ai/ayhanagirgol/fatura-rehberi-tr) <br>
+### Deployment Geography for Use:
 
+Turkey
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable behavior; informational responses should be checked against current official guidance for compliance decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Turkish tax, invoicing, and KDV thresholds may have changed since the skill's 2025-labeled content was authored.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current rules with official Turkish tax sources or a qualified professional before relying on the guidance for compliance decisions.
+
+## Reference(s):
+
+- [Fatura Turleri ve 2025 Guncel Sinirlar](references/fatura_turleri.md)
+- [Fatura Duzenleme Kurallari, Sureler ve Zorunlu Bilgiler](references/fatura_kurallari.md)
+- [On Muhasebe Sureci](references/on_muhasebe.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown]
+
+**Output Format:** [Markdown prose, bullets, and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference guidance; no executable behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,51 @@
-## Description: <br>
-Comprehensive GitLab CLI (glab) command reference and workflows for all GitLab operations, including merge requests, CI/CD pipelines, issues, releases, repositories, authentication, variables, labels, milestones, snippets, and other glab commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A comprehensive GitLab CLI (glab) reference covering merge requests, CI/CD, issues, releases, repositories, authentication, variables, and 40+ command groups.
 
-## Publisher: <br>
-[vince-winkintel](https://clawhub.ai/user/vince-winkintel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vince-winkintel](https://clawhub.ai/user/vince-winkintel)
 
-## Use Case: <br>
-Developers and engineers use this skill to guide authenticated GitLab CLI work across repository, merge request, issue, CI/CD, release, package, runner, and API workflows. It helps agents choose relevant glab commands, compose shell examples, and apply safety checks before GitLab writes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authenticated GitLab commands can act as the wrong visible user or against the wrong host. <br>
-Mitigation: Verify the active GitLab account and host before writes, and use separate least-privilege tokens for distinct actors. <br>
-Risk: Examples may include state-changing or destructive GitLab operations. <br>
-Mitigation: Review the exact target and command before running write, force, delete, yes, or no-verify operations. <br>
-Risk: GitLab tokens and environment files can be exposed through logs or shared scripts. <br>
-Mitigation: Keep tokens out of logs and version control, restrict local credential files, and avoid embedding secrets in reusable scripts. <br>
+## Use Case:
 
+Developers use this reference to choose glab commands for GitLab project workflows, including merge requests, CI/CD, issue tracking, repositories, authentication, and configuration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vince-winkintel/skills/gitlab-cli-skills) <br>
-- [GitLab REST API documentation](https://docs.gitlab.com/api/) <br>
-- [GitLab GraphQL documentation](https://docs.gitlab.com/api/graphql/) <br>
-- [GitLab Duo CLI documentation](https://docs.gitlab.com/user/gitlab_duo_cli/) <br>
-- [NDJSON specification](https://github.com/ndjson/ndjson-spec) <br>
-- [JSON Lines](https://jsonlines.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the glab CLI and appropriate GitLab authentication for live operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.13.14 (source: server release evidence) <br>
+Risk: ClawScan marks the skill suspicious because its review workflow reportedly runs merge request tests without warning that the code is untrusted; the scan was incomplete and does not establish malicious intent or safety.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the test workflow's safety boundary and the unexplained Docker image pull before installing; consider not installing until reviewed.
+
+## Reference(s):
+
+- [GitLab CLI configuration environment variables](https://docs.gitlab.com/cli/configuration/#environment-variables)
+- [GitLab Quick Actions documentation](https://docs.gitlab.com/user/project/quick_actions/)
+- [GitLab MCP Server documentation](https://docs.gitlab.com/user/model_context_protocol/mcp_server/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration guidance, GitLab operation guidance]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reference material and workflow guidance]
+
+## Skill Version(s):
+
+1.13.39 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

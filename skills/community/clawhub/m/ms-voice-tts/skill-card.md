@@ -1,43 +1,57 @@
-## Description: <br>
-Generates high-quality Chinese text-to-speech voice messages with edge-tts and prepares them for delivery through messaging channels such as Feishu, Telegram, and Discord. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese text-to-speech audio with edge-tts and guides agents to send the resulting voice files through channels such as Feishu, Telegram, and Discord.
 
-## Publisher: <br>
-[binbin1213](https://clawhub.ai/user/binbin1213) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[binbin1213](https://clawhub.ai/user/binbin1213)
 
-## Use Case: <br>
-Developers and agent users use this skill to turn short Chinese text into local audio files and send them as voice messages in supported chat channels. It is useful for spoken notifications, replies, announcements, and customer-support style messages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text sent to edge-tts may be processed by a third-party text-to-speech service. <br>
-Mitigation: Avoid converting secrets, credentials, or confidential text. <br>
-Risk: Generated audio files are retained locally until removed. <br>
-Mitigation: Delete generated audio files when they are no longer needed. <br>
-Risk: Voice files can be sent to the wrong messaging channel. <br>
-Mitigation: Confirm the destination channel before sending. <br>
+## Use Case:
 
+Developers and operators use this skill to convert Chinese text into voice-message audio and send it through supported chat channels. It is suited for notifications, customer replies, announcements, and segmented long-form voice messages.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/binbin1213/ms-voice-tts) <br>
-- [Publisher Profile](https://clawhub.ai/user/binbin1213) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON message examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local opus audio file paths for downstream message sending; generated audio should be deleted when no longer needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Text submitted for synthesis is sent through edge-tts and may contain sensitive or regulated information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid secrets and regulated data in TTS text, and review content before generating audio.
+
+Risk: The skill depends on the external edge-tts package and service.
+
+Mitigation: Install edge-tts only after review, prefer pipx with a pinned version, and use the skill only when that dependency is acceptable.
+
+Risk: Generated audio files are written locally and can be sent to external chat destinations.
+
+Mitigation: Use the default output location when possible, clean up generated files after use, and verify the destination before sending audio.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/binbin1213/skills/ms-voice-tts)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with shell commands and JSON message payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local Opus audio file paths that can be passed to supported messaging channels.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

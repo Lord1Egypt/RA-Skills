@@ -1,44 +1,60 @@
-## Description: <br>
-Monitors public trending-topic sources, scores topics for relevance and writability, drafts initial topic angles, writes selected records to Feishu, and prepares Telegram-ready recommendation text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors public hot-topic sources, scores content ideas, drafts rough topic elements, writes selected records to Feishu, and prepares Telegram-style recommendation summaries.
 
-## Publisher: <br>
-[bytearch1990-beep](https://clawhub.ai/user/bytearch1990-beep) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytearch1990-beep](https://clawhub.ai/user/bytearch1990-beep)
 
-## Use Case: <br>
-Content operators and publishing teams use this skill to discover current AI, technology, productivity, and creator-economy topics, rank them, and turn high-scoring items into structured topic records and recommendation messages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Feishu app and table credentials to write topic records. <br>
-Mitigation: Provide credentials only through environment variables, scope the Feishu app to the intended workspace and table, and verify the configured destination before running. <br>
-Risk: Scheduled or daemon mode can repeatedly fetch public trend sites and retain topic-planning outputs in local database, log, and temporary files. <br>
-Mitigation: Use recurring modes only when continuous collection is intended, monitor generated logs and databases, and remove stored outputs according to the workspace retention policy. <br>
-Risk: Automated trend scoring can surface noisy or misleading public topics as recommendations. <br>
-Mitigation: Review selected topics, source context, and generated angles before publishing or handing them to downstream writing workflows. <br>
+## Use Case:
 
+Content operators and agent workflows use this skill to find AI, productivity, and creator-economy topics worth writing about, rank them, and prepare Feishu or Telegram handoff records for review.
 
-## Reference(s): <br>
-- [ClawHub Skill Release](https://clawhub.ai/bytearch1990-beep/inkroam-topic-expert) <br>
-- [TopHub](https://tophub.today/) <br>
-- [Feishu Open API](https://open.feishu.cn/open-apis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, shell commands, code] <br>
-**Output Format:** [Markdown-style recommendation text, JSON run summaries, Feishu records, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores topic records locally and can write selected topic data to configured Feishu tables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and skill frontmatter) <br>
+Risk: The skill can use Feishu credentials to write topic records to a Feishu table.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep Feishu credentials in environment variables, verify FEISHU_API is the official Feishu endpoint, and review a dry run before enabling writes.
+
+Risk: Scheduled or daemon operation can repeatedly fetch public hot-topic data and prepare external notifications.
+
+Mitigation: Start with manual runs, inspect generated recommendations, and enable daemon mode or notifications only after confirming the configured sources and recipients.
+
+Risk: Automated topic scoring may surface incomplete, stale, or misleading public trend items.
+
+Mitigation: Treat recommendations as candidates and require human review before creating or publishing content from them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytearch1990-beep/skills/inkroam-topic-expert)
+- [Publisher profile](https://clawhub.ai/user/bytearch1990-beep)
+- [TopHub.today](https://tophub.today/)
+- [Feishu Open API](https://open.feishu.cn/open-apis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style recommendation summaries, JSON run summaries, shell commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local topic records and can write selected topic records to a configured Feishu table.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-ai.love is a bilingual response-style skill that helps AI assistants produce warmer, more hopeful replies with culturally faithful Chinese and English phrasing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ai.love is a bilingual Chinese and English response-style skill that guides AI assistants toward warm, empathetic, hopeful replies with culturally faithful quotations and translations.
 
-## Publisher: <br>
-[nitu-ni](https://clawhub.ai/user/nitu-ni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nitu-ni](https://clawhub.ai/user/nitu-ni)
 
-## Use Case: <br>
-External users can apply this skill to make an AI assistant respond with more empathy, warmth, hope, and culturally adapted bilingual phrasing. It is most useful for conversational, reflective, and supportive writing where a softer tone is desired. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The warmer, more poetic response style may reduce directness or precision in work that requires concise technical or professional answers. <br>
-Mitigation: Disable or narrow use of the skill for tasks where directness, precision, or strict formatting matters most. <br>
-Risk: The optional emotional-case log could record sensitive emotional context. <br>
-Mitigation: Do not use the optional log unless the user has clearly agreed to that information being recorded. <br>
+## Use Case:
 
+Developers and assistant operators use ai.love to add bilingual warmth, emotion-aware tone adaptation, and culturally matched quote selection to conversational agent responses. It is intended for normal assistant interactions where a warmer style is desired.
 
-## Reference(s): <br>
-- [Project repository](https://github.com/ai-love/skill-ai.love) <br>
-- [Poetic quote library](poetic-slips.md) <br>
-- [Warm response checklist](warm-notes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Natural-language text or Markdown responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual Chinese and English response style with optional quotations and emotional self-check guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill strongly steers assistant tone toward warmth and quotation, which may be inappropriate for some direct task or safety-critical contexts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep platform safety rules, user task requirements, and domain-specific policies above the style guidance; use the skill only where this response style is desired.
+
+Risk: The optional case-log template can capture sensitive emotional details.
+
+Mitigation: Do not use the case log unless users have clearly opted in and retention, access, and deletion controls are in place.
+
+Risk: Required quote insertion can distract from concise functional answers.
+
+Mitigation: For functional requests, complete the user's task first and use only a brief blessing when a quote would not fit naturally.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nitu-ni/skills/ai-love)
+- [Publisher profile](https://clawhub.ai/user/nitu-ni)
+- [Source repository listed in metadata](https://github.com/ai-love/skill-ai.love)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text conversational response guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual Chinese and English tone guidance with optional quote selection; no executable output.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact metadata states 6.1.0 and artifact changelog states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

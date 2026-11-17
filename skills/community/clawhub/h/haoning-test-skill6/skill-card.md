@@ -1,40 +1,50 @@
-## Description: <br>
-Haoning Test Skill6 provides placeholder guidance and reference documentation for the haoning-test-skill6 skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Haoning Test Skill6 is a placeholder-style skill with basic guide and examples documentation.
 
-## Publisher: <br>
-[iyunya](https://clawhub.ai/user/iyunya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iyunya](https://clawhub.ai/user/iyunya)
 
-## Use Case: <br>
-Developers and agents can use this skill as a minimal placeholder reference for haoning-test-skill6. The available evidence does not show operational behavior beyond documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill appears to contain placeholder documentation and may not provide useful operational behavior. <br>
-Mitigation: Verify the publisher and intended purpose before relying on it for a workflow. <br>
+## Use Case:
 
+Developers and agents can use this placeholder skill as a basic documented skill entry for haoning-test-skill6. The available artifact does not specify a concrete task beyond referring users to its guide and examples.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/iyunya/haoning-test-skill6) <br>
-- [Examples](reference/examples.md) <br>
-- [Guide](reference/guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable behavior or required configuration is declared in the provided evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill is under-specified and may not give users clear activation conditions or intended behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat it as a placeholder or test skill until the publisher provides clearer usage guidance.
+
+## Reference(s):
+
+- [Guide](reference/guide.md)
+- [Examples](reference/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No structured outputs or tool calls are specified.]
+
+## Skill Version(s):
+
+0.4.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

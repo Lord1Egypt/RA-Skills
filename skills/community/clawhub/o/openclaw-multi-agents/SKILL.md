@@ -41,7 +41,7 @@ metadata:
   - [Step 6: Verification](#step-6-verification)
 - [1. Main Agent Runtime Behavior](#1-main-agent-runtime-behavior)
 - [2. Communication with Manager](#2-communication-with-manager)
-- [3. Task Categories and Model Selection](#3-task-categories-and-model-selection)
+- [3. Task Categories and Model Selection](#3-taREDACTED-SECRET)
 - [4. Wisdom Mechanism](#4-wisdom-mechanism)
 - [5. Exception Handling](#5-exception-handling)
 - [6. Post-Restart Self-Check](#6-post-restart-self-check)

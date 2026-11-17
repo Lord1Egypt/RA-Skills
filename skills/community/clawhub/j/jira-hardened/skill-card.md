@@ -1,44 +1,67 @@
-## Description: <br>
-Use when the user mentions Jira issues, asks about tickets, wants to create, view, or update issues, check sprint status, or manage their Jira workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user mentions Jira issues, asks about tickets, wants to create, view, or update issues, check sprint status, or manage their Jira workflow.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-Developers, engineers, and project contributors use this skill to interact with Jira through natural language while drafting, viewing, updating, transitioning, assigning, and commenting on issues. It helps the agent choose an available Jira backend, show proposed actions, and require approval before ticket modifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent operating through an authenticated Jira account, so mistaken or overbroad actions could change tickets or notify watchers. <br>
-Mitigation: Review commands or tool calls before approval, fetch current issue state before changes, and keep Jira credentials least-privileged. <br>
-Risk: Jira tickets can contain secrets, private code, security findings, customer data, or internal URLs that may be copied into broadly visible tickets. <br>
-Mitigation: Confirm visibility before moving sensitive information, avoid placing credentials or sensitive findings into ticket fields, and preserve access boundaries. <br>
-Risk: Jira content can be untrusted input, including text that resembles shell commands or instructions. <br>
-Mitigation: Treat fetched ticket content as data, use safe quoting or file-based input for CLI commands, and avoid automated transmission of Jira data to external URLs. <br>
+## Use Case:
 
+Developers and Jira users use this skill to inspect Jira issues, draft and create tickets, update issue fields, transition work items, assign issues, and check sprint or backlog status through a detected Jira CLI or Atlassian MCP backend.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/snazar-faberlens/jira-hardened) <br>
-- [jira CLI project](https://github.com/ankitpokhrel/jira-cli) <br>
-- [Jira safety evaluation](https://faberlens.ai/explore/jira) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline Jira CLI commands, MCP tool-call guidance, and ticket text drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses authenticated Jira CLI or Atlassian MCP tools when available; changes should be reviewed and approved before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Jira issue titles, descriptions, comments, or attachments may contain shell metacharacters or adversarial content that could be mishandled when forming CLI commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat Jira-sourced content as untrusted data, use quoting or file-based input, and do not interpolate fetched issue content directly into shell command strings.
+
+Risk: Ticket creation, comments, and description edits may expose credentials, private code, security findings, customer data, or internal URLs to broad Jira audiences.
+
+Mitigation: Confirm with the user before adding sensitive information to ticket fields and preserve the original content when proposing edits.
+
+Risk: Jira data can leave the local environment if CLI output or attachments are piped to network-transmitting commands or external URLs.
+
+Mitigation: Do not pipe or redirect Jira CLI output to curl, wget, nc, ssh, webhooks, or other external destinations; prefer approved integrations or manual sharing paths.
+
+Risk: Issue transitions, assignments, description edits, and bulk updates can notify watchers, fail silently, or be difficult to reverse when state and identifiers are not checked first.
+
+Mitigation: Fetch the current issue state, verify available transitions and account identifiers, show current versus proposed changes, and require explicit approval before modifications.
+
+Risk: Broad activation terms such as issue, ticket, sprint, or backlog may trigger the skill when the user's intent is unclear.
+
+Mitigation: Clarify intent before acting when generic project-management language could refer to Jira or to another workflow.
+
+## Reference(s):
+
+- [Jira CLI](https://github.com/ankitpokhrel/jira-cli)
+- [Jira Hardened on ClawHub](https://clawhub.ai/snazar-faberlens/skills/jira-hardened)
+- [Faberlens Jira Safety Evaluation](https://faberlens.ai/explore/jira)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Jira CLI commands, Atlassian MCP tool names, safety checks, and setup instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose Jira ticket content, issue updates, comments, transitions, assignments, and backend setup steps for user review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

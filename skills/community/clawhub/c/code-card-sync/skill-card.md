@@ -1,46 +1,62 @@
-## Description: <br>
-Sync your AI coding stats to Code Card - beautiful, shareable developer profiles <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sync your AI coding stats to Code Card - beautiful, shareable developer profiles
 
-## Publisher: <br>
-[eibrahim](https://clawhub.ai/user/eibrahim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eibrahim](https://clawhub.ai/user/eibrahim)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure and run Code Card CLI commands that sync Claude Code, Codex, and OpenClaw coding-session statistics into a shareable Code Card profile. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The sync commands can send AI coding-session statistics to Code Card. <br>
-Mitigation: Review Code Card's CLI behavior and privacy terms before syncing, and run the skill only when sharing those statistics is acceptable. <br>
-Risk: The setup stores a local Code Card API key that could be exposed through logs or shell output. <br>
-Mitigation: Do not paste or log the API key, and treat the local configuration file as sensitive. <br>
-Risk: Using `npx code-card@latest` can execute a newly published package version without prior review. <br>
-Mitigation: Pin a reviewed package version when operating in controlled or production-like environments. <br>
-Risk: Recommended cron jobs can create recurring background uploads of coding-session data. <br>
-Mitigation: Add cron jobs only after confirming ongoing automatic syncs are desired and approved. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure and run Code Card CLI syncs for AI coding session statistics from Claude Code, Codex, and OpenClaw, including optional recurring sync schedules.
 
-## Reference(s): <br>
-- [Code Card website](https://www.codecard.dev) <br>
-- [Code Card npm package](https://www.npmjs.com/package/code-card) <br>
-- [ClawHub skill page](https://clawhub.ai/eibrahim/code-card-sync) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes setup, sync, status, profile, and optional cron command guidance; requires Node.js 18+ with node and npx available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: The skill recommends executing an unpinned npm package with npx.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and review the Code Card CLI version before use instead of relying on the latest published package.
+
+Risk: The skill under-explains what local session data is uploaded during sync.
+
+Mitigation: Confirm the exact data collected and uploaded by Code Card before syncing local coding sessions.
+
+Risk: The recommended cron jobs create unattended recurring syncs.
+
+Mitigation: Add recurring sync jobs only after accepting automated uploads on the configured schedule.
+
+Risk: The setup check can reveal whether a Code Card API key is present in a local file.
+
+Mitigation: Avoid printing or sharing the API key value and treat the local Code Card configuration as sensitive.
+
+## Reference(s):
+
+- [Code Card website](https://www.codecard.dev)
+- [Code Card npm package](https://www.npmjs.com/package/code-card)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Code Card CLI setup, sync, stats, profile, and cron scheduling commands.]
+
+## Skill Version(s):
+
+2.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

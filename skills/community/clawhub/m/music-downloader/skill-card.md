@@ -1,44 +1,53 @@
-## Description: <br>
-Searches across ten music sources and downloads MP3 files, automatically trying alternate sources and applying source-specific Referer handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches ten music platforms for a requested song, retrieves a playable media URL, and downloads an MP3 file to /tmp/music with automatic source fallback.
 
-## Publisher: <br>
-[wehaha](https://clawhub.ai/user/wehaha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wehaha](https://clawhub.ai/user/wehaha)
 
-## Use Case: <br>
-Agents can use this skill when a user asks to find and download permitted MP3 music from supported music services. It is intended for song lookup and file retrieval workflows where network access and local writes to /tmp/music are acceptable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Song searches are sent to multiple third-party music services. <br>
-Mitigation: Use the skill only when users accept third-party music-service requests for their search terms. <br>
-Risk: The downloader disables HTTPS certificate verification for requests. <br>
-Mitigation: Run it only in environments where this transport-security tradeoff is acceptable, and avoid using it for sensitive searches. <br>
-Risk: Downloaded MP3 files are saved under /tmp/music. <br>
-Mitigation: Confirm the runtime has appropriate local storage permissions and clean up downloaded files when they are no longer needed. <br>
-Risk: The skill downloads music from external services. <br>
-Mitigation: Use it only for music the user is permitted to download. <br>
+## Use Case:
 
+Agents can use this skill to help users search supported third-party music sources and download a matching MP3 file. It is most relevant for workflows that need command-line music lookup, automatic source fallback, and a returned local file path.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wehaha/music-downloader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Guidance] <br>
-**Output Format:** [Plain text status output with a downloaded MP3 file path on success] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Downloads MP3 files under /tmp/music by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The downloader bypasses HTTPS certificate validation while contacting third-party music sites.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a fixed version that keeps TLS verification enabled before deploying in higher-trust environments.
+
+Risk: The downloader saves remote-provided files without enough validation or download size limits.
+
+Mitigation: Validate media URL domains and file types, and enforce a reasonable maximum download size before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wehaha/skills/music-downloader)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text]
+
+**Output Format:** [MP3 file path or failure message from command-line execution]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Downloaded files are saved under /tmp/music with artist_song.mp3-style filenames.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

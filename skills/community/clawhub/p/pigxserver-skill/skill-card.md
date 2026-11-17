@@ -1,44 +1,56 @@
-## Description: <br>
-PigX 企业级微服务平台后端开发指南 - Spring Cloud Alibaba + Java 17。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PigX 企业级微服务平台后端开发指南 - Spring Cloud Alibaba + Java 17。当用户提到 PigX Server、PigX 后端、lhb-server 项目、Spring Cloud 微服务开发、PigX 微服务架构时使用此技能。
 
-## Publisher: <br>
-[zhibuyu](https://clawhub.ai/user/zhibuyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhibuyu](https://clawhub.ai/user/zhibuyu)
 
-## Use Case: <br>
-Developers and backend engineers use this skill for PigX Server and lhb-server backend development with Spring Cloud Alibaba, Java 17, Maven, MyBatis-Plus, Nacos, database configuration, and AI/RAG vector-store patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example database, Redis, and encryption credentials could be reused in shared or production environments. <br>
-Mitigation: Replace all example credentials and encryption passwords before use, and prefer environment variables or a secrets manager for real secrets. <br>
-Risk: Generated backend guidance may be applied to the wrong PigX version or local project layout. <br>
-Mitigation: Review the target PigX, Spring Boot, Spring Cloud, and Java versions before applying commands or code patterns. <br>
+## Use Case:
 
+Developers and engineers use this skill for PigX Server backend work, including Spring Cloud Alibaba microservice setup, project structure, module conventions, Maven commands, coding patterns, database configuration, and AI/RAG integration guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhibuyu/pigxserver-skill) <br>
-- [PigX documentation](https://docs.pig4cloud.com) <br>
-- [Spring Cloud Alibaba](https://sca.aliyun.com) <br>
-- [MyBatis-Plus](https://baomidou.com) <br>
-- [LangChain4j documentation](https://docs.langchain4j.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell, Java, and YAML code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides project conventions, module structure, build commands, controller/service/entity examples, and database or Redis configuration examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill includes real-looking PostgreSQL and PigX configuration-decryption credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and rotate these values before use outside disposable local development, and avoid reusing them in shared, staging, or production environments.
+
+Risk: The Maven commands can modify files, create build outputs, download dependencies, or start services.
+
+Mitigation: Run commands only in the intended PigX project workspace after reviewing their effect.
+
+## Reference(s):
+
+- [Pig4Cloud Documentation](https://docs.pig4cloud.com)
+- [Spring Cloud Alibaba](https://sca.aliyun.com)
+- [MyBatis-Plus](https://baomidou.com)
+- [LangChain4j Documentation](https://docs.langchain4j.dev)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Java, YAML, Maven, and project-structure examples for PigX backend development.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

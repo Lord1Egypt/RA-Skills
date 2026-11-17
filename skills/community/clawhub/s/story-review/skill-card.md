@@ -1,49 +1,49 @@
-## Description: <br>
-Story Review coordinates multi-perspective fiction review, using deployed reviewer agents when available and falling back to solo review when agents or reference files are unavailable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+从结构、人物、设定与文字多个角度审查小说，并给出有原文依据的修改建议。
 
-## Publisher: <br>
-[worldwonderer](https://clawhub.ai/user/worldwonderer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[worldwonderer](https://clawhub.ai/user/worldwonderer)
 
-## Use Case: <br>
-External writers, editors, and writing teams use this skill to review Chinese web-fiction drafts for structure, character behavior, prose quality, continuity, platform fit, and concrete revision actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Full and lean review modes may read local story files and share scoped excerpts or file paths with local reviewer agents. <br>
-Mitigation: Use solo mode or specify a narrow review scope when tighter control over file access and excerpt sharing is needed. <br>
+## Use Case:
 
+小说作者与编辑可用它审查章节的情节推进、人物动机、设定一致性和表达问题，并获得带原文依据的修改建议。
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/worldwonderer/skills/story-review) <br>
-- [OpenClaw Source](https://github.com/worldwonderer/oh-story-claudecode) <br>
-- [Anti-AI Writing Guide](references/anti-ai-writing.md) <br>
-- [Banned Words and Sentence Patterns](references/banned-words.md) <br>
-- [Character Relations and Romance Guide](references/character-relations.md) <br>
-- [Dialogue Design Guide](references/dialogue-mastery.md) <br>
-- [Plot Core Methods](references/plot-core-methods.md) <br>
-- [Web Fiction Quality Checklist](references/quality-checklist.md) <br>
-- [Generic Web Fiction Review Rubric](references/quality-rubric.md) <br>
-- [Fanqie Novel Quality Rubric](references/rubrics/fanqie.md) <br>
-- [Qidian Quality Rubric](references/rubrics/qidian.md) <br>
-- [Zhihu Yanxuan Story Quality Rubric](references/rubrics/zhihu.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with structured findings and review metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports requested mode, effective mode, fallback status, rubric source, reviewer status, prioritized findings, and a revision action plan.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.10 (source: ClawHub release evidence) <br>
+Risk: The security review found capabilities beyond story review, including extra editing and persistent tracking behavior; four of 23 components were only partly inspected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill’s permissions and tracking behavior, and avoid installing it until those capabilities are understood.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/worldwonderer/skills/story-review)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown review report with evidence-based findings and revision suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Full and lean reviews may maintain persistent tracking records; the skill states that it does not edit story prose.]
+
+## Skill Version(s):
+
+1.1.56 (source: server-resolved ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

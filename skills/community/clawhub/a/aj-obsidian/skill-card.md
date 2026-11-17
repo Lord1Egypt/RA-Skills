@@ -1,42 +1,59 @@
-## Description: <br>
-Work with Obsidian vaults (plain Markdown notes) and automate via obsidian-cli. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Work with Obsidian vaults (plain Markdown notes) and automate via obsidian-cli.
 
-## Publisher: <br>
-[aceundefeated](https://clawhub.ai/user/aceundefeated) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aceundefeated](https://clawhub.ai/user/aceundefeated)
 
-## Use Case: <br>
-People who manage Obsidian vaults use this skill to locate active vaults, search notes, and perform note create, move, rename, delete, and direct Markdown-edit workflows through obsidian-cli. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to search local Obsidian notes, which may expose private note content. <br>
-Mitigation: Run it only against vaults you intend the agent to inspect and review search terms and results before sharing them. <br>
-Risk: The skill can guide create, move, edit, or delete operations on vault files. <br>
-Mitigation: Confirm the active vault and exact note path before approving changes, and keep backups for important notes. <br>
-Risk: The workflow depends on obsidian-cli installed from a Homebrew source. <br>
-Mitigation: Install obsidian-cli only from a source you trust before allowing the agent to rely on it. <br>
+## Use Case:
 
+Developers and note-taking users use this skill to let an agent locate active Obsidian vaults, inspect Markdown notes, and propose or run obsidian-cli commands for search, creation, move, rename, and deletion workflows.
 
-## Reference(s): <br>
-- [Obsidian Help](https://help.obsidian.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local Obsidian note searches and file-changing obsidian-cli commands for user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill can help an agent read, create, move, and delete notes in an Obsidian vault.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm vault paths and target note paths before move or delete operations, and rely on backups or version history for important notes.
+
+Risk: The skill depends on a third-party obsidian-cli Homebrew tap.
+
+Mitigation: Install obsidian-cli only after deciding the Homebrew tap and package source are trusted.
+
+Risk: Some create workflows require the Obsidian URI handler and an installed Obsidian desktop app.
+
+Mitigation: Verify Obsidian is installed and the obsidian:// URI handler works before using create commands that open notes through Obsidian.
+
+## Reference(s):
+
+- [Obsidian Help](https://help.obsidian.md)
+- [Aj Obsidian on ClawHub](https://clawhub.ai/aceundefeated/skills/aj-obsidian)
+- [aceundefeated ClawHub profile](https://clawhub.ai/user/aceundefeated)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include file paths, vault names, and obsidian-cli command examples for local note operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

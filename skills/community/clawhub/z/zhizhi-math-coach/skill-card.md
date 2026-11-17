@@ -1,50 +1,61 @@
-## Description: <br>
-Primary-school math coaching skill created to help my first-grade daughter Zhizhi: grade worksheet photos or wrong questions, track weak points and learning progress, explain concepts for parents and students, and generate printable PDF/HTML practice aligned with grade, semester, textbook, exam, and holiday plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps families grade primary-school math work, explain mistakes, track learning progress, and plan follow-up practice.
 
-## Publisher: <br>
-[linzi007](https://clawhub.ai/user/linzi007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linzi007](https://clawhub.ai/user/linzi007)
 
-## Use Case: <br>
-Parents and tutors use this skill to grade primary-school math work, diagnose weak points, explain concepts, track progress, and generate printable practice for a child. It can also help manage local learning records, optional GitHub sync, public worksheet publishing, and scheduled reminders when the user enables those features. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can manage a child's learning records through GitHub sync, public worksheet links, SSH deploy keys, and scheduled reminders. <br>
-Mitigation: Install only for a local-first math coaching workspace, review `.zhizhi-math-coach/config.json`, and enable cloud sync, Pages, deploy keys, or cron settings only when the repository privacy and exposure are acceptable. <br>
-Risk: Public publishing can expose worksheet metadata or learning files if the user configures a public repository or Pages workflow too broadly. <br>
-Mitigation: Publish only child-facing worksheet HTML/PDF files and keep answer keys, diagnosis records, memories, weak-point histories, student photos, and textbook files out of public output. <br>
-Risk: Automatic pull, commit, push, publish, or reminder registration can change local or remote learning-workspace state after configuration is enabled. <br>
-Mitigation: Treat `.zhizhi-math-coach/config.json` as the consent boundary, verify auto-pull, auto-commit, auto-push, auto-publish, and cron settings before use, and keep automation limited to reminders unless explicit record writes or worksheet generation are requested. <br>
+## Use Case:
 
+Parents and educators use the skill to review worksheet photos, explain errors, maintain learning records, and choose targeted practice for primary-school students.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/linzi007/skills/zhizhi-math-coach) <br>
-- [Daily Grading Workflow](references/daily-grading-workflow.md) <br>
-- [Grading And Diagnosis Rubric](references/grading-diagnosis-rubric.md) <br>
-- [Worksheet Generation](references/worksheet-generation.md) <br>
-- [Worksheet Standards](references/worksheet-standards.md) <br>
-- [Curriculum Alignment](references/curriculum-alignment.md) <br>
-- [GitHub Sync Authorization](references/github-sync-authorization.md) <br>
-- [GitHub Pages Publishing](references/github-pages-publishing.md) <br>
-- [OpenClaw Automation](references/automation-openclaw.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON worksheet specs, local files, shell commands, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local learning records, worksheet HTML/PDF files, answer keys, configuration files, GitHub sync state, Pages output, and scheduled reminder settings when enabled by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.14 (source: server release evidence, created 2026-06-29T05:36:17Z) <br>
+Risk: GitHub sync may back up sensitive child learning records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated private learning repository; leave sync disabled unless the full archive is intended for backup, and review sync settings before enabling it.
+
+Risk: Public Pages publishing may expose student data or answer keys.
+
+Mitigation: Publish only child-facing worksheet pages and keep records, photos, and answer keys outside the public site.
+
+Risk: Deploy keys and scheduled jobs may operate beyond the intended learning workspace.
+
+Mitigation: Verify each deploy key and scheduled job is scoped to the dedicated learning repository before enabling automation.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/linzi007/skills/zhizhi-math-coach)
+- [Daily grading workflow](artifact/references/daily-grading-workflow.md)
+- [Photo intake and learning records](artifact/references/photo-intake.md)
+- [GitHub sync authorization](artifact/references/github-sync-authorization.md)
+- [Public worksheet publishing](artifact/references/github-pages-publishing.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, PDF worksheets, HTML worksheets, JSON learning records, Configuration guidance]
+
+**Output Format:** [Parent-facing summaries and explanations; printable worksheets and local learning records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Student-facing worksheets are separate from answer keys and private learning records.]
+
+## Skill Version(s):
+
+0.3.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

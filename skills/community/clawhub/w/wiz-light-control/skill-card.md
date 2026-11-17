@@ -1,43 +1,57 @@
-## Description: <br>
-Controls Wiz smart bulbs (turn on/off, RGB colors, disco mode) via local WiFi. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls Wiz smart bulbs (turn on/off, RGB colors, disco mode) via local WiFi.
 
-## Publisher: <br>
-[Canbirlik](https://clawhub.ai/user/Canbirlik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[canbirlik](https://clawhub.ai/user/canbirlik)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent operate Wiz smart bulbs on the user's local WiFi network, including power, RGB color, and timed disco-mode changes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can change physical lighting state on the local network, including on/off and disco actions. <br>
-Mitigation: Use explicit prompts with the intended device name and bulb IP address, and confirm disruptive actions before execution. <br>
-Risk: An incorrect bulb IP address can cause failed control attempts or target the wrong local device. <br>
-Mitigation: Verify the actual local Wiz bulb IP address before running commands instead of relying on placeholder examples. <br>
-Risk: Disco mode can run longer than intended if given an unsuitable duration. <br>
-Mitigation: Use a positive, limited duration for disco mode. <br>
-Risk: The dependency is unpinned, which can introduce unexpected package changes in security-sensitive environments. <br>
-Mitigation: Pin the pywizlight package version where reproducibility or stricter dependency control is required. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Canbirlik/wiz-light-control) <br>
+## Use Case:
 
+External users and developers use this skill to let an agent control Wiz smart bulbs on a local WiFi network, including turning lights on or off, setting RGB colors, and running a temporary disco mode.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and CLI arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands require a local Wiz bulb IP address and the pywizlight Python package.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill changes the state of physical Wiz smart bulbs on the local network.
+
+Mitigation: Use explicit prompts that name this skill and the target bulb before allowing the agent to run control commands.
+
+Risk: The Python dependency is unpinned in requirements.txt.
+
+Mitigation: Review and pin pywizlight to an approved version before installing the skill in a controlled environment.
+
+Risk: Commands require the correct local bulb IP address.
+
+Mitigation: Confirm the target bulb IP on the local network before running on, off, color, or disco actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/canbirlik/skills/wiz-light-control)
+- [ClawHub publisher profile](https://clawhub.ai/user/canbirlik)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash command examples and CLI guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Controls physical Wiz bulb state on the user's local network through the pywizlight dependency.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

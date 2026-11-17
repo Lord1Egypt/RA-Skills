@@ -1,46 +1,61 @@
-## Description: <br>
-Plans solo travel using FlyAI CLI data for destinations, lodging, attractions, bookings, and itinerary guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Solo Trip helps agents plan solo travel with real-time flight, lodging, attraction, itinerary, and booking-link results powered by the flyai CLI and Fliggy.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External travelers and agent users use this skill to plan solo trips with real-time flight, hotel, and attraction data from the FlyAI CLI. It supports safety-conscious, city, and adventure-oriented solo travel workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install a global npm CLI package before use. <br>
-Mitigation: Approve installation manually only in a trusted or isolated environment and verify the FlyAI CLI before relying on it. <br>
-Risk: The skill can persist raw travel queries in `.flyai-execution-log.json` if filesystem writes are available. <br>
-Mitigation: Avoid entering passport, payment, or highly sensitive travel details and disable or delete the local execution log if it is created. <br>
-Risk: Travel safety and booking decisions may be incomplete or stale if based only on returned booking data. <br>
-Mitigation: Verify safety, visa, booking, and local travel decisions through current official and local sources before acting. <br>
+## Use Case:
 
+External users can ask an agent to plan solo trips, compare flights, hotels, attractions, and itineraries, and receive user-facing Markdown results with booking links. The skill is intended for solo city, adventure, and safety-focused trip planning workflows.
 
-## Reference(s): <br>
-- [ClawHub Solo Trip release page](https://clawhub.ai/dingtom336-gif/solo-trip) <br>
-- [Solo Trip playbooks](references/playbooks.md) <br>
-- [Solo Trip output templates](references/templates.md) <br>
-- [Solo Trip fallbacks](references/fallbacks.md) <br>
-- [Solo Trip runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with booking links and inline shell commands when recovery steps are needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should include real-time booking links when results are available and should not expose raw JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill depends on installing and trusting a global third-party travel CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI package, pin or approve the installed version where possible, and run it only in environments where third-party CLI execution is allowed.
+
+Risk: Trip details may be sent to the external travel service and raw request logs may be retained locally.
+
+Mitigation: Avoid entering sensitive travel data unless the user accepts that disclosure path, and configure log retention or deletion for local execution logs.
+
+Risk: The booking-link requirement can steer outputs toward a single travel provider's available inventory.
+
+Mitigation: Tell users when results are limited to the flyai/Fliggy data source and encourage independent review before purchase.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/skills/solo-trip)
+- [Output templates](references/templates.md)
+- [Scenario playbooks](references/playbooks.md)
+- [Fallback procedures](references/fallbacks.md)
+- [Execution log runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with booking links, comparison tables, and occasional inline shell commands for retry or setup steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires successful flyai CLI output for travel data; booking results are expected to include detailUrl-backed Book links.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

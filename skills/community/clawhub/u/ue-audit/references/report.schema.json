@@ -1,0 +1,122 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.invalid/ue-audit/report.schema.json",
+  "title": "ue-audit report",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "tool",
+    "tool_version",
+    "run_id",
+    "generated_at",
+    "mode",
+    "fail_on",
+    "project",
+    "engine",
+    "summary",
+    "checks",
+    "findings",
+    "readonly_proof",
+    "limitations",
+    "evidence"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "tool": { "const": "ue-audit" },
+    "tool_version": { "type": "string" },
+    "run_id": { "type": "string" },
+    "generated_at": { "type": "string" },
+    "mode": { "enum": ["audit", "verify"] },
+    "fail_on": { "enum": ["warning", "error", "blocker"] },
+    "project": {
+      "type": "object",
+      "required": ["name", "root", "uproject"],
+      "properties": {
+        "name": { "type": "string" },
+        "root": { "type": "string" },
+        "uproject": { "type": "string" }
+      }
+    },
+    "engine": { "type": "object" },
+    "baseline": { "type": ["object", "null"] },
+    "summary": { "type": "object" },
+    "checks": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/check" }
+    },
+    "findings": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/finding" }
+    },
+    "readonly_proof": { "type": "object" },
+    "limitations": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    }
+  },
+  "definitions": {
+    "severity": { "enum": ["blocker", "error", "warning", "info"] },
+    "status": { "enum": ["pass", "fail", "warn", "skip", "unknown", "error"] },
+    "finding": {
+      "type": "object",
+      "required": [
+        "id",
+        "check_id",
+        "severity",
+        "status",
+        "title",
+        "message",
+        "asset",
+        "evidence",
+        "recommendation",
+        "provenance",
+        "confidence"
+      ],
+      "properties": {
+        "id": { "type": "string" },
+        "check_id": { "type": "string" },
+        "severity": { "$ref": "#/definitions/severity" },
+        "status": { "$ref": "#/definitions/status" },
+        "title": { "type": "string" },
+        "message": { "type": "string" },
+        "asset": { "type": "string" },
+        "evidence": { "type": "array", "items": { "type": "string" } },
+        "recommendation": { "type": "string" },
+        "provenance": { "enum": ["ai", "manual", "unknown", "toolchain"] },
+        "confidence": { "enum": ["fact", "rule", "ai"] }
+      }
+    },
+    "check": {
+      "type": "object",
+      "required": [
+        "check_id",
+        "title",
+        "status",
+        "severity",
+        "summary",
+        "details",
+        "findings",
+        "started_at",
+        "duration_ms"
+      ],
+      "properties": {
+        "check_id": { "type": "string" },
+        "title": { "type": "string" },
+        "status": { "$ref": "#/definitions/status" },
+        "severity": { "$ref": "#/definitions/severity" },
+        "summary": { "type": "string" },
+        "details": { "type": "object" },
+        "findings": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/finding" }
+        },
+        "started_at": { "type": "string" },
+        "duration_ms": { "type": "number" }
+      }
+    }
+  }
+}

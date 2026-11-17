@@ -1,44 +1,58 @@
-## Description: <br>
-Touqi Todo helps users record, organize, permission, review, and optionally export important end-of-life wishes, instructions, account handoff notes, and personal messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Touqi Todo helps users organize important life matters such as wishes, instructions, account handoffs, personal messages, visibility boundaries, progress reviews, and optional PDF exports.
 
-## Publisher: <br>
-[ezra-y](https://clawhub.ai/user/ezra-y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ezra-y](https://clawhub.ai/user/ezra-y)
 
-## Use Case: <br>
-External users use this skill to collect and structure sensitive life-planning information, including final wishes, instructions, digital asset notes, audience boundaries, progress summaries, and optional PDF export preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is intended for extremely private end-of-life material, including final wishes and account handoff details. <br>
-Mitigation: Review the skill carefully before installation, keep optional quick capture disabled unless clearly needed, and review or delete captured candidates before export. <br>
-Risk: Users may be tempted to enter raw passwords, recovery codes, or other secrets. <br>
-Mitigation: Use references to a secure password manager or vault instead of storing raw credentials in the skill conversation. <br>
-Risk: The security verdict is suspicious because the skill handles highly sensitive content with loose trigger and review controls. <br>
-Mitigation: Require deliberate user review before sensitive content is promoted, exported, or retained. <br>
+## Use Case:
 
+External users use this skill to capture, classify, organize, and review sensitive end-of-life notes, digital estate handoff details, personal messages, and audience-specific visibility boundaries. The skill can optionally help prepare a PDF export when the user explicitly requests it and the content is ready.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ezra-y/skills/touqi-todo) <br>
-- [Server-resolved GitHub provenance](https://github.com/Ezra-Y/touqi-todo) <br>
-- [Publisher profile](https://clawhub.ai/user/ezra-y) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown and structured plain-language guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce organized records, visibility boundaries, progress summaries, and optional PDF export preparation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill may prompt users to record passwords, recovery codes, private keys, API tokens, MFA secrets, or similarly sensitive account material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not enter raw secrets into the skill; use a password manager or secure estate-planning process for credential handoff.
+
+Risk: The skill handles deeply private end-of-life information and may label content as visible, hidden, isolated, masked, or excluded.
+
+Mitigation: Treat visibility labels as organizational notes unless the hosting platform provides verified encryption, retention, deletion, and sharing controls.
+
+Risk: The skill can produce an optional PDF export containing sensitive personal information.
+
+Mitigation: Generate exports only on explicit request, review the contents before sharing, and store or delete exported files according to the user's privacy requirements.
+
+## Reference(s):
+
+- [Server-resolved source repository](https://github.com/Ezra-Y/touqi-todo)
+- [ClawHub skill page](https://clawhub.ai/ezra-y/skills/touqi-todo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown text with structured notes, status summaries, visibility labels, and optional PDF export guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May classify entries by type, audience, and completion state; PDF export is optional and only on explicit request.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

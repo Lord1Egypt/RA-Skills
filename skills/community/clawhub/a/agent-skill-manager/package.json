@@ -1,0 +1,27 @@
+{
+  "name": "agent-skill-manager",
+  "version": "0.1.0",
+  "description": "Cross-platform skill manager for 9 domestic Chinese AI agent products",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yxdwind/agent-skill-manager"
+  },
+  "keywords": [
+    "agent-skills",
+    "skill-manager",
+    "skill-sync",
+    "ai-agent",
+    "autoclaw",
+    "kimi",
+    "minimax",
+    "workbuddy",
+    "trae",
+    "codebuddy",
+    "comate",
+    "qoder",
+    "dumate",
+    "pip",
+    "askill"
+  ]
+}

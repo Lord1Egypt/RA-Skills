@@ -1,37 +1,52 @@
-## Description: <br>
-Generates QR-code guidance and code for URLs, text, WiFi credentials, contact cards, and other scannable content with styling and error-correction options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate QR codes for URLs, text, WiFi credentials, contact cards, and more.
 
-## Publisher: <br>
-[LeonardoDpanda](https://clawhub.ai/user/LeonardoDpanda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leonardodpanda](https://clawhub.ai/user/leonardodpanda)
 
-## Use Case: <br>
-Developers, marketers, event organizers, and operations teams use this skill to create QR-code snippets and guidance for links, WiFi access, contact sharing, app downloads, locations, event check-in, and batch campaigns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: QR images can expose WiFi passwords, contact details, tokens, or other secrets encoded into them when they are printed, saved, forwarded, or viewed by untrusted people. <br>
-Mitigation: Avoid encoding long-lived primary credentials or private data; use guest networks, temporary credentials, or non-sensitive payloads when sharing QR codes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [QR Code Tool on ClawHub](https://clawhub.ai/LeonardoDpanda/qr-code-tool) <br>
+## Use Case:
 
+Developers, operators, marketers, and event teams use this skill to generate scannable QR code examples for links, WiFi credentials, vCards, locations, app downloads, and batch QR workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include output file paths for generated QR-code images.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: WiFi QR codes encode network passwords in a form that can be recovered by anyone who can scan the image.
+
+Mitigation: Use WiFi QR codes only for guest or intentionally shared networks and avoid publishing private credentials.
+
+Risk: Generated code depends on third-party Python packages and writes image files to disk.
+
+Mitigation: Install dependencies in an isolated Python environment and review output paths before running generated scripts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leonardodpanda/skills/qr-code-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce QR image files when the generated Python examples are run by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

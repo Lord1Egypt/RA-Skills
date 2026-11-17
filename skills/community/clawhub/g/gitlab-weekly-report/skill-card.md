@@ -1,42 +1,53 @@
-## Description: <br>
-Generates weekly reports by querying a user's GitLab commit activity for a specified date range and organizing the results by project. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates weekly reports by querying GitLab API for a user's commits over a date range and organizing them by project.
 
-## Publisher: <br>
-[zhoutianwang](https://clawhub.ai/user/zhoutianwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhoutianwang](https://clawhub.ai/user/zhoutianwang)
 
-## Use Case: <br>
-Developers and engineering leads use this skill to collect GitLab commit activity for a user and turn it into a weekly status report. It is intended for summarizing personal development work across GitLab projects and branches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles GitLab project names, branch names, commit messages, activity history, and personal access tokens. <br>
-Mitigation: Use a least-privilege expiring token, avoid sharing tokens in chat or shell history, and rotate credentials after testing. <br>
-Risk: The bundled script invokes curl with TLS certificate verification disabled. <br>
-Mitigation: Review or remove the TLS-bypass behavior before using the script with a real GitLab server. <br>
+## Use Case:
 
+Developers and employees use this skill to collect their GitLab commits for the current or previous week and turn them into a structured weekly report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhoutianwang/gitlab-weekly-report) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [gitlab_weekly_report.py](artifact/gitlab_weekly_report.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown weekly report with command-line usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a GitLab personal access token, user ID, date range, and configured GitLab base URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: GitLab personal access tokens may be exposed through command-line arguments or curl invocation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Edit the script before use to avoid passing tokens via --token or curl arguments; use a least-privilege token and rotate any token used with this version.
+
+Risk: Authenticated API requests disable normal certificate verification and network protections.
+
+Mitigation: Remove curl -k and --noproxy * before installation so standard TLS and proxy protections remain enabled.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhoutianwang/skills/gitlab-weekly-report)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown weekly report with command-line script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GitLab API access, a user ID, a date range, and local configuration of the GitLab instance URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

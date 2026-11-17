@@ -1,46 +1,61 @@
-## Description: <br>
-Memory Manager helps OpenClaw agents manage local memory sharing, archiving, cleanup, and operation logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory Manager helps OpenClaw agents organize shared memory files, archive project memory, check agent memory paths, and log memory-management operations.
 
-## Publisher: <br>
-[wcwudi](https://clawhub.ai/user/wcwudi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wcwudi](https://clawhub.ai/user/wcwudi)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to maintain local memory directories, share selected memory between main and sub-agents, archive files, and review operation logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Configured paths or agent mappings may point to the wrong local workspace. <br>
-Mitigation: Verify config/default.json paths and agent access before running commands. <br>
-Risk: Archive and cleanup examples can move or delete memory files if run carelessly. <br>
-Mitigation: Run archive and cleanup commands in test or preview mode first, keep backups, and require explicit confirmation for destructive actions. <br>
-Risk: Shared memory or logs may expose sensitive content to another agent or local user. <br>
-Mitigation: Do not place secrets or private data in shared memory, archives, or logs. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to coordinate memory sharing between a main agent and sub-agents, archive memory files, inspect memory-system health, and keep operation logs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wcwudi/wcwudi-memory-manager) <br>
-- [README](artifact/README.md) <br>
-- [Quick Start Guide](artifact/docs/QUICK_START.md) <br>
-- [Architecture Guide](artifact/docs/ARCHITECTURE.md) <br>
-- [Default Configuration](artifact/config/default.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with PowerShell command examples and JSON configuration references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe local file paths, archive actions, and operation-log checks; users should confirm before running file-moving commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, artifact config/default.json, and artifact SKILL.md) <br>
+Risk: Cross-agent memory access can expose another agent's memory path beyond intended sharing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable or narrow the default writing-assistant memory path unless that access is explicitly required, and keep agent access read-only unless writes are deliberately approved.
+
+Risk: PowerShell guidance includes ExecutionPolicy Bypass and Force deletion or move examples.
+
+Mitigation: Review scripts before running them, avoid ExecutionPolicy Bypass, preview file operations, back up affected files, and require explicit confirmation before destructive changes.
+
+Risk: Release security evidence marks the skill verdict as suspicious.
+
+Mitigation: Review before installing and treat file-management commands as proposals until the target paths, permissions, and intended files are verified.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wcwudi/skills/wcwudi-memory-manager)
+- [README](artifact/README.md)
+- [Quick Start](artifact/docs/QUICK_START.md)
+- [Architecture](artifact/docs/ARCHITECTURE.md)
+- [Default Configuration](artifact/config/default.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with PowerShell command examples and JSON configuration references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces memory-management instructions, file-operation workflows, and configuration guidance for an agent; it does not itself guarantee safe execution of file operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact config)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

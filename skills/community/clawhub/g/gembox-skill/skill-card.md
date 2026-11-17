@@ -1,48 +1,62 @@
-## Description: <br>
-Provides coding assistance for GemBox components across spreadsheet, document, PDF, presentation, email, imaging, and PDF viewer development. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coding assistance for GemBox components, including Spreadsheet, Document, Pdf, Presentation, Email, Imaging, and PdfViewer, for GemBox-related coding tasks.
 
-## Publisher: <br>
-[ZSvedic](https://clawhub.ai/user/ZSvedic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zsvedic](https://clawhub.ai/user/zsvedic)
 
-## Use Case: <br>
-Developers and engineers use this skill for help writing, validating, and correcting code that uses GemBox components, including local NuGet XML documentation lookup, official GemBox examples, and project compilation checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested commands may inspect local NuGet documentation or project files, including private files in the active workspace. <br>
-Mitigation: Review commands before running them and limit searches or compilation checks to the relevant project and GemBox documentation paths. <br>
-Risk: Generated GemBox code or API guidance may be incorrect for the installed package version or project configuration. <br>
-Mitigation: Compile and test the project after changes, and compare API usage against local XML docs or official GemBox documentation. <br>
+## Use Case:
 
+Developers and engineers use this skill to get coding guidance, documentation lookup direction, CLI tips, and validation steps for projects that use GemBox components.
 
-## Reference(s): <br>
-- [GemBox Components](https://www.gemboxsoftware.com/) <br>
-- [GemBox.Spreadsheet Examples](https://www.gemboxsoftware.com/spreadsheet/examples/) <br>
-- [GemBox.Spreadsheet API Documentation](https://www.gemboxsoftware.com/spreadsheet/docs) <br>
-- [GemBox.Document Examples](https://www.gemboxsoftware.com/document/examples/) <br>
-- [GemBox.Pdf Examples](https://www.gemboxsoftware.com/pdf/examples/) <br>
-- [GemBox.Presentation Examples](https://www.gemboxsoftware.com/presentation/examples/) <br>
-- [GemBox.Email Examples](https://www.gemboxsoftware.com/email/examples/) <br>
-- [GemBox.Imaging Examples](https://www.gemboxsoftware.com/imaging/examples/) <br>
-- [GemBox.PdfViewer Examples](https://www.gemboxsoftware.com/pdfviewer/examples/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline code and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include GemBox API lookup steps, code snippets, and compile-or-test validation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.9.0 (source: server release metadata) <br>
+Risk: The skill may direct the agent to official GemBox web documentation when local documentation is insufficient.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including proprietary code, credentials, private URLs, or sensitive business context in web searches or externally shared examples.
+
+Risk: The skill may activate across a broad range of GemBox-related file, document, PDF, presentation, email, image, and PDF viewer coding tasks.
+
+Mitigation: Review the generated guidance and validate GemBox-related code changes by compiling or testing the project before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zsvedic/skills/gembox-skill)
+- [GemBox official website](https://www.gemboxsoftware.com/)
+- [GemBox.Spreadsheet examples](https://www.gemboxsoftware.com/spreadsheet/examples/)
+- [GemBox.Spreadsheet API documentation](https://www.gemboxsoftware.com/spreadsheet/docs)
+- [GemBox.Document examples](https://www.gemboxsoftware.com/document/examples/)
+- [GemBox.Pdf examples](https://www.gemboxsoftware.com/pdf/examples/)
+- [GemBox.Presentation examples](https://www.gemboxsoftware.com/presentation/examples/)
+- [GemBox.Email examples](https://www.gemboxsoftware.com/email/examples/)
+- [GemBox.Imaging examples](https://www.gemboxsoftware.com/imaging/examples/)
+- [GemBox.PdfViewer examples](https://www.gemboxsoftware.com/pdfviewer/examples/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline code and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local GemBox XML documentation or official GemBox web documentation when API details are needed.]
+
+## Skill Version(s):
+
+0.9.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

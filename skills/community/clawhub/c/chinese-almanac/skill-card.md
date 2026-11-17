@@ -1,48 +1,64 @@
-## Description: <br>
-Chinese Almanac (Xie Ji Bian Fang Shu) calculates auspicious dates for marriage, business, moving, travel, and other events using traditional Chinese almanac systems such as 12 Day Officers, Yellow/Black Roads, and Pengzu Taboos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese Almanac helps agents run a local date-selection CLI that rates auspicious dates for life events using traditional Chinese almanac systems.
 
-## Publisher: <br>
-[ikplpeter](https://clawhub.ai/user/ikplpeter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ikplpeter](https://clawhub.ai/user/ikplpeter)
 
-## Use Case: <br>
-External users and agents use this skill to select culturally auspicious dates for life events such as marriage, opening a business, moving, signing contracts, travel, worship, seeking wealth, starting a job, and engagement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary notes overly broad activation phrases, especially the Japanese term for clock. <br>
-Mitigation: Narrow trigger phrases before deployment so the skill activates only for almanac or date-selection requests. <br>
-Risk: Users may treat culturally based date-selection output as professional, legal, financial, medical, or safety advice. <br>
-Mitigation: Present results as cultural or entertainment guidance and require independent review for consequential decisions. <br>
-Risk: The documentation links to an external demo site that is separate from the local CLI behavior. <br>
-Mitigation: Review the external site independently before directing users to it or relying on it in a deployment. <br>
-Risk: Release evidence lists license MIT-0, while artifact/package.json lists MIT. <br>
-Mitigation: Confirm the authoritative license terms before publication or downstream redistribution. <br>
+## Use Case:
 
+External users and developers can use this skill to evaluate dates for events such as marriage, business opening, moving, contracts, travel, renovation, worship, wealth-seeking, starting a job, or engagement. Results should be treated as traditional or entertainment-oriented guidance rather than authoritative advice.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/ikplpeter/chinese-almanac) <br>
-- [Publisher profile](https://clawhub.ai/user/ikplpeter) <br>
-- [Online demo in English](https://halfct.ltd/zeri?lang=en) <br>
-- [Online demo in Chinese](https://halfct.ltd/zeri?lang=zh) <br>
-- [Online demo in Japanese](https://halfct.ltd/zeri?lang=ja) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or JSON almanac date-selection results with dates, scores, auspicious and inauspicious activities, and related traditional indicators] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports CLI-style month and activity inputs, optional best-date selection, and localized output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Users may treat auspicious-date ratings as authoritative planning, financial, legal, medical, or professional advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present results as traditional or entertainment-oriented guidance and require users to apply independent judgment for consequential decisions.
+
+Risk: The documentation appears broader than the actual scoring logic.
+
+Mitigation: Validate important outputs against the implemented CLI behavior and avoid promising unsupported almanac factors.
+
+Risk: Broad trigger terms may activate the skill when a user only wants general calendar information.
+
+Mitigation: Confirm the user wants Chinese almanac date-selection guidance before running or applying the CLI.
+
+## Reference(s):
+
+- [Chinese Almanac on ClawHub](https://clawhub.ai/ikplpeter/skills/chinese-almanac)
+- [Online demo - English](https://halfct.ltd/zeri?lang=en)
+- [Online demo - Chinese](https://halfct.ltd/zeri?lang=zh)
+- [Online demo - Japanese](https://halfct.ltd/zeri?lang=ja)
+- [Online demo - Vietnamese](https://halfct.ltd/zeri?lang=vi)
+- [Online demo - Thai](https://halfct.ltd/zeri?lang=th)
+- [Online demo - Malay](https://halfct.ltd/zeri?lang=ms)
+- [Online demo - Hindi](https://halfct.ltd/zeri?lang=hi)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with optional CLI commands and JSON output from the local almanac script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports English, Chinese, and Japanese CLI labels; artifact documentation also links demos for Vietnamese, Thai, Malay, and Hindi.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence and SKILL.md frontmatter; artifact/package.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

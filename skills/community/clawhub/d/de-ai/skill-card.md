@@ -1,41 +1,57 @@
-## Description: <br>
-文案去AI味优化器。检测和修复AI生成文本中常见的机械感、模板化表达、过度礼貌等问题，让文本更像人写的。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Humanize Text helps detect and rewrite Chinese AI-generated copy that sounds mechanical, templated, overly formal, or too polite so it reads more like natural human writing.
 
-## Publisher: <br>
-[li-jin-xuan](https://clawhub.ai/user/li-jin-xuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[li-jin-xuan](https://clawhub.ai/user/li-jin-xuan)
 
-## Use Case: <br>
-External users and content teams use this skill to detect and rewrite Chinese AI-generated copy so social posts, customer support replies, and product descriptions sound more natural and less templated. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may rewrite tone more aggressively than intended for customer-facing or sensitive copy. <br>
-Mitigation: Review and approve rewritten text before publication or direct customer use. <br>
-Risk: Broad Chinese copywriting requests may trigger the skill when a lighter edit is intended. <br>
-Mitigation: State the desired tone, audience, and boundaries before asking the agent to rewrite copy. <br>
+## Use Case:
 
+External users, creators, support teams, and product writers use this skill to make Chinese social posts, customer replies, and product descriptions sound more natural, direct, and less AI-generated.
 
-## Reference(s): <br>
-- [Examples](references/examples.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/li-jin-xuan/de-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text rewriting guidance, with optional shell command output from the local detector script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces tone and wording changes for Chinese copy; review rewritten output before customer-facing or sensitive use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill is tailored to Chinese phrasing and style conventions, so output may be less appropriate for other languages or formal brand voices.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the rewritten text against the intended language, audience, and brand tone before publishing.
+
+Risk: The skill may activate on broad requests to make text sound more natural and could change tone, directness, or politeness more than intended.
+
+Mitigation: Ask for targeted edits and compare the result with the original before using it in customer-facing content.
+
+Risk: The included shell detector uses heuristic pattern checks and scores, not a definitive AI-content classifier.
+
+Mitigation: Treat script output as an editing cue and rely on human review for final quality decisions.
+
+## Reference(s):
+
+- [Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Natural-language guidance, Markdown examples, rewritten text, and optional shell-script detection reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Primarily tailored to Chinese copy-editing; no sensitive access or system changes are requested according to the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

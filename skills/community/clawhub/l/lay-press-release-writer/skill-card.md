@@ -1,43 +1,54 @@
-## Description: <br>
-Transforms academic paper text into university-style press releases for general audiences, alumni, and media. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transform academic papers into university press releases for general audiences.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Communications staff, researchers, and agents use this skill to turn academic paper content into a structured university press release draft. It produces headlines, lead copy, body text, quotes, boilerplate, and media contact fields for human review before publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated quotes and media contact details may be placeholders or otherwise unverified. <br>
-Mitigation: Replace quotes and contact information with approved real information before publication. <br>
-Risk: Press release summaries may misstate or oversimplify the source paper. <br>
-Mitigation: Review the generated draft against the paper and correct scientific claims before release. <br>
-Risk: The local script can write output files to a path supplied by the user. <br>
-Mitigation: Run the script only with intended inputs and output paths inside the expected workspace. <br>
+## Use Case:
 
+Communications teams, researchers, and agents use this skill to turn academic paper text or abstracts into university-style press releases for general audiences, alumni, or media. It helps draft headlines, leads, body copy, researcher quotes, institutional boilerplate, and media contact information while keeping assumptions and limits explicit.
 
-## Reference(s): <br>
-- [Audit Reference](references/audit-reference.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/lay-press-release-writer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [JSON press release draft with optional Markdown guidance and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can print JSON to stdout or write it to a user-specified output path; generated quotes and media contact details require review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md metadata) <br>
+Risk: The skill can overwrite any writable local file when an unrestricted --output path is supplied.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a sandboxed workspace and use only reviewed relative output paths until output-path restrictions prevent accidental overwrites.
+
+Risk: A stress-case audit recorded weak boundary handling for staying within the declared press-release-writing scope.
+
+Mitigation: Require enough source paper text to support the release and review all scientific claims against the source before publication.
+
+## Reference(s):
+
+- [Audit Reference](artifact/references/audit-reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/skills/lay-press-release-writer)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, markdown, shell commands, guidance]
+
+**Output Format:** [Structured JSON press release output, with optional Markdown guidance and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires paper_text; optional metadata includes paper title, authors, institution, publication venue, target audience, tone, and output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

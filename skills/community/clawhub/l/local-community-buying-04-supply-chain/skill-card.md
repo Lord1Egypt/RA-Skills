@@ -1,39 +1,54 @@
-## Description: <br>
-Provides a community group-buying supply chain and procurement playbook covering supplier development, qualification review, scorecards, procurement negotiation, warehouse management, delivery fulfillment, and supporting tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language community group-buying supply chain playbook covering supplier development, qualification review, supplier scoring, procurement negotiation, warehousing, delivery fulfillment, and supporting calculators.
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
 
-## Use Case: <br>
-External community group-buying operators, procurement leads, and supply-chain managers use this skill to plan supplier sourcing, qualification, negotiation, warehousing, delivery fulfillment, and supplier scorecard workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Procurement, food-safety, legal, supplier-risk, or financial recommendations may be incomplete or unsuitable for a user's jurisdiction or operating model. <br>
-Mitigation: Have qualified business, legal, food-safety, and finance reviewers approve decisions before operational use. <br>
-Risk: Embedded Python scoring examples may be adapted into production without validation. <br>
-Mitigation: Review, test, and harden any code examples before using them in operational systems. <br>
+## Use Case:
 
+External operators, procurement leads, and supply chain managers use this skill to structure community group-buying supplier sourcing, qualification, negotiation, warehouse control, fulfillment, and supplier performance review.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown with embedded Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes supplier grading models, SOPs, checklists, negotiation guidance, warehouse controls, and local calculator examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Supplier scores, calculator outputs, legal claims, blacklist decisions, and reporting actions may be incorrect or context-dependent if used without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the calculators and guidance as advisory examples and verify formulas, supplier ratings, legal claims, blacklist decisions, and reporting actions with qualified business or legal reviewers before operational use.
+
+Risk: The skill is a Chinese-language procurement reference and may not fit teams that need another language or market-specific compliance coverage.
+
+Mitigation: Install it only when a Chinese-language community group-buying procurement reference is useful, and adapt operational details to local business and legal requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nic-yuan/skills/local-community-buying-04-supply-chain)
+- [ClawHub publisher profile](https://clawhub.ai/user/nic-yuan)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Chinese-language Markdown guidance with embedded Python calculator examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advisory supply-chain playbooks, SOPs, scoring rubrics, checklists, and local calculator examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

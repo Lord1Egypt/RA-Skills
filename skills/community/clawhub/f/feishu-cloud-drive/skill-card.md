@@ -1,44 +1,61 @@
-## Description: <br>
-基于飞书官方 API 的云盘管理技能，支持文件列表查询、上传、下载、文件夹创建、权限管理、文件搜索、统计信息、快捷方式、复制移动等完整功能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于飞书官方 API 的云盘管理技能，支持文件列表查询、上传、下载、文件夹创建、权限管理、文件搜索、统计信息、快捷方式、复制移动等完整功能。
 
-## Publisher: <br>
-[han880520](https://clawhub.ai/user/han880520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[han880520](https://clawhub.ai/user/han880520)
 
-## Use Case: <br>
-Developers and operations teams use this skill to automate Feishu Drive file listing, upload, download, folder creation, search, copy, move, deletion, and sharing workflows through the Feishu Open Platform APIs. It is suited for agents that need governed cloud-drive operations with explicit credentials and scoped workspace access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform powerful Feishu Drive operations, including deletes, moves, sharing, uploads, and downloads. <br>
-Mitigation: Use a dedicated Feishu app with minimum required scopes, set FEISHU_ROOT_FOLDER_TOKEN to restrict the working area, and confirm destructive or permission-changing actions before execution. <br>
-Risk: FEISHU_APP_SECRET and access tokens can expose cloud-drive access if mishandled. <br>
-Mitigation: Store credentials only in environment variables or a secrets manager, avoid committing them to source control, and rotate them according to the organization's credential policy. <br>
-Risk: Contact lookup and access-record operations can expose sensitive workplace identity and activity data. <br>
-Mitigation: Limit use to necessary workflows, restrict returned data handling, and avoid logging contact lookup results or access records unless approved. <br>
+## Use Case:
 
+Developers and workspace administrators use this skill to configure a Feishu app and let an agent manage Feishu Drive files and folders through Feishu's official APIs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/han880520/feishu-cloud-drive) <br>
-- [Feishu Open Platform](https://open.feishu.cn) <br>
-- [Feishu Drive permission FAQ](https://open.feishu.cn/document/server-docs/docs/drive-v1/faq#b02e5bfb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python examples, shell commands, and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create, modify, move, share, upload, download, or delete Feishu Drive files and folders when the agent executes the provided API operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.5 (source: server release evidence and artifact _meta.json) <br>
+Risk: The skill can upload, download, share, move, copy, and delete Feishu Drive data using app credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege Feishu app and limit it to a test or approved root folder before enabling agent-driven operations.
+
+Risk: Broad production Drive permissions could allow unintended file changes or disclosure if an agent receives an unsafe request.
+
+Mitigation: Add external controls for user confirmation, allowed folders, upload and download paths, and audit logging before production use.
+
+Risk: FEISHU_APP_SECRET is sensitive and grants access to tenant-level API actions configured for the app.
+
+Mitigation: Store the secret only in environment or secret-management systems, rotate it periodically, and review permission grants before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/han880520/skills/feishu-cloud-drive)
+- [Feishu Open Platform](https://open.feishu.cn)
+- [Feishu Drive API documentation](https://open.feishu.cn/document/server-docs/docs/drive-v1)
+- [Feishu Explorer API documentation](https://open.feishu.cn/document/server-docs/docs/drive-explorer)
+- [Feishu permission member API documentation](https://open.feishu.cn/document/server-docs/docs/permission/permission-member/create)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with shell and Python examples; the Python client returns dictionary-style API responses and can read or write files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FEISHU_APP_ID and FEISHU_APP_SECRET; FEISHU_ROOT_FOLDER_TOKEN is optional for scoping operations to a default folder.]
+
+## Skill Version(s):
+
+1.1.5 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

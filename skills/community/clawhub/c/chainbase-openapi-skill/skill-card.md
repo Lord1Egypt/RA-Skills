@@ -1,43 +1,57 @@
-## Description: <br>
-Operate Chainbase indexed wallet and token reads through UXC with a curated OpenAPI schema, API-key auth, and read-first guardrails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate Chainbase indexed wallet and token reads through UXC with a curated OpenAPI schema, API-key auth, and read-first guardrails.
 
-## Publisher: <br>
-[jolestar](https://clawhub.ai/user/jolestar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jolestar](https://clawhub.ai/user/jolestar)
 
-## Use Case: <br>
-Developers and agents use this skill to configure UXC authentication and run read-only Chainbase Web3 API queries for wallet balances, token data, transaction history, token prices, and transaction details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queried wallet addresses, token contract addresses, and transaction hashes are sent to Chainbase under the user's API key. <br>
-Mitigation: Use a dedicated Chainbase API key where practical, rotate it when needed, and avoid submitting sensitive identifiers unless the data sharing is acceptable. <br>
-Risk: The skill references a mutable GitHub main-branch URL for the OpenAPI schema. <br>
-Mitigation: Use the bundled schema or a pinned schema URL when repeatability or change control matters. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure UXC and run read-only Chainbase wallet, token, and transaction data queries with API-key authentication.
 
-## Reference(s): <br>
-- [Usage Patterns](references/usage-patterns.md) <br>
-- [Curated OpenAPI Schema](references/chainbase-web3.openapi.json) <br>
-- [Chainbase API Key Authentication](https://docs.chainbase.com/quickstart/authenticate-your-api-key) <br>
-- [Chainbase Web3 API Documentation](https://docs.chainbase.com/api-reference/web3-api/balance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls] <br>
-**Output Format:** [Markdown with inline bash commands and JSON API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only operations; queried wallet addresses, token contract addresses, and transaction hashes are sent to Chainbase under the user's API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The setup can load a changeable remote OpenAPI schema, so generated CLI behavior may differ from the reviewed package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer linking UXC to the bundled local schema or to an immutable, verified schema URL before running generated commands.
+
+Risk: Wallet addresses, token contracts, and holder lookups are sent to Chainbase during API reads.
+
+Mitigation: Use a Chainbase API key with the least privileges available and avoid broad wallet or token-holder crawls unless those queries are acceptable.
+
+## Reference(s):
+
+- [Usage patterns](references/usage-patterns.md)
+- [Curated OpenAPI schema](references/chainbase-web3.openapi.json)
+- [Remote curated OpenAPI schema](https://raw.githubusercontent.com/holon-run/uxc/main/skills/chainbase-openapi-skill/references/chainbase-web3.openapi.json)
+- [Chainbase API key authentication docs](https://docs.chainbase.com/quickstart/authenticate-your-api-key)
+- [Chainbase Web3 API balance docs](https://docs.chainbase.com/api-reference/web3-api/balance)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON API outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only Chainbase API operations through UXC; API responses use JSON envelopes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

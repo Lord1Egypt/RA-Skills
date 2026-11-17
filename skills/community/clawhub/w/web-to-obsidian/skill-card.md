@@ -1,44 +1,56 @@
-## Description: <br>
-Web-to-obsidian fetches web articles, optionally translates non-Chinese content into Chinese, and saves the result as Obsidian-compatible Markdown with metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+抓取网页文章并保存到 Obsidian vault。当用户想要保存网页文章、博客、文档到 Obsidian 时使用，特别是提到"保存到 Obsidian"、"存到 Obsidian"、"抓取网页"、"网页转 Obsidian"、"导入文章"等场景。支持自动翻译非中文内容为中文，生成元数据（标签、摘要、标题），并以 Obsidian Markdown 格式存储。
 
-## Publisher: <br>
-[ioriiod0](https://clawhub.ai/user/ioriiod0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ioriiod0](https://clawhub.ai/user/ioriiod0)
 
-## Use Case: <br>
-Developers, knowledge workers, and Obsidian users use this skill to capture web articles, blogs, and documentation as structured Obsidian notes with source links, tags, summaries, and optional Chinese translation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Submitted URLs may be processed by third-party fetch and conversion services. <br>
-Mitigation: Use only public, non-sensitive URLs unless the workflow is changed to require explicit third-party opt-in or local fetching. <br>
-Risk: HTTPS verification is weakened in the bundled fetch scripts. <br>
-Mitigation: Review and update the fetch scripts to use normal HTTPS certificate verification before handling sensitive content. <br>
-Risk: Fetched content is written into an Obsidian vault and may include private or untrusted material. <br>
-Mitigation: Review generated Markdown before import and avoid saving private, intranet, token-bearing, or otherwise sensitive pages. <br>
-Risk: A fixed temporary filename can overwrite or expose intermediate content in the working directory. <br>
-Mitigation: Use a unique secure temporary file and remove it after import. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ioriiod0/web-to-obsidian) <br>
-- [Publisher profile](https://clawhub.ai/user/ioriiod0) <br>
+## Use Case:
 
+Developers, researchers, and knowledge workers use this skill to fetch web articles, blogs, and documentation, optionally translate non-Chinese content into Chinese, generate metadata, and save the result as an Obsidian-ready Markdown note.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Obsidian-compatible Markdown with YAML frontmatter and command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a temporary Markdown file before importing it into an Obsidian vault.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Article URLs and fetched content may be sent to third-party conversion services.
+
+Mitigation: Avoid private, internal, signed, tokenized, or sensitive URLs unless the user explicitly accepts external URL forwarding.
+
+Risk: Weak transport security can reduce confidence in fetched content integrity.
+
+Mitigation: Review fetched Markdown before importing it into Obsidian and prefer trusted sources.
+
+Risk: Imported or translated content may be inaccurate or misleading.
+
+Mitigation: Ask the user to review translated text, metadata, and generated tags before relying on the saved note.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ioriiod0/skills/web-to-obsidian)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Obsidian-compatible Markdown with YAML frontmatter, plus shell commands and user-facing status guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a temporary Markdown file before importing the note into an Obsidian vault.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

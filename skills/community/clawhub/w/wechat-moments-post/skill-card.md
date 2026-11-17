@@ -1,43 +1,58 @@
-## Description: <br>
-Automate posting to WeChat Moments on Windows desktop by opening the Moments window, triggering the publish entry, selecting an image, pasting a caption, clicking publish, and checking the result. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates posting an image and caption to WeChat Moments on Windows desktop by opening Moments, selecting an image, pasting caption text, publishing, and checking the result.
 
-## Publisher: <br>
-[zch-danny](https://clawhub.ai/user/zch-danny) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zch-danny](https://clawhub.ai/user/zch-danny)
 
-## Use Case: <br>
-External users and automation operators use this skill to publish an image and caption to WeChat Moments from a Windows desktop session. It is intended for workflows where the account, target image, caption, and publish action have already been intentionally chosen. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The automation can publish directly to a live WeChat Moments account without a final confirmation step. <br>
-Mitigation: Run it only when the account, image path, caption, and intended audience have been verified, and prefer adding or enforcing a manual confirmation before the Publish click. <br>
-Risk: The configured WeChat executable path could point to an unintended program. <br>
-Mitigation: Review WECHAT_EXE before execution and confirm it points to the real WeChat desktop executable. <br>
-Risk: Temporary screenshots used for OCR verification can contain account or desktop content. <br>
-Mitigation: Keep sensitive windows closed while running the skill and delete the temporary screenshot directory after use. <br>
+## Use Case:
 
+External users and developers use this skill to automate a Windows desktop WeChat Moments posting workflow when they need to publish a configured image and caption through the WeChat UI.
 
-## Reference(s): <br>
-- [WeChat Moments workflow](references/workflow.md) <br>
-- [ClawHub skill page](https://clawhub.ai/zch-danny/wechat-moments-post) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python script references and environment-variable configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces desktop automation steps that may operate a live WeChat session and write temporary screenshots for verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can automatically click through the WeChat desktop UI and publish a post without a final built-in confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the configured image and caption before running the publish step, and run it only when the WeChat session is ready for posting.
+
+Risk: The skill captures broad desktop and WeChat screenshots into a temporary directory.
+
+Mitigation: Close or hide sensitive desktop content before execution and clean the configured temporary screenshot directory afterward.
+
+Risk: OCR or GUI targeting can misread the compose window or fail to paste the caption accurately.
+
+Mitigation: Use explicit verification keywords when possible and manually check the compose window before relying on the published result.
+
+## Reference(s):
+
+- [WeChat Moments workflow reference](references/workflow.md)
+- [ClawHub skill page](https://clawhub.ai/zch-danny/skills/wechat-moments-post)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown guidance with Python script execution steps and environment-variable configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a logged-in Windows desktop WeChat session and user-provided image and caption values.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Automatically records task experiences, generates tags, requests peer help after negative feedback, and shares matching local experiences with other assistants. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically records task experience and tags, requests help from peer AI assistants when negative feedback is detected, and shares stored experience to support collaboration.
 
-## Publisher: <br>
-[mwl481306354-blip](https://clawhub.ai/user/mwl481306354-blip) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mwl481306354-blip](https://clawhub.ai/user/mwl481306354-blip)
 
-## Use Case: <br>
-Developers and OpenClaw users can use this plugin to keep a local experience history, inspect recent task outcomes, and request or provide peer assistance through commands and HTTP endpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private prompts, tool-call details, summarized results, and host-identifying metadata may be stored locally or shared through peer help flows. <br>
-Mitigation: Use only for non-sensitive work, review and clear experience files regularly, and prefer deployments with redaction, retention limits, and per-request sharing approval. <br>
-Risk: Automatic network connection and peer assistance can broaden data exposure beyond the local agent environment. <br>
-Mitigation: Disable autoConnect unless peer help is required, and connect only in environments where sharing help requests with other clients is acceptable. <br>
-Risk: The release has a license mismatch between server evidence and package metadata. <br>
-Mitigation: Confirm the authoritative release license before public publication or downstream redistribution. <br>
+## Use Case:
 
+Developers and OpenClaw users use this plugin to capture task experience, search recent experience records, and exchange help with peer assistants through chat commands and HTTP endpoints.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mwl481306354-blip/clawdbot-mutual-aid) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, configuration, guidance] <br>
-**Output Format:** [Command text, HTTP JSON responses, and local JSON experience records.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include summarized prompts, tool-call details, generated tags, help requests, and peer responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release, openclaw.plugin.json, package.json) <br>
+Risk: Automatic local logging and peer-network sharing can expose prompts, tool activity, private context, or proprietary information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only where local logging and peer sharing are acceptable; avoid tasks containing secrets, personal data, private files, or proprietary information until redaction and sharing controls are reviewed.
+
+Risk: Automatic peer-network connection can share stored experience without clear per-item consent.
+
+Mitigation: Disable autoConnect unless peer sharing is explicitly needed, and review stored experience records before enabling networked help exchange.
+
+Risk: Bundled network credentials and long-lived configuration may be unsuitable for shared or production environments.
+
+Mitigation: Provide environment-specific credentials through configuration or environment variables and rotate them before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mwl481306354-blip/skills/clawdbot-mutual-aid)
+- [Artifact skill documentation](artifact/SKILL.md)
+- [Artifact package metadata](artifact/package.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance, Configuration]
+
+**Output Format:** [Command text and HTTP JSON responses backed by local JSON experience records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Records task descriptions, tool-call summaries, generated tags, success state, reputation counters, and peer-help responses in local state.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, openclaw.plugin.json, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

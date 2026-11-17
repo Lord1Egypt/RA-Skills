@@ -7,19 +7,36 @@ breakdown, overlap analysis, and storage impact of shared content.
 """
 
 import sys
-from typing import Any, Optional
+from typing import Any
 
 from _common import (
     PhotosDB,
     _safe_col,
-    coredata_to_datetime,
+    coredata_to_local,
     format_size,
+    has_timezone_offset,
     run_script,
+    tz_offset_sql,
 )
+from _schema import FILE_SIZE, Degradation, get_schema
+
+# Schema contract (T1.4): see _schema. Missing required → exit 5; missing optional → `degraded`.
+REQUIRED_COLUMNS: tuple[str, ...] = (
+    "ZASSET.ZDATECREATED",
+    "ZASSET.ZFAVORITE",
+    "ZASSET.ZFILENAME",
+    "ZASSET.ZKIND",
+    "ZASSET.ZTRASHEDSTATE",
+    *FILE_SIZE,
+)
+OPTIONAL_COLUMNS: dict[str, tuple[str, ...]] = {
+    "shared_library": ("asset.library_scope",),
+    "contributors": ("asset.shared_library_scope_id",),
+}
 
 
 def analyze_shared_library(
-    db_path: Optional[str] = None,
+    db_path: str | None = None,
 ) -> dict[str, Any]:
     """
     Analyze the Shared Library vs Personal Library.
@@ -27,18 +44,18 @@ def analyze_shared_library(
     Returns a breakdown of personal vs shared assets, storage comparison,
     contributor identifiers, and content-type distributions.
     """
-    with PhotosDB(db_path) as conn:
+    with PhotosDB(db_path, require=REQUIRED_COLUMNS, operation="Shared Library analysis") as conn:
         cursor = conn.cursor()
+        tz_available = has_timezone_offset(cursor)
 
         # Check which columns are available
-        cursor.execute("PRAGMA table_info(ZASSET)")
-        columns = {row["name"] for row in cursor.fetchall()}
-        has_scope = "ZLIBRARYSCOPE" in columns
-        has_shared_id = "ZSHAREDLIBRARYSCOPEIDENTIFIER" in columns
-        has_active = "ZACTIVELIBRARYSCOPEPARTICIPATIONSTATE" in columns
+        degraded = Degradation(get_schema(conn))
+        has_scope = degraded.check("shared_library", *OPTIONAL_COLUMNS["shared_library"])
+        has_shared_id = degraded.check("contributors", *OPTIONAL_COLUMNS["contributors"])
 
         if not has_scope:
             return {
+                "degraded": degraded.entries,
                 "error": "Shared Library columns not found. "
                 "Shared Library requires macOS 13+ / iOS 16+ and Photos database v16+.",
                 "shared_library_enabled": False,
@@ -59,11 +76,10 @@ def analyze_shared_library(
             "a.ZFAVORITE",
             "a.ZLIBRARYSCOPE",
             "aa.ZORIGINALFILESIZE",
+            f"{tz_offset_sql(tz_available)} AS tz_offset",
         ]
         if has_shared_id:
             select_cols.append("a.ZSHAREDLIBRARYSCOPEIDENTIFIER")
-        if has_active:
-            select_cols.append("a.ZACTIVELIBRARYSCOPEPARTICIPATIONSTATE")
 
         query = f"""
             SELECT {", ".join(select_cols)}
@@ -93,7 +109,7 @@ def analyze_shared_library(
             kind = rd.get("ZKIND", 0) or 0
             is_shared = scope != 0
 
-            created = coredata_to_datetime(rd["ZDATECREATED"])
+            created = coredata_to_local(rd["ZDATECREATED"], rd["tz_offset"])
             yr = str(created.year) if created else "Unknown"
             mo = created.strftime("%Y-%m") if created else "Unknown"
 
@@ -151,6 +167,7 @@ def analyze_shared_library(
         monthly_sorted = sorted(shared_by_month.items(), reverse=True)[:12]
 
         return {
+            "degraded": degraded.entries,
             "shared_library_enabled": shared_enabled,
             "contributors": contributor_list,
             "shared_by_year": [

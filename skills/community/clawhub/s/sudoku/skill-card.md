@@ -1,42 +1,55 @@
-## Description: <br>
-Fetch Sudoku puzzles and store them as JSON in the workspace; render images on demand; reveal solutions later. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch Sudoku puzzles and store them as JSON in the workspace; render images on demand; reveal solutions later.
 
-## Publisher: <br>
-[odrobnik](https://clawhub.ai/user/odrobnik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[odrobnik](https://clawhub.ai/user/odrobnik)
 
-## Use Case: <br>
-External users and puzzle creators use this skill to fetch Sudoku puzzles, store reusable puzzle JSON, render printable or viewable boards, and reveal full or partial solutions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts external Sudoku puzzle sites to fetch puzzle data. <br>
-Mitigation: Run it only where outbound access to those puzzle sources is acceptable, and review fetched content before sharing or relying on it. <br>
-Risk: The skill creates local puzzle files, renders, solutions, and share links in the workspace. <br>
-Mitigation: Use a workspace appropriate for saved puzzle answers and avoid sharing saved files when solutions should remain private. <br>
+## Use Case:
 
+Developers, educators, and puzzle creators use this skill to fetch Sudoku puzzles, save reusable puzzle JSON, render print-ready puzzle sheets, and reveal solutions when needed.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/odrobnik/sudoku) <br>
-- [Sudoku Data Format](references/DATA_FORMAT.md) <br>
-- [SudokuOnline puzzle source](https://www.sudokuonline.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files] <br>
-**Output Format:** [JSON responses, Markdown links, and workspace files such as JSON, PNG, PDF, or HTML.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates workspace-local puzzle and render files under sudoku/puzzles/ and sudoku/renders/; may contact Sudoku puzzle sites to fetch puzzles.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.6.0 (source: frontmatter and server release evidence) <br>
+Risk: A helper script can fetch arbitrary web URLs, which is broader than the documented sudokuonline.io workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the documented sudoku.py preset commands and avoid invoking sudoku_fetcher.py with arbitrary URLs in restricted environments.
+
+Risk: Commands write puzzle JSON and render artifacts into the workspace.
+
+Mitigation: Run the skill only in workspaces where sudoku/puzzles/ and sudoku/renders/ outputs are expected, and review generated files before reuse.
+
+## Reference(s):
+
+- [Sudoku data format](references/DATA_FORMAT.md)
+- [ClawHub Sudoku skill page](https://clawhub.ai/odrobnik/skills/sudoku)
+- [Sudoku Online puzzle source](https://www.sudokuonline.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, files, shell commands, guidance]
+
+**Output Format:** [CLI output plus workspace files: JSON puzzle records, PNG/PDF/HTML renders, solution images, and share links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes puzzle and render files into the workspace and contacts external Sudoku or SudokuPad-related services when commands are invoked.]
+
+## Skill Version(s):
+
+2.6.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

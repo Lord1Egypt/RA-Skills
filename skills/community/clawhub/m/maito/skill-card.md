@@ -1,42 +1,57 @@
-## Description: <br>
-Use when the user asks how to operate Maito end to end, connect Maito to an agent, manage a Maito workspace, run newsletter publishing, create social drafts, manage subscribers, inspect attribution, work with sponsors, or use authenticated Maito MCP tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maito helps agents operate Maito end to end for newsletter publishing, social drafts, subscriber management, attribution review, sponsor workflows, and authenticated Maito MCP tool use.
 
-## Publisher: <br>
-[freeman14](https://clawhub.ai/user/freeman14) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freeman14](https://clawhub.ai/user/freeman14)
 
-## Use Case: <br>
-External publishers and operators use this skill to manage Maito newsletters, social drafts, subscriber workflows, attribution, and sponsor materials. It guides authenticated Maito changes when tools are connected and returns a Maito-ready handoff when they are not. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Publishing, sending, scheduling, subscriber changes, sponsor outreach, or payments can affect audiences, customer records, or commercial commitments. <br>
-Mitigation: Require explicit user approval before these actions and report only changes that succeeded through authenticated Maito tools. <br>
-Risk: Maito workflows can involve private subscriber data, analytics, sponsor contracts, credentials, tokens, or private URLs. <br>
-Mitigation: Keep sensitive data out of committed files and public content, and summarize only the information needed for review. <br>
-Risk: Drafts, sponsor proof, and attribution analysis may contain unsupported claims or inferred explanations. <br>
-Mitigation: Separate verified Maito data from inference, preserve source notes, and require human review before publishing or external use. <br>
+## Use Case:
 
+External users, developers, and publishing operators use this skill to connect an agent to a Maito workspace, prepare newsletter and social content, manage subscribers and attribution, and coordinate sponsor workflows with approval gates.
 
-## Reference(s): <br>
-- [Maito MCP Tools Documentation](https://getmaito.com/docs/mcp/tools) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown with structured drafts, summaries, checklists, and handoff notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an authenticated Maito session or authenticated Maito MCP tools for persistence; otherwise outputs a Maito-ready handoff.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can guide an agent that reads or updates newsletter, subscriber, analytics, and sponsor information in a Maito workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review connected Maito permissions before use and limit workspace access to the intended publication and task.
+
+Risk: Publishing, sending, scheduling, subscriber changes, sponsor outreach, or destructive edits could have external or irreversible impact.
+
+Mitigation: Require explicit user approval before those actions and read the current Maito state before making workspace changes.
+
+Risk: Private workspace data, subscriber records, analytics exports, sponsor contracts, credentials, or private URLs could be exposed in public content or committed files.
+
+Mitigation: Keep sensitive Maito data and credentials out of public outputs and committed artifacts.
+
+## Reference(s):
+
+- [Maito MCP Tools Documentation](https://getmaito.com/docs/mcp/tools)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown and plain text workflow guidance, drafts, checklists, status summaries, and Maito-ready handoffs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference authenticated Maito tool results when connected; otherwise produces handoff instructions without claiming persistence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

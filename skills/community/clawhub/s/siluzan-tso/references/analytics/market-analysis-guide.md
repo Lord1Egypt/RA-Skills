@@ -1,4 +1,4 @@
-# 战略市场分析（Market Analysis）
+﻿# 战略市场分析（Market Analysis）
 
 > 对齐 TSO Copilot `getMarketReport` 业务目标；**Skill/CLI 场景**与网页版分工不同：
 >
@@ -26,7 +26,7 @@
 | **战略市场分析** | `market-analysis collect` + Agent + `render`   | KA 战略报告（公开数据 + Agent 归纳） |
 | **网站诊断**     | `website-diagnosis collect` + Agent + `render` | 落地页 6 模块评分                    |
 | **账户周期报告** | `google-analysis`                              | 广告投放数据                         |
-| **拓词市场指标** | `keyword suggest`                              | Keyword Planner 搜索量/CPC           |
+| **拓词市场指标** | `keyword -k`                                   | Keyword Planner 搜索量/CPC           |
 
 ---
 
@@ -86,7 +86,7 @@ siluzan-tso market-analysis render \
    ```bash
    siluzan-tso market-analysis render --data ./snap-market/market-report.json --out ./snap-market/market-analysis-report.html
    ```
-7. 向用户交付 HTML 路径；说明需联网加载 Bootstrap / ECharts CDN（`homeCDN/echarts.js`）。
+7. 向用户交付 HTML 路径；说明需联网加载 Bootstrap / ECharts CDN（`homeCDN/echarts.min.js`）。
 
 **禁止**跳过 `render` 直接把聊天里的 HTML 当终稿；**禁止**编造无来源的具体数据。
 

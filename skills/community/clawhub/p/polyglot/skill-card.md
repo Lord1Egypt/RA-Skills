@@ -1,40 +1,57 @@
-## Description: <br>
-Translate text to any language with formality control and cultural notes. Target language defaults to English. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Translate text into a language the user names, through AIProx (aiprox.dev): one POST /v1/translate for 40 sats (up to 6,000 characters), paid in Bitcoin Lightning (L402 or a LightningProx spend token). Detects the source language. Use it when the user asks for a translation and agrees to pay.
 
-## Publisher: <br>
-[unixlamadev-spec](https://clawhub.ai/user/unixlamadev-spec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unixlamadev-spec](https://clawhub.ai/user/unixlamadev-spec)
 
-## Use Case: <br>
-External users and developers use Polyglot to translate messages, documents, and other text while controlling formality and receiving cultural or idiomatic notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Input text is sent to AIProx and downstream model providers for translation. <br>
-Mitigation: Use the skill only for text approved for external processing. <br>
-Risk: The skill requires an AIProx spend token for paid API access. <br>
-Mitigation: Keep the spend token secret, prefer scoped or revocable tokens, and monitor usage or billing. <br>
+## Use Case:
 
+External users who need a text translation use Polyglot to translate up to 6,000 characters into a language they specify and receive the detected source language. Each request costs 40 sats and requires user approval.
 
-## Reference(s): <br>
-- [AIProx homepage](https://aiprox.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Structured text or JSON-style translation response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include translated text, detected source language, target language, formality level, and cultural notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Text sent for translation is shared with AIProx and its disclosed LightningProx processing service; retention was not independently verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only text you are comfortable sharing, and exclude secrets and personal data.
+
+Risk: A LightningProx spend token is a bearer credential, and each translation costs 40 sats.
+
+Mitigation: Confirm the charge before each request and use a minimally funded token or an individual Lightning invoice.
+
+## Reference(s):
+
+- [AIProx](https://aiprox.dev)
+- [AIProx API documentation](https://aiprox.dev/docs.html)
+- [Translation API endpoint](https://aiprox.dev/v1/translate)
+- [LightningProx spend token top-up](https://lightningprox.com/topup)
+- [AIProx trial](https://aiprox.dev/start)
+
+## Skill Output:
+
+**Output Type(s):** [Text]
+
+**Output Format:** [Plain text translation with detected source language]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Input is limited to 6,000 characters and requires a target language.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

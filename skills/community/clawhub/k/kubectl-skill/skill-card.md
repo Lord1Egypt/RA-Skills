@@ -1,47 +1,57 @@
-## Description: <br>
-Provides detailed kubectl command references for managing Kubernetes resources, cluster information, logs, debugging, context switching, and advanced operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides detailed kubectl command references for managing Kubernetes resources, cluster information, logs, debugging, context switching, and advanced operations.
 
-## Publisher: <br>
-[xpdd](https://clawhub.ai/user/xpdd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xpdd](https://clawhub.ai/user/xpdd)
 
-## Use Case: <br>
-Developers and platform engineers use this skill as a static kubectl reference for Kubernetes resource management, command syntax lookup, cluster inspection, logging, debugging, and context management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Some generated reference pages may include unrelated database or storage options. <br>
-Mitigation: Check command flags against kubectl --help or official Kubernetes documentation before using them. <br>
-Risk: Some examples may expose credentials or sensitive cluster information. <br>
-Mitigation: Avoid sharing outputs containing secrets, command-line passwords, kubeconfig data, service account tokens, or cluster endpoints. <br>
-Risk: Mutating kubectl commands can change or disrupt Kubernetes clusters. <br>
-Mitigation: Review delete, apply, certificate approval, RBAC, exec, kubeconfig, and profile-editing commands before running them against a live cluster. <br>
+## Use Case:
 
+Developers and Kubernetes operators use this skill to look up kubectl syntax, options, examples, and operational guidance for cluster administration and workload debugging.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xpdd/kubectl-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/xpdd) <br>
-- [Kubernetes kubectl reference](artifact/_index.md) <br>
-- [kubectl quick reference](artifact/quick-reference.md) <br>
-- [kubectl JSONPath support](artifact/jsonpath.md) <br>
-- [kubectl commands](artifact/generated/kubectl.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reference material with inline shell commands and command option tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference content; users should verify generated command options against kubectl --help or official Kubernetes documentation before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Kubectl examples can perform live cluster administration, including changes to workloads, namespaces, contexts, and resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the current kubeconfig context, namespace, target resource, and any destructive flags before allowing an agent to run generated commands.
+
+Risk: Command examples may reveal or manipulate sensitive cluster configuration when used with options such as raw kubeconfig output or exec-style debugging.
+
+Mitigation: Review commands for secret exposure and restrict execution to appropriately authorized environments.
+
+## Reference(s):
+
+- [Kubernetes kubectl reference](https://kubernetes.io/docs/reference/kubectl/)
+- [Kubernetes kubectl quick reference](https://kubernetes.io/docs/reference/kubectl/quick-reference/)
+- [Kubernetes kubectl command reference](https://kubernetes.io/docs/reference/kubectl/generated/kubectl/)
+- [Kubernetes kubectl JSONPath support](https://kubernetes.io/docs/reference/kubectl/jsonpath/)
+- [Kubectl Book](https://kubectl.docs.kubernetes.io)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and command-reference tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language kubectl reference content with command examples and operational cautions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, released 2026-04-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

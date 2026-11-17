@@ -1,44 +1,63 @@
-## Description: <br>
-Use APIDot for music generation API workflows, including model routing, async task submission, task_id handling, polling, and webhook integration based on APIDot docs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use APIDot for music generation API workflows, including text-to-music API, song generation API, Generate Music API, MiniMax Music 2.6 API, async task submission, task_id handling, polling, task status, and webhook integration based on APIDot docs.
 
-## Publisher: <br>
-[jiehao71727](https://clawhub.ai/user/jiehao71727) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiehao71727](https://clawhub.ai/user/jiehao71727)
 
-## Use Case: <br>
-Developers and agents use this documentation-only skill to guide APIDot music generation integrations, including choosing music API docs, handling asynchronous jobs, polling task status, and designing webhook workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiehao71727/apidot-music-generation-api) <br>
-- [APIDot docs](https://apidot.ai/docs) <br>
-- [APIDot music models](https://apidot.ai/models/music) <br>
-- [APIDot quickstart](https://apidot.ai/docs/quickstart) <br>
-- [APIDot webhooks](https://apidot.ai/docs/webhooks) <br>
-- [Generate Music docs](https://apidot.ai/docs/generate-music) <br>
-- [MiniMax Music 2.6 docs](https://apidot.ai/docs/minimax-music-2-6) <br>
-- [APIDot examples](https://github.com/APIDotAI/apidot-examples) <br>
+Developers and engineers use this skill to route APIDot music-generation questions to current docs, examples, and async integration guidance for task submission, polling, and webhooks.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with links, request-shaping advice, and concise code or configuration snippets when useful.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output. Security guidance emphasizes keeping APIDOT_API_KEY server-side, avoiding secret or generated-audio URL logging, and making live API calls only from a safe backend environment.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Real APIDot API use can expose API keys, prompts, generated audio URLs, or callback URLs if handled in browser code, logs, screenshots, public repos, or chat output.
+
+Mitigation: Keep APIDOT_API_KEY server-side, use environment variables or a backend secret manager, and avoid logging private prompts, generated URLs, or callback URLs.
+
+Risk: Live API calls may affect a user's account or workflow if made without explicit approval.
+
+Mitigation: Make live APIDot API calls only when the user explicitly asks and provides a safe server-side environment.
+
+Risk: Model-specific request fields, pricing, availability, reliability, refund behavior, or comparisons can become inaccurate if invented from memory.
+
+Mitigation: Use current APIDot docs and model pages for model-specific details and do not infer unsupported claims.
+
+## Reference(s):
+
+- [APIDot API Docs](https://apidot.ai/docs)
+- [APIDot Music Models](https://apidot.ai/models/music)
+- [APIDot Quickstart](https://apidot.ai/docs/quickstart)
+- [APIDot Webhooks](https://apidot.ai/docs/webhooks)
+- [Generate Music Docs](https://apidot.ai/docs/generate-music)
+- [MiniMax Music 2.6 Docs](https://apidot.ai/docs/minimax-music-2-6)
+- [APIDot Examples](https://github.com/APIDotAI/apidot-examples)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown guidance with API integration notes, links, and copyable code or configuration when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; no executable files, automatic network calls, or stored credentials.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

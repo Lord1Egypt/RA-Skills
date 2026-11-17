@@ -1,42 +1,53 @@
-## Description: <br>
-Use when the user asks to write, compose, make, or generate a song as an actual MIDI/instrumental artifact rather than lyrics or a Suno prompt. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates original MIDI instrumental compositions, melodies, chord progressions, ambient loops, game music, and website music from user-provided titles.
 
-## Publisher: <br>
-[lostviolinist](https://clawhub.ai/user/lostviolinist) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lostviolinist](https://clawhub.ai/user/lostviolinist)
 
-## Use Case: <br>
-External users and developers use this skill to generate short original instrumental MIDI compositions, manifests, composition plans, and optional audition sets from titles or music prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates local MIDI and JSON artifacts that may need review before use in a project. <br>
-Mitigation: Review generated song files, manifests, and critic output before publishing or relying on the composition. <br>
-Risk: Feedback notes and ratings can be saved locally for future personalization. <br>
-Mitigation: Avoid entering sensitive information in feedback, and delete ~/.hermes/music-composer-preferences.json to reset saved preferences. <br>
+## Use Case:
 
+External users and developers use this skill to turn a title or short creative brief into a generated MIDI instrumental artifact with a manifest, composition plan, critic score, and optional audio preview. It supports candidate selection, blind audition rating, and local preference learning for future compositions.
 
-## Reference(s): <br>
-- [Music Composer Skill Homepage](https://github.com/lostviolinist/music-composer-skill) <br>
-- [Composer Protocol](references/composer-protocol.md) <br>
-- [Song Recipes](references/song-recipes.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown response with generated MIDI, JSON manifest, and composition-plan file paths plus optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create .mid files, manifest JSON, composition JSON, optional rendered audio, audition records, and local preference memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.7.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can save local music-preference history, including optional feedback notes, under the user's home directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive personal information in feedback unless it is intended to be stored, and delete ~/.hermes/music-composer-preferences.json to reset the learned taste profile.
+
+## Reference(s):
+
+- [Composer Protocol](references/composer-protocol.md)
+- [Song Recipes](references/song-recipes.json)
+- [Project Homepage](https://github.com/lostviolinist/music-composer-skill)
+- [ClawHub Skill Page](https://clawhub.ai/lostviolinist/skills/midi-music-composer)
+- [Publisher Profile](https://clawhub.ai/user/lostviolinist)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated file paths for MIDI, JSON manifests, composition plans, and optional WAV audio]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local MIDI and JSON artifacts; optional audio rendering depends on local timidity or fluidsynth availability.]
+
+## Skill Version(s):
+
+1.7.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

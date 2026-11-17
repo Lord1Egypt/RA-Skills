@@ -1,46 +1,59 @@
-## Description: <br>
-Monitors Simmer positions for resolved Polymarket outcomes, updates trade journals, sends Discord alerts, and redeems winning positions on-chain. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors Simmer positions for resolutions, logs wins and losses to a trade journal, automatically redeems winning Polymarket positions on-chain, and sends Discord webhook alerts every 5 minutes.
 
-## Publisher: <br>
-[DjDyll](https://clawhub.ai/user/DjDyll) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djdyll](https://clawhub.ai/user/djdyll)
 
-## Use Case: <br>
-Developers and operators running Simmer agents use this skill to monitor resolved Polymarket positions, record outcomes and PnL, notify private Discord destinations, and redeem winning positions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform recurring live wallet transactions using local credentials. <br>
-Mitigation: Run POLY_MODE=sim before live use, review the planned behavior, and use a dedicated low-balance wallet. <br>
-Risk: Local environment loading can pick up credentials from .env files. <br>
-Mitigation: Review or remove implicit .env loading and keep wallet and API credentials scoped to this skill's runtime. <br>
-Risk: Bundled and generated state files influence what resolutions and redemptions are considered already processed. <br>
-Mitigation: Inspect bundled state files before first run and keep DATA_DIR in an app-owned directory. <br>
-Risk: Discord webhook notifications may expose trading outcomes or PnL to the configured destination. <br>
-Mitigation: Use Discord webhooks only for private destinations that are intended to receive this trading information. <br>
+## Use Case:
 
+External developers and Simmer users use this skill to monitor resolved Polymarket positions, update trade records, receive Discord alerts, and redeem eligible winning positions automatically.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/DjDyll/simmer-resolution-tracker) <br>
-- [Simmer](https://www.simmer.markets/) <br>
-- [Simmer API endpoint](https://api.simmer.markets) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files, API calls] <br>
-**Output Format:** [Console text, JSON status output, JSONL audit records, JSON state files, and Discord webhook messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs on a 5-minute cron when installed; live mode can redeem on-chain positions, while POLY_MODE=sim skips redemptions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The release automates wallet-affecting redemptions and requires both an API key and wallet private key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in an isolated environment with a dedicated low-balance wallet and narrowly scoped API key.
+
+Risk: Broad credential exposure and weak safety boundaries may increase impact if local environment files or scheduled execution are misconfigured.
+
+Mitigation: Avoid storing unrelated secrets in ~/.env, confirm cron, DATA_DIR, and DISCORD_WEBHOOK settings before live use, and review the environment used by the scheduled process.
+
+Risk: Live mode can perform on-chain redemptions through the simmer-sdk dependency.
+
+Mitigation: Run POLY_MODE=sim first, then pin and review simmer-sdk before enabling live redemptions.
+
+## Reference(s):
+
+- [Simmer Resolution Tracker on ClawHub](https://clawhub.ai/djdyll/skills/simmer-resolution-tracker)
+- [Simmer](https://www.simmer.markets/)
+- [Simmer API endpoint](https://api.simmer.markets)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown instructions, shell commands, Python execution output, JSONL/JSON state files, and Discord webhook messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY and WALLET_PRIVATE_KEY; optional DISCORD_WEBHOOK, POLY_MODE, and DATA_DIR; intended cron cadence is every 5 minutes.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

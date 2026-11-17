@@ -1,37 +1,47 @@
-## Description: <br>
-曾鸣教授智能助手，提供曾鸣教授的金句、论点、观点、观察、采访等内容的查询和解读。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language reference assistant for querying and interpreting public quotes, viewpoints, observations, interviews, and strategy ideas attributed to Professor Zeng Ming.
 
-## Publisher: <br>
-[LeoCryptoFlow](https://clawhub.ai/user/LeoCryptoFlow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leocryptoflow](https://clawhub.ai/user/leocryptoflow)
 
-## Use Case: <br>
-External users, business learners, and strategy researchers use this skill to retrieve and interpret summarized public material about Zeng Ming's quotes, strategic views, industry observations, interviews, and speeches. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill is a short static summary and may not be authoritative or current for important quotes or recent views. <br>
-Mitigation: Verify important claims, quotes, and recent viewpoints against primary public materials before relying on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/LeoCryptoFlow/zengming) <br>
+## Use Case:
+
+External users and business practitioners use this skill to retrieve concise reference material about Zeng Ming's business strategy, intelligent business, organization, entrepreneurship, interviews, and public remarks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Built-in knowledge may be incomplete, outdated, or unsuitable as an authoritative source for latest statements or exact quotations.
+
+Mitigation: Treat responses as brief reference summaries and consult current speeches, articles, interviews, or books for verification.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference-style summaries; no code execution, sensitive access, or background behavior indicated.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown or plain text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference guidance based on summarized public material; users should consult current sources for latest statements or exact quotations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

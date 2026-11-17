@@ -1,0 +1,4 @@
+interface:
+  display_name: "Voiceover Teaching Video Factory"
+  short_description: "Seven-worker faceless teaching video production"
+  default_prompt: "Use $produce-voiceover-teaching-video to turn my article assets, source videos, and supplied voiceover into a finished vertical video, cover, and publish copy."

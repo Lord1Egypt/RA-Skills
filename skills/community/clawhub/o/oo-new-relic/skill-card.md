@@ -1,46 +1,59 @@
-## Description: <br>
-New Relic (newrelic.com). Use this skill for New Relic requests that read, create, update, or delete data through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill to read, create, update, or delete New Relic data through a connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers, SREs, and operations teams use this skill to inspect and manage New Relic observability resources through the OOMOL new_relic connector. It supports NRQL queries, entity search, dashboards, alert policies, synthetics monitors, deployment markers, and secure credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a New Relic account through a connected API key. <br>
-Mitigation: Install only if you trust OOMOL and intend to grant this agent access to the connected New Relic account. <br>
-Risk: Write and destructive actions can create, replace, update, or delete New Relic dashboards, alert policies, NRQL conditions, monitors, secure credentials, snapshots, and deployment markers. <br>
-Mitigation: Review the exact target and payload before approving writes or deletes, and require explicit confirmation for destructive operations. <br>
-Risk: Dashboard replacement, alert-policy changes, monitor deletion, or secure-credential updates can disrupt observability workflows. <br>
-Mitigation: Inspect existing state with read actions first, fetch the live action schema before constructing payloads, and keep approvals scoped to the intended resource. <br>
+## Use Case:
 
+Developers and operators use the skill to query New Relic data and manage alerts, dashboards, deployment markers, synthetic monitors, credentials, and entity searches through a connected account.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/oomol/oo-new-relic) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [New Relic](https://newrelic.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May run oo CLI connector schema and connector run commands that return JSON responses from New Relic.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and skill frontmatter) <br>
+Risk: Setup may execute downloaded CLI code that has not been verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and verify the CLI installation source before allowing setup.
+
+Risk: The CLI may install additional persistent agent skills during startup synchronization.
+
+Mitigation: Review proposed skills and use OO_SKILLS_SYNC_DISABLED=1 to suppress startup synchronization when appropriate.
+
+Risk: Actions can modify or delete New Relic resources and credentials.
+
+Mitigation: Use narrowly scoped credentials and require the documented approvals for changes and deletions.
+
+## Reference(s):
+
+- [New Relic API documentation](https://docs.newrelic.com/docs/apis/intro-apis/introduction-new-relic-apis/)
+- [oo CLI command reference: environment variables](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md#environment-variables)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON action results and shell commands with usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the selected New Relic action; writes and deletions require user approval.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

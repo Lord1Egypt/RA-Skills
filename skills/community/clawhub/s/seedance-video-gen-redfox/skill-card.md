@@ -1,42 +1,54 @@
-## Description: <br>
-This skill helps agents generate MP4 videos from Chinese or English prompts using the RedFox/Seedance 2.0 video service, with controls for resolution, aspect ratio, duration, audio, watermarking, seeds, and preset avatar references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于 Seedance 2.0 模型的 AI 视频生成器，输入关键词/描述文案即可生成 MP4 视频。支持文生视频、首帧/尾帧/参考图生视频、分辨率/比例/时长控制。使用 Seedance 视频生成、AI 视频、text-to-video 时调用此 Skill。
 
-## Publisher: <br>
-[redfox-data](https://clawhub.ai/user/redfox-data) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redfox-data](https://clawhub.ai/user/redfox-data)
 
-## Use Case: <br>
-External creators, product managers, marketers, educators, and developers can use this skill to turn text prompts into short generated videos, query generation tasks, and download completed MP4 outputs. It is suited for social media assets, product concept demos, brand visuals, creative exploration, and educational visualizations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, task metadata, and referenced assets are sent to the RedFox/Seedance external service. <br>
-Mitigation: Do not submit confidential, personal, or regulated material unless the service's data practices are acceptable for the use case. <br>
-Risk: The skill requires an API key that could be exposed through shell history, logs, prompts, or files. <br>
-Mitigation: Prefer REDFOX_API_KEY from an environment variable or secret manager, and avoid passing keys directly on the command line or storing them in plaintext. <br>
+## Use Case:
 
+Content creators, product teams, and creative professionals use natural-language prompts and optional image URLs to generate short MP4 videos, then check task progress or download completed results.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/redfox-data/seedance-video-gen-redfox) <br>
-- [RedFoxHub API Key Settings](https://redfox.hk/settings/api-keys?source=clawhub) <br>
-- [RedFoxHub](https://redfox.hk?source=github) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with bash commands and generated MP4 files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a REDFOX_API_KEY and sends prompts, task metadata, and referenced assets to the RedFox/Seedance service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The security review warns that video downloads can expose the API key to an unchecked download server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Wait for a fix that downloads through a separate session without API credentials and validates HTTPS destinations and redirects; if already used, consider rotating the key.
+
+Risk: Prompts and reference-image URLs are sent to RedFox for hosted processing.
+
+Mitigation: Submit only content you are authorized to share.
+
+## Reference(s):
+
+- [RedFox API key setup](https://redfox.hk/settings/api-keys?source=clawhub)
+- [ClawHub skill release](https://clawhub.ai/redfox-data/skills/seedance-video-gen-redfox)
+
+## Skill Output:
+
+**Output Type(s):** [Video files (MP4), Task status and result details]
+
+**Output Format:** [MP4 video with task status and result details as text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports optional synchronized audio, 480p or 720p resolution, multiple aspect ratios, 4–15 second duration, and image references.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

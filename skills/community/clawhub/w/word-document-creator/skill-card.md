@@ -1,44 +1,62 @@
-## Description: <br>
-Creates and validates Word .docx documents by using Microsoft Word COM to create a native template and python-docx to write styled content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates and validates Microsoft Word .docx documents using Word COM automation with python-docx content editing, encoding safeguards, error handling, and file integrity checks.
 
-## Publisher: <br>
-[woaiwojia8899](https://clawhub.ai/user/woaiwojia8899) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[woaiwojia8899](https://clawhub.ai/user/woaiwojia8899)
 
-## Use Case: <br>
-Developers and agents on Windows use this skill to generate styled Word documents from a title, content blocks, and an output path. It is suited to document-generation workflows that can run Microsoft Word COM automation and python-docx. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unrelated memory/database persistence references create unclear data handling expectations. <br>
-Mitigation: Use only with non-sensitive documents unless the persistence references are removed or made opt-in with documented data scope, retention, and deletion controls. <br>
-Risk: User-supplied output paths may write to unintended locations or overwrite existing Word files. <br>
-Mitigation: Review output paths before execution and write generated documents to a dedicated working directory. <br>
-Risk: The skill depends on local Microsoft Word COM automation and a Windows-specific Python environment. <br>
-Mitigation: Install and test it only in an environment with Microsoft Word, pywin32, and python-docx available before using it in a workflow. <br>
+## Use Case:
 
+Developers and agents use this skill to generate styled Word documents from a title, structured content, and an output path. It is intended for Windows environments where Microsoft Word, pywin32, and python-docx are available.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/woaiwojia8899/word-document-creator) <br>
-- [Publisher Profile](https://clawhub.ai/user/woaiwojia8899) <br>
-- [Artifact Skill Documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text] <br>
-**Output Format:** [DOCX files with status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Microsoft Word COM, python-docx, and a Windows Python environment; validates file existence, file size, and document structure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact skill.json) <br>
+Risk: The skill can create or overwrite local .docx files without explicit safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require confirmation before overwriting files and constrain output paths to approved directories.
+
+Risk: The documented invocation does not match the script interface and real argument parsing is missing.
+
+Mitigation: Add tested argument parsing and align documentation, examples, and script entry points before deployment.
+
+Risk: The example includes an unsafe shell=True command pattern.
+
+Mitigation: Replace shell=True examples with argument-list subprocess calls or direct function invocation.
+
+Risk: The artifact includes unexplained persistence metadata and storage identifiers.
+
+Mitigation: Remove the identifiers or document retention behavior and data handling expectations clearly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/woaiwojia8899/skills/word-document-creator)
+- [Publisher profile](https://clawhub.ai/user/woaiwojia8899)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text, Shell commands, Configuration]
+
+**Output Format:** [Word .docx files with status text and Python or command-line invocation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Windows environment with Microsoft Word automation support; generated documents are written to local output paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

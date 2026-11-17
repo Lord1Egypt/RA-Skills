@@ -1,42 +1,58 @@
-## Description: <br>
-Installs and configures the OpenViking long-term memory plugin for OpenClaw through a guided agent workflow covering prerequisites, remote server setup, health verification, plugin installation, configuration, gateway restart, and final activation checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs and configures the OpenViking long-term memory plugin for OpenClaw through an agent-guided setup flow.
 
-## Publisher: <br>
-[linqiang391](https://clawhub.ai/user/linqiang391) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linqiang391](https://clawhub.ai/user/linqiang391)
 
-## Use Case: <br>
-Developers, engineers, and OpenClaw users use this skill to install and configure OpenViking remote long-term memory without manually assembling the required commands. It helps collect the server URL, optional API key, and agent identifier, then verifies connectivity before configuring and activating the OpenViking context engine. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may handle a sensitive OpenViking API key during configuration. <br>
-Mitigation: Use a least-privilege, revocable API key and confirm where the key is stored before proceeding. <br>
-Risk: The configured memory plugin may store chat-derived information on a remote OpenViking server and reuse it in later sessions. <br>
-Mitigation: Install only with a trusted server, confirm retention and deletion controls, and verify how remote memory can be disabled. <br>
-Risk: The workflow installs a plugin, changes OpenClaw configuration, and restarts the gateway. <br>
-Mitigation: Review the planned commands before execution and stop on failed health checks or configuration errors. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to connect an OpenClaw installation to a trusted OpenViking memory server. The skill checks prerequisites, collects endpoint credentials, installs the plugin, writes remote-mode configuration, restarts the gateway, and verifies activation.
 
-## Reference(s): <br>
-- [OpenViking project homepage](https://github.com/volcengine/OpenViking) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and user-facing status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Collects a remote endpoint, optional API key, and agent identifier before running installation, configuration, health-check, and gateway commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can install a plugin, change OpenClaw configuration, restart the gateway, and enable persistent remote memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing it and run it only in an OpenClaw environment where those configuration changes are expected.
+
+Risk: Untrusted endpoint, API key, or agent identifier values could connect the agent to an unsafe memory service or expose sensitive configuration.
+
+Mitigation: Use only a trusted OpenViking server and avoid pasting endpoint, credential, or agent values from untrusted sources.
+
+Risk: The security guidance identifies unsafe shell substitution and environment-file sourcing patterns.
+
+Mitigation: Fix those command patterns and inspect any OpenViking environment file before routine use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linqiang391/skills/setup-openviking-remote)
+- [OpenViking homepage](https://github.com/volcengine/OpenViking)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and plain text with shell command execution steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node, openclaw, curl, a reachable OpenViking endpoint, optional API key, and an agent identifier.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

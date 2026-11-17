@@ -1,40 +1,50 @@
-## Description: <br>
-系统化应用 8D 流程，通过团队协作识别、分析、解决并预防质量、运营和系统问题。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language 8D problem-solving guide and report template for structured team analysis, containment, root-cause investigation, corrective action, verification, and recurrence prevention.
 
-## Publisher: <br>
-[allenwenpeng](https://clawhub.ai/user/allenwenpeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[allenwenpeng](https://clawhub.ai/user/allenwenpeng)
 
-## Use Case: <br>
-团队成员和 agent 使用该技能按 8D 方法处理数据质量、策略失效、系统故障、风控事件和指定的问题分析任务，并产出结构化的 8D 报告。 <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: 8D reports may include sensitive business, financial, customer, or operational incident details. <br>
-Mitigation: Handle report contents under the user's normal data-handling rules before sharing or storing them. <br>
-Risk: Root-cause analysis can be incomplete if users stop at technical symptoms instead of systemic causes. <br>
-Mitigation: Review D4 findings and D6 recurrence checks before relying on the corrective and preventive actions. <br>
+## Use Case:
 
+Teams and agents use this skill to apply the 8D method to quality, operations, data, strategy, system, and risk issues. It guides users through 5W2H problem description, 5Why root-cause analysis, containment, corrective actions, future verification, and prevention documentation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/allenwenpeng/8d-problem-solving) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown guidance with tables, checklists, and an 8D report template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces structured 8D steps, 5W2H prompts, 5Why root-cause guidance, validation criteria, prevention actions, and report sections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The guide is Chinese-language and includes team-specific roles that may not match every organization or workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the language, role names, and report template before deployment and adapt them to the target team's problem-solving process.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/allenwenpeng/skills/8d-problem-solving)
+- [Source skill guide](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown guidance and report templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language 8D workflow guidance with no executable behavior]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

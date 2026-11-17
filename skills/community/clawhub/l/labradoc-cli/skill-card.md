@@ -1,44 +1,56 @@
-## Description: <br>
-Use the Labradoc CLI to authenticate and call Labradoc API endpoints for tasks, files, users, API keys, email, Google/Microsoft integrations, and billing from OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the Labradoc CLI to authenticate and call Labradoc API endpoints for tasks, files, users, API keys, email, Google and Microsoft integrations, and billing from OpenClaw.
 
-## Publisher: <br>
-[zamedic](https://clawhub.ai/user/zamedic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zamedic](https://clawhub.ai/user/zamedic)
 
-## Use Case: <br>
-Developers and operators use this skill to configure Labradoc CLI authentication and perform account, document, task, email, integration, billing, and raw API operations from an agent workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose API tokens, OAuth codes, PKCE verifiers, or printed access tokens during authentication workflows. <br>
-Mitigation: Treat credentials as secrets and avoid running token-printing or code-exchange commands in shared chats, logs, or CI. <br>
-Risk: The skill can perform powerful Labradoc account and document actions, including uploads, email retrieval, billing, API-key changes, raw API requests, archive, and reprocess operations. <br>
-Mitigation: Require explicit user confirmation before executing account-changing, billing, document mutation, email retrieval, or raw request commands. <br>
-Risk: Installing an unpinned latest CLI binary can make behavior depend on a moving external release. <br>
-Mitigation: Prefer a pinned Labradoc CLI release and verify its checksum before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Labradoc CLI Reference](references/labradoc-cli.md) <br>
-- [Labradoc CLI Integrations](references/integrations.md) <br>
-- [Labradoc Profile](https://labradoc.eu/profile) <br>
-- [Labradoc CLI Releases](https://github.com/zamedic/labradoc-cli/releases) <br>
+## Use Case:
 
+Developers and operators use this skill to run Labradoc CLI commands for authenticated document, task, user, email, integration, API-key, and billing operations from an agent workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May refer to CLI commands that call external Labradoc services and can read or write local output files when the user requests file operations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles Labradoc account tokens and sensitive document or email data.
+
+Mitigation: Install only when the publisher is trusted, prefer narrowly scoped API tokens, avoid command-line secret exposure, and do not ask the agent to print raw tokens.
+
+Risk: The skill can propose state-changing Labradoc operations such as archive, revoke, upload, webhook, checkout, and API-key commands.
+
+Mitigation: Review state-changing commands and target account context before execution, and keep API and authentication URLs on the documented HTTPS defaults unless a trusted override is required.
+
+## Reference(s):
+
+- [Labradoc CLI skill reference](references/labradoc-cli.md)
+- [Labradoc CLI integrations](references/integrations.md)
+- [Labradoc CLI GitHub releases](https://github.com/zamedic/labradoc-cli/releases)
+- [Labradoc profile](https://labradoc.eu/profile)
+- [ClawHub skill page](https://clawhub.ai/zamedic/skills/labradoc-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include user-supplied API request bodies, file paths, and Labradoc CLI commands that call external service endpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

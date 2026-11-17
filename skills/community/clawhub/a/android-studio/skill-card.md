@@ -1,44 +1,57 @@
-## Description: <br>
-Master Android Studio IDE with debugging, profiling, refactoring, and productivity shortcuts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Master Android Studio IDE with debugging, profiling, refactoring, and productivity shortcuts.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill for Android Studio workflows, including debugging, profiling, layout inspection, code navigation, refactoring, build setup, emulator use, and platform-specific shortcuts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Android Studio logs, network captures, database exports, and screenshots can include secrets, personal data, device identifiers, or internal URLs. <br>
-Mitigation: Review and redact sensitive content before sharing it with an assistant or storing it in generated notes. <br>
-Risk: Saved IDE preferences and project context in ~/android-studio/memory.md may retain information the user no longer wants persisted. <br>
-Mitigation: Review, edit, or remove ~/android-studio/memory.md when preferences or project context should not be retained. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/android-studio) <br>
-- [Skill Homepage](https://clawic.com/skills/android-studio) <br>
-- [Setup Guide](setup.md) <br>
-- [Debugging Guide](debugging.md) <br>
-- [Shortcuts Guide](shortcuts.md) <br>
-- [Memory Template](memory-template.md) <br>
+## Use Case:
 
+Developers and engineers use this skill for Android Studio IDE assistance, including debugging, profiling, layout inspection, refactoring, navigation, build configuration, emulator workflows, and platform-specific shortcuts.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown responses with inline code snippets, command suggestions, and IDE workflow steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May suggest local memory updates under ~/android-studio/ and platform-specific shortcuts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may retain Android Studio setup details, project types, pain points, custom shortcuts, and other workflow preferences for future use.
+
+Mitigation: Install it only when ongoing IDE-specific assistance is desired, and decline or clear its memory if those workflow preferences should not be retained.
+
+Risk: Some troubleshooting guidance may involve disruptive local IDE or build cleanup steps, such as removing Gradle or IDE metadata folders.
+
+Mitigation: Treat cleanup steps as last-resort actions, confirm the target files, and preserve project state before applying them.
+
+## Reference(s):
+
+- [ClawHub Android Studio Skill Page](https://clawhub.ai/ivangdavila/skills/android-studio)
+- [Android Studio Skill Homepage](https://clawic.com/skills/android-studio)
+- [Setup](setup.md)
+- [Debugging](debugging.md)
+- [Shortcuts](shortcuts.md)
+- [Memory Template](memory-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with IDE steps, tables, and inline code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask for Android Studio version, operating system, keymap, project types, pain points, and shortcut preferences to tailor future guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

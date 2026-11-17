@@ -1,44 +1,54 @@
-## Description: <br>
-Weather CN Pro queries Chinese city weather from China Weather Network and returns current conditions, lifestyle indexes, hourly forecasts, and seven-day forecasts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+weather-cn-pro queries China Weather for Chinese city current weather, hourly forecasts, seven-day forecasts, and lifestyle indexes without requiring an API key.
 
-## Publisher: <br>
-[ziqi-jin](https://clawhub.ai/user/ziqi-jin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ziqi-jin](https://clawhub.ai/user/ziqi-jin)
 
-## Use Case: <br>
-External users and developers use this skill to run a shell-based Chinese weather lookup for supported city names and receive formatted weather, lifestyle index, hourly forecast, and seven-day forecast output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The shell script evaluates parsed remote weather text as shell code. <br>
-Mitigation: Review before installation and replace eval-based parsing with explicit variable assignment or structured parsing before deployment. <br>
-Risk: The artifact contains an under-disclosed third-party AQI helper endpoint. <br>
-Mitigation: Document the AQI network destination and data behavior, or remove the helper if it is not needed. <br>
-Risk: The skill makes outbound network requests from a bash script. <br>
-Mitigation: Use only in environments where outbound requests to the weather data sources are acceptable and network behavior has been reviewed. <br>
+## Use Case:
 
+External users and developers use this skill to run a local Bash weather lookup for supported Chinese city names and receive formatted current conditions, hourly forecasts, seven-day forecasts, and lifestyle indexes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ziqi-jin/weather-cn-pro) <br>
-- [China Weather Network data source](https://www.weather.com.cn/) <br>
-- [AQI helper endpoint host](https://api.aooi.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Terminal text output from a bash script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and grep; city lookup depends on bundled weather_codes.txt entries or built-in city mappings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and script header) <br>
+Risk: The script uses eval on data parsed from a remote weather page, which could allow command execution if that page or connection is compromised.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and modify the script to parse weather fields without eval before installing or running it in a trusted environment.
+
+Risk: The artifact includes an AQI function that is not part of the documented normal weather lookup flow.
+
+Mitigation: Document, remove, or review the AQI function before broader use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ziqi-jin/skills/weather-cn-pro)
+- [China Weather data source](https://www.weather.com.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Terminal text with formatted weather sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and grep; accepts a supported Chinese city name as input.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and script header)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

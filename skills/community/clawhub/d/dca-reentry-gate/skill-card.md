@@ -1,45 +1,51 @@
-## Description: <br>
-DCA re-entry readiness gate based on F&G, RSI, Stoch, and SMA filters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retired signal. No longer sold.
 
-## Publisher: <br>
-[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl)
 
-## Use Case: <br>
-External agents and developers use this skill before DCA entries to request a real-time readiness signal based on F&G, RSI, Stoch, and SMA filters. It is intended to help avoid re-entry during unfavorable market conditions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an EVM private key to authorize paid x402 requests. <br>
-Mitigation: Use only a dedicated low-balance wallet on Base, keep EVM_PRIVATE_KEY out of logs and shared prompts, and avoid wallets with funds beyond the intended signal budget. <br>
-Risk: Automatic payment authorization can create unintended spend if calls are triggered without user control. <br>
-Mitigation: Require deliberate confirmation before each paid call and monitor wallet call history and pricing tiers. <br>
-Risk: Trading signals can be incorrect, stale, or unsuitable for a user's strategy. <br>
-Mitigation: Treat the signal as decision support and review the returned status, reason, indicators, and timestamp before using it for DCA decisions. <br>
+## Use Case:
 
+External users can use this notice to understand that the DCA re-entry signal has been retired and should not be called. It points readers to the separate dca-signal listing for current information.
 
-## Reference(s): <br>
-- [DCA Re-entry Gate Signal](https://apexrunner.ai/signals/dca-reentry-gate) <br>
-- [DCA Signal](https://apexrunner.ai/signals/dca-signal) <br>
-- [Fear Greed Signal](https://apexrunner.ai/signals/fear-greed) <br>
-- [Portfolio Heat Signal](https://apexrunner.ai/signals/portfolio-heat) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Code, Guidance] <br>
-**Output Format:** [Markdown with Python and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EVM_PRIVATE_KEY for x402-authenticated paid requests using a wallet with USDC on Base mainnet.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The retired signal endpoint returns HTTP 410, so configuring an agent to call it will fail.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not configure an agent to call this endpoint; consult the separate dca-signal listing for its own current details.
+
+## Reference(s):
+
+- [ClawHub listing](https://clawhub.ai/kynto2001-ctrl/skills/dca-reentry-gate)
+- [APEX Runner DCA Reentry Gate](https://apexrunner.ai/signals/dca-reentry-gate)
+- [APEX Runner dca-signal](https://apexrunner.ai/signals/dca-signal)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown retirement notice]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Explains that the signal is retired; no signal data or API output is produced.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

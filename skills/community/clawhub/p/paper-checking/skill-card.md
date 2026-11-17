@@ -1,45 +1,64 @@
-## Description: <br>
-Paper Checking guides agents through installing and using a Windows document-plagiarism checking system for vertical and horizontal similarity checks and report review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Paper Checking guides agents through installing and using a Chinese-language plagiarism checking system for vertical and horizontal document similarity checks.
 
-## Publisher: <br>
-[cn-big-cabbage](https://clawhub.ai/user/cn-big-cabbage) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cn-big-cabbage](https://clawhub.ai/user/cn-big-cabbage)
 
-## Use Case: <br>
-External users, educators, procurement reviewers, and internal teams use this skill to set up and operate a document similarity checker for theses, bids, project applications, and other documents, then interpret generated RTF and CSV reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive theses, bids, or internal documents may be processed by the local checker without proper authorization. <br>
-Mitigation: Use the skill only with documents the user is authorized to process and keep source files, comparison libraries, reports, and recovery files in approved storage locations. <br>
-Risk: Similarity scores may be misleading if thresholds, keyword filters, or preprocessing settings are inappropriate for the document type. <br>
-Mitigation: Review threshold and preprocessing choices before relying on results, and interpret RTF or CSV reports alongside the documented checking rules. <br>
-Risk: Generated reports and temporary recovery files may persist on disk after checking completes or is interrupted. <br>
-Mitigation: Track the configured report directory and temporary recovery file locations, then retain or remove outputs according to the user's data-handling policy. <br>
+## Use Case:
 
+Developers, academic staff, and document-review teams use this skill to set up paper_checking.exe, configure comparison libraries, run vertical or batch cross-document checks, and interpret generated reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cn-big-cabbage/paper-checking) <br>
-- [Paper Checking upstream homepage](https://github.com/tianlian0/paper_checking_system) <br>
-- [Java SDK reference](https://github.com/tianlian0/duplicate-check-sample) <br>
-- [Commercial edition](https://xincheck.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command snippets, configuration examples, and report-interpretation notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides local Windows executable setup, comparison-library configuration, threshold tuning, report review, and troubleshooting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: frontmatter and server release metadata) <br>
+Risk: The skill directs users to download, build, or run external Windows code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a pinned and reviewed release or source checkout, avoid unverified precompiled binaries, and run it in a contained Windows environment.
+
+Risk: The workflow processes papers, bids, internal documents, and generated reports that may contain sensitive information.
+
+Mitigation: Restrict input and output folders, apply local data-handling controls, and treat RTF, CSV, and progress files as sensitive records.
+
+Risk: Similarity results and threshold recommendations may be misleading if the comparison library, file conversion, or preprocessing is misconfigured.
+
+Mitigation: Review configuration, supported file formats, comparison libraries, and generated reports before making academic, procurement, or compliance decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cn-big-cabbage/skills/paper-checking)
+- [Project Homepage from ClawHub Metadata](https://github.com/tianlian0/paper_checking_system)
+- [Java SDK Reference](https://github.com/tianlian0/duplicate-check-sample)
+- [Commercial Version](https://xincheck.com)
+- [Installation Guide](guides/01-installation.md)
+- [Quickstart Guide](guides/02-quickstart.md)
+- [Advanced Usage Guide](guides/03-advanced-usage.md)
+- [Troubleshooting Guide](troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell and PowerShell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide execution of a Windows executable and review of generated RTF or CSV reports.]
+
+## Skill Version(s):
+
+0.1.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

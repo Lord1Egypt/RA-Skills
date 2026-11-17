@@ -56,7 +56,7 @@ cp ~/.codex/cn-bridge.env.example ~/.codex/cn-bridge.env
 
 ```bash
 # 阿里云通义千问（推荐）
-QWEN_API_KEY=sk-your-alibaba-cloud-key
+QWEN_API_KEY=REDACTED-SECRET
 
 # 月之暗面 Kimi（可选）
 KIMI_API_KEY=sk-your-moonshot-key

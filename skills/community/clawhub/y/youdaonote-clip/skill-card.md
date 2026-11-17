@@ -1,43 +1,54 @@
-## Description: <br>
-Clips web pages into Youdao Note, including browser-extracted pages, supported Chinese content sites, and Twitter/X status URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Saves clipped web pages, including supported dynamic pages and Twitter/X posts, into Youdao Cloud Notes.
 
-## Publisher: <br>
-[lephix](https://clawhub.ai/user/lephix) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lephix](https://clawhub.ai/user/lephix)
 
-## Use Case: <br>
-External users and developers use this skill to save web articles, rendered pages, and selected Twitter/X posts into Youdao Note with titles, source URLs, text, and images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read rendered browser page content and save it to Youdao Note, including sensitive pages if invoked there. <br>
-Mitigation: Use it only on pages intended to be clipped, and avoid AI chat sessions, private dashboards, or pages containing secrets unless the captured content has been reviewed. <br>
-Risk: Twitter/X clipping sends the target URL to Apify and uses APIFY_API_TOKEN, which is not declared in the manifest. <br>
-Mitigation: Configure Apify access deliberately and avoid Twitter/X clipping when third-party processing of the URL is not acceptable; declare the token before managed deployment. <br>
-Risk: Browser extraction injects local parsing code into target pages to read the page title, content, and image URLs. <br>
-Mitigation: Run it in a browser profile appropriate for clipping and review the skill source before using it on authenticated or sensitive pages. <br>
+## Use Case:
 
+External users and developers use this skill to capture web page content, images, and source URLs into Youdao Cloud Notes from supported Chinese content sites, Twitter/X posts, and general browser-accessible pages.
 
-## Reference(s): <br>
-- [YoudaoNote Clip on ClawHub](https://clawhub.ai/lephix/youdaonote-clip) <br>
-- [lephix publisher profile](https://clawhub.ai/user/lephix) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, API calls, Configuration guidance] <br>
-**Output Format:** [Markdown status response with command-driven clipping and JSON metadata files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires YOUDAONOTE_API_KEY; Twitter/X clipping also uses APIFY_API_TOKEN even though it is not declared in the manifest.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.21.8 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can upload clipped page text, image data, source URLs, and possibly AI-chat transcripts through broad network and credential paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with trusted pages and trusted Youdao MCP configuration, and avoid sensitive internal pages unless endpoint validation and image fetching safeguards are tightened.
+
+Risk: Custom MCP endpoints or untrusted clipping targets may route private content or credentials outside the intended service path.
+
+Mitigation: Avoid custom MCP URLs unless they are known HTTPS endpoints and review the configured environment variables before installation.
+
+## Reference(s):
+
+- [YoudaoNote Clip ClawHub listing](https://clawhub.ai/lephix/skills/youdaonote-clip)
+- [Marked Markdown parser](https://github.com/markedjs/marked)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, API calls, Files]
+
+**Output Format:** [Markdown confirmation table, command-line JSON metadata, and remote note content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires YOUDAONOTE_API_KEY and local tools listed by the release metadata; execution can create temporary clipping data under /tmp.]
+
+## Skill Version(s):
+
+1.21.8 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

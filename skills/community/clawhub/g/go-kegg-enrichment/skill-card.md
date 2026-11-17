@@ -1,44 +1,59 @@
-## Description: <br>
-Performs GO and KEGG pathway enrichment analysis on gene lists and generates enriched terms, statistics, visualizations, and summary reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs GO (Gene Ontology) and KEGG pathway enrichment analysis on gene lists.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Developers, bioinformatics analysts, and researchers use this skill to run GO and KEGG enrichment workflows for gene lists, including differentially expressed genes, and review tabular results, plots, and an interpretation report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Unsafe dynamic evaluation is used while parsing enrichment ratio values. <br>
-Mitigation: Review or patch the ratio parsing before installation, and run the skill only in an isolated project environment. <br>
-Risk: Online Enrichr workflows can transfer gene-list data outside the local workspace. <br>
-Mitigation: Avoid Enrichr or other online workflows for unpublished, proprietary, or clinical gene lists unless external data transfer is explicitly approved. <br>
-Risk: The script reads user-selected input paths and writes output directories. <br>
-Mitigation: Keep input and output paths inside the intended workspace and review generated result files before sharing. <br>
+## Use Case:
 
+Developers, bioinformaticians, and research teams use this skill to run GO and KEGG enrichment analysis on gene lists, including differentially expressed genes, and produce statistical results, visualizations, and biological summaries.
 
-## Reference(s): <br>
-- [GO/KEGG Enrichment ClawHub page](https://clawhub.ai/AIPOCH-AI/go-kegg-enrichment) <br>
-- [GO/KEGG Reference](references/GO_KEGG_Reference.md) <br>
-- [Example Gene List](references/example_gene_list.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Command-line guidance plus generated CSV, TSV, Excel, PNG, and text report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes GO and KEGG result tables, visualizations, and REPORT.txt under the selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Online enrichment modes and KEGG queries can expose submitted gene lists to external services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use --use-enrichr or KEGG/online modes with confidential, regulated, or pre-publication gene lists unless external submission is authorized.
+
+Risk: The security review reports an unsafe plotting evaluation path.
+
+Mitigation: Review or fix the plotting eval() path before installation or execution.
+
+Risk: Local execution reads input files, writes result files, and depends on scientific Python/R packages.
+
+Mitigation: Run the skill in an isolated virtual environment with pinned dependencies and direct output to a dedicated results folder.
+
+## Reference(s):
+
+- [GO/KEGG Enrichment skill page](https://clawhub.ai/aipoch-ai/skills/go-kegg-enrichment)
+- [GO/KEGG Enrichment Analysis References](artifact/references/GO_KEGG_Reference.md)
+- [Example gene list](artifact/references/example_gene_list.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated analysis files such as CSV, TSV, Excel, PNG, and text reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill writes enrichment result tables, plots, and a human-readable report to the selected output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-机票降价监控与多平台比价助手，同时搜索多个旅游平台实时价格帮你比价省钱，支持按航线搜索航班、指定航班号多平台精确比价、低价日历查看最佳出发日、创建降价监控任务，多旅游平台数据直连。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+机票降价监控与多平台比价助手，搜索多平台实时价格对比，支持航线搜索、指定航班精确比价、低价日历、降价监控，帮你把握最佳购票时机。
 
-## Publisher: <br>
-[travel-skills](https://clawhub.ai/user/travel-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[travel-skills](https://clawhub.ai/user/travel-skills)
 
-## Use Case: <br>
-External users and travel-focused agents use this skill to compare flight prices across multiple travel platforms, assess current fare levels, scan flexible-date low-price calendars, and prepare price-watch requests for selected routes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Flight search parameters are sent to remote proxy services to retrieve live travel-platform prices. <br>
-Mitigation: Avoid entering sensitive travel details unless the user is comfortable sending those route and date queries to the proxy service. <br>
-Risk: The security guidance notes an embedded proxy token and recommends publisher-side token rotation. <br>
-Mitigation: Check that the publisher has moved the token to a scoped runtime secret before deployment. <br>
-Risk: Real-time flight prices can change and may differ across platforms or booking pages. <br>
-Mitigation: Present results as reference information and direct users to verify final price and terms on the booking page before purchase. <br>
+## Use Case:
 
+Travelers and travel-support agents use this skill to compare flight prices across sources, evaluate whether current fares are attractive, scan flexible travel dates, and prepare price-watch requests for follow-up checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/travel-skills/flight-price-track) <br>
-- [Publisher profile](https://clawhub.ai/user/travel-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and structured monitoring request details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Flight searches use route, date, optional flight number, and optional target-price inputs; query results are real-time and should be treated as reference data, not guaranteed prices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Flight search details such as cities, dates, flight numbers, and target prices are sent to fixed proxy APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that data flow is acceptable, and scope PROXY_TOKEN to this flight proxy when possible.
+
+Risk: Price-watch output could be mistaken for a locally installed background monitor.
+
+Mitigation: Treat monitor results as a request for the host agent to schedule and review future checks.
+
+Risk: Flight prices and booking links can change after the skill returns results.
+
+Mitigation: Review live booking pages and final prices before purchase.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/travel-skills/skills/flight-price-track)
+- [travel-skills publisher profile](https://clawhub.ai/user/travel-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON objects with human-readable flight price analysis, comparison results, calendar summaries, and suggested follow-up commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Monitor output is a structured request for the host agent to schedule future checks; it is not a local background service installed by the skill.]
+
+## Skill Version(s):
+
+2.0.9 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

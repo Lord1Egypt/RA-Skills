@@ -46,7 +46,7 @@
 |------|------|------|
 | `--temperature` / `-t` | float | 输出随机性（0~2；越小越精准，越大越发散；不传则由服务端默认，通常为 0.7） |
 | `--max-tokens` | int | 最大生成 Token 数 |
-| `--thinking` | flag | 开启推理思考模式（CoT）；**注意：gpt-5.1/5.2/4o 不支持，使用时会打印警告并自动忽略该参数** |
+| `--thinking` | flag | 开启推理思考模式（CoT）；**注意：gpt-5.1/5.2/5.4-mini/4o 不支持，使用时会打印警告并自动忽略该参数** |
 | `--reasoning-effort` | string | 思考等级：`none`/`minimal`/`low`/`medium`/`high`/`xhigh` |
 | `--response-format` | string | 输出格式：`text`（默认）/`json`（JSON 对象）/`json_schema`（同 `json`，fallback 为 json_object；如需严格 schema 请在 messages 中描述结构） |
 
@@ -98,7 +98,7 @@
 | 401 | Token 无效或未同步 | 检查 Token 是否正确；Token 创建后需等 1 分钟 |
 | 403 | 权限不足/已停服 | 检查账户余额；确认已开通 VOD 服务 |
 | 404 | 模型不存在 | 检查 `--model` 参数；注意 gemini-3-pro-preview 已下线 |
-| 429 | 速率限制 | 默认 RPM 10，TPM 10W；可联系商务调整 |
+| 429 | 速率限制 | 默认 RPM 30，TPM 30W；可联系商务调整 |
 | 500 | 服务器内部错误 | 稍后重试；如持续出现请联系技术支持 |
 | 502 | 网关错误 | 稍后重试 |
 | 503 | 服务不可用 | 稍后重试；检查服务状态 |
@@ -108,46 +108,50 @@
 无额外参数，直接运行即可列出当前所有支持的模型：
 
 ```bash
-python scripts/vod_aigc_chat.py models
+python3 scripts/vod_aigc_chat.py models
 ```
 
 当前支持的模型列表：
 
-| 系列 | 模型名称 | 协议 | 支持 thinking | 多模态输入 |
-|------|---------|------|--------------|-----------|
-| OpenAI | `gpt-5.5` | OpenAI completions | ✅ | 文本、图片 |
-| OpenAI | `gpt-5.4-pro` | Responses | ✅ | 文本、图片 |
-| OpenAI | `gpt-5.4` | OpenAI completions | ✅ | 文本、图片 |
-| OpenAI | `gpt-5.4-mini` | OpenAI completions | ✅ | 文本、图片 |
-| OpenAI | `gpt-5.3-codex` | Responses | ✅ | 文本、图片 |
-| OpenAI | `gpt-5.3-chat` | OpenAI completions | ✅ | 文本、图片 |
-| OpenAI | `gpt-5.2-chat` | OpenAI completions | ✅ | 文本、图片 |
-| OpenAI | `gpt-5.2` | OpenAI completions | ❌ | 文本、图片 |
-| OpenAI | `gpt-5.1` | OpenAI completions | ❌ | 文本、图片 |
-| OpenAI | `gpt-5.1-chat` | OpenAI completions | ✅ | 文本、图片 |
-| OpenAI | `gpt-5` | OpenAI completions | ✅ | 文本、图片 |
-| OpenAI | `gpt-5-mini` | OpenAI completions | ✅ | 文本、图片 |
-| OpenAI | `gpt-5-nano` | OpenAI completions | ✅ | 文本、图片 |
-| OpenAI | `gpt-4.1` | OpenAI completions | ✅ | 文本、图片 |
-| OpenAI | `gpt-4o` | OpenAI completions | ❌ | 文本、图片 |
-| Gemini | `gemini-3.5-flash` | OpenAI completions | ✅ | 文本、图片、音频、视频 |
-| Gemini | `gemini-3.1-flash-lite` | OpenAI completions | ✅ | 文本、图片、音频、视频 |
-| Gemini | `gemini-3.1-pro-preview` | OpenAI completions | ✅ | 文本、图片、音频、视频 |
-| Gemini | `gemini-3-flash-preview` | OpenAI completions | ✅ | 文本、图片、音频、视频 |
-| Gemini | `gemini-2.5-pro` | OpenAI completions | ✅ | 文本、图片、音频、视频 |
-| Gemini | `gemini-2.5-flash` | OpenAI completions | ✅ | 文本、图片、音频、视频 |
-| GK (Grok) | `gk-4-1-fast-reasoning` | OpenAI completions | ✅ | 文本、图片 |
-| GK (Grok) | `gk-4-20-non-reasoning` | OpenAI completions | ✅ | 文本、图片 |
-| GK (Grok) | `gk-4-20-reasoning` | OpenAI completions | ✅ | 文本、图片 |
-| GK (Grok) | `gk-4.3` | OpenAI completions | ✅ | 文本、图片 |
-| CD (Claude) | `cd-opus-4.7` | Anthropic | ✅ | 文本、图片 |
-| CD (Claude) | `cd-sonnet-4.6` | Anthropic | ✅ | 文本、图片 |
-| CD (Claude) | `cd-opus-4.6` | Anthropic | ✅ | 文本、图片 |
-| CD (Claude) | `cd-opus-4.5` | Anthropic | ✅ | 文本、图片 |
-| CD (Claude) | `cd-haiku-4.5` | Anthropic | ✅ | 文本、图片 |
+| 系列 | 模型名称 | 协议 | 支持 thinking | 多模态输入 | tokens 限制 | 资源说明 |
+|------|---------|------|--------------|-----------|------------|---------|
+| OpenAI | `gpt-5.5` | OpenAI completions | ✅ | 文本、图片 | 上下文：1050k / 最大输出：128k | ⚠️ 超过 200w TPM 需提前 3 天申请 |
+| OpenAI | `gpt-5.4-pro` | Responses | ✅ | 文本、图片 | — | — |
+| OpenAI | `gpt-5.4` | OpenAI completions | ✅ | 文本、图片 | — | — |
+| OpenAI | `gpt-5.4-mini` | OpenAI completions | ❌ | 文本、图片 | — | — |
+| OpenAI | `gpt-5.3-codex` | Responses | ✅ | 文本、图片 | — | — |
+| OpenAI | `gpt-5.3-chat` | OpenAI completions | ✅ | 文本、图片 | — | — |
+| OpenAI | `gpt-5.2-chat` | OpenAI completions | ✅ | 文本、图片 | — | — |
+| OpenAI | `gpt-5.2` | OpenAI completions | ❌ | 文本、图片 | 上下文：400k / 最大输出：128k | — |
+| OpenAI | `gpt-5.1`（默认）| OpenAI completions | ❌ | 文本、图片 | — | — |
+| OpenAI | `gpt-5.1-chat` | OpenAI completions | ✅ | 文本、图片 | — | — |
+| OpenAI | `gpt-5` | OpenAI completions | ✅ | 文本、图片 | — | — |
+| OpenAI | `gpt-5-mini` | OpenAI completions | ✅ | 文本、图片 | — | — |
+| OpenAI | `gpt-5-nano` | OpenAI completions | ✅ | 文本、图片 | — | — |
+| OpenAI | `gpt-4.1` | OpenAI completions | ✅ | 文本、图片 | — | — |
+| OpenAI | `gpt-4o` | OpenAI completions | ❌ | 文本、图片 | 上下文：128k / 最大输出：16,384 | — |
+| OpenAI | ~~`gpt-5-chat`~~ | — | — | — | — | 🚫 已于 2026-04-15 下架 |
+| Gemini | `gemini-3.5-flash` | OpenAI completions | ✅ | 文本、图片、音频、视频 | — | — |
+| Gemini | `gemini-3.1-flash-lite` | OpenAI completions | ✅ | 文本、图片、音频、视频 | — | — |
+| Gemini | `gemini-3.1-pro-preview` | OpenAI completions | ✅ | 文本、图片、音频、视频 | 输入：1,048,576 / 输出：65,536 | ⚠️ 资源紧缺 |
+| Gemini | `gemini-3.1-flash-lite-preview` | OpenAI completions | ✅ | 文本、图片、音频、视频 | — | ⚠️ 超过 200w TPM 需提前 3 天申请 |
+| Gemini | `gemini-3-flash-preview` | OpenAI completions | ✅ | 文本、图片、音频、视频 | — | — |
+| Gemini | `gemini-2.5-pro` | OpenAI completions | ✅ | 文本、图片、音频、视频 | — | — |
+| Gemini | `gemini-2.5-flash` | OpenAI completions | ✅ | 文本、图片、音频、视频 | — | — |
+| GK (Grok) | `gk-4-1-fast-reasoning` | OpenAI completions | ✅ | 文本、图片 | — | — |
+| GK (Grok) | `gk-4-20-non-reasoning` | OpenAI completions | ✅ | 文本、图片 | — | — |
+| GK (Grok) | `gk-4-20-reasoning` | OpenAI completions | ✅ | 文本、图片 | — | — |
+| GK (Grok) | `gk-4.3` | OpenAI completions | ✅ | 文本、图片 | — | — |
+| CD (Claude) | `cd-opus-4.7` | Anthropic | ✅ | 文本、图片 | — | — |
+| CD (Claude) | `cd-sonnet-4.6` | Anthropic | ✅ | 文本、图片 | — | — |
+| CD (Claude) | `cd-opus-4.6` | Anthropic | ✅ | 文本、图片 | — | — |
+| CD (Claude) | `cd-opus-4.5` | Anthropic | ✅ | 文本、图片 | — | — |
+| CD (Claude) | `cd-haiku-4.5` | Anthropic | ✅ | 文本、图片 | — | — |
 
 > 📌 CD 系列模型使用 Anthropic 协议（`/v1/messages` 端点，`x-api-key` 认证），其他模型使用 OpenAI 兼容协议（`/v1/chat/completions` 端点，`Bearer` 认证）。
 > ⚠️ 限速：默认 RPM 30次/分钟，TPM 30W tokens/分钟。
+> ⚠️ `gemini-3-pro-preview` 已于 3 月 9 日下线。
+> ⚠️ `gpt-5-chat` 已于 2026-04-15 下架。
 
 ---
 
@@ -159,21 +163,21 @@ python scripts/vod_aigc_chat.py models
 
 #### 非流式对话（等待完整响应）
 ```bash
-python scripts/vod_aigc_chat.py chat \
+python3 scripts/vod_aigc_chat.py chat \
     --model gpt-5.1 \
     --message "用一句话介绍腾讯云"
 ```
 
 #### 流式输出（逐步显示）
 ```bash
-python scripts/vod_aigc_chat.py stream \
+python3 scripts/vod_aigc_chat.py stream \
     --model gemini-2.5-flash \
     --message "写一首关于云计算的诗"
 ```
 
 #### 流式输出并保存到文件
 ```bash
-python scripts/vod_aigc_chat.py stream \
+python3 scripts/vod_aigc_chat.py stream \
     --model gemini-2.5-flash \
     --message "详细介绍 H.264 和 H.265 编码格式的区别" \
     --output-file /output/vod-chat/stream_result.txt
@@ -181,7 +185,7 @@ python scripts/vod_aigc_chat.py stream \
 
 #### 查看所有支持的模型
 ```bash
-python scripts/vod_aigc_chat.py models
+python3 scripts/vod_aigc_chat.py models
 ```
 
 ---
@@ -190,7 +194,7 @@ python scripts/vod_aigc_chat.py models
 
 #### 带系统提示词
 ```bash
-python scripts/vod_aigc_chat.py chat \
+python3 scripts/vod_aigc_chat.py chat \
     --model gpt-5.1 \
     --system "你是一个专业的视频处理专家" \
     --message "H.264 和 H.265 的区别是什么？"
@@ -198,7 +202,7 @@ python scripts/vod_aigc_chat.py chat \
 
 #### 开启推理思考模式（适合复杂逻辑/数学）
 ```bash
-python scripts/vod_aigc_chat.py chat \
+python3 scripts/vod_aigc_chat.py chat \
     --model gpt-5.4 \
     --thinking \
     --message "请分析以下代码的时间复杂度..."
@@ -206,7 +210,7 @@ python scripts/vod_aigc_chat.py chat \
 
 #### 指定思考等级
 ```bash
-python scripts/vod_aigc_chat.py chat \
+python3 scripts/vod_aigc_chat.py chat \
     --model gemini-2.5-pro \
     --reasoning-effort high \
     --message "请解一道复杂的数学证明题"
@@ -214,7 +218,7 @@ python scripts/vod_aigc_chat.py chat \
 
 #### 图片理解（多模态）
 ```bash
-python scripts/vod_aigc_chat.py chat \
+python3 scripts/vod_aigc_chat.py chat \
     --model gpt-5.1 \
     --message "请描述这张图片的内容" \
     --image-url "https://example.com/image.jpg"
@@ -222,7 +226,7 @@ python scripts/vod_aigc_chat.py chat \
 
 #### 视频/文件理解（Gemini 模型支持）
 ```bash
-python scripts/vod_aigc_chat.py chat \
+python3 scripts/vod_aigc_chat.py chat \
     --model gemini-2.5-flash \
     --message "请总结这个视频的主要内容" \
     --file-url "https://example.com/video.mp4" \
@@ -231,7 +235,7 @@ python scripts/vod_aigc_chat.py chat \
 
 #### 音频理解（Gemini 模型支持）
 ```bash
-python scripts/vod_aigc_chat.py chat \
+python3 scripts/vod_aigc_chat.py chat \
     --model gemini-2.5-flash \
     --message "请转录这段音频" \
     --audio-base64 "<base64编码的音频数据>" \
@@ -240,7 +244,7 @@ python scripts/vod_aigc_chat.py chat \
 
 #### 多轮对话（JSON 格式）
 ```bash
-python scripts/vod_aigc_chat.py chat \
+python3 scripts/vod_aigc_chat.py chat \
     --model gpt-5.1 \
     --messages '[
         {"role":"system","content":"你是一个视频专家"},
@@ -252,7 +256,7 @@ python scripts/vod_aigc_chat.py chat \
 
 #### 控制输出随机性
 ```bash
-python scripts/vod_aigc_chat.py chat \
+python3 scripts/vod_aigc_chat.py chat \
     --model gpt-5.1 \
     --temperature 0.2 \
     --message "请精确计算：1024 * 768 = ?"
@@ -264,7 +268,7 @@ python scripts/vod_aigc_chat.py chat \
 
 #### 注册天气查询工具，tool_choice=auto
 ```bash
-python scripts/vod_aigc_chat.py chat \
+python3 scripts/vod_aigc_chat.py chat \
     --model gpt-5.1 \
     --message "北京今天天气怎么样？" \
     --tools '[{"type":"function","function":{"name":"get_weather","description":"获取指定城市天气","parameters":{"type":"object","properties":{"city":{"type":"string","description":"城市名称"}},"required":["city"]}}}]' \
@@ -273,7 +277,7 @@ python scripts/vod_aigc_chat.py chat \
 
 #### 注册工具但禁止调用（tool_choice=none）
 ```bash
-python scripts/vod_aigc_chat.py chat \
+python3 scripts/vod_aigc_chat.py chat \
     --model gpt-5.1 \
     --message "北京今天天气怎么样？" \
     --tools '[{"type":"function","function":{"name":"get_weather","description":"获取指定城市天气","parameters":{"type":"object","properties":{"city":{"type":"string"}},"required":["city"]}}}]' \
@@ -282,7 +286,7 @@ python scripts/vod_aigc_chat.py chat \
 
 #### dry-run 预览请求体（含 tools 和 tool_choice）
 ```bash
-python scripts/vod_aigc_chat.py chat \
+python3 scripts/vod_aigc_chat.py chat \
     --model gpt-5.1 \
     --message "北京今天天气怎么样？" \
     --tools '[{"type":"function","function":{"name":"get_weather","description":"获取天气","parameters":{"type":"object","properties":{"city":{"type":"string"}},"required":["city"]}}}]' \
@@ -296,7 +300,7 @@ python scripts/vod_aigc_chat.py chat \
 
 #### JSON 格式输出完整响应（含 usage 统计）
 ```bash
-python scripts/vod_aigc_chat.py chat \
+python3 scripts/vod_aigc_chat.py chat \
     --model gpt-5.1 \
     --message "你好" \
     --json
@@ -304,7 +308,7 @@ python scripts/vod_aigc_chat.py chat \
 
 #### 结构化 JSON Schema 输出
 ```bash
-python scripts/vod_aigc_chat.py chat \
+python3 scripts/vod_aigc_chat.py chat \
     --model gpt-5.1 \
     --message "列出3种视频编码格式，每项包含 name 和 description 字段" \
     --response-format json_schema
@@ -312,7 +316,7 @@ python scripts/vod_aigc_chat.py chat \
 
 #### 保存结果到文件
 ```bash
-python scripts/vod_aigc_chat.py chat \
+python3 scripts/vod_aigc_chat.py chat \
     --model gpt-5.1 \
     --message "写一篇关于 AI 的文章" \
     --output-file /output/vod-chat/result.json
@@ -320,7 +324,7 @@ python scripts/vod_aigc_chat.py chat \
 
 #### 不显示 Token 用量
 ```bash
-python scripts/vod_aigc_chat.py chat \
+python3 scripts/vod_aigc_chat.py chat \
     --model gpt-5.1 \
     --message "你好" \
     --no-usage

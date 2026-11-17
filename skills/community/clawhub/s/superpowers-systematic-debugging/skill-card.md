@@ -1,37 +1,52 @@
-## Description: <br>
-Enforces a four-phase debugging process for bugs, test failures, and unexpected behavior: root cause investigation, pattern analysis, hypothesis testing, and evidence-based fix verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enforces a four-phase debugging workflow for bugs, test failures, and unexpected behavior: root cause investigation, pattern analysis, hypothesis testing, and evidence-based fix verification.
 
-## Publisher: <br>
-[axelhu](https://clawhub.ai/user/axelhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[axelhu](https://clawhub.ai/user/axelhu)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to handle technical issues by investigating root causes, comparing working patterns, testing hypotheses, and verifying fixes before accepting a change.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad activation wording may make the skill apply to routine engineering issues where a lightweight fix would otherwise be sufficient.
+
+Mitigation: Use the skill when systematic root-cause debugging is desired, and let maintainers decide whether routine issues need the full workflow.
+
+Risk: Chinese-only workflow text may reduce reviewability for teams that do not read Chinese.
+
+Mitigation: Have a qualified reviewer confirm the workflow content and expected use before deployment in multilingual or English-only teams.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineering agents use this skill to debug software issues methodically before proposing or applying fixes. It guides investigation, comparison with working patterns, hypothesis testing, and verification so fixes address root causes rather than symptoms. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, text, markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent toward repo-maintenance, Convex workflow, moderation, deployment, or nested review commands that may have high impact if executed without review. <br>
-Mitigation: Review commands before execution, use documented opt-outs or confirmation steps when appropriate, and verify fixes with tests or other concrete evidence. <br>
+**Output Format:** [Markdown guidance for agent reasoning and debugging workflow]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Chinese-language workflow content; no code execution, credential access, network use, or destructive behavior requested.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown] <br>
-**Output Format:** [Markdown guidance with checklists and process steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May lead the agent to propose tests, code changes, shell commands, or configuration checks during debugging.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

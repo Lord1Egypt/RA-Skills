@@ -1,6 +1,15 @@
 {
-  "ownerId": "kn73rjsd61kjdxp8s6k7ryn8x184h9xs",
-  "slug": "benjamin-graham-investing",
+  "name": "benjamin_graham",
+  "display_name": "Benjamin Graham",
+  "subtitle": "The Father of Value Investing",
   "version": "1.0.0",
-  "publishedAt": 1776080749044
+  "description": "Security Analysis and The Intelligent Investor author, mentor to Warren Buffett",
+  "author": "Celebrity Skills Team",
+  "created_date": "2026-04-13",
+  "last_updated": "2026-04-13",
+  "tags": ["investing", "value_investing", "security_analysis", "margin_of_safety"],
+  "related_skills": ["warren_buffett", "charlie_munger"],
+  "source_type": "publications_and_teachings",
+  "confidence_level": "high",
+  "notes": "Primary sources: The Intelligent Investor, Security Analysis, Columbia lectures"
 }

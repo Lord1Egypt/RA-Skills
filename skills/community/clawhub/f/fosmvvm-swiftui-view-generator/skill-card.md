@@ -1,39 +1,53 @@
-## Description: <br>
-Generate SwiftUI views that render FOSMVVM ViewModels. Scaffolds ViewModelView pattern with binding, loading states, and previews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate SwiftUI views that render FOSMVVM ViewModels and scaffold the ViewModelView pattern with bindings, loading states, validation, operations, and previews.
 
-## Publisher: <br>
-[foscomputerservices](https://clawhub.ai/user/foscomputerservices) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[foscomputerservices](https://clawhub.ai/user/foscomputerservices)
 
-## Use Case: <br>
-Developers and engineers building FOSMVVM SwiftUI applications use this skill to create ViewModelView-conforming views for existing ViewModels, including display-only, interactive, form, container, loading, binding, and preview patterns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated SwiftUI code may reflect prior conversation or loaded specification content. <br>
-Mitigation: Use scoped project context, avoid including secrets or proprietary details that should not appear in generated output, and review generated SwiftUI files before committing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [FOSMVVM SwiftUI View Generator on ClawHub](https://clawhub.ai/foscomputerservices/fosmvvm-swiftui-view-generator) <br>
-- [FOSUtilities Repository](https://github.com/foscomputerservices/FOSUtilities) <br>
-- [Reference Templates](artifact/reference.md) <br>
+## Use Case:
 
+Developers use this skill to create SwiftUI view files for FOSMVVM applications after the corresponding ViewModel structure and interaction requirements are known. It helps produce display-only, interactive, form, async loading, list, and container views that follow FOSMVVM conventions.
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Guidance] <br>
-**Output Format:** [Markdown response containing Swift code and target file path guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates SwiftUI ViewModelView code for a {ViewName}View.swift file based on conversation context, existing ViewModel definitions, and FOSMVVM patterns.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.6 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated action methods and form fields can affect application behavior when they call ViewModel operations or submit user data.
+
+Mitigation: Review generated action methods, async submission flows, validation handling, and operation calls as normal application code before merging.
+
+Risk: Incorrect ViewModel identity or binding choices can cause SwiftUI views to render stale data or fail to update as intended.
+
+Mitigation: Check generated ViewModelView bindings, child app state mapping, and ViewModelId usage against the existing ViewModel definitions.
+
+## Reference(s):
+
+- [FOSMVVM SwiftUI View Generator on ClawHub](https://clawhub.ai/foscomputerservices/skills/fosmvvm-swiftui-view-generator)
+- [Reference Templates](artifact/reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Markdown, Guidance]
+
+**Output Format:** [Markdown with Swift code blocks and generated SwiftUI source patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated views depend on existing FOSMVVM ViewModels, operations, targets, and feature names supplied by the user or project context.]
+
+## Skill Version(s):
+
+2.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,56 @@
-## Description: <br>
-Facebook browser automation skill for posting, reading comments, generating intelligent replies, and tracking comment threads for brand engagement and high-frequency community operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Facebook browser automation skill for posting, reading comments, generating intelligent replies, and tracking comment threads for brand engagement and high-frequency community operations.
 
-## Publisher: <br>
-[x-rayluan](https://clawhub.ai/user/x-rayluan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[x-rayluan](https://clawhub.ai/user/x-rayluan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External social-media operators and brand teams use this skill to automate Facebook posting, comment reading, reply generation, reply posting, and thread follow-up. It is suited to high-frequency community engagement where draft or query modes can keep sensitive responses under human review.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can use a logged-in Facebook account to post or reply automatically, and approval defaults may be unclear.
+
+Mitigation: Use draft or query mode by default, and require human approval for major announcements, sensitive replies, controversial threads, or unattended activity.
+
+Risk: Browser profile and local style-file access can expose account state or private workspace content.
+
+Mitigation: Isolate the Facebook browser profile and verify which local files the skill may read before installation.
+
+Risk: Receipts, comment snapshots, and logs may retain full comment or reply text.
+
+Mitigation: Store full text only when needed for audit records, and apply retention or redaction rules for routine operation.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External social media operators and agents use this skill to automate Facebook posting, comment reading, reply drafting or posting, and follow-up engagement for brand/community operations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can act through a logged-in Facebook browser profile and post public replies automatically. <br>
-Mitigation: Prefer Draft or Query mode for normal use, require human approval for sensitive replies, and keep the documented per-session reply limit. <br>
-Risk: The skill stores comments, receipts, logs, and screenshots that may contain social data. <br>
-Mitigation: Use a dedicated low-risk browser profile or account where possible and periodically delete stored comments, receipts, logs, and screenshots. <br>
-Risk: The security verdict is suspicious because the skill combines social posting automation with limited controls around stored social data. <br>
-Mitigation: Inspect the referenced local scripts before use and set explicit monitoring and posting limits before allowing execution. <br>
+**Output Format:** [Markdown guidance with inline shell commands and JSON receipt examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/x-rayluan/openclaw-mark) <br>
-- [Publisher profile](https://clawhub.ai/user/x-rayluan) <br>
+**Other Properties Related to Output:** [Produces operational receipts, comment snapshots, and error logs when actions run.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON receipt examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local receipts, comment snapshots, logs, and screenshots under the configured workspace.] <br>
+1.0.1 (source: server release evidence and package.json)
 
-## Skill Version(s): <br>
-1.0.1 (source: package.json and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

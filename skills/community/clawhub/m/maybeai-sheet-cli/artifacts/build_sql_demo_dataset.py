@@ -54,8 +54,8 @@ SHEETS = [
     {
         "name": "Report",
         "rows": [
-            ["SQL Formula Demo"],
-            ["A live =SQL(...) formula will be written starting at A4 after upload."],
+            ["Worksheet SQL Config Demo"],
+            ["Use mbs sql config set and mbs sql overwrite to materialize the result after upload."],
             [""],
         ],
     },

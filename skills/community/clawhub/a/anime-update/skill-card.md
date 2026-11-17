@@ -1,37 +1,56 @@
-## Description: <br>
-Queries current anime update information from Chinese public sources, including latest episode counts, update times, broadcast platforms, weekly or monthly new-release schedules, and recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+查询国内动漫动画的最新更新信息，包括特定动漫的最新集数和更新时间、本周或本月新番更新时间表，以及近期动漫推荐。
 
-## Publisher: <br>
-[anmu14641](https://clawhub.ai/user/anmu14641) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[anmu14641](https://clawhub.ai/user/anmu14641)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to look up current Chinese/domestic anime episode updates, weekly or monthly airing schedules, platform availability, and recent recommendations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Anime lookup queries may be sent through web search or third-party entertainment sites.
+
+Mitigation: Avoid including private or sensitive information in anime search requests.
+
+Risk: Current episode, schedule, rating, or platform information may vary across sources and change over time.
+
+Mitigation: Check important results against the named entertainment platform or source before relying on them.
+
+Risk: Domestic platform release timing may lag other regional releases or differ by season, movie, OVA, or multi-season title.
+
+Mitigation: Distinguish the requested season or format and include source dates or platform status when presenting results.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users use this skill to ask an agent for current anime episode counts, schedule tables, platform availability, and recent recommendations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Episode counts, update dates, and platform availability may be outdated or inconsistent because the skill relies on public web search results. <br>
-Mitigation: Verify time-sensitive results against the cited anime platform or community source before acting on them. <br>
+**Output Format:** [Markdown with structured lists and tables]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May include latest episode number, update date, playback platform, airing status, title, genre, schedule, rating, and summary when available.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results are based on current public web lookups and should include episode counts, dates, platform names, status, or recommendation details when available.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

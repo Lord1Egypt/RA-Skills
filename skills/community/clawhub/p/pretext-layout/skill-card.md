@@ -1,44 +1,56 @@
-## Description: <br>
-Integrate, debug, or prototype @chenglou/pretext for browser-based multiline text measurement and manual line layout. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrate, debug, or prototype @chenglou/pretext for browser-based multiline text measurement and manual line layout.
 
-## Publisher: <br>
-[royhk920](https://clawhub.ai/user/royhk920) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[royhk920](https://clawhub.ai/user/royhk920)
 
-## Use Case: <br>
-Developers and engineers use this skill to integrate @chenglou/pretext into browser-based text measurement, virtualization, and custom canvas or SVG layout workflows. It helps them choose APIs, align measurement inputs with real UI styles, and debug font, white-space, emoji, bidi, and browser runtime constraints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running the optional browser demo scaffold can create or overwrite index.html and demo.mjs in the selected output directory. <br>
-Mitigation: Run the scaffold only in a disposable or intended project directory, then review generated files before reuse. <br>
-Risk: Direct runtime use is unsupported in pure Node or CLI environments unless a compatible canvas or DOM-backed environment is available. <br>
-Mitigation: Confirm browser, OffscreenCanvas, or DOM canvas support before relying on Pretext measurements. <br>
+## Use Case:
 
+Developers and engineers use this skill to integrate, prototype, and debug @chenglou/pretext in browser-based applications that need cached multiline text measurement, height prediction, and manual line layout.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/royhk920/pretext-layout) <br>
-- [Browser Integration](references/browser-integration.md) <br>
-- [Usage Patterns](references/usage-patterns.md) <br>
-- [Caveats](references/caveats.md) <br>
-- [Portable Integration Patterns](references/project-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with code examples and optional generated browser demo files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires bash, node, npm, and python3 when using the bundled scaffold script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The optional scaffold script writes index.html and demo.mjs into the selected output directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the scaffold only in a disposable or empty directory and inspect generated files before adapting them.
+
+Risk: Pretext measurements can be wrong when browser runtime, font loading, font value, line height, or white-space mode do not match the real UI.
+
+Mitigation: Use a browser-backed runtime, wait for fonts when needed, read styles from the target UI, and verify representative multilingual, emoji, and narrow-width samples against live DOM output.
+
+## Reference(s):
+
+- [Browser Integration](references/browser-integration.md)
+- [Usage Patterns](references/usage-patterns.md)
+- [Caveats](references/caveats.md)
+- [Portable Integration Patterns](references/project-examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline code examples and optional scaffold commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce a minimal browser demo scaffold containing index.html and demo.mjs when the optional scaffold script is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,60 @@
-## Description: <br>
-Provides Python tools for China A-share market data retrieval, technical indicators, strategy backtesting, monitoring scores, FFT analysis, and daily report generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an A-share quantitative analysis toolkit for real-time Tencent market data, technical indicators, strategy backtesting, monitoring scores, FFT cycle analysis, and daily report generation.
 
-## Publisher: <br>
-[dnaxxx-hub](https://clawhub.ai/user/dnaxxx-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dnaxxx-hub](https://clawhub.ai/user/dnaxxx-hub)
 
-## Use Case: <br>
-Developers and trading-analysis users can use this skill to fetch A-share market data, run technical-analysis and backtesting workflows, monitor selected stocks, and generate market reports. Treat generated buy, sell, scoring, and alert outputs as educational analysis aids, not investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market-data lookups and generated reports may create local cache or report files. <br>
-Mitigation: Run the tool in a workspace where local generated files are expected, and review generated reports before sharing them. <br>
-Risk: Generated buy, sell, score, and alert outputs may be mistaken for investment advice. <br>
-Mitigation: Present outputs as educational signals only and require independent financial review before any trading decision. <br>
-Risk: Security evidence notes under-disclosed process handoff and alert synchronization behavior. <br>
-Mitigation: Review the relevant scripts before direct execution and disable host knowledge-bridge integrations unless they are explicitly intended. <br>
+## Use Case:
 
+Developers and finance analysts use this skill to have an agent generate A-share market analysis workflows, technical indicator calculations, backtest comparisons, monitoring summaries, and daily market reports. Results should be reviewed as decision support rather than relied on as trading advice.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dnaxxx-hub/a-stock-quant-toolkit) <br>
-- [Artifact README](README.md) <br>
-- [Artifact skill documentation](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell examples; runtime helpers may return dictionaries, tabular analysis, generated reports, plots, and JSON files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May fetch public market data, write local cache and report files, and produce trading signals, scoring output, alerts, and strategy-analysis summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, finance_toolkit/__init__.py) <br>
+Risk: Hidden local-code bridges or alert synchronization can execute or connect to local integrations outside the core finance workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or disable the python_bridge.py execution path and system_bridge alert sync unless those integrations are explicitly required and trusted.
+
+Risk: Market data is fetched from external Tencent and Sina endpoints, including unauthenticated HTTP paths, so outputs may be unavailable, stale, or affected by transport and source integrity issues.
+
+Mitigation: Use trusted data feeds for production decisions, validate fetched data before acting on it, and avoid using the toolkit as the sole basis for trading.
+
+Risk: Generated scores, backtests, reports, and strategy signals can be misleading if market assumptions, data quality, or parameters are wrong.
+
+Mitigation: Treat all finance output as decision-support analysis, review calculations independently, and require human approval before any trade.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dnaxxx-hub/skills/a-stock-quant-toolkit)
+- [Publisher profile](https://clawhub.ai/user/dnaxxx-hub)
+- [Artifact README](artifact/README.md)
+- [Artifact SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with Python examples, command snippets, and structured finance analysis text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include market summaries, indicator values, strategy rankings, backtest metrics, monitoring alerts, and report text.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,51 @@
-## Description: <br>
-FFHub helps agents operate FFHub FFmpeg transcoding tasks through the OOMOL oo CLI connector, including creating tasks and checking task status or outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FFHub (ffhub.io). Use this skill for ANY FFHub request — reading, creating, and updating data. Whenever a task involves FFHub, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and media workflow operators use this skill to create FFmpeg transcoding tasks in FFHub and inspect task status, timing, errors, and generated outputs through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an OOMOL-connected FFHub account and can act through credentials managed by that connection. <br>
-Mitigation: Install or use it only when the user intends to grant that account access, and run authentication or connection recovery steps only after matching command failures. <br>
-Risk: Creating an FFmpeg task changes FFHub state and may consume account resources or credits. <br>
-Mitigation: Confirm the exact payload and expected effect with the user before write actions, and inspect the live connector schema before building the payload. <br>
-Risk: Connector schemas, authentication state, and billing state can change at runtime. <br>
-Mitigation: Use the live schema as authoritative for each action and treat authentication, connection, or billing failures as explicit recovery paths. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect FFHub action schemas, create FFmpeg transcoding tasks, and check task status and output files through an OOMOL-connected account.
 
-## Reference(s): <br>
-- [FFHub homepage](https://ffhub.io) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub release page](https://clawhub.ai/oomol/oo-ffhub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before constructing action payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill frontmatter) <br>
+Risk: The setup fallback directs the agent to run an external installer whose exact effects are unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the setup fallback, install the CLI through a separately reviewed process, and require user approval before running an installer.
+
+## Reference(s):
+
+- [FFHub](https://ffhub.io)
+- [FFHub API documentation](https://ffhub.io/docs)
+- [oo CLI project (referenced by the skill)](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, API Calls, Guidance]
+
+**Output Format:** [oo CLI commands with JSON payloads and FFHub task responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses depend on the action and can include task status, timing, errors, output files, and an execution ID.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

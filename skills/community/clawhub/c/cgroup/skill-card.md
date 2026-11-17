@@ -1,41 +1,50 @@
-## Description: <br>
-Cgroup reference tool. Use when working with cgroup in sysops contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cgroup reference tool. Use when working with cgroup in sysops contexts.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers, sysops practitioners, and engineers use this skill as a quick cgroup reference for concepts, setup, patterns, troubleshooting, performance, security, migration, and checklist-style guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated sysops reference guidance can be generic or mismatched to a specific production cgroup environment. <br>
-Mitigation: Review guidance against the target system, distribution, and operational policy before applying it. <br>
-Risk: Security guidance may reference credential handling, access control, backups, and network controls without validating the user's actual configuration. <br>
-Mitigation: Treat the output as checklist-style guidance and verify all security controls with approved operational procedures. <br>
+## Use Case:
 
+Developers and sysops practitioners can use this skill as a quick-reference command set for cgroup-related checklists, troubleshooting prompts, and general operational guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain1/cgroup) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown reference guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command-selected topics include intro, quickstart, patterns, debugging, performance, security, migration, cheatsheet, help, and version.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The release claims to be a cgroup reference, but security evidence says it currently prints generic sysops template text that could mislead users doing system administration work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and replace the generic material with accurate, cgroup-specific content before installing the skill or relying on it for operational decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain1/skills/cgroup)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown text from CLI-style shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command-specific reference sections for intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

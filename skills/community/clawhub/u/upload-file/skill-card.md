@@ -1,42 +1,53 @@
-## Description: <br>
-Automates user-directed browser file uploads through agent-browser CLI with a step-by-step execution protocol, fallback selectors, path normalization, and upload verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides step-by-step automation for uploading files through agent-browser CLI, with fallback strategies, path normalization, and upload verification.
 
-## Publisher: <br>
-[m1ss-cell](https://clawhub.ai/user/m1ss-cell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[m1ss-cell](https://clawhub.ai/user/m1ss-cell)
 
-## Use Case: <br>
-Developers and agents use this skill when they need to upload a specific local file to a web page through browser automation and verify that the upload succeeded. Users should confirm the destination site and resolved file path before use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload local files to a website selected by the agent or user. <br>
-Mitigation: Confirm the exact destination website and resolved local file path before execution. <br>
-Risk: Sensitive or unintended files could be uploaded if the file path is wrong or expands unexpectedly. <br>
-Mitigation: Avoid uploading secrets, credentials, identity documents, medical or financial records, or internal files unless that is explicitly intended. <br>
-Risk: The documentation references scripts/upload_file.py while the artifact contains scripts/upload.py. <br>
-Mitigation: Use scripts/upload.py unless a future package version adds or renames the documented script. <br>
+## Use Case:
 
+Developers and agents use this skill to automate browser-based file uploads when they have an explicit destination page and local file path.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/m1ss-cell/upload-file) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code] <br>
-**Output Format:** [Markdown guidance with inline shell commands and a Python helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces browser upload steps and command invocations for agent-browser; no structured API response is defined.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can upload local files to arbitrary web pages without built-in destination limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with an explicit destination page and exact file path, and require confirmation before upload.
+
+Risk: Sensitive files could be uploaded if the agent is given a secret, credential, private document, or untrusted destination.
+
+Mitigation: Avoid using it for sensitive files or untrusted sites unless allowlists and sensitive-file checks are added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/m1ss-cell/skills/upload-file)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and a Python helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an explicit destination URL and file path; uses agent-browser CLI for browser actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

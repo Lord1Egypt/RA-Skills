@@ -1,43 +1,59 @@
-## Description: <br>
-Prerender (prerender.io) manages reading, creating, updating, and deleting Prerender data through OOMOL instead of direct API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Prerender to submit sitemaps, queue URLs for caching or recaching, check cache-clear status, and clear cache.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to manage Prerender account actions through OOMOL, including sitemap submission, cache clearing, cache status checks, and URL recaching. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can submit sitemaps, clear cache entries, and recache URLs in a connected Prerender account. <br>
-Mitigation: Confirm the exact payload, target URLs, wildcard patterns, and expected effect with the user before running write or destructive actions. <br>
-Risk: The skill depends on the local oo CLI and OOMOL-managed credentials. <br>
-Mitigation: Install or update the oo CLI only from the trusted OOMOL source and run first-time authentication or connection steps only after a command fails for that specific reason. <br>
+## Use Case:
 
+Developers and site operators use this skill to manage Prerender caching by submitting sitemaps, queuing URLs, checking cache-clear jobs, and clearing cached pages.
 
-## Reference(s): <br>
-- [ClawHub Prerender Skill](https://clawhub.ai/oomol/oo-prerender) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [Prerender Homepage](https://prerender.io) <br>
-- [OOMOL CLI Install Guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce oo CLI connector commands and JSON payload guidance for Prerender actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and frontmatter) <br>
+Risk: CLI setup uses remote installers whose exact effects were unavailable for inspection, and documented defaults can add skills to other agent environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review CLI installation separately, use a verified release, and disable startup skill synchronization if you only want this integration.
+
+Risk: Wildcard cache clears may affect more URLs than intended.
+
+Mitigation: Review the wildcard target carefully and obtain explicit approval before clearing cache.
+
+Risk: Cache operations can change Prerender state.
+
+Mitigation: Confirm the exact payload and effect with the user before running write actions.
+
+## Reference(s):
+
+- [Prerender API documentation](https://docs.prerender.io/docs/6-api)
+- [Prerender](https://prerender.io)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown with shell commands and JSON payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the connected Prerender account; action schemas are checked before submitting payloads.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-Fetches and summarizes recent arXiv and Hugging Face papers with Agentic Paper Digest. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches and summarizes recent arXiv and Hugging Face papers with Agentic Paper Digest.
 
-## Publisher: <br>
-[matanle51](https://clawhub.ai/user/matanle51) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[matanle51](https://clawhub.ai/user/matanle51)
 
-## Use Case: <br>
-Developers and research teams use this skill to configure topics, fetch recent papers from arXiv and Hugging Face, and produce paper digests for agent workflows. It can run as a CLI workflow for JSON output or as a local API when polling is needed. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Helper scripts load environment variables from a configurable ENV_FILE and may expose sensitive API keys if pointed at an untrusted file. <br>
-Mitigation: Keep .env private, use a limited API key, and only set ENV_FILE to a trusted local file. <br>
-Risk: The stop script targets processes using port 8000 or matching the paper_finder server command and could stop an unintended local service. <br>
-Mitigation: Check what is using port 8000 before running the stop script, or stop the intended service manually. <br>
-Risk: Bootstrap downloads and installs code and dependencies from the linked project. <br>
-Mitigation: Install only after reviewing the linked project and its dependencies in a trusted workspace. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/matanle51/agentic-paper-digest-skill) <br>
-- [Agentic Paper Digest GitHub project](https://github.com/matanle51/agentic_paper_digest) <br>
+## Use Case:
 
+Developers and research-oriented users use this skill to configure and run a local pipeline that fetches recent arXiv and Hugging Face papers, filters them by topic, and returns paper digests through CLI JSON output or a local API.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON-producing CLI/API workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3, network access, and an OpenAI or OpenAI-compatible API key; CLI runs can create a local SQLite data store under PROJECT_DIR.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.3.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The installer can execute mutable remote code from the publisher repository.
+
+Mitigation: Pin the repository to a reviewed commit and review requirements before installing dependencies.
+
+Risk: Wrapper scripts source dotenv files as shell code.
+
+Mitigation: Use safe dotenv parsing and keep API keys out of transcripts and version control.
+
+Risk: The API stop helper can force-kill processes on port 8000 or matching broad process names.
+
+Mitigation: Avoid stop_api.sh unless you have confirmed nothing important is using port 8000.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/matanle51/skills/agentic-paper-digest-skill)
+- [Publisher Profile](https://clawhub.ai/user/matanle51)
+- [Agentic Paper Digest Repository](https://github.com/matanle51/agentic_paper_digest)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with bash commands and JSON pipeline output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May also start a local API server and store results in a SQLite database under PROJECT_DIR.]
+
+## Skill Version(s):
+
+0.3.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

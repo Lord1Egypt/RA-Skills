@@ -1,49 +1,61 @@
-## Description: <br>
-Diagnoses Huawei Cloud CCE/Kubernetes node failures by collecting node status, lease, event, pod, metric, and security evidence and producing a Markdown diagnosis report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Huawei Cloud CCE node failure diagnosis skill using a Python SDK dispatcher to collect node status, lease, event, pod, metric, and security evidence.
 
-## Publisher: <br>
-[pintudeyudi](https://clawhub.ai/user/pintudeyudi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pintudeyudi](https://clawhub.ai/user/pintudeyudi)
 
-## Use Case: <br>
-Developers, SREs, and cloud operations teams use this skill to investigate Huawei Cloud CCE node NotReady states, resource pressure, liveness issues, workload impact, and related security findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review says the release includes broad live cluster administration and credential-revealing capabilities under a read-only node-diagnosis description. <br>
-Mitigation: Install only for operators who need broad Huawei Cloud and Kubernetes operational access, and prefer least-privilege read-only credentials. <br>
-Risk: The skill requires sensitive Huawei Cloud credentials. <br>
-Mitigation: Use HUAWEI_AK and HUAWEI_SK environment variables, avoid passing credentials as command parameters, and do not expose or log credential values. <br>
-Risk: Some actions may involve confirmation-gated cluster changes or sensitive raw data access outside the normal diagnosis path. <br>
-Mitigation: Do not invoke raw kubeconfig, secret, or log actions unless explicitly needed, and review any action involving confirm=true or cluster changes before execution. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to investigate Huawei Cloud CCE Kubernetes node NotReady states, node pressure, kubelet or runtime symptoms, network issues, pod impact, and related events or metrics. It produces a diagnosis report and runbook-style recommendations for human review.
 
-## Reference(s): <br>
-- [Diagnosis Workflow](references/workflow.md) <br>
-- [Output Schema](references/output-schema.md) <br>
-- [Risk Rules](references/risk-rules.md) <br>
-- [Verification Method](references/verification-method.md) <br>
-- [IAM Policies](references/iam-policies.md) <br>
-- [Common Pitfalls](references/common-pitfalls.md) <br>
-- [Huawei Cloud Python SDK Documentation](https://doc.huihua.com/api/sdk/python.html) <br>
-- [Huawei Cloud API Explorer](https://support.huaweicloud.com/apiexplorer/index.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, shell commands, guidance] <br>
-**Output Format:** [Markdown diagnosis report with structured evidence and optional JSON fields from dispatcher actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Primary diagnosis output includes report_markdown plus evidence, node, lease, liveness, root_category, confidence, pod_summary, health_items, events, and metrics fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The security evidence says the skill is presented as read-only node diagnosis, but the packaged dispatcher exposes cluster mutations and secret retrieval beyond that purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after constraining execution to dedicated read-only Huawei IAM and Kubernetes RBAC that cannot delete, scale, drain, cordon, reboot, modify alarms, change vulnerability status, or read Secret values.
+
+Risk: The security verdict is suspicious.
+
+Mitigation: Review and constrain the packaged dispatcher before deployment, and treat remediation recommendations as human-reviewed guidance rather than authorized automated actions.
+
+## Reference(s):
+
+- [Skill source](https://clawhub.ai/pintudeyudi/skills/huawei-cloud-cce-node-failure-diagnoser)
+- [Workflow](references/workflow.md)
+- [Risk Rules](references/risk-rules.md)
+- [Output Schema](references/output-schema.md)
+- [IAM Policies](references/iam-policies.md)
+- [Verification Method](references/verification-method.md)
+- [Common Pitfalls](references/common-pitfalls.md)
+- [Huawei Cloud API Explorer](https://support.huaweicloud.com/apiexplorer/index.html)
+- [Huawei Cloud IAM Console](https://console.huaweicloud.com/iam/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown diagnosis report with structured JSON evidence from dispatcher actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include node status, kube-node-lease freshness, liveness classification, root-cause category, confidence, evidence tables, pod impact, health items, metrics, and remediation recommendations.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

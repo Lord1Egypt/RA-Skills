@@ -1,47 +1,61 @@
-## Description: <br>
-Make x402 payments to access gated APIs and content. Fetch paid resources, check wallet balance, and create payment links. Use when encountering 402 Payment Required responses or when the user wants to pay for web resources with crypto. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agentic X402 enables agents to make x402 payments for gated APIs and content, fetch paid resources, check wallet balances, and create payment links.
 
-## Publisher: <br>
-[ya7ya](https://clawhub.ai/user/ya7ya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ya7ya](https://clawhub.ai/user/ya7ya)
 
-## Use Case: <br>
-External developers and agents use this skill to make x402 payments for gated APIs and content, fetch paid resources, check wallet balances, and create payment links for paid content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent persistent access to a wallet private key and can trigger real-money crypto payments. <br>
-Mitigation: Use a fresh low-balance wallet, start on testnet, set a low spending limit, and install only when automated x402 payments are intended. <br>
-Risk: Payment requests may include sensitive URLs, headers, or request bodies. <br>
-Mitigation: Use trusted payment URLs only and avoid sending sensitive headers or request bodies through paid fetch or pay commands. <br>
-Risk: Payment-link and router distribution behavior can move funds or expose paid content in ways that depend on external services. <br>
-Mitigation: Review link creation, router lookup, and distribution behavior before relying on it for production payments. <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure a dedicated EVM wallet, inspect balances, pay for x402-gated web resources, fetch paid content, and create payment links for gated content.
 
-## Reference(s): <br>
-- [ClawHub Agentic X402 Release Page](https://clawhub.ai/ya7ya/agentic-x402) <br>
-- [npm package: agentic-x402](https://www.npmjs.com/package/agentic-x402) <br>
-- [x402 Protocol Docs](https://docs.x402.org/) <br>
-- [x402 GitHub](https://github.com/coinbase/x402) <br>
-- [Base Network](https://base.org/) <br>
-- [21.cash](https://21.cash) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute networked x402 payment, wallet-balance, fetch, and payment-link CLI workflows when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.6 (source: SKILL.md metadata, package.json, server release metadata) <br>
+Risk: The skill can automatically spend cryptocurrency when paying for or fetching x402-gated resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance wallet, test on testnet first, prefer dry-run or manual review for new URLs, and avoid unattended pay or fetch flows for untrusted URLs.
+
+Risk: The skill requires a raw EVM private key and may store it in an environment file.
+
+Mitigation: Keep the key out of agent transcripts, terminal logs, screenshots, and shell history; restrict file permissions; and store backups only in a secure password manager or encrypted file.
+
+Risk: Server security evidence reports that advertised payment limits are not reliably enforced.
+
+Mitigation: Limit wallet funding to the maximum acceptable loss and avoid untrusted automatic payment flows until payment-limit enforcement is fixed.
+
+## Reference(s):
+
+- [x402 Protocol Docs](https://docs.x402.org/)
+- [npm: agentic-x402](https://www.npmjs.com/package/agentic-x402)
+- [x402 GitHub](https://github.com/coinbase/x402)
+- [Base Network](https://base.org/)
+- [21.cash](https://21.cash)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text, JSON responses, and Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include wallet addresses, balances, transaction hashes, payment link details, and fetched paid content.]
+
+## Skill Version(s):
+
+0.2.6 (source: SKILL.md metadata, package.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

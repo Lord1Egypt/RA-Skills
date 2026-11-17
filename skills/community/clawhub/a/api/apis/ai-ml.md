@@ -2,20 +2,20 @@
 
 | API | Line |
 |-----|------|
-| Anthropic | 2 |
-| OpenAI | 119 |
-| Cohere | 232 |
-| Groq | 327 |
-| Mistral AI | 400 |
-| Perplexity AI | 488 |
-| Hugging Face | 578 |
-| Replicate | 666 |
-| Stability AI | 767 |
-| ElevenLabs | 860 |
-| Deepgram | 957 |
-| AssemblyAI | 1040 |
-| Together AI | 1129 |
-| Anyscale | 1235 |
+| Anthropic | 22 |
+| OpenAI | 139 |
+| Cohere | 252 |
+| Groq | 347 |
+| Mistral AI | 420 |
+| Perplexity AI | 508 |
+| Hugging Face | 598 |
+| Replicate | 686 |
+| Stability AI | 787 |
+| ElevenLabs | 880 |
+| Deepgram | 977 |
+| AssemblyAI | 1060 |
+| Together AI | 1149 |
+| Anyscale | 1255 |
 
 ---
 
@@ -950,7 +950,7 @@ curl https://api.elevenlabs.io/v1/models \
 - `stability` (0-1) - Higher = more consistent
 - `similarity_boost` (0-1) - Higher = closer to original
 - `style` (0-1) - Style exaggeration
-- `speed` (0.25-4.0) - Speech speed multiplier
+- `speed` (0.7-1.2) - Speech speed multiplier
 
 ## Output Formats
 - `mp3_44100_128` - MP3, 44.1kHz, 128kbps (default)

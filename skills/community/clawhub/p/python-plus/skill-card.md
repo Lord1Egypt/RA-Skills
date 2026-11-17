@@ -1,39 +1,49 @@
-## Description: <br>
-Enhanced Python with async/await patterns, type hints, dataclasses, testing strategies, performance optimization, and project structure templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enhanced Python with async/await patterns, type hints, dataclasses, testing strategies, performance optimization, and project structure templates.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and engineers use this skill as a compact Python reference for async code, typing, data modeling, testing, performance tuning, and project layout decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example snippets include third-party packages plus network and database calls that may not fit a real project's dependency, endpoint, credential, or data-handling requirements. <br>
-Mitigation: Review package choices, service endpoints, credentials, and database access patterns before adapting snippets into production code. <br>
-Risk: The skill is a reference guide, so copied snippets may be incomplete for a specific application context. <br>
-Mitigation: Adapt examples to the target codebase, add tests, and run the project's normal linting, type checking, and security review before use. <br>
+## Use Case:
 
+Developers and engineers use this skill as a Python reference for async programming, type hints, dataclasses, testing patterns, performance techniques, and project structure.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python and TOML code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output; examples may require adaptation for a target project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Illustrative HTTP and API snippets may be adapted to real endpoints that handle secrets or personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review endpoints, authentication, error handling, and data handling before using the snippets in production code.
+
+## Reference(s):
+
+- [Python Plus on ClawHub](https://clawhub.ai/534422530/skills/python-plus)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with Python and TOML code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Illustrative reference content; no autonomous execution, persistence, or data collection is indicated by the security evidence.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

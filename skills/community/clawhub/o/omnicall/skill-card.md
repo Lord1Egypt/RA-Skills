@@ -1,41 +1,64 @@
-## Description: <br>
-Omnicall gives agents access to 248 LLMs, media generation, and live crypto, DeFi, market, web, and research data through a keyless, pay-per-call OpenAI-compatible endpoint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Omnicall helps agents access 248 LLMs, media generation, and live crypto, DeFi, market, web, and research data through a keyless, pay-per-call OpenAI-compatible endpoint.
 
-## Publisher: <br>
-[colinhughes2121](https://clawhub.ai/user/colinhughes2121) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[colinhughes2121](https://clawhub.ai/user/colinhughes2121)
 
-## Use Case: <br>
-Developers and agents use this skill to configure Omnicall as an OpenAI-compatible gateway or OpenClaw default for model routing, hosted generation tools, and live data endpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can route model prompts and related agent context through Omnicall's third-party hosted service. <br>
-Mitigation: Install only after reviewing the service and avoid setting it as a global default in sensitive workspaces. <br>
-Risk: The OpenClaw setup can make Omnicall the default paid gateway for agent model traffic. <br>
-Mitigation: Review the router package, wallet or payment setup, billing behavior, and the steps needed to revert the routing change before deployment. <br>
+## Use Case:
 
+Developers and agent builders use this skill to configure agents, SDKs, or MCP clients to send LLM, media-generation, and live-data requests through Omnicall. It is especially relevant when an agent needs a keyless pay-per-call gateway or OpenClaw default routing.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/colinhughes2121/skills/omnicall) <br>
-- [Omnicall API endpoint](https://omnicall.gocreativeai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown instructions with inline commands and endpoint examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May configure OpenClaw to route model traffic through Omnicall and may call hosted endpoints that return text, media URLs, or live data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: OpenClaw setup can make Omnicall the default route for model traffic.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default route only when you intend all model requests to pass through Omnicall, and test routing behavior before relying on it.
+
+Risk: The paid gateway can automatically spend wallet funds without clearly documented limits.
+
+Mitigation: Use strict wallet spending limits or only connect funds you are prepared to spend.
+
+Risk: Requests may include secrets, private code, personal data, or regulated information.
+
+Mitigation: Do not route sensitive or regulated data through the service unless privacy, retention, downstream-provider, and payment controls have been reviewed.
+
+Risk: Setup commands install packages from external package registries.
+
+Mitigation: Prefer pinned package versions where possible and review installed package behavior before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/colinhughes2121/skills/omnicall)
+- [Omnicall API base endpoint](https://omnicall.gocreativeai.com/v1)
+- [Omnicall MCP endpoint](https://omnicall.gocreativeai.com/mcp)
+- [Omnicall free completion endpoint](https://omnicall.gocreativeai.com/v1/ai/free/{prompt})
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code, API calls]
+
+**Output Format:** [Markdown guidance with inline shell commands, code snippets, and endpoint paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May configure an agent or SDK to route model and tool requests through Omnicall.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter and changelog mention 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

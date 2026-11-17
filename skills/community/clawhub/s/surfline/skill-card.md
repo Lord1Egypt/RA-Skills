@@ -1,42 +1,53 @@
-## Description: <br>
-Get surf forecasts and current conditions from Surfline public endpoints (no login). Use to look up Surfline spot IDs, fetch forecasts/conditions for specific spots, and summarize multiple favorite spots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get surf forecasts and current conditions from Surfline public endpoints with no login.
 
-## Publisher: <br>
-[MiguelCarranza](https://clawhub.ai/user/MiguelCarranza) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[miguelcarranza](https://clawhub.ai/user/miguelcarranza)
 
-## Use Case: <br>
-External users and developers use this skill to search Surfline spot IDs, retrieve current surf forecasts and conditions for individual spots, and summarize configured favorite spots. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search terms, spot IDs, and forecast requests are sent to Surfline public endpoints. <br>
-Mitigation: Install only if sharing searched spot names and Surfline spot IDs with Surfline is acceptable. <br>
-Risk: Cached forecast responses and favorites can remain on the local machine under Surfline cache and configuration paths. <br>
-Mitigation: Delete cached/configured Surfline files when no longer needed or set SURFLINE_CACHE_DIR to an approved location. <br>
-Risk: Surfline endpoint or response-field changes can make reports incomplete or inaccurate. <br>
-Mitigation: Review results before relying on them and update scripts/surfline_client.py if Surfline changes endpoint behavior. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MiguelCarranza/surfline) <br>
-- [Surfline public services endpoint](https://services.surfline.com) <br>
+## Use Case:
 
+External users and agents use this skill to look up Surfline spot IDs, fetch current conditions and short-range forecasts for specific spots, and summarize saved favorite surf spots.
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text summaries and JSON payloads from command-line scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public Surfline endpoints, no login, and local caching controlled by SURFLINE_CACHE_DIR and SURFLINE_CACHE_TTL_SEC.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Searched or saved Surfline spot IDs can reveal surf-location interests through outbound public-service requests and local files.
+
+Mitigation: Use only spot IDs the user is comfortable querying, and review or delete ~/.config/surfline/favorites.json and ~/.cache/surfline when local surf-location history should not be retained.
+
+Risk: Surfline public endpoint fields may change, causing missing, stale, or incomplete report content.
+
+Mitigation: Inspect JSON output when summaries look wrong, keep request caching modest, and update the Surfline client parsing when endpoint payloads change.
+
+## Reference(s):
+
+- [ClawHub Surfline skill page](https://clawhub.ai/miguelcarranza/skills/surfline)
+- [Surfline public services endpoint](https://services.surfline.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration]
+
+**Output Format:** [Plain text and JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include raw Surfline forecast payloads; local favorites and cached forecast JSON are stored under the user's home directory.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,60 @@
-## Description: <br>
-Analyze Instagram profiles and posts with engagement metrics, view counts, follower ratios, and Reels analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze Instagram profiles and posts with engagement metrics, view counts, follower ratios, and Reels-focused analytics.
 
-## Publisher: <br>
-[TevfikGulep](https://clawhub.ai/user/TevfikGulep) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tevfikgulep](https://clawhub.ai/user/tevfikgulep)
 
-## Use Case: <br>
-Social media analysts, marketers, and developers use this skill to analyze public Instagram profiles, posts, and Reels for engagement metrics, view-to-follower ratios, and exportable reporting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Browser automation against Instagram may violate site terms, trigger rate limits, or fail when Instagram changes its pages. <br>
-Mitigation: Use only authorized and intended analysis targets, keep request volume low, respect Instagram terms, and tune scroll pauses or batch sizes when needed. <br>
-Risk: Generated outputs can contain scraped profile, post, and engagement data retained on the local filesystem. <br>
-Mitigation: Keep generated data out of shared folders and source control, restrict access to output directories, and delete retained data when it is no longer needed. <br>
-Risk: The configuration includes fields for Instagram credentials, and the security guidance warns against storing real account credentials unless the implementation is improved. <br>
-Mitigation: Avoid saving real credentials in this skill configuration; use safer credential handling before any production use. <br>
-Risk: Dependencies are specified with minimum versions rather than pinned versions. <br>
-Mitigation: Pin and review dependency versions before production use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TevfikGulep/instagram-analyzer) <br>
-- [Skill README](artifact/SKILL.md) <br>
-- [Analyzer configuration](artifact/config/analyzer_config.json) <br>
-- [Analyzer script](artifact/scripts/instagram_analyzer.py) <br>
+## Use Case:
 
+Developers, analysts, and social media teams use this skill to analyze trusted Instagram usernames and post or Reel URLs, calculate engagement and view metrics, and export results for reporting or follow-up analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, CSV, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; generated analysis data is saved as JSON or CSV files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local data files under data/profiles, data/posts, and data/output.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: User-controlled Instagram URLs and usernames can broaden network activity beyond the intended target set.
+
+Mitigation: Use only trusted Instagram usernames and Instagram post or Reel URLs, and prefer host and username validation before operational use.
+
+Risk: The skill writes analysis outputs to local data directories that may contain profile, engagement, or account-related information.
+
+Mitigation: Keep outputs in a controlled directory and define privacy, retention, and access expectations before use.
+
+Risk: Instagram credentials may be needed for some metrics and could be exposed if stored in shared folders or source control.
+
+Mitigation: Store credentials outside shared folders and source control, and use environment-specific secret handling.
+
+Risk: Unpinned dependencies can change behavior or introduce supply-chain risk over time.
+
+Mitigation: Pin and review dependencies before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tevfikgulep/skills/instagram-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with JSON and CSV file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes profile, post, batch, and Reels-link outputs under the configured data directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

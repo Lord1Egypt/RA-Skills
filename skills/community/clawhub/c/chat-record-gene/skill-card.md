@@ -1,42 +1,55 @@
-## Description: <br>
-Generates simulated WeChat-style group chat Excel (.xlsx) files with group_info, active_members, and message_stream sheets compatible with Pai platform group-chat training data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates simulated WeChat-style group chat records as Excel (.xlsx) files with group_info, active_members, and message_stream sheets for Pai platform training data.
 
-## Publisher: <br>
-[mellooc](https://clawhub.ai/user/mellooc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mellooc](https://clawhub.ai/user/mellooc)
 
-## Use Case: <br>
-Developers and dataset builders use this skill to create synthetic group chat records for AI assistant training data, group-chat FAQ or knowledge-base testing, multi-role conversation demonstrations, and themed chat sample spreadsheets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes local JSON and XLSX files, so an imprecise output path could overwrite workspace files. <br>
-Mitigation: Specify explicit output paths in the workspace and check for existing files before running the write step. <br>
-Risk: The XLSX writer depends on the xlsx npm package and may use a shared /tmp dependency location. <br>
-Mitigation: Install a pinned xlsx version in a project-local dependency directory when stronger dependency control is required. <br>
+## Use Case:
 
+Developers and AI workflow builders use this skill to create synthetic group-chat Excel datasets for assistant training, FAQ or knowledge-base testing, multi-role conversation demonstrations, and topic-specific chat samples.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mellooc/chat-record-gene) <br>
-- [Group schema reference](references/group-schema.md) <br>
-- [XLSX format reference](references/xlsx-format.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON inputs, JavaScript scripts, shell commands, and generated .xlsx files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local JSON and XLSX files using Node.js and the xlsx package.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Unsafe output-file handling could write generated workbooks to an unintended location.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in a contained workspace, pass an explicit safe output filename, inspect paths before execution, and avoid elevated privileges.
+
+Risk: The xlsx dependency is unpinned and loaded from a shared temporary path.
+
+Mitigation: Install a pinned xlsx version through a project lockfile and avoid the shared /tmp dependency path.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mellooc/skills/chat-record-gene)
+- [Group schema reference](artifact/references/group-schema.md)
+- [XLSX format reference](artifact/references/xlsx-format.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with JSON snippets, JavaScript scripts, shell commands, and generated .xlsx files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces group definition JSON and Excel workbooks; expected sheets are group_info, active_members, and message_stream.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

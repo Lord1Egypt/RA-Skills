@@ -1,42 +1,49 @@
-## Description: <br>
-OpenClaw skill for sending and retrieving SMS messages via the VoIP.ms API (no Bitwarden dependency). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw skill for sending and retrieving SMS messages via the VoIP.ms API (no Bitwarden dependency).
 
-## Publisher: <br>
-[ccormier](https://clawhub.ai/user/ccormier) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ccormier](https://clawhub.ai/user/ccormier)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent send SMS messages from a VoIP.ms DID and retrieve recent SMS messages through the VoIP.ms API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: An agent with VoIP.ms credentials can send SMS messages from the configured account. <br>
-Mitigation: Use a dedicated SMS-only VoIP.ms API sub-account and verify the destination and message before sending. <br>
-Risk: Retrieved SMS messages can contain private or sensitive data. <br>
-Mitigation: Treat retrieved SMS output as private data and limit access to users and agents that need it. <br>
-Risk: Using main VoIP.ms admin credentials would increase account impact if credentials are exposed. <br>
-Mitigation: Avoid main admin credentials and provide only the required API environment variables for the task. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [VoIP.ms REST API endpoint](https://voip.ms/api/v1/rest.php) <br>
-- [ClawHub skill page](https://clawhub.ai/ccormier/voipms-sms) <br>
+## Use Case:
 
+Developers and operators with VoIP.ms accounts use this skill to send SMS messages from a DID and retrieve recent SMS messages through the VoIP.ms API.
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires VOIPMS_API_USERNAME and VOIPMS_API_PASSWORD environment variables.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and openclaw.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: SMS contents and reusable VoIP.ms API credentials can be exposed through request URL logs or terminal output.
+
+Mitigation: Use a dedicated VoIP.ms SMS-only sub-account, avoid sending highly sensitive messages, treat command output as sensitive, prefer POST-body parameters if the API supports them, and rotate credentials if full request URLs may have been logged.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ccormier/skills/voipms-sms)
+- [VoIP.ms API endpoint](https://voip.ms/api/v1/rest.php)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands; script output is JSON or raw API text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires VOIPMS_API_USERNAME and VOIPMS_API_PASSWORD environment variables; SMS contents and API responses may be sensitive.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and openclaw.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

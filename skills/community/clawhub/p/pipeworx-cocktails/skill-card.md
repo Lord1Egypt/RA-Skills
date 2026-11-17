@@ -1,42 +1,59 @@
-## Description: <br>
-Cocktail recipes from TheCocktailDB — search by name, browse by ingredient, or discover a random drink. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cocktail recipes from TheCocktailDB - search by name, browse by ingredient, or discover a random drink.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-External users and developers use this skill to look up cocktail recipes, search by name or ingredient, retrieve full ingredient measurements and instructions, or request a random drink suggestion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recipe queries are sent through the Pipeworx gateway. <br>
-Mitigation: Avoid sending sensitive or personal information in cocktail lookup prompts and review organizational data-sharing policy before use. <br>
-Risk: The sample MCP client setup runs mcp-remote via npx. <br>
-Mitigation: Pin or inspect the mcp-remote package before enabling the MCP configuration in environments that require tighter supply-chain control. <br>
+## Use Case:
 
+External users, developers, and agent operators use this skill to search for cocktail recipes, retrieve ingredient lists and preparation instructions, browse drinks by ingredient, or request a random cocktail suggestion.
 
-## Reference(s): <br>
-- [Pipeworx Cocktails homepage](https://pipeworx.io/packs/cocktails) <br>
-- [ClawHub skill page](https://clawhub.ai/brucegutman/pipeworx-cocktails) <br>
-- [Pipeworx Cocktails MCP endpoint](https://gateway.pipeworx.io/cocktails/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance, Configuration, Shell commands] <br>
-**Output Format:** [Markdown or plain text recipe results with inline shell commands and JSON MCP configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns cocktail names, IDs, thumbnails, ingredient measurements, preparation instructions, and setup guidance for MCP clients.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The MCP client configuration runs npm code through npx using mcp-remote@latest.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin mcp-remote to a reviewed exact version and run the client in a restricted environment before installation.
+
+Risk: Secrets or unnecessary environment data could be exposed to the external MCP process if the agent environment is configured broadly.
+
+Mitigation: Avoid placing unnecessary secrets in the agent environment and scope any credentials to the minimum required.
+
+Risk: Cocktail recipe data is retrieved from an external service and may be unavailable or unsuitable for a specific audience or setting.
+
+Mitigation: Review returned recipe content before serving it to end users and handle endpoint failures gracefully.
+
+## Reference(s):
+
+- [Pipeworx Cocktails Pack](https://pipeworx.io/packs/cocktails)
+- [Pipeworx Cocktails MCP Endpoint](https://gateway.pipeworx.io/cocktails/mcp)
+- [ClawHub Skill Page](https://clawhub.ai/brucegutman/skills/pipeworx-cocktails)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, configuration, guidance]
+
+**Output Format:** [MCP tool responses with cocktail recipe details, ingredient lists, preparation instructions, and client configuration examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl for the documented example; MCP client setup uses npx with mcp-remote.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

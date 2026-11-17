@@ -1,22 +1,26 @@
 ---
 name: flux-image
-description: Generate and edit images with Flux (Black Forest Labs) via AceDataCloud API. Use when creating images from text prompts, editing existing images with text instructions, or when high-quality image generation is needed. Supports multiple Flux models including dev, pro, ultra, and kontext for editing.
+description: Generate and edit Flux images or generate FLUX 3 videos via AceDataCloud API. Use when creating images from text prompts, editing existing images with text instructions, or when high-quality image generation is needed. Supports image models plus text/image/video generation and temporary owned video drafts.
 license: Apache-2.0
 metadata:
   author: acedatacloud
   version: "1.0"
-compatibility: Requires ACEDATACLOUD_API_TOKEN environment variable. Optionally pair with mcp-flux for tool-use.
+compatibility: Requires ACEDATACLOUD_API_TOKEN in .env file (get an API key at https://platform.acedata.cloud/console/applications). Optionally pair with mcp-flux-pro for tool-use.
 ---
 
 # Flux Image Generation
 
 Generate and edit images through AceDataCloud's Flux API.
 
-## Authentication
+## First-time setup
 
-```bash
-export ACEDATACLOUD_API_TOKEN="your-token-here"
-```
+1. Install the official Skill with `clawhub install @acedatacloud/flux`. Check that the ClawHub publisher is **@acedatacloud**.
+2. Sign in at [AceDataCloud → Applications](https://platform.acedata.cloud/console/applications), open **General application**, and check Flux access, balance, and current pricing. Copy its API key, or select **Manage Keys → Create** for a separate key. Copy the key value without `Bearer `; a `platform-...` management token is not a service API key.
+3. If you enable **Allowed APIs** restrictions, include `/flux/images` and `/flux/tasks`. Advanced workflows below may call additional routes.
+4. On the OpenClaw Gateway host, put `ACEDATACLOUD_API_TOKEN=your_api_key_here` in `~/.openclaw/.env`, then restart the Gateway and start a new session. For a direct terminal test, run `export ACEDATACLOUD_API_TOKEN="your_api_key_here"` in that shell. Never put the key in a prompt or commit an `.env` file.
+5. Run the **Quick Start** below. If it returns a task ID, query that same task until it finishes; do not submit a second billable generation just to check progress.
+
+[Illustrated key setup, first run, and troubleshooting](https://github.com/AceDataCloud/Skills#first-run-with-clawhub-and-openclaw) · [Token details](https://github.com/AceDataCloud/Skills/blob/main/skills/_shared/authentication.md)
 
 ## Quick Start
 
@@ -24,8 +28,10 @@ export ACEDATACLOUD_API_TOKEN="your-token-here"
 curl -X POST https://api.acedata.cloud/flux/images \
   -H "Authorization: Bearer $ACEDATACLOUD_API_TOKEN" \
   -H "Content-Type: application/json" \
-  -d '{"prompt": "a cat wearing a space helmet, photorealistic", "model": "flux-dev", "wait": true}'
+  -d '{"action": "generate", "prompt": "a cat wearing a space helmet, photorealistic", "model": "flux-dev", "async": true}'
 ```
+
+> **Async:** See [async task polling](https://github.com/AceDataCloud/Skills/blob/main/skills/_shared/async-tasks.md). Poll via `POST /flux/tasks` with `{"id": "..."}`.
 
 ## Models
 
@@ -33,8 +39,10 @@ curl -X POST https://api.acedata.cloud/flux/images \
 |-------|---------|-------|-------|----------|
 | `flux-dev` | Good | Fast | 256–1440px | Quick generation (default) |
 | `flux-pro` | High | Medium | 256–1440px | Production work |
-| `flux-pro-1.1` | Higher | Medium | 256–1440px | Better prompt following |
-| `flux-pro-1.1-ultra` | Highest | Slow | Aspect ratios | Maximum quality |
+| `flux-2-klein` | Good | Fastest | 256–1440px | Compact / lowest-latency Flux 2 generation |
+| `flux-2-flex` | High | Fast | 256–1440px | Faster high-quality generation |
+| `flux-2-pro` | Higher | Medium | 256–1440px | Better prompt following |
+| `flux-2-max` | Highest | Slow | 256–1440px | Maximum quality generation |
 | `flux-kontext-pro` | High | Medium | Aspect ratios | Image editing |
 | `flux-kontext-max` | Highest | Slow | Aspect ratios | Complex editing |
 
@@ -45,7 +53,7 @@ POST /flux/images
 {
   "prompt": "a minimalist logo of a mountain",
   "action": "generate",
-  "model": "flux-pro-1.1",
+  "model": "flux-2-pro",
   "size": "1024x1024",
   "count": 1
 }
@@ -53,10 +61,10 @@ POST /flux/images
 
 ### Size Options
 
-**For dev/pro/pro-1.1** (pixel dimensions):
+**For dev/pro/flux-2** (pixel dimensions):
 - `"1024x1024"`, `"1344x768"`, `"768x1344"`, `"1024x576"`, `"576x1024"`
 
-**For ultra/kontext** (aspect ratios):
+**For kontext** (aspect ratios):
 - `"1:1"`, `"16:9"`, `"9:16"`, `"4:3"`, `"3:4"`, `"3:2"`, `"2:3"`, `"21:9"`, `"9:21"`
 
 ## Edit Images
@@ -73,27 +81,21 @@ POST /flux/images
 }
 ```
 
-## Task Polling
-
-```json
-POST /flux/tasks
-{"task_id": "your-task-id"}
-```
-
-## MCP Server
-
-```bash
-pip install mcp-flux
-```
-
-Or hosted: `https://flux.mcp.acedata.cloud/mcp`
-
-Key tools: `flux_generate_image`, `flux_edit_image`
-
 ## Gotchas
 
-- Use pixel dimensions (e.g., `"1024x1024"`) with dev/pro models, aspect ratios (e.g., `"16:9"`) with ultra/kontext models
+- Use pixel dimensions (e.g., `"1024x1024"`) with dev/pro/flux-2 models, aspect ratios (e.g., `"16:9"`) with kontext models
 - Editing requires kontext models (`flux-kontext-pro` or `flux-kontext-max`) — other models only support generation
 - `count` parameter generates multiple images in one request (increases cost proportionally)
-- Ultra model produces highest quality but is slowest — use dev for iteration, ultra for final output
-- All generation is async — use `"wait": true` or poll `/flux/tasks`
+- `flux-2-klein` is the lightest Flux 2 model — useful when latency matters more than peak quality
+- `flux-2-max` produces highest quality but is slowest — use dev/klein/flex for iteration and max for final output
+- All generation is async — always set `"callback_url"` to get a task id immediately, then poll `/flux/tasks` using `{"id":"<task_id>"}` or `{"ids":[...],"action":"retrieve_batch"}`
+
+> **MCP:** `pip install mcp-flux-pro` | Hosted: `https://flux.mcp.acedata.cloud/mcp` | See [all MCP servers](https://github.com/AceDataCloud/Skills/blob/main/skills/_shared/mcp-servers.md)
+
+## FLUX 3 video tools
+
+`POST /flux/videos` generates videos with `action=generate` (default). Use `mode=t2v/i2v/v2v/draft_enhance`. T2V needs prompt; I2V also needs keyframes; V2V also needs start_video. Normal video requests support hd/fhd/qhd/uhd, integer duration 5–20 seconds (V2V up to 15) or auto, draft and generate_audio flags. Preserve explicit false.
+
+Draft enhancement uses an owned platform draft_task_id and requires its temporary cache to remain available. It does not promise indefinite retention.
+
+Companion MCP tool: flux_generate_video. CLI command: flux video --request-file. MCP/CLI requests submit asynchronously by default and are polled through the existing /flux/tasks endpoint. For raw HTTP requests, set async=true to receive a task ID immediately. Generation charges use actual output seconds; do not substitute requested duration for measured final usage.

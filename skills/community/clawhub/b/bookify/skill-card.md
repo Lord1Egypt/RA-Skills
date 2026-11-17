@@ -1,41 +1,50 @@
-## Description: <br>
-Convert Markdown files to styled PDF or EPUB ebook using md-bookify. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert Markdown files to styled PDF or EPUB ebook using md-bookify.
 
-## Publisher: <br>
-[danielefavi](https://clawhub.ai/user/danielefavi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danielefavi](https://clawhub.ai/user/danielefavi)
 
-## Use Case: <br>
-Developers, writers, and documentation maintainers use this skill to convert Markdown files into styled PDF documents or EPUB ebooks. It supports selecting output format, document metadata, PDF page settings, styles, and EPUB cover or description metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs pinned npm packages from the npm registry. <br>
-Mitigation: Install only after verifying the md-bookify package or source, and run conversion in a trusted or sandboxed environment for sensitive documents. <br>
-Risk: PDF generation may require Puppeteer to download Chrome if a compatible browser is not already available. <br>
-Mitigation: Expect and review the browser installation step before running it in controlled or restricted environments. <br>
+## Use Case:
 
+Developers and documentation authors use this skill to convert Markdown files into styled PDF documents or EPUB ebooks with md-bookify.
 
-## Reference(s): <br>
-- [Bookify Skill Page](https://clawhub.ai/danielefavi/bookify) <br>
-- [md-bookify npm Package](https://www.npmjs.com/package/md-bookify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, files] <br>
-**Output Format:** [Markdown guidance with shell commands that produce PDF or EPUB files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses md-bookify 2.2.1 and may require Node >= 20 and a Puppeteer-managed Chrome installation for PDF generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: The skill runs npx-based Markdown conversion tools, which carry ordinary npm and Puppeteer supply-chain and browser-installation exposure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in trusted workspaces, validate selected Markdown paths and metadata, and review npm/Puppeteer exposure before use in sensitive environments.
+
+## Reference(s):
+
+- [md-bookify npm package](https://www.npmjs.com/package/md-bookify)
+- [Bookify skill page](https://clawhub.ai/danielefavi/skills/bookify)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and conversion guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides an agent to produce PDF or EPUB files from selected Markdown inputs.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

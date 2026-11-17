@@ -1,45 +1,60 @@
-## Description: <br>
-Generate branded CompleteTech Agentic Development Services Agreement packages from approved provider, client, project, commercial, and governance terms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates branded CompleteTech Agentic Development Services Agreement packages from approved provider, client, project, commercial, and governance terms.
 
-## Publisher: <br>
-[completetech](https://clawhub.ai/user/completetech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[completetech](https://clawhub.ai/user/completetech)
 
-## Use Case: <br>
-External teams, developers, and business operators use this skill to turn verified provider, client, project, commercial, and governance facts into draft agentic development agreement packages for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated agreements may be mistaken for final legal advice or approved engagement terms. <br>
-Mitigation: Treat generated documents as drafts, verify all business and client facts, and have real engagement terms reviewed by qualified counsel before use. <br>
-Risk: Config files and generated outputs may contain client, commercial, or contact details. <br>
-Mitigation: Keep contract data local, avoid adding unnecessary secrets to config files, and share generated artifacts only through approved channels. <br>
-Risk: Incorrect provider, client, pricing, authority, or signature facts could create misleading commitments. <br>
-Mitigation: Keep unknown values as TBD and confirm commercial authority, approvals, and signature facts before using any generated package. <br>
+## Use Case:
 
+Developers, business operators, and service teams use this skill to turn approved engagement details into draft agreement packages for agentic workflow projects, including PDF contracts, filled Markdown source, and optional envelope output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/completetech/agentic-contract-skill) <br>
-- [Project homepage](https://github.com/CompleteTech-LLC/agentic-contract-skill) <br>
-- [Agentic development agreement template](references/agentic_development_agreement.md) <br>
-- [Reference directory guide](references/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples; generated artifacts include PDF, filled Markdown, and optional envelope files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated agreement materials are draft artifacts and should preserve unknown facts as TBD until verified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Generated contracts may be mistaken for legal advice or final production terms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Preserve demonstration disclaimers unless counsel-reviewed replacement terms are supplied, and review generated contracts with qualified counsel before real engagements.
+
+Risk: Generated PDF or Markdown files can replace existing files when output paths collide.
+
+Mitigation: Use a dedicated output folder and avoid pointing outputs at important existing files or client-specific artifacts.
+
+Risk: Contract details, contact information, and commercial terms are saved into local PDF and Markdown files.
+
+Mitigation: Store generated outputs in appropriately access-controlled locations and share them only through approved review or signature workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/completetech/skills/agentic-contract-skill)
+- [Project Homepage](https://github.com/CompleteTech-LLC/agentic-contract-skill)
+- [Agentic Development Agreement Template](references/agentic_development_agreement.md)
+- [References README](references/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands; generated artifacts are PDF, filled Markdown, and optional envelope PDF files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local file generation using user-selected config and output paths.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

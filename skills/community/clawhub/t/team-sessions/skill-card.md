@@ -1,42 +1,59 @@
-## Description: <br>
-主控发号施令、成员各司其职的团队沟通流程规范。零横向沟通，workspace 隔离，sessions_spawn 标准流程。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Team Sessions provides a structured workflow for a lead agent to delegate tasks to isolated subagent workspaces using OpenClaw session tools.
 
-## Publisher: <br>
-[zhao-zwl](https://clawhub.ai/user/zhao-zwl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhao-zwl](https://clawhub.ai/user/zhao-zwl)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to coordinate multi-agent team sessions with a main controller, isolated member workspaces, and standardized task handoff through sessions_spawn and sessions_send. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad sub-agent delegation can allow unintended agent IDs to be spawned if allowAgents is configured as a wildcard. <br>
-Mitigation: Use explicit agent IDs instead of allowAgents wildcard wherever possible, and review the configured member list before enabling the skill. <br>
-Risk: Changing OpenClaw configuration and restarting the gateway can disrupt routing or delegation behavior. <br>
-Mitigation: Back up openclaw.json before editing, apply the smallest required configuration change, and keep a rollback path ready before restarting the gateway. <br>
+## Use Case:
 
+Developers and agent operators use this skill to coordinate multi-agent task delegation, configure isolated member workspaces, and route work through a single lead agent instead of direct subagent-to-subagent communication.
 
-## Reference(s): <br>
-- [Team Sessions ClawHub Listing](https://clawhub.ai/zhao-zwl/team-sessions) <br>
-- [README](README.md) <br>
-- [Usage Examples](examples/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON, JavaScript, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may include OpenClaw configuration changes, workspace setup steps, and task delegation templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The default setup grants broad subagent spawning through allowAgents ["*"] and modifies persistent OpenClaw configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when a multi-agent delegation workflow is intended, replace the wildcard with an explicit allowlist of approved agent IDs, and document how to undo the openclaw.json change.
+
+Risk: Subagent workspaces may expose secrets or private code to agents that do not need that context.
+
+Mitigation: Review each subagent workspace and SOUL.md before use, keep workspaces scoped to the assigned role, and avoid sending secrets or unnecessary private code to subagents.
+
+Risk: Persistent member workspaces and gateway restarts can leave lasting operational state after testing or experimentation.
+
+Mitigation: Track created workspaces and configuration changes, restart the gateway only after review, and remove unused persistent workspaces when the workflow is retired.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhao-zwl/skills/team-sessions)
+- [README](artifact/README.md)
+- [Usage Examples](artifact/examples/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration instructions, Shell commands, Code]
+
+**Output Format:** [Markdown with inline shell, JSON, and JavaScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance centers on OpenClaw subagent configuration, session spawning, task package format, and workspace isolation.]
+
+## Skill Version(s):
+
+1.0.2 (source: evidence.json release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

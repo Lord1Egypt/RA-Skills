@@ -1,38 +1,50 @@
-## Description: <br>
-Analyzes a target industry's national spatial layout, clusters, regional division of labor, competitive tiers, migration trends, and regional strategy opportunities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes a target industry's national spatial distribution, clusters, regional roles, competitive tiers, and migration trends to produce a Chinese-language national industry landscape report.
 
-## Publisher: <br>
-[daviddatamining](https://clawhub.ai/user/daviddatamining) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daviddatamining](https://clawhub.ai/user/daviddatamining)
 
-## Use Case: <br>
-Industry researchers, regional planners, investment promotion teams, and strategy consultants use this skill to produce structured national industry landscape reports for a specified target industry and optional local comparison region. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global use; analysis is designed for national and regional industry landscape questions in China. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Strategic recommendations may be affected by outdated public sources, incomplete regional data, or unsupported assumptions. <br>
-Mitigation: Review cited sources, data gaps, and assumptions against current authoritative public data before using the report for business or policy decisions. <br>
+## Use Case:
 
+Developers, industry analysts, regional planners, and investment promotion teams use this skill to research a target industry and generate a structured national landscape report covering spatial layout, clusters, supply chain roles, regional competition, migration trends, and local strategic opportunities.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daviddatamining/national-industry-landscape-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with structured sections, tables expressed in text, and source-traceability notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live public web research and configurable inputs for target industry, local region, analysis focus, and time range.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release metadata) <br>
+Risk: The skill performs live public-source research and may produce regional rankings, forecasts, or migration conclusions that become outdated or depend on source quality.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated claims and forecasts against current authoritative sources before relying on the report for planning, investment, or policy decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daviddatamining/skills/national-industry-landscape-analyzer)
+- [Publisher profile](https://clawhub.ai/user/daviddatamining)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-language Markdown report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public-source research and spatial or cluster analysis where available; generated claims, rankings, and forecasts should be reviewed for source quality and recency.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,57 @@
-## Description: <br>
-Helps developers internationalize frontend applications by identifying hardcoded UI text, reusing or adding locale entries, replacing strings with project-specific i18n calls, and checking translation completeness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents internationalize frontend UI copy by finding hardcoded static text, reusing or adding locale entries, replacing strings with project-specific i18n calls, and checking translation completeness.
 
-## Publisher: <br>
-[anyaoqi](https://clawhub.ai/user/anyaoqi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anyaoqi](https://clawhub.ai/user/anyaoqi)
 
-## Use Case: <br>
-Developers use this skill when adapting frontend codebases for multilingual support. It guides locale-file placement, translation-key reuse or creation, hardcoded-string replacement, and post-change validation while preserving existing project conventions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may modify frontend source and localization files. <br>
-Mitigation: Review the diff before applying changes, and clarify when only translation advice is desired. <br>
-Risk: Incorrect translations or misplaced keys can cause confusing UI text or missing translation warnings. <br>
-Mitigation: Validate translated pages by switching languages, checking supported locale files for matching keys, and running the project's lint or test tools when available. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to convert frontend projects to internationalized UI copy while preserving existing project structure, locale-file conventions, and i18n call patterns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anyaoqi/dy-skill-i18n) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code snippets and proposed source or locale file changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update frontend source files and localization files; users should review diffs before applying changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can lead an agent to modify frontend source files and locale files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated diffs before committing and run the target project's lint, tests, or UI validation workflow where available.
+
+Risk: Translation changes can introduce inaccurate, inconsistent, or layout-breaking UI copy.
+
+Mitigation: Check terminology consistency, supported-language key parity, spelling, grammar, and UI fit after edits.
+
+Risk: Translated HTML rendered with v-html can create XSS exposure if content is not trusted.
+
+Mitigation: Prefer normal text rendering; only use HTML rendering for trusted or sanitized content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anyaoqi/skills/dy-skill-i18n)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Configuration, Shell commands]
+
+**Output Format:** [Markdown guidance with inline code examples and project file edits]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should follow the target project's existing internationalization structure, naming conventions, and validation workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

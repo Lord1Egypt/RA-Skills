@@ -1,44 +1,58 @@
-## Description: <br>
-AI agent tool for compressing/executing shell commands with domain-aware output truncation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI agent tool for compressing/executing shell commands with domain-aware output truncation.
 
-## Publisher: <br>
-[ether-btc](https://clawhub.ai/user/ether-btc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ether-btc](https://clawhub.ai/user/ether-btc)
 
-## Use Case: <br>
-Developers and agent operators use this skill to shorten verbose shell command output before an agent reasons over it, especially for git diffs, git logs, grep or rg results, directory listings, and build logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shell output is shortened before the agent reasons over it, so omitted lines may contain context that matters for audits, incident response, destructive operations, or secret review. <br>
-Mitigation: Review raw unfiltered output before acting in high-impact workflows or when commands may emit sensitive data. <br>
-Risk: A plugin package installed outside this artifact may include manifest or hook behavior that differs from the documented truncation utility. <br>
-Mitigation: Confirm the installed manifest and hook files match the documented behavior before deployment. <br>
-Risk: Domain-specific filters can remove details from git, grep, directory, or build output that an agent might otherwise inspect. <br>
-Mitigation: Use the documented bypass or raw-output review path when complete command output is needed. <br>
+## Use Case:
 
+Developers and agent operators use this skill to shorten verbose shell command output from git, search, directory listing, and build commands while preserving the most relevant lines for review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ether-btc/openclaw-exec-truncate) <br>
-- [Publisher Profile](https://clawhub.ai/user/ether-btc) <br>
-- [OpenClaw Plugin SDK](https://docs.openclaw.ai/plugins/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text or Markdown guidance with TypeScript code snippets, shell commands, and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces shortened command-output text with truncation markers; small outputs and failed filters return the original output unchanged.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Truncation can hide command output that later proves important for debugging, review, or agent decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where losing nonessential command output is acceptable, and keep an easy way to rerun commands without truncation.
+
+Risk: Plugin-style output interception can materially affect what users and agents see from shell commands.
+
+Mitigation: Review the skill carefully before installation and verify the exact package and version before activating it in the OpenClaw gateway.
+
+Risk: Oversized-output logging can be inappropriate for commands that may include secrets or sensitive paths.
+
+Mitigation: Avoid enabling oversized-output logging for secret-bearing workflows, or keep that logging disabled.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ether-btc/skills/openclaw-exec-truncate)
+- [OpenClaw plugin documentation](https://docs.openclaw.ai/plugins/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and TypeScript-oriented guidance with shell and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces shortened command-output text and configuration guidance; truncation can omit raw command details.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

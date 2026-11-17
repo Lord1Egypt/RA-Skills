@@ -1,44 +1,59 @@
-## Description: <br>
-Notion API for creating and managing pages, databases, blocks and enhanced markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Notion API for creating and managing pages, databases, blocks and enhanced markdown.
 
-## Publisher: <br>
-[fental](https://clawhub.ai/user/fental) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fental](https://clawhub.ai/user/fental)
 
-## Use Case: <br>
-Developers and agents use this skill to call the Notion API for creating, reading, updating, and querying pages, data sources, blocks, and Markdown page content in Notion workspaces shared with the integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read Notion pages, databases, and optional transcript content shared with the integration. <br>
-Mitigation: Use a dedicated least-privileged Notion integration and share only the pages or databases needed for the task. <br>
-Risk: The setup stores the Notion API key in a plaintext local file. <br>
-Mitigation: Protect or avoid the plaintext API-key file and limit access to the account or environment where it is stored. <br>
-Risk: Page updates, content replacement, and deletion-enabling options can change or remove sensitive Notion content. <br>
-Mitigation: Review operations that update, replace, or fetch sensitive content before execution. <br>
+## Use Case:
 
+Developers and workspace operators use this skill to guide agents in creating, reading, updating, and querying Notion pages, data sources, blocks, and Markdown page content through the Notion API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fental/notion-enhanced-markdown) <br>
-- [Notion developer documentation](https://developers.notion.com) <br>
-- [Notion integration setup](https://notion.so/my-integrations) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, Configuration, Markdown, Guidance] <br>
-**Output Format:** [Markdown with cURL examples, JSON request bodies, and configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NOTION_API_KEY and a Notion integration shared with the target pages or databases.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The Notion integration token can grant access to pages or databases shared with the integration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit the integration to the minimum required Notion resources and permissions before using the skill.
+
+Risk: The setup example stores the Notion token in a local plaintext file.
+
+Mitigation: Store the token with owner-only permissions or in a credential manager.
+
+Risk: Markdown replacement operations can overwrite or remove page content, especially when using replace_content or allow_deleting_content.
+
+Mitigation: Review target page content and request payloads before execution, prefer narrow search-and-replace updates where possible, and avoid allow_deleting_content unless deletion is intended.
+
+## Reference(s):
+
+- [Notion Developers](https://developers.notion.com)
+- [Notion integrations setup](https://notion.so/my-integrations)
+- [ClawHub skill release page](https://clawhub.ai/fental/skills/notion-enhanced-markdown)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with curl command examples and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Notion API key and access to shared pages or data sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

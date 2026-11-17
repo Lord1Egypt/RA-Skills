@@ -1,43 +1,60 @@
-## Description: <br>
-Query weather and provide outfit recommendations. When information is insufficient, ask about destination, date, and clothing preferences. Uses free weather APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query weather and provide outfit recommendations. When information is insufficient, ask about destination, date, and clothing preferences. Uses free weather APIs.
 
-## Publisher: <br>
-[kadijin](https://clawhub.ai/user/kadijin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kadijin](https://clawhub.ai/user/kadijin)
 
-## Use Case: <br>
-External users and developers use this skill to turn a destination, travel date, and clothing preferences into weather-aware outfit recommendations, optional image references, and fallback guidance when required inputs or API results are missing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Destination, travel date context, and fashion search terms may be sent to external providers such as wttr.in and Pexels. <br>
-Mitigation: Tell users before external lookups and avoid sending sensitive or unnecessary personal details in location or style queries. <br>
-Risk: The artifact includes a bundled Pexels API key. <br>
-Mitigation: Remove and rotate the embedded key, require user-supplied configuration, and document the external image lookup behavior. <br>
+## Use Case:
 
+External users and agents use this skill to turn destination, travel date, and clothing preferences into weather-aware outfit guidance. It can also call helper scripts for forecast JSON and optional outfit reference image search.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kadijin/weather-outfit-advisor) <br>
-- [wttr.in weather API](https://wttr.in/{city}?format=j1) <br>
-- [OpenWeather API](https://openweathermap.org/api) <br>
-- [Pexels API](https://www.pexels.com/api/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown recommendations with optional JSON weather and image-search results plus inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include destination, date, weather overview, outfit items, accessories, notes, backup plan, and image reference links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: evidence release metadata) <br>
+Risk: Destination, travel date, clothing preferences, and image-search terms may be sent to external weather and image services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell users about these data flows before use and avoid sending sensitive personal details in prompts or script arguments.
+
+Risk: The artifact includes a hardcoded Pexels API key.
+
+Mitigation: Replace embedded credentials with user-provided secure configuration and rotate the exposed key before deployment.
+
+Risk: Weather forecasts, image search results, or service availability may be incomplete or inaccurate.
+
+Mitigation: Review outputs before relying on them, verify severe-weather conditions with local sources, and provide manual weather details when API calls fail.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kadijin/skills/weather-outfit-advisor)
+- [wttr.in weather API](https://wttr.in/{city}?format=j1)
+- [OpenWeatherMap API](https://openweathermap.org/api)
+- [Pexels API](https://www.pexels.com/api/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown outfit advice with optional JSON weather and image-search outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include destination, date, weather summary, outfit recommendations, cautions, backup plans, and image reference links.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

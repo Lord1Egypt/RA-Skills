@@ -1,43 +1,54 @@
-## Description: <br>
-Get a daily pre-session crypto market brief with BTC bias, Korean exchange flows, whale activity, Fear & Greed index, and macro context valid for 24 hours. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get a daily pre-session crypto market brief with BTC bias, Korean exchange flows, whale activity, Fear & Greed index, and macro context valid for 24 hours.
 
-## Publisher: <br>
-[kokoju007](https://clawhub.ai/user/kokoju007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kokoju007](https://clawhub.ai/user/kokoju007)
 
-## Use Case: <br>
-Portfolio agents, trading bots, and orchestrators use this skill to request a same-day crypto market baseline before a session opens. It summarizes BTC direction, Korean exchange activity, whale movement, Fear & Greed, and macro context, with an optional paid Orion ACP path for structured JSON. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generic phrases such as "morning brief" may invoke this skill unexpectedly. <br>
-Mitigation: Confirm the user wants the Daily Desk crypto brief before invoking the skill or automating the trigger phrases. <br>
-Risk: The Orion ACP upgrade is a paid daily call path. <br>
-Mitigation: Ask for explicit confirmation before hiring Orion on ACP or scheduling paid recurring calls. <br>
-Risk: Crypto market outputs are time-sensitive and may be incomplete or inaccurate. <br>
-Mitigation: Verify the brief against trusted market data before using it for portfolio, trading, or automation decisions. <br>
+## Use Case:
 
+Portfolio agents, trading bots, and orchestrators use this skill to request a daily crypto market snapshot before a trading session. The brief summarizes market bias and context for agent workflows that need a same-day baseline.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kokoju007/daily-desk-orion) <br>
-- [Orion ACP listing](https://app.virtuals.io/virtuals/1809) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown daily brief with optional structured JSON from Orion ACP] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Daily market snapshot is valid for 24 hours and should be checked against trusted market sources before trading or automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Market signals may be incomplete, stale, or unsupported by trusted market data in the calling agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational context unless the agent has trusted market-data sources and independent validation.
+
+Risk: The skill includes a paid Orion ACP upgrade path.
+
+Mitigation: Require explicit user confirmation before using ACP or any external service that costs money.
+
+## Reference(s):
+
+- [Daily Desk - Orion on ClawHub](https://clawhub.ai/kokoju007/skills/daily-desk-orion)
+- [Orion ACP listing](https://app.virtuals.io/virtuals/1809)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Markdown market brief with optional structured JSON for the paid Orion ACP workflow]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Daily snapshot is described as valid for 24 hours and may include a paid-upgrade prompt.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

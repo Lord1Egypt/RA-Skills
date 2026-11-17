@@ -1,7 +1,7 @@
 ---
 name: brain-map-visualizer
-version: 3.3.4
-description: "Visualize how attention moves across your agent's projects. Every session leaves a trace. Over time, those traces form a map — not of what your agent was told to do, but of what it actually cared about. Where it kept returning. What it let go. This is that map. 13 attention categories. Momentum edges. The recent rises. The forgotten fades. It has no utility beyond insight. That's the point."
+version: 3.4.0
+description: "Visualize how attention moves across your agent's projects. 13 named attention categories. Momentum-ready edges (recentCount/lifetimeCount). Directional flow encoding. Sorted by co-access score."
 homepage: https://github.com/highnoonoffice/hno-skills
 source: https://github.com/highnoonoffice/hno-skills/tree/main/oc-brain-map
 license: MIT
@@ -9,6 +9,51 @@ metadata: ~
 ---
 
 # Brain Map Visualizer
+
+## Execution Gates
+
+```xml
+<skill_gates version="1.0" mode="mandatory_pre_execution" evaluation="sequential" on_violation="stop_and_report">
+
+  <gate id="journal_format_check" priority="1" severity="hard" scope="pre_parse">
+    <condition>About to run the journal parser or rebuild the graph</condition>
+    <question>Do session journals exist at `memory/journal/YYYY-MM-DD.md` and contain markdown file references in the body text?</question>
+    <pass_action>Proceed with parser run.</pass_action>
+    <fail_action>Stop. Without structured journals referencing vault files, the parser produces an empty or meaningless graph. Bootstrap journal history first using the prompt in the Bootstrapping section.</fail_action>
+  </gate>
+
+  <gate id="workspace_scope" priority="2" severity="hard" scope="pre_parse">
+    <condition>About to run the parser script against a vault directory</condition>
+    <question>Is WORKSPACE_DIR set to the correct vault path and not a broader system directory?</question>
+    <pass_action>Proceed.</pass_action>
+    <fail_action>Stop. Confirm the WORKSPACE_DIR environment variable is scoped to your agent vault only. Running against a broader path reads unintended files and degrades graph quality.</fail_action>
+  </gate>
+
+  <gate id="network_deployment_secret" priority="3" severity="hard" scope="pre_deploy">
+    <condition>About to deploy the graph API route on a networked (non-localhost) host</condition>
+    <question>Is BRAIN_MAP_SECRET set and wired into both the API route and the component fetch headers?</question>
+    <pass_action>Proceed.</pass_action>
+    <fail_action>Stop. Without the secret, the graph API route is open to anyone on the network. Set BRAIN_MAP_SECRET before any non-localhost deployment. Localhost-only use is exempt.</fail_action>
+  </gate>
+
+  <gate id="rebuild_before_read" priority="4" severity="soft" scope="pre_interpret">
+    <condition>About to interpret graph data or answer questions about attention patterns</condition>
+    <question>Has the graph been rebuilt since the last significant batch of session journals were written?</question>
+    <pass_action>Proceed.</pass_action>
+    <fail_action>Flag that the graph may be stale. Trigger a rebuild via the Rebuild button or `node scripts/build-brain-map-projects.js` before drawing conclusions about current attention patterns.</fail_action>
+  </gate>
+
+  <gate id="promotion_intent" priority="5" severity="soft" scope="pre_promote">
+    <condition>About to promote an Emerging Project to a named Attention Pocket</condition>
+    <question>Does the concept appear consistently across 3+ session journals with clear thematic coherence — not just incidental co-occurrence?</question>
+    <pass_action>Proceed with promotion.</pass_action>
+    <fail_action>Hold promotion. Incidental co-occurrence pollutes the Attention model. Wait for stronger signal (5+ sessions) or confirm the concept represents a real, durable work thread.</fail_action>
+  </gate>
+
+</skill_gates>
+```
+
+---
 
 The Brain Map Visualizer renders your agent's cognition as an interactive force-directed graph organized around Attention Pockets — project-level groupings that define how files relate to each other in context.
 
@@ -19,22 +64,6 @@ First click on any node reorbits the graph around it: the layout reorganizes to 
 The graph also surfaces Emerging Projects — recurring concepts detected across session journals that have not yet been mapped to a named Attention Pocket. These appear as a separate dimmed section with a Promote action.
 
 Works for any OpenClaw agent with a vault of markdown files and a session journal history.
-
-### What You're Looking At
-
-When the graph loads, here's what you're seeing:
-
-**Nodes** are your vault files. Bigger = accessed more often. Color = which project domain it belongs to (gold for core identity files, blue for infrastructure, green for publishing, etc.).
-
-**Lines** connect files that were opened in the same session. Thicker lines = more sessions where those two files appeared together.
-
-**Clusters** are Attention Pockets — project-level groupings. Files that get used together in the same kind of work naturally orbit each other.
-
-**First click** on any node reorbits the graph around that file — its neighborhood rearranges to show what it's most closely connected to. **Second click** opens the file.
-
-**Dim nodes at the bottom** are Emerging Projects — patterns the graph detected that don't have a named home yet.
-
-That's the whole interface. The mechanics behind each piece are below.
 
 ### What This Skill Builds
 
@@ -323,3 +352,7 @@ If `BRAIN_MAP_SECRET` is not set, the route is open — suitable for localhost d
 ### License
 
 MIT. Copyright (c) 2026 @highnoonoffice. Retain this notice in any distributed version.
+
+---
+
+Built by Joseph Voelbel / High Noon Office. Questions or want to build on this? josephvoelbel.com/contact

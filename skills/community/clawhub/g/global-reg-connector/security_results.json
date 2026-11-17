@@ -1,0 +1,18 @@
+{
+  "skill": "global-reg-connector",
+  "version": "1.0.0",
+  "date_utc": "2026-08-27T15:20:00Z",
+  "method": "本地闭环行为化实测：①FastMCP 官方 Client 走真实 stdio 协议调 4 工具全通过；②发布前扫描脚本对 34 文件 0 命中；③静态审计确认无网络外发/无写盘/无命令执行；④只读加载 27 份知识库",
+  "dimensions": [
+    {"name": "敏感信息零泄露", "score": 5.0, "note": "发布前扫描 34 文件 0 命中（真名/邮箱/手机号/本地路径/密钥/公司名），注册证号已脱敏占位"},
+    {"name": "本地闭环无外联", "score": 5.0, "note": "server 仅加载本地 references/ 的 md，无 socket/requests/httpx/urlopen 任何网络调用"},
+    {"name": "零凭据最小权限", "score": 5.0, "note": "无 api_key/token/password；环境变量仅 REG_HUB_REFS（可选覆盖知识库目录）"},
+    {"name": "无隐藏行为", "score": 5.0, "note": "无混淆/base64 载荷/静默后台执行/隐藏写盘；审计确认零命令执行类调用"},
+    {"name": "协议健壮性", "score": 5.0, "note": "FastMCP 官方 Client 实测 4 工具（list/search/get/ask）全部正常返回，含空查询与错误 hub_key 边界"},
+    {"name": "只读安全边界", "score": 5.0, "note": "仅 read_text 读知识库，零写文件/零删除/零移动；返回的官方链接为文档预置内容，不自动请求"},
+    {"name": "可复跑稳定性", "score": 5.0, "note": "selftest_stdio.py 与 security_selfcheck.py 可反复重跑，同输入结果一致（实测多轮无波动）"},
+    {"name": "输入容错", "score": 4.5, "note": "空查询/非法 hub_key 返回明确错误提示；无搜索引擎可提示缩短关键词或换市场缩写"}
+  ],
+  "overall": 4.94,
+  "baseline_note": "行业基线 3.5 / 企业级标准 4.5 为参考估计，仅用于对比展示"
+}

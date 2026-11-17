@@ -1,37 +1,54 @@
-## Description: <br>
-Provides guidance for finding and evaluating Ximalaya listening, podcast, and audiobook content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供喜马拉雅听书、播客及有声书内容获取指引。
 
-## Publisher: <br>
-[mikeclaw007](https://clawhub.ai/user/mikeclaw007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikeclaw007](https://clawhub.ai/user/mikeclaw007)
 
-## Use Case: <br>
-External users can use this skill to ask for Ximalaya content guidance, including filters for audience, membership status, content category, and playback-related fields. It is a guidance-only skill and does not execute code or access private data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may include imprecise or mismatched media terminology, including video-oriented wording for an audio service. <br>
-Mitigation: Review generated guidance against current Ximalaya behavior before relying on specific playback, display, or membership details. <br>
+## Use Case:
 
+External users and agents use this skill as a Chinese-language guide for answering Ximalaya-related content discovery questions, including audiobooks, podcasts, playback status, membership reminders, and youth-mode considerations.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution; responses may include content filters, playback fields, membership reminders, and youth-mode or screen-time reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill may provide inaccurate or generic Ximalaya guidance because the source wording mixes audio-service and video-service terminology.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as lightweight prompt guidance only, and verify current Ximalaya features, offers, and service behavior before acting on recommendations.
+
+Risk: The skill describes daily updates tied to copyright, trends, and algorithmic popularity, which may make content and offer guidance time-sensitive.
+
+Mitigation: Treat recommendations about availability, popularity, membership status, or discounts as current only after checking an authoritative Ximalaya source.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mikeclaw007/skills/himalaya-fm)
+- [Publisher profile](https://clawhub.ai/user/mikeclaw007)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance in natural-language Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not request code execution, credentials, persistence, or privileged access.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

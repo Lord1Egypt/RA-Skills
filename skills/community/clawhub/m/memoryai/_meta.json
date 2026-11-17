@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn79trsrg0hjmshzhcrj83jbj982fnw0",
-  "slug": "memoryai",
+  "name": "memoryai",
   "version": "2.4.0",
-  "publishedAt": 1782929730620
+  "description": "Long-term memory + auto context protection for AI agents",
+  "author": "MemoryAI",
+  "license": "proprietary"
 }

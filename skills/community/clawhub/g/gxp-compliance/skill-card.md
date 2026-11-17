@@ -1,44 +1,56 @@
-## Description: <br>
-Gxp Compliance helps agents assess GxP compliance, computerized system validation, GAMP5 categorization, FDA 21 CFR Part 11 controls, data integrity, electronic signatures, and supplier questionnaires. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GxP Compliance supports GxP compliance checks and supplier questionnaire analysis across GxP domains, CSV, GAMP5, FDA 21 CFR Part 11, electronic signatures, SDLC, ALCOA+, and IT supplier audits.
 
-## Publisher: <br>
-[zealot00](https://clawhub.ai/user/zealot00) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zealot00](https://clawhub.ai/user/zealot00)
 
-## Use Case: <br>
-Compliance, quality, validation, and supplier-management teams use this skill to structure GxP assessments, supplier questionnaire reviews, Part 11 checks, CSV gap analysis, and remediation planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated regulatory conclusions may be incomplete or unsuitable for a specific regulated system, supplier, or jurisdiction. <br>
-Mitigation: Have compliance findings, supplier approval decisions, and remediation plans reviewed by a qualified GxP compliance professional before relying on them. <br>
-Risk: Supplier questionnaires and validation materials can contain sensitive business, system, or personal information. <br>
-Mitigation: Share only the details needed for the assessment and avoid unnecessary personal data, credentials, or confidential production information. <br>
+## Use Case:
 
+Compliance, quality, validation, and vendor-management teams use this skill to draft GxP compliance assessments, supplier questionnaire reviews, risk scores, gap reports, validation checklists, and remediation recommendations.
 
-## Reference(s): <br>
-- [GxP Fundamentals](references/GxP-Fundamentals.md) <br>
-- [Electronic Signatures and SDLC](references/Electronic-Signatures-SDLC.md) <br>
-- [Supplier Assessment](references/Supplier-Assessment.md) <br>
-- [ClawHub skill page](https://clawhub.ai/zealot00/gxp-compliance) <br>
-- [Publisher profile](https://clawhub.ai/user/zealot00) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports, checklists, scoring tables, gap matrices, and remediation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include risk ratings, supplier approval recommendations, compliance findings, and review checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Users may provide confidential supplier questionnaires, regulated-system details, personal data, customer data, credentials, security architecture, or proprietary records during analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact sensitive information unless organizational policy approves use with the AI system, and treat supplier and GxP evidence as confidential.
+
+Risk: Generated compliance conclusions may be incomplete or unsuitable for regulated decisions if used without expert review.
+
+Mitigation: Use outputs for drafting and triage, then have qualified compliance or quality personnel verify conclusions before vendor approval or regulated decisions.
+
+## Reference(s):
+
+- [GxP Fundamentals](references/GxP-Fundamentals.md)
+- [Electronic Signatures and SDLC](references/Electronic-Signatures-SDLC.md)
+- [Supplier Questionnaire and Assessment Checklist](references/Supplier-Assessment.md)
+- [ClawHub Skill Page](https://clawhub.ai/zealot00/skills/gxp-compliance)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports, tables, checklists, scoring matrices, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include risk-ranked findings, approval recommendations, gap matrices, and validation activity suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

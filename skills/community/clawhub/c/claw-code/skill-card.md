@@ -1,40 +1,53 @@
-## Description: <br>
-TypeScript runtime port of Claude Code's AI agent harness for running commands, routing prompts, managing sessions, and auditing tool and command registries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+claw-code is a TypeScript runtime port of Claude Code's agent harness for routing prompts, managing sessions, querying tool and command registries, and auditing parity.
 
-## Publisher: <br>
-[dae-xiaoe](https://clawhub.ai/user/dae-xiaoe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dae-xiaoe](https://clawhub.ai/user/dae-xiaoe)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect and exercise a Claude Code-like agent harness, including command and tool registries, prompt routing, session bootstrapping, and parity audit reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes a CLI harness and mirrored command/tool names that resemble sensitive operations, including shell, file, SSH, remote, and credential-related workflows. <br>
-Mitigation: Install only when a harness or registry simulator is needed, and review command output before relying on it; server security evidence reports these behaviors as static placeholders rather than real credential, filesystem, MDM, or network access. <br>
-Risk: Parity audit behavior may be incomplete when the original archive snapshot is unavailable. <br>
-Mitigation: Treat parity audit output as advisory and confirm critical compatibility claims against the intended source archive. <br>
+## Use Case:
 
+Developers and agent engineers use this skill to inspect and exercise a TypeScript port of an agent harness, including command and tool registry queries, prompt routing, session bootstrap, turn-loop simulation, and parity auditing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dae-xiaoe/claw-code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command outputs summarize harness state, registries, routing decisions, session records, and parity audit status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and scripts/package.json) <br>
+Risk: Users may mistake prototype or simulator behavior for a full secure runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the release as a harness prototype and review persistence, remote modes, and prefetch hooks before using it with private prompts or production systems.
+
+Risk: Session and prompt-routing commands may expose sensitive context if future implementations add real persistence or remote behavior.
+
+Mitigation: Use non-sensitive prompts in controlled workspaces until storage paths, remote-mode behavior, and data handling have been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dae-xiaoe/skills/claw-code)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown and plain text with command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include registry summaries, manifest data, command graphs, tool listings, prompt-routing results, setup reports, and session-related text.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and scripts/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

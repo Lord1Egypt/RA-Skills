@@ -1,42 +1,61 @@
-## Description: <br>
-A RESTful service for high-quality text-to-speech using Qwen3 and specialized voice cloning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A RESTful service for high-quality text-to-speech using Qwen3 and specialized voice cloning.
 
-## Publisher: <br>
-[hudeven](https://clawhub.ai/user/hudeven) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hudeven](https://clawhub.ai/user/hudeven)
 
-## Use Case: <br>
-Developers and engineers use this skill to run a local FastAPI text-to-speech service, synthesize WAV audio from text, and reuse a configured reference voice prompt for voice cloning workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Voice cloning can be misused for impersonation or misleading speech generation. <br>
-Mitigation: Use only reference audio from people who have explicitly consented, and do not use generated speech for fraud, impersonation, or deception. <br>
-Risk: Binding the service to a non-local interface can expose the synthesis endpoint to other machines. <br>
-Mitigation: Run with --host 127.0.0.1 unless remote access is intentionally required and separately protected. <br>
-Risk: Installation and startup may download or load external machine-learning dependencies and models. <br>
-Mitigation: Install in an isolated Python environment and review dependency/model sources before operational use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hudeven/chichi-speech) <br>
-- [Publisher profile](https://clawhub.ai/user/hudeven) <br>
+## Use Case:
 
+Developers and engineers use this skill to run a local FastAPI text-to-speech service, reuse a reference voice prompt, and call a synthesis endpoint that returns generated speech audio.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with CLI commands, HTTP request examples, and Python service configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The running service returns audio/wav responses from the /synthesize endpoint.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The synthesis server can expose an unauthenticated API.
+
+Mitigation: Bind it to 127.0.0.1 unless intentional exposure is required, and place authentication or a trusted reverse proxy in front of any exposed deployment.
+
+Risk: Text-to-speech generation is resource-heavy and may be abused or overloaded.
+
+Mitigation: Add rate limits, request size limits, and operational monitoring before production use.
+
+Risk: Voice cloning can misuse reference audio or clone a voice without authorization.
+
+Mitigation: Use only reference audio that the operator is authorized to clone and review voice sample handling before release.
+
+Risk: Runtime dependencies and model packages affect production security and reliability.
+
+Mitigation: Pin, scan, and review dependencies before deploying the service in a production environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hudeven/skills/chichi-speech)
+- [Default Qwen3-TTS reference audio sample](https://qianwen-res.oss-cn-beijing.aliyuncs.com/Qwen3-TTS-Repo/clone_2.wav)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Code, Configuration instructions, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands, Python service code, HTTP requests, and generated WAV audio files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The service exposes a POST /synthesize endpoint and streams audio/wav responses.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

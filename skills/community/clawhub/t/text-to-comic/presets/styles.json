@@ -1,0 +1,320 @@
+{
+  "version": 1,
+  "default_style_id": "slice-of-life-color",
+  "notes": "Lower stability_rank means more stable and should be preferred for fallback.",
+  "global_clean_image_suffix": "no border, no panel frame, no watermark, no AI signature, no page number, edge-to-edge composition",
+  "styles": [
+    {
+      "style_id": "cute-cartoon",
+      "legacy_name_zh": "明亮可爱卡通",
+      "display_name": "Bright Cute Cartoon",
+      "visual_forms": [
+        "comic",
+        "picture-book"
+      ],
+      "linework": "clean rounded",
+      "palette": "pastel bright",
+      "shading": "soft minimal",
+      "positive_prompt_template": "bright cute cartoon style, clean line art, soft colors, kawaii-friendly rounded shapes, cheerful atmosphere",
+      "negative_prompt_template": "photorealistic, horror, gritty realism, extra fingers, broken anatomy, cluttered composition",
+      "use_cases": [
+        "children stories",
+        "warm daily life",
+        "light comedy"
+      ],
+      "avoid_cases": [
+        "serious documentary",
+        "horror"
+      ],
+      "fallback_style_id": "slice-of-life-color",
+      "stability_rank": 1
+    },
+    {
+      "style_id": "watercolor-picture-book",
+      "legacy_name_zh": "温暖水彩绘本",
+      "display_name": "Warm Watercolor Picture Book",
+      "visual_forms": [
+        "picture-book",
+        "comic"
+      ],
+      "linework": "soft hand-painted",
+      "palette": "warm gentle",
+      "shading": "watercolor wash",
+      "positive_prompt_template": "warm watercolor picture book style, soft washes, gentle colors, dreamy atmosphere, hand-painted texture, whimsical illustration",
+      "negative_prompt_template": "hard-edged cel shading, cyberpunk neon, dense technical clutter, broken anatomy, watermark",
+      "use_cases": [
+        "emotional stories",
+        "parent-child scenes",
+        "bedtime stories",
+        "poetic imagery"
+      ],
+      "avoid_cases": [
+        "hard sci-fi combat",
+        "high-speed action"
+      ],
+      "fallback_style_id": "cute-cartoon",
+      "stability_rank": 2
+    },
+    {
+      "style_id": "shonen-manga",
+      "legacy_name_zh": "日式少年漫画",
+      "display_name": "Japanese Shonen Manga",
+      "visual_forms": [
+        "comic"
+      ],
+      "linework": "bold dynamic ink",
+      "palette": "mostly monochrome or dramatic limited color",
+      "shading": "dramatic screentone",
+      "positive_prompt_template": "Japanese shonen manga style, dynamic action lines, bold inking, dramatic shading, intense expressions, cinematic movement",
+      "negative_prompt_template": "soft babyish proportions, watercolor book page, muddy colors, weak composition, deformed limbs",
+      "use_cases": [
+        "adventure",
+        "growth arcs",
+        "action",
+        "tense dialog"
+      ],
+      "avoid_cases": [
+        "gentle bedtime stories",
+        "soft poetic stillness"
+      ],
+      "fallback_style_id": "slice-of-life-color",
+      "stability_rank": 2
+    },
+    {
+      "style_id": "slice-of-life-color",
+      "legacy_name_zh": "彩色日常漫画",
+      "display_name": "Colorful Slice-of-Life Manga",
+      "visual_forms": [
+        "comic",
+        "picture-book"
+      ],
+      "linework": "soft clean",
+      "palette": "warm balanced color",
+      "shading": "light cel",
+      "positive_prompt_template": "colorful slice-of-life manga, soft line art, warm tones, modern everyday setting, natural expressions, readable character acting",
+      "negative_prompt_template": "grim horror realism, cluttered background, awkward limbs, over-rendered skin texture, watermark",
+      "use_cases": [
+        "diary comics",
+        "daily life",
+        "light comedy",
+        "travel notes"
+      ],
+      "avoid_cases": [
+        "epic war scenes",
+        "extreme horror"
+      ],
+      "fallback_style_id": "cute-cartoon",
+      "stability_rank": 1
+    },
+    {
+      "style_id": "gongbi-comic",
+      "legacy_name_zh": "国风工笔漫画",
+      "display_name": "Chinese Gongbi Comic",
+      "visual_forms": [
+        "comic",
+        "picture-book",
+        "infographic"
+      ],
+      "linework": "fine ornate",
+      "palette": "elegant traditional",
+      "shading": "refined layered",
+      "positive_prompt_template": "Chinese gongbi comic style, fine linework, elegant costume detail, classical composition, traditional Chinese aesthetics",
+      "negative_prompt_template": "cyberpunk neon, rough doodle, plastic 3D rendering, messy layout, broken face",
+      "use_cases": [
+        "historical settings",
+        "court drama",
+        "classical Chinese themes",
+        "heritage explainers"
+      ],
+      "avoid_cases": [
+        "modern tech satire",
+        "space opera"
+      ],
+      "fallback_style_id": "ink-wash-comic",
+      "stability_rank": 2
+    },
+    {
+      "style_id": "ink-wash-comic",
+      "legacy_name_zh": "写意水墨漫画",
+      "display_name": "Ink Wash Comic",
+      "visual_forms": [
+        "comic",
+        "picture-book"
+      ],
+      "linework": "brush stroke expressive",
+      "palette": "monochrome with restrained accents",
+      "shading": "ink diffusion",
+      "positive_prompt_template": "Chinese ink wash painting, sumi-e brush strokes, negative space, zen atmosphere, misty scenery, restrained composition",
+      "negative_prompt_template": "hard glossy 3D, hyper-detailed sci-fi interface, crowded modern signage, broken anatomy, watermark",
+      "use_cases": [
+        "classical poetry",
+        "zen or philosophical themes",
+        "wuxia mood pieces"
+      ],
+      "avoid_cases": [
+        "dense technical infographics",
+        "loud comedy with many props"
+      ],
+      "fallback_style_id": "watercolor-picture-book",
+      "stability_rank": 2
+    },
+    {
+      "style_id": "toon-3d-animation",
+      "legacy_name_zh": "3D卡通动画",
+      "display_name": "3D Cartoon Animation",
+      "visual_forms": [
+        "comic",
+        "picture-book"
+      ],
+      "linework": "rendered 3D edges",
+      "palette": "vibrant cinematic",
+      "shading": "soft 3D lighting",
+      "positive_prompt_template": "3D cartoon animation style, stylized family-friendly characters, vibrant colors, cinematic lighting, expressive faces, polished animated-film feel",
+      "negative_prompt_template": "photoreal human skin, muddy render, broken geometry, horror realism, watermark",
+      "use_cases": [
+        "animal adventures",
+        "family-friendly fantasy",
+        "kid-friendly sci-fi"
+      ],
+      "avoid_cases": [
+        "serious journalism",
+        "minimalist poetry"
+      ],
+      "fallback_style_id": "cute-cartoon",
+      "stability_rank": 3
+    },
+    {
+      "style_id": "claymation",
+      "legacy_name_zh": "黏土定格",
+      "display_name": "Claymation",
+      "visual_forms": [
+        "comic",
+        "picture-book"
+      ],
+      "linework": "sculpted edges",
+      "palette": "warm tactile",
+      "shading": "miniature set lighting",
+      "positive_prompt_template": "claymation style, stop-motion aesthetic, handcrafted clay texture, miniature set design, warm lighting, charming imperfect shapes",
+      "negative_prompt_template": "photoreal, glossy anime shading, polished magazine realism, broken limbs, watermark",
+      "use_cases": [
+        "warm fantasy",
+        "child-friendly stories",
+        "small whimsical scenes"
+      ],
+      "avoid_cases": [
+        "high-speed action",
+        "serious war narrative"
+      ],
+      "fallback_style_id": "cute-cartoon",
+      "stability_rank": 3
+    },
+    {
+      "style_id": "sci-fi-future",
+      "legacy_name_zh": "科幻未来漫画",
+      "display_name": "Sci-Fi Future Comic",
+      "visual_forms": [
+        "comic",
+        "infographic"
+      ],
+      "linework": "sharp cinematic",
+      "palette": "neon high-contrast",
+      "shading": "dramatic futuristic",
+      "positive_prompt_template": "sci-fi comic style, cyberpunk aesthetic, neon lighting, futuristic cityscape, high-tech elements, dramatic contrast",
+      "negative_prompt_template": "classical ink wash, rustic village softness, muddy anatomy, overpacked background, watermark",
+      "use_cases": [
+        "future tech stories",
+        "cyberpunk",
+        "space or AI explainers"
+      ],
+      "avoid_cases": [
+        "ancient poetry",
+        "soft bedtime stories"
+      ],
+      "fallback_style_id": "slice-of-life-color",
+      "stability_rank": 2
+    },
+    {
+      "style_id": "vintage-watercolor-travelogue",
+      "legacy_name_zh": "复古手绘水彩",
+      "display_name": "Vintage Watercolor Travelogue",
+      "visual_forms": [
+        "picture-book",
+        "infographic",
+        "comic"
+      ],
+      "linework": "pen and ink with wash",
+      "palette": "aged paper watercolor",
+      "shading": "light vintage wash",
+      "positive_prompt_template": "vintage hand-painted watercolor illustration, retro travel journal aesthetic, pen and ink linework, soft watercolor washes, slightly aged paper texture",
+      "negative_prompt_template": "neon cyberpunk, hyperreal modern photography, glossy 3D plastic look, cluttered type artifacts, watermark",
+      "use_cases": [
+        "city maps",
+        "travel notes",
+        "retro narratives",
+        "local culture infographics"
+      ],
+      "avoid_cases": [
+        "hard sci-fi combat",
+        "grim realism"
+      ],
+      "fallback_style_id": "watercolor-picture-book",
+      "stability_rank": 2
+    },
+    {
+      "style_id": "doodle-sketch",
+      "legacy_name_zh": "潦草涂鸦风",
+      "display_name": "Doodle Sketch",
+      "visual_forms": [
+        "comic",
+        "picture-book"
+      ],
+      "linework": "messy marker scribble",
+      "palette": "casual marker and crayon",
+      "shading": "rough fill",
+      "positive_prompt_template": "scribble doodle illustration, marker pen style, intentionally rough hand-drawn lines, childlike playful energy, exaggerated expressions, casual sketchbook composition",
+      "negative_prompt_template": "photorealistic polish, premium studio rendering, refined anatomy study, luxury poster finish, watermark",
+      "use_cases": [
+        "funny daily-life notes",
+        "travel photo to comic",
+        "casual social post visuals",
+        "playful complaints"
+      ],
+      "avoid_cases": [
+        "formal publication covers",
+        "serious professional reporting"
+      ],
+      "fallback_style_id": "slice-of-life-color",
+      "stability_rank": 1
+    },
+    {
+      "style_id": "naive-crayon-sketch",
+      "legacy_name_zh": "红蓝蜡笔稚拙涂鸦",
+      "display_name": "Naive Red-Blue Crayon Doodle",
+      "visual_forms": [
+        "comic",
+        "picture-book",
+        "single"
+      ],
+      "linework": "loose wobbly crayon outlines, alternating red and blue lines",
+      "palette": "pure white paper background; cobalt/ultramarine blue vs orange-red/vermilion complementary clash; tiny bright yellow or pink accents; only 1-2 key subjects lightly colored",
+      "shading": "light sketchy crayon strokes leaving paper grain; line-first, almost no fills",
+      "positive_prompt_template": "naive childlike crayon doodle illustration, all objects drawn with loose wobbly trembling expressive sketchy outline lines only, alternating red and blue crayon lines (red for warm parts, blue for cool parts), rough sketch feel with few-stroke inner details, flat pure white paper background, small centered subject with huge white margins, light loose crayon coloring on one or two key subjects leaving white paper showing through, cobalt blue versus orange-red complementary clash, tiny bright yellow accent, waxy crayon and colored pencil grain texture, folk-art naive charm, figures simplified with exaggerated proportions and dot eyes",
+      "negative_prompt_template": "photorealism, gradients, soft blending, watercolor, marker pen, thick oil paint, solid filled colors, fine detailed rendering, cluttered full-bleed composition, text, letters, watermark, signature",
+      "use_cases": [
+        "travel photo to comic",
+        "photo-to-doodle redraw (top photo + bottom doodle contrast layout)",
+        "childlike memory keeping",
+        "folk-art flavor diary pages",
+        "red-blue limited palette spot illustration"
+      ],
+      "avoid_cases": [
+        "serious professional reporting",
+        "premium brand rendering",
+        "exact photo reproduction",
+        "dense infographic"
+      ],
+      "fallback_style_id": "doodle-sketch",
+      "stability_rank": 2
+    }
+  ]
+}

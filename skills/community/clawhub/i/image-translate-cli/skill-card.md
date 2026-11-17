@@ -1,39 +1,52 @@
-## Description: <br>
-Placeholder skill reserved for an upcoming open CLI and provider protocol for batch product-image translation workflows. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Placeholder skill reserved for an upcoming open CLI + provider protocol for batch product-image translation workflows.
 
-## Publisher: <br>
-[MasterAlanLab](https://clawhub.ai/user/MasterAlanLab) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[masteralanlab](https://clawhub.ai/user/masteralanlab)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and ecommerce teams can evaluate the reserved skill concept for a planned batch product-image translation CLI and provider workflow. This version is a placeholder and does not provide production behavior.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Future versions that add CLI behavior, provider integrations, custom websites, or remote API workflows may introduce data-flow and credential risks.
+
+Mitigation: Re-review and scan future versions before deployment, especially changes involving provider APIs, custom websites, credentials, or remote workflows.
+
+Risk: This release is a placeholder and is not useful for production image translation workflows.
+
+Mitigation: Do not rely on this version for production image translation; treat it as a name reservation until behavior is added and reviewed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and ecommerce teams can use this placeholder release to track the planned image-translation CLI concept. This version does not perform image translation or provide a production workflow. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The current version is a placeholder and will not translate images or run a CLI workflow. <br>
-Mitigation: Treat it as documentation and name reservation only; re-review any future version that adds CLI code, provider integrations, credentials, or batch processing behavior. <br>
+**Output Format:** [Markdown]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [ClawHub skill page](https://clawhub.ai/MasterAlanLab/image-translate-cli) <br>
+**Other Properties Related to Output:** [Placeholder-only output; no executable CLI behavior is present in this version.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only placeholder; no CLI code, shell commands, or translated image output in this version.] <br>
+0.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

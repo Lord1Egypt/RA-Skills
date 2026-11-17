@@ -1,42 +1,59 @@
-## Description: <br>
-Build and publish custom MCP servers on AINative for Python FastMCP and Node.js MCP SDK workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and publish custom MCP servers on AINative using Python FastMCP or the Node.js MCP SDK, including tool creation, agent configuration, and npm publishing guidance.
 
-## Publisher: <br>
-[urbantech](https://clawhub.ai/user/urbantech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[urbantech](https://clawhub.ai/user/urbantech)
 
-## Use Case: <br>
-Developers and engineers use this skill to create MCP servers, add tools, configure them for agent clients, and prepare packages for ClawHub or npm publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example MCP code and configuration handle API keys. <br>
-Mitigation: Store keys in environment variables or secret storage and avoid committing MCP configuration files that contain secrets. <br>
-Risk: Remote memory examples can send secrets, regulated data, or sensitive prompts to AINative. <br>
-Mitigation: Only send content to remote memory when retention and disclosure to AINative are intentional and acceptable for the use case. <br>
+## Use Case:
 
+Developers and engineers use this skill to create MCP servers, add tools, configure them for agents such as Claude Code or Cursor, and publish packages for reuse.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/urbantech/ainative-mcp-builder) <br>
-- [Model Context Protocol documentation](https://modelcontextprotocol.io) <br>
-- [AINative API base URL](https://api.ainative.studio) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python, TypeScript, JSON, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; generated examples may require adaptation before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Example MCP configurations and source snippets involve AINATIVE_API_KEY handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use environment variables or a secret manager, avoid committing real keys in .claude/mcp.json or source files, and rotate any credential that was exposed.
+
+Risk: The memory examples can store or recall remote agent memory.
+
+Mitigation: Store confidential prompts, credentials, private user data, or sensitive business context only when that storage is deliberate, authorized, and covered by the deployment's data policy.
+
+Risk: Generated MCP server examples depend on Python or Node.js packages that may change over time.
+
+Mitigation: Pin dependency versions for production releases and review dependency security before publishing or deploying an MCP server.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/urbantech/skills/ainative-mcp-builder)
+- [Model Context Protocol documentation](https://modelcontextprotocol.io)
+- [AINative API base URL](https://api.ainative.studio)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline Python, TypeScript, JSON, and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance includes example API calls and MCP configuration snippets; users should replace placeholder credentials with environment-managed secrets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

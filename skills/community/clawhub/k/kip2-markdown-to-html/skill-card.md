@@ -1,42 +1,57 @@
-## Description: <br>
-Convert a Markdown file or raw Markdown string into a polished HTML document with custom Pandoc templates, custom CSS, and built-in HTML themes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert a Markdown file or raw Markdown string into a polished HTML document.
 
-## Publisher: <br>
-[mutour](https://clawhub.ai/user/mutour) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mutour](https://clawhub.ai/user/mutour)
 
-## Use Case: <br>
-Developers and content authors use this skill to convert Markdown files or raw Markdown strings into standalone HTML pages with selected templates, CSS, tables of contents, section numbering, metadata, and embedded assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Untrusted Markdown, templates, CSS, or metadata can affect the generated HTML content and presentation. <br>
-Mitigation: Use trusted inputs for templates, CSS, and metadata, and review the generated HTML before publishing or sharing it. <br>
-Risk: Broad resource paths or embedded assets can include referenced local files in the generated HTML output. <br>
-Mitigation: Keep resource paths narrow and inspect referenced assets before using embedded-output options. <br>
+## Use Case:
 
+Developers and content authors use this skill to convert Markdown files or raw Markdown strings into styled standalone HTML documents with optional templates, CSS, table of contents, heading numbering, metadata, and embedded assets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mutour/kip2-markdown-to-html) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Sample Markdown input](artifact/assets/examples/sample.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands; generated artifact is standalone HTML.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pandoc on PATH; supports custom templates, CSS files, metadata, table of contents, section numbering, and embedded assets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.0 (source: server release metadata) <br>
+Risk: Untrusted Markdown may produce unsafe or misleading HTML when published on a trusted site.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Sanitize the generated HTML or disable raw HTML before publishing converted content from untrusted sources.
+
+Risk: Embedding assets or using broad resource paths may include local referenced files in the generated output.
+
+Mitigation: Review resource paths and embedded assets before sharing or publishing the HTML file.
+
+Risk: The converter depends on Pandoc being installed and available on PATH.
+
+Mitigation: Verify the Pandoc installation before relying on the skill in an agent workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mutour/skills/kip2-markdown-to-html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with shell commands and generated standalone HTML files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated HTML can use built-in templates, custom Pandoc templates, custom CSS, optional table of contents, numbered headings, metadata, and embedded assets.]
+
+## Skill Version(s):
+
+0.5.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

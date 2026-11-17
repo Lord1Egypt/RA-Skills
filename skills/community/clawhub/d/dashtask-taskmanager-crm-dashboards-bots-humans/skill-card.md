@@ -1,42 +1,57 @@
-## Description: <br>
-Manage tasks, CRM leads, contacts, and settings via the DashTask REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage tasks, CRM leads, contacts, and settings via the DashTask REST API.
 
-## Publisher: <br>
-[sstrohl223](https://clawhub.ai/user/sstrohl223) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sstrohl223](https://clawhub.ai/user/sstrohl223)
 
-## Use Case: <br>
-Employees, sales and operations teams, and AI agent developers use this skill to manage DashTask tasks, projects, CRM records, notifications, dimensions, and related emails through the DashTask API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make real changes to tasks, CRM records, settings, notifications, and outbound emails. <br>
-Mitigation: Use a dedicated DashTask API key with only the scopes needed, and require clear user approval before deleting records, changing dimensions or settings, creating notifications, or sending emails. <br>
-Risk: Requests sent to the wrong endpoint could affect the wrong DashTask organization. <br>
-Mitigation: Verify DASHTASK_ENDPOINT belongs to the intended DashTask organization before enabling the skill. <br>
+## Use Case:
 
+External users and developers use this skill to let AI agents manage DashTask tasks, projects, CRM records, contacts, quotes, notifications, and organization settings through the DashTask REST API.
 
-## Reference(s): <br>
-- [DashTask](https://dashtask.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/sstrohl223/dashtask-taskmanager-crm-dashboards-bots-humans) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown API reference with JSON payload examples and curl command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DASHTASK_API_KEY and DASHTASK_ENDPOINT; API key scopes determine available actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.1 (source: SKILL.md frontmatter and clawfile.json) <br>
+Risk: The skill can change or delete business records and send emails through DashTask.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege DashTask API key and require human approval before deletes, archive actions, settings changes, notifications, or email sends.
+
+Risk: The skill depends on a configured DashTask endpoint and API key.
+
+Mitigation: Install only when the endpoint is trusted and secrets are provided through the configured environment variables.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sstrohl223/skills/dashtaREDACTED-SECRET)
+- [DashTask](https://dashtask.ai)
+- [OpenClaw](https://openclaw.ai)
+- [SKILL.md API Reference](artifact/SKILL.md)
+- [clawfile.json Manifest](artifact/clawfile.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON payload examples and curl commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DASHTASK_API_KEY and DASHTASK_ENDPOINT; outputs guide agents to make scoped DashTask API requests.]
+
+## Skill Version(s):
+
+1.9.1 (source: frontmatter, clawfile.json, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

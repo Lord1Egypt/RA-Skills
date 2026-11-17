@@ -1,40 +1,54 @@
-## Description: <br>
-Analyzes milk tea shop transaction records from text, OCR output, or Excel-exported text to calculate cash profit, cost structure, and an operating report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes milk tea shop transaction records from text, OCR output, or Excel-exported text to calculate cash profit, cost structure, and a Chinese-language operating report.
 
-## Publisher: <br>
-[xiaming126](https://clawhub.ai/user/xiaming126) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaming126](https://clawhub.ai/user/xiaming126)
 
-## Use Case: <br>
-Milk tea shop owners use this skill to turn pasted transaction records into a readable income, expense, profit, margin, and cost breakdown. It is intended for lightweight business review, not formal accounting or tax advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Transaction records may contain unnecessary personal, customer, payroll, account, or phone-number details. <br>
-Mitigation: Redact unnecessary identifiers before submitting records for analysis. <br>
-Risk: The report is rough keyword-based business guidance and may misclassify records or produce incomplete financial conclusions. <br>
-Mitigation: Review the output against source records and use a qualified accountant for formal accounting, tax, or compliance decisions. <br>
+## Use Case:
 
+External small-business users, especially milk tea shop owners, use this skill to turn transaction records into profit, margin, cost-category, and operating-improvement summaries without accounting expertise.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaming126/milk-tea-shop-accounting) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style business analysis report in Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes income categories, expense categories, cash profit, gross margin, cost mix, and keyword-based operating suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: Transaction records may contain sensitive account, customer, employee, or supplier details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only the minimum records needed for analysis and redact unnecessary identifiers, account numbers, names, and secrets before use.
+
+Risk: Incomplete, ambiguous, or uncategorized records may produce a failed or incomplete report.
+
+Mitigation: Review source records for clear income and expense labels before relying on the generated profit and cost analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaming126/skills/milk-tea-shop-accounting)
+- [Publisher profile](https://clawhub.ai/user/xiaming126)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese-language markdown-style operating analysis report with income, expense, profit, margin, cost breakdown, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated from user-provided transaction text and an optional day, week, or month period.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

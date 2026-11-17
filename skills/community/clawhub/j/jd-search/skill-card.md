@@ -1,40 +1,55 @@
-## Description: <br>
-Execute keyword-based product searches on JD Gongcai Cloud with category, price, pagination, and output-format controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jd Search helps agents run keyword, category, price-range, and paginated product searches against JD Gongcai Cloud, returning table, JSON, or CSV results.
 
-## Publisher: <br>
-[zhangr19](https://clawhub.ai/user/zhangr19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangr19](https://clawhub.ai/user/zhangr19)
 
-## Use Case: <br>
-Developers and authorized JD internal users use this skill to run product searches against JD Gongcai Cloud search services and inspect product data in table, JSON, or CSV output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The documented CLI executable is not included in the artifact. <br>
-Mitigation: Inspect and obtain the executable from a trusted source before running chmod, creating a /usr/local/bin symlink, or invoking jd-search. <br>
-Risk: The search service is described as an internal JD service. <br>
-Mitigation: Use the skill only when authorized to access JD internal search services and from an appropriate network environment. <br>
+## Use Case:
 
+Developers and agents in JD internal environments use this skill to search Gongcai Cloud product data, filter by category or price, paginate results, and choose table, JSON, or CSV output for downstream review or automation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangr19/jd-search) <br>
+### Deployment Geography for Use:
 
+Global, limited to JD internal network environments where the required service and executable are available.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell command examples and structured option descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results may be requested as table, JSON, or CSV when the documented CLI is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill depends on a JD internal search service and a jd-search executable that may not be available in all environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in the intended JD internal environment and verify the executable with the publisher before use.
+
+Risk: Search terms may be visible to internal network infrastructure, especially where HTTPS or authenticated transport is not confirmed.
+
+Mitigation: Avoid sensitive query terms unless the deployment has acceptable transport and access controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangr19/skills/jd-search)
+- [Artifact README](artifact/README.md)
+- [Artifact skill documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, JSON, CSV]
+
+**Output Format:** [Markdown guidance with CLI examples; command output as table, JSON, or CSV.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports keyword, category ID, page, page size, price range, output format, and category display options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json, skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

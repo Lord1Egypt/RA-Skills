@@ -1,0 +1,7 @@
+interface:
+  display_name: "Work Productivity Pollyreach Gives Workflow Helper"
+  short_description: "Helps with Agent users show strong demand for PollyReach-styl..."
+  default_prompt: "Use $work-productivity-pollyreach-gives-workflow-helper to help me Agent users show strong demand for PollyReach-style workflows on Clawhub. They need practical help fixing bugs, hardenin."
+
+policy:
+  allow_implicit_invocation: true

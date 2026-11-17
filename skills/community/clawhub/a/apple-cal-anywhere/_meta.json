@@ -1,6 +1,27 @@
 {
-  "ownerId": "kn7f9r3qajh6r66v02908r0xb581yskh",
-  "slug": "apple-cal-anywhere",
+  "name": "apple-cal-anywhere",
   "version": "1.3.1",
-  "publishedAt": 1774788755812
+  "description": "Your Apple Calendar, on any platform. Manage iCloud Calendar via CalDAV (RFC 4791) with attachment support (RFC 8607). Supports event CRUD, multi-calendar queries, file attachments, and free/busy lookups. Works on macOS, Linux, and Windows.",
+  "main": "scripts/applecal.py",
+  "author": "OpenClaw Fleet",
+  "license": "MIT",
+  "platform": "macos,linux,windows",
+  "auth": "keychain (macOS) or APPLECAL_PASSWORD env var (cross-platform)",
+  "requires": [
+    "python3",
+    "requests"
+  ],
+  "keywords": [
+    "calendar",
+    "apple",
+    "icloud",
+    "caldav",
+    "ics",
+    "schedule",
+    "cross-platform",
+    "anywhere"
+  ],
+  "commands": {
+    "applecal": "scripts/applecal.py"
+  }
 }

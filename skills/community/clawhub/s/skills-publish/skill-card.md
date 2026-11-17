@@ -1,46 +1,62 @@
-## Description: <br>
-Publish an OpenClaw skill to ClawHub with release checks, version metadata, and command generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish an OpenClaw skill to ClawHub with release checks, version metadata, and command generation.
 
-## Publisher: <br>
-[fwwdn](https://clawhub.ai/user/fwwdn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fwwdn](https://clawhub.ai/user/fwwdn)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to validate OpenClaw skill release inputs, prepare ClawHub publish metadata, and generate a reviewed publish command before upload. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A publish command could target the wrong skill folder, slug, display name, version, changelog, tags, or ClawHub account. <br>
-Mitigation: Verify the target folder, release inputs, and active clawhub whoami account before approving any publish command. <br>
-Risk: CLI authentication tokens could be exposed if the agent is asked to handle login details unnecessarily. <br>
-Mitigation: Avoid giving the agent tokens unless local CLI authentication handling is explicitly required. <br>
-Risk: Local checks cannot prove ClawHub authentication or server-side publish success before execution. <br>
-Mitigation: Treat local readiness checks as preflight validation and verify the published listing after any confirmed upload. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to audit a local OpenClaw skill package, collect release metadata, and generate a reviewed ClawHub publish command before publishing.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/fwwdn/skills-publish) <br>
-- [Publish Flow](references/publish-flow.md) <br>
-- [Release Checklist](references/release-checklist.md) <br>
-- [Local Release Checklist](references/checklist.md) <br>
-- [Common Errors](references/common-errors.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and release-check summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a generated clawhub publish command after release inputs are reviewed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: A generated publish command could target the wrong skill folder, slug, version, changelog, tags, or display name.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every generated command argument and release metadata field before approving any publish action.
+
+Risk: Local readiness checks cannot prove ClawHub authentication state or confirm that the live listing updated correctly.
+
+Mitigation: Confirm the active account with clawhub whoami before publishing and verify the published skill page or search result afterward.
+
+Risk: The helper checks packaging and release inputs, but does not independently establish skill quality, discoverability, or runtime behavior.
+
+Mitigation: Use additional review such as skill testing, listing review, or comparison with the currently published version when release confidence is low.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/fwwdn/skills/skills-publish)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/fwwdn)
+- [Publish Flow](artifact/references/publish-flow.md)
+- [Release Checklist](artifact/references/release-checklist.md)
+- [Local Release Checklist](artifact/references/checklist.md)
+- [Common Errors](artifact/references/common-errors.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and release-check findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a generated clawhub publish command after slug, display name, version, changelog, and tags are reviewed.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

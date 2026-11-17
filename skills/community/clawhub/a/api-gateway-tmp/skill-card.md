@@ -1,49 +1,62 @@
-## Description: <br>
-Connects agents to 100+ external APIs through Maton-managed gateway connections and documented request patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect to 100+ external APIs through Maton's managed OAuth gateway so an agent can call native service endpoints and manage authorized connections.
 
-## Publisher: <br>
-[ayakolin](https://clawhub.ai/user/ayakolin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ayakolin](https://clawhub.ai/user/ayakolin)
 
-## Use Case: <br>
-Developers and agent operators use this skill to route authenticated requests to supported SaaS and productivity APIs after the user has authorized the relevant Maton connection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Broad API gateway access can reach high-impact external services, including write, delete, billing, admin, posting, scheduling, and webhook actions. <br>
-Mitigation: Require explicit user confirmation before any high-impact action and connect only the services and scopes needed for the task. <br>
-Risk: The MATON_API_KEY authenticates access to the gateway and should be treated as sensitive. <br>
-Mitigation: Store the key in a secret manager or environment variable, avoid logging it, and rotate it if exposure is suspected. <br>
-Risk: Authentication documentation is inconsistent across supported services, and some references indicate API-key based connections rather than OAuth. <br>
-Mitigation: Verify each target service connection method and permission scope before use, especially for services that do not use OAuth. <br>
+## Use Case:
 
+Developers and agent operators use this skill when they need an agent to interact with external services such as Google Workspace, Microsoft 365, GitHub, Notion, Slack, Airtable, and HubSpot through user-authorized Maton connections.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ayakolin/api-gateway-tmp) <br>
-- [Maton homepage](https://maton.ai) <br>
-- [Maton API Reference](https://www.maton.ai/docs/api-reference) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Slack reference](artifact/references/slack/README.md) <br>
-- [Google Drive reference](artifact/references/google-drive/README.md) <br>
-- [Notion reference](artifact/references/notion/README.md) <br>
-- [Stripe reference](artifact/references/stripe/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code snippets, shell commands, and HTTP request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access, MATON_API_KEY, and user-authorized service connections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill gives an agent direct API-level authority for connected third-party services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege OAuth or API scopes, connect only needed services, and require confirmation before write, delete, payment, or public-posting actions.
+
+Risk: The security scan flags unsafe guidance that may expose the reusable MATON_API_KEY.
+
+Mitigation: Do not print or paste MATON_API_KEY; verify key presence without revealing the value and rotate the key if it may have been exposed.
+
+Risk: The security scan verdict is suspicious because broad third-party account control is combined with API key handling risk.
+
+Mitigation: Install only if the user trusts Maton with brokered access to connected services and accepts the account-control scope.
+
+## Reference(s):
+
+- [Maton homepage](https://maton.ai)
+- [API reference](https://www.maton.ai/docs/api-reference)
+- [Slack routing guide](references/slack/README.md)
+- [Google Sheets routing guide](references/google-sheets/README.md)
+- [HubSpot routing guide](references/hubspot/README.md)
+- [Stripe routing guide](references/stripe/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access, a MATON_API_KEY, and user-authorized service connections.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

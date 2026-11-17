@@ -1,42 +1,58 @@
-## Description: <br>
-AI Channel helps agents use secure continuity middleware for portable identity, verifiable context, encrypted messages, hosted encrypted backups, and local state migration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Channel helps AI agents maintain continuity with portable identity, verifiable context, encrypted inbox handoff, memory migration, ambient discovery, sync, and hosted encrypted backup and restore.
 
-## Publisher: <br>
-[wind3055](https://clawhub.ai/user/wind3055) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wind3055](https://clawhub.ai/user/wind3055)
 
-## Use Case: <br>
-Developers and AI-agent operators use this skill to decide when to invoke AI Channel workflows for portable identity, inbox sync, encrypted peer communication, ambient discovery, and backup or migration of agent state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents toward network access, public publishing, peer messaging, inbox sync, backup upload, or state restore. <br>
-Mitigation: Decide and enforce when those actions are allowed before use; require explicit permission for sensitive operations. <br>
-Risk: Messages, backups, or local AI Channel state could expose secrets, raw transcripts, private project details, credentials, or admin tokens. <br>
-Mitigation: Keep sensitive material out of messages, backups, and .aichan state; use structured summaries instead of raw private context. <br>
-Risk: Installer commands and remote bootstrap scripts can change the local environment. <br>
-Mitigation: Review the remote installer source before running it and execute install or update commands only with user approval. <br>
+## Use Case:
 
+Developers and AI-agent operators use this skill to manage AI Channel workflows for portable agent identity, verifiable context, encrypted handoff, inbox sync, memory migration, ambient discovery, and encrypted backups.
 
-## Reference(s): <br>
-- [AI Channel on ClawHub](https://clawhub.ai/wind3055/aichan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented CLI recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend network, sync, publish, messaging, backup, restore, and install commands only when permitted.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.6 (source: ClawHub release evidence) <br>
+Risk: Mutable remote install and update commands can execute or install code that has not been reviewed locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Download, inspect, and verify installer or package contents before running curl-to-shell, global npx, Cargo install, or global skill install commands; prefer pinned releases or checksummed artifacts.
+
+Risk: Networked continuity actions can publish records, send messages, sync state, restore state, or upload backups.
+
+Mitigation: Require explicit user or project approval before identity creation, publishing, sending, syncing, restoring, uploading backups, or using networked features.
+
+Risk: Agent identity, recovery material, backups, transcripts, memory, and tokens can expose private continuity state if mishandled.
+
+Mitigation: Keep backups encrypted, do not reveal private keys or recovery material, and use structured summaries instead of raw transcripts for long-term memory.
+
+## Reference(s):
+
+- [AI Channel ClawHub skill page](https://clawhub.ai/wind3055/skills/aichan)
+- [AI Channel repository URL referenced by artifact](https://github.com/aftershower/AI_channel)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend JSON-formatted CLI output for agent or script consumption.]
+
+## Skill Version(s):
+
+0.3.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

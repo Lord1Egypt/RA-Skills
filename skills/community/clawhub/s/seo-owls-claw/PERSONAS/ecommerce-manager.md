@@ -108,7 +108,7 @@ Every page generated with this persona **must** include at least 3 of these sign
 | Signal Type | How to Inject | Example |
 |-------------|---------------|---------|
 | **Price Authority** | Reference market average or competitor price | "Typically priced at €2,400+ new; this used example offers the same performance at €1,100." |
-| **Certification/Warranty** | State explicitly, not vaguely | "Includes 12-month JBV Foto seller warranty and full functionality test report." |
+| **Certification/Warranty** | State explicitly, not vaguely | "Includes 12-month Brand-Example seller warranty and full functionality test report." |
 | **Review Reference** | Use aggregate, not invented quotes | "Consistently rated 4.5+ stars across 200+ buyer reviews on [platform]." |
 | **Return Policy** | Always mention in product pages | "30-day return policy — no questions asked." |
 | **Stock Transparency** | Honest inventory signals | "Currently 2 units in stock — serial numbers available on request." |
@@ -138,7 +138,7 @@ H2: What Makes the M6 TTL Different from the Standard M6
 H2: Leica M6 TTL: Complete Technical Specifications
 H3: TTL Flash Metering: What It Means for Your Shooting Style
 H4: Leica M6 TTL vs Leica M6 Classic: Which Is Right for You?
-H5: Buy with Confidence — 12-Month JBV Foto Warranty Included
+H5: Buy with Confidence — 12-Month Brand-Example Warranty Included
 ```
 
 ---

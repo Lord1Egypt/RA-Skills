@@ -1,41 +1,49 @@
-## Description: <br>
-Manages KPI metrics, execution tasks, progress updates, scoring, and retrospectives in a local KPI memory file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents define, track, update, and review KPI metrics and execution tasks while maintaining progress records in local memory.
 
-## Publisher: <br>
-[DawnLck](https://clawhub.ai/user/DawnLck) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dawnlck](https://clawhub.ai/user/dawnlck)
 
-## Use Case: <br>
-Employees, managers, and agents use this skill to turn business goals into measurable KPIs, track execution tasks, calculate completion rates, and close each cycle with a scored retrospective. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: KPI and retrospective records may contain sensitive performance information retained locally in ~/.openclaw/workspace/memory/kpi.md. <br>
-Mitigation: Review the local KPI memory file periodically and avoid storing sensitive personal performance details unless local retention is intended. <br>
-Risk: Inconsistent KPI definitions, measurement methods, or formulas can produce misleading completion rates and retrospective scores. <br>
-Mitigation: Confirm each KPI definition and measurement method before setting targets, preserve change notes, and use only the allowed scoring scale. <br>
+## Use Case:
 
+Employees, managers, and agents use this skill to turn business goals into measurable KPIs, decompose them into tasks, track achievement rates, and run end-of-cycle reviews.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DawnLck/kpi) <br>
-- [Publisher profile](https://clawhub.ai/user/DawnLck) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance and structured KPI records for memory/kpi.md] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains KPI cycles, task status, progress values, completion rates, retrospective notes, and allowed review scores.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: KPI goals, task owners, progress, reviews, and scores may be persisted in a local memory file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid recording passwords, API keys, private credentials, or sensitive personal details in KPI records.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dawnlck/skills/kpi)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown KPI plans, task lists, progress updates, and review records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains KPI state in the local OpenClaw memory file when the host agent follows the skill workflow.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

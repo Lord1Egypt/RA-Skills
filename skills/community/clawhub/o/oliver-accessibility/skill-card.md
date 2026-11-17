@@ -1,44 +1,54 @@
-## Description: <br>
-Enhances web accessibility by helping agents review and improve semantic HTML, ARIA usage, keyboard navigation, focus management, screen reader support, and WCAG-oriented behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Improves web accessibility (a11y): semantic HTML, ARIA, keyboard navigation, focus management, and screen reader support.
 
-## Publisher: <br>
-[wangzhiming1999](https://clawhub.ai/user/wangzhiming1999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangzhiming1999](https://clawhub.ai/user/wangzhiming1999)
 
-## Use Case: <br>
-Developers and frontend engineers use this skill to audit or implement accessible web interfaces. It helps structure findings around semantics, ARIA, keyboard and focus behavior, visual contrast, prioritized fixes, and validation steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The trigger terms are broad and may start a full accessibility audit when the user intended a narrower review. <br>
-Mitigation: Confirm the target page, component, report, or compliance scope before producing a full audit. <br>
-Risk: Guidance-only accessibility recommendations can miss runtime behavior or project-specific constraints. <br>
-Mitigation: Validate changes with automated tools such as axe, Lighthouse, or WAVE and with manual keyboard and screen reader testing. <br>
-Risk: Most source documentation is Chinese-language, which may not match every user's preferred report language. <br>
-Mitigation: Ask for the desired output language or provide bilingual findings when the user's preference is unclear. <br>
+## Use Case:
 
+Developers and engineers use this skill to review or design web UI for accessibility across semantic structure, keyboard and focus behavior, ARIA naming, screen reader support, and visual contrast. It produces prioritized accessibility findings and concrete remediation guidance aligned with WCAG-oriented practices.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wangzhiming1999/oliver-accessibility) <br>
-- [Project Homepage](https://github.com/wangzhiming1999/oliver-skill) <br>
-- [Support Issues](https://github.com/wangzhiming1999/oliver-skill/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown report with prioritized findings, concrete code changes, and validation suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include accessibility checklists, severity labels, implementation snippets, and recommendations for axe, Lighthouse, WAVE, keyboard, and screen reader testing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/clawhub.json) <br>
+Risk: The skill may activate broadly when accessibility terms such as WCAG, a11y, keyboard navigation, or screen reader support appear.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for accessibility review or implementation contexts, and confirm the requested scope before applying its checklist to unrelated UI work.
+
+Risk: Accessibility recommendations can be incomplete without testing against the actual component behavior.
+
+Mitigation: Review proposed changes against the project code and validate with automated tools plus manual keyboard and screen reader checks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangzhiming1999/skills/oliver-accessibility)
+- [Project homepage](https://github.com/wangzhiming1999/oliver-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with accessibility findings, prioritized recommendations, and code examples when applicable]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference axe, Lighthouse, WAVE, keyboard testing, and screen reader testing as validation methods.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact/clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

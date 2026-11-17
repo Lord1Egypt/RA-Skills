@@ -1,42 +1,59 @@
-## Description: <br>
-Mempalace Memory retrieves and manages persistent local memories for an agent using MemPalace with optional SuperMem/ChromaDB synchronization, deduplication, metadata cleanup, and reranking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mempalace Memory provides a local memory recall layer that searches MemPalace, strips metadata, filters credentials, deduplicates results, applies Chinese keyword and identity boosts, and optionally reranks results with MMR.
 
-## Publisher: <br>
-[mars82311111](https://clawhub.ai/user/mars82311111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mars82311111](https://clawhub.ai/user/mars82311111)
 
-## Use Case: <br>
-Developers and agent users use this skill to add local long-term memory recall to an OpenClaw-style agent, including search, wake-up context, manual memory storage, memory mining, and deletion commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can mine workspace content into persistent local memory stores and later inject recalled content into agent prompts. <br>
-Mitigation: Run mining only on explicitly approved directories and avoid storing secrets or private material in memory stores. <br>
-Risk: Bridge and forget commands can synchronize, modify, or delete local MemPalace and ChromaDB memory data. <br>
-Mitigation: Back up memory stores before running bridge or forget commands and test changes on noncritical data first. <br>
-Risk: The artifact references hard-coded user-specific paths and a hook handler that is not included in the submitted files. <br>
-Mitigation: Verify and adapt the hook handler and CLI paths before installation or automated use. <br>
+## Use Case:
 
+Developers and agent users use this skill to retrieve, store, mine, and prune local workspace memories so an agent can receive relevant context during conversations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mars82311111/mempalace-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON responses from CLI scripts plus Markdown guidance and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands can persist, retrieve, synchronize, or delete local memory stores under user-specific paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill can broadly index and duplicate private workspace memories into local persistent stores.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrow mining paths, treat the MemPalace and SuperMem storage directories as sensitive, and avoid bridge synchronization for sensitive memories unless credential scanning is improved.
+
+Risk: Credential handling is limited and may not catch every secret before memory storage or synchronization.
+
+Mitigation: Do not store passwords, tokens, API keys, or regulated data in memory content; keep credentials in a dedicated protected store and review content before remember or bridge operations.
+
+Risk: Forget operations delete memory IDs from local collections and recovery behavior is not documented.
+
+Mitigation: Back up local memory stores and verify the target memory ID before running forget.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mars82311111/skills/mempalace-memory)
+- [Publisher profile](https://clawhub.ai/user/mars82311111)
+- [Skill documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown documentation and JSON CLI responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search and memory commands accept query, limit, agent, room, source, memory ID, and path parameters.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

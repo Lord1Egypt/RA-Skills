@@ -1,41 +1,54 @@
-## Description: <br>
-Calculate BMI, log weight entries, and chart body composition trends. Use when tracking fitness progress, setting weight goals, or reviewing data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Logs and exports local BMI and fitness tracking notes, with commands for goals, trends, summaries, search, and recent activity.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-External users can use this skill to log fitness and body-composition entries locally, review trends, set goals, and export their records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Health-related entries are saved as plain local files under ~/.local/share/bmi. <br>
-Mitigation: Avoid entering sensitive medical details unless local file permissions, backups, retention, and deletion practices are acceptable for the user. <br>
-Risk: Advertised BMI, charting, and export behavior may not match the script's actual behavior. <br>
-Mitigation: Review and test the installed commands before relying on the output for fitness tracking or reports. <br>
+## Use Case:
 
+External users and agents use this skill to record, search, summarize, and export local weight or fitness tracking notes. Review before relying on it for actual BMI calculations or charts, because the security evidence says it mainly saves free-form notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/bmi) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and command-line text with optional JSON, CSV, or plain-text exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores timestamped local logs under ~/.local/share/bmi.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata; artifact frontmatter and script report 2.0.0) <br>
+Risk: The skill is advertised as BMI calculation and charting, but security evidence says it mainly stores free-form health log notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs before relying on them for BMI calculations or charts; use a validated calculator for health decisions.
+
+Risk: Health-adjacent notes are stored persistently as plaintext under ~/.local/share/bmi.
+
+Mitigation: Avoid entering sensitive health details on shared systems; restrict permissions, back up deliberately, or delete the local data directory when no longer needed.
+
+## Reference(s):
+
+- [Bmi ClawHub Skill Page](https://clawhub.ai/bytesagain-lab/skills/bmi)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, configuration, guidance]
+
+**Output Format:** [Plain text CLI output with optional JSON, CSV, or TXT export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores persistent local logs under ~/.local/share/bmi]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

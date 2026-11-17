@@ -1,39 +1,48 @@
-## Description: <br>
-Lint Makefiles for common issues — tabs, .PHONY, unused vars, portability, and best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lint Makefiles for common issues - tabs, .PHONY, unused vars, portability, and best practices.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to inspect Makefiles for common quality, portability, and maintainability issues and to summarize targets or variables for local review or CI workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Makefiles can contain secrets or sensitive variable values that the vars and audit commands may print.
+
+Mitigation: Run the skill only on files approved for inspection, redact sensitive values first, or use lint-only output when variable values should not be exposed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect Makefiles for common correctness, portability, and maintainability issues before committing changes or enforcing checks in CI. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Analysis, Text, Markdown, JSON, Shell commands]
 
-## Known Risks and Mitigations: <br>
-Risk: Reports may include Makefile variable values or command text from files being inspected. <br>
-Mitigation: Run the skill only on Makefiles or stdin content intended for inspection, and review or redact JSON and Markdown output before sharing it. <br>
-Risk: Lint findings can be incomplete or context-dependent, especially when used to gate CI with strict mode. <br>
-Mitigation: Review reported issues before changing build logic or enforcing strict failures in automated workflows. <br>
+**Output Format:** [Text, JSON, or Markdown reports from local CLI commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Can filter by severity, ignore selected rules, and return nonzero status with --strict.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Text, JSON, Markdown, Shell commands] <br>
-**Output Format:** [Text, JSON, or Markdown reports for lint findings, targets, variables, and combined audits.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads a user-selected Makefile path or stdin and prints reports locally.] <br>
+1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact frontmatter lists 1.0.0) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,61 @@
-## Description: <br>
-ClawMobile is an Android automation toolkit that integrates with AutoX.js to help agents manage workflows, record mobile interactions, handle AI-assisted recovery, and communicate with an HTTP API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawMobile helps agents operate Android automation workflows through AutoX.js, including workflow execution, task recording, AI-assisted recovery, membership checks, and HTTP API interactions.
 
-## Publisher: <br>
-[miyan1221](https://clawhub.ai/user/miyan1221) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[miyan1221](https://clawhub.ai/user/miyan1221)
 
-## Use Case: <br>
-Developers, QA engineers, and RPA operators use this skill to automate Android device workflows, record mobile UI actions into reusable automation, and operate AutoX.js through a local or protected HTTP API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control an Android device and its visible app contents through an API. <br>
-Mitigation: Install only when controlled device access is acceptable, and require explicit confirmation before recording, deletion, batch execution, text entry, AI recovery, or remote access. <br>
-Risk: Weak default scoping or unchanged default tokens could expose the automation API. <br>
-Mitigation: Keep the API bound to localhost or a protected network and replace default tokens before use. <br>
-Risk: Screen recording and UI capture may collect secrets or personal data displayed on the device. <br>
-Mitigation: Avoid recording screens that contain secrets or personal data, and disable or limit capture options unless needed. <br>
+## Use Case:
 
+Developers, QA engineers, and RPA teams use this skill to configure, test, record, and run Android automation workflows against an AutoX.js service. It is intended for mobile testing, batch operations, workflow replay, and app interaction automation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/miyan1221/clawmobile-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/miyan1221) <br>
-- [ClawMobile documentation](https://docs.clawmobile.com) <br>
-- [AutoX.js](https://autoxjs.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration, API Calls] <br>
-**Output Format:** [Markdown with inline Python, shell, cURL, YAML, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include workflow identifiers, Android package names, API URLs, bearer tokens, membership actions, recording options, and AutoX.js task parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Default networking and token handling could expose the AutoX.js service or automation token if deployed broadly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace default tokens before use, bind services to localhost, and require TLS plus authentication before exposing port 8765 beyond a trusted local network.
+
+Risk: Workflow execution and recording can interact with apps, accounts, screenshots, UI trees, and local files.
+
+Mitigation: Use an isolated test device or trusted local environment, and review workflows and recording actions before running them against accounts or apps containing sensitive data.
+
+Risk: Persisting API tokens in shell startup files can leak credentials to other sessions or tools.
+
+Mitigation: Use a scoped environment, secret manager, or temporary token injection instead of storing CLAWMOBILE_API_TOKEN in ~/.bashrc.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/miyan1221/skills/clawmobile-skill)
+- [ClawMobile documentation](https://docs.clawmobile.com)
+- [AutoX.js](https://autoxjs.com/)
+- [Artifact README](artifact/README.md)
+- [Artifact skill guide](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python, shell, JSON, and YAML snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide calls to a configured local AutoX.js HTTP API and Android device connection.]
+
+## Skill Version(s):
+
+1.0.1 (source: target metadata, release evidence, and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

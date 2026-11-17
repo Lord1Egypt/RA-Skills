@@ -1,40 +1,53 @@
-## Description: <br>
-Work with Obsidian vaults, which are local folders of plain Markdown notes, and automate common note workflows with notesmd-cli. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Work with Obsidian vaults (plain Markdown notes) and automate via notesmd-cli.
 
-## Publisher: <br>
-[TriplEight](https://clawhub.ai/user/TriplEight) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tripleight](https://clawhub.ai/user/tripleight)
 
-## Use Case: <br>
-Developers and knowledge workers use this skill to inspect, search, create, append, move, and delete Markdown notes in local Obsidian vaults through notesmd-cli. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and modify local Obsidian vault notes, including append, overwrite, move, and delete operations. <br>
-Mitigation: Confirm the selected vault, note path, and operation mode before running commands, especially before overwrite, move, or delete operations. <br>
-Risk: Vault contents may be exposed in the agent session when notes are searched or printed. <br>
-Mitigation: Avoid using the skill on vaults that contain information you do not want exposed to the active agent session. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Obsidian Help](https://help.obsidian.md) <br>
-- [ClawHub skill page](https://clawhub.ai/TriplEight/obsidian-linux) <br>
+## Use Case:
 
+Developers and Obsidian users use this skill to locate vaults, search and read Markdown notes, create or append daily notes, and manage note paths through notesmd-cli.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires notesmd-cli and access to the selected local Obsidian vault; creating notes through the CLI requires Obsidian and its URI handler.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: server evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The required notesmd-cli package is installed from third-party Homebrew or AUR packaging sources.
+
+Mitigation: Verify that the notesmd-cli tap or AUR package is trusted before installation.
+
+Risk: Overwrite, move, or delete commands can modify local Obsidian vault notes, including sensitive or work data.
+
+Mitigation: Confirm the active vault and exact note path before running destructive commands.
+
+## Reference(s):
+
+- [Obsidian Help](https://help.obsidian.md)
+- [ClawHub skill page](https://clawhub.ai/tripleight/skills/obsidian-linux)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local Obsidian vault access and notesmd-cli.]
+
+## Skill Version(s):
+
+1.2.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

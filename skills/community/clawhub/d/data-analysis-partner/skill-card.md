@@ -1,41 +1,60 @@
-## Description: <br>
-Analyzes CSV or Excel files from natural-language requirements and produces a self-contained HTML report with interactive ECharts visualizations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Data Analysis Partner analyzes CSV and Excel files from a natural-language request and produces a self-contained HTML report with interactive ECharts visualizations.
 
-## Publisher: <br>
-[1992huanghai](https://clawhub.ai/user/1992huanghai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1992huanghai](https://clawhub.ai/user/1992huanghai)
 
-## Use Case: <br>
-Employees, external users, developers, and analysts can use this skill to inspect CSV or Excel datasets, generate statistical summaries and visualizations, and receive a shareable HTML analysis report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports can run untrusted spreadsheet content when opened. <br>
-Mitigation: Use the skill only with datasets you trust, and avoid opening reports from untrusted CSV or Excel files on sensitive machines until data-derived HTML and script content is escaped. <br>
-Risk: Generated reports load chart code from jsDelivr when opened. <br>
-Mitigation: Use the reports only where contacting jsDelivr is acceptable, or require a bundled or offline chart library for sensitive and offline workflows. <br>
+## Use Case:
 
+Developers, analysts, and external users use this skill to inspect CSV or Excel datasets, generate statistical summaries and rule-based insights, and create browser-viewable reports with interactive charts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1992huanghai/data-analysis-partner) <br>
-- [ECharts library loaded by generated reports](https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, analysis, files, shell commands] <br>
-**Output Format:** [JSON result with an HTML report file path, summary, insights, chart count, and open command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes an HTML report to the configured output directory; generated reports load ECharts from jsDelivr when opened.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and CHANGELOG, released 2026-03-24) <br>
+Risk: Generated HTML reports can execute injected JavaScript from malicious spreadsheet or user-supplied content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated reports before opening or sharing them, avoid untrusted input files, and keep sensitive reports in a private folder.
+
+Risk: Reports load ECharts from jsDelivr when opened, which can create an external network request.
+
+Mitigation: Use a locally bundled or cached ECharts library for sensitive or offline workflows.
+
+Risk: Python dependency resolution may rely on the local environment.
+
+Mitigation: Use a pinned virtual environment with reviewed versions of pandas, numpy, openpyxl, and xlrd.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/1992huanghai/skills/data-analysis-partner)
+- [Publisher Profile](https://clawhub.ai/user/1992huanghai)
+- [Artifact README](artifact/README.md)
+- [ECharts CDN Dependency](https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Files, JSON, Shell commands, Configuration instructions]
+
+**Output Format:** [JSON tool result plus a self-contained HTML report with interactive ECharts charts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 with pandas and numpy; Excel support uses openpyxl and xlrd; generated reports may load ECharts from jsDelivr when opened.]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence, manifest.json, CHANGELOG.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,12 @@
+{
+  "ownerId": "583963",
+  "slug": "negative-inbox",
+  "version": "1.5.3",
+  "workflow": "negative_inbox",
+  "focus": "all",
+  "outputTemplate": "negative_review_inbox",
+  "requiredCapabilities": [
+    "negative_inbox"
+  ],
+  "releaseWave": 6
+}

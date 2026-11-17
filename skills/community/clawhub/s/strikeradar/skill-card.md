@@ -1,42 +1,61 @@
-## Description: <br>
-Monitors US-Iran strike probability using open-source indicators including news, connectivity, oil prices, flight traffic, military tanker detection, weather, Polymarket odds, and Pentagon activity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor US-Iran strike probability using open-source indicators including news alerts, Iran internet connectivity, oil prices, flight traffic, military tanker detection, weather, Polymarket odds, and Pentagon activity.
 
-## Publisher: <br>
-[alexpolonsky](https://clawhub.ai/user/alexpolonsky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[alexpolonsky](https://clawhub.ai/user/alexpolonsky)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to query current StrikeRadar signals from the terminal and receive either human-readable status output or JSON suitable for agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Strike probability scores concern a sensitive geopolitical topic and may be mistaken for intelligence, safety, financial, or personal decision advice. <br>
-Mitigation: Treat the scores as informational only and confirm any important conclusions with authoritative sources before acting. <br>
-Risk: The skill depends on live responses from api.usstrikeradar.com, so output can be stale, unavailable, or affected by upstream service issues. <br>
-Mitigation: Check timestamps, handle command errors, and avoid relying on a single run for time-sensitive decisions. <br>
+## Use Case:
 
+Developers and agent users use this skill to query StrikeRadar status, inspect individual open-source risk indicators, and monitor viewer pulse activity from the terminal or an agent workflow. Outputs are operational signals and algorithmic estimates, not intelligence assessments.
 
-## Reference(s): <br>
-- [StrikeRadar](https://usstrikeradar.com/) <br>
-- [Agent Skills specification](https://agentskills.io/specification) <br>
-- [ClawHub skill page](https://clawhub.ai/alexpolonsky/strikeradar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Terminal text for interactive use and JSON with next_actions when piped] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and npx on darwin or linux; queries api.usstrikeradar.com and does not require credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, and server release metadata) <br>
+Risk: The install and run paths execute unpinned npm tooling from the network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing; prefer cloning a reviewed commit and running with a locally installed, pinned tsx version or a lockfile-managed workflow.
+
+Risk: The skill contacts api.usstrikeradar.com when used.
+
+Mitigation: Run only in environments where outbound access to that service is acceptable.
+
+Risk: The reported strike probabilities are algorithmic estimates and not intelligence assessments.
+
+Mitigation: Do not rely on the scores for safety, financial, personal, or operational decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alexpolonsky/skills/strikeradar)
+- [Publisher profile](https://clawhub.ai/user/alexpolonsky)
+- [StrikeRadar](https://usstrikeradar.com/)
+- [StrikeRadar API](https://api.usstrikeradar.com)
+- [Agent Skills specification](https://agentskills.io/specification)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Terminal text for interactive use and JSON with next_actions when piped]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Queries a public remote API and reports algorithmic risk scores, signal details, timestamps, and suggested next actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

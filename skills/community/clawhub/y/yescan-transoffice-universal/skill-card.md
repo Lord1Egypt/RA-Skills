@@ -1,43 +1,59 @@
-## Description: <br>
-Converts user-selected images, screenshots, or scans into editable Word or Excel documents or PDFs using Quark Scan's OCR conversion service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts user-supplied images, screenshots, and scans into editable Word, Excel, or PDF files using Quark Scan.
 
-## Publisher: <br>
-[mozhihuidage](https://clawhub.ai/user/mozhihuidage) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yescan-ai](https://clawhub.ai/user/yescan-ai)
 
-## Use Case: <br>
-External users and developers use this skill to convert a single explicitly provided image, screenshot, or scan into a Word, Excel, or PDF file while preserving document structure where the upstream service supports it. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected images or image URLs are sent to Quark's scanning service for processing. <br>
-Mitigation: Use the skill only with documents suitable for Quark's terms and avoid sensitive content unless that data handling is acceptable. <br>
-Risk: The SCAN_WEBSERVICE_KEY credential is required for execution. <br>
-Mitigation: Keep the key private, scope it appropriately, and rotate or revoke it if exposed. <br>
-Risk: Converted documents are saved locally in the system temp directory and may contain private data. <br>
-Mitigation: Delete generated files from the temp directory after use when outputs contain sensitive information. <br>
+## Use Case:
 
+External users, developers, and operators use this skill to convert a single image, screenshot, or scan into an editable Office document or PDF while preserving layout where possible.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mozhihuidage/yescan-transoffice-universal) <br>
-- [Quark Scan business portal](https://scan.quark.cn/business) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Files, Shell commands, Configuration] <br>
-**Output Format:** [JSON response with local output file paths for successful conversions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SCAN_WEBSERVICE_KEY and accepts one image input by URL, local path, or base64 data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.16 (source: server release evidence) <br>
+Risk: Selected images, scans, or screenshots are uploaded to Quark's third-party service for conversion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for documents you are comfortable sending to that service, and avoid sensitive documents unless the service terms and data handling meet your requirements.
+
+Risk: The SCAN_WEBSERVICE_KEY credential is required and could be exposed through misconfiguration or shared environments.
+
+Mitigation: Store the key in the configured environment variable only, avoid pasting it into prompts or logs, and rotate it promptly if exposure is suspected.
+
+Risk: Generated Word, Excel, or PDF files are saved under the system temporary directory and can persist after the session.
+
+Mitigation: Inspect and remove generated files from the temp directory after use, especially on shared machines.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yescan-ai/skills/alibaba-quark-transoffice)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/yescan-ai)
+- [Quark Scan Open Platform](https://scan.quark.cn/business)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, files, guidance]
+
+**Output Format:** [JSON response with a local file path when conversion succeeds]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SCAN_WEBSERVICE_KEY; accepts one image URL, local path, or base64 input; generated files are saved under the system temporary directory.]
+
+## Skill Version(s):
+
+1.1.19 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

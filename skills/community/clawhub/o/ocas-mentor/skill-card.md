@@ -1,51 +1,65 @@
-## Description: <br>
-Self-improving orchestration and evaluation engine for long-running multi-skill workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mentor orchestrates long-running multi-skill workflows, evaluates journaled skill performance, compares champion and challenger variants, and proposes skill improvements.
 
-## Publisher: <br>
-[indigokarasu](https://clawhub.ai/user/indigokarasu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[indigokarasu](https://clawhub.ai/user/indigokarasu)
 
-## Use Case: <br>
-Developers and operators use Mentor to coordinate long-running multi-skill workflows, evaluate skill performance from journals, compare champion and challenger variants, and propose skill improvements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent orchestration, cron jobs, and automatic updates may give the skill broad ongoing authority. <br>
-Mitigation: Review or disable daily self-update and cron jobs before enabling the skill, and narrow triggers to the workflows you intend to run. <br>
-Risk: The skill reads journals across OpenClaw skills and writes local state, proposals, decisions, and intake files for cooperating skills. <br>
-Mitigation: Confirm which journal paths and intake directories it can access, and review generated proposals or decisions before promotion or deployment. <br>
-Risk: The bundled contact-enrichment workflow can process private Gmail history and write high-confidence facts back to Weave. <br>
-Mitigation: Run contact enrichment only after approving the Gmail account, target contact, message scope, extracted fields, storage location, and write-back preview. <br>
+## Use Case:
 
+Developers and OpenClaw operators use Mentor to coordinate long-running projects, run heartbeat evaluations over skill journals, and route improvement proposals or variant decisions to companion skills.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/indigokarasu/ocas-mentor) <br>
-- [README](README.md) <br>
-- [Mentor Orchestration Engine](references/orchestration_engine.md) <br>
-- [Mentor Evaluation Engine](references/evaluation_engine.md) <br>
-- [Mentor Evolution Engine](references/evolution_engine.md) <br>
-- [Mentor Workflow Plans](references/workflow_plans.md) <br>
-- [Mentor Schemas](references/schemas.md) <br>
-- [Journal](references/journal.md) <br>
-- [Contact Enrichment Plan](references/plans/contact-enrichment.plan.md) <br>
-- [Workflow Plan Template](references/plans/template.plan.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline JSON and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local project state, evaluation records, journals, workflow plans, and intake files for cooperating skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.0 (source: server release metadata and skill.json) <br>
+Risk: Mentor can run recurring background jobs, read OpenClaw journals, invoke companion skills, and write orchestration or evaluation state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scheduled jobs and heartbeat registration before use; disable background entries that are not needed and monitor generated journals and intake files.
+
+Risk: The release evidence reports a silent self-update path from a mutable GitHub source.
+
+Mitigation: Disable or remove the automatic self-update schedule unless updates are reviewed and approved before installation.
+
+Risk: The bundled contact-enrichment workflow may process Gmail history and write personal facts to Weave.
+
+Mitigation: Review each plan before execution, avoid scheduled random contact enrichment, and require confidence thresholds before personal data is written.
+
+## Reference(s):
+
+- [Mentor README](README.md)
+- [Mentor Orchestration Engine](references/orchestration_engine.md)
+- [Mentor Evaluation Engine](references/evaluation_engine.md)
+- [Mentor Evolution Engine](references/evolution_engine.md)
+- [Mentor Workflow Plans](references/workflow_plans.md)
+- [Mentor Schemas](references/schemas.md)
+- [Mentor Journal](references/journal.md)
+- [Contact Enrichment Plan](references/plans/contact-enrichment.plan.md)
+- [ClawHub Skill Page](https://clawhub.ai/indigokarasu/skills/ocas-mentor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and structured JSON files with occasional shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local project state, journals, evaluation records, workflow plan state, and intake files for companion skills.]
+
+## Skill Version(s):
+
+2.3.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

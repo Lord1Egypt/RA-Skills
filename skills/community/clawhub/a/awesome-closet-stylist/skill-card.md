@@ -1,42 +1,62 @@
-## Description: <br>
-Maintain a persistent personal wardrobe, answer wardrobe questions, and recommend outfits from existing clothes with natural-language responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maintain a persistent personal wardrobe, answer wardrobe questions, and recommend outfits from existing clothes with natural-language responses.
 
-## Publisher: <br>
-[investigator13th](https://clawhub.ai/user/investigator13th) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[investigator13th](https://clawhub.ai/user/investigator13th)
 
-## Use Case: <br>
-External users use this skill to maintain a local wardrobe record, ask wardrobe questions, and receive outfit recommendations grounded in clothing they already own, with optional weather and preference context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill keeps wardrobe items, fit, style, color, occasion preferences, notes, and optional weather configuration locally over time. <br>
-Mitigation: Review or clear the user JSON files when that history should not be retained, and avoid adding weather configuration if location privacy is a concern. <br>
-Risk: Wardrobe recommendations can be incomplete or misleading if the local wardrobe record is sparse, stale, or ambiguous. <br>
-Mitigation: Review recommendations against actual wardrobe contents and update or clarify wardrobe facts before relying on state-changing recommendations. <br>
-Risk: The skill can make persistent local wardrobe or preference changes when the user asks to add, update, or remember information. <br>
-Mitigation: Confirm destructive or ambiguous changes before applying them, and keep temporary preferences session-only unless long-term intent is clear. <br>
+## Use Case:
 
+External users use this skill to maintain a local wardrobe profile, answer questions about owned clothing, record clothing feedback, and receive weather- or occasion-aware outfit recommendations grounded in existing wardrobe data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/investigator13th/awesome-closet-stylist) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Natural-language Markdown responses with local JSON file updates when wardrobe or preference state changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and update local wardrobe, preference, and weather configuration JSON files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill maintains local wardrobe data and a long-term style preference profile.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or clear the local user data files when needed, and persist only sufficiently clear, useful, long-term wardrobe or preference information.
+
+Risk: Ambiguous or destructive wardrobe changes could remove or alter the wrong item.
+
+Mitigation: Confirm destructive actions such as deletion, and ask for clarification when an item or mutation target is not safely identified.
+
+Risk: Weather-aware outfit requests may require city or location context to be sent to an external weather source.
+
+Mitigation: Prefer user-provided or local weather context first, retrieve only the weather context needed for the request, and degrade gracefully when external lookup is unavailable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/investigator13th/skills/awesome-closet-stylist)
+- [Main skill specification](SKILL.md)
+- [Wardrobe CRUD specification](sub-skills/wardrobe-crud.md)
+- [Outfit recommendation specification](sub-skills/outfit-recommendation.md)
+- [User preference specification](sub-skills/user-preference.md)
+- [Weather specification](sub-skills/weather.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Natural-language Markdown responses with optional local JSON state updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Grounds wardrobe claims in local user data, avoids raw JSON in user-facing replies, and asks for clarification or confirmation before ambiguous or destructive state changes.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

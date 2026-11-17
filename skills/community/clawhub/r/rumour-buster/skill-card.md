@@ -1,45 +1,59 @@
-## Description: <br>
-Rumour Buster helps an agent check claims and URLs by combining Chinese and English search results, cross-checking findings, scoring credibility, and tracing likely source paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rumour Buster helps agents fact-check claims and web links by combining Chinese and English search results, cross-checking sources, tracing origins, and producing a structured verification report.
 
-## Publisher: <br>
-[harry720320](https://clawhub.ai/user/harry720320) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harry720320](https://clawhub.ai/user/harry720320)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent to verify suspicious messages or webpages, compare multilingual search evidence, and produce a structured fact-checking report with source tracing and confidence scoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence says the skill embeds and handles API credentials in risky, under-disclosed ways. <br>
-Mitigation: Ignore the embedded default Tavily key, use your own credential only if you accept plaintext local storage, and delete ~/.rumour-buster-config when it is no longer needed. <br>
-Risk: Verification prompts may include sensitive messages, private URLs, or secrets that could be sent to search providers. <br>
-Mitigation: Do not paste sensitive content into verification prompts; redact private details before using the skill. <br>
-Risk: Fact-checking reports can still be incomplete or misleading if search results are sparse, biased, outdated, or unavailable. <br>
-Mitigation: Treat the report as decision support and review the cited sources and confidence score before acting on conclusions. <br>
+## Use Case:
 
+External users and developers use this skill to verify rumors, forwarded messages, and article URLs by comparing search evidence across Chinese and English sources and reviewing a concise confidence assessment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harry720320/rumour-buster) <br>
-- [Tavily](https://tavily.com/) <br>
-- [Artifact README](README.md) <br>
-- [Skill definition](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown verification reports with setup prompts, search summaries, source tracing, credibility scoring, and final recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Setup may write a local ~/.rumour-buster-config file and may use Tavily or multi-search-engine results when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Fact-checking queries, URLs, and claim text may be sent to external search providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit confidential claims, private messages, internal URLs, or sensitive personal data through this skill.
+
+Risk: The release security summary reports an embedded Tavily API key and plaintext storage of user API keys.
+
+Mitigation: Review before installation, remove embedded credentials, rotate any exposed keys, and use a safer secret storage mechanism before production use.
+
+Risk: The release security guidance notes that dependencies should be pinned and verified.
+
+Mitigation: Pin and verify dependencies before deployment, especially the required multi-search dependency.
+
+## Reference(s):
+
+- [Rumour Buster ClawHub listing](https://clawhub.ai/harry720320/skills/rumour-buster)
+- [Publisher profile](https://clawhub.ai/user/harry720320)
+- [Tavily](https://tavily.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown verification report with source tracing, confidence scoring, setup prompts, and occasional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call external search providers and may include sourced URLs, search summaries, confidence scores, and setup status.]
+
+## Skill Version(s):
+
+0.3.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

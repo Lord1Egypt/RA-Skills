@@ -1,41 +1,58 @@
-## Description: <br>
-Tracks token usage and estimated model costs, with daily or weekly reports and threshold alerts for OpenClaw sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors token consumption for OpenAI and other models, with daily and weekly bill reports and threshold alerts.
 
-## Publisher: <br>
-[Mr-Lucky](https://clawhub.ai/user/Mr-Lucky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mr-lucky](https://clawhub.ai/user/mr-lucky)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to inspect current token consumption, estimate model costs, generate periodic usage reports, and receive threshold alerts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional hook may persist more session context than is needed for token accounting. <br>
-Mitigation: Review the hook before enabling it and remove or disable the full context log in hooks/token-logger/handler.js. <br>
-Risk: Scheduled Telegram reports and threshold alerts may expose ongoing local usage history. <br>
-Mitigation: Enable scheduled reports only when the configured delivery channel is acceptable for usage and cost information. <br>
+## Use Case:
 
+Developers and OpenClaw users use Token Tracker to monitor model token usage, estimate cost, and receive daily or weekly usage reports and threshold alerts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Mr-Lucky/my-token-tracker) <br>
-- [Publisher profile](https://clawhub.ai/user/Mr-Lucky) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and command-line text with JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local JSON usage records and report token totals, estimated cost, and threshold status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The optional hook can run automatically with access to session-compaction events, session status files, and usage records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the hook before installation and enable it only when persistent token logging is required.
+
+Risk: Scheduled reports may announce usage summaries through Telegram, including session IDs, model usage, cost summaries, or event context.
+
+Mitigation: Review scheduled report settings and delivery channels before enabling external announcements.
+
+Risk: The security guidance says the hook logs full context and should validate session keys before production use.
+
+Mitigation: Remove full-context logging and add session-key validation before using the hook in production.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mr-lucky/skills/my-token-tracker)
+- [Publisher profile](https://clawhub.ai/user/mr-lucky)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Plain text and Markdown with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include token totals, cost estimates, threshold status, and scheduled report or alert messages.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

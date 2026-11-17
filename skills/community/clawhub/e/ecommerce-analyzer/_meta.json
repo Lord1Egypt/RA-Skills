@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn7dxr58ktjh28y80xrgmypzg582wtg5",
-  "slug": "ecommerce-analyzer",
+  "name": "ecommerce-analyzer",
+  "displayName": "电商数据分析工具",
   "version": "1.0.0",
-  "publishedAt": 1774691248902
+  "slug": "ecommerce-analyzer",
+  "description": "电商数据分析工具，支持淘宝/京东/拼多多/抖音电商",
+  "author": "@bingze00000",
+  "license": "MIT",
+  "tags": ["ecommerce", "analytics", "taobao", "jd", "pinduoduo", "data", "price-tracking"],
+  "pricing": {
+    "type": "paid",
+    "amount": 39,
+    "currency": "CNY"
+  },
+  "requirements": ["pandas", "requests", "selenium"],
+  "category": "business"
 }

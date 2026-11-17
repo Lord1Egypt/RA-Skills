@@ -1,48 +1,64 @@
-## Description: <br>
-Brazilian Portuguese voice reply helpers for OpenClaw that transcribe audio locally with wav2vec2, generate a short agent reply locally by default or with Anthropic when configured, and synthesize a local Piper voice response. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribes Brazilian Portuguese audio locally with wav2vec2, generates a short OpenClaw or optional Anthropic response, and synthesizes a Portuguese voice reply with Piper.
 
-## Publisher: <br>
-[henrique-simoes](https://clawhub.ai/user/henrique-simoes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[henrique-simoes](https://clawhub.ai/user/henrique-simoes)
 
-## Use Case: <br>
-External users and developers use this skill to add a Brazilian Portuguese voice loop to OpenClaw, especially for mobile, accessibility, Telegram-style, and hands-busy workflows. It processes an audio file into a transcript, asks the agent for a short response, and returns a synthesized voice reply. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The published /voz trigger is malformed and may expose shell-command injection depending on how OpenClaw expands command arguments. <br>
-Mitigation: Fix the trigger to pass structured argv values or apply robust escaping before enabling it in environments where other users can send /voz commands. <br>
-Risk: Transcript text can be sent to Anthropic when ANTHROPIC_API_KEY is configured. <br>
-Mitigation: Leave ANTHROPIC_API_KEY unset when transcript text must remain local, and document this privacy boundary for operators. <br>
-Risk: The skill runs the Piper binary from the configured WORKSPACE path. <br>
-Mitigation: Use only a trusted WORKSPACE and verify installed Piper assets before deployment. <br>
-Risk: The optional local audio hook example uses shell-expanded template values and is unsafe for untrusted inputs. <br>
-Mitigation: Do not publish or enable the hook unless the platform passes structured arguments or the local operator has reviewed and accepted the risk. <br>
+## Use Case:
 
+External users and developers can use this skill to process Brazilian Portuguese voice messages in OpenClaw, returning a short agent response as synthesized speech. It is suited to accessibility, mobile, Telegram-style, and hands-busy reply workflows where local transcription and synthesis are preferred.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/henrique-simoes/audio-ptbr-autoreply) <br>
-- [Server-resolved publisher profile](https://clawhub.ai/user/henrique-simoes) <br>
-- [wav2vec2 Portuguese ASR model](https://huggingface.co/jonatasgrosman/wav2vec2-large-xlsr-53-portuguese) <br>
-- [Piper PT-BR voice models](https://huggingface.co/rhasspy/piper-voices) <br>
-- [Piper release assets](https://github.com/rhasspy/piper/releases/tag/v1.2.0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Files] <br>
-**Output Format:** [Plain text command output, voice-selection messages, and a MEDIA directive that references a generated OGG audio file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The main processing flow reads one audio file, emits a transcript-derived response, and writes temporary audio output; optional Anthropic mode sends transcript text only when ANTHROPIC_API_KEY is set.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.3 (source: server release evidence and skill frontmatter) <br>
+Risk: The security scan reports a malformed shell-templated /voz trigger.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace the shell-string action with structured argument passing or remove the trigger before shared or sensitive deployment.
+
+Risk: The installer downloads executable and model assets without integrity checks.
+
+Mitigation: Add integrity verification for downloaded Piper assets and review the resolved download sources before installation.
+
+Risk: Python dependencies are version-pinned but not hash-locked.
+
+Mitigation: Use locked dependency hashes for reproducible installs.
+
+Risk: Optional external response generation can send transcript text to Anthropic when ANTHROPIC_API_KEY is set.
+
+Mitigation: Leave ANTHROPIC_API_KEY unset for local-only response generation, and use a trusted private WORKSPACE path.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/henrique-simoes/skills/audio-ptbr-autoreply)
+- [wav2vec2 Portuguese ASR model](https://huggingface.co/jonatasgrosman/wav2vec2-large-xlsr-53-portuguese)
+- [Piper releases](https://github.com/rhasspy/piper/releases)
+- [Piper PT-BR voice models](https://huggingface.co/rhasspy/piper-voices)
+
+## Skill Output:
+
+**Output Type(s):** [text, audio, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text, JSON from helper scripts, shell command output, and a MEDIA directive pointing to the generated audio file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local mode is the default; transcript text may be sent to Anthropic only when ANTHROPIC_API_KEY is configured.]
+
+## Skill Version(s):
+
+2.1.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

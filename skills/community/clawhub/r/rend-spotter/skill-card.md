@@ -1,37 +1,50 @@
-## Description: <br>
-Track social media trending topics and viral content across platforms in real time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track social media trending topics and viral content across platforms in real-time.
 
-## Publisher: <br>
-[huajianjiu000](https://clawhub.ai/user/huajianjiu000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huajianjiu000](https://clawhub.ai/user/huajianjiu000)
 
-## Use Case: <br>
-External creators, marketers, and analysts use this skill to scope social media trend monitoring, compare platform activity, identify content opportunities, and generate trend reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trend monitoring and exports can collect or report social platform data outside the user's intended scope. <br>
-Mitigation: Define platforms, keywords, timeframe, export format, and alert frequency before use, and confirm collection and reporting comply with platform terms, privacy expectations, and consent requirements. <br>
+## Use Case:
 
+External users and content strategy teams use this skill to monitor social media trends, compare platform activity, identify emerging topics, and generate trend reports for campaign planning.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown trend reports and concise planning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Users should provide platforms, keywords, timeframes, export format, and alert frequency when relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: Runtime trend tracking may require web or social platform data sources even though the package itself contains no code, credentials, persistence, or integrations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve any runtime data sources, platform access, and generated trend reports before using the output for content or campaign decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huajianjiu000/skills/rend-spotter)
+- [ClawHub publisher profile](https://clawhub.ai/user/huajianjiu000)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown reports with trend summaries, comparisons, timing insights, and content opportunities]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May depend on runtime web or platform data sources selected by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

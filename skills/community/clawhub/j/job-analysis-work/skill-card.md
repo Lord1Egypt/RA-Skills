@@ -1,47 +1,60 @@
-## Description: <br>
-在对话中辅助学习"工作分析/Job Analysis"第 2 章"Work-Oriented Methods"，覆盖 time-and-motion study、Functional Job Analysis、task inventory、Critical Incident Technique 及相关概念，并按需读取 reference material 进行渐进式教学。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language learning assistant for studying and applying Chapter 2 work-oriented job analysis methods: time-and-motion study, Functional Job Analysis, task inventory, and Critical Incident Technique.
 
-## Publisher: <br>
-[junwugit](https://clawhub.ai/user/junwugit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junwugit](https://clawhub.ai/user/junwugit)
 
-## Use Case: <br>
-Students, instructors, and study-support agents use this skill to explain and apply work-oriented job analysis methods from a course chapter. It helps compare methods, write task statements and behavioral examples, and choose an analysis method based on the user's purpose. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat course-oriented job analysis material as current HR, hiring, legal, or compliance advice. <br>
-Mitigation: Present the skill as educational support and require qualified HR, legal, or compliance review before applying outputs to employment decisions. <br>
-Risk: The skill is scoped to one work-oriented methods chapter and may be incomplete for adjacent job analysis topics. <br>
-Mitigation: Keep responses within the documented chapter scope and redirect users to other sources or skills for worker-oriented methods, hybrid methods, job evaluation, legal compliance, or other chapters. <br>
+## Use Case:
 
+Students, employees, and external learners use this skill to get concise tutoring, examples, method comparisons, and writing support for work-oriented job analysis topics. It is especially useful for Chinese-language study, review, and applied exercises involving task statements, task inventories, FJA, time-and-motion study, and CIT.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/junwugit/job-analysis-work) <br>
-- [Critical Incident Technique (CIT)](references/cit.md) <br>
-- [Course Examples](references/examples.md) <br>
-- [Functional Job Analysis (FJA)](references/fja.md) <br>
-- [Work-Oriented Methods Overview](references/overview.md) <br>
-- [Task Inventory](references/task-inventory.md) <br>
-- [Task Statement Writing](references/task-writing.md) <br>
-- [Time-and-Motion Study](references/time-motion.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown conversation responses with concise explanations, comparison tables, examples, and draft task or incident statements] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual Chinese-English terminology is used where helpful; no files, tools, or external services are required by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users who need English or another language may receive Chinese-language tutoring by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for the desired language or provide an explicit language request before relying on the response.
+
+Risk: The skill is scoped to Chapter 2 work-oriented job analysis methods and may be incomplete for broader job-analysis topics.
+
+Mitigation: Use it for time-and-motion study, FJA, task inventory, CIT, and task statement support; redirect unrelated chapters or methods to a more appropriate source.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/junwugit/skills/job-analysis-work)
+- [Work-Oriented Methods Overview](references/overview.md)
+- [Time-and-Motion Study](references/time-motion.md)
+- [Functional Job Analysis](references/fja.md)
+- [Task Inventory](references/task-inventory.md)
+- [Critical Incident Technique](references/cit.md)
+- [Task Statement Writing](references/task-writing.md)
+- [Textbook Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown conversational guidance with examples and comparisons]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to Chinese responses and uses progressive disclosure to provide concise, question-specific explanations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

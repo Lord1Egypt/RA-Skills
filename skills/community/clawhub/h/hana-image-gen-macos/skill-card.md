@@ -1,41 +1,58 @@
-## Description: <br>
-Generates Gemini images through OpenRouter for OpenClaw agents on macOS and sends the generated image through the configured Telegram bot. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MacOS Gemini image generation via OpenRouter for OpenClaw agents, with automated start notification, image generation, and media sending.
 
-## Publisher: <br>
-[eardori](https://clawhub.ai/user/eardori) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eardori](https://clawhub.ai/user/eardori)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to turn a prompt into an AI-generated image and deliver the result to a configured Telegram destination. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and generated media are sent to external OpenRouter/Gemini and Telegram services. <br>
-Mitigation: Use dedicated low-privilege API and bot tokens, avoid sensitive prompts, and confirm the configured Telegram destination before use. <br>
-Risk: The skill downloads image URLs returned by the image-generation API. <br>
-Mitigation: Review or patch the URL download handling before deployment and run the skill with restricted network and file access. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to generate images from prompts through OpenRouter and send the resulting media in an automated agent workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eardori/hana-image-gen-macos) <br>
-- [OpenRouter API endpoint](https://openrouter.ai/api/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [Markdown instructions with shell commands and JSON image path output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OPENROUTER_API_KEY and TELEGRAM_BOT_TOKEN; sends prompts and generated media to external services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Prompts are sent to OpenRouter and generated media or captions may be sent through Telegram.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive prompts and review token, prompt, media, and caption handling before installation.
+
+Risk: The helper can fetch and save arbitrary URLs returned by a model.
+
+Mitigation: Prefer a version that allowlists image provider URLs, blocks internal or private destinations, and verifies downloaded content type and size.
+
+Risk: Server security evidence marks the release as suspicious and requiring review before installation.
+
+Mitigation: Review the skill and scan findings before deployment, then install only if the external service and media-handling behavior fit the intended environment.
+
+## Reference(s):
+
+- [Hana Image Gen MacOS on ClawHub](https://clawhub.ai/eardori/skills/hana-image-gen-macos)
+- [OpenRouter Chat Completions API endpoint](https://openrouter.ai/api/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files, Configuration instructions]
+
+**Output Format:** [Markdown workflow steps with shell commands and JSON file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OPENROUTER_API_KEY and TELEGRAM_BOT_TOKEN; helper writes generated image files and emits output paths as JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

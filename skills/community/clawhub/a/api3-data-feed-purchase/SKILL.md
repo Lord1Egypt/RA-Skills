@@ -2,7 +2,7 @@
 name: api3-data-feed-purchase
 description: Purchases Api3 data feed subscriptions from market.api3.org.
 metadata:
-  version: 0.1.0
+  version: 0.7.0
   clawdis:
     requires:
       bins:
@@ -165,7 +165,7 @@ exec command="cd {baseDir} && ts-node scripts/quote.ts <CHAIN_ID> <DAPI_NAME> <D
 ```
 exec command="cd {baseDir} && ts-node scripts/buy.ts <CHAIN_ID> <DAPI_NAME> <DEVIATION>"
 ```
-- If the script fails with an `Invalid root` error, this means the `@api3/dapi-management` package is out of date. Tell the user to get the latest version of this skill, then stop.
+- If the script fails with an `Invalid root` error, this means either Api3 Market (https://market.api3.org/) is closed due to ongoing integrations or skill is out of date and user should download the latest version of this skill.
 - If the script fails for any other reason, let the user know about the problem and ask what to do.
 
 ### Part 5.2

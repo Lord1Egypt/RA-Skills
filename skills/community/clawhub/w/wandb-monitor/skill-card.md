@@ -1,38 +1,55 @@
-## Description: <br>
-Monitor and analyze Weights & Biases training runs for status, failures, loss curves, comparisons, and experiment health. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor and analyze Weights & Biases training runs.
 
-## Publisher: <br>
-[chrisvoncsefalvay](https://clawhub.ai/user/chrisvoncsefalvay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chrisvoncsefalvay](https://clawhub.ai/user/chrisvoncsefalvay)
 
-## Use Case: <br>
-Developers and ML engineers use this skill to inspect W&B training runs, detect stalled or failed jobs, review loss and gradient health, compare runs, and generate brief status summaries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and display data from the user's W&B-authenticated environment, including run metadata, configs, summaries, and metrics. <br>
-Mitigation: Install and run it only in environments where the agent is allowed to access W&B data, and avoid storing secrets in W&B configs or summaries. <br>
-Risk: No-argument or broad monitoring modes may inspect unintended entities or projects if defaults are not what the user expects. <br>
-Mitigation: Pass explicit entity, project, and run arguments, and use all-project or default watch modes only when those scopes are intended. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers and ML engineers use this skill to check W&B training run health, inspect loss, gradient, and evaluation trends, compare experiments, and monitor active or recently completed jobs.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can read W&B run metadata, configs, summaries, and histories available to the user's configured credentials.
+
+Mitigation: Install and run it only with intended W&B credentials and specify the target entity, project, and run IDs explicitly.
+
+Risk: watch_runs.py can query built-in default scopes when invoked without explicit entity and project selections.
+
+Mitigation: Pass the intended entity and --projects or --all-projects deliberately, especially for shared or sensitive W&B accounts.
+
+Risk: Health verdicts are threshold-based monitoring heuristics and can miss or misclassify training issues.
+
+Mitigation: Treat alerts as guidance and confirm important decisions against W&B dashboards, logs, and project-specific expectations.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; helper scripts emit terminal text or JSON when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads W&B-authenticated run metadata and metrics; JSON output is available with --json on supported scripts.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown summaries with shell commands and optional JSON from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses configured W&B credentials to read selected entity, project, and run data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

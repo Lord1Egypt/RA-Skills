@@ -1,43 +1,58 @@
-## Description: <br>
-Write viral, persuasive, engaging tweets and threads. Uses web research to find viral examples in your niche, then models writing based on proven formulas and X algorithm optimization. Use when creating tweets, threads, or X content strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write viral, persuasive, engaging tweets and threads. Uses web research to find viral examples in your niche, then models writing based on proven formulas and X algorithm optimization. Use when creating tweets, threads, or X content strategy.
 
-## Publisher: <br>
-[trymoinai-create](https://clawhub.ai/user/trymoinai-create) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[trymoinai-create](https://clawhub.ai/user/trymoinai-create)
 
-## Use Case: <br>
-External users and content teams use this skill to draft tweets, threads, hooks, and X content strategy from a supplied niche, message, and goal. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may use web research queries that expose confidential launches, campaign strategy, customer names, or unreleased business details. <br>
-Mitigation: Use public or non-sensitive social content, or ask the agent to generalize details or skip research when needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [SocialBee: Twitter Algorithm](https://socialbee.com/blog/twitter-algorithm/) <br>
-- [Tweet Archivist: How Twitter Algorithm Works](https://www.tweetarchivist.com/how-twitter-algorithm-works-2025) <br>
-- [Ship 30 for 30: Viral Twitter Thread Hooks](https://www.ship30for30.com/post/how-to-write-viral-twitter-thread-hooks-with-6-clear-examples) <br>
-- [Typefully: Twitter Post Templates](https://typefully.com/blog/twitter-post-templates) <br>
-- [Legiit: Twitter Thread Template](https://legiit.com/blog/twitter-thread-template) <br>
-- [Buffer: Copywriting Formulas](https://buffer.com/resources/copywriting-formulas/) <br>
-- [Metricool: Social Media Copywriting](https://metricool.com/social-media-copywriting/) <br>
+## Use Case:
 
+External creators, marketers, and social media teams use this skill to research successful examples in a niche and draft X posts, threads, hooks, and content variations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with tweet drafts, thread outlines, hook variations, and brief research notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include web-search-derived examples when research is enabled] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Algorithm guidance and viral examples can become outdated or misleading.
+
+Mitigation: Refresh the web research for the user's niche and review generated claims and engagement advice before posting.
+
+Risk: Persuasive or controversial social copy can create reputational risk if it overstates results or uses an unsuitable tone.
+
+Mitigation: Check drafts against brand voice, factual support, and audience expectations before publishing.
+
+## Reference(s):
+
+- [SocialBee Twitter algorithm guide](https://socialbee.com/blog/twitter-algorithm/)
+- [Tweet Archivist algorithm guide](https://www.tweetarchivist.com/how-twitter-algorithm-works-2025)
+- [Ship 30 for 30 hook formulas](https://www.ship30for30.com/post/how-to-write-viral-twitter-thread-hooks-with-6-clear-examples)
+- [Typefully Twitter post templates](https://typefully.com/blog/twitter-post-templates)
+- [Legiit Twitter thread template](https://legiit.com/blog/twitter-thread-template)
+- [Buffer copywriting formulas](https://buffer.com/resources/copywriting-formulas/)
+- [Metricool social media copywriting](https://metricool.com/social-media-copywriting/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose with tweet drafts, thread outlines, hook options, and brief research analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include multiple draft variations and recommended posting checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

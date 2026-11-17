@@ -43,6 +43,9 @@ _无参数_
 | `terminalValuePv` | 终值现值 | `123456.789` |
 | `enterpriseValueEv` | 企业价值EV | `123456.789` |
 | `wacc` | 加权平均资本成本 | `0.085` |
+| `pageNum` | page number | `1` |
+| `pageSize` | page size | `100` |
+| `totalCount` | total count | `0` |
 
 ### 接口示例
 

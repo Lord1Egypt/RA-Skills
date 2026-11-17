@@ -1,42 +1,53 @@
-## Description: <br>
-Detect and mitigate undue influence from positional authority when expertise on the specific question is unverified or reasoning lacks independent support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect and mitigate undue influence from positional authority when expertise on the specific question is unverified or reasoning lacks independent support.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to analyze decisions where credentials, titles, seniority, or institutional status may be suppressing independent evidence review. It guides calibrated deference, scrutiny of reasoning, and structural countermeasures such as dissent prompts or red-team checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat the checklist as professional legal, medical, investment, or safety advice. <br>
-Mitigation: Use it as a critical-thinking aid and verify high-stakes decisions with qualified reviewers and source evidence before acting. <br>
-Risk: Real-world authority-bias cases may include sensitive personal, medical, financial, or organizational details. <br>
-Mitigation: Avoid entering sensitive details into durable notes unless the user intends to save them. <br>
+## Use Case:
 
+Employees, leaders, and decision makers use this skill to assess whether an authority has relevant expertise, examine their reasoning independently, and make room for dissent in consequential decisions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/deciqai/skills/authority-bias) <br>
-- [Primary sources](references/sources.md) <br>
-- [Method in Action: Milgram 1963 + Cialdini Systematization + Theranos/FTX](examples/milgram-1963-cialdini-systematization-theranos-ftx.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown analysis template and coaching prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only reasoning output; no executable code, credential access, networking, or hidden installation behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Authority assessments or factual claims could be applied without enough context, especially in high-stakes decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Independently verify important facts, seek relevant expertise when needed, and avoid saving confidential case details in examples.
+
+## Reference(s):
+
+- [Sources and further reading](references/sources.md)
+- [Authority Bias skill page](https://clawhub.ai/deciqai/skills/authority-bias)
+- [Authority Bias overview](https://www.deciqai.com/c/authority-bias)
+- [Knowledge Skills project repository](https://github.com/deciqAI/knowledge-skills)
+- [Machine-readable skill metadata](https://www.deciqai.com/s/authority-bias.json)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Markdown, including a structured authority-bias analysis and decision checklist]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Applies a stepwise framework to the user's case; does not take actions in external systems.]
+
+## Skill Version(s):
+
+1.0.7 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,59 @@
-## Description: <br>
-Get real-time commute traffic using TomTom Routing API. Live travel times, delays, and ETAs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get real-time commute traffic using TomTom Routing API. Live travel times, delays, and ETAs.
 
-## Publisher: <br>
-[vijays365](https://clawhub.ai/user/vijays365) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vijays365](https://clawhub.ai/user/vijays365)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve real-time commute distance, travel time, traffic delay, and ETA data from the TomTom Routing API. It can also support scheduled commute notifications when combined with the optional AgentMail example. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Precise commute locations and optional departure timing are sent to TomTom. <br>
-Mitigation: Use the skill only when sharing those route details with TomTom is acceptable, and avoid entering unnecessary personal location details. <br>
-Risk: Crafted input values may cause unintended local Python code execution in the shell scripts. <br>
-Mitigation: Use trusted route, name, and email inputs only until the scripts pass values safely into Python instead of interpolating them into source code. <br>
-Risk: The optional AgentMail example uses additional email credentials and sends commute information to an external email service. <br>
-Mitigation: Enable the email workflow only with trusted AgentMail configuration and intended recipients. <br>
+## Use Case:
 
+External developers and automation users use this skill to query TomTom commute routes for distance, live travel time, traffic delay, affected distance, and ETA. It can also support scheduled commute updates and optional email notifications when AgentMail is configured.
 
-## Reference(s): <br>
-- [TomTom Developer Portal](https://developer.tomtom.com/) <br>
-- [TomTom Routing API calculateRoute endpoint](https://api.tomtom.com/routing/1/calculateRoute/{origin}:{dest}/json) <br>
-- [AgentMail send message endpoint](https://api.agentmail.to/v0/inboxes/${AGENTMAIL_INBOX}/messages/send) <br>
-- [ClawHub skill page](https://clawhub.ai/vijays365/tomtom-traffic-commute) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON from the traffic script, with Markdown setup and usage guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TOMTOM_API_KEY plus curl and bash; the optional email workflow can use AgentMail credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Crafted departure time, route name, or recipient values can trigger local code execution through shell-to-python interpolation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not pass untrusted route, departure, or email values until the interpolation bugs are fixed and reviewed.
+
+Risk: Route coordinates are sent to TomTom, and the optional email workflow can send commute details to AgentMail.
+
+Mitigation: Use the skill only for routes and recipients acceptable for those services, and avoid sensitive commute details unless the user has approved that data sharing.
+
+Risk: Runtime requirements are incomplete because python3 is used and AgentMail is optional but not declared in the primary metadata.
+
+Mitigation: Confirm python3 is available, and declare or document AgentMail requirements before enabling the email workflow.
+
+## Reference(s):
+
+- [TomTom Developer Portal](https://developer.tomtom.com)
+- [TomTom Routing API calculateRoute endpoint](https://api.tomtom.com/routing/1/calculateRoute/{origin}:{dest}/json)
+- [ClawHub skill page](https://clawhub.ai/vijays365/skills/tomtom-traffic-commute)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown usage guidance with shell commands; the traffic script emits JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TOMTOM_API_KEY, bash, curl, and python3 at runtime; optional email workflow uses AgentMail environment variables.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

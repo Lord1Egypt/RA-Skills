@@ -1,44 +1,55 @@
-## Description: <br>
-Audits websites, pages, content plans, and SEO recommendations for Google Search generative AI features such as AI Overviews and AI Mode. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit websites, pages, content plans, or SEO recommendations for Google Search generative AI features such as AI Overviews and AI Mode.
 
-## Publisher: <br>
-[aaronfaby](https://clawhub.ai/user/aaronfaby) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaronfaby](https://clawhub.ai/user/aaronfaby)
 
-## Use Case: <br>
-SEO practitioners, content teams, and developers use this skill to audit pages, content plans, and proposed AI-search tactics against Google Search guidance for AI Overviews and AI Mode. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private or business-sensitive URLs, repositories, files, or Search Console properties may be used during an audit. <br>
-Mitigation: Provide only the sources needed for the specific audit and avoid sharing unrelated private business data. <br>
-Risk: Audit conclusions can be weak when page evidence, crawl data, or Search Console access is missing. <br>
-Mitigation: State assumptions and evidence gaps clearly before making stronger recommendations. <br>
-Risk: AI-search tactics can drift into false guarantees or manipulative scaled-content recommendations. <br>
-Mitigation: Avoid promising inclusion in AI Overviews or AI Mode, and reject tactics that conflict with Google Search quality and spam guidance. <br>
+## Use Case:
 
+External users, marketers, SEO practitioners, developers, and content teams use this skill to audit pages, content plans, ecommerce or local surfaces, and proposed AI-search tactics against Google Search guidance for generative AI features.
 
-## Reference(s): <br>
-- [Google AI Optimization Guide Reference](artifact/references/google-ai-optimization-guide.md) <br>
-- [Google Search AI Optimization Guide](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide.md.txt) <br>
-- [ClawHub Skill Page](https://clawhub.ai/aaronfaby/google-ai-search-optimization) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with concise verdicts, prioritized recommendations, rationale, caveats, and evidence gaps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include grouped audit findings for content quality, technical eligibility, ecommerce or local surfaces, media, agentic readiness, measurement, and follow-up.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Audits may request live website, crawl, or Search Console evidence for stronger conclusions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Grant only the minimum required access and review any crawler or Search Console permissions before use.
+
+Risk: SEO recommendations can become misleading if evidence is missing or if users ask for manipulative AI-search tactics.
+
+Mitigation: Require stated evidence gaps, avoid promises of AI Overview or AI Mode inclusion, and keep recommendations aligned with Google Search quality guidance.
+
+## Reference(s):
+
+- [Google AI Optimization Guide Reference](references/google-ai-optimization-guide.md)
+- [Google Search AI Optimization Guide](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide.md.txt)
+- [ClawHub Skill Page](https://clawhub.ai/aaronfaby/skills/google-ai-search-optimization)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Concise prioritized audits, tactic verdicts, rationale, caveats, and evidence gaps.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

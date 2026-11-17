@@ -1,45 +1,58 @@
-## Description: <br>
-Installs, configures, and helps users use Corust Agent (corust-agent-acp), an ACP-compatible coding agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install, configure, and use Corust Agent (corust-agent-acp), an ACP-compatible coding agent for OpenClaw workflows.
 
-## Publisher: <br>
-[phoenix500526](https://clawhub.ai/user/phoenix500526) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phoenix500526](https://clawhub.ai/user/phoenix500526)
 
-## Use Case: <br>
-Developers and operators use this skill to install corust-agent-acp, configure ACPX and OpenClaw integration, and provide Discord setup guidance while preserving existing agent configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad Discord access can let untrusted users trigger a powerful coding agent. <br>
-Mitigation: Use a narrow Discord allowlist for specific trusted servers, channels, roles, or users before enabling ACP thread spawning. <br>
-Risk: Approve-all permission mode can allow agent actions without enough review in an untrusted environment. <br>
-Mitigation: Avoid approve-all unless the environment is fully trusted, keep non-interactive permissions denied, and review proposed changes before execution. <br>
-Risk: Installing the latest release archive can introduce unverified binary code. <br>
-Mitigation: Verify the downloaded Corust release and source before installing or updating the binary. <br>
-Risk: Configuration edits can overwrite existing OpenClaw or ACPX settings. <br>
-Mitigation: Back up existing configuration and merge the Corust entries instead of replacing unrelated sections. <br>
+## Use Case:
 
+Developers and operators use this skill to install Corust Agent, configure acpx and OpenClaw to run it, and provide Discord setup guidance for ACP sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/phoenix500526/corust-agent) <br>
-- [Corust Agent release archive referenced by the skill](https://github.com/Corust-ai/corust-agent-release/releases/latest/download/agent-darwin-arm64.tar.gz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes installation steps, merge-safe configuration guidance, troubleshooting notes, and Discord setup instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks users to install an unverified remote Corust Agent binary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned and verified Corust release before installation.
+
+Risk: The suggested OpenClaw configuration can grant broad automatic permissions.
+
+Mitigation: Avoid approve-all unless the agent and execution environment are fully trusted.
+
+Risk: The Discord setup uses wildcard access for incoming users.
+
+Mitigation: Replace the wildcard with explicit trusted users, roles, channels, or guilds.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phoenix500526/skills/corust-agent)
+- [Corust Agent release download](https://github.com/Corust-ai/corust-agent-release/releases/latest/download/agent-darwin-arm64.tar.gz)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent should merge configuration into existing acpx and OpenClaw files and present Discord setup commands as instructions rather than running them automatically.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

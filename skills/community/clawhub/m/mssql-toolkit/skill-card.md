@@ -1,41 +1,57 @@
-## Description: <br>
-Query and explore Microsoft SQL Server databases using sqlcmd. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query and explore Microsoft SQL Server databases using sqlcmd. Schema inspection, ad-hoc T-SQL queries, data analysis. Works with any MSSQL/SQL Server instance.
 
-## Publisher: <br>
-[fchrulk](https://clawhub.ai/user/fchrulk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fchrulk](https://clawhub.ai/user/fchrulk)
 
-## Use Case: <br>
-Developers and database operators use this skill to connect to Microsoft SQL Server with sqlcmd, inspect schemas, run bounded ad-hoc T-SQL queries, and analyze tabular data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses SQL Server connection details and can run database queries through sqlcmd. <br>
-Mitigation: Use a read-only or least-privileged database account where possible, and review any requested write, delete, schema, or administrative query before allowing it to run. <br>
-Risk: Queries can expose credentials or sensitive database contents if command output or environment values are printed carelessly. <br>
-Mitigation: Do not print, echo, or reveal connection strings or credential environment variables; limit query output to the minimum needed. <br>
+## Use Case:
 
+Developers and database operators use this skill to inspect Microsoft SQL Server schemas, run ad-hoc T-SQL queries, and shape common sqlcmd commands for database analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fchrulk/mssql-toolkit) <br>
-- [Publisher profile](https://clawhub.ai/user/fchrulk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Code, Guidance] <br>
-**Output Format:** [Markdown with bash and SQL code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses MSSQL_HOST, MSSQL_USER, MSSQL_PASSWORD, MSSQL_DB, and optional MSSQL_SQLCMD environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Database passwords can be exposed through command-line arguments in the documented sqlcmd pattern.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privileged credentials and prefer authentication or invocation patterns that do not place reusable passwords in process arguments.
+
+Risk: Using -C bypasses certificate validation and can weaken transport security when used outside temporary development contexts.
+
+Mitigation: Configure trusted server certificates for normal use and reserve -C for explicit short-lived development exceptions.
+
+Risk: Write-capable database access can alter or delete data if generated SQL is executed without review.
+
+Mitigation: Default to read-only SQL, scope write-capable accounts tightly, and require transaction review, backups, or rollback planning before writes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fchrulk/skills/mssql-toolkit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with sqlcmd command examples and T-SQL snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires sqlcmd and the MSSQL_HOST, MSSQL_USER, MSSQL_PASSWORD, and MSSQL_DB environment variables; MSSQL_SQLCMD may override the sqlcmd path.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

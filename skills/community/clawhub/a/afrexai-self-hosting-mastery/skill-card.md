@@ -1,42 +1,57 @@
-## Description: <br>
-Complete self-hosting and homelab operating system for deploying, securing, monitoring, and maintaining home servers, Docker infrastructure, reverse proxies, backups, and self-hosted alternatives to SaaS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through planning, deploying, securing, monitoring, backing up, and maintaining self-hosted homelab services.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Developers, homelab operators, and infrastructure teams use this skill to plan, deploy, secure, monitor, troubleshoot, and maintain self-hosted services and Docker-based homelab infrastructure. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Administrative examples can install software, edit system configuration, change firewall exposure, prune Docker data, mount the Docker socket, delete backups, update packages, or reboot a server. <br>
-Mitigation: Require explicit approval before running privileged commands, confirm the target host, inspect remote installer scripts, and back up configuration and data before changes. <br>
-Risk: Self-hosted services can expose sensitive data or public network endpoints if configuration is copied without review. <br>
-Mitigation: Review generated compose files, secrets, reverse proxy labels, firewall rules, and authentication settings before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/1kalin/afrexai-self-hosting-mastery) <br>
-- [Immich Docker Compose Release](https://github.com/immich-app/immich/releases/latest/download/docker-compose.yml) <br>
-- [Docker Install Script](https://get.docker.com) <br>
-- [Proxmox VE Package Repository](http://download.proxmox.com/debian/pve) <br>
+## Use Case:
 
+Developers, engineers, and technically capable operators use this skill to plan homelab infrastructure, generate Docker and reverse proxy configurations, design backup and monitoring practices, and audit self-hosted service operations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with YAML, Docker Compose, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include host-specific administrative commands and configuration snippets that require review before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated infrastructure commands can change host packages, firewall rules, containers, backups, or service exposure.
+
+Mitigation: Review commands manually before execution, preview package upgrades, and test changes in a non-critical environment when possible.
+
+Risk: Installer and update patterns such as curl-to-shell scripts, automatic container updates, and Docker socket access can expand operational risk.
+
+Mitigation: Avoid curl-to-shell installers where possible, prefer HTTPS and signed repositories, pin container image versions, and restrict Docker socket access.
+
+Risk: Incorrect self-hosting guidance can expose services or weaken backup and recovery posture.
+
+Mitigation: Validate generated network, authentication, backup, and monitoring plans against the target environment before deployment.
+
+## Reference(s):
+
+- [Self-Hosting Mastery on ClawHub](https://clawhub.ai/1kalin/skills/afrexai-self-hosting-mastery)
+- [Immich Docker Compose Release Asset](https://github.com/immich-app/immich/releases/latest/download/docker-compose.yml)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline YAML, bash, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose high-impact infrastructure commands and configuration changes that require manual review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

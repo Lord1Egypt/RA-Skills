@@ -1,6 +1,19 @@
 {
-  "ownerId": "kn73vp5rarc3b14rc7wjcw8f8580t5d1",
+  "owner": "clawic",
   "slug": "gcp",
-  "version": "1.0.0",
-  "publishedAt": 1770685490415
+  "displayName": "Google Cloud",
+  "latest": {
+    "version": "1.0.2",
+    "publishedAt": 1785140325486
+  },
+  "history": [
+    {
+      "version": "1.0.1",
+      "publishedAt": 1785080500476
+    },
+    {
+      "version": "1.0.0",
+      "publishedAt": 1770685490415
+    }
+  ]
 }

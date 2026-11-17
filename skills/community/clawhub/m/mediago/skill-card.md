@@ -1,44 +1,54 @@
-## Description: <br>
-Download videos from m3u8/HLS streams, Bilibili, and direct URLs using MediaGo. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download videos from m3u8/HLS streams, Bilibili, and direct URLs using a running MediaGo instance.
 
-## Publisher: <br>
-[caorushizi](https://clawhub.ai/user/caorushizi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[caorushizi](https://clawhub.ai/user/caorushizi)
 
-## Use Case: <br>
-Developers and media operators use this skill to configure a running MediaGo instance and ask an agent to start and monitor downloads from HLS, Bilibili, or direct video URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores the MediaGo service URL and optional API key in a local configuration file. <br>
-Mitigation: Use a MediaGo API key scoped for this workflow, keep ~/.mediago-skill.json private, and rotate the key if the workstation or repository environment is shared. <br>
-Risk: The skill sends user-provided video URLs to a running MediaGo instance and starts downloads. <br>
-Mitigation: Review requested URLs before starting downloads and use MediaGo in an environment with appropriate storage, network, and content-use controls. <br>
-Risk: The skill depends on a reachable local or LAN MediaGo API endpoint. <br>
-Mitigation: Bind MediaGo only to trusted interfaces, require an API key when exposed beyond localhost, and verify the configured endpoint before use. <br>
+## Use Case:
 
+Developers and end users use this skill to configure access to a MediaGo service, create video download tasks, monitor progress, and report download results in English or Chinese.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/caorushizi/mediago) <br>
-- [MediaGo Project](https://github.com/caorushizi/mediago) <br>
-- [MediaGo Releases](https://github.com/caorushizi/mediago/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and plain-language status updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write MediaGo connection settings to ~/.mediago-skill.json and report download status from the local MediaGo API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The configured MediaGo endpoint and optional API key may expose local service access or credential data if the endpoint or config file is not trusted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer localhost, avoid storing an API key unless needed, and protect or remove ~/.mediago-skill.json when the skill is no longer in use.
+
+Risk: The skill constructs curl-based HTTP requests from user-provided URLs, names, and API keys; unsafe construction could mishandle crafted input.
+
+Mitigation: Review generated commands before execution and use only trusted URLs, names, API keys, and MediaGo endpoints.
+
+## Reference(s):
+
+- [MediaGo ClawHub skill page](https://clawhub.ai/caorushizi/skills/mediago)
+- [MediaGo project homepage](https://github.com/caorushizi/mediago)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write or update ~/.mediago-skill.json and call a configured MediaGo HTTP endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

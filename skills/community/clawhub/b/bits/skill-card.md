@@ -1,41 +1,58 @@
-## Description: <br>
-Control browser automation agents via the Bits MCP server for web scraping, form filling, data extraction, and browser-based automation tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control browser automation agents via the Bits MCP server for web scraping, form filling, data extraction, and browser-based automation tasks.
 
-## Publisher: <br>
-[robbiethompson18](https://clawhub.ai/user/robbiethompson18) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[robbiethompson18](https://clawhub.ai/user/robbiethompson18)
 
-## Use Case: <br>
-Developers and automation users use this skill to connect an assistant to the Bits MCP server for browser navigation, page reading, interaction, form filling, authentication flows, and structured data extraction. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can act on websites through browser automation, including forms, OAuth flows, 2FA, and stored credentials. <br>
-Mitigation: Confirm target domains and actions before use, avoid privileged accounts when possible, and handle authentication flows and credentials cautiously. <br>
-Risk: The MCP setup runs an unpinned npm package and requires a Bits API key. <br>
-Mitigation: Review or pin the npm package before use and store the Bits API key only in the configured MCP environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/robbiethompson18/bits) <br>
-- [Bits Web App](https://app.usebits.com) <br>
-- [Bits API Docs](https://api.usebits.com/openapi.json) <br>
+## Use Case:
 
+Developers and automation builders use this skill to connect an agent to the Bits MCP server for browser navigation, data extraction, form filling, authenticated flows, multi-window control, and structured JSON output.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with JSON configuration snippets, TypeScript SDK code, and structured extraction results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a Bits API key and MCP server configuration; automation may act on websites and return extracted page data or workflow results.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to run an unpinned npm MCP server.
+
+Mitigation: Pin `usebits-mcp` to a reviewed version before installation and review updates before changing the pinned version.
+
+Risk: Browser automation may use stored credentials or authentication flows.
+
+Mitigation: Use a dedicated, revocable Bits API key, avoid high-privilege accounts, and restrict local MCP configuration file permissions.
+
+Risk: Automated browsing can expose secrets, regulated data, or sensitive business data to Bits, the target site, or the executed package.
+
+Mitigation: Do not submit sensitive data unless the Bits service, target site, and npm package version have been reviewed and trusted for that use.
+
+## Reference(s):
+
+- [Bits web app](https://app.usebits.com)
+- [Bits API OpenAPI specification](https://api.usebits.com/openapi.json)
+- [ClawHub skill page](https://clawhub.ai/robbiethompson18/skills/bits)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with JSON configuration snippets, TypeScript examples, and structured JSON results from browser automation tasks.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require a Bits API key and execution of the usebits-mcp npm package through an MCP client.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

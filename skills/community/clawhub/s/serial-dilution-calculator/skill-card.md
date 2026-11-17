@@ -1,40 +1,54 @@
-## Description: <br>
-Generate qPCR/ELISA dilution protocols with precise pipetting steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate qPCR/ELISA dilution protocols with precise pipetting steps.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Wet-lab practitioners and agent workflows use this skill to calculate serial dilution concentrations and pipetting steps for qPCR standard curves, ELISA setup, drug response assays, and MIC determinations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated wet-lab protocols may contain incorrect units, dilution math, or assumptions for a specific assay. <br>
-Mitigation: Review concentrations, volumes, dilution factors, and assay requirements before using the output in the lab. <br>
-Risk: The implemented script does not cover every feature advertised in the skill documentation. <br>
-Mitigation: Confirm the generated output includes the needed protocol details before relying on it for plate setup or experiment planning. <br>
+## Use Case:
 
+External users and laboratory developers use this skill to generate serial dilution concentration tables and pipetting instructions for qPCR standard curves, ELISA plate setup, drug dose responses, and MIC determinations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aipoch-ai/serial-dilution-calculator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Terminal text protocol with concentration rows and pipetting volumes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external dependencies; runs locally as a Python script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and frontmatter) <br>
+Risk: Generated wet-lab dilution guidance may be scientifically incomplete because the security evidence notes that the implementation ignores the documented target/final concentration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Manually verify the dilution series, target concentration, and pipetting volumes before using the output for laboratory work.
+
+Risk: Future versions that add file outputs could create workspace file-handling risk if paths are not clearly documented or constrained.
+
+Mitigation: Review any documented file outputs and keep generated files restricted to the intended workspace before deployment.
+
+## Reference(s):
+
+- [Serial Dilution Calculator on ClawHub](https://clawhub.ai/aipoch-ai/skills/serial-dilution-calculator)
+- [aipoch-ai Publisher Profile](https://clawhub.ai/user/aipoch-ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text CLI output with concentration and pipetting tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally without additional Python package dependencies.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

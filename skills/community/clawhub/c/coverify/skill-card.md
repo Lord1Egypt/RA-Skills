@@ -1,44 +1,61 @@
-## Description: <br>
-CoVerify helps agents and developers extract commitment kernels from text, compare transformations with Jaccard scoring, detect ghost-token leakage, and run model-swap consistency checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coverify extracts commitment-bearing text kernels, compares them with Jaccard similarity, detects ghost-token leakage, and runs model-swap checks for transformation drift.
 
-## Publisher: <br>
-[SunrisesIllNeverSee](https://clawhub.ai/user/SunrisesIllNeverSee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunrisesillneversee](https://clawhub.ai/user/sunrisesillneversee)
 
-## Use Case: <br>
-Developers, researchers, and agent operators use Coverify to check whether obligation-bearing language survived rewriting, compression, or cross-model processing. The skill is most useful for advisory drift analysis and local verification reports, not as standalone proof of governance compliance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can write local audit and model-swap report files that may contain prompt or signal text. <br>
-Mitigation: Avoid running highly sensitive prompts unless local retention is acceptable, and review or clear the OpenClaw/MOSES state directories according to local policy. <br>
-Risk: The artifact makes strong claims about proof, cryptographic scoring, and governance-grade meaning preservation, while evidence.security characterizes the classifications as advisory. <br>
-Mitigation: Treat results as heuristic drift analysis and require human review or independent validation before using them for compliance or governance decisions. <br>
+## Use Case:
 
+Developers, auditors, and researchers use Coverify to check whether commitments in text survive transformation by extracting kernels, comparing Jaccard scores, reviewing ghost-token leakage, and running model-swap checks.
 
-## Reference(s): <br>
-- [Coverify on ClawHub](https://clawhub.ai/SunrisesIllNeverSee/coverify) <br>
-- [Falsifiability Protocol](references/falsifiability.md) <br>
-- [Ghost Token Specification](references/ghost-token-spec.md) <br>
-- [Commitment Conservation DOI](https://zenodo.org/records/18792459) <br>
-- [MOSES Website](https://mos2es.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON/text reports from local Python scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local audit and model-swap report files under OpenClaw/MOSES state directories when the scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.3 (source: server release evidence) <br>
+Risk: The verifier reads matching entries from a local audit ledger during hash verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the relevant ledger entries and avoid using sensitive local audit records unless that local access is acceptable.
+
+Risk: Model-swap runs save local reports that may contain sensitive signal text or derived kernels.
+
+Mitigation: Review saved reports under the local model-swap output directory and sanitize sensitive text before sharing results.
+
+Risk: Security evidence notes some overclaiming and metadata gaps.
+
+Mitigation: Treat conservation, ghost-token, and model-swap results as heuristic analysis that should be reviewed before operational decisions.
+
+## Reference(s):
+
+- [Coverify ClawHub Skill Page](https://clawhub.ai/sunrisesillneversee/skills/coverify)
+- [Falsifiability Protocol](references/falsifiability.md)
+- [Ghost Token Specification](references/ghost-token-spec.md)
+- [Published Claim DOI](https://zenodo.org/records/18792459)
+- [MOSES Project Site](https://mos2es.io)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, JSON, Text]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON or text verifier reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local CLI output may include SHA-256 input hashes, Jaccard scores, cascade risk labels, ghost_pattern fingerprints, ledger lookup status, and saved model-swap report paths.]
+
+## Skill Version(s):
+
+0.4.3 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

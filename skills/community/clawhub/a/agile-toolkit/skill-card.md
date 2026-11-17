@@ -1,41 +1,50 @@
-## Description: <br>
-Provides practical Agile coaching for retrospectives, sprint planning, user stories, standups, metrics, and team health checks through conversation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides practical Agile coaching for retrospectives, sprint planning, user stories, standups, metrics, and team health checks.
 
-## Publisher: <br>
-[OliverMonneke](https://clawhub.ai/user/OliverMonneke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[olivermonneke](https://clawhub.ai/user/olivermonneke)
 
-## Use Case: <br>
-Agile coaches, Scrum Masters, product owners, and delivery teams use this skill to structure Agile ceremonies, draft user stories and acceptance criteria, estimate work, review delivery metrics, and plan continuous-improvement actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated retrospectives, health checks, planning notes, or metrics summaries may contain internal team information if users provide it. <br>
-Mitigation: Review and sanitize outputs before sharing them outside the organization. <br>
-Risk: Agile metrics or health-check guidance could be misused as individual performance evaluation. <br>
-Mitigation: Use the skill's outputs as coaching prompts and team planning aids, not as employee scorecards. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/OliverMonneke/agile-toolkit) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+## Use Case:
 
+Developers, Agile coaches, Scrum Masters, product owners, and delivery teams use this skill for conversational facilitation and guidance across common Agile ceremonies, planning activities, story writing, metrics review, and team improvement practices.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown conversational responses with templates, checklists, and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only; no external tools or APIs required.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Agile metrics or process advice may be misapplied as authoritative policy or performance evaluation.
+
+Mitigation: Review recommendations against the team's context and organizational policy before using them for planning, metrics interpretation, or process changes.
+
+## Reference(s):
+
+- [Agile Toolkit on ClawHub](https://clawhub.ai/olivermonneke/skills/agile-toolkit)
+- [Artifact README](artifact/README.md)
+- [Artifact Skill Instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with conversational coaching guidance, templates, tables, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external tools or APIs are required; outputs should be reviewed for fit with the team's context.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

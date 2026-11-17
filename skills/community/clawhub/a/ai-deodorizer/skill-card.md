@@ -1,45 +1,56 @@
-## Description: <br>
-Ai-Deodorizer rewrites AI-generated or AI-sounding text into more natural English or Chinese using pattern checks and a two-round rewriting workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ai-Deodorizer rewrites AI-generated text to make English and Chinese drafts sound more natural and human-written.
 
-## Publisher: <br>
-[xx235300](https://clawhub.ai/user/xx235300) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xx235300](https://clawhub.ai/user/xx235300)
 
-## Use Case: <br>
-External users, employees, and developers can use this skill to revise AI-generated drafts, review writing for common AI patterns, and produce more natural rewritten text while preserving the core message. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Input text is sent to MiniMax or the configured API provider. <br>
-Mitigation: Use only text that is allowed to leave the user's environment, and avoid confidential, regulated, academic, legal, or authorship-sensitive documents unless that use is permitted. <br>
-Risk: The rewrite may add voice, opinions, or first-person framing that changes how the text is represented. <br>
-Mitigation: Review outputs carefully for factual accuracy, authorial intent, tone, and required AI-use disclosure before using them. <br>
-Risk: The skill may make AI authorship less transparent. <br>
-Mitigation: Follow applicable disclosure, academic, workplace, and publication policies when using rewritten content. <br>
+## Use Case:
 
+External users and developers use this skill to humanize AI-generated or draft text, review writing for common AI patterns, and rewrite content with selectable light, medium, or strong editing strength.
 
-## Reference(s): <br>
-- [Ai-Deodorizer ClawHub listing](https://clawhub.ai/xx235300/ai-deodorizer) <br>
-- [Ai-Deodorizer repository](https://github.com/xx235300/ai-deodorizer) <br>
-- [Methodology](scripts/METHODOLOGY.md) <br>
-- [MiniMax API platform](https://platform.minimaxi.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, Guidance] <br>
-**Output Format:** [Plain text or UTF-8 text file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports light, medium, and strong rewrite modes; output should be reviewed for meaning, voice, and disclosure needs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Submitted text and an API key are sent to a configurable external LLM endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential, regulated, or private drafts unless remote processing is acceptable; keep API_BASE unset or restrict it to the intended MiniMax HTTPS endpoint and use a revocable API key.
+
+Risk: The rewriting prompts may add voice, opinions, or emphasis not present in the source text.
+
+Mitigation: Review rewritten output against the original before publishing or using it in factual, legal, medical, financial, or compliance-sensitive contexts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xx235300/skills/ai-deodorizer)
+- [Ai-Deodorizer project homepage](https://github.com/xx235300/ai-deodorizer)
+- [MiniMax platform](https://platform.minimaxi.com/)
+- [Methodology](scripts/METHODOLOGY.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Plain text or Markdown rewritten content, with shell commands and configuration examples when used through the CLI.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write output to a user-specified UTF-8 file; sends submitted text to a MiniMax-compatible remote API.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter, README.md, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

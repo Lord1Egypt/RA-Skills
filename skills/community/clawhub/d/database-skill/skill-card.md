@@ -1,48 +1,64 @@
-## Description: <br>
-Database Skill helps agents manage metadata, analyze data, prepare governed database changes, diagnose operations issues, and run health inspections for Volcengine databases and supported external MySQL/PostgreSQL databases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Database Skill helps agents work with Volcengine and supported self-managed databases for metadata discovery, data analysis, data governance, development-change workflows, operations diagnosis, and health inspection.
 
-## Publisher: <br>
-[volcengine-skills](https://clawhub.ai/user/volcengine-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volcengine-skills](https://clawhub.ai/user/volcengine-skills)
 
-## Use Case: <br>
-Database operators, data analysts, and developers use this skill to inspect database assets, run read-only queries and BI analysis, generate reports, troubleshoot performance or availability issues, and prepare DML/DDL change tickets through governed workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Volcengine-supported regions listed by the skill: Shanghai, Beijing/Langfang, Guangzhou, Hong Kong, Johor, and Jakarta. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to Volcengine or database credentials and can reach live database resources. <br>
-Mitigation: Install only when the publisher is trusted, use least-privilege accounts, and avoid production credentials when possible. <br>
-Risk: Database change workflows and kill-process style operations can affect live systems if reviewed poorly. <br>
-Mitigation: Review DML, DDL, and process-termination actions before execution and keep change operations within the documented approval or ticket flow. <br>
-Risk: Query results, reports, and intermediate analysis data may persist locally after sensitive work. <br>
-Mitigation: Clean generated /tmp files, DuckDB artifacts, workspace reports, screenshots, and .env artifacts after sensitive tasks. <br>
+## Use Case:
 
+Developers, database operators, and data analysts use this skill to inspect database metadata, run read-only analysis, create visual reports, assess data governance signals, diagnose operational issues, and prepare governed database change requests.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/volcengine-skills/database-skill) <br>
-- [Metadata Query API Reference](references/api/metadata-query.md) <br>
-- [Operations API Reference](references/api/ops.md) <br>
-- [Analysis Workflow](references/analysis/index.md) <br>
-- [Development Change Workflow](references/develop/index.md) <br>
-- [Operations Diagnosis Router](references/ops/index.md) <br>
-- [Health Inspection Workflow](references/ops/health-inspection.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses, SQL/code snippets, shell commands, JSON-like API results, HTML reports, and PNG screenshots.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local query result artifacts, DuckDB files, workspace reports, screenshots, and configuration updates when the workflow requires them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can use cloud database credentials and powerful database operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after review, use least-privilege credentials, and prefer read-only credentials for analysis.
+
+Risk: Session termination and database changes can affect live systems.
+
+Mitigation: Disable or tightly control update_env, execute_sql, and kill_process, and require explicit human confirmation for session termination and database changes.
+
+Risk: Local DuckDB, temporary, or workspace outputs may contain sensitive database or file-analysis data.
+
+Mitigation: Clean or isolate local analysis outputs after use and restrict access to generated report artifacts.
+
+## Reference(s):
+
+- [Database Skill release page](https://clawhub.ai/volcengine-skills/skills/database-skill)
+- [Metadata query API reference](references/api/metadata-query.md)
+- [Operations API reference](references/api/ops.md)
+- [Data analysis workflow](references/analysis/index.md)
+- [Development change workflow](references/develop/index.md)
+- [Operations diagnosis SOP](references/ops/index.md)
+- [Health inspection SOP](references/ops/health-inspection.md)
+- [Data governance references](references/metadata/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, HTML reports, PNG screenshots]
+
+**Output Format:** [Markdown, structured text, SQL/code snippets, JSON-like command results, HTML reports, and PNG screenshots]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist local analysis artifacts and report files during database or file analysis workflows.]
+
+## Skill Version(s):
+
+1.1.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

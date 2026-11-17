@@ -1,43 +1,58 @@
-## Description: <br>
-Calorie1 Detective v3 uses Kimi/Moonshot vision to identify foods in selected photos and produce estimated calories and macronutrients from a local nutrition database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calorie Detective uses Kimi vision recognition and a local nutrition database to estimate calories, protein, carbohydrates, and fat from food photos or manual food descriptions.
 
-## Publisher: <br>
-[aaa2531349](https://clawhub.ai/user/aaa2531349) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[aaa2531349](https://clawhub.ai/user/aaa2531349)
 
-## Use Case: <br>
-External users and developers use this skill to analyze food photos or descriptions, estimate calorie and macronutrient totals, and generate a concise nutrition report for diet tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Selected food photos are sent to Kimi/Moonshot for visual recognition. <br>
-Mitigation: Use only images appropriate for third-party processing and avoid photos containing faces, documents, location clues, or private background details. <br>
-Risk: The skill uses API keys for Kimi/Moonshot and optional nutrition services. <br>
-Mitigation: Keep API keys in environment variables or private local configuration, and install dependencies in an isolated environment with patched package versions. <br>
-Risk: Nutrition values are estimates and may be inaccurate for portion size, ingredients, or cooking method. <br>
-Mitigation: Treat output as informational diet-tracking guidance rather than medical or professional nutrition advice. <br>
+## Use Case:
 
+People tracking meals can submit a food image or food description to receive a Chinese nutrition report with estimated calories and macronutrients. The skill is useful for everyday diet awareness, fitness tracking, and meal review, but its output should not be treated as medical or nutrition advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aaa2531349/calorie1) <br>
-- [Moonshot chat completions API](https://api.moonshot.cn/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Chinese Markdown-style nutrition report printed to stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include identified foods, estimated calories, protein, carbohydrates, fat, and a short caution that nutrition values are AI estimates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.2 (source: server release metadata; artifact metadata and changelog reference v3.0.0) <br>
+Risk: Food photos are sent to the Moonshot/Kimi API and may include private context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid uploading images with faces, documents, location clues, or other sensitive details; use manual description mode for sensitive meals.
+
+Risk: Nutrition results are estimates and may be wrong because food recognition, portion size, cooking method, and ingredient data can vary.
+
+Mitigation: Use results for general diet awareness only and consult a qualified professional for medical, nutritional, or special-diet decisions.
+
+Risk: Dependency versions are range-based rather than pinned.
+
+Mitigation: Install in a trusted environment and pin reviewed dependency versions before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aaa2531349/skills/calorie1)
+- [Moonshot chat completions API endpoint](https://api.moonshot.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese Markdown nutrition report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include recognized foods, estimated calories, macronutrients, per-item breakdowns, recognition source, and a reminder that values are estimates.]
+
+## Skill Version(s):
+
+3.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

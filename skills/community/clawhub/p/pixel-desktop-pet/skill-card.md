@@ -1,43 +1,60 @@
-## Description: <br>
-Deploys a pixel-art desktop pet with floating and home-garden modes, four explorable scenes, care mechanics, walk animations, and Python 3.11+ Tkinter/Pillow requirements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploys a pixel-art desktop pet with mini and garden modes, four explorable scenes, care mechanics, and walk animations.
 
-## Publisher: <br>
-[whitezhiiii](https://clawhub.ai/user/whitezhiiii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whitezhiiii](https://clawhub.ai/user/whitezhiiii)
 
-## Use Case: <br>
-External users and developers use this skill to install and run a Python/Tkinter desktop pet with a mini floating character, a home-garden mode, care interactions, customization, and optional chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review flags unexpected online data flows, including remote asset downloads, background network requests, and optional third-party AI chat. <br>
-Mitigation: Review the script before running it, allow only expected network endpoints, and use the AI chat feature only when comfortable sending chat and pet context to the configured service. <br>
-Risk: The desktop app may read nearby IDENTITY.md and USER.md files and stores pet state in ~/.nbw_pet_save.json. <br>
-Mitigation: Run it from a dedicated directory without sensitive profile files nearby, and review or remove the local save file when no longer needed. <br>
+## Use Case:
 
+External users and developers use this skill to have an agent install or guide setup of a Python/Tkinter desktop pet with interactive scenes, care actions, and customizable pixel assets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/whitezhiiii/pixel-desktop-pet) <br>
-- [Cozy People sprite credits](https://pixelfight.itch.io/) <br>
-- [CraftPix background credits](https://craftpix.net/freebies/) <br>
-- [Remote asset download location](https://raw.githubusercontent.com/whitezhiiii/desktop-pet/main/assets/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and file placement guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides copying the desktop_pet.py script and assets, installing Pillow, and running a Tkinter desktop app.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-11.0.0 (source: server release evidence) <br>
+Risk: The security evidence reports undisclosed file, credential, and network behaviors.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the script before installation and document all files, credentials, endpoints, and transmitted data for users.
+
+Risk: The script can download assets and poll third-party services at runtime.
+
+Mitigation: Prefer a release that bundles assets, enables network features only after clear consent, and verifies TLS normally.
+
+Risk: The script can read nearby identity/profile files, use NBW_API_KEY, and send chat context to a cloud endpoint.
+
+Mitigation: Remove parent-directory identity reads, avoid ambient credentials by default, and require explicit user opt-in before sending chat context.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/whitezhiiii/skills/pixel-desktop-pet)
+- [Cozy People Character Sprites](https://pixelfight.itch.io/)
+- [CraftPix Background Tiles](https://craftpix.net/freebies/)
+- [Runtime Asset Download Endpoint](https://raw.githubusercontent.com/whitezhiiii/desktop-pet/main/assets/)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and Python file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or copy a Python/Tkinter script and required image assets in the user's target directory.]
+
+## Skill Version(s):
+
+11.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

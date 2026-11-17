@@ -6,14 +6,14 @@
 
 1. **配置文件**：
 
-配置文件位置：`~/.workbuddy/models.json`
+配置文件位置：`~/.free-model-config/models.json`
 
 配置文件格式：
 ```json
 [
   {
-    "id": "agnes-2.0-flash",
-    "name": "agnes-2.0-flash",
+    "id": "agnes-3.0-flash",
+    "name": "agnes-3.0-flash",
     "vendor": "Custom",
     "url": "https://apihub.agnes-ai.com/v1",
     "apiKey": "your_api_key_here",
@@ -32,7 +32,7 @@
 
 3. **导入步骤**：
 
-1. 打开配置文件：`~/.workbuddy/models.json`
+1. 打开配置文件：`~/.free-model-config/models.json`
 2. 添加新的模型配置
 3. 保存文件
 4. 验证配置是否正确
@@ -49,13 +49,15 @@
 **导入日志**：
 
 ```
-[2026-06-19 04:25:00] 开始导入配置
-[2026-06-19 04:25:01] 打开配置文件：~/.workbuddy/models.json
-[2026-06-19 04:25:02] 添加模型配置：agnes-2.0-flash
-[2026-06-19 04:25:03] 保存配置文件
-[2026-06-19 04:25:04] 验证配置成功
-[2026-06-19 04:25:05] 配置导入完成
+[T+0s] 开始导入配置
+[T+1s] 打开配置文件：~/.free-model-config/models.json
+[T+2s] 添加模型配置：agnes-3.0-flash
+[T+3s] 保存配置文件
+[T+4s] 验证配置成功
+[T+5s] 配置导入完成
 ```
+
+> 日志时间使用相对占位 `T+Ns`（已脱敏），实际运行时以系统时间为准。
 
 **组装顺序**：配置准备 → 导入工具 → 配置导入 → 导入验证
 
@@ -69,7 +71,7 @@
 ## 配置导入报告
 
 ## 配置文件
-- 位置：~/.workbuddy/models.json
+- 位置：~/.free-model-config/models.json
 - 格式：JSON
 
 ## 导入工具
@@ -77,8 +79,8 @@
 - 版本：1.80.0
 
 ## 导入步骤
-1. 打开配置文件：~/.workbuddy/models.json
-2. 添加模型配置：agnes-2.0-flash
+1. 打开配置文件：~/.free-model-config/models.json
+2. 添加模型配置：agnes-3.0-flash
 3. 保存配置文件
 4. 验证配置成功
 
@@ -89,15 +91,15 @@
 - [x] 接口地址可访问
 
 ## 导入日志
-[2026-06-19 04:25:00] 开始导入配置
-[2026-06-19 04:25:01] 打开配置文件：~/.workbuddy/models.json
-[2026-06-19 04:25:02] 添加模型配置：agnes-2.0-flash
-[2026-06-19 04:25:03] 保存配置文件
-[2026-06-19 04:25:04] 验证配置成功
-[2026-06-19 04:25:05] 配置导入完成
+[T+0s] 开始导入配置
+[T+1s] 打开配置文件：~/.free-model-config/models.json
+[T+2s] 添加模型配置：agnes-3.0-flash
+[T+3s] 保存配置文件
+[T+4s] 验证配置成功
+[T+5s] 配置导入完成
 
 ## 导入结果
-配置导入成功，模型 agnes-2.0-flash 已添加到配置文件
+配置导入成功，模型 agnes-3.0-flash 已添加到配置文件
 ```
 
 ---
@@ -172,7 +174,7 @@
 ## 配置验证报告
 
 ## 验证时间
-2026-06-19 04:25:00
+YYYY-MM-DD HH:MM:SS
 
 ## 验证结果
 | 验证项 | 结果 | 说明 |
@@ -232,8 +234,8 @@
 
 ```json
 {
-  "id": "agnes-2.0-flash",
-  "name": "agnes-2.0-flash",
+  "id": "agnes-3.0-flash",
+  "name": "agnes-3.0-flash",
   "vendor": "Custom",
   "url": "https://apihub.agnes-ai.com/v1",
   "apiKey": "原API Key",
@@ -256,7 +258,7 @@
 ## 配置更新报告
 
 ## 更新时间
-2026-06-19 04:25:00
+YYYY-MM-DD HH:MM:SS
 
 ## 更新原因
 API Key 过期，需要更换新的 API Key
@@ -267,8 +269,8 @@ API Key 过期，需要更换新的 API Key
 | API Key | sk-old-key... | sk-new-key... | 更换新的 API Key |
 
 ## 更新步骤
-1. 备份当前配置：~/.workbuddy/models.json.bak
-2. 修改配置文件：~/.workbuddy/models.json
+1. 备份当前配置：~/.free-model-config/models.json.bak
+2. 修改配置文件：~/.free-model-config/models.json
 3. 验证更新后的配置：配置格式正确
 4. 测试配置是否正常工作：API 调用成功
 
@@ -280,8 +282,8 @@ API Key 过期，需要更换新的 API Key
 
 ## 更新回滚
 如果更新失败，使用备份配置恢复：
-- 备份文件：~/.workbuddy/models.json.bak
-- 恢复命令：cp ~/.workbuddy/models.json.bak ~/.workbuddy/models.json
+- 备份文件：~/.free-model-config/models.json.bak
+- 恢复命令：cp ~/.free-model-config/models.json.bak ~/.free-model-config/models.json
 
 ## 更新结果
 配置更新成功，新的 API Key 已生效

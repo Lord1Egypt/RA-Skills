@@ -1,41 +1,55 @@
-## Description: <br>
-Control 750+ BLE intimate devices from natural language via Intiface Central and buttplug-mcp across macOS, Windows, and Linux. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls Buttplug.io-compatible BLE intimate devices through Intiface Central and buttplug-mcp using natural-language agent commands across macOS, Windows, and Linux.
 
-## Publisher: <br>
-[AmandaClarke61](https://clawhub.ai/user/AmandaClarke61) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[amandaclarke61](https://clawhub.ai/user/amandaclarke61)
 
-## Use Case: <br>
-External users and developers use this skill to connect OpenClaw to Intiface Central and send device listing, vibration, and stop commands to compatible intimate devices. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can issue physical-control commands to connected intimate devices. <br>
-Mitigation: Install only when that control is intended, list connected devices first, verify the target device, require explicit approval for every start or strength change, and prefer low strength with short timed sessions. <br>
-Risk: An Intiface server that is not kept local could increase the chance of unintended device control. <br>
-Mitigation: Keep Intiface Central bound to localhost and stop Intiface Central when finished. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Intiface Central](https://intiface.com/central/) <br>
-- [Buttplug.io Compatible Device Index](https://iostindex.com) <br>
-- [buttplug-mcp releases](https://github.com/ConAcademy/buttplug-mcp/releases) <br>
+## Use Case:
 
+External users and developers use this skill to let an agent list, start, stop, and set vibration strength for locally connected Intiface/Buttplug-compatible devices after installing Intiface Central, buttplug-mcp, and mcporter.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local mcporter, buttplug-mcp, Intiface Central, and an explicitly selected connected device.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: An agent can activate intimate hardware without sufficient consent, device verification, or safety controls.
+
+Mitigation: Use only where all affected people have explicitly consented, list and verify the connected device before control, start at low intensity, and keep the stop command available.
+
+Risk: A local Intiface server left running after use can leave connected device control available longer than intended.
+
+Mitigation: Stop vibration after timed sessions and close or stop the local Intiface server when it is not in use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/amandaclarke61/skills/intiface-control)
+- [Buttplug.io compatible device index](https://iostindex.com)
+- [Intiface Central](https://intiface.com/central/)
+- [buttplug-mcp releases](https://github.com/ConAcademy/buttplug-mcp/releases)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local Intiface Central, buttplug-mcp, and mcporter; device vibration strength is controlled with numeric values from 0.0 to 1.0.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

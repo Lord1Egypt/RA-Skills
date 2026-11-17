@@ -1,44 +1,59 @@
-## Description: <br>
-Manage AIUSD accounts and trades: check balances, execute buy/sell/swap orders, stake or unstake, withdraw funds, top up gas, and view transaction history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AIUSD trading and account management skill. Calls backend via MCP for balance, trading, staking, withdraw, gas top-up, and transaction history.
 
-## Publisher: <br>
-[ChaunceyLiu](https://clawhub.ai/user/ChaunceyLiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[chaunceyliu](https://clawhub.ai/user/chaunceyliu)
 
-## Use Case: <br>
-External users and developers use this skill to let an assistant manage AIUSD account workflows, including balances, trades, staking, withdrawals, gas top-ups, deposits, and transaction history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Assistant-mediated trades, staking, unstaking, withdrawals, and gas top-ups can move funds. <br>
-Mitigation: Require explicit approval before every financial action and verify the amount, asset, chain, destination address, and fees. <br>
-Risk: Persistent account tokens and reauthentication flows can affect local auth and session state. <br>
-Mitigation: Use only trusted account tokens, keep them local, and warn users that reauthentication can delete local auth or session files. <br>
-Risk: Self-extracting installers run bundled code with limited user control. <br>
-Mitigation: Inspect the extracted package before running installers and install only when the publisher and package are trusted. <br>
+## Use Case:
 
+External users and agent operators use this skill to manage AIUSD balances, trading accounts, trade execution, staking, withdrawals, gas top-ups, deposits, authentication recovery, and transaction history through a conversational assistant.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ChaunceyLiu/aiusd-skills) <br>
-- [AIUSD official website](https://aiusd.ai) <br>
-- [AIUSD OAuth login](https://mcp.alpha.dev/oauth/login) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or plain text with shell commands and tool-call guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call MCP-backed tools that execute account, trading, staking, withdrawal, gas top-up, and transaction-history operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release evidence) <br>
+Risk: The skill can initiate trades, staking, unstaking, withdrawals, and gas top-ups that may move real funds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation of action, asset, amount, destination address, network, and expected fees before any funds-moving operation.
+
+Risk: Install and authentication flows run local commands and may remove existing credential cache files.
+
+Mitigation: Install in a dedicated directory with a low-privilege account, back up any existing aiusd-skill directory, and review local command effects before running setup or re-authentication.
+
+Risk: The security scanner verdict is suspicious because local install/auth behavior lacks enough user confirmation for sensitive actions.
+
+Mitigation: Inspect the embedded package before installation, avoid automatic npm lifecycle scripts when possible, and require the agent to pause for confirmation before trade, withdrawal, staking, unstaking, or gas top-up requests.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chaunceyliu/skills/aiusd-skills)
+- [AIUSD Official Website](https://aiusd.ai)
+- [AIUSD OAuth Login](https://mcp.alpha.dev/oauth/login)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with inline shell commands and tool-call guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can trigger account, trading, staking, withdrawal, gas, transaction-history, install, and authentication workflows through an agent.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release metadata; artifact build-info reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-TickTick task manager integration for listing projects and tasks, creating tasks, completing tasks, and deleting tasks after OAuth setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TickTick API helps agents manage TickTick projects and tasks by listing projects and tasks, creating tasks, completing tasks, and deleting tasks after OAuth setup.
 
-## Publisher: <br>
-[kaiofreitas](https://clawhub.ai/user/kaiofreitas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kaiofreitas](https://clawhub.ai/user/kaiofreitas)
 
-## Use Case: <br>
-External users and developers use this skill to manage TickTick tasks from an agent, including listing projects and tasks, adding reminders or due dates, and completing or deleting tasks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on external `ticktick-setup` and `ticktick` CLI commands that must be trusted before use. <br>
-Mitigation: Install only a trusted TickTick CLI and verify the command source before entering OAuth credentials. <br>
-Risk: Complete and delete commands can change or remove tasks in the connected TickTick account. <br>
-Mitigation: Review project and task identifiers before running account-changing commands, and revoke TickTick authorization if the integration is no longer used. <br>
-Risk: OAuth client secrets and authorization callbacks can expose account access if shared or logged carelessly. <br>
-Mitigation: Keep OAuth client secrets private and avoid sharing callback URLs or token-bearing setup output. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [TickTick Developer Site](https://developer.ticktick.com) <br>
-- [TickTick Open API Base URL](https://api.ticktick.com/open/v1) <br>
+## Use Case:
 
+External users and productivity-focused teams use this skill to manage TickTick to-do lists from an agent, including checking pending work, adding reminders or due dates, and marking tasks done.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an OAuth-configured TickTick CLI before task operations can run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: OAuth client secrets can be exposed when passed directly on the command line.
+
+Mitigation: Use secure secret handling where available, avoid shell history exposure, and rotate or revoke any client secret that may have been exposed.
+
+Risk: The skill relies on unspecified `ticktick` and `ticktick-setup` command implementations.
+
+Mitigation: Install only trusted command implementations and verify OAuth token storage and revocation behavior before authorizing an account.
+
+Risk: Complete and delete operations can change or remove TickTick task data.
+
+Mitigation: Confirm state-changing and destructive task operations explicitly before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaiofreitas/skills/ticktick-api)
+- [TickTick Developer Portal](https://developer.ticktick.com)
+- [TickTick Open API](https://api.ticktick.com/open/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce instructions that call external TickTick command-line tools and modify TickTick task data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,57 @@
-## Description: <br>
-A bilingual deep-analysis skill that gathers current web evidence, examines a topic through 11 lenses, and produces a grounded scenario simulation with findings and open questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-Angle-Thinking helps agents perform deep, evidence-first analysis by gathering web data, applying 11 analytical lenses, and producing a grounded narrative simulation with findings and open questions.
 
-## Publisher: <br>
-[h7g7](https://clawhub.ai/user/h7g7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[h7g7](https://clawhub.ai/user/h7g7)
 
-## Use Case: <br>
-External users, developers, analysts, strategists, researchers, and decision-makers use this skill to examine complex questions, challenge assumptions, compare tradeoffs, and simulate likely outcomes from multiple angles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may use web search, which can be inappropriate for confidential or sensitive prompts. <br>
-Mitigation: Avoid using the skill with confidential prompts, and keep searches to public, non-paywalled, non-private sources. <br>
-Risk: The optional OpenClaw hook can over-trigger on broad words such as analyze. <br>
-Mitigation: Enable the hook only when automatic reminders are desired, and disable it if it activates too often. <br>
-Risk: Scenario simulations involving real people can be mistaken for factual claims. <br>
-Mitigation: Clearly label simulated dialogue and behavior as fictional inference and avoid private individuals without clear public relevance. <br>
+## Use Case:
 
+External users, developers, strategists, researchers, and decision-makers use this skill when they need a structured multi-angle analysis of a complex idea, decision, or scenario. It is especially suited to prompts asking the agent to challenge assumptions, surface hidden risks, compare perspectives, or simulate what could happen.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/h7g7/thinking-engine) <br>
-- [The 11 Lenses - Deep Reference Guide](references/lenses-guide.md) <br>
-- [Simulation Guide - Building Worlds That Reveal Truth](references/simulation-guide.md) <br>
-- [Example Output](assets/example-output.md) <br>
-- [OpenClaw Hook](hooks/openclaw/HOOK.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown analysis with evidence summary, lens-by-lens findings, narrative simulation, and final synthesis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses should cite gathered sources, limit web searches to six queries, match the user's language, and label simulations of real people as fictional inference.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: Optional hooks or session activators can steer agent behavior automatically when broad trigger phrases are present.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer explicit invocation for deep analysis, review hook behavior before enabling it, and disable the hook when automatic reminders are not needed.
+
+Risk: The skill encourages web research and realistic simulations that may involve sensitive topics or real people.
+
+Mitigation: Use the documented guardrails: avoid private personal data, label real-person simulations as fictional inference, limit searches to public sources, and apply extra caution for sensitive topics.
+
+## Reference(s):
+
+- [README](artifact/README.md)
+- [Example output](artifact/assets/example-output.md)
+- [The 11 Lenses - Deep Reference Guide](artifact/references/lenses-guide.md)
+- [Simulation Guide - Building Worlds That Reveal Truth](artifact/references/simulation-guide.md)
+- [OpenClaw Hook](artifact/hooks/openclaw/HOOK.md)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, guidance]
+
+**Output Format:** [Markdown narrative with sourced intelligence, lens-by-lens analysis, scenario simulation, synthesis, and open questions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include web-sourced facts, fictionalized simulation dialogue, and explicit uncertainty framing; the skill limits research to a maximum of 6 web searches per analysis.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

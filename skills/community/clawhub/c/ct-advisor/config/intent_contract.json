@@ -1,0 +1,31 @@
+{
+  "version": "2026-11-09",
+  "status": "implemented / pending Coze package republish",
+  "_comment": "咨询型问答 vs 执行型调用的单一真相源。本地 scripts/route_tool.py 与云端 adapters/coze/src/graphs/nodes/tool_router_node.py 各持内嵌副本（_INTENT_CONSULT_DEPTH / _INTENT_EXEC / _INTENT_RETRIEVAL），由 scripts/check_route_drift.py 用 AST 断言三份逐字一致。改契约 = 改本文件 → 同步两端副本 → 跑 drift 门禁 → 重打 Coze 包。",
+  "switch": {
+    "local_env": "CT_ADVISOR_INTENT_DEPTH",
+    "enabled_default": true,
+    "off_values": ["0", "false", "no", "off"],
+    "note": "本地开关，默认启用。设 off 值可让本地 predict 回到旧护栏（不含 CONSULT_DEPTH）；云端包需另行回退，单关本地不构成完整回滚。",
+    "cloud_note": "Coze 端不读本地 env，内嵌逻辑默认启用；回滚需恢复旧版云端包。"
+  },
+  "patterns": {
+    "consult_depth": "原理|机制|为什么|为何|依据|理论上|如何确定|如何界定|如何解释|如何理解|如何影响|有何影响|影响是什么|怎么解释|怎么理解|解释一下|解释下|说明一下|怎么定|如何定|先说明|先解释|取决于|受什么影响|影响因素|关系是什么|有何关系|含义|涵义|前提假设|适用条件|适用边界|局限性|优缺点|选择依据|怎么选|如何选|为什么用|为何要|代表什么|说明什么|反映什么|\\bwhy\\b|\\brationale\\b|\\bunderlying\\b|\\bprinciple\\b|\\bmechanism\\b|\\bassumption\\b|\\bpremise\\b|\\binterpret(?:ation|ed)?\\b|\\bdepends? on\\b|\\btrade-?off\\b|\\bapplicability\\b|\\blimitation\\b|\\bderived? from\\b|\\bchoice of\\b|\\bwhy use\\b|\\bsignificance of\\b",
+    "exec_intent": "(?:帮我|请)?(?:算一下|算下|计算一下|帮我算|求|跑一下|跑个|导出|下载|生成|检索|查询|查找|列出|拉一下|查一下|搜一下|找一下)(?:样本量|例数|把握度|报告|结果|试验|文献|信号|数据|指标)?|\\b(?:compute|calculate|run|fetch|export|pull|retrieve|list|search)\\b",
+    "retrieval_intent": "检索|搜索|查找|查询|列出|拉一下|查一下|搜一下|找一下|列一下|帮我查|帮我找|给我查|有哪些|哪几个|数量|多少家|\\bfind\\b|\\bsearch\\b|\\blist\\b|\\bretrieve\\b|\\bpull\\b|\\bfetch\\b|\\bgive me\\b|\\bshow me\\b|\\bhow many\\b|\\bget (?:the|me)\\b"
+  },
+  "domain_terms_note": "领域术语（α 消耗函数 / 界值 / 检验效能 / estimand / 贝叶斯收缩 / 95%CI / 字段语义 / 复合分期 …）刻意不进 consult_depth：实测「估算检验效能 power 80%」会因裸术语被误判成咨询（37/37 回归掉到 36/37）。这些术语的知识正文由 **Coze 端点知识库统一维护**（adapters/coze/knowledge/ref-topic-{samplesize-methods,signal-methods,registry-semantics}.md），本地技能零知识库；本地只经 query_meta.domain_hint 传 domain，供云端 category 文件级兜底。意图判据只用咨询信号词。",
+  "decision_table": [
+    {"consult": true, "exec": false, "verdict": "L1 咨询", "action": "不下发 need_tool；Coze 端点 KB（ref-topic-*）生成方法学答案；query_meta.domain_hint 传 domain（严禁写 scope_hint，后者会触发「可能超出覆盖范围」错误声明）；答案末尾可给 @skill 软建议"},
+    {"consult": true, "exec": true, "verdict": "混合", "action": "2026-11-10 P0-1：仍下发 exec 工具的 need_tool（handoff 卡）；advisor 答原理（Coze KB 生成方法学答案）经 orchestrate 与 handoff 卡合并共存——原理不被吞掉、实际计算/检索也不丢失。旧策略（整体降级为软建议）已弃用。"},
+    {"consult": false, "exec": true, "verdict": "L2 执行", "action": "维持现有 handoff / need_tool 路径"},
+    {"consult": false, "exec": false, "verdict": "现有护栏", "action": "DEF / METHOD / DOC 与词表规则照旧"}
+  ],
+  "boundary": {
+    "hard_gate": "意图判定全部由代码完成；答案仍由 Coze 产出、经 entry.py 单一出口；本地 LLM 仍只跑一条命令并原样透传 stdout。",
+    "f33": "L1/L2 只发公开方法学问题或公开检索词；L3 只允许字段白名单内的脱敏数值摘要外发，原始产物 / 方案 / 受试者数据绝不出域。",
+    "anti_hallucination": "咨询答案不得出现具体试验数、PRR 值、样本量结果，除非用户已通过 entry.py --stitch 回填产物。",
+    "regression": "route_tool 37/37 + 13/13 + 6/6、test_tool_router 63/63、test_cloud_brief 53/53、跨技能 28/15/13/14、线上 canary 18/18 必须全绿。"
+  },
+  "known_change": "旧 RETRIEVAL 含裸词「统计」，中文「统计方法」会被误判为取数动作让位；本契约移除该词，改由 consult_depth 优先判定。"
+}

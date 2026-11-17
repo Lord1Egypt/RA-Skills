@@ -1,0 +1,3 @@
+# one-novel-skill 核心无外部 pip 依赖
+# requests 仅在 HTTPProvider 中动态导入（可选依赖）
+# 如需 HTTP API provider 支持: pip install requests

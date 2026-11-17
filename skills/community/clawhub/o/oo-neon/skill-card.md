@@ -1,43 +1,56 @@
-## Description: <br>
-Operate Neon projects, branches, databases, operations, and current-user reads through the OOMOL-connected oo CLI Neon connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the oo CLI to inspect and manage Neon projects, branches, databases, and operations through the user's OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect and manage Neon resources from an agent session through an OOMOL-connected account. It supports routine reads as well as schema-checked create, update, and delete actions for Neon projects, branches, and databases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, update, and delete Neon projects, branches, and databases. <br>
-Mitigation: Review the live action schema, exact target, and payload before approving write actions; require explicit approval for destructive delete actions. <br>
-Risk: The skill depends on an OOMOL account connection and the locally installed oo CLI to access Neon resources. <br>
-Mitigation: Install only when OOMOL-managed Neon access is intended, and trust the OOMOL account connection and oo CLI installation source before use. <br>
+## Use Case:
 
+Developers use this skill to inspect and manage Neon resources from an agent. It supports read actions and guides users to confirm changes before write or destructive actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-neon) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
-- [Neon homepage](https://neon.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before constructing action payloads; command responses are JSON when run with --json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and skill frontmatter) <br>
+Risk: Automatic setup executes unverified remote code, and its resulting changes may not be clearly limited.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup, install a verified oo CLI release yourself, and consider disabling automatic skill synchronization before first launch.
+
+Risk: Write and destructive actions can change or remove Neon resources.
+
+Mitigation: Inspect the live action schema and confirm the exact target and effect with the user before running these actions.
+
+## Reference(s):
+
+- [oo CLI commands](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+- [Neon API documentation](https://api-docs.neon.tech/reference/getting-started-with-neon-api)
+- [Neon](https://neon.com)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Text]
+
+**Output Format:** [JSON responses with concise text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Inspects an action's live schema before constructing a request; write and destructive actions require user confirmation.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

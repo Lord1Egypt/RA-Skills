@@ -1,43 +1,57 @@
-## Description: <br>
-Provides financial analysis and personalized investment strategies to help users optimize wealth growth and management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent scan early memecoin and token opportunities, summarize momentum signals, and flag token risks.
 
-## Publisher: <br>
-[maiahman](https://clawhub.ai/user/maiahman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maiahman](https://clawhub.ai/user/maiahman)
 
-## Use Case: <br>
-External users and agents use this skill to generate informational crypto wealth and investment analysis, including personalized strategy suggestions and Buy/Avoid-style token research that should be independently verified. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may produce financial signals for high-risk crypto tokens. <br>
-Mitigation: Treat outputs as informational research, independently verify claims, and avoid relying on the skill as financial advice. <br>
-Risk: The packaged SKILL.md is a PDF rather than normal markdown. <br>
-Mitigation: Review the artifact contents before use and confirm the agent can consume the packaged skill as intended. <br>
-Risk: Sensitive financial or account material could be mishandled if supplied to the skill. <br>
-Mitigation: Never provide private keys, exchange credentials, seed phrases, or authority to trade. <br>
+## Use Case:
 
+External users and analysts use this skill to evaluate early-stage memecoin and token opportunities on Solana and BNB Chain, including momentum, liquidity, holder-growth, and rug-risk signals. Outputs should be treated as high-risk research prompts, not financial advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/maiahman/gilbot-wealth-engine) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/maiahman) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text financial research guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational only; users should independently verify financial claims and avoid sharing private keys, exchange credentials, or trading authority.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release artifact is a PDF disguised as SKILL.md, which creates review and loading concerns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing the artifact and prefer a plain Markdown SKILL.md from the publisher.
+
+Risk: Memecoin Watch, Buy, or Avoid outputs can be mistaken for financial advice in a high-risk market.
+
+Mitigation: Treat outputs as research prompts, verify findings independently, and avoid using them as automated trading or investment instructions.
+
+Risk: The skill focuses on early-stage, low market cap tokens where rug pulls, fake hype, unsafe tokens, and liquidity risks are common.
+
+Mitigation: Cross-check liquidity, wallet concentration, token taxes, contract behavior, and community signals with trusted external sources before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maiahman/skills/gilbot-wealth-engine)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style token analysis with scored Watch, Buy, or Avoid verdicts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes token name, chain, early-signal rationale, risk score, opportunity score, and verdict.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,62 @@
-## Description: <br>
-A grounding workflow that turns research questions into planned searches, routed sources, cleaned evidence, freshness labels, and counter-evidence before downstream analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Signal Intelligence Pack turns an information-dependent task into an enhanced evidence base by planning queries, routing sources, cleaning evidence, judging freshness, and looking for counter-evidence before downstream analysis.
 
-## Publisher: <br>
-[z1one0415](https://clawhub.ai/user/z1one0415) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[z1one0415](https://clawhub.ai/user/z1one0415)
 
-## Use Case: <br>
-Research agents, analysts, and strategy workflows use this skill to prepare an enhanced evidence base before analysis. It is most useful for external-information tasks that need multi-source grounding, freshness review, or counter-evidence checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research prompts may contain sensitive information that could be passed to available search providers or child skills. <br>
-Mitigation: Remove secrets and proprietary details before use, and review which providers and child skills are available in the agent environment. <br>
-Risk: The workflow may run additional searches and consume provider quota. <br>
-Mitigation: Constrain available sources and time windows when needed, and review search counts, degradation logs, and pending actions in the output. <br>
-Risk: The enhanced evidence base can still be incomplete, stale, or affected by source coverage gaps. <br>
-Mitigation: Use the freshness labels, counter-evidence results, confidence assessment, and pending actions as review gates before relying on downstream analysis. <br>
+## Use Case:
 
+Developers, research agents, and analysts use this skill to prepare a grounded evidence base for strategic analysis, market or policy research, financial and news intelligence, and other time-sensitive tasks that require multiple sources and counter-evidence.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/z1one0415/signal-intelligence-pack) <br>
-- [Workflow](references/workflow.md) <br>
-- [Input/Output Schema](references/input-output.md) <br>
-- [Stop Rules](references/stop-rules.md) <br>
-- [Examples](references/examples.md) <br>
-- [Improvement Plan V2](references/improvement-plan-v2.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Guidance] <br>
-**Output Format:** [Enhanced evidence base JSON with pipeline metadata, cleaned evidence, freshness labels, counter-evidence, and confidence assessment.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May stop after evidence cleaning or freshness judging for lower-risk tasks; strategic and high-risk tasks run all five steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server-resolved release metadata) <br>
+Risk: The workflow may increase search or tool usage and expose search queries to configured external search providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for tasks that need web grounding, review configured sources before execution, and avoid local-only or privacy-sensitive tasks unless external search is approved.
+
+Risk: The evidence base can still be misleading when evidence is stale, sparse, single-sided, or affected by unresolved gaps.
+
+Mitigation: Review freshness labels, critical gaps, counter-evidence, pending actions, and confidence assessment before relying on downstream conclusions.
+
+Risk: Source failures, quota exhaustion, or backtracking limits can leave parts of the research pipeline degraded.
+
+Mitigation: Check degradation logs and pending actions, then rerun targeted searches or supplement sources when required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/z1one0415/skills/signal-intelligence-pack)
+- [Workflow](references/workflow.md)
+- [Input and output schema](references/input-output.md)
+- [Stop rules and quality gates](references/stop-rules.md)
+- [Examples](references/examples.md)
+- [Improvement plan V2](references/improvement-plan-v2.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Guidance]
+
+**Output Format:** [Structured JSON evidence base with query plans, source routing, cleaned evidence, freshness labels, counter-evidence, gaps, and confidence assessment]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include pipeline metadata, pending actions, degradation logs, and confidence scoring.]
+
+## Skill Version(s):
+
+2.1.0 (source: server evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

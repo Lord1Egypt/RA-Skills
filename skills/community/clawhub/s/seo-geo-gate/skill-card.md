@@ -1,49 +1,59 @@
-## Description: <br>
-Audit and optimize websites for technical SEO, GEO / AI visibility, and Core Web Vitals using local build-output checks, live URL checks, and focused remediation guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits built website output and deployed URLs for technical SEO, GEO/AI visibility, and Core Web Vitals issues, then guides fixes using bundled hard-gate, structured-data, GEO, and LCP references.
 
-## Publisher: <br>
-[cosmofang](https://clawhub.ai/user/cosmofang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cosmofang](https://clawhub.ai/user/cosmofang)
 
-## Use Case: <br>
-Developers, site owners, and launch reviewers use this skill to audit rendered website output and deployed origins for SEO, AI crawler visibility, structured data, canonical metadata, page-weight gates, and LCP / Core Web Vitals issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running the live audit against a site without authorization can create unwanted external requests. <br>
-Mitigation: Run live checks only against sites the user is authorized to test. <br>
-Risk: SEO, robots.txt, llms.txt, canonical URL, and crawler-access recommendations can affect search and AI crawler visibility. <br>
-Mitigation: Review proposed source changes before applying them and re-run the audits after changes. <br>
-Risk: Auditing the wrong local directory can produce misleading SEO findings because the local auditor expects rendered build output. <br>
-Mitigation: Point the local audit at the intended build-output directory, not source templates. <br>
+## Use Case:
 
+Developers and site maintainers use this skill to audit rendered site output and deployed origins for SEO, AI crawler visibility, structured data, Core Web Vitals, and launch-readiness issues, then apply prioritized fixes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cosmofang/seo-geo-gate) <br>
-- [Publisher Profile](https://clawhub.ai/user/cosmofang) <br>
-- [Homepage](https://github.com/Cosmofang/seo-audit) <br>
-- [Hard Gates](references/hard-gates.md) <br>
-- [Structured Data Recipes](references/structured-data.md) <br>
-- [GEO AI Visibility](references/geo-ai-visibility.md) <br>
-- [LCP Playbook](references/lcp-playbook.md) <br>
-- [Build-Time SEO Gates Case Study](analysis/case-study-build-time-seo-gates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and optional JSON audit output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled audit scripts print reports to stdout; output is persisted only when redirected by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release evidence, package.json, CHANGELOG) <br>
+Risk: The live URL auditor can be used from the agent environment to probe internal or private web services if pointed at localhost, private IPs, cloud metadata addresses, or attacker-supplied URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the local build-output audit by default; only run audit-live.mjs against public websites you control or trust until private-network blocking, redirect validation, request timeouts, and response-size limits are added.
+
+Risk: CSP unsafe-inline style advice can be misapplied as a blanket production recommendation.
+
+Mitigation: Treat unsafe-inline style allowances as explicit tradeoffs requiring security review before production use.
+
+## Reference(s):
+
+- [Hard Gates Reference](references/hard-gates.md)
+- [Structured Data Reference](references/structured-data.md)
+- [GEO AI Visibility Reference](references/geo-ai-visibility.md)
+- [LCP Playbook](references/lcp-playbook.md)
+- [Build-Time SEO Gates Case Study](analysis/case-study-build-time-seo-gates.md)
+- [Source Homepage](https://github.com/Cosmofang/seo-audit)
+- [ClawHub Skill Page](https://clawhub.ai/cosmofang/skills/seo-geo-gate)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, code snippets, configuration guidance, and optional JSON audit output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are printed to stdout; files are written only when the user redirects output.]
+
+## Skill Version(s):
+
+1.1.0 (source: evidence release, package.json, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

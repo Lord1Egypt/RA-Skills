@@ -1,45 +1,70 @@
-## Description: <br>
-Get Shit Done - Full project planning and execution workflow. Handles project initialization with deep context gathering, automated research, roadmap creation, phase planning, and execution with verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get Shit Done - Full project planning and execution workflow. Handles project initialization with deep context gathering, automated research, roadmap creation, phase planning, and execution with verification.
 
-## Publisher: <br>
-[oleg-schmidt](https://clawhub.ai/user/oleg-schmidt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[oleg-schmidt](https://clawhub.ai/user/oleg-schmidt)
 
-## Use Case: <br>
-Developers and engineers use this skill to move software projects from an initial idea through context gathering, domain research, requirements, roadmaps, phase plans, implementation, debugging, and verification. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can make persistent repository and environment changes, including code edits, shell commands, git commits, tags, and selected destructive operations. <br>
-Mitigation: Run it in a sandboxed workspace or disposable branch, keep interactive gates enabled, and review diffs before pushing or tagging. <br>
-Risk: Some workflows may request secrets or service credentials so automation can configure external integrations. <br>
-Mitigation: Avoid pasting long-lived secrets into chat, prefer scoped or temporary credentials, and require explicit approval before global installs, deployments, or external service changes. <br>
-Risk: Automated planning and verification can still produce incorrect tasks, incomplete implementation checks, or misleading project state. <br>
-Mitigation: Review generated plans and verification reports, run project tests independently, and require human approval at decision and destructive-action checkpoints. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Questioning guide](references/questioning.md) <br>
-- [Checkpoint reference](references/checkpoints.md) <br>
-- [Git integration](references/git-integration.md) <br>
-- [Verification patterns](references/verification-patterns.md) <br>
-- [Planning configuration](references/planning-config.md) <br>
+## Use Case:
 
+Developers and project teams use this skill to plan and execute greenfield or brownfield software projects through structured discovery, research, requirements, roadmap creation, phase planning, implementation, debugging, and verification.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown project artifacts, implementation guidance, shell commands, code changes, and structured planning files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update .planning Markdown and JSON files, run tools, edit code, and commit changes when configured.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad project write access, shell access, git commit authority, subagent execution, web research, and possible deployment or provider CLI authority can affect local projects or external services.
+
+Mitigation: Install only where that level of autonomy is acceptable, review planned actions before execution, and use scoped test environments for provider or deployment workflows.
+
+Risk: The security evidence flags risky secret handling patterns.
+
+Mitigation: Do not paste production API keys into chat; use provider login flows, secret managers, masked inputs, or short-lived scoped credentials.
+
+Risk: Autopilot, CCR, global npm link, .env verification, and remove-phase behavior require extra review before use.
+
+Mitigation: Review those workflows before running them and require human confirmation for destructive or environment-changing actions.
+
+## Reference(s):
+
+- [CCR Integration](references/ccr-integration.md)
+- [Checkpoint Execution](references/checkpoint-execution.md)
+- [Checkpoint Types](references/checkpoint-types.md)
+- [Checkpoints](references/checkpoints.md)
+- [Continuation Format](references/continuation-format.md)
+- [Deviation Rules](references/deviation-rules.md)
+- [Framework Patterns](references/framework-patterns.md)
+- [Git Integration](references/git-integration.md)
+- [Model Profiles](references/model-profiles.md)
+- [Planning Config](references/planning-config.md)
+- [Questioning Guide](references/questioning.md)
+- [TDD](references/tdd.md)
+- [UI Patterns for Telegram](references/ui-brand.md)
+- [UI Principles](references/ui-principles.md)
+- [Verification Patterns](references/verification-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with code blocks, shell commands, configuration snippets, and generated planning files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write project planning artifacts under .planning/ and coordinate subagents, shell commands, git commits, web research, and provider CLI actions depending on the selected workflow.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

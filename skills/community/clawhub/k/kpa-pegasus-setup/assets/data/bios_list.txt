@@ -1,0 +1,15 @@
+# KPA 需要自备 BIOS 的平台清单（放置到设备 /sdcard/RetroArch/system/ 下）
+# 格式：平台  文件名（大小写不敏感）。BIOS 为各厂商版权固件，本 skill 不分发，请自行获取。
+PS      scph1001.bin（或 scph5500/5501/5502 任一）
+PS      scph5500.bin（日版推荐）
+SATURN  saturn.bin（或 sega_101.bin）
+DREAMCAST dc_boot.bin
+DREAMCAST dc_flash.bin
+MDCD    bios_CD_E.bin（世嘉 CD 欧版）/ bios_CD_J.bin（日版）/ bios_CD_U.bin（美版）
+PCECD   pce_cd_sys_card（或 Super CD-ROM2 System Card）
+SEGA32X 无需 BIOS（用 picodrive 时建议 32X_MJGR.bin 等以提升兼容）
+N64     无需 BIOS（mupen64plus_next 直接运行）
+NDS     无需 BIOS（melonds 可无 BIOS 运行，desmume 需 firmware.bin 等）
+MSX     MSX.rom / MSX2.rom / MSX2plus.rom / MSX.music / MSX.system（BlueMSX 格式 BIOS 集）
+ATOMISWAVE  dc_boot.bin + dc_flash.bin（Flycast 派生核心）
+NAOMI   dc_boot.bin + dc_flash.bin

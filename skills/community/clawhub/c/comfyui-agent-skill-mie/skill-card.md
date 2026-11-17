@@ -1,49 +1,60 @@
-## Description: <br>
-Agent skill for running registered ComfyUI workflows through a stable CLI, supporting image, video, music, and speech generation on a local or trusted self-hosted ComfyUI server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs registered ComfyUI workflows for image, video, music, and speech generation and supports reviewed imports of personal workflows.
 
-## Publisher: <br>
-[miemieeeee](https://clawhub.ai/user/miemieeeee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[miemieeeee](https://clawhub.ai/user/miemieeeee)
 
-## Use Case: <br>
-Developers and agents use this skill to check ComfyUI availability and run registered local or trusted self-hosted workflows for image generation, image editing, video, music/audio, and speech synthesis with structured JSON results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Uploaded images, prompts, generated media, saved server URLs, and async job records may contain private local data. <br>
-Mitigation: Use only a local or trusted self-hosted ComfyUI server, avoid public or untrusted endpoints, and treat the tool's results directory as private data. <br>
-Risk: Dependency behavior may vary across environments if installs are not pinned. <br>
-Mitigation: Use a locked dependency install for sensitive environments and review dependency updates before deployment. <br>
-Risk: Unreviewed ComfyUI workflows can change execution behavior or required models and nodes. <br>
-Mitigation: Run registered workflows only, review analyzer-generated workflow configs before activation, and use doctor or preflight checks before long generation jobs. <br>
+## Use Case:
 
+Developers and other ComfyUI users can direct an agent to run registered media-generation workflows on a local or trusted self-hosted server, check prerequisites, and import their own reviewed workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/miemieeeee/comfyui-agent-skill-mie) <br>
-- [Skill instructions](SKILL.md) <br>
-- [Workflow reference](references/workflows.md) <br>
-- [CLI contract](references/cli.md) <br>
-- [Workflow node requirements](references/workflow_nodes.md) <br>
-- [Prompt enhancement: reference to image](references/prompt_enhancement/reference_to_image.md) <br>
-- [Prompt enhancement: image to image](references/prompt_enhancement/image_to_image.md) <br>
-- [Prompt enhancement: text to speech](references/prompt_enhancement/text_to_speech.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Files] <br>
-**Output Format:** [Markdown instructions with CLI commands and structured JSON results; generated media is returned through local file paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a reachable local or trusted self-hosted ComfyUI server and registered workflows; generated outputs may include PNG, MP4, or MP3 files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Voice cloning can enable impersonation without clear consent safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use voice cloning only with clear permission from the voice owner and avoid impersonation.
+
+Risk: Prompts and user-selected media may be sent to a ComfyUI server and generated outputs saved locally.
+
+Mitigation: Connect only to a local or trusted server and review media and output locations before use.
+
+Risk: Persisted server URLs may expose credentials or route media to untrusted hosts.
+
+Mitigation: Do not save URLs containing credentials or pointing to untrusted hosts.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/miemieeeee/skills/comfyui-agent-skill-mie)
+- [Workflow selection and capabilities](artifact/references/workflows.md)
+- [CLI usage and output handling](artifact/references/cli.md)
+- [Workflow import and review](artifact/references/extension.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Files]
+
+**Output Format:** [Markdown guidance, structured JSON results, and locally saved media]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated media paths are returned in JSON; workflows require a local or trusted ComfyUI server.]
+
+## Skill Version(s):
+
+1.0.5 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

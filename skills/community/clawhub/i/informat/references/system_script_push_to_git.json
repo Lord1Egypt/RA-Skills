@@ -1,0 +1,17 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_script_push_to_git",
+    "description": "Push application scripts to Git repository. Writes all script files from the application to the Git repository and commits/pushes. Requires script Git repository to be configured first (_script_save_git_config).",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "comment": {
+          "type": "string",
+          "description": "Git commit message. Defaults to 'push scripts from informat' if empty."
+        }
+      },
+      "required": []
+    }
+  }
+}

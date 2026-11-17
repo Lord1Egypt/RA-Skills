@@ -1,42 +1,58 @@
-## Description: <br>
-A fast Rust-based headless browser automation CLI with Node.js fallback that enables AI agents to navigate, click, type, and snapshot pages via structured commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A fast Rust-based headless browser automation CLI with Node.js fallback that enables AI agents to navigate, click, type, and snapshot pages via structured commands.
 
-## Publisher: <br>
-[onlyloveher](https://clawhub.ai/user/onlyloveher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[onlyloveher](https://clawhub.ai/user/onlyloveher)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to drive browser workflows, inspect pages, fill forms, capture screenshots or PDFs, manage session state, and test web interfaces through structured agent-browser CLI commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad control over authenticated browser sessions can expose account data or perform unintended account-changing actions. <br>
-Mitigation: Use disposable browser profiles or test accounts, avoid shared or committed auth.json files, and require explicit confirmation before submitting forms, uploading files, changing account data, posting content, or reading cookies/localStorage. <br>
-Risk: Saved browser state, screenshots, PDFs, videos, and trace files may contain sensitive page content or credentials. <br>
-Mitigation: Store generated artifacts only in approved locations, delete them when finished, and avoid committing or sharing captured state and media. <br>
+## Use Case:
 
+Developers and AI agents use this skill to drive headless browser workflows, inspect pages, fill forms, capture screenshots or PDFs, and test web UIs through structured CLI commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/onlyloveher/agent-browser-zhouli) <br>
-- [Agent Browser CLI repository](https://github.com/vercel-labs/agent-browser) <br>
-- [Agent Browser skill issue repository](https://github.com/TheSethRose/Agent-Browser-CLI) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with inline bash command examples and optional JSON-producing CLI commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and npm; uses the agent-browser CLI and can produce screenshots, PDFs, videos, trace files, saved browser state, and DOM snapshots during execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill.yaml) <br>
+Risk: Persistent authenticated browser state and captured artifacts can expose sensitive session data or secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat auth.json, screenshots, PDFs, videos, traces, cookies, storage, and network logs as sensitive; do not commit or share them, and delete them when no longer needed.
+
+Risk: Global or mutable installation of the agent-browser package/source can introduce unreviewed changes.
+
+Mitigation: Install only from trusted sources, prefer pinned package versions or audited commits, and avoid elevated privileges during installation.
+
+Risk: Browser automation can operate in authenticated sessions and perform actions on live sites.
+
+Mitigation: Review target URLs and proposed actions before execution, use isolated sessions where practical, and save or load session state only when necessary.
+
+## Reference(s):
+
+- [Agent Browser ClawHub Release](https://clawhub.ai/onlyloveher/skills/agent-browser-zhouli)
+- [agent-browser CLI Repository](https://github.com/vercel-labs/agent-browser)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node and npm; generated browser state, screenshots, PDFs, videos, traces, cookies, storage, and network logs may contain sensitive data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

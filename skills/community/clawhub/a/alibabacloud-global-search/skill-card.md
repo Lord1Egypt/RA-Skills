@@ -1,46 +1,64 @@
-## Description: <br>
-Query Alibaba Cloud product information, documentation, parameters, features, and pricing from official sources without login. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Alibaba Cloud product information, documentation, parameters, features, and pricing from official sources without login.
 
-## Publisher: <br>
-[wangbingpeng](https://clawhub.ai/user/wangbingpeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangbingpeng](https://clawhub.ai/user/wangbingpeng)
 
-## Use Case: <br>
-Developers, cloud architects, and technical users use this skill to find Alibaba Cloud product documentation, compare product features, inspect pricing references, and locate API, CLI, SDK, or Terraform guidance for Alibaba Cloud services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pricing or quota guidance may be outdated or incomplete. <br>
-Mitigation: Verify current prices, quotas, and regional availability on official Alibaba Cloud pages before making purchase or deployment decisions. <br>
-Risk: Generated API, CLI, SDK, or Terraform examples may create, change, or delete paid cloud resources. <br>
-Mitigation: Review every command and configuration before running it, preferably in a controlled environment with explicit cost and resource checks. <br>
-Risk: Credentialed cloud actions can expose or misuse Alibaba Cloud access if handled in an untrusted workflow. <br>
-Mitigation: Do not provide cloud credentials to this lookup skill; use separate trusted workflows with least-privilege credentials for authenticated operations. <br>
+## Use Case:
 
+Developers, cloud architects, and operators use this skill to answer Alibaba Cloud product questions, compare services, find official documentation, and summarize parameters, features, pricing, and implementation references.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangbingpeng/alibabacloud-global-search) <br>
-- [Alibaba Cloud International](https://www.alibabacloud.com/) <br>
-- [Alibaba Cloud China](https://www.aliyun.com/) <br>
-- [Alibaba Cloud pricing calculator](https://www.alibabacloud.com/price-calculator) <br>
-- [Alibaba Cloud Terraform provider](https://registry.terraform.io/providers/aliyun/alicloud/latest/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with tables, direct links, and optional code blocks for CLI, API, SDK, or Terraform examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual Chinese and English headings are encouraged; unavailable information should be marked clearly.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated API, CLI, or Terraform snippets may create, modify, delete, or incur charges for cloud resources if executed without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated snippets before use, especially resource creation or deletion examples, and execute them only in user-directed, trusted workflows.
+
+Risk: Credential handling can become unsafe if real keys or account secrets are supplied during follow-up execution workflows.
+
+Mitigation: Provide real credentials only outside the skill itself in trusted environments with appropriate secret handling.
+
+Risk: Cloud product pricing, quotas, and regional availability may change after the skill's static guidance is written.
+
+Mitigation: Use the skill's official documentation and pricing links to verify current Alibaba Cloud details before making deployment or purchase decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wangbingpeng/skills/alibabacloud-global-search)
+- [Alibaba Cloud International](https://www.alibabacloud.com/)
+- [Aliyun China](https://www.aliyun.com/)
+- [Alibaba Cloud Documentation](https://www.alibabacloud.com/help/en/)
+- [Aliyun Documentation](https://help.aliyun.com/)
+- [Alibaba Cloud Price Calculator](https://www.alibabacloud.com/price-calculator)
+- [Alibaba Cloud OpenAPI Explorer](https://api.alibabacloud.com/)
+- [Aliyun Terraform Provider Documentation](https://registry.terraform.io/providers/aliyun/alicloud/latest/docs)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bilingual headings, tables, links, and optional inline code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include official Alibaba Cloud links, CLI/API/Terraform examples, and information-unavailable markers when sources do not provide an answer.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

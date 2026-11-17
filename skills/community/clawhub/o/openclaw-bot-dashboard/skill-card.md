@@ -1,44 +1,62 @@
-## Description: <br>
-Launch and manage the OpenClaw Dashboard web UI for monitoring bots, agents, models, and sessions across macOS, Windows, and Linux. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Launch and manage the OpenClaw Dashboard web UI for monitoring bots, agents, models, and sessions.
 
-## Publisher: <br>
-[xmanrui](https://clawhub.ai/user/xmanrui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[xmanrui](https://clawhub.ai/user/xmanrui)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to start, update, and access a local dashboard for monitoring bots, agents, models, sessions, and gateway health. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install and run code from a remote dashboard repository and its npm dependencies. <br>
-Mitigation: Use it only when the publisher and remote repository are trusted, and review the dashboard source and dependency changes before invocation in sensitive environments. <br>
-Risk: The skill can stop services on port 3000 and replace an existing local OpenClaw-bot-review directory when updating without git. <br>
-Mitigation: Check what is using port 3000 and back up local OpenClaw-bot-review edits before running the launcher. <br>
-Risk: The dashboard can expose local OpenClaw status data through a LAN URL. <br>
-Mitigation: Share the LAN URL only on trusted networks and stop the background server when monitoring is complete. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to install, update, and launch a local dashboard for monitoring bots, agents, models, sessions, gateway health, alerts, and skill inventory.
 
-## Reference(s): <br>
-- [ClawHub OpenClaw Bot Dashboard release](https://clawhub.ai/xmanrui/openclaw-bot-dashboard) <br>
-- [OpenClaw Dashboard project](https://github.com/xmanrui/OpenClaw-bot-review) <br>
-- [OpenClaw framework](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown status messages with shell commands and local or LAN access URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns localhost and LAN dashboard URLs when available, plus concise error guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata and skill.json) <br>
+Risk: The skill fetches and runs mutable remote code and installs npm dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use pinned releases with checksum or signature verification, and review dependency changes before running the dashboard.
+
+Risk: The skill may stop whatever process is using local port 3000.
+
+Mitigation: Confirm the process using port 3000 before allowing the skill to stop it, especially on shared development machines.
+
+Risk: The dashboard reads the local OpenClaw configuration.
+
+Mitigation: Redact sensitive values and run the dashboard in a trusted local environment with access limited to necessary configuration data.
+
+Risk: Fallback update behavior can delete and re-download the local project directory.
+
+Mitigation: Keep local changes outside the managed project directory or require confirmation before destructive refresh steps.
+
+## Reference(s):
+
+- [OpenClaw Bot Dashboard on ClawHub](https://clawhub.ai/xmanrui/skills/openclaw-bot-dashboard)
+- [OpenClaw Dashboard project downloaded by the skill](https://github.com/xmanrui/OpenClaw-bot-review)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration guidance]
+
+**Output Format:** [Markdown response with local and LAN dashboard access URLs plus concise status or error guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May run OS detection, process management, project download or update, npm dependency installation, and local development server startup commands.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

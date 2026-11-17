@@ -1,42 +1,60 @@
-## Description: <br>
-Manage Google Cloud Platform resources through gcloud, gsutil, and Firebase CLI commands for cloud administration, deployment, monitoring, logs, and SSH access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Google Cloud Platform resources via gcloud CLI. Use for Compute Engine VMs, Cloud Run services, Firebase Hosting, Cloud Storage, and project management. Covers deployment, monitoring, logs, and SSH access.
 
-## Publisher: <br>
-[jortega0033](https://clawhub.ai/user/jortega0033) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jortega0033](https://clawhub.ai/user/jortega0033)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to ask an agent for Google Cloud CLI command guidance across Compute Engine, Cloud Run, Firebase Hosting, Cloud Storage, Secret Manager, Artifact Registry, Cloud SQL, billing, logs, and troubleshooting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide powerful Google Cloud operations, including deployments, VM resets, billing changes, deletes, rollbacks, and production changes. <br>
-Mitigation: Require explicit approval for high-impact commands and verify the active account, project, region, and resource names before execution. <br>
-Risk: Commands may expose services or storage publicly, including Cloud Run unauthenticated access and Cloud Storage public IAM changes. <br>
-Mitigation: Review public access flags and IAM changes before running commands, and use least-privileged accounts for routine work. <br>
-Risk: Secret Manager examples include reading, adding, disabling, and destroying secret versions. <br>
-Mitigation: Require explicit approval before secret reads or destructive secret operations, and avoid displaying secret values unless necessary. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Google Cloud CLI Linux x86_64 archive](https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-linux-x86_64.tar.gz) <br>
-- [Cloud SQL Auth Proxy documentation](https://cloud.google.com/sql/docs/mysql/sql-proxy) <br>
+## Use Case:
 
+Developers and cloud operators use this skill to manage Google Cloud resources with gcloud, gsutil, and Firebase CLI command references for deployment, monitoring, storage, billing, secrets, and troubleshooting workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include cloud commands that change resources, costs, IAM, secrets, networking, or deployments; users should confirm the active account, project, and target resource before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes broad Google Cloud administration commands that can change live cloud resources.
+
+Mitigation: Use least-privilege Google Cloud accounts and confirm the target project, region, zone, and resource names before running commands.
+
+Risk: Some examples can expose services or storage publicly when public access flags or allUsers IAM bindings are used.
+
+Mitigation: Avoid public access flags and public IAM bindings unless public exposure is explicitly intended and approved.
+
+Risk: Secret and database examples can lead users to type sensitive values inline.
+
+Mitigation: Avoid entering production secrets or database passwords inline; prefer managed secret storage, files, or approved credential handling workflows.
+
+Risk: Installer examples download CLI tooling from live package sources.
+
+Mitigation: Prefer pinned, verified, or organization-approved installer methods before enabling the skill in managed environments.
+
+## Reference(s):
+
+- [Cloud SQL Auth Proxy documentation](https://cloud.google.com/sql/docs/mysql/sql-proxy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command examples require the user to supply project, region, zone, resource, credential, and account values before execution.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,52 @@
-## Description: <br>
-Helps users build productivity systems around energy mapping, priority setting, time blocking, focus routines, weekly reviews, and burnout prevention. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users design, execute, and optimize a personal productivity system built around energy management, prioritization, time blocking, focus, recovery, and weekly review.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Individuals and teams use this skill to plan days and weeks, prioritize work, design time blocks, diagnose focus blockers, and review productivity patterns while protecting energy. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask for personal routine, calendar, health-adjacent burnout, or workplace details during productivity coaching. <br>
-Mitigation: Share only the details needed for planning, avoid sensitive personal or workplace information unless appropriate for the environment, and keep examples anonymized when possible. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-productivity-system) <br>
+## Use Case:
 
+Individuals use this skill to build a personalized productivity operating system, including energy audits, chronotype-aware schedules, priority scoring, time blocks, weekly reviews, focus routines, and burnout early-warning checks.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown-style guidance with YAML templates, checklists, and planning prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include personalized productivity plans, schedules, scoring templates, and review questions based on user-provided context.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad trigger examples may activate the skill during general planning requests.
+
+Mitigation: Review the agent's response and confirm the productivity framing is relevant before adopting the plan.
+
+Risk: Burnout, recovery, and energy-management guidance can be health-adjacent and may not fit every user.
+
+Mitigation: Treat outputs as planning support, and seek qualified professional support for severe burnout, sleep, medical, or mental-health concerns.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-productivity-system)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown with structured checklists, tables, and YAML templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include personalized schedules, priority scores, focus checklists, review prompts, and productivity tracking templates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,54 @@
-## Description: <br>
-Guides SaaS teams through launching and growing product communities with clear purpose, curated early membership, founder participation, recurring events, and participation metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides SaaS teams through building and scaling a product-focused community with clear purpose, curated early membership, founder participation, recurring events, and health metrics.
 
-## Publisher: <br>
-[wellyxy](https://clawhub.ai/user/wellyxy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wellyxy](https://clawhub.ai/user/wellyxy)
 
-## Use Case: <br>
-Founders, SaaS operators, and community managers use this skill to plan a product-adjacent community, seed high-quality early membership, run recurring engagement loops, choose a community platform, and track retention-oriented health metrics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact includes an external waitlist link that may collect information outside the skill. <br>
-Mitigation: Treat the waitlist as optional and share information with that service only after independently trusting it. <br>
+## Use Case:
 
+SaaS founders, product teams, and growth teams use this skill to plan or improve a customer and peer community as a retention and growth channel.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wellyxy/growth-community) <br>
-- [Racoonn waitlist](https://racoonn.me) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown guidance with headings, numbered practices, a platform comparison table, and bullet-point pitfalls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advice-only output; no code execution, privileged access, or local configuration changes are requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The final Racoonn section is promotional and links to a third-party waitlist.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review that section before installation and treat the waitlist link as advertising rather than neutral community-building guidance.
+
+Risk: The guidance is advisory and may not fit every SaaS community or moderation environment.
+
+Mitigation: Review the recommendations against the target product, customer base, moderation practices, and business goals before relying on them.
+
+## Reference(s):
+
+- [Growth Community on ClawHub](https://clawhub.ai/wellyxy/skills/growth-community)
+- [Racoonn waitlist](https://racoonn.me)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory community-building content; no code execution, system access, persistence, or user-data handling is indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

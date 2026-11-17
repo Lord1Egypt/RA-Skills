@@ -1,41 +1,56 @@
-## Description: <br>
-Call GET /api/douyin/get-video-comment/v1 for Douyin (TikTok China) Video Comments through JustOneAPI with awemeId. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/douyin/get-video-comment/v1 for Douyin (TikTok China) Video Comments through JustOneAPI with awemeId.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch Douyin video comments for a specific awemeId through JustOneAPI. The returned comment data supports sentiment analysis and engagement review workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a JustOneAPI token and sends requested Douyin video IDs to JustOneAPI. <br>
-Mitigation: Install only if you trust JustOneAPI, keep JUST_ONE_API_TOKEN out of chat, screenshots, shell history, and logs, and rotate the token if it is exposed. <br>
+## Use Case:
 
+Developers and agents use this skill to call the JustOneAPI Douyin comments endpoint for a specific awemeId and summarize returned comment, author, text, and like data for sentiment analysis or engagement review.
 
-## Reference(s): <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_get_video_comment&utm_content=project_link) <br>
-- [JustOneAPI dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_get_video_comment&utm_content=project_link) <br>
-- [ClawHub skill page](https://clawhub.ai/justoneapi/justoneapi-douyin-get-video-comment) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and JUST_ONE_API_TOKEN; calls getVideoCommentV1 with awemeId and optional page.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The JustOneAPI token may be exposed through command arguments or URL logging.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited-scope token, avoid running commands in environments that log process arguments, and review logs for token exposure risk.
+
+Risk: Returned Douyin comments are user-generated content and may carry privacy or platform-terms obligations.
+
+Mitigation: Handle returned comment data according to applicable privacy requirements and Douyin or JustOneAPI terms before sharing or storing it.
+
+## Reference(s):
+
+- [JustOneAPI homepage](https://api.justoneapi.com)
+- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_get_video_comment&utm_content=project_link)
+- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_get_video_comment&utm_content=project_link)
+- [ClawHub skill page](https://clawhub.ai/justoneapi/skills/justoneapi-douyin-get-video-comment)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown summary followed by raw JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a JustOneAPI token, awemeId, and optional page query parameter.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

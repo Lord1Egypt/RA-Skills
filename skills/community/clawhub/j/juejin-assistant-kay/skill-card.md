@@ -1,39 +1,50 @@
-## Description: <br>
-Assists with creating and publishing Juejin technical articles, including login, Markdown editing, previewing, publishing, draft management, and optimization guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assist with Juejin article creation, including login methods, writing, editing with Markdown, previewing, publishing, and managing drafts.
 
-## Publisher: <br>
-[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png)
 
-## Use Case: <br>
-Developers and technical writers use this skill to plan, format, publish, and manage technical articles on Juejin. It provides platform-specific publishing steps, article templates, and practical guidance for improving readability and discovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Publishing technical articles can accidentally expose credentials, private company information, unpublished code, personal details, or metadata in screenshots and images. <br>
-Mitigation: Review article text, code snippets, screenshots, links, and image metadata before publishing. <br>
+## Use Case:
 
+External developers and technical writers use this skill for Chinese-language guidance on preparing, formatting, previewing, publishing, and managing technical articles on Juejin.
 
-## Reference(s): <br>
-- [Juejin](https://juejin.cn) <br>
-- [ClawHub skill page](https://clawhub.ai/shenghoo123-png/juejin-assistant-kay) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown prose with article templates, checklists, and example code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; users should review article text, code snippets, screenshots, links, and image metadata before publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: The skill provides Chinese-language publishing guidance, which may be unsuitable for users who cannot review the instructions or generated article content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user is comfortable with Chinese-language guidance and review article content before publishing it publicly on Juejin.
+
+## Reference(s):
+
+- [Juejin platform](https://juejin.cn)
+- [ClawHub skill page](https://clawhub.ai/shenghoo123-png/skills/juejin-assistant-kay)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown and concise text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language publishing instructions and article templates]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

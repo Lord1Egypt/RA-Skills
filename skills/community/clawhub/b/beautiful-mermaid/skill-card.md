@@ -1,48 +1,58 @@
-## Description: <br>
-Beautiful Mermaid renders Mermaid diagrams as SVG, PNG, or ASCII art with built-in themes, style presets, CSS-level customization, interactive preview, and batch rendering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Render Mermaid diagrams as beautiful SVG, PNG, or ASCII art with support for flowchart, sequence, state, class, ER, and XY chart types, built-in themes, style presets, CSS customization, interactive preview, and batch rendering.
 
-## Publisher: <br>
-[chouraycn](https://clawhub.ai/user/chouraycn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chouraycn](https://clawhub.ai/user/chouraycn)
 
-## Use Case: <br>
-Developers and technical writers use this skill to turn Mermaid source into polished diagrams for terminal, chat, web, and documentation workflows. It supports one-off rendering, batch rendering, preview-driven styling, and rich HTML diagram collections. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The renderer reads Mermaid files and writes SVG, PNG, ASCII, or HTML outputs to user-selected paths. <br>
-Mitigation: Review input and output paths before running render or batch commands, especially when operating in shared workspaces. <br>
-Risk: The preview tool stores preferences and custom diagram code in browser localStorage. <br>
-Mitigation: Avoid entering sensitive diagram content in the preview when using shared browsers or machines. <br>
-Risk: Preview or exported HTML may contact Google Fonts unless blocked or modified. <br>
-Mitigation: Use network controls or modify exported HTML when offline operation or third-party font isolation is required. <br>
-Risk: Installing the skill brings npm dependencies into the execution environment. <br>
-Mitigation: Review dependency policy and install from trusted package sources before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to render Mermaid diagrams into polished SVG, PNG, ASCII, or rich HTML outputs for documentation, presentations, terminal workflows, and web previews.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/chouraycn/beautiful-mermaid) <br>
-- [Publisher Profile](https://clawhub.ai/user/chouraycn) <br>
-- [Project Homepage](https://github.com/chouraycn/beautiful-mermaid) <br>
-- [API Configuration Reference](references/api-config.json) <br>
-- [Mermaid Documentation](https://mermaid.js.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline Mermaid examples, shell commands, and rendering guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides an agent to produce Mermaid render commands and files such as SVG, PNG, ASCII text, or rich HTML outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, server release metadata) <br>
+Risk: The security review reports active local HTML preview behavior and confirmed unsanitized HTML/SVG insertion paths, making untrusted Mermaid input risky.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with trusted .mmd files, skip automatic previews when not needed, and avoid opening generated HTML from untrusted Mermaid input until the @icon and preview innerHTML paths are sanitized.
+
+Risk: Generated diagrams or rich HTML may include content derived from user-provided diagram metadata.
+
+Mitigation: Review generated SVG, PNG, ASCII, or HTML outputs before publishing or embedding them in downstream documents or sites.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chouraycn/skills/beautiful-mermaid)
+- [Publisher profile](https://clawhub.ai/user/chouraycn)
+- [Beautiful Mermaid repository](https://github.com/chouraycn/beautiful-mermaid)
+- [Upstream Beautiful Mermaid project](https://github.com/lukilabs/beautiful-mermaid)
+- [Mermaid documentation](https://mermaid.js.org/)
+- [API configuration](references/api-config.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands and generated SVG, PNG, ASCII, or HTML files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May open an interactive local HTML preview and may batch-render multiple .mmd files.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, package.json, ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

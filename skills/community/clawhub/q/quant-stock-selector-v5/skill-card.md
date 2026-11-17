@@ -1,43 +1,58 @@
-## Description: <br>
-三层筛网量化选股v1.0 helps an agent run an A-share stock screening workflow that filters candidates, scores them with value, quality, and momentum factors, and returns an industry-balanced shortlist. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents run a three-layer quantitative A-share stock screening workflow that filters candidates, scores value, quality, and momentum factors, and returns an industry-balanced shortlist.
 
-## Publisher: <br>
-[paudyyin](https://clawhub.ai/user/paudyyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paudyyin](https://clawhub.ai/user/paudyyin)
 
-## Use Case: <br>
-External users and finance-oriented developers use this skill to screen A-share equities with a three-layer process: hard exclusions, multi-factor scoring, and industry balance. Outputs are informational screening results and are not investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact embeds and automatically uses a third-party JQData credential. <br>
-Mitigation: Remove and rotate the exposed credential before use, and require users to provide credentials through environment variables or secure configuration. <br>
-Risk: The skill produces stock-screening results that could be mistaken for investment advice. <br>
-Mitigation: Treat outputs as informational screening only, review the assumptions and data freshness, and require human financial judgment before any trading decision. <br>
-Risk: Recurring execution can repeatedly call finance data services and generate scheduled screening outputs. <br>
-Mitigation: Enable scheduled runs only when the operator intentionally wants recurring finance scans and has reviewed service terms, credentials, and output handling. <br>
+## Use Case:
 
+External users and developers use this skill to screen A-share stocks with a documented quantitative process and generate an informational ranked shortlist. It is not financial advice and should be reviewed before use in any investment workflow.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/paudyyin/quant-stock-selector-v5) <br>
-- [Original strategy article](https://zhuanlan.zhihu.com/p/1996940902648796995) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Shell commands, Markdown, Code] <br>
-**Output Format:** [Console text and markdown guidance with tabular stock-screening results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires third-party market data packages and data-service credentials before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The security evidence reports embedded JQData credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the embedded credentials, rotate them with the data provider, and require users to provide credentials through an external secret or environment configuration.
+
+Risk: The security evidence reports that the documented screening method does not closely match the code for a finance workflow.
+
+Mitigation: Review the implemented filters against the documentation before deployment and treat generated stock lists as informational only.
+
+Risk: The artifact relies on live third-party market-data packages and a fixed JQData date noted in the documentation.
+
+Mitigation: Test in an isolated environment with pinned dependencies and verify data-source availability and freshness before using the results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/paudyyin/skills/quant-stock-selector-v5)
+- [Original Zhihu strategy article](https://zhuanlan.zhihu.com/p/1996940902648796995)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text console output with ranked stock-screening results and brief guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are informational and depend on JQData and AKShare availability and data freshness.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

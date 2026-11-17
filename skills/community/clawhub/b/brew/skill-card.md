@@ -1,42 +1,55 @@
-## Description: <br>
-Manage Homebrew end-to-end on macOS, including detecting whether Homebrew is installed, understanding formula vs cask, updating metadata and packages, installing/uninstalling software, searching/listing package state, cleanup/autoremove, diagnostics, and Brewfile workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Homebrew end-to-end on macOS, including detecting whether Homebrew is installed, understanding formula vs cask, updating metadata and packages, installing/uninstalling software, searching/listing package state, cleanup/autoremove, diagnostics, and Brewfile workflows.
 
-## Publisher: <br>
-[weichengwu](https://clawhub.ai/user/weichengwu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weichengwu](https://clawhub.ai/user/weichengwu)
 
-## Use Case: <br>
-Developers, technical users, and support agents use this skill to manage Homebrew on macOS: checking installation health, updating metadata and packages, installing or removing formulae and casks, cleaning dependencies, troubleshooting brew errors, and exporting or applying Brewfile state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Homebrew operations can install, uninstall, upgrade, clean up, or otherwise change software on a Mac. <br>
-Mitigation: Review and approve package installs, uninstalls, upgrades, cleanup, autoremove, Brewfile sync, and installer steps only when the expected changes are understood. <br>
-Risk: Running the Homebrew installer executes a remote shell script when Homebrew is missing. <br>
-Mitigation: Detect whether Homebrew is already installed first, clearly report when it is missing, and proceed with the installer only after the user confirms. <br>
-Risk: Cleanup, autoremove, uninstall, or Brewfile sync commands can remove packages or alter the local development environment. <br>
-Mitigation: Use dry-run or check commands where available, confirm exact targets before destructive changes, and verify results after execution. <br>
+## Use Case:
 
+Developers and macOS users use this skill to manage Homebrew package lifecycle tasks, diagnose brew environment issues, and export or sync package state with Brewfile workflows.
 
-## Reference(s): <br>
-- [Homebrew official installer script](https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes concise command reports, verification steps, and troubleshooting guidance for Homebrew package and Brewfile workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may direct an agent to run the live Homebrew remote installer script in Bash without integrity verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the official installer source or run the official Homebrew install flow yourself before allowing installation.
+
+Risk: The skill manages Homebrew packages and Brewfile workflows that can install, uninstall, clean up, or sync software on a Mac.
+
+Mitigation: Confirm package names and Brewfile paths before install, uninstall, cleanup, autoremove, or bundle commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/weichengwu/skills/brew)
+- [Publisher Profile](https://clawhub.ai/user/weichengwu)
+- [Homebrew Installer Script](https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Concise command reports, verification steps, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

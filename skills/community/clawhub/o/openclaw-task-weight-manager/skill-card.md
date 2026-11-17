@@ -1,43 +1,56 @@
-## Description: <br>
-Helps an OpenClaw agent manage multiple interleaved conversation threads by identifying the mainline task, weighting side topics, parking distractions, and periodically steering attention back to the highest-priority work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps OpenClaw manage interleaved conversation threads by prioritizing a mainline, parking side topics, assigning weights, and periodically steering attention back to the highest-value task.
 
-## Publisher: <br>
-[LucasZH7](https://clawhub.ai/user/LucasZH7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lucaszh7](https://clawhub.ai/user/lucaszh7)
 
-## Use Case: <br>
-External users and developers use this skill to keep one chat organized around a mainline task while lower-priority side topics are classified, parked, and revisited when priorities change. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local task notes may capture sensitive project context if the persistence or bootstrap workflow is used. <br>
-Mitigation: Review generated markdown files before committing or sharing a workspace, and avoid storing secrets in thread notes. <br>
-Risk: Priority weighting can over-focus on a stale mainline or park an urgent interruption when user intent changes. <br>
-Mitigation: Accept explicit priority changes from the user and re-run re-weighting when urgency, blockers, or task ownership changes. <br>
+## Use Case:
 
+External developers and OpenClaw users use this skill to keep one noisy chat organized into weighted threads, protect the active mainline, and resume important work after interruptions.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/LucasZH7/openclaw-task-weight-manager) <br>
-- [Project Homepage](https://github.com/LucasZH7/openclaw-task-weight-manager) <br>
-- [OpenClaw Integration Notes](references/integration.md) <br>
-- [Usage Patterns](references/usage-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown status blocks, human-readable task boards, and optional shell commands for bootstrapping workspace notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local markdown files under task-weight-manager/ and HEARTBEAT.md when the bootstrap script or persistence workflow is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill can create or update local Markdown files that summarize conversation threads and priorities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated task-weight-manager files, avoid storing sensitive transcript details, and disable persistence when file-backed summaries are not wanted.
+
+Risk: Optional HEARTBEAT, cron, memory, session, or external LLM helper integrations can increase automation, token cost, and transcript-processing exposure.
+
+Mitigation: Enable optional automation only through explicit user choice, keep intervals conservative, and limit transcript scope to the minimum needed for re-prioritization.
+
+## Reference(s):
+
+- [OpenClaw Integration Notes](artifact/references/integration.md)
+- [Usage Patterns](artifact/references/usage-patterns.md)
+- [Project homepage](https://github.com/LucasZH7/openclaw-task-weight-manager)
+- [ClawHub skill page](https://clawhub.ai/lucaszh7/skills/openclaw-task-weight-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown status blocks, concise prose, and optional workspace Markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update task-weight-manager/threads.md, task-weight-manager/decisions.md, and HEARTBEAT.md when workspace file access is available.]
+
+## Skill Version(s):
+
+1.0.1 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

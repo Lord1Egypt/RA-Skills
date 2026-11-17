@@ -1,48 +1,60 @@
-## Description: <br>
-Context-aware AI partner for data processing, debugging, workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Context-aware AI partner for data processing, debugging, workflows.
 
-## Publisher: <br>
-[cyberforexblockchain](https://clawhub.ai/user/cyberforexblockchain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyberforexblockchain](https://clawhub.ai/user/cyberforexblockchain)
 
-## Use Case: <br>
-External developers and agents use this skill to call a paid NEXUS AI teammate for data processing, debugging, and workflow assistance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ClawScan reports this as a disclosed paid remote AI service whose broad automatic invocation and payment authority need review before use. <br>
-Mitigation: Use sandbox testing first, restrict payment credentials, and require explicit human approval before making paid requests. <br>
-Risk: Prompts, code, logs, and workflow data sent through the skill are processed by NEXUS. <br>
-Mitigation: Install only if you trust NEXUS with that data, and avoid sending confidential data unless the service is approved for that use. <br>
+## Use Case:
 
+External developers and agents use this skill to send task context to the NEXUS AI Teammate service for data processing, debugging, and workflow support.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cyberforexblockchain/nexus-teammate) <br>
-- [NEXUS Agent-as-a-Service Platform](https://ai-service-hub-15.emergent.host) <br>
-- [NEXUS service endpoint](https://ai-service-hub-15.emergent.host/api/original-services/teammate) <br>
-- [x402 discovery](https://ai-service-hub-15.emergent.host/api/mpp/x402) <br>
-- [MPP discovery](https://ai-service-hub-15.emergent.host/api/mpp/discover) <br>
-- [AP2 configuration](https://ai-service-hub-15.emergent.host/api/ap2/config) <br>
-- [XRPL configuration](https://ai-service-hub-15.emergent.host/api/xrpl/config) <br>
-- [Stablecoin registry](https://ai-service-hub-15.emergent.host/api/mpp/stablecoins) <br>
-- [A2A agent card](https://ai-service-hub-15.emergent.host/.well-known/agent.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Guidance] <br>
-**Output Format:** [JSON object with a result string from the remote NEXUS service] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NEXUS_PAYMENT_PROOF or a supported payment credential; requests are sent to the NEXUS service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata, changelog, and SKILL.md frontmatter) <br>
+Risk: The skill sends task inputs and payment proof data to the NEXUS remote service over HTTPS.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending secrets, private customer data, or internal source context unless the provider is trusted for that data.
+
+Risk: Normal use may require paid requests through supported payment protocols.
+
+Mitigation: Use a low-scope or sandbox payment proof where possible and confirm the selected payment requirement before retrying a paid request.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cyberforexblockchain/skills/nexus-teammate)
+- [NEXUS platform](https://ai-service-hub-15.emergent.host)
+- [x402 discovery](https://ai-service-hub-15.emergent.host/api/mpp/x402)
+- [MPP discovery](https://ai-service-hub-15.emergent.host/api/mpp/discover)
+- [AP2 configuration](https://ai-service-hub-15.emergent.host/api/ap2/config)
+- [XRPL configuration](https://ai-service-hub-15.emergent.host/api/xrpl/config)
+- [Stablecoin registry](https://ai-service-hub-15.emergent.host/api/mpp/stablecoins)
+- [A2A agent card](https://ai-service-hub-15.emergent.host/.well-known/agent.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [JSON service response containing a result string]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires HTTPS network access and a NEXUS_PAYMENT_PROOF value or supported payment credential.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

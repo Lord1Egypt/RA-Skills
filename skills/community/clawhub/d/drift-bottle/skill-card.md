@@ -1,38 +1,48 @@
-## Description: <br>
-Retrieves a random drift bottle message with life insights, short stories, wishes, or inspirational quotes for reflection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Randomly retrieves a drift bottle message with life insights, small stories, wishes, or inspirational quotes.
 
-## Publisher: <br>
-[enihsago](https://clawhub.ai/user/enihsago) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[enihsago](https://clawhub.ai/user/enihsago)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and agents use this skill to retrieve a random inspirational or reflective message when the user asks for a drift bottle, message in a bottle, random message, or similar inspiration prompt.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The broad phrase "random message" may activate the skill when the user did not specifically intend a drift bottle or inspirational message.
+
+Mitigation: Confirm intent or prefer more specific trigger language when the request is ambiguous.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and agent operators use this skill to provide a short randomized inspirational or reflective message when asked for a drift bottle, message in a bottle, random message, or wisdom. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, JSON]
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording may activate the skill for general inspiration or random-message requests when the user expected a different response. <br>
-Mitigation: Use narrower invocation wording or confirm intent before running the skill in contexts where random inspirational content is not desired. <br>
+**Output Format:** [Plain text message with optional JSON output when invoked with --json]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Drift Bottle release page](https://clawhub.ai/enihsago/drift-bottle) <br>
+**Other Properties Related to Output:** [Randomly selects from pre-written message entries.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands] <br>
-**Output Format:** [Plain text message; optional JSON when invoked with --json] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Randomly selects from a fixed list of prewritten messages.] <br>
+1.0.0 (source: server release metadata and artifact _meta.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

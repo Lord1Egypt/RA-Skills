@@ -1,51 +1,65 @@
-## Description: <br>
-All-in-one Apple developer skill for searching Apple documentation and WWDC sessions, managing App Store Connect workflows, and generating multi-platform Swift/SwiftUI apps through the `appledev` toolkit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apple Developer Toolkit helps agents search Apple developer documentation and WWDC content, manage App Store Connect workflows, and generate Swift/SwiftUI Apple-platform apps through the appledev command-line tool.
 
-## Publisher: <br>
-[Abdullah4AI](https://clawhub.ai/user/Abdullah4AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abdullah4ai](https://clawhub.ai/user/abdullah4ai)
 
-## Use Case: <br>
-Developers and AI coding agents use this skill to retrieve Apple platform guidance, prepare App Store Connect operations, and produce Swift/SwiftUI app code, commands, and project configuration for Apple platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and relies on a third-party Homebrew package for the `appledev` binary. <br>
-Mitigation: Install it only when the publisher and package source are trusted and the Apple automation features are needed. <br>
-Risk: App Store Connect and LLM credentials may be exposed if raw private keys or debug logs are handled carelessly. <br>
-Mitigation: Prefer a private-key file or keychain-backed authentication, avoid debug mode around secrets, and keep credential environment variables scoped to trusted sessions. <br>
-Risk: Automation hooks can perform release-sensitive actions such as publishing builds, pushing git tags, or sending notifications. <br>
-Mitigation: Review hook configuration before enabling automation and use dry runs or least-privilege credentials where possible. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to add Apple platform guidance to agents, look up Apple APIs and WWDC material, automate App Store Connect tasks, and scaffold Swift/SwiftUI apps. App Store Connect and app-builder workflows require appropriate credentials and local Apple tooling.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Abdullah4AI/apple-developer-toolkit) <br>
-- [Publisher Profile](https://clawhub.ai/user/Abdullah4AI) <br>
-- [App Store Connect API Keys](https://appstoreconnect.apple.com/access/integrations/api) <br>
-- [Apple Developer Documentation](https://developer.apple.com) <br>
-- [Swift](https://swift.org) <br>
-- [Node.js](https://nodejs.org) <br>
-- [README](README.md) <br>
-- [Skill Definition](SKILL.md) <br>
-- [iOS Development Rules](skills/ios-rules/SKILL.md) <br>
-- [SwiftUI Guides](skills/swiftui-guides/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline code, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may depend on local Apple tooling, the third-party `appledev` binary, App Store Connect credentials, an LLM API key, and Xcode for app-building workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.5.0 (source: server release metadata) <br>
+Risk: The skill installs an unpinned external binary from a mutable Homebrew tap.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the publisher is trusted, and prefer a pinned, checksum-verified release before using it in sensitive workflows.
+
+Risk: App Store Connect commands can affect production builds, TestFlight, submissions, signing, subscriptions, analytics, and release workflows.
+
+Mitigation: Use least-privilege App Store Connect API keys, confirm destructive or publishing actions, and review automation configuration before execution.
+
+Risk: The skill can use App Store Connect private keys and LLM API keys.
+
+Mitigation: Avoid raw private keys in environment variables where possible, keep credential scope narrow, rotate keys regularly, and review third-party integrations and LLM data handling.
+
+Risk: Generated Swift/SwiftUI app code and automated fixes may be incorrect or incomplete.
+
+Mitigation: Review generated code, run local builds and tests, and inspect App Review, privacy, entitlement, and accessibility requirements before release.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/abdullah4ai/skills/apple-developer-toolkit)
+- [Publisher Profile](https://clawhub.ai/user/abdullah4ai)
+- [App Store Connect API Keys](https://appstoreconnect.apple.com/access/integrations/api)
+- [Apple Developer Documentation](https://developer.apple.com)
+- [Agent Skills Format](https://agentskills.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated source or configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke appledev, Node.js, Xcode, App Store Connect credentials, and an LLM API key depending on the selected workflow.]
+
+## Skill Version(s):
+
+3.5.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

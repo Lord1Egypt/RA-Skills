@@ -1,40 +1,54 @@
-## Description: <br>
-Helps agents produce structured patent analysis reports and design-around guidance for patent documents, claim analysis, infringement-risk questions, and product redesign scenarios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Patent Analysis Avoidance helps analyze patent documents, claim scope, infringement risk, and design-around alternatives for product design questions.
 
-## Publisher: <br>
-[trizagi](https://clawhub.ai/user/trizagi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[trizagi](https://clawhub.ai/user/trizagi)
 
-## Use Case: <br>
-Product teams, engineers, and patent-analysis workflows use this skill to summarize patent documents, identify claim coverage, and draft practical design-around options. Outputs are informational and should be reviewed by qualified patent counsel before product decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake patent analysis or design-around suggestions for legal advice. <br>
-Mitigation: Treat outputs as informational, and verify proposed redesigns with a qualified patent attorney before implementation. <br>
-Risk: A design-around proposal may miss broader patent-family, jurisdiction, or prior-art issues. <br>
-Mitigation: Pair the skill output with a broader patent search and legal review before product launch or liability-sensitive decisions. <br>
+## Use Case:
 
+External users, product teams, and developers use this skill to turn patent text or product-risk questions into structured patent analysis reports and practical design-around options. Its conclusions should be reviewed by qualified patent counsel before business or engineering reliance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/trizagi/patent-analysis-avoidance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown report with lists and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes patent-risk warnings and recommends professional legal review before implementation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill gives concrete patent-avoidance and infringement-risk suggestions that may be mistaken for legal advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as preliminary technical brainstorming and have a qualified patent attorney review conclusions before implementation.
+
+Risk: Design-around recommendations may miss other patents or jurisdiction-specific legal constraints.
+
+Mitigation: Pair the skill output with professional patent search and jurisdiction-specific legal review before relying on a product design.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/trizagi/skills/patent-analysis-avoidance)
+- [Publisher profile](https://clawhub.ai/user/trizagi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown patent analysis report with tables and structured design-around recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language outputs; legal-risk conclusions require attorney review before reliance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

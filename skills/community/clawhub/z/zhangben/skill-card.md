@@ -1,45 +1,63 @@
-## Description: <br>
-账本 helps agents manage personal bookkeeping and assets through the Taozhu Zhangben MCP interface for income, expenses, asset trades, liabilities, transactions, and wealth summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zhangben helps agents manage personal bookkeeping and assets through the Taozhu Zhangben MCP interface, including income, expenses, asset trades, liabilities, transactions, and dashboard summaries.
 
-## Publisher: <br>
-[chensenym](https://clawhub.ai/user/chensenym) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chensenym](https://clawhub.ai/user/chensenym)
 
-## Use Case: <br>
-Individuals and their agents use this skill to record and review personal financial activity, including income, expenses, assets, liabilities, transactions, and wealth summaries via the Taozhu Zhangben MCP service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive financial records and credentials with under-scoped authentication and write-operation safeguards. <br>
-Mitigation: Review before installing, prefer the user-provided token path, treat saved tokens and identity IDs as sensitive credentials, and require explicit user confirmation before financial write operations. <br>
-Risk: The API identity path can create device-linked identification. <br>
-Mitigation: Avoid the MAC-derived API identity path unless the user accepts device-linked identification, and preserve the generated identity ID only when that authentication mode is chosen. <br>
+## Use Case:
 
+External users and personal finance agents use this skill to authenticate with moneydata.cn, record income and expenses, manage asset and liability transactions, and query financial summaries. It is intended for personal bookkeeping workflows where the user can confirm financial write actions before they are sent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chensenym/zhangben) <br>
-- [Authentication flow](references/auth.md) <br>
-- [MCP API reference](references/mcp-api.md) <br>
-- [Category codes](references/category-codes.md) <br>
-- [Platform IDs](references/platform-ids.md) <br>
-- [Common error codes](references/errorcode.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with JSON-RPC tool-call examples and parameter schemas] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-selected authentication and handles sensitive personal finance data and tokens.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Personal financial records and authentication material are sent to moneydata.cn.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if that service is acceptable for the user's financial data, and prefer an authentication path the user understands before any financial action is taken.
+
+Risk: The automatic API authentication path can create a persistent device identifier from the user's MAC address.
+
+Mitigation: Prefer the user-provided WeChat mini-program token when possible; use the automatic API path only if persistent device linkage is acceptable.
+
+Risk: The skill can guide write actions that record or change income, expenses, assets, debts, and repayments.
+
+Mitigation: Require user confirmation of tool name, amount, currency, platform, category, and date before submitting any write operation.
+
+## Reference(s):
+
+- [Authentication Flow](references/auth.md)
+- [MCP API Reference](references/mcp-api.md)
+- [Category Codes](references/category-codes.md)
+- [Platform IDs](references/platform-ids.md)
+- [Error Codes](references/errorcode.md)
+- [Taozhu Zhangben MCP endpoint](https://moneydata.cn/mcp)
+- [Taozhu Zhangben token endpoint](https://moneydata.cn/api/user/token)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with code examples, shell-command guidance, and JSON-RPC/API call parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires authentication material for moneydata.cn and can guide write actions that record or change financial data.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter, ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

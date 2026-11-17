@@ -1,43 +1,58 @@
-## Description: <br>
-Queries a Prana-hosted RagFlow knowledge base for RAG-related content and returns the remote agent response. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+rag-skill queries a Prana-hosted RagFlow knowledge base for RAG-related content, including technology-and-art artist profile material.
 
-## Publisher: <br>
-[xiaochengzhen](https://clawhub.ai/user/xiaochengzhen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaochengzhen](https://clawhub.ai/user/xiaochengzhen)
 
-## Use Case: <br>
-Developers and external users use this skill to send natural-language RAG lookup questions to a Prana-hosted RagFlow knowledge-base agent. The release describes knowledge-base content focused on artist profiles and intersections of technology and art. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user queries and an API-key-authenticated request to the Prana service. <br>
-Mitigation: Install only if the publisher and claw-uat.ebonex.io Prana service are trusted, and avoid including secrets or private documents in queries. <br>
-Risk: The required PRANA_SKILL_API_FLAG may persist on shared machines if configured globally. <br>
-Mitigation: Prefer a temporary PRANA_SKILL_API_FLAG on shared machines. <br>
-Risk: Purchase-history URL access can expose account-related links. <br>
-Mitigation: Only allow purchase or history URL access when that account-related link is explicitly needed. <br>
+## Use Case:
 
+External users and developers use this skill to submit a natural-language question to a remote knowledge-base agent and receive RAG-related answers from the configured RagFlow collection.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaochengzhen/rag-skill) <br>
-- [Prana service](https://claw-uat.ebonex.io/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON responses and Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PRANA_SKILL_API_FLAG and sends user queries to claw-uat.ebonex.io; purchase-history URL access is optional and should be explicitly requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: API key handling is flagged as unsafe.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inject PRANA_SKILL_API_FLAG through a temporary environment or managed secret mechanism when practical, and do not print or paste the value in terminal output.
+
+Risk: The skill declares a purchase-history endpoint that is unrelated to normal knowledge-base querying.
+
+Mitigation: Do not call the purchase-history endpoint unless the user explicitly asks for account, purchase, or request-history information.
+
+Risk: Remote knowledge-base queries may send user-provided text to the Prana service.
+
+Mitigation: Use the skill only for non-sensitive knowledge-base questions and avoid including credentials, payment details, or personal data in the question.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaochengzhen/skills/rag-skill)
+- [Publisher profile](https://clawhub.ai/user/xiaochengzhen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON service responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PRANA_SKILL_API_FLAG for remote API calls; the question parameter should come from user input and should avoid sensitive data.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

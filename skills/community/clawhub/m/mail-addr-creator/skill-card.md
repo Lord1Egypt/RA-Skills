@@ -1,44 +1,60 @@
-## Description: <br>
-Creates one or many mailbox addresses in a Cloudflare temporary mail system through the /admin/new_address admin API and returns structured results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates one or many ordinary mailbox addresses in a Cloudflare temporary mail system through the /admin/new_address admin API and returns structured results.
 
-## Publisher: <br>
-[jcwang502](https://clawhub.ai/user/jcwang502) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jcwang502](https://clawhub.ai/user/jcwang502)
 
-## Use Case: <br>
-Developers and operators use this skill to create single or batch mailbox addresses through a Cloudflare temporary mail system admin API, including JSON or CSV output for downstream handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create mailboxes using admin credentials. <br>
-Mitigation: Use least-privilege admin credentials and confirm the target API URL, domain, and requested mailbox count before execution. <br>
-Risk: Returned JWTs, passwords, and exported JSON or CSV files may contain secrets. <br>
-Mitigation: Treat script output and output files as sensitive, avoid writing them to shared paths, and delete them when no longer needed. <br>
-Risk: Batch creation can create many addresses in one run. <br>
-Mitigation: Review batch inputs, de-duplicated names, and the destination domain before allowing the agent to run the command. <br>
+## Use Case:
 
+External developers and operators use this skill to create single or batch mailbox addresses in a Cloudflare temporary mail system through the backend admin API and receive structured JSON or CSV results.
 
-## Reference(s): <br>
-- [API Reference](references/api.md) <br>
-- [Examples](references/examples.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jcwang502/mail-addr-creator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files, guidance] <br>
-**Output Format:** [JSON or CSV from the helper script, with concise Markdown guidance when summarizing for a user.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include mailbox JWTs, passwords, and CSV or JSON output files that should be treated as secrets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill handles admin credentials and returned mailbox secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted environments, prefer environment variables over command-line secrets, and treat output files and transcripts as sensitive.
+
+Risk: The API endpoint can be overridden with CLOUDFLARE_MAIL_API_URL.
+
+Mitigation: Keep CLOUDFLARE_MAIL_API_URL unset unless intentionally using a trusted endpoint.
+
+Risk: Generated JSON or CSV may include mailbox JWTs or passwords.
+
+Mitigation: Store exports only in protected locations and avoid sharing logs or transcripts containing results.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jcwang502/skills/mail-addr-creator)
+- [API Reference](artifact/references/api.md)
+- [Example Prompts](artifact/references/examples.md)
+- [Create Address API Endpoint](https://mail-api.suilong.online/admin/new_address)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration]
+
+**Output Format:** [JSON or CSV results, with Markdown summaries when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include mailbox JWTs or passwords returned by the admin API; treat transcripts and output files as sensitive.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

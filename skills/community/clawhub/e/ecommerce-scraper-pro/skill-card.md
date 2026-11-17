@@ -1,41 +1,57 @@
-## Description: <br>
-Extracts structured data from web pages and APIs, with support for batch processing and multiple output formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts structured data from webpages and APIs for batch collection workflows.
 
-## Publisher: <br>
-[chungvic](https://clawhub.ai/user/chungvic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chungvic](https://clawhub.ai/user/chungvic)
 
-## Use Case: <br>
-Developers and operators use this skill to collect structured product, article, job, real estate, social, or custom data from permitted web and API sources. It is suited for workflows such as price monitoring, market research, and lead data collection where the user controls scraping scope and outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scraper performs user-directed network requests and may access sites where scraping is restricted. <br>
-Mitigation: Only scrape sites and APIs you are allowed to access, respect robots.txt and rate limits, and avoid excessive request volume. <br>
-Risk: API authentication values passed with --auth could expose sensitive credentials if reused broadly or logged outside the tool. <br>
-Mitigation: Use scoped temporary API tokens, avoid collecting sensitive personal data, and rotate credentials after use when appropriate. <br>
-Risk: The tool writes results to user-supplied output paths and creates parent directories. <br>
-Mitigation: Choose output paths intentionally, review generated files before sharing them, and run the skill in a virtual environment with pinned or locked dependencies when reproducibility matters. <br>
+## Use Case:
 
+External developers and data teams use this skill to prepare scraping workflows for ecommerce price monitoring, market research, lead collection, and API data extraction.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with shell commands; the scraper can produce JSON, CSV, or Excel-style output files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on user-selected URLs, API endpoints, selectors, data type, authentication, delay, and output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: API tokens can be sent to user-provided endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted HTTPS endpoints, avoid placing valuable secrets directly on the command line, and prefer managed secret handling where available.
+
+Risk: Local output files may contain sensitive scraped or API data.
+
+Mitigation: Treat generated files as sensitive, restrict access, and remove data that should not be retained.
+
+Risk: Scraping activity may conflict with site terms, robots.txt, copyright, or privacy requirements.
+
+Mitigation: Review the target site's terms, robots.txt, and applicable privacy rules before scraping, and keep request rates controlled.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chungvic/skills/ecommerce-scraper-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples; scraper runs can produce JSON, CSV, or Excel files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local output files containing scraped webpage or API response data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Fix garbled text in PDF/SVG vector graphics for final editing in AI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fix garbled text in PDF/SVG vector graphics for final editing in AI.
 
-## Publisher: <br>
-[EC-cyber258](https://clawhub.ai/user/EC-cyber258) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ec-cyber258](https://clawhub.ai/user/ec-cyber258)
 
-## Use Case: <br>
-Developers and document workflow users use this skill to inspect PDF or SVG vector files, detect garbled text caused by encoding or font issues, and prepare repair suggestions, editable JSON, or local file-processing commands for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local document processing can read source PDF/SVG files and write output files, reports, or JSON exports. <br>
-Mitigation: Run the tool only on copies of intended documents, review input and output paths before execution, and keep generated files inside the expected workspace. <br>
-Risk: Repair suggestions, logs, and JSON exports may contain private source-document text or inaccurate replacements. <br>
-Mitigation: Treat exports and logs as sensitive, review suggested fixes manually, and avoid relying on repaired text without human confirmation. <br>
-Risk: The skill depends on local Python packages for PDF/SVG parsing and text processing. <br>
-Mitigation: Install dependencies deliberately, preferably pinned and from trusted package names, before running the commands. <br>
+## Use Case:
 
+Developers and document-editing teams use this skill to analyze PDF/SVG vector files for garbled text, export editable JSON maps, and plan manual repairs while preserving layout context.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/EC-cyber258/vector-text-fixer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, JSON, Code] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON export structures] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local PDF/SVG processing instructions, repair summaries, and editable JSON maps for manual review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The release overclaims repaired PDF/SVG output; security evidence says to expect analysis results and JSON export only.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for inspection and editable JSON export workflows, and manually verify any document changes before replacing source files.
+
+Risk: Dependencies are ambiguous and unpinned.
+
+Mitigation: Install in an isolated environment with a corrected, pinned dependency manifest using the intended packages such as PyMuPDF and beautifulsoup4.
+
+Risk: The script reads local PDF/SVG inputs and writes output files in the workspace.
+
+Mitigation: Run it in a sandboxed workspace with non-sensitive copies, then review generated files before broader use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ec-cyber258/skills/vector-text-fixer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Code, Guidance]
+
+**Output Format:** [Markdown guidance with CLI/Python examples and JSON export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local PDF/SVG inputs are analyzed and optional editable JSON exports can be written to the workspace.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

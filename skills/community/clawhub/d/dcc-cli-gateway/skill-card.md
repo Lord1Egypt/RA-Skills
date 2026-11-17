@@ -1,45 +1,50 @@
-## Description: <br>
-Default unified entry for agents and headless CLI hosts to control live DCC applications through dcc-mcp-cli local registry/direct MCP or remote gateway REST. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate named supported applications through DCC-MCP, discover tools and marketplace skills, and support explicit DCC-MCP or DCC-CUA requests.
 
-## Publisher: <br>
-[loonghao](https://clawhub.ai/user/loonghao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loonghao](https://clawhub.ai/user/loonghao)
 
-## Use Case: <br>
-Developers, technical artists, and shell-capable agent hosts use this skill to inventory DCC instances, discover tool schemas, and invoke DCC-MCP tools through a CLI-first workflow with a REST fallback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead an agent to download dcc-mcp-cli from GitHub releases or use installer commands when setup paths are needed. <br>
-Mitigation: Require explicit user consent before downloads or setup, verify the release source, and inspect installer commands before running them. <br>
-Risk: The skill can start persistent local gateway daemons, install adapters or marketplace skills, and mutate local DCC environments. <br>
-Mitigation: Use inventory and doctor commands first, review planned changes, and require approval before executing install, marketplace, daemon, or adapter setup commands. <br>
-Risk: Remote gateway profiles can route commands to a workstation or studio service outside the local machine. <br>
-Mitigation: Confirm any remote gateway URL belongs to the user or studio before selecting the profile or invoking tools through it. <br>
+## Use Case:
 
+Developers and creative professionals use the skill to discover and operate supported creative and productivity applications through DCC-MCP, then inspect the resulting scene, document, or artifact. It also guides explicit DCC-CUA application UI tasks with observation and readback requirements.
 
-## Reference(s): <br>
-- [DCC CLI Gateway source](https://github.com/dcc-mcp/dcc-mcp-core/blob/main/skills/dcc-cli-gateway/SKILL.md) <br>
-- [CLI cheatsheet](references/CLI_CHEATSHEET.md) <br>
-- [Zero instances CLI setup guide](references/ZERO_INSTANCES_CLI.md) <br>
-- [ClawHub skill page](https://clawhub.ai/loonghao/skills/dcc-cli-gateway) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may include commands that inspect local or remote DCC gateway state, request consent before setup, and return JSON from dcc-mcp-cli or the Python REST fallback.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.19.2 (source: server release metadata and skill metadata) <br>
+Risk: A fallback helper may repeat a project edit after a timeout, potentially applying a change twice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a version that stops after an uncertain mutating call instead of retrying through REST. Until then, avoid the Python gateway helper for important edits and keep project backups.
+
+## Reference(s):
+
+- [DCC-MCP skill documentation](https://github.com/dcc-mcp/dcc-mcp-agent-plugins/blob/main/plugins/dcc-mcp/skills/dcc-mcp/SKILL.md)
+- [DCC-MCP production reuse gate](https://github.com/dcc-mcp/dcc-mcp-core/blob/main/crates/dcc-mcp-gateway/src/gateway/native_resources/agent_workflows.md#production-reuse-gate)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API calls, Shell commands, Files]
+
+**Output Format:** [Structured DCC-MCP tool calls with text or Markdown guidance and application-specific files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Application-specific output depends on the selected app and task.]
+
+## Skill Version(s):
+
+0.19.117 (source: server-resolved release evidence; skill frontmatter metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

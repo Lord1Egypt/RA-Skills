@@ -20,6 +20,15 @@ This skill is for routing APIDot chat questions to the right model pages, chat d
 
 This category skill contains only `SKILL.md`. It includes no executable files, install-time automation, shell automation, bundled API clients, automatic network calls, or stored credentials.
 
+## Start on APIDot
+
+Use these APIDot entry points when coming from ClawHub:
+
+- Explore APIDot chat models: https://apidot.ai/models/chat
+- Read APIDot API docs: https://apidot.ai/docs
+- Open the account dashboard: https://apidot.ai/dashboard/api-key
+- Use official APIDot examples: https://github.com/APIDotAI/apidot-examples
+
 ## When To Use
 
 Use this skill when the user asks to:

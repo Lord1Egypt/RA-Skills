@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Mago pixel</title>
+<style>
+  html,body{margin:0;background:#0b0a1a;display:grid;place-items:center;height:100vh}
+  canvas{height:100vh;width:auto;max-width:100vw;image-rendering:pixelated}
+</style>
+</head>
+<body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script>
+// ====================== LO QUE PUEDES CAMBIAR ======================
+const FRASE = 'VENDE CON MAGIA';          // lo que la magia escribe en el cielo. Grande si cabe en 3 renglones de ≤ 10 letras;
+                                          // si no, letra normal hasta 3 renglones de ≤ 21. Sale en MAYÚSCULAS y sin tildes.
+const COLORES = {
+  cielo: '#1b1840', cielo2: '#2c2764', cielo3: '#3a3380',  // de arriba hacia abajo
+  luna: '#f1ead0',
+  tunica: '#8e2f3a', tunica2: '#6a2230', oro: '#e0a93a',   // la túnica tiene que CONTRASTAR con cielo3 o el mago desaparece
+  barba: '#ecebe6', piel: '#e8b48f',
+  magia: '#7fd6ff', magia2: '#a77dff',   // el hechizo
+  piedra: '#56536e', piedra2: '#3a3850',
+};
+const DUR = 5;           // el texto se completa cerca del segundo 3
+// ===================================================================
+const W = 1080, H = 1920, FPS = 30;
+</script>
+<script src="../nucleo/nucleo.js"></script>
+<script>
+// Todo se pinta en una grilla chica y se agranda sin suavizar: así sale pixel art de verdad.
+const PX = 8, GW = W / PX, GH = H / PX;           // 135 x 240
+const low = document.createElement('canvas'); low.width = GW; low.height = GH;
+const g = low.getContext('2d');
+const px = (x, y, col, w = 1, h = 1) => { g.fillStyle = col; g.fillRect(Math.round(x), Math.round(y), w, h); };
+const PISO = 183;                                  // renglón del piso en la grilla (dentro de la zona segura)
+const MAGO = { x: 32, y: PISO };                   // pies del mago
+const T = { alza: .4, carga: .9, lanza: 1.5 };   // el hechizo sale rápido: un B-roll de 4 s ya muestra la frase
+
+// ---- la frase como máscara de pixeles, con una fuente pixel 5x7 propia (se calcula una vez) ----
+const FUENTE = {
+  A:'01110100011000111111100011000110001', B:'11110100011000111110100011000111110', C:'01110100011000010000100001000101110',
+  D:'11110100011000110001100011000111110', E:'11111100001000011110100001000011111', F:'11111100001000011110100001000010000',
+  G:'01110100011000010111100011000101111', H:'10001100011000111111100011000110001', I:'01110001000010000100001000010001110',
+  J:'00111000100001000010000101001001100', K:'10001100101010011000101001001010001', L:'10000100001000010000100001000011111',
+  M:'10001110111010110101100011000110001', N:'10001110011010110011100011000110001', 'Ñ':'01110000001000111001101011001110001',
+  O:'01110100011000110001100011000101110', P:'11110100011000111110100001000010000', Q:'01110100011000110001101011001001101',
+  R:'11110100011000111110101001001010001', S:'01111100001000001110000010000111110', T:'11111001000010000100001000010000100',
+  U:'10001100011000110001100011000101110', V:'10001100011000110001100010101000100', W:'10001100011000110101101011010101010',
+  X:'10001100010101000100010101000110001', Y:'10001100010101000100001000010000100', Z:'11111000010001000100010001000011111',
+  '0':'01110100011001110101110011000101110', '1':'00100011000010000100001000010001110', '2':'01110100010000100010001000100011111',
+  '3':'11110000010000101110000010000111110', '4':'00010001100101010010111110001000010', '5':'11111100001111000001000011000101110',
+  '6':'00110010001000011110100011000101110', '7':'11111000010001000100010000100001000', '8':'01110100011000101110100011000101110',
+  '9':'01110100011000101111000010001001100', '!':'00100001000010000100001000000000100', '¡':'00100000000010000100001000010000100',
+  '?':'01110100010000100010001000000000100', '¿':'00100000000010001000100001000101110', '.':'00000000000000000000000000000000100',
+  ',':'00000000000000000000001000010001000', ':':'00000001000000000000000000010000000', '-':'00000000000000011111000000000000000',
+  '$':'00100011111010001110001011111000100', '%':'11001110010001000100010001001110011', '+':'00000001000010011111001000010000000', ' ':'0'.repeat(35),
+};
+const sinTilde = c => ({ 'Á':'A','É':'E','Í':'I','Ó':'O','Ú':'U','Ü':'U' })[c] || c;
+const TEXTO_Y = 36;                                // primer renglón de la frase (el orbe vive más abajo, fila ~100)
+const MASCARA = (() => {
+  // quita signos que la fuente no tiene (comillas, etc.) y avisa
+  const texto = [...FRASE.toUpperCase().replace(/\s+/g, ' ').trim()].map(sinTilde).filter(c => {
+    if (FUENTE[c]) return true; console.warn(`[mago-pixel] el signo «${c}» no existe en la fuente pixel: se quitó`); return false; }).join('').replace(/ +/g, ' ');
+  const partir = maxCh => { const rs = []; let cur = '';
+    for (const p of texto.split(' ')) { const pr = cur ? cur + ' ' + p : p; if (pr.length > maxCh && cur) { rs.push(cur); cur = p; } else cur = pr; }
+    rs.push(cur); return rs; };
+  // renglones parejos: el ancho más chico que no agrega renglones
+  const parejo = maxCh => { const n = partir(maxCh).length; let m = maxCh; while (m > 1 && partir(m - 1).length === n) m--; return partir(m); };
+  // letra doble (cada punto = 2x2) si cabe en 3 renglones de ≤ 10 (deja libres los bordes y los botones de Instagram); si no, letra normal hasta 3 renglones de ≤ 21
+  let esc = 2, rs = parejo(10);
+  if (rs.length > 3 || rs.some(r => r.length > 10)) { esc = 1; rs = parejo(21); }
+  if (rs.length > 3) throw new Error(`[mago-pixel] «${FRASE}» ocupa ${rs.length} renglones: el máximo es 3 de ≤ 21 letras. Acórtala.`);
+  const pts = [];
+  rs.forEach((r, fila) => {
+    const x0 = Math.round((GW - r.length * 6 * esc + esc) / 2), y0 = TEXTO_Y + fila * 10 * esc;
+    [...r].forEach((ch, i) => { const gl = FUENTE[ch] || FUENTE['?'];
+      for (let k = 0; k < 35; k++) if (gl[k] === '1') for (let a = 0; a < esc; a++) for (let b = 0; b < esc; b++)
+        pts.push([x0 + (i * 6 + k % 5) * esc + a, y0 + Math.floor(k / 5) * esc + b]); });
+  });
+  return pts;
+})();
+const TEXTO_ABAJO = Math.max(...MASCARA.map(p => p[1])) + 4;
+
+function cielo(t) {
+  // bandas con tramado (dithering) entre colores, como en los juegos de 16 bits
+  const bandas = [[0, COLORES.cielo], [100, COLORES.cielo2], [145, COLORES.cielo3]];
+  for (let y = 0; y < PISO; y++) {
+    let i = bandas.findIndex((b, k) => k === bandas.length - 1 || y < bandas[k + 1][0]);
+    const [y0, c0] = bandas[i], next = bandas[i + 1];
+    px(0, y, c0, GW, 1);
+    if (next && y > next[0] - 14) for (let x = (y % 2); x < GW; x += 2) if ((x + y) % 4 < 2) px(x, y, next[1]);
+  }
+  // estrellas que titilan
+  const r = rng(3);
+  for (let i = 0; i < 70; i++) {
+    const x = r() * GW | 0, y = r() * (PISO - 60) | 0, fase = r() * 6.28, vel = 1 + r() * 3;
+    const b = Math.sin(t * vel + fase);
+    if (y > TEXTO_Y - 5 && y < TEXTO_ABAJO) continue;          // no ensucia la zona de la frase
+    if (b > -.3) px(x, y, b > .7 ? '#ffffff' : '#9c97d8');
+    if (b > .92) { px(x - 1, y, '#6f69b8'); px(x + 1, y, '#6f69b8'); px(x, y - 1, '#6f69b8'); px(x, y + 1, '#6f69b8'); }
+  }
+  // luna con cráteres
+  const lx = 104, ly = 22, R = 10;                 // la luna, arriba de la frase
+  for (let y = -R; y <= R; y++) for (let x = -R; x <= R; x++) if (x * x + y * y <= R * R) px(lx + x, ly + y, COLORES.luna);
+  for (const [cx, cy] of [[-4, -3], [4, 3], [-2, 6], [6, -5]]) px(lx + cx, ly + cy, '#cfc6a6', 2, 2);
+}
+
+function piso(t, brillo) {
+  px(0, PISO, COLORES.piedra, GW, 2);
+  for (let y = PISO + 2; y < GH; y++) px(0, y, COLORES.piedra2, GW, 1);
+  for (let fila = 0; fila < 4; fila++) {
+    const y = PISO + 3 + fila * 9, off = fila % 2 ? 16 : 0;
+    px(0, y - 1, '#2a2840', GW, 1);
+    for (let x = -off; x < GW; x += 32) { px(x, y, '#2a2840', 1, 8); px(x + 6, y + 3, '#4a4762'); px(x + 20, y + 5, '#4a4762'); }
+  }
+  // reflejo de la magia en el piso
+  if (brillo > 0) for (let x = 10; x < 125; x++) if (hash2(x, BOIL) < brillo * .8) px(x, PISO, hash2(x, 7) < .5 ? COLORES.magia : COLORES.magia2);
+}
+
+// ANATOMIA: estilizada — pixel art en grilla chica: la mano es un bloque de 3×3 pixeles
+function mago(t) {
+  const { x, y } = MAGO;
+  const resp = Math.round(Math.sin(t * 2.4) * .8);            // respira
+  const alza = ease(prog(t, T.alza, T.carga));
+  // túnica (trapecio) con franja dorada
+  for (let k = 0; k < 30; k++) { const ancho = 10 + k * .45 | 0; px(x - ancho / 2 | 0, y - 30 + k + resp * (k < 5 ? 1 : 0), k < 18 ? COLORES.tunica : COLORES.tunica, ancho, 1); px(x + (ancho / 2 | 0) - 3, y - 30 + k, COLORES.tunica2, 3, 1); }
+  px(x - 16, y - 3, COLORES.oro, 32, 2);
+  px(x - 8, y - 17, COLORES.oro, 16, 1);
+  px(x - 13, y, '#2a1c1c', 10, 1); px(x + 4, y, '#2a1c1c', 10, 1);     // botas
+  // cara y barba
+  px(x - 3, y - 36 + resp, COLORES.piel, 7, 4);
+  px(x + 1, y - 35 + resp, '#2a1c1c');                                  // ojo
+  for (let k = 0; k < 14; k++) { const a = Math.max(1, 7 - k * .4) | 0; px(x - 3 + (7 - a) / 2, y - 32 + k + resp, COLORES.barba, a, 1); }
+  // sombrero: cono con la punta doblada que se mece
+  const mece = Math.round(Math.sin(t * 1.7) * 1.5);
+  px(x - 9, y - 38 + resp, COLORES.tunica2, 19, 2); px(x - 9, y - 39 + resp, COLORES.oro, 19, 1);
+  for (let k = 0; k < 16; k++) { const a = Math.max(2, 13 - k * .8) | 0; px(x - a / 2 + k * .25 * (k > 9 ? 1 : 0), y - 40 - k + resp, COLORES.tunica, a, 1); }
+  for (let k = 0; k < 6; k++) px(x - 2 - k + mece * (k / 6), y - 56 + k * .4 + resp, COLORES.tunica, 2, 2);
+  // brazo y bastón: el ángulo sube de 30° a 60° al levantarlo
+  const ang = lerp(-.45, -1.05, alza), hx = x + 6, hy = y - 22 + resp;
+  for (let k = 0; k < 7; k++) px(hx + k * .8, hy - k * .6 * (1 + alza), COLORES.tunica, 3, 3);
+  const L = 44, bx = hx + 6, by = hy - 6 * (1 + alza);
+  for (let k = -8; k < L; k++) px(bx + Math.cos(ang) * k, by + Math.sin(ang) * k, k % 5 ? '#8a5a2b' : '#6a4420');
+  px(bx - 1, by - 1, COLORES.piel, 3, 3);                                 // mano
+  return [bx + Math.cos(ang) * L, by + Math.sin(ang) * L];                  // punta del bastón
+}
+
+function orbe(t, [ox, oy]) {
+  const carga = prog(t, T.carga, T.lanza);
+  const R = 2 + carga * 3 + (t > T.lanza ? 1 : 0) + Math.sin(t * 14) * .6;
+  for (let y = -6; y <= 6; y++) for (let x = -6; x <= 6; x++) { const d = Math.hypot(x, y); if (d <= R) px(ox + x, oy + y, d < R * .45 ? '#ffffff' : d < R * .8 ? COLORES.magia : COLORES.magia2); }
+  // chispas que giran alrededor mientras carga
+  if (t > T.carga - .3) for (let i = 0; i < 10; i++) {
+    const a = t * 7 + i * .63, r = 9 - carga * 3 + (i % 3);
+    px(ox + Math.cos(a) * r, oy + Math.sin(a) * r * .8, i % 2 ? COLORES.magia : COLORES.magia2);
+  }
+}
+
+function hechizo(t, [ox, oy]) {
+  // destello al lanzar
+  const f = prog(t, T.lanza, T.lanza + .25);
+  if (f > 0 && f < 1) for (let i = 0; i < 16; i++) { const a = i / 16 * 6.28, r = f * 22; px(ox + Math.cos(a) * r, oy + Math.sin(a) * r, '#ffffff', 2, 2); }
+  // cada pixel de la frase viaja desde el orbe por una curva y cae en su lugar
+  const N = MASCARA.length;
+  for (let i = 0; i < N; i++) {
+    const [tx, ty] = MASCARA[i];
+    const sal = T.lanza + hash2(i, 1) * .6, dur = .7 + hash2(i, 2) * .4;
+    const k = prog(t, sal, sal + dur); if (k <= 0) continue;
+    const e = easeOut(k);
+    const cx = lerp(ox, tx, .5) + (hash2(i, 3) - .5) * 70, cy = Math.min(oy, ty) - 25 - hash2(i, 4) * 30;   // punto de control de la curva
+    const x = lerp(lerp(ox, cx, e), lerp(cx, tx, e), e), y = lerp(lerp(oy, cy, e), lerp(cy, ty, e), e);
+    const brilla = k >= 1 ? (Math.sin(t * 5 + tx * .3 + ty * .2) > .85 ? '#ffffff' : (tx + ty) % 7 < 2 ? COLORES.magia2 : COLORES.magia) : '#ffffff';
+    px(x, y, brilla);
+    if (k < 1) px(x - (tx - ox) * .01, y + 1, COLORES.magia2);      // estela
+  }
+}
+
+arrancar(frame => {
+  const t = frame / FPS;
+  BOIL = Math.floor(frame / 3);
+  g.clearRect(0, 0, GW, GH);
+  cielo(t);
+  const brillo = clamp(prog(t, T.carga, T.lanza) * .6 + (1 - prog(t, T.lanza, T.lanza + 1.2)) * (t > T.lanza ? .9 : 0));
+  piso(t, brillo);
+  const punta = mago(t);
+  orbe(t, punta);
+  hechizo(t, punta);
+  ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.imageSmoothingEnabled = false;
+  ctx.drawImage(low, 0, 0, W, H);
+});
+</script>
+</body>
+</html>

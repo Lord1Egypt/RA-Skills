@@ -1,0 +1,68 @@
+{
+  "slides": [
+    {
+      "type": "starting_slide",
+      "heading": "Remote Work, Done Right",
+      "sub_heading": "A 2-minute field guide",
+      "description": "The setup and habits that separate good remote workers from great ones.",
+      "cta_button": "Swipe →"
+    },
+    {
+      "type": "body_slide",
+      "heading": "The 4 pillars of a solid setup",
+      "description": "Get these right and everything else gets easier.",
+      "layoutType": "infographic",
+      "layoutConfig": {
+        "columnCount": 2,
+        "columnDisplay": "grid",
+        "displayCounterAs": "none",
+        "hasHeader": true,
+        "columnData": [
+          {
+            "header": "Space & Focus",
+            "content": [
+              { "title": "Dedicated Desk", "description": "A fixed spot signals to your brain that it's work time." },
+              { "title": "Noise Control", "description": "Headphones or a closed door — pick one." }
+            ]
+          },
+          {
+            "header": "Rhythm & Recovery",
+            "content": [
+              { "title": "Hard Stop Time", "description": "Set an end time and honor it." },
+              { "title": "Lunch Away", "description": "Take 30 screen-free minutes." }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "body_slide",
+      "heading": "A simple daily cadence",
+      "description": "Run your day in sequence, not in chaos.",
+      "layoutType": "infographic",
+      "layoutConfig": {
+        "columnCount": 1,
+        "columnDisplay": "cycle",
+        "displayCounterAs": "counter",
+        "hasHeader": false,
+        "columnData": [
+          {
+            "header": "Daily Flow",
+            "content": [
+              { "title": "Deep work first", "description": "90 minutes on the hardest task before any meetings." },
+              { "title": "Batch comms", "description": "Two windows for Slack/email — not all day." },
+              { "title": "Shutdown ritual", "description": "Write tomorrow's top 3, then close the laptop." }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "ending_slide",
+      "heading": "Start with one change",
+      "sub_heading": "You don't need a perfect setup",
+      "description": "Follow for more remote-work playbooks.",
+      "cta_button": "Follow"
+    }
+  ]
+}

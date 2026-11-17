@@ -2,7 +2,7 @@
 name: summon
 description: |
   Autonomous orchestrator for manifest work items through the development lifecycle
-version: 1.9.8
+version: 1.10.3
 triggers:
   - autonomous
   - pipeline
@@ -14,20 +14,8 @@ source: claude-night-market
 source_plugin: egregore
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/egregore](https://github.com/athola/claude-night-market/tree/master/plugins/egregore). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/egregore](https://github.com/athola/claude-night-market/tree/master/plugins/egregore). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
-
-## Table of Contents
-
-- [Overview](#overview)
-- [When To Use](#when-to-use)
-- [When NOT To Use](#when-not-to-use)
-- [Orchestration Loop](#orchestration-loop)
-- [Pipeline-to-Skill Mapping](#pipeline-to-skill-mapping)
-- [Context Overflow Protocol](#context-overflow-protocol)
-- [Token Budget Protocol](#token-budget-protocol)
-- [Failure Handling](#failure-handling)
-- [Module Reference](#module-reference)
 
 # Summon
 
@@ -68,7 +56,7 @@ guards.
 
 **Always launch the orchestrator agent in the FOREGROUND.**
 Do not use `run_in_background: true`. The main session
-becomes the egregore -- it blocks on the orchestrator agent
+becomes the egregore: it blocks on the orchestrator agent
 until the egregore finishes or is dismissed.
 
 ```
@@ -83,6 +71,26 @@ If you launch the orchestrator in the background, the main
 session will have nothing to do and will stop. This defeats
 the entire purpose of the egregore. The stop hook cannot
 prevent this because background agents are detached.
+
+### The unattended night run
+
+The orchestrator above is an agent inside a session. The night
+run is the other entry point: a plain process a watchdog can
+restart, for hours no session is guaranteed to last. It walks
+one handed-off item (gate, walk, proof). It exits with the
+gate's own code (1 to 4) when the item is refused and nothing
+ran, and with 5 when the walk broke after it started:
+
+```bash
+python3 "${CLAUDE_PLUGIN_ROOT}/scripts/night_run.py" \
+  --item-dir .egregore/handoff/<item> --root .
+```
+
+Nothing inside a session starts it. Run it by hand or from a
+scheduler you configure. The watchdog from
+`/egregore:install-watchdog` does not start it: that watchdog
+relaunches a `claude -p` session that invokes this skill. See
+`modules/budget.md` for why the cooldown path differs.
 
 ## Manifest Mode
 
@@ -179,13 +187,15 @@ If the last skill call returned a rate limit error:
    `budget.record_rate_limit(cooldown_minutes)`.
 2. Save `budget.json`.
 3. Alert the overseer (see `notify.py`).
-4. **Schedule in-session recovery** (2.1.71+): use
-   `CronCreate` to schedule a one-shot resume prompt at
-   the cooldown expiry time. The session stays alive and
-   resumes automatically with context preserved.
-5. **Fallback** (pre-2.1.71 or cooldown > 7 days): exit
-   gracefully. The watchdog checks cooldown before
-   relaunching.
+4. **Schedule in-session recovery** (attended sessions
+   only): use `CronCreate` for a one-shot resume at the
+   cooldown expiry. Its jobs live only in the running
+   session, so this works only when that session is still
+   alive and idle when the window renews.
+5. **Otherwise exit gracefully**, which is the default for
+   an unattended run. The watchdog reads the recorded
+   cooldown and relaunches after the window renews. Call
+   `window.plan_resume()` rather than choosing by hand.
 
 ### 8. Repeat
 
@@ -217,6 +227,28 @@ or a budget limit is reached.
 The intake stage steps (parse, validate, prioritize) are
 handled inline by the orchestrator.
 See `modules/intake.md` for details.
+
+### Delegation Inside the Loop
+
+The build and quality stages delegate execution by default through
+`Skill(conjure:delegation-core)`.
+An unattended loop is where the default earns most: nobody is present to
+notice that an external CLI was available and unused.
+
+The orchestrator does not decide per task.
+It invokes the mapped skill, and that skill applies the delegation
+posture with its own Keep Local clauses.
+
+A `providers_exhausted` result is not a step failure.
+The orchestrator must not retry the step or mark the work item failed on
+it. The skill hands the work to a session-model subagent, per
+`Skill(attune:project-execution)` module `subagent-fallback.md`, and the
+pipeline advances.
+Treating it as a failure would burn the retry budget on a machine where
+nothing is broken.
+
+To run the egregore with no external models, export
+`CONJURE_DELEGATION=off` in the environment that launches it.
 
 ## Context Overflow Protocol
 
@@ -261,9 +293,17 @@ This serves two purposes:
    next heartbeat detects stalled items and re-enters the
    pipeline automatically.
 
-The cron task auto-expires after 7 days by default. Use
-`durable: true` to persist across restarts, or
-`CronDelete` to cancel early.
+Both depend on the session staying alive: a recurring job
+also lives only in the session that created it, and it fires
+only while the REPL is idle. Recurring jobs auto-expire after
+7 days, firing one last time before they are deleted, so a
+run longer than a week needs the heartbeat rescheduled.
+
+`durable: true` does not persist the job across restarts.
+The parameter is accepted, but the tool's description says
+it "has no effect" and that durable persistence is not
+available. Use `CronDelete` to cancel a job early, and the
+watchdog for anything that must survive the session.
 
 ## Token Budget Protocol
 
@@ -315,3 +355,17 @@ Each work item allows up to `max_attempts` retries per step
   issues, brainstorm skip logic.
 - **decisions.md**: Autonomous decision-making framework,
   decision log format, examples.
+
+## Exit Criteria
+
+- [ ] `.egregore/manifest.json` is read successfully before the
+      orchestration loop starts; if absent, skill halts with "No
+      manifest found. Run `egregore init` first."
+- [ ] Each completed pipeline step advances `item.pipeline_stage`
+      in the manifest and the manifest is saved to disk
+- [ ] Context at 80% triggers write of `.egregore/continuation.json`
+      with current item ID, stage, and step before handoff
+- [ ] On rate limit error, `budget.json` is updated with cooldown
+      duration before the session exits with code 0
+- [ ] When all items are completed or failed, orchestrator exits
+      with a completion report listing item statuses

@@ -1,40 +1,49 @@
-## Description: <br>
-Read WeChat public account articles when a user shares a mp.weixin.qq.com link, asks to read or summarize a WeChat article, or mentions public-account article content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read WeChat public account articles from mp.weixin.qq.com links by using browser automation to extract full article text when requested by the user.
 
-## Publisher: <br>
-[imwyvern](https://clawhub.ai/user/imwyvern) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imwyvern](https://clawhub.ai/user/imwyvern)
 
-## Use Case: <br>
-External users and agents use this skill to open user-provided WeChat public-account article links with browser automation, extract visible article content, and summarize or translate it on request. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill opens WeChat article links in a browser and summarizes visible page content. <br>
-Mitigation: Confirm user intent before opening vague WeChat-related requests and summarize only content visible in the browser session. <br>
-Risk: Some WeChat content may require login. <br>
-Mitigation: Inform the user when a login wall appears and avoid entering WeChat credentials through the agent unless the user explicitly chooses to do so. <br>
+## Use Case:
 
+External users and agents use this skill to read, summarize, translate, or present content from user-provided WeChat public account articles that require browser rendering.
 
-## Reference(s): <br>
-- [WeChat Article Reader on ClawHub](https://clawhub.ai/imwyvern/wechat-reader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text summaries, translations, and access-status notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include article text, image alt text, captions, or a notice that content is removed or login-gated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Browser automation opens user-provided WeChat article links and may encounter login walls, removed content, or access restrictions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for user-requested article links, report blocked or removed content to the user, and review login walls manually without signing in or bypassing access controls.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/imwyvern/skills/wechat-reader)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or text summary with extracted article content and status notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include image alt text, captions, or access-status messages when article content is removed or login-gated.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

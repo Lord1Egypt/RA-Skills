@@ -1,43 +1,58 @@
-## Description: <br>
-DeFi intelligence suite for token metrics, perp trading data, technical analysis, smart money flows, staking yields, and AI-powered market research across Base, Solana, and 10+ perp DEXs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DeFi intelligence suite - token metrics, perp trading data, technical analysis, smart money flows, staking yields, and AI-powered market research across Base, Solana, and 10+ perp DEXs.
 
-## Publisher: <br>
-[dapplooker](https://clawhub.ai/user/dapplooker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dapplooker](https://clawhub.ai/user/dapplooker)
 
-## Use Case: <br>
-External users, developers, and agents use DappLooker AI to retrieve paid DeFi market intelligence, token analytics, smart-money and staking signals, perp DEX data, and AI-generated market research across supported chains and DEXs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make paid USDC API calls for DeFi intelligence. <br>
-Mitigation: Confirm the endpoint, cost, payment network, and remaining session budget before each paid call, and do not retry failed paid calls without approval. <br>
-Risk: Prompts and parameters may reveal token interests, contract addresses, market questions, strategy prompts, or trading context to DappLooker. <br>
-Mitigation: Avoid sending private portfolio details, proprietary trading strategies, or other sensitive information unless the user explicitly accepts that disclosure. <br>
-Risk: AI-generated market and perp strategy recommendations may be incomplete, stale, or unsuitable for a user's risk profile. <br>
-Mitigation: Present recommendations as informational analysis and ask the user to independently verify the data before making financial decisions. <br>
+## Use Case:
 
+External users and developers use this skill to request DappLooker DeFi market intelligence, including token metrics, perpetuals data, technical analysis, smart money flows, staking yields, and AI-generated market research.
 
-## Reference(s): <br>
-- [DappLooker API documentation](https://docs.dapplooker.com/products/api-endpoints) <br>
-- [ClawHub skill release page](https://clawhub.ai/dapplooker/dapplooker-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown and text summaries with API-backed market data and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Paid x402 API calls require user confirmation, disclose per-call cost, and use a default session spending cap unless the user raises it.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Paid API calls can incur USDC charges when users approve requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep per-call confirmation, no-retry, and default session budget controls enabled.
+
+Risk: API keys supplied in an api_key URL parameter may be exposed in logs, browser history, or shared traces.
+
+Mitigation: Prefer x402 payment or a safer header-based credential flow, and avoid placing API keys in URLs.
+
+Risk: Market intelligence and AI-generated trading strategies can be incomplete, stale, or unsuitable for a user's risk profile.
+
+Mitigation: Present outputs as decision-support information and require user review before acting on trading recommendations.
+
+## Reference(s):
+
+- [DappLooker API documentation](https://docs.dapplooker.com/products/api-endpoints)
+- [ClawHub skill page](https://clawhub.ai/dapplooker/skills/dapplooker-ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, JSON, guidance]
+
+**Output Format:** [Markdown and structured API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Paid x402 API calls require user confirmation and are subject to the skill's per-call pricing and session budget guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

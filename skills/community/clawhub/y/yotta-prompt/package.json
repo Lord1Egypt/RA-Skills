@@ -1,0 +1,41 @@
+{
+  "name": "@yottameta/yotta-prompt",
+  "version": "0.2.6",
+  "description": "YuanYin — an intent-clarification & ecosystem-entry skill for AI agents: when a user types a vague phrase or a single word, it identifies the intent, offers 2-4 candidate directions, deep-dives into goal/scope/output, then routes to the matching YottaMeta skill and outputs a ready-to-run prompt. Always-load (session-start) entry-layer skill that catches users who do not know how to prompt AI. Boundaries: clarification only, no preset stance, no safety review; no artificial limits on prompts (must not violate laws / jailbreak); not a prompt beautifier; fully local and offline (Python 3.8+ standard library).",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "yotta-prompt",
+    "yottaskills"
+  ],
+  "files": [
+    "SKILL.md",
+    "LICENSE",
+    "README.md",
+    "README.zh-CN.md",
+    "install.sh",
+    "references",
+    "scripts",
+    "assets",
+    "bin",
+    "NOTICE",
+    "CHANGELOG.md",
+    "!scripts/test_*.py",
+    "!scripts/__pycache__",
+    "!**/__pycache__",
+    "!**/*.pyc"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YottaMeta/yotta-prompt.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "yotta-prompt": "bin/install.js"
+  },
+  "scripts": {
+    "test": "node --test \"test/*.test.js\" && python scripts/test_yotta_prompt.py"
+  }
+}

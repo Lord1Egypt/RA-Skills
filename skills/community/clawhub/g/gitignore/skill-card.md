@@ -1,41 +1,53 @@
-## Description: <br>
-Reference tool for devtools that covers intro, quickstart, patterns, and more, with quick lookup for Gitignore concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools that covers intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet topics for Gitignore-related workflows.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers and engineers use this skill to retrieve concise Gitignore reference documentation for concepts, quickstart steps, patterns, debugging, performance, security, migration, and cheatsheet workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides reference guidance that may be generic or mismatched to a repository's actual Gitignore behavior. <br>
-Mitigation: Review suggested patterns against the target repository and validate behavior with Git tooling before committing changes. <br>
-Risk: Users may run shell commands from a third-party skill without review. <br>
-Mitigation: Inspect the script and command output before use; server security evidence reports no artifact-backed hidden data theft, destructive behavior, or deception. <br>
+## Use Case:
 
+Developers and engineers can use this skill for quick plain-text reference snippets advertised around Gitignore concepts, patterns, debugging, performance, security, migration, and cheatsheets.
 
-## Reference(s): <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [ClawHub Gitignore skill page](https://clawhub.ai/bytesagain1/gitignore) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Plain text and Markdown reference sections emitted by shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls, credentials, or network access required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: frontmatter and server release evidence) <br>
+Risk: The artifact is advertised as Gitignore guidance, but security evidence says the content is mostly generic devtools boilerplate rather than authoritative .gitignore guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as quick reference drafts only; verify any .gitignore recommendations against project-specific needs before applying them.
+
+Risk: The script reports version 2.0.2 while the server release and skill frontmatter identify version 2.0.3.
+
+Mitigation: Confirm the packaged script version before relying on version output for auditing or release tracking.
+
+## Reference(s):
+
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text reference documentation with Markdown headings, lists, and tables.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static heredoc output; no external API calls, credentials, or network access are described by the artifact.]
+
+## Skill Version(s):
+
+2.0.3 (source: server release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

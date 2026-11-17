@@ -1,40 +1,52 @@
-## Description: <br>
-Analyzes major project architectures using OpenClaw's seven core principles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes major project architectures using OpenClaw's seven core principles.
 
-## Publisher: <br>
-[horizoncove](https://clawhub.ai/user/horizoncove) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[horizoncove](https://clawhub.ai/user/horizoncove)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and architects use this Chinese-language skill to review a project architecture across OpenClaw's agent, plugin, memory, collaboration, perception, security, and evolution dimensions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad trigger wording may activate the skill for general analysis, evaluation, review, or architecture requests.
+
+Mitigation: Deploy with an explicit OpenClaw invocation policy or review routing rules before enabling it in shared environments.
+
+Risk: Architecture recommendations may be incomplete or misleading if used without domain review.
+
+Mitigation: Have qualified developers or architects review the generated assessment before using it for implementation or governance decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, architects, and technical reviewers use this skill to evaluate a project architecture against the seven OpenClaw principles and identify strengths, gaps, and follow-up questions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Analysis, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The broad trigger can activate on general Chinese requests for analysis, evaluation, review, or architecture and steer unrelated work into the OpenClaw framework. <br>
-Mitigation: Install it only when that framework is desired, or narrow activation to explicit OpenClaw architecture-analysis requests. <br>
-Risk: The skill produces framework-based architecture assessments that may be subjective or incomplete for a given project. <br>
-Mitigation: Treat the assessment as guidance and have project owners review conclusions against system requirements and evidence. <br>
+**Output Format:** [Markdown analysis in Chinese]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/horizoncove/openclaw-analysis) <br>
+**Other Properties Related to Output:** [Text-only output; no code execution or external tool use is described in the artifact.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured prose analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only framework; no shell commands, files, external tools, or credentials are required.] <br>
+1.0.0 (source: artifact/_meta.json and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

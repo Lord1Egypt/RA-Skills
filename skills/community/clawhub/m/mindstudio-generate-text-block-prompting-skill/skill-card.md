@@ -1,44 +1,55 @@
-## Description: <br>
-Write, review, or improve prompts for MindStudio Generate Text blocks, including plain-text prompts, structured JSON output, variable injection, conditional logic, and dot-notation access in workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write, review, or improve prompts for MindStudio Generate Text blocks, including plain text, structured JSON, variable injection, conditional logic, and dot-notation data access.
 
-## Publisher: <br>
-[sol1986](https://clawhub.ai/user/sol1986) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sol1986](https://clawhub.ai/user/sol1986)
 
-## Use Case: <br>
-MindStudio workflow builders and agent developers use this skill to design production-ready Generate Text block prompts. It helps them gather workflow context, use exact variable names, choose text or JSON output, and produce paste-ready prompt templates with sample JSON outputs when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated prompts can include incorrect, incomplete, or misleading instructions if the workflow context or variable names are wrong. <br>
-Mitigation: Review generated prompts before deploying them and confirm that every referenced variable, output schema, and downstream access pattern matches the MindStudio workflow. <br>
-Risk: Some examples involve privacy-sensitive lead enrichment or email-finding workflows. <br>
-Mitigation: Use those patterns only with authorization, a lawful basis, and compliance with applicable privacy and anti-spam requirements. <br>
-Risk: Sample JSON schemas and outputs may accidentally expose sensitive or unnecessary data when copied into a workflow. <br>
-Mitigation: Sanitize sample schemas and example data before use, and include only fields needed by downstream blocks. <br>
+## Use Case:
 
+Developers and MindStudio workflow builders use this skill to draft and review Generate Text block prompts with exact workflow variables, output settings, JSON schemas, sample outputs, and downstream dot-notation examples.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sol1986/mindstudio-generate-text-block-prompting-skill) <br>
-- [README](artifact/README.md) <br>
-- [Examples](artifact/EXAMPLES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with prompt templates, JSON schemas, realistic sample outputs, and MindStudio block-setting recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces guidance for user-reviewed prompts; it does not call external services or execute workflow actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill.json) <br>
+Risk: Lead generation or contact enrichment workflows may process unnecessary personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact secrets and unnecessary personal data, and avoid unauthorized contact enrichment before using generated prompts in those workflows.
+
+Risk: Prompts that process scraped webpages can be exposed to prompt injection or unreliable page content.
+
+Mitigation: Add explicit prompt-injection defenses and human review before connecting scraped-page outputs to downstream automation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sol1986/skills/mindstudio-generate-text-block-prompting-skill)
+- [README](artifact/README.md)
+- [Examples](artifact/EXAMPLES.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, configuration guidance]
+
+**Output Format:** [Markdown prompts, JSON schema examples, realistic sample outputs, and concise block-setting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-provided MindStudio variable names and workflow context.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

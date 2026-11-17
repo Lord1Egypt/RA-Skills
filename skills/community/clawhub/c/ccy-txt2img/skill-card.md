@@ -1,42 +1,55 @@
-## Description: <br>
-Ccy Txt2img is an offline Pillow-based skill for generating simple PNG/JPEG text images, diagrams, shape drawings, and rule-driven scene renders from prompts or scene JSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ccy Txt2img is a local, offline Pillow-based image generation skill for text-to-image rendering, basic shapes, simple composition, and rule-driven Chinese/English scene drawing to PNG/JPEG.
 
-## Publisher: <br>
-[chenchongyong](https://clawhub.ai/user/chenchongyong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenchongyong](https://clawhub.ai/user/chenchongyong)
 
-## Use Case: <br>
-Developers and agent users use this skill to generate local text images, simple posters, diagrams, geometry, and scene-based PNG/JPEG graphics without calling external image-generation APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads caller-provided image, scene, and font paths and writes generated image files to caller-selected output locations. <br>
-Mitigation: Use a safe output directory, avoid overwriting important files, and pass only image, scene, or font paths that the agent is intended to read. <br>
-Risk: The skill depends on Pillow for local image rendering. <br>
-Mitigation: Install Pillow from a trusted package source and keep it updated through the deployment's normal dependency process. <br>
+## Use Case:
 
+Developers and creators use this skill to generate simple local diagrams, text posters, code-image snippets, and controlled scene graphics without calling external image APIs.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/chenchongyong/ccy-txt2img) <br>
-- [Font guidance](artifact/assets/fonts/README.md) <br>
-- [Source Han Sans](https://github.com/adobe-fonts/source-han-sans) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Code, Shell commands, Configuration] <br>
-**Output Format:** [PNG/JPEG image files, optional JSON scene output, and Python or CLI invocation snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally with Pillow and writes images to caller-selected output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Untrusted scene JSON can reference local image layer paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review image layer paths before rendering, avoid absolute or sensitive local paths, and use only trusted local assets.
+
+Risk: Large canvases, many layers, or large source images can consume excessive local CPU or memory.
+
+Mitigation: Keep width, height, layer count, and source image sizes within reasonable bounds before rendering.
+
+## Reference(s):
+
+- [Ccy Txt2img ClawHub release](https://clawhub.ai/chenchongyong/skills/ccy-txt2img)
+- [Font source notes](assets/fonts/SOURCE.txt)
+- [Source Han Sans](https://github.com/adobe-fonts/source-han-sans)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON, Code, Shell commands, Guidance]
+
+**Output Format:** [PNG/JPEG image files, optional JSON scene specifications, and Markdown/code snippets for Python or CLI usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local execution only; generated images are non-photorealistic and rule-driven.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-固收与信用分析框架，涵盖信用债评级、利差分析、违约风险评估、城投债研究，以及可转债定价与策略研究。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A fixed-income and credit analysis framework covering credit bond ratings, spread analysis, default risk assessment, LGFV research, and convertible bond pricing and strategy research for the Chinese market.
 
-## Publisher: <br>
-[xujuen](https://clawhub.ai/user/xujuen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xujuen](https://clawhub.ai/user/xujuen)
 
-## Use Case: <br>
-External analysts, developers, and agents use this skill as a Chinese fixed-income and credit-analysis reference for bond pricing, credit ratings, spread analysis, default-risk assessment, LGFV research, ABS/MBS review, and duration-based risk management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial analysis may be incorrect or stale if formulas, assumptions, or market inputs are applied without review. <br>
-Mitigation: Verify formulas, assumptions, and outputs against current market data and relevant professional standards before using them for decisions. <br>
-Risk: Users may provide credentials or sensitive data even though the skill does not require them. <br>
-Mitigation: Do not provide credentials or secrets when using this reference-only analytical skill. <br>
+## Use Case:
 
+External analysts, developers, and agents use this skill to answer questions about bond pricing, yield, duration, convexity, credit ratings, default risk, credit spreads, LGFV bonds, ABS/MBS, and China fixed-income market structure.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xujuen/bondcreditanalysis-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with formulas, tables, and Python code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reference-only analytical guidance; financial outputs should be checked against current market data and professional standards.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Financial-analysis outputs may be mistaken for investment advice or may rely on stale market data, issuer information, or model assumptions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify market data, model assumptions, and current issuer information independently before making decisions.
+
+Risk: Formula and code examples can be misapplied outside their stated instrument, issuer, or market assumptions.
+
+Mitigation: Check model suitability and recalibrate assumptions for the specific bond, issuer, asset pool, and China market context before relying on results.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/xujuen/skills/bondcreditanalysis-cn)
+- [ClawHub publisher profile](https://clawhub.ai/user/xujuen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with formulas, tables, and Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Financial-analysis guidance should be checked against current market data and issuer disclosures.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

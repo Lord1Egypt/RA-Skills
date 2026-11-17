@@ -1,44 +1,49 @@
-## Description: <br>
-Polishes working code through successive correctness, clarity, consistency, and production-readiness passes in fresh subagents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Polishes working code through successive quality passes in fresh subagents. Use after tests pass when code needs multi-dimension refinement before release
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and engineers use this skill after tests pass to iteratively refine working code across correctness, clarity, consistency, and release polish before review or release. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow runs tests and makes iterative edits to selected code, which can introduce regressions or unintended behavior. <br>
-Mitigation: Review all code changes and test results before release, and keep the workflow focused on working code that already passes basic tests. <br>
-Risk: The workflow stores resume state in a local .attune state file that may include target paths and pass history. <br>
-Mitigation: Inspect or remove .attune/dorodango-state.json when state should not persist across sessions or be shared. <br>
-Risk: A polishing run may continue across multiple passes even when the target is too broad for reliable convergence. <br>
-Mitigation: Use the 10-pass cap as a stop point and split large or unresolved targets into smaller units before continuing. <br>
+## Use Case:
 
+Developers use this skill after implementation and tests are complete to refine working code across correctness, clarity, consistency, and polish before review or release.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-attune-dorodango) <br>
-- [clawdis homepage](https://github.com/athola/claude-night-market/tree/master/plugins/attune) <br>
-- [Pass definitions](artifact/modules/pass-definitions.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, files, guidance] <br>
-**Output Format:** [Markdown workflow guidance with shell/test execution, code edit recommendations, and JSON state tracking] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains a local .attune/dorodango-state.json resume file and caps the polishing workflow at 10 passes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release metadata; artifact frontmatter lists 1.9.8) <br>
+Risk: Two referenced paths were missing from the scan evidence, leaving scan coverage incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the missing paths and decide whether the coverage is sufficient before installing.
+
+## Reference(s):
+
+- [Attune project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/attune)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Files]
+
+**Output Format:** [Markdown instructions, code edits, shell commands, and a JSON workflow state file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tracks pass results and convergence in a state file; limits each run to 10 passes.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

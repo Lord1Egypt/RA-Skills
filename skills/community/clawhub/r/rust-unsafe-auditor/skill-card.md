@@ -1,40 +1,48 @@
-## Description: <br>
-Audit Rust code for unsafe block usage, safety invariants, FFI boundaries, raw pointer operations, Send/Sync implementations, and unsound abstractions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit Rust code for unsafe block usage by checking safety invariants, FFI boundaries, raw pointer operations, Send/Sync implementations, and potentially unsound abstractions.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and security reviewers use this skill to audit Rust crates, dependencies, and FFI-heavy code for unsafe-code soundness, documentation gaps, and memory-safety risks before publishing or security review.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may suggest Rust tooling commands such as clippy, miri, cargo audit, or cargo geiger that read or analyze local project source.
+
+Mitigation: Review proposed commands before running them, especially on sensitive or very large repositories.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and security engineers use this skill to audit Rust crates for unsafe-code soundness, FFI boundary issues, raw pointer hazards, safety documentation gaps, and unsafe reduction opportunities. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Audit output may include private source details from the reviewed repository. <br>
-Mitigation: Run the skill from the intended project directory and treat generated audit output as sensitive project information. <br>
-Risk: Optional cargo commands may build or test code from the local repository. <br>
-Mitigation: Approve cargo commands only when the repository is trusted enough to build or test locally. <br>
+**Output Format:** [Markdown audit summaries with inline shell commands and review tables]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/rust-unsafe-auditor) <br>
+**Other Properties Related to Output:** [Produces unsafe-code inventories, critical findings, documentation-gap tables, and remediation recommendations.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown audit report with shell command snippets and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include audit summaries, critical findings, documentation gaps, and recommendations.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

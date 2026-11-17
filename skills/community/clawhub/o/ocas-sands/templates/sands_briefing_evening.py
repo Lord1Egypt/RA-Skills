@@ -1,0 +1,375 @@
+#!/usr/bin/env python3
+import os
+OPERATOR_EMAIL = os.environ.get("OCAS_OPERATOR_EMAIL", "operator@example.com")
+"""
+Sands Evening Briefing (cron-compatible generator)
+
+Mirrors templates/sands_briefing_morning.py but adapted for EVENING mode:
+- Target date = TOMORROW (not today)
+- brief_type = 'evening'
+- proposal_type = 'routine_prediction' (NO prep-signal checking for future dates)
+- Zero-duration events (start == end) are EXCLUDED from conflict detection and
+  free-hours math, and surfaced as warnings. See references/zero_duration_briefing.md.
+
+This is a pure generator: it queries calendars, computes the brief, writes
+/tmp/sands_evening_briefing.json, prints a summary, and emits the Vesper
+InsightProposal payload on stdout after the '---BRIEFING_PAYLOAD_JSON---' marker.
+
+The calling skill run is responsible for Sands run-completion persistence
+(evidence.jsonl, action.jsonl, dated brief JSON, config.json last_evening_brief).
+See references/zero_duration_briefing.md for the full persistence recipe used
+in the 2026-07-23 cron run.
+
+Usage:
+    python3 templates/sands_briefing_evening.py
+"""
+import json
+import sys
+from datetime import datetime, timedelta, timezone
+
+sys.path.insert(0, os.path.expanduser("~/.hermes/scripts"))
+from google_auth_mcp import get_service
+
+# =============================================================================
+# CONFIGURATION — mirror config.json primary_calendar_ids
+# =============================================================================
+CALENDAR_IDS = [
+    "OPERATOR_EMAIL",
+    "<family-calendar-id>@group.calendar.google.com"
+]
+WORK_CALENDAR_ID = ""
+ACCOUNTS_TO_TRY = ['OPERATOR_EMAIL', os.environ.get("OCAS_AGENT_EMAIL", "agent@example.com")]
+WORKING_HOURS = {"start": "09:00", "end": "18:00"}
+
+# =============================================================================
+# DATE SETUP — evening brief targets TOMORROW; PDT in summer is -07:00
+# =============================================================================
+PDT = timezone(timedelta(hours=-7))
+now = datetime.now(PDT)
+today_str = now.strftime('%Y-%m-%d')
+tomorrow = now + timedelta(days=1)
+tomorrow_str = tomorrow.strftime('%Y-%m-%d')
+tomorrow_display = tomorrow.strftime('%A, %B %d, %Y')
+
+time_min = f"{tomorrow_str}T00:00:00-07:00"
+time_max = f"{(tomorrow + timedelta(days=1)).strftime('%Y-%m-%d')}T00:00:00-07:00"
+
+# =============================================================================
+# OAUTH: FIND WORKING ACCOUNT (multi-account fallback)
+# =============================================================================
+calendar = None
+working_account = None
+auth_fallback_used = False
+
+for account in ACCOUNTS_TO_TRY:
+    try:
+        cal = get_service(
+            'calendar', 'v3',
+            ['https://www.googleapis.com/auth/calendar.readonly'],
+            account=account
+        )
+        cal.calendarList().list(maxResults=1).execute()
+        calendar = cal
+        working_account = account
+        break
+    except Exception as e:
+        err_str = str(e)
+        if 'invalid_grant' in err_str or '400' in err_str:
+            print(f"Account {account}: dead token ({err_str[:80]})")
+        else:
+            print(f"Account {account}: unexpected error: {err_str[:80]}")
+        continue
+
+if calendar is None:
+    print("DEGRADED: All OAuth tokens invalid. Cannot generate briefing.")
+    sys.exit(1)
+
+if working_account != ACCOUNTS_TO_TRY[0]:
+    auth_fallback_used = True
+
+print(f"Using account: {working_account}" + (" (FALLBACK)" if auth_fallback_used else ""))
+
+# =============================================================================
+# HELPERS
+# =============================================================================
+def to_min(hhmm):
+    return int(hhmm[:2]) * 60 + int(hhmm[3:])
+
+def span_minutes(start_hhmm, end_hhmm):
+    """(start_min, end_min). Treat end <= start as crossing midnight (e.g.
+    19:30->00:00 -> end = 1440). NOTE: only call on DURATIONAL events; a
+    zero-duration '12:45'->'12:45' would wrongly expand to a 24h span here."""
+    s = to_min(start_hhmm)
+    e = to_min(end_hhmm)
+    if e <= s:
+        e += 1440
+    return s, e
+
+def fromisoformat_safe(s):
+    if s.endswith('Z'):
+        s = s.replace('Z', '+00:00')
+    try:
+        return datetime.fromisoformat(s)
+    except Exception:
+        if 'T' in s and ('+' in s[10:] or s[10:].count('-') > 0):
+            idx = s.rfind('+') if '+' in s[10:] else s.rfind('-', 10)
+            base = s[:idx]
+            tz = s[idx:]
+            sign = 1 if tz[0] == '+' else -1
+            hours = int(tz[1:3])
+            minutes = int(tz[4:6])
+            offset = timedelta(hours=sign * hours, minutes=sign * minutes)
+            base_dt = datetime.fromisoformat(base)
+            return base_dt.replace(tzinfo=timezone(offset))
+        return datetime.fromisoformat(s)
+
+# =============================================================================
+# QUERY CALENDARS
+# =============================================================================
+all_events = []
+calendar_errors = {}
+
+for cal_id in CALENDAR_IDS:
+    try:
+        result = calendar.events().list(
+            calendarId=cal_id,
+            timeMin=time_min,
+            timeMax=time_max,
+            singleEvents=True,
+            orderBy='startTime',
+            showDeleted=False,
+            maxResults=250
+        ).execute()
+        events = result.get('items', [])
+        for ev in events:
+            ev['_source_calendar'] = cal_id
+        all_events.extend(events)
+        print(f"  {cal_id}: {len(events)} events")
+    except Exception as e:
+        calendar_errors[cal_id] = str(e)
+        print(f"  {cal_id}: ERROR {e}")
+
+# =============================================================================
+# DEDUPLICATION (case-insensitive summary + start time)
+# =============================================================================
+seen = {}
+deduped_events = []
+for ev in all_events:
+    key = (
+        ev.get('summary', '').strip().lower(),
+        ev.get('start', {}).get('dateTime', ev.get('start', {}).get('date', ''))
+    )
+    if key in seen:
+        continue
+    seen[key] = ev
+    deduped_events.append(ev)
+all_events = deduped_events
+
+# =============================================================================
+# PARSE EVENTS
+# =============================================================================
+parsed_events = []
+for ev in all_events:
+    start_data = ev.get('start', {})
+    end_data = ev.get('end', {})
+    all_day = 'date' in start_data
+    is_timed = 'dateTime' in start_data
+
+    if is_timed:
+        start_dt = fromisoformat_safe(start_data['dateTime'])
+        end_dt = fromisoformat_safe(end_data['dateTime'])
+        start_local = start_dt.astimezone(PDT)
+        end_local = end_dt.astimezone(PDT)
+        start_hhmm = start_local.strftime('%H:%M')
+        end_hhmm = end_local.strftime('%H:%M')
+        sort_key = f"{start_local.hour:02d}{start_local.minute:02d}"
+    else:
+        start_hhmm = "All day"
+        end_hhmm = "All day"
+        sort_key = "0000"
+
+    cal_label = 'family' if 'family' in ev.get('_source_calendar', '') else 'personal'
+    zero_duration = is_timed and (start_hhmm == end_hhmm)
+
+    parsed_events.append({
+        'summary': ev.get('summary', '(untitled)'),
+        'description': ev.get('description', ''),
+        'start': start_hhmm,
+        'end': end_hhmm,
+        'sort_key': sort_key,
+        'location': ev.get('location'),
+        'calendar': cal_label,
+        'htmlLink': ev.get('htmlLink', ''),
+        'all_day': all_day,
+        'is_timed': is_timed,
+        'zero_duration': zero_duration,
+        'attendees': ev.get('attendees', []),
+        'organizer': ev.get('organizer', {}).get('email', ''),
+        'start_data': start_data,
+        'end_data': end_data,
+    })
+
+parsed_events.sort(key=lambda e: (0 if e['all_day'] else 1, e['sort_key']))
+
+# =============================================================================
+# CONFLICT DETECTION (intra-day overlaps) — EXCLUDE zero-duration events
+# =============================================================================
+timed_events = [e for e in parsed_events if e['is_timed']]
+zero_duration_events = [e for e in parsed_events if e.get('zero_duration')]
+durational_events = [e for e in timed_events if not e.get('zero_duration')]
+conflicts_detected = 0
+event_conflict_notes = {}
+
+for i in range(len(durational_events)):
+    for j in range(i + 1, len(durational_events)):
+        a = durational_events[i]
+        b = durational_events[j]
+        a_s, a_e = span_minutes(a['start'], a['end'])
+        b_s, b_e = span_minutes(b['start'], b['end'])
+        overlap_start = max(a_s, b_s)
+        overlap_end = min(a_e, b_e)
+        overlap_min = overlap_end - overlap_start
+        if overlap_min > 0:
+            conflicts_detected += 1
+            event_conflict_notes.setdefault(id(a), []).append(
+                f'Overlaps with "{b["summary"]}" ({overlap_min} min)')
+            event_conflict_notes.setdefault(id(b), []).append(
+                f'Overlaps with "{a["summary"]}" ({overlap_min} min)')
+
+# =============================================================================
+# FREE HOURS (within working hours; skip zero-duration events)
+# =============================================================================
+def calc_free_hours(events, work_start="09:00", work_end="18:00"):
+    ws = int(work_start[:2]) * 60 + int(work_start[3:])
+    we = int(work_end[:2]) * 60 + int(work_end[3:])
+    busy = []
+    for ev in events:
+        if not ev['is_timed']:
+            continue
+        if ev.get('zero_duration'):
+            continue
+        s, e = span_minutes(ev['start'], ev['end'])
+        busy.append((max(s, ws), min(e, we)))
+    busy = [b for b in busy if b[1] > b[0]]
+    if not busy:
+        return (we - ws) / 60
+    busy.sort()
+    merged = []
+    for s, e in busy:
+        if merged and s <= merged[-1][1]:
+            merged[-1] = (merged[-1][0], max(merged[-1][1], e))
+        else:
+            merged.append((s, e))
+    total_busy = sum(max(0, e - s) for s, e in merged)
+    return max(0, (we - ws - total_busy) / 60)
+
+free_hours = calc_free_hours(parsed_events, WORKING_HOURS["start"], WORKING_HOURS["end"])
+
+# =============================================================================
+# BUILD OUTPUT (evening: prep_required always False — no prep signals for future dates)
+# =============================================================================
+output_events = []
+timed_starts = [e['start'] for e in parsed_events if e['is_timed']]
+first_event_time = timed_starts[0] if timed_starts else ""
+last_event_time = durational_events[-1]['end'] if durational_events else ""
+personal_count = sum(1 for e in parsed_events if e['calendar'] == 'personal')
+family_count = sum(1 for e in parsed_events if e['calendar'] == 'family')
+
+for ev in parsed_events:
+    is_conflict = id(ev) in event_conflict_notes
+    conflict_note = "; ".join(event_conflict_notes[id(ev)]) if is_conflict else None
+    output_events.append({
+        'title': ev['summary'],
+        'start': ev['start'],
+        'end': ev['end'],
+        'location': ev.get('location'),
+        'calendar': ev.get('calendar', 'personal'),
+        'htmlLink': ev.get('htmlLink', ''),
+        'all_day': ev['all_day'],
+        'zero_duration': ev.get('zero_duration', False),
+        'conflict': is_conflict,
+        'conflict_note': conflict_note,
+        'prep_required': False,
+        'prep_note': None,
+        'travel_before': False,
+        'travel_minutes': None
+    })
+
+total_events = len(parsed_events)
+zero_duration_count = len(zero_duration_events)
+
+if total_events == 0:
+    summary_note = f"Tomorrow ({tomorrow_display}) has no events scheduled."
+elif total_events == 1:
+    only = parsed_events[0]
+    summary_note = f"Tomorrow ({tomorrow_display}) has one event: \"{only['summary']}\""
+    if only['is_timed']:
+        summary_note += f" at {only['start']}"
+    summary_note += "."
+else:
+    time_range = ""
+    if durational_events and first_event_time:
+        time_range = f" from {first_event_time}"
+        if last_event_time:
+            time_range += f" to {last_event_time}"
+    conflict_str = ""
+    if conflicts_detected:
+        conflict_str = f". {conflicts_detected} conflict{'s' if conflicts_detected > 1 else ''} detected"
+    zero_dur_str = ""
+    if zero_duration_count:
+        zero_dur_str = (f". {zero_duration_count} zero-duration event{'s' if zero_duration_count > 1 else ''} "
+                        f"(data-quality warning — no end time set)")
+    summary_note = (
+        f"Tomorrow ({tomorrow_display}) has {total_events} events"
+        f"{time_range}, ~{free_hours:.1f} free working hours{conflict_str}{zero_dur_str}."
+    )
+
+payload = {
+    'brief_type': 'evening',
+    'target_date': tomorrow_str,
+    'summary_note': summary_note,
+    'day_overview': {
+        'total_events': total_events,
+        'personal_events': personal_count,
+        'family_events': family_count,
+        'first_event': first_event_time,
+        'last_event': last_event_time,
+        'free_hours': round(free_hours, 1),
+        'prep_items_count': 0,
+        'zero_duration_warnings': zero_duration_count
+    },
+    'events': output_events,
+    'work_busy_blocks': [],
+    'conflicts_detected': conflicts_detected,
+    'prep_items_count': 0
+}
+
+briefing_payload = {
+    "proposal_id": f"prop_sands_evening_{tomorrow_str.replace('-', '')}",
+    "proposal_type": "routine_prediction",
+    "description": f"[SANDS BRIEF: EVENING] {tomorrow_str}",
+    "confidence_score": 1.0,
+    "supporting_entities": [],
+    "supporting_relationships": [],
+    "predicted_outcome": None,
+    "suggested_follow_up": json.dumps(payload),
+    "target_skill": None,
+    "created_at": now.strftime('%Y-%m-%dT%H:%M:%S%z')
+}
+
+with open('/tmp/sands_evening_briefing.json', 'w') as f:
+    json.dump(payload, f, indent=2)
+
+print(f"\n{'='*55}")
+print(f"EVENING BRIEFING — {tomorrow_display}")
+print(f"{'='*55}")
+print(f"Events: {total_events} (personal {personal_count}, family {family_count}) | "
+      f"Conflicts: {conflicts_detected} | Prep: 0 | Zero-dur: {zero_duration_count}")
+print(f"Free hours: {free_hours:.1f}")
+print(f"Auth: {working_account}" + (" (fallback)" if auth_fallback_used else ""))
+if calendar_errors:
+    print(f"Calendar errors: {list(calendar_errors.keys())}")
+print(f"\n{summary_note}")
+print(f"\nJSON: /tmp/sands_evening_briefing.json")
+print("---BRIEFING_PAYLOAD_JSON---")
+print(json.dumps(briefing_payload))

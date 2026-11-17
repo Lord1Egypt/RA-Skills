@@ -245,7 +245,7 @@ const artifacts: ArtifactRef[] = [
   {
     id: 'artifact-001',
     type: 'document',
-    path: `${process.cwd()}/artifacts/task-implement-001-result.md`,
+    path: `${process.cwd()}/artifacts/taREDACTED-SECRET.md`,
     createdAt: new Date().toISOString(),
     metadata: { size: 128 },
   },

@@ -1,45 +1,56 @@
-## Description: <br>
-智能收支手帐。记录个人和家庭日常收支、管理固定支出、生成月度汇总报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+账单伙伴记录个人和家庭日常收支、管理固定支出，并生成月度汇总报告。
 
-## Publisher: <br>
-[kiss1952](https://clawhub.ai/user/kiss1952) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kiss1952](https://clawhub.ai/user/kiss1952)
 
-## Use Case: <br>
-Individuals and families use this skill to record income and expenses in natural language, manage recurring costs, query spending, and generate monthly finance summaries in local workspace files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores and modifies sensitive financial records in the workspace. <br>
-Mitigation: Confirm the storage location before use, avoid account numbers or other unnecessary identifiers, and review generated records before relying on them. <br>
-Risk: Broad natural-language triggers could record or modify finance data without enough upfront consent. <br>
-Mitigation: Use explicit commands for recording, correction, deletion, and reporting, and confirm ambiguous transactions before writing files. <br>
-Risk: Retention and cleanup expectations are not fully defined in the artifact. <br>
-Mitigation: Confirm how to delete or correct entries before entering sensitive personal or family finance details. <br>
+## Use Case:
 
+External users use this skill to maintain local personal or household bookkeeping records from natural-language expense, income, fixed-cost, and monthly-summary requests.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kiss1952/buddy-bills) <br>
-- [支出分类体系](references/categories.md) <br>
-- [数据目录结构与文件格式规范](references/data-schema.md) <br>
-- [固定支出配置规则](references/fixed-costs.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance and structured YAML finance records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores and updates local finance records under finance-records/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Personal financial records are stored in the workspace and may be visible to anyone with workspace access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in a private workspace and periodically review the generated finance-records/ files.
+
+Risk: Natural-language parsing can misclassify transactions or record an incorrect amount, merchant, date, or category.
+
+Mitigation: Ask for confirmation when transaction details are uncertain and review monthly summaries before relying on them.
+
+## Reference(s):
+
+- [Data Schema](artifact/references/data-schema.md)
+- [Expense Categories](artifact/references/categories.md)
+- [Fixed-Cost Rules](artifact/references/fixed-costs.md)
+- [ClawHub Skill Page](https://clawhub.ai/kiss1952/skills/buddy-bills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Natural-language responses plus structured YAML bookkeeping files and monthly markdown-style summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores and updates records locally under finance-records/ in the active workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

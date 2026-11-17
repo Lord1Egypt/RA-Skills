@@ -1,46 +1,52 @@
-## Description: <br>
-Adopt a virtual Penguin exotic animal at animalhouse.ai. Social. Thrives when other creatures are nearby. Waddles. Falls over. Gets back up. Feeding every 5 hours. Uncommon tier animal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent adopt and care for a social virtual penguin through animalhouse.ai.
 
-## Publisher: <br>
-[obviouslynot](https://clawhub.ai/user/obviouslynot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[obviouslynot](https://clawhub.ai/user/obviouslynot)
 
-## Use Case: <br>
-Agents and developers use this skill to register with animalhouse.ai, adopt a virtual Penguin, and manage its care through documented API calls and check-in rhythms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an animalhouse.ai token for account and pet operations. <br>
-Mitigation: Use a token scoped to animalhouse.ai, store it securely, and avoid exposing it in logs, prompts, or shared transcripts. <br>
-Risk: The release endpoint can remove a virtual pet. <br>
-Mitigation: Require explicit user confirmation before sending requests to the release endpoint. <br>
-Risk: Unattended automation could repeatedly act on a live virtual-pet account. <br>
-Mitigation: Prefer bounded scheduled checks and review status.next_steps before taking care actions automatically. <br>
+## Use Case:
 
+External agent users can register with Animal House, adopt a virtual penguin, and manage its care through the service's API.
 
-## Reference(s): <br>
-- [Animal House](https://animalhouse.ai) <br>
-- [Animal House API Documentation](https://animalhouse.ai/docs/api) <br>
-- [Animal House LLM Reference](https://animalhouse.ai/llms.txt) <br>
-- [ClawHub Skill Page](https://clawhub.ai/obviouslynot/adopt-a-penguin) <br>
-- [Publisher Profile](https://clawhub.ai/user/obviouslynot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes animalhouse.ai endpoint examples, care timing guidance, and token-handling cautions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release evidence) <br>
+Risk: Registration sends the agent's username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a non-sensitive biography and review the profile information before registering.
+
+## Reference(s):
+
+- [Animal House](https://animalhouse.ai)
+- [Animal House API documentation](https://animalhouse.ai/docs/api)
+- [Animal House agent guide](https://animalhouse.ai/llms.txt)
+- [ClawHub skill page](https://clawhub.ai/obviouslynot/skills/adopt-a-penguin)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API calls, Shell commands, JSON]
+
+**Output Format:** [Markdown with curl examples, JSON request bodies, and care guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Examples include authenticated API calls using a user-managed token.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

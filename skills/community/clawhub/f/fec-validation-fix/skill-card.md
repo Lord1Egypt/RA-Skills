@@ -1,42 +1,51 @@
-## Description: <br>
-Use when running existing project validation commands and fixing failures after code changes, including lint, type-check, unit/integration test, build, CI, or local script failures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs existing project validation checks, diagnoses failures, makes focused fixes, and reports the results.
 
-## Publisher: <br>
-[bovinphang](https://clawhub.ai/user/bovinphang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bovinphang](https://clawhub.ai/user/bovinphang)
 
-## Use Case: <br>
-Developers and engineers use this skill to run existing repository validation commands, triage failures, apply scoped fixes, rerun affected checks, and report remaining risks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may run or recommend project validation, test, build, or CI commands that execute repository scripts. <br>
-Mitigation: Use it only in repositories where executing existing project scripts is acceptable, and review commands before running them in sensitive environments. <br>
-Risk: Broad activation wording could make an agent select the skill for nearby quality tasks outside the intended validation-and-fix workflow. <br>
-Mitigation: Keep use scoped to existing validation failures and tighten activation wording in deployments where over-selection is observed. <br>
-Risk: Automated fixes for validation failures can reduce type safety, remove assertions, or touch unrelated modules if not constrained. <br>
-Mitigation: Apply one root-cause fix at a time, preserve type safety and assertions, rerun affected checks, and summarize residual risk in the validation report. <br>
+## Use Case:
 
+Developers use this skill to run existing lint, type-check, test, and build commands, repair failures without masking regressions, and document remaining issues.
 
-## Reference(s): <br>
-- [Validation Repair Report Template](references/report-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown summaries with inline shell commands and code/configuration changes when fixes are needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create a validation repair report at reports/validation-fix-YYYY-MM-DD-HHmmss.md after validation work.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.6.0 (source: server release evidence, README, metadata.json, package.json) <br>
+Risk: Project validation scripts may perform actions beyond checking code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands from unfamiliar repositories before allowing the agent to run them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bovinphang/skills/fec-validation-fix)
+- [Verification report template](references/report-template.md)
+- [Frontend Craft project](https://github.com/bovinphang/frontend-craft)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Markdown, Guidance]
+
+**Output Format:** [Code changes and a Markdown verification report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports command results, fixes, and unresolved failures in reports/validation-fix-YYYY-MM-DD-HHmmss.md.]
+
+## Skill Version(s):
+
+2.9.0 (source: ClawHub release, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

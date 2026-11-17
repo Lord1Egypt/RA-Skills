@@ -1,0 +1,17 @@
+{
+  "tool_name": "batch_factor_analysis",
+  "feature_days": 5,
+  "factor_dict": {
+    "CNE5_Size": "out = np.log(d['总市值'])",
+    "CNE5_Beta": "ac = d['close']*d['adj_factor']; ret = ac/ac.shift(1)-1; mkt = get_stock_index('000001','close').pct_change(); out = rolling_regbeta(ret, mkt, 252)",
+    "CNE5_Momentum": "ac = d['close']*d['adj_factor']; out = ac.shift(21)/ac.shift(252) - 1",
+    "CNE5_ResidualVol": "ac = d['close']*d['adj_factor']; ret = ac/ac.shift(1)-1; out = ret.rolling(252).std()*np.sqrt(252)",
+    "CNE5_NLSIZE": "sz = np.log(d['总市值']); out = -((row_rank(sz) - 0.5)**2)",
+    "CNE5_BookToPrice": "out = d['每股净资产']/d['close']",
+    "CNE5_Liquidity": "out = d['换手率'].rolling(20).mean()",
+    "CNE5_EarningsYield": "ep = 1/d['市盈率TTM']; cfp = d['每股经营现金流净额']/d['close']; out = 0.79*ep + 0.21*cfp",
+    "CNE5_Growth": "out = row_rank(d['营业总收入同比-%']) + row_rank(d['归母净利润同比-%'])",
+    "CNE5_Leverage": "out = 0.35*d['资产负债率'] + 0.27*d['权益乘数'] + 0.38*d['产权比率']"
+  },
+  "save_path": "output\\factor-BarraCNE5.xlsx"
+}

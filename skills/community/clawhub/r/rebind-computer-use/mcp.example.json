@@ -1,0 +1,13 @@
+{
+  "mcp": {
+    "servers": {
+      "rebind": {
+        "command": "bunx",
+        "args": ["@rebind.gg/mcp-server"],
+        "env": {
+          "REBIND_URL": "ws://127.0.0.1:19561"
+        }
+      }
+    }
+  }
+}

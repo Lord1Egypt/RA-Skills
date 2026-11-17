@@ -50,6 +50,17 @@ Use when {触发场景}. Triggers on: {触发词1}, {触发词2}, {触发词3}. 
 | `templates/` | ✅ | 广泛支持 |
 | 其他目录 | ❌ | 不生成，避免兼容性问题 |
 
+## Compaction 行为
+
+| 字段 | 值 | 说明 |
+|------|---|------|
+| `strategy` | `unknown` | 未知平台，假设最坏情况 |
+| `body_limit_lines` | 80 | 保守估计，保证大多数平台不丢失关键信息 |
+| `preserves` | frontmatter, first_50_lines | 保留的部分 |
+| `loses` | 假设 body 后半部分可能丢失 | 最坏假设 |
+
+**对编译器的启示：** 采用最保守策略——routing table 和所有关键信息必须在前 80 行内完整表达。
+
 ## 定制指南
 
 要在特定平台使用此 profile 编译的 skill：
@@ -58,4 +69,4 @@ Use when {触发场景}. Triggers on: {触发词1}, {触发词2}, {触发词3}. 
 2. 按平台能力选择性地启用 agents/, workflows/ 目录
 3. 按平台触发机制调整触发词数量与格式
 
-详见 `profiles/README.md` 了解如何编写自定义 profile。
+编写自定义 profile 时，参考 `profiles/trae.md` 和 `profiles/claude.md` 的结构：Frontmatter 规范（字段约束 + description 格式 + 长度上限）+ Compaction 行为 + 加载机制 + 文件结构约束。

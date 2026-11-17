@@ -1,38 +1,51 @@
-## Description: <br>
-Build and manage a product roadmap for a solopreneur business. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and manage a product roadmap for a solopreneur business, including feature prioritization, quarterly planning, customer feedback integration, and scope management.
 
-## Publisher: <br>
-[JK-0001](https://clawhub.ai/user/JK-0001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jk-0001](https://clawhub.ai/user/jk-0001)
 
-## Use Case: <br>
-Solopreneurs and small product teams use this skill to decide what to build next, prioritize feature ideas, structure quarterly roadmaps, communicate plans, and manage feature-request expectations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Roadmap templates and communication examples may be treated as commitments when shared with customers. <br>
-Mitigation: Review customer-facing roadmap language before sending and avoid promising fixed ship dates unless the team has confirmed them. <br>
-Risk: Prioritization guidance may not account for all business, customer, or market context. <br>
-Mitigation: Use the playbook as advice and validate priorities against current customer feedback, business goals, and available capacity. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+External solopreneurs and small-product builders use this skill to decide what to build next, prioritize feature ideas, structure quarterly roadmaps, communicate product direction, and manage feature requests.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad product-strategy language may invoke the skill for adjacent planning questions.
+
+Mitigation: Confirm the user is asking for roadmap planning, feature prioritization, product strategy, or feature request handling before relying on its guidance.
+
+Risk: Roadmap advice can be misleading if applied without current customer, business, or capacity context.
+
+Mitigation: Review recommendations against actual customer feedback, business goals, delivery capacity, and product metrics before committing to a roadmap.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance and planning templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces instruction-only product planning guidance; no code, installation steps, credentials, or system access are involved.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+**Output Type(s):** [Guidance, Markdown, Analysis]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with prioritization frameworks, roadmap structures, and example wording]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, data access, persistence, or hidden automation was found in the security evidence.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

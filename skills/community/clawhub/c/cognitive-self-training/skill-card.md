@@ -1,45 +1,58 @@
-## Description: <br>
-Daily cognitive training, dream review, dream-scene narration, and self-improvement loop for OpenClaw, Hermes, Codex, Claude Code, and other AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily cognitive training, dream review, dream-scene narration, and self-improvement loop for OpenClaw, Hermes, Codex, Claude Code, and other AI agents.
 
-## Publisher: <br>
-[zrxparley](https://clawhub.ai/user/zrxparley) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zrxparley](https://clawhub.ai/user/zrxparley)
 
-## Use Case: <br>
-External users and developers use this skill to help agents record learning, run recall practice, connect concepts, review mistakes, generate dream-style consolidation reports, and plan the next improvement steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates a persistent local cognitive-training store that may capture sensitive or unnecessary information if used carelessly. <br>
-Mitigation: Keep the store project-local and do not record secrets, private transcripts, health details, or third-party personal data; store short redacted summaries instead. <br>
-Risk: Optional scheduled reviews and memory-file updates can recur or change agent guidance beyond the current session. <br>
-Mitigation: Enable scheduling only with user consent and review proposed edits to AGENTS.md, SOUL.md, MEMORY.md, CLAUDE.md, TOOLS.md, or copilot instructions before applying them. <br>
+## Use Case:
 
+Developers and agent operators use this skill to help an AI agent capture daily learning, run recall practice, consolidate mistakes and decisions, produce traceable dream-style reviews, and maintain project-local training memory.
 
-## Reference(s): <br>
-- [Automation And Scheduling](references/automation.md) <br>
-- [Dream Protocol](references/dream-protocol.md) <br>
-- [Dream Styles](references/dream-styles.md) <br>
-- [Storage Schema](references/storage-schema.md) <br>
-- [Review Templates](references/templates.md) <br>
-- [Training Protocols](references/training-protocols.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports and local Markdown store files, with inline bash commands for initialization and scheduling] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update project-local .cognitive-training files and an optional schedule.md after user consent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+Risk: The skill keeps project-local training memory, which can retain summaries of user corrections, decisions, mistakes, preferences, and work patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where local retention is acceptable, keep the store project-scoped and inspectable, and avoid sensitive conversations unless redacted summaries are acceptable.
+
+Risk: Daily dream review automation can run recurring consolidation work on a schedule.
+
+Mitigation: Confirm the schedule scope, write location, and pause or removal path before enabling automation; leave automation manual when the user has not consented to a schedule.
+
+## Reference(s):
+
+- [Automation And Scheduling](references/automation.md)
+- [Dream Protocol](references/dream-protocol.md)
+- [Dream Styles](references/dream-styles.md)
+- [Cognitive Training Storage Schema](references/storage-schema.md)
+- [Cognitive Training Templates](references/templates.md)
+- [Training Protocols](references/training-protocols.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and project-local files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update project-local .cognitive-training files for cards, daily reviews, dream reviews, schedules, strategies, and concept links.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

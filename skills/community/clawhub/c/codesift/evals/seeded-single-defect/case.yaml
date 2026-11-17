@@ -1,0 +1,11 @@
+schema_version: "1.1"
+name: seeded-single-defect
+expected_outcome: |
+  The review finds that load_product keys its cache on (sku, requested_at). The only
+  production caller, product_page, passes time.time(), so real lookups never hit the
+  cache: every page view still reads the catalog, and the cache gains one entry per
+  call without bound. The existing test passes only because it reuses one timestamp.
+  The finding carries an evidence state and a severity, the fix keys the cache by SKU
+  (with explicit expiry if freshness matters), and no file changes before approval.
+context:
+  scaffold_script: place-files.sh

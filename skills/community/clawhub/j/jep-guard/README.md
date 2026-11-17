@@ -1,175 +1,31 @@
-# 🛡️ JEP Guard v2.0.4
+# JEP Guard 3.0.0 — repair candidate
 
-**Causal Operating System for OpenClaw Skills**
+This local policy gate only protects execution paths that explicitly call its hooks. It is not an OS sandbox. Processes sharing the service's OS account can access its credentials; use separate OS accounts/containers for mutually untrusted code.
 
-> *"Your AI agents collaborate. We make sure you can trace why."*
+Install using `npm ci --ignore-scripts`, build using `npm run build`. There is no install/uninstall lifecycle execution. Start manually with `node dist/cli/index.js daemon --mode full`. Use `node dist/cli/index.js init` to create a new configuration; it never overwrites existing configuration.
 
-[![Version](https://img.shields.io/badge/version-2.0.4-blue)](https://clawhub.ai)
-[![License](https://img.shields.io/badge/license-MIT--0-green)](LICENSE)
-[![IETF](https://img.shields.io/badge/IETF-JEP%20Draft-orange)](https://datatracker.ietf.org/doc/draft-wang-jep/)
+## Migration
 
----
+The private state directory is `~/.jep-guard` (0700). Files below it must be 0600 and owned by the service user. The socket has moved from shared `/tmp` to `~/.jep-guard/guard.sock` (0600). The daemon refuses to unlink an existing socket; confirm no daemon is using it before removing a stale socket manually.
 
-## ✨ What is JEP Guard?
+Set `config.json` to `{"version":"3.0.0","mode":"full"}` to protect hook calls. Explicit `passive` mode does not protect execution. A missing configuration is passive. Invalid configuration in an installed setup fails closed. In full mode, missing daemon, timeout, malformed response, `review`, `block`, and invalid capability signatures all prevent execution. Missing/corrupt policy fails closed. No percentage of operations is automatically approved.
 
-JEP Guard is the **invisible safety layer** for your OpenClaw skills ecosystem.
+An operator must provision each skill's Ed25519 key pair out of band. Place its base64 32-byte signing seed in `keys/SKILL_ID.json` as `{"seed":"..."}`. IDs allow letters, digits, dot, hyphen and underscore (1–128 characters, starting alphanumeric). Protect the keys directory with 0700. Configure `allowed-skills.json` as an array of `{"name":"SKILL_ID","version":"1","pubkey":"BASE64_RAW_32_BYTE_PUBLIC_KEY","capabilities":["read"]}`. The package contains no working private key or default credential. Registry changes require operator action and daemon restart; network requests cannot replace keys or capabilities.
 
-- 🔒 **Protects** — Blocks risky operations before they happen
-- 📊 **Audits** — Records every decision, delegation, and verification
-- 🔍 **Traces** — Reconstructs "who did what and why" across multiple agents
-- 🏆 **Certifies** — Gives your skills a reputation score others can trust
+Configure `policy.json` as an ordered array, for example `[{"id":"read-work","match":{"skill":"SKILL_ID","action":"read","target":"/work/*"},"decision":"allow"}]`. First matching rule wins; default is deny. `review` remains blocked. Rules with unsupported rate limits are rejected. Allow decisions must also fit the identity's assigned capabilities.
 
----
+The daemon creates a persistent signing seed and pinned public key in the same private directory on first manual startup. Clients sign a fresh socket challenge plus the complete request. Capabilities are Ed25519-signed, expire in 60 seconds, and bind the requester and exact execution parameters. This is a local capability envelope, not a JWS interoperability claim. Events use a signed local JEP-like profile; the daemon is the signer and requester is explicit signed metadata. Completion reports are authenticated client statements, not independently verified execution facts.
 
-## 🚀 Quick Start (30 seconds)
+Legacy cross-skill socket forwarding is disabled until an authenticated recipient adapter exists. AEGIS/global kernel and other optional integrations are not loaded automatically. The unused extension stubs are not production attestation implementations. This release does not claim TEE, cognitive attestation, automatic reputation-based protection or network consensus.
 
-```bash
-# Install
-claw install jep-guard
+## Data and limits
 
-# Initialize (interactive wizard)
-claw run jep-guard init
+The daemon writes signed event metadata and hashes to `~/.jep-guard/audit-stream.jep`; it does not transmit them externally. Request context crosses the local socket to the daemon for evaluation. Logs stop at 16 MiB and the core stops at 10,000 events; archive securely and restart rather than silently discard security state. Replay protection for commands uses a fresh per-connection challenge. Capabilities are single pre-execution authorizations for the cooperating runtime, not independently consumable network bearer tokens.
 
-# Start protecting your skills (manual daemon start)
-claw run jep-guard daemon --mode skill_os
+The CLI exports only the requested filter results from its bounded in-memory window (up to 10,000 recent records), never all historical records by implication. Output files use 0600 and exclusive creation. Local host administrators can alter/delete logs; externally anchor exports if rollback/deletion detection is required. Back up keys and logs securely. This package does not implement legal compliance certification or automatic retention deletion.
 
-# Done! Your skills are now causally protected.
-```
+## Verification
 
----
+`npm run build` and `npm test -- --runInBand` check the core, policy, identity, capabilities and export behavior. Run `RUN_IPC_TESTS=1 npm test -- --runInBand` on Linux/macOS allowing Unix sockets for five end-to-end IPC tests. They could not execute in the repair workspace (`listen EPERM`); release approval requires those tests and a real OpenClaw integration check. SDK import smoke test is `node -e "require('./dist/sdk')"`.
 
-## 📊 User Experience
-
-### For End Users
-
-**Daily Use — Zero Friction**
-```
-You: "Plan my trip to Tokyo"
-planner-skill → search-skill → booking-skill
-
-[JEP Guard] ✅ 12 events protected · 0 blocked · 1 delegation chain
-```
-
-**When Things Go Wrong — Full Visibility**
-```bash
-$ claw run jep-guard log --last
-
-Chain: planner#1 → search#2 → booking#3
-  ├─ planner: judged "need flights"
-  ├─ search: delegated to booking (scope: [book_flight])
-  └─ booking: verified "JAL 123 booked"
-
-Result: SUCCESS · 3.2s · All signatures valid
-```
-
-**Reputation Check Before Hiring an Agent**
-```bash
-$ claw run jep-guard skills reputation booking-skill
-
-booking-skill v2.1
-  ✅ Completion rate: 97.3% (145/149 tasks)
-  ⚡ Avg response: 1.2s
-  🔒 Zero violations
-  🏆 JEP Certified
-```
-
-### For Skill Developers
-
-**3-Line Integration**
-```javascript
-const guard = require('@jep-guard/sdk').init('my-skill');
-
-// Before acting
-const { token } = await guard.judge({ action: 'write', target: file });
-
-// After acting
-await guard.verify(eventId, 'approved', ['sha256:abc...']);
-```
-
-**Zero-Config Protection**
-Even without SDK integration, JEP Guard protects your skill through OpenClaw hooks:
-- File writes → Verified
-- Shell execution → Confirmed
-- Cross-skill delegation → Routed + logged
-
----
-
-## 🏗️ Architecture
-
-```
-┌─────────────────────────────────────────┐
-│           OpenClaw Skills              │
-│  planner · coder · search · deploy     │
-├─────────────────────────────────────────┤
-│      JEP Guard v2.0 (Daemon)           │
-│  ┌─────────┐ ┌─────────┐ ┌─────────┐ │
-│  │ Causal  │ │ Skill   │ │ Causal  │ │
-│  │ Gate    │ │ Registry│ │ Router  │ │
-│  └─────────┘ └─────────┘ └─────────┘ │
-│  ┌─────────┐ ┌─────────┐ ┌─────────┐ │
-│  │ Policy  │ │Reputation│ │ Dispute │ │
-│  │ Engine  │ │ Engine  │ │Resolver │ │
-│  └─────────┘ └─────────┘ └─────────┘ │
-│  ┌─────────┐ ┌─────────┐ ┌─────────┐ │
-│  │  Audit  │ │Extension│ │  TEE    │ │
-│  │ Stream  │ │ Loader  │ │ Signer  │ │
-│  └─────────┘ └─────────┘ └─────────┘ │
-├─────────────────────────────────────────┤
-│         JEP Core (4 Verbs)             │
-│     J (Judge) · D (Delegate)            │
-│     T (Terminate) · V (Verify)          │
-└─────────────────────────────────────────┘
-```
-
----
-
-## 🔐 Security & Privacy (v2.0.4 Hardening)
-
-- **Zero Auto-Execution**: Installer never spawns background processes. You start the daemon explicitly.
-- **Zero Shell Commands**: No `child_process.exec`, `.spawn`, or `.execSync` in install/uninstall hooks.
-- **Explicit Consent**: Full mode requires interactive confirmation; passive mode is default in CI/non-interactive environments.
-- **MIT-0 License** — Public domain, forever
-- **IETF Standard Track** — JEP draft submitted
-- **Privacy by Design** — Digest-only anonymity, TTL expiration, identity rotation
-- **Zero Knowledge** — Core verification needs no network calls
-
----
-
-## 📦 Version History
-
-| Version | Codename | Key Features |
-|---------|----------|--------------|
-| v1.0.2 | Baseline | Local command intercept, user confirm, temp tokens |
-| v1.0.3 | Trust | Built-in Ed25519 signing, standard JEP logs |
-| v1.1 | Connect | Cross-agent delegation, skill registry |
-| v1.2 | Smart | Policy engine (OPA/Cedar), adaptive confirmation |
-| v1.3 | Gate | **Causal Gate** — no event, no execution |
-| v1.4 | Deep | Cognitive attestation (SAE), hardware trust (TEE) |
-| v1.5 | Platform | **Skill OS** — full inter-skill routing & sandbox |
-| v1.6 | Credit | Reputation system, workflow bundles |
-| v1.7 | Team | Multi-user audit views, remote sync |
-| v2.0 | Federation | **Multi-agent gateway, AEGIS native, unified bus** |
-| **v2.0.4** | **Harden** | **Zero shell/exec, zero auto-start, explicit consent** |
-
----
-
-## 🤝 Contributing
-
-```bash
-git clone https://github.com/hjs-foundation/jep-guard.git
-cd jep-guard
-npm install
-npm run dev
-```
-
----
-
-## 📬 Contact
-
-- **Email**: signal@humanjudgment.org
-- **GitHub**: https://github.com/hjs-foundation/jep-guard
-- **IETF Draft**: https://datatracker.ietf.org/doc/draft-wang-jep/
-
----
-
-*JEP Guard — Because "it works" is not enough. You need to know **why** it works.*
+No existing runtime configuration is automatically modified. Operator registration of hooks with OpenClaw must follow the actual host version's integration contract; that integration has not been verified in this workspace.

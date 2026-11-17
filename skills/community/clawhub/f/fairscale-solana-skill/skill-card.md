@@ -1,43 +1,54 @@
-## Description: <br>
-Provides Solana wallet reputation scores and risk assessments to help agents and developers evaluate transaction, whitelist, airdrop, lending, and custom scoring decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides real-time Solana wallet reputation scores and risk assessments to inform and secure transaction decisions against fraudulent or risky actors.
 
-## Publisher: <br>
-[RisheeA](https://clawhub.ai/user/RisheeA) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[risheea](https://clawhub.ai/user/risheea)
 
-## Use Case: <br>
-Developers and agent builders use this skill to query FairScale's Solana wallet reputation and risk endpoints before trades, airdrops, whitelist decisions, lending checks, or custom scoring workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Solana wallet addresses and transaction context may be sent to a third-party FairScale API. <br>
-Mitigation: Use only wallet and transaction data that users are comfortable sharing with FairScale, and avoid sending unnecessary sensitive context. <br>
-Risk: Credit purchases and blockchain payments may be irreversible or sent to an untrusted address. <br>
-Mitigation: Do not automate credit purchases; verify payment addresses through trusted sources before sending funds. <br>
-Risk: Session tokens used for paid FairScale requests can grant access to prepaid credits. <br>
-Mitigation: Treat session tokens as credentials, avoid exposing them in logs or shared transcripts, and rotate or discard them when no longer needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [FairScale Docs](https://docs.fairscale.xyz) <br>
-- [FairScale API Endpoint](https://x402.fairscale.xyz) <br>
-- [ClawHub Skill Page](https://clawhub.ai/RisheeA/fairscale-solana-skill) <br>
+## Use Case:
 
+Developers and agents working with Solana wallets use this skill to query FairScale reputation scores, transaction risk checks, and custom scoring workflows before transfers, airdrops, whitelists, lending decisions, or other wallet-gated actions.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, JSON] <br>
-**Output Format:** [Markdown with inline HTTP, curl, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Solana wallet addresses, transaction amounts, scoring rules, and FairScale session-token handling guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.3 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Wallet addresses, batch wallet lists, transaction amounts, and session tokens are sensitive financial metadata shared with FairScale.
+
+Mitigation: Use the skill only when that external sharing is acceptable, minimize unnecessary wallet or amount disclosure, and protect session tokens.
+
+Risk: Credit-backed endpoints depend on FairScale provider availability, pricing, and privacy terms.
+
+Mitigation: Verify the provider, pricing, and privacy terms before prepaid-credit or production use.
+
+## Reference(s):
+
+- [FairScale Docs](https://docs.fairscale.xyz)
+- [FairScale API Endpoint](https://x402.fairscale.xyz)
+- [ClawHub Skill Page](https://clawhub.ai/risheea/skills/fairscale-solana-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash, HTTP, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Describes FairScale wallet score, transaction risk, custom scoring, batch scoring, credits, and session token usage.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

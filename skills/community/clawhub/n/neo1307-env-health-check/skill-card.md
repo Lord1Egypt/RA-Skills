@@ -1,40 +1,53 @@
-## Description: <br>
-Inspect environment variables, critical directories, and write permissions, then produce a health report for deployment readiness and local runtime checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Inspect environment variables, critical directories, and write permissions, then produce a health report.
 
-## Publisher: <br>
-[neo1307](https://clawhub.ai/user/neo1307) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neo1307](https://clawhub.ai/user/neo1307)
 
-## Use Case: <br>
-Developers and operators use this skill to check required environment variables and directory write access before running local or deployment workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generated report can disclose the names of checked environment variables and absolute directory paths. <br>
-Mitigation: Pass only environment variable names and directory paths that are acceptable to include in a local report. <br>
-Risk: The --out path creates or overwrites a local report file. <br>
-Mitigation: Choose an output path that is safe to create or overwrite before running the check. <br>
+## Use Case:
 
+Developers and deployment engineers use this skill to check required environment variables, critical directories, and write access before running an application or validating a local workspace.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/neo1307/neo1307-env-health-check) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Text] <br>
-**Output Format:** [Markdown report file with JSON console summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports OK/WARN/FAIL status for user-specified environment variable names and directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and skill.yaml) <br>
+Risk: Filesystem write checks can overwrite or delete files in user-supplied directories without adequate safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on directories where temporary probe-file creation and deletion is acceptable, and avoid sensitive or shared paths.
+
+Risk: The output report path can be overwritten.
+
+Mitigation: Choose a report path that can be safely replaced, or review the target path before running the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/neo1307/skills/neo1307-env-health-check)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown report file plus JSON console summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports OK, WARN, and FAIL findings for requested environment variables and directories.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

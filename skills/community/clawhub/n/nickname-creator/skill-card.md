@@ -1,38 +1,48 @@
-## Description: <br>
-帮助用户通过对话生成个性化昵称、网名和代号，适用于游戏 ID、社交账号、公司群名、情侣昵称、宠物名等场景。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users generate personalized nicknames, online handles, aliases, group names, game IDs, couple names, pet names, and other creative names through a conversational naming process.
 
-## Publisher: <br>
-[xiaosai](https://clawhub.ai/user/xiaosai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[xiaosai](https://clawhub.ai/user/xiaosai)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and agents use this skill to collect naming preferences conversationally and generate creative nickname options with short explanations for games, social profiles, work groups, relationships, pets, or aliases.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may pressure users to disclose gender before generating nickname suggestions.
+
+Mitigation: Make demographic questions optional, accept style preferences instead, and proceed when users decline to provide gender.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users use this skill to generate personalized nicknames, screen names, pet names, couple nicknames, group names, or code names through a lightweight conversational flow. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may pressure users to disclose gender before generating nicknames, even though gender is not necessary for the task. <br>
-Mitigation: Make gender optional, allow users to decline without pushback, and proceed from preferred style, context, tone, or examples instead. <br>
+**Output Format:** [Markdown list of nickname options with short creative explanations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaosai/nickname-creator) <br>
+**Other Properties Related to Output:** [Typically produces 3-5 options after a short preference-gathering conversation.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown list of nickname options with short creative explanations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Typically generates 3-5 nickname options after gathering context, style preference, and use case.] <br>
+1.0.2 (source: ClawHub release evidence)
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,61 @@
-## Description: <br>
-Interact with Twenty CRM (self-hosted) via REST/GraphQL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with Twenty CRM (self-hosted) via REST/GraphQL.
 
-## Publisher: <br>
-[JhumanJ](https://clawhub.ai/user/JhumanJ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jhumanj](https://clawhub.ai/user/jhumanj)
 
-## Use Case: <br>
-Developers and operators use this skill to configure an agent for a self-hosted Twenty CRM workspace and run REST or GraphQL API operations for CRM records such as companies. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can read, create, edit, and delete Twenty CRM records using the configured token. <br>
-Mitigation: Use a least-privilege API token and review POST, PATCH, and DELETE commands before execution. <br>
-Risk: The skill loads credentials from a local env file. <br>
-Mitigation: Keep the env file out of source control and logs. <br>
-Risk: Untrusted or complex search strings may be unsafe until query encoding is fixed. <br>
-Mitigation: Use simple, trusted search terms for company lookup operations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Twenty CRM skill page](https://clawhub.ai/JhumanJ/twenty-crm) <br>
-- [JhumanJ publisher profile](https://clawhub.ai/user/JhumanJ) <br>
+## Use Case:
 
+Developers and operators use this skill to query and manage a self-hosted Twenty CRM workspace through REST and GraphQL helpers, including company lookup, creation, updates, and deletion.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, API calls, JSON] <br>
-**Output Format:** [Markdown with inline shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TWENTY_BASE_URL and TWENTY_API_KEY for the target Twenty CRM workspace.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: API-token authority over the configured Twenty CRM can expose or misuse CRM data if the token is broad or mishandled.
+
+Mitigation: Use a narrowly scoped token, store it only in the expected config file with restricted file permissions, prefer HTTPS, and rotate short-lived tokens as needed.
+
+Risk: REST create, update, delete, and destroy helpers can change or permanently remove CRM records.
+
+Mitigation: Review commands and JSON payloads before execution, avoid delete permissions unless required, and test risky operations against non-production data first.
+
+Risk: The config helper uses a hardcoded local path for the Twenty CRM environment file.
+
+Mitigation: Review and adjust the config path for the deployment environment before use.
+
+Risk: Object names and endpoints can differ across Twenty workspace metadata and versions.
+
+Mitigation: Confirm object names and endpoint behavior against the target workspace before relying on automated operations.
+
+## Reference(s):
+
+- [Twenty CRM ClawHub release](https://clawhub.ai/jhumanj/skills/twenty-crm)
+- [Publisher profile](https://clawhub.ai/user/jhumanj)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute REST or GraphQL requests against the configured Twenty CRM instance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

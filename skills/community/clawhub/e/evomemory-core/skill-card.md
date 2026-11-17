@@ -1,45 +1,62 @@
-## Description: <br>
-EvoMemory Core provides a local OpenClaw memory system with ChromaDB and LanceDB backends, hybrid retrieval, semantic deduplication, and offline operation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evomemory Core provides a local memory system for OpenClaw AI agents with ChromaDB and LanceDB support, hybrid retrieval, semantic deduplication, auto-classification, and Chinese semantic retrieval optimization.
 
-## Publisher: <br>
-[lulan3954-a11y](https://clawhub.ai/user/lulan3954-a11y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lulan3954-a11y](https://clawhub.ai/user/lulan3954-a11y)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add or migrate local persistent memory for OpenClaw agents, including retrieval over stored memories without relying on external APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent agent memory can retain sensitive information. <br>
-Mitigation: Avoid storing secrets or confidential data in memory and review stored content before relying on it. <br>
-Risk: Installation can overwrite existing OpenClaw ChromaDB configuration. <br>
-Mitigation: Back up ~/.openclaw/config/chromadb_config.yaml before installing or rerunning setup. <br>
-Risk: A failed LanceDB migration may leave partially migrated data. <br>
-Mitigation: Back up source data first and verify migrated document counts before switching backends. <br>
-Risk: Remote ChromaDB settings can send memory data to a configured server. <br>
-Mitigation: Use the local backend unless you intentionally operate and trust a remote ChromaDB server. <br>
+## Use Case:
 
+Developers and AI-agent builders use this skill to add local memory, vector retrieval, and migration support to OpenClaw-compatible agents. It is suited for workflows that need offline memory storage with optional ChromaDB or LanceDB backends.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lulan3954-a11y/evomemory-core) <br>
-- [Publisher profile](https://clawhub.ai/user/lulan3954-a11y) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell commands and Python/configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local memory setup, migration, and usage guidance for OpenClaw agents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Remote ChromaDB configuration can transmit memory data, queries, metadata, and an API key despite offline-only positioning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local ChromaDB by default; configure remote servers only when they are trusted and protected with secure transport.
+
+Risk: API keys may be placed in ordinary configuration.
+
+Mitigation: Store secrets outside plain project config when possible and restrict access to any configuration that contains credentials.
+
+Risk: Migration or deletion operations can affect important memory data.
+
+Mitigation: Back up memory stores before migration, deletion, or backend-switching operations.
+
+Risk: Dependency installation may introduce unpinned packages into a shared Python environment.
+
+Mitigation: Install in a dedicated environment and pin dependency versions before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lulan3954-a11y/skills/evomemory-core)
+- [Publisher profile](https://clawhub.ai/user/lulan3954-a11y)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code, shell commands, and YAML configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local setup and integration guidance for an OpenClaw memory extension.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

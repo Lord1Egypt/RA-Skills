@@ -1,11 +1,11 @@
 # IPCB\_PrimitivePouredPourFill interface
 
-覆铜填充区域
+Copper fill region
 
 ## Signature
 
 ```typescript
-interface IPCB_PrimitivePouredPourFill 
+interface IPCB_PrimitivePouredPourFill
 ```
 
 ## Properties
@@ -14,97 +14,77 @@ interface IPCB_PrimitivePouredPourFill
 
 Property
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [fill](./IPCB_PrimitivePouredPourFill.md)
 
-
 </td><td>
-
 
 </td><td>
 
 boolean
 
-
 </td><td>
 
-是否填充
-
+Whether to fill
 
 </td></tr>
 <tr><td>
 
 [id](./IPCB_PrimitivePouredPourFill.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
 ID
-
 
 </td></tr>
 <tr><td>
 
 [lineWidth](./IPCB_PrimitivePouredPourFill.md)
 
-
 </td><td>
-
 
 </td><td>
 
 number
 
-
 </td><td>
 
-线宽
-
+Line width
 
 </td></tr>
 <tr><td>
 
 [path](./IPCB_PrimitivePouredPourFill.md)
 
-
 </td><td>
-
 
 </td><td>
 
 [IPCB\_ComplexPolygon](../classes/IPCB_ComplexPolygon.md)
 
-
 </td><td>
 
-复杂多边形
-
+Complex polygon
 
 </td></tr>
 </tbody></table>
@@ -117,7 +97,7 @@ number
 
 # IPCB\_PrimitivePouredPourFill.fill property
 
-是否填充
+Whether to fill
 
 ## Signature
 
@@ -141,7 +121,7 @@ id: string;
 
 # IPCB\_PrimitivePouredPourFill.lineWidth property
 
-线宽
+Line width
 
 ## Signature
 
@@ -153,7 +133,7 @@ lineWidth: number;
 
 # IPCB\_PrimitivePouredPourFill.path property
 
-复杂多边形
+Complex polygon
 
 ## Signature
 

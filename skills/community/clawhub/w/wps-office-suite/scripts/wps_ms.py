@@ -7,7 +7,10 @@ API 与 WPS 模式完全一致，调用方无感知。
 import sys
 from pathlib import Path
 
-from wps_common import safe_path, ensure_desktop_path, get_ms_word, release_ms
+from wps_common import (
+    safe_path, ensure_desktop_path,
+    get_ms_word, get_ms_excel, get_ms_ppt, release_ms,
+)
 
 
 # ==================== Word ====================
@@ -73,8 +76,8 @@ def ms_export_word(filepath: str, fmt: str) -> dict:
 
 # ==================== Excel ====================
 
-def ms_create_excel(name: str, sheets=None) -> dict:
-    app = get_ms_word()
+def ms_create_excel(name: str, sheets=None, filepath: str = None) -> dict:
+    app = get_ms_excel()
     wb = app.Workbooks.Add()
     if sheets:
         for i, sn in enumerate(sheets):
@@ -82,7 +85,7 @@ def ms_create_excel(name: str, sheets=None) -> dict:
                 wb.Sheets(i+1).Name = sn
             else:
                 wb.Sheets.Add().Name = sn
-    filepath = ensure_desktop_path(f"{name}.xlsx")
+    filepath = filepath or str(ensure_desktop_path(f"{name}.xlsx"))
     wb.SaveAs(str(filepath))
     wb.Close()
     return {"success": True, "path": str(filepath)}
@@ -90,13 +93,13 @@ def ms_create_excel(name: str, sheets=None) -> dict:
 
 # ==================== PPT ====================
 
-def ms_create_ppt(title: str) -> dict:
-    app = get_ms_word()
+def ms_create_ppt(title: str, filepath: str = None) -> dict:
+    app = get_ms_ppt()
     ppt = app.Presentations.Add()
     slide = ppt.Slides.Add(1, 1)
     if slide.Shapes.Count > 0:
         slide.Shapes(1).TextFrame.TextRange.Text = title
-    filepath = ensure_desktop_path(f"{title}.pptx")
+    filepath = filepath or str(ensure_desktop_path(f"{title}.pptx"))
     ppt.SaveAs(filepath)
     ppt.Close()
     return {"success": True, "path": filepath}

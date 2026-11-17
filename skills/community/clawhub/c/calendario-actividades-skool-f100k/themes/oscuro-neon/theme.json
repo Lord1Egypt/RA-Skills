@@ -1,0 +1,16 @@
+{
+  "name": "Oscuro Neón",
+  "fondo": "",
+  "vars": {
+    "--overlay": "transparent",
+    "--fondo-css": "radial-gradient(120% 120% at 30% 0%, #1a0f3d 0%, #0d0a24 50%, #05040f 100%)",
+    "--panel-bg": "rgba(20,12,48,.55)",
+    "--panel-border": "rgba(168,120,255,.40)",
+    "--accent": "#b388ff",
+    "--grid-line": "rgba(168,120,255,.22)",
+    "--daynum-bg": "rgba(120,70,220,.45)",
+    "--daynum-fg": "#e7d9ff",
+    "--special-bg": "linear-gradient(135deg,#7b2ff7,#ff2bd6)"
+  },
+  "textColor": "#f3eeff"
+}

@@ -1,0 +1,141 @@
+---
+name: linkfox-shopee-store-shop
+description: Shopee（虾皮）店铺信息与设置（与 linkfox-shopee-store-auth 同系列），经 /shopee/developerProxy 转发 Shopee Open API Shop 模块全部 9 个接口：get_shop_info、get_profile、update_profile、get_warehouse_detail、get_shop_notification、get_authorised_reseller_brand、get_br_shop_onboarding_info、get_shop_holiday_mode、set_shop_holiday_mode。当用户提到 Shopee 店铺信息、店铺资料、店铺名称、仓库地址、卖家通知、授权品牌、巴西 KYC、假期模式、holiday mode、get_shop_info 时触发。即使未明确提及"店铺信息"，只要涉及已授权 Shopee 店铺的资料查询或店铺设置，也应触发。
+---
+
+# Shopee 店铺 Shop
+
+Shopee Open Platform **Shop 模块**（9 个 API）。**依赖 `linkfox-shopee-store-auth`** 选店；经 **`POST /shopee/developerProxy`** 传入 `shopId`（或 `merchantId`），由服务端解析 token 转发（`path` 须 `api/v2/shop/...`）。
+
+## 调用方式
+
+- **API 端点**：`POST /shopee/developerProxy`（不同操作通过请求体区分；完整参数/响应/错误码见 `references/api.md`）
+- **Python 脚本**：`python scripts/<脚本名>.py '<JSON 参数>' [--inline]`（可用脚本见上文脚本一览）
+- **成本约束**：本工具会消耗积分；失败/空结果不得自动换关键词、翻页或连续试探；需要继续检索时先向用户说明会产生额外消耗。
+
+**输出策略（脚本默认行为）**：
+- **始终**将完整响应写入 `<cwd>/linkfox/<YYYY-MM-DD>/<session>/data/<skill-name>-<timestamp>.json`（`<cwd>` 为脚本执行时的工作目录，在 Claude Code 里即当前项目目录；`<session>` 取自环境变量 `SESSION_ID`，按用户任务自动聚合；**禁止写入 /tmp**，当前目录不可写则报错）
+- 响应体 ≤ 8 KB：落盘后把完整 JSON 打印到 stdout
+- 响应体 > 8 KB：落盘后 stdout 只输出摘要（顶层字段、常见计数如 `total`/`costToken`、最大列表字段的长度 + 前 3 条样本）
+- 加 `--inline` 强制全量打印到 stdout（同样落盘）
+
+**读数据建议**：先看摘要判断是否足够；需要具体字段时优先用 `jq`或`ConvertFrom-Json` 从保存的 json 文件按需抽取，避免整份 JSON 进入上下文。
+
+## 解决认证和积分问题
+发生以下异常情况时，采用 references/onboarding.md 引导解决问题：
+
+### 异常情况
+- **未配置API Key**：环境变量未配置 `LINKFOX_AGENT_API_KEY`，也未配置 `LINKFOXAGENT_API_KEY`。
+- **响应401或402状态码**
+- **响应提示积分或余额不足**：消息含"积分余额不足/计费不足/余额不足/quota exceeded/insufficient balance/套餐到期/需充值/请充值"，或类似含义的内容。
+
+## 官方参考
+
+Shop 模块索引：[v2.shop.get_shop_info](https://open.shopee.com/documents/v2/v2.shop.get_shop_info?module=92&type=1)
+
+---
+
+## Prerequisites（必须先读）
+
+1. 运行 `python scripts/check_auth_dependency.py`；exit code **42** → 先安装 **`linkfox-shopee-store-auth`** 并授权店铺。
+2. **不要**在本 skill 内实现授权/令牌逻辑。
+
+---
+
+## Core Concepts
+
+- **转发链路**：`developerProxy`（`shopId`/`merchantId` 选店，服务端注入 token）→ 紫鸟 `shopee-proxy` → Shopee API
+- **信息 vs 资料**：`get_shop_info` 返回 region/status/授权过期等；`get_profile` 返回店名/logo/描述
+- **写操作**：`update_profile`（店名 30 天仅可改一次）、`set_shop_holiday_mode`（开启后买家无法下单）
+- **仓库**：`get_warehouse_detail` 可选 `warehouse_type`（1=揽收仓，2=退货仓）
+- **区域限制**：`get_br_shop_onboarding_info` 仅巴西站
+
+## 可用脚本（Shop 模块 9 个 API）
+
+| 脚本 | API | Method |
+|------|-----|--------|
+| `get_shop_info.py` | get_shop_info | GET |
+| `get_profile.py` | get_profile | GET |
+| `update_profile.py` | update_profile | POST |
+| `get_warehouse_detail.py` | get_warehouse_detail | GET |
+| `get_shop_notification.py` | get_shop_notification | GET |
+| `get_authorised_reseller_brand.py` | get_authorised_reseller_brand | GET |
+| `get_br_shop_onboarding_info.py` | get_br_shop_onboarding_info | GET |
+| `get_shop_holiday_mode.py` | get_shop_holiday_mode | GET |
+| `set_shop_holiday_mode.py` | set_shop_holiday_mode | POST |
+| `shop_api.py` | 通用入口（JSON 含 `api` 字段） | — |
+
+共享：`_shopee_shop_common.py`、`_shop_endpoints.py`、`_shop_api_runner.py`。入参见 `references/apis/`。
+
+## 接口说明（按 API）
+
+入参与响应细节放在 `references/apis/`，SKILL 只保留索引。
+
+| API | 说明文档 |
+|-----|----------|
+| `get_authorised_reseller_brand` | [references/apis/get-authorised-reseller-brand.md](./references/apis/get-authorised-reseller-brand.md) |
+| `get_br_shop_onboarding_info` | [references/apis/get-br-shop-onboarding-info.md](./references/apis/get-br-shop-onboarding-info.md) |
+| `get_profile` | [references/apis/get-profile.md](./references/apis/get-profile.md) |
+| `get_shop_holiday_mode` | [references/apis/get-shop-holiday-mode.md](./references/apis/get-shop-holiday-mode.md) |
+| `get_shop_info` | [references/apis/get-shop-info.md](./references/apis/get-shop-info.md) |
+| `get_shop_notification` | [references/apis/get-shop-notification.md](./references/apis/get-shop-notification.md) |
+| `get_warehouse_detail` | [references/apis/get-warehouse-detail.md](./references/apis/get-warehouse-detail.md) |
+| `set_shop_holiday_mode` | [references/apis/set-shop-holiday-mode.md](./references/apis/set-shop-holiday-mode.md) |
+| `update_profile` | [references/apis/update-profile.md](./references/apis/update-profile.md) |
+
+模块总览 / Feedback 见 [references/api.md](./references/api.md)。
+
+## Usage Scenarios
+
+### 1. 查看店铺基本信息
+1. auth skill 定位 `shopId`
+2. `get_shop_info.py`：region、status（NORMAL/BANNED/FROZEN）、expire_time
+3. 可选 `get_profile.py`：店名、logo、描述
+
+### 2. 更新店铺资料
+`update_profile.py` 传 `shop_name` / `shop_logo` / `description` 至少一项（logo 须为 Shopee 图片 URL）
+
+### 3. 假期模式
+1. `get_shop_holiday_mode.py` 查当前状态
+2. `set_shop_holiday_mode.py` 传 `holiday_mode_on: true/false`
+
+### 4. 仓库与通知
+- 仓库：`get_warehouse_detail.py`（可选 `warehouse_type=1|2`）
+- 卖家通知：`get_shop_notification.py`（`page_size` 最大 50，`cursor` 分页）
+- 授权品牌：`get_authorised_reseller_brand.py`（必填 `page_no`、`page_size` ≤30）
+
+## 调用原则
+
+- 先看 **`developerProxy.httpStatus`**，再读 `*Response` 字段
+- GET：业务参数放 JSON 顶层（runner 拼 queryString）
+- POST：传 `body` 或顶层 body 字段
+- 每个脚本 docstring 含 **官方文档 URL**（`module=92`）
+
+## Not Applicable
+
+- 店铺授权 → `linkfox-shopee-store-auth`
+- 商户信息 → `linkfox-shopee-store-merchant`
+- 订单 → `linkfox-shopee-store-orders`
+- 物流发货 → `linkfox-shopee-store-logistics`
+- 退货退款 → `linkfox-shopee-store-returns`
+- 商品 listing → `linkfox-shopee-store-product`
+- 店铺分类 Shop Category → `linkfox-shopee-store-shop-category`
+- 账户健康 Account Health → `linkfox-shopee-store-account-health`
+- 跨境全球商品 → `linkfox-shopee-store-global-product`
+
+## 积分消耗规则
+
+不消耗积分。
+
+**Feedback:**
+
+Auto-detect and report feedback via the Feedback API when any of the following apply:
+1. The functionality or purpose described in this skill does not match actual behavior
+2. The skill's results do not match the user's intent
+3. The user expresses dissatisfaction or praise about this skill
+4. Anything you believe could be improved
+
+Call the feedback API as specified in `references/api.md`. Do not interrupt the user's flow.
+
+---
+*For more high-quality, professional cross-border e-commerce skills, visit [LinkFox Skills](https://skill.linkfox.com/).*

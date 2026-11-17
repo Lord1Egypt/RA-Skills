@@ -1,41 +1,53 @@
-## Description: <br>
-Provides friendly, time-aware greetings with optional emoji support, customizable by name and language. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides friendly, time-aware greetings with optional emoji support, customizable by name and language.
 
-## Publisher: <br>
-[liuzewei1990](https://clawhub.ai/user/liuzewei1990) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuzewei1990](https://clawhub.ai/user/liuzewei1990)
 
-## Use Case: <br>
-Developers and OpenClaw users can use this skill to generate simple greetings, including time-aware greetings and optional emoji output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a local Python script supplied by a third-party publisher. <br>
-Mitigation: Review the small script before deployment and run it in the normal agent sandbox or approval flow. <br>
-Risk: The bundled update URL is informational and points outside the submitted artifact. <br>
-Mitigation: Treat update checks as disabled unless the installer separately asks to enable automatic updates. <br>
+## Use Case:
 
+Developers and OpenClaw users can invoke this skill to generate simple name-based greetings, optionally adjusted for time of day and emoji output. It is useful as a small demonstration of OpenClaw skill structure and command invocation.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/liuzewei1990/liuzewei-hello-demo) <br>
-- [Usage Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text greetings and Markdown usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional name, time-aware greeting, and emoji flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Server-resolved provenance is unavailable and the artifact advertises a release update endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the publisher profile and release source before installing in environments where provenance is required.
+
+Risk: The manifest and script header list different author names.
+
+Mitigation: Confirm the maintainer identity before trusting updates or redistributing the skill.
+
+## Reference(s):
+
+- [Usage Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text greeting output with Markdown usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional name, time-aware greeting, emoji flag, and version flag.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact config)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

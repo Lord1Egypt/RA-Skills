@@ -1,39 +1,49 @@
-## Description: <br>
-Chinese-market client-intelligence safety layer for lead-discovery skills that enforces literal Chinese text, controlled term usage, source-tier ordering, inline citations for hard numbers, and no-fabrication handling for missing data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-market client-intelligence safety layer that guides lead-discovery skills to produce UTF-8 Chinese markdown with tiered sourcing, inline citations for hard numbers, and no fabricated missing data.
 
-## Publisher: <br>
-[jackdark425](https://clawhub.ai/user/jackdark425) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jackdark425](https://clawhub.ai/user/jackdark425)
 
-## Use Case: <br>
-Developers and analysts use this skill as a quality gate for Chinese-market lead-discovery markdown before downstream banker deliverables consume the intelligence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The verifier checks markdown citation coverage but does not fully validate Chinese typos, lexicon usage, source-tier ordering, or whether unavailable data was fabricated. <br>
-Mitigation: Use the verifier as a citation gate and pair it with human review or downstream checks for terminology, source quality, and missing-data handling. <br>
-Risk: Hard numbers can be misleading if they cite media-only or unavailable sources for financial intelligence. <br>
-Mitigation: Run the verifier in strict mode when stronger traceability is required so hard numbers must cite an MCP-tool anchor or official filing source. <br>
+## Use Case:
 
+Developers and analysts use this skill when preparing Chinese-market lead-discovery or client-investigation markdown that must preserve Chinese text, cite hard numbers, follow source-tier ordering, and clearly mark unavailable data.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell command examples and a Python verification script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Verifies citation coverage for hard numbers in generated intelligence markdown; strict mode requires MCP-tool or official-filing anchors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.8.2 (source: server release evidence) <br>
+Risk: Citation checks can confirm citation presence without proving every number is accurate or every source is authoritative.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review important financial figures manually against primary filings or trusted MCP data before using banker deliverables.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jackdark425/skills/cn-lead-safety)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown guidance with inline bash command examples and verifier diagnostics]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Verifier checks citation presence near hard numbers; important financial figures still require human review against primary filings or trusted data.]
+
+## Skill Version(s):
+
+0.8.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-查询城市当前天气，并用简洁中文返回天气状况和温度。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries current weather for a city and returns a concise Chinese response with the weather condition and temperature.
 
-## Publisher: <br>
-[lushulin-jack](https://clawhub.ai/user/lushulin-jack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lushulin-jack](https://clawhub.ai/user/lushulin-jack)
 
-## Use Case: <br>
-External users and agents use this skill to look up current weather for a city and return a short Chinese-language answer with the city name, weather condition, and temperature. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Weather lookup depends on an external public endpoint and city-name interpretation, so results can fail or be inaccurate. <br>
-Mitigation: Review weather responses before relying on them and ask users to retry with an English city name when lookup fails. <br>
-Risk: The skill performs a network request for the requested city. <br>
-Mitigation: Grant network access only for the intended weather lookup and avoid sending sensitive data as part of the city query. <br>
+## Use Case:
 
+External users and agent developers use this skill to request current city weather and receive a short Chinese summary containing the city, weather condition, and temperature.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lushulin-jack/lsl-test-skill1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text] <br>
-**Output Format:** [Plain text in Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Expected response is 1-2 sentences and includes city name, weather condition, and temperature.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: ClawHub server release metadata) <br>
+Risk: The skill asks the agent to construct a curl command from user-provided city text, which can be unsafe if the city contains quotes, shell metacharacters, newlines, or URL delimiters.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate and URL-encode city names before requests, avoid shell invocation when possible, and review generated commands before execution.
+
+Risk: Network weather requests may disclose city queries to an external weather service.
+
+Mitigation: Use only when external network weather lookup is acceptable and avoid sensitive location data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lushulin-jack/skills/lsl-test-skill1)
+- [ClawHub publisher profile](https://clawhub.ai/user/lushulin-jack)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Concise Chinese text response, typically one to two sentences.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes the city name, weather condition, and temperature; failure responses ask the user to check the city name and prefer English city names.]
+
+## Skill Version(s):
+
+1.0.4 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

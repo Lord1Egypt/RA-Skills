@@ -1,45 +1,61 @@
-## Description: <br>
-Continuously track the web for changes via the Parallel Monitor API. Creates a recurring research task that runs on a cadence and emits events on change, with optional webhook delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Continuously track the web for changes via the Parallel Monitor API. Creates a recurring research task that runs on a cadence and emits events on change, with optional webhook delivery.
 
-## Publisher: <br>
-[normallygaussian](https://clawhub.ai/user/normallygaussian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[normallygaussian](https://clawhub.ai/user/normallygaussian)
 
-## Use Case: <br>
-Developers and operators use this skill to create and manage recurring Parallel monitors for web changes such as pricing updates, filings, launches, posts, or other watch-and-alert workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent monitors can continue running on a cadence after creation. <br>
-Mitigation: Confirm the objective and cadence before creating a monitor, and keep the monitor_id so recurring jobs can be updated or deleted later. <br>
-Risk: Webhook delivery can send monitor events to an external URL. <br>
-Mitigation: Use only trusted webhook URLs and confirm whether webhook delivery is needed before enabling it. <br>
-Risk: Monitor commands require an installed and authenticated parallel-cli. <br>
-Mitigation: Check parallel-cli availability and authentication before running monitor commands; stop on authentication errors. <br>
+## Use Case:
 
+Developers and agents use this skill to create and manage recurring Parallel monitors for topics, pages, filings, pricing, launches, or other signals that should be watched over time.
 
-## Reference(s): <br>
-- [Parallel Homepage](https://parallel.ai) <br>
-- [Parallel API Docs](https://docs.parallel.ai) <br>
-- [Monitor API Reference](https://docs.parallel.ai/api-reference/monitor) <br>
-- [Parallel CLI Integration Docs](https://docs.parallel.ai/integrations/cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown with inline bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should preserve monitor identifiers and summarize recurring event trends when reporting monitor results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Recurring monitors can persist beyond the current session and may send events to configured webhooks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the monitoring objective, cadence, and webhook URL before creating or updating a monitor.
+
+Risk: Deleting a monitor stops the recurring observation task.
+
+Mitigation: Confirm the exact monitor_id before deleting a monitor.
+
+Risk: Untrusted monitor text passed through raw shell interpolation can change command behavior.
+
+Mitigation: Pass objectives and schemas as quoted arguments or structured CLI options instead of interpolating raw text.
+
+## Reference(s):
+
+- [Parallel homepage](https://parallel.ai)
+- [Parallel API docs](https://docs.parallel.ai)
+- [Parallel Monitor API reference](https://docs.parallel.ai/api-reference/monitor)
+- [Parallel CLI integration docs](https://docs.parallel.ai/integrations/cli)
+- [ClawHub skill page](https://clawhub.ai/normallygaussian/skills/parallel-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include monitor IDs, cadence values, webhook URLs, structured output schemas, event summaries, and CLI error-handling guidance.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,63 @@
-## Description: <br>
-AI短剧制作助手 | AI Short Film Producer helps agents plan and produce low-cost AI short films by creating scripts and shot plans, generating video and TTS assets through third-party APIs, and assembling local outputs with FFmpeg and Python. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI短剧制作助手 | AI Short Film Producer helps agents plan and produce low-cost AI short films by creating shot scripts, generating video and TTS assets through third-party APIs, and assembling them locally with FFmpeg and Python.
 
-## Publisher: <br>
-[hitjcl](https://clawhub.ai/user/hitjcl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hitjcl](https://clawhub.ai/user/hitjcl)
 
-## Use Case: <br>
-External creators, developers, and production-oriented agent users can use this skill to turn a theme, script, or short-form video idea into a structured short-film production workflow. The skill guides storyboarding, prompt preparation, TTS generation, local FFmpeg/Python assembly, subtitle creation, asset export, cost estimation, and review iterations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may send prompts, scripts, voice text, and media to third-party generation services. <br>
-Mitigation: Review the content before submission, avoid sensitive or confidential material, and use temporary or access-limited public links when an API requires reachable media. <br>
-Risk: The workflow requires API credentials and may incur usage-based costs during retries or batch jobs. <br>
-Mitigation: Use a scoped or low-balance API key, confirm pricing and retry limits before running batches, and monitor API usage during generation. <br>
-Risk: The workflow writes generated media, subtitles, matrices, and final videos to local export folders. <br>
-Mitigation: Choose the export folder deliberately, inspect generated files before sharing, and avoid overwriting unrelated project assets. <br>
-Risk: Generated video, voice, subtitles, or timing may be inaccurate or unsuitable for release without review. <br>
-Mitigation: Use the documented production review loop to check audio-video sync, subtitle accuracy, visual repetition, quality issues, and timing before publishing. <br>
+## Use Case:
 
+External users, developers, and creative operators use this skill to turn a topic, script, or concept into an AI short film workflow with shot planning, video generation, voiceover generation, subtitles, local composition, review, and cost tracking.
 
-## Reference(s): <br>
-- [AI Short Film Production Workflow](references/production_workflow.md) <br>
-- [Sucuang API Interface Notes](references/sucuang_api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples and shell/Python command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local media file structures, API request payloads, FFmpeg commands, Python snippets, and review checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The workflow uses third-party video and TTS APIs that may receive user prompts, scripts, or generated content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit secrets, regulated data, private scripts, or sensitive personal information to the referenced APIs; review provider terms before use.
+
+Risk: API keys may be exposed if copied into URLs, logs, scripts, or shared project files.
+
+Mitigation: Pass API keys through headers or a local secret store, keep them out of URLs and logs, and avoid committing generated credentials or configuration files.
+
+Risk: Downloaded media archives and generated assets are processed locally with Python and FFmpeg.
+
+Mitigation: Use request timeouts, retry limits, trusted download hosts, archive size checks, and safe FFmpeg concat manifests before processing untrusted media folders.
+
+Risk: Generated footage, TTS, or subtitles can be inaccurate, poorly synchronized, or visually defective.
+
+Mitigation: Run the documented review workflow for audio-video sync, subtitle accuracy, duration drift, repeated loops, and visual quality before publishing.
+
+## Reference(s):
+
+- [AI Short Film Producer skill page](https://clawhub.ai/hitjcl/skills/ai-short-film-producer)
+- [AI短剧制作流程详细参考](artifact/references/production_workflow.md)
+- [速创API 接口文档与踩坑经验](artifact/references/sucuang_api.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with JSON, Python, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workflow guidance and implementation snippets for scripts, generated media assets, subtitles, FFmpeg composition, review checks, and cost calculations.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

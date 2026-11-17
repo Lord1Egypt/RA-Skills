@@ -1,42 +1,59 @@
-## Description: <br>
-Launchpad provides local blockchain and crypto launchpad reference material, including concepts, formulas, regulations, risks, strategies, glossary terms, and due diligence checklists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for blockchain and crypto that covers introductory concepts, formulas, regulations, risks, instruments, strategies, glossary terms, and due diligence checklists.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers, analysts, and operators use Launchpad to quickly look up blockchain launchpad concepts, calculations, regulatory considerations, risks, strategies, glossary terms, and checklist material from local commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is flagged as suspicious because the package includes a stateful local note/database utility in addition to the advertised reference guide. <br>
-Mitigation: Review the bundled commands before running them, and only install the skill if a local note/database utility is acceptable for the environment. <br>
-Risk: Local add, config, and export behavior can store or write user-provided information on disk. <br>
-Mitigation: Do not enter wallet material, credentials, private protocol notes, or other sensitive data; check ~/.launchpad and any launchpad-export files after use. <br>
+## Use Case:
 
+External users, developers, and blockchain practitioners use this skill to retrieve concise launchpad reference material and checklists for blockchain workflows. Reviewers should account for the bundled nested skill that can maintain a local launchpad datastore.
 
-## Reference(s): <br>
-- [Launchpad on ClawHub](https://clawhub.ai/ckchzh/launchpad) <br>
-- [Publisher profile](https://clawhub.ai/user/ckchzh) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files] <br>
-**Output Format:** [Plain text and Markdown-style command output from local shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some bundled commands can create local data under ~/.launchpad or export launchpad-export files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The package includes a nested skill with persistent local data operations that are not described by the top-level reference-tool summary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package before installation and remove or clearly document the nested skill if local datastore behavior is intended.
+
+Risk: The nested skill can delete and export locally stored Launchpad entries.
+
+Mitigation: Run it only in an appropriate workspace, review configured data paths, and avoid storing sensitive information in the Launchpad datastore.
+
+Risk: Reference content about blockchain, regulation, and risk can be generic or incomplete.
+
+Mitigation: Treat the output as a quick reference and verify regulatory, financial, or security decisions against authoritative sources.
+
+## Reference(s):
+
+- [Launchpad Skill Page](https://clawhub.ai/ckchzh/skills/launchpad)
+- [Publisher Profile](https://clawhub.ai/user/ckchzh)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown reference content from shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Top-level commands emit reference documentation; the bundled nested skill can also create, delete, configure, and export local files under the configured Launchpad data directory.]
+
+## Skill Version(s):
+
+2.0.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

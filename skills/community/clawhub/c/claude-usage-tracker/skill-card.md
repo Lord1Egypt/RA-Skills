@@ -1,43 +1,58 @@
-## Description: <br>
-Track Claude.ai token usage and session costs by scraping the Claude.ai usage dashboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track Claude.ai token usage and session costs by scraping the Claude.ai usage dashboard.
 
-## Publisher: <br>
-[nissan](https://clawhub.ai/user/nissan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nissan](https://clawhub.ai/user/nissan)
 
-## Use Case: <br>
-Individuals or teams who track Claude.ai usage use this skill to log dashboard snapshots, check current limits and spend, and project near-term usage exhaustion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill works with Claude.ai usage, spend, and balance details that may be sensitive. <br>
-Mitigation: Share only the values needed for the usage question, avoid including credentials or full billing records, and keep the local snapshot state in an appropriate user-controlled location. <br>
-Risk: Usage projections can be stale or low confidence when snapshot history is sparse. <br>
-Mitigation: Confirm current Claude.ai dashboard values before billing or capacity decisions and clearly caveat projections when there are fewer than several representative snapshots. <br>
-Risk: The workflow depends on local Python commands and disclosed command use. <br>
-Mitigation: Review commands before running them, confirm the target workspace and state file, and install only when the publisher and workflow are trusted. <br>
+## Use Case:
 
+Developers and Claude.ai users use this skill to monitor token usage, session limits, extra spend, balance, and short-term usage projections from the Claude.ai usage dashboard.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nissan/claude-usage-tracker) <br>
-- [Publisher profile](https://clawhub.ai/user/nissan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and concise status or projection summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference usage percentages, reset timers, spend, balance, and confidence caveats when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The reviewed package does not include the Python tracker script that the skill tells the agent to run.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before use, confirm the exact local script path and review that script independently.
+
+Risk: The tracker handles sensitive Claude.ai usage, spend, balance, and limit data.
+
+Mitigation: Use it only where that account and billing data can be stored in the disclosed memory file with appropriate local access controls.
+
+Risk: The skill performs outbound access to the Claude.ai web dashboard.
+
+Mitigation: Confirm that dashboard access is expected for the environment and account before enabling the workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nissan/skills/claude-usage-tracker)
+- [Publisher profile](https://clawhub.ai/user/nissan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and concise usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference usage percentages, spend, balance, reset timing, and projection confidence when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

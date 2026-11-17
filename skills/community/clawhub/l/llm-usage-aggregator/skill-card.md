@@ -1,41 +1,58 @@
-## Description: <br>
-Aggregates LLM usage CSV or Excel logs by provider, model, user, and internal or external user type, then calculates costs from a pricing configuration and writes an Excel report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Llm Usage Aggregator summarizes LLM usage CSV or Excel logs by provider, model, user, and internal or external user type, then generates an Excel workbook with cost calculations from a pricing configuration.
 
-## Publisher: <br>
-[no7dw](https://clawhub.ai/user/no7dw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[no7dw](https://clawhub.ai/user/no7dw)
 
-## Use Case: <br>
-Developers, operations teams, and finance analysts use this skill to summarize authorized LLM usage exports, separate internal and external consumption, identify unpriced models, and calculate cost by provider, model, and user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Usage inputs and generated Excel reports can contain email addresses, phone numbers, or user IDs. <br>
-Mitigation: Process only usage logs you are authorized to handle, and redact or restrict sharing of generated reports outside the intended team. <br>
-Risk: Unconfigured or mismatched model pricing can cause affected rows to be reported with zero cost. <br>
-Mitigation: Review the terminal validation messages and update pricing_config.json before relying on the report for billing or chargeback decisions. <br>
+## Use Case:
 
+Developers, operators, and finance or analytics teams use this skill to turn LLM usage logs into model, provider, user, and user-type summaries with estimated USD costs.
 
-## Reference(s): <br>
-- [Pricing configuration](references/pricing_config.json) <br>
-- [ClawHub skill page](https://clawhub.ai/no7dw/skills/llm-usage-aggregator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Analysis, Text] <br>
-**Output Format:** [Excel workbook (.xlsx) plus terminal text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads user-supplied CSV or Excel usage logs and an optional pricing JSON; the workbook contains summary and pricing-detail sheets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Input logs and generated workbooks may contain raw user identifiers, usage metrics, and cost data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Process files locally, restrict access to inputs and generated workbooks, and treat both as sensitive operational data.
+
+Risk: Untrusted CSV or Excel values that begin with =, +, -, or @ may be unsafe when opened or shared in spreadsheet software.
+
+Mitigation: Use trusted input files or sanitize spreadsheet-triggering values before opening or distributing generated workbooks.
+
+Risk: Missing or stale model pricing can cause affected rows to be reported with zero cost.
+
+Mitigation: Review pricing validation warnings and keep references/pricing_config.json current before relying on cost totals.
+
+## Reference(s):
+
+- [pricing_config.json](references/pricing_config.json)
+- [ClawHub skill page](https://clawhub.ai/no7dw/skills/llm-usage-aggregator)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and file path guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The generated workflow creates a local Excel workbook with summary and pricing-detail sheets.]
+
+## Skill Version(s):
+
+0.1.0 (source: server evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

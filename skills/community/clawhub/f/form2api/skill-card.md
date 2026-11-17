@@ -1,41 +1,54 @@
-## Description: <br>
-A web form reverse-engineering tool that intercepts a manually submitted login-required form, analyzes the real API request structure, and generates reusable API documentation and call code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+form2api reverse-engineers login-required web forms by capturing submitted browser requests, analyzing request fields, and producing reusable API documentation and call examples.
 
-## Publisher: <br>
-[longway-code](https://clawhub.ai/user/longway-code) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[longway-code](https://clawhub.ai/user/longway-code)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to understand the API behind an existing web form and produce reusable curl or Python examples for authorized form automation and bulk operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill inspects authenticated browser traffic and handles session cookies, which may expose sensitive account data if used in the wrong browser session or on unauthorized systems. <br>
-Mitigation: Use only with accounts and systems you are authorized to automate, prefer a dedicated browser profile or test account, keep unrelated sensitive pages closed, and review generated API calls before running them. <br>
-Risk: Captured requests, analysis output, and cookies are stored in predictable temporary files. <br>
-Mitigation: Delete /tmp/form_api_raw.json, /tmp/form_api_analysis.json, and /tmp/form_api_cookies after use, especially on shared machines. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect authenticated form submissions and generate reusable API documentation, curl examples, and Python call code for automation or bulk operations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/longway-code/form2api) <br>
-- [Output template](references/output_template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with curl and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated API documentation, request parameter annotations, cookie extraction commands, and example API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can capture authenticated browser traffic, API responses, and live cookies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on systems and accounts the user is authorized to test, avoid sensitive accounts, and treat generated API docs and cookie values as secrets.
+
+Risk: Captured requests, analyzed API data, and cached cookies may remain in /tmp outputs.
+
+Mitigation: Clear /tmp/form_api_raw.json, /tmp/form_api_analysis.json, and /tmp/form_api_cookies/ after use.
+
+## Reference(s):
+
+- [Output format reference](artifact/references/output_template.md)
+- [ClawHub skill page](https://clawhub.ai/longway-code/skills/form2api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with curl and Python examples plus JSON analysis artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write captured request data, analyzed request candidates, and cached cookies under /tmp.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

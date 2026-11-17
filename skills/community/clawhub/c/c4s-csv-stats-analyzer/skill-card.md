@@ -1,40 +1,53 @@
-## Description: <br>
-Analyzes any CSV file and returns row count, column names, and basic statistics for numeric columns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes any CSV file and returns row count, column names, and basic statistics for numeric columns.
 
-## Publisher: <br>
-[democ4s](https://clawhub.ai/user/democ4s) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[democ4s](https://clawhub.ai/user/democ4s)
 
-## Use Case: <br>
-Developers, analysts, and other ClawHub users use this skill to inspect CSV files and quickly summarize row count, column names, and numeric min, max, and average values without modifying the source file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads user-provided CSV files, which may contain sensitive or confidential data. <br>
-Mitigation: Review the CSV path before running the skill and avoid providing secrets or sensitive files unless the analysis is intended. <br>
-Risk: CSV parsing or inferred numeric types may produce incomplete or misleading summary statistics for malformed data. <br>
-Mitigation: Review the source CSV and treat generated statistics as a quick inspection aid rather than a validated data-quality report. <br>
+## Use Case:
 
+Developers, analysts, and other external users can invoke this skill to quickly inspect a readable CSV file and summarize its shape and numeric columns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/democ4s/c4s-csv-stats-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Shell commands] <br>
-**Output Format:** [Markdown-formatted text with CSV row, column, and numeric summary statistics.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires uv and pandas; reads a user-provided CSV path and does not modify the original CSV file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill runs through uv and may download pandas at runtime because the dependency is not pinned in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where runtime dependency downloads are acceptable, or run in a constrained environment with reviewed dependencies.
+
+Risk: Untrusted CSV content or crafted headers may affect terminal display or confuse interpretation of the reported output.
+
+Mitigation: Use trusted CSV files when possible, and inspect output carefully or run the skill in a constrained environment for untrusted files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/democ4s/skills/c4s-csv-stats-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands]
+
+**Output Format:** [Markdown text with CSV row count, column names, and numeric min, max, and average statistics.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads a user-specified CSV file and reports statistics without modifying the source file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

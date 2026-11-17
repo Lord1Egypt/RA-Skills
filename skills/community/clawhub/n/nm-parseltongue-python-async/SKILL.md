@@ -1,7 +1,7 @@
 ---
 name: python-async
 description: Async Python patterns via asyncio and aiohttp for I/O-bound concurrency
-version: 1.9.8
+version: 1.10.3
 triggers:
   - python
   - async
@@ -17,7 +17,7 @@ source: claude-night-market
 source_plugin: parseltongue
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/parseltongue](https://github.com/athola/claude-night-market/tree/master/plugins/parseltongue). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/parseltongue](https://github.com/athola/claude-night-market/tree/master/plugins/parseltongue). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Async Python Patterns
@@ -67,11 +67,11 @@ Load specific modules based on your needs, or reference all for detailed guidanc
 
 ## Exit Criteria
 
-- Async patterns applied correctly
-- No blocking operations in async code
-- Proper error handling implemented
-- Rate limiting configured where needed
-- Tests pass with pytest-asyncio
+- [ ] Async patterns applied correctly
+- [ ] No blocking operations in async code
+- [ ] Proper error handling implemented
+- [ ] Rate limiting configured where needed
+- [ ] Tests pass with pytest-asyncio
 ## Troubleshooting
 
 ### Common Issues

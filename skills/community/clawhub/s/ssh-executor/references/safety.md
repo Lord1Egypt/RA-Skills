@@ -13,10 +13,11 @@
 
 ## Host-key policy
 
-- Existing ssh config policy wins if you do not pass `--host-key-checking`.
-- `yes`: best for known sensitive hosts with preloaded host keys.
-- `accept-new`: acceptable for first contact on low-risk hosts when the user asked to connect.
-- `no`: avoid unless the user explicitly understands the risk.
+- **Default is strict: `StrictHostKeyChecking=yes`.** Unknown hosts are rejected — the user must explicitly verify and accept the host key before connecting.
+- `yes`: **default and only safe option** for most deployments. Requires the host key to be in `~/.ssh/known_hosts`.
+- `no`: **do not use** unless the user explicitly understands and accepts the man-in-the-middle risk. Required only for ephemeral environments where host keys change frequently.
+- Existing ssh config policy wins if you do not pass `--host-key-checking`, but the script's default is `yes` (strict) when no config entry exists.
+- **`accept-new` has been removed.** It was a security antipattern — auto-trusting unknown hosts on first contact without fingerprint verification.
 
 ## Commands that always need confirmation
 
@@ -41,3 +42,25 @@ The script returns a guardrail error (exit code 99) for commands matching the he
 - **Do not paste private keys or passwords into chat** under any circumstance.
 - The script's JSON output intentionally **omits key paths, SSH config paths, and resolved identity file paths** to avoid leaking credential metadata to logs, chat, or memory files.
 - If an SSH alias resolves to a privileged account by default, configure a separate alias for inspection or explicitly pass `--user` with a low-privilege user.
+- **Stale temp key cleanup:** If `ssh-keys.sh restore` is interrupted by `kill -9`, temp key files at `/dev/shm/ssh-vault-*` or `/tmp/ssh-vault-*` may persist. Run `ssh-keys.sh cleanup` to list them and `ssh-keys.sh cleanup --force` to shred and remove.
+
+## Sudo password handling
+
+When `sudo` is required but `NOPASSWD` is not configured on the server:
+- Store the sudo password in Vaultwarden as `sudo-<name>/sudo_password` (plain text field).
+- Use `--sudo --sudo-pass-vault <name>` — the script resolves the password in RAM and pipes it to `sudo -S` via stdin.
+- **Exposure is minimized, not eliminated:** the password never appears in chat, JSON stdout, `ps aux` argv, or on disk. However, it briefly exists in the shell's memory (`SUDO_PASS` variable) and the stdin pipe buffer. A core dump or `/proc/<pid>/environ` could theoretically expose it if the process is inspected at the right instant. For maximum safety, prefer `NOPASSWD` in sudoers.
+- `--sudo` requires `--confirm-dangerous` for explicit user approval.
+
+## stdout/stderr contract
+
+All scripts follow a strict output contract for security and parseability:
+
+| Stream | Content | Format |
+|--------|---------|--------|
+| **stdout** | Pure JSON result | `{"success": bool, "exit_code": int, "stdout": "...", "stderr": "...", ...}` |
+| **stderr** | Status messages (vault, warnings, progress) | Free text |
+
+- **Never** parse stdout without going through JSON — vault status messages on stdout indicate an outdated `ssh-keys.sh`.
+- The `"command"` field in JSON always shows the **original** user command, even when wrapped with sudo/base64 internally.
+- The `"sudo": true` field indicates privileged execution.

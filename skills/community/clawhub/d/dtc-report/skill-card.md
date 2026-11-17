@@ -1,46 +1,59 @@
-## Description: <br>
-Generates AI-enhanced DTC business analysis reports from local management, business, and budget spreadsheets, covering budget-versus-actual performance, trends, customer and sales views, overseas warehouse analysis, key findings, and HTML report output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates DTC monthly, quarterly, or annual business analysis reports with operating summaries, budget-versus-actual comparisons, trend analysis, customer and sales views, warehouse analysis, AI-assisted findings, and HTML output.
 
-## Publisher: <br>
-[zhangliangliang909-oss](https://clawhub.ai/user/zhangliangliang909-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangliangliang909-oss](https://clawhub.ai/user/zhangliangliang909-oss)
 
-## Use Case: <br>
-Business analysts, finance operators, and agent users use this skill to generate monthly, quarterly, or annual DTC operating reports from local DTC spreadsheet workspaces and review budget attainment, revenue, profit, customer, sales, and warehouse trends. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local DTC business-data workspaces that may contain sensitive customer names, sales rankings, revenue, profit, and loss-customer details. <br>
-Mitigation: Run it only against the intended workspace, verify source paths before execution, and restrict access to generated reports. <br>
-Risk: Generated financial and operating calculations may be misleading if source data, report period, or business rules are wrong. <br>
-Mitigation: Validate data freshness, calculation rules, and generated totals before using the report for business decisions. <br>
-Risk: Generated HTML reports may load Chart.js from a remote CDN. <br>
-Mitigation: Remove, pin, or vendor the Chart.js dependency before opening reports in sensitive environments or sharing externally. <br>
-Risk: Reports can expose customer, sales, revenue, profit, and loss-customer details when shared. <br>
-Mitigation: Review and redact generated HTML, Markdown, or Excel outputs before distribution. <br>
+## Use Case:
 
+Business, finance, operations, and logistics teams use this skill to generate DTC operating reports from local management, business, warehouse, customer, sales, and budget data. It helps compare actuals against budgets, identify revenue and margin anomalies, and produce management-ready report files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangliangliang909-oss/dtc-report) <br>
-- [DTC Report AI analysis guide](artifact/AI_ANALYSIS_GUIDE.md) <br>
-- [DTC report data rules](artifact/references/data_rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [HTML reports, Markdown summaries, Excel files, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads a local DTC business-data workspace and can produce reports containing financial, customer, sales, and warehouse details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.0 (source: server release metadata and SKILL.md changelog, released 2026-04-13) <br>
+Risk: The skill reads sensitive local DTC business data and may generate reports containing confidential customer, sales, warehouse, revenue, profit, and budget information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in trusted workspaces, require explicit input and output paths, and review generated reports before sharing.
+
+Risk: Generated HTML may expose unsafe script or spreadsheet-derived text injection risks.
+
+Mitigation: Escape spreadsheet-derived text in HTML and review the generated HTML before opening or distributing it.
+
+Risk: The report output may depend on an external Chart.js CDN and may overwrite existing report files.
+
+Mitigation: Pin or remove the CDN dependency with integrity protection and require confirmation before writing or overwriting reports.
+
+## Reference(s):
+
+- [DTC data rules](artifact/references/data_rules.md)
+- [AI analysis guide](artifact/AI_ANALYSIS_GUIDE.md)
+- [Revenue analysis prompt](artifact/prompts/revenue_analysis.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Analysis, HTML, Markdown, Spreadsheet]
+
+**Output Format:** [HTML report, with documented Markdown and Excel output options]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads local DTC business data and writes report files for the requested period.]
+
+## Skill Version(s):
+
+1.6.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

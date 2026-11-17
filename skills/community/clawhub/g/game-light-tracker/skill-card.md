@@ -1,45 +1,59 @@
-## Description: <br>
-Track live NFL, NBA, NHL, or MLB games and automatically change Hue light colors based on which team is leading. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track live NFL, NBA, NHL, or MLB games and automatically change Hue light colors based on which team is leading.
 
-## Publisher: <br>
-[0xadamsu](https://clawhub.ai/user/0xadamsu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0xadamsu](https://clawhub.ai/user/0xadamsu)
 
-## Use Case: <br>
-External users and smart-home hobbyists use this skill to configure an agent to monitor live sports scores and control Hue lights through Home Assistant based on the leading team. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to use a Home Assistant token and control smart lights. <br>
-Mitigation: Use a least-privilege Home Assistant token, confirm the exact light entity before execution, and store credentials only in the expected local configuration file. <br>
-Risk: The evidence references PowerShell scripts that were not included in the artifact. <br>
-Mitigation: Review or obtain the actual game-tracker.ps1 and keeper.ps1 scripts before running the tracker. <br>
-Risk: The described keeper launches a hidden auto-restarting process and the stop command broadly force-stops matching PowerShell processes. <br>
-Mitigation: Avoid hidden background launch unless explicitly desired and prefer stopping only the process IDs started for this tracker. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0xadamsu/game-light-tracker) <br>
-- [ESPN NFL teams](https://www.espn.com/nfl/teams) <br>
-- [ESPN NBA teams](https://www.espn.com/nba/teams) <br>
-- [ESPN NHL teams](https://www.espn.com/nhl/teams) <br>
-- [ESPN MLB teams](https://www.espn.com/mlb/teams) <br>
+## Use Case:
 
+External users and smart-home operators use this skill to ask an agent to monitor live sports games and keep Hue lights synchronized with the leading team's configured color.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with PowerShell commands and configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include team abbreviations, RGB color values, Home Assistant light entity IDs, and tracker start or stop commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The tracker can control the configured Home Assistant light using credentials stored in a local configuration file.
+
+Mitigation: Use a dedicated least-privileged Home Assistant token and restrict permissions on the configuration file.
+
+Risk: The supervisor starts a background PowerShell process that can restart the tracker automatically.
+
+Mitigation: Run the tracker visibly when possible, record process IDs, and stop only the recorded tracker and supervisor processes.
+
+Risk: The documented broad force-kill command can terminate unrelated PowerShell sessions.
+
+Mitigation: Avoid broad process matching; stop only known tracker and supervisor process IDs.
+
+## Reference(s):
+
+- [ESPN NFL Teams](https://www.espn.com/nfl/teams)
+- [ESPN NBA Teams](https://www.espn.com/nba/teams)
+- [ESPN NHL Teams](https://www.espn.com/nhl/teams)
+- [ESPN MLB Teams](https://www.espn.com/mlb/teams)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline PowerShell commands and configuration steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include sport, team, light entity, RGB color, Home Assistant URL, and API token setup details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

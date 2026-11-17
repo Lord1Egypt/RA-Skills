@@ -1,6 +1,16 @@
 {
-  "ownerId": "kn70b4sg802tznj0f1r5msxg9980ddmn",
-  "slug": "stripe",
-  "version": "2.9.2",
-  "publishedAt": 1773808927018
+  "version": "2.9.0",
+  "updated": "2026-03-14",
+  "homepage": "https://creditclaw.com",
+  "repository": "https://github.com/jononovo/claw-skill",
+  "api_base": "https://creditclaw.com/api/v1",
+  "credentials": ["CREDITCLAW_API_KEY"],
+  "openclaw": {
+    "requires": {
+      "env": ["CREDITCLAW_API_KEY"]
+    },
+    "primaryEnv": "CREDITCLAW_API_KEY",
+    "default_approval_mode": "ask_for_everything",
+    "invocation": "user_confirmed"
+  }
 }

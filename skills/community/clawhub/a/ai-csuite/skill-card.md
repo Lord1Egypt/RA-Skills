@@ -1,42 +1,59 @@
-## Description: <br>
-Runs a script-backed AI C-Suite strategic debate for SaaS teams, producing structured debate rounds, a Chief-of-Staff brief, and a CEO decision with action items. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs a script-backed AI C-Suite strategic debate for SaaS teams that builds a stage-aware executive roster, generates structured debate rounds, synthesizes a Chief-of-Staff brief, and outputs a CEO decision with action items.
 
-## Publisher: <br>
-[clarezoe](https://clawhub.ai/user/clarezoe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clarezoe](https://clawhub.ai/user/clarezoe)
 
-## Use Case: <br>
-Founders, operators, and SaaS teams use this skill to structure strategic decisions on product, engineering, pricing, go-to-market, hiring, operations, or competitive response. It turns a decision topic and company context into a role-based executive debate, CEO brief, and action-oriented decision record. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated strategy recommendations can be incomplete or unsuitable for a specific business context. <br>
-Mitigation: Review the CEO decision, tradeoffs, confidence, reversibility, and review trigger before acting on the output. <br>
-Risk: The company YAML and generated markdown may contain sensitive business information. <br>
-Mitigation: Review or replace the sample company config, avoid putting secrets into YAML or generated markdown, and choose output paths carefully in shared workspaces. <br>
+## Use Case:
 
+Founders, SaaS operators, and strategy teams use this skill to turn a decision topic and company context into a structured executive-style debate, CEO brief, CEO decision, action items, review trigger, confidence, and reversibility assessment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clarezoe/ai-csuite) <br>
-- [README.md](README.md) <br>
-- [AI C-Suite Framework PRD](ai-csuite-framework-prd.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown decision artifact with local Python command workflow and YAML company context] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a company context file and writes decision output to a local markdown file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.2 (source: server release evidence and skill metadata) <br>
+Risk: Company context and generated decision logs can include sensitive business details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep company.local.yaml and generated logs out of public repositories and share them only with intended reviewers.
+
+Risk: The optional --jev mode sends listed business context to TypeSafe.
+
+Mitigation: Use --jev only when the operator intentionally wants that external judgment path and has configured TYPESAFE_API_KEY.
+
+Risk: Strategic recommendations may be incomplete or unsuitable for the actual business context.
+
+Mitigation: Review the CEO brief, decision, action owners, confidence, and reversibility assessment before acting on the output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clarezoe/skills/ai-csuite)
+- [README](README.md)
+- [AI C-Suite Framework PRD](ai-csuite-framework-prd.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown decision brief with shell command guidance and local configuration inputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local markdown decision artifacts and validates required output sections.]
+
+## Skill Version(s):
+
+2.1.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

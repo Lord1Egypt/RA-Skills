@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "id": "editorial-collage",
+  "display_name": "杂志图文拼贴",
+  "description": "图片切片、错位排版、大字标题和编辑杂志感",
+  "preview": "preview.svg",
+  "files": {"tokens": "theme.css", "templates": "templates.html"},
+  "identity": {
+    "composition": "编辑杂志跨页感：大字标题、图片切片、错位色块和窄栏正文形成受控张力。",
+    "hierarchy": "章节编号与大标题主导；短导语、侧注、引文和数字像杂志标注一样穿插。",
+    "image_treatment": "多比例切片、局部放大、套色或半调效果；每张图仍保留来源和说明。",
+    "module_language": "纸片叠放、裁切边、细线框、色块标签、上下错位与编辑脚注。",
+    "chart_evidence": "数字成为版式元素；小型图表与表格嵌入图文流，直接标注而不使用仪表盘卡片。",
+    "motion": "切片从不同短方向进入，标题与图片分步揭示；保持可读节奏，禁用持续漂移。"
+  },
+  "tokens": {
+    "colors": {"canvas": "#eee9df", "ink": "#111111", "paper": "#fffaf0", "red": "#e64b38", "cobalt": "#3155d9", "yellow": "#f1c84b", "mint": "#9fc9b6", "muted": "#655f57"},
+    "font_stacks": {"display": "Impact, Arial Black, PingFang SC, sans-serif", "body": "Georgia, Source Han Serif SC, serif", "mono": "SFMono-Regular, Consolas, monospace"},
+    "type_scale": {"display": "clamp(62px, 7vw, 112px)", "heading": "clamp(42px, 4.8vw, 78px)", "body": "19px", "caption": "12px"},
+    "spacing": {"canvas_x": "58px", "canvas_y": "46px", "module": "20px", "gap": "16px"},
+    "borders": {"hairline": "1px solid #111111", "module": "2px solid #111111", "radius": "0", "shadow": "12px 12px 0 rgba(17,17,17,.10)"}
+  },
+  "canvas": {"aspect_ratio": "16:9", "safe_area": "58px 58px 54px", "grid": "asymmetric 10-column editorial grid with controlled overlaps", "density": "medium, varied text-image rhythm and deliberate empty paper"},
+  "layout_variants": [
+    {"id": "cover-collage", "use": "cover or provocative thesis"},
+    {"id": "three-cut-diagnosis", "use": "three-part problem or editorial argument"},
+    {"id": "foldout-sequence", "use": "process or journey"},
+    {"id": "data-feature", "use": "numbers, source excerpt, and compact table"},
+    {"id": "editorial-finale", "use": "priority sequence and memorable closing line"}
+  ],
+  "components": {
+    "chart": "Turn 1-3 key numbers into typographic anchors; use compact annotated bars or lines in the surrounding editorial flow.",
+    "table": "Use narrow editorial columns, strong top/bottom rules, compact rows, and a colored margin note for the takeaway.",
+    "evidence_card": "Treat the artifact as a clipped page with source caption; overlap a separate interpretation note without covering evidence.",
+    "image": "Use two or three purposeful crops, duotone or natural color, varied aspect ratios, visible caption, and no generic decoration."
+  },
+  "motion": {"enter": "opacity plus 16-24px directional movement over 380-520ms", "stagger": "alternate headline, image slice, and note groups", "disabled": ["continuous drift", "spin", "bounce", "randomized direction"]},
+  "forbidden": ["uniform dashboard grid", "rounded SaaS cards", "centered corporate cover", "decorative image without caption", "tiny body copy", "color-only theme differentiation"],
+  "template_contract": {"placeholder_format": "{{UPPER_SNAKE_CASE}}", "minimum_slides": 5, "required_markers": ["data-layout", "fragment", "data-step"]}
+}

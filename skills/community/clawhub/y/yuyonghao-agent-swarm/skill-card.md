@@ -1,40 +1,53 @@
-## Description: <br>
-Agent Swarm provides an in-memory JavaScript coordinator for creating agent swarms, registering agents, distributing tasks, and checking swarm status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages multi-agent swarms with coordination, task sharding, self-organization, emergent behavior, and real-time monitoring for intelligent collective action.
 
-## Publisher: <br>
-[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123)
 
-## Use Case: <br>
-Developers use this skill to prototype multi-agent coordination flows with swarm lifecycle management, agent registration, task distribution, and status monitoring. It is most suitable for local or embedded coordination experiments that need a lightweight JavaScript API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The documentation describes TaskSharder, SelfOrganizer, EmergentBehavior, and SwarmMonitor modules that are not included in the artifact. <br>
-Mitigation: Review the exported API before relying on documented modules; the artifact exports SwarmCoordinator only. <br>
-Risk: The release is a small in-memory coordination library, so production readiness depends on caller-side validation, persistence, authorization, and operational controls. <br>
-Mitigation: Wrap the coordinator with application-specific access control, input validation, monitoring, and durable state if using it beyond local prototyping. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add local swarm lifecycle management, agent registration, task distribution, status tracking, and simple parallel task coordination to multi-agent systems.
 
-## Reference(s): <br>
-- [Agent Swarm ClawHub listing](https://clawhub.ai/yuyonghao-123/yuyonghao-agent-swarm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Configuration, Guidance] <br>
-**Output Format:** [JavaScript module exports, examples, and JSON-like task and status objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs in memory; no network, credential, filesystem, persistence, or privilege behavior is reported by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and package.json) <br>
+Risk: The documentation describes TaskSharder, SelfOrganizer, EmergentBehavior, and SwarmMonitor, but the installed package exports only SwarmCoordinator.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the exported API before integrating and do not rely on the documented non-exported modules unless they are added in a future release.
+
+Risk: Task execution is a local simulated coordination helper rather than real execution by external agents.
+
+Mitigation: Treat returned task outputs as coordination placeholders and connect real agent execution explicitly in the host application.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuyonghao-123/skills/yuyonghao-agent-swarm)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with JavaScript and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local in-memory coordination helpers and usage guidance; no evidence of hidden access, persistence, exfiltration, or unsafe privilege use.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

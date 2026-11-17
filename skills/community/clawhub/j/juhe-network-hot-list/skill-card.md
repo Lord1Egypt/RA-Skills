@@ -1,44 +1,59 @@
-## Description: <br>
-Queries real-time trending-topic lists across major Chinese platforms including Weibo, Douyin, Kuaishou, Zhihu, Baidu, Toutiao, and Bilibili through the Juhe network hot-list API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries real-time hot-search rankings across major Chinese platforms, including Weibo, Douyin, Kuaishou, Zhihu, Baidu, Toutiao, and Bilibili, using the Juhe network hot-list API.
 
-## Publisher: <br>
-[juhemcp](https://clawhub.ai/user/juhemcp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[juhemcp](https://clawhub.ai/user/juhemcp)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve and summarize current hot-search rankings from Juhe for social listening, trend checks, and agent responses to hot-topic queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Juhe API key is sent to the configured API endpoint over plain HTTP. <br>
-Mitigation: Use the skill only on trusted networks unless the endpoint is changed to verified HTTPS, and rotate the key if exposure is suspected. <br>
-Risk: The skill requires a Juhe API key that may be exposed if stored in local files. <br>
-Mitigation: Store the key in a protected environment variable where possible and avoid committing .env files or command history containing the key. <br>
-Risk: Returned hot-list data depends on the live third-party Juhe service and quota availability. <br>
-Mitigation: Handle API errors and quota exhaustion as user-visible service limitations, and retry only transient network failures. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve and present current trending topics from multiple Chinese social and search platforms. Agents can call the included Python script or the documented API and return ranked results in a concise table or JSON-backed summary.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/juhemcp/juhe-network-hot-list) <br>
-- [Juhe Network Hot List API](https://www.juhe.cn/docs/api/id/739) <br>
-- [Juhe](https://www.juhe.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Terminal table with a JSON payload for the selected hot-list entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and a JUHE_HOTSEARCH_KEY API key; supports limit and detail options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The API key may be exposed because the script sends it to Juhe over plaintext HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the endpoint before use and change it to HTTPS when supported by the provider.
+
+Risk: API keys may be captured in shell history or process listings when passed with the --key command-line option.
+
+Mitigation: Set JUHE_HOTSEARCH_KEY as an environment variable instead of passing the key on the command line.
+
+Risk: A local scripts/.env file can accidentally disclose the API key if committed or shared.
+
+Mitigation: Keep scripts/.env out of source control and deployment bundles.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/juhemcp/skills/juhe-network-hot-list)
+- [Juhe network hot-list API documentation](https://www.juhe.cn/docs/api/id/739)
+- [Juhe data service](https://www.juhe.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and tabular or JSON hot-list results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and a JUHE_HOTSEARCH_KEY API key; supports --limit, --detail, and --key options.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

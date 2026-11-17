@@ -1,42 +1,56 @@
-## Description: <br>
-Converts article photos or plain text into bilingual text-to-speech audio using OCR and Microsoft Edge TTS, with configurable language, voice, speed, and sentence splitting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts article photos or plain text into natural audio with OCR, Microsoft Edge TTS, English/Chinese support, configurable voice and speed, and optional sentence splitting.
 
-## Publisher: <br>
-[54meteor](https://clawhub.ai/user/54meteor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[54meteor](https://clawhub.ai/user/54meteor)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and end users use this skill to turn article images or supplied text into listenable audio, then send the generated audio through the active chat channel or save it locally.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: OCR text and generated audio can be sent through the active chat channel.
+
+Mitigation: Keep text confirmation enabled for sensitive images and use only chat channels appropriate for the content.
+
+Risk: The TTS dependency can be downloaded at runtime through an unpinned edge-tts invocation.
+
+Mitigation: Prefer a pinned or preinstalled edge-tts version in shared or controlled environments.
+
+Risk: Temporary OCR and audio files may expose content in shared environments.
+
+Mitigation: Use private per-run output directories and remove generated files when they are no longer needed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and end users can use this skill to turn photographed articles or supplied text into shareable speech audio. It supports reviewing OCR text before audio generation, saving outputs locally, and sending generated audio through the active messaging channel. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Files, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Skipping confirmation can send OCR-derived sensitive text as audio without review. <br>
-Mitigation: Keep confirmation enabled for private, financial, medical, or confidential content and review extracted text before generating or sending audio. <br>
-Risk: Generated text or audio may be saved locally or processed by the Edge TTS service. <br>
-Mitigation: Review content sensitivity before conversion and manage local output files according to retention requirements. <br>
-Risk: Generated audio may be delivered to the wrong chat channel or recipient. <br>
-Mitigation: Verify the active channel and intended recipient before sending generated audio. <br>
+**Output Format:** [Markdown guidance with Python and shell snippets; runtime artifacts include original_text.md and MP3 audio files.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/54meteor/article-tts) <br>
+**Other Properties Related to Output:** [Supports English and Chinese OCR/TTS, configurable speed and voice, optional confirmation, and optional sentence-level audio splitting.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with inline Python and shell command examples, plus generated MP3 or Ogg audio files when executed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save original text and full or sentence-level audio under a dated output directory; may send audio through the active messaging channel.] <br>
+2.1.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,49 @@
-## Description: <br>
-Generate high-engagement viral content for social platforms in Chinese and English. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate high-engagement viral content for various platforms (Chinese + English bilingual).
 
-## Publisher: <br>
-[sunxian](https://clawhub.ai/user/sunxian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunxian](https://clawhub.ai/user/sunxian)
 
-## Use Case: <br>
-Creators, marketers, and agents use this skill to draft bilingual Chinese and English social-media posts for Xiaohongshu and similar platforms. It structures drafts with hooks, pain points, benefits, calls to action, interactive questions, and hashtags. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated social-media copy may have a tone, accuracy level, or bilingual format that is not appropriate for the user's intended brand or audience. <br>
-Mitigation: Review each draft for factual accuracy, tone, platform fit, and whether Chinese/English bilingual formatting is desired before publishing. <br>
-Risk: The skill is optimized for viral and promotional framing, which can be unsuitable for neutral or generic writing tasks. <br>
-Mitigation: Use it for social-media promotional drafts and choose a more general writing workflow when viral hooks, CTAs, and engagement prompts are not wanted. <br>
+## Use Case:
 
+External creators, marketers, and social media operators use this skill to draft bilingual Chinese and English promotional posts with hooks, structured value points, calls to action, and hashtags for platforms such as Xiaohongshu, Douyin, Instagram, and TikTok.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sunxian/xiaohongshu-viral-content-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Bilingual Chinese and English Markdown social post draft] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Typically includes titles, body copy, engagement prompts, calls to action, and 12-15 hashtags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may over-apply marketing-style hooks, emotional appeal, calls to action, and hashtags to sensitive, regulated, or non-promotional topics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for promotional social content, and have a human review or adapt outputs before publication when the topic is sensitive, regulated, or not primarily promotional.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sunxian/skills/xiaohongshu-viral-content-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style bilingual Chinese and English social content with titles, body copy, calls to action, and hashtags.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces casual, engagement-focused marketing copy and does not execute code or persist data.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

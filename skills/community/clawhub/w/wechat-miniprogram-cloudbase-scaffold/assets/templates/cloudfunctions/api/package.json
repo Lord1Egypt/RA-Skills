@@ -1,0 +1,9 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "核心 API 云函数（单函数 REST 路由）",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "^2.7.2"
+  }
+}

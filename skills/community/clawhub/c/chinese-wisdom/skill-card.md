@@ -1,41 +1,54 @@
-## Description: <br>
-Integrates Confucianism, Daoism, Mohism, Legalism, and Buddhism for daily self-cultivation, decision-making, and mindset adjustment guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language guidance on traditional Chinese philosophical systems for self-cultivation, decision support, and mindset adjustment.
 
-## Publisher: <br>
-[wenqin1688](https://clawhub.ai/user/wenqin1688) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wenqin1688](https://clawhub.ai/user/wenqin1688)
 
-## Use Case: <br>
-Developers and agent users can use this skill as a static Chinese philosophy reference for self-cultivation prompts, decision framing, mindset adjustment, and structured learning guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may over-rely on concise philosophical guidance for personal or organizational decisions. <br>
-Mitigation: Treat the skill as reflective reference material and combine its suggestions with context-specific judgment and qualified advice where decisions have material consequences. <br>
-Risk: Future releases could change the risk profile by adding scripts, network access, billing behavior, or file access. <br>
-Mitigation: Review future updates before installation or use, especially if new executable or permission-seeking artifacts are introduced. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve concise Chinese-language traditional philosophy context and apply it to personal reflection, everyday decisions, mindset adjustment, and study planning.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wenqin1688/chinese-wisdom) <br>
-- [Publisher Profile](https://clawhub.ai/user/wenqin1688) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reference guidance with tables, bullet lists, and short practice suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference content; no executable code or automation behavior was found in the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Non-Chinese users may misunderstand or miss nuance in the Chinese-language guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use translation support or a Chinese-proficient reviewer when applying the guidance outside a Chinese-language context.
+
+Risk: Philosophical guidance can be too general for consequential life, business, legal, medical, or financial decisions.
+
+Mitigation: Use the skill as reflective context and verify decisions against practical facts and qualified professional advice where appropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wenqin1688/skills/chinese-wisdom)
+- [Publisher profile](https://clawhub.ai/user/wenqin1688)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language philosophical reference content; no code execution or external connections.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

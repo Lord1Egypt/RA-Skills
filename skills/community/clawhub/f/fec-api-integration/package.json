@@ -1,7 +1,7 @@
 {
   "name": "@bovinphang/fec-api-integration",
-  "version": "2.5.0",
-  "description": "Use when designing, implementing, or reviewing frontend-to-backend API integration, typed API clients, REST/tRPC/OpenAPI client choices, auth refresh, API error mapping, upload flows, SSE/WebSocket/polling choices, CORS-facing frontend behavior, or cross-boundary loading/error states. Do not use for backend-only service architecture or TanStack Query cache policy alone; Chinese triggers include API 集成, 前后端联调, typed API client, 接口错误处理, SSE, WebSocket.",
+  "version": "2.9.0",
+  "description": "Use when designing, implementing, or reviewing frontend-to-backend API integration, typed API clients, REST/tRPC/OpenAPI client choices, auth refresh, API error mapping, upload flows, SSE/WebSocket/polling choices, CORS-facing frontend behavior, or cross-boundary loading/error states. Do not use for backend-only service architecture or TanStack Query cache policy alone; Chinese triggers include API integration, front-end and back-end joint debugging, typed API client, Interface error handling, SSE, WebSocket.",
   "type": "module",
   "license": "MIT",
   "author": {

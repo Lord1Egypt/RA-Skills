@@ -1,13 +1,10 @@
 #!/usr/bin/env bash
-set -euo pipefail
-
 # =============================================================================
 # ssh-run.sh — Remote SSH command executor with safety guardrails
 #
 # Provenance:
 #   Part of the ssh-executor skill for OpenClaw.
 #   Source is bundled and fully reviewable.
-#   Verify integrity via the .sha256 checksum in the release package.
 #
 # Security model:
 #   - This script has broad remote-shell authority. Use only for
@@ -15,268 +12,202 @@ set -euo pipefail
 #   - The dangerous-command heuristic is best-effort and NOT exhaustive.
 #   - Host validation should happen BEFORE calling this script;
 #     confirm the target with the user first.
+#
+# Backend:
+#   - If openssh-client (ssh/ssh-add/ssh-agent) are available, uses the
+#     native ssh binary via the traditional approach.
+#   - Otherwise, falls back to a Python/Paramiko implementation that
+#     supports vault-backed keys natively (no agent needed).
 # =============================================================================
+
+set -euo pipefail
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 usage() {
   cat <<'EOF'
 Usage:
   ssh-run.sh --host <host-or-alias> [--user <user>] [--port <port>] [--key <path>] \
+             [--vault-key <key-name>] \
              [--timeout <seconds>] [--config <ssh-config>] \
-             [--host-key-checking <accept-new|yes|no>] [--confirm-dangerous] \
+             [--host-key-checking <yes|no>] [--confirm-dangerous] \
+             [--control-persist <seconds>] [--control-close] [--pty] \
+             [--sudo --sudo-pass-vault <name>] \
+             [--sudo-pass-ask] \
+             [--ssh-pass-vault <name>] [--ssh-pass-ask] \
              -- '<remote command>'
 
   ssh-run.sh --list-aliases [--config <ssh-config>]
 
 Notes:
-  - Key-based auth only. Password prompts are disabled.
+  - Key-based auth by default. Password auth available via --ssh-pass-vault, SSH_PASS, or --ssh-pass-ask (requires sshpass).
+  - Password-based auth is a security tradeoff — prefer --vault-key or --key whenever possible.
+  - SSH keys are never sent to stdout, logs, or chat. However, without ssh-agent, decrypted key material is briefly written to a temp file (see ssh-keys.sh header). Use ssh-agent to keep keys in memory only.
+  - Use --vault-key <name> to load a private key from Vaultwarden.
   - If --host is an SSH alias, omit --user/--port/--key and let ssh config resolve them.
   - JSON is printed to stdout with success, exit_code, stdout, stderr, and resolution metadata.
+  - Automatically selects backend: openssh-client (native) or Python+Paramiko (fallback).
+  - Destructive commands and sudo require --confirm-dangerous for explicit user approval.
 EOF
 }
 
-list_aliases() {
-  local config_path="$1"
-  if [[ ! -f "$config_path" ]]; then
+# ---------------------------------------------------------------------------
+# Backend detection
+# ---------------------------------------------------------------------------
+has_ssh_client() {
+  command -v ssh >/dev/null 2>&1 && command -v ssh-add >/dev/null 2>&1
+}
+
+# ---------------------------------------------------------------------------
+# Native openssh-client backend (original impl, enhanced with --vault-key)
+# ---------------------------------------------------------------------------
+run_native() {
+  local args=("$@")
+  exec /usr/bin/env bash "$SCRIPT_DIR/ssh-run-native.sh" "${args[@]}"
+}
+
+# ---------------------------------------------------------------------------
+# Paramiko Python backend (no openssh-client needed; vault keys built-in)
+# ---------------------------------------------------------------------------
+run_python() {
+  # Convert shell flags to Python flags
+  local HOST=""
+  local USER=""
+  local PORT=""
+  local KEY=""
+  local VAULT_KEY=""
+  local TIMEOUT="30"
+  local CONFIRM_DANGEROUS=0
+  local LIST_ALIASES=0
+  local args=("$@")
+
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --host) HOST="${2:-}"; shift 2 ;;
+      --user) USER="${2:-}"; shift 2 ;;
+      --port) PORT="${2:-}"; shift 2 ;;
+      --key) KEY="${2:-}"; shift 2 ;;
+      --vault-key) VAULT_KEY="${2:-}"; shift 2 ;;
+      --timeout) TIMEOUT="${2:-}"; shift 2 ;;
+      --config) shift 2 ;; # ignored in Python backend
+      --host-key-checking) HOST_KEY_CHECKING="${2:-yes}"; shift 2 ;;
+      --control-persist) shift 2 ;; # pass-through (used by native backend)
+      --control-close) shift ;; # pass-through (used by native backend)
+      --pty) shift ;; # pass-through (used by native backend)
+      --sudo) shift ;; # pass-through (used by native backend)
+      --sudo-pass-vault) shift 2 ;; # pass-through (used by native backend)
+      --sudo-pass-ask) shift ;; # pass-through (used by native backend)
+      --ssh-pass-vault) shift 2 ;; # pass-through (used by native backend)
+      --ssh-pass-ask) shift ;; # pass-through (used by native backend)
+      --confirm-dangerous) CONFIRM_DANGEROUS=1; shift ;;
+      --list-aliases) LIST_ALIASES=1; shift ;;
+      --help|-h) usage; exit 0 ;;
+      --) shift; break ;;
+      *) echo "Unknown argument: $1" >&2; usage >&2; exit 2 ;;
+    esac
+  done
+
+  if [[ "$LIST_ALIASES" -eq 1 ]]; then
     echo "[]"
-    return 0
+    exit 0
   fi
-  python3 - "$config_path" <<'PY'
-import json
-import pathlib
-import shlex
-import sys
 
-path = pathlib.Path(sys.argv[1])
-aliases = []
-for raw in path.read_text(encoding='utf-8', errors='replace').splitlines():
-    line = raw.strip()
-    if not line or line.startswith('#'):
-        continue
-    if line.lower().startswith('host '):
-        parts = shlex.split(line, comments=False)
-        for token in parts[1:]:
-            if any(ch in token for ch in '*?!'):
-                continue
-            aliases.append(token)
-print(json.dumps(sorted(dict.fromkeys(aliases)), ensure_ascii=False))
+  local CMD="$*"
+  if [[ -z "$HOST" || -z "$CMD" ]]; then
+    usage >&2
+    exit 2
+  fi
+
+  # Resolve SSH config alias (HostName, Port, User)
+  local resolved_host="$HOST"
+  local resolved_port="${PORT:-22}"
+  local resolved_user="$USER"
+  local config_path="${HOME}/.ssh/config"
+  if [[ -f "$config_path" ]]; then
+    eval "$(python3 - "$HOST" "$resolved_port" "$config_path" <<'PY'
+import sys
+target = sys.argv[1]
+port = sys.argv[2]
+cfg_path = sys.argv[3]
+
+# Parse all host sections, preferring specific match over wildcard
+hostname = ""
+user = ""
+matched = False
+wildcard = False
+with open(cfg_path) as f:
+    for line in f:
+        stripped = line.strip()
+        if not stripped or stripped.startswith("#"):
+            continue
+        if stripped.lower().startswith("host "):
+            parts = stripped.split()
+            names = parts[1:]
+            if target in names:
+                matched = True
+                wildcard = False
+            elif "*" in names and not matched:
+                wildcard = True
+            else:
+                matched = False
+                wildcard = False
+            continue
+        if (matched or wildcard) and stripped:
+            key, _, val = stripped.partition(" ")
+            key = key.lower()
+            val = val.strip()
+            if key == "hostname":
+                hostname = val
+            elif key == "port" and port in (["22", ""]):
+                port = val
+            elif key == "user" and not user:
+                user = val
+if hostname:
+    target = hostname
+if user:
+    print(f'RESOLVED_USER="{user}"')
+print(f'RESOLVED_HOST="{target}"')
+print(f'RESOLVED_PORT="{port}"')
 PY
+    )"
+  fi
+
+  local py_args=(
+    "--host" "$RESOLVED_HOST"
+    "--port" "${RESOLVED_PORT:-22}"
+    "--timeout" "$TIMEOUT"
+  )
+  [[ -n "${RESOLVED_USER:-$USER}" ]] && py_args+=( "--user" "${RESOLVED_USER:-$USER}" )
+  [[ -n "$KEY" ]] && py_args+=( "--key" "$KEY" )
+  [[ -n "$VAULT_KEY" ]] && py_args+=( "--vault-key" "$VAULT_KEY" )
+  [[ -n "${HOST_KEY_CHECKING:-}" ]] && py_args+=( "--host-key-checking" "$HOST_KEY_CHECKING" )
+  [[ "$CONFIRM_DANGEROUS" -eq 1 ]] && py_args+=( "--confirm-dangerous" )
+
+  exec python3 "$SCRIPT_DIR/ssh-client.py" "${py_args[@]}" "$CMD"
 }
 
-is_dangerous_command() {
-  # Best-effort heuristic: catches common destructive patterns.
-  # This is NOT exhaustive — an empty check does NOT mean the command is safe.
-  # Uses Python for reliable regex matching (avoids bash [[ =~ ]] escaping pitfalls).
-  python3 - "$1" <<'PY'
-import re
-import sys
+# ---------------------------------------------------------------------------
+# Main
+# ---------------------------------------------------------------------------
 
-cmd = sys.argv[1].lower()
-
-patterns = [
-    r'(?:^|[;&|\s])(?:sudo|rm(?!\w)|mv\s|cp\s|chmod\s|chown\s|reboot(?!\w)|shutdown(?!\w)|poweroff(?!\w)|halt(?!\w)|init\s)',
-    r'systemctl\s+(?:restart|stop|disable|start|reload|enable)',
-    r'(?:apt[\s-]|apt-get[\s-]|dnf[\s-]|yum[\s-]|apk[\s-]|pacman[\s-]|dpkg\s|rpm\s+(?!-q)(?!-qa)(?!-qi)(?!-ql))',
-    r'docker\s+(?:compose\s+down|rm|kill|stop|system\s+prune)',
-    r'kubectl\s+delete',
-    r'sed\s+-i',
-    r'ip\s+(?:link\s+(?:set|down|delete)|addr\s+(?:add|del)|route\s+(?:add|del|replace))',
-    r'(?:curl|wget)\s+.*(?:[|>])',
-    r'(?:sh\s+-c|bash\s+-c)\s',
-    r'chpasswd\s|passwd\s|usermod\s|groupmod\s|useradd\s|userdel\s',
-    r'(?:>>?\s+\S+(?:\s|$)|>\||:>|echo\s+.*[>]|printf\s+.*[>])',
-    r'(?:tee\s|truncate\s|dd\s|mkfs(?!\.\w+)|mkfs\.|fdisk\s|pvcreate\s|vgremove\s|lvremove\s)',
-    r'(?:iptables\s|ufw\s|firewall-cmd\s|nmcli\s)',
-    r'(?:eval\s|evals\s)',
-]
-
-for p in patterns:
-    if re.search(p, cmd):
-        sys.exit(0)  # 0 = true: command is dangerous
-sys.exit(1)  # 1 = false: no match
-PY
-}
-
-HOST=""
-USER_NAME=""
-PORT=""
-KEY_PATH=""
-TIMEOUT="30"
-CONFIG_PATH="${HOME}/.ssh/config"
-HOST_KEY_CHECKING=""
-CONFIRM_DANGEROUS=0
-LIST_ALIASES=0
-
-while [[ $# -gt 0 ]]; do
-  case "$1" in
-    --host)
-      HOST="${2:-}"
-      shift 2
-      ;;
-    --user)
-      USER_NAME="${2:-}"
-      shift 2
-      ;;
-    --port)
-      PORT="${2:-}"
-      shift 2
-      ;;
-    --key)
-      KEY_PATH="${2:-}"
-      shift 2
-      ;;
-    --timeout)
-      TIMEOUT="${2:-}"
-      shift 2
-      ;;
-    --config)
-      CONFIG_PATH="${2:-}"
-      shift 2
-      ;;
-    --host-key-checking)
-      HOST_KEY_CHECKING="${2:-}"
-      shift 2
-      ;;
-    --confirm-dangerous)
-      CONFIRM_DANGEROUS=1
-      shift
-      ;;
-    --list-aliases)
-      LIST_ALIASES=1
-      shift
-      ;;
-    --help|-h)
-      usage
-      exit 0
-      ;;
-    --)
-      shift
-      break
-      ;;
-    *)
-      echo "Unknown argument: $1" >&2
-      usage >&2
-      exit 2
-      ;;
-  esac
+for arg in "$@"; do
+  [[ "$arg" == "--help" || "$arg" == "-h" ]] && { usage; exit 0; }
 done
 
-if [[ "$LIST_ALIASES" -eq 1 ]]; then
-  list_aliases "$CONFIG_PATH"
+if [[ "$*" == *--list-aliases* ]]; then
+  if has_ssh_client; then
+    run_native "$@"
+  else
+    echo "[]"
+    exit 0
+  fi
   exit 0
 fi
 
-REMOTE_COMMAND="$*"
-
-if [[ -z "$HOST" || -z "$REMOTE_COMMAND" ]]; then
-  usage >&2
-  exit 2
+# Choose backend
+# Native backend now handles vault keys via ssh-agent (ssh-keys.sh restore).
+# Fall back to Python only when openssh-client is unavailable.
+if has_ssh_client; then
+  run_native "$@"
+else
+  run_python "$@"
 fi
-
-if [[ -n "$HOST_KEY_CHECKING" && "$HOST_KEY_CHECKING" != "accept-new" && "$HOST_KEY_CHECKING" != "yes" && "$HOST_KEY_CHECKING" != "no" ]]; then
-  echo "Invalid --host-key-checking value: $HOST_KEY_CHECKING" >&2
-  exit 2
-fi
-
-# The heuristic pattern check catches obvious destructive commands but is NOT exhaustive.
-# An empty check is not proof that a command is safe — it only means no known pattern matched.
-# Always treat novel, chained, or obfuscated commands with caution.
-if is_dangerous_command "$REMOTE_COMMAND" && [[ "$CONFIRM_DANGEROUS" -ne 1 ]]; then
-  python3 - "$HOST" "$REMOTE_COMMAND" <<'PY'
-import json
-import sys
-host, remote_command = sys.argv[1:]
-print(json.dumps({
-    "success": False,
-    "exit_code": 99,
-    "dangerous": True,
-    "heuristic_match": True,
-    "error": "Command looks mutating or destructive. Re-run with --confirm-dangerous only after explicit user approval.",
-    "host": host,
-    "command": remote_command,
-}, ensure_ascii=False))
-PY
-  exit 99
-fi
-
-TARGET="$HOST"
-if [[ -n "$USER_NAME" ]]; then
-  TARGET="$USER_NAME@$HOST"
-fi
-
-SSH_ARGS=(
-  -o BatchMode=yes
-  -o PreferredAuthentications=publickey
-  -o PasswordAuthentication=no
-  -o ConnectTimeout="$TIMEOUT"
-)
-
-if [[ -n "$CONFIG_PATH" && -f "$CONFIG_PATH" ]]; then
-  SSH_ARGS+=( -F "$CONFIG_PATH" )
-fi
-if [[ -n "$PORT" ]]; then
-  SSH_ARGS+=( -p "$PORT" )
-fi
-if [[ -n "$KEY_PATH" ]]; then
-  SSH_ARGS+=( -i "$KEY_PATH" )
-fi
-if [[ -n "$HOST_KEY_CHECKING" ]]; then
-  SSH_ARGS+=( -o StrictHostKeyChecking="$HOST_KEY_CHECKING" )
-fi
-
-RESOLVED_FILE="$(mktemp)"
-STDOUT_FILE="$(mktemp)"
-STDERR_FILE="$(mktemp)"
-cleanup() {
-  rm -f "$RESOLVED_FILE" "$STDOUT_FILE" "$STDERR_FILE"
-}
-trap cleanup EXIT
-
-set +e
-ssh "${SSH_ARGS[@]}" -G "$TARGET" >"$RESOLVED_FILE" 2>/dev/null
-RESOLVE_EXIT=$?
-ssh "${SSH_ARGS[@]}" "$TARGET" "$REMOTE_COMMAND" >"$STDOUT_FILE" 2>"$STDERR_FILE"
-EXIT_CODE=$?
-set -e
-
-python3 - "$EXIT_CODE" "$RESOLVE_EXIT" "$HOST" "$USER_NAME" "$PORT" "$TIMEOUT" "$HOST_KEY_CHECKING" "$REMOTE_COMMAND" "$RESOLVED_FILE" "$STDOUT_FILE" "$STDERR_FILE" <<'PY'
-import json
-import pathlib
-import sys
-
-exit_code = int(sys.argv[1])
-resolve_exit = int(sys.argv[2])
-host, user_name, port, timeout, host_key_checking, remote_command, resolved_file, stdout_file, stderr_file = sys.argv[3:]
-stdout_text = pathlib.Path(stdout_file).read_text(encoding='utf-8', errors='replace')
-stderr_text = pathlib.Path(stderr_file).read_text(encoding='utf-8', errors='replace')
-resolved = {}
-if resolve_exit == 0:
-    for raw in pathlib.Path(resolved_file).read_text(encoding='utf-8', errors='replace').splitlines():
-        if not raw.strip():
-            continue
-        key, _, value = raw.partition(' ')
-        key = key.strip()
-        value = value.strip()
-        if key in {"hostname", "user", "port"} and value:
-            resolved.setdefault(key, []).append(value)
-
-# Security: key paths and ssh config paths are NOT included in output.
-# Private-key paths are sensitive metadata that should not be
-# exposed to chat, logs, or memory files.
-result = {
-    "success": exit_code == 0,
-    "exit_code": exit_code,
-    "dangerous": False,
-    "host": host,
-    "user": user_name or None,
-    "port": int(port) if port else None,
-    "timeout": int(timeout),
-    "host_key_checking": host_key_checking or None,
-    "command": remote_command,
-    "resolved_hostname": (resolved.get("hostname") or [None])[0],
-    "resolved_user": (resolved.get("user") or [None])[0],
-    "resolved_port": int((resolved.get("port") or [0])[0]) if resolved.get("port") else None,
-    "stdout": stdout_text,
-    "stderr": stderr_text,
-}
-print(json.dumps(result, ensure_ascii=False))
-PY

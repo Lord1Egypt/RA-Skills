@@ -1,44 +1,59 @@
-## Description: <br>
-Integrates AIN providers into OpenClaw with intelligent model routing and tools for prompt execution and task classification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates AIN providers into OpenClaw with provider bridging, model routing, and tools for prompt execution and task classification.
 
-## Publisher: <br>
-[felipematos](https://clawhub.ai/user/felipematos) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[felipematos](https://clawhub.ai/user/felipematos)
 
-## Use Case: <br>
-Developers and agent operators use this OpenClaw plugin to expose AIN-configured model providers, execute prompts through AIN, classify tasks, and optionally route model selection according to AIN policies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts may be routed through any configured AIN provider when routing or tools are enabled. <br>
-Mitigation: Review configured AIN providers before enabling the plugin, and disable enableRouting or exposeTools when automatic routing or tool access is not needed. <br>
-Risk: The documented configPath scoping option is not honored in the artifact behavior reflected by the security guidance. <br>
-Mitigation: Do not rely on configPath to constrain provider or credential use until that behavior is fixed or independently confirmed. <br>
-Risk: Runtime behavior depends on the third-party @felipematos/ain-cli dependency. <br>
-Mitigation: Install only in environments where the dependency and AIN configuration are trusted and reviewed. <br>
+## Use Case:
 
+Developers and agent operators use this plugin to expose AIN-configured model providers in OpenClaw, execute prompts through AIN, classify prompt tasks, and route model requests according to AIN policies.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/felipematos/openclaw-plugin-ain) <br>
-- [AIN project](https://github.com/felipematos/ain) <br>
-- [@felipematos/ain-cli package](https://www.npmjs.com/package/@felipematos/ain-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, configuration, guidance] <br>
-**Output Format:** [OpenClaw provider responses and tool results, including text responses and JSON objects for execution, usage, parsed output, task type, and complexity.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on configured AIN providers, selected model, routing policy, prompt, optional JSON mode, optional schema, system prompt, and temperature.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.11.6 (source: server release metadata) <br>
+Risk: The security review reports that prompts can be routed to unintended providers because the documented config path is ignored and routing is enabled by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review provider configuration before installation, avoid using sensitive prompts or regulated data until fixed, and disable enableRouting when deterministic provider selection is required.
+
+Risk: The plugin exposes prompt execution tools and depends on @felipematos/ain-cli for provider access and routing behavior.
+
+Mitigation: Use trusted default AIN configuration, consider disabling exposeTools where agents should not initiate external model calls, and pin or independently verify @felipematos/ain-cli before use.
+
+Risk: Building or testing from source may rely on outdated development dependency lockfile entries.
+
+Mitigation: Update and review the development dependency lockfile before building, testing, or publishing from source.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/felipematos/skills/openclaw-plugin-ain)
+- [AIN project](https://github.com/felipematos/ain)
+- [@felipematos/ain-cli package](https://www.npmjs.com/package/@felipematos/ain-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Configuration, Guidance]
+
+**Output Format:** [OpenClaw provider registrations, routing decisions, and JSON-compatible tool results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tool results can include selected provider, selected model, token usage, parsed structured output, task type, and complexity.]
+
+## Skill Version(s):
+
+0.11.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

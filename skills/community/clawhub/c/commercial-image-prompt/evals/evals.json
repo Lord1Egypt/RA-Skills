@@ -1,0 +1,32 @@
+{
+  "skill_name": "commercial-image-prompt",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Generate a commercial prompt for an Amazon product listing of an ergonomic aluminum laptop stand.",
+      "expected_output": "Strict three-layer commercial prompt formatted for Amazon product photography standards.",
+      "files": [],
+      "expectations": [
+        "Structured strictly with Layer 1 (Subject & Scene), Layer 2 (Style & Texture), and Layer 3 (Constraints)",
+        "Layer 3 specifies 1:1 aspect ratio suitable for Amazon hero product images",
+        "Layer 3 enforces pure white background (#FFFFFF) with product occupying ~85% of frame",
+        "Includes explicit negative constraints (NO text, NO watermarks, NO badges, NO packaging clutter)",
+        "Layer 2 specifies clean industrial commercial photography aesthetic and realistic material finishes"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "帮我写一个数码桌搭好物推荐的小红书封面生图提示词。",
+      "expected_output": "Three-layer commercial prompt tailored to Xiaohongshu social-native high-saturation standards.",
+      "files": [],
+      "expectations": [
+        "包含严密的三层结构（Layer 1 主体场景 / Layer 2 风格质感 / Layer 3 技术避让）",
+        "指定 3:4 竖版比例（适用于小红书双列流瀑布流）",
+        "风格标注小红书爆款网感、高饱和度、高对比度与清透氛围感",
+        "明确标注画面顶部与底部各预留文字排版安全区，中心主体无遮挡",
+        "严格包含严禁画面生成 AI 乱码文字和水印的负向提示词"
+      ]
+    }
+  ]
+}
+

@@ -1,40 +1,53 @@
-## Description: <br>
-Alibaba Cloud Text-to-Speech synthesis service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Alibaba Cloud Text-to-Speech synthesis service.
 
-## Publisher: <br>
-[guang384](https://clawhub.ai/user/guang384) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[guang384](https://clawhub.ai/user/guang384)
 
-## Use Case: <br>
-Developers and agents use this skill to synthesize text into Alibaba Cloud TTS audio files for voice replies or generated speech output. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends text to Alibaba Cloud and stores Aliyun credentials for service access. <br>
-Mitigation: Use restricted, least-privilege Aliyun credentials and avoid sending sensitive or regulated text unless the deployment has approved controls. <br>
-Risk: The security summary reports that the token request uses unencrypted HTTP. <br>
-Mitigation: Review or patch the token-request path before production use, and deploy only after confirming the transport meets your security requirements. <br>
-Risk: The skill writes generated audio to user-specified output paths. <br>
-Mitigation: Choose safe output locations and review generated files before sharing or using them in downstream workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and agents use this skill to synthesize text into Alibaba Cloud TTS audio files and include generated voice replies in chat responses.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Configuration] <br>
-**Output Format:** [Audio file output with command-line status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Aliyun app key and access-key credentials; supports output path, voice, audio format, and sample-rate options.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The token request uses unencrypted HTTP, which can expose temporary service credentials on the network.
+
+Mitigation: Review before installing and avoid use on untrusted networks unless the token request is changed to HTTPS.
+
+Risk: Aliyun access credentials are account-sensitive.
+
+Mitigation: Store credentials only in trusted configuration, avoid sharing or committing config files, and rotate credentials if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guang384/skills/aliyun-tts)
+- [ClawHub publisher profile](https://clawhub.ai/user/guang384)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with shell command examples and generated audio files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Aliyun app key, access key ID, and access key secret; default output is an MP3 file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,49 @@
-## Description: <br>
-Headful Chromium with VNC/noVNC operator UI and Chrome CDP exports for cookies, screenshots, and rendered outerHTML. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run a persistent Linux Chrome session with VNC/noVNC human takeover and capture an existing tab through CDP. Use for remote browser workflows that need manual login, MFA, or operator inspection followed by automation.
 
-## Publisher: <br>
-[waylonsong](https://clawhub.ai/user/waylonsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[waylonsong](https://clawhub.ai/user/waylonsong)
 
-## Use Case: <br>
-Developers and operators use this skill to run a server-side headful Chromium session for browser automation workflows that need human interaction, then export browser artifacts for downstream analysis or processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live VNC, noVNC, or Chrome debugging endpoints can expose an active browser session. <br>
-Mitigation: Install only in an isolated VM or container and bind access to localhost behind SSH tunneling or firewall rules. <br>
-Risk: Exported cookies and page data can contain sensitive authentication or personal information. <br>
-Mitigation: Use dedicated browser profiles and task-specific accounts, treat exported cookies like passwords, and delete profiles and output artifacts promptly. <br>
-Risk: Setup and runtime helpers may propose package installation or service changes. <br>
-Mitigation: Review any auto-install command before allowing it and keep privileged service deployment behind explicit operator approval. <br>
+## Use Case:
 
+Developers and engineers use this skill to run a persistent Linux Chrome session, hand control to an operator over VNC for login, MFA, or inspection, and capture a specific existing tab for later automation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/waylonsong/headful-browser-vnc) <br>
-- [README](artifact/README.md) <br>
-- [Docker Usage](artifact/README.docker.md) <br>
-- [Changelog](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with shell commands and generated browser artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce cookies, screenshots, rendered HTML, logs, and local runtime configuration files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and changelog) <br>
+Risk: Explicit cookie or storage-state exports may contain authentication data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Request these exports only when needed and restrict access to the resulting private files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/waylonsong/skills/headful-browser-vnc)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, HTML, PNG]
+
+**Output Format:** [Shell commands with JSON status and manifest data; captured HTML and PNG files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Session-scoped browser captures; cookie or storage-state exports are available only when explicitly requested.]
+
+## Skill Version(s):
+
+2.0.0 (source: server metadata, SKILL.md frontmatter, package.json, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,60 @@
-## Description: <br>
-Open Animate is a creative suite for AI agents that helps create professional motion graphics, generate media assets, and render MP4 videos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Open Animate helps agents create professional motion graphics, generate media assets, and render MP4 videos for launches, explainers, social clips, and other visual content.
 
-## Publisher: <br>
-[jacobcwright](https://clawhub.ai/user/jacobcwright) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[jacobcwright](https://clawhub.ai/user/jacobcwright)
 
-## Use Case: <br>
-Developers, creators, and agent operators use this skill to plan, scaffold, compose, preview, and render motion graphics or short-form videos with Open Animate, Remotion, and optional generated media assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Cloud rendering or AI asset generation may send prompts, media, or project files to external services. <br>
-Mitigation: Avoid confidential or proprietary inputs unless the user has reviewed the referenced services and is comfortable with their terms. <br>
-Risk: Generated images, video, or audio may be unsuitable, inaccurate, or inconsistent with the user's intended message. <br>
-Mitigation: Preview generated assets and rendered videos before publication, and iterate on prompts, scenes, and overlays as needed. <br>
+## Use Case:
 
+Developers, content creators, and agent operators use this skill to scaffold Open Animate projects, compose Remotion-based animated scenes, generate supporting media assets, preview work, and render finished MP4 videos.
 
-## Reference(s): <br>
-- [Open Animate Homepage](https://open-animate.com) <br>
-- [Open Animate ClawHub Listing](https://clawhub.ai/jacobcwright/open-animate) <br>
-- [Agent Workflow](references/workflow.md) <br>
-- [animate.json Reference](references/scene-config.md) <br>
-- [Composition Patterns](references/composition-patterns.md) <br>
-- [Animation Cookbook](references/animation-cookbook.md) <br>
-- [Asset Generation](references/asset-generation.md) <br>
-- [Working with Media](references/media-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript, JSON, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation of local project files, generated media assets, and rendered MP4 video outputs through the oanim and Remotion workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill asks users to run mutable npm and external skill-install commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a project sandbox and prefer pinned package versions or a reviewed lockfile before running Open Animate or Remotion tooling.
+
+Risk: Cloud rendering and AI asset-generation commands may send prompts, media, credentials, or business data to external providers.
+
+Mitigation: Avoid confidential inputs unless provider data handling has been reviewed and the project is approved for that use.
+
+## Reference(s):
+
+- [Open Animate homepage](https://open-animate.com)
+- [Open Animate ClawHub listing](https://clawhub.ai/jacobcwright/skills/open-animate)
+- [Agent Workflow](references/workflow.md)
+- [animate.json Reference](references/scene-config.md)
+- [Composition Patterns](references/composition-patterns.md)
+- [Animation Cookbook](references/animation-cookbook.md)
+- [Asset Generation](references/asset-generation.md)
+- [Working with Media](references/media-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with TypeScript, JSON, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide creation of Remotion projects, generated media assets, and rendered MP4 outputs.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

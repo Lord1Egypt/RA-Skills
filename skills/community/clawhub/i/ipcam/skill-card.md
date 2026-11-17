@@ -1,43 +1,66 @@
-## Description: <br>
-Control ONVIF Profile S/T IP cameras for PTZ, presets, discovery, and RTSP snapshot or recording with multi-camera support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control ONVIF Profile S/T IP cameras for PTZ, presets, discovery, and RTSP snapshot or recording workflows with auto-discovery and multi-camera support.
 
-## Publisher: <br>
-[ltpop](https://clawhub.ai/user/ltpop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ltpop](https://clawhub.ai/user/ltpop)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent discover, configure, and control owned or administered ONVIF IP cameras, including PTZ movement, presets, RTSP snapshots, and short recordings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Camera credentials may be exposed through stream URLs or plaintext configuration. <br>
-Mitigation: Avoid sharing stream-url output, prefer environment variables or a protected config file, and restrict config file permissions. <br>
-Risk: The skill can capture video or move cameras that the agent can access. <br>
-Mitigation: Install and run it only for cameras the user owns or administers, and review recording, snapshot, PTZ, preset, discovery, and add operations before execution. <br>
+## Use Case:
 
+Developers, operators, and external users use this skill to configure and control ONVIF-compatible IP cameras, discover cameras on a local network, move PTZ cameras, manage presets, and capture RTSP snapshots or recordings.
 
-## Reference(s): <br>
-- [Ipcam ClawHub release page](https://clawhub.ai/ltpop/ipcam) <br>
-- [README](README.md) <br>
-- [Skill documentation](SKILL.md) <br>
-- [Changelog](CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create camera configuration, snapshots, and short recording files when the generated commands are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata, frontmatter, and CHANGELOG) <br>
+Risk: The skill handles camera credentials and live camera feeds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-privilege camera account and install only in environments where access to those feeds and credentials is acceptable.
+
+Risk: Camera configuration can store passwords and connection details locally.
+
+Mitigation: Restrict permissions on the configuration file and avoid sharing configuration contents.
+
+Risk: The stream-url command can expose a usable RTSP URL.
+
+Mitigation: Do not share stream-url output and prefer workflows that avoid placing passwords directly in command-line arguments.
+
+Risk: Installation uses an unpinned Python dependency.
+
+Mitigation: Review or pin the dependency before running install.sh in a controlled or production environment.
+
+Risk: Discovery and camera control operate on the local network and can move PTZ hardware or create local surveillance media.
+
+Mitigation: Run discovery only on networks where camera scanning is authorized and store snapshots or recordings in approved local paths.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ltpop/skills/ipcam)
+- [Publisher profile](https://clawhub.ai/user/ltpop)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Camera commands can produce RTSP stream URLs and local snapshot or recording files when executed against configured cameras.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, CHANGELOG, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

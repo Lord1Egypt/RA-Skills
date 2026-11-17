@@ -1,40 +1,52 @@
-## Description: <br>
-Clarifies software requirements before implementation by identifying ambiguity, missing details, logic gaps, assumptions, and dependencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent clarify ambiguous development, modification, analysis, or design requests before implementation.
 
-## Publisher: <br>
-[hcyyy0120](https://clawhub.ai/user/hcyyy0120) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[hcyyy0120](https://clawhub.ai/user/hcyyy0120)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and coding agents use this skill to pause before implementation, identify ambiguous or missing requirements, ask structured clarification questions, and proceed after requirements are confirmed.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The broad trigger can add clarification steps to requests that are already clear.
+
+Mitigation: Use the skill for ambiguous or multi-module work, and allow direct implementation when the request is already specific or the user explicitly asks to proceed.
+
+Risk: The source instructions are written in Chinese and may influence the language of clarification output.
+
+Mitigation: Review clarification questions for the intended audience and restate the desired response language when needed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill to clarify software development, modification, analysis, or design requests before implementation. It helps produce focused clarification questions and a short restatement once requirements are understood. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can add extra clarification turns before implementation, which may slow straightforward tasks. <br>
-Mitigation: Use the skill for development, modification, analysis, or design requests where ambiguity, missing details, or hidden assumptions would create rework. <br>
-Risk: Clarification questions or requirement summaries may still reflect incomplete context. <br>
-Mitigation: Review the generated clarification list and confirm assumptions before using it as implementation direction. <br>
+**Output Format:** [Markdown with structured lists and tables]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hcyyy0120/requirement-clarifier) <br>
+**Other Properties Related to Output:** [Produces requirement clarification questions, temporary assumptions, and a brief restatement before implementation.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown clarification lists, questions, and requirement summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no tools, commands, credential access, persistence, or external data handling are described in the reviewed artifact.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

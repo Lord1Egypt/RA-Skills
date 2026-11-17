@@ -1,42 +1,55 @@
-## Description: <br>
-Download an Instagram Reel via sssinstagram.com and return it as a WhatsApp-ready video file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download an Instagram Reel via sssinstagram.com and return it as a WhatsApp-ready video file.
 
-## Publisher: <br>
-[TNjo](https://clawhub.ai/user/TNjo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tnjo](https://clawhub.ai/user/tnjo)
 
-## Use Case: <br>
-External users and agents use this skill to download a provided public Instagram Reel through sssinstagram.com and send the resulting video as WhatsApp-ready media. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reel URLs are shared with sssinstagram.com and the downloaded media may be sent through WhatsApp. <br>
-Mitigation: Use only links suitable for those services and avoid private or sensitive links unless the user trusts the services involved. <br>
-Risk: Downloaded video files can remain in the configured download directory after use. <br>
-Mitigation: Review the download location and run the cleanup script or delete files after the transfer is complete. <br>
+## Use Case:
 
+External users and agents use this skill to fetch an Instagram Reel through sssinstagram.com and prepare the downloaded video for WhatsApp delivery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TNjo/instagra) <br>
-- [sssinstagram Reels downloader](https://sssinstagram.com/reels-downloader) <br>
-- [Instagram](https://www.instagram.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Shell command guidance plus a MEDIA_PATH string for a downloaded video file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a WhatsApp-ready video file and emits its absolute path as MEDIA_PATH.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill sends Instagram Reel URLs to sssinstagram.com and automates a browser against third-party web content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when that third-party processing is acceptable, and run it in a restricted workspace or container.
+
+Risk: Downloaded media and browser automation could expose the runtime to unsafe files or unwanted network reachability.
+
+Mitigation: Limit network access, restrict access to sensitive internal services, and apply disk quotas or cleanup for downloaded files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tnjo/skills/instagra)
+- [Publisher profile](https://clawhub.ai/user/tnjo)
+- [sssinstagram Reel Downloader](https://sssinstagram.com/reels-downloader)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, guidance]
+
+**Output Format:** [Plain text instructions and shell commands that produce a local video file path]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The primary runtime result is MEDIA_PATH pointing to a downloaded video file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-Browse Bitbucket Cloud repos, review pull requests, read diffs, check branches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browse Bitbucket Cloud repos, review pull requests, read diffs, check branches. Use when user mentions PRs, code changes, diffs, branches, Bitbucket, or repo names.
 
-## Publisher: <br>
-[pejovicvuk](https://clawhub.ai/user/pejovicvuk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pejovicvuk](https://clawhub.ai/user/pejovicvuk)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect Bitbucket Cloud repositories, pull requests, diffs, comments, branches, commits, and source files through read-only API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The configured Bitbucket token can read repository code, pull requests, comments, diffs, branch metadata, and source files available to that token. <br>
-Mitigation: Use a separate Bitbucket API token scoped to read-only repository and pull-request permissions, and limit workspace access where possible. <br>
-Risk: Agent responses may expose Bitbucket data when a user intended to inspect local or other-hosted code. <br>
-Mitigation: Be explicit when requesting Bitbucket access and verify the target workspace, repository, branch, and pull request before using returned content. <br>
-Risk: Command results can be paginated or capped, which can make repository, pull request, branch, commit, or search views incomplete. <br>
-Mitigation: Treat limited results as partial and request follow-up queries or narrower searches when completeness matters. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect Bitbucket Cloud repositories and pull requests from an agent workspace. It supports read-only review of repositories, PR metadata, diffs, comments, commits, branches, files, directory trees, code search, and branch comparisons.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/pejovicvuk/atlassian-bitbucket) <br>
-- [Publisher Profile](https://clawhub.ai/user/pejovicvuk) <br>
-- [Bitbucket Cloud API](https://api.bitbucket.org/2.0) <br>
-- [Atlassian API Tokens](https://id.atlassian.com/manage-profile/security/api-tokens) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; command results are JSON or raw text from Bitbucket Cloud.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only Bitbucket API wrapper; repository, pull request, branch, file, search, and diff results may be paginated or limited.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata) <br>
+Risk: The skill can broadly read private Bitbucket source data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Bitbucket token with only repository and pull-request read permissions, and ask the agent to inspect only specific repos, PRs, branches, or files.
+
+Risk: The Bitbucket API token may be exposed to local process inspection.
+
+Mitigation: Run the skill in an isolated environment where other users cannot inspect process arguments or environment details.
+
+Risk: Repository content, PR descriptions, diffs, and comments can contain untrusted text.
+
+Mitigation: Treat retrieved content as untrusted input and verify any suggested code, commands, or conclusions before acting on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pejovicvuk/skills/atlassian-bitbucket)
+- [ClawHub publisher profile](https://clawhub.ai/user/pejovicvuk)
+- [Atlassian API token management](https://id.atlassian.com/manage-profile/security/api-tokens)
+- [Bitbucket Cloud API endpoint](https://api.bitbucket.org/2.0)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; CLI calls return JSON or raw text and diffs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ATLASSIAN_EMAIL, BITBUCKET_API_TOKEN, and BITBUCKET_WORKSPACE. Repository, PR, branch, commit, and comment listings are paginated.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

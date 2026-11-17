@@ -1,43 +1,58 @@
-## Description: <br>
-Install, update, run, and remove OpenClaw Gateway Monitor + Gateway Watchdog on macOS via LaunchAgent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install, update, run, and remove OpenClaw Gateway Monitor + Gateway Watchdog on macOS via LaunchAgent.
 
-## Publisher: <br>
-[yes999zc](https://clawhub.ai/user/yes999zc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yes999zc](https://clawhub.ai/user/yes999zc)
 
-## Use Case: <br>
-Developers and operators use this skill to install, check, update, and remove a macOS LaunchAgent-based OpenClaw gateway monitor and watchdog. It is intended for local OpenClaw gateway health monitoring and recovery workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs persistent macOS background services that monitor and attempt to recover OpenClaw gateway state. <br>
-Mitigation: Review the scripts before execution, run only in a trusted macOS user environment, and confirm the LaunchAgent files and labels before bootstrapping services. <br>
-Risk: The monitor server exposes unauthenticated HTTP APIs on all network interfaces while reading local OpenClaw logs, session status, and possible MiniMax credential material. <br>
-Mitigation: Prefer a revised release that binds to 127.0.0.1, adds authentication, restricts network access, documents credential use, and removes or protects restore-config behavior. <br>
-Risk: The installer expects LaunchAgent template files that are not present in the artifact, so installation may fail or leave a partial local setup. <br>
-Mitigation: Verify the required LaunchAgent templates are present before running install.sh; if an install fails, use uninstall.sh and launchctl inspection to clean up any partial services. <br>
+## Use Case:
 
+Developers and macOS OpenClaw operators use this skill to install, update, check, and remove a local Gateway Monitor UI server and watchdog LaunchAgent for gateway self-healing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yes999zc/gateway-monitor-installer) <br>
-- [Publisher profile](https://clawhub.ai/user/yes999zc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides installation, status, and uninstall guidance for bundled macOS scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill installs a persistent local monitor service that can read OpenClaw logs and session data and use a MiniMax credential from the local auth profile.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, document credential use, and limit installation to environments where the local operator trusts the service.
+
+Risk: The monitor exposes unauthenticated HTTP APIs on the network and includes an endpoint that can restore OpenClaw configuration.
+
+Mitigation: Prefer a version that binds only to localhost, requires API authentication, and removes or gates configuration restore behind explicit local approval.
+
+Risk: The installer expects LaunchAgent templates that are not present in the submitted artifact.
+
+Mitigation: Verify the required plist templates are included and reviewed before running the installer.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yes999zc/skills/gateway-monitor-installer)
+- [Local Gateway Monitor UI](http://127.0.0.1:18990)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands target macOS LaunchAgent installation, status checks, and removal.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

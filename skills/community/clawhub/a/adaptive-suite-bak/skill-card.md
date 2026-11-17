@@ -1,41 +1,58 @@
-## Description: <br>
-A continuously adaptive skill suite that helps Clawdbot support coding, business analysis, project management, web development, data analysis, and read-only NAS metadata scraping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A continuously adaptive skill suite that helps an agent provide coding, business analysis, project management, web and data development guidance, and read-only NAS metadata scraping.
 
-## Publisher: <br>
-[lingcheng1112](https://clawhub.ai/user/lingcheng1112) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lingcheng1112](https://clawhub.ai/user/lingcheng1112)
 
-## Use Case: <br>
-Developers, analysts, and project teams use this skill for coding help, free-resource discovery, business and project planning, web and data workflows, and generation of a local read-only NAS metadata scraper. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The NAS metadata workflow can inventory file names, metadata, and directory structure from network storage. <br>
-Mitigation: Require explicit user confirmation before scanning, limit scope to selected directories, avoid sensitive shares, and keep the scraper read-only. <br>
-Risk: The skill may recommend free APIs, tools, or libraries across broad domains. <br>
-Mitigation: Review recommendations before execution or adoption, prefer trusted sources, and use narrowly scoped or disposable API keys. <br>
+## Use Case:
 
+External users, developers, and knowledge workers use this skill to get adaptive coding, planning, analysis, web development, data workflow, and read-only NAS metadata scanning support from an agent.
 
-## Reference(s): <br>
-- [Adaptive Suite.Bak on ClawHub](https://clawhub.ai/lingcheng1112/adaptive-suite-bak) <br>
-- [MOLT skills documentation](https://docs.molt.bot/tools/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose use of Python, Node, curl, sqlite3, and free API keys when a task needs them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact _meta.json) <br>
+Risk: Broad always-on assistance could act outside the user's intended task scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with explicit task boundaries and review proposed actions before execution.
+
+Risk: NAS metadata scanning could expose file names, metadata, and directory structure beyond the intended scope.
+
+Mitigation: Do not grant broad NAS paths by default; restrict scans to approved read-only locations.
+
+Risk: External free-resource discovery may contact online services or require API keys.
+
+Mitigation: Avoid providing API keys unless the user understands which external resources will be contacted and how collected metadata will be stored.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lingcheng1112/skills/adaptive-suite-bak)
+- [Moltbot Skills Documentation](https://docs.molt.bot/tools/skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and text responses with code, shell commands, and configuration snippets when relevant]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose workflows, app-building steps, metadata collection approaches, and external free resources based on user context.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact/_meta.json and evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

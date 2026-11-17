@@ -1,5 +1,6 @@
 #!/bin/bash
 # Negotiation Self-Improvement Error Detector Hook
+# Inspects CLAUDE_TOOL_OUTPUT in-process only. Never writes tool output, secrets, or transcripts to disk.
 # Triggers on PostToolUse for Bash to detect high-signal negotiation patterns.
 # Reminder-only behavior: no auto approvals or agreement actions.
 

@@ -1,6 +1,6 @@
 ---
-name: meme-cog
-description: "AI meme generation powered by CellCog. Memes, viral content, reaction images, internet humor. Audience targeting, trend research, and multi-angle generation for humor that lands."
+name: meme-generator-cellcog
+description: "AI meme generator powered by CellCog. Memes, viral content, reaction images, internet humor. Audience targeting, trend research, and multi-angle generation for humor that lands."
 metadata:
   openclaw:
     emoji: "😂"
@@ -12,7 +12,7 @@ author: CellCog
 homepage: https://cellcog.ai
 dependencies: [cellcog]
 ---
-# Meme Cog - Deep Reasoning Meets Internet Culture
+# Meme Generator - Deep Reasoning Meets Internet Culture
 
 Meme generation with audience targeting, trend research, and multi-angle humor.
 
@@ -141,11 +141,16 @@ Let's be real about what's hard:
 
 ---
 
-## Chat Mode for Memes
+## Choosing Mode & Tier
 
-**Use `chat_mode="agent"`** for meme creation.
+| Scenario | Recommended |
+|----------|-------------|
+| Memes and quick humor content | `chat_mode="agent"` (defaults to the `"core"` tier) |
+| Large coordinated meme campaigns | `chat_mode="agent", chat_tier="max"` |
 
-Memes are quick creative bursts, not deep deliberation. Agent mode's faster iteration matches meme culture's rapid pace.
+**The core tier is the default and handles most meme generation well**, balanced speed and depth. **Upgrade to `chat_tier="max"`** when quality disappoints or the work is genuinely complex: just re-run the same prompt with `chat_tier="max"`.
+
+Agent Team (`chat_mode="team"`) is reserved for deep research — don't use it for meme generation.
 
 ---
 
@@ -220,7 +225,7 @@ What's still hard:
 - Knowing when NOT to explain a joke
 - Creating the next viral format
 
-**Use meme-cog as a collaborator, not a magic humor machine.** Your sense of what's funny + our generation capabilities = better results than either alone.
+**Use meme-generator-cellcog as a collaborator, not a magic humor machine.** Your sense of what's funny + our generation capabilities = better results than either alone.
 
 We're working on it. Comedy is hard. Thanks for exploring the frontier with us.
 
@@ -228,6 +233,7 @@ We're working on it. Comedy is hard. Thanks for exploring the frontier with us.
 
 ## If CellCog is not installed
 
-Run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool) to install and authenticate.
-**OpenClaw users:** Run `clawhub install cellcog` instead.
+**Claude Code, Cursor, Codex + 70 more agents:** `npx skills add cellcog/skills --skill cellcog`
+**OpenClaw:** `openclaw skills install @cellcog/cellcog`
+**CellCog plugin users:** run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool)
 **Manual setup:** `pip install -U cellcog` and set `CELLCOG_API_KEY`. See the **cellcog** skill for SDK reference.

@@ -1,46 +1,59 @@
-## Description: <br>
-Smart AI router that automatically picks the best and cheapest LLM for each prompt, supports bring-your-own provider keys, tracks costs, and enforces budgets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart AI router - automatically picks the best and cheapest LLM for every prompt, supports bring-your-own-key provider routing, tracks costs, and enforces budgets.
 
-## Publisher: <br>
-[LdwS123](https://clawhub.ai/user/LdwS123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ldws123](https://clawhub.ai/user/ldws123)
 
-## Use Case: <br>
-Developers and agent users use this skill to route LLM prompts through Spendex, compare selected model/provider responses, and inspect account usage, credits, budgets, and savings. It is intended for workflows where cost tracking and provider routing are part of normal agent operation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompt content is routed to Spendex and selected downstream providers. <br>
-Mitigation: Use the skill only when Spendex and the selected providers are trusted for the content being sent; avoid secrets, regulated data, private customer content, and confidential code unless approved. <br>
-Risk: Provider keys and Spendex account access affect billing and account exposure. <br>
-Mitigation: Use scoped provider keys, billing limits, and budget checks where possible, and rotate keys after discontinuing use. <br>
+## Use Case:
 
+External users and developers use this skill to route LLM chat-completion requests through Spendex, inspect credit balance and budgets, and review usage or cost-savings data for their connected providers.
 
-## Reference(s): <br>
-- [Spendex AI Router ClawHub Release](https://clawhub.ai/LdwS123/spendex-ai-router) <br>
-- [Spendex](https://spendex.ai) <br>
-- [Spendex Chat Completions API](https://app.spendexai.com/v1/chat/completions) <br>
-- [Spendex Credit Balance API](https://app.spendexai.com/api/credits/balance) <br>
-- [Spendex Budgets API](https://app.spendexai.com/api/budgets) <br>
-- [Spendex Realtime Usage API](https://app.spendexai.com/api/usage/realtime?stats=true) <br>
-- [Spendex Savings Analytics API](https://app.spendexai.com/api/analytics/savings) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses SPENDEX_API_KEY plus curl and jq to call Spendex endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Prompts and conversation history may be sent to Spendex and routed to connected model providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only after reviewing Spendex data handling and provider-routing controls; avoid secrets, credentials, private source code, regulated data, and confidential conversations.
+
+Risk: The example curl payload substitutes user prompt text directly into JSON.
+
+Mitigation: Rewrite the command to JSON-encode prompt text safely before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ldws123/skills/spendex-ai-router)
+- [Spendex](https://spendex.ai)
+- [Spendex Chat Completions API](https://app.spendexai.com/v1/chat/completions)
+- [Spendex Credit Balance API](https://app.spendexai.com/api/credits/balance)
+- [Spendex Budgets API](https://app.spendexai.com/api/budgets)
+- [Spendex Usage API](https://app.spendexai.com/api/usage/realtime?stats=true)
+- [Spendex Savings Analytics API](https://app.spendexai.com/api/analytics/savings)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SPENDEX_API_KEY plus curl and jq; routes user prompts and conversation history through an external Spendex API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

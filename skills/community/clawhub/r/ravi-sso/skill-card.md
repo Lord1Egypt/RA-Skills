@@ -1,41 +1,57 @@
-## Description: <br>
-Gets short-lived Ravi identity verification tokens for third-party services that support Login with Ravi. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gets short-lived identity verification tokens to prove a Ravi identity to third-party services that support Login with Ravi.
 
-## Publisher: <br>
-[raunaksingwi](https://clawhub.ai/user/raunaksingwi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raunaksingwi](https://clawhub.ai/user/raunaksingwi)
 
-## Use Case: <br>
-External Ravi users and their agents use this skill to obtain a fresh Ravi SSO token and pass it to a trusted third-party service for identity verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A third-party service that verifies a token can receive Ravi identity details such as name, email, and phone. <br>
-Mitigation: Share tokens only with trusted services and only for login flows the user intentionally starts. <br>
-Risk: Cached or stored SSO tokens may be reused outside the intended login flow. <br>
-Mitigation: Generate tokens immediately before use and do not store them. <br>
+## Use Case:
 
+External users and developers use this skill to obtain a fresh Ravi SSO token and pass it to a trusted third-party service for Login with Ravi flows.
 
-## Reference(s): <br>
-- [SSO Token API Reference](https://ravi.id/docs/schema/sso.json) <br>
-- [ClawHub skill page](https://clawhub.ai/raunaksingwi/ravi-sso) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [SSO tokens are short-lived and should be generated immediately before use, not cached or stored.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release evidence) <br>
+Risk: SSO tokens are short-lived bearer credentials that can prove identity if exposed before expiry.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Send tokens only to trusted services over secure channels, preferably in HTTPS POST bodies or Authorization headers; do not log, cache, or share them.
+
+Risk: Passing tokens through service-specific channels can lead to accidental exposure if a service asks for URL query parameters.
+
+Mitigation: Prefer body or header transmission when the service supports it, and use query parameters only when required by the trusted service.
+
+Risk: The verification endpoint is intended for third-party backends rather than the user or agent obtaining the token.
+
+Mitigation: Use this skill only to request a fresh token and pass it to the target service; leave token verification to the service backend.
+
+## Reference(s):
+
+- [SSO Token API Reference](https://ravi.id/docs/schema/sso.json)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, JSON, guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a short-lived bearer token with a documented 5-minute TTL; tokens should not be cached, logged, or shared outside the intended trusted service.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -85,7 +85,7 @@ def search_local(query, limit=5):
 
 def search_online(query, limit=5, provider="tenor"):
     """Search Tenor for sticker images. Returns list of {url, preview, title}."""
-    api_key = os.environ.get("TENOR_API_KEY", "AIzaSyAyimkuYQYF_FXVALexPuGQctUWRURdCYQ")  # Tenor demo key
+    api_key = os.environ.get("TENOR_API_KEY", "REDACTED-SECRET")  # Tenor demo key
     params = urllib.parse.urlencode({
         "q": query,
         "key": api_key,

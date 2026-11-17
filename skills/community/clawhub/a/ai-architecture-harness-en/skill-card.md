@@ -1,39 +1,53 @@
-## Description: <br>
-Establish and use architectural guardrails for AI-assisted coding to prevent architecture collapse, feature regression, and drift across long multi-turn iterations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Establish and use architectural guardrails for AI-assisted coding to prevent architecture collapse, feature regression, and drift across long multi-turn iterations.
 
-## Publisher: <br>
-[hgvgfgvh](https://clawhub.ai/user/hgvgfgvh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hgvgfgvh](https://clawhub.ai/user/hgvgfgvh)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to establish repository-level architecture guardrails, acceptance rules, and review workflows for safer AI-assisted coding. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can prompt broad changes to architecture documents, tests, lint rules, or review workflows. <br>
-Mitigation: Review proposed repository changes like normal code changes and keep edits scoped to the requested guardrail work. <br>
-Risk: If used during a broad coding request, guardrail suggestions could alter project expectations or acceptance rules. <br>
-Mitigation: Require human review for suggested AGENTS.md, design-intent documents, acceptance rules, golden rules, and architecture drift classifications before adopting them. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to establish repository guardrails for AI-assisted coding, including design-intent docs, architecture acceptance rules, automated constraints, and golden-rule review loops.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with document templates, review steps, and examples for tests or structural checks.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May result in proposed AGENTS.md, design-intent documents, architecture docs, acceptance rules, golden rules, tests, lint rules, or review checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may propose or update architecture guardrail documents and tests in a repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep documentation and test changes scoped to the project, and review them before adopting them as constraints.
+
+Risk: Overbroad architecture rules can freeze reasonable design evolution or encode incorrect assumptions.
+
+Mitigation: Start with a minimal guardrail set, preserve human-maintained design intent, and classify uncertain drift for human decision.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hgvgfgvh/skills/ai-architecture-harness-en)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with optional code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update project documentation and tests when the user asks to apply guardrails.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Scans agent skills locally for security risks before installation or use, using Tencent Zhuque Lab A.I.G static analysis guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan agent skills for security risks before installation or use with local static analysis.
 
-## Publisher: <br>
-[aigsec](https://clawhub.ai/user/aigsec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aigsec](https://clawhub.ai/user/aigsec)
 
-## Use Case: <br>
-Developers and agent users use this skill to perform local static security reviews of one or more agent skills before installing, enabling, or trusting them. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence reports that one review helper can default to a nested review mode that bypasses normal sandbox and approval protections. <br>
-Mitigation: Review the helper command before use and prefer the no-yolo option unless a full-access nested review is explicitly intended. <br>
-Risk: Static analysis reports are limited to the discovered files and the current release, so future updates or runtime behavior may introduce different risks. <br>
-Mitigation: Re-scan the skill after updates and review findings before installation or deployment. <br>
+## Use Case:
 
+Developers and agent users use this skill to scan individual skills or installed skill sets for security risks before installing or continuing to use them.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/aigsec/edgeone-skill-scanner) <br>
-- [Tencent AI-Infra-Guard](https://github.com/Tencent/AI-Infra-Guard/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown security report with verdicts, findings, recommendations, and summary tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Language follows the triggering user message; analysis is based on static review of the current skill files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill may read skill files and enumerate installed skills when asked to run a full-platform audit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for intended local static scans and review the requested scan scope before granting broad file access.
+
+Risk: The skill uses a mandatory report template and promotional footer.
+
+Mitigation: Treat those elements as publisher formatting choices, not as security authority, and keep user and platform instructions in control.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aigsec/skills/edgeone-skill-scanner)
+- [Tencent AI-Infra-Guard Homepage](https://github.com/Tencent/AI-Infra-Guard/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown security scan report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include verdicts, findings when present, recommendations, and publisher-defined formatting.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

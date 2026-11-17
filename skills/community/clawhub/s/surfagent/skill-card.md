@@ -1,43 +1,60 @@
-## Description: <br>
-Control a real Chrome browser via SurfAgent to navigate, click, type, capture screenshots, extract data, crawl sites, and automate web workflows through SurfAgent's MCP server or local HTTP API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control a real Chrome browser via SurfAgent to navigate, click, type, screenshot, extract data, crawl sites, and automate web workflows using a persistent local Chrome profile through SurfAgent's MCP server or direct HTTP API.
 
-## Publisher: <br>
-[agentossoftware](https://clawhub.ai/user/agentossoftware) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentossoftware](https://clawhub.ai/user/agentossoftware)
 
-## Use Case: <br>
-Developers and automation agents use SurfAgent to operate a local Windows Chrome browser for web navigation, form interaction, screenshots, structured extraction, site crawling, and URL discovery. It is intended for workflows that need a persistent browser profile and real user sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can let an agent operate a real logged-in Chrome profile, including pages with personal accounts, cookies, or production access. <br>
-Mitigation: Use a dedicated isolated browser profile and avoid personal or production accounts unless the workflow explicitly requires them. <br>
-Risk: Browser automation can submit forms, change accounts, make purchases, access or change cookies, execute JavaScript, and extract data at scale. <br>
-Mitigation: Require human approval before form submission, purchases, account changes, cookie access or changes, JavaScript execution, and bulk data extraction. <br>
+## Use Case:
 
+Developers and agents use this skill to operate a local Chrome browser for web navigation, form interaction, screenshots, structured extraction, crawling, and tab management when persistent browser sessions are needed.
 
-## Reference(s): <br>
-- [ClawHub SurfAgent Release](https://clawhub.ai/agentossoftware/surfagent) <br>
-- [SurfAgent](https://surfagent.app) <br>
-- [SurfAgent MCP Server](https://github.com/surfagentapp/surfagent-mcp) <br>
-- [SurfAgent Documentation](https://github.com/surfagentapp/surfagent-docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, tool names, and HTTP API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide browser actions that return screenshots, page text, HTML, URLs, cookies, extracted JSON or markdown, and crawl results through the SurfAgent daemon.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and frontmatter) <br>
+Risk: SurfAgent can give external components broad control over a real logged-in Chrome profile.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Chrome profile or low-privilege accounts, and avoid sensitive sites unless the automation task requires them.
+
+Risk: Browser automation can submit forms, edit cookies, change settings, send messages, or complete purchases.
+
+Mitigation: Require explicit confirmation before purchases, messages, settings changes, cookie edits, or form submissions.
+
+Risk: The skill depends on the SurfAgent desktop app and MCP server packages.
+
+Mitigation: Verify the desktop app source and pin reviewed package versions where possible.
+
+## Reference(s):
+
+- [SurfAgent](https://surfagent.app)
+- [SurfAgent MCP Server](https://github.com/surfagentapp/surfagent-mcp)
+- [SurfAgent Documentation](https://github.com/surfagentapp/surfagent-docs)
+- [ClawHub SurfAgent Skill](https://clawhub.ai/agentossoftware/skills/surfagent)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Markdown, JSON]
+
+**Output Format:** [Markdown instructions with inline shell commands and JSON or markdown data returned by browser extraction tools]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May also produce browser screenshots through the SurfAgent browser_screenshot tool.]
+
+## Skill Version(s):
+
+1.0.0 (source: target metadata, release evidence, frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

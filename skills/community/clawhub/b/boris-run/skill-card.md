@@ -1,47 +1,58 @@
-## Description: <br>
-Runs multiple independent OpenClaw tasks in parallel across AI agents with load balancing, retries, progress tracking, optional verification, and artifact management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Boris Workflow for OpenClaw helps agents run multiple independent tasks in parallel with load balancing, retries, progress tracking, optional verification, and organized artifact output.
 
-## Publisher: <br>
-[mukston-debug](https://clawhub.ai/user/mukston-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mukston-debug](https://clawhub.ai/user/mukston-debug)
 
-## Use Case: <br>
-Developers and engineers use this skill to split independent OpenClaw tasks across multiple AI agents, monitor progress, retry failures, collect artifacts, and optionally verify the results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The release asks users to install external code from inconsistent GitHub repository references. <br>
-Mitigation: Review the external repository carefully before installing, confirm which GitHub owner is authoritative, and pin installation to a known commit in an isolated Python environment. <br>
-Risk: Parallel agent runs can perform many account-changing or destructive tasks at once if task prompts are not constrained. <br>
-Mitigation: Start with mock or dry-run mode, require explicit approvals for destructive tasks, and avoid parallelizing sensitive operations until the workflow is verified. <br>
-Risk: The optional Web UI can expose workflow controls if bound beyond the local machine. <br>
-Mitigation: Keep the Web UI bound to localhost unless a reviewed access-control and network configuration is in place. <br>
-Risk: Optional cleanup and uninstall commands can remove local Boris configuration or artifacts. <br>
-Mitigation: Inspect the target directories, especially ~/.boris, before running deletion commands. <br>
+## Use Case:
 
+Developers and agent operators use this skill to distribute independent research, analysis, coding, review, testing, or content tasks across multiple OpenClaw agents and collect structured results.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/mukston-debug/boris-run) <br>
-- [OpenClaw](https://openclaw.dev) <br>
-- [Repository listed in SKILL.json](https://github.com/mukston-debug/boris-workflow) <br>
-- [Repository listed in INSTALL.md](https://github.com/mukston/boris-workflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, YAML configuration examples, and structured JSON result reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create workflow artifacts, progress logs, and optional verification reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence, SKILL.json, CHANGELOG released 2026-03-18) <br>
+Risk: Installation depends on unreviewed mutable remote code and inconsistent repository references.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the correct repository, review requirements, CLI, Web UI startup script, and server code, and prefer a pinned release or commit before installation.
+
+Risk: The optional Web UI can expose workflow controls if bound beyond the local machine.
+
+Mitigation: Run the Web UI only on localhost unless the deployment has been reviewed and protected by appropriate access controls.
+
+Risk: Configuration and artifact cleanup commands may remove local Boris data.
+
+Mitigation: Back up ~/.boris before running uninstall or cleanup commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mukston-debug/skills/boris-run)
+- [Publisher profile](https://clawhub.ai/user/mukston-debug)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, YAML configuration examples, and JSON workflow-result descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce workflow artifacts, progress logs, exported YAML configuration, and optional verification reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.json, and CHANGELOG dated 2026-03-18)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

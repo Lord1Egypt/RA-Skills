@@ -1,39 +1,56 @@
-## Description: <br>
-Installs named OpenClaw skills through the clawhub CLI and returns the command output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides OpenClaw tools that install a named ClawHub skill by running the clawhub CLI in the current workspace.
 
-## Publisher: <br>
-[shifulegend](https://clawhub.ai/user/shifulegend) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[shifulegend](https://clawhub.ai/user/shifulegend)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to install named ClawHub skills from an agent session through the clawhub CLI. It is best suited to trusted, simple skill names because it changes installed skills and returns terminal output. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A crafted skill name can cause the tool to run unintended shell commands. <br>
-Mitigation: Use only trusted, simple skill names and prefer a version that validates skill slugs and executes commands with an argument array. <br>
-Risk: The documented install scope is inconsistent, so users may misunderstand whether the skill installs globally or into the workspace. <br>
-Mitigation: Confirm the install destination before use and review installed skill changes after the command completes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shifulegend/install-shared-skill) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to install a named skill from ClawHub into the active workspace through CLI-backed tools.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands] <br>
-**Output Format:** [Plain text terminal output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns stdout and stderr from the clawhub CLI; non-zero exits are surfaced as command output.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A crafted skill name could run unintended shell commands.
+
+Mitigation: Install only after the publisher fixes shell execution or restrict use to trusted, reviewed skill identifiers.
+
+Risk: The stated shared or global install scope conflicts with the workspace-targeted command.
+
+Mitigation: Confirm the install destination before use and do not rely on this skill for shared installation until the behavior and documentation agree.
+
+Risk: The skill performs a high-impact install action.
+
+Mitigation: Review and scan installed skills before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shifulegend/skills/install-shared-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Text]
+
+**Output Format:** [Plain text terminal output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns stdout and stderr from the clawhub install command; non-zero command exits are surfaced as tool failures.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

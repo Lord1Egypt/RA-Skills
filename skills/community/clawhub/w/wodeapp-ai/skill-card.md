@@ -1,47 +1,67 @@
-## Description: <br>
-WodeApp AI Engine lets an agent use one WODEAPP_API_KEY to access hosted text, vision, audio, video, page-building, project, workflow, and MCP/REST capabilities through WodeApp. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WodeApp AI Engine lets agents use one WODEAPP_API_KEY to access text, vision, audio, video, page building, visual workflows, digital humans, and multi-engine video through MCP and REST.
 
-## Publisher: <br>
-[diankourenxia](https://clawhub.ai/user/diankourenxia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diankourenxia](https://clawhub.ai/user/diankourenxia)
 
-## Use Case: <br>
-Developers and agent builders use this skill to connect agents to WodeApp-hosted multimodal generation, page creation, visual workflows, project publishing, and project-scoped MCP tools. It is useful when a user wants one credential and credit pool for text, image, audio, video, workflow, and hosted project operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate broad hosted-project workflows and publish or change project data through WodeApp APIs. <br>
-Mitigation: Require explicit user confirmation before publishing projects, deleting or changing project data, or running workflows that trigger external effects. <br>
-Risk: Prompts, uploaded media, workflow inputs and outputs, project configurations, and generated URLs are sent to or produced by WodeApp and may include public or semi-public asset URLs. <br>
-Mitigation: Avoid confidential uploads and sensitive data unless the user explicitly accepts the WodeApp data path and sharing model. <br>
-Risk: The evidence warns that project MCP endpoints may be unauthenticated. <br>
-Mitigation: Treat project MCP endpoints as sensitive capabilities; prefer scoped credentials, billing limits, least-privilege project setup, and user confirmation before connecting or invoking tools. <br>
-Risk: The skill can send messages or data through Feishu, WeCom, or DingTalk integrations. <br>
-Mitigation: Confirm destination, content, and intended audience before sending data to external collaboration systems. <br>
+## Use Case:
 
+External developers and agent users use this skill to connect an agent to WodeApp's unified AI platform, create and publish projects, generate pages and assets, run visual workflows, and access multimodal AI capabilities with a single API key.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/diankourenxia/wodeapp-ai) <br>
-- [Publisher Profile](https://clawhub.ai/user/diankourenxia) <br>
-- [WodeApp Homepage](https://wodeapp.ai) <br>
-- [WodeApp Skill Source](https://wodeapp.ai/api-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples, shell commands, REST/MCP call patterns, and generated project or media URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return hosted project URLs, workflow outputs, generated asset URLs, and structured JSON responses from WodeApp APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.18 (source: server release metadata; artifact frontmatter reports 2.8.0) <br>
+Risk: The skill can guide agents through broad remote project and workflow actions, including publishing, deleting, rolling back, messaging, and workflow execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before actions that publish, delete, roll back, send messages, or run workflows.
+
+Risk: Real projects or business integrations may be affected if a broad API key is used.
+
+Mitigation: Use project-scoped WODEAPP_API_KEY values with billing caps and revoke keys that are no longer needed.
+
+Risk: Uploaded files and generated URLs may expose sensitive data.
+
+Mitigation: Avoid sensitive uploads and do not send confidential or personal data unless the user has explicitly accepted the handling risk.
+
+Risk: Published project subdomains may expose MCP or workflow endpoints if they remain unauthenticated.
+
+Mitigation: Do not expose project subdomains until endpoint authentication and access controls are confirmed.
+
+Risk: Evidence notes inconsistent privacy disclosures.
+
+Mitigation: Review data handling expectations before connecting real projects, customer data, or business integrations.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/diankourenxia/skills/wodeapp-ai)
+- [WodeApp homepage](https://wodeapp.ai)
+- [WodeApp API skills](https://wodeapp.ai/api-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, API calls]
+
+**Output Format:** [Markdown with inline JSON, configuration snippets, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include remote project URLs, generated asset URLs, workflow results, and confirmation steps for destructive or publishing actions.]
+
+## Skill Version(s):
+
+1.0.18 (source: ClawHub release metadata; artifact frontmatter reports 2.8.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,52 @@
-## Description: <br>
-Kdp Author Coach gives Amazon KDP authors structured coaching for niche research, manuscript preparation, listing optimization, advertising, launch planning, royalties, account-health questions, and audiobook or wide-distribution decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+End-to-end Amazon KDP (Kindle Direct Publishing) self-publishing coach for niche and keyword research, manuscript preparation, cover and blurb critique, advertising strategy, launch tactics, royalty math, account-quality issues, wide-versus-exclusive decisions, and audiobook expansion.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External authors and publishing operators use this skill to diagnose Amazon KDP launch, listing, advertising, royalty, account-health, KU, and audiobook decisions and receive practical self-publishing guidance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Amazon KDP, Ads, KU, review, and royalty policies can change, making static publishing advice outdated.
+
+Mitigation: Verify current Amazon program policies, advertising terms, review rules, and royalty economics before acting on recommendations.
+
+Risk: Publishing guidance could be misapplied to prohibited tactics such as fake reviews, copyright violations, undisclosed AI-generated content, or content-mill republishing.
+
+Mitigation: Use the skill's refusal posture for rule-violating tactics and keep rights, disclosure, and account-health checks in scope before launch or appeal actions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External authors and publishing teams use this skill to diagnose KDP launch, marketing, compliance, and revenue problems, then produce practical next-step plans, checklists, and critiques. It is advisory and should not be treated as automatic account, advertising, or publishing execution. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Analysis]
 
-## Known Risks and Mitigations: <br>
-Risk: KDP, advertising, category, AI-disclosure, and account-health policies can change or vary by case. <br>
-Mitigation: Verify current Amazon and KDP policy before changing listings, disclosures, categories, ads, reviews, or account-health responses. <br>
-Risk: Publishing and advertising advice can affect budgets, royalties, and account status. <br>
-Mitigation: Keep ad spend, listing edits, publication choices, and account responses under the user's explicit review and approval. <br>
-Risk: Credential or account details could be overshared during coaching. <br>
-Mitigation: Do not share Amazon credentials or sensitive account access details with the agent. <br>
+**Output Format:** [Markdown coaching responses with diagnostic summaries, checklists, and action plans]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/kdp-author-coach) <br>
+**Other Properties Related to Output:** [No code execution, persistence, credential use, or hidden system behavior identified in security evidence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown coaching responses, diagnostic summaries, checklists, and action plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credential access, persistence, or automatic KDP account actions.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

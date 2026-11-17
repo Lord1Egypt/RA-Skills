@@ -1,40 +1,53 @@
-## Description: <br>
-Product manager brainstorming assistant. Based on user needs, applies multiple creative thinking methods to output no fewer than 5 differentiated, actionable innovative product ideas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Product manager brainstorming assistant. Based on user needs, applies multiple creative thinking methods to output no fewer than 5 differentiated, actionable innovative product ideas.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Product managers, founders, and product teams use this skill to turn a user need or product-planning prompt into multiple differentiated product ideas, prioritization signals, and follow-up questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for broad product-planning language when a user needs research, implementation, or business-critical decision support. <br>
-Mitigation: Invoke a more specific skill for research, implementation, or critical decisions, and review outputs before acting on them. <br>
-Risk: Generated idea scoring and feasibility notes may be persuasive without being validated market evidence. <br>
-Mitigation: Treat recommendations as brainstorming inputs and validate assumptions with users, market data, and implementation review. <br>
+## Use Case:
 
+Product managers, founders, and product teams use this skill to turn a user need or planning prompt into at least five differentiated, actionable product ideas with supporting prioritization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openlark/pm-brainstorm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown with structured idea sections, prioritization table, and follow-up questions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates at least five product ideas and may include feasibility notes, market differentiation, and strategic next-step prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generic brainstorming or planning requests may trigger this skill's product-manager format when that structure is not desired.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke the skill deliberately for product ideation tasks and review the generated ideas before using them for planning decisions.
+
+Risk: Generated product concepts and prioritization scores may be speculative or incomplete.
+
+Mitigation: Validate promising ideas with customer research, feasibility review, and market analysis before implementation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/pm-brainstorm)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured idea sections, scoring table, and follow-up questions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces at least five product ideas and a prioritization table.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

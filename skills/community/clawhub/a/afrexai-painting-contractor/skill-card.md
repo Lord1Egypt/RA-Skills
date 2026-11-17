@@ -1,43 +1,56 @@
-## Description: <br>
-AI operations advisor for estimating, pricing, crew management, materials, scheduling, licensing, and scaling painting contractor businesses from solo to multi-crew operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI operations skill for painting businesses covering estimating formulas, crew scaling, materials management, EPA/RRP compliance, lead generation, and growth from solo painter to multi-crew operation.
 
-## Publisher: <br>
-[afrexai-cto](https://clawhub.ai/user/afrexai-cto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[afrexai-cto](https://clawhub.ai/user/afrexai-cto)
 
-## Use Case: <br>
-Painting contractors and business operators use this skill to get practical guidance for estimating, pricing, materials, crew management, scheduling, compliance checkpoints, and scaling a painting business. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pricing, OSHA, EPA/RRP, licensing, insurance, and legal compliance requirements may vary by state, locality, and date. <br>
-Mitigation: Treat the skill as general reference material and verify current requirements with authoritative state, local, OSHA, EPA, insurance, and legal sources before relying on it. <br>
-Risk: Operational benchmarks and example rates may not match a specific contractor's market, labor costs, insurance burden, materials pricing, or job conditions. <br>
-Mitigation: Use local supplier quotes, payroll costs, overhead, margin targets, and job-specific measurements before issuing estimates or business decisions. <br>
+## Use Case:
 
+Painting contractors, estimators, and operators use this skill to get practical guidance on job pricing, materials, crew planning, scheduling, lead generation, compliance checks, and business scaling.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/afrexai-cto/afrexai-painting-contractor) <br>
-- [AI Revenue Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/) <br>
-- [AI Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance with examples, benchmarks, checklists, and operational recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides general reference guidance; users should verify current pricing, OSHA, EPA/RRP, licensing, insurance, and legal compliance requirements for their state or locality.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, created 2026-03-24) <br>
+Risk: Users may treat business, legal, safety, tax, insurance, or pricing guidance as definitive for their jurisdiction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify local licensing, EPA/RRP, OSHA, insurance, tax, and market-rate requirements before relying on the guidance operationally.
+
+Risk: Painting rates, labor costs, supplier discounts, and production benchmarks can vary materially by market and job conditions.
+
+Mitigation: Use the skill's numbers as planning inputs and validate them against current supplier quotes, local wage data, and actual project history.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/afrexai-cto/skills/afrexai-painting-contractor)
+- [AI Revenue Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/)
+- [AI Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Markdown or plain text operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include pricing estimates, checklists, operational recommendations, and compliance reminders that require local verification.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

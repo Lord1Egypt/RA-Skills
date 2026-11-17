@@ -1,45 +1,81 @@
-## Description: <br>
-灵枢·AI全栈构建师。v1.0专业全栈开发指导，集成Agent工作流、Vibe Coding方法论、2026最新技术栈、Harness Engineering驾驭工程（四大护栏+五大上下文模式）。覆盖前端、后端、移动应用、游戏开发、架构设计，提供最佳实践与代码模板。持续蒸馏进化，成为您可信赖的全栈开发伙伴。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+灵枢·AI全栈构建师 provides full-stack development guidance across frontend, backend, mobile, game development, architecture, PRD generation, code templates, quality review, and deployment planning.
 
-## Publisher: <br>
-[drip618](https://clawhub.ai/user/drip618) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[drip618](https://clawhub.ai/user/drip618)
 
-## Use Case: <br>
-Developers and product builders use this skill for full-stack architecture guidance, technology selection, PRD generation, code templates, project execution workflows, and deployment planning across frontend, backend, mobile, game, and AI-assisted development work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review flags broad development-assistant authority, including code execution, external provider adapters, and persistent file-writing behavior. <br>
-Mitigation: Use the skill in a disposable or tightly scoped workspace, review proposed changes before applying them, and disable or restrict execution and provider integrations when they are not required. <br>
-Risk: The skill may interact with sensitive credentials or production project context during development workflows. <br>
-Mitigation: Avoid giving it secrets or production credentials, use least-privilege test credentials when integration is necessary, and review logging, backup, and profile persistence before use on sensitive projects. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan and build software projects from requirements through architecture, implementation, review, and deployment. It is suited for technical guidance, rapid prototypes, PRD workflows, technology selection, generated code, and reusable development patterns.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/drip618/full-stack-architect) <br>
-- [README.md](artifact/README.md) <br>
-- [Release notes](artifact/docs/RELEASE_NOTES.md) <br>
-- [Security best practices reference](artifact/references/security_best_practices.md) <br>
-- [Software engineering reference](artifact/references/software_engineering.md) <br>
-- [Cloud native and DevOps reference](artifact/references/cloud_native_devops.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code snippets, shell commands, configuration examples, and structured project plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose generated files, implementation steps, and deployment actions that should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: Executable helpers can run code or shell commands with broad local effects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the helpers before installation, and do not run code-execution features on untrusted, user-supplied, or model-generated input.
+
+Risk: AI provider adapters use environment API keys and configurable endpoints.
+
+Mitigation: Restrict allowed provider endpoints, use least-privilege keys, and avoid exposing sensitive environment variables to untrusted prompts or generated code.
+
+Risk: Generated PRDs, code, recommendations, and knowledge artifacts may be written to local paths.
+
+Mitigation: Run the skill in an approved project workspace and review output paths before allowing generated-code writes.
+
+Risk: Backup and scheduled update helpers can modify files and run shell commands.
+
+Mitigation: Keep backup or scheduled update scripts disabled until their paths, command construction, and shell usage are reviewed and fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/drip618/skills/full-stack-architect)
+- [Release notes](docs/RELEASE_NOTES.md)
+- [AI and machine learning reference](references/ai_machine_learning.md)
+- [Backend frameworks reference](references/backend_frameworks.md)
+- [Backend performance reference](references/backend_performance.md)
+- [Cloud native and DevOps reference](references/cloud_native_devops.md)
+- [Composition patterns reference](references/composition_patterns.md)
+- [Computer networking reference](references/computer_networking.md)
+- [Data structures and algorithms reference](references/data_structures_algorithms.md)
+- [Database best practices reference](references/database_best_practices.md)
+- [Frontend best practices reference](references/frontend_best_practices.md)
+- [Frontend frameworks reference](references/frontend_frameworks.md)
+- [Frontend performance reference](references/frontend_performance.md)
+- [Game development reference](references/game_development.md)
+- [Go best practices reference](references/go_best_practices.md)
+- [Knowledge system reference](references/knowledge_system.md)
+- [Mobile development reference](references/mobile_development.md)
+- [Node.js best practices reference](references/nodejs_best_practices.md)
+- [Security best practices reference](references/security_best_practices.md)
+- [Software engineering reference](references/software_engineering.md)
+- [Vue best practices reference](references/vue_best_practices.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and text with code blocks, shell commands, JSON, YAML, and generated project files when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write generated PRDs, code files, configuration files, quality reports, recommendations, and knowledge artifacts inside the active project workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,52 @@
-## Description: <br>
-读取产品原型图/页面描述，按预设模板自动生成标准PRD文档，完成后自检一致性，不扩展需求范围 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a structured Chinese-language PRD in Markdown from prototype or page descriptions, then self-checks for consistency, missing items, and out-of-scope content.
 
-## Publisher: <br>
-[rosscui-chy](https://clawhub.ai/user/rosscui-chy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rosscui-chy](https://clawhub.ai/user/rosscui-chy)
 
-## Use Case: <br>
-Product managers and business analysts use this skill to turn prototype text or page descriptions into scoped Chinese PRD documents, with consistency checks for missing, mismatched, and out-of-scope content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prototype descriptions may include sensitive proprietary product or business details. <br>
-Mitigation: Only provide prototype content that is appropriate for the agent environment and redact confidential details when possible. <br>
-Risk: A generated PRD may omit or misclassify prototype details when scope input is vague or incomplete. <br>
-Mitigation: Provide explicit page, module, function, and out-of-scope boundaries, then review the consistency self-check before using the PRD. <br>
+## Use Case:
 
+Product managers, business analysts, and developers use this skill to convert scoped prototype or page descriptions into formal PRD documents. It is intended for Chinese-language requirements writing where scope boundaries, template conformance, and consistency checks are required.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rosscui-chy/prd-generator-from-prototype) <br>
-- [template_business.md](artifact/template_business.md) <br>
-- [template_analysis.md](artifact/template_analysis.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Guidance] <br>
-**Output Format:** [Markdown PRD document with a consistency self-check report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses formal Chinese, fixed PRD sections, scope boundaries, and template-specific formatting constraints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and artifact _meta.json) <br>
+Risk: Generated implementation notes, API details, or estimates may be incomplete or misleading when the prototype or scope is incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated PRD content before treating it as authoritative, and provide clear scope, readable prototype details, and template preference when requested.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rosscui-chy/skills/prd-generator-from-prototype)
+- [Skill Definition](artifact/SKILL.md)
+- [Business PRD Template](artifact/template_business.md)
+- [Data Analysis PRD Template](artifact/template_analysis.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Analysis]
+
+**Output Format:** [Markdown PRD document with consistency self-check report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are constrained to the user-provided scope and may ask for missing scope, prototype, or template information before generating a full PRD.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

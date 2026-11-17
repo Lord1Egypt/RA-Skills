@@ -1,37 +1,49 @@
-## Description: <br>
-Automatically routes tasks to the appropriate tool, agent, or workflow by analyzing task intent and complexity for coding, research, trading, system, content, or general workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically route tasks to the appropriate tool, agent, or workflow by analyzing task intent and complexity for coding, research, trading, system, or content workflows.
 
-## Publisher: <br>
-[jimmyclanker](https://clawhub.ai/user/jimmyclanker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimmyclanker](https://clawhub.ai/user/jimmyclanker)
 
-## Use Case: <br>
-Developers and operators can use this skill as a local pre-processor that classifies incoming task text and suggests a matching workflow or tool category. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Routing suggestions could be over-trusted when connected to trading, deployment, scheduling, or other action-capable workflows. <br>
-Mitigation: Require explicit confirmation, allowlists, and separate checks for sensitive or destructive requests before using routing output to trigger action-capable agents. <br>
+## Use Case:
 
+Developers and operators use this skill as a lightweight pre-processor that classifies incoming task descriptions and suggests an appropriate workflow or specialized agent.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text command-line output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs a route, confidence score, reason, complexity label, and suggested tool.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Keyword-based route classifications can be overbroad or incorrect, especially for trading and system-operation requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the route as advisory output and require separate confirmation before downstream agents execute trades, system commands, or other high-impact actions.
+
+## Reference(s):
+
+- [Task Router ClawHub listing](https://clawhub.ai/jimmyclanker/skills/jimmy-task-router)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text shell output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes route category, confidence score, reason, complexity, and suggested tool.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

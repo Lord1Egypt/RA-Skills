@@ -1,36 +1,51 @@
-## Description: <br>
-Write French that sounds human. Not formal, not robotic, not AI-generated. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write French that sounds human. Not formal, not robotic, not AI-generated.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to make French writing sound more natural, casual, and native-like instead of overly formal or AI-generated. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Casual phrasing, slang, dropped negatives, or profanity may be inappropriate for formal, professional, or educational French writing. <br>
-Mitigation: Ask the agent for a formal register or review the output before use in contexts that require polished standard French. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+External users and content writers use this skill to have an agent draft or revise French in a natural, often casual register while preserving formality and regional cues.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may prefer informal phrasing in contexts that require formal or professional French.
+
+Mitigation: Ask explicitly for formal French, vous usage, or a professional register when the audience requires it.
+
+Risk: Regional vocabulary can sound inconsistent or inappropriate if the intended French-speaking region is unclear.
+
+Mitigation: Specify the target region, such as France, Quebec, or Belgium, when regional wording matters.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text French writing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include casual phrasing, slang, informal contractions, dropped negatives, regional vocabulary, and occasional profanity when context calls for it.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Text, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Natural-language French prose or editing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults toward casual French unless the user explicitly requests formal French or a specific regional register.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

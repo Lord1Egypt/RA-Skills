@@ -17,10 +17,15 @@ CACHE_ROOT = PROJECT_ROOT / "cache"
 CACHE_ROOT.mkdir(parents=True, exist_ok=True)
 sys.pycache_prefix = str(CACHE_ROOT / "pycache")
 
-# 添加 scripts 目录到 Python 路径
+# 添加 scripts 目录到 Python 路径（技能运行时模块）
 scripts_path = PROJECT_ROOT / "scripts"
 if scripts_path.exists():
     sys.path.insert(0, str(scripts_path))
+
+# 添加 tests 目录到 Python 路径（自测设施：run_tests / generate_report）
+tests_path = PROJECT_ROOT / "tests"
+if tests_path.exists():
+    sys.path.insert(0, str(tests_path))
 
 # 将 pytest 产生的临时目录固定到 cache 下，避免污染项目根目录
 workspace_temp_dir = CACHE_ROOT / "tmp" / "pytest"

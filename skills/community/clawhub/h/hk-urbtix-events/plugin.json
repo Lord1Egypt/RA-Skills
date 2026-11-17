@@ -3,7 +3,7 @@
   "main": "urbtix_events.py",
   "name": "HK URBTIX Events",
   "description": "Intelligent query of URBTIX event batch data. Accepts natural language questions about events, parses date/name/venue, downloads and validates the appropriate batch XML, and returns matching performances with date, time, venue, and event name. Handles caching, retries, and progressive clarification.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "author": "Steven Ho",
   "repository": "https://github.com/StevenHo1394/openclaw/tree/main/skills/hk-urbtix-events",
   "tools": [

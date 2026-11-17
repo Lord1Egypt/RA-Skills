@@ -1,46 +1,65 @@
-## Description: <br>
-Access and manage Web3-native blogging on Paragraph.com with onchain posts, tokenized content, subscriber management, and automated publishing via API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access and manage Web3-native blogging on Paragraph.com with onchain posts, tokenized content, subscriber management, and automated publishing via API.
 
-## Publisher: <br>
-[ClaireAICodes](https://clawhub.ai/user/ClaireAICodes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[claireaicodes](https://clawhub.ai/user/claireaicodes)
 
-## Use Case: <br>
-External creators, DAOs, Web3 projects, and developers use this tool to let agents publish Markdown posts, manage subscribers, and inspect Paragraph publications, posts, users, feeds, and tokenized post data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents can create public posts, trigger newsletter sends, and manage subscriber relationships through the Paragraph API. <br>
-Mitigation: Require explicit human approval before creating posts, sending newsletters, adding subscribers, or importing subscriber lists. <br>
-Risk: Subscriber import can process local CSV files containing personal data or contact information. <br>
-Mitigation: Only import CSV files that have been verified, are authorized for processing, and match the expected subscriber format. <br>
-Risk: A custom PARAGRAPH_API_BASE_URL can send credentials or content to an untrusted endpoint. <br>
-Mitigation: Keep PARAGRAPH_API_BASE_URL pointed at Paragraph or a trusted test endpoint. <br>
-Risk: Broad Paragraph API credentials can give an agent powerful publishing and subscriber-management access. <br>
-Mitigation: Use a dedicated or least-privileged API key where available and store it outside prompts or generated content. <br>
+## Use Case:
 
+Developers, creators, DAOs, and Web3 project teams use this skill to let agents publish Markdown posts, inspect Paragraph publications, manage subscribers, and retrieve tokenized post and coin data through the Paragraph API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ClaireAICodes/paragraph-test) <br>
-- [Paragraph API reference](https://paragraph.com/docs/api-reference) <br>
-- [Paragraph](https://paragraph.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, API responses] <br>
-**Output Format:** [Structured tool results with success, data, and error fields; Markdown content may be sent to Paragraph when creating posts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PARAGRAPH_API_KEY and PARAGRAPH_PUBLICATION_SLUG; can read local CSV files for subscriber import and can use a configurable Paragraph API base URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: ClawHub release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: The skill can publish posts and manage subscribers on a live Paragraph account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human confirmation before post creation, subscriber changes, newsletter sending, or bulk imports.
+
+Risk: A broad Paragraph API key could expose publishing and subscriber operations beyond the intended workflow.
+
+Mitigation: Use a narrowly scoped API key and rotate it if it is exposed or no longer needed.
+
+Risk: Changing PARAGRAPH_API_BASE_URL could send credentials or content to an unintended endpoint.
+
+Mitigation: Leave PARAGRAPH_API_BASE_URL unset unless testing with non-production credentials.
+
+Risk: CSV subscriber import reads a local file and can trigger outreach.
+
+Mitigation: Import only from a user-approved path after confirming file contents, and set sendWelcomeEmail to false unless outreach is intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/claireaicodes/skills/paragraph-test)
+- [Paragraph API Reference](https://paragraph.com/docs/api-reference)
+- [Paragraph OpenAPI specification](https://raw.githubusercontent.com/paragraph-xyz/paragraph-sdk-js/main/openapi.json)
+- [Paragraph SDK](https://github.com/paragraph-xyz/paragraph-sdk-js)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, configuration, guidance]
+
+**Output Format:** [Structured tool responses, Markdown content, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Paragraph API key and publication slug; post creation and subscriber actions can change live Paragraph account state.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release, target metadata, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

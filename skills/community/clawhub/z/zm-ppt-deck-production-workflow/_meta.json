@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn716ewtc7z7a76wre4bsckgas8398j1",
+  "ownerId": "local-zhumeng-openclaw",
   "slug": "zm-ppt-deck-production-workflow",
+  "displayName": "ZM PPT/Deck 正式生产流程",
   "version": "0.1.0",
-  "publishedAt": 1782235866857
+  "status": "local",
+  "createdAt": "2026-06-23",
+  "description": "正式 PPT / HTML Deck 生产总控流程：需求卡、大纲、页面合同、素材分级、样页确认、视觉生产、组装、渲染审核、返工、交付包归档。"
 }

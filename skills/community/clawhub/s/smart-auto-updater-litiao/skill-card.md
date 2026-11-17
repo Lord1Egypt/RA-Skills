@@ -1,46 +1,63 @@
-## Description: <br>
-Smart auto-updater with AI-powered impact assessment that checks OpenClaw and ClawHub skill updates, analyzes impact, and decides whether to auto-update or report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart auto-updater that checks OpenClaw and skill updates, analyzes changelogs and diffs with an LLM, assesses impact, and either auto-updates low-risk changes or reports higher-risk updates.
 
-## Publisher: <br>
-[litiao1224](https://clawhub.ai/user/litiao1224) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[litiao1224](https://clawhub.ai/user/litiao1224)
 
-## Use Case: <br>
-Developers and operators use this skill to monitor OpenClaw and ClawHub skill updates, assess update impact, and either apply low-risk updates or produce review reports for manual action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring unattended updates can change OpenClaw or installed skills without manual review. <br>
-Mitigation: Start in report-only mode with SMART_UPDATER_AUTO_UPDATE=NONE, test manually, and add scheduled runs only after confirming the target agent and update policy. <br>
-Risk: The documented risk gate may not reliably block high-risk changes. <br>
-Mitigation: Use conservative thresholds, review generated reports before applying changes, and do not rely on the HIGH-risk gate until the scoring threshold is fixed. <br>
-Risk: Webhook URLs used for report delivery can expose notification channels if handled as plain text. <br>
-Mitigation: Store webhook URLs as protected environment secrets and avoid committing or sharing configured values. <br>
+## Use Case:
 
+Developers and operators use this skill to monitor OpenClaw and ClawHub skill updates, assess update risk, apply low-risk updates, and receive reports or recommendations for changes that need review.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/litiao1224/smart-auto-updater-litiao) <br>
-- [Publisher profile](https://clawhub.ai/user/litiao1224) <br>
-- [Risk Assessment Methodology](references/risk-assessment.md) <br>
-- [Report Templates](references/report-templates.md) <br>
-- [Integration Guide](references/integration.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with shell commands and environment-variable configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can include risk classifications, update decisions, changelogs, and recommendations; may trigger update commands when configured to auto-update.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: The skill can automatically modify OpenClaw and installed skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start in report-only mode and manually review changelogs before enabling automatic updates.
+
+Risk: Automatic MEDIUM-risk updates may apply changes before a human reviews compatibility or operational impact.
+
+Mitigation: Keep automatic updates limited to LOW risk unless the environment explicitly accepts MEDIUM-risk unattended changes.
+
+Risk: Scheduled checks can create recurring unattended update behavior.
+
+Mitigation: Add cron jobs only after validating the configuration, timezone, delivery channel, and rollback process.
+
+Risk: Webhook notifications can expose operational update details to external endpoints.
+
+Mitigation: Use only approved webhook endpoints and avoid sending reports to untrusted channels.
+
+## Reference(s):
+
+- [Risk Assessment Methodology](artifact/references/risk-assessment.md)
+- [Report Templates](artifact/references/report-templates.md)
+- [Integration Guide](artifact/references/integration.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can include risk classifications, update decisions, operational summaries, and recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -98,3 +98,8 @@ print(f"── Rate limit: {response.headers.get('RateLimit-Remaining', '?')} re
 #   assert all(r["verdict"] is True for r in data["results"])
 #
 # See https://veritier.ai/docs#testing for full details.
+#
+# Optional action_id mints an informational Claim Credential. Verdicts stay
+# the same; verify is not fail-closed. Use attest_action to gate a tool call:
+#   json={"text": sample_text, "grounding_mode": "web", "action_id": "my_action"}
+# See python/use-cases/informational_credential.py and python/quickstart/attest_action.py.

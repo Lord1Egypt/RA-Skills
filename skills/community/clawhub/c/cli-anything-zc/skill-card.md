@@ -1,44 +1,60 @@
-## Description: <br>
-Generate or refine agent-usable CLIs for existing software/codebases using the CLI-Anything methodology. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate or refine agent-usable CLIs for existing software/codebases using the CLI-Anything methodology.
 
-## Publisher: <br>
-[lean-zhouchao](https://clawhub.ai/user/lean-zhouchao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lean-zhouchao](https://clawhub.ai/user/lean-zhouchao)
 
-## Use Case: <br>
-Developers and engineers use this skill to assess whether CLI-Anything fits a target app or repository, reuse existing harness examples, and package generated or refined CLI workflows for OpenClaw-compatible agent use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested commands may be adapted to local tools or authenticated CLIs that can change state. <br>
-Mitigation: Confirm the target, review the exact command, and use accounts or tokens with only the intended access before execution. <br>
-Risk: Generated or third-party harness code may be incomplete, misleading, or unsafe if treated as trusted implementation. <br>
-Mitigation: Review and scan harness code before deployment, then verify the entry point and real backend dependencies before claiming it works. <br>
-Risk: Bundled harness examples are not all equally verified. <br>
-Mitigation: Validate each selected harness independently; use the documented GIMP harness only as a first local demonstration target. <br>
+## Use Case:
 
+Developers and engineers use this skill to assess whether CLI-Anything fits a target app or repository, work with existing agent harnesses, and package CLI-Anything workflows into OpenClaw-compatible skills.
 
-## Reference(s): <br>
-- [Bundled harnesses in CLI-Anything](references/bundled-harnesses.md) <br>
-- [Adapting CLI-Anything into OpenClaw](references/openclaw-adaptation-notes.md) <br>
-- [Validated example: gimp harness](references/validated-example-gimp.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON inspection output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated or refined harness files when the user asks to package or implement a CLI; review commands before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: The skill may guide installation or execution of mutable local CLI-Anything harness code in the current or system Python environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the referenced checkout first, prefer a dedicated virtual environment, and avoid system-level package installation such as --break-system-packages.
+
+Risk: Generated or bundled harness code can be incorrect, misleading, or untrusted until inspected.
+
+Mitigation: Inspect generated code and verify CLI entry points and real backend dependencies before relying on a harness.
+
+Risk: Publishing or packaging workflows can push derived artifacts outside the local workspace.
+
+Mitigation: Require explicit user approval before package installation, publishing, or other external release actions.
+
+## Reference(s):
+
+- [Bundled harnesses in CLI-Anything](references/bundled-harnesses.md)
+- [Adapting CLI-Anything into OpenClaw](references/openclaw-adaptation-notes.md)
+- [Validated example: gimp harness](references/validated-example-gimp.md)
+- [ClawHub skill page](https://clawhub.ai/lean-zhouchao/skills/cli-anything-zc)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline code and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend inspecting or installing local CLI-Anything harness code; review generated harnesses before execution.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,57 @@
-## Description: <br>
-Calculates estimated Shenzhen second-hand property transfer taxes for sales, direct-family gifts, inheritance, and marital property division, with itemized amounts and party responsibility. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Estimates Shenzhen second-hand property transfer taxes for sale, direct-family gift, inheritance, and marital property division scenarios, then outputs itemized tax amounts and payer allocation.
 
-## Publisher: <br>
-[chuapi2020](https://clawhub.ai/user/chuapi2020) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chuapi2020](https://clawhub.ai/user/chuapi2020)
 
-## Use Case: <br>
-External users use this skill to estimate taxes and fees for Shenzhen property transfer scenarios and produce a buyer/seller cost breakdown. It is intended for localized property-transfer guidance, not as authoritative legal or financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China (Shenzhen property transfer scenarios) <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides localized tax estimates that may be inaccurate if Shenzhen property transfer rules, user inputs, or property facts differ from the assumptions. <br>
-Mitigation: Confirm calculations against current local tax and registration authority requirements or a qualified professional before relying on them. <br>
-Risk: Using the skill outside the covered Shenzhen transfer scenarios could produce misleading guidance. <br>
-Mitigation: Use it only for Shenzhen second-hand property transfer cases covered by the artifact, and collect missing transfer, property, seller, buyer, and pricing details before calculating. <br>
+## Use Case:
 
+External users and agents use this skill to gather required Shenzhen property-transfer details and produce rough tax estimates for second-hand housing, commercial apartment, and commercial property transfer scenarios. Results are for reference and should be confirmed with the tax authority or a qualified professional.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chuapi2020/tax-counting) <br>
+### Deployment Geography for Use:
 
+China (Shenzhen property-transfer tax scenarios)
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown tables with itemized tax calculations, party allocation, totals, and notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Amounts are presented in ten-thousand-yuan units with four decimal places; results are estimates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill may produce rough tax estimates for a narrow Shenzhen property-transfer context that users could mistake for authoritative tax advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the output framed as an estimate and direct users to confirm actual tax liabilities with the tax authority or a qualified professional.
+
+Risk: Broad trigger wording may activate the skill for property-transfer tax questions outside its supported Shenzhen scenarios.
+
+Mitigation: Before calculating, confirm the transaction is a Shenzhen property-transfer scenario and ask for missing required facts.
+
+Risk: Some enterprise and verified-assessment tax cases depend on accounting inputs or professional appraisal.
+
+Mitigation: Mark those items as requiring professional calculation when the artifact's formulas say accounting review or appraisal is needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chuapi2020/skills/tax-counting)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown with structured tables and concise notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Amounts are presented in ten-thousand-yuan units to four decimal places; exempt items are marked as exempt.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

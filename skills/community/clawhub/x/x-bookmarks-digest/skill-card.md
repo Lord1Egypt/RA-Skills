@@ -1,43 +1,55 @@
-## Description: <br>
-Automatically review X/Twitter bookmarks for useful tools, projects, repos, products, and ideas. Fetches via xurl, analyses for value, and outputs an actionable digest with proposed next steps, including ClawHub installs or new skill scaffolding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically review X/Twitter bookmarks for useful tools, projects, repos, products, and ideas. Fetches via xurl, analyses for value, and outputs an actionable digest with proposed next steps, including clawhub installs or new skill scaffolding.
 
-## Publisher: <br>
-[BEARLY-HODLING](https://clawhub.ai/user/BEARLY-HODLING) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bearly-hodling](https://clawhub.ai/user/bearly-hodling)
 
-## Use Case: <br>
-Developers and agent users use this skill to turn their authenticated X/Twitter bookmarks into a concise digest of useful tools, projects, products, resources, and next actions. It helps triage high-value bookmarks into proposed installs, repository evaluations, skill scaffolds, Obsidian saves, or memory saves. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads bookmarks from the X/Twitter account currently authenticated in xurl. <br>
-Mitigation: Install and run it only for an account you intend to analyze, verify the active xurl identity before fetching, and use the documented dry-run flag when testing. <br>
-Risk: Digest recommendations can include installs, repository clones, ClawHub installs, skill scaffolds, Obsidian saves, or memory saves. <br>
-Mitigation: Review each proposed action before approving execution; the skill instructs the agent to ask before carrying out actions. <br>
-Risk: The skill updates local run-tracking state after successful fetches. <br>
-Mitigation: Use dry-run mode for tests that should not update state, and inspect state.json when validating a run. <br>
+## Use Case:
 
+Developers and agent users use this skill to turn their private X/Twitter bookmarks into a local, actionable digest of useful tools, projects, resources, insights, and proposed next steps.
 
-## Reference(s): <br>
-- [Bookmark Analysis Criteria](references/analysis_criteria.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/BEARLY-HODLING/x-bookmarks-digest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown digest with proposed actions, plus JSON analysis from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and xurl; fetches bookmarks from the currently authenticated xurl account and maintains local run-tracking state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, release evidence, _meta.json) <br>
+Risk: The skill accesses private X/Twitter bookmarks through xurl.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only if the user is comfortable granting that bookmark access, and use explicit X/Twitter bookmark digest commands.
+
+Risk: Digest recommendations may be based on untrusted social posts and can include installs, clones, skill installs, memory updates, or Obsidian actions.
+
+Mitigation: Treat the digest as untrusted input and independently verify each proposed brew, pip, cargo, git, clawhub, memory, or Obsidian action before approving it.
+
+## Reference(s):
+
+- [Bookmark Analysis Criteria](references/analysis_criteria.md)
+- [ClawHub Skill Page](https://clawhub.ai/bearly-hodling/skills/x-bookmarks-digest)
+- [Publisher Profile](https://clawhub.ai/user/bearly-hodling)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown digest with structured JSON analysis and proposed shell or configuration actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local state for incremental bookmark processing and asks for confirmation before executing proposed actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release evidence, _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

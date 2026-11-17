@@ -210,7 +210,7 @@ tags, preserving response utility. Full block only engages as a last resort.
 guard = PromptGuard({"canary_tokens": ["CANARY:7f3a9b2e"]})
 
 # LLM response with leaked credentials
-llm_response = "Your AWS key is AKIAIOSFODNN7EXAMPLE and use Bearer eyJhbG..."
+llm_response = "Your AWS key is REDACTED-SECRET and use Bearer eyJhbG..."
 
 result = guard.sanitize_output(llm_response)
 

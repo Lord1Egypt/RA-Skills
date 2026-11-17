@@ -1,46 +1,59 @@
-## Description: <br>
-Rss Content Flow helps an agent manage RSS subscriptions, fetch recent feed items, filter stale or promotional entries, and present structured article candidates for content planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rss Content Flow helps agents manage RSS subscriptions, fetch recent articles, filter stale or promotional items, and support AI-assisted content planning workflows.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Content creators, marketers, and agents use this skill to collect current RSS articles from configured sources and turn the resulting titles, links, descriptions, dates, and source labels into candidate topics or drafts. Optional saving or publishing integrations should be invoked only after explicit user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Configured RSS URLs can cause the agent to fetch external, private, or internal resources. <br>
-Mitigation: Review and edit the feed list before use, and avoid private or internal URLs unless fetching them is intended. <br>
-Risk: Documentation describes optional saving or publishing workflows beyond the RSS helper itself. <br>
-Mitigation: Require explicit user confirmation before invoking any separate Feishu save or social publishing tool. <br>
-Risk: Fetched article summaries and generated drafts can be stale, incomplete, or unsuitable for publication. <br>
-Mitigation: Review the source links and any generated content before using it in public channels. <br>
+## Use Case:
 
+Content operators, marketers, and developers use this skill to monitor RSS feeds, collect recent article ideas, and prepare source material for AI-assisted platform-specific drafts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/freedompixels/rss-content-flow) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
-- [Feed Fetch Script](artifact/scripts/fetch_feed.py) <br>
-- [Feed Management Script](artifact/scripts/manage_feeds.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and optional JSON feed output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetch results include article title, link, description, publication date, and source when JSON output is requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.7 (source: server release metadata) <br>
+Risk: The skill can make outbound requests to configured RSS URLs, including custom URLs added by a user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted public RSS feeds only, avoid internal or sensitive URLs, and review feed configuration before execution.
+
+Risk: RSS content may be untrusted, misleading, promotional, or adversarial even after basic filtering.
+
+Mitigation: Treat fetched feed text as untrusted source material and review extracted titles, links, and summaries before reuse.
+
+Risk: The release describes AI rewrite and publishing workflows that could save or publish generated content without enough confirmation.
+
+Mitigation: Require explicit human approval before every external write, Feishu save, or social posting action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/rss-content-flow)
+- [Publisher profile](https://clawhub.ai/user/freedompixels)
+- [AISoBrand website](https://aisobrand.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands and optional JSON article lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches configured RSS feeds, summarizes recent entries for review, and can provide source material for downstream drafting or publishing tools.]
+
+## Skill Version(s):
+
+1.2.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,65 @@
-## Description: <br>
-3-brain filesystem + memory reference utility for LYGO-based agents. Use to design, organize, and maintain a durable file/folder memory system (indexes, reference .txt links, logging, retrieval) without overwriting existing data. Works best on fresh OpenClaw/Clawhub Havens with the full LYGO Champion stack, but is compatible with any agent that can read/write files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BOOK BRAIN is a LYGO 3-Brain filesystem helper that guides agents through scaffolding memory, reference, state, and daily index files for OpenClaw, ClawHub Haven, and mobile Builder Key workspaces.
 
-## Publisher: <br>
-[DeepSeekOracle](https://clawhub.ai/user/DeepSeekOracle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[deepseekoracle](https://clawhub.ai/user/deepseekoracle)
 
-## Use Case: <br>
-Developers, operators, and agent users use this skill to design and maintain durable workspace memory systems with folders, indexes, reference stubs, and structured logs. It is most useful when setting up a fresh agent workspace or improving retrieval in an existing file-based memory layout. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory files may accidentally capture secrets or unnecessary personal data. <br>
-Mitigation: Review proposed memory, reference, index, and log content before writing it, and keep secrets or unnecessary personal data out of persistent files. <br>
-Risk: Filesystem organization changes can confuse retrieval if they overwrite or replace existing structure. <br>
-Mitigation: Use the skill additively: create missing folders or new dated files, append to existing indexes and logs, and ask for human approval before reorganizing existing content. <br>
+## Use Case:
 
+Developers and agents use this skill to organize long-running LYGO/OpenClaw workspaces into durable memory, reference, state, tool, log, and scratch areas. It helps create missing scaffold files, short reference stubs, and topic indexes after dry-run review and user approval.
 
-## Reference(s): <br>
-- [BOOK BRAIN Examples & Patterns](references/book-brain-examples.md) <br>
-- [ClawHub skill page](https://clawhub.ai/DeepSeekOracle/book-brain) <br>
-- [LYGO Champion Hub](https://deepseekoracle.github.io/Excavationpro/LYGO-Network/champions.html#champions) <br>
-- [Eternal Haven portal](https://EternalHaven.ca) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with suggested file paths, folder layouts, index stubs, logs, and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces additive, human-reviewed filesystem organization guidance and should not silently delete or overwrite existing files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Mutable install and scaffold commands can change workspace files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin exact skill versions, review the publisher, run scaffold_haven.py with --dry-run first, and approve only a specific intended workspace root before applying changes.
+
+Risk: write_ref_stub.py may overwrite a target file even though the skill describes additive-only behavior.
+
+Mitigation: Use write_ref_stub.py only for new files in the intended reference directory; avoid absolute paths, existing files, symlinks, and paths outside the approved workspace.
+
+Risk: Generated memory and reference files may accidentally capture sensitive material.
+
+Mitigation: Do not store API keys, tokens, .env values, wallet seeds, private keys, or secret-bearing webhook URLs in generated memory, reference, or index files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/deepseekoracle/skills/book-brain)
+- [BOOK BRAIN Security](references/SECURITY.md)
+- [BOOK BRAIN Agent Contract](references/AGENT_CONTRACT.md)
+- [BOOK BRAIN + LYRA 3-Brain Unified Layout](references/MEMORY_LAYOUT.md)
+- [BOOK BRAIN LYGO Lattice Integration](references/LATTICE_INTEGRATION.md)
+- [BOOK BRAIN Examples and Patterns](references/book-brain-examples.md)
+- [ClawHub LYGO Stack Reference](reference/CLAWHUB_LYGO_STACK.ref.txt)
+- [LYGO Protocol Stack Pages](https://deepseekoracle.github.io/lygo-protocol-stack/)
+- [DeepSeekOracle ClawHub Publisher Profile](https://clawhub.ai/user/deepseekoracle)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands, file paths, JSON snippets, and generated workspace files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces additive filesystem plans, scaffold files, reference stubs, and memory index updates after user path review.]
+
+## Skill Version(s):
+
+2.0.0 (source: server evidence release.version and artifact metadata.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

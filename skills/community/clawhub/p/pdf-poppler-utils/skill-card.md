@@ -1,43 +1,58 @@
-## Description: <br>
-A collection of PDF manipulation tools from the poppler-utils package for extracting PDF text, images, metadata, fonts, attachments, signatures, page ranges, and converted output formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A collection of PDF manipulation tools from the poppler-utils package for extracting text, images, metadata, splitting, merging, converting formats, managing attachments, and verifying signatures.
 
-## Publisher: <br>
-[xlionjuan](https://clawhub.ai/user/xlionjuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xlionjuan](https://clawhub.ai/user/xlionjuan)
 
-## Use Case: <br>
-Developers, operators, and document-processing agents use this skill to choose and run Poppler PDF command-line utilities for local PDF inspection, extraction, conversion, splitting, merging, attachment handling, and signature checks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill recommends `brew unlink curl -v`, a system-changing Homebrew operation that can affect other tools. <br>
-Mitigation: Require explicit user approval and explain the impact before running it; prefer normal `brew install poppler` setup unless the user is troubleshooting a curl conflict. <br>
-Risk: Password, DRM override, hidden-text extraction, attachment extraction, and signing options can expose protected content or alter document trust properties. <br>
-Mitigation: Use these options only for documents the user is authorized to process, and avoid placing real passwords directly in command history. <br>
-Risk: PDF conversion and extraction commands may write many output files or overwrite expected paths. <br>
-Mitigation: Use a dedicated output directory or unique filename prefixes and review target paths before executing conversion, extraction, split, or merge commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xlionjuan/pdf-poppler-utils) <br>
-- [Debian poppler-utils manpages](https://manpages.debian.org/testing/poppler-utils/index.html) <br>
-- [Homebrew](https://brew.sh) <br>
+## Use Case:
 
+Developers and document-processing users use this skill to choose and run Poppler PDF utilities for metadata inspection, text and image extraction, page splitting and merging, format conversion, attachment handling, and signature checks.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text, code] <br>
-**Output Format:** [Markdown with inline bash code blocks and command option tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are local Poppler CLI command guidance; generated PDF, text, image, HTML, SVG, PostScript, or attachment files are produced by the invoked tools.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes guidance that can change the user's Homebrew environment by unlinking Homebrew curl.
+
+Mitigation: Require explicit user permission, confirm the exact curl conflict, and establish a rollback plan before running environment-changing commands.
+
+Risk: Poppler options can bypass PDF owner restrictions, extract hidden content or attachments, sign documents, or fetch certificate data online.
+
+Mitigation: Use these options only on PDFs the user is authorized to process, and avoid bypass, signing, extraction, or online certificate-fetching behavior unless the user explicitly requests it.
+
+Risk: Several utilities create output files and can write many files from a single PDF.
+
+Mitigation: Direct file-producing commands to an explicit output directory and review target filenames before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xlionjuan/skills/pdf-poppler-utils)
+- [Debian poppler-utils manpages](https://manpages.debian.org/testing/poppler-utils/index.html)
+- [Homebrew](https://brew.sh)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce file paths or PDF-derived files when the generated Poppler commands are executed by an agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

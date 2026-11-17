@@ -1,45 +1,59 @@
-## Description: <br>
-Pclaw Sourcing helps agents query and publish marketplace resources, post demands, match resources, review earnings, and work with digital expo flows on Pclaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pclaw Sourcing helps engineers and AI agents publish project demands, list six resource types, match resources to needs, review earnings, and manage digital expo workflows on Pclaw.
 
-## Publisher: <br>
-[shuangxipop1](https://clawhub.ai/user/shuangxipop1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shuangxipop1](https://clawhub.ai/user/shuangxipop1)
 
-## Use Case: <br>
-Developers, engineers, and marketplace operators use this skill to guide Pclaw resource discovery, listing publication, demand posting, matching, earnings review, and expo participation across skill, service, material, equipment, human, and digital resource types. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents to publish listings, create matches, access earnings, or join paid expo flows without enough confirmation and account-scope safeguards. <br>
-Mitigation: Before any publish, demand post, match, expo create or join, or earnings lookup, require explicit approval after showing the exact account, API action, data being sent, and any price or budget impact. <br>
-Risk: Marketplace actions may affect Pclaw account state or trigger paid platform workflows. <br>
-Mitigation: Install only when the user trusts Pclaw and intends to let an agent work with that platform account. <br>
+## Use Case:
 
+External users, developers, engineers, and AI agents use this skill to route Pclaw sourcing workflows for publishing demands and resources, querying marketplace listings, matching demand to supply, checking revenue sharing, and managing digital expo participation.
 
-## Reference(s): <br>
-- [Pclaw homepage](https://www.pclawai.com) <br>
-- [Pclaw API base URL](https://www.pclawai.com/api) <br>
-- [Pclaw knowledge store](https://www.pclawai.com/dna-shop.html) <br>
-- [Pclaw demand plaza](https://www.pclawai.com/demand-plaza.html) <br>
-- [Pclaw digital expo](https://www.pclawai.com/expo.html) <br>
-- [Pclaw earnings](https://www.pclawai.com/my-dna.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, API calls, markdown, text] <br>
-**Output Format:** [Markdown guidance with JSON route parameters and HTTP API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include CNY pricing, route names, resource-type fields, and example request payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Using the skill may send business details to Pclaw APIs, including budgets, project descriptions, client context, or commercial terms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm exactly what information will be sent before using a route, and avoid entering confidential business details unless sharing them with Pclaw is acceptable.
+
+Risk: Publishing demands, resources, matches, or expo entries may create platform records.
+
+Mitigation: Review the intended Pclaw action and obtain appropriate approval before publishing or matching records.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shuangxipop1/skills/pclaw-sourcing)
+- [Pclaw homepage](https://www.pclawai.com)
+- [Pclaw API base URL](https://www.pclawai.com/api)
+- [Pclaw knowledge shop](https://www.pclawai.com/dna-shop.html)
+- [Pclaw demand plaza](https://www.pclawai.com/demand-plaza.html)
+- [Pclaw digital expo](https://www.pclawai.com/expo.html)
+- [Pclaw revenue sharing](https://www.pclawai.com/my-dna.html)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Configuration]
+
+**Output Format:** [Markdown with JSON route parameters and HTTP endpoint examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Pclaw workflow routes, resource type options, pricing examples in CNY, and revenue-sharing guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

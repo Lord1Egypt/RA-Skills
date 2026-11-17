@@ -1,43 +1,53 @@
-## Description: <br>
-Query available models from your configured providers and add them to OpenClaw config. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query available models from your configured providers and add them to OpenClaw config.
 
-## Publisher: <br>
-[Da-Kaine](https://clawhub.ai/user/Da-Kaine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[da-kaine](https://clawhub.ai/user/da-kaine)
 
-## Use Case: <br>
-Developers and engineers use this skill to fetch model lists from configured OpenClaw providers and add selected models to their OpenClaw configuration with default model metadata and aliases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read OpenClaw provider configuration and use configured credentials to contact provider model-list endpoints. <br>
-Mitigation: Install only when that access is intended, prefer the slash command, and review the selected provider before fetching models. <br>
-Risk: The skill edits OpenClaw model settings. <br>
-Mitigation: Verify the config path and keep the generated openclawworking.json backup so changes can be reversed. <br>
-Risk: Fetched provider model IDs may not represent the cost, context window, or modality metadata a user expects. <br>
-Mitigation: Review added model entries after the update and adjust aliases, limits, costs, or input capabilities before relying on them. <br>
+## Use Case:
 
+Developers and engineers use this skill to query configured OpenClaw API providers for available models, then add selected model definitions and aliases to the local OpenClaw configuration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Da-Kaine/model-catalog-updater) <br>
-- [Project homepage](https://github.com/openclaw/skills/model-catalog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration] <br>
-**Output Format:** [Interactive terminal text and JSON configuration updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates an openclawworking.json backup before writing selected model entries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill can send local or environment-backed API credentials to arbitrary configured provider URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each provider baseUrl before use and avoid untrusted, plaintext HTTP, private-network, or recently changed provider URLs unless credential exposure is acceptable.
+
+Risk: The skill modifies OpenClaw model defaults after model selection.
+
+Mitigation: Confirm selected models before saving and rely on the backup created by the skill to recover the prior configuration if needed.
+
+## Reference(s):
+
+- [ClawHub metadata homepage](https://github.com/openclaw/skills/model-catalog)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [Interactive terminal text and JSON configuration updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a backup file before modifying the OpenClaw configuration.]
+
+## Skill Version(s):
+
+0.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

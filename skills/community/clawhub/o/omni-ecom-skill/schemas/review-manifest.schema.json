@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "omni-ecom://schemas/review-manifest-2.0.json",
+  "title": "Omni E-commerce Immutable Review Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_type", "contract_name", "contract_version", "created_by_team_version", "legacy_compatibility", "status", "run_id", "client_scope", "team_version", "report_revision", "created_at", "artifacts", "sources", "manifest_sha256"],
+  "properties": {
+    "schema_version": { "const": "2.0" },
+    "artifact_type": { "const": "review_manifest" },
+    "contract_name": { "const": "omni-ecom.review-manifest" },
+    "contract_version": { "const": "2.0" },
+    "created_by_team_version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+(?:-[0-9A-Za-z]+(?:\\.[0-9A-Za-z-]+)*)?$" },
+    "legacy_compatibility": { "const": {"read_only_import": ["omni-ecom.review-manifest@1.0"], "current_completion_authority": false} },
+    "status": { "const": "awaiting_delivery_review" },
+    "run_id": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{2,80}$" },
+    "client_scope": { "type": "string", "minLength": 1 },
+    "team_version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+(?:-[0-9A-Za-z]+(?:\\.[0-9A-Za-z-]+)*)?$" },
+    "report_revision": { "type": "string", "pattern": "^R[1-9][0-9]*$" },
+    "created_at": { "type": "string", "minLength": 1 },
+    "artifacts": { "$ref": "#/$defs/files" },
+    "sources": { "$ref": "#/$defs/files" },
+    "quality_gate": { "type": "object" },
+    "runtime_gate": { "type": "object" },
+    "manifest_sha256_method": { "type": "string" },
+    "manifest_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  },
+  "$defs": {
+    "files": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["file", "path", "sha256", "bytes"],
+        "properties": {
+          "file": { "type": "string", "minLength": 1 },
+          "path": { "type": "string", "minLength": 1 },
+          "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+          "bytes": { "type": "integer", "minimum": 0 }
+        }
+      }
+    }
+  }
+}

@@ -1,43 +1,58 @@
-## Description: <br>
-Publish videos and photo carousels to TikTok with privacy settings and draft mode. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish videos and photo carousels to TikTok with privacy settings and draft mode.
 
-## Publisher: <br>
-[snoopyrain](https://clawhub.ai/user/snoopyrain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snoopyrain](https://clawhub.ai/user/snoopyrain)
 
-## Use Case: <br>
-External users and social media operators use this skill to prepare and publish TikTok videos or photo carousels through Boring's MCP connector, including draft-mode review before a post goes live. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Boring MCP connector URL contains an embedded authentication token with delegated publishing authority for connected social accounts. <br>
-Mitigation: Treat the connector URL like a password, share it only with trusted agents, and rotate or revoke it when access is no longer needed. <br>
-Risk: The skill can create live TikTok posts through a third-party service. <br>
-Mitigation: Require explicit user confirmation before publishing and use draft mode when review or approval is needed before a post goes live. <br>
-Risk: Connected social accounts may grant broader posting capability than intended for a single task. <br>
-Mitigation: Connect only the TikTok accounts intended for this workflow and disconnect or revoke access after use. <br>
+## Use Case:
 
+External users and social media operators use this skill to publish TikTok videos or photo carousels through the Boring MCP connector, including draft-mode review before a post goes live.
 
-## Reference(s): <br>
-- [Boring MCP Connector Documentation](https://boring-doc.aiagent-me.com/getting-started/mcp.html) <br>
-- [ClawHub Skill Page](https://clawhub.ai/snoopyrain/tiktok-publisher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Configuration, Text] <br>
-**Output Format:** [Markdown guidance with MCP tool call examples and status reporting] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Boring MCP connector URL containing an embedded authentication token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The MCP connector URL contains an embedded bearer token with authority to publish to connected social accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the connector URL like a password, avoid sharing it, and revoke or regenerate the token if it is exposed.
+
+Risk: The connector can publish public TikTok content through connected accounts.
+
+Mitigation: Confirm the connected TikTok account before use and prefer draft mode when review is needed before posting.
+
+Risk: The release evidence flags inconsistent data-flow descriptions.
+
+Mitigation: Review the documented data handling and connected-service permissions before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/snoopyrain/skills/tiktok-publisher)
+- [Boring MCP Connector Documentation](https://boring-doc.aiagent-me.com/getting-started/mcp.html)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API Calls, configuration, text]
+
+**Output Format:** [Markdown guidance with MCP tool-call examples and status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports post ID and success status; draft posts require final publishing in the TikTok app.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

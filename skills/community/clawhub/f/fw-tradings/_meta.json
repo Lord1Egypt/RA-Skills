@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn77t28e9dq2fe27y334cyvnqh8372bp",
   "slug": "fw-tradings",
+  "name": "fw-trade-skill",
   "version": "2.0.3",
-  "publishedAt": 1781787690366
+  "description": "复星财富港美股 OpenAPI 交易总入口 skill：统一管理共享凭证 fosun.env，并在实盘与模拟盘间路由执行账户、行情与交易能力。",
+  "entry": "SKILL.md",
+  "install": "./install.sh"
 }

@@ -1,40 +1,56 @@
-## Description: <br>
-Design and implement automation workflows to save time and scale operations as a solopreneur. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automation Workflows helps solopreneurs identify repetitive tasks, design no-code workflows, choose tools such as Zapier, Make, or n8n, and test and maintain automations.
 
-## Publisher: <br>
-[raidan-ai](https://clawhub.ai/user/raidan-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[raidan-ai](https://clawhub.ai/user/raidan-ai)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External solopreneurs and small business operators use this skill to identify repetitive business tasks, design no-code automation workflows, select an automation platform, and plan testing and maintenance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Example workflows may copy customer or payment data across multiple services.
+
+Mitigation: Minimize copied data, confirm consent and compliance needs, and review each destination before enabling a workflow.
+
+Risk: Connected automation tools may request broader OAuth scopes than a workflow needs.
+
+Mitigation: Review requested scopes and grant the least privilege available for each connected service.
+
+Risk: Untested workflow templates can create incorrect records, missed alerts, or silent failures.
+
+Mitigation: Test with safe data first, keep workflow logs enabled, and route error alerts to a monitored channel.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External solopreneurs, operators, and business builders use this skill to identify repetitive work, select no-code automation tools, design trigger-action workflows, test automations, and maintain them over time. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Automation workflows may move customer, payment, or account data into spreadsheets, logs, Slack, email, or other connected apps. <br>
-Mitigation: Confirm the exact apps and fields before enabling a workflow, use least-privilege permissions, and avoid sending unnecessary sensitive data to downstream tools. <br>
-Risk: Untested automations can create incorrect records, missed tasks, duplicate actions, or silent failures. <br>
-Mitigation: Test with limited data, verify field mappings and error handling, monitor workflow logs, and disable workflows that are no longer needed. <br>
+**Output Format:** [Markdown guidance with workflow templates, checklists, and example automation steps]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/raidan-ai/automation-workflows-0-1-0-custom) <br>
+**Other Properties Related to Output:** [None]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions] <br>
-**Output Format:** [Markdown with workflow templates, checklists, tool comparisons, and example automation plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces planning guidance only; it does not execute code or connect to external services.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

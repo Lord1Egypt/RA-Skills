@@ -1,0 +1,578 @@
+{
+  "version": "2.4.0",
+  "source_id": "zhihu",
+  "status": "blocked",
+  "checked_at": "2026-10-09T09:03:34.147Z",
+  "entry": {
+    "url": "https://www.zhihu.com/",
+    "final_url": "https://www.zhihu.com/signin?next=%2F",
+    "title": "知乎 - 有问题，就会有答案",
+    "status": "captcha_required",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:03:34.147Z",
+    "identity": {
+      "declared_name": "知乎",
+      "hostname": "www.zhihu.com",
+      "domain_matches": true
+    },
+    "links": [],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "button",
+      "type": null,
+      "text": "下载知乎App",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "下载知乎App",
+        "exact": true
+      },
+      "observed_url": "https://www.zhihu.com/signin?next=%2F",
+      "observed_at": "2026-10-09T09:03:32.604Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "无障碍模式",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "无障碍模式",
+        "exact": true
+      },
+      "observed_url": "https://www.zhihu.com/signin?next=%2F",
+      "observed_at": "2026-10-09T09:03:32.604Z"
+    },
+    {
+      "tag": "div",
+      "type": null,
+      "text": "验证码登录",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.zhihu.com/signin?next=%2F",
+      "observed_at": "2026-10-09T09:03:32.604Z"
+    },
+    {
+      "tag": "div",
+      "type": null,
+      "text": "密码登录",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.zhihu.com/signin?next=%2F",
+      "observed_at": "2026-10-09T09:03:32.604Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "中国 +86",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "Popover2-toggle",
+      "css": "#Popover2-toggle",
+      "role": "combobox",
+      "form_action": "https://www.zhihu.com/signin?next=%2F",
+      "locator": {
+        "css": "#Popover2-toggle"
+      },
+      "observed_url": "https://www.zhihu.com/signin?next=%2F",
+      "observed_at": "2026-10-09T09:03:32.604Z"
+    },
+    {
+      "tag": "input",
+      "type": "tel",
+      "text": "手机号",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "手机号",
+      "name": "username",
+      "id": "",
+      "css": "input[name=\"username\"]",
+      "role": null,
+      "form_action": "https://www.zhihu.com/signin?next=%2F",
+      "locator": {
+        "css": "input[name=\"username\"]"
+      },
+      "observed_url": "https://www.zhihu.com/signin?next=%2F",
+      "observed_at": "2026-10-09T09:03:32.604Z"
+    },
+    {
+      "tag": "input",
+      "type": "tel",
+      "text": "输入 6 位短信验证码",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "输入 6 位短信验证码",
+      "name": "digits",
+      "id": "",
+      "css": "input[name=\"digits\"]",
+      "role": null,
+      "form_action": "https://www.zhihu.com/signin?next=%2F",
+      "locator": {
+        "css": "input[name=\"digits\"]"
+      },
+      "observed_url": "https://www.zhihu.com/signin?next=%2F",
+      "observed_at": "2026-10-09T09:03:32.604Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "获取短信验证码",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "https://www.zhihu.com/signin?next=%2F",
+      "locator": {
+        "role": "button",
+        "name": "获取短信验证码",
+        "exact": true
+      },
+      "observed_url": "https://www.zhihu.com/signin?next=%2F",
+      "observed_at": "2026-10-09T09:03:32.604Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "忘记密码",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "https://www.zhihu.com/signin?next=%2F",
+      "locator": {
+        "role": "button",
+        "name": "忘记密码",
+        "exact": true
+      },
+      "observed_url": "https://www.zhihu.com/signin?next=%2F",
+      "observed_at": "2026-10-09T09:03:32.604Z"
+    },
+    {
+      "tag": "button",
+      "type": "submit",
+      "text": "登录/注册",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "https://www.zhihu.com/signin?next=%2F",
+      "locator": {
+        "role": "button",
+        "name": "登录/注册",
+        "exact": true
+      },
+      "observed_url": "https://www.zhihu.com/signin?next=%2F",
+      "observed_at": "2026-10-09T09:03:32.604Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.zhihu.com/signin?next=%2F",
+      "observed_at": "2026-10-09T09:03:32.604Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.zhihu.com/signin?next=%2F",
+      "observed_at": "2026-10-09T09:03:32.604Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.zhihu.com/signin?next=%2F",
+      "observed_at": "2026-10-09T09:03:32.604Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "回到顶部",
+      "label": "",
+      "aria_label": "回到顶部",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "回到顶部",
+        "exact": true
+      },
+      "observed_url": "https://www.zhihu.com/signin?next=%2F",
+      "observed_at": "2026-10-09T09:03:32.604Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "看山",
+      "label": "",
+      "aria_label": "看山",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "看山",
+        "exact": true
+      },
+      "observed_url": "https://www.zhihu.com/signin?next=%2F",
+      "observed_at": "2026-10-09T09:03:32.604Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "zhihu:product-capability",
+      "source_id": "zhihu",
+      "task_kind": "product-capability",
+      "status": "blocked",
+      "parameters": [
+        "product",
+        "client_platform",
+        "feature",
+        "menu_or_setting"
+      ],
+      "instructions": [
+        "先确认网页版/桌面版/插件的具体产品和版本，再打开本题功能菜单或官方帮助读取选项；不提交生成、付费或个人信息。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.zhihu.com/",
+      "controls": [
+        {
+          "tag": "button",
+          "type": null,
+          "text": "下载知乎App",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "下载知乎App",
+            "exact": true
+          },
+          "observed_url": "https://www.zhihu.com/signin?next=%2F",
+          "observed_at": "2026-10-09T09:03:32.604Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "无障碍模式",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "无障碍模式",
+            "exact": true
+          },
+          "observed_url": "https://www.zhihu.com/signin?next=%2F",
+          "observed_at": "2026-10-09T09:03:32.604Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "中国 +86",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "Popover2-toggle",
+          "css": "#Popover2-toggle",
+          "role": "combobox",
+          "form_action": "https://www.zhihu.com/signin?next=%2F",
+          "locator": {
+            "css": "#Popover2-toggle"
+          },
+          "observed_url": "https://www.zhihu.com/signin?next=%2F",
+          "observed_at": "2026-10-09T09:03:32.604Z"
+        },
+        {
+          "tag": "input",
+          "type": "tel",
+          "text": "手机号",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "手机号",
+          "name": "username",
+          "id": "",
+          "css": "input[name=\"username\"]",
+          "role": null,
+          "form_action": "https://www.zhihu.com/signin?next=%2F",
+          "locator": {
+            "css": "input[name=\"username\"]"
+          },
+          "observed_url": "https://www.zhihu.com/signin?next=%2F",
+          "observed_at": "2026-10-09T09:03:32.604Z"
+        },
+        {
+          "tag": "input",
+          "type": "tel",
+          "text": "输入 6 位短信验证码",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "输入 6 位短信验证码",
+          "name": "digits",
+          "id": "",
+          "css": "input[name=\"digits\"]",
+          "role": null,
+          "form_action": "https://www.zhihu.com/signin?next=%2F",
+          "locator": {
+            "css": "input[name=\"digits\"]"
+          },
+          "observed_url": "https://www.zhihu.com/signin?next=%2F",
+          "observed_at": "2026-10-09T09:03:32.604Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "获取短信验证码",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": "https://www.zhihu.com/signin?next=%2F",
+          "locator": {
+            "role": "button",
+            "name": "获取短信验证码",
+            "exact": true
+          },
+          "observed_url": "https://www.zhihu.com/signin?next=%2F",
+          "observed_at": "2026-10-09T09:03:32.604Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "忘记密码",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": "https://www.zhihu.com/signin?next=%2F",
+          "locator": {
+            "role": "button",
+            "name": "忘记密码",
+            "exact": true
+          },
+          "observed_url": "https://www.zhihu.com/signin?next=%2F",
+          "observed_at": "2026-10-09T09:03:32.604Z"
+        },
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "登录/注册",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": "https://www.zhihu.com/signin?next=%2F",
+          "locator": {
+            "role": "button",
+            "name": "登录/注册",
+            "exact": true
+          },
+          "observed_url": "https://www.zhihu.com/signin?next=%2F",
+          "observed_at": "2026-10-09T09:03:32.604Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "回到顶部",
+          "label": "",
+          "aria_label": "回到顶部",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "回到顶部",
+            "exact": true
+          },
+          "observed_url": "https://www.zhihu.com/signin?next=%2F",
+          "observed_at": "2026-10-09T09:03:32.604Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "看山",
+          "label": "",
+          "aria_label": "看山",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "看山",
+            "exact": true
+          },
+          "observed_url": "https://www.zhihu.com/signin?next=%2F",
+          "observed_at": "2026-10-09T09:03:32.604Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [
+    {
+      "kind": "captcha_required",
+      "detail": "需在当前可见页面人工验证或授权；未确认可用检索。"
+    }
+  ],
+  "provenance": {
+    "catalog_source_id": "zhihu",
+    "quiz_entries": [],
+    "example_ids": [
+      "PT1-Q39"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:03:34.147Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/zhihu-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/zhihu-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

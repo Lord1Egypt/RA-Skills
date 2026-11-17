@@ -1,43 +1,58 @@
-## Description: <br>
-Coordinates complex tasks through a Three Departments and Six Ministries multi-agent workflow that separates triage, planning, review, dispatch, execution, and final reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents route complex tasks through a Three Departments and Six Ministries multi-agent workflow for planning, review, dispatch, execution, and reporting.
 
-## Publisher: <br>
-[743834110](https://clawhub.ai/user/743834110) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[743834110](https://clawhub.ai/user/743834110)
 
-## Use Case: <br>
-Developers and agent users use this skill to run non-trivial work through a structured workflow with separate planning, review, task dispatch, execution, and final reporting roles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create local .court-session records in the current project, which can capture task details from sensitive repositories. <br>
-Mitigation: Use it in a controlled workspace and review generated session records before sharing or committing them. <br>
-Risk: The workflow can delegate larger tasks across multiple agents, including background work. <br>
-Mitigation: Monitor delegated work, review proposed changes before applying them, and keep sensitive repositories under explicit user control. <br>
-Risk: The quick-path command can skip the review step that normally checks plans before execution. <br>
-Mitigation: Avoid the quick-path command when independent review is needed for safety, security, or correctness. <br>
+## Use Case:
 
+Developers and agent users use this skill when a non-trivial task benefits from explicit task triage, planning, independent review, coordinated execution, and a concise final report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/743834110/san-sheng-liu-bu) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/743834110) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown session records and concise agent responses, with code, diffs, shell commands, or configuration changes when the delegated task requires them.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates .court-session/{YYYYMMDD-task}/ records in the current workspace for multi-step task sessions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The workflow can create local session notes in the current project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended working directory and session path before execution.
+
+Risk: The workflow may coordinate multiple sub-agent tasks for larger work.
+
+Mitigation: Confirm task scope and review the plan before allowing execution.
+
+Risk: The artifact text uses both court-session and .court-session naming.
+
+Mitigation: Clarify the expected session directory name before relying on generated records.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/743834110/skills/san-sheng-liu-bu)
+- [ClawHub publisher profile](https://clawhub.ai/user/743834110)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with task plans, review notes, execution summaries, and local session files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local workflow records under a court session directory during task execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

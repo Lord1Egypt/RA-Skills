@@ -1,6 +1,22 @@
 {
-  "ownerId": "kn71568gr0p3240v36pag6f7rx83qbb2",
-  "slug": "shenmeng-whale-alert-monitor-v2",
-  "version": "1.99.99",
-  "publishedAt": 1776069238246
+  "name": "whale-alert-monitor",
+  "skill_id": "ac50f691-5081-4843-9942-bb3955872b23",
+  "version": "1.8.0",
+  "pricing": {
+    "enabled": true,
+    "price_per_call": 0.01,
+    "currency": "USDT",
+    "billing_provider": "skillpay.me"
+  },
+  "payment": {
+    "api_key_env": "SKILLPAY_API_KEY",
+    "user_id_env": "SKILLPAY_USER_ID",
+    "required": true
+  },
+  "metadata": {
+    "created_at": "2026-03-28",
+    "updated_at": "2026-04-09",
+    "author": "@shenmeng",
+    "unique_id": "whale-monitor-20250409-batch3"
+  }
 }

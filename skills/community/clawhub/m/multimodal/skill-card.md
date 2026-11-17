@@ -1,41 +1,54 @@
-## Description: <br>
-Uses GLM-4.6V to analyze images, videos, and documents for multimodal content understanding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes images, videos, and documents with the GLM-4.6V multimodal model.
 
-## Publisher: <br>
-[TriDefender](https://clawhub.ai/user/TriDefender) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tridefender](https://clawhub.ai/user/tridefender)
 
-## Use Case: <br>
-Developers and agent users use this skill to ask GLM-4.6V for OCR, scene and object analysis, video summarization, key frame analysis, and document or table understanding from a single supplied modality. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: User-supplied input and prompts may be interpolated into a shell-string tool handler. <br>
-Mitigation: Use structured argument execution or robust escaping before deployment, and review commands before execution. <br>
-Risk: Local files, URLs, and prompts may be uploaded to a third-party GLM/BigModel API using ZHIPU_API_KEY. <br>
-Mitigation: Avoid confidential or regulated content unless approved, and add explicit user consent plus upload and retention disclosure for local files. <br>
+## Use Case:
 
+Developers and end users use this skill to send authorized images, video URLs, and documents to GLM-4.6V for OCR, scene and object analysis, video summarization, keyframe analysis, and document parsing.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/TriDefender/multimodal) <br>
-- [BigModel chat completions API endpoint](https://open.bigmodel.cn/api/paas/v4/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text or Markdown analysis, with optional streaming CLI output and JSON fallback for raw API responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ZHIPU_API_KEY; requests use glm-4.6v with a 4096 token response cap and may send files, URLs, and prompts to the BigModel API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, server release metadata) <br>
+Risk: The tool handler can turn user-supplied input into shell command execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and avoid passing untrusted filenames, URLs, or prompts until the handler uses argument-array execution or equivalent escaping and validation.
+
+Risk: The skill uploads local media and documents to an external Zhipu/GLM API.
+
+Mitigation: Use only non-sensitive media or documents that the user is authorized to send to Zhipu/GLM.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tridefender/skills/multimodal)
+- [Zhipu GLM chat completions API endpoint](https://open.bigmodel.cn/api/paas/v4/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text analysis returned by the GLM API, with optional streamed text output from the command-line script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processes one modality at a time and uses ZHIPU_API_KEY for API access.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, package.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

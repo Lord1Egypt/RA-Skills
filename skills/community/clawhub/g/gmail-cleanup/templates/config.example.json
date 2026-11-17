@@ -1,0 +1,17 @@
+{
+  "account": "your.address@gmail.com",
+  "scope": {
+    "query": "in:inbox",
+    "extraQueries": [],
+    "scanMax": 40
+  },
+  "policy": {
+    "spam_suspect": { "action": "trash", "requiresApproval": true },
+    "info_only": { "action": "archive", "markRead": true, "requiresApproval": false },
+    "action_required": { "keep": true, "draftReply": true, "sendRequiresApproval": true }
+  },
+  "limits": { "maxActionsPerRun": 50 },
+  "notify": { "channel": "telegram", "target": "", "inlineButtons": false },
+  "cadence": { "everyHours": 4 },
+  "safety": { "dryRunFirst": true, "blockAllSends": false }
+}

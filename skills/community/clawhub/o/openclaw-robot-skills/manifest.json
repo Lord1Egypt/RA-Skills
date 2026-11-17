@@ -1,0 +1,35 @@
+{
+  "name": "openclaw-robot-skills",
+  "version": "1.0.0",
+  "description": "Control robots from ALL brands with ONE unified API! Currently supports OMRON TM and JAKA.",
+  "author": "RobotQu",
+  "license": "MIT",
+  "homepage": "https://robotqu.com",
+  "repository": "https://github.com/RobotQu/openclaw-robot-skills",
+  "tags": ["robot", "tm", "omron", "jaka", "collaborative", "cobot", "automation", "multi-brand", "unified-api"],
+  "platforms": ["win32", "darwin", "linux"],
+  "python_version": ">=3.8",
+  "entry": "robot_skills.py",
+  "skills": {
+    "tm-robot": {
+      "name": "TM Robot",
+      "version": "1.1.0",
+      "entry": "tm_robot.py",
+      "class": "TMRobot"
+    },
+    "jaka-robotics-control": {
+      "name": "JAKA Robotics Control",
+      "version": "1.1.0",
+      "entry": "jaka_skill.py",
+      "class": "JakaRobot"
+    }
+  },
+  "dependencies": {
+    "techmanpy": ">=1.0.0"
+  },
+  "examples": [
+    "tm-robot/examples/basic_examples.py",
+    "tm-robot/examples/complete_demo.py",
+    "jaka-robotics-control/example_linear.py"
+  ]
+}

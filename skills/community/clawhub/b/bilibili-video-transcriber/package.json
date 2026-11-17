@@ -1,6 +1,6 @@
 {
   "name": "bilibili-video-transcriber",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "description": "专业处理 B 站视频字幕问题，支持语音转文字、字幕下载、内容分析、热门评论获取、飞书文档创建，Vosk 低内存分块转写",
   "main": "bilibili_transcriber.py",
   "scripts": {
@@ -95,6 +95,16 @@
       ]
     },
     "changelog": {
+      "3.0.0": {
+        "date": "2026-08-09",
+        "changes": [
+          "🔥 查明AI字幕\"张冠李戴\"真因：缺Wbi签名被B站风控降级返回随机字幕（推翻旧CDN缓存结论）",
+          "🔐 新增 scripts/bili_subtitle.py：Wbi签名 + /x/player/wbi/v2 + conclusion/get 双路径 + 三级校验(strong/weak/fail)",
+          "🧩 超长视频（>1小时）AI字幕只生成前几十秒时，自动降级使用 conclusion/get 的官方AI摘要",
+          "📖 SKILL.md 全面重写：快速路径→根因→工作流→降级→Whisper→飞书输出→故障表",
+          "📚 新增 references/series-discovery.md 与 references/feishu-wiki-api.md"
+        ]
+      },
       "2.1.0": {
         "date": "2026-05-07",
         "changes": [

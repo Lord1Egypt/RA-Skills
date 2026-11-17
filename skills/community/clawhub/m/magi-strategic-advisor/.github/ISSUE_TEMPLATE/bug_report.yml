@@ -1,0 +1,81 @@
+name: Bug report
+description: Report a defect in the skill package, scripts, or documentation
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting a bug. Please complete the fields below.
+        Before filing, search existing issues to avoid duplicates.
+        Do not use this form for security vulnerabilities; see SECURITY.md.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What happened, and what did you expect to happen instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      description: Exact steps to reproduce the behavior.
+      placeholder: |
+        1. Run `python scripts/weighted-scoring.py ...`
+        2. Observe ...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Affected component
+      options:
+        - SKILL.md routing
+        - references/ documentation
+        - prompts/ artifacts
+        - scripts/weighted-scoring.py
+        - scripts/risk-matrix-gen.py
+        - scripts/validate-project.py
+        - Repository governance files
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      description: Release version (for example 0.1.0) or commit SHA.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options:
+        - Windows
+        - macOS
+        - Linux
+    validations:
+      required: true
+
+  - type: input
+    id: python
+    attributes:
+      label: Python version
+      description: Output of `python --version`.
+      placeholder: "3.13.12"
+    validations:
+      required: true
+
+  - type: textarea
+    id: output
+    attributes:
+      label: Relevant output
+      description: Paste error messages or terminal output. Redact any secrets.
+    validations:
+      required: false

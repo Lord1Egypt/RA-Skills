@@ -1,0 +1,229 @@
+{
+  "card_id": "WQ-EXP-003",
+  "source_type": "clinical_experience",
+  "source_file": "国医大师王琦治疗多发性大动脉炎医案举隅并讨论_程引.pdf",
+  "title": "名师诊疗疑难病沙龙",
+  "authors": [
+    "专栏",
+    "程引",
+    "刘兴",
+    "崔殿坤",
+    "李杰",
+    "王海隆",
+    "王建明",
+    "李园",
+    "马晗",
+    "张安琪",
+    "陈顺琪",
+    "蔡煜阳",
+    "于国竞",
+    "田启慧",
+    "李玲孺"
+  ],
+  "year": 2025,
+  "language": "zh",
+  "experience_type": "treatment_method",
+  "clinical_focus": {
+    "disease": "",
+    "syndrome": "",
+    "constitution": []
+  },
+  "diagnostic_approach": {
+    "key_points": "证候表现为主导,以患者为中心进行辨证论治。"
+  },
+  "treatment_approach": {
+    "main_formula": "玉屏风散",
+    "related_formulas": [
+      "玉屏风散",
+      "血府逐瘀汤"
+    ],
+    "principle": "活血化瘀",
+    "herbs": [
+      "黄芪",
+      "白术",
+      "防风",
+      "当归",
+      "柴胡",
+      "茯苓",
+      "甘草",
+      "泽泻"
+    ]
+  },
+  "case_studies": [],
+  "clinical_insights": "为中医临床实践提供宝贵的指导与启示。本专栏的特点是,跟随名师的脚步,深入剖析复杂病例,领略中医名师们丰富的临床经验与独到的诊疗思路。每一个病例的分析,思维的碰撞,均是对中医智慧的深度挖掘与传承,都能激发出中医发展的新火花,为更多患者带来健康与希望。每一次精准的诊断与独特的疗法,均是对前人智慧的传承与创新。 为主导,以糖皮质激素为基础用药,联合免疫抑制剂及其他改善病情的药物治疗;中医治疗以病情不同阶段的不同证候表现为主导,以患者为中心进行辨证论治。本文主要记录了国医大师王琦治疗1 例多发性大动脉炎验案的详细诊疗过程,采用学生讨论与专家点评相结合的方式对名师临床经验进行总结,以期更高效地传承其学术思想,为中医医案相关研究提供借鉴。 为主动脉的二级分支,如肺动脉、冠状动脉等。该病起病缓慢、发病隐匿,因病变血管不同而表现为不同组织、器官的缺血症状,首发症状具有明显的个体差异,临床上易发生漏诊、误诊,延误早期诊治。",
+  "knowledge_points": [
+    {
+      "category": "treatment",
+      "content": "十诊 2023 年7 月25 日全身症状继续好转,每天能够散步1 h 左右,胸闷气短较2021 年减轻约60%,体质量由48 kg 增至50 kg",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "临床表现为发热乏力、关节痛、肌肉痛、厌食、体质量下降等全身非特异性症状,因为其有特征性的桡动脉的搏动消失,故又称为无脉症",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "diagnosis",
+      "content": "王教授治疗兼症时处方仍以活血为主,以针对贯穿疾病始终的主导病机,根据病情发展、证候变化、体质类型而加减,从而达到“合方分击,序贯治疗”的效果",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "diagnosis",
+      "content": "辨证要点：证候表现为主导,以患者为中心进行辨证论治。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "治疗原则为活血化瘀。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "核心方药为玉屏风散。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "常用药物包括黄芪、白术、防风、当归、柴胡、茯苓、甘草、泽泻。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "为中医临床实践提供宝贵的指导与启示",
+      "importance": "high",
+      "evidence_level": "C"
+    }
+  ],
+  "related_constitutions": [],
+  "related_diseases": [
+    "失眠",
+    "抑郁症"
+  ],
+  "evidence_sentences": [
+    {
+      "sentence": "十诊 2023 年7 月25 日全身症状继续好转,每天能够散步1 h 左右,胸闷气短较2021 年减轻约60%,体质量由48 kg 增至50 kg",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 3
+    },
+    {
+      "sentence": "临床表现为发热乏力、关节痛、肌肉痛、厌食、体质量下降等全身非特异性症状,因为其有特征性的桡动脉的搏动消失,故又称为无脉症",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 4
+    },
+    {
+      "sentence": "王教授治疗兼症时处方仍以活血为主,以针对贯穿疾病始终的主导病机,根据病情发展、证候变化、体质类型而加减,从而达到“合方分击,序贯治疗”的效果",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 5
+    }
+  ],
+  "research_focus": {
+    "constitution_type": [],
+    "disease": [
+      "失眠",
+      "抑郁症"
+    ],
+    "topic": []
+  },
+  "page_info": {
+    "total_pages": 7,
+    "sections": {
+      "abstract": {
+        "start": 1,
+        "end": 1
+      },
+      "discussion": {
+        "start": 1,
+        "end": 6
+      }
+    }
+  },
+  "created_at": "2026-04-22T15:38:13.171863",
+  "methods": {
+    "sample_size": 1,
+    "study_design": "横断面研究"
+  },
+  "_field_meta": {
+    "title": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "authors": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "year": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "journal": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "doi": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "keywords": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "abstract": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "conclusions": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    }
+  },
+  "_review": {
+    "status": "needs_review",
+    "priority": 2,
+    "fields": [
+      "doi",
+      "title",
+      "journal",
+      "keywords",
+      "abstract",
+      "conclusions"
+    ],
+    "thresholds_used": {
+      "doi": 0.95,
+      "title": 0.85,
+      "journal": 0.8,
+      "keywords": 0.8,
+      "abstract": 0.7,
+      "conclusions": 0.7
+    },
+    "auto_reviewed_at": "2026-04-25T15:10:31.478859",
+    "manual_reviewed_at": null,
+    "reviewer_notes": "Confidence data backfilled by migration script",
+    "migrated_at": "2026-04-25T15:10:31.478865"
+  }
+}

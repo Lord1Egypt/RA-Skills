@@ -1,43 +1,58 @@
-## Description: <br>
-Unkey CLI helps agents manage Unkey API namespaces, keys, identities, permissions, rate limits, analytics queries, and related troubleshooting from the terminal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents use the Unkey CLI to manage API namespaces, keys, identities, permissions, roles, rate limits, analytics queries, and troubleshooting.
 
-## Publisher: <br>
-[kyriswu](https://clawhub.ai/user/kyriswu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyriswu](https://clawhub.ai/user/kyriswu)
 
-## Use Case: <br>
-Developers and operators use this skill to administer Unkey resources with the official CLI, including API namespaces, API keys, RBAC permissions, identities, rate limits, and verification analytics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: This skill helps administer sensitive Unkey API keys, permissions, namespaces, and rate limits. <br>
-Mitigation: Use the least-privileged Unkey credential available, do not paste full root keys into chat, and review commands that create, delete, or change keys, permissions, namespaces, or rate limits. <br>
-Risk: The skill may suggest installing or invoking the Unkey CLI from the local environment. <br>
-Mitigation: Verify the Unkey CLI package source before installation or execution. <br>
-Risk: Delete or update operations can make irreversible or disruptive changes to Unkey resources. <br>
-Mitigation: Confirm authentication source and require explicit user confirmation before executing destructive or modifying commands. <br>
+## Use Case:
 
+Developers and operators use this skill to generate, check, and troubleshoot Unkey CLI commands for API key management, RBAC, identities, rate limiting, and verification analytics.
 
-## Reference(s): <br>
-- [Unkey documentation index](https://unkey.com/docs/llms.txt) <br>
-- [ClawHub skill page](https://clawhub.ai/kyriswu/unkey-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON-oriented command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands should avoid exposing full root keys and should use JSON output for scripting when appropriate.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Root keys may be exposed in prompts, command examples, terminal output, or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid exposing root keys, redact credentials in displayed commands, and prefer configured authentication through environment variables or Unkey login.
+
+Risk: An unpinned global Unkey CLI installation can change command behavior as the CLI evolves.
+
+Mitigation: Install only from Unkey's official package or release channel and prefer a pinned, verified version where operational stability matters.
+
+Risk: Mutating Unkey resources such as keys, permissions, roles, rate limits, or deletes can affect production access.
+
+Mitigation: Review mutations carefully, confirm destructive operations before execution, and use built-in help or official docs to verify flags.
+
+## Reference(s):
+
+- [Unkey Documentation Index](https://unkey.com/docs/llms.txt)
+- [ClawHub Skill Page](https://clawhub.ai/kyriswu/skills/unkey-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and optional JSON-oriented CLI output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands should redact root keys and prefer JSON output for scripting workflows.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,18 @@
+{
+  "whitelist": [
+    {
+      "id": "example_verified_parameter",
+      "score": 0.9,
+      "config": {
+        "key": "value"
+      },
+      "test_ref": "test_reference",
+      "judge": "human",
+      "last_verified": "{{DATE}}",
+      "scope": "character",
+      "status": "active"
+    }
+  ],
+  "last_updated": "{{DATE}}",
+  "note": "Prefer inheriting entries with score > 0.85 as the baseline for new tests. Mark replaced entries with superseded_by instead of deleting."
+}

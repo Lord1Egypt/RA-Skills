@@ -1,43 +1,61 @@
-## Description: <br>
-Backfills contact-level industry from associated company records using a HubSpot workflow so teams can segment targeted campaigns by ICP vertical. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backfill contact-level industry from associated company records using a HubSpot workflow.
 
-## Publisher: <br>
-[tomgranot](https://clawhub.ai/user/tomgranot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tomgranot](https://clawhub.ai/user/tomgranot)
 
-## Use Case: <br>
-Marketing operations and CRM teams use this skill to copy company industry values onto associated HubSpot contacts and audit the before-and-after enrichment state for segmentation and campaign targeting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bulk HubSpot updates may place industry values into the wrong contact property or fail when dropdown values do not match. <br>
-Mitigation: Verify the authoritative contact Industry property, confirm dropdown values match the company property exactly, and use a compatible text field when exact dropdown matching is uncertain. <br>
-Risk: The audit scripts use a HubSpot access token and can read CRM records while writing local CSV audit files. <br>
-Mitigation: Use a least-privilege HubSpot token, protect the local audit files, and keep the export or audit trail for review and rollback planning. <br>
-Risk: A misconfigured workflow can update many contact records before the issue is noticed. <br>
-Mitigation: Review the workflow criteria before activation, spot-check enriched contacts, inspect workflow history for failures, and compare before and after audit counts. <br>
+## Use Case:
 
+External CRM operators and marketing operations teams use this skill to copy company industry values onto associated HubSpot contacts for segmentation, lead scoring, and campaign targeting.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tomgranot/enrich-industry) <br>
-- [HubSpot API endpoint used by audit scripts](https://api.hubapi.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with Python code blocks and workflow setup steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes optional before and after CSV audit outputs when the bundled scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A HubSpot token with broad permissions could expose more CRM data than this enrichment task requires.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill and audit scripts with a least-privilege HubSpot token, as directed by the security guidance.
+
+Risk: Local environment files or tokens could be accidentally committed or shared.
+
+Mitigation: Keep .env files out of source control and avoid placing HubSpot tokens in skill text, logs, or generated artifacts.
+
+Risk: Unpinned dependencies could change script behavior between audit runs.
+
+Mitigation: Pin or lock the requests and python-dotenv dependencies before running the bundled Python scripts.
+
+Risk: Bulk enrollment could copy industry values incorrectly if HubSpot contact and company properties are mismatched.
+
+Mitigation: Verify property compatibility first and test the workflow on a small static list before enrolling existing contacts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tomgranot/skills/enrich-industry)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code and shell-executable audit scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled scripts can write CSV audit files for before and after enrichment checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

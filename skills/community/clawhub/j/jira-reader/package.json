@@ -1,0 +1,13 @@
+{
+  "name": "jira-reader",
+  "version": "0.3.1",
+  "description": "Read-only Jira Cloud lookup commands for scoped API tokens.",
+  "type": "module",
+  "bin": {
+    "jira-reader": "scripts/jira-reader.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {}
+}

@@ -1,45 +1,60 @@
-## Description: <br>
-SignalRadar monitors Polymarket prediction markets for probability changes and sends alerts when configured thresholds are crossed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SignalRadar monitors Polymarket prediction markets for probability changes and sends alerts when configured thresholds are crossed.
 
-## Publisher: <br>
-[vahnxu](https://clawhub.ai/user/vahnxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[vahnxu](https://clawhub.ai/user/vahnxu)
 
-## Use Case: <br>
-External users and developers use SignalRadar to add, list, check, and remove Polymarket market monitors, configure threshold-based alerts, and manage recurring market checks through the provided CLI workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically create recurring background market checks after the first market is added. <br>
-Mitigation: Review the schedule immediately after setup and use the documented schedule disable command if recurring monitoring is not desired. <br>
-Risk: Alert payloads and routing metadata may be sent to webhook targets or stored for later delivery. <br>
-Mitigation: Configure only trusted webhook URLs or file paths, and verify delivery status before assuming background alerts are active. <br>
-Risk: The authoritative security verdict is suspicious because persistence and routing storage are part of normal behavior. <br>
-Mitigation: Install only when recurring monitoring and stored routing data are acceptable for the intended workspace. <br>
+## Use Case:
 
+External users and agents use SignalRadar to add, inspect, and monitor Polymarket markets, receive threshold-crossing alerts, and manage background checks or digests through the CLI.
 
-## Reference(s): <br>
-- [SignalRadar ClawHub listing](https://clawhub.ai/vahnxu/signalradar) <br>
-- [Configuration Reference](artifact/references/config.md) <br>
-- [Runtime Protocol Reference](artifact/references/protocol.md) <br>
-- [Operations Reference](artifact/references/operations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Natural-language guidance with CLI commands, structured JSON status output, and markdown alert or digest text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local watchlist, baseline, audit, schedule, and delivery state during normal CLI operation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: Enabling scheduling creates a recurring background job that can persist after the agent session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require user consent before enabling scheduling, and use `schedule disable` or `schedule clear-route` to remove monitoring or cached reply-route state.
+
+Risk: Webhook delivery sends monitored market questions, probabilities, and a bearer-style webhook URL to a user-selected provider.
+
+Mitigation: Use a trusted endpoint, keep webhook URLs masked, and retain the default HTTPS and public-address destination guards.
+
+Risk: File delivery can append alert data to local disk.
+
+Mitigation: Keep the default data-directory scope unless the user deliberately enables `SIGNALRADAR_ALLOW_ANY_FILE_TARGET=1`.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/vahnxu/skills/signalradar)
+- [SignalRadar Configuration Reference](references/config.md)
+- [SignalRadar Runtime Protocol Reference](references/protocol.md)
+- [SignalRadar Operations Reference](references/operations.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Natural-language guidance with inline shell commands and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce alerts, digest summaries, configuration guidance, and structured CLI status output.]
+
+## Skill Version(s):
+
+1.5.8 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

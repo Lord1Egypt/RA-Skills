@@ -1,43 +1,54 @@
-## Description: <br>
-An unofficial MCP server that lets agents access Vietnam stock market data, including current and historical prices, company financials, market statistics, and fund information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This unofficial MCP-style skill lets agents query Vietnam stock market data, including real-time and historical prices, company financials, market statistics, fund information, gold prices, and exchange rates.
 
-## Publisher: <br>
-[alinklab](https://clawhub.ai/user/alinklab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alinklab](https://clawhub.ai/user/alinklab)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve Vietnam stock, company, fund, gold price, exchange-rate, and quote data from the Xiaobenyang API after the user provides an API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores the Xiaobenyang API key in plaintext in a local .env file. <br>
-Mitigation: Use a limited or disposable API key, restrict file access to the workspace, and delete the saved .env entry when the skill is no longer needed. <br>
-Risk: Security evidence reports stale Gaokao identifiers that make the backend and credential scope unclear. <br>
-Mitigation: Inspect the configured API endpoint, MCP identifiers, and credential scope before use, and confirm the requested key is appropriate for Vietnam market-data access. <br>
-Risk: The security verdict is suspicious because the skill depends on an external API and local credential persistence. <br>
-Mitigation: Install only if the user accepts sharing a Xiaobenyang API key with the service, and review dependency versions and network behavior before deployment. <br>
+## Use Case:
 
+External users and developers can use this skill to let an agent retrieve and summarize Vietnam market data for equities, company disclosures, funds, gold prices, and exchange rates through the XiaoBenYang API. It is suited to market research and data lookup workflows where the user can provide the required API key.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/alinklab/skills/vnstock) <br>
-- [Xiaobenyang API key portal](https://xiaobenyang.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown summaries of JSON-backed API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an XBY_APIKEY value; tool functions expose json, dataframe, and toon output formats where supported.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact frontmatter says 1.0.0) <br>
+Risk: The skill stores the XiaoBenYang API key in a local plaintext .env file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited or revocable key, keep the workspace private, and do not commit the .env file.
+
+Risk: The security evidence marks the release suspicious because stale gaokao references remain in a Vietnam stock-data skill.
+
+Mitigation: Review the skill before installation and ask the publisher for a cleaned-up release when provenance or behavior must be clear.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alinklab/skills/vnstock)
+- [XiaoBenYang API key site](https://xiaobenyang.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance]
+
+**Output Format:** [JSON-like API results summarized as human-facing text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tool calls return success status, raw upstream data, and a message; output_format options include json, dataframe, and toon, with toon as the default agent-optimized format.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

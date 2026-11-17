@@ -1,42 +1,61 @@
-## Description: <br>
-Google Workspace CLI for Gmail, Calendar, Drive, Contacts, Sheets, and Docs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Workspace CLI for Gmail, Calendar, Drive, Contacts, Sheets, and Docs.
 
-## Publisher: <br>
-[parker-xferops](https://clawhub.ai/user/parker-xferops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[parker-xferops](https://clawhub.ai/user/parker-xferops)
 
-## Use Case: <br>
-Developers and operators use this skill to set up and run gog commands for Google Workspace tasks across Gmail, Calendar, Drive, Contacts, Sheets, and Docs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Installing and authorizing the external gog CLI can grant broad access to Google Workspace account data. <br>
-Mitigation: Install only if the external CLI and Homebrew tap are trusted, and review Google OAuth scopes before approving access. <br>
-Risk: Commands can send email or change Calendar, Drive, Docs, Contacts, or Sheets data. <br>
-Mitigation: Confirm intent before running mutating commands, especially mail sending, event creation, file changes, and spreadsheet updates. <br>
-Risk: Putting GOG_KEYRING_PASSWORD directly in shell profiles or service environment lines can expose credentials. <br>
-Mitigation: Use the narrowest practical account and avoid storing the keyring password directly in shell profiles or systemd Environment lines. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [gog CLI homepage](https://gogcli.sh) <br>
-- [ClawHub skill page](https://clawhub.ai/parker-xferops/xferops-gog) <br>
+## Use Case:
 
+Developers and operators use this skill to work with Google Workspace services through the gog CLI, including Gmail, Calendar, Drive, Contacts, Sheets, and Docs tasks.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gog CLI and Google OAuth setup.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to install an unpinned third-party CLI.
+
+Mitigation: Install a reviewed and pinned gogcli version before use.
+
+Risk: Google Workspace OAuth authorization can expose sensitive mail, calendar, Drive, contacts, document, and sheet data.
+
+Mitigation: Authorize only the Google services needed for the task.
+
+Risk: Headless setup may encourage storing GOG_KEYRING_PASSWORD in shell profiles or service files.
+
+Mitigation: Avoid storing GOG_KEYRING_PASSWORD directly in shell profiles or service files; prefer a safer keyring setup where possible.
+
+Risk: The CLI can send email or modify calendars, sheets, and Drive content.
+
+Mitigation: Confirm any email, calendar, sheet, or Drive-modifying action before running it.
+
+## Reference(s):
+
+- [gogcli homepage](https://gogcli.sh)
+- [ClawHub skill page](https://clawhub.ai/parker-xferops/skills/xferops-gog)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gog CLI and Google OAuth setup.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

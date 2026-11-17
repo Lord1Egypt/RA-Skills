@@ -1,41 +1,58 @@
-## Description: <br>
-Combines GIFs and videos into composite tutorials with vertical or grid layouts via ffmpeg. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Combines GIFs and videos into vertical or grid composites with ffmpeg. Use for multi-part tutorial media.
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and technical content authors use this skill to combine terminal, browser, image, GIF, and video outputs into tutorial or documentation media using manifest-defined ffmpeg layouts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate broadly on media or composition wording. <br>
-Mitigation: Review and narrow trigger wording before installation if activation should be limited to explicit ffmpeg or media-composition requests. <br>
-Risk: Generated ffmpeg shell commands can read local media files or overwrite output paths. <br>
-Mitigation: Inspect commands, input paths, and output destinations before execution, and run them only in the intended working directory. <br>
+## Use Case:
 
+Developers and technical authors use the skill to combine GIFs, videos, and images into media compositions for tutorials and documentation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-scry-media-composition) <br>
-- [Night Market Scry plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/scry) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with YAML manifest examples and bash command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces ffmpeg composition instructions; generated commands may read media inputs and overwrite declared output files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release evidence) <br>
+Risk: The security review reports that some examples concatenate media sequentially instead of producing the described vertical or grid layout.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check that the selected example matches the intended layout, then inspect the resulting composition before using it.
+
+Risk: The security review reports that FFmpeg examples can silently overwrite existing output files.
+
+Mitigation: Choose a new output path or confirm and back up any existing file before running an example.
+
+Risk: The security review was partial because several referenced paths were missing, so its evidence is incomplete.
+
+Mitigation: Review the referenced components and their commands before installing or running the skill.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/scry)
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-scry-media-composition)
+
+## Skill Output:
+
+**Output Type(s):** [Files]
+
+**Output Format:** [Composed GIF or video files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Combines multiple media inputs; reports output dimensions and file size.]
+
+## Skill Version(s):
+
+1.10.3 (source: skill frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

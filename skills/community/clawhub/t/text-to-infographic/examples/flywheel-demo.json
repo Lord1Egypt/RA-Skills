@@ -1,0 +1,18 @@
+{
+  "version": "1.0",
+  "meta": { "title": "AI 学习增长飞轮", "subtitle": "每天 15 分钟的复利结构", "footer": "来源：个人学习实践" },
+  "layout": "flywheel",
+  "visual_system": { "palette": "terracotta" },
+  "blocks": [
+    { "id": "learn", "title": "每天学 15 分钟" },
+    { "id": "note", "title": "沉淀成笔记" },
+    { "id": "post", "title": "发一篇小红书" },
+    { "id": "feedback", "title": "收到读者反馈" },
+    { "id": "iterate", "title": "迭代学习方法" }
+  ],
+  "relations": [
+    { "from": "learn", "to": "note" }, { "from": "note", "to": "post" },
+    { "from": "post", "to": "feedback" }, { "from": "feedback", "to": "iterate" },
+    { "from": "iterate", "to": "learn" }
+  ]
+}

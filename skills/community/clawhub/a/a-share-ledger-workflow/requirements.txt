@@ -1,0 +1,4 @@
+# 零第三方依赖：14 个脚本全部只用 Python 标准库
+# （argparse/datetime/glob/hashlib/json/os/pathlib/re/shutil/ssl/subprocess/
+#  sys/time/typing/urllib＋脚本间互引）。
+# 无需 pip install。建议 Python ≥ 3.10（用到 sys.stdlib_module_names 仅限检查脚本）。

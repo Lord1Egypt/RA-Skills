@@ -1,41 +1,52 @@
-## Description: <br>
-Master Excel/CSV data processing - cleaning, transforming, merging, and analyzing spreadsheets with AI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Master Excel/CSV data processing - cleaning, transforming, merging, and analyzing spreadsheets with AI.
 
-## Publisher: <br>
-[beibei030](https://clawhub.ai/user/beibei030) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[beibei030](https://clawhub.ai/user/beibei030)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees, office workers, accountants, HR staff, sales teams, administrators, and students use this skill to ask an agent for Excel/CSV cleaning, transformation, merging, analysis, formatting, formula guidance, and batch-processing examples.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Automatic spreadsheet cleanup can change important financial, HR, customer, or operational data through deletions, deduplication, missing-value filling, outlier filtering, or overwrites.
+
+Mitigation: Work on copies, require explicit confirmation before applying changes, and ask the agent to show row and column change counts before saving results.
+
+Risk: Generated formulas or transformation code can produce incorrect results when assumptions about columns, data types, outliers, or merge keys are wrong.
+
+Mitigation: Review formulas and code, validate merge keys and unmatched rows, inspect representative samples, and compare results against expected totals before using outputs in decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Office workers, accountants, and business professionals use this skill to clean, transform, merge, analyze, and format Excel or CSV data and to generate spreadsheet formulas. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Spreadsheet and CSV processing can expose or alter sensitive or important business data. <br>
-Mitigation: Use copies of important files, process sensitive files only with permission, and confirm where outputs are written before running workflows. <br>
-Risk: Bulk transformations can propagate mistakes across many files or rows. <br>
-Mitigation: Review results on a small sample before applying formulas, merges, cleaning steps, or batch processing to the full dataset. <br>
+**Output Format:** [Markdown with Python and Excel formula code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/beibei030/excel-csv-master) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/beibei030) <br>
+**Other Properties Related to Output:** [May include spreadsheet change summaries, formulas, and pandas/openpyxl snippets; users should confirm before applying destructive data changes.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with Python, Excel formula, and plain-text workflow examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include spreadsheet-cleaning steps, formulas, pandas/openpyxl snippets, and batch-processing recommendations.] <br>
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

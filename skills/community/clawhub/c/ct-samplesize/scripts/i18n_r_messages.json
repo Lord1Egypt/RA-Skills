@@ -1,0 +1,78 @@
+{
+  "install.cmd_header": {
+    "en": "[R package commands — for review only, NOT executed]",
+    "zh": "[R 包安装命令 — 仅供审阅，未执行]"
+  },
+  "install.cran_warning": {
+    "en": "This command will download and install {n} R packages from CRAN (the ONLY network operation in this skill).",
+    "zh": "此命令会**从 CRAN 联网下载并安装** {n} 个 R 包（即本技能唯一会联网的操作）。"
+  },
+  "install.confirm_prompt": {
+    "en": "If confirmed, re-run with --run-install to actually download:",
+    "zh": "如确认无误，请重新运行并追加 --run-install 才会真正联网安装："
+  },
+  "install.manual_alt": {
+    "en": "Or paste the above command into an R console to install manually.",
+    "zh": "或在 R 控制台中手动粘贴上述命令自行安装。"
+  },
+  "install.network_warning_en": {
+    "en": "⚠️  NETWORK INSTALL: the following R code will download packages from CRAN",
+    "zh": "⚠️  联网安装：以下 R 代码将从 CRAN 下载并安装 R 包（供应链风险由你知情触发）"
+  },
+  "install.code_header": {
+    "en": "[R CODE — will be executed by Rscript]",
+    "zh": "[R 代码 — 将由 Rscript 执行]"
+  },
+  "header.r_code": {
+    "en": "[R CODE — generated for this analysis]",
+    "zh": "[R 代码 — 本次分析生成]"
+  },
+  "header.install_cmd": {
+    "en": "[R package commands — for review only, NOT executed]",
+    "zh": "[R 包安装命令 — 仅供审阅，未执行]"
+  },
+  "fig.curve": {
+    "en": "Curve: %s",
+    "zh": "曲线：%s"
+  },
+  "fig.effect_curve": {
+    "en": "Effect-axis curve: %s",
+    "zh": "效应量轴曲线：%s"
+  },
+  "fig.dist": {
+    "en": "H0/H1 distribution overlap: %s",
+    "zh": "H0/H1 分布重叠图：%s"
+  },
+  "fig.heatmap": {
+    "en": "Power heatmap: %s",
+    "zh": "效能热力图：%s"
+  },
+  "fig.surv_time": {
+    "en": "Power vs follow-up: %s",
+    "zh": "效能-随访时间曲线：%s"
+  },
+  "fig.adaptive": {
+    "en": "Adaptive simulation (%s)",
+    "zh": "适应性模拟（%s）"
+  },
+  "error.invalid_install_path": {
+    "en": "[ERROR] Invalid install script path; execution refused.",
+    "zh": "[错误] 安装脚本路径无效；执行已拒绝。]"
+  },
+  "error.invalid_temp_path": {
+    "en": "[ERROR] Invalid temp path; execution refused.",
+    "zh": "[错误] 临时路径无效；执行已拒绝。]"
+  },
+  "error.r_timeout": {
+    "en": "[ERROR] R execution timed out (300s limit)",
+    "zh": "[错误] R 执行超时（300 秒限制）]"
+  },
+  "error.rscript_not_found": {
+    "en": "[ERROR] Rscript not found or invalid. Set RSCRIPT_PATH env or install R.",
+    "zh": "[错误] 未找到 Rscript 或路径无效。请设置 RSCRIPT_PATH 环境变量或安装 R。"
+  },
+  "error.rscript_not_found_install": {
+    "en": "[ERROR] Rscript not found or invalid. Is R installed?",
+    "zh": "[错误] 未找到 Rscript 或路径无效。是否已安装 R？]"
+  }
+}

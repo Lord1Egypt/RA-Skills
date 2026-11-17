@@ -1,43 +1,56 @@
-## Description: <br>
-Daily stock portfolio analysis with Gmail report delivery and Sonos voice announcement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily stock portfolio analysis with Gmail report delivery and Sonos voice announcement.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Users with a configured portfolio workflow use this skill to generate a daily stock performance report, send it through Gmail, and announce a short summary on a Sonos speaker.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Financial portfolio summaries may be sent through the configured Gmail account.
+
+Mitigation: Use a trusted recipient address and confirm that email delivery is acceptable for the portfolio information being summarized.
+
+Risk: Financial summaries may be spoken aloud on the configured Sonos speaker.
+
+Mitigation: Limit speaker selection to locations where the summary can be heard only by intended listeners.
+
+Risk: The workflow depends on a Gmail OAuth token file.
+
+Mitigation: Protect the Gmail OAuth token file and restrict workspace access to trusted users.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and portfolio owners can use this skill to generate a daily stock portfolio summary, send it by Gmail, and announce the summary on a configured Sonos speaker. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The package declares a runnable stock announcement script and configuration file, but the submitted artifact does not include them. <br>
-Mitigation: Review before installing and do not run until the missing script and configuration are supplied and inspected. <br>
-Risk: The skill requires Gmail OAuth access and recipient email configuration. <br>
-Mitigation: Confirm the Gmail OAuth scope, token location, recipient address, and report contents before use. <br>
-Risk: The skill can announce financial information through a Sonos speaker. <br>
-Mitigation: Confirm the target speaker and avoid audible announcements of sensitive financial details in shared spaces. <br>
+**Output Format:** [Markdown guidance with inline shell commands and configuration details]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/stock-announcement) <br>
-- [Publisher profile](https://clawhub.ai/user/terrycarter1985) <br>
+**Other Properties Related to Output:** [Produces portfolio summaries that may be delivered as HTML email content and spoken audio through configured external services.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Gmail OAuth credentials, recipient configuration, Python dependencies, and Sonos CLI access.] <br>
+99.99.99 (source: server release metadata)
 
-## Skill Version(s): <br>
-99.99.99 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

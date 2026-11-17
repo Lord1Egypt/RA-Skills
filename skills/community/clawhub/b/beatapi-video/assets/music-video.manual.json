@@ -1,0 +1,11 @@
+{
+  "images": [
+    "https://media.example.com/reference.png"
+  ],
+  "audio_url": "https://media.example.com/song.mp3",
+  "prompt": "Build a storyboard for shot-level review before composition.",
+  "language": "en",
+  "quality": "standard",
+  "resolution": "720p",
+  "compose_mode": "manual"
+}

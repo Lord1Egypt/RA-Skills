@@ -1,47 +1,63 @@
-## Description: <br>
-xiaoqianran-duck helps agents use DuckDB to import, query, preview, and export local files and Hugging Face datasets through a CLI, Node.js helper, preview server, and Rust backend examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local analytical data tool powered by DuckDB. Supports importing and querying CSV, TSV, JSON, Parquet, Excel and direct Hugging Face datasets via hf:// protocol with token support. Includes CLI, Node helper, preview server, and Rust backend for Tauri/Electron/Qt apps.
 
-## Publisher: <br>
-[xiaoqianran](https://clawhub.ai/user/xiaoqianran) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoqianran](https://clawhub.ai/user/xiaoqianran)
 
-## Use Case: <br>
-Developers and data practitioners use this skill to add local analytical data exploration with DuckDB, including imports from CSV, TSV, JSON, Parquet, Excel, and Hugging Face datasets, SQL querying, exports, and desktop app integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read selected local files and create or modify a local DuckDB database. <br>
-Mitigation: Run it only on data the operator is authorized to process and review file paths before import, export, or query operations. <br>
-Risk: The preview server exposes browser-driven SQL execution against the local DuckDB database. <br>
-Mitigation: Use the preview server only on trusted machines and data; bind it to localhost, add access controls when shared, and restrict queries to safe read-only usage. <br>
-Risk: Hugging Face tokens may be loaded from environment variables or a nearby .env file. <br>
-Mitigation: Use least-privilege tokens, keep .env files out of commits, and avoid running with tokens that grant unnecessary access. <br>
-Risk: Hugging Face dataset access and DuckDB extension loading can use network access. <br>
-Mitigation: Review outbound network expectations and run in an environment where Hugging Face and DuckDB extension access are permitted. <br>
+## Use Case:
 
+Developers and data practitioners use this skill to import local or Hugging Face-hosted datasets into DuckDB, run analytical SQL, export results, and prototype desktop data workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaoqianran/skills/xiaoqianran-duck) <br>
-- [Publisher profile](https://clawhub.ai/user/xiaoqianran) <br>
-- [Skill README](artifact/skills/xiaoqianran-duck/README.md) <br>
-- [Skill definition](artifact/skills/xiaoqianran-duck/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local filesystem paths, DuckDB database files, Hugging Face dataset URLs, and environment variables such as HF_TOKEN.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The preview server and helper can run powerful SQL over local or Hugging Face-backed data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the preview server only on loopback, do not expose it to a network, and do not submit untrusted SQL or table names.
+
+Risk: The tool can access local files, write DuckDB databases and exports, and use network-backed Hugging Face datasets.
+
+Mitigation: Use a non-sensitive working directory and database for evaluation, and review file paths and dataset sources before import or export.
+
+Risk: Hugging Face tokens may be loaded from environment variables or a local .env file.
+
+Mitigation: Keep tokens out of committed files, prefer controlled environment variables or secure local storage, and rotate any token that may have been exposed.
+
+Risk: Native DuckDB dependencies and lockfiles are part of the runtime surface.
+
+Mitigation: Regenerate lockfiles from a trusted registry and review dependency provenance before production deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaoqianran/skills/xiaoqianran-duck)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code snippets and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include SQL examples, local file paths, DuckDB database paths, export formats, and Hugging Face token setup guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact package.json is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

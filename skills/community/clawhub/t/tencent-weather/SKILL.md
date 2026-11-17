@@ -1,9 +1,9 @@
 ---
 name: tencent-weather
-description: 天气信息查询工具，覆盖中国市级和区县级行政区。当用户查询实况天气、天气预报信息时使用。
-description_zh: 中国各地实时天气和天气预报信息查询。
-description_en: Weather information lookup tool covering Chinese cities and counties. Use when the user queries current weather and forecast information.
-version: 1.0.1
+description: 天气信息查询工具，覆盖中国市级和区县级行政区。当用户查询实况天气、天气预报或天气预警信息时使用。
+description_zh: 中国各地实时天气、天气预报和天气预警信息查询。
+description_en: Weather information lookup tool covering Chinese cities and counties. Use when the user queries current weather, forecasts, or weather alerts.
+version: 1.0.5
 author: TencentNews
 tags: [weather, tencent, forecast, temperature, precipitation, wind, air quality]
 ---
@@ -29,6 +29,16 @@ tags: [weather, tencent, forecast, temperature, precipitation, wind, air quality
 |------|-------------|
 | macOS / Linux | `sh scripts/run-cli.sh <command> [args]` |
 | Windows | `powershell scripts/run-cli.ps1 <command> [args]` |
+
+## 环境异常时的用户指引（强制门禁）
+
+用户直接提出业务问题时，也必须先检查环境。CLI 或 API Key 未就绪时，当前轮停止业务查询，不得只回复“数据加载失败”、原始错误或泛化的“请检查配置”，必须给出可直接操作的指引：
+
+- **CLI 未安装/不可用**（`cliExists: false`、`cliSource: none`、`cli not found`、`command not found`、`not recognized`）：说明本查询依赖腾讯新闻 CLI，当前设备尚未安装或未被识别；按平台提供安装命令：macOS/Linux 使用 `curl -fsSL https://mat1.gtimg.com/qqcdn/qqnews/cli/hub/tencent-news/setup.sh | sh`；Windows PowerShell 使用 `irm https://mat1.gtimg.com/qqcdn/qqnews/cli/hub/tencent-news/setup.ps1 | iex`。提醒安装后重新打开终端并重新提问。
+- **API Key 未配置**（`apiKey.status: missing`、`未设置 API Key`、`API Key not set`）：说明 CLI 已安装但尚未配置 Key；引导访问 `https://news.qq.com/exchange?scene=appkey` 获取，然后执行 `tencent-news-cli apikey-set YOUR_KEY`，再执行 `tencent-news-cli apikey-get` 验证。
+- **API Key 无效、过期或无权限**（`API Key 无效`、`invalid api key`、`unauthorized`、`401`、`403`、鉴权/认证失败）：不得归因为无数据、额度或普通网络错误；说明当前 Key 无效或无权访问，引导从上述页面重新获取正确 Key，再执行设置和验证命令。
+- **状态不确定**（状态脚本失败、`apiKey.status: error` 或无法解析）：先按错误文本匹配以上类型；仍无法判断时，同时给出安装命令及 Key 获取、设置、验证步骤。
+- `YOUR_KEY` 只能由用户在本地替换；不得索要、代填、回显或记录真实 Key。环境未就绪时不得改用其他数据源。上述基础设施指引优先于业务输出格式限制，但不得展示内部日志、参数、traceid。
 
 ## Phase 1：环境就绪
 
@@ -101,8 +111,11 @@ Windows 分别使用 `powershell scripts/run-cli.ps1 apikey-set KEY`、`powershe
    通过 `run-cli` 执行：macOS / Linux 为 `sh scripts/run-cli.sh help weather`，Windows 为 `powershell scripts/run-cli.ps1 help weather`。
 
 2. **根据 `help weather` 选择命令**
-   - **实时天气** → 优先选择帮助中用于查询当前天气的命令
-   - **未来天气 / 逐小时 / 多天预报** → 优先选择帮助中包含时间范围、预报或趋势信息的命令
+   - **实时天气 / 天气预报 / 生活指数** → 优先选择帮助中用于查询当前天气的命令；截至 2026-08-07 核实，当前 CLI 仅提供单一 `weather` 命令（参数 `--adcode`，不传时按IP 定位默认地区），综合返回按需包含「实况、日升日落、未来天气、生活指数、七日限号（部分限行城市才有）、天气预警（仅当地有生效预警时才出现）」等分段——分段是否出现取决于当次查询结果，不是固定结构；该结论仅供参考，仍需以每次实际的 `help weather` 输出和实际返回为准，CLI 版本更新后可能变化
+   - **常规天气查询中附带的预警信息**（用户问的是天气本身，如“今天天气怎么样”“会不会下雨”）→ 直接调用本 skill 的 `weather` 能力，若综合返回中出现「⚠️ 天气预警」等分段，原样一并展示；未出现该分段则不提及预警
+   - **专门查询预警/异常天气**（用户明确只问预警或异常天气，如“XX 地方最近有什么异常天气”“有没有预警”）→ 交由 `tencent-weather-alert` skill 处理，一次查询即返回结果
+   - **持续订阅/主动推送类请求**（如“订阅”“提醒我”“每天/定时检查预警”“有预警时通知我”）→ 当前 CLI 及本 skill 均不支持订阅或主动推送，如实告知用户，不得擅自创建定时任务或模拟订阅效果
+   - **预警类型识别** → 雨天（中雨至特大暴雨、雷阵雨伴冰雹、雨夹雪）、雪天（小雪至暴雪）、雾霾（沙尘暴、强沙尘暴、扬沙、各级霾和特强浓雾）、空气质量（AQI 重度污染）、寒潮（大幅降温）、高温（38°C 高温）、台风（路径及影响）；这些类型仅用于理解和筛选结果，不得当作 CLI 参数，除非当次帮助明确支持
    - **复合请求**（如“看看北京今天和明天的天气，再说下会不会下雨”）→ 尽量映射到一个命令；若帮助中没有单条命令覆盖，再拆成多个天气请求依次执行
    - **地点缺失** → 先结合上下文判断用户是否已经给出城市/区县；无法确定时再请用户补充地点
    - **地点参数一律使用 Adcode** → 若用户给的是地点名称，先转换成对应的 Adcode 再执行天气命令，不要直接传中文地名；例如“北京”使用 `110000`
@@ -116,8 +129,8 @@ Windows 分别使用 `powershell scripts/run-cli.ps1 apikey-set KEY`、`powershe
    - 不要自行猜测 `weather` 子命令下的参数缩写或默认值；按帮助输出里的完整用法组装
 
 4. **输出结果**
-   - 若 CLI 返回的内容已经是格式完善的 markdown 或可直接阅读的文本，原样输出
-   - 若 CLI 返回结构化字段，再整理成用户可读结果，至少包含地点、天气现象、温度，以及 CLI 返回的其他关键字段（如降水、风力、空气质量、湿度、体感、预警）
+   - 若 CLI 返回的内容已经是格式完善的 markdown 或可直接阅读的文本（如当前版本按需返回的「实况 / 日升日落 / 未来天气 / 生活指数 / 七日限号 / 天气预警」分段文本），原样输出，不要重新排版、不要省略分段（包括限行、预警等非核心天气信息）
+   - 若 CLI 返回结构化字段，再整理成用户可读结果，至少包含地点、天气现象、温度，以及 CLI 返回的其他关键字段（如降水、风力、空气质量、湿度、体感、限行、预警）
 
 ## 输出格式
 

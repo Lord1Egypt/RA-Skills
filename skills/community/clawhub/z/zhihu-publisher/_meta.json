@@ -1,6 +1,6 @@
 {
-  "ownerId": "kn75wtd4n2fa644yw1wyk71av18713b7",
-  "slug": "zhihu-publisher",
+  "name": "zhihu-auto-publish",
   "version": "1.0.0",
-  "publishedAt": 1779263294413
+  "author": "liuxc",
+  "description": "自动发布知乎文章，需手工登录账号"
 }

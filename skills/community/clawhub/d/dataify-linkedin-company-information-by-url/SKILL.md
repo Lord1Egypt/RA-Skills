@@ -1,16 +1,26 @@
-﻿---
+---
 name: "dataify-linkedin-company-information-by-url"
-description: "Prepare Dataify builder requests for the linkedin.com scraper family rooted at linkedin_company_information_by-url. Use  when needs to work with the successful Dataify scraper detail entry for linkedin_company_information_by-url, let the user choose one of its available tools, read saved getToolParams options, and generate a scraperapi.dataify.com/builder curl request with DATAIFY_API_TOKEN."
+description: "Collect structured LinkedIn company information from one or more known company URLs. Do not use for personal profiles, jobs, or Crunchbase URLs."
 ---
 
 # Dataify Builder Skill
 
 Use this skill to prepare Dataify builder requests for the scraper family rooted at `linkedin_company_information_by-url` on `linkedin.com`.
 
+
+## Quick Start
+
+**Input:** a LinkedIn company URL.
+
+```bash
+python3 scripts/build-dataify-request.py --tool-sign linkedin_company_information_by-url --params-json '[{"url":"https://www.linkedin.com/company/openai"}]'
+```
+
+This submits the task, waits for completion, downloads the final result, and returns it. Add `--no-wait` only when submission-only behavior is requested.
 ## Workflow
 
 1. Check whether `DATAIFY_API_TOKEN` exists in the environment.
-2. If the token is missing, stop and tell the user to sign in at [Dataify Dashboard](https://dashboard.dataify.com?utm_source=skill) to obtain it.
+2. If the token is missing, stop and tell the user: `Dataify requires an API token. New accounts get 50 free credits, enough for about 6,000 trial results, valid for 7 days, and only successful requests are billed. Once registration is complete, tell me and I'll continue the current task.`.
 3. Ask the user to choose exactly one tool from the following Chinese list:
 - 通过URL采集 (linkedin_company_information_by-url)
 - 通过职位列表URL采集 (linkedin_job_listings_information_by-job-listing-url)
@@ -96,6 +106,36 @@ curl -X POST 'https://scraperapi.dataify.com/builder' \
 - `scripts/build-dataify-request.py` is the portable implementation and should be preferred.
 - `scripts/build-dataify-request.ps1` mirrors the same behavior for Windows users.
 - If a parameter has no options, the user must provide the value.
-- If a parameter has options, present those options back to the user before building the final request.
 - Do not assume `spider_parameters` always contains exactly one object. Multi-value tools may require multiple objects zipped by index.
 - Use the saved `url_example` only as a reference example. Do not assume the user wants the example values unless they explicitly confirm them.
+
+## Default completion behavior
+
+The default deliverable is the collected result, not only a `task_id`.
+
+1. Submit the Builder task once and capture its `task_id`.
+2. Immediately continue with `$dataify-task-operations` and monitor the same task ID.
+   - Use the default 600-second wait for ordinary collections.
+   - Use `--timeout 1800` for media downloads or clearly high-volume, multi-page, or multi-input collections.
+3. When the task succeeds, download and return the final JSON result. Summarize large payloads while preserving access to the raw result.
+4. If monitoring times out or is interrupted, return the task ID and a resume command. Do not resubmit the paid task.
+5. Stop after submission only when the user explicitly asks for submission only, a task ID, or `--no-wait` behavior.
+
+## Parameter interaction policy
+
+- For a clear, low-risk, read-only, and low-cost request, apply safe defaults and execute immediately. A short execution summary is optional; do not pause for confirmation.
+- Ask only for a missing required input, a material ambiguity, a high-volume or multi-page scope, a media download, a choice that materially changes credit usage, an irreversible action, or an explicit user request to review parameters.
+- When confirmation is required, show only user-facing values that affect the target, scope, output, or cost. Prefer one concise sentence; use a compact table only when three or more consequential values are easier to compare.
+- Never show fixed fields, empty optional fields, unchanged defaults, credentials, or internal implementation parameters such as engine selectors, response-format flags, offsets, spider IDs, and file-name templates.
+- Keep advanced filters hidden unless the user asks for them or they are needed to resolve ambiguity. Never substitute documentation example values for missing required user input.
+- After returning results, offer relevant refinements instead of forcing all optional decisions before the first result.
+
+## Account CTA policy
+
+- Show a prominent Dataify account CTA only when the API token is missing, rejected/invalid, or the account has insufficient credits.
+- For a missing token, offer https://dashboard.dataify.com/login?utm_source=skill and state: New accounts get 50 free credits, enough for about 6,000 trial results, valid for 7 days, and only successful requests are billed. Never ask the user to paste the token into chat.
+- Detect the current operating system and shell. Show only the matching session-scoped setup command first (`export` for macOS/Linux shells, `$env:` for Windows PowerShell, or `set` for Windows Command Prompt). Show other platforms or persistent setup only when detection is ambiguous or the user asks.
+- After the user says the token is configured, verify only whether `DATAIFY_API_TOKEN` is present; never print its value. If verification succeeds, continue the original task without asking the user to repeat it.
+- Explain that persistent shell changes may require a new terminal or restarting the agent application. Do not recommend a project `.env` unless the execution path explicitly loads it, and ensure `.env` is ignored by version control.
+- For an invalid token, direct the user to API-key management without implying that a new registration is required. For insufficient credits, direct the user to balance or recharge management.
+- During normal submission, processing, and successful completion, do not promote registration or the Dashboard. Never expose the token or include it in CTA attribution parameters.

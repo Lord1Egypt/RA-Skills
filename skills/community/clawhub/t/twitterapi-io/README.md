@@ -1,12 +1,12 @@
 # twitterapi-io-skill
 
-**Make any LLM use Twitter/X.** 67 active endpoints via [TwitterAPI.io](https://twitterapi.io) — search, post, like, retweet, follow, DM, communities, webhooks, profile management.
+**Make any LLM use Twitter/X.** 76 active endpoints via [TwitterAPI.io](https://twitterapi.io) — search, post, like, retweet, follow, DM, communities, webhooks, profile management.
 
 No Twitter developer account needed. Works with any AI assistant.
 
 ## How it works
 
-`SKILL.md` is a single file that teaches an LLM how to use the Twitter API. It contains:
+`SKILL.md` teaches an LLM how to use the TwitterAPI.io API. Detailed endpoint examples are split into `references/*.md` so agents can load the exact read/write/webhook reference only when needed. The skill contains:
 
 - Every endpoint with method, path, and curl example
 - Required and optional query parameters for each endpoint
@@ -14,7 +14,19 @@ No Twitter developer account needed. Works with any AI assistant.
 - Authentication, pricing, rate limits, pagination patterns
 - Login flow for write actions (tweet, like, retweet, follow)
 
-Drop it into your AI tool's context and it can start making real Twitter API calls.
+Install the whole skill directory when your agent supports multi-file skills. If your tool only accepts a single context file, use the root `SKILL.md` as the overview and consult the files in `references/` for endpoint-level details.
+
+## Use with Hermes Agent
+
+Install the bundled multi-file read-only skill so public read endpoint references are available through `skill_view`:
+
+```bash
+hermes skills install dorukardahan/twitterapi-io-skill/skills/twitterapi-io --force
+```
+
+Then start a fresh session or run `/reset` before relying on the updated skill context.
+
+The Hermes bundle intentionally excludes write/login/cookie/proxy reference files so community-skill safety scanning keeps the install safe. The repository root still includes the complete all-endpoints documentation for manual/non-agent review.
 
 ## Use with OpenClaw
 
@@ -42,12 +54,14 @@ Then: "Read SKILL.md and search recent tweets about Bitcoin"
 
 Paste the contents of `SKILL.md` into your conversation or system prompt. The LLM will understand how to construct curl commands for any Twitter operation.
 
-## Endpoints (67 total)
+## Endpoints (76 total)
+
+Counting by HTTP method from the live OpenAPI: **36 GET**, **40 POST/PATCH/PUT/DELETE**, with **8 `/oapi/` webhook/stream endpoints** overlapping those method totals (3 GET + 5 write).
 
 | Category | Count | Examples |
 |----------|-------|---------|
-| **Read** | 31 | Search, tweets, users, lists, communities, trends, spaces, account info |
-| **Write** | 28 | Login, tweet, like, retweet, follow, profile updates, DM, media, communities |
+| **Read** | 36 | Search, tweets, users, lists, communities, trends, spaces, account info, `/oapi/my/info`, get rules, monitored users |
+| **Write** | 40 | Login, tweet, like, retweet, follow, profile updates, DM, media, communities, webhook rule changes, monitor user changes |
 | **Webhook + Stream** | 8 | Add/update/delete rules, monitor users |
 
 ## Requirements
@@ -62,3 +76,7 @@ Paste the contents of `SKILL.md` into your conversation or system prompt. The LL
 ## License
 
 MIT
+
+## Publishing
+
+Use the fail-closed release process in [PUBLISHING.md](https://github.com/dorukardahan/twitterapi-io-skill/blob/main/PUBLISHING.md). ClawHub publishing must use a clean release-tag checkout, never an agent workspace.

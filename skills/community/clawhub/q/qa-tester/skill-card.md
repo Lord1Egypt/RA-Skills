@@ -1,40 +1,56 @@
-## Description: <br>
-Strict QA and test engineering skill for fullstack repositories. Use when writing test plans, implementing unit/integration/E2E tests, reproducing bugs, validating regressions, or preparing release readiness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Strict QA and test engineering skill for fullstack repositories that guides test planning, unit/integration/E2E coverage, bug reproduction, regression validation, and release readiness with deterministic evidence.
 
-## Publisher: <br>
-[bayudsatriyo](https://clawhub.ai/user/bayudsatriyo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bayudsatriyo](https://clawhub.ai/user/bayudsatriyo)
 
-## Use Case: <br>
-Developers and QA engineers use this skill to plan, author, and review deterministic unit, integration, and E2E tests, validate bug regressions, and prepare release-readiness summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Proposed test changes or QA guidance could be incorrect or misleading for a specific repository. <br>
-Mitigation: Review proposed changes before applying them, and approve only test commands that are appropriate for the repository. <br>
+## Use Case:
 
+Developers and QA engineers use this skill to plan and implement unit, integration, and E2E tests; reproduce bugs; validate regressions; and summarize release readiness with explicit evidence.
 
-## Reference(s): <br>
-- [Testing Patterns](references/testing-patterns.md) <br>
-- [E2E Reliability](references/e2e-reliability.md) <br>
-- [Release Gate](references/release-gate.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with proposed tests, validation notes, and commands to run only with user approval] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; proposed test changes and commands require repository review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may guide an agent to inspect repository code and create or update tests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed file changes before accepting them, and keep tests outside production source folders.
+
+Risk: Test commands can change local state or take time to run.
+
+Mitigation: Run tests only after explicit user approval and report only observed results.
+
+## Reference(s):
+
+- [Testing Patterns](references/testing-patterns.md)
+- [E2E Reliability](references/e2e-reliability.md)
+- [Release Gate](references/release-gate.md)
+- [ClawHub Skill Page](https://clawhub.ai/bayudsatriyo/skills/qa-tester)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands]
+
+**Output Format:** [Markdown with structured QA recommendations, test code when requested, and shell commands to run later]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not run tests unless explicitly approved by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

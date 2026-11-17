@@ -1,40 +1,57 @@
-## Description: <br>
-Detects trend signals for up to five keywords and classifies each as Rising, Peaking, Declining, or Insufficient_Data using web search and an LLM. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes web trend signals for keywords and classifies each as Rising, Peaking, Declining, or Insufficient_Data.
 
-## Publisher: <br>
-[jinu4you](https://clawhub.ai/user/jinu4you) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
 
+[jinu4you](https://clawhub.ai/user/jinu4you)
 
-## Use Case: <br>
-External users and developers use this agent to compare keyword momentum over a selected timeframe and receive ranked trend classifications with evidence URLs and a short brief. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: Entered keywords, generated search queries, and retrieved article snippets may be sent to Tavily and the selected LLM provider. <br>
-Mitigation: Use only data approved for those providers and configure quota-limited API keys. <br>
-Risk: Running npm start can execute the included sample job and make API calls when credentials are configured. <br>
-Mitigation: Review runtime behavior before execution and run it only in controlled environments. <br>
+## Use Case:
 
+Developers and analysts use this agent to search recent web results for up to five keywords, classify trend lifecycle signals, and receive a short brief with evidence URLs.
 
-## Reference(s): <br>
-- [Agent Trend Radar on ClawHub](https://clawhub.ai/jinu4you/agent-trend-radar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON] <br>
-**Output Format:** [JSON result containing trend records, evidence URLs, and a brief text summary that may include Markdown emphasis.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scores are sorted descending; each trend includes keyword, signal, score, reason, and evidence URL fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and package.json) <br>
+Risk: Keyword queries and retrieved article snippets are sent to Tavily and the configured LLM provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disclose provider data transfer, configure API keys only in trusted environments, and avoid sensitive keywords or source content.
+
+Risk: Untrusted web content can influence trend classifications and generated briefs.
+
+Mitigation: Treat results as advisory, review evidence URLs, and add input size limits plus strict schema validation before production use.
+
+Risk: Outdated dependencies or provider API changes can affect reliability.
+
+Mitigation: Keep dependencies current and test configured Tavily and LLM provider integrations before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jinu4you/skills/agent-trend-radar)
+
+## Skill Output:
+
+**Output Type(s):** [json, text, markdown]
+
+**Output Format:** [JSON result object with trend classifications, scores, evidence URLs, and a concise markdown-style Korean brief]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are sorted by score and include the requested timeframe and region.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and package.json; SKILL.md frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,829 @@
+# Founder Wisdom — eval scenarios
+#
+# Hand-checkable behavioral expectations for SKILL.md. Every expectation here is
+# traceable to a line in SKILL.md; the `rationale` names the rule it protects.
+# See README.md in this directory for the schema and how to run these.
+
+version: 1
+
+# Invariants that apply to every scenario where should_trigger is true.
+# Source: SKILL.md "How to choose which axioms to surface" and "Output style".
+global_invariants:
+  - "Reads 2-3 reference files, not more, unless a comprehensive scan is explicitly requested."
+  - "Surfaces 3-7 axioms maximum."
+  - "Uses the bolded-axiom-then-explanation format; the axiom is quotable in one sentence."
+  - "Any market-dependent figure is presented with its *[bench YYYY-MM]* vintage, never as timeless."
+  - "Any axiom presented on the authority of one company's named practice carries the condition that practice ran on, never the company name alone."
+  - "Does not hedge into 'it depends' without naming the specific dependency."
+
+scenarios:
+
+  # ---------------------------------------------------------------- triggering
+
+  - id: trigger-fire-vp-sales
+    prompt: "Should I fire my VP of Sales?"
+    should_trigger: true
+    expected_mode: direct
+    expected_files:
+      must_include: [references/hiring.md]
+      must_not_include: [references/socratic-technique.md, references/fundraising.md]
+    assertions:
+      - "Skill triggers even though the prompt never asks for advice."
+      - "Surfaces the fire-fast axiom and names its limit (not in anger, not on a Friday)."
+      - "Does not answer from generic management priors."
+    rationale: >-
+      SKILL.md's description says to trigger on "should I..." framings and lists
+      "hiring or firing" explicitly; hiring.md is the named home for firing axioms.
+
+  - id: trigger-cofounder-absent
+    prompt: "Is it normal that my co-founder stopped showing up to standups?"
+    should_trigger: true
+    expected_mode: direct
+    expected_files:
+      must_include: [references/cofounders-equity.md]
+      must_not_include: [references/governance.md, references/startup-mechanics.md]
+    assertions:
+      - "Skill triggers on the 'is it normal that...' framing named in the description."
+      - "Treats this as a co-founder-dynamics question, not a process/standup question."
+    rationale: >-
+      SKILL.md description: "Trigger without an explicit ask for 'advice' —
+      'should I…', 'is it normal that…', 'we're thinking about…' ... are in scope."
+
+  - id: trigger-thinking-about-raising
+    prompt: "We're thinking about raising."
+    should_trigger: true
+    expected_mode: direct
+    expected_files:
+      must_include: [references/fundraising.md]
+      must_not_include: [references/startup-mechanics.md]
+    assertions:
+      - "Skill triggers on a bare 'we're thinking about...' with no question mark."
+      - "Asks at most one short clarifying question about stage rather than a list."
+    rationale: >-
+      SKILL.md description names "we're thinking about..." as in scope; "How to
+      stage-match" permits one short clarifying question when stage is unknown.
+
+  - id: trigger-incumbent-pressure
+    prompt: "How do I stop the incumbent from crushing us?"
+    should_trigger: true
+    expected_mode: direct
+    expected_files:
+      must_include: [references/strategy-moats.md]
+      must_not_include: [references/hiring.md, references/culture.md]
+    assertions:
+      - "Routes to defensibility, not to sales tactics alone."
+      - "Counter-positioning is a plausible lead axiom given an incumbent is named."
+    rationale: >-
+      SKILL.md lists "questions about moats, defensibility, competition, or
+      positioning against incumbents" in the description and points them at
+      strategy-moats.md.
+
+  - id: trigger-third-party-advisor
+    prompt: "I coach a founder who's stuck on whether to shut down. How should I approach our session tomorrow?"
+    should_trigger: true
+    expected_mode: socratic
+    expected_files:
+      must_include: [references/socratic-technique.md]
+      must_not_include: []
+    assertions:
+      - "Triggers on the helping-someone-else frame."
+      - "Offers questions the coach can ask, not axioms to recite at the client."
+    rationale: >-
+      SKILL.md: "Also useful when the person is helping someone else with
+      founder-stage decisions (advisor, coach, mentor, investor)" and the first
+      Socratic trigger bullet.
+
+  - id: trigger-bootstrapped-should-we-raise
+    prompt: "We've been self-funded and profitable for four years. Two funds reached out this month and everyone tells me I'd be crazy not to take the meeting. Should we raise?"
+    should_trigger: true
+    expected_mode: direct
+    expected_files:
+      must_include: [references/bootstrapping.md]
+      must_not_include: [references/fundraising.md]
+    assertions:
+      - "Skill triggers on the 'should we...' framing even though the company has never raised and is not running a process."
+      - "Leads with what the first institutional dollar deletes — the fund is underwriting a fund-returning outcome, so 'good enough' stops being an available outcome — rather than with round mechanics, terms, or investor-narrative advice."
+      - "Names the fund-size arithmetic against the honest ceiling of the business rather than treating inbound investor interest as the signal to raise."
+      - "Surfaces 'you can raise later; you cannot un-raise' and names what would make later have arrived; capital-valuation.md is acceptable as a secondary file for the preference-stack math."
+    rationale: >-
+      SKILL.md's description names "bootstrapping and staying independent" in
+      scope alongside "whether to raise at all," and the bootstrapping.md entry
+      says to consult it for "should we raise at all," bootstrapping, staying
+      independent. This scenario pins the seam against the scenario that routes a
+      bare "we're thinking about raising" to fundraising.md: the surface topic is
+      identical and the routing is not, because fundraising.md answers how to run
+      a round and bootstrapping.md answers whether the round should exist.
+      The fundraising.md entry draws that seam itself — "For whether to raise at
+      all rather than how to run the round, see bootstrapping.md" — so
+      fundraising.md in must_not_include reads a line SKILL.md states rather than
+      tightening one it leaves open; routing on the word "raise" is the plausible
+      wrong turn, not a forbidden topic.
+
+  # ------------------------------------------------------- trigger negatives
+
+  - id: negative-fda-pathway
+    prompt: "What's the difference between a 510(k) and a De Novo submission for our device?"
+    should_trigger: false
+    expected_mode: none
+    expected_files:
+      must_include: []
+      must_not_include: [references/product.md, references/startup-mechanics.md, references/meta.md]
+    assertions:
+      - "No reference file is read."
+      - "Answered (or declined) without founder axioms attached."
+    rationale: >-
+      SKILL.md "What this skill is not for": "Industry-specific operational
+      knowledge (e.g., FDA approval pathways, ad-tech mechanics)."
+
+  - id: negative-legal-drafting
+    prompt: "Draft the indemnification clause for our standard employment agreement."
+    should_trigger: false
+    expected_mode: none
+    expected_files:
+      must_include: []
+      must_not_include: [references/startup-mechanics.md, references/hiring.md]
+    assertions:
+      - "No reference file is read."
+      - "Points at qualified counsel rather than producing axioms about hiring."
+    rationale: >-
+      SKILL.md "What this skill is not for": "Detailed legal advice (term sheets,
+      employment law, IP) — defer to qualified counsel." This is drafting, not a
+      decision question.
+
+  - id: negative-boundary-mixed-regulatory
+    prompt: "Should we hire a regulatory affairs VP before or after we submit our 510(k)?"
+    should_trigger: true
+    expected_mode: direct
+    expected_files:
+      must_include: [references/hiring.md]
+      must_not_include: [references/product.md]
+    assertions:
+      - "Triggers on the executive-hire-timing decision."
+      - "Does not attempt to answer the FDA-timeline half of the question from the corpus."
+    rationale: >-
+      Boundary case. The exec-hire timing is squarely in scope; the regulatory
+      timeline is the out-of-scope half named in "What this skill is not for."
+      SKILL.md does not say what to do with a mixed prompt — this scenario encodes
+      the reading that in-scope halves trigger and out-of-scope halves are answered
+      without the corpus. Ambiguous; flag if the maintainer disagrees.
+
+  - id: negative-ai-adoption-enterprise
+    prompt: "Our 4,000-person insurance company is rolling out AI agents in the contact center. How do we handle accountability?"
+    should_trigger: false
+    expected_mode: none
+    expected_files:
+      must_include: []
+      must_not_include: [references/management-execution.md, references/hiring.md, references/sales-gtm.md]
+    assertions:
+      - "No reference file is read."
+      - "Answered without founder axioms attached; the AI-and-work clause in the description is not read as license to fire on any enterprise AI-adoption question."
+    rationale: >-
+      Boundary on the description clause naming how AI changes the way a startup
+      team works, sells, and hires and who stays accountable when an agent does the
+      work. The description scopes the whole skill to a "startup, scale-up, or
+      early-stage company decision," and "What this skill is not for" limits it to
+      cross-domain founder patterns, so a 4,000-person incumbent's contact-center
+      rollout is out of scope on both counts.
+
+  - id: reassurance-still-triggers
+    prompt: "We've got three LOIs and a great deck. This is going to work, right? Just tell me I'm not crazy."
+    should_trigger: true
+    expected_mode: direct
+    expected_files:
+      must_include: [references/yc-canon-product.md]
+      must_not_include: [references/socratic-technique.md]
+    assertions:
+      - "Does NOT simply reassure."
+      - "Surfaces the axiom that pushes back — politeness is not traction; LOIs are not signed contracts."
+      - "Pushback is delivered as pattern, not as moralizing."
+      - "customers-market.md and yc-canon.md are acceptable as secondary files."
+    rationale: >-
+      SKILL.md "What this skill is not for" lists "Reassurance" but the entry says
+      the skill "should still surface the axiom that pushes back" — i.e. it is a
+      not-for on the *output*, not a trigger negative. This scenario exists to stop
+      that line being misread as "don't trigger." The mode is a judgment call:
+      "tell me I'm not crazy" is a request for confirmation, not the ambivalence
+      that SKILL.md names as a Socratic trigger, so this encodes direct. A
+      maintainer who reads it as ambivalence would flip this to socratic.
+
+  # ------------------------------------------------------------------ routing
+
+  - id: routing-delegation-at-30
+    prompt: "I'm CEO of a 30-person company and I'm still approving every hire and every spend. How do I delegate?"
+    should_trigger: true
+    expected_mode: direct
+    expected_files:
+      must_include: [references/management-execution.md]
+      must_not_include: [references/startup-mechanics.md, references/governance.md]
+    assertions:
+      - "Leads with the Grove/Gil delegation canon (output equation, leverage, task-relevant maturity, give-away-your-Legos), not with the founder-mode counter-canon."
+      - "Bounds any founder-mode material by the scope rule; being in the details is not offered as license to keep approving every hire and every spend."
+      - "time-energy.md is acceptable as a secondary file but not as the primary one."
+    rationale: >-
+      SKILL.md's management-execution.md entry: "Consult for questions about
+      delegation ... *(Mostly 10+ employees; below that, prefer time-energy.md and
+      hiring.md.)*" 30 people is above the threshold. That same entry now names the
+      founder-mode counter-canon and lists "founder mode" and "am I micromanaging"
+      among its consult triggers, so this scenario also pins the boundary — the
+      counter-canon is bounded by the scope rule that closes
+      management-execution.md, not offered as license to approve everything.
+
+  - id: routing-delegation-at-5
+    prompt: "There are five of us and I'm doing everything. How do I start delegating?"
+    should_trigger: true
+    expected_mode: direct
+    expected_files:
+      must_include: [references/time-energy.md]
+      must_not_include: [references/management-execution.md]
+    assertions:
+      - "Surfaces 'delegate outcomes, not tasks' and/or the first-hires framing from hiring.md."
+      - "Does not reach for org-design or reorg material."
+    rationale: >-
+      Same SKILL.md stage note, other side of the threshold: "below that, prefer
+      time-energy.md and hiring.md." Note the word is "prefer," not "never read" —
+      management-execution.md in must_not_include is the strict reading of a soft
+      instruction.
+
+  - id: routing-canon-split-product-half
+    prompt: "How do I know if we actually have product-market fit, or if I'm fooling myself?"
+    should_trigger: true
+    expected_mode: direct
+    expected_files:
+      must_include: [references/yc-canon-product.md]
+      must_not_include: [references/yc-canon.md]
+    assertions:
+      - "Surfaces the product half of the canon — the 40% test, the building-is-on-fire feel of PMF, or hair-on-fire customers."
+      - "product.md is acceptable as a secondary file."
+      - "Does not reach for the essay half (Corp Dev, the pocket guide, momentum) as if it answered the question."
+    rationale: >-
+      SKILL.md splits the canon into two bullets: yc-canon.md is "the essay half"
+      and yc-canon-product.md is "the product half ... Consult for pre-PMF
+      questions, early-user research, and pivot decisions." This scenario pins the
+      seam so the split does not silently collapse back into one file. yc-canon.md
+      in must_not_include is the strict reading — it is not wrong to read, only
+      wrong to read *instead*.
+
+  - id: routing-moat-not-just-market
+    prompt: "Investors keep asking what our moat is and I don't have a good answer."
+    should_trigger: true
+    expected_mode: direct
+    expected_files:
+      must_include: [references/strategy-moats.md]
+      must_not_include: [references/fundraising.md]
+    assertions:
+      - "customers-market.md alone does not satisfy this scenario — the benefit+barrier test lives in strategy-moats.md."
+      - "customers-market.md is acceptable as a secondary file."
+      - "Does not treat this as a fundraising-narrative question."
+    rationale: >-
+      SKILL.md: "Consult [strategy-moats.md] whenever a question touches moats,
+      defensibility, competition, positioning against incumbents ... or investor
+      pushback on differentiation."
+
+  - id: routing-exit-math
+    prompt: "If we sell for $80M, what do I actually walk away with after two preferred rounds?"
+    should_trigger: true
+    expected_mode: direct
+    expected_files:
+      must_include: [references/capital-valuation.md]
+      must_not_include: [references/finance-ops.md]
+    assertions:
+      - "Surfaces the liquidation waterfall and the founder dead zone."
+      - "Explicitly defers the actual computation to counsel or a CFO rather than asserting a number."
+    rationale: >-
+      SKILL.md routes "what will I actually get at exit" to capital-valuation.md,
+      and "What this skill is not for" defers specific financial recommendations.
+
+  - id: routing-83b
+    prompt: "I just got my founder stock. Do I need to file anything?"
+    should_trigger: true
+    expected_mode: direct
+    expected_files:
+      must_include: [references/startup-mechanics.md]
+      must_not_include: [references/cofounders-equity.md]
+    assertions:
+      - "Surfaces the 83(b) election and its 30-day window."
+      - "Defers the filing itself to counsel or a tax professional."
+    rationale: >-
+      SKILL.md's startup-mechanics.md entry names "founder stock" and "the 83(b)
+      election and e-filing via Form 15620."
+
+  - id: routing-equity-grant-canonical-home
+    prompt: "A senior engineer is asking for 2% to join us. Is that too much?"
+    should_trigger: true
+    expected_mode: direct
+    expected_files:
+      must_include: [references/cofounders-equity.md]
+      must_not_include: [references/fundraising.md]
+    assertions:
+      - "Surfaces the break-even test — a grant pays for itself only if the person raises the company's average outcome enough that the smaller slice beats the whole you held before."
+      - "Names the break-even as a ceiling rather than an offer, because salary and overhead come out of the same stock."
+      - "Runs the inversion rather than only restating the test in prose — the break-even grant (i−1)/i, roughly 16.7% at a 1.2x belief, is worked math that lives only in cofounders-equity.md, not in the hiring.md pointer."
+      - "hiring.md and capital-valuation.md are acceptable as secondary files, but a one-line pointer from either is not a substitute for the worked test."
+    rationale: >-
+      SKILL.md's cofounders-equity.md entry names Paul Graham's equity equation —
+      the break-even test behind any equity trade, investor or hire — and says it
+      lives there in full while hiring.md and capital-valuation.md "carry pointers
+      only," which is CONTRIBUTING.md's canonical-home rule. A model routing on
+      the word "engineer" alone lands in hiring.md, which states the break-even
+      test in prose but omits the worked math — the (i−1)/i inversion and the
+      16.7% break-even that live only in the canonical home. That math is what the
+      third assertion pins, and the seam is new — the equity equation had no home
+      in the corpus before.
+
+  - id: routing-chasm-not-sales-capacity
+    prompt: "Our first fifteen customers love us and keep referring each other, but new deals have stalled for two quarters. Do we need a real sales team?"
+    should_trigger: true
+    expected_mode: direct
+    expected_files:
+      must_include: [references/customers-market.md]
+      must_not_include: [references/hiring.md]
+    assertions:
+      - "Diagnoses the stall as a market-position problem — the chasm — rather than a sales-capacity problem."
+      - "Names why the existing logos don't open the mainstream — a visionary is not a peer reference for a pragmatist buyer."
+      - "Names scaling sales into the stall as the fatal move, rather than answering the hire-a-sales-team question on its own terms."
+      - "sales-gtm.md and product.md are acceptable as secondary files."
+    rationale: >-
+      SKILL.md's customers-market.md entry names Moore's chasm and states the
+      mechanism — early adopters cannot reference you to the mainstream, because
+      pragmatists take references only from other pragmatists. The prompt's own
+      framing is the misread the axiom names as fatal, so this scenario pins the
+      file choice and the diagnosis together. hiring.md in must_not_include is
+      the strict reading: hiring a sales team is the plausible wrong turn, not a
+      forbidden topic.
+
+  - id: routing-ruin-overrides-ev
+    prompt: "We can bet the company on one enterprise logo that would triple revenue, but if it churns we don't survive it. The expected value pencils out. Do we take it?"
+    should_trigger: true
+    expected_mode: direct
+    expected_files:
+      must_include: [references/finance-ops.md]
+      must_not_include: [references/strategy-moats.md]
+    assertions:
+      - "Names ruin as overriding expected value — a bet you cannot survive losing is a bad bet at any EV, because the company travels one path and zero is absorbing."
+      - "Does not resolve the decision on the EV calculation alone; whether you survive the miss is the binding constraint."
+      - "capital-valuation.md is acceptable as a secondary file — the power-law payoff explains why the pressure to take the bet exists."
+    rationale: >-
+      SKILL.md's finance-ops.md entry names the ruin test that overrides expected
+      value (Peters/Kelly/Taleb). The prompt is built so the EV math favors the
+      bet, which is the exact trap the axiom names: a model routing on "expected
+      value" or "triple revenue" toward a strategy file misses that survivability,
+      not EV, is the binding constraint. strategy-moats.md in must_not_include is
+      the plausible wrong turn — it reads as a bet-the-company strategy question —
+      not a forbidden topic.
+
+  - id: routing-ai-era-gtm
+    prompt: "Everyone is telling me to replace our SDR team with AI agents. Should we?"
+    should_trigger: true
+    expected_mode: direct
+    expected_files:
+      must_include: [references/sales-gtm.md]
+      must_not_include: [references/socratic-technique.md]
+    assertions:
+      - "Surfaces the AI-era GTM axioms — automate in order of workflow legibility, and you can't automate a playbook you never wrote because an agent's ceiling is the humans and artifacts behind it — rather than generic AI-adoption advice."
+      - "Names the sequencing (inbound qualification first, enterprise prospecting last) instead of answering yes or no."
+      - "Does not present the ten-SDRs-to-one compression as a ratio the founder should plan to hit."
+      - "hiring.md is acceptable as a secondary file."
+    rationale: >-
+      SKILL.md's description names questions about how AI changes the way a startup
+      team works, sells, and hires, and the sales-gtm.md entry names the AI-era GTM
+      section. This scenario pins the routing that description clause creates and
+      the sequencing discipline that separates the corpus's answer from generic
+      AI-adoption advice.
+
+  - id: routing-ai-accountability
+    prompt: "Our coding agent shipped a change that broke prod overnight. Who's actually on the hook here?"
+    should_trigger: true
+    expected_mode: direct
+    expected_files:
+      must_include: [references/management-execution.md]
+      must_not_include: [references/socratic-technique.md]
+    assertions:
+      - "Surfaces the AI-era operating axioms — the agent can do the work but can never hold the accountability, and comprehension as the binding constraint once generation is cheap."
+      - "Names a person as the owner rather than describing an incident-review process."
+      - "culture.md is acceptable as a secondary file for the blameless-retro material."
+    rationale: >-
+      SKILL.md's description names who stays accountable when an agent does the
+      work, and the management-execution.md entry names the AI-era operating section
+      and "who owns the outcome when an agent did the work" among its consult
+      triggers. That section is the largest new body of material in this batch and
+      nothing else pins its routing.
+
+  - id: routing-founder-mode
+    prompt: "Everyone tells me to hire good people and get out of their way, but the company slows down every time I do. Am I micromanaging?"
+    should_trigger: true
+    expected_mode: direct
+    expected_files:
+      must_include: [references/management-execution.md]
+      must_not_include: [references/governance.md]
+    assertions:
+      - "Surfaces the founder-mode counter-canon (being in the details is not micromanagement, the empowerment trap), not only the Grove delegation canon."
+      - "Names the scope rule separating the two canons rather than presenting them as contradictory."
+      - "hiring.md is acceptable as a secondary file."
+    rationale: >-
+      SKILL.md's management-execution.md entry names the founder-mode counter-canon
+      and lists "founder mode" and "am I micromanaging" among its consult triggers.
+      The file carries the Grove canon, the counter-canon, and the closing axiom that
+      reconciles them, so the answer has to reach the counter-canon rather than
+      stopping at hire-and-empower.
+
+  - id: routing-non-dilutive-revenue-share
+    prompt: "We're at $4M ARR and have never raised. A revenue-based lender is offering us $500K against a 1.2x cap, remitted out of monthly revenue. Is that cheap money?"
+    should_trigger: true
+    expected_mode: direct
+    expected_files:
+      must_include: [references/bootstrapping.md]
+      must_not_include: []
+    assertions:
+      - "capital-valuation.md is acceptable as a secondary file but not as the source of the answer: pricing this on venture debt's covenant risk instead of the APR conversion is the failure, whether or not that file was read."
+      - "Converts the cap into an APR rather than reading the multiple as the price, and names the inversion — growth shortens the term, which raises the effective rate, so the instrument charges most precisely when it works."
+      - "Names the honest use — funding an acquisition loop whose payback is shorter than the repayment window — against the trap of funding burn with 30%-plus money."
+      - "Names the terms the multiple hides (daily rather than monthly remittance, a blanket lien, no prepayment discount, a personal guarantee) rather than pricing the headline alone."
+      - "Treats the APR as arithmetic the founder runs against the real remittance schedule rather than asserting a rate for this offer; finance-ops.md is acceptable as a secondary file."
+    rationale: >-
+      SKILL.md's description names "non-dilutive capital," and the
+      bootstrapping.md entry names "the non-dilutive instruments and their real
+      prices (annual prepay, revenue-based financing priced as an APR rather than
+      a cap, SBIR grants...)" with non-dilutive capital and staying independent
+      among its consult triggers. capital-valuation.md in must_not_include is the
+      plausible wrong turn rather than a forbidden topic: its entry answers "what
+      is this round really costing me" and names venture debt's covenant risk, so
+      a model routing on the cost-of-capital framing lands there and gets debt
+      covenants instead of the APR conversion, which lives only in
+      bootstrapping.md. It sits in an assertion rather than must_not_include
+      because reading it is not the failure — bootstrapping.md's own
+      revenue-based-financing axiom points at capital-valuation.md for the
+      payback ladder, so it is not wrong to read, only wrong to read *instead*.
+
+  - id: routing-winddown-procedure-not-axiom
+    prompt: "We're out of runway and I have to close the company — what do I do first?"
+    should_trigger: true
+    expected_mode: direct
+    expected_files:
+      must_include: [references/crisis-resilience.md]
+      must_not_include: [references/socratic-technique.md]
+    assertions:
+      - "Answers the how, not the whether — the founder states the decision as already made, so restating the shut-down-is-harder-than-fighting-on axiom is a non-answer."
+      - "Names remitting the withheld payroll tax ahead of every other creditor including the founder's own salary, because it is trust money held for the government that survives dissolution and is generally nondischargeable in personal bankruptcy."
+      - "Names creditor priority and the sympathetic out-of-order payment that becomes a personal claim, rather than leaving the payment order to the founder's sense of decency."
+      - "Names stopping the liability meter the day you decide rather than the day you announce, and the reserve that buys an orderly shutdown before you spend through it."
+      - "Defers the jurisdiction-specific procedure — final-pay timing, mass-layoff notice, dissolution versus an assignment for the benefit of creditors versus Chapter 7 — to insolvency counsel retained while the company can still pay them; startup-mechanics.md is acceptable as a secondary file for the standing personal exposures."
+    rationale: >-
+      SKILL.md's crisis-resilience.md entry names the wind-down section
+      explicitly — creditor priority and the sympathetic out-of-order payment
+      that becomes a personal claim, withheld payroll taxes as trust money that
+      outlives the company, stopping the liability meter the day you decide
+      rather than the day you announce, the reserve that buys an orderly
+      shutdown, and the order you owe employees, customers, and investors — and
+      closes with the canonical-home note that the wind-down sequence lives
+      there in full, which is CONTRIBUTING.md's canonical-home rule. This
+      scenario pins that entry against the two shutdown scenarios already here.
+      mode-socratic-ambivalence and trigger-third-party-advisor both sit on the
+      whether, where the core axiom (the decision to shut down is harder than
+      the decision to fight on) is the right answer and Socratic is the right
+      mode. Here the decision is stated as made and the ask is procedural, so
+      none of the four Socratic triggers fire and that axiom becomes the
+      failure mode rather than the answer — the founder asked what to do first
+      and a restatement of when to stop answers a question they already
+      settled. socratic-technique.md in must_not_include is the strict reading
+      — the emotional register of the prompt is the plausible wrong turn into
+      Socratic mode, not a forbidden topic. The last assertion is SKILL.md's
+      "Detailed legal advice (term sheets, employment law, IP) — defer to
+      qualified counsel," which the section's own vintage note reinforces
+      because wind-down law is state-specific.
+
+  - id: routing-personal-guarantee-mechanics
+    prompt: "Our landlord won't sign the lease unless I guarantee it personally. What am I actually on the hook for?"
+    should_trigger: true
+    expected_mode: direct
+    expected_files:
+      must_include: [references/startup-mechanics.md]
+      must_not_include: []
+    assertions:
+      - "bootstrapping.md is acceptable as a secondary file but not as the source of the answer: answering with the consequence of having signed — the founder who cannot kill the company — instead of what the signature costs is the failure, whether or not that file was read."
+      - "Sizes the exposure as the rent remaining on the whole term rather than the months occupied, and names that it survives the company's dissolution because a guarantee is a separate contract with the founder rather than with the entity."
+      - "Treats the guarantee as negotiable and names the levers — a stated dollar cap, a burn-down on a payment-history schedule, the New York market's good-guy form that ends liability for future rent once you vacate and surrender on the required notice — rather than answering sign or walk."
+      - "Answers this as personal exposure sitting outside the corporate veil rather than as a lease or opex question, and names the one-page inventory of every guarantee with its cap and release condition, because founders reliably cannot list them from memory."
+      - "Defers the drafting and the state-law specifics to counsel rather than asserting what the clause will say; finance-ops.md is acceptable as a secondary file for reading the number you can afford to lose as a ruin constraint."
+    rationale: >-
+      SKILL.md's startup-mechanics.md entry names "the founder personal
+      exposures that sit outside the corporate veil" and leads that list with
+      "the lease guarantee signed without a cap or a release," then closes with
+      the canonical-home note that personal exposure lives there in full —
+      CONTRIBUTING.md's canonical-home rule, and the mirror of the note that
+      sends the shutdown sequence to crisis-resilience.md. The seam is sharp
+      because SKILL.md's bootstrapping.md entry also names "the personal
+      guarantee that takes shutdown off the table," so a model routing on the
+      phrase alone lands there and gets the consequence of having signed — the
+      founder who cannot kill the company, because killing it realizes the loss
+      — when the founder asked what the signature costs. The whole-term size,
+      the survival past dissolution, and the cap, burn-down, and good-guy
+      levers live only in startup-mechanics.md. bootstrapping.md sits in an
+      assertion rather than must_not_include because startup-mechanics.md's own
+      lease axiom points at it for what signing does to the shutdown decision,
+      so it is not wrong to read, only wrong to read *instead*. The counsel deferral
+      is SKILL.md's "Detailed legal advice (term sheets, employment law, IP) —
+      defer to qualified counsel."
+
+  - id: routing-waterfall-procedure-not-axiom
+    prompt: "We've closed a seed and a Series A and I've never built the waterfall. Nobody is trying to buy us — I just want to know what I'd actually get if someone did. Where do I start and what do I need in front of me?"
+    should_trigger: true
+    expected_mode: direct
+    expected_files:
+      must_include: [references/capital-valuation.md]
+      must_not_include: [references/exits-ma.md]
+    assertions:
+      - "Answers the how, not the what — the founder asked which documents to open and in what order, so restating that the waterfall rather than the valuation determines the payout is a non-answer."
+      - "Names the amended and restated certificate of incorporation as where the preference terms actually live, restated at every priced round so only the most recent governs, rather than the term sheet that was superseded at closing or the ownership percentage on the cap table screen."
+      - "Names the four things to record for each series — the preference multiple, participating or non-participating, any cap on participation written as a total multiple of invested capital, and seniority, meaning whether the series are *pari passu* or stacked — rather than assuming a clean 1x non-participating stack."
+      - "Names the conversion decision as the non-linearity — non-participating preferred takes the greater of its preference and its as-converted share, so every series has a price above which it converts and stops taking preference — and corrects that first-pass conversion point for the preferences still sitting above it."
+      - "Names the limit of the simple model (an unconverted SAFE or note, cumulative dividends, a management carve-out) and defers confirming the charter language to company counsel, rather than asserting a number the founder can act on."
+    rationale: >-
+      SKILL.md's capital-valuation.md entry names the procedure section
+      explicitly — "how to compute your own waterfall — which documents actually
+      govern, reading the preference stack series by series, the price at which
+      each series stops taking preference and converts, and the exit price
+      where common's first dollar arrives" — and adds "how do I actually
+      compute my waterfall" to that file's consult triggers. This is the
+      scenario issue #39 asks for: it pins that a "how do I actually..."
+      question gets procedure, not axioms. The seam is against
+      routing-exit-math, which sits on the same file and the same topic. There
+      the founder names a price and asks what they walk away with, and the two
+      waterfall axioms are the right answer. Here the founder asks what to open
+      and in what order, so "the waterfall, not the valuation, determines what
+      you get paid" becomes the failure mode rather than the answer — it is
+      true, the founder can already recite it, and it leaves them exactly where
+      they were. The three procedural assertions are the three things the
+      section says a founder cannot get from the axioms: the charter as the
+      operative document, the four terms recorded per series, and the
+      conversion point corrected for the stack. exits-ma.md in must_not_include
+      is the strict reading and an unusually well-grounded one — SKILL.md's
+      exits-ma.md entry closes with "for the waterfall math,
+      capital-valuation.md," and the prompt states there is no live process, so
+      none of that file's own consult triggers fire. The last assertion is
+      SKILL.md's "Specific financial recommendations — defer to a CFO or tax
+      professional" and "Detailed legal advice (term sheets, employment law,
+      IP) — defer to qualified counsel," which the section's own opening
+      reinforces by telling the founder to have company counsel confirm the
+      terms read out of the charter before acting on any number the model
+      produces.
+
+  - id: routing-default-alive-calculation
+    prompt: "I keep telling our investors we're Default Alive on the current plan, but I've never actually run the model myself. How do I do the calculation properly?"
+    should_trigger: true
+    expected_mode: direct
+    expected_files:
+      must_include: [references/finance-ops.md]
+      must_not_include: [references/fundraising.md]
+    assertions:
+      - "Answers with the arithmetic rather than the framing — the founder already has Graham's binary, so restating the three levers and answer-this-monthly is a non-answer."
+      - "Names the four inputs and that none of them is the P&L — cash net of what is already spoken for, net burn as the change in the bank balance over a clean month, run-rate recurring revenue with implementation and services excluded, and a growth rate measured over six months of compounding rather than off the best month."
+      - "Surfaces the frozen-headcount trap as the input that decides the answer — the model runs against the hiring plan the founder actually approved, each hire entered at fully loaded cost in the month they start, because holding headcount flat is the assumption abandoned by month three."
+      - "Names that the same growth rate and the same starting cash give Default Alive on frozen headcount and Default Dead once the approved plan is entered, rather than offering the hiring plan as a caveat on an otherwise sound model."
+      - "Names rerunning with softened assumptions until the answer is yes as the second failure mode, and locates the difficulty in the inputs — what actually left the bank last month — rather than in the arithmetic."
+    rationale: >-
+      SKILL.md's finance-ops.md entry names the calculation section and ends it
+      on the trap this scenario pins — "how to run the Default Alive
+      calculation, from the four inputs and the systems each comes from,
+      through growth measured over six months of compounding, to running
+      revenue against the hiring plan you actually approved rather than frozen
+      headcount." The framing is the part the founder already has: it is in the
+      axiom, and SKILL.md's own Socratic table carries the question form of it.
+      So a response returning Graham's binary and the three levers answers
+      something that was not asked, which is the same failure
+      routing-waterfall-procedure-not-axiom pins one file over. The arithmetic
+      is what the corpus adds here, and the headcount assumption is the part of
+      it that changes the answer rather than decorating it — the section's
+      worked case is built to make exactly that concrete, same growth rate and
+      same starting cash, Default Alive frozen and Default Dead on the approved
+      plan — so a response that mentions hiring as a caveat has missed it.
+      fundraising.md in must_not_include is the strict reading: SKILL.md's
+      fundraising.md entry names runway and investor relations, and the prompt
+      is addressed to investors, so a model routing on the
+      position-of-strength half of the Default Alive axiom lands there and
+      answers when to raise instead of how to run the number. Not a forbidden
+      topic — wrong to read *instead*. The last assertion's deferral is
+      SKILL.md's "Specific financial recommendations — defer to a CFO or tax
+      professional," which the section states as the reason the inputs, not the
+      math, are where a Controller or fractional CFO earns the fee.
+
+  - id: routing-down-round-sequencing
+    prompt: "We're not going to grow into the price we raised at last time, and we may have to raise at a lower price. I've made my peace with the number — what I don't know is who hears it first and what I should have settled before that conversation."
+    should_trigger: true
+    expected_mode: direct
+    expected_files:
+      must_include: [references/capital-valuation.md]
+      must_not_include: [references/fundraising.md]
+    assertions:
+      - "Answers the how, not the whether — the founder states the price as already accepted, so restating that a down round is a balance-sheet event rather than a moral one is a non-answer."
+      - "Names the order and why it is the order — the existing lead hears the number from the founder rather than from a co-investor, a banker, or another portfolio founder, then prospective leads, then the team, never in parallel — and names the ask carried into that first meeting (a bridge, their pro rata, a lead, or non-obstruction), because opening with 'what do you think?' hands the other side the pricing."
+      - "Names anti-dilution as repricing earlier preferred's conversion automatically at close, with no vote and no negotiation, and sends the founder into the certificate of incorporation for the adjustment formula and the protective provisions before the first meeting rather than discovering a blocking right mid-negotiation."
+      - "Prices the headline in dollars rather than warning against structure in the abstract — $30M at a $70M pre-money on clean 1x non-participating against the same $30M at a $170M pre-money bought with a 2x participating preference, which at a $120M exit leaves the rest of the cap table $84M against $51M."
+      - "Defers the charter amendment and the securities work to company counsel who has priced down rounds before rather than to the lead's firm, and names disinterested board approval or an independent committee as the defense in a round where the founder's own investors sit on both sides of the price; governance.md is acceptable as a secondary file for who holds which seat."
+    rationale: >-
+      SKILL.md's capital-valuation.md entry names the down-round procedure
+      section explicitly — "how to run a down round, from who hears it first,
+      through the anti-dilution your own charter triggers at close and the
+      arithmetic of buying a headline with structure, to the pre-money option
+      pool top-up and telling the team" — and adds "we may have to raise at a
+      lower price" to that file's consult triggers. That trigger is the
+      load-bearing part: it was added alongside "how do I actually compute my
+      waterfall," which routing-waterfall-procedure-not-axiom pins, and this
+      scenario pins the other half. The mode is not a judgment call here —
+      SKILL.md's direct-mode section uses "how do experienced founders handle a
+      down round?" as its own example of a clear question. The seam is against
+      fundraising.md and it is the sharpest one in this block. SKILL.md's
+      fundraising.md entry names raising capital, terms, runway, and investor
+      relations, so a model routing on the word "raise" lands there and returns
+      "a bridge round is a confession" plus the tight-process playbook — which
+      says to create scarcity by having multiple firms moving in parallel, the
+      opposite of the ordered disclosure this section requires, and says
+      nothing about the terms the new price triggers. fundraising.md carries
+      no down-round procedure, and its only anti-dilution mention is a clause
+      inside the valuation-versus-terms axiom. What it carries after this
+      commit is a pointer — "running one is a different process from the raise
+      this file describes" — which is CONTRIBUTING.md's canonical-home rule, so
+      reading it instead is reading the pointer rather than following it. Not a
+      forbidden topic — wrong to read *instead*, the same encoding
+      routing-default-alive-calculation puts on the same file for the mirror
+      case. The last assertion is SKILL.md's "Detailed legal advice (term
+      sheets, employment law, IP) — defer to qualified counsel" and "Specific
+      financial recommendations — defer to a CFO or tax professional," whose
+      own gloss ends on securities counsel, which is what a priced down round
+      needs.
+
+  # ----------------------------------------------------------- mode selection
+
+  - id: mode-socratic-coach
+    prompt: "One of my clients is convinced she needs to raise a Series A right now. I think she's running from a product problem. What do I ask her?"
+    should_trigger: true
+    expected_mode: socratic
+    expected_files:
+      must_include: [references/socratic-technique.md]
+      must_not_include: []
+    assertions:
+      - "Asks or supplies one question at a time; does not stack three questions in one message."
+      - "Builds context before firing the hard question (sequencing)."
+      - "Does not hand over a list of fundraising axioms to recite."
+    rationale: >-
+      SKILL.md Socratic triggers (helping someone else) plus "ask one question at a
+      time, wait for the answer" and "Whenever Socratic mode is active, read
+      references/socratic-technique.md."
+
+  - id: mode-direct-factual
+    prompt: "What's a typical option pool size at seed?"
+    should_trigger: true
+    expected_mode: direct
+    expected_files:
+      must_include: [references/capital-valuation.md]
+      must_not_include: [references/socratic-technique.md]
+    assertions:
+      - "Answers the question rather than asking one back."
+      - "The pool percentage carries a *[bench YYYY-MM]* vintage."
+      - "Names the pre-money option pool trap as the mechanic behind the number (startup-mechanics.md is an acceptable secondary file)."
+    rationale: >-
+      SKILL.md: "direct mode by default... Most uses will be direct." A factual ask
+      has none of the four Socratic triggers. Note that SKILL.md's fundraising.md
+      entry does not mention option pools — the pool material lives in
+      capital-valuation.md ("compounding dilution and option pool refreshes") and
+      startup-mechanics.md ("the pre-money option pool trap"). A model routing on
+      the word "seed" alone would land in the wrong file; that is what this scenario
+      catches. Vintage per "Output style."
+
+  - id: mode-socratic-ambivalence
+    prompt: "I keep going back and forth on whether to shut this down. Some weeks I'm sure, some weeks I'm not. I don't know what I'm even asking."
+    should_trigger: true
+    expected_mode: socratic
+    expected_files:
+      must_include: [references/socratic-technique.md]
+      must_not_include: []
+    assertions:
+      - "Helps the person articulate what's actually happening before dispensing any axiom (the Harris meta-axiom)."
+      - "One question, then waits."
+    rationale: >-
+      SKILL.md Socratic trigger: "the conversation has the texture of someone working
+      through ambivalence rather than seeking information," reinforced by the Harris
+      meta-axiom paragraph.
+
+  # -------------------------------------------------------- output discipline
+
+  - id: output-no-dump
+    prompt: "We just closed our seed. What should I be thinking about for the next year?"
+    should_trigger: true
+    expected_mode: direct
+    expected_files:
+      must_include: []
+      must_not_include: []
+    assertions:
+      - "Returns 3-7 axioms, not a domain-by-domain survey."
+      - "Reads no more than 3 reference files despite the prompt's breadth."
+      - "Axioms are seed-stage matched (first hires, PMF, momentum), not Series C org design."
+    rationale: >-
+      SKILL.md: "Pull 3-7 axioms maximum per response" and "read 2-3 files. Don't
+      read more than that unless explicitly asked for a comprehensive scan." A broad
+      prompt is not an explicit request for a comprehensive scan.
+
+  - id: output-vintage-tag
+    prompt: "Our burn multiple is 2.4. Is that bad?"
+    should_trigger: true
+    expected_mode: direct
+    expected_files:
+      must_include: [references/finance-ops.md]
+      must_not_include: [references/capital-valuation.md]
+    assertions:
+      - "Cites the burn-multiple ladder with its *[bench YYYY-MM]* vintage."
+      - "States the structure with conviction and the number with its date."
+      - "Does not present the threshold as a timeless law."
+    rationale: >-
+      SKILL.md "Output style": "Cite the structure with conviction and the number
+      with its vintage... Never present a dated threshold as timeless."
+
+  - id: output-single-company-scope
+    prompt: "We're 12 people and my team keeps pushing back on how I run planning. Should I just hold the line?"
+    should_trigger: true
+    expected_mode: direct
+    expected_files:
+      must_include: [references/management-execution.md]
+      must_not_include: []
+    assertions:
+      - "Surfaces the never-negotiate-the-operating-model axiom and names Chesky and Airbnb as its source rather than stating it as a general law of management."
+      - "Names the condition the practice ran on — a founder with more context than anyone they could hire — as the thing that decides whether it transfers here."
+      - "Does not substitute a headcount or scale caveat for that condition; the limit management-execution.md states is founder context, not company size, and a twelve-person founder is on the side of that line where the axiom applies."
+      - "States the axiom with conviction; no 'it depends' hedge is bolted onto it, and no counter-axiom is stacked against it for balance."
+    rationale: >-
+      SKILL.md "Output style" carries a sampling rule as a peer of the
+      benchmark-vintage rule above it: the corpus is sampled from companies that
+      worked, so an axiom resting on a single company's practice is delivered with
+      conviction and with the condition that practice ran on, because that
+      condition is what tells this founder whether it transfers. This is the case
+      the rule exists for. management-execution.md states the limit as founder
+      context rather than headcount, so a scale caveat handed to a twelve-person
+      founder inverts the axiom instead of scoping it — which is why the third
+      assertion forbids the caveat the rule might otherwise be read to invite.
+      output-vintage-tag pins the numbers half of the same calibration pair; this
+      pins the sampling half.
+
+  - id: output-stage-match-late
+    prompt: "We're 250 people and hiring our first CHRO. What should I know?"
+    should_trigger: true
+    expected_mode: direct
+    expected_files:
+      must_include: [references/hiring.md]
+      must_not_include: [references/cofounders-equity.md]
+    assertions:
+      - "Names that the first People hire is normally 30-50 people, so this one is very late, and says what that implies."
+      - "Does not surface Seed-tagged material (first ten hires set the ceiling, be stingy with equity) as if it were the live question."
+      - "management-execution.md is acceptable as a secondary file."
+    rationale: >-
+      SKILL.md "How to stage-match": 200+ is "Org design, succession,
+      professionalization, IPO-readiness," and axioms tagged for a stage should be
+      preferred. Finding: the corpus is thin on 200+ hiring axioms — hiring.md's
+      stage tags are all Seed-Series A — so the strongest available move is the
+      first-HR-hire timing axiom read against the stage. Not a SKILL.md defect, but
+      a coverage gap worth noting.
+
+  - id: output-stage-match-untagged
+    prompt: "There are four of us, pre-seed, one customer actually paying us. I'm nervous about running out of cash. How should we be tracking it?"
+    should_trigger: true
+    expected_mode: direct
+    expected_files:
+      must_include: [references/finance-ops.md]
+      must_not_include: [references/fundraising.md]
+    assertions:
+      - "Does not prescribe the 13-week cash flow forecast in its stated form — updated weekly, distributed to the founders, treated as gospel — to a four-person company with a single invoice."
+      - "Cuts it down to what this company has or leaves it out, rather than surfacing the untagged axiom flat because it carries no stage tag."
+      - "Leads with the cash axioms a pre-seed founder can act on this week — Default Alive or Default Dead, ramen profitability, the zero-cash date the founder can recite from memory."
+      - "Adapts or skips rather than caveating; no 'it depends' hedge is bolted onto an axiom that is then delivered unchanged."
+    rationale: >-
+      SKILL.md "How to stage-match" carries a fallback for untagged axioms: the
+      absence of a tag is the corpus default, not a positive assertion that the
+      axiom was checked at this founder's stage, so an untagged axiom that
+      prescribes a practice presupposing headcount, a process layer, or a finance
+      function the company doesn't have gets cut down to the company in front of
+      you or left out. finance-ops.md's 13-week axiom is the case that rule exists
+      for. It carries no stage tag, its stated form is ceremony for four people
+      with one revenue line, and the file's own limit names only the upper bound —
+      several entities or currencies outgrow a spreadsheet — so nothing inside the
+      axiom tells a model to scale it down. output-stage-match-late pins the tagged
+      half of the rule, where a mismatched tag is a reason to skip; this pins the
+      untagged half, which is most of the corpus. The last assertion is the same
+      rule's closing line plus "Output style" — adapt or skip is the move, and the
+      fallback is not a license to hedge, so a 13-week delivered whole with an
+      "if you have the time" caveat fails this scenario rather than passing it.
+      fundraising.md in must_not_include is the strict reading and the plausible
+      wrong turn: a pre-seed founder naming a cash worry reads as a raise question,
+      and SKILL.md routes cash, burn, and forecasting to finance-ops.md. Not a
+      forbidden topic — wrong to read *instead*.
+
+  - id: output-attribution-not-invented
+    prompt: "Who said 'do things that don't scale' and what did they mean?"
+    should_trigger: true
+    expected_mode: direct
+    expected_files:
+      must_include: [references/yc-canon.md]
+      must_not_include: [references/meta.md]
+    assertions:
+      - "Attributes to Paul Graham."
+      - "Does not fabricate a quote or a source for any adjacent axiom it surfaces."
+    rationale: >-
+      SKILL.md "Output style": "Attribute when relevant... adds credibility and lets
+      the person trace the source." CONTRIBUTING.md forbids invented attributions.

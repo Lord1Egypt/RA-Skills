@@ -1,44 +1,63 @@
-## Description: <br>
-Build-in-public companion for indie hackers — content workflow, Twitter engagement, project soul creation. A living assistant, not a tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build-in-public companion for indie hackers: content workflow, Twitter engagement, project soul creation, and activity-aware nudges.
 
-## Publisher: <br>
-[Humanji7](https://clawhub.ai/user/Humanji7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[humanji7](https://clawhub.ai/user/humanji7)
 
-## Use Case: <br>
-External creators and indie hackers use SoloBuddy to manage build-in-public ideas, draft social posts, review Twitter content strategy, monitor optional engagement opportunities, and create project personality profiles. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide publishing actions such as committing and pushing draft content. <br>
-Mitigation: Inspect generated drafts and proposed git changes before publishing or pushing content. <br>
-Risk: Optional Twitter monitoring may run background automation and handle X/Twitter session tokens. <br>
-Mitigation: Enable the monitor only after reviewing the scripts, understanding how to stop them, and avoiding storage of session tokens in shell startup files when possible. <br>
-Risk: The configured data path may expose unrelated local files if it points at a broad or sensitive directory. <br>
-Mitigation: Use a dedicated solobuddy.dataPath folder that contains only SoloBuddy ideas, drafts, and data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [SoloBuddy ClawHub Page](https://clawhub.ai/Humanji7/solobuddy) <br>
-- [Soul Wizard Reference](references/soul-wizard.md) <br>
-- [GitHub Homepage](https://github.com/gHashTag/bip-buddy) <br>
-- [ClawdBot](https://clawd.bot) <br>
+## Use Case:
 
+External creators, indie hackers, and developers use SoloBuddy to maintain a build-in-public workflow: capture ideas, draft posts, publish through a configured repository, monitor project activity, and optionally find Twitter/X engagement opportunities. The skill also helps create project personality profiles from documentation.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose draft content, Telegram button payloads, project personality JSON, and command sequences that should be reviewed before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent Twitter/X monitoring can run recurring local jobs and send engagement opportunities without the user re-reading each fetch cycle.
+
+Mitigation: Enable the monitor only after reviewing the LaunchAgent configuration, and keep documented stop, inspect, and remove commands available before use.
+
+Risk: Twitter/X session credentials may be stored as plaintext shell environment values.
+
+Mitigation: Avoid storing session tokens in shell startup files or scripts; use a dedicated credential store or re-authenticate manually when possible.
+
+Risk: Broad publishing commands such as git add . can commit unintended local files from the configured data path.
+
+Mitigation: Use a dedicated private repository, review git status and diffs before committing, and stage only intended files.
+
+Risk: The skill reads and writes local files under the configured data path, including drafts, logs, activity snapshots, and project personality data.
+
+Mitigation: Point solobuddy.dataPath at a dedicated folder that contains only intended build-in-public material.
+
+## Reference(s):
+
+- [SoloBuddy ClawHub page](https://clawhub.ai/humanji7/skills/solobuddy)
+- [Project homepage](https://github.com/gHashTag/bip-buddy)
+- [ClawdBot](https://clawd.bot)
+- [Soul Creation Wizard](references/soul-wizard.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown responses with inline JSON, shell commands, draft content, and Telegram button payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write or update files under the configured data path and may propose git, Telegram, and optional Twitter/X monitoring commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

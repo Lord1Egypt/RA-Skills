@@ -1,38 +1,52 @@
-## Description: <br>
-买手妈妈母婴社交电商返利工具，专注母婴消费群体，提供母婴商品优惠券查找和返利服务，覆盖淘宝京东拼多多等平台。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+买手妈妈母婴社交电商返利工具，专注母婴消费群体，提供母婴商品优惠券查找和返利服务，覆盖淘宝京东拼多多等平台。
 
-## Publisher: <br>
-[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External shoppers and agents use this skill to help find mother-and-baby product coupons, rebate details, and short promotional materials for major Chinese e-commerce platforms.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad mother-and-baby coupon or rebate requests may activate the skill and steer the agent toward rebate-style shopping recommendations.
+
+Mitigation: Use the skill only when rebate or coupon assistance is intended, and review recommendations for relevance before acting on them.
+
+Risk: Coupon, price, rebate, and return-policy details can change outside the skill's evidence.
+
+Mitigation: Verify current offer terms on the merchant or rebate platform before purchase or promotion.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users can use this skill to format mother-and-baby shopping rebate lookups, including product category, coupon, rebate rate, and estimated rebate details for major e-commerce platforms. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Shopping savings, cashback rates, authenticity claims, and return-policy statements may be incorrect or out of date. <br>
-Mitigation: Verify coupons, rebate amounts, product authenticity, and return policies directly with the shopping platform or merchant before relying on the result. <br>
+**Output Format:** [Markdown text with structured rebate-query fields]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fangshan101-coder/maishou-mama) <br>
+**Other Properties Related to Output:** [The expected response includes product name, category, price, coupon details, rebate percentage, and estimated rebate.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style shopping rebate summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only skill; no code execution, credential access, persistence, or hidden data handling reported by security evidence.] <br>
+0.1.0 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

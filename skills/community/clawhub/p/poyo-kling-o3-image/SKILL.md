@@ -1,10 +1,16 @@
----
+﻿---
 name: poyo-kling-o3-image
 description: Kling O3 image generation and editing on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `kling-o3-image`, `kling-o3-image-edit`, prompt-only image generation, reference-image editing, element descriptors, 1K, 2K, 4K output, aspect ratio control, output format, image count, polling, and webhooks.
-metadata: {"openclaw":{"homepage":"https://docs.poyo.ai/api-manual/image-series/kling-o3","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
+metadata: {"openclaw":{"homepage":"https://poyo.ai/models/kling-o3-image","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo Kling O3 Image Generation and Editing
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/kling-o3-image>
+- API docs: <https://docs.poyo.ai/api-manual/image-series/kling-o3>
+- API key page: <https://poyo.ai/dashboard/api-key>
+
 
 Use this skill for Kling O3 image jobs on PoYo. It helps agents prepare prompt-only image generation and reference-image editing payloads, submit async tasks, and explain polling or webhook follow-up.
 

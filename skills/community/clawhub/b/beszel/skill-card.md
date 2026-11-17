@@ -1,38 +1,62 @@
-## Description: <br>
-Deploy, secure, and troubleshoot Beszel monitoring with Docker agents, alert tuning, and upgrade-safe operations for self-hosted servers <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy, secure, and troubleshoot Beszel monitoring with Docker agents, alert tuning, and upgrade-safe operations for self-hosted servers.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and infrastructure operators use this skill to plan, deploy, tune, and troubleshoot Beszel monitoring for self-hosted servers. It supports topology choices, secure agent onboarding, alert calibration, incident triage, and reversible upgrades. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Operational notes in ~/beszel/ could accidentally include tokens, onboarding credentials, or other sensitive monitoring details. <br>
-Mitigation: Ask the user to review planned saved notes, avoid storing secrets, and require explicit approval before configuring external alert integrations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Beszel Skill Page](https://clawhub.ai/ivangdavila/beszel) <br>
-- [Beszel Homepage](https://clawic.com/skills/beszel) <br>
+## Use Case:
 
+Developers and operators use this skill to plan and maintain Beszel monitoring for self-hosted infrastructure, including Docker-based deployment, agent onboarding, alert calibration, diagnostics, and upgrade rollback planning.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and operational checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local operational notes under ~/beszel/ only after user confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Local operational notes could accidentally capture credentials or sensitive monitoring details.
+
+Mitigation: Review each proposed save, avoid storing credentials in ~/beszel/, and keep only reusable operational context.
+
+Risk: Over-broad proactive activation could surface monitoring advice in contexts where it is not wanted.
+
+Mitigation: Approve proactive activation only for the Beszel and monitoring contexts the user explicitly wants.
+
+Risk: Alert thresholds or deployment changes applied too quickly can create noisy incidents or monitoring blind spots.
+
+Mitigation: Baseline first, change one variable at a time, define alert ownership, and keep rollback notes for upgrades.
+
+## Reference(s):
+
+- [Beszel ClawHub skill page](https://clawhub.ai/ivangdavila/skills/beszel)
+- [Beszel skill homepage](https://clawic.com/skills/beszel)
+- [Setup behavior](setup.md)
+- [Memory template](memory-template.md)
+- [Deployment patterns](deployment-patterns.md)
+- [Alert tuning workflow](alert-tuning.md)
+- [Diagnostics playbook](diagnostics-playbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with checklists and inline command or configuration suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local operational notes under ~/beszel/ after user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

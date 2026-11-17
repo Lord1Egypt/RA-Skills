@@ -1,41 +1,61 @@
-## Description: <br>
-Book flights for startup events and entrepreneur travel, with support for related travel planning tasks through the flyai CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents search startup-event and entrepreneur travel flights through the flyai CLI and return Markdown results with booking links.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External users and agents use this skill to search startup-event and entrepreneur travel options, collect route and date parameters, run the flyai CLI, and present booking-linked flight recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install and run an unpinned global @fly-ai/flyai-cli package for travel searches. <br>
-Mitigation: Install or approve the CLI manually in an isolated environment before allowing the agent to run travel searches. <br>
-Risk: The skill can produce booking links and travel recommendations from an external travel CLI. <br>
-Mitigation: Review generated commands, returned prices, itineraries, and booking links before acting on them. <br>
-Risk: Broad travel-planning triggers may activate the skill for general trip requests. <br>
-Mitigation: Confirm the user intends to use this travel booking workflow before installing or running the CLI. <br>
+## Use Case:
 
+External users and travel-focused agents use this skill to collect route parameters, run flight searches, and present startup travel options with booking links. It is intended for startup-event and entrepreneur travel planning workflows.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Guidance] <br>
-**Output Format:** [Markdown with booking links and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses flyai CLI output for travel results; each presented result is expected to include a booking link.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 3.2.0) <br>
+Risk: The skill instructs agents to install a global third-party npm package if the flyai CLI is missing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval and use a controlled environment or pinned local installation before running any third-party CLI.
+
+Risk: Travel text can be transformed into shell commands for flight searches.
+
+Mitigation: Validate origin, destination, date, and sort fields against the documented parameters before command construction, and reject unexpected flags or shell metacharacters.
+
+Risk: The workflow depends on vendor booking links and third-party travel data.
+
+Mitigation: Disclose third-party data sharing and booking-link behavior before execution, and let users decide whether to open external booking links.
+
+Risk: The artifact references support files that are not included in the package.
+
+Mitigation: Review the remaining single-file workflow before release and restore or remove references to missing playbooks, templates, fallbacks, and runbook files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/skills/startup-trip)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with flight comparison tables, concise recommendations, and booking links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses flyai CLI output and detailUrl booking links when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter states 3.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

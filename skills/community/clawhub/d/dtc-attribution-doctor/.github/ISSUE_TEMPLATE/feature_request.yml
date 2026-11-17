@@ -1,0 +1,27 @@
+name: Feature request
+description: Propose a new scenario or an improvement to an existing plan.
+title: "[Feature]: "
+labels: ["enhancement", "triage"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Customer problem
+      description: Describe the user question and why existing scenarios do not cover it.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Required evidence and metrics
+      description: List the fields, caliber, comparison period, and prerequisites.
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Expected output
+      description: Describe the conclusion and action boundary without customer data.
+    validations:
+      required: true
+

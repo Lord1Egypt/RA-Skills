@@ -1,42 +1,56 @@
-## Description: <br>
-Token screener with a smart money filter cross-referenced against netflow to identify tokens showing early accumulation signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+What tokens is smart money accumulating before they pump? Token screener with SM filter cross-referenced against netflow.
 
-## Publisher: <br>
-[nansen-devops](https://clawhub.ai/user/nansen-devops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nansen-devops](https://clawhub.ai/user/nansen-devops)
 
-## Use Case: <br>
-External users and developers use this skill to run Nansen CLI token research commands, compare smart money screener results with Smart Trader netflow, and identify candidate tokens for further analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an external Nansen CLI package with a Nansen API key and may consume account quota. <br>
-Mitigation: Use a revocable or dedicated NANSEN_API_KEY and confirm expected CLI behavior before broad deployment. <br>
-Risk: Token accumulation output can be mistaken for investment advice. <br>
-Mitigation: Treat results as research signals only and review them with independent market, liquidity, and risk checks. <br>
+## Use Case:
 
+Crypto market researchers use this skill to screen tokens for smart-money activity and compare screener results with net flows across a selected chain and timeframe.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nansen-devops/nansen-smart-money-alpha) <br>
-- [nansen-cli npm package](https://www.npmjs.com/package/nansen-cli) <br>
-- [nansen-cli GitHub repository](https://github.com/nansen-ai/nansen-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, guidance, text] <br>
-**Output Format:** [Markdown with inline bash code blocks and command-result guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the nansen binary and NANSEN_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: Supported paid API calls can spend funds from the configured wallet, and each call in a loop can incur a payment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review wallet authorization, payment policy, spending limits, and per-call costs before running research calls or loops.
+
+Risk: A saved browser session or API key grants access according to its permissions, and cached authentication metadata does not establish that credentials are valid.
+
+Mitigation: Select an explicit API key or saved session, check authentication status before research, and stop if authentication or renewal fails.
+
+## Reference(s):
+
+- [Nansen CLI browser login platform scope](https://github.com/nansen-ai/nansen-cli/blob/main/docs/browser-login.md#preview-platform-scope)
+- [Nansen CLI package on npm](https://www.npmjs.com/package/nansen-cli)
+- [Nansen CLI project](https://github.com/nansen-ai/nansen-cli)
+- [ClawHub skill release](https://clawhub.ai/nansen-devops/skills/nansen-smart-money-alpha)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Text]
+
+**Output Format:** [Text summary of token screening and netflow findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can include token symbols, prices, volume, market capitalization, liquidity, token age, net flows, and trader counts.]
+
+## Skill Version(s):
+
+0.1.3 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

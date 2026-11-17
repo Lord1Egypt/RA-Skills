@@ -1,41 +1,55 @@
-## Description: <br>
-Venus Project Pm coordinates the Venus kindergarten ERP project-management workflow across Feishu group tabs, Bitable tables, dynamic rosters, planning files, and morning/evening progress tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Venus Project PM coordinates a Feishu-based ERP project-management workflow for tracking module milestones, launch readiness, daily reporting, and morning/evening project follow-up.
 
-## Publisher: <br>
-[spikesubingrui-design](https://clawhub.ai/user/spikesubingrui-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spikesubingrui-design](https://clawhub.ai/user/spikesubingrui-design)
 
-## Use Case: <br>
-Project managers and developers use this skill to run the Venus ERP progress workflow: sync active reporters, read planning files, collect or track reports, compare status against module milestones and the launch timeline, and produce PM follow-up guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to run local Feishu/Bitable workflow commands that create group tabs, sync rosters, seed planning files, collect or track reports, or migrate Base fields. <br>
-Mitigation: Install only for the Venus ERP Feishu/Bitable environment, review the referenced venus-bitable-sync.py script and its credentials separately, and require confirmation before mutating commands. <br>
-Risk: Stale roster or planning files can lead to incorrect project-management follow-up. <br>
-Mitigation: Refresh the roster before morning or evening tracking and compare script output with task_plan.md, findings.md, and progress.md before sending PM guidance. <br>
+## Use Case:
 
+Project managers and developers use this skill to coordinate Venus ERP progress reporting, compare script output with planning files, identify blocked modules, and keep the launch timeline visible in Feishu.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/spikesubingrui-design/venus-project-pm) <br>
-- [Project homepage](https://github.com/spikesubingrui-design/venus-project-pm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes mutating Feishu/Bitable workflow commands that should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Mutating commands can change a shared Feishu group, Base, roster, planning state, or migration state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the local venus-bitable-sync.py script, confirm the exact target group/Base, and require explicit user approval before setup, sync, seed, collect, track, or migration steps.
+
+Risk: Project tracking changes may be difficult to undo if applied directly to production data.
+
+Mitigation: Back up the Base or test changes on a copy before running mutating workflow commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/spikesubingrui-design/skills/venus-project-pm)
+- [Project homepage](https://github.com/spikesubingrui-design/venus-project-pm)
+- [Publisher profile](https://clawhub.ai/user/spikesubingrui-design)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown with inline shell commands and project-management recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or run mutating Feishu/Base workflow commands when the user approves the target workspace and local script.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

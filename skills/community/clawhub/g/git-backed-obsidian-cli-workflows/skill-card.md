@@ -1,47 +1,61 @@
-## Description: <br>
-Use the official Obsidian CLI for note workflows in a Git-backed vault, including search, read, links/backlinks-style queries, daily-note operations, and lightweight note writes that auto-sync after successful write operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the official Obsidian CLI for note workflows in a Git-backed vault, including search, read, links/backlinks-style queries, daily-note operations, and lightweight note writes that auto-sync after successful write operations.
 
-## Publisher: <br>
-[DarinRowe](https://clawhub.ai/user/DarinRowe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[darinrowe](https://clawhub.ai/user/darinrowe)
 
-## Use Case: <br>
-Developers and note-taking power users use this skill to query and update an Obsidian vault through the official CLI while keeping successful writes synchronized to Git. It is intended for environments where the Obsidian CLI is already installed and working. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic Git commits and pushes can publish unintended vault contents to the configured remote. <br>
-Mitigation: Use a dedicated vault repository, verify the remote and branch, keep secrets out of the vault, and review changes before enabling automated sync. <br>
-Risk: Fallback write paths or note names could modify files outside the intended vault if paths are not constrained. <br>
-Mitigation: Avoid absolute paths and parent-directory segments in note targets, and prefer the official CLI path when it supports the requested workflow. <br>
-Risk: The backup script path is configurable and can execute trusted local code after write workflows. <br>
-Mitigation: Treat NOTES_BACKUP_SCRIPT as trusted code execution and point it only to reviewed backup scripts. <br>
+## Use Case:
 
+Developers and note-taking agents use this skill to query and update an existing Obsidian vault through the official CLI, with Git backup behavior after successful lightweight writes.
 
-## Reference(s): <br>
-- [Skill release page](https://clawhub.ai/DarinRowe/git-backed-obsidian-cli-workflows) <br>
-- [Environment note](references/environment-note.md) <br>
-- [Fallback policy](references/fallbacks.md) <br>
-- [Query vs write](references/query-vs-write.md) <br>
-- [Workflow surface](references/workflow-surface.md) <br>
-- [obsidian-official-cli-headless companion skill](https://clawhub.ai/DarinRowe/obsidian-official-cli-headless) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and operation status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports the workflow used, target note or path, whether sync ran, and whether sync succeeded.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Fallback note writes may target paths outside the intended vault if note names are not validated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run under a non-privileged account and validate note paths before use; reject absolute paths and traversal segments.
+
+Risk: The backup script stages all detected Git changes and pushes automatically after writes.
+
+Mitigation: Review the backup script, keep secrets and temporary files out of the vault with .gitignore, and consider requiring confirmation or staging only the changed note before pushing.
+
+Risk: A successful write can still fail to sync, leaving local vault changes unpushed.
+
+Mitigation: Check the reported sync status after each write and resolve failed Git sync before assuming the note is backed up.
+
+## Reference(s):
+
+- [Query vs write](references/query-vs-write.md)
+- [Fallback policy](references/fallbacks.md)
+- [Workflow surface](references/workflow-surface.md)
+- [Environment note](references/environment-note.md)
+- [Obsidian official CLI headless companion skill](https://clawhub.ai/DarinRowe/obsidian-official-cli-headless)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional script-mediated workflow output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports the command or workflow used, target note or path, whether sync ran, and whether sync succeeded.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

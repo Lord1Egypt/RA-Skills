@@ -1,7 +1,7 @@
 ---
-name: travel-esim-compare
-display_name: 旅行eSIM比价助手
-description: 出境上网比价助手，支持eSIM套餐比价和WiFi租借查询，覆盖Airalo/Holafly等主流运营商和30+热门目的地，零配置即装即用。
+name: 旅行eSIM比价助手
+display_name: "旅行eSIM比价助手"
+description: 出境上网比价助手，支持eSIM套餐比价和WiFi租借查询，覆盖Airalo/Holafly等主流运营商和30+热门目的地，零配置即装即用。暑期出境eSIM流量卡比价，即买即用
 tags: [eSIM比价, 出境上网, 旅行WiFi, 国际漫游, 境外流量]
 tools:
   - name: esim_search

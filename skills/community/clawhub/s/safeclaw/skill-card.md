@@ -1,44 +1,60 @@
-## Description: <br>
-Security compliance checker for MCP/LLM applications. Performs non-invasive security assessments on configuration files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security compliance checker for MCP/LLM applications. Performs non-invasive security assessments on configuration files.
 
-## Publisher: <br>
-[kaillera999](https://clawhub.ai/user/kaillera999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaillera999](https://clawhub.ai/user/kaillera999)
 
-## Use Case: <br>
-Developers and operators use SafeClaw to run non-invasive security checks against MCP, LLM application, and OpenClaw configuration files and receive prioritized remediation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect local OpenClaw-related configuration or log paths while diagnosing security posture. <br>
-Mitigation: Approve only the specific paths needed for the requested check, and avoid granting access to secrets files or session contents unless there is a narrow, explicit need. <br>
-Risk: Security findings may include remediation suggestions or commands that change configuration or service behavior. <br>
-Mitigation: Review suggested changes before applying them, especially for authentication, network exposure, firewall, plugin-source, and credential-handling settings. <br>
+## Use Case:
 
+Developers and security reviewers use SafeClaw to check MCP/LLM application configuration files for secrets, permissions, network exposure, plugin-source issues, logging and audit gaps, version exposure, and OpenClaw deployment settings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaillera999/safeclaw) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [example-config.json](artifact/example-config.json) <br>
-- [templates/minimal-config.json](artifact/templates/minimal-config.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summary with JSON-derived findings and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports pass, attention, and high-risk findings with remediation suggestions; the underlying checker emits JSON and distinct exit codes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill invokes checker code outside the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and trust the referenced workspace checker implementation before invocation, and pin its dependencies.
+
+Risk: A user-provided configuration path is used in a shell-shaped command.
+
+Mitigation: Run only in controlled workspaces, quote paths carefully, avoid untrusted path input, and narrow filesystem scope.
+
+Risk: Example MCP server entries include package launch commands and broad filesystem access.
+
+Mitigation: Do not copy example server entries directly without pinning package versions and restricting filesystem paths to required directories.
+
+## Reference(s):
+
+- [SafeClaw ClawHub Release](https://clawhub.ai/kaillera999/skills/safeclaw)
+- [SafeClaw README](artifact/README.md)
+- [Example Configuration](artifact/example-config.json)
+- [Minimal Configuration Template](artifact/templates/minimal-config.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report summarizing JSON check results with prioritized findings and remediation steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Exit codes distinguish pass, attention, and high-risk findings; JSON, YAML, and TOML configuration inputs are supported.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-Local ffmpeg-based video editing skill. Provides tested helpers for subtitles, background blur, color grading, two-pass loudness normalization, scene-detected highlight reels, vertical conversion for shorts, and clean audio-only extraction for transcription/podcast workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Openclaw Video Editor is a local ffmpeg-based video editing skill that provides tested helpers for subtitles, background blur, color grading, two-pass loudness normalization, scene-detected highlight reels, vertical conversion for shorts, clean audio-only extraction, and clip extraction, with no AI segmentation, transcription model, or external network calls.
 
-## Publisher: <br>
-[gopendrasharma89-tech](https://clawhub.ai/user/gopendrasharma89-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[gopendrasharma89-tech](https://clawhub.ai/user/gopendrasharma89-tech)
 
-## Use Case: <br>
-Developers, editors, and content teams use this skill to run local ffmpeg workflows for subtitle formatting, clip extraction, highlight reels, color grading, loudness normalization, audio extraction, and vertical video conversion. It is useful when media should stay on the local machine and the agent should propose or run reproducible command-line editing steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The scripts read local media, transcript, LUT, and mask files selected by the user. <br>
-Mitigation: Use only input files that are appropriate for local processing and avoid pointing the skill at unrelated private media or transcripts. <br>
-Risk: The scripts can overwrite output paths chosen by the user. <br>
-Mitigation: Choose explicit output filenames, keep originals separate from generated files, and review paths before running commands. <br>
-Risk: Highlight reel processing writes temporary intermediate video clips under the system temp area. <br>
-Mitigation: Run highlight reel workflows only on media suitable for temporary local storage and clean temp files according to local retention practices. <br>
+## Use Case:
 
+Developers, editors, and creator-workflow agents use this skill to prepare local media assets with ffmpeg workflows such as subtitle formatting, clip extraction, loudness normalization, LUT application, highlight reel generation, vertical conversion, and audio extraction.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gopendrasharma89-tech/openclaw-video-editor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local media, subtitle, transcript, or configuration file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally with ffmpeg, ffprobe, and python3; output files are written to user-selected paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-6.1.0 (source: server release metadata and SKILL.md) <br>
+Risk: Local ffmpeg workflows process media files supplied by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only on media files you intend to process in an environment where local ffmpeg execution is acceptable.
+
+Risk: Generated outputs may overwrite existing files at user-provided output paths.
+
+Mitigation: Choose explicit output paths and review existing files before running workflows that write media or subtitle outputs.
+
+Risk: Highlight reel generation temporarily stores derived clips in the system temp directory before cleanup.
+
+Mitigation: Use the workflow only when temporary local storage of derived clips is acceptable and ensure sufficient temp-space availability.
+
+## Reference(s):
+
+- [Openclaw Video Editor on ClawHub](https://clawhub.ai/gopendrasharma89-tech/skills/openclaw-video-editor)
+- [Publisher profile](https://clawhub.ai/user/gopendrasharma89-tech)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and local file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides local ffmpeg and Python helper workflows that produce media, subtitle, audio, and clip files at user-provided output paths.]
+
+## Skill Version(s):
+
+6.1.0 (source: SKILL.md body and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

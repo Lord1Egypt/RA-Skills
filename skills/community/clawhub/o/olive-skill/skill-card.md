@@ -1,46 +1,58 @@
-## Description: <br>
-Apply Oliver's stable persona, values, decision models, communication style, and evidence standards when an agent reasons about risk, responsibility, authority, open source, technology, learning, collaboration, or public communication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apply Oliver's stable persona, values, decision models, communication style, and evidence standards when reasoning about risk, responsibility, authority, open source, technology, learning, collaboration, or public communication.
 
-## Publisher: <br>
-[iamliuxiaozhen](https://clawhub.ai/user/iamliuxiaozhen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iamliuxiaozhen](https://clawhub.ai/user/iamliuxiaozhen)
 
-## Use Case: <br>
-External users and developers use this skill to guide an agent toward Oliver's documented judgment patterns for technical decision-making, risk assessment, open-source collaboration, and evidence-based communication. It is intended for advisory reasoning, not for inventing unsupported persona positions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence reasoning across a wide range of tasks, which may be too broad for strict domain-specific policy handling. <br>
-Mitigation: Use it alongside narrower specialist skills or policies, and keep task-specific requirements explicit. <br>
-Risk: An agent may invent persona positions outside the documented evidence. <br>
-Mitigation: Require outputs to distinguish confirmed information, strong inference, and unknowns, and keep conclusions grounded in the reference files. <br>
-Risk: High-impact decisions may be over-reliant on advisory persona guidance. <br>
-Mitigation: Verify consequential claims with independent evidence and human review before acting. <br>
+## Use Case:
 
+Developers, agents, and external users use this persona skill to apply Oliver's evidence-oriented decision models and communication style to software engineering, open-source, risk, responsibility, and public-communication scenarios. It should be used for judgment patterns grounded in the bundled references, not for unsupported opinion invention or superficial style imitation.
 
-## Reference(s): <br>
-- [Identity](references/identity.md) <br>
-- [Values](references/values.md) <br>
-- [Decision Models](references/decision-models.md) <br>
-- [Voice](references/voice.md) <br>
-- [Knowledge Sources](references/knowledge-sources.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose with structured reasoning when useful] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution or external tool output is expected; guidance should remain bounded by the persona references.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can steer an agent toward a third-party persona's evidence-heavy decision style and Chinese-first communication preference even when that framing is not desired.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the persona references before deployment and use the skill only when that judgment style and communication preference are appropriate.
+
+Risk: The persona references define known and unknown boundaries; using the skill outside those boundaries can produce unsupported opinions.
+
+Mitigation: Keep outputs grounded in the bundled references, preserve Unknown where evidence is missing, and ask for clarification when a scenario falls outside the documented persona scope.
+
+## Reference(s):
+
+- [Olive Skill README](README.md)
+- [Identity](references/identity.md)
+- [Values](references/values.md)
+- [Decision Models](references/decision-models.md)
+- [Voice](references/voice.md)
+- [Knowledge Sources](references/knowledge-sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Natural-language responses, Markdown, and task-specific code or command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should distinguish confirmed facts, strong inferences, and unknowns when uncertainty matters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

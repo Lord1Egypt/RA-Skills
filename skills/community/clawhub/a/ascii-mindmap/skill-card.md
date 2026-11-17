@@ -1,41 +1,53 @@
-## Description: <br>
-Generate and display ASCII tree diagrams from indented text outlines to visualize ideas and hierarchies in the terminal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and display ASCII tree diagrams from indented text outlines to visualize ideas and hierarchies in the terminal.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers, writers, and agent operators use this skill to turn indented outlines or bullet lists into terminal-friendly ASCII mind maps and Markdown-exportable diagrams. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a local bash script that invokes python3. <br>
-Mitigation: Inspect the script before deployment and run it only in an environment where local script execution is acceptable. <br>
-Risk: Input outlines or stdin content may be displayed or exported directly. <br>
-Mitigation: Use only outline files or piped content that are intended to be shown in terminal output or Markdown exports. <br>
+## Use Case:
 
+Developers and technical writers use this skill to turn indented outlines, bullet lists, or files into terminal ASCII mind maps or Markdown code blocks for documentation and planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xueyetianya/ascii-mindmap) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text ASCII tree diagrams or Markdown fenced code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local bash and Python standard-library execution; output structure depends on the supplied indentation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Outline file contents may be rendered in the terminal or exported output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with files intended for display or export, and review generated output before sharing it.
+
+Risk: The skill runs a local shell script.
+
+Mitigation: Review the script before deployment and run it in a trusted local environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xueyetianya/skills/ascii-mindmap)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands]
+
+**Output Format:** [Plain text ASCII tree diagrams or Markdown fenced code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires bash and python3; reads inline text, stdin, or explicitly provided outline files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

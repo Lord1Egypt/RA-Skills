@@ -1,44 +1,58 @@
-## Description: <br>
-Use when an agent or developer wants to reduce Claude API costs, route requests through a Claude Max or Pro subscription instead of per-token billing, or set up claude-max-api-proxy for OpenClaw or any OpenAI-compatible client. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when an agent or developer wants to reduce Claude API costs, route requests through a Claude Max or Pro subscription instead of per-token billing, or set up claude-max-api-proxy for OpenClaw or any OpenAI-compatible client.
 
-## Publisher: <br>
-[ERROR403agent](https://clawhub.ai/user/ERROR403agent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[error403agent](https://clawhub.ai/user/error403agent)
 
-## Use Case: <br>
-Developers and agent operators use this skill to set up a local Claude Max API proxy and configure OpenAI-compatible clients to send requests through it. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The setup depends on a third-party npm package. <br>
-Mitigation: Review and trust the linked claude-max-api-proxy package before installing it. <br>
-Risk: The proxy uses the user's logged-in Claude CLI session. <br>
-Mitigation: Run it only on trusted local machines and avoid shared or public hosts. <br>
-Risk: Anyone who can reach the proxy port may be able to make requests through the user's subscription. <br>
-Mitigation: Keep the proxy bound to localhost and do not expose port 3456. <br>
-Risk: Enabling the systemd service makes the proxy persist across sessions. <br>
-Mitigation: Enable persistence only when continuous local proxy availability is intended. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ERROR403agent/claude-max-proxy-setup) <br>
-- [claude-max-api-proxy source](https://github.com/atalovesyou/claude-max-api-proxy) <br>
+## Use Case:
 
+Developers and agent operators use this skill to install and configure a local Claude subscription-backed proxy for OpenClaw or other OpenAI-compatible clients. It is intended for users who already have a Claude Max or Pro subscription and need setup guidance, client configuration, and operational checks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The proxy creates an unauthenticated local endpoint backed by the user's Claude subscription.
+
+Mitigation: Keep the proxy bound to localhost, avoid shared machines, never expose port 3456 publicly, and treat access to localhost:3456 as access to the subscription.
+
+Risk: The skill installs and runs a third-party package that forwards requests through the authenticated Claude CLI session.
+
+Mitigation: Review the package source before installation and pin a known package version where possible.
+
+Risk: Enabling the optional persistent service can keep the proxy available across sessions.
+
+Mitigation: Run the proxy manually when needed unless persistence is required, and review the user service configuration before enabling it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/error403agent/skills/claude-max-proxy-setup)
+- [claude-max-api-proxy source](https://github.com/atalovesyou/claude-max-api-proxy)
+- [Publisher profile](https://clawhub.ai/user/error403agent)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash and JSON configuration blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes local setup checks, client configuration examples, service setup commands, verification commands, model ID references, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,60 @@
-## Description: <br>
-Exist provides a managed OAuth integration for agents to read health and fitness data, retrieve correlations and insights, manage attribute ownership, and track wellness metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Exist API integration with managed OAuth. Read health and fitness tracking data, retrieve correlations and insights, manage attribute ownership, and track wellness metrics.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-External users and developers use this skill to connect an agent to Exist through ClawLink OAuth, query tracked health and lifestyle data, inspect correlations and insights, and update owned attribute values when appropriate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read sensitive Exist health and lifestyle data, including profile, attributes, correlations, and insights. <br>
-Mitigation: Install it only when this access is intended, grant the minimum OAuth scopes needed, and prompt the agent with the specific Exist data to retrieve. <br>
-Risk: Broad activation and confirmation-free read operations may expose more personal data than a user expected. <br>
-Mitigation: Review requested read operations before use and treat returned health, fitness, correlation, and insight data as sensitive. <br>
-Risk: Ownership-management tools can change or stop data flow for Exist attributes. <br>
-Mitigation: Require explicit confirmation for acquire, increment, and release ownership actions, especially release operations. <br>
+## Use Case:
 
+External users and developers use this skill to connect an Exist account through ClawLink OAuth, read health and fitness metrics, discover correlations and insights, and manage attribute ownership or counter updates.
 
-## Reference(s): <br>
-- [Exist API Docs](https://developer.exist.io/) <br>
-- [ClawLink Docs for OpenClaw](https://docs.claw-link.dev/openclaw) <br>
-- [ClawHub Skill Page](https://clawhub.ai/hith3sh/exist) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent outputs can include Exist profile, attribute, correlation, insight, and ownership-management results returned through ClawLink tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Sensitive wellness data may be exposed through the ClawLink OAuth integration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify trust in ClawLink and the clawlink-plugin source before installing, and grant only the Exist OAuth scopes needed.
+
+Risk: Write and ownership-release actions can alter tracked counters or stop data flow for an Exist attribute.
+
+Mitigation: Require explicit confirmation for write and release actions, and verify the target attributes before execution.
+
+Risk: OAuth access or plugin enablement may remain active after the user is done with the skill.
+
+Mitigation: Know how to revoke the Exist OAuth grant and remove or disable the enabled plugin later.
+
+## Reference(s):
+
+- [Exist API Docs](https://developer.exist.io/)
+- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=exist)
+- [ClawLink Docs](https://docs.claw-link.dev/openclaw)
+- [Exist Skill on ClawHub](https://clawhub.ai/hith3sh/skills/exist)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown instructions with bash and JavaScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes ClawLink tool-call examples whose returned data depends on the user's Exist OAuth scopes.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

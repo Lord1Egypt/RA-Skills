@@ -1,36 +1,47 @@
-## Description: <br>
-Assess migration risk and design staged rollouts. Use when handling development work that needs repeatable steps, quality gates, and practical outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assess migration risk and design staged rollouts. Use when handling development work that needs repeatable steps, quality gates, and practical outputs.
 
-## Publisher: <br>
-[xammarie](https://clawhub.ai/user/xammarie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xammarie](https://clawhub.ai/user/xammarie)
 
-## Use Case: <br>
-Developers and engineers use this skill to assess migration risk, plan staged rollouts, define quality gates, and produce implementation-ready next actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
-
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xammarie/jarvis-migration-risk-radar-01) <br>
+### License/Terms of Use:
 
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with ranked findings, action plans, risks, mitigations, checklists, and inline commands where useful] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only planning output; review generated commands and checklists before execution.] <br>
+## Use Case:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Developers and engineers use this skill to assess migration risk, define staged rollout plans, apply quality gates, and produce implementation-ready next actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may suggest commands or operational changes as part of a migration plan.
+
+Mitigation: Review its output before execution, especially when applying generated commands or changes to production systems.
+
+## Reference(s):
+
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with ranked findings, action plans, risks, mitigations, checklists, and commands where useful]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Planning-only output; no executable code, persistence, credential handling, or hidden behavior is present in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

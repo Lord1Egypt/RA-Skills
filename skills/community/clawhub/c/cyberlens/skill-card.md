@@ -1,44 +1,58 @@
-## Description: <br>
-Scan websites, GitHub repositories, and Claw Hub skills for practical security issues using a local quick website scan and CyberLens cloud analysis when connected. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan websites, GitHub repositories, and Claw Hub skills for practical security issues using a local quick website scan and CyberLens cloud analysis when connected.
 
-## Publisher: <br>
-[shadoprizm](https://clawhub.ai/user/shadoprizm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shadoprizm](https://clawhub.ai/user/shadoprizm)
 
-## Use Case: <br>
-Developers, security reviewers, and teams use this skill to scan websites, GitHub repositories, and Claw Hub skills for security findings before shipping, installing, or trusting them. It also helps turn scan results into readable remediation guidance and shareable reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Scanning may contact websites, repositories, Claw Hub packages, and CyberLens cloud services for targets the user asks it to scan. <br>
-Mitigation: Scan only authorized targets, use local scanning for sensitive websites where possible, and connect to cloud scanning only when the user accepts that target data may be sent to CyberLens services. <br>
-Risk: A connected account stores or uses a CyberLens API key on the local machine. <br>
-Mitigation: Protect the local configuration file, prefer the CYBERLENS_API_KEY environment variable on shared systems, and rotate the key if it may have been exposed. <br>
-Risk: Generated reports can contain security findings, target details, and remediation context that may be sensitive. <br>
-Mitigation: Review markdown and PDF reports before sharing them outside the intended audience. <br>
+## Use Case:
 
+Developers, security reviewers, and Claw Hub users use this skill to assess websites, GitHub repositories, and Claw Hub skill packages before shipping, installing, or trusting them. It returns security scores, findings, remediation guidance, markdown reports, and optional PDF exports.
 
-## Reference(s): <br>
-- [CyberLens homepage](https://cyberlensai.com) <br>
-- [Claw Hub skill page](https://clawhub.ai/shadoprizm/cyberlens) <br>
-- [Publisher profile](https://clawhub.ai/user/shadoprizm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, configuration, guidance] <br>
-**Output Format:** [Structured scan results, plain-text guidance, markdown reports, and optional PDF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs can include security scores, letter grades, findings, remediation advice, report paths, and account or quota status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata and skill.yaml) <br>
+Risk: The skill performs active outbound website, repository, and skill-package scans.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where outbound scanning is acceptable and the user is authorized to assess the target.
+
+Risk: Account connection can use a browser callback URL and local credential storage.
+
+Mitigation: Prefer CYBERLENS_API_KEY or tightly protected config storage, and avoid non-loopback HTTP callback URLs.
+
+Risk: Direct skill package scanning downloads and extracts untrusted packages.
+
+Mitigation: Scan untrusted direct skill packages in a sandbox or resource-limited environment until archive limits and redirect controls are added.
+
+## Reference(s):
+
+- [CyberLens homepage](https://cyberlensai.com)
+- [Claw Hub skill page](https://clawhub.ai/shadoprizm/skills/cyberlens)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON-like scan results, shell command examples, and optional PDF files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scan results include score, grade, findings, remediation guidance, and report metadata when available.]
+
+## Skill Version(s):
+
+1.2.2 (source: ClawHub release evidence and skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

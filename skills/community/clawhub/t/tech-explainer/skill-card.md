@@ -1,41 +1,54 @@
-## Description: <br>
-Automatically identifies technical terms in user-provided Chinese text and explains each unfamiliar term with a beginner-friendly "what it is, what problem it solves, and everyday analogy" structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically identifies technical terms in user-provided text and explains each one in plain Chinese using a three-part structure: what it is, what problem it solves, and a familiar analogy.
 
-## Publisher: <br>
-[wangjinhongmy-pixel](https://clawhub.ai/user/wangjinhongmy-pixel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangjinhongmy-pixel](https://clawhub.ai/user/wangjinhongmy-pixel)
 
-## Use Case: <br>
-External users, students, and beginners use this skill to understand unfamiliar AI, programming, and technology terms in Chinese text. It turns each detected term into concise plain-language guidance with a practical analogy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User text may contain secrets or sensitive private content. <br>
-Mitigation: Avoid pasting secrets or private text into prompts when using the skill. <br>
-Risk: Simplified analogies can omit nuance or make technical details sound more certain than they are. <br>
-Mitigation: Verify important technical details against authoritative sources before relying on the explanation. <br>
+## Use Case:
 
+Chinese-speaking learners, students, and non-technical users can use this skill to understand unfamiliar AI, programming, and technology terms in short passages. It is intended for plain-language explanation and learning support rather than authoritative technical review.
 
-## Reference(s): <br>
-- [Common technical term explanations](references/common-terms.md) <br>
-- [ClawHub skill page](https://clawhub.ai/wangjinhongmy-pixel/tech-explainer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose with term-by-term plain-language explanations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language, beginner-facing explanations that prioritize clarity and analogies over exhaustive technical detail.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may answer in Chinese or activate on broad AI and programming explanation requests when a user expects English or a narrower behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for Chinese beginner-focused term explanations, and disable or scope it when English output or specialized technical analysis is required.
+
+Risk: Plain-language analogies can simplify technical details too far for high-stakes engineering, legal, medical, or financial decisions.
+
+Mitigation: Treat the output as educational guidance and verify important technical claims against authoritative documentation before acting on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangjinhongmy-pixel/skills/tech-explainer)
+- [Common technical terms reference](references/common-terms.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose in Chinese with term-by-term explanations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a consistent what-it-is, problem-solved, and analogy structure for each identified term.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

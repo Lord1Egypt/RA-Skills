@@ -1,41 +1,55 @@
-## Description: <br>
-Guide to set up and configure IM channels(Telegram, Discord, Slack, Feishu, Dingtalk) for OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide to set up and configure IM channels(Telegram, Discord, Slack, Feishu, Dingtalk) for OpenClaw.
 
-## Publisher: <br>
-[petopagi](https://clawhub.ai/user/petopagi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[petopagi](https://clawhub.ai/user/petopagi)
 
-## Use Case: <br>
-Developers and operators use this skill to configure OpenClaw messaging integrations for Telegram, Discord, Slack, Feishu, and Dingtalk and apply the changes by restarting the gateway. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Channel setup requires chat bot tokens, app secrets, and gateway credentials that could expose services if mishandled. <br>
-Mitigation: Use least-privilege credentials, keep ~/.openclaw/openclaw.json private, and review each configuration change before applying it. <br>
-Risk: Restarting the OpenClaw gateway can briefly interrupt service. <br>
-Mitigation: Warn users before restarting and perform the restart during an acceptable maintenance window. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Feishu Channel Setup Guide](/root/.openclaw/extensions/feishu/README.md) <br>
-- [Dingtalk Channel Setup Guide](/root/.openclaw/extensions/dingtalk-connector/README.md) <br>
-- [OpenClaw Channel Setup Guide](/root/.local/share/pnpm/global/5/node_modules/openclaw/docs/channels) <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to configure Telegram, Discord, Slack, Feishu, and Dingtalk channels and apply the channel setup by restarting the OpenClaw gateway.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes channel setup steps and gateway restart guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Channel setup requires bot tokens, app secrets, gateway tokens, and passwords that could expose messaging integrations if shared or logged.
+
+Mitigation: Treat credentials as sensitive, avoid pasting them into shared terminals or recorded sessions, rotate exposed credentials, and grant each integration only the minimum required scopes.
+
+Risk: Restarting the OpenClaw gateway can interrupt active service.
+
+Mitigation: Tell the user before restarting the gateway and perform the restart during an acceptable maintenance window.
+
+## Reference(s):
+
+- [Channels Setup on ClawHub](https://clawhub.ai/petopagi/skills/channels-setup)
+- [Feishu Channel Setup Guide](/root/.openclaw/extensions/feishu/README.md)
+- [Dingtalk Channel Setup Guide](/root/.openclaw/extensions/dingtalk-connector/README.md)
+- [OpenClaw Channel Setup Guide](/root/.local/share/pnpm/global/5/node_modules/openclaw/docs/channels)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes channel-specific setup commands and restart guidance for OpenClaw.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

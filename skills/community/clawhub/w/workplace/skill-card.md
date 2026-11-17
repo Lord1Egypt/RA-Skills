@@ -1,48 +1,68 @@
-## Description: <br>
-Workplace manages multiple project directories with per-workspace agents, isolated memory, inter-agent communication, IDE context syncing, and chat UI controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage multiple workplaces with multi-agent orchestration, isolated memory, inter-agent communication, IDE context sync, and Telegram or Discord workplace controls.
 
-## Publisher: <br>
-[dickwu](https://clawhub.ai/user/dickwu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dickwu](https://clawhub.ai/user/dickwu)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to initialize, switch, scan, link, and manage multiple project workplaces while coordinating project-specific agents, memory, sessions, deployment notes, and IDE context files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: User-supplied workplace names or paths may trigger the confirmed command-injection issue identified by the security scan. <br>
-Mitigation: Review and patch the initialization script before use, and avoid passing untrusted names, paths, or descriptions. <br>
-Risk: The skill persistently mutates project directories, IDE context files, the home-directory workplace registry, and supermemory state. <br>
-Mitigation: Run it only on trusted project paths after confirming the intended .workplace, IDE, registry, and memory writes. <br>
-Risk: Initializing a parent folder may affect child repositories discovered as workplaces. <br>
-Mitigation: Scope initialization and scanning to the specific project path unless child repositories are intended to be registered or changed. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to initialize, switch, scan, synchronize, and manage multiple project workplaces while coordinating role-based agents and persistent project context.
 
-## Reference(s): <br>
-- [ClawHub Workplace page](https://clawhub.ai/dickwu/workplace) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [README](README.md) <br>
-- [Command Reference](references/commands.md) <br>
-- [Agent System](references/agent-system.md) <br>
-- [IDE Sync](references/ide-sync.md) <br>
-- [Telegram UI](references/telegram-ui.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and text guidance with shell commands, JSON or JSONC configuration, and generated project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update workplace registry files, .workplace project files, IDE context files, deployment notes, and agent definitions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can persistently alter project and agent state across repositories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated .workplace files and registry changes before relying on them for future sessions.
+
+Risk: The skill can sync project and agent context into IDE instruction files and external memory.
+
+Mitigation: Avoid syncing untrusted agent definitions or sensitive project context into Cursor, Claude Code, OpenCode, or supermemory.
+
+Risk: The skill can support background agent workflows and deployment-related commands.
+
+Mitigation: Require confirmation before deployment actions, child-repository initialization, or starting persistent/background agents.
+
+Risk: The Rust build path may prompt users to install a toolchain through a remote shell command.
+
+Mitigation: Inspect any Rust installation command before running it and prefer an already trusted local toolchain.
+
+## Reference(s):
+
+- [Workplace Skill Page](https://clawhub.ai/dickwu/skills/workplace)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [Agent System](references/agent-system.md)
+- [Chat Protocol](references/chat-protocol.md)
+- [Command Reference](references/commands.md)
+- [IDE Sync Guide](references/ide-sync.md)
+- [Initialization Guide](references/init-guide.md)
+- [Telegram UI Guide](references/telegram-ui.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated JSON, JSONC, MDC, and Markdown configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local workplace registries, per-project .workplace directories, agent definitions, deployment templates, IDE context files, and chat/session state.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

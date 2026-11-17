@@ -1,0 +1,6250 @@
+{
+ "R7001": {
+  "status": "no_signal",
+  "n": 9,
+  "m1": 0.676,
+  "m0": 0.726,
+  "diff": -0.051,
+  "ci": [
+   -0.359,
+   0.257
+  ],
+  "r": -0.06
+ },
+ "R7002": {
+  "status": "no_signal",
+  "n": 6,
+  "m1": 0.681,
+  "m0": 0.722,
+  "diff": -0.041,
+  "ci": [
+   -0.411,
+   0.328
+  ],
+  "r": -0.04
+ },
+ "R7003": {
+  "status": "no_signal",
+  "n": 13,
+  "m1": 0.693,
+  "m0": 0.726,
+  "diff": -0.033,
+  "ci": [
+   -0.257,
+   0.19
+  ],
+  "r": -0.04
+ },
+ "R7004": {
+  "status": "no_signal",
+  "n": 20,
+  "m1": 0.738,
+  "m0": 0.705,
+  "diff": 0.033,
+  "ci": [
+   -0.149,
+   0.214
+  ],
+  "r": 0.05
+ },
+ "R7005": {
+  "status": "no_signal",
+  "n": 37,
+  "m1": 0.759,
+  "m0": 0.617,
+  "diff": 0.142,
+  "ci": [
+   -0.048,
+   0.332
+  ],
+  "r": 0.2
+ },
+ "R7006": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.998,
+  "m0": 0.712,
+  "diff": 0.286,
+  "ci": [
+   0.197,
+   0.375
+  ],
+  "r": 0.12
+ },
+ "R7007": {
+  "status": "no_signal",
+  "n": 18,
+  "m1": 0.643,
+  "m0": 0.757,
+  "diff": -0.114,
+  "ci": [
+   -0.316,
+   0.087
+  ],
+  "r": -0.17
+ },
+ "R7008": {
+  "status": "insufficient",
+  "n": 2,
+  "m1": 0.422,
+  "m0": 0.73,
+  "diff": -0.308,
+  "ci": [
+   -0.876,
+   0.26
+  ],
+  "r": -0.18
+ },
+ "R7009": {
+  "status": "reversed",
+  "n": 24,
+  "m1": 0.594,
+  "m0": 0.824,
+  "diff": -0.23,
+  "ci": [
+   -0.403,
+   -0.058
+  ],
+  "r": -0.35
+ },
+ "R7010": {
+  "status": "insufficient",
+  "n": 4,
+  "m1": 0.721,
+  "m0": 0.717,
+  "diff": 0.004,
+  "ci": [
+   -0.406,
+   0.415
+  ],
+  "r": 0.0
+ },
+ "R7011": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.017,
+  "m0": 0.731,
+  "diff": -0.715,
+  "ci": [
+   -0.8,
+   -0.629
+  ],
+  "r": -0.3
+ },
+ "R7012": {
+  "status": "insufficient",
+  "n": 2,
+  "m1": 0.37,
+  "m0": 0.732,
+  "diff": -0.362,
+  "ci": [
+   -0.859,
+   0.136
+  ],
+  "r": -0.21
+ },
+ "R7013": {
+  "status": "directional",
+  "n": 13,
+  "m1": 0.537,
+  "m0": 0.778,
+  "diff": -0.241,
+  "ci": [
+   -0.488,
+   0.005
+  ],
+  "r": -0.32
+ },
+ "R7014": {
+  "status": "directional",
+  "n": 5,
+  "m1": 0.503,
+  "m0": 0.741,
+  "diff": -0.237,
+  "ci": [
+   -0.608,
+   0.133
+  ],
+  "r": -0.22
+ },
+ "R7015": {
+  "status": "no_signal",
+  "n": 15,
+  "m1": 0.681,
+  "m0": 0.733,
+  "diff": -0.051,
+  "ci": [
+   -0.257,
+   0.154
+  ],
+  "r": -0.07
+ },
+ "R7016": {
+  "status": "insufficient",
+  "n": 3,
+  "m1": 0.635,
+  "m0": 0.723,
+  "diff": -0.088,
+  "ci": [
+   -0.593,
+   0.417
+  ],
+  "r": -0.06
+ },
+ "R7017": {
+  "status": "insufficient",
+  "n": 3,
+  "m1": 0.491,
+  "m0": 0.732,
+  "diff": -0.241,
+  "ci": [
+   -0.658,
+   0.177
+  ],
+  "r": -0.17
+ },
+ "R7018": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.717,
+  "m0": 0.718,
+  "diff": -0.001,
+  "ci": [
+   -0.091,
+   0.089
+  ],
+  "r": -0.0
+ },
+ "R7019": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R7020": {
+  "status": "no_signal",
+  "n": 9,
+  "m1": 0.684,
+  "m0": 0.725,
+  "diff": -0.041,
+  "ci": [
+   -0.228,
+   0.146
+  ],
+  "r": -0.05
+ },
+ "R7021": {
+  "status": "insufficient",
+  "n": 3,
+  "m1": 0.621,
+  "m0": 0.724,
+  "diff": -0.102,
+  "ci": [
+   -0.417,
+   0.212
+  ],
+  "r": -0.07
+ },
+ "R7022": {
+  "status": "no_signal",
+  "n": 36,
+  "m1": 0.734,
+  "m0": 0.68,
+  "diff": 0.054,
+  "ci": [
+   -0.129,
+   0.237
+  ],
+  "r": 0.08
+ },
+ "R7023": {
+  "status": "no_signal",
+  "n": 15,
+  "m1": 0.752,
+  "m0": 0.704,
+  "diff": 0.049,
+  "ci": [
+   -0.149,
+   0.247
+  ],
+  "r": 0.07
+ },
+ "R7024": {
+  "status": "no_signal",
+  "n": 16,
+  "m1": 0.673,
+  "m0": 0.738,
+  "diff": -0.064,
+  "ci": [
+   -0.254,
+   0.125
+  ],
+  "r": -0.09
+ },
+ "R7025": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R7026": {
+  "status": "no_signal",
+  "n": 5,
+  "m1": 0.758,
+  "m0": 0.713,
+  "diff": 0.044,
+  "ci": [
+   -0.306,
+   0.394
+  ],
+  "r": 0.04
+ },
+ "R7027": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R7028": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R7029": {
+  "status": "no_signal",
+  "n": 23,
+  "m1": 0.649,
+  "m0": 0.772,
+  "diff": -0.124,
+  "ci": [
+   -0.301,
+   0.054
+  ],
+  "r": -0.19
+ },
+ "R7030": {
+  "status": "insufficient",
+  "n": 2,
+  "m1": 0.377,
+  "m0": 0.731,
+  "diff": -0.354,
+  "ci": [
+   -0.734,
+   0.027
+  ],
+  "r": -0.21
+ },
+ "R7031": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R7032": {
+  "status": "no_signal",
+  "n": 15,
+  "m1": 0.701,
+  "m0": 0.724,
+  "diff": -0.023,
+  "ci": [
+   -0.225,
+   0.179
+  ],
+  "r": -0.03
+ },
+ "R7033": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R7034": {
+  "status": "no_signal",
+  "n": 34,
+  "m1": 0.68,
+  "m0": 0.789,
+  "diff": -0.109,
+  "ci": [
+   -0.287,
+   0.07
+  ],
+  "r": -0.16
+ },
+ "R7035": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.991,
+  "m0": 0.712,
+  "diff": 0.279,
+  "ci": [
+   0.19,
+   0.368
+  ],
+  "r": 0.12
+ },
+ "R6001": {
+  "status": "no_signal",
+  "n": 32,
+  "m1": 0.682,
+  "m0": 0.775,
+  "diff": -0.094,
+  "ci": [
+   -0.26,
+   0.072
+  ],
+  "r": -0.14
+ },
+ "R6002": {
+  "status": "insufficient",
+  "n": 3,
+  "m1": 0.644,
+  "m0": 0.722,
+  "diff": -0.078,
+  "ci": [
+   -0.367,
+   0.21
+  ],
+  "r": -0.06
+ },
+ "R6003": {
+  "status": "no_signal",
+  "n": 13,
+  "m1": 0.66,
+  "m0": 0.737,
+  "diff": -0.076,
+  "ci": [
+   -0.308,
+   0.155
+  ],
+  "r": -0.1
+ },
+ "R6004": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R6005": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R6006": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R6007": {
+  "status": "reversed",
+  "n": 43,
+  "m1": 0.687,
+  "m0": 0.865,
+  "diff": -0.178,
+  "ci": [
+   -0.351,
+   -0.006
+  ],
+  "r": -0.21
+ },
+ "R6008": {
+  "status": "no_signal",
+  "n": 19,
+  "m1": 0.689,
+  "m0": 0.734,
+  "diff": -0.045,
+  "ci": [
+   -0.239,
+   0.149
+  ],
+  "r": -0.07
+ },
+ "R6009": {
+  "status": "no_signal",
+  "n": 14,
+  "m1": 0.637,
+  "m0": 0.747,
+  "diff": -0.11,
+  "ci": [
+   -0.317,
+   0.098
+  ],
+  "r": -0.15
+ },
+ "R6010": {
+  "status": "reversed",
+  "n": 5,
+  "m1": 0.383,
+  "m0": 0.753,
+  "diff": -0.37,
+  "ci": [
+   -0.737,
+   -0.003
+  ],
+  "r": -0.34
+ },
+ "R6011": {
+  "status": "reversed",
+  "n": 11,
+  "m1": 0.527,
+  "m0": 0.769,
+  "diff": -0.242,
+  "ci": [
+   -0.479,
+   -0.006
+  ],
+  "r": -0.3
+ },
+ "R6012": {
+  "status": "no_signal",
+  "n": 25,
+  "m1": 0.72,
+  "m0": 0.715,
+  "diff": 0.005,
+  "ci": [
+   -0.173,
+   0.182
+  ],
+  "r": 0.01
+ },
+ "R6013": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R6014": {
+  "status": "no_signal",
+  "n": 17,
+  "m1": 0.724,
+  "m0": 0.715,
+  "diff": 0.009,
+  "ci": [
+   -0.181,
+   0.2
+  ],
+  "r": 0.01
+ },
+ "R6015": {
+  "status": "no_signal",
+  "n": 5,
+  "m1": 0.728,
+  "m0": 0.717,
+  "diff": 0.011,
+  "ci": [
+   -0.34,
+   0.362
+  ],
+  "r": 0.01
+ },
+ "R6016": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R6017": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.635,
+  "m0": 0.719,
+  "diff": -0.085,
+  "ci": [
+   -0.175,
+   0.005
+  ],
+  "r": -0.04
+ },
+ "R6018": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R6019": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R6020": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.997,
+  "m0": 0.712,
+  "diff": 0.285,
+  "ci": [
+   0.195,
+   0.374
+  ],
+  "r": 0.12
+ },
+ "R6021": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R6022": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R6023": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R6024": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R6025": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R6026": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R6027": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R6028": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.247,
+  "m0": 0.727,
+  "diff": -0.48,
+  "ci": [
+   -0.568,
+   -0.391
+  ],
+  "r": -0.2
+ },
+ "R6029": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R6030": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R6031": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R6032": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R6033": {
+  "status": "insufficient",
+  "n": 2,
+  "m1": 0.943,
+  "m0": 0.709,
+  "diff": 0.234,
+  "ci": [
+   0.121,
+   0.347
+  ],
+  "r": 0.14
+ },
+ "R6034": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R6035": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R6036": {
+  "status": "no_signal",
+  "n": 5,
+  "m1": 0.774,
+  "m0": 0.712,
+  "diff": 0.062,
+  "ci": [
+   -0.29,
+   0.414
+  ],
+  "r": 0.06
+ },
+ "R6037": {
+  "status": "directional",
+  "n": 24,
+  "m1": 0.624,
+  "m0": 0.798,
+  "diff": -0.173,
+  "ci": [
+   -0.35,
+   0.003
+  ],
+  "r": -0.27
+ },
+ "R6038": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R6039": {
+  "status": "reversed",
+  "n": 47,
+  "m1": 0.691,
+  "m0": 0.972,
+  "diff": -0.282,
+  "ci": [
+   -0.382,
+   -0.181
+  ],
+  "r": -0.26
+ },
+ "R6040": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.998,
+  "m0": 0.712,
+  "diff": 0.285,
+  "ci": [
+   0.196,
+   0.375
+  ],
+  "r": 0.12
+ },
+ "R6041": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.004,
+  "m0": 0.732,
+  "diff": -0.728,
+  "ci": [
+   -0.814,
+   -0.642
+  ],
+  "r": -0.31
+ },
+ "R6042": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R6043": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R6044": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R6045": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R6046": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R6047": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R6048": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R6049": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R6050": {
+  "status": "insufficient",
+  "n": 3,
+  "m1": 0.451,
+  "m0": 0.734,
+  "diff": -0.283,
+  "ci": [
+   -0.732,
+   0.167
+  ],
+  "r": -0.2
+ },
+ "R6051": {
+  "status": "no_signal",
+  "n": 7,
+  "m1": 0.758,
+  "m0": 0.711,
+  "diff": 0.047,
+  "ci": [
+   -0.192,
+   0.286
+  ],
+  "r": 0.05
+ },
+ "R6052": {
+  "status": "no_signal",
+  "n": 6,
+  "m1": 0.794,
+  "m0": 0.708,
+  "diff": 0.086,
+  "ci": [
+   -0.205,
+   0.377
+  ],
+  "r": 0.08
+ },
+ "R6053": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R6054": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R6055": {
+  "status": "reversed",
+  "n": 25,
+  "m1": 0.597,
+  "m0": 0.829,
+  "diff": -0.233,
+  "ci": [
+   -0.4,
+   -0.065
+  ],
+  "r": -0.36
+ },
+ "R6056": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.017,
+  "m0": 0.731,
+  "diff": -0.715,
+  "ci": [
+   -0.8,
+   -0.629
+  ],
+  "r": -0.3
+ },
+ "R6057": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.091,
+  "m0": 0.73,
+  "diff": -0.638,
+  "ci": [
+   -0.725,
+   -0.552
+  ],
+  "r": -0.27
+ },
+ "R6058": {
+  "status": "directional",
+  "n": 7,
+  "m1": 0.525,
+  "m0": 0.748,
+  "diff": -0.223,
+  "ci": [
+   -0.537,
+   0.092
+  ],
+  "r": -0.23
+ },
+ "R6059": {
+  "status": "insufficient",
+  "n": 2,
+  "m1": 0.319,
+  "m0": 0.734,
+  "diff": -0.414,
+  "ci": [
+   -0.86,
+   0.031
+  ],
+  "r": -0.25
+ },
+ "R6060": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R6061": {
+  "status": "insufficient",
+  "n": 2,
+  "m1": 0.501,
+  "m0": 0.726,
+  "diff": -0.226,
+  "ci": [
+   -0.92,
+   0.469
+  ],
+  "r": -0.13
+ },
+ "R6062": {
+  "status": "no_signal",
+  "n": 32,
+  "m1": 0.719,
+  "m0": 0.716,
+  "diff": 0.003,
+  "ci": [
+   -0.182,
+   0.188
+  ],
+  "r": 0.0
+ },
+ "R6063": {
+  "status": "confirmed",
+  "n": 14,
+  "m1": 0.924,
+  "m0": 0.642,
+  "diff": 0.282,
+  "ci": [
+   0.156,
+   0.407
+  ],
+  "r": 0.38
+ },
+ "R6064": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.998,
+  "m0": 0.712,
+  "diff": 0.285,
+  "ci": [
+   0.196,
+   0.375
+  ],
+  "r": 0.12
+ },
+ "R6065": {
+  "status": "insufficient",
+  "n": 3,
+  "m1": 0.996,
+  "m0": 0.701,
+  "diff": 0.295,
+  "ci": [
+   0.204,
+   0.387
+  ],
+  "r": 0.21
+ },
+ "R6066": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.302,
+  "m0": 0.726,
+  "diff": -0.423,
+  "ci": [
+   -0.512,
+   -0.335
+  ],
+  "r": -0.18
+ },
+ "R6067": {
+  "status": "no_signal",
+  "n": 6,
+  "m1": 0.641,
+  "m0": 0.728,
+  "diff": -0.087,
+  "ci": [
+   -0.438,
+   0.265
+  ],
+  "r": -0.09
+ },
+ "R6068": {
+  "status": "insufficient",
+  "n": 2,
+  "m1": 0.01,
+  "m0": 0.746,
+  "diff": -0.736,
+  "ci": [
+   -0.819,
+   -0.653
+  ],
+  "r": -0.44
+ },
+ "R6069": {
+  "status": "insufficient",
+  "n": 3,
+  "m1": 0.288,
+  "m0": 0.744,
+  "diff": -0.456,
+  "ci": [
+   -0.908,
+   -0.004
+  ],
+  "r": -0.33
+ },
+ "R6070": {
+  "status": "insufficient",
+  "n": 3,
+  "m1": 0.9,
+  "m0": 0.706,
+  "diff": 0.194,
+  "ci": [
+   0.024,
+   0.363
+  ],
+  "r": 0.14
+ },
+ "R6071": {
+  "status": "no_signal",
+  "n": 12,
+  "m1": 0.604,
+  "m0": 0.752,
+  "diff": -0.148,
+  "ci": [
+   -0.389,
+   0.093
+  ],
+  "r": -0.19
+ },
+ "R5001": {
+  "status": "confirmed",
+  "n": 45,
+  "m1": 0.771,
+  "m0": 0.376,
+  "diff": 0.395,
+  "ci": [
+   0.133,
+   0.657
+  ],
+  "r": 0.42
+ },
+ "R5002": {
+  "status": "confirmed",
+  "n": 33,
+  "m1": 0.797,
+  "m0": 0.581,
+  "diff": 0.216,
+  "ci": [
+   0.038,
+   0.394
+  ],
+  "r": 0.32
+ },
+ "R5003": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R5004": {
+  "status": "confirmed",
+  "n": 5,
+  "m1": 0.923,
+  "m0": 0.696,
+  "diff": 0.227,
+  "ci": [
+   0.069,
+   0.384
+  ],
+  "r": 0.21
+ },
+ "R5005": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R5006": {
+  "status": "confirmed",
+  "n": 22,
+  "m1": 0.845,
+  "m0": 0.624,
+  "diff": 0.221,
+  "ci": [
+   0.062,
+   0.379
+  ],
+  "r": 0.34
+ },
+ "R5007": {
+  "status": "no_signal",
+  "n": 30,
+  "m1": 0.73,
+  "m0": 0.7,
+  "diff": 0.03,
+  "ci": [
+   -0.142,
+   0.202
+  ],
+  "r": 0.05
+ },
+ "R5008": {
+  "status": "no_signal",
+  "n": 18,
+  "m1": 0.801,
+  "m0": 0.674,
+  "diff": 0.128,
+  "ci": [
+   -0.049,
+   0.304
+  ],
+  "r": 0.19
+ },
+ "R5009": {
+  "status": "no_signal",
+  "n": 29,
+  "m1": 0.731,
+  "m0": 0.701,
+  "diff": 0.03,
+  "ci": [
+   -0.142,
+   0.202
+  ],
+  "r": 0.05
+ },
+ "R5010": {
+  "status": "no_signal",
+  "n": 21,
+  "m1": 0.745,
+  "m0": 0.699,
+  "diff": 0.045,
+  "ci": [
+   -0.139,
+   0.229
+  ],
+  "r": 0.07
+ },
+ "R5011": {
+  "status": "confirmed",
+  "n": 12,
+  "m1": 0.933,
+  "m0": 0.653,
+  "diff": 0.28,
+  "ci": [
+   0.155,
+   0.404
+  ],
+  "r": 0.36
+ },
+ "R5012": {
+  "status": "directional",
+  "n": 41,
+  "m1": 0.758,
+  "m0": 0.568,
+  "diff": 0.19,
+  "ci": [
+   -0.006,
+   0.385
+  ],
+  "r": 0.24
+ },
+ "R5013": {
+  "status": "directional",
+  "n": 31,
+  "m1": 0.778,
+  "m0": 0.628,
+  "diff": 0.15,
+  "ci": [
+   -0.029,
+   0.33
+  ],
+  "r": 0.23
+ },
+ "R5014": {
+  "status": "no_signal",
+  "n": 22,
+  "m1": 0.73,
+  "m0": 0.709,
+  "diff": 0.021,
+  "ci": [
+   -0.158,
+   0.2
+  ],
+  "r": 0.03
+ },
+ "R5015": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R5016": {
+  "status": "confirmed",
+  "n": 14,
+  "m1": 0.924,
+  "m0": 0.642,
+  "diff": 0.282,
+  "ci": [
+   0.156,
+   0.407
+  ],
+  "r": 0.38
+ },
+ "R5017": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R5018": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R5019": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.997,
+  "m0": 0.712,
+  "diff": 0.285,
+  "ci": [
+   0.195,
+   0.374
+  ],
+  "r": 0.12
+ },
+ "R5020": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R5021": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R5022": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R5023": {
+  "status": "no_signal",
+  "n": 13,
+  "m1": 0.687,
+  "m0": 0.728,
+  "diff": -0.041,
+  "ci": [
+   -0.263,
+   0.182
+  ],
+  "r": -0.05
+ },
+ "R5024": {
+  "status": "no_signal",
+  "n": 6,
+  "m1": 0.812,
+  "m0": 0.705,
+  "diff": 0.107,
+  "ci": [
+   -0.198,
+   0.412
+  ],
+  "r": 0.1
+ },
+ "R5025": {
+  "status": "no_signal",
+  "n": 20,
+  "m1": 0.793,
+  "m0": 0.671,
+  "diff": 0.122,
+  "ci": [
+   -0.045,
+   0.289
+  ],
+  "r": 0.18
+ },
+ "R8-词表·libai-001": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.998,
+  "m0": 0.712,
+  "diff": 0.286,
+  "ci": [
+   0.197,
+   0.375
+  ],
+  "r": 0.12
+ },
+ "R8-词表·libai-002": {
+  "status": "insufficient",
+  "n": 3,
+  "m1": 0.929,
+  "m0": 0.705,
+  "diff": 0.224,
+  "ci": [
+   0.08,
+   0.368
+  ],
+  "r": 0.16
+ },
+ "R8-词表·libai-003": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-004": {
+  "status": "insufficient",
+  "n": 2,
+  "m1": 0.857,
+  "m0": 0.712,
+  "diff": 0.145,
+  "ci": [
+   -0.07,
+   0.361
+  ],
+  "r": 0.09
+ },
+ "R8-词表·libai-005": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-006": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-007": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-008": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-009": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-010": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-011": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-012": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-013": {
+  "status": "directional",
+  "n": 9,
+  "m1": 0.528,
+  "m0": 0.757,
+  "diff": -0.23,
+  "ci": [
+   -0.513,
+   0.053
+  ],
+  "r": -0.27
+ },
+ "R8-词表·libai-014": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-015": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-016": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-017": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-018": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-019": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-020": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-021": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-022": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-023": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-024": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-025": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-026": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-027": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-028": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.873,
+  "m0": 0.715,
+  "diff": 0.159,
+  "ci": [
+   0.069,
+   0.248
+  ],
+  "r": 0.07
+ },
+ "R8-词表·libai-029": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-030": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.873,
+  "m0": 0.715,
+  "diff": 0.159,
+  "ci": [
+   0.069,
+   0.248
+  ],
+  "r": 0.07
+ },
+ "R8-词表·libai-031": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-032": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-033": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-034": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-035": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-036": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-037": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-038": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-039": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-040": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-041": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-042": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-043": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-044": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.791,
+  "m0": 0.716,
+  "diff": 0.075,
+  "ci": [
+   -0.015,
+   0.165
+  ],
+  "r": 0.03
+ },
+ "R8-词表·libai-045": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-046": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-047": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-048": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.998,
+  "m0": 0.712,
+  "diff": 0.286,
+  "ci": [
+   0.197,
+   0.375
+  ],
+  "r": 0.12
+ },
+ "R8-词表·libai-049": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-050": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-051": {
+  "status": "insufficient",
+  "n": 2,
+  "m1": 0.422,
+  "m0": 0.73,
+  "diff": -0.308,
+  "ci": [
+   -0.876,
+   0.26
+  ],
+  "r": -0.18
+ },
+ "R8-词表·libai-052": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-053": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-054": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-055": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-056": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-057": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-058": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-059": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-060": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-061": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-062": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-063": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-064": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-065": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-066": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-067": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-068": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-069": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-070": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-071": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-072": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-073": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-074": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-075": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-076": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-077": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-078": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-079": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-080": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-081": {
+  "status": "insufficient",
+  "n": 3,
+  "m1": 0.906,
+  "m0": 0.706,
+  "diff": 0.2,
+  "ci": [
+   0.027,
+   0.373
+  ],
+  "r": 0.14
+ },
+ "R8-词表·libai-082": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-083": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-084": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.998,
+  "m0": 0.712,
+  "diff": 0.286,
+  "ci": [
+   0.196,
+   0.375
+  ],
+  "r": 0.12
+ },
+ "R8-词表·libai-085": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-086": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-087": {
+  "status": "no_signal",
+  "n": 8,
+  "m1": 0.609,
+  "m0": 0.737,
+  "diff": -0.128,
+  "ci": [
+   -0.422,
+   0.165
+  ],
+  "r": -0.14
+ },
+ "R8-词表·libai-088": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-089": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-090": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-091": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-092": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-093": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-094": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.017,
+  "m0": 0.731,
+  "diff": -0.715,
+  "ci": [
+   -0.8,
+   -0.629
+  ],
+  "r": -0.3
+ },
+ "R8-词表·libai-095": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-096": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-097": {
+  "status": "no_signal",
+  "n": 5,
+  "m1": 0.652,
+  "m0": 0.725,
+  "diff": -0.073,
+  "ci": [
+   -0.461,
+   0.314
+  ],
+  "r": -0.07
+ },
+ "R8-词表·libai-098": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-099": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-100": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-101": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-102": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-103": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-104": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-105": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-106": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-107": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-108": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-109": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-110": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-111": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-112": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-113": {
+  "status": "insufficient",
+  "n": 3,
+  "m1": 0.216,
+  "m0": 0.748,
+  "diff": -0.533,
+  "ci": [
+   -0.724,
+   -0.342
+  ],
+  "r": -0.38
+ },
+ "R8-词表·libai-114": {
+  "status": "no_signal",
+  "n": 27,
+  "m1": 0.666,
+  "m0": 0.773,
+  "diff": -0.107,
+  "ci": [
+   -0.279,
+   0.066
+  ],
+  "r": -0.16
+ },
+ "R8-词表·libai-115": {
+  "status": "no_signal",
+  "n": 13,
+  "m1": 0.664,
+  "m0": 0.735,
+  "diff": -0.071,
+  "ci": [
+   -0.296,
+   0.153
+  ],
+  "r": -0.09
+ },
+ "R8-词表·libai-116": {
+  "status": "no_signal",
+  "n": 17,
+  "m1": 0.717,
+  "m0": 0.718,
+  "diff": -0.001,
+  "ci": [
+   -0.189,
+   0.186
+  ],
+  "r": -0.0
+ },
+ "R8-词表·libai-117": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.873,
+  "m0": 0.715,
+  "diff": 0.159,
+  "ci": [
+   0.069,
+   0.248
+  ],
+  "r": 0.07
+ },
+ "R8-词表·libai-118": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-119": {
+  "status": "insufficient",
+  "n": 4,
+  "m1": 0.712,
+  "m0": 0.718,
+  "diff": -0.006,
+  "ci": [
+   -0.373,
+   0.361
+  ],
+  "r": -0.0
+ },
+ "R8-词表·libai-120": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-121": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-122": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.995,
+  "m0": 0.712,
+  "diff": 0.283,
+  "ci": [
+   0.194,
+   0.372
+  ],
+  "r": 0.12
+ },
+ "R8-词表·libai-123": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-124": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-125": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-126": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.017,
+  "m0": 0.731,
+  "diff": -0.715,
+  "ci": [
+   -0.8,
+   -0.629
+  ],
+  "r": -0.3
+ },
+ "R8-词表·libai-127": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-128": {
+  "status": "insufficient",
+  "n": 4,
+  "m1": 0.772,
+  "m0": 0.713,
+  "diff": 0.059,
+  "ci": [
+   -0.326,
+   0.444
+  ],
+  "r": 0.05
+ },
+ "R8-词表·libai-129": {
+  "status": "insufficient",
+  "n": 2,
+  "m1": 0.56,
+  "m0": 0.724,
+  "diff": -0.164,
+  "ci": [
+   -0.607,
+   0.279
+  ],
+  "r": -0.1
+ },
+ "R8-词表·libai-130": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.017,
+  "m0": 0.731,
+  "diff": -0.715,
+  "ci": [
+   -0.8,
+   -0.629
+  ],
+  "r": -0.3
+ },
+ "R8-词表·libai-131": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-132": {
+  "status": "no_signal",
+  "n": 16,
+  "m1": 0.746,
+  "m0": 0.705,
+  "diff": 0.041,
+  "ci": [
+   -0.16,
+   0.242
+  ],
+  "r": 0.06
+ },
+ "R8-词表·libai-133": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-134": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-135": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-136": {
+  "status": "insufficient",
+  "n": 2,
+  "m1": 0.141,
+  "m0": 0.741,
+  "diff": -0.6,
+  "ci": [
+   -0.792,
+   -0.408
+  ],
+  "r": -0.36
+ },
+ "R8-词表·libai-137": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-138": {
+  "status": "insufficient",
+  "n": 2,
+  "m1": 0.693,
+  "m0": 0.719,
+  "diff": -0.026,
+  "ci": [
+   -0.19,
+   0.138
+  ],
+  "r": -0.02
+ },
+ "R8-词表·libai-139": {
+  "status": "insufficient",
+  "n": 4,
+  "m1": 0.666,
+  "m0": 0.722,
+  "diff": -0.056,
+  "ci": [
+   -0.445,
+   0.333
+  ],
+  "r": -0.05
+ },
+ "R8-词表·libai-140": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-141": {
+  "status": "insufficient",
+  "n": 2,
+  "m1": 0.136,
+  "m0": 0.741,
+  "diff": -0.605,
+  "ci": [
+   -0.743,
+   -0.467
+  ],
+  "r": -0.36
+ },
+ "R8-词表·libai-142": {
+  "status": "insufficient",
+  "n": 4,
+  "m1": 0.309,
+  "m0": 0.752,
+  "diff": -0.443,
+  "ci": [
+   -0.761,
+   -0.124
+  ],
+  "r": -0.36
+ },
+ "R8-词表·libai-143": {
+  "status": "no_signal",
+  "n": 10,
+  "m1": 0.754,
+  "m0": 0.709,
+  "diff": 0.045,
+  "ci": [
+   -0.182,
+   0.273
+  ],
+  "r": 0.06
+ },
+ "R8-词表·libai-144": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-145": {
+  "status": "no_signal",
+  "n": 11,
+  "m1": 0.716,
+  "m0": 0.718,
+  "diff": -0.003,
+  "ci": [
+   -0.237,
+   0.232
+  ],
+  "r": -0.0
+ },
+ "R8-词表·libai-146": {
+  "status": "no_signal",
+  "n": 26,
+  "m1": 0.699,
+  "m0": 0.736,
+  "diff": -0.036,
+  "ci": [
+   -0.213,
+   0.14
+  ],
+  "r": -0.06
+ },
+ "R8-词表·libai-147": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-148": {
+  "status": "insufficient",
+  "n": 2,
+  "m1": 0.231,
+  "m0": 0.737,
+  "diff": -0.506,
+  "ci": [
+   -0.597,
+   -0.416
+  ],
+  "r": -0.3
+ },
+ "R8-词表·libai-149": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-150": {
+  "status": "insufficient",
+  "n": 3,
+  "m1": 0.695,
+  "m0": 0.719,
+  "diff": -0.025,
+  "ci": [
+   -0.515,
+   0.466
+  ],
+  "r": -0.02
+ },
+ "R8-词表·libai-151": {
+  "status": "insufficient",
+  "n": 2,
+  "m1": 0.82,
+  "m0": 0.714,
+  "diff": 0.106,
+  "ci": [
+   -0.153,
+   0.366
+  ],
+  "r": 0.06
+ },
+ "R8-词表·libai-152": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-153": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-154": {
+  "status": "no_signal",
+  "n": 12,
+  "m1": 0.727,
+  "m0": 0.715,
+  "diff": 0.013,
+  "ci": [
+   -0.206,
+   0.231
+  ],
+  "r": 0.02
+ },
+ "R8-词表·libai-155": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.017,
+  "m0": 0.731,
+  "diff": -0.715,
+  "ci": [
+   -0.8,
+   -0.629
+  ],
+  "r": -0.3
+ },
+ "R8-词表·libai-156": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.058,
+  "m0": 0.731,
+  "diff": -0.673,
+  "ci": [
+   -0.759,
+   -0.586
+  ],
+  "r": -0.28
+ },
+ "R8-词表·libai-157": {
+  "status": "no_signal",
+  "n": 19,
+  "m1": 0.721,
+  "m0": 0.716,
+  "diff": 0.005,
+  "ci": [
+   -0.183,
+   0.194
+  ],
+  "r": 0.01
+ },
+ "R8-词表·libai-158": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-159": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-160": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-161": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-162": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-163": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-164": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-165": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-166": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-167": {
+  "status": "reversed",
+  "n": 24,
+  "m1": 0.623,
+  "m0": 0.799,
+  "diff": -0.176,
+  "ci": [
+   -0.351,
+   -0.0
+  ],
+  "r": -0.27
+ },
+ "R8-词表·libai-168": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.058,
+  "m0": 0.731,
+  "diff": -0.673,
+  "ci": [
+   -0.759,
+   -0.586
+  ],
+  "r": -0.28
+ },
+ "R8-词表·libai-169": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-170": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-171": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-172": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-173": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-174": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-175": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-176": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-177": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-178": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-179": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-180": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-181": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-182": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-183": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-184": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-185": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-186": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-187": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-188": {
+  "status": "insufficient",
+  "n": 2,
+  "m1": 0.936,
+  "m0": 0.709,
+  "diff": 0.227,
+  "ci": [
+   0.101,
+   0.352
+  ],
+  "r": 0.13
+ },
+ "R8-词表·libai-189": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.998,
+  "m0": 0.712,
+  "diff": 0.286,
+  "ci": [
+   0.197,
+   0.375
+  ],
+  "r": 0.12
+ },
+ "R8-词表·libai-190": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-191": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-192": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-193": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-194": {
+  "status": "directional",
+  "n": 9,
+  "m1": 0.567,
+  "m0": 0.749,
+  "diff": -0.182,
+  "ci": [
+   -0.433,
+   0.07
+  ],
+  "r": -0.21
+ },
+ "R8-词表·libai-195": {
+  "status": "insufficient",
+  "n": 3,
+  "m1": 0.357,
+  "m0": 0.74,
+  "diff": -0.382,
+  "ci": [
+   -0.902,
+   0.137
+  ],
+  "r": -0.27
+ },
+ "R8-词表·libai-196": {
+  "status": "insufficient",
+  "n": 2,
+  "m1": 0.448,
+  "m0": 0.728,
+  "diff": -0.281,
+  "ci": [
+   -0.828,
+   0.267
+  ],
+  "r": -0.17
+ },
+ "R8-词表·libai-197": {
+  "status": "no_signal",
+  "n": 9,
+  "m1": 0.62,
+  "m0": 0.738,
+  "diff": -0.118,
+  "ci": [
+   -0.359,
+   0.123
+  ],
+  "r": -0.14
+ },
+ "R8-词表·libai-198": {
+  "status": "insufficient",
+  "n": 3,
+  "m1": 0.58,
+  "m0": 0.726,
+  "diff": -0.147,
+  "ci": [
+   -0.573,
+   0.28
+  ],
+  "r": -0.11
+ },
+ "R8-词表·libai-199": {
+  "status": "insufficient",
+  "n": 4,
+  "m1": 0.939,
+  "m0": 0.699,
+  "diff": 0.24,
+  "ci": [
+   0.104,
+   0.376
+  ],
+  "r": 0.2
+ },
+ "R8-词表·libai-200": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-201": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.998,
+  "m0": 0.712,
+  "diff": 0.286,
+  "ci": [
+   0.197,
+   0.375
+  ],
+  "r": 0.12
+ },
+ "R8-词表·libai-202": {
+  "status": "directional",
+  "n": 12,
+  "m1": 0.586,
+  "m0": 0.757,
+  "diff": -0.171,
+  "ci": [
+   -0.419,
+   0.076
+  ],
+  "r": -0.22
+ },
+ "R8-词表·libai-203": {
+  "status": "reversed",
+  "n": 9,
+  "m1": 0.299,
+  "m0": 0.805,
+  "diff": -0.506,
+  "ci": [
+   -0.726,
+   -0.285
+  ],
+  "r": -0.59
+ },
+ "R8-词表·libai-204": {
+  "status": "insufficient",
+  "n": 3,
+  "m1": 0.461,
+  "m0": 0.733,
+  "diff": -0.272,
+  "ci": [
+   -0.744,
+   0.2
+  ],
+  "r": -0.2
+ },
+ "R8-词表·libai-205": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-206": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-207": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.998,
+  "m0": 0.712,
+  "diff": 0.286,
+  "ci": [
+   0.196,
+   0.375
+  ],
+  "r": 0.12
+ },
+ "R8-词表·libai-208": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.11,
+  "m0": 0.73,
+  "diff": -0.619,
+  "ci": [
+   -0.706,
+   -0.532
+  ],
+  "r": -0.26
+ },
+ "R8-词表·libai-209": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-210": {
+  "status": "no_signal",
+  "n": 5,
+  "m1": 0.83,
+  "m0": 0.706,
+  "diff": 0.124,
+  "ci": [
+   -0.143,
+   0.391
+  ],
+  "r": 0.11
+ },
+ "R8-词表·libai-211": {
+  "status": "insufficient",
+  "n": 3,
+  "m1": 0.616,
+  "m0": 0.724,
+  "diff": -0.108,
+  "ci": [
+   -0.523,
+   0.307
+  ],
+  "r": -0.08
+ },
+ "R8-词表·libai-212": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-213": {
+  "status": "no_signal",
+  "n": 13,
+  "m1": 0.727,
+  "m0": 0.715,
+  "diff": 0.012,
+  "ci": [
+   -0.212,
+   0.237
+  ],
+  "r": 0.02
+ },
+ "R8-词表·libai-214": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.894,
+  "m0": 0.714,
+  "diff": 0.18,
+  "ci": [
+   0.09,
+   0.27
+  ],
+  "r": 0.08
+ },
+ "R8-词表·libai-215": {
+  "status": "insufficient",
+  "n": 2,
+  "m1": 0.507,
+  "m0": 0.726,
+  "diff": -0.219,
+  "ci": [
+   -0.904,
+   0.466
+  ],
+  "r": -0.13
+ },
+ "R8-词表·libai-216": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-217": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-218": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-219": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-220": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·libai-221": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.302,
+  "m0": 0.726,
+  "diff": -0.423,
+  "ci": [
+   -0.512,
+   -0.335
+  ],
+  "r": -0.18
+ },
+ "R8-词表·libai-222": {
+  "status": "no_signal",
+  "n": 12,
+  "m1": 0.776,
+  "m0": 0.7,
+  "diff": 0.076,
+  "ci": [
+   -0.12,
+   0.271
+  ],
+  "r": 0.1
+ },
+ "R8-词表·书面腔-001": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.791,
+  "m0": 0.716,
+  "diff": 0.075,
+  "ci": [
+   -0.015,
+   0.165
+  ],
+  "r": 0.03
+ },
+ "R8-词表·书面腔-002": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·书面腔-003": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.998,
+  "m0": 0.712,
+  "diff": 0.286,
+  "ci": [
+   0.197,
+   0.375
+  ],
+  "r": 0.12
+ },
+ "R8-词表·书面腔-004": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·书面腔-005": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·书面腔-006": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·书面腔-007": {
+  "status": "insufficient",
+  "n": 2,
+  "m1": 0.054,
+  "m0": 0.744,
+  "diff": -0.69,
+  "ci": [
+   -0.788,
+   -0.592
+  ],
+  "r": -0.41
+ },
+ "R8-词表·书面腔-008": {
+  "status": "directional",
+  "n": 5,
+  "m1": 0.542,
+  "m0": 0.736,
+  "diff": -0.195,
+  "ci": [
+   -0.512,
+   0.123
+  ],
+  "r": -0.18
+ },
+ "R8-词表·书面腔-009": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·书面腔-010": {
+  "status": "insufficient",
+  "n": 4,
+  "m1": 0.261,
+  "m0": 0.756,
+  "diff": -0.494,
+  "ci": [
+   -0.782,
+   -0.207
+  ],
+  "r": -0.41
+ },
+ "R8-词表·书面腔-011": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·书面腔-012": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·书面腔-013": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·书面腔-014": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.991,
+  "m0": 0.712,
+  "diff": 0.279,
+  "ci": [
+   0.19,
+   0.368
+  ],
+  "r": 0.12
+ },
+ "R8-词表·书面腔-015": {
+  "status": "insufficient",
+  "n": 3,
+  "m1": 0.61,
+  "m0": 0.724,
+  "diff": -0.114,
+  "ci": [
+   -0.603,
+   0.374
+  ],
+  "r": -0.08
+ },
+ "R8-词表·书面腔-016": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.873,
+  "m0": 0.715,
+  "diff": 0.159,
+  "ci": [
+   0.069,
+   0.248
+  ],
+  "r": 0.07
+ },
+ "R8-词表·书面腔-017": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·书面腔-018": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·书面腔-019": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·书面腔-020": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.997,
+  "m0": 0.712,
+  "diff": 0.285,
+  "ci": [
+   0.195,
+   0.374
+  ],
+  "r": 0.12
+ },
+ "R8-词表·书面腔-021": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·书面腔-022": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.986,
+  "m0": 0.712,
+  "diff": 0.273,
+  "ci": [
+   0.184,
+   0.363
+  ],
+  "r": 0.12
+ },
+ "R8-词表·书面腔-023": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·书面腔-024": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·书面腔-025": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·书面腔-026": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·书面腔-027": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·书面腔-028": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·书面腔-029": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·书面腔-030": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·书面腔-031": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·书面腔-032": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·书面腔-033": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·书面腔-034": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·书面腔-035": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·书面腔-036": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·书面腔-037": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·书面腔-038": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.873,
+  "m0": 0.715,
+  "diff": 0.159,
+  "ci": [
+   0.069,
+   0.248
+  ],
+  "r": 0.07
+ },
+ "R8-词表·书面腔-039": {
+  "status": "insufficient",
+  "n": 2,
+  "m1": 0.507,
+  "m0": 0.726,
+  "diff": -0.219,
+  "ci": [
+   -0.904,
+   0.466
+  ],
+  "r": -0.13
+ },
+ "R8-词表·书面腔-040": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·书面腔-041": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·书面腔-042": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·书面腔-043": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·书面腔-044": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·书面腔-045": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·书面腔-046": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·书面腔-047": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·书面腔-048": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·书面腔-049": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·人味指南-001": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·人味指南-002": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.017,
+  "m0": 0.731,
+  "diff": -0.715,
+  "ci": [
+   -0.8,
+   -0.629
+  ],
+  "r": -0.3
+ },
+ "R8-词表·人味指南-003": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·人味指南-004": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·人味指南-005": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·人味指南-006": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·人味指南-007": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·人味指南-008": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·人味指南-009": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·人味指南-010": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·人味指南-011": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·人味指南-012": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·人味指南-013": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·人味指南-014": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·人味指南-015": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·人味指南-016": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·人味指南-017": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·人味指南-018": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·人味指南-019": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·人味指南-020": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·人味指南-021": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.996,
+  "m0": 0.712,
+  "diff": 0.284,
+  "ci": [
+   0.195,
+   0.374
+  ],
+  "r": 0.12
+ },
+ "R8-词表·人味指南-022": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·人味指南-023": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·人味指南-024": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·人味指南-025": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·人味指南-026": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·人味指南-027": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·人味指南-028": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·人味指南-029": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·人味指南-030": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·人味指南-031": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·人味指南-032": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·人味指南-033": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·人味指南-034": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·人味指南-035": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·人味指南-036": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-001": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-002": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-003": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-004": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-005": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-006": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-007": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-008": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-009": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-010": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-011": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-012": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-013": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-014": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-015": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-016": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-017": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-018": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-019": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-020": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-021": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-022": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-023": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.998,
+  "m0": 0.712,
+  "diff": 0.286,
+  "ci": [
+   0.196,
+   0.375
+  ],
+  "r": 0.12
+ },
+ "R8-词表·模板词-024": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-025": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.89,
+  "m0": 0.714,
+  "diff": 0.176,
+  "ci": [
+   0.086,
+   0.266
+  ],
+  "r": 0.07
+ },
+ "R8-词表·模板词-026": {
+  "status": "insufficient",
+  "n": 3,
+  "m1": 0.842,
+  "m0": 0.71,
+  "diff": 0.132,
+  "ci": [
+   -0.064,
+   0.328
+  ],
+  "r": 0.09
+ },
+ "R8-词表·模板词-027": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-028": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-029": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-030": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-031": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-032": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-033": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-034": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-035": {
+  "status": "no_signal",
+  "n": 13,
+  "m1": 0.727,
+  "m0": 0.715,
+  "diff": 0.012,
+  "ci": [
+   -0.212,
+   0.237
+  ],
+  "r": 0.02
+ },
+ "R8-词表·模板词-036": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-037": {
+  "status": "directional",
+  "n": 7,
+  "m1": 0.558,
+  "m0": 0.743,
+  "diff": -0.185,
+  "ci": [
+   -0.475,
+   0.105
+  ],
+  "r": -0.19
+ },
+ "R8-词表·模板词-038": {
+  "status": "no_signal",
+  "n": 5,
+  "m1": 0.767,
+  "m0": 0.712,
+  "diff": 0.055,
+  "ci": [
+   -0.227,
+   0.336
+  ],
+  "r": 0.05
+ },
+ "R8-词表·模板词-039": {
+  "status": "insufficient",
+  "n": 3,
+  "m1": 0.645,
+  "m0": 0.722,
+  "diff": -0.078,
+  "ci": [
+   -0.521,
+   0.366
+  ],
+  "r": -0.06
+ },
+ "R8-词表·模板词-040": {
+  "status": "insufficient",
+  "n": 4,
+  "m1": 0.639,
+  "m0": 0.724,
+  "diff": -0.085,
+  "ci": [
+   -0.461,
+   0.291
+  ],
+  "r": -0.07
+ },
+ "R8-词表·模板词-041": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-042": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-043": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-044": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-045": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-046": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-047": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-048": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-049": {
+  "status": "insufficient",
+  "n": 2,
+  "m1": 0.874,
+  "m0": 0.711,
+  "diff": 0.163,
+  "ci": [
+   -0.014,
+   0.339
+  ],
+  "r": 0.1
+ },
+ "R8-词表·模板词-050": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-051": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-052": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·模板词-053": {
+  "status": "no_signal",
+  "n": 9,
+  "m1": 0.718,
+  "m0": 0.718,
+  "diff": -0.0,
+  "ci": [
+   -0.239,
+   0.239
+  ],
+  "r": -0.0
+ },
+ "R8-词表·模板词-054": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-001": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-002": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-003": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-004": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-005": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-006": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-007": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-008": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-009": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-010": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-011": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-012": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-013": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-014": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-015": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-016": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-017": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-018": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-019": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-020": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-021": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-022": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-023": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-024": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-025": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-026": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-027": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-028": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.017,
+  "m0": 0.731,
+  "diff": -0.715,
+  "ci": [
+   -0.8,
+   -0.629
+  ],
+  "r": -0.3
+ },
+ "R8-词表·综合-029": {
+  "status": "confirmed",
+  "n": 21,
+  "m1": 0.864,
+  "m0": 0.619,
+  "diff": 0.245,
+  "ci": [
+   0.098,
+   0.393
+  ],
+  "r": 0.37
+ },
+ "R8-词表·综合-030": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-031": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-032": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-033": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-034": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-035": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-036": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-037": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-038": {
+  "status": "directional",
+  "n": 11,
+  "m1": 0.594,
+  "m0": 0.751,
+  "diff": -0.156,
+  "ci": [
+   -0.396,
+   0.084
+  ],
+  "r": -0.2
+ },
+ "R8-词表·综合-039": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-040": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-041": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-042": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-043": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-044": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-045": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-046": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-047": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-048": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-049": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-050": {
+  "status": "no_signal",
+  "n": 40,
+  "m1": 0.688,
+  "m0": 0.815,
+  "diff": -0.127,
+  "ci": [
+   -0.313,
+   0.059
+  ],
+  "r": -0.16
+ },
+ "R8-词表·综合-051": {
+  "status": "no_signal",
+  "n": 21,
+  "m1": 0.74,
+  "m0": 0.702,
+  "diff": 0.038,
+  "ci": [
+   -0.145,
+   0.22
+  ],
+  "r": 0.06
+ },
+ "R8-词表·综合-052": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-053": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-054": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-055": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-056": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.983,
+  "m0": 0.712,
+  "diff": 0.271,
+  "ci": [
+   0.182,
+   0.36
+  ],
+  "r": 0.11
+ },
+ "R8-词表·综合-057": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-058": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-059": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-060": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-061": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-062": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-063": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-064": {
+  "status": "insufficient",
+  "n": 2,
+  "m1": 0.912,
+  "m0": 0.71,
+  "diff": 0.203,
+  "ci": [
+   0.053,
+   0.352
+  ],
+  "r": 0.12
+ },
+ "R8-词表·综合-065": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-066": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-067": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-068": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-069": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-070": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-071": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-072": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-073": {
+  "status": "no_signal",
+  "n": 6,
+  "m1": 0.706,
+  "m0": 0.719,
+  "diff": -0.013,
+  "ci": [
+   -0.298,
+   0.273
+  ],
+  "r": -0.01
+ },
+ "R8-词表·综合-074": {
+  "status": "directional",
+  "n": 8,
+  "m1": 0.533,
+  "m0": 0.751,
+  "diff": -0.218,
+  "ci": [
+   -0.55,
+   0.115
+  ],
+  "r": -0.24
+ },
+ "R8-词表·综合-075": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-076": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-077": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-078": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-079": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-080": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-081": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-082": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-083": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-084": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-085": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-086": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-087": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-088": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-089": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-090": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-091": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-092": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-093": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-094": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-095": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-096": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-097": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-098": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-099": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-100": {
+  "status": "no_signal",
+  "n": 27,
+  "m1": 0.666,
+  "m0": 0.773,
+  "diff": -0.107,
+  "ci": [
+   -0.279,
+   0.066
+  ],
+  "r": -0.16
+ },
+ "R8-词表·综合-101": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-102": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-103": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-104": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-105": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-106": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-107": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-108": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-109": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-110": {
+  "status": "insufficient",
+  "n": 3,
+  "m1": 0.476,
+  "m0": 0.733,
+  "diff": -0.257,
+  "ci": [
+   -0.639,
+   0.125
+  ],
+  "r": -0.18
+ },
+ "R8-词表·综合-111": {
+  "status": "insufficient",
+  "n": 2,
+  "m1": 0.622,
+  "m0": 0.722,
+  "diff": -0.099,
+  "ci": [
+   -0.626,
+   0.428
+  ],
+  "r": -0.06
+ },
+ "R8-词表·综合-112": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-113": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-114": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-115": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-116": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.791,
+  "m0": 0.716,
+  "diff": 0.075,
+  "ci": [
+   -0.015,
+   0.165
+  ],
+  "r": 0.03
+ },
+ "R8-词表·综合-117": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.998,
+  "m0": 0.712,
+  "diff": 0.286,
+  "ci": [
+   0.197,
+   0.375
+  ],
+  "r": 0.12
+ },
+ "R8-词表·综合-118": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.996,
+  "m0": 0.712,
+  "diff": 0.284,
+  "ci": [
+   0.195,
+   0.374
+  ],
+  "r": 0.12
+ },
+ "R8-词表·综合-119": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-120": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-121": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-122": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-123": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-124": {
+  "status": "insufficient",
+  "n": 4,
+  "m1": 0.712,
+  "m0": 0.718,
+  "diff": -0.006,
+  "ci": [
+   -0.373,
+   0.361
+  ],
+  "r": -0.0
+ },
+ "R8-词表·综合-125": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.894,
+  "m0": 0.714,
+  "diff": 0.18,
+  "ci": [
+   0.09,
+   0.27
+  ],
+  "r": 0.08
+ },
+ "R8-词表·综合-126": {
+  "status": "no_signal",
+  "n": 13,
+  "m1": 0.727,
+  "m0": 0.715,
+  "diff": 0.012,
+  "ci": [
+   -0.212,
+   0.237
+  ],
+  "r": 0.02
+ },
+ "R8-词表·综合-127": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.11,
+  "m0": 0.73,
+  "diff": -0.619,
+  "ci": [
+   -0.706,
+   -0.532
+  ],
+  "r": -0.26
+ },
+ "R8-词表·综合-128": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-129": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-130": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-131": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-132": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-133": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-134": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-135": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-136": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-137": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-138": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-139": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-140": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.843,
+  "m0": 0.715,
+  "diff": 0.128,
+  "ci": [
+   0.038,
+   0.218
+  ],
+  "r": 0.05
+ },
+ "R8-词表·综合-141": {
+  "status": "insufficient",
+  "n": 2,
+  "m1": 0.939,
+  "m0": 0.709,
+  "diff": 0.23,
+  "ci": [
+   0.117,
+   0.342
+  ],
+  "r": 0.14
+ },
+ "R8-词表·综合-142": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-143": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-144": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-145": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-146": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-147": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-148": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-149": {
+  "status": "no_signal",
+  "n": 15,
+  "m1": 0.611,
+  "m0": 0.761,
+  "diff": -0.15,
+  "ci": [
+   -0.363,
+   0.063
+  ],
+  "r": -0.21
+ },
+ "R8-词表·综合-150": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-151": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-152": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-153": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-154": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-155": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-156": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-157": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-158": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-159": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-160": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-161": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-162": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-163": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.997,
+  "m0": 0.712,
+  "diff": 0.285,
+  "ci": [
+   0.195,
+   0.374
+  ],
+  "r": 0.12
+ },
+ "R8-词表·综合-164": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.873,
+  "m0": 0.715,
+  "diff": 0.159,
+  "ci": [
+   0.069,
+   0.248
+  ],
+  "r": 0.07
+ },
+ "R8-词表·综合-165": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-166": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-167": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-168": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-169": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-170": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-171": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-172": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-173": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-174": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-175": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-176": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-177": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-178": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-179": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-180": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-181": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-182": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-183": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-184": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-185": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-186": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-187": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-188": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-189": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-190": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-191": {
+  "status": "no_signal",
+  "n": 17,
+  "m1": 0.637,
+  "m0": 0.757,
+  "diff": -0.12,
+  "ci": [
+   -0.322,
+   0.081
+  ],
+  "r": -0.17
+ },
+ "R8-词表·综合-192": {
+  "status": "insufficient",
+  "n": 3,
+  "m1": 0.632,
+  "m0": 0.723,
+  "diff": -0.091,
+  "ci": [
+   -0.604,
+   0.421
+  ],
+  "r": -0.07
+ },
+ "R8-词表·综合-193": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-194": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-195": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-196": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-197": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-198": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-199": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-200": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-201": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-202": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-203": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-204": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-205": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-206": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-207": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-208": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-209": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-210": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-211": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-212": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-213": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-214": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-215": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-216": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-217": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-218": {
+  "status": "no_signal",
+  "n": 6,
+  "m1": 0.782,
+  "m0": 0.709,
+  "diff": 0.072,
+  "ci": [
+   -0.223,
+   0.367
+  ],
+  "r": 0.07
+ },
+ "R8-词表·综合-219": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-220": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-221": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-222": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-223": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-224": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-225": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-226": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.017,
+  "m0": 0.731,
+  "diff": -0.715,
+  "ci": [
+   -0.8,
+   -0.629
+  ],
+  "r": -0.3
+ },
+ "R8-词表·综合-227": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-228": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-229": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-230": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-231": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-232": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-233": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.998,
+  "m0": 0.712,
+  "diff": 0.286,
+  "ci": [
+   0.197,
+   0.375
+  ],
+  "r": 0.12
+ },
+ "R8-词表·综合-234": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-235": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-236": {
+  "status": "insufficient",
+  "n": 2,
+  "m1": 0.422,
+  "m0": 0.73,
+  "diff": -0.308,
+  "ci": [
+   -0.876,
+   0.26
+  ],
+  "r": -0.18
+ },
+ "R8-词表·综合-237": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-238": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-239": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-240": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-241": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-242": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-243": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-244": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-245": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-246": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-247": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-248": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-249": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-250": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-251": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-252": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-253": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-254": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-255": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-256": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-257": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-258": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-259": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-260": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-261": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-262": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-263": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-264": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-265": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-266": {
+  "status": "insufficient",
+  "n": 3,
+  "m1": 0.906,
+  "m0": 0.706,
+  "diff": 0.2,
+  "ci": [
+   0.027,
+   0.373
+  ],
+  "r": 0.14
+ },
+ "R8-词表·综合-267": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-268": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-269": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.091,
+  "m0": 0.73,
+  "diff": -0.638,
+  "ci": [
+   -0.725,
+   -0.552
+  ],
+  "r": -0.27
+ },
+ "R8-词表·综合-270": {
+  "status": "insufficient",
+  "n": 4,
+  "m1": 0.939,
+  "m0": 0.699,
+  "diff": 0.24,
+  "ci": [
+   0.104,
+   0.376
+  ],
+  "r": 0.2
+ },
+ "R8-词表·综合-271": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-272": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-273": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-274": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.998,
+  "m0": 0.712,
+  "diff": 0.286,
+  "ci": [
+   0.196,
+   0.375
+  ],
+  "r": 0.12
+ },
+ "R8-词表·综合-275": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-276": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-277": {
+  "status": "no_signal",
+  "n": 8,
+  "m1": 0.609,
+  "m0": 0.737,
+  "diff": -0.128,
+  "ci": [
+   -0.422,
+   0.165
+  ],
+  "r": -0.14
+ },
+ "R8-词表·综合-278": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-279": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-280": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-281": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-282": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-283": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.017,
+  "m0": 0.731,
+  "diff": -0.715,
+  "ci": [
+   -0.8,
+   -0.629
+  ],
+  "r": -0.3
+ },
+ "R8-词表·综合-284": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-285": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-286": {
+  "status": "no_signal",
+  "n": 5,
+  "m1": 0.652,
+  "m0": 0.725,
+  "diff": -0.073,
+  "ci": [
+   -0.461,
+   0.314
+  ],
+  "r": -0.07
+ },
+ "R8-词表·综合-287": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-288": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-289": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-290": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-291": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-292": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-293": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-294": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-295": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-296": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.998,
+  "m0": 0.712,
+  "diff": 0.286,
+  "ci": [
+   0.197,
+   0.375
+  ],
+  "r": 0.12
+ },
+ "R8-词表·综合-297": {
+  "status": "insufficient",
+  "n": 2,
+  "m1": 0.382,
+  "m0": 0.731,
+  "diff": -0.349,
+  "ci": [
+   -0.863,
+   0.164
+  ],
+  "r": -0.21
+ },
+ "R8-词表·综合-298": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-299": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.747,
+  "m0": 0.717,
+  "diff": 0.03,
+  "ci": [
+   -0.06,
+   0.12
+  ],
+  "r": 0.01
+ },
+ "R8-词表·综合-300": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-301": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-302": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-303": {
+  "status": "insufficient",
+  "n": 2,
+  "m1": 0.522,
+  "m0": 0.726,
+  "diff": -0.204,
+  "ci": [
+   -0.869,
+   0.461
+  ],
+  "r": -0.12
+ },
+ "R8-词表·综合-304": {
+  "status": "insufficient",
+  "n": 2,
+  "m1": 0.513,
+  "m0": 0.726,
+  "diff": -0.212,
+  "ci": [
+   -0.415,
+   -0.009
+  ],
+  "r": -0.13
+ },
+ "R8-词表·综合-305": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-306": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-307": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.11,
+  "m0": 0.73,
+  "diff": -0.619,
+  "ci": [
+   -0.706,
+   -0.532
+  ],
+  "r": -0.26
+ },
+ "R8-词表·综合-308": {
+  "status": "insufficient",
+  "n": 2,
+  "m1": 0.054,
+  "m0": 0.744,
+  "diff": -0.69,
+  "ci": [
+   -0.788,
+   -0.592
+  ],
+  "r": -0.41
+ },
+ "R8-词表·综合-309": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-310": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-311": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-312": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-313": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-314": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-315": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-316": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-317": {
+  "status": "insufficient",
+  "n": 3,
+  "m1": 0.216,
+  "m0": 0.748,
+  "diff": -0.533,
+  "ci": [
+   -0.724,
+   -0.342
+  ],
+  "r": -0.38
+ },
+ "R8-词表·综合-318": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-319": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-320": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-321": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.017,
+  "m0": 0.731,
+  "diff": -0.715,
+  "ci": [
+   -0.8,
+   -0.629
+  ],
+  "r": -0.3
+ },
+ "R8-词表·综合-322": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-323": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-324": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-325": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-326": {
+  "status": "reversed",
+  "n": 8,
+  "m1": 0.46,
+  "m0": 0.765,
+  "diff": -0.305,
+  "ci": [
+   -0.607,
+   -0.003
+  ],
+  "r": -0.34
+ },
+ "R8-词表·综合-327": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-328": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-329": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-330": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-331": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-332": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-333": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-334": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-335": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-336": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-337": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·综合-338": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-001": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.791,
+  "m0": 0.716,
+  "diff": 0.075,
+  "ci": [
+   -0.015,
+   0.165
+  ],
+  "r": 0.03
+ },
+ "R8-词表·网文-002": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-003": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-004": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-005": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.998,
+  "m0": 0.712,
+  "diff": 0.286,
+  "ci": [
+   0.197,
+   0.375
+  ],
+  "r": 0.12
+ },
+ "R8-词表·网文-006": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-007": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-008": {
+  "status": "insufficient",
+  "n": 2,
+  "m1": 0.422,
+  "m0": 0.73,
+  "diff": -0.308,
+  "ci": [
+   -0.876,
+   0.26
+  ],
+  "r": -0.18
+ },
+ "R8-词表·网文-009": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-010": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-011": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-012": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-013": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-014": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-015": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-016": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-017": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-018": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-019": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-020": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-021": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-022": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-023": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-024": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-025": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-026": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-027": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-028": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-029": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-030": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-031": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-032": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-033": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-034": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-035": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-036": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-037": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-038": {
+  "status": "insufficient",
+  "n": 3,
+  "m1": 0.906,
+  "m0": 0.706,
+  "diff": 0.2,
+  "ci": [
+   0.027,
+   0.373
+  ],
+  "r": 0.14
+ },
+ "R8-词表·网文-039": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-040": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-041": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.091,
+  "m0": 0.73,
+  "diff": -0.638,
+  "ci": [
+   -0.725,
+   -0.552
+  ],
+  "r": -0.27
+ },
+ "R8-词表·网文-042": {
+  "status": "insufficient",
+  "n": 4,
+  "m1": 0.939,
+  "m0": 0.699,
+  "diff": 0.24,
+  "ci": [
+   0.104,
+   0.376
+  ],
+  "r": 0.2
+ },
+ "R8-词表·网文-043": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-044": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.998,
+  "m0": 0.712,
+  "diff": 0.286,
+  "ci": [
+   0.197,
+   0.375
+  ],
+  "r": 0.12
+ },
+ "R8-词表·网文-045": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-046": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-047": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.998,
+  "m0": 0.712,
+  "diff": 0.286,
+  "ci": [
+   0.196,
+   0.375
+  ],
+  "r": 0.12
+ },
+ "R8-词表·网文-048": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-049": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-050": {
+  "status": "no_signal",
+  "n": 8,
+  "m1": 0.609,
+  "m0": 0.737,
+  "diff": -0.128,
+  "ci": [
+   -0.422,
+   0.165
+  ],
+  "r": -0.14
+ },
+ "R8-词表·网文-051": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-052": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-053": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-054": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-055": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-056": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-057": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.017,
+  "m0": 0.731,
+  "diff": -0.715,
+  "ci": [
+   -0.8,
+   -0.629
+  ],
+  "r": -0.3
+ },
+ "R8-词表·网文-058": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-059": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-060": {
+  "status": "no_signal",
+  "n": 5,
+  "m1": 0.652,
+  "m0": 0.725,
+  "diff": -0.073,
+  "ci": [
+   -0.461,
+   0.314
+  ],
+  "r": -0.07
+ },
+ "R8-词表·网文-061": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-062": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-063": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-064": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-065": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-066": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-067": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-068": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-069": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-070": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-071": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-072": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-073": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-074": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-075": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-076": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-077": {
+  "status": "insufficient",
+  "n": 3,
+  "m1": 0.216,
+  "m0": 0.748,
+  "diff": -0.533,
+  "ci": [
+   -0.724,
+   -0.342
+  ],
+  "r": -0.38
+ },
+ "R8-词表·网文-078": {
+  "status": "insufficient",
+  "n": 2,
+  "m1": 0.946,
+  "m0": 0.709,
+  "diff": 0.238,
+  "ci": [
+   0.122,
+   0.354
+  ],
+  "r": 0.14
+ },
+ "R8-词表·网文-079": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-080": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-081": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-082": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-083": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-084": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-085": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-086": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-087": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-088": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-089": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-090": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-091": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-092": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-093": {
+  "status": "reversed",
+  "n": 8,
+  "m1": 0.46,
+  "m0": 0.765,
+  "diff": -0.305,
+  "ci": [
+   -0.607,
+   -0.003
+  ],
+  "r": -0.34
+ },
+ "R8-词表·网文-094": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-095": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-096": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-097": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-098": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-099": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-100": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-101": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-102": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-103": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-104": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-105": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-106": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-107": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-108": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-109": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-110": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-111": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-112": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-113": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-114": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-115": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-116": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-117": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-118": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-119": {
+  "status": "insufficient",
+  "n": 4,
+  "m1": 0.712,
+  "m0": 0.718,
+  "diff": -0.006,
+  "ci": [
+   -0.373,
+   0.361
+  ],
+  "r": -0.0
+ },
+ "R8-词表·网文-120": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-121": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-122": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-123": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-124": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-125": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-126": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-127": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-128": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-129": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-130": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-131": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-132": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-133": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-134": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-135": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-136": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-137": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-138": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-139": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-140": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-141": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-142": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-143": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-144": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-145": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-146": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-147": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-148": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-149": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-150": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-151": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-152": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-153": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-154": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-155": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-156": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-157": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-158": {
+  "status": "no_signal",
+  "n": 13,
+  "m1": 0.727,
+  "m0": 0.715,
+  "diff": 0.012,
+  "ci": [
+   -0.212,
+   0.237
+  ],
+  "r": 0.02
+ },
+ "R8-词表·网文-159": {
+  "status": "insufficient",
+  "n": 2,
+  "m1": 0.132,
+  "m0": 0.741,
+  "diff": -0.609,
+  "ci": [
+   -0.79,
+   -0.428
+  ],
+  "r": -0.36
+ },
+ "R8-词表·网文-160": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.017,
+  "m0": 0.731,
+  "diff": -0.715,
+  "ci": [
+   -0.8,
+   -0.629
+  ],
+  "r": -0.3
+ },
+ "R8-词表·网文-161": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-162": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-163": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-164": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-165": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文-166": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-001": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-002": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-003": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-004": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-005": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-006": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-007": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-008": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-009": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-010": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-011": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-012": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-013": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-014": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-015": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-016": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-017": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-018": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-019": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-020": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-021": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-022": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-023": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-024": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-025": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-026": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-027": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-028": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-029": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-030": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-031": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-032": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-033": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-034": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-035": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-036": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-037": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-038": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-039": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-040": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-041": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-042": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-043": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-044": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-045": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-046": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-047": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-048": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-049": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-050": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-051": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-052": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-053": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-054": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-055": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-056": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-057": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-058": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-059": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-060": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-061": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-062": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-063": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-064": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-065": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-066": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-067": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-068": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-069": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-070": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-071": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-072": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-073": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-074": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-075": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-076": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·网文程式-077": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·踩雷-001": {
+  "status": "insufficient",
+  "n": 4,
+  "m1": 0.712,
+  "m0": 0.718,
+  "diff": -0.006,
+  "ci": [
+   -0.373,
+   0.361
+  ],
+  "r": -0.0
+ },
+ "R8-词表·踩雷-002": {
+  "status": "insufficient",
+  "n": 1,
+  "m1": 0.894,
+  "m0": 0.714,
+  "diff": 0.18,
+  "ci": [
+   0.09,
+   0.27
+  ],
+  "r": 0.08
+ },
+ "R8-词表·踩雷-003": {
+  "status": "no_signal",
+  "n": 13,
+  "m1": 0.727,
+  "m0": 0.715,
+  "diff": 0.012,
+  "ci": [
+   -0.212,
+   0.237
+  ],
+  "r": 0.02
+ },
+ "R8-词表·踩雷-004": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·踩雷-005": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·踩雷-006": {
+  "status": "insufficient",
+  "n": 0
+ },
+ "R8-词表·踩雷-007": {
+  "status": "insufficient",
+  "n": 0
+ }
+}

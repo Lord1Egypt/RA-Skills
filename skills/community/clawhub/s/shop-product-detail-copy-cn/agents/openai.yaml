@@ -1,0 +1,8 @@
+interface:
+  display_name: "商品详情页文案"
+  short_description: "用真实商品资料生成可信的中文详情页模块、卖点证据与FAQ"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+  default_prompt: "请根据我提供的商品名称、真实规格、图片说明和目标客群，按此 Skill 的交付格式撰写中文商品详情页；事实、建议和待确认信息分别标注，缺少必填资料时先指出缺项。"
+policy:
+  allow_implicit_invocation: true

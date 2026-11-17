@@ -1,0 +1,21 @@
+{
+  "schema": "grandet.receipt-helper-source/v1",
+  "sourceBuild": "grandet-skill-0.3.0-build.20261018b",
+  "compatibleSkillVersions": [
+    "0.3.0"
+  ],
+  "sourceOnly": false,
+  "originalReleaseArchivesModified": false,
+  "includedInOriginal030Archives": false,
+  "nativeAcceptance": "NOT_RUN",
+  "integrationStatus": "LOCAL_VALIDATED_NOT_WEBSITE_CERTIFIED",
+  "files": {
+    "scripts/install-price-finder.mjs": "060479179cd1d658f4c9df450414033986bb7e36ea37ca3fd3522c655312e3a0",
+    "scripts/installation-receipts.mjs": "4b93679e501800e26da71a16dcf6b3420dc8a391fb85c6e5cf4add9ce589d68e",
+    "scripts/verify-installation.py": "5af221668d775d1ee53e5b0085f0932857a5e653eb1352ec1e71210f2a7ae50f"
+  },
+  "version": "0.3.0",
+  "releaseBuild": true,
+  "plannedTag": "skill-v0.3.0-build.20261018b",
+  "receiptSupport": "INCLUDED"
+}

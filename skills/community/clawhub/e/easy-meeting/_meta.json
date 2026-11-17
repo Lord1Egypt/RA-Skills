@@ -1,6 +1,66 @@
 {
-  "ownerId": "kn763byfjzr18b0jezes9ksqe582tzsy",
-  "slug": "easy-meeting",
-  "version": "1.0.4",
-  "publishedAt": 1773737729479
+  "name": "feishu-scheduler-skill",
+  "version": "1.0.0",
+  "displayName": "飞书智能排期助手",
+  "description": "基于 OpenClaw 架构并在飞书上原生调用的多回合交互排期与协同日程管理插件，支持一键部署到 Clawhub 并在 Miaoda 运行。",
+  "author": "Developer",
+  "runtime": "node",
+  "main": "index.js",
+  "tags": [
+    "feishu",
+    "scheduler",
+    "calendar",
+    "bot"
+  ],
+  "dependencies": {
+    "express": "^4.18.2",
+    "dotenv": "^16.3.1",
+    "js-yaml": "^4.1.1",
+    "yaml": "^2.8.2"
+  },
+
+  "env": {
+    "FEISHU_APP_ID": {
+      "description": "飞书应用的 App ID",
+      "required": true
+    },
+    "FEISHU_APP_SECRET": {
+      "description": "飞书应用的 App Secret",
+      "required": true
+    },
+    "FEISHU_VERIFICATION_TOKEN": {
+      "description": "飞书事件订阅的 Verification Token",
+      "required": true
+    },
+    "FEISHU_ENCRYPT_KEY": {
+      "description": "飞书事件订阅的 Encrypt Key (用于签名校验)",
+      "required": false
+    },
+    "OPENCLAW_WAKE_ENDPOINT": {
+      "description": "用于唤醒 OpenClaw Agent 的 Webhook 地址",
+      "required": true
+    }
+  },
+  "config": {
+    "store.json": {
+      "description": "本地持久化会话存储文件",
+      "type": "file"
+    }
+  },
+  "required_envs": [
+    "FEISHU_APP_ID",
+    "FEISHU_APP_SECRET",
+    "FEISHU_VERIFICATION_TOKEN",
+    "OPENCLAW_WAKE_ENDPOINT"
+  ],
+  "optional_envs": [
+    "FEISHU_ENCRYPT_KEY",
+    "FEISHU_CALENDAR_ID",
+    "ALLOWED_WAKE_DOMAINS"
+  ],
+  "required_config_paths": [
+    "store.json"
+  ]
 }
+
+

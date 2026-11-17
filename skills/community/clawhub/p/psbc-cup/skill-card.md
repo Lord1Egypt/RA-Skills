@@ -1,42 +1,55 @@
-## Description: <br>
-易企收自动化访问 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮助代理在可见浏览器中打开邮储银行易企收演示版或正式登录页，并根据用户意图提供功能导航指导。
 
-## Publisher: <br>
-[dayhee](https://clawhub.ai/user/dayhee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dayhee](https://clawhub.ai/user/dayhee)
 
-## Use Case: <br>
-External business users and operators use this skill to open the PSBC 易企收 payment-management portal or demo portal, choose the appropriate access mode from user intent, and receive guidance for common fee-management workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill opens a payment-management portal where uploads, refunds, blacklist changes, or other business actions may affect real accounts. <br>
-Mitigation: Verify the openpayment.psbc.cn domain and confirm that each sensitive action is intended and authorized before logging in, uploading data, issuing refunds, or changing blacklist settings. <br>
-Risk: Direct deep links to portal subpages may return users to the home page or the wrong navigation context. <br>
-Mitigation: Use the visible browser session and navigate through the portal home-page menus for functional modules when direct URL access does not preserve context. <br>
+## Use Case:
 
+External users and business operators use this skill to open 易企收 demo pages for feature review or reach the formal login page for payment-collection workflows such as fee item configuration, arrears upload, and payment information management.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dayhee/psbc-cup) <br>
-- [易企收正式版登录](https://openpayment.psbc.cn/new/login) <br>
-- [易企收演示版首页](https://openpayment.psbc.cn/newDemo/dashboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text] <br>
-**Output Format:** [Markdown guidance with browser-navigation steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a visible browser session and does not record user operations or input data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can open a payment-related login page based on broad user intent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the destination and intent before entering credentials or business data, and use demo pages for informational requests.
+
+Risk: Direct URL navigation to 易企收 subpages may return the user to the homepage.
+
+Mitigation: Navigate through the homepage menu when a feature page does not load directly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dayhee/skills/psbc-cup)
+- [易企收正式版登录](https://openpayment.psbc.cn/new/login)
+- [易企收演示版首页](https://openpayment.psbc.cn/newDemo/dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance]
+
+**Output Format:** [Concise text or Markdown with browser-navigation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Opens disclosed 易企收 demo or login pages in a visible browser when browser automation is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

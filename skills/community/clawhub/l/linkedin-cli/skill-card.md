@@ -1,40 +1,57 @@
-## Description: <br>
-A bird-like LinkedIn CLI for searching profiles, checking messages, and summarizing your feed using session cookies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A bird-like LinkedIn CLI for searching profiles, checking messages, and summarizing your feed using session cookies.
 
-## Publisher: <br>
-[arun-8687](https://clawhub.ai/user/arun-8687) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[arun-8687](https://clawhub.ai/user/arun-8687)
 
-## Use Case: <br>
-Developers and operators use this skill to run LinkedIn profile lookup, people search, feed summary, and message-checking workflows from a terminal-backed agent session. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires live LinkedIn session cookie values that can provide account access if exposed. <br>
-Mitigation: Treat LINKEDIN_LI_AT and LINKEDIN_JSESSIONID like passwords, avoid storing them in shell history or shared logs, and log out of LinkedIn to invalidate them when they are no longer needed or may have been exposed. <br>
-Risk: The skill can display private LinkedIn profile, feed, and conversation data in terminal output. <br>
-Mitigation: Run it only on trusted machines and avoid sharing terminal output or logs that may contain personal or account data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arun-8687/linkedin-cli) <br>
-- [Skill homepage](https://github.com/clawdbot/linkedin-cli) <br>
+## Use Case:
 
+Developers and external users can use this skill to operate a LinkedIn command-line workflow for profile lookup, people search, feed summaries, and recent message checks. It is intended for users who can supply their own active LinkedIn session cookies.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text output and Markdown setup guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, the linkedin-api Python package, and LINKEDIN_LI_AT and LINKEDIN_JSESSIONID environment variables.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires active LinkedIn session cookies that can grant access to the user's LinkedIn account.
+
+Mitigation: Use only in an isolated environment and avoid sharing terminal history, shell profiles, or logs that may contain cookie values.
+
+Risk: The skill passes session cookies to an unpinned third-party package.
+
+Mitigation: Review and pin dependencies before installation, and install only in an environment where account and local system exposure are acceptable.
+
+Risk: Message and feed commands can display private LinkedIn content in the terminal.
+
+Mitigation: Run commands only in trusted terminals and redact output before sharing logs, screenshots, or support bundles.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/arun-8687/skills/linkedin-cli)
+- [Publisher profile](https://clawhub.ai/user/arun-8687)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Command-line text output and Markdown setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, LINKEDIN_LI_AT, LINKEDIN_JSESSIONID, and the linkedin-api Python package.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

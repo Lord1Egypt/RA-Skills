@@ -1,46 +1,60 @@
-## Description: <br>
-Routes requests across finance, e-commerce, media, and office agent teams with a smart switcher and 26 specialized roles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes user requests across finance, e-commerce, media, and office agent teams for analysis, content generation, media processing, and office workflows.
 
-## Publisher: <br>
-[mx6315909](https://clawhub.ai/user/mx6315909) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mx6315909](https://clawhub.ai/user/mx6315909)
 
-## Use Case: <br>
-External users and developers use this skill to route natural-language tasks to finance, e-commerce, media, or office agent teams for reports, operational guidance, document handling, and media-processing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill combines automatic routing with web, browser, memory, file, and command-execution capabilities. <br>
-Mitigation: Install only with the permissions needed for the task, review planned actions before execution, and prefer sandboxed runs for command or browser workflows. <br>
-Risk: Financial ratings, price targets, or portfolio suggestions may be misleading or stale. <br>
-Mitigation: Verify recommendations against independent real market data and do not treat generated output as financial advice. <br>
-Risk: Office and finance workflows may prompt users to share sensitive account details or private documents. <br>
-Mitigation: Redact private information before use and avoid providing credentials, account numbers, or confidential documents unless the execution environment is approved. <br>
-Risk: Media-processing workflows can modify or overwrite local files. <br>
-Mitigation: Run media tasks on copies, constrain output paths, and confirm overwrite behavior before processing irreplaceable files. <br>
+## Use Case:
 
+External users and developers use this skill to route natural-language requests to specialized teams for stock and portfolio analysis, e-commerce product and listing work, media processing, and office productivity tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mx6315909/xiaodi-multi-team-switcher) <br>
-- [README](README.md) <br>
-- [Requirements](REQUIREMENTS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and plain text with occasional inline shell commands or configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference optional API-key environment variables and local media-processing binaries; outputs should be reviewed before acting on financial, business, or file-changing recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill requests broad local, web, memory, session, and scheduling powers without enough scoping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review prompts and commands before installation and limit granted tool permissions to the minimum needed for the intended workflow.
+
+Risk: Generated HTML mind maps may expose confidential content through unsafe HTML handling or CDN-loaded rendering code.
+
+Mitigation: Avoid confidential content in generated HTML mind maps until the CDN dependency and HTML escaping issues are fixed.
+
+Risk: The documented remote shell installation pattern can execute unreviewed code.
+
+Mitigation: Do not run curl-piped shell commands without independent verification of the downloaded script and source.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mx6315909/skills/xiaodi-multi-team-switcher)
+- [Artifact README](artifact/README.md)
+- [Artifact requirements](artifact/REQUIREMENTS.md)
+- [ClawHub manifest](artifact/clawhub.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, text, code snippets, shell commands, JSON/configuration snippets, and task guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local files for media and office workflows and may call public web sources or optional API-backed video/image providers when configured.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and artifact frontmatter, released 2026-03-31)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

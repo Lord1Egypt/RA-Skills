@@ -1,38 +1,51 @@
-## Description: <br>
-Track weight loss journey with weigh-ins, trend analysis, and goal milestones. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track weight loss journey with weigh-ins, trend analysis, and goal milestones.
 
-## Publisher: <br>
-[jhillin8](https://clawhub.ai/user/jhillin8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jhillin8](https://clawhub.ai/user/jhillin8)
 
-## Use Case: <br>
-External users use this skill to log weigh-ins, review smoothed weight trends, monitor goal milestones, and record non-scale victories while keeping weight data local. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Weight, goals, and progress notes are sensitive personal data. <br>
-Mitigation: Use the skill only on a trusted device or account, and confirm the host application's local storage and deletion controls before entering private health data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Weight Loss on ClawHub](https://clawhub.ai/jhillin8/weight-loss) <br>
-- [Publisher profile](https://clawhub.ai/user/jhillin8) <br>
+## Use Case:
+
+External users use this skill to record local weigh-ins, review weight trends, set goal milestones, and track non-scale victories during a weight-loss journey.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Weight data can be sensitive personal health information.
+
+Mitigation: Use the skill only where local storage is acceptable and keep the data on a trusted device.
+
+Risk: Goal pace or progress suggestions may be mistaken for medical advice.
+
+Mitigation: Treat outputs as tracking support rather than medical guidance.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text responses with weigh-in logs, trend summaries, goal milestones, and non-scale victory notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill is instruction-only and is expected to keep weight, goals, and progress notes local to the user's device or host account.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown or plain text responses with logged measurements, progress summaries, trend explanations, goal calculations, and milestone notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, network behavior, credentials, or hidden authority were identified in the inspected artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-Real-time news intelligence from theshort.ai for searching topic- and tag-scoped feeds, fetching article details with summaries, and listing available topics and tags. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The Short News helps agents search theshort.ai's curated news feeds, fetch article details with summaries, and list available topics and tags for recent-news grounding.
 
-## Publisher: <br>
-[sssemil](https://clawhub.ai/user/sssemil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sssemil](https://clawhub.ai/user/sssemil)
 
-## Use Case: <br>
-Developers and agents use this skill to ground responses in recent curated news, search by topic or tag, retrieve article summaries, and cite source links for verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a scoped theshort.ai API key and can consume paid credits when news lookups are made. <br>
-Mitigation: Use a limited, revocable key, monitor credit usage, and confirm the user is comfortable with billable calls before using credit-consuming endpoints. <br>
-Risk: The billing-balance instruction is under-documented in the security evidence. <br>
-Mitigation: Do not call the billing endpoint unless the provider documents its authorization model and returned data. <br>
+## Use Case:
 
+External users and developers use this skill to ground answers in recent curated news, retrieve concise article summaries, and cite canonical source URLs. It is suited for topic- or tag-scoped current-events summaries rather than opinion, social media, or arbitrary fact-checking.
 
-## Reference(s): <br>
-- [The Short News on ClawHub](https://clawhub.ai/sssemil/theshort-news) <br>
-- [sssemil publisher profile](https://clawhub.ai/user/sssemil) <br>
-- [theshort.ai external API](https://theshort.ai/api/external) <br>
-- [OpenClaw dashboard](https://openclaw.theshort.ai) <br>
-- [API key dashboard](https://openclaw.theshort.ai/dashboard/keys) <br>
-- [Credits dashboard](https://openclaw.theshort.ai/dashboard/credits) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with API examples, JSON response shapes, and citation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should include sourceName and canonicalUrl when summarizing news.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Authenticated requests send a theshort.ai API key from the agent session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use API keys only in trusted sessions and avoid exposing key values in prompts, logs, or user-facing output.
+
+Risk: Successful news search and detail calls are billable against the developer account.
+
+Mitigation: Prefer free topic and tag discovery before paid calls, use narrow limits for chat responses, and confirm billing-sensitive actions when cost matters.
+
+Risk: Optional billing or credit-balance checks can expose account metadata to the agent session.
+
+Mitigation: Only request or display billing information when the user explicitly asks and is comfortable sharing that account metadata.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sssemil/skills/theshort-news)
+- [theshort.ai external API](https://theshort.ai/api/external)
+- [OpenClaw API keys dashboard](https://openclaw.theshort.ai/dashboard/keys)
+- [OpenClaw credits panel](https://openclaw.theshort.ai/dashboard/credits)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, shell commands, guidance]
+
+**Output Format:** [Markdown with cited news summaries and inline HTTP or shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Successful news search and detail calls require an API key and may spend account credits.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

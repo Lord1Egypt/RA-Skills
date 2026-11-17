@@ -1,44 +1,63 @@
-## Description: <br>
-A diagramming skill for architecture and process visualization that can produce offline layered SVG diagrams or render Mermaid, PlantUML, and Graphviz sources to SVG or HTML with Kroki. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Arch Diagrammer helps agents create architecture, flow, sequence, and deployment diagrams as offline SVG files or browser-previewable HTML using pure SVG templates or Mermaid, PlantUML, and Graphviz through Kroki.
 
-## Publisher: <br>
-[footya](https://clawhub.ai/user/footya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[footya](https://clawhub.ai/user/footya)
 
-## Use Case: <br>
-Developers, architects, and technical teams use this skill to create architecture diagrams, flowcharts, sequence diagrams, deployment diagrams, and C4-style diagrams for design reviews and technical communication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public Kroki or CDN-backed rendering can disclose private diagram content or browser request metadata to third parties. <br>
-Mitigation: Use pure offline SVG generation, set --kroki-url to a trusted internal Kroki instance, or avoid CDN-backed HTML previews for sensitive diagrams. <br>
-Risk: Generated architecture diagrams can omit or misstate system boundaries, dependencies, or security controls. <br>
-Mitigation: Review diagrams against the included architecture checklist and source system documentation before using them in design, review, or operational decisions. <br>
+## Use Case:
 
+Developers, architects, and technical teams use this skill to turn system structure, workflows, service dependencies, and deployment designs into reusable visual deliverables for design reviews and technical communication.
 
-## Reference(s): <br>
-- [SVG layered architecture diagram specification](artifact/references/svg-layered-spec.md) <br>
-- [Diagram syntax quickstart](artifact/references/diagram-quickstart.md) <br>
-- [Architecture diagram quality checklist](artifact/references/architecture-checklist.md) <br>
-- [Kroki diagram rendering service](https://kroki.io) <br>
-- [ClawHub skill page](https://clawhub.ai/footya/arch-diagrammer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance, SVG or HTML files, diagram DSL, and runnable shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use local/offline SVG generation or external Kroki/CDN rendering depending on the selected workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter, CHANGELOG, and server release metadata) <br>
+Risk: Remote Kroki rendering can disclose diagram source to the configured rendering endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use pure SVG/offline mode for confidential diagrams, verify KROKI_URL before rendering, and prefer a trusted private Kroki instance.
+
+Risk: Generated HTML previews and CDN-based Mermaid rendering can execute mutable remote code or render untrusted diagram text.
+
+Mitigation: Avoid opening generated HTML from untrusted diagram text or untrusted rendering endpoints, and review the preview source before sharing.
+
+Risk: The documented npx Mermaid CLI fallback is unpinned.
+
+Mitigation: Pin and review the Mermaid CLI version before using it in controlled or production workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/footya/skills/arch-diagrammer)
+- [Publisher Profile](https://clawhub.ai/user/footya)
+- [Architecture Checklist](references/architecture-checklist.md)
+- [Diagram Quickstart](references/diagram-quickstart.md)
+- [SVG Layered Specification](references/svg-layered-spec.md)
+- [Kroki](https://kroki.io)
+- [Mermaid ESM CDN](https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Files, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown guidance with SVG, HTML, and diagram DSL code or generated files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Common deliverables are .svg files for offline viewing and .html files for browser preview.]
+
+## Skill Version(s):
+
+1.0.1 (source: SKILL.md frontmatter, CHANGELOG.md, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

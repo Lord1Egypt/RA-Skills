@@ -1,40 +1,53 @@
-## Description: <br>
-Paper Latex Gen is a compatibility skill for generating structured academic LaTeX paper assets through the newer unified paper entry point. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Paper Latex Gen is a legacy compatibility skill for generating structured academic LaTeX paper files and related resources through the newer unified paper command.
 
-## Publisher: <br>
-[jirboy](https://clawhub.ai/user/jirboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jirboy](https://clawhub.ai/user/jirboy)
 
-## Use Case: <br>
-Researchers, students, and developers use this skill to create conference-oriented LaTeX paper scaffolds, including main TeX, BibTeX, figures directory, and template files. It is retained as a backward-compatible path while directing users to the unified paper latex command. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated LaTeX and BibTeX content may contain academic, formatting, or citation errors. <br>
-Mitigation: Review generated .tex and .bib files for correctness before submission. <br>
-Risk: This skill is primarily a compatibility helper for a newer paper command, so users may follow outdated invocation patterns. <br>
-Mitigation: Prefer the documented paper latex command for new workflows and keep this skill for backward-compatible usage. <br>
+## Use Case:
 
+Developers, researchers, and writers use this skill to request structured academic paper LaTeX assets for conference-style submissions such as NeurIPS, ICML, and ICLR. It is primarily useful for backward-compatible workflows that still call the older latex entry point.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jirboy/paper-latex-gen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration] <br>
-**Output Format:** [LaTeX, BibTeX, and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates a main paper.tex file, references.bib file, figures directory, and conference template files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Users may rely on this legacy compatibility entry point instead of the current unified paper command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the documented paper latex command when available and treat this skill as a backward-compatible path for LaTeX paper generation.
+
+Risk: Generated academic paper structure, citations, or template choices may be incomplete or unsuitable for a target venue.
+
+Mitigation: Review generated LaTeX, BibTeX, and conference template files before submission or publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jirboy/skills/paper-latex-gen)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline command examples and generated LaTeX/BibTeX file descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces or describes paper.tex, references.bib, figures/, and conference template files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

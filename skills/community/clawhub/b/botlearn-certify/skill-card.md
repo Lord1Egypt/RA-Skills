@@ -1,48 +1,62 @@
-## Description: <br>
-botlearn-certify generates BotLearn capability certificates by comparing historical and fresh assessment results and producing localized HTML and Markdown certificates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+botlearn-certify compares prior and current BotLearn assessment results and generates capability certificates in HTML and Markdown.
 
-## Publisher: <br>
-[calvinxhk](https://clawhub.ai/user/calvinxhk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[calvinxhk](https://clawhub.ai/user/calvinxhk)
 
-## Use Case: <br>
-Developers, educators, and OpenClaw agent users use this skill to run or compare BotLearn assessments and generate localized capability certificates for certification, repeat review, or post-optimization progress tracking. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad certificate-related triggers could start assessment or certification behavior when the user's intent is ambiguous. <br>
-Mitigation: Confirm the user explicitly wants BotLearn certification before running assessments, reading assessment history, or creating certificate files. <br>
-Risk: The setup flow can install or locate botlearn-assessment, which may change the local skill environment. <br>
-Mitigation: Ask for clear consent before installing dependencies and prefer using an already verified botlearn-assessment installation. <br>
-Risk: Generated certificates may include local assessment results and capability summaries that users may treat as authoritative. <br>
-Mitigation: Review certificate contents for accuracy and intended audience before sharing or relying on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/calvinxhk/botlearn-certify) <br>
-- [README](README.md) <br>
-- [Historical assessment retrieval flow](flows/flow1-historical.md) <br>
-- [Fresh assessment execution flow](flows/flow2-fresh-exam.md) <br>
-- [Certificate generation flow](flows/flow3-certificate.md) <br>
-- [Dynamic comparison methodology](knowledge/comparison-methodology.md) <br>
-- [Professional profile classification logic](strategies/classification.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill to certify an OpenClaw agent's assessed capabilities, compare progress across assessment runs, and produce portable certificate artifacts.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Localized user-facing text plus generated Markdown and standalone HTML certificate files, with shell commands for assessment checks and result parsing.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes timestamped certificate files under results/ and may read BotLearn assessment history from an installed botlearn-assessment skill.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata; artifact SKILL.md and README.md list 0.1.5) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can automatically install or invoke the botlearn-assessment dependency.
+
+Mitigation: Confirm the dependency source and version before installation or execution.
+
+Risk: The skill reads prior assessment reports and saves certificate files from locally parsed data.
+
+Mitigation: Review assessment report integrity and output locations before relying on generated certificates.
+
+Risk: Generated HTML certificates may reflect manipulated assessment data or unsafe embedded content.
+
+Mitigation: Treat generated HTML as untrusted until assessment inputs and generated output are reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/calvinxhk/skills/botlearn-certify)
+- [README](artifact/README.md)
+- [Historical assessment retrieval flow](artifact/flows/flow1-historical.md)
+- [Fresh assessment flow](artifact/flows/flow2-fresh-exam.md)
+- [Certificate generation flow](artifact/flows/flow3-certificate.md)
+- [Comparison methodology](artifact/knowledge/comparison-methodology.md)
+- [Classification strategy](artifact/strategies/classification.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated HTML and Markdown certificate files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces persistent certificate files based on local assessment results.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

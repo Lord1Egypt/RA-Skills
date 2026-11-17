@@ -1,43 +1,57 @@
-## Description: <br>
-Manage Vaultwarden secrets with wrapper scripts for session handling, caching, logging, and scoped read/write operations in collections or personal vaults. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Vaultwarden secrets with wrapper scripts for session handling, caching, logging, and scoped read/write operations in collections or personal vaults.
 
-## Publisher: <br>
-[mbojer](https://clawhub.ai/user/mbojer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mbojer](https://clawhub.ai/user/mbojer)
 
-## Use Case: <br>
-Developers and agents use this skill to authenticate to a configured Vaultwarden server and read, create, update, delete, or rotate vault items through controlled shell wrappers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and modify Vaultwarden secrets, including broader vault contents when personal-vault fallback is active. <br>
-Mitigation: Install only for agents that are allowed to access the target vault, configure a trusted Vaultwarden server, and set VW_COLLECTION_ID explicitly for organization vaults. <br>
-Risk: Cached sessions and read results can extend access beyond a single command. <br>
-Mitigation: Consider setting VW_CACHE_TTL=0 for sensitive workflows and run vw-lock.sh when work is complete. <br>
-Risk: Update, delete, and password rotation commands can change or remove vault data. <br>
-Mitigation: Require human approval before running write, delete, or rotation scripts, and verify item IDs before destructive operations. <br>
+## Use Case:
 
+Developers and agents use this skill to authenticate to Vaultwarden through the Bitwarden CLI, then list, read, create, update, delete, and rotate vault items while preserving session state and operational logs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mbojer/vaultwarden-skill) <br>
-- [Publisher Profile](https://clawhub.ai/user/mbojer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell command examples and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May output secret values when read or rotation scripts are invoked; status and audit details are emitted separately where supported.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can operate beyond the advertised collection scope and may access or mutate every item available to the authenticated Bitwarden account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the agent is allowed to access and mutate the full authenticated vault, and avoid broad vault credentials until collection-membership checks are added.
+
+Risk: Sensitive session tokens and cached credential material may be stored on disk.
+
+Mitigation: Keep VW_SESSION_DIR private, lock the vault when done, and prefer disabling the read cache with VW_CACHE_TTL=0.
+
+Risk: A wrong or unexpected Bitwarden server configuration could direct authentication or vault operations to the wrong service.
+
+Mitigation: Manually verify the Bitwarden server configuration before unlocking.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mbojer/skills/vaultwarden-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command usage and script-generated text or JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Shell scripts may read secrets from stdin, write status to stderr, and emit secret values or item JSON on stdout for selected read and rotation operations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

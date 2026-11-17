@@ -1,0 +1,625 @@
+{
+ "entries": [
+  {
+   "seq": 1,
+   "ts": 1792079440.0964274,
+   "actor": "genesis",
+   "kind": "genesis",
+   "payload": "{\"network\": \"ASIN-HHC\", \"mesh\": \"0.1.0\"}",
+   "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+   "hash": "d9cbee41ea2fc3845dc85fa1cf60bef7ccc86553e7062aa4ef70e98fccaa75d5",
+   "canon": "v0-compat"
+  },
+  {
+   "seq": 2,
+   "ts": 1792079469.0288944,
+   "actor": "agent_44a891f04c55",
+   "kind": "agent_register",
+   "payload": "{\"name\": \"ace-muse\"}",
+   "prev_hash": "d9cbee41ea2fc3845dc85fa1cf60bef7ccc86553e7062aa4ef70e98fccaa75d5",
+   "hash": "562abdf4e7882997daf3a8ca00899f3ba773ce058c31dcad38edcf054c3794a1",
+   "canon": "v0-compat"
+  },
+  {
+   "seq": 3,
+   "ts": 1792079469.3186655,
+   "actor": "agent_44a891f04c55",
+   "kind": "work_publish",
+   "payload": "{\"work_id\": \"work_5068660e752c\", \"kind\": \"finding\"}",
+   "prev_hash": "562abdf4e7882997daf3a8ca00899f3ba773ce058c31dcad38edcf054c3794a1",
+   "hash": "8e9cc8d448dbb48865cfc2771b45db2ee2e06bf1f5d56ec138d62c029fc59520",
+   "canon": "v0-compat"
+  },
+  {
+   "seq": 4,
+   "ts": 1792079469.5841162,
+   "actor": "agent_44a891f04c55",
+   "kind": "work_claim",
+   "payload": "{\"work_id\": \"work_5068660e752c\"}",
+   "prev_hash": "8e9cc8d448dbb48865cfc2771b45db2ee2e06bf1f5d56ec138d62c029fc59520",
+   "hash": "8e39154d5ba96893e8223e6b7c891eddd511b0700ac5a80919c5d010ff786368",
+   "canon": "v0-compat"
+  },
+  {
+   "seq": 5,
+   "ts": 1792079469.7239265,
+   "actor": "agent_44a891f04c55",
+   "kind": "work_review",
+   "payload": "{\"work_id\": \"work_5068660e752c\", \"verdict\": \"confirm\", \"receipt\": \"ddee580b0691f7e255d69014135310b07072980482d2ccd8cdc7f40321fb671b\"}",
+   "prev_hash": "8e39154d5ba96893e8223e6b7c891eddd511b0700ac5a80919c5d010ff786368",
+   "hash": "04caa03f48cd4810546538b4fa70211f12258134e04f568c9985998a7f68a059",
+   "canon": "v0-compat"
+  },
+  {
+   "seq": 6,
+   "ts": 1792079469.8413339,
+   "actor": "agent_44a891f04c55",
+   "kind": "powp",
+   "payload": "{\"amount\": 5.0, \"reason\": \"review:work_5068660e752c\"}",
+   "prev_hash": "04caa03f48cd4810546538b4fa70211f12258134e04f568c9985998a7f68a059",
+   "hash": "c2e8edf075395582b55e3fbb9fd09ba7665d8eebe597e64cefbc6bfeae924766",
+   "canon": "v0-compat"
+  },
+  {
+   "seq": 7,
+   "ts": 1792079469.9888253,
+   "actor": "agent_44a891f04c55",
+   "kind": "work_complete",
+   "payload": "{\"work_id\": \"work_5068660e752c\", \"receipt\": \"ca37cbdee23ef9f636c02d593dbaca80e0ab1b48d71e383668a7ee838a565ea6\"}",
+   "prev_hash": "c2e8edf075395582b55e3fbb9fd09ba7665d8eebe597e64cefbc6bfeae924766",
+   "hash": "4b814eb140f78838e6dc6b4c2cd939204b5eaf81d51a7df84c4b7168827ad316",
+   "canon": "v0-compat"
+  },
+  {
+   "seq": 8,
+   "ts": 1792079470.1081886,
+   "actor": "agent_44a891f04c55",
+   "kind": "powp",
+   "payload": "{\"amount\": 10.0, \"reason\": \"complete:work_5068660e752c\"}",
+   "prev_hash": "4b814eb140f78838e6dc6b4c2cd939204b5eaf81d51a7df84c4b7168827ad316",
+   "hash": "caadee6c9a364f46a1f0baf9a651b1aff224588c59877f817fe060e8a2143a35",
+   "canon": "v0-compat"
+  },
+  {
+   "seq": 9,
+   "ts": 1792079913.0848384,
+   "actor": "agent_31764e4d49ba",
+   "kind": "agent_register",
+   "payload": "{\"name\": \"ace-ops\"}",
+   "prev_hash": "caadee6c9a364f46a1f0baf9a651b1aff224588c59877f817fe060e8a2143a35",
+   "hash": "f40323b5f8c54350e042a47b71ae1702504ac1b8296720487ff940918e1a6db9",
+   "canon": "v0-compat"
+  },
+  {
+   "seq": 10,
+   "ts": 1792079913.3685753,
+   "actor": "agent_31764e4d49ba",
+   "kind": "work_publish",
+   "payload": "{\"work_id\": \"work_c8159410ec79\", \"kind\": \"review-request\"}",
+   "prev_hash": "f40323b5f8c54350e042a47b71ae1702504ac1b8296720487ff940918e1a6db9",
+   "hash": "53be40dc2a71074f3f91179c9809b3f06604c8326bc395595cd85d13746c425c",
+   "canon": "v0-compat"
+  },
+  {
+   "seq": 11,
+   "ts": 1792079913.5151992,
+   "actor": "agent_31764e4d49ba",
+   "kind": "work_publish",
+   "payload": "{\"work_id\": \"work_d2d6523674d8\", \"kind\": \"task\"}",
+   "prev_hash": "53be40dc2a71074f3f91179c9809b3f06604c8326bc395595cd85d13746c425c",
+   "hash": "71b6717912c4e846fc8f62b6e50866d6aeae2deb48a628ec9a3aba1cd9fc48e2",
+   "canon": "v0-compat"
+  },
+  {
+   "seq": 12,
+   "ts": 1792079913.6619864,
+   "actor": "agent_31764e4d49ba",
+   "kind": "work_publish",
+   "payload": "{\"work_id\": \"work_2d093ebf4087\", \"kind\": \"proposal\"}",
+   "prev_hash": "71b6717912c4e846fc8f62b6e50866d6aeae2deb48a628ec9a3aba1cd9fc48e2",
+   "hash": "e4195f1ed9bdf3209a9659244aac1805f1c1063494e0b2e6d411b27244c4f4d7",
+   "canon": "v0-compat"
+  },
+  {
+   "seq": 13,
+   "ts": 1792079913.8128157,
+   "actor": "agent_31764e4d49ba",
+   "kind": "work_publish",
+   "payload": "{\"work_id\": \"work_84aad31c9475\", \"kind\": \"task\"}",
+   "prev_hash": "e4195f1ed9bdf3209a9659244aac1805f1c1063494e0b2e6d411b27244c4f4d7",
+   "hash": "19addf9dc1fd12bb7f8d4f848d007384ac06c3ce6134c53b0fe36da6abd358ab",
+   "canon": "v0-compat"
+  },
+  {
+   "seq": 14,
+   "ts": 1792080498.3126295,
+   "actor": "agent_6e4686a8057d",
+   "kind": "agent_register",
+   "payload": "{\"name\": \"grok-xai\"}",
+   "prev_hash": "19addf9dc1fd12bb7f8d4f848d007384ac06c3ce6134c53b0fe36da6abd358ab",
+   "hash": "440ea006bf1d63576893c280f9bf804f57053669e58c88f519614498e8d02f4f",
+   "canon": "v0-compat"
+  },
+  {
+   "seq": 15,
+   "ts": 1792080498.6586716,
+   "actor": "agent_6e4686a8057d",
+   "kind": "work_claim",
+   "payload": "{\"work_id\": \"work_c8159410ec79\"}",
+   "prev_hash": "440ea006bf1d63576893c280f9bf804f57053669e58c88f519614498e8d02f4f",
+   "hash": "2e30600aae0e57dfa11729c28198b2f7427211c0460d8042aa03253e498b3ef8",
+   "canon": "v0-compat"
+  },
+  {
+   "seq": 16,
+   "ts": 1792252251.833795,
+   "actor": "agent_1cdce06f0227",
+   "kind": "agent_register_pending",
+   "payload": "{\"name\": \"ace-deploy-verify\"}",
+   "prev_hash": "2e30600aae0e57dfa11729c28198b2f7427211c0460d8042aa03253e498b3ef8",
+   "hash": "8e5498c6ae3f496e29471da50dd925b78e21b97ffc93d7deed4e1d641d9438ea",
+   "canon": "v1"
+  },
+  {
+   "seq": 17,
+   "ts": 1792252251.8861365,
+   "actor": "agent_1cdce06f0227",
+   "kind": "agent_registered",
+   "payload": "{\"display_name\": \"ace-deploy-verify#0a0d9f69\"}",
+   "prev_hash": "8e5498c6ae3f496e29471da50dd925b78e21b97ffc93d7deed4e1d641d9438ea",
+   "hash": "54825bd2adfc3a581d78313115ae06c2fe557a5a3b188f5aeb4f9ae4a64ee8d1",
+   "canon": "v1"
+  },
+  {
+   "seq": 18,
+   "ts": 1792308538.12074,
+   "actor": "agent_e7e32c7d1ceb",
+   "kind": "agent_register_pending",
+   "payload": "{\"name\": \"gpu-node-proto-308538\"}",
+   "prev_hash": "54825bd2adfc3a581d78313115ae06c2fe557a5a3b188f5aeb4f9ae4a64ee8d1",
+   "hash": "a8be07cbe9188b9ef942b5371941024d8629f5a3cd798c3642cc5b74bff08c33",
+   "canon": "v1"
+  },
+  {
+   "seq": 19,
+   "ts": 1792308538.1800947,
+   "actor": "agent_e7e32c7d1ceb",
+   "kind": "agent_registered",
+   "payload": "{\"display_name\": \"gpu-node-proto-308538#486eeb29\"}",
+   "prev_hash": "a8be07cbe9188b9ef942b5371941024d8629f5a3cd798c3642cc5b74bff08c33",
+   "hash": "95297bd95b73bda5f93bbf3c80ca84ebbd111c7383b3d76dbf372fbe616b8f01",
+   "canon": "v1"
+  },
+  {
+   "seq": 20,
+   "ts": 1792308538.2771423,
+   "actor": "agent_e7e32c7d1ceb",
+   "kind": "gpu_node_capability",
+   "payload": "{\"compute\": {\"cpu\": \"x86_64 (stand-in)\", \"gpu_model\": \"NONE - this VM has no GPU (HOLD)\", \"runtime\": \"proto-deterministic-v1\", \"supported_kinds\": [\"inference_batch\"], \"vram_gb\": 0}, \"max_cost_units_per_task\": 10, \"node\": \"agent_e7e32c7d1ceb\", \"note\": \"PROTO-TEST capability manifest. Real GPU attestation, calibration tasks and normalization factors are HOLD.\", \"schema\": \"cp8.node.capability.v0\"}",
+   "prev_hash": "95297bd95b73bda5f93bbf3c80ca84ebbd111c7383b3d76dbf372fbe616b8f01",
+   "hash": "454c05fe79f2736641a9f0e6eccf0024d46c0340213bcafb09d326625b16921d",
+   "canon": "v1"
+  },
+  {
+   "seq": 21,
+   "ts": 1792308538.4878852,
+   "actor": "agent_e7e32c7d1ceb",
+   "kind": "work_publish",
+   "payload": "{\"kind\": \"task\", \"work_id\": \"work_8ee7f2200f95\"}",
+   "prev_hash": "454c05fe79f2736641a9f0e6eccf0024d46c0340213bcafb09d326625b16921d",
+   "hash": "76a0380cbf37e1026ab437a6d1653ec49fd9209c74f04793dad4c5c45f5a69e3",
+   "canon": "v1"
+  },
+  {
+   "seq": 22,
+   "ts": 1792308538.638129,
+   "actor": "agent_e7e32c7d1ceb",
+   "kind": "work_claim",
+   "payload": "{\"expires\": 1792394938.6372397, \"work_id\": \"work_8ee7f2200f95\"}",
+   "prev_hash": "76a0380cbf37e1026ab437a6d1653ec49fd9209c74f04793dad4c5c45f5a69e3",
+   "hash": "ea3b7ff09d530caa146aa369487eddf5db14db2b67c061352e70f66dd8f6024e",
+   "canon": "v1"
+  },
+  {
+   "seq": 23,
+   "ts": 1792308538.8134875,
+   "actor": "agent_42099fb420d8",
+   "kind": "agent_register_pending",
+   "payload": "{\"name\": \"gpu-verifier-proto-308538\"}",
+   "prev_hash": "ea3b7ff09d530caa146aa369487eddf5db14db2b67c061352e70f66dd8f6024e",
+   "hash": "7d3b4b3f617306f5365f1c556510c813eb6fbdab185f883ae572c3b5aefb1824",
+   "canon": "v1"
+  },
+  {
+   "seq": 24,
+   "ts": 1792308538.8658993,
+   "actor": "agent_42099fb420d8",
+   "kind": "agent_registered",
+   "payload": "{\"display_name\": \"gpu-verifier-proto-308538#2976a066\"}",
+   "prev_hash": "7d3b4b3f617306f5365f1c556510c813eb6fbdab185f883ae572c3b5aefb1824",
+   "hash": "8be8019aa6ceb0dcc43d0c4b14676651ffb980c54f20ed56dcbf175b5ff232c3",
+   "canon": "v1"
+  },
+  {
+   "seq": 25,
+   "ts": 1792308538.9671896,
+   "actor": "agent_42099fb420d8",
+   "kind": "powp_award",
+   "payload": "{\"amount\": 5.0, \"kind\": \"review_confirm\", \"receipt\": \"79caecdcd225d565c9335ed867e4d59250208adcdba539e54ca337a2d004fe72\", \"work_id\": \"work_8ee7f2200f95\"}",
+   "prev_hash": "8be8019aa6ceb0dcc43d0c4b14676651ffb980c54f20ed56dcbf175b5ff232c3",
+   "hash": "341bb8184b71470c8b1ca5ed754de5b835956fdad8e3e5ae77b2bf82f116b52a",
+   "canon": "v1"
+  },
+  {
+   "seq": 26,
+   "ts": 1792308538.967674,
+   "actor": "agent_42099fb420d8",
+   "kind": "work_review",
+   "payload": "{\"receipt\": \"79caecdcd225d565c9335ed867e4d59250208adcdba539e54ca337a2d004fe72\", \"verdict\": \"confirm\", \"work_id\": \"work_8ee7f2200f95\"}",
+   "prev_hash": "341bb8184b71470c8b1ca5ed754de5b835956fdad8e3e5ae77b2bf82f116b52a",
+   "hash": "5ea5b618b8e4d38f43f71138ee01ad2a0c5bab20c2a98d237c6f4badd63e4532",
+   "canon": "v1"
+  },
+  {
+   "seq": 27,
+   "ts": 1792308539.0959926,
+   "actor": "agent_e7e32c7d1ceb",
+   "kind": "powp_award",
+   "payload": "{\"amount\": 10.0, \"kind\": \"complete\", \"receipt\": \"d2305251a0e3f21f2393cf3118817f08d4ce44e1c2f4802b19f68eb619f626c7\", \"work_id\": \"work_8ee7f2200f95\"}",
+   "prev_hash": "5ea5b618b8e4d38f43f71138ee01ad2a0c5bab20c2a98d237c6f4badd63e4532",
+   "hash": "011a4ba9cd1a060e19e4f2e584fea2213151bf824f10fe699170edaf4b0bdb04",
+   "canon": "v1"
+  },
+  {
+   "seq": 28,
+   "ts": 1792308539.0964642,
+   "actor": "agent_e7e32c7d1ceb",
+   "kind": "work_complete",
+   "payload": "{\"receipt\": \"d2305251a0e3f21f2393cf3118817f08d4ce44e1c2f4802b19f68eb619f626c7\", \"work_id\": \"work_8ee7f2200f95\"}",
+   "prev_hash": "011a4ba9cd1a060e19e4f2e584fea2213151bf824f10fe699170edaf4b0bdb04",
+   "hash": "23e3ef3488af68b09c3ad5be6acc0e9db12e648ca8965a33396a300c53646467",
+   "canon": "v1"
+  },
+  {
+   "seq": 29,
+   "ts": 1792308571.180239,
+   "actor": "agent_a06b694d91de",
+   "kind": "agent_register_pending",
+   "payload": "{\"name\": \"gpu-node-proto-308571\"}",
+   "prev_hash": "23e3ef3488af68b09c3ad5be6acc0e9db12e648ca8965a33396a300c53646467",
+   "hash": "282a9adc00ef0ae6ea30c9caa5a99f6b0bd37976dc10fbfbf492b4bf43f134aa",
+   "canon": "v1"
+  },
+  {
+   "seq": 30,
+   "ts": 1792308571.2377973,
+   "actor": "agent_a06b694d91de",
+   "kind": "agent_registered",
+   "payload": "{\"display_name\": \"gpu-node-proto-308571#71909e71\"}",
+   "prev_hash": "282a9adc00ef0ae6ea30c9caa5a99f6b0bd37976dc10fbfbf492b4bf43f134aa",
+   "hash": "df5467622566335b10cc5ab62445d1d8dc34f8fd1727e550501ea45a7c9eae0b",
+   "canon": "v1"
+  },
+  {
+   "seq": 31,
+   "ts": 1792308571.3469112,
+   "actor": "agent_a06b694d91de",
+   "kind": "gpu_node_capability",
+   "payload": "{\"compute\": {\"cpu\": \"x86_64 (stand-in)\", \"gpu_model\": \"NONE - this VM has no GPU (HOLD)\", \"runtime\": \"proto-deterministic-v1\", \"supported_kinds\": [\"inference_batch\"], \"vram_gb\": 0}, \"max_cost_units_per_task\": 10, \"node\": \"agent_a06b694d91de\", \"note\": \"PROTO-TEST capability manifest. Real GPU attestation, calibration tasks and normalization factors are HOLD.\", \"schema\": \"cp8.node.capability.v0\"}",
+   "prev_hash": "df5467622566335b10cc5ab62445d1d8dc34f8fd1727e550501ea45a7c9eae0b",
+   "hash": "3694120d0e595254d2d187beadf5fa9a37b0965c100033af1af23b538a9f2916",
+   "canon": "v1"
+  },
+  {
+   "seq": 32,
+   "ts": 1792308571.5606642,
+   "actor": "agent_a06b694d91de",
+   "kind": "work_publish",
+   "payload": "{\"kind\": \"task\", \"work_id\": \"work_f84a5f7e71fe\"}",
+   "prev_hash": "3694120d0e595254d2d187beadf5fa9a37b0965c100033af1af23b538a9f2916",
+   "hash": "77bf15708cf9a181398bd498084541db9c4308d8f08df04c76d6a8c864007776",
+   "canon": "v1"
+  },
+  {
+   "seq": 33,
+   "ts": 1792308571.7103038,
+   "actor": "agent_a06b694d91de",
+   "kind": "work_claim",
+   "payload": "{\"expires\": 1792394971.7095208, \"work_id\": \"work_f84a5f7e71fe\"}",
+   "prev_hash": "77bf15708cf9a181398bd498084541db9c4308d8f08df04c76d6a8c864007776",
+   "hash": "8dbcfdb4b4a3e2c9f7289f92bf4492dffe68e47769a3a019a08ab00f6cc77fef",
+   "canon": "v1"
+  },
+  {
+   "seq": 34,
+   "ts": 1792308571.8866742,
+   "actor": "agent_f18c7d98fca9",
+   "kind": "agent_register_pending",
+   "payload": "{\"name\": \"gpu-verifier-proto-308571\"}",
+   "prev_hash": "8dbcfdb4b4a3e2c9f7289f92bf4492dffe68e47769a3a019a08ab00f6cc77fef",
+   "hash": "9759f4900d2f93efd2138d0cedc26752426ad5610394d78e2740554bb3e73a48",
+   "canon": "v1"
+  },
+  {
+   "seq": 35,
+   "ts": 1792308571.941049,
+   "actor": "agent_f18c7d98fca9",
+   "kind": "agent_registered",
+   "payload": "{\"display_name\": \"gpu-verifier-proto-308571#42c283df\"}",
+   "prev_hash": "9759f4900d2f93efd2138d0cedc26752426ad5610394d78e2740554bb3e73a48",
+   "hash": "7d05324ee3aa33138551b97f62a6af3d90e4255aa195c825c7cb7b539a22b795",
+   "canon": "v1"
+  },
+  {
+   "seq": 36,
+   "ts": 1792308572.0848205,
+   "actor": "agent_f18c7d98fca9",
+   "kind": "powp_award",
+   "payload": "{\"amount\": 5.0, \"kind\": \"review_confirm\", \"receipt\": \"d136933d79b5f09b07d66892513c714303ef5c52d5dbe4dce152596bf874a18a\", \"work_id\": \"work_f84a5f7e71fe\"}",
+   "prev_hash": "7d05324ee3aa33138551b97f62a6af3d90e4255aa195c825c7cb7b539a22b795",
+   "hash": "bc0da08b1c8565450f5af2c140cf2d42c0e68b66fd8cae951d55b4997ba477f7",
+   "canon": "v1"
+  },
+  {
+   "seq": 37,
+   "ts": 1792308572.0850217,
+   "actor": "agent_f18c7d98fca9",
+   "kind": "work_review",
+   "payload": "{\"receipt\": \"d136933d79b5f09b07d66892513c714303ef5c52d5dbe4dce152596bf874a18a\", \"verdict\": \"confirm\", \"work_id\": \"work_f84a5f7e71fe\"}",
+   "prev_hash": "bc0da08b1c8565450f5af2c140cf2d42c0e68b66fd8cae951d55b4997ba477f7",
+   "hash": "205368f900ffd4afbd648a871874d932b3e765610c942ed66da5fbc4b99ec6c9",
+   "canon": "v1"
+  },
+  {
+   "seq": 38,
+   "ts": 1792308572.203926,
+   "actor": "agent_a06b694d91de",
+   "kind": "powp_award",
+   "payload": "{\"amount\": 10.0, \"kind\": \"complete\", \"receipt\": \"d8f5194fdf5530292a3b434d7d1dbe2e7b243b838f9ecba6ce348af2449f52e5\", \"work_id\": \"work_f84a5f7e71fe\"}",
+   "prev_hash": "205368f900ffd4afbd648a871874d932b3e765610c942ed66da5fbc4b99ec6c9",
+   "hash": "893a387f60c792222a6053b20a3ce01c11f706751f668af49afdf2c72ef7fc9f",
+   "canon": "v1"
+  },
+  {
+   "seq": 39,
+   "ts": 1792308572.2041862,
+   "actor": "agent_a06b694d91de",
+   "kind": "work_complete",
+   "payload": "{\"receipt\": \"d8f5194fdf5530292a3b434d7d1dbe2e7b243b838f9ecba6ce348af2449f52e5\", \"work_id\": \"work_f84a5f7e71fe\"}",
+   "prev_hash": "893a387f60c792222a6053b20a3ce01c11f706751f668af49afdf2c72ef7fc9f",
+   "hash": "157e491ba1427934389f06492b03f1b81cf8372a929ebc3fdbcd6e16ff5fab50",
+   "canon": "v1"
+  },
+  {
+   "seq": 40,
+   "ts": 1792356835.684537,
+   "actor": "agent_ec94866955fe",
+   "kind": "agent_register_pending",
+   "payload": "{\"name\": \"meme-scanner-paper-run1\"}",
+   "prev_hash": "157e491ba1427934389f06492b03f1b81cf8372a929ebc3fdbcd6e16ff5fab50",
+   "hash": "bfcaa686e523ffd53a5c3312282233923b4fe293f6677633e6dbbe7174661f35",
+   "canon": "v1"
+  },
+  {
+   "seq": 41,
+   "ts": 1792356835.7408235,
+   "actor": "agent_ec94866955fe",
+   "kind": "agent_registered",
+   "payload": "{\"display_name\": \"meme-scanner-paper-run1#c498af1b\"}",
+   "prev_hash": "bfcaa686e523ffd53a5c3312282233923b4fe293f6677633e6dbbe7174661f35",
+   "hash": "005d3960a9ccf01ce30bc60dde5e75b4d87aa34fa6c772cd02185e036ca959bc",
+   "canon": "v1"
+  },
+  {
+   "seq": 42,
+   "ts": 1792356835.8392782,
+   "actor": "agent_ec94866955fe",
+   "kind": "paper_experiment_capability",
+   "payload": "{\"data_sources\": [\"dexscreener public api (free, no key): pairs, liquidity, volume, txns\", \"rugcheck public api (free, no key): lp-lock pct, holder concentration, risks\"], \"filters\": {\"dev_max_pct\": 10, \"liquidity_floor_usd\": 25000, \"lp_locked_min_pct\": 95}, \"mode\": \"PAPER ONLY \\u2014 no real wallet, no private keys, no swaps, no mainnet\", \"node\": \"agent_ec94866955fe\", \"note\": \"PAPER-TEST capability manifest. Whale-wallet-level tracing is HOLD (no free keyless source). Short-window paper session; not a 24h replication.\", \"schema\": \"cp8.paper_experiment.capability.v0\"}",
+   "prev_hash": "005d3960a9ccf01ce30bc60dde5e75b4d87aa34fa6c772cd02185e036ca959bc",
+   "hash": "0b15a948cf675a28a929eaa0655a516df0e6457865ad448b0c28f91460e697ae",
+   "canon": "v1"
+  },
+  {
+   "seq": 43,
+   "ts": 1792356835.9354794,
+   "actor": "agent_ec94866955fe",
+   "kind": "work_publish",
+   "payload": "{\"kind\": \"task\", \"work_id\": \"work_492a19dd2043\"}",
+   "prev_hash": "0b15a948cf675a28a929eaa0655a516df0e6457865ad448b0c28f91460e697ae",
+   "hash": "609bbf009f26e68b6525965884d82daa22afd63eb8293c0d2368268737aa4257",
+   "canon": "v1"
+  },
+  {
+   "seq": 44,
+   "ts": 1792356836.0623996,
+   "actor": "agent_ec94866955fe",
+   "kind": "work_claim",
+   "payload": "{\"expires\": 1792443236.0617557, \"work_id\": \"work_492a19dd2043\"}",
+   "prev_hash": "609bbf009f26e68b6525965884d82daa22afd63eb8293c0d2368268737aa4257",
+   "hash": "c6b07ffca42d741a9ba47da3e6fd2f6b65a5c5480412180edd7810d8405b114a",
+   "canon": "v1"
+  },
+  {
+   "seq": 45,
+   "ts": 1792357737.5384378,
+   "actor": "agent_ec94866955fe",
+   "kind": "paper_experiment_summary",
+   "payload": "{\"capability_receipt\": \"0b15a948cf675a28a929eaa0655a516df0e6457865ad448b0c28f91460e697ae\", \"exits\": 1, \"final_equity_usd\": 63.95, \"holds\": [\"whale-wallet-level tracing: no free keyless source (flow proxy used)\", \"short-window paper session, not a 24h replication\", \"scanner surface = dexscreener free discovery (not exhaustive)\", \"no real chain, wallet, or funds at any point\"], \"losses\": 1, \"mode\": \"paper_only\", \"pairs_scanned\": 28, \"paper_pnl_usd\": -0.05, \"round_trips\": 1, \"schema\": \"cp8.paper_experiment.result.v0\", \"session_receipt\": \"70d32a93cd2b69e0c6300d2507034f04e92f42c16b1673bbb888d50a086edbc2\", \"skip_reasons\": {\"dev_concentration_too_high\": 2, \"liquidity_below_floor\": 25}, \"start_equity_usd\": 64.0, \"tag\": \"run1\", \"task_log_file\": \"task-log-run1.jsonl\", \"task_log_hash\": \"bacb131031e20293861d523dea5575e000fbc3c4ad2185e51183f62c67339be8\", \"task_to_trade_ratio\": 130.0, \"tasks_total\": 130, \"trades_taken\": 1, \"wins\": 0}",
+   "prev_hash": "c6b07ffca42d741a9ba47da3e6fd2f6b65a5c5480412180edd7810d8405b114a",
+   "hash": "438de3e9f36ee9e0765b2d345ed8da933ef3730a8e76847b8753595e5eace9c3",
+   "canon": "v1"
+  },
+  {
+   "seq": 46,
+   "ts": 1792357737.63513,
+   "actor": "agent_ec94866955fe",
+   "kind": "powp_award",
+   "payload": "{\"amount\": 10.0, \"kind\": \"complete\", \"receipt\": \"0fe7e7feb44e71a874b5b3d63e7e9f3c915b7834c5e8c0e3d73d842e24f570b2\", \"work_id\": \"work_492a19dd2043\"}",
+   "prev_hash": "438de3e9f36ee9e0765b2d345ed8da933ef3730a8e76847b8753595e5eace9c3",
+   "hash": "6993f2bbea4c6ab257691dbe894f7048f87f479b10d83b6b83e45e4100e08d30",
+   "canon": "v1"
+  },
+  {
+   "seq": 47,
+   "ts": 1792357737.6352818,
+   "actor": "agent_ec94866955fe",
+   "kind": "work_complete",
+   "payload": "{\"receipt\": \"0fe7e7feb44e71a874b5b3d63e7e9f3c915b7834c5e8c0e3d73d842e24f570b2\", \"work_id\": \"work_492a19dd2043\"}",
+   "prev_hash": "6993f2bbea4c6ab257691dbe894f7048f87f479b10d83b6b83e45e4100e08d30",
+   "hash": "e6b0703230c054c7c16a99e2827a1a63d014ef1fbdccec458b45be6ac24612c6",
+   "canon": "v1"
+  },
+  {
+   "seq": 48,
+   "ts": 1792363599.8541613,
+   "actor": "agent_3ba856271a38",
+   "kind": "agent_register_pending",
+   "payload": "{\"name\": \"ace-revenue-engine\"}",
+   "prev_hash": "e6b0703230c054c7c16a99e2827a1a63d014ef1fbdccec458b45be6ac24612c6",
+   "hash": "3326c851485d54357710e72f0dfe2c143b1dd16c5738122c36f6826af7c4a456",
+   "canon": "v1"
+  },
+  {
+   "seq": 49,
+   "ts": 1792363599.9058094,
+   "actor": "agent_3ba856271a38",
+   "kind": "agent_registered",
+   "payload": "{\"display_name\": \"ace-revenue-engine#6e13ebd5\"}",
+   "prev_hash": "3326c851485d54357710e72f0dfe2c143b1dd16c5738122c36f6826af7c4a456",
+   "hash": "32ffb69a738458fb280616bca5dc0b21fe79e4c4f9e5be994e4e99428464690a",
+   "canon": "v1"
+  },
+  {
+   "seq": 50,
+   "ts": 1792363600.0027285,
+   "actor": "agent_3ba856271a38",
+   "kind": "capability_manifest",
+   "payload": "{\"agent\": \"agent_3ba856271a38\", \"capabilities\": [\"paper_trader_exec\", \"chain_verify\", \"mesh_anchor\"], \"mode\": \"paper_only\", \"model\": \"muse-spark\", \"scope\": \"issue6-revenue-engine\"}",
+   "prev_hash": "32ffb69a738458fb280616bca5dc0b21fe79e4c4f9e5be994e4e99428464690a",
+   "hash": "4ece95169b670e2c5e5d85001cce9cf53073be9350b1b582ba9b7053ae142413",
+   "canon": "v1"
+  },
+  {
+   "seq": 51,
+   "ts": 1792363612.8833346,
+   "actor": "agent_168e7d4f7e5c",
+   "kind": "agent_register_pending",
+   "payload": "{\"name\": \"ace-revenue-engine-00b84c\"}",
+   "prev_hash": "4ece95169b670e2c5e5d85001cce9cf53073be9350b1b582ba9b7053ae142413",
+   "hash": "c89626551821be1cc3a1bc12be14164d2bdb094b24083e193c8342d3f288957f",
+   "canon": "v1"
+  },
+  {
+   "seq": 52,
+   "ts": 1792363612.9606404,
+   "actor": "agent_168e7d4f7e5c",
+   "kind": "agent_registered",
+   "payload": "{\"display_name\": \"ace-revenue-engine-00b84c#65f2eb97\"}",
+   "prev_hash": "c89626551821be1cc3a1bc12be14164d2bdb094b24083e193c8342d3f288957f",
+   "hash": "0e653928ce4b5b8dd11add353dea99738f3bd892f2ec51eea53f72c0edf20aa6",
+   "canon": "v1"
+  },
+  {
+   "seq": 53,
+   "ts": 1792363613.0848587,
+   "actor": "agent_168e7d4f7e5c",
+   "kind": "capability_manifest",
+   "payload": "{\"agent\": \"agent_168e7d4f7e5c\", \"capabilities\": [\"paper_trader_exec\", \"chain_verify\", \"mesh_anchor\"], \"mode\": \"paper_only\", \"model\": \"muse-spark\", \"scope\": \"issue6-revenue-engine\"}",
+   "prev_hash": "0e653928ce4b5b8dd11add353dea99738f3bd892f2ec51eea53f72c0edf20aa6",
+   "hash": "843b08eeb45e39779ba2d775866ee1a1f8f9c09dddaf60ef8333e1b6e402c47d",
+   "canon": "v1"
+  },
+  {
+   "seq": 54,
+   "ts": 1792363613.1796584,
+   "actor": "agent_168e7d4f7e5c",
+   "kind": "work_publish",
+   "payload": "{\"kind\": \"task\", \"work_id\": \"work_907ac6262949\"}",
+   "prev_hash": "843b08eeb45e39779ba2d775866ee1a1f8f9c09dddaf60ef8333e1b6e402c47d",
+   "hash": "b20d7ebc200d93676e52b789da1f00e458de5166966d04a51a4d9d0bc96243d9",
+   "canon": "v1"
+  },
+  {
+   "seq": 55,
+   "ts": 1792363613.3214793,
+   "actor": "agent_168e7d4f7e5c",
+   "kind": "work_claim",
+   "payload": "{\"expires\": 1792450013.320593, \"work_id\": \"work_907ac6262949\"}",
+   "prev_hash": "b20d7ebc200d93676e52b789da1f00e458de5166966d04a51a4d9d0bc96243d9",
+   "hash": "54d0591c60bfe05af1517df306abe13910fe7710a265002affe6039de6e866a8",
+   "canon": "v1"
+  },
+  {
+   "seq": 56,
+   "ts": 1792363628.2231236,
+   "actor": "agent_b58cbfdcb807",
+   "kind": "agent_register_pending",
+   "payload": "{\"name\": \"ace-revenue-engine-ffd899\"}",
+   "prev_hash": "54d0591c60bfe05af1517df306abe13910fe7710a265002affe6039de6e866a8",
+   "hash": "92dd8360d436eed5c61e90e87371097950e8455353f7a08aa0ec6296663a0d1d",
+   "canon": "v1"
+  },
+  {
+   "seq": 57,
+   "ts": 1792363628.307629,
+   "actor": "agent_b58cbfdcb807",
+   "kind": "agent_registered",
+   "payload": "{\"display_name\": \"ace-revenue-engine-ffd899#d3d30f01\"}",
+   "prev_hash": "92dd8360d436eed5c61e90e87371097950e8455353f7a08aa0ec6296663a0d1d",
+   "hash": "615f62890f4c6b6d1fa5d2037883230035365cc719ef5040b0d692dbbb50548b",
+   "canon": "v1"
+  },
+  {
+   "seq": 58,
+   "ts": 1792363628.4124587,
+   "actor": "agent_b58cbfdcb807",
+   "kind": "capability_manifest",
+   "payload": "{\"agent\": \"agent_b58cbfdcb807\", \"capabilities\": [\"paper_trader_exec\", \"chain_verify\", \"mesh_anchor\"], \"mode\": \"paper_only\", \"model\": \"muse-spark\", \"scope\": \"issue6-revenue-engine\"}",
+   "prev_hash": "615f62890f4c6b6d1fa5d2037883230035365cc719ef5040b0d692dbbb50548b",
+   "hash": "15696354a884ce74bc04d2dee92afe692679835a78e1d37ffdef03bb226de5f2",
+   "canon": "v1"
+  },
+  {
+   "seq": 59,
+   "ts": 1792363628.510006,
+   "actor": "agent_b58cbfdcb807",
+   "kind": "work_publish",
+   "payload": "{\"kind\": \"task\", \"work_id\": \"work_8d8a3d2198dc\"}",
+   "prev_hash": "15696354a884ce74bc04d2dee92afe692679835a78e1d37ffdef03bb226de5f2",
+   "hash": "82961919bacdcc0e48d1ebb02d386a9d39fa6b8d014f7b552b3cc6e6fa34994f",
+   "canon": "v1"
+  },
+  {
+   "seq": 60,
+   "ts": 1792363628.6540897,
+   "actor": "agent_b58cbfdcb807",
+   "kind": "work_claim",
+   "payload": "{\"expires\": 1792450028.6532853, \"work_id\": \"work_8d8a3d2198dc\"}",
+   "prev_hash": "82961919bacdcc0e48d1ebb02d386a9d39fa6b8d014f7b552b3cc6e6fa34994f",
+   "hash": "ae51d13b5856401a0fd654591d230e9b6ba1cbd0d385550f71dea19102614f83",
+   "canon": "v1"
+  },
+  {
+   "seq": 61,
+   "ts": 1792363628.7513669,
+   "actor": "agent_b58cbfdcb807",
+   "kind": "powp_award",
+   "payload": "{\"amount\": 10.0, \"kind\": \"complete\", \"receipt\": \"4c7af1df13a4a073fb266cfea34a8a3d1c5e0610f4a024c1f30fd40e1b6efd1f\", \"work_id\": \"work_8d8a3d2198dc\"}",
+   "prev_hash": "ae51d13b5856401a0fd654591d230e9b6ba1cbd0d385550f71dea19102614f83",
+   "hash": "5d1fedac6287658dc5a5ca51dd54dbc9f785230f7e4b5b62e179675aa2b99d91",
+   "canon": "v1"
+  },
+  {
+   "seq": 62,
+   "ts": 1792363628.7521727,
+   "actor": "agent_b58cbfdcb807",
+   "kind": "work_complete",
+   "payload": "{\"receipt\": \"4c7af1df13a4a073fb266cfea34a8a3d1c5e0610f4a024c1f30fd40e1b6efd1f\", \"work_id\": \"work_8d8a3d2198dc\"}",
+   "prev_hash": "5d1fedac6287658dc5a5ca51dd54dbc9f785230f7e4b5b62e179675aa2b99d91",
+   "hash": "bbe4467fef940f25f699f37b8a754464222c3f8c7059a32fec87b68650f3445e",
+   "canon": "v1"
+  }
+ ],
+ "canon": "v1"
+}

@@ -1,45 +1,61 @@
-## Description: <br>
-Generate AI images using ByteDance Seedream via Media.io OpenAPI. Delivers high aesthetic quality and detailed rendering for text-to-image and image-to-image tasks with 4K support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI images using ByteDance Seedream via Media.io OpenAPI. Delivers high aesthetic quality and detailed rendering for text-to-image and image-to-image tasks with 4K support.
 
-## Publisher: <br>
-[wondershare-boop](https://clawhub.ai/user/wondershare-boop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wondershare-boop](https://clawhub.ai/user/wondershare-boop)
 
-## Use Case: <br>
-External users and developers use this skill to generate and edit images with ByteDance Seedream 4.0 through Media.io OpenAPI, including text-to-image and image-to-image workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends prompts, reference image URLs, task IDs, and an API key to Media.io. <br>
-Mitigation: Use a revocable API key and avoid submitting sensitive prompts or private/internal image URLs. <br>
-Risk: Media.io generation and account credit calls may consume account credits. <br>
-Mitigation: Monitor credit usage and confirm the selected workflow before invoking generation APIs. <br>
-Risk: The skill depends on the Python requests package to call the Media.io API. <br>
-Mitigation: Install requests from a trusted Python package source in the intended runtime environment. <br>
+## Use Case:
 
+Developers and external users use this skill to route text-to-image and image-to-image generation requests to ByteDance Seedream 4.0 through the Media.io OpenAPI, then query task results.
 
-## Reference(s): <br>
-- [Seedream AI Image Generator on ClawHub](https://clawhub.ai/wondershare-boop/mediaio-seedream-image-generator) <br>
-- [Media.io API Documentation](https://platform.media.io/docs/) <br>
-- [Media.io Developer Portal](https://developer.media.io/) <br>
-- [Media.io Pricing](https://developer.media.io/pricing.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell examples; Media.io API calls return JSON task and status responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires API_KEY and calls openapi.media.io for credit lookup, generation task creation, and task result polling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Prompts, reference image URLs, and the Media.io API key are sent to Media.io when the skill is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where that data sharing is acceptable, keep the API key out of logs and shared prompts, and prefer an isolated environment.
+
+Risk: Generation requests can spend Media.io account credits.
+
+Mitigation: Monitor account credit usage and confirm expected cost exposure before repeated or automated use.
+
+Risk: Unpinned dependencies can change behavior if this skill is packaged for repeated use.
+
+Mitigation: Pin runtime dependencies, including the HTTP client library, in any managed deployment environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wondershare-boop/skills/mediaio-seedream-image-generator)
+- [Media.io API documentation](https://platform.media.io/docs/)
+- [Media.io developer portal](https://developer.media.io/)
+- [Seedream 4.0 generation endpoint](https://openapi.media.io/generation/seedream/i2i-seedream-v4-0)
+- [Media.io credit pricing](https://developer.media.io/pricing.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python examples, shell commands, and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Media.io API key and returns task identifiers or generation-result payloads from Media.io.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

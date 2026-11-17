@@ -1,47 +1,66 @@
-## Description: <br>
-A Chinese webnovel-writing agent that routes ideation, outlining, chapter drafting, style analysis, craft revision, anti-AI-tell review, and file-backed project memory through six internal workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+xt-webnovel-writing helps agents plan, draft, revise, diagnose, and persist Chinese webnovel projects through routed workflows for text analysis, story blueprinting, plot design, prose improvement, quality checks, and memory.
 
-## Publisher: <br>
-[xiaotiewinner](https://clawhub.ai/user/xiaotiewinner) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaotiewinner](https://clawhub.ai/user/xiaotiewinner)
 
-## Use Case: <br>
-External Chinese webnovel writers and writing agents use this skill to plan stories, draft and revise chapters, analyze reference text, check for AI-like prose patterns, and maintain long-running project memory on disk. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Project writing flows can create or update file-backed memory for a webnovel project. <br>
-Mitigation: Use an explicit project_root, keep the project under version control or backups, and request one-time short text with no project memory when persistent files are not desired. <br>
-Risk: Long-running story state can drift if chapter outputs are accepted without the skill's verify and persist checks. <br>
-Mitigation: Use the documented LOAD, DRAFT, VERIFY, and PERSIST sequence and review the generated chapter_meta.stats before accepting project updates. <br>
+## Use Case:
 
+External writers and agent users use this skill to create and manage Chinese webnovel projects, including ideation, outlines, character work, chapter drafting, style revision, anti-AI-tell diagnostics, and continuity memory.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaotiewinner/xt-webnovel-writing) <br>
-- [README](README.md) <br>
-- [Anti-AI-tells reference](references/anti-ai-tells.md) <br>
-- [OpenClaw two-phase enforcement](references/openclaw-enforcement-two-phase.md) <br>
-- [OpenClaw hooks setup](references/openclaw-hooks-setup.md) <br>
-- [Memory directory schema](webnovel-memory/references/directory-schema.md) <br>
-- [Memory write protocol](webnovel-memory/references/write-protocol.md) <br>
-- [Two-phase guard hook](hooks/two-phase-guard/HOOK.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Chinese Markdown with structured tables, code blocks, prose drafts, analysis notes, and optional project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Project writing flows may create or update files only under the user-provided project_root; one-time short text can opt out of memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Project mode can create and update a broad local project tree.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose an explicit project_root before use and review every planned write or delete path before allowing persistence.
+
+Risk: Weak path-containment guidance could allow unsafe paths when names, slugs, or index data are untrusted.
+
+Mitigation: Use trusted project names and slugs, sanitize path-like inputs, and confirm writes stay under project_root and the documented subdirectories.
+
+Risk: Strict global rules may affect unrelated agent sessions if copied broadly.
+
+Mitigation: Apply the two-phase and persistence rules only to intended workspaces or projects unless broad behavior changes are desired.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/xiaotiewinner/skills/xt-webnovel-writing)
+- [Publisher profile](https://clawhub.ai/user/xiaotiewinner)
+- [README](README.md)
+- [Anti-AI-tell rules](references/anti-ai-tells.md)
+- [OpenClaw two-phase enforcement](references/openclaw-enforcement-two-phase.md)
+- [OpenClaw hook setup](references/openclaw-hooks-setup.md)
+- [Webnovel memory directory schema](webnovel-memory/references/directory-schema.md)
+- [Webnovel memory write protocol](webnovel-memory/references/write-protocol.md)
+- [Webnovel writing manual source](https://zhuanlan.zhihu.com/p/467588933)
+- [AgentSkills compatibility](https://agentskills.io)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Chinese Markdown with tables, code blocks, structured project files, and optional shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Project mode may create or update files under a user-selected project_root after verification; one-off writing can skip persistence when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

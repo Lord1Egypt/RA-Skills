@@ -1,44 +1,55 @@
-## Description: <br>
-易学导师将中国传统易学概念转译为现代科学语言，并用现实校准、多路径推演和反馈记录支持文本化现象解读与趋势判断。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+易学导师将太极、河图洛书、八卦、六十甲子等中国传统易学概念转译为现代科学语言，并用于术数推演校准和现实生活现象解读。
 
-## Publisher: <br>
-[henrryjoke](https://clawhub.ai/user/henrryjoke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[henrryjoke](https://clawhub.ai/user/henrryjoke)
 
-## Use Case: <br>
-External users use this skill to ask for Chinese 易学-oriented explanations, calibrated interpretive readings, and practical next-step guidance that connects traditional concepts with scientific analogies and real-world context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat divination-style interpretations or predictions as determinative advice for high-stakes decisions. <br>
-Mitigation: Present outputs as interpretive guidance only and do not rely on them for medical, legal, financial, or mental-health decisions. <br>
-Risk: Use cases can involve sensitive health, relationship, birth, career, or location details. <br>
-Mitigation: Share only the minimum necessary context, avoid unnecessary personal details, and keep any prediction or feedback records under the user's control. <br>
-Risk: Current social-signal or trend references may become stale or be misread without source context. <br>
-Mitigation: Include sources and timestamps when using current information, and treat trend-based adjustments as provisional. <br>
+## Use Case:
 
+External users can use this Chinese-language skill for cultural 易学 interpretation, cross-disciplinary explanation of 易学 concepts, reflective life-situation analysis, and non-deterministic multi-path divination-style guidance. It should be treated as cultural or reflective guidance, not as factual advice for medical, legal, financial, or other high-stakes decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/henrryjoke/yixue-mentor) <br>
-- [现实校准模式参考](references/calibration_patterns.md) <br>
-- [科学转译映射参考](references/science_translation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or structured text with classical citations, scientific mappings, calibrated prediction paths, and practical advice.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include confidence levels, source timestamps for current social signals, and prompts for feedback records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and target metadata) <br>
+Risk: Users may over-rely on divination-style predictions for high-stakes medical, legal, financial, or similar decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as cultural or reflective guidance and direct users to qualified professionals for high-stakes decisions.
+
+Risk: Interpretations may invite sensitive personal context from users.
+
+Mitigation: Ask only for details necessary to the requested interpretation and avoid collecting unnecessary sensitive information.
+
+## Reference(s):
+
+- [易学导师 ClawHub release](https://clawhub.ai/henrryjoke/skills/yixue-mentor)
+- [现实校准模式参考](references/calibration_patterns.md)
+- [科学转译映射参考](references/science_translation.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-language Markdown with structured interpretations, classical citations, scientific mappings, and optional multi-path prediction notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; may ask for contextual personal details when relevant to an interpretation]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

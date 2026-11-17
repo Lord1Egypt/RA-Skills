@@ -1,0 +1,54 @@
+{
+  "_comment": "填【客户/活动一句话说明】。url 首次部署后回填平台分配的访问地址;sites 为客户提供的带 UTM 落地链接(填【日期】);pixelId 与 Ads Manager 数据源一致。字段说明见 skill references/page-config.md。",
+  "url": "https://REPLACE_WITH_YOUR_SITE.example.com/",
+  "title": "填【品牌 · 活动名,用于 page_viewed 的 contents.name】",
+  "pixelId": "",
+  "contentId": "填【英文小写下划线的内容 ID,如 brand_campaign_2026】",
+  "routing": {
+    "sites": {
+      "US": "https://填【美国站带 UTM 的落地链接】"
+    },
+    "fallback": "https://填【不在投放国时跳的官网地址】",
+    "forwardKeys": [
+      "oppref",
+      "utm_source",
+      "utm_medium",
+      "utm_campaign",
+      "utm_term",
+      "utm_content"
+    ],
+    "version": "v1",
+    "ipLookup": true
+  },
+  "ctas": {
+    "hero": {
+      "dest": "geo"
+    }
+  },
+  "links": {
+    "_comment": "页脚合规链接:按访客国家改写 href,不带 UTM、不发 Pixel 事件;fallback 为关 JS / 国家不在列表时的地址。用客户官网现成页面。",
+    "privacy": {
+      "US": "https://填【美国站隐私政策】",
+      "fallback": "https://填【默认隐私政策】"
+    }
+  },
+  "pixelEvents": {
+    "_comment": "与 Ads Manager 数据源 填【数据源名】 的转化事件一一对应;page_viewed 由 build 在 <head> 自动发送。每个事件每次访问只发一次。",
+    "click": "click_cta",
+    "engagement": [
+      {
+        "event": "contents_viewed",
+        "standard": true,
+        "visible": "#details"
+      },
+      {
+        "event": "page_view_action",
+        "scrollPercent": 50
+      },
+      {
+        "event": "time_spent_on_page",
+        "seconds": 30
+      }
+    ]
+  }
+}

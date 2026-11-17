@@ -1,46 +1,61 @@
-## Description: <br>
-Find overnight and late-night departure flights, with support for flight booking, hotel reservation, train tickets, attraction tickets, itinerary planning, visa information, travel insurance, car rental, and related travel tasks powered by Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find overnight and late-night departure flights, often 20-40% cheaper than daytime, and support related travel booking tasks through Fliggy-powered flyai CLI results.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External users and travel agents use this skill to search for late-night or overnight travel options, compare cheaper night departures, and format real-time booking results from the flyai CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may prompt installation of the flyai npm package and make broad local environment changes. <br>
-Mitigation: Require explicit user approval before installation, avoid sudo or automatic global installs unless approved, and review the package source and permissions before use. <br>
-Risk: Travel searches and command history may expose raw itinerary or personal travel details. <br>
-Mitigation: Avoid entering sensitive personal data unless necessary, limit local logging, and clear generated logs or shell history when appropriate. <br>
-Risk: The skill depends on the external flyai/Fliggy service for real-time travel data and booking links. <br>
-Mitigation: Use it only when the user trusts the service, and present failures or missing results honestly rather than substituting unsourced travel information. <br>
+## Use Case:
 
+Travelers and travel-planning agents use this skill to find and compare late-night or overnight flight options. The skill guides agents to collect trip parameters, run flyai CLI searches, and present real-time results with booking links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejinsong/overnight-flights) <br>
-- [Output templates](references/templates.md) <br>
-- [Scenario playbooks](references/playbooks.md) <br>
-- [Fallback guidance](references/fallbacks.md) <br>
-- [Execution runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with booking links and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Travel results must come from flyai CLI output and include booking links when results are shown.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.1 (source: server release metadata; artifact frontmatter states 3.2.0) <br>
+Risk: The skill asks agents to install or possibly sudo-install a global CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated environment where flyai CLI is preinstalled by a trusted administrator, and avoid automatic global or sudo npm installs.
+
+Risk: The skill runs shell commands built from user travel parameters.
+
+Mitigation: Validate and quote city, airport, date, budget, and class inputs before command execution; do not pass untrusted raw text into a shell.
+
+Risk: The runbook describes persisting raw travel queries locally.
+
+Mitigation: Disable the raw execution log or tightly control access, retention, and contents so sensitive itinerary details are not retained unnecessarily.
+
+## Reference(s):
+
+- [Overnight Flights on ClawHub](https://clawhub.ai/xiejinsong/skills/overnight-flights)
+- [Templates](references/templates.md)
+- [Playbooks](references/playbooks.md)
+- [Fallbacks](references/fallbacks.md)
+- [Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with booking links and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires flyai CLI output for travel results; every shown travel result should include a booking link when available.]
+
+## Skill Version(s):
+
+3.2.1 (source: server release metadata; artifact frontmatter reports 3.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

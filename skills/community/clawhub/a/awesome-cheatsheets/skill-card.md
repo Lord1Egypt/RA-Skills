@@ -1,42 +1,55 @@
-## Description: <br>
-Awesome Cheatsheets provides command-line access to cheatsheet-oriented utilities for popular programming languages, frameworks, and development tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Awesome Cheatsheets provides cheatsheets for popular programming languages, frameworks, and development tools.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers can use this skill to inspect and run a command-line cheatsheet utility for programming languages, frameworks, and development tools. Reviewers should treat the local data and logging behavior as part of the skill's operational footprint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill claims to be a cheatsheet tool while also including a generic local data and logging utility that can retain user input. <br>
-Mitigation: Avoid entering secrets or private data, and review or control AWESOME_CHEATSHEETS_DIR before testing or deployment. <br>
-Risk: Some cheatsheet functionality appears limited or placeholder-like. <br>
-Mitigation: Review command output and source files before relying on the skill for development guidance. <br>
+## Use Case:
 
+Developers and engineers use this skill to access programming and tooling cheatsheet guidance from an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xueyetianya/awesome-cheatsheets) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
-- [LeCoupa/awesome-cheatsheets](https://github.com/LeCoupa/awesome-cheatsheets) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal text with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local data and history files under AWESOME_CHEATSHEETS_DIR or the default user data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: One included script keeps local data and command history that are not clearly aligned with the advertised cheatsheet purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the script behavior before installation and set AWESOME_CHEATSHEETS_DIR to a controlled local directory if using the skill.
+
+Risk: The included script behavior does not fully match the advertised cheatsheet functionality.
+
+Mitigation: Treat generated commands as reviewable guidance and verify behavior in a test workspace before relying on it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xueyetianya/skills/awesome-cheatsheets)
+- [BytesAgain Homepage](https://bytesagain.com)
+- [LeCoupa Awesome Cheatsheets](https://github.com/LeCoupa/awesome-cheatsheets)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local shell scripts and an optional AWESOME_CHEATSHEETS_DIR data directory.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

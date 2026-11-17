@@ -1,45 +1,58 @@
-## Description: <br>
-Home Appliance Analyst (家电行业分析师) supports home-appliance market research, product comparison, supply-chain analysis, technology evolution, compliance lookup, and report generation for kitchen, home, personal-care, and major appliances. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language home-appliance industry analysis skill for market research, product comparison, supply-chain breakdowns, product principle and technology evolution analysis, compliance lookup, and research report drafting across kitchen appliances, daily-use appliances, personal care and health appliances, and major appliances.
 
-## Publisher: <br>
-[konnyacer](https://clawhub.ai/user/konnyacer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[konnyacer](https://clawhub.ai/user/konnyacer)
 
-## Use Case: <br>
-External users and analysts use this skill to research Chinese home-appliance categories, compare products and prices, analyze supply chains and technology routes, check regional compliance requirements, and draft concise or deep-dive market reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Disinfectant-generator reference material may contain overconfident safety or use claims. <br>
-Mitigation: Treat disinfectant guidance as unverified product reference material and check manufacturer labels plus authoritative public-health or regulatory sources before use. <br>
-Risk: The skill relies on web search for current prices, market share, compliance, and supplier data. <br>
-Mitigation: Prefer authoritative sources, cite data sources, and mark unavailable or uncertain facts as estimates or pending verification. <br>
+## Use Case:
 
+External users and analysts use this skill to prepare Chinese-language home-appliance market summaries, deep category analyses, model comparisons, cost and supply-chain estimates, compliance overviews, and structured research reports. It is intended to support research drafting, with current prices, standards, safety claims, and regulatory conclusions verified against authoritative sources before use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/konnyacer/home-appliance-analyst) <br>
-- [分类体系](references/分类体系.md) <br>
-- [搜索方法论](references/搜索方法论.md) <br>
-- [合规标准](references/合规标准.md) <br>
-- [报告模板](references/报告模板.md) <br>
-- [产品原理与演进](references/产品原理与演进.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown analysis, comparison tables, report outlines, and sourced guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include estimates or items marked for verification when authoritative data is unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Product safety, medical-adjacent, chemical disinfectant, UVC, privacy, and compliance outputs may be incomplete, outdated, or unsuitable for direct operational decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat these outputs as research drafts and verify them against product manuals, official standards, qualified professionals, and current regulations before relying on them.
+
+Risk: Market data, prices, supplier information, and standards can change quickly.
+
+Mitigation: Refresh time-sensitive claims from authoritative sources and keep source dates visible in final reports.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/konnyacer/skills/home-appliance-analyst)
+- [Home appliance category taxonomy](references/分类体系.md)
+- [Information search methodology](references/搜索方法论.md)
+- [Compliance standards quick reference](references/合规标准.md)
+- [Report templates](references/报告模板.md)
+- [Product principles and technology evolution methodology](references/产品原理与演进.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown research summaries, comparison tables, compliance checklists, and structured report drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are Chinese-language research drafts and may include sourced market data, estimated cost ranges, price comparisons, and verification notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

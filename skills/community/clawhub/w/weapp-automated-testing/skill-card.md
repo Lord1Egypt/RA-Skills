@@ -1,41 +1,61 @@
-## Description: <br>
-WeChat Mini Program automation testing toolkit for launching DevTools, navigating pages, interacting with elements, capturing screenshots, reading console logs, monitoring performance, and running UI regression workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WeChat Mini Program automation testing toolkit. Supports launching DevTools, page navigation, element interaction, screenshots, console log reading, and more. Use when the user needs to automate mini program testing, control WeChat DevTools, read console logs, or perform UI screenshot comparison.
 
-## Publisher: <br>
-[Eumenides-K](https://clawhub.ai/user/Eumenides-K) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eumenides-k](https://clawhub.ai/user/eumenides-k)
 
-## Use Case: <br>
-Developers and test engineers use this skill to automate WeChat Mini Program testing through WeChat DevTools, including page navigation, UI interaction, screenshot capture, console log review, performance monitoring, and common test scenarios. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control local WeChat DevTools for a mini program project. <br>
-Mitigation: Use it only with test projects, enable the DevTools service port intentionally, and review generated scripts before running them. <br>
-Risk: Screenshots, exported logs, performance reports, and result JSON may contain sensitive project or account data. <br>
-Mitigation: Use test accounts and synthetic data, store outputs in controlled locations, and treat diagnostic artifacts as sensitive files. <br>
+## Use Case:
 
+Developers and test engineers use this skill to automate WeChat Mini Program testing through WeChat DevTools, including navigation, element interaction, screenshots, console log review, performance monitoring, and UI regression checks.
 
-## Reference(s): <br>
-- [WeChat Mini Program Automation Testing API Reference](artifact/references/api_reference.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Eumenides-K/weapp-automated-testing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Files, Guidance] <br>
-**Output Format:** [Markdown with Python and shell command examples, plus generated scripts, screenshots, logs, reports, and JSON results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Controls local WeChat DevTools and may save screenshots, exported logs, performance reports, and result JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Local automation code has unsafe execution and data-handling issues.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill only in a controlled development environment with test data, and review the automation code before installation.
+
+Risk: A WebSocket endpoint can connect the automation runner to WeChat DevTools.
+
+Mitigation: Restrict the endpoint to localhost and avoid untrusted endpoint values.
+
+Risk: Screenshots, exported reports, WXML/page data, form inputs, and system information may contain sensitive information.
+
+Mitigation: Treat generated artifacts and extracted runtime data as sensitive before storing or sharing them.
+
+Risk: The skill depends on the external miniprogram-automator npm package.
+
+Mitigation: Pin the dependency locally before use in a controlled testing environment.
+
+## Reference(s):
+
+- [WeChat Mini Program Automation Testing API Reference](references/api_reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration, markdown, json]
+
+**Output Format:** [Markdown guidance with Python and shell command snippets; generated test artifacts may include screenshots, JSON reports, and Markdown reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local test scripts, screenshots, console log exports, and UI regression reports in the user's workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

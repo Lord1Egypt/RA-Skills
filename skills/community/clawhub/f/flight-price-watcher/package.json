@@ -1,6 +1,6 @@
 {
   "name": "flight-price-watcher",
-  "version": "2.2.2",
+  "version": "2.2.0",
   "description": "机票价格监控技能 - 持续跟踪价格变动，降价自动提醒。触发词：监控机票、观望价格、机票提醒、价格波动、机票降价、盯着机票。",
   "type": "module",
   "main": "scripts/monitor.js",

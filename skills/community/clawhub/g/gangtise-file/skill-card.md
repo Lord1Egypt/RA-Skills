@@ -1,48 +1,60 @@
-## Description: <br>
-Searches Gangtise File Center across reports, announcements, meeting notes, opinions, and investment calendars, returning file IDs, key metadata, summaries, and optional download guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches the Gangtise file center across reports, announcements, meeting summaries, chief opinions, and investment calendar items, returning file IDs, metadata, summaries, and optional full-file downloads.
 
-## Publisher: <br>
-[gangtisegts](https://clawhub.ai/user/gangtisegts) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gangtisegts](https://clawhub.ai/user/gangtisegts)
 
-## Use Case: <br>
-External analysts, researchers, and agents use this skill to build candidate lists of Gangtise documents by type, date, security, institution, industry, or keyword before downloading or reviewing full files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms and configured credentials are sent to Gangtise. <br>
-Mitigation: Install and run the skill only when the publisher and Gangtise account context are trusted for the submitted queries and credentials. <br>
-Risk: Downloads or saved results can write files into a local Gangtise workspace. <br>
-Mitigation: Avoid automatic download or result-saving behavior in shared or regulated workspaces unless retention and cleanup are planned. <br>
+## Use Case:
 
+External users and analyst agents use this skill to locate, filter, and organize Gangtise research documents and related investment materials by type, date, security, institution, industry, keyword, or other metadata. It is suited for building candidate document lists and optionally downloading selected files for separate review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gangtisegts/gangtise-file) <br>
-- [Publisher profile](https://clawhub.ai/user/gangtisegts) <br>
-- [Company announcement guide](artifact/references/announcement.md) <br>
-- [Foreign report guide](artifact/references/foreign_report.md) <br>
-- [File download guide](artifact/references/get_file.md) <br>
-- [Investment calendar guide](artifact/references/investment_calendar.md) <br>
-- [Opinion guide](artifact/references/opinion.md) <br>
-- [Research report guide](artifact/references/report.md) <br>
-- [Meeting summary guide](artifact/references/summary.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and text responses with inline shell commands and local file paths when downloads are requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Gangtise access credentials and may write downloaded files or saved results to a local Gangtise workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.12 (source: server release metadata; artifact frontmatter says 1.4.10) <br>
+Risk: The skill uses Gangtise credentials and sends search terms, filters, and file IDs to Gangtise.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only when that credentialed Gangtise access and data sharing are intended.
+
+Risk: Download options and local-save settings can write result files to disk.
+
+Mitigation: Leave GTS_SAVE_FILE unset and omit download flags unless local file output is explicitly needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gangtisegts/skills/gangtise-file)
+- [研究报告调用指导](references/report.md)
+- [外资研报调用指导](references/foreign_report.md)
+- [公司公告调用指导](references/announcement.md)
+- [会议纪要调用指导](references/summary.md)
+- [首席观点调用指导](references/opinion.md)
+- [投研日程调用指导](references/investment_calendar.md)
+- [文件下载](references/get_file.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, files, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples, returned file metadata, summaries, and optional downloaded files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Gangtise credentials; search queries and filters are sent to Gangtise; most result sets are API-limited to 100 items and the docs recommend requesting 10 or fewer in most cases.]
+
+## Skill Version(s):
+
+1.4.12 (source: server release evidence; artifact frontmatter reports 1.4.10)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

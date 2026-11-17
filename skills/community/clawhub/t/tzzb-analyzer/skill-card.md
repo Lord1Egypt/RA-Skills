@@ -1,43 +1,59 @@
-## Description: <br>
-Analyzes Tonghuashun Investment Ledger portfolio, watchlist, and trade data to generate portfolio reports, sector breakdowns, risk monitoring, and threshold alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill reads Tonghuashun Investment Ledger portfolio, watchlist, and trade data, then generates portfolio analysis reports with sector distribution, risk alerts, and threshold monitoring.
 
-## Publisher: <br>
-[qcrcherry](https://clawhub.ai/user/qcrcherry) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qcrcherry](https://clawhub.ai/user/qcrcherry)
 
-## Use Case: <br>
-External users and agents use this skill to read a logged-in Tonghuashun/TZZB portfolio session, summarize holdings and trades, generate scheduled market reports, and monitor configurable risk thresholds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill accesses a logged-in Tonghuashun/TZZB browser session. <br>
-Mitigation: Use an isolated Chrome profile, keep CHROME_DEBUG_URL bound to a local address, and avoid running it on shared machines. <br>
-Risk: Portfolio and trading details are saved locally by default. <br>
-Mitigation: Periodically clean the data/ and memory/ directories and avoid storing artifacts in shared or backed-up locations unless that is intended. <br>
-Risk: Generated investment recommendations may be incorrect or incomplete. <br>
-Mitigation: Review the underlying holdings, market data, and personal risk constraints before taking any trading action. <br>
+## Use Case:
 
+External users with Tonghuashun Investment Ledger accounts use this skill to collect holdings and trade records from an authenticated browser session and generate local Markdown and JSON portfolio reports plus risk-monitoring alerts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qcrcherry/tzzb-analyzer) <br>
-- [Tonghuashun Investment Ledger](https://tzzb.10jqka.com.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON portfolio data, risk alerts, and command-oriented guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses CHROME_DEBUG_URL to access a browser session and may cache portfolio details under data/ and memory/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.0 (source: server release evidence) <br>
+Risk: The skill uses an authenticated browser session and may read Tonghuashun account holdings, trades, and relevant 10jqka cookies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a dedicated Chrome profile or session and review Chrome remote-debugging access before use.
+
+Risk: The skill stores sensitive financial data locally under data/ and memory/.
+
+Mitigation: Protect those directories, clean retained files when no longer needed, and avoid sharing generated reports without review.
+
+Risk: Cron examples can repeatedly collect account data and retain reports.
+
+Mitigation: Enable scheduled runs only after reviewing the data collection frequency, retention behavior, and account-session exposure.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qcrcherry/skills/tzzb-analyzer)
+- [qcrcherry publisher profile](https://clawhub.ai/user/qcrcherry)
+- [Tonghuashun Investment Ledger](https://tzzb.10jqka.com.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON data files, shell command guidance, and local configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include portfolio holdings, trade records, risk alerts, daily reports, and optional Feishu-formatted JSON.]
+
+## Skill Version(s):
+
+2.4.0 (source: server release evidence; artifact frontmatter 2.0.0 and pyproject.toml 2.1.0 differ)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

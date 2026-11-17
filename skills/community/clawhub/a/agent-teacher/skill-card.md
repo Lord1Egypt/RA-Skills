@@ -1,51 +1,65 @@
-## Description: <br>
-Trains new or existing agents on studio conduct, identity customization, foundational skills, and optional advanced workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Teacher trains new or existing agents on studio conduct, identity setup, foundational tools, and optional advanced skills in a required conduct-first sequence.
 
-## Publisher: <br>
-[axelhu](https://clawhub.ai/user/axelhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[axelhu](https://clawhub.ai/user/axelhu)
 
-## Use Case: <br>
-Developers and agent operators use this skill to onboard agents with conduct rules, persistent identity files, core collaboration and memory skills, and role-specific advanced training. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill teaches broad persistent changes to agent operating files. <br>
-Mitigation: Require explicit confirmation for each file rewrite and keep backups before applying changes. <br>
-Risk: The skill covers sensitive integrations and credential-backed tools. <br>
-Mitigation: Redact credentials, keep backup paths allowlisted with secret scanning, and avoid sending private content to external services without clear consent. <br>
-Risk: Browser and media workflows may expose active profiles, private content, or voice data. <br>
-Mitigation: Avoid live Chrome profiles unless explicitly approved, and obtain consent before using private content or voice data with external services. <br>
+## Use Case:
 
+Agent operators and workspace maintainers use this skill to onboard new agents or refresh existing agents on required conduct, identity files, persistent memory practices, collaboration tools, and optional role-specific training.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/axelhu/agent-teacher) <br>
-- [Working Rules of Conduct](references/rules-of-conduct.md) <br>
-- [Identity Customization](references/phase-0-identity.md) <br>
-- [Foundation Curriculum](references/phase-1-foundation.md) <br>
-- [Advanced Curriculum](references/phase-2-advanced.md) <br>
-- [Artist Gstack Learning Guide](references/learning-from-gstack-artist.md) <br>
-- [Designer Gstack Learning Guide](references/learning-from-gstack-designer.md) <br>
-- [Producer Gstack Learning Guide](references/learning-from-gstack-producer.md) <br>
-- [Programmer Gstack Learning Guide](references/learning-from-gstack-programmer.md) <br>
-- [Gstack project](https://github.com/garrytan/gstack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose edits to persistent agent operating files and commands for installing or configuring other skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata) <br>
+Risk: Persistent core-instruction and memory-policy changes can alter an agent's long-term behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before editing SOUL.md, IDENTITY.md, AGENTS.md, or memory policy.
+
+Risk: Unpinned skill and MCP package installation can introduce unreviewed behavior.
+
+Mitigation: Pin and audit installed skills and MCP packages before deployment.
+
+Risk: Broad backups, Feishu recipients, Chrome profiles, and API-key-backed tools can expose sensitive data.
+
+Mitigation: Restrict backup paths and message recipients, and avoid sensitive data use without clear consent.
+
+## Reference(s):
+
+- [Studio Rules of Conduct](references/rules-of-conduct.md)
+- [Identity Setup](references/phase-0-identity.md)
+- [Foundation Course Details](references/phase-1-foundation.md)
+- [Advanced Course Details](references/phase-2-advanced.md)
+- [Programmer Learning Guide from Gstack](references/learning-from-gstack-programmer.md)
+- [Producer Learning Guide from Gstack](references/learning-from-gstack-producer.md)
+- [Designer Learning Guide from Gstack](references/learning-from-gstack-designer.md)
+- [Artist Learning Guide from Gstack](references/learning-from-gstack-artist.md)
+- [Gstack Project](https://github.com/garrytan/gstack)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell command examples and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces onboarding curricula and setup instructions; installation and configuration steps require an agent or user to execute proposed commands.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

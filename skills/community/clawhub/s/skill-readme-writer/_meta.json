@@ -1,6 +1,55 @@
 {
-  "ownerId": "kn77ckdvrtjncxcsjgxm7y1y71824apd",
-  "slug": "skill-readme-writer",
+  "name": "README-writer",
   "version": "0.0.1",
-  "publishedAt": 1774103552877
+  "author": "JustZeroX",
+  "createdAt": "2026-03-18",
+  "status": "active",
+  "type": "documentation",
+  "description": "为本地项目或 GitHub 项目生成专业的 README.md 文档",
+  "features": [
+    "自动收集项目信息",
+    "交互式确认流程",
+    "README 目的询问",
+    "智能目录生成",
+    "中英双语支持",
+    "迭代优化",
+    "自动备份",
+    "质量检查",
+    "可选章节询问",
+    "英文版本完整生成",
+    "英文独立 TOC",
+    "TOC 条目一致",
+    "代码块格式正确",
+    "Badge 自动生成",
+    "动态 Version 读取",
+    "动态平台检测",
+    "动态 License 识别",
+    "多行专业 Badge 布局",
+    "语言版本 Badge",
+    "包管理器 Badge",
+    "Windows Base64 Logo",
+    "Demo URL 占位符",
+    "无个人信息"
+  ],
+  "workflow": {
+    "steps": 11,
+    "interactive": true,
+    "languages": ["chinese", "english", "bilingual"]
+  },
+  "projectTypes": [
+    "python",
+    "frontend",
+    "api",
+    "cli",
+    "library",
+    "skill",
+    "general",
+    "android",
+    "ios",
+    "web",
+    "nodejs",
+    "rust",
+    "go",
+    "php"
+  ]
 }

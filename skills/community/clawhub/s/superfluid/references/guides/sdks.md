@@ -81,4 +81,4 @@ or hardcode contract addresses (they vary per network).
 - `@superfluid-finance/sdk-core` → replaced by `@sfpro/sdk`. Over-abstracted, locked to ethers v5. [Docs](https://superfluid.gitbook.io/superfluid/developers/sdk-core) · [Repo](https://github.com/superfluid-org/protocol-monorepo/tree/dev/packages/sdk-core)
 - `@superfluid-finance/sdk-redux` → replaced by wagmi + `@sfpro/sdk`. Pre-wagmi Redux hooks. [Repo](https://github.com/superfluid-org/protocol-monorepo/tree/dev/packages/sdk-redux)
 - `@superfluid-finance/js-sdk` → replaced by `@sfpro/sdk`. Oldest SDK, truffle-based. [Repo](https://github.com/superfluid-org/protocol-monorepo/tree/dev/packages/js-sdk)
-- `@superfluid-finance/widget` → no replacement. Subscription checkout widget, stuck on wagmi v1. [Repo](https://github.com/superfluid-finance/widget) · [Playground](https://checkout-builder.superfluid.finance/)
+- `@superfluid-finance/widget` → retired, no replacement. The subscription checkout widget, hosted checkout and Checkout Builder are shut down and unmaintained. [Notice](https://superfluid.org/checkout-retired) · [Repo](https://github.com/superfluid-finance/widget)

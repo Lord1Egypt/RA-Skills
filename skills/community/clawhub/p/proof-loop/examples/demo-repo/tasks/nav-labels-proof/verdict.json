@@ -1,0 +1,24 @@
+{
+  "task_id": "nav-labels-proof",
+  "phase": "verify",
+  "agent": "fresh-verifier",
+  "timestamp": "2026-05-20T15:45:00Z",
+  "overall": "PASS",
+  "criteria": [
+    {
+      "id": "AC1",
+      "status": "PASS",
+      "note": "Demo check confirms expected English labels."
+    },
+    {
+      "id": "AC2",
+      "status": "PASS",
+      "note": "Demo check confirms expected German labels."
+    },
+    {
+      "id": "AC3",
+      "status": "PASS",
+      "note": "Verifier inspected the check script; mismatches return exit status 1."
+    }
+  ]
+}

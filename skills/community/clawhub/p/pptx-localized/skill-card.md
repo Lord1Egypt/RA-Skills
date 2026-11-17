@@ -1,43 +1,59 @@
-## Description: <br>
-Helps agents create, read, edit, combine, split, and quality-check PowerPoint .pptx presentations using local scripts and PPTX generation guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates, reads, edits, splits, combines, and quality-checks PowerPoint .pptx presentations using local presentation tooling and PPTX package workflows.
 
-## Publisher: <br>
-[yinfeihaaaaaaaaaaa](https://clawhub.ai/user/yinfeihaaaaaaaaaaa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yinfeihaaaaaaaaaaa](https://clawhub.ai/user/yinfeihaaaaaaaaaaa)
 
-## Use Case: <br>
-Developers, engineers, and agent users use this skill to work with local PowerPoint files, including extracting content, editing templates, generating new slide decks, converting decks for visual QA, and repacking .pptx files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local unpacking, cleaning, packing, and conversion can change or overwrite presentation files. <br>
-Mitigation: Run workflows on copies of important decks and confirm input and output paths before executing file operations. <br>
-Risk: Untrusted Office files may expose the agent environment to archive or document-processing risks. <br>
-Mitigation: Process untrusted decks only in a sandboxed environment and avoid opening files from unknown sources without additional review. <br>
+## Use Case:
 
+Developers and agent users use this skill to create new slide decks, inspect or extract content from existing .pptx files, and edit presentation templates while preserving Office package structure.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/yinfeihaaaaaaaaaaa/pptx-localized) <br>
-- [README.md](artifact/README.md) <br>
-- [Editing Presentations](artifact/editing.md) <br>
-- [PptxGenJS - Create Presentations from Scratch](artifact/pptxgenjs.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated or modified presentation files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or modify local .pptx, unpacked Office XML, PDF, and slide image files depending on the requested workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The security scan summary says the setup and helper scripts reach beyond a narrow PPTX-only scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a dedicated virtual environment with project-local npm dependencies and pinned versions.
+
+Risk: The skill can run local Office conversion tools and modify presentation files.
+
+Mitigation: Use a restricted workspace that excludes sensitive environment variables and unrelated documents, and work on copies of presentation files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yinfeihaaaaaaaaaaa/skills/pptx-localized)
+- [Publisher profile: yinfeihaaaaaaaaaaa](https://clawhub.ai/user/yinfeihaaaaaaaaaaa)
+- [README.md](README.md)
+- [Editing Presentations](editing.md)
+- [PptxGenJS - Create Presentations from Scratch](pptxgenjs.md)
+- [Anthropic official PPTX skill](https://github.com/anthropics/skills/tree/main/skills/pptx)
+- [Poppler for Windows](https://github.com/oschwartz10612/poppler-windows)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code snippets, shell commands, and generated or modified .pptx files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create, modify, unpack, repack, and thumbnail presentation files in the workspace; visual QA can require LibreOffice and Poppler.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

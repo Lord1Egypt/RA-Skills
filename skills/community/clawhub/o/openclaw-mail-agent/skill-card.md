@@ -1,45 +1,64 @@
-## Description: <br>
-Set up AI-powered Gmail monitoring in OpenClaw that watches a Gmail inbox through Google Pub/Sub, classifies messages with an LLM, and sends important email alerts to Telegram. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up AI-powered Gmail monitoring in OpenClaw that watches an inbox via Google Pub/Sub, classifies email with an LLM, and forwards important messages to Telegram.
 
-## Publisher: <br>
-[nanaco666](https://clawhub.ai/user/nanaco666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nanaco666](https://clawhub.ai/user/nanaco666)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to install and configure a Gmail watcher that sends important inbox notifications to Telegram. It is also useful for reconfiguration and troubleshooting when email alerts are not arriving. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Email-derived snippets and summaries may be sent to external LLM services and Telegram. <br>
-Mitigation: Use a dedicated or clearly selected Gmail account, secure API keys and OpenClaw configuration, verify the Telegram chat ID, and enable LLM classification only for inboxes where third-party processing is acceptable. <br>
-Risk: The install step may fetch code whose tag contents do not match the reviewed artifact. <br>
-Mitigation: Confirm the referenced GitHub tag contents match the reviewed artifact before installing or publishing the release. <br>
-Risk: Gmail watch and Google Pub/Sub resources can continue to exist after the plugin is removed. <br>
-Mitigation: Plan cleanup of Gmail watch state, Pub/Sub topics and subscriptions, Google credentials, and related Google Cloud resources when uninstalling. <br>
+## Use Case:
 
+External users and developers use this skill to install and configure a Gmail-to-Telegram monitoring workflow in OpenClaw, including Google Cloud Pub/Sub setup, plugin configuration, testing, troubleshooting, reconfiguration, and uninstall steps.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nanaco666/openclaw-mail-agent) <br>
-- [Publisher Profile](https://clawhub.ai/user/nanaco666) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [gog Gmail CLI](https://gogcli.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with bash command blocks and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup and troubleshooting instructions; does not create files directly.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata; artifact frontmatter and package metadata report 0.2.0) <br>
+Risk: Private Gmail metadata and snippets may be forwarded to Telegram and, when llmApiKey is configured, to the selected LLM provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm this data flow before installation, choose Telegram recipients deliberately, and use only a trusted LLM endpoint.
+
+Risk: The LLM API key is stored in OpenClaw plugin configuration.
+
+Mitigation: Secure OpenClaw plugin configuration and use a scoped or replaceable API key.
+
+Risk: The setup flow installs a remote GitHub archive.
+
+Mitigation: Verify the downloaded plugin source or digest before following the archive install command.
+
+Risk: Gmail and Pub/Sub setup can expose inbox events beyond the user's intent if configured broadly.
+
+Mitigation: Use a dedicated low-privilege Google Cloud project and review Gmail API, Pub/Sub topic, and subscription permissions before enabling the watch.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nanaco666/skills/openclaw-mail-agent)
+- [Mail Agent homepage from skill metadata](https://github.com/nanaco666/openclaw-mail-agent)
+- [OpenClaw](https://openclaw.ai)
+- [gog Gmail CLI](https://gogcli.sh)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes setup, testing, troubleshooting, reconfiguration, and uninstall guidance for an OpenClaw plugin.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

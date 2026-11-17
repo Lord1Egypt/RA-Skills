@@ -1,41 +1,53 @@
-## Description: <br>
-Runtime prompt injection detection for AI agents. Checks tool outputs for hidden instructions before your agent acts on them. 98% detection rate on agent attacks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runtime prompt injection detection for AI agents. Checks tool outputs for hidden instructions before your agent acts on them. 98% detection rate on agent attacks.
 
-## Publisher: <br>
-[dmilstein-match](https://clawhub.ai/user/dmilstein-match) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dmilstein-match](https://clawhub.ai/user/dmilstein-match)
 
-## Use Case: <br>
-Developers and AI agent operators use this skill to check external tool outputs for prompt injection before allowing an agent to act on retrieved content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends inspected tool outputs, task context, and an LLM API key to an external guard service. <br>
-Mitigation: Use only an intentionally trusted mlayer-guard endpoint, use a low-limit revocable key, and avoid sending confidential content unless explicitly approved. <br>
-Risk: The security review marks the release suspicious because sensitive context and credentials may be sent without enough safeguards. <br>
-Mitigation: Review the endpoint, data handling, and key-management requirements before deployment. <br>
-Risk: If the guard service is unreachable, external content may remain unchecked. <br>
-Mitigation: Warn the user and request confirmation before acting on the external content. <br>
+## Use Case:
 
+Developers and agent operators use this skill to check untrusted tool outputs for prompt injection before an agent follows instructions from those outputs. It is intended for workflows that handle web, email, file, API, or database content from external sources.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Configuration] <br>
-**Output Format:** [Markdown instructions with a JSON request example] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The guard service returns decisions such as blocked, abstain, or safe.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The configured guard endpoint may receive broad agent context, retrieved content, and an LLM API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted MLAYER_GUARD_URL, provide a dedicated revocable guard credential, and apply redaction, endpoint restrictions, and retention controls before sending sensitive content.
+
+Risk: If the guard service is unavailable, acting on untrusted external content could bypass the intended prompt-injection check.
+
+Mitigation: Warn the user and avoid acting on the external content until explicit confirmation is obtained.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dmilstein-match/skills/mlayer-guard)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Configuration]
+
+**Output Format:** [Markdown instructions with JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guard-result handling guidance for blocked, abstain, and safe responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

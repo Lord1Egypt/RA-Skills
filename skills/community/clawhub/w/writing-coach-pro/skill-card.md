@@ -1,45 +1,62 @@
-## Description: <br>
-Analyzes writing for grammar, style, tone, readability, and consistency while learning user preferences over time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes writing for grammar, style, tone, readability, and consistency while learning user preferences to improve feedback over time.
 
-## Publisher: <br>
-[nollio](https://clawhub.ai/user/nollio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nollio](https://clawhub.ai/user/nollio)
 
-## Use Case: <br>
-External users and developers use this skill to review, rewrite, and coach prose across emails, reports, blog posts, resumes, and other documents. It produces grammar, style, tone, readability, and consistency feedback while maintaining a persistent local style profile. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store long-term writing metadata, session summaries, and reports locally, and some session history may include excerpts from submitted text. <br>
-Mitigation: Treat the local data directory as sensitive, review stored files periodically, and clear ~/.openclaw/skills/writing-coach-pro/data when retention is not needed. <br>
-Risk: Dashboard sync is enabled by default for writing statistics and trend data. <br>
-Mitigation: Review the dashboard settings before use and disable dashboard sync when writing analytics should remain local or should not be retained. <br>
-Risk: Submitted text is processed by whichever LLM backend the host agent uses, which may be a cloud service. <br>
-Mitigation: Use a local model for confidential drafts or review the configured LLM provider's data handling terms before submitting sensitive text. <br>
+## Use Case:
 
+Writers, editors, and agent users use this skill to review, rewrite, and coach prose across emails, reports, blog posts, resumes, and long-form documents. It produces grammar and style findings, readability metrics, rewritten text, and progress-oriented feedback based on a persistent writing profile.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/nollio/writing-coach-pro) <br>
-- [Security information](artifact/SECURITY.md) <br>
-- [Setup guide](artifact/SETUP-PROMPT.md) <br>
-- [Dashboard integration spec](artifact/dashboard-kit/DASHBOARD-SPEC.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports, inline text feedback, rewritten prose, shell command guidance, and JSON-backed configuration updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist style preferences, session summaries, writing metrics, and generated reports in local skill data directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Writing-derived history, issue descriptions, profile changes, session summaries, and excerpts may be stored locally or synchronized to a dashboard.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the storage behavior before processing confidential writing, protect the local data directory, and disable dashboard synchronization unless the user intentionally wants those records written to the dashboard backend.
+
+Risk: The artifact claims it does not transmit or track data while its configuration enables dashboard synchronization after each session.
+
+Mitigation: Treat the published security guidance as requiring review before installation and confirm the dashboard configuration before using the skill with sensitive content.
+
+Risk: Submitted text is processed by the user's configured LLM backend, which may be cloud-hosted.
+
+Mitigation: Use a local model for documents that must stay on the user's machine, or review the chosen LLM provider's data handling policy before submitting sensitive material.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/nollio/skills/writing-coach-pro)
+- [Publisher profile](https://clawhub.ai/user/nollio)
+- [Setup guide](SETUP-PROMPT.md)
+- [Security notes](SECURITY.md)
+- [Dashboard integration spec](dashboard-kit/DASHBOARD-SPEC.md)
+- [NormieClaw terms site](https://normieclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports and inline text feedback, with optional shell command guidance and generated configuration or report files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce quick reviews, full analysis reports, rewrites, coaching explanations, style profiles, progress reports, and dashboard-oriented writing metrics.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and dashboard manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

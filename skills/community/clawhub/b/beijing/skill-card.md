@@ -1,48 +1,50 @@
-## Description: <br>
-Navigate Beijing as visitor, resident, tech worker, student, or entrepreneur with neighborhoods, transport, costs, visas, and local insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides visits, relocation, work, and daily life in Beijing, including attractions, neighborhoods, rent, visas, transport, food, and the local app ecosystem.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and agents use this skill to answer practical Beijing travel, relocation, work, study, and business questions with topic-specific guidance. It is intended as orientation material, not a substitute for current legal, medical, immigration, or safety advice from official or professional sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Legal, VPN, immigration, registration, and business-compliance guidance can become outdated or depend on a user's specific circumstances. <br>
-Mitigation: Verify current requirements with official sources or qualified local professionals before acting. <br>
-Risk: Health, medication, air-quality, and safety recommendations may not fit an individual user's medical needs or risk tolerance. <br>
-Mitigation: Treat the content as practical orientation and consult medical or safety professionals for personal decisions. <br>
-Risk: Cost, salary, rent, transport, app availability, and policy details are time-sensitive and may differ by neighborhood or date. <br>
-Mitigation: Check current local data and service availability when planning travel, relocation, hiring, or budgeting. <br>
+## Use Case:
 
+External users use this skill to plan Beijing travel, relocation, work, study, family logistics, business setup, and daily life decisions. It helps agents route questions by role and timeline, then provide practical city-specific guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/beijing) <br>
-- [Skill Homepage](https://clawic.com/skills/beijing) <br>
-- [Beijing Skill Index](artifact/SKILL.md) <br>
-- [Visitor Tips](artifact/visitor-tips.md) <br>
-- [Resident Guide](artifact/resident.md) <br>
-- [Safety and Laws](artifact/safety.md) <br>
-- [Visas](artifact/visas.md) <br>
-- [Healthcare](artifact/healthcare.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose with tables and practical recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only guidance; no required binaries, credentials, or tool execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can guide agents to keep sensitive Beijing relocation, family, school, visa, home, health, or household-worker details in plaintext local memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent not to save sensitive details unless needed, and periodically inspect or delete files under ~/Clawic/data/beijing/.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/beijing)
+- [Clawic Skill Homepage](https://clawic.com/skills/beijing)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with optional configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference user-controlled local preference files for Beijing-specific memory.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

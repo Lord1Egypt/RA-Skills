@@ -1,46 +1,62 @@
-## Description: <br>
-Automates security, platform, and memory audits for an OpenClaw environment, reporting critical risks that need attention. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates security, platform, and memory audits for OpenClaw environments and reports findings that need attention.
 
-## Publisher: <br>
-[nollio](https://clawhub.ai/user/nollio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nollio](https://clawhub.ai/user/nollio)
 
-## Use Case: <br>
-Developers and operators use this skill to run security scans, platform health checks, memory audits, accepted-risk tracking, and trend summaries for OpenClaw workspaces. It can support manual checks or scheduled audit workflows when the user has reviewed the configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Broad local scans may inspect secrets, project files, and git history. <br>
-Mitigation: Keep scan_directories narrow, review the configured targets before running, and avoid sharing audit outputs because they may describe sensitive findings. <br>
-Risk: Network-capable health checks and optional dashboard or webhook workflows may expose operational details if configured carelessly. <br>
-Mitigation: Use only intended domains and services, and leave scheduled scans, dashboard sync, and webhook sync disabled until the data flow is understood. <br>
-Risk: Server security review marked the release suspicious and noted that its read-only and local-only claims may be overstated. <br>
-Mitigation: Review or fix the shell scripts before relying on the skill as a security monitor, especially in workspaces containing secrets. <br>
+## Use Case:
 
+Developers and operators use Security Team to run local audits of OpenClaw environments, check service health, track accepted risks, and receive concise remediation guidance for security, platform, and memory findings.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/nollio/normieclaw-security-team) <br>
-- [README.md](README.md) <br>
-- [SECURITY.md](SECURITY.md) <br>
-- [DASHBOARD-SPEC.md](dashboard-kit/DASHBOARD-SPEC.md) <br>
-- [NormieClaw support](https://normieclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports with JSON scan results, remediation guidance, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May store audit history and accepted-risk state in local skill data files when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release metadata) <br>
+Risk: The server security review says the main scanner scripts are broken.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and do not rely on the skill for monitoring until syntax checks and a baseline run succeed.
+
+Risk: The server security review says privacy claims are overstated, and npm audit can disclose dependency metadata to the configured npm registry.
+
+Mitigation: Configure narrow scan directories and review npm registry disclosure expectations before running dependency audits.
+
+Risk: The artifact includes promotional cross-sell instructions that can appear in security reports.
+
+Mitigation: Remove or ignore cross-sell instructions when reports must remain limited to security findings and remediation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nollio/skills/normieclaw-security-team)
+- [README](README.md)
+- [Security guarantees](SECURITY.md)
+- [Security Team operating manual](SKILL.md)
+- [Security configuration](config/security-config.json)
+- [Dashboard companion spec](dashboard-kit/DASHBOARD-SPEC.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, JSON]
+
+**Output Format:** [Markdown or plain-text audit reports, JSON scanner output, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are intended to redact raw secrets and prioritize critical findings first.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

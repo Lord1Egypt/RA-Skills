@@ -1,0 +1,6 @@
+# Configure value drivers that fit the offering and buyer outcomes. Do not copy formulae
+# mechanically: define units, counterfactual, dependencies, evidence, and uncertainty per driver.
+params: {}                           # {name: {value, range, source, confidence}}
+types: {}                            # Optional model-specific formulas documented in the study
+caps: []                             # Optional overlap limits to prevent double-counting
+lines: []                            # {id, driver, outcome, formula, trigger, dependencies, source}

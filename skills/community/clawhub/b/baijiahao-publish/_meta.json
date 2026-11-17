@@ -1,6 +1,25 @@
 {
-  "ownerId": "kn74nf0acazhcq2f33be1811r581z717",
-  "slug": "baijiahao-publish",
+  "name": "baijiahao-publish",
+  "title": "百家号发布器",
+  "description": "使用 auth 登录态打开百家号发布页，可填入标题与正文（支持 .md 转富文本）、选封面、存草稿或发布。",
   "version": "1.0.0",
-  "publishedAt": 1773035140020
+  "author": "Maynor",
+  "license": "MIT",
+  "keywords": ["baijiahao", "百家号", "publish", "automation", "playwright", "draft"],
+  "homepage": "",
+  "repository": "",
+  "type": "skill",
+  "category": "publishing",
+  "icon": "",
+  "entry": "scripts/open_baijiahao_edit.py",
+  "language": "python",
+  "requires": ["playwright>=1.40.0", "markdown>=3.5.0"],
+  "openclaw": {
+    "skill": true,
+    "skillKey": "baijiahao-publish",
+    "category": "publishing",
+    "requires": {
+      "bins": ["python3"]
+    }
+  }
 }

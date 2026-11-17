@@ -113,7 +113,7 @@ curl -X POST "https://apipaymcp.okart.fun/v1/buy-apikey" \
 **Response:**
 ```json
 {
-  "apiKey": "sk-7ac3d7c8fed74b0a8ae8f949e017e9f5",
+  "apiKey": "REDACTED-SECRET",
   "txHash": "0x1f62f45e5ae6e8cd637048d0f099d324f749f61d35906ffe481e36e92689769b",
   "payState": "paid",
   "durationDays": 7,

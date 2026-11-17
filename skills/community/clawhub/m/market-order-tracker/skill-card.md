@@ -1,41 +1,53 @@
-## Description: <br>
-Tracks export order lifecycles from order confirmation through delivery with status stages, deadline reminders, exception handling, and customer notification drafts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks the full order lifecycle from intake through delivery, with structured status stages, delivery-date reminders, exception handling, and customer notification templates for busy trade companies and export teams.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-External trade operations teams, order trackers, and factory export departments use this skill to organize order stages, production milestones, logistics status, payment checkpoints, and customer updates. It is best suited for teams managing many active orders where missed handoffs or delayed notifications create delivery risk. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Customer, payment, shipment, and attachment details may contain sensitive business or personal information. <br>
-Mitigation: Install only in approved workspaces and remove unnecessary personal or financial details before sharing outputs. <br>
-Risk: Customer notification drafts could be sent to the wrong recipient or include sensitive attachments without adequate review. <br>
-Mitigation: Treat outbound messages as drafts; verify the recipient, channel, and attachments such as invoices, packing lists, bills of lading, and certificates before sending. <br>
+## Use Case:
 
+Operations, sales, and export staff use this skill to manage many concurrent customer orders, track production and logistics milestones, prepare internal work orders, and draft timely customer updates.
 
-## Reference(s): <br>
-- [Order Lifecycle Reference](references/order-lifecycle.md) <br>
-- [ClawHub Skill Listing](https://clawhub.ai/wangm-a3/market-order-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with checklists, status tables, formulas, and message templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only workflow guidance; outbound customer messages should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release evidence) <br>
+Risk: Customer notifications may include incorrect recipients, order status, attachments, or more sensitive business details than necessary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the customer's preferred channel, verify contact details and current order facts, minimize sensitive details, and review attachments before sending.
+
+Risk: The workflow templates may be treated as automated business decisions without checking real production, finance, or logistics conditions.
+
+Mitigation: Use the templates as a business workflow aid and confirm milestone status, payment status, shipping details, and exception handling with the responsible teams.
+
+## Reference(s):
+
+- [Order Lifecycle Reference](references/order-lifecycle.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with tables, checklists, workflow steps, and customer notification templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include customer-facing message drafts and operational checklists that should be reviewed before use.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

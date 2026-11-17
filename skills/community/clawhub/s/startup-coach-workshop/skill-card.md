@@ -1,46 +1,60 @@
-## Description: <br>
-Guides founders through startup coaching modes for idea validation, scope review, execution planning, product expression, UX review, and retrospectives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Startup Coach Workshop provides bilingual founder coaching workflows for idea validation, scope review, execution planning, product expression, UX review, and founder retrospectives.
 
-## Publisher: <br>
-[meomeo-dev](https://clawhub.ai/user/meomeo-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[meomeo-dev](https://clawhub.ai/user/meomeo-dev)
 
-## Use Case: <br>
-Founders, operators, and product builders use this skill to diagnose the earliest bottleneck in a startup idea or plan and receive a concise recommendation with a next action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share confidential strategy, customer, financial, or repository details during coaching. <br>
-Mitigation: Use sanitized inputs or only share details you are comfortable having the assistant process. <br>
-Risk: Responses may lean Chinese unless the user or skill instructions specify another language. <br>
-Mitigation: State the preferred language or output style at the start of the session. <br>
+## Use Case:
 
+Founders, operators, and builders use this skill to identify their earliest startup bottleneck and get concise coaching on the next useful decision or validation step. It supports idea demand checks, scope reviews, execution planning, product expression, UX plan review, and retrospectives.
 
-## Reference(s): <br>
-- [Mode Map](references/modes/mode-map.md) <br>
-- [Idea / Demand Check](references/modes/idea-demand-check.md) <br>
-- [CEO Scope Review](references/modes/ceo-scope-review.md) <br>
-- [Execution / Engineering Plan Review](references/modes/execution-plan-review.md) <br>
-- [Design System / Product Expression](references/modes/design-system.md) <br>
-- [UX / Plan Design Review](references/modes/ux-plan-review.md) <br>
-- [Founder / Team Retro](references/modes/founder-retro.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured coaching sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only coaching output; no code execution, installation scripts, credential handling, persistence, or hidden data transfer indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: Coaching recommendations may be incomplete or mismatched when the user provides too little evidence about customers, current workarounds, constraints, or execution context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for the missing customer, evidence, scope, or execution details before treating a recommendation as a decision.
+
+Risk: The skill is documented for Chinese and bilingual Chinese/English founder coaching, so users who require another language may receive inconsistent output.
+
+Mitigation: State the preferred language at the start of the session and confirm the agent will respond in that language.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/meomeo-dev/skills/startup-coach-workshop)
+- [Mode Map](artifact/references/modes/mode-map.md)
+- [Idea / Demand Check](artifact/references/modes/idea-demand-check.md)
+- [CEO Scope Review](artifact/references/modes/ceo-scope-review.md)
+- [Execution / Engineering Plan Review](artifact/references/modes/execution-plan-review.md)
+- [Design System / Product Expression](artifact/references/modes/design-system.md)
+- [UX / Plan Design Review](artifact/references/modes/ux-plan-review.md)
+- [Founder / Team Retro](artifact/references/modes/founder-retro.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown coaching summaries and review templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Mode-specific recommendations with concise next steps; no code execution or credential access is described by the security evidence.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

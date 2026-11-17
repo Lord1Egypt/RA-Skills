@@ -1,6 +1,19 @@
 {
-  "ownerId": "kn73vp5rarc3b14rc7wjcw8f8580t5d1",
+  "owner": "clawic",
   "slug": "stripe-api-integration",
-  "version": "1.0.2",
-  "publishedAt": 1771892430588
+  "displayName": "Stripe API Integration",
+  "latest": {
+    "version": "1.0.4",
+    "publishedAt": 1785140325504
+  },
+  "history": [
+    {
+      "version": "1.0.3",
+      "publishedAt": 1785080500497
+    },
+    {
+      "version": "1.0.2",
+      "publishedAt": 1771892430588
+    }
+  ]
 }

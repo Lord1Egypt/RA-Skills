@@ -1,44 +1,58 @@
-## Description: <br>
-Build and troubleshoot SenseAudio speech recognition integrations, including HTTP transcription, realtime WebSocket ASR, audio quality analysis, and recognition record queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents build and troubleshoot SenseAudio speech recognition integrations across HTTP transcription, realtime WebSocket ASR, audio quality analysis, and recognition record queries.
 
-## Publisher: <br>
-[scikkk](https://clawhub.ai/user/scikkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scikkk](https://clawhub.ai/user/scikkk)
 
-## Use Case: <br>
-Developers and engineers use this skill to choose SenseAudio ASR modes and models, construct API requests, handle streaming or batch transcription responses, and troubleshoot speech-to-text workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may send selected recordings, transcripts, and recognition record queries to SenseAudio. <br>
-Mitigation: Use only authorized audio and confirm the user is comfortable sending the selected data to SenseAudio before making requests. <br>
-Risk: The skill requires access to a SenseAudio API key. <br>
-Mitigation: Keep the credential in the SENSEAUDIO_API_KEY environment variable and send it only in the Authorization header. <br>
-Risk: Returned audio URLs, API-key fields, session IDs, and trace IDs may expose sensitive operational data. <br>
-Mitigation: Avoid logging or sharing these values unless they are strictly needed for the user's task. <br>
+## Use Case:
 
+Developers and engineers use this skill to select SenseAudio ASR modes and models, construct authenticated API requests, validate model and parameter compatibility, and handle transcription, streaming, analysis, and records responses.
 
-## Reference(s): <br>
-- [ASR Reference](references/asr.md) <br>
-- [SenseAudio Homepage](https://senseaudio.cn) <br>
-- [SenseAudio Skill Page](https://clawhub.ai/scikkk/senseaudio-asr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with API examples and configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include HTTP and WebSocket request patterns, model-parameter compatibility checks, parsing guidance, and credential-handling reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+Risk: Generic speech-to-text or audio tasks could be routed to SenseAudio without the user clearly choosing that provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user selected SenseAudio or already has SenseAudio in scope before sending audio or recognition requests.
+
+Risk: Uploaded audio, transcripts, returned audio URLs, session IDs, trace IDs, recognition records, and API keys may contain sensitive operational or personal data.
+
+Mitigation: Use SENSEAUDIO_API_KEY from the environment, send credentials only in the Authorization header, and avoid placing sensitive values in queries, logs, saved examples, or user-visible output.
+
+Risk: Unsupported model and parameter combinations can produce failed or misleading ASR requests.
+
+Mitigation: Check model feature compatibility before sending requests, including WebSocket, translation, diarization, timestamp, language, punctuation, and ITN constraints.
+
+## Reference(s):
+
+- [ASR Reference](references/asr.md)
+- [SenseAudio Homepage](https://senseaudio.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with API examples, code snippets, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include SenseAudio request construction and parsing guidance; should avoid exposing API keys, transcripts, audio URLs, session IDs, and trace IDs.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter: 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

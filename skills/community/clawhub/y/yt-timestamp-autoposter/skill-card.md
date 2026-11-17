@@ -1,46 +1,60 @@
-## Description: <br>
-Generate SEO-optimized YouTube timestamps from a YouTube URL or a raw transcript string, then optionally append them to the description of that specific video or your latest upload. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate SEO-optimized YouTube timestamps from a YouTube URL or a raw transcript string, then optionally append them to the description of that specific video or your latest upload.
 
-## Publisher: <br>
-[robj1925](https://clawhub.ai/user/robj1925) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[robj1925](https://clawhub.ai/user/robj1925)
 
-## Use Case: <br>
-Creators, channel operators, and agents use this skill to generate concise YouTube chapter timestamps from a video URL, transcript text, or the latest channel upload, with an option to append the generated timestamps to a YouTube description. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Posting mode can update live YouTube video descriptions without a final confirmation. <br>
-Mitigation: Run the skill without --post first, review the generated timestamps and target video, then use --post only when the update is intended. <br>
-Risk: The local token.pickle file can authorize future YouTube channel updates. <br>
-Mitigation: Keep token.pickle out of shared storage and version control, delete it when access is no longer needed, and revoke access from Google Account permissions if needed. <br>
-Risk: Transcript text is sent to Gemini for timestamp generation. <br>
-Mitigation: Avoid submitting confidential or sensitive transcript content unless that sharing is acceptable for the channel workflow. <br>
+## Use Case:
 
+Creators, operators, and agents use this skill to generate YouTube chapter timestamps from a video transcript or URL. When explicitly requested with posting enabled, it can append the generated timestamp block to a target video description or the latest channel upload.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/robj1925/yt-timestamp-autoposter) <br>
-- [Google Cloud Console](https://console.cloud.google.com/) <br>
-- [Google AI Studio](https://aistudio.google.com/) <br>
-- [Google Account permissions](https://myaccount.google.com/permissions) <br>
-- [YouTube OAuth scope](https://www.googleapis.com/auth/youtube.force-ssl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text timestamp block and Markdown usage guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Gemini API key for generation; posting mode requires local YouTube OAuth credentials and can update video descriptions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Posting mode can automatically modify live YouTube video descriptions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run generation-only first, review the timestamp block and target video, and enable posting only after confirming the update is appropriate.
+
+Risk: OAuth tokens are cached locally and grant reusable YouTube write access.
+
+Mitigation: Store credentials outside the project with restrictive file permissions, keep token files out of version control, and revoke access when no longer needed.
+
+Risk: Passing the Gemini API key as a command argument can expose the secret through shell history or process listings.
+
+Mitigation: Use a safer secret path such as an environment variable or local secret manager instead of placing the key directly in command arguments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/robj1925/skills/yt-timestamp-autoposter)
+- [Google Cloud Console](https://console.cloud.google.com/)
+- [Google AI Studio](https://aistudio.google.com/)
+- [Google Account permissions](https://myaccount.google.com/permissions)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text timestamp block with supporting Markdown and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The generated timestamp block is intended to be reviewed before use and may be appended to a YouTube video description when posting is enabled.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

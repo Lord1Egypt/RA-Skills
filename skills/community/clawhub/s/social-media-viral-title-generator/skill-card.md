@@ -1,42 +1,52 @@
-## Description: <br>
-Generate high CTR titles for social media platforms including Instagram, TikTok, Twitter, and YouTube. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate high-CTR social media titles for platforms including Instagram, TikTok, Twitter/X, YouTube, and LinkedIn, with alternative title options, scoring, and optimization suggestions.
 
-## Publisher: <br>
-[huajianjiu000](https://clawhub.ai/user/huajianjiu000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[huajianjiu000](https://clawhub.ai/user/huajianjiu000)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External creators, social media managers, and marketing teams use this skill to draft and compare platform-specific post or video titles. It helps generate multiple title options with predicted CTR-style scores and practical optimization guidance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generic title-generation triggers may activate the skill for unrelated title-writing requests.
+
+Mitigation: Use a specific invocation such as viral-title generation and confirm the target platform and content topic before applying the skill.
+
+Risk: Engagement-oriented titles can become misleading if they overstate the underlying content.
+
+Mitigation: Review generated titles for accuracy, originality, and platform guideline fit before publication.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Creators, social media managers, marketers, and content teams use this skill to generate and compare batches of platform-specific title ideas for social posts and videos. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: CTR scores are marketing heuristics rather than verified performance predictions. <br>
-Mitigation: Treat scores as comparative guidance and validate titles with platform analytics or A/B testing before relying on them. <br>
-Risk: Generated titles may overstate content, create clickbait, or conflict with platform rules. <br>
-Mitigation: Review titles for accuracy, brand fit, platform policy compliance, and clickbait risk before publishing. <br>
-Risk: Generic triggers such as /generate-title may activate during broader writing tasks. <br>
-Mitigation: Confirm the user wants social title generation when a request is ambiguous. <br>
+**Output Format:** [Markdown with ranked title lists, score tables, and optimization notes]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huajianjiu000/social-media-viral-title-generator) <br>
+**Other Properties Related to Output:** [Generates 10-20 alternatives by topic, optionally tailored by platform, audience, style, and count.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with ranked title lists, scores, platform notes, and optimization suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include heuristic CTR-style scores, title patterns, and platform-specific recommendations.] <br>
+1.0.0 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,50 @@
-## Description: <br>
-Refactor and review SwiftUI view files for consistent structure, dependency injection, and Observation usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Refactor and review SwiftUI view files for consistent structure, dependency injection, and Observation usage.
 
-## Publisher: <br>
-[soponcd](https://clawhub.ai/user/soponcd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[soponcd](https://clawhub.ai/user/soponcd)
 
-## Use Case: <br>
-Developers and engineers use this skill to refactor SwiftUI view files, review view structure, standardize dependency injection, and apply Observation guidance while preserving existing behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Applying refactoring guidance can change SwiftUI source files and unintentionally affect layout, state lifetime, or navigation behavior. <br>
-Mitigation: Review diffs carefully and run relevant builds, previews, or UI tests before committing changes. <br>
-Risk: General view-structure rules may be applied too broadly to code with project-specific architecture constraints. <br>
-Mitigation: Constrain edits to the requested view and preserve existing business logic unless the user explicitly asks for broader architectural changes. <br>
+## Use Case:
 
+Developers and engineers use this skill to refactor SwiftUI view files toward consistent ordering, lightweight Model-View structure, dependency injection, and safe Observation usage while preserving behavior.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/soponcd/timeflow-swiftui-view-refactor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code] <br>
-**Output Format:** [Markdown guidance with Swift code snippets or proposed source edits] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code is bundled; outputs should preserve existing app behavior unless the user requests behavior changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can influence source code edits in SwiftUI views.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated code changes as usual before accepting or shipping them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/soponcd/skills/timeflow-swiftui-view-refactor)
+- [Skill homepage](https://github.com/soponcd/timeflow-skills/tree/main/teams/skills/swiftui-view-refactor)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code]
+
+**Output Format:** [Markdown guidance with Swift code examples and refactoring recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose source edits; review resulting code changes before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

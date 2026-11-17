@@ -1,41 +1,51 @@
-## Description: <br>
-Store, retrieve, list, and manage secrets using gopass, including CRUD operations, secret generation, TOTP, recipients, mounted stores, and clipboard operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Store, retrieve, list, and manage secrets using gopass (the team password manager).
 
-## Publisher: <br>
-[erdGeclaw](https://clawhub.ai/user/erdGeclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[erdgeclaw](https://clawhub.ai/user/erdgeclaw)
 
-## Use Case: <br>
-Developers, engineers, and operators use this skill to have an agent provide gopass command guidance for storing, retrieving, generating, searching, syncing, and removing password-store entries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose secrets through show or clipboard operations. <br>
-Mitigation: Require explicit confirmation before showing or copying secrets, and avoid clipboard use on untrusted machines. <br>
-Risk: The skill can delete secrets or folders from a gopass store. <br>
-Mitigation: Confirm the target path before delete or recursive delete actions, and list or back up affected paths first. <br>
-Risk: The skill can sync a password store through Git. <br>
-Mitigation: Verify configured Git remotes before syncing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/erdGeclaw/gopass) <br>
+## Use Case:
+
+Developers, operators, and team members use this skill to guide agent-assisted gopass workflows for saving, retrieving, generating, searching, syncing, and managing password-store entries.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can guide an agent to expose, copy, edit, delete, sync, or change access to password-store entries.
+
+Mitigation: Require explicit path-by-path approval before any command that shows, copies, modifies, deletes, syncs, or changes recipients.
+
+Risk: Auto-confirmation, warning suppression, recursive deletion, and plaintext output can increase the chance of accidental secret exposure or destructive changes.
+
+Mitigation: Avoid --yes, warning suppression, recursive deletion, and plaintext output unless there is a specific controlled reason.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command guidance assumes gopass, GPG, and an initialized password store are available.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include commands that access, copy, modify, delete, sync, or administer secrets in a gopass store.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

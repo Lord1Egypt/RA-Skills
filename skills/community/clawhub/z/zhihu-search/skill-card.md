@@ -1,45 +1,55 @@
-## Description: <br>
-Searches and extracts Zhihu questions, answers, columns, comments, and hot-list content using API-first Python commands with a user-provided session cookie. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zhihu Search helps an agent fetch Zhihu search results, question answers, column articles, comments, and hot-list items using a user-provided Zhihu session cookie.
 
-## Publisher: <br>
-[excalibursssooo](https://clawhub.ai/user/excalibursssooo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[excalibursssooo](https://clawhub.ai/user/excalibursssooo)
 
-## Use Case: <br>
-External developers and agents use this skill to retrieve read-only Zhihu search results, answers, article text, column article lists, comments, and hot-list summaries for content research workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to a live Zhihu logged-in session cookie. <br>
-Mitigation: Use a dedicated low-privilege Zhihu account when possible, keep the cookie file private, and restrict file permissions such as chmod 600. <br>
-Risk: Optional keepalive cron can persist the session through scheduled background refreshes. <br>
-Mitigation: Run install-cron only when daily refresh is intentional, and review or remove the cron entry when persistence is no longer needed. <br>
-Risk: Keepalive commands may restart existing agent-browser sessions. <br>
-Mitigation: Run keepalive open, check, or refresh only when interrupting other agent-browser work is acceptable, or isolate browser sessions before use. <br>
+## Use Case:
 
+Developers and agent operators use this skill for read-only Zhihu topic research, trend review, answer summarization, column article collection, and comment inspection. It is intended for workflows that need concise Markdown or JSON outputs from Zhihu content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/excalibursssooo/zhihu-search) <br>
-- [Project homepage](https://github.com/excalibursssooo/zhihu-search) <br>
-- [Release v1.1.0](https://github.com/excalibursssooo/zhihu-search/releases/tag/v1.1.0) <br>
-- [agent-browser optional dependency](https://github.com/vercel-labs/agent-browser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON files, shell commands, configuration] <br>
-**Output Format:** [CLI text, Markdown summaries, and JSON files written under the skill data directory or an explicit --md-out path.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3 and curl. Uses ZHIHU_COOKIE_FILE or the skill data directory for user-supplied Zhihu cookies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: SKILL.md frontmatter, CHANGELOG, and server release evidence) <br>
+Risk: The skill handles a live Zhihu session cookie, which can expose account access if stored or shared improperly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-risk account, keep cookie and state files outside shared or committed directories, use owner-only file permissions, and verify sensitive data is not added to git.
+
+Risk: Security evidence flags unsafe persistence and process-control behavior around keepalive and cron usage.
+
+Mitigation: Do not run install-cron or keepalive automation until the cron quoting and process-kill behavior are fixed and reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/excalibursssooo/skills/zhihu-search)
+- [Artifact README](artifact/README.md)
+- [Artifact changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries, JSON files, and command-line output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports compact summaries, explicit Markdown file output, local JSON caches, and environment-variable path overrides.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter, changelog, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

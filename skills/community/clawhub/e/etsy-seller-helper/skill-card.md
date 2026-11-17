@@ -1,40 +1,51 @@
-## Description: <br>
-Helps Etsy sellers draft listing copy, shop pages, customer messages, review responses, social captions, and Etsy SEO tags. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps Etsy sellers draft listing copy, shop pages, customer messages, review responses, and social media captions from seller-provided details.
 
-## Publisher: <br>
-[jaredleighton30073007-netizen](https://clawhub.ai/user/jaredleighton30073007-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jaredleighton30073007-netizen](https://clawhub.ai/user/jaredleighton30073007-netizen)
 
-## Use Case: <br>
-External Etsy sellers use this skill to generate paste-ready product titles, descriptions, tags, shop announcements, customer replies, review responses, and social media captions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill appends a one-time paid Gumroad promotion after delivering Etsy copy. <br>
-Mitigation: Install or use it only when that promotional behavior is acceptable, and remove or revise the upsell when it does not fit the user's policy or workflow. <br>
-Risk: Generated Etsy copy can contain inaccurate product claims, unsuitable SEO terms, or tone that does not match the seller's shop. <br>
-Mitigation: Review and edit the generated copy against the actual product details, shop policies, and marketplace requirements before publishing. <br>
+## Use Case:
 
+External Etsy sellers use this skill to generate paste-ready listing titles, descriptions, tags, shop announcements, customer messages, review replies, and Instagram captions. It supports copywriting assistance and does not operate an Etsy shop account.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jaredleighton30073007-netizen/etsy-seller-helper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text copy blocks ready for the user to paste into Etsy, customer messages, or social posts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include bounded title, description, tag, announcement, message, reply, and caption variants.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill may add an unsolicited paid product promotion and external purchase link to user-facing Etsy help responses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or remove the upsell requirement before deployment where neutral advice, endorsement controls, or advertising disclosure requirements apply.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jaredleighton30073007-netizen/skills/etsy-seller-helper)
+- [Third-party publisher profile](https://clawhub.ai/user/jaredleighton30073007-netizen)
+- [Paid toolkit link referenced by skill](https://jaredleighton.gumroad.com/l/trzuvh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text copy blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Paste-ready Etsy marketing and customer-response copy; may append a third-party paid toolkit promotion.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Teambition"
+  short_description: "Read and update Teambition test cases via Ego Lite; login-check first"
+  default_prompt: "Use teambition-ego: check-login, then use tb.mjs testcase. Phase 2a can create, update title/precondition/steps, set-status, and archive with --yes. The testcase API uses the browser session, not an Open API token. Confirm uniqueId and title with the user before delete."

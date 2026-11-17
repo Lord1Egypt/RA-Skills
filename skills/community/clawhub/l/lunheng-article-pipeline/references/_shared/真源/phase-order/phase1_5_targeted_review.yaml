@@ -1,0 +1,27 @@
+# 论衡流程真源 · 第二部分：节点 phase1_5_targeted_review（完整定义，逐字保留原文本）
+# 装配视图 = ../phase-order.yaml（生成物）；校验 = 生成器 --check（门 AA）
+# ── 节点 YAML 正文（装配时逐字拼入；本行以上为切片头）──
+- id: phase1_5_targeted_review
+  phase: "Phase 1.5"
+  phase_seq: 4
+  kind: conditional_review_window
+  verdict_scale: four_tier   # v2.12.40：结论落四档（通过/不通过/无法判定/路径或参数错误），不用退出码
+  rerun_after_report: false   # 2026-10-08 审计 R-1：触发依据收窄为**任务简报标记**（Phase 0 输入，非下游报告）⇒ 无「报告后重判」需求；红数据触发项已移至 phase1_5b_post_t2_5_review（该节点排在 t2_5_integrity 之后）
+  input: literature/文献卡.md + data/数据卡.md + cases/案例卡.md
+  condition_undecidable: report_to_owner   # v2.12.54 R-6：条件证据不可判定 ⇒ 呈主人 + 按安全侧（触发）继续，禁止静默按 on_not_triggered 吞掉
+  condition: phase1_5_brief_flag_trigger   # 激活逻辑：下方 trigger_conditions 命中即触发；全部未命中 → 走 on_not_triggered（v2.12.28 对齐）。2026-10-08 审计 R-1：本节点**只认简报标记**
+  on_not_triggered: record_not_triggered_in_status
+  owner_visible: true
+  blocking: false
+  trigger_conditions:
+    - brief_marked_Dxx_for_review       # 命中定义：任务简报「需找数据点」段任一条目标注 [Dxx 待复核]（未标 = 不命中）
+    - brief_marked_Lxx_for_review       # v2.13.0 P0-1：任务简报「待复核关键」段任一条目标注 [Lxx 待复核]（与 Dxx 同窗口；未标 = 不命中）
+    # 2026-10-08 审计 R-1（B1）：`t2_5_red_data_unresolved` 已**移出本节点** —— 本节点 phase_seq=4 早于
+    #   t2_5_integrity(5)，红数据在本时点不可得，恒为假且被 on_not_triggered 静默吞掉。现由
+    #   phase1_5b_post_t2_5_review(6) 承担（排在该闸门之后）。
+    # （已移除 t9_evidence_score_low：Phase 1.5 时点不可达，属占位条件 —— T9 评分低触发的回查在 Phase 4.5 后单独执行，见 phase-1-details.md）
+  decisions: [triggered, not_triggered]
+  output_if_triggered: literature/回查报告-vN.md
+  required_record: status.md
+  after_trigger: rerun_t2_5_integrity   # 动作名（非节点 id）：触发后重跑 t2_5_integrity 闸门
+  next: t2_5_integrity

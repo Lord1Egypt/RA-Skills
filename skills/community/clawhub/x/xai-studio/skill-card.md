@@ -1,43 +1,59 @@
-## Description: <br>
-xAI Studio - generate and edit images and videos via the xAI API. Image: text-to-image, batch generation, multi-image editing, concurrent style transfers, multi-turn chaining. Video: text-to-video, image-to-video, video editing, concurrent video edits. All from a single expandable CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+xAI Studio generates and edits images and videos through the xAI API, covering image generation, image editing, style transfer, multi-turn chaining, text-to-video, image-to-video, and video editing from a CLI.
 
-## Publisher: <br>
-[H0llyW00dzZ](https://clawhub.ai/user/H0llyW00dzZ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[h0llyw00dzz](https://clawhub.ai/user/h0llyw00dzz)
 
-## Use Case: <br>
-Developers, creators, and teams use this skill to generate, edit, batch, and chain image and video work through xAI models from an agent-driven CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, images, videos, and URLs selected by the user are sent to xAI for processing. <br>
-Mitigation: Avoid confidential, regulated, client-owned, or personal media unless the user is authorized to send it to xAI. <br>
-Risk: Generated outputs are saved locally and may contain sensitive or unintended media. <br>
-Mitigation: Review the output directory after use and clean local files after sensitive work. <br>
-Risk: The skill requires XAI_API_KEY to call the xAI API. <br>
-Mitigation: Protect the API key and avoid exposing it in prompts, logs, shell history, or shared configuration. <br>
+## Use Case:
 
+Developers and creators use this skill to generate, edit, and batch-process images and videos from prompts or source media through xAI models. It is suitable when an agent needs CLI-backed media workflows with generated outputs saved locally.
 
-## Reference(s): <br>
-- [xAI Studio ClawHub listing](https://clawhub.ai/H0llyW00dzZ/xai-studio) <br>
-- [xAI Studio project homepage](https://github.com/H0llyW00dzZ/xai-studio-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with CLI commands; generated media is saved as image or MP4 files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires XAI_API_KEY; sends selected prompts and media to xAI; saves outputs under media/xai-output by UTC date.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.2 (source: server release metadata) <br>
+Risk: Prompts and selected image or video inputs are sent to xAI for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only prompts and media that are acceptable to share with xAI, and avoid sensitive content unless that use is explicitly approved.
+
+Risk: The xai-sdk dependency may change behavior across releases if installed without version control.
+
+Mitigation: Pin xai-sdk in a controlled virtual environment and review dependency updates before rollout.
+
+Risk: Generated media is saved to a local output directory and may persist after the command finishes.
+
+Mitigation: Choose an appropriate output directory and apply local retention, access control, or cleanup practices for generated files.
+
+## Reference(s):
+
+- [xAI Studio ClawHub page](https://clawhub.ai/h0llyw00dzz/skills/xai-studio)
+- [xAI Studio homepage](https://github.com/H0llyW00dzZ/xai-studio-skills)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration]
+
+**Output Format:** [CLI output plus generated image or video files saved under the configured output directory]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires XAI_API_KEY and xai-sdk; image outputs may be PNG, JPEG, WebP, or GIF, and video outputs are MP4.]
+
+## Skill Version(s):
+
+0.2.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

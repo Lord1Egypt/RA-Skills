@@ -1,44 +1,62 @@
-## Description: <br>
-A fast Rust-based headless browser automation CLI with Node.js fallback that enables AI agents to navigate, click, type, and snapshot pages via structured commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A fast Rust-based headless browser automation CLI with Node.js fallback that enables AI agents to navigate, click, type, and snapshot pages via structured commands.
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-Developers and agent operators use this skill to automate browser navigation, UI interaction, form filling, page scraping, session reuse, screenshots, PDFs, recordings, and web UI checks through the agent-browser CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad browser automation can submit forms, upload files, change accounts, or act inside authenticated sessions. <br>
-Mitigation: Use only on sites the user is authorized to automate and require explicit confirmation before submissions, uploads, account changes, or reuse of saved login state. <br>
-Risk: Saved browser state and generated artifacts can contain credentials, private page content, or extracted secrets. <br>
-Mitigation: Protect auth.json, screenshots, recordings, traces, PDFs, logs, and scraped data; store them in approved locations and delete them when no longer needed. <br>
-Risk: The skill depends on the upstream agent-browser CLI and local node/npm tooling. <br>
-Mitigation: Install only when browser automation is needed, keep the CLI current, and verify commands in a terminal when behavior is unclear. <br>
+## Use Case:
 
+Developers and AI agents use this skill to control agent-browser for web navigation, form filling, UI testing, data extraction, screenshots, recordings, PDFs, and stateful browser sessions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xiejianjun000/agent-browser-backup-20260407) <br>
-- [agent-browser CLI repository](https://github.com/vercel-labs/agent-browser) <br>
-- [Agent Browser skill issue repository](https://github.com/TheSethRose/Agent-Browser-CLI) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON-producing CLI examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and npm. The wrapped CLI can create local artifacts such as screenshots, recordings, traces, PDFs, logs, extracted page data, and saved browser state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Saved authenticated browser sessions can expose cookies or credentials if stored insecurely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat saved state files like passwords, store them outside shared projects with restrictive permissions, and delete them when no longer needed.
+
+Risk: An unpinned global CLI install can pull unexpected updates.
+
+Mitigation: Prefer a pinned agent-browser version and avoid root or administrator installs unless explicitly required.
+
+Risk: Browser automation can interact with arbitrary websites and submit forms.
+
+Mitigation: Run against authorized targets, use test accounts where possible, and review navigation and form-submission commands before execution.
+
+Risk: Screenshots, videos, PDFs, traces, and saved state can capture sensitive page data.
+
+Mitigation: Write artifacts to controlled locations, restrict access, inspect outputs before sharing, and remove sensitive files after use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xiejianjun000/skills/agent-browser-backup-20260407)
+- [agent-browser CLI Repository](https://github.com/vercel-labs/agent-browser)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and optional JSON or file outputs from the CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to create screenshots, PDFs, videos, trace files, and saved browser state through agent-browser.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact _meta.json lists 0.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,57 @@
-## Description: <br>
-Manage conversation context with saving, loading, and pruning tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ctxkeeper records, searches, summarizes, and exports timestamped local context entries for later review.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and operators use Ctxkeeper to record timestamped operational notes, inspect recent activity, search saved entries, and summarize local log history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided entries are saved persistently on the local device and may appear in recent or search results. <br>
-Mitigation: Avoid entering secrets or sensitive conversation text, and remove ~/.local/share/ctxkeeper/ when saved entries should be cleared. <br>
-Risk: The package evidence does not define an install mechanism for the ctxkeeper command. <br>
-Mitigation: Verify that the installed ctxkeeper command resolves to the reviewed script before use. <br>
+## Use Case:
 
+Developers and operators use this skill to keep local operational notes across categories, search previous entries, view recent activity, and export logs for review.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Command-line text output and local log files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes persistent local data under ~/.local/share/ctxkeeper/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and release evidence) <br>
+Risk: Persistent local logging may capture sensitive notes, tokens, customer data, or private conversation context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for non-sensitive local notes and avoid recording secrets, tokens, customer data, or private transcripts.
+
+Risk: Retention and deletion controls are not clearly documented for the stored context logs.
+
+Mitigation: Review the data directory before use and add or require clear prune and delete procedures before handling sensitive workflows.
+
+Risk: Local log and export files may be readable by other local users if file permissions are too broad.
+
+Mitigation: Enforce private permissions on ~/.local/share/ctxkeeper and generated log or export files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain3/skills/ctxkeeper)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and terminal output text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [When the bundled shell tool is executed, it can write local log and export files under ~/.local/share/ctxkeeper.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Lark Mention helps agents send Feishu/Lark group messages with real @ mentions for selected members, multiple members, or all-member notifications through a local bridge service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+飞书 @ 提及专属技能。支持在群聊中向指定成员发送带真实 @ 提及的消息，解决飞书无法通过纯文本标签艾特成员的问题。触发场景：群里艾特成员、艾特全员、发送带 @ 的通知公告。
 
-## Publisher: <br>
-[toto2016](https://clawhub.ai/user/toto2016) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[toto2016](https://clawhub.ai/user/toto2016)
 
-## Use Case: <br>
-Developers and operators use this skill to format and send Feishu/Lark group notifications that include real @ mentions, avoiding plain-text tags that Lark will not render. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send real Feishu/Lark group notifications, including broad @all or multi-person mentions. <br>
-Mitigation: Confirm the chat ID, recipients, and message text before each send, especially for @all or multi-person mentions. <br>
-Risk: The local bridge service can perform message-sending actions on behalf of the agent. <br>
-Mitigation: Use only a trusted local bridge service with appropriate access controls. <br>
+## Use Case:
 
+Developers and operators use this skill to send Lark or Feishu group messages that include real @ mentions for one member, multiple members, or all members. It helps prepare the correct text and mentions payloads when plain text tags would not trigger platform mentions.
 
-## Reference(s): <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [ClawHub skill page](https://clawhub.ai/toto2016/lark-mention) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON payload examples, JavaScript calls, curl commands, and bridge API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May send real group notifications through a trusted local Feishu/Lark bridge service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-26.3.27 (source: server release metadata) <br>
+Risk: The skill can post live Lark or Feishu group notifications, including bulk mentions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated messages before sending, confirm the target chat and recipients, and avoid @all unless explicitly intended.
+
+Risk: Unauthorized or misconfigured bridge usage could send messages through the wrong bot or chat context.
+
+Mitigation: Use the skill only with an authorized local bridge and bot that have been approved for the target chat.
+
+Risk: Unvalidated member IDs or display names could create malformed mention payloads.
+
+Mitigation: Validate or escape member open IDs and names before passing them to the script.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/toto2016/skills/lark-mention)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with JSON, JavaScript, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce message payloads that trigger live Lark or Feishu group notifications through an authorized local bridge.]
+
+## Skill Version(s):
+
+26.3.27 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

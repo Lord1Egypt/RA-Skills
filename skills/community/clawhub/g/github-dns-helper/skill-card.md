@@ -1,42 +1,55 @@
-## Description: <br>
-GitHub DNS Helper helps diagnose and repair GitHub connectivity issues by checking network access and updating GitHub-related hosts entries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GitHub DNS helper for diagnosing GitHub connectivity problems and applying hosts-file based DNS fixes when GitHub access, DNS resolution, or connections fail.
 
-## Publisher: <br>
-[Thincher](https://clawhub.ai/user/Thincher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thincher](https://clawhub.ai/user/thincher)
 
-## Use Case: <br>
-Developers and users troubleshooting GitHub access use this skill to check connectivity, fetch GitHub hosts records, update the system hosts file, and flush DNS cache when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Changing /etc/hosts ownership can weaken system file protections. <br>
-Mitigation: Avoid permanent ownership changes; perform hosts-file edits as a deliberate administrator action and keep the file root- or administrator-owned afterward. <br>
-Risk: Custom hosts URLs can introduce unsafe shell input or untrusted hosts entries. <br>
-Mitigation: Use only trusted hosts sources, do not pass untrusted custom URLs, and inspect entries before writing them. <br>
-Risk: Writing downloaded hosts entries can misroute GitHub traffic or leave connectivity worse than before. <br>
-Mitigation: Keep the generated backup, review the changed hosts block, and restore the backup if connectivity or routing behavior is unexpected. <br>
+## Use Case:
 
+Developers and technical users use this skill to check GitHub connectivity and run a helper script that can update local hosts entries for GitHub-related domains.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Thincher/github-dns-helper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with inline shell commands and command-line text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May modify the system hosts file and DNS cache when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The helper can change system-wide DNS behavior by editing the hosts file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only after reviewing proposed hosts entries, keep a backup, and use operating-system default ownership and permissions for the hosts file.
+
+Risk: Custom hosts URLs and unvalidated shell execution can expose users to unsafe commands or malicious DNS mappings.
+
+Mitigation: Use trusted hosts sources, avoid custom URLs unless reviewed, and prefer an updated implementation that validates hostnames/IPs and avoids shell=True.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/thincher/skills/github-dns-helper)
+- [Default hosts source: raw.hellogithub.com](https://raw.hellogithub.com/hosts)
+- [Default hosts source: jsDelivr mirror](https://fastly.jsdelivr.net/gh/AutismSuperman/github-dns/hosts)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May instruct the user to run a local Python script that checks connectivity, edits the system hosts file, backs up prior hosts content, and flushes DNS caches.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

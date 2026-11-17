@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn7erk3zhar1v7x3x3hf365hrs83s4ee",
-  "slug": "cline-programming",
-  "version": "1.0.6",
-  "publishedAt": 1775390465759
+  "name": "cline-programming",
+  "version": "1.0.1",
+  "description": "调用Cline AI编程工具的技能。提供plan->check->act工作流程，先让Cline生成代码规划，检查后执行，支持--verbose参数观察进度。",
+  "author": "OpenClaw",
+  "dependencies": [],
+  "scripts": {},
+  "entry_point": "",
+  "install_commands": []
 }

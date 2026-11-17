@@ -1,40 +1,48 @@
-## Description: <br>
-Check figure references in manuscripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks figure references in manuscripts.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Authors, editors, and writing-focused developers use this skill to find figure references in manuscript text and support consistency review before publication.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The current script checks text passed on the command line rather than reading a manuscript file, so documented path-based usage may produce incomplete or misleading results.
+
+Mitigation: Treat results as limited to the provided argument string and verify behavior with representative manuscript inputs before relying on path-based checks.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Writers, editors, researchers, and publishing teams use this skill to check manuscript figure references for missing citations, orphaned references, and figure-label consistency. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The advertised manuscript-file workflow may produce misleading results because the script appears to inspect the command-line argument text rather than reading the document file. <br>
-Mitigation: Verify output on a known sample before relying on results, or update the script to read and parse the supplied manuscript file. <br>
-Risk: The skill runs local Python code against user-provided manuscript input. <br>
-Mitigation: Run it in a sandboxed workspace with non-sensitive sample files when evaluating the release. <br>
+**Output Format:** [Plain text command-line output with Markdown usage guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/AIPOCH-AI/figure-reference-checker) <br>
+**Other Properties Related to Output:** [Reports sorted figure-reference identifiers found in the supplied manuscript argument.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, analysis, shell commands] <br>
-**Output Format:** [Plain text CLI output with a sorted list of detected figure reference numbers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a --manuscript value; current implementation scans the provided argument text.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter states 1.0.0) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

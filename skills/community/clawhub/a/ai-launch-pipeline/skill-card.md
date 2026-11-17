@@ -1,46 +1,50 @@
-## Description: <br>
-One-click automated pipeline for AI product launch monitoring, including RSS monitoring, product search enrichment, screenshot capture, and trend analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+One-click automated pipeline for AI product launch monitoring with RSS monitoring, product search enrichment, screenshot capture, and trend analysis.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Developers and market intelligence teams use this skill to monitor AI product launch feeds, enrich launch records, capture optional page screenshots, and generate trend reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring runs can make repeated network requests to configured RSS feeds and search endpoints. <br>
-Mitigation: Review the RSS feed configuration before running and enable the cron example only when recurring network access is intended. <br>
-Risk: Optional screenshot capture opens product pages and saves local PNG files. <br>
-Mitigation: Use --skip-screenshot in sensitive or restricted environments. <br>
-Risk: The pipeline saves local launch data, enrichment results, screenshots, and analysis reports. <br>
-Mitigation: Use the PIPELINE_DATA_DIR, PIPELINE_SCREENSHOT_DIR, and PIPELINE_ANALYSIS_DIR settings to control output locations and review files before sharing them. <br>
+## Use Case:
 
+Developers and operators use this skill to run a configurable pipeline that monitors AI launch RSS feeds, enriches findings with web search results, optionally captures page screenshots, and produces structured trend analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/ai-launch-pipeline) <br>
-- [Publisher profile](https://clawhub.ai/user/terrycarter1985) <br>
-- [Skill instructions](SKILL.md) <br>
-- [RSS feed configuration](config/rss_feeds.yaml) <br>
-- [DuckDuckGo HTML Search](https://html.duckduckgo.com/html/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [JSON files, PNG screenshots, Markdown report, and terminal status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local data, screenshots, and analysis directories; screenshots are optional.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The default screenshot step opens RSS-provided URLs in a browser without meaningful destination validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review configured feeds, prefer --skip-screenshot, run in a network-restricted sandbox, or add strict URL and redirect validation before enabling screenshot capture.
+
+## Reference(s):
+
+- [AI Launch Pipeline on ClawHub](https://clawhub.ai/terrycarter1985/skills/ai-launch-pipeline)
+- [terrycarter1985 ClawHub profile](https://clawhub.ai/user/terrycarter1985)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, configuration, shell commands]
+
+**Output Format:** [Terminal status text, JSON data files, Markdown analysis report, and optional PNG screenshots]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes pipeline outputs under configurable data, analysis, and screenshot directories.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata; artifact frontmatter states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Deprecated migration note for the former Agent Token Usage UI skill, which has been merged into agent-token-usage v0.2.0+. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This deprecated package directs users to migrate from Agent Token Usage UI to the main agent-token-usage skill and run its UI setup script.
 
-## Publisher: <br>
-[symbolstar](https://clawhub.ai/user/symbolstar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[symbolstar](https://clawhub.ai/user/symbolstar)
 
-## Use Case: <br>
-Developers and OpenClaw users use this deprecated package to find the migration path from agent-token-usage-ui to the main agent-token-usage skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing this deprecated package is unnecessary unless the user needs its migration note. <br>
-Mitigation: Install the main agent-token-usage skill instead when the goal is to add or manage the token usage UI. <br>
-Risk: The migration path asks users to run a script from the separate agent-token-usage package that changes UI behavior and adds a launchd refresh job. <br>
-Mitigation: Review the separate agent-token-usage skill and its apply-ui.sh script before running the migration command. <br>
+## Use Case:
 
+Developers and OpenClaw users use this deprecated skill as a migration notice for replacing agent-token-usage-ui with agent-token-usage and applying its UI integration.
 
-## Reference(s): <br>
-- [agent-token-usage migration target](https://clawhub.com/skills/agent-token-usage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown with inline bash code block] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Deprecated documentation-only migration guidance; no executable code is bundled in this skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.9.0 (source: server release metadata) <br>
+Risk: The deprecated skill directs users to install and run a replacement skill script that creates a persistent launchd refresh job.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the replacement skill's apply-ui.sh and remove-ui.sh, confirm the exact replacement version, and understand how to remove the launchd job before running the migration command.
+
+Risk: This package is deprecated and will receive no further updates.
+
+Mitigation: Uninstall agent-token-usage-ui and use the maintained agent-token-usage skill for the UI button, modal, and refresh job.
+
+## Reference(s):
+
+- [Agent Token Usage UI ClawHub page](https://clawhub.ai/symbolstar/skills/agent-token-usage-ui)
+- [Agent Token Usage replacement skill](https://clawhub.com/skills/agent-token-usage)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Deprecated migration notice; no maintained functionality remains in this package.]
+
+## Skill Version(s):
+
+0.9.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

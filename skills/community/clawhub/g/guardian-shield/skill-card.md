@@ -1,45 +1,54 @@
-## Description: <br>
-Locally scans untrusted text and documents to detect prompt injection, jailbreak, exfiltration, social engineering, and code execution threats before an agent processes the content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Locally scans untrusted text and documents to detect prompt injection, jailbreak, data exfiltration, social engineering, and related agent-safety threats.
 
-## Publisher: <br>
-[jtil4201](https://clawhub.ai/user/jtil4201) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Source-available <br>
+## Publisher:
 
+[jtil4201](https://clawhub.ai/user/jtil4201)
 
-## Use Case: <br>
-Developers and agent operators use Guardian Shield to scan untrusted messages, web-fetch results, pasted content, and documents before passing them to an OpenClaw agent. It returns a clean, suspicious, or threat verdict with score and category details so the agent can warn, block, or continue according to local policy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Source-available
 
-## Known Risks and Mitigations: <br>
-Risk: False positives can occur on security research text or examples that contain jailbreak or prompt-injection language. <br>
-Mitigation: Review suspicious results before blocking critical workflows and tune config.json thresholds for the deployment context. <br>
-Risk: Optional Python dependencies affect coverage for ML, PDF, and HTML scanning. <br>
-Mitigation: Pin and install required optional dependencies in the target environment when those scanning modes are needed. <br>
-Risk: The bundled attack phrases are detection data and should not be treated as operational instructions. <br>
-Mitigation: Use evidence.security as the authoritative security source and keep the phrases isolated as scanner patterns. <br>
+## Use Case:
 
+Developers and agent integrators use Guardian Shield to scan untrusted user messages, web fetch results, pasted content, and documents before an agent processes them. It returns clean, suspicious, or threat verdicts with scores and categories so integrations can warn or block risky content.
 
-## Reference(s): <br>
-- [Guardian Shield README](artifact/README.md) <br>
-- [Guardian Shield skill instructions](artifact/SKILL.md) <br>
-- [Guardian Shield ClawHub listing](https://clawhub.ai/jtil4201/guardian-shield) <br>
-- [Fallen Angel Systems](https://fallenangelsystems.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Terminal text or JSON scan results, with Markdown usage guidance and Python API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scores content from 0 to 100 and classifies results as clean, suspicious, or threat.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: ClawHub release metadata) <br>
+Risk: The scanner can warn by default instead of automatically blocking dangerous content, so an agent may continue processing a detected threat if the integration ignores the verdict.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure blocking behavior or make the integration stop processing whenever the verdict is threat.
+
+Risk: Optional dependencies and model files affect document parsing, ML scoring, and runtime coverage.
+
+Mitigation: Pin and install required dependencies for the target environment, then verify scanner status before deployment.
+
+## Reference(s):
+
+- [Guardian Shield ClawHub page](https://clawhub.ai/jtil4201/skills/guardian-shield)
+- [Fallen Angel Systems](https://fallenangelsystems.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Code, Shell commands, Configuration]
+
+**Output Format:** [Terminal text, JSON, and Python ScanResult objects containing verdicts, scores, categories, and threat details.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally; configurable warning and blocking thresholds use 0-100 scores.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

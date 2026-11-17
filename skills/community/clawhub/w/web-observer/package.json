@@ -1,0 +1,51 @@
+{
+  "name": "web-observer",
+  "version": "0.2.1",
+  "description": "Web Observer: uptime watching, Vercel error and speed alerting, and GA4 traffic answers for an OpenClaw agent.",
+  "keywords": [
+    "openclaw",
+    "openclaw-skill",
+    "uptime",
+    "monitoring",
+    "vercel",
+    "ga4",
+    "alerting"
+  ],
+  "license": "MIT-0",
+  "author": "Anatoli Iliev <anatoli@helphabit.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anatoli-iliev/web-observer.git"
+  },
+  "homepage": "https://github.com/anatoli-iliev/web-observer#readme",
+  "bugs": {
+    "url": "https://github.com/anatoli-iliev/web-observer/issues"
+  },
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.22.3"
+  },
+  "files": [
+    "bin",
+    "lib",
+    "SKILL.md",
+    "SETUP.md",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "build": "node scripts/build-lib.mjs",
+    "check": "npm run typecheck && npm test && npm run build",
+    "check:lib": "node scripts/build-lib.mjs --check",
+    "pretest": "npm run build",
+    "test": "vitest run --config ./vitest.config.ts",
+    "typecheck": "tsc -p tsconfig.check.json"
+  },
+  "devDependencies": {
+    "@types/node": "^26.2.0",
+    "typescript": "^5.9.0",
+    "vitest": "^3.2.0"
+  }
+}

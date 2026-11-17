@@ -1,41 +1,58 @@
-## Description: <br>
-Command-line tool to create, read, search, and export Obsidian notes locally with JSON output support for agent integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Command-line tool to create, read, search, manage, and export local Obsidian notes with JSON output support for agent workflows.
 
-## Publisher: <br>
-[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1)
 
-## Use Case: <br>
-Developers and agent builders use this skill to install and operate a CLI for creating, searching, listing, managing, and exporting local Obsidian notes in automation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Obsidian notes may contain private or sensitive information. <br>
-Mitigation: Use a specific vault or test folder and avoid granting broad access to unrelated notes. <br>
-Risk: Agent-driven note edits or deletes can mutate local knowledge bases. <br>
-Mitigation: Keep backups and require confirmation before bulk edits or deletes. <br>
+## Use Case:
 
+Developers and agent operators use this skill to install and run a CLI for creating, searching, listing, and managing Obsidian notes in local vaults. It is suited to automating meeting notes, bulk note management, quick search, and data export workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kaising-openclaw1/cli-obsidian) <br>
-- [Publisher profile](https://clawhub.ai/user/kaising-openclaw1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The referenced CLI can emit JSON for agent integration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill directs agents to install and rely on the cli-obsidian package source.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted package source, preferably in a virtual environment and without administrator privileges.
+
+Risk: The CLI operates on local Obsidian vault content that may include private notes.
+
+Mitigation: Point the CLI only at vaults intended for agent access and avoid exposing sensitive notes to untrusted workflows.
+
+Risk: Automated note management or export can modify or disclose vault data.
+
+Mitigation: Keep backups and review automated create, manage, or export operations before using them on important vaults.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaising-openclaw1/skills/cli-obsidian)
+- [Publisher profile](https://clawhub.ai/user/kaising-openclaw1)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The referenced CLI can return JSON for agent integration; the skill itself provides operational guidance for local note workflows.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact/_meta.json lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

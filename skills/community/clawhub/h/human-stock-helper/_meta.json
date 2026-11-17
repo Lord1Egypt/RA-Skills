@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn76yrfcdqz1jnqctv4fcb8jp581rqef",
+  "name": "human-stock-helper",
   "slug": "human-stock-helper",
   "version": "1.0.0",
-  "publishedAt": 1773045089565
+  "description": "A股交易辅助 - 止盈止损策略、持仓管理",
+  "author": "MaxHou-infinity",
+  "tags": ["stock", "trading", "china", "a-share", "position-management"],
+  "homepage": ""
 }

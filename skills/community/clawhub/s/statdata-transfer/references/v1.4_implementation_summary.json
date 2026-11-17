@@ -1,0 +1,77 @@
+{
+  "v1.4_new_formats": [
+    {
+      "format": "SAS Catalog",
+      "ext": ".sas7bcat",
+      "handler": "_read_sas_catalog",
+      "dependency": "pyreadstat (已支持)",
+      "architecture": "SasCatalogMeta, 返回格式定义 DataFrame",
+      "status": "done"
+    },
+    {
+      "format": "JMP",
+      "ext": ".jmp",
+      "handler": "_read_jmp",
+      "dependency": "jmpio-python (PyPI) 或 @skill:statsoft-cli",
+      "architecture": "JmpMeta, 多表需 read_all_jmp_tables()",
+      "status": "done (handler 已添加，jmpio 未安装）"
+    },
+    {
+      "format": "Minitab",
+      "ext": ".mtw/.mpj",
+      "handler": "_read_minitab",
+      "dependency": "mtbpy 或 R foreign::read.mtb() 中继",
+      "architecture": "MinitabMeta, 多工作表需 read_all_minitab_worksheets()",
+      "status": "done (R 中继已实现）"
+    },
+    {
+      "format": "GraphPad Prism",
+      "ext": ".pzfx/.pz",
+      "handler": "_read_prism",
+      "dependency": "pzfx (PyPI) 或 @skill:statsoft-cli",
+      "architecture": "PrismMeta, 含数据表+结果表",
+      "status": "done (handler 已添加，pzfx 未安装）"
+    },
+    {
+      "format": "jamovi",
+      "ext": ".omv",
+      "handler": "_read_jamovi",
+      "dependency": "无需额外包（ZIP+CSV 解析）",
+      "architecture": "JamoviMeta, 含 analysis JSON",
+      "status": "done"
+    },
+    {
+      "format": "EpiData",
+      "ext": ".rec",
+      "handler": "_read_epidata",
+      "dependency": "R foreign::read.epiinfo() 中继",
+      "architecture": "EpidataMeta",
+      "status": "done (R 中继已实现）"
+    },
+    {
+      "format": "EViews",
+      "ext": ".wf1/.wf2",
+      "handler": "_read_eviews",
+      "dependency": ".wf2 可直接解析 JSON；.wf1 需 @skill:statsoft-cli",
+      "architecture": "EviewsMeta",
+      "status": "done (.wf2 解析已实现）"
+    }
+  ],
+  "architecture_extensions": [
+    "ColumnInfo 新增：formula (str), column_property (dict)",
+    "新增 Meta 类：SasCatalogMeta, JmpMeta, MinitabMeta, PrismMeta, JamoviMeta, EpidataMeta, EviewsMeta",
+    "__all__ 新增导出：7 个新 Meta 类名"
+  ],
+  "files_modified": [
+    "scripts/stat_reader.py (+459 行，共 3131 行）",
+    "scripts/check_env.py (新增 jmpio, pzfx 检测）",
+    "SKILL.md (待更新）",
+    "references/new_formats_architecture_analysis.json (新增）"
+  ],
+  "remaining_work": [
+    "更新 SKILL.md（添加 7 种新格式详情）",
+    "添加 read_all_jmp_tables() / read_all_minitab_worksheets()",
+    "测试新 handler（需要实际文件）",
+    "安装 jmpio/pzfx 包（或配置 @skill:statsoft-cli）"
+  ]
+}

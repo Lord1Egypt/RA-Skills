@@ -1,48 +1,64 @@
-## Description: <br>
-Provides daily-updated rankings and metadata for state-of-the-art AI models aggregated from public benchmark and model sources via static files, local queries, REST API, or optional MCP tooling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides daily updated rankings and metadata for state-of-the-art AI models through static exports, local queries, a REST API, and optional MCP tools.
 
-## Publisher: <br>
-[romancircus](https://clawhub.ai/user/romancircus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[romancircus](https://clawhub.ai/user/romancircus)
 
-## Use Case: <br>
-Developers and agent users use this skill to query current AI model rankings, identify outdated or forbidden models, compare model options, and tailor recommendations to hardware constraints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Automated updates may repeatedly rewrite agent instruction files such as CLAUDE.md or agents.md. <br>
-Mitigation: Enable cron or systemd update jobs only after reviewing the exact target path, backup behavior, and disable procedure. <br>
-Risk: The REST API may expose model recommendation data if bound broadly on a network. <br>
-Mitigation: Keep the API local or place it behind a firewall or trusted reverse proxy. <br>
-Risk: Dependencies and scraper behavior can change over time as external sources change. <br>
-Mitigation: Pin and audit dependencies, and review scraper updates before deployment. <br>
-Risk: Reduced-safety or uncensored model recommendations may be surfaced. <br>
-Mitigation: Filter or disable uncensored-model recommendations unless the user has explicitly approved that requirement. <br>
+## Use Case:
 
+Developers and agent users use this skill to check current AI model rankings, freshness, forbidden or outdated models, and hardware-aware recommendations before choosing models for projects or agent guidance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/romancircus/sota-tracker-claw) <br>
-- [LMArena leaderboard](https://lmarena.ai/leaderboard) <br>
-- [Artificial Analysis](https://artificialanalysis.ai) <br>
-- [Hugging Face](https://huggingface.co) <br>
-- [Civitai](https://civitai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and text with JSON, CSV, SQLite, REST API, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce model recommendations, freshness checks, comparison summaries, API responses, local query examples, and agent instruction-file update guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Optional automation can persistently change future agent instruction files such as CLAUDE.md or agents.md.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer static JSON/CSV or manual local queries; only enable cron or systemd timers after pinning the code, reviewing diffs, and confirming how to disable the timer.
+
+Risk: Optional MCP configuration can add a local server that influences model recommendations.
+
+Mitigation: Treat MCP results as advisory and review any .mcp.json edits manually before use.
+
+Risk: Aggregated model rankings can become stale or reflect third-party benchmark limitations.
+
+Mitigation: Check source freshness and review recommendations against project requirements before selecting a model.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/romancircus/skills/sota-tracker-claw)
+- [README](README.md)
+- [Security policy](SECURITY.md)
+- [Evaluation report](EVALUATION.md)
+- [LMArena leaderboard](https://lmarena.ai/leaderboard)
+- [Artificial Analysis](https://artificialanalysis.ai)
+- [HuggingFace](https://huggingface.co)
+- [Open LLM Leaderboard](https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, CSV, SQLite query results, REST API responses, shell commands, and agent instruction snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are advisory model-ranking and freshness guidance derived from aggregated public benchmark and model metadata.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

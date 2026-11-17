@@ -1,41 +1,49 @@
-## Description: <br>
-Coaches freelance and contract software developers on positioning, rates, client acquisition, sales, contracts, taxes, retainers, and scaling beyond billable hours. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coaches freelance, contract, and independent software developers on niche selection, positioning, rates, client acquisition, contracts, operations, and scaling beyond billable hours.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan, run, and scale a freelance or contract software development practice. It helps with niche selection, rate setting, demand generation, sales calls, proposals, contracts, tax and entity considerations, retainers, and agency or productized-service paths. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill discusses legal, tax, insurance, retirement, and entity setup topics that can vary by jurisdiction and user circumstances. <br>
-Mitigation: Use outputs as planning guidance only and confirm contracts, tax filings, entity choices, insurance, and retirement decisions with qualified professionals in the relevant jurisdiction. <br>
-Risk: Users may share sensitive client, revenue, contract, or business pipeline details during coaching. <br>
-Mitigation: Share only details needed for the coaching task and anonymize client names, contract terms, and financial information where possible. <br>
+## Use Case:
 
+Developers and engineers use this skill to diagnose and improve a freelance or contract software practice, including positioning, pricing, lead generation, sales process, contracts, operations, and paths beyond billable-hours work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/freelance-developer-coach) <br>
-- [Publisher profile](https://clawhub.ai/user/charlie-morrison) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown coaching guidance with diagnostic questions, recommendations, and action plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include rate math, prioritized 30/60/90 day milestones, risk flags, and next-step recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill provides rate, tax, contract, and legal-adjacent business guidance that may be incomplete or stale for a user's jurisdiction or market.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as general coaching and verify important pricing, tax, entity, contract, and legal decisions with current market data and qualified professionals.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/freelance-developer-coach)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown coaching guidance with diagnostic questions, recommendations, action plans, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include rate calculations, positioning recommendations, pipeline plans, contract and operations gaps, anti-pattern flags, and 30/60/90 day milestones.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

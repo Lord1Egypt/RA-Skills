@@ -1,39 +1,54 @@
-## Description: <br>
-Coordinate multiple agents with direct agent-to-agent handoffs and durable local Markdown notes to reduce token waste and handoff loss. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinate multiple agents with minimal token waste by using direct agent-to-agent spawning and file-based handoffs.
 
-## Publisher: <br>
-[wewehg](https://clawhub.ai/user/wewehg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wewehg](https://clawhub.ai/user/wewehg)
 
-## Use Case: <br>
-Developers and agent operators use this skill to split work across specific agents, preserve handoff state in local Markdown files, and let the next agent resume from a concise source of truth. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local handoff notes can contain secrets or unnecessary private data if users include sensitive context. <br>
-Mitigation: Write only the information needed for the next agent, avoid secrets, and delete old handoff files when they are no longer needed. <br>
+## Use Case:
 
+Developers and agent operators use this skill to coordinate work across specific agents while preserving detailed handoff state in local markdown files. It is suited for multi-agent tasks where concise chat coordination and durable takeover notes reduce repeated context transfer and omission risk.
 
-## Reference(s): <br>
-- [Handoff Template](references/handoff-template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/wewehg/agents-efficient-workflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance and handoff file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates local handoff notes under ~/.openclaw/shared-handoffs/ when agents follow the workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Local handoff files can retain sensitive or unnecessary private context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store only the context needed for takeover, avoid secrets, and periodically clean up ~/.openclaw/shared-handoffs/ when retained notes are no longer needed.
+
+Risk: A stale or ambiguous handoff can cause the next agent to misunderstand scope or redo completed work.
+
+Mitigation: Use explicit sections for completed work, remaining tasks, risks, next owner, and files to inspect before transfer.
+
+## Reference(s):
+
+- [Handoff Template](references/handoff-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/wewehg/skills/agents-efficient-workflow)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance and handoff templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct agents to create or update local markdown handoff files.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

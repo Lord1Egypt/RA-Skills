@@ -1,43 +1,54 @@
-## Description: <br>
-Infer and refresh cspr user preference memory from browser-history evidence, notes, and feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Infer and refresh cspr user preference memory from browser-history evidence, notes, and feedback.
 
-## Publisher: <br>
-[happywalkers](https://clawhub.ai/user/happywalkers) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[happywalkers](https://clawhub.ai/user/happywalkers)
 
-## Use Case: <br>
-Developers and CSPR users use this skill to initialize or refresh personalization from browser-history evidence, notes, and feedback so an agent can maintain durable interests, short-term interests, disliked patterns, and source preferences. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads browser history, notes, and feedback to infer user preferences. <br>
-Mitigation: Review the intended inputs before use and ask the agent to avoid reading raw history unless detailed inspection is explicitly needed. <br>
-Risk: The skill can write durable preference memory and, when --home is used, persist seen URL records. <br>
-Mitigation: Ask the agent to show the generated profile.yaml for approval, avoid --home unless URL persistence is intended, and delete run-folder history artifacts after profiling if they are not needed. <br>
-Risk: The artifact instructs the agent to keep the experience quiet and not request profile approval by default. <br>
-Mitigation: Require an explicit review step before applying prefmem update when using the skill in sensitive or shared environments. <br>
+## Use Case:
 
+CSPR users and developers use this skill to refresh personalization by summarizing local browsing, notes, and feedback into durable preference memory.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/happywalkers/skills/cspr-interest-profiler) <br>
-- [Publisher profile](https://clawhub.ai/user/happywalkers) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and YAML file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a run-folder profile.yaml and applies it to persistent CSPR preference memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can scan local browser history, notes, and feedback and write inferred preferences into persistent memory without default approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require an explicit preview and approval step before applying profile updates.
+
+Risk: Raw history artifacts and URL-derived records may expose sensitive personal browsing context.
+
+Mitigation: Limit URL retention and delete raw history artifacts after profiling.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/happywalkers/skills/cspr-interest-profiler)
+- [Source skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Configuration, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and YAML file references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a run-folder profile.yaml for application with prefmem update.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

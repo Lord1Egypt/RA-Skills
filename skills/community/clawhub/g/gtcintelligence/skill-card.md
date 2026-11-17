@@ -1,42 +1,51 @@
-## Description: <br>
-Provides a GTC 2026 intelligence collection plan for verifying product roadmap, architecture, supply chain, infrastructure, and ecosystem signals before and during the event. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GTC Intelligence is a Chinese-language research plan for collecting and validating GTC 2026 signals about NVIDIA product roadmaps, infrastructure, networking, and ecosystem announcements.
 
-## Publisher: <br>
-[wangrong](https://clawhub.ai/user/wangrong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wangrong](https://clawhub.ai/user/wangrong)
 
-## Use Case: <br>
-Competitive-intelligence, market research, and event research teams use this skill to structure lawful, authorized GTC 2026 collection priorities, validation questions, and evidence standards. It should be used only with public materials, official disclosures, and consented conversations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can be used to validate non-public or semi-public corporate intelligence without clear authorization or confidentiality limits. <br>
-Mitigation: Use it only within a lawful, authorized competitive-intelligence process and restrict collection to public materials, official disclosures, and consented conversations. <br>
-Risk: The collection plan includes pre-release signals and assumptions that may be incorrect or misleading if treated as facts. <br>
-Mitigation: Treat each signal as a hypothesis until verified by official disclosures or at least two independent, authorized sources. <br>
-Risk: Outreach, recording, storage, or sharing could expose sensitive business details. <br>
-Mitigation: Require explicit approval before outreach, recording, storing, or sharing sensitive business information. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [GTC Intelligence on ClawHub](https://clawhub.ai/wangrong/gtcintelligence) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
+## Use Case:
+
+Developers, analysts, and event research teams use this skill to structure pre-event and onsite information collection for GTC 2026. It provides priority questions, evidence-ranking guidance, collection paths, and team assignments for validating product, architecture, supply-chain, and ecosystem signals.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill is a specialized event intelligence collection plan and may be inappropriate where competitive information collection is not authorized.
+
+Mitigation: Use it only in approved research contexts and confirm collection activities comply with event, employer, and partner rules.
+
+Risk: Questions and notes could solicit or preserve confidential information that speakers or partners are not authorized to disclose.
+
+Mitigation: Avoid requesting or recording confidential information and keep evidence classification focused on public, authorized, or otherwise appropriate sources.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Analysis] <br>
-**Output Format:** [Markdown collection plan with tables, prioritized questions, evidence standards, and risk notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language planning guidance focused on GTC 2026 intelligence collection and verification.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown research plan with tables and question lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language content focused on GTC 2026 information collection.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

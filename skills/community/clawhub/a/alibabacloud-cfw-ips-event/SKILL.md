@@ -260,7 +260,7 @@ Pagination: Check `TotalCount`. If it exceeds 50, increment `CurrentPage`.
 Identify which assets are attack hotspots.
 
 ```bash
-aliyun cloudfw describe-risk-event-top-attack-asset \
+aliyun cloudfw describe-riREDACTED-SECRET \
   --StartTime {StartTime} \
   --EndTime {EndTime} \
   --region {RegionId} \
@@ -272,7 +272,7 @@ aliyun cloudfw describe-risk-event-top-attack-asset \
 Understand the main threat types being faced.
 
 ```bash
-aliyun cloudfw describe-risk-event-top-attack-type \
+aliyun cloudfw describe-riREDACTED-SECRET \
   --StartTime {StartTime} \
   --EndTime {EndTime} \
   --Direction in \
@@ -289,7 +289,7 @@ Note: This API requires the `Direction` parameter, otherwise it will return an e
 Understand which application-layer targets are being attacked.
 
 ```bash
-aliyun cloudfw describe-risk-event-top-attack-app \
+aliyun cloudfw describe-riREDACTED-SECRET \
   --StartTime {StartTime} \
   --EndTime {EndTime} \
   --region {RegionId} \

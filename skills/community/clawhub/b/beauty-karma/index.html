@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>人像上镜助手预览</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+      background: linear-gradient(160deg, #fff2f6 0%, #ffe5ec 60%, #ffdce5 100%);
+      color: #2d2528;
+    }
+    main {
+      width: min(980px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 32px 0;
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+    section {
+      background: rgba(255,255,255,.94);
+      border: 1px solid rgba(255,105,180,.12);
+      border-radius: 8px;
+      padding: 22px;
+      box-shadow: 0 8px 32px rgba(255,105,180,.18);
+    }
+    h1 { margin: 0 0 8px; color: #ff4d82; font-size: 28px; }
+    p { margin: 0 0 16px; color: #76636b; line-height: 1.55; }
+    label { display: block; margin: 16px 0 8px; color: #555; font-weight: 700; }
+    input {
+      width: 100%;
+      border: 2px solid #ffb6c1;
+      border-radius: 48px;
+      padding: 12px 18px;
+      font: inherit;
+      outline: none;
+      background: white;
+    }
+    button {
+      width: 100%;
+      margin-top: 16px;
+      border: 0;
+      border-radius: 48px;
+      padding: 15px 24px;
+      background: linear-gradient(135deg, #ffb3d1, #ff4d82);
+      color: white;
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .preview {
+      display: grid;
+      place-items: center;
+      min-height: 720px;
+      background: white;
+    }
+    canvas {
+      width: min(100%, 390px);
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(255,105,180,.2);
+      background: white;
+    }
+    @media (max-width: 820px) {
+      main { grid-template-columns: 1fr; }
+      .preview { min-height: auto; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section>
+      <h1>人像上镜报告生成器</h1>
+      <p>预览页使用附件 <code>kanlian.html</code> 的 canvas 排版逻辑和内置小程序码。</p>
+      <label for="photo">上传照片</label>
+      <input id="photo" type="file" accept="image/*">
+      <div class="row">
+        <div>
+          <label for="score">上镜指数</label>
+          <input id="score" type="number" min="1" max="10" step="0.1" value="8.2">
+        </div>
+        <div>
+          <label for="level">状态标签</label>
+          <input id="level" value="状态在线">
+        </div>
+      </div>
+      <label for="emoji">表情</label>
+      <input id="emoji" value="🤩">
+      <button id="render">生成预览</button>
+      <button id="download">下载 PNG</button>
+    </section>
+    <section class="preview">
+      <canvas id="canvas" width="750" height="1334"></canvas>
+    </section>
+  </main>
+  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    let uploadedImage = null;
+    let qrImage = null;
+
+    function roundRect(ctx, x, y, w, h, r) {
+      if (w < 2 * r) r = w / 2;
+      if (h < 2 * r) r = h / 2;
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.arcTo(x + w, y, x + w, y + h, r);
+      ctx.arcTo(x + w, y + h, x, y + h, r);
+      ctx.arcTo(x, y + h, x, y, r);
+      ctx.arcTo(x, y, x + w, y, r);
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    function loadImage(src) {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => resolve(img);
+        img.onerror = reject;
+        img.src = src;
+      });
+    }
+
+    document.getElementById('photo').addEventListener('change', (event) => {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = async () => {
+        uploadedImage = await loadImage(reader.result);
+        render();
+      };
+      reader.readAsDataURL(file);
+    });
+
+    async function ensureQr() {
+      if (!qrImage) {
+        const dataUrl = await fetch('assets/qrcode-data-url.txt').then((response) => response.text());
+        qrImage = await loadImage(dataUrl.trim());
+      }
+      return qrImage;
+    }
+
+    async function render() {
+      const score = Number(document.getElementById('score').value || 8.2);
+      const selectedEmoji = document.getElementById('emoji').value || '🤩';
+      const selectedText = document.getElementById('level').value || '状态在线';
+
+      ctx.clearRect(0, 0, 750, 1334);
+      ctx.fillStyle = '#FFE9EF';
+      ctx.fillRect(0, 0, 750, 1334);
+
+      ctx.fillStyle = '#FF4D82';
+      ctx.font = 'bold 36px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('人像上镜报告', 375, 110);
+
+      ctx.fillStyle = '#FFFFFF';
+      roundRect(ctx, 50, 150, 650, 1000, 48);
+
+      const gradient = ctx.createLinearGradient(150, 250, 600, 250);
+      gradient.addColorStop(0, '#FF4D82');
+      gradient.addColorStop(1, '#FF709F');
+      const scoreLineY = 280;
+
+      ctx.fillStyle = gradient;
+      ctx.font = 'bold 70px sans-serif';
+      ctx.textAlign = 'right';
+      ctx.fillText(score.toFixed(1), 260, scoreLineY);
+
+      ctx.fillStyle = '#333333';
+      ctx.font = '60px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(selectedEmoji, 325, scoreLineY);
+
+      ctx.fillStyle = gradient;
+      ctx.font = 'bold 60px sans-serif';
+      ctx.textAlign = 'left';
+      ctx.fillText(selectedText, 380, scoreLineY);
+
+      if (uploadedImage) {
+        const imgMaxWidth = 400;
+        const imgMaxHeight = 400;
+        const aspectRatio = uploadedImage.width / uploadedImage.height;
+        let imgWidth, imgHeight;
+        if (aspectRatio >= 1) {
+          imgWidth = imgMaxWidth;
+          imgHeight = imgWidth / aspectRatio;
+        } else {
+          imgHeight = imgMaxHeight;
+          imgWidth = imgHeight * aspectRatio;
+        }
+        const imgX = (750 - imgWidth) / 2;
+        const imgY = 350 + (imgMaxHeight - imgHeight) / 2;
+        ctx.drawImage(uploadedImage, imgX, imgY, imgWidth, imgHeight);
+      }
+
+      const qr = await ensureQr();
+      const qrSize = 200;
+      const qrY = 760;
+      ctx.drawImage(qr, (750 - qrSize) / 2, qrY, qrSize, qrSize);
+
+      ctx.fillStyle = '#999999';
+      ctx.font = '26px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('长按识别小程序码，生成你的上镜报告', 375, qrY + qrSize + 50);
+      ctx.fillText('1分到10分 © 人像上镜助手', 375, qrY + qrSize + 90);
+    }
+
+    document.getElementById('render').onclick = render;
+    document.getElementById('download').onclick = () => {
+      const link = document.createElement('a');
+      link.download = '人像上镜报告.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    };
+    render();
+  </script>
+</body>
+</html>

@@ -1,47 +1,59 @@
-## Description: <br>
-Generates SEO- and GEO-oriented blog articles, social media adaptations, product knowledge-base content, and automated content sessions through Citedy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+From topic to published blog post in one conversation, this skill generates SEO- and GEO-optimized articles with AI illustrations and voice-over, creates social media adaptations, sets up automated content sessions, and manages a product knowledge base through Citedy.
 
-## Publisher: <br>
-[nttylock](https://clawhub.ai/user/nttylock) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nttylock](https://clawhub.ai/user/nttylock)
 
-## Use Case: <br>
-External users and content teams use this skill to generate blog articles from topics or URLs, adapt articles for social platforms, manage product context, and configure recurring content publication workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish public blog or social content automatically or repeatedly. <br>
-Mitigation: Require explicit user confirmation of destination, timing, draft-versus-publish behavior, and stop conditions before creating publish or autopilot actions. <br>
-Risk: The skill requires a Citedy API key and may use connected blog, product, and social posting destinations. <br>
-Mitigation: Use a revocable Citedy API key, limit connected accounts to the needed destinations, and rotate or revoke the key when access is no longer required. <br>
-Risk: Some generation, illustration, audio, and automation workflows consume credits. <br>
-Mitigation: Present expected credit spend before running paid actions, especially full or pillar articles, audio, and recurring sessions. <br>
-Risk: Referral-link behavior may add promotional links to recommendations or adaptations. <br>
-Mitigation: Disable or avoid referral-link use unless the user explicitly wants promotional behavior. <br>
+## Use Case:
 
+External users and content teams use this skill to generate, adapt, schedule, and publish Citedy-powered blog and social content from topics, URLs, or product knowledge. Developers and agents can also use it to register a Citedy agent, call Citedy API workflows, and manage content automation settings.
 
-## Reference(s): <br>
-- [ClawHub Skill Release](https://clawhub.ai/nttylock/citedy-content-writer) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/nttylock) <br>
-- [Citedy](https://www.citedy.com/) <br>
-- [Citedy Privacy Policy](https://www.citedy.com/privacy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with API request examples, shell commands, and generated content summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May initiate Citedy API workflows for article generation, social adaptation, publishing, scheduling, webhook registration, and product knowledge-base management.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill can publish content automatically to connected blogs or social accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set auto_publish=false by default and require a final preview and explicit confirmation before posting or scheduling.
+
+Risk: The skill can delete articles and make persistent account changes such as recurring sessions or webhook registrations.
+
+Mitigation: Require explicit confirmation before deletion, use a named agent during registration, and periodically review active sessions and webhooks.
+
+Risk: The skill relies on a Citedy API key with access to the connected account.
+
+Mitigation: Store CITEDY_API_KEY only in the runtime secret store, limit where it is exposed, and rotate or revoke the key if it is shared accidentally.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nttylock/skills/citedy-content-writer)
+- [Citedy](https://www.citedy.com/)
+- [Citedy Privacy Policy](https://www.citedy.com/privacy)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON, HTTP, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce article drafts, article URLs, social post previews, schedule details, API request examples, and registration guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

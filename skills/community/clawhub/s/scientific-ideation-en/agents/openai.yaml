@@ -1,0 +1,4 @@
+interface:
+  display_name: "Metacognition × Scientific Creativity: Research Lifecycle Partner"
+  short_description: "Plan, create, and verify across the research lifecycle"
+  default_prompt: "Use $scientific-ideation-en to identify my current research decision and propose the next informative step."

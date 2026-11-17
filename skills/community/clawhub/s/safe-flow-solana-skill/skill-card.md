@@ -1,42 +1,53 @@
-## Description: <br>
-Use when running SafeFlow against a deployed Solana program to generate an agent keypair, guide owner wallet/session setup, save payment configuration, and execute rate-limited Solana payments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when running SafeFlow against a deployed Solana program. Trigger for tasks such as generating an agent keypair, asking the owner to fund gas and create wallet/session via the web dashboard, saving walletPda/sessionPda for autonomous payments, and executing rate-limited payments on Solana.
 
-## Publisher: <br>
-[fwangzil](https://clawhub.ai/user/fwangzil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fwangzil](https://clawhub.ai/user/fwangzil)
 
-## Use Case: <br>
-Developers and agent operators use this skill to prepare a Solana agent wallet, hand setup to the wallet owner, store the returned owner configuration, query session budget, and submit on-chain payments under SafeFlow rate limits and caps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent real Solana spending authority through a locally stored keypair and SafeFlow session. <br>
-Mitigation: Use a dedicated low-balance wallet, set strict rate limits and total caps, and revoke or expire sessions when autonomous payment access is no longer needed. <br>
-Risk: The local `.safeflow/agent-keypair.json` file can authorize transactions if exposed. <br>
-Mitigation: Keep the keypair out of git, backups, and logs; restrict file permissions; and rotate the agent wallet if exposure is suspected. <br>
-Risk: A wrong cluster, recipient, or amount can move funds to an unintended destination. <br>
-Mitigation: Verify the Solana cluster, recipient address, and amount before every transfer, and add a confirmation or dry-run step before funding production use. <br>
+## Use Case:
 
+Developers and operators use this skill to configure an AI agent for SafeFlow-controlled Solana payments, hand off wallet/session setup to the owner, and execute or query rate-limited payments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fwangzil/safe-flow-solana-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and local JSON configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces owner handoff instructions, local keypair/configuration files, session status output, and transaction status messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Payment and wallet inputs may be handled unsafely, creating risk of local code execution or unintended transfers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace inline node -e and ts-node -e usage with checked-in scripts that parse arguments safely and validate recipient and amount before loading the keypair.
+
+Risk: The local agent keypair may be exposed or misused if stored without strong controls.
+
+Mitigation: Protect the keypair with restrictive file permissions or a safer signer, and add dry-run, confirmation, and spending-policy controls before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fwangzil/skills/safe-flow-solana-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash commands and JSON configuration references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scripts may create a local Solana keypair and .safeflow/config.json when run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

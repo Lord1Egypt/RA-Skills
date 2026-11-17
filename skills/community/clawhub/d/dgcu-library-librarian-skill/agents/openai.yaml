@@ -1,0 +1,4 @@
+interface:
+  display_name: "东莞城市学院图书馆 AI 馆员"
+  short_description: "无需企业微信登录，远程咨询图书馆、查实时馆藏及两个出版社的电子书"
+  default_prompt: "使用 $dgcu-library-librarian 检索 Claude Code 电子书，分别列出人民邮电和知阅的结果及阅读链接。"

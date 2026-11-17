@@ -1,43 +1,60 @@
-## Description: <br>
-Playwright-based web scraping OpenClaw Skill with anti-bot protection. Successfully tested on complex sites like Discuss.com.hk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Playwright-based web scraping OpenClaw Skill with anti-bot protection. Successfully tested on complex sites like Discuss.com.hk.
 
-## Publisher: <br>
-[smallkeyboy](https://clawhub.ai/user/smallkeyboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smallkeyboy](https://clawhub.ai/user/smallkeyboy)
 
-## Use Case: <br>
-Developers and agents use this skill to scrape dynamic or anti-bot-protected webpages with Playwright when simpler fetch tools are insufficient. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Stealth scraping can violate site terms or legal restrictions if used without authorization. <br>
-Mitigation: Use the skill only on sites you are authorized to access and review the applicable terms before scraping. <br>
-Risk: Screenshots or saved HTML may contain sensitive page content that remains on disk. <br>
-Mitigation: Store captured files in controlled locations, restrict access, and delete them when they are no longer needed. <br>
+## Use Case:
 
+Developers and engineers use this skill to collect content from dynamic or anti-bot-protected web pages with Playwright-based simple and stealth scraping modes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/smallkeyboy/102-playwright-scraper-skill) <br>
-- [Playwright Official Docs](https://playwright.dev/) <br>
-- [puppeteer-extra-plugin-stealth](https://github.com/berstend/puppeteer-extra/tree/master/packages/puppeteer-extra-plugin-stealth) <br>
-- [deep-scraper skill](https://clawhub.com/opsun/deep-scraper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and Playwright script outputs as JSON, screenshots, or saved HTML.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scripts support environment variables for headless mode, wait time, screenshot path, saved HTML, and custom user agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The stealth scraper can access arbitrary URLs and is designed for anti-bot-protected pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only against sites the operator is authorized to access, and run it in a disposable, low-privilege environment with restricted network access.
+
+Risk: The scraper can write screenshots and optional HTML captures to local paths.
+
+Mitigation: Choose non-sensitive output locations and avoid scraping authenticated or sensitive pages unless necessary.
+
+Risk: The stealth mode weakens browser safety controls.
+
+Mitigation: Review the scripts before deployment and keep execution isolated from credentials and sensitive local files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smallkeyboy/skills/102-playwright-scraper-skill)
+- [Playwright official docs](https://playwright.dev/)
+- [puppeteer-extra-plugin-stealth](https://github.com/berstend/puppeteer-extra/tree/master/packages/puppeteer-extra-plugin-stealth)
+- [deep-scraper skill](https://clawhub.com/opsun/deep-scraper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; scraper scripts emit JSON and may write screenshot or HTML files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output may include page title, URL, content previews, elapsed time, Cloudflare detection status, extracted links, screenshot paths, and optional HTML capture paths.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter, package.json, CHANGELOG released 2026-02-07)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

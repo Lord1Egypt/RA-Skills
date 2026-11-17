@@ -5,8 +5,8 @@ skill:
   name: yunitalk-beta
   display_name: OpenClaw 与你聊聊对话
   description: 使用 OpenClaw 接入与你聊聊，实现聊聊与 OpenClaw 的对话
-  version: 0.8.5
-  build: 20260613
+  version: 0.9.5
+  build: 20261015
 
 # OpenClaw 侧由 Talk Robots 机器人配置页扫码流程写入连接信息
 config:
@@ -126,6 +126,7 @@ rules:
   - 安装后应提示用户运行 yntalk-openclaw-init 读取本地 OpenClaw 配置，并输出可扫码保存到 OpenClaw连接信息 的初始化指令
   - 初始化指令必须是 /openclaw --init <base64-json>，其中 <base64-json> 是对 {"OPENCLAW_URL":"...","OPENCLAW_TOKEN":"...","OPENCLAW_LAN_URL":"..."} 做 UTF-8 Base64 编码后的结果；不得明文展示 OPENCLAW_TOKEN 或 robot_key
   - 如需主动投递消息，robot_endpoint、robot_id 和 robot_key 必须由 OpenClaw 运行环境或管理员提供，并且不要回显 robot_key
+  - 主动发送消息按形态选择：存在 bin/bot-cli 和 bin/*.dat 时优先用 ./bin/bot-cli（基于 Talk Robots Go SDK，自动生成 msg_id/noncestr/timestamp/签名）；否则用 ./shell/robot_send.sh（clawhub 发布包不含 bin/）。两种方式都会自动签名，不要用 curl 手写签名
   - cvs_id 是可选目标会话 ID；不传 cvs_id 时，/robot/send 默认投递到机器人与创建者的点对点会话
   - 投递文本事件时必须使用完整 imx.Msg JSON 结构，cmd 固定为 msg，文本放在 body.content
   - 发送文件时必须使用 multipart/form-data，不得使用 JSON 传文件

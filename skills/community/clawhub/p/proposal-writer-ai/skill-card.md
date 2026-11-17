@@ -1,40 +1,53 @@
-## Description: <br>
-Create compelling business proposals and project plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates compelling business proposals and project plans for freelancers, consultants, and anyone pitching ideas or seeking budget approval.
 
-## Publisher: <br>
-[huajianjiu000](https://clawhub.ai/user/huajianjiu000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huajianjiu000](https://clawhub.ai/user/huajianjiu000)
 
-## Use Case: <br>
-Freelancers, consultants, and business teams use this skill to draft persuasive proposals, project plans, pricing options, terms, and next steps for client or budget-approval workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Proposal drafts may include sensitive client details, financial data, or account information supplied by the user. <br>
-Mitigation: Avoid entering confidential client data, account numbers, or private financial details unless the agent environment is approved for that information. <br>
-Risk: Generated pricing, terms, or claims may be inaccurate or unsuitable for a client commitment. <br>
-Mitigation: Review and edit pricing, terms, timelines, and value claims before sending the proposal to a client. <br>
+## Use Case:
 
+External freelancers, consultants, and business users use this skill to draft persuasive proposal sections, project plans, pricing options, proof points, terms, and next steps for client or budget-approval pitches.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/huajianjiu000/proposal-writer-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown proposal templates and concise drafting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces user-editable proposal sections, pricing language, client-facing terms, and follow-up guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Proposal drafting can involve confidential client, pricing, or commercial strategy details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive details unless the user is comfortable having the agent process them, and redact or generalize confidential information where possible.
+
+Risk: Generated proposal claims, pricing, timelines, testimonials, and terms may be inaccurate or unsuitable for a specific deal.
+
+Mitigation: Review and adapt all proposal content before sharing it with clients or approvers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huajianjiu000/skills/proposal-writer-ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown proposal templates and drafting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior; output is user-facing proposal content for review and adaptation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

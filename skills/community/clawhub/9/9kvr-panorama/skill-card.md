@@ -1,49 +1,64 @@
-## Description: <br>
-A VR panorama operations assistant for configuring 9kvr account credentials and managing panorama works, media, scenes, hotspots, background music, voice narration, ratings, and integration guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+芊云VR全景运营小助手 helps agents manage 9KVR panorama projects, including account setup, works, media, scenes, hotspots, background music, voiceovers, ratings, and integration guidance.
 
-## Publisher: <br>
-[tianming3](https://clawhub.ai/user/tianming3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tianming3](https://clawhub.ai/user/tianming3)
 
-## Use Case: <br>
-External panorama content operators, project delivery teams, and developers use this skill to manage 9kvr panorama projects through guided CLI actions and workflow instructions. It supports account setup, content and scene configuration, audio narration, ratings checks, and integration-code guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles uid/token account credentials. <br>
-Mitigation: Use scoped or test tokens where possible, avoid exposing secrets in shared chats or terminals, and rotate tokens if they are exposed. <br>
-Risk: The skill may install and run an external VRAPI helper binary. <br>
-Mitigation: Install only when the publisher, the 9kvr service, and the helper binary delivery path are trusted. <br>
-Risk: Generated integration code may expose developer keys or sensitive playback links if copied directly to client-side code. <br>
-Mitigation: Review generated integration code and keep developer keys server-side, using a server proxy where appropriate. <br>
-Risk: Delete or bulk-update actions can affect panorama media, scenes, or hotspots. <br>
-Mitigation: Require explicit confirmation before destructive or bulk changes and verify results with a follow-up read. <br>
+## Use Case:
 
+Panorama content operators, project delivery staff, and developers use this skill to manage VR panorama content, configure scenes and media, add audio assets, review ratings, and generate integration guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tianming3/9kvr-panorama) <br>
-- [9kvr official site](https://9kvr.cn) <br>
-- [Router reference](references/router.md) <br>
-- [Commands reference](references/commands.md) <br>
-- [Workflow reference](references/workflows.md) <br>
-- [Examples reference](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code, Markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose API-backed actions for 9kvr resources and should verify write operations with follow-up reads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill installs and runs an unverified native 9KVR client with user credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the publisher and native client are trusted, and avoid sharing long-lived uid/token values unless necessary.
+
+Risk: Generated integration guidance may place developer secrets in browser-visible code.
+
+Mitigation: Review generated code before use and keep developer secrets on the server side.
+
+Risk: Uploads, deletes, or account-changing actions can modify a user's VR panorama content or session state.
+
+Mitigation: Require explicit confirmation before these actions and verify results afterward.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tianming3/skills/9kvr-panorama)
+- [9KVR official site](https://9kvr.cn)
+- [9KVR developer documentation](https://9kvr.cn/user/develop/welcome)
+- [README](README.md)
+- [Routing reference](references/router.md)
+- [Command reference](references/commands.md)
+- [Workflow reference](references/workflows.md)
+- [Examples reference](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples, code snippets, and structured command results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May perform account configuration, uploads, deletes, and service changes through the 9KVR native client when the user provides credentials and confirms the action.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,49 @@
-## Description: <br>
-Transforms raw meeting notes or transcripts into structured summaries with decisions, action items, owners, deadlines, discussion points, open questions, and next steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transform raw meeting notes or transcripts into structured summaries with decisions, action items, owners, deadlines, discussion points, and next steps.
 
-## Publisher: <br>
-[huajianjiu000](https://clawhub.ai/user/huajianjiu000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huajianjiu000](https://clawhub.ai/user/huajianjiu000)
 
-## Use Case: <br>
-Team leads, project managers, executives, and other meeting participants use this skill to turn notes, transcripts, or brief meeting context into shareable follow-ups. It is suited for documenting decisions, tracking action items, preparing executive summaries, and onboarding people who missed a meeting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting notes and transcripts can contain confidential, personal, or sensitive business information. <br>
-Mitigation: Use only content you are authorized to share, redact secrets and unnecessary personal data, and limit distribution to appropriate recipients. <br>
-Risk: Generated meeting minutes can misstate decisions, owners, deadlines, or open questions. <br>
-Mitigation: Review and edit the generated summary before relying on it or sending it to attendees. <br>
+## Use Case:
 
+Team leads, project managers, executives, and other professionals use this skill to turn notes or transcripts into shareable meeting minutes with decisions, action items, deadlines, and follow-up questions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON] <br>
-**Output Format:** [Structured Markdown meeting summaries with tables; optional CSV or JSON action-item exports when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs can include meeting overview, decisions, action items with owners and deadlines, discussion summary, open questions, next steps, and next-meeting details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Meeting notes or transcripts may contain confidential, regulated, personal, credential, or private meeting-link information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact sensitive content unless the user has approval to process it, and review summaries before sharing them externally.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huajianjiu000/skills/team-meeting-summarize)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown-style meeting summary with tables and action-item lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include meeting overview, decisions, action items, owners, deadlines, open questions, next steps, and optional export-oriented structures such as CSV or JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

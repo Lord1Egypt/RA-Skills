@@ -1,42 +1,55 @@
-## Description: <br>
-Vendor-agnostic ACL and firewall rule analysis with shadowed rule detection, overly permissive rule identification, unused rule discovery, redundant rule flagging, and rule ordering optimization for ACLs and firewall policies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Vendor-agnostic ACL and firewall rule analysis with shadowed rule detection, overly permissive rule identification, unused rule discovery, redundant rule flagging, and rule ordering optimization.
 
-## Publisher: <br>
-[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan)
 
-## Use Case: <br>
-Developers, network engineers, and security reviewers use this skill to inspect ACLs and firewall policies for shadowed, overly permissive, unused, redundant, or poorly ordered rules. It supports cleanup, compliance preparation, incident investigation, migration validation, and rulebase optimization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Counter-reset commands can change network device state and erase hit-count evidence even when presented alongside read-only audit commands. <br>
-Mitigation: Do not run clear access-list or counter-reset commands unless resetting counters is intentional, approved through change control, and current hit-count evidence has been preserved. <br>
-Risk: Rule cleanup or ordering recommendations can alter effective network access if applied without validation. <br>
-Mitigation: Treat remediation output as review guidance; validate proposed changes with policy simulation or test traffic and apply them only through approved operational change procedures. <br>
+## Use Case:
 
+Network security engineers and operators use this skill to review ACLs and firewall policies, identify risky or ineffective rules, and produce prioritized remediation guidance for rulebase cleanup.
 
-## Reference(s): <br>
-- [ACL and Firewall Rule Analysis - Multi-Vendor CLI Reference](references/cli-reference.md) <br>
-- [Rule Analysis Patterns - Detection Logic and Algorithms](references/rule-patterns.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/vahagn-madatyan/acl-rule-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, tables, and remediation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include prioritized findings, rule identifiers, severity labels, and recommended remediation actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill is labeled read-only while documenting commands that reset live device counters.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use accounts restricted to show and export operations, and run counter-reset commands only with separate change-control approval.
+
+Risk: Unused-rule recommendations can be misleading when device counters were recently reset.
+
+Mitigation: Verify device uptime and counter history before treating zero-hit rules as removal candidates.
+
+## Reference(s):
+
+- [ACL and Firewall Rule Analysis - Multi-Vendor CLI Reference](references/cli-reference.md)
+- [Rule Analysis Patterns - Detection Logic and Algorithms](references/rule-patterns.md)
+- [ClawHub skill page](https://clawhub.ai/vahagn-madatyan/skills/acl-rule-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and analysis tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces read-only collection steps, rule analysis findings, severity classifications, and remediation recommendations.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

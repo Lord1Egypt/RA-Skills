@@ -1,7 +1,7 @@
 ---
 name: "smyx-child-nightmare-rollover-detection-analysis"
 description: "Using a fixed camera in the child's bedroom (infrared night vision), the system continuously captures video and audio at night to analyze the child's sleep behavior. It detects rollover frequency (rollovers per minute), cries (recognizing specific cry-sound features), and sleep talk (speech during sleep), and generates a sleep-quality report. When rollovers occur too often (e.g., > 3 per hour), strong crying is detected, or sleep talk is observed, the system pushes 'possible nightmare' or 'restless sleep' alerts to the parents. Application scenarios: child bedrooms, infant rooms. The system relays night-time monitoring to help parents understand the child's sleep quality and provide timely comfort. Skill features: improve sleep. | 通过儿童床或卧室的固定摄像头（红外夜视），在夜间连续采集视频及音频，分析儿童的睡眠行为。检测翻身次数（每分钟翻身频率）、哭声（识别特定的哭声音频特征）以及梦话（检测睡眠中的语音），生成睡眠质量报告。当翻身过于频繁（如>3次/小时）、出现强烈哭声或梦话时，推送给父母'可能做噩梦'或'睡眠不安'的预警。应用场景：儿童卧室、婴儿房。系统夜间接力监测，帮助家长了解儿童睡眠质量，及时安抚。技能特点：改善睡眠。"
-version: "1.0.3"
+version: "1.0.22"
 license: "MIT-0"
 ---
 
@@ -155,7 +155,7 @@ python -m scripts.smyx_child_nightmare_rollover_detection_analysis --list
 | 🔏 隐私合规 | 隐私合规：儿童夜间音视频涉及未成年人隐私，使用前需取得监护人知情同意，并妥善保管/加密相关录像 |
 | 🚫 脚本限制 | 禁止临时生成脚本，只能用技能本身的脚本 |
 | 🌐 网络地址 | 传入的网络地址参数，不需要下载本地，默认地址都是公网地址，api 服务会自动下载 |
-| 📜 报告输出 | 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段 reportImageUrl 作为超链接地址，且自动转化为如下 Markdown |
+| 📜 报告输出 | 当显示历史分析报告清单的时候，从接口返回 json 数据中提取字段  作为超链接地址，且自动转化为如下 Markdown |
 | 📜 报告输出 | 表格输出示例 |
 
 ## 🧰 使用示例 | Examples

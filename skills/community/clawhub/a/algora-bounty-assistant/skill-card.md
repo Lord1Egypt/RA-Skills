@@ -1,41 +1,54 @@
-## Description: <br>
-Automatically search for low-competition GitHub bounty tasks and generate a concise report with issue details and estimated difficulty. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically search for low-competition GitHub bounty tasks with fewer than five comments and generate a concise report with details and estimated difficulty.
 
-## Publisher: <br>
-[santosparra651-arch](https://clawhub.ai/user/santosparra651-arch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[santosparra651-arch](https://clawhub.ai/user/santosparra651-arch)
 
-## Use Case: <br>
-Developers and bounty hunters use this skill to find open GitHub issues labeled as bounties with lower comment counts, then review a report that helps prioritize opportunities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: GitHub issue titles and descriptions are untrusted third-party content. <br>
-Mitigation: Review bounty details manually before acting on generated reports or recommendations. <br>
-Risk: Publisher provenance is minimal because no server-resolved GitHub import provenance is stored for this version. <br>
-Mitigation: Review the artifact and publisher profile before using the skill in sensitive workflows. <br>
+## Use Case:
 
+Developers and bounty hunters use this skill to search open GitHub issues labeled as bounties, prioritize low-comment opportunities, and review concise difficulty or value signals before choosing work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/santosparra651-arch/algora-bounty-assistant) <br>
-- [GitHub Search API endpoint](https://api.github.com/search/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Console text report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports public GitHub issue titles, URLs, comment counts, and simple difficulty or value heuristics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release, SKILL.md frontmatter, package.json) <br>
+Risk: Unpinned npx commands can execute package code that differs from the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install or run a pinned reviewed version, or inspect the package source before execution.
+
+Risk: The included analyze.js file is not part of the documented primary search command.
+
+Mitigation: Treat analyze.js as nonessential and inspect it before intentionally running it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/santosparra651-arch/skills/algora-bounty-assistant)
+- [Publisher profile](https://clawhub.ai/user/santosparra651-arch)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text console report with issue titles, URLs, comment counts, and difficulty or value signals.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts an optional maximum comment count argument for the bounty search command.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, skill frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

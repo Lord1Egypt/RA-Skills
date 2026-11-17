@@ -1,44 +1,58 @@
-## Description: <br>
-Cross-venue trading skill for ClawHub that supports both manual candidate selection and unattended auto mode, while filtering markets by price band and trading volume. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cross-venue trading skill for ClawHub that supports both manual candidate selection and unattended auto mode, while filtering markets by price band and trading volume.
 
-## Publisher: <br>
-[skybinjf](https://clawhub.ai/user/skybinjf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skybinjf](https://clawhub.ai/user/skybinjf)
 
-## Use Case: <br>
-External users and developers use this skill to scan Simmer, Kalshi, or Polymarket markets, review ranked candidates, and run dry-run or explicitly enabled live trading workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run on a 30-minute schedule and may place unattended trades when live and auto modes are enabled. <br>
-Mitigation: Keep the skill in dry-run or manual mode until the strategy is reviewed, and disable or tightly control scheduled automation before enabling live execution. <br>
-Risk: Live trading requires sensitive credentials and can expose real funds on connected venues or wallets. <br>
-Mitigation: Use limited-scope credentials with limited funds, store secrets only in runtime environment variables, and set external account-level risk limits. <br>
-Risk: The default strategy is a template based on volume ranking and a price-band filter, so its selections may not reflect a reliable trading edge. <br>
-Mitigation: Review and adapt the strategy, sizing, and fair-value assumptions before relying on it for live trading. <br>
+## Use Case:
 
+Developers and trading automation users use this skill to discover prediction-market candidates across Simmer, Kalshi, or Polymarket, review ranked opportunities, and optionally execute configured trades. It is intended for users who can configure credentials, venue settings, price bands, edge thresholds, and live-trading controls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/skybinjf/auto-trading-winner) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Publishing notes](artifact/PUBLISHING.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Console output and Markdown-style guidance with environment-variable configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May place live or paper trades when live mode and required credentials are explicitly configured; defaults to dry-run/manual mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill can place recurring unattended live trades when live mode and auto mode are deliberately enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep dry-run or manual mode enabled unless live automation is intended, avoid AUTO_CONFIRM_LIVE for real-money venues, and add independent order limits before recurring execution.
+
+Risk: Trading credentials and wallet keys may authorize real-money activity on connected venues.
+
+Mitigation: Use isolated credentials with least privilege, keep secrets out of shared logs and files, and rotate keys if exposure is suspected.
+
+Risk: The default strategy uses simple volume ranking and a configurable fair probability rather than a complete fair-value model.
+
+Mitigation: Review candidates manually, tune edge and slippage thresholds, and replace the default signal with venue-specific liquidity and valuation checks before trusting live use.
+
+## Reference(s):
+
+- [Auto Trading Winner on ClawHub](https://clawhub.ai/skybinjf/skills/auto-trading-winner)
+- [Publisher profile](https://clawhub.ai/user/skybinjf)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text with configuration-driven execution and optional trade actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs ranked market candidates, selected trade details, dry-run reasoning, skip reasons, and execution status when live trading is enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

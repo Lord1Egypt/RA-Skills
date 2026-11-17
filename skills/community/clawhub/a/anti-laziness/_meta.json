@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn73z4q4h1nrdeg5j0a3yxfc5n87e43a",
-  "slug": "anti-laziness",
-  "version": "1.0.1",
-  "publishedAt": 1779820647529
+  "name": "anti-laziness",
+  "version": "1.0.0",
+  "description": "AI Agent 反偷懒协议 - 防止AI在工作过程中偷懒的规范体系",
+  "author": "元宝/小聋瞎",
+  "tags": ["protocol", "anti-laziness", "quality"]
 }

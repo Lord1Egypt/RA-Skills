@@ -1,48 +1,62 @@
-## Description: <br>
-Quantum Battery technology due diligence English version, assessment framework for quantum battery projects <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quantum Battery technology due diligence English version, assessment framework for quantum battery projects
 
-## Publisher: <br>
-[golngod](https://clawhub.ai/user/golngod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[golngod](https://clawhub.ai/user/golngod)
 
-## Use Case: <br>
-External researchers, technical analysts, and investors use this skill to query a quantum-battery knowledge base, analyze technical routes, track research progress, and structure due diligence for quantum battery projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may refresh or rewrite local knowledge-base markdown files. <br>
-Mitigation: Keep the reference directory under version control and review generated diffs before using refreshed content. <br>
-Risk: Quantum-battery research and market claims may become stale or lack current source support. <br>
-Mitigation: Require sources for latest-research claims and verify investment or technical conclusions against current primary references. <br>
+## Use Case:
 
+External users and developers use this skill for quantum-battery technical consultation, due diligence, research tracking, industry-chain analysis, and investment risk framing. It is educational decision-support material and should not be treated as personalized investment advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/golngod/opc-quantum-battery-en) <br>
-- [Publisher Profile](https://clawhub.ai/user/golngod) <br>
-- [README](README.md) <br>
-- [Quantum Basics](references/quantum_basics.md) <br>
-- [Quantum Battery Theory](references/quantum_battery_theory.md) <br>
-- [Research Progress](references/research_progress.md) <br>
-- [Industry Chain](references/industry_chain.md) <br>
-- [Investment Guide](references/investment_guide.md) <br>
-- [Glossary](references/glossary.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, analysis, files] <br>
-**Output Format:** [Markdown or plain text responses, with possible local markdown reference updates during knowledge-base refreshes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include technical explanations, due-diligence assessments, risk analysis, research summaries, and investment framework guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release metadata and SKILL.md frontmatter) <br>
+Risk: The skill includes prescriptive investment guidance without strong regulated-advice safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only as educational due-diligence support, require qualified human review for investment decisions, and avoid personalized financial recommendations.
+
+Risk: The skill describes self-heal behavior that can rewrite bundled reference files.
+
+Mitigation: Disable write access to reference files or require explicit user confirmation before any update to bundled knowledge files.
+
+Risk: The release is labeled as an English version, but much of the bundled skill and reference content is Chinese.
+
+Mitigation: Confirm language requirements before installation and add translation or bilingual review where English-only content is required.
+
+## Reference(s):
+
+- [Quantum Mechanics Basics](references/quantum_basics.md)
+- [Quantum Battery Theory](references/quantum_battery_theory.md)
+- [Global Quantum Battery Research Progress](references/research_progress.md)
+- [Quantum Battery Industry Chain](references/industry_chain.md)
+- [Quantum Battery Investment Guide](references/investment_guide.md)
+- [Quantum Battery Glossary](references/glossary.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text responses with tables, explanations, and due-diligence frameworks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May cite bundled reference files and may produce risk analyses, TRL assessments, and investment-framework summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,63 @@
-## Description: <br>
-Himalaya CLI helps agents manage email from the terminal over IMAP/SMTP, including listing, reading, writing, replying, forwarding, searching, organizing, and composing messages with MML. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CLI to manage emails via IMAP/SMTP. Use `himalaya` to list, read, write, reply, forward, search, and organize emails from the terminal. Supports multiple accounts and message composition with MML (MIME Meta Language).
 
-## Publisher: <br>
-[cohenyehonatan](https://clawhub.ai/user/cohenyehonatan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cohenyehonatan](https://clawhub.ai/user/cohenyehonatan)
 
-## Use Case: <br>
-Developers and terminal-oriented email users use this skill to configure Himalaya and guide email workflows from configured accounts. It supports command guidance for reading, searching, composing, sending, organizing, exporting, and downloading mailbox content. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Installing and using the skill can let an agent operate a configured mailbox, including sending, moving, copying, flagging, exporting, downloading, or deleting mail. <br>
-Mitigation: Require explicit user review before actions that send mail, use reply-all, forward messages, attach local files, export content, download attachments, move or copy messages, change flags, or delete anything. <br>
-Risk: Email credentials may be exposed if stored as plaintext configuration values. <br>
-Mitigation: Prefer app-specific credentials, OAuth, pass, or a system keyring instead of plaintext passwords. <br>
-Risk: Attachment and export commands can read from or write to local files and directories. <br>
-Mitigation: Review local file paths and destination directories before running attachment, export, or send commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Himalaya Configuration Reference](references/configuration.md) <br>
-- [Message Composition with MML](references/message-composition.md) <br>
-- [Himalaya project homepage](https://github.com/pimalaya/himalaya) <br>
-- [ClawHub skill page](https://clawhub.ai/cohenyehonatan/himalaya-cli) <br>
+## Use Case:
 
+Developers and email power users use this skill to let an agent operate the Himalaya CLI for reading, searching, composing, sending, organizing, and debugging email workflows from the terminal.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell commands and TOML configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include JSON-output command suggestions for Himalaya operations; proposed commands can affect configured email accounts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Email credentials may be exposed if plaintext configuration values are used.
+
+Mitigation: Use pass, system keyring, OAuth token commands, or another secret manager instead of plaintext auth.raw values.
+
+Risk: Destructive email actions can affect the wrong message because Himalaya message IDs are folder-relative.
+
+Mitigation: Re-list the current folder and confirm message IDs, folders, and commands before move, copy, delete, or flag operations.
+
+Risk: Composed messages can be sent to unintended recipients or with unintended attachments.
+
+Mitigation: Verify recipients, headers, message body, and attachment paths before sending.
+
+Risk: Downloaded attachments may come from untrusted messages.
+
+Mitigation: Download attachments only from trusted messages and inspect them before opening or executing.
+
+## Reference(s):
+
+- [Himalaya Configuration Reference](artifact/references/configuration.md)
+- [Message Composition with MML](artifact/references/message-composition.md)
+- [Himalaya project homepage](https://github.com/pimalaya/himalaya)
+- [ClawHub skill page](https://clawhub.ai/cohenyehonatan/skills/himalaya-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON output flags for Himalaya commands when structured email listings are useful.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

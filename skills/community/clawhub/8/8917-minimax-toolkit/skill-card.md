@@ -1,52 +1,69 @@
-## Description: <br>
-A MiniMax multimodal toolkit that helps agents call official MiniMax APIs for image, speech, voice, video, and music workflows while disclosing quota use, upload boundaries, and output paths before execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides command-line wrappers for MiniMax official APIs to generate images, image-to-image outputs, video, speech, long-form TTS, voice clones, voice designs, and music while saving outputs to the workspace or a configured directory.
 
-## Publisher: <br>
-[blicae8917](https://clawhub.ai/user/blicae8917) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blicae8917](https://clawhub.ai/user/blicae8917)
 
-## Use Case: <br>
-Developers and content-production agents use this skill to generate and transform media through MiniMax Token Plan APIs, including image generation, image-to-image, speech, long-text TTS, voice cloning, voice design, and enabled video or music workflows. It is most useful when the agent must estimate request cost, disclose third-party media processing, and save generated files into predictable project directories. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a MiniMax API key and can consume MiniMax Token Plan quota. <br>
-Mitigation: Provide credentials only through MINIMAX_API_KEY or the documented OpenClaw config, and review the skill's model and request-cost estimate before execution. <br>
-Risk: Prompts, images, audio, or video selected by the user may be uploaded to MiniMax for processing. <br>
-Mitigation: Confirm third-party processing is acceptable before submitting sensitive media, and use voice cloning only with permission from the speaker. <br>
-Risk: Generated files are saved locally and may include sensitive derived media. <br>
-Mitigation: Use --project or --output-dir for isolation, and review the reported save paths after execution. <br>
-Risk: Some advertised modalities may be unavailable under the current Token Plan or feature flags. <br>
-Mitigation: Check references/feature_flags.json and run the remains or check-docs command before relying on video, template, or music workflows. <br>
+## Use Case:
 
+Developers and agent operators use this skill to route MiniMax media-generation requests through a consistent CLI, estimate request usage, disclose third-party processing, and save generated outputs in organized workspace or project folders.
 
-## Reference(s): <br>
-- [API Info](references/api_info.md) <br>
-- [Modalities](references/modalities.md) <br>
-- [Budget and Trust Notes](references/budget-and-trust.md) <br>
-- [Feature Flags](references/feature_flags.json) <br>
-- [Quota Mapping](references/quota_mapping.json) <br>
-- [Official Doc Sources](references/official-doc-sources.md) <br>
-- [Official Doc Check Report](references/checks/latest-check.md) <br>
-- [MiniMax Token Plan FAQ](https://platform.minimaxi.com/docs/token-plan/faq) <br>
-- [MiniMax Token Plan Remains API](https://www.minimaxi.com/v1/api/openplatform/coding_plan/remains) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, files, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands, quota estimates, API responses, and saved media file paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated assets are saved under an explicit output directory, MINIMAX_OUTPUT_DIR, workspace/03-Resources/minimax-output/, or ./outputs/minimax/, with optional project subdirectories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.4 (source: server release evidence) <br>
+Risk: Prompts, images, audio, video, and voice samples may be sent to MiniMax APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disclose third-party processing before execution and get explicit user acceptance before using sensitive media.
+
+Risk: Voice cloning can misuse a speaker's likeness.
+
+Mitigation: Use voice cloning only with clear permission from the speaker and verify that the account is eligible for the clone workflow.
+
+Risk: The skill reads a MiniMax API key from environment or OpenClaw configuration.
+
+Mitigation: Use a dedicated MiniMax Token Plan key, never hardcode credentials, and rotate the key if it may have been exposed.
+
+Risk: Media downloads and output paths may not have enough containment safeguards.
+
+Mitigation: Use trusted project names and output directories, prefer workspace-contained paths, and avoid sensitive output locations until validation is hardened.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/blicae8917/skills/8917-minimax-toolkit)
+- [Publisher Profile](https://clawhub.ai/user/blicae8917)
+- [MiniMax Token Plan FAQ](https://platform.minimaxi.com/docs/token-plan/faq)
+- [MiniMax Token Plan Remains API](https://www.minimaxi.com/v1/api/openplatform/coding_plan/remains)
+- [MiniMax Toolkit Modalities](references/modalities.md)
+- [Budget and Trust Notes](references/budget-and-trust.md)
+- [MiniMax API Info](references/api_info.md)
+- [Feature Flags](references/feature_flags.json)
+- [Official Doc Check Report](references/checks/latest-check.md)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands; generated media files saved to workspace paths or configured output directories.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MINIMAX_API_KEY; output root priority is --output-dir, MINIMAX_OUTPUT_DIR, workspace/03-Resources/minimax-output/, then ./outputs/minimax/.]
+
+## Skill Version(s):
+
+0.2.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Turns a solved workflow into canonical knowledge docs and a self-contained ClawHub-publishable skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns a proven workflow into canonical knowledge documentation and a self-contained ClawHub-publishable skill bundle.
 
-## Publisher: <br>
-[grey0758](https://clawhub.ai/user/grey0758) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[grey0758](https://clawhub.ai/user/grey0758)
 
-## Use Case: <br>
-Developers and operators use this skill to convert validated troubleshooting or operations workflows into canonical Markdown docs and self-contained ClawHub skill bundles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or packaged skill content may include secrets, raw conversations, or machine-specific details if not reviewed before publishing or memory sync. <br>
-Mitigation: Review the generated skill folder before publishing or syncing, remove sensitive content, and confirm the intended ClawHub account, slug, version, and files. <br>
-Risk: Workflow guidance can drift from the canonical knowledge source or the published package. <br>
-Mitigation: Keep canonical Markdown docs, the self-contained skill bundle, changelog, and remote ClawHub package aligned before release. <br>
+## Use Case:
 
+Developers and documentation maintainers use this skill after a workflow has been proven in practice to preserve it as durable Markdown documentation and package it as a reusable ClawHub skill.
 
-## Reference(s): <br>
-- [ClawHub documentation](https://docs.openclaw.ai/tools/clawhub) <br>
-- [ClawHub skill page](https://clawhub.ai/grey0758/knowledge-to-clawhub-skill-publisher) <br>
-- [Publisher profile](https://clawhub.ai/user/grey0758) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual English and Chinese guidance where useful.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and CHANGELOG) <br>
+Risk: Generated skill packages could accidentally include secrets, machine-specific tokens, or raw transcripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated package contents before publishing and remove sensitive or one-off material.
+
+Risk: Publishing before the canonical documentation and bundled skill files are aligned could create a misleading reusable workflow.
+
+Mitigation: Compare the knowledge documentation, skill files, changelog, and remote package contents before release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/grey0758/skills/knowledge-to-clawhub-skill-publisher)
+- [OpenClaw ClawHub documentation](https://docs.openclaw.ai/tools/clawhub)
+- [README](artifact/README.md)
+- [Workflow](artifact/WORKFLOW.md)
+- [Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and file-structure guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces self-contained skill-package guidance and release verification steps.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

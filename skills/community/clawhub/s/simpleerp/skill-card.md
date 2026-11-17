@@ -1,50 +1,64 @@
-## Description: <br>
-Provides procedures for calling the SimpleERP HTTP API with curl or PowerShell across products, inventory, warehouses, orders, invoices, payments, returns, master data, reports, and admin operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agent procedures for calling the SimpleERP HTTP API with curl, curl.exe, or PowerShell across products, inventory, warehouses, orders, invoices, payments, returns, master data, reports, and admin endpoints.
 
-## Publisher: <br>
-[icystssi-lang](https://clawhub.ai/user/icystssi-lang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[icystssi-lang](https://clawhub.ai/user/icystssi-lang)
 
-## Use Case: <br>
-Developers, operators, and business-system administrators use this skill to have an agent inspect or operate a SimpleERP HTTP API instance through authenticated API calls. It supports read workflows, reports, and requested create, update, delete, inventory, order, permission, and API-key operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can direct an agent to change live ERP business, inventory, and admin data. <br>
-Mitigation: Use a test instance or least-privilege API key and manually review create, update, delete, inventory, order, permission, and API-key operations before execution. <br>
-Risk: Authenticated requests may target the wrong SimpleERP host or production environment. <br>
-Mitigation: Confirm the base URL before authenticated requests and avoid production admin keys unless the user explicitly requires them. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect and operate a SimpleERP backend through documented HTTP endpoints, including reads, writes, reports, and administrative workflows. It is intended for localhost or explicitly trusted SimpleERP API origins with appropriate API-key permissions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/icystssi-lang/simpleerp) <br>
-- [SimpleERP API Endpoint Reference](references/ENDPOINTS.md) <br>
-- [Admin and permissions](references/admin-and-permissions.md) <br>
-- [Master data endpoints](references/master-data-endpoints.md) <br>
-- [Products and pricing](references/products-and-pricing.md) <br>
-- [Inventory and deliveries](references/inventory-and-deliveries.md) <br>
-- [Documents, sales, and purchasing](references/documents-sales-purchasing.md) <br>
-- [Returns and memos](references/returns-and-memos.md) <br>
-- [Reports](references/reports.md) <br>
-- [Query filters](references/query-filters.md) <br>
-- [Workflows](references/workflows.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown with inline shell, curl, and PowerShell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute authenticated HTTP requests against the configured SimpleERP base URL when the user asks for API operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can send API keys and make persistent ERP or admin changes, including against a user-specified HTTP host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only localhost or an explicitly trusted HTTPS origin, avoid broad or admin API keys, and review write, delete, and admin actions before execution.
+
+Risk: API-key creation or rotation responses can expose sensitive key material.
+
+Mitigation: Treat API-key creation and rotation output as sensitive and store raw keys securely.
+
+## Reference(s):
+
+- [SimpleERP ClawHub listing](https://clawhub.ai/icystssi-lang/skills/simpleerp)
+- [SimpleERP API skill instructions](SKILL.md)
+- [SimpleERP API endpoint reference](references/ENDPOINTS.md)
+- [Master data endpoints](references/master-data-endpoints.md)
+- [Products, price lists, and related master data](references/products-and-pricing.md)
+- [Inventory and deliveries](references/inventory-and-deliveries.md)
+- [Sales and purchasing documents](references/documents-sales-purchasing.md)
+- [Returns and memos](references/returns-and-memos.md)
+- [Admin and permissions](references/admin-and-permissions.md)
+- [End-to-end workflow examples](references/workflows.md)
+- [Report curl examples](references/reports.md)
+- [List query filters](references/query-filters.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API calls, Configuration]
+
+**Output Format:** [Markdown guidance with curl and PowerShell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use x-api-key credentials supplied by the user or SIMPLEERP_API_KEY; GET /api/health can run without authentication.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

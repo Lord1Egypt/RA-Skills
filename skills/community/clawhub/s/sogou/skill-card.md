@@ -1,38 +1,54 @@
-## Description: <br>
-Organizes public Sogou Input Method information about features, downloads, platform support, permissions, privacy, and help resources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents organize public Sogou Input Method information about features, platform downloads, support resources, privacy, and permissions.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-Developers, support teams, and external users can use this skill to summarize official public Sogou Input Method pages, compare platform-specific download and version information, and collect help, FAQ, privacy, and permissions links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may follow changed or unofficial download links while gathering Sogou Input Method installers. <br>
-Mitigation: Verify download URLs remain on the official Sogou site before downloading or recommending installers. <br>
+## Use Case:
 
+External users and developers use this skill to find and summarize official public information about Sogou Input Method features, platform-specific downloads, help resources, privacy, permissions, version differences, and update notes.
 
-## Reference(s): <br>
-- [Sogou Input Method homepage](https://shurufa.sogou.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries and structured link lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses official public Sogou Input Method information; no code execution, credentials, persistence, or private-data access is described.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill may guide an agent to browse public Sogou pages and summarize download, help, privacy, and version information, which can become outdated or vary by platform.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use official Sogou public pages as the source of truth, cite the relevant page, and state the platform and version context when summarizing.
+
+Risk: Users could confuse public-information guidance with permission to install software, access private files, or change device settings.
+
+Mitigation: Keep outputs limited to public information and do not request credentials, private data, device access, or system changes.
+
+## Reference(s):
+
+- [Sogou Input Method homepage](https://shurufa.sogou.com/)
+- [ClawHub Sogou skill page](https://clawhub.ai/codekungfu/skills/sogou)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown summaries and structured lists with official links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should distinguish Android, iOS, Windows, and macOS information when platform differences matter.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

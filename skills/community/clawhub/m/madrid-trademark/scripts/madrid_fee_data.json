@@ -1,0 +1,572 @@
+{
+  "meta": {
+    "reference_date": "2026-10-11",
+    "fee_schedule_version": "2023-02-01",
+    "individual_fees_last_update": "2026-10-08",
+    "currency": "CHF",
+    "sources": {
+      "schedule_of_fees": "https://www.wipo.int/en/web/madrid-system/fees/sched",
+      "individual_fees": "https://www.wipo.int/en/web/madrid-system/fees/ind_taxes",
+      "fee_calculator": "https://madrid.wipo.int/feecalcapp/"
+    },
+    "maintenance": "人类可读的唯一权威源为 references/madrid-fees.md；本文件是其机器可读镜像。修改任一方的规费数值后，须同步另一方并运行 scripts/selftest.py 校验一致性。",
+    "verification_note": "规费为易变数据；本文件仅为基准日快照，出具正式金额前须按 SKILL.md §3.0 联网核验。"
+  },
+
+  "wipo_fees": {
+    "basic_application": { "black_white": 653, "color": 903 },
+    "basic_application_ldc": { "black_white": 65, "color": 90 },
+    "supplementary_fee_per_class_beyond_three": 100,
+    "complementary_fee_per_contracting_party": 100,
+    "subsequent_designation_basic": 300,
+    "renewal_basic": 653,
+    "grace_surcharge_percent_of_basic": 50,
+    "grace_surcharge_amount": 327,
+    "class_irregularity": {
+      "not_grouped_in_classes": { "base": 77, "per_term_beyond_20": 4 },
+      "incorrect_classification": { "base": 20, "per_term": 4 },
+      "waiver_below": 150
+    },
+    "miscellaneous_recordings": {
+      "total_transfer": 177,
+      "partial_transfer": 177,
+      "limitation_by_holder": 177,
+      "change_name_address": 150,
+      "recording_of_license": 177,
+      "continued_processing": 200,
+      "division": 177
+    },
+    "information": {
+      "detailed_certified_extract_up_to_3_pages": 155,
+      "detailed_extract_per_page_after_third": 10,
+      "simple_certified_extract_up_to_3_pages": 77,
+      "simple_extract_per_page_after_third": 2,
+      "single_attestation": 77,
+      "each_additional_attestation": 10,
+      "reprint_or_photocopy_per_page": 5
+    },
+    "special_services": "由国际局自行确定（费用表第 9 项）",
+    "continuation_of_effects": {
+      "fee_for_international_bureau": 23,
+      "fee_to_be_transferred_to_successor_state": 41
+    }
+  },
+
+  "fee_modes": {
+    "flat": "不限类数，固定金额",
+    "per_class": "每类",
+    "first_then_additional": "第 1 类 + 每附加类",
+    "first_second_additional": "第 1 类 + 第 2 类 + 每附加类",
+    "block_then_additional": "前 N 类整块 + 每附加类"
+  },
+
+  "individual_fees": {
+    "CN": {
+      "name_zh": "中国",
+      "application": { "mode": "first_then_additional", "first": 220, "additional": 110 },
+      "renewal": { "mode": "first_then_additional", "first": 441, "additional": 220 },
+      "collective": {
+        "application": { "mode": "first_then_additional", "first": 661, "additional": 331 }
+      }
+    },
+    "US": {
+      "name_zh": "美国",
+      "application": { "mode": "per_class", "amount": 460 },
+      "renewal": { "mode": "per_class", "amount": 249 }
+    },
+    "JP": {
+      "name_zh": "日本",
+      "application": { "mode": "first_then_additional", "first": 221, "additional": 208 },
+      "renewal": { "mode": "per_class", "amount": 218 }
+    },
+    "KR": {
+      "name_zh": "韩国",
+      "application": { "mode": "per_class", "amount": 150 },
+      "renewal": { "mode": "per_class", "amount": 172 }
+    },
+    "EU": {
+      "name_zh": "欧盟",
+      "application": { "mode": "first_second_additional", "first": 789, "second": 48, "additional": 144 },
+      "renewal": { "mode": "first_second_additional", "first": 789, "second": 48, "additional": 144 },
+      "collective": {
+        "application": { "mode": "first_second_additional", "first": 1346, "second": 48, "additional": 144 },
+        "renewal": { "mode": "first_second_additional", "first": 1346, "second": 48, "additional": 144 }
+      }
+    },
+    "GB": {
+      "name_zh": "英国",
+      "application": { "mode": "first_then_additional", "first": 240, "additional": 64 },
+      "renewal": { "mode": "first_then_additional", "first": 261, "additional": 64 }
+    },
+    "AU": {
+      "name_zh": "澳大利亚",
+      "application": { "mode": "per_class", "amount": 217 },
+      "renewal": { "mode": "per_class", "amount": 217 }
+    },
+    "CA": {
+      "name_zh": "加拿大",
+      "application": { "mode": "first_then_additional", "first": 282, "additional": 86 },
+      "renewal": { "mode": "first_then_additional", "first": 342, "additional": 107 }
+    },
+    "IN": {
+      "name_zh": "印度",
+      "application": { "mode": "per_class", "amount": 83 },
+      "renewal": { "mode": "per_class", "amount": 83 }
+    },
+    "SG": {
+      "name_zh": "新加坡",
+      "application": { "mode": "per_class", "amount": 265 },
+      "renewal": { "mode": "per_class", "amount": 310 }
+    },
+    "CH": {
+      "name_zh": "瑞士",
+      "application": { "mode": "block_then_additional", "block_classes": 3, "block_amount": 400, "additional": 50 },
+      "renewal": { "mode": "flat", "amount": 500 }
+    },
+    "TH": {
+      "name_zh": "泰国",
+      "application": { "mode": "per_class", "amount": 360 },
+      "renewal": { "mode": "per_class", "amount": 450 }
+    },
+    "VN": {
+      "name_zh": "越南",
+      "application": { "mode": "per_class", "amount": 109 },
+      "renewal": { "mode": "per_class", "amount": 97 }
+    },
+    "AE": {
+      "name_zh": "阿联酋",
+      "application": { "mode": "per_class", "amount": 1420 },
+      "renewal": { "mode": "per_class", "amount": 1420 }
+    },
+    "MX": {
+      "name_zh": "墨西哥",
+      "application": { "mode": "per_class", "amount": 132 },
+      "renewal": { "mode": "per_class", "amount": 127 }
+    },
+    "BR": {
+      "name_zh": "巴西",
+      "application": { "mode": "per_class", "amount": 251 },
+      "renewal": { "mode": "per_class", "amount": 146 },
+      "renewal_grace": { "mode": "per_class", "amount": 292 }
+    },
+    "OA": {
+      "name_zh": "非洲知识产权组织",
+      "application": { "mode": "first_then_additional", "first": 503, "additional": 105 },
+      "renewal": { "mode": "first_then_additional", "first": 699, "additional": 140 },
+      "renewal_grace": { "mode": "flat", "amount": 182, "additive": true }
+    },
+    "AG": {
+      "name_zh": "安提瓜和巴布达",
+      "application": { "mode": "flat", "amount": 192 },
+      "renewal": { "mode": "flat", "amount": 89 }
+    },
+    "AM": {
+      "name_zh": "亚美尼亚",
+      "application": { "mode": "first_then_additional", "first": 187, "additional": 19 },
+      "renewal": { "mode": "first_then_additional", "first": 187, "additional": 19 }
+    },
+    "BH": {
+      "name_zh": "巴林",
+      "application": { "mode": "per_class", "amount": 1321 },
+      "renewal": { "mode": "per_class", "amount": 1321 },
+      "collective": {
+        "application": { "mode": "per_class", "amount": 1625 },
+        "renewal": { "mode": "per_class", "amount": 1625 }
+      }
+    },
+    "JE": {
+      "name_zh": "泽西岛",
+      "application": { "mode": "first_then_additional", "first": 240, "additional": 64 },
+      "renewal": { "mode": "first_then_additional", "first": 261, "additional": 64 }
+    },
+    "GG": {
+      "name_zh": "根西岛",
+      "application": { "mode": "first_then_additional", "first": 213, "additional": 21 },
+      "renewal": { "mode": "first_then_additional", "first": 213, "additional": 21 }
+    },
+    "BY": {
+      "name_zh": "白俄罗斯",
+      "application": { "mode": "block_then_additional", "block_classes": 3, "block_amount": 600, "additional": 50 },
+      "renewal": { "mode": "flat", "amount": 700 }
+    },
+    "BZ": {
+      "name_zh": "伯利兹",
+      "application": { "mode": "first_then_additional", "first": 189, "additional": 40 },
+      "renewal": { "mode": "first_then_additional", "first": 149, "additional": 30 }
+    },
+    "BX": {
+      "name_zh": "比荷卢",
+      "application": { "mode": "first_second_additional", "first": 224, "second": 25, "additional": 75 },
+      "renewal": { "mode": "first_second_additional", "first": 243, "second": 27, "additional": 82 },
+      "collective": {
+        "application": { "mode": "first_second_additional", "first": 349, "second": 39, "additional": 117 },
+        "renewal": { "mode": "first_second_additional", "first": 442, "second": 50, "additional": 149 }
+      }
+    },
+    "BQ": {
+      "name_zh": "博内尔、圣尤斯特歇斯和萨巴",
+      "application": { "mode": "block_then_additional", "block_classes": 3, "block_amount": 163, "additional": 17 },
+      "renewal": { "mode": "block_then_additional", "block_classes": 3, "block_amount": 267, "additional": 47 },
+      "collective": {
+        "application": { "mode": "block_then_additional", "block_classes": 3, "block_amount": 233, "additional": 17 },
+        "renewal": { "mode": "block_then_additional", "block_classes": 3, "block_amount": 486, "additional": 47 }
+      }
+    },
+    "BN": {
+      "name_zh": "文莱",
+      "application": { "mode": "first_then_additional", "first": 172, "additional": 94 },
+      "renewal": { "mode": "per_class", "amount": 125 }
+    },
+    "BG": {
+      "name_zh": "保加利亚",
+      "application": { "mode": "block_then_additional", "block_classes": 3, "block_amount": 291, "additional": 19 },
+      "renewal": { "mode": "block_then_additional", "block_classes": 3, "block_amount": 143, "additional": 29 },
+      "collective": {
+        "application": { "mode": "block_then_additional", "block_classes": 3, "block_amount": 529, "additional": 48 },
+        "renewal": { "mode": "block_then_additional", "block_classes": 3, "block_amount": 286, "additional": 57 }
+      }
+    },
+    "CV": {
+      "name_zh": "佛得角",
+      "application": { "mode": "first_then_additional", "first": 159, "additional": 59 },
+      "renewal": { "mode": "per_class", "amount": 81 }
+    },
+    "KH": {
+      "name_zh": "柬埔寨",
+      "application": { "mode": "per_class", "amount": 120 },
+      "renewal": { "mode": "per_class", "amount": 120 }
+    },
+    "CL": {
+      "name_zh": "智利",
+      "application": { "mode": "per_class", "amount": 210 },
+      "renewal": { "mode": "per_class", "amount": 314 }
+    },
+    "CO": {
+      "name_zh": "哥伦比亚",
+      "application": { "mode": "first_then_additional", "first": 276, "additional": 138 },
+      "renewal": { "mode": "first_then_additional", "first": 151, "additional": 74 },
+      "renewal_grace": { "mode": "first_then_additional", "first": 206, "additional": 101 },
+      "collective": {
+        "application": { "mode": "first_then_additional", "first": 368, "additional": 184 }
+      }
+    },
+    "CU": {
+      "name_zh": "古巴",
+      "application": { "mode": "block_then_additional", "block_classes": 3, "block_amount": 239, "additional": 80 },
+      "renewal": { "mode": "block_then_additional", "block_classes": 3, "block_amount": 239, "additional": 80 },
+      "renewal_grace": { "mode": "block_then_additional", "block_classes": 3, "block_amount": 287, "additional": 80 },
+      "collective": {
+        "application": { "mode": "block_then_additional", "block_classes": 3, "block_amount": 279, "additional": 80 },
+        "renewal": { "mode": "block_then_additional", "block_classes": 3, "block_amount": 279, "additional": 80 },
+        "renewal_grace": { "mode": "block_then_additional", "block_classes": 3, "block_amount": 327, "additional": 80 }
+      },
+      "second_part": {
+        "mode": "flat",
+        "amount": 72,
+        "note": "古巴单独规费分两段缴纳：第一段于申请时缴，第二段于注册后由国际局通知缴纳；漏缴第二段则该缔约方保护未完成。"
+      }
+    },
+    "CW": {
+      "name_zh": "库拉索",
+      "application": { "mode": "block_then_additional", "block_classes": 3, "block_amount": 250, "additional": 26 },
+      "renewal": { "mode": "block_then_additional", "block_classes": 3, "block_amount": 250, "additional": 26 },
+      "collective": {
+        "application": { "mode": "block_then_additional", "block_classes": 3, "block_amount": 496, "additional": 51 },
+        "renewal": { "mode": "block_then_additional", "block_classes": 3, "block_amount": 496, "additional": 51 }
+      }
+    },
+    "DK": {
+      "name_zh": "丹麦",
+      "application": { "mode": "first_second_additional", "first": 301, "second": 30, "additional": 90 },
+      "renewal": { "mode": "first_second_additional", "first": 301, "second": 30, "additional": 90 }
+    },
+    "EE": {
+      "name_zh": "爱沙尼亚",
+      "application": { "mode": "first_then_additional", "first": 133, "additional": 41 },
+      "renewal": { "mode": "flat", "amount": 165 },
+      "collective": {
+        "application": { "mode": "first_then_additional", "first": 179, "additional": 41 },
+        "renewal": { "mode": "flat", "amount": 206 }
+      }
+    },
+    "FI": {
+      "name_zh": "芬兰",
+      "application": { "mode": "first_then_additional", "first": 233, "additional": 93 },
+      "renewal": { "mode": "first_then_additional", "first": 233, "additional": 93 },
+      "collective": {
+        "application": { "mode": "first_then_additional", "first": 317, "additional": 93 },
+        "renewal": { "mode": "first_then_additional", "first": 317, "additional": 93 }
+      }
+    },
+    "GM": {
+      "name_zh": "冈比亚",
+      "application": { "mode": "per_class", "amount": 80 },
+      "renewal": { "mode": "flat", "amount": 199 }
+    },
+    "GE": {
+      "name_zh": "格鲁吉亚",
+      "application": { "mode": "first_then_additional", "first": 314, "additional": 115 },
+      "renewal": { "mode": "first_then_additional", "first": 314, "additional": 115 }
+    },
+    "GH": {
+      "name_zh": "加纳",
+      "application": { "mode": "per_class", "amount": 318 },
+      "renewal": { "mode": "per_class", "amount": 310 }
+    },
+    "GR": {
+      "name_zh": "希腊",
+      "application": { "mode": "first_then_additional", "first": 112, "additional": 19 },
+      "renewal": { "mode": "first_then_additional", "first": 103, "additional": 19 },
+      "collective": {
+        "application": { "mode": "first_then_additional", "first": 562, "additional": 94 },
+        "renewal": { "mode": "first_then_additional", "first": 515, "additional": 94 }
+      }
+    },
+    "GD": {
+      "name_zh": "格林纳达",
+      "application": { "mode": "first_then_additional", "first": 325, "additional": 153 },
+      "renewal": { "mode": "first_then_additional", "first": 325, "additional": 153 }
+    },
+    "IS": {
+      "name_zh": "冰岛",
+      "application": { "mode": "first_then_additional", "first": 257, "additional": 56 },
+      "renewal": { "mode": "first_then_additional", "first": 257, "additional": 56 }
+    },
+    "ID": {
+      "name_zh": "印度尼西亚",
+      "application": { "mode": "per_class", "amount": 91 },
+      "renewal": { "mode": "per_class", "amount": 114 },
+      "renewal_grace": { "mode": "per_class", "amount": 229 }
+    },
+    "IE": {
+      "name_zh": "爱尔兰",
+      "application": { "mode": "first_then_additional", "first": 228, "additional": 65 },
+      "renewal": { "mode": "first_then_additional", "first": 233, "additional": 116 }
+    },
+    "IL": {
+      "name_zh": "以色列",
+      "application": { "mode": "first_then_additional", "first": 471, "additional": 354 },
+      "renewal": { "mode": "first_then_additional", "first": 840, "additional": 709 }
+    },
+    "IT": {
+      "name_zh": "意大利",
+      "application": { "mode": "first_then_additional", "first": 85, "additional": 28 },
+      "renewal": { "mode": "first_then_additional", "first": 56, "additional": 28 },
+      "collective": {
+        "application": { "mode": "flat", "amount": 282 },
+        "renewal": { "mode": "flat", "amount": 169 }
+      }
+    },
+    "JM": {
+      "name_zh": "牙买加",
+      "application": { "mode": "first_then_additional", "first": 157, "additional": 21 },
+      "renewal": { "mode": "first_then_additional", "first": 98, "additional": 21 },
+      "collective": {
+        "application": { "mode": "first_then_additional", "first": 254, "additional": 21 },
+        "renewal": { "mode": "first_then_additional", "first": 98, "additional": 21 }
+      }
+    },
+    "KZ": {
+      "name_zh": "哈萨克斯坦",
+      "application": { "mode": "block_then_additional", "block_classes": 3, "block_amount": 255, "additional": 76 },
+      "renewal": { "mode": "block_then_additional", "block_classes": 3, "block_amount": 359, "additional": 54 },
+      "collective": {
+        "application": { "mode": "block_then_additional", "block_classes": 3, "block_amount": 474, "additional": 57 }
+      }
+    },
+    "KE": {
+      "name_zh": "肯尼亚",
+      "application": { "mode": "first_then_additional", "first": 268, "additional": 192 },
+      "renewal": { "mode": "first_then_additional", "first": 153, "additional": 115 }
+    },
+    "KG": {
+      "name_zh": "吉尔吉斯斯坦",
+      "application": { "mode": "first_then_additional", "first": 340, "additional": 160 },
+      "renewal": { "mode": "flat", "amount": 500 }
+    },
+    "LA": {
+      "name_zh": "老挝",
+      "application": { "mode": "first_then_additional", "first": 41, "additional": 29 },
+      "renewal": { "mode": "first_then_additional", "first": 41, "additional": 29 }
+    },
+    "MY": {
+      "name_zh": "马来西亚",
+      "application": { "mode": "per_class", "amount": 221 },
+      "renewal": { "mode": "per_class", "amount": 201 }
+    },
+    "MU": {
+      "name_zh": "毛里求斯",
+      "application": { "mode": "first_then_additional", "first": 105, "additional": 35 },
+      "renewal": { "mode": "first_then_additional", "first": 88, "additional": 35 }
+    },
+    "MA": {
+      "name_zh": "摩洛哥",
+      "application": { "mode": "first_then_additional", "first": 205, "additional": 41 },
+      "renewal": { "mode": "first_then_additional", "first": 205, "additional": 41 }
+    },
+    "NZ": {
+      "name_zh": "新西兰",
+      "application": { "mode": "per_class", "amount": 46 },
+      "renewal": { "mode": "per_class", "amount": 92 }
+    },
+    "NO": {
+      "name_zh": "挪威",
+      "application": { "mode": "first_then_additional", "first": 309, "additional": 81 },
+      "renewal": { "mode": "first_then_additional", "first": 276, "additional": 106 },
+      "collective": {
+        "application": { "mode": "first_then_additional", "first": 325, "additional": 134 },
+        "renewal": { "mode": "first_then_additional", "first": 418, "additional": 171 }
+      }
+    },
+    "PK": {
+      "name_zh": "巴基斯坦",
+      "application": { "mode": "per_class", "amount": 47 },
+      "renewal": { "mode": "per_class", "amount": 41 }
+    },
+    "OM": {
+      "name_zh": "阿曼",
+      "application": { "mode": "first_then_additional", "first": 417, "additional": 417 },
+      "renewal": { "mode": "first_then_additional", "first": 625, "additional": 625 },
+      "collective": {
+        "application": { "mode": "first_then_additional", "first": 1042, "additional": 1042 },
+        "renewal": { "mode": "first_then_additional", "first": 1250, "additional": 1250 }
+      }
+    },
+    "PH": {
+      "name_zh": "菲律宾",
+      "application": { "mode": "per_class", "amount": 74 },
+      "renewal": { "mode": "per_class", "amount": 114 }
+    },
+    "QA": {
+      "name_zh": "卡塔尔",
+      "application": { "mode": "per_class", "amount": 984 },
+      "renewal": { "mode": "per_class", "amount": 765 }
+    },
+    "MD": {
+      "name_zh": "摩尔多瓦",
+      "application": { "mode": "first_then_additional", "first": 223, "additional": 47 },
+      "renewal": { "mode": "first_then_additional", "first": 233, "additional": 47 },
+      "collective": {
+        "application": { "mode": "first_then_additional", "first": 270, "additional": 47 },
+        "renewal": { "mode": "first_then_additional", "first": 372, "additional": 47 }
+      }
+    },
+    "WS": {
+      "name_zh": "萨摩亚",
+      "application": { "mode": "per_class", "amount": 146 },
+      "renewal": { "mode": "per_class", "amount": 146 }
+    },
+    "SA": {
+      "name_zh": "沙特阿拉伯",
+      "application": { "mode": "per_class", "amount": 1397 },
+      "renewal": { "mode": "per_class", "amount": 1397 },
+      "renewal_grace": { "mode": "per_class", "amount": 1612 },
+      "collective": {
+        "application": { "mode": "per_class", "amount": 1719 }
+      }
+    },
+    "SM": {
+      "name_zh": "圣马力诺",
+      "application": { "mode": "first_then_additional", "first": 140, "additional": 47 },
+      "renewal": { "mode": "first_then_additional", "first": 140, "additional": 47 },
+      "collective": {
+        "application": { "mode": "first_then_additional", "first": 234, "additional": 47 },
+        "renewal": { "mode": "first_then_additional", "first": 234, "additional": 47 }
+      }
+    },
+    "SX": {
+      "name_zh": "荷属圣马丁",
+      "application": { "mode": "block_then_additional", "block_classes": 3, "block_amount": 260, "additional": 27 },
+      "renewal": { "mode": "block_then_additional", "block_classes": 3, "block_amount": 260, "additional": 27 },
+      "collective": {
+        "application": { "mode": "block_then_additional", "block_classes": 3, "block_amount": 516, "additional": 53 },
+        "renewal": { "mode": "block_then_additional", "block_classes": 3, "block_amount": 516, "additional": 53 }
+      }
+    },
+    "SE": {
+      "name_zh": "瑞典",
+      "application": { "mode": "first_then_additional", "first": 194, "additional": 76 },
+      "renewal": { "mode": "first_then_additional", "first": 194, "additional": 76 }
+    },
+    "SY": {
+      "name_zh": "叙利亚",
+      "application": { "mode": "per_class", "amount": 215 },
+      "renewal": { "mode": "per_class", "amount": 215 }
+    },
+    "TJ": {
+      "name_zh": "塔吉克斯坦",
+      "application": { "mode": "first_then_additional", "first": 274, "additional": 21 },
+      "renewal": { "mode": "first_then_additional", "first": 274, "additional": 21 }
+    },
+    "TT": {
+      "name_zh": "特立尼达和多巴哥",
+      "application": { "mode": "first_then_additional", "first": 166, "additional": 18 },
+      "renewal": { "mode": "flat", "amount": 166 }
+    },
+    "TN": {
+      "name_zh": "突尼斯",
+      "application": { "mode": "first_then_additional", "first": 161, "additional": 32 },
+      "renewal": { "mode": "first_then_additional", "first": 210, "additional": 48 }
+    },
+    "TR": {
+      "name_zh": "土耳其",
+      "application": { "mode": "first_second_additional", "first": 143, "second": 41, "additional": 46 },
+      "renewal": { "mode": "block_then_additional", "block_classes": 2, "block_amount": 127, "additional": 11 },
+      "renewal_grace": { "mode": "block_then_additional", "block_classes": 2, "block_amount": 222, "additional": 18 }
+    },
+    "TM": {
+      "name_zh": "土库曼斯坦",
+      "application": { "mode": "first_then_additional", "first": 199, "additional": 80 },
+      "renewal": { "mode": "first_then_additional", "first": 399, "additional": 199 }
+    },
+    "UA": {
+      "name_zh": "乌克兰",
+      "application": { "mode": "block_then_additional", "block_classes": 3, "block_amount": 383, "additional": 77 },
+      "renewal": { "mode": "flat", "amount": 383 }
+    },
+    "UZ": {
+      "name_zh": "乌兹别克斯坦",
+      "application": { "mode": "first_then_additional", "first": 245, "additional": 100 },
+      "renewal": { "mode": "first_then_additional", "first": 123, "additional": 82 },
+      "collective": {
+        "application": { "mode": "first_then_additional", "first": 368, "additional": 61 },
+        "renewal": { "mode": "first_then_additional", "first": 245, "additional": 41 }
+      }
+    },
+    "ZM": {
+      "name_zh": "赞比亚",
+      "application": { "mode": "first_then_additional", "first": 58, "additional": 47 },
+      "renewal": { "mode": "first_then_additional", "first": 194, "additional": 155 }
+    },
+    "ZW": {
+      "name_zh": "津巴布韦",
+      "application": { "mode": "first_then_additional", "first": 80, "additional": 48 },
+      "renewal": { "mode": "flat", "amount": 64 },
+      "note": "津巴布韦续展金额在原官方页面抓取时被截断，须联网复核后方可采用。"
+    }
+  },
+
+  "effective_date_changes": [
+    {
+      "effective_date": "2026-11-01",
+      "source": "madrid_feecalc_live.py --date 2026/11/01 实测 WIPO Fee Calculator（2026-09-24）；人类可读记录见 references/madrid-fees.md §十「已公告的费率调整」",
+      "scope": "本次抽查的 45 个缔约方中仅印度尼西亚、以色列调整；基本费 653/903、补充费 100、附加费 100 未变。",
+      "changes": {
+        "ID": { "application": { "mode": "per_class", "amount": 125 } },
+        "IL": { "application": { "mode": "first_then_additional", "first": 503 } }
+      },
+      "undocumented_components": [
+        "ID:renewal",
+        "ID:renewal_grace",
+        "IL:renewal"
+      ]
+    }
+  ],
+
+  "not_listed_examples": {
+    "RU": {
+      "name_zh": "俄罗斯",
+      "reason": "WIPO 单独规费页未列名，适用标准补充费 100 CHF/缔约方（未声明单独规费）。"
+    }
+  }
+}

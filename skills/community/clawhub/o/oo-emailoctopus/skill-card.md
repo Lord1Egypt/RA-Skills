@@ -1,45 +1,58 @@
-## Description: <br>
-EmailOctopus lets an agent operate EmailOctopus through the OOMOL oo CLI to read campaigns, lists, and contacts and to create, update, or delete contacts with confirmation for state-changing actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use EmailOctopus to read, create, update, and delete data through a connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to manage EmailOctopus marketing data from an agent through their OOMOL-connected account. It supports campaign, list, and contact lookup plus contact creation, updates, and deletion when the user can review and approve state-changing actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate an EmailOctopus account through OOMOL-managed credentials. <br>
-Mitigation: Install only when the agent should access that account, and keep OOMOL and EmailOctopus account access limited to intended users. <br>
-Risk: Contact creation, updates, and deletion can change or remove EmailOctopus data. <br>
-Mitigation: Review the exact action payload and target, then require explicit user approval before running write or destructive actions. <br>
-Risk: First-time setup may involve remote installer commands for the oo CLI. <br>
-Mitigation: Prefer the official oo CLI install guide or verify installer contents before running remote install commands. <br>
+## Use Case:
 
+External users can use this skill to inspect EmailOctopus campaigns, mailing lists, and contacts, and to create, update, or remove list contacts through a connected account.
 
-## Reference(s): <br>
-- [ClawHub EmailOctopus skill page](https://clawhub.ai/oomol/oo-emailoctopus) <br>
-- [EmailOctopus homepage](https://emailoctopus.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with oo CLI shell commands and JSON payload examples; connector responses are JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before action execution and requires user confirmation for write or destructive actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and artifact metadata) <br>
+Risk: First-time setup runs a remote installer that has not been verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer and prefer a reviewed, version-pinned CLI installation before setup.
+
+Risk: Startup synchronization may install additional agent skills.
+
+Mitigation: Review synchronization behavior; set OO_SKILLS_SYNC_DISABLED=1 when additional agent skills are unwanted.
+
+Risk: Creating, updating, or deleting contacts changes EmailOctopus data.
+
+Mitigation: Confirm the exact target and payload with the user before write or destructive actions.
+
+## Reference(s):
+
+- [oo CLI command documentation](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md)
+- [EmailOctopus API documentation](https://emailoctopus.com/api-documentation)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell command and JSON examples; API responses in JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

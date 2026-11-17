@@ -1,0 +1,208 @@
+{
+  "name": "MC Ecosystem Adaptation Engineer",
+  "name_zh": "MC全生态智能适配工程师",
+  "slug": "mc-ecosystem-adapt-engineer",
+  "version": "1.0.4",
+  "description": "One-stop Minecraft mod ecosystem intelligent management tool with 15 features including mod search, environment setup, Mixin conflict scanning, crash fix, translation, migration assessment, save sync, authorization management, online payment system, admin dashboard, and automated business reports. Supports 12 languages with auto-detection. V1.0.4: Complete commercialization support - integrated payment system (Alipay/WeChat/PayPal), admin dashboard, automated operational reports, Arabic language support with RTL.",
+  "description_zh": "Minecraft 模组全生态智能适配工具，支持模组检索、环境搭建、Mixin冲突扫描、崩溃修复、汉化、移植评估、存档同步、授权管理、在线支付系统、管理员控制台、自动化运营报表等15大功能，支持12种语言自动切换。V1.0.4：重大版本更新，构建完整商业化运营体系——集成三渠道支付（支付宝/微信/PayPal）、管理员控制台、自动化运营报表、新增阿拉伯语RTL支持。",
+  "author": "Liang030214",
+  "homepage": "https://github.com/Liang030214/mc-skill-v1",
+  "icon": "assets/icon-market.jpg",
+  "icon_local": "assets/icon-local.jpg",
+  "category": "games",
+  "license": "MIT",
+  "language": "en",
+  "languages_supported": [
+    "en",
+    "zh",
+    "ja",
+    "ko",
+    "ru",
+    "es",
+    "it",
+    "el",
+    "th",
+    "hi",
+    "ar"
+  ],
+  "min_agent_version": "1.0.0",
+  "tags": [
+    "minecraft",
+    "mod",
+    "forge",
+    "fabric",
+    "neoforge",
+    "quilt",
+    "mixin",
+    "translation",
+    "crash-fix",
+    "migration",
+    "chinese",
+    "i18n",
+    "multilingual",
+    "save-sync",
+    "authorization",
+    "offline-mode",
+    "api-cache",
+    "payment",
+    "admin-dashboard",
+    "business-report",
+    "alipay",
+    "wechat-pay",
+    "paypal",
+    "arabic",
+    "rtl"
+  ],
+  "features": {
+    "F1": {
+      "name": "JAR Structure Parser",
+      "name_zh": "JAR结构解析",
+      "description": "Parse mod JAR metadata (mcmod.info, fabric.mod.json, mods.toml)",
+      "permissions": [
+        "file_read"
+      ]
+    },
+    "F2": {
+      "name": "Mod Search & Download",
+      "name_zh": "模组检索下载",
+      "description": "Search and download mods from Modrinth with version and loader filters (supports batch search, category search, similar mod recommendations)",
+      "permissions": [
+        "network"
+      ]
+    },
+    "F3": {
+      "name": "Environment Setup Guide",
+      "name_zh": "环境引导搭建",
+      "description": "Intelligently recommend MC version and loader combinations",
+      "permissions": []
+    },
+    "F4": {
+      "name": "Mixin Conflict Scanner",
+      "name_zh": "Mixin冲突扫描",
+      "description": "Detect Mixin injection conflicts between multiple mods",
+      "permissions": [
+        "file_read"
+      ]
+    },
+    "F5": {
+      "name": "Resource Repacker",
+      "name_zh": "资源重打包",
+      "description": "Repack and optimize mod resource files",
+      "permissions": [
+        "file_read",
+        "file_write"
+      ]
+    },
+    "F6": {
+      "name": "Save Sync",
+      "name_zh": "存档同步",
+      "description": "Backup and restore game saves via Baidu Netdisk sync (supports PC-to-mobile handoff)",
+      "permissions": [
+        "file_read",
+        "file_write"
+      ]
+    },
+    "F7": {
+      "name": "Multi-Language Translation",
+      "name_zh": "多语言翻译",
+      "description": "Translate mods to target languages with 12-language auto-detection (including Arabic RTL support)",
+      "permissions": [
+        "file_read",
+        "file_write"
+      ]
+    },
+    "F8": {
+      "name": "Crash Fix",
+      "name_zh": "报错修复",
+      "description": "Intelligently analyze crash logs and provide fix suggestions",
+      "permissions": [
+        "file_read"
+      ]
+    },
+    "F8.1": {
+      "name": "Auto Fix",
+      "name_zh": "自动修复",
+      "description": "One-click mod upgrade to resolve crash issues",
+      "permissions": [
+        "file_read",
+        "file_write"
+      ]
+    },
+    "F9": {
+      "name": "Migration Feasibility Assessment",
+      "name_zh": "移植可行性评估",
+      "description": "Assess feasibility of cross-version/cross-loader migration",
+      "permissions": [
+        "file_read"
+      ]
+    },
+    "F10": {
+      "name": "Authorization & Usage Management",
+      "name_zh": "授权与使用管理",
+      "description": "Local machine ID generation, daily usage counting, free period management (60 days), membership tier management, and license activation",
+      "permissions": [
+        "local_storage",
+        "system_info"
+      ],
+      "data_collected": {
+        "machine_id": "Hash of MAC address, hostname, OS (stored locally)",
+        "usage_stats": "Daily and total feature usage counts (stored locally)",
+        "membership": "Tier and license info (stored locally)",
+        "first_use_date": "Date of first usage for free period calculation (stored locally)"
+      },
+      "external_transmission": "None by default. Optional AUTH_SERVER_URL is disabled in V1.0.1"
+    },
+    "F11": {
+      "name": "Payment Guide Page",
+      "name_zh": "付费引导页面",
+      "description": "Three-level progressive payment guidance: Level 1 shows friendly reminder when free trial ends or limits reached; Level 2 shows subscription plans (monthly/quarterly/yearly) only if user views; Level 3 shows developer support options (WeChat/Afdian/QQ/website QR codes). No browser auto-open - user manually opens the generated HTML page.",
+      "permissions": [],
+      "enabled": true,
+      "note": "Enabled in V1.0.4. Progressive guidance: friendly reminder first, subscription plans only on user request, developer support as alternative. QR codes loaded from assets/payment/ directory. Supports 12 languages with RTL for Arabic."
+    },
+    "F12": {
+      "name": "Online Payment System",
+      "name_zh": "在线支付系统",
+      "description": "Complete payment system supporting Alipay (mini merchant API), WeChat Pay (mini merchant API), and PayPal (personal seller account) with 3 subscription plans (monthly/quarterly/yearly)",
+      "permissions": [
+        "network"
+      ],
+      "enabled": true,
+      "note": "Added in V1.0.4. Three payment channels, each with independent QR codes. Currency display: CNY for Chinese locale, USD for other locales."
+    },
+    "F13": {
+      "name": "Admin Dashboard",
+      "name_zh": "管理员控制台",
+      "description": "Web-based admin console for user management, order tracking, permission control, email configuration, and notification settings",
+      "permissions": [
+        "network"
+      ],
+      "enabled": true,
+      "note": "Added in V1.0.4. Admin key auto-generated on server startup, 1-hour token expiry, stored in memory only."
+    },
+    "F14": {
+      "name": "Automated Business Reports",
+      "name_zh": "自动化运营报表",
+      "description": "Automated operational reports including inactive user list, subscription expiry reminders (weekly), and monthly business summary reports",
+      "permissions": [
+        "network"
+      ],
+      "enabled": true,
+      "note": "Added in V1.0.4. Three report types: sleep users (monthly+weekly), expiry reminders (weekly), monthly business summary. All configurable and support test emails."
+    }
+  },
+  "permissions_declaration": {
+    "file_read": "Read mod JARs, crash logs, config files",
+    "file_write": "Write repacked mods, backup saves, upgrade mods",
+    "network": "Download mods from Modrinth; optional auth verification",
+    "browser_open": "Open payment guide HTML page in browser",
+    "local_storage": "Store auth state, usage counts (auth_state.json)",
+    "system_info": "Generate machine ID (MAC, hostname, OS)"
+  },
+  "data_collection_declaration": {
+    "local_storage": "data/auth_state.json - stores machine ID, usage counts, membership tier, license info",
+    "external_transmission": "No data transmitted to external servers by default",
+    "free_period": "60 days from first use, stored locally",
+    "usage_limits": "After 60-day free period ends: Free users 20 auto/day, 8 semi/day, 1 migration/day; Normal members 100 auto/day, 50 semi/day, 5 migration/day"
+  }
+}

@@ -1,50 +1,64 @@
-## Description: <br>
-天福寿园门店信息查询。当用户询问天福寿园相关问题时触发，包括门店地址、营业时间、联系方式、服务项目、价格范围、预约方式、寿衣礼服定制、丧葬用品采购、品牌理念、全国门店分布。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tianfushouyuan store information query skill for questions about store addresses, hours, contacts, services, price ranges, reservations, funeral clothing customization, funeral goods, brand background, and national store distribution.
 
-## Publisher: <br>
-[mhszkcmjs](https://clawhub.ai/user/mhszkcmjs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mhszkcmjs](https://clawhub.ai/user/mhszkcmjs)
 
-## Use Case: <br>
-External users and support agents use this skill to answer Tianfushouyuan store, service, pricing, booking, and contact questions from the provided brand and store reference files. It is especially oriented toward funeral-service inquiries where responses should be respectful, concise, and directed to official channels for confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Store details, phone numbers, service availability, and pricing may become stale or incomplete. <br>
-Mitigation: Tell users to verify addresses, phone numbers, prices, and service availability directly through official Tianfushouyuan channels before relying on them. <br>
-Risk: The skill may activate on some generic store or service questions because the trigger terms are broad. <br>
-Mitigation: Use the skill when the request is clearly about Tianfushouyuan, funeral-service products, store locations, booking, or related service information. <br>
+## Use Case:
 
+External users and customer-support agents use this skill to answer Tianfushouyuan store, service, product, price, appointment, and contact questions in Chinese. It is most useful when users need concise guidance for a specific city, store, or funeral-service need.
 
-## Reference(s): <br>
-- [Tianfushouyuan Official Website](https://www.tfsy.com/) <br>
-- [Tianfushouyuan Official Store](https://store.tfsy.com/) <br>
-- [天福寿园 · 北京石景山店（旗舰店）](references/stores/shijingshan.md) <br>
-- [天福寿园 · 北京朝阳都会国际店](references/stores/beijing-chaoyang.md) <br>
-- [天福寿园 · 上海长宁店](references/stores/shanghai.md) <br>
-- [天福寿园 · 深圳龙岗店](references/stores/shenzhen.md) <br>
-- [天福寿园 · 杭州海创科技中心店](references/stores/hangzhou.md) <br>
-- [天福寿园 · 郑州广汇国贸店（运营中心）](references/stores/zhengzhou.md) <br>
-- [天福寿园 · 西安阳阳国际店](references/stores/xian.md) <br>
-- [天福寿园 · 南京清江苏宁广场店](references/stores/nanjing.md) <br>
-- [天福寿园 · 加盟店分布](references/stores/franchise.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text answers with store details, contact information, service summaries, and guidance to verify details with official channels] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, install commands, credentials, persistence, or hidden data access are described by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Store details such as phone numbers, addresses, prices, and hours may be outdated, incomplete, or unsuitable for urgent reliance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify details with official Tianfushouyuan channels before relying on them for travel, purchase, appointment, or service decisions.
+
+Risk: The skill may answer in Chinese and may activate on broad store or funeral-service questions.
+
+Mitigation: Confirm the user wants Tianfushouyuan-specific information and use the skill's empathetic response posture for bereavement-related questions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mhszkcmjs/skills/tianfushouyuan-skill)
+- [Tianfushouyuan official website](https://www.tfsy.com/)
+- [Tianfushouyuan official store](https://store.tfsy.com/)
+- [Beijing Chaoyang store reference](references/stores/beijing-chaoyang.md)
+- [Franchise store reference](references/stores/franchise.md)
+- [Hangzhou store reference](references/stores/hangzhou.md)
+- [Nanjing store reference](references/stores/nanjing.md)
+- [Shanghai store reference](references/stores/shanghai.md)
+- [Shenzhen store reference](references/stores/shenzhen.md)
+- [Beijing Shijingshan flagship store reference](references/stores/shijingshan.md)
+- [Xi'an store reference](references/stores/xian.md)
+- [Zhengzhou store reference](references/stores/zhengzhou.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-language Markdown responses with store and service details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution; responses should direct users to official Tianfushouyuan channels when details need confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

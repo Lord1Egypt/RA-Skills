@@ -1,39 +1,56 @@
-## Description: <br>
-Marketing strategy simulation with multi-agent analysis for evaluating strategies, product launches, campaigns, and market reactions from consumer, marketer, and expert perspectives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Marketing strategy simulation with multi-agent analysis for evaluating strategies, product launches, campaigns, and consumer, expert, and marketer perspectives on marketing decisions.
 
-## Publisher: <br>
-[dorongss](https://clawhub.ai/user/dorongss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dorongss](https://clawhub.ai/user/dorongss)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Marketing teams, product owners, and founders use this skill to simulate Korean-language reactions to a marketing scenario before committing to product-launch, campaign, or page-optimization decisions. It coordinates scenario framing, consumer personas, marketing analysis, and expert review into a scored report with action items.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Outputs are hardcoded to Korean and may not fit non-Korean workflows.
+
+Mitigation: Confirm language expectations before use or adapt the prompts before deployment.
+
+Risk: The workflow may run five sequential analysis agents, increasing latency and token cost.
+
+Mitigation: Budget for longer execution and review whether all five perspectives are needed for the scenario.
+
+Risk: Marketing scores and recommendations are simulated perspectives, not market validation.
+
+Mitigation: Use the report as ideation input and validate decisions with customer, campaign, and business data.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Marketing teams, founders, and product strategists use this skill to simulate a marketing scenario through sequential specialist perspectives and receive a consolidated report with scores, insights, risks, and prioritized action items. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Marketing recommendations and market scores may be incorrect, incomplete, or unsuitable for a specific campaign or audience. <br>
-Mitigation: Validate findings with current market research, campaign data, and human marketing review before making business decisions. <br>
-Risk: The skill generates strategic opinions and simulated consumer reactions rather than verified market outcomes. <br>
-Mitigation: Treat outputs as planning input and test important claims through user research, experiments, or campaign measurement. <br>
+**Output Format:** [Korean Markdown report with scores, insights, risks, and prioritized action items]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Uses five sequential analysis perspectives; outputs are hardcoded to Korean.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance] <br>
-**Output Format:** [Markdown report with scores and action items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Final report is synthesized from five sequential agent perspectives and is primarily written in Korean.] <br>
+1.1.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

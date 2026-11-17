@@ -1,7 +1,7 @@
 ---
 name: catchup
 description: Summarizes recent git changes for context recovery after session breaks
-version: 1.9.8
+version: 1.10.3
 triggers:
   - summarization
   - context-acquisition
@@ -13,17 +13,8 @@ source: claude-night-market
 source_plugin: imbue
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/imbue](https://github.com/athola/claude-night-market/tree/master/plugins/imbue). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/imbue](https://github.com/athola/claude-night-market/tree/master/plugins/imbue). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
-
-## Table of Contents
-
-- [Overview](#overview)
-- [When to Use](#when-to-use)
-- [Activation](#activation)
-- [Progressive Loading](#progressive-loading)
-- [4-Step Methodology](#4-step-methodology)
-- [Output Format](#output-format)
 
 # Catchup Analysis Methodology
 
@@ -57,9 +48,9 @@ Load modules based on context:
 
 **Logs/Events**: Load `modules/log-analysis-patterns.md` for time-series and metric analysis.
 
-**Always Available**: `imbue:proof-of-work`, TodoWrite workflow, structured output.
+**Always Available**: `imbue:proof-of-work`, progress-item workflow, structured output.
 
-## Required TodoWrite Items
+## Required Progress Items
 1. `catchup:context-confirmed` - Boundaries established
 2. `catchup:delta-captured` - Changes enumerated
 3. `catchup:insights-extracted` - Themes identified
@@ -102,6 +93,11 @@ Use `imbue:diff-analysis` for risk assessment, `imbue:proof-of-work` for reprodu
 Reference paths and lines (don't reproduce). Summarize outputs. Defer deep analysis. Use progressive loading.
 
 ## Exit Criteria
-- Four TodoWrite items completed
-- Context/delta/insights/follow-ups captured
-- Stakeholders understand state without re-reading sources
+
+- [ ] All four `catchup:` progress items are marked complete
+- [ ] The Summary names the baseline it compared against: a git ref,
+  a date, or a document version
+- [ ] Key Changes lists each changed area with a file path or source
+  reference
+- [ ] Follow-ups and Blockers/Questions are present, each filled or
+  marked "none"

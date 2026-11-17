@@ -1,0 +1,4 @@
+interface:
+  display_name: "Kre Video Translator｜视频翻译 Skill"
+  short_description: "AI video translation and subtitle export / AI 视频翻译"
+  default_prompt: "Use $kre-video-translator to translate a local file or video URL into reviewed subtitles or a subtitled video."

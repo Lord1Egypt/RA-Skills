@@ -1,44 +1,55 @@
-## Description: <br>
-Converts UI screenshots into HTML/CSS or React components by analyzing layout, colors, typography, and spacing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts UI screenshots or images into working HTML/CSS or React and Tailwind components.
 
-## Publisher: <br>
-[wangjipeng977](https://clawhub.ai/user/wangjipeng977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangjipeng977](https://clawhub.ai/user/wangjipeng977)
 
-## Use Case: <br>
-Developers and designers use this skill to turn UI screenshots, mockups, or app screens into runnable HTML/CSS, React with Tailwind, or a concise layout description. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Screenshots may include secrets, personal data, account details, customer information, or internal dashboards. <br>
-Mitigation: Crop or redact sensitive screenshot content before using the skill. <br>
-Risk: Screenshots are sent to the vision model configured in the user's OpenClaw environment. <br>
-Mitigation: Install and use the skill only when that model-processing path is acceptable for the screenshot content. <br>
-Risk: Generated UI code may not perfectly match the source screenshot or project conventions. <br>
-Mitigation: Review and test generated code before integrating it into an application. <br>
+## Use Case:
 
+Developers and designers use this skill to turn UI screenshots, mockups, or app images into runnable frontend code or a concise layout description.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wangjipeng977/ai-image-to-code) <br>
-- [README](README.md) <br>
-- [Reference Index](references/index.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with HTML/CSS or React and Tailwind code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce a layout-only description when the describe mode is requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-999.0.1 (source: server release evidence) <br>
+Risk: Screenshots can contain API keys, customer data, private dashboards, unreleased product designs, or other confidential information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact sensitive or confidential screenshot content before using the skill.
+
+Risk: Generated UI code can reproduce visual structure but may still require validation for correctness, accessibility, and project conventions.
+
+Mitigation: Review and test generated code before adding it to an application.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangjipeng977/skills/ai-image-to-code)
+- [Skill README](artifact/README.md)
+- [Skill instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown responses with HTML/CSS, React and Tailwind code blocks, or layout descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output may depend on visual details in the supplied screenshot and should be reviewed before use.]
+
+## Skill Version(s):
+
+999.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

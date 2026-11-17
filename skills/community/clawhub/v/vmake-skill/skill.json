@@ -1,7 +1,7 @@
 {
   "name": "openclaw-vmake-ai",
-  "version": "1.3.0",
-  "description": "Vmake image/video processing: video files → videoscreenclear or hdvideoallinone via spawn-run-task + sessions_spawn (main session); images → eraser_watermark or image_restoration via blocking run-task only (never spawn-run-task for image tasks). Watermark removal and quality restoration. Paid API. Bypass spawn only if the host forbids sessions_spawn.",
+  "version": "2.0.0",
+  "description": "Vmake image/video watermark removal and quality restoration. Discover the remote catalog before selecting any task: V2 uses returned server task metadata; legacy aliases are accepted only when remote legacy config returns them. Video tasks use spawn-run-task plus sessions_spawn; image tasks use blocking run-task. Paid API.",
   "author": "one2x-ai",
   "license": "MIT",
   "homepage": "https://github.com/openclaw/openclaw",
@@ -30,7 +30,7 @@
       {
         "path": "scripts/vmake_ai.py",
         "required": true,
-        "description": "Agent CLI — preflight, install-deps, run-task, query-task, spawn-run-task, last-task, history, resolve-input"
+        "description": "Agent CLI — preflight, install-deps, catalog, run-task, query-task, spawn-run-task, last-task, history, resolve-input"
       },
       {
         "path": "scripts/client.py",
@@ -81,6 +81,11 @@
         "path": "docs/feishu-send-video.md",
         "required": false,
         "description": "Feishu video send — cover, duration, modes"
+      },
+      {
+        "path": "scripts/agent_info.py",
+        "required": true,
+        "description": "Optional v2 caller metadata normalization"
       }
     ]
   },
@@ -88,7 +93,9 @@
     "emoji": "🖼️",
     "category": "image-processing",
     "requires": {
-      "bins": ["python3"],
+      "bins": [
+        "python3"
+      ],
       "env": {
         "MT_AK": {
           "required": true,

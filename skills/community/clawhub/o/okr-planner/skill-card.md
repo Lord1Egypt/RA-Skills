@@ -1,39 +1,54 @@
-## Description: <br>
-Helps agents create, review, align, score, template, and cascade OKRs with Chinese-language coaching prompts and quick-reference guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Okr Planner helps agents draft, review, align, score, template, and cascade OKRs with Chinese-first guidance.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Employees, external users, and developers can use this skill to draft OKRs, run quarterly reviews, check alignment across company, department, team, and individual levels, score progress, build role-based templates, and cascade company goals into lower-level OKRs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled helper can store OKR items, task names, reminders, and command history in a local okr-planner data directory. <br>
-Mitigation: Avoid entering sensitive goals on shared or backed-up machines, set OKR_PLANNER_DIR to a controlled location when needed, and remove the data directory when it is no longer needed. <br>
+## Use Case:
 
+External users and business teams use this skill to create OKRs, run quarterly reviews, check alignment across organizational levels, score progress, generate role-based templates, and cascade company goals into team or individual objectives.
 
-## Reference(s): <br>
-- [OKR Planner on ClawHub](https://clawhub.ai/bytesagain-lab/okr-planner) <br>
-- [bytesagain-lab Publisher Profile](https://clawhub.ai/user/bytesagain-lab) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Text] <br>
-**Output Format:** [Markdown and plain text with optional shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language OKR coaching prompts and local command output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: Task text may be stored locally in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering highly sensitive business or personnel information unless storage permissions and retention are acceptable.
+
+Risk: Some task-management commands may not provide complete persistent workflow behavior.
+
+Mitigation: Test done, clear, reminder, and export behavior before relying on them for operational tracking.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/skills/okr-planner)
+- [OKR Planner tips](tips.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown and plain text prompts with shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-first OKR coaching prompts and local task-helper command output.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,28 @@
+# Case Study Writer - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+case_study:
+  customer_name: <company>
+  customer_size: <employees or revenue range>
+  industry: <industry>
+  customer_contact:
+    name: <name>
+    role: <role>
+  approval_status: <not started | pending | approved>
+  challenge:
+    - <what they were trying to fix>
+  solution:
+    - <what changed>
+  results:
+    - metric: <name>
+      before: <value>
+      after: <value>
+      period: <time period>
+      source: <where the number came from>
+  quote:
+    text: <exact words>
+    speaker: <name and role>
+    approved_by: <name and date>
+  permitted_claims:
+    - <claim that is approved>
+  next_step: <the single action for the reader>
+  release_obtained: <yes or no>

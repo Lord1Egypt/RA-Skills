@@ -1,44 +1,62 @@
-## Description: <br>
-License rug-pull detection that scans dependencies and forks for license changes, gates upstream merges, maintains a license ledger, and generates a public compliance dashboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+License rug-pull detection. Scans dependencies and forks for license changes, gates upstream merges, maintains a license ledger, and generates a public compliance dashboard.
 
-## Publisher: <br>
-[parkertoddbrooks](https://clawhub.ai/user/parkertoddbrooks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[parkertoddbrooks](https://clawhub.ai/user/parkertoddbrooks)
 
-## Use Case: <br>
-Developers and maintainers use this skill to detect dependency or upstream fork license drift before changes enter a repository. It supports CLI, git-hook, and MCP workflows for license ledgers, merge gates, reports, and dashboards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Online scans can execute package-manager and git commands against the target repository. <br>
-Mitigation: Install only for trusted workflows, sandbox scans for untrusted repositories or pull requests, and prefer offline mode where practical. <br>
-Risk: Installing the optional git hooks changes repository workflow by blocking or warning on license drift. <br>
-Mitigation: Treat hook installation as a deliberate workflow change and review the generated hook behavior before enabling it. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to monitor dependency and fork license changes, gate upstream merges, maintain a license ledger, and generate compliance reports or dashboards.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/parkertoddbrooks/wip-license-hook) <br>
-- [Publisher profile](https://clawhub.ai/user/parkertoddbrooks) <br>
-- [Project homepage](https://github.com/wipcomputer/wip-ai-devops-toolbox) <br>
-- [NPM package](https://www.npmjs.com/package/@wipcomputer/wip-license-hook) <br>
-- [Universal Interface Spec](https://github.com/wipcomputer/wip-ai-devops-toolbox/blob/main/tools/wip-universal-installer/SPEC.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [CLI and MCP text responses, Markdown reports, JSON ledger files, git-hook shell scripts, and static HTML dashboard files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update LICENSE-LEDGER.json, ledger snapshots, installed git hooks, and dashboard output in the target repository.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.72 (source: server-resolved release metadata) <br>
+Risk: Git-hook installation can persist behavior in a repository and may overwrite existing hooks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the hook scripts first, back up .git/hooks, and avoid running the installer until overwrite behavior is confirmed acceptable.
+
+Risk: Scanning untrusted repositories or package manifests may expose local command and path-handling risks.
+
+Mitigation: Use trusted repositories, prefer offline mode for untrusted code, and review scan results before acting on them.
+
+Risk: An unpinned npx fallback can fetch code that changes between installations.
+
+Mitigation: Install a reviewed, pinned package version or avoid the fallback path until it is fixed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/parkertoddbrooks/skills/wip-license-hook)
+- [npm package @wipcomputer/wip-license-hook](https://www.npmjs.com/package/@wipcomputer/wip-license-hook)
+- [Project Homepage](https://github.com/wipcomputer/wip-ai-devops-toolbox)
+- [Skill Definition](https://github.com/wipcomputer/wip-ai-devops-toolbox/blob/main/tools/wip-license-hook/SKILL.md)
+- [MCP Server](https://github.com/wipcomputer/wip-ai-devops-toolbox/blob/main/tools/wip-license-hook/mcp-server.mjs)
+- [Universal Interface Spec](https://github.com/wipcomputer/wip-ai-devops-toolbox/blob/main/tools/wip-universal-installer/SPEC.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct agents to generate or update LICENSE-LEDGER.json, license reports, alerts, and static dashboard files when the underlying CLI is run.]
+
+## Skill Version(s):
+
+1.9.72 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,47 @@
+{
+ "date": "2026-09-11",
+ "caliber_version": "v2",
+ "confirmed_on": "2026-09-12",
+ "calibers": {
+  "1_soe_background": "preference_not_gate",
+  "2_priority": "emerging_tech_growth_first",
+  "3_profit_growth": "half_year (latest interim YoY)",
+  "4_single_year_loss": "penalty_only; two consecutive annual losses = veto",
+  "5_chain_theme_skip_L1_veto": true,
+  "6_tradability_check_layer": "L2.5 (between L2 and L3)"
+ },
+ "growth_redline": {
+  "hard": "interim YoY <= 0 -> exclude",
+  "penalty": "interim YoY > 0 but < 50% of prior FY growth -> major penalty"
+ },
+ "L2_pass": [
+  "sh600276",
+  "sz300760",
+  "sh603260",
+  "sh688287"
+ ],
+ "L2_5_removed": {
+  "sh688287": "delisted",
+  "sz300212": "*ST, PB -2.71"
+ },
+ "L3_v1_annual": {
+  "pass": [
+   "sh600276",
+   "sz300124"
+  ],
+  "count": 2
+ },
+ "L3_v2_halfyear": {
+  "pass": [
+   "sh600276"
+  ],
+  "count": 1,
+  "changed": "sz300124 (汇川技术) FY2025 +17.8% -> 2026H1 -5.4% 转负, 由通过变不通过"
+ },
+ "sensitivity": {
+  "rule_50pct_relative": "1 passed (恒瑞医药)",
+  "rule_any_deceleration": "0 passed (恒瑞医药 H1 +0.3% would also be excluded)"
+ },
+ "final_verdict": "1 passed = sh600276 恒瑞医药, with major penalty on growth (H1 +0.3%)",
+ "note": "v1 baseline (annual caliber) is superseded. All future runs use v2."
+}

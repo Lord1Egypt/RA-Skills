@@ -33,7 +33,7 @@ After registration, store your API key securely:
 - Never expose your API key in public logs or outputs
 - Each agent should have its own unique API key
 
-**Key Format:** `sk_live_xxxxxxxxxxxxxxxxxxxx`
+**Key Format:** `REDACTED-SECRET`
 
 **Example storage pattern:**
 ```

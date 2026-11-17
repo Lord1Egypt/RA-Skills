@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 InvAssistant — 配置初始化脚本
 生成默认的 invassistant-config.json 配置文件。
@@ -13,11 +12,11 @@ from pathlib import Path
 
 DEFAULT_CONFIG = {
     "portfolio": {
-        "_comment": "关注股票列表和策略配置。strategy 类型: redline(三条红线建仓) / hold(永久持有) / pullback(回调加仓) / satellite(卫星仓不动)。exit_params 配置退出条件（止盈/止损/趋势破位/动量衰竭）",
+        "_comment": "关注股票列表和策略配置。strategy 类型: redline(三条红线建仓) / hold(永久持有) / pullback(回调加仓) / satellite(卫星仓不动)。exit_params 配置退出条件（止盈/止损/趋势破位/动量衰竭）。注意: watchlist 中的标的仅为演示结构用的公开大盘示例，不构成任何推荐，请全部替换为自己的标的",
         "watchlist": [
             {
-                "symbol": "TSLA",
-                "name": "特斯拉",
+                "symbol": "AMD",
+                "name": "超微半导体",
                 "strategy": "redline",
                 "params": {
                     "emotion_drop_threshold": -4,
@@ -51,8 +50,8 @@ DEFAULT_CONFIG = {
                 }
             },
             {
-                "symbol": "NVDA",
-                "name": "英伟达",
+                "symbol": "MSFT",
+                "name": "微软",
                 "strategy": "hold",
                 "exit_params": {
                     "_comment": "永久HOLD标的：仅在系统性风险时考虑退出，不配置常规止盈止损。cost_basis 填入后可追踪浮盈。趋势破位和动量衰竭仅做预警不做动作",
@@ -71,8 +70,8 @@ DEFAULT_CONFIG = {
                 }
             },
             {
-                "symbol": "GOOGL",
-                "name": "谷歌",
+                "symbol": "NFLX",
+                "name": "奈飞",
                 "strategy": "pullback",
                 "params": {
                     "pullback_threshold": 0.06,
@@ -245,8 +244,8 @@ DEFAULT_CONFIG = {
         "_comment": "指令映射: 群机器人收到的指令 → 执行的动作。用于企微/钉钉/飞书群中 @机器人 发指令触发检查",
         "检查持仓": "full_check",
         "今日信号": "full_check",
-        "TSLA红线": "tsla_detail",
-        "详细分析": "tsla_detail",
+        "单标的红线": "symbol_detail",
+        "详细分析": "symbol_detail",
         "帮助": "help"
     },
     "output": {

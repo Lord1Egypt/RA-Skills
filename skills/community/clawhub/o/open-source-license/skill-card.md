@@ -1,52 +1,58 @@
-## Description: <br>
-Open Source License guidance, selection, compliance review, and drafting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides open source license guidance, selection support, compliance review, and drafting help for LICENSE, NOTICE, and source header materials.
 
-## Publisher: <br>
-[sunny0826](https://clawhub.ai/user/sunny0826) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[sunny0826](https://clawhub.ai/user/sunny0826)
 
-## Use Case: <br>
-Developers, maintainers, and compliance reviewers use this skill to choose and compare open source licenses, check compatibility and compliance risks, and prepare LICENSE, NOTICE, and source header text from canonical references. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake informational license guidance for legal advice. <br>
-Mitigation: Treat outputs as informational and consult qualified legal counsel for specific legal decisions or complex licensing scenarios. <br>
-Risk: A repository compliance review may require sharing repository contents with the agent. <br>
-Mitigation: Provide repository files only when an intentional license compliance review is needed. <br>
-Risk: Generated license, notice, or header text could be incorrect if canonical templates are not used. <br>
-Mitigation: Use the bundled canonical templates and replace only documented placeholders such as year, copyright holder, and project name. <br>
+## Use Case:
 
+Developers, maintainers, and compliance reviewers use this skill to choose and compare open source licenses, assess compatibility and compliance issues, and draft canonical LICENSE, NOTICE, and source header text.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/sunny0826/open-source-license) <br>
-- [Skala Legal Skills](https://skala.io/legal-skills) <br>
-- [Metadata Repository Link](https://github.com/skala-io/legal-skills) <br>
-- [License Decision Tree](references/selection/decision-tree.md) <br>
-- [License Comparison Matrix](references/selection/comparison-matrix.md) <br>
-- [License Compatibility](references/compliance/compatibility.md) <br>
-- [Compliance Checklist](references/compliance/checklist.md) <br>
-- [License File Templates](references/templates/license-files.md) <br>
-- [Notice File Templates](references/templates/notice-files.md) <br>
-- [Source Header Templates](references/templates/source-headers.md) <br>
-- [Mulan PSL v2 Reference](references/mulan-psl-v2.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional license, notice, and source header text blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational licensing guidance only; generated legal text should come from canonical templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Users may treat informational licensing guidance as legal advice for complex or jurisdiction-specific decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for drafting and analysis support only, and consult qualified counsel for specific legal matters.
+
+Risk: Optional compliance-tool commands may invoke unpinned package downloads or scanner versions.
+
+Mitigation: Use pinned, locked, locally installed scanner versions and run them in a limited environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunny0826/skills/open-source-license)
+- [Skala Legal Skills homepage](https://skala.io/legal-skills)
+- [Repository URL from skill metadata](https://github.com/skala-io/legal-skills)
+- [License selection decision tree](artifact/references/selection/decision-tree.md)
+- [License compatibility guide](artifact/references/compliance/compatibility.md)
+- [Mulan PSL v2 reference](artifact/references/mulan-psl-v2.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text, shell commands]
+
+**Output Format:** [Markdown with explanatory text, checklists, license templates, and occasional shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include canonical license, NOTICE, or source header text when the user provides required placeholders.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

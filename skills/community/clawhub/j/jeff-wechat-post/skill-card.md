@@ -1,46 +1,65 @@
-## Description: <br>
-微信公众号/朋友圈营销内容智能体。输入产品/服务主题、卖点、讲师信息、配图需求，输出专业文案+结构化配图。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+微信公众号/朋友圈营销内容智能体。输入产品/服务主题、卖点、讲师信息、配图需求，输出专业文案+结构化配图。触发词：发朋友圈、生成朋友圈文案、微信图文、朋友圈营销、create wechat post、generate wechat image post。
 
-## Publisher: <br>
-[jeffli2002](https://clawhub.ai/user/jeffli2002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jeffli2002](https://clawhub.ai/user/jeffli2002)
 
-## Use Case: <br>
-External marketers, sales teams, and content creators use this skill to gather WeChat campaign details and produce Chinese WeChat Moments copy, image prompts, poster images, QR-code composites, and a final Markdown delivery package. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Campaign prompts, contact details, QR-code settings, and generated image requests may be sent to third-party image services. <br>
-Mitigation: Use dedicated API keys, avoid sensitive personal data in prompts, and review campaign content before submitting it to KIE.ai or Seedream/Volcengine. <br>
-Risk: The KIE callback workflow can expose an unauthenticated callback endpoint and save inbound request data. <br>
-Mitigation: Bind callbacks to localhost when possible, use a public tunnel only when required, restrict tunnel lifetime, and delete callback logs after use. <br>
-Risk: Saved QR-code preferences and generated campaign files may contain personal contact information. <br>
-Mitigation: Store only user-provided QR codes, keep output directories access-controlled, and remove saved QR settings and generated files when they are no longer needed. <br>
+## Use Case:
 
+Marketing operators, small business owners, and content creators use this skill to produce Chinese WeChat Moments campaign copy, image prompts, generated poster assets, and final handoff markdown for products, services, courses, or promotions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jeffli2002/jeff-wechat-post) <br>
-- [Copy Template](references/workflow/copy-template.md) <br>
-- [Image Layout - WeChat Moments Poster](references/workflow/image-layout.md) <br>
-- [QR Code Configuration](references/config/qrcode-schema.md) <br>
-- [dark-warm palette](references/palettes/dark-warm.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Code, API calls] <br>
-**Output Format:** [Markdown files, image prompts, PNG image outputs, QR-code composite files, and shell-command workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a wechat-post/{topic-slug}/ workspace with copy.md, prompts/image-prompt.md, optional qrcode_setting.txt, a PNG poster, and wechat-post-complete.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The callback workflow is unauthenticated and can store arbitrary callback data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the callback service only in a controlled local or authenticated environment, avoid public exposure, and add authentication and request size limits before using it beyond a trusted setup.
+
+Risk: Campaign prompts, product details, QR images, contact details, and generated assets may be sent to external image generation services.
+
+Mitigation: Use only non-sensitive campaign content unless the user accepts sending that data to the configured KIE or Seedream service.
+
+Risk: QR/contact features can place private personal data directly into generated marketing assets.
+
+Mitigation: Confirm that QR codes, names, and phone numbers are intended for publication before including them in the generated poster or final markdown.
+
+Risk: Downloaded image results may be unsafe or unsuitable if returned through an exposed callback and download flow.
+
+Mitigation: Review downloaded files before use and restrict the callback and download workflow to trusted task IDs and expected output locations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jeffli2002/skills/jeff-wechat-post)
+- [QR Code Configuration](references/config/qrcode-schema.md)
+- [Copy Template](references/workflow/copy-template.md)
+- [Image Layout - WeChat Moments Poster](references/workflow/image-layout.md)
+- [dark-warm palette](references/palettes/dark-warm.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown, image-generation prompts, PNG image files, QR configuration, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes campaign assets under wechat-post/{topic-slug}/ and may call external image generation services when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

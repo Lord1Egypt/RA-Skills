@@ -1,43 +1,57 @@
-## Description: <br>
-Calculate optimal discount levels based on unit cost, conversion targets, and inventory velocity so promos move product without destroying margin. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculate optimal discount levels based on unit cost, conversion targets, and inventory velocity so promos move product without destroying margin.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External sellers, ecommerce operators, and growth teams use this skill to evaluate discount depth, promo mechanic, break-even volume lift, and inventory velocity before launching a promotion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include sensitive customer, SKU, sales, margin, or business data while asking the agent to evaluate promotions. <br>
-Mitigation: Avoid pasting private identifiers or confidential business details unless the agent environment is approved for that data. <br>
-Risk: Incomplete unit economics or uncapped promo stacking can produce discount guidance that erodes contribution margin. <br>
-Mitigation: Verify all variable costs, funding splits, stacking rules, margin floors, and realized lift with the included quality checklist before launch. <br>
+## Use Case:
 
+External ecommerce operators use this skill to size discounts from contribution margin, break-even volume lift, promo mechanic fit, and inventory velocity before launching a sale.
 
-## Reference(s): <br>
-- [Discount Plan Output Template](references/output-template.md) <br>
-- [Margin Math Guide](references/margin-math-guide.md) <br>
-- [Promo Mechanics Guide](references/promo-mechanics-guide.md) <br>
-- [Discount Plan Quality Checklist](assets/quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown with tables and checklist-style fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a discount plan covering unit economics, break-even lift, promo guardrails, and results tracking.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Sensitive product costs, margins, and sales velocity data may be exposed if shared in an untrusted agent environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in trusted environments and redact or aggregate confidential figures when possible.
+
+Risk: Discount recommendations can be misleading if inputs omit fees, commissions, offer stacking, returns, or inventory constraints.
+
+Mitigation: Review each generated promotion manually against current platform terms, margin floors, and launch guardrails before publishing.
+
+## Reference(s):
+
+- [Discount Optimizer on ClawHub](https://clawhub.ai/leooooooow/skills/discount-optimizer)
+- [Output Template](references/output-template.md)
+- [Margin Math Guide](references/margin-math-guide.md)
+- [Promo Mechanics Guide](references/promo-mechanics-guide.md)
+- [Quality Checklist](assets/quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown discount plan with tables, calculations, guardrails, and monitoring checklist]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided product economics; calculations are decision support and should be manually reviewed before launch.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

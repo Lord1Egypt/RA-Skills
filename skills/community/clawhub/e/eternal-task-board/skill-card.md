@@ -1,38 +1,54 @@
-## Description: <br>
-Simple CLI task/project board (kanban). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simple CLI task/project board (kanban).
 
-## Publisher: <br>
-[eternal0404](https://clawhub.ai/user/eternal0404) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eternal0404](https://clawhub.ai/user/eternal0404)
 
-## Use Case: <br>
-Developers and agents use this skill to manage a lightweight local kanban board from the command line, including adding, moving, listing, viewing, and removing tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The task CLI rewrites the selected JSON task database when tasks change, so an unsafe --db path could overwrite an unrelated file. <br>
-Mitigation: Use the default .tasks.json file or a dedicated task-file path, and avoid pointing --db at valuable or unrelated files. <br>
+## Use Case:
 
+Developers and individual contributors use this skill to maintain a lightweight local kanban board from the command line, including adding, listing, moving, viewing, and removing tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eternal0404/eternal-task-board) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local JSON task database, defaulting to .tasks.json unless a custom --db path is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Task data is stored in a local JSON file, and removing a task permanently changes that database unless a backup exists.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a deliberate database path and keep a backup of the task database before removing tasks.
+
+Risk: The --db option can write task data to a different local path than the default .tasks.json.
+
+Mitigation: Review the selected --db path before running commands, especially in shared or multi-project workspaces.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eternal0404/skills/eternal-task-board)
+- [Publisher profile](https://clawhub.ai/user/eternal0404)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text CLI output with a local JSON task database]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores task state in .tasks.json by default, or in the local path supplied with --db.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

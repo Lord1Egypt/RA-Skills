@@ -1,41 +1,55 @@
-## Description: <br>
-罗永浩视角（升级版）提供基于公开资料提炼的罗永浩式思维框架、决策启发式和表达风格，用于以角色视角分析问题、审视决策并提供反馈。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A persona and perspective skill that helps an agent analyze questions, review decisions, and provide feedback using an AI-generated interpretation of Luo Yonghao's publicly documented thinking and speaking style.
 
-## Publisher: <br>
-[binyuli](https://clawhub.ai/user/binyuli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[binyuli](https://clawhub.ai/user/binyuli)
 
-## Use Case: <br>
-External users install this persona skill when they want an agent to answer as a roleplay-style advisor using Luo Yonghao's public persona to critique ideas, decisions, products, or messaging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake roleplay-style outputs for statements from or endorsements by Luo Yonghao. <br>
-Mitigation: Treat outputs as AI-generated interpretation based on public material and keep a visible disclaimer in shared or user-facing deployments. <br>
-Risk: Implicit activation of a first-person persona can create confusion in shared deployments. <br>
-Mitigation: Use explicit activation and exit wording, and consider repeating the disclaimer when the skill is used with end users. <br>
+## Use Case:
 
+External users can use this skill when they want an agent to reason about a topic from a Luo Yonghao-inspired perspective, including decision review, product judgment, and communication feedback. Outputs should be treated as AI-generated interpretation rather than authentic statements by Luo Yonghao.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/binyuli/luoyonghao-persp-v2) <br>
-- [女娲 · Skill造人术 methodology reference](https://github.com/xmg2024/nvwa-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Natural-language conversational text, typically in Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persona-style outputs should be treated as AI-generated interpretation based on public material, not statements from or endorsed by Luo Yonghao.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: The skill may make AI-generated roleplay sound like first-person statements from a real person.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep responses clearly labeled as AI-generated interpretation, especially when discussing opinions, current events, or personal claims.
+
+Risk: The skill limits repeated disclosure and can discourage normal clarification while in character.
+
+Mitigation: Allow users to ask clarifying questions, exit the persona at any time, and request neutral analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/binyuli/skills/luoyonghao-persp-v2)
+- [Publisher profile](https://clawhub.ai/user/binyuli)
+- [Local biography research notes](artifact/research/01-biography.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Conversational text or Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Should remain clearly labeled as AI-generated interpretation and should not be presented as authentic Luo Yonghao statements.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

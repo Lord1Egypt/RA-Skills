@@ -1,38 +1,52 @@
-## Description: <br>
-Track water and sleep with JSON file storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track water and sleep with JSON file storage.
 
-## Publisher: <br>
-[roseknife520](https://clawhub.ai/user/roseknife520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[roseknife520](https://clawhub.ai/user/roseknife520)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users can use this skill to record water intake and sleep or wake events in a local JSON file and view simple daily totals.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Inline Node commands use user-derived cup counts in executable JavaScript without clear validation.
+
+Mitigation: Parse and validate cup counts as numeric data before execution, and review generated commands before running them.
+
+Risk: The skill stores water and sleep records as local personal health data in {baseDir}/health-data.json.
+
+Mitigation: Keep the file in an appropriate local directory, limit access to it, and delete or archive it when no longer needed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Individuals and personal productivity users use this skill to record water intake and sleep or wake events in a local JSON file and view simple totals. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, JSON, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Water and sleep history is stored locally in health-data.json and may be private. <br>
-Mitigation: Keep the data file out of shared folders and use clear, intentional commands before recording or changing entries. <br>
+**Output Format:** [Markdown guidance with inline shell commands and JSON file output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/roseknife520/healthcheck-rose) <br>
+**Other Properties Related to Output:** [Writes local health records to {baseDir}/health-data.json using Node.js built-in modules.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, text, configuration] <br>
-**Output Format:** [Markdown with inline bash commands and plain-text command output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local health-data.json records with ISO8601 timestamps using Node.js built-in modules.] <br>
+1.0.0 (source: server release metadata; artifact frontmatter reports 1.0.2)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

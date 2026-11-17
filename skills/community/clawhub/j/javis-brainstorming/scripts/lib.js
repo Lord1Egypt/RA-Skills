@@ -12,6 +12,13 @@
 
 const SEEN_TTL_DAYS = 30;
 
+// Upper bound on the remembered `sessionWindows` map (see capRecent below). At
+// the default `fetch --limit 50`, 500 entries is ten full fetches of distinct
+// sessions — enough that a card's source session is still remembered, bounded
+// enough that a container which fetches often cannot grow the state file
+// without limit.
+const SESSION_WINDOWS_MAX = 500;
+
 // ---- tz resolution -------------------------------------------------------
 // tz resolution order: tz from the fetch payload -> TZ env var -> system zone.
 // No per-user prefs lookup; identical discipline to calendar-extractor.
@@ -121,6 +128,44 @@ function sessionWindow(sessions, sourceRefs, tz) {
   const end_at = endIso ? toNaiveLocal(endIso, tz) : null;
   if (end_at) out.end_at = end_at;
   return out;
+}
+
+// ---- the union a card's window is resolved from ---------------------------
+// `fetch` remembers every session it returned as
+// `{ "<session_id>": { started_at, ended_at, seen_at } }` (raw instants), and
+// `push` may also be handed the fetch payload's `sessions` on stdin. Neither
+// source is authoritative on its own: the agent may pipe a partial list, and
+// the remembered map may have been pruned. So the caller resolves the window
+// from the UNION — the remembered map is the base, the piped sessions are
+// layered on top, overriding by session_id (the fresher read of the same
+// server-issued fact). The result is an ARRAY of session-shaped objects,
+// exactly what sessionWindow already takes; its signature does not change.
+//
+// A piped session that omits (or nulls) started_at/ended_at does NOT erase the
+// remembered instants for that id — overriding is per-field, so a trimmed
+// `{session_id, transcript}` echo cannot cost a card its day.
+function unionSessions(windows, sessions) {
+  const byId = new Map();
+  for (const [key, w] of Object.entries(windows || {})) {
+    const id = String(key == null ? '' : key).trim();
+    if (!id || !w || typeof w !== 'object') continue;
+    const s = { session_id: id, started_at: w.started_at };
+    if (w.ended_at != null) s.ended_at = w.ended_at;
+    byId.set(id, s);
+  }
+  for (const s of Array.isArray(sessions) ? sessions : []) {
+    if (!s || typeof s !== 'object') continue;
+    const id = ((s.session_id || s.id) || '').toString().trim();
+    if (!id) continue;
+    const prev = byId.get(id);
+    const merged = prev ? { ...prev, ...s, session_id: id } : s;
+    if (prev) {
+      if (merged.started_at == null) merged.started_at = prev.started_at;
+      if (merged.ended_at == null && prev.ended_at != null) merged.ended_at = prev.ended_at;
+    }
+    byId.set(id, merged);
+  }
+  return [...byId.values()];
 }
 
 // ---- to-do dedup key -----------------------------------------------------
@@ -233,12 +278,31 @@ function pruneSeen(seen, ttlDays) {
   return pruneByTtl(seen, (iso) => iso, ttlDays);
 }
 
+// Size cap for the same kind of map: keep at most `max` entries, the most
+// recent ones by `tsOf(value)`, and drop the rest. Applied AFTER pruneByTtl, it
+// bounds the state file for a container that fetches far more often than the
+// TTL expires entries. An unparseable timestamp sorts oldest (dropped first).
+function capRecent(map, tsOf, max) {
+  const entries = Object.entries(map || {});
+  const limit = max == null ? SESSION_WINDOWS_MAX : max;
+  if (entries.length <= limit) return Object.fromEntries(entries);
+  const at = (v) => {
+    const t = Date.parse(tsOf(v));
+    return isNaN(t) ? -Infinity : t;
+  };
+  entries.sort((a, b) => at(b[1]) - at(a[1]));
+  return Object.fromEntries(entries.slice(0, limit));
+}
+
 module.exports = {
   SEEN_TTL_DAYS,
+  SESSION_WINDOWS_MAX,
   resolveTz,
   toNaiveLocal,
   localAnchor,
+  instantIso,
   sessionWindow,
+  unionSessions,
   normalizeText,
   hash32,
   todoDedupKey,
@@ -246,4 +310,5 @@ module.exports = {
   formatDigest,
   pruneByTtl,
   pruneSeen,
+  capRecent,
 };

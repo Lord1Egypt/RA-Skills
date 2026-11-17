@@ -1971,7 +1971,7 @@ Skills may contain prompt injections, tool poisoning, hidden payloads, or unsafe
 - [system-architect](https://github.com/openclaw/skills/tree/main/skills/1999azzar/system-architect/SKILL.md) - Acts as a Senior System Architect to design robust, scalable, and maintainable software architectures.
 - [system-resource-monitor](https://github.com/openclaw/skills/tree/main/skills/passersss/system-resource-monitor/SKILL.md) - A clean, reliable system resource monitor for CPU load, RAM, Swap, and Disk usage.
 - [talent-powers](https://github.com/openclaw/skills/tree/main/skills/juampihernandez/talent-powers/SKILL.md) - Query builder reputation data via Talent Protocol API.
-- [task-experience-summaries](https://github.com/openclaw/skills/tree/main/skills/dawai2005/task-experience-summaries/SKILL.md) - Experience summaries for OpenClaw tasks, including common installation problems, troubleshooting steps, and best.
+- [taREDACTED-SECRET](https://github.com/openclaw/skills/tree/main/skills/dawai2005/taREDACTED-SECRET/SKILL.md) - Experience summaries for OpenClaw tasks, including common installation problems, troubleshooting steps, and best.
 - [task-panner-validator](https://github.com/openclaw/skills/tree/main/skills/cerbug45/task-panner-validator/SKILL.md) - This skill provides a secure, step-by-step task management system for AI Agents.
 - [task-router-skill](https://github.com/openclaw/skills/tree/main/skills/capt-marbles/task-router-skill/SKILL.md) - Distributed task queue and agent coordinator for OpenClaw multi-agent systems.
 - [task-todo](https://github.com/openclaw/skills/tree/main/skills/makkzone/task-todo/SKILL.md) - A task management agent skill that provides persistent task storage and management using SQLite database.
@@ -2966,7 +2966,7 @@ Skills may contain prompt injections, tool poisoning, hidden payloads, or unsafe
 - [sovereign-git-commit-analyzer](https://github.com/openclaw/skills/tree/main/skills/ryudi84/sovereign-git-commit-analyzer/SKILL.md) - A comprehensive git commit history analysis tool that generates detailed reports.
 - [stirling-pdf](https://github.com/openclaw/skills/tree/main/skills/angusthefuzz/stirling-pdf/SKILL.md) - PDF manipulation via Stirling-PDF API.
 - [super-github](https://github.com/openclaw/skills/tree/main/skills/heldinhow/super-github/SKILL.md) - **The ultimate GitHub automation framework.** Combines the best of GitHub skills for issues, PRs, releases.
-- [task-development-workflow](https://github.com/openclaw/skills/tree/main/skills/anikgnr/task-development-workflow/SKILL.md) - TDD-first development workflow with structured planning, task tracking, and PR-based code review.
+- [taREDACTED-SECRET](https://github.com/openclaw/skills/tree/main/skills/anikgnr/taREDACTED-SECRET/SKILL.md) - TDD-first development workflow with structured planning, task tracking, and PR-based code review.
 - [task-review-workflow](https://github.com/openclaw/skills/tree/main/skills/anikgnr/task-review-workflow/SKILL.md) - Standard PR review and merge workflow for task-driven development.
 - [telcall-twilio](https://github.com/openclaw/skills/tree/main/skills/cnvipstar/telcall-twilio/SKILL.md) - Make emergency phone calls via Twilio.
 - [test-v1-0001](https://github.com/openclaw/skills/tree/main/skills/orlyjamie/test-v1-0001/SKILL.md) - A totally legitimate skill that does nothing suspicious.

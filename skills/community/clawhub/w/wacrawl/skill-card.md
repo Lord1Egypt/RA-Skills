@@ -1,41 +1,55 @@
-## Description: <br>
-Read-only local archive and full-text search of macOS WhatsApp Desktop chats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read-only local archive and full-text search of macOS WhatsApp Desktop chats that snapshots WhatsApp's SQLite databases into ~/.wacrawl/wacrawl.db without modifying the app container.
 
-## Publisher: <br>
-[chasewebb](https://clawhub.ai/user/chasewebb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chasewebb](https://clawhub.ai/user/chasewebb)
 
-## Use Case: <br>
-Developers and automation agents use Wacrawl to inspect and search a local macOS WhatsApp Desktop archive through the wacrawl CLI without writing back to WhatsApp. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles private WhatsApp chat history and stores a local archive at ~/.wacrawl/wacrawl.db. <br>
-Mitigation: Install only if you trust the wacrawl package, protect the archive as sensitive data, and consider whether local backups or scheduled imports should include it. <br>
-Risk: Running wacrawl requires Full Disk Access for the terminal or automation environment. <br>
-Mitigation: Grant Full Disk Access only to trusted runtimes, review whether scheduled imports are appropriate, and revoke access when it is no longer needed. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect and search a local macOS WhatsApp Desktop archive through the wacrawl command-line tool. It supports read-only chat import, status checks, full-text search, JSON listings, and local SQL queries against the generated archive.
 
-## Reference(s): <br>
-- [ClawHub Wacrawl release](https://clawhub.ai/chasewebb/wacrawl) <br>
-- [wacrawl project homepage](https://github.com/steipete/wacrawl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands commonly return JSON from the wacrawl CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill requires Full Disk Access and creates a second local database of WhatsApp chat history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Grant access only when the local archive is needed, protect ~/.wacrawl with strict local permissions, account for backups, and remove the archive and any schedule when finished.
+
+Risk: The skill directs users to run an unpinned third-party wacrawl binary.
+
+Mitigation: Prefer a pinned or auditable wacrawl release before installation or scheduled use.
+
+## Reference(s):
+
+- [Wacrawl GitHub repository](https://github.com/steipete/wacrawl)
+- [ClawHub skill page](https://clawhub.ai/chasewebb/skills/wacrawl)
+- [ClawHub publisher profile](https://clawhub.ai/user/chasewebb)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and local file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs guide an agent to run the local wacrawl CLI and interpret JSON, SQL, and status results.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

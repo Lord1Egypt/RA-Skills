@@ -1,40 +1,57 @@
-## Description: <br>
-Create persona documentation for a product or codebase. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create persona documentation for a product or codebase, including target users, user journeys, onboarding flows, and audience definition for new products.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-Product teams, developers, and documentation owners use this skill to create persona documents that define target users, user needs, discovery paths, onboarding flows, journeys, and feature touchpoints. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persona documents may include private product research or customer context. <br>
-Mitigation: Review generated documents before committing or sharing them, and remove sensitive product, customer, or research details when they are not required. <br>
-Risk: Generated personas can encode unsupported assumptions about target users. <br>
-Mitigation: Validate persona claims with available evidence, team review, or user research, and mark assumptions that still need confirmation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Persona Doc Template](artifact/references/template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/wpank/persona-docs) <br>
+## Use Case:
 
+Developers, product teams, and documentation authors use this skill to create or update persona documentation that clarifies target users, pain points, discovery paths, onboarding, journeys, and feature touchpoints.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown persona documentation and structured guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include clarifying questions before drafting when the target audience is unclear.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Mutable installs such as @latest can change the reviewed skill content over time.
+
+Mitigation: Install a pinned ClawHub version or reviewed commit before use.
+
+Risk: Persona documentation may be based on incomplete product evidence or unverified assumptions.
+
+Mitigation: Review generated persona docs with product stakeholders and update them as user evidence improves.
+
+Risk: The skill reads product documentation and may create or update repository documentation.
+
+Mitigation: Review file changes before committing them to the repository.
+
+## Reference(s):
+
+- [Persona Doc Template](artifact/references/template.md)
+- [ClawHub skill page](https://clawhub.ai/wpank/skills/persona-docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown documentation and structured guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Typically creates or updates persona documentation in docs/PERSONA.md or docs/personas/.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; artifact SKILL.md frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

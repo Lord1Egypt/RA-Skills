@@ -1,43 +1,57 @@
-## Description: <br>
-Cluster refund and return reasons into actionable root-cause groups and prevention plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clusters refund and return reasons into actionable root-cause groups and prevention plans.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-CC BY-NC-SA 4.0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Post-purchase analytics, ecommerce, and support teams use this skill to cluster refund and return reasons, identify avoidable root causes, and produce prevention actions that reduce return-driven margin loss. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC BY-NC-SA 4.0
 
-## Known Risks and Mitigations: <br>
-Risk: Refund logs, support transcripts, and order metadata may contain personal customer information. <br>
-Mitigation: Redact unnecessary personal data before analysis and use only data approved for the current agent environment. <br>
-Risk: Commercial use may require review of the skill's documented license terms. <br>
-Mitigation: Confirm licensing requirements before commercial deployment, especially when adapting or redistributing the skill. <br>
-Risk: Poor sample quality or small datasets can produce misleading refund clusters and priorities. <br>
-Mitigation: Review sample-size, data-quality, and confidence notes before acting on recommendations. <br>
+## Use Case:
 
+Ecommerce, support, and operations teams use this skill to analyze refund logs, return reason text, support transcripts, and order metadata so they can find recurring refund drivers and prioritize prevention actions.
 
-## Reference(s): <br>
-- [Output Template](references/output-template.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Leooooooow/refund-reason-cluster) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Executive summary, priority actions, evidence table, and 7-day execution plan.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Refund, return, support, and order data may include customer identifiers or sensitive commercial details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact unnecessary customer identifiers and sensitive details before using the skill.
+
+Risk: Small samples or low-quality refund reason text may lead to unreliable root-cause clusters.
+
+Mitigation: Review sample-size, data-quality, and confidence caveats before acting on recommendations.
+
+Risk: Fraud or policy-abuse signals can be confused with genuine product dissatisfaction.
+
+Mitigation: Separate policy abuse from product dissatisfaction before prioritizing product, operations, or messaging changes.
+
+## Reference(s):
+
+- [Output Template](references/output-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured as an executive summary, priority actions, evidence table, and 7-day execution plan.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

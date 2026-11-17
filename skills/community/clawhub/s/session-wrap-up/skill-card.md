@@ -1,39 +1,52 @@
-## Description: <br>
-Wrap up a conversation session before starting a new one by preserving context, updating memory notes, committing changes, and reporting a concise summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wrap up a conversation session before starting a new one by flushing context to memory files, updating PARA notes, committing changes, and providing a summary.
 
-## Publisher: <br>
-[branexp](https://clawhub.ai/user/branexp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[branexp](https://clawhub.ai/user/branexp)
 
-## Use Case: <br>
-Developers and agent users use this skill at the end of a work session to capture useful context, update memory files and notes, commit workspace changes, and receive a short handoff summary. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill directs the agent to stage all changed files, commit them, and push to the configured Git remote automatically. <br>
-Mitigation: Use it only in an intended repository, review changed files before any push, and require explicit confirmation for remote publishing when operating in sensitive workspaces. <br>
-Risk: Session summaries and memory notes may capture sensitive workspace details or secrets if they are present in the conversation or files. <br>
-Mitigation: Verify .gitignore coverage, avoid storing secrets in memory files, and review generated summaries before committing them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/branexp/session-wrap-up) <br>
+## Use Case:
 
+External users and developers use this skill to preserve end-of-session context, update memory and note files, commit workspace changes, and receive a concise handoff summary before starting a new session.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summary with filesystem updates and Git shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update memory and notes files, then commit and push repository changes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can save conversation details into persistent memory and note files.
+
+Mitigation: Review and redact sensitive session details before persisting them in memory, daily logs, or PARA notes.
+
+Risk: The skill can automatically stage broad workspace changes, commit them, and push to a Git remote without a separate confirmation prompt.
+
+Mitigation: Restrict staging to known memory and note paths, show the diff and status, and ask separately before committing or pushing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/branexp/skills/session-wrap-up)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, files, guidance]
+
+**Output Format:** [Markdown summary with shell command blocks and workspace file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update memory and note files, then run git add, commit, and push as part of the wrap-up workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,60 @@
-## Description: <br>
-Cost Optimizer helps OpenClaw users reduce API costs through model routing, session management, output efficiency, free-model setup, and monitoring scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart cost optimization skill for OpenClaw that helps reduce API costs through model routing, session management, output efficiency, free model usage, and bundled audit, monitoring, backup, health-check, and reporting scripts.
 
-## Publisher: <br>
-[rajdeep09-dev](https://clawhub.ai/user/rajdeep09-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rajdeep09-dev](https://clawhub.ai/user/rajdeep09-dev)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to audit agent API spending, route work to lower-cost models, apply budget presets, and monitor ongoing cost trends. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Some helper scripts unsafely execute local configuration files as code. <br>
-Mitigation: Review before installing, run scripts only against trusted configuration files, and replace dynamic config execution with safe JSON or JSON5 parsing. <br>
-Risk: Reporting and automation features may expose sensitive configuration or usage data if enabled without review. <br>
-Mitigation: Treat instances.json and API keys as secrets, avoid plaintext HTTP provider or instance URLs, and review webhook and cron templates before enabling them. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to analyze agent API spending, choose lower-cost model routes, apply budget-oriented presets, and monitor cost trends while keeping user confirmation before configuration changes.
 
-## Reference(s): <br>
-- [Model Tier Reference Card](references/model-tiers.md) <br>
-- [Configuration Templates](references/setup-config.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes optional script-generated reports, dashboards, backups, and preset configuration files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Risk: Bundled scripts may execute or process configuration files and can be unsafe with untrusted input.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scripts before installation, use a fixed release version, and run audit, report, and dashboard scripts only against trusted local configuration files.
+
+Risk: API tokens, generated configuration, instance data, and webhook URLs may be exposed if handled carelessly.
+
+Mitigation: Do not pass API keys on the command line, keep generated config and instance files private, and use only HTTPS webhook or provider endpoints that the user trusts.
+
+Risk: Configuration patches or cron jobs can change agent behavior or create recurring automation.
+
+Mitigation: Require explicit user confirmation before applying patches, installing cron jobs, or changing provider and model settings.
+
+## Reference(s):
+
+- [Model Tier Reference Card](artifact/references/model-tiers.md)
+- [Configuration Templates](artifact/references/setup-config.md)
+- [Cost Optimizer ClawHub Page](https://clawhub.ai/rajdeep09-dev/skills/open-optimise)
+- [Publisher Profile](https://clawhub.ai/user/rajdeep09-dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration snippets, and generated reports or dashboards from bundled scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or generate configuration changes, backups, audit reports, monitoring output, webhook reports, and cost dashboard files.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; artifact frontmatter and changelog report 7.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

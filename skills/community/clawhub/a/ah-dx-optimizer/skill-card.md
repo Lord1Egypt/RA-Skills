@@ -1,41 +1,48 @@
-## Description: <br>
-Expert developer experience optimizer for build performance, tooling efficiency, workflow automation, faster feedback loops, and developer productivity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert developer experience optimizer specializing in build performance, tooling efficiency, and workflow automation. Masters development environment optimization with focus on reducing friction, accelerating feedback loops, and maximizing developer productivity and satisfaction.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineering teams use this skill to assess development workflow bottlenecks and improve build speed, test feedback, IDE performance, monorepo tooling, and workflow automation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Recommended build, test, IDE, workflow automation, or CI changes could affect developer machines or release pipelines.
+
+Mitigation: Review generated automation, scripts, and configuration changes as normal project changes before applying them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineering teams use this skill to analyze development workflow bottlenecks and improve build performance, testing, IDE setup, local development, monorepo tooling, CI/CD, and automation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested workflow changes can affect CI/CD, pre-commit hooks, release automation, build scripts, tests, IDE settings, or shared local setup. <br>
-Mitigation: Review proposed changes carefully, apply them incrementally, and validate locally and in CI before broad rollout. <br>
-Risk: Optimizing for speed alone can hide test failures, weaken feedback quality, or create misleading developer metrics. <br>
-Mitigation: Keep correctness checks enabled, compare against baseline metrics, and monitor build, test, and developer feedback after changes. <br>
+**Output Format:** [Markdown with inline code and shell command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [dx-optimizer on ClawHub](https://clawhub.ai/mtsatryan/ah-dx-optimizer) <br>
-- [mtsatryan publisher profile](https://clawhub.ai/user/mtsatryan) <br>
+**Other Properties Related to Output:** [May propose changes to build, test, IDE, CI, and workflow configuration for human review.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline code, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose changes to build, test, IDE, automation, CI/CD, and release workflows; review before applying.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

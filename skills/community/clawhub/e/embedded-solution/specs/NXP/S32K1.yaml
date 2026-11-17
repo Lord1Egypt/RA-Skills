@@ -1,0 +1,116 @@
+part: S32K1
+link_status: verified_2026-07-01 (datasheet-html-extracted)
+expected_family: "NXP S32K1 \u2014 Automotive Arm MCU (Cortex-M0+ / M4F, AEC-Q100)"
+main_page: https://www.nxp.com/products/S32K1
+datasheet_path_expected: references/semiconductor-vendor/NXP/datasheet-html/s32k1.html
+created_at: '2026-06-30T10:42:00+08:00'
+specs:
+  family: S32K1 (automotive MCU family; S32K11x / S32K14x / S32K3xx are sub-series)
+  cores:
+    entry: Arm Cortex-M0+ @ up to 48 MHz
+    mid: Arm Cortex-M4F @ up to 80 / 112 MHz
+  memory:
+    flash_kb_min: 128
+    flash_kb_max: 2048
+    flash_ecc: true
+    eeprom: up to 4 KB (D-Flash)
+  operating_conditions:
+    temperature_c_min: -40
+    temperature_c_max_options:
+    - 105
+    - 125
+    - 150
+    automotive_qualified: AEC-Q100
+    grades:
+    - Grade 0: "-40 to +150 \xB0C"
+    - Grade 1: "-40 to +125 \xB0C"
+    - Grade 2: "-40 to +105 \xB0C"
+    longevity_years_min: 15
+  peripherals:
+    adc_12bit: 1 Msps
+    timers_flextimer_16bit:
+      features:
+      - dead-time insertion
+      - fault detection
+    ethernet: 10/100 Mbit/s
+    can_fd: true
+    flexio:
+    - UART
+    - "I\xB2C"
+    - SPI
+    - "I\xB2S"
+    - LIN
+    - PWM
+    serial_audio_interface: true
+    qspi: true
+  safety:
+    iso_26262: up to ASIL B
+    features:
+    - Hardware watchdogs
+    - Software watchdogs
+    - Clock monitor
+    - Power monitor
+    - Temperature monitor
+    program: SafeAssure (NXP)
+  security:
+    csec: true
+    aes_128: true
+    secure_boot: true
+    key_storage: true
+  power:
+    modes:
+    - Run
+    - Stop
+    - low-power Run
+    - fast wake-up
+    - clock gating
+    - power gating
+  packages:
+  - QFN
+  - LQFP
+  - MAPBGA
+  ecosystem:
+  - S32 Design Studio IDE (Eclipse + GCC + debugger)
+  - S32 SDK (production-grade, SPICE Level 3, MISRA)
+  - NXP AUTOSAR MCAL (ISO 26262 + QM compliant)
+  - NXP security firmware
+  - Core Self-Test Library
+  - "Real-Time Drivers (RTD) \u2014 ASIL compliant"
+  - Safety Peripheral Drivers (SPD)
+  - Model-Based Design Toolbox (MBDT) for MATLAB/Simulink
+  - FreeMASTER (Lite)
+  - Motor Control Application Tuning (MCAT)
+  - Automotive Math and Motor Control Library (AMMCLib)
+  related_products:
+  - FS23 (Safety SBC + Power Management + CAN + LIN)
+  - FS24 (Safety SBC ASIL B/D)
+  use_cases:
+  - Body & chassis ECUs (BCM, lighting, climate, doors, windows)
+  - Battery Management System (BMS)
+  - HVAC
+  - ADAS L2 (LIDAR / radar front-end MCUs)
+  - Sensor / actuator nodes
+  - Industrial CAN nodes with ASIL B
+  - Small motor control (solenoid, washer pump, mirror adjuster)
+unverified:
+- exact sub-series list (S32K11x / K14x / K3xx) and per-variant frequency / flash count
+- exact SRAM range per sub-series
+- exact package pin count options per sub-series
+- exact CAN FD count per sub-series
+- exact FlexTimer module count
+notes:
+- "New yaml entry on 2026-06-30 \u2014 extracted from nxp.com S32K1 family page via Firecrawl (197,810 bytes raw)."
+- 'Family differentiator vs NXP MPC56 / S12Z (legacy automotive): S32K1 = Cortex-M-based with rich ecosystem; legacy = Power
+  Architecture.'
+- 'Family differentiator vs NXP i.MX-RT (existing yaml): RT-series are crossover MCUs (industrial/consumer orientation); S32K1
+  is automotive- qualified (AEC-Q100, ISO 26262 ASIL B, 15-year longevity).'
+- 'Use case: any Body domain / sensor node / small motor control / lighting controller / BMS in automotive context. Optional
+  ASIL B safety + 15-year longevity guarantee.'
+- 'Verified 2026-07-01 via firecrawl-html-extract against s32k1.html: 33/58 spec fields matched (57%). Source: https://www.nxp.com/products/S32K1
+  (vendor product page scraped as HTML; no separate PDF available).'
+extracted_at: '2026-06-30T10:42:00+08:00'
+extraction_method: firecrawl-extract (keyed) of nxp.com product page + manual enrich
+extraction_source: references/semiconductor-vendor/NXP/firecrawl-snapshots/S32K1-series_clean.md
+extraction_source_raw: references/semiconductor-vendor/NXP/firecrawl-snapshots/S32K1-series_raw.md
+extraction_credits_used: 1
+datasheet_source_url: https://www.nxp.com/products/S32K1

@@ -1,48 +1,52 @@
-## Description: <br>
-Professional Investment Banking Career Roadmap Platform that generates personalized career development paths and specialization guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional Investment Banking Career Roadmap Platform that generates personalized career development paths and specialization guidance.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Finance professionals, career coaches, and educational institutions use this skill to generate investment banking career roadmaps, compare specialization paths, and retrieve learning resources based on experience, skills, and goals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share identifiable career details or sensitive employer information with a third-party career assessment API. <br>
-Mitigation: Share only the profile details needed for the roadmap, avoid confidential employer or deal information, and review the publisher's privacy, retention, and deletion practices before using real personal data. <br>
-Risk: The skill advertises paid usage tiers, so high-volume use may create unexpected costs. <br>
-Mitigation: Confirm the selected plan, daily and monthly call limits, and expected usage before connecting the skill to automated workflows. <br>
+## Use Case:
 
+Finance professionals, career coaches, and educational institutions use this skill to generate personalized investment banking career roadmaps, specialization guidance, and learning resources from career assessment data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-investment-banking) <br>
-- [ToolWeb](https://toolweb.in) <br>
-- [ToolWeb portal](https://portal.toolweb.in) <br>
-- [ToolWeb hub](https://hub.toolweb.in) <br>
-- [ToolWeb OpenClaw](https://toolweb.in/openclaw/) <br>
-- [RapidAPI publisher profile](https://rapidapi.com/user/mkrishna477) <br>
-- [ToolWeb YouTube channel](https://youtube.com/@toolweb-009) <br>
-- [Investment Banking API route](https://api.mkkpro.com/career/investment-banking) <br>
-- [Investment Banking API docs](https://api.mkkpro.com:8186/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [JSON API responses and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces career-roadmap recommendations, ranked specialization matches, learning-path information, and next-step guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Career assessment details, identifiers, employer information, skills, certifications, goals, and location preferences may be sent to an external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only the career profile details needed for guidance and avoid unnecessary sensitive personal information.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-investment-banking)
+- [Investment Banking API Documentation](https://api.mkkpro.com:8186/docs)
+- [Investment Banking API Route](https://api.mkkpro.com/career/investment-banking)
+- [ToolWeb](https://toolweb.in)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Guidance, Configuration]
+
+**Output Format:** [JSON and Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return career roadmap identifiers, assessment summaries, recommended phases, specialization matches, learning resources, and next steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

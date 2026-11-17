@@ -183,9 +183,17 @@
           "old": "150",
           "new": "50",
           "description": "清洗 蓝耗 150→50"
+        },
+        {
+          "patch": "7.41d",
+          "date": "2026-07-31",
+          "field": "cd",
+          "old": "40",
+          "new": "30",
+          "description": "清洗 CD 40s→30s"
         }
       ],
-      "last_updated": "2026-06-05",
+      "last_updated": "2026-07-31",
       "tier": 5,
       "lore": "With ready access to test subjects, untold cruelties have been dreamed up and loosed upon the world from within the walls of the Tyler Estate.",
       "abilities": [
@@ -208,7 +216,7 @@
         "cast_range": "700"
       },
       "mc": 50,
-      "cd": 40
+      "cd": 30
     },
     {
       "id": 1642,
@@ -391,7 +399,18 @@
       "id": 1868,
       "key": "foragers_kit",
       "name": "Forager's Kit",
-      "cost": 0
+      "cost": 0,
+      "patch_changes": [
+        {
+          "patch": "7.41d",
+          "date": "2026-07-31",
+          "field": "harvest_time",
+          "old": "1",
+          "new": "0.75",
+          "description": "采菌时间 1s→0.75s"
+        }
+      ],
+      "localized_name": "采菌套具"
     }
   ],
   "3": [
@@ -591,13 +610,43 @@
       "id": 1862,
       "key": "enchanters_bauble",
       "name": "Enchanter's Bauble",
-      "cost": 0
+      "cost": 0,
+      "patch_changes": [
+        {
+          "patch": "7.41d",
+          "date": "2026-07-31",
+          "field": "reforge_bonus",
+          "old": "40",
+          "new": "35",
+          "description": "附魔的重新打造加成 40%→35%"
+        }
+      ],
+      "localized_name": "附魔师之椟"
     },
     {
       "id": 1864,
       "key": "conjurers_catalyst",
       "name": "Conjurer's Catalyst",
-      "cost": 0
+      "cost": 0,
+      "patch_changes": [
+        {
+          "patch": "7.41d",
+          "date": "2026-07-31",
+          "field": "spell_overflow_nonhero_damage",
+          "old": "30",
+          "new": "20",
+          "description": "法术外溢对非英雄单位的爆炸伤害 30→20"
+        },
+        {
+          "patch": "7.41d",
+          "date": "2026-07-31",
+          "field": "spell_overflow_illusion_threshold",
+          "old": "consider_all_damage",
+          "new": "only_pre_increased_damage",
+          "description": "法术外溢对幻象的伤害临界值现在只考虑增伤前伤害"
+        }
+      ],
+      "localized_name": "咒术师触媒"
     }
   ]
 }

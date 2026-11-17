@@ -1,39 +1,59 @@
-## Description: <br>
-Natural-language screener for investment assets across global markets, including A-shares, Hong Kong and U.S. stocks, funds, ETFs, convertible bonds, and sectors, returning CSV data and text descriptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Natural language screener for investment assets across global markets, including A-shares, ETFs, bonds, HK and US stocks, and funds, with CSV and text-description outputs.
 
-## Publisher: <br>
-[financial-ai-analyst](https://clawhub.ai/user/financial-ai-analyst) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[financial-ai-analyst](https://clawhub.ai/user/financial-ai-analyst)
 
-## Use Case: <br>
-External investors, analysts, and developers use this skill to turn natural-language screening criteria into Eastmoney-backed CSV and description files for cross-market monitoring, asset selection, portfolio construction, and strategy research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/financial-ai-analyst/mx-stocks-screener) <br>
-- [Publisher Profile](https://clawhub.ai/user/financial-ai-analyst) <br>
-- [Eastmoney Miaoxiang Claw Service](https://ai.eastmoney.com/mxClaw) <br>
+External users and investment analysts use this skill to screen A-share, Hong Kong, U.S. equity, ETF, fund, convertible-bond, and sector data with natural-language criteria for asset discovery, cross-market monitoring, portfolio construction, and strategy review.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, Shell commands, Configuration guidance] <br>
-**Output Format:** [CSV files, plain-text descriptions, and Markdown guidance with shell and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a revocable EM_API_KEY, sends user screening queries to Eastmoney, and can confine local CSV/text outputs with MX_STOCKS_SCREENER_OUTPUT_DIR.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.15 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: CSV exports may preserve untrusted spreadsheet formulas from remote financial data.
+
+Mitigation: Open generated CSV files with formula execution disabled or inspect them before using them in spreadsheet software or sharing them.
+
+Risk: The skill depends on an external Eastmoney API service and requires an EM_API_KEY credential.
+
+Mitigation: Install only if the service is trusted, keep the API key out of code and logs, and confirm the key can be reset or revoked.
+
+Risk: Unpinned Python dependencies can change behavior over time.
+
+Mitigation: Install dependencies in an isolated environment and pin reviewed versions for production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/financial-ai-analyst/skills/mx-stocks-screener)
+- [Financial AI Analyst publisher profile](https://clawhub.ai/user/financial-ai-analyst)
+- [Eastmoney Miaoxiang API key service](https://ai.eastmoney.com/mxClaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with shell and Python examples; generated CSV and text description files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires EM_API_KEY and writes query results to a configurable local output directory.]
+
+## Skill Version(s):
+
+1.0.15 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

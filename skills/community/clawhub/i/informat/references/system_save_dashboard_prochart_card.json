@@ -2,7 +2,7 @@
   "type": "function",
   "function": {
     "name": "_save_dashboard_prochart_card",
-    "description": "Create or edit dashboard cards in the dashboard. Only cards of type ProChart can be created or modified. Important notes: 1. Data source rules: When type=\"table\", the field id in dimensionList must be the actual column name from the SQL query result. Do not fabricate or use non-existent field names. 1.1 When aggregation query is not enabled, the field source is the original fields returned from directly querying the data table. Naming rule: id must exactly match the column name in the database table. 1.2 When aggregation query is enabled, the aggregation column format is fieldName_functionName, and aggregation is prohibited for id and seq fields. That means fieldId in aggregationQueryList cannot be id or seq, other fields must be used. 2. Stacked chart rules: When implementing stacking effects, a separate data source and corresponding chart instance must be created for each stacked series. In the series array, datasetIndex corresponds to the data source index, and each chart's datasetIndex value should correspond one-to-one with the data source index. Example: To display \"quantity of each punch type for each employee\" using a bar chart, separate data sources and charts need to be created for \"Punch Type A\", \"Punch Type B\", etc. If Punch Type A data source has index 0 in dataset, and Punch Type B has index 1, then datasetIndex in the chart needs to be set to 0 and 1 respectively. Before creating or modifying cards, you need to plan which data sources and charts are needed in advance to set the correct datasetIndex. 3. Style rules: The chart title position must be set to ensure it does not overlap with the legend area. 4. The final generated content needs to be JSON parsed, so it must conform to JSON specification. Functions are not allowed. 5. [Color rules - strictly follow] All color fields must use standard 6-digit HEX format strings, such as '#67e0e3', '#5B8FF9'; rgba(...), rgb(...), hsl(...) formats are strictly prohibited; functions, arrow functions, or any dynamic expressions for setting colors are strictly prohibited (color field can only be a string constant, not a function); black (#000000) and gray colors are not allowed.",
+    "description": "Create or edit dashboard cards in the dashboard. Only cards of type ProChart can be created or modified. [UI Preset MANDATORY RULES - MUST READ] When the user has not explicitly specified card style (color/theme/font size/border radius/layout/chart appearance), you MUST first call _read_informat_dashboard_ui_preset to read the UI preset, then strictly fill cardStyle and proChartSetting (per series type) according to the preset defaults (colors cycled from the current theme palette by series index; line series default to smooth+areaStyle; bar default borderRadius=[6,6,0,0]; pie default donut radius=['40%','70%'] with white border, etc.). When the user explicitly specifies something, only replace the specified fields and keep the rest from preset. All cards in the same dashboard MUST use the same theme palette. [LAYOUT PLANNING - MUST READ] Before creating multiple cards, you MUST first pick one of the 6 layout templates from the preset, then assign width/height/order accordingly; do not blindly fill 12x12 or arbitrary sizes. Important notes: 1. Data source rules: When type=\"table\", the field id in dimensionList must be the actual column name from the SQL query result. Do not fabricate or use non-existent field names. 1.1 When aggregation query is not enabled, the field source is the original fields returned from directly querying the data table. Naming rule: id must exactly match the column name in the database table. 1.2 When aggregation query is enabled, the output column for func=count is always count: dimensionList[].id must be count and series.*Setting.encode must reference count; never use fieldName_count. Only avg/sum/max/min use fieldName_functionName. Aggregation is prohibited for id and seq fields. 2. Stacked chart rules: When implementing stacking effects, a separate data source and corresponding chart instance must be created for each stacked series. In the series array, datasetIndex corresponds to the data source index, and each chart's datasetIndex value should correspond one-to-one with the data source index. Example: To display \"quantity of each punch type for each employee\" using a bar chart, separate data sources and charts need to be created for \"Punch Type A\", \"Punch Type B\", etc. If Punch Type A data source has index 0 in dataset, and Punch Type B has index 1, then datasetIndex in the chart needs to be set to 0 and 1 respectively. Before creating or modifying cards, you need to plan which data sources and charts are needed in advance to set the correct datasetIndex. 3. Style rules: The chart title position must be set to ensure it does not overlap with the legend area. 4. The final generated content needs to be JSON parsed, so it must conform to JSON specification. Functions are not allowed. 5. [Color rules - strictly follow] All color fields must use standard 6-digit HEX format strings, such as '#67e0e3', '#5B8FF9'; rgba(...), rgb(...), hsl(...) formats are strictly prohibited; functions, arrow functions, or any dynamic expressions for setting colors are strictly prohibited (color field can only be a string constant, not a function); black (#000000) and White (#ffffff) and gray colors are not allowed.",
     "parameters": {
       "type": "object",
       "properties": {
@@ -24,13 +24,13 @@
         },
         "width": {
           "type": "number",
-          "description": "Card width, maximum is 24 (representing 24 grid units), cannot be less than 12.",
-          "default": 12
+          "description": "Card width (24-column grid base, one row = 24 cells). Max 24 (full row), min 1. Common values: 6=1/4 row (4 KPIs in a row), 8=1/3 row, 12=half row, 16=2/3 row, 24=full row. The width sum of ALL cards in the SAME ROW must equal 24 exactly, otherwise the system applies the `width+widthSum>24 to wrap` rule and the layout collapses. Never default all cards to width=12 (that fills only half the screen).",
+          "default": 6
         },
         "height": {
           "type": "number",
-          "description": "Card height, also represented by occupied grid units, no maximum limit of 24. Minimum is 12",
-          "default": 12
+          "description": "Card height in grid units, no upper limit. Common values: KPI number=4, compact chart=8, standard chart=10, main chart=16-20.",
+          "default": 10
         },
         "remark": {
           "type": "string",
@@ -46,11 +46,11 @@
           "properties": {
             "bgType": {
               "type": "string",
-              "description": "Background type, e.g. 'image', 'color', or 'transparent'. Default is image."
+              "description": "Background type. Allowed values: 'image' (default, solid color or image), 'color' (solid color), 'transparent', 'gradient' (linear gradient — **`bgGradientColor` is parsed ONLY when bgType == 'gradient'**). When the UI preset needs `bgGradientColor` (a CSS `linear-gradient(...)` string), bgType **MUST** be set to 'gradient'; writing 'image' or 'color' will silently drop the gradient and fall back to a plain `bgColor`."
             },
             "bgColor": {
               "type": "string",
-              "description": "Background color, only effective when bgType is appropriate. [Color rules - strictly follow]: ① Only use standard 6-digit HEX format, e.g. '#67e0e3', '#5B8FF9'; ② rgba(...), rgb(...), hsl(...) formats are strictly prohibited; ③ Functions, arrow functions, or any dynamic expressions for setting colors are strictly prohibited, color field can only be a string constant; ④ Black (#000000) and gray colors are not allowed."
+              "description": "Background color, only effective when bgType is appropriate. [Color rules - strictly follow]: ① Only use standard 6-digit HEX format, e.g. '#67e0e3', '#5B8FF9'; ② rgba(...), rgb(...), hsl(...) formats are strictly prohibited; ③ Functions, arrow functions, or any dynamic expressions for setting colors are strictly prohibited, color field can only be a string constant; ④ Black (#000000) and White (#ffffff) and gray colors are not allowed."
             },
             "bgImageId": {
               "type": "string",
@@ -184,14 +184,15 @@
         },
         "proChartSetting": {
           "type": "object",
-          "description": "Chart rendering configuration. Structure compatible with ECharts option",
+          "description": "Chart rendering configuration. Structure compatible with ECharts option. For Cartesian charts such as bar/line/scatter, provide non-empty grid, xAxis, and yAxis, and provide complete render settings in the matching barSetting/lineSetting/scatterSetting, including datasetIndex, encode, xAxisIndex, yAxisIndex, and coordinateSystem='cartesian2d'. Do not generate only dataset plus a minimal series. Non-Cartesian charts such as pie/funnel/gauge do not need xAxis/yAxis.",
           "properties": {
             "grid": {
               "type": "array",
               "items": {
                 "type": "object"
               },
-              "description": "Grid configuration array (refer to ECharts grid)."
+              "minItems": 1,
+              "description": "Grid configuration array (refer to ECharts grid). bar/line/scatter must include at least one item. Recommended: {\"top\":48,\"left\":48,\"right\":24,\"bottom\":40,\"containLabel\":true}."
             },
             "polar": {
               "type": "array",
@@ -240,7 +241,7 @@
                         },
                         "color": {
                           "type": "string",
-                          "description": "Color value. [Color rules - strictly follow]: ① Only use standard 6-digit HEX format, e.g. '#67e0e3', '#5B8FF9'; ② rgba(...), rgb(...), hsl(...) formats are strictly prohibited; ③ Functions, arrow functions, or any dynamic expressions for setting colors are strictly prohibited, color field can only be a string constant; ④ Black (#000000) and gray colors are not allowed."
+                          "description": "Color value. [Color rules - strictly follow]: ① Only use standard 6-digit HEX format, e.g. '#67e0e3', '#5B8FF9'; ② rgba(...), rgb(...), hsl(...) formats are strictly prohibited; ③ Functions, arrow functions, or any dynamic expressions for setting colors are strictly prohibited, color field can only be a string constant; ④ Black (#000000) and White (#ffffff) and gray colors are not allowed."
                         }
                       },
                       "required": [
@@ -274,6 +275,7 @@
             },
             "xAxis": {
               "type": "array",
+              "minItems": 1,
               "items": {
                 "type": "object",
                 "properties": {
@@ -325,10 +327,11 @@
                   "type"
                 ]
               },
-              "description": "X-axis configuration array (supports multiple x-axes)."
+              "description": "X-axis configuration array (supports multiple x-axes). bar/line/scatter must include at least one item. Category charts usually use type='category' and position='bottom'."
             },
             "yAxis": {
               "type": "array",
+              "minItems": 1,
               "items": {
                 "type": "object",
                 "properties": {
@@ -375,13 +378,16 @@
                     },
                     "description": "boundaryGap configuration."
                   }
-                }
+                },
+                "required": [
+                  "type"
+                ]
               },
-              "description": "Y-axis configuration array (supports multiple y-axes)."
+              "description": "Y-axis configuration array (supports multiple y-axes). bar/line/scatter must include at least one item. Count, amount, and quantity metrics usually use type='value' and position='left'."
             },
             "legend": {
               "type": "object",
-              "description": "Legend configuration, refer to ECharts legend (show, orient, data, etc.)."
+              "description": "Legend configuration, refer to ECharts legend (show, orient, data, etc.). For pie charts, funnel charts, and other category-based charts, explicitly set {\"show\":true}; do not omit legend. Only set show=false when the user explicitly asks to hide the legend."
             },
             "title": {
               "type": "object",
@@ -390,6 +396,7 @@
             "dataset": {
               "type": "array",
               "description": "Chart data source configuration array. When type='table', dynamic filtering and aggregation queries are supported. Returned fields are defined by dimensionList. Chart encode must reference field IDs declared here. Since chart configuration can only configure specific values (you cannot use aggregation to group when querying, as the grouped fields do not return specific values. For example, grouping by status field will have multiple status values, which does not meet requirements), when chart stacking occurs, create as many data sources and charts as needed for stacking, then correspond one-to-one. The corresponding chart uses the corresponding data source. For example, to display the quantity of each punch type for each employee using a bar chart, a data source needs to be created for each punch type.",
+              "minItems": 1,
               "items": {
                 "type": "object",
                 "properties": {
@@ -419,20 +426,23 @@
                     "properties": {
                       "opt": {
                         "type": "string",
+                        "enum": ["and", "or"],
                         "description": "Root condition combination logic. Only one of the following values can be used: and, or."
                       },
                       "children": {
                         "type": "array",
                         "items": {
                           "type": "object",
-                          "description": "Nested condition group, leave empty when not needed",
+                          "description": "Nested child filter condition group (FilterCondition object array), for complex condition combinations.",
                           "properties": {
                             "opt": {
                               "type": "string",
+                              "enum": ["and", "or"],
                               "description": "Nested condition combination logic. Only one of the following values can be used: and, or."
                             },
                             "conditionList": {
                               "type": "array",
+                              "description": "Child group filter condition list (Condition object array).",
                               "items": {
                                 "type": "object",
                                 "properties": {
@@ -440,7 +450,9 @@
                                     "type": "string"
                                   },
                                   "opt": {
-                                    "type": "string"
+                                    "type": "string",
+                                    "enum": ["eq", "ne", "gt", "ge", "lt", "le", "contains", "notcontains", "startswith", "endswith", "isnull", "isnotnull", "in", "notin"],
+                                    "description": "Comparison operator. Only one of the following values can be used: eq, ne, gt, ge, lt, le, contains, notcontains, startswith, endswith, isnull, isnotnull, in, notin."
                                   },
                                   "value": {
                                     "type": "string"
@@ -451,9 +463,7 @@
                                 },
                                 "required": [
                                   "fieldId",
-                                  "opt",
-                                  "value",
-                                  "var"
+                                  "opt"
                                 ]
                               }
                             }
@@ -464,7 +474,7 @@
                         "type": "array",
                         "items": {
                           "type": "object",
-                          "description": "Filter conditions, leave empty when not needed",
+                          "description": "Filter condition list (Condition object array), must not contain FilterCondition objects.",
                           "properties": {
                             "fieldId": {
                               "type": "string",
@@ -472,11 +482,12 @@
                             },
                             "opt": {
                               "type": "string",
-                              "description": "Comparison operator. Only one of the following values can be used: eq, ne, gt, ge, lt, le, contains, notcontains, startswith, endswith, isnull, isnotnull, in, notin, between, notbetween."
+                              "enum": ["eq", "ne", "gt", "ge", "lt", "le", "contains", "notcontains", "startswith", "endswith", "isnull", "isnotnull", "in", "notin"],
+                              "description": "Comparison operator. Only one of the following values can be used: eq, ne, gt, ge, lt, le, contains, notcontains, startswith, endswith, isnull, isnotnull, in, notin."
                             },
                             "value": {
                               "type": "string",
-                              "description": "Comparison value or expression (e.g. '1=${filterRecord.name == null ? 1 : 0}'); when the value is boolean or numeric, wrap with ${}, e.g. ${true} or ${100}"
+                              "description": "Comparison value or expression. Required when opt is not isnull and not isnotnull. E.g. '1=${filterRecord.name == null ? 1 : 0}'; when the value is boolean or numeric, wrap with ${}, e.g. ${true} or ${100}"
                             },
                             "var": {
                               "type": "boolean",
@@ -485,9 +496,7 @@
                           },
                           "required": [
                             "fieldId",
-                            "opt",
-                            "value",
-                            "var"
+                            "opt"
                           ]
                         }
                       }
@@ -500,7 +509,7 @@
                   },
                   "aggregation": {
                     "type": "boolean",
-                    "description": "Whether to enable aggregation calculation",
+                    "description": "Whether to enable aggregation calculation. Hard rule: pie charts and bar charts must set aggregation=true and provide aggregationQueryList/groupByFieldList; do not use raw detail rows for pie/bar statistics.",
                     "default": false
                   },
                   "aggregationQueryList": {
@@ -510,11 +519,11 @@
                       "properties": {
                         "fieldId": {
                           "type": "string",
-                          "description": "Field ID to be aggregated. id and seq fields must not be used for aggregation"
+                          "description": "Field ID to be aggregated. Hard rule: when func=count, fieldId is forbidden and the fieldId property must be omitted entirely; correct example: {\"func\":\"count\",\"distinct\":false}. Only when func=avg/sum/max/min must fieldId be provided, and the field must be numeric type (Integer or Double). id and seq fields must never be used for aggregation."
                         },
                         "func": {
                           "type": "string",
-                          "description": "Aggregation function. Only one of the following values can be used: count, avg (average), sum, max (maximum), min (minimum). Note: avg, sum, max, min require the field to be numeric type (Integer or Double)."
+                          "description": "Aggregation function. Only one of the following values can be used: count, avg, sum, max, min. Hard rule: count means record count and fieldId is forbidden; avg/sum/max/min require fieldId and the field must be numeric type (Integer or Double)."
                         },
                         "distinct": {
                           "type": "boolean",
@@ -523,22 +532,21 @@
                         }
                       },
                       "required": [
-                        "fieldId",
                         "func"
                       ]
                     },
-                    "description": "Aggregation calculation configuration (required when aggregation=true)"
+                    "description": "Aggregation calculation configuration (required when aggregation=true). Important: an object with func=count may only contain non-field properties such as func/distinct and must not contain fieldId; for example [{\"func\":\"count\",\"distinct\":false}]."
                   },
                   "groupByFieldList": {
                     "type": "array",
                     "items": {
                       "type": "string"
                     },
-                    "description": "Group by field ID list (e.g. ['name']), grouping requires enabling aggregation-aggregation=true"
+                    "description": "Group-by field ID list. Grouping requires aggregation=true. Hard rule: this list only accepts real field ID strings that exist in the data table, for example [\"ib0kjb3u6a5bd\"]. Do not use field display names, dimensionList aliases, JSON strings, expressions, or serialized objects, for example the following is invalid: [\"{\\\"func\\\":\\\"group\\\",\\\"fieldId\\\":\\\"projectStatus\\\"}\"]. Field display aliases belong in dimensionList[].id, not in groupByFieldList."
                   },
                   "dimensionList": {
                     "type": "array",
-                    "description": "Final output data field list, must include fields referenced in chart encode. encode can only use fields listed here, do not fabricate non-existent data fields. If using aggregation fields, field ID format is: 'fieldID_functionName' e.g.: name_count",
+                    "description": "Final output data field list. It must fully declare every field referenced by chart encode, and encode can only use fields listed here; do not fabricate non-existent data fields. Hard rule: when the aggregation function is count, the field ID is exactly count; never use projectStatus_count, name_count, fieldID_count, or similar forms. series.*Setting.encode.value must also reference count. When using groupByFieldList for grouped statistics, dimensionList must include both the group field and the aggregation output field. For example, when counting records by task status, groupByFieldList=[\"p1d5jg86y47wx\"], and the display alias is taskStatus, dimensionList must be [{\"id\":\"taskStatus\",\"name\":\"Task Status\"},{\"id\":\"count\",\"name\":\"Count\"}], and pieSetting.encode must be {\"itemName\":\"taskStatus\",\"value\":[\"count\"]}. Only avg/sum/max/min use the field ID format 'fieldID_functionName', e.g. name_sum.",
                     "items": {
                       "type": "object",
                       "properties": {
@@ -584,12 +592,13 @@
                   "name",
                   "type"
                 ],
-                "description": "Single data source configuration. [type rules] When type=table, tableId must be provided. [aggregation rules] When aggregation=true, aggregationQueryList and groupByFieldList must be provided; aggregated field dimensionList[].id format is: fieldID_functionName (e.g. name_count), non-aggregated field id must not contain function suffix (_count/_avg/_sum/_max/_min)."
+                "description": "Single data source configuration. [type rules] When type=table, tableId must be provided. [aggregation rules] When aggregation=true, aggregationQueryList, groupByFieldList, and dimensionList must be provided. The output field for func=count is always count, and both dimensionList[].id and series.*Setting.encode must reference count; never use fieldID_count. Only func=avg/sum/max/min use aggregated field dimensionList[].id format fieldID_functionName (e.g. name_sum). Non-aggregated field id must not contain function suffix (_count/_avg/_sum/_max/_min). In grouped aggregate charts, dimensionList must not contain only the group field; it must also include the aggregation output field. Standard example: dimensionList=[{\"id\":\"taskStatus\",\"name\":\"Task Status\"},{\"id\":\"count\",\"name\":\"Count\"}], pieSetting.encode={\"itemName\":\"taskStatus\",\"value\":[\"count\"]}."
               }
             },
             "series": {
               "type": "array",
-              "description": "Chart array, must be provided (at least one). Each object in the array must include id, name, type, and the corresponding type's setting configuration (e.g. barSetting, etc.).",
+              "description": "Chart array, must be provided (at least one). Each object in the array must include id, name, type, and the corresponding type's setting configuration (e.g. barSetting, etc.). All encode fields must reference the corresponding dataset.dimensionList[].id; when referencing a func=count value, use count and never fieldID_count.",
+              "minItems": 1,
               "items": {
                 "type": "object",
                 "properties": {
@@ -676,11 +685,11 @@
                         "properties": {
                           "color": {
                             "type": "string",
-                            "description": "Color value. [Color rules - strictly follow]: ① Only use standard 6-digit HEX format, e.g. '#67e0e3', '#5B8FF9'; ② rgba(...), rgb(...), hsl(...) formats are strictly prohibited; ③ Functions, arrow functions, or any dynamic expressions for setting colors are strictly prohibited, color field can only be a string constant; ④ Black (#000000) and gray colors are not allowed."
+                            "description": "Color value. [Color rules - strictly follow]: ① Only use standard 6-digit HEX format, e.g. '#67e0e3', '#5B8FF9'; ② rgba(...), rgb(...), hsl(...) formats are strictly prohibited; ③ Functions, arrow functions, or any dynamic expressions for setting colors are strictly prohibited, color field can only be a string constant; ④ Black (#000000) and White (#ffffff) and gray colors are not allowed."
                           },
                           "borderColor": {
                             "type": "string",
-                            "description": "Color value. [Color rules - strictly follow]: ① Only use standard 6-digit HEX format, e.g. '#67e0e3', '#5B8FF9'; ② rgba(...), rgb(...), hsl(...) formats are strictly prohibited; ③ Functions, arrow functions, or any dynamic expressions for setting colors are strictly prohibited, color field can only be a string constant; ④ Black (#000000) and gray colors are not allowed."
+                            "description": "Color value. [Color rules - strictly follow]: ① Only use standard 6-digit HEX format, e.g. '#67e0e3', '#5B8FF9'; ② rgba(...), rgb(...), hsl(...) formats are strictly prohibited; ③ Functions, arrow functions, or any dynamic expressions for setting colors are strictly prohibited, color field can only be a string constant; ④ Black (#000000) and White (#ffffff) and gray colors are not allowed."
                           },
                           "borderWidth": {
                             "type": "number",
@@ -688,17 +697,29 @@
                           }
                         }
                       },
+                      "barMaxWidth": {
+                        "type": "string",
+                        "description": "Max bar width (e.g. '40px' or '40%')"
+                      },
+                      "barMinWidth": {
+                        "type": "string",
+                        "description": "Min bar width"
+                      },
+                      "barMinHeight": {
+                        "type": "number",
+                        "description": "Min bar height in pixels"
+                      },
                       "itemStyle": {
                         "type": "object",
                         "properties": {
                           "color": {
                             "type": "string",
-                            "description": "Color value. [Color rules - strictly follow]: ① Only use standard 6-digit HEX format, e.g. '#67e0e3', '#5B8FF9'; ② rgba(...), rgb(...), hsl(...) formats are strictly prohibited; ③ Functions, arrow functions, or any dynamic expressions for setting colors are strictly prohibited, color field can only be a string constant; ④ Black (#000000) and gray colors are not allowed.",
+                            "description": "Color value. [Color rules - strictly follow]: ① Only use standard 6-digit HEX format, e.g. '#67e0e3', '#5B8FF9'; ② rgba(...), rgb(...), hsl(...) formats are strictly prohibited; ③ Functions, arrow functions, or any dynamic expressions for setting colors are strictly prohibited, color field can only be a string constant; ④ Black (#000000) and White (#ffffff) and gray colors are not allowed.",
                             "pattern": "^#[0-9a-fA-F]{6}$"
                           },
                           "borderColor": {
                             "type": "string",
-                            "description": "Color value. [Color rules - strictly follow]: ① Only use standard 6-digit HEX format, e.g. '#67e0e3', '#5B8FF9'; ② rgba(...), rgb(...), hsl(...) formats are strictly prohibited; ③ Functions, arrow functions, or any dynamic expressions for setting colors are strictly prohibited, color field can only be a string constant; ④ Black (#000000) and gray colors are not allowed."
+                            "description": "Color value. [Color rules - strictly follow]: ① Only use standard 6-digit HEX format, e.g. '#67e0e3', '#5B8FF9'; ② rgba(...), rgb(...), hsl(...) formats are strictly prohibited; ③ Functions, arrow functions, or any dynamic expressions for setting colors are strictly prohibited, color field can only be a string constant; ④ Black (#000000) and White (#ffffff) and gray colors are not allowed."
                           },
                           "borderWidth": {
                             "type": "number",
@@ -708,6 +729,9 @@
                             "type": "string",
                             "default": "solid",
                             "description": "Border line type. Only one of the following values can be used: solid, dashed, dotted. Default is solid."
+                          },
+                          "borderRadius": {
+                            "description": "Bar corner radius. Either a number (uniform radius, e.g. 6) or an array of 4 numbers in [top-left, top-right, bottom-right, bottom-left] order (e.g. [6,6,0,0] for top-only rounded). UI preset recommends [6,6,0,0] for vertical bars and [0,6,6,0] for horizontal bars."
                           },
                           "opacity": {
                             "type": "number",
@@ -727,17 +751,37 @@
                           "position": {
                             "type": "string",
                             "default": "top",
-                            "description": "Label position. Only one of the following values can be used: top, right, bottom, left, inside, insideLeft, insideRight. Default is top."
+                            "description": "Label position. Only one of the following values can be used: top, right, bottom, left, inside, insideLeft, insideRight, insideTop, insideBottom. Default is top."
                           },
                           "formatter": {
                             "type": "string",
                             "description": "Label content formatter (e.g. '{c}')"
+                          },
+                          "color": {
+                            "type": "string",
+                            "description": "Label text color. 6-digit HEX only; rgba/rgb/hsl/functions/black/white/gray are prohibited."
+                          },
+                          "fontSize": {
+                            "type": "number",
+                            "description": "Label font size"
+                          },
+                          "fontWeight": {
+                            "type": "string",
+                            "description": "Label font weight. Allowed: normal, bold, bolder, lighter, or numeric string."
+                          },
+                          "distance": {
+                            "type": "number",
+                            "description": "Distance from the bar"
                           }
                         }
                       },
                       "stack": {
                         "type": "string",
                         "description": "Stack identifier (charts with the same stack value will be stacked)"
+                      },
+                      "stackStrategy": {
+                        "type": "string",
+                        "description": "Stack strategy. Allowed values: all (default), positive (stack positives only), negative (stack negatives only), samesign (stack same-sign values only)."
                       }
                     },
                     "required": [
@@ -789,9 +833,12 @@
                         "description": "Whether to display smoothly",
                         "default": false
                       },
+                      "step": {
+                        "description": "Whether to display as a step chart. Boolean false (default, off) or one of: start, middle, end."
+                      },
                       "symbol": {
                         "type": "string",
-                        "description": "Marker shape. Only one of the following values can be used: circle, rect, roundRect, triangle, diamond, pin, arrow, none. Default is emptyCircle.",
+                        "description": "Marker shape. Only one of the following values can be used: circle, rect, roundRect, triangle, diamond, pin, arrow, none. Default is emptyCircle. UI preset recommends 'none'.",
                         "default": "emptyCircle"
                       },
                       "symbolSize": {
@@ -806,17 +853,21 @@
                       },
                       "areaStyle": {
                         "type": "object",
-                        "description": "Area fill style",
+                        "description": "Area fill style. Omit for plain line chart; provide for area chart (UI preset defaults all line series to include areaStyle).",
                         "properties": {
                           "color": {
                             "type": "string",
-                            "description": "Color value. [Color rules - strictly follow]: ① Only use standard 6-digit HEX format, e.g. '#67e0e3', '#5B8FF9'; ② rgba(...), rgb(...), hsl(...) formats are strictly prohibited; ③ Functions, arrow functions, or any dynamic expressions for setting colors are strictly prohibited, color field can only be a string constant; ④ Black (#000000) and gray colors are not allowed."
+                            "description": "Color value. [Color rules - strictly follow]: ① Only use standard 6-digit HEX format, e.g. '#67e0e3', '#5B8FF9'; ② rgba(...), rgb(...), hsl(...) formats are strictly prohibited; ③ Functions, arrow functions, or any dynamic expressions for setting colors are strictly prohibited, color field can only be a string constant; ④ Black (#000000) and White (#ffffff) and gray colors are not allowed."
                           },
                           "opacity": {
                             "type": "number",
                             "minimum": 0,
                             "maximum": 1,
                             "default": 0.6
+                          },
+                          "origin": {
+                            "type": "string",
+                            "description": "Area origin. Allowed: auto (default, from axis zero), start (from Y-axis start), end (from Y-axis end)."
                           }
                         }
                       },
@@ -834,6 +885,26 @@
                             "description": "Line type. Only one of the following values can be used: solid, dashed, dotted. Default is solid."
                           }
                         }
+                      },
+                      "label": {
+                        "type": "object",
+                        "description": "Data point label",
+                        "properties": {
+                          "show": { "type": "boolean", "default": false },
+                          "position": { "type": "string", "description": "Label position: top, bottom, left, right, inside, etc." },
+                          "formatter": { "type": "string", "description": "Formatter string, e.g. '{c}'" },
+                          "color": { "type": "string", "description": "Label color, 6-digit HEX; rgba/gray forbidden." },
+                          "fontSize": { "type": "number" },
+                          "fontWeight": { "type": "string" }
+                        }
+                      },
+                      "stack": {
+                        "type": "string",
+                        "description": "Stack identifier. When multiple line/area series share the same stack value, they will be stacked (for stacked area chart)."
+                      },
+                      "stackStrategy": {
+                        "type": "string",
+                        "description": "Stack strategy. Allowed: all, positive, negative, samesign."
                       }
                     },
                     "required": [
@@ -871,15 +942,10 @@
                         ]
                       },
                       "radius": {
-                        "type": "array",
-                        "items": {
-                          "type": "string"
-                        },
-                        "description": "Radius configuration (e.g. ['0%','70%'])",
-                        "default": [
-                          "0%",
-                          "75%"
-                        ]
+                        "type": ["string", "array"],
+                        "items": { "type": "string" },
+                        "description": "Radius. **UI preset default is a solid pie: `\"70%\"` (single-string value)**. Donut `[\"55%\",\"78%\"]` is the secondary choice — use it ONLY when the user explicitly says \"donut/ring\" or the card center holds a total/headline text. Rose: `[\"20%\",\"85%\"]` together with roseType. **Never default every pie card to donut** — it makes all pies in the same dashboard look identical.",
+                        "default": "70%"
                       },
                       "center": {
                         "type": "array",
@@ -892,6 +958,20 @@
                           "50%"
                         ]
                       },
+                      "clockwise": {
+                        "type": "boolean",
+                        "description": "Whether sectors are arranged clockwise",
+                        "default": true
+                      },
+                      "avoidLabelOverlap": {
+                        "type": "boolean",
+                        "description": "Enable adaptive layout to avoid label overlap. UI preset defaults to true.",
+                        "default": true
+                      },
+                      "roseType": {
+                        "type": "string",
+                        "description": "Rose chart style (only set when the user explicitly says \"rose / Nightingale rose\"). Allowed: radius (sector angle represents percentage, radius represents value), area (all sector angles equal, radius represents value). **Omit for solid pie or donut** (decided by the `radius` field)."
+                      },
                       "label": {
                         "type": "object",
                         "properties": {
@@ -903,12 +983,35 @@
                             "type": "string",
                             "default": "outside",
                             "description": "Label position. Only one of the following values can be used: inside, outside, center. Default is outside."
-                          }
+                          },
+                          "formatter": {
+                            "type": "string",
+                            "description": "Formatter string. Common: '{b}: {c} ({d}%)' to show name: value (percentage)"
+                          },
+                          "color": { "type": "string", "description": "Label color, 6-digit HEX." },
+                          "fontSize": { "type": "number" }
                         }
                       },
                       "labelLine": {
                         "type": "object",
-                        "description": "Label guide line configuration"
+                        "description": "Label guide line configuration",
+                        "properties": {
+                          "show": { "type": "boolean", "default": true },
+                          "length": { "type": "number" },
+                          "length2": { "type": "number" },
+                          "smooth": { "type": "boolean" }
+                        }
+                      },
+                      "itemStyle": {
+                        "type": "object",
+                        "description": "Sector style. UI preset — solid pie: borderColor=#FFFFFF + borderWidth=2 + borderRadius=4; donut: borderColor=#FFFFFF + borderWidth=3 + borderRadius=6.",
+                        "properties": {
+                          "color": { "type": "string", "description": "Sector color, 6-digit HEX; usually omitted when colorBy=data uses global palette." },
+                          "borderColor": { "type": "string", "description": "Sector border color, 6-digit HEX. Preset white #FFFFFF." },
+                          "borderWidth": { "type": "number", "description": "Sector border width. Solid pie preset 2; donut preset 3." },
+                          "borderRadius": { "description": "Sector corner radius, number or array. Solid pie preset 4; donut preset 6." },
+                          "opacity": { "type": "number", "minimum": 0, "maximum": 1 }
+                        }
                       }
                     },
                     "required": [
@@ -987,20 +1090,55 @@
                             "items": {
                               "type": "string"
                             },
-                            "description": "Value field"
+                            "description": "Value field (order must match proChartSetting.radar.indicator)"
+                          },
+                          "seriesName": {
+                            "type": "array",
+                            "items": { "type": "string" },
+                            "description": "Series name field for legend in multi-group data"
                           }
                         },
                         "required": [
                           "value"
                         ]
                       },
+                      "radarIndex": {
+                        "type": "integer",
+                        "description": "Index into proChartSetting.radar (used with multiple radar coords). Default 0.",
+                        "default": 0
+                      },
+                      "symbol": {
+                        "type": "string",
+                        "description": "Data point shape. Allowed: circle, rect, roundRect, triangle, diamond, pin, arrow, none. Preset 'circle'."
+                      },
+                      "symbolSize": {
+                        "type": "number",
+                        "description": "Data point size. Preset 4.",
+                        "default": 4
+                      },
                       "areaStyle": {
                         "type": "object",
-                        "description": "Area fill style"
+                        "description": "Area fill style. UI preset recommends opacity=0.3 for translucent fill effect.",
+                        "properties": {
+                          "color": { "type": "string", "description": "Fill color, 6-digit HEX; if omitted, follows itemStyle.color" },
+                          "opacity": { "type": "number", "minimum": 0, "maximum": 1, "default": 0.3 }
+                        }
                       },
                       "lineStyle": {
                         "type": "object",
-                        "description": "Line style"
+                        "description": "Line style",
+                        "properties": {
+                          "width": { "type": "number", "default": 2 },
+                          "type": { "type": "string", "description": "Line type: solid, dashed, dotted" }
+                        }
+                      },
+                      "label": {
+                        "type": "object",
+                        "properties": {
+                          "show": { "type": "boolean", "default": false },
+                          "color": { "type": "string", "description": "Label color, 6-digit HEX." },
+                          "fontSize": { "type": "number" }
+                        }
                       }
                     },
                     "required": [
@@ -1040,12 +1178,33 @@
                         "type": "number",
                         "default": 100
                       },
+                      "splitNumber": {
+                        "type": "integer",
+                        "description": "Number of tick segments",
+                        "default": 10
+                      },
+                      "radius": {
+                        "type": "string",
+                        "description": "Gauge radius (e.g. '80%' or '200'). UI preset 80%.",
+                        "default": "80%"
+                      },
+                      "center": {
+                        "type": "array",
+                        "items": { "type": "string" },
+                        "description": "Center position (e.g. ['50%','55%'])",
+                        "default": ["50%", "55%"]
+                      },
                       "axisLine": {
                         "type": "object",
+                        "description": "Gauge axis line style",
                         "properties": {
                           "lineStyle": {
                             "type": "object",
                             "properties": {
+                              "width": {
+                                "type": "number",
+                                "description": "Axis line width. UI preset 18."
+                              },
                               "color": {
                                 "type": "array",
                                 "items": {
@@ -1056,20 +1215,67 @@
                                   "minItems": 2,
                                   "maxItems": 2
                                 },
-                                "description": "Color segments (e.g. [[0.3,'#67e0e3'],[0.7,'#37a2da'],[1,'#fd666d']])"
+                                "description": "Color segments (e.g. [['0.3','#5AD8A6'],['0.7','#5B8FF9'],['1','#E8684A']]). Each segment: [percent string, 6-digit HEX color]."
                               }
                             }
                           }
                         }
                       },
+                      "progress": {
+                        "type": "object",
+                        "description": "Progress bar configuration (donut progress style)",
+                        "properties": {
+                          "show": { "type": "boolean", "default": false, "description": "Whether to show progress bar. UI preset recommends true." },
+                          "width": { "type": "number", "description": "Progress bar width. UI preset 18." },
+                          "roundCap": { "type": "boolean", "description": "Whether progress bar endpoints are rounded." }
+                        }
+                      },
+                      "pointer": {
+                        "type": "object",
+                        "description": "Pointer configuration",
+                        "properties": {
+                          "show": { "type": "boolean", "default": true, "description": "Whether to show pointer. Recommended false for donut progress style." },
+                          "length": { "type": "string", "description": "Pointer length (e.g. '60%')" },
+                          "width": { "type": "number" }
+                        }
+                      },
+                      "title": {
+                        "type": "object",
+                        "description": "Gauge text title (caption below the value)",
+                        "properties": {
+                          "show": { "type": "boolean", "default": true },
+                          "offsetCenter": { "type": "array", "items": { "type": "string" }, "description": "Offset relative to center (e.g. ['0','60%'])" },
+                          "fontSize": { "type": "number" },
+                          "color": { "type": "string", "description": "6-digit HEX color." }
+                        }
+                      },
                       "detail": {
                         "type": "object",
+                        "description": "Central value text",
                         "properties": {
                           "formatter": {
                             "type": "string",
                             "description": "Format string (e.g. '{value}%')"
-                          }
+                          },
+                          "fontSize": { "type": "number", "description": "Font size. UI preset 28." },
+                          "color": { "type": "string", "description": "6-digit HEX color, recommended theme primary." },
+                          "offsetCenter": { "type": "array", "items": { "type": "string" } }
                         }
+                      },
+                      "axisTick": {
+                        "type": "object",
+                        "description": "Tick marks",
+                        "properties": { "show": { "type": "boolean" } }
+                      },
+                      "axisLabel": {
+                        "type": "object",
+                        "description": "Tick labels",
+                        "properties": { "show": { "type": "boolean" } }
+                      },
+                      "splitLine": {
+                        "type": "object",
+                        "description": "Split lines",
+                        "properties": { "show": { "type": "boolean" } }
                       }
                     },
                     "required": [
@@ -1299,6 +1505,7 @@
                   }
                 },
                 "required": [
+                  "id",
                   "name",
                   "type"
                 ]
@@ -1306,7 +1513,32 @@
             },
             "tooltip": {
               "type": "object",
-              "description": "General tooltip configuration"
+              "description": "General tooltip configuration. Output a complete object; do not pass an empty object {}. If the user did not explicitly ask to hide tooltips, use {\"show\":true,\"trigger\":\"item\"} by default. If the user explicitly asks to hide tooltips, still write {\"show\":false,\"trigger\":\"item\"}, and optionally include default style fields such as textStyle, axisPointer, and backgroundColor.",
+              "properties": {
+                "show": {
+                  "type": "boolean",
+                  "description": "Whether to show the tooltip. This must be set explicitly; do not rely on empty-object defaults."
+                },
+                "trigger": {
+                  "type": "string",
+                  "description": "Trigger type. Use item for pie, funnel, and other category-item charts; use axis for bar, line, and other axis-based charts."
+                },
+                "textStyle": {
+                  "type": "object",
+                  "description": "Tooltip text style."
+                },
+                "axisPointer": {
+                  "type": "object",
+                  "description": "Axis pointer configuration."
+                },
+                "backgroundColor": {
+                  "type": "string",
+                  "description": "Tooltip background color, using standard 6-digit HEX format."
+                }
+              },
+              "required": [
+                "show"
+              ]
             },
             "dataZoom": {
               "type": "array",

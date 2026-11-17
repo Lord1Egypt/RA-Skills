@@ -1,57 +1,67 @@
-## Description: <br>
-Orchestrates a multi-agent dev or agency team with shared memory, structured handoffs, role templates, and OpenClaw session guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates a multi-agent OpenClaw dev or agency team with shared memory, role handoffs, setup guidance, and optional multi-session routing.
 
-## Publisher: <br>
-[realm1lf](https://clawhub.ai/user/realm1lf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[realm1lf](https://clawhub.ai/user/realm1lf)
 
-## Use Case: <br>
-Developers and technical teams use this skill to organize specialized OpenClaw agents across planning, development, QA, security review, customer context, and handoff workflows. It is most useful when a team needs a shared local folder structure for customer tasks, portfolio status, role identities, and multi-agent routing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shared team folders can accumulate customer context, task details, and operational notes that should not contain credentials. <br>
-Mitigation: Choose TEAM_ROOT deliberately, keep passwords and API keys out of Markdown and JSON files, reference secret-manager entry names instead, and use a .gitignore when tracking TEAM_ROOT with Git. <br>
-Risk: External chat channels, scheduled work, or multi-agent routing can expand which agents or gateways can act on project files. <br>
-Mitigation: Enable those integrations only after reviewing each agent's gateway permissions, sandbox scope, and routing entries in TEAM_ROOT/team/AGENTS.md. <br>
-Risk: Agents in separate workspaces or containers may read different paths and create fragmented handoffs. <br>
-Mitigation: Use one resolved absolute TEAM_ROOT for all participating agents and mount it at the same path in every sandbox or container that needs access. <br>
+## Use Case:
 
+Developers, agency operators, and solo founders use this skill to set up and coordinate role-based OpenClaw teams for customer or project work. It guides shared team memory, customer context, portfolio tracking, role templates, and task handoffs across participating agents.
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [Skill Overview](SKILL.md) <br>
-- [OpenClaw Team Setup Guide](references/OPENCLAW_TEAM_SETUP_GUIDE.md) <br>
-- [First-Time Setup](references/SKILL-SETUP.md) <br>
-- [OpenClaw Layout](references/OPENCLAW_LAYOUT.md) <br>
-- [Board Schema](references/BOARD_SCHEMA.md) <br>
-- [Role Templates](references/ROLE_TEMPLATES.md) <br>
-- [Customer Context Template](references/CUSTOMER_CONTEXT.template.md) <br>
-- [Structure Map](references/ORG_CHART_EXAMPLE.md) <br>
-- [OpenClaw Agent Workspace](https://docs.openclaw.ai/concepts/agent-workspace) <br>
-- [OpenClaw Skills](https://docs.openclaw.ai/tools/skills) <br>
-- [OpenClaw Multi-Agent](https://docs.openclaw.ai/concepts/multi-agent) <br>
-- [OpenClaw Sandboxing](https://docs.openclaw.ai/gateway/sandboxing) <br>
-- [OpenClaw Multi-Agent Sandbox Tools](https://docs.openclaw.ai/tools/multi-agent-sandbox-tools) <br>
-- [Upstream Multi-Agent Team Use Case](https://github.com/hesamsheikh/awesome-openclaw-usecases/blob/main/usecases/multi-agent-team.md) <br>
-- [Building Effective Agents](https://www.anthropic.com/research/building-effective-agents) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, JSON, Configuration, Shell commands] <br>
-**Output Format:** [Markdown guidance with setup prompts, role snippets, JSON schema examples, and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; produces file layout guidance and handoff conventions rather than binaries or secrets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: metadata.version, CHANGELOG, ClawHub release) <br>
+Risk: The shared team folder can persist customer notes, task handoffs, and project status that may contain sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose DEV_TEAM_ROOT deliberately, keep it outside sensitive repositories unless intended, and avoid storing real passwords, API keys, or other secrets in shared Markdown files.
+
+Risk: Multi-agent routing, external channels, and scheduled work can broaden which agents act on project context.
+
+Mitigation: Enable routing, channels, scheduled work, sandbox access, and tool permissions only for the agents and workflows that need them.
+
+## Reference(s):
+
+- [Dev Team Skill](SKILL.md)
+- [OpenClaw x dev_team - guided team setup](references/OPENCLAW_TEAM_SETUP_GUIDE.md)
+- [dev_team - first-time setup](references/SKILL-SETUP.md)
+- [OpenClaw layout x dev_team](references/OPENCLAW_LAYOUT.md)
+- [Role templates](references/ROLE_TEMPLATES.md)
+- [board.json portfolio index schema](references/BOARD_SCHEMA.md)
+- [Customer context template](references/CUSTOMER_CONTEXT.template.md)
+- [Structure map](references/ORG_CHART_EXAMPLE.md)
+- [OpenClaw multi-agent routing](https://docs.openclaw.ai/concepts/multi-agent)
+- [OpenClaw skills documentation](https://docs.openclaw.ai/tools/skills)
+- [OpenClaw sandboxing](https://docs.openclaw.ai/gateway/sandboxing)
+- [ClawHub skill format](https://github.com/openclaw/clawhub/blob/main/docs/skill-format.md)
+- [awesome-openclaw-usecases multi-agent team reference](https://github.com/hesamsheikh/awesome-openclaw-usecases/blob/main/usecases/multi-agent-team.md)
+- [OpenClaw Showcase](https://openclaw.ai/showcase)
+- [Anthropic: Building Effective Agents](https://www.anthropic.com/research/building-effective-agents)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with file templates, JSON schema notes, and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance for creating and maintaining shared team folders and handoff files; no binaries or secrets are installed by the skill.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter, release evidence, _meta.json, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,54 +1,65 @@
-## Description: <br>
-AI-driven full-project language migration workflow for porting, translating, or rewriting codebases across programming languages with structural equivalence, asset coverage, persistent YAML state, and verification evidence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-driven workflow for full-project programming language migration with structural equivalence checks, persistent YAML state, real-test verification, and human-gated blocking when migration decisions cannot be made safely.
 
-## Publisher: <br>
-[suifei](https://clawhub.ai/user/suifei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[suifei](https://clawhub.ai/user/suifei)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to guide an AI coding agent through a multi-phase codebase migration: asset inventory, ecosystem mapping, function-level IPO analysis, translation, verification, and gap reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can authorize broad scanning, writing, fixing, and command execution across a project. <br>
-Mitigation: Set explicit source and target directories, keep the source tree read-only, review diffs frequently, and approve build or test commands before execution. <br>
-Risk: A migration can introduce behavioral divergence if evidence, phase gates, or no-mock verification steps are skipped. <br>
-Mitigation: Require the documented phase gates, READ_EVIDENCE, BEHAVIOR_PROOF, real-data tests, and full-suite reruns before accepting translated code. <br>
-Risk: Generated migration reports and YAML state files may become stale or inconsistent across long-running sessions. <br>
-Mitigation: Resume from migration_workspace/migration-state.yaml, audit phase-gate status before advancing, and run the gap report when status is unclear. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to port, translate, or rewrite complete codebases from one programming language to another while preserving structure, assets, behavioral evidence, and verification records.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/suifei/lang-migration) <br>
-- [README](README.md) <br>
-- [Phase 0: Bootstrap](references/phase-0-bootstrap.md) <br>
-- [Phase 1: Asset Scan](references/phase-1-asset-scan.md) <br>
-- [Phase 2: Ecosystem Mapping](references/phase-2-ecosystem-map.md) <br>
-- [Phase 3: IPO Analysis](references/phase-3-ipo-analysis.md) <br>
-- [Phase 4: Translation](references/phase-4-translation.md) <br>
-- [Phase 5: Verification](references/phase-5-verification.md) <br>
-- [Phase 6: Gap Report](references/phase-6-gap-report.md) <br>
-- [Phase Gate Review Protocol](references/phase-gate-review.md) <br>
-- [TDD Retrospective Protocol](references/tdd-retrospective.md) <br>
-- [YAML Schemas Reference](references/schemas.md) <br>
-- [Language Pair Template](references/lang-pairs/TEMPLATE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with YAML state files, code changes, shell commands, and generated migration reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update migration_workspace YAML files, translated source files, verification reports, and gap reports during an agent-led migration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata) <br>
+Risk: The skill can read or copy sensitive project configuration while scanning and migrating a source tree.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on repositories where broad source-tree review is acceptable, and remove or sanitize live secrets such as .env files, credential JSON/YAML, private keys, and production configuration before use.
+
+Risk: Autonomous migration and phase-gate loops can apply broad project changes.
+
+Mitigation: Require human approval before copying configuration into the target project or allowing automated review loops to apply fixes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/suifei/skills/lang-migration)
+- [Skill README](README.md)
+- [Phase 0 Bootstrap](references/phase-0-bootstrap.md)
+- [Phase 1 Asset Scan](references/phase-1-asset-scan.md)
+- [Phase 2 Ecosystem Map](references/phase-2-ecosystem-map.md)
+- [Phase 3 IPO Analysis](references/phase-3-ipo-analysis.md)
+- [Phase 4 Translation](references/phase-4-translation.md)
+- [Phase 5 Verification](references/phase-5-verification.md)
+- [Phase 6 Gap Report](references/phase-6-gap-report.md)
+- [Phase Gate Review](references/phase-gate-review.md)
+- [YAML Schemas](references/schemas.md)
+- [TDD Retrospective Protocol](references/tdd-retrospective.md)
+- [Language Pair Modules](references/lang-pairs/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with YAML state files, code changes, shell commands, and verification summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update migration workspace YAML files and translated project files during agent execution.]
+
+## Skill Version(s):
+
+1.3.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

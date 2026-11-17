@@ -1,38 +1,58 @@
-## Description: <br>
-Find the best products in any category with expert picks, value recommendations, and budget options across US, UK, and EU retailers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find the best products in any category with expert picks, value recommendations, and budget options across US, UK, and EU retailers.
 
-## Publisher: <br>
-[ralph-oei](https://clawhub.ai/user/ralph-oei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ralph-oei](https://clawhub.ai/user/ralph-oei)
 
-## Use Case: <br>
-External users and shoppers use this skill to compare products by region and receive top pick, best value, and budget recommendations with price ranges and Google product-search links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product searches are sent to search and review services, and recent product names and prices may be cached locally for six hours. <br>
-Mitigation: Use the skill only for non-sensitive product queries, review current prices before purchase, and clear the skill cache when cached product data should be removed. <br>
+## Use Case:
 
+External users use this skill to compare products by category and receive top, value, and budget recommendations with regional availability and price context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ralph-oei/best-product) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style product recommendations with product names, price ranges, retailer names, short summaries, and Google search URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs three recommendation categories and may include a warning when live prices cannot be verified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release evidence and target metadata) <br>
+Risk: Product search terms are sent through built-in web search and fetch tools, and product names are embedded in generated Google search URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive or private purchase details in product queries; review generated search links before opening them.
+
+Risk: Cached product results are stored locally for up to 6 hours.
+
+Mitigation: Clear the documented cache folder when cached product names and prices should not remain on the local machine.
+
+Risk: The default shopping region is the Netherlands, which can produce less relevant retailers or prices for users in other markets.
+
+Mitigation: Specify a supported region in the request when shopping outside the Netherlands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ralph-oei/skills/best-product)
+- [Publisher Profile](https://clawhub.ai/user/ralph-oei)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style product recommendation text with product names, price ranges, short rationale, sources, and search links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to the Netherlands unless the user specifies a supported region; caches product result data locally for 6 hours.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

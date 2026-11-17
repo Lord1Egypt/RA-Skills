@@ -1,46 +1,57 @@
-## Description: <br>
-Insight Engine collects operational logs, Langfuse traces, Git activity, and control-plane signals, computes statistics in Python, asks an LLM to interpret the structured packet, and writes daily, weekly, or monthly reports to Notion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Insight Engine turns operational logs and metrics into Python-computed statistics, LLM-interpreted insights, and Notion-ready daily, weekly, or monthly reports.
 
-## Publisher: <br>
-[nissan](https://clawhub.ai/user/nissan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nissan](https://clawhub.ai/user/nissan)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to turn AI system telemetry, evaluation traces, repository activity, and daily memory notes into evidence-backed operational insight reports. It supports scheduled daily, weekly, and monthly reporting, plus dry-run and data-only modes for reviewing the data packet before external API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan says the skill can send sensitive local memory and repository context to Anthropic and Notion more broadly than its security notes imply. <br>
-Mitigation: Review or disable memory and Git collection before running on private projects, and use --data-only or --dry-run first to inspect what would be sent. <br>
-Risk: Operational summaries, Git metadata, and daily OpenClaw memory text may be processed by Anthropic and written to a Notion workspace. <br>
-Mitigation: Install only if that data flow is acceptable, use API keys and Notion workspaces you control, and scope configured log, memory, and repository paths to appropriate data. <br>
-Risk: Remote telemetry collection can expose data over configured service endpoints. <br>
-Mitigation: Prefer HTTPS for any remote Langfuse URL and verify endpoint configuration before live runs. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to generate operational insight reports from AI system logs, Langfuse traces, gateway usage, git activity, and control-plane signals. It is suited for recurring daily, weekly, and monthly analysis workflows that need cited, data-backed conclusions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nissan/insight-engine) <br>
-- [Architecture reference](references/architecture.md) <br>
-- [Daily analyst prompt](scripts/prompts/daily_analyst.md) <br>
-- [Weekly analyst prompt](scripts/prompts/weekly_analyst.md) <br>
-- [Monthly analyst prompt](scripts/prompts/monthly_analyst.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Notion-ready Markdown/plain text reports, JSON data packets in data-only mode, and setup commands or configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Daily, weekly, and monthly modes; dry-run mode uses local Ollama and skips Notion writes; live mode can call Anthropic and write reports to Notion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: frontmatter and server release evidence) <br>
+Risk: Operational logs, local memory excerpts, or other sensitive data may be sent to configured model services or network endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated data packet before live runs, use dry-run or data-only mode for inspection, and keep Langfuse and Ollama endpoints local or HTTPS-trusted.
+
+Risk: Recurring cron execution can repeatedly write reports to Notion and transmit analysis requests without manual review.
+
+Mitigation: Use dedicated low-privilege Notion credentials and enable scheduled runs only after validating the report content and destination workspace.
+
+## Reference(s):
+
+- [Insight Engine Architecture Reference](references/architecture.md)
+- [Daily Insight Analyst Prompt](scripts/prompts/daily_analyst.md)
+- [Weekly Insight Analyst Prompt](scripts/prompts/weekly_analyst.md)
+- [Monthly Insight Analyst Prompt](scripts/prompts/monthly_analyst.md)
+- [ClawHub Skill Page](https://clawhub.ai/nissan/skills/insight-engine)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, Notion page content, shell commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports daily, weekly, monthly, dry-run, and data-only modes.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

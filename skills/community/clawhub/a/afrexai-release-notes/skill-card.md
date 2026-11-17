@@ -1,40 +1,52 @@
-## Description: <br>
-Generates clear, formatted release notes from git commits, pull request titles, or plain-language change descriptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate clear, formatted release notes from git commits, PR titles, or change descriptions, grouped by change type and suitable for different audiences and channels.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Engineering, product, and DevOps teams use this skill to turn commit logs, pull request titles, or described changes into customer-facing or internal release notes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated release notes may contain incorrect, incomplete, or audience-inappropriate claims if the provided change information is inaccurate or sensitive. <br>
-Mitigation: Review generated notes against the release source material before publishing. <br>
-Risk: Inputs may include secrets, private customer details, or unreleased security-sensitive information. <br>
-Mitigation: Sanitize inputs and only provide information appropriate for the agent environment and intended output audience. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Release Notes Generator listing](https://clawhub.ai/1kalin/afrexai-release-notes) <br>
-- [Keep a Changelog](https://keepachangelog.com/) <br>
+## Use Case:
 
+Engineering, product, and DevOps teams use this skill to turn commit logs, PR titles, or plain-language change descriptions into release notes for customers, GitHub releases, Slack updates, email announcements, or changelog entries.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown release notes, changelog entries, GitHub release text, Slack messages, email announcements, or short social posts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can tailor output for internal engineering audiences or external customer-facing audiences.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Release-note inputs may include internal commit, PR, or change information that is not intended for external audiences.
+
+Mitigation: Provide only information appropriate for the target audience and review generated external release notes for accidental disclosure before publishing.
+
+## Reference(s):
+
+- [Keep a Changelog](https://keepachangelog.com/)
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-release-notes)
+- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/)
+- [AfrexAI AI Revenue Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/)
+- [AfrexAI Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown release notes, changelog entries, GitHub release text, Slack messages, email announcements, or tweet-thread drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can tailor tone for internal engineering audiences or external customer-facing audiences.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, created 2026-02-13)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

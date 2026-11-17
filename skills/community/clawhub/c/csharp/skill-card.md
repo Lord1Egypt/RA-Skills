@@ -1,46 +1,54 @@
-## Description: <br>
-Write robust C# avoiding null traps, async deadlocks, and LINQ pitfalls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write robust C# avoiding null traps, async deadlocks, and LINQ pitfalls.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill as a concise C# reference for avoiding common mistakes around nullable values, async/await, LINQ, value types, collections, and resource disposal. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: C# guidance can be incomplete or misapplied to a specific project context. <br>
-Mitigation: Review generated code suggestions for correctness, runtime behavior, and project conventions before use. <br>
-Risk: The skill declares a dotnet binary dependency in ClawHub metadata. <br>
-Mitigation: Install and use a project-appropriate .NET SDK before relying on commands or examples that require dotnet. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [C# skill page](https://clawhub.ai/ivangdavila/csharp) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Null Traps](artifact/nulls.md) <br>
-- [Async/Await Traps](artifact/async.md) <br>
-- [LINQ Traps](artifact/linq.md) <br>
-- [Type Traps](artifact/types.md) <br>
-- [Collection Traps](artifact/collections.md) <br>
-- [Dispose Traps](artifact/dispose.md) <br>
+## Use Case:
 
+Developers and engineers use this skill as a concise C# reference for avoiding common mistakes with nullable values, async/await, LINQ, types, collections, and disposal.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown guidance with inline C# examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only reference skill; requires dotnet to be available according to ClawHub metadata.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may influence an agent's C# coding recommendations even though it is a concise reference rather than a complete security or style standard.
+
+Mitigation: Review generated C# against project standards, official language guidance, and security requirements before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/csharp)
+- [Null Traps](artifact/nulls.md)
+- [Async/Await Traps](artifact/async.md)
+- [LINQ Traps](artifact/linq.md)
+- [Type Traps](artifact/types.md)
+- [Collection Traps](artifact/collections.md)
+- [Dispose Traps](artifact/dispose.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code]
+
+**Output Format:** [Markdown guidance with inline C# code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only reference content; no executable behavior.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

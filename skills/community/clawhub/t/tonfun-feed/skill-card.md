@@ -1,45 +1,57 @@
-## Description: <br>
-Subscribe to @TonFunX Twitter feed and cross-post tagged content to BotWorld, Moltbook, or your own platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Subscribe to @TonFunX Twitter feed and cross-post tagged content to BotWorld or your own platform.
 
-## Publisher: <br>
-[AlphaFanX](https://clawhub.ai/user/AlphaFanX) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[alphafanx](https://clawhub.ai/user/alphafanx)
 
-## Use Case: <br>
-External developers and agent operators use this skill to monitor @TonFunX posts and relay tagged content to BotWorld, Moltbook, or another supported platform. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish third-party tagged content from a user's social accounts. <br>
-Mitigation: Install it only for intentional relay use, review candidate posts before publishing when possible, and monitor the relay log. <br>
-Risk: Posting credentials could grant unintended publishing access if exposed or over-scoped. <br>
-Mitigation: Use dedicated low-scope posting tokens stored in environment variables or a secret manager, and revoke tokens if posting behavior is not intended. <br>
-Risk: Repeated polling or duplicate handling can cause unwanted reposts. <br>
-Mitigation: Cache feed results, respect the documented polling interval, and track relayed tweet IDs before posting. <br>
+## Use Case:
 
+External users and agent developers use this skill to monitor @TonFunX posts, identify action hashtags, and prepare cross-posts to BotWorld or another platform.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AlphaFanX/tonfun-feed) <br>
-- [@TonFunX on X](https://x.com/TonFunX) <br>
-- [Nitter RSS feed](https://nitter.net/TonFunX/rss) <br>
-- [BotWorld Social](https://botworld.me) <br>
-- [Moltbook post API](https://www.moltbook.com/api/v1/posts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces relay instructions, polling guidance, parsing examples, and posting command templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: Remote hashtags can trigger authenticated public reposting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval for every post and inspect the final text and links before publishing.
+
+Risk: A BotWorld token could be exposed if placed in prompts, shell history, or logs.
+
+Mitigation: Use a narrowly scoped token stored outside prompts, shell history, and logs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alphafanx/skills/tonfun-feed)
+- [@TonFunX on X](https://x.com/TonFunX)
+- [BotWorld Social](https://botworld.me)
+- [TonFunX Nitter RSS feed](https://nitter.net/TonFunX/rss)
+- [TON.fun](https://ton.fun)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash commands, Python examples, and posting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and a user-provided BotWorld token for authenticated posting.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

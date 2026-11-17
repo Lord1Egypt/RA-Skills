@@ -1,41 +1,60 @@
-## Description: <br>
-Helps agents perform Zotero-based academic literature reviews by confirming scope, searching local or online sources, validating PDFs, extracting evidence, and producing structured review deliverables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zotero Literature Review helps agents create structured academic literature reviews by searching Zotero libraries, validating PDFs, extracting source-grounded details, and producing review drafts with quality checks.
 
-## Publisher: <br>
-[sun2001](https://clawhub.ai/user/sun2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sun2001](https://clawhub.ai/user/sun2001)
 
-## Use Case: <br>
-Researchers, students, and technical writers use this skill to guide literature-review work grounded in Zotero library items, verified PDFs, and user-confirmed review requirements. It is most useful when accuracy, citation integrity, and structured review outputs matter more than speed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect local Zotero PDFs and optional external search or API services may expose sensitive research context. <br>
-Mitigation: Use local-only mode for confidential or unpublished work, restrict the task to chosen Zotero collections or folders, avoid unnecessary API keys, and review or delete temporary files containing extracted PDF text. <br>
+## Use Case:
 
+Researchers, students, and technical teams with Zotero collections use this skill to produce source-grounded literature reviews, related-work sections, and technical survey drafts from verified local PDFs and optional web search.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sun2001/zotero-literature-review) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
-- [Application example](artifact/应用示例.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with structured review templates, optional code or shell-command examples, and document-output instructions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation of Word documents, Markdown reviews, project indexes, quality reports, and temporary extraction notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can expose sensitive research materials because it directs the agent to read local Zotero libraries, PDFs, tags, metadata, and generated temporary files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Scope tasks to a specific Zotero collection or folder, use local-only mode when external search is unnecessary, and review selected files before execution.
+
+Risk: Extracted-text intermediates and generated reports may retain confidential PDF content or metadata.
+
+Mitigation: Store outputs in project-specific folders, review generated files before sharing, and delete temporary extraction files after the task is complete.
+
+Risk: Optional online search may send research topics or query terms to external search tools.
+
+Mitigation: Use local Zotero-only mode for sensitive topics or remove confidential terms before enabling web search.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sun2001/skills/zotero-literature-review)
+- [SKILL.md](artifact/SKILL.md)
+- [README.md](artifact/README.md)
+- [Usage examples](artifact/应用示例.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and document-oriented files with supporting reports, project indexes, extracted citation details, and task guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include verified citation metadata, extracted PDF details, quality-check summaries, and explicit markers for information that cannot be validated.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

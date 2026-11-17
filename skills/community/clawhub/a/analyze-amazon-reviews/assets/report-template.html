@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>__REPORT_TITLE__</title>
+  <style>
+    :root {
+      --bg: #f2f5f3;
+      --surface: #ffffff;
+      --surface-2: #f7faf8;
+      --ink: #17211d;
+      --muted: #627169;
+      --line: #dce5e0;
+      --accent: #0d7a5f;
+      --accent-2: #72b69f;
+      --accent-soft: #e3f3ed;
+      --danger: #b33e3e;
+      --danger-soft: #fae9e7;
+      --warning: #9b6511;
+      --warning-soft: #fff2d9;
+      --positive: #19734f;
+      --shadow: 0 12px 36px rgba(25, 50, 40, .08);
+      --radius: 18px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      --sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+
+    [data-theme="dark"] {
+      --bg: #101613;
+      --surface: #17201c;
+      --surface-2: #1c2822;
+      --ink: #edf5f1;
+      --muted: #a7b7af;
+      --line: #304139;
+      --accent: #58c5a1;
+      --accent-2: #387f68;
+      --accent-soft: #18382e;
+      --danger: #ff8f87;
+      --danger-soft: #3b2322;
+      --warning: #efbd69;
+      --warning-soft: #392f1d;
+      --positive: #6dd0a8;
+      --shadow: 0 16px 42px rgba(0, 0, 0, .25);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 0%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 33rem),
+        var(--bg);
+      font-family: var(--sans);
+      line-height: 1.58;
+    }
+
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
+    a { color: var(--accent); }
+    .shell { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
+
+    .hero { padding: 64px 0 34px; }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(260px, .6fr); gap: 30px; align-items: end; }
+    .eyebrow { color: var(--accent); font-weight: 800; letter-spacing: .13em; text-transform: uppercase; font-size: 12px; }
+    h1 { margin: 10px 0 14px; max-width: 900px; font-size: clamp(34px, 6vw, 68px); line-height: 1.04; letter-spacing: -.045em; }
+    .lede { max-width: 760px; margin: 0; color: var(--muted); font-size: 17px; }
+    .hero-side { display: flex; flex-direction: column; gap: 12px; align-items: flex-end; }
+    .hero-actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+    .button {
+      border: 1px solid var(--line); border-radius: 999px; padding: 10px 15px;
+      color: var(--ink); background: var(--surface); box-shadow: 0 4px 12px rgba(0,0,0,.04);
+    }
+    .button:hover { border-color: var(--accent); color: var(--accent); }
+    .generated { color: var(--muted); font-size: 12px; text-align: right; }
+
+    .chip-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+    .chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border: 1px solid var(--line); border-radius: 999px; background: color-mix(in srgb, var(--surface) 84%, transparent); color: var(--muted); font-size: 12px; }
+    .chip strong { color: var(--ink); }
+
+    .nav-wrap { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(16px); background: color-mix(in srgb, var(--bg) 84%, transparent); border-block: 1px solid color-mix(in srgb, var(--line) 72%, transparent); }
+    .nav { display: flex; gap: 22px; overflow-x: auto; scrollbar-width: none; }
+    .nav a { flex: 0 0 auto; padding: 13px 0; color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 700; }
+    .nav a:hover { color: var(--accent); }
+
+    main { padding: 30px 0 80px; }
+    section { scroll-margin-top: 72px; margin-top: 42px; }
+    .section-head { display: flex; gap: 20px; align-items: end; justify-content: space-between; margin-bottom: 16px; }
+    .section-head h2 { margin: 0; font-size: clamp(25px, 3vw, 36px); letter-spacing: -.025em; }
+    .section-head p { max-width: 620px; margin: 0; color: var(--muted); font-size: 14px; }
+
+    .grid { display: grid; gap: 14px; }
+    .kpis { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+    .card { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); }
+    .kpi { min-height: 142px; padding: 18px; display: flex; flex-direction: column; justify-content: space-between; }
+    .kpi-label { color: var(--muted); font-size: 12px; font-weight: 700; }
+    .kpi-value { font-size: clamp(25px, 3vw, 37px); line-height: 1; font-weight: 850; letter-spacing: -.04em; }
+    .kpi-note { color: var(--muted); font-size: 11px; }
+
+    .notice { padding: 15px 17px; border: 1px solid color-mix(in srgb, var(--warning) 35%, var(--line)); border-radius: 14px; background: var(--warning-soft); color: var(--ink); font-size: 13px; }
+    .notice strong { color: var(--warning); }
+
+    .executive-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .insight { padding: 22px; position: relative; overflow: hidden; }
+    .insight::before { content: ""; position: absolute; width: 7px; inset: 0 auto 0 0; background: var(--accent); }
+    .insight h3 { margin: 0 0 8px; font-size: 18px; }
+    .insight p { margin: 0; color: var(--muted); }
+    .confidence { margin-top: 15px; display: inline-flex; padding: 4px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-size: 11px; font-weight: 800; }
+
+    .rating-layout { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr); gap: 14px; }
+    .rating-card, .source-card { padding: 22px; }
+    .rating-row { display: grid; grid-template-columns: 58px minmax(0, 1fr) 48px; gap: 12px; align-items: center; margin: 13px 0; }
+    .bar-track { height: 12px; overflow: hidden; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--line); }
+    .bar { height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+    .rating-count { text-align: right; color: var(--muted); font-family: var(--mono); font-size: 12px; }
+    .source-list { display: grid; gap: 10px; }
+    .source-item { padding: 12px 0; border-bottom: 1px solid var(--line); }
+    .source-item:last-child { border-bottom: 0; }
+    .source-item strong { display: block; }
+    .source-meta { color: var(--muted); font-size: 12px; }
+
+    .themes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .theme-card { padding: 22px; }
+    .theme-top { display: flex; gap: 16px; justify-content: space-between; align-items: start; }
+    .theme-card h3 { margin: 0; font-size: 19px; }
+    .theme-category { margin-top: 2px; color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .1em; }
+    .score { flex: 0 0 auto; width: 58px; height: 58px; display: grid; place-items: center; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-weight: 850; }
+    .theme-summary { color: var(--muted); }
+    .sentiment { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 14px 0; }
+    .sentiment div { padding: 9px; border: 1px solid var(--line); border-radius: 12px; text-align: center; background: var(--surface-2); }
+    .sentiment strong { display: block; font-size: 18px; }
+    .sentiment span { color: var(--muted); font-size: 10px; }
+    .star-split { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; }
+    .star-pill { padding: 4px 7px; border-radius: 8px; background: var(--surface-2); border: 1px solid var(--line); font: 11px var(--mono); }
+    .quote { margin-top: 12px; padding: 14px 15px; border-left: 3px solid var(--accent); border-radius: 0 12px 12px 0; background: var(--surface-2); }
+    .quote p { margin: 0 0 7px; font-size: 13px; }
+    .quote small { color: var(--muted); }
+    .recommendation { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 13px; }
+
+    .action-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .action-card { padding: 20px; }
+    .action-card h3 { margin: 0 0 8px; font-size: 17px; }
+    .action-card p { margin: 0; color: var(--muted); font-size: 13px; }
+    .action-meta { margin-top: 12px; color: var(--accent); font-size: 11px; font-weight: 800; }
+    .subsection { margin-top: 24px; }
+    .subsection h3 { margin: 0 0 12px; font-size: 19px; }
+    .priority-high { border-top: 4px solid var(--danger); }
+    .priority-medium { border-top: 4px solid var(--warning); }
+    .priority-low { border-top: 4px solid var(--accent); }
+
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th, td { padding: 12px 14px; text-align: left; border-bottom: 1px solid var(--line); }
+    th { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; }
+
+    .filters { display: grid; grid-template-columns: minmax(220px, 1fr) repeat(2, minmax(130px, .3fr)); gap: 10px; padding: 14px; }
+    input, select { width: 100%; border: 1px solid var(--line); border-radius: 11px; padding: 10px 12px; color: var(--ink); background: var(--surface-2); outline: 0; }
+    input:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 16%, transparent); }
+    .review-toolbar { display: flex; justify-content: space-between; gap: 12px; align-items: center; margin: 12px 0; color: var(--muted); font-size: 12px; }
+    .review-list { display: grid; gap: 10px; }
+    .review { padding: 18px; }
+    .review-head { display: flex; justify-content: space-between; gap: 14px; }
+    .review h3 { margin: 0; font-size: 16px; }
+    .stars { color: #e2a827; letter-spacing: .08em; white-space: nowrap; }
+    .review-meta { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0 12px; color: var(--muted); font-size: 11px; }
+    .review-body { white-space: pre-wrap; overflow-wrap: anywhere; }
+    .review-id { font-family: var(--mono); }
+    .source-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+    .source-tag { padding: 3px 7px; border-radius: 7px; background: var(--surface-2); border: 1px solid var(--line); color: var(--muted); font-size: 10px; }
+    .load-more { display: block; margin: 16px auto 0; }
+    .empty { padding: 32px; text-align: center; color: var(--muted); }
+
+    .method-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .method-card { padding: 22px; }
+    .method-card h3 { margin-top: 0; }
+    .method-card ul { margin: 0; padding-left: 20px; color: var(--muted); }
+    .method-card li { margin: 7px 0; }
+    footer { padding: 30px 0 60px; color: var(--muted); font-size: 12px; }
+
+    @media (max-width: 980px) {
+      .kpis { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .action-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 720px) {
+      .shell { width: min(100% - 22px, 1180px); }
+      .hero { padding-top: 38px; }
+      .hero-grid, .rating-layout, .themes, .method-grid { grid-template-columns: 1fr; }
+      .hero-side { align-items: flex-start; }
+      .hero-actions { justify-content: flex-start; }
+      .generated { text-align: left; }
+      .executive-grid, .action-grid { grid-template-columns: 1fr; }
+      .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .filters { grid-template-columns: 1fr; }
+      .section-head { align-items: start; flex-direction: column; }
+    }
+    @media print {
+      :root { --bg: #fff; --surface: #fff; --surface-2: #f7f7f7; --ink: #111; --muted: #555; --line: #ddd; --shadow: none; }
+      .nav-wrap, .hero-actions, .filters, .load-more { display: none !important; }
+      body { background: #fff; }
+      .hero { padding-top: 24px; }
+      .card { break-inside: avoid; box-shadow: none; }
+      section { margin-top: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="shell hero-grid">
+      <div>
+        <div class="eyebrow">Evidence-led Voice of Customer</div>
+        <h1 id="report-title">Amazon 评论分析报告</h1>
+        <p class="lede" id="report-lede"></p>
+        <div class="chip-row" id="hero-chips"></div>
+      </div>
+      <div class="hero-side">
+        <div class="hero-actions">
+          <button class="button" id="theme-toggle" type="button">切换主题</button>
+          <button class="button" type="button" onclick="window.print()">打印 / PDF</button>
+        </div>
+        <div class="generated" id="generated-at"></div>
+      </div>
+    </div>
+  </header>
+
+  <div class="nav-wrap">
+    <nav class="shell nav" aria-label="报告目录">
+      <a href="#overview">概览</a>
+      <a href="#executive">核心结论</a>
+      <a href="#ratings">星级样本</a>
+      <a href="#themes">主题洞察</a>
+      <a href="#actions">行动建议</a>
+      <a href="#variants">规格</a>
+      <a href="#reviews">评论证据</a>
+      <a href="#methodology">方法与局限</a>
+    </nav>
+  </div>
+
+  <main class="shell">
+    <section id="overview">
+      <div class="section-head">
+        <div><div class="eyebrow">Sample overview</div><h2>样本概览</h2></div>
+        <p>统计只描述本次抽取到的评论样本，不自动外推为全部消费者表现。</p>
+      </div>
+      <div class="grid kpis" id="kpis"></div>
+      <div class="notice" id="sampling-notice" style="margin-top:14px"></div>
+    </section>
+
+    <section id="executive">
+      <div class="section-head">
+        <div><div class="eyebrow">Executive readout</div><h2>核心结论</h2></div>
+        <p>每条语义结论都应绑定原始 review_id；没有证据的描述不会被视为可靠洞察。</p>
+      </div>
+      <div class="grid executive-grid" id="executive-grid"></div>
+    </section>
+
+    <section id="ratings">
+      <div class="section-head">
+        <div><div class="eyebrow">Rating strata</div><h2>星级与采样结构</h2></div>
+        <p>分星级等量抓取时，条形图表示样本构成，不代表商品页真实星级分布。</p>
+      </div>
+      <div class="rating-layout">
+        <div class="card rating-card" id="rating-chart"></div>
+        <div class="card source-card"><div class="source-list" id="source-list"></div></div>
+      </div>
+    </section>
+
+    <section id="themes">
+      <div class="section-head">
+        <div><div class="eyebrow">Semantic themes</div><h2>主题洞察</h2></div>
+        <p>提及量根据主题绑定的唯一评论 ID 计算；正负向为样本内部比较。</p>
+      </div>
+      <div class="grid themes" id="theme-grid"></div>
+    </section>
+
+    <section id="actions">
+      <div class="section-head">
+        <div><div class="eyebrow">From insight to action</div><h2>场景化洞察与行动</h2></div>
+        <p>围绕产品、Listing、营销和售后，把评论信号转成可以执行的工作项。</p>
+      </div>
+      <div id="action-sections"></div>
+    </section>
+
+    <section id="variants">
+      <div class="section-head">
+        <div><div class="eyebrow">Variants</div><h2>规格与变体覆盖</h2></div>
+        <p>先展示样本量，避免对评论很少的规格作过度判断。</p>
+      </div>
+      <div class="card table-wrap"><table><thead><tr><th>规格 / 变体</th><th>评论数</th><th>样本占比</th></tr></thead><tbody id="variant-body"></tbody></table></div>
+    </section>
+
+    <section id="reviews">
+      <div class="section-head">
+        <div><div class="eyebrow">Evidence explorer</div><h2>评论证据浏览器</h2></div>
+        <p>报告默认不嵌入评论者昵称和个人主页，降低公开分享时的隐私暴露。</p>
+      </div>
+      <div class="card filters">
+        <input id="review-search" type="search" placeholder="搜索标题、正文、变体或 review_id">
+        <select id="asin-filter" aria-label="筛选 ASIN"></select>
+        <select id="rating-filter" aria-label="筛选星级"></select>
+      </div>
+      <div class="review-toolbar"><span id="review-count"></span><span>评论内容为原始样本，不代表平台全部评论</span></div>
+      <div class="review-list" id="review-list"></div>
+      <button class="button load-more" id="load-more" type="button">显示更多</button>
+    </section>
+
+    <section id="methodology">
+      <div class="section-head">
+        <div><div class="eyebrow">Methodology</div><h2>方法与局限</h2></div>
+        <p>公开报告应保留这部分，防止把定向样本误读为总体统计。</p>
+      </div>
+      <div class="grid method-grid" id="method-grid"></div>
+    </section>
+  </main>
+
+  <footer class="shell">本报告由结构化评论样本生成。建议将高优先级结论与退货、客服、质检及销售数据交叉验证。</footer>
+
+  <script>
+    const REPORT = /*__REPORT_DATA__*/;
+    const state = { visible: 30 };
+    const $ = (selector) => document.querySelector(selector);
+    const h = (value) => String(value ?? "").replace(/[&<>"']/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
+    const n = (value) => new Intl.NumberFormat("zh-CN", { maximumFractionDigits: 2 }).format(Number(value || 0));
+    const percent = (value) => `${(Number(value || 0) * 100).toFixed(1)}%`;
+    const array = (value) => Array.isArray(value) ? value : [];
+    const reviewMap = new Map(REPORT.reviews.map(review => [review.review_id, review]));
+    const validUrl = (value) => { try { const url = new URL(value); return ["http:", "https:"].includes(url.protocol) ? url.href : ""; } catch (_) { return ""; } };
+    const stars = (rating) => `<span class="stars" aria-label="${Number(rating)} 星">${"★".repeat(Number(rating) || 0)}${"☆".repeat(5 - (Number(rating) || 0))}</span>`;
+    const uniqueIds = (items) => [...new Set(array(items).filter(id => reviewMap.has(id)))];
+    const compactRefs = (ids) => {
+      const values = uniqueIds(ids);
+      if (!values.length) return "无绑定证据";
+      return `${values.length} 条评论证据`;
+    };
+
+    function initTheme() {
+      const stored = localStorage.getItem("amazon-review-report-theme");
+      if (stored) document.documentElement.dataset.theme = stored;
+      $("#theme-toggle").addEventListener("click", () => {
+        const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+        document.documentElement.dataset.theme = next;
+        localStorage.setItem("amazon-review-report-theme", next);
+      });
+    }
+
+    function renderHero() {
+      const meta = REPORT.manifest;
+      $("#report-title").textContent = REPORT.title;
+      $("#report-lede").textContent = meta.scenario_description || "基于可追溯评论证据生成的样本分析。";
+      $("#generated-at").textContent = `报告生成：${REPORT.generated_at}`;
+      const chips = [
+        ["场景", meta.scenario_label || meta.scenario],
+        ["站点", meta.marketplace || "未知"],
+        ["ASIN", array(meta.asins).join(" · ") || "未知"],
+        ["实际页数", meta.actual_pages ?? "—"],
+      ];
+      $("#hero-chips").innerHTML = chips.map(([label, value]) => `<span class="chip"><strong>${h(label)}</strong>${h(value)}</span>`).join("");
+    }
+
+    function renderKpis() {
+      const stats = REPORT.statistics;
+      const cards = [
+        ["唯一评论", n(stats.unique_reviews), "跨采样组按 review_id 去重"],
+        ["样本均值", stats.sample_average_rating == null ? "—" : `${Number(stats.sample_average_rating).toFixed(2)} ★`, "不是商品真实总体评分"],
+        ["验证购买", percent(stats.verified_rate), `${n(stats.verified_reviews)} 条`],
+        ["媒体评论", percent(stats.media_rate), `${n(stats.media_reviews)} 条含图片或视频`],
+        ["实际页数", n(stats.actual_pages), `请求 ${n(stats.requested_pages)} 页`],
+        ["实际积分", n(stats.actual_deduct), `预扣 ${n(stats.pre_deduct)}`],
+      ];
+      $("#kpis").innerHTML = cards.map(([label, value, note]) => `<div class="card kpi"><div class="kpi-label">${h(label)}</div><div class="kpi-value">${h(value)}</div><div class="kpi-note">${h(note)}</div></div>`).join("");
+      $("#sampling-notice").innerHTML = `<strong>采样边界：</strong>${h(REPORT.manifest.sampling_notice || REPORT.statistics.sample_notice || "本报告仅描述抽取到的评论样本。")}`;
+    }
+
+    function renderExecutive() {
+      const items = array(REPORT.analysis.executive_summary);
+      if (!items.length) {
+        $("#executive-grid").innerHTML = `<div class="card empty">尚未完成语义分析。当前报告仅包含确定性统计和原始评论浏览。</div>`;
+        return;
+      }
+      $("#executive-grid").innerHTML = items.map((item, index) => {
+        const value = typeof item === "string" ? { title: `结论 ${index + 1}`, finding: item } : item;
+        return `<article class="card insight"><h3>${h(value.title || `结论 ${index + 1}`)}</h3><p>${h(value.finding || value.summary || "")}</p><span class="confidence">${h(value.confidence || compactRefs(value.review_ids))}</span></article>`;
+      }).join("");
+    }
+
+    function renderRatings() {
+      const counts = REPORT.statistics.rating_counts || {};
+      const max = Math.max(1, ...[1,2,3,4,5].map(star => Number(counts[String(star)] || 0)));
+      $("#rating-chart").innerHTML = `<h3 style="margin-top:0">样本星级构成</h3>` + [5,4,3,2,1].map(star => {
+        const count = Number(counts[String(star)] || 0);
+        return `<div class="rating-row"><div>${star} 星</div><div class="bar-track"><div class="bar" style="width:${(count / max * 100).toFixed(2)}%"></div></div><div class="rating-count">${n(count)}</div></div>`;
+      }).join("");
+      const requests = array(REPORT.manifest.requests);
+      $("#source-list").innerHTML = requests.length ? requests.map(request => `<div class="source-item"><strong>${h(request.label || request.id)}</strong><div class="source-meta">${h(request.filter_star)} · ${h(request.filter_sort_by)} · 请求 ${n(request.requested_pages)} 页 / 实际 ${n(request.actual_pages)} 页</div></div>`).join("") : `<div class="empty">没有采样来源信息</div>`;
+    }
+
+    function renderThemes() {
+      const themes = array(REPORT.analysis.themes);
+      if (!themes.length) {
+        $("#theme-grid").innerHTML = `<div class="card empty">语义主题将在评论分批分析并通过证据校验后显示。</div>`;
+        return;
+      }
+      $("#theme-grid").innerHTML = themes.map(theme => {
+        const ids = uniqueIds(theme.review_ids);
+        const positive = uniqueIds(theme.positive_review_ids).length;
+        const negative = uniqueIds(theme.negative_review_ids).length;
+        const mixed = uniqueIds([...(theme.mixed_review_ids || []), ...(theme.neutral_review_ids || [])]).length;
+        const byRating = Object.fromEntries([1,2,3,4,5].map(star => [star, ids.filter(id => Number(reviewMap.get(id)?.rating) === star).length]));
+        const evidence = array(theme.evidence).slice(0, 3);
+        const quotes = evidence.map(item => {
+          const review = reviewMap.get(item.review_id);
+          return `<div class="quote"><p>“${h(item.quote)}”</p><small>${h(item.review_id)} · ${review ? `${review.rating} 星` : ""}${item.interpretation ? ` · ${h(item.interpretation)}` : ""}</small></div>`;
+        }).join("");
+        return `<article class="card theme-card"><div class="theme-top"><div><h3>${h(theme.name || theme.id)}</h3><div class="theme-category">${h(theme.category || "dynamic theme")}</div></div><div class="score" title="机会分">${n(theme.opportunity_score ?? ids.length)}</div></div><p class="theme-summary">${h(theme.summary || "")}</p><div class="sentiment"><div><strong>${n(positive)}</strong><span>正向</span></div><div><strong>${n(negative)}</strong><span>负向</span></div><div><strong>${n(mixed)}</strong><span>混合/中性</span></div></div><div class="star-split">${[1,2,3,4,5].map(star => `<span class="star-pill">${star}★ ${n(byRating[star])}</span>`).join("")}</div>${quotes}${theme.recommendation ? `<div class="recommendation"><strong>建议：</strong>${h(theme.recommendation)}</div>` : ""}</article>`;
+      }).join("");
+    }
+
+    function actionValue(item, index) {
+      if (typeof item === "string") return { title: `要点 ${index + 1}`, finding: item, review_ids: [] };
+      return item || {};
+    }
+
+    function renderActionGroup(title, items, emptyText) {
+      const values = array(items);
+      if (!values.length) return "";
+      return `<div class="subsection"><h3>${h(title)}</h3><div class="grid action-grid">${values.map((raw, index) => {
+        const item = actionValue(raw, index);
+        return `<article class="card action-card"><h3>${h(item.title || item.name || `要点 ${index + 1}`)}</h3><p>${h(item.finding || item.description || item.summary || item.rationale || "")}</p><div class="action-meta">${h(compactRefs(item.review_ids))}</div></article>`;
+      }).join("")}</div></div>`;
+    }
+
+    function renderActions() {
+      const analysis = REPORT.analysis;
+      const chunks = [
+        renderActionGroup("核心痛点", analysis.pain_points),
+        renderActionGroup("正面购买驱动", analysis.positive_drivers),
+        renderActionGroup("用户场景", analysis.use_cases),
+        renderActionGroup("Listing 信息差", analysis.listing_gaps),
+      ];
+      const recommendations = array(analysis.recommendations);
+      if (recommendations.length) {
+        chunks.push(`<div class="subsection"><h3>行动清单</h3><div class="grid action-grid">${recommendations.map((item, index) => {
+          const priority = String(item.priority || "medium").toLowerCase();
+          const priorityClass = priority.includes("high") || priority.includes("高") || priority === "p0" ? "priority-high" : priority.includes("low") || priority.includes("低") ? "priority-low" : "priority-medium";
+          return `<article class="card action-card ${priorityClass}"><h3>${h(item.action || item.title || `行动 ${index + 1}`)}</h3><p>${h(item.rationale || item.reason || "")}</p><div class="action-meta">${h(item.owner || "待分配")} · ${h(item.priority || "中优先级")} · ${h(compactRefs(item.review_ids))}</div></article>`;
+        }).join("")}</div></div>`);
+      }
+      $("#action-sections").innerHTML = chunks.filter(Boolean).join("") || `<div class="card empty">尚未生成场景化行动建议。</div>`;
+    }
+
+    function renderVariants() {
+      const variants = array(REPORT.statistics.top_variants);
+      const total = Math.max(1, Number(REPORT.statistics.unique_reviews || 0));
+      $("#variant-body").innerHTML = variants.length ? variants.map(item => `<tr><td>${h(item.variant)}</td><td>${n(item.reviews)}</td><td>${percent(Number(item.reviews || 0) / total)}</td></tr>`).join("") : `<tr><td colspan="3">没有规格信息</td></tr>`;
+    }
+
+    function setupReviewFilters() {
+      const asins = [...new Set(REPORT.reviews.map(review => review.asin).filter(Boolean))];
+      $("#asin-filter").innerHTML = `<option value="">全部 ASIN</option>` + asins.map(asin => `<option value="${h(asin)}">${h(asin)}</option>`).join("");
+      $("#rating-filter").innerHTML = `<option value="">全部星级</option>` + [5,4,3,2,1].map(star => `<option value="${star}">${star} 星</option>`).join("");
+      ["#review-search", "#asin-filter", "#rating-filter"].forEach(selector => {
+        $(selector).addEventListener(selector === "#review-search" ? "input" : "change", () => { state.visible = 30; renderReviews(); });
+      });
+      $("#load-more").addEventListener("click", () => { state.visible += 30; renderReviews(); });
+    }
+
+    function reviewMatches(review) {
+      const query = $("#review-search").value.trim().toLocaleLowerCase();
+      const asin = $("#asin-filter").value;
+      const rating = $("#rating-filter").value;
+      if (asin && review.asin !== asin) return false;
+      if (rating && Number(review.rating) !== Number(rating)) return false;
+      if (!query) return true;
+      return [review.review_id, review.title, review.review_content, review.product_variant].join(" ").toLocaleLowerCase().includes(query);
+    }
+
+    function mediaLinks(review) {
+      const links = [...array(review.images), ...array(review.videos)].map(validUrl).filter(Boolean);
+      if (!links.length) return "";
+      return `<div class="source-tags">${links.map((url, index) => `<a class="source-tag" href="${h(url)}" target="_blank" rel="noopener noreferrer">媒体 ${index + 1}</a>`).join("")}</div>`;
+    }
+
+    function renderReviews() {
+      const filtered = REPORT.reviews.filter(reviewMatches);
+      const visible = filtered.slice(0, state.visible);
+      $("#review-count").textContent = `匹配 ${filtered.length} 条，当前显示 ${visible.length} 条`;
+      $("#review-list").innerHTML = visible.length ? visible.map(review => {
+        const sources = array(review.sources).map(source => `<span class="source-tag">${h(source.label || source.request_id)} · ${h(source.filter_star)} · P${n(source.page)}</span>`).join("");
+        return `<article class="card review"><div class="review-head"><h3>${h(review.title || "无标题评论")}</h3>${stars(review.rating)}</div><div class="review-meta"><span class="review-id">${h(review.review_id)}</span><span>${h(review.asin)}</span><span>${h(review.review_date)}</span>${review.verified_purchase ? "<span>✓ 已验证购买</span>" : ""}<span>有用 ${n(review.helpful_votes)}</span>${review.product_variant ? `<span>${h(review.product_variant)}</span>` : ""}</div><div class="review-body">${h(review.review_content)}</div><div class="source-tags">${sources}</div>${mediaLinks(review)}</article>`;
+      }).join("") : `<div class="card empty">没有匹配的评论</div>`;
+      $("#load-more").style.display = state.visible < filtered.length ? "block" : "none";
+    }
+
+    function renderMethodology() {
+      const requests = array(REPORT.manifest.requests);
+      const limitations = array(REPORT.analysis.limitations);
+      const sampling = requests.map(request => `${request.label || request.id}：${request.filter_star || "unknown"} / ${request.filter_sort_by || "unknown"}，请求 ${request.requested_pages || 0} 页，实际 ${request.actual_pages || 0} 页`);
+      $("#method-grid").innerHTML = `<article class="card method-card"><h3>采样配置</h3><ul>${sampling.length ? sampling.map(item => `<li>${h(item)}</li>`).join("") : "<li>未记录采样配置</li>"}</ul></article><article class="card method-card"><h3>分析局限</h3><ul>${limitations.length ? limitations.map(item => `<li>${h(typeof item === "string" ? item : item.description || item.title || JSON.stringify(item))}</li>`).join("") : "<li>未提供局限说明</li>"}</ul></article>`;
+    }
+
+    function boot() {
+      initTheme();
+      renderHero();
+      renderKpis();
+      renderExecutive();
+      renderRatings();
+      renderThemes();
+      renderActions();
+      renderVariants();
+      setupReviewFilters();
+      renderReviews();
+      renderMethodology();
+    }
+    boot();
+  </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# fake uv
+set -u
+DATA="$(cd "$(dirname "$0")/../data" && pwd)"
+case "$*" in
+  "tool list") cat "$DATA/uv-list.txt" ;;
+  "tool dir") echo "$DATA/../prefix/uv-tools" ;;
+  *) exit 64 ;;
+esac

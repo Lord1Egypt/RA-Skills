@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn7fxns1xpr6z67w885my7d7k98506vv",
-  "slug": "paper-deep-reading-teaching-explainer",
+  "name": "paper-deep-reading-teaching-explainer",
   "version": "10.1.8",
-  "publishedAt": 1777895192796
+  "license": "MIT-0",
+  "description": "Deep-read papers into complete teaching reports, reproducibility/defense-ready explanations, decomposed multi-image cartoon storyboard workflows with continuity controls and anti-hallucination source checks grounded in PDF and/or LaTeX, and final image-PDF assembly guidance.",
+  "primary_metadata_source": "SKILL.md frontmatter",
+  "category": "research, education, paper-reading, visualization",
+  "requires": {
+    "anyBins": [
+      "python3",
+      "python"
+    ]
+  },
+  "visual_generation_note": "ChatGPT web/app: use Create image. Codex/Claude Code: prefer the imagegen skill when available; otherwise use ChatGPT Images 2.0 API or another approved image-generation API. Do not substitute SVG for cartoon-comic storyboard images. Multi-image prompt batches must preserve continuity, cinematography, style, symbols, and narrative logic, and must not compress a whole section into one crowded image. Prompts and generated images must pass source-grounding anti-hallucination checks against the original paper and authoritative report.",
+  "final_pdf_step": "Use workflow/09_storyboard_pdf_assembly.md or scripts/assemble_storyboard_pdf.py to combine all approved storyboard images into one 16:9 PDF.",
+  "visual_source_basis": "Storyboard image generation may be grounded in PDF, LaTeX source, or both. If both exist, use PDF for rendered visuals and LaTeX for exact captions, labels, equations, figure paths, and nearby text."
 }

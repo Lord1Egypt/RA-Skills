@@ -1,43 +1,56 @@
-## Description: <br>
-Sends emails through the Mailgun API for newsletters, notifications, alerts, and automated reports using configured Mailgun environment variables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send emails via Mailgun API for newsletters, notifications, alerts, and automated reports using configured Mailgun credentials.
 
-## Publisher: <br>
-[manifoldor](https://clawhub.ai/user/manifoldor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[manifoldor](https://clawhub.ai/user/manifoldor)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent send programmatic email through a configured Mailgun account for alerts, reports, reminders, and similar workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send real emails through the configured Mailgun account. <br>
-Mitigation: Install and use it only for approved Mailgun sending workflows, and review message content and recipients before sending. <br>
-Risk: Mailgun API keys and email content may expose sensitive information if handled carelessly. <br>
-Mitigation: Protect the API key, prefer narrowly scoped credentials when available, and avoid sending secrets or regulated data unless Mailgun is approved for that data. <br>
+## Use Case:
 
+Developers and operators use this skill to send transactional or operational emails through Mailgun from an agent workflow. Typical tasks include alerts, reports, confirmations, newsletters, and scheduled reminders.
 
-## Reference(s): <br>
-- [Mailgun API Reference](references/api.md) <br>
-- [Mailgun Documentation](https://documentation.mailgun.com/) <br>
-- [OpenClaw repository](https://github.com/openclaw/openclaw) <br>
-- [ClawHub skill page](https://clawhub.ai/manifoldor/mailgun) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, API calls, Text] <br>
-**Output Format:** [Markdown guidance with shell command examples and command-line status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Mailgun environment variables for API key, domain, sender, and default recipient.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: The credential-file fallback can execute local shell code if ~/.config/mailgun/credentials is untrusted, writable by others, or replaced with a symlink.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer environment variables or a non-executable config format; only use the credential file when it is trusted, user-owned, non-symlinked, and locked down.
+
+Risk: The skill sends outbound email, so mistakes in recipient, sender, or message content can leak information or send unintended mail.
+
+Mitigation: Confirm the resolved recipient and sender before use, use a narrowly scoped Mailgun sending key, and avoid sensitive content unless sending is intentional.
+
+## Reference(s):
+
+- [Mailgun Documentation](https://documentation.mailgun.com/)
+- [Mailgun API Reference](references/api.md)
+- [ClawHub Skill Page](https://clawhub.ai/manifoldor/skills/mailgun)
+- [Project Homepage](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Mailgun API key, domain, sender, and recipient configuration.]
+
+## Skill Version(s):
+
+1.0.6 (source: server-resolved release evidence, released 2026-03-12)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

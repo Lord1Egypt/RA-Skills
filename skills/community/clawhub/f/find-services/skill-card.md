@@ -1,41 +1,55 @@
-## Description: <br>
-Find and shortlist third-party services using OpenSpend CLI marketplace search for discovery and comparison tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds and shortlists third-party service providers for an agent capability using OpenSpend CLI marketplace search, limited to discovery and recommendation tasks.
 
-## Publisher: <br>
-[albertpurnama](https://clawhub.ai/user/albertpurnama) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[albertpurnama](https://clawhub.ai/user/albertpurnama)
 
-## Use Case: <br>
-Developers and agents use this skill to discover external service providers for a requested capability, compare up to five marketplace results, and present concise recommendations without setup, installation, or purchase steps. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Marketplace search may require OpenSpend authentication. <br>
-Mitigation: Run with an existing session when possible and ask for explicit user confirmation before any login command. <br>
-Risk: Returned services may require separate setup, paid usage, or account configuration. <br>
-Mitigation: Review providers first, start with a small validation call, and request explicit approval before moving to any payment or setup flow. <br>
-Risk: Using an untrusted OpenSpend CLI could expose the user to unsafe local tooling behavior. <br>
-Mitigation: Use only a trusted OpenSpend CLI installation and avoid install or update commands within this skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/albertpurnama/find-services) <br>
+## Use Case:
+
+Developers and agent operators use this skill to discover and compare external service providers for a requested capability. It returns a concise shortlist and usage guidance while keeping installation, authentication setup, credential handling, payments, and purchases out of scope.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Marketplace discovery may require an existing OpenSpend session or a login prompt.
+
+Mitigation: Use an existing CLI session when available, and require explicit user confirmation before running any authentication command.
+
+Risk: Service discovery can lead to paid calls, payment setup, or provider onboarding decisions.
+
+Mitigation: Keep this skill limited to discovery; request explicit user approval and hand off payment or setup work to a separate flow before any paid action.
+
+Risk: A listed service may not meet the user's reliability, security, or capability requirements in practice.
+
+Mitigation: Start with a small validation call, capture request and response examples, and define success criteria before scaling usage.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with concise service summaries and inline shell commands when relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns up to five services in marketplace order with short match explanations and a recommended usage note.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown service shortlist with concise rationale, optional command snippets, and a recommended usage note]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns up to 5 services in marketplace order and avoids additional ranking commentary.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

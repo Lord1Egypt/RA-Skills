@@ -1,40 +1,48 @@
-## Description: <br>
-Write Traditional Chinese that sounds human. Not formal, not robotic, not AI-generated. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write Traditional Chinese that sounds human. Not formal, not robotic, not AI-generated.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and writing assistants use this skill to produce casual, natural Traditional Chinese prose for Taiwan or Hong Kong contexts while avoiding Simplified Chinese and overly formal phrasing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Output may use the wrong Traditional Chinese regional variety or register for the intended audience. <br>
-Mitigation: Review generated text for Taiwan or Hong Kong vocabulary, script consistency, and formality before publication. <br>
-Risk: Human-sounding output may misrepresent authorship where disclosure is required. <br>
-Mitigation: Disclose AI assistance when policy, platform rules, or audience expectations require it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/traditional-chinese) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
 
+External users and agents use this skill to draft casual Traditional Chinese for Taiwan, Hong Kong, or Macau audiences while avoiding Simplified Chinese, overly formal wording, and inconsistent regional vocabulary.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Natural-language Traditional Chinese text, with Markdown when requested by the user] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains a consistent Taiwan or Hong Kong Traditional Chinese variety when specified.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The agent may use the wrong Traditional Chinese locale, mix Simplified Chinese, or choose a tone that is too formal for the user's context.
+
+Mitigation: Ask for the intended locale and formality when unclear, then keep script, vocabulary, and tone consistent throughout the response.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/traditional-chinese)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Natural-language Traditional Chinese text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Regional vocabulary should remain consistent with the requested Traditional Chinese locale, especially Taiwan or Hong Kong.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

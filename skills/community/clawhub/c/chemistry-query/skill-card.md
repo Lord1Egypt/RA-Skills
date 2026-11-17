@@ -1,46 +1,65 @@
-## Description: <br>
-Chemistry Query helps agents retrieve PubChem and related chemistry data, run RDKit molecule analysis, generate molecule visualizations, and plan or simulate chemistry workflows from compound names or SMILES. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chemistry Query helps agents retrieve chemistry data from PubChem, ChEMBL, and PubMed and run RDKit-based molecular property, visualization, similarity, retrosynthesis, and reaction workflows.
 
-## Publisher: <br>
-[Cheminem](https://clawhub.ai/user/Cheminem) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cheminem](https://clawhub.ai/user/cheminem)
 
-## Use Case: <br>
-Developers, researchers, and chemistry practitioners use this skill to query public compound data, calculate molecular properties, create structure images, and explore retrosynthesis or reaction workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Compound names, SMILES strings, and related chemistry queries may be sent to public chemistry services. <br>
-Mitigation: Use only inputs that are acceptable to disclose externally, and avoid submitting confidential chemistry data without an approved data-sharing path. <br>
-Risk: The included Gradio UI can expose local processing through public sharing when run as provided. <br>
-Mitigation: Disable public sharing or require authentication before running the UI outside a controlled local environment. <br>
-Risk: The OPSIN workflow expects a separately installed JAR, which can introduce supply-chain risk if fetched manually. <br>
-Mitigation: Download OPSIN only from a trusted source and verify the artifact before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Chemistry Query on ClawHub](https://clawhub.ai/Cheminem/chemistry-query) <br>
-- [PubChem API Endpoints](references/api_endpoints.md) <br>
-- [PubChem PUG REST documentation](https://pubchemdocs.ncbi.nlm.nih.gov/pug-rest) <br>
-- [ChEMBL API](https://www.ebi.ac.uk/chembl/api/data) <br>
-- [NCBI E-utilities](https://eutils.ncbi.nlm.nih.gov/entrez/eutils) <br>
-- [OPSIN release artifact](https://github.com/dan2097/opsin/releases/download/v2.8.0/opsin-core-2.8.0.jar) <br>
+## Use Case:
 
+Developers and chemistry-focused agent users use this skill to look up compound data, compute molecular properties, generate molecule visualizations, search literature or bioactivity data, and draft synthesis or retrosynthesis outputs.
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, image files, shell commands, guidance] <br>
-**Output Format:** [Structured JSON with optional PNG/SVG molecule images and Markdown command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call public chemistry services for compound lookup, literature references, and name resolution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Compound names, SMILES strings, or search terms may be sent to PubChem, ChEMBL, or PubMed.
+
+Mitigation: Avoid submitting confidential compounds or sensitive search terms unless use of those external services is approved.
+
+Risk: The optional Gradio UI is configured with public sharing enabled.
+
+Mitigation: Run the UI only in trusted environments and disable public sharing before use beyond local review.
+
+Risk: Generated molecule images and shared output paths can expose or overwrite prior analysis outputs.
+
+Mitigation: Use isolated work directories and review generated output files before sharing or reusing them.
+
+Risk: OPSIN support expects a separately obtained opsin.jar.
+
+Mitigation: Install or execute the JAR only after verifying its source and checksum.
+
+## Reference(s):
+
+- [PubChem API endpoints reference](artifact/references/api_endpoints.md)
+- [PubChem PUG REST documentation](https://pubchemdocs.ncbi.nlm.nih.gov/pug-rest)
+- [PubChem PUG REST API](https://pubchem.ncbi.nlm.nih.gov/rest/pug)
+- [PubChem PUG View API](https://pubchem.ncbi.nlm.nih.gov/rest/pug_view)
+- [ChEMBL API data service](https://www.ebi.ac.uk/chembl/api/data)
+- [NCBI Entrez E-utilities](https://eutils.ncbi.nlm.nih.gov/entrez/eutils)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Markdown, Code, Shell commands, Files, Guidance]
+
+**Output Format:** [Structured JSON with optional PNG or SVG molecule image files and command-oriented Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call external chemistry and literature services using compound names, SMILES strings, or search terms supplied by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and release changelog; artifact documentation also mentions v1.4.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

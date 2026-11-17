@@ -1,42 +1,60 @@
-## Description: <br>
-Triggers Juggle workflows through OpenAPI, passes workflow parameters, and retrieves synchronous or asynchronous execution results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+设计自动化的工作流程，以节省时间，提供工作效率，通过本技能自动识别设计的工作流，触发对应的工作流，实现流程自动化
 
-## Publisher: <br>
-[somta](https://clawhub.ai/user/somta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[somta](https://clawhub.ai/user/somta)
 
-## Use Case: <br>
-Developers and operators use this skill to trigger configured Juggle workflow processes, pass JSON input data, poll asynchronous runs, and inspect execution results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can start external Juggle automations with a token, including workflows that may affect accounts, business data, production systems, payments, or public content. <br>
-Mitigation: Review workflow definitions and token permissions before installation, use a least-privilege token, and require explicit confirmation before high-impact workflow execution. <br>
-Risk: Flow input data may contain sensitive values and can be exposed if placed directly in command lines, examples, or logs. <br>
-Mitigation: Avoid putting real secrets in flow-data command arguments or documentation, and route secrets through approved credential handling. <br>
+## Use Case:
 
+Developers and workflow operators use this skill to trigger configured Juggle workflows, pass workflow parameters, poll asynchronous executions, and retrieve workflow results through the Juggle OpenAPI.
 
-## Reference(s): <br>
-- [Juggle Quick Start](https://juggle.plus/docs/guide/start/quick-start/) <br>
-- [Juggle API Specification](references/api_spec.md) <br>
-- [Juggle Workflow Specification](references/flow_spec.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MC_JUGGLE_BASE_URL and MC_JUGGLE_TOKEN; asynchronous workflows poll for completion by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can trigger external Juggle workflows with a token and user-supplied data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when you control the Juggle endpoint and token, and confirm the workflow key, version, and parameters before execution.
+
+Risk: Workflow data passed on the command line can include sensitive values and may appear in shell history or process logs.
+
+Mitigation: Avoid passing passwords or other secrets through --flow-data, and scope the Juggle token to only the workflows required.
+
+Risk: An untrusted or plain HTTP base URL could expose workflow data or tokens.
+
+Mitigation: Use an HTTPS trusted MC_JUGGLE_BASE_URL before running workflow commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/somta/skills/juggle)
+- [Juggle quick start documentation](https://juggle.plus/docs/guide/start/quick-start/)
+- [API specification](artifact/references/api_spec.md)
+- [Workflow specification](artifact/references/flow_spec.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [CLI text with JSON API responses and Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MC_JUGGLE_BASE_URL and MC_JUGGLE_TOKEN; asynchronous workflows can be polled automatically or queried manually by flow instance ID.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

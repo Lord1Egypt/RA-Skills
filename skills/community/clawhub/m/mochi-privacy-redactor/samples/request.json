@@ -1,0 +1,6 @@
+{
+  "action": "scan",
+  "files": [
+    "samples/example.txt"
+  ]
+}

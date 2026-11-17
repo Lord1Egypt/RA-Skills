@@ -1,42 +1,52 @@
-## Description: <br>
-Start VS Code Remote Tunnel in Docker containers for remote terminal access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Start VS Code Remote Tunnel in Docker containers for remote terminal access.
 
-## Publisher: <br>
-[listky](https://clawhub.ai/user/listky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[listky](https://clawhub.ai/user/listky)
 
-## Use Case: <br>
-Developers and engineers use this skill to start, stop, inspect, and log VS Code Remote Tunnel sessions inside Linux Docker containers. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can enable VS Code Remote Tunnel access to the current container. <br>
-Mitigation: Install and run it only when that access is intended, authorize with the correct Microsoft account, and use the stop or status commands when finished. <br>
-Risk: Authorization codes and tunnel logs may be sensitive. <br>
-Mitigation: Treat displayed authorization information and log output as sensitive and avoid sharing them outside the intended operator workflow. <br>
-Risk: The script downloads and executes the VS Code CLI at runtime. <br>
-Mitigation: Use it only in environments where runtime downloads from the VS Code CLI endpoint are allowed by policy. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/listky/vscode-tunnel) <br>
-- [VS Code CLI download endpoint](https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-x64) <br>
+## Use Case:
 
+Developers and engineers use this skill to start, stop, inspect, and log a VS Code Remote Tunnel from a Linux Docker container when they need remote terminal access through VS Code.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and terminal output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May surface VS Code Remote Tunnel authorization details and live tunnel logs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A running VS Code Remote Tunnel can provide remote terminal access to the container after Microsoft authorization.
+
+Mitigation: Use the skill only in an intentionally exposed, low-privilege container; start the tunnel only on explicit request and stop it when the session is finished.
+
+Risk: The skill downloads and runs the VS Code CLI without strong integrity verification.
+
+Mitigation: Review the downloaded CLI source and add integrity verification before relying on this skill in higher-trust environments.
+
+## Reference(s):
+
+- [VS Code CLI stable Alpine x64 download endpoint](https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-x64)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and terminal output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes command usage, environment variables, tunnel status, logs, and Microsoft authorization instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

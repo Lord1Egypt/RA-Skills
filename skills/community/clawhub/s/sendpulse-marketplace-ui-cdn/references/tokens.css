@@ -1,0 +1,72 @@
+/* ---------------------------------------------------------------------------------------------
+ * The 28 custom properties `sp-marketplace-app-ui.min.css` references but never defines, plus
+ * `color-scheme`, which no SendPulse build declares at all.
+ *
+ * Copy this file into a standalone integration and link it AFTER the CDN bundle. Inside
+ * login.sendpulse.com the host shell supplies these from template.min.css; a marketplace app,
+ * an embedded widget or a standalone page has no host shell, so without this file `.side-panel`
+ * renders transparent, focus rings vanish, and native widgets stay light in the dark build.
+ *
+ * Values lifted from the live CDN and re-verified 2026-08-21 — all 28 light and all 12 dark
+ * values match. Regenerate rather than hand-edit:
+ *   curl -s 'https://login.sendpulse.com/dist/css/template.min.css?force=light' \
+ *     | grep -o ':root[^{]*{[^}]*}'
+ * (the light build ships three blocks: `:root,:root.ma-dark` holds the theme-independent values,
+ * `:root` the light ones; the dark build's `:root,:root.ma-dark` holds the dark overrides.)
+ * ------------------------------------------------------------------------------------------- */
+
+:root {
+  --base-color: #000;
+  --bg-color: #f2f5f5;
+  --bg-secondary-color: #fbfcfc;
+  --br-brand-color: #dac079;
+  --color-muted: #6a6f79;
+  --divider-color: #cdd4d4;
+  --fb-messenger-color: #0084ff;
+  --ig-brand-color: #ee1376;
+  --input-bg: #fff;
+  --lc-brand-color: #0055fe;
+  --light-color: #91a4a5;
+  --line-height-condensed: 1.15;
+  --link-color: #009fc1;
+  --marine-color-light: #1cacb4;
+  --modal-content-bg: #fefefe;
+  --muted-color: #465152;
+  --navbar-btn-color: #034964;
+  --navbar-default-bg: #f8f8f8;
+  --paid-color-pro-secondary: #33cfe4;
+  --panel-bg: #fff;
+  --sp-primary-light: #eff3f3;
+  --success-color: #00b175;
+  --tg-brand-color: #0088cc;
+  --tt-brand-color: #000;
+  --viber-brand-color: #7360f2;
+  --wa-brand-color: #33d26b;
+  --well-bg: #e6ecec;
+
+  /* Referenced by the bundle, emitted by no build, and undefined on login.sendpulse.com too.
+     Value taken from the design system's own vk-brand-color source variable. */
+  --vk-brand-color: #5181b8;
+
+  /* Not a SendPulse property: neither build declares color-scheme (0 occurrences in either),
+     so the <select> popup, scrollbars, date pickers, spin buttons and autofill stay light
+     inside the dark build. These two lines are the whole fix. */
+  color-scheme: light;
+}
+
+/* Only the properties the dark build actually overrides — the rest inherit from :root above. */
+:root.ma-dark {
+  --base-color: #d6e3e3;
+  --bg-color: #0d181c;
+  --bg-secondary-color: #1a3038;
+  --divider-color: #1d363f;
+  --input-bg: #070c0e;
+  --light-color: #9db5c4;
+  --modal-content-bg: #15272d;
+  --muted-color: #87999f;
+  --navbar-default-bg: #15272d;
+  --panel-bg: #030607;
+  --sp-primary-light: #1a3038;
+  --well-bg: #070c0e;
+  color-scheme: dark;
+}

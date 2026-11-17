@@ -1,42 +1,57 @@
-## Description: <br>
-基于A股行情数据计算SAR抛物线指标，并用机构资金流向近似替代ZJTJ庄家抬轿指标，实现四维选股策略。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于A股行情数据计算SAR抛物线指标，并用机构资金流向近似替代ZJTJ庄家抬轿指标，实现四维选股策略。
 
-## Publisher: <br>
-[haohanyang92](https://clawhub.ai/user/haohanyang92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haohanyang92](https://clawhub.ai/user/haohanyang92)
 
-## Use Case: <br>
-External users and developers can use this skill to draft Python-based A-share screening workflows that calculate SAR trend signals and approximate ZJTJ-style institutional activity signals. It supports single-stock analysis, batch screening, and concise buy-signal summaries for further human review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce buy recommendations from heuristic technical and fund-flow signals. <br>
-Mitigation: Treat recommendations as screening aids only, verify market data and calculations independently, and do not use the output as financial advice or as the sole basis for trading decisions. <br>
-Risk: The ZJTJ signal is an approximation of a paid indicator and may differ from the original indicator. <br>
-Mitigation: Review the approximation logic before use and compare it with independent indicators or domain expertise when evaluating stocks. <br>
-Risk: The cited data source and documented/code behavior may be unstable or mismatched. <br>
-Mitigation: Check AkShare availability, validate returned fields for the target market, and test the workflow on known examples before relying on results. <br>
+## Use Case:
 
+External users, developers, and market-analysis practitioners can use this skill to generate Python helpers for SAR calculation, approximate ZJTJ-style fund-flow signals, and batch stock-screening analysis. Outputs should be treated as educational analysis and independently verified before any financial decision.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/haohanyang92/zjtj-sar-calculator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with Python code blocks and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include heuristic stock-screening signals, SAR values, ZJTJ approximation scores, volume checks, and recommendation flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Generated buy signals or stock-screening recommendations may be mistaken for trading instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as rough educational analysis and verify results independently before making financial decisions.
+
+Risk: The strategy uses a simplified ZJTJ approximation and the scoring description is partly inconsistent.
+
+Mitigation: Review the underlying SAR, fund-flow, volume, and scoring logic before relying on any recommendation.
+
+Risk: Runtime behavior depends on external Python packages and market-data availability.
+
+Mitigation: Install in an isolated Python environment, prefer pinned dependencies, and handle unavailable or unstable AkShare data.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/haohanyang92/skills/zjtj-sar-calculator)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include stock-analysis signals and screening recommendations that require independent financial review.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

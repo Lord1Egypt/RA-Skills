@@ -1,0 +1,81 @@
+{
+  "schema": "cad-municipal-geometry/v1",
+  "source_file": "legacy.dwg",
+  "coordinate_unit": "mm",
+  "components": [
+    {
+      "category": "检查井",
+      "system": "雨水",
+      "raw": "雨水检查井 1000",
+      "layer": "GS-SS",
+      "x": 0,
+      "y": 0,
+      "status": "candidate"
+    }
+  ],
+  "pipe_network": [
+    {
+      "system": "雨水",
+      "pipe_size": "DN800",
+      "raw": "d800 雨水管",
+      "layer": "GS-YS",
+      "x": 0,
+      "y": 0,
+      "status": "candidate"
+    }
+  ],
+  "materials": [
+    {
+      "category": "沥青",
+      "value": "SBS 改性沥青上面层 4cm",
+      "layer": "TEXT"
+    }
+  ],
+  "references": [],
+  "labels": [
+    {
+      "label_type": "宽度",
+      "value": "红线宽 40m",
+      "layer": "TEXT"
+    }
+  ],
+  "municipal_geometry": [
+    {
+      "category": "雨水管",
+      "system": "雨水",
+      "layer": "GS-YS",
+      "geometry": [
+        0,
+        0,
+        60000,
+        0
+      ],
+      "file": "legacy.dwg",
+      "sheet": "PS-01",
+      "status": "candidate"
+    },
+    {
+      "category": "道路中线",
+      "system": "道路",
+      "layer": "DL-ZX",
+      "geometry": [
+        0,
+        0,
+        0,
+        80000
+      ],
+      "file": "legacy.dwg",
+      "sheet": "DL-01",
+      "status": "candidate"
+    }
+  ],
+  "entities": [],
+  "connectivity": {
+    "summary": {
+      "open_endpoints": 1,
+      "junction_candidates": 2
+    }
+  },
+  "review": [],
+  "boundary": "只输出识图候选"
+}

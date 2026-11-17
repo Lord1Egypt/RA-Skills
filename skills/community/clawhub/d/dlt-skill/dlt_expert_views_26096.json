@@ -1,0 +1,128 @@
+{
+  "_meta": {
+    "target_period": "26096",
+    "retrieved_at": "2026-08-24",
+    "method": "WebSearch 实时检索公开来源(新浪体育/新浪彩票/一定牛/彩吧助手)真实文章原文",
+    "honesty": "均为公开文章观点, 未经独立核实; 大乐透近似完全随机, 专家推荐无预测力(no_edge); 仅作分析思路观察与逆向参考, 绝不构成选号建议.",
+    "count": 13
+  },
+  "experts": [
+    {
+      "expert": "威哥",
+      "platform": "新浪体育",
+      "source_url": "https://sports.sina.com.cn/l/2026-08-23/doc-iniphnkv0647293.shtml",
+      "analysis": "三区比3:1:1；大小比2:3；连号关注11-12；龙头02、凤尾27；后区一奇一偶看好04-07",
+      "front": [2, 11, 12, 22, 27],
+      "back": [4, 7],
+      "verified": true
+    },
+    {
+      "expert": "刘星",
+      "platform": "新浪彩票名家汇总",
+      "source_url": "https://sports.sina.com.cn/l/2026-08-23/doc-iniphwyw3600098.shtml",
+      "analysis": "新浪名家汇总9+3推荐：前区03,15,18,19,22,23,30,31,32 后区02,05,08",
+      "front": [3, 15, 18, 19, 22, 23, 30, 31, 32],
+      "back": [2, 5, 8],
+      "verified": true
+    },
+    {
+      "expert": "江宏",
+      "platform": "新浪体育",
+      "source_url": "https://sports.sina.com.cn/l/2026-08-23/doc-iniphnky7015549.shtml",
+      "analysis": "大小比2:3；和值80-90；龙头07、凤尾34；奇偶比2:3；后区全小看好01-03",
+      "front": [7, 11, 14, 22, 34],
+      "back": [1, 3],
+      "verified": true
+    },
+    {
+      "expert": "王守礼",
+      "platform": "新浪体育",
+      "source_url": "https://sports.sina.com.cn/l/2026-08-23/doc-iniphnma3788087.shtml",
+      "analysis": "历史同期第五位升势看32；后区第一位下降看01、第二位上升看12；前区胆02-25；杀8码01,05,06,16,21,26,27,35",
+      "front": [2, 9, 25, 28, 32],
+      "back": [1, 12],
+      "verified": true
+    },
+    {
+      "expert": "铁观音",
+      "platform": "一定牛",
+      "source_url": "https://www.ydniu.com/info/dlt/cpyc/365620260823.html",
+      "analysis": "质合结构：一位质数01-02、二位质数11-13、三位合数16-20、四位合数25-26、五位质数29-31；前区四胆02,11,25,31；后区三码04,05,07",
+      "front": [2, 11, 25, 29, 31],
+      "back": [4, 7],
+      "verified": true
+    },
+    {
+      "expert": "胡亚楠",
+      "platform": "新浪体育",
+      "source_url": "https://sports.sina.com.cn/l/2026-08-24/doc-inipkriy6233907.shtml",
+      "analysis": "三区比2:2:1；大小比3:2；后区和值上升参考05-09；一区01-11、二区20-23、三区29",
+      "front": [1, 11, 20, 23, 29],
+      "back": [5, 9],
+      "verified": true
+    },
+    {
+      "expert": "王天财",
+      "platform": "新浪体育",
+      "source_url": "https://sports.sina.com.cn/l/2026-08-24/doc-inipkrka3006452.shtml",
+      "analysis": "012路预计0路3个(06,21,30)；重号看06；冷热比2:3(冷21,30)；连码21-22；后区04,05,06,11,12精选04-11",
+      "front": [6, 21, 22, 26, 30],
+      "back": [4, 11],
+      "verified": true
+    },
+    {
+      "expert": "高财",
+      "platform": "新浪体育",
+      "source_url": "https://sports.sina.com.cn/l/2026-08-24/doc-inipkriw2046238.shtml",
+      "analysis": "012路比3:1:1(0路大热)；一号球2路05、二号球0路06、三号球0路09、四号球1路10、五号球0路30；后区三区大热看11-12",
+      "front": [5, 6, 9, 10, 30],
+      "back": [11, 12],
+      "verified": true
+    },
+    {
+      "expert": "安队",
+      "platform": "新浪彩票",
+      "source_url": "https://lotto.sina.cn/2026-08-24/detail-inipkriv0096707.d.html?vt=4",
+      "analysis": "第四位遗漏热码看25,29,31(胆25)；第五位重号后看32-34(胆33)；后区和值9跨度1后参考03,06,08,09,11精选06-08",
+      "front": [1, 5, 22, 25, 33],
+      "back": [6, 8],
+      "verified": true
+    },
+    {
+      "expert": "春夏秋冬",
+      "platform": "一定牛",
+      "source_url": "https://www.ydniu.com/info/dlt/zjtj/374120260824.html",
+      "analysis": "区间比参考2:2:1；奇偶比2:3或3:2；012路1:2:2；和值52-97；一区02-12、二区13-24、三区25-35；后区02,07,09,10,11,12",
+      "front": [1, 3, 11, 12, 19],
+      "back": [2, 7],
+      "verified": true
+    },
+    {
+      "expert": "蕉太狼",
+      "platform": "一定牛",
+      "source_url": "https://www.ydniu.com/info/dlt/zjtj/596620260824.html",
+      "analysis": "龙头看10(1路)、凤尾看24(偶)；大小比3:2；后区重点02-07；前区杀8码09,12,13,16,19,22,26,27；后区5码02,07,09,10,11",
+      "front": [3, 5, 19, 22, 24],
+      "back": [2, 7],
+      "verified": true
+    },
+    {
+      "expert": "三少",
+      "platform": "彩吧助手",
+      "source_url": "https://www.55128.cn/zx/tcdlt/10314988.html",
+      "analysis": "奇偶比看4:1或1:4；大小比2:3或5:0；和值84-104；一区02-08、二区10-18、三区22-27、四区28-34；后区独胆02",
+      "front": [2, 11, 14, 17, 18, 29, 31],
+      "back": [2, 7],
+      "verified": true
+    },
+    {
+      "expert": "老顽童",
+      "platform": "彩吧助手",
+      "source_url": "https://www.55128.cn/zx/tcdlt/10314638.html",
+      "analysis": "大小比4:1；奇偶比4:1；区间比1:2:2；连号回补；重号热态；后区小大+奇奇看01,03,05,07,12精选01-07",
+      "front": [5, 18, 23, 29, 33],
+      "back": [1, 7],
+      "verified": true
+    }
+  ]
+}

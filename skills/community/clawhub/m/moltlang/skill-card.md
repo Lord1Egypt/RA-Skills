@@ -1,45 +1,59 @@
-## Description: <br>
-Moltlang is a compact symbolic language for AI-to-AI communication using a small codebook of symbols to convey concise messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Moltlang is a compact symbolic language for AI-to-AI communication using a small Unicode symbol codebook for concise messages.
 
-## Publisher: <br>
-[eduarddriessen1](https://clawhub.ai/user/eduarddriessen1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Unlicense <br>
+## Publisher:
 
+[eduarddriessen1](https://clawhub.ai/user/eduarddriessen1)
 
-## Use Case: <br>
-Developers and agent builders use Moltlang as a compact reference language for constructing, parsing, and extending symbolic messages between AI agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Unlicense
 
-## Known Risks and Mitigations: <br>
-Risk: Install commands that fetch from mutable branches can retrieve changed content later. <br>
-Mitigation: Prefer the packaged marketplace or npm release when possible, and review updates before re-running curl or git commands. <br>
-Risk: Community-proposed symbols or grammar changes could introduce ambiguous or misleading guidance. <br>
-Mitigation: Review codebook and documentation changes before deploying an updated skill. <br>
+## Use Case:
 
+Developers and AI-agent builders use Moltlang to construct and parse compact symbolic messages between agents, using the grammar in SKILL.md and the dictionary in codebook.json.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eduarddriessen1/moltlang) <br>
-- [Publisher profile](https://clawhub.ai/user/eduarddriessen1) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [codebook.json](artifact/codebook.json) <br>
-- [Moltbook](https://moltbook.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown reference with JSON codebook entries and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a static symbol codebook, grammar examples, and install guidance; no runtime execution is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The install instructions include remote fetch and update paths that can replace the local skill with newer content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill text before installing, prefer the trusted package path, and use a pinned revision or checksum when using curl.
+
+Risk: Community-proposed symbols or grammar changes can introduce ambiguous or misleading mappings.
+
+Mitigation: Review codebook changes against the intended communication semantics before relying on updated symbols in agent workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eduarddriessen1/skills/moltlang)
+- [Moltbook](https://moltbook.com)
+- [Moltbook Moltlang community](https://moltbook.com/m/moltlang)
+- [npm package](https://www.npmjs.com/package/moltlang)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+- [codebook.json](artifact/codebook.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown guidance with symbolic text examples and JSON codebook references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Unicode symbolic notation and a local codebook; no hidden execution, credential access, or destructive behavior was found in the inspected artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json, README.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,60 @@
-## Description: <br>
-Sinopec Oil Price queries real-time Sinopec gasoline and diesel prices by province and reports price changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sinopec Oil Price lets agents query real-time Sinopec gasoline and diesel prices by Chinese province and report price changes.
 
-## Publisher: <br>
-[15878033657](https://clawhub.ai/user/15878033657) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[15878033657](https://clawhub.ai/user/15878033657)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to look up current Sinopec fuel prices for Chinese provinces, including gasoline and diesel prices and recent price movement data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Province lookup requests are sent to the Sinopec API. <br>
-Mitigation: Use the skill only when sending province-level fuel-price queries to Sinopec is acceptable for the environment. <br>
-Risk: Monitoring writes local oil-price history files. <br>
-Mitigation: Run monitoring in an intended workspace and review or remove stored history files when they are no longer needed. <br>
-Risk: Scheduled monitoring can create recurring network activity. <br>
-Mitigation: Enable cron or scheduled checks only when recurring price lookups are intentional. <br>
-Risk: The skill depends on axios for HTTP requests. <br>
-Mitigation: Install with the bundled lockfile or update the HTTP dependency deliberately during maintenance. <br>
+## Use Case:
 
+External users and agents use this skill to check Sinopec oil prices for supported Chinese provinces and compose price-change summaries for monitoring workflows.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/15878033657/sinopec-oil-price) <br>
-- [API Reference](references/api.md) <br>
-- [Usage Examples](references/examples.md) <br>
-- [Sinopec mobile API endpoint](https://cx.sinopecsales.com/yjkqiantai) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Structured JSON objects and plain-text oil price messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts province_id or province_name; monitoring can persist local history for price-change comparisons.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Dependency hardening issues may affect install integrity or vulnerability posture.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Regenerate the lockfile from a trusted registry and update vulnerable dependencies before installing or deploying.
+
+Risk: Monitoring mode can create local history files and cron examples can make the skill run repeatedly.
+
+Mitigation: Enable monitoring or cron only when recurring execution and local history storage are intended, and review the write location and permissions.
+
+Risk: Returned oil prices are informational and may vary at actual gas stations.
+
+Mitigation: Use the output as reference data and verify prices at the station or official channel before relying on them for transactions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/15878033657/skills/sinopec-oil-price)
+- [API Reference](references/api.md)
+- [Usage Examples](references/examples.md)
+- [Sinopec Mobile Oil Price Endpoint](https://cx.sinopecsales.com/yjkqiantai)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON data objects and plain-text price summaries; documentation may include Markdown examples and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Network calls query Sinopec's endpoint; monitoring can write local history JSON files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

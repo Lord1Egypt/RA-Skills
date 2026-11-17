@@ -1,42 +1,55 @@
-## Description: <br>
-Auto Doc Index helps agents generate README index tables for ADR, RFC, pitfall, and similar documentation files from structured document frontmatter. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-generate document index tables (ADR, RFC, Pitfall, etc.) from file frontmatter.
 
-## Publisher: <br>
-[ERerGB](https://clawhub.ai/user/ERerGB) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[erergb](https://clawhub.ai/user/erergb)
 
-## Use Case: <br>
-Developers and documentation maintainers use this skill to replace hand-maintained README index tables with generated tables derived from individual Markdown files. It is most useful for ADR, RFC, pitfall, design-doc, and similar file-system documentation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The generator rewrites README content between INDEX markers, so misplaced markers can update the wrong section. <br>
-Mitigation: Review the README markers before running the generator and inspect the generated diff before committing changes. <br>
-Risk: The documented command uses npx tsx, which can resolve tooling dynamically. <br>
-Mitigation: Pin or locally install tsx before running the command when reproducible local tooling is required. <br>
+## Use Case:
 
+Developers and documentation maintainers use this skill to replace hand-maintained README index tables with generated tables derived from document frontmatter. It is suited for ADR, RFC, pitfall, design document, and similar file-system-based documentation directories.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ERerGB/auto-doc-index) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/ERerGB) <br>
-- [SkillKit](https://github.com/nicholasbarger/skillkit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript generator code and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generator output rewrites only the README section between INDEX markers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server-resolved release metadata) <br>
+Risk: The generator is commonly run through an unpinned tsx runner.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin tsx in the target project or run it through a lockfile-backed package script.
+
+Risk: Generated README changes can publish incorrect indexes if source frontmatter or marker placement is wrong.
+
+Mitigation: Use trusted documentation inputs, ensure each README has exactly one correctly ordered marker pair, and review generated README diffs before committing or publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/erergb/skills/auto-doc-index)
+- [SkillKit](https://github.com/nicholasbarger/skillkit)
+- [Template generator script](template/generate-doc-index.ts)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with TypeScript generator code and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates marker-bounded README index tables from local Markdown frontmatter; review generated diffs before committing or publishing.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

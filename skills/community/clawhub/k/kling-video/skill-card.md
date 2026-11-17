@@ -1,41 +1,60 @@
-## Description: <br>
-Generate, animate, and edit AI videos using Kuaishou's Kling 3.0 and Kling Video O3 through the Atlas Cloud API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates, animates, and edits short AI videos through Atlas Cloud video models for text-to-video, image-to-video, reference-to-video, and video editing workflows.
 
-## Publisher: <br>
-[xixihhhh](https://clawhub.ai/user/xixihhhh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xixihhhh](https://clawhub.ai/user/xixihhhh)
 
-## Use Case: <br>
-External users and developers use this skill to create short AI video clips, animate images, generate reference-based videos, and edit existing videos with Kling models through Atlas Cloud. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Video generation uses a paid Atlas Cloud API and may upload prompts, image URLs, video URLs, or local media. <br>
-Mitigation: Use a dedicated API key and review the selected model, duration, input media, and expected cost before running commands. <br>
-Risk: Private or regulated media may be sent to Atlas Cloud for generation, editing, or upload workflows. <br>
-Mitigation: Avoid uploading sensitive media unless Atlas Cloud's data handling is acceptable for the user's organization and use case. <br>
+## Use Case:
 
+External users and developers use this skill to produce short AI-generated videos or edited video clips through Atlas Cloud, including text-to-video, image-to-video, reference-based generation, and natural-language editing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xixihhhh/kling-video) <br>
-- [Atlas Cloud](https://www.atlascloud.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, code] <br>
-**Output Format:** [Markdown guidance with shell commands and Python script usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses ATLASCLOUD_API_KEY and may download generated MP4 files to the requested output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Prompts, media URLs, and uploaded media are sent to Atlas Cloud under the user's API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only content appropriate for Atlas Cloud processing, review media before upload, and confirm the account and API key before generation.
+
+Risk: Generation can incur paid API charges.
+
+Mitigation: Review the model ID, duration, tier, and extra parameters before submitting jobs.
+
+Risk: The helper can call any Atlas Cloud video model, not only the Kling models described in the skill text.
+
+Mitigation: Validate the selected model ID and prefer the documented Kling model IDs for this release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xixihhhh/skills/kling-video)
+- [Publisher profile](https://clawhub.ai/user/xixihhhh)
+- [Atlas Cloud](https://www.atlascloud.ai)
+- [Atlas Cloud video generation API endpoint](https://api.atlascloud.ai/api/v1/model/generateVideo)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with command examples and downloaded MP4 files from API outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ATLASCLOUD_API_KEY; may send prompts, media URLs, and uploaded media to Atlas Cloud and can incur paid API usage.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

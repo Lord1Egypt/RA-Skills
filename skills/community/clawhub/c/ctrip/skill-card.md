@@ -1,47 +1,55 @@
-## Description: <br>
-Comprehensive travel planning, booking, and management skill. Use when needing to plan china trips, manage multi-destination itineraries, handle family travel logistics, optimize travel costs, and coordinate complex travel arrangements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ctrip is a travel planning, booking, and management skill for China trip planning, multi-destination itineraries, family travel logistics, travel cost optimization, and booking coordination.
 
-## Publisher: <br>
-[newlux](https://clawhub.ai/user/newlux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[newlux](https://clawhub.ai/user/newlux)
 
-## Use Case: <br>
-External users use this skill to plan trips to China and other international destinations, compare travel routes and costs, organize family logistics, prepare document checklists, and coordinate bookings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel-planning output may be outdated or incomplete for visas, health rules, insurance, transportation, lodging, or booking policies. <br>
-Mitigation: Use the skill as a planning checklist and verify official visa, health, transport, lodging, and booking requirements before acting. <br>
-Risk: Travel planning can involve sensitive personal information such as passport numbers, document images, insurance identifiers, vaccination records, payment details, or emergency-contact details. <br>
-Mitigation: Avoid sharing sensitive travel, health, payment, or identity details unless they are explicitly needed for the task. <br>
+## Use Case:
 
+External travelers and travel-planning agents use this skill to prepare China-focused trips, compare flights, hotels, sights, consultants, travel packages, and document checklists, and coordinate family or multi-destination itineraries.
 
-## Reference(s): <br>
-- [Ctrip release page](https://clawhub.ai/newlux/ctrip) <br>
-- [Family Travel Checklist](references/family-travel-checklist.md) <br>
-- [International Travel Documents](references/travel-documents.md) <br>
-- [Travel Consultants](references/agents.md) <br>
-- [Hotel Recommendations](references/hotels.md) <br>
-- [Attractions & Sights](references/sights.md) <br>
-- [Flights](references/flights.md) <br>
-- [Tour Packages & Vacations](references/vacations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown travel plans, checklists, recommendations, and booking coordination guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only output; no code, install steps, credentials, persistence, or hidden data flows were identified in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: Travel recommendations, prices, policies, visa rules, and document requirements may be outdated or incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm current booking terms, prices, entry requirements, and travel-document rules with official sources or the relevant providers before acting.
+
+## Reference(s):
+
+- [Family Travel Checklist](references/family-travel-checklist.md)
+- [International Travel Documents](references/travel-documents.md)
+- [Travel Consultants](references/agents.md)
+- [Hotel Recommendations](references/hotels.md)
+- [Attractions & Sights](references/sights.md)
+- [Flights](references/flights.md)
+- [Tour Packages & Vacations](references/vacations.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown or plain text travel-planning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference guidance; no executable code, credential handling, persistence, or API calls.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

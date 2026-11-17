@@ -1,46 +1,60 @@
-## Description: <br>
-Enables an agent to operate Simple Analytics through an OOMOL-connected account using the oo CLI for reading analytics data and sending confirmed events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate Simple Analytics to read website statistics and export or send analytics data through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to inspect Simple Analytics websites, retrieve aggregated stats, export raw data points, and send confirmed server-side events through their connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to a connected Simple Analytics account through OOMOL-managed credentials. <br>
-Mitigation: Before installing, confirm that the requested Simple Analytics access and OOMOL connection match the intended account and use. <br>
-Risk: The send_event action can create server-side events or pageviews in Simple Analytics. <br>
-Mitigation: Confirm the exact payload and intended effect with the user before running write actions. <br>
-Risk: The security evidence reports clean scanner signals but notes limited confirmation of exact permissions or behavior. <br>
-Mitigation: Review the skill description and requested access before deployment, especially in environments with strict analytics or credential controls. <br>
+## Use Case:
 
+External users and developers can list connected websites, inspect aggregated statistics, export datapoints, and send events or pageviews to Simple Analytics.
 
-## Reference(s): <br>
-- [ClawHub Simple Analytics Skill](https://clawhub.ai/oomol/oo-simple-analytics) <br>
-- [Simple Analytics Homepage](https://simpleanalytics.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI Install Guide](https://cli.oomol.com/install-guide.md) <br>
-- [OOMOL Simple Analytics Connection](https://console.oomol.com/app-connections?provider=simple_analytics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON payloads or responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the oo CLI to inspect live connector schemas before building action payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and skill metadata) <br>
+Risk: The setup fallback runs a downloaded CLI installer whose remote contents have not been verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve the installer and the CLI's skill-installation behavior before allowing setup to proceed.
+
+Risk: Connecting Simple Analytics authorizes OOMOL to mediate access to the account.
+
+Mitigation: Review the account connection and grant access only for the intended Simple Analytics account.
+
+Risk: Exporting datapoints or sending events changes or transmits analytics data.
+
+Mitigation: Keep the skill's confirmation requirement and confirm the exact payload and effect before each write action.
+
+## Reference(s):
+
+- [Simple Analytics API authentication documentation](https://docs.simpleanalytics.com/api/authenticate)
+- [Simple Analytics](https://simpleanalytics.com)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [ClawHub release page](https://clawhub.ai/oomol/skills/oo-simple-analytics)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, API Calls, JSON, Guidance]
+
+**Output Format:** [Analytics data returned as JSON and summarized in text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Available output depends on the selected analytics action; write actions require user confirmation.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

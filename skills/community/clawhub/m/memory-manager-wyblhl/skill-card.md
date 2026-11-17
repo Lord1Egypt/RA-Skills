@@ -1,40 +1,53 @@
-## Description: <br>
-Automatically manages OpenClaw memory tiers, including working memory, short-term memory, long-term memory, memory merging, compression, cleanup, and archiving. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically manages OpenClaw memory files across working, short-term, and long-term tiers, including cleanup, tier movement, archiving, and reporting.
 
-## Publisher: <br>
-[wyblhl](https://clawhub.ai/user/wyblhl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wyblhl](https://clawhub.ai/user/wyblhl)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to organize local memory files into working, short-term, and long-term tiers, prune older learning and conversation records, and generate memory reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can move and delete local OpenClaw memory files without an interactive confirmation step. <br>
-Mitigation: Back up the OpenClaw memory directory before use, review the hard-coded paths and retention limits, and run it only in a workspace where automatic cleanup is acceptable. <br>
-Risk: The script targets hard-coded Windows paths under D:\OpenClaw\workspace. <br>
-Mitigation: Confirm those paths match the intended environment or adjust them before executing the script. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to organize local memory records, rotate older files into longer-term tiers, and generate basic memory reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wyblhl/memory-manager-wyblhl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create logs, JSON reports, archived memory files, and tiered memory directories when its script is executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can permanently delete conversation records and move memory-tier files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the configured memory paths before execution, keep independent backups, and test on noncritical memory data first.
+
+Risk: The documented backup and confirmation protections are not fully implemented.
+
+Mitigation: Do not rely on the stated safety protections as automatic safeguards; require manual review before cleanup operations.
+
+## Reference(s):
+
+- [Memory Manager on ClawHub](https://clawhub.ai/wyblhl/skills/memory-manager-wyblhl)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JavaScript code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local file-management actions and console/log output when executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

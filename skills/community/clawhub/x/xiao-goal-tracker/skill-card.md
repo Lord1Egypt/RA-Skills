@@ -1,40 +1,54 @@
-## Description: <br>
-Tracks personal goals by helping users set targets, update progress, review milestones, schedule reminders, and view reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Goal tracking for setting goals, monitoring progress, celebrating milestones, reminders, and reports.
 
-## Publisher: <br>
-[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1)
 
-## Use Case: <br>
-External users and agents use this skill to manage personal goals across health, finance, learning, career, and personal growth by setting deadlines, updating progress, and recording milestones. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The install name appears as both xiao-goal-tracker and goal-tracker across the metadata and documentation. <br>
-Mitigation: Confirm the intended package name before installing or invoking commands. <br>
-Risk: Goals, deadlines, milestones, and progress entries can contain personal information. <br>
-Mitigation: Avoid entering sensitive details unless the runtime and storage location are trusted. <br>
+## Use Case:
 
+External users and productivity-focused agents use this skill to create goals, update progress, review goal status, and record milestones across health, finance, learning, career, and personal growth goals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaising-openclaw1/xiao-goal-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Text] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Goal data may include personal information such as deadlines and progress notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Installer and goal-management commands may change local agent configuration or invoke external tooling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the install command and prefer a pinned or verified ClawHub installer version before running it.
+
+Risk: The skill documentation and pricing terms are primarily in Chinese, which may be misunderstood by users who do not read Chinese.
+
+Mitigation: Confirm the commands, limitations, and pricing terms before installation or paid use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaising-openclaw1/skills/xiao-goal-tracker)
+- [ClawHub publisher profile](https://clawhub.ai/user/kaising-openclaw1)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No embedded executable code; install and goal-management commands should be reviewed before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

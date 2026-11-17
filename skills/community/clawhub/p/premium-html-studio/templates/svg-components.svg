@@ -1,0 +1,219 @@
+<!-- ===========================================
+     PREMIUM SVG COMPONENTS TEMPLATE
+     Reusable SVG pieces for flow diagrams.
+     Copy & adapt for your document.
+     =========================================== -->
+
+<!-- === DEFS BLOCK (copy into your SVG) === -->
+<defs>
+  <!-- Fonts (must import inside SVG for proper rendering) -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap');
+    .title { font-family: 'Playfair Display', Georgia, serif; font-weight: 800; }
+    .body { font-family: 'Inter', -apple-system, sans-serif; }
+    .mono { font-family: 'JetBrains Mono', monospace; font-weight: 600; }
+  </style>
+
+  <!-- Layered shadows (3-layer for realistic depth) -->
+  <filter id="shadow-soft" x="-20%" y="-20%" width="140%" height="160%">
+    <feDropShadow dx="0" dy="1" stdDeviation="1" flood-color="#1e3a8a" flood-opacity="0.08"/>
+    <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#1e3a8a" flood-opacity="0.10"/>
+    <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#1e3a8a" flood-opacity="0.06"/>
+  </filter>
+  <!-- Glow for emphasis/final nodes -->
+  <filter id="shadow-glow" x="-30%" y="-30%" width="160%" height="180%">
+    <feDropShadow dx="0" dy="0" stdDeviation="8" flood-color="#4338ca" flood-opacity="0.35"/>
+    <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#4338ca" flood-opacity="0.15"/>
+  </filter>
+  <!-- Rose glow for LLM-related nodes -->
+  <filter id="shadow-llm" x="-30%" y="-30%" width="160%" height="180%">
+    <feDropShadow dx="0" dy="0" stdDeviation="10" flood-color="#be185d" flood-opacity="0.35"/>
+    <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#be185d" flood-opacity="0.20"/>
+  </filter>
+
+  <!-- Brand gradients (3-stop for richness) -->
+  <linearGradient id="g-brand" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#3730a3"/>
+    <stop offset="50%" stop-color="#4338ca"/>
+    <stop offset="100%" stop-color="#6366f1"/>
+  </linearGradient>
+  <linearGradient id="g-brand-soft" x1="0%" y1="0%" x2="0%" y2="100%">
+    <stop offset="0%" stop-color="#eef2ff"/>
+    <stop offset="100%" stop-color="#e0e7ff"/>
+  </linearGradient>
+  <linearGradient id="g-brand-card" x1="0%" y1="0%" x2="0%" y2="100%">
+    <stop offset="0%" stop-color="#ffffff"/>
+    <stop offset="100%" stop-color="#fafbff"/>
+  </linearGradient>
+  <linearGradient id="g-llm" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#9f1239"/>
+    <stop offset="50%" stop-color="#be185d"/>
+    <stop offset="100%" stop-color="#ec4899"/>
+  </linearGradient>
+  <linearGradient id="g-warm" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#fef3c7"/>
+    <stop offset="100%" stop-color="#fde68a"/>
+  </linearGradient>
+  <linearGradient id="g-arrow" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%" stop-color="#4338ca"/>
+    <stop offset="100%" stop-color="#6366f1"/>
+  </linearGradient>
+  <linearGradient id="g-success" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#059669"/>
+    <stop offset="100%" stop-color="#10b981"/>
+  </linearGradient>
+  <!-- Timeline progress gradient: light → brand → success -->
+  <linearGradient id="g-timeline" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%" stop-color="#e0e7ff"/>
+    <stop offset="50%" stop-color="#4338ca"/>
+    <stop offset="100%" stop-color="#059669"/>
+  </linearGradient>
+
+  <!-- Gradient arrow marker -->
+  <marker id="arr" viewBox="0 0 14 14" refX="12" refY="7" markerWidth="12" markerHeight="12" orient="auto-start-reverse">
+    <path d="M2,3 L11,7 L2,11 z" fill="url(#g-arrow)"/>
+  </marker>
+  <marker id="arr-llm" viewBox="0 0 14 14" refX="12" refY="7" markerWidth="12" markerHeight="12" orient="auto-start-reverse">
+    <path d="M2,3 L11,7 L2,11 z" fill="#be185d"/>
+  </marker>
+</defs>
+
+<!-- === BACKGROUND === -->
+<rect width="1200" height="1050" fill="#fafaf9"/>
+<rect width="1200" height="1050" fill="url(#grid-pattern)"/>
+<!-- Decorative light halos (brand color at very low opacity) -->
+<circle cx="200" cy="200" r="300" fill="#4338ca" opacity="0.03"/>
+<circle cx="1000" cy="900" r="400" fill="#6366f1" opacity="0.02"/>
+
+<!-- === STEP CARD TEMPLATE === -->
+<!--
+  Each step card has:
+  - Shadow layer (url(#shadow-soft) for normal, url(#shadow-glow) for emphasis)
+  - White body with subtle brand-tinted bottom gradient
+  - Brand-color title bar (30px high) using a <path> with ONLY top rounded corners
+  - Content text in Inter body, technical terms in JetBrains Mono
+
+  ⚠️ CRITICAL: NEVER use two <rect> elements stacked to create a title bar —
+  this creates a visible seam line. Always use a SINGLE <path> with only
+  the top corners rounded:
+
+    <path d="M {x} {y+h} V {y+r} Q {x} {y} {x+r} {y} H {x+w-r}
+             Q {x+w} {y} {x+w} {y+r} V {y+h} Z"/>
+-->
+<g filter="url(#shadow-soft)">
+  <!-- Card body -->
+  <rect x="40" y="100" width="320" height="90" rx="12"
+        fill="url(#g-brand-card)" stroke="#c7d2fe" stroke-width="1"/>
+
+  <!-- Title bar: SINGLE path with only top corners rounded (NO seam) -->
+  <path d="M 40 130 V 112 Q 40 100 52 100 H 348 Q 360 100 360 112 V 130 Z"
+        fill="url(#g-brand)"/>
+  <circle cx="55" cy="115" r="4" fill="#fbbf24"/>
+  <circle cx="68" cy="115" r="4" fill="#fb923c"/>
+  <circle cx="81" cy="115" r="4" fill="#34d399"/>
+  <text x="100" y="120" class="mono" font-size="11" fill="white" letter-spacing="0.5">
+    chapter · subtitle
+  </text>
+
+  <!-- Content (use .body for text, .mono for technical terms) -->
+  <text x="55" y="150" class="body" font-size="11.5" fill="#1f2937">
+    Content text · <tspan class="mono" fill="#dc2626">emphasis_value</tspan>
+  </text>
+  <text x="55" y="168" class="body" font-size="11.5" fill="#1f2937">
+    More content · <tspan class="mono" fill="#4338ca">identifier</tspan>
+  </text>
+</g>
+
+<!-- === LEFT ACCENT BAR (for callout-style nodes) === -->
+<!--
+  Adds a vertical brand-colored bar on the left edge of a card.
+  Great for shared/shared-step nodes.
+-->
+<rect x="40" y="100" width="4" height="90" rx="2" fill="#d97706"/>
+
+<!-- === STEP NUMBER BADGE === -->
+<!--
+  Circle badge with mono font number.
+  Use for step indicators in large container frames.
+-->
+<circle cx="405" cy="100" r="10" fill="url(#g-brand)"/>
+<text x="405" y="105" text-anchor="middle" class="mono" font-size="11" fill="white">3</text>
+
+<!-- === OUTPUT NODE (final result, uses glow shadow) === -->
+<g filter="url(#shadow-glow)">
+  <rect x="40" y="800" width="1120" height="85" rx="14"
+        fill="url(#g-brand)" stroke="#1e3a8a" stroke-width="2"/>
+  <text x="600" y="830" text-anchor="middle" class="title" font-size="16" fill="white">
+    ✅ Output: Final Result
+  </text>
+  <text x="600" y="855" text-anchor="middle" class="mono" font-size="11" fill="rgba(255,255,255,0.95)">
+    [{field: value}, ...]
+  </text>
+</g>
+
+<!-- === GRADIENT ARROW === -->
+<path d="M320 140 L380 140"
+      stroke="url(#g-arrow)" stroke-width="2.5"
+      marker-end="url(#arr)" fill="none"/>
+
+<!-- === LLM NODE (rose/pink, uses shadow-llm) === -->
+<g filter="url(#shadow-llm)">
+  <rect x="40" y="555" width="1120" height="260" rx="16"
+        fill="#fdf2f8" stroke="#be185d" stroke-width="2"/>
+  <text x="55" y="588" class="title" font-size="18" fill="#9f1239">
+    ⭐ LLM Step
+  </text>
+</g>
+
+<!-- === TIMELINE COMPONENTS === -->
+<!--
+  Timeline SVG structure:
+  1. Title at top
+  2. Phase cards (above the line)
+  3. Gradient progress bar (the timeline itself)
+  4. Phase nodes (circles on the line)
+  5. Deliverable cards (below the line)
+  6. Legend at bottom
+-->
+
+<!-- Timeline bar (background + progress) -->
+<rect x="100" y="178" width="1000" height="6" rx="3" fill="#e0e7ff"/>
+<rect x="100" y="178" width="850" height="6" rx="3" fill="url(#g-timeline)"/>
+
+<!-- Phase node (on the line) -->
+<circle cx="220" cy="181" r="10" fill="url(#g-brand)" stroke="white" stroke-width="3"/>
+<text x="220" y="185" text-anchor="middle" class="mono" font-size="10" fill="white">1</text>
+
+<!-- Completion node (success color, larger) -->
+<circle cx="1090" cy="181" r="14" fill="url(#g-success)" stroke="white" stroke-width="3"/>
+<text x="1090" y="186" text-anchor="middle" class="mono" font-size="12" fill="white">✓</text>
+
+<!-- Phase card (above timeline) -->
+<g filter="url(#shadow-sm)">
+  <rect x="130" y="80" width="180" height="70" rx="10"
+        fill="url(#g-muted)" stroke="#c7d2fe" stroke-width="1"/>
+  <path d="M130 104 V 90 Q 130 80 140 80 H 300 Q 310 80 310 90 V 104 Z"
+        fill="url(#g-brand)"/>
+  <text x="145" y="97" class="mono" font-size="11" fill="white">Phase 1 · Week 1-2</text>
+  <text x="145" y="124" class="title" font-size="15" fill="#1e3a8a">阶段标题</text>
+  <text x="145" y="143" class="body" font-size="10.5" fill="#374151">任务描述</text>
+</g>
+
+<!-- Deliverable card (below timeline) -->
+<g>
+  <rect x="140" y="238" width="160" height="56" rx="6"
+        fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="150" y="254" class="mono" font-size="10" fill="#4338ca" font-weight="600">交付物</text>
+  <text x="150" y="270">• 交付物 1</text>
+  <text x="150" y="286">• 交付物 2</text>
+</g>
+
+<!-- === TEXT COLOR GUIDE === -->
+<!--
+  Inside SVG code blocks / technical content:
+  - #dc2626 (red)     → critical values (sizes, thresholds, counts)
+  - #4338ca (brand)   → variable names, identifiers
+  - #6b7280 (muted)   → comments, italic hints
+  - #1f2937 (dark)    → regular body text
+  - #fde68a (gold)    → emphasis in dark headers
+-->

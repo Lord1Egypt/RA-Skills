@@ -1,41 +1,59 @@
-## Description: <br>
-Multi-stage deep intelligence pipeline (Search -> Filter -> Fetch -> Synthesize) that turns a query into a structured research report with full source citations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-stage deep intelligence pipeline (Search → Filter → Fetch → Synthesize). Turns a query into a structured research report with full source citations.
 
-## Publisher: <br>
-[JonathanJing](https://clawhub.ai/user/JonathanJing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jonathanjing](https://clawhub.ai/user/jonathanjing)
 
-## Use Case: <br>
-Researchers, analysts, and developers use this skill to turn a web research question into a filtered, fetched, and synthesized Markdown report or comparison with source citations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research queries and fetched web content may be sent through search, fetch, crawl, browser, and LLM tools. <br>
-Mitigation: Avoid secrets, private account pages, regulated data, and confidential internal URLs; use --no-browser or --no-firecrawl when a narrower research path is needed. <br>
-Risk: Generated reports can contain stale, incomplete, or misinterpreted web evidence. <br>
-Mitigation: Review cited sources and check important claims before relying on the report. <br>
-Risk: Optional file output can create local reports that persist beyond the session. <br>
-Mitigation: Choose output paths deliberately and keep generated reports within the intended workspace. <br>
+## Use Case:
 
+Researchers, analysts, and developers use Deep Scout to turn a research question into a cited Markdown report, comparison, bullet summary, or timeline assembled from searched, filtered, and fetched web sources.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JonathanJing/deep-scout) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown research reports or comparison tables with source citations; optional local file output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default depth is 5 fetched URLs; reports target concise Markdown with source links and can disable browser or Firecrawl fallback.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill can send research queries and fetched page content through search, fetch, browser, Firecrawl, and LLM tooling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with approved network egress and avoid sensitive internal URLs or confidential research topics unless the runtime enforces appropriate controls.
+
+Risk: The skill can fetch unrestricted URLs.
+
+Mitigation: Review target queries and fetched URLs before use in restricted environments, and disable browser or Firecrawl fallback when those channels are not approved.
+
+Risk: Sensitive query state may remain on disk after use.
+
+Mitigation: Review and delete ~/.openclaw/state/deep-scout/state.json after use on shared machines, or set DEEP_SCOUT_STATE_DIR to a controlled location.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jonathanjing/skills/deep-scout)
+- [ClawHub release homepage](https://clawhub.ai/jonathanjing/deep-scout)
+- [Publisher profile](https://clawhub.ai/user/jonathanjing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown research report, comparison table, bullet summary, or timeline with source citations; the CLI emits text action blocks for the agent loop.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports depth, freshness, country, language, search-count, min-score, style, dimensions, and optional output-file parameters.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

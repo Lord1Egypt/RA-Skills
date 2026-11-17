@@ -1,48 +1,57 @@
-## Description: <br>
-This skill helps answer Kimi Code CLI questions by querying and analyzing the official documentation at moonshotai.github.io/kimi-cli. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Answer Kimi Code CLI (kimi-cli) questions by querying and analyzing the official documentation at moonshotai.github.io/kimi-cli.
 
-## Publisher: <br>
-[wx528](https://clawhub.ai/user/wx528) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wx528](https://clawhub.ai/user/wx528)
 
-## Use Case: <br>
-Developers and engineers use this skill to answer Kimi Code CLI installation, configuration, command, MCP, and troubleshooting questions from official documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Answers may depend on remote Kimi CLI documentation that changes or is unavailable. <br>
-Mitigation: Fetch the official documentation before answering, cite the source, and say when the documentation is unclear or missing. <br>
-Risk: The skill may surface remote installation commands for Kimi CLI. <br>
-Mitigation: Review any remote installation command manually before running it. <br>
+## Use Case:
 
+Developers and technical users use this skill to answer installation, configuration, command reference, MCP, troubleshooting, and best-practice questions for Kimi Code CLI using official documentation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wx528/kimi-cli-doc-helper) <br>
-- [Kimi CLI official documentation](https://moonshotai.github.io/kimi-cli/) <br>
-- [Kimi CLI English documentation](https://moonshotai.github.io/kimi-cli/en/) <br>
-- [Kimi CLI getting started guide](https://moonshotai.github.io/kimi-cli/en/guides/getting-started.html) <br>
-- [Kimi CLI configuration files](https://moonshotai.github.io/kimi-cli/en/configuration/config-files.html) <br>
-- [Kimi CLI MCP configuration](https://moonshotai.github.io/kimi-cli/en/customization/mcp.html) <br>
-- [Kimi command reference](https://moonshotai.github.io/kimi-cli/en/reference/kimi-command.html) <br>
-- [Kimi CLI FAQ](https://moonshotai.github.io/kimi-cli/en/faq.html) <br>
-- [MoonshotAI kimi-cli repository](https://github.com/MoonshotAI/kimi-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown answers with citations and inline shell or configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses official Kimi CLI documentation as the source for technical details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Installation guidance includes copy-paste commands that directly execute remote installer scripts without verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installer advice before use, prefer a package-manager or pinned release path when available, or inspect and verify downloaded installer scripts before running them.
+
+## Reference(s):
+
+- [Kimi CLI documentation](https://moonshotai.github.io/kimi-cli/)
+- [Kimi CLI English documentation](https://moonshotai.github.io/kimi-cli/en/)
+- [Kimi CLI getting started](https://moonshotai.github.io/kimi-cli/en/guides/getting-started.html)
+- [Kimi CLI configuration files](https://moonshotai.github.io/kimi-cli/en/configuration/config-files.html)
+- [Kimi CLI MCP configuration](https://moonshotai.github.io/kimi-cli/en/customization/mcp.html)
+- [Kimi command reference](https://moonshotai.github.io/kimi-cli/en/reference/kimi-command.html)
+- [Kimi CLI FAQ](https://moonshotai.github.io/kimi-cli/en/faq.html)
+- [Kimi CLI GitHub repository](https://github.com/MoonshotAI/kimi-cli)
+- [ClawHub skill page](https://clawhub.ai/wx528/skills/kimi-cli-doc-helper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline links and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Answers should cite official Kimi CLI documentation and keep guidance concise but complete.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

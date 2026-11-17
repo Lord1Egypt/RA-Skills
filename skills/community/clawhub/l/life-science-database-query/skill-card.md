@@ -1,45 +1,67 @@
-## Description: <br>
-General life-sciences research copilot bundling 50 modular sub-skills across human genetics, variant interpretation, functional genomics, expression, pathway biology, protein structure, chemistry, clinical evidence, literature, and public study discovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+General life-sciences research copilot bundling 50 modular sub-skills across human genetics, variant interpretation, functional genomics, expression, pathway biology, protein structure, chemistry, clinical evidence, literature, and public study discovery.
 
-## Publisher: <br>
-[sciminer](https://clawhub.ai/user/sciminer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sciminer](https://clawhub.ai/user/sciminer)
 
-## Use Case: <br>
-External researchers, clinicians, and developers use this skill to route life-science questions to public databases and synthesize concise evidence across genetics, variants, expression, pathways, structure, chemistry, clinical evidence, literature, and study discovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can act as a broad networked research helper and may contact arbitrary URLs. <br>
-Mitigation: Use only public, non-sensitive research inputs and review requested API targets before execution. <br>
-Risk: Authorization headers, Cookie headers, or private tokens could be exposed through network requests. <br>
-Mitigation: Do not pass Authorization or Cookie headers, private tokens, or other sensitive credentials unless the environment and destination are explicitly trusted. <br>
-Risk: Full API responses can remain on disk when save_raw or raw_output_path is enabled. <br>
-Mitigation: Keep raw output disabled by default; when it is needed, choose a safe temporary location and delete files that contain sensitive or unnecessary data. <br>
+## Use Case:
 
+Developers, researchers, and life-science analysts use this skill to route broad or targeted research questions to public biology, chemistry, genetics, clinical, literature, and study-discovery databases, then synthesize concise evidence-backed answers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sciminer/life-science-database-query) <br>
-- [Root skill instructions](artifact/SKILL.md) <br>
-- [NCBI BLAST Common URL API notes](artifact/skills/ncbi-blast-skill/references/blast-common-url-api.txt) <br>
-- [NCBI Entrez GEO reference](artifact/skills/ncbi-entrez-skill/references/geo.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries with JSON API results, shell command examples, and optional file paths for saved raw responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write raw API responses to user-selected local paths when save_raw is enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Helper scripts allow overly broad web requests when request fields such as base_url, headers, bodies, or absolute path URLs are influenced by untrusted prompt content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a constrained environment, prefer fixed public database origins, restrict network egress, and do not allow untrusted prompt content to choose request destinations or request metadata.
+
+Risk: Raw-response save behavior can write outputs to arbitrary paths when raw_output_path is not controlled.
+
+Mitigation: Confine raw outputs to a dedicated directory and prevent untrusted prompt content from selecting raw_output_path values.
+
+Risk: The security verdict is suspicious because the skill is purpose-aligned but requires review before installation.
+
+Mitigation: Review the skill before deployment and pin dependencies before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sciminer/skills/life-science-database-query)
+- [Life Science Database Query skill definition](artifact/SKILL.md)
+- [NCBI BLAST Common URL API notes](artifact/skills/ncbi-blast-skill/references/blast-common-url-api.txt)
+- [NCBI Entrez GEO notes](artifact/skills/ncbi-entrez-skill/references/geo.md)
+- [Open Targets Platform GraphQL API](https://api.platform.opentargets.org/api/v4/graphql)
+- [GWAS Catalog REST API v2](https://www.ebi.ac.uk/gwas/rest/api/v2)
+- [UniProt REST API](https://rest.uniprot.org)
+- [ChEMBL API](https://www.ebi.ac.uk/chembl/api/data)
+- [ClinicalTrials.gov API v2](https://clinicaltrials.gov/api/v2)
+- [Ensembl REST API](https://rest.ensembl.org)
+- [AlphaFold Protein Structure Database API](https://alphafold.ebi.ac.uk/api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance, files]
+
+**Output Format:** [Markdown research synthesis with optional compact JSON summaries, shell commands, and saved raw-output file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can route broad questions through the research-router or invoke individual database sub-skills for targeted lookups.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

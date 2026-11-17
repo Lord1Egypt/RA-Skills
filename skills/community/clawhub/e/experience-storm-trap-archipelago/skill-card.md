@@ -1,41 +1,54 @@
-## Description: <br>
-Feel the raw edge of isolation and primal resilience as a blizzard engulfs you on a frozen outcrop in the Stockholm Archipelago. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through an eight-step, high-intensity winter storm survival story set in the Stockholm Archipelago.
 
-## Publisher: <br>
-[buystsuff](https://clawhub.ai/user/buystsuff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[buystsuff](https://clawhub.ai/user/buystsuff)
 
-## Use Case: <br>
-External users and agents use this skill to register for and progress through a hosted drifts.bot winter survival story experience. It provides the API flow, authentication pattern, and step progression commands for the Stockholm Archipelago stranding journey. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The hosted experience can receive registration details, location/timezone context, and reflective journey text. <br>
-Mitigation: Use the minimum registration information needed and avoid precise location data or sensitive personal reflections. <br>
-Risk: The skill depends on a drifts.bot hosted account and bearer token. <br>
-Mitigation: Store YOUR_TOKEN as the API key returned by drifts.bot registration and avoid sharing it in prompts, logs, or examples. <br>
+## Use Case:
 
+Agents and their users can register for and follow a hosted, interactive survival story, reflect on its steps, and review the experience after completion.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/buystsuff/experience-storm-trap-archipelago) <br>
-- [Experience homepage](https://drifts.bot/experience/storm-trap-archipelago) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, API calls] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the YOUR_TOKEN environment value/API key returned by drifts.bot registration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: release evidence) <br>
+Risk: Registration and journey activity are sent to drifts.bot, where reflections or reviews may persist.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only necessary profile details and avoid sharing sensitive information in reflections or reviews.
+
+Risk: An exposed API key could allow access to the user's account.
+
+Mitigation: Treat the API key like a password; do not publish or share it.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/buystsuff/skills/experience-storm-trap-archipelago)
+- [Winter Storm experience](https://drifts.bot/experience/storm-trap-archipelago)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Shell commands]
+
+**Output Format:** [Markdown with example API commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Journey steps may have timed unlocks; completion can include a postcard of steps and reflections.]
+
+## Skill Version(s):
+
+1.2.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

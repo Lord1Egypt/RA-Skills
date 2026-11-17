@@ -1,58 +1,8 @@
-﻿# `POST /chat/completions/`
+# 对话补全
 
-路由：[INTERFACE-ROUTING.md](./INTERFACE-ROUTING.md)。
+POST https://ai-skills.open-idea.net/api/v1/mongolian-ai/chat/completions
+Content-Type: application/json
 
-互译一律 **`POST /translation/`**，禁止本接口代译（契约/计费不同）。蒙语对话、说明、从零写蒙文等。
+messages 为 1–100 条消息，每条 role 为 system、user 或 assistant，content 必填且最多 4000 字符。可设置 system 消息要求只用中文、传统蒙古文或西里尔蒙古文回复；保留必要对话上下文。不要发送 from/to、model、temperature 或 max_tokens；模型参数由平台控制。
 
-## `max_tokens`
-
-最后一条 `role: user` 的 `content` 数 **Unicode 码点** `L`（勿用 JS `string.length` 当码点）。
-
-| **`L`** | **`max_tokens`** |
-|--------|------------------|
-| ≤ 50 | **256** |
-| 51～200 | **768**（或 **512** 控成本） |
-| 201～1000 | **3072**（或 **4096**） |
-| > 1000 | **8192**（可先 **6144**） |
-
-封顶 **8192**；`max_completion_tokens` 与 `max_tokens` 二选一。
-
-## 固定参数
-
-| 参数 | 值 |
-|------|-----|
-| `model` | **`gpt-5-mw`** |
-| `temperature` | **`0.5`** |
-| `messages` | 须含 `user`；`system` 见下 |
-
-## 模板
-
-**传统蒙古文**
-
-```json
-{
-  "model": "gpt-5-mw",
-  "messages": [
-    {"role": "system", "content": "请只用纯传统蒙古文回答，不要包含任何中文汉字。"},
-    {"role": "user", "content": "<用户问题>"}
-  ],
-  "temperature": 0.5,
-  "max_tokens": 768
-}
-```
-
-**中文回复**（用户明确要求中文输出时）
-
-```json
-{
-  "model": "gpt-5-mw",
-  "messages": [
-    {"role": "system", "content": "请使用简体中文回答。若用户输入包含传统蒙古文，请先理解原文语义，再直接给出针对用户请求的中文回复正文。只输出最终中文回复正文；禁止添加问候、自我介绍、解释过程、标题、原文复述或无关补充。若用户明确要求翻译，请不要使用本模板，应改用 POST /translation/。"},
-    {"role": "user", "content": "<用户问题>"}
-  ],
-  "temperature": 0.5,
-  "max_tokens": 768
-}
-```
-
-`max_tokens` 依上表与 `L` 重算。**[HTTP-REQUESTS.md](./HTTP-REQUESTS.md)** · **[SKILL.md](../SKILL.md)**（`choices[0].message.content`）
+成功只提取 choices[0].message.content。不展示原始 JSON、内部系统消息或调试字段。

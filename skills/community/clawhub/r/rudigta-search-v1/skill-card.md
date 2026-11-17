@@ -1,40 +1,54 @@
-## Description: <br>
-Skill pencarian internet umum untuk segala kebutuhan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill pencarian internet umum untuk segala kebutuhan.
 
-## Publisher: <br>
-[rudigta](https://clawhub.ai/user/rudigta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rudigta](https://clawhub.ai/user/rudigta)
 
-## Use Case: <br>
-External users and agents use this skill to search the web or browse a provided URL, then receive an objective answer or summary based on current internet information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad web search and URL browsing can expose sensitive information if prompts, queries, or URLs contain secrets, private account details, or personal data. <br>
-Mitigation: Do not include secrets, private account details, or sensitive personal data in search queries or URLs. <br>
-Risk: Browsed web content is untrusted and may be inaccurate, misleading, or hostile. <br>
-Mitigation: Treat browsed content as untrusted and verify important claims before relying on the result. <br>
+## Use Case:
 
+External users and agents use this skill to search the public internet for broad topics and summarize information from search results or specific URLs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rudigta/rudigta-search-v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text answer with summaries from web search and URL browsing.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results depend on available search and browsing tools and should be reviewed when accuracy or trust matters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Search queries or URLs may be sent to external search and browsing services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including secrets, credentials, private documents, or regulated personal data in search queries or URLs.
+
+Risk: Public internet results may be incomplete, stale, or misleading.
+
+Mitigation: Review important answers against trusted sources before acting on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rudigta/skills/rudigta-search-v1)
+- [Publisher profile](https://clawhub.ai/user/rudigta)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text answers and summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include information derived from external search results or browsed URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,117 @@
+{
+  "meta": {
+    "title": "大学避坑指南 · 主题矩阵",
+    "version": "1.0",
+    "date": "2026-09-18",
+    "scope": "首版 5 大类，共 60 个情景。编号沿用方案里的 12 类体系（01/03/07/08/10），其余 7 类待扩展。",
+    "academic_ratio": "5 类中 2 类属学业向（01 学业生存、10 安全防坑不含学业），刻意压低学业占比——Dora 明确要求「不要全是学习的」。",
+    "data_seed": "03 类的情景大量取材于 CollegesChat/university-information 的 25 问问卷字段（CC BY-NC-SA 4.0，见 sources.md）。该数据源只覆盖生活条件类，01/07/08/10 四类靠公开政策与权威报告补充。"
+  },
+  "categories": [
+    {
+      "id": "academic",
+      "index": "01",
+      "name": "学业生存",
+      "tagline": "不是教你学习，是教你别被规则坑",
+      "coverage_note": "政策细节各校差异大，统一给查找路径而不给具体数字",
+      "scenarios": [
+        { "id": "academic-course-selection", "title": "选课：怎么辨水课硬课、抢课退改选", "core": "选课信息的获取渠道、试听期利用、退改选时间窗", "priority": "high" },
+        { "id": "academic-gpa", "title": "绩点怎么算、单科崩了怎么办", "core": "绩点计算逻辑，以及单科低分的真实影响边界", "priority": "high" },
+        { "id": "academic-fail", "title": "挂科：补考、重修、真实后果", "core": "挂科对保研/奖学金/毕业的实际影响，以及补救路径", "priority": "high" },
+        { "id": "academic-transfer-major", "title": "转专业：窗口、门槛、现实成功率", "core": "转专业的政策窗口与绩点门槛，以及成功率预期管理", "priority": "high" },
+        { "id": "academic-postgrad-recommend", "title": "保研/推免：规则、加分、什么时候开始", "core": "推免的计分构成、加分项、时间线", "priority": "high" },
+        { "id": "academic-classroom", "title": "课堂：点名、逃课、跟老师关系", "core": "缺勤后果的真实边界、与老师建立关系的分寸", "priority": "medium" },
+        { "id": "academic-plagiarism", "title": "作业与学术抄袭的红线", "core": "什么算抄袭、查重逻辑、处分等级", "priority": "high" },
+        { "id": "academic-exam", "title": "考试策略与作弊后果", "core": "备考方法、开卷闭卷差异、作弊的处分与留档风险", "priority": "high" },
+        { "id": "academic-minor-degree", "title": "双学位/辅修：值不值", "core": "时间成本、认可度、与主修的冲突", "priority": "medium" },
+        { "id": "academic-certs", "title": "四六级/竞赛：什么时候考、值不值", "core": "考试时间窗、竞赛的加分与简历价值判断", "priority": "medium" },
+        { "id": "academic-thesis", "title": "毕设/论文：选题、选导师、查重", "core": "选题与导师的匹配、查重机制、延期风险", "priority": "medium" },
+        { "id": "academic-warning", "title": "收到学业预警怎么办", "core": "预警的含义、触发条件、补救窗口", "priority": "high" }
+      ]
+    },
+    {
+      "id": "dorm",
+      "index": "03",
+      "name": "宿舍生存",
+      "tagline": "一个你无法选择室友、但可以选择怎么活的地方",
+      "coverage_note": "本类情景主要来自 CollegesChat 问卷的 25 个字段 + 通用人际处理框架",
+      "scenarios": [
+        { "id": "dorm-sleep-conflict", "title": "室友半夜打游戏/作息冲突", "core": "作息差异的沟通框架与备案路径", "priority": "high" },
+        { "id": "dorm-chores", "title": "卫生分工、公共物品", "core": "宿舍公共事务的规则化", "priority": "high" },
+        { "id": "dorm-cold-war", "title": "宿舍关系恶化、被孤立", "core": "关系破裂后的相处策略与求助路径", "priority": "high" },
+        { "id": "dorm-change-room", "title": "换宿舍的流程与现实难度", "core": "申请路径、理由怎么写、成功率", "priority": "high" },
+        { "id": "dorm-power-cut", "title": "晚上断电断网", "core": "断电时段的应对与替代方案", "priority": "medium" },
+        { "id": "dorm-power-limit", "title": "宿舍限电、大功率电器", "core": "限电原理、违规后果、替代方案", "priority": "medium" },
+        { "id": "dorm-curfew", "title": "门禁与晚归", "core": "门禁时间的现实弹性、晚归的合规处理", "priority": "medium" },
+        { "id": "dorm-inspection", "title": "查寝与封寝", "core": "查寝项目、违规物品、被记名的影响", "priority": "medium" },
+        { "id": "dorm-bathroom", "title": "澡堂、热水时段、独立卫浴", "core": "错峰策略、澡堂礼仪、故障报修", "priority": "medium" },
+        { "id": "dorm-decoration", "title": "宿舍能不能改造", "core": "可逆改造的边界、退宿时的复原责任", "priority": "low" },
+        { "id": "dorm-visitors", "title": "访客与异性来访规定", "core": "规定的实际执行尺度与风险", "priority": "low" },
+        { "id": "dorm-borrowing", "title": "室友带人回来、借东西不还", "core": "边界设定的具体话术", "priority": "medium" }
+      ]
+    },
+    {
+      "id": "money",
+      "index": "07",
+      "name": "钱",
+      "tagline": "最容易被骗的地方，也是最不好意思问的地方",
+      "coverage_note": "奖学金/助学金/助学贷款额度均来自官方公开信息，见 sources.md",
+      "scenarios": [
+        { "id": "money-allowance", "title": "生活费分配、月光怎么办", "core": "支出结构诊断与分配方法", "priority": "high" },
+        { "id": "money-tracking", "title": "记账、消费降级", "core": "可坚持的记账方法与降级优先级", "priority": "medium" },
+        { "id": "money-scholarship", "title": "奖学金：种类、门槛、怎么拿", "core": "各类奖学金的评定逻辑与时间线", "priority": "high" },
+        { "id": "money-grant", "title": "助学金：申请条件与认定流程", "core": "家庭经济困难认定的流程与材料", "priority": "high" },
+        { "id": "money-loan", "title": "助学贷款：额度、流程、还款", "core": "生源地/校园地区别、额度、宽限期、还款方式", "priority": "high" },
+        { "id": "money-workstudy", "title": "勤工助学岗位怎么找", "core": "校内岗位的获取渠道与时间冲突", "priority": "medium" },
+        { "id": "money-parttime", "title": "兼职红黑榜", "core": "哪些兼职靠谱、哪些是坑、法律风险", "priority": "high" },
+        { "id": "money-loan-trap", "title": "网贷与分期陷阱", "core": "利率换算、征信影响、逾期后果", "priority": "high" },
+        { "id": "money-campus-loan", "title": "校园贷、培训贷、医美贷", "core": "常见套路识别与已经借了怎么办", "priority": "high" },
+        { "id": "money-lending-friend", "title": "被同学借钱怎么办", "core": "拒绝话术与借了不还的处理", "priority": "medium" },
+        { "id": "money-side-income", "title": "副业与赚钱的可行性判断", "core": "时间成本核算、与学业的取舍", "priority": "low" },
+        { "id": "money-tuition-defer", "title": "学费住宿费缴不上怎么办", "core": "绿色通道、缓缴、减免政策", "priority": "high" }
+      ]
+    },
+    {
+      "id": "health",
+      "index": "08",
+      "name": "身体与心理",
+      "tagline": "这一类的及格线是不说错话",
+      "coverage_note": "情绪类内容必须先过 crisis-protocol.md 的分级判断",
+      "scenarios": [
+        { "id": "health-sleep-schedule", "title": "熬夜与作息重建", "core": "作息紊乱的实际重建方法，不喊口号", "priority": "high" },
+        { "id": "health-insomnia", "title": "失眠", "core": "短期与长期失眠的分界、自助与就医的时机", "priority": "high" },
+        { "id": "health-exercise", "title": "运动打卡与体测", "core": "打卡要求的达成策略、体测不及格的后果", "priority": "medium" },
+        { "id": "health-clinic", "title": "校医院怎么用", "core": "就诊流程、转诊、报销", "priority": "medium" },
+        { "id": "health-insurance", "title": "大学生医保", "core": "参保方式、报销比例、异地就医", "priority": "medium" },
+        { "id": "health-sick-leave", "title": "生病了怎么请假、缓考", "core": "请假类型、证明要求、缓考申请", "priority": "medium" },
+        { "id": "health-anxiety", "title": "焦虑的自我识别", "core": "正常焦虑与需要帮助的分界", "priority": "high" },
+        { "id": "health-depression-signals", "title": "持续低落：什么时候该找人", "core": "直接对应 crisis-protocol 的 L2 判断", "priority": "high" },
+        { "id": "health-counseling", "title": "心理咨询怎么约、保密吗", "core": "预约路径、保密边界、常见误解", "priority": "high" },
+        { "id": "health-somatization", "title": "查不出毛病的身体不适", "core": "躯体化信号与就医顺序", "priority": "medium" },
+        { "id": "health-body-image", "title": "饮食与体重焦虑", "core": "不评判原则 + 危险信号识别", "priority": "high" },
+        { "id": "health-medical-cost", "title": "看病的钱和证明怎么办", "core": "费用、票据、证明材料", "priority": "low" }
+      ]
+    },
+    {
+      "id": "safety",
+      "index": "10",
+      "name": "安全与防坑",
+      "tagline": "被骗不是因为你笨，是因为话术就是为你设计的",
+      "coverage_note": "诈骗类型与占比来自公安部刑侦局《防范电信网络诈骗宣传手册（2026 版）》",
+      "scenarios": [
+        { "id": "safety-freshman-scams", "title": "新生季：假新生群、宿舍推销、代管行李", "core": "开学前后高发的针对性骗局", "priority": "high" },
+        { "id": "safety-brush-order", "title": "刷单返利诈骗（发案占比 21.8%，第一高发）", "core": "小额返利建立信任的完整套路", "priority": "high" },
+        { "id": "safety-fake-service", "title": "虚假购物与服务类诈骗（18.2%）", "core": "脱离平台交易、代抢票、代写的风险", "priority": "high" },
+        { "id": "safety-fake-customer-service", "title": "冒充电商物流客服退款（10.5%）", "core": "屏幕共享是核心危险动作", "priority": "high" },
+        { "id": "safety-campus-loan-call", "title": "校园贷注销/征信类诈骗（7.4%）", "core": "征信不可人为修改这一条足以识破", "priority": "high" },
+        { "id": "safety-grant-scam", "title": "助学金奖学金类诈骗", "core": "发放补贴绝不会要求先交钱", "priority": "high" },
+        { "id": "safety-impersonate-police", "title": "冒充公检法诈骗（3.5%）", "core": "没有所谓安全账户", "priority": "high" },
+        { "id": "safety-romance-scam", "title": "网络婚恋交友诈骗／杀猪盘（4.8%）", "core": "感情建立信任后引导投资", "priority": "high" },
+        { "id": "safety-game-account", "title": "游戏账号与装备交易诈骗（4.8%）", "core": "仿冒交易平台、解冻费套路", "priority": "medium" },
+        { "id": "safety-ticket-scalping", "title": "演唱会票务诈骗", "core": "代抢票、私下转账、共享屏幕", "priority": "medium" },
+        { "id": "safety-help-crime", "title": "帮信罪：出租出借银行卡电话卡", "core": "可能构成犯罪，不是小事", "priority": "high" },
+        { "id": "safety-pyramid-scheme", "title": "传销与境外高薪招聘陷阱", "core": "熟人拉人、异地项目、高薪诱惑", "priority": "high" }
+      ]
+    }
+  ]
+}

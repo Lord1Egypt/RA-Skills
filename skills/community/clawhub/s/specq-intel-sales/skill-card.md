@@ -1,46 +1,60 @@
-## Description: <br>
-SpecQ Intel Sales helps semiconductor sales and pre-sales teams turn customer, product, visit, loss-review, and competitor context into an eight-module sales-intelligence brief. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SpecQ helps electronic-chemicals sales and field engineering teams turn customer, product, visit-history, loss-review, and competitor context into an eight-part sales intelligence brief.
 
-## Publisher: <br>
-[daizehua-wq](https://clawhub.ai/user/daizehua-wq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daizehua-wq](https://clawhub.ai/user/daizehua-wq)
 
-## Use Case: <br>
-Sales engineers and pre-sales teams use this skill before customer meetings to generate structured account strategy for electronic chemicals in the semiconductor supply chain. It recalls local sales memory, optionally searches public competitor context, and produces customer needs, technical comparisons, risks, opportunities, and next actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store sales and customer information in persistent local memory. <br>
-Mitigation: Review the local data directory, avoid entering sensitive customer data unless approved, and establish retention or deletion controls before deployment. <br>
-Risk: When optional API keys are configured, search, embedding, or transcription content may be sent to external services. <br>
-Mitigation: Use approved providers only, redact sensitive content before external processing, and leave optional API keys unset for sensitive or offline workflows. <br>
-Risk: The security evidence flags under-disclosed local database, arbitrary URL, third-party processing, and persistent memory capabilities. <br>
-Mitigation: Constrain reachable sources, review URLs before use, disclose permissions to users, and run the skill in an environment with appropriate network and file-system limits. <br>
+## Use Case:
 
+Sales engineers, field application engineers, and sales-support teams use this skill before customer meetings to recall local sales history, gather public market context, and generate a structured attack-plan brief for semiconductor electronic chemicals. It can also record visit notes, closed-loop feedback, and concise sales insights for later reuse.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daizehua-wq/skills/specq-intel-sales) <br>
-- [Publisher profile](https://clawhub.ai/user/daizehua-wq) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [OpenCode Prompt v2.0](artifact/docs/OpenCode_Prompt_v2.0.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown intelligence briefs, structured JSON tool results, concise chat or email summaries, and setup snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default output is an eight-module Markdown brief with source labels and an optional historical-memory block; document and slide modes return outlines for manual follow-up.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.2 (source: server release metadata) <br>
+Risk: Local memory can retain customer history, visit notes, feedback, and generated intelligence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated workspace or profile, set storage to an approved data directory, and review retention and deletion expectations before entering real customer data.
+
+Risk: Configured API keys can cause customer text, search terms, embeddings, or recordings to be sent to external providers.
+
+Mitigation: Run without optional external API keys for sensitive work, or approve providers and data classes before enabling embedding, search, or transcription integrations.
+
+Risk: Database paths and API URLs supplied to insight extraction can expose sensitive or unintended business data.
+
+Mitigation: Restrict database paths and endpoints to approved sources, avoid arbitrary inputs, and review tenant isolation before shared or production use.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/daizehua-wq/skills/specq-intel-sales)
+- [Publisher profile](https://clawhub.ai/user/daizehua-wq)
+- [Skill README](artifact/README.md)
+- [Skill workflow](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown briefs by default, with JSON for memory/search/insight tools and short text formats for email or chat summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated briefs follow an eight-module sales-intelligence structure and may include locally recalled history, public search snippets, confidence/source labels, and feedback reminders.]
+
+## Skill Version(s):
+
+2.3.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-Global temperature bucket threshold strategy via Simmer that buys YES under 15%, sells YES positions at 45%, caps entries near $2, limits scans to 5 trades, and runs every 2 minutes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Global temperature bucket threshold strategy via Simmer. Buy YES under 15%, sell full position at 45%, max ~$2 entries, max 5 trades/scan, every 2 minutes.
 
-## Publisher: <br>
-[OxSnosh](https://clawhub.ai/user/OxSnosh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[oxsnosh](https://clawhub.ai/user/oxsnosh)
 
-## Use Case: <br>
-External developers and trading-automation users use this skill to run a scheduled Simmer strategy for weather-related prediction markets with fixed entry, exit, spend, and scan limits. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Live mode can trade with Simmer account access and may sell broader account positions than the advertised weather strategy. <br>
-Mitigation: Keep dry-run enabled until reviewed, use a least-privilege API key where available, and restrict live execution to positions opened by this strategy or explicitly approved markets. <br>
-Risk: The skill runs on a two-minute schedule and can repeatedly evaluate or place trades. <br>
-Mitigation: Confirm trade caps, warning handling, and scheduling before enabling managed execution. <br>
-Risk: No license identifier is available in the release evidence. <br>
-Mitigation: Confirm the license and terms of use before redistribution or commercial deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/OxSnosh/polymarket-weather-bucket-thresholds) <br>
-- [Publisher profile](https://clawhub.ai/user/OxSnosh) <br>
-- [Simmer Markets API endpoint](https://api.simmer.markets) <br>
+## Use Case:
 
+External users and developers can use this skill to run a Simmer-based weather market threshold strategy that buys YES below 15% probability and exits YES positions at 45% or above. It is dry-run by default and requires explicit live-mode enablement for trading actions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and command-line guidance for configuring and running the Simmer trading script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY and the simmer-sdk dependency; dry-run is the default unless live execution is explicitly enabled.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can perform account-level trading actions when live mode is enabled.
+
+Mitigation: Review before enabling live mode and keep dry-run mode until trading scope, account permissions, and loss limits are confirmed.
+
+Risk: Exit logic may affect positions beyond those opened by this skill.
+
+Mitigation: Tighten exits so they only sell positions that can be attributed to this skill before live deployment.
+
+Risk: Trading controls are described as too loose for account-level actions.
+
+Mitigation: Hard cap entry spend and total trades, block on any context warning, and pin or remove the unused dependency before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/oxsnosh/skills/polymarket-weather-bucket-thresholds)
+- [Simmer API endpoint](https://api.simmer.markets)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Text, Configuration instructions]
+
+**Output Format:** [Console text with JSON-like dry-run payloads and live API trade requests]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY; default dry-run mode prints trade payloads instead of submitting live trades.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

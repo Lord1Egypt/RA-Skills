@@ -1,44 +1,57 @@
-## Description: <br>
-Sends international SMS (USMS) via uspeedo platform HTTP API for batch SMS, verification, notification, and marketing messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends international SMS (USMS) via uspeedo platform HTTP API for single or batch verification, notification, and marketing messages.
 
-## Publisher: <br>
-[code-by-ai](https://clawhub.ai/user/code-by-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[code-by-ai](https://clawhub.ai/user/code-by-ai)
 
-## Use Case: <br>
-Developers and operators use this skill to configure USpeedo credentials and send international SMS messages for verification, notifications, marketing, or batch communication workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SMS recipients and message content are shared with USpeedo using account credentials. <br>
-Mitigation: Review recipients and message text before sending, and avoid sending secrets or regulated sensitive information by SMS. <br>
-Risk: Incorrect or stale USpeedo credentials can cause failed sends or authentication errors. <br>
-Mitigation: Store credentials in environment variables, rotate them when needed, and verify template IDs before approving a send. <br>
+## Use Case:
 
+External users and developers use this skill to guide an agent through sending international SMS via uspeedo, including credential checks, template selection, recipient formatting, API calls, and result reporting. It is intended for verification, notification, marketing, and batch SMS workflows where the user has proper authorization and recipient consent.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/code-by-ai/send-usms-uspeedo) <br>
-- [USpeedo homepage](https://uspeedo.com) <br>
-- [USpeedo SMS API documentation](https://docs.uspeedo.com/docs/sms/api/) <br>
-- [USpeedo AI communication portal](https://uspeedo.com/en/ai-communication?SaleCode=JD4651&ChannelCode=OpenClaw) <br>
-- [USpeedo SMS template management](https://console.uspeedo.com/sms/template) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May send phone numbers and SMS message content to USpeedo through the user's configured account credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill can send SMS through the user's uspeedo account and may create cost, compliance, or unwanted-message exposure if recipients, message body, SMS type, or batch size are wrong.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the recipient list, message body, SMS type, expected cost, and legal consent before each send, especially for batch or marketing messages.
+
+Risk: The skill requires uspeedo access keys, and exposing those keys in chat, logs, scripts, or shell history could allow unauthorized SMS sending.
+
+Mitigation: Keep access keys in environment variables or a protected .env file, avoid hardcoding or pasting secrets into prompts, and rotate credentials if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/code-by-ai/skills/send-usms-uspeedo)
+- [uspeedo homepage](https://uspeedo.com)
+- [uspeedo SMS API documentation](https://docs.uspeedo.com/docs/sms/api/)
+- [uspeedo AI communication console](https://uspeedo.com/en/ai-communication?SaleCode=JD4651&ChannelCode=OpenClaw)
+- [uspeedo SMS template management](https://console.uspeedo.com/sms/template)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON and bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a uspeedo API request body, curl command, credential setup guidance, and success or error interpretation.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

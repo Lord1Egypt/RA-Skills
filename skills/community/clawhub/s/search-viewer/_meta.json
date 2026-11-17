@@ -1,6 +1,12 @@
 {
-  "ownerId": "kn7ctn51g7anq93bwgz7gfckxs80c6ze",
+  "name": "Search Viewer",
   "slug": "search-viewer",
-  "version": "4.3.0",
-  "publishedAt": 1773312265610
+  "version": "1.0.0",
+  "description": "信息收集与空间测绘工具 - 聚合Fofa/Hunter/Shodan/Quake/Zoomeye",
+  "author": "小溪",
+  "homepage": "https://github.com/adminlove520/Search_Viewer",
+  "tags": ["security", "osint", "reconnaissance", "pentest"],
+  "platform": ["windows", "linux", "macos"],
+  "dependencies": ["pyside2", "requests"],
+  "runtime": "python"
 }

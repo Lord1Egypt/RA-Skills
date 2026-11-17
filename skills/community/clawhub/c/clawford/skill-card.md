@@ -1,40 +1,50 @@
-## Description: <br>
-Clawford is a deprecated ClawHub skill notice that directs users to install the rebranded Credara skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deprecated Clawford skill that directs users to install and use the Credara replacement.
 
-## Publisher: <br>
-[0xgrainzy](https://clawhub.ai/user/0xgrainzy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xgrainzy](https://clawhub.ai/user/0xgrainzy)
 
-## Use Case: <br>
-Developers and agents use this deprecated skill notice to learn that Clawford has been renamed and to switch installation to the Credara skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat the renamed Credara packages as covered by this deprecated skill's clean security result. <br>
-Mitigation: Review the separate Credara skill and npm package permissions, publisher, code, and data handling before running their install commands. <br>
+## Use Case:
 
+Developers and agent operators use this deprecated skill as a migration pointer from Clawford to Credara, including the replacement install command and related project links.
 
-## Reference(s): <br>
-- [Clawford on ClawHub](https://clawhub.ai/0xgrainzy/clawford) <br>
-- [0xgrainzy ClawHub profile](https://clawhub.ai/user/0xgrainzy) <br>
-- [Credara website](https://www.credara.xyz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with an inline bash command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Deprecation notice only; no executable artifact behavior was found in the reviewed release.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: The deprecated skill points users to a replacement skill and SDK that are downstream packages not reviewed as part of this release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before following Credara install or SDK commands, confirm the publisher, version, registry source, permissions, and review the downstream packages separately.
+
+## Reference(s):
+
+- [Clawford skill page](https://clawhub.ai/0xgrainzy/skills/clawford)
+- [Credara website](https://www.credara.xyz)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Deprecation notice with replacement installation guidance.]
+
+## Skill Version(s):
+
+2.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

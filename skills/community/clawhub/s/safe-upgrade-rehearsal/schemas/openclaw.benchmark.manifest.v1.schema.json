@@ -1,0 +1,423 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pdurlej/openclaw-skill-safe-update/schemas/openclaw.benchmark.manifest.v1.schema.json",
+  "title": "OpenClaw Benchmark Frozen Corpus Manifest",
+  "description": "Digest-bound manifest binding a frozen, public-safe benchmark corpus and its scoring protocol. Arms, scoring metrics/thresholds/budgets, worker identity, and the scorecard schema digest are all frozen here and bound by corpus_digest before any run; none of them can change without producing a new corpus_digest.",
+  "type": "object",
+  "required": [
+    "schema",
+    "effect",
+    "runtime_effect",
+    "external_effect",
+    "external_write_effect",
+    "production_apply_allowed",
+    "operator_approval",
+    "authoritative",
+    "canonical_status_effect",
+    "corpus_id",
+    "version",
+    "frozen",
+    "frozen_at",
+    "arms",
+    "corpus_digest",
+    "scorecard_schema_digest",
+    "fixture_count",
+    "fixtures",
+    "scoring",
+    "worker_identity"
+  ],
+  "properties": {
+    "schema": {
+      "const": "openclaw.benchmark.manifest.v1"
+    },
+    "effect": {
+      "const": "benchmark_evaluation_only"
+    },
+    "runtime_effect": {
+      "const": "none"
+    },
+    "external_effect": {
+      "const": "none"
+    },
+    "external_write_effect": {
+      "const": "none"
+    },
+    "production_apply_allowed": {
+      "const": false
+    },
+    "operator_approval": {
+      "const": false
+    },
+    "authoritative": {
+      "const": false
+    },
+    "canonical_status_effect": {
+      "const": "none"
+    },
+    "corpus_id": {
+      "const": "openclaw-safe-update-advisory-benchmark"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "frozen": {
+      "const": true
+    },
+    "frozen_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "arms": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "uniqueItems": true,
+      "description": "Comparison-arm descriptors. baseline and shadow_impact are deterministic, required arms; advisory is the only optional arm and the only arm that may legitimately return not_available.",
+      "items": {
+        "$ref": "#/$defs/armDescriptor"
+      }
+    },
+    "corpus_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "description": "SHA-256 over the canonical-JSON binding of fixtures, arms, scoring (metrics/thresholds/budgets/advisory_status/value_metric), worker_identity, and scorecard_schema_digest. Mutating any of those classes re-freezes the corpus."
+    },
+    "scorecard_schema_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "description": "SHA-256 over the canonical JSON of the frozen scorecard schema. Bound by corpus_digest so a scorecard-shape change re-freezes the corpus."
+    },
+    "fixture_count": {
+      "type": "integer",
+      "minimum": 12
+    },
+    "fixtures": {
+      "type": "array",
+      "minItems": 12,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/fixtureEntry"
+      }
+    },
+    "scoring": {
+      "$ref": "#/$defs/scoring"
+    },
+    "worker_identity": {
+      "$ref": "#/$defs/workerIdentity"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "bareDigest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "fixtureEntry": {
+      "type": "object",
+      "required": [
+        "id",
+        "path",
+        "sha256"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^oc-bench-[0-9]{4}$"
+        },
+        "path": {
+          "type": "string",
+          "pattern": "^fixtures/oc-bench-[0-9]{4}\\.json$"
+        },
+        "sha256": {
+          "$ref": "#/$defs/bareDigest"
+        }
+      },
+      "additionalProperties": false
+    },
+    "armDescriptor": {
+      "type": "object",
+      "description": "Machine-readable comparison-arm semantics. Deterministic arms (baseline, shadow_impact) are required and never admit not_available; the optional arm (advisory) is the only one that may legitimately return not_available.",
+      "required": [
+        "id",
+        "kind",
+        "deterministic",
+        "optional",
+        "supports_not_available",
+        "available_statuses"
+      ],
+      "properties": {
+        "id": {
+          "enum": [
+            "baseline",
+            "shadow_impact",
+            "advisory"
+          ]
+        },
+        "kind": {
+          "enum": [
+            "deterministic_baseline",
+            "deterministic_shadow_impact",
+            "optional_advisory"
+          ]
+        },
+        "deterministic": {
+          "type": "boolean"
+        },
+        "optional": {
+          "type": "boolean"
+        },
+        "supports_not_available": {
+          "type": "boolean",
+          "description": "True only for optional arms. A not_available worker status is valid only for an unavailable optional arm."
+        },
+        "available_statuses": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "completed",
+              "incomplete",
+              "failed",
+              "not_available"
+            ]
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "metricSpec": {
+      "type": "object",
+      "required": [
+        "kind",
+        "definition"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "ratio",
+            "count",
+            "parity",
+            "duration"
+          ]
+        },
+        "definition": {
+          "type": "string",
+          "minLength": 1
+        },
+        "unit": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Optional unit label (e.g. seconds, minutes) for duration metrics."
+        },
+        "applicable": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Optional applicability predicate for metrics that apply only in some contexts (e.g. pairwise_error_correlation only when paired arms exist)."
+        }
+      },
+      "additionalProperties": false
+    },
+    "scoring": {
+      "type": "object",
+      "required": [
+        "value_metric",
+        "metrics",
+        "thresholds",
+        "budgets",
+        "advisory_status"
+      ],
+      "properties": {
+        "value_metric": {
+          "type": "string",
+          "const": "incremental_recall",
+          "description": "The sole worker-value metric. No other metric in this block may substitute for it."
+        },
+        "metrics": {
+          "type": "object",
+          "required": [
+            "incremental_recall",
+            "false_unaffected_rate",
+            "controlled_failure_rate",
+            "baseline_coverage",
+            "shadow_parity",
+            "missed_regressions",
+            "unique_true_positives",
+            "false_blocks",
+            "valid_evidence_reference_rate",
+            "duplicate_finding_rate",
+            "pairwise_error_correlation",
+            "hostile_input_robustness",
+            "wall_clock_seconds",
+            "review_cost"
+          ],
+          "properties": {
+            "incremental_recall": {
+              "$ref": "#/$defs/metricSpec"
+            },
+            "false_unaffected_rate": {
+              "$ref": "#/$defs/metricSpec"
+            },
+            "controlled_failure_rate": {
+              "$ref": "#/$defs/metricSpec"
+            },
+            "baseline_coverage": {
+              "$ref": "#/$defs/metricSpec"
+            },
+            "shadow_parity": {
+              "$ref": "#/$defs/metricSpec"
+            },
+            "missed_regressions": {
+              "$ref": "#/$defs/metricSpec"
+            },
+            "unique_true_positives": {
+              "$ref": "#/$defs/metricSpec"
+            },
+            "false_blocks": {
+              "$ref": "#/$defs/metricSpec"
+            },
+            "valid_evidence_reference_rate": {
+              "$ref": "#/$defs/metricSpec"
+            },
+            "duplicate_finding_rate": {
+              "$ref": "#/$defs/metricSpec"
+            },
+            "pairwise_error_correlation": {
+              "$ref": "#/$defs/metricSpec"
+            },
+            "hostile_input_robustness": {
+              "$ref": "#/$defs/metricSpec"
+            },
+            "wall_clock_seconds": {
+              "$ref": "#/$defs/metricSpec"
+            },
+            "review_cost": {
+              "$ref": "#/$defs/metricSpec"
+            }
+          },
+          "additionalProperties": false
+        },
+        "thresholds": {
+          "type": "object",
+          "required": [
+            "min_incremental_recall",
+            "max_false_unaffected",
+            "min_shadow_parity",
+            "max_unjustified_not_available"
+          ],
+          "properties": {
+            "min_incremental_recall": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 10000
+            },
+            "max_false_unaffected": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 0
+            },
+            "min_shadow_parity": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 10000
+            },
+            "max_unjustified_not_available": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "budgets": {
+          "type": "object",
+          "required": [
+            "wall_clock_seconds_per_fixture",
+            "wall_clock_seconds_total",
+            "compute_tokens_per_fixture",
+            "review_minutes_total"
+          ],
+          "properties": {
+            "wall_clock_seconds_per_fixture": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "wall_clock_seconds_total": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "compute_tokens_per_fixture": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "review_minutes_total": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          "additionalProperties": false
+        },
+        "advisory_status": {
+          "type": "object",
+          "required": [
+            "available_statuses",
+            "not_available_effect"
+          ],
+          "properties": {
+            "available_statuses": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "enum": [
+                  "completed",
+                  "incomplete",
+                  "failed",
+                  "not_available"
+                ]
+              }
+            },
+            "not_available_effect": {
+              "enum": [
+                "zero_incremental_recall_no_penalty",
+                "zero_incremental_recall_coverage_gap"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "workerIdentity": {
+      "type": "object",
+      "required": [
+        "axes",
+        "separation_rule",
+        "collapsible"
+      ],
+      "properties": {
+        "axes": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "model_family",
+              "role"
+            ]
+          }
+        },
+        "separation_rule": {
+          "type": "string",
+          "minLength": 1
+        },
+        "collapsible": {
+          "const": false
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

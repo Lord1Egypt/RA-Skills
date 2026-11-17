@@ -1,40 +1,53 @@
-## Description: <br>
-Track college applications, essays, scholarships, financial aid, recommendation letters, test scores, and deadlines for one or more students. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks students' college applications, essays, recommendations, scholarships, financial aid, and deadlines across junior and senior year.
 
-## Publisher: <br>
-[chris-openclaw](https://clawhub.ai/user/chris-openclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chris](https://clawhub.ai/user/chris)
 
-## Use Case: <br>
-External users, families, and advisors use this skill to organize college admissions work across one or more students, including school lists, applications, essays, recommendation letters, scholarships, financial aid, test scores, and deadline nudges. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: College-prep records can include sensitive student, essay, scholarship, and financial-aid details stored locally. <br>
-Mitigation: Avoid entering SSNs, tax documents, FAFSA login credentials, unnecessary private notes, or full sensitive essay drafts, and review or delete college-data.json when it is no longer needed. <br>
+## Use Case:
 
+Students and families use this skill to maintain individual college application trackers, monitor deadlines, and compare financial aid offers.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/chris-openclaw/college-prep-tracker) <br>
-- [README](README.md) <br>
-- [Changelog](CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown summaries, tables, and local JSON data updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists college-prep records in college-data.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter, changelog, and server release evidence) <br>
+Risk: Student academic records and financial-aid amounts are stored in an unencrypted local file readable by anyone with access to the computer or its backups.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the tracker only if local storage is acceptable; restrict access to the device and delete records when no longer needed.
+
+Risk: Unnecessary personal identifiers or sensitive financial credentials could be included in student records.
+
+Mitigation: Use first names or nicknames and omit birthdates, Social Security numbers, FSA IDs, passwords, tax returns, bank details, and detailed household finances.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/chris/skills/college-prep-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Conversational updates, checklists, and comparisons]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains a local college-data.json tracker; no network calls.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter, CHANGELOG, ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

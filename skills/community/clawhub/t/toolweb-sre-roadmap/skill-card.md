@@ -1,40 +1,52 @@
-## Description: <br>
-Professional entry-level SRE career roadmap platform that generates personalized learning paths based on skills assessment and career goals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional entry-level SRE career roadmap platform that generates personalized learning paths based on skills assessment and career goals.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-External learners, developers, education teams, and talent-development teams use this skill to submit SRE assessment data and receive a structured entry-level career roadmap with phases, resources, skill gaps, and next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Career assessment details and user or session identifiers may be sent to the provider API. <br>
-Mitigation: Use minimal or pseudonymous identifiers and avoid credentials, confidential employer information, or personal details beyond what roadmap generation requires. <br>
+## Use Case:
 
+Developers, SRE candidates, educators, and talent teams use this skill to request a structured entry-level SRE learning roadmap from assessment details, current skills, and career goals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-sre-roadmap) <br>
-- [SRE roadmap API route](https://api.mkkpro.com/career/sre) <br>
-- [API docs](https://api.mkkpro.com:8087/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, JSON] <br>
-**Output Format:** [JSON roadmap objects with phases, resources, skill gaps, and next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires assessment data, session ID, and timestamp; user ID is optional.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenAPI info.version) <br>
+Risk: Roadmap requests may send career assessment details, goals, session identifiers, timestamps, and an optional user ID to a third-party API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting sensitive personal or employer-confidential information unless the provider and its privacy practices are trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-sre-roadmap)
+- [API documentation](https://api.mkkpro.com:8087/docs)
+- [SRE roadmap service endpoint](https://api.mkkpro.com/career/sre)
+- [ToolWeb](https://toolweb.in)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, JSON]
+
+**Output Format:** [JSON roadmap response with phases, objectives, resources, skill gaps, and next steps.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requests include assessment data, session identifiers, timestamps, and an optional user ID.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenAPI info)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

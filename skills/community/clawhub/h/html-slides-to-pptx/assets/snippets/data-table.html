@@ -1,0 +1,48 @@
+<!--
+  data-table.html — 数据表格(交替底纹 + 表头深色 + 右对齐数字)
+  用法:放在 data-object-type="table" 的容器内。
+  参数:
+    HEAD_COLOR        — 表头背景色(变量名,如 var(--brand-dark))
+    HEAD_TEXT         — 表头文字色(通常 var(--white))
+    ZEBRA             — 交替底纹色(变量名,如 var(--card-bg))
+    COLUMNS           — 列定义,逗号分隔(如 指标,Q3,Q4,增长)
+    ROWS              — 行数据,每行用 | 分隔列,逗号分隔行
+                      (如 营收,240,310,+29% | 用户,0.83,1.2,+45%)
+                      数字列自动右对齐,含 + 或 - 的增长列用绿色
+  z 序:表格整体 z-index:1
+  提示:密度上限见 density-tiers.md(演讲档 ≤6 行含表头)
+  注意:{{ROWS}} 需手动展开为 <tr>...</tr>,此片段提供结构模板
+-->
+<div data-object="true" data-object-type="table"
+     style="position:absolute;left:{{X}};top:{{Y}};width:{{W}};z-index:1;">
+  <table style="width:100%;border-collapse:collapse;font-size:24px;">
+    <tr style="background:{{HEAD_COLOR}};color:{{HEAD_TEXT}};">
+      <th style="padding:18px 20px;text-align:left;font-weight:700;">指标</th>
+      <th style="padding:18px 20px;text-align:center;font-weight:700;">Q3</th>
+      <th style="padding:18px 20px;text-align:center;font-weight:700;">Q4</th>
+      <th style="padding:18px 20px;text-align:center;font-weight:700;">增长</th>
+    </tr>
+    <tr style="border-bottom:1px solid var(--border-light);background:var(--white);">
+      <td style="padding:16px 20px;">营收(亿)</td>
+      <td style="padding:16px 20px;text-align:center;">240</td>
+      <td style="padding:16px 20px;text-align:center;font-weight:700;">310</td>
+      <td style="padding:16px 20px;text-align:center;color:var(--signal-green);font-weight:600;">+29%</td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--border-light);background:{{ZEBRA}};">
+      <td style="padding:16px 20px;">用户数(M)</td>
+      <td style="padding:16px 20px;text-align:center;">0.83</td>
+      <td style="padding:16px 20px;text-align:center;font-weight:700;">1.2</td>
+      <td style="padding:16px 20px;text-align:center;color:var(--signal-green);font-weight:600;">+45%</td>
+    </tr>
+    <tr style="background:var(--white);">
+      <td style="padding:16px 20px;">准确率(%)</td>
+      <td style="padding:16px 20px;text-align:center;">84.2</td>
+      <td style="padding:16px 20px;text-align:center;font-weight:700;">94.2</td>
+      <td style="padding:16px 20px;text-align:center;color:var(--signal-green);font-weight:600;">+10pp</td>
+    </tr>
+  </table>
+</div>
+<!--
+  手动扩展行:复制上方 <tr> 块,交替 background:var(--white) / {{ZEBRA}};
+  增长列含负数时改 color:var(--signal-red)
+-->

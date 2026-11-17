@@ -1,0 +1,8 @@
+# Listing presentation (OpenAI Agent Skills convention; ClawHub reads this file).
+# ClawHub ignores a `--name` that equals the titleized slug ("danube" -> "Danube"), so the
+# display name must live here to survive re-derivation. Paths are relative to the skill root.
+interface:
+  display_name: Danube
+  short_description: Governed tool access for AI agents — one Danube API key unlocks your organization's own tools plus a large, growing catalog of services, over MCP or curl, with confirmation before anything that writes, sends, spends, or deletes.
+  icon_small: agents/danube-icon.png
+  icon_large: agents/danube-icon.png

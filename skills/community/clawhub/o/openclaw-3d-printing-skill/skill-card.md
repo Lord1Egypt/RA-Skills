@@ -1,43 +1,55 @@
-## Description: <br>
-Create parametric 3D-printable parts and enclosures with CadQuery, export STL or 3MF files, render review previews, and iterate on fit, tolerances, and printability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create parametric 3D-printable parts and enclosures with CadQuery, export STL or 3MF files, render review previews, and iterate on fit, tolerances, and printability.
 
-## Publisher: <br>
-[antoniosilveira](https://clawhub.ai/user/antoniosilveira) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[antoniosilveira](https://clawhub.ai/user/antoniosilveira)
 
-## Use Case: <br>
-Developers, engineers, and makers use this skill to design functional 3D-printable parts, gather fit requirements, generate CadQuery model code, export STL or 3MF files, render previews, and provide concise print recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup and model execution can run local Python code with broad access to the user's environment. <br>
-Mitigation: Review the skill before installing, use an isolated Python environment, and run only CadQuery model scripts that were created or reviewed by the user. <br>
-Risk: Remote installer commands can execute unreviewed code if copied directly into a shell. <br>
-Mitigation: Verify installer sources and avoid piping remote installer output directly to a shell unless the source is trusted. <br>
-Risk: Generated parts can have printability or fit issues such as weak walls, poor clearances, non-watertight meshes, or unsupported overhangs. <br>
-Mitigation: Use the bundled design review checklist, strict mesh validation, previews, and conservative FDM defaults before relying on printed parts. <br>
+## Use Case:
 
+Developers and makers use this skill to guide agents through requirement gathering, parametric CadQuery modeling, STL or 3MF export, preview rendering, and printability review for functional 3D-printed parts such as brackets, mounts, adapters, and enclosures.
 
-## Reference(s): <br>
-- [Design Review](references/design-review.md) <br>
-- [Requirements](references/requirements.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown with inline code blocks and generated STL, 3MF, PNG, or Python files when modeling is performed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include model paths, preview image paths, key dimensions, slicer settings, orientation guidance, and fit or support warnings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Install instructions include a micromamba bootstrap flow that may fetch and execute remote installation code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and replace the micromamba install path with a verified package-manager or checksum-validated installation flow before deployment.
+
+Risk: CadQuery model files are executable Python and can run arbitrary code when passed to the model runner.
+
+Mitigation: Run only generated or trusted model scripts, preferably inside a disposable virtual environment or container without secrets or broad filesystem access.
+
+## Reference(s):
+
+- [Design Review](references/design-review.md)
+- [Python Requirements](references/requirements.txt)
+- [OpenClaw 3D Printing Skill on ClawHub](https://clawhub.ai/antoniosilveira/skills/openclaw-3d-printing-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Files, Guidance]
+
+**Output Format:** [Markdown with inline Python and shell code blocks plus generated STL, 3MF, and PNG file paths when helper scripts are used]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses millimeters for model dimensions and returns concise print settings, fit warnings, and support or orientation guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

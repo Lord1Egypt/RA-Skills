@@ -1,41 +1,58 @@
-## Description: <br>
-Local search/indexing CLI (BM25 + vectors + rerank) with MCP mode. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local search/indexing CLI (BM25 + vectors + rerank) with MCP mode.
 
-## Publisher: <br>
-[instant-picture](https://clawhub.ai/user/instant-picture) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[instant-picture](https://clawhub.ai/user/instant-picture)
 
-## Use Case: <br>
-Developers and agents use this skill to index selected local files, manage qmd collections, and search them with BM25, vector, or hybrid query modes. It also documents MCP mode for trusted local clients. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Indexing broad folders can add secrets or sensitive personal data to the local qmd index. <br>
-Mitigation: Index narrow directories, avoid secrets and sensitive personal data, and clear ~/.cache/qmd when the index is no longer needed. <br>
-Risk: MCP mode exposes local search capabilities to connected clients. <br>
-Mitigation: Use MCP mode only with trusted clients. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/instant-picture/qmd-1-0-0) <br>
-- [qmd package source](https://github.com/tobi/qmd) <br>
-- [Publisher homepage](https://tobi.lutke.com) <br>
+## Use Case:
 
+Developers and technical users use this skill to install and operate qmd for local file indexing, collection management, keyword search, vector search, hybrid reranked search, document retrieval, and MCP mode.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands operate on user-selected local folders and may use Ollama for embedding and rerank functionality.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs qmd from an unpinned GitHub repository, which creates supply-chain exposure if the upstream changes unexpectedly.
+
+Mitigation: Use a reviewed or pinned qmd revision where possible and install only when the upstream repository is trusted.
+
+Risk: Indexing sensitive directories can make their contents searchable in the local qmd cache.
+
+Mitigation: Avoid indexing sensitive paths unless that searchability is intended, and review collection masks before running indexing commands.
+
+Risk: Running qmd with elevated privileges could expand access to files and cache contents beyond the intended user scope.
+
+Mitigation: Run qmd with normal user privileges and keep the default local cache access scoped to the intended user.
+
+## Reference(s):
+
+- [qmd upstream repository](https://github.com/tobi/qmd)
+- [qmd homepage](https://tobi.lutke.com)
+- [ClawHub skill page](https://clawhub.ai/instant-picture/skills/qmd-1-0-0)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may reference local filesystem paths, qmd commands, Ollama configuration, and MCP mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

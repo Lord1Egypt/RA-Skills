@@ -1,42 +1,54 @@
-## Description: <br>
-Organizes public DeepSeek website information into concise summaries of model capabilities, pricing information, and documentation links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organizes and summarizes public DeepSeek product and documentation pages, including model capabilities, pricing policy, documentation links, and usage summaries.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-Developers, analysts, and external users use this skill to gather and summarize public DeepSeek product, pricing, and documentation information without account operations or API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public DeepSeek model, pricing, quota, and service details can change after a summary is generated. <br>
-Mitigation: Verify time-sensitive details against the official DeepSeek site before relying on them. <br>
-Risk: Browsing public DeepSeek pages too aggressively could conflict with platform access rules or rate limits. <br>
-Mitigation: Use frequency controls, wait for dynamic pages to load, and respect platform rules during collection. <br>
-Risk: Summaries of public pages may omit context or misstate source details. <br>
-Mitigation: Keep source links with extracted information and review summaries before operational use. <br>
+## Use Case:
 
+Developers, researchers, and operators use this skill to gather concise summaries from public DeepSeek pages, including model specifications, pricing or quota notes, and documentation entry points.
 
-## Reference(s): <br>
-- [DeepSeek homepage](https://www.deepseek.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown summaries, lists, and link collections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be based on public DeepSeek pages; time-sensitive model, pricing, and service details should be verified against the official site.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Public model availability, pricing, quota, and service status can change over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify time-sensitive details directly against official DeepSeek pages before relying on them.
+
+Risk: The skill is intended for public information gathering and could be misapplied to account or API operations.
+
+Mitigation: Limit use to public-page summarization and avoid account management, credential handling, API calls, and permission-sensitive workflows.
+
+## Reference(s):
+
+- [DeepSeek homepage](https://www.deepseek.com/)
+- [ClawHub skill page](https://clawhub.ai/codenova58/skills/deepseek-ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or concise text summaries with extracted links and source details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be based on public DeepSeek pages and should avoid sensitive information, account actions, and API operations.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

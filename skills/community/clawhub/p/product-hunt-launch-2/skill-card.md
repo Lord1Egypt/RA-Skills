@@ -1,44 +1,59 @@
-## Description: <br>
-Product Hunt Launch helps agents plan and optimize Product Hunt launches with listing specs, gallery strategy, tagline guidance, maker comments, research commands, and launch-day tactics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps founders and makers optimize Product Hunt launches with listing specs, timing, gallery strategy, maker comments, and launch-day tactics.
 
-## Publisher: <br>
-[okaris](https://clawhub.ai/user/okaris) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[okaris](https://clawhub.ai/user/okaris)
 
-## Use Case: <br>
-External makers, startup teams, and launch operators use this skill to prepare Product Hunt listing assets, research comparable launches, draft maker comments, and coordinate launch-day engagement. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill includes an external curl-to-shell installer workflow for inference.sh. <br>
-Mitigation: Use the documented manual checksum verification path before installing, and run installer commands only in an environment where the user accepts that dependency. <br>
-Risk: Research and image-generation prompts may send launch plans, product details, or other sensitive information to an external service. <br>
-Mitigation: Avoid submitting confidential launch plans, credentials, customer data, or unreleased product details unless the service's data handling and billing terms are acceptable. <br>
-Risk: Launch guidance can become inaccurate as Product Hunt policies, listing limits, or norms change. <br>
-Mitigation: Review final launch copy and tactics against current Product Hunt requirements before publishing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/okaris/product-hunt-launch-2) <br>
-- [inference.sh](https://inference.sh) <br>
-- [inference.sh CLI installer](https://cli.inference.sh) <br>
-- [inference.sh CLI checksums](https://dist.inference.sh/cli/checksums.txt) <br>
+## Use Case:
 
+Founders, marketers, and launch teams use this skill to prepare Product Hunt launches, including listing copy, gallery image plans, maker comments, launch timing, launch-day engagement, and post-launch follow-up.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with tables, checklists, and inline bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include inference.sh CLI commands for research and image generation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill suggests a mutable remote installer and optional unpinned package installation commands that can execute code on a user's machine.
+
+Mitigation: Prefer manual download and checksum verification for the inference.sh CLI, and review any packages before running optional installation commands.
+
+Risk: Launch research queries and image prompts may disclose confidential product plans, unreleased features, customer names, or credentials to external services.
+
+Mitigation: Use sanitized prompts and queries, remove sensitive details, and avoid submitting secrets or private customer data.
+
+Risk: Launch tactics and Product Hunt policy expectations can change, which may make copied timing or engagement guidance stale.
+
+Mitigation: Confirm current Product Hunt rules and launch-day guidance before publishing, and avoid asking for upvotes.
+
+## Reference(s):
+
+- [Product Hunt Launch on ClawHub](https://clawhub.ai/okaris/skills/product-hunt-launch-2)
+- [inference.sh](https://inference.sh)
+- [inference.sh CLI installer](https://cli.inference.sh)
+- [inference.sh CLI checksums](https://dist.inference.sh/cli/checksums.txt)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown with tables, checklists, examples, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include launch copy, image-generation prompts, research queries, and launch-day checklists; review external commands before execution.]
+
+## Skill Version(s):
+
+0.1.5 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

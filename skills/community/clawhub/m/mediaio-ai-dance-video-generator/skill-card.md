@@ -1,44 +1,54 @@
-## Description: <br>
-Generates AI dance videos from image and driving video URLs using Media.io OpenAPI asynchronous task creation and polling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI dance videos where characters move to music or choreography templates using Media.io OpenAPI.
 
-## Publisher: <br>
-[wondershare-boop](https://clawhub.ai/user/wondershare-boop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wondershare-boop](https://clawhub.ai/user/wondershare-boop)
 
-## Use Case: <br>
-Developers and agents use this skill to check Media.io credits, submit authorized image and driving video URLs, poll asynchronous dance-video generation tasks, and return generated preview URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using the Media.io API can consume account credits and requires a Media.io API key. <br>
-Mitigation: Check available credits before generation, stop on insufficient credits, and avoid logging or returning raw API keys. <br>
-Risk: Image, video, and preview URLs are processed by Media.io and may expose media to a third-party service or public preview-link behavior. <br>
-Mitigation: Use only media the user owns or is authorized to share, and avoid private or sensitive URLs unless the user accepts Media.io processing. <br>
-Risk: Generated dance videos are synthetic media that could mislead viewers if presented as real footage. <br>
-Mitigation: Present generated outputs as edited or synthetic content and avoid identity verification or biometric certainty claims. <br>
+## Use Case:
 
+Developers and agents use this skill to create Media.io dance-video generation tasks from authorized image and driving-video URLs, poll for completion, and return generated video preview URLs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wondershare-boop/mediaio-ai-dance-video-generator) <br>
-- [Media.io API documentation](https://platform.media.io/docs/) <br>
-- [Media.io developer portal](https://developer.media.io/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes asynchronous task status, trace IDs for troubleshooting, and generated preview URLs when Media.io returns completed results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: User-provided image and driving-video URLs are sent to Media.io for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only media the user owns or is authorized to process, and confirm the user is comfortable sending those URLs to Media.io.
+
+Risk: The skill uses MEDIAIO_API_KEY for credit checks and generation requests.
+
+Mitigation: Keep the API key out of logs and responses, check credits before generation, and stop clearly when credits are insufficient.
+
+## Reference(s):
+
+- [Media.io API Documentation](https://platform.media.io/docs/)
+- [Media.io Developer Platform](https://developer.media.io/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON request examples and cURL commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MEDIAIO_API_KEY and user-provided image and video URLs; generated media URLs are returned after asynchronous polling.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

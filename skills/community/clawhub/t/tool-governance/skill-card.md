@@ -1,49 +1,68 @@
-## Description: <br>
-Tool safety and reliability guidance for agents that need to handle repeated tool failures, permission-denial retry loops, destructive-operation safeguards, and Bash input validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agent tool safety and reliability guidance for repeated tool failures, permission-denial retries, destructive Bash operations, and tool input validation.
 
-## Publisher: <br>
-[lanyasheng](https://clawhub.ai/user/lanyasheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanyasheng](https://clawhub.ai/user/lanyasheng)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add tool-governance patterns for retry escalation, denial tracking, destructive-command checkpointing, permission rules, scoped hooks, and Bash input guards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can recommend powerful hook behavior that blocks or rewrites commands and changes git state through checkpointing. <br>
-Mitigation: Review hook configuration before installation and enable these hooks only in repositories where automatic blocking, command rewriting, and git stash checkpoints are acceptable. <br>
-Risk: Shared-context state files may contain tool inputs, error details, denial records, or other sensitive workflow information. <br>
-Mitigation: Treat generated state files as sensitive, restrict access to session storage, and avoid publishing logs or state files without review. <br>
-Risk: Tracking and rollback controls may not run if hooks are registered on the wrong events or deployed without their companion scripts. <br>
-Mitigation: Verify that tracker and advisor hooks are installed together and test the intended PreToolUse, PostToolUseFailure, and Stop event paths before relying on the safeguards. <br>
+## Use Case:
 
+Developers and engineers use this skill to add guardrails around agent tool use, including retry escalation, denial tracking, pre-command checkpoints, and Bash input checks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lanyasheng/tool-governance) <br>
-- [Tool Error Retry Escalation](references/tool-error.md) <br>
-- [Denial Circuit Breaker](references/denial-circuit-breaker.md) <br>
-- [Checkpoint Rollback](references/checkpoint-rollback.md) <br>
-- [Graduated Permissions](references/graduated-permissions.md) <br>
-- [Component-Scoped Hooks](references/scoped-hooks.md) <br>
-- [Tool Input Guard](references/tool-input-guard.md) <br>
-- [Extended Tool Governance Patterns](references/extended-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell hook scripts and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or recommend hook state files such as tool error records, denial records, and git stash checkpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.0 (source: server release metadata) <br>
+Risk: Hook scripts can steer or block agent tool use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and test hook behavior before installation, especially deny thresholds and additional-context messages.
+
+Risk: Checkpoint logic can mutate Git state and should be treated as best-effort rollback.
+
+Mitigation: Use it in a clean repository, verify stash behavior, and keep independent backups for high-value work.
+
+Risk: Weak session ID or path validation could allow unsafe state-file paths or incomplete Bash command filtering.
+
+Mitigation: Validate session IDs before using them in paths and harden path-boundary checks before deployment.
+
+Risk: Raw tool errors replayed into agent context can introduce misleading or unsafe guidance.
+
+Mitigation: Sanitize captured errors and avoid replaying sensitive or untrusted output into model context.
+
+## Reference(s):
+
+- [Checkpoint Rollback](references/checkpoint-rollback.md)
+- [Denial Circuit Breaker](references/denial-circuit-breaker.md)
+- [Extended Patterns](references/extended-patterns.md)
+- [Graduated Permissions](references/graduated-permissions.md)
+- [Scoped Hooks](references/scoped-hooks.md)
+- [Tool Error](references/tool-error.md)
+- [Tool Input Guard](references/tool-input-guard.md)
+- [ClawHub Skill Page](https://clawhub.ai/lanyasheng/skills/tool-governance)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local hook state files such as tool-errors.json, denials.json, and git stash checkpoints when scripts are installed.]
+
+## Skill Version(s):
+
+2.4.0 (source: server release evidence; artifact frontmatter lists 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,56 @@
-## Description: <br>
-Search and download research papers from arXiv.org - Research version for OpenClaw agents. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Search and download research papers from arXiv.org - Research version for OpenClaw agents.
 
-## Publisher: <br>
-[nantes](https://clawhub.ai/user/nantes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nantes](https://clawhub.ai/user/nantes)
 
-## Use Case: <br>
-Developers, researchers, and OpenClaw agents use this skill to search arXiv by query or category, inspect paper metadata, and download selected paper PDFs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and imports the Python `arxiv` dependency. <br>
-Mitigation: Use a virtual environment to control and review the dependency before running the skill. <br>
-Risk: Searches and downloads contact arXiv and save requested PDFs under `~/Downloads/arxiv` by default. <br>
-Mitigation: Run the skill only when network access to arXiv and local PDF downloads are expected for the task. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [arXiv](https://arxiv.org) <br>
-- [ClawHub package page](https://clawhub.ai/nantes/arxiv-osiris) <br>
-- [Publisher profile](https://clawhub.ai/user/nantes) <br>
+## Use Case:
 
+Developers and research-focused users use this skill to search arXiv by keyword or category, review paper metadata, and download selected PDFs.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, files, guidance] <br>
-**Output Format:** [Markdown and plain text with command examples, Python snippets, paper metadata, PDF URLs, and downloaded PDF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results include titles, summaries, authors, publication dates, arXiv IDs, categories, and PDF URLs; downloads are saved under ~/Downloads/arxiv by default.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill contacts arXiv and can save requested PDFs locally.
+
+Mitigation: Review download intent and destination before execution, and run the skill in a contained environment when possible.
+
+Risk: The skill depends on the third-party arxiv Python package.
+
+Mitigation: Install in a virtual environment and pin the dependency version before deployment.
+
+Risk: The documented PowerShell examples may not match the packaged Python script.
+
+Mitigation: Adjust usage commands to invoke arxiv_search.py or provide the expected wrapper before use.
+
+## Reference(s):
+
+- [arXiv](https://arxiv.org)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files]
+
+**Output Format:** [Plain text search results and downloaded PDF files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search requests contact arXiv; downloaded PDFs are saved locally.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

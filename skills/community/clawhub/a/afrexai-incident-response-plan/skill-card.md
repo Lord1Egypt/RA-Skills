@@ -1,41 +1,55 @@
-## Description: <br>
-Generate tailored incident response plans for AI agent deployments and SaaS operations, covering detection, triage, containment, recovery, and post-mortem activities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a tailored incident response plan for AI agent deployments and SaaS operations, covering detection, triage, containment, recovery, and post-mortem.
 
-## Publisher: <br>
-[afrexai-cto](https://clawhub.ai/user/afrexai-cto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[afrexai-cto](https://clawhub.ai/user/afrexai-cto)
 
-## Use Case: <br>
-Developers, operations teams, and security responders use this skill to draft production incident response playbooks for AI agent deployments and SaaS services. It is suited for production readiness, audit preparation, client assurance, and post-incident improvement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated incident response guidance may be incomplete or inappropriate for a specific production environment. <br>
-Mitigation: Have a qualified human review and adapt the plan before using it for operational decisions. <br>
-Risk: Incident prompts can invite users to include sensitive credentials, secrets, or private customer details. <br>
-Mitigation: Use placeholders or sanitized incident details, and avoid entering real secrets or private credentials into prompts. <br>
-Risk: Some recommended response actions, such as credential rotation, service pauses, or customer notifications, can disrupt systems or obligations if applied without authorization. <br>
-Mitigation: Confirm authority, escalation paths, and legal or security review before taking disruptive incident response actions. <br>
+## Use Case:
 
+Developers, security operators, and SaaS teams use this skill to draft incident response playbooks for production AI agent services, including severity classification, alerting, containment, recovery, customer communication, and post-mortem procedures.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown incident response plan with checklists, severity tables, communication templates, and post-mortem structure] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output; no code execution or system access is performed by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: Incident response plans may recommend high-impact operational actions such as credential rotation, failover, or customer notification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have a qualified operator review and approve high-impact actions before using the plan in production.
+
+Risk: Planning prompts may include sensitive operational context or incident details.
+
+Mitigation: Provide only the context needed to draft the plan, and avoid pasting real API keys, credentials, or confidential incident details.
+
+## Reference(s):
+
+- [Skill README](artifact/README.md)
+- [ClawHub skill page](https://clawhub.ai/afrexai-cto/skills/afrexai-incident-response-plan)
+- [AfrexAI](https://afrexai.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown incident response plan with checklists, matrices, templates, and runbook guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tailored to user-provided service, environment, data sensitivity, team, SLA, integrations, and compliance context.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

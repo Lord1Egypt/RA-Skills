@@ -1,37 +1,53 @@
-## Description: <br>
-AI operating system for generating and reasoning about philosophical thought experiments with civilization-level analysis and a human-AI symbiosis framework. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI operating system for generating and reasoning about philosophical thought experiments with civilization-level analysis and a human-AI symbiosis framework.
 
-## Publisher: <br>
-[nrt2024](https://clawhub.ai/user/nrt2024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nrt2024](https://clawhub.ai/user/nrt2024)
 
-## Use Case: <br>
-Developers, AI agents, and researchers use this skill to map topics to classic philosophical thought experiments, generate new thought experiments, and derive civilization-level implications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated philosophical and civilization-level narratives may overstate conclusions or frame speculative claims as settled analysis. <br>
-Mitigation: Review generated outputs for accuracy, bias, and publication suitability before sharing or relying on them. <br>
+## Use Case:
 
+Agents and developers use this skill to turn a topic into classical thought-experiment matches, a generated philosophical scenario, and civilization-level implications. It is intended for philosophical reasoning, cultural framing, and human-AI symbiosis analysis.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown and structured text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces philosophical questions, generated thought experiments, and civilization-level narrative analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Outputs may make broad cultural or civilization-level claims that reflect unstated assumptions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated reasoning for tone, assumptions, and fit before publication or operational use.
+
+Risk: Philosophical scenarios may be mistaken for authoritative ethical or cultural conclusions.
+
+Mitigation: Treat outputs as reasoning prompts and require human review for consequential decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nrt2024/skills/suboya-en)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style structured prose with code-block templates and examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces philosophical thought experiments, questions, civilization implications, and reasoning workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

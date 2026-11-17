@@ -1,44 +1,56 @@
-## Description: <br>
-QQ Email Manager helps agents manage Tencent Enterprise Mail and compatible IMAP/SMTP mailboxes by listing, reading, searching, sending, replying, forwarding, marking, and summarizing email. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages QQ Enterprise Mail through IMAP/SMTP commands to list, read, search, send, reply, forward, mark messages, inspect folders, and report mailbox statistics.
 
-## Publisher: <br>
-[liangmu-git2](https://clawhub.ai/user/liangmu-git2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[liangmu-git2](https://clawhub.ai/user/liangmu-git2)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to let an agent operate a configured mailbox, including reading, searching, sending, replying, forwarding, marking mail, listing folders, and checking mailbox statistics.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Mailbox credentials are stored in a local plaintext configuration file.
+
+Mitigation: Use a revocable app-specific password, restrict permissions on config/email-config.json, and avoid committing or sharing the configured directory.
+
+Risk: The skill can send, reply, forward, reply-all, mark messages, and attach local files.
+
+Mitigation: Require explicit user confirmation before any mailbox-changing action or attachment operation.
+
+Risk: Connected mailboxes may contain sensitive personal, business, or regulated information.
+
+Mitigation: Review messages and recipients before disclosure, and install the skill only for mailboxes appropriate for agent access.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and agent builders use this skill to operate a configured email account through agent-issued commands. It is intended for mailbox triage, message search, reading, sending, replying, forwarding, marking messages, listing folders, and mailbox statistics when the user has supplied their own IMAP/SMTP credentials. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads and sends email using credentials stored in a local configuration file. <br>
-Mitigation: Use an app-specific email password, restrict file permissions on the configuration file, and keep the file out of version control and shared outputs. <br>
-Risk: Send, reply, reply-all, and forward commands can transmit messages to recipients chosen by the agent or prompt context. <br>
-Mitigation: Require manual review of recipients, subject, message body, reply-all scope, and forward targets before allowing any outbound email command. <br>
-Risk: Attachment support can send arbitrary local files when their paths are supplied. <br>
-Mitigation: Manually verify every attachment path and only run attachment commands from a workspace that does not expose unrelated sensitive files. <br>
-Risk: Read, list, search, folder, and statistics commands expose mailbox metadata and message contents to the agent session. <br>
-Mitigation: Use the skill only in sessions where mailbox contents may be processed, and avoid sharing logs or JSON outputs that contain sensitive email data. <br>
+**Output Format:** [JSON command output with Markdown usage guidance and shell command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liangmu-git2/qq-email-manager) <br>
+**Other Properties Related to Output:** [Commands run a local Python IMAP/SMTP client configured by config/email-config.json.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON command responses with setup and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local email configuration file containing IMAP/SMTP server settings and account credentials; commands can read mailbox contents, send messages, forward messages, change message flags, and attach local files.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

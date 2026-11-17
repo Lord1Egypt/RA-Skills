@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn77rx9vbjjnexqwedrzca7bgn851wrg",
+  "owner": "RoseHammer",
   "slug": "narrative-topology",
-  "version": "1.0.0",
-  "publishedAt": 1776664636943
+  "displayName": "Narrative Topology",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1744350215000,
+    "commit": "user-created-2026-04-10"
+  },
+  "description": "Extract RDF-style triples from long narratives, architectures, discussions. Generate semantic adjacency matrices to reveal structure, dependencies, critical paths. Works standalone or with all-dialogue-to-markdown."
 }

@@ -1,0 +1,3 @@
+{"name": "habits", "private": true, "scripts": {"dev": "vite"},
+ "dependencies": {"react": "18.3.1", "react-dom": "18.3.1", "firebase": "10.12.0"},
+ "devDependencies": {"vite": "5.4.0"}}

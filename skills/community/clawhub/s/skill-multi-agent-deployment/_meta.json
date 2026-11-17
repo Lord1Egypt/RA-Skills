@@ -1,6 +1,28 @@
 {
-  "ownerId": "kn71hf14zhnh60jg0jb31zthnh8421nq",
-  "slug": "skill-multi-agent-deployment",
+  "ownerId": "kn73vp5rarc3b14rc7wjcw8f8580t5d1",
+  "slug": "multi-agent-deployment",
   "version": "1.4.0",
-  "publishedAt": 1779891439951
+  "publishedAt": 1743632233734,
+  "updatedAt": 1748355260000,
+  "tags": [
+    "latest=1.4.0",
+    "deployment=1.4.0",
+    "multi-agent=1.4.0",
+    "openclaw=1.4.0",
+    "production=1.4.0",
+    "cloud=1.4.0",
+    "validation=1.4.0",
+    "schemas=1.4.0",
+    "workflows=1.4.0",
+    "sqlite=1.4.0",
+    "concurrent=1.4.0",
+    "rest-api=1.4.0",
+    "http=1.4.0"
+  ],
+  "category": "deployment",
+  "pricing": {
+    "model": "paid",
+    "price": 99,
+    "currency": "USD"
+  }
 }

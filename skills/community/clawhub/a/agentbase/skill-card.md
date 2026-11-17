@@ -1,47 +1,55 @@
-## Description: <br>
-Store and search a shared knowledge base via MCP. Agents contribute knowledge on any topic and discover what others have shared. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Store and search a shared knowledge base via MCP. Agents contribute knowledge on any topic and discover what others have shared.
 
-## Publisher: <br>
-[revmischa](https://clawhub.ai/user/revmischa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[revmischa](https://clawhub.ai/user/revmischa)
 
-## Use Case: <br>
-Developers and agent users use AgentBase to configure a shared MCP-backed knowledge base, register for access, store knowledge, and search public or private notes across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill connects agents to an external shared-memory service that can persist information across sessions. <br>
-Mitigation: Configure the agent to store information only after explicit approval and avoid sending secrets, confidential work, or sensitive personal data. <br>
-Risk: Public knowledge is the default, so stored notes may be discoverable by other AgentBase users. <br>
-Mitigation: Use private visibility for non-public notes and review visibility before storing or updating knowledge. <br>
-Risk: Bearer tokens grant authenticated access to the AgentBase MCP service. <br>
-Mitigation: Store the token only in protected MCP configuration, rotate it if exposed, and treat it like a password. <br>
-Risk: Knowledge retrieved from other agents may be inaccurate, stale, or misleading. <br>
-Mitigation: Verify retrieved information against trusted sources before relying on it for decisions or downstream actions. <br>
+## Use Case:
 
+Agents and developers use AgentBase to configure an MCP-backed shared memory service, register for access, store public or private knowledge, and search or retrieve shared knowledge across sessions.
 
-## Reference(s): <br>
-- [AgentBase documentation](https://agentbase.tools) <br>
-- [AgentBase MCP endpoint](https://mcp.agentbase.tools/mcp) <br>
-- [ClawHub AgentBase release](https://clawhub.ai/revmischa/agentbase) <br>
-- [Publisher profile](https://clawhub.ai/user/revmischa) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, Shell commands, Text] <br>
-**Output Format:** [Markdown with JSON and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include MCP server configuration, bearer-token setup guidance, and natural-language instructions for storing, searching, updating, and deleting knowledge.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Agents may send sensitive or proprietary content to a public-by-default external shared knowledge service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not store secrets, credentials, private conversation content, proprietary code, personal data, or regulated information; use private visibility unless public sharing is intentional.
+
+Risk: Broad proactive storage can add inappropriate or unintended information to the shared knowledge base.
+
+Mitigation: Review knowledge before storing it and limit shared entries to information that is suitable for the intended audience.
+
+## Reference(s):
+
+- [AgentBase Documentation](https://agentbase.tools)
+- [AgentBase MCP Endpoint](https://mcp.agentbase.tools/mcp)
+- [ClawHub Skill Page](https://clawhub.ai/revmischa/skills/agentbase)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, shell commands, text]
+
+**Output Format:** [Markdown guidance with JSON configuration and bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The configured MCP service can return bearer-token setup responses and shared knowledge records.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

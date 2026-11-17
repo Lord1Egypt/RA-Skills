@@ -62,8 +62,10 @@ the package over the network at startup.
   `~/.proxmox-aiops/` (relocate with `PROXMOX_AIOPS_HOME`).
 - **Budget guard**: cap calls/wall-time with `PROXMOX_MAX_TOOL_CALLS` /
   `PROXMOX_MAX_TOOL_SECONDS`; a runaway poll/retry loop trips automatically.
-- **Risk tiers**: optional `~/.proxmox-aiops/rules.yaml` `risk_tiers` require a
-  recorded approver (`PROXMOX_AUDIT_APPROVED_BY`) for the highest tiers.
+- **Risk tiers**: each tool's `risk_level` is recorded on the audit row as a
+  descriptive tier (none/confirm/review) — a label, not a gate.
+  `PROXMOX_AUDIT_APPROVED_BY` / `PROXMOX_AUDIT_RATIONALE` are optional audit
+  annotations, never required.
 - **Destructive ops**: double confirmation + `--dry-run` at the CLI.
 - **TLS**: `verify_ssl` defaults true; disable only for self-signed labs.
 - **No webhooks / telemetry / background services.**

@@ -1,48 +1,60 @@
-## Description: <br>
-Generate complete, validated Schema.org JSON-LD markup for common content types including Organization, FAQPage, Article, BlogPosting, Product, HowTo, BreadcrumbList, WebSite, VideoObject, ImageObject, and LocalBusiness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate complete, validated Schema.org JSON-LD markup for common page and content types, including Organization, FAQPage, Article, Product, HowTo, BreadcrumbList, WebSite, VideoObject, ImageObject, and LocalBusiness.
 
-## Publisher: <br>
-[geoly-geo](https://clawhub.ai/user/geoly-geo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[geoly-geo](https://clawhub.ai/user/geoly-geo)
 
-## Use Case: <br>
-Developers, marketers, and site operators use this skill to generate and validate Schema.org JSON-LD for webpages, product pages, FAQs, articles, and sitemap batches before publishing structured data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: URL and sitemap modes can process external content and should be limited to sites the user controls or trusts. <br>
-Mitigation: Use URL and sitemap inputs only for public sites you control or trust, and review generated structured data before publishing it. <br>
-Risk: File input and output paths can read or write local JSON artifacts chosen by the user. <br>
-Mitigation: Use file input only on JSON files you intend to process, and choose the output directory deliberately. <br>
-Risk: Generated structured data may be incomplete, stale, or inconsistent with visible page content. <br>
-Mitigation: Validate generated JSON-LD with Schema.org and rich-results tooling, then confirm that all fields accurately match the target page before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Schema Type Reference](references/schema-types.md) <br>
-- [Field Reference](references/field-reference.md) <br>
-- [Google Guidelines](references/google-guidelines.md) <br>
-- [Examples by Industry](references/examples.md) <br>
-- [Schema.org](https://schema.org) <br>
-- [Schema.org Validator](https://validator.schema.org) <br>
-- [Google Rich Results Test](https://search.google.com/test/rich-results) <br>
-- [JSON-LD Playground](https://json-ld.org/playground/) <br>
+## Use Case:
 
+Developers, SEO practitioners, and content teams use this skill to generate and validate Schema.org JSON-LD for webpages, rich results, and AI-readable content attribution.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON-LD, JSON, HTML script tags, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local JSON schema files and validation reports when the bundled scripts are used.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: URL and sitemap generation features fetch arbitrary web pages.
+
+Mitigation: Use the URL and sitemap features only with trusted links, and review fetched content before using generated markup.
+
+Risk: Generated HTML script tags may be unsafe if pasted directly into a live site.
+
+Mitigation: Review and sanitize generated JSON-LD or script-tag output before deployment, especially for script-tag breakout characters.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/geoly-geo/skills/geo-schema-gen)
+- [Schema.org](https://schema.org)
+- [Schema.org Validator](https://validator.schema.org)
+- [Google Rich Results Test](https://search.google.com/test/rich-results)
+- [JSON-LD Playground](https://json-ld.org/playground/)
+- [Schema.org Types Reference](references/schema-types.md)
+- [Schema Field Reference](references/field-reference.md)
+- [Google Rich Results Guidelines](references/google-guidelines.md)
+- [Schema Examples by Industry](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON-LD, JSON, HTML script tags, or Markdown with validation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Batch generation may write schema JSON files and a summary JSON file.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

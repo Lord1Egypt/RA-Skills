@@ -1,41 +1,58 @@
-## Description: <br>
-Read-only access to Up Bank accounts, transactions, categories, and tags. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read-only access to Up Bank accounts, transactions, categories, and tags.
 
-## Publisher: <br>
-[ashleyjackson](https://clawhub.ai/user/ashleyjackson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ashleyjackson](https://clawhub.ai/user/ashleyjackson)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent retrieve read-only Up Bank account, transaction, category, tag, attachment, webhook, and connectivity information after user approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose sensitive Up Bank account and transaction information after user approval. <br>
-Mitigation: Install it only when that access is acceptable, approve calls only for information requested, and avoid displaying unnecessary transaction details. <br>
-Risk: A persistent or leaked UP_API_TOKEN could allow continued read access to financial data. <br>
-Mitigation: Use a session-scoped token when possible, do not store it permanently, and revoke it when the skill is no longer needed. <br>
+## Use Case:
 
+External users and agents use this skill to review Up Bank balances, transactions, categories, tags, attachments, webhooks, and API connectivity with explicit user approval and a personal access token.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ashleyjackson/upbank) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown or plain text summaries with API request guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only API access; requires UP_API_TOKEN and per-call user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can expose sensitive banking data through read-only account and transaction queries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this access is acceptable, require explicit approval for each API call, and show transaction details only when requested.
+
+Risk: A persistent or shared UP_API_TOKEN could give unintended read access to Up Bank data.
+
+Mitigation: Provide the token only for sessions that need banking queries, use the least access Up Bank allows, and avoid saving it permanently in shell profiles or shared environments.
+
+Risk: Expired tokens and Up Bank rate limits can interrupt requests.
+
+Mitigation: Ask for a fresh token on authentication failures and wait before retrying after rate-limit responses.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ashleyjackson/skills/upbank)
+- [Publisher profile](https://clawhub.ai/user/ashleyjackson)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and API request guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only Up Bank API usage guidance requiring UP_API_TOKEN and explicit approval per request.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

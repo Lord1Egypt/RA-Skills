@@ -1,43 +1,58 @@
-## Description: <br>
-Helps an OpenClaw agent analyze behavior, infer motives and patterns as hypotheses, and design behaviorally realistic systems, strategies, interventions, and communication guidance using influence, psychology, and spirituality. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent analyze human behavior, infer motives and patterns as hypotheses, and design behaviorally realistic systems, strategies, offers, habits, and communication guidance using psychology, influence principles, and spiritual frameworks.
 
-## Publisher: <br>
-[kianabluecher](https://clawhub.ai/user/kianabluecher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kianabluecher](https://clawhub.ai/user/kianabluecher)
 
-## Use Case: <br>
-External users and developers use this skill to help an agent reason about behavioral patterns, alignment issues, influence dynamics, and system design for business, leadership, relationship, or personal workflow situations. It is suited for interpretive planning and communication support, not clinical diagnosis or high-stakes decisions about people. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages broad personal and psychological inference that could be mistaken for fact. <br>
-Mitigation: Treat inferred motives, traits, emotional states, and patterns as hypotheses and ask for context before acting on them. <br>
-Risk: The skill could be misapplied to mental-health, employment, legal, dispute, or consent-sensitive judgments. <br>
-Mitigation: Avoid using it for diagnosis or high-stakes decisions about people, and seek qualified human support for mental-health crises or other regulated contexts. <br>
-Risk: Influence guidance could be used manipulatively. <br>
-Mitigation: Use influence patterns only to support honest communication, consent, boundaries, and the user's stated values. <br>
+## Use Case:
 
+External users and agent builders use this skill to add coaching-style behavior analysis, influence-aware communication design, and spiritually framed system design to an OpenClaw agent. It is intended for situations involving behavior patterns, recurring misalignment, relationships, leadership, sales, self-sabotage, offers, habits, and human-centered operating systems.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kianabluecher/consciousness) <br>
-- [Publisher profile](https://clawhub.ai/user/kianabluecher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with structured analysis, checklists, SOPs, if-then rules, scripts, and system design recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces interpretive behavioral hypotheses and planning guidance; it does not call tools, access files, use credentials, or perform network operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter says 0.1.0) <br>
+Risk: Behavioral and motive conclusions may be speculative or personally sensitive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present interpretations as hypotheses, avoid pathologizing users, and treat the output as coaching input rather than professional mental-health advice.
+
+Risk: Influence-oriented guidance could be used manipulatively.
+
+Mitigation: Use influence principles only to support informed consent, clear boundaries, and the stated interests of affected people.
+
+Risk: The skill applies spiritual framing and broad psychological analysis that may be unwanted for routine tasks.
+
+Mitigation: Enable it only for tasks where the user wants behavior analysis, motive hypotheses, influence design, or spiritual framing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kianabluecher/skills/consciousness)
+- [Publisher profile](https://clawhub.ai/user/kianabluecher)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose with analyses, checklists, SOP-style steps, if-then rules, and communication scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include motive hypotheses, behavior-pattern diagnoses, spiritual framing, influence-oriented messaging, boundaries, and system-design recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter metadata.version is 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

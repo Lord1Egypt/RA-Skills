@@ -1,45 +1,60 @@
-## Description: <br>
-Kuvera portfolio and market data CLI for querying mutual fund data, gold prices, USD/INR rates, fund category returns, and Kuvera portfolio information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kuvera portfolio & market data CLI for querying mutual fund data, gold prices, USD/INR rates, fund category returns, and read-only Kuvera portfolio information.
 
-## Publisher: <br>
-[ankitsul](https://clawhub.ai/user/ankitsul) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ankitsul](https://clawhub.ai/user/ankitsul)
 
-## Use Case: <br>
-External Kuvera users and agents use this skill to retrieve read-only market data, mutual fund details, and authenticated portfolio summaries from Kuvera. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles Kuvera financial account credentials and authenticated portfolio data. <br>
-Mitigation: Use it only in trusted agent sessions, avoid entering passwords in shared or logged terminals, and confirm you are running the reviewed kuvera-cli executable. <br>
-Risk: A reusable Kuvera login token is stored locally at ~/.openclaw/credentials/kuvera/token.json. <br>
-Mitigation: Protect that file with local access controls and remove it when authenticated Kuvera access is no longer needed. <br>
-Risk: Portfolio, transaction, SIP, and profile commands expose sensitive financial and personal information. <br>
-Mitigation: Limit outputs to trusted contexts and avoid sharing command results unless the user has approved disclosure. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve Kuvera market data, mutual fund details, and read-only portfolio, transaction, and SIP information after login when needed.
 
-## Reference(s): <br>
-- [Kuvera Portfolio & Market Data on ClawHub](https://clawhub.ai/ankitsul/kuvera) <br>
-- [Kuvera](https://kuvera.in) <br>
-- [OpenClaw](https://openclaw.org) <br>
-- [Kuvera CLI API Guide](references/api-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Terminal text output and Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Authenticated portfolio, transaction, and SIP commands require Kuvera login; unauthenticated commands return market data such as gold prices, USD/INR, fund categories, and fund details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Logging in gives the skill access to sensitive Kuvera profile and investment data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use authenticated commands only on trusted systems and review outputs before sharing them.
+
+Risk: Passing a real password as a command-line argument can expose it through shell history, process listings, or logs on shared systems.
+
+Mitigation: Avoid login on shared or monitored machines and clear shell history or other command logs if credentials were entered.
+
+Risk: The saved bearer token may remain readable according to local filesystem permissions until removed or expired.
+
+Mitigation: Restrict local credential-file permissions and remove the stored token when access is no longer needed.
+
+## Reference(s):
+
+- [Kuvera CLI API Guide](references/api-guide.md)
+- [Kuvera](https://kuvera.in)
+- [OpenClaw](https://openclaw.org)
+- [ClawHub Skill Page](https://clawhub.ai/ankitsul/skills/kuvera)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text CLI output and Markdown command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some commands require Kuvera login and may display sensitive profile, portfolio, transaction, or SIP data.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

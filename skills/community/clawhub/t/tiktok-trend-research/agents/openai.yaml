@@ -1,0 +1,4 @@
+interface:
+  display_name: "TikTok Trend Research"
+  short_description: "Build evidence-backed TikTok trend briefs"
+  default_prompt: "Use $tiktok-trend-research to compare TikTok trends for a topic and country."

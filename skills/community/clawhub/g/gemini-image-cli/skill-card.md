@@ -1,44 +1,58 @@
-## Description: <br>
-Generate and edit images with a bundled Gemini native image-generation CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and edit images with a bundled Gemini native image-generation CLI. Use when the user asks Codex to create images with Gemini, use Gemini image generation through a local bash CLI, run or debug Gemini image curl requests, choose Gemini image models/sizes/aspect ratios, inspect raw image-generation responses, or troubleshoot slow, timed-out, or failed Gemini image requests.
 
-## Publisher: <br>
-[pluiez](https://clawhub.ai/user/pluiez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pluiez](https://clawhub.ai/user/pluiez)
 
-## Use Case: <br>
-Developers and agent users use this skill to generate or edit images through Gemini, choose supported image models and options, inspect raw responses, and troubleshoot provider or request failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and selected reference images may be sent to Google Gemini or to the configured proxy. <br>
-Mitigation: Use --provider local for more sensitive work and keep API keys scoped and private. <br>
-Risk: Retries, batches, or --overwrite can cause additional quota use or local file replacement. <br>
-Mitigation: Avoid retries, batches, or --overwrite unless the user explicitly intends the extra request volume or replacement. <br>
-Risk: A local proxy still grants image-generation capability. <br>
-Mitigation: Bind the proxy to 127.0.0.1, avoid arbitrary URL forwarding, and enforce model, request size, rate, and quota limits as needed. <br>
+## Use Case:
 
+Developers and agents use this skill to generate or edit images through Gemini-compatible endpoints with a local shell CLI. It is useful for choosing models, sizes, aspect ratios, provider modes, and troubleshooting image-generation requests.
 
-## Reference(s): <br>
-- [Gemini Image CLI Behavior](references/behavior.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/pluiez/gemini-image-cli) <br>
-- [gemini-balance local proxy](https://github.com/snailyp/gemini-balance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Machine-readable stdout lines with generated image, raw JSON, and optional text file paths; human-readable logs on stderr.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can save image files, raw Gemini response JSON, and optional text output; image extension follows the returned MIME type.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence and script VERSION) <br>
+Risk: The skill sends prompts and selected image files to a Gemini-compatible endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that data flow is acceptable, and prefer a local proxy when the runtime should not receive the real Google Gemini API key.
+
+Risk: Undocumented --system and --system-file options can change request shaping.
+
+Mitigation: Review those options before installation or modification, especially when using prompts or system text from files.
+
+Risk: Retries or repeated generation requests can consume extra API quota or cost.
+
+Mitigation: Confirm user intent before enabling retries, broad retries, or batch-style generation.
+
+## Reference(s):
+
+- [Gemini Image CLI Behavior](references/behavior.md)
+- [gemini-balance local proxy](https://github.com/snailyp/gemini-balance)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with bash commands, stdout key-value result lines, and generated image/raw JSON files from the CLI.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Successful runs print image, raw_json, optional text, and duration_seconds paths or values.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence and script VERSION)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

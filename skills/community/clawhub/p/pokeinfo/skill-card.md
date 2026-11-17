@@ -1,43 +1,59 @@
-## Description: <br>
-Pokeinfo queries Pokemon details from PokeAPI by name or ID, including stats, abilities, types, moves, sprites, cries, and localized output across nine languages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pokeinfo lets an agent query Pokemon information from PokeAPI by name or ID and return localized details such as stats, abilities, types, moves, sprites, and optional cry audio.
 
-## Publisher: <br>
-[chrisluo5311](https://clawhub.ai/user/chrisluo5311) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chrisluo5311](https://clawhub.ai/user/chrisluo5311)
 
-## Use Case: <br>
-External users and developers use Pokeinfo to retrieve formatted Pokemon data and optional cry audio for chat or agent workflows without API credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound requests to public Pokemon data hosts and depends on their availability and returned data. <br>
-Mitigation: Allow only the expected public Pokemon data hosts, handle request failures clearly, and avoid presenting unavailable data as verified. <br>
-Risk: Optional voice output creates a temporary local audio file and emits its path. <br>
-Mitigation: Use the voice_path only to send the requested Pokemon cry, then clean up temporary files according to the host application's retention policy. <br>
-Risk: Static capability metadata flags sensitive credentials even though the security evidence says no API keys or credentials appear required. <br>
-Mitigation: Do not configure secrets for this skill; review installation only for expected public network access and local file handling. <br>
+## Use Case:
 
+External users and developers use this skill to look up Pokemon data through an agent or command-line workflow, including localized names and labels. Agents can also request a converted Pokemon cry audio file for messaging workflows.
 
-## Reference(s): <br>
-- [PokeAPI documentation](https://pokeapi.co/docs/v2) <br>
-- [ClawHub Pokeinfo listing](https://clawhub.ai/chrisluo5311/pokeinfo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [Localized plain text with URLs, shell command examples, and optional JSON voice-file descriptors.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Language settings are stored locally; optional voice output creates a temporary OGG Opus file path for the requested Pokemon cry.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Voice mode trusts URLs returned by an external API for cry audio.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use voice mode cautiously and add outbound URL allowlisting for expected PokeAPI and raw GitHub asset hosts before deployment in sensitive environments.
+
+Risk: Voice mode uses unsafe temporary files for downloaded and converted cry audio.
+
+Mitigation: Use secure per-run temporary files and clean them after sending the voice message; disable voice mode on shared machines until this is addressed.
+
+Risk: The server security verdict is suspicious pending review.
+
+Mitigation: Review and scan the skill before installation, and run it with least privilege on machines that do not hold sensitive data.
+
+## Reference(s):
+
+- [ClawHub Pokeinfo Skill](https://clawhub.ai/chrisluo5311/skills/pokeinfo)
+- [PokeAPI Documentation](https://pokeapi.co/docs/v2)
+- [PokeAPI](https://pokeapi.co)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration]
+
+**Output Format:** [Plain text with optional JSON voice marker and localized labels]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save language settings under ~/.config/pokeinfo/config.json and may create converted voice audio files under the system temporary directory.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

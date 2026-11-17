@@ -1,40 +1,53 @@
-## Description: <br>
-Analyzes, diagnoses, and optimizes programmatic advertising campaigns across RTB mechanics, audience targeting, attribution, ROAS, and Chinese market platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes, diagnoses, and optimizes programmatic advertising campaigns across RTB auction mechanics, audience targeting, attribution, performance metrics, and Chinese digital advertising platforms.
 
-## Publisher: <br>
-[Melody2333333333](https://clawhub.ai/user/Melody2333333333) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[melody2333333333](https://clawhub.ai/user/melody2333333333)
 
-## Use Case: <br>
-Marketing analysts, growth teams, and media buyers use this skill to interpret campaign metrics, diagnose auction and targeting problems, compare attribution models, and prioritize optimization actions for global and Chinese programmatic advertising campaigns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides business guidance for advertising decisions, and recommendations could be misleading if campaign data, benchmarks, or platform context are incomplete. <br>
-Mitigation: Review outputs before acting, compare recommendations against source campaign data, and treat analyses as advisory rather than automatic campaign execution. <br>
-Risk: Prompts may include private customer lists, budgets, unreleased campaign names, or sensitive performance data, especially when web search is used. <br>
-Mitigation: Avoid entering sensitive campaign, customer, or financial details unless the operating environment is approved for that data. <br>
+## Use Case:
 
+Marketing analysts, media buyers, and advertising teams use this skill to interpret campaign metrics, diagnose delivery and cost issues, compare attribution models, and prioritize optimization actions. It is advisory and should be paired with current platform data before spend decisions are made.
 
-## Reference(s): <br>
-- [Programmatic Ad Analyst on ClawHub](https://clawhub.ai/Melody2333333333/programmatic-ad-analyst) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown campaign analysis with metric tables, root-cause diagnosis, and prioritized recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use web search; does not execute ad-platform actions or access advertising accounts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact frontmatter) <br>
+Risk: Benchmark claims or platform policies may change and could affect campaign budget decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current benchmark and platform data before changing spend, bids, or targeting.
+
+Risk: Campaign datasets can contain sensitive business or audience information.
+
+Mitigation: Provide only the campaign data needed for analysis and avoid unnecessary confidential or personal data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/melody2333333333/skills/programmatic-ad-analyst)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown campaign analysis with benchmark tables, root-cause diagnosis, and prioritized recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference current market benchmarks through web search when available; does not execute media buying or access ad-platform APIs.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

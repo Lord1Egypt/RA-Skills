@@ -1,44 +1,57 @@
-## Description: <br>
-macOS screen OCR and click automation via Apple Vision and ScreenCaptureKit, enabling an agent to capture windows or screen regions, extract text with coordinates, find text, and click visible text from the terminal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+macOS screen OCR and click automation via Apple Vision and ScreenCaptureKit for capturing screens or windows, extracting text with coordinates, finding text, and clicking it from the terminal.
 
-## Publisher: <br>
-[jackyun1024](https://clawhub.ai/user/jackyun1024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jackyun1024](https://clawhub.ai/user/jackyun1024)
 
-## Use Case: <br>
-Developers and automation agents use Screen Vision to inspect visible macOS screen text, wait for UI states, and click visible text during terminal-driven workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup flow can install remote tools before the skill runs. <br>
-Mitigation: Install only from a trusted publisher and review or run setup manually before enabling the skill. <br>
-Risk: The skill can read visible screen text, including sensitive information shown on screen. <br>
-Mitigation: Prefer app or region filters instead of full-screen OCR and avoid using it while sensitive content is visible. <br>
-Risk: The tap command can click UI elements that submit, purchase, delete, or change data. <br>
-Mitigation: Manually approve tap actions that could have external, destructive, or account-changing effects. <br>
+## Use Case:
 
+Developers and automation-focused users use this skill to inspect visible macOS screens or app windows, check whether text is present, wait for text to appear, and trigger text-based clicks from an agent terminal session.
 
-## Reference(s): <br>
-- [Screen Vision homepage](https://github.com/jackyun1024/mac-screen-vision) <br>
-- [ClawHub skill page](https://clawhub.ai/jackyun1024/screen-vision) <br>
-- [Publisher profile](https://clawhub.ai/user/jackyun1024) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Text, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; command results may be JSON or human-readable text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS 14.0 or newer and Screen Recording permission for OCR and click automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: ClawHub release evidence) <br>
+Risk: The skill can capture visible screen contents, including sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when Screen Recording access is appropriate, avoid running commands while sensitive information is visible, and scope capture with --app or --region when possible.
+
+Risk: The tap command can perform real mouse clicks based on OCR results.
+
+Mitigation: Review the target text and visible UI before clicking, prefer scoped commands, and use retries only when the destination is stable.
+
+Risk: The setup script installs external software from Homebrew or GitHub release assets.
+
+Mitigation: Run automatic setup only after trusting or independently verifying the upstream Homebrew tap, GitHub release asset, or source build path.
+
+## Reference(s):
+
+- [Screen Vision source project](https://github.com/jackyun1024/mac-screen-vision)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON or human-readable command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce OCR text, screen coordinates, confidence values, found status, and click status; commands require macOS Screen Recording permission.]
+
+## Skill Version(s):
+
+1.2.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

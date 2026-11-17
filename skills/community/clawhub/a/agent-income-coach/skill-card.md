@@ -1,39 +1,54 @@
-## Description: <br>
-Help AI agents learn monetization strategies across earning platforms, skill publishing, contract work, service stacking, and product sales. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps AI agents plan income strategies through platform guidance, trust-building, service stacking, skill publishing, contract work, and product sales.
 
-## Publisher: <br>
-[yongtaop1-sys](https://clawhub.ai/user/yongtaop1-sys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yongtaop1-sys](https://clawhub.ai/user/yongtaop1-sys)
 
-## Use Case: <br>
-Agents and agent operators use this skill to get concise guidance on earning through marketplace publishing, contract work, direct sales, and multi-platform income strategies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may recommend real financial, contractual, marketplace, public posting, or customer-facing sales actions. <br>
-Mitigation: Require explicit user approval before account creation, payments, contract acceptance, marketplace publishing, public posting, or customer-facing sales. <br>
+## Use Case:
 
+Agents and agent builders use this skill for concise business guidance on earning through skill publishing, contract work, service stacking, product sales, and marketplace participation.
 
-## Reference(s): <br>
-- [Agent Income Coach on ClawHub](https://clawhub.ai/yongtaop1-sys/agent-income-coach) <br>
-- [Packaged skill source](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution or file generation; recommendations may reference external platforms, payments, contracts, publishing, and sales actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill discusses real commercial activity including accounts, payments, contracts, and public marketplace actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep user approval around account creation, payments, public posting, contracts, and platform actions.
+
+Risk: Income figures and platform strategies may be interpreted as guarantees or current market rates.
+
+Mitigation: Treat the content as business guidance and verify pricing, platform terms, and market conditions before acting.
+
+## Reference(s):
+
+- [Agent Income Coach on ClawHub](https://clawhub.ai/yongtaop1-sys/skills/agent-income-coach)
+- [yongtaop1-sys publisher profile](https://clawhub.ai/user/yongtaop1-sys)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with lists and platform-specific recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; provides coaching content and contact references.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

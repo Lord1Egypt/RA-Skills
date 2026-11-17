@@ -1,40 +1,53 @@
-## Description: <br>
-Guides OpenClaw agents to bind reliable user-visible delivery paths for reminders, scheduled checks, background task completion updates, and recurring monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents to bind scheduled or background OpenClaw work to an explicit user-visible delivery path.
 
-## Publisher: <br>
-[sonicrang](https://clawhub.ai/user/sonicrang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sonicrang](https://clawhub.ai/user/sonicrang)
 
-## Use Case: <br>
-Developers and agent operators use this skill to choose reliable delivery paths for reminders, scheduled checks, background task completion reports, and other user-visible follow-up messages in OpenClaw. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide an agent to inspect or modify local OpenClaw cron configuration and send test notifications. <br>
-Mitigation: Review the generated cron job, verify the stored schedule and delivery fields, and manually trigger a test only for the intended chat or notification target. <br>
-Risk: Automation that uses authenticated local tools can affect the wrong account or workspace if credentials are broader than intended. <br>
-Mitigation: Use credentials limited to the intended account and review OpenClaw cron commands before allowing them to run. <br>
+## Use Case:
 
+Developers and agents use this skill when a task needs a reminder, scheduled check, background completion update, or recurring notification that must reach the user after the current turn.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sonicrang/openclaw-msg-delivery-guide) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local OpenClaw cron configuration and notification targets when validating delivery behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server-resolved release metadata) <br>
+Risk: Cron-based reminders or recurring checks can continue running until removed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each created cron job, especially recurring checks, and remove jobs that are no longer needed.
+
+Risk: Validation may inspect or modify local OpenClaw cron configuration and send test notifications.
+
+Mitigation: Review cron store changes and confirm test notifications target the intended chat or destination.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sonicrang/skills/openclaw-msg-delivery-guide)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with example OpenClaw cron commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local OpenClaw cron configuration when scheduled delivery must be verified.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

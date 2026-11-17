@@ -1,45 +1,62 @@
-## Description: <br>
-Convert between IUPAC names, SMILES strings, and molecular formulas for chemical compounds. Supports structure validation, identifier interconversion, and cheminformatics data preparation for drug discovery and chemical research workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a small Python utility and usage guide for converting or validating common chemical identifiers such as names, SMILES strings, IUPAC names, and molecular formulas.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Developers and cheminformatics researchers use this skill to convert, validate, and standardize chemical identifiers for compound libraries, database registration, and research data preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Chemical conversions may be incomplete or inaccurate because the bundled implementation uses a limited local compound database and basic SMILES checks. <br>
-Mitigation: Verify outputs with trusted cheminformatics tools or institutional databases before using them for research, safety, inventory, or regulatory decisions. <br>
-Risk: The skill can ask the agent to run local Python and create files such as CSV or JSON, while the documentation understates file access. <br>
-Mitigation: Run it in a controlled workspace and review proposed commands and output paths before allowing file creation. <br>
+## Use Case:
 
+Developers and cheminformatics practitioners can use this skill to produce guidance, code examples, and shell commands for small-scale chemical identifier lookup, SMILES syntax checks, and database standardization preparation; scientific results should be independently validated before use.
 
-## Reference(s): <br>
-- [Chemical Structure Converter on ClawHub](https://clawhub.ai/AIPOCH-AI/chemical-structure-converter) <br>
-- [PubChem](https://pubchem.ncbi.nlm.nih.gov) <br>
-- [ChemSpider](http://www.chemspider.com) <br>
-- [OpenSMILES Specification](http://opensmiles.org) <br>
-- [InChI Standard](https://www.inchi-trust.org) <br>
-- [RDKit Documentation](https://www.rdkit.org/docs/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell examples; optional CSV or JSON file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chemical results should be independently verified before research, safety, inventory, or regulatory use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can overstate the accuracy of chemical conversion and SMILES validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as lookup or formatting assistance only and validate structures with trusted cheminformatics tools before scientific, safety, or drug-discovery use.
+
+Risk: The artifact describes workflows that write local files without clear up-front disclosure.
+
+Mitigation: Review proposed output paths and file-writing commands before execution, and run the skill with only the filesystem permissions needed for the intended workspace.
+
+Risk: The bundled converter relies on a small local mock compound database.
+
+Mitigation: Use authoritative external databases or curated internal references for compounds outside the small built-in examples.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/chemical-structure-converter)
+- [PubChem](https://pubchem.ncbi.nlm.nih.gov)
+- [ChemSpider](http://www.chemspider.com)
+- [OpenSMILES](http://opensmiles.org)
+- [InChI Trust](https://www.inchi-trust.org)
+- [RDKit Documentation](https://www.rdkit.org/docs/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include suggested local CSV, JSON, or report filenames; chemical conversions and validation results require independent cheminformatics verification.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-AutoGLM ASR MCP provides long-audio transcription with concurrent chunk processing, context modes, and timestamped segments using Zhipu GLM-ASR-2512. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AutoGLM ASR MCP transcribes long audio with concurrent chunking, configurable context modes, timestamped segments, and GLM-ASR-2512.
 
-## Publisher: <br>
-[IsabellaZhangYM](https://clawhub.ai/user/IsabellaZhangYM) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[isabellazhangym](https://clawhub.ai/user/isabellazhangym)
 
-## Use Case: <br>
-Developers and agent users configure this MCP server to transcribe long audio files, inspect audio metadata, and return transcript text, timestamped segments, and run statistics to agent workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected audio files are sent to Zhipu/BigModel for cloud transcription. <br>
-Mitigation: Use only approved audio, review provider terms, and avoid submitting sensitive or regulated recordings without organizational approval. <br>
-Risk: The MCP server requires an API key and is commonly launched through npx. <br>
-Mitigation: Use a dedicated API key, pin a known package version where possible, and review the npm package and linked source before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/IsabellaZhangYM/autoglmasr) <br>
-- [Zhipu GLM-ASR-2512 documentation](https://docs.bigmodel.cn/cn/guide/models/sound-and-video/glm-asr-2512) <br>
-- [Model Context Protocol specification](https://modelcontextprotocol.io) <br>
+## Use Case:
 
+Developers and agent builders use this skill to configure an MCP-based transcription service for long audio files, including chunking, concurrency controls, context-mode selection, and timestamped transcript output.
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration and shell command examples; MCP tool responses include transcript text, timestamped segments, and run statistics.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ffmpeg and AUTOGLM_ASR_API_KEY; supports context mode, max concurrency, and audio chunking settings.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The MCP server is installed through an unpinned npm command.
+
+Mitigation: Pin autoglm-asr-mcp to a reviewed exact version before installation or deployment.
+
+Risk: Local audio is sent to the external Zhipu/BigModel ASR service for transcription.
+
+Mitigation: Use a dedicated API key and transcribe only audio that is approved for transfer to that external service.
+
+Risk: Running the MCP server may expand the local agent's access to audio files and environment variables.
+
+Mitigation: Run the server in a restricted environment with least-privilege file access and scoped credentials.
+
+## Reference(s):
+
+- [GLM-ASR-2512 documentation](https://docs.bigmodel.cn/cn/guide/models/sound-and-video/glm-asr-2512)
+- [Model Context Protocol](https://modelcontextprotocol.io)
+- [ClawHub skill page](https://clawhub.ai/isabellazhangym/skills/autoglmasr)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The described MCP tool returns full transcript text, timestamped segments, and run statistics.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

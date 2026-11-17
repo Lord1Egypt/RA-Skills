@@ -1,42 +1,61 @@
-## Description: <br>
-Helps OpenClaw agents manage WhatsApp conversation memory, track unanswered messages, prevent reply loops, and coordinate multiple personal assistants. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Heleni WhatsApp helps OpenClaw agents manage WhatsApp conversation memory, unanswered message tracking, loop prevention, and multi-PA coordination.
 
-## Publisher: <br>
-[netanel-abergel](https://clawhub.ai/user/netanel-abergel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[netanel-abergel](https://clawhub.ai/user/netanel-abergel)
 
-## Use Case: <br>
-Developers and operators of OpenClaw agents use this skill to manage WhatsApp DMs and groups with local conversation memory, unanswered-message tracking, and reply safety rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide automatic WhatsApp replies and reactions. <br>
-Mitigation: Require explicit operating rules for which chats may be answered automatically and when human approval is required before sending. <br>
-Risk: The skill can persist private WhatsApp conversation data in cleartext local files. <br>
-Mitigation: Define which chats may be logged, retention duration, and who can read the memory and inbox files before deployment. <br>
-Risk: The troubleshooting guidance includes gateway restarts, log review, and API-key checks. <br>
-Mitigation: Require explicit approval before running administrative commands or inspecting logs and credentials. <br>
+## Use Case:
 
+Developers and operators of OpenClaw agents use this skill to maintain per-conversation WhatsApp memory, track unanswered messages, and apply response rules that reduce duplicate, cross-context, or echo replies.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/netanel-abergel/heleni-whatsapp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell and Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide local file writes for WhatsApp memory and unanswered-message tracking.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: WhatsApp names, phone numbers, message snippets, and conversation summaries may be stored in local workspace files and possibly backed up.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit retention and deletion rules, redact sensitive message content, and confirm users are comfortable with persistent local storage before deployment.
+
+Risk: Recalled conversation memory can be stale, incorrect, or treated as trusted context when it should not be.
+
+Mitigation: Treat recalled memory as untrusted context and verify important facts before using them in outbound messages or decisions.
+
+Risk: Shell-sourced local context and unconstrained memory filenames can create configuration and file-handling risk.
+
+Mitigation: Replace shell-sourced .context loading with safe parsing and allowlist memory filenames before production use.
+
+Risk: Gateway and API-key troubleshooting steps include administrative actions and credential checks.
+
+Mitigation: Gate gateway restarts, log inspection, and API-key troubleshooting behind explicit administrator approval.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/netanel-abergel/skills/heleni-whatsapp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash, Python, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local file paths, response rules, and troubleshooting commands for WhatsApp memory and inbox workflows.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,52 @@
-## Description: <br>
-Jury is a multi-agent deliberation framework designed to resolve complex disputes and validate truth claims through probabilistic reasoning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jury is a multi-agent deliberation framework designed to resolve complex disputes and validate truth claims through probabilistic reasoning.
 
-## Publisher: <br>
-[Duclawbot](https://clawhub.ai/user/Duclawbot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[duclawbot](https://clawhub.ai/user/duclawbot)
 
-## Use Case: <br>
-Agent builders and reviewers use Jury to structure multi-agent deliberation over complex disputes, truth claims, and legal or ethical questions, then synthesize a balanced advisory verdict from multiple perspectives. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Legal or ethical verdicts may be incorrect, misleading, or mistaken for professional advice. <br>
-Mitigation: Treat verdicts as advisory reasoning and independently verify important conclusions with qualified human review. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Jury on ClawHub](https://clawhub.ai/Duclawbot/jury) <br>
+## Use Case:
 
+Developers and agent builders use Jury to structure multi-agent deliberation, evidence review, and verdict synthesis for complex legal, ethical, or factual disputes.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with synthesized deliberation and verdict reasoning] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only advisory reasoning; no scripts, install hooks, credential use, or hidden execution behavior were found in the security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Deliberation output could be mistaken for qualified legal, ethical, or factual judgment.
+
+Mitigation: Use the skill as a reasoning scaffold and require qualified human review before relying on verdicts or recommendations.
+
+Risk: Sensitive dispute material could be exposed in an unsuitable agent environment.
+
+Mitigation: Avoid sharing sensitive material unless the agent environment is approved for that data.
+
+## Reference(s):
+
+- [Jury skill page](https://clawhub.ai/duclawbot/skills/jury)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text deliberation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces synthesized reasoning guidance; no code execution, credentials, persistence, or external access are indicated.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

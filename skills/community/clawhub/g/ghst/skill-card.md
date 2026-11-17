@@ -1,53 +1,62 @@
-## Description: <br>
-Work with Ghost blogs using the ghst CLI tool, including Ghost Admin API access for posts, pages, members, tags, newsletters, themes, stats, social web, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Work with Ghost blogs using the ghst CLI tool. Supports full Ghost Admin API access including posts, pages, members, tags, newsletters, themes, stats, social web (ActivityPub), and more.
 
-## Publisher: <br>
-[nickludlam](https://clawhub.ai/user/nickludlam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nickludlam](https://clawhub.ai/user/nickludlam)
 
-## Use Case: <br>
-External developers, site operators, and content teams use this skill to let an agent administer a Ghost publication through the ghst CLI. It supports content management, member operations, analytics, settings, themes, migrations, webhooks, raw API requests, and social web workflows when the required Ghost credentials are available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can administer a Ghost publication through broad Admin API access. <br>
-Mitigation: Install it only for agents that need Ghost administration, use a dedicated low-privilege staff token where possible, and review high-impact actions before approval. <br>
-Risk: Ghost staff tokens and related API keys are sensitive credentials. <br>
-Mitigation: Store credentials outside source control, avoid printing them in shared logs or chat, rotate leaked tokens promptly, and disable unused access. <br>
-Risk: Publish, delete, bulk, import/export, webhook, settings, theme, social posting, and raw API operations can change public site state or data. <br>
-Mitigation: Require explicit user approval, verify exact resource IDs or slugs before mutation, and prefer list or fetch commands before destructive actions. <br>
-Risk: Runtime installation through npm or npx can resolve a different ghst package version over time. <br>
-Mitigation: Pin or intentionally review the @tryghost/ghst package version and review release notes before upgrading. <br>
+## Use Case:
 
+Developers and site operators use this skill to let an agent manage Ghost blogs through the ghst CLI and Ghost Admin API, including content, members, newsletters, themes, analytics, webhooks, and migration tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nickludlam/ghst) <br>
-- [ghst CLI homepage](https://github.com/TryGhost/ghst) <br>
-- [ghst npm package](https://www.npmjs.com/package/@tryghost/ghst) <br>
-- [Skill instructions](SKILL.md) <br>
-- [Authentication reference](references/auth.md) <br>
-- [Editing workflow reference](references/editing.md) <br>
-- [Post command reference](references/post.md) <br>
-- [Page command reference](references/page.md) <br>
-- [Member command reference](references/member.md) <br>
-- [Raw API reference](references/api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON-oriented command output, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the ghst binary plus Ghost URL and staff access token credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: release evidence and README) <br>
+Risk: The skill can modify live Ghost content, settings, themes, webhooks, member data, and comments through the Ghost Admin API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-privilege Ghost staff account, verify exact target IDs or slugs before mutations, and require explicit user approval before publishing, deleting, importing, exporting, changing settings, managing webhooks, or making raw API calls.
+
+Risk: A leaked Ghost staff access token could allow unauthorized administration of the Ghost site.
+
+Mitigation: Store GHOST_STAFF_ACCESS_TOKEN securely, keep it out of chat and version control, rotate it immediately if exposed, and remove agent access when it is no longer needed.
+
+Risk: Floating npm or npx installs can pull an unreviewed ghst CLI version at runtime.
+
+Mitigation: Install @tryghost/ghst from the official npm registry, pin a reviewed version for production use, and review release notes before upgrading.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nickludlam/skills/ghst)
+- [ghst CLI homepage](https://github.com/TryGhost/ghst)
+- [@tryghost/ghst npm package](https://www.npmjs.com/package/@tryghost/ghst)
+- [Editing posts and pages reference](references/editing.md)
+- [Raw API reference](references/api.md)
+- [Authentication reference](references/auth.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented CLI usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill may direct the agent to run ghst commands that operate on live Ghost site data and can return JSON or CSV outputs.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

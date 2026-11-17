@@ -1,0 +1,57 @@
+{
+  "schema_version": "2.0",
+  "deck": {
+    "id": "source-bound-path-b-example",
+    "title": "Path B：来源绑定证据示例",
+    "source_type": "report",
+    "audience": "管理层",
+    "purpose": "决策沟通",
+    "language": "zh-CN",
+    "aspect_ratio": "16:9",
+    "production_profile": "standard",
+    "logical_slide_count": 3
+  },
+  "sources": [
+    {"source_id": "source-report", "type": "report", "title": "示例报告"}
+  ],
+  "style_contract_ref": "style-contract.json",
+  "asset_manifest_ref": "asset-manifest.json",
+  "slides": [
+    {
+      "id": "S01", "index": 1, "slide_role": "cover", "title_role": "navigation",
+      "title": "主结论与证据", "judgment": null, "message": "用来源绑定的对象表达可复核结论。",
+      "audience_question": "本报告回答什么？", "source_refs": [],
+      "primary_expression": "conceptual_scene", "supporting_expressions": [], "primary_anchor": "title",
+      "objects": [],
+      "delivery_contract": {"preferred_route": "native_ppt", "editable_core": ["title"], "raster_allowance": [], "forbidden_raster": ["title"]}
+    },
+    {
+      "id": "S02", "index": 2, "slide_role": "data", "title_role": "judgment",
+      "title": "采用率高，但规模化仍是瓶颈", "judgment": "采用与规模化之间存在经营价值缺口。", "message": "主数据和独立解读都必须可追溯。",
+      "audience_question": "采用增长是否已经转化为规模化价值？",
+      "source_refs": [{"source_id": "source-report", "locator": "Exhibit 1", "claim_type": "direct"}],
+      "primary_expression": "data_visual", "supporting_expressions": ["interpretation", "source_note"], "primary_anchor": "adoption-chart",
+      "supporting_evidence": [{
+        "content": "规模化率显著低于规律使用率，优先级应从工具铺开转向工作流改造。",
+        "source_refs": [{"source_id": "source-report", "locator": "Exhibit 2", "claim_type": "direct"}]
+      }],
+      "objects": [{
+        "id": "adoption-chart", "type": "chart", "component_type": "bar_chart", "semantic_role": "evidence", "priority": "primary", "editability": "native_required",
+        "content": {"categories": ["规律使用", "规模化"], "series": [{"name": "组织占比", "values": [88, 31]}]},
+        "source_refs": [{"source_id": "source-report", "locator": "Exhibit 1", "claim_type": "direct"}]
+      }],
+      "delivery_contract": {"preferred_route": "native_ppt", "editable_core": ["adoption-chart"], "raster_allowance": [], "forbidden_raster": ["adoption-chart"]}
+    },
+    {
+      "id": "S03", "index": 3, "slide_role": "closing", "title_role": "closing",
+      "title": "下一步：把采用转为经营价值", "judgment": null, "message": "锁定价值链并重构工作流。",
+      "audience_question": "管理层现在应采取什么行动？", "source_refs": [],
+      "primary_expression": "structured_cards", "supporting_expressions": [], "primary_anchor": "action-1",
+      "objects": [
+        {"id": "action-1", "type": "shape", "component_type": "summary_action_card", "semantic_role": "next_action", "priority": "primary", "editability": "native_required", "content": "锁定一个可量化价值链", "source_refs": []},
+        {"id": "action-2", "type": "shape", "component_type": "summary_action_card", "semantic_role": "next_action", "priority": "supporting", "editability": "native_required", "content": "按工作流重构人机分工与治理", "source_refs": []}
+      ],
+      "delivery_contract": {"preferred_route": "native_ppt", "editable_core": ["action-1", "action-2"], "raster_allowance": [], "forbidden_raster": ["action-1", "action-2"]}
+    }
+  ]
+}

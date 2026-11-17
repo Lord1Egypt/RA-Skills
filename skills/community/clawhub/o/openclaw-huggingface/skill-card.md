@@ -1,42 +1,59 @@
-## Description: <br>
-Manage models, datasets, Spaces, and repositories using Hugging Face CLI (hf). Supports authentication, upload, download, Space creation, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage models, datasets, Spaces, and repositories using Hugging Face CLI (hf). Supports authentication, upload, download, Space creation, and more.
 
-## Publisher: <br>
-[TsukiSama9292](https://clawhub.ai/user/TsukiSama9292) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tsukisama9292](https://clawhub.ai/user/tsukisama9292)
 
-## Use Case: <br>
-Developers and engineers use this skill to have an agent operate Hugging Face Hub resources through the hf CLI, including authentication, model, dataset, Space, repository, upload, download, and collection workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Authenticated Hugging Face CLI operations can upload files, change repository visibility, move repositories, or delete repositories, branches, tags, and collections. <br>
-Mitigation: Use a least-privilege Hugging Face token, verify repository namespace and visibility, inspect upload paths before broad targets such as '.', and require explicit confirmation before destructive or lasting account changes. <br>
-Risk: Tokens may be exposed if copied into code, command output, or logs. <br>
-Mitigation: Provide HF_TOKEN through the environment or secure credential storage, keep it out of source files and logs, and rotate it if exposure is suspected. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/TsukiSama9292/openclaw-huggingface) <br>
-- [Hugging Face CLI Documentation](https://huggingface.co/docs/huggingface_hub/en/guides/cli) <br>
-- [Hugging Face Token Settings](https://huggingface.co/settings/tokens) <br>
-- [Hugging Face Spaces](https://huggingface.co/spaces) <br>
+## Use Case:
 
+Developers and agents use this skill to manage Hugging Face Hub models, datasets, Spaces, collections, and repositories through the hf CLI. It supports authenticated download, upload, repository settings, branch and tag operations, Space workflows, and collection organization.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the Hugging Face CLI (hf) and HF_TOKEN for authenticated account operations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Hugging Face account tokens can authorize sensitive repository operations.
+
+Mitigation: Use a least-privilege HF_TOKEN and avoid exposing token values in prompts, logs, or committed files.
+
+Risk: Upload, delete, visibility, branch, tag, and namespace-move commands can change remote Hugging Face resources.
+
+Mitigation: Require explicit approval before delete, broad upload, namespace move, or visibility-changing commands, and review target repository names before execution.
+
+Risk: Model and dataset downloads may introduce unreviewed files into the workspace.
+
+Mitigation: Review downloaded files and follow project policy before loading, executing, or redistributing them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tsukisama9292/skills/openclaw-huggingface)
+- [Hugging Face CLI Documentation](https://huggingface.co/docs/huggingface_hub/en/guides/cli)
+- [Hugging Face Token Settings](https://huggingface.co/settings/tokens)
+- [Hugging Face Spaces](https://huggingface.co/spaces)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the Hugging Face CLI (hf) and an HF_TOKEN for authenticated Hugging Face account operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

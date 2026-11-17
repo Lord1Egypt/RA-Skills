@@ -1,0 +1,1178 @@
+{
+  "version": 2,
+  "wireVersion": 3,
+  "generatedFrom": "js/worksheet/presets.js + js/worksheet/schema.js",
+  "limits": {
+    "columns": [
+      4,
+      16
+    ],
+    "nameCharacters": 6,
+    "tokenCharacters": 3000
+  },
+  "sources": [
+    "advisor",
+    "skill",
+    "kimi",
+    "coze",
+    "share",
+    "developer",
+    "mcp"
+  ],
+  "hosts": [
+    "workbuddy",
+    "claude",
+    "chatgpt",
+    "codex",
+    "cursor",
+    "grok",
+    "kimi",
+    "doubao",
+    "yuanbao",
+    "qwen",
+    "deepseek",
+    "coze",
+    "other"
+  ],
+  "fields": [
+    "template_id",
+    "text",
+    "student_name",
+    "student_class",
+    "student_id",
+    "title",
+    "grid_type",
+    "columns",
+    "orientation",
+    "pinyin",
+    "trace_style",
+    "trace_density",
+    "practice_gradient",
+    "source",
+    "host"
+  ],
+  "presets": [
+    {
+      "id": "standard-copy",
+      "name": "一范二描全自写",
+      "description": "先看范字、再描红，最后独立书写",
+      "kind": "characters",
+      "capabilities": {
+        "controls": [
+          "orientation",
+          "gridType",
+          "gridColor",
+          "header",
+          "footer",
+          "pinyin",
+          "practiceGradient",
+          "traceStyle",
+          "traceDensity",
+          "columns"
+        ]
+      },
+      "document": {
+        "version": 1,
+        "content": {
+          "kind": "characters",
+          "text": "",
+          "title": "",
+          "studentName": "",
+          "studentClass": "",
+          "studentId": "",
+          "foundationPattern": "strokes"
+        },
+        "exercise": {
+          "kind": "trace-copy",
+          "stages": [
+            {
+              "role": "master",
+              "count": 1
+            },
+            {
+              "role": "trace",
+              "count": 2
+            },
+            {
+              "role": "copy",
+              "count": "fill"
+            }
+          ],
+          "traceStyle": "solid",
+          "traceDensity": "normal"
+        },
+        "annotations": {
+          "pinyin": "off",
+          "strokeCount": false,
+          "radical": false,
+          "structure": false
+        },
+        "layout": {
+          "paper": "A4",
+          "orientation": "portrait",
+          "flow": "row-per-character",
+          "columnDirection": "ltr",
+          "columns": 9,
+          "overflow": "paginate",
+          "poetryLayout": "full"
+        },
+        "grid": {
+          "type": "mi",
+          "color": "#ef4444"
+        },
+        "style": {
+          "fontId": "device-kaiti",
+          "masterColor": "#111111",
+          "traceColor": "#b8b8b8"
+        },
+        "header": {
+          "enabled": true,
+          "fields": [
+            "class",
+            "name",
+            "studentId"
+          ],
+          "showStars": true
+        },
+        "footer": {
+          "reprint": false,
+          "tip": ""
+        }
+      }
+    },
+    {
+      "id": "standard-trace",
+      "name": "基础描红",
+      "description": "保留一个示范字，其余用于描红",
+      "kind": "characters",
+      "capabilities": {
+        "controls": [
+          "orientation",
+          "gridType",
+          "gridColor",
+          "header",
+          "footer",
+          "pinyin",
+          "practiceGradient",
+          "traceStyle",
+          "traceDensity",
+          "columns"
+        ]
+      },
+      "document": {
+        "version": 1,
+        "content": {
+          "kind": "characters",
+          "text": "",
+          "title": "",
+          "studentName": "",
+          "studentClass": "",
+          "studentId": "",
+          "foundationPattern": "strokes"
+        },
+        "exercise": {
+          "kind": "trace-copy",
+          "stages": [
+            {
+              "role": "master",
+              "count": 1
+            },
+            {
+              "role": "trace",
+              "count": "fill"
+            }
+          ],
+          "traceStyle": "solid",
+          "traceDensity": "normal"
+        },
+        "annotations": {
+          "pinyin": "off",
+          "strokeCount": false,
+          "radical": false,
+          "structure": false
+        },
+        "layout": {
+          "paper": "A4",
+          "orientation": "portrait",
+          "flow": "row-per-character",
+          "columnDirection": "ltr",
+          "columns": 9,
+          "overflow": "paginate",
+          "poetryLayout": "full"
+        },
+        "grid": {
+          "type": "mi",
+          "color": "#ef4444"
+        },
+        "style": {
+          "fontId": "device-kaiti",
+          "masterColor": "#111111",
+          "traceColor": "#b8b8b8"
+        },
+        "header": {
+          "enabled": true,
+          "fields": [
+            "class",
+            "name",
+            "studentId"
+          ],
+          "showStars": true
+        },
+        "footer": {
+          "reprint": false,
+          "tip": ""
+        }
+      }
+    },
+    {
+      "id": "standard-repeat",
+      "name": "半描半自写",
+      "description": "前半描红、后半独立书写",
+      "kind": "characters",
+      "capabilities": {
+        "controls": [
+          "orientation",
+          "gridType",
+          "gridColor",
+          "header",
+          "footer",
+          "pinyin",
+          "practiceGradient",
+          "traceStyle",
+          "traceDensity",
+          "columns"
+        ]
+      },
+      "document": {
+        "version": 1,
+        "content": {
+          "kind": "characters",
+          "text": "",
+          "title": "",
+          "studentName": "",
+          "studentClass": "",
+          "studentId": "",
+          "foundationPattern": "strokes"
+        },
+        "exercise": {
+          "kind": "trace-copy",
+          "stages": [
+            {
+              "role": "master",
+              "count": 1
+            },
+            {
+              "role": "trace",
+              "count": 3
+            },
+            {
+              "role": "copy",
+              "count": "fill"
+            }
+          ],
+          "traceStyle": "solid",
+          "traceDensity": "normal"
+        },
+        "annotations": {
+          "pinyin": "off",
+          "strokeCount": false,
+          "radical": false,
+          "structure": false
+        },
+        "layout": {
+          "paper": "A4",
+          "orientation": "portrait",
+          "flow": "row-per-character",
+          "columnDirection": "ltr",
+          "columns": 9,
+          "overflow": "paginate",
+          "poetryLayout": "full"
+        },
+        "grid": {
+          "type": "mi",
+          "color": "#ef4444"
+        },
+        "style": {
+          "fontId": "device-kaiti",
+          "masterColor": "#111111",
+          "traceColor": "#b8b8b8"
+        },
+        "header": {
+          "enabled": true,
+          "fields": [
+            "class",
+            "name",
+            "studentId"
+          ],
+          "showStars": true
+        },
+        "footer": {
+          "reprint": false,
+          "tip": ""
+        }
+      }
+    },
+    {
+      "id": "practice-large",
+      "name": "笔顺大格",
+      "description": "逐笔示范，适合刚开始练字",
+      "kind": "stroke-order",
+      "capabilities": {
+        "controls": [
+          "orientation",
+          "gridType",
+          "gridColor",
+          "header",
+          "footer",
+          "strokeCount",
+          "traceStyle",
+          "traceDensity",
+          "columns"
+        ]
+      },
+      "document": {
+        "version": 1,
+        "content": {
+          "kind": "stroke-order",
+          "text": "",
+          "title": "",
+          "studentName": "",
+          "studentClass": "",
+          "studentId": "",
+          "foundationPattern": "strokes"
+        },
+        "exercise": {
+          "kind": "stroke-sequence",
+          "stages": [
+            {
+              "role": "master",
+              "count": 1
+            },
+            {
+              "role": "stroke-step",
+              "count": 64
+            },
+            {
+              "role": "trace",
+              "count": 1
+            },
+            {
+              "role": "copy",
+              "count": "fill"
+            }
+          ],
+          "traceStyle": "solid",
+          "traceDensity": "normal"
+        },
+        "annotations": {
+          "pinyin": "off",
+          "strokeCount": true,
+          "radical": false,
+          "structure": false
+        },
+        "layout": {
+          "paper": "A4",
+          "orientation": "portrait",
+          "flow": "row-per-character",
+          "columnDirection": "ltr",
+          "columns": 7,
+          "overflow": "paginate",
+          "poetryLayout": "full"
+        },
+        "grid": {
+          "type": "mi",
+          "color": "#ef4444"
+        },
+        "style": {
+          "fontId": "device-kaiti",
+          "masterColor": "#111111",
+          "traceColor": "#b8b8b8"
+        },
+        "header": {
+          "enabled": true,
+          "fields": [
+            "class",
+            "name",
+            "studentId"
+          ],
+          "showStars": true
+        },
+        "footer": {
+          "reprint": false,
+          "tip": ""
+        }
+      }
+    },
+    {
+      "id": "practice-compact",
+      "name": "笔顺紧凑",
+      "description": "缩小格子，容纳更多笔顺步骤",
+      "kind": "stroke-order",
+      "capabilities": {
+        "controls": [
+          "orientation",
+          "gridType",
+          "gridColor",
+          "header",
+          "footer",
+          "strokeCount",
+          "traceStyle",
+          "traceDensity",
+          "columns"
+        ]
+      },
+      "document": {
+        "version": 1,
+        "content": {
+          "kind": "stroke-order",
+          "text": "",
+          "title": "",
+          "studentName": "",
+          "studentClass": "",
+          "studentId": "",
+          "foundationPattern": "strokes"
+        },
+        "exercise": {
+          "kind": "stroke-sequence",
+          "stages": [
+            {
+              "role": "master",
+              "count": 1
+            },
+            {
+              "role": "stroke-step",
+              "count": 64
+            },
+            {
+              "role": "trace",
+              "count": "fill"
+            }
+          ],
+          "traceStyle": "solid",
+          "traceDensity": "normal"
+        },
+        "annotations": {
+          "pinyin": "off",
+          "strokeCount": true,
+          "radical": false,
+          "structure": false
+        },
+        "layout": {
+          "paper": "A4",
+          "orientation": "portrait",
+          "flow": "row-per-character",
+          "columnDirection": "ltr",
+          "columns": 12,
+          "overflow": "paginate",
+          "poetryLayout": "full"
+        },
+        "grid": {
+          "type": "mi",
+          "color": "#ef4444"
+        },
+        "style": {
+          "fontId": "device-kaiti",
+          "masterColor": "#111111",
+          "traceColor": "#b8b8b8"
+        },
+        "header": {
+          "enabled": true,
+          "fields": [
+            "class",
+            "name",
+            "studentId"
+          ],
+          "showStars": true
+        },
+        "footer": {
+          "reprint": false,
+          "tip": ""
+        }
+      }
+    },
+    {
+      "id": "poetry-full",
+      "name": "古诗整页",
+      "description": "整首诗连续排列",
+      "kind": "poetry",
+      "capabilities": {
+        "controls": [
+          "orientation",
+          "gridType",
+          "gridColor",
+          "header",
+          "footer",
+          "pinyin",
+          "poetryLayout",
+          "traceStyle",
+          "traceDensity"
+        ]
+      },
+      "document": {
+        "version": 1,
+        "content": {
+          "kind": "poetry",
+          "text": "",
+          "title": "",
+          "studentName": "",
+          "studentClass": "",
+          "studentId": "",
+          "foundationPattern": "strokes"
+        },
+        "exercise": {
+          "kind": "poetry-copy",
+          "stages": [
+            {
+              "role": "master",
+              "count": 1
+            },
+            {
+              "role": "trace",
+              "count": 1
+            },
+            {
+              "role": "copy",
+              "count": "fill"
+            }
+          ],
+          "traceStyle": "solid",
+          "traceDensity": "normal"
+        },
+        "annotations": {
+          "pinyin": "tone",
+          "strokeCount": false,
+          "radical": false,
+          "structure": false
+        },
+        "layout": {
+          "paper": "A4",
+          "orientation": "portrait",
+          "flow": "poetry",
+          "columnDirection": "ltr",
+          "columns": 8,
+          "overflow": "paginate",
+          "poetryLayout": "full"
+        },
+        "grid": {
+          "type": "mi",
+          "color": "#ef4444"
+        },
+        "style": {
+          "fontId": "device-kaiti",
+          "masterColor": "#111111",
+          "traceColor": "#b8b8b8"
+        },
+        "header": {
+          "enabled": true,
+          "fields": [
+            "class",
+            "name",
+            "studentId"
+          ],
+          "showStars": true
+        },
+        "footer": {
+          "reprint": false,
+          "tip": ""
+        }
+      }
+    },
+    {
+      "id": "poetry-split",
+      "name": "古诗上下分栏",
+      "description": "上下两区，对照练习",
+      "kind": "poetry",
+      "capabilities": {
+        "controls": [
+          "orientation",
+          "gridType",
+          "gridColor",
+          "header",
+          "footer",
+          "pinyin",
+          "poetryLayout",
+          "traceStyle",
+          "traceDensity"
+        ]
+      },
+      "document": {
+        "version": 1,
+        "content": {
+          "kind": "poetry",
+          "text": "",
+          "title": "",
+          "studentName": "",
+          "studentClass": "",
+          "studentId": "",
+          "foundationPattern": "strokes"
+        },
+        "exercise": {
+          "kind": "poetry-copy",
+          "stages": [
+            {
+              "role": "master",
+              "count": 1
+            },
+            {
+              "role": "trace",
+              "count": 1
+            },
+            {
+              "role": "copy",
+              "count": "fill"
+            }
+          ],
+          "traceStyle": "solid",
+          "traceDensity": "normal"
+        },
+        "annotations": {
+          "pinyin": "tone",
+          "strokeCount": false,
+          "radical": false,
+          "structure": false
+        },
+        "layout": {
+          "paper": "A4",
+          "orientation": "portrait",
+          "flow": "poetry",
+          "columnDirection": "ltr",
+          "columns": 8,
+          "overflow": "paginate",
+          "poetryLayout": "split2"
+        },
+        "grid": {
+          "type": "mi",
+          "color": "#ef4444"
+        },
+        "style": {
+          "fontId": "device-kaiti",
+          "masterColor": "#111111",
+          "traceColor": "#b8b8b8"
+        },
+        "header": {
+          "enabled": true,
+          "fields": [
+            "class",
+            "name",
+            "studentId"
+          ],
+          "showStars": true
+        },
+        "footer": {
+          "reprint": false,
+          "tip": ""
+        }
+      }
+    },
+    {
+      "id": "poetry-quadrant",
+      "name": "古诗四区",
+      "description": "四区形成示范、描红与自写梯度",
+      "kind": "poetry",
+      "capabilities": {
+        "controls": [
+          "orientation",
+          "gridType",
+          "gridColor",
+          "header",
+          "footer",
+          "pinyin",
+          "poetryLayout",
+          "traceStyle",
+          "traceDensity"
+        ]
+      },
+      "document": {
+        "version": 1,
+        "content": {
+          "kind": "poetry",
+          "text": "",
+          "title": "",
+          "studentName": "",
+          "studentClass": "",
+          "studentId": "",
+          "foundationPattern": "strokes"
+        },
+        "exercise": {
+          "kind": "poetry-copy",
+          "stages": [
+            {
+              "role": "master",
+              "count": 1
+            },
+            {
+              "role": "trace",
+              "count": 1
+            },
+            {
+              "role": "copy",
+              "count": "fill"
+            }
+          ],
+          "traceStyle": "solid",
+          "traceDensity": "normal"
+        },
+        "annotations": {
+          "pinyin": "tone",
+          "strokeCount": false,
+          "radical": false,
+          "structure": false
+        },
+        "layout": {
+          "paper": "A4",
+          "orientation": "portrait",
+          "flow": "poetry",
+          "columnDirection": "ltr",
+          "columns": 7,
+          "overflow": "paginate",
+          "poetryLayout": "quadrant"
+        },
+        "grid": {
+          "type": "mi",
+          "color": "#ef4444"
+        },
+        "style": {
+          "fontId": "device-kaiti",
+          "masterColor": "#111111",
+          "traceColor": "#b8b8b8"
+        },
+        "header": {
+          "enabled": true,
+          "fields": [
+            "class",
+            "name",
+            "studentId"
+          ],
+          "showStars": true
+        },
+        "footer": {
+          "reprint": false,
+          "tip": ""
+        }
+      }
+    },
+    {
+      "id": "name-fade",
+      "name": "姓名渐隐",
+      "description": "从深到浅，逐步独立书写",
+      "kind": "name",
+      "capabilities": {
+        "controls": [
+          "orientation",
+          "gridType",
+          "gridColor",
+          "header",
+          "footer",
+          "studentName",
+          "traceStyle",
+          "traceDensity",
+          "columns"
+        ]
+      },
+      "document": {
+        "version": 1,
+        "content": {
+          "kind": "name",
+          "text": "",
+          "title": "",
+          "studentName": "",
+          "studentClass": "",
+          "studentId": "",
+          "foundationPattern": "strokes"
+        },
+        "exercise": {
+          "kind": "name-copy",
+          "stages": [
+            {
+              "role": "master",
+              "count": 1
+            },
+            {
+              "role": "trace",
+              "count": 3
+            },
+            {
+              "role": "copy",
+              "count": "fill"
+            }
+          ],
+          "traceStyle": "solid",
+          "traceDensity": "normal"
+        },
+        "annotations": {
+          "pinyin": "tone",
+          "strokeCount": true,
+          "radical": true,
+          "structure": true
+        },
+        "layout": {
+          "paper": "A4",
+          "orientation": "portrait",
+          "flow": "row-per-character",
+          "columnDirection": "ltr",
+          "columns": 9,
+          "overflow": "paginate",
+          "poetryLayout": "full"
+        },
+        "grid": {
+          "type": "mi",
+          "color": "#ef4444"
+        },
+        "style": {
+          "fontId": "device-kaiti",
+          "masterColor": "#111111",
+          "traceColor": "#b8b8b8"
+        },
+        "header": {
+          "enabled": true,
+          "fields": [
+            "class",
+            "name",
+            "studentId"
+          ],
+          "showStars": true
+        },
+        "footer": {
+          "reprint": false,
+          "tip": ""
+        }
+      }
+    },
+    {
+      "id": "name-trace",
+      "name": "姓名描红",
+      "description": "全程描红，熟悉姓名结构",
+      "kind": "name",
+      "capabilities": {
+        "controls": [
+          "orientation",
+          "gridType",
+          "gridColor",
+          "header",
+          "footer",
+          "studentName",
+          "traceStyle",
+          "traceDensity",
+          "columns"
+        ]
+      },
+      "document": {
+        "version": 1,
+        "content": {
+          "kind": "name",
+          "text": "",
+          "title": "",
+          "studentName": "",
+          "studentClass": "",
+          "studentId": "",
+          "foundationPattern": "strokes"
+        },
+        "exercise": {
+          "kind": "name-copy",
+          "stages": [
+            {
+              "role": "master",
+              "count": 1
+            },
+            {
+              "role": "trace",
+              "count": "fill"
+            }
+          ],
+          "traceStyle": "solid",
+          "traceDensity": "normal"
+        },
+        "annotations": {
+          "pinyin": "tone",
+          "strokeCount": true,
+          "radical": true,
+          "structure": true
+        },
+        "layout": {
+          "paper": "A4",
+          "orientation": "portrait",
+          "flow": "row-per-character",
+          "columnDirection": "ltr",
+          "columns": 9,
+          "overflow": "paginate",
+          "poetryLayout": "full"
+        },
+        "grid": {
+          "type": "mi",
+          "color": "#ef4444"
+        },
+        "style": {
+          "fontId": "device-kaiti",
+          "masterColor": "#111111",
+          "traceColor": "#b8b8b8"
+        },
+        "header": {
+          "enabled": true,
+          "fields": [
+            "class",
+            "name",
+            "studentId"
+          ],
+          "showStars": true
+        },
+        "footer": {
+          "reprint": false,
+          "tip": ""
+        }
+      }
+    },
+    {
+      "id": "name-blank",
+      "name": "姓名自写",
+      "description": "保留示范，留白自主练习",
+      "kind": "name",
+      "capabilities": {
+        "controls": [
+          "orientation",
+          "gridType",
+          "gridColor",
+          "header",
+          "footer",
+          "studentName",
+          "columns"
+        ]
+      },
+      "document": {
+        "version": 1,
+        "content": {
+          "kind": "name",
+          "text": "",
+          "title": "",
+          "studentName": "",
+          "studentClass": "",
+          "studentId": "",
+          "foundationPattern": "strokes"
+        },
+        "exercise": {
+          "kind": "name-copy",
+          "stages": [
+            {
+              "role": "master",
+              "count": 1
+            },
+            {
+              "role": "copy",
+              "count": "fill"
+            }
+          ],
+          "traceStyle": "solid",
+          "traceDensity": "normal"
+        },
+        "annotations": {
+          "pinyin": "tone",
+          "strokeCount": true,
+          "radical": true,
+          "structure": true
+        },
+        "layout": {
+          "paper": "A4",
+          "orientation": "portrait",
+          "flow": "row-per-character",
+          "columnDirection": "ltr",
+          "columns": 9,
+          "overflow": "paginate",
+          "poetryLayout": "full"
+        },
+        "grid": {
+          "type": "mi",
+          "color": "#ef4444"
+        },
+        "style": {
+          "fontId": "device-kaiti",
+          "masterColor": "#111111",
+          "traceColor": "#b8b8b8"
+        },
+        "header": {
+          "enabled": true,
+          "fields": [
+            "class",
+            "name",
+            "studentId"
+          ],
+          "showStars": true
+        },
+        "footer": {
+          "reprint": false,
+          "tip": ""
+        }
+      }
+    },
+    {
+      "id": "basic-strokes",
+      "name": "基本笔画",
+      "description": "横、竖、撇等基础笔画",
+      "kind": "foundations",
+      "capabilities": {
+        "controls": [
+          "orientation",
+          "gridType",
+          "gridColor",
+          "header",
+          "footer",
+          "foundationPattern",
+          "traceDensity",
+          "columns"
+        ]
+      },
+      "document": {
+        "version": 1,
+        "content": {
+          "kind": "foundations",
+          "text": "",
+          "title": "",
+          "studentName": "",
+          "studentClass": "",
+          "studentId": "",
+          "foundationPattern": "strokes"
+        },
+        "exercise": {
+          "kind": "foundation",
+          "stages": [
+            {
+              "role": "guide",
+              "count": 1
+            },
+            {
+              "role": "trace",
+              "count": 3
+            },
+            {
+              "role": "copy",
+              "count": "fill"
+            }
+          ],
+          "traceStyle": "solid",
+          "traceDensity": "normal"
+        },
+        "annotations": {
+          "pinyin": "off",
+          "strokeCount": false,
+          "radical": false,
+          "structure": false
+        },
+        "layout": {
+          "paper": "A4",
+          "orientation": "portrait",
+          "flow": "foundation",
+          "columnDirection": "ltr",
+          "columns": 8,
+          "overflow": "paginate",
+          "poetryLayout": "full"
+        },
+        "grid": {
+          "type": "mi",
+          "color": "#ef4444"
+        },
+        "style": {
+          "fontId": "device-kaiti",
+          "masterColor": "#111111",
+          "traceColor": "#b8b8b8"
+        },
+        "header": {
+          "enabled": true,
+          "fields": [
+            "class",
+            "name",
+            "studentId"
+          ],
+          "showStars": true
+        },
+        "footer": {
+          "reprint": false,
+          "tip": ""
+        }
+      }
+    },
+    {
+      "id": "prewriting-lines",
+      "name": "控笔线条",
+      "description": "从直线到弧线练习控笔",
+      "kind": "foundations",
+      "capabilities": {
+        "controls": [
+          "orientation",
+          "gridType",
+          "gridColor",
+          "header",
+          "footer",
+          "foundationPattern",
+          "traceDensity",
+          "columns"
+        ]
+      },
+      "document": {
+        "version": 1,
+        "content": {
+          "kind": "foundations",
+          "text": "",
+          "title": "",
+          "studentName": "",
+          "studentClass": "",
+          "studentId": "",
+          "foundationPattern": "lines"
+        },
+        "exercise": {
+          "kind": "foundation",
+          "stages": [
+            {
+              "role": "guide",
+              "count": 1
+            },
+            {
+              "role": "trace",
+              "count": 4
+            },
+            {
+              "role": "copy",
+              "count": "fill"
+            }
+          ],
+          "traceStyle": "solid",
+          "traceDensity": "normal"
+        },
+        "annotations": {
+          "pinyin": "off",
+          "strokeCount": false,
+          "radical": false,
+          "structure": false
+        },
+        "layout": {
+          "paper": "A4",
+          "orientation": "portrait",
+          "flow": "foundation",
+          "columnDirection": "ltr",
+          "columns": 8,
+          "overflow": "paginate",
+          "poetryLayout": "full"
+        },
+        "grid": {
+          "type": "square",
+          "color": "#ef4444"
+        },
+        "style": {
+          "fontId": "device-kaiti",
+          "masterColor": "#111111",
+          "traceColor": "#b8b8b8"
+        },
+        "header": {
+          "enabled": true,
+          "fields": [
+            "class",
+            "name",
+            "studentId"
+          ],
+          "showStars": true
+        },
+        "footer": {
+          "reprint": false,
+          "tip": ""
+        }
+      }
+    }
+  ]
+}

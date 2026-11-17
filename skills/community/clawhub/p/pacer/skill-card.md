@@ -1,43 +1,63 @@
-## Description: <br>
-Your AI career companion for scanning a user's situation, mapping possible paths, simulating futures, and tracking weekly progress with interactive charts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Your AI career companion. Scan your situation, map possible paths, simulate futures, and track progress week by week - with interactive charts.
 
-## Publisher: <br>
-[hectormeta](https://clawhub.ai/user/hectormeta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hectormeta](https://clawhub.ai/user/hectormeta)
 
-## Use Case: <br>
-External users, employees, students, and solo founders use Pacer to clarify career or startup options, compare possible paths, simulate tradeoffs, and maintain weekly progress tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores sensitive resume, career, financial-runway, goal, milestone, and progress information in local memory with weak consent and deletion controls. <br>
-Mitigation: Before sharing real resume, workplace, or financial details, confirm how to view, edit, or delete Pacer memory. <br>
-Risk: Weekly Heartbeat follow-up may continue after tracking starts and can resurface sensitive career progress in later conversations. <br>
-Mitigation: Start tracking only after the user agrees to weekly follow-up, and confirm how to pause Heartbeats when they are no longer wanted. <br>
+## Use Case:
 
+External users use Pacer to explore career transitions, startup paths, student career planning, and one-person-company decisions through a guided scan, path mapping, future simulation, and weekly progress tracking workflow.
 
-## Reference(s): <br>
-- [Pacer Skill on ClawHub](https://clawhub.ai/hectormeta/pacer) <br>
-- [hectormeta Publisher Profile](https://clawhub.ai/user/hectormeta) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [Chart.js 4.4.0 Runtime](https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Files, Guidance] <br>
-**Output Format:** [Markdown responses with optional HTML chart code and local Markdown memory records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses uploaded resume content, user-provided career details, local memory, and weekly Heartbeat follow-up when enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: release metadata, SKILL.md frontmatter, and skill.json) <br>
+Risk: The skill collects and stores sensitive career, resume, financial-runway, and weekly progress information in local memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit memory opt-in, collect only necessary details, avoid secrets or unnecessary personal data in uploaded CVs, and provide clear deletion controls.
+
+Risk: User-derived data is inserted into executable HTML chart templates.
+
+Mitigation: Encode and validate chart values before rendering, and render generated chart HTML only in a sandboxed viewer or iframe.
+
+Risk: Broad triggers and weekly heartbeat behavior may activate career tracking or memory updates when the user did not intend it.
+
+Mitigation: Confirm activation before starting tracking, allow heartbeat pause or disable controls, and ask before updating persistent progress records.
+
+Risk: Installation guidance references moving targets such as latest CLI installs and a repository URL without server-resolved provenance for this release.
+
+Mitigation: Review the ClawHub release record and pin installation to the intended skill version before deployment.
+
+## Reference(s):
+
+- [Pacer Skill on ClawHub](https://clawhub.ai/hectormeta/skills/pacer)
+- [hectormeta Publisher Profile](https://clawhub.ai/user/hectormeta)
+- [Chart.js 4.4.0 CDN dependency](https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with generated HTML chart templates and local-memory tracking notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May parse uploaded PDF, DOCX, DOC, or TXT resumes up to 10 MB when supported by the host agent; uses weekly heartbeat and local memory for progress tracking.]
+
+## Skill Version(s):
+
+0.1.2 (source: frontmatter, skill.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

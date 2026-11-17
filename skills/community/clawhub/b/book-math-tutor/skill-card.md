@@ -1,40 +1,53 @@
-## Description: <br>
-Book math-tutor services through Lokuli MCP. Use when user needs to find and book math-tutor. Triggers on requests like "book a math-tutor", "find math-tutor near me", or any math-tutor service request. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book math-tutor services through Lokuli MCP for users who need to find availability and create tutoring bookings.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users can use this skill to search for math-tutor services through Lokuli, check provider availability, and create a booking after confirming the selected tutor and time slot. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send a user's name, email, phone number, and location or search details to Lokuli. <br>
-Mitigation: Confirm the user is comfortable sharing those details with Lokuli before creating a booking. <br>
-Risk: The skill can create a real math-tutor booking. <br>
-Mitigation: Before booking, confirm the tutor, selected time slot, cost, and cancellation terms when available. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/edwardrodriguez703-design/book-math-tutor) <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users can use this skill to search for math-tutor services, check availability, and request a booking through Lokuli's MCP server.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown with JSON-RPC tool call details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include booking search results, availability details, and booking confirmation guidance from Lokuli.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send personal contact details such as zip code, name, email, and phone number to an external service.
+
+Mitigation: Require explicit user confirmation before sharing contact details or creating a booking.
+
+Risk: The trigger is broader than explicit tutor search or booking requests.
+
+Mitigation: Use the skill only for clear math-tutor search, availability, or booking requests.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/edwardrodriguez703-design/skills/book-math-tutor)
+- [Lokuli MCP Endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Guidance]
+
+**Output Format:** [Markdown with JSON-RPC examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include search, availability, and booking request details for an external MCP service.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,58 @@
-## Description: <br>
-Use when someone asks for image-to-image, reference-image generation, transform image with prompt, edit image with AI, or CLI-based image-to-image workflows on ricebowl.ai. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through image-to-image generation workflows using ricebowl.ai and the ai-media CLI.
 
-## Publisher: <br>
-[jinchanzis](https://clawhub.ai/user/jinchanzis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jinchanzis](https://clawhub.ai/user/jinchanzis)
 
-## Use Case: <br>
-Developers and creators use this skill to run AI image-to-image workflows with the ai-media CLI, including selecting a model, preparing a reference image, submitting an edit prompt, and retrieving the generated image. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API keys may be exposed through configuration output, terminal sharing, screenshots, logs, or chat transcripts. <br>
-Mitigation: Confirm that `ai-media config show` masks keys before sharing output, and prefer environment variables or a secret manager for `AI_MEDIA_API_KEY`. <br>
+## Use Case:
 
+External users and developers use this skill to have an agent prepare and run CLI-based image-to-image generation with a reference image, prompt, selected model, and task retrieval on ricebowl.ai.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jinchanzis/ai-media-generator-image-to-image) <br>
-- [ai-media-generator homepage](https://github.com/214140846/ai-media-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses AI_MEDIA_API_KEY and AI_MEDIA_BASE_URL; output may include CLI JSON from model listing commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The workflow depends on a mutable npm CLI package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after trusting the ai-media-generator package and review the installed CLI version before use.
+
+Risk: The workflow requires an API key for image generation.
+
+Mitigation: Set AI_MEDIA_API_KEY through a secret manager or protected environment variable and avoid placing real keys in shell history.
+
+Risk: The workflow may use ricebowl.ai credits for generation requests.
+
+Mitigation: Confirm account, credit, and provider terms before running generation commands.
+
+## Reference(s):
+
+- [ai-media-generator homepage](https://github.com/214140846/ai-media-generator)
+- [ClawHub skill page](https://clawhub.ai/jinchanzis/skills/ai-media-generator-image-to-image)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the ai-media CLI and the AI_MEDIA_API_KEY and AI_MEDIA_BASE_URL environment variables.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

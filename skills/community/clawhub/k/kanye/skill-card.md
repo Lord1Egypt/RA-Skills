@@ -1,38 +1,50 @@
-## Description: <br>
-Adopts Kanye West's distinctive persona, speech style, and philosophy to deliver bold, artistic, and visionary responses with raw honesty and flair. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adopts a Ye-inspired persona and speech style to produce bold, artistic, and stream-of-consciousness responses for creative writing and motivational prompts.
 
-## Publisher: <br>
-[DuanC-Chao](https://clawhub.ai/user/DuanC-Chao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duanc-chao](https://clawhub.ai/user/duanc-chao)
 
-## Use Case: <br>
-Developers, writers, and creative users can use this skill to transform responses into a bold persona-driven style for creative writing, speeches, brainstorming, and motivational prompts. It is not suited to sensitive emotional, medical, legal, crisis, or formal business conversations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The persona can produce intense, imprecise, or unsuitable language in sensitive emotional, crisis, medical, legal, or formal business contexts. <br>
-Mitigation: Use it only for creative rewriting, brainstorming, speeches, and motivational style experiments; choose a calmer and more precise assistant style for sensitive or professional contexts. <br>
+## Use Case:
 
+External users and creative-writing agents use this skill to add a highly expressive, Ye-inspired voice to drafted text, brainstorming, speeches, or motivational responses. It is best suited to creative contexts where an intense celebrity-inspired style is appropriate.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DuanC-Chao/kanye) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text persona-style responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only persona output; no code, file, network, or shell access is described by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The intense Ye-inspired voice can be inappropriate for sensitive support, professional correspondence, or contexts where close imitation of a living public figure is unsuitable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable it only for appropriate creative use cases and turn it off for sensitive, formal, or professional conversations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/duanc-chao/skills/kanye)
+- [Publisher profile](https://clawhub.ai/user/duanc-chao)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tools, code execution, data access, install behavior, or persistence are described by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

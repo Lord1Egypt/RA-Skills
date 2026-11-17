@@ -1,42 +1,59 @@
-## Description: <br>
-Amarin Memory gives agents persistent adaptive memory with temporal decay, semantic deduplication, surprise-based scoring, core memory blocks, and SQLite-backed semantic search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Amarin Memory gives agents a local SQLite-backed memory system for storing, semantically searching, revising, and decaying long-term memories across sessions.
 
-## Publisher: <br>
-[flaggdavid-source](https://clawhub.ai/user/flaggdavid-source) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flaggdavid-source](https://clawhub.ai/user/flaggdavid-source)
 
-## Use Case: <br>
-Developers and agent operators use this skill when an agent needs durable memory across sessions, searchable user or task context, persistent identity blocks, and maintenance commands for revising, protecting, or forgetting stored memories. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores long-term memories in a local database, so secrets, credentials, regulated data, or sensitive personal details could be retained if an agent stores them. <br>
-Mitigation: Only store information intended for long-term retention, and periodically review, revise, protect, or forget memories using the provided maintenance commands. <br>
-Risk: Memory content may be sent to the configured embedding service when storing or searching memories. <br>
-Mitigation: Keep OLLAMA_URL pointed at a trusted local or private embedding service when privacy matters. <br>
-Risk: Passing untrusted memory text directly as shell arguments can create command-line quoting mistakes. <br>
-Mitigation: Pipe untrusted content through stdin as shown in the skill instructions. <br>
+## Use Case:
 
+Developers and agent builders use this skill to give agents durable local memory for user preferences, decisions, identity blocks, and cross-session context. It is intended for workflows where agents need to store, search, revise, protect, and prune remembered information over time.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/flaggdavid-source/amarin-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and CLI text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Initializes and uses a local SQLite database at ~/.amarin/agent.db and an embedding service configured by OLLAMA_URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Durable local memory can retain sensitive user, identity, or operational context longer than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing secrets, credentials, regulated personal data, or other sensitive material, and regularly review and prune ~/.amarin/agent.db.
+
+Risk: Stored untrusted instruction-like text may later be retrieved as agent context.
+
+Mitigation: Pipe untrusted content through the documented safer input path, label and review stored memories, and revise or forget entries that should not influence future sessions.
+
+Risk: The skill depends on an installed amarin-memory package and local embedding service behavior.
+
+Mitigation: Use a pinned, reviewed amarin-memory dependency and confirm the configured OLLAMA_URL points to the intended embedding service before sensitive use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/flaggdavid-source/skills/amarin-memory)
+- [Publisher Profile](https://clawhub.ai/user/flaggdavid-source)
+- [Project Homepage](https://github.com/flaggdavid-source/amarin-memory)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and CLI text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a local SQLite database at ~/.amarin/agent.db and an embedding service configured by OLLAMA_URL.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

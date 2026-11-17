@@ -1,39 +1,51 @@
-## Description: <br>
-Add trip itineraries, flights, hotel check-ins, and activities to Google Calendar using gog CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Add trip itineraries, flights, hotel check-ins, and activities to Google Calendar using gog CLI.
 
-## Publisher: <br>
-[swayamg20](https://clawhub.ai/user/swayamg20) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[swayamg20](https://clawhub.ai/user/swayamg20)
 
-## Use Case: <br>
-Travelers and assistants use this skill to convert finalized trip plans, boarding passes, hotel stays, and major activities into Google Calendar events after user confirmation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Calendar events may contain incorrect dates, times, timezones, locations, or descriptions if itinerary details are ambiguous or untrusted. <br>
-Mitigation: Review every event title, date, time, timezone, location, and description before confirming creation. <br>
-Risk: The skill creates events through the local gog CLI, which uses the configured Google account. <br>
-Mitigation: Install only when gog is already trusted for the intended Google account and decline event creation if the account or calendar target is unclear. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/swayamg20/trip-calendar) <br>
+## Use Case:
+
+External users use this skill to turn confirmed travel plans, boarding pass details, hotel stays, and major activities into Google Calendar events.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Untrusted itinerary or boarding pass text could be incorporated into calendar creation commands.
+
+Mitigation: Review event titles, locations, descriptions, dates, and time zones before approving calendar creation; prefer direct argument execution or explicit escaping for parsed text.
+
+Risk: The skill requires gog access that can create Google Calendar events.
+
+Mitigation: Install only when that calendar access is acceptable, and keep explicit user confirmation before creating any events.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and confirmation summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gog CLI and user review before creating calendar events.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline gog CLI commands and confirmation prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires gog CLI access to create Google Calendar events.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

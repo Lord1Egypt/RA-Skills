@@ -1,41 +1,55 @@
-## Description: <br>
-Reference tool for devtools that provides quick Svg Optimizer concepts, best practices, implementation patterns, and troubleshooting guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Svg Optimizer provides plain-text reference documentation for SVG optimizer concepts, quickstart steps, patterns, debugging, performance, security, migration, and cheat sheet material.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and engineers use this skill as a quick reference for Svg Optimizer concepts, setup guidance, common patterns, debugging, performance, security, migration, and cheat sheet material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact includes a shell script, so future updates could change behavior or introduce unsafe commands. <br>
-Mitigation: Review and scan updates before upgrading or executing the script. <br>
-Risk: The script is described as an SVG optimizer reference but does not perform SVG optimization or file modification. <br>
-Mitigation: Treat its output as reference guidance and verify any optimization steps before applying them to project files. <br>
+## Use Case:
 
+Developers and frontend engineers use this skill to retrieve concise reference guidance about SVG optimizer concepts, common workflows, troubleshooting, performance, security, migration, and command cheat sheets.
 
-## Reference(s): <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/svg-optimizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown reference documentation emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The current script prints static guidance, requires no credentials, makes no external API calls, and does not modify files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The reference content is generic and may not answer detailed SVG optimization questions accurately.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill output as a quick reference and validate detailed SVG optimization decisions against authoritative project or product documentation.
+
+Risk: The release and skill frontmatter identify version 2.0.1, while the shell script's version command reports 2.0.0.
+
+Mitigation: Confirm the packaged script version before using version output for inventory, audit, or release tracking.
+
+## Reference(s):
+
+- [Svg Optimizer ClawHub page](https://clawhub.ai/ckchzh/skills/svg-optimizer)
+- [BytesAgain homepage](https://bytesagain.com)
+- [BytesAgain ClawHub profile](https://clawhub.ai/user/ckchzh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain-text Markdown-style reference documentation emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external API calls, credentials, or network access; command arguments select static reference sections.]
+
+## Skill Version(s):
+
+2.0.1 (source: release evidence and SKILL.md frontmatter; script VERSION reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -311,7 +311,7 @@ Create either of:
 
 # Strongly recommended — free at github.com/settings/tokens
 # Scopes needed: (none — public repos only)
-GITHUB_TOKEN=ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+GITHUB_TOKEN=REDACTED-SECRET
 
 # From scrapecreators.com — enables Reddit community signals
 SCRAPECREATORS_API_KEY=sc_xxxxxxxxxxxx

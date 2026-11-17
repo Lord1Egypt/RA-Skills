@@ -1,41 +1,53 @@
-## Description: <br>
-Creates a structured summary when /new or /reset ends a session and archives it to memory/YYYY-MM-DD.md. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates a structured four-part summary of the previous OpenClaw session when /new or /reset is triggered and appends it to a dated workspace memory file.
 
-## Publisher: <br>
-[thelast0802](https://clawhub.ai/user/thelast0802) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thelast0802](https://clawhub.ai/user/thelast0802)
 
-## Use Case: <br>
-OpenClaw users who frequently start or reset sessions use this hook to preserve a concise, structured record of the prior conversation for later continuation and review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recent session text may be sent to the model provider configured in the user's OpenClaw models.json. <br>
-Mitigation: Use only trusted providers and scoped API keys, and avoid this hook for sessions containing secrets or regulated data. <br>
-Risk: Generated memory files may retain sensitive conversation details locally. <br>
-Mitigation: Periodically review or delete generated memory files according to the workspace's data retention needs. <br>
+## Use Case:
 
+OpenClaw users who frequently start or reset sessions use this skill to preserve a concise handoff summary of the prior conversation. It is useful when an agent should resume work from recent session context without treating the summary as a fully governed long-term memory store.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/thelast0802/session-memory-structured) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown summary appended to a dated local memory file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a four-section session summary and stores it under memory/YYYY-MM-DD.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Recent session content may be sent to the configured model provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted provider configurations, redact sensitive session content, or add explicit confirmation before the hook runs.
+
+Risk: Generated memory files may contain unreviewed model output that future agents could rely on.
+
+Mitigation: Review generated memory files before treating them as trusted context, and quarantine or validate summaries in higher-risk workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/thelast0802/skills/session-memory-structured)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, files, configuration guidance]
+
+**Output Format:** [Markdown appended to memory/YYYY-MM-DD.md]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The summary is generated from up to 40 recent session messages and written locally by date.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-API Key Guardian scans repositories and files for leaked API keys, passwords, tokens, private keys, database URLs, and generic hardcoded secrets, with optional git-history scanning and AI risk analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans code repositories for leaked API keys, passwords, tokens, private keys, database URLs, and generic secrets, with optional git history scanning and AI-assisted risk analysis.
 
-## Publisher: <br>
-[xiaohuaishu](https://clawhub.ai/user/xiaohuaishu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaohuaishu](https://clawhub.ai/user/xiaohuaishu)
 
-## Use Case: <br>
-Developers and security engineers use this skill to check projects for exposed credentials before committing, sharing, or releasing code. It can scan a directory, a single file, or recent git history and can optionally ask a local OpenClaw-compatible gateway for risk and remediation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional AI mode includes an embedded API-key-like value. <br>
-Mitigation: Remove the embedded value and require users to supply their own credential through a trusted local configuration or environment variable before enabling AI analysis. <br>
-Risk: Optional AI mode sends finding metadata such as file paths and line numbers to a local HTTP service. <br>
-Mitigation: Use --ai only with a trusted local OpenClaw/model gateway and review what metadata will be sent before running it on sensitive repositories. <br>
-Risk: Secret-scanning results can include sensitive matches, even when masked in terminal output. <br>
-Mitigation: Review findings locally, avoid sharing raw scan output externally, and rotate any credential that may have been exposed. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to scan source trees, selected files, and recent git history for exposed credentials before code is shared or released.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xiaohuaishu/api-key-guardian) <br>
-- [Publisher Profile](https://clawhub.ai/user/xiaohuaishu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, analysis, guidance] <br>
-**Output Format:** [Terminal text report with masked findings and optional AI-generated risk guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings include pattern name, severity, source path, line number, and masked matched value.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Optional AI analysis sends finding metadata through a local OpenClaw-compatible HTTP endpoint using a hardcoded API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local scanning mode unless the proxy is trusted; remove and rotate the embedded key, document what metadata is sent, and require explicit consent before enabling AI analysis.
+
+Risk: Scan output reports masked secret matches and file locations that may still reveal sensitive project information in logs.
+
+Mitigation: Run scans in trusted terminals or CI jobs, restrict log sharing, and remediate or rotate exposed credentials before publishing results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaohuaishu/skills/api-key-guardian)
+- [Publisher profile](https://clawhub.ai/user/xiaohuaishu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Terminal text with masked findings and optional risk-analysis guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns exit code 1 when findings are detected and exit code 0 when no findings are detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

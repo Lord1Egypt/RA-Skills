@@ -1,40 +1,55 @@
-## Description: <br>
-Converts PDF, DOCX, XLSX, PPTX, HTML, CSV, and other local files to Markdown using the @covoyage/file2md CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+File2md helps agents convert local documents and media, including PDF, DOCX, XLSX, PPTX, HTML, CSV, images, audio, and video, into Markdown using the @covoyage/file2md CLI.
 
-## Publisher: <br>
-[luduoxin](https://clawhub.ai/user/luduoxin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luduoxin](https://clawhub.ai/user/luduoxin)
 
-## Use Case: <br>
-Developers and agents use this skill to convert local documents, spreadsheets, presentations, HTML, CSV, notebooks, archives, email, and supported media files into readable Markdown. It is intended for local file or stdin conversion, with optional cloud processing only when Azure use is approved for the data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional Azure Document Intelligence or Azure Content Understanding modes can send document contents to Azure services. <br>
-Mitigation: Confirm files are permitted to be processed by Azure and avoid cloud modes for sensitive documents unless explicitly approved. <br>
+## Use Case:
 
+Developers, employees, and external users can use this skill when they need an agent to convert local office documents, PDFs, spreadsheets, presentations, HTML, CSV, notebooks, archives, email, or media into readable Markdown.
 
-## Reference(s): <br>
-- [ClawHub File2md Skill](https://clawhub.ai/luduoxin/skills/file2md) <br>
-- [@covoyage/file2md npm package](https://www.npmjs.com/package/@covoyage/file2md) <br>
-- [file2md repository](https://github.com/covoyage/file2md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and CLI options] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write converted Markdown to stdout or to a file with -o; large conversions should use an output file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill installs and runs an unpinned third-party npm CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned or internally vetted @covoyage/file2md package version before processing sensitive or production documents.
+
+Risk: Optional Azure cloud conversion flags can send document content to external services.
+
+Mitigation: Avoid cloud conversion flags unless the user explicitly intends to use those services and has approval to send the document content.
+
+## Reference(s):
+
+- [File2md ClawHub skill page](https://clawhub.ai/luduoxin/skills/file2md)
+- [@covoyage/file2md npm package](https://www.npmjs.com/package/@covoyage/file2md)
+- [@covoyage/file2md project repository](https://github.com/covoyage/file2md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write Markdown to a file when the CLI is invoked with an output path; requires Node.js 18+.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

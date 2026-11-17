@@ -1,0 +1,4 @@
+interface:
+  display_name: "Sablier streams"
+  short_description: "Sablier streams workflow and evidence"
+  default_prompt: "Use $galleon-sablier-streams to complete the requested protocol workflow and return the observed decision record."

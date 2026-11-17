@@ -1,40 +1,53 @@
-## Description: <br>
-Detect, investigate, and contain malicious or compromised bots using behavior analysis, policy enforcement, and escalation protocols. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect, investigate, and contain malicious or compromised bots using behavior analysis, policy enforcement, and escalation protocols.
 
-## Publisher: <br>
-[arhadnane](https://clawhub.ai/user/arhadnane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arhadnane](https://clawhub.ai/user/arhadnane)
 
-## Use Case: <br>
-Developers and operators managing multi-bot systems use this skill to score bot behavior, flag malicious indicators, and recommend watch, block, or quarantine responses for incident triage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automated block or quarantine recommendations could disrupt legitimate bots if applied without review. <br>
-Mitigation: Keep enforcement permissions scoped and require human approval for block or quarantine actions unless the deployment has a tested policy threshold. <br>
-Risk: Bot-risk scoring may miss context or over-weight noisy incident and anomaly inputs. <br>
-Mitigation: Review logs, message traces, and severity classification before using the recommendations for incident response. <br>
+## Use Case:
 
+Developers and operators of multi-bot systems use this skill to score bot behavior, flag malicious indicators, and recommend watch, block, or quarantine actions for incident triage.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/arhadnane/bot-police) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [JSON object with scan counts, per-bot risk scores, indicators, recommended actions, and summary counts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Actions are recommendations generated from input bot telemetry; containment authority depends on the hosting agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: The skill can recommend block or quarantine actions without clear user-control boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Scope bot restriction and quarantine permissions explicitly and require human approval before disruptive containment actions.
+
+Risk: Malformed or untrusted telemetry can manipulate behavior scoring.
+
+Mitigation: Validate telemetry schemas and trust sources before using the skill's scores or containment recommendations.
+
+## Reference(s):
+
+- [Bot Police ClawHub Skill Page](https://clawhub.ai/arhadnane/skills/bot-police)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured incident-triage guidance with behavior scores, flagged bots, containment recommendations, and summary counts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations should be treated as advisory unless telemetry is trusted and schema-validated.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, artifact/skill.json, index.js)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,55 @@
-## Description: <br>
-Guides writing Elixir documentation with @moduledoc, @doc, @typedoc, doctests, cross-references, and metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides writing Elixir documentation with @moduledoc, @doc, @typedoc, doctests, cross-references, and metadata.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill when adding or improving Elixir documentation in .ex files. It helps structure @moduledoc, @doc, @typedoc, doctests, cross-references, formatting, metadata, and final documentation checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated documentation or doctests may be inaccurate for the target project. <br>
-Mitigation: Review suggested @moduledoc, @doc, @typedoc, and doctest content before committing changes. <br>
-Risk: Suggested verification commands such as mix test or mix docs may run project-specific code or fail in an unprepared environment. <br>
-Mitigation: Run verification commands in the intended project environment and review failures or ExDoc warnings before publishing documentation. <br>
+## Use Case:
 
+Developers and engineers use this skill to add or improve Elixir API documentation in .ex files, including module docs, function docs, type docs, doctests, cross-references, formatting, and metadata.
 
-## Reference(s): <br>
-- [Elixir Writing Docs](https://clawhub.ai/anderskev/elixir-writing-docs) <br>
-- [admonitions-and-formatting.md](references/admonitions-and-formatting.md) <br>
-- [cross-references.md](references/cross-references.md) <br>
-- [doctests.md](references/doctests.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with Elixir code examples and shell command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata) <br>
+Risk: Verification advice can involve running a project's normal mix test or mix docs commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run suggested commands only in trusted projects and review the command before execution.
+
+Risk: Documentation guidance may be applied incorrectly to public APIs, causing incomplete or misleading generated docs.
+
+Mitigation: Review public modules, functions, callbacks, and types for accurate @moduledoc, @doc, @typedoc, and @spec coverage before release.
+
+## Reference(s):
+
+- [Doctests](references/doctests.md)
+- [Cross-References and Linking](references/cross-references.md)
+- [Admonitions and Formatting](references/admonitions-and-formatting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands]
+
+**Output Format:** [Markdown guidance with Elixir examples and occasional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend running project-specific mix test or mix docs commands when documentation, doctests, or cross-references change.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

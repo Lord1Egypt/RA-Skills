@@ -1,44 +1,60 @@
-## Description: <br>
-Reduce per-shipment costs and improve delivery speed by analyzing carrier rates, package dimensions, zone distribution, and fulfillment method mix, with concrete rate negotiation targets and carrier selection rules for the user's order profile. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reduce per-shipment costs and improve delivery speed by analyzing carrier rates, package dimensions, zone distribution, and fulfillment method mix, with concrete rate negotiation targets and carrier selection rules for an order profile.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Ecommerce operators and fulfillment teams use this skill to audit shipment data, compare carriers, reduce DIM weight and surcharge costs, and produce a practical shipping optimization plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shipment invoices and order history can contain sensitive business data. <br>
-Mitigation: Provide only the shipment fields needed for the audit and avoid sharing unnecessary customer or business details. <br>
-Risk: Carrier, 3PL, and packaging recommendations may not match current account terms, live rates, or operational constraints. <br>
-Mitigation: Verify recommendations against live carrier quotes, current contracts, and internal fulfillment requirements before acting. <br>
+## Use Case:
 
+External ecommerce operators and logistics teams use this skill to audit shipment data, compare carrier and packaging options, and produce an optimization plan with carrier selection rules, surcharge reductions, and negotiation targets.
 
-## Reference(s): <br>
-- [Shipping Optimizer on ClawHub](https://clawhub.ai/leooooooow/shipping-optimizer) <br>
-- [Carrier Rate Comparison Guide](artifact/carrier-rate-guide.md) <br>
-- [Packaging Optimization Guide](artifact/packaging-guide.md) <br>
-- [Shipping Optimizer Audit Checklist](artifact/checklist.md) <br>
-- [Shipping Optimizer Output Template](artifact/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance with tables, checklists, formulas, and recommendation templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces audit recommendations, carrier selection rules, negotiation targets, and checklist-style plans based on user-provided shipping data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Shipment invoices, customer ZIP distributions, carrier discounts, and shipping spend may contain business-sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only the minimum data needed for the analysis and avoid sharing unnecessary customer or contract details.
+
+Risk: Carrier rates, surcharges, and service terms can change and may differ by account or contract.
+
+Mitigation: Verify live carrier quotes and current contract terms before changing routing rules, fulfillment locations, or carrier agreements.
+
+Risk: Packaging changes can reduce cost but may affect product protection or presentation.
+
+Mitigation: Test revised packaging on a small shipment batch before committing it across the full catalog.
+
+## Reference(s):
+
+- [Output Template](artifact/output-template.md)
+- [Carrier Rate Comparison Guide](artifact/carrier-rate-guide.md)
+- [Packaging Optimization Guide](artifact/packaging-guide.md)
+- [Quality Checklist](artifact/checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown plan with tables, checklists, and carrier selection rules]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-provided shipment, invoice, rate, zone, packaging, surcharge, and carrier contract data.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

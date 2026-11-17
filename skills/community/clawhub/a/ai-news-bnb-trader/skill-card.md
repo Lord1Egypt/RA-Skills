@@ -1,42 +1,59 @@
-## Description: <br>
-TypeScript (Node.js 20+) AI news-driven BNB strategy trading bot for BSC that uses news sentiment, risk controls, dry-run safety, panic mode, status reporting, and approval revoke tooling for WBNB-to-stablecoin swaps. <br>
+## Description:
 
-This skill is for research and development only. <br>
+TypeScript (Node.js 20+) AI news-driven BNB strategy trading bot for BSC, used for event/news sentiment signals, strict risk controls, and automated WBNB<->stablecoin swaps with dry-run safety, panic mode, status, and approval revoke tooling.
 
-## Publisher: <br>
-[happyRstudent](https://clawhub.ai/user/happyRstudent) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[happyrstudent](https://clawhub.ai/user/happyrstudent)
 
-## Use Case: <br>
-Developers and trading-system reviewers use this skill to run or assess a BSC news-driven BNB trading workflow with configurable news ingestion, sentiment scoring, dry-run mode, wallet key handling, status checks, and risk gates. It is appropriate for research and controlled testing, not unmanaged live trading. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Live mode can automatically move wallet funds and cause irreversible financial loss. <br>
-Mitigation: Use only a dedicated low-balance wallet, keep DRY_RUN=true through full-flow testing, and never provide a main wallet private key. <br>
-Risk: Trading decisions depend on external RPC, news, 1inch, and token configuration that may be wrong or unavailable. <br>
-Mitigation: Verify RPC, news source, 1inch API, token addresses, slippage, and trade limits before any live run. <br>
-Risk: The panic command should not be treated as the only emergency stop for a running trading process. <br>
-Mitigation: Stop the running process directly and confirm no live trading process remains active. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/happyRstudent/ai-news-bnb-trader) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/happyRstudent) <br>
+## Use Case:
 
+Developers and external users can use this skill to run or evaluate a news-driven BSC trading bot that turns REST or WebSocket news signals into WBNB and stablecoin swap decisions. It is most appropriate for controlled review, dry-run testing, and research-style assessment before any live wallet use.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON status output, and TypeScript configuration/code references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can start a long-running trading process, report status, set panic state, revoke approvals, or encrypt a wallet key depending on the command used.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: package.json and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Live mode can sign high-impact blockchain transactions with weak validation.
+
+Mitigation: Keep DRY_RUN=true until the transaction-building path is audited, validate token and DEX addresses, and use a dedicated low-balance wallet.
+
+Risk: External API origins and swap responses can influence transaction construction.
+
+Mitigation: Pin and validate ONEINCH_API_BASE and other external API origins, and rotate any API key used with an untrusted endpoint.
+
+Risk: The panic command may not stop an already-running bot or already-submitted transaction.
+
+Mitigation: Treat panic as a state flag rather than a guaranteed emergency stop, monitor running processes, and revoke approvals where appropriate.
+
+## Reference(s):
+
+- [AI News BNB Trader ClawHub page](https://clawhub.ai/happyrstudent/skills/ai-news-bnb-trader)
+- [1inch BSC swap API endpoint](https://api.1inch.dev/swap/v6.0/56)
+- [OpenAI chat completions API endpoint](https://api.openai.com/v1/chat/completions)
+- [BSC public RPC endpoint](https://bsc-dataseed.binance.org)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown command guidance, TypeScript code, environment configuration, JSON status output, and runtime logs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Live mode can submit signed BSC transactions; dry run is the default and should remain enabled until the transaction path is audited.]
+
+## Skill Version(s):
+
+0.1.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

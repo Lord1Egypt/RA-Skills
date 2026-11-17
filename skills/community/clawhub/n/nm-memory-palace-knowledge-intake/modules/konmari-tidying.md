@@ -16,7 +16,7 @@ Marie Kondo's philosophy adapted for knowledge curation. Time-based pruning is l
 ## The Core Shift
 
 > "The question of what you want to own is actually the question of how you want to live your life."
-> — Marie Kondo
+> (Marie Kondo)
 
 Traditional pruning: "Delete if not accessed in 90 days"
 KonMari pruning: "Does this knowledge spark joy and serve your aspirations?"
@@ -47,7 +47,8 @@ Before pruning, ask: **Who am I becoming?**
 Your aspirations define what stays.
 
 ### 3. Finish Discarding First
-Don't reorganize before releasing. Moving cluttered knowledge to new locations is not tidying—it's hiding.
+Don't reorganize before releasing. Moving cluttered knowledge to new
+locations hides clutter rather than tidying it.
 
 ### 4. Tidy by Category, Not Location
 Review all knowledge of one type together:
@@ -84,12 +85,13 @@ Two questions, both must be yes:
 
 ## The Curator's Prerogative
 
-The human in the loop is the master curator. Your aspirations, your goals, your vision of the future—these define relevance, not arbitrary metrics.
+The human in the loop is the master curator. Your aspirations, your
+goals, and your vision of the future define relevance.
 
 **Only you can answer:**
 - What domains are you growing into?
 - What have you consciously decided to leave behind?
-- What knowledge represents your past self, not your future self?
+- What knowledge belongs to your past self alone?
 
 Claude can prompt these questions. Claude cannot answer them for you.
 
@@ -138,7 +140,7 @@ alignment_check:
 Some knowledge resists tidying for good reason:
 
 - **Hard-won lessons from failure** - Pain teaches; don't repeat it
-- **Foundational principles** - Timeless truths transcend trends
+- **Foundational principles** - Timeless truths outlast trends
 - **Counter-intuitive insights** - Easy to forget, hard to relearn
 - **Context for decisions** - "Why we DON'T do X" has value
 

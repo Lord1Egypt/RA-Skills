@@ -1,51 +1,59 @@
-## Description: <br>
-ROS 2 专家助手，提供工程开发辅助、架构分析、学习教学、环境配置、项目实战引导五大能力；当用户需要开发 ROS 2 应用、分析工程代码、学习 ROS 2 知识、安装配置环境或通过项目实战学习时使用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ROS 2 专家助手 helps developers and robotics learners with ROS 2 Humble development, architecture analysis, learning, environment setup, and project-based practice.
 
-## Publisher: <br>
-[jessy-huang](https://clawhub.ai/user/jessy-huang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jessy-huang](https://clawhub.ai/user/jessy-huang)
 
-## Use Case: <br>
-Developers, robotics engineers, and learners use this skill to build and analyze ROS 2 Humble applications, understand ROS 2 concepts, configure environments, troubleshoot issues, and plan guided practice projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may suggest one-line installer and package-manager commands that change system sources or packages. <br>
-Mitigation: Review commands before execution, prefer verified HTTPS sources, inspect installer scripts first, and use a VM or container when possible. <br>
-Risk: Troubleshooting workflows may involve logs or robotics data that contain sensitive locations, maps, voice data, or credentials. <br>
-Mitigation: Redact logs and data before sharing them with external AI services, and avoid sending API keys or other secrets. <br>
-Risk: APT source changes or lock-file deletion can disrupt a host system when package-manager operations are already running. <br>
-Mitigation: Back up APT configuration before changing sources and confirm no package process is active before touching package-manager locks. <br>
+## Use Case:
 
+Developers, robotics engineers, and learners use this skill to design, generate, analyze, troubleshoot, and explain ROS 2 Humble applications. It supports node communication patterns, environment validation, project walkthroughs, and hands-on task design.
 
-## Reference(s): <br>
-- [ROS 2 Humble documentation](http://fishros.org/doc/ros2/humble/) <br>
-- [FishROS one-click installer documentation](https://fishros.org.cn/forum/topic/20/) <br>
-- [ROS 2 core concepts reference](references/ros2-core-concepts.md) <br>
-- [ROS 2 development best practices](references/best-practices.md) <br>
-- [ROS 2 installation guide](references/installation-guide.md) <br>
-- [ROS 2 project analysis guide](references/project-analysis-guide.md) <br>
-- [ROS 2 practical tasks reference](references/practical-tasks.md) <br>
-- [ros2_control documentation](https://control.ros.org/master/index.html) <br>
-- [MoveIt 2 tutorials](https://moveit.picknik.ai/main/doc/tutorials/tutorials.html) <br>
-- [Vosk speech recognition](https://alphacephei.com/vosk/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with code blocks, tables, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include ROS 2 Python or C++ snippets, package commands, environment checks, troubleshooting steps, architecture summaries, and learning plans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence, created 2026-04-02T03:44:16Z) <br>
+Risk: The security evidence flags installation guidance that runs an unverified one-line HTTP installer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installation steps before use, prefer official HTTPS ROS 2 installation guidance or a verified installer, and inspect scripts before execution.
+
+Risk: The security evidence flags unsafe privileged troubleshooting commands for APT or dpkg lock files.
+
+Mitigation: Avoid deleting package-manager lock files unless no package process is running and a recovery plan is in place.
+
+## Reference(s):
+
+- [ROS 2 Core Concepts](references/ros2-core-concepts.md)
+- [ROS 2 Development Best Practices](references/best-practices.md)
+- [ROS 2 Installation Guide](references/installation-guide.md)
+- [ROS 2 Project Analysis Guide](references/project-analysis-guide.md)
+- [ROS 2 Practical Task Design Reference](references/practical-tasks.md)
+- [FishROS ROS 2 Humble Documentation](http://fishros.org/doc/ros2/humble/)
+- [FishROS One-Click Installer Documentation](https://fishros.org.cn/forum/topic/20/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ROS 2 package structure, node code, command sequences, architecture tables, troubleshooting steps, and learning plans.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

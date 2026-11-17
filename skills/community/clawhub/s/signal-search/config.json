@@ -1,0 +1,673 @@
+{
+  "_comment": "Signal-Search 单真相源。引擎口径唯一以此文件为准（修复旧 skill 三处不一致）。所有 URL 模板与 references/engines.md 一致。补强开关默认 false（M03/M25 验收），合规护栏默认开（M55）。",
+  "scrape": {
+    "tls_verify": true
+  },
+  "engines": {
+    "cn": [
+      {
+        "id": "Baidu",
+        "name": "百度",
+        "region": "CN",
+        "best_for": [
+          "通用",
+          "中文网页"
+        ],
+        "freshness": "中",
+        "search_url": "https://www.baidu.com/s?wd={q}"
+      },
+      {
+        "id": "BingCN",
+        "name": "必应中国",
+        "region": "CN",
+        "best_for": [
+          "通用",
+          "学术"
+        ],
+        "freshness": "中",
+        "search_url": "https://cn.bing.com/search?q={q}"
+      },
+      {
+        "id": "BingINT",
+        "name": "必应国际",
+        "region": "INT",
+        "best_for": [
+          "英文",
+          "学术"
+        ],
+        "freshness": "中",
+        "search_url": "https://www.bing.com/search?q={q}"
+      },
+      {
+        "id": "360",
+        "name": "360搜索",
+        "region": "CN",
+        "best_for": [
+          "通用"
+        ],
+        "freshness": "低",
+        "search_url": "https://www.so.com/s?q={q}"
+      },
+      {
+        "id": "Sogou",
+        "name": "搜狗",
+        "region": "CN",
+        "best_for": [
+          "通用",
+          "微信外链"
+        ],
+        "freshness": "中",
+        "search_url": "https://www.sogou.com/web?query={q}"
+      },
+      {
+        "id": "WeChat",
+        "name": "微信",
+        "region": "CN",
+        "best_for": [
+          "公众号",
+          "中文深度"
+        ],
+        "freshness": "高",
+        "search_url": "https://weixin.sogou.com/weixin?type=2&query={q}"
+      },
+      {
+        "id": "Toutiao",
+        "name": "头条",
+        "region": "CN",
+        "best_for": [
+          "资讯",
+          "时效"
+        ],
+        "freshness": "高",
+        "search_url": "https://so.toutiao.com/search?keyword={q}"
+      },
+      {
+        "id": "Jisilu",
+        "name": "集思录",
+        "region": "CN",
+        "best_for": [
+          "金融数据",
+          "固收"
+        ],
+        "freshness": "高",
+        "search_url": "https://www.jisilu.cn/search?q={q}"
+      }
+    ],
+    "global": [
+      {
+        "id": "Google",
+        "name": "Google",
+        "region": "INT",
+        "best_for": [
+          "通用",
+          "英文"
+        ],
+        "freshness": "中",
+        "search_url": "https://www.google.com/search?q={q}",
+        "quality": "B"
+      },
+      {
+        "id": "GoogleHK",
+        "name": "Google香港",
+        "region": "INT",
+        "best_for": [
+          "通用",
+          "中文国际"
+        ],
+        "freshness": "中",
+        "search_url": "https://www.google.com.hk/search?q={q}",
+        "quality": "B"
+      },
+      {
+        "id": "DuckDuckGo",
+        "name": "DuckDuckGo",
+        "region": "INT",
+        "best_for": [
+          "隐私",
+          "通用"
+        ],
+        "freshness": "中",
+        "search_url": "https://html.duckduckgo.com/html/?q={q}",
+        "quality": "B"
+      },
+      {
+        "id": "Yahoo",
+        "name": "Yahoo",
+        "region": "INT",
+        "best_for": [
+          "通用"
+        ],
+        "freshness": "低",
+        "search_url": "https://search.yahoo.com/search?p={q}",
+        "quality": "B"
+      },
+      {
+        "id": "Startpage",
+        "name": "Startpage",
+        "region": "INT",
+        "best_for": [
+          "隐私",
+          "Google结果"
+        ],
+        "freshness": "中",
+        "search_url": "https://www.startpage.com/sp/search?query={q}",
+        "quality": "B"
+      },
+      {
+        "id": "Brave",
+        "name": "Brave",
+        "region": "INT",
+        "best_for": [
+          "隐私",
+          "通用"
+        ],
+        "freshness": "中",
+        "search_url": "https://search.brave.com/search?q={q}",
+        "quality": "B"
+      },
+      {
+        "id": "Ecosia",
+        "name": "Ecosia",
+        "region": "INT",
+        "best_for": [
+          "通用",
+          "环保"
+        ],
+        "freshness": "低",
+        "search_url": "https://www.ecosia.org/search?q={q}",
+        "quality": "B"
+      },
+      {
+        "id": "Qwant",
+        "name": "Qwant",
+        "region": "INT",
+        "best_for": [
+          "隐私",
+          "欧洲"
+        ],
+        "freshness": "中",
+        "search_url": "https://www.qwant.com/?q={q}",
+        "quality": "B"
+      },
+      {
+        "id": "WolframAlpha",
+        "name": "WolframAlpha",
+        "region": "INT",
+        "best_for": [
+          "计算",
+          "事实",
+          "数据"
+        ],
+        "freshness": "高",
+        "search_url": "https://www.wolframalpha.com/input?i={q}",
+        "quality": "B"
+      }
+    ],
+    "academic": [
+      {
+        "id": "arXiv",
+        "name": "arXiv",
+        "type": "academic",
+        "best_for": [
+          "论文预印本"
+        ],
+        "search_url": "https://arxiv.org/search/?searchtype=all&query={q}"
+      },
+      {
+        "id": "SemanticScholar",
+        "name": "Semantic Scholar",
+        "type": "academic",
+        "best_for": [
+          "论文",
+          "引用"
+        ],
+        "search_url": "https://www.semanticscholar.org/search?q={q}&sort=relevance"
+      }
+    ],
+    "vertical": {
+      "academic-cn": [
+        {
+          "id": "BaiduScholar",
+          "name": "百度学术",
+          "access": "free",
+          "best_for": [
+            "中文学术"
+          ],
+          "search_url": "https://xueshu.baidu.com/s?wd={q}"
+        },
+        {
+          "id": "CNKI",
+          "name": "中国知网",
+          "access": "free",
+          "best_for": [
+            "中文学术文献"
+          ],
+          "search_url": "https://kns.cnki.net/kns8s/defaultresult/index?kw={q}"
+        },
+        {
+          "id": "WanFang",
+          "name": "万方",
+          "access": "free",
+          "best_for": [
+            "中文学术文献"
+          ],
+          "search_url": "https://www.wanfangdata.com.cn/search?q={q}"
+        }
+      ],
+      "tech-cn": [
+        {
+          "id": "CSDN",
+          "name": "CSDN",
+          "access": "free",
+          "best_for": [
+            "技术博客"
+          ],
+          "search_url": "https://so.csdn.net/so/search?q={q}"
+        },
+        {
+          "id": "Juejin",
+          "name": "掘金",
+          "access": "free",
+          "best_for": [
+            "技术文章"
+          ],
+          "search_url": "https://juejin.cn/search?query={q}"
+        },
+        {
+          "id": "cnblogs",
+          "name": "博客园",
+          "access": "free",
+          "best_for": [
+            ".NET/开发"
+          ],
+          "search_url": "https://www.cnblogs.com/search?q={q}"
+        },
+        {
+          "id": "Gitee",
+          "name": "Gitee",
+          "access": "free",
+          "best_for": [
+            "中文开源"
+          ],
+          "search_url": "https://search.gitee.com/?q={q}"
+        }
+      ],
+      "code": [
+        {
+          "id": "GitHub",
+          "name": "GitHub",
+          "access": "free",
+          "best_for": [
+            "代码/开源/趋势"
+          ],
+          "search_url": "https://github.com/search?q={q}"
+        },
+        {
+          "id": "StackOverflow",
+          "name": "Stack Overflow",
+          "access": "free",
+          "best_for": [
+            "编程问答"
+          ],
+          "search_url": "https://stackoverflow.com/search?q={q}"
+        },
+        {
+          "id": "HackerNews",
+          "name": "Hacker News",
+          "access": "free",
+          "best_for": [
+            "技术舆情"
+          ],
+          "api": "https://hn.algolia.com/api/v1/search?query={q}"
+        }
+      ],
+      "finance-cn": [
+        {
+          "id": "Xueqiu",
+          "name": "雪球",
+          "access": "free",
+          "best_for": [
+            "个股/观点"
+          ],
+          "search_url": "https://xueqiu.com/search?q={q}"
+        },
+        {
+          "id": "Eastmoney",
+          "name": "东方财富",
+          "access": "free",
+          "best_for": [
+            "行情/研报"
+          ],
+          "search_url": "https://so.eastmoney.com/web/s?keyword={q}"
+        },
+        {
+          "id": "SinaFin",
+          "name": "新浪财经",
+          "access": "free",
+          "best_for": [
+            "财经新闻"
+          ],
+          "search_url": "https://search.sina.com.cn/?q={q}"
+        }
+      ],
+      "social-cn": [
+        {
+          "id": "Zhihu",
+          "name": "知乎",
+          "access": "free",
+          "best_for": [
+            "高质量问答"
+          ],
+          "search_url": "https://www.zhihu.com/search?type=content&q={q}"
+        },
+        {
+          "id": "Weibo",
+          "name": "微博",
+          "access": "free",
+          "best_for": [
+            "实时舆情"
+          ],
+          "search_url": "https://s.weibo.com/weibo?q={q}"
+        },
+        {
+          "id": "Bilibili",
+          "name": "B站",
+          "access": "free",
+          "best_for": [
+            "视频/评测"
+          ],
+          "search_url": "https://search.bilibili.com/all?keyword={q}"
+        }
+      ],
+      "knowledge": [
+        {
+          "id": "Wikipedia",
+          "name": "维基百科",
+          "access": "free",
+          "best_for": [
+            "通用知识"
+          ],
+          "search_url": "https://en.wikipedia.org/wiki/Special:Search?search={q}"
+        },
+        {
+          "id": "BaiduBaike",
+          "name": "百度百科",
+          "access": "free",
+          "best_for": [
+            "中文概念"
+          ],
+          "search_url": "https://baike.baidu.com/item/{q}"
+        },
+        {
+          "id": "Wikidata",
+          "name": "Wikidata",
+          "access": "free",
+          "best_for": [
+            "结构化知识"
+          ],
+          "search_url": "https://www.wikidata.org/w/index.php?search={q}"
+        }
+      ],
+      "news-cn": [
+        {
+          "id": "Xinhua",
+          "name": "新华网",
+          "access": "free",
+          "best_for": [
+            "权威央媒"
+          ],
+          "search_url": "https://so.news.cn/search?keyword={q}"
+        },
+        {
+          "id": "People",
+          "name": "人民网",
+          "access": "free",
+          "best_for": [
+            "权威央媒"
+          ],
+          "search_url": "http://search.people.com.cn/rmw/english/search?keyword={q}"
+        },
+        {
+          "id": "Kr36",
+          "name": "36氪",
+          "access": "free",
+          "best_for": [
+            "科技商业"
+          ],
+          "search_url": "https://36kr.com/search/articles/{q}"
+        }
+      ],
+      "legal-cn": [
+        {
+          "id": "GovCN",
+          "name": "中国政府网",
+          "access": "free",
+          "best_for": [
+            "政策法规"
+          ],
+          "search_url": "https://sousuo.www.gov.cn/zcwjk/policyRelease/policyReleaseResult.htm?q={q}"
+        },
+        {
+          "id": "PKULaw",
+          "name": "北大法宝",
+          "access": "free",
+          "best_for": [
+            "法律检索"
+          ],
+          "search_url": "https://www.pkulaw.com/"
+        }
+      ],
+      "medical": [
+        {
+          "id": "PubMed",
+          "name": "PubMed",
+          "access": "free",
+          "best_for": [
+            "医学文献"
+          ],
+          "search_url": "https://pubmed.ncbi.nlm.nih.gov/?term={q}"
+        }
+      ],
+      "regional": [
+        {
+          "id": "Yandex",
+          "name": "Yandex",
+          "access": "free",
+          "best_for": [
+            "俄语区"
+          ],
+          "search_url": "https://yandex.com/search/?text={q}"
+        },
+        {
+          "id": "Naver",
+          "name": "Naver",
+          "access": "free",
+          "best_for": [
+            "韩语区"
+          ],
+          "search_url": "https://search.naver.com/search.naver?query={q}"
+        },
+        {
+          "id": "Mojeek",
+          "name": "Mojeek",
+          "access": "free",
+          "best_for": [
+            "独立索引"
+          ],
+          "search_url": "https://www.mojeek.com/search?q={q}"
+        },
+        {
+          "id": "Marginalia",
+          "name": "Marginalia",
+          "access": "free",
+          "best_for": [
+            "老网页"
+          ],
+          "search_url": "https://search.marginalia.nu/search?query={q}"
+        }
+      ]
+    }
+  },
+  "extract": {
+    "tool": "trafilatura",
+    "fragment_tool": "markdownify",
+    "prefer_json_api": true,
+    "truncate_chars": 800,
+    "js_render_fallback": "playwright"
+  },
+  "tier_defaults": {
+    "L0": {
+      "budget": 2000,
+      "engines": "auto",
+      "max_sources": 1
+    },
+    "L1": {
+      "budget": 8000,
+      "engines": "auto",
+      "max_sources": 3
+    },
+    "L2": {
+      "budget": 30000,
+      "engines": "auto",
+      "max_sources": 8
+    },
+    "L3": {
+      "budget": 100000,
+      "engines": "auto",
+      "max_sources": 20
+    }
+  },
+  "credibility_table": {
+    "gov": 0.95,
+    "media": 0.85,
+    "academic": 0.9,
+    "vendor": 0.7,
+    "forum": 0.4,
+    "selfmedia": 0.35,
+    "unknown": 0.5
+  },
+  "cache": {
+    "enabled": true,
+    "ttl_minutes": 1440,
+    "dir": ".cache/",
+    "semantic_threshold_by_category": {
+      "realtime": 0.95,
+      "doc": 0.92,
+      "code": 0.95,
+      "general": 0.9
+    }
+  },
+  "rerank": {
+    "enabled": false,
+    "method": "bm25_rrf",
+    "top_k": 20
+  },
+  "observability": {
+    "trace": false,
+    "log_dir": ".trace/"
+  },
+  "searxng": {
+    "enabled": false,
+    "url": ""
+  },
+  "dynamic_profiling": {
+    "enabled": false
+  },
+  "conflict_typing": {
+    "enabled": false
+  },
+  "entity_resolution": {
+    "enabled": false
+  },
+  "result_driven_rewrite": {
+    "enabled": false,
+    "max_rounds": 2
+  },
+  "deep_fetch": {
+    "enabled": true,
+    "max_pages_per_query": 3,
+    "timeout_per_page": 15,
+    "fallback_to_serp": true
+  },
+  "dedup": {
+    "default_threshold": 3,
+    "external_threshold": 1
+  },
+  "verify": {
+    "semantic": false,
+    "semantic_threshold": 0.55,
+    "coverage_threshold": 0.5
+  },
+  "embed": {
+    "model": "paraphrase-multilingual-MiniLM-L12-v2"
+  },
+  "compliance": {
+    "enabled": true,
+    "respect_robots": true,
+    "robots_scope": "serp",
+    "rate_limit_per_sec": 0.07,
+    "pii_redact": true,
+    "skip_loginwall_paywall": true
+  },
+  "source_prefs_default": {
+    "boost": [],
+    "block": []
+  },
+  "research": {
+    "default_tier": "auto",
+    "clarify_l2l3": true,
+    "max_iterations": 3,
+    "agent_dispatch": true,
+    "model_tier": true,
+    "time_range": "近3年",
+    "vault_dir": "./research_vault",
+    "closure_check": true,
+    "vault_incremental": false,
+    "vault_enabled": false,
+    "should_skip": true
+  },
+  "clean_sources": {
+    "enabled": true,
+    "default_tier": "standard",
+    "timeout": 4.0,
+    "max_workers": 8,
+    "overall_timeout": 12.0,
+    "routing": {
+      "enabled": true,
+      "mode": "select",
+      "max_sources": 16,
+      "include_general_floor": true,
+      "fallback_to_tier": false,
+      "router": "heuristic",
+      "cache": false
+    },
+    "categories": {
+      "intl_engines": {
+        "enabled": true
+      },
+      "reference": {
+        "enabled": true
+      },
+      "academic_api": {
+        "enabled": true
+      },
+      "authoritative": {
+        "enabled": true
+      },
+      "industry_keyless": {
+        "enabled": true
+      },
+      "cn_official": {
+        "enabled": true
+      },
+      "privacy_extra": {
+        "enabled": true
+      },
+      "ai_search": {
+        "enabled": false,
+        "keys": {}
+      }
+    },
+    "custom_sources": []
+  }
+}

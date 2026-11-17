@@ -41,9 +41,12 @@ from cue_api import (  # noqa: E402
     generate_template,
     get_template,
     load_config,
+    normalize_template_id,
     update_template,
+    validate_template_id,
 )
 from validate_template import validate  # noqa: E402
+from paths import cue_subdir  # noqa: E402 - proposal/backup paths under <root>
 
 
 LLM_FIELDS = ("input_form_spec", "goal", "search_plan", "report_format")
@@ -301,7 +304,8 @@ def render_diff(field: str, old: str, new: str) -> str:
 
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("template_id")
+    p.add_argument("template_id", type=normalize_template_id,
+                   help="搭子模板 id (裸 <id> 自动补 template_ 前缀)")
     g = p.add_mutually_exclusive_group(required=True)
     g.add_argument("--issues", help="path to issues.txt (one bullet per line)")
     g.add_argument("--message", help="single-line issue description")
@@ -315,6 +319,10 @@ def main(argv: list[str] | None = None) -> int:
         "中文数字章节、章节编号不连续、`可提供:` 段缺失等机械格式问题）",
     )
     args = p.parse_args(argv)
+    _bad_id = validate_template_id(args.template_id)
+    if _bad_id:
+        print(f"[+tune] ✗ {_bad_id}", flush=True)
+        return 2
 
     try:
         load_config()
@@ -393,10 +401,13 @@ def main(argv: list[str] | None = None) -> int:
         print(render_diff(field, old, new) or "(structurally identical)")
 
     if err:
-        # Save proposal to /tmp so user can inspect & manually fix without
-        # the JSON cluttering the terminal.
-        proposal_path = Path(
-            f"/tmp/cue-buddy-proposal-{args.template_id[-8:]}-"
+        # Save proposal under the resolved root's proposals/ dir so the user
+        # can inspect & manually fix without the JSON cluttering the terminal.
+        # (Was /tmp/ - broke on Windows which has no /tmp; <root>/proposals is
+        # portable and co-located with backups.)
+        proposal_path = (
+            cue_subdir("proposals")
+            / f"cue-buddy-proposal-{args.template_id[-8:]}-"
             f"{time.strftime('%Y%m%d-%H%M%S')}.json"
         )
         proposal_path.write_text(
@@ -444,10 +455,9 @@ def main(argv: list[str] | None = None) -> int:
 
 
 def _backup_before_put(template_id: str, current: dict) -> Path:
-    """Save current template snapshot to ~/.cue/backups/ — gives the user
+    """Save current template snapshot under <root>/backups/ — gives the user
     an undo path since PUT overwrites without server-side history."""
-    backups_dir = Path.home() / ".cue" / "backups"
-    backups_dir.mkdir(parents=True, exist_ok=True)
+    backups_dir = cue_subdir("backups")
     ts = time.strftime("%Y%m%d-%H%M%S")
     safe_id = "".join(c if c.isalnum() or c in "-_" else "_" for c in template_id)
     path = backups_dir / f"{safe_id}.{ts}.json"

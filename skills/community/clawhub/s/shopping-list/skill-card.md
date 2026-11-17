@@ -1,39 +1,54 @@
-## Description: <br>
-Conversational shopping list with categories, family sharing, and purchase history for adding, checking off, and organizing items through natural language. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conversational shopping list with categories, family sharing, and purchase history.
 
-## Publisher: <br>
-[ajeenkya](https://clawhub.ai/user/ajeenkya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ajeenkya](https://clawhub.ai/user/ajeenkya)
 
-## Use Case: <br>
-Households and personal users use this skill to maintain a shared shopping list, organize items by category, track who added items, check off purchases, and query monthly purchase history. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Shopping list data and purchase history can reveal household habits, names, and preferences. <br>
-Mitigation: Keep the skill data directory private, review files before sharing or syncing them, and avoid adding sensitive notes unless necessary. <br>
-Risk: Malformed or interrupted file updates could corrupt the active list or archive state. <br>
-Mitigation: Use the skill's startup checks, corruption backup behavior, and history-before-active archive write order before making list changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Shopping List command reference](skills/shopping-list/references/commands.md) <br>
+## Use Case:
 
+External users use this skill to maintain a household shopping list through natural-language requests, including adding items, checking off purchases, editing entries, viewing categories, exporting the list, and querying purchase history.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, files] <br>
-**Output Format:** [Conversational text and Markdown summaries backed by JSON data files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains active list, configuration, and monthly history JSON files under the skill data directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and target metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill keeps shopping items, purchase history, and a saved name or nickname in local skill data files.
+
+Mitigation: Install only when local persistence of that household data is acceptable, and avoid adding sensitive personal details to item names or notes.
+
+Risk: Natural-language shopping requests can accidentally change the list when casual conversation resembles an add, remove, check, edit, or switch-user command.
+
+Mitigation: Use explicit shopping commands for mutating actions when precision matters, and review confirmations after add, remove, check, edit, clear, or switch-user operations.
+
+## Reference(s):
+
+- [Command Reference](references/commands.md)
+- [ClawHub Skill Page](https://clawhub.ai/ajeenkya/skills/shopping-list)
+- [Publisher Profile](https://clawhub.ai/user/ajeenkya)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration]
+
+**Output Format:** [Markdown and plain text responses with local JSON data updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains active shopping-list, configuration, and monthly history JSON files in the skill data directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

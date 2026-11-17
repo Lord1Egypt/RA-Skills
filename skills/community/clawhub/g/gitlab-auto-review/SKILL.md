@@ -33,7 +33,7 @@ Cron (*/2 * * * *) → gitlab-api.js list-mrs → skip reviewed → fetch diff �
 1. Create `{baseDir}/.env` with your GitLab credentials:
    ```
    GITLAB_URL=https://gitlab.example.com
-   GITLAB_TOKEN=glpat-xxxxxxxxxxxxxxxxxxxx
+   GITLAB_TOKEN=REDACTED-SECRET
    ```
    The script auto-loads this file. Environment variables take precedence (won't be overwritten if already set).
 2. Test: `node {baseDir}/scripts/gitlab-api.js get-version`

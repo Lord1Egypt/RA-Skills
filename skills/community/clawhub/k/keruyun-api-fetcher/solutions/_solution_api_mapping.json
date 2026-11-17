@@ -1,0 +1,613 @@
+{
+  "自建小程序扫码点餐解决方案": {
+    "solution_name": "自建小程序扫码点餐解决方案",
+    "api_count": 6,
+    "mapped": 7,
+    "apis": [
+      {
+        "ref_name": "门店基础信息查询",
+        "api_name": "查询组织机构信息",
+        "method": "POST",
+        "path": "/open/standard/basic/supply/prodbase/orgInfoCommon/simple-info",
+        "match": "manual"
+      },
+      {
+        "ref_name": "查询菜品详情",
+        "api_name": "门店商品详情查询",
+        "method": "POST",
+        "path": "/open/standard/dish/shop/listQueryDetailDish",
+        "match": "manual"
+      },
+      {
+        "ref_name": "扫码点餐先付模式下单",
+        "api_name": "门店商品信息分页查询",
+        "method": "POST",
+        "path": "/open/standard/dish/shop/pageQueryBaseDish",
+        "match": "manual"
+      },
+      {
+        "ref_name": "订单变更事件同步",
+        "api_name": "订单变更事件同步（报表）",
+        "method": "POST",
+        "path": "第三方提供"
+      },
+      {
+        "ref_name": "门店基础信息查询",
+        "api_name": "门店基础信息查询",
+        "method": "POST",
+        "path": "/open/standard/shop/MerchantOrgReadService/queryById"
+      },
+      {
+        "ref_name": "扫码点餐先付模式下单",
+        "api_name": "扫码点餐先付模式下单",
+        "method": "POST",
+        "path": "/open/standard/snack/kpos/order/create"
+      },
+      {
+        "ref_name": "订单详情查询",
+        "api_name": "订单详情查询接口（报表）",
+        "method": "POST",
+        "path": "/open/standard/order/queryDetail"
+      }
+    ],
+    "url": "https://open.keruyun.com/official/developer.html"
+  },
+  "客如云会员及营销解决方案": {
+    "solution_name": "客如云会员及营销解决方案",
+    "api_count": 20,
+    "mapped": 20,
+    "apis": [
+      {
+        "ref_name": "修改会员",
+        "api_name": "修改会员信息",
+        "method": "POST",
+        "path": "/open/standard/crm/brand/updateCustomer",
+        "match": "fuzzy"
+      },
+      {
+        "ref_name": "会员储值",
+        "api_name": "储值",
+        "method": "POST",
+        "path": "/open/standard/crm/listLevelRules",
+        "match": "fuzzy"
+      },
+      {
+        "ref_name": "会员储值消费",
+        "api_name": "储值",
+        "method": "POST",
+        "path": "/open/standard/crm/listLevelRules",
+        "match": "fuzzy"
+      },
+      {
+        "ref_name": "查询会员积分规则",
+        "api_name": "积分",
+        "method": "POST",
+        "path": "/open/standard/crm/listLevelRules",
+        "match": "fuzzy"
+      },
+      {
+        "ref_name": "增加会员积分",
+        "api_name": "积分",
+        "method": "POST",
+        "path": "/open/standard/crm/listLevelRules",
+        "match": "fuzzy"
+      },
+      {
+        "ref_name": "扣减会员积分",
+        "api_name": "积分",
+        "method": "POST",
+        "path": "/open/standard/crm/listLevelRules",
+        "match": "fuzzy"
+      },
+      {
+        "ref_name": "查询券实例列表",
+        "api_name": "券实例",
+        "method": "POST",
+        "path": "/open/standard/crm/listLevelRules",
+        "match": "fuzzy"
+      },
+      {
+        "ref_name": "查询券实例详情",
+        "api_name": "券实例",
+        "method": "POST",
+        "path": "/open/standard/crm/listLevelRules",
+        "match": "fuzzy"
+      },
+      {
+        "ref_name": "查询储值账户明细",
+        "api_name": "储值",
+        "method": "POST",
+        "path": "/open/standard/crm/listLevelRules",
+        "match": "fuzzy"
+      },
+      {
+        "ref_name": "创建会员",
+        "api_name": "会员创建",
+        "method": "POST",
+        "path": "/open/standard/crm/CustomerOpenFacade/createCustomer"
+      },
+      {
+        "ref_name": "查询会员基本信息",
+        "api_name": "会员查询",
+        "method": "POST",
+        "path": "/open/standard/crm/CustomerOpenFacade/queryByMobile"
+      },
+      {
+        "ref_name": "批量查询会员信息",
+        "api_name": "批量查询会员详情",
+        "method": "POST",
+        "path": "/open/standard/crm/CustomerQueryFacade/queryByCustomerIds"
+      },
+      {
+        "ref_name": "查询会员资产",
+        "api_name": "查询会员资产",
+        "method": "POST",
+        "path": "/open/standard/crm/CustomerOpenFacade/queryCustomerProperty"
+      },
+      {
+        "ref_name": "查询券模版列表",
+        "api_name": "查询券模版列表",
+        "method": "POST",
+        "path": "/open/standard/crm/OpenVoucherTemplateQueryFacade/page"
+      },
+      {
+        "ref_name": "查询券模版详情",
+        "api_name": "查询券模版详情",
+        "method": "POST",
+        "path": "/open/standard/crm/OpenVoucherTemplateQueryFacade/queryOne"
+      },
+      {
+        "ref_name": "查询券模版适用的门店",
+        "api_name": "查询券模版适用的门店",
+        "method": "POST",
+        "path": "/open/standard/crm/OpenVoucherTemplateShopQueryFacade/page"
+      },
+      {
+        "ref_name": "查询券模版适用的商品",
+        "api_name": "查询券模版适用的商品",
+        "method": "POST",
+        "path": "/open/standard/crm/OpenVoucherTemplateItemQueryFacade/page"
+      },
+      {
+        "ref_name": "券模版状态变更通知",
+        "api_name": "订单变更事件同步（报表）",
+        "method": "POST",
+        "path": "第三方提供"
+      },
+      {
+        "ref_name": "发放优惠券",
+        "api_name": "发放优惠券",
+        "method": "POST",
+        "path": "/open/standard/crm/OpenVoucherInstanceOperateFacade/send"
+      },
+      {
+        "ref_name": "作废优惠券",
+        "api_name": "作废优惠券",
+        "method": "POST",
+        "path": "/open/standard/crm/OpenVoucherInstanceOperateFacade/invalid"
+      }
+    ],
+    "url": "https://open.keruyun.com/official/developer.html"
+  },
+  "数据报表统计解决方案": {
+    "solution_name": "数据报表统计解决方案",
+    "api_count": 11,
+    "mapped": 11,
+    "apis": [
+      {
+        "ref_name": "优惠构成统计",
+        "api_name": "优惠构成统计",
+        "method": "POST",
+        "path": "/open/standard/report/business/income/promo/v3/list"
+      },
+      {
+        "ref_name": "店内营收统计",
+        "api_name": "店内营收统计",
+        "method": "POST",
+        "path": "/open/standard/report/business/income/v3/list"
+      },
+      {
+        "ref_name": "收入构成统计",
+        "api_name": "收入构成统计",
+        "method": "POST",
+        "path": "/open/standard/report/business/income/constitute/v3/list"
+      },
+      {
+        "ref_name": "营业收款统计",
+        "api_name": "营业收款统计",
+        "method": "POST",
+        "path": "/open/standard/report/paid/income/v6/list"
+      },
+      {
+        "ref_name": "支付方式收款统计",
+        "api_name": "支付方式收款统计",
+        "method": "POST",
+        "path": "/open/standard/report/paymethod/statistics"
+      },
+      {
+        "ref_name": "支付结算统计",
+        "api_name": "支付结算统计",
+        "method": "POST",
+        "path": "/open/standard/report/payment/reconciliation/v4/list"
+      },
+      {
+        "ref_name": "菜品销售统计",
+        "api_name": "菜品销售统计",
+        "method": "POST",
+        "path": "/open/standard/report/orderItem/list"
+      },
+      {
+        "ref_name": "菜品分类营收统计",
+        "api_name": "菜品分类营收统计",
+        "method": "POST",
+        "path": "/open/standard/report/orderItem/itemType/list"
+      },
+      {
+        "ref_name": "会员储值金额变动统计",
+        "api_name": "会员储值金额变动统计",
+        "method": "POST",
+        "path": "/open/standard/report/crm/recharge/summary"
+      },
+      {
+        "ref_name": "收入优惠统计报表",
+        "api_name": "收入优惠统计",
+        "method": "POST",
+        "path": "/open/standard/report/income/promo/statistics"
+      },
+      {
+        "ref_name": "部门销售品项统计",
+        "api_name": "销售品项统计",
+        "method": "POST",
+        "path": "/open/standard/report/orderItem/department/list"
+      }
+    ],
+    "url": "https://open.keruyun.com/official/developer.html"
+  },
+  "正餐点餐小程序解决方案": {
+    "solution_name": "正餐点餐小程序解决方案",
+    "api_count": 12,
+    "mapped": 11,
+    "apis": [
+      {
+        "ref_name": "门店基础信息查询",
+        "api_name": "查询组织机构信息",
+        "method": "POST",
+        "path": "/open/standard/basic/supply/prodbase/orgInfoCommon/simple-info",
+        "match": "manual"
+      },
+      {
+        "ref_name": "查询菜品详情",
+        "api_name": "门店商品详情查询",
+        "method": "POST",
+        "path": "/open/standard/dish/shop/listQueryDetailDish",
+        "match": "manual"
+      },
+      {
+        "ref_name": "查询菜品详情",
+        "api_name": "门店商品详情查询",
+        "method": "POST",
+        "path": "/open/standard/dish/shop/listQueryDetailDish",
+        "match": "manual"
+      },
+      {
+        "ref_name": "查询菜品分类",
+        "api_name": "门店商品分类信息查询",
+        "method": "POST",
+        "path": "/open/standard/dish/shop/listQueryCategory"
+      },
+      {
+        "ref_name": "菜品分页查询",
+        "api_name": "门店商品信息分页查询",
+        "method": "POST",
+        "path": "/open/standard/dish/shop/pageQueryBaseDish"
+      },
+      {
+        "ref_name": "菜品变更数据",
+        "api_name": "订单变更事件同步（报表）",
+        "method": "POST",
+        "path": "第三方提供"
+      },
+      {
+        "ref_name": "查询桌台状态",
+        "api_name": "查询桌台状态",
+        "method": "POST",
+        "path": "/open/standard/table/status/query"
+      },
+      {
+        "ref_name": "开台",
+        "api_name": "开台",
+        "method": "POST",
+        "path": "/open/standard/kposlocal/K003001"
+      },
+      {
+        "ref_name": "正餐加购并下单",
+        "api_name": "正餐加购并下单",
+        "method": "POST",
+        "path": "/open/standard/kposlocal/K003012"
+      },
+      {
+        "ref_name": "保存支付明细",
+        "api_name": "保存支付明细",
+        "method": "POST",
+        "path": "/open/standard/kposlocal/K007001"
+      },
+      {
+        "ref_name": "正餐支付退款通知",
+        "api_name": "订单变更事件同步（报表）",
+        "method": "POST",
+        "path": "第三方提供"
+      }
+    ],
+    "url": "https://open.keruyun.com/official/developer.html"
+  },
+  "排队预点解决方案": {
+    "solution_name": "排队预点解决方案",
+    "api_count": 10,
+    "mapped": 10,
+    "apis": [
+      {
+        "ref_name": "门店基础信息查询",
+        "api_name": "查询组织机构信息",
+        "method": "POST",
+        "path": "/open/standard/basic/supply/prodbase/orgInfoCommon/simple-info",
+        "match": "manual"
+      },
+      {
+        "ref_name": "查询菜品详情",
+        "api_name": "门店商品详情查询",
+        "method": "POST",
+        "path": "/open/standard/dish/shop/listQueryDetailDish",
+        "match": "manual"
+      },
+      {
+        "ref_name": "查询菜品分类",
+        "api_name": "门店商品分类信息查询",
+        "method": "POST",
+        "path": "/open/standard/dish/shop/listQueryCategory"
+      },
+      {
+        "ref_name": "菜品分页查询",
+        "api_name": "门店商品信息分页查询",
+        "method": "POST",
+        "path": "/open/standard/dish/shop/pageQueryBaseDish"
+      },
+      {
+        "ref_name": "菜品变更数据",
+        "api_name": "订单变更事件同步（报表）",
+        "method": "POST",
+        "path": "第三方提供"
+      },
+      {
+        "ref_name": "创建/修改排菜预点单",
+        "api_name": "创建/修改排菜预点单",
+        "method": "POST",
+        "path": "/open/standard/kposlocal/K003009"
+      },
+      {
+        "ref_name": "删除排菜预点单",
+        "api_name": "删除排菜预点单",
+        "method": "POST",
+        "path": "/open/standard/kposlocal/K003010"
+      },
+      {
+        "ref_name": "查询排菜预点单",
+        "api_name": "查询排菜预点单",
+        "method": "POST",
+        "path": "/open/standard/kposlocal/K003011"
+      },
+      {
+        "ref_name": "排菜单变更消息通知",
+        "api_name": "订单变更事件同步（报表）",
+        "method": "POST",
+        "path": "第三方提供"
+      },
+      {
+        "ref_name": "请求超时场景降级查询请求执行结果",
+        "api_name": "请求超时场景降级查询请求执行结果",
+        "method": "POST",
+        "path": "/open/standard/kposlocal/query/response"
+      }
+    ],
+    "url": "https://open.keruyun.com/official/developer.html"
+  },
+  "B端预订解决方案": {
+    "solution_name": "B端预订解决方案",
+    "api_count": 8,
+    "mapped": 8,
+    "apis": [
+      {
+        "ref_name": "预订到店",
+        "api_name": "预订到店",
+        "method": "POST",
+        "path": "/open/standard/book/confirmArrival"
+      },
+      {
+        "ref_name": "取消预订",
+        "api_name": "取消预订",
+        "method": "POST",
+        "path": "/open/standard/book/cancel"
+      },
+      {
+        "ref_name": "预订单状态消息通知",
+        "api_name": "预订单状态消息通知",
+        "method": "POST",
+        "path": "第三方提供"
+      },
+      {
+        "ref_name": "预订单关联的交易单的状态通知",
+        "api_name": "预订单关联的交易单的状态通知",
+        "method": "POST",
+        "path": "第三方提供"
+      },
+      {
+        "ref_name": "查询营业日和餐段信息",
+        "api_name": "获取预订营业日信息",
+        "method": "POST",
+        "path": "/open/standard/book/queryShopBookPeriodTime"
+      },
+      {
+        "ref_name": "查询桌台预订信息",
+        "api_name": "查询桌台信息与预订单聚合信息",
+        "method": "POST",
+        "path": "/open/standard/book/queryBookingTableInfo"
+      },
+      {
+        "ref_name": "创建预订单",
+        "api_name": "预订单保存接口",
+        "method": "POST",
+        "path": "/open/standard/book/save"
+      },
+      {
+        "ref_name": "预订详情查询",
+        "api_name": "预订单详情查询",
+        "method": "POST",
+        "path": "/open/standard/book/queryBookOrderDetailByOrderNo"
+      }
+    ],
+    "url": "https://open.keruyun.com/official/developer.html"
+  },
+  "C端预订解决方案": {
+    "solution_name": "C端预订解决方案",
+    "api_count": 7,
+    "mapped": 7,
+    "apis": [
+      {
+        "ref_name": "C端预订下单",
+        "api_name": "C端预订下单",
+        "method": "POST",
+        "path": "/open/standard/book/c-terminal/save"
+      },
+      {
+        "ref_name": "取消C端预订",
+        "api_name": "取消C端预订",
+        "method": "POST",
+        "path": "/open/standard/book/c-terminal/cancel"
+      },
+      {
+        "ref_name": "C端预订状态变更消息",
+        "api_name": "C端预订状态变更消息",
+        "method": "POST",
+        "path": "第三方提供"
+      },
+      {
+        "ref_name": "C端预订单详情查询",
+        "api_name": "C端预订单详情查询",
+        "method": "POST",
+        "path": "/open/standard/book/c-terminal/queryBookOrderDetailByOrderNo"
+      },
+      {
+        "ref_name": "C端预订单分页查询",
+        "api_name": "C端预订单分页查询",
+        "method": "POST",
+        "path": "/open/standard/book/c-terminal/pageQuery"
+      },
+      {
+        "ref_name": "查询营业日和餐段信息",
+        "api_name": "获取预订营业日信息",
+        "method": "POST",
+        "path": "/open/standard/book/queryShopBookPeriodTime"
+      },
+      {
+        "ref_name": "查询桌台预订信息",
+        "api_name": "查询桌台信息与预订单聚合信息",
+        "method": "POST",
+        "path": "/open/standard/book/queryBookingTableInfo"
+      }
+    ],
+    "url": "https://open.keruyun.com/official/developer.html"
+  },
+  "三方系统会员解决方案": {
+    "solution_name": "三方系统会员解决方案",
+    "api_count": 4,
+    "mapped": 4,
+    "apis": [
+      {
+        "ref_name": "三方会员及资产查询",
+        "api_name": "会员及资产查询",
+        "method": "POST",
+        "path": "第三方提供",
+        "match": "fuzzy"
+      },
+      {
+        "ref_name": "三方会员资产核销",
+        "api_name": "会员资产核销",
+        "method": "POST",
+        "path": "第三方提供",
+        "match": "fuzzy"
+      },
+      {
+        "ref_name": "三方会员资产反核销",
+        "api_name": "会员资产反核销",
+        "method": "POST",
+        "path": "第三方提供",
+        "match": "fuzzy"
+      },
+      {
+        "ref_name": "查询三方会员资产核销结果",
+        "api_name": "会员资产核销",
+        "method": "POST",
+        "path": "第三方提供",
+        "match": "fuzzy"
+      }
+    ],
+    "url": "https://open.keruyun.com/official/developer.html"
+  },
+  "三方优惠券解决方案": {
+    "solution_name": "三方优惠券解决方案",
+    "api_count": 3,
+    "mapped": 3,
+    "apis": [
+      {
+        "ref_name": "券查询",
+        "api_name": "券查询",
+        "method": "POST",
+        "path": "《第三方提供并配置》"
+      },
+      {
+        "ref_name": "券核销",
+        "api_name": "券查询",
+        "method": "POST",
+        "path": "《第三方提供并配置》"
+      },
+      {
+        "ref_name": "券反核销",
+        "api_name": "券查询",
+        "method": "POST",
+        "path": "《第三方提供并配置》"
+      }
+    ],
+    "url": "https://open.keruyun.com/official/developer.html"
+  },
+  "同步年费制合约解决方案": {
+    "solution_name": "同步年费制合约解决方案",
+    "api_count": 3,
+    "mapped": 3,
+    "apis": [
+      {
+        "ref_name": "合约状态变更通知",
+        "api_name": "订单变更事件同步（报表）",
+        "method": "POST",
+        "path": "第三方提供"
+      },
+      {
+        "ref_name": "查询合约详情",
+        "api_name": "查询合约详情",
+        "method": "POST",
+        "path": "/open/standard/org/contract/list"
+      },
+      {
+        "ref_name": "过滤有效门店",
+        "api_name": "过滤有效门店",
+        "method": "POST",
+        "path": "/open/standard/org/ThirdContractQueryService/queryUsableStore"
+      }
+    ],
+    "url": "https://open.keruyun.com/official/developer.html"
+  },
+  "_stats": {
+    "solutions": 10,
+    "total_links": 83,
+    "new_apis": 18,
+    "updated": 41
+  }
+}

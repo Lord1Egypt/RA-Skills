@@ -1,0 +1,11 @@
+{
+  "name": "好律狮法律技能包",
+  "source": "userImport",
+  "version": "1.17",
+  "icon_small": "assets/haolvshi-legal-skill-icon.png",
+  "icon_large": "assets/haolvshi-legal-skill-logo.png",
+  "iconSource": "https://skills.ai.lvpin100.com/skills/haolvshi-legal-skill/haolvshi-legal-skill-icon.png",
+  "brand_color": "#B98A45",
+  "description_zh": "基于好律狮法律服务接口的专业法律技能：支持法律咨询报告、赔偿与费用计算、社会保险和养老保险待遇测算、智能合同审核、起诉状生成与答辩状生成。一句话提出问题，技能会引导补充关键事实，并交付在线报告或 Word 文书。",
+  "description_en": "Professional legal workflows via HaoLvShi APIs for consultation reports, compensation calculators, contract review, complaints and answers. One sentence starts a guided flow that delivers an online report or a Word document."
+}

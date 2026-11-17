@@ -1,43 +1,57 @@
-## Description: <br>
-CodeBuddy Coding lets an agent invoke the CodeBuddy CLI for code generation, refactoring, debugging, file operations, command execution, progress monitoring, and structured task results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CodeBuddy Coding lets agents invoke CodeBuddy CLI for code generation, refactoring, debugging, file operations, command execution, progress monitoring, and structured results.
 
-## Publisher: <br>
-[13770626440](https://clawhub.ai/user/13770626440) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[13770626440](https://clawhub.ai/user/13770626440)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to delegate coding tasks to CodeBuddy CLI, track progress, and receive structured results about status, modified files, tool calls, reasoning, duration, and errors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run a CLI with broad coding authority and defaults to permission bypass. <br>
-Mitigation: Use it only with a trusted CodeBuddy CLI in a version-controlled or disposable workspace, pass an explicit safe cwd, and avoid bypassPermissions unless deliberately needed. <br>
-Risk: Task prompts may cause file changes or command execution in the selected workspace. <br>
-Mitigation: Review task text before execution and do not pass untrusted instructions to the skill. <br>
-Risk: Detached background execution can continue outside the immediate request flow. <br>
-Mitigation: Monitor background processes or disable detached background execution when unattended changes are not acceptable. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to delegate coding tasks to CodeBuddy CLI in a project workspace. It supports generating or refactoring code, fixing bugs, running commands, monitoring progress, and returning structured execution results.
 
-## Reference(s): <br>
-- [CodeBuddy Coding on ClawHub](https://clawhub.ai/13770626440/codebuddy-coding) <br>
-- [Publisher profile: 13770626440](https://clawhub.ai/user/13770626440) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Shell commands, Configuration, Guidance, JSON task results] <br>
-**Output Format:** [JSON result objects and progress events, with optional text output from the underlying CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports status, filesModified, toolCalls, reasoning, duration, progress, and errors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: The skill defaults to bypassing permission checks for CodeBuddy CLI execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer permission-gated execution, require explicit approval for file changes and commands, and use a disposable or version-controlled workspace.
+
+Risk: The skill runs user-supplied tasks through shell-backed CLI execution in the selected working directory.
+
+Mitigation: Constrain cwd to the intended project, sandbox execution where possible, and avoid passing unreviewed tasks or paths.
+
+Risk: Detached background runs can continue outside normal task tracking.
+
+Mitigation: Avoid background execution unless process IDs are tracked and runs are cancellable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/13770626440/skills/codebuddy-coding)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON or text result objects with progress updates and file and tool-call summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May modify files and run commands in the configured workspace through CodeBuddy CLI.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

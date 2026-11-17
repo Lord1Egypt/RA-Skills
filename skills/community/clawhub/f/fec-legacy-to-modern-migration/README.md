@@ -1,17 +1,17 @@
-# 遗留系统迁移
+# Legacy system migration
 
-Frontend Craft skill for 遗留系统迁移.
+Plan an intentional migration from jQuery, templates, or older frontend stacks to modern modules.
 
 ## Skill
 
 - ID: `fec-legacy-to-modern-migration`
 - Category: `legacy-migration`
-- Version: `2.7.0`
+- Version: `2.9.0`
 - Source: `skills/fec-legacy-to-modern-migration/SKILL.md`
 
 ## Description
 
-Use when planning or implementing an intentional migration from JavaScript, jQuery, HTML/CSS, server-rendered templates, MPA legacy frontend code, or older framework code toward a modern frontend stack while preserving behavior. Do not use for routine legacy bug fixes that stay in the old stack; Chinese triggers include 遗留项目, 技术栈升级, jQuery 迁移.
+Use when planning or implementing an intentional migration from JavaScript, jQuery, HTML/CSS, server-rendered templates, MPA legacy frontend code, or older framework code toward a modern frontend stack while preserving behavior. Do not use for routine legacy bug fixes that stay in the old stack; Chinese triggers include legacy projects, technology stack upgrades, jQuery migration.
 
 ## Usage
 

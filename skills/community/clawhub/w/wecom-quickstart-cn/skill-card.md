@@ -1,43 +1,60 @@
-## Description: <br>
-企业微信快速集成配置 helps connect OpenClaw with Enterprise WeChat for group bot messages, application messages, and customer management workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides OpenClaw users through configuring WeCom application messaging, group robot webhooks, customer-message workflows, and troubleshooting.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers and operators use this skill to configure OpenClaw for Enterprise WeChat messaging, group bot notifications, customer-service automation, and approval notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Enterprise WeChat credentials, webhook URLs, and OpenClaw configuration may expose tenant messaging capabilities if stored or shared insecurely. <br>
-Mitigation: Use least-privilege WeCom apps, restrict visible departments and recipients, protect ~/.openclaw/config.yml from other users and source control, and rotate exposed secrets. <br>
-Risk: Customer-message automation can send unintended or inaccurate replies if enabled broadly before validation. <br>
-Mitigation: Test auto-replies in a limited group before using them with customers and govern customer-message automation according to internal policy. <br>
+## Use Case:
 
+Developers and operations teams use this skill to connect OpenClaw with an organization's WeCom tenant for internal notifications, group robot messages, customer-service automation, and approval alerts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/wecom-quickstart-cn) <br>
-- [Enterprise WeChat admin console](https://work.weixin.qq.com/wework_admin/frame) <br>
-- [Enterprise WeChat developer documentation](https://developer.work.weixin.qq.com/document) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration, Shell commands] <br>
-**Output Format:** [Markdown with YAML and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl for webhook testing; may include Enterprise WeChat credential placeholders for user-supplied configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: WeCom app secrets, access tokens, and webhook URLs are powerful credentials that can expose organizational messaging channels if shared or logged.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict configuration file permissions, keep credentials out of commits and screenshots, redact them from logs, and rotate them after exposure.
+
+Risk: Customer-message monitoring and automated replies can create privacy and compliance exposure if enabled without organizational approval.
+
+Mitigation: Confirm the organization permits automated monitoring and replies before enabling customer-message workflows.
+
+Risk: The security verdict is suspicious because the guide asks users to configure sensitive messaging credentials without enough security and privacy safeguards.
+
+Mitigation: Review the integration plan with tenant administrators and apply the security guidance before deployment.
+
+## Reference(s):
+
+- [WeCom Admin Console](https://work.weixin.qq.com/wework_admin/frame)
+- [WeCom Developer Documentation](https://developer.work.weixin.qq.com/document)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [ClawHub Skill Page](https://clawhub.ai/yang1002378395-cmyk/skills/wecom-quickstart-cn)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with YAML and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides setup, validation, troubleshooting, and pricing guidance in Chinese.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, skill.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

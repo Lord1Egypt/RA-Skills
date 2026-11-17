@@ -1,0 +1,84 @@
+name: Bug report
+description: Report a defect in the k12-teacher skill, prompts, references, or scripts.
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a defect. Before filing, please run
+        `./scripts/validate-structure.sh` and paste the summary below.
+        Do not use this form for security vulnerabilities; see SECURITY.md
+        for the private reporting process.
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What happened, and how does it differ from what you expected?
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, shell, and git version (for example, Windows 11, Git Bash 2.45).
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      description: Minimal, ordered steps that trigger the behavior.
+      placeholder: |
+        1. Clone the repository at commit <sha>
+        2. Run <command>
+        3. Observe <behavior>
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What should have happened instead?
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      description: Select every area the defect touches.
+      multiple: true
+      options:
+        - SKILL.md and skill index
+        - references/ content
+        - prompts/ deliverables
+        - tests/ cases
+        - scripts/ tooling
+        - Repository docs (README, CONTRIBUTING, etc.)
+        - .github/ configuration
+    validations:
+      required: true
+  - type: textarea
+    id: validation-output
+    attributes:
+      label: Validation output
+      description: Paste the summary from scripts/validate-structure.sh, if applicable.
+      render: shell
+    validations:
+      required: false
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Teaching scenario details (grade, subject, learner profile), logs, or screenshots.
+    validations:
+      required: false
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission checklist
+      options:
+        - label: I searched existing issues to avoid duplicates.
+          required: true
+        - label: I am not reporting a security vulnerability (see SECURITY.md instead).
+          required: true

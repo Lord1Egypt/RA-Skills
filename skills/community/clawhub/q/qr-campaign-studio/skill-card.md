@@ -1,42 +1,61 @@
-## Description: <br>
-Generate marketing QR codes with batch output, UTM tracking links, logo embedding, and poster composition for URL, text, Wi-Fi, and vCard payloads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates marketing QR codes for URLs, text, WiFi, and vCards with batch output, UTM tracking links, logo embedding, poster composition, and report files.
 
-## Publisher: <br>
-[wangziiiiii](https://clawhub.ai/user/wangziiiiii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangziiiiii](https://clawhub.ai/user/wangziiiiii)
 
-## Use Case: <br>
-External marketers, growth teams, and developers use this skill to create individual or batch QR campaign assets with tracking parameters, optional logo embedding, and poster-ready output. It is not intended for payment settlement or payment gateway logic. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wi-Fi passwords or contact details can appear in generated QR payload previews, metadata files, terminal output, or generated QR images. <br>
-Mitigation: Treat generated QR assets, metadata JSON, reports, and logs as sensitive; avoid committing them and store or share them only with the intended audience. <br>
-Risk: Batch item names from CSV or JSON input can include path separators and write output files outside the selected output directory. <br>
-Mitigation: Use only trusted batch files, review or normalize the name column before running batch generation, and run the skill in a dedicated output directory. <br>
+## Use Case:
 
+Marketing and growth operators, creators, and developers use this skill to create campaign QR assets for URLs, plain text, WiFi access, or contact cards, including batch production and poster placement. It is not intended for full short-link platforms, advanced visual design work, or payment settlement workflows.
 
-## Reference(s): <br>
-- [Format reference](references/format.md) <br>
-- [Sample batch CSV](references/sample-batch.csv) <br>
-- [ClawHub skill page](https://clawhub.ai/wangziiiiii/qr-campaign-studio) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with bash commands; generated PNG or JPEG images and JSON metadata or reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce QR image files, poster composites, metadata JSON, and batch run reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: Batch generation can write files based on CSV or JSON row names, which may be unsafe with untrusted batch inputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review batch files before use, keep output directories isolated, and sanitize row names or update the script before processing untrusted inputs.
+
+Risk: WiFi passwords and other sensitive payload data can be embedded in QR codes and reflected in generated metadata.
+
+Mitigation: Do not place WiFi secrets or sensitive contact data in shared output directories, logs, or reports; delete metadata files when they are no longer needed.
+
+Risk: Dependencies are version-ranged rather than pinned for reproducible production installs.
+
+Mitigation: Pin and review dependency versions before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangziiiiii/skills/qr-campaign-studio)
+- [Batch format reference](artifact/references/format.md)
+- [Sample batch CSV](artifact/references/sample-batch.csv)
+- [Jisu API](https://jisuapi.com)
+- [Jisu EPC](https://jisuepc.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with shell command examples; generated PNG or JPEG image files and JSON metadata or report files when scripts run.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can generate single QR assets, batch QR outputs, poster composites, and per-item metadata or batch reports from CSV or JSON inputs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

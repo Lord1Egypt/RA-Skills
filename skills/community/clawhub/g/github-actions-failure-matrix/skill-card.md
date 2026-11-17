@@ -1,37 +1,52 @@
-## Description: <br>
-Summarize GitHub Actions matrix job failures across runs so you can spot unstable OS/runtime axes fast. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarize GitHub Actions matrix job failures across runs so you can spot unstable OS/runtime axes fast.
 
-## Publisher: <br>
-[daniellummis](https://clawhub.ai/user/daniellummis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[daniellummis](https://clawhub.ai/user/daniellummis)
 
-## Use Case: <br>
-Developers and engineers use this skill to analyze exported GitHub Actions run JSON, group repeated matrix failures, and identify unstable workflow axes for triage. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: RUN_GLOB can select unintended local GitHub Actions export files. <br>
-Mitigation: Review RUN_GLOB before use and point it only at run JSON exports intended for analysis. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daniellummis/github-actions-failure-matrix) <br>
+## Use Case:
 
+Developers and release engineers use this skill to analyze exported GitHub Actions run JSON and identify recurring CI failures by workflow, job, matrix axis, branch, failed step, repository, and conclusion.
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Text report or JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local GitHub Actions run JSON exports selected by RUN_GLOB and optional filter environment variables.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.7.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The script reads every local JSON file matched by RUN_GLOB and may print repository names, branches, SHAs, job URLs, and failed step names from those files.
+
+Mitigation: Point RUN_GLOB only at intended GitHub Actions exports and review generated reports before sharing them outside the project.
+
+Risk: Broad or incorrect filters can omit relevant failures from the report.
+
+Mitigation: Start with a small export set or the bundled fixtures, then add workflow, branch, job, axis, conclusion, step, run, SHA, or repository filters deliberately.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daniellummis/skills/github-actions-failure-matrix)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Text report or JSON summary with grouped failure records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can exit non-zero when FAIL_ON_FAILURES=1 and grouped failures are found.]
+
+## Skill Version(s):
+
+1.7.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

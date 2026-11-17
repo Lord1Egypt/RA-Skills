@@ -1,53 +1,63 @@
-## Description: <br>
-Practical day-1 guide for building Rust applications, covering ownership, errors, traits, type choices, project setup, testing, performance, and crate selection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Day-1 guide to building well in Rust - ownership, errors as values, String vs &str, Box/Rc/Arc, anyhow vs thiserror, and a crate shortlist (tokio, serde, axum, sqlx). Use when starting a Rust project, fighting the borrow checker, or picking crates.
 
-## Publisher: <br>
-[tenequm](https://clawhub.ai/user/tenequm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[tenequm](https://clawhub.ai/user/tenequm)
 
-## Use Case: <br>
-Developers and engineers use this skill when starting or improving Rust projects, especially when choosing ownership patterns, error handling, async/runtime crates, testing structure, performance tooling, and Cargo configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Copied setup commands can install third-party software or fetch installer scripts. <br>
-Mitigation: Verify installer sources such as rustup before running commands, and review cargo, brew, or other package installs as third-party software changes. <br>
-Risk: Example web services or demo servers may expose local development ports if bound broadly. <br>
-Mitigation: Bind demo servers to localhost unless external network access is intentional and reviewed. <br>
+## Use Case:
 
+Developers starting Rust CLI, service, or library projects use this guide to understand ownership, borrowing, error handling, crate choices, and day-one project setup.
 
-## Reference(s): <br>
-- [Async Basics](references/async-basics.md) <br>
-- [Crate Shortlist](references/crate-shortlist.md) <br>
-- [Development Environment](references/dev-environment.md) <br>
-- [Error Handling](references/error-handling.md) <br>
-- [Ownership and Types](references/ownership-and-types.md) <br>
-- [Performance](references/performance.md) <br>
-- [Testing](references/testing.md) <br>
-- [Traits and Generics](references/traits-and-generics.md) <br>
-- [The Rust Programming Language](https://doc.rust-lang.org/book/) <br>
-- [Rust by Example](https://doc.rust-lang.org/rust-by-example/) <br>
-- [Rustlings](https://github.com/rust-lang/rustlings) <br>
-- [Blessed.rs Crate Guide](https://blessed.rs/crates) <br>
-- [The Rust Performance Book](https://nnethercote.github.io/perf-book/) <br>
-- [Bencher](https://bencher.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline Rust, TOML, YAML, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides educational recommendations and examples; users should review commands and crate choices before applying them to a project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: SKILL.md metadata, CHANGELOG, and server release evidence; released 2026-05-21) <br>
+Risk: An example exposes API tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or redact the token-printing example before using the guide to make changes.
+
+Risk: Some performance advice weakens system security.
+
+Mitigation: Retain host security protections and explicitly scope any profiling-policy change.
+
+Risk: Optional cache setup can affect daemon behavior, cleanup, and remote sharing.
+
+Mitigation: Preview the cache setup and review its daemon, cleanup, and remote-sharing effects before enabling it.
+
+## Reference(s):
+
+- [Ownership and types](references/ownership-and-types.md)
+- [Error handling](references/error-handling.md)
+- [Crate shortlist](references/crate-shortlist.md)
+- [Development environment](references/dev-environment.md)
+- [Testing](references/testing.md)
+- [Publisher project homepage](https://github.com/tenequm/skills/tree/main/skills/rust-dev)
+- [ClawHub skill release](https://clawhub.ai/tenequm/skills/rust-dev)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown guidance with Rust code examples, shell commands, and Cargo configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+0.9.0 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

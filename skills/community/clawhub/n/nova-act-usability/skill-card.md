@@ -1,46 +1,60 @@
-## Description: <br>
-AI-orchestrated usability testing using Amazon Nova Act that generates personas, runs browser-based tests, interprets raw responses, and produces HTML reports for real user workflows such as booking, checkout, and posting with safety guardrails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-orchestrated usability testing using Amazon Nova Act that generates personas, collects browser-test data, interprets goal achievement, and produces HTML usability reports for real user workflows with safety guardrails.
 
-## Publisher: <br>
-[zouchaoqun](https://clawhub.ai/user/zouchaoqun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zouchaoqun](https://clawhub.ai/user/zouchaoqun)
 
-## Use Case: <br>
-External users, developers, and QA teams use this skill to evaluate website usability by simulating realistic personas and browser workflows, then reviewing interpreted results and an HTML report. It is especially suited to checkout, booking, signup, posting, and general UX evaluation flows that can be tested without completing final material-impact actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automate browser workflows that approach state-changing actions such as checkout, signup, posting, and form submission. <br>
-Mitigation: Run it in test or sandbox environments and supervise workflows involving carts, checkout, signup, posting, or forms. <br>
-Risk: Nova Act traces and generated reports can persist screenshots, page content, and sensitive information visible during testing. <br>
-Mitigation: Avoid authenticated or confidential production sites and review or delete nova_act_logs and reports after use. <br>
-Risk: Using ANTHROPIC_API_KEY may send site analysis to a third-party model provider for persona generation. <br>
-Mitigation: Leave ANTHROPIC_API_KEY unset unless third-party persona generation is acceptable. <br>
-Risk: The skill requires a Nova Act API key and gives the agent browser control against the target site. <br>
-Mitigation: Install only when this operating model is acceptable, keep credentials scoped, and monitor runs that interact with real services. <br>
+## Use Case:
 
+Developers, QA teams, and UX reviewers use this skill to run persona-based browser usability tests against authorized websites, inspect raw Nova Act responses, and generate HTML reports with findings and trace links.
 
-## Reference(s): <br>
-- [Nova Act Cookbook](references/nova-act-cookbook.md) <br>
-- [Persona Examples](references/persona-examples.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zouchaoqun/nova-act-usability) <br>
-- [Publisher Profile](https://clawhub.ai/user/zouchaoqun) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands and generated JSON/HTML report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local Nova Act trace logs, adaptive test results JSON, and an HTML usability report in the working directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can automate actions on live websites, including commerce, account, posting, and form workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only websites you are authorized to test, preferably staging or sandbox environments, and stop before actions with monetary, legal, reputational, or account impact.
+
+Risk: Nova Act traces and generated reports may contain screenshots, page content, and other sensitive data from tested sites.
+
+Mitigation: Treat traces and reports as sensitive files, avoid pages containing PII or confidential data, and review or delete generated artifacts after testing.
+
+Risk: Security evidence recommends review before installation because the skill has incomplete scoping around external data sharing, generated reports, dependencies, and runner reliability.
+
+Mitigation: Review the skill and dependencies before deployment, pin dependency versions where appropriate, and validate the test runner in a disposable environment before relying on results.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zouchaoqun/skills/nova-act-usability)
+- [Nova Act Cookbook](references/nova-act-cookbook.md)
+- [Persona Examples](references/persona-examples.md)
+- [AWS Console](https://console.aws.amazon.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance, shell commands, JSON test results, HTML usability reports, and Nova Act trace files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Nova Act API key and Python/Playwright dependencies; writes reports and traces into the working directory.]
+
+## Skill Version(s):
+
+1.0.5 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

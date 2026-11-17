@@ -1,41 +1,54 @@
-## Description: <br>
-Production-grade agent memory and quality system for multi-agent swarms that adds quality grading, progressive disclosure, orchestrator coordination, self-improvement protocols, and scoring templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A production-grade agent memory and quality system for multi-agent swarms with quality grading, progressive disclosure, orchestrator coordination, self-improvement protocols, and agent scoring templates.
 
-## Publisher: <br>
-[DirtyRootsStudio](https://clawhub.ai/user/DirtyRootsStudio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dirtyrootsstudio](https://clawhub.ai/user/dirtyrootsstudio)
 
-## Use Case: <br>
-Developers and operators managing multi-agent swarms use this skill to structure agent memory, audit SOUL.md quality, coordinate handoffs, and maintain lessons and patterns for ongoing improvement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan reports an autoreview helper that runs nested Codex review with full sandbox bypass by default. <br>
-Mitigation: Review the autoreview helper before use, and run it with --no-yolo or AUTOREVIEW_YOLO=0 unless unrestricted local sandbox access is intentional. <br>
-Risk: The skill directs agents to read and write workspace memory, lesson, pattern, scorecard, and handoff files, and orchestrators may read across agent workspaces. <br>
-Mitigation: Limit access to intended agent workspaces and review generated or modified Markdown before using it for routing, audits, or operational decisions. <br>
+## Use Case:
 
+Developers and operators of multi-agent ClawHub or OpenClaw swarms use this skill to grade agent instructions, coordinate handoffs, maintain tiered memory, and record lessons and patterns for ongoing improvement.
 
-## Reference(s): <br>
-- [Clawhub Memory Tiers Pro release page](https://clawhub.ai/DirtyRootsStudio/clawhub-memory-tiers-pro) <br>
-- [Required agent-memory-tiers skill](https://clawhub.ai/skills/agent-memory-tiers) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with checklists, rubrics, protocols, and file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires agent-memory-tiers to be installed and configured first.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: Shared agent-written memory, handoffs, lessons, and patterns can influence future agent behavior with untrusted or incorrect content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat shared workspace memory as untrusted input, keep per-agent permissions narrow, and require human review before changing SOUL.md or other durable agent instructions.
+
+Risk: Persistent memory files may accidentally store secrets or sensitive user data.
+
+Mitigation: Avoid storing secrets or sensitive user data in L0, L1, lessons, patterns, or handoff files, and scan memory updates before reuse.
+
+## Reference(s):
+
+- [Clawhub Memory Tiers Pro release page](https://clawhub.ai/dirtyrootsstudio/skills/clawhub-memory-tiers-pro)
+- [Required agent-memory-tiers skill](https://clawhub.ai/skills/agent-memory-tiers)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with reusable tables, templates, checklists, and file patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces memory-tier practices, quality scorecards, handoff protocols, lessons and patterns files, and audit checklists for agent workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

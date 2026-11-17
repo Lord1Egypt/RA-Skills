@@ -1,39 +1,56 @@
-## Description: <br>
-Search U.S. property listings by location or bounding box, price, beds, and home type via Zillapi.com. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches US property listings for sale, rent, or sold comparables through the Zillapi API with filters for location, price, beds, baths, square footage, year built, home type, days on Zillow, and result count.
 
-## Publisher: <br>
-[nikhonit](https://clawhub.ai/user/nikhonit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zillapi](https://clawhub.ai/user/zillapi)
 
-## Use Case: <br>
-External users and agents use this skill to search U.S. for-sale, for-rent, or sold property listings when a user explicitly asks for listings matching location, price, bedroom, bathroom, size, age, home type, or listing-age criteria. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nikhonit/zillow-search) <br>
-- [Zillapi](https://zillapi.com) <br>
-- [Zillapi Signup](https://zillapi.com/signup) <br>
+External users and developers use this skill to search US residential listings, rentals, and sold comparables when they provide an explicit location or bounding box and listing criteria.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [JSON responses with listing data or structured error details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ZILLAPI_KEY; each returned listing consumes one Zillapi credit, and results are capped at 50 per call.] <br>
+United States
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Zillapi receives submitted search locations, bounding boxes, filters, and the API key for each query.
+
+Mitigation: Use a dedicated Zillapi key and avoid submitting sensitive or unnecessary location criteria.
+
+Risk: Broad searches may consume Zillapi credits because returned listings consume credits.
+
+Mitigation: Keep max_items low and confirm broad searches before running them.
+
+## Reference(s):
+
+- [Zillapi Homepage](https://zillapi.com)
+- [Zillapi OpenAPI Specification](https://zillapi.com/openapi.json)
+- [Zillapi Property API Documentation](https://zillapi.com/api/properties/)
+- [Zillapi Hosted MCP Server](https://api.zillapi.com/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Structured data]
+
+**Output Format:** [JSON object with listing data, metadata, or error details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ZILLAPI_KEY; max_items is capped at 50 and each returned listing consumes one credit.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

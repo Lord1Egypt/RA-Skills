@@ -3,7 +3,7 @@
 🧬 Soul Archive Initializer (Cross-platform)
 Create the Soul Archive data directory and default configuration files.
 
-The soul data is stored under the current user's home directory (~/.agent-commons/skills_data/soul-archive/)
+The soul data is stored under the current user's home directory (~/.agent-guild/skills_data/soul-archive/)
 so it can be accessed across different IDEs, AI tools, and workspaces on the same machine.
 
        7-axis schema (industry-aligned): Identity / Personality / Language /

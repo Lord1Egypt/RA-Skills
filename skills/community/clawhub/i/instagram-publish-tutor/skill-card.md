@@ -1,44 +1,61 @@
-## Description: <br>
-Use when publishing images to Instagram via the Graph API from a Creator or Business account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when publishing images to Instagram via the Graph API from a Creator or Business account.
 
-## Publisher: <br>
-[mebusw](https://clawhub.ai/user/mebusw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mebusw](https://clawhub.ai/user/mebusw)
 
-## Use Case: <br>
-Developers, creators, and social media operators use this skill to configure Instagram Graph API credentials and publish a single public image URL with a caption to a Creator or Business account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The access token can publish to the user's Instagram account if exposed or misused. <br>
-Mitigation: Keep the token out of git, store it in a local .env file, use --dry-run before final publishing, and revoke the token immediately if it leaks. <br>
-Risk: Publishing requires a public image URL that Meta can fetch, which can fail if the URL is private or unavailable. <br>
-Mitigation: Use only intended public image URLs and verify the URL in a logged-out browser before publishing. <br>
+## Use Case:
 
+External creators, social media operators, and developers use this skill to set up Meta/Instagram API access and publish a public single-image Instagram post with a caption from the command line.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mebusw/instagram-publish-tutor) <br>
-- [Meta for Developers](https://developers.facebook.com/) <br>
-- [Meta Developer Apps](https://developers.facebook.com/apps/) <br>
-- [Instagram professional account settings](https://www.instagram.com/accounts/professional_account_settings/) <br>
-- [Instagram Graph API endpoint](https://graph.instagram.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks and command-line examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided Meta access token, an Instagram Creator or Business account, and a publicly reachable image URL; supports dry-run validation before final publish.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill requires an Instagram access token that can publish posts for the user's account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the token out of git, store it in a local .env file or environment variable, and rotate it immediately if exposed.
+
+Risk: Running the publish command can create a live Instagram post from the provided image URL and caption.
+
+Mitigation: Review the exact image URL and caption before execution, and use dry-run mode when validating setup.
+
+Risk: Meta must be able to fetch the image from the supplied URL.
+
+Mitigation: Use a public HTTP or HTTPS image URL and confirm it opens from a logged-out browser before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mebusw/skills/instagram-publish-tutor)
+- [Meta for Developers](https://developers.facebook.com/)
+- [Meta app dashboard](https://developers.facebook.com/apps/)
+- [Instagram Graph API endpoint](https://graph.instagram.com)
+- [Instagram professional account settings](https://www.instagram.com/accounts/professional_account_settings/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown guidance with inline shell commands and Python command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a user-supplied public image URL, caption, Instagram access token, optional Instagram user ID, optional .env path, optional Graph API version, and optional dry-run mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

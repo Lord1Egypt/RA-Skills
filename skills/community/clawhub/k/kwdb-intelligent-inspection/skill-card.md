@@ -1,49 +1,68 @@
-## Description: <br>
-Run KaiwuDB inspection and health-check tasks for database health checks, metrics collection, anomaly detection, and inspection report generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run KaiwuDB inspection and health-check tasks for database health checks, metrics collection, anomaly detection, and inspection report generation.
 
-## Publisher: <br>
-[kwdb](https://clawhub.ai/user/kwdb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kwdb](https://clawhub.ai/user/kwdb)
 
-## Use Case: <br>
-Database administrators and support engineers use this skill to inspect KaiwuDB or KWDB clusters, collect metrics and slow statement telemetry, optionally apply user-requested anomaly rules, and produce a Markdown health-check report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches KaiwuDB admin telemetry over HTTP from user-specified hosts and ports. <br>
-Mitigation: Run it only from a trusted admin environment, confirm the exact target hosts and ports before collection, and avoid untrusted networks. <br>
-Risk: Slow statement telemetry can expose SQL text, application names, users, database names, and error messages. <br>
-Mitigation: Review and redact raw slow-query output before sharing it outside approved operational or support channels. <br>
-Risk: Inspection results may be misleading if run against the wrong cluster, unsupported TLS mode, or an incomplete scope. <br>
-Mitigation: Follow the required confirmation workflow, stop when TLS mode is detected, and document partial or incomplete multi-node evidence in the report. <br>
+## Use Case:
 
+Developers and database operators use this skill to inspect KaiwuDB clusters, collect time-series and slow-statement data, apply optional anomaly checks, and produce inspection reports.
 
-## Reference(s): <br>
-- [KWDB Intelligent Inspection on ClawHub](https://clawhub.ai/kwdb/kwdb-intelligent-inspection) <br>
-- [Inspection Requirements Confirmation](references/inspection-requirements-confirmation.md) <br>
-- [Port Listening Detection Reference](references/inspection-port-listening-reference.md) <br>
-- [Time Series Metrics Script Usage](references/ts-metrics-script-usage.md) <br>
-- [Slow Statements Script Usage](references/statements-script-usage.md) <br>
-- [Report Template](references/report-template.md) <br>
-- [Output Rules](references/output-rules.md) <br>
-- [Anomaly Rules](references/anomaly-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown inspection report with metric tables, anomaly notes when requested, and optional raw JSON from helper scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-confirmed hosts, ports, inspection scope, and unsupported TLS status before collection; slow-query output may contain SQL text, user names, database names, and errors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server evidence release.version) <br>
+Risk: Inspection reports and raw JSON may expose SQL text, usernames, database names, and error details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run against hosts you administer and handle generated reports and raw outputs as sensitive operational data.
+
+Risk: The skill probes network ports and collects data from KaiwuDB admin endpoints.
+
+Mitigation: Use it only on authorized KaiwuDB clusters, preferably over trusted networks or tunnels, and confirm target hosts, ports, and scope before collection.
+
+Risk: TLS-enabled KaiwuDB deployments are not supported by the artifact workflow.
+
+Mitigation: Stop inspection when TLS mode is detected and use an approved TLS-capable process instead.
+
+Risk: Single snapshots or incomplete multi-node evidence can lead to misleading anomaly judgments.
+
+Mitigation: Document sampling windows, distinguish observed from inferred data, and require explicit thresholds for configurable anomaly checks.
+
+## Reference(s):
+
+- [Anomaly Rules](references/anomaly-rules.md)
+- [Port Listening Detection Reference](references/inspection-port-listening-reference.md)
+- [Inspection Requirements Confirmation](references/inspection-requirements-confirmation.md)
+- [Metric Types](references/metric-types.md)
+- [Output Rules](references/output-rules.md)
+- [Report Template](references/report-template.md)
+- [Slow Statements Script Usage](references/statements-script-usage.md)
+- [Time Series Metrics Script Usage](references/ts-metrics-script-usage.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, json, guidance]
+
+**Output Format:** [Markdown inspection report with optional JSON and tabular command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports should identify data sources and assumptions; raw JSON and report content may include SQL text, usernames, database names, and error details.]
+
+## Skill Version(s):
+
+1.2.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

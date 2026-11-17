@@ -1,42 +1,55 @@
-## Description: <br>
-Combine one or more images into a single PDF document with page layout control (page size, orientation, fit mode, margin). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Combine one or more images into a single PDF document with page layout control (page size, orientation, fit mode, margin).
 
-## Publisher: <br>
-[rishabhdugar](https://clawhub.ai/user/rishabhdugar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rishabhdugar](https://clawhub.ai/user/rishabhdugar)
 
-## Use Case: <br>
-Developers and teams use this skill to convert image URLs, base64 image payloads, or uploaded image files into a single PDF for scanned documents, portfolios, claims, listings, records, or ID bundles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send sensitive images, image URLs, API keys, and generated PDFs to pdfapihub.com. <br>
-Mitigation: Use it only when the provider's privacy, retention, deletion, compliance, and hosted-link access controls are acceptable for the data being processed. <br>
-Risk: Examples include medical records, ID documents, insurance evidence, and other regulated or private material. <br>
-Mitigation: Review data sensitivity before use and avoid submitting regulated or confidential images unless organizational approval and provider controls are in place. <br>
+## Use Case:
 
+External users and developers use this skill to combine image URLs, base64 images, or uploaded image files into PDF documents with layout controls for page size, orientation, fit mode, and margins.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/rishabhdugar/img-to-pdf) <br>
-- [PDF API Hub Documentation](https://pdfapihub.com/docs) <br>
-- [PDF API Hub](https://pdfapihub.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Files, Configuration] <br>
-**Output Format:** [PDF file URL, base64 PDF data, file response, or JSON response metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a CLIENT-API-KEY header and supports up to 100 images per request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Sensitive, regulated, or confidential images may be sent to pdfapihub.com for conversion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for content the user is authorized to share with that provider, and review the provider's privacy, retention, and access-control terms before use.
+
+Risk: Default hosted PDF URL output may expose generated documents through a third-party CDN workflow.
+
+Mitigation: Use base64 or file output when hosted links are not acceptable, and avoid converting IDs, medical records, insurance photos, or business documents unless the data-handling terms are approved.
+
+## Reference(s):
+
+- [PDF API Hub](https://pdfapihub.com)
+- [PDF API Hub Documentation](https://pdfapihub.com/docs)
+- [Image to PDF API Endpoint](https://pdfapihub.com/api/v1/convert/image/pdf)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Files, Shell commands, Configuration instructions]
+
+**Output Format:** [JSON responses and PDF file outputs; Markdown with inline bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can return hosted URL, base64, both, or file output; accepts up to 100 images per request.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

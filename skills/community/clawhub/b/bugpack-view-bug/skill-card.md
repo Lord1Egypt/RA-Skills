@@ -1,41 +1,49 @@
-## Description: <br>
-View detailed bug context from BugPack including screenshots, environment info, and related files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+View detailed bug context from BugPack including screenshots, environment info, and related files.
 
-## Publisher: <br>
-[duhuazhu](https://clawhub.ai/user/duhuazhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duhuazhu](https://clawhub.ai/user/duhuazhu)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect a specific BugPack bug before fixing it, including its description, priority, affected page, environment, screenshots, and related files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose bug details, screenshots, and source file paths returned by the local BugPack service. <br>
-Mitigation: Use it only with a trusted local BugPack service and confirm the requested bug ID belongs to the current project. <br>
-Risk: Related files and screenshots may influence where the agent looks next. <br>
-Mitigation: Review the displayed context before using it to guide code inspection or repair work. <br>
+## Use Case:
 
+Developers and engineers use this skill to fetch and review detailed local BugPack bug reports, including descriptions, screenshots, environment details, and related source files before deciding how to fix an issue.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/duhuazhu/bugpack-view-bug) <br>
-- [BugPack local bug details endpoint](http://localhost:3456/api/bugs/:id) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Guidance] <br>
-**Output Format:** [Structured Markdown summarizing bug details, screenshots, environment information, and related files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only output based on the selected bug ID and the local BugPack service response.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Bug details may reveal internal routes, source file paths, browser or device metadata, and screenshots.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only in workspaces and sessions where exposing BugPack issue details is appropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/duhuazhu/skills/bugpack-view-bug)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API calls, Guidance]
+
+**Output Format:** [Structured Markdown summary of BugPack bug details with optional screenshot references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include internal routes, source file paths, browser and device metadata, and screenshot paths returned by BugPack.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

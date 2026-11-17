@@ -1,56 +1,59 @@
-## Description: <br>
-AI Company Governance provides a unified governance framework for an AI-first company, combining C-suite agent roles, hub-and-spoke coordination, guardrails, prompt CI/CD, KPI tracking, audit logging, conflict resolution, agent registration, knowledge management, engineering workflows, and external integration interfaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Micro-tier governance skill for small AI agent organizations (1-3 agents). Consolidates 18 enterprise function blocks into two departments, governance-and-delivery and engineering-and-safety, covering strategy, risk, compliance, architecture, safety, and delivery. Ships ten harness code templates, three prompt frameworks, a full error-code catalog, and a scaling specification. Provides two self-contained human-paste prompts (method implementation, robustness checks) usable in any AI chat window. Source files are authored in English; runtime output follows the user's language per the language policy, with English fallback. Includes propose-only self-scaling that evaluates scaling thresholds and proposes tier upgrades up to group. Use when a small team needs enterprise-grade governance, engineering harnesses, PII masking, AIGC disclosure, or tier-upgrade assessment for its agents.
 
-## Publisher: <br>
-[johnsmithfan](https://clawhub.ai/user/johnsmithfan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnsmithfan](https://clawhub.ai/user/johnsmithfan)
 
-## Use Case: <br>
-Employees, operators, and developers use this skill to coordinate AI-company governance workflows across executive-role agents for strategy, finance, legal, security, quality, operations, risk, people, partnerships, and engineering decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+GPL-3.0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review flags broad agent, file, command, web, logging, finance, and provisioning authority without enough concrete user-control boundaries. <br>
-Mitigation: Restrict shell, write, web, inter-agent, provisioning, and financial tools before deployment; require explicit approval for agent creation, permission changes, financial actions, and external messages. <br>
-Risk: Governance workflows may handle sensitive logs, decisions, financial records, legal records, HR data, and cross-agent messages. <br>
-Mitigation: Define log storage, access controls, redaction rules, retention periods, and deletion procedures before using the skill for real operations. <br>
-Risk: Multi-agent governance recommendations can produce incorrect or overbroad operational decisions if used without human review. <br>
-Mitigation: Keep a human approval gate for high-risk decisions, sensitive data operations, external communications, budget approvals, legal conclusions, and security incident actions. <br>
+## Use Case:
 
+Developers, operators, and small AI agent teams use this skill to route governance, delivery, engineering, safety, compliance, PII masking, audit-trace, and tier-upgrade assessment work across a micro-tier agent organization.
 
-## Reference(s): <br>
-- [Core Architecture](references/architecture.md) <br>
-- [CEO Governance Module](references/ceo.md) <br>
-- [CFO Finance Module](references/cfo.md) <br>
-- [CMO Brand Module](references/cmo.md) <br>
-- [CHO People Module](references/cho.md) <br>
-- [CPO Partnerships Module](references/cpo.md) <br>
-- [CLO Legal Module](references/clo.md) <br>
-- [CTO Technology Module](references/cto.md) <br>
-- [CQO Quality Module](references/cqo.md) <br>
-- [CISO Security Module](references/ciso.md) <br>
-- [CRO Risk Module](references/cro.md) <br>
-- [COO Operations Module](references/coo.md) <br>
-- [Governance Tools](references/governance-tools.md) <br>
-- [Engineering Workflow](references/engineering.md) <br>
-- [External API Specification](references/api-spec.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration, Shell commands] <br>
-**Output Format:** [Markdown guidance with role-specific templates, tables, schemas, and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Pure markdown skill content with no external dependencies; behavior depends on supervised agent tool permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.0 (source: server release metadata and skill version history, released 2026-04-14) <br>
+Risk: The security review reports broad workspace read/write and agent-session/subagent permissions with under-disclosed side effects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in workspaces where those authorities are acceptable, and review expected state-file updates and generated upgrade packages before use.
+
+Risk: Self-scaling actions can create tier-upgrade proposals and alter operational state.
+
+Mitigation: Run self-scaling actions manually after review; keep tier changes human-approved and inspect generated upgrade packages before applying them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/johnsmithfan/skills/ai-company)
+- [Server-resolved GitHub source](https://github.com/JohnSmithfan/AI-Company)
+- [Governance and Delivery Department](references/departments/governance-and-delivery.md)
+- [Engineering and Safety Department](references/departments/engineering-and-safety.md)
+- [Method Patterns](references/method-patterns.md)
+- [Error Codes](references/error-codes.md)
+- [Self-Scaling Governance Reference](references/scaling.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or structured text with optional code, command, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runtime output follows the user's requested language when provided, with English fallback; immutable identifiers such as slugs, error codes, file paths, and function names remain untranslated.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, CHANGELOG, and artifact _meta.json; server release metadata reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

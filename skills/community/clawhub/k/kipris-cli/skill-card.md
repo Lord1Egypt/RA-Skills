@@ -1,43 +1,63 @@
-## Description: <br>
-Search Korean patents, utility models, trademarks, and designs via KIPRIS Plus OpenAPI and return normalized JSONL for agents doing prior-art search, competitor monitoring, brand checks, M&A due diligence, and Korean IP analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Korean patents, utility models, trademarks, and designs through KIPRIS Plus OpenAPI and return results in agent-friendly formats.
 
-## Publisher: <br>
-[chloepark85](https://clawhub.ai/user/chloepark85) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chloepark85](https://clawhub.ai/user/chloepark85)
 
-## Use Case: <br>
-Developers, agents, and IP analysts use this skill to query Korean patent, trademark, design, patent-detail, and applicant records through KIPRIS Plus and receive normalized JSONL for prior-art search, competitor monitoring, brand availability checks, M&A diligence, and Korean IP analytics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API keys and search terms may be exposed because the default KIPRIS endpoint uses plain HTTP. <br>
-Mitigation: Use a low-privilege or quota-limited KIPRIS key, prefer KIPRIS_PLUS_KEY over command-line --key, and set KIPRIS_BASE to an HTTPS endpoint if supported. <br>
-Risk: Command-line API key overrides can expose credentials through shell history or process listings. <br>
-Mitigation: Provide credentials through the KIPRIS_PLUS_KEY environment variable and avoid passing secrets directly as command arguments. <br>
+## Use Case:
 
+Developers, IP analysts, and agents use this skill to run Korean prior-art searches, competitor IP monitoring, brand availability checks, and IP diligence workflows from shell commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chloepark85/kipris-cli) <br>
-- [KIPRIS Plus](https://plus.kipris.or.kr) <br>
-- [README](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Markdown, Guidance] <br>
-**Output Format:** [JSONL by default, with optional JSON or XML output and Markdown-oriented examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a KIPRIS Plus API key; results depend on KIPRIS Plus availability, quota, rate limits, and query accuracy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The default KIPRIS endpoint uses plain HTTP, which can expose API keys and query contents in transit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only after changing or verifying the endpoint to HTTPS, and test that requests fail closed if HTTPS is unavailable.
+
+Risk: Passing the API key with --key can expose it through shell history, logs, or process listings.
+
+Mitigation: Provide the key through KIPRIS_PLUS_KEY in a protected environment and avoid command-line key arguments.
+
+Risk: KIPRIS_BASE can redirect requests to an untrusted host.
+
+Mitigation: Keep KIPRIS_BASE unset or pin it to a reviewed KIPRIS Plus HTTPS endpoint before installation.
+
+Risk: Scheduled watch examples can expose or mix local state if run from a shared directory.
+
+Mitigation: Run scheduled examples with a private state directory and restrict file permissions.
+
+## Reference(s):
+
+- [KIPRIS Plus](https://plus.kipris.or.kr)
+- [ClawHub skill page](https://clawhub.ai/chloepark85/skills/kipris-cli)
+- [Skill documentation](SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, code]
+
+**Output Format:** [JSONL by default, with optional JSON or XML; examples may produce Markdown or CSV summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a KIPRIS_PLUS_KEY; callers manage pagination, quota, throttling, and any local state.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

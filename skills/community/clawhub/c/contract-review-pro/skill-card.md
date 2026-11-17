@@ -1,41 +1,49 @@
-## Description: <br>
-合同风险识别与条款分析 - 智能合同审查工具，自动识别风险条款、补充缺失条款、对比差异条款 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews Chinese-language contracts by identifying risky clauses, missing terms, clause differences, and relevant legal-reference points.
 
-## Publisher: <br>
-[wensen2024](https://clawhub.ai/user/wensen2024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wensen2024](https://clawhub.ai/user/wensen2024)
 
-## Use Case: <br>
-Business users, contract reviewers, and agents use this skill to analyze Chinese-language contracts, identify risky or missing clauses, compare contract versions, and produce advisory review reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Contract text may contain confidential or sensitive business information. <br>
-Mitigation: Install only if users are comfortable sharing contract text with the agent environment and apply normal confidentiality controls. <br>
-Risk: The skill may produce contract review guidance that users could mistake for legal advice. <br>
-Mitigation: Treat outputs as advisory, verify important findings, and consult a qualified lawyer before signing or relying on material agreements. <br>
-Risk: The artifact includes publisher and payment details that users may rely on before purchase. <br>
-Mitigation: Verify the publisher profile and payment details before paying. <br>
+## Use Case:
 
+External users and contract reviewers use this skill for preliminary Chinese/PRC-oriented contract risk spotting, clause analysis, missing-term checks, version comparisons, and risk ratings.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text contract review reports with risk findings, clause analysis, comparison notes, and suggested revisions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are advisory and should be reviewed by a qualified lawyer for important agreements.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Contract review output may be preliminary legal risk spotting rather than qualified legal advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current law, jurisdictional fit, and important contract decisions with a qualified lawyer.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wensen2024/skills/contract-review-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese-language contract review report in Markdown or structured text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include risk levels, clause findings, missing-term notes, comparison summaries, legal-reference points, and disclaimers.]
+
+## Skill Version(s):
+
+1.0.2 (source: evidence.release.version and target metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

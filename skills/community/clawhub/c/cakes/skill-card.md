@@ -1,41 +1,54 @@
-## Description: <br>
-提供关于网红蛋糕的推荐清单、打卡路线与指南。用户搜索网红蛋糕或规划相关出行时调用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供关于网红蛋糕的推荐清单、打卡路线与指南。用户搜索网红蛋糕或规划相关出行时调用。
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-External users use this skill to find popular cake destinations, compare themes, budgets, and timing, and draft local cake-focused check-in routes with practical notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for broader travel or local-search prompts that mention 网红蛋糕. <br>
-Mitigation: Clarify whether the user wants cake-focused recommendations before narrowing routes or venue lists. <br>
-Risk: Cake venue popularity, opening hours, costs, queues, and on-site rules can change. <br>
-Mitigation: Treat generated route details as planning guidance and verify time-sensitive venue information before travel. <br>
+## Use Case:
 
+External users use this skill to find popular cake shop recommendations and plan cake-focused local routes by city, theme, budget, or time window.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mike47512/cakes) <br>
-- [Publisher profile](https://clawhub.ai/user/mike47512) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include recommended cake lists, route drafts, popularity notes, queue or reservation guidance, and cost or timing considerations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The skill may activate on cake-related itinerary requests where the user did not intend to use a recommendation skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill trigger and outputs in cake or dessert discovery workflows before relying on its recommendations.
+
+Risk: Cake shop popularity, hours, queue times, reservation rules, minimum spend, and photography restrictions can change.
+
+Mitigation: Confirm details with current local sources or the venue before travel, purchasing, or scheduling.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mike47512/skills/cakes)
+- [Publisher profile](https://clawhub.ai/user/mike47512)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style recommendation lists, route suggestions, and practical notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include shop names, highlights, addresses, hours, popularity, transport suggestions, timing, reservation advice, queue expectations, best time windows, and cost ranges.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

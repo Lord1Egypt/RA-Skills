@@ -1,0 +1,64 @@
+{
+  "name": "lygo-agent-agora",
+  "displayName": "LYGO Agent Agora (map + portal)",
+  "version": "1.0.1",
+  "description": "Local map of the LYGO Agent Agora and Agent Portal. Scripts print URLs and FULL-zip SHA-256; they do not fetch, download, spawn, or write the live chart. FULL kernel is a separate human download.",
+  "slug": "lygo-agent-agora",
+  "publisher": "deepseekoracle",
+  "license": "MIT-0",
+  "homepage": "https://deepseekoracle.github.io/lygo-protocol-stack/agent-agora/",
+  "clawhub": "https://clawhub.ai/deepseekoracle/skills/lygo-agent-agora",
+  "skillhub_full": "https://chatagent.ca/lygoskillhub.html#full-lygo",
+  "signature": "Delta9Phi963-AGENT-AGORA-SKILL-v1.0.1",
+  "tags": [
+    "latest",
+    "lygo",
+    "agent-agora",
+    "onboarding",
+    "portal",
+    "skillhub",
+    "clawhub",
+    "openclaw",
+    "delta9"
+  ],
+  "entry": "SKILL.md",
+  "scripts": {
+    "map": "scripts/agora_onboard.py map",
+    "onboard": "scripts/agora_onboard.py onboard",
+    "portal": "scripts/agora_onboard.py portal",
+    "expand": "scripts/agora_onboard.py expand",
+    "clawhub": "scripts/agora_onboard.py clawhub",
+    "urls": "scripts/agora_onboard.py urls",
+    "plain": "scripts/agora_onboard.py plain",
+    "self_check": "scripts/self_check.py"
+  },
+  "openclaw": {
+    "emoji": "🏛️",
+    "homepage": "https://deepseekoracle.github.io/lygo-protocol-stack/agent-agora/",
+    "requires": {
+      "anyBins": ["python", "python3"]
+    },
+    "os": ["windows", "macos", "linux"]
+  },
+  "permissions": {
+    "network": false,
+    "subprocess": false,
+    "shell": false,
+    "filesystem": {
+      "read": "skill only",
+      "write": false
+    },
+    "publish": false
+  },
+  "security": {
+    "local_first": true,
+    "no_auto_publish": true,
+    "no_subprocess": true,
+    "no_network_in_this_package": true,
+    "listed_urls_are_documentation": true,
+    "does_not_fetch_full_zip": true,
+    "full_zip_sha256": "b87c2a9105b62ed2c7c23d5c2d6d056e2ac3cc05d329ab8f6d901f4a615f916f",
+    "public_tentacle": true,
+    "version": "1.0.1"
+  }
+}

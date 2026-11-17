@@ -1,0 +1,9 @@
+{
+  "name": "wechat-qa-checklist",
+  "normalizedName": "wechat-qa-checklist",
+  "description": "微信公众号文章推送前的强制自检清单，用于回答「推之前还要查什么」「上次那个坑别再踩」这类问题。推送草稿前逐项检查，覆盖 HTML 兼容性、图片、标题、API、编码、流程六大类；每项判定按真实参照法挂到具体命中位置而非主观印象，检查记录按证据链审计留痕，便于复盘「这次漏了哪一项」。触发词：公众号自检、推送前检查、公众号踩坑、HTML 兼容性、图片检查、标题检查、编码问题、发文前自检、QA checklist。本技能为通用方法论工具，非医疗器械 / 非医疗软件，无疗效或临床声明；详见包内免责声明。",
+  "author": "诺衡(Krites)@SynomosAI",
+  "copyright": "SynomosAI",
+  "version": "1.0.0",
+  "license": "MIT"
+}

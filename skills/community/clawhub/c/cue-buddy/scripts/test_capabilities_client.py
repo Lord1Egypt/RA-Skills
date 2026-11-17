@@ -112,7 +112,7 @@ _BASE, _BACKEND_THREAD = _start_minimal_backend()
 # cue_api.DEFAULT_BASE 含 /api(prod 形态);minimal app 没自动加 /api 前缀,
 # 本地 base 末尾补 /api 让 URL 命中 router 注册的 /api/tools/capabilities。
 os.environ["CUE_API_BASE"] = _BASE + "/api"
-os.environ["CUE_API_KEY"] = "sk-test-not-used-by-minimal-backend"
+os.environ["CUE_API_KEY"] = "REDACTED-SECRET"
 
 from cue_api import CueAPIError, capabilities  # noqa: E402
 

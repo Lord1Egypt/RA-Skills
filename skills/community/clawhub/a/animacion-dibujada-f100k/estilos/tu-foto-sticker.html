@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Tu foto en sticker</title>
+<style>
+  html,body{margin:0;background:#141210;display:grid;place-items:center;height:100vh}
+  canvas{height:100vh;width:auto;max-width:100vw}
+</style>
+</head>
+<body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script>
+// ====================== LO QUE PUEDES CAMBIAR ======================
+// Prepara la foto antes: node scripts/preparar-foto.mjs tu-foto.jpg fotos   → fotos/<nombre>-recorte.png y -cara.json
+const RECORTE = 'fotos/foto-4-recorte.png';           // tu foto YA recortada (fondo transparente)
+const CARA = 'fotos/foto-4-cara.json';                // ruta al JSON o el objeto pegado aquí, para que parpadee ('' = no parpadea)
+const FRASE = 'te enseño a vender con lo que ya sabes';   // arriba, grande (≤ 50 letras)
+const PALABRA_FUERTE = 'vender';                      // se marca con resaltador ('' = sin marca)
+const COLORES = {
+  fondo: '#7b5cd6',     // el fondo liso
+  puntos: '#8d71e0',    // la trama de puntitos del fondo
+  texto: '#ffffff',
+  resalta: '#ffd84d',   // el resaltador (el texto marcado se vuelve oscuro encima)
+  tintaResalta: '#1d1a24',
+  borde: '#ffffff',     // el borde del sticker
+  estrella: '#ffd84d', corazon: '#ff6f91', flecha: '#1d1a24',
+};
+// ===================================================================
+const W = 1080, H = 1920, FPS = 30, DUR = 5.5;
+</script>
+<script src="../nucleo/nucleo.js"></script>
+<script src="../nucleo/titere.js"></script>
+<script>
+// ANATOMIA: estilizada — sale de la foto real de la persona, no se dibuja anatomía
+cargarFotos([RECORTE]);
+let P = null, DATOS_CARA = null;
+const AJ = autoajuste(FRASE, LETRA_LIMPIA, 900, W - 170, 3, 118, 60);
+const INTER = AJ.size * 1.12, Y_TEXTO = 330 + AJ.size;
+const FIN_TEXTO = Y_TEXTO + (AJ.rs.length - 1) * INTER + AJ.size * .3, BASE_Y = 1450;
+const esperaCara = cargarCara(CARA);
+window.LISTO = Promise.all([window.LISTO, esperaCara]).then(([[im], cara]) => {
+  DATOS_CARA = cara;
+  // el sticker va DEBAJO de la frase y termina antes de la zona del caption (1450): nunca tapa texto
+  const altoMax = Math.min(860, BASE_Y - (FIN_TEXTO + 70)), anchoMax = 760;
+  const ancho = Math.min(anchoMax, altoMax * im.width / im.height);
+  P = crearTitere(im, { cara, ancho, sticker: true, borde: 20 });
+});
+
+const FONDO = (() => {                                // fondo liso con trama de puntos (una vez)
+  const c = document.createElement('canvas'); c.width = W; c.height = H; const g = c.getContext('2d');
+  g.fillStyle = COLORES.fondo; g.fillRect(0, 0, W, H); g.fillStyle = COLORES.puntos;
+  for (let y = 0; y < H; y += 44) for (let x = (y / 44 % 2) * 22; x < W; x += 44) { g.beginPath(); g.arc(x, y, 5, 0, 7); g.fill(); }
+  const v = g.createRadialGradient(W / 2, H * .55, 200, W / 2, H * .55, 1300); v.addColorStop(0, 'rgba(0,0,0,0)'); v.addColorStop(1, 'rgba(0,0,0,.28)');
+  g.fillStyle = v; g.fillRect(0, 0, W, H); return c;
+})();
+
+// mini stickers dibujados (se arman una vez, con su borde blanco)
+function miniSticker(dibuja, w, h) {
+  const c = document.createElement('canvas'); c.width = w; c.height = h; dibuja(c.getContext('2d'), w, h);
+  return stickerDe(c, { borde: 10, color: COLORES.borde, sombra: true });
+}
+const ESTRELLA = miniSticker((g, w, h) => { g.fillStyle = COLORES.estrella; g.beginPath();
+  for (let i = 0; i <= 10; i++) { const a = -Math.PI / 2 + i * Math.PI / 5, r = i % 2 ? w * .21 : w * .48; g.lineTo(w / 2 + Math.cos(a) * r, h / 2 + Math.sin(a) * r); }
+  g.closePath(); g.fill(); }, 150, 150);
+const CORAZON = miniSticker((g, w, h) => { g.fillStyle = COLORES.corazon; g.beginPath();
+  for (let u = 0; u <= 1.001; u += .02) { const q = u * Math.PI * 2; g.lineTo(w / 2 + 16 * Math.pow(Math.sin(q), 3) * w / 36, h / 2 - (13 * Math.cos(q) - 5 * Math.cos(2 * q) - 2 * Math.cos(3 * q) - Math.cos(4 * q)) * h / 36); }
+  g.fill(); }, 140, 130);
+const FLECHA = miniSticker((g, w, h) => { g.strokeStyle = COLORES.flecha; g.lineWidth = 16; g.lineCap = g.lineJoin = 'round';   // apunta a la izquierda y abajo: a tu cara
+  g.beginPath(); g.moveTo(w - 20, 30); g.quadraticCurveTo(w * .2, 10, 40, h - 50); g.stroke();
+  g.beginPath(); g.moveTo(22, h - 115); g.lineTo(40, h - 50); g.lineTo(100, h - 78); g.stroke(); }, 200, 190);
+
+
+function frase(t) {
+  // cada renglón sube y aparece, uno tras otro
+  ctx.save(); ctx.font = AJ.font; ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
+  const y0 = Y_TEXTO;
+  AJ.rs.forEach((r, i) => {
+    const k = easeOut(prog(t, .15 + i * .18, .55 + i * .18)); if (k <= 0) return;
+    const y = y0 + i * INTER + (1 - k) * 40;
+    ctx.globalAlpha = k;
+    // resaltador bajo la palabra fuerte (entra de izquierda a derecha)
+    const iw = PALABRA_FUERTE ? r.toLowerCase().indexOf(PALABRA_FUERTE.toLowerCase()) : -1;
+    const x0 = W / 2 - medir(r, AJ.font) / 2;
+    if (iw >= 0) {
+      const a = x0 + medir(r.slice(0, iw), AJ.font), b = a + medir(r.slice(iw, iw + PALABRA_FUERTE.length), AJ.font);
+      const m = easeOut(prog(t, 1.0, 1.35));
+      ctx.fillStyle = COLORES.resalta; ctx.beginPath(); ctx.roundRect(a - 14, y - AJ.size * .82, (b - a + 28) * m, AJ.size * 1.0, 12); ctx.fill();
+    }
+    ctx.fillStyle = COLORES.texto; ctx.textAlign = 'left';
+    if (iw >= 0 && t > 1.2) {                           // la palabra marcada se vuelve oscura para leerse sobre el amarillo
+      const antes = r.slice(0, iw), pal = r.slice(iw, iw + PALABRA_FUERTE.length), desp = r.slice(iw + PALABRA_FUERTE.length);
+      ctx.fillText(antes, x0, y); ctx.fillStyle = COLORES.tintaResalta; ctx.fillText(pal, x0 + medir(antes, AJ.font), y);
+      ctx.fillStyle = COLORES.texto; ctx.fillText(desp, x0 + medir(antes + pal, AJ.font), y);
+    } else ctx.fillText(r, x0, y);
+  });
+  ctx.restore();
+}
+
+function pega(img, x, y, rot, t0, t) {                 // un mini sticker que cae y se pega con rebote
+  const k = prog(t, t0, t0 + .4); if (k <= 0) return;
+  const s = lerp(1.6, 1, back(k));
+  ctx.save(); ctx.translate(x, y); ctx.rotate(rot + (1 - easeOut(k)) * .5); ctx.scale(s, s); ctx.globalAlpha = clamp(k * 3);
+  ctx.drawImage(img, -img.width / 2, -img.height / 2); ctx.restore();
+}
+
+arrancar(frame => {
+  const t = frame / FPS;
+  ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1;
+  ctx.drawImage(FONDO, 0, 0);
+  frase(t);
+  if (P) {
+    const baseY = BASE_Y, T_ENTRA = .45;
+    const k = prog(t, T_ENTRA, T_ENTRA + .55);
+    if (k > 0) {
+      // entra desde abajo girando, rebota y se asienta; después respira y parpadea
+      const s = lerp(.55, 1, back(k)), gira = (1 - easeOut(k)) * -.25 - .03;
+      const quieto = t > DUR - .5;                       // el último medio segundo, quieto
+      ctx.save(); ctx.translate(W / 2, baseY + (1 - easeOut(k)) * 500); ctx.rotate(gira); ctx.scale(s, s);
+      P.dibujar(ctx, 0, 0, { accion: 'quieto', t: quieto ? DUR - .5 : t, sombra: false });
+      ctx.restore();
+    }
+  }
+  if (!P) return;
+  const tope = BASE_Y - P.alto, izq = W / 2 - P.ancho / 2, der = W / 2 + P.ancho / 2;
+  pega(ESTRELLA, Math.max(110, izq - 40), tope + P.alto * .38, -.2, 1.35, t);
+  pega(CORAZON, Math.min(W - 110, der + 30), tope + P.alto * .62, .18, 1.6, t);
+  pega(FLECHA, Math.min(W - 130, der + 20), tope + 70, 0, 1.85, t);   // a la altura de la cara
+});
+</script>
+</body>
+</html>

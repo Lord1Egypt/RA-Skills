@@ -1,43 +1,57 @@
-## Description: <br>
-Installs the full Job Autopilot pipeline for searching jobs, tailoring resumes, and submitting applications by installing jobautopilot-search, jobautopilot-tailor, and jobautopilot-submitter together. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs the full Job Autopilot pipeline for searching jobs, tailoring resumes, and submitting applications through the jobautopilot-search, jobautopilot-tailor, and jobautopilot-submitter skills.
 
-## Publisher: <br>
-[jerronl](https://clawhub.ai/user/jerronl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jerronl](https://clawhub.ai/user/jerronl)
 
-## Use Case: <br>
-External job seekers use this bundle to install and configure a Job Autopilot workflow that finds job leads, tailors resumes and cover letters, and prepares application submissions. The bundle also creates local configuration, workspace, tracker, and browser-profile setup guidance used by the related skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup stores privacy-sensitive job-application information, including contact details, resume paths, and EEOC answers, in a local shell config file. <br>
-Mitigation: Review the generated config, keep owner-only permissions, and avoid storing unnecessary personal information. <br>
-Risk: Application submission workflows can enter information on external job sites when the user gives submission commands. <br>
-Mitigation: Run submission commands only when ready for the information to be entered externally, and review browser activity before final submission. <br>
-Risk: Browser profiles used for applications may retain job-site sessions or saved credentials. <br>
-Mitigation: Use isolated browser profiles, avoid saving unnecessary credentials in the apply profile, and inspect or delete profiles when no longer needed. <br>
+## Use Case:
 
+Job seekers and career-focused users use this bundle to install and configure an end-to-end OpenClaw workflow for job search, resume tailoring, and application submission. It is primarily an installer and setup helper for the three dependent Job Autopilot skills.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jerronl/jobautopilot-bundle) <br>
-- [Publisher Profile](https://clawhub.ai/user/jerronl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Markdown] <br>
-**Output Format:** [Markdown guidance with shell commands and local configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local user configuration, job tracker, handoff files, and setup instructions for related Job Autopilot skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.2 (source: server release metadata) <br>
+Risk: The installer fetches or updates mutable dependent skills from the registry.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review jobautopilot-search, jobautopilot-tailor, and jobautopilot-submitter before running install.sh, and run the bundle only when the publisher and current registry packages are trusted.
+
+Risk: The setup script can overwrite an OpenClaw config path for special username input such as '.' or '..'.
+
+Mitigation: Use a normal alphanumeric username and avoid '.' or '..' when setup prompts for the OpenClaw user.
+
+Risk: The generated config stores personal, resume, and EEOC defaults that later automation may place into job applications.
+
+Mitigation: Treat the config as sensitive, review values before application submission, and keep the generated file owner-readable only.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/jerronl/skills/jobautopilot-bundle)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and local configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Installs dependent skills, writes local user configuration, initializes tracker and handoff files, and prints setup guidance.]
+
+## Skill Version(s):
+
+1.3.2 (source: server release metadata; artifact frontmatter lists 1.3.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

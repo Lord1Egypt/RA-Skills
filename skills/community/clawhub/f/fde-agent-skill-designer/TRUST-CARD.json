@@ -1,0 +1,25 @@
+{
+  "suite": "fde-delivery-loop",
+  "version": "1.0.0",
+  "author": "xukun",
+  "skill": "fde-agent-skill-designer",
+  "stage": 5,
+  "purpose": "Encapsulate the solution into triggerable, guardrailed, and evaluable skills, and generate Mock POC skeletons.",
+  "risk_level": "medium",
+  "scripts": [
+    "fde-agent-skill-designer/scripts/validate-skill-package.js",
+    "fde-agent-skill-designer/scripts/scaffold-poc.js"
+  ],
+  "writes": [
+    "User-specified new skills or POC catalog"
+  ],
+  "human_confirmation": [
+    "external writing tools",
+    "Production credentials",
+    "High-risk automated actions"
+  ],
+  "high_risk_boundaries": [
+    "Default Mock priority",
+    "Do not declare the demo skeleton as a production system"
+  ]
+}

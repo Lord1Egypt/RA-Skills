@@ -1,0 +1,75 @@
+{
+  "id": "domain-wordpress",
+  "label": "WordPress — CMS Admin",
+  "emoji": "🔤",
+  "domain": "wordpress.com, *.wp-admin, wp-login.php",
+  "description": "WordPress CMS admin panel. Classic or block editor (Gutenberg). Login page at /wp-admin or /wp-login.php. Dashboard, posts/pages list, block editor, media library, plugin settings.",
+  "source_patterns": [
+    "Login: type username/email → pause → type password → submit → wait 2-4s for dashboard",
+    "Dashboard overview: glance at At a Glance, Quick Draft, Activity — no clicks, 3-5s scan",
+    "Posts/Pages list: vertical scroll through table rows, hover row for action links (Edit|Quick Edit|Trash), click title to open editor",
+    "Block editor (Gutenberg): click title input → type post title → click below to add block → type / to search blocks → select paragraph/image/heading → type content → click Publish → select visibility → confirm",
+    "Media Library: click Add New → select file(s) → wait for upload progress → edit alt text → copy URL",
+    "Settings pages: scroll form sections, toggle checkboxes, save changes at bottom"
+  ],
+  "active_hours": {
+    "description": "Business hours, content creation — weekday mornings for writing, afternoons for publishing",
+    "peak": [8, 10, 11, 14, 16],
+    "off_peak_min": 5
+  },
+  "typing": {
+    "wpm": { "min": 70, "max": 110 },
+    "profile": "deliberate",
+    "think_prob": 0.03,
+    "think_ms": [500, 3000],
+    "backspace_freq": 0.04,
+    "content_creation_wpm": { "min": 55, "max": 85 },
+    "title_typing_wpm": { "min": 40, "max": 60 }
+  },
+  "scroll": {
+    "passes": 4,
+    "description": "Admin list vertical scroll, editor content scroll — slower for comprehension",
+    "speed_px_per_ms": { "min": 20, "max": 50 },
+    "pause_between_passes_ms": { "min": 1500, "max": 4000 },
+    "depth_per_pass": { "min": 0.4, "max": 0.7 },
+    "infinite_scroll_detection": "ul#the-list, .items-list, .media-frame-content"
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 2000, "max": 4500 },
+    "pre_click_pause_ms": { "min": 300, "max": 1000 },
+    "inter_action_pause_ms": { "min": 500, "max": 1500 },
+    "post_expand_pause_ms": { "min": 1000, "max": 3000 },
+    "form_submit_pause_ms": { "min": 2000, "max": 4000 }
+  },
+  "mouse": {
+    "speed": 0.7,
+    "curvature": 0.2,
+    "jitter": 0.25,
+    "description": "Business speed — deliberate, precise targeting in toolbar menus"
+  },
+  "platform_specific": {
+    "selectors_css": {
+      "admin_bar": "#wpadminbar",
+      "admin_menu": "#adminmenu",
+      "content_editor": "#wp-content-editor-container, .block-editor__container",
+      "title_input": ".editor-post-title__input, #title",
+      "publish_button": ".editor-post-publish-button, #publish",
+      "login_form": {
+        "username": "#user_login",
+        "password": "#user_pass",
+        "submit": "#wp-submit"
+      },
+      "block_inserter": "button[aria-label='Toggle block inserter'], .block-editor-inserter__toggle",
+      "media_upload": ".media-frame, .plupload-upload-uic",
+      "post_list": "table.wp-list-table, .edit-php"
+    },
+    "requires_login": true,
+    "login": {
+      "pre_login_pause_ms": 2000,
+      "field_pause_ms": { "min": 400, "max": 1000 },
+      "post_login_wait_ms": { "min": 3000, "max": 6000 },
+      "two_factor_wait_ms": { "min": 5000, "max": 10000 }
+    },
+    "sequence_hint": "login → dashboard scan → navigate Posts → scroll list → click post title → editor: title → insert blocks → write content → publish flow → media if needed → settings review"
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Crun Photo Replication"
+  short_description: "Replicate, restyle, or remake photos with AI models"
+  default_prompt: "Use $crun-photo-replication to recreate, restyle, or remake photos while preserving pose, style, and identity."

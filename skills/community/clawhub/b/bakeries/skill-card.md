@@ -1,41 +1,52 @@
-## Description: <br>
-Find nearby bakeries. Invoke when user asks for bakeries near me. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find nearby bakeries. Invoke when user asks for bakeries near me.
 
-## Publisher: <br>
-[clawkk](https://clawhub.ai/user/clawkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[clawkk](https://clawhub.ai/user/clawkk)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and agents use this skill to find nearby bakeries from an authorized location or city request, with optional filters such as open-now status, rating, price level, and keywords.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Finding nearby bakeries may require sharing a user's current location with a place-search provider.
+
+Mitigation: Request location only with user authorization, avoid retaining precise coordinates, and use coordinate fuzzing or short-term caching when appropriate.
+
+Risk: Place-search providers can be unavailable or rate limited.
+
+Mitigation: Surface provider and rate-limit errors clearly using the documented PROVIDER_UNAVAILABLE and RATE_LIMITED responses.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and agent builders use this skill to find nearby bakeries from a user-approved location, with optional filters such as distance, open-now status, rating, price level, and keywords. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Using the skill may require sharing precise or approximate user location to find nearby bakeries. <br>
-Mitigation: Request location permission before lookup, prefer approximate location when exact coordinates are not necessary, and avoid retaining precise coordinates beyond the immediate search. <br>
-Risk: Repeated nearby searches can expose sensitive movement patterns if precise coordinates are stored or reused broadly. <br>
-Mitigation: Use coordinate fuzzing or grid-based approximation when appropriate, and limit any location-based caching to short-lived entries. <br>
+**Output Format:** [Markdown guidance describing location-based bakery search inputs, outputs, filters, error codes, privacy expectations, and rate-limit handling.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clawkk/bakeries) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/clawkk) <br>
+**Other Properties Related to Output:** [Returns a standard point-of-interest list for the fixed bakeries category; no executable code is included in the artifact.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, JSON] <br>
-**Output Format:** [Text or structured JSON-style point-of-interest results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns bakery-category results with location, radius, limit, and optional filter handling.] <br>
+0.1.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

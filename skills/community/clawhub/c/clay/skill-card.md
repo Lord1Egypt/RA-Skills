@@ -1,41 +1,58 @@
-## Description: <br>
-Search, manage, and organize your contact network via the Clay CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, manage, and organize your contact network via the Clay CLI.
 
-## Publisher: <br>
-[khrrsn](https://clawhub.ai/user/khrrsn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[khrrsn](https://clawhub.ai/user/khrrsn)
 
-## Use Case: <br>
-People who use Clay can have an agent search contacts, create and update contact records, manage notes, groups, events, emails, and reminders, and choose JSON, CSV, or TSV command output. The skill requires a Clay account and prior authentication with `clay login`. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Clay CLI can read and change Clay contact data after the user logs in. <br>
-Mitigation: Install only if you trust the Clay CLI and want an agent to use your Clay account; review exact contact IDs and fields before write commands. <br>
-Risk: Broad exports or credential exposure could reveal private contact data or Clay account access. <br>
-Mitigation: Avoid broad exports unless needed, and do not print, share, commit, or log `~/.config/clay.json`. <br>
+## Use Case:
 
+Agents use this skill to help Clay users search, create, update, and organize contacts, notes, groups, events, emails, and reminders through the Clay CLI.
 
-## Reference(s): <br>
-- [Clay homepage](https://clay.earth) <br>
-- [Clay skill on ClawHub](https://clawhub.ai/khrrsn/clay) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command output format guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Clay data commands can return JSON, CSV, or TSV; review contact IDs and fields before write commands or broad exports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Clay CLI output can include sensitive personal and third-party contact data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat command output as sensitive and avoid exposing contacts, emails, notes, events, locations, birthdays, or interaction history in shared logs or transcripts.
+
+Risk: Commands that update, archive, restore, merge, or change groups can affect contact records.
+
+Mitigation: Confirm contact IDs and intended changes before running mutating Clay CLI commands.
+
+Risk: Installing the CLI grants local workflows access to a Clay account after authentication.
+
+Mitigation: Install only when Clay account access is intended, authenticate with `clay login`, and consider pinning or otherwise verifying the `@clayhq/clay-cli` package before installation.
+
+## Reference(s):
+
+- [Clay](https://clay.earth)
+- [ClawHub Clay skill page](https://clawhub.ai/khrrsn/skills/clay)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an authenticated Clay CLI session.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

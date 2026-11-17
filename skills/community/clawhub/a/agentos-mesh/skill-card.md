@@ -1,42 +1,57 @@
-## Description: <br>
-Enables AI agents to communicate in real time over the AgentOS Mesh network for sending messages, tasks, and status updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables AI agents to communicate in real time over the AgentOS Mesh network for messages, tasks, pending inbox checks, and status updates.
 
-## Publisher: <br>
-[AgentOSsoftware](https://clawhub.ai/user/AgentOSsoftware) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[agentossoftware](https://clawhub.ai/user/agentossoftware)
 
-## Use Case: <br>
-Developers and operators with AgentOS accounts use this skill to install, configure, and operate a mesh CLI so agents can exchange messages, create tasks, poll inboxes, and process pending local messages. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The mesh CLI can send API keys and message contents to the configured AgentOS API endpoint, and the evidence notes an under-disclosed plaintext IP endpoint. <br>
-Mitigation: Configure an explicit trusted HTTPS API URL and use a narrowly scoped API key before sending messages or tasks. <br>
-Risk: Status output exposes part of the API key. <br>
-Mitigation: Avoid sharing mesh status output and rotate credentials if status output is disclosed outside the trusted environment. <br>
-Risk: Processing pending messages clears the local pending-message queue, and automated heartbeat or cron use can process participant messages without manual review. <br>
-Mitigation: Enable cron or heartbeat processing only when the mesh participants are trusted and the operator accepts that processed local messages are cleared. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AgentOS Mesh on ClawHub](https://clawhub.ai/AgentOSsoftware/agentos-mesh) <br>
-- [AgentOS Account Portal](https://brain.agentos.software) <br>
+## Use Case:
 
+Developers and operators use this skill to install and operate a shell CLI that lets agents exchange AgentOS Mesh messages, create tasks, poll inboxes, and inspect mesh status.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes commands for installing and using a mesh CLI, plus configuration guidance for API URL, API key, and agent ID.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.0 (source: server-resolved release metadata; artifact SKILL.md states 1.2.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Bearer credentials can be sent to the configured AgentOS endpoint, including non-HTTPS URLs.
+
+Mitigation: Use only an HTTPS AgentOS URL, restrict the API key to the needed mesh scopes, and keep the key out of shared logs and transcripts.
+
+Risk: Unattended heartbeat or cron processing can act on remote message text without review.
+
+Mitigation: Enable automatic polling only for trusted agents and treat remote message text as untrusted input that requires approval before replies or tool use.
+
+Risk: Status output can reveal connection details and part of the API key.
+
+Mitigation: Avoid sharing status output publicly and redact credentials before including diagnostics in reports.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agentossoftware/skills/agentos-mesh)
+- [AgentOS account portal](https://brain.agentos.software)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, JSON, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples; CLI commands may return JSON or terminal status text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The installed CLI can read local AgentOS configuration, call AgentOS Mesh API endpoints, and manage a local pending-message JSON file.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,52 +1,63 @@
-## Description: <br>
-Provides agent guidance and scripts for working with Bitrix24 CRM, tasks, calendar, chat, drive, and related REST API workflows using a configured Bitrix24 webhook and MCP documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Works with Bitrix24 via REST API and the Bitrix24 MCP documentation server for CRM, tasks, calendar, chat, open lines, projects, time tracking, drive, feed, sites, products, quotes, users, and related business workflows.
 
-## Publisher: <br>
-[bitrix24](https://clawhub.ai/user/bitrix24) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bitrix24](https://clawhub.ai/user/bitrix24)
 
-## Use Case: <br>
-Employees and business operators use this skill through an agent to retrieve, summarize, and update Bitrix24 CRM, task, calendar, chat, drive, feed, and team status information. It is intended for portals where a dedicated Bitrix24 webhook has already been configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad automatic access to sensitive CRM, employee, chat, calendar, drive, and feed data through a webhook. <br>
-Mitigation: Install only with a dedicated least-privilege Bitrix24 webhook and avoid broad all-module scopes unless that access is intended. <br>
-Risk: Implicit invocation can cause Bitrix24 data access when a prompt matches covered business topics. <br>
-Mitigation: Consider disabling implicit invocation or requiring explicit Bitrix24 prompts for higher-risk environments. <br>
-Risk: Write, delete, feed post, chat message, batch mutation, and scheduled report actions can affect business records or expose information. <br>
-Mitigation: Require manual review before any write, delete, feed post, chat message, batch mutation, or scheduled report. <br>
+## Use Case:
 
+Employees and business operators use this skill to retrieve, summarize, and update Bitrix24 work data through an agent, including CRM records, tasks, meetings, files, chats, customer support conversations, and team status. Administrators configure a dedicated Bitrix24 webhook before use.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/bitrix24/bitrix24-rest) <br>
-- [Bitrix24 Skill Homepage](https://github.com/bitrix24/bitrix24-skill) <br>
-- [Bitrix24 MCP Documentation Server](https://mcp-dev.bitrix24.tech/mcp) <br>
-- [Access and Auth](references/access.md) <br>
-- [MCP Workflow](references/mcp-workflow.md) <br>
-- [CRM](references/crm.md) <br>
-- [Tasks](references/tasks.md) <br>
-- [Calendar](references/calendar.md) <br>
-- [Chat and Notifications](references/chat.md) <br>
-- [Drive and Disk](references/drive.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call Bitrix24 REST endpoints through scripts and return business-facing summaries, tables, or action confirmations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata and CHANGELOG.md, released 2026-04-01) <br>
+Risk: The skill can read and modify sensitive Bitrix24 business data, including CRM records, tasks, calendars, chats, files, employee time data, and customer conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Bitrix24 webhook with only the minimum scopes required and avoid admin-wide permissions.
+
+Risk: Security review found that some paths can change business data without consistently enforcing the confirmation behavior promised by the skill instructions.
+
+Mitigation: Review before installing, and require the publisher to fix batch confirmation enforcement and fail closed on unknown or irregular mutating methods before broad deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bitrix24/skills/bitrix24-rest)
+- [Bitrix24 skill homepage](https://github.com/bitrix24/bitrix24-skill)
+- [Bitrix24 MCP documentation server](https://mcp-dev.bitrix24.tech/mcp)
+- [Access and Auth](references/access.md)
+- [CRM](references/crm.md)
+- [Tasks](references/tasks.md)
+- [Calendar](references/calendar.md)
+- [Chat and Notifications](references/chat.md)
+- [Open Lines](references/openlines.md)
+- [MCP Workflow](references/mcp-workflow.md)
+- [Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance]
+
+**Output Format:** [Markdown responses with optional shell commands, configuration snippets, and JSON results from Bitrix24 API calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a Bitrix24 webhook URL from the BITRIX24_WEBHOOK_URL environment variable and may call the Bitrix24 MCP documentation server for method guidance.]
+
+## Skill Version(s):
+
+1.2.1 (source: release evidence and changelog, released 2026-04-01)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

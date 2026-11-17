@@ -1,40 +1,59 @@
-## Description: <br>
-Practical knot tying and rope skills for securing loads, setting up camp, joining ropes, lashing structures, and learning foundational rope work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Practical knot tying and rope skills for everyday and outdoor use, including securing loads, setting up camp, tying things down, joining ropes, and learning foundational rope work.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-External users and agents use this skill to explain practical rope work, recommend knots for common tasks, and provide safety-aware instructions for tying, securing, joining, and lashing with rope. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may over-rely on text instructions for life-safety rope work, climbing, rescue, towing, or heavy lifting. <br>
-Mitigation: Treat those uses as hands-on training situations and require qualified in-person instruction or expert review before relying on any rope setup. <br>
+## Use Case:
 
+External users use this skill to get practical, safety-aware guidance for everyday and outdoor rope work, including choosing knots, tying them correctly, selecting rope, and understanding when text guidance is not enough for life-safety uses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/howtousehumans/knot-tying-rope-work) <br>
-- [International Guild of Knot Tyers](https://igkt.net/) <br>
-- [Animated Knots by Grog](https://www.animatedknots.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with structured instructions and safety cautions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; may include localized units, knot recommendations, practice steps, and warnings for unsafe uses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The release evidence reports unnecessary filesystem authority for a guidance-only skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run with least privilege, and remove or tightly sandbox filesystem access where possible.
+
+Risk: The release evidence reports an unpinned npx install command.
+
+Mitigation: Review the package and install source before use, and avoid running the install command in privileged or secret-bearing environments.
+
+Risk: Text-only knot guidance is not sufficient for climbing, rescue, or other life-safety rope work.
+
+Mitigation: Use the skill's life-safety warnings and seek hands-on instruction from a qualified trainer for climbing or rescue applications.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/howtousehumans/skills/knot-tying-rope-work)
+- [International Guild of Knot Tyers](https://igkt.net/)
+- [Animated Knots by Grog](https://www.animatedknots.com/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown or plain text instructions with structured steps, cautions, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May adapt rope measurements and terminology to the user's locale; does not produce executable code.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,55 @@
-## Description: <br>
-Control devices, run automations, and help users get more from Alexa with smart home, routines, and skill development guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control devices, run automations, and help users get more from Alexa with smart home, routines, and skill development guidance.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users, smart-home operators, and Alexa skill developers use this skill for concise guidance on Alexa voice commands, device setup, routines, troubleshooting, privacy controls, and custom skill development. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Examples include sensitive actions for locks, cameras, garage doors, calling, messaging, Drop In, Wi-Fi settings, and device resets. <br>
-Mitigation: Review Alexa privacy and household permissions first, require confirmations or PINs where available, and avoid reset or disconnect actions unless a recovery plan is in place. <br>
-Risk: Smart-home routines may trigger unintended device behavior if phrases, device names, permissions, or locations are configured incorrectly. <br>
-Mitigation: Use unique trigger phrases, clear room and device names, test each step individually, and check routine history before relying on automations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Alexa Skill Page](https://clawhub.ai/ivangdavila/alexa) <br>
-- [Alexa Skill Overview](artifact/SKILL.md) <br>
-- [Alexa Voice Commands](artifact/commands.md) <br>
-- [Alexa Smart Home](artifact/smart-home.md) <br>
-- [Alexa Skill Development](artifact/development.md) <br>
+## Use Case:
 
+Alexa users, smart home operators, and developers use this skill as a reference for voice commands, device setup, routines, troubleshooting, privacy settings, and Alexa skill development.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples, tables, checklists, JSON snippets, JavaScript code, and configuration steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational only; the skill itself does not execute commands, access data, or persist information.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Some guidance concerns security-sensitive Alexa features such as locks, cameras, garage doors, calling, messaging, Drop In, and reset procedures.
+
+Mitigation: Review privacy, household access, and device permissions before using these commands or changing related settings.
+
+Risk: Reference guidance may not match every device, manufacturer integration, Alexa app version, or certification requirement.
+
+Mitigation: Verify device-specific setup, privacy, and publishing steps against current Amazon Alexa and manufacturer documentation before applying them.
+
+## Reference(s):
+
+- [Alexa Skill Page](https://clawhub.ai/ivangdavila/skills/alexa)
+- [Alexa Voice Commands](commands.md)
+- [Alexa Smart Home](smart-home.md)
+- [Alexa Skill Development](development.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown reference guidance with tables and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only reference content; no executable tool calls or automation are included.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

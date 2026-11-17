@@ -1,44 +1,53 @@
-## Description: <br>
-The skill helps an agent query WeChat friends, recent contacts, chatrooms, and chatroom members, then send confirmed text, image, or file messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The wechat-tool skill helps an agent search WeChat friends, recent contacts, chatrooms, and chatroom members, then send text, image, or file messages after target confirmation.
 
-## Publisher: <br>
-[aw11100](https://clawhub.ai/user/aw11100) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aw11100](https://clawhub.ai/user/aw11100)
 
-## Use Case: <br>
-Agents and users use this skill to find WeChat recipients, resolve ambiguous contact or group matches, and send confirmed text, image, or file messages to selected friends or group chats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends a powerful WeChat account token, contact data, message text, and shared file links through a plain HTTP service endpoint. <br>
-Mitigation: Use it only if you trust synodeai.com with that data, prefer a provider-supported HTTPS path for real use, and use a revocable token where available. <br>
-Risk: Messages or media could be sent to the wrong friend or group if recipient lookup returns multiple or unexpected matches. <br>
-Mitigation: Follow the documented lookup, selection, and second-confirmation flow, and verify the recipient and message content before confirming final delivery. <br>
-Risk: Image and file sends may expose externally hosted content links to the service and selected WeChat recipients. <br>
-Mitigation: Share only links and files appropriate for those recipients and the service provider, and avoid private or regulated content unless the service has been approved for that data. <br>
+## Use Case:
 
+Developers and agent users can use this skill to manage WeChat lookup and messaging workflows through an agent, including finding the intended recipient, confirming the target, and sending text, image, or file content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aw11100/wechat-tool) <br>
-- [Publisher profile](https://clawhub.ai/user/aw11100) <br>
-- [WeChat tool service endpoint](http://www.synodeai.com/ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with WeChat API request and response content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WECHAT_APPID and WECHAT_TOKEN; sending actions require target lookup, user selection when needed, and explicit confirmation before final delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Account tokens, recipient details, contact identifiers, messages, and file URLs may be sent to a third-party service over plain HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the service is trusted, prefer HTTPS with certificate validation, store WECHAT_TOKEN in a secrets manager, and rotate any token previously used over HTTP.
+
+Risk: The skill can send text, image, and file messages to friends or groups.
+
+Mitigation: Keep the target lookup, user selection for multiple matches, and second confirmation step before every send action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aw11100/skills/wechat-tool)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Text, Guidance]
+
+**Output Format:** [Markdown with tool call parameters and confirmation prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WECHAT_APPID and WECHAT_TOKEN configuration before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

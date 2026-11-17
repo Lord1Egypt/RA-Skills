@@ -1,7 +1,7 @@
 ---
 name: methodology-curator
 description: Surface expert frameworks
-version: 1.9.8
+version: 1.10.3
 triggers:
   - methodology
   - frameworks
@@ -17,17 +17,8 @@ source: claude-night-market
 source_plugin: abstract
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/abstract](https://github.com/athola/claude-night-market/tree/master/plugins/abstract). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/abstract](https://github.com/athola/claude-night-market/tree/master/plugins/abstract). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
-
-## Table of Contents
-
-- [Overview](#overview)
-- [Workflow Integration](#workflow-integration)
-- [Domain Modules](#domain-modules)
-- [When to Skip](#when-to-skip)
-- [Masters Overview](#masters-overview)
-- [Selection Matrix](#selection-matrix)
 
 # Methodology Curator
 
@@ -37,7 +28,12 @@ Identifying the best way to approach a domain is often more difficult than the t
 
 ## Workflow Integration
 
-When starting new work, identify the domain (e.g., Instruction Design, Code Review, or Knowledge Management) and consult the corresponding module in `modules/` to discover experts and their frameworks. Select principles that fit your context and document them in a methodology brief before proceeding to creation.
+When starting new work, score every domain below by how many of its terms the
+task uses and load the top two modules, not the first that fits. Mapping free
+text onto a category runs about three candidates per correct one (TRIZ-GPT,
+arXiv 2408.05897, measured on contradiction parameters), so a single pick is
+wrong often enough that the second module is worth its tokens. Say which two
+were loaded and why the others were not. Select principles that fit your context and document them in a methodology brief before proceeding to creation.
 
 For existing work, determine what the skill or hook is trying to teach and compare it against established frameworks. This gap analysis identifies opportunities to add missing principles or align terminology with recognized standards. Surgically add methodology rather than rewriting from scratch to maintain authority and effectiveness.
 
@@ -65,6 +61,11 @@ Each module in the `modules/` directory provides a curated list of masters, key 
 - The work is purely mechanical (no methodology to ground)
 - Already performed a recent methodology audit
 - Quick bug fixes that don't change the approach
+
+## When NOT To Use
+
+- Scoring a finished skill (use `abstract:skills-eval`)
+- The mechanics of writing one (use `abstract:skill-authoring`)
 
 ## Domain Modules
 
@@ -122,5 +123,16 @@ After curating methodologies, the skill authoring workflow benefits from:
 ### For Evaluation
 - `/skills-eval` - Evaluate skill quality (complements methodology audit)
 - `/analyze-skill` - Analyze skill complexity
-- `/bulletproof-skill` - Harden against rationalization
 - `pensive:code-reviewer` - Code review (uses code-review domain)
+
+## Exit Criteria
+
+- [ ] The domain is identified by name (e.g., "Instruction Design", "Debugging") and at least one
+  module from `modules/` is loaded and consulted.
+- [ ] A methodology brief is produced naming at least one expert, their key framework, and a
+  "Use When / Avoid When" statement applicable to the current work.
+- [ ] If the task falls under a "Skip" condition (well-defined spec, purely mechanical fix), the
+  skip is stated explicitly rather than silently omitted.
+- [ ] Any framework selected references one of the documented modules
+  (`instruction-design.md`, `code-review.md`, `debugging.md`, `testing.md`,
+  `knowledge-management.md`, or `decision-making.md`) rather than an invented source.

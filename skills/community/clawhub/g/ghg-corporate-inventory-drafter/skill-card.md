@@ -1,39 +1,59 @@
-## Description: <br>
-Use this skill when a sustainability lead, ESG analyst, or climate-disclosure officer needs to draft a corporate GHG inventory aligned to GHG Protocol Corporate + Scope 3 Standards, IPCC AR6 GWP100, CSRD ESRS E1, IFRS S2, SBTi, and CDP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when a sustainability lead, ESG analyst, or climate-disclosure officer needs to draft a corporate GHG inventory aligned to GHG Protocol Corporate + Scope 3 Standards, IPCC AR6 GWP100, CSRD ESRS E1, IFRS S2, SBTi, and CDP.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Sustainability, ESG, climate-disclosure, environmental, and CFO-office reporting staff use this skill to draft a corporate GHG inventory packet for reporting-officer and assurance-provider review. It structures Scope 1, dual Scope 2, Scope 3 category screening, disclosure alignment, data-quality, restatement, reconciliation, and evidence-index outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Draft inventory outputs could be mistaken for assurance, certification, or a final disclosure. <br>
-Mitigation: Keep every output labeled as draft and require reporting-officer, counsel, and assurance-provider review before publication or submission. <br>
-Risk: Raw employee personal data or supplier-confidential pricing could be exposed during inventory drafting. <br>
-Mitigation: Use summarized commute, travel, and supplier inputs whenever possible, and avoid entering personal or confidential raw records unless they are required and approved for the workflow. <br>
+## Use Case:
 
+Sustainability leads, ESG analysts, climate-disclosure officers, environmental managers, and CFO-office reporting staff use this skill to draft a structured corporate GHG inventory packet across Scope 1, dual Scope 2, and Scope 3 categories for reporting-officer and assurance-provider review.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown draft inventory packet with structured tables, registers, matrices, review blocks, and unresolved-question lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [All substantive outputs are labeled draft and require reporting-officer plus assurance-provider review before disclosure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: The skill may handle sensitive corporate operational data, supplier data, employee commute data, or travel details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only the information needed for the inventory, avoid personal employee details and confidential pricing, and summarize sensitive inputs where possible.
+
+Risk: Draft inventory outputs could be incomplete, inaccurate, or unsuitable for disclosure without professional review.
+
+Mitigation: Have qualified reporting and assurance professionals review the draft before disclosure, submission, assurance, or target-setting use.
+
+Risk: Incorrect emission factors, Scope 2 instruments, Scope 3 exclusions, offsets, or removals could materially misstate the inventory.
+
+Mitigation: Use named factor sources with edition, year, vintage, and geography; keep offsets and removals separate; and require quantitative screening for Scope 3 exclusions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/ghg-corporate-inventory-drafter)
+- [Artifact README](artifact/README.md)
+- [Artifact changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown draft inventory packet with tables, registers, matrices, and review blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft output requires reporting-officer and assurance-provider review before disclosure or submission.]
+
+## Skill Version(s):
+
+0.1.2 (source: ClawHub release metadata; artifact changelog latest entry is 0.1.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

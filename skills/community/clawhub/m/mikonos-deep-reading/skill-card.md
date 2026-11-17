@@ -1,49 +1,62 @@
-## Description: <br>
-Turns books, long articles, research reports, and papers into a connected Zettelkasten-style knowledge network of structure notes, atomic notes, method notes, and index notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns books, long articles, research reports, and papers into a connected Zettelkasten knowledge network with structure notes, atomic notes, method notes, and index notes.
 
-## Publisher: <br>
-[mikonos](https://clawhub.ai/user/mikonos) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikonos](https://clawhub.ai/user/mikonos)
 
-## Use Case: <br>
-Readers, analysts, researchers, and knowledge workers use this skill to deeply digest long-form source material and build a linked knowledge vault rather than a simple summary. It guides an agent through planning, structure extraction, index design, atomic note creation, method-note consolidation, and network review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow writes, moves, and cross-links Markdown notes in a knowledge vault, including index notes that may already exist. <br>
-Mitigation: Confirm the daily-record and index paths before running it, keep backups, and review diffs before accepting edits to existing notes. <br>
-Risk: The workflow may call companion skills such as structure-note, index-note, file-organize, or workflow-audit when they are available. <br>
-Mitigation: Review companion skills before use and run the workflow manually when a companion skill is missing or untrusted. <br>
-Risk: Source material without full text can lead to weaker case fidelity if the agent relies only on summaries or memory. <br>
-Mitigation: Provide the original source when possible; when only summaries are available, require the notes to mark source limitations and avoid invented details. <br>
+## Use Case:
 
+External users and developers use this skill to deeply digest books, long-form articles, research reports, or papers into an organized knowledge vault. It guides agents through planning, structure extraction, concept note creation, methodology capture, index onboarding, network review, and workflow audit.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mikonos/mikonos-deep-reading) <br>
-- [README](README.md) <br>
-- [Expert personas reference](references/expert_personas.md) <br>
-- [Luhmann Scan workflow](references/luhmann_scan.md) <br>
-- [Structure note template](templates/structure_note_template.md) <br>
-- [Atomic note template](templates/atomic_note_template.md) <br>
-- [Method note template](templates/method_note_template.md) <br>
-- [Index note template](templates/index_note_template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown notes, task checklists, YAML frontmatter, and wikilinks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates knowledge-vault notes in daily and index directories; outputs may include structure, atomic, method, index, task, and review notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can modify and reorganize an existing knowledge vault, including index files and note locations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill in a bounded vault or review proposed file edits and moves before allowing changes to existing indexes or note directories.
+
+Risk: The workflow can call companion skills and require remediation writes during the audit phase.
+
+Mitigation: Review companion skill calls and workflow-audit remediation before execution, especially when they affect existing notes or indexes.
+
+Risk: Generated reading notes may preserve unverified claims when the source material is unavailable or only summarized.
+
+Mitigation: Require source-status labels in notes and review case-fidelity sections before relying on extracted claims.
+
+## Reference(s):
+
+- [Expert Personas](references/expert_personas.md)
+- [Luhmann Scan Workflow](references/luhmann_scan.md)
+- [Atomic Note Template](templates/atomic_note_template.md)
+- [Index Note Template](templates/index_note_template.md)
+- [Method Note Template](templates/method_note_template.md)
+- [Structure Note Template](templates/structure_note_template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Configuration, Guidance]
+
+**Output Format:** [Markdown notes with YAML frontmatter, wikilinks, checklists, tables, and task-tracking sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces and reorganizes vault notes, including structure notes, atomic notes, method notes, index notes, execution plans, task tracking, and audit reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

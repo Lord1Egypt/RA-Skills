@@ -1,41 +1,53 @@
-## Description: <br>
-Validates side hustle ideas against a 48-hour market demand test, scoring buyer reach, problem urgency, deliverability, infrastructure, and ecosystem fit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validates side hustle ideas against a 48-hour market demand test, scoring buyer reach, problem urgency, deliverability, infrastructure, and ecosystem fit.
 
-## Publisher: <br>
-[asimons81](https://clawhub.ai/user/asimons81) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[asimons81](https://clawhub.ai/user/asimons81)
 
-## Use Case: <br>
-External founders, operators, and agent users use this skill to sanity-check side hustle experiments before committing time or spend. It produces a short validation scorecard, blocker analysis, and minimum viable test adjustment for a 48-hour market signal window. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill's business recommendations may be incomplete or incorrect for a specific market, audience, or legal context. <br>
-Mitigation: Treat the output as advisory and review spending, outreach, public posting, and launch decisions before acting. <br>
-Risk: A 48-hour validation workflow can encourage quick public tests before the user has checked messaging, claims, or data handling. <br>
-Mitigation: Review proposed validation actions and success metrics before contacting prospects or publishing offers. <br>
+## Use Case:
 
+External builders and operators use this skill to test side hustle offers against a short-window market demand filter before committing time or spend.
 
-## Reference(s): <br>
-- [Revenue Validator on ClawHub](https://clawhub.ai/asimons81/revenue-validator) <br>
-- [Publisher profile: asimons81](https://clawhub.ai/user/asimons81) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown scorecard with pass/fail criteria, overall score, blocker, recommended MVT adjustment, and 24-hour check-in metric] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory business validation output; no scripts, credentials, network access, or persistence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The skill provides lightweight business-idea evaluation guidance rather than verified market research.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat output as a short-window demand screen and confirm recommendations with real customer signals before committing spend.
+
+Risk: Marketplace metadata parsing may be unreliable if release frontmatter is not normalized.
+
+Mitigation: Review frontmatter before packaging or publication.
+
+## Reference(s):
+
+- [Revenue Validator on ClawHub](https://clawhub.ai/asimons81/skills/revenue-validator)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Markdown scorecard]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes five-point pass/fail scoring, an overall score, the biggest blocker, an MVT adjustment, and a 24-hour check-in metric.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

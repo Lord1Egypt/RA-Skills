@@ -1,46 +1,62 @@
-## Description: <br>
-Create tamper-proof receipts for AI agent work by hashing artifacts or action manifests, sending them to api.mpps.io, and receiving an HSM-signed receipt without an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create tamper-proof receipts for AI agent work by hashing artifacts or action manifests, posting them to api.mpps.io, and receiving an HSM-signed receipt without an API key.
 
-## Publisher: <br>
-[gdlg-ai](https://clawhub.ai/user/gdlg-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gdlg-ai](https://clawhub.ai/user/gdlg-ai)
 
-## Use Case: <br>
-Developers and agent operators use this skill to create verifiable receipts for completed tasks, generated artifacts, workflow steps, releases, payments, or delivery events. It helps build an audit trail by recording hashes and minimal receipt metadata with an external attestation service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Receipt metadata is sent to mpps.io and may be retained for years. <br>
-Mitigation: Submit only hashes and minimal non-sensitive labels or context needed for verification. <br>
-Risk: Sensitive data could be exposed if secrets, customer data, raw prompts, or private source text are included in receipt context. <br>
-Mitigation: Do not include secrets, customer data, raw prompts, or private source text in requests to the external attestation service. <br>
-Risk: Hashes of short guessable secrets may be vulnerable to guessing. <br>
-Mitigation: Avoid hashing short secrets directly; use larger payloads or an appropriate salt before creating a receipt. <br>
+## Use Case:
 
+Developers, engineers, and agents use this skill to create externally verifiable receipts for completed work, artifact hashes, action manifests, release bundles, or delivery workflows. It is useful when an audit trail or later verification URL is needed without adding an SDK or API key.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/gdlg-ai/mpps-attestation) <br>
-- [mpps.io Skills Homepage](https://mpps.io/skills) <br>
-- [mpps.io API Documentation](https://github.com/gdlg-ai/mpps.io/blob/main/docs/api.md) <br>
-- [mpps.io Verification Documentation](https://github.com/gdlg-ai/mpps.io/blob/main/docs/verify.md) <br>
-- [mpps.io Security Policy](https://github.com/gdlg-ai/mpps.io/blob/main/SECURITY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with bash and Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces API request examples and verification guidance; receipt data is returned by the external mpps.io service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata and artifact metadata) <br>
+Risk: Receipt examples can send artifact labels, local paths, repository names, and commit identifiers to the external mpps.io service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use opaque labels such as "artifact" and omit repository or commit context unless that metadata is intentionally being recorded.
+
+Risk: Sensitive data could be exposed if users place secrets, customer data, private source text, raw prompts, or unsalted hashes of short secrets in receipt context.
+
+Mitigation: Send only non-sensitive hashes and labels, keep private content out of the request body, and salt short-secret hashes before attestation.
+
+Risk: The skill depends on outbound network calls to api.mpps.io.
+
+Mitigation: Review the exact request payload and confirm the deployment environment permits the external call before using the generated commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gdlg-ai/skills/mpps-attestation)
+- [Mpps skills homepage](https://mpps.io/skills)
+- [mpps.io](https://mpps.io)
+- [Skill-declared API documentation](https://github.com/gdlg-ai/mpps.io/blob/main/docs/api.md)
+- [Skill-declared verification documentation](https://github.com/gdlg-ai/mpps.io/blob/main/docs/verify.md)
+- [Skill-declared security policy](https://github.com/gdlg-ai/mpps.io/blob/main/SECURITY.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, API Calls, Configuration]
+
+**Output Format:** [Markdown with inline bash and Python code blocks, plus JSON API response fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl or another HTTP client and network access to api.mpps.io.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

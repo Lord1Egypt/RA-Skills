@@ -1,43 +1,54 @@
-## Description: <br>
-This skill looks up Xiaohongshu / XHS / RedNote creator profile data through SocialDataX, including account basics, homepage information, and audience metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+用于小红书博主数据、小红书博主信息、账号资料、达人画像、主页信息和粉丝规模查询。覆盖 Xiaohongshu / XHS / RedNote creator profiles，来自 SocialDataX 社媒数据助手。
 
-## Publisher: <br>
-[devinchen2014](https://clawhub.ai/user/devinchen2014) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[devinchen2014](https://clawhub.ai/user/devinchen2014)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve read-only Xiaohongshu creator profile information from SocialDataX by user ID or profile URL/share text. The skill helps report available profile facts such as names, platform IDs, bio, verification, audience counts, IP location, and gender when available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Returned creator profile fields such as follower counts, gender, and IP location are third-party data. <br>
-Mitigation: Handle returned profile data according to the user's privacy and compliance requirements. <br>
-Risk: The skill requires a SOCIALDATAX_API_KEY for SocialDataX lookups. <br>
-Mitigation: Provide the key through the SOCIALDATAX_API_KEY environment variable and avoid exposing it in prompts, command history, or shared output. <br>
-Risk: Profile facts and strategic interpretation can be conflated in agent responses. <br>
-Mitigation: Separate returned profile facts from any analysis or recommendation. <br>
+## Use Case:
 
+External users and developers can look up Xiaohongshu, XHS, or RedNote creator profile details using a creator ID or profile link. The skill returns available profile fields such as bio and audience counts for review.
 
-## Reference(s): <br>
-- [SocialDataX homepage](https://socialdatax.com/?from=clawhub) <br>
-- [ClawHub skill listing](https://clawhub.ai/devinchen2014/skills/socialdatax-xhs-creator-profile) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON profile data returned by SocialDataX CLI or MCP tools] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SOCIALDATAX_API_KEY, node, and npm; use either a Xiaohongshu user ID or a profile URL/share text for a single lookup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.9 (source: server release evidence) <br>
+Risk: The CLI package is unpinned and may change, creating a supply-chain risk; the scan is incomplete because two referenced local paths were missing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin the CLI package to a version you trust before installation, and review the missing referenced files when available.
+
+Risk: Profile lookup inputs are sent to SocialDataX.
+
+Mitigation: Use the skill only with lookup inputs you are comfortable sharing with SocialDataX.
+
+## Reference(s):
+
+- [SocialDataX API access](https://socialdatax.com/ai?from=clawhub)
+- [ClawHub skill page](https://clawhub.ai/devinchen2014/skills/socialdatax-xhs-creator-profile)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text]
+
+**Output Format:** [JSON profile data with a concise factual summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Available profile fields vary by lookup; distinguish returned profile facts from strategic interpretation.]
+
+## Skill Version(s):
+
+0.1.20 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

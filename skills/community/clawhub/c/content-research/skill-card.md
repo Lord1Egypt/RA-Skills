@@ -1,44 +1,59 @@
-## Description: <br>
-Researches recent public web topics and drafts platform-specific content for Reddit, X/Twitter, Discord, and LinkedIn. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research trending topics and generate platform-specific content for Reddit, X/Twitter, Discord, and LinkedIn using topic-research and content-creation triggers.
 
-## Publisher: <br>
-[hazy2go](https://clawhub.ai/user/hazy2go) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[hazy2go](https://clawhub.ai/user/hazy2go)
 
-## Use Case: <br>
-External users and content teams use this skill to gather recent public topic findings and turn selected findings into ready-to-post social content across Reddit, X/Twitter, Discord, and LinkedIn. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated research summaries or social posts may include inaccurate, stale, or misleading claims from public web sources. <br>
-Mitigation: Review source links and generated posts before publishing. <br>
-Risk: Brand configuration files could expose sensitive business details if users add confidential material. <br>
-Mitigation: Keep brand-config.md limited to non-secret voice, tone, and publishing guidance. <br>
-Risk: Optional search integrations may broaden the data and account access available to the agent. <br>
-Mitigation: Use a narrow search API key or browser setup when enabling optional search integrations. <br>
+## Use Case:
 
+External content creators, marketers, and OpenClaw users use this skill to research recent topic developments, summarize findings, and draft platform-specific posts for Reddit, X/Twitter, Discord, and LinkedIn.
 
-## Reference(s): <br>
-- [Content Research ClawHub Release](https://clawhub.ai/hazy2go/content-research) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [Brand Configuration Template](artifact/examples/brand-config.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown summaries and ready-to-post platform drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Research findings are limited to recent public web sources; branded output can use an optional brand-config.md file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Research summaries or social drafts may include inaccurate, outdated, or unsuitable claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated findings and drafts before publishing, and verify source links for important claims.
+
+Risk: Brand guidance files may expose sensitive account, campaign, or credential information if populated with secrets.
+
+Mitigation: Keep secrets and sensitive account credentials out of brand-config.md and use only publishable brand guidance.
+
+Risk: Broad trigger phrases may cause the skill to be selected when web research or social drafting was not intended.
+
+Mitigation: Use explicit prompts and review auto-selection behavior in OpenClaw setups that choose skills from broad phrases.
+
+## Reference(s):
+
+- [OpenClaw](https://openclaw.ai)
+- [Content Research on ClawHub](https://clawhub.ai/hazy2go/skills/content-research)
+- [Brand configuration template](examples/brand-config.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown summaries and ready-to-post social content drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Research findings are filtered to recent items and content drafts are tailored by platform and optional brand voice guidance.]
+
+## Skill Version(s):
+
+1.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,61 @@
-## Description: <br>
-Generate magazine-quality business articles for founders, investors, and business analysts with dark hero sections, rich visual components, and HTML plus PDF output for professional sharing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate professional business articles with magazine-quality layout for founders, investors, and business analysts, including rich visual components and HTML plus PDF output for professional sharing.
 
-## Publisher: <br>
-[jeff0052](https://clawhub.ai/user/jeff0052) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jeff0052](https://clawhub.ai/user/jeff0052)
 
-## Use Case: <br>
-External founders, investors, consultants, and business analysts use this skill to turn raw business ideas, outlines, or drafts into polished long-form business articles with visual components, HTML output, and PDF-ready formatting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional publishing can create GitHub repositories or GitHub Pages sites without enough confirmation of visibility, target files, or cleanup expectations. <br>
-Mitigation: Before publishing, explicitly confirm the files, repository name, repository visibility, Pages URL, whether the content will be public, and how to remove or update the publication. <br>
-Risk: Generated articles may contain confidential business strategy, market analysis, or investor material that is unsuitable for public sharing. <br>
-Mitigation: Use the skill locally for drafting and PDF generation, then manually review sensitive business content before any public repository, Pages site, or social sharing step. <br>
+## Use Case:
 
+External founders, investors, consultants, and business analysts use this skill to turn raw business ideas, outlines, or drafts into polished thought-leadership articles with structured sections and business-focused visual components.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jeff0052/founder-article) <br>
-- [README](README.md) <br>
-- [Usage guide](references/usage-guide.md) <br>
-- [Example article reference](references/example-saas-death.md) <br>
-- [Live example article](https://jeff0052.github.io/articles/saas-zhi-si.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with generated article HTML, PDF workflow instructions, and optional publishing commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces professional article content and layout assets; optional publishing should be manually confirmed before making content public.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Optional GitHub repository and Pages publishing may expose sensitive drafts or make content public unintentionally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before publishing, verify repository and Pages visibility, and keep sensitive drafts local.
+
+Risk: PDF conversion runs a headless browser against article HTML.
+
+Mitigation: Run the converter only on trusted HTML or isolate the conversion environment.
+
+Risk: Generated business articles may contain incorrect, overstated, or misleading analysis.
+
+Mitigation: Review article claims, figures, and conclusions before sharing or publishing.
+
+## Reference(s):
+
+- [Founder Article Usage Guide](references/usage-guide.md)
+- [Example Article: SAAS之死 - AI时代的第一个殉道者](references/example-saas-death.md)
+- [Founder Article MRD](MRD.md)
+- [Live Example Article](https://jeff0052.github.io/articles/saas-zhi-si.html)
+- [ClawHub Skill Page](https://clawhub.ai/jeff0052/skills/founder-article)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with generated HTML, PDF instructions, and optional publishing steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce article HTML, print-ready PDF, and an optional GitHub Pages URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

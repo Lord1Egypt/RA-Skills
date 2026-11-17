@@ -1,0 +1,4 @@
+interface:
+  display_name: "Don't Starve Guide"
+  short_description: "Survival guides for Don't Starve / DST"
+  default_prompt: "Use $dont-starve-skill to answer Don't Starve / DST survival questions covering characters, seasons, bosses, recipes, base building, and lore."

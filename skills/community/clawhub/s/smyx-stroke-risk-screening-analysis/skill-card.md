@@ -1,44 +1,63 @@
-## Description: <br>
-Analyzes face images or videos with optional physiological indicators to produce stroke-risk screening reports, lifestyle suggestions, medical guidance, and cloud history queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Combines facial feature recognition with physiological indicators to provide stroke-risk screening reports and related guidance.
 
-## Publisher: <br>
-[18072937735](https://clawhub.ai/user/18072937735) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[18072937735](https://clawhub.ai/user/18072937735)
 
-## Use Case: <br>
-External users and health-support agents use this skill to screen uploaded face media and optional health measurements for stroke-risk signals, then review a structured report with risk indicators, suggestions, medical guidance, and report links. It also supports cloud-based history report lookup for the current automatically resolved user identity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive face media, optional health measurements, and linked report history may be sent to a remote service. <br>
-Mitigation: Tell users before use, avoid non-consensual or unnecessary sensitive media, and install only where remote processing is acceptable. <br>
-Risk: The skill may create or reuse a local identity and store reusable account tokens in a workspace SQLite database. <br>
-Mitigation: Run it in a controlled workspace, restrict local database access, and clear local state when persistent identity is not required. <br>
-Risk: Health-risk screening output may be mistaken for a medical diagnosis. <br>
-Mitigation: Present results as screening guidance only and require qualified medical review for health decisions. <br>
+## Use Case:
 
+Intended for people seeking an initial stroke-risk screening based on facial images or video and optional physiological indicators. It returns a structured report with risk prompts and lifestyle or care-seeking guidance; the skill states that this does not replace medical examination or diagnosis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-stroke-risk-screening-analysis) <br>
-- [Skill demo](https://lifeemergence.com/sample.html) <br>
-- [API interface documentation](artifact/references/api_doc.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown reports and tables, with optional JSON output and saved result files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include risk indicators, health warnings, lifestyle suggestions, medical guidance, report links, and cloud history query results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence; artifact frontmatter declares 1.0.6) <br>
+Risk: ClawScan marks the skill suspicious because scanners report a mismatch with its stated stroke-screening purpose and concerns about remote handling of sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Clarify the skill's purpose and data handling before installation; do not send identifiable face media or health indicators unless the remote service and its handling are trusted.
+
+Risk: The security summary flags undeclared account and file side effects.
+
+Mitigation: Review account initialization and file behavior before running, and use only media you are authorized to process.
+
+Risk: Skillspector reports partial coverage because a referenced local path was missing, so unreported behavior is not confirmed safe.
+
+Mitigation: Review the full release contents and its data flows before installation.
+
+Risk: A screening report could be mistaken for a medical diagnosis.
+
+Mitigation: Treat results as screening prompts only and seek qualified medical care for concerning symptoms or findings.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/18072937735/skills/smyx-stroke-risk-screening-analysis)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+- [API reference included with the skill](references/api_doc.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text, Markdown, Guidance]
+
+**Output Format:** [Structured screening report, JSON by default; concise or detailed text and Markdown report lists are also described.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include risk indicators, lifestyle or medical guidance, and report links; results depend on a remote service.]
+
+## Skill Version(s):
+
+1.0.19 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

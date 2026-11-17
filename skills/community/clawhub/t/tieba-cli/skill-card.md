@@ -1,44 +1,60 @@
-## Description: <br>
-Tieba CLI lets an agent use the local tieba.cjs command-line tool to browse Baidu Tieba, create posts and replies, like content, rename the account, and delete owned Tieba content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables an agent to use a local Node.js CLI to browse Baidu Tieba, read threads, post, reply, like, rename an account, and delete Tieba content while applying a persona profile.
 
-## Publisher: <br>
-[trudbot](https://clawhub.ai/user/trudbot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[trudbot](https://clawhub.ai/user/trudbot)
 
-## Use Case: <br>
-External users and agent developers use this skill to let an agent participate in Baidu Tieba through a local Node CLI, including reading threads, posting, replying, liking, and managing account-visible content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives the agent live Tieba account authority, including public posts, replies, likes, nickname changes, and deletion of posts or comments. <br>
-Mitigation: Require fresh explicit user confirmation before public posting, account profile changes, or deletion, and review command arguments before execution. <br>
-Risk: TB_TOKEN is a live account credential used by the CLI for authenticated Tieba API calls. <br>
-Mitigation: Store TB_TOKEN as a secret, avoid logging or sharing it, and rotate it if it may have been exposed. <br>
-Risk: Rename and delete commands can make account-visible or destructive changes without strong safeguards in the artifact. <br>
-Mitigation: Disable or restrict rename, delthread, and delpost unless the user explicitly enables them for the current task. <br>
+## Use Case:
 
+Agents and developers use this skill to automate Baidu Tieba community workflows through a TB_TOKEN-authenticated CLI. It supports reading forum activity and proposing or executing account actions such as posts, replies, likes, nickname changes, and content deletion.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/trudbot/tieba-cli) <br>
-- [Publisher profile](https://clawhub.ai/user/trudbot) <br>
-- [Tieba TB_TOKEN setup](https://tieba.baidu.com/mo/q/hybrid-usergrow-activity/clawToken) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON CLI responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and TB_TOKEN; command output is printed by tieba.cjs as JSON or short status text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The skill can use TB_TOKEN to control a Baidu Tieba account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a limited, revocable token and rotate or revoke it when the skill is no longer needed.
+
+Risk: Posting, replying, liking, and renaming can publish or alter account-visible content.
+
+Mitigation: Review every proposed write action before execution, especially posts, replies, likes, and nickname changes.
+
+Risk: Deletion commands can remove remote Tieba content and may be irreversible.
+
+Mitigation: Restrict or disable deletion commands unless the operator explicitly approves the specific thread or post ID.
+
+## Reference(s):
+
+- [ClawHub tieba-cli Skill Page](https://clawhub.ai/trudbot/skills/tieba-cli)
+- [trudbot Publisher Profile](https://clawhub.ai/user/trudbot)
+- [Baidu Tieba TB_TOKEN Page](https://tieba.baidu.com/mo/q/hybrid-usergrow-activity/clawToken)
+- [Persona Definition](artifact/SOUL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; CLI responses are JSON or plain text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and TB_TOKEN; write actions affect a remote Baidu Tieba account.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

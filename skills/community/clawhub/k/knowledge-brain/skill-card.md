@@ -1,42 +1,58 @@
-## Description: <br>
-Capture, summarize, and organize knowledge from URLs, YouTube videos, documents, and files. Proactively recall stored knowledge when relevant. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Capture, summarize, and organize knowledge from URLs, YouTube videos, documents, and files. Proactively recall stored knowledge when relevant.
 
-## Publisher: <br>
-[plc](https://clawhub.ai/user/plc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[plc](https://clawhub.ai/user/plc)
 
-## Use Case: <br>
-External users and developers use this skill to build and maintain an agent-managed personal knowledge base, capture source material, generate summaries, organize categories, and recall stored knowledge when it is relevant to later work. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can store and later recall local knowledge, which may expose sensitive documents or secrets if they are added to the knowledge base. <br>
-Mitigation: Use a dedicated non-sensitive knowledge-base folder and avoid adding secrets or private documents. <br>
-Risk: Import, sorting, and reorganization workflows can create or move local files and update persistent memory. <br>
-Mitigation: Review proposed imports and reorganizations before approving changes. <br>
-Risk: Git integration can commit knowledge-base contents and may sync them elsewhere if a remote is configured and pushed. <br>
-Mitigation: Only configure or push a git remote when the user intentionally wants the knowledge base synced. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/plc/knowledge-brain) <br>
-- [Publisher profile](https://clawhub.ai/user/plc) <br>
+## Use Case:
 
+External users and developers use this skill to maintain a personal knowledge base, generate summaries from captured sources, organize entries into categories, and recall saved knowledge during later conversations.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown files and concise agent guidance, with shell commands used for local file, transcript, and git operations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates a local knowledge-base directory, category index, changelog entries, and optional git commits.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill maintains a persistent local knowledge index that may summarize or expose private material across sessions.
+
+Mitigation: Review what is stored in agent memory, keep sensitive sources out of the knowledge base, and use explicit recall commands when proactive search is not desired.
+
+Risk: Proactive recall can search saved material across broad conversations and surface context that was not explicitly requested.
+
+Mitigation: Limit activation to relevant conversations, inspect recalled entries before relying on them, and disable or narrow proactive recall for sensitive workflows.
+
+Risk: Shell-command templates use user-supplied URLs, paths, and category names.
+
+Mitigation: Quote and validate all user-provided values, avoid untrusted filenames or directory names, and harden command steps before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/plc/skills/knowledge-brain)
+- [Artifact README](artifact/README.md)
+- [Artifact Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown files, concise conversational summaries, and inline shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains paired raw and summary files, category notes, changelog entries, a lightweight memory index, and optional git commits.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

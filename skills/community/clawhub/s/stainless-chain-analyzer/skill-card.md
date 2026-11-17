@@ -1,38 +1,54 @@
-## Description: <br>
-Analyzes stainless steel supply-chain relationships to support customer relevance scoring, product matching, price guidance, opportunity identification, and risk assessment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes stainless steel industry-chain relationships to support customer relevance scoring, product matching, price trend review, opportunity identification, and risk assessment.
 
-## Publisher: <br>
-[wuxi304-collab](https://clawhub.ai/user/wuxi304-collab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuxi304-collab](https://clawhub.ai/user/wuxi304-collab)
 
-## Use Case: <br>
-Business development, sales, and procurement teams use this skill to analyze stainless steel customers, map their supply-chain position, match likely product grades, estimate pricing, and identify commercial opportunities and risks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Company names, customer IDs, payment history, credit data, or due-diligence queries may be shared with external market-data, business-record, API, or web-search providers. <br>
-Mitigation: Use only approved providers and confirm authorization before including company, customer, payment, credit, or due-diligence information in prompts or queries. <br>
+## Use Case:
 
+Sales and business development teams use this skill to analyze stainless steel customers, map their role in the supply chain, match likely stainless grades, estimate quote ranges, and summarize customer, industry, price, and payment risks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wuxi304-collab/stainless-chain-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown reports with structured tables and JavaScript usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require user-supplied customer, pricing, market, and business-record data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact version history) <br>
+Risk: Market, pricing, company-risk, and customer data may be incomplete, stale, or sourced from third-party services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify all external market, customer, and pricing inputs through lawful and current sources before using the output for quotes or business decisions.
+
+Risk: The skill is written in Chinese and may be unsuitable for users who cannot review the guidance accurately.
+
+Mitigation: Confirm that Chinese-language instructions fit the intended users or provide reviewed translation before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wuxi304-collab/skills/stainless-chain-analyzer)
+- [Publisher profile](https://clawhub.ai/user/wuxi304-collab)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with structured customer, supply-chain, product-match, price, risk, and opportunity sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language business analysis guidance; market, customer, and pricing data should be verified before use in business decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact version history, released 2026-03-26)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

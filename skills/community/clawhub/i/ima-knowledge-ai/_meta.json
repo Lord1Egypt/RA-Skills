@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn79bqsyrn82jq1sbyyzmm138581zadq",
+  "ownerid": "kn70cjr952qdec1nx70zs6wefn7ynq2t",
   "slug": "ima-knowledge-ai",
+  "name": "AI Content Brief, Script & Outline Generator — Research Assistant for Video & Image",
+  "description": "AI content brief, script, and outline generator for video, image, and audio production. Works as an AI research assistant with expert guidance on workflow design, model selection, and visual consistency.",
   "version": "1.0.7",
-  "publishedAt": 1774421271608
+  "publishedAt": 1741618320000
 }

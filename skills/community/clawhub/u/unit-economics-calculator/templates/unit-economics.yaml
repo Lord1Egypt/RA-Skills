@@ -1,0 +1,26 @@
+# Unit Economics Calculator - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+company: ""
+prepared_by: ""
+period: ""
+currency: USD
+orders:
+  order_count: 0
+  gross_order_value_usd: 0
+  refunds_usd: 0
+  discounts_usd: 0
+costs_per_order:
+  payment_fee_usd: 0
+  shipping_usd: 0
+  fulfillment_usd: 0
+  packaging_usd: 0
+  support_minutes: 0
+  support_rate_usd_per_hour: 0
+acquisition:
+  ad_spend_usd: 0
+  sales_salary_usd: 0
+  new_customers: 0
+retention:
+  repeat_rate_monthly: 0
+  average_order_value_usd: 0
+notes: ""

@@ -1,38 +1,53 @@
-## Description: <br>
-Conduct deep multi-source research on any topic with iterative analysis and synthesis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conduct deep multi-source research on any topic with iterative analysis and synthesis. Produces comprehensive research reports with citations.
 
-## Publisher: <br>
-[c7934597](https://clawhub.ai/user/c7934597) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[c7934597](https://clawhub.ai/user/c7934597)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to run quick web lookups or deeper multi-source investigations, then receive synthesized research findings with source references when available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research prompts may be sent to the configured Akashic MCP service, including prompts triggered by broad research-like phrasing. <br>
-Mitigation: Use the skill only with data approved for that service, avoid confidential, personal, or regulated information unless approved, and review when broad triggers activate the research workflow. <br>
+## Use Case:
 
+External users and developers use this skill to perform quick web lookups or deeper multi-source investigations, then receive synthesized Markdown findings with citations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/c7934597/akashic-deep-researcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown research report with key takeaways and citations when available] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Notes the research breadth and depth used so the user can request adjustments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Broad research-related triggers may activate the skill for general investigation requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user wants Akashic-backed research before using the configured research or search tools for ambiguous prompts.
+
+Risk: Research prompts may be sent to configured external research or search tools.
+
+Mitigation: Avoid including private or sensitive information unless the user is comfortable sending that context to those tools.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/c7934597/skills/akashic-deep-researcher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown research reports with cited findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include selected research breadth and depth, key takeaways, source references, and suggestions to refine the query when results are insufficient.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

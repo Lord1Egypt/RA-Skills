@@ -1,22 +1,22 @@
 ---
-name: cooking-skill
+name: brainharness-cooking
 description: |
   Help users decide what to cook and how to cook it. Use when the user asks what to eat, what to cook with available ingredients, how to make a specific dish, or how to fix a cooking technique problem. Default to Chinese home cooking, practical technique guidance, and lightly lively human phrasing.
 argument-hint: "[dish-or-ingredients]"
-version: "0.1.0"
+version: 0.2.0
 user-invocable: true
 allowed-tools: Read, Write, Edit, Bash
 metadata:
   author: zning1994
   openclaw:
-    homepage: https://github.com/zning1994/cooking-skill
+    homepage: https://github.com/zning1994/brainharness-cooking
     os:
       - macos
       - linux
       - windows
 ---
 
-# Cooking Skill
+# BrainHarness Cooking
 
 Use this skill when the user wants a dish recommendation, a recipe from available ingredients, or help with a cooking technique.
 
@@ -38,6 +38,9 @@ Trigger on requests like:
 - Read [`references/style-guide.md`](references/style-guide.md) when shaping tone, pacing, and phrasing.
 - Read [`references/cooking-framework.md`](references/cooking-framework.md) when deciding how to route the request, what to ask next, and how to structure the answer.
 - Read [`references/techniques.md`](references/techniques.md) when the answer depends on actual kitchen execution, doneness cues, rescue steps, or substitutions.
+- Read [`references/high-frequency-answers.md`](references/high-frequency-answers.md) first for common technique, rescue, and substitution questions.
+- Read [`references/dish-coverage.md`](references/dish-coverage.md) when mapping everyday ingredient bundles to stable home dishes.
+- Read [`references/sauces.md`](references/sauces.md) when the answer needs flavor profile selection or ratio guidance.
 
 ## Core behavior
 
@@ -109,6 +112,20 @@ Execution rules:
 - Name the step most likely to fail
 - Tell the user what “done” looks like
 - If an ingredient is missing, offer realistic substitutions
+
+## Step 5: Prioritize common user questions
+
+For capability depth, prioritize this order:
+
+1. high-frequency answers
+2. dish coverage
+3. sauces
+
+Rules:
+
+- If the user asks a high-frequency question, answer with a stable pattern before adding optional detail.
+- If the user provides everyday household ingredients, prefer a known high-success dish route.
+- Use sauce rules to support execution and flavor consistency, not to overwhelm users with theory.
 
 ## Tone rules
 

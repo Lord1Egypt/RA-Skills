@@ -1,47 +1,62 @@
-## Description: <br>
-BUDDY 宠物系统是一个虚拟宠物伴侣工具，用于生成、互动和展示 AI 宠物。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BUDDY 宠物系统 is a virtual pet companion skill for generating, interacting with, displaying, muting, and unmuting an AI pet in an agent session.
 
-## Publisher: <br>
-[dxiaofeng0811-lgtm](https://clawhub.ai/user/dxiaofeng0811-lgtm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dxiaofeng0811-lgtm](https://clawhub.ai/user/dxiaofeng0811-lgtm)
 
-## Use Case: <br>
-Developers and agent users use this skill to add a lightweight virtual pet companion that can hatch a pet, display pet cards, show petting animations, mute or unmute interactions, and provide a pet-aware assistant prompt. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can activate on broad pet-related wording. <br>
-Mitigation: Use explicit /buddy commands when tighter control is needed. <br>
-Risk: The skill can print a pet-related context prompt for the assistant. <br>
-Mitigation: Review the prompt output before relying on it in sensitive workflows. <br>
-Risk: The skill stores small mute and saved-pet state in /tmp/buddy-state.json. <br>
-Mitigation: Inspect or remove that file if local pet state should be reset. <br>
+## Use Case:
 
+Developers and agent users use BUDDY to add a Tamagotchi-style companion to an AI coding session, with commands to hatch a deterministic pet, view its ASCII card, show petting animations, mute or unmute interactions, and emit a short AI context prompt.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dxiaofeng0811-lgtm/buddy-pet) <br>
-- [SKILL.md](SKILL.md) <br>
-- [buddy.ts](scripts/buddy.ts) <br>
-- [companion.ts](references/buddy/companion.ts) <br>
-- [sprites.ts](references/buddy/sprites.ts) <br>
-- [types.ts](references/buddy/types.ts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Terminal text with ASCII art, command output, and short prompt guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist small mute and saved-pet state in /tmp/buddy-state.json] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Shared persistent state in /tmp can expose or mix pet state across users on shared machines or multi-user agent runtimes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private per-user state directory before deploying in shared environments.
+
+Risk: Broad activation rules and AI-context prompt behavior may trigger BUDDY in conversations where the user did not explicitly request it.
+
+Mitigation: Narrow activation to explicit /buddy commands and review the generated AI context prompt before enabling automatic injection.
+
+Risk: Saved pet names and the save command need review before installation.
+
+Mitigation: Validate saved pet names and document the save command behavior for users and reviewers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dxiaofeng0811-lgtm/skills/buddy-pet)
+- [BUDDY skill instructions](artifact/SKILL.md)
+- [BUDDY CLI script](artifact/scripts/buddy.ts)
+- [BUDDY companion generator](artifact/references/buddy/companion.ts)
+- [BUDDY type definitions](artifact/references/buddy/types.ts)
+- [BUDDY sprite definitions](artifact/references/buddy/sprites.ts)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Terminal text and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include ASCII pet sprites, pet cards, status messages, and an optional AI context prompt.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

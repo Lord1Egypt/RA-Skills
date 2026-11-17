@@ -1,43 +1,53 @@
-## Description: <br>
-Systematic approach to managing travel anxiety <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Systematic approach to managing travel anxiety.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users and travel planners use this skill to turn travel-anxiety concerns into structured coping plans, trigger worksheets, confidence-building exercises, and preparation checklists. It is informational planning support and does not provide bookings, real-time travel data, or professional medical advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat travel-anxiety guidance as medical or mental-health advice. <br>
-Mitigation: Present outputs as general planning support and encourage qualified professional consultation for clinical or personal medical needs. <br>
-Risk: Destination details such as emergency numbers, payment options, maps, or local requirements may be outdated or location-specific. <br>
-Mitigation: Verify current destination facts with official or current sources before relying on them for travel decisions. <br>
-Risk: The skill cannot book travel or access real-time prices, availability, weather, or advisories. <br>
-Mitigation: Use it for planning templates and preparation structure, then confirm time-sensitive actions through authoritative services. <br>
+## Use Case:
 
+External travelers, caregivers, and travel-support professionals use this skill to turn travel anxiety concerns into structured preparation plans, coping strategies, confidence-building exercises, and next steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/travel-anxiety-management-framework) <br>
-- [Publisher profile](https://clawhub.ai/user/harrylabsj) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text] <br>
-**Output Format:** [JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns travel-anxiety planning recommendations, frameworks, checklists, considerations, next steps, and a disclaimer; no bookings, API calls, code execution, or real-time data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Users may treat anxiety, medication, emergency, or destination suggestions as professional or official advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep outputs informational and direct users to verify travel, emergency, medication, and destination details with official or professional sources.
+
+Risk: Broad trigger wording may cause the skill to appear for general anxiety or coping requests outside travel planning.
+
+Mitigation: Use the skill for travel-related anxiety planning and route broader mental-health needs to appropriate professional support.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/skills/travel-anxiety-management-framework)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, JSON]
+
+**Output Format:** [JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes input analysis, recommendations, frameworks, checklists, next steps, and an informational disclaimer.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

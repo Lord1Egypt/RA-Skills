@@ -1,6 +1,5 @@
 {
-  "ownerId": "kn71j05f3k63a65dmdtf4704z98146pe",
-  "slug": "free-groq-voice",
+  "name": "free-groq-voice",
   "version": "1.0.0",
-  "publishedAt": 1771154852519
+  "description": "FREE voice recognition using Groq's complimentary Whisper API. Transcribe audio messages to text in 50+ languages at no cost. Perfect for voice-to-text automation, meeting transcriptions, and accessibility features. Requires free Groq API key."
 }

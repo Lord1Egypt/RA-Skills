@@ -1,43 +1,58 @@
-## Description: <br>
-Manage Hostinger account via API - VPS administration, snapshots, backups, firewall, Docker, DNS zone management, domain portfolio, website hosting, and billing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Hostinger account services through API commands for VPS, DNS, domains, websites, hosting, Docker, firewalls, snapshots, backups, and billing.
 
-## Publisher: <br>
-[rexlunae](https://clawhub.ai/user/rexlunae) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rexlunae](https://clawhub.ai/user/rexlunae)
 
-## Use Case: <br>
-Developers and operators use this skill to manage Hostinger infrastructure and account resources through Hostinger API commands, including VPS operations, DNS updates, Docker deployments, domain settings, hosting inventory, and billing views. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad control over production Hostinger resources, including disruptive VPS, DNS, firewall, billing, and Docker operations. <br>
-Mitigation: Use the least-privileged Hostinger API token available, protect and rotate it, and require explicit human approval before executing reset, restore, recreate, delete, nameserver, root-password, SSH-key, firewall, billing, or Docker deploy commands. <br>
-Risk: Docker deployment from an external compose URL can introduce unreviewed workload definitions into managed infrastructure. <br>
-Mitigation: Review compose files and source URLs before deployment, especially when the compose file or URL comes from outside your control. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Hostinger API Reference](references/api-endpoints.md) <br>
-- [Hostinger API Documentation](https://developers.hostinger.com) <br>
-- [Hostinger OpenAPI Specification](https://github.com/hostinger/api/blob/main/openapi.json) <br>
-- [Hostinger Python SDK](https://github.com/hostinger/api-python-sdk) <br>
-- [Hostinger API CLI](https://github.com/hostinger/api-cli) <br>
+## Use Case:
 
+Developers and site operators use this skill to inspect and manage Hostinger infrastructure and account resources from an agent workflow. It supports operational tasks such as VPS lifecycle changes, DNS updates, Docker deployments, firewall configuration, domain management, and billing lookups.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled CLI prints Hostinger API responses as formatted JSON.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can operate with a broad Hostinger API token and make account-changing requests.
+
+Mitigation: Use the least-privileged token Hostinger supports and review DNS, billing, domain, VPS, firewall, SSH key, Docker, delete, reset, restore, recreate, and curl commands before execution.
+
+Risk: Root passwords or API tokens could appear in command lines, logs, or shell history.
+
+Mitigation: Avoid passing root passwords on the command line and rotate any password or token that may have appeared in logs or shell history.
+
+## Reference(s):
+
+- [Hostinger Skill Page](https://clawhub.ai/rexlunae/skills/hostinger)
+- [Hostinger API Endpoints](references/api-endpoints.md)
+- [Hostinger API Reference](https://developers.hostinger.com)
+- [Hostinger API Token Page](https://hpanel.hostinger.com/profile/api)
+- [Hostinger OpenAPI Specification](https://github.com/hostinger/api/blob/main/openapi.json)
+- [Hostinger Python SDK](https://github.com/hostinger/api-python-sdk)
+- [Hostinger CLI Tool](https://github.com/hostinger/api-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent output may include Hostinger API command invocations and JSON payload examples that require review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

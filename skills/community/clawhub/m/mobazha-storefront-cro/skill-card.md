@@ -1,40 +1,53 @@
-## Description: <br>
-Analyze and optimize your Mobazha storefront for higher conversion rates, especially when traffic is not turning into sales. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze and optimize your Mobazha storefront for higher conversion rates. Use when your store isn't converting visitors to buyers, or when you want to improve sales performance.
 
-## Publisher: <br>
-[fengzie](https://clawhub.ai/user/fengzie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fengzie](https://clawhub.ai/user/fengzie)
 
-## Use Case: <br>
-Store owners and operators use this skill to audit Mobazha storefronts, identify conversion blockers, score readiness across CRO dimensions, and get prioritized improvements for listings, trust signals, pricing, organization, and mobile experience. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recommendations may lead to storefront, listing, pricing, or image changes that affect customer-facing commerce. <br>
-Mitigation: Review proposed changes before applying them, and treat any upload or listing update as a separate user-approved action. <br>
-Risk: Store analysis can involve private business records or sensitive commerce data. <br>
-Mitigation: Do not provide wallet data, API keys, or private business records to external services unless those services are separately trusted. <br>
+## Use Case:
 
+External Mobazha sellers and storefront operators use this skill to audit store setup, product catalog quality, trust signals, pricing, organization, and mobile experience. It returns prioritized conversion recommendations, scored CRO dimensions, and rewrite alternatives for storefront and product copy.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fengzie/mobazha-storefront-cro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown recommendations with prioritized action lists, scoring, and suggested rewrites] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference store profile, listing, sales, pricing, and exchange-rate context available to the agent through approved tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The skill reads Mobazha profile, listings, storefront settings, sales history, and exchange-rate context to produce recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when that store-data access is acceptable, and review outputs before applying suggested changes through other skills or tools.
+
+Risk: CRO recommendations and rewrite alternatives may be inaccurate or unsuitable for a specific brand, audience, product category, or pricing strategy.
+
+Mitigation: Treat outputs as advisory and validate copy, pricing, catalog, and merchandising changes against the storefront owner's business context before implementation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fengzie/skills/mobazha-storefront-cro)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown-style advisory report with priority sections, scores, and rewrite alternatives]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations are advisory and should be reviewed before applying changes through other skills or tools.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

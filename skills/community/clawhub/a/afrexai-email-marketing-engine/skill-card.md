@@ -1,37 +1,53 @@
-## Description: <br>
-Complete email marketing system for deliverability, list building, sequences, cold outreach, automation, analytics, and revenue optimization with no runtime dependencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete email marketing system — deliverability, list building, sequences, cold outreach, automation, analytics, and revenue optimization. Zero dependencies.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Marketing teams, operators, and agents use this skill to plan email authentication, list growth, segmentation, lifecycle sequences, cold outreach, testing, reporting, and revenue attribution. It produces advisory campaign guidance, checklists, templates, and configuration instructions rather than executable software. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Cold outreach, list audits, and campaign guidance could be misapplied without proper consent, lawful basis, unsubscribe handling, or regional compliance review. <br>
-Mitigation: Confirm contact sources, consent or lawful basis, unsubscribe processes, email-platform rules, and recipient-region requirements before using the generated guidance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [MxToolbox Blacklist Check](https://mxtoolbox.com/blacklists.aspx) <br>
+## Use Case:
 
+External marketers, founders, sales teams, and developers use this skill to have an agent draft, audit, and plan email marketing workflows, including deliverability setup, segmentation, lifecycle campaigns, cold outreach, testing, analytics, and compliance checklists.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions, Shell commands] <br>
-**Output Format:** [Markdown with checklists, YAML examples, templates, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output; no code execution, credentials, or external tool calls are required by the skill.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated cold outreach, automation, and list-management materials can affect legal compliance, recipient consent, sender reputation, and platform policy compliance.
+
+Mitigation: Review all generated outreach, automation rules, and list-cleaning actions against the user's actual jurisdiction, consent records, suppression lists, and email platform policies before applying them.
+
+Risk: DNS records and deliverability settings proposed by the skill can affect mail authentication and sending reputation if copied incorrectly.
+
+Mitigation: Have the relevant DNS administrator or email service provider validate SPF, DKIM, DMARC, return-path, and blacklist remediation steps before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-email-marketing-engine)
+- [MXToolbox blacklist checker](https://mxtoolbox.com/blacklists.aspx)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with checklists, templates, YAML snippets, and short command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, API calls, external tools, or credentials are required by the skill itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

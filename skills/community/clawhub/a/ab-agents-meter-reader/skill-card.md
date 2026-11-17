@@ -1,44 +1,55 @@
-## Description: <br>
-Read meter readings from photos for electricity day/night tariffs and water meters, save reading history, and generate landlord messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read meter readings from photos for electricity day/night tariffs and water meters, save reading history, and generate landlord messages.
 
-## Publisher: <br>
-[alexburrstudio](https://clawhub.ai/user/alexburrstudio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexburrstudio](https://clawhub.ai/user/alexburrstudio)
 
-## Use Case: <br>
-External users and agents use this skill to extract household utility meter readings from photos, keep a local reading history, and prepare a formatted message for a landlord. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected household meter photos and utility-reading context are sent to MiniMax vision tooling. <br>
-Mitigation: Use a dedicated low-privilege MiniMax API key and avoid photos that include unrelated private household details. <br>
-Risk: Tenant name, apartment address, and utility readings are stored locally in plaintext. <br>
-Mitigation: Run the skill only on a trusted user account and restrict access to the local ~/.meter-readings directory. <br>
-Risk: The script invokes an unpinned uvx MCP package and silently checks a root OpenClaw credential file. <br>
-Mitigation: Review or pin the invoked package before use and provide credentials explicitly from the intended user account. <br>
+## Use Case:
 
+External users and household utility managers use this skill to extract electricity and water meter readings from photos, keep local reading history, and prepare a landlord-ready message.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alexburrstudio/ab-agents-meter-reader) <br>
-- [Project homepage](https://github.com/alexburrstudio/ab-agents-meter-reader) <br>
-- [AB Agents Vision (MiniMax)](https://github.com/alexburrstudio/ab-agents-vision) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text command output and landlord messages, with JSON config and reading history files written locally.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local meter image path and MINIMAX_API_KEY; stores configuration and history under ~/.meter-readings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Meter photos, tenant name, apartment address, readings, and the MiniMax API key are sensitive data handled by the skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if comfortable sending meter photos to MiniMax, treat ~/.meter-readings and the API key as sensitive, and run the skill under a low-privilege account.
+
+Risk: The skill executes an unpinned third-party MCP package at runtime.
+
+Mitigation: Pin and review the MCP package version before use, and review the skill before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alexburrstudio/skills/ab-agents-meter-reader)
+- [Skill homepage](https://github.com/alexburrstudio/ab-agents-meter-reader)
+- [AB Agents Vision (MiniMax)](https://github.com/alexburrstudio/ab-agents-vision)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files]
+
+**Output Format:** [Plain text and JSON files with shell command usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores configuration and reading history locally under ~/.meter-readings]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

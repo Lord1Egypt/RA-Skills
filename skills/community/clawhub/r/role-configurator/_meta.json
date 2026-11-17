@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn7e4xdsnt66p6zxxrvewvmvf1841pwv",
-  "slug": "role-configurator",
+  "name": "role-configurator",
   "version": "1.0.0",
-  "publishedAt": 1775230943997
+  "description": "OpenClaw Role Configurator - 15 preset role templates, help you easily configure your OpenClaw AI assistant role, the first skill every new user needs. Covers productivity, career, health, learning, lifestyle, and more.",
+  "author": "cang",
+  "created_at": "2026-04-03",
+  "categories": ["utilities", "setup", "productivity"],
+  "keywords": ["role config", "setup", "configuration", "personal assistant", "career coach", "fitness", "language learning", "productivity"]
 }

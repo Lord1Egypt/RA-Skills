@@ -1,42 +1,56 @@
-## Description: <br>
-Applies approved improvement candidates to target files, supports rollback and dry-run previews, and handles append, replace, insert-before, and YAML frontmatter update actions with automatic backups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Applies approved improvement candidates to target files, previews changes, and rolls back prior changes with automatic backups.
 
-## Publisher: <br>
-[lanyasheng](https://clawhub.ai/user/lanyasheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanyasheng](https://clawhub.ai/user/lanyasheng)
 
-## Use Case: <br>
-Developers and engineers use this skill to apply accepted low-risk improvement candidates to documentation, reference, or guardrail files and to roll back prior executions from receipts or backups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify local files when executing accepted candidates. <br>
-Mitigation: Run it on a disposable branch or backed-up workspace and review the candidate action, target path, and generated diff before keeping changes. <br>
-Risk: The force option can bypass the normal recommendation check. <br>
-Mitigation: Use force only after explicit human approval and keep unsupported or higher-risk categories routed through the gate workflow. <br>
-Risk: Rollback depends on valid receipts, backup paths, and target paths. <br>
-Mitigation: Preserve execution artifacts and backup directories, and test rollback with dry-run before executing restoration. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to apply accepted low-risk improvement candidates, preview file edits, and restore previous versions from receipts or backups.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lanyasheng/auto-improvement-executor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON execution and rollback artifacts with diffs, status fields, trace metadata, and shell command usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May modify local files, create backups, emit rollback pointers, and return dry-run or unsupported statuses depending on candidate recommendation, category, action, and rollback inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The execution and rollback scripts can be steered by artifacts or command-line paths to modify or copy arbitrary writable local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a tightly controlled workspace, verify ranking and receipt artifacts plus target paths before execution, and run as a low-privilege user.
+
+Risk: The --force option and rollback execution paths can bypass normal review expectations when inputs are not trusted.
+
+Mitigation: Avoid --force and rollback execution unless paths and artifacts have been reviewed and the change is expected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lanyasheng/skills/auto-improvement-executor)
+- [Publisher profile](https://clawhub.ai/user/lanyasheng)
+- [Skill definition](artifact/SKILL.md)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON execution or rollback artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates backups, diffs, execution traces, and rollback pointers before modifying target files.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

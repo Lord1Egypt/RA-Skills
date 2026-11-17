@@ -1,0 +1,643 @@
+{
+  "id": "ramayana",
+  "world_id": "ramayana",
+  "name": "罗摩衍那",
+  "name_en": "Ramayana",
+  "genre": "epic_mythological_adventure",
+  "era": "古代印度史诗时代（神话纪年；以蚁垤本七篇为主要故事骨架）",
+  "default_language": "zh",
+  "language": "zh",
+  "supported_languages": [
+    "zh",
+    "en"
+  ],
+  "status": "playable",
+  "age_rating": "Teen (13+)",
+  "themes": [
+    "dharma and duty",
+    "exile and belonging",
+    "devotion and courage",
+    "loyalty and moral ambiguity",
+    "justice and its cost",
+    "divine and human agency"
+  ],
+  "description_zh": "以蚁垤（Vālmīki）《罗摩衍那》七篇史诗为背景的分支冒险。你可以从阿逾陀宫廷、森林仙居、吉私紧陀猴国或楞伽城的不同立场入局；流放、盟约、寻妻、渡海与战争构成主线，但角色的选择可以改变盟友、代价与结局。",
+  "description_en": "A branching adventure grounded in the seven kāṇḍas of the Vālmīki Ramayana. Enter from Ayodhya, the forest hermitages, Kishkindha, or Lanka; exile, alliance, the search for Sita, the ocean crossing, and the war form the story spine, while player choices reshape loyalties, costs, and endings.",
+  "main_questline": {
+    "main_objective": "Navigate the duties and loyalties set in motion by Rama's exile and Sita's abduction, then decide what justice, alliance, and rightful rule should mean when the path to Lanka reaches its costliest test.",
+    "current_major_tasks": [
+      "Choose a credible place in the epic: Ayodhya's court, Rama's exiled household, the forest communities, Kishkindha's divided court, or Lanka's contested succession.",
+      "Build trust and secure the information, allies, and supplies needed for the next stage rather than solving every crisis by force.",
+      "Trace Sita's fate and determine what obligations bind the player to Rama, Sugriva, Vibhishana, or Ravana's household.",
+      "Carry the alliance across the sea and resolve the war without losing sight of its human, political, and moral consequences.",
+      "After victory or defeat, face the questions of return, sovereignty, reputation, and the price of public duty."
+    ],
+    "major_story_threads": [
+      "Ayodhya's succession, Kaikeyi's two boons, Rama's exile, and Bharata's stewardship",
+      "Forest hermitages under pressure and the chain of events leading to Sita's abduction",
+      "Rama and Lakshmana's alliance with Sugriva and the divided Kishkindha court",
+      "Hanuman's search in Lanka, Vibhishana's defection, and the ocean crossing",
+      "The Lanka campaign, Ravana's defeat, Sita's return, and the contested aftermath of kingship"
+    ],
+    "default_route_logic": "Keep the current chapter's concrete objective visible. A palace or forest detour should connect to exile, Sita's trail, a named alliance, or the coming crossing; never force every character into Rama's exact viewpoint, but show how their choices alter the shared conflict."
+  },
+  "key_figures": [
+    {
+      "name": "Rama",
+      "role": "exiled prince of Ayodhya",
+      "drive": "uphold dharma while confronting the cost of duty and kingship",
+      "ties": [
+        "Sita",
+        "Lakshmana",
+        "Bharata",
+        "Hanuman"
+      ]
+    },
+    {
+      "name": "Sita",
+      "role": "Rama's partner and Mithila princess",
+      "drive": "preserve agency, resolve, and dignity under captivity and public judgment",
+      "ties": [
+        "Rama",
+        "Lakshmana",
+        "Ravana",
+        "Trijata"
+      ]
+    },
+    {
+      "name": "Lakshmana",
+      "role": "Rama's devoted brother",
+      "drive": "protect Rama and Sita while managing anger and restraint",
+      "ties": [
+        "Rama",
+        "Sita",
+        "Bharata"
+      ]
+    },
+    {
+      "name": "Hanuman",
+      "role": "Vayu's son and Sugriva's envoy",
+      "drive": "turn devotion and courage into a practical path to Sita",
+      "ties": [
+        "Rama",
+        "Sugriva",
+        "Jambavan",
+        "Sita"
+      ]
+    },
+    {
+      "name": "Sugriva",
+      "role": "Kishkindha's displaced claimant",
+      "drive": "recover his throne while honoring a dangerous alliance",
+      "ties": [
+        "Rama",
+        "Vali",
+        "Angada",
+        "Hanuman"
+      ]
+    },
+    {
+      "name": "Vibhishana",
+      "role": "Ravana's brother",
+      "drive": "choose between kinship, sovereignty, and counsel against injustice",
+      "ties": [
+        "Ravana",
+        "Mandodari",
+        "Rama"
+      ]
+    },
+    {
+      "name": "Ravana",
+      "role": "king of Lanka",
+      "drive": "defend his power and pride as counsel, family, and war close in",
+      "ties": [
+        "Sita",
+        "Vibhishana",
+        "Mandodari",
+        "Indrajit"
+      ]
+    },
+    {
+      "name": "Bharata",
+      "role": "regent of Ayodhya",
+      "drive": "honor Rama's claim without allowing the kingdom to collapse",
+      "ties": [
+        "Rama",
+        "Kaikeyi",
+        "Dasharatha"
+      ]
+    }
+  ],
+  "city_and_region_hubs": [
+    {
+      "name": "Ayodhya",
+      "type": "royal capital",
+      "importance": "succession crisis, the two boons, Bharata's stewardship, and the promise of return"
+    },
+    {
+      "name": "Chitrakuta and the forest hermitages",
+      "type": "exile route",
+      "importance": "alliances with sages and communities, refuge, and the escalating danger to Sita"
+    },
+    {
+      "name": "Panchavati",
+      "type": "forest turning point",
+      "importance": "the golden-deer deception and the abduction that redirects the epic"
+    },
+    {
+      "name": "Kishkindha",
+      "type": "monkey-kingdom court",
+      "importance": "Rama's alliance with Sugriva, Vali's death, and the search for Sita"
+    },
+    {
+      "name": "Lanka",
+      "type": "island kingdom and warfront",
+      "importance": "Sita's captivity, divided counsel, the bridgehead, and the final campaign"
+    },
+    {
+      "name": "Rameswaram and the ocean shore",
+      "type": "crossing threshold",
+      "importance": "the ocean's response, Nala's bridge, and the irreversible commitment to war"
+    }
+  ],
+  "relationship_webs": [
+    {
+      "thread": "Rama / Sita / Lakshmana",
+      "tension": "love, protection, agency, and differing interpretations of duty"
+    },
+    {
+      "thread": "Rama / Sugriva / Vali / Angada",
+      "tension": "mutual aid, contested justice, succession, and inherited grief"
+    },
+    {
+      "thread": "Ravana / Vibhishana / Mandodari / Indrajit",
+      "tension": "family loyalty, wise counsel, pride, and the survival of Lanka"
+    },
+    {
+      "thread": "Bharata / Kaikeyi / Ayodhya",
+      "tension": "the legitimacy of a throne accepted only as a trust"
+    },
+    {
+      "thread": "Hanuman / Jambavan / the vanara search parties",
+      "tension": "latent ability, shared courage, discipline, and the search deadline"
+    }
+  ],
+  "major_items_and_artifacts": [
+    {
+      "name": "Rama's signet ring",
+      "kind": "recognition token",
+      "story_use": "lets Hanuman prove his identity to Sita and converts a risky search into trust"
+    },
+    {
+      "name": "Bharata's sandals",
+      "kind": "symbol of delegated sovereignty",
+      "story_use": "mark the difference between holding power and claiming the throne"
+    },
+    {
+      "name": "Shiva's bow",
+      "kind": "sacred bow",
+      "story_use": "anchors Sita's marriage story and the memory of Rama's strength"
+    },
+    {
+      "name": "The ocean bridge",
+      "kind": "collective engineering feat",
+      "story_use": "tests whether divided allies can turn devotion, craft, and labor into a shared crossing"
+    },
+    {
+      "name": "The Sanjivani-bearing mountain",
+      "kind": "healing resource and episode",
+      "story_use": "makes time, uncertainty, and care for wounded allies central to the war"
+    }
+  ],
+  "mainline_stages": [
+    "Ayodhya: a contested succession becomes an exile freely accepted by Rama",
+    "Forest: protect the hermitages and household as the danger around Panchavati grows",
+    "Search: follow Sita's trail, reach Kishkindha, and build an alliance that can last",
+    "Lanka: verify the trail, send Hanuman, and decide whether counsel or force opens the way",
+    "Crossing and war: unite the vanara hosts, reach Lanka, and confront Ravana's court",
+    "Aftermath: return, rule, and reckon with the burden of public judgment"
+  ],
+  "subfaction_networks": [
+    {
+      "name": "Ayodhya's royal household",
+      "core_members": [
+        "Dasharatha",
+        "Kausalya",
+        "Kaikeyi",
+        "Bharata",
+        "Rama"
+      ],
+      "internal_tension": "boons, succession, grief, and the legitimacy of Bharata's regency"
+    },
+    {
+      "name": "Forest sages and guardians",
+      "core_members": [
+        "Vishvamitra",
+        "Agastya",
+        "forest hermit communities"
+      ],
+      "internal_tension": "sacred work under threat and the limits of royal protection"
+    },
+    {
+      "name": "Kishkindha's vanara court",
+      "core_members": [
+        "Sugriva",
+        "Vali",
+        "Tara",
+        "Angada",
+        "Hanuman",
+        "Jambavan"
+      ],
+      "internal_tension": "succession, alliance terms, the monsoon delay, and responsibility to the search"
+    },
+    {
+      "name": "Lanka's royal court",
+      "core_members": [
+        "Ravana",
+        "Vibhishana",
+        "Mandodari",
+        "Indrajit",
+        "Kumbhakarna",
+        "Sita"
+      ],
+      "internal_tension": "pride versus counsel, family loyalty, and the consequences of holding Sita"
+    }
+  ],
+  "quest_hubs": [
+    {
+      "name": "Ayodhya's court and shrines",
+      "function": "investigate the succession crisis, negotiate loyalties, or keep the kingdom stable during exile"
+    },
+    {
+      "name": "Forest hermitages",
+      "function": "protect communities, earn information, and trace the events around Panchavati"
+    },
+    {
+      "name": "Kishkindha and the Rishyamukha mountain",
+      "function": "resolve the Sugriva-Vali conflict and secure a credible search alliance"
+    },
+    {
+      "name": "The southern search route",
+      "function": "manage time, morale, and clues leading to the ocean and Lanka"
+    },
+    {
+      "name": "Lanka's Ashoka grove and royal court",
+      "function": "protect Sita, assess Ravana's court, and decide where to place trust"
+    }
+  ],
+  "city_subzones": [
+    {
+      "hub": "Ayodhya",
+      "subzones": [
+        "Dasharatha's court",
+        "Kaikeyi's chambers",
+        "Bharata's regency hall",
+        "the city gate and exile road"
+      ]
+    },
+    {
+      "hub": "Kishkindha",
+      "subzones": [
+        "Rishyamukha refuge",
+        "Sugriva's court",
+        "Vali's stronghold",
+        "the southern search assembly"
+      ]
+    },
+    {
+      "hub": "Lanka",
+      "subzones": [
+        "Ashoka grove",
+        "Ravana's audience hall",
+        "the northern gate",
+        "the shore-facing battlements"
+      ]
+    }
+  ],
+  "story_pressure_tracks": [
+    {
+      "name": "Dharma under pressure",
+      "pressure": "a character's duty to family, ruler, ally, or self may pull in incompatible directions"
+    },
+    {
+      "name": "The search clock",
+      "pressure": "Sita's trail, the vanara deadline, and the coming monsoon make delay consequential"
+    },
+    {
+      "name": "Alliance trust",
+      "pressure": "the Lanka campaign depends on keeping promises across old rivalries and unequal power"
+    },
+    {
+      "name": "Rule and public judgment",
+      "pressure": "victory does not end the conflict between private truth, reputation, and public duty"
+    }
+  ],
+  "item_threads": [
+    {
+      "item": "Rama's signet ring",
+      "thread": "proof of identity becomes a message of trust across enemy lines"
+    },
+    {
+      "item": "Bharata's sandals",
+      "thread": "a visible symbol of stewardship tests what legitimate power means"
+    },
+    {
+      "item": "The ocean bridge",
+      "thread": "every span records whether allies can cooperate under pressure"
+    },
+    {
+      "item": "Sanjivani",
+      "thread": "a desperate healing task puts loyalty and time ahead of victory celebrations"
+    }
+  ],
+  "factions": [
+    {
+      "id": "ayodhya",
+      "name": "阿逾陀王室",
+      "name_en": "Ayodhya's Royal House",
+      "mission": "preserve the kingdom and uphold a legitimate succession",
+      "ideology": "dharma, kinship, and royal duty",
+      "headquarters": "Ayodhya",
+      "playable": true
+    },
+    {
+      "id": "rama_exiles",
+      "name": "罗摩流放一行",
+      "name_en": "Rama's Exiled Household",
+      "mission": "survive exile, protect Sita, and respond to threats against the forest communities",
+      "ideology": "promise and duty",
+      "headquarters": "the forest route",
+      "playable": true
+    },
+    {
+      "id": "forest_sages",
+      "name": "森林仙人与居民",
+      "name_en": "Forest Sages and Communities",
+      "mission": "protect hermitages and maintain a livable refuge",
+      "ideology": "learning, hospitality, and restraint",
+      "headquarters": "forest ashramas",
+      "playable": true
+    },
+    {
+      "id": "kishkindha",
+      "name": "吉私紧陀猴国",
+      "name_en": "Kishkindha's Vanara Court",
+      "mission": "resolve the succession conflict and search for Sita",
+      "ideology": "kinship, strength, and negotiated alliance",
+      "headquarters": "Kishkindha",
+      "playable": true
+    },
+    {
+      "id": "vanara_search",
+      "name": "南方搜寻队",
+      "name_en": "Southern Search Party",
+      "mission": "find Sita before the search deadline",
+      "ideology": "teamwork and courageous service",
+      "headquarters": "the southern coast",
+      "playable": true
+    },
+    {
+      "id": "lanka_court",
+      "name": "楞伽王庭",
+      "name_en": "Lanka's Royal Court",
+      "mission": "protect Lanka's people and determine the kingdom's course",
+      "ideology": "sovereignty, kinship, and honor",
+      "headquarters": "Lanka",
+      "playable": true
+    },
+    {
+      "id": "vibhishana_allies",
+      "name": "维毗沙那同盟",
+      "name_en": "Vibhishana's Allies",
+      "mission": "offer counsel and a path to end the war",
+      "ideology": "ethical counsel and the duty to protect",
+      "headquarters": "Lanka and Rama's camp",
+      "playable": true
+    }
+  ],
+  "roles": [
+    {
+      "id": "ayodhya_courtier",
+      "name_zh": "阿逾陀朝臣",
+      "name_en": "Ayodhya Courtier",
+      "faction": "ayodhya",
+      "playstyle": "investigation, diplomacy, and succession politics"
+    },
+    {
+      "id": "exile_companion",
+      "name_zh": "流放同伴",
+      "name_en": "Exile Companion",
+      "faction": "rama_exiles",
+      "playstyle": "protection, survival, and moral choices on the forest road"
+    },
+    {
+      "id": "forest_guardian",
+      "name_zh": "森林守护者",
+      "name_en": "Forest Guardian",
+      "faction": "forest_sages",
+      "playstyle": "defense, tracking, and relations with sages and forest communities"
+    },
+    {
+      "id": "vanara_scout",
+      "name_zh": "猴国斥候",
+      "name_en": "Vanara Scout",
+      "faction": "kishkindha",
+      "playstyle": "mobility, reconnaissance, and court loyalties"
+    },
+    {
+      "id": "search_envoy",
+      "name_zh": "南方使者",
+      "name_en": "Southern Search Envoy",
+      "faction": "vanara_search",
+      "playstyle": "route-finding, teamwork, and carrying information safely"
+    },
+    {
+      "id": "lanka_courtier",
+      "name_zh": "楞伽朝臣",
+      "name_en": "Lankan Courtier",
+      "faction": "lanka_court",
+      "playstyle": "court intrigue, civilian protection, and difficult counsel"
+    },
+    {
+      "id": "lanka_ally",
+      "name_zh": "楞伽异议者",
+      "name_en": "Lankan Dissenter",
+      "faction": "vibhishana_allies",
+      "playstyle": "covert assistance, diplomacy, and protecting a dissenting network"
+    },
+    {
+      "id": "hanuman_devotee",
+      "name_zh": "哈奴曼门下",
+      "name_en": "Hanuman's Devotee",
+      "faction": "vanara_search",
+      "playstyle": "devotion, courage, and service without replacing the epic heroes"
+    }
+  ],
+  "key_locations": [
+    {
+      "id": "ayodhya",
+      "name": "阿逾陀",
+      "desc": "王位继承、两个恩典与罗摩流放的起点"
+    },
+    {
+      "id": "chitrakuta",
+      "name": "质多罗俱吒",
+      "desc": "兄弟重逢、草鞋摄政与流放生活的早期节点"
+    },
+    {
+      "id": "panchavati",
+      "name": "般遮婆提",
+      "desc": "林中居所与悉多遭劫的关键转折地"
+    },
+    {
+      "id": "kishkindha",
+      "name": "吉私紧陀",
+      "desc": "须羯哩婆与波林的王权冲突及猴军结盟处"
+    },
+    {
+      "id": "rishyamukha",
+      "name": "梨尸耶目迦山",
+      "desc": "须羯哩婆的避难之地，哈奴曼与罗摩初会"
+    },
+    {
+      "id": "ashoka_grove",
+      "name": "无忧树园",
+      "desc": "悉多被囚之处，哈奴曼带着罗摩指环前来"
+    },
+    {
+      "id": "southern_coast",
+      "name": "南海之滨",
+      "desc": "搜寻线索汇聚，跨海计划即将开始"
+    },
+    {
+      "id": "lanka",
+      "name": "楞伽",
+      "desc": "罗波那的海岛王国，也是谈判、潜行与战争的核心舞台"
+    },
+    {
+      "id": "mount_suvela",
+      "name": "须吠罗山",
+      "desc": "联军俯瞰楞伽、部署攻城的前沿高地"
+    }
+  ],
+  "major_events": [
+    {
+      "id": "rama_exile",
+      "name": "罗摩流放",
+      "desc": "吉迦伊请求两个恩典，罗摩遵守父王承诺离开阿逾陀"
+    },
+    {
+      "id": "sita_abduction",
+      "name": "悉多被劫",
+      "desc": "金鹿诡计与罗波那出手使森林篇转向寻找与营救"
+    },
+    {
+      "id": "kishkindha_alliance",
+      "name": "结盟吉私紧陀",
+      "desc": "罗摩帮助须羯哩婆复位，猴军承诺搜寻悉多"
+    },
+    {
+      "id": "hanuman_lanka_mission",
+      "name": "哈奴曼潜入楞伽",
+      "desc": "越海、寻见悉多、传递指环并带回确凿消息"
+    },
+    {
+      "id": "ocean_bridge",
+      "name": "架设海桥",
+      "desc": "猴军在那罗等人的组织下把搜寻转为远征"
+    },
+    {
+      "id": "lanka_war",
+      "name": "楞伽之战",
+      "desc": "罗摩联军与罗波那王庭决战，联盟与家族关系都被推到极限"
+    },
+    {
+      "id": "return_to_ayodhya",
+      "name": "归返阿逾陀",
+      "desc": "罗摩返国登基，胜利之后仍须面对统治和公共声誉的代价"
+    }
+  ],
+  "unique_mechanics": {
+    "dharma_conflicts": {
+      "name": "法与责任",
+      "description": "承诺、亲情、王权、盟约和个人尊严可能互相冲突。",
+      "player_impact": "记录角色如何解释义务；选择带来信任、声誉、延误或关系裂痕，不把复杂争议简化成单一善恶分数。"
+    },
+    "ally_oaths": {
+      "name": "盟约与履约",
+      "description": "森林同伴、吉私紧陀盟友与楞伽异议者各有自己的代价和底线。",
+      "player_impact": "兑现承诺会增加伙伴信任与协作能力；违约会留下可追踪的后果。"
+    },
+    "search_clock": {
+      "name": "搜寻时限",
+      "description": "悉多的线索与南方搜寻队的期限不断变化。",
+      "player_impact": "有效线索、补给和可信情报能推进路线；漫无目的的拖延会让对手先采取行动。"
+    },
+    "war_cost": {
+      "name": "战争代价",
+      "description": "楞伽之战影响平民、盟友与战后统治，并非只计算胜负。",
+      "player_impact": "记录人员伤亡、补给和政治信任，为不同结局创造有意义的分歧。"
+    },
+    "regional_variants": {
+      "name": "多传承边界",
+      "description": "《罗摩衍那》在不同地区与宗教传统中有许多改编。",
+      "player_impact": "默认以蚁垤本的七篇结构为路线锚点；采纳其他传统前先向玩家说明版本差异，不把某一改编说成唯一版本。"
+    }
+  },
+  "endings": [
+    {
+      "id": "rightful_return",
+      "name": "归国与复位",
+      "desc": "联军完成营救与返国，王权重新建立；战后治理仍取决于玩家此前如何经营信任。"
+    },
+    {
+      "id": "forest_compact",
+      "name": "森林盟约",
+      "desc": "玩家保住森林共同体，在史诗主线旁开辟不以王权为终点的守护之路。"
+    },
+    {
+      "id": "kishkindha_balance",
+      "name": "猴国新秩序",
+      "desc": "吉私紧陀的继承得到相对稳定的安排，联盟以互惠而非恐惧维系。"
+    },
+    {
+      "id": "lanka_reform",
+      "name": "楞伽转向",
+      "desc": "维毗沙那与异议者接掌重建，避免胜利变成对百姓的惩罚。"
+    },
+    {
+      "id": "peaceful_settlement",
+      "name": "止战和议",
+      "desc": "通过牺牲个人声望或政治筹码，找到可信的停战与释放路径。"
+    },
+    {
+      "id": "costly_victory",
+      "name": "代价之胜",
+      "desc": "营救成功但盟友与信任付出沉重代价，战后必须修复被撕裂的关系。"
+    },
+    {
+      "id": "exile_legacy",
+      "name": "森林遗志",
+      "desc": "角色拒绝宫廷归途，选择守住森林、旅路或异议者网络，留下新的共同体。"
+    }
+  ],
+  "art_style": "Indian miniature painting inspired epic illustration",
+  "art_direction": {
+    "visual_style": "Indian miniature painting inspired by Rajput, Pahari-Kangra, and Mughal court traditions; layered flat perspective, finely outlined figures, mineral-pigment colors, decorative borders and landscape details; respectful mythic epic storytelling, not generic European fantasy",
+    "color_palette": "mineral indigo, vermilion, peacock green, saffron, warm ivory, and restrained gold leaf accents",
+    "character_portraits": "stylized court and epic portraits with clear expressive faces, period-inspired Indian textiles and ornaments, culturally respectful forms, no photorealistic celebrity likeness",
+    "battle_scenes": "legible miniature-painting compositions with arranged formations, bows, banners, chariots, and forest or island geography; vivid but not graphic",
+    "reference": [
+      "public-domain Indian miniature painting traditions",
+      "Rajput and Pahari epic painting conventions",
+      "transformative retellings of the public-domain Valmiki epic"
+    ]
+  },
+  "content_guidance": {
+    "source_basis": "Original-world notes are a concise, transformative gameplay digest. The Valmiki Ramayana source is ancient/public domain, but do not copy modern translations or illustrations into the package.",
+    "canon_policy": "Use the Valmiki seven-kanda outline as the primary route anchor. Acknowledge regional retellings as distinct traditions when relevant; do not claim all versions share every episode.",
+    "agency_policy": "The player is an original character with a credible role and influence, not an automatic replacement for Rama, Sita, or other central figures.",
+    "narrative_policy": "Respect character agency, especially Sita's; preserve room for moral disagreement about duty, succession, war, and the aftermath. Keep choices open-ended with consequences rather than forced canon rails."
+  },
+  "version": "1.0.0"
+}

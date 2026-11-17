@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 评论证据文案规划"
+  short_description: "将评论语言整理为完整 Listing 优化方向"
+  default_prompt: "使用 $amazon-review-based-copywriter 根据 Amazon 评论证据规划完整 Listing 文案优化方向。"

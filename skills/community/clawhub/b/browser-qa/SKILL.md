@@ -1,12 +1,37 @@
 ---
+
 name: browser-qa
 description: "Automate visual testing and UI interaction verification. 4-phase methodology: smoke test (console errors, network status, Web Vitals), interaction test (forms, auth, user journeys), visual regression (breakpoints, dark mode), accessibility audit (WCAG AA, keyboard nav). Trigger phrases: browser test, visual testing, UI verification, QA checklist, pre-ship testing."
-metadata: {"clawdbot":{"emoji":"🧪","requires":{"bins":[],"env":[]},"os":["linux","darwin","win32"]}}
+metadata: {"clawdbot":{"emoji":"\ud83e\uddea","requires":{"bins":[],"env":[]},"os":["linux","darwin","win32"],"version":"1.0.1"}}
 ---
+
 
 # Browser QA — Automated Visual Testing & Interaction
 
 Structured QA methodology for verifying UI behavior, visual consistency, and accessibility.
+
+
+## Before You Run: Scope and Safety
+
+This skill drives a real browser and can submit forms, log in, and complete
+checkouts. Those actions change state on the target site.
+
+**Use it only against sites you own or have written permission to test.**
+Before the first interaction, confirm with the user:
+
+- **Target URL** — a staging, sandbox, or test environment. Not production.
+- **Test credentials** — a dedicated test account, never a personal or admin account.
+- **Test payment data** — a sandbox/test card, never a real card.
+- **What may be submitted** — which forms, which flows, and whether checkout
+  may complete end-to-end.
+
+**Never submit a form, create an account, log in with real credentials, or
+complete a checkout on production unless the user explicitly approves that
+exact action.** Do not treat "run the QA suite" as approval for state-changing
+steps. If a flow is ambiguous, ask.
+
+Prefer read-only checks first: navigate, assert on visible content, screenshot.
+Only submit when the specific submission has been approved.
 
 ## Quick Start
 

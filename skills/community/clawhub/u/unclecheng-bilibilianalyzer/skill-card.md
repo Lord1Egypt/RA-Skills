@@ -1,45 +1,57 @@
-## Description: <br>
-Analyzes Bilibili video comments and danmaku by collecting public interaction data, extracting sentiment and keywords, and generating a structured Markdown report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Bilibili video comments and danmaku by collecting public interaction data, extracting sentiment and keywords, and generating a structured Markdown report.
 
-## Publisher: <br>
-[unclecheng-li](https://clawhub.ai/user/unclecheng-li) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unclecheng-li](https://clawhub.ai/user/unclecheng-li)
 
-## Use Case: <br>
-Developers, analysts, and content reviewers use this skill to summarize audience response on Bilibili videos from comments and danmaku. It helps produce sentiment, keyword, interaction, and time-distribution analysis in a Markdown report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install Python dependencies or use setup helper scripts. <br>
-Mitigation: Run it in a virtual environment and review dependency lists before installation. <br>
-Risk: The skill may use Bilibili session cookies and save fetched media or comment data locally. <br>
-Mitigation: Avoid primary session cookies, keep credential persistence off unless needed, and handle generated data according to local data policies. <br>
-Risk: Bilibili automation and API access can be affected by platform rate limits or access controls. <br>
-Mitigation: Throttle requests, use only authorized access, and review output before relying on conclusions. <br>
+## Use Case:
 
+Developers, analysts, and content researchers use this skill to summarize audience response on Bilibili videos from public comments and danmaku. It produces a structured report covering interaction volume, sentiment, keywords, timing patterns, and selected popular comments.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/unclecheng-li/unclecheng-bilibilianalyzer) <br>
-- [Bilibili video information API](https://api.bilibili.com/x/web-interface/view?bvid={bvid}) <br>
-- [Bilibili danmaku API](https://api.bilibili.com/x/v1/dm/list.so?oid={cid}) <br>
-- [Bilibili comment API](https://api.bilibili.com/x/v2/reply/main?next={page}&type=1&oid={bvid}&mode=3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with optional command-line output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces sentiment summaries, keyword tables, interaction metrics, danmaku timing distribution, and top-comment excerpts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and _skillhub_meta.json) <br>
+Risk: Dependency installers can install unpinned or ambiguous third-party packages into the user's Python environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review dependencies first, use an isolated virtual environment, avoid running install_check.py or install_deps.sh as-is, and install only reviewed pinned packages.
+
+Risk: Generated Markdown can contain untrusted public Bilibili user content from comments and danmaku.
+
+Mitigation: Treat report content as untrusted user-generated text and review it before publishing, rendering in privileged contexts, or using it for decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unclecheng-li/skills/unclecheng-bilibilianalyzer)
+- [Bilibili video page](https://www.bilibili.com/)
+- [Bilibili video information API](https://api.bilibili.com/x/web-interface/view?bvid={bvid})
+- [Bilibili danmaku API](https://api.bilibili.com/x/v1/dm/list.so?oid={cid})
+- [Bilibili replies API](https://api.bilibili.com/x/v2/reply/main?next={page}&type=1&oid={bvid}&mode=3)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, analysis, shell commands, guidance]
+
+**Output Format:** [Markdown report with tables, bullet summaries, and command-line status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are based on public Bilibili API responses and may include untrusted public user-generated text.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and _skillhub_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

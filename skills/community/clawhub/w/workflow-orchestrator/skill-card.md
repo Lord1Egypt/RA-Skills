@@ -1,37 +1,57 @@
-## Description: <br>
-Workflow Orchestrator helps build and run multi-agent workflows with DAG execution, branching, parallel execution, retries, fallback handling, and live monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Workflow Orchestrator helps agents build and run DAG-based multi-agent workflows with branching, parallel execution, retry logic, fallback handling, and live monitoring.
 
-## Publisher: <br>
-[evezart](https://clawhub.ai/user/evezart) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evezart](https://clawhub.ai/user/evezart)
 
-## Use Case: <br>
-Developers and engineers use this skill to define, execute, and monitor DAG-based multi-agent workflows with conditional branches, fan-out/fan-in execution, retry behavior, fallbacks, and failure handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Workflow publish or send steps can transmit pipeline outputs to an outbound destination. <br>
-Mitigation: Before installing or running such workflows, confirm the destination, avoid sending secrets or sensitive scraped content, and prefer redaction or review before outbound delivery. <br>
+## Use Case:
 
+Developers and engineers use this skill to define and run multi-agent workflows where steps can execute in dependency order, fan out in parallel, retry on failure, use fallbacks, and expose workflow status.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples and JSON-like workflow status outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Workflow outputs can include per-step status, result payloads, errors, attempts, and duration fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Documented condition controls may fail open and allow consequential workflow steps to run when conditions are malformed or unsupported.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and test conditions with trusted workflow definitions before using them for consequential actions; harden condition evaluation before relying on it as a safety boundary.
+
+Risk: Documented timeout controls may not stop long-running registered executors, which can hang workflows or leave consequential steps running.
+
+Mitigation: Use trusted executors with external timeout or cancellation controls, and validate timeout handling before connecting workflows to agents that publish, deploy, or modify data.
+
+Risk: Workflow definitions and registered executors can direct agents to send messages, publish content, deploy, or modify data.
+
+Mitigation: Treat workflow definitions and executor registrations as trusted code, and review them before running with real agents or sensitive data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/evezart/skills/workflow-orchestrator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include workflow definitions, runner usage patterns, and operational guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

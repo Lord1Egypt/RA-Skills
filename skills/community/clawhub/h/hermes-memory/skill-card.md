@@ -1,42 +1,57 @@
-## Description: <br>
-Hermes Memory checks local agent memory files, reports memory health, and prompts users to keep long-term memory concise. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hermes Memory helps agents check local memory-file health, surface cleanup reminders, and keep memory files concise.
 
-## Publisher: <br>
-[jdvrommel](https://clawhub.ai/user/jdvrommel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jdvrommel](https://clawhub.ai/user/jdvrommel)
 
-## Use Case: <br>
-Developers and agent users use this skill to manually or periodically check OpenClaw-style MEMORY.md and USER.md files, review usage thresholds, and decide when to organize or compact local memory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper script scans local memory files and the ~/self-improving directory, which may expose more local content than the named MEMORY.md and USER.md files. <br>
-Mitigation: Review the script paths before installing and confirm that scanning ~/self-improving and the OpenClaw workspace memory files is acceptable. <br>
-Risk: Optional cron setup creates recurring local execution and may append output to health.log. <br>
-Mitigation: Run the script manually first, then add or narrow the cron entry only if recurring checks are desired. <br>
-Risk: The script creates local persistence in hermes-memory-state.json. <br>
-Mitigation: Confirm the state file location and contents are acceptable before enabling routine use. <br>
+## Use Case:
 
+Developers and agent operators use this skill to monitor OpenClaw memory, profile, and state files and receive reminders when memory content should be reduced or reorganized.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jdvrommel/hermes-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with bash commands, plus local text output and JSON state written by the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The helper script can write hermes-memory-state.json and can be scheduled to append health checks to health.log.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The health check reads sensitive OpenClaw memory, profile, and state files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the script before installing and run it only in workspaces where reading those files is acceptable.
+
+Risk: The script reads all top-level files in ~/self-improving during each check.
+
+Mitigation: Limit the scan to an explicit allowlist of expected memory files before scheduling regular runs.
+
+Risk: The cron example runs automatically on weekdays and uses hard-coded local paths.
+
+Mitigation: Adjust paths for the deployment environment and confirm the schedule before enabling cron.
+
+## Reference(s):
+
+- [Hermes Memory on ClawHub](https://clawhub.ai/jdvrommel/skills/hermes-memory)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text status report with shell command examples and an optional JSON state file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May exit non-zero when cleanup is recommended.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

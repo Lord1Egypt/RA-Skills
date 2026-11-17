@@ -1,44 +1,54 @@
-## Description: <br>
-A skill that uses GLM-V native grounding capabilities for coordinate conversion, bounding-box visualization, image target grounding, and video target tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GLM-V-Grounding uses GLM-V native grounding to locate prompt-specified targets in images or videos, extract normalized coordinates, and create bounding-box or tracking visualizations.
 
-## Publisher: <br>
-[jaredforreal](https://clawhub.ai/user/jaredforreal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jaredforreal](https://clawhub.ai/user/jaredforreal)
 
-## Use Case: <br>
-Developers and agents use this skill to ground prompt-described targets in images or videos with GLM-V, then extract normalized coordinates and optionally produce annotated visualizations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends selected images, videos, and prompts to the external Zhipu GLM-V service. <br>
-Mitigation: Use it only when that external processing is acceptable, and avoid media or prompts that contain sensitive information. <br>
-Risk: The skill requires a ZHIPU_API_KEY credential and can create a local .env file for configuration. <br>
-Mitigation: Use a dedicated revocable API key and keep generated .env files out of version control. <br>
-Risk: The skill installs and runs Python dependencies for media processing and visualization. <br>
-Mitigation: Install dependencies in an isolated environment before using the skill. <br>
+## Use Case:
 
+Developers and agents use this skill to ground prompt-described targets in images and videos, convert GLM-V responses into coordinate structures, and optionally generate visual overlays for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jaredforreal/glmv-grounding) <br>
-- [GLM-V grounding source homepage](https://github.com/zai-org/GLM-V/tree/main/skills/glmv-grounding) <br>
-- [Zhipu API key setup](https://www.bigmodel.cn/usercenter/proj-mgmt/apikeys) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, code, files] <br>
-**Output Format:** [Markdown or JSON-like coordinate data with optional image or video visualization files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Grounding coordinates are normalized to a 0-1000 image coordinate range; visualizations may be written to a user-selected directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: Selected local images or videos can be sent to Zhipu's GLM-V API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved media inputs, avoid sensitive local paths, and run the skill in a workspace or sandbox that cannot read unrelated secrets.
+
+Risk: API-key setup can expose secrets through command-line arguments or a weakly protected .env file.
+
+Mitigation: Prefer environment variables over the documented --api-key form, restrict .env permissions, and keep .env out of version control.
+
+## Reference(s):
+
+- [GLM-V-Grounding homepage](https://github.com/zai-org/GLM-V/tree/main/skills/glmv-grounding)
+- [Zhipu API key setup](https://www.bigmodel.cn/usercenter/proj-mgmt/apikeys)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or plain text with Python-style coordinate lists, JSON-like detection and tracking structures, and optional visualization file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Coordinates are normalized to a 0-1000 range; optional image or video visualizations may be written to a local output directory.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

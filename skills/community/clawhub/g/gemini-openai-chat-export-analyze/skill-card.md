@@ -1,46 +1,55 @@
-## Description: <br>
-Guides agents through exporting and locally analyzing ChatGPT web conversations and Gemini web activity exports, including JSON, HTML, and cross-platform normalization workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through exporting and analyzing full chat histories from the Gemini and ChatGPT web products, including ChatGPT JSON exports and Gemini HTML exports.
 
-## Publisher: <br>
-[shaoqing404](https://clawhub.ai/user/shaoqing404) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shaoqing404](https://clawhub.ai/user/shaoqing404)
 
-## Use Case: <br>
-Developers, analysts, and individual users use this skill to help export ChatGPT or Gemini web chat histories, verify export structure, convert records into searchable formats, and produce privacy-aware summaries or reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ChatGPT and Gemini export files can contain private conversations, account details, feedback, and other personal information. <br>
-Mitigation: Keep exports local, remove them from the workspace after analysis, and redact personal identifiers in reports. <br>
-Risk: Gemini exports may include other Google activity in addition to Gemini chat content. <br>
-Mitigation: Inspect the Takeout contents before analysis and limit processing to the intended Gemini export files. <br>
-Risk: Large export files can be slow or memory-intensive to inspect in one pass. <br>
-Mitigation: Use targeted jq, grep, or chunked processing and avoid dumping full exports into chat or logs. <br>
+## Use Case:
 
+Developers and external users use this skill to help users retrieve ChatGPT or Gemini web chat exports, inspect their file formats, and run practical searches, timeline summaries, and cross-platform analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shaoqing404/skills/gemini-openai-chat-export-analyze) <br>
-- [Server-resolved GitHub source](https://github.com/shaoqing404/ai-chat-timeline-skills/tree/main/skills/gemini-openai-chat-export-analyze) <br>
-- [Publisher profile](https://clawhub.ai/user/shaoqing404) <br>
-- [ChatGPT web app](https://chatgpt.com) <br>
-- [Google account data page](https://myaccount.google.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with bash, jq, and Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May process local JSON and HTML chat export files; reports should redact personal identifiers by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Risk: The skill handles complete ChatGPT and Gemini exports that can contain sensitive private chat and account data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private working directory with owner-only permissions, redact sensitive records before sharing reports, and delete intermediate files after analysis.
+
+Risk: The documented examples include fixed temporary-file paths that can expose sensitive analysis artifacts.
+
+Mitigation: Avoid fixed /tmp paths for real exports and use private, per-user temporary directories or explicit secure output locations.
+
+## Reference(s):
+
+- [Server-resolved GitHub provenance](https://github.com/shaoqing404/ai-chat-timeline-skills/tree/main/skills/gemini-openai-chat-export-analyze)
+- [ClawHub skill page](https://clawhub.ai/shaoqing404/skills/gemini-openai-chat-export-analyze)
+- [Google Account data and privacy](https://myaccount.google.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Code]
+
+**Output Format:** [Markdown with inline bash, jq, and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local intermediate text or JSONL analysis files when the user supplies export paths.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

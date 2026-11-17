@@ -1,41 +1,63 @@
-## Description: <br>
-统计结果解读助手。支持t检验、方差分析、卡方、相关、回归、中介效应、调节效应、信度分析等。可直接粘贴SPSS输出，自动生成学术化解读。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interprets pasted statistical results, including SPSS output, and generates academic-style Chinese writeups for tests such as t-tests, ANOVA, chi-square, correlation, regression, mediation/moderation, and reliability analyses.
 
-## Publisher: <br>
-[jeoyee](https://clawhub.ai/user/jeoyee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jeoyee](https://clawhub.ai/user/jeoyee)
 
-## Use Case: <br>
-Researchers, students, and analysts use this skill to turn pasted statistical results, including SPSS-style output, into Chinese academic result-section prose. It covers common tests such as t-tests, ANOVA, chi-square, correlation, regression, mediation, moderation, reliability analysis, and non-parametric tests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pasted research results may be sent to Moonshot/Kimi without clear disclosure. <br>
-Mitigation: Do not enter participant identifiers, health or student records, confidential datasets, or sensitive unpublished results unless external processing is approved. <br>
-Risk: The release evidence reports an exposed API credential. <br>
-Mitigation: Remove and rotate the embedded key, require a user-provided credential, and document how credentials should be supplied. <br>
+## Use Case:
 
+Researchers, students, and analysts use this skill to turn statistical test output into Chinese academic prose suitable for a paper results section. It is oriented toward common psychology, statistics, and data analysis workflows, including pasted SPSS-style output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jeoyee/statistics-skill) <br>
-- [Moonshot API base URL](https://api.moonshot.cn/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, files, guidance] <br>
-**Output Format:** [Chinese academic prose saved as plain text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses pasted statistical results as input and may call the Moonshot/Kimi API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and frontmatter) <br>
+Risk: Pasted research results are transmitted to Moonshot/Kimi for processing, which can expose confidential, regulated, unpublished, or participant-level data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only data approved for external processing, disclose the remote transmission before use, and redact or aggregate sensitive inputs.
+
+Risk: The artifact contains a bundled API key.
+
+Mitigation: Remove and rotate the bundled key, then require users to provide credentials through a managed secret or environment variable.
+
+Risk: Generated statistical interpretations may be incomplete or inaccurate for publication use.
+
+Mitigation: Have a qualified reviewer compare the generated prose against the original statistical output before using it in academic writing.
+
+Risk: Generated interpretations are autosaved locally as timestamped text files.
+
+Mitigation: Disclose local storage behavior and remove or protect saved files when outputs include sensitive study details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jeoyee/skills/statistics-skill)
+- [Publisher profile](https://clawhub.ai/user/jeoyee)
+- [Moonshot API endpoint](https://api.moonshot.cn/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files, Guidance]
+
+**Output Format:** [Chinese prose text with R source-command usage guidance and locally saved .txt interpretation files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Calls Moonshot/Kimi for interpretation and autosaves generated results to timestamped text files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

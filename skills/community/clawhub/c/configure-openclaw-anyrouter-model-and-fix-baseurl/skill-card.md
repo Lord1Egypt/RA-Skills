@@ -1,43 +1,55 @@
-## Description: <br>
-Helps agents configure OpenClaw to use the AnyRouter Claude Opus model, align related ClaudeCode settings, and troubleshoot baseUrl, protocol, authentication, and fallback behavior with logs and live checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents merge AnyRouter model settings into OpenClaw, switch the main agent to `anyrouter/claude-opus-4-6`, and troubleshoot base URL, gateway, authentication, endpoint, and fallback issues with logs and live checks.
 
-## Publisher: <br>
-[can4hou6joeng4](https://clawhub.ai/user/can4hou6joeng4) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[can4hou6joeng4](https://clawhub.ai/user/can4hou6joeng4)
 
-## Use Case: <br>
-Developers and engineers use this skill to merge AnyRouter provider settings into OpenClaw, set the main agent model to anyrouter/claude-opus-4-6, and verify whether requests are actually reaching the intended provider. It also helps diagnose 403, 404, 500, protocol endpoint, API key, and fallback issues across OpenClaw and ClaudeCode configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Model routing or local agent configuration changes can break the user's working OpenClaw or ClaudeCode setup. <br>
-Mitigation: Ask for a diff before applying changes, back up openclaw.json and ~/.claude/settings.json, and require approval before restarts. <br>
-Risk: API keys can be exposed or misconfigured when provider settings are edited or tested. <br>
-Mitigation: Prefer environment-variable API keys over plaintext, confirm that variables resolve correctly, and avoid printing secrets in logs or responses. <br>
-Risk: Live endpoint checks may send requests to an unintended or incompatible third-party gateway. <br>
-Mitigation: Confirm the AnyRouter endpoint with the user, use minimal non-sensitive test payloads, and require approval before live API tests. <br>
+## Use Case:
 
+Developers and engineers use this skill to update OpenClaw model routing while preserving existing providers, then verify whether AnyRouter Claude requests are actually served or are falling back. It can also guide ClaudeCode base URL alignment when the user explicitly asks to synchronize that local configuration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/can4hou6joeng4/configure-openclaw-anyrouter-model-and-fix-baseurl) <br>
-- [AnyRouter endpoint referenced by the skill](https://anyrouter.top) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration, shell commands] <br>
-**Output Format:** [Markdown with JSON configuration snippets, command examples, and troubleshooting steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local file paths, diff recommendations, log interpretation, endpoint test plans, and fallback guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may lead an agent to make persistent changes to OpenClaw or ClaudeCode local configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the agent to show the exact file diff and get confirmation before writing `openclaw.json`, restarting OpenClaw, or modifying `~/.claude/settings.json`.
+
+Risk: Model routing can appear configured while requests still fail or fall back because of gateway, endpoint, or credential issues.
+
+Mitigation: Verify behavior with live request checks and runtime logs, and clearly report when fallback handled the response.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/can4hou6joeng4/skills/configure-openclaw-anyrouter-model-and-fix-baseurl)
+- [AnyRouter gateway](https://anyrouter.top)
+- [AnyRouter messages endpoint referenced by the skill](https://anyrouter.top/v1/messages)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, Shell commands, Code]
+
+**Output Format:** [Markdown with JSON, shell command, and log snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose persistent edits to local OpenClaw and ClaudeCode configuration; exact diffs and explicit user confirmation should precede writes or restarts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

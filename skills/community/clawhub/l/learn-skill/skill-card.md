@@ -1,38 +1,57 @@
-## Description: <br>
-Analyze and learn any newly installed skill through two-layer Mermaid diagrams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze and learn any newly installed skill through two-layer Mermaid diagrams.
 
-## Publisher: <br>
-[junwugit](https://clawhub.ai/user/junwugit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junwugit](https://clawhub.ai/user/junwugit)
 
-## Use Case: <br>
-Developers and agent users use this skill to inspect a newly installed skill's SKILL.md and produce diagrams that explain its scope, structure, interactions, and expected outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may summarize private or sensitive skill files when directed at them. <br>
-Mitigation: Use it only on skill files you intend to analyze and share, and avoid pointing it at private skills unless summarization is acceptable. <br>
+## Use Case:
 
+Developers and agents use this skill to analyze a target SKILL.md and produce planning and behavior diagrams that explain the skill's structure, capabilities, and expected outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/junwugit/learn-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with Mermaid diagrams and optional HTML report guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces two-layer analysis diagrams and clear visual formatting guidance for generated reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill analyzes target SKILL.md content, which can include misleading or unsafe instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the target skill content and the generated analysis before relying on it for installation, execution, or deployment decisions.
+
+Risk: The skill may generate an HTML report file.
+
+Mitigation: Inspect generated HTML before opening or sharing it, especially when the analyzed skill content came from an untrusted source.
+
+Risk: The skill may respond in Chinese by default.
+
+Mitigation: Ask the agent for the desired response language when English output is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/junwugit/skills/learn-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Files, Guidance]
+
+**Output Format:** [Markdown with Mermaid code blocks and optional HTML report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Mermaid flowcharts, mindmaps, architecture diagrams, sequence diagrams, and a generated HTML report.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

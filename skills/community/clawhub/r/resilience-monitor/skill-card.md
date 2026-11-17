@@ -1,41 +1,58 @@
-## Description: <br>
-Monitor OpenClaw API and agent-session errors, inspect model performance, configure retry strategies, generate reports, and manage recovery workflows through a companion Resilience plugin. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors OpenClaw API and agent-session errors, model health, retry strategies, reporting, dashboard state, and recovery queues through natural-language commands backed by the required Resilience plugin.
 
-## Publisher: <br>
-[leijack-lo](https://clawhub.ai/user/leijack-lo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leijack-lo](https://clawhub.ai/user/leijack-lo)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to ask for API error statistics, model health summaries, retry strategy changes, dashboard access, and recovery reports in natural language. It is primarily useful when the companion @leiJack-lo/resilience plugin is installed and intentionally granted monitoring and recovery permissions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The companion plugin uses sensitive local authority, including model/session/tool event hooks, local dashboard access, persistent logs and configuration, and retry/recovery controls. <br>
-Mitigation: Install only when OpenClaw error and session monitoring is desired, review the companion plugin before unsafe installation, and prefer explicit Resilience-named commands for dashboard and retry changes. <br>
-Risk: The skill is a natural-language wrapper and does not provide the core tools or hooks by itself. <br>
-Mitigation: Install and load the @leiJack-lo/resilience plugin first, then verify that Resilience tools are registered before relying on monitoring or recovery behavior. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect OpenClaw LLM API reliability, tune retry behavior, open the monitoring dashboard, and review session or tool recovery status through Chinese natural-language commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leijack-lo/skills/resilience-monitor) <br>
-- [Publisher profile](https://clawhub.ai/user/leijack-lo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and natural-language guidance with tool-call examples and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the companion Resilience plugin for tool execution, dashboard service, hooks, persistent logs, and retry/recovery controls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.1 (source: server release evidence and artifact/skill.json) <br>
+Risk: The release requires installing unaudited external plugin code with OpenClaw unsafe-install protection bypassed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing or pinning the plugin release and only when the publisher is trusted.
+
+Risk: The dashboard has unsafe HTML rendering that could expose or alter monitoring data.
+
+Mitigation: Keep the dashboard bound to loopback and avoid exposing it beyond the local machine until the rendering issue is fixed.
+
+Risk: Conversation access is needed for full session recovery behavior.
+
+Mitigation: Enable conversation access only when session recovery is required and review the privacy impact for the workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leijack-lo/skills/resilience-monitor)
+- [Publisher profile](https://clawhub.ai/user/leijack-lo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and natural-language guidance with inline JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on the required external Resilience plugin tools and local dashboard service.]
+
+## Skill Version(s):
+
+0.5.1 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

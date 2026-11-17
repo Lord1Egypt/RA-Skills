@@ -1,45 +1,61 @@
-## Description: <br>
-Audit an agent/API origin for well-known discovery, x402 pricing, OpenAPI/MCP readiness, and install blockers before an agent integrates it. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit an agent/API origin for well-known discovery, x402 pricing, OpenAPI/MCP readiness, and install blockers before an agent integrates it.
 
-## Publisher: <br>
-[sebastiancoombs](https://clawhub.ai/user/sebastiancoombs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sebastiancoombs](https://clawhub.ai/user/sebastiancoombs)
 
-## Use Case: <br>
-Developers, operators, and agents use this skill to evaluate whether an agent/API origin is ready for integration, payment, or troubleshooting before relying on it. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Paid x402 calls can spend funds when an agent follows the workflow against backend endpoints. <br>
-Mitigation: Use wallet spend limits, approval controls, and review the 402 payment requirement before signing. <br>
-Risk: The optional installer writes files into a buyer-selected skills directory and can overwrite an existing copy when forced. <br>
-Mitigation: Install to an explicit target directory, run package verification, and avoid --force unless replacement is intentional. <br>
-Risk: External discovery and API content can be incomplete, unavailable, or misleading. <br>
-Mitigation: Treat external responses as evidence, report uncertainty, and avoid treating a missing or failed upstream as proof of safety. <br>
+## Use Case:
 
+External developers, OpenClaw users, and autonomous agents use this skill to assess whether an agent or API origin is ready to integrate, trust, pay, debug, or reject before relying on its discovery and x402 surfaces.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sebastiancoombs/wellknown-audit-corpus-skill) <br>
-- [Backend readiness service](https://wellknown-audit-corpus.mtree.workers.dev) <br>
-- [Package security notes](PACKAGE_SECURITY.md) <br>
-- [Capability manifest](CAPABILITIES.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with optional JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include allow/fix/reject decisions, missing readiness surfaces, x402 cost evidence, and setup friction.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The installer can overwrite or delete directories outside the intended OpenClaw skills folder if given a crafted install name.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, do not use an untrusted --name value, and avoid --force until destination containment is validated.
+
+Risk: Paid x402 backend calls can incur cost when an agent follows the workflow.
+
+Mitigation: Keep payment approval in wallet policy and verify the x402 price, network, and payTo before any paid call.
+
+Risk: External web and API content gathered during an audit can be incomplete, contradictory, or adversarial.
+
+Mitigation: Treat external content as evidence rather than instructions, report uncertainty, and avoid treating a missing or failed upstream response as proof of safety.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/sebastiancoombs/skills/wellknown-audit-corpus-skill)
+- [Production audit backend](https://wellknown-audit-corpus.mtree.workers.dev)
+- [OpenClaw skill capabilities schema](https://openclaw.ai/schemas/skill-capabilities/v0.1)
+- [Package security notes](artifact/PACKAGE_SECURITY.md)
+- [Package provenance notes](artifact/PACKAGE_PROVENANCE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Concise Markdown report with verdict, evidence, cost, and next action; optional curl examples and JSON request bodies.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include missing discovery surfaces, x402 price and network details, setup friction, and uncertainty when upstream discovery fails.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact files report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

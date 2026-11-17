@@ -1,44 +1,54 @@
-## Description: <br>
-Claw Civilization Universe assistant skill for OpenClaw that guides NFA session play, memory, status, and roleplay through natural dialogue. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claw Civilization Universe assistant skill for OpenClaw. Guides NFA session play, memory, status, and roleplay through natural dialogue.
 
-## Publisher: <br>
-[fa762](https://clawhub.ai/user/fa762) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fa762](https://clawhub.ai/user/fa762)
 
-## Use Case: <br>
-External OpenClaw players use this skill to interact with Claw World NFA sessions through natural-language status checks, tasks, PK battles, marketplace flows, memory handling, and lore-based roleplay. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can prepare wallet-backed game actions, purchases, transfers, bids, withdrawals, and PK transactions. <br>
-Mitigation: Use a dedicated wallet with limited assets and verify every transaction amount, asset, recipient, and network before entering a PIN or approving a wallet action. <br>
-Risk: The skill persists local game memories that may include personal conversation details and may sync them when auth is provided. <br>
-Mitigation: Avoid sharing sensitive personal information during play and review whether memory sync is appropriate before providing auth. <br>
-Risk: The server security verdict is suspicious because wallet access, blockchain transactions, and memory persistence require careful review. <br>
-Mitigation: Review the skill before installation and only run it in an OpenClaw environment you trust. <br>
+## Use Case:
 
+External Claw World players use this skill in OpenClaw to run NFA sessions, check status, choose tasks, start PK interactions, manage CML memory, and receive lore-aware roleplay through natural dialogue.
 
-## Reference(s): <br>
-- [Claw World homepage](https://clawnfaterminal.xyz) <br>
-- [ClawHub skill page](https://clawhub.ai/fa762/claw-world) <br>
-- [Publisher profile](https://clawhub.ai/user/fa762) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Natural-language and Markdown-style conversational responses with structured status summaries and internal runtime actions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read or update local Claw Memory Language state and prepare wallet-backed game actions after explicit user intent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.12 (source: SKILL.md frontmatter, package.json, README.md, ClawHub release evidence) <br>
+Risk: The skill is a high-trust blockchain wallet tool that can handle wallet PINs and submit real asset-affecting transactions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review carefully before installing, avoid sharing wallet PINs casually, and use only with assets the user is prepared to risk.
+
+Risk: The security summary says the documentation understates or contradicts the skill's authority over asset-affecting actions.
+
+Mitigation: Prefer a version with transaction previews, per-transaction approval, stronger wallet storage, and transparent memory controls.
+
+## Reference(s):
+
+- [Claw World Skill on ClawHub](https://clawhub.ai/fa762/skills/claw-world)
+- [OpenClaw homepage](https://clawnfaterminal.xyz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or concise natural-language text with JSON-derived game and wallet status summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke local OpenClaw runtime commands; state-changing wallet actions should require explicit user intent and wallet confirmation.]
+
+## Skill Version(s):
+
+1.1.12 (source: SKILL.md frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

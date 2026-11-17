@@ -1,42 +1,56 @@
-## Description: <br>
-Web search via Yep Search API. Own index, fast results with domain filtering and date ranges. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web search via Yep Search API. Own index, fast results with domain filtering and date ranges.
 
-## Publisher: <br>
-[elrandar](https://clawhub.ai/user/elrandar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[elrandar](https://clawhub.ai/user/elrandar)
 
-## Use Case: <br>
-Developers and agents use this skill to run web searches through the Yep Search API with options for domain filters, date ranges, safe search, language selection, and optional content highlights. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to Yep and may include sensitive information if entered directly. <br>
-Mitigation: Avoid putting private secrets or sensitive personal data into search queries. <br>
-Risk: API calls may spend Yep account credit. <br>
-Mitigation: Use a dedicated, revocable Yep API key where possible and monitor account usage. <br>
+## Use Case:
 
+Developers and agents use this skill to run Yep Search API queries and retrieve web results with titles, URLs, descriptions, optional highlights, and filters for domains, language, safe search, published dates, and crawl dates.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/elrandar/yep-search) <br>
-- [Yep platform](https://platform.yep.com) <br>
-- [Yep API key setup](https://platform.yep.com/app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown] <br>
-**Output Format:** [Markdown-formatted search result list with titles, URLs, descriptions, and optional API cost and balance details.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires YEP_API_KEY; search queries are sent to Yep and API calls may consume Yep account credit.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Risk: Search queries, domain filters, and date filters are sent to Yep.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting secrets, confidential material, or private personal data in search queries or filters.
+
+Risk: The skill requires a YEP_API_KEY and can make paid Yep API calls.
+
+Mitigation: Provide the key only through the environment, keep it out of prompts and logs, and monitor Yep usage and balance.
+
+## Reference(s):
+
+- [Yep Platform](https://platform.yep.com)
+- [Yep API Key Setup](https://platform.yep.com/app)
+- [Yep Search API Endpoint](https://platform.yep.com/api/search)
+- [ClawHub Skill Page](https://clawhub.ai/elrandar/skills/yep-search)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown search results with URLs, titles, descriptions, and optional cost details.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires YEP_API_KEY; supports result limits, highlights, search mode, language, domain filters, safe search, published date filters, and crawl date filters.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

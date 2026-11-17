@@ -1,46 +1,63 @@
-## Description: <br>
-Generates images through ShortArt AI in three modes: text or image prompted artwork, e-commerce product image sets, and template-based marketing or social media images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images with ShortArt AI using text-to-image, image-to-image, e-commerce product image, and template-based workflows.
 
-## Publisher: <br>
-[yige666s](https://clawhub.ai/user/yige666s) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yige666s](https://clawhub.ai/user/yige666s)
 
-## Use Case: <br>
-External users and developers use this skill to route image generation requests to ShortArt for general artwork, product listing imagery, and template-driven visual assets. It helps agents collect parameters, submit generation jobs, poll status, and optionally download completed images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and selected images are sent to ShortArt for generation. <br>
-Mitigation: Use the skill only when ShortArt's terms fit the intended data, and avoid submitting sensitive images or confidential prompts. <br>
-Risk: API-key handling and download behavior were flagged for review by the authoritative security evidence. <br>
-Mitigation: Do not echo the API key in shared terminals or logs, keep SHORTART_API_KEY scoped to trusted environments, and treat downloaded results cautiously until trusted hosts and paths are confirmed. <br>
+## Use Case:
 
+External users, developers, and agent operators use this skill to create ShortArt-generated visual assets from prompts, reference images, e-commerce product inputs, or ShortArt templates.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yige666s/shortart-image-generator) <br>
-- [ShortArt](https://shortart.ai) <br>
-- [ShortArt API Key Page](https://shortart.ai/key) <br>
-- [Text-to-Image Generation](references/text-to-image.md) <br>
-- [E-commerce Suit Image Generation](references/suit-image.md) <br>
-- [Template-based Image Generation](references/template-image.md) <br>
-- [Image Prompt Writing Guide](references/prompt-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON task results, and local image file paths when downloads are requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SHORTART_API_KEY, Python 3.7 or later, and the requests package; generation jobs may require polling before images are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release evidence) <br>
+Risk: Generated-image download requests may send the ShortArt bearer token to unvalidated image URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid the download workflow until image URL hosts are validated and the Authorization header is only sent to trusted ShortArt endpoints.
+
+Risk: Prompts and uploaded images are sent to the ShortArt service.
+
+Mitigation: Use only non-sensitive prompts and images that are acceptable to share with ShortArt.
+
+Risk: The release has unavailable server-resolved source provenance.
+
+Mitigation: Prefer a pinned, verified install source and review the artifact before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yige666s/skills/shortart-image-generator)
+- [ShortArt Home](https://shortart.ai)
+- [ShortArt API Key Setup](https://shortart.ai/key)
+- [Text-to-Image Generation](references/text-to-image.md)
+- [E-commerce Suit Image Generation](references/suit-image.md)
+- [Template-based Image Generation](references/template-image.md)
+- [Image Prompt Writing Guide](references/prompt-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return ShortArt project IDs, polling status, generated image metadata, and local download paths.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

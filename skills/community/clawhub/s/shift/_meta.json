@@ -1,6 +1,79 @@
 {
-  "ownerId": "kn71s58rp4be8gs83pn66ddj6n81axez",
-  "slug": "shift",
-  "version": "1.0.4",
-  "publishedAt": 1773851284061
+  "name": "shift",
+  "version": "1.0.3",
+  "description": "Multi-identity delegation skill — one agent that routes tasks to specialized sub-identities",
+  "kind": "skill",
+  "source": {
+    "type": "workspace-developed",
+    "location": "~/.openclaw/workspace/skills/shift/",
+    "note": "Developed in the user's local OpenClaw workspace. Users can inspect source at that path before installing. No external repository."
+  },
+  "install": {
+    "kind": "instruction-only",
+    "setup": "bash ~/.openclaw/skills/shift/scripts/setup.sh",
+    "inspectBeforeInstall": "Before installing, inspect the skill source at ~/.openclaw/workspace/skills/shift/ to verify behavior. All skill files are readable plaintext.",
+    "notes": [
+      "Creates ~/.openclaw/workspace/.shift/ directory structure",
+      "Copies persona files to ~/.openclaw/workspace/.shift/personas/",
+      "Creates config.yaml from schema if not present",
+      "Initializes cost-tracking.json",
+      "No network calls, no privilege escalation, no system modifications"
+    ]
+  },
+  "access": {
+    "reads": [
+      "~/.openclaw/workspace/MEMORY.md",
+      "~/.openclaw/workspace/.shift/config.yaml",
+      "~/.openclaw/workspace/.shift/cost-tracking.json",
+      "~/.openclaw/workspace/.shift/personas/*.yaml",
+      "~/.openclaw/workspace/.shift/sessions/*/INBOUND.json",
+      "~/.openclaw/workspace/.shift/sessions/*/CONTEXT.md",
+      "~/.openclaw/workspace/.shift/sessions/*/OUTBOUND.md",
+      "~/.openclaw/workspace/.shift/sessions/*/ESCALATE.md",
+      "~/.openclaw/workspace/.shift/sessions/*/CONSULT-INBOUND.md",
+      "~/.openclaw/workspace/.shift/sessions/*/CONSULT-OUTBOUND.md"
+    ],
+    "writes": [
+      "~/.openclaw/workspace/.shift/sessions/<runId>/INBOUND.json",
+      "~/.openclaw/workspace/.shift/sessions/<runId>/CONTEXT.md",
+      "~/.openclaw/workspace/.shift/sessions/<runId>/OUTBOUND.md",
+      "~/.openclaw/workspace/.shift/sessions/<runId>/ESCALATE.md",
+      "~/.openclaw/workspace/.shift/sessions/<runId>/CONSULT-INBOUND.md",
+      "~/.openclaw/workspace/.shift/sessions/<runId>/CONSULT-OUTBOUND.md",
+      "~/.openclaw/workspace/.shift/cost-tracking.json",
+      "~/.openclaw/workspace/.shift/personas/*.yaml"
+    ],
+    "network": {
+      "calls": [
+        "Model API calls to provider endpoints configured in OpenClaw config",
+        "All model providers configured by the user in their OpenClaw config",
+        "No external calls except model provider APIs"
+      ],
+      "credentials": "Uses OpenClaw's configured model provider credentials (reads from agent config). Does not store or declare its own credentials."
+    },
+    "transmits": [
+      "User message content",
+      "Conversation history (last N turns, configurable via contextBridge.historyTurns)",
+      "Active file references and partial file contents",
+      "MEMORY.md excerpts relevant to the current task",
+      "Delegation metadata (runId, timestamps, persona)"
+    ],
+    "doesNotAccess": [
+      "Other workspace files outside of session context",
+      "OpenClaw internal agent configurations",
+      "System files",
+      "Environment variables or secrets not in workspace"
+    ]
+  },
+  "modelProviders": {
+    "note": "This skill invokes whatever model providers the user configures in their persona settings. The skill does not ship with or declare specific provider credentials.",
+    "recommendation": "Use trusted providers. Review your provider's data handling policy before delegating sensitive work."
+  },
+  "permissions": {
+    "workspace": true,
+    "subagentSpawn": true,
+    "fileRead": true,
+    "fileWrite": true,
+    "network": false
+  }
 }

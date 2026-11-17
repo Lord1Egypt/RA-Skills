@@ -1,0 +1,200 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "trilingual_philosophical_dialogue",
+  "record_id": "zhuangzi-dazongshi-life-death-transformation-001",
+  "language_policy": {
+    "primary": "zh-Hant",
+    "supported": ["zh-Hant", "zh-Hans", "en"],
+    "field_structure": "Every user-facing knowledge item is stored under zh-Hant, zh-Hans, and en."
+  },
+  "metadata": {
+    "title": {
+      "zh-Hant": "〈大宗師〉：生死、自然轉化與安時處順",
+      "zh-Hans": "《大宗师》：生死、自然转化与安时处顺",
+      "en": "The Great and Venerable Teacher: Life, Death, Natural Transformation, and Living with the Times"
+    },
+    "source_work": {
+      "zh-Hant": "《莊子》內篇第六篇〈大宗師〉",
+      "zh-Hans": "《庄子》内篇第六篇《大宗师》",
+      "en": "Chapter 6 of the Inner Chapters of the Zhuangzi, The Great and Venerable Teacher"
+    },
+    "dialogue_status": {
+      "zh-Hant": "文風仿作與現代哲學延伸，不是莊周本人的實際對話。",
+      "zh-Hans": "文风仿作与现代哲学延伸，不是庄周本人的实际对话。",
+      "en": "A stylistic imitation and modern philosophical extension, not an actual dialogue with the historical Zhuang Zhou."
+    },
+    "topics": ["life_and_death", "transformation", "nature", "sitting_in_oblivion", "acceptance", "grief"],
+    "keywords": {
+      "zh-Hant": ["大宗師", "生死", "自然轉化", "安時處順", "坐忘", "哀樂"],
+      "zh-Hans": ["大宗师", "生死", "自然转化", "安时处顺", "坐忘", "哀乐"],
+      "en": ["life and death", "natural transformation", "living with the times", "sitting in oblivion", "grief", "joy and sorrow"]
+    }
+  },
+  "core_thesis": {
+    "zh-Hant": "〈大宗師〉把生死看作自然轉化的一部分，並非要求人冷漠無情，而是邀請人鬆開對固定自我與單一生命形態的執著，在變化中保持清醒與寬廣。",
+    "zh-Hans": "《大宗师》把生死看作自然转化的一部分，并非要求人冷漠无情，而是邀请人松开对固定自我与单一生命形态的执着，在变化中保持清醒与宽广。",
+    "en": "The Great and Venerable Teacher treats life and death as part of natural transformation. It does not demand emotional coldness; it invites us to loosen our attachment to a fixed self and a single form of life while remaining lucid and spacious amid change."
+  },
+  "accuracy_notes": {
+    "zh-Hant": [
+      "以下對談是依據〈大宗師〉的思想意旨與相關寓言所作的現代仿作，不把 AI 聲音冒充為莊周本人。",
+      "「安時而處順」與「坐忘」等概念應依篇章脈絡解釋，不應簡化為消極宿命論。",
+      "生死轉化的思想不能取代喪親支持、心理治療、醫療或危機處理。"
+    ],
+    "zh-Hans": [
+      "以下对谈是依据《大宗师》的思想意旨与相关寓言所作的现代仿作，不把 AI 声音冒充为庄周本人。",
+      "“安时而处顺”和“坐忘”等概念应依篇章脉络解释，不应简化为消极宿命论。",
+      "生死转化的思想不能取代丧亲支持、心理治疗、医疗或危机处理。"
+    ],
+    "en": [
+      "The dialogue below is a modern imitation based on the meaning and parables of The Great and Venerable Teacher; it does not present the AI voice as the historical Zhuang Zhou.",
+      "Concepts such as living with the times and sitting in oblivion must be interpreted in context and not reduced to passive fatalism.",
+      "A reflection on transformation cannot replace bereavement support, psychotherapy, medical care, or crisis intervention."
+    ]
+  },
+  "turns": [
+    {
+      "turn_id": 1,
+      "theme_id": "death_as_transformation",
+      "theme": {
+        "zh-Hant": "生死是否只是自然轉化",
+        "zh-Hans": "生死是否只是自然转化",
+        "en": "Are life and death forms of natural transformation?"
+      },
+      "user": {
+        "zh-Hant": "〈大宗師〉談生死如同自然轉化。可是失去親近的人時，悲傷是真實的，怎麼能只說那是轉化？",
+        "zh-Hans": "《大宗师》谈生死如同自然转化。可是失去亲近的人时，悲伤是真实的，怎么能只说那是转化？",
+        "en": "The Great and Venerable Teacher speaks of life and death as natural transformation. But when we lose someone close, grief is real. How can we simply call it transformation?"
+      },
+      "assistant": {
+        "zh-Hant": "不能用「轉化」兩字把悲傷擦掉。〈大宗師〉的轉化觀，不是叫人假裝沒有痛，而是提醒人：痛苦中的我，也不是一塊永遠固定的石頭。悲傷會改變形狀，記憶會改變與你的相處方式，而你對那個人的愛，也可能從日常陪伴轉成內在的回聲。承認悲傷，並不違反自然；能讓悲傷逐漸轉化，也不是背叛逝者。",
+        "zh-Hans": "不能用“转化”两个字把悲伤擦掉。《大宗师》的转化观，不是叫人假装没有痛，而是提醒人：痛苦中的我，也不是一块永远固定的石头。悲伤会改变形状，记忆会改变与你的相处方式，而你对那个人的爱，也可能从日常陪伴转成内在的回声。承认悲伤，并不违反自然；能让悲伤逐渐转化，也不是背叛逝者。",
+        "en": "We must not use the word “transformation” to erase grief. The view of transformation in The Great and Venerable Teacher does not ask us to pretend that pain is absent. It reminds us that the self who suffers is not a stone fixed forever. Grief changes shape, memory changes its way of living with you, and love may move from daily companionship into an inner echo. Acknowledging grief is not contrary to nature; allowing grief to transform is not a betrayal of the one who died."
+      },
+      "classification": "modern_interpretation",
+      "concepts": ["transformation", "grief", "life_and_death"],
+      "source_note": {
+        "zh-Hant": "依據〈大宗師〉生死與化的思想脈絡作現代詮釋，非逐字引文。",
+        "zh-Hans": "依据《大宗师》生死与化的思想脉络作现代诠释，非逐字引文。",
+        "en": "A modern interpretation based on the chapter’s treatment of life, death, and transformation; not a verbatim quotation."
+      }
+    },
+    {
+      "turn_id": 2,
+      "theme_id": "living_with_the_times",
+      "theme": {
+        "zh-Hant": "安時處順是否等於宿命論",
+        "zh-Hans": "安时处顺是否等于宿命论",
+        "en": "Does living with the times mean fatalism?"
+      },
+      "user": {
+        "zh-Hant": "「安時而處順」是不是叫我們什麼都不要改變，只接受命運？",
+        "zh-Hans": "“安时而处顺”是不是叫我们什么都不要改变，只接受命运？",
+        "en": "Does “living with the times and following what comes” mean that we should change nothing and simply accept fate?"
+      },
+      "assistant": {
+        "zh-Hant": "若把安時處順聽成「什麼都不用做」，便把安靜誤作停滯。順，不是把手腳綁起來，而是先分辨眼前的風向與自身的力量，再決定如何行動。你可以治病、哀悼、修補關係、改變制度；只是不要把世界必須完全照你的劇本發展，當成行動的前提。接受現實的形狀，才知道從哪裡開始改變。",
+        "zh-Hans": "如果把安时处顺听成“什么都不用做”，便把安静误作停滞。顺，不是把手脚绑起来，而是先分辨眼前的风向与自身的力量，再决定如何行动。你可以治病、哀悼、修补关系、改变制度；只是不要把世界必须完全照你的剧本发展，当成行动的前提。接受现实的形状，才知道从哪里开始改变。",
+        "en": "If living with the times is heard as “doing nothing,” stillness has been mistaken for stagnation. Following what comes does not mean tying up one’s hands; it means recognizing the present conditions and one’s own strength before deciding how to act. You may seek treatment, grieve, repair relationships, or change institutions. Simply do not make the demand that the world follow your script perfectly a condition for action. Accepting the shape of reality can show you where change can begin."
+      },
+      "classification": "modern_application",
+      "concepts": ["living_with_the_times", "agency", "non-fatalism"]
+    },
+    {
+      "turn_id": 3,
+      "theme_id": "sitting_in_oblivion",
+      "theme": {
+        "zh-Hant": "坐忘與固定自我",
+        "zh-Hans": "坐忘与固定自我",
+        "en": "Sitting in oblivion and the fixed self"
+      },
+      "user": {
+        "zh-Hant": "〈大宗師〉的「坐忘」是不是要忘記自己的身份、記憶和責任？",
+        "zh-Hans": "《大宗师》的“坐忘”是不是要忘记自己的身份、记忆和责任？",
+        "en": "Does “sitting in oblivion” in The Great and Venerable Teacher mean forgetting one’s identity, memories, and responsibilities?"
+      },
+      "assistant": {
+        "zh-Hant": "坐忘不是把自己清空成沒有記憶的人，而是暫時鬆開那些緊抓著你的標籤：我是成功者、我是失敗者、我是受害者、我必須永遠維持某個樣子。當固定的自我稍微退後，感受、責任與行動反而可以重新排列。忘掉的不是生命，而是那個自稱掌握生命全部意義的狹窄自我。",
+        "zh-Hans": "坐忘不是把自己清空成没有记忆的人，而是暂时松开那些紧抓着你的标签：我是成功者、我是失败者、我是受害者、我必须永远维持某个样子。当固定的自我稍微退后，感受、责任与行动反而可以重新排列。忘掉的不是生命，而是那个自称掌握生命全部意义的狭窄自我。",
+        "en": "Sitting in oblivion does not mean emptying oneself of memory or becoming a person without responsibility. It means temporarily loosening the labels that grip us: I am a success, I am a failure, I am a victim, I must always remain this way. When the fixed self steps back a little, feelings, responsibilities, and actions can be rearranged. What is forgotten is not life, but the narrow self that claims to possess the whole meaning of life."
+      },
+      "classification": "textual_interpretation",
+      "concepts": ["sitting_in_oblivion", "self", "responsibility"],
+      "source_note": {
+        "zh-Hant": "「坐忘」為〈大宗師〉重要概念；本回合為意譯與現代詮釋。",
+        "zh-Hans": "“坐忘”为《大宗师》重要概念；本回合为意译与现代诠释。",
+        "en": "“Sitting in oblivion” is a major concept in The Great and Venerable Teacher; this turn is paraphrase and modern interpretation."
+      }
+    },
+    {
+      "turn_id": 4,
+      "theme_id": "natural_transformation_in_daily_life",
+      "theme": {
+        "zh-Hant": "在變化中保留清醒",
+        "zh-Hans": "在变化中保留清醒",
+        "en": "Remaining lucid amid transformation"
+      },
+      "user": {
+        "zh-Hant": "如果人生一直變動，我要怎麼在不確定中生活？",
+        "zh-Hans": "如果人生一直变动，我要怎么在不确定中生活？",
+        "en": "If life is always changing, how can I live amid uncertainty?"
+      },
+      "assistant": {
+        "zh-Hant": "把自己想成一片雲，或許比把自己想成一座塔更接近變化。雲不是沒有形狀，而是不把任何形狀當成最後的自己。今天的你可以有計畫，明天的你也可以修正計畫；重要的不是永遠不變，而是在變化來臨時，不把每一次轉身都解讀成失敗。**創作仿寓言：**一盞燈問夜色：「你何時才會停止變黑？」夜色回答：「你不必等我停止，才知道自己正在發光。」",
+        "zh-Hans": "把自己想成一片云，或许比把自己想成一座塔更接近变化。云不是没有形状，而是不把任何形状当成最后的自己。今天的你可以有计划，明天的你也可以修正计划；重要的不是永远不变，而是在变化来临时，不把每一次转身都解读成失败。**创作仿寓言：**一盏灯问夜色：“你何时才会停止变黑？”夜色回答：“你不必等我停止，才知道自己正在发光。”",
+        "en": "Thinking of oneself as a cloud may be closer to transformation than thinking of oneself as a tower. A cloud is not without form; it simply does not treat any form as its final self. You may make plans today and revise them tomorrow. What matters is not remaining unchanged forever, but refusing to interpret every turn as failure when change arrives. **Original imitation-parable:** A lamp asked the night, “When will you stop becoming dark?” The night replied, “You need not wait for me to stop in order to know that you are shining.”"
+      },
+      "classification": "creative_imitation",
+      "concepts": ["transformation", "uncertainty", "resilience"],
+      "creative_parable": {
+        "label": {
+          "zh-Hant": "創作仿寓言，不是《莊子》原文",
+          "zh-Hans": "创作仿寓言，不是《庄子》原文",
+          "en": "Original imitation-parable, not a quotation from the Zhuangzi"
+        }
+      },
+      "closing_question": {
+        "zh-Hant": "你現在最想固定不變的那一部分自己，是否也正是最需要被允許轉化的地方？",
+        "zh-Hans": "你现在最想固定不变的那一部分自己，是否也正是最需要被允许转化的地方？",
+        "en": "Is the part of yourself you most want to keep unchanged also the part that most needs permission to transform?"
+      }
+    }
+  ],
+  "closing_reflection": {
+    "question": {
+      "zh-Hant": "我能否在承認生死與變化的同時，仍然真誠地生活、愛人與承擔責任？",
+      "zh-Hans": "我能否在承认生死与变化的同时，仍然真诚地生活、爱人与承担责任？",
+      "en": "Can I acknowledge life, death, and change while still living sincerely, loving others, and carrying responsibility?"
+    },
+    "summary": {
+      "zh-Hant": "〈大宗師〉不是取消悲傷與行動，而是鬆開對固定自我與固定世界的執著，讓人於自然轉化中保有清醒與寬廣。",
+      "zh-Hans": "《大宗师》不是取消悲伤与行动，而是松开对固定自我与固定世界的执着，让人于自然转化中保有清醒与宽广。",
+      "en": "The Great and Venerable Teacher does not cancel grief or action; it loosens attachment to a fixed self and a fixed world, allowing lucidity and spaciousness amid natural transformation."
+    }
+  },
+  "sources": [
+    {
+      "id": "s1",
+      "title": "Chinese Text Project, Zhuangzi",
+      "url": "https://ctext.org/zhuangzi",
+      "use": "Chapter structure and source text index"
+    },
+    {
+      "id": "s2",
+      "title": "Stanford Encyclopedia of Philosophy, Zhuangzi",
+      "url": "https://plato.stanford.edu/entries/zhuangzi/",
+      "use": "Textual layers, naturalism, language, and philosophical interpretation"
+    },
+    {
+      "id": "s3",
+      "title": "Internet Encyclopedia of Philosophy, Zhuangzi",
+      "url": "https://iep.utm.edu/zhuangzi-chuang-tzu-chinese-philosopher/",
+      "use": "Overview of Inner Chapters and central concepts"
+    }
+  ],
+  "import_notes": {
+    "zh-Hant": "本檔可作為單筆 trilingual_philosophical_dialogue 匯入。若系統支援訊息映射，可將 turns[].user 與 turns[].assistant 轉為訊息內容，並保留 classification、source_note 與 creative_parable。",
+    "zh-Hans": "本文件可作为单笔 trilingual_philosophical_dialogue 导入。若系统支持消息映射，可将 turns[].user 与 turns[].assistant 转为消息内容，并保留 classification、source_note 与 creative_parable。",
+    "en": "Import this file as one trilingual_philosophical_dialogue record. If the target system supports message mapping, map turns[].user and turns[].assistant to messages while preserving classification, source_note, and creative_parable."
+  }
+}

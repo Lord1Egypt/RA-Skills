@@ -1,41 +1,54 @@
-## Description: <br>
-Manage registration records and attendee data. Use when logging sign-ups, checking capacity, converting export formats, generating confirmation reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage registration records and attendee data for sign-ups, capacity checks, export conversion, and confirmation reports.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-External users can use this skill to log registration or attendee-related entries, inspect recent activity, search local records, and export local records for backup or review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Registration or attendee details are stored locally under ~/.local/share/registration. <br>
-Mitigation: Install only if local storage of those details is acceptable, and manage or remove the local data directory according to the user's data-retention needs. <br>
-Risk: Some commands are vague or partly broken and may not perform real capacity checks, conversions, or reports. <br>
-Mitigation: Verify the installed command matches the reviewed script and test each required command before relying on its output. <br>
+## Use Case:
 
+External users can use this local terminal skill to record registration-related entries, inspect recent activity and simple statistics, and export stored records to JSON, CSV, or text.
 
-## Reference(s): <br>
-- [ClawHub Registration Skill Page](https://clawhub.ai/ckchzh/registration) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files] <br>
-**Output Format:** [Plain text command output with optional JSON, CSV, or TXT export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores local records and activity logs under ~/.local/share/registration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata; artifact frontmatter and script report 2.0.0) <br>
+Risk: The skill may persist sensitive attendee inputs in local logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering names, contact details, or other attendee information unless local retention is acceptable and the stored files are secured or deleted when no longer needed.
+
+Risk: The security summary says the implementation does not match a complete registration-management purpose.
+
+Mitigation: Review behavior before operational use and treat the artifact as a local activity logger with export utilities rather than a full registration manager.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ckchzh/skills/registration)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files]
+
+**Output Format:** [Terminal text with optional JSON, CSV, or plain-text exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores local activity records under ~/.local/share/registration.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

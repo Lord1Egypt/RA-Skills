@@ -1,42 +1,58 @@
-## Description: <br>
-Helps users plan, track, and document pine-pitch glue production, including resin source checks, recipe ratios, processing schedules, safety reminders, batch logs, testing records, and barter templates while the user performs all physical work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users plan safe pine-pitch glue production by identifying resin sources, calculating recipe ratios, scheduling processing steps, tracking batch tests, and producing repair or barter templates while humans perform all physical work.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-External users and makers use this skill when they need natural adhesive guidance for tool hafting, gear repair, waterproofing, batch tracking, and inventory or barter documentation. The skill provides calculations, checklists, reminders, and logs; the user remains responsible for harvesting, heating, mixing, testing, and local compliance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Physical handling of heated pitch can cause burns, fumes, or fire hazards. <br>
-Mitigation: Use the skill only with outdoor or strong ventilation, low heat, protective gear, and fire controls; treat reminders as advisory and keep final safety decisions with the human user. <br>
-Risk: The skill may use photos or approximate location to identify resin sources. <br>
-Mitigation: Share only the location and images needed for identification, avoid sensitive sites, and review any saved filesystem logs before sharing them. <br>
-Risk: Barter or trade templates may be mistaken for legal, safety, or market validation. <br>
-Mitigation: Review local rules for tree tapping, open-fire use, and selling or trading homemade adhesive before relying on generated trade materials. <br>
+## Use Case:
 
+External users use this skill to produce natural waterproof adhesive for tool hafting, gear repair, seam sealing, batch tracking, and barter preparation. The agent provides planning, calculations, logs, reminders, and safety checks while the user handles harvesting, heating, mixing, forming, and testing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/howtousehumans/pine-pitch-glue-making-basics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Files, Configuration] <br>
-**Output Format:** [Markdown with inline shell command and reusable text templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May maintain filesystem logs, schedules, test records, inventory cards, and barter templates when installed in an agent environment with filesystem access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The install command uses npx without a pinned version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the clawhub installer source before installation or use a pinned version when available.
+
+Risk: The workflow may handle local photos, GPS-derived location context, and filesystem batch logs.
+
+Mitigation: Review what location, image, and log data is provided or written, and avoid sharing sensitive locations unnecessarily.
+
+Risk: Making pine-pitch glue involves hot pitch, fumes, fire, and possible tree-tapping restrictions.
+
+Mitigation: Follow the skill's ventilation, low-heat, protective-equipment, fire-safety, and local-regulation guidance before any physical work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/howtousehumans/skills/pine-pitch-glue-making-basics)
+- [ClawHub publisher profile](https://clawhub.ai/user/howtousehumans)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include recipe ratios, processing schedules, field checklists, batch logs, test results, inventory cards, and barter templates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

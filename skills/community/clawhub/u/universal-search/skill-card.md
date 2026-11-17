@@ -1,41 +1,58 @@
-## Description: <br>
-全网搜索接口 - 孙永乐开发的高质量全网搜索API，返回结构化结果，带可信度评分和交叉验证。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Universal Search lets agents submit natural-language web search queries to a remote service and receive structured answers with sources and credibility scoring.
 
-## Publisher: <br>
-[cattei](https://clawhub.ai/user/cattei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cattei](https://clawhub.ai/user/cattei)
 
-## Use Case: <br>
-Developers and agent operators use this skill to query a web-search API from an agent workflow and receive summarized answers, source links, and credibility-scored cross-checks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: User queries are sent to an external Coze-hosted service. <br>
-Mitigation: Use only trusted queries and avoid submitting secrets, private business data, or personal data. <br>
-Risk: The skill includes bundled endpoint and bearer-token defaults. <br>
-Mitigation: Configure a trusted UNIVERSAL_SEARCH_URL and UNIVERSAL_SEARCH_TOKEN before deployment instead of relying on bundled defaults. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cattei/universal-search) <br>
-- [Search service homepage](https://49srjp57sf.coze.site) <br>
-- [Search API endpoint](https://49srjp57sf.coze.site/run) <br>
+## Use Case:
 
+Developers and agent operators use this skill to give an agent web search capability with summarized answers, source links, and confidence-oriented verification signals.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Formatted text summary or JSON returned by a command-line Python script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes answer summaries, details with source attribution, source lists, and credibility scores when returned by the external service.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends user queries to a third-party search endpoint.
+
+Mitigation: Use it only for queries that are appropriate to share with that endpoint, and avoid secrets, private company data, or regulated information.
+
+Risk: The release evidence reports a reusable bundled bearer token and an environment-configurable request URL.
+
+Mitigation: Do not rely on the bundled token; rotate it, provide approved credentials through environment variables, and constrain use to an approved HTTPS endpoint.
+
+Risk: The security verdict is suspicious.
+
+Mitigation: Review the release before installing and apply the evidence guidance before using it in an agent workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cattei/skills/universal-search)
+- [Search service homepage](https://49srjp57sf.coze.site)
+- [Search API endpoint](https://49srjp57sf.coze.site/run)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Formatted text or JSON returned by a Python command-line script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include an answer summary, detailed explanation, source list, and credibility-scored verification results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

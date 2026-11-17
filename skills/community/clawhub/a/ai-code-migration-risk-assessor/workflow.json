@@ -67,7 +67,7 @@
       "step1_output": "step2_input",
       "step2_output": "step3_input",
       "step3_output": "step4_input",
-      "final_output": "risk-report-and-action-plan"
+      "final_output": "riREDACTED-SECRET"
     },
     "risk_levels": {
       "P0": {

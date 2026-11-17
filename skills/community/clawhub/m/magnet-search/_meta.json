@@ -1,6 +1,18 @@
 {
-  "ownerId": "kn7d3q93sxft9dkcqdcaqne6qs82cfck",
-  "slug": "magnet-search",
-  "version": "2.0.1",
-  "publishedAt": 1774578227110
+  "name": "magnet-search",
+  "version": "2.0.0",
+  "description": "搜索电影磁力下载链接，接入真实 API (ThePirateBay, Nyaa)",
+  "author": "HomeClaw",
+  "keywords": ["magnet", "torrent", "movie", "search", "download"],
+  "main": "magnet-search.py",
+  "language": "python",
+  "requires": [],
+  "cli": {
+    "command": "magnet-search",
+    "args": ["query"]
+  },
+  "apis": [
+    "apibay.org (ThePirateBay)",
+    "nyaa.si (RSS)"
+  ]
 }

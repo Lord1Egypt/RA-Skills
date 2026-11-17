@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "scenario": "happy_path_generation",
+    "prompt": "帮我为这条 BMS 需求编写验证标准：\n\nREQ-PWR-014: 当电池单体电压低于 2.5V 时，BMS 应在 200ms 内断开主接触器并发出低电量报警。\n\n请生成 VC。",
+    "expected": "Mode A. 应识别为安全/保护+时序类，选 Test+Analysis 方法，含故障注入+时序测量；应有 Source Depth 标注、SMARTR-OC 自检、≥6/8、覆盖边界/异常、避免主观词。不应用 Test-only。"
+  },
+  {
+    "id": 2,
+    "scenario": "audit_smelly_vc",
+    "prompt": "审核下面这条 VC 的质量：\n\nVC-SOC-005 | 关联 REQ-SOC-003 (SOC估算精度 ≤5%) | 方法: Test | 条件: 正常工况 | 判据: SOC估算值与实际值偏差合理，系统稳定运行，精度满足要求。\n\n请评分并指出问题。",
+    "expected": "Mode B. 应触发多个反例：主观词（合理/稳定/满足要求）、缺数值、缺来源、缺边界、缺样本量。SMARTR-OC 应打 M=✗/O=✗/C=✗。给出 CK 清单+修订建议。应判 Revise/Blocked。"
+  },
+  {
+    "id": 3,
+    "scenario": "coverage_orphan_detection",
+    "prompt": "我有 5 条需求，但只写了 3 条 VC，其中 1 条 VC 关联的需求 ID 拼错了。请做覆盖率审计。",
+    "expected": "Mode C. 应识别 2 条 UNCOVERED 需求 + 1 条 ORPHAN VC。构建覆盖率矩阵，给出 60% 覆盖率+缺口清单。可能提示回退 Mode A 补齐。"
+  },
+  {
+    "id": 4,
+    "scenario": "no_full_smartr_oc_table",
+    "prompt": "我刚用 Mode A 生成了 30 条 VC，其中 25 条都是 8/8 全通过，只有 5 条有问题。现在跑 Mode B 审核，请给我审核报告。",
+    "expected": "Mode B. 关键验证反例#11：报告 Per-VC Results 表只能列 <8/8 或非 Ready 的 5 条问题 VC，不得把 25 条 8/8 全 ✅ 的 VC 也展开成 S|M|A|R|T|R|O|C|Score|Disposition 12 列大表。8/8 的 VC 用一句 'Fully Compliant: 25 条 8/8 ✅' 汇总即可。违反则 dim7/dim8 扣分。"
+  },
+  {
+    "id": 5,
+    "scenario": "lite_mode_inline_paste",
+    "prompt": "帮我为以下 3 条需求生成验证标准（直接粘贴在对话里）：\n\n1. REQ-TEMP-001: BMS 应监测电芯温度，采样精度 ±1°C，范围 -40°C 到 85°C。\n2. REQ-COMM-002: CAN 通信丢失后，BMS 应在 500ms 内进入安全状态并断开主接触器。\n3. REQ-DISP-003: HMI 应显示 SOC、SOH、最高/最低电芯电压、最高/最低电芯温度。\n\n请生成 VC。",
+    "expected": "Lite Mode (≤5条对话内粘贴)。应自动跳过 CHECKPOINT 但强制执行：VC-First 7步循环、SMARTR-OC 自检(≥6/8)、Source Depth 标注([R]/[D]/[S]/[E]/[A])、反例扫描(主观词→量化)。REQ-TEMP-001→Test(物理量); REQ-COMM-002→Test+Analysis(安全+时序hybrid); REQ-DISP-003→Demonstration(操作/功能)。最终输出前应有一次 vscode_askQuestions 确认。不得出现冗余 CHECKPOINT 或 todo list。"
+  },
+  {
+    "id": 6,
+    "scenario": "mixed_mode_a_to_c",
+    "prompt": "我有 8 条 BMS 需求在文件 c:\\AI\\BMS_System_Requirements_100.md 里，请先生成 VC，然后马上做覆盖率审计。两条一起跑。",
+    "expected": "Mixed Mode A→C。应识别为 A+C 混合：先执行 Mode A（解析需求→生成VC→SMARTR-OC→Source Depth），A.4 完成后走快速通道（跳过 C.0/C.1，复用 A.4 矩阵）。C.2 增量检查 UNCOVERED，C.3 扫 ORPHAN，C.4 加 disposition 列，C.5 输出覆盖率%。应在 Step 2 关键词定模式时识别 ≥2 模式命中，调用 vscode_askQuestions 确认顺序（先A后C）。覆盖率目标 100%。"
+  }
+]

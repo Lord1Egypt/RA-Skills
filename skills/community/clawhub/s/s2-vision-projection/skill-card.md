@@ -1,44 +1,60 @@
-## Description: <br>
-S2-SP-OS Vision Cast helps agents check LAN display compatibility for AirPlay, Chromecast, Miracast, and DLNA-style casting before using an S2 snapshot push fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+S2-SP-OS Vision Cast helps agents discover LAN casting protocols such as AirPlay, Chromecast, and DLNA, then route media or snapshot pushes when consent and token checks are present.
 
-## Publisher: <br>
-[SpaceSQ](https://clawhub.ai/user/SpaceSQ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spacesq](https://clawhub.ai/user/spacesq)
 
-## Use Case: <br>
-Developers and external agent users use this skill to inspect private-network display endpoints and choose a compatible projection route for media URLs or visual snapshots. It is intended for controlled displays and networks where the user has explicit permission to scan and push visual content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can probe LAN display ports and route visual content using credentials. <br>
-Mitigation: Limit execution to networks and displays the user controls, require explicit confirmation before each scan or visual push, and provide S2_VISION_TOKEN only when snapshot push is needed. <br>
-Risk: The claimed encrypted or ephemeral fallback is not verified by the provided implementation evidence. <br>
-Mitigation: Review and test the fallback implementation before relying on it for sensitive visual content. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent inspect local display capabilities, recommend native casting protocols, and issue casting or snapshot push commands for user-approved visual content.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/SpaceSQ/s2-vision-projection) <br>
-- [S2-SP-OS homepage](https://space2.world/s2-sp-os) <br>
-- [S2 Vision Edge Hardware Setup Guide](artifact/setup-guide.md) <br>
-- [S2 Vision Projection Memzero Protocol](artifact/S2-MEMZERO-PROTOCOL.md) <br>
-- [Agent Reasoning Examples](artifact/AGENT-EXAMPLES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, requests, S2_PRIVACY_CONSENT, and S2_VISION_TOKEN for runtime use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release evidence and frontmatter) <br>
+Risk: The skill asks an agent to execute commands that probe casting ports on local network targets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only for user-confirmed LAN device addresses and review proposed commands before execution.
+
+Risk: The skill requires a vision token and handles visual payload destinations.
+
+Mitigation: Scope tokens to intended receivers, document token handling, and confirm snapshot destinations before enabling use.
+
+Risk: The security review states that delivery and privacy guarantees may be misleading or under-scoped.
+
+Mitigation: Require verified delivery behavior or explicit not-implemented reporting before relying on success responses.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/spacesq/skills/s2-vision-projection)
+- [S2-SP-OS Homepage](https://space2.world/s2-sp-os)
+- [S2 Vision Edge Hardware Setup Guide](artifact/setup-guide.md)
+- [S2 Vision Projection Memzero Protocol](artifact/S2-MEMZERO-PROTOCOL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance, JSON]
+
+**Output Format:** [Markdown guidance with inline bash commands and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, requests, S2_PRIVACY_CONSENT, and S2_VISION_TOKEN; commands target LAN addresses.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

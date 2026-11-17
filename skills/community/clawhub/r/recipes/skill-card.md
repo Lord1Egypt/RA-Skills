@@ -1,41 +1,54 @@
-## Description: <br>
-CLI for AI agents to find recipes for their humans. Uses TheMealDB API. No auth required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CLI for AI agents to find recipes for their humans. Uses TheMealDB API. No auth required.
 
-## Publisher: <br>
-[jeffaf](https://clawhub.ai/user/jeffaf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jeffaf](https://clawhub.ai/user/jeffaf)
 
-## Use Case: <br>
-External users and agents use this skill to search for recipes, fetch full recipe details by meal ID, get random meal ideas, list categories, and browse dishes by cuisine through TheMealDB. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The reviewed package does not include the executable scripts that the README tells users and agents to run. <br>
-Mitigation: Inspect the referenced scripts or use a release that includes reviewed executable code before running commands, and avoid running the skill as root. <br>
-Risk: Recipe lookup results may omit nutrition, calorie, or dietary restriction information. <br>
-Mitigation: Use the skill for recipe discovery and cooking instructions only; verify dietary and nutrition needs with authoritative sources. <br>
+## Use Case:
 
+Agents and developers use this skill to search, browse, and retrieve recipe details from TheMealDB for cooking-related user requests.
 
-## Reference(s): <br>
-- [TheMealDB](https://www.themealdb.com) <br>
-- [TheMealDB API](https://www.themealdb.com/api.php) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Command-line text with recipe IDs, recipe details, ingredients, instructions, and source links when available] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires bash, curl, and jq; no API key is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The reviewed artifact is documentation-only and references scripts that are not included in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and scan any cloned repository scripts separately before running them or adding them to PATH.
+
+Risk: The skill does not provide nutritional information, calorie counts, or dietary restriction validation.
+
+Mitigation: Do not rely on this skill for nutrition or dietary safety decisions; verify recipe suitability with an appropriate source.
+
+## Reference(s):
+
+- [TheMealDB API](https://www.themealdb.com/api.php)
+- [TheMealDB](https://www.themealdb.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and plain-text recipe output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recipe output can include meal IDs, cuisine or category labels, ingredients, instructions, and optional source or video links.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

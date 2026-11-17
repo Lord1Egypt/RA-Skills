@@ -1,40 +1,52 @@
-## Description: <br>
-Behavioral guidelines to reduce common LLM coding pitfalls, derived from Andrej Karpathy's observations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Behavioral guidelines that help agents reduce common LLM coding pitfalls by applying four cautious coding principles during implementation, review, refactoring, and bug-fixing tasks.
 
-## Publisher: <br>
-[wujiaming88](https://clawhub.ai/user/wujiaming88) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wujiaming88](https://clawhub.ai/user/wujiaming88)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and coding agents use this skill to structure non-trivial software changes around explicit assumptions, simple designs, surgical edits, and verifiable success criteria.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may influence many coding-related conversations by encouraging slower, more scoped, test-driven work even when a user expects faster opt-in behavior.
+
+Mitigation: Use a narrower trigger or install it only where cautious coding workflow guidance is desired.
+
+Risk: Workflow guidance could still lead to incorrect or overly conservative coding recommendations if applied without review.
+
+Mitigation: Review proposed changes and verify tests or other success criteria before accepting implementation output.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and coding agents use this skill to apply disciplined planning, simplicity, surgical edits, and verification habits during coding, review, refactoring, bug fixing, and feature work. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill changes an agent's coding posture and may add caution or clarification steps that are unsuitable for some trivial tasks. <br>
-Mitigation: Review the guidance for fit and apply it with judgment, especially on small edits. <br>
-Risk: Following planning guidance does not guarantee that generated code, diffs, or tests are correct. <br>
-Mitigation: Continue reviewing generated changes and running the relevant tests before deployment. <br>
+**Output Format:** [Markdown guidance in natural language]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wujiaming88/karpathy-coding-guidelines) <br>
+**Other Properties Related to Output:** [Markdown-only guidance with no code execution, tool calls, or credential requirements.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; security evidence reports no code execution, installation scripts, credential access, persistence, or hidden data handling.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Free tier: JSON YAML Converter - Convert between JSON and YAML, validate, pretty-print. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts JSON input into YAML output for agent workflows, with optional configuration for processing mode, retries, and skipped steps.
 
-## Publisher: <br>
-[kingaiwork](https://clawhub.ai/user/kingaiwork) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thcjp](https://clawhub.ai/user/thcjp)
 
-## Use Case: <br>
-Developers and agents use this skill to convert JSON and YAML content, validate structured data, and pretty-print data for inspection or documentation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security guidance notes that the skill may help audit and edit repository documentation, including agent or contributor instruction files. <br>
-Mitigation: For sensitive repositories, use report-only mode or review proposed edits before allowing changes to workflow-control files such as AGENTS.md, CONTRIBUTING.md, .agents, or .cursor. <br>
+## Use Case:
 
+Developers, automation builders, and workflow operators use this skill to convert JSON payloads into YAML for configuration, integration, and data exchange tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kingaiwork/skills/json-yaml-converter) <br>
-- [King AI Works homepage](https://kingai.work/) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/kingaiwork) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and structured text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API keys are required for the free tier; the artifact declares bash and curl as required binaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill requests broader powers than expected for JSON-to-YAML conversion, including command execution, file writing, API key usage, and external integrations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a restricted agent environment and grant read, write, shell, and credential access only when those capabilities are explicitly needed for the workflow.
+
+Risk: Unnecessary API credentials or shell access can expand the impact of malformed input or unintended agent actions.
+
+Mitigation: Prefer a local converter path for routine transformations, avoid providing API keys for simple conversions, and review generated commands or file writes before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/thcjp/skills/json-yaml-converter)
+- [ClawHub publisher profile](https://clawhub.ai/user/thcjp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON/YAML examples and optional shell configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce YAML conversion results, execution summaries, troubleshooting guidance, and configuration instructions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

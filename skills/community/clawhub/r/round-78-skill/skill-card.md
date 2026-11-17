@@ -1,37 +1,49 @@
-## Description: <br>
-Round 78 verification skill for ClawHub publishing workflow testing. Demonstrates skill creation, packaging, and publication process. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Round 78 verification skill for ClawHub publishing workflow testing. Demonstrates skill creation, packaging, and publication process.
 
-## Publisher: <br>
-[wyblhl](https://clawhub.ai/user/wyblhl) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wyblhl](https://clawhub.ai/user/wyblhl)
 
-## Use Case: <br>
-Developers and publishers use this demonstration skill to verify ClawHub skill packaging, publication, and download-tracking workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wyblhl/round-78-skill) <br>
+External users and ClawHub publishers can use this demonstration skill to verify skill packaging, publication, and download tracking workflows.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with brief checklist items and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only sample; no code execution or external service access is described.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Users may expect operational automation from a demonstration skill that mainly documents a publishing workflow.
+
+Mitigation: Treat it as a low-risk demo and verify any publishing or installation steps before relying on it for production work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wyblhl/skills/round-78-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown guidance with optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior or sensitive access is described in the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence and artifact version history)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

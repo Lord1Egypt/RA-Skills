@@ -1,46 +1,66 @@
-## Description: <br>
-Nova权限系统 provides a local permission and identity workflow for AI assistants, including role-based permission checks, identity verification, approval handling, account binding, and audit logging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nova Permission System provides a personal AI assistant permission framework with role-based access checks, identity verification, approval handling, audit logging, and local JSON configuration templates.
 
-## Publisher: <br>
-[rancho718](https://clawhub.ai/user/rancho718) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rancho718](https://clawhub.ai/user/rancho718)
 
-## Use Case: <br>
-Developers and operators use this skill to add a local access-control layer around an AI assistant, so non-conversational operations can be checked against configured roles and identities before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authorization checks can fail open or skip checks when configuration, identity fields, or runtime imports are missing. <br>
-Mitigation: Change authorization paths to fail closed before relying on the skill for real access control, and test missing-identity, disabled-config, and exception paths. <br>
-Risk: The skill stores local identity/profile data, approval data, memories, audit logs, and verification codes. <br>
-Mitigation: Hash or remove plaintext codes, avoid echoing secrets in approval messages, and define retention and deletion controls for logs and memory data. <br>
-Risk: The installation guidance asks users to add broad workspace-level permission rules. <br>
-Mitigation: Narrow the AGENTS.md rules to the specific operations and channels that require this gate, and review them after installation. <br>
+## Use Case:
 
+Developers and personal AI assistant operators use this skill to add role-based permission checks, identity verification, approval workflows, and audit records before an agent performs sensitive actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rancho718/nova-permission-system) <br>
-- [Installation and system overview](artifact/SKILL.md) <br>
-- [Permission check documentation](artifact/permission-check/SKILL.md) <br>
-- [Permission gate documentation](artifact/permission-gate/SKILL.md) <br>
-- [Identity management documentation](artifact/identity-management/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python snippets, JSON configuration templates, and shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The installed skill uses local JSON files for users, accounts, permissions, approvals, memories, and audit records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Broad persistent control over the agent could affect tool use, file access, private data, and external-account actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and scope the integration before installation; avoid AGENTS.md-wide mandatory rules until the behavior is limited to explicit permission-check entry points.
+
+Risk: Broken or fail-open authentication behavior can allow sensitive operations when identity data is missing, configuration is disabled, or an exception occurs.
+
+Mitigation: Require fail-closed authorization paths, consistent user/account data schemas, and tests for missing identifiers, disabled configuration, exceptions, and denied roles.
+
+Risk: Shared verification codes and approval data may expose secrets or sensitive identity state.
+
+Mitigation: Hash or redact shared secrets, restrict access to local data files and audit logs, and define retention and uninstall procedures.
+
+Risk: Owner approvals are represented as text commands and may not prove the approver is authenticated.
+
+Mitigation: Bind approval actions to an authenticated owner identity and reject approval messages that cannot be tied to that identity.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rancho718/skills/nova-permission-system)
+- [Publisher Profile](https://clawhub.ai/user/rancho718)
+- [Artifact Install and Usage Guide](artifact/SKILL.md)
+- [Permission Check Documentation](artifact/permission-check/SKILL.md)
+- [Permission Gate Documentation](artifact/permission-gate/SKILL.md)
+- [Identity Management Documentation](artifact/identity-management/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell snippets plus JSON configuration templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local permission-system guidance and configuration assets for an agent workspace.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

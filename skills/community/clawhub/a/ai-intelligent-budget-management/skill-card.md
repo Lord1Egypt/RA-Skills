@@ -1,41 +1,54 @@
-## Description: <br>
-Supports enterprise budget creation and execution tracking with intelligent over-budget alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+企业预算编制与执行跟踪，智能预警。
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Finance teams use this skill to plan departmental, project, and annual budgets, monitor execution, analyze variances, and work with AI-assisted forecasts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The submitted ClawHub artifact contains documentation only, while installation instructions point to an external repository. <br>
-Mitigation: Review the external repository and its requirements before installing or executing code. <br>
-Risk: Budget and finance data can be sensitive. <br>
-Mitigation: Use test data during evaluation and verify where the application stores or sends data before using real financial information. <br>
+## Use Case:
 
+Finance teams, department owners, and project budget managers use this skill to create multidimensional budgets, track execution, receive over-budget alerts, analyze variance, and generate AI-assisted forecasts.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/yang1002378395-cmyk/ai-intelligent-budget-management) <br>
-- [Referenced installation repository](https://github.com/openclaw-skills/ai-intelligent-budget-management) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The submitted artifact is documentation-only; review the referenced repository before running any application code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release and skill frontmatter) <br>
+Risk: Install steps run unpinned code and dependencies from a mutable external GitHub repository outside the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the external repository and dependencies before installation, pin a specific reviewed commit, and avoid elevated privileges.
+
+Risk: The described app may handle sensitive business budget data.
+
+Mitigation: Deploy only in an environment approved for enterprise budget data and apply normal data access controls before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-intelligent-budget-management)
+- [Publisher Profile](https://clawhub.ai/user/yang1002378395-cmyk)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup and usage guidance for a budget-management application; no credential environment variables were detected in the reviewed artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release metadata, artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

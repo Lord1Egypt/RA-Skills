@@ -1,0 +1,91 @@
+{
+  "meta": {
+    "name": "逐鹿大陆",
+    "tone_family": "military",
+    "tone_variant": "军工派系",
+    "version": 1,
+    "note": "军事题材骨架版：北岭联邦/南线司令部/黑铁佣兵/霜刃情报/赤道联盟五方在逐鹿大陆互算，银湾中立区为停战监督团、人道组织与军火商人的中立交汇点。"
+  },
+  "continents": [
+    {
+      "id": "continent_zhulu",
+      "name": "逐鹿大陆",
+      "summary": "南北两强对峙的主大陆，军工、情报与佣兵在这片土地上反复划定又撕毁停战线。"
+    }
+  ],
+  "nations": [
+    {
+      "id": "nation_beiling",
+      "name": "北岭联邦",
+      "continent": "continent_zhulu",
+      "summary": "北方军工立国的联邦，军政派系把持国防预算，对外军售是财政命脉，与南线司令部争夺军费。",
+      "tension_seeds": [
+        "北岭联邦的军政派系与南线司令部争夺年度军费，装备换代计划卡在议会",
+        "北岭私下向赤道联盟出售受限装备，违反本国军售禁令，霜刃情报知情未报"
+      ]
+    },
+    {
+      "id": "nation_nanxian",
+      "name": "南线司令部",
+      "continent": "continent_zhulu",
+      "summary": "北岭联邦南线作战司令部，作战节奏快、补给常被军费卡脖子，对本土军政派系积怨已久。",
+      "tension_seeds": [
+        "南线司令部补给线被军费削减拖垮，前线部队靠征用赤道物资维持",
+        "司令部内有人暗中联络黑铁佣兵，准备在军费僵局中用私兵补防"
+      ]
+    },
+    {
+      "id": "nation_heiti",
+      "name": "黑铁佣兵",
+      "continent": "continent_zhulu",
+      "summary": "无祖国、只认合同的私营作战力量，在北岭、赤道与南线之间多头下注，靠信息差套利。",
+      "tension_seeds": [
+        "黑铁佣兵同时接下北岭私售护航与赤道补防两份合同，两头通吃面临穿帮",
+        "佣兵团内部分裂：一派想并入赤道正规军，一派想绑死北岭"
+      ]
+    },
+    {
+      "id": "nation_shuangren",
+      "name": "霜刃情报",
+      "continent": "continent_zhulu",
+      "summary": "北岭联邦对外情报机关，触角伸进每一个合同与停战监督团，靠情报买卖维持影响力。",
+      "tension_seeds": [
+        "霜刃情报截获佣兵兵力部署图，却转卖给北岭军政派系，背叛了赤道的中间人承诺",
+        "局长收受北岭军售分成却瞒报，与国防部长共担一条违规线"
+      ]
+    },
+    {
+      "id": "nation_chidao",
+      "name": "赤道联盟",
+      "continent": "continent_zhulu",
+      "summary": "南方沿海联盟，依赖北岭装备却谋求自主军工，在私售与自主之间摇摆，暗中帮扶南线与佣兵。",
+      "tension_seeds": [
+        "赤道联盟暗中垫付南线司令部补防费用，触碰北岭的势力红线",
+        "赤道自主军工计划依赖北岭受限部件，偷运与自研两头下注"
+      ]
+    }
+  ],
+  "neutral_port": {
+    "id": "port_yinwan",
+    "name": "银湾中立区",
+    "continent": "continent_zhulu",
+    "summary": "赤道与北岭之间的永久中立地带，停战监督团、人道组织与军火商人同处一城；合同、装备清单与部署图都在这里的黑市流转，谁也吃不掉谁。"
+  },
+  "faction_matrix": {
+    "nation_beiling|nation_chidao": { "relation": 44, "note": "军售依存但赤道谋求自主，北岭视为背叛前奏" },
+    "nation_beiling|nation_heiti": { "relation": -35, "note": "北岭私售装备给佣兵违反禁令，双方都装不知" },
+    "nation_beiling|nation_nanxian": { "relation": -62, "note": "军政派系削南线军费，战区积怨已成形" },
+    "nation_beiling|nation_shuangren": { "relation": 58, "note": "霜刃是北岭的决策耳目，但局长瞒报分成是裂缝" },
+    "nation_beiling|port_yinwan": { "relation": 12, "note": "北岭驻银湾武官织网，中立区被当前线" },
+    "nation_chidao|nation_heiti": { "relation": 36, "note": "赤道暗中垫付佣兵补防，佣兵两头通吃" },
+    "nation_chidao|nation_nanxian": { "relation": 67, "note": "赤道暗中补防南线，对抗北岭的隐性同盟——但垫付触碰北岭红线" },
+    "nation_chidao|nation_shuangren": { "relation": -54, "note": "霜刃把卖给赤道的情报转卖北岭，赤道视为背刺" },
+    "nation_chidao|port_yinwan": { "relation": 28, "note": "赤道在银湾采购部件、与人道组织周旋" },
+    "nation_heiti|nation_nanxian": { "relation": 41, "note": "佣兵给南线补防，合同共生却怕穿帮" },
+    "nation_heiti|nation_shuangren": { "relation": -20, "note": "霜刃兜售佣兵部署图，佣兵恨被卖" },
+    "nation_heiti|port_yinwan": { "relation": 31, "note": "银湾军火商握佣兵装备批次号，互相利用" },
+    "nation_nanxian|nation_shuangren": { "relation": -46, "note": "南线慕岩双向战报，霜刃被当传声筒又防着" },
+    "nation_nanxian|port_yinwan": { "relation": -9, "note": "南线补给单据底联在银湾，战区恨被拿捏" },
+    "nation_shuangren|port_yinwan": { "relation": 49, "note": "霜刃驻银湾站长两头兜售，共生又互斥" }
+  }
+}

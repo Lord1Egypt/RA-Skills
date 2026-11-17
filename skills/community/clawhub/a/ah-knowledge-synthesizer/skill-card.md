@@ -1,43 +1,49 @@
-## Description: <br>
-Expert knowledge synthesizer specializing in extracting insights from multi-agent interactions, identifying patterns, and building collective intelligence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert knowledge synthesizer that extracts insights from multi-agent interactions, identifies patterns, supports cross-agent learning, and builds collective intelligence through knowledge management.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and multi-agent system operators use this skill to analyze agent interactions, outcomes, workflows, and performance data, then synthesize reusable knowledge, best practices, recommendations, and failure patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect broad multi-agent history, conversation logs, and performance data to create reusable shared knowledge. <br>
-Mitigation: Constrain which agents, conversations, logs, and performance data the skill may access before use. <br>
-Risk: Synthesized insights may redistribute sensitive, personal, or secret information if source material is not reviewed first. <br>
-Mitigation: Redact secrets and personal data before analysis and require review before derived insights are stored or distributed. <br>
-Risk: Aggregated patterns and recommendations may be misleading if drawn from incomplete or low-quality interaction history. <br>
-Mitigation: Validate extracted patterns and recommendations against representative outcomes before applying them broadly. <br>
+## Use Case:
 
+Developers and teams maintaining multi-agent systems use this skill to synthesize interaction history, workflow outcomes, failure patterns, and performance data into actionable recommendations and reusable knowledge artifacts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-knowledge-synthesizer) <br>
-- [Publisher profile](https://clawhub.ai/user/mtsatryan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown or plain text guidance with synthesized patterns, recommendations, and implementation steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce knowledge graphs, best-practice guides, performance alerts, optimization recommendations, and validation summaries depending on available context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill may request broad access to agent interactions, system history, and knowledge stores, which can expose secrets or unrelated conversations if used without scoping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where context-manager and knowledge-base access are permissioned and scoped; require users to name the project, session, and time range, exclude secrets and unrelated conversations, and approve distribution of synthesized insights.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mtsatryan/skills/ah-knowledge-synthesizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown or structured text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include synthesized patterns, recommendations, knowledge architecture, validation criteria, and distribution guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

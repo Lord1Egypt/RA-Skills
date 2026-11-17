@@ -1,42 +1,59 @@
-## Description: <br>
-Use `aigroup-market-mcp` for China-market and Tushare-oriented data, including A-share, index, sector, fund-flow, margin, block-trade, fund, convertible-bond, macro, and finance-news data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AIGroup Market MCP routes China-market and Tushare-oriented requests for A-share, index, sector, fund-flow, margin, block-trade, fund, convertible-bond, macro, and finance-news data.
 
-## Publisher: <br>
-[jackdark425](https://clawhub.ai/user/jackdark425) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jackdark425](https://clawhub.ai/user/jackdark425)
 
-## Use Case: <br>
-Developers and analysts use this skill to route China-market questions to an MCP server for equities, indexes, market flows, funds, convertible bonds, macroeconomic data, and finance news. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs an external npm MCP server. <br>
-Mitigation: Confirm the `aigroup-market-mcp` npm package is trusted before installation or execution. <br>
-Risk: The skill uses a Tushare API token. <br>
-Mitigation: Use a Tushare token with only the access you are comfortable granting. <br>
+## Use Case:
 
+Developers and analysts use this skill to route China-market research requests to the aigroup-market-mcp server for equity, index, fund, macroeconomic, flow, margin, block-trade, and news data.
 
-## Reference(s): <br>
-- [AIGroup Market MCP on ClawHub](https://clawhub.ai/jackdark425/aigroup-market-mcp) <br>
-- [Market MCP Capabilities](references/capabilities.md) <br>
-- [AIGroup Market MCP Homepage](https://github.com/jackdark425/aigroup-market-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text with optional inline commands and configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May depend on the external npm MCP server and a configured TUSHARE_TOKEN.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: release evidence) <br>
+Risk: The skill launches an unpinned npm MCP server with npx.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin aigroup-market-mcp to a reviewed version before installation or deployment.
+
+Risk: The MCP server requires a TUSHARE_TOKEN service token.
+
+Mitigation: Pass only the minimum required environment to the process and rotate TUSHARE_TOKEN if exposure is suspected.
+
+Risk: The skill allows implicit invocation of the MCP server.
+
+Mitigation: Require explicit approval before automatic MCP invocation in sensitive workflows.
+
+## Reference(s):
+
+- [Market MCP Capabilities](references/capabilities.md)
+- [Project homepage](https://github.com/jackdark425/aigroup-market-mcp)
+- [ClawHub skill page](https://clawhub.ai/jackdark425/skills/aigroup-market-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown guidance and MCP tool results, with returned data format depending on the selected market-data operation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a TUSHARE_TOKEN environment variable for the MCP server.]
+
+## Skill Version(s):
+
+0.1.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

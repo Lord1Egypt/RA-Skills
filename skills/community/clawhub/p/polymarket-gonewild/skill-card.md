@@ -1,47 +1,64 @@
-## Description: <br>
-Query Polymarket prediction markets, including odds, trending markets, event search, price momentum, watchlist alerts, resolution calendars, and simulated paper trading. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Polymarket prediction markets - check odds, trending markets, search events, track prices and momentum. Includes watchlist alerts, resolution calendar, momentum scanner, and paper trading (simulated, no real money).
 
-## Publisher: <br>
-[ShrimpDaddie](https://clawhub.ai/user/ShrimpDaddie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shrimpdaddie](https://clawhub.ai/user/shrimpdaddie)
 
-## Use Case: <br>
-External users and developers use this skill to inspect public Polymarket prediction-market data, monitor price movements, receive local watchlist alerts, and track simulated paper positions without wallet credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts Polymarket's public Gamma API for market data. <br>
-Mitigation: Install and run it only in environments where outbound requests to Polymarket's public API are acceptable. <br>
-Risk: Watchlist entries and simulated portfolio data are stored locally under ~/.polymarket/. <br>
-Mitigation: Avoid placing sensitive information in watchlist labels or notes, and clear the local files when the data is no longer needed. <br>
-Risk: Cron examples can run recurring checks and alerts. <br>
-Mitigation: Add cron jobs only when recurring market checks are intended, and review the scheduled commands before enabling them. <br>
-Risk: The paper-trading commands simulate positions and do not execute real trades. <br>
-Mitigation: Treat portfolio output as local simulation only; real trading requires separate wallet authentication that this skill does not implement. <br>
+## Use Case:
 
+External users and developers use this skill to inspect public Polymarket prediction-market data, monitor market movement, configure local watchlist alerts, and track simulated paper-trading positions without real-money trading.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ShrimpDaddie/polymarket-gonewild) <br>
-- [Polymarket](https://polymarket.com) <br>
-- [Polymarket documentation](https://docs.polymarket.com) <br>
-- [Polymarket Gamma API](https://gamma-api.polymarket.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown-style CLI guidance and plain-text market summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May maintain local watchlist and simulated portfolio JSON files under ~/.polymarket/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact meta.json) <br>
+Risk: The skill makes unauthenticated public API requests to Polymarket and may be unsuitable where prediction-market access is restricted by policy or jurisdiction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review organizational and regional requirements before use, and install only where public Polymarket market-data access is permitted.
+
+Risk: Watchlist alerts and simulated portfolio data are stored locally in ~/.polymarket.
+
+Mitigation: Treat local watchlist and portfolio files as user data, and remove or protect them according to the user's workstation data-handling practices.
+
+Risk: Suggested cron entries can run periodic market checks after installation.
+
+Mitigation: Add scheduled jobs only when the user wants ongoing checks, and review the exact cron commands before enabling them.
+
+Risk: Prediction-market information and paper-trading output could be mistaken for real trading or financial advice.
+
+Mitigation: Keep user-facing guidance clear that the artifact does not handle wallets, API keys, credentials, real-money trades, or financial transactions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shrimpdaddie/skills/polymarket-gonewild)
+- [Polymarket](https://polymarket.com)
+- [Polymarket Documentation](https://docs.polymarket.com)
+- [Polymarket Gamma API](https://gamma-api.polymarket.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and terminal-oriented text with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local JSON files under ~/.polymarket for watchlists and simulated paper-trading portfolios.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

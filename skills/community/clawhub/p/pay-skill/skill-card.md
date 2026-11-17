@@ -1,52 +1,71 @@
-## Description: <br>
-Pay enables an agent to discover paid services and use the pay CLI to make USDC payments, x402 API requests, and metered tab payments with operator confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pay Clawhub enables agents to discover pay-enabled services and execute operator-confirmed USDC payments on Base through the pay CLI for direct, tab, and x402 payment flows.
 
-## Publisher: <br>
-[pay-skill](https://clawhub.ai/user/pay-skill) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pay-skill](https://clawhub.ai/user/pay-skill)
 
-## Use Case: <br>
-External developers and operators use this skill to let agents discover paid APIs, make per-call x402 requests, send direct USDC payments, and manage pre-funded metered tabs through the pay CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can spend real USDC or open metered tabs before a clear approval step. <br>
-Mitigation: Require explicit operator approval showing provider, data being sent, amount or maximum charge, fees, and recipient before any pay request, direct payment, tab open, or top-up. <br>
-Risk: Fund links and wallet configuration can expose wallet access or sensitive balance activity. <br>
-Mitigation: Treat fund links as sensitive, protect ~/.pay files, keep wallet balances small, and share funding links only after operator approval. <br>
-Risk: Blind retries or poorly reviewed error recovery can double-pay or waste locked tab funds. <br>
-Mitigation: Do not blind-retry payment failures; inspect errors first, confirm any retry with the operator, and close idle tabs regularly. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent find pay-enabled APIs, request paid resources, send direct USDC payments, manage metered tabs, and guide provider adoption of pay-gate when per-call payment support is missing.
 
-## Reference(s): <br>
-- [Pay Skill Documentation](https://pay-skill.com/docs) <br>
-- [ClawHub Skill Page](https://clawhub.ai/pay-skill/pay-skill) <br>
-- [Pay - A2A & AP2 Integration](references/a2a.md) <br>
-- [Pay - Suggesting Provider Adoption](references/adoption.md) <br>
-- [Pay - Service Discovery](references/discovery.md) <br>
-- [Pay - Error Codes & Recovery](references/errors.md) <br>
-- [Pay - Worked Examples](references/examples.md) <br>
-- [Pay - Wallet Setup & Funding](references/funding.md) <br>
-- [Pay - Domain Rules](references/rules.md) <br>
-- [Pay - Tab Guide](references/tabs.md) <br>
-- [Pay - x402 Details](references/x402.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the pay CLI and may return transaction hashes, balances, tab status, funding links, or API responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: frontmatter and server release evidence) <br>
+Risk: The skill gives an agent broad wallet and paid-API authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with explicit payment intent, require displayed final terms before payment, and set low per-call and tab limits.
+
+Risk: Failed or repeated payment attempts can lead to duplicate or unintended charges.
+
+Mitigation: Require a non-paying discovery or pricing check before pay requests, inspect payment errors, and never blind-retry failed payments.
+
+Risk: Funding links and paid API request bodies can expose sensitive information to external services.
+
+Mitigation: Treat funding links as sensitive, share them only after operator approval, and avoid sending sensitive request bodies to third-party APIs.
+
+Risk: Installing an unverified payment CLI can expose wallet operations to supply-chain risk.
+
+Mitigation: Install the CLI only from a verified pinned release before initializing or funding the wallet.
+
+## Reference(s):
+
+- [Pay Clawhub listing](https://clawhub.ai/pay-skill/skills/pay-skill)
+- [Pay documentation](https://pay-skill.com/docs)
+- [Rules](references/rules.md)
+- [Errors](references/errors.md)
+- [Tabs](references/tabs.md)
+- [x402](references/x402.md)
+- [Funding](references/funding.md)
+- [A2A and AP2 Integration](references/a2a.md)
+- [Discovery](references/discovery.md)
+- [Provider Adoption](references/adoption.md)
+- [Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the pay CLI and ~/.pay/config.toml; payment actions should show final terms and wait for operator confirmation.]
+
+## Skill Version(s):
+
+1.0.9 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

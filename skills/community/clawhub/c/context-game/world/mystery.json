@@ -1,0 +1,90 @@
+{
+  "meta": {
+    "name": "雾港连环案",
+    "tone_family": "mystery",
+    "tone_variant": "档案悬疑",
+    "version": 1
+  },
+  "continents": [
+    {
+      "id": "continent_fog",
+      "name": "雾港",
+      "summary": "临海工业旧城，监控有盲区、旧案与连环命案交织，医院与殡仪馆比警局更先知道谁死了。"
+    }
+  ],
+  "nations": [
+    {
+      "id": "nation_seventh",
+      "name": "第七分局",
+      "continent": "continent_fog",
+      "summary": "雾港市局直属的连环案专案单位，握有官方调查权，却背着三页被抽走的旧卷。",
+      "tension_seeds": [
+        "连环案第四起被急定性为南巷会模仿作案，物证链在第三现场断裂，专案组内部有速结压力",
+        "物证送检依赖北岸医院，太平间三具无名遗体未依规报备，协作外壳下藏着擅自处理的暗门"
+      ]
+    },
+    {
+      "id": "nation_kanwei",
+      "name": "瞰微所",
+      "continent": "continent_fog",
+      "summary": "民间侦探机构，受雇查连环案，与封案馆结为'民间查案同盟'，却接了来路不明的单。",
+      "tension_seeds": [
+        "与封案馆的民间查案同盟共享旧档检索权，但封案馆馆长私藏半页线索未交，同盟里有不敢摊开的纸",
+        "受雇查案，委托方身份成谜，所长温叙瞒着所里接了南巷会边缘人物的单"
+      ]
+    },
+    {
+      "id": "nation_nanxiang",
+      "name": "南巷会",
+      "continent": "continent_fog",
+      "summary": "雾港旧城帮会，连环案头号嫌疑，真凶却另有其人，话事人自导了一出模仿局。",
+      "tension_seeds": [
+        "被第七分局锁为连环案头号嫌疑，公开对峙，但真凶与南巷会无关",
+        "话事人杜歧自导第四起模仿案，把脏水泼回分局以脱身"
+      ]
+    },
+    {
+      "id": "nation_beian",
+      "name": "北岸医院",
+      "continent": "continent_fog",
+      "summary": "连环案物证送检与伤者救治的节点，也是擅自处理无名遗体的掩护势力。",
+      "tension_seeds": [
+        "太平间三具无名遗体未依规报备，死亡时间被篡改，院方默许'自行处理'",
+        "急诊科值班排班表被滥用于制造第三案监控盲区的时间重合"
+      ]
+    },
+    {
+      "id": "nation_fengan",
+      "name": "封案馆",
+      "continent": "continent_fog",
+      "summary": "保管十年前同源手法旧案与未归档照片的真相持有者，旧档调阅权限卡死民间侦探。",
+      "tension_seeds": [
+        "十年前同源手法旧案卷宗缺失三页，与冷峻三年前抽走的卷页同源，真相被抽空",
+        "旧档调阅权限卡死民间侦探，鲁婳越权偷拍的半页纸是破局关键"
+      ]
+    }
+  ],
+  "neutral_port": {
+    "id": "port_weekly",
+    "name": "暗访周刊",
+    "continent": "continent_fog",
+    "summary": "独立记者阵地，连环案旧闻的放大器，各方泄密与爆料的汇聚点，谁都不得罪也谁都防着。"
+  },
+  "faction_matrix": {
+    "nation_beian|nation_fengan": { "relation": 22, "note": "北岸医院偶送旧案相关医检材料给封案馆，互相借力但不深交" },
+    "nation_beian|nation_kanwei": { "relation": -18, "note": "瞰微所戚屿盯上北岸排班疑云，院方视其为麻烦的访客" },
+    "nation_beian|nation_nanxiang": { "relation": -64, "note": "北岸医院空壳科室流水被南巷会用作模仿案资金通道，院方无意间成掩护" },
+    "nation_beian|nation_seventh": { "relation": 58, "note": "分局与北岸有正式物证送检协作，表面配合无间；但太平间三具无名遗体未报备、死亡时间被篡改——协作外壳下藏着暗门" },
+    "nation_beian|port_weekly": { "relation": 15, "note": "周刊偶尔拿到北岸内部爆料，院方公关对其若即若离" },
+    "nation_fengan|nation_kanwei": { "relation": 64, "note": "瞰微所与封案馆是'民间查案同盟'共享旧档检索权，但馆长私藏半页纸未交——同盟里有不敢摊开的半页" },
+    "nation_fengan|nation_nanxiang": { "relation": -60, "note": "封案馆旧档显示南巷会十年前悬案与今日连环案手法同源，但卷宗被抽走三页，双方隔空对峙" },
+    "nation_fengan|nation_seventh": { "relation": 35, "note": "分局调阅封案馆旧档须批文，封案馆配合但留一手" },
+    "nation_fengan|port_weekly": { "relation": -30, "note": "周刊想抢发旧案独家，封案馆担心史料被消费化而有限制" },
+    "nation_kanwei|nation_nanxiang": { "relation": -42, "note": "瞰微所受雇查案却接了南巷会边缘人物的单，双方是暗里的雇佣与利用关系" },
+    "nation_kanwei|nation_seventh": { "relation": 8, "note": "民间与官方各查各的，竞速但不公开冲突" },
+    "nation_kanwei|port_weekly": { "relation": 46, "note": "瞰微所与周刊互通线索，周刊是民间调查的扩音器" },
+    "nation_nanxiang|nation_seventh": { "relation": -75, "note": "分局把连环案锁定南巷会，南巷会矢口否认并反指'分局办错案'，双方公开对峙、物证链在三处断裂" },
+    "nation_nanxiang|port_weekly": { "relation": -25, "note": "周刊追查南巷会旧闻，南巷会视其为敌意媒体" },
+    "nation_seventh|port_weekly": { "relation": 40, "note": "分局内勤高拓向周刊泄密，官方与媒体是灰色共生" }
+  }
+}

@@ -1,36 +1,49 @@
-## Description: <br>
-Provides balanced, objective guidance on important business, finance, career, strategy, and life decisions when users need a sounding board or trusted second opinion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trusted advisor providing balanced, objective guidance on important decisions across business, personal finance, career, and strategy.
 
-## Publisher: <br>
-[xunhe730](https://clawhub.ai/user/xunhe730) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xunhe730](https://clawhub.ai/user/xunhe730)
 
-## Use Case: <br>
-External users and employees use this skill to stress-test important decisions, surface assumptions and blind spots, compare pros and cons, and receive a clear recommendation while retaining final judgment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
+Employees and external users use this skill as a structured sounding board for important business, finance, career, strategy, partnership, and life decisions. It helps surface assumptions, compare tradeoffs, identify underweighted risks, and form a recommendation while leaving the final decision to the user.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown or plain text advisory response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include clarifying questions, pros and cons, blind-spot checks, risk assessment, and a recommendation; not a substitute for legal, medical, mental health, emergency, or regulated financial advice.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact frontmatter) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Users may over-rely on general decision support for finance, career, legal-adjacent, business, or other high-stakes choices.
+
+Mitigation: Use the skill for structured thinking and second opinions only; consult qualified professionals for regulated, financial, legal, or otherwise high-impact decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xunhe730/skills/advisor-bak)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, markdown]
+
+**Output Format:** [Markdown or plain text decision analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, tool use, persistence, or hidden access requests are identified in the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

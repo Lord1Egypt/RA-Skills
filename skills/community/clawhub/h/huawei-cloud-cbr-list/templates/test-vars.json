@@ -1,0 +1,81 @@
+{
+  "skill_name": "huawei-cloud-cbr-list",
+  "region": "cn-north-4",
+  "vault_id": "8a9b0c1d-2e3f-4a5b-6c7d-8e9f0a1b2c3d",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "List CBR backups via KooCLI (read-only, limit 1)",
+      "command": "hcloud CBR ListBackups --cli-region=cn-north-4 --limit=1 --offset=0",
+      "expected": "JSON with a backups list (name/id/status/resource_name/resource_id/resource_type/vault_id) and count",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-02",
+      "name": "Backup name list (script, names mode)",
+      "command": "python3 scripts/list_cbr_backups.py --region cn-north-4 --names-only",
+      "expected": "Header + one '- <name>  (id: <id>)' line per backup, or a friendly empty message",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-03",
+      "name": "Backup list as JSON (script)",
+      "command": "python3 scripts/list_cbr_backups.py --region cn-north-4 --json",
+      "expected": "JSON array of backup objects",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-04",
+      "name": "Default full-field table output (script)",
+      "command": "python3 scripts/list_cbr_backups.py --region cn-north-4",
+      "expected": "Aligned table with name/id/status/resource_name/resource_id/resource_type/vault_id/created_at columns",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-05",
+      "name": "Status filter (server-side + client-side)",
+      "command": "python3 scripts/list_cbr_backups.py --region cn-north-4 --status available --names-only",
+      "expected": "Only backups whose status is 'available'",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-06",
+      "name": "Resource-type filter (KooCLI native --resource_type)",
+      "command": "python3 scripts/list_cbr_backups.py --region cn-north-4 --resource_type OS::Nova::Server --names-only",
+      "expected": "Only backups of OS::Nova::Server resources (or a friendly empty message)",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-07",
+      "name": "Resource-name filter (KooCLI native --resource_name)",
+      "command": "python3 scripts/list_cbr_backups.py --region cn-north-4 --resource_name ecs-prod --names-only",
+      "expected": "Only backups whose resource_name contains 'ecs-prod' (or a friendly empty message)",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-08",
+      "name": "Vault filter (KooCLI native --vault_id)",
+      "command": "python3 scripts/list_cbr_backups.py --region cn-north-4 --vault_id 8a9b0c1d-2e3f-4a5b-6c7d-8e9f0a1b2c3d --json",
+      "expected": "Only backups in the given vault (or a friendly empty message)",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-09",
+      "name": "Argument help (syntax)",
+      "command": "python3 scripts/list_cbr_backups.py --help",
+      "expected": "argparse help printed, exit 0",
+      "type": "syntax",
+      "executor": "script"
+    }
+  ],
+  "env_vars_required": ["HUAWEI_ACCESS_KEY", "HUAWEI_SECRET_KEY"],
+  "notes": "只读操作（CBR ListBackups），无资源创建/修改/删除风险。CLI 路径使用 hcloud CBR ListBackups；SDK 回退使用 huaweicloudsdkcbr。备份名称/状态/所属资源/存储库过滤为 ListBackups 原生查询参数（KooCLI 下划线形态 --resource_type/--resource_name/--vault_id 等），脚本同时做客户端复核过滤。vault_id 为示例值，可替换为真实存储库 ID。"
+}

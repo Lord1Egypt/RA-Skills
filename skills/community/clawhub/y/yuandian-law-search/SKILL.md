@@ -2,7 +2,7 @@
 name: yuandian-law-search
 homepage: https://github.com/cat-xierluo/legal-skills
 author: 杨卫薪律师（微信ywxlaw）
-version: "1.7.4"
+version: "1.8.8"
 license: MIT
 description: 元典法条与案例检索。本技能应在需要查询中国法律法规条文、检索相关案例、为法律分析提供数据支撑时使用。
 ---
@@ -10,6 +10,23 @@ description: 元典法条与案例检索。本技能应在需要查询中国法�
 # 元典法条与案例检索
 
 通过元典开放平台 API 检索中国法律法规条文和案例。**每次 API 调用消耗 1-50 积分**（视接口而定）。所有检索结果会自动归档到本地，方便后续回溯。
+
+## 数据留存与隐私警示
+
+本技能在提供便利的同时会产生本地留存与外部传输，使用前请知悉：
+
+- **本地归档**：每次检索的原始响应与结构化报告会自动写入 `archive/`（按 `YD_PROJECT` 或日期归类），并默认在您运行命令的工作目录生产一份 `.md` 副本（便于附卷；当工作目录恰为 skill 根目录时自动跳过）。可用 `--no-report` 完全跳过、`--no-cwd-report` 仅跳过工作目录副本。这些文件可能包含案由、当事人、裁判文书正文等敏感内容，**请勿将其提交至公开仓库或随意分享**。
+- **外部传输**：检索请求与（如幻觉检测）待查文本会发送至元典开放平台 `open.chineselaw.com`。提交给 `hall-detect` 等接口的文本可能包含案卷事实、合同或客户信息，**建议先脱敏再提交**。平台侧的留存策略以其服务条款为准。
+- **敏感内容最小化**：案例文书、企业信息含个人或商业敏感数据，引用与归档时遵循"最小必要"原则，避免大段全文外泄。
+
+## 所需权限
+
+本技能运行需要以下本地能力，均限定在检索与归档目的内：
+
+- **网络访问**：仅访问元典开放平台 `open.chineselaw.com`（HTTPS），用于检索与归档查重。
+- **文件系统读写**：读取 `scripts/.env`（API Key）、`scripts/MANIFEST.json`；写入 `archive/` 与当前工作目录的报告副本（可经 `--no-report`/`--no-cwd-report` 关闭）。
+- **环境变量**：读取 `YD_API_KEY`（鉴权）、`YD_STRATEGY`/`YD_PROJECT`（检索策略与归类）等；`yd-run` 以干净环境启动 Python，仅保留必要变量。
+- **本地代码执行**：通过 `scripts/yd-run` 调用 Python 检索脚本；不安装第三方运行时、不执行自动更新。
 
 ## 前置要求（每次调用前自动检测）
 
@@ -30,7 +47,7 @@ description: 元典法条与案例检索。本技能应在需要查询中国法�
 
    scripts/.env
    ─────────────
-   YD_API_KEY=sk-你的密钥
+   YD_API_KEY=sk-你的密钥(此处替换为真实 Key)
    # YD_STRATEGY=balanced
    ─────────────
 
@@ -45,7 +62,7 @@ description: 元典法条与案例检索。本技能应在需要查询中国法�
 ```bash
 # 检测 .env 文件和 API Key
 if [ -f "scripts/.env" ]; then
-  KEY=$(grep '^YD_API_KEY=' scripts/.env | cut -d'=' -f2)
+  KEY=$(grep '^YD_API_KEY=' scripts/.env | cut -d'=' -f2-)
   if [ -n "$KEY" ] && [ "$KEY" != "your-api-key-here" ]; then
     echo "API Key 已就绪"
   else
@@ -75,6 +92,23 @@ scripts/yd-run --network-check
 ```
 
 注意：`yd-run` 只能避免 Codex 进程环境变量、代理变量和 PATH 漂移造成的影响；如果 Codex 本身以网络沙箱启动，或系统代理/VPN 接管 DNS，子进程仍会受到系统级网络策略影响。终端 Codex 应使用 `--sandbox danger-full-access --ask-for-approval never` 启动。
+
+## 检索机制感知主流程（案件检索默认）
+
+当用户描述事实结构、争议焦点、诉讼立场，或问"类似案件怎么判""能不能主张 XX""对方抗辩怎么办"时，**先完成案件检索主流程，再调用接口**（DEC-006）。简单法条/案号/纯概念检索（`detail` / `case-detail` / 单条 `search`）不启动本流程，直接看下方接口速查。
+
+1. **轻量案件研判** → 产出检索简报（争点、要件、决定性事实、待补事实、必须排除的近邻案型、已有报告来源）。
+2. **派生检索命题** → 每个命题只验证一项判断，区分规范 / 事实结构 / 裁判规则 / 反向；每个 decisive 争点至少 1 条正向 + 1 条反向。
+3. **派生查询矩阵** → 一争点一查询、单一接口；案例关键词只放 4-6 个高信息密度词，不构造后端无法表达的长 AND。
+4. **小样本试检** → 1-2 条命题先验证接口与表达是否有效。
+5. **对位复核** → 按 HIGH / MEDIUM / LOW / MISMATCH 复核；只有诊断出偏差原因（接口误选 / 表达不适配 / 近邻混入）后才扩展查询或换接口。
+6. **正式检索** → 结论—依据—查询可追溯报告。
+
+信息不足时按"最小必要"补问（最多 1 轮，只问会改变检索路径的最关键问题），不空跑查询；事实不足但不影响查询方向的，标注假设继续。
+
+完整字段定义、接口路由规则、近邻案型排除清单、前置门禁判定与机器可读导出骨架见：[`references/07-research-middleware.md`](references/07-research-middleware.md)。
+
+> 下方「接口速查」是执行第 3 步查询矩阵时"按机制选接口"的依据，不是检索的起点。
 
 ## 接口速查
 
@@ -277,6 +311,9 @@ scripts/yd-run hall-detect "根据《中华人民共和国数据保护法》第3
 |------|------|--------|
 | `--effect1` | 效力级别（可多次指定） | 宪法、法律、司法解释、行政法规、部门规章、地方性法规 等 |
 | `--sxx` | 时效性（可多次指定） | 现行有效、失效、已被修改、部分失效、尚未生效 |
+| `--keep-industry` | 保留默认剔除的办案无关条目 | 无需取值（flag） |
+
+> **默认剔除办案无关条目**：`search` / `keyword` / `regulation` 默认过滤 `effect1 ∈ {行业/团体规范, 地方律协规定, 行政机关工作文件, 党内法规, 军事法规规章}` 的条目（律协指引、课题公告/答复函、党纪规定、军队规定等——非法律渊源或与一般民商事/刑事办案无关）。footer 提示剔除数量；涉党纪/涉军等特殊案件需要时加 `--keep-industry` 保留。`archive/` 原始数据仍完整，仅过滤显示与 `.md` 报告。
 
 ### 案例检索通用筛选
 
@@ -297,6 +334,7 @@ scripts/yd-run hall-detect "根据《中华人民共和国数据保护法》第3
 - [法律检索报告 7 节设计原理](references/04-report-design-notes.md)
 - [MCP 协同工作流](references/05-mcp-workflow.md)
 - [企业全息画像](references/06-enterprise-portrait.md)
+- [检索机制感知型中间层执行合同](references/07-research-middleware.md)
 
 ### 接口清单与 API 端点文档
 
@@ -344,7 +382,9 @@ scripts/yd-run hall-detect "根据《中华人民共和国数据保护法》第3
 
 每次 API 调用的完整结果会自动归档到 `archive/` 目录。当用户提到"之前查过什么"时，AI 可以直接从归档中提取历史结果，无需重新调用 API。
 
-`archive/<ts>_<query>.json` 是机器可读版（response/query/fingerprint/source_urls 全字段），`archive/<ts>_<query>.md` 是同次检索的人类可读版（结构化报告），两者一一对应。同一份报告的副本会同步写入用户运行命令时的工作目录（`<CWD>/<ts>_<query>.md`），便于附卷。
+**按检索目的归类（`YD_PROJECT`）**：每个研究任务开始时，AI/用户设 `YD_PROJECT` 环境变量（如 `export YD_PROJECT=0713-商标在先使用权`，或行内 `YD_PROJECT=0713-商标案 scripts/yd-run search ...`），该任务的所有检索自动归到 `archive/<YD_PROJECT>/` 一个文件夹下，便于追溯。未设时按日期 `archive/YYYYMMDD/` 兜底，不再平铺根目录。**缓存查重全局生效**——同一问题在不同 project 下会命中已有归档，不重复消耗积分。
+
+`archive/<project>/<ts>_<query>.json` 是机器可读版（response/query/fingerprint/source_urls 全字段），同名 `.md` 是人类可读版（结构化报告），两者一一对应。同一份报告的副本会同步写入用户运行命令时的工作目录（`<CWD>/<ts>_<query>.md`），便于附卷；当 CWD 恰为 skill 根目录时自动跳过（避免污染 skill 目录）。
 
 浏览历史记录：
 
@@ -477,17 +517,3 @@ per-call .md 是数据底稿，可独立查看；session 报告是主交付物�
 完整工作流（元典 MCP 接入配置、Agent 三步法、ingest 子命令、模式选型表）见：
 
 [`references/05-mcp-workflow.md`](references/05-mcp-workflow.md)
-
-## 版本更新
-
-脚本每 7 天自动检测远程版本。也可手动检查：
-
-```bash
-# 检查是否有新版本（会显示最近提交记录）
-scripts/yd-run check-update
-
-# 执行更新（仅下载本 skill 目录下的文件，不影响其他目录）
-scripts/yd-run do-update
-```
-
-`do-update` 仅更新 `yuandian-law-search/` 目录下的文件，不会修改 `.env`（API Key）和 `archive/`（历史检索记录）。

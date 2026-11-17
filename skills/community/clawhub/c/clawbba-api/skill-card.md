@@ -1,53 +1,67 @@
-## Description: <br>
-ClawBBA x OpenClaw connects OpenClaw to ClawBBA with one platform API key for chat, image, and video models across web chat, WeChat, Telegram, and other channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawBBA × OpenClaw connects OpenClaw agents to ClawBBA with one Platform API Key for chat, image, and video model access across web chat, WeChat, Telegram, and other channels.
 
-## Publisher: <br>
-[clawbba-ux](https://clawhub.ai/user/clawbba-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawbba-ux](https://clawhub.ai/user/clawbba-ux)
 
-## Use Case: <br>
-External users and developers use this skill to configure OpenClaw for ClawBBA-backed text chat, image generation, and video generation. The skill guides API key setup, OpenClaw configuration, media delivery, troubleshooting, and recovery when generated media is delayed or not delivered. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup flow can change OpenClaw configuration, persist the ClawBBA API key locally, patch OpenClaw runtime files, and restart the gateway. <br>
-Mitigation: Review the package before installation, run it only in an approved OpenClaw environment, validate the resulting configuration, and keep the API key private. <br>
-Risk: The security summary flags unverified remote code and broad local OpenClaw changes that are not fully reviewable in the submitted artifact. <br>
-Mitigation: Prefer a download-and-review install flow with checksums or signatures before executing any remote installer. <br>
-Risk: Prompts or uploaded reference media may be sent to remote providers for generation. <br>
-Mitigation: Do not submit confidential prompts or media unless the data handling path is approved for that use. <br>
-Risk: The skill requires a sensitive CLAWBBA_API_KEY credential. <br>
-Mitigation: Avoid pasting production keys into shared logs or screenshots, store keys locally with restricted permissions, and rotate any exposed key. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to configure ClawBBA as an OpenAI-compatible provider and guide agents in text chat, image generation, video generation, media recovery, and troubleshooting workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clawbba-ux/clawbba-api) <br>
-- [ClawBBA API keys](https://www.clawbba.com/agent/api-keys) <br>
-- [ClawBBA website](https://www.clawbba.com) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai/) <br>
-- [OpenClaw Agent behavior](references/openclaw-agent-behavior.md) <br>
-- [OpenClaw integration spec](references/openclaw-integration-spec.md) <br>
-- [Media dispatch spec](references/media-dispatch-spec.md) <br>
-- [Media capabilities](references/media-capabilities.md) <br>
-- [Troubleshooting](references/SKILL-troubleshooting.md) <br>
-- [OpenClaw release manifest](references/openclaw-release-manifest.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, local file paths, and MEDIA path delivery conventions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to invoke OpenClaw image_generate or video_generate tools and to recover or redeliver existing media instead of regenerating billed jobs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.33 (source: server release evidence) <br>
+Risk: The release evidence flags unverified remote installation and persistent OpenClaw runtime changes for manual review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after trusting the publisher, reviewing the file changes, and preferring a signed or checksum-verified installer with a rollback path.
+
+Risk: The skill stores CLAWBBA_API_KEY locally and modifies OpenClaw configuration.
+
+Mitigation: Use a scoped API key, keep it out of version control, verify local file permissions, and rotate the key if it may have been exposed.
+
+Risk: Repeated media generation after timeouts or incomplete delivery can cause duplicate charges.
+
+Mitigation: Use the documented task recovery and local MEDIA redelivery workflow before regenerating content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clawbba-ux/skills/clawbba-api)
+- [ClawBBA publisher profile](https://clawhub.ai/user/clawbba-ux)
+- [ClawBBA API keys](https://www.clawbba.com/agent/api-keys)
+- [ClawBBA API endpoint](https://www.clawbba.com/api/v1)
+- [OpenClaw documentation](https://docs.openclaw.ai/)
+- [OpenClaw agent behavior](references/openclaw-agent-behavior.md)
+- [OpenClaw integration spec](references/openclaw-integration-spec.md)
+- [Media capabilities](references/media-capabilities.md)
+- [Media dispatch spec](references/media-dispatch-spec.md)
+- [Troubleshooting guide](references/SKILL-troubleshooting.md)
+- [OpenClaw release manifest](references/openclaw-release-manifest.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration steps, and local media path references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CLAWBBA_API_KEY and local OpenClaw configuration; generated media is referenced as local MEDIA paths.]
+
+## Skill Version(s):
+
+2.0.33 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

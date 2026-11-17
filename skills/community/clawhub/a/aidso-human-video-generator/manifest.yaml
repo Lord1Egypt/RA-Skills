@@ -1,0 +1,127 @@
+name: aidso-human-video-generator
+version: 0.4.7
+description: Bind an AIDSO account, extract benchmark-video text, and generate digital-human videos from a benchmark or user-provided script through AIDSO Skills API.
+runtime:
+  language: python
+  python: ">=3.8"
+  dependencies: []
+distribution:
+  platform_agnostic: true
+  target_agents: any
+  user_facing_host_state: omitted
+installation:
+  replace_existing: true
+  preserve_paths:
+    - .aidso/
+  remove_stale_cache: true
+  verify_installed_version: true
+runtime_authorization:
+  install_time_check: false
+  bind_on_first_use: true
+  local_binding:
+    default_path: ./.aidso/credentials.json
+    pending_path: ./.aidso/pending-authorization.json
+    fallback_paths:
+      - skill-directory/.aidso/credentials.json
+      - tmp/aidso-human-video-generator/credentials.json
+    permissions: "0600"
+    created_by: scripts/auth.py
+  authorization_flow:
+    mode: two_phase_user_handoff
+    link_ttl_seconds: 600
+    start_command: python scripts/auth.py --start
+    complete_command: python scripts/auth.py --complete
+    blocking_poll: false
+  optional_env:
+    - AIDSO_CREDENTIALS_FILE
+  policy:
+    - Installation must not inspect local binding files.
+    - Installation summaries must present authorization as a first-use runtime step.
+    - Choose a writable local binding path before generating the authorization link.
+    - Return each fresh authorization URL to the user immediately and stop for user interaction.
+    - Do not fetch or validate the JavaScript authorization page with a plain HTTP request.
+    - Query the pending code only after the user confirms approval.
+    - Generate a new link instead of reusing an expired link.
+    - Do not ask users to paste keys into chat.
+    - Do not print or summarize keys, even masked, in install or status output.
+    - Do not support direct key import through environment variables or package files.
+    - Store the returned credential locally only after the user approves the AIDSO authorization link.
+apis:
+  environment: production
+  base_url: https://api.aidso.com
+  auth_generate_code:
+    method: GET
+    url: https://api.aidso.com/openapi/skills/generate_code
+  auth_get_by_code:
+    method: GET
+    url: https://api.aidso.com/openapi/skills/get_by_code
+    query:
+      - code
+  generate_video:
+    method: POST
+    url: https://api.aidso.com/openapi/skills/gen_digital_human_video
+    body:
+      - text
+      - desc
+      - subtitle
+      - aspect_ratio
+    desc_guidance:
+      user_prompt: 请描述你想要的数字人，例如人物类型、年龄感、服装、气质或风格。
+      body_framing_required: false
+      continue_when_body_framing_missing: true
+    aspect_ratio_values:
+      - Portrait
+    default_aspect_ratio: Portrait
+    aspect_ratio_user_configurable: false
+    pre_submit_confirmation:
+      estimate_command: python scripts/submit_video.py --estimate-only
+      required: full_generation_only
+      script_arg: --confirm-points
+      preview_label: 预览
+      preview_point_message: hidden
+      user_message: 正式生成预计消耗 {required_points} 积分，是否确认提交？
+      calculation_details: hidden
+    headers:
+      - x-api-key
+      - Content-Type: application/json
+  get_video_result:
+    method: GET
+    url: https://api.aidso.com/openapi/skills/get_digital_human_video_result
+    headers:
+      - x-api-key
+  submit_text_extract_task:
+    method: POST
+    url: https://api.aidso.com/openapi/skills/submit_text_extract_task
+    body:
+      - url
+    headers:
+      - x-api-key
+      - Content-Type: application/json
+  get_text_extract_result:
+    method: GET
+    url: https://api.aidso.com/openapi/skills/get_text_extract_result
+    query:
+      - taskId
+    headers:
+      - x-api-key
+scripts:
+  auth: scripts/auth.py
+  submit_text_extract: scripts/submit_text_extract.py
+  poll_text_extract: scripts/poll_text_extract.py
+  submit_video: scripts/submit_video.py
+  poll_video: scripts/poll_video.py
+outputs:
+  submit_text_extract:
+    - taskId
+  poll_text_extract:
+    - status
+    - status_message
+    - text
+    - video_info
+  submit_video:
+    - taskId
+  poll_video:
+    - status
+    - msg
+    - video_url
+    - preview_url

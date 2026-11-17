@@ -1,43 +1,55 @@
-## Description: <br>
-Access and utilize open construction pricing databases. Match BIM elements to standardized work items, calculate costs using public unit price databases with 55,000+ work items. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access and utilize open construction pricing databases. Match BIM elements to standardized work items, calculate costs using public unit price databases with 55,000+ work items.
 
-## Publisher: <br>
-[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction)
 
-## Use Case: <br>
-External construction estimators, BIM practitioners, and developers use this skill to match element descriptions or BIM properties to standardized construction work items and produce cost estimate summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use local project or pricing files and optional online pricing or model resources. <br>
-Mitigation: Grant file and network access only in environments appropriate for construction estimating work. <br>
-Risk: Pricing data, subscription databases, or online resources may have licensing or usage terms that affect professional use. <br>
-Mitigation: Verify applicable terms for each pricing source before using the results in commercial workflows. <br>
-Risk: Automated matching and regional adjustments can produce incorrect or low-confidence estimates. <br>
-Mitigation: Review confidence scores, inspect low-confidence matches, and manually validate generated estimates before relying on them professionally. <br>
+## Use Case:
 
+External users, developers, and construction estimators use this skill to match element descriptions or BIM data to standardized construction work items, apply regional cost factors, and calculate cost estimates from open pricing databases.
 
-## Reference(s): <br>
-- [CSI MasterFormat](https://www.csiresources.org/standards/masterformat) <br>
-- [Data Driven Construction](https://datadrivenconstruction.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with tables, code examples, and estimate summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes work item matches, confidence scores, unit prices, regional adjustments, summaries by CSI division, and flags for missing or low-confidence matches.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server-resolved release and artifact manifest) <br>
+Risk: Exported estimates, pricing CSVs, and modified pricing databases may contain sensitive business records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose output paths and data sources deliberately, restrict sharing of generated files, and review estimate exports before distribution.
+
+Risk: The skill may read local pricing data and access pricing-related network endpoints.
+
+Mitigation: Install only in environments where the disclosed file and network access are acceptable, and use trusted pricing data sources.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/datadrivenconstruction/skills/open-construction-estimate)
+- [CSI MasterFormat](https://www.csiresources.org/standards/masterformat)
+- [DataDrivenConstruction Website](https://datadrivenconstruction.io)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Files, Guidance]
+
+**Output Format:** [Markdown responses with tabular estimates, JSON-like records, Python code snippets, and optional Excel or CSV exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes confidence scores, CSI division summaries, regional cost adjustments, and manual-review flags for missing or low-confidence matches.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and artifact/claw.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

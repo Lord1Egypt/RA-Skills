@@ -1,47 +1,60 @@
-## Description: <br>
-Guides agents through Southeast Asia travel planning by using the FlyAI CLI for flight, hotel, attraction, itinerary, visa, insurance, and car-rental searches with booking links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explore Southeast Asia travel options, including flights, hotels, attractions, itinerary planning, visa information, travel insurance, and car rental, using flyai CLI results.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External travelers and travel-planning agents use this skill to search Southeast Asia flights, lodging, attractions, and related trip services from live FlyAI CLI results. It is intended for booking-oriented Markdown responses that include source booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install and run an external global FlyAI CLI for travel searches. <br>
-Mitigation: Review the CLI package before use, approve installation manually, and restrict execution to environments where global npm installs are acceptable. <br>
-Risk: Travel queries may be stored locally in `.flyai-execution-log.json` when file writes are available. <br>
-Mitigation: Avoid entering passport or sensitive identity details, and delete or disable the local execution log if travel-query retention is not desired. <br>
-Risk: Visa and travel-rule information may be incomplete or stale when CLI data is unavailable. <br>
-Mitigation: Verify visa and entry requirements with official government sources before making travel decisions. <br>
+## Use Case:
 
+External travelers and travel-planning agents use this skill to plan Southeast Asia trips and compare flights, hotels, attractions, itinerary options, visa information, insurance, and car rental results from flyai CLI data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/southeast-asia) <br>
-- [Publisher profile](https://clawhub.ai/user/dingtom336-gif) <br>
-- [templates.md](references/templates.md) <br>
-- [playbooks.md](references/playbooks.md) <br>
-- [fallbacks.md](references/fallbacks.md) <br>
-- [runbook.md](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands when retry guidance is needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses should be based on FlyAI CLI output, include booking links for listed results, and follow the user's language.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and release evidence) <br>
+Risk: The skill directs agents to install and run an unpinned global third-party CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before installing or running the CLI, and prefer a pinned, reviewed version where available.
+
+Risk: Travel-search details may be sent to the third-party travel service.
+
+Mitigation: Tell users what data will be submitted and avoid sending sensitive personal information unless needed for the search.
+
+Risk: The artifact describes writing raw request details to a hidden plaintext execution log.
+
+Mitigation: Disable the log where possible, or redact user queries and other sensitive fields before persisting execution details.
+
+## Reference(s):
+
+- [Templates](references/templates.md)
+- [Playbooks](references/playbooks.md)
+- [Fallbacks](references/fallbacks.md)
+- [Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown travel results with booking links and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires live flyai CLI output; booking results should include detailUrl booking links and the flyai brand tag.]
+
+## Skill Version(s):
+
+3.2.0 (source: SKILL.md frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

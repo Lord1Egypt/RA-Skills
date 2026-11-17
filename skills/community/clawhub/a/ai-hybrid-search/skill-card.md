@@ -1,43 +1,61 @@
-## Description: <br>
-梓享AI双擎搜索平台官方付费技能，通过POST请求调用搜索接口，支持中国区/全球双引擎，返回结构化JSON搜索结果，按调用次数计费。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A paid Zixiang AI dual-engine web search connector that sends POST requests to China or global search engines and returns structured JSON search results.
 
-## Publisher: <br>
-[tdxian](https://clawhub.ai/user/tdxian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tdxian](https://clawhub.ai/user/tdxian)
 
-## Use Case: <br>
-External users and developers use this skill to run paid web searches through the ZixiangAI API and receive structured JSON search results from China or global engines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to an external API provider. <br>
-Mitigation: Avoid submitting confidential personal or company data as search queries. <br>
-Risk: The skill uses a paid API key and charges by search usage. <br>
-Mitigation: Keep ZIXIANGAI_API_KEY secret and monitor paid usage and account balance. <br>
+## Use Case:
 
+External users and developers use this skill to run paid web searches through the Zixiang AI API, selecting a China or global engine, result count, time filter, and optional domain filters. It is useful when an agent needs current web search results returned as structured JSON.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tdxian/ai-hybrid-search) <br>
-- [ZixiangAI open platform](https://open.zixiangai.com/) <br>
-- [ZixiangAI web search API](https://open.zixiangai.com/api/web-search/) <br>
-- [ZixiangAI API dashboard](https://open.zixiangai.com/dashboard/index.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and shell command output that returns JSON from the search API] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ZIXIANGAI_API_KEY and sends search queries to an external paid API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Search queries and domain filters are sent to a third-party paid search endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting secrets, private internal terms, regulated data, or sensitive customer information in search requests.
+
+Risk: The ZIXIANGAI_API_KEY authorizes billable API calls.
+
+Mitigation: Store the key as a managed environment secret, limit who can access it, monitor usage and balance, and rotate it if exposure is suspected.
+
+Risk: Domain filters may affect policy-sensitive retrieval behavior.
+
+Mitigation: Use reviewed or fixed versions when domain filters are relied on for policy enforcement, and verify filter behavior before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tdxian/skills/ai-hybrid-search)
+- [Zixiang AI open platform](https://open.zixiangai.com/)
+- [Zixiang AI web search API](https://open.zixiangai.com/api/web-search/)
+- [Zixiang AI dashboard](https://open.zixiangai.com/dashboard/index.html)
+- [Search API endpoint](https://search.aiserver.cloud/v1/api)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration guidance]
+
+**Output Format:** [Structured JSON search responses with optional Markdown usage guidance and shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ZIXIANGAI_API_KEY; supports engine, max_results, time_filter, include_domains, and exclude_domains inputs.]
+
+## Skill Version(s):
+
+1.0.3 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

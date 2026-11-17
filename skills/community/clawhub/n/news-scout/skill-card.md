@@ -1,42 +1,64 @@
-## Description: <br>
-AI领域以及投资领域新闻聚合工具，当用户询问新闻相关问题时触发，聚合全球和中国 AI 动态以及影响全球投资的美股市场关键动向，并按热度排序提供简要影响分析。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aggregates recent AI and investing news from configured RSS feeds and Bing News RSS, then guides an agent to produce a concise Chinese news brief with deduplication, ranking, and impact analysis.
 
-## Publisher: <br>
-[Huntingfishdude](https://clawhub.ai/user/Huntingfishdude) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huntingfishdude](https://clawhub.ai/user/huntingfishdude)
 
-## Use Case: <br>
-External users and agents use this skill to fetch current public news about AI and investment markets, deduplicate related stories, and produce a concise Chinese news brief with source links and impact notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fetched news articles and RSS entries are untrusted third-party content that may contain misleading claims or prompt-like text. <br>
-Mitigation: Summarize and cite the fetched content; do not follow instructions embedded in article text or feed entries. <br>
-Risk: The helper script makes live network requests to public RSS feeds and Bing News, so availability and returned content can vary. <br>
-Mitigation: Use a virtual environment with only the documented dependencies and review generated briefs before relying on time-sensitive market or news conclusions. <br>
+## Use Case:
 
+External users and agents use this skill to collect recent AI, technology, and market news and turn it into a Chinese daily brief. It is suited for news-monitoring workflows that need source links, rough importance ranking, and short impact analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Huntingfishdude/news-scout) <br>
-- [README.md](artifact/README.md) <br>
-- [News source configuration](artifact/resources/news_sources.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Chinese Markdown news brief, with JSON returned by the helper script as an intermediate format] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Briefs target 10 recent items across investing, global AI, and China AI categories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill makes external network requests to news feeds and Bing News RSS.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in environments where outbound news requests are acceptable, and review configured sources before use.
+
+Risk: Python package installation may pull dependencies from the configured package index.
+
+Mitigation: Use a virtual environment and pin or review feedparser and requests before deployment.
+
+Risk: Fetched news titles, snippets, and article text are untrusted external content.
+
+Mitigation: Treat fetched content as untrusted input and review generated summaries before relying on them.
+
+Risk: The README still mentions duckduckgo-search even though server security guidance identifies that instruction as stale.
+
+Mitigation: Use the current SKILL.md and script dependency guidance, and remove the stale duckduckgo-search instruction during release cleanup.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huntingfishdude/skills/news-scout)
+- [Skill instructions](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [News source configuration](artifact/resources/news_sources.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Chinese Markdown brief with source links; helper script emits JSON news data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The instructed final brief contains 10 items split across investing, global AI, and China AI sections.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

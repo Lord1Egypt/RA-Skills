@@ -1,41 +1,51 @@
-## Description: <br>
-Convert ASCII art diagrams to hand-drawn Excalidraw JSON files. Analyzes structure first, then generates incrementally module-by-module. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert ASCII art diagrams to hand-drawn Excalidraw JSON files.
 
-## Publisher: <br>
-[zhangyanbo2007](https://clawhub.ai/user/zhangyanbo2007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangyanbo2007](https://clawhub.ai/user/zhangyanbo2007)
 
-## Use Case: <br>
-Developers and engineers use this skill to convert ASCII architecture, flowchart, and system diagrams into Excalidraw files. It guides an agent through diagram analysis, layout planning, module-by-module JSON generation, and final file assembly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated diagrams and intermediate JSON files may persist sensitive architecture details under ~/.excalidraw/. <br>
-Mitigation: Avoid highly sensitive diagrams unless you can manage or delete the saved local files afterward. <br>
-Risk: Converted diagrams may omit or misrepresent relationships from complex ASCII inputs. <br>
-Mitigation: Review the generated Excalidraw file before sharing or using it as technical documentation. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn ASCII architecture, flow, and system diagrams into Excalidraw JSON files through an analysis, module generation, and merge workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangyanbo2007/ascii-excalidraw) <br>
-- [Excalidraw](https://excalidraw.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with JSON module snippets and shell commands; final artifacts are .excalidraw JSON files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes final and intermediate files under ~/.excalidraw/ by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Generated diagrams and intermediate module JSON may persist sensitive architecture or workflow details under ~/.excalidraw/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid processing sensitive diagrams unless local retention is acceptable, or delete the generated files after use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangyanbo2007/skills/ascii-excalidraw)
+- [Publisher profile](https://clawhub.ai/user/zhangyanbo2007)
+- [Excalidraw](https://excalidraw.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance plus Excalidraw JSON and module JSON files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes final .excalidraw files and intermediate module JSON under ~/.excalidraw/ by default.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

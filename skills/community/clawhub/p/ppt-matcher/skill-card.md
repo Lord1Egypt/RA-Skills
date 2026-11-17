@@ -1,40 +1,54 @@
-## Description: <br>
-PPT-Matcher analyzes existing PPTX files to extract color, font, layout, and decorative style patterns so agents can design or revise slides with a consistent presentation style. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PPT-Matcher analyzes existing PPTX presentations to extract color, font, layout, and decorative patterns so agents can redesign or add slides with consistent styling.
 
-## Publisher: <br>
-[tuobadaidai](https://clawhub.ai/user/tuobadaidai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tuobadaidai](https://clawhub.ai/user/tuobadaidai)
 
-## Use Case: <br>
-Developers, office users, and presentation-focused agents use this skill to inspect a reference PPTX, extract its design rules, and plan slide additions or rewrites that preserve the deck's visual style. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Slide rewrite workflows may delete and recreate target slides, which can remove content or formatting if the requested pages or redesign plan are wrong. <br>
-Mitigation: Review the target slide numbers, extracted content, and proposed redesign before execution, and keep a backup copy of the PPTX before applying edits. <br>
-Risk: Style analysis can miss or underrepresent gradient, transparent, or platform-specific visual details. <br>
-Mitigation: Confirm accent colors, fonts, and gradient-heavy styling manually when the analysis reports unrecognized values or when the deck relies on non-solid visual effects. <br>
+## Use Case:
 
+Developers, presentation editors, and file-agent workflows use this skill to analyze a reference PowerPoint deck, extract visual style guidelines, and produce slide content or layout specifications that keep new or revised pages visually consistent.
 
-## Reference(s): <br>
-- [Common PPT Page Design Patterns](references/design-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown-style guidance with console analysis summaries, inline shell commands, and structured slide content specifications] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce instructions for pptx-add-slides or file-agent; slide edits should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter, meta.json, server release metadata) <br>
+Risk: Slide edits can delete, recreate, or materially alter important presentation pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Work on a copy of the deck and confirm exact slide numbers before any page is deleted or recreated.
+
+Risk: Installing runtime dependencies from an untrusted source can introduce supply-chain risk.
+
+Mitigation: Install python-pptx in a virtual environment from a trusted package index, ideally with pinned versions.
+
+## Reference(s):
+
+- [Common PPT page design patterns](artifact/references/design-patterns.md)
+- [PPT-Matcher ClawHub release](https://clawhub.ai/tuobadaidai/skills/ppt-matcher)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and console analysis output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference a local PPTX path and optional comma-separated slide numbers; depends on python-pptx.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter, server release metadata, artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

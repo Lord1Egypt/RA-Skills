@@ -3,7 +3,7 @@ name: engram
 description: Build, query, and maintain structured knowledge graphs. Use when you need to remember relationships between code components, services, people, or any concepts across sessions. Provides persistent graph storage with type hierarchies, relationship ontology, branch overlays, git integration, and cross-model linking. Trigger on "engram", "knowledge graph", "dependency graph", "build a model of", "map the architecture", "what depends on", "blast radius", or any request to track relationships between entities.
 metadata:
   author: Morpheis
-  version: "2.2.0"
+  version: "0.1.12"
 ---
 
 # Engram

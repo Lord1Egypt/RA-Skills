@@ -1,41 +1,57 @@
-## Description: <br>
-A merciless but educational code roaster that uses savage humor to critique pasted code and explain the lesson behind each issue. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A humorous code review skill that critiques pasted code with intentionally sharp roasts and explains the engineering lesson behind each issue.
 
-## Publisher: <br>
-[jcools1977](https://clawhub.ai/user/jcools1977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jcools1977](https://clawhub.ai/user/jcools1977)
 
-## Use Case: <br>
-Developers and engineers use this skill to get humorous, blunt code review feedback paired with concrete lessons about naming, error handling, security mistakes, over-engineering, and other code quality issues. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally uses blunt comedic language that may be inappropriate for some team, onboarding, or workplace review settings. <br>
-Mitigation: Use it only when participants have opted in to harsh humorous feedback, and avoid sensitive review contexts unless everyone agrees to that tone. <br>
-Risk: Users may paste secrets, credentials, private keys, or proprietary code into the agent when requesting a roast. <br>
-Mitigation: Redact sensitive values and avoid submitting code that should not normally be shared with the agent. <br>
-Risk: Humorous critique may be overly harsh or may include advice that should not be applied without review. <br>
-Mitigation: Treat the output as educational feedback and verify technical recommendations before changing production code. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jcools1977/roast-my-code) <br>
+## Use Case:
 
+Developers, reviewers, mentors, and teams use this skill to turn code review feedback into memorable humorous critique while still receiving technically grounded lessons. It is best suited for code shared with consent and for contexts where an intentionally abrasive tone is acceptable.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text code-review roast with educational feedback] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no shell commands, file writes, API calls, or external dependencies are indicated.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill is intentionally sarcastic and sometimes harsh, which may be inappropriate in workplace, mentoring, or team settings without consent.
+
+Mitigation: Use the skill only with explicit consent and in contexts where participants accept abrasive humorous feedback.
+
+Risk: Users may paste sensitive or proprietary code into the active agent session for review.
+
+Mitigation: Avoid using the skill on sensitive files unless sharing that code with the active agent session is acceptable.
+
+Risk: Humorous critique could distract from technical accuracy or proportionality.
+
+Mitigation: Review feedback for correctness, keep criticism focused on the code, and use roast intensity proportional to the issue.
+
+## Reference(s):
+
+- [Roast My Code on ClawHub](https://clawhub.ai/jcools1977/skills/roast-my-code)
+- [Publisher profile](https://clawhub.ai/user/jcools1977)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style code review feedback with roast text and explanatory lessons]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Zero external dependencies and no API calls according to the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

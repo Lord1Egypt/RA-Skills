@@ -1,48 +1,74 @@
-## Description: <br>
-Supports sending order inquiries for specified 1688 orders, including single-order inquiries and parallel batch inquiries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes 1688 order inquiry tasks and Shopify or AliExpress SKU extraction requests, sending or querying merchant inquiries and returning SKU image/query JSON for supported product links.
 
-## Publisher: <br>
-[1688aiinfra](https://clawhub.ai/user/1688aiinfra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1688aiinfra](https://clawhub.ai/user/1688aiinfra)
 
-## Use Case: <br>
-External users and agents use this skill to ask merchants questions about 1688 supply-chain orders, including delivery timing, availability, refunds, images, and target-price negotiation. It can split multiple orders into separate inquiry tasks when each order needs a different question or target total price. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles a 1688 account access key. <br>
-Mitigation: Install only when the publisher is trusted, and prefer environment or platform secret injection over plaintext local configuration. <br>
-Risk: The skill can send order IDs, questions, optional images, and merchant-facing inquiries to 1688 gateway services. <br>
-Mitigation: Ask for explicit user confirmation before sending inquiries, with extra care for batch inquiries. <br>
-Risk: The skill reports usage metadata with limited user controls. <br>
-Mitigation: Review the usage-reporting behavior before deployment and ensure it matches the deployment's privacy expectations. <br>
+## Use Case:
 
+External commerce operators and agent users use this skill to ask merchants about existing 1688 orders, query inquiry responses, configure inquiry automation, and extract SKU image/query pairs from supported Shopify or AliExpress product pages.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1688aiinfra/1688-supplychain-order-inquiry) <br>
-- [Publisher profile](https://clawhub.ai/user/1688aiinfra) <br>
-- [inquiry_send capability](artifact/references/capabilities/inquiry_send.md) <br>
-- [batch_inquiry capability](artifact/references/capabilities/batch_inquiry.md) <br>
-- [configure capability](artifact/references/capabilities/configure.md) <br>
-- [Common error handling](artifact/references/common/error-handling.md) <br>
-- [Skill usage reporting notes](artifact/references/skill埋点说明.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Markdown, Configuration instructions, Guidance] <br>
-**Output Format:** [JSON containing a success flag, user-facing markdown, and structured data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands are run through a Python CLI and may send order IDs, questions, optional images, and usage metadata to 1688 gateway services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill stores and uses a 1688 access key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review credential handling before deployment, prefer environment-injected credentials, avoid committing local configuration files, and rotate keys if exposure is suspected.
+
+Risk: The skill can send merchant inquiries and change inquiry automation settings.
+
+Mitigation: Require clear user intent before write actions, keep final JSON responses for auditability, and limit execution to existing order contexts.
+
+Risk: The skill can upload local files and fetch external product pages.
+
+Mitigation: Restrict uploads to intended, validated image attachments and validate product or gateway destinations before execution.
+
+Risk: The skill can install packages during execution.
+
+Mitigation: Disable automatic dependency installation where possible and preinstall reviewed, pinned dependencies in the runtime.
+
+Risk: The security evidence reports hidden Unicode in agent instructions.
+
+Mitigation: Remove hidden Unicode before release and review instruction diffs with control characters visible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1688aiinfra/skills/1688-supplychain-order-inquiry)
+- [Skill overview](artifact/SKILL.md)
+- [Order inquiry send capability](artifact/references/capabilities/inquiry_send.md)
+- [Order inquiry query capability](artifact/references/capabilities/inquiry_query.md)
+- [Inquiry configuration capability](artifact/references/capabilities/inquiry_config.md)
+- [AK configuration capability](artifact/references/capabilities/configure.md)
+- [Shopify SKU extraction capability](artifact/references/capabilities/sku_extract_shopify.md)
+- [AliExpress SKU extraction capability](artifact/references/capabilities/sku_extract_aliexpress.md)
+- [Structured parameters reference](artifact/references/capabilities/structured-params.md)
+- [Error handling reference](artifact/references/common/error-handling.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON objects or JSON arrays]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Final agent responses are unwrapped JSON; order inquiry outputs include task or status data, and SKU extraction outputs include image and query fields only.]
+
+## Skill Version(s):
+
+0.57.0 (source: server release evidence; artifact frontmatter says 0.50.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,7 @@
+interface:
+  display_name: "ProPaymun IA Architect"
+  short_description: "Product-led IA, sitemaps, and user flows"
+  brand_color: "#5B4BDB"
+  default_prompt: "Use $propaymun-information-architecture to help structure my product. Reply in the language used in this message unless I explicitly request another language; if I have not included product context, ask me in one short sentence to describe the product or paste its brief, then stop."
+policy:
+  allow_implicit_invocation: true

@@ -5,9 +5,14 @@
 # Priority: 0=unset, 1=low, 2=medium, 3=high, 4=urgent
 
 VIKUNJA_URL="https://kanban.pigpen.haus"
-TOKEN="${VIKUNJA_TOKEN:?Set VIKUNJA_TOKEN env var}"
+TOKEN="${VIKUNJA_TOKEN}"
 PROJECT_ID=1
 VIEW_ID=4
+
+if [ -z "$TOKEN" ]; then
+  echo "ERROR: VIKUNJA_TOKEN environment variable not set"
+  exit 1
+fi
 
 TITLE="$1"
 DESC="$2"

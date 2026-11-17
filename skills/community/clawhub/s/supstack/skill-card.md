@@ -1,45 +1,57 @@
-## Description: <br>
-Supplement Research helps an agent answer supplement questions using the SupStack evidence database, including safety, dosing, interactions, stack review, experiments, timing, and research alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supplement Research helps agents answer supplement, dosing, safety, interaction, evidence-quality, stack-building, timing, experiment-tracking, and research-monitoring questions using the SupStack database.
 
-## Publisher: <br>
-[DrBaher](https://clawhub.ai/user/DrBaher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[drbaher](https://clawhub.ai/user/drbaher)
 
-## Use Case: <br>
-External users use this skill to ask an OpenClaw agent for evidence-based supplement information, safety checks, stack optimization, self-experiment tracking, and new-study alerts. The skill is informational and does not diagnose, prescribe, or replace clinician guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can retain sensitive supplement, medication, condition, allergy, preference, search, and experiment information in a local plain-text profile. <br>
-Mitigation: Install and use it only when users understand what is stored, where the files live, how to delete them, and what health details they choose to share. <br>
-Risk: Research alerts and experiment check-ins can create scheduled follow-up messages. <br>
-Mitigation: Enable scheduled monitoring only with clear user consent, confirm the chosen frequency, and provide a direct way to stop monitoring. <br>
-Risk: Supplement guidance can affect health decisions, especially for medications, pregnancy, medical conditions, or allergies. <br>
-Mitigation: Keep responses informational, check interactions and contraindications before recommendations, and direct users to a healthcare professional for medical decisions. <br>
+## Use Case:
 
+External users and their agents use this skill to research supplements, compare evidence quality, check safety and interactions, build supplement stacks, manage supplement timing, track N-of-1 experiments, and monitor new supplement studies.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/DrBaher/supstack) <br>
-- [Publisher Profile](https://clawhub.ai/user/DrBaher) <br>
-- [SupStack Evidence Database](https://supstack.me) <br>
-- [SupStack Public API](https://supstack.me/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with helper-script shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses curl and jq; may create local profile, monitor, and experiment files under the SupStack state directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can maintain a long-lived local health profile containing sensitive supplement, medication, condition, allergy, demographic, preference, interest, and experiment data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or disable automatic profile writes before use, keep the workspace private, and periodically inspect or delete ~/.openclaw/workspace/supstack data.
+
+Risk: The research monitor can create ongoing monitoring state and periodic research checks.
+
+Mitigation: Confirm monitoring intent before setup, review or disable cron monitoring, and clear monitor state when updates are no longer wanted.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/drbaher/skills/supstack)
+- [Publisher Profile](https://clawhub.ai/user/drbaher)
+- [SupStack Ashwagandha Page](https://supstack.me/supplements/ashwagandha)
+- [SupStack Magnesium Page](https://supstack.me/supplements/magnesium)
+- [SupStack Glycine Page](https://supstack.me/supplements/glycine)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with inline shell-command invocations and JSON-derived summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include supplement page links, evidence scores, safety notes, timing plans, research briefings, profile updates, and local monitoring state.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

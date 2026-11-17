@@ -1,46 +1,55 @@
-## Description: <br>
-Operate urlscan.io through the OOMOL oo CLI for retrieving completed scan results, searching scans, and submitting URLs for scanning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use urlscan.io to retrieve scan results, search scans, and submit URLs through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and security analysts use this skill to interact with urlscan.io from an agent workflow through an OOMOL-connected account. It supports reading scan results, searching scans, and submitting URLs for scanning after confirming write actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses OOMOL as the connector layer and requires sensitive urlscan.io credentials. <br>
-Mitigation: Install only when that connector path is acceptable, review the oo CLI installer before use, and connect a minimally scoped urlscan.io API key. <br>
-Risk: Submitting a URL for scanning changes urlscan.io state and may expose the submitted URL to urlscan.io. <br>
-Mitigation: Confirm the exact URL submission payload and expected effect with the user before running the write action. <br>
-Risk: Authentication, connection, billing, or CLI setup commands can alter the local or account environment. <br>
-Mitigation: Run setup steps only after a matching command failure and avoid proactive login, connection, or install actions. <br>
+## Use Case:
 
+Developers and analysts use this skill to search urlscan.io, retrieve completed scan results, and submit URLs for scanning through their connected account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-urlscan) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
-- [urlscan.io homepage](https://urlscan.io) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON command responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the oo CLI, an OOMOL sign-in, and a connected urlscan.io API key; write actions require user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and skill metadata) <br>
+Risk: Setup executes remote software whose automatic skill synchronization settings can affect other installed agents; installer behavior was not verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI installation source and inspect its skill synchronization settings before allowing setup to run.
+
+Risk: Submitting a URL sends a scan payload through OOMOL and its scan visibility may expose the submitted URL or results.
+
+Mitigation: Confirm the exact URL and intended scan visibility before submitting.
+
+## Reference(s):
+
+- [urlscan.io API documentation](https://urlscan.io/docs/api/)
+- [urlscan.io](https://urlscan.io)
+- [oo CLI source repository](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON scan results and concise text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports scan retrieval, search, and URL submission.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

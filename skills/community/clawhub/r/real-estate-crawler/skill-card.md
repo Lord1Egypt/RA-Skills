@@ -1,46 +1,68 @@
-## Description: <br>
-Crawls major Chinese real estate listing sites such as Anjuke, Beike, Lianjia, and Soufun, with property data extraction and documented anti-crawling workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents crawl Chinese real estate listing sites, including Anjuke, Ke.com, Lianjia, and Soufun, with data extraction, export, browser automation, and anti-bot bypass guidance.
 
-## Publisher: <br>
-[h8296699](https://clawhub.ai/user/h8296699) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[h8296699](https://clawhub.ai/user/h8296699)
 
-## Use Case: <br>
-Developers and data analysts use this skill to collect property listing data from Chinese real estate platforms for market research, comparison, and analysis where they have explicit authorization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes anti-bot, CAPTCHA, proxy, cookie, and session-reuse workflows that may create legal, platform-policy, privacy, account, or session risks. <br>
-Mitigation: Install and use only with explicit authorization for the target sites; prefer official APIs or licensed datasets, and avoid CAPTCHA-solving services, proxy rotation for evasion, and reuse of verified browser sessions. <br>
-Risk: Saved cookies, browser sessions, screenshots, or page dumps may contain sensitive account or browsing data. <br>
-Mitigation: Delete saved cookies, sessions, screenshots, and page dumps promptly, and avoid storing reusable authenticated session material. <br>
-Risk: Website structure changes, CAPTCHA challenges, or anti-crawling updates can make extracted property data incomplete or inaccurate. <br>
-Mitigation: Validate extracted records against the live site, review selectors before relying on results, and treat crawler output as unverified data until checked. <br>
+## Use Case:
 
+Developers and data practitioners use this skill to collect and export real estate listing data for market research, property trend analysis, platform comparison, and related data workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/h8296699/real-estate-crawler) <br>
-- [README](artifact/README.md) <br>
-- [Anti-crawler guide](artifact/docs/anti_crawler_guide.md) <br>
-- [Captcha strategies](artifact/docs/captcha_strategies.md) <br>
-- [Publish notes](artifact/publish.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with inline bash commands, Python code references, and generated JSON, CSV, or HTML data files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and agent-browser; outputs depend on target site availability, authorization, and selected crawl mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/config.json) <br>
+Risk: The skill teaches anti-bot and CAPTCHA bypass techniques for third-party real estate sites.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with explicit permission from target sites and confirm that collection complies with applicable terms, laws, and internal policy.
+
+Risk: Saved browser sessions, cookies, and verified states can function as secrets.
+
+Mitigation: Avoid real account sessions, store any session files securely, and rotate or delete them after use.
+
+Risk: The CAPTCHA guidance discusses third-party solver APIs.
+
+Mitigation: Do not upload CAPTCHA images or related site data to third-party solvers unless that use has been reviewed and approved.
+
+Risk: The main entry point builds shell commands from CLI values.
+
+Mitigation: Do not pass untrusted CLI values to main.py; prefer fixed, reviewed arguments or direct script invocation.
+
+Risk: Runtime dependencies are installed from package managers.
+
+Mitigation: Pin and review dependencies before installation in production or shared environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/h8296699/skills/real-estate-crawler)
+- [README](artifact/README.md)
+- [Anti-Crawler Guide](artifact/docs/anti_crawler_guide.md)
+- [CAPTCHA Strategies](artifact/docs/captcha_strategies.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python, shell command, and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports JSON, CSV, Excel, HTML report, and chart exports when its crawler scripts are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

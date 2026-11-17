@@ -1,0 +1,32 @@
+{
+  "deprecated": "example only; use schemas/diagram-ir.schema.json for the contract",
+  "schema_version": "1.0",
+  "diagram_id": "D01",
+  "title": "Agent execution architecture",
+  "diagram_type": "layered_architecture",
+  "audience_question": "How does the agent complete work and recover from failure?",
+  "message": "Stable execution depends on planning, tools, verification, and recovery.",
+  "direction": "top_to_bottom",
+  "reading_order": "layer_then_left_to_right",
+  "nodes": [
+    {"id": "N01", "label": "Plan", "role": "planner", "node_type": "capability", "group_id": "G01", "priority": "primary", "sequence": 1, "shape": "rounded_rect", "status": "normal"},
+    {"id": "N02", "label": "Execute", "role": "tooling", "node_type": "service", "group_id": "G02", "priority": "primary", "sequence": 2, "shape": "rounded_rect", "status": "normal"},
+    {"id": "N03", "label": "Verify", "role": "qa", "node_type": "control", "group_id": "G03", "priority": "primary", "sequence": 3, "shape": "rounded_rect", "status": "highlighted"}
+  ],
+  "groups": [
+    {"id": "G01", "label": "Planning", "group_type": "layer", "node_ids": ["N01"], "priority": "primary", "visual_role": "container", "layout": "horizontal"},
+    {"id": "G02", "label": "Execution", "group_type": "layer", "node_ids": ["N02"], "priority": "primary", "visual_role": "container", "layout": "horizontal"},
+    {"id": "G03", "label": "Verification", "group_type": "layer", "node_ids": ["N03"], "priority": "primary", "visual_role": "container", "layout": "horizontal"}
+  ],
+  "edges": [
+    {"id": "E01", "source": "N01", "target": "N02", "relation": "trigger", "priority": "primary", "direction": "forward", "style": "orthogonal", "cross_boundary": true},
+    {"id": "E02", "source": "N02", "target": "N03", "relation": "validation", "priority": "primary", "direction": "forward", "style": "orthogonal", "cross_boundary": true}
+  ],
+  "main_paths": [{"id": "P01", "label": "Standard execution path", "node_ids": ["N01", "N02", "N03"], "edge_ids": ["E01", "E02"], "priority": "primary"}],
+  "boundaries": [],
+  "annotations": [],
+  "layout_constraints": {"preferred_layout": "layered", "allow_layout_change": true, "max_primary_nodes": 8, "max_total_nodes": 14, "max_primary_edges": 9, "max_total_edges": 18},
+  "delivery_contract": {"preferred_route": "native_diagram", "allowed_fallbacks": ["hybrid_overlay", "svg_component"], "editable_core": ["node_labels", "layer_labels"], "raster_policy": {"allowed": false, "max_area_ratio": 0, "whole_slide_forbidden": true, "requires_disclosure": true, "requires_native_overlay": true}},
+  "qa_expectations": ["DIAGRAM_MAIN_PATH", "COLOR_CONTRACT"],
+  "metadata": {}
+}

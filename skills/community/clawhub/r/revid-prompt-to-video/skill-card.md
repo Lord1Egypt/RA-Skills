@@ -1,43 +1,56 @@
-## Description: <br>
-Turn a one-line idea into a full short video; Revid writes the script, picks visuals, and assembles the cut. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn a one-line idea into a full short video: Revid writes the script, picks visuals, and assembles the cut.
 
-## Publisher: <br>
-[api00](https://clawhub.ai/user/api00) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[api00](https://clawhub.ai/user/api00)
 
-## Use Case: <br>
-External users and developers use this skill to turn a topic, question, or one-line concept into a short Revid-generated video when they do not already have a script. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends video prompts, style notes, and render settings to Revid for processing. <br>
-Mitigation: Do not include secrets, regulated data, private customer information, or confidential brand plans unless external sharing with Revid is approved. <br>
-Risk: The skill requires a sensitive Revid API key. <br>
-Mitigation: Store REVID_API_KEY in approved secret management or environment configuration and avoid committing it to skill files, examples, or logs. <br>
+## Use Case:
 
+External creators, marketers, and agents use this skill to turn a topic, question, or one-line concept into a short Revid-generated video without first writing a script.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/api00/revid-prompt-to-video) <br>
-- [Publisher profile](https://clawhub.ai/user/api00) <br>
-- [Revid render endpoint](https://www.revid.ai/api/public/v3/render) <br>
-- [Revid status endpoint](https://www.revid.ai/api/public/v3/status) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON payload examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REVID_API_KEY and sends the user's prompt, style notes, and render settings to Revid.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server-resolved release metadata) <br>
+Risk: Prompts, optional style notes, and video-generation settings are sent to Revid.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid private, regulated, or proprietary prompt content unless the user's Revid account terms permit that use.
+
+Risk: The skill requires a Revid API key.
+
+Mitigation: Store REVID_API_KEY as configuration or secret material and do not include it in prompts, logs, or shared examples.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/api00/skills/revid-prompt-to-video)
+- [Revid render API endpoint](https://www.revid.ai/api/public/v3/render)
+- [Revid status API endpoint](https://www.revid.ai/api/public/v3/status)
+- [Publisher profile](https://clawhub.ai/user/api00)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON API payloads and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires REVID_API_KEY and sends the prompt, optional style notes, and video-generation settings to Revid.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

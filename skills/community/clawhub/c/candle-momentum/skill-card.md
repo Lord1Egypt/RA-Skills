@@ -1,44 +1,62 @@
-## Description: <br>
-Trade Polymarket 5-minute crypto fast markets using Binance 1-minute candle body analysis, volume surge detection, and direction alignment across BTC, ETH, SOL, XRP, and BNB. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade Polymarket 5-minute crypto fast markets using 1-minute candle body analysis and volume surge detection from Binance.
 
-## Publisher: <br>
-[Mibayy](https://clawhub.ai/user/Mibayy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mibayy](https://clawhub.ai/user/mibayy)
 
-## Use Case: <br>
-External traders and agent operators use this skill to run or adapt a Polymarket fast-market trading workflow that evaluates Binance candle structure, selects the strongest eligible crypto signal, and can either dry-run or place live trades through Simmer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can place real Polymarket trades and create financial loss. <br>
-Mitigation: Start in dry-run or paper mode, then confirm the exact market, pair, amount, daily limits, stop-loss or drawdown settings, and the explicit live flag before enabling real trades. <br>
-Risk: Overbroad trading credentials could expose funds beyond the intended strategy. <br>
-Mitigation: Use only keys scoped to trading and never use credentials with withdrawal access. <br>
-Risk: A valid signal may still be unsuitable because of slippage, weak edge, or a rapidly changing market. <br>
-Mitigation: Review the skill's context checks and keep conservative position sizing and thresholds before running scheduled live cycles. <br>
+## Use Case:
 
+External developers and trading operators use this skill to run or adapt a Polymarket fast-market trading bot that evaluates short-interval crypto candle structure and volume before deciding whether to place a trade.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Mibayy/candle-momentum) <br>
-- [Binance Klines API endpoint](https://api.binance.com/api/v3/klines) <br>
-- [Simmer API base](https://api.simmer.markets) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown guidance, Python CLI output, and JSON-like run results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dry-run is the default; live trading requires SIMMER_API_KEY and an explicit --live flag.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server evidence, SKILL.md frontmatter, clawhub.json) <br>
+Risk: Live mode can place real Polymarket trades, including when scheduled under cron.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run in dry-run mode first, enable --live only deliberately, and avoid unattended scheduling until trade behavior and sizing are reviewed.
+
+Risk: The configured max position should not be treated as a hard per-trade maximum.
+
+Mitigation: Review and cap trade sizing independently before live use.
+
+Risk: A Simmer API key is required for trading access.
+
+Mitigation: Use a dedicated API key with the least practical account authority and rotate it if exposed.
+
+Risk: Runtime dependencies and external market data affect trade decisions.
+
+Mitigation: Pin dependencies and monitor Binance and Simmer responses before relying on automated execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mibayy/skills/candle-momentum)
+- [Binance klines API endpoint](https://api.binance.com/api/v3/klines)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and command-line status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce dry-run trade summaries by default and live trading status when explicitly run with --live.]
+
+## Skill Version(s):
+
+2.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

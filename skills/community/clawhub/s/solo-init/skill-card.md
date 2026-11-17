@@ -1,43 +1,54 @@
-## Description: <br>
-One-time founder onboarding that generates personalized Solo Factory configuration, including a founder manifest, STREAM calibration, development principles, and selected stack templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+One-time founder onboarding that generates a personalized manifest, STREAM calibration, development principles, and stack selection for Solo Factory projects.
 
-## Publisher: <br>
-[fortunto2](https://clawhub.ai/user/fortunto2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[fortunto2](https://clawhub.ai/user/fortunto2)
 
-## Use Case: <br>
-Developers and solo founders use this skill for first-time Solo Factory onboarding. It asks setup questions, writes reusable org defaults, and creates local project profile files that other Solo Factory skills can read. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or update local Solo Factory configuration files. <br>
-Mitigation: Run it only for a project you intend to configure, confirm the project path, and review ~/.solo-factory/defaults.yaml and .solo/ files after generation. <br>
-Risk: Onboarding answers may be written into local Markdown or YAML files. <br>
-Mitigation: Do not provide secrets, credentials, or sensitive private data in the setup answers. <br>
-Risk: The optional Solograph check may execute an external package through uvx. <br>
-Mitigation: Skip the optional Solograph/uvx check if external package execution is not desired. <br>
+## Use Case:
 
+External developers and solo founders use this skill to initialize reusable Solo Factory defaults and project-level profile files before using related scaffold, validation, setup, and decision-support skills.
 
-## Reference(s): <br>
-- [Generation Rules](references/generation-rules.md) <br>
-- [Question Specifications](references/questions.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance plus generated YAML and Markdown configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes ~/.solo-factory/defaults.yaml and .solo/ project files based on user answers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The optional Solograph check can execute or install an unpinned third-party package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and trust the Solograph package source and version before allowing uvx solograph or a Solograph install command to run.
+
+Risk: The skill creates persistent org-level defaults and project-specific .solo files that related skills consume.
+
+Mitigation: Review generated defaults.yaml and .solo files before relying on downstream Solo Factory skills.
+
+## Reference(s):
+
+- [Generation Rules](references/generation-rules.md)
+- [AskUserQuestion Specifications](references/questions.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, shell commands, guidance]
+
+**Output Format:** [Markdown with YAML configuration and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates persistent org defaults under ~/.solo-factory and project-specific .solo profile files.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

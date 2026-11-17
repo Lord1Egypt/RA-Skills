@@ -1,43 +1,61 @@
-## Description: <br>
-Workers' compensation navigation and workplace injury rights. Use when someone is injured at work, needs to file a workers' comp claim, is being pressured not to report an injury, or doesn't understand their rights after a workplace accident. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Workers' compensation navigation and workplace injury rights for people who are injured at work, need to file a claim, face pressure not to report an injury, or need to understand post-accident rights.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-Employees and worker advocates use this skill to respond after workplace injuries, document incidents, report injuries, file workers' compensation claims, and understand common employer pressure tactics. It helps agents tailor general guidance to the user's jurisdiction and escalate deadline, retaliation, denial, and privacy concerns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may enter injury reports, medical records, witness contacts, photos, and claim notes that are sensitive. <br>
-Mitigation: Use accounts and devices the user controls, enable MFA, restrict sharing, and prefer encrypted storage for records. <br>
-Risk: Workers' compensation deadlines and procedures vary by jurisdiction, and incorrect assumptions can affect a claim. <br>
-Mitigation: Verify state-specific or country-specific deadlines and filing steps with an official workers' compensation board or a qualified attorney. <br>
-Risk: The skill can produce legal-adjacent guidance that may be mistaken for jurisdiction-specific legal advice. <br>
-Mitigation: Use the skill as general guidance and escalate disputed, denied, retaliatory, deadline-sensitive, or complex cases to a qualified attorney or official agency. <br>
+## Use Case:
 
+Workers, worker advocates, and agents assisting injured employees use this skill to document a workplace injury, notify an employer, navigate workers' compensation filing, respond to intimidation or denial, and identify when official agency or attorney review is needed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/howtousehumans/workplace-injury-rights) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/howtousehumans) <br>
+### Deployment Geography for Use:
 
+Global, with explicit localization guidance for the US, UK, Australia, Canada, and EU countries.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with checklists, response scripts, notification templates, and jurisdiction-specific follow-up prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include sensitive injury, medical, witness, employer, and claim details supplied by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Install-time supply-chain exposure from running the ClawHub installer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned or trusted installer version and avoid elevated privileges during installation.
+
+Risk: Workers' compensation deadlines and procedures vary by jurisdiction, so generic guidance may be incomplete for a specific claim.
+
+Mitigation: Verify state- or country-specific deadlines and filing procedures with official agencies or a qualified attorney.
+
+Risk: Workplace injury records can include sensitive medical, employment, or immigration-related details.
+
+Mitigation: Store documentation only in intended personal locations and avoid work devices or accounts for sensitive records.
+
+## Reference(s):
+
+- [OSHA Worker Rights](https://www.osha.gov/workers)
+- [US Department of Labor Workers' Compensation Overview](https://www.dol.gov/general/topic/workcomp)
+- [National Council on Compensation Insurance](https://www.ncci.com)
+- [American Bar Association Worker Injury Resources](https://www.americanbar.org)
+- [Anthropic Labor Market Impacts of AI](https://www.anthropic.com/research/labor-market-impacts)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with checklists, response scripts, notification templates, and jurisdiction-specific caveats.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May incorporate user-provided incident facts such as jurisdiction, injury date, employer notification status, claim status, and documentation gaps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

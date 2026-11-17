@@ -1,42 +1,54 @@
-## Description: <br>
-Get detailed routing between two points with distance, duration, and optional turn-by-turn directions. Use when you need navigation instructions or travel time estimates between locations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get detailed routing between two points with distance, duration, and optional turn-by-turn directions.
 
-## Publisher: <br>
-[james-southendsolutions](https://clawhub.ai/user/james-southendsolutions) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[james-southendsolutions](https://clawhub.ai/user/james-southendsolutions)
 
-## Use Case: <br>
-Developers and agents use this skill to request point-to-point route data, travel time estimates, turn-by-turn directions, and optional route geometry or imagery parameters from Camino's route API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Route requests send precise start and end coordinates, and optionally street-level imagery parameters, to Camino's external API. <br>
-Mitigation: Avoid exact home, workplace, or sensitive travel locations unless that disclosure is acceptable. <br>
-Risk: The skill requires a CAMINO_API_KEY credential for authenticated API calls. <br>
-Mitigation: Store the key in the agent environment and avoid pasting it into prompts, command history, or shared logs. <br>
+## Use Case:
 
+External users and developers use this skill to request route distance, travel duration, and optional turn-by-turn directions between coordinate pairs for driving, cycling, or walking workflows.
 
-## Reference(s): <br>
-- [ClawHub Route skill page](https://clawhub.ai/james-southendsolutions/camino-route) <br>
-- [Camino API key activation](https://app.getcamino.ai/skills/activate) <br>
-- [x402 payment protocol](https://x402.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown instructions with shell examples and JSON route responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, and CAMINO_API_KEY; route requests include start and end coordinates with optional travel mode, geometry, and imagery flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill sends route coordinates and optional imagery requests to Camino's API under the user's API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit home, work, live, or otherwise sensitive locations unless you are comfortable sharing those coordinates and optional imagery requests with Camino.
+
+Risk: Install instructions include mutable package or repository targets and an all-skills install option.
+
+Mitigation: Install only from a reviewed, pinned source when possible, and avoid the all-skills install unless you intend to trust the entire Camino suite.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/james-southendsolutions/skills/camino-route)
+- [Camino API key activation](https://app.getcamino.ai/skills/activate)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [JSON route data and Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CAMINO_API_KEY plus curl and jq; optional geometry and imagery parameters may increase location-data sensitivity.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

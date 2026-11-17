@@ -1,0 +1,4 @@
+interface:
+  display_name: "Feishu Invoice Approval"
+  short_description: "Build and run a confirmed Feishu invoice approval bot"
+  default_prompt: "Use $automate-feishu-invoice-approval to set up a Feishu invoice approval bot in my workspace."

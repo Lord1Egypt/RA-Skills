@@ -1,43 +1,60 @@
-## Description: <br>
-面向6-12岁儿童的AI家教助手，结合苏格拉底式引导和知识讲解，以数学和科学为主，支持主动出题、个性化难度调节、学习记录和家长报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+面向6-12岁儿童的AI家教助手，结合苏格拉底式引导和知识讲解，以数学和科学为主，支持AI主动出题、个性化难度调节、错误引导、学习记录和家长报告。
 
-## Publisher: <br>
-[lixiang1076](https://clawhub.ai/user/lixiang1076) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lixiang1076](https://clawhub.ai/user/lixiang1076)
 
-## Use Case: <br>
-Parents, guardians, and educators use this skill to run short, child-appropriate math and science tutoring sessions for ages 6-12. It supports guided questioning, adaptive difficulty, local learning records, and parent-facing progress reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores identifiable learning records about children, including profile details and session history. <br>
-Mitigation: Use pseudonyms where possible, keep the local data directory private, and delete old sessions when they are no longer needed. <br>
-Risk: Parent reports may expose child learning history if shared without clear consent. <br>
-Mitigation: Send reports only to explicitly approved recipients and only when a parent or guardian understands and accepts the data sharing. <br>
+## Use Case:
 
+External users and families can use this skill to guide 6-12 year old children through short math and science tutoring sessions with Socratic prompting, adaptive difficulty, local learning records, and parent-facing reports.
 
-## Reference(s): <br>
-- [小学数学与科学知识体系（人教版课标对齐）](references/curriculum.md) <br>
-- [教学法指南](references/pedagogy.md) <br>
-- [出题模板库](references/question-templates.md) <br>
-- [ClawHub release page](https://clawhub.ai/lixiang1076/kid-tutor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Conversational tutoring text, Markdown reports, JSON learning records, and local shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores child profile and session data locally under the configured data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release evidence) <br>
+Risk: The skill stores a child's profile and learning history in local plaintext files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Get parent consent before use, avoid real full names, and keep the data/kid-tutor/ directory access-controlled.
+
+Risk: The documented shell echo pattern for logging session JSON can mishandle user-provided content.
+
+Mitigation: Use a file-based session JSON workflow or a non-shell stdin invocation instead of echoing JSON through the shell.
+
+Risk: Parent reports may include child learning data and are described as shareable through Feishu.
+
+Mitigation: Review report contents and obtain a separate confirmation before sending reports outside the local environment.
+
+## Reference(s):
+
+- [Curriculum](references/curriculum.md)
+- [Pedagogy](references/pedagogy.md)
+- [Question Templates](references/question-templates.md)
+- [ClawHub Skill Page](https://clawhub.ai/lixiang1076/skills/kid-tutor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Conversational tutoring guidance, inline shell commands, local JSON learning records, and Markdown parent reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local profile and session files under data/kid-tutor/ when the helper scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

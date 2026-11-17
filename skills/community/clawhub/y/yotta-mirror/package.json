@@ -1,0 +1,45 @@
+{
+  "name": "@yottameta/yotta-mirror",
+  "version": "0.1.3",
+  "description": "YuanJing (yotta-mirror) — a local, deterministic learning-diagnostics skill for AI agents: reads a CSV / TSV score or answer sheet plus an item-to-knowledge map, runs a data gate, per-item statistics, score-weighted knowledge mastery, student layers with borderline detection, and weak-point diagnosis, then writes a Markdown / JSON report in which every conclusion carries its item ids, sample size, rate and the threshold used. Configurable thresholds, reproducible student anonymisation and a CI gate are included. Triggers: analysing class scores or homework accuracy, finding weak knowledge points, producing a learning-diagnostics report, checking layer distribution and borderline students, or wiring diagnostics into automation. Boundaries: deterministic local statistics and teaching-improvement hints only — no student comments, rankings or admission predictions, no labelling of students; no network access, no model calls, no student-data upload, no cross-device sync; no OCR for images or scanned papers; results do not replace teacher judgement, and low-sample or borderline cases are downgraded to human review. Fully local, zero-dependency (Python 3.8+ standard library).",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "yotta-mirror",
+    "yottaskills",
+    "learning-analytics",
+    "education"
+  ],
+  "files": [
+    "SKILL.md",
+    "LICENSE",
+    "NOTICE",
+    "README.md",
+    "README.zh-CN.md",
+    "CHANGELOG.md",
+    "install.sh",
+    "references",
+    "scripts",
+    "assets",
+    "bin",
+    "!scripts/test_*.py",
+    "!scripts/fixtures",
+    "!scripts/fixtures/**",
+    "!**/__pycache__",
+    "!**/*.pyc",
+    "!**/*.pyo"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YottaMeta/yotta-mirror.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "yotta-mirror": "bin/install.js"
+  },
+  "scripts": {
+    "test": "python scripts/test_yotta_mirror.py"
+  }
+}

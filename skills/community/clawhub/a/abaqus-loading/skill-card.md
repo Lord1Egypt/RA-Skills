@@ -1,43 +1,56 @@
-## Description: <br>
-Guides Abaqus users through defining analysis steps, output requests, boundary conditions, load types, contact settings, and related loading controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through applying loads and related setup in Abaqus, including analysis steps, output requests, boundary conditions, load types, contact settings, amplitudes, and degree-of-freedom codes.
 
-## Publisher: <br>
-[jijinbao-code](https://clawhub.ai/user/jijinbao-code) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jijinbao-code](https://clawhub.ai/user/jijinbao-code)
 
-## Use Case: <br>
-Developers and engineers use this skill as a concise Abaqus loading reference when setting up structural, dynamic, thermal, modal, and explicit dynamics analyses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Engineering setup guidance can be incorrect for a specific Abaqus version, model type, or analysis objective. <br>
-Mitigation: Verify recommendations against the applicable Abaqus version and official SIMULIA documentation before applying them to production analyses. <br>
-Risk: Prompts about real engineering projects may expose proprietary models, license information, or sensitive project data. <br>
-Mitigation: Avoid sharing proprietary models, license details, or sensitive project data when using the skill. <br>
+## Use Case:
 
+Developers and structural or finite element analysis engineers use this Chinese-language skill as reference guidance for configuring Abaqus analysis steps, loads, boundary conditions, output requests, and contact interactions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jijinbao-code/abaqus-loading) <br>
-- [SIMULIA Abaqus Standard](https://www.3ds.com/products/simulia/abaqus/standard) <br>
-- [SIMULIA Abaqus Explicit](https://www.3ds.com/products/simulia/abaqus/explicit) <br>
-- [SIMULIA Established Products documentation](https://help.3ds.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, code] <br>
-**Output Format:** [Markdown guidance with concise Abaqus examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only reference; verify engineering recommendations against the applicable Abaqus version and official documentation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server evidence and skill metadata) <br>
+Risk: The skill provides Chinese-language Abaqus reference guidance, which may be difficult for users who need another language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use translation or add language-preference handling before relying on it in multilingual workflows.
+
+Risk: Engineering setup guidance can be misapplied to an Abaqus model or analysis type.
+
+Mitigation: Have a qualified Abaqus user review proposed steps, loads, boundary conditions, and contact settings before simulation or deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jijinbao-code/skills/abaqus-loading)
+- [SIMULIA Abaqus documentation](https://help.3ds.com)
+- [Abaqus/Standard](https://www.3ds.com/products/simulia/abaqus/standard)
+- [Abaqus/Explicit](https://www.3ds.com/products/simulia/abaqus/explicit)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code]
+
+**Output Format:** [Markdown guidance with occasional inline Abaqus Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language reference content; no tool, file, credential, network, or persistence access requested.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

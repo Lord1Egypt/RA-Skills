@@ -1,45 +1,57 @@
-## Description: <br>
-Perplexity Sonar search and answer generation through AIsa for citation-backed web answers, analytical reasoning, and long-form research reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perplexity Sonar search and answer generation through AIsa for citation-backed web answers, analytical reasoning, and long-form research reports.
 
-## Publisher: <br>
-[chaimengphp](https://clawhub.ai/user/chaimengphp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chaimengphp](https://clawhub.ai/user/chaimengphp)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to call AIsa-hosted Perplexity Sonar endpoints for citation-backed web answers, analytical reasoning, and long-form research reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search prompts, optional system instructions, and authenticated requests are sent to the external AIsa/Perplexity service. <br>
-Mitigation: Use a revocable API key and avoid submitting secrets, private documents, or sensitive personal data unless sharing that data with the provider is intended. <br>
-Risk: Long-running deep research requests can time out or return delayed failures. <br>
-Mitigation: Narrow the query, retry later, or use sonar-pro or sonar-reasoning-pro for a faster response. <br>
+## Use Case:
 
+Developers and agents use this skill to call Perplexity Sonar, Sonar Pro, Sonar Reasoning Pro, and Sonar Deep Research through AIsa when they need citation-backed search answers, synthesis, reasoning, or research reports.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/chaimengphp/aisaclaw-perplexity-search) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [AIsa Sonar API](https://docs.aisa.one/reference/post_perplexity-sonar) <br>
-- [AIsa Sonar Pro API](https://docs.aisa.one/reference/post_perplexity-sonar-pro) <br>
-- [AIsa Sonar Reasoning Pro API](https://docs.aisa.one/reference/post_perplexity-sonar-reasoning-pro) <br>
-- [AIsa Sonar Deep Research API](https://docs.aisa.one/reference/post_perplexity-sonar-deep-research) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON API responses and Markdown guidance with bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY; Sonar Deep Research uses a longer timeout with retries and may still require narrower prompts or a faster endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Queries and optional system instructions are sent to AIsa's Perplexity API using AISA_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting secrets, regulated data, private documents, or confidential internal context unless that sharing is approved for the environment.
+
+Risk: Sonar Deep Research can time out on broad prompts.
+
+Mitigation: Narrow the query, retry later, or use sonar-pro or sonar-reasoning-pro for faster responses.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chaimengphp/skills/aisaclaw-perplexity-search)
+- [AIsa Sonar API Reference](https://docs.aisa.one/reference/post_perplexity-sonar)
+- [AIsa Sonar Pro API Reference](https://docs.aisa.one/reference/post_perplexity-sonar-pro)
+- [AIsa Sonar Reasoning Pro API Reference](https://docs.aisa.one/reference/post_perplexity-sonar-reasoning-pro)
+- [AIsa Sonar Deep Research API Reference](https://docs.aisa.one/reference/post_perplexity-sonar-deep-research)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AISA_API_KEY; Sonar Deep Research may take longer and can time out on broad prompts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

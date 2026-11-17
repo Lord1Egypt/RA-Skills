@@ -1,0 +1,13 @@
+{
+  "ownerId": "583963",
+  "slug": "launch-readiness",
+  "version": "1.5.3",
+  "workflow": "audit",
+  "focus": "launch",
+  "outputTemplate": "ops_audit",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews"
+  ],
+  "releaseWave": 1
+}

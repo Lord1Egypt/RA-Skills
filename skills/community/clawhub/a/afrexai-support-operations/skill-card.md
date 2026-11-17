@@ -1,43 +1,55 @@
-## Description: <br>
-Build and run a world-class customer support operation — from ticket management to team scaling. Complete methodology with templates, scoring systems, and automation playbooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and run a world-class customer support operation from ticket management to team scaling with templates, scoring systems, and automation playbooks.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Support leaders, operations teams, founders, and customer-facing managers use this skill to assess support health, design channel strategy, manage tickets, create response templates, define escalation paths, build QA programs, and plan team scaling. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill includes promotional links to external context-pack offerings. <br>
-Mitigation: Review outbound links separately from the operational guidance before making purchase or adoption decisions. <br>
-Risk: Broad customer-support phrases may cause an agent to select this skill when the user only needs a narrow workplace answer. <br>
-Mitigation: Constrain invocation to customer-support operations planning and review generated recommendations before changing live support workflows. <br>
-Risk: The skill can guide support processes that involve customer records and PII handling. <br>
-Mitigation: Apply existing privacy, access-control, and data-retention policies before using templates or workflows with real customer data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-support-operations) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
-- [ClawHub](https://clawhub.com) <br>
+## Use Case:
 
+Customer support leaders, operators, and internal teams use this skill to assess support health, design support channels, manage tickets and escalations, create customer response templates, plan staffing, and build quality programs.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with tables, templates, checklists, YAML examples, and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces planning frameworks, operational rubrics, customer response templates, and support workflow recommendations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may treat the skill as an autonomous support agent for refunds, public status updates, social posts, or customer communications.
+
+Mitigation: Use it as a support-operations template pack and keep normal company approval, legal, privacy, and manager-review processes in place before customer-facing action.
+
+Risk: Support templates and playbooks may be inaccurate for a company's policies, customer contracts, or regulated workflows.
+
+Mitigation: Review and adapt generated guidance before deployment, especially for legal threats, compliance issues, PII handling, refunds, and regulated industries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-support-operations)
+- [Publisher profile](https://clawhub.ai/user/1kalin)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+- [ClawHub skills catalog](https://clawhub.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown with YAML snippets, tables, checklists, and reusable response templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

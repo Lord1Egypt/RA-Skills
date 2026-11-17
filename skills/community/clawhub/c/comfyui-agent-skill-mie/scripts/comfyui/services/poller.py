@@ -13,10 +13,11 @@ except ImportError:
     ComfyApiWrapper = None  # type: ignore
     ComfyWorkflowWrapper = None  # type: ignore
 
-from comfyui.config import SKILL_ROOT, get_user_data_root, get_workflows_dir
+from comfyui.config import SKILL_ROOT, get_http_timeout, get_user_data_root, get_workflows_dir
 from comfyui.services.executor import (
     job_hierarchy_output_dir,
     node_output_media_list,
+    output_path_within,
     parse_job_anchor_from_iso,
 )
 from comfyui.services.job_store import JobStore
@@ -58,6 +59,9 @@ def _materialize_outputs(
             if output_kind == "audio" and node_data.get("audio"):
                 output_node_id = nid
                 break
+            if output_kind == "3d" and node_data.get("3d"):
+                output_node_id = nid
+                break
             if output_kind == "video" and any(
                 node_data.get(k) for k in ("images", "gifs", "videos")
             ):
@@ -81,7 +85,7 @@ def _materialize_outputs(
         folder_type = item.get("type", "output")
         try:
             data = api.get_image(filename, subfolder, folder_type)
-            out_path = results_dir / filename
+            out_path = output_path_within(results_dir, filename)
             out_path.parent.mkdir(parents=True, exist_ok=True)
             out_path.write_bytes(data)
             artifacts.append({
@@ -241,7 +245,8 @@ def poll_job(
         wf_dir = legacy if legacy.is_dir() else get_workflows_dir()
 
     try:
-        api = ComfyApiWrapper(url)
+        connect_t, read_t = get_http_timeout()
+        api = ComfyApiWrapper(url, connect_timeout=connect_t, read_timeout=read_t)
     except Exception as e:
         err_obj = _err("SERVER_UNAVAILABLE", str(e))
         store.update_job(
@@ -351,6 +356,8 @@ def poll_job(
             okind = getattr(config, "output_kind", "image") or "image"
             if okind == "audio":
                 kind = "audio"
+            elif okind == "3d":
+                kind = "3D model"
             elif okind == "video":
                 kind = "video"
             else:

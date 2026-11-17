@@ -20,6 +20,16 @@ const DEFAULT_RPC_TESTNET = "https://soroban-testnet.stellar.org";
 
 export interface BaseConfig {
   secretFile: string;
+  /**
+   * True only when --secret-file was passed. The secret loader uses this to
+   * decide whether it may look at .env files next to the secret file: naming
+   * a path is what authorises reading that directory. Without it the loader
+   * stays on files this skill owns.
+   *
+   * Optional so existing code that builds a BaseConfig by hand keeps type
+   * checking; absent is treated as "not explicit", the safe reading.
+   */
+  secretFileExplicit?: boolean;
   identity?: string;
   network: "testnet" | "pubnet";
   horizonUrl: string;
@@ -84,7 +94,15 @@ export function parseBase(argv: string[]): {
     (network === "pubnet" ? DEFAULT_RPC_PUBNET : DEFAULT_RPC_TESTNET);
 
   return {
-    base: { secretFile, identity, network, horizonUrl, rpcUrl, assetSac },
+    base: {
+      secretFile,
+      secretFileExplicit,
+      identity,
+      network,
+      horizonUrl,
+      rpcUrl,
+      assetSac,
+    },
     rest,
   };
 }

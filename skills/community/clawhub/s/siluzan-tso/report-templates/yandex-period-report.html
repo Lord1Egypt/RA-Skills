@@ -1,0 +1,1495 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Yandex Ads 账户分析报告</title>
+    <style>
+      :root {
+        --bg: #f3f1ec;
+        --surface: #fffdf8;
+        --ink: #1c1b19;
+        --muted: #5c584f;
+        --line: #d9d3c6;
+        --yandex: #fc3f1d;
+        --yandex-deep: #d92f12;
+        --ok: #1f7a4c;
+        --ok-bg: #e5f4eb;
+        --danger: #b42318;
+        --danger-bg: #fdeceb;
+        --info: #175cd3;
+        --info-bg: #e8f1fc;
+        --warn: #b54708;
+        --warn-bg: #fff4e5;
+        --gray: #667085;
+        --shadow: 0 18px 40px rgba(28, 27, 25, 0.08);
+        --radius: 18px;
+        --max: 1180px;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        color: var(--ink);
+        background:
+          radial-gradient(1200px 500px at 10% -10%, rgba(252, 63, 29, 0.1), transparent 55%),
+          radial-gradient(900px 400px at 90% 0%, rgba(23, 92, 211, 0.08), transparent 50%),
+          linear-gradient(180deg, #f7f4ee 0%, var(--bg) 40%, #ebe7de 100%);
+        font-family: "Noto Sans SC", "IBM Plex Sans", sans-serif;
+        line-height: 1.55;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .wrap {
+        width: min(var(--max), calc(100% - 32px));
+        margin: 0 auto;
+      }
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        backdrop-filter: blur(14px);
+        background: rgba(243, 241, 236, 0.86);
+        border-bottom: 1px solid rgba(217, 211, 198, 0.9);
+      }
+      .topbar-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        min-height: 64px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 700;
+      }
+      .brand-mark {
+        width: 34px;
+        height: 34px;
+        border-radius: 10px;
+        background: linear-gradient(145deg, var(--yandex), #ff7a3d);
+        display: grid;
+        place-items: center;
+        color: white;
+        font-family: "IBM Plex Sans", sans-serif;
+        font-weight: 700;
+        box-shadow: 0 8px 18px rgba(252, 63, 29, 0.28);
+      }
+      .nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        justify-content: flex-end;
+      }
+      .nav a {
+        padding: 7px 10px;
+        border-radius: 999px;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 500;
+      }
+      .nav a:hover,
+      .nav a.active {
+        background: var(--surface);
+        color: var(--ink);
+        box-shadow: inset 0 0 0 1px var(--line);
+      }
+      .hero {
+        padding: 36px 0 10px;
+      }
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--yandex-deep);
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+      .eyebrow::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--yandex);
+        box-shadow: 0 0 0 4px rgba(252, 63, 29, 0.15);
+      }
+      h1 {
+        margin: 0 0 10px;
+        font-size: clamp(26px, 4vw, 36px);
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+      }
+      .hero-sub {
+        color: var(--muted);
+        margin: 0 0 22px;
+        font-size: 15px;
+      }
+      .meta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .chip strong {
+        color: var(--ink);
+        font-weight: 600;
+      }
+      section {
+        padding: 20px 0;
+      }
+      .section-head {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 14px;
+      }
+      .section-head h2 {
+        margin: 0;
+        font-size: 22px;
+        letter-spacing: -0.02em;
+      }
+      .section-head p {
+        margin: 4px 0 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .panel {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 12px;
+      }
+      .kpi {
+        padding: 18px 18px 16px;
+        border-radius: 16px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+      }
+      .kpi .label {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 500;
+      }
+      .kpi .value {
+        margin-top: 6px;
+        font-family: "IBM Plex Sans", sans-serif;
+        font-size: 26px;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+      }
+      .kpi .delta {
+        margin-top: 8px;
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--muted);
+      }
+      .meta-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px 18px;
+        padding: 18px 20px;
+        border-bottom: 1px solid var(--line);
+        font-size: 13px;
+      }
+      .meta-grid dt {
+        color: var(--muted);
+        margin: 0;
+      }
+      .meta-grid dd {
+        margin: 2px 0 0;
+        font-weight: 600;
+      }
+      .table-wrap {
+        overflow-x: auto;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+      }
+      th,
+      td {
+        padding: 10px 12px;
+        text-align: left;
+        border-bottom: 1px solid var(--line);
+        vertical-align: top;
+      }
+      th {
+        background: #f7f3ea;
+        color: var(--muted);
+        font-weight: 600;
+        font-size: 12px;
+        white-space: nowrap;
+      }
+      tr:last-child td {
+        border-bottom: none;
+      }
+      tr.total td {
+        font-weight: 700;
+        background: #faf7f0;
+      }
+      .num {
+        font-family: "IBM Plex Sans", sans-serif;
+        white-space: nowrap;
+      }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 9px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      .b-ok {
+        background: var(--ok-bg);
+        color: var(--ok);
+      }
+      .b-warn {
+        background: var(--warn-bg);
+        color: var(--warn);
+      }
+      .b-danger {
+        background: var(--danger-bg);
+        color: var(--danger);
+      }
+      .b-info {
+        background: var(--info-bg);
+        color: var(--info);
+      }
+      .b-gray {
+        background: #f2f4f7;
+        color: var(--gray);
+      }
+      .issue-card {
+        margin: 14px 0 0;
+        padding: 16px 18px;
+        border-radius: 14px;
+        border: 1px solid var(--line);
+        background: #fff;
+      }
+      .issue-card h3 {
+        margin: 0 0 8px;
+        font-size: 15px;
+      }
+      .issue-card .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 10px;
+      }
+      .issue-card p {
+        margin: 0 0 8px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .issue-card ol {
+        margin: 8px 0 0;
+        padding-left: 18px;
+        font-size: 13px;
+      }
+      .narrative {
+        padding: 18px 20px;
+        border-top: 1px solid var(--line);
+      }
+      .narrative h3 {
+        margin: 0 0 10px;
+        font-size: 15px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .narrative ul {
+        margin: 0;
+        padding-left: 18px;
+        color: var(--ink);
+        font-size: 14px;
+      }
+      .narrative li {
+        margin-bottom: 8px;
+      }
+      .narrative + .narrative {
+        border-top: 1px dashed var(--line);
+      }
+      details.fold {
+        margin-top: 12px;
+      }
+      details.fold > summary {
+        cursor: pointer;
+        list-style: none;
+        padding: 12px 16px;
+        background: #f7f3ea;
+        font-weight: 600;
+        font-size: 13px;
+        border-top: 1px solid var(--line);
+      }
+      details.fold > summary::-webkit-details-marker {
+        display: none;
+      }
+      details.fold[open] > summary {
+        border-bottom: 1px solid var(--line);
+      }
+      .todo-list {
+        display: grid;
+        gap: 8px;
+        padding: 4px 0 0;
+      }
+      .todo-item {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 12px;
+        align-items: start;
+        padding: 12px 14px;
+        border-radius: 12px;
+        border: 1px solid var(--line);
+        background: #fff;
+        font-size: 13px;
+      }
+      .todo-item a {
+        color: var(--info);
+        font-weight: 600;
+      }
+      footer {
+        padding: 28px 0 48px;
+        color: var(--muted);
+        font-size: 12px;
+        text-align: center;
+      }
+      @media (max-width: 960px) {
+        .kpi-grid,
+        .meta-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .todo-item {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 640px) {
+        .kpi-grid,
+        .meta-grid {
+          grid-template-columns: 1fr;
+        }
+        .topbar-inner {
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 10px 0;
+        }
+      }
+    </style>
+    <style>
+      /* 补充：开发样例未覆盖的极少数辅助样式（其余全部复用样例的 .panel/.narrative/.issue-card/.todo-item/.badge） */
+      .empty-note {
+        color: var(--muted);
+        padding: 18px;
+        text-align: center;
+        font-size: 13px;
+      }
+      .panel > .table-wrap:first-child table {
+        margin-top: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="wrap topbar-inner">
+        <div class="brand">
+          <div class="brand-mark">Ya</div>
+          <div>Yandex Ads 账户分析</div>
+        </div>
+        <nav class="nav">
+          <a href="#overview" class="active">账户总览</a>
+          <a href="#next">后续动作</a>
+          <a href="#search">Search</a>
+          <a href="#campaign">Campaign</a>
+          <a href="#keyword">关键词</a>
+          <a href="#query">搜索词</a>
+          <a href="#geo">地域</a>
+          <a href="#device">设备</a>
+          <a href="#daily">日报</a>
+          <a href="#weekly">周报</a>
+        </nav>
+      </div>
+    </header>
+    <main id="report-root"></main>
+    <script>
+      window.__YANDEX_PERIOD_REPORT__ = window.__YANDEX_PERIOD_REPORT__ || null;
+    </script>
+    <script>
+      (function () {
+        "use strict";
+
+        /** 只读 render 注入的 periodChrome，规则与 report-period.ts 相同。 */
+        function periodWord(data, neutral) {
+          const chrome = data && data.periodChrome;
+          if (chrome && chrome.unitLabel) return chrome.unitLabel;
+          const unit = chrome && chrome.unit;
+          return unit || neutral;
+        }
+
+        const EMPTY_NOTE = "本节暂无数据";
+
+        function escapeHtml(s) {
+          return String(s ?? "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;");
+        }
+
+        /**
+         * 统一的“有效数字”判定：null / undefined / "" 一律视为无数据（返回 undefined），
+         * 避免 `Number(null) === 0` 把「无转化时 CPA 为空」误显示成 "$0.00" / "0.00%"。
+         */
+        function toNum(v) {
+          if (v === null || v === undefined || v === "") return undefined;
+          const n = Number(v);
+          return Number.isFinite(n) ? n : undefined;
+        }
+
+        function int(v) {
+          const n = toNum(v);
+          return n === undefined ? "—" : Math.round(n).toLocaleString("en-US");
+        }
+
+        function money(v, currency) {
+          const n = toNum(v);
+          if (n === undefined) return "—";
+          const c = currency || "USD";
+          if (c === "USD" || c === "RUB" || c === "EUR") {
+            try {
+              return new Intl.NumberFormat("en-US", {
+                style: "currency",
+                currency: c,
+                maximumFractionDigits: 2,
+              }).format(n);
+            } catch (_) {}
+          }
+          return c + " " + n.toFixed(2);
+        }
+
+        function pct(v) {
+          const n = toNum(v);
+          if (n === undefined) return "—";
+          return (n * 100).toFixed(2) + "%";
+        }
+
+        /**
+         * 后端 roi = (PurchaseRevenue - Spend) / Spend，与 CTR 一样是小数比率
+         *（-0.5998 = 亏损 59.98%）。必须 ×100 再加 %，禁止把 -0.6 显示成 -0.60%。
+         * 无购买收益时网关算成 -1，展示为 —。
+         */
+        function fmtRoi(v) {
+          const n = toNum(v);
+          if (n === undefined || n === -1) return "—";
+          return (n * 100).toFixed(2) + "%";
+        }
+
+        function num2(v) {
+          const n = toNum(v);
+          return n === undefined ? "—" : n.toFixed(2);
+        }
+
+        /** 接口未回 CTR/CPC/转化率时，用展示/点击/消耗/转化补算（与 merge-snapshot 口径一致）。 */
+        function derivedCtr(r) {
+          const existing = toNum(r && r.ctr);
+          if (existing !== undefined) return existing;
+          const impressions = toNum(r && r.impressions);
+          const clicks = toNum(r && r.clicks);
+          return impressions > 0 && clicks !== undefined ? clicks / impressions : undefined;
+        }
+
+        function derivedCpc(r) {
+          const existing = toNum(r && r.averageCpc);
+          if (existing !== undefined) return existing;
+          const spend = toNum(r && r.spend);
+          const clicks = toNum(r && r.clicks);
+          return clicks > 0 && spend !== undefined ? spend / clicks : undefined;
+        }
+
+        function derivedCr(r) {
+          const existing = toNum(r && r.conversionRate);
+          if (existing !== undefined) return existing;
+          const clicks = toNum(r && r.clicks);
+          const conversions = toNum(r && r.conversions);
+          return clicks > 0 && conversions !== undefined ? conversions / clicks : undefined;
+        }
+
+        function derivedCpa(r) {
+          const existing = toNum(r && r.costPerConversion);
+          if (existing !== undefined) return existing;
+          const spend = toNum(r && r.spend);
+          const conversions = toNum(r && r.conversions);
+          return conversions > 0 && spend !== undefined ? spend / conversions : undefined;
+        }
+
+        function asArr(v) {
+          return Array.isArray(v) ? v : [];
+        }
+
+        function currencyOf(data) {
+          return data.meta?.currency || data.kpis?.currency || "USD";
+        }
+
+        /**
+         * 分析 + 建议区块——样式对齐开发样例的 `.narrative`（badge「叙述」/「建议」+ ul），
+         * 而不是本文件之前自造的 `.insight` 盒子。
+         */
+        function analysisBlock(section) {
+          const analysis = asArr(section?.analysis).filter((x) => String(x || "").trim());
+          const suggestions = asArr(section?.suggestions).filter((x) => String(x || "").trim());
+          const parts = [];
+          if (analysis.length) {
+            parts.push(
+              '<div class="narrative"><h3><span class="badge b-info">叙述</span> 数据解读</h3><ul>' +
+                analysis.map((a) => "<li>" + escapeHtml(a) + "</li>").join("") +
+                "</ul></div>",
+            );
+          } else {
+            parts.push('<div class="empty-note">' + EMPTY_NOTE + "</div>");
+          }
+          if (suggestions.length) {
+            parts.push(
+              '<div class="narrative"><h3><span class="badge b-warn">建议</span> 优化建议</h3><ul>' +
+                suggestions.map((s) => "<li>" + escapeHtml(s) + "</li>").join("") +
+                "</ul></div>",
+            );
+          }
+          return parts.join("");
+        }
+
+        function sectionHead(title, desc) {
+          return (
+            '<div class="section-head"><div><h2>' +
+            escapeHtml(title) +
+            "</h2>" +
+            (desc ? "<p>" + escapeHtml(desc) + "</p>" : "") +
+            "</div></div>"
+          );
+        }
+
+        /** 仅返回 `.table-wrap`（不含外层 `.panel`），供调用方与叙述区块共用同一个 `.panel` 容器，对齐开发样例结构。 */
+        function tableHtml(headers, rowsHtml) {
+          if (!rowsHtml) return '<div class="empty-note">' + EMPTY_NOTE + "</div>";
+          return (
+            '<div class="table-wrap"><table><thead><tr>' +
+            headers
+              .map(function (h) {
+                const cls = h.num ? ' class="num"' : "";
+                return "<th" + cls + ">" + escapeHtml(h.label) + "</th>";
+              })
+              .join("") +
+            "</tr></thead><tbody>" +
+            rowsHtml +
+            "</tbody></table></div>"
+          );
+        }
+
+        function topBySpend(rows, n) {
+          return asArr(rows)
+            .slice()
+            .sort(function (a, b) {
+              return (Number(b.spend) || 0) - (Number(a.spend) || 0);
+            })
+            .slice(0, n);
+        }
+
+        function normKey(v) {
+          return String(v ?? "")
+            .trim()
+            .toLowerCase();
+        }
+
+        /** 周区间文案：含 NaN 时回退，避免脚本误聚周把 Invalid Date 写进表格。 */
+        function weekRangeText(r) {
+          const start = String((r && r.startDate) || "").trim();
+          const end = String((r && r.endDate) || "").trim();
+          const joined = start && end ? start + " ~ " + end : start || end;
+          if (joined && !/nan/i.test(joined)) return joined;
+          const label = String((r && r.weekLabel) || "").trim();
+          if (label && !/nan/i.test(label)) return label;
+          return "—";
+        }
+
+        function weekLabelText(r) {
+          const label = String((r && (r.isoWeek || r.weekLabel)) || "").trim();
+          if (label && !/nan/i.test(label)) return label;
+          return "—";
+        }
+
+        /**
+         * 从 Agent 提供的 `narrative.rowInsights.<dim>[]` 按主字段匹配行洞察（目前仅关键词中文翻译）。
+         * 找不到返回 null——渲染层显示「—」，不编造内容。
+         * 每条洞察支持 `{match:{...}, ...}` 或扁平写法 `{keyword, campaignName, ...}`。
+         */
+        function findInsight(list, primaryField, primaryValue, row) {
+          const target = normKey(primaryValue);
+          if (!target) return null;
+          const candidates = asArr(list).filter(function (it) {
+            const m = (it && it.match) || it || {};
+            return normKey(m[primaryField]) === target;
+          });
+          if (candidates.length <= 1) return candidates[0] || null;
+          const cn = normKey(row && row.campaignName);
+          const narrowed = candidates.find(function (it) {
+            const m = (it && it.match) || it || {};
+            return normKey(m.campaignName) === cn;
+          });
+          return narrowed || candidates[0];
+        }
+
+        function rowInsightsOf(data, key) {
+          return asArr(((data.narrative || {}).rowInsights || {})[key]);
+        }
+
+        /**
+         * 「样本」徽标——纯阈值判断（基于点击量），不依赖大模型/不编造：
+         * 点击 <30 视为极小样本，效率类结论不可用；<100 转化类结论慎出；否则样本充足。
+         */
+        function sampleBadge(clicks) {
+          const c = toNum(clicks) || 0;
+          if (c < 30) {
+            return (
+              '<span class="badge b-danger">点击 ' + int(c) + "，样本极小，效率类结论不可用</span>"
+            );
+          }
+          if (c < 100) {
+            return '<span class="badge b-warn">点击 ' + int(c) + "，转化类结论慎出</span>";
+          }
+          return '<span class="badge b-ok">点击 ' + int(c) + "，样本充足</span>";
+        }
+
+        /** Campaign 状态徽标——只用真实 status/state 字段做颜色归类。 */
+        function campaignStatusBadge(r) {
+          const raw = r.status || r.state || "";
+          if (!raw) return '<span class="badge b-gray">—</span>';
+          const low = String(raw).toLowerCase();
+          let cls = "b-gray";
+          if (/(active|running|accept|enable)/.test(low)) cls = "b-ok";
+          else if (/(reject|declin|error)/.test(low)) cls = "b-danger";
+          else if (/(moderat|review|pending)/.test(low)) cls = "b-warn";
+          return '<span class="badge ' + cls + '">' + escapeHtml(String(raw)) + "</span>";
+        }
+
+        function renderHero(data) {
+          const meta = data.meta || {};
+          const period =
+            meta.startDate && meta.endDate
+              ? meta.startDate + " ~ " + meta.endDate
+              : "统计区间未提供";
+          const title =
+            meta.title ||
+            (meta.accountName || "Yandex 广告账户") +
+              " · Yandex " +
+              (meta.startDate ? String(meta.startDate).slice(0, 7) : "") +
+              " 数据报告";
+          return (
+            '<div class="wrap hero">' +
+            '<div class="eyebrow">YANDEX DIRECT · ' +
+            periodWord(data, "账户") +
+            "分析报告</div>" +
+            "<h1>" +
+            escapeHtml(title) +
+            "</h1>" +
+            '<div class="meta-row">' +
+            '<div class="chip">账户 <strong>' +
+            escapeHtml(meta.accountId || "—") +
+            "</strong></div>" +
+            '<div class="chip">货币 <strong>' +
+            escapeHtml(currencyOf(data)) +
+            "</strong></div>" +
+            (meta.region
+              ? '<div class="chip">地区 <strong>' + escapeHtml(meta.region) + "</strong></div>"
+              : "") +
+            '<div class="chip">区间 <strong>' +
+            escapeHtml(period) +
+            "</strong></div>" +
+            "</div></div>"
+          );
+        }
+
+        function renderOverview(data) {
+          const meta = data.meta || {};
+          const kpis = data.kpis || {};
+          const currency = currencyOf(data);
+          const narrative = data.narrative || {};
+          const sec = (narrative.sections || {}).overview || {};
+          const balAsOf = kpis.balanceAsOf ? String(kpis.balanceAsOf).slice(0, 10) : "";
+          const runway =
+            kpis.runwayDays != null ? "按日均约 " + int(kpis.runwayDays) + " 天（估算）" : "";
+          const activeHint = kpis.activeDays != null ? int(kpis.activeDays) + " 个有效投放日" : "";
+
+          // 对齐开发样例：5 张 KPI 卡（余额/消耗/日均消耗/点击-CTR/转化-CPA），展示量并入「点击 / CTR」的 delta 文案。
+          const kpiCards = [
+            {
+              label: "账户余额" + (balAsOf ? "（截至 " + balAsOf + "）" : ""),
+              value: money(kpis.balance, currency),
+              delta: runway,
+            },
+            {
+              label: "本期消耗",
+              value: money(kpis.spend, currency),
+              delta: activeHint,
+            },
+            {
+              label: "日均消耗",
+              value: money(kpis.avgDailySpend, currency),
+              delta: activeHint,
+            },
+            {
+              label: "点击 / CTR",
+              value: int(kpis.clicks),
+              delta:
+                "CTR " +
+                pct(kpis.ctr) +
+                " · CPC " +
+                money(kpis.averageCpc, currency) +
+                (kpis.impressions != null ? " · 展示 " + int(kpis.impressions) : ""),
+            },
+            {
+              label: "转化 / CPA",
+              value: num2(kpis.conversions),
+              delta:
+                kpis.costPerConversion != null
+                  ? "CPA " + money(kpis.costPerConversion, currency)
+                  : "",
+            },
+          ]
+            .map(function (c) {
+              return (
+                '<div class="kpi"><div class="label">' +
+                escapeHtml(c.label) +
+                '</div><div class="value">' +
+                c.value +
+                "</div>" +
+                (c.delta ? '<div class="delta">' + escapeHtml(c.delta) + "</div>" : "") +
+                "</div>"
+              );
+            })
+            .join("");
+
+          const weekly = asArr(data.tables?.weekly);
+          let weeklyTable = "";
+          if (weekly.length) {
+            const rows = weekly
+              .map(function (r) {
+                return (
+                  "<tr><td>" +
+                  escapeHtml(weekLabelText(r)) +
+                  "</td><td>" +
+                  escapeHtml(weekRangeText(r)) +
+                  '</td><td class="num">' +
+                  int(r.days) +
+                  '</td><td class="num">' +
+                  money(r.spend, currency) +
+                  '</td><td class="num">' +
+                  int(r.impressions) +
+                  '</td><td class="num">' +
+                  int(r.clicks) +
+                  '</td><td class="num">' +
+                  pct(r.ctr) +
+                  '</td><td class="num">' +
+                  money(r.averageCpc, currency) +
+                  '</td><td class="num">' +
+                  num2(r.conversions) +
+                  "</td></tr>"
+                );
+              })
+              .join("");
+            weeklyTable = tableHtml(
+              [
+                { label: "周次" },
+                { label: "区间" },
+                { label: "天数", num: true },
+                { label: "消耗", num: true },
+                { label: "展示", num: true },
+                { label: "点击", num: true },
+                { label: "CTR", num: true },
+                { label: "CPC", num: true },
+                { label: "转化", num: true },
+              ],
+              rows,
+            );
+          }
+
+          const daily = asArr(data.tables?.daily);
+          let dailyFold = "";
+          if (daily.length) {
+            const rows = daily
+              .map(function (r) {
+                return (
+                  "<tr><td>" +
+                  escapeHtml(r.date || "") +
+                  '</td><td class="num">' +
+                  money(r.spend, currency) +
+                  '</td><td class="num">' +
+                  int(r.impressions) +
+                  '</td><td class="num">' +
+                  int(r.clicks) +
+                  '</td><td class="num">' +
+                  pct(r.ctr) +
+                  '</td><td class="num">' +
+                  money(r.averageCpc, currency) +
+                  '</td><td class="num">' +
+                  num2(r.conversions) +
+                  "</td></tr>"
+                );
+              })
+              .join("");
+            dailyFold =
+              '<details class="fold"><summary>每日消费数据概览（点击展开，共 ' +
+              daily.length +
+              " 天）</summary>" +
+              tableHtml(
+                [
+                  { label: "日期" },
+                  { label: "消耗", num: true },
+                  { label: "展示", num: true },
+                  { label: "点击", num: true },
+                  { label: "CTR", num: true },
+                  { label: "CPC", num: true },
+                  { label: "转化", num: true },
+                ],
+                rows,
+              ) +
+              "</details>";
+          }
+
+          return (
+            '<section id="overview"><div class="wrap">' +
+            sectionHead("账户总览") +
+            '<div class="panel" style="margin-bottom:14px"><dl class="meta-grid">' +
+            "<div><dt>账户 ID</dt><dd>" +
+            escapeHtml(meta.accountId || "—") +
+            "</dd></div>" +
+            "<div><dt>账户名称</dt><dd>" +
+            escapeHtml(meta.accountName || "—") +
+            "</dd></div>" +
+            "<div><dt>媒体平台</dt><dd>" +
+            escapeHtml(meta.platform || "Yandex Direct") +
+            "</dd></div>" +
+            "<div><dt>统计区间</dt><dd>" +
+            escapeHtml(
+              meta.startDate && meta.endDate ? meta.startDate + " ~ " + meta.endDate : "—",
+            ) +
+            "</dd></div>" +
+            "<div><dt>货币</dt><dd>" +
+            escapeHtml(currency) +
+            "</dd></div>" +
+            "<div><dt>投放地区</dt><dd>" +
+            escapeHtml(meta.region || "—") +
+            "</dd></div>" +
+            "</dl></div>" +
+            '<div class="kpi-grid" style="margin-bottom:14px">' +
+            kpiCards +
+            "</div>" +
+            '<div class="panel">' +
+            (weeklyTable
+              ? '<div style="padding:14px 16px 0; font-weight:600; font-size:14px;">汇总数据概览</div>' +
+                weeklyTable
+              : "") +
+            dailyFold +
+            analysisBlock(sec) +
+            nextNarrative(data) +
+            "</div>" +
+            "</div></section>"
+          );
+        }
+
+        /** 将 priority（P0/P1/P2 或 high/medium/low）归一为开发样例的徽标文案 + 颜色类。 */
+        function priorityBadge(pri, idx) {
+          const raw = String(pri || "")
+            .trim()
+            .toLowerCase();
+          if (raw === "high" || raw === "p0") return { label: "P0", cls: "b-danger" };
+          if (raw === "low" || raw === "p2") return { label: "P2", cls: "b-info" };
+          if (raw === "medium" || raw === "p1" || !raw) return { label: "P1", cls: "b-warn" };
+          return { label: String(pri), cls: "b-warn" };
+        }
+
+        /**
+         * 「后续优化动作」——对齐开发样例：不是独立 `<section>`，而是嵌在「账户总览」
+         * 同一个 `.panel` 内、紧跟数据概述之后的第二个 `.narrative`（id="next" 供导航锚点定位）。
+         */
+        function nextNarrative(data) {
+          const recs = asArr((data.narrative || {}).recommendations);
+          if (!recs.length) {
+            return (
+              '<div class="narrative" id="next"><h3><span class="badge b-warn">待办</span> 后续优化动作与展望</h3>' +
+              '<div class="empty-note">' +
+              EMPTY_NOTE +
+              "</div></div>"
+            );
+          }
+          // 对齐开发样例的 `.todo-item`（badge + 文案 + 锚点链接三栏网格），而非普通 <li> 列表。
+          const items = recs
+            .map(function (r, i) {
+              if (typeof r === "string") {
+                const b = priorityBadge(null, i);
+                return (
+                  '<div class="todo-item"><span class="badge ' +
+                  b.cls +
+                  '">' +
+                  b.label +
+                  "</span><div>" +
+                  escapeHtml(r) +
+                  "</div><span></span></div>"
+                );
+              }
+              const b = priorityBadge(r.priority, i);
+              const text = r.text || r.content || "";
+              const anchor = r.anchor
+                ? '<a href="' + escapeHtml(r.anchor) + '">→</a>'
+                : "<span></span>";
+              return (
+                '<div class="todo-item"><span class="badge ' +
+                b.cls +
+                '">' +
+                b.label +
+                "</span><div>" +
+                escapeHtml(text) +
+                "</div>" +
+                anchor +
+                "</div>"
+              );
+            })
+            .join("");
+          return (
+            '<div class="narrative" id="next"><h3><span class="badge b-warn">待办</span> 后续优化动作与展望</h3>' +
+            '<div class="todo-list">' +
+            items +
+            "</div></div>"
+          );
+        }
+
+        /**
+         * 通用维度表格：`opts.headers` / `opts.rowCells(r, currency, data)` 由调用方给出
+         * 完整列定义与单元格 HTML，逐维对齐开发样例的列顺序（而不是共用一套固定指标列）。
+         */
+        function dimSection(opts) {
+          const data = opts.data;
+          const currency = currencyOf(data);
+          const sec = ((data.narrative || {}).sections || {})[opts.narrativeKey] || {};
+          const allRows = asArr(data.tables?.[opts.tableKey]);
+          const limit = opts.limit || 20;
+          const rows = topBySpend(allRows, limit);
+          let body = "";
+          if (rows.length) {
+            const rowHtml = rows
+              .map(function (r) {
+                return "<tr>" + opts.rowCells(r, currency, data) + "</tr>";
+              })
+              .join("");
+            body = tableHtml(opts.headers, rowHtml);
+          } else {
+            body = '<div class="empty-note">' + EMPTY_NOTE + "</div>";
+          }
+          // 行数提示：明确区分「共 N 行仅显示 Top M」与「本维度确实无数据」，避免误判为报告漏了该维度。
+          const countHint =
+            allRows.length > rows.length
+              ? "共 " + allRows.length + " 行，按消耗降序显示 Top " + rows.length + "。"
+              : allRows.length > 0
+                ? "共 " + allRows.length + " 行。"
+                : "";
+          const desc = [opts.desc, countHint].filter(Boolean).join(" ");
+          return (
+            '<section id="' +
+            opts.id +
+            '"><div class="wrap">' +
+            sectionHead(opts.title, desc) +
+            '<div class="panel">' +
+            body +
+            (opts.footnote
+              ? '<div class="empty-note" style="text-align:left;padding:0 16px 14px;">' +
+                escapeHtml(opts.footnote) +
+                "</div>"
+              : "") +
+            analysisBlock(sec) +
+            "</div>" +
+            "</div></section>"
+          );
+        }
+
+        function renderDailyWeekly(data) {
+          const currency = currencyOf(data);
+          const sec = ((data.narrative || {}).sections || {}).daily || {};
+          const daily = asArr(data.tables?.daily);
+          const weekly = asArr(data.tables?.weekly);
+
+          let dailyBody = '<div class="empty-note">' + EMPTY_NOTE + "</div>";
+          if (daily.length) {
+            dailyBody = tableHtml(
+              [
+                { label: "日期" },
+                { label: "消耗", num: true },
+                { label: "展示", num: true },
+                { label: "点击", num: true },
+                { label: "CTR", num: true },
+                { label: "CPC", num: true },
+                { label: "转化", num: true },
+                { label: "CPA", num: true },
+              ],
+              daily
+                .map(function (r) {
+                  return (
+                    "<tr><td>" +
+                    escapeHtml(r.date || "") +
+                    '</td><td class="num">' +
+                    money(r.spend, currency) +
+                    '</td><td class="num">' +
+                    int(r.impressions) +
+                    '</td><td class="num">' +
+                    int(r.clicks) +
+                    '</td><td class="num">' +
+                    pct(r.ctr) +
+                    '</td><td class="num">' +
+                    money(r.averageCpc, currency) +
+                    '</td><td class="num">' +
+                    num2(r.conversions) +
+                    '</td><td class="num">' +
+                    money(r.costPerConversion, currency) +
+                    "</td></tr>"
+                  );
+                })
+                .join(""),
+            );
+          }
+
+          let weeklyBody = '<div class="empty-note">' + EMPTY_NOTE + "</div>";
+          if (weekly.length) {
+            weeklyBody = tableHtml(
+              [
+                { label: "周次" },
+                { label: "区间" },
+                { label: "天数", num: true },
+                { label: "消耗", num: true },
+                { label: "点击", num: true },
+                { label: "CTR", num: true },
+                { label: "CPC", num: true },
+                { label: "转化", num: true },
+              ],
+              weekly
+                .map(function (r) {
+                  return (
+                    "<tr><td>" +
+                    escapeHtml(weekLabelText(r)) +
+                    "</td><td>" +
+                    escapeHtml(weekRangeText(r)) +
+                    '</td><td class="num">' +
+                    int(r.days) +
+                    '</td><td class="num">' +
+                    money(r.spend, currency) +
+                    '</td><td class="num">' +
+                    int(r.clicks) +
+                    '</td><td class="num">' +
+                    pct(r.ctr) +
+                    '</td><td class="num">' +
+                    money(r.averageCpc, currency) +
+                    '</td><td class="num">' +
+                    num2(r.conversions) +
+                    "</td></tr>"
+                  );
+                })
+                .join(""),
+            );
+          }
+
+          return (
+            '<section id="daily"><div class="wrap">' +
+            sectionHead("日报表", "按日消耗/展示/点击/转化明细") +
+            '<div class="panel">' +
+            dailyBody +
+            analysisBlock(sec) +
+            "</div>" +
+            "</div></section>" +
+            '<section id="weekly"><div class="wrap">' +
+            sectionHead("周报表", "由 CLI 从 daily 按 ISO 周聚合（禁止脚本重算）") +
+            '<div class="panel">' +
+            weeklyBody +
+            "</div>" +
+            "</div></section>"
+          );
+        }
+
+        function renderAll(data) {
+          const currency = currencyOf(data);
+          const parts = [];
+          parts.push(renderHero(data));
+          parts.push(renderOverview(data));
+          parts.push(
+            dimSection({
+              data: data,
+              id: "search",
+              narrativeKey: "search",
+              tableKey: "search",
+              title: "广告类型 · Search",
+              desc: "搜索网络（Search）投放汇总",
+              headers: [
+                { label: "Network" },
+                { label: "Spend", num: true },
+                { label: "Impressions", num: true },
+                { label: "Clicks", num: true },
+                { label: "CPC", num: true },
+                { label: "Conversions", num: true },
+                { label: "CPA", num: true },
+                { label: "ROI", num: true },
+                { label: "CTR", num: true },
+                { label: "样本" },
+              ],
+              rowCells: function (r, currency) {
+                return (
+                  "<td>" +
+                  escapeHtml(r.network || "Search") +
+                  '</td><td class="num">' +
+                  money(r.spend, currency) +
+                  '</td><td class="num">' +
+                  int(r.impressions) +
+                  '</td><td class="num">' +
+                  int(r.clicks) +
+                  '</td><td class="num">' +
+                  money(r.averageCpc, currency) +
+                  '</td><td class="num">' +
+                  num2(r.conversions) +
+                  '</td><td class="num">' +
+                  money(r.costPerConversion, currency) +
+                  '</td><td class="num">' +
+                  fmtRoi(r.roi) +
+                  '</td><td class="num">' +
+                  pct(r.ctr) +
+                  "</td><td>" +
+                  sampleBadge(r.clicks) +
+                  "</td>"
+                );
+              },
+            }),
+          );
+          parts.push(
+            dimSection({
+              data: data,
+              id: "campaign",
+              narrativeKey: "campaigns",
+              tableKey: "campaigns",
+              title: "Campaign",
+              desc: "按消耗排序的系列明细",
+              headers: [
+                { label: "Campaign" },
+                { label: "预算", num: true },
+                { label: "战略" },
+                { label: "目标CPA(API)", num: true },
+                { label: "Spend", num: true },
+                { label: "Impr", num: true },
+                { label: "Clicks", num: true },
+                { label: "CPC", num: true },
+                { label: "Conv", num: true },
+                { label: "CPA", num: true },
+                { label: "状态" },
+              ],
+              rowCells: function (r, currency) {
+                return (
+                  "<td>" +
+                  escapeHtml(r.campaignName || r.campaignId || "—") +
+                  '</td><td class="num">' +
+                  (r.budget != null ? money(r.budget, currency) : "—") +
+                  "</td><td>" +
+                  escapeHtml(r.strategy || "—") +
+                  '</td><td class="num">' +
+                  (r.targetCpa != null ? money(r.targetCpa, currency) : "—") +
+                  '</td><td class="num">' +
+                  money(r.spend, currency) +
+                  '</td><td class="num">' +
+                  int(r.impressions) +
+                  '</td><td class="num">' +
+                  int(r.clicks) +
+                  '</td><td class="num">' +
+                  money(r.averageCpc, currency) +
+                  '</td><td class="num">' +
+                  num2(r.conversions) +
+                  '</td><td class="num">' +
+                  money(r.costPerConversion, currency) +
+                  "</td><td>" +
+                  campaignStatusBadge(r) +
+                  "</td>"
+                );
+              },
+              limit: 30,
+            }),
+          );
+          parts.push(
+            dimSection({
+              data: data,
+              id: "keyword",
+              narrativeKey: "keywords",
+              tableKey: "keywords",
+              title: "关键词",
+              desc: "按消耗排序的关键词明细",
+              footnote:
+                "「中文翻译」为 Agent 撰写报告时提供（narrative.rowInsights.keywords），未提供的行显示「—」，不做机械占位。",
+              headers: [
+                { label: "Campaign" },
+                { label: "Group" },
+                { label: "Keyword" },
+                { label: "中文翻译" },
+                { label: "Impr", num: true },
+                { label: "Clicks", num: true },
+                { label: "Spend", num: true },
+                { label: "Conv", num: true },
+                { label: "CR%", num: true },
+                { label: "CPA", num: true },
+                { label: "CTR", num: true },
+                { label: "CPC", num: true },
+              ],
+              rowCells: function (r, currency, data) {
+                const insight = findInsight(
+                  rowInsightsOf(data, "keywords"),
+                  "keyword",
+                  r.keyword,
+                  r,
+                );
+                return (
+                  "<td>" +
+                  escapeHtml(r.campaignName || "—") +
+                  "</td><td>" +
+                  escapeHtml(r.adGroupId != null ? String(r.adGroupId) : "—") +
+                  "</td><td>" +
+                  escapeHtml(r.keyword || "—") +
+                  "</td><td>" +
+                  escapeHtml((insight && insight.translation) || "—") +
+                  '</td><td class="num">' +
+                  int(r.impressions) +
+                  '</td><td class="num">' +
+                  int(r.clicks) +
+                  '</td><td class="num">' +
+                  money(r.spend, currency) +
+                  '</td><td class="num">' +
+                  num2(r.conversions) +
+                  '</td><td class="num">' +
+                  pct(derivedCr(r)) +
+                  '</td><td class="num">' +
+                  money(derivedCpa(r), currency) +
+                  '</td><td class="num">' +
+                  pct(derivedCtr(r)) +
+                  '</td><td class="num">' +
+                  money(derivedCpc(r), currency) +
+                  "</td>"
+                );
+              },
+              limit: 40,
+            }),
+          );
+          parts.push(
+            dimSection({
+              data: data,
+              id: "query",
+              narrativeKey: "searchTerms",
+              tableKey: "searchTerms",
+              title: "搜索词",
+              desc: "按消耗排序的搜索词明细（仅近 180 天数据）",
+              headers: [
+                { label: "Search Query" },
+                { label: "匹配关键词" },
+                { label: "Impr", num: true },
+                { label: "Clicks", num: true },
+                { label: "CTR", num: true },
+                { label: "CPC", num: true },
+                { label: "Spend", num: true },
+                { label: "Conv", num: true },
+                { label: "cr%", num: true },
+                { label: "CPA", num: true },
+              ],
+              rowCells: function (r, currency) {
+                return (
+                  "<td>" +
+                  escapeHtml(r.searchQuery || "—") +
+                  "</td><td>" +
+                  escapeHtml(r.matchedKeyword || "—") +
+                  '</td><td class="num">' +
+                  int(r.impressions) +
+                  '</td><td class="num">' +
+                  int(r.clicks) +
+                  '</td><td class="num">' +
+                  pct(derivedCtr(r)) +
+                  '</td><td class="num">' +
+                  money(derivedCpc(r), currency) +
+                  '</td><td class="num">' +
+                  money(r.spend, currency) +
+                  '</td><td class="num">' +
+                  num2(r.conversions) +
+                  '</td><td class="num">' +
+                  pct(derivedCr(r)) +
+                  '</td><td class="num">' +
+                  money(derivedCpa(r), currency) +
+                  "</td>"
+                );
+              },
+              limit: 40,
+            }),
+          );
+          parts.push(
+            dimSection({
+              data: data,
+              id: "geo",
+              narrativeKey: "geo",
+              tableKey: "geo",
+              title: "地域",
+              desc: "按消耗排序的地域明细",
+              footnote:
+                "「国家」取自账户投放地区（meta.region）；「City」为 Yandex 返回的地域名称。",
+              headers: [
+                { label: "国家" },
+                { label: "City" },
+                { label: "Spend", num: true },
+                { label: "Clicks", num: true },
+                { label: "Impr", num: true },
+                { label: "CTR", num: true },
+                { label: "CPC", num: true },
+                { label: "Conv", num: true },
+                { label: "cr%", num: true },
+                { label: "CPA", num: true },
+              ],
+              rowCells: function (r, currency, data) {
+                const cityName =
+                  r.locationName ||
+                  r.targetingLocationName ||
+                  r.location ||
+                  r.name ||
+                  (r.locationId != null ? "地域 " + r.locationId : "—");
+                return (
+                  "<td>" +
+                  escapeHtml((data.meta && data.meta.region) || "—") +
+                  "</td><td>" +
+                  escapeHtml(cityName) +
+                  '</td><td class="num">' +
+                  money(r.spend, currency) +
+                  '</td><td class="num">' +
+                  int(r.clicks) +
+                  '</td><td class="num">' +
+                  int(r.impressions) +
+                  '</td><td class="num">' +
+                  pct(derivedCtr(r)) +
+                  '</td><td class="num">' +
+                  money(derivedCpc(r), currency) +
+                  '</td><td class="num">' +
+                  num2(r.conversions) +
+                  '</td><td class="num">' +
+                  pct(derivedCr(r)) +
+                  '</td><td class="num">' +
+                  money(derivedCpa(r), currency) +
+                  "</td>"
+                );
+              },
+              limit: 30,
+            }),
+          );
+          parts.push(
+            dimSection({
+              data: data,
+              id: "device",
+              narrativeKey: "devices",
+              tableKey: "devices",
+              title: "设备",
+              desc: "按消耗排序的设备明细",
+              headers: [
+                { label: "Device" },
+                { label: "Spend", num: true },
+                { label: "impr", num: true },
+                { label: "Clicks", num: true },
+                { label: "ctr", num: true },
+                { label: "CPC", num: true },
+                { label: "Conv", num: true },
+                { label: "cr%", num: true },
+                { label: "CPA", num: true },
+              ],
+              rowCells: function (r, currency) {
+                return (
+                  "<td>" +
+                  escapeHtml(r.device || "—") +
+                  '</td><td class="num">' +
+                  money(r.spend, currency) +
+                  '</td><td class="num">' +
+                  int(r.impressions) +
+                  '</td><td class="num">' +
+                  int(r.clicks) +
+                  '</td><td class="num">' +
+                  pct(derivedCtr(r)) +
+                  '</td><td class="num">' +
+                  money(derivedCpc(r), currency) +
+                  '</td><td class="num">' +
+                  num2(r.conversions) +
+                  '</td><td class="num">' +
+                  pct(derivedCr(r)) +
+                  '</td><td class="num">' +
+                  money(derivedCpa(r), currency) +
+                  "</td>"
+                );
+              },
+              limit: 20,
+            }),
+          );
+          parts.push(renderDailyWeekly(data));
+          void currency;
+          return parts.join("\n");
+        }
+
+        function bindNav() {
+          const links = document.querySelectorAll(".nav a");
+          const sections = [...document.querySelectorAll("main section[id]")];
+          function onScroll() {
+            let current = sections[0]?.id;
+            for (const s of sections) {
+              if (s.getBoundingClientRect().top <= 100) current = s.id;
+            }
+            links.forEach(function (a) {
+              a.classList.toggle("active", a.getAttribute("href") === "#" + current);
+            });
+          }
+          window.addEventListener("scroll", onScroll, { passive: true });
+          onScroll();
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+          const root = document.getElementById("report-root");
+          const data = window.__YANDEX_PERIOD_REPORT__;
+          if (!data) {
+            root.innerHTML =
+              '<div class="wrap"><div class="panel empty-note">未找到报告数据（window.__YANDEX_PERIOD_REPORT__ 为空），请通过 `yandex-analysis render` 生成本文件。</div></div>';
+            return;
+          }
+          const cover = periodWord(data, "账户");
+          document.title =
+            (data.meta && data.meta.accountName ? data.meta.accountName + " · " : "") +
+            "Yandex 广告" +
+            cover +
+            "分析报告";
+          root.innerHTML = renderAll(data);
+          bindNav();
+        });
+      })();
+    </script>
+  </body>
+</html>

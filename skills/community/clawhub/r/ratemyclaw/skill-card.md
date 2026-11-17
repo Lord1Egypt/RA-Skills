@@ -1,44 +1,56 @@
-## Description: <br>
-Score your OpenClaw agent setup against similar agents. Scans your workspace, generates a local embedding for privacy-preserving semantic matching, and submits tags + embedding to ratemyclaw.com for scoring and cluster comparison. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scores an OpenClaw agent setup against similar agents by scanning the local workspace, generating a local embedding, and submitting structured profile data to ratemyclaw.com for scoring and comparison.
 
-## Publisher: <br>
-[picklenick144](https://clawhub.ai/user/picklenick144) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[picklenick144](https://clawhub.ai/user/picklenick144)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to scan an agent workspace locally, review detected taxonomy tags and maturity signals, then submit a derived profile for score, grade, and cluster comparison results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill scans broad workspace areas and sends a derived profile to ratemyclaw.com, which may include sensitive environment metadata. <br>
-Mitigation: Review generated_profile.json before submitting, especially installed skill names, integrations inferred from secrets, maturity counts, and model names. <br>
-Risk: Using automated submission can generate an API key and proceed with dependency installation without an interactive review step. <br>
-Mitigation: Avoid --yes unless the user accepts automatic key generation, dependency installation, and profile submission behavior. <br>
+## Use Case:
 
+Developers and OpenClaw users use RateMyClaw to scan an agent workspace, review the detected profile, and submit structured tags and embeddings for score, grade, cluster comparison, and recommendations.
 
-## Reference(s): <br>
-- [RateMyClaw ClawHub Listing](https://clawhub.ai/picklenick144/ratemyclaw) <br>
-- [RateMyClaw Homepage](https://ratemyclaw.com) <br>
-- [RateMyClaw Repository](https://github.com/picklenick144/RateMyClaw) <br>
-- [all-MiniLM-L6-v2 Model Card](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2) <br>
-- [RateMyClaw Taxonomy](references/taxonomy.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated JSON profile data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a score, grade, and web link after submitting a derived profile to ratemyclaw.com.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.1 (source: server release metadata and skill metadata) <br>
+Risk: The skill collects and submits more local environment metadata than its privacy description clearly discloses, including installed skill names, integration inferences from secret filenames, secret counts, maturity metrics, and OpenClaw model configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated profile before submission, avoid --yes unless API key creation and package installation are acceptable, and do not submit profiles from untrusted or edited JSON files.
+
+Risk: Embeddings and structured workspace tags can act as a sensitive fingerprint of an agent's focus areas even when raw file contents are not submitted.
+
+Mitigation: Treat profile JSON and embedding submissions as potentially sensitive and confirm that the workspace owner accepts sharing this structured profile with ratemyclaw.com.
+
+## Reference(s):
+
+- [RateMyClaw homepage](https://ratemyclaw.com)
+- [RateMyClaw repository](https://github.com/picklenick144/RateMyClaw)
+- [all-MiniLM-L6-v2 model card](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2)
+- [RateMyClaw taxonomy](artifact/references/taxonomy.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, terminal text, URLs, and generated JSON profile data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates a local profile JSON and submits tags, embeddings, maturity counts, installed skill names, and model configuration to ratemyclaw.com when run.]
+
+## Skill Version(s):
+
+0.5.1 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

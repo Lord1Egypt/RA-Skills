@@ -1,45 +1,64 @@
-## Description: <br>
-clawd-migrate helps migrate moltbot or clawdbot assets to openclaw by discovering, backing up, copying, verifying, and optionally setting up the migrated workspace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Migrate moltbot or clawdbot assets to openclaw by discovering, backing up, copying, verifying files, and optionally running openclaw setup.
 
-## Publisher: <br>
-[calabiyauman](https://clawhub.ai/user/calabiyauman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[calabiyauman](https://clawhub.ai/user/calabiyauman)
 
-## Use Case: <br>
-Developers and operators use this skill when moving existing moltbot or clawdbot workspaces into the openclaw layout while preserving memory, configuration, clawdbook data, and project files. It is intended for migration planning and execution where backups and post-copy verification are part of the workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Migration can copy credentials, API keys, memory, and instruction files into backups and OpenClaw configuration folders. <br>
-Mitigation: Run only against an explicit trusted source directory, keep backup and output folders private, and review migrated credential and instruction files before use. <br>
-Risk: The default migration flow can globally reinstall OpenClaw and run onboarding after migration. <br>
-Mitigation: Use an isolated environment or review and adjust the workflow before allowing global installation or onboarding commands. <br>
+## Use Case:
 
+Developers and operators use this skill to move local moltbot or clawdbot workspaces into the openclaw layout while preserving memory, configuration, clawdbook credentials, and project files. It is intended for migration workflows where users can review backups and verification results before continuing with openclaw onboarding.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/calabiyauman/clawdmigrate) <br>
-- [README](artifact/README.md) <br>
-- [How to run](artifact/HOW_TO_RUN.md) <br>
-- [Migration sources](artifact/Documentation/MIGRATION_SOURCES.md) <br>
-- [Post-migration verification](artifact/Documentation/VERIFICATION.md) <br>
-- [OpenClaw setup](artifact/Documentation/OPENCLAW_SETUP.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples, plus terminal output and JSON-style migration or verification status when commands run.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create backup directories, migrated openclaw folders, and verification reports as part of migration execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release metadata) <br>
+Risk: The skill may copy credentials, API keys, and other sensitive local files as part of migration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it first on a copied workspace, inspect discovered files and backups, and avoid shared output or backup directories.
+
+Risk: The openclaw setup path can perform a global npm install and run onboarding commands.
+
+Mitigation: Review the package before execution and prefer pinned versions or manual openclaw installation/onboarding when global install behavior is not acceptable.
+
+Risk: Migration behavior can be affected by symlinks or unexpected local filesystem layouts.
+
+Mitigation: Inspect source directories for symlinks and unusual paths before running migration, especially when credentials are present.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/calabiyauman/skills/clawdmigrate)
+- [ClawHub publisher profile](https://clawhub.ai/user/calabiyauman)
+- [README](README.md)
+- [How to run](HOW_TO_RUN.md)
+- [Migration sources](Documentation/MIGRATION_SOURCES.md)
+- [Openclaw setup](Documentation/OPENCLAW_SETUP.md)
+- [Post-migration verification](Documentation/VERIFICATION.md)
+- [npm package page](https://www.npmjs.com/package/clawd-migrate)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal-oriented text with JSON summaries and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can create or copy local files during migration, produce backups and verification reports, and invoke npm/openclaw setup commands when selected or enabled.]
+
+## Skill Version(s):
+
+0.2.1 (source: ClawHub release metadata; artifact package files report 0.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

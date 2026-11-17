@@ -1,40 +1,53 @@
-## Description: <br>
-Quick system test to verify OpenClaw environment. Simple command execution with output validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quick system test to verify OpenClaw environment, command execution, and basic output validation.
 
-## Publisher: <br>
-[GustavoZiaugra](https://clawhub.ai/user/GustavoZiaugra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[gustavoziaugra](https://clawhub.ai/user/gustavoziaugra)
 
-## Use Case: <br>
-Developers and engineers use this skill to verify that an OpenClaw environment can run Python, inspect the working directory, access files, and execute basic system commands for debugging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Broad local command execution can run unintended commands or expose local system details. <br>
-Mitigation: Use the skill only in a non-sensitive workspace and review commands before execution. <br>
-Risk: Environment-dump commands may disclose local configuration or secrets. <br>
-Mitigation: Avoid environment-inspection commands and do not allow untrusted users or prompts to choose custom commands. <br>
+## Use Case:
 
+Developers and operators use this skill to check whether an OpenClaw environment can run Python, inspect the working directory, access files, and execute basic shell commands before or after installing other skills.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/GustavoZiaugra/quick-test) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Console text with command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local environment details from command output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Default diagnostics can expose environment variables in command output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in low-sensitivity environments and avoid invoking it from shells or CI jobs that contain tokens or credentials.
+
+Risk: Broad custom command execution can run unintended shell commands.
+
+Mitigation: Restrict use to trusted diagnostic commands, review commands before execution, and prefer an explicit allowlist in hardened deployments.
+
+## Reference(s):
+
+- [Quick Test skill page](https://clawhub.ai/gustavoziaugra/skills/quick-test)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash commands and command output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces concise pass/fail status for environment checks and command execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,56 @@
-## Description: <br>
-Scrape Alaska Airlines award calendar and flight data to check miles, award availability, and prices for single-leg trips on alaskaair.com. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scrapes Alaska Airlines award calendar and flight data to check miles, award availability, and prices for one-way trips on alaskaair.com.
 
-## Publisher: <br>
-[iskWang](https://clawhub.ai/user/iskWang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iskwang](https://clawhub.ai/user/iskwang)
 
-## Use Case: <br>
-Travelers and booking agents use this skill to query Alaska Airlines one-way award availability for specified routes and months, then receive formatted mileage, price, and booking-link results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search results may be sent automatically through Telegram. <br>
-Mitigation: Install only when Telegram forwarding is intended, verify the caller-provided chat destination, or disable external messaging before use. <br>
-Risk: Worker agents are instructed to use broad execution, read, and message permissions for parallel searches. <br>
-Mitigation: Restrict worker tools to the minimum curl, Python, and message access needed for the specific award search. <br>
-Risk: The artifact references Alaska account and token endpoints. <br>
-Mitigation: Avoid authenticated account or token endpoints unless separately reviewed and explicitly required. <br>
+## Use Case:
 
+External users and agents use this skill to search Alaska Airlines one-way mileage award availability for specified routes and months, then return available dates, mileage prices, cash prices, and direct booking links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/iskWang/alaska-air) <br>
-- [Alaska Airlines award calendar search](https://www.alaskaair.com/search/calendar?O={ORIGIN}&D={DEST}&OD={YYYY-MM-01}&A=1&RT=false&RequestType=Calendar&ShoppingMethod=onlineaward&locale=en-us) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline Bash and Python examples, JSON parser output, and Telegram-ready text results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes route, month, award mileage, cash price, availability status, and direct booking URLs when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Flight-search details and booking links may be sent through Telegram or processed by external worker models.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for confirmation before sending results to a Telegram destination, and offer a default path that returns results in the main conversation.
+
+Risk: The artifact uses shell commands and predictable files in shared /tmp paths.
+
+Mitigation: Validate airport/date inputs and use isolated temporary files or directories before executing scraping or parsing commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/iskwang/skills/alaska-air)
+- [Alaska Airlines award calendar search endpoint](https://www.alaskaair.com/search/calendar)
+- [Alaska Airlines airport lookup endpoint](https://www.alaskaair.com/search/api/citySearch/getAllAirports)
+- [Alaska Airlines discounts endpoint](https://www.alaskaair.com/search/api/discounts)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with JSON snippets, shell commands, and booking URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are intended to include available award dates sorted by mileage, cash prices, and direct booking links; the artifact also directs immediate Telegram delivery when a message destination is provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

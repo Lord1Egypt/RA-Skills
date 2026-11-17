@@ -1,45 +1,59 @@
-## Description: <br>
-Set up and use an MCP message broker for direct inter-agent communication between OpenClaw and other AI agents, such as hermes-agent, Claude Code, or any MCP-capable agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up and use an MCP message broker for direct inter-agent communication between OpenClaw and other AI agents.
 
-## Publisher: <br>
-[ryno2390](https://clawhub.ai/user/ryno2390) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryno2390](https://clawhub.ai/user/ryno2390)
 
-## Use Case: <br>
-Developers and agent operators use this skill to set up a local bridge so two MCP-capable agents on the same machine can exchange task messages without manual copy-paste relay. It supports a FastMCP and SQLite broker, with a filesystem inbox fallback when the MCP server is unavailable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bridge creates a persistent local message channel and stores messages in SQLite or shared JSON files. <br>
-Mitigation: Use only on trusted single-user machines, avoid sending secrets, and periodically delete or rotate the message database and shared inbox files. <br>
-Risk: Heartbeat auto-processing can cause agents to act on messages from any local process or agent with access to the inbox or localhost broker. <br>
-Mitigation: Enable auto-processing only when every local writer and MCP client is trusted; otherwise require manual review before processing incoming messages. <br>
-Risk: launchd auto-start can keep the broker running longer than intended. <br>
-Mitigation: Keep stop and unload steps available, review the plist paths before loading, and disable the service when the bridge is not needed. <br>
+## Use Case:
 
+Developers and engineers use this skill to set up local agent-to-agent messaging through an MCP broker, with a filesystem bridge available when the MCP server is unavailable.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ryno2390/agent-mcp-bridge) <br>
-- [Publisher profile](https://clawhub.ai/user/ryno2390) <br>
-- [Filesystem Bridge](references/filesystem-bridge.md) <br>
-- [launchd plist](references/launchd-plist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown instructions with JSON configuration examples, bash commands, Python snippets, and plist configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local SQLite message storage, filesystem inbox files, and launchd service configuration when followed by an agent or user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The local message bridge under-scopes authentication and agent identity validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on a trusted single-user machine and add authentication or strict agent identity validation before agents auto-process messages.
+
+Risk: Messages may persist in SQLite or filesystem inboxes and could expose sensitive content.
+
+Mitigation: Avoid sending secrets through the bridge and review cleanup practices for database and processed message files.
+
+Risk: Installing dependencies and a persistent LaunchAgent broadens local execution exposure.
+
+Mitigation: Pin and review dependencies before installation and prefer running the server on demand unless auto-start is required.
+
+## Reference(s):
+
+- [Filesystem Bridge](references/filesystem-bridge.md)
+- [launchd plist](references/launchd-plist.md)
+- [ClawHub skill page](https://clawhub.ai/ryno2390/skills/agent-mcp-bridge)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline JSON, Python, plist, and bash snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes MCP server setup guidance, local configuration examples, message formats, and fallback filesystem bridge instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

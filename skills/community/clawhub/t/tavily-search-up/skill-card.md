@@ -1,39 +1,51 @@
-## Description: <br>
-A Tavily-powered AI search and insight skill that searches the web, summarizes results, analyzes topic sentiment, and extracts webpage content into concise briefs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tavily Search Up helps agents run Tavily web search, extract webpage content, summarize sources, and produce simple sentiment and mission-brief style reports.
 
-## Publisher: <br>
-[airoom-ai](https://clawhub.ai/user/airoom-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[airoom-ai](https://clawhub.ai/user/airoom-ai)
 
-## Use Case: <br>
-Developers and agents use this skill to run Tavily-backed web searches, gather source summaries, extract webpage content, and produce lightweight sentiment or intelligence briefs from public web inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms, webpage URLs, and extraction targets are sent to Tavily for processing. <br>
-Mitigation: Avoid secrets, private internal URLs, pre-signed links, and confidential research topics unless external Tavily processing is acceptable. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add Tavily-backed web search, webpage extraction, lightweight sentiment checks, and structured briefing output to agent workflows.
 
-## Reference(s): <br>
-- [Tavily](https://tavily.com) <br>
-- [ClawHub skill page](https://clawhub.ai/airoom-ai/tavily-search-up) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown-like terminal text with source links, summaries, extracted content, and sentiment labels] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and TAVILY_API_KEY; sends user-provided queries and URLs to Tavily.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Search queries, submitted URLs, and Tavily API credentials are processed by Tavily's external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with data your organization permits for external processing, and avoid confidential internal URLs, secrets, regulated data, or proprietary research terms.
+
+## Reference(s):
+
+- [Tavily](https://tavily.com)
+- [ClawHub skill page](https://clawhub.ai/airoom-ai/skills/tavily-search-up)
+- [ClawHub publisher profile](https://clawhub.ai/user/airoom-ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-like terminal output with source lists, extracted webpage text, and concise analysis.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and TAVILY_API_KEY; normal use sends submitted search queries and URLs to Tavily.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

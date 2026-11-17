@@ -1,48 +1,63 @@
-## Description: <br>
-Generate beautiful charts by paying per request with x402 micropayments (USDC on Base) instead of an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates PNG charts through Chart Splat using x402 USDC micropayments on Base instead of an API key.
 
-## Publisher: <br>
-[bobbyg603](https://clawhub.ai/user/bobbyg603) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bobbyg603](https://clawhub.ai/user/bobbyg603)
 
-## Use Case: <br>
-Developers and external users use this skill to generate PNG charts through a pay-per-call x402 workflow when they have an EVM wallet with USDC on Base and do not want to use a Chart Splat API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can spend real USDC through an x402 pay-per-request chart workflow. <br>
-Mitigation: Use only a fresh low-balance wallet intended for this skill and confirm each paid request before running it. <br>
-Risk: The workflow requires access to a raw EVM private key through X402_PRIVATE_KEY or an equivalent CLI option. <br>
-Mitigation: Use environment-based secret handling, avoid main wallets, and do not paste or store high-value wallet keys in project files. <br>
-Risk: The documented npx workflow may run an unpinned npm CLI package. <br>
-Mitigation: Review or pin the npm CLI package before exposing the wallet key in sensitive environments. <br>
+## Use Case:
 
+External users and developers use this skill to create line, bar, pie, doughnut, radar, polar area, candlestick, and OHLC charts as PNG files when they want wallet-based pay-per-call access rather than an API key.
 
-## Reference(s): <br>
-- [Chart Splat homepage](https://chartsplat.com) <br>
-- [Chart Splat docs](https://chartsplat.com/docs) <br>
-- [x402 Protocol Reference](references/x402-protocol.md) <br>
-- [x402 Protocol and SDKs](https://github.com/x402-foundation/x402) <br>
-- [Coinbase x402 facilitator](https://x402.org/facilitator) <br>
-- [EIP-3009 Transfer With Authorization](https://eips.ethereum.org/EIPS/eip-3009) <br>
-- [Sample chart configurations](examples/sample-charts.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with CLI commands, JSON configuration examples, and PNG file output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The generated chart is saved as a PNG file at the requested output path, and successful paid requests may include a BaseScan settlement URL for auditing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and frontmatter) <br>
+Risk: The skill runs npm CLI code with a wallet private key that can authorize payments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance wallet, expose only X402_PRIVATE_KEY in a restricted environment, and prefer a pinned, reviewed CLI version.
+
+Risk: Paid chart requests spend USDC on the advertised Base network.
+
+Mitigation: Confirm the expected amount, network, token, and recipient before allowing paid requests.
+
+Risk: Private keys can be exposed through chat, shell history, or command arguments.
+
+Mitigation: Do not use a main wallet or paste a valuable private key into chat, shell history, or commands.
+
+## Reference(s):
+
+- [Chart Splat x402 Protocol Reference](references/x402-protocol.md)
+- [Chart Splat Homepage](https://chartsplat.com)
+- [Chart Splat Documentation](https://chartsplat.com/docs)
+- [ClawHub Skill Page](https://clawhub.ai/bobbyg603/skills/chartsplat-x402)
+- [x402 Protocol and SDKs](https://github.com/x402-foundation/x402)
+- [x402 Facilitator](https://x402.org/facilitator)
+- [EIP-3009 Transfer With Authorization](https://eips.ethereum.org/EIPS/eip-3009)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands, JSON chart configuration examples, and PNG file path outputs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated charts are saved as PNG files; paid requests require X402_PRIVATE_KEY and a low-balance USDC wallet on Base.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

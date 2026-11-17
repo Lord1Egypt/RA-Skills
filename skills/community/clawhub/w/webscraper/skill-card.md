@@ -1,43 +1,62 @@
-## Description: <br>
-Extracts readable markdown or plain text from allowed public web pages for article, documentation, product, and tutorial lookup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract readable content from public web pages for articles, documentation, product pages, and URL text capture, while avoiding login-required, interactive, or JavaScript-heavy sites.
 
-## Publisher: <br>
-[LesliePie](https://clawhub.ai/user/LesliePie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lesliepie](https://clawhub.ai/user/lesliepie)
 
-## Use Case: <br>
-Developers and external users use this skill to fetch and convert public web pages into readable content for summarization, documentation lookup, and product information extraction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fetching URLs can disclose request metadata to target sites or access private, internal, or login-required resources if misused. <br>
-Mitigation: Use only public pages the user is allowed to fetch, and avoid private, internal, or login-required URLs unless that access is explicitly intended. <br>
-Risk: Scraping can violate robots.txt, site terms, copyright expectations, or overload target sites. <br>
-Mitigation: Respect robots.txt and site terms, prefer official APIs where available, and use delays or rate limits for repeated requests. <br>
-Risk: Optional npm installs or shell commands can introduce package and command-execution risk. <br>
-Mitigation: Review commands and packages before running them, especially global npm installs and shell pipelines. <br>
+## Use Case:
 
+Developers and agents use WebScraper to fetch public web pages and convert article, documentation, or product-page content into readable markdown or text for summarization, lookup, and analysis.
 
-## Reference(s): <br>
-- [OpenClaw Web Tool Documentation](https://docs.openclaw.ai/tools/web) <br>
-- [ClawHub WebScraper Release](https://clawhub.ai/LesliePie/webscraper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or plain text with source attribution and optional summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use curl, Node.js, or OpenClaw web_fetch; supports optional content-length limits when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Fetching internal, private, cloud-metadata, or secret-bearing URLs could expose sensitive information to the agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict use to public URLs that are intended to be shared with the agent; block localhost, private network ranges, and cloud metadata endpoints.
+
+Risk: Web scraping can violate site terms, robots.txt, rate limits, or copyright expectations.
+
+Mitigation: Respect robots.txt and site terms, prefer official APIs when available, include attribution, and use delays between requests.
+
+Risk: Optional global npm installation of parsing helpers can introduce unpinned supply-chain risk.
+
+Mitigation: Avoid global installs where possible; pin dependencies and install them in an isolated project environment.
+
+Risk: The skill is not suited to login-required, CAPTCHA-protected, interactive, or JavaScript-heavy pages.
+
+Mitigation: Use a browser-based agent with an appropriate session for those pages, or decline when access would bypass authentication or anti-abuse controls.
+
+## Reference(s):
+
+- [WebScraper ClawHub Skill Page](https://clawhub.ai/lesliepie/skills/webscraper)
+- [OpenClaw Web Tool Documentation](https://docs.openclaw.ai/tools/web)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, guidance]
+
+**Output Format:** [Markdown or plain text with optional shell command and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include fetched source URLs, extraction mode guidance, length limits, summaries, and troubleshooting notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

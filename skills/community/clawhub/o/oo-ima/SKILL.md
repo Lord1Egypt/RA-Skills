@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "ima"
   author: "OOMOL"
-  version: "1.0.2"
+  version: "1.0.7"
   services: ["ima"]
   icon: "https://static.oomol.com/logo/third-party/ima.svg"
 ---
@@ -38,7 +38,7 @@ Each action is listed below with a one-line description; actions that change sta
 ## Available actions
 
 - `add_note_to_knowledge_base` — Add an existing IMA note into one IMA knowledge base. [write]
-- `append_note` — Append Markdown content to an existing IMA note.
+- `append_note` — Append Markdown content to an existing IMA note. [write]
 - `check_repeated_names` — Check whether file names already exist in an IMA knowledge-base folder.
 - `create_note` — Create a new IMA note from Markdown content. [write]
 - `get_knowledge_bases` — Fetch metadata for one or more IMA knowledge bases.
@@ -84,11 +84,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — ima is not connected, or the connection expired or lacks a scope. Connect once (auth type: custom credential) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=ima
+  https://console.oomol.com/connections/ima
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - ima homepage: https://ima.qq.com
+- API documentation: https://ima.qq.com/agent-interface

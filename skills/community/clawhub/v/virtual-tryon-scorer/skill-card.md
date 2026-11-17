@@ -1,42 +1,56 @@
-## Description: <br>
-Score and evaluate virtual try-on results by analyzing identity preservation, garment fidelity, body consistency, and background stability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scores virtual try-on results by comparing the source person, target garment, and generated output for identity preservation, garment fidelity, body consistency, and background stability.
 
-## Publisher: <br>
-[xavierjiezou](https://clawhub.ai/user/xavierjiezou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[xavierjiezou](https://clawhub.ai/user/xavierjiezou)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to evaluate AI-generated virtual try-on images before relying on them for presentation, review, or purchase-decision workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill evaluates uploaded try-on photos that may include identifiable face and body imagery.
+
+Mitigation: Use only with images the user is authorized to analyze and avoid submitting sensitive personal photos unless appropriate for the deployment context.
+
+Risk: Ambiguous image roles or low-quality inputs can make the scoring report unreliable.
+
+Mitigation: Ask users to identify the source person, target garment, and try-on result when unclear, and caveat scores when image quality limits visual assessment.
+
+Risk: The report format is expected to be Chinese unless the user asks for another language.
+
+Mitigation: Tell the agent or user to request a different output language when the deployment requires English or another locale.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users, developers, and evaluators use this skill to assess AI-generated virtual try-on images, compare source person, garment, and result images, and receive calibrated scoring with concise quality feedback. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill analyzes uploaded person images, which may include sensitive personal information. <br>
-Mitigation: Use only images the user intends to have evaluated and avoid sensitive personal images unless analysis is explicitly desired. <br>
-Risk: Broad outfit-change or garment-swap requests may trigger the skill when image roles or user intent are ambiguous. <br>
-Mitigation: Ask the user to confirm the source person, target garment, and try-on result before scoring ambiguous inputs. <br>
-Risk: The prescribed report format is fixed in Chinese and may not match every user's preferred language or reporting format. <br>
-Mitigation: Offer a translated or reformatted summary when the user needs the evaluation in another language or layout. <br>
+**Output Format:** [Markdown scoring report with per-dimension scores, weighted total score, and concise explanations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xavierjiezou/virtual-tryon-scorer) <br>
+**Other Properties Related to Output:** [Scores four dimensions on a 0-100 scale with weights of 40%, 30%, 20%, and 10%.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance] <br>
-**Output Format:** [Markdown report with structured scoring sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a fixed Chinese-language scoring report with four 0-100 dimension scores and a weighted total.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

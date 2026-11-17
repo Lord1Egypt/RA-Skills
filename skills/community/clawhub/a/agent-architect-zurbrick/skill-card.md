@@ -1,47 +1,57 @@
-## Description: <br>
-Audit and improve an agent at the right layer: persona/tone, constitutional and operating rules, memory architecture, or skill portfolio / reusable workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Architect diagnoses whether an agent issue belongs in persona, rules, memory, or skills, then recommends the smallest justified fix.
 
-## Publisher: <br>
-[zurbrick](https://clawhub.ai/user/zurbrick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zurbrick](https://clawhub.ai/user/zurbrick)
 
-## Use Case: <br>
-Developers and agent maintainers use this skill to diagnose recurring agent failures and route fixes to the correct layer: persona, rules, memory, or skills. It helps choose the smallest justified change and identify where that patch belongs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may recommend structural agent changes based on insufficient evidence. <br>
-Mitigation: Use it as an audit aid and review whether the lane assignment and fix type match the observed problem before applying any patch. <br>
-Risk: Daily memory logging may conflict with a workspace's privacy or retention expectations. <br>
-Mitigation: Decide whether daily memory logging is acceptable before use and adapt the logging step to local governance. <br>
-Risk: A named approval rule may not match the adopting team's authority model. <br>
-Mitigation: Replace the named 'Don approval' rule with the appropriate local approval requirement before relying on the placement guidance. <br>
+## Use Case:
 
+Developers, agent maintainers, and operators use this skill to diagnose recurring agent behavior problems and decide whether the smallest appropriate change belongs in persona, rules, memory, or a reusable skill workflow.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zurbrick/agent-architect-zurbrick) <br>
-- [Audit Checklist](references/audit-checklist.md) <br>
-- [Fix Types](references/fix-types.md) <br>
-- [Lane Diagnosis](references/lane-diagnosis.md) <br>
-- [Placement Map](references/placement-map.md) <br>
-- [Worked Examples](references/worked-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown diagnosis with optional YAML structured output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces recommendations only; it does not apply patches or execute code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can cause agents to record architecture recommendations in memory, which may preserve incorrect or premature diagnoses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the diagnosis and require explicit operator approval before writing durable memory or applying structural recommendations.
+
+Risk: The artifact includes a hard-coded named approval authority in its placement guidance.
+
+Mitigation: Replace that approval rule with the installing team's authenticated governance policy before relying on it.
+
+## Reference(s):
+
+- [Lane Diagnosis](references/lane-diagnosis.md)
+- [Fix Types](references/fix-types.md)
+- [Audit Checklist](references/audit-checklist.md)
+- [Placement Map](references/placement-map.md)
+- [Worked Examples](references/worked-examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Markdown with optional YAML structured output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Diagnostic recommendations may include patch targets and risks to avoid; proposals require review before changes are applied.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,58 @@
-## Description: <br>
-A comprehensive starting point for AI agents to work with Capacitor, covering core concepts, CLI, app creation, plugins, framework integration, best practices, storage, security, testing, troubleshooting, upgrading, and Capawesome Cloud. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A comprehensive starting point for AI agents to work with Capacitor, covering core concepts, CLI usage, app creation, plugins, framework integration, best practices, storage, security, testing, troubleshooting, upgrading, and Capawesome Cloud workflows.
 
-## Publisher: <br>
-[robingenz](https://clawhub.ai/user/robingenz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[robingenz](https://clawhub.ai/user/robingenz)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to plan, implement, debug, test, upgrade, and publish cross-platform Capacitor apps and plugins. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan reports broad local and maintainer-level authority that should be reviewed before installation. <br>
-Mitigation: Install only in a trusted ClawHub maintainer environment, use least-privilege GitHub and ClawHub tokens, and require explicit confirmation for moderation, publishing, and PR-commenting actions. <br>
-Risk: The skill may suggest Capacitor CLI commands and native project configuration changes that can affect app builds or deployment behavior. <br>
-Mitigation: Review commands and configuration changes before applying them, and test changes in a disposable branch or project before using them in production. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to plan, create, configure, test, troubleshoot, and upgrade Capacitor applications across iOS, Android, and web targets. It also guides plugin selection and Capawesome Cloud workflows such as live updates, native builds, and app store publishing.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/robingenz/capacitor-expert) <br>
-- [Capawesome](https://capawesome.io) <br>
-- [Capawesome Cloud](https://cloud.capawesome.io) <br>
-- [Capacitor App Configuration](https://github.com/capawesome-team/skills/blob/main/skills/capacitor-app-development/references/app-configuration.md) <br>
-- [Capacitor CLI Reference](https://github.com/capawesome-team/skills/blob/main/skills/capacitor-app-development/references/cli.md) <br>
-- [Capacitor Plugins](https://github.com/capawesome-team/skills/blob/main/skills/capacitor-plugins/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline TypeScript and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may include Capacitor CLI commands, framework patterns, plugin setup steps, and mobile platform configuration notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Mutable npm and npx examples can install different package versions over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin npm package and CLI versions where practical before running generated commands.
+
+Risk: Authenticated Capawesome Cloud commands can affect builds, live updates, deployments, or published app users.
+
+Mitigation: Run commands only in the intended project or CI environment, use scoped short-lived Capawesome tokens, and review live update and app store deployment commands before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/robingenz/skills/capacitor-expert)
+- [Capacitor App Configuration](https://github.com/capawesome-team/skills/blob/main/skills/capacitor-app-development/references/app-configuration.md)
+- [Capacitor CLI Reference](https://github.com/capawesome-team/skills/blob/main/skills/capacitor-app-development/references/cli.md)
+- [Cross-Platform Best Practices](https://github.com/capawesome-team/skills/blob/main/skills/capacitor-app-development/references/cross-platform-best-practices.md)
+- [Capawesome Cloud](https://cloud.capawesome.io)
+- [Capawesome Website](https://capawesome.io)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with TypeScript, JSON, and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands that affect local projects, cloud builds, live updates, or app store deployment workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

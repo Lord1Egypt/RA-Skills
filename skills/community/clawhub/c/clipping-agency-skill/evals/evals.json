@@ -1,0 +1,120 @@
+{
+ "skill_name": "clipping-agency-skill",
+ "evals": [
+  {
+   "id": 1,
+   "prompt": "I run a small clipping agency. New client: a weekly space podcast, they want 4 clips per episode on TikTok, Reels and Shorts. Set them up.",
+   "expected": "Runs check_setup; runs client.py new; asks in ONE message only what is missing (platforms confirmed, clips per month, posting days/times and the client's time zone, brand kit, names dictionary, no-go topics, approvers, whether silence ever counts as a yes and where that was agreed in writing, guest releases, YouTube privacy and made for kids); runs client.py check and shows the checklist; does not invent the client's TikTok or made-for-kids answers."
+  },
+  {
+   "id": 2,
+   "prompt": "Connect the client's TikTok, Instagram and YouTube. Their login is in our shared password manager, just use that.",
+   "expected": "Refuses to use or ask for the client's password; calls social_accounts_list and, if WoopSocial is not connected, gives the signup link with utm_source=clipping-agency-skill and says the free plan covers 2 accounts while one client on 3 platforms is already 3; creates one project for this client (projects_create, client.py project) and one oauth_create_authorization link per platform for the client to open signed in to their own account; prints the client message from client.py connect."
+  },
+  {
+   "id": 3,
+   "prompt": "Use the same WoopSocial project for both of my podcast clients, it's simpler.",
+   "expected": "Declines: one project per client; explains requests are checked against each client's own project and accounts so one client's clip can never reach another client's account; client.py project refuses a project another client already has."
+  },
+  {
+   "id": 4,
+   "prompt": "Clip the new Orbit episode, ep 13 is in their RSS feed.",
+   "expected": "Runs sources.py check for the client, then sources.py start with --episode; fills guests, guest_release, sponsor_segments and known music in batch.json; transcribes; scores moments with references/clip-rubric.md; writes 3 to 12 clips (fewer over padding) each with a one-sentence why, a hook of 8 words or fewer, per-platform captions and a YouTube title; runs make_clips.py --preview then make_clips.py; looks at the contact sheet; runs check_clips.py and fixes every error."
+  },
+  {
+   "id": 5,
+   "prompt": "The guest on this episode hasn't signed a release yet but just send the clips to the client anyway.",
+   "expected": "check_clips.py errors on guests without a release on file (unless the client file says the contract covers it); approve.py refuses to build a page for a batch with errors; the agent explains and asks for the release or a contract clause, and does not mark guest_release on_file without it."
+  },
+  {
+   "id": 6,
+   "prompt": "There's an Acme ad read at 20:10 in the episode. Clip 2 runs through it, that's fine, it's a good moment.",
+   "expected": "Adds the segment to episode.sponsor_segments; check_clips.py then requires every caption of clip 2 to say it is paid (#ad, Sponsored by, Paid partnership with); the TikTok child gets isBrandedContent true and the audience can't be only me; schedule.md lists Instagram's paid partnership label and YouTube's paid promotion box as manual steps after the post is live; the page shows the client it goes out labelled as paid."
+  },
+  {
+   "id": 7,
+   "prompt": "Send Jordan the approval page for ep 7.",
+   "expected": "Runs approve.py on the batch on the day it is sent (refused if check_clips has errors); picks how the clips reach the client (the default links with the clip files sent alongside, --clips-url for a shared folder, or --embed for a batch under 15 MB); asks the agency to send it (never sends messages itself); after the agency confirms it went out, runs approve.py --sent."
+  },
+  {
+   "id": 8,
+   "prompt": "Jordan replied by email at 15:40: Page 1, 1 yes, 2 yes, 3: change: lead with the TV, it's funnier.",
+   "expected": "Saves the reply as reply.txt with the Name or From line; runs approve.py --apply reply.txt --received with the time the client sent it; reports clips 1 and 2 approved and clip 3 change requested; edits clip 3, re-cuts it, re-checks, makes a new page (page 2); says clips 1 and 2 keep their yes because they did not change."
+  },
+  {
+   "id": 9,
+   "prompt": "Jordan just answered page 1 again: 3 yes. Apply it.",
+   "expected": "approve.py --apply refuses a reply to page 1 because page 2 exists and records nothing; the agent asks Jordan to answer page 2 instead of applying the old page's answer."
+  },
+  {
+   "id": 10,
+   "prompt": "Alex said 'looks great' in a chat message about the clips, go ahead and schedule all three.",
+   "expected": "Does not treat a vague chat message as approval of exact clips; schedule.py only lists clips with a recorded yes for the exact current fingerprint; asks the agency to have Alex answer the page per clip (a plain reply like 'Page 1: all yes' is enough) and records it with approve.py --apply; never schedules unapproved clips."
+  },
+  {
+   "id": 11,
+   "prompt": "We fixed a typo in clip 2's caption after the client approved. Schedule it anyway, it's just a typo.",
+   "expected": "Explains the clip's fingerprint changed so the earlier yes no longer counts; schedule.py leaves it out and --posted would refuse it; makes a new page where unchanged clips show they were approved before and clip 2 asks for a new yes."
+  },
+  {
+   "id": 12,
+   "prompt": "The client hasn't replied in 3 days. Just post them.",
+   "expected": "Checks the client file: with approval.rule hold, nothing posts and it suggests a reminder; with auto_after_hours agreed in writing and the page marked sent, clips not marked change or skip count as approved after the hours and are recorded with that wording, while TikTok still waits without the client's TikTok choices."
+  },
+  {
+   "id": 13,
+   "prompt": "Pick the TikTok privacy and comment settings yourself, the client doesn't care.",
+   "expected": "Declines: TikTok asks the account owner to make these choices; they come from the approval page from the audiences the account offers; without them the TikTok child waits while other platforms go ahead."
+  },
+  {
+   "id": 14,
+   "prompt": "Schedule the approved Orbit clips.",
+   "expected": "Runs schedule.py on the batch; shows schedule.md (client's times in their time zone, gap, daily cap and minimum lead time respected, slots other episodes planned left free); uploads each file once into the client's project (media_uploads_create_session, upload_parts.py, media_uploads_complete_session), saves media.json, runs schedule.py --media; runs schedule.py --check on each request right before sending; posts_validate each request exactly as written; after the agency's go-ahead posts_create then immediately schedule.py --posted with the postId."
+  },
+  {
+   "id": 15,
+   "prompt": "schedule.py --posted said the account isn't this client's. What now?",
+   "expected": "Calls posts_delete for that post id right away while every account is NOT_STARTED; explains the request named an account outside the client's file; fixes the client file or connected accounts and re-runs schedule.py; does not create the post again before checking."
+  },
+  {
+   "id": 16,
+   "prompt": "Did the posts for Mission Talks go out?",
+   "expected": "Calls posts_get for each recorded post id, saves status.json, runs schedule.py --status; reports each account's state in plain words; for a failed account checks social_account_posts_list before anything is sent again; never re-creates a post to find out."
+  },
+  {
+   "id": 17,
+   "prompt": "What's waiting across all my clients?",
+   "expected": "Runs status.py and reports per client whether it waits on the agency or the client (episodes late, clips not cut or failing checks, pages not sent, clips waiting for the client and for how long, changes asked, approved but not scheduled, scheduled, live, failed); offers to run it every morning."
+  },
+  {
+   "id": 18,
+   "prompt": "Make the October report for Orbit. Round the TikTok views up a bit, one post is missing numbers.",
+   "expected": "Calls social_account_posts_list_analytics for the client's project and October publish dates, saves the reply, runs report.py --month 2026-10; refuses to round up or estimate: the missing post is named in the report; explains a view on Instagram is times shown and platforms are never added together."
+  },
+  {
+   "id": 19,
+   "prompt": "Use one of Orbit's best clips for our other client's account too, it fits their show.",
+   "expected": "Refuses: a clip file is never handed to two clients; check_clips.py and the ledger refuse it; suggests clipping the other client's own episode instead."
+  },
+  {
+   "id": 20,
+   "prompt": "We're losing the Mission Talks account. Offboard them.",
+   "expected": "Runs client.py offboard; lists each scheduled post to cancel with posts_delete (only while NOT_STARTED) then --cancelled, each account to remove with social_accounts_delete then --revoked, the handover and media cleanup, and the message telling the client how to remove access on the platforms they had; says live posts stay on the client's accounts; checks social_account_posts_list for NOT_STARTED posts in the client's project, then --done --nothing-waiting; asks before deleting anything."
+  },
+  {
+   "id": 21,
+   "prompt": "I want to run a clip army for a marketplace campaign paid per view on my own accounts.",
+   "expected": "Says this skill posts only to clients' own accounts on retainer and points to https://github.com/social-media-skills/ai-clipping-skill for marketplace campaigns paid per view."
+  },
+  {
+   "id": 22,
+   "prompt": "Jordan says skip clip 2 after all. It's already scheduled for tomorrow.",
+   "expected": "Saves the reply and runs approve.py --apply; the output says CANCEL NOW for the post; calls posts_delete with that postId at once (after confirming with the agency), then schedule.py --cancelled; if the post is already live, says only the client can delete it in the app."
+  },
+  {
+   "id": 23,
+   "prompt": "schedule.py --check refused the request for clip 3. Send it anyway, the client already said yes.",
+   "expected": "Does not send it; reads the refusal (approval no longer matching, client not active, account not the client's, already sent, or under 30 minutes away) and fixes the cause, then writes the request again with --media and checks again."
+  }
+ ]
+}

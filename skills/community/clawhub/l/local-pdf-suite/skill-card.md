@@ -1,43 +1,66 @@
-## Description: <br>
-Complete local PDF toolkit - OCR, merge, split, compress, watermark, convert, and 30+ operations via the Stirling-PDF API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete local PDF toolkit for OCR, merge, split, compress, watermark, conversion, and other Stirling-PDF operations.
 
-## Publisher: <br>
-[wudi488](https://clawhub.ai/user/wudi488) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wudi488](https://clawhub.ai/user/wudi488)
 
-## Use Case: <br>
-Developers, engineers, and document-automation users use this skill to configure and call a trusted Stirling-PDF instance for OCR, conversion, merging, compression, watermarking, encryption, and related PDF operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive PDFs, passwords, API keys, and signing material are sent to the configured Stirling-PDF server. <br>
-Mitigation: Use only a local or trusted private Stirling-PDF server, keep API keys in environment variables, and avoid public or unknown endpoints. <br>
-Risk: One included helper script defaults to an HTTP private-network address that may not be the intended server. <br>
-Mitigation: Prefer the localhost-based helper or explicitly set the Stirling-PDF endpoint after reviewing the script defaults. <br>
-Risk: The server security verdict is suspicious because a script can send sensitive PDFs to an unexpected hard-coded address. <br>
-Mitigation: Review and adjust endpoint configuration before processing confidential documents or passwords. <br>
+## Use Case:
 
+Developers and document-processing users can use this skill to deploy and operate a private Stirling-PDF workflow for local PDF OCR, conversion, merging, compression, watermarking, and security operations.
 
-## Reference(s): <br>
-- [Stirling-PDF project repository](https://github.com/Stirling-Tools/Stirling-PDF) <br>
-- [ClawHub skill page](https://clawhub.ai/wudi488/local-pdf-suite) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, API endpoint examples, and generated file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may produce processed PDFs, ZIP archives, DOCX, HTML, Markdown, CSV, EPUB, TXT, or JSON error responses from the configured Stirling-PDF server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release metadata) <br>
+Risk: Sensitive PDFs, API keys, document passwords, or signing material may be sent to an untrusted or unintended Stirling-PDF endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a local or trusted private Stirling-PDF instance, prefer HTTPS for any non-local endpoint, and confirm the configured base URL before processing sensitive documents.
+
+Risk: One helper script defaults to an undocumented private network address and uses a different base-url variable than the main instructions.
+
+Mitigation: Avoid sensitive PDFs until the hardcoded default and environment-variable mismatch are removed or explicitly reviewed.
+
+Risk: Merge helper behavior can expose users to command injection when filenames are untrusted.
+
+Mitigation: Do not run merge helpers on untrusted filenames; review or replace the helper with argument-safe command construction before deployment.
+
+Risk: The Docker deployment example uses a floating image tag.
+
+Mitigation: Pin the Stirling-PDF image to a reviewed version or digest before production use.
+
+Risk: Document passwords passed as command-line arguments may be exposed through shell history or process listings.
+
+Mitigation: Use safer secret handling for passwords and avoid passing sensitive document secrets directly on the command line.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wudi488/skills/local-pdf-suite)
+- [Stirling-PDF project](https://github.com/Stirling-Tools/Stirling-PDF)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces commands and configuration guidance for a user-controlled Stirling-PDF instance; generated files are created by the invoked Stirling-PDF API.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

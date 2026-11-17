@@ -1,11 +1,25 @@
 ---
 name: Discover
 slug: discover
-version: 1.0.0
+version: 1.0.1
+description: Discover new ideas, sources, opportunities, and angles with durable watchlists, novelty rules, and heartbeat-backed finding logs.
 homepage: https://clawic.com/skills/discover
-description: "Discover new ideas, sources, opportunities, and angles with durable watchlists, novelty rules, and heartbeat-backed finding logs."
-changelog: "Initial release with discovery watchlists, novelty filters, heartbeat logging, and lightweight workspace routing."
-metadata: {"clawdbot":{"emoji":"🔭","requires":{"bins":[]},"os":["linux","darwin","win32"],"configPaths":["~/discover/"],"configPaths.optional":["./AGENTS.md","./HEARTBEAT.md"]}}
+changelog: Initial release with discovery watchlists, novelty filters, heartbeat logging, and lightweight workspace routing.
+metadata:
+  clawdbot:
+    emoji: 🔭
+    requires:
+      bins: []
+    os:
+    - linux
+    - darwin
+    - win32
+    configPaths:
+    - ~/Clawic/data/discover/
+    configPaths.optional:
+    - ./AGENTS.md
+    - ./HEARTBEAT.md
+    displayName: Discover
 ---
 
 ## When to Use
@@ -16,12 +30,12 @@ This is especially useful for open loops such as moving countries, tax relocatio
 
 ## Architecture
 
-Memory lives in `~/discover/`. If `~/discover/` does not exist, run `setup.md`. Use `memory-template.md`, `watchlist-template.md`, and `heartbeat-state.md` as the baseline structures.
+Memory lives in `~/Clawic/data/discover/`. If `~/Clawic/data/discover/` does not exist, run `setup.md`. Use `memory-template.md`, `watchlist-template.md`, and `heartbeat-state.md` as the baseline structures.
 
 Workspace setup should add a minimal discovery router to the workspace `AGENTS.md` and a quiet recurring check to `HEARTBEAT.md`, with recurring behavior routed through `heartbeat-rules.md`.
 
 ```text
-~/discover/
+~/Clawic/data/discover/
 ├── memory.md             # Activation rules, novelty bar, and autonomy boundaries
 ├── watchlist.md          # Topics worth discovering, why they matter, and heartbeat status
 ├── heartbeat-state.md    # Last run, last angle used, and no-op markers
@@ -35,9 +49,9 @@ Workspace setup should add a minimal discovery router to the workspace `AGENTS.m
 | Topic | File | Use it for |
 |-------|------|------------|
 | Setup and workspace routing | `setup.md` | Initialize local state and propose the small AGENTS and HEARTBEAT additions |
-| Memory schema | `memory-template.md` | Create `~/discover/memory.md` with status and stable preferences |
+| Memory schema | `memory-template.md` | Create `~/Clawic/data/discover/memory.md` with status and stable preferences |
 | Baseline memory example | `memory.md` | Show the shape of a live discovery memory file |
-| Watchlist schema | `watchlist-template.md` | Create `~/discover/watchlist.md` with active discovery tracks |
+| Watchlist schema | `watchlist-template.md` | Create `~/Clawic/data/discover/watchlist.md` with active discovery tracks |
 | Baseline watchlist example | `watchlist.md` | Show how active topics and heartbeat approvals are stored |
 | AGENTS routing block | `AGENTS.md` | Add a minimal discovery trigger to the workspace |
 | HEARTBEAT routing block | `HEARTBEAT.md` | Add a quiet recurring discovery check |
@@ -72,7 +86,7 @@ Route here when the conversation sounds like any of these:
 - Do not maintain a vague watchlist of random interests with no consequence.
 
 ### 2. Keep a Visible Watchlist
-- Durable discovery topics belong in `~/discover/watchlist.md`, not scattered through chat.
+- Durable discovery topics belong in `~/Clawic/data/discover/watchlist.md`, not scattered through chat.
 - Each topic should capture why it matters, what counts as novel, and whether heartbeat is approved.
 
 ### 3. Novelty Beats Volume
@@ -84,11 +98,11 @@ Route here when the conversation sounds like any of these:
 - Move through direct, contrarian, operator, geographic, regulatory, stakeholder, and practical lenses so discovery compounds instead of looping.
 
 ### 5. Heartbeat Needs an Explicit Contract
-- Heartbeat may review only topics marked as approved in `~/discover/watchlist.md`.
+- Heartbeat may review only topics marked as approved in `~/Clawic/data/discover/watchlist.md`.
 - Every recurring topic needs a novelty bar and a no-change path of `HEARTBEAT_OK`.
 
 ### 6. Log Deltas, Not Essays
-- Write only the new part into `~/discover/findings/{topic}.md`.
+- Write only the new part into `~/Clawic/data/discover/findings/{topic}.md`.
 - Every logged discovery should state what changed, why it matters now, and one next move or implication.
 
 ### 7. Stay Scoped and Trustworthy
@@ -119,7 +133,7 @@ No other data should be sent externally unless the user explicitly approves broa
 
 ## Data Storage
 
-Local state in `~/discover/` includes:
+Local state in `~/Clawic/data/discover/` includes:
 
 - activation preferences and discovery boundaries in `memory.md`
 - active topics and heartbeat approvals in `watchlist.md`
@@ -133,9 +147,9 @@ Local state in `~/discover/` includes:
 - topic names, query variants, and source lookups needed to discover new information
 
 **Data that stays local:**
-- discovery preferences and activation rules in `~/discover/memory.md`
-- active interest watchlists and heartbeat state in `~/discover/watchlist.md` and `~/discover/heartbeat-state.md`
-- dated findings in `~/discover/findings/`
+- discovery preferences and activation rules in `~/Clawic/data/discover/memory.md`
+- active interest watchlists and heartbeat state in `~/Clawic/data/discover/watchlist.md` and `~/Clawic/data/discover/heartbeat-state.md`
+- dated findings in `~/Clawic/data/discover/findings/`
 
 **This skill does NOT:**
 - create hidden recurring loops
@@ -152,7 +166,7 @@ Only install and run it if you trust those public sources and the external servi
 ## Scope
 
 This skill ONLY:
-- maintains local discovery state in `~/discover/`
+- maintains local discovery state in `~/Clawic/data/discover/`
 - turns durable curiosity into a visible watchlist with explicit novelty rules
 - uses heartbeat only for approved tracks with a quiet no-change path
 
@@ -163,7 +177,7 @@ This skill NEVER:
 - turn discovery into external action without approval
 
 ## Related Skills
-Install with `clawhub install <slug>` if user confirms:
+More Clawic skills, get them at https://clawic.com/skills/<slug> (install if the user confirms):
 - `self-improving` - Compound what the agent learns from corrections and repeated wins.
 - `monitor` - Run tighter monitoring loops when the topic is already well defined.
 - `decide` - Turn discoveries into clear decisions and tradeoff calls.
@@ -172,5 +186,5 @@ Install with `clawhub install <slug>` if user confirms:
 
 ## Feedback
 
-- If useful: `clawhub star discover`
-- Stay updated: `clawhub sync`
+- If useful, star it: https://clawic.com/skills/discover
+- Latest version: https://clawic.com/skills/discover

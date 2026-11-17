@@ -1,43 +1,56 @@
-## Description: <br>
-Guides setup of ShellPhone/OpenClaw Gateway for connecting iOS devices to self-hosted AI agents over WebSocket. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shellphone Gateway provides setup guidance for connecting iOS devices to self-hosted AI bots through a private WebSocket gateway with optional TTS/ASR support.
 
-## Publisher: <br>
-[loserbcc](https://clawhub.ai/user/loserbcc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[loserbcc](https://clawhub.ai/user/loserbcc)
 
-## Use Case: <br>
-Developers and self-hosters use this skill to install and connect the gateway, iOS TestFlight app, local AI agents, and the speech services described by the release. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The self-hosted privacy claim is incomplete because ScrappyLabs speech features may send audio or text outside the local environment. <br>
-Mitigation: Before installing, confirm whether ScrappyLabs is optional, what data it receives, and how to disable TTS or ASR features. <br>
-Risk: The release depends on third-party GitHub, PyPI, Docker Compose, and TestFlight distribution paths. <br>
-Mitigation: Verify the repository, package, compose file, and TestFlight publisher before running or connecting devices. <br>
+## Use Case:
 
+Developers and self-hosting users use this skill to set up an iOS-to-agent gateway, connect an iPhone to local AI bots, and configure Docker or Python startup with a QR-code connection flow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/loserbcc/shellphone-gateway) <br>
-- [Gateway GitHub](https://github.com/loserbcc/openclaw-gateway) <br>
-- [ShellPhone TestFlight](https://testflight.apple.com/join/BnjD4BEf) <br>
-- [ScrappyLabs](https://scrappylabs.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown setup guidance with shell commands and URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference external install, TestFlight, and speech-service links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The setup path may run mutable external code through git clone, Docker Compose, or pip installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the gateway repository, package, and Docker Compose configuration before execution, and prefer a pinned release or audited commit.
+
+Risk: Privacy claims may not fully account for TTS/ASR processing through ScrappyLabs.
+
+Mitigation: Assume voice or text data may be sent to ScrappyLabs unless the publisher documents otherwise and provides a clear disable or opt-in setting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/loserbcc/skills/shellphone-gateway)
+- [Gateway GitHub repository](https://github.com/loserbcc/openclaw-gateway)
+- [ShellPhone TestFlight beta](https://testflight.apple.com/join/BnjD4BEf)
+- [ScrappyLabs](https://scrappylabs.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

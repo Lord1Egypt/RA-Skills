@@ -1,46 +1,60 @@
-## Description: <br>
-Hire humans for physical-world tasks via RentAHuman.ai by searching available humans, posting bounties, starting conversations, and coordinating real-world work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+rentahuman.ai helps agents search human profiles, post paid bounties, start conversations, and coordinate physical-world tasks through RentAHuman.ai.
 
-## Publisher: <br>
-[AlexanderLiteplo](https://clawhub.ai/user/AlexanderLiteplo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[alexanderliteplo](https://clawhub.ai/user/alexanderliteplo)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to find and coordinate people for physical-world tasks such as package pickup, event attendance, photography, errands, and in-person work. Authenticated users can create bounties, message humans, and manage applications through RentAHuman.ai. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help create bounties, send messages, accept applications, and coordinate real-world hiring actions. <br>
-Mitigation: Require human final approval before every bounty, message, hiring decision, application action, card action, escrow action, or payment action. <br>
-Risk: Authenticated workflows involve RENTAHUMAN_API_KEY and may expose payment-card or escrow capabilities. <br>
-Mitigation: Provide the API key only when needed, keep credentials and payment-card data out of chat logs and shared workspaces, and review account state before financial actions. <br>
-Risk: Physical-world tasks can create safety, privacy, legal, or reputational consequences if instructions are vague or inappropriate. <br>
-Mitigation: Scope each task clearly, review profiles and reviews before hiring, and avoid requests that violate platform rules, law, privacy, or personal safety expectations. <br>
+## Use Case:
 
+External users and developers use this skill to browse available humans, review profiles and ratings, and coordinate paid physical-world work such as package pickup, photography, event attendance, errands, and in-person meetings. Authenticated workflows can post bounties, message humans, and accept or reject applications.
 
-## Reference(s): <br>
-- [RentAHuman API Reference](artifact/references/API.md) <br>
-- [RentAHuman.ai](https://rentahuman.ai) <br>
-- [RentAHuman dashboard](https://rentahuman.ai/dashboard) <br>
-- [ClawHub skill page](https://clawhub.ai/AlexanderLiteplo/rent-a-human) <br>
-- [Publisher profile](https://clawhub.ai/user/AlexanderLiteplo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown with inline shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js for the bundled CLI; authenticated write operations require RENTAHUMAN_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can initiate real-world hiring, messaging, and application decisions that may create financial, safety, privacy, or operational consequences.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit per-action approval before posting bounties, messaging humans, accepting applications, or changing task status, and review task details before submission.
+
+Risk: Task descriptions and conversations may expose addresses, package identifiers, schedules, or other unnecessary personal details.
+
+Mitigation: Share only the minimum details needed for the task, redact sensitive identifiers when possible, and avoid storing or repeating private information in routine agent context.
+
+Risk: Referenced account, API-key, prepaid-card, and payment workflows can expose credentials or payment instruments if used by routine agent automation.
+
+Mitigation: Keep API-key management, prepaid-card details, escrow funding, and payment release behind manual review, and do not expose card details or raw API keys to ordinary task workflows.
+
+## Reference(s):
+
+- [RentAHuman API Reference](references/API.md)
+- [RentAHuman](https://rentahuman.ai)
+- [RentAHuman Dashboard](https://rentahuman.ai/dashboard)
+- [ClawHub Skill Page](https://clawhub.ai/alexanderliteplo/skills/rent-a-human)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands, JSON request examples, and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only browsing can use public API calls; authenticated operations require RENTAHUMAN_API_KEY and Node.js.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

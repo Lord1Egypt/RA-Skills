@@ -1,40 +1,51 @@
-## Description: <br>
-Add text to today's daily note in FocusNote as a new bullet point. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Add text to today's daily note in FocusNote as a new bullet point.
 
-## Publisher: <br>
-[trongnguyen29](https://clawhub.ai/user/trongnguyen29) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[trongnguyen29](https://clawhub.ai/user/trongnguyen29)
 
-## Use Case: <br>
-FocusNote users and coding agents use this skill to append user-provided text as a bullet in today's local FocusNote daily note, creating the note if needed. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The helper script writes to local FocusNote daily note files. <br>
-Mitigation: Confirm the exact text and that it should be appended to today's FocusNote daily note before running the script. <br>
-Risk: FocusNote must be running and its local documents path must be available. <br>
-Mitigation: Check that FocusNote is running and that the documents-path file exists before attempting the write. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Skill source](artifact/SKILL.md) <br>
-- [ClawHub skill page](https://clawhub.ai/trongnguyen29/focusnoteapp) <br>
+## Use Case:
+
+FocusNote users use this skill to have an agent append user-provided text to today's daily note as a bullet point, creating the daily note when needed.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill modifies local FocusNote note files and may create today's daily note.
+
+Mitigation: Install only if comfortable with local FocusNote file changes, and ask the agent to show the target note path before the first write.
+
+Risk: The example helper script depends on the uuid package.
+
+Mitigation: Use Node's built-in crypto.randomUUID() or pin the uuid dependency before use.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with JavaScript and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides an agent to append user-provided text to the user's local FocusNote daily note.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with JavaScript and shell command code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent guidance for modifying local FocusNote note files; no external API output is described.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, released 2026-02-11)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

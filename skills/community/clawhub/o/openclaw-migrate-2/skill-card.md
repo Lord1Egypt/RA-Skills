@@ -1,43 +1,58 @@
-## Description: <br>
-Migrate OpenClaw agents across platforms and servers, preserving identity, memory, configuration, skills, and extensions for deployment, backup, syncing, and upgrades. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Migrate OpenClaw agents across platforms and servers, preserving identity, memory, configuration, and skills for deployment, backup, syncing, and upgrades.
 
-## Publisher: <br>
-[haha8d](https://clawhub.ai/user/haha8d) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[haha8d](https://clawhub.ai/user/haha8d)
 
-## Use Case: <br>
-Developers and operators use this skill to migrate, back up, restore, or synchronize OpenClaw agent state between local, remote, development, production, and containerized environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Migration and sync workflows can upload sensitive agent data, including memory, identity, configuration, and custom skills. <br>
-Mitigation: Use only trusted private repositories, inspect backup contents before pushing, and manually check configuration templates for secrets. <br>
-Risk: Restore operations can overwrite existing OpenClaw files on the target environment. <br>
-Mitigation: Back up the target .openclaw directory first or restore into a staging directory before replacing production agent state. <br>
-Risk: Force-push synchronization can replace remote backup history. <br>
-Mitigation: Avoid the force-push path unless the remote repository state has been reviewed and replacement is intentional. <br>
+## Use Case:
 
+Developers and engineers use this skill to export, transfer, restore, and synchronize OpenClaw agent state across local, server, GitHub, and Docker deployment environments.
 
-## Reference(s): <br>
-- [Openclaw Migrate on ClawHub](https://clawhub.ai/haha8d/openclaw-migrate-2) <br>
-- [Docker deployment guide](artifact/references/docker-deploy.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with shell commands, configuration snippets, and migration workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce backup archives, restore scripts, Git repository updates, and Docker deployment configuration when the referenced scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Risk: Agent exports and GitHub syncs can expose sensitive identity, memory, configuration, credentials, or session history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Sanitize configuration before export, avoid full session exports unless required, use only trusted private repositories, and rotate any credentials that may have moved.
+
+Risk: Restore and pull workflows can overwrite local agent state or execute restore code from a supplied repository.
+
+Mitigation: Inspect restore.sh before execution, pull only from trusted repositories, and test restore behavior in a staging environment before production use.
+
+Risk: Repository synchronization can alter remote repository history, including forced pushes.
+
+Mitigation: Use a dedicated backup repository and confirm it has no important history before allowing force-push behavior.
+
+## Reference(s):
+
+- [Docker deployment guide](references/docker-deploy.md)
+- [ClawHub skill page](https://clawhub.ai/haha8d/skills/openclaw-migrate-2)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, markdown]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct users to run migration, synchronization, and restore scripts after reviewing inputs and credentials.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; package.json declares 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

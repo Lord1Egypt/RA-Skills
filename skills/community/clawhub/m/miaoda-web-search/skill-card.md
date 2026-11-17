@@ -1,40 +1,53 @@
-## Description: <br>
-Provides keyword-based web search guidance for using Miaoda's CLI search-summary command to retrieve AI-generated internet search summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides command usage guidance for keyword-based web searches through `miaoda-studio-cli search-summary` with AI-generated summaries.
 
-## Publisher: <br>
-[nice1234-h](https://clawhub.ai/user/nice1234-h) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nice1234-h](https://clawhub.ai/user/nice1234-h)
 
-## Use Case: <br>
-Developers and agent operators use this skill to route general internet lookups through miaoda-studio-cli search-summary, choosing text or JSON output for follow-on analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries may expose secrets, private business details, or confidential personal data to the underlying search and summarization service. <br>
-Mitigation: Do not enter sensitive data unless the user trusts the Miaoda CLI and its underlying service for that information. <br>
-Risk: The skill has broad activation wording that may make Miaoda CLI search summaries the preferred path for web lookups. <br>
-Mitigation: Install it only when that routing behavior is intended, and verify miaoda-studio-cli is installed from a trusted source. <br>
+## Use Case:
 
+Developers and agent users use this skill to route internet lookups to a keyword search command and receive summarized search results. JSON output can be requested when another tool or workflow needs to process the result.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nice1234-h/miaoda-web-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline bash command examples and optional text or JSON CLI output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search queries are constrained to 1-500 characters by the artifact guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Search queries are routed through an external CLI service whose provider handling is not fully disclosed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the provider path before installation and avoid confidential, personal, or proprietary queries unless the service is trusted.
+
+Risk: The skill broadly redirects internet lookup behavior to this search helper before direct URL fetching.
+
+Mitigation: Review agent tool-routing behavior before deployment and preserve direct URL fetching for cases where the user provides a specific URL.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nice1234-h/skills/miaoda-web-search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with bash command examples; command output may be text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a 1-500 character search query; JSON output is optional.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

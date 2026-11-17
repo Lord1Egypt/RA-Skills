@@ -1,40 +1,54 @@
-## Description: <br>
-Omni 内容发布器：一篇文章适配公众号/小红书/知乎/抖音，批量生成多平台版本 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Omnipublisher converts one Markdown article into platform-specific Markdown versions for WeChat, Xiaohongshu, Zhihu, and Douyin.
 
-## Publisher: <br>
-[utopiabenben](https://clawhub.ai/user/utopiabenben) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[utopiabenben](https://clawhub.ai/user/utopiabenben)
 
-## Use Case: <br>
-Developers, writers, and content operators use this skill to convert one Markdown article into platform-specific drafts for WeChat, Xiaohongshu, Zhihu, and Douyin. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated files such as article_wechat.md can overwrite existing files with the same generated name. <br>
-Mitigation: Run the tool in a dedicated output directory or check generated filenames before writing outputs. <br>
-Risk: Automated platform adaptation can shorten or reformat article content in ways that change emphasis. <br>
-Mitigation: Review each generated platform draft before publishing it externally. <br>
+## Use Case:
 
+External creators, content teams, and developers use this skill to reformat a single article into multiple social publishing variants. It supports local conversion into WeChat, Xiaohongshu, Zhihu, and Douyin Markdown outputs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/utopiabenben/omnipublisher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown files with CLI status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads a user-selected Markdown input file and writes platform-specific Markdown outputs to the selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill reads the user-provided article file, so sensitive article content could be processed locally by the tool.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on intended input files and avoid using sensitive drafts unless local processing is acceptable.
+
+Risk: Generated Markdown files are written into the selected output directory and may overwrite similarly named outputs.
+
+Mitigation: Use a dedicated output folder and review generated files before sharing or publishing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/utopiabenben/skills/omnipublisher)
+- [Publisher profile](https://clawhub.ai/user/utopiabenben)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown files and plain-text CLI status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3.7+ and writes one Markdown file per selected platform into the chosen output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

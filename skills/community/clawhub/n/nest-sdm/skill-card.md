@@ -1,43 +1,65 @@
-## Description: <br>
-Control Nest thermostat, doorbell, and cameras via the Google Smart Device Management (SDM) API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Nest thermostat, doorbell, and cameras via the Google Smart Device Management (SDM) API.
 
-## Publisher: <br>
-[tag-assistant](https://clawhub.ai/user/tag-assistant) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tag-assistant](https://clawhub.ai/user/tag-assistant)
 
-## Use Case: <br>
-External developers and home automation operators use this skill to configure Google SDM access, inspect Nest devices, control thermostat settings, request camera streams or event snapshots, and monitor Pub/Sub device events. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can grant an agent access to Nest devices, cameras, event metadata, and related Google Cloud Pub/Sub resources. <br>
-Mitigation: Install only when the publisher is trusted, use dedicated least-privilege Google credentials, and review requested device permissions before authorization. <br>
-Risk: The release security summary flags broad Google Cloud changes, credential reuse, Telegram forwarding, persistent logging, and unsafe input handling for review. <br>
-Mitigation: Review raw API commands before running them, avoid storing unrelated secrets in shell environment files, enable Telegram forwarding only intentionally, and periodically delete logs or remove unused Pub/Sub and IAM resources. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tag-assistant/nest-sdm) <br>
-- [Publisher Profile](https://clawhub.ai/user/tag-assistant) <br>
-- [Google Nest Device Access Console](https://console.nest.google.com/device-access) <br>
-- [Google Cloud Console](https://console.cloud.google.com) <br>
-- [Google SDM OAuth Scope](https://www.googleapis.com/auth/sdm.service) <br>
+## Use Case:
 
+Developers and technically capable Nest device owners use this skill to configure OAuth access, inspect device state, control thermostats and fans, generate camera streams or event images, and monitor real-time Nest events through Pub/Sub.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, API calls, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces CLI instructions and scripts for Google SDM REST API operations, Pub/Sub event polling, and optional Telegram alerts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can control Nest thermostats and fans, access camera streams or event images, and read household device state.
+
+Mitigation: Install it only for accounts and homes where this level of device access is intended, and review commands before execution.
+
+Risk: OAuth refresh tokens and Pub/Sub credentials are stored locally and used to access Google SDM and cloud resources.
+
+Mitigation: Store token files with restrictive permissions, avoid broad cloud-platform credentials where possible, and rotate or revoke credentials when access is no longer needed.
+
+Risk: Event logs and optional Telegram alerts can expose household activity patterns.
+
+Mitigation: Restrict log access, configure retention deliberately, and enable Telegram forwarding only when sending these alerts to Telegram is acceptable.
+
+Risk: The security scan flags unsafe python3 -c interpolation patterns in scripts that process local configuration and API data.
+
+Mitigation: Review and fix those scripting patterns before running the skill with real credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tag-assistant/skills/nest-sdm)
+- [Publisher profile](https://clawhub.ai/user/tag-assistant)
+- [Google Nest Device Access Console](https://console.nest.google.com/device-access)
+- [Google Cloud Console](https://console.cloud.google.com)
+- [Google OAuth token endpoint](https://oauth2.googleapis.com/token)
+- [Google Smart Device Management API endpoint](https://smartdevicemanagement.googleapis.com/v1/enterprises/${PROJECT_ID})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and python3; may create local OAuth token files and Nest event logs when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

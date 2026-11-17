@@ -1,42 +1,54 @@
-## Description: <br>
-Agent Anchor is a local OpenClaw dashboard that snapshots agent state, tracks tasks, monitors cron jobs, and helps recover after interruptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Anchor helps OpenClaw users run a local dashboard that snapshots agent state, tracks tasks, monitors cron jobs, and supports recovery after interruptions.
 
-## Publisher: <br>
-[metariot2026](https://clawhub.ai/user/metariot2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[metariot2026](https://clawhub.ai/user/metariot2026)
 
-## Use Case: <br>
-OpenClaw users use this skill to set up and operate a local dashboard for agent recovery, task tracking, activity review, and cron-job monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs users to clone an unspecified external repository, so the code source and version are not identified. <br>
-Mitigation: Confirm the repository URL, publisher, version, and code before installing or running it. <br>
-Risk: Automatic agent-state snapshots may capture secrets or private workflow data. <br>
-Mitigation: Review what state is saved, exclude secrets and sensitive data, and confirm how stored state can be deleted. <br>
-Risk: One-click cron-job fixes can change scheduled job behavior. <br>
-Mitigation: Preview proposed fixes and require explicit confirmation before applying any cron-job change. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to set up a browser-based dashboard for agent state recovery, task tracking, activity review, and scheduled-job monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/metariot2026/agent-anchor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Configuration guidance centers on local state and cron-job settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Persisted agent state may contain secrets, private personal data, or sensitive operational context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep state files free of secrets and private personal data, restrict file permissions, and review snapshots before sharing or backing them up.
+
+Risk: The local dashboard is described as an unauthenticated web server on port 3456.
+
+Mitigation: Bind the dashboard to localhost only and do not expose port 3456 on public or shared networks.
+
+## Reference(s):
+
+- [Agent Anchor on ClawHub](https://clawhub.ai/metariot2026/skills/agent-anchor)
+- [MetaRiot2026 Publisher Profile](https://clawhub.ai/user/metariot2026)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup and operation guidance for a local OpenClaw dashboard; no structured machine-readable output is specified.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

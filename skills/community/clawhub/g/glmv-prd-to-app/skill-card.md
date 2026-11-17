@@ -1,44 +1,55 @@
-## Description: <br>
-Build a complete, production-ready full-stack web application from PRD documents, prototype images, and resource files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build a complete, production-ready full-stack web application from PRD documents, prototype images, and resource files.
 
-## Publisher: <br>
-[zai-org](https://clawhub.ai/user/zai-org) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zai-org](https://clawhub.ai/user/zai-org)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn PRDs, prototype images, and resource files into a working full-stack web application with backend APIs, frontend UI, seed data, verification steps, and startup documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install tooling and reset local data while building or launching an application. <br>
-Mitigation: Use it in disposable development workspaces, keep unrelated private files out of scope, and review generated start.sh before running it. <br>
-Risk: Generated applications may touch databases or local services during setup and verification. <br>
-Mitigation: Avoid production or shared databases and verify generated configuration before connecting external services. <br>
-Risk: Visual verification tooling may install Playwright or Chromium if they are missing. <br>
-Mitigation: Preinstall or pin Playwright and browser dependencies when dependency control matters. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn PRDs, prototype images, and resource files into runnable full-stack web applications with design documentation, seed data, backend APIs, frontend UI, verification checks, and a startup script.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zai-org/glmv-prd-to-app) <br>
-- [Seed Data Generation Guide](references/seed_data_guide.md) <br>
-- [Visual Verification Guide](references/visual_verification_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, code files, shell commands, configuration files, and generated project documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate a full application workspace, seed data, API checks, screenshots, and a start.sh script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The skill may ask an agent to install dependencies, reset data, start services, or auto-install browser tooling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in a disposable or version-controlled workspace and review generated start.sh before running it, especially commands that change data, install packages, or start services.
+
+Risk: PRDs, prototypes, or generated applications may include secrets or private customer data.
+
+Mitigation: Redact sensitive data before use and avoid providing real secrets or private customer data unless the workspace and generated outputs are approved for that data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zai-org/skills/glmv-prd-to-app)
+- [Seed Data Generation Guide](references/seed_data_guide.md)
+- [Visual Verification Guide](references/visual_verification_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance, generated application source files, configuration, shell commands, and scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a complete workspace including docs/design.md, README.md, backend and frontend code, seed data, screenshots, and start.sh.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

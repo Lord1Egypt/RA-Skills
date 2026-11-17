@@ -1,50 +1,66 @@
-## Description: <br>
-Build a knowledge consultant Agent on OpenClaw that turns domain expertise into a 24/7 AI assistant for client questions in Feishu groups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Knowledge Agent helps OpenClaw users turn domain expertise into a client-facing consulting agent with layered knowledge, safety constraints, search verification, and Feishu group delivery.
 
-## Publisher: <br>
-[simonlin1212](https://clawhub.ai/user/simonlin1212) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simonlin1212](https://clawhub.ai/user/simonlin1212)
 
-## Use Case: <br>
-Professionals and OpenClaw users use this skill to package domain knowledge into a client-facing consulting agent. It guides setup of dedicated agent workspaces, knowledge layering, safety constraints, search verification, and Feishu group delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generated consulting bot may receive broad write and browser permissions. <br>
-Mitigation: Remove write and browser permissions unless the deployment has a concrete need for them. <br>
-Risk: Feishu no-mention handling can make the bot respond broadly in groups. <br>
-Mitigation: Prefer allowlisted Feishu groups and keep @mention mode unless every participant consents to automatic processing. <br>
-Risk: Privacy and transparency guardrails may be incomplete for client-facing consulting use. <br>
-Mitigation: Clearly disclose that the bot is an AI consulting assistant and provide a human escalation path. <br>
-Risk: The setup script changes workspace files and Feishu-related configuration workflows. <br>
-Mitigation: Review or patch setup inputs before use and back up openclaw.json before changing Feishu settings. <br>
+## Use Case:
 
+Developers, consultants, and OpenClaw users use this skill to build domain-specific consulting agents that answer client questions in Feishu groups while preserving knowledge boundaries and safety constraints.
 
-## Reference(s): <br>
-- [Knowledge Agent ClawHub page](https://clawhub.ai/simonlin1212/knowledge-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/simonlin1212) <br>
-- [Three-Layer Knowledge Architecture](references/knowledge-layers.md) <br>
-- [Safety Constraints for Paid Consulting](references/safety-constraints.md) <br>
-- [Anti-Hallucination: Quality Controls](references/anti-hallucination.md) <br>
-- [Feishu Group Delivery Setup](references/feishu-delivery.md) <br>
-- [Example: Douyin Operations Consultant](references/example-douyin.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with shell snippets, JSON-like configuration examples, and generated Markdown configuration files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent workspace guidance and templates for AGENTS.md, SOUL.md, IDENTITY.md, MEMORY.md, TOOLS.md, and knowledge reference organization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: No-mention Feishu delivery and broad group access can make the agent respond in unintended groups.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer an allowlisted Feishu group, disclose the bot to participants, test group behavior before inviting clients, and avoid the open all-groups policy unless that exposure is intended.
+
+Risk: Broad web, browser, and file-write access can amplify bad search results or expose more workspace state than needed.
+
+Mitigation: Pin or verify search skill dependencies, keep tool permissions least-privileged, cite sources when possible, and cross-check search results against the curated knowledge base.
+
+Risk: The setup script creates files from user-supplied agent IDs, domains, and workspace paths.
+
+Mitigation: Review and validate those inputs before running the script, avoid untrusted values, and inspect the generated workspace files before deployment.
+
+Risk: Paid consulting answers may still be incomplete, outdated, or misleading.
+
+Mitigation: Keep human monitoring and escalation paths, require the agent to say when it is uncertain, and periodically test out-of-domain, fabricated-concept, and source-verification cases.
+
+## Reference(s):
+
+- [Knowledge Agent release page](https://clawhub.ai/simonlin1212/skills/knowledge-agent)
+- [Three-Layer Knowledge Architecture](references/knowledge-layers.md)
+- [Safety Constraints for Paid Consulting](references/safety-constraints.md)
+- [Anti-Hallucination: Quality Controls](references/anti-hallucination.md)
+- [Feishu Group Delivery Setup](references/feishu-delivery.md)
+- [Complete Example: Douyin Operations Consultant](references/example-douyin.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code blocks, template-backed configuration files, and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate AGENTS.md, SOUL.md, IDENTITY.md, MEMORY.md, TOOLS.md, and a knowledge/ directory scaffold.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,49 @@
-## Description: <br>
-Develop and execute consistent, keyword-focused content strategies that target buyer intent and optimize for SaaS trial sign-ups and organic growth. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Develops concise content marketing strategy guidance for early-stage SaaS teams, with emphasis on buyer-intent keywords, comparison pages, consistent publishing, repurposing, and conversion-focused measurement.
 
-## Publisher: <br>
-[wellyxy](https://clawhub.ai/user/wellyxy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wellyxy](https://clawhub.ai/user/wellyxy)
 
-## Use Case: <br>
-Founders, growth teams, and marketing operators use this skill to shape early-stage SaaS content plans around buyer-intent keywords, comparison pages, consistent publishing, content repurposing, and conversion-focused metrics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes an external waitlist and service mention that may be promotional. <br>
-Mitigation: Treat the service mention as advertising and evaluate that service separately before submitting business or product information. <br>
+## Use Case:
 
+External SaaS founders, marketers, and growth teams use this skill to plan content that attracts high-intent buyers and optimizes for trial sign-ups instead of vanity traffic metrics.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/wellyxy/growth-content) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, shell commands, configuration changes, or required external permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version) <br>
+Risk: The skill may lead an agent to mention Racoonn as a product-validation option.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the Racoonn mention as promotional content and not as a required, independently endorsed, or security-reviewed step.
+
+## Reference(s):
+
+- [Growth Content on ClawHub](https://clawhub.ai/wellyxy/skills/growth-content)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown guidance with lists and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May mention Racoonn as a product-validation option; treat that as promotional content, not an independently endorsed or required step.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

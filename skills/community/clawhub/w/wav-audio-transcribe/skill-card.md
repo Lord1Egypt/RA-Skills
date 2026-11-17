@@ -1,44 +1,58 @@
-## Description: <br>
-Audio Transcribe helps agents transcribe local audio with Whisper into plain text, SRT subtitles, or JSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audio Transcribe uses local Whisper to convert audio files into plain text, SRT subtitles, or JSON transcripts for meetings, podcasts, voice notes, and similar recordings.
 
-## Publisher: <br>
-[ai-tesing](https://clawhub.ai/user/ai-tesing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ai-tesing](https://clawhub.ai/user/ai-tesing)
 
-## Use Case: <br>
-Developers, creators, and other users can use this skill to transcribe meetings, podcasts, voice notes, or media files into readable text, subtitle, or structured JSON outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The script may automatically install or upgrade openai-whisper with pip, modifying the local Python environment. <br>
-Mitigation: Preinstall reviewed, pinned dependencies in a virtual environment and remove or gate automatic installation before sensitive or managed use. <br>
-Risk: Whisper model loading may download external model files even though the skill is framed as offline and private. <br>
-Mitigation: Pre-cache approved models or run only where external downloads are allowed; avoid strict offline or highly sensitive environments until downloads are explicitly controlled. <br>
-Risk: Audio transcription accuracy depends on source quality and selected model size. <br>
-Mitigation: Review generated transcripts before relying on them, especially for noisy recordings, secondary recordings, or decision-critical uses. <br>
+## Use Case:
 
+Developers, operators, and end users use this skill to transcribe local audio files into readable text, subtitle files, or structured JSON. It is suited to meeting notes, podcast transcripts, voice memos, and other audio-to-text workflows where local processing is preferred.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ai-tesing/wav-audio-transcribe) <br>
-- [README](README.md) <br>
-- [Troubleshooting Notes](ISSUES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text transcripts, SRT subtitle text, JSON transcription data, and Markdown usage guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The script writes transcript files next to the input audio with a _transcript suffix.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can install or upgrade openai-whisper and download Whisper models even though its documentation frames processing as offline.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Preinstall pinned dependencies and required models in a controlled environment before using the skill.
+
+Risk: The skill reads the supplied audio file and writes transcript files next to that audio.
+
+Mitigation: Run it only on audio files approved for local processing and in directories where transcript output is expected.
+
+Risk: The server security verdict is suspicious and calls for review before use.
+
+Mitigation: Review the script and scan the skill before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ai-tesing/skills/wav-audio-transcribe)
+- [Publisher profile](https://clawhub.ai/user/ai-tesing)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Transcript files and console output in TXT, SRT, or JSON formats]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes transcript files next to the provided audio file using an _transcript suffix.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

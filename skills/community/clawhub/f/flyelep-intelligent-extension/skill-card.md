@@ -1,42 +1,56 @@
-## Description: <br>
-Extends one or more image canvases through the Flyelep AI Tool API and returns generated image URLs for requested aspect ratios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extends one or more images through the Flyelep AI Tool API to fill canvas edges at a requested aspect ratio.
 
-## Publisher: <br>
-[flyelepai](https://clawhub.ai/user/flyelepai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flyelepai](https://clawhub.ai/user/flyelepai)
 
-## Use Case: <br>
-Developers and external users use this skill to prepare HTTP API calls that expand image edges, complete canvases, or adapt one or more image URLs to supported aspect ratios such as 16:9, 1:1, and 9:16. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user-provided image URLs and the Flyelep API key to Flyelep. <br>
-Mitigation: Use a dedicated or revocable API key, avoid sensitive or private image URLs unless Flyelep's handling is acceptable, and provide the key only at runtime. <br>
-Risk: Ambiguous or unsupported target ratios can produce failed requests or results that do not match the user's intent. <br>
-Mitigation: Use only the documented ratio values and ask the user to confirm the target ratio when context is insufficient. <br>
+## Use Case:
 
+Developers and other image creators can use this skill to extend source images to a chosen aspect ratio, individually or in batches, and share the returned image links.
 
-## Reference(s): <br>
-- [Flyelep Intelligent Extension API endpoint](https://www.flyelep.cn/prod-api/poster-design/api/v1/poster/aiTool/intelligentExtension) <br>
-- [Flyelep Open Platform control board](https://www.flyelep.cn/controlboard) <br>
-- [ClawHub skill page](https://clawhub.ai/flyelepai/flyelep-intelligent-extension) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON request bodies and curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns result image URLs in the same order as the input image URL list.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Using the skill sends local images to a third-party service, and the returned links may be publicly accessible.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before uploading, ensure the user is comfortable sending the selected images to Flyelep; avoid uploading sensitive images.
+
+Risk: The claimed 24-hour expiry for uploaded image links is not verified.
+
+Mitigation: Treat returned links as potentially accessible beyond 24 hours and avoid relying on expiry to protect sensitive images.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/flyelepai/skills/flyelep-intelligent-extension)
+- [Flyelep intelligent extension API](https://www.flyelep.cn/prod-api/poster-design/api/v1/poster/aiTool/intelligentExtension)
+- [Flyelep image upload API](https://www.flyelep.cn/prod-api/poster-design/api/v1/file/upload)
+- [Flyelep Open Platform](https://www.flyelep.cn/controlboard)
+
+## Skill Output:
+
+**Output Type(s):** [Image URLs, API response data]
+
+**Output Format:** [JSON response data containing generated image URLs and a task ID]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns successful image URLs in input order; a batch may return fewer URLs than inputs when individual images fail.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

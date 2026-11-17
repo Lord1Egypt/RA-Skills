@@ -1,39 +1,52 @@
-## Description: <br>
-Analyzes an AI agent's dream and knowledge graph data to surface the most frequent recurring DreamInsight themes from a knowledge_graph.json file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes an AI agent's dream and knowledge graph to surface recurring themes from DreamInsight entities in a knowledge_graph.json file.
 
-## Publisher: <br>
-[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent builders use this skill to inspect a local knowledge graph and identify the most frequent themes in DreamInsight descriptions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The script reads a configured local knowledge_graph.json file and prints recurring concepts from DreamInsight descriptions, which may expose sensitive memory contents.
+
+Mitigation: Run it only against knowledge graph files approved for inspection and review the printed terms before sharing output.
+
+Risk: The artifact uses hardcoded /home/albion/albion_memory paths and has a minor log-file side effect.
+
+Mitigation: Verify or edit the paths in tool.py before running, and remove or redirect the logging configuration if strictly read-only behavior is required.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use this skill to inspect recurring themes in an AI agent's DreamInsight knowledge graph and summarize what concepts appear most often. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The target knowledge_graph.json may contain private agent memory content. <br>
-Mitigation: Inspect or sanitize the input file before running the skill, and run it only against a controlled memory location. <br>
-Risk: The script uses hard-coded /home/albion/albion_memory paths and may create or open reflection.log despite declaring read-only permission. <br>
-Mitigation: Edit the input and log paths to locations you control before execution, or disable logging if no log file should be written. <br>
+**Output Format:** [Plain text printed to standard output, with usage guidance in Markdown.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Reports the top 10 recurring dream themes from the configured local knowledge_graph.json file.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, analysis] <br>
-**Output Format:** [Plain text printed to stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Top 10 recurring dream themes with counts and a timestamp.] <br>
+1.0.0 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

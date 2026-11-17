@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "WhatsApp"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["whatsapp"]
   icon: "https://static.oomol.com/logo/third-party/whatsapp.svg"
 ---
@@ -41,9 +41,12 @@ Each action is listed below with a one-line description; actions that change sta
 - `delete_message_template` — Delete all message template variants that share the same name. [destructive]
 - `get_business_profile` — Get the business profile configured for a WhatsApp Business phone number.
 - `get_media_info` — Get metadata and a short-lived download URL for uploaded media.
+- `get_message_analytics` — Get sent and delivered message counts for a WhatsApp Business Account over a time window.
 - `get_message_templates` — List message templates for a WhatsApp Business Account.
 - `get_phone_number` — Get metadata for a specific WhatsApp Business phone number.
 - `get_phone_numbers` — List phone numbers for a WhatsApp Business Account.
+- `get_pricing_analytics` — Get per-message volume and cost for a WhatsApp Business Account over a time window, optionally broken down by phone number, country, pricing category, pricing type, or tier.
+- `get_template_analytics` — Get daily sent, delivered, read, click, and cost metrics for up to ten message templates. Template analytics must be enabled on the WABA first, and Meta keeps 90 days of history.
 - `get_template_status` — Get status details for a specific message template.
 - `send_contacts` — Send one or more contacts to a WhatsApp user. [write]
 - `send_interactive_buttons` — Send an interactive reply-button message. [write]
@@ -84,11 +87,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — WhatsApp is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=whatsapp
+  https://console.oomol.com/connections/whatsapp
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - WhatsApp homepage: https://www.whatsapp.com
+- API documentation: https://developers.facebook.com/docs/whatsapp/cloud-api/get-started

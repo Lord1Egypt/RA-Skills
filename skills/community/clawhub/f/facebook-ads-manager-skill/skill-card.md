@@ -1,48 +1,63 @@
-## Description: <br>
-Orquestra planejamento, operacao e otimizacao de campanhas Meta Ads usando MCP tools com seguranca de escrita, cobertura completa de endpoints e carregamento progressivo de contexto. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates planning, operation, and optimization of Meta Ads campaigns using MCP tools with write-safety controls, endpoint coverage, and progressive context loading.
 
-## Publisher: <br>
-[williamneves](https://clawhub.ai/user/williamneves) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[williamneves](https://clawhub.ai/user/williamneves)
 
-## Use Case: <br>
-External marketers, media buyers, and agents use this skill to plan, launch, diagnose, optimize, and operate Meta Ads campaigns through MCP tools with explicit controls for write actions, budgets, audiences, and rollback. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide powerful Meta Ads write actions, including creates, updates, deletes, budget changes, and audience uploads. <br>
-Mitigation: Use least-privilege Meta/MCP access, verify the ad account ID, create new campaigns, ad sets, and ads in PAUSED status, and require explicit approval for writes, deletes, budget changes, and audience uploads. <br>
-Risk: Budget or targeting changes can create financial loss or delivery instability if applied too aggressively. <br>
-Mitigation: Collect baseline insights, make incremental monitored changes, document expected impact, and define rollback conditions before execution. <br>
-Risk: CRM audience uploads can involve personal data and consent obligations. <br>
-Mitigation: Confirm user consent before uploading CRM data to Meta and delimit the audience scope and purpose before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/williamneves/facebook-ads-manager-skill) <br>
-- [Project Homepage](https://github.com/williamneves/facebook-ads-manager-skill) <br>
-- [Tools Index](artifact/references/tools-index.md) <br>
-- [Safety Policy](artifact/references/safety-policy.md) <br>
-- [Targeting Reference](artifact/references/targeting-reference.md) <br>
-- [Diagnostics Reference](artifact/references/diagnostics-reference.md) <br>
-- [Scaling Rules](artifact/references/scaling-rules.md) <br>
-- [Creative Frameworks](artifact/references/creative-frameworks.md) <br>
+## Use Case:
 
+Marketing operators and agent users use this skill to plan, launch, diagnose, optimize, scale, and maintain Meta Ads campaigns through MCP tools. It is intended to keep campaign write actions controlled with previews, explicit confirmations, paused-by-default creation, and rollback planning.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with exact MCP tool names, parameters, operational plans, action summaries, IDs, risk notes, and rollback steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill routes context progressively through workflow, checklist, and reference files to avoid loading unnecessary material.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and CHANGELOG; artifact frontmatter reports 1.0.1) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can create, update, or delete live Meta Ads campaign, ad set, ad, creative, and audience objects.
+
+Mitigation: Require an explicit approval and change preview before create, update, or delete actions; create new campaign objects in PAUSED status by default; record affected IDs and rollback steps after writes.
+
+Risk: The skill can upload CRM or customer-list audience data.
+
+Mitigation: Do not upload customer data unless consent, lawful basis, hashing or minimization, and Meta platform-policy requirements have been verified.
+
+Risk: Budget or targeting changes can create financial or delivery impact in active ad accounts.
+
+Mitigation: Use conservative incremental changes, collect baseline insights before writes, avoid aggressive budget increases without risk validation, and define monitoring checkpoints.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/williamneves/skills/facebook-ads-manager-skill)
+- [Project homepage](https://github.com/williamneves/facebook-ads-manager-skill)
+- [Tools Index](artifact/references/tools-index.md)
+- [Safety Policy](artifact/references/safety-policy.md)
+- [Targeting Reference](artifact/references/targeting-reference.md)
+- [Diagnostics Reference](artifact/references/diagnostics-reference.md)
+- [Scaling Rules](artifact/references/scaling-rules.md)
+- [Creative Frameworks](artifact/references/creative-frameworks.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with tool names, action plans, affected IDs, risk notes, and rollback steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Operational responses should identify objectives, hypotheses, exact tools, executed actions, impacted IDs, monitoring steps, risks, and rollback plans when writes occur.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and CHANGELOG, released 2026-02-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

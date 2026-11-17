@@ -6,7 +6,7 @@ description: >
   Code-Right 自动完成：系统功能描述撰写、模块分析、真实浏览器截图、
   格式合规的申报文档生成、打包 ZIP 邮件发送。
   纯 AI 搞不定的排版和截图，由工具链自动完成。
-version: 0.1.0
+version: 0.2.0
 author: gambo
 license: MIT
 metadata:
@@ -70,8 +70,9 @@ python scripts/create_task.py \
 
 | 参数 | 必填 | 说明 |
 |------|------|------|
-| `--system-name` | ✅ | 软件系统名称（如 "智慧仓储管理系统"） |
+| `--system-name` | ✅ | 软件系统名称（最多 25 字，如 "智慧仓储管理系统"） |
 | `--notify-email` | ✅ | 接收材料下载链接的邮箱 |
+| `--system-desc` | ❌ | 系统描述（选填，简要描述系统功能和用途，帮助生成更准确的模块名称） |
 | `--access-token` | ❌ | 会话 token，用于任务列表过滤和下载鉴权 |
 
 ### 输出示例

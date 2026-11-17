@@ -1,0 +1,110 @@
+{
+  "meta": {
+    "root": "https://api.we-media.cn",
+    "auth_header": "X-API-Key",
+    "source_header": "X-WM-Source",
+    "official_site": "https://api.we-media.cn"
+  },
+  "endpoints": [
+    {
+      "key": "mp-search-articles",
+      "name": "搜一搜文章",
+      "cat": "mp",
+      "method": "POST",
+      "path": "/openapi/wechat-native-search-articles/search/articles",
+      "price": 0.04,
+      "params": [
+        "query",
+        "sort",
+        "cursor",
+        "publishTime",
+        "scope"
+      ],
+      "purpose": "按关键词搜文章",
+      "param_types": {
+        "query": "string",
+        "sort": "string",
+        "cursor": "string",
+        "publishTime": "string",
+        "scope": "string"
+      },
+      "product_slug": "wechat-native-search-articles"
+    },
+    {
+      "key": "mp-search-summary",
+      "name": "搜一搜综合",
+      "cat": "mp",
+      "method": "POST",
+      "path": "/openapi/wechat-native-search-summary/search/summary",
+      "price": 0.1,
+      "params": [
+        "query",
+        "sort",
+        "cursor",
+        "publishTime",
+        "scope"
+      ],
+      "purpose": "综合搜索结果",
+      "param_types": {
+        "query": "string",
+        "sort": "string",
+        "cursor": "string",
+        "publishTime": "string",
+        "scope": "string"
+      },
+      "product_slug": "wechat-native-search-summary"
+    },
+    {
+      "key": "mp-search-wechat-index",
+      "name": "微信指数",
+      "cat": "mp",
+      "method": "POST",
+      "path": "/openapi/wechat-native-search-wechat-index/search/wechat-index",
+      "price": 0.1,
+      "params": [
+        "query",
+        "sort",
+        "cursor"
+      ],
+      "purpose": "微信指数相关结果",
+      "param_types": {
+        "query": "string",
+        "sort": "string",
+        "cursor": "string"
+      },
+      "product_slug": "wechat-native-search-wechat-index"
+    },
+    {
+      "key": "mp-search-suggestions",
+      "name": "搜一搜推荐词",
+      "cat": "mp",
+      "method": "POST",
+      "path": "/openapi/wechat-native-search-suggestions/search/suggestions",
+      "price": 0.1,
+      "params": [
+        "query"
+      ],
+      "purpose": "关键词联想",
+      "param_types": {
+        "query": "string"
+      },
+      "product_slug": "wechat-native-search-suggestions"
+    },
+    {
+      "key": "mp-search-guide",
+      "name": "搜索引导",
+      "cat": "mp",
+      "method": "POST",
+      "path": "/openapi/wechat-native-search-guide/search/guide",
+      "price": 0.1,
+      "params": [
+        "query"
+      ],
+      "purpose": "搜一搜引导/推荐",
+      "param_types": {
+        "query": "string"
+      },
+      "product_slug": "wechat-native-search-guide"
+    }
+  ]
+}

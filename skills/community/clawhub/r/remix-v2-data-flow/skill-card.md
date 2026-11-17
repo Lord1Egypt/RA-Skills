@@ -1,43 +1,57 @@
-## Description: <br>
-Remix v2 data loading and mutations. Use when writing loaders, actions, deferred data, revalidation logic, or pending state. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents on Remix v2 loaders, actions, deferred data, revalidation logic, pending state, and related migration patterns.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill to choose and implement Remix v2 loaders, actions, deferred data, revalidation, and pending-state patterns while avoiding common v1-to-v2 migration mistakes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for broad Remix loader or action discussions where project-specific Remix versions or adapters differ. <br>
-Mitigation: Verify API details against the Remix version and runtime adapter used in the target project. <br>
-Risk: Generated guidance may be copied into code paths that return sensitive loader data or suppress needed revalidation. <br>
-Mitigation: Review generated changes before use, return safe DTOs from loaders, and keep default revalidation unless an opt-out is justified. <br>
+## Use Case:
 
+Developers and engineering agents use this skill when implementing or reviewing Remix v2 route data flow, including loaders, actions, streaming with defer/Await, revalidation, and pending UI.
 
-## Reference(s): <br>
-- [Loaders](references/loaders.md) <br>
-- [Actions](references/actions.md) <br>
-- [Defer & Await - Streaming Loader Data](references/defer-await.md) <br>
-- [Revalidation & Pending State](references/revalidation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown guidance with TypeScript and TSX examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no executable code is included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: CSRF-related wording could be overread as sufficient protection for cookie-authenticated mutations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit server-side CSRF defenses such as token or origin validation, plus normal authorization checks.
+
+Risk: Loader examples can leak sensitive data if copied without projecting server data into safe client-facing DTOs.
+
+Mitigation: Review returned loader and action payloads before use and exclude password hashes, API keys, internal flags, and other sensitive fields.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anderskev/skills/remix-v2-data-flow)
+- [Loaders](references/loaders.md)
+- [Actions](references/actions.md)
+- [Defer & Await](references/defer-await.md)
+- [Revalidation & Pending State](references/revalidation.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code]
+
+**Output Format:** [Markdown guidance with TypeScript and TSX code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only; no executable or persistent behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

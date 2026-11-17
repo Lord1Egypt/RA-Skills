@@ -1,43 +1,56 @@
-## Description: <br>
-Diting AI Application Expert provides Chinese-language guidance for enterprise AI scenario design, tool selection, change management, data privacy and security governance, AI policy, and ROI analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language advisory skill for enterprise AI application planning, tool selection, change management, data privacy, AI policy, and ROI analysis.
 
-## Publisher: <br>
-[tuobadaidai](https://clawhub.ai/user/tuobadaidai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tuobadaidai](https://clawhub.ai/user/tuobadaidai)
 
-## Use Case: <br>
-Enterprise teams use this skill to structure AI adoption decisions, compare AI tools, plan organizational change, assess privacy and governance requirements, and estimate implementation value. It is intended for business application guidance rather than model development or algorithm optimization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include sensitive employee, financial, or confidential business data while requesting AI adoption guidance. <br>
-Mitigation: Use anonymized or approved sample data and follow the organization's approved data handling process before sharing information with downstream AI tools. <br>
-Risk: AI adoption recommendations, tool comparisons, or ROI estimates may be incomplete when business context, cost data, or compliance requirements are missing. <br>
-Mitigation: Treat outputs as planning guidance and verify assumptions, costs, privacy obligations, and final decisions with responsible business, legal, security, and technical stakeholders. <br>
+## Use Case:
 
+Business, HR, operations, and AI adoption teams use this skill to structure enterprise AI use cases, compare AI tools, plan employee enablement, assess privacy and governance needs, and estimate ROI. It is intended as advisory guidance rather than technical model-development support.
 
-## Reference(s): <br>
-- [AI Application Expert - Classic Books](references/classic-books.md) <br>
-- [AI Application Expert - Output Templates](references/output-templates.md) <br>
-- [AI Application Expert - Tools Reference](references/tools.md) <br>
-- [ClawHub skill page](https://clawhub.ai/tuobadaidai/diting-ai-application-expert) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with structured tables, matrices, roadmaps, and ROI calculations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language advisory output; no executable code or shell commands are produced by the skill itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The skill provides business guidance on privacy, compliance, and ROI, which may be incomplete without organization-specific facts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations with qualified business, legal, privacy, and finance stakeholders before relying on them for decisions.
+
+Risk: Artifact metadata and skill frontmatter versions differ from the server release version.
+
+Mitigation: Use the server release version for release tracking and correct package metadata before depending on local version fields.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tuobadaidai/skills/diting-ai-application-expert)
+- [Classic books reference](references/classic-books.md)
+- [Output templates reference](references/output-templates.md)
+- [Tools reference](references/tools.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown advisory analysis with tables, checklists, and structured recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language business advisory output for AI adoption scenarios]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

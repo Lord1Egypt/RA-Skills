@@ -1,6 +1,25 @@
 {
-  "ownerId": "kn76m56v764wqhcrksbq09bdrn881epz",
+  "owner": "sml",
   "slug": "tech-news-brief",
-  "version": "1.0.0",
-  "publishedAt": 1780548962189
+  "displayName": "tech-news-brief（整合版）",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1749004800000,
+    "commit": ""
+  },
+  "config": {
+    "firecrawlApiKey": "env:FIRECRAWL_API_KEY",
+    "reportsDir": "env:REPORTS_DIR",
+    "dailyReportsDir": "env:DAILY_REPORTS_DIR",
+    "smtpSender": "env:SMTP_SENDER",
+    "smtpPasswd": "env:SMTP_PASSWD"
+  },
+  "dependencies": [],
+  "history": [
+    {
+      "version": "1.0.0",
+      "publishedAt": 1749004800000,
+      "changes": "初始版本，基于 military-news-brief 改版"
+    }
+  ]
 }

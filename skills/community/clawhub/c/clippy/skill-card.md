@@ -1,41 +1,56 @@
-## Description: <br>
-Microsoft 365 / Outlook CLI for calendar and email. Use when managing Outlook calendar (view, create, update, delete events, find meeting times, respond to invitations), sending/reading emails, or searching for people/rooms in the organization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Microsoft 365 / Outlook CLI for calendar and email. Use when managing Outlook calendar (view, create, update, delete events, find meeting times, respond to invitations), sending/reading emails, or searching for people/rooms in the organization.
 
-## Publisher: <br>
-[foeken](https://clawhub.ai/user/foeken) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[foeken](https://clawhub.ai/user/foeken)
 
-## Use Case: <br>
-Employees, assistants, and developers use this skill to operate Outlook calendar, email, people search, and room search through the clippy CLI. It is useful for scheduling meetings, responding to invitations, reading or sending mail, and finding meeting times. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate through a signed-in Microsoft 365 account and change mail or calendar data. <br>
-Mitigation: Require explicit user confirmation before sending, forwarding, reply-all, deleting, moving, or downloading sensitive items. <br>
-Risk: The external clippy CLI and its dependencies run outside the skill context. <br>
-Mitigation: Install only when the publisher and external CLI are trusted, and review the external project before running bun install. <br>
-Risk: Keepalive can preserve an authenticated browser session in the background. <br>
-Mitigation: Enable keepalive only when needed, monitor the health file for stale sessions, and ensure the background service can be stopped. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Clippy ClawHub listing](https://clawhub.ai/foeken/clippy) <br>
+## Use Case:
 
+Employees and agents use this skill to manage Microsoft 365 Outlook mail, calendars, invitations, meeting times, people, and rooms through the Clippy CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with CLI command examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the external clippy binary and a signed-in Microsoft 365 browser session; some commands can change calendar, email, and session state.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can operate with authenticated access to Microsoft 365 mailbox and calendar data.
+
+Mitigation: Use a dedicated or contained profile where possible and install only after reviewing the selected release.
+
+Risk: The skill can propose actions that send mail, reply or forward messages, delete events, move mail, or download attachments.
+
+Mitigation: Require explicit user confirmation before executing actions that modify mailbox or calendar state or retrieve attachments.
+
+Risk: Persistent keepalive can extend authenticated browser access beyond a single task.
+
+Mitigation: Avoid persistent keepalive unless it is needed and monitor the session health file when keepalive is enabled.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/foeken/skills/clippy)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the clippy binary and an authenticated Microsoft 365 browser session.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

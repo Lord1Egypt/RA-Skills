@@ -1,46 +1,57 @@
-## Description: <br>
-OpenClaw-native executable content extraction skill for URLs, Feishu, YouTube, and web pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw-native executable content extraction skill for URLs, Feishu, YouTube, and web pages.
 
-## Publisher: <br>
-[halfmoon82](https://clawhub.ai/user/halfmoon82) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[halfmoon82](https://clawhub.ai/user/halfmoon82)
 
-## Use Case: <br>
-Developers and agents use this skill to turn supported URLs and documents into clean Markdown, with routing for WeChat, Feishu/Lark, YouTube transcripts, and generic web pages. It is useful for article cleanup, document export, transcript preparation, summarization, and local archiving. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Provided URLs and documents may be accessed through browser, Feishu, transcript, web-fetch, or generic fallback tools. <br>
-Mitigation: Use the skill only for content you are authorized to process, and avoid confidential documents when generic URL fallbacks are involved. <br>
-Risk: Long extracted content may be saved as local Markdown files. <br>
-Mitigation: Review or delete saved extraction files when handling sensitive material. <br>
-Risk: Fallback extraction can produce partial or lower-quality content if preferred routes fail. <br>
-Mitigation: Check the reported failure layer and fallback path before relying on extracted content. <br>
+## Use Case:
 
+Developers and agents use this skill to classify URLs or document links, choose an extraction route, and produce clean Markdown content with source metadata, summaries, fallback notes, and optional save paths.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/halfmoon82/content-extraction) <br>
-- [README](artifact/README.md) <br>
-- [Block to Markdown mapping](artifact/notes/block-to-markdown.md) <br>
-- [Executor specification](artifact/notes/executor-spec.md) <br>
-- [Extraction examples](artifact/notes/extraction-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown extraction output, optional JSON route/spec output, and local Markdown files for long content.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routes supported sources before extraction, preserves source metadata when available, reports fallback failures, and includes a save path when content is written locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can route user-supplied URLs and extracted content through OpenClaw web, browser, Feishu, and possible third-party cleanup services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where that processing is acceptable, and add confirmation gates or disable third-party fallbacks for private, signed, internal, or sensitive document URLs.
+
+Risk: The skill may save extracted Markdown locally, which can retain sensitive or private content.
+
+Mitigation: Control local retention paths, review saved files, and avoid long-content saves for sensitive sources unless retention is intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/halfmoon82/skills/content-extraction)
+- [ClawHub publisher profile](https://clawhub.ai/user/halfmoon82)
+- [README](artifact/README.md)
+- [Executor spec](artifact/notes/executor-spec.md)
+- [Block to Markdown mapping](artifact/notes/block-to-markdown.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON route plans, and executable extraction specifications]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include title, author, source, URL, summary, Markdown body, fallback details, and a local save path for long content.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

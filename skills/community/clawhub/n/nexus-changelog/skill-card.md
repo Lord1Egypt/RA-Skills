@@ -1,49 +1,59 @@
-## Description: <br>
-Generate changelogs from git commits or descriptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate changelogs from git commits or descriptions.
 
-## Publisher: <br>
-[cyberforexblockchain](https://clawhub.ai/user/cyberforexblockchain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyberforexblockchain](https://clawhub.ai/user/cyberforexblockchain)
 
-## Use Case: <br>
-Developers and release maintainers use this skill to turn commit history, release notes, or descriptive change text into a changelog through the NEXUS remote service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic invocation can spend funds through a paid remote changelog service. <br>
-Mitigation: Configure the agent to ask before paid calls, start with sandbox or low-value credentials, and review payment prompts before retrying requests. <br>
-Risk: Changelog source text and payment proof data are sent to a third-party remote service. <br>
-Mitigation: Avoid sending secrets, private unreleased repository data, or high-value payment credentials unless the NEXUS service is trusted for that data. <br>
-Risk: Security evidence marks the release suspicious because paid remote execution combines spending and privacy risk. <br>
-Mitigation: Install only after reviewing the disclosed service behavior, required environment variable, and organization policy for paid external API calls. <br>
+## Use Case:
 
+Developers and release maintainers use this skill to generate changelogs from git commit history or free-form release descriptions. It is suited for agent workflows that can send changelog input to the NEXUS service and provide a payment proof or supported payment credential.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cyberforexblockchain/nexus-changelog) <br>
-- [NEXUS Platform](https://ai-service-hub-15.emergent.host) <br>
-- [x402 Discovery](https://ai-service-hub-15.emergent.host/api/mpp/x402) <br>
-- [MPP Discovery](https://ai-service-hub-15.emergent.host/api/mpp/discover) <br>
-- [AP2 Configuration](https://ai-service-hub-15.emergent.host/api/ap2/config) <br>
-- [XRPL Configuration](https://ai-service-hub-15.emergent.host/api/xrpl/config) <br>
-- [Stablecoin Registry](https://ai-service-hub-15.emergent.host/api/mpp/stablecoins) <br>
-- [A2A Agent Card](https://ai-service-hub-15.emergent.host/.well-known/agent.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [JSON service response containing generated changelog text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a payment credential or sandbox proof through NEXUS_PAYMENT_PROOF, X-PAYMENT, or Authorization: Payment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: frontmatter and release evidence) <br>
+Risk: Changelog input may include private repository details or sensitive source history that is sent to a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review input before use, start in sandbox mode, and avoid sending private repository details unless approved.
+
+Risk: The skill uses a paid remote service and can transmit payment credentials or payment proofs.
+
+Mitigation: Keep payment credentials narrowly scoped and require explicit approval before paid requests.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cyberforexblockchain/skills/nexus-changelog)
+- [NEXUS Platform](https://ai-service-hub-15.emergent.host)
+- [x402 Discovery](https://ai-service-hub-15.emergent.host/api/mpp/x402)
+- [MPP Discovery](https://ai-service-hub-15.emergent.host/api/mpp/discover)
+- [AP2 Configuration](https://ai-service-hub-15.emergent.host/api/ap2/config)
+- [XRPL Configuration](https://ai-service-hub-15.emergent.host/api/xrpl/config)
+- [Stablecoin Registry](https://ai-service-hub-15.emergent.host/api/mpp/stablecoins)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown]
+
+**Output Format:** [JSON object containing a generated changelog string]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access and a payment proof or supported payment credential; free sandbox testing is documented.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

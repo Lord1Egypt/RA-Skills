@@ -1,0 +1,29 @@
+{
+  "name": "memory-system",
+  "version": "0.1.0",
+  "summary": "四层记忆流水线：WAL写前日志→MEMORY.md→每日日志→Obsidian同步，含Insight Miner数据分析和双链发现",
+  "description": "完整的AI记忆管理系统。自动维护四层记忆（WAL写前日志、MEMORY.md长期教训索引、每日日志、Obsidian永久归档），含MemCore晨间/晚间整理脚本、Insight Miner数据提炼、双链关联发现、散会7步归档流程。",
+  "chinese_name": "自动记忆维护与知识提炼",
+  "author": "adchina2025",
+  "license": "MIT",
+  "keywords": [
+    "memory",
+    "wal",
+    "知识提炼",
+    "insight-miner",
+    "双链",
+    "记忆管理",
+    "obsidian",
+    "归档"
+  ],
+  "triggers": [
+    "记忆系统",
+    "记忆管理",
+    "知识提炼",
+    "双链发现",
+    "散会归档",
+    "memory system",
+    "insight miner",
+    "wal protocol"
+  ]
+}

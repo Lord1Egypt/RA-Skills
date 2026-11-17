@@ -1,39 +1,54 @@
-## Description: <br>
-Build BI dashboard specs, chart plans, SQL queries, and Apache Superset chart JSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build BI dashboard specs, chart plans, SQL queries, and Apache Superset chart JSON.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Developers, analysts, and BI practitioners use this skill to turn dashboard goals, metric lists, and dimensions into dashboard plans, SQL templates, chart specs, KPI dictionaries, dataset contracts, QA reports, and Apache Superset chart JSON snippets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated SQL and Superset JSON may not match the user's actual schema, permissions, or business definitions. <br>
-Mitigation: Review and test generated SQL, chart JSON, formulas, and KPI definitions against the target database and BI governance process before production use. <br>
+## Use Case:
 
+Developers, analysts, and BI practitioners use this skill to draft dashboard plans, KPI dictionaries, chart definitions, SQL templates, dataset contracts, QA notes, and Apache Superset chart JSON from dashboard goals, metrics, and dimensions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/bytesagain-bi-dashboard-builder) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, SQL, JSON, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally with bash and standard Unix tools; generated SQL and Superset JSON are templates that should be reviewed before production use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and frontmatter) <br>
+Risk: Generated SQL templates or Superset JSON may be incorrect for a specific schema, database dialect, or BI environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adapt generated queries and chart JSON before execution or import.
+
+Risk: Untrusted table names, metric names, dimensions, or chart types could produce unsafe or misleading draft output in automation.
+
+Mitigation: Use trusted inputs, validate names against an allowlist, and keep generated artifacts in a review step before operational use.
+
+## Reference(s):
+
+- [BytesAgain homepage](https://bytesagain.com)
+- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/skills/bytesagain-bi-dashboard-builder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, SQL, and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are local dashboard drafts and should be reviewed before database execution or BI import.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

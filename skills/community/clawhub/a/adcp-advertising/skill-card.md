@@ -1,51 +1,60 @@
-## Description: <br>
-Helps agents discover ad inventory, create and manage advertising campaigns, upload creatives, adjust targeting and budgets, and monitor campaign performance through natural language workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ad Context Protocol (AdCP) Advertising helps agents discover ad inventory, create and update media buys, manage creatives, monitor delivery, and optimize campaign performance across display, video, CTV, audio, native, and DOOH channels.
 
-## Publisher: <br>
-[edyyy62](https://clawhub.ai/user/edyyy62) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[edyyy62](https://clawhub.ai/user/edyyy62)
 
-## Use Case: <br>
-Marketing teams, media buyers, agencies, e-commerce brands, and startups use this skill to automate media buying, campaign launch, creative management, targeting, reporting, and performance optimization across advertising channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Agent-driven campaign launches and budget changes can affect real advertising spend. <br>
-Mitigation: Require explicit human approval for campaign creation, budget changes, launch or resume actions, creative uploads, and targeting changes; set spend limits and use test endpoints first. <br>
-Risk: Production credentials or public test tokens can be misused if handled casually. <br>
-Mitigation: Do not reuse the public test token for production, and connect production AdCP credentials only after approval and credential controls are in place. <br>
-Risk: Audience, customer, or regulated-category targeting data may be sensitive. <br>
-Mitigation: Avoid sending sensitive targeting data unless legal and platform-policy requirements are satisfied. <br>
+## Use Case:
 
+Marketing teams, media buyers, agencies, e-commerce operators, startups, and developers use this skill to plan, launch, adjust, and monitor advertising campaigns through natural language workflows and AdCP API operations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/edyyy62/adcp-advertising) <br>
-- [Official AdCP Documentation](https://docs.adcontextprotocol.org) <br>
-- [Official AdCP Repository](https://github.com/adcontextprotocol/adcp) <br>
-- [AdCP Documentation Index](https://docs.adcontextprotocol.org/llms.txt) <br>
-- [AdCP Media Buy Task Reference](https://docs.adcontextprotocol.org/docs/media-buy/task-reference/) <br>
-- [Skill Guide](SKILL.md) <br>
-- [API Reference](REFERENCE.md) <br>
-- [Examples](EXAMPLES.md) <br>
-- [Targeting Guide](TARGETING.md) <br>
-- [Creative Guide](CREATIVE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, API Calls] <br>
-**Output Format:** [Markdown and natural-language responses with inline code, commands, configuration details, campaign identifiers, and performance summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce campaign, creative, targeting, budget, and reporting instructions that should be reviewed before use with production advertising accounts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Agents can create campaigns, change budgets, pause or resume media buys, reassign creatives, and optimize spend in ways that may spend or reallocate real advertising budget.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human approval for every campaign creation, budget change, pause or resume action, creative reassignment, and automated optimization before connecting production ad accounts.
+
+Risk: Production advertising endpoints require bearer tokens and account-specific credentials.
+
+Mitigation: Store production tokens in a secret manager or environment variables, keep the public test token limited to testing, and enable budget caps and audit logging before production use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/edyyy62/skills/adcp-advertising)
+- [Official AdCP Documentation](https://docs.adcontextprotocol.org)
+- [Official AdCP Repository](https://github.com/adcontextprotocol/adcp)
+- [AdCP Documentation Index](https://docs.adcontextprotocol.org/llms.txt)
+- [Media Buy Protocol](https://docs.adcontextprotocol.org/docs/media-buy/)
+- [Media Buy Task Reference](https://docs.adcontextprotocol.org/docs/media-buy/task-reference/)
+- [AdCP Quick Reference](https://docs.adcontextprotocol.org/docs/media-buy/quick-reference)
+- [Creative Protocol](https://docs.adcontextprotocol.org/docs/creative/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with natural language instructions, API examples, JSON snippets, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose actions that affect live advertising campaigns, budgets, creatives, targeting, and performance optimization.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

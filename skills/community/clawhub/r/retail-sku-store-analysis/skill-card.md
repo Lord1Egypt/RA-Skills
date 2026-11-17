@@ -1,42 +1,53 @@
-## Description: <br>
-分析单个商品在指定门店的销售表现、库存状态、导购贡献和 AIoT 转化数据。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes a single SKU in a specified retail store, covering sales performance, inventory status, clerk contribution, customer mix, and AIoT conversion metrics.
 
-## Publisher: <br>
-[gwyang7](https://clawhub.ai/user/gwyang7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gwyang7](https://clawhub.ai/user/gwyang7)
 
-## Use Case: <br>
-Retail operators and agents use this skill to evaluate one SKU at one store over a selected date range, including sales, inventory, staff contribution, customer mix, and AIoT conversion metrics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on an external local api_client that is not included in the artifact. <br>
-Mitigation: Install only in an environment where the publisher and local API client are trusted, reviewed, and authorized for the target store data. <br>
-Risk: The returned result can include raw store analytics data in addition to summarized metrics. <br>
-Mitigation: Limit execution to authorized accounts and prefer a revised release that removes or gates raw_data before sharing results. <br>
-Risk: The skill fetches analytics based on caller-supplied store, SKU, and date parameters. <br>
-Mitigation: Require explicit confirmation of the store, SKU, and date range before fetching or reporting analytics. <br>
+## Use Case:
 
+Retail operators, analysts, and store managers use this skill to evaluate one SKU's store-level sales, inventory, clerk performance, customer mix, and AIoT conversion behavior over a selected date range.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/gwyang7/retail-sku-store-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Guidance] <br>
-**Output Format:** [Printed diagnostic text and a JSON-compatible analysis dictionary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns SKU identifiers, store identifiers, analysis period, product information, core metrics, findings, recommendations, and raw API data when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill relies on an external local API client path that was not included in the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in an environment where that API client path is controlled, audited, and part of the reviewed dependency chain.
+
+Risk: The skill can expose SKU sales, clerk performance, AIoT telemetry, customer-segment analytics, and raw backend API responses.
+
+Mitigation: Run only for authorized users and remove, redact, or gate raw_data before broad deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gwyang7/skills/retail-sku-store-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [Python function result as structured JSON, with console text summarizing analysis progress and results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns status, SKU identity, store identity, analysis period, goods details, core metrics, findings, recommendations, and raw backend response data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

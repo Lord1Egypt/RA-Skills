@@ -1,39 +1,49 @@
-## Description: <br>
-Plan global paid growth across Meta (Facebook/Instagram), Google Ads, TikTok Ads, YouTube Ads, Amazon Ads, and DSP/programmatic by comparing country cost, competition intensity, budget synergy, and expansion ROI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan global paid growth across Meta (Facebook/Instagram), Google Ads, TikTok Ads, YouTube Ads, Amazon Ads, and DSP/programmatic by comparing country cost, competition intensity, budget synergy, and expansion ROI.
 
-## Publisher: <br>
-[danyangliu-sandwichlab](https://clawhub.ai/user/danyangliu-sandwichlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[danyangliu-sandwichlab](https://clawhub.ai/user/danyangliu-sandwichlab)
 
-## Use Case: <br>
-Growth, marketing, and business planning teams use this skill to compare target markets, allocate international paid media budgets, forecast expansion ROI, and plan phased rollouts with market-specific risks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Budget allocations and ROI forecasts may be inaccurate or misleading if used without current market data, consistent attribution definitions, or local compliance review. <br>
-Mitigation: Review forecasts before making spending decisions, keep assumptions explicit, validate country-level data, and check legal or platform policy constraints before launch. <br>
-Risk: Broad advertising and expansion trigger terms may activate the skill when a user only needs a narrower marketing answer. <br>
-Mitigation: Use the skill with specific prompts about multi-country ads, budget allocation, expansion ROI, or international rollout planning. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Global Ads Helper on ClawHub](https://clawhub.ai/danyangliu-sandwichlab/global-ads-helper) <br>
+## Use Case:
 
+External marketers and growth teams use this skill to compare paid advertising opportunities across countries, allocate budgets by channel and market, forecast expansion ROI, and prepare phased rollout plans with risk alerts.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured planning tables, forecasts, rollout steps, and risk alerts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces market attractiveness matrices, channel allocation plans, ROI forecasts, rollout sequences, and market risk alerts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Advertising plans may rely on outdated or incomplete assumptions about platform rules, market data, budgets, compliance constraints, or ROI forecasts.
+
+Mitigation: Review assumptions, market data, budgets, compliance constraints, and ROI forecasts before acting, especially for country-specific legal requirements and changing ad platform rules.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/danyangliu-sandwichlab/skills/global-ads-helper)
+- [Publisher Profile](https://clawhub.ai/user/danyangliu-sandwichlab)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Markdown with structured tables, forecasts, rollout steps, risk alerts, and occasional JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should keep attribution definitions, regional assumptions, compliance constraints, and confidence intervals explicit for review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

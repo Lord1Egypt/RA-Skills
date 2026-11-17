@@ -1,46 +1,60 @@
-## Description: <br>
-自动化发布抖音视频。上传到抖音平台。全自动操作。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates local Playwright-based video publishing to Douyin, including cookie profile management, metadata entry, optional cover selection, scheduling, and guarded platform authorization.
 
-## Publisher: <br>
-[xuhongfeii2](https://clawhub.ai/user/xuhongfeii2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuhongfeii2](https://clawhub.ai/user/xuhongfeii2)
 
-## Use Case: <br>
-External creators, operators, and agents use this skill to prepare Douyin login cookies and publish local videos to Douyin Creator Center with titles, tags, covers, and optional scheduling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a metered third-party platform flow and can deduct points before publishing. <br>
-Mitigation: Confirm platform authorization details and point cost before each publish request. <br>
-Risk: The default platform base URL uses unencrypted HTTP for platform credentials. <br>
-Mitigation: Set CHANJING_PLATFORM_BASE_URL to a trusted HTTPS endpoint before use. <br>
-Risk: Saved Douyin cookie files can represent an active logged-in account session. <br>
-Mitigation: Protect cookie files, avoid sharing them, and delete or rotate them when no longer needed. <br>
+## Use Case:
 
+Developers and operators use this skill to guide local Douyin Creator Center publishing workflows from an agent, including cookie capture or validation, video upload, title and tag entry, cover handling, optional scheduling, and platform authorization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xuhongfeii2/douyin-upload-mul-cookie) <br>
-- [Publisher profile](https://clawhub.ai/user/xuhongfeii2) <br>
-- [Douyin Creator Center](https://creator.douyin.com/) <br>
-- [Douyin Creator upload page](https://creator.douyin.com/creator-micro/content/upload) <br>
-- [easyclaw user portal](http://easyclaw.bar/shuziren/user) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May launch local Playwright browser automation and create local cookie and log files when the generated commands are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles Chanjing platform credentials and Douyin session cookie JSON files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat those values like passwords, keep them out of shared folders and source control, and rotate any credentials that may have been exposed.
+
+Risk: The default platform API URL is plaintext HTTP and publish flows can deduct configured platform points.
+
+Mitigation: Use the skill only with a trusted EasyClaw/Chanjing platform endpoint, prefer an HTTPS CHANJING_PLATFORM_BASE_URL, and confirm point deduction expectations before publishing.
+
+Risk: The automation can publish or schedule content to a live Douyin account.
+
+Mitigation: Validate the selected cookie profile, video, title, tags, cover, schedule time, and target account before running the publish command.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xuhongfeii2/skills/douyin-upload-mul-cookie)
+- [Douyin Creator Center](https://creator.douyin.com/)
+- [Douyin Creator Center upload page](https://creator.douyin.com/creator-micro/content/upload)
+- [Chanjing platform key portal](http://easyclaw.bar/shuziren/user)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may create local Douyin cookie JSON files and publish logs; publishing can upload videos, deduct configured platform points, and report success or failure to the platform.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

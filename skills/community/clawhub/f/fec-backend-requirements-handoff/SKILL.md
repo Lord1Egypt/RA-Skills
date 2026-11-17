@@ -1,45 +1,45 @@
 ---
 name: fec-backend-requirements-handoff
-description: Use when frontend work needs to communicate data, action, state, permission, validation, or business-rule needs to backend teams without dictating endpoint design, field names, database shape, or implementation details; Chinese triggers include 前后端需求交接, 后端需求, API 需求澄清, 数据需求说明.
+description: Use when frontend work needs to communicate data, action, state, permission, validation, or business-rule needs to backend teams without dictating endpoint design, field names, database shape, or implementation details; Chinese triggers include front-end and back-end requirements handover, back-end requirements, API requirements clarification, data requirements description.
 ---
 
-# 前后端需求交接
+# Handover of front-end and back-end requirements
 
 ## Purpose
 
-把前端页面和交互所需的数据、动作、状态和疑问整理成后端可讨论的需求说明。
+Organize the data, actions, status, and questions required for front-end pages and interactions into discussion-ready requirements for the back-end.
 
 ## Procedure
 
-1. 明确功能上下文
-   - 说明页面、流程或组件是什么，面向哪类用户，以及用户完成任务的成功状态。
-   - 如果已有设计稿、路由、用户故事或权限角色，先把它们作为事实来源。
+1. Clarify the functional context
+- Describe what the page, process, or component is, what type of user it is intended for, and the success status of the user completing the task.
+   - If there are existing designs, routes, user stories, or permission roles, use them as sources of truth first.
 
-2. 描述前端展示需求
-   - 按屏幕或组件列出需要展示的信息、信息之间的关系、排序/过滤/分页需求和可见性规则。
-   - 使用业务语言描述“需要展示什么”，不要提前规定 endpoint、字段名、DTO、数据库表或响应嵌套结构。
+2. Describe front-end display requirements
+   - List information to be displayed by screen or component, relationships between information, sorting/filtering/pagination requirements and visibility rules.
+   - Use business language to describe "what needs to be displayed" and do not specify endpoints, field names, DTOs, database tables or response nested structures in advance.
 
-3. 描述用户动作和结果
-   - 列出用户能执行的动作、期望结果、成功反馈、失败反馈和是否需要乐观更新。
-   - 标出幂等性、撤销、确认、危险操作、批量操作或长任务进度等对 UI 有影响的行为。
+3. Describe user actions and results
+   - List the actions the user can perform, expected results, success feedback, failure feedback and whether optimistic updates are needed.
+   - Mark behaviors that affect the UI such as idempotence, undo, confirm, dangerous operations, batch operations, or long task progress.
 
-4. 补齐状态和业务规则
-   - 覆盖 loading、empty、error、partial、permission denied、expired、conflict、offline 和 retrying 等状态。
-   - 记录影响 UI 的权限、生命周期、金额/时区/枚举、校验、可编辑条件和边界规则。
+4. Complete status and business rules
+   - Override the status of loading, empty, error, partial, permission denied, expired, conflict, offline and retrying.
+   - Document permissions, lifecycle, amounts/timezones/enumerations, validations, editable conditions, and boundary rules that affect the UI.
 
-5. 输出讨论文档
-   - 默认写到 `docs/backend-requirements/<feature-name>.md`；若仓库已有需求文档目录，沿用现有位置。
-   - 文档包含 Context、Screens/Components、Data Needs、User Actions、UI States、Business Rules、Uncertainties、Questions for Backend 和 Decision Log。
-   - 若用户只需要聊天回复，可以直接输出同样结构的 Markdown，不创建文件。
+5. Output discussion document
+   - By default, it is written to `docs/backend-requirements/<feature-name>.md`; if the warehouse already has a requirements document directory, the existing location will be used.
+   - Documentation includes Context, Screens/Components, Data Needs, User Actions, UI States, Business Rules, Uncertainties, Questions for Backend and Decision Log.
+   - If the user only needs chat replies, they can directly output Markdown with the same structure without creating a file.
 
 ## Constraints
 
-- 不替后端规定 URL、HTTP 方法、字段名、数据库 schema、缓存实现或服务拆分。
-- 不把前端猜测写成事实；不确定的业务规则必须进入 Uncertainties 或 Questions。
-- 不忽略错误、空态、权限和部分数据；这些状态决定接口协作质量。
-- 不把内部错误栈、数据库字段或敏感实现细节要求暴露给 UI。
-- 不与 API 集成流程重复：本 skill 描述需求，客户端边界、类型来源和错误映射实现应在后续实现阶段处理。
+- Does not specify URLs, HTTP methods, field names, database schema, cache implementation, or service splitting for the backend.
+- Don't write front-end guesses into facts; uncertain business rules must go into Uncertainties or Questions.
+- Errors, empty states, permissions and partial data are not ignored; these states determine the quality of interface collaboration.
+- Do not expose internal error stacks, database fields, or sensitive implementation details to the UI.
+- Does not duplicate the API integration process: This skill describes the requirements, client boundaries, type sources and error mapping implementation should be handled in subsequent implementation phases.
 
 ## Expected Output
 
-产出一份前端视角的后端需求交接说明，清楚描述 UI 需要什么数据和行为、哪些规则仍需确认，以及后续前后端需要共同决定的问题。
+Produce a back-end requirements handover description from a front-end perspective, clearly describing what data and behaviors the UI requires, which rules still need to be confirmed, and subsequent issues that need to be decided jointly by the front-end and back-end.

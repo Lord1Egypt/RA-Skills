@@ -1,41 +1,57 @@
-## Description: <br>
-Synchronize files and directories between local, remote, and cloud storage reliably. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Synchronize files and directories between local, remote, and cloud storage reliably.
 
-## Publisher: <br>
-[macdesire](https://clawhub.ai/user/macdesire) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[macdesire](https://clawhub.ai/user/macdesire)
 
-## Use Case: <br>
-Developers, operators, and technical users use this skill to plan safer file synchronization across local paths, SSH destinations, mounted drives, and cloud storage remotes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mirror or delete operations can remove destination files when rsync --delete or rclone sync is used unintentionally. <br>
-Mitigation: Verify source and destination paths, run dry runs before destructive operations, and use copy-style commands when exact mirroring is not intended. <br>
-Risk: Remote synchronization can expose SSH keys or rclone credentials if they are hardcoded or mishandled. <br>
-Mitigation: Use interactive rclone configuration, avoid embedding credentials in scripts, and protect SSH and cloud storage secrets. <br>
+## Use Case:
 
+Developers and operators use this skill to plan and review file synchronization workflows across local disks, SSH remotes, and cloud storage with dry-run, exclusion, verification, and logging practices.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/macdesire/sync-backup) <br>
-- [Publisher profile](https://clawhub.ai/user/macdesire) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes dry-run, exclusion, verification, credential-handling, and delete/mirror cautions for rsync, rclone, and related sync tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Mirror or delete-style synchronization can remove destination files or create an unexpected directory layout when paths are wrong.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm source and destination paths, pay attention to trailing slashes, and run dry-run checks before using destructive sync options.
+
+Risk: Cloud remotes and SSH-based backups can expose credentials if secrets are embedded in reusable commands or scripts.
+
+Mitigation: Configure credentials outside reusable scripts and use established tools such as rclone config or SSH key management.
+
+Risk: Syncing to an unavailable mounted drive can write into a local folder instead of the intended mount point.
+
+Mitigation: Verify that the destination mount is available before running the sync.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/macdesire/skills/sync-backup)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires either rsync or rclone; supports Linux, macOS, and Windows per release metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

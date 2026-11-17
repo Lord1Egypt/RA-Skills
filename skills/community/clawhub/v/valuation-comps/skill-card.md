@@ -1,44 +1,57 @@
-## Description: <br>
-Comparable company analysis and business valuation support for startups and private companies, including trading comps, transaction comps, DCF valuation, valuation ranges, football field chart data, and supporting narrative. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comparable company analysis (comps) and business valuation for startups and private companies, including trading comps, transaction comps, DCF valuation, SaaS multiples, valuation ranges, football field chart data, and supporting narrative.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
 
-## Use Case: <br>
-External founders, startup operators, finance teams, investors, and advisors use this skill to structure valuation analyses for fundraising, M&A planning, board reporting, and strategic planning. It supports planning and benchmarking, not certified 409A appraisals, tax filings, audit-grade fairness opinions, or real-time market screening. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake valuation planning output for certified financial, tax, audit, or legal advice. <br>
-Mitigation: Use qualified professionals for formal 409A appraisals, tax filings, audit-grade fairness opinions, and investor-critical valuation work. <br>
-Risk: Market multiples, peer data, and transaction benchmarks can be stale, incomplete, or unsuitable for a specific company. <br>
-Mitigation: Verify source data independently with current and reputable market data before relying on the analysis. <br>
-Risk: Valuation work may involve confidential company financials and operating metrics. <br>
-Mitigation: Share only necessary company details and handle sensitive information according to applicable confidentiality and data-handling policies. <br>
+## Use Case:
 
+External users, founders, finance teams, and advisors use this skill to structure valuation work for fundraising, M&A planning, board reporting, benchmarking, and strategic analysis. It supports comparable company analysis, precedent transaction analysis, DCF checks, VC-method valuation, football field outputs, and valuation narratives.
 
-## Reference(s): <br>
-- [Skill Source](artifact/SKILL.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/samledger67-dotcom/valuation-comps) <br>
-- [Publisher Profile](https://clawhub.ai/user/samledger67-dotcom) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown valuation analysis with tables, formulas, ranges, football field chart data, and narrative guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include valuation ranges, comparable-company tables, transaction-comps tables, DCF assumptions, sensitivity notes, and professional-review caveats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill may prompt users for sensitive company financials such as ARR, growth, margin, EBITDA, burn rate, projections, prior valuations, or term sheets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use appropriate confidentiality controls and avoid entering information that should not be shared with the runtime environment.
+
+Risk: Valuation outputs can be misleading when based on stale, incomplete, or untrusted market data.
+
+Mitigation: Use current, trusted market data and verify key multiples, peer selections, and assumptions before relying on the analysis.
+
+Risk: The skill is not a substitute for certified valuation work or regulated financial advice.
+
+Mitigation: Do not rely on it for formal 409A appraisals, tax filings, audit-grade fairness opinions, or investment decisions requiring certified advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/skills/valuation-comps)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, guidance]
+
+**Output Format:** [Markdown with valuation tables, formulas, football field chart data, and narrative guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May request sensitive company financials and depends on current, trusted market data for real valuations.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

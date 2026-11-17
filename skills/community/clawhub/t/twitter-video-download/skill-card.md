@@ -1,40 +1,62 @@
-## Description: <br>
-Download videos from Twitter/X posts. Just give it a tweet URL and it will download the video to your specified location. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads videos from Twitter/X posts to a specified local location.
 
-## Publisher: <br>
-[Lemonpek66](https://clawhub.ai/user/Lemonpek66) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lemonpek66](https://clawhub.ai/user/lemonpek66)
 
-## Use Case: <br>
-External users and agents use this skill to download Twitter/X videos or GIFs to local storage, with optional output folder, filename, quality, and proxy settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill invokes yt-dlp and writes downloaded media to a local directory. <br>
-Mitigation: Install yt-dlp from a trusted source, download only media you intend to save, and choose the output directory deliberately. <br>
-Risk: Proxy configuration may be printed in logs when PROXY_URL is set. <br>
-Mitigation: Do not include usernames, passwords, tokens, or other secrets in PROXY_URL. <br>
+## Use Case:
 
+External users and developers use this skill to download videos or GIFs from Twitter/X posts to local storage, optionally choosing an output directory, filename, quality, and proxy configuration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Lemonpek66/twitter-video-download) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; runtime output is terminal text and downloaded media files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python, pip, and yt-dlp. PROXY_URL is optional for users who need a proxy. Downloads are saved locally, typically as MP4 files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence and release notes, released 2026-03-14) <br>
+Risk: Download security is weakened because TLS certificate checks are disabled by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and prefer a version that removes the default TLS certificate bypass.
+
+Risk: Proxy credentials may be exposed if embedded in PROXY_URL because the proxy value can appear in logs.
+
+Mitigation: Avoid proxy URLs with embedded credentials and keep download logs private.
+
+Risk: The skill writes downloaded files to the chosen output path.
+
+Mitigation: Choose and review the output directory before execution.
+
+Risk: The yt-dlp dependency is installed externally and is not pinned by the artifact.
+
+Mitigation: Pin and review the yt-dlp version in managed environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lemonpek66/skills/twitter-video-download)
+- [Release notes](artifact/RELEASE_NOTES.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with command examples and downloaded media files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Downloads are written to the selected output directory and use yt-dlp with optional proxy configuration.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and RELEASE_NOTES.md, released 2026-03-14)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

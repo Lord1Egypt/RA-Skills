@@ -1,38 +1,57 @@
-## Description: <br>
-Auto-capture hourly session highlights and update daily memory files to keep long-term memory continuous. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-capture hourly session highlights and update daily memory files. Keeps long-term memory continuous without manual recording. Triggered by cron or manual "remember this".
 
-## Publisher: <br>
-[raydez](https://clawhub.ai/user/raydez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raydez](https://clawhub.ai/user/raydez)
 
-## Use Case: <br>
-Agents and operators use this skill to summarize recent OpenClaw session activity into daily memory entries, either on an hourly schedule or from manual prompts such as "remember this" and "log today". <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recent session activity may be saved automatically into persistent local memory files without sufficient consent, retention, or sensitive-data controls. <br>
-Mitigation: Prefer manual triggering or explicit confirmation; add secret and PII redaction, retention limits, and controls to inspect, disable, and delete ~/.openclaw/workspace/memory entries before enabling cron mode. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to summarize recent session highlights into local daily memory files, either on an hourly schedule or through explicit phrases such as "remember this" and "log today".
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/raydez/auto-memory-keeper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown daily memory entries with supporting command snippets and JSON configuration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates persistent local daily memory files under ~/.openclaw/workspace/memory and deduplicates similar entries using a configurable threshold.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Recent conversation content may be summarized into persistent local daily memory files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer explicit save commands, review entries before writing, and redact secrets or personal data before they are stored.
+
+Risk: Automatic session capture and broad persistent storage may record more context than the user intended.
+
+Mitigation: Use narrow trigger settings where possible, audit the configured memory directory periodically, and delete entries that should not be retained.
+
+Risk: The skill lacks clear built-in review or deletion controls in the supplied evidence.
+
+Mitigation: Add a manual review step before appending entries and maintain a deletion or retention process for ~/.openclaw/workspace/memory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/raydez/skills/auto-memory-keeper)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown daily memory entries with supporting shell commands, Python code, and JSON configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes concise timestamped entries to local daily Markdown files under the configured memory directory.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

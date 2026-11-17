@@ -1,40 +1,55 @@
-## Description: <br>
-Japanese-English translator and language tutor powered by SkillBoss API Hub that helps translate Japanese text, explain Japanese words or phrases, and provide readings, vocabulary, grammar, and cultural notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Japanese Translation And Tutor helps agents translate Japanese and English text while explaining readings, vocabulary, grammar, nuance, and cultural context.
 
-## Publisher: <br>
-[marjoriebroad](https://clawhub.ai/user/marjoriebroad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marjoriebroad](https://clawhub.ai/user/marjoriebroad)
 
-## Use Case: <br>
-External users and developers use this skill to translate Japanese text into English and receive tutoring-style explanations of readings, vocabulary, grammar, formality, ambiguity, idioms, and cultural context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Japanese text is sent to SkillBoss API Hub using the user's SkillBoss API key. <br>
-Mitigation: Use a dedicated or revocable SkillBoss API key and avoid translating confidential content unless SkillBoss handling is acceptable for that content. <br>
+## Use Case:
 
+External users and agents use this skill to translate Japanese text, understand Japanese words or phrases, and receive language tutoring with kanji readings, vocabulary, grammar notes, and cultural context.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/marjoriebroad/mar-japanese-translation-and-tutor) <br>
-- [SkillBoss Japanese Translation And Tutor](https://skillboss.co/skills/japanese-translation-and-tutor) <br>
-- [SkillBoss API Hub Endpoint](https://api.skillboss.com/v1/pilot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, API Calls] <br>
-**Output Format:** [Structured Markdown or plain text with translation, reading, vocabulary, and notes sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and sends translation text to SkillBoss API Hub.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Text submitted for translation or explanation is sent to SkillBoss API Hub, which may expose secrets, confidential business documents, regulated personal data, or private messages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when external processing by SkillBoss API Hub is acceptable; avoid submitting secrets, confidential documents, regulated data, or private messages.
+
+Risk: Language tutoring and translation outputs can be incomplete, ambiguous, or unsuitable for high-stakes decisions.
+
+Mitigation: Ask for added context when register or meaning is unclear, and have important legal, medical, contractual, or safety-sensitive translations reviewed by a qualified human.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marjoriebroad/skills/mar-japanese-translation-and-tutor)
+- [SkillBoss skill page](https://skillboss.co/skills/japanese-translation-and-tutor)
+- [SkillBoss API Hub endpoint](https://api.skillboss.com/v1/pilot)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown or plain text with translation, reading, vocabulary, and notes sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and sends provided text to SkillBoss API Hub for translation and tutoring.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,50 @@
-## Description: <br>
-Analyze social media accounts to track growth, engagement, audience demographics, and provide tailored improvement recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze social media account performance, growth patterns, audience insights, and recommendations for account improvement.
 
-## Publisher: <br>
-[eric060](https://clawhub.ai/user/eric060) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eric060](https://clawhub.ai/user/eric060)
 
-## Use Case: <br>
-External users and social media operators use this skill to analyze account growth, engagement, audience demographics, posting patterns, and competitor benchmarks, then generate practical improvement recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A separately obtained analyzer or scraper could introduce code, dependency, network, data collection, or platform terms risks that are not present in this documentation-only artifact. <br>
-Mitigation: Review the implementation code, dependencies, network targets, data collection behavior, and relevant platform terms before running any analyzer or scraper. <br>
-Risk: The artifact describes analytics outputs and recommendations but does not include executable code to verify calculations or data sources. <br>
-Mitigation: Treat generated metrics and recommendations as guidance until the underlying analyzer implementation and data sources are reviewed. <br>
+## Use Case:
 
+External users, developers, and social media operators use this skill to evaluate account growth, engagement, audience demographics, posting patterns, competitor benchmarks, and practical growth opportunities.
 
-## Reference(s): <br>
-- [ClawHub listing: Account Analyzer](https://clawhub.ai/eric060/account-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with example Python command snippets and analytics summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only artifact; no executable analyzer was submitted.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Future analyzer scripts or platform scrapers added around this instruction stub could access credentials or account data beyond the user's authorization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and scan any added analyzer or scraper code before installation, and provide only authorized social media account data or credentials required for the analysis.
+
+## Reference(s):
+
+- [Account Analyzer ClawHub skill page](https://clawhub.ai/eric060/skills/account-analyzer)
+- [eric060 ClawHub publisher profile](https://clawhub.ai/user/eric060)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown or text summaries with metrics, trend notes, dashboard descriptions, and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include performance dashboards, growth trends, engagement metrics, and actionable recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

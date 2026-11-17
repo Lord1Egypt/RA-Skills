@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  /* ── FONDO DE MARCA OPACO ──────────────────────────────────────────────
+     Un takeover es OPACO: se monta ENCIMA de la base con enable='between'.
+     NO uses #00ff00 aquí (eso es solo para overlays keyed de modo cara).
+     Cambia --bg / --ink / --accent por el mood:
+       CARBÓN (default):  --bg #14110F  --ink #F5EDE0  --accent #F5B301
+       CREMA:             --bg #F5EDE0  --ink #14110F  --accent #F5B301
+  --------------------------------------------------------------------- */
+  :root { --bg:#14110F; --ink:#F5EDE0; --accent:#F5B301; --muted:#8A817A; }
+
+  body { background: var(--bg); width: 1920px; height: 1080px; overflow: hidden;
+         font-family: 'Inter','Poppins',sans-serif; color: var(--ink); }
+
+  #stage { position: relative; width: 1920px; height: 1080px; }
+
+  /* Capa SVG a pantalla completa para los TRAZOS (paths) */
+  #paths { position: absolute; inset: 0; width: 1920px; height: 1080px; pointer-events: none; }
+  #paths path, #paths line, #paths circle, #paths polyline { fill: none; }
+
+  .clip { position: absolute; }
+
+  /* Título del takeover (arriba) */
+  .tk-title { top: 90px; left: 120px; font-weight: 800; font-size: 64px;
+              letter-spacing: -0.03em; opacity: 0; }
+  .tk-kicker { top: 70px; left: 122px; font-weight: 700; font-size: 20px;
+               letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); opacity: 0; }
+
+  /* Contenedor del paso (posiciona; NO recorta el badge) */
+  .step { opacity: 0; }
+  /* Mockup de navegador (paso) — overflow hidden solo redondea el navegador */
+  .mock { width: 470px; border-radius: 18px; overflow: hidden;
+          background: #0F0D0B; border: 1px solid rgba(245,237,224,0.10);
+          box-shadow: 0 30px 80px rgba(0,0,0,0.5); }
+  .mock .bar { display: flex; align-items: center; gap: 8px; padding: 14px 18px;
+               background: rgba(245,237,224,0.05); border-bottom: 1px solid rgba(245,237,224,0.07); }
+  .mock .dot { width: 12px; height: 12px; border-radius: 50%; }
+  .mock .body { padding: 24px; min-height: 190px; }
+  .mock h3 { font-size: 26px; font-weight: 700; margin-bottom: 12px; }
+  .mock p  { font-size: 19px; line-height: 1.5; color: var(--muted); }
+  .mock img { width: 100%; border-radius: 10px; display: block; }
+
+  /* Badge numerado del paso — hermano del mockup, fuera del overflow */
+  .step-badge { position: absolute; top: -26px; left: -26px; width: 64px; height: 64px;
+                border-radius: 50%; background: var(--accent); color: #14110F;
+                font-weight: 900; font-size: 30px; display: flex; align-items: center;
+                justify-content: center; box-shadow: 0 8px 24px rgba(245,179,1,0.4);
+                opacity: 0; z-index: 5; }
+</style>
+</head>
+<body>
+<div id="stage" data-composition-id="takeover" data-start="0" data-width="1920" data-height="1080">
+
+  <!-- ── KICKER + TÍTULO ─────────────────────────────────────────────── -->
+  <div class="clip tk-kicker" data-start="0" data-duration="7" data-track-index="1">EL SISTEMA</div>
+  <div class="clip tk-title"  data-start="0" data-duration="7" data-track-index="2">Los 3 pasos, sin código</div>
+
+  <!-- ── 3 MOCKUPS (secuencia) ───────────────────────────────────────── -->
+  <div id="m1" class="clip step" data-start="0" data-duration="7" data-track-index="10"
+       style="left: 150px; top: 380px; width: 470px;">
+    <div class="step-badge" id="b1">1</div>
+    <div class="mock">
+      <div class="bar"><span class="dot" style="background:#ef4444"></span>
+        <span class="dot" style="background:#f59e0b"></span>
+        <span class="dot" style="background:#22c55e"></span></div>
+      <div class="body"><h3>Escribe la rutina</h3>
+        <p>Le dices en lenguaje natural qué quieres que pase cada día.</p></div>
+    </div>
+  </div>
+
+  <div id="m2" class="clip step" data-start="0" data-duration="7" data-track-index="11"
+       style="left: 725px; top: 445px; width: 470px;">
+    <div class="step-badge" id="b2">2</div>
+    <div class="mock">
+      <div class="bar"><span class="dot" style="background:#ef4444"></span>
+        <span class="dot" style="background:#f59e0b"></span>
+        <span class="dot" style="background:#22c55e"></span></div>
+      <div class="body"><h3>Programa la hora</h3>
+        <p>Corre sola, a la hora que definas, sin que tú estés.</p></div>
+    </div>
+  </div>
+
+  <div id="m3" class="clip step" data-start="0" data-duration="7" data-track-index="12"
+       style="left: 1300px; top: 380px; width: 470px;">
+    <div class="step-badge" id="b3">3</div>
+    <div class="mock">
+      <div class="bar"><span class="dot" style="background:#ef4444"></span>
+        <span class="dot" style="background:#f59e0b"></span>
+        <span class="dot" style="background:#22c55e"></span></div>
+      <div class="body"><h3>Recibe el resultado</h3>
+        <p>Tu contenido listo, esperándote cuando despiertas.</p></div>
+    </div>
+  </div>
+
+  <!-- ── CAPA DE TRAZOS SVG (se dibujan solos) ───────────────────────── -->
+  <svg id="paths" viewBox="0 0 1920 1080" preserveAspectRatio="none">
+    <!-- conector 1→2 -->
+    <path id="p12" d="M 620 500 C 660 470, 690 470, 725 520"
+          stroke="var(--accent)" stroke-width="5" stroke-linecap="round"/>
+    <!-- flecha del conector 1→2 -->
+    <polyline id="a12" points="710,505 728,522 706,532"
+              stroke="var(--accent)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- conector 2→3 -->
+    <path id="p23" d="M 1195 520 C 1235 470, 1265 470, 1300 500"
+          stroke="var(--accent)" stroke-width="5" stroke-linecap="round"/>
+    <polyline id="a23" points="1285,485 1303,502 1281,512"
+              stroke="var(--accent)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- círculo a mano alrededor del paso 3 (el resultado) -->
+    <path id="circ" d="M 1300 360 C 1560 330, 1800 360, 1795 585 C 1790 780, 1520 795, 1330 770 C 1180 745, 1215 400, 1420 372"
+          stroke="var(--ink)" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+    <!-- check dibujado abajo -->
+    <polyline id="chk" points="900,930 950,980 1050,880"
+              stroke="#22c55e" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- línea de fondo ambiente -->
+    <path id="amb" d="M 0 1010 C 500 960, 1400 1060, 1920 1000"
+          stroke="rgba(245,237,224,0.14)" stroke-width="2"/>
+  </svg>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    // Helper: prepara un path para "dibujarse" (dasharray = largo, offset = largo)
+    function drawIn(sel, at, dur, ease) {
+      const el = document.querySelector(sel);
+      const len = (el.getTotalLength ? el.getTotalLength() : 1000);
+      gsap.set(el, { strokeDasharray: len, strokeDashoffset: len });
+      tl.to(el, { strokeDashoffset: 0, duration: dur, ease: ease || "power2.inOut" }, at);
+    }
+
+    // Título + kicker
+    tl.fromTo(".tk-kicker", { opacity:0, y:-14 }, { opacity:1, y:0, duration:0.5, ease:"power2.out" }, 0.1);
+    tl.fromTo(".tk-title",  { opacity:0, y:18 },  { opacity:1, y:0, duration:0.6, ease:"expo.out" }, 0.22);
+
+    // Mockups en secuencia (reveal fade+slide+scale) + badge
+    [["#m1","#b1",0.5],["#m2","#b2",1.5],["#m3","#b3",2.5]].forEach(([m,b,at]) => {
+      tl.fromTo(m, { opacity:0, y:40, scale:0.92 },
+                   { opacity:1, y:0, scale:1, duration:0.6, ease:"back.out(1.3)" }, at);
+      tl.fromTo(b, { opacity:0, scale:0.4 },
+                   { opacity:1, scale:1, duration:0.45, ease:"back.out(2)" }, at+0.25);
+    });
+
+    // Ambiente de fondo primero
+    drawIn("#amb", 0.0, 1.4, "power1.inOut");
+    // Conectores + flechas conforme entran los mockups
+    drawIn("#p12", 1.15, 0.55); drawIn("#a12", 1.6, 0.25);
+    drawIn("#p23", 2.15, 0.55); drawIn("#a23", 2.6, 0.25);
+    // Círculo a mano sobre el resultado
+    drawIn("#circ", 3.2, 0.9, "power2.inOut");
+    // Check final
+    drawIn("#chk", 4.2, 0.5, "power2.out");
+
+    // Salida suave de toda la escena (últimos 0.6s)
+    tl.to("#stage > *:not(#paths)", { opacity:0, y:-14, duration:0.5, ease:"power2.in", stagger:0.03 }, 6.4);
+    tl.to("#paths", { opacity:0, duration:0.5, ease:"power2.in" }, 6.4);
+
+    window.__timelines = window.__timelines || {};
+    window.__timelines["takeover"] = tl;
+  </script>
+</div>
+</body>
+</html>

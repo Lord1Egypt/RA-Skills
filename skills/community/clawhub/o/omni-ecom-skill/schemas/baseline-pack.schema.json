@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "omni-ecom://schemas/baseline-pack-2.0.json",
+  "title": "Omni E-commerce Shared Analysis Baseline Pack",
+  "description": "团长在调度四位分析专家前下发的统一口径基线，成员必须回写 baseline_ack 与 baseline_deviations。用于从源头消除同名不同口径导致的团队内部冲突。",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema_version",
+    "artifact_type",
+    "contract_name",
+    "contract_version",
+    "created_by_team_version",
+    "legacy_compatibility",
+    "run_id",
+    "client_scope",
+    "team_version",
+    "task_type",
+    "scope",
+    "metric_contract",
+    "authority_order",
+    "attribution_rules",
+    "known_conflicts",
+    "issued_at"
+  ],
+  "properties": {
+    "schema_version": { "const": "2.0" },
+    "artifact_type": { "const": "analysis_baseline_pack" },
+    "contract_name": { "const": "omni-ecom.analysis-baseline" },
+    "contract_version": { "const": "2.0" },
+    "created_by_team_version": { "type": "string", "minLength": 1 },
+    "legacy_compatibility": { "const": {"read_only_import": ["omni-ecom.analysis-baseline@1.0"], "current_analysis_authority": false} },
+    "run_id": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{2,80}$" },
+    "client_scope": { "type": "string", "minLength": 1 },
+    "team_version": { "type": "string", "minLength": 1 },
+    "task_type": {
+      "enum": [
+        "store_diagnosis", "weekly_report", "monthly_report", "quarterly_report",
+        "annual_report", "campaign_review", "data_quality_audit", "single_topic"
+      ]
+    },
+    "scope": {
+      "type": "object",
+      "required": ["platform", "store", "period", "grain"],
+      "properties": {
+        "platform": { "type": "string", "minLength": 1 },
+        "store": { "type": "string", "minLength": 1 },
+        "period": { "type": "string", "minLength": 1 },
+        "grain": { "type": "string", "minLength": 1 }
+      }
+    },
+    "metric_contract": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["definition", "formula", "unit", "denominator"],
+        "properties": {
+          "definition": { "type": "string", "minLength": 1 },
+          "formula": { "type": "string", "minLength": 1 },
+          "unit": { "type": "string", "minLength": 1 },
+          "denominator": { "type": "string", "minLength": 1 },
+          "dedupe_rule": { "type": "string" },
+          "attribution_window": { "type": "string" },
+          "profit_scope": { "type": "string", "minLength": 1 },
+          "total_cost_scope": { "type": "string", "minLength": 1 },
+          "calculation": {
+            "type": "object",
+            "required": ["expression", "inputs"],
+            "additionalProperties": false,
+            "properties": {
+              "expression": { "type": "string", "minLength": 1, "maxLength": 2000 },
+              "inputs": {
+                "type": "object", "minProperties": 1,
+                "additionalProperties": {
+                  "type": "object", "additionalProperties": false,
+                  "required": ["source_field", "unit", "aggregation"],
+                  "properties": {
+                    "source_field": { "type": "string", "minLength": 1 },
+                    "unit": { "enum": ["元", "人"] },
+                    "aggregation": { "enum": ["value", "sum"] }
+                  }
+                }
+              }
+            }
+          },
+          "forbidden_usage": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "authority_order": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 },
+      "description": "同一指标出现多个来源时的取值优先级，例如 原始后台导出 > 生意参谋 > 截图 > 转述。"
+    },
+    "attribution_rules": {
+      "type": "object",
+      "required": ["refund_basis", "visitor_dedupe", "paid_vs_organic"],
+      "properties": {
+        "refund_basis": { "type": "string", "minLength": 1 },
+        "visitor_dedupe": { "type": "string", "minLength": 1 },
+        "paid_vs_organic": { "type": "string", "minLength": 1 },
+        "cross_platform": { "type": "string" }
+      }
+    },
+    "shared_evidence_index": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["evidence_id", "metric", "value", "status"],
+        "properties": {
+          "evidence_id": { "type": "string", "pattern": "^E[0-9A-Za-z._-]+$" },
+          "metric": { "type": "string", "minLength": 1 },
+          "value": {},
+          "status": { "enum": ["verified", "warning", "blocked", "unverified"] }
+        }
+      }
+    },
+    "known_conflicts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["conflict_id", "topic", "ruling"],
+        "properties": {
+          "conflict_id": { "type": "string", "pattern": "^K-[A-Za-z0-9_-]+$" },
+          "topic": { "type": "string", "minLength": 1 },
+          "ruling": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "issued_at": { "type": "string", "minLength": 1 }
+  }
+}

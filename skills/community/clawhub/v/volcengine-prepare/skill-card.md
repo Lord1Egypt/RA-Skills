@@ -1,41 +1,51 @@
-## Description: <br>
-Volcengine Prepare analyzes a local directory or GitHub repository, identifies deployable service signals, and recommends a ranked Volcengine deployment path across ECS, VKE, and veFaaS before deployment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes a local directory or GitHub repository for Volcengine deployment readiness and recommends ECS, VKE, or veFaaS plus CLI or IaC resource management before deployment.
 
-## Publisher: <br>
-[volc-sdk-team](https://clawhub.ai/user/volc-sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[volc-sdk-team](https://clawhub.ai/user/volc-sdk-team)
 
-## Use Case: <br>
-Developers and engineers use this skill to assess whether a repository has a clear deployable service surface, compare viable Volcengine deployment options, and choose between CLI and IaC resource management before handing off to a deployment workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect local repository files, including environment and configuration files, while analyzing deployability. <br>
-Mitigation: Run it on a sanitized copy of the repository when possible and remove real .env or secret-bearing config files before analysis. <br>
-Risk: The skill can run live Volcengine CLI/API availability checks when credentials and a region are configured. <br>
-Mitigation: Use narrowly scoped, read-only credentials for availability checks and verify the selected region and permissions before acting on the recommendation. <br>
+## Use Case:
 
+Developers and engineers use this skill to assess whether a repository has a concrete Volcengine deployment target, compare viable ECS, VKE, and veFaaS paths, and choose a CLI or IaC resource-management approach.
 
-## Reference(s): <br>
-- [Deploy mode heuristics](references/deploy-mode-heuristics.md) <br>
-- [Volcengine Prepare on ClawHub](https://clawhub.ai/volc-sdk-team/skills/volcengine-prepare) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and concise JSON summaries when state persistence is useful] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May optionally write a minimal .volcengine/deploy-choice.json handoff after the user confirms a deployment mode and resource-management path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: Repository analysis may read real environment or production configuration files that contain secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill against sanitized repositories or template configuration files, and require explicit consent before scanning sensitive config.
+
+## Reference(s):
+
+- [Deploy Mode Heuristics](references/deploy-mode-heuristics.md)
+- [ClawHub Skill Page](https://clawhub.ai/volc-sdk-team/skills/volcengine-prepare)
+- [Publisher Profile](https://clawhub.ai/user/volc-sdk-team)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON findings and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a concise deploy-choice JSON handoff when the workflow continues.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

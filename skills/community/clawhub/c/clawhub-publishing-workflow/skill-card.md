@@ -1,39 +1,53 @@
-## Description: <br>
-Guides agents through publishing OpenClaw skills to ClawHub, including CLI authentication, skill preparation, publishing, and verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete workflow for publishing OpenClaw skills to ClawHub, including authentication troubleshooting, skill preparation, publishing, and verification guidance.
 
-## Publisher: <br>
-[stefanferreira](https://clawhub.ai/user/stefanferreira) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stefanferreira](https://clawhub.ai/user/stefanferreira)
 
-## Use Case: <br>
-Developers and agent operators use this skill to prepare, authenticate, publish, and verify OpenClaw skills on ClawHub. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes stealth browser and residential proxy guidance for working around bot checks. <br>
-Mitigation: Prefer documented token-based ClawHub CLI login, verify the CLI package source before installation, keep tokens secret, and avoid stealth browser or residential proxy approaches unless explicitly authorized. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to publish new or updated OpenClaw skills to ClawHub, verify authentication, prepare release structure, and troubleshoot common publishing failures.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stefanferreira/clawhub-publishing-workflow) <br>
-- [ClawHub API token settings](https://clawhub.ai/settings/tokens) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes commands that may handle ClawHub API tokens; redact secrets from logs and shared outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill discusses stealth browser and residential proxy tactics for authentication bot checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer documented token authentication with `clawhub login --token --no-browser`; avoid stealth browser or residential proxy approaches unless ClawHub and relevant providers explicitly authorize that use.
+
+Risk: The workflow recommends installing the ClawHub CLI globally before publishing.
+
+Mitigation: Pin and verify the ClawHub CLI package before global installation, and review the skill before installing or executing commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/stefanferreira/skills/clawhub-publishing-workflow)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces publishing workflow guidance, command examples, validation steps, and troubleshooting notes.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

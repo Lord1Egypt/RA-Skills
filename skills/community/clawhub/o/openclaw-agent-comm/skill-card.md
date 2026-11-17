@@ -1,41 +1,53 @@
-## Description: <br>
-Standardizes cross-agent communication protocols for asking, collaborating with, or delegating work to another agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Standardizes cross-agent communication protocols for asking another agent questions, collaborating, or delegating tasks.
 
-## Publisher: <br>
-[auberghan](https://clawhub.ai/user/auberghan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[auberghan](https://clawhub.ai/user/auberghan)
 
-## Use Case: <br>
-Developers and agents use this skill to choose the right communication pattern for cross-agent questions, one-way notifications, delegated background work, and sequential or parallel multi-agent coordination. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agent-to-agent handoffs may expose sensitive user, business, or credential data if forwarded without review. <br>
-Mitigation: Do not include passwords, API keys, private business data, or sensitive personal details in forwarded tasks unless the target agent and workspace are trusted. <br>
-Risk: Using stale session keys can send work to the wrong or unavailable agent. <br>
-Mitigation: Retrieve the current session key with sessions_list before sending or spawning agent work. <br>
+## Use Case:
 
+Developers and operators of multi-agent systems use this skill to choose blocking, fire-and-forget, or background delegation patterns and format requests consistently.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/auberghan/openclaw-agent-comm) <br>
-- [Skill source artifact](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with command examples and message templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes timeout guidance, control directives, and error-handling templates for agent handoffs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Agent-to-agent messages can forward unnecessary private or sensitive context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Include only the context needed for the receiving agent to complete the request.
+
+Risk: Background delegation can run longer tasks that affect important data or decisions.
+
+Mitigation: Confirm long-running delegation before use when the result could materially affect data, users, or decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/auberghan/skills/openclaw-agent-comm)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown guidance with protocol templates and tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes recommended timeout values and control directives for cross-agent communication.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

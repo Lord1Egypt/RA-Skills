@@ -1,42 +1,58 @@
-## Description: <br>
-Pitch development and presentation coaching for founders and salespeople. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pitch development and presentation coaching for founders and salespeople. Use when user mentions investor pitches, sales presentations, elevator pitches, pitch decks, or persuasion scenarios. Builds value propositions, crafts pitches for different audiences, prepares for objections, and coaches delivery. All work is advisory - human judgment required for all decisions.
 
-## Publisher: <br>
-[AGIstack](https://clawhub.ai/user/AGIstack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agistack](https://clawhub.ai/user/agistack)
 
-## Use Case: <br>
-Founders, salespeople, and go-to-market teams use this skill to build pitch foundations, tailor elevator pitches, prepare for investor or customer objections, draft follow-ups, and improve presentation delivery. Generated pitch content remains advisory and should be reviewed against verified business facts before use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated pitches may include unsourced or placeholder business claims about traction, market size, fundraising, customers, team credentials, or attached materials. <br>
-Mitigation: Review every generated pitch and follow-up before use, and replace any claim that is not a verified fact for the company. <br>
-Risk: Pitch foundations, objections, and meeting details are stored locally in OpenClaw memory. <br>
-Mitigation: Use the skill only when local retention of those materials is acceptable, and manage deletion or retention according to the user's confidentiality requirements. <br>
+## Use Case:
 
+Founders, salespeople, and business teams use this skill to build pitch foundations, draft audience-specific elevator pitches, prepare objection responses, draft follow-up notes, and receive presentation coaching. The skill is advisory and requires human review for business decisions and external communications.
 
-## Reference(s): <br>
-- [Pitch skill page](https://clawhub.ai/AGIstack/pitch-pro) <br>
-- [Foundation Building](references/foundation.md) <br>
-- [Objection Handling](references/objections.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and terminal text with locally stored JSON records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scripts write pitch foundations, objections, and meeting follow-up metadata to local OpenClaw memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: ClawHub release metadata) <br>
+Risk: Generated pitch content can include unsupported business metrics, traction claims, credentials, or market claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review all generated pitch material before external use and replace unverified claims with verified company facts.
+
+Risk: Pitch materials may contain confidential business plans, strategy, customer details, or fundraising information.
+
+Mitigation: Keep materials local, avoid sharing confidential information through external systems, and delete retained workspace files when no longer needed.
+
+Risk: The skill can produce persuasive business guidance that may be mistaken for a decision or guarantee.
+
+Mitigation: Use outputs as preparation support only; retain human judgment for investment, sales, legal, and business decisions.
+
+## Reference(s):
+
+- [Pitch Foundation Building](references/foundation.md)
+- [Objection Handling](references/objections.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown and plain text with optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local pitch planning JSON files under the user's workspace when scripts are run.]
+
+## Skill Version(s):
+
+2.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

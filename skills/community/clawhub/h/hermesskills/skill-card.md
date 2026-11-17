@@ -1,41 +1,54 @@
-## Description: <br>
-HermesSkills provides persistent session, working, and long-term memory management with encrypted storage and revenue intelligence for autonomous Hermes agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides persistent session, working, and long-term memory management with encrypted storage and revenue intelligence for autonomous Hermes agents.
 
-## Publisher: <br>
-[andscrew8012](https://clawhub.ai/user/andscrew8012) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andscrew8012](https://clawhub.ai/user/andscrew8012)
 
-## Use Case: <br>
-Developers and agent builders use HermesSkills to add persistent memory, session state, user preferences, revenue tracking, market alerts, and pattern recall to autonomous Hermes agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is intended to retain profiles, preferences, revenue data, drafts, and conversation history. <br>
-Mitigation: Configure consent, deletion, export, and retention controls before using it with sensitive or regulated data. <br>
-Risk: The artifact advertises encryption, cloud backup, privacy compliance, and key-rotation controls that are not implemented as executable files in the submitted artifact. <br>
-Mitigation: Verify storage locations, backup handling, encryption, key rotation, and privacy controls in the deployed environment before production use. <br>
+## Use Case:
 
+Developers and agent builders use HermesSkills to add persistent memory, session management, working memory, long-term recall, and revenue-oriented operational tracking to Hermes agents.
 
-## Reference(s): <br>
-- [HermesSkills ClawHub Skill Page](https://clawhub.ai/andscrew8012/skills/hermesskills) <br>
-- [andscrew8012 Publisher Profile](https://clawhub.ai/user/andscrew8012) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown with structured memory-operation names and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only artifact; no executable files were included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Persistent and cloud-backed memory may store conversations, profiles, preferences, deployment records, and revenue data without enough scoping detail.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure explicit consent, redaction, retention, access controls, and deletion behavior before use, especially for cloud backup and searchable conversation history.
+
+Risk: Searchable conversation history and broad memory operations can expose sensitive user or business context if access is too permissive.
+
+Mitigation: Limit access to authenticated users, require consent for long-term writes, and review what data classes are stored before deployment.
+
+## Reference(s):
+
+- [HermesSkills ClawHub listing](https://clawhub.ai/andscrew8012/skills/hermesskills)
+- [andscrew8012 publisher profile](https://clawhub.ai/user/andscrew8012)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with operation signatures, setup steps, and configuration references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide storage and retrieval of conversations, profiles, preferences, deployment records, and revenue metrics.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,61 @@
-## Description: <br>
-Send iMessage notifications to an iPhone from a Mac's Messages app, including text, images, videos, audio, files, and URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send iMessage notifications from a Mac through Apple's Messages app, including text, media files, audio, documents, and URLs.
 
-## Publisher: <br>
-[frankxia2013](https://clawhub.ai/user/frankxia2013) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[frankxia2013](https://clawhub.ai/user/frankxia2013)
 
-## Use Case: <br>
-Developers and operators use this skill to have an agent send iMessage alerts from Mac-based automated tasks, including task completion notices, screenshots, reports, files, and links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scripts default to a specific hardcoded Apple ID recipient. <br>
-Mitigation: Install only when that recipient is intentionally yours, or change the scripts to require a local user-configured recipient before use. <br>
-Risk: Automated use can transmit text, screenshots, reports, files, and URLs without a safety gate. <br>
-Mitigation: Avoid routing secrets or private files through this skill; add explicit confirmation before sending sensitive task outputs. <br>
-Risk: Message and attachment values are passed into AppleScript-driven sends. <br>
-Mitigation: Review inputs before execution and add proper AppleScript escaping before using untrusted content. <br>
+## Use Case:
 
+Developers and automation users use this skill to have an agent send iMessage alerts, task completion notices, screenshots, reports, links, or other local files from a configured macOS machine.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/frankxia2013/imessage-notify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Mac with Messages signed in to iMessage and a configured recipient.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Messages and files may be sent to a hard-coded personal Apple ID.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace hard-coded Apple IDs with explicit local configuration and confirm the recipient before sending sensitive content.
+
+Risk: AppleScript is constructed directly from user-provided text and paths.
+
+Mitigation: Pass user input to AppleScript as arguments or apply robust escaping before enabling the scripts.
+
+Risk: The skill can send local media and document files through Messages.
+
+Mitigation: Review selected file paths and require confirmation for sensitive attachments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/frankxia2013/skills/imessage-notify)
+- [Publisher profile](https://clawhub.ai/user/frankxia2013)
+- [Skill definition](artifact/SKILL.md)
+- [Text message script](artifact/scripts/send-imessage.sh)
+- [Media message script](artifact/scripts/send-imessage-media.sh)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured macOS Messages/iMessage environment before commands can send messages.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

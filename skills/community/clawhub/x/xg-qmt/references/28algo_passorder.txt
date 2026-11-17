@@ -1,0 +1,59 @@
+一、场景：
+在量化交易中，我们经常面临两个问题：
+
+首先是大额订单可能对市场行情产生不利影响；其次是需要保证策略下单的快速成交。
+
+通常，为了解决这些问题，我们需要编写复杂的代码来控制下单数量和跟踪订单状态。然而，过多的代码可能带来潜在的错误风险，特别是对于不熟悉这些控制流程的开发者来说。
+
+现在，有了一个简洁的解决方案，只需一行代码即可解决上述难题，无需编写额外的下单代码或订单状态跟踪代码。这一解决方案就是 algo_passorder。
+
+二、方法：
+接下来，让我详细介绍 algo_passorder。它是客户端手工下单面板的算法交易工具，算法交易是迅投提供给客户的智能交易策略，其原理在于通过智能策略和大单拆分方式，减少对市场的冲击，并根据行情波动及时调整报价以保证快速成交。
+
+简言之，algo_passorder 就是一行命令，让您可以轻松输入参数，如总委托数量和拆分下单规则，无需额外操作即可完成任务。比如总量 10 万股的委托任务，我们输入分几次下单，每次下单时实际委托多少股；又比如总量 1 万股的委托任务当 10 秒(或输入的其他时间)后不成交时让该任务自动撤单然后重新报单等。
+
+具体该接口的用法见迅投知识库：http://dict.thinktrader.net/innerApi/trading_function.html?id=I3DJ97#algo-passorder-%E7%AE%97%E6%B3%95%E4%B8%8B%E5%8D%95-%E6%8B%86%E5%8D%95-%E5%87%BD%E6%95%B0
+
+接下来将演示 algo_passorder 的使用方法及执行效果图。
+
+（1）代码演示
+image.png
+
+# coding:gbk
+
+
+def after_init(ContextInfo):
+
+    target_vol = 30000  # 股， 算法目标总量
+  
+    userparam={
+    'OrderType':1,                            #表示要下算法
+    'PriceType':0,                            # 0表示 卖5价下单
+    'MaxOrderCount':20,                       # 最大委托次数
+    'SuperPriceType':0,                       # 超价类型，0表示按比例
+    'SuperPriceRate':0.01,                    # 超价1%下单
+    'VolumeRate':0.1,                         # 单笔下单比率 每次拆10%
+    'VolumeType': 10,                         # 单笔基准量类型 10 代表目标量 即每次下单的委托是目标量*VolumeRate（target_vol*10%）
+    'SingleNumMax':1000000,                   # 单笔拆单最大值
+    'PriceRangeType':0,                       # 波动区间类型
+    'PriceRangeRate':1,                       # 波动区间值
+    'ValidTimeType':1,                        # 有效时间类型 1 表示按执行时间
+    'ValidTimeStart':get_time('141000'),      # 算法开始时间
+    'ValidTimeEnd':get_time('143000'),        # 算法结束时间
+    'PlaceOrderInterval':10,                  # 报撤间隔
+    'UndealtEntrustRule':5,                   # 未成委托处理数值 用卖5加挂单
+    }
+    algo_passorder(23, 1101, account, '000001.SZ', -1, -1, target_vol, '', 2, '算法自动拆单', userparam, ContextInfo)
+    print('algo_passorder 下单完成')
+
+def get_time(time):
+    import datetime
+    h = int(time[:2])
+    m = int(time[2:4])
+    s = int(time[4:])
+    now = datetime.datetime.now()
+    date = datetime.datetime(now.year, now.month, now.day, h, m, s)
+    return int(date.timestamp())
+​
+（2）执行效果图：
+image.png

@@ -1,38 +1,53 @@
-## Description: <br>
-Audit X drafts before publishing by scoring hooks, clarity, dwell, replies, repost value, profile-click potential, follow potential, and negative-feedback risk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit X drafts before publishing. Use when scoring hooks, clarity, dwell, replies, repost value, profile-click potential, follow potential, and negative-feedback risk.
 
-## Publisher: <br>
-[mikaelaldy](https://clawhub.ai/user/mikaelaldy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikaelaldy](https://clawhub.ai/user/mikaelaldy)
 
-## Use Case: <br>
-Creators, marketers, and social media teams use this skill to review important X drafts before publishing. It helps refine the hook, audience fit, engagement value, and negative-feedback risk while preserving a human review step. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested rewrites may introduce incorrect factual claims or unsupported assumptions about platform algorithms. <br>
-Mitigation: Review the rewritten post, variants, and any factual or algorithm-related claims before publishing. <br>
+## Use Case:
 
+External creators and social media operators use this skill to audit important X drafts before publishing, score engagement and negative-feedback signals, and produce small rewrites and variants for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mikaelaldy/x-post-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with scores, main weakness, rewritten post, variants, predicted signal, and do-not-publish guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, account access, or tool calls are requested by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Engagement optimization can push a draft toward misleading claims, bait, repetitive wording, hostility, or other negative-feedback patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review rewritten posts for accuracy and tone, apply the skill's negative-feedback check, and do not publish while material risk remains.
+
+Risk: A rewritten post may change the author's intended meaning or promise more future value than the author can provide.
+
+Mitigation: Compare the rewrite and variants against the original intent before publishing and keep only the smallest useful edit.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mikaelaldy/skills/x-post-audit)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with scores, main weakness, rewritten post, two variants, predicted signal, and publish-risk note]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, account access, or publishing action.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,58 @@
-## Description: <br>
-Connect and control Tesla vehicles via the tesla-cli. Handles guided setup (key generation, AgentGen hosting, partner registration, OAuth) and all vehicle commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect and control Tesla vehicles via the tesla-cli. Handles guided setup (key generation, AgentGen hosting, partner registration, OAuth) and all vehicle commands.
 
-## Publisher: <br>
-[lyair1](https://clawhub.ai/user/lyair1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lyair1](https://clawhub.ai/user/lyair1)
 
-## Use Case: <br>
-External users and developers use this skill to set up teslacli, connect an agent to a Tesla account, and issue vehicle, climate, and charging commands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent sensitive Tesla account and vehicle-control authority, including commands that unlock, wake, honk, change climate, change charging, or retrieve location and vehicle state. <br>
-Mitigation: Require explicit user approval before every sensitive teslacli command and review the exact command before execution. <br>
-Risk: The install flow fetches and runs a remote teslacli installer. <br>
-Mitigation: Install only from trusted teslacli and AgentGen sources, and inspect or pin the installer before running it. <br>
-Risk: teslacli stores OAuth tokens and a P-256 private key under ~/.config/teslacli/. <br>
-Mitigation: Treat ~/.config/teslacli/ as sensitive, do not read it into responses or logs, and never transmit keys/private.pem or token.json. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lyair1/tesla-connect) <br>
-- [AgentGen Tesla control use case](https://www.agent-gen.com/use-cases/tesla-control) <br>
-- [AgentGen homepage](https://www.agent-gen.com) <br>
-- [teslacli install script referenced by the skill](https://raw.githubusercontent.com/Agent-Gen-com/tesla-cli/main/install.sh) <br>
+## Use Case:
 
+External users and developers use this skill to set up teslacli and ask an agent to inspect or control Tesla vehicle state, climate, charging, locks, lights, and horn through guided shell command workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide setup and propose teslacli commands that can affect a real vehicle.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to install teslacli through an unverified remote shell installer.
+
+Mitigation: Review the installer source before use and prefer a pinned, checksum-verified release when available.
+
+Risk: The skill can issue commands that unlock, honk, change climate, or control charging on a real Tesla vehicle.
+
+Mitigation: Require explicit user confirmation before executing vehicle-control commands with physical, privacy, safety, or cost impact.
+
+Risk: The setup flow stores Tesla OAuth tokens and a private key under the local teslacli configuration directory.
+
+Mitigation: Treat the teslacli configuration directory as sensitive and do not print, transmit, log, or move token or private-key material.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lyair1/skills/tesla-connect)
+- [AgentGen Tesla control use case](https://www.agent-gen.com/use-cases/tesla-control)
+- [tesla-cli installer source](https://raw.githubusercontent.com/Agent-Gen-com/tesla-cli/main/install.sh)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires teslacli and AGENTGEN_API_KEY; command workflows may affect a real vehicle.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

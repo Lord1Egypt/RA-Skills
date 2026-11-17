@@ -1,43 +1,56 @@
-## Description: <br>
-Control Bambu Lab 3D printers (H2D, X1C, P1S, A1) via CLI for print management, AMS filament control, temperature, fans, lights, calibration, file management, and live monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Bambu Lab 3D printers via CLI for print management, AMS filament control, temperature, fans, lights, calibration, file management, and live monitoring.
 
-## Publisher: <br>
-[G9Pedro](https://clawhub.ai/user/G9Pedro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[g9pedro](https://clawhub.ai/user/g9pedro)
 
-## Use Case: <br>
-Developers, operators, and agent users use this skill to inspect, configure, and control Bambu Lab printers on a local network. It supports status checks, print operations, AMS management, heating, movement, calibration, file operations, and troubleshooting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can issue commands that physically control a 3D printer, including heating, movement, calibration, print start and stop, and raw G-code. <br>
-Mitigation: Supervise the printer and require explicit user confirmation before executing physical-control commands. <br>
-Risk: LAN access codes and the ~/.bambu/config.json file are sensitive printer credentials. <br>
-Mitigation: Keep the access code and configuration file private, and avoid exposing them in logs, prompts, shared files, or screenshots. <br>
-Risk: The skill depends on the external @versatly/bambu CLI. <br>
-Mitigation: Install and use the CLI only when its package and publisher are trusted for the target environment. <br>
-Risk: File deletion and raw G-code commands can cause irreversible printer or job changes. <br>
-Mitigation: Confirm target filenames and raw commands before execution, and prefer read-only status commands when diagnosing issues. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/G9Pedro/bambu) <br>
+## Use Case:
 
+Developers, makers, and printer operators use this skill to check status, manage files and filament, start or control prints, run calibration, and troubleshoot Bambu Lab printers over local LAN access.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and optional JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses progressive command loading and distinguishes read-only status commands from physical printer-control commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill relies on an unpinned globally installed @versatly/bambu CLI package.
+
+Mitigation: Use a pinned and reviewed CLI version or run it in an isolated environment before granting printer access.
+
+Risk: The skill can heat components, move printer axes, delete files, start prints, run calibration, and send raw G-code.
+
+Mitigation: Require explicit user approval before physical-control commands and confirm the printer bed, filament, temperature, and target file are safe for the requested operation.
+
+Risk: The LAN access code and local config file can grant control of the printer.
+
+Mitigation: Protect the LAN access code and ~/.bambu/config.json, and avoid exposing them in prompts, logs, or shared workspaces.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/g9pedro/skills/bambu)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may read printer status or physically control printer hardware through the local Bambu CLI.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

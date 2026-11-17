@@ -1,8 +1,8 @@
 # Alternative provider chains
 
-When the priority stack (salesNavigator / cargo / waterfall / FullEnrich / theirStack / peopleDataLabs) can't serve the user's criteria, swap in providers from the long tail.
+When the priority stack (salesNavigator / aiArk / waterfall / FullEnrich / apolloio / theirStack / peopleDataLabs) can't serve the user's criteria, swap in providers from the long tail.
 
-For every alternative, see [`stage-action-map.md`](stage-action-map.md) for the cheapest credits-based action per stage across the full 120-integration catalog.
+For every alternative, see [`stage-action-map.md`](stage-action-map.md) for the cheapest credits-based action per stage across the full 136-integration catalog.
 
 ## When to swap providers
 
@@ -18,10 +18,11 @@ Default rule: **don't swap to chase 2× cheaper if hit-rate drops 30%**. The tot
 
 | Goal | Priority | Alternative | When to swap |
 |---|---|---|---|
-| At-scale lead search | salesNavigator.searchLeads (0.02) | icypeas.findPeople (0.02) | When LinkedIn coverage is thin (e.g., privacy-focused industries). |
-| At-scale account search | salesNavigator.searchAccounts (0.05) | peopleDataLabs.searchCompanies (3) for cargo-filter shape, or queryCompanies (3) for SQL | When salesNavigator's filters miss (funding, investor, complex bool). |
-| Tech-intent sourcing | theirStack.searchJobs / searchCompanies (0.5) | (no priority alternative — theirStack IS priority) | n/a |
-| SMB / local | (none in priority — priority skips SMB) | serper.searchPlaces (1), firecrawl.scrape (0.05) | Always for local/storefront. |
+| At-scale lead search | FullEnrich.searchPeople (**0**) **or** salesNavigator.searchLeads (0.2) | icypeas.findPeople (0.02 per 100 records) | When LinkedIn coverage is thin (e.g., privacy-focused industries). |
+| At-scale account search | FullEnrich.searchCompanies (**0**), salesNavigator.searchAccounts (0.2) **or** aiArk.searchCompanies (0.01) | oceanio.searchCompanies (1) | aiArk is 20× cheaper and takes lookalike seeds (≤5 domains), oceanio when the filter is technographic / web-traffic shaped. |
+|   |   | peopleDataLabs.searchCompanies (3) for cargo-filter shape, or queryCompanies (3) for SQL | When salesNavigator's filters miss (funding, complex bool). PDL has no investor field: investor sourcing goes to `theirStack.searchCompanies` (`company_investors_partial_match_or`). |
+| Tech-intent sourcing | theirStack.searchJobs / searchCompanies (0.5 per returned item) | (no priority alternative — theirStack IS priority) | n/a |
+| SMB / local | (none in priority — priority skips SMB) | serper.searchPlaces (0.05), firecrawl.scrape (0.05 / item) | Always for local/storefront. |
 | Visitor de-anonymization | (none — niche) | snitcher.searchSessions (0) | Always for visitor ID — free credits-tier. |
 | Warm-intro sourcing | (none — niche) | theSwarm.searchWarmIntrosToCompany (2) | When the goal is intros, not pure prospecting. |
 
@@ -29,25 +30,28 @@ Default rule: **don't swap to chase 2× cheaper if hit-rate drops 30%**. The tot
 
 | Goal | Priority | Alternative | When to swap |
 |---|---|---|---|
-| Person enrichment (default) | cargo.enrichProspectDetails (2) | linkedin.enrichProfile (0.25) | When you only need LinkedIn-anchored details and have the URL. |
-|   |   | apolloio.enrichPerson (1, 3) | When Apollo coverage is stronger for the niche. |
+| Person enrichment (LinkedIn URL in hand) | aiArk.enrichPerson (0.1) | linkedin.enrichProfile (0.25) | When you only need LinkedIn-anchored details and no email. |
+|   |   | prospeo.enrichLinkedin (0.5) | Second opinion on a URL-anchored miss. |
+| Person enrichment (name + company) | waterfall.enrichContact (2) | apolloio.enrichPerson (1, **9** with phone reveal, priority) | The niche-coverage rung — promote per-batch when a pilot shows Apollo hits where aiArk/waterfall miss (investor-backed, portfolio niches). |
 |   |   | hunter.enrichPerson (1) | Cheap mid-tier alternative. |
-| Reverse email → person | (none in priority) | FullEnrich.reverseEmailLookup (2) | Always for email → LinkedIn. |
+| Reverse email → person | (none in priority) | FullEnrich.reverseEmailLookup (1) | Always for email → LinkedIn. |
 | Person backfill (heavyweight) | peopleDataLabs.enrichPerson (3) | (none cheaper for heavyweight) | n/a |
 
 ## Company enrichment alternatives
 
 | Goal | Priority | Alternative | When to swap |
 |---|---|---|---|
-| Company firmographics | cargo.enrichBusinessFirmographics (0.5) | companyEnrich.enrichByDomain (0.25) | Cheaper, but less rich. Only when budget critical. |
+| Company firmographics | aiArk.enrichCompany (0.01) | companyEnrich.enrichByDomain (0.25) | Fuller field set. Promote whenever 0.01 comes back thin. |
 |   |   | linkedin.enrichCompany (0.25) | When LinkedIn-anchored details are sufficient. |
-|   |   | apolloio.enrichOrganization (1) | When cargo's match misses + LinkedIn doesn't have it. |
-| Company technographics | cargo.enrichBusinessTechnographics (1) | theirStack.searchTechnologies (0.5) | When you want catalog-style "show me the tech list" rather than per-company enrichment. |
+|   |   | apolloio.enrichOrganization (1, priority) | The niche-coverage rung — when the cheaper rungs miss and LinkedIn doesn't have it. |
+| Company technographics | builtwith.getDomainSummary (**0**) | theirStack.searchTechnologies (0.5) | When you want catalog-style "show me the tech list" rather than per-domain detection. |
+|   |   | builtwith.enrichDomain (1) | Full stack detail on the rows the free summary left ambiguous. |
 
 ## Find email alternatives
 
 | Goal | Priority | Alternative | When to swap |
 |---|---|---|---|
+| Find email (LinkedIn URL in hand) | aiArk.enrichPerson (0.1) | — | Returns a verified email with the profile and bills 0 when it finds none; run the finders below only on the residue. |
 | Find email (default) | FullEnrich.findEmail (1) | hunter.findEmail (0.5) | When budget critical AND okay with lower hit rate. |
 |   |   | icypeas.findEmail (0.1) | Cheap last-resort for very large lists. |
 |   |   | findyMail.findEmail (0.5) | Mid-tier alternative; sometimes finds what hunter misses. |
@@ -67,7 +71,8 @@ Default rule: **don't swap to chase 2× cheaper if hit-rate drops 30%**. The tot
 
 | Goal | Priority | Alternative | When to swap |
 |---|---|---|---|
-| Find phone (default) | FullEnrich.findPhone (6) | prospeo.findPhone (3) | Cheaper first stop; escalate to FullEnrich on miss. |
+| Find phone (mobile, URL in hand) | aiArk.findMobilePhone (0.5) | prospeo.findPhone (3) | Landline/DID fallback; escalate from aiArk on a mobile miss. |
+| Find phone (no URL / mobile missed) | FullEnrich.findPhone (6) | prospeo.findPhone (3) | Cheaper first attempt; escalate to FullEnrich on a miss. |
 |   |   | forager.findPhone (5) | Mid-tier. |
 |   |   | findyMail.findPhone (5) | Mid-tier. |
 |   |   | cleon1.findPhoneFromLinkedin (15) | Premium; only for high-value leads where standard sources fail. |
@@ -77,7 +82,7 @@ Default rule: **don't swap to chase 2× cheaper if hit-rate drops 30%**. The tot
 | Goal | Priority | Alternative | When to swap |
 |---|---|---|---|
 | Resolve LinkedIn from name+company | linkedin.findProfileUrl (0.25) | (no cheaper credible alternative) | n/a |
-| Resolve LinkedIn from email | FullEnrich.reverseEmailLookup (2) | (no cheaper credible alternative) | n/a |
+| Resolve LinkedIn from email | FullEnrich.reverseEmailLookup (1) | (no cheaper credible alternative) | n/a |
 
 ## When the priority stack genuinely can't serve the goal
 

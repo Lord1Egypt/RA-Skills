@@ -2,19 +2,45 @@
   "id": "hk-gmb-arrival",
   "name": "HK Green Mini Bus Arrival",
   "description": "Real-time GMB (Green Mini Bus) arrival information for Hong Kong using the official Transport Department API.",
-  "version": "1.0.0",
-  "author": "Joey (OpenClaw Agent) - Built 2025-03-25",
+  "version": "1.2.0",
+  "author": "Steven Ho - Security hardened 2026-09-17",
   "security": {
     "rateLimitAware": true,
-    "caching": "TTL-based with configurable expiration",
-    "inputValidation": "strict (route format, direction 1/2, region codes)",
+    "caching": "TTL-based with configurable expiration and size limits (max 1MB per cache file, 512KB for routeFareList)",
+    "inputValidation": "strict (route format ^\\d{1,3}$, direction enum [1,2], region enum [HKI,KLN,NT], stopName pattern [\\w\\s\\u4e00-\\u9fff.,()\\-/]{1,100}, control char rejection)",
     "externalApis": [
-      "https://data.etagmb.gov.hk (official HK Transport Dept)",
-      "https://data.hkbus.app (static route metadata)"
+      "https://data.etagmb.gov.hk (official HK Transport Dept - route, stop, ETA)",
+      "https://data.hkbus.app (static route metadata - routeFareList)",
+      "https://hkbus.github.io (fallback static route metadata)"
     ],
-    "userAgent": "Custom OpenClaw skill agent",
+    "allowedDomains": [
+      "data.etagmb.gov.hk",
+      "data.hkbus.app",
+      "hkbus.github.io"
+    ],
+    "allowedPaths": [
+      "/route",
+      "/route/{region}/{route}",
+      "/stop-route/{stop_id}",
+      "/eta/stop/{stop_id}",
+      "/routeFareList.min.json",
+      "/hk-bus-crawling/routeFareList.min.json"
+    ],
+    "fileSystemAccess": {
+      "read": ["<skill_dir>/data/*.json"],
+      "write": ["<skill_dir>/data/*.json"],
+      "maxFileSize": 1048576,
+      "maxRouteFareListSize": 524288
+    },
+    "networkAccess": {
+      "enabled": true,
+      "domains": ["data.etagmb.gov.hk", "data.hkbus.app", "hkbus.github.io"],
+      "protocols": ["https"],
+      "maxResponseSize": 1048576
+    },
+    "userAgent": "OpenClawSkill/1.2.0 (HK GMB Arrival)",
     "timeoutMs": 15000,
-    "notes": "Data sourced from official HK government APIs. Cache stored locally in skill directory. No credential storage. All inputs sanitized before use."
+    "notes": "Data sourced from official HK government APIs only. Cache stored locally in skill directory with size limits. No credential storage. All inputs validated at schema and runtime level. URL allowlist enforced to prevent SSRF. Generic error messages returned to user; details logged internally only. Large routeFareList.json (8MB) is NOT bundled - fetched lazily at runtime with size limit, only needed entry extracted."
   },
   "tools": [
     {
@@ -25,7 +51,9 @@
         "properties": {
           "route": {
             "type": "string",
-            "description": "GMB route number (e.g., \"1\", \"3\", \"5\")"
+            "description": "GMB route number (e.g., \"1\", \"3\", \"5\")",
+            "pattern": "^\\d{1,3}$",
+            "maxLength": 3
           }
         },
         "required": ["route"]
@@ -33,7 +61,7 @@
       "output": {
         "type": "object"
       },
-      "command": "python3 /home/node/.openclaw/workspace/skills/hk-gmb-arrival/gmb_arrival.py searchRoutes {route}"
+      "command": "python3 /opt/data/skills/productivity/hk-gmb-arrival/gmb_arrival.py searchRoutes {route}"
     },
     {
       "name": "getGMBArrival",
@@ -43,19 +71,25 @@
         "properties": {
           "route": {
             "type": "string",
-            "description": "GMB route number (e.g., \"1\")"
+            "description": "GMB route number (e.g., \"1\")",
+            "pattern": "^\\d{1,3}$",
+            "maxLength": 3
           },
           "direction": {
             "type": "string",
-            "description": "Direction sequence: \"1\" for terminus A → B, \"2\" for B → A"
+            "description": "Direction sequence: \"1\" for terminus A → B, \"2\" for B → A",
+            "enum": ["1", "2"]
           },
           "stopName": {
             "type": "string",
-            "description": "Stop name (partial or full, English or Chinese)"
+            "description": "Stop name (partial or full, English or Chinese)",
+            "pattern": "^[\\w\\s\\u4e00-\\u9fff.,()\\-/]{1,100}$",
+            "maxLength": 100
           },
           "region": {
             "type": "string",
-            "description": "Region code: \"HKI\" (Hong Kong Island), \"KLN\" (Kowloon), or \"NT\" (New Territories)"
+            "description": "Region code: \"HKI\" (Hong Kong Island), \"KLN\" (Kowloon), or \"NT\" (New Territories)",
+            "enum": ["HKI", "KLN", "NT"]
           }
         },
         "required": ["route", "direction", "stopName", "region"]
@@ -63,11 +97,24 @@
       "output": {
         "type": "object"
       },
-      "command": "python3 /home/node/.openclaw/workspace/skills/hk-gmb-arrival/gmb_arrival.py getGMBArrival {route} {direction} {stopName} {region}"
+      "command": "python3 /opt/data/skills/productivity/hk-gmb-arrival/gmb_arrival.py getGMBArrival {route} {direction} {stopName} {region}"
     }
   ],
   "runtime": "python",
   "main": "gmb_arrival.py",
   "installCommand": null,
-  "requiredEnvVars": []
+  "requiredEnvVars": [],
+  "requiredPermissions": [
+    "network:https:data.etagmb.gov.hk",
+    "network:https:data.hkbus.app",
+    "network:https:hkbus.github.io",
+    "filesystem:read:/opt/data/skills/productivity/hk-gmb-arrival/data",
+    "filesystem:write:/opt/data/skills/productivity/hk-gmb-arrival/data"
+  ],
+  "executionModel": {
+    "type": "subprocess",
+    "shell": false,
+    "argumentArray": true,
+    "note": "Runtime MUST invoke via argument array (shell=False) to prevent command injection. Example: [\"python3\", \"gmb_arrival.py\", \"getGMBArrival\", route, direction, stopName, region]"
+  }
 }

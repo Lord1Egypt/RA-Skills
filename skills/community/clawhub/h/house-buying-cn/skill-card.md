@@ -1,44 +1,56 @@
-## Description: <br>
-国内买房全流程助手，覆盖新房/二手房选购、预算计算、贷款规划、税费计算、合同审查、过户流程、看房检查清单、落户学区分析。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+国内买房全流程助手，覆盖新房/二手房选购、预算计算、贷款规划、税费计算、合同审查、过户流程、看房检查清单、落户学区分析。
 
-## Publisher: <br>
-[xbmchina](https://clawhub.ai/user/xbmchina) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xbmchina](https://clawhub.ai/user/xbmchina)
 
-## Use Case: <br>
-External users use this skill for China-focused home-buying planning, including budget ranges, mortgage comparisons, tax and fee estimates, new-home versus resale-home tradeoffs, contract review prompts, transfer timelines, and viewing checklists. It is most useful as practical guidance before confirming local rules with banks, agencies, or official housing authorities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mortgage, tax, and fee outputs may be inaccurate for a user's city, bank, property type, or current policy period. <br>
-Mitigation: Treat calculations as estimates and verify city-specific rules, bank approvals, and official housing-agency requirements before making purchase decisions. <br>
-Risk: The security guidance notes that the personal income tax exemption can be misapplied because the calculator does not separately ask whether the seller's home is the family's only housing. <br>
-Mitigation: Confirm both holding period and family-only-home status before relying on any personal income tax exemption estimate. <br>
+## Use Case:
 
+External users considering mainland China home purchases use this skill to structure budgeting, mortgage and tax estimates, new-vs-resale comparisons, viewing checklists, contract review prompts, and transfer-process planning.
 
-## Reference(s): <br>
-- [贷款全攻略](references/loan_guide.md) <br>
-- [新房 vs 二手房 完整对比](references/new_vs_secondhand.md) <br>
-- [房产税费全解析](references/tax_fees.md) <br>
-- [买房看房检查清单](assets/house_checklist.md) <br>
-- [ClawHub skill listing](https://clawhub.ai/xbmchina/house-buying-cn) <br>
+### Deployment Geography for Use:
 
+Mainland China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with tables, checklists, calculation summaries, and optional Python command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are estimates and planning aids; tax, mortgage, eligibility, and school-district details require local verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill includes legal, tax, lending, hukou, and school-district guidance that may become inaccurate or vary by city.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational planning aids and verify rates, eligibility, and requirements with current local authorities, banks, agents, or a lawyer.
+
+Risk: Housing transaction suggestions could mislead users in high-value real property decisions.
+
+Mitigation: Use the skill to prepare questions and checklists, then obtain qualified professional review before signing contracts, applying for loans, or changing declared transaction values.
+
+## Reference(s):
+
+- [贷款全攻略](references/loan_guide.md)
+- [新房 vs 二手房 完整对比](references/new_vs_secondhand.md)
+- [房产税费全解析](references/tax_fees.md)
+- [买房看房检查清单（打印版）](assets/house_checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands]
+
+**Output Format:** [Markdown guidance with optional Python shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes informational housing workflow checklists and calculator-style examples; users should verify current local rules, rates, and eligibility.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

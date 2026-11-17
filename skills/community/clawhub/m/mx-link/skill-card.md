@@ -1,43 +1,58 @@
-## Description: <br>
-通过 MorphixAI 统一链接和管理第三方账号（GitHub、GitLab、Gmail、Outlook、Jira、Slack 等），并通过代理安全调用第三方 API。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Office Link helps agents link and manage third-party accounts through MorphixAI and call third-party APIs through a proxy when no dedicated skill exists.
 
-## Publisher: <br>
-[paul-leo](https://clawhub.ai/user/paul-leo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[paul-leo](https://clawhub.ai/user/paul-leo)
 
-## Use Case: <br>
-Developers and operations users can use this skill to check or connect third-party accounts through MorphixAI, then make fallback API calls for platforms that do not already have a dedicated skill. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can proxy read and write requests across linked third-party services, which may expose or modify account data if a request is too broad or misdirected. <br>
-Mitigation: Review the account, endpoint, HTTP method, parameters, and body before proxy calls, especially for requests that post, update, delete, or share data. <br>
-Risk: The required MorphixAI API key grants access to connected-account workflows and could be misused if stored in committed files or shared logs. <br>
-Mitigation: Store MORPHIXAI_API_KEY in a local environment secret, avoid committing it to configuration files, and use the narrowest available API key scopes. <br>
-Risk: Dedicated skills may provide safer account selection, URL construction, and data formatting than the generic proxy path. <br>
-Mitigation: Use dedicated skills for supported platforms and reserve the generic proxy for platforms that do not have a dedicated skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Office Link on ClawHub](https://clawhub.ai/paul-leo/mx-link) <br>
-- [MorphixAI API Keys](https://morphix.app/api-keys) <br>
-- [MorphixAI Connections](https://morphix.app/connections) <br>
+## Use Case:
 
+Developers and operators use Office Link to check linked accounts, start OAuth account linking, and route calls to supported third-party APIs when a dedicated platform skill is unavailable.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown with tool-call examples and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MORPHIXAI_API_KEY and linked third-party accounts for proxy operations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The proxy can call APIs in linked third-party accounts, including operations that create, update, delete, post, or otherwise change external data.
+
+Mitigation: Require explicit user approval before any state-changing proxy call, and prefer dedicated platform skills when they are available.
+
+Risk: Broad API-key scopes and linked-account access may exceed what a specific task needs.
+
+Mitigation: Use the minimum API-key scopes available, avoid blanket all-scope keys when possible, and review or pin the MorphixAI plugin source and version before installation.
+
+Risk: Users may link sensitive third-party accounts through an external account-linking service.
+
+Mitigation: Install only when the MorphixAI plugin source is trusted and account owners are comfortable granting the requested third-party access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/paul-leo/skills/mx-link)
+- [MorphixAI API keys](https://morphix.app/api-keys)
+- [MorphixAI connections](https://morphix.app/connections)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline command, JSON, and tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MORPHIXAI_API_KEY and linked third-party accounts for live account-management or proxy operations.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

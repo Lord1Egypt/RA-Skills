@@ -1,37 +1,49 @@
-## Description: <br>
-Monitors local PC resource status, including CPU, memory, disk, network, and available CPU temperature readings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors local PC resource status, including CPU, memory, disk, network, and available temperature readings.
 
-## Publisher: <br>
-[1173910773](https://clawhub.ai/user/1173910773) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1173910773](https://clawhub.ai/user/1173910773)
 
-## Use Case: <br>
-Developers and operators use this skill to check local machine resource usage and produce a quick system status report during troubleshooting or routine monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The shell wrapper may install psutil into the active Python environment if the dependency is missing. <br>
-Mitigation: Install psutil from a trusted package source before use, or run the Python script only after dependencies are already installed. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect local PC resource usage on demand or through OpenClaw automation. It is useful for quick health checks covering CPU, memory, disk space, network counters, and optional temperature data.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands] <br>
-**Output Format:** [Plain text report or JSON object from local monitoring scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [JSON mode is available with --json; otherwise the script prints a human-readable system report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md) <br>
+Risk: The launcher can automatically install an unpinned Python dependency when psutil is missing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the launcher before use, prefer a virtual environment or OS package manager, and install a pinned psutil version explicitly before running the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1173910773/skills/pc-monitor-cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Plain text monitoring report or JSON when invoked with --json]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports local host resource counters from psutil and disk usage from the filesystem.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

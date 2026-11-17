@@ -1,41 +1,55 @@
-## Description: <br>
-Downloads videos from public LinkedIn posts as MP4 files without authentication or external dependencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads videos from public LinkedIn posts as MP4 files without authentication or external dependencies, saving the best available quality to the current directory.
 
-## Publisher: <br>
-[jpnarchi](https://clawhub.ai/user/jpnarchi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jpnarchi](https://clawhub.ai/user/jpnarchi)
 
-## Use Case: <br>
-Developers and agents use this skill to build or run a zero-dependency Go CLI that downloads MP4 video files from public LinkedIn post URLs. It is intended for public posts the user has rights to download. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The downloader fetches public LinkedIn post pages and video CDN URLs, which may be rate-limited or blocked if used excessively. <br>
-Mitigation: Run it only for public posts you have rights to download and avoid excessive automated use. <br>
-Risk: The CLI writes MP4 and .tmp files in the current directory. <br>
-Mitigation: Run it from a directory where creating those files is acceptable and review generated filenames before use. <br>
+## Use Case:
 
+Developers and agent users use this skill to build or run a Go CLI that downloads video media from public LinkedIn post URLs. It is intended for public posts that directly embed LinkedIn-hosted video content and do not require authentication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jpnarchi/linkedin-video-dl) <br>
-- [Publisher profile](https://clawhub.ai/user/jpnarchi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and Go source code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a Go CLI workflow that writes MP4 files and temporary .tmp files to the current directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: README installation examples reference a placeholder GitHub path and an unpinned @latest command, creating supply-chain review risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Build only from the reviewed local source or replace installation instructions with a verified, pinned source before distribution.
+
+Risk: URL handling can be risky if the CLI is exposed as an automated service for arbitrary submitted URLs.
+
+Mitigation: Use only trusted public LinkedIn post URLs unless URL, redirect, response-size, and media-host validation are strengthened.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpnarchi/skills/linkedin-video-dl)
+- [Artifact README](artifact/README.md)
+- [Artifact skill instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands and MP4 file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Downloads an MP4 file to the current directory, shows progress, uses a temporary file during transfer, and skips existing filenames.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

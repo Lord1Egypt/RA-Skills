@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn71nqfpjbqwmhs4ac5vjw4ra182ry8w",
+  "owner": "ding",
   "slug": "market-radar",
-  "version": "1.0.0",
-  "publishedAt": 1773323403811
+  "displayName": "Market Radar",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1741824000000,
+    "commit": ""
+  },
+  "history": []
 }

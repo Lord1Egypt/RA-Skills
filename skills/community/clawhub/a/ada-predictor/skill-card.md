@@ -1,40 +1,53 @@
-## Description: <br>
-Predicts anti-drug antibody risk for biologic therapy using clinical and genomic variables and returns a risk score, tier, and monitoring recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Predicts anti-drug antibody risk for selected biologic therapies from patient clinical, pharmacogenomic, and treatment variables and returns a risk score, tier, and monitoring recommendations.
 
-## Publisher: <br>
-[CryptoReuMD](https://clawhub.ai/user/CryptoReuMD) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cryptoreumd](https://clawhub.ai/user/cryptoreumd)
 
-## Use Case: <br>
-Clinicians, clinical researchers, and medically supervised agents use this skill to estimate patient-level ADA risk for TNF inhibitors and related biologics, then review monitoring and treatment-planning suggestions. Its output should support, not replace, qualified clinical judgment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides treatment and monitoring suggestions for biologic therapy. <br>
-Mitigation: Have a qualified clinician review all results before using them for diagnosis, methotrexate dosing, biologic switching, or monitoring schedules. <br>
-Risk: Patient-level inputs may contain sensitive health information. <br>
-Mitigation: Run the calculator only in a controlled local environment and avoid entering identifiable patient data unless that environment is authorized for it. <br>
+## Use Case:
 
+Clinical informatics users, healthcare developers, and reviewing clinicians can use this skill to run an informational ADA risk stratification workflow for biologic therapy scenarios. It produces risk scores, tiers, therapeutic drug monitoring timing, and recommendation text for qualified clinician review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CryptoReuMD/ada-predictor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance and Python CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a 0-100 ADA risk score, risk tier, recommended TDM interval, clinical recommendation text, and Monte Carlo sensitivity statistics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill provides patient-specific treatment and monitoring recommendations without clear clinical safety limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational only, not medical advice or validated decision support; require qualified clinician review and local validation before patient-specific use.
+
+Risk: The local predictor may be exposed through an API or agent workflow that runs sensitivity analysis over clinical inputs.
+
+Mitigation: Use bounded runtime controls and review deployment controls before integrating it into any clinical workflow.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/cryptoreumd/skills/ada-predictor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with Python code and command-line usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces patient-level ADA probability, 0-100 risk score, risk tier, recommended TDM interval, recommendation text, and Monte Carlo sensitivity statistics.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, created 2026-03-22)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

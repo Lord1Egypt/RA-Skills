@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Demand Gen 投放数据分析汇总报告｜客户与运营共用版</title>
+<style>
+:root{--ink:#172033;--muted:#687386;--line:#e3e8f0;--bg:#f5f7fb;--card:#fff;--blue:#2f6fed;--blue2:#eaf1ff;--green:#16845b;--green2:#e8f7ef;--orange:#b76713;--orange2:#fff4df;--red:#b84242;--red2:#ffeded;--purple:#7146c9;--shadow:0 7px 24px rgba(30,49,83,.07)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans CJK SC","Microsoft YaHei",Arial,sans-serif}.wrap{max-width:1440px;margin:auto;padding:0 28px}.top{background:#101a30;color:#fff;font-size:12px}.top .wrap{display:flex;justify-content:space-between;padding-top:11px;padding-bottom:11px}.badge{display:inline-block;border-radius:999px;padding:3px 9px;font-size:11px;font-weight:750;white-space:nowrap}.blue{background:var(--blue2);color:var(--blue)}.green{background:var(--green2);color:var(--green)}.orange{background:var(--orange2);color:var(--orange)}.red{background:var(--red2);color:var(--red)}.purple{background:#f0eaff;color:var(--purple)}header{background:linear-gradient(135deg,#18284b,#2c5bb0);color:#fff;padding:38px 0 31px}h1{font-size:32px;letter-spacing:-.7px;margin:0 0 7px}header p{margin:0;color:#dbe6fb}.meta{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}.meta span{padding:7px 10px;border:1px solid #ffffff3b;background:#ffffff12;border-radius:7px;font-size:12px}.note{margin-top:17px;background:#fff8df;color:#594600;border:1px solid #eed486;border-radius:8px;padding:10px 13px;font-size:12px}nav{position:sticky;top:0;z-index:5;background:#fffffff2;border-bottom:1px solid var(--line);box-shadow:0 2px 10px #2034510a}nav .wrap{display:flex;gap:20px;overflow:auto;white-space:nowrap}nav a{color:#536177;text-decoration:none;font-size:12px;font-weight:700;padding:11px 0}main{padding:24px 0 60px}section{margin-bottom:25px}.head{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:12px}.head h2{font-size:20px;margin:0;letter-spacing:-.2px}.head p{font-size:12px;color:var(--muted);margin:0}.grid{display:grid;gap:14px}.g2{grid-template-columns:repeat(2,minmax(0,1fr))}.g4{grid-template-columns:repeat(4,minmax(0,1fr))}.card{background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:17px}.card h3{font-size:15px;margin:0 0 11px}.call{border-left:4px solid var(--blue);background:#f2f6ff;padding:11px 14px;border-radius:0 8px 8px 0;margin-top:10px}.call.warn{border-color:#d88a1c;background:#fff8eb}.big{font-size:18px;line-height:1.55;font-weight:700}.kpi{min-height:96px}.kpi .label{color:var(--muted);font-size:12px}.kpi .value{font-size:28px;font-weight:800;letter-spacing:-.5px;margin:8px 0 2px}.up{color:var(--green)}.down{color:var(--red)}.neutral{color:var(--muted)}.small{font-size:12px;color:var(--muted)}.tiny{font-size:11px;color:var(--muted)}table{width:100%;border-collapse:collapse;font-size:12px}th{text-align:left;color:#637087;background:#f8faff;white-space:nowrap}th,td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:middle}tr:last-child td{border-bottom:0}.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}.scroll{overflow:auto}.barrow{display:grid;grid-template-columns:150px 1fr 90px;gap:9px;align-items:center;margin:10px 0;font-size:12px}.bar{height:9px;background:#e9eef6;border-radius:20px;overflow:hidden}.bar i{display:block;height:100%;border-radius:20px;background:var(--blue)}.bar.green i{background:var(--green)}.bar.orange i{background:#e39a27}.bar.purple i{background:var(--purple)}.action{display:grid;grid-template-columns:45px 1fr 135px;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}.action:last-child{border-bottom:0}.priority{font-size:11px;font-weight:800;border-radius:5px;padding:4px 7px;text-align:center;height:max-content}.p0{background:var(--red2);color:var(--red)}.p1{background:var(--orange2);color:var(--orange)}.p2{background:var(--blue2);color:var(--blue)}.action strong{display:block}.action small{display:block;color:var(--muted);margin-top:2px}.owner{text-align:right;color:var(--muted);font-size:11px}.section-note{margin-top:10px;border-top:1px solid var(--line);padding-top:10px;font-size:12px;color:#4c596c}.row-good td{background:#f2fbf6}.row-warn td{background:#fffaf0}.row-bad td{background:#fff3f3}.row-neutral td{background:#fbfcfe}.foot{border-top:1px solid var(--line);padding:21px 0 45px;color:var(--muted);font-size:12px}.missing{color:var(--muted)}@media(max-width:900px){.g4{grid-template-columns:repeat(2,minmax(0,1fr))}.g2{grid-template-columns:1fr}.wrap{padding-left:16px;padding-right:16px}h1{font-size:27px}}@media(max-width:600px){.g4{grid-template-columns:1fr}.action{grid-template-columns:42px 1fr}.owner{grid-column:2;text-align:left}}@media print{nav{display:none}.top{background:#fff;color:#111;border-bottom:1px solid #ddd}header{background:#fff;color:#111;border-bottom:2px solid #18284b}header p,.meta span{color:#333}.meta span{border-color:#aaa;background:#fff}.card{box-shadow:none;break-inside:avoid}section{break-inside:avoid}body{background:#fff}}
+</style>
+</head>
+<body>
+<div class="top"><div class="wrap"><span id="top-title">Demand Gen 投放数据分析汇总报告｜客户与运营共用版</span><span class="badge blue" id="top-badge"></span></div></div>
+<header><div class="wrap" id="hero"></div></header>
+<nav><div class="wrap" id="nav"></div></nav>
+<main><div class="wrap" id="main"></div></main>
+<footer class="foot"><div class="wrap" id="foot"></div></footer>
+<script>
+window.__DEMAND_GEN_REPORT__ = window.__DEMAND_GEN_REPORT__ || null;
+(function () {
+  var data = window.__DEMAND_GEN_REPORT__;
+  var main = document.getElementById("main");
+  if (!data || !data.meta || !data.narrative) {
+    main.textContent = "报告数据未注入。请用 google-analysis demand-gen-render 生成终稿。";
+    return;
+  }
+  var en = data.meta.lang === "en";
+  var copy = en
+    ? {
+        title: "Demand Gen performance summary",
+        sub: "One report for the client readout and the operator's next decisions.",
+        nav: ["Summary", "Scope", "KPIs", "Funnel", "Breakdowns", "Lead quality", "Actions", "Tests"],
+        sections: [
+          ["1. Management summary", "Is the spend working, and should budget increase?"],
+          ["2. Scope and conversion definitions", "Every breakdown uses the same definitions."],
+          ["3. Core metrics", "Front end, platform, and business stay separate."],
+          ["4. Funnel", "Each rate uses the previous stage as the denominator."],
+          ["5. Breakdowns and changes", "Data, reading, and the change to make."],
+          ["6. Lead quality", "Judge by lead-created cohort, not by unfinished days."],
+          ["7. Actions", "One ordered list."],
+          ["8. Next-cycle tests", "One test changes one variable."]
+        ],
+        credibility: "Credibility: ",
+        customer: "Client reading: ",
+        ads: "Ads: ",
+        sales: "Sales: ",
+        evidence: "Evidence: ",
+        action: "Change: ",
+        verify: "Check: ",
+        owner: "Owner: ",
+        due: "Due: ",
+        risk: "Risk: ",
+        missing: "Not provided",
+        foot: "Shared client and operator summary. Numbers come from the injected report JSON."
+      }
+    : {
+        title: "Demand Gen 投放数据分析汇总报告",
+        sub: "一份报告同时完成：客户效果讲解、运营维度核实和下一步优化决策。",
+        nav: ["结论", "口径", "核心指标", "漏斗", "各维度数据", "线索质量", "行动建议", "测试计划"],
+        sections: [
+          ["1. 管理层结论", "先回答客户：投入是否有效，下一步是否应该加预算"],
+          ["2. 分析范围与转化口径", "所有维度数据都在同一套口径下比较"],
+          ["3. 核心指标", "前端、平台、业务三层分开，避免只看平台 CPA"],
+          ["4. 转化漏斗", "每一级转化率的分母固定为上一级"],
+          ["5. 各维度数据与分析建议", "每个维度都展示数据、业务解读和具体修改动作"],
+          ["6. 线索质量与业务结果", "按线索创建批次观察成熟度，避免把未成熟数据当成最终效果"],
+          ["7. 统一行动建议", "把各维度结论合并成一套有先后顺序的执行计划"],
+          ["8. 下一周期测试计划", "每个测试只改变一个主要变量，并在同一人群内比较"]
+        ],
+        credibility: "可信度说明：",
+        customer: "客户解读：",
+        ads: "广告侧：",
+        sales: "销售侧：",
+        evidence: "依据：",
+        action: "动作：",
+        verify: "验证：",
+        owner: "负责人：",
+        due: "时限：",
+        risk: "风险：",
+        missing: "未提供",
+        foot: "客户汇报与运营核实共用的汇总报告。正文按「结论—指标—漏斗—各维度—质量—行动—测试」展开。趋势异常只在 Excel 第 5 张表。"
+      };
+  var ids = ["summary", "scope", "kpi", "funnel", "dimensions", "quality", "actions", "tests"];
+  var meta = data.meta;
+  var narrative = data.narrative;
+
+  function el(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text != null && text !== "") node.textContent = String(text);
+    return node;
+  }
+  function show(value) {
+    var text = value == null ? "" : String(value).trim();
+    return text || copy.missing;
+  }
+  function section(index) {
+    var box = el("section");
+    box.id = ids[index];
+    var head = el("div", "head");
+    var titles = el("div");
+    titles.appendChild(el("h2", "", copy.sections[index][0]));
+    titles.appendChild(el("p", "", copy.sections[index][1]));
+    head.appendChild(titles);
+    box.appendChild(head);
+    return box;
+  }
+  function kpiCard(item) {
+    var card = el("div", "card kpi");
+    card.appendChild(el("div", "label", item.label));
+    card.appendChild(el("div", "value", show(item.value)));
+    if (item.delta) card.appendChild(el("div", item.tone || "neutral", item.delta));
+    return card;
+  }
+  function table(columns, rows) {
+    var wrap = el("div", "scroll");
+    var node = el("table");
+    var head = el("thead");
+    var hr = el("tr");
+    (columns || []).forEach(function (name, index) {
+      hr.appendChild(el("th", index > 0 ? "num" : "", name));
+    });
+    head.appendChild(hr);
+    node.appendChild(head);
+    var body = el("tbody");
+    (rows || []).forEach(function (row) {
+      var tr = el("tr", row.tone ? "row-" + row.tone : "");
+      (row.cells || []).forEach(function (cell, index) {
+        tr.appendChild(el("td", index > 0 ? "num" : "", show(cell)));
+      });
+      body.appendChild(tr);
+    });
+    if (!(rows || []).length) {
+      var empty = el("tr");
+      var td = el("td", "missing", copy.missing);
+      td.colSpan = Math.max((columns || []).length, 1);
+      empty.appendChild(td);
+      body.appendChild(empty);
+    }
+    node.appendChild(body);
+    wrap.appendChild(node);
+    return wrap;
+  }
+
+  document.title = copy.title;
+  document.getElementById("top-title").textContent = copy.title + (en ? " | shared" : "｜客户与运营共用版");
+  document.getElementById("top-badge").textContent = show(meta.confidence || meta.accountId);
+
+  var nav = document.getElementById("nav");
+  copy.nav.forEach(function (label, index) {
+    var link = el("a", "", label);
+    link.href = "#" + ids[index];
+    nav.appendChild(link);
+  });
+
+  var hero = document.getElementById("hero");
+  hero.appendChild(el("h1", "", copy.title));
+  hero.appendChild(el("p", "", copy.sub));
+  var chips = el("div", "meta");
+  var period = (en ? "Period: " : "分析周期：") + show(meta.startDate) + "–" + show(meta.endDate);
+  if (meta.periodDays) period += en ? " (" + meta.periodDays + " days)" : "（" + meta.periodDays + " 天）";
+  chips.appendChild(el("span", "", period));
+  if (meta.compareStartDate && meta.compareEndDate) {
+    var compare = (en ? "Compare: " : "对比周期：") + meta.compareStartDate + "–" + meta.compareEndDate;
+    if (meta.compareDays) compare += en ? " (" + meta.compareDays + " days)" : "（" + meta.compareDays + " 天）";
+    chips.appendChild(el("span", "", compare));
+  }
+  chips.appendChild(el("span", "", (en ? "Currency: " : "币种：") + show(meta.currency)));
+  if (meta.timezone) chips.appendChild(el("span", "", (en ? "Timezone: " : "时区：") + meta.timezone));
+  chips.appendChild(el("span", "", (en ? "Account: " : "账户：") + show(meta.accountName || meta.accountId)));
+  if (meta.objective) chips.appendChild(el("span", "", (en ? "Goal: " : "业务目标：") + meta.objective));
+  if (meta.primaryConversion) chips.appendChild(el("span", "", (en ? "Primary conversion: " : "主转化：") + meta.primaryConversion));
+  hero.appendChild(chips);
+  if (meta.credibilityNote) {
+    var note = el("div", "note");
+    note.appendChild(el("strong", "", copy.credibility));
+    note.appendChild(document.createTextNode(meta.credibilityNote));
+    hero.appendChild(note);
+  }
+
+  var summary = section(0);
+  var summaryGrid = el("div", "grid g2");
+  var left = el("div", "card");
+  var call = el("div", "call");
+  call.appendChild(el("div", "big", narrative.headline));
+  if (narrative.summaryParagraph) call.appendChild(el("p", "", narrative.summaryParagraph));
+  left.appendChild(call);
+  (narrative.summaryPoints || []).forEach(function (point) {
+    var row = el("div", "action");
+    row.appendChild(el("span", "priority p1", point.tag || "•"));
+    var body = el("div");
+    body.appendChild(el("strong", "", point.title));
+    body.appendChild(el("small", "", point.detail));
+    row.appendChild(body);
+    row.appendChild(el("span", "owner", point.owner || ""));
+    left.appendChild(row);
+  });
+  var right = el("div", "card");
+  right.appendChild(el("h3", "", en ? "Headline numbers" : "本期最重要的数字"));
+  var kpis = el("div", "grid g2");
+  (narrative.headlineKpis || []).forEach(function (item) { kpis.appendChild(kpiCard(item)); });
+  right.appendChild(kpis);
+  if (narrative.customerRead) {
+    var read = el("div", "call warn");
+    read.appendChild(el("strong", "", copy.customer));
+    read.appendChild(document.createTextNode(narrative.customerRead));
+    right.appendChild(read);
+  }
+  summaryGrid.appendChild(left);
+  summaryGrid.appendChild(right);
+  summary.appendChild(summaryGrid);
+  main.appendChild(summary);
+
+  var scope = section(1);
+  var scopeGrid = el("div", "grid g2");
+  var scopeCard = el("div", "card");
+  scopeCard.appendChild(el("h3", "", en ? "What this report covers" : "本报告分析什么"));
+  scopeCard.appendChild(table(
+    en ? ["Item", "Definition"] : ["项目", "内容"],
+    (narrative.scopeRows || []).map(function (row) { return { cells: [row.item, row.value] }; })
+  ));
+  var levelCard = el("div", "card");
+  levelCard.appendChild(el("h3", "", en ? "Conversion levels" : "转化层级"));
+  levelCard.appendChild(table(
+    en ? ["Level", "Definition", "Source", "Use"] : ["层级", "定义", "来源", "报告用途"],
+    (narrative.conversionLevels || []).map(function (row) {
+      return { cells: [row.level, row.definition, row.source, row.use] };
+    })
+  ));
+  scopeGrid.appendChild(scopeCard);
+  scopeGrid.appendChild(levelCard);
+  scope.appendChild(scopeGrid);
+  main.appendChild(scope);
+
+  var kpi = section(2);
+  (narrative.kpiGroups || []).forEach(function (group) {
+    kpi.appendChild(el("h3", "", group.title));
+    var grid = el("div", "grid g4");
+    (group.items || []).forEach(function (item) { grid.appendChild(kpiCard(item)); });
+    kpi.appendChild(grid);
+  });
+  main.appendChild(kpi);
+
+  var funnel = section(3);
+  if (narrative.funnel && narrative.funnel.bottleneck) {
+    funnel.querySelector(".head").appendChild(el("span", "badge orange", narrative.funnel.bottleneck));
+  }
+  var funnelCard = el("div", "card");
+  var funnelGrid = el("div", "grid g2");
+  var bars = el("div");
+  bars.appendChild(el("h3", "", en ? "Volume" : "漏斗数量"));
+  (narrative.funnel && narrative.funnel.stages || []).forEach(function (stage) {
+    var row = el("div", "barrow");
+    row.appendChild(el("span", "", stage.name));
+    var bar = el("div", "bar " + (stage.tone || ""));
+    var fill = document.createElement("i");
+    var width = Number(stage.width);
+    fill.style.width = (Number.isFinite(width) ? Math.max(0, Math.min(100, width)) : 0) + "%";
+    bar.appendChild(fill);
+    row.appendChild(bar);
+    row.appendChild(el("b", "", show(stage.value)));
+    bars.appendChild(row);
+  });
+  var rates = el("div");
+  rates.appendChild(el("h3", "", en ? "Step rates" : "逐级转化率"));
+  rates.appendChild(table(
+    en ? ["Step", "Rate", "Driver"] : ["阶段", "转化率", "主要影响因素"],
+    (narrative.funnel && narrative.funnel.rates || []).map(function (row) {
+      return { cells: [row.stage, row.rate, row.factor] };
+    })
+  ));
+  funnelGrid.appendChild(bars);
+  funnelGrid.appendChild(rates);
+  funnelCard.appendChild(funnelGrid);
+  if (narrative.funnel && narrative.funnel.adsAdvice) {
+    var ads = el("div", "call warn");
+    ads.appendChild(el("strong", "", copy.ads));
+    ads.appendChild(document.createTextNode(narrative.funnel.adsAdvice));
+    funnelCard.appendChild(ads);
+  }
+  if (narrative.funnel && narrative.funnel.salesAdvice) {
+    var sales = el("div", "call");
+    sales.appendChild(el("strong", "", copy.sales));
+    sales.appendChild(document.createTextNode(narrative.funnel.salesAdvice));
+    funnelCard.appendChild(sales);
+  }
+  funnel.appendChild(funnelCard);
+  main.appendChild(funnel);
+
+  var dimensions = section(4);
+  var pendingHalf = null;
+  function flushHalf() {
+    if (!pendingHalf) return;
+    var grid = el("div", "grid g2");
+    grid.style.marginTop = "14px";
+    grid.appendChild(pendingHalf);
+    dimensions.appendChild(grid);
+    pendingHalf = null;
+  }
+  (narrative.dimensions || []).forEach(function (dimension, index) {
+    var card = el("div", "card");
+    card.appendChild(el("h3", "", dimension.title));
+    card.appendChild(table(dimension.columns, dimension.rows));
+    if (dimension.note) card.appendChild(el("div", "section-note", dimension.note));
+    var width = dimension.width || (index === 0 ? "full" : "half");
+    if (width === "full") {
+      flushHalf();
+      card.style.marginTop = index ? "14px" : "0";
+      dimensions.appendChild(card);
+      return;
+    }
+    if (!pendingHalf) {
+      pendingHalf = card;
+      return;
+    }
+    var grid = el("div", "grid g2");
+    grid.style.marginTop = "14px";
+    grid.appendChild(pendingHalf);
+    grid.appendChild(card);
+    dimensions.appendChild(grid);
+    pendingHalf = null;
+  });
+  flushHalf();
+  main.appendChild(dimensions);
+
+  var quality = section(5);
+  if (narrative.quality && narrative.quality.badge) {
+    quality.querySelector(".head").appendChild(el("span", "badge orange", narrative.quality.badge));
+  }
+  var qualityCard = el("div", "card");
+  var qualityData = narrative.quality || {};
+  qualityCard.appendChild(table(qualityData.columns || [], qualityData.rows || []));
+  if (qualityData.businessConclusion) {
+    var biz = el("div", "call warn");
+    biz.appendChild(el("strong", "", en ? "Business: " : "业务结论："));
+    biz.appendChild(document.createTextNode(qualityData.businessConclusion));
+    qualityCard.appendChild(biz);
+  }
+  if (qualityData.splitFactors) {
+    var split = el("div", "call");
+    split.appendChild(el("strong", "", en ? "Separate from ads: " : "需要分开看的因素："));
+    split.appendChild(document.createTextNode(qualityData.splitFactors));
+    qualityCard.appendChild(split);
+  }
+  quality.appendChild(qualityCard);
+  main.appendChild(quality);
+
+  var actions = section(6);
+  if (narrative.actionBadge) actions.querySelector(".head").appendChild(el("span", "badge red", narrative.actionBadge));
+  var actionCard = el("div", "card");
+  (narrative.actions || []).forEach(function (item) {
+    var row = el("div", "action");
+    var level = String(item.priority || "P2").toUpperCase();
+    row.appendChild(el("span", "priority " + (level === "P0" ? "p0" : level === "P1" ? "p1" : "p2"), level));
+    var body = el("div");
+    body.appendChild(el("strong", "", item.title));
+    var detail = el("small");
+    detail.appendChild(el("b", "", copy.evidence));
+    detail.appendChild(document.createTextNode(show(item.evidence)));
+    detail.appendChild(el("br"));
+    detail.appendChild(el("b", "", copy.action));
+    detail.appendChild(document.createTextNode(show(item.action)));
+    detail.appendChild(el("br"));
+    detail.appendChild(el("b", "", copy.verify));
+    detail.appendChild(document.createTextNode(show(item.verify)));
+    if (item.risk) {
+      detail.appendChild(el("br"));
+      detail.appendChild(el("b", "", copy.risk));
+      detail.appendChild(document.createTextNode(item.risk));
+    }
+    body.appendChild(detail);
+    row.appendChild(body);
+    row.appendChild(el("span", "owner", [item.owner, item.deadline].filter(Boolean).join(en ? " / " : "｜")));
+    actionCard.appendChild(row);
+  });
+  actions.appendChild(actionCard);
+  main.appendChild(actions);
+
+  var tests = section(7);
+  var testCard = el("div", "card scroll");
+  testCard.appendChild(table(
+    en
+      ? ["Test", "Hypothesis", "Control / variant", "Metric", "Sample", "Window", "Stop rule"]
+      : ["测试项", "假设", "对照 / 实验组", "主指标", "样本量", "周期", "停止规则"],
+    (narrative.tests || []).map(function (item) {
+      return { cells: [item.name, item.hypothesis || "", item.groups, item.metric, item.sample, item.period, item.stop] };
+    })
+  ));
+  tests.appendChild(testCard);
+  main.appendChild(tests);
+
+  var foot = document.getElementById("foot");
+  foot.appendChild(el("strong", "", en ? "Report: " : "报告定位："));
+  foot.appendChild(document.createTextNode(copy.foot));
+  foot.appendChild(el("br"));
+  foot.appendChild(document.createTextNode(
+    (en ? "Generated: " : "生成日期：") + show(meta.generatedAt) +
+    (en ? " | Account " : "｜账户 ") + show(meta.accountId)
+  ));
+})();
+</script>
+</body>
+</html>

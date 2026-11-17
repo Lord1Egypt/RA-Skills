@@ -1,46 +1,60 @@
-## Description: <br>
-每日科技资讯聚合。自动抓取GitHub Trending、51CTO、百度热搜科技榜，筛选AI/Cloud/ML领域内容，生成结构化简报。触发词：科技日报、tech news、每日资讯、科技资讯 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+每日科技资讯聚合。自动抓取GitHub Trending、51CTO、百度热搜科技榜，筛选AI/Cloud/ML领域内容，生成结构化简报。
 
-## Publisher: <br>
-[lgugeng](https://clawhub.ai/user/lgugeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lgugeng](https://clawhub.ai/user/lgugeng)
 
-## Use Case: <br>
-External users and automation operators use this skill to collect technology and AI news, filter items by configured topics, generate daily briefings, and optionally deliver them to Feishu. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The server security summary reports that claimed source coverage and verification do not match the code or bundled outputs. <br>
-Mitigation: Treat generated briefings as unverified until the source and filtering behavior is reviewed and corrected. <br>
-Risk: The artifact includes scheduled execution paths for daily runs. <br>
-Mitigation: Disable or remove the cron configuration unless unattended daily fetching is intended. <br>
-Risk: The artifact includes external delivery paths and a configured push target. <br>
-Mitigation: Configure any Feishu webhook yourself and remove or replace the bundled push target before use. <br>
+## Use Case:
 
+Developers, operators, and teams that use OpenClaw can generate scheduled Chinese-language technology news briefings from configured sources, with optional Feishu delivery.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lgugeng/tech-news-daily-lgugeng) <br>
-- [Publisher profile](https://clawhub.ai/user/lgugeng) <br>
-- [GitHub Trending API](https://api.github.com/search/repositories) <br>
-- [Baidu technology hot list](https://top.baidu.com/board?tab=realtime&category=tech) <br>
-- [Feishu webhook configuration](artifact/USAGE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown briefings, JSON report files, Feishu card payloads, and shell or Python execution guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local report/state files under data/ and briefings/; Feishu delivery requires user-supplied webhook configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Automatic delivery and hard-coded Feishu target metadata may send generated briefings to an unintended recipient.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit config.json before installation, especially push_target user_id and webhook settings.
+
+Risk: The skill includes broad triggers and scheduled execution behavior.
+
+Mitigation: Install only when a scheduled Chinese-language tech-news workflow is intended, and verify whether cron-config.json is honored automatically in the target environment.
+
+Risk: Generated briefings may be misleading if source fetching or AI/Cloud/ML filtering does not match the skill claims.
+
+Mitigation: Treat generated briefings as unverified drafts until source-fetching and filtering behavior has been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lgugeng/skills/tech-news-daily-lgugeng)
+- [Publisher profile](https://clawhub.ai/user/lgugeng)
+- [GitHub Search API](https://api.github.com/search/repositories)
+- [Baidu technology hot list](https://top.baidu.com/board?tab=science)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [Markdown briefings and JSON report files, with optional Feishu card messages.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language daily briefing workflow; configured for up to 15 articles and optional scheduled delivery.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

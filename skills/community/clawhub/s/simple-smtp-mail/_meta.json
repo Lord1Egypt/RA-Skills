@@ -1,6 +1,30 @@
 {
-  "ownerId": "kn72kyfmr64vtdm8d4vajyz2n982f32z",
-  "slug": "simple-smtp-mail",
+  "name": "simple-smtp-mail",
+  "description": "Send emails via SMTP using msmtp command-line tool",
   "version": "1.0.0",
-  "publishedAt": 1773038466478
+  "author": "OpenClaw",
+  "tags": ["email", "smtp", "msmtp"],
+  "requires": {
+    "bins": ["msmtp"]
+  },
+  "install": [
+    {
+      "id": "brew",
+      "kind": "brew",
+      "package": "msmtp",
+      "label": "Install msmtp (macOS)"
+    },
+    {
+      "id": "apt",
+      "kind": "apt",
+      "package": "msmtp",
+      "label": "Install msmtp (Debian/Ubuntu)"
+    },
+    {
+      "id": "dnf",
+      "kind": "dnf",
+      "package": "msmtp",
+      "label": "Install msmtp (Fedora/RHEL)"
+    }
+  ]
 }

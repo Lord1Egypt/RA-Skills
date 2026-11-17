@@ -1,615 +1,364 @@
 #!/usr/bin/env python3
 """
-GDPR合规检查工具
-版本：1.0.0
-最后更新：2026年3月25日
+GDPR Compliance Checker — 欧盟通用数据保护条例合规检查工具
+
+使用统一的 compliance_core 模块，提供标准化的 CLI、报告输出和检查引擎。
 """
 
 import sys
-import json
-import argparse
-from datetime import datetime
+import os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
 
-class GDPRAuditTool:
-    """GDPR合规检查工具"""
-    
+from compliance_core import UnifiedCLI, CheckEngine, CheckResult, Severity
+
+
+class GDPRChecker(CheckEngine):
+    """GDPR 合规检查引擎"""
+
     def __init__(self):
-        self.results = {
-            "audit_date": datetime.now().isoformat(),
-            "skill_version": "1.0.0",
-            "summary": {
-                "total_checks": 0,
-                "passed": 0,
-                "failed": 0,
-                "warnings": 0
-            },
-            "checks": []
-        }
+        super().__init__(
+            tool_name="GDPR-Compliance",
+            regulation="General Data Protection Regulation (GDPR)"
+        )
+        self._register_all()
+
+    def _register_all(self):
+        """注册所有检查项和场景"""
         
-        # GDPR核心检查项
-        self.gdpr_checks = [
-            self.check_legal_basis,
-            self.check_data_subject_rights,
-            self.check_dpo_requirement,
-            self.check_dpia_requirement,
-            self.check_data_breach_notification,
-            self.check_international_transfers,
-            self.check_privacy_by_design,
-            self.check_data_minimization,
-            self.check_accuracy,
-            self.check_storage_limitation,
-            self.check_integrity_confidentiality,
-            self.check_accountability
-        ]
-    
-    def check_legal_basis(self):
-        """检查合法性基础"""
-        check_id = "legal_basis"
-        description = "验证数据处理活动的合法性基础"
-        
-        questions = [
-            "1. 您是否有至少一种合法性基础？",
-            "   a) 数据主体同意",
-            "   b) 合同履行",
-            "   c) 法律义务",
-            "   d) 保护数据主体或他人的重大利益",
-            "   e) 公共利益任务",
-            "   f) 合法利益（需进行平衡测试）",
-            "2. 您是否记录了合法性基础的依据？",
-            "3. 特殊类别数据是否满足额外条件？"
-        ]
-        
-        result = {
-            "check_id": check_id,
-            "description": description,
-            "questions": questions,
-            "recommendations": [
-                "为每个处理活动确定并记录合法性基础",
-                "对于合法利益，必须进行平衡测试并记录",
-                "特殊类别数据处理必须满足Article 9的额外条件"
-            ],
-            "status": "PENDING",
-            "score": 0
-        }
-        
-        return result
-    
-    def check_data_subject_rights(self):
-        """检查数据主体权利"""
-        check_id = "data_subject_rights"
-        description = "验证数据主体权利的保障机制"
-        
-        rights = [
-            "知情权（Articles 13-14）",
-            "访问权（Article 15）",
-            "更正权（Article 16）",
-            "删除权（Article 17）",
-            "限制处理权（Article 18）",
-            "数据可携带权（Article 20）",
-            "反对权（Article 21）",
-            "自动化决策相关权利（Article 22）"
-        ]
-        
-        result = {
-            "check_id": check_id,
-            "description": description,
-            "rights": rights,
-            "questions": [
-                "1. 您是否有机制处理数据主体的权利请求？",
-                "2. 您是否在合理时间内响应请求？",
-                "3. 您是否免费提供首次数据副本？",
-                "4. 您是否验证请求者的身份？"
-            ],
-            "recommendations": [
-                "建立标准化的权利请求处理流程",
-                "确保在法定期限内（通常一个月内）响应",
-                "提供电子格式的数据副本",
-                "实施适当的身份验证机制"
-            ],
-            "status": "PENDING",
-            "score": 0
-        }
-        
-        return result
-    
-    def check_dpo_requirement(self):
-        """检查DPO要求"""
-        check_id = "dpo_requirement"
-        description = "确定是否需要指定数据保护官（DPO）"
-        
-        criteria = [
-            "公共机构或机关（除法院外）",
-            "核心活动涉及大规模、系统性监控",
-            "核心活动涉及大规模处理特殊类别数据或犯罪相关数据"
-        ]
-        
-        result = {
-            "check_id": check_id,
-            "description": description,
-            "criteria": criteria,
-            "questions": [
-                "1. 您的机构是否属于公共机构？",
-                "2. 您的核心活动是否涉及大规模监控？",
-                "3. 您是否大规模处理特殊类别数据？",
-                "4. 如果您需要DPO，是否已指定？"
-            ],
-            "recommendations": [
-                "定期评估是否需要指定DPO",
-                "如果指定DPO，确保其独立性",
-                "公开DPO的姓名和联系方式",
-                "确保DPO具备适当的专业知识"
-            ],
-            "status": "PENDING",
-            "score": 0
-        }
-        
-        return result
-    
-    def check_dpia_requirement(self):
-        """检查DPIA要求"""
-        check_id = "dpia_requirement"
-        description = "确定是否需要数据保护影响评估（DPIA）"
-        
-        scenarios = [
-            "系统性、大规模监控",
-            "大规模处理特殊类别数据或犯罪相关数据",
-            "大规模、系统性评估个人特征",
-            "自动化决策产生法律或类似重大影响",
-            "匹配或组合数据集",
-            "处理弱势群体数据",
-            "创新性技术使用",
-            "防止数据主体行使权利"
-        ]
-        
-        result = {
-            "check_id": check_id,
-            "description": description,
-            "scenarios": scenarios,
-            "questions": [
-                "1. 您的处理活动是否涉及高风险？",
-                "2. 您是否进行过DPIA？",
-                "3. 是否咨询过监管机构或DPO？",
-                "4. 您是否记录了DPIA结果和缓解措施？"
-            ],
-            "recommendations": [
-                "对高风险处理活动进行DPIA",
-                "在早期阶段进行DPIA，影响处理设计",
-                "咨询DPO或监管机构意见",
-                "记录DPIA过程和结果"
-            ],
-            "status": "PENDING",
-            "score": 0
-        }
-        
-        return result
-    
-    def check_data_breach_notification(self):
-        """检查数据泄露通知要求"""
-        check_id = "data_breach_notification"
-        description = "验证数据泄露通知机制"
-        
-        requirements = [
-            "向监管机构通知（72小时内）",
-            "向数据主体通知（高风险情况下）",
-            "记录所有数据泄露事件"
-        ]
-        
-        result = {
-            "check_id": check_id,
-            "description": description,
-            "requirements": requirements,
-            "questions": [
-                "1. 您是否有数据泄露检测机制？",
-                "2. 您是否有通知程序和模板？",
-                "3. 您是否培训员工识别和报告数据泄露？",
-                "4. 您是否有数据泄露应急预案？"
-            ],
-            "recommendations": [
-                "制定数据泄露应急预案",
-                "建立72小时内通知监管机构的流程",
-                "高风险泄露时及时通知数据主体",
-                "记录所有数据泄露事件及其处理"
-            ],
-            "status": "PENDING",
-            "score": 0
-        }
-        
-        return result
-    
-    def check_international_transfers(self):
-        """检查跨境传输要求"""
-        check_id = "international_transfers"
-        description = "验证跨境数据传输的合规性"
-        
-        mechanisms = [
-            "充分性决定（Article 45）",
-            "适当保障措施（Article 46）",
-            "   - 标准合同条款（SCCs）",
-            "   - 约束性公司规则（BCRs）",
-            "   - 行为准则 + 认证",
-            "例外情况（Article 49）"
-        ]
-        
-        result = {
-            "check_id": check_id,
-            "description": description,
-            "mechanisms": mechanisms,
-            "questions": [
-                "1. 您是否有数据传输到欧盟以外？",
-                "2. 您是否使用适当的传输机制？",
-                "3. 您是否评估接收方数据保护水平？",
-                "4. 您是否与接收方签订适当的合同？"
-            ],
-            "recommendations": [
-                "如果没有充分性决定，使用SCCs或BCRs",
-                "评估接收方提供的数据保护水平",
-                "与接收方签订包含必要保护条款的合同",
-                "记录跨境传输的合法依据"
-            ],
-            "status": "PENDING",
-            "score": 0
-        }
-        
-        return result
-    
-    def check_privacy_by_design(self):
-        """检查默认隐私设计"""
-        check_id = "privacy_by_design"
-        description = "验证隐私默认设计原则"
-        
-        principles = [
-            "处理活动设计时即考虑隐私保护",
-            "默认设置提供最高隐私保护",
-            "隐私保护功能是默认启用"
-        ]
-        
-        result = {
-            "check_id": check_id,
-            "description": description,
-            "principles": principles,
-            "questions": [
-                "1. 您是否在设计阶段考虑隐私保护？",
-                "2. 默认设置是否提供最高保护？",
-                "3. 用户是否需要主动选择才能获得更高保护？",
-                "4. 您是否进行隐私影响评估？"
-            ],
-            "recommendations": [
-                "在设计阶段集成隐私保护",
-                "设置默认提供最高保护级别",
-                "用户友好的隐私设置界面",
-                "定期进行隐私设计审查"
-            ],
-            "status": "PENDING",
-            "score": 0
-        }
-        
-        return result
-    
-    def check_data_minimization(self):
-        """检查数据最小化原则"""
-        check_id = "data_minimization"
-        description = "验证数据最小化原则的实施"
-        
-        result = {
-            "check_id": check_id,
-            "description": description,
-            "questions": [
-                "1. 您是否仅收集实现目的所需的数据？",
-                "2. 您是否定期审查收集的数据类型和数量？",
-                "3. 您是否删除不再需要的数据？",
-                "4. 您是否有数据保留策略？"
-            ],
-            "recommendations": [
-                "审查所有数据收集活动，确保必要性",
-                "实施定期数据清理流程",
-                "制定明确的数据保留政策",
-                "记录数据收集的目的和使用限制"
-            ],
-            "status": "PENDING",
-            "score": 0
-        }
-        
-        return result
-    
-    def check_accuracy(self):
-        """检查数据准确性"""
-        check_id = "accuracy"
-        description = "验证数据准确性的保障措施"
-        
-        result = {
-            "check_id": check_id,
-            "description": description,
-            "questions": [
-                "1. 您是否有机制确保数据准确？",
-                "2. 您是否及时更新不准确的数据？",
-                "3. 您是否向数据主体提供更正数据的机制？",
-                "4. 您是否验证关键数据的准确性？"
-            ],
-            "recommendations": [
-                "建立数据验证和更正流程",
-                "定期审查关键数据的准确性",
-                "提供数据主体更正数据的便捷途径",
-                "记录数据准确性的维护措施"
-            ],
-            "status": "PENDING",
-            "score": 0
-        }
-        
-        return result
-    
-    def check_storage_limitation(self):
-        """检查存储限制"""
-        check_id = "storage_limitation"
-        description = "验证数据存储期限的合规性"
-        
-        result = {
-            "check_id": check_id,
-            "description": description,
-            "questions": [
-                "1. 您是否有明确的数据保留期限？",
-                "2. 您是否定期清理过时数据？",
-                "3. 您是否记录数据删除的情况？",
-                "4. 您是否建立数据存档机制（如适用）？"
-            ],
-            "recommendations": [
-                "制定明确的数据保留政策",
-                "实施自动化的数据清理流程",
-                "记录数据删除操作和依据",
-                "合规存档需要长期保存的数据"
-            ],
-            "status": "PENDING",
-            "score": 0
-        }
-        
-        return result
-    
-    def check_integrity_confidentiality(self):
-        """检查完整性和保密性"""
-        check_id = "integrity_confidentiality"
-        description = "验证数据安全和保密措施"
-        
-        measures = [
-            "加密",
-            "访问控制",
-            "安全审计",
-            "备份和恢复",
-            "网络安全"
-        ]
-        
-        result = {
-            "check_id": check_id,
-            "description": description,
-            "security_measures": measures,
-            "questions": [
-                "1. 您是否采取适当的技术安全措施？",
-                "2. 您是否定期进行安全评估？",
-                "3. 您是否培训员工数据安全？",
-                "4. 您是否有数据恢复计划？"
-            ],
-            "recommendations": [
-                "实施多层安全防护",
-                "定期进行安全漏洞评估",
-                "建立数据泄露检测和响应机制",
-                "制定业务连续性计划"
-            ],
-            "status": "PENDING",
-            "score": 0
-        }
-        
-        return result
-    
-    def check_accountability(self):
-        """检查问责制"""
-        check_id = "accountability"
-        description = "验证问责制原则的实施"
-        
-        requirements = [
-            "数据处理记录（Article 30）",
-            "DPIA记录（如需要）",
-            "数据泄露通知记录",
-            "合同和协议记录",
-            "培训记录"
-        ]
-        
-        result = {
-            "check_id": check_id,
-            "description": description,
-            "requirements": requirements,
-            "questions": [
-                "1. 您是否保存数据处理活动记录？",
-                "2. 您是否能够证明合规性？",
-                "3. 您是否进行内部审计？",
-                "4. 您是否任命了DPO（如需要）？"
-            ],
-            "recommendations": [
-                "建立全面的合规文档体系",
-                "定期进行内部合规审计",
-                "确保所有处理活动有记录",
-                "提供充分的合规培训"
-            ],
-            "status": "PENDING",
-            "score": 0
-        }
-        
-        return result
-    
-    def interactive_mode(self):
-        """交互式检查模式"""
-        print("=" * 60)
-        print("GDPR合规检查工具 - 交互模式")
-        print("=" * 60)
-        print("本工具将引导您完成GDPR核心合规要求的检查。")
-        print("请回答以下问题或按Ctrl+C退出。")
-        print()
-        
-        # 运行所有检查
-        for check_func in self.gdpr_checks:
-            result = check_func()
-            
-            # 显示检查项信息
-            print(f"📋 检查项: {result['description']}")
-            
-            # 如果有问题列表，显示并获取输入
-            if 'questions' in result:
-                print("问题:")
-                for question in result['questions']:
-                    print(f"  {question}")
-                
-                response = input("您的回答（简要描述当前状况）: ")
-                result['user_response'] = response
-                
-                # 基于用户输入评估
-                if response and len(response.strip()) > 10:
-                    result['status'] = "PASSED"
-                    result['score'] = 3
-                    print("✅ 检查通过")
-                else:
-                    result['status'] = "PASSED"  # 先标记为通过，后续细评
-                    result['score'] = 2
-                    print("⚠️  需要进一步评估")
-            
-            # 如果有建议列表，显示
-            if 'recommendations' in result:
-                print("建议:")
-                for i, rec in enumerate(result['recommendations'], 1):
-                    print(f"  {i}. {rec}")
-            
-            print("-" * 60)
-            
-            # 更新摘要
-            self.results['summary']['total_checks'] += 1
-            if result['status'] == "PASSED":
-                self.results['summary']['passed'] += 1
-            elif result['status'] == "FAILED":
-                self.results['summary']['failed'] += 1
-            elif result['status'] == "WARNING":
-                self.results['summary']['warnings'] += 1
-            
-            self.results['checks'].append(result)
-    
-    def generate_report(self):
-        """生成检查报告"""
-        report = {
-            "audit_info": {
-                "date": self.results['audit_date'],
-                "skill_version": self.results['skill_version'],
-                "total_checks": self.results['summary']['total_checks'],
-                "passed": self.results['summary']['passed'],
-                "failed": self.results['summary']['failed'],
-                "warnings": self.results['summary']['warnings'],
-                "compliance_rate": (self.results['summary']['passed'] / max(self.results['summary']['total_checks'], 1)) * 100
-            },
-            "detailed_results": self.results['checks'],
-            "overall_assessment": self.get_overall_assessment(),
-            "next_steps": self.get_next_steps(),
-            "report_generated": datetime.now().isoformat()
-        }
-        
-        return report
-    
-    def get_overall_assessment(self):
-        """获取总体评估"""
-        total_score = sum(check['score'] for check in self.results['checks'] if 'score' in check)
-        max_score = 3 * len(self.results['checks'])
-        
-        if (total_score / max_score) > 0.8:
-            return "优秀 - 高度符合GDPR要求"
-        elif (total_score / max_score) > 0.6:
-            return "良好 - 基本符合GDPR要求，有待改进"
-        else:
-            return "需要改进 - 存在明显合规差距"
-    
-    def get_next_steps(self):
-        """获取下一步建议"""
-        steps = []
-        
-        # 根据检查结果生成建议
-        for check in self.results['checks']:
-            if check.get('status') == "PASSED" and check.get('score', 0) < 2:
-                steps.append(f"完善 {check['description']} 的实施措施")
-            elif check.get('status') == "FAILED":
-                steps.append(f"立即整改 {check['description']}")
-        
-        # 添加通用建议
-        if not steps:
-            steps = [
-                "继续完善GDPR合规体系",
-                "定期进行合规检查",
-                "关注EDPB最新指南",
-                "考虑外部合规审计"
-            ]
-        
-        return steps
-    
-    def save_report(self, report, filename=None):
-        """保存报告到文件"""
-        if filename is None:
-            filename = f"gdpr_audit_report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-        
-        with open(filename, 'w', encoding='utf-8') as f:
-            json.dump(report, f, ensure_ascii=False, indent=2)
-        
-        return filename
+        self.register_checker("lawful_basis", self._check_lawful_basis)
+        self.register_checker("consent", self._check_consent)
+        self.register_checker("privacy_notice", self._check_privacy_notice)
+        self.register_checker("data_minimization", self._check_data_minimization)
+        self.register_checker("data_subject_rights", self._check_subject_rights)
+        self.register_checker("breach_notification", self._check_breach_notification)
+        self.register_checker("dpo", self._check_dpo)
+        self.register_checker("dpia", self._check_dpia)
+        self.register_checker("cross_border", self._check_cross_border)
+        self.register_checker("data_protection_by_design", self._check_design)
+        self.register_checker("records", self._check_records)
+        self.register_checker("security", self._check_security)
+
+        self.register_scenario("basic_compliance", "基础合规",
+            ["lawful_basis", "consent", "privacy_notice", "data_subject_rights"])
+        self.register_scenario("high_risk_processing", "高风险处理",
+            ["lawful_basis", "dpia", "dpo", "data_protection_by_design", "security"])
+        self.register_scenario("cross_business", "跨境业务",
+            ["lawful_basis", "cross_border", "privacy_notice", "data_subject_rights",
+             "breach_notification"])
+        self.register_scenario("full_audit", "全面审计",
+            ["lawful_basis", "consent", "privacy_notice", "data_minimization",
+             "data_subject_rights", "breach_notification", "dpo", "dpia",
+             "cross_border", "data_protection_by_design", "records", "security"])
+
+    def _check_lawful_basis(self, data: dict) -> CheckResult:
+        """检查合法处理基础"""
+        identified_basis = data.get("identified_basis", False)
+        bases = data.get("bases", [])
+
+        issues = []
+        if not identified_basis: issues.append("未确定数据处理的法律基础")
+        if identified_basis and not bases: issues.append("法律基础清单为空")
+
+        return CheckResult(
+            check_id="lawful_basis",
+            description="数据处理合法基础检查",
+            severity=Severity.FAIL if not identified_basis else Severity.PASS,
+            passed=identified_basis and len(bases) > 0,
+            details="；".join(issues) if issues else f"已确定法律基础: {', '.join(bases) if bases else '待补充'}",
+            recommendation="明确每项数据处理活动的法律基础（同意、合同、法定义务等）",
+            regulation_ref="GDPR Art.6"
+        )
+
+    def _check_consent(self, data: dict) -> CheckResult:
+        """检查同意机制"""
+        has_unambiguous = data.get("has_unambiguous", False)
+        has_withdrawal = data.get("has_withdrawal", False)
+        withdrawal_easy = data.get("withdrawal_easy", False)
+        no_pre_ticked = data.get("no_pre_ticked", False)
+        granular = data.get("granular", False)
+
+        issues = []
+        if not has_unambiguous: issues.append("未获取明确同意")
+        if not has_withdrawal: issues.append("未提供撤回同意机制")
+        if not withdrawal_easy: issues.append("撤回同意不够便捷")
+        if not no_pre_ticked: issues.append("使用预勾选框")
+        if not granular: issues.append("未提供细颗粒度选择")
+
+        return CheckResult(
+            check_id="consent",
+            description="用户同意机制检查",
+            severity=Severity.FAIL if not has_unambiguous else Severity.WARN,
+            passed=has_unambiguous and has_withdrawal,
+            details="；".join(issues) if issues else "同意机制合规",
+            recommendation="确保同意是自由给予、具体、知情、 unambiguous 的",
+            regulation_ref="GDPR Art.7"
+        )
+
+    def _check_privacy_notice(self, data: dict) -> CheckResult:
+        """检查隐私告知义务"""
+        controller_info = data.get("controller_info", False)
+        purposes = data.get("purposes", False)
+        retention = data.get("retention", False)
+        rights_info = data.get("rights_info", False)
+        transfers = data.get("transfers", False)
+
+        missing = []
+        if not controller_info: missing.append("控制者身份")
+        if not purposes: missing.append("处理目的")
+        if not retention: missing.append("保留期限")
+        if not rights_info: missing.append("权利说明")
+        if not transfers: missing.append("跨境传输信息")
+
+        return CheckResult(
+            check_id="privacy_notice",
+            description="隐私告知义务检查",
+            severity=Severity.PASS if len(missing) == 0 else Severity.FAIL,
+            passed=len(missing) == 0,
+            details="缺失: " + "、".join(missing) if missing else "隐私政策信息完整",
+            recommendation="提供简洁透明、易于获取的隐私政策",
+            regulation_ref="GDPR Art.13-14"
+        )
+
+    def _check_data_minimization(self, data: dict) -> CheckResult:
+        """检查数据最小化"""
+        adequate = data.get("adequate", False)
+        relevant = data.get("relevant", False)
+        limited = data.get("limited", False)
+        has_retention_schedule = data.get("has_retention_schedule", False)
+
+        issues = []
+        if not adequate: issues.append("数据收集超出必要范围")
+        if not limited: issues.append("未限制数据保留期限")
+        if not has_retention_schedule: issues.append("无数据保留期限计划")
+
+        return CheckResult(
+            check_id="data_minimization",
+            description="数据最小化原则检查",
+            severity=Severity.PASS if len(issues) == 0 else Severity.FAIL,
+            passed=len(issues) == 0,
+            details="；".join(issues) if issues else "数据最小化原则合规",
+            recommendation="只收集处理目的所必需的 data，设定明确的保留期限",
+            regulation_ref="GDPR Art.5(1)(c)"
+        )
+
+    def _check_subject_rights(self, data: dict) -> CheckResult:
+        """检查数据主体权利保障"""
+        has_access = data.get("has_access", False)
+        has_rectification = data.get("has_rectification", False)
+        has_erasure = data.get("has_erasure", False)
+        has_portability = data.get("has_portability", False)
+        has_restriction = data.get("has_restriction", False)
+        has_objection = data.get("has_objection", False)
+
+        missing = []
+        if not has_access: missing.append("访问权")
+        if not has_rectification: missing.append("更正权")
+        if not has_erasure: missing.append("删除权（被遗忘权）")
+        if not has_portability: missing.append("数据可携带权")
+        if not has_restriction: missing.append("限制处理权")
+        if not has_objection: missing.append("反对权")
+
+        return CheckResult(
+            check_id="data_subject_rights",
+            description="数据主体权利保障检查",
+            severity=Severity.FAIL if len(missing) > 0 else Severity.PASS,
+            passed=len(missing) == 0,
+            details="缺失: " + "、".join(missing) if missing else "数据主体权利保障完整",
+            recommendation="建立完整的权利请求处理流程（1个月内响应）",
+            regulation_ref="GDPR Art.15-22"
+        )
+
+    def _check_breach_notification(self, data: dict) -> CheckResult:
+        """检查数据泄露通知义务"""
+        has_breach_response = data.get("has_breach_response", False)
+        notifies_supervisory = data.get("notifies_supervisory", False)
+        notifies_individuals = data.get("notifies_individuals", False)
+        response_72h = data.get("response_72h", False)
+
+        issues = []
+        if not has_breach_response: issues.append("无数据泄露应急响应计划")
+        if not response_72h: issues.append("未能在72小时内通知监管机构")
+        if not notifies_supervisory: issues.append("不满足监管机构通知义务")
+
+        return CheckResult(
+            check_id="breach_notification",
+            description="数据泄露通知义务检查",
+            severity=Severity.FAIL if not has_breach_response else Severity.WARN,
+            passed=has_breach_response and response_72h,
+            details="；".join(issues) if issues else "泄露通知流程合规",
+            recommendation="建立72小时内通知监管机构和高风险个人数据泄露的响应流程",
+            regulation_ref="GDPR Art.33-34"
+        )
+
+    def _check_dpo(self, data: dict) -> CheckResult:
+        """检查数据保护官任命"""
+        requires_dpo = data.get("requires_dpo", False)
+        has_dpo = data.get("has_dpo", False)
+        dpo_contact = data.get("dpo_contact", False)
+        dpo_independent = data.get("dpo_independent", False)
+
+        issues = []
+        if requires_dpo and not has_dpo: issues.append("依法需要任命DPO但未任命")
+        if has_dpo and not dpo_contact: issues.append("未公布DPO联系方式")
+        if has_dpo and not dpo_independent: issues.append("DPO缺乏独立性保障")
+
+        return CheckResult(
+            check_id="dpo",
+            description="数据保护官（DPO）任命检查",
+            severity=Severity.FAIL if requires_dpo and not has_dpo else Severity.PASS,
+            passed=not requires_dpo or (has_dpo and dpo_independent),
+            details="；".join(issues) if issues else "DPO安排合规" if not requires_dpo else "DPO已任命且独立",
+            recommendation="如符合条件需任命DPO，公告联系方式并保障独立性",
+            regulation_ref="GDPR Art.37-39"
+        )
+
+    def _check_dpia(self, data: dict) -> CheckResult:
+        """检查DPIA（数据保护影响评估）"""
+        high_risk = data.get("high_risk", False)
+        has_dpia = data.get("has_dpia", False)
+        dpia_comprehensive = data.get("dpia_comprehensive", False)
+        prior_consultation = data.get("prior_consultation", False)
+
+        issues = []
+        if high_risk and not has_dpia: issues.append("高风险处理但未执行DPIA")
+        if has_dpia and not dpia_comprehensive: issues.append("DPIA不够全面")
+        if high_risk and not prior_consultation: issues.append("未咨询监管机构")
+
+        return CheckResult(
+            check_id="dpia",
+            description="数据保护影响评估（DPIA）检查",
+            severity=Severity.FAIL if high_risk and not has_dpia else Severity.PASS,
+            passed=not high_risk or (has_dpia and dpia_comprehensive),
+            details="；".join(issues) if issues else "DPIA合规",
+            recommendation="高风险处理前必须执行DPIA，必要时事先咨询监管机构",
+            regulation_ref="GDPR Art.35-36"
+        )
+
+    def _check_cross_border(self, data: dict) -> CheckResult:
+        """检查跨境数据传输"""
+        transfers_outside_eea = data.get("transfers_outside_eea", False)
+        has_safeguards = data.get("has_safeguards", False)
+        adequacy_decision = data.get("adequacy_decision", False)
+        has_scc = data.get("has_scc", False)
+        has_bcr = data.get("has_bcr", False)
+        has_tia = data.get("has_tia", False)
+
+        issues = []
+        if transfers_outside_eea and not has_safeguards:
+            issues.append("跨境传输未采取保障措施")
+        if not adequacy_decision and not has_scc and not has_bcr:
+            issues.append("未通过充分性认定、SCC或BCR提供保护")
+        if not has_tia and transfers_outside_eea:
+            issues.append("未完成传输影响评估(TIA)")
+
+        return CheckResult(
+            check_id="cross_border",
+            description="跨境数据传输合规检查",
+            severity=Severity.FAIL if not has_safeguards and transfers_outside_eea else Severity.WARN,
+            passed=not transfers_outside_eea or has_safeguards,
+            details="；".join(issues) if issues else "跨境传输合规",
+            recommendation="使用SCC、BCR或充分性认定作为跨境传输机制，执行TIA",
+            regulation_ref="GDPR Art.44-49"
+        )
+
+    def _check_design(self, data: dict) -> CheckResult:
+        """检查数据保护设计与默认"""
+        by_design = data.get("by_design", False)
+        by_default = data.get("by_default", False)
+        pseudonymization = data.get("pseudonymization", False)
+        minimization_default = data.get("minimization_default", False)
+
+        issues = []
+        if not by_design: issues.append("未在设计阶段考虑数据保护")
+        if not by_default: issues.append("默认未采用最高隐私设置")
+        if not pseudonymization: issues.append("未使用假名化等Privacy-Enhancing技术")
+
+        return CheckResult(
+            check_id="data_protection_by_design",
+            description="数据保护设计与默认检查",
+            severity=Severity.WARN if len(issues) > 0 else Severity.PASS,
+            passed=by_design and by_default,
+            details="；".join(issues) if issues else "数据保护设计和默认合规",
+            recommendation="将数据保护嵌入系统设计，默认只处理必要数据",
+            regulation_ref="GDPR Art.25"
+        )
+
+    def _check_records(self, data: dict) -> CheckResult:
+        """检查处理活动记录"""
+        maintains_records = data.get("maintains_records", False)
+        records_complete = data.get("records_complete", False)
+        has_рос = data.get("has_рос", False)
+
+        issues = []
+        if not maintains_records: issues.append("未维护处理活动记录(ROPA)")
+        if not records_complete: issues.append("处理活动记录不完整")
+
+        return CheckResult(
+            check_id="records",
+            description="处理活动记录(ROPA)检查",
+            severity=Severity.FAIL if not maintains_records else Severity.PASS,
+            passed=maintains_records and records_complete,
+            details="；".join(issues) if issues else "处理活动记录合规",
+            recommendation="维护书面的处理活动记录，包含法定内容",
+            regulation_ref="GDPR Art.30"
+        )
+
+    def _check_security(self, data: dict) -> CheckResult:
+        """检查安全措施"""
+        has_encryption = data.get("has_encryption", False)
+        has_access_control = data.get("has_access_control", False)
+        has_testing = data.get("has_testing", False)
+        has_incident_response = data.get("has_incident_response", False)
+        has_business_continuity = data.get("has_business_continuity", False)
+
+        issues = []
+        if not has_encryption: issues.append("未实施加密")
+        if not has_access_control: issues.append("访问控制不足")
+        if not has_testing: issues.append("未定期测试安全措施")
+        if not has_incident_response: issues.append("无事件响应计划")
+
+        return CheckResult(
+            check_id="security",
+            description="安全措施充分性检查",
+            severity=Severity.FAIL if not has_encryption or not has_access_control else Severity.WARN,
+            passed=has_encryption and has_access_control and has_incident_response,
+            details="；".join(issues) if issues else "安全措施充足",
+            recommendation="实施适当的技术和组织措施（加密、访问控制、定期测试）",
+            regulation_ref="GDPR Art.32"
+        )
+
 
 def main():
-    """主函数"""
-    parser = argparse.ArgumentParser(description='GDPR合规检查工具')
-    parser.add_argument('--interactive', '-i', action='store_true', help='交互式检查模式')
-    parser.add_argument('--output', '-o', help='输出报告文件名')
-    parser.add_argument('--format', choices=['json', 'text'], default='json', help='输出格式')
-    parser.add_argument('--list-checks', action='store_true', help='列出所有检查项')
-    
-    args = parser.parse_args()
-    
-    tool = GDPRAuditTool()
-    
-    if args.list_checks:
-        print("GDPR合规检查项列表:")
-        for i, check_func in enumerate(tool.gdpr_checks, 1):
-            result = check_func()
-            print(f"{i}. {result['description']}")
+    engine = GDPRChecker()
+    cli = UnifiedCLI(
+        tool_name="gdpr-check.py",
+        description="GDPR合规检查工具 — 欧盟通用数据保护条例合规评估"
+    )
+    args = cli.parse_args()
+
+    if args.list_scenarios:
+        cli.list_scenarios(engine.get_scenarios())
         return
-    
-    if args.interactive:
-        tool.interactive_mode()
-    else:
-        # 非交互模式：运行所有检查
-        for check_func in tool.gdpr_checks:
-            result = check_func()
-            result['status'] = "PASSED"  # 默认通过，需要实际评估
-            result['score'] = 2  # 默认分数
-            tool.results['summary']['total_checks'] += 1
-            tool.results['summary']['passed'] += 1
-            tool.results['checks'].append(result)
-    
-    # 生成报告
-    report = tool.generate_report()
-    
-    # 输出报告
-    if args.format == 'json':
-        if args.output:
-            output_file = tool.save_report(report, args.output)
-            print(f"✅ 报告已保存到: {output_file}")
-        else:
-            print(json.dumps(report, ensure_ascii=False, indent=2))
-    else:
-        print("=" * 60)
-        print("GDPR合规检查报告")
-        print("=" * 60)
-        print(f"检查日期: {report['audit_info']['date']}")
-        print(f"Skill版本: {report['audit_info']['skill_version']}")
-        print(f"检查项总数: {report['audit_info']['total_checks']}")
-        print(f"通过项: {report['audit_info']['passed']}")
-        print(f"未通过项: {report['audit_info']['failed']}")
-        print(f"警告项: {report['audit_info']['warnings']}")
-        print(f"合规率: {report['audit_info']['compliance_rate']:.1f}%")
-        print()
-        print(f"总体评估: {report['overall_assessment']}")
-        print()
-        print("下一步行动:")
-        for i, step in enumerate(report['next_steps'], 1):
-            print(f"  {i}. {step}")
-        print("=" * 60)
+
+    report = engine.run(
+        scenario=args.scenario,
+        interactive=args.interactive,
+    )
+
+    if args.output:
+        with open(args.output, 'w', encoding='utf-8') as f:
+            if args.format == "json":
+                import json
+                json.dump(report.to_dict(), f, indent=2, ensure_ascii=False)
+            elif args.format == "markdown":
+                from compliance_core.report_core import ReportGenerator
+                f.write(ReportGenerator.to_markdown(report.to_dict()))
+            else:
+                f.write(str(report.to_dict()))
+        print(f"\n✅ 报告已保存到: {args.output}")
+
+    cli.print_report(report, fmt=args.format)
+
 
 if __name__ == "__main__":
     main()

@@ -1,0 +1,71 @@
+{
+  "schema_version": "0.2",
+  "meta": {
+    "created_at": "2026-09-18T14:20:00+08:00",
+    "source": "mixed",
+    "resume_filename": "林小满_市场运营_简历.pdf",
+    "language": "zh-CN",
+    "note": "虚构演示数据（报告设计基准，无真实个人信息）"
+  },
+  "identity": {
+    "name": "林小满（演示）",
+    "current_role": "市场运营专员",
+    "industry": "在线教育",
+    "city": "杭州",
+    "years_of_experience": 5.5,
+    "employment_status": "在职"
+  },
+  "salary": {
+    "current_amount": 15000,
+    "currency": "CNY",
+    "period": "monthly",
+    "notes": "税前，含绩效",
+    "components": [
+      { "name": "基本工资", "amount": 12000 },
+      { "name": "绩效奖金", "amount": 3000 }
+    ]
+  },
+  "work_history": [
+    {
+      "company": "某在线教育公司",
+      "role": "市场运营专员",
+      "period": { "start": "2021-04", "end": null },
+      "industry": "在线教育",
+      "responsibilities": ["家长社群搭建与运营", "线下活动策划与执行", "短视频内容运营", "运营数据周报与复盘"],
+      "achievements": ["3 个家长社群从 0 做到 1500+ 人", "年度 20+ 场线下活动落地", "参与运营的抖音账号做到 3 万粉丝"],
+      "skills_used": ["社群运营", "活动策划", "短视频剪辑", "数据分析"]
+    },
+    {
+      "company": "某 K12 培训机构",
+      "role": "市场专员",
+      "period": { "start": "2019-07", "end": "2021-03" },
+      "industry": "K12 教育",
+      "responsibilities": ["校区市场活动执行", "渠道合作对接"],
+      "achievements": ["主导校区开业活动，到场 400+ 人"],
+      "skills_used": ["活动执行", "渠道运营"]
+    }
+  ],
+  "skills": {
+    "self_assessed": [
+      { "name": "私域社群运营", "level": 5, "evidence": "3 个千人社群从 0 搭建与长期运营" },
+      { "name": "活动策划与执行", "level": 4, "evidence": "年度 20+ 场活动落地" },
+      { "name": "转化话术设计", "level": 4, "evidence": "社群转化率提升 40%" },
+      { "name": "短视频脚本与粗剪", "level": 3, "evidence": "抖音号参与做到 3 万粉" },
+      { "name": "数据复盘", "level": 3, "evidence": "搭建部门周报体系" },
+      { "name": "供应商沟通谈判", "level": 4, "evidence": "活动采购成本平均降低 15%" }
+    ],
+    "tools_and_domains": ["企业微信", "剪映", "Canva", "Excel 数据透视", "小红书", "抖音"]
+  },
+  "time_budget": {
+    "hours_per_week": 8,
+    "constraints": "工作日晚上 + 周末；6-8 月招生旺季会忙",
+    "launch_hours_per_week": 6
+  },
+  "goals": {
+    "primary": "开拓稳定的副业收入，验证自己的市场价值",
+    "income_target": { "min_amount": 1000, "max_amount": 3000, "currency": "CNY", "period": "monthly" },
+    "risk_tolerance": "medium",
+    "interests": ["社群运营", "内容创作"]
+  },
+  "constraints": ["无竞业限制", "需注意不泄露公司客户信息"]
+}

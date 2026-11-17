@@ -1,43 +1,48 @@
-## Description: <br>
-Summarizes YouTube videos from a provided link by fetching Vietnamese or English transcripts and identifying the main points. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tóm tắt nội dung video YouTube từ đường link cung cấp, với hỗ trợ trích xuất transcript tự động bằng yt-dlp và phân tích các ý chính.
 
-## Publisher: <br>
-[Jaskies](https://clawhub.ai/user/Jaskies) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jaskies](https://clawhub.ai/user/jaskies)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to extract available YouTube subtitles and produce concise, logically structured summaries of video content.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill uses install commands and runs yt-dlp against user-provided YouTube links, while URL validation and dependency pinning are weak.
+
+Mitigation: Review the sudo apt and pip commands before installation, consider installing yt-dlp in a virtual environment, and run the transcript script only with trusted YouTube links.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to extract available YouTube subtitles and receive a concise, structured summary of a video. It is useful when a user wants the main ideas of a video without manually reading the full transcript. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on locally installed yt-dlp and ffmpeg. <br>
-Mitigation: Install these tools from trusted sources and keep them updated before running transcript extraction. <br>
-Risk: Running the skill contacts YouTube for the user-provided video URL. <br>
-Mitigation: Use only URLs the user is authorized to process and avoid sending sensitive or private video content unless permitted. <br>
-Risk: Fetched subtitle text is exposed to the assistant for summarization. <br>
-Mitigation: Review whether the transcript contains confidential or sensitive information before summarizing it. <br>
+**Output Format:** [Markdown summary with transcript extraction command output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/Jaskies/tomtat-video-jaskies) <br>
-- [Publisher profile](https://clawhub.ai/user/Jaskies) <br>
+**Other Properties Related to Output:** [Transcript extraction prefers Vietnamese subtitles and falls back to English; long videos may be summarized in sections.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown summary with optional shell command output from transcript extraction] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The transcript fetch prefers Vietnamese subtitles and falls back to English when available.] <br>
+1.1.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

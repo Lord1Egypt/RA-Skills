@@ -2,8 +2,9 @@
 """
 全能旅行助手 - ClawHub技能脚本
 以行程规划为核心，16合1一站式旅行服务
-数据源：飞猪旅行+高德地图+同程旅行+途牛旅游（均通过SCF代理），零配置
+数据源：途牛旅行+高德地图+同程旅行（均通过SCF代理），零配置
 """
+import os
 import json
 import re
 import urllib.request
@@ -11,12 +12,12 @@ import urllib.error
 from datetime import datetime, timedelta
 
 # ============ 配置 ============
-FLIGGY_PROXY = "https://1439498936-6sysdjjt99.ap-guangzhou.tencentscf.com"
+TUNIU_PROXY = "https://1439498936-0junm3maxj.ap-guangzhou.tencentscf.com"
 GAODE_PROXY = "https://1439498936-bl10af74fl.ap-guangzhou.tencentscf.com"
 TONGCHENG_PROXY = "https://1439498936-7vqpkiipef.ap-guangzhou.tencentscf.com"
 TUNIU_PROXY = "https://1439498936-0junm3maxj.ap-guangzhou.tencentscf.com"
-PROXY_TOKEN = "tp_8k2mX9vQ4z"
-FLIGGY_TIMEOUT = 60
+PROXY_TOKEN = os.environ.get("PROXY_TOKEN", "")
+TUNIU_TIMEOUT = 60
 GAODE_TIMEOUT = 15
 TC_TIMEOUT = 60
 TN_TIMEOUT = 60
@@ -31,25 +32,18 @@ _CITIES = [
 
 
 # ============ 代理调用 ============
-def _call_fliggy(rtype, params):
-    """调用飞猪SCF代理"""
-    body = json.dumps({"type": rtype, "params": params}, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
-    req = urllib.request.Request(
-        FLIGGY_PROXY, data=body,
-        headers={"Content-Type": "application/json", "X-Proxy-Token": PROXY_TOKEN},
-        method="POST",
-    )
+def _call_tuniu(rtype, params):
+    """调用途牛SCF代理"""
+    url = TUNIU_PROXY
+    headers = {"Content-Type": "application/json", "X-Proxy-Token": PROXY_TOKEN}
+    body = {"type": rtype, "params": params}
+    data = json.dumps(body, ensure_ascii=False).encode("utf-8")
+    req = urllib.request.Request(url, data=data, headers=headers, method="POST")
     try:
-        with urllib.request.urlopen(req, timeout=FLIGGY_TIMEOUT) as r:
-            return json.loads(r.read().decode("utf-8"))
-    except urllib.error.HTTPError as e:
-        err = ""
-        try: err = e.read().decode("utf-8", errors="replace")[:300]
-        except: pass
-        return {"error": "proxy error " + str(e.code) + ": " + err}
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            return json.loads(resp.read().decode("utf-8"))
     except Exception as e:
-        return {"error": "request error: " + str(e)}
-
+        return {"error": str(e)}
 
 def _call_gaode(api, params):
     """调用高德SCF代理，自动解包data层"""
@@ -335,7 +329,7 @@ def travel_plan(params):
     """行程规划：智能推荐行程方案，涵盖景点+酒店+交通。"""
     query = params.get("query", "")
     if not query: return "请描述你的旅行需求，如：3天2晚上海游"
-    result = _call_fliggy("fliggy_ai_search", {"query": query})
+    result = _call_tuniu("tuniu_ticket_query", {"query": query})
     text = _parse_flyai_text(result)
     if text is None: return "未找到行程方案，建议换个描述试试"
     dest = _extract_dest(query) or _extract_city(query) or ""
@@ -346,7 +340,7 @@ def search_train(params):
     """火车票查询：查询火车票/高铁票的余票、价格和时刻表。"""
     query = params.get("query", "")
     if not query: return "请描述火车票需求，如：北京到上海明天的火车"
-    result = _call_fliggy("fliggy_ai_search", {"query": query})
+    result = _call_tuniu("tuniu_ticket_query", {"query": query})
     text = _parse_flyai_text(result)
     if text is None: return "未找到火车票信息，建议换个描述试试"
     dest = _extract_city(query) or ""
@@ -357,7 +351,7 @@ def search_flight(params):
     """机票查询：查询国内航班实时票价、航班号、起降时间。"""
     query = params.get("query", "")
     if not query: return "请描述机票需求，如：上海到三亚7月1号机票"
-    result = _call_fliggy("fliggy_ai_search", {"query": query})
+    result = _call_tuniu("tuniu_ticket_query", {"query": query})
     text = _parse_flyai_text(result)
     if text is None: return "未找到航班信息，建议换个描述试试"
     dest = _extract_city(query) or ""
@@ -433,7 +427,7 @@ def search_hotel(params):
         scf_params = {"destName": city}
         if keywords:
             scf_params["keyWords"] = keywords
-        result = _call_fliggy("search_hotels", scf_params)
+        result = _call_tuniu("tuniu_hotel_search", scf_params)
         if isinstance(result, dict) and "error" not in result:
             inner = result.get("data", result)
             if isinstance(inner, dict):
@@ -441,7 +435,7 @@ def search_hotel(params):
                 if item_list:
                     return _format_hotel_items(item_list) + _build_tips("酒店搜索", dest)
     # 回退到AI文本
-    result = _call_fliggy("fliggy_ai_search", {"query": query})
+    result = _call_tuniu("tuniu_ticket_query", {"query": query})
     text = _parse_flyai_text(result)
     if text is None: return "未找到酒店信息，建议换个描述试试"
     return text + _build_tips("酒店搜索", dest)
@@ -510,7 +504,7 @@ def search_poi(params):
     if keyword:
         poi_params = {"keyword": keyword}
         if city: poi_params["cityName"] = city
-        result = _call_fliggy("search_poi", poi_params)
+        result = _call_tuniu("tuniu_ticket_query", poi_params)
         if isinstance(result, dict) and "error" not in result:
             inner = result.get("data", result)
             if isinstance(inner, dict):
@@ -522,7 +516,7 @@ def search_poi(params):
                     header += "：\n\n"
                     dest = _extract_dest(query) or city or ""
                     return header + _format_poi_items(item_list) + _build_tips("景点门票", dest)
-    result = _call_fliggy("fliggy_ai_search", {"query": query})
+    result = _call_tuniu("tuniu_ticket_query", {"query": query})
     text = _parse_flyai_text(result)
     if text is None: return "未找到景点信息，建议换个描述试试"
     dest = _extract_city(query) or ""
@@ -533,10 +527,10 @@ def search_marriott_hotel(params):
     """万豪酒店搜索：搜索万豪集团旗下酒店。"""
     query = params.get("query", "")
     if not query: return "请描述万豪酒店需求，如：上海万豪酒店"
-    result = _call_fliggy("search_marriott_hotels", {"query": query})
+    result = _call_tuniu("tuniu_hotel_search", {"query": query})
     text = _parse_flyai_text(result)
     if text is None:
-        result = _call_fliggy("fliggy_ai_search", {"query": query + " 万豪"})
+        result = _call_tuniu("tuniu_ticket_query", {"query": query + " 万豪"})
         text = _parse_flyai_text(result)
     if text is None: return "未找到万豪酒店信息"
     dest = _extract_city(query)
@@ -544,25 +538,18 @@ def search_marriott_hotel(params):
 
 
 def get_marriott_hotel_info(params):
-    """万豪酒店详情：获取万豪酒店详细信息。"""
-    query = params.get("query", "")
-    if not query: return "请提供万豪酒店名称"
-    result = _call_fliggy("get_marriott_hotel_info", {"query": query})
-    if isinstance(result, dict) and result.get("status") == 1:
-        result = _call_fliggy("fliggy_ai_search", {"query": query + " 详细信息"})
-    text = _parse_flyai_text(result)
-    if text is None: return "未找到该万豪酒店详情"
-    return text
+    """品牌酒店详情：服务已调整"""
+    return "⚠️ 品牌酒店数据专区已调整，建议使用「酒店智能推荐」或「途牛旅行」搜索酒店。"
 
 
 def search_marriott_package(params):
     """万豪套餐搜索：搜索万豪集团在售套餐商品。"""
     query = params.get("query", "")
     if not query: return "请描述万豪套餐需求"
-    result = _call_fliggy("search_marriott_packages", {"query": query})
+    result = _call_tuniu("tuniu_holiday_search", {"query": query})
     inner = result.get("data", result) if isinstance(result, dict) else result
     if inner is None or (isinstance(result, dict) and result.get("status") == 0 and result.get("data") is None):
-        result = _call_fliggy("fliggy_ai_search", {"query": query})
+        result = _call_tuniu("tuniu_ticket_query", {"query": query})
     text = _parse_flyai_text(result)
     if text is None: return "未找到万豪套餐信息"
     dest = _extract_city(query)
@@ -995,7 +982,7 @@ def cruise_search(params):
             tag_str = " | ".join([_safe_str(t) for t in tags[:3] if t])
         else:
             tag_str = ""
-        booking_url = "https://www.tuniu.com/tour/" + product_id if product_id else ""
+        booking_url = "https://m.tuniu.com/cruise/" + product_id if product_id else ""
         lines.append(str(i) + ". 🚢 " + product_name)
         detail_parts = []
         if cruise_brand: detail_parts.append("🛳️ " + cruise_brand)
@@ -1098,7 +1085,7 @@ def holiday_search(params):
             tag_str = " | ".join([_safe_str(t) for t in tags[:3] if t])
         else:
             tag_str = ""
-        booking_url = "https://www.tuniu.com/tour/" + product_id if product_id else ""
+        booking_url = "https://m.tuniu.com/tour/" + product_id if product_id else ""
         display_name = product_name
         if is_new and is_new != "0":
             display_name = "🆕 " + display_name

@@ -1,41 +1,59 @@
-## Description: <br>
-Professional KuCoin (KC) trading system - multi-account support, spot/margin/futures trading, asset transfers. Use to check balances, transfer assets, open/close positions, and manage your KuCoin portfolio. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional KuCoin (KC) trading system - multi-account support, spot/margin/futures trading, asset transfers.
 
-## Publisher: <br>
-[dex-scan](https://clawhub.ai/user/dex-scan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dex-scan](https://clawhub.ai/user/dex-scan)
 
-## Use Case: <br>
-External users and developers use this skill to manage KuCoin accounts from an agent, including checking balances and market data, querying orders, transferring assets, and placing spot, margin, or futures trades. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent live KuCoin exchange-trading authority, including transfers, borrowing, repayment, leverage changes, cancellations, and trades. <br>
-Mitigation: Install only when live account control is intended; use restricted API keys, disable withdrawals unless required, apply IP restrictions where possible, and require manual confirmation outside the skill before account-changing actions. <br>
-Risk: Using full trading credentials for read-only workflows exposes unnecessary account-control capability. <br>
-Mitigation: Prefer read-only KuCoin keys for balance, order, and market queries, and separate higher-privilege keys from routine agent use. <br>
+## Use Case:
 
+External users and developers use this skill to inspect KuCoin balances and market data, transfer assets between account types, and manage spot, margin, and futures orders through Node-based commands.
 
-## Reference(s): <br>
-- [KuCoin API Documentation](https://docs.kucoin.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/dex-scan/kucoin-trader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown with inline shell commands and plain-text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and KuCoin API credentials configured via environment variables or ~/.openclaw/credentials/kucoin.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence; artifact package.json and skill.json report 1.0.0) <br>
+Risk: The skill can move funds and place real spot, margin, and futures orders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a minimum-permission KuCoin API key, disable withdrawals, apply exchange-side IP restrictions, and require explicit confirmation or dry-run approval before trades, transfers, cancellations, borrowing, and repayment.
+
+Risk: Leveraged futures and margin actions can amplify losses, including high leverage when a futures trade omits an explicit leverage value.
+
+Mitigation: Avoid futures or margin permissions unless required, enforce conservative leverage limits, require stop-loss review, and remove the executable 125x futures default before production use.
+
+Risk: KuCoin credentials may be stored in a local JSON file or environment variables.
+
+Mitigation: Keep credential files restricted to the local user, rotate keys after testing, and do not grant permissions beyond the specific account actions needed.
+
+## Reference(s):
+
+- [KuCoin API Documentation](https://docs.kucoin.com/)
+- [ClawHub Skill Page](https://clawhub.ai/dex-scan/skills/kucoin-trader)
+- [Publisher Profile](https://clawhub.ai/user/dex-scan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with inline Node command examples and JSON credential configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces command guidance and executes KuCoin API operations through local Node scripts when invoked by an agent.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Fan-out tasks to multiple agents and merge results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fan-out tasks to multiple agents and merge results.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and engineers use this skill to submit independent work to multiple Pilot Protocol agents, wait for completion, and merge completed task results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tasks may be sent to unintended Pilot Protocol peers or submitted with misunderstood task text. <br>
-Mitigation: Trust the Pilot Protocol setup, review the peer list and task text before submission, and confirm which agents pilotctl can reach. <br>
-Risk: Parallel fan-out can produce incorrect results for order-sensitive work or tasks with sequential dependencies. <br>
-Mitigation: Use this skill only for independent work; use a chained or sequential workflow when task order affects correctness. <br>
+## Use Case:
 
+Developers and engineers use this skill to distribute independent work across multiple agents, wait for completion, and aggregate parallel task results.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub Skill Page](https://clawhub.ai/teoslayer/pilot-task-parallel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pilotctl, jq, Bash 4.0+, the pilot-protocol skill, and a running Pilot Protocol daemon.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Example shell snippets can become unsafe when task IDs, peer addresses, or discovered agents are used without validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass task IDs to jq with --arg or --argjson, read peer addresses into arrays safely, and validate discovered agents before dispatching tasks.
+
+Risk: Polling loops can wait indefinitely if submitted tasks never reach a terminal state.
+
+Mitigation: Add polling timeouts and failure handling before using the examples in operational workflows.
+
+## Reference(s):
+
+- [Pilot Protocol homepage](https://pilotprotocol.network)
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-task-parallel)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pilotctl, jq, Bash 4.0+, the pilot-protocol skill, and a running pilotctl daemon.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

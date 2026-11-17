@@ -1,0 +1,7 @@
+{
+  "slug": "de-bloat",
+  "version": "1.5.1",
+  "scope": "distribution",
+  "description": "至简：任何 agent 可用的编码 skill。先看项目结构、先找复用，有现成调用方才抽象；只写需要的、只改该改的；按 C++、Go、Java、Python、Node.js 官方规范写；守安全底线不堆防御；有本轮证据才说完成。附 8 个行为评估与 18 条触发测试。",
+  "note": "本文件仅供本地分发识别，不是 Agent Skills 标准字段，也不保证平台自动触发。标准入口为 SKILL.md。"
+}

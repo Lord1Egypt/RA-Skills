@@ -1,51 +1,62 @@
-## Description: <br>
-统一检索国内外多类型期刊，输出投稿路径核验、定制写作建议、风险提示与可控广告插入的客户顾问型 Skill。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+统一检索国内外多类型期刊，输出投稿路径核验、定制写作建议、风险提示与可控广告插入的客户顾问型 Skill。
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-External journal-advisory users can generate customer-facing recommendations for Chinese and international journal submissions, including official-source checks, writing strategy, submission-path guidance, risk warnings, and clearly labeled service advertisements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled advertising includes a default phone number and could be mistaken for official journal contact information if labels are changed or removed. <br>
-Mitigation: Keep the service recommendation label visible, customize or remove the default phone number before client use, and keep advertising separate from official submission paths. <br>
-Risk: Journal websites, submission systems, contact emails, and index coverage can change over time. <br>
-Mitigation: Recheck official journal, publisher, database, and National Press and Publication Administration sources before advising submission or sending a manuscript. <br>
-Risk: The report renderer can create directories and overwrite the specified Markdown output file. <br>
-Mitigation: Choose the output path deliberately and avoid pointing the renderer at existing files that should be preserved. <br>
-Risk: The skill metadata enables broad activation with always=true. <br>
-Mitigation: Consider disabling always=true so the skill activates only for journal, submission, or report-generation tasks. <br>
+## Use Case:
 
+External users and customer-facing consultants use this skill to produce journal recommendations, official-source verification steps, writing guidance, submission paths, risk warnings, and clearly labeled service advertising for client advisory reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/journal-all-types-bundle) <br>
-- [Publisher profile](https://clawhub.ai/user/52YuanChangXing) <br>
-- [National Press and Publication Administration journal lookup](https://www.nppa.gov.cn/bsfw/cyjghcpcx/qkan/index.html) <br>
-- [README](artifact/README.md) <br>
-- [Source Trust Policy](artifact/resources/source_trust_policy.md) <br>
-- [Journal Type Matrix](artifact/resources/journal_type_matrix.json) <br>
-- [Writing Playbooks](artifact/resources/writing_playbooks.md) <br>
-- [Ad Slots](artifact/resources/ad_slots.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown advisory reports, structured guidance, shell command examples, and optional JSON-to-Markdown report generation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill emphasizes official-source verification, separates advertisements from official submission information, and requires manual rechecking of journal websites, submission systems, emails, and current indexing status before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata); artifact frontmatter reports 2.0.0 <br>
+Risk: Generated reports may include a fixed commercial phone number and service advertising without a clear per-use opt-in or opt-out.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or replace the bundled phone number, add a no-advertising default or explicit opt-in, and keep all advertising clearly separated from official journal or database information.
+
+Risk: Journal submission paths, contact details, and index status may be outdated or mistaken if not checked at the time of use.
+
+Mitigation: Verify shortlisted journals against official journal websites, publisher pages, the National Press and Publication Administration query, and authoritative international database directories before acting.
+
+Risk: Untrusted JSON input can introduce unvalidated links or Markdown into rendered client reports.
+
+Mitigation: Validate links and Markdown from user-provided JSON and review generated reports before sharing them with clients.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/journal-all-types-bundle)
+- [National Press and Publication Administration journal query](https://www.nppa.gov.cn/bsfw/cyjghcpcx/qkan/index.html)
+- [Source trust policy](artifact/resources/source_trust_policy.md)
+- [Journal type matrix](artifact/resources/journal_type_matrix.json)
+- [Writing playbooks](artifact/resources/writing_playbooks.md)
+- [Example output report](artifact/examples/example_output_report.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown advisory reports with structured journal entries, verification notes, writing guidance, risk warnings, and clearly labeled advertising blocks.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can render a Markdown dossier from JSON input using the bundled standard-library Python script; generated recommendations require official-source verification before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata); artifact frontmatter reports 2.0.0
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

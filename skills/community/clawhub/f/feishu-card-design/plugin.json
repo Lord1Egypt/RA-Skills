@@ -1,0 +1,59 @@
+{
+  "name": "feishu-card-design",
+  "version": "1.0.5",
+  "description": "统一所有 Agent 平台生成飞书卡片消息的设计规范 Skill — 5 大铁律 + 11 种报告类型配色映射 + 6 份 references + 5 份 templates + 5 份 examples + 3 份 scripts 工具。让 TRAE 定时任务、其他 Agent 平台、跨项目卡片消息样式 100% 一致。本 Skill 是纯规范，不直接发送飞书消息。Do NOT use for 飞书云文档编辑/多维表格操作/IM 群管理/只发文本消息。",
+  "trigger_words": [
+    "飞书卡片",
+    "飞书卡片消息",
+    "飞书卡片样式",
+    "Card 2.0",
+    "飞书卡片设计规范",
+    "feishu-card-design",
+    "飞书卡片配色",
+    "邻近色环",
+    "飞书卡片模板",
+    "飞书卡片验证"
+  ],
+  "tags": [
+    "feishu",
+    "card",
+    "design",
+    "spec",
+    "agent",
+    "automation",
+    "lark"
+  ],
+  "author": "EdwardWason",
+  "license": "MIT",
+  "homepage": "https://github.com/EdwardWason/feishu-card-design",
+  "entry": "SKILL.md",
+  "capabilities": [
+    "提供 5 大铁律 + 11 种报告类型配色映射的飞书卡片设计规范",
+    "提供 6 份 references 规范文档（Schema/配色/标题/布局/兼容性/可访问性）",
+    "提供 5 份 templates JSON 模板（含占位符）",
+    "提供 5 份 examples 真实样例（脱敏数据）",
+    "提供 3 份 scripts 工具（validator/builder/markdown_to_card）",
+    "11 项铁律自动验证（schema/header/双重保险/邻近色环/语义色块/标题格式/footer note 等）",
+    "Markdown → Card 2.0 一键转换",
+    "Python Builder API 函数式构建卡片"
+  ],
+  "use_cases": [
+    "Agent 定时任务生成飞书卡片消息时，Read SKILL.md 即合规",
+    "跨项目复用同一套飞书卡片设计规范",
+    "用 Python 代码生成符合规范的飞书卡片 JSON",
+    "把 Markdown 报告一键转换为飞书 Card 2.0 JSON",
+    "验证已有飞书卡片是否符合 11 项铁律"
+  ],
+  "not_use_cases": [
+    "不包含任何业务逻辑（纯规范 Skill）",
+    "不直接发送飞书消息（需配合飞书 OpenAPI）",
+    "不替代飞书官方 Card 2.0 文档（仅作为业务规范补充）"
+  ],
+  "file_structure": {
+    "entry": "SKILL.md",
+    "references": "references/",
+    "templates": "templates/",
+    "examples": "examples/",
+    "scripts": "scripts/"
+  }
+}

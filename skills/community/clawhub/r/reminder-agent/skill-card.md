@@ -1,37 +1,54 @@
-## Description: <br>
-Converts Vietnamese or English reminder requests into structured JSON reminder data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts human reminder requests in Vietnamese or English into structured JSON reminder data.
 
-## Publisher: <br>
-[AnhducNA](https://clawhub.ai/user/AnhducNA) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anhducna](https://clawhub.ai/user/anhducna)
 
-## Use Case: <br>
-Users and agents use this skill to turn natural-language reminder requests into structured reminder data, including title, scheduled time, recurrence, priority, and notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Lunar-date reminders depend on a separate lunar conversion skill. <br>
-Mitigation: Review and trust the lunar-convert skill before relying on reminders that use lunar dates. <br>
+## Use Case:
 
+External users and agents use this skill to turn reminder requests into a raw JSON object with title, datetime, recurrence, priority, and optional note fields. It also supports user-specified output field names and delegates lunar-date conversion to a separate lunar-convert skill.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [Raw JSON object or one concise clarification question when required reminder details are missing.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs Gregorian ISO 8601 datetimes and supports custom field names when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may activate on broad scheduling language and produce reminder JSON when the user's intent is ambiguous.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated JSON before passing it to a downstream reminder or scheduling system.
+
+Risk: Lunar-calendar reminder requests depend on a separate lunar-convert skill and may be wrong if that skill is unavailable or unreviewed.
+
+Mitigation: Install and review the lunar-convert skill separately before using lunar-date reminders.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/anhducna/skills/reminder-agent)
+- [Publisher Profile](https://clawhub.ai/user/anhducna)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Guidance]
+
+**Output Format:** [Raw JSON object, or one concise clarification question when required fields are missing]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default schema contains title, datetime, recurrence, priority, and note; custom output preserves requested field names.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

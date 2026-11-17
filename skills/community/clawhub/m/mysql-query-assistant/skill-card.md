@@ -1,42 +1,58 @@
-## Description: <br>
-Translates natural-language analytics requests into MySQL queries, inspects live database schemas, runs read-only SQL, and validates results before summarizing them. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Translates natural-language analytics requests into MySQL queries, inspects live database schema and column comments, executes read-only SQL, and validates query correctness against real results.
 
-## Publisher: <br>
-[nocb](https://clawhub.ai/user/nocb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nocb](https://clawhub.ai/user/nocb)
 
-## Use Case: <br>
-Developers, data analysts, and database operators use this skill to convert natural-language questions into validated MySQL queries against a live database. It supports schema discovery, cautious read-only execution, query debugging, and preview-only handling for requested write operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can query a live MySQL database, so broad credentials or production access could expose sensitive data. <br>
-Mitigation: Use a dedicated read-only database account scoped to the needed schema and avoid production or admin credentials. <br>
-Risk: Generated SQL may be incorrect or may not match the user's intended business meaning. <br>
-Mitigation: Review important generated SQL and rely on the skill's structural and result validation before acting on outputs. <br>
-Risk: Installing database drivers from untrusted sources could introduce supply-chain risk. <br>
-Mitigation: Install Python database drivers only from trusted package sources. <br>
+## Use Case:
 
+Developers and analysts use this skill to convert ad hoc business questions into validated MySQL queries against databases provided through environment variables. It supports cautious database workflows by inspecting schema before query generation, executing only read-only SQL, and producing preview SELECT statements for restricted write requests without executing writes.
 
-## Reference(s): <br>
-- [Connection and safety](references/connection-and-safety.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown containing SQL code blocks, validation notes, sample rows, result summaries, assumptions, and caveats.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Result samples are kept small by default; write requests are presented as preview SELECT statements plus unexecuted SQL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The release security verdict is suspicious because the database read-only safety guard is incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only with a dedicated least-privilege MySQL account limited to SELECT and metadata access, with FILE, write, admin, routine execution, and privilege-management permissions revoked.
+
+Risk: The skill connects to live databases and can expose sensitive data through query results.
+
+Mitigation: Use bounded queries, keep result samples small, and verify TLS behavior before using the skill against remote or sensitive databases.
+
+Risk: Generated SQL or schema interpretation can be incorrect or misleading.
+
+Mitigation: Review structural validation for tables, columns, joins, filters, grouping, and syntax, then compare returned rows and aggregates with the user's intent before presenting results.
+
+## Reference(s):
+
+- [Connection and Safety](artifact/references/connection-and-safety.md)
+- [ClawHub Skill Page](https://clawhub.ai/nocb/skills/mysql-query-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown sections with SQL code blocks, validation notes, sample results, result summaries, and caveats.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include compact JSON output from bundled schema and read-query scripts; sample rows are bounded by default.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

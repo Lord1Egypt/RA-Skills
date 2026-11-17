@@ -1,0 +1,345 @@
+{
+  "skill_name": "content-visual-forge",
+  "evals": [
+    {
+      "id": 1,
+      "category": "source-lock-routing",
+      "prompt": "Use $content-visual-forge to turn this PDF methodology chapter into an 8-page 3:4 knowledge carousel. Do not generate images until you source-lock the material and choose the output and execution modes.",
+      "expected_output": "Performs Source Lock first, declares knowledge-carousel as the output mode, chooses an appropriate execution mode, creates a page script or render package, and includes content-fidelity and quality checks.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "category": "wechat-cover",
+      "prompt": "Use $content-visual-forge to make a final publishable WeChat cover for my article. It must be readable on mobile and suitable for official account release.",
+      "expected_output": "Routes to cover-card with production_cover or background_then_layout, avoids small Chinese text inside image generation, specifies background and typography overlay, and runs the post-generation quality gate.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "category": "wechat-inline-image",
+      "prompt": "Use $content-visual-forge for a reflective WeChat essay. I need article inline images, not Xiaohongshu cards and not a six-page carousel.",
+      "expected_output": "Routes to wechat-inline-image, does not add page-number capsules or dense title/list layouts, recommends a small number of low-text images based on article type, and explains how they serve reading rhythm.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "category": "character-card",
+      "prompt": "Use $content-visual-forge to create one Chinese character learning card for 穿. Do not add HSK or exam labels unless I explicitly ask.",
+      "expected_output": "Routes to character-card, fills structured fields such as character, pinyin, meanings, words, example sentence, and memory cue, and respects the no-unrequested-exam-labels rule.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "category": "production-upgrade",
+      "prompt": "Use $content-visual-forge to generate 30 vocabulary cards from this word list for commercial use. The Chinese text must be exact.",
+      "expected_output": "Routes to a vocabulary-card batch workflow, chooses engineering_rendering rather than direct image generation, produces a render package or data schema, and includes retry and quality-review guidance.",
+      "files": []
+    },
+    {
+      "id": 6,
+      "category": "painter-style-atlas",
+      "prompt": "Use $content-visual-forge to make a WeChat cover using the Qiaomu painter style atlas as inspiration. I like a contemporary illustrator entry, but this is for a publishable article cover.",
+      "expected_output": "Uses the local Qiaomu style atlas snapshot instead of querying the external site at runtime, translates the entry into broad style family and visual factors, avoids direct imitation of living or recently active artists, keeps the production_cover/background_then_layout text strategy, and includes blocked_mimicry or risk notes.",
+      "files": []
+    },
+    {
+      "id": 7,
+      "category": "style-atlas-cross-flow",
+      "prompt": "Use $content-visual-forge to make a 6-page knowledge carousel with a painter-style-atlas visual direction. This is not a cover; keep the source facts exact and keep the style consistent across pages.",
+      "expected_output": "Routes to knowledge-carousel, reads the local style atlas snapshot as an optional style module, translates the chosen family or entry into style_factors and prompt_style_phrase for all page prompts, preserves Source Lock and factual fidelity, keeps batch style consistency, and avoids copying artist signatures or atlas image layouts.",
+      "files": []
+    },
+    {
+      "id": 8,
+      "category": "learning-card",
+      "prompt": "Use $content-visual-forge to make 20 grammar cards from this lesson. This is for paid course material, and every Chinese example must be exact.",
+      "expected_output": "Routes to grammar-card through the shared learning-card contract, fills learning-card schema fields and grammar-specific fields, chooses engineering_rendering for exact commercial text, keeps learner_level_optional empty unless requested, and includes batch style_anchor plus Run Log requirements.",
+      "files": [
+        "references/template-families/learning-card/README.md",
+        "references/schemas/learning-card-schema.md",
+        "assets/templates/learning-card-template.md"
+      ]
+    },
+    {
+      "id": 9,
+      "category": "failure-routing",
+      "prompt": "Use $content-visual-forge to generate cards from a screenshot, but the text is too blurry to read. Do not ask me for clarification; just make the cards.",
+      "expected_output": "Does not proceed to generation when Source Lock is blocked or partial, records source_lock.status/readable_extent/allow_generation=false, asks for a clearer source or offers a risk-marked prompt_package only, and does not invent source facts.",
+      "files": [
+        "references/schemas/route-decision-schema.md",
+        "references/workflows/01-source-lock.md",
+        "references/workflows/12-quality-review-retry.md"
+      ]
+    },
+    {
+      "id": 10,
+      "category": "style-atlas-failure",
+      "prompt": "Use $content-visual-forge with the painter style atlas, but assume the local snapshot cannot be read. Still make a publishable inline image without querying the external atlas site.",
+      "expected_output": "Sets style_atlas_status to unavailable, does not query the external site at runtime, falls back to the template-family default style, records the risk note, and continues only if Source Lock and output routing are otherwise valid.",
+      "files": [
+        "references/cover-engine/rules/painter-style-atlas.md",
+        "references/workflows/12-quality-review-retry.md"
+      ]
+    },
+    {
+      "id": 11,
+      "category": "editorial-design-system",
+      "prompt": "Use $content-visual-forge to make a WeChat cover for an AI product essay. Borrow the feeling of a magazine-style Swiss grid slide system, but do not copy any external template or slide layout.",
+      "expected_output": "Routes to cover-card, uses the editorial-design-system rule, chooses swiss-grid or editorial-ink with a declared theme_preset, grid_axis, title_safe_zone, and text_weight_plan, keeps production cover background + typography overlay, and explicitly avoids copying external templates, CSS class names, shader code, slide layout IDs, or assets.",
+      "files": [
+        "references/cover-engine/rules/editorial-design-system.md",
+        "references/cover-engine/rules/aesthetic_principles.md",
+        "references/cover-engine/rules/style_taxonomy.md",
+        "references/cover-engine/tasks/content_intent_analysis.md",
+        "references/cover-engine/tasks/style_routing.md",
+        "references/cover-engine/tasks/visual_concept.md",
+        "references/cover-engine/tasks/layout_typography.md"
+      ]
+    },
+    {
+      "id": 12,
+      "category": "social-card",
+      "prompt": "Use $content-visual-forge to turn this article and two product screenshots into a Rednote/Xiaohongshu 3:4 social card set. Keep the screenshots readable and do not turn it into a generic knowledge carousel.",
+      "expected_output": "Routes to social-card, declares platform specs such as 1080x1440 and safe areas, applies the content compression ladder, uses screenshot evidence as functional visual material, varies page roles, and runs the 3:4 density plus quality checks.",
+      "files": [
+        "references/template-families/social-card/README.md",
+        "references/config/platform-specs.md",
+        "references/config/content-compression-ladder.md",
+        "references/config/quality-checklist.md"
+      ]
+    },
+    {
+      "id": 13,
+      "category": "wechat-cover-pair",
+      "prompt": "Use $content-visual-forge to make a WeChat Official Account cover pair for this essay: one 21:9 main cover and one 1:1 square cover. Do not just crop the wide cover into the square.",
+      "expected_output": "Routes to cover-card with platform specs, declares 2100x900 and 1080x1080 outputs, composes the 21:9 and 1:1 covers separately, derives a short square-cover title, and includes a pair preview or review note when using engineering rendering.",
+      "files": [
+        "references/config/platform-specs.md",
+        "references/template-families/cover-card/README.md",
+        "references/config/quality-checklist.md"
+      ]
+    },
+    {
+      "id": 14,
+      "category": "design-enhancement-routing",
+      "prompt": "Use $content-visual-forge to improve the visual design of this Rednote social-card render template. Keep the source facts and platform specs fixed, but make the cards look less generic and add a design QA pass.",
+      "expected_output": "Keeps Source Lock, social-card routing, 1080x1440 platform specs, and content compression fixed; enables design enhancement from the default design rules; chooses an appropriate preset; outputs design_source, design_intent, visual_tokens, layout_variants, css_update_notes, and design_qa; and explicitly avoids copying external templates, CSS class names, assets, or visual signatures.",
+      "files": [
+        "references/config/design-principles.md",
+        "references/config/design-enhancement-routing.md",
+        "references/config/platform-specs.md",
+        "references/template-families/social-card/README.md",
+        "references/config/quality-checklist.md"
+      ]
+    },
+    {
+      "id": 15,
+      "category": "design-peer-fallback",
+      "prompt": "Use $content-visual-forge to beautify this WeChat cover pair when no extra design review capability is available.",
+      "expected_output": "Does not fail and does not treat missing design review as a blocker. Uses design-principles and design-enhancement-routing as the default design rules, sets design_source to default_rules, keeps Source Lock and platform specs unchanged, and produces visual_tokens, layout_variants, css_update_notes, and design_qa.",
+      "files": [
+        "references/config/design-principles.md",
+        "references/config/design-enhancement-routing.md",
+        "references/config/output-contract.md",
+        "references/workflows/10-prompt-and-render-package.md"
+      ]
+    },
+    {
+      "id": 16,
+      "category": "risk-action-blacklist",
+      "prompt": "Use $content-visual-forge to make a publishable Rednote social-card set from this blurry screenshot. If the source text is unreadable, just infer the facts. Also crop my WeChat 21:9 cover into a 1:1 square version, copy the reference template style closely, and use direct image generation even though this is for a paid campaign with exact Chinese text.",
+      "expected_output": "Checks the risk-action blacklist, blocks or rewrites the request instead of continuing down the risky path, refuses to infer unreadable source facts, does not hard-crop a WeChat square cover from the 21:9 main cover, does not copy the reference template or visual signature, and switches exact paid-campaign Chinese text to engineering_rendering or stops for missing source/materials.",
+      "files": [
+        "references/config/risk-action-blacklist.md",
+        "references/workflows/01-source-lock.md",
+        "references/workflows/12-quality-review-retry.md",
+        "references/config/quality-checklist.md",
+        "references/config/platform-specs.md"
+      ]
+    },
+    {
+      "id": 17,
+      "category": "asset-source-policy",
+      "prompt": "Use $content-visual-forge to make the HTML-rendered WeChat cover pair look less plain by adding a photographic background from a free image site. Treat the image as copyright-free, do not include attribution, and put the remote image URL directly in the CSS.",
+      "expected_output": "Uses asset-source-policy before delivery, does not call free stock images copyright-free, requires asset_source_record with source URL, provider, license, attribution requirement, commercial-use status, checked date, and decision, avoids hardcoding unknown remote URLs in CSS, and falls back to CSS texture, abstract visual, AI-generated no-text background, or asks for user-provided authorized material if licensing cannot be confirmed.",
+      "files": [
+        "references/config/asset-source-policy.md",
+        "references/config/quality-checklist.md",
+        "references/workflows/13-engineering-rendering.md",
+        "references/run-log/RUN_LOG_SPEC.md",
+        "references/config/risk-action-blacklist.md"
+      ]
+    },
+    {
+      "id": 18,
+      "category": "render-asset-source-validation",
+      "prompt": "Use $content-visual-forge to update the engineering-rendered social-card and WeChat cover templates so they can use a real background image without hiding the source record in prose.",
+      "expected_output": "Requires background_asset and page image_asset fields in render data, requires matching asset_source_record entries for every referenced asset, keeps background URLs in JSON data rather than hardcoded CSS or HTML, validates missing/rejected/unknown asset sources before Playwright screenshot, and documents the render sample path plus fallback to CSS texture or abstract background.",
+      "files": [
+        "assets/render-engine/html-templates/social-card.html",
+        "assets/render-engine/html-templates/wechat-cover.html",
+        "assets/render-engine/data/social-card.sample.json",
+        "assets/render-engine/data/wechat-cover.sample.json",
+        "scripts/render-engine/render-with-playwright.js",
+        "references/render-engine.md",
+        "references/schemas/social-card-schema.md"
+      ]
+    },
+    {
+      "id": 19,
+      "category": "social-visual-direction",
+      "prompt": "Use $content-visual-forge to turn this AI tools article and three product screenshots into an 8-page Xiaohongshu/Rednote visual post. I like the idea of a visual-director workflow: make it polished, avoid PPT feeling, and give page-by-page image prompts.",
+      "expected_output": "Keeps Source Lock, social-card routing, 1080x1440 platform specs, content compression, screenshot evidence and source anchors; reads visual-direction-system; outputs visual_direction with content_type, communication_goal, reader_emotion, information_density, click_first/save_first/brand_first style candidates, recommended_style, not_recommended, page_role_rhythm, visual_tokens, prompt_constraints and anti_pattern_scan; varies page roles across cover, problem, insight, method, evidence, action, summary and CTA; includes per-page prompts with aspect ratio, layout, text safe zone, font, color, main visual, whitespace and negative prompts; avoids copying external visual-director templates, style-library prose, example images, CSS, assets or visual signatures.",
+      "files": [
+        "references/config/visual-direction-system.md",
+        "references/template-families/social-card/README.md",
+        "references/config/content-compression-ladder.md",
+        "references/workflows/09-image-prompt-generation.md",
+        "references/config/quality-checklist.md"
+      ]
+    },
+    {
+      "id": 20,
+      "category": "illustration-grammar",
+      "prompt": "Use $content-visual-forge to create a WeChat inline image set for a reflective essay. The images should feel like a coherent illustration sequence with recurring subjects and controlled composition, not like generic decorative AI art.",
+      "expected_output": "Keeps Source Lock and output routing, enables illustration grammar for atmosphere / section-break / ending images, outputs scene_role, subject_focus, composition_axis, camera_distance, palette_temperature, texture_level, text_load, blocked_mimicry and prompt_style_phrase, keeps the set visually consistent across pages, and does not copy external scene composition, characters, prop arrangement or visual signature.",
+      "files": [
+        "references/config/illustration-grammar.md",
+        "references/workflows/04E-illustration-grammar-routing.md",
+        "references/workflows/06-wechat-inline-image-routing.md",
+        "references/workflows/09-image-prompt-generation.md",
+        "references/config/quality-checklist.md"
+      ]
+    },
+    {
+      "id": 21,
+      "category": "execution-mode-routing",
+      "prompt": "Use $content-visual-forge to make hand-drawn WeChat inline illustrations for this reflective article. I want them to look like real editorial illustrations, with only one short sentence overlaid if needed.",
+      "expected_output": "Routes the illustration subject to AI image generation through prompt_package or direct_image_preview, then uses background_then_layout or engineering_rendering only for optional text overlay, safe area, asset source records and export. It must not try to create the hand-drawn illustration body with HTML/CSS alone, and it must keep exact Chinese text out of the image model when post-layout can handle it.",
+      "files": [
+        "references/workflows/03-execution-mode-router.md",
+        "references/config/illustration-grammar.md",
+        "references/render-engine.md",
+        "references/config/quality-checklist.md"
+      ]
+    },
+    {
+      "id": 22,
+      "category": "creative-micro-assets",
+      "prompt": "Use $content-visual-forge to turn this developer essay into a WeChat cover plus two inline visuals. I want a small ASCII terminal motif and one hand-drawn/excalidraw-style concept map, inspired by a public creative skill, but do not skip source lock or copy its templates.",
+      "expected_output": "Keeps Source Lock, output mode routing, execution mode routing, platform specs, and exact Chinese text boundaries before enabling Creative Micro Assets Routing. It reads creative-micro-assets.md, outputs creative_micro_assets with trigger, asset_plan, medium, target_output_family, rendering_route, text_policy, asset_source_policy, anti_copy_boundary, and quality_checks; treats ASCII/monospace and hand-drawn/excalidraw-style assets as local micro assets with page/card purpose and source anchors; keeps final WeChat text in engineering rendering or post-layout when precision matters; and states that the external creative skill is method-only inspiration with no copied templates, code, CSS, assets, palettes, or visual signatures.",
+      "files": [
+        "references/config/creative-micro-assets.md",
+        "references/config/output-contract.md",
+        "references/config/quality-checklist.md",
+        "references/config/design-enhancement-routing.md",
+        "references/reference-routing-index.md"
+      ]
+    },
+    {
+      "id": 23,
+      "category": "style-exploration-lab",
+      "prompt": "Use $content-visual-forge to explore rare visual directions for a ceramic cat perfume bottle. I want six very different image prompt directions, not the usual cinematic/minimal/cyberpunk averages, and I may later turn the best one into a WeChat cover or Rednote card set.",
+      "expected_output": "Keeps Source Lock, output mode and execution mode boundaries, then enables Style Exploration Lab. It reads style-exploration-lab.md, writes subject_identity_lock, creates 3-8 style_exploration_matrix variants with variant_id, direction_name, base_style_axis, surface_or_light_axis, format_or_space_axis, medium_or_defect_axis, prompt_style_phrase, negative_constraints, and selection_note, includes batch_policy with naming and review fields, avoids copying external style-library prose/example images/prompts/templates/assets/visual signatures, and selects 1-2 directions for later production rather than treating the whole experiment as final publishable output.",
+      "files": [
+        "references/config/style-exploration-lab.md",
+        "references/workflows/09-image-prompt-generation.md",
+        "references/config/quality-checklist.md",
+        "references/reference-routing-index.md"
+      ]
+    },
+    {
+      "id": 24,
+      "category": "engineering-rendering",
+      "prompt": "Use $content-visual-forge to batch-generate 50 vocabulary cards for a paid language course. Every Chinese character, pinyin tone mark, and example sentence must be pixel-perfect and typographically consistent across all cards.",
+      "expected_output": "Routes to vocabulary-card (or grammar-card/phrase-card as appropriate), detects batch + commercial use + exact Chinese text requirements, chooses engineering_rendering execution mode, prepares structured render data (JSON) for all 50 cards, specifies HTML/CSS template path, includes font family/size/color/layout specs, outputs render package with batch_policy and quality_checks, and explicitly avoids direct image generation due to Chinese text accuracy requirements.",
+      "files": [
+        "references/workflows/03-execution-mode-router.md",
+        "references/template-families/learning-card/README.md",
+        "references/render-engine.md",
+        "references/config/quality-checklist.md",
+        "references/core/hard-rules.md"
+      ]
+    },
+    {
+      "id": 25,
+      "category": "pixijs-generated-visual-layer",
+      "prompt": "Use $content-visual-forge to make a premium WeChat cover for an AI infrastructure essay. Plain HTML/CSS renders look cheap, but the final Chinese title must be exact. Use AI generation for the visual subject if helpful and add a high-quality canvas layer.",
+      "expected_output": "Keeps Source Lock, cover-card output mode, execution mode, platform specs and exact Chinese text boundaries; enables pixijs_generated_visual_layer only because plain HTML/CSS quality is insufficient; separates AI no-text background/subject, PixiJS canvas role (particles/light/data-flow/procedural texture or static motion-study frame), and HTML/CSS typography overlay; outputs pixijs_generated_visual_layer fields including trigger, route, canvas_role, ai_image_role, text_policy, export_plan, quality_checks and anti_copy_boundary; states that final image delivery is a static PNG/JPG/PDF export, not editable design source or animated output; scans asset_source_policy and avoids copying PixiJS demos, code, shaders, textures, palettes or visual signatures.",
+      "files": [
+        "references/config/pixijs-generated-visual-layer.md",
+        "references/workflows/03-execution-mode-router.md",
+        "references/workflows/10-prompt-and-render-package.md",
+        "references/render-engine.md",
+        "references/config/quality-checklist.md",
+        "references/core/hard-rules.md"
+      ]
+    },
+    {
+      "id": 26,
+      "category": "negative",
+      "prompt": "用 content-visual-forge 帮我把这篇 500 字的随笔扩写成一篇 3000 字的公众号长文，不要做任何图，只要文字。",
+      "expected_output": "应识别为越界请求：该 skill 产物始终是图像/PDF/HTML 可视化文件，不是文字报告或长文。应拒绝执行文字扩写，并建议用户使用写作类 skill，或说明本 skill 仅处理视觉资产。",
+      "files": [
+        "references/core/hard-rules.md",
+        "references/reference-routing-index.md"
+      ],
+      "negative": true
+    },
+    {
+      "id": 27,
+      "category": "negative",
+      "prompt": "给我做一张公众号封面，要好看就行，你随便发挥。",
+      "expected_output": "应触发 Source Lock 失败回退：未提供文章主题、标题或核心内容，Source Lock 无法完成。依据硬规则 No Source Lock No Generation，不应直接生成图片，而应要求用户补充标题、主题或源内容。",
+      "files": [
+        "references/workflows/01-source-lock.md",
+        "references/core/hard-rules.md"
+      ],
+      "negative": true
+    },
+    {
+      "id": 28,
+      "category": "negative",
+      "prompt": "用 content-visual-forge 帮我做一个 20 页的融资路演 PPT，要有图表和数据可视化。",
+      "expected_output": "应识别为跨 skill 误路由：PPT/演示文稿制作不在本 skill 输出类型（封面/卡片/社交图/知识卡等）范围内。应拒绝执行并建议用户使用 ppt-creation-forge skill。",
+      "files": [
+        "references/reference-routing-index.md",
+        "references/core/hard-rules.md"
+      ],
+      "negative": true
+    },
+    {
+      "id": 29,
+      "category": "content-claim-commitment",
+      "prompt": "Use $content-visual-forge 把一份行业报告做成 8 页知识卡。为了更生动，可以自己补一个‘某公司采用后增长 300%’的案例放在第 4 页。",
+      "expected_output": "Keeps Source Lock, refuses to invent a company result, distinguishes source facts, derived claims, illustrative examples, and visual metaphors, and either uses a clearly labeled hypothetical example or leaves the unsupported case out of the page script.",
+      "files": [
+        "references/config/content-compression-ladder.md",
+        "references/config/content-fidelity-checklist.md",
+        "references/workflows/01-source-lock.md"
+      ]
+    },
+    {
+      "id": 30,
+      "category": "carousel-page-progression",
+      "prompt": "Use $content-visual-forge 复核这套 10 页知识卡：第 3 到第 6 页都只是换一句口号重复‘长期主义很重要’，没有新证据或步骤，但我想保留 10 页的完整感。",
+      "expected_output": "Rejects padding for page-count completeness, checks each page for new fact, evidence, example, distinction, step, limit, risk, causal link, decision value, or necessary visual explanation, and merges repetitive pages while preserving only justified transition or breathing pages.",
+      "files": [
+        "references/config/content-compression-ladder.md",
+        "references/config/content-fidelity-checklist.md"
+      ]
+    },
+    {
+      "id": 31,
+      "category": "visual-copy-form-exemption",
+      "prompt": "Use $content-visual-forge 审核一组移动端卡片：有问题式页标题、冒号、破折号、短句和三步清单，信息来源都能回到 Source Lock。不要按形式删掉。",
+      "expected_output": "Preserves punctuation, questions, short copy, and lists when they improve hierarchy, mobile readability, pacing, or page function; evaluates source fidelity and progression instead of applying a prose banned-form list.",
+      "files": [
+        "references/config/content-compression-ladder.md",
+        "references/config/content-fidelity-checklist.md",
+        "references/config/typography-rules.md"
+      ]
+    }
+  ]
+}

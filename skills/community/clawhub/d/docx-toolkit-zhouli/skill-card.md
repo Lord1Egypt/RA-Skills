@@ -1,43 +1,55 @@
-## Description: <br>
-Extract text, tables, and images from .docx and legacy .doc files, with support for large documents, CJK text, complex table structures, image deduplication, and image filtering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract text, tables, and images from .docx and legacy .doc files. Handles large documents, CJK text, and complex table structures. Includes deduplication and filtering for extracted images.
 
-## Publisher: <br>
-[onlyloveher](https://clawhub.ai/user/onlyloveher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[onlyloveher](https://clawhub.ai/user/onlyloveher)
 
-## Use Case: <br>
-Developers and engineers use this skill to extract document text, tables, and embedded images from Word files for analysis, migration, auditing, and automation pipelines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive content from Word documents may be written to extracted text, image, or manifest outputs. <br>
-Mitigation: Treat extracted outputs as sensitive when the source document is sensitive, and store them only in appropriate output directories. <br>
-Risk: Image resizing can overwrite files when no separate output directory is provided. <br>
-Mitigation: Use an explicit output directory unless in-place resizing is intended. <br>
-Risk: Dependency and file-processing behavior runs locally against user-supplied documents. <br>
-Mitigation: Install dependencies in a virtual environment and review documents and outputs before using them in downstream automation. <br>
+## Use Case:
 
+Developers and document-processing teams use this skill to extract Word document text, tables, embedded images, and resized image assets for analysis, migration, audit, and batch-processing workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/onlyloveher/docx-toolkit-zhouli) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/onlyloveher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated text, image, or JSON manifest files from the bundled scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on the selected script: extracted text, tab-delimited tables, extracted image files, optional image context manifests, or resized image files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: Local document-processing tools operate on user-selected Word files and third-party Python dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a virtual environment, consider pinning dependency versions, and run the tools only on documents you intend to process.
+
+Risk: Image resizing can overwrite originals and lossy compression may change image quality or format when no output directory is supplied.
+
+Mitigation: Use explicit output directories for resizing workflows and retain source images when preserving originals matters.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/onlyloveher/skills/docx-toolkit-zhouli)
+- [Publisher Profile](https://clawhub.ai/user/onlyloveher)
+- [Skill YAML Homepage](https://clawhub.com/skills/docx-toolkit)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands; generated artifacts include text or TSV content, image files, and an optional JSON image manifest.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local file-processing outputs; image resizing can overwrite originals when no output directory is provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, evidence.release.version, _meta.json, skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

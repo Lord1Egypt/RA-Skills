@@ -1,43 +1,54 @@
-## Description: <br>
-PKU BDKJ helps agents use the PKU academic discussion room CLI to log in, search rooms, manage participant groups, create reservations, and cancel reservations for bdkj.pku.edu.cn. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PKU BDKJ helps agents use a CLI to log in to PKU's bdkj.pku.edu.cn service, find academic discussion rooms, manage participant groups, and create or cancel reservations.
 
-## Publisher: <br>
-[wjsoj](https://clawhub.ai/user/wjsoj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wjsoj](https://clawhub.ai/user/wjsoj)
 
-## Use Case: <br>
-Developers and agents use this skill to operate the PKU BDKJ CLI for finding academic discussion rooms, checking availability, managing saved participant groups, and submitting or cancelling reservations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use stored university credentials to create or cancel real room reservations. <br>
-Mitigation: Require manual confirmation for each login, reservation, cancellation, room, time, reason, and participant list before execution. <br>
-Risk: Session and group data are stored locally and may expose account or participant information on shared machines. <br>
-Mitigation: Use the skill only on trusted machines, protect local config files, and clear stored sessions and groups when no longer needed. <br>
-Risk: The workflow depends on separate bdkj and info-auth tools. <br>
-Mitigation: Install and use those tools only from trusted sources before allowing the skill to access credentials or perform reservations. <br>
+## Use Case:
 
+PKU students or staff and their agents use this skill to query available academic discussion rooms, reuse saved participant groups, and manage real room bookings through the bdkj CLI.
 
-## Reference(s): <br>
-- [PKU BDKJ ClawHub page](https://clawhub.ai/wjsoj/pku-bdkj) <br>
-- [PKU BDKJ service](https://bdkj.pku.edu.cn) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with CLI commands and concise Chinese-facing operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May depend on local session state, saved participant groups, and university SSO credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can guide stored-credential login and preserve session and participant group data locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before stored-credential login and periodically inspect or delete ~/.config/info/bdkj data on shared or sensitive machines.
+
+Risk: The skill can guide creation or cancellation of real PKU room reservations.
+
+Mitigation: Confirm the intended room, time, reason, participants, and apply ID with the user before reservation or cancellation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wjsoj/skills/pku-bdkj)
+- [PKU BDKJ service](https://bdkj.pku.edu.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide actions that create or cancel real room reservations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

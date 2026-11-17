@@ -1,44 +1,61 @@
-## Description: <br>
-Recognizes vehicles, animals, and plants and extracts OCR text from screenshots, photos, invoices, handwriting, and tables using Baidu vision APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recognizes vehicles, animals, and plants and extracts text from screenshots, photos, invoices, handwriting, and tables using Baidu vision and OCR APIs.
 
-## Publisher: <br>
-[wangziiiiii](https://clawhub.ai/user/wangziiiiii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangziiiiii](https://clawhub.ai/user/wangziiiiii)
 
-## Use Case: <br>
-Developers and agents use this skill to classify cars, animals, and plants or extract OCR text from selected image inputs supplied as local paths, URLs, or base64 payloads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected images and document screenshots are sent to Baidu for OCR or recognition. <br>
-Mitigation: Use only approved images, avoid highly sensitive or regulated documents unless approved, and disclose the external processing path where required. <br>
-Risk: Baidu API credentials are required through environment variables. <br>
-Mitigation: Use dedicated, least-privileged Baidu credentials and rotate or revoke them according to local credential policy. <br>
-Risk: The scripts read local image files and make outbound network requests. <br>
-Mitigation: Review requested image paths or URLs before execution and run the skill only in environments where Baidu network access is expected. <br>
+## Use Case:
 
+Developers and external users use this skill to run Baidu-backed image classification and OCR workflows for local files, public image URLs, or base64 image input.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangziiiiii/vision-recognition-ocr) <br>
-- [Baidu image classification API endpoint](https://aip.baidubce.com/rest/2.0/image-classify/v1) <br>
-- [Baidu OCR API endpoint](https://aip.baidubce.com/rest/2.0/ocr/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration] <br>
-**Output Format:** [JSON API responses with command-line usage examples and credential configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Baidu credential environment variables and network access; accepts local image path, URL, or base64 image input.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Images and documents submitted through local paths, URLs, or base64 input are sent to Baidu vision or OCR services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with files and URLs that are approved for Baidu processing, and avoid sensitive or regulated documents unless the deployment has reviewed the applicable data handling requirements.
+
+Risk: User-specified local paths may upload any readable local file without file-type, path-scope, size, or confirmation safeguards.
+
+Mitigation: Require explicit confirmation for local path inputs, restrict paths to approved folders, and add file type and size validation before broader deployment.
+
+Risk: Shared or overly broad Baidu credentials could expand impact if misused.
+
+Mitigation: Use dedicated least-privilege Baidu credentials for this skill and rotate or revoke them independently from other systems.
+
+## Reference(s):
+
+- [Baidu image classification API endpoint](https://aip.baidubce.com/rest/2.0/image-classify/v1)
+- [Baidu OCR API endpoint](https://aip.baidubce.com/rest/2.0/ocr/v1)
+- [Baidu OAuth token endpoint](https://aip.baidubce.com/oauth/2.0/token)
+- [jisuapi.com](https://jisuapi.com)
+- [jisuepc.com](https://jisuepc.com)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration guidance, Text]
+
+**Output Format:** [JSON API responses and Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Baidu API credentials and accepts image_path, image_base64, or url input.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

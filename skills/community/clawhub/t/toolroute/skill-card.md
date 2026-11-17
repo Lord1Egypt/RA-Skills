@@ -1,46 +1,61 @@
-## Description: <br>
-Route every task to the best MCP server and cheapest LLM. Scores on real execution data across quality, reliability, speed, cost, and trust. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Route every task to the best MCP server and cheapest LLM. Scores on real execution data across quality, reliability, speed, cost, and trust.
 
-## Publisher: <br>
-[grossiweb](https://clawhub.ai/user/grossiweb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[grossiweb](https://clawhub.ai/user/grossiweb)
 
-## Use Case: <br>
-Developers and agent operators use ToolRoute to ask an external routing service for recommended MCP servers, LLM models, and fallback chains before executing tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task descriptions are sent to an external routing service before use, which may expose sensitive task context if prompts are not generalized. <br>
-Mitigation: Require explicit approval for sensitive work and redact names, credentials, contract details, personal data, and other confidential specifics before routing. <br>
-Risk: Routing recommendations can influence tool and model selection for downstream agent work. <br>
-Mitigation: Review recommendations before execution and verify that selected tools, models, and fallback chains match the task's data-handling and reliability requirements. <br>
-Risk: Separate SDK or hook packages are mentioned but not included in the submitted artifact. <br>
-Mitigation: Review and scan those packages independently before installing or enabling them. <br>
+## Use Case:
 
+Developers and agent operators use ToolRoute to request routing recommendations for MCP servers, LLM models, and fallback chains before executing a task.
 
-## Reference(s): <br>
-- [ToolRoute ClawHub listing](https://clawhub.ai/grossiweb/toolroute) <br>
-- [ToolRoute API docs](https://toolroute.io/api-docs) <br>
-- [ToolRoute server catalog](https://toolroute.io/servers) <br>
-- [ToolRoute models](https://toolroute.io/models) <br>
-- [ToolRoute privacy policy](https://toolroute.io/privacy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks and API endpoint examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend MCP servers, LLM models, fallback chains, and optional reporting or registration steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Task descriptions are sent to an external ToolRoute service before use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use generalized task descriptions and remove confidential, legal, financial, security, customer, source-code-sensitive, identifying, or credential material before routing.
+
+Risk: The skill asks agents to follow externally recommended tools or models without clear local limits.
+
+Mitigation: Review the recommended MCP server, model, and fallback chain before execution, especially for sensitive or high-impact work.
+
+Risk: Optional registration, reporting, social verification, and npm package installation can add tracking or supply-chain exposure.
+
+Mitigation: Treat those features as optional and enable them only after manual approval of the outbound text, dependency source, and credential storage location.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/grossiweb/skills/toolroute)
+- [ToolRoute API Docs](https://toolroute.io/api-docs)
+- [ToolRoute Server Catalog](https://toolroute.io/servers)
+- [ToolRoute Model Catalog](https://toolroute.io/models)
+- [ToolRoute Privacy Policy](https://toolroute.io/privacy)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown with inline bash commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl. Normal use sends generalized task descriptions and optional execution metadata to ToolRoute.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata; artifact frontmatter lists 1.0.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

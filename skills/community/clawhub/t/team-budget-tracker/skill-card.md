@@ -1,41 +1,52 @@
-## Description: <br>
-团队预算管理工具 - 帮助小型团队规划和追踪项目预算 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+团队预算管理工具 - 帮助小型团队规划和追踪项目预算。
 
-## Publisher: <br>
-[wuhaichao87](https://clawhub.ai/user/wuhaichao87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuhaichao87](https://clawhub.ai/user/wuhaichao87)
 
-## Use Case: <br>
-Small-team managers and their agents use this skill to create project budgets, allocate category amounts, track actual spending against plan, and generate monthly or quarterly budget reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The documentation references install.sh, examples/sample-budget.md, templates/budget-template.json, and docs/faq.md, but those files are not included in the artifact. <br>
-Mitigation: Review or supply the missing install, example, template, and FAQ files before relying on the skill for real budget tracking. <br>
+## Use Case:
 
+Small team members and project leads use this skill to create project budgets, allocate category amounts, track spending against plan, receive overspend warnings, and prepare monthly or quarterly budget reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wuhaichao87/team-budget-tracker) <br>
-- [README](artifact/README.md) <br>
-- [Installation and usage guide](artifact/GUIDE.md) <br>
-- [CHANGELOG](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and budget file instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires bash according to OpenClaw metadata; referenced install script, example budget, template, and FAQ files were not included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter and package.json report 0.9.0) <br>
+Risk: The release declares an install-time shell command for an installer file that is not included in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installation before use and prefer a release that removes the lifecycle script or includes a clearly documented, narrowly scoped installer.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wuhaichao87/skills/team-budget-tracker)
+- [README](README.md)
+- [Guide](GUIDE.md)
+- [Changelog](CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance, shell commands]
+
+**Output Format:** [Markdown with budget structures, report text, configuration references, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses bash for installation according to release metadata and package scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter, CHANGELOG.md, and package.json report 0.9.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

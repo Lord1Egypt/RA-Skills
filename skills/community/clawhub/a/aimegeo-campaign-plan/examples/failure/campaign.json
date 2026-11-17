@@ -1,0 +1,243 @@
+{
+  "schema_version": 1,
+  "request": "青禾下周参展，两个人拍摄，请给展前、展中、展后内容及当天拍摄清单。",
+  "event": {
+    "id": "qinghe-expo",
+    "brand": "青禾",
+    "kind": "参展",
+    "time": {
+      "raw": "这周末",
+      "anchor_date": null,
+      "timezone": null,
+      "start_date": null,
+      "end_date": null
+    },
+    "staff": [
+      {
+        "id": "A",
+        "role": "口播与接待（建议）"
+      },
+      {
+        "id": "B",
+        "role": "拍摄与记录（建议）"
+      }
+    ]
+  },
+  "facts": [
+    {
+      "id": "F01",
+      "key": "brand",
+      "status": "confirmed",
+      "value": "青禾",
+      "source": {
+        "ref": "input.txt",
+        "excerpt": "青禾"
+      }
+    },
+    {
+      "id": "F02",
+      "key": "event_kind",
+      "status": "confirmed",
+      "value": "参展",
+      "source": {
+        "ref": "input.txt",
+        "excerpt": "参展"
+      }
+    },
+    {
+      "id": "F03",
+      "key": "time_raw",
+      "status": "confirmed",
+      "value": "下周",
+      "source": {
+        "ref": "input.txt",
+        "excerpt": "下周"
+      }
+    },
+    {
+      "id": "F04",
+      "key": "staff_count",
+      "status": "confirmed",
+      "value": 2,
+      "source": {
+        "ref": "input.txt",
+        "excerpt": "两个人拍摄"
+      }
+    },
+    {
+      "id": "F05",
+      "key": "exhibition_name",
+      "status": "missing",
+      "value": null,
+      "source": null
+    },
+    {
+      "id": "F06",
+      "key": "event_dates",
+      "status": "missing",
+      "value": null,
+      "source": null
+    },
+    {
+      "id": "F07",
+      "key": "booth",
+      "status": "missing",
+      "value": null,
+      "source": null
+    },
+    {
+      "id": "F08",
+      "key": "business",
+      "status": "missing",
+      "value": null,
+      "source": null
+    },
+    {
+      "id": "F09",
+      "key": "audience",
+      "status": "missing",
+      "value": null,
+      "source": null
+    },
+    {
+      "id": "F10",
+      "key": "goal",
+      "status": "missing",
+      "value": null,
+      "source": null
+    }
+  ],
+  "scope": {
+    "mode": "all",
+    "selected_ids": [],
+    "authorization": "演示输入：只写01。",
+    "stages": [
+      "before"
+    ],
+    "channels": [
+      "public"
+    ]
+  },
+  "topics": [
+    {
+      "id": "01",
+      "stage": "before",
+      "channel": "public",
+      "platform": "抖音（建议，账号待指定）",
+      "format": "short_video",
+      "time_label": "下周参展前",
+      "title": "青禾下周参展，出发前先确认哪些信息",
+      "hook": "下周要不要去找青禾？先核对参展安排。",
+      "audience": "正在考虑了解此次参展安排的人",
+      "action": "留言最想确认的问题",
+      "fact_ids": [
+        "F01",
+        "F02",
+        "F03"
+      ],
+      "faq_ids": [
+        "Q01",
+        "Q02"
+      ],
+      "shot_ids": [
+        "S01",
+        "S02"
+      ],
+      "owner": "A",
+      "publish_conditions": [
+        "只使用已确认的参展原话，不提供未核实的出行指引"
+      ]
+    }
+  ],
+  "shots": [
+    {
+      "id": "S01",
+      "window": "同一窗口",
+      "start_minute": 0,
+      "end_minute": 5,
+      "people": [
+        "B"
+      ],
+      "content": "实拍识别信息",
+      "fallback": "不拍位置",
+      "priority": "essential",
+      "status": "planned",
+      "topic_ids": [
+        "01"
+      ]
+    },
+    {
+      "id": "S02",
+      "window": "同一窗口",
+      "start_minute": 3,
+      "end_minute": 8,
+      "people": [
+        "B"
+      ],
+      "content": "实拍资料",
+      "fallback": "取消补拍",
+      "priority": "optional",
+      "status": "planned",
+      "topic_ids": [
+        "01"
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "id": "Q01",
+      "question": "青禾什么时候参加什么展会？",
+      "status": "partial",
+      "answer": "青禾下周参展。具体展会名称和展期尚待提供，不推定为周末。",
+      "fact_ids": [
+        "F01",
+        "F02",
+        "F03"
+      ],
+      "missing_keys": [
+        "exhibition_name",
+        "event_dates"
+      ]
+    },
+    {
+      "id": "Q02",
+      "question": "怎样找到青禾展位？",
+      "status": "missing",
+      "answer": null,
+      "fact_ids": [],
+      "missing_keys": [
+        "booth",
+        "exhibition_name",
+        "event_dates"
+      ]
+    },
+    {
+      "id": "Q03",
+      "question": "青禾提供什么，适合哪些人？",
+      "status": "missing",
+      "answer": null,
+      "fact_ids": [],
+      "missing_keys": [
+        "business",
+        "audience"
+      ]
+    }
+  ],
+  "drafts": [
+    {
+      "topic_id": "01",
+      "text": "出行前请核对青禾展位信息。",
+      "fact_ids": [
+        "F01",
+        "F02",
+        "F03"
+      ],
+      "required_fact_ids": [
+        "F07"
+      ],
+      "required_shot_ids": [],
+      "status": "ready_for_review"
+    }
+  ],
+  "observations": []
+}

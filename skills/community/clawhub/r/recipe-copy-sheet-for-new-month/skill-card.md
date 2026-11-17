@@ -1,39 +1,49 @@
-## Description: <br>
-Duplicate a Google Sheets template tab for a new month of tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Duplicate a Google Sheets template tab for a new month of tracking.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-External users and workspace operators use this recipe to copy an existing Google Sheets template tab into a destination spreadsheet and rename it for a new month of tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Commands can modify the selected Google Sheet by copying and renaming a tab. <br>
-Mitigation: Confirm gws is authenticated to the intended Google account and carefully replace the spreadsheet ID, template sheet ID, destination spreadsheet ID, and new tab title before execution. <br>
+## Use Case:
 
+Google Workspace users and operations teams use this skill to duplicate a Google Sheets template tab for a new month of tracking and rename the copied tab.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/recipe-copy-sheet-for-new-month) <br>
-- [googleworkspace-bot publisher profile](https://clawhub.ai/user/googleworkspace-bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gws command-line tool and the gws-sheets skill; commands modify Google Sheets resources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release metadata; artifact metadata version 0.22.5) <br>
+Risk: Incorrect spreadsheet IDs, template sheet IDs, destination spreadsheet IDs, or tab names can change the wrong live Google Sheets data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm all IDs and the new tab name before running the commands, and test on a copy when the spreadsheet is important.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/skills/recipe-copy-sheet-for-new-month)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Google Workspace sheet identifiers and a target tab name supplied by the user.]
+
+## Skill Version(s):
+
+1.0.12 (source: server release metadata; artifact metadata version 0.22.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

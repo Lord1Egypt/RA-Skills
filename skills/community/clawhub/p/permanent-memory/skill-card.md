@@ -1,51 +1,66 @@
-## Description: <br>
-Auto Memory stores agent decisions, identity, and context as a permanent memory chain on the Autonomys Network that can be rebuilt from a single CID. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto Memory stores files and agent memory entries as permanent CID-addressed records on the Autonomys Network, then recalls linked memory chains from a known head CID.
 
-## Publisher: <br>
-[0xautonomys](https://clawhub.ai/user/0xautonomys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xautonomys](https://clawhub.ai/user/0xautonomys)
 
-## Use Case: <br>
-Developers and agent operators use this skill to upload files, save durable agent memories, and recall linked memory chains from Autonomys-backed CIDs after local state loss. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved memories and uploaded files are permanent and public by default. <br>
-Mitigation: Do not upload API keys, tokens, private keys, personal data, regulated data, confidential documents, or conversation history that may need deletion unless it has been minimized and encrypted first. <br>
-Risk: A recalled memory chain can restore incorrect, unwanted, or sensitive prior context. <br>
-Mitigation: Review the exact content and CID before saving or restoring a chain. <br>
-Risk: Uploads, memory saves, and chain recall depend on AUTO_DRIVE_API_KEY. <br>
-Mitigation: Configure and verify the API key before relying on the skill, and use the public gateway only for general downloads when appropriate. <br>
-Risk: Free-tier uploads are limited to 20 MB per month on mainnet. <br>
-Mitigation: Check remaining credits before large or repeated uploads and keep individual uploads well under the monthly limit. <br>
+## Use Case:
 
+Developers and external agent users use Auto Memory to upload and retrieve files, save agent memories, and reconstruct a memory chain after local state loss. It is intended for workflows where the user accepts permanent public storage by CID.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/0xautonomys/permanent-memory) <br>
-- [Auto Drive API Reference](references/automemory-api.md) <br>
-- [Autonomys Network Overview](references/autonomys-network.md) <br>
-- [Memory Chain & Resurrection Pattern](references/memory-chain.md) <br>
-- [Auto Drive API Docs](https://mainnet.auto-drive.autonomys.xyz/api/docs) <br>
-- [Auto Drive SDK Docs](https://develop.autonomys.xyz/sdk/auto-drive/overview_setup) <br>
-- [Autonomys Agents Framework](https://github.com/autonomys/autonomys-agents) <br>
-- [OpenClaw Memory Chain Example](https://github.com/autojeremy/openclaw-memory-chain) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, API Calls, Files, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AUTO_DRIVE_API_KEY for uploads, memory saves, and chain recall; downloads can use the public gateway without an API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Uploaded data can become permanent and publicly retrievable by CID.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review content before upload, exclude secrets and personal or regulated data, and encrypt sensitive material before storing it.
+
+Risk: The setup flow can persist an Auto Drive API key in local agent configuration.
+
+Mitigation: Use a safer secret-management mechanism when available and rotate the key if it may have been exposed.
+
+Risk: A memory chain restored from an untrusted CID can inject unverified content into agent context.
+
+Mitigation: Only recall or continue chains from trusted sources and review restored entries before using them as agent state.
+
+Risk: The optional Auto-Respawn integration can run an unpinned npx command.
+
+Mitigation: Pin and audit the package version and target script before using that optional integration.
+
+## Reference(s):
+
+- [Auto Memory ClawHub Page](https://clawhub.ai/0xautonomys/skills/permanent-memory)
+- [Auto Drive Dashboard and API Keys](https://ai3.storage)
+- [Auto Drive Developer API Key Page](https://explorer.ai3.storage/mainnet/drive/developers)
+- [Auto Drive API Reference](references/automemory-api.md)
+- [Autonomys Network Overview](references/autonomys-network.md)
+- [Memory Chain Reference](references/memory-chain.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce CIDs, gateway links, local files, and memory-chain JSON; uploads require AUTO_DRIVE_API_KEY.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

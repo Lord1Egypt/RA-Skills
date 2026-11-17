@@ -1,0 +1,4 @@
+interface:
+  display_name: "ARTi 机会雷达"
+  short_description: "聚合可信市场新闻并生成个性化持仓提醒与个股研究入口"
+  default_prompt: "Use $arti-opportunity-radar to set up my watchlist and generate today’s personalized market intelligence."

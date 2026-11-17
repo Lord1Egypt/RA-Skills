@@ -1,21 +1,45 @@
 {
+  "deprecated": "use schemas/ppt-ir.schema.json",
   "deck": {
     "source": "",
     "source_rights": "owned|licensed|external-reference|unknown",
     "usage_boundary": "private draft|internal review|public sharing|client delivery|training|publication",
     "export_target": "pptx|native-dynamic-pptx|html-preview|dynamic-html|feishu-slides|multi",
-    "visual_system": "",
+    "audience": "",
+    "visual_system": "consulting-light|product-report|technical-blueprint|consulting-blueprint-hybrid|editorial-knowledge",
+    "palette_name": "string (must match a named palette under the chosen visual_system)",
     "logical_slide_count": 0,
     "physical_slide_count": 0,
-    "content_lock": "content_lock.md",
+    "content_lock": "content_analysis.md",
+    "storyboard": "storyboard.md",
+    "style_contract": "style_contract.json",
     "verification_report": "verification-report.md"
   },
   "slides": [
     {
       "logical_slide_id": "S01",
       "title": "",
-      "content_lock_ref": "content_lock.md#slide-1",
+      "judgment_title": "",
+      "content_lock_ref": "content_analysis.md#slide-1",
       "physical_slide_ids": ["pptx-slide-1"],
+      "page_archetype": "claim-evidence|metric-proof|framework-map|process-lane|system-architecture|ecosystem-map|decision-matrix|risk-register|observability-dashboard|comparison-contrast|editorial-scene|closing-standard",
+      "density_label": "low|medium|high",
+      "primary_anchor": "",
+      "audience_question": "",
+      "expression_mode": "textual_argument|structured_cards|table_matrix|relationship_visual|conceptual_scene|data_visual|hybrid_panel",
+      "expression_mode_reason": "",
+      "relationship_types": [],
+      "visual_component_plan": {
+        "component_type": "none|process_flow|process_lane|swimlane|timeline|layered_architecture|issue_tree|decision_tree|causal_chain|flywheel|hub_spoke|zoned_ecosystem|capability_landscape|dependency_graph|data_flow|state_transition|conceptual_scene|chart",
+        "diagram_ir_ref": "diagrams/<slide-id>-<diagram-name>.json",
+        "audience_question": "",
+        "primary_entities": [],
+        "relationship_types": [],
+        "simplification_strategy": "grouping|lanes|layers|split slide|appendix|label reduction|not needed",
+        "editable_core": [],
+        "visual_component_delivery": "native_ppt|native_chart|native_table|native_diagram|hybrid_overlay|svg_component|generated_image|background_image|none",
+        "raster_acceptance_reason": ""
+      },
       "editable_text_objects": [],
       "must_keep_editable_text": [],
       "visual_objects": [],
@@ -24,13 +48,23 @@
       "tables": [],
       "asset_provenance": [],
       "source_labels": [],
-      "rasterization_tradeoff": "none",
+      "rasterization_tradeoff": "none|bounded_component|material_layer|full_slide_approved",
+      "score": {
+        "judgment_quality": "unknown",
+        "content_fidelity": "unknown",
+        "expression_architecture": "unknown",
+        "page_composition": "unknown",
+        "component_craft": "unknown",
+        "editability_hygiene": "unknown",
+        "total": "unknown"
+      },
       "verification": {
         "nonblank_render": "unknown",
         "text_overflow": "unknown",
         "editable_core_text": "unknown",
         "visual_structure_preserved": "unknown",
-        "source_labels_present": "unknown"
+        "source_labels_present": "unknown",
+        "raster_component_disclosed": "unknown"
       }
     }
   ]

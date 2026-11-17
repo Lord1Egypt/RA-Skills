@@ -1,38 +1,49 @@
-## Description: <br>
-Mini Crm helps individuals and small teams manage customer records, follow-up history, deal tracking, basic analytics, and reminder-oriented CRM reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A lightweight CRM helper for managing customer profiles, follow-up records, deal tracking, analytics, and reminders for individuals and small teams.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Individuals, freelancers, and small teams use this skill to organize customer contact details, track sales interactions, monitor funnel status, and generate concise customer-management reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process customer contact, budget, sales, and follow-up data. <br>
-Mitigation: Use it only with customer data you are authorized to process, store records in an access-controlled location, avoid unnecessary identifiers, and redact contact or financial details before sharing reports. <br>
+## Use Case:
 
+Individuals, small teams, and agents supporting sales workflows use this skill to organize customer details, track follow-ups and deals, generate customer reports, and surface reminder-oriented summaries.
 
-## Reference(s): <br>
-- [Mini Crm ClawHub page](https://clawhub.ai/yang1002378395-cmyk/mini-crm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown reports with structured customer-data examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include customer records, follow-up timelines, funnel summaries, deal lists, and revenue totals.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server evidence release.version) <br>
+Risk: CRM prompts and outputs may contain sensitive customer records such as names, contact handles, emails, budgets, and deal notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Minimize entered data, avoid secrets, and follow the user's retention and sharing rules for customer information.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yang1002378395-cmyk/skills/mini-crm)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured customer-record examples and CRM summary sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include customer names, contact handles, email addresses, budgets, deal notes, and follow-up history supplied by the user.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

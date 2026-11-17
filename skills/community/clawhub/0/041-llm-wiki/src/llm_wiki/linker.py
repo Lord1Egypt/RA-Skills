@@ -10,9 +10,9 @@ Wiki 动态关联引擎
 import re
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Dict, List, Optional, Set, Tuple
 
 from .agent_logger import get_logger
+from .bm25 import BM25, tokenize
 from .core import WikiManager, WikiPage
 
 LOG = get_logger("linker")
@@ -36,7 +36,7 @@ class PageRelation:
     target: str  # 已有页面标题
     score: float  # 关联置信度 [0, 1]
     relation_type: RelationType  # 关系类型
-    evidence: List[str] = field(default_factory=list)  # 关联证据
+    evidence: list[str] = field(default_factory=list)  # 关联证据
     suggested_action: str = ""  # 建议操作
 
     def to_markdown(self) -> str:
@@ -53,15 +53,15 @@ class PageRelation:
 class RelationGraph:
     """关系图谱：一组新页面与 wiki 的关系网络"""
 
-    relations: List[PageRelation] = field(default_factory=list)
+    relations: list[PageRelation] = field(default_factory=list)
 
-    def by_source(self, source: str) -> List[PageRelation]:
+    def by_source(self, source: str) -> list[PageRelation]:
         return [r for r in self.relations if r.source == source]
 
-    def by_target(self, target: str) -> List[PageRelation]:
+    def by_target(self, target: str) -> list[PageRelation]:
         return [r for r in self.relations if r.target == target]
 
-    def top_k(self, k: int = 5) -> List[PageRelation]:
+    def top_k(self, k: int = 5) -> list[PageRelation]:
         return sorted(self.relations, key=lambda r: r.score, reverse=True)[:k]
 
     def to_markdown(self, title: str = "关联报告") -> str:
@@ -78,40 +78,7 @@ class RelationGraph:
         return "\n".join(lines)
 
 
-# 简单停用词表（中英文）
-_STOP_WORDS: Set[str] = {
-    "the", "a", "an", "is", "are", "was", "were", "be", "been", "being",
-    "have", "has", "had", "do", "does", "did", "will", "would", "could",
-    "should", "may", "might", "must", "shall", "can", "need", "dare",
-    "ought", "used", "to", "of", "in", "for", "on", "with", "at", "by",
-    "from", "as", "into", "through", "during", "before", "after", "above",
-    "below", "between", "under", "and", "but", "or", "yet", "so", "if",
-    "because", "although", "though", "while", "where", "when", "that",
-    "which", "who", "whom", "whose", "what", "this", "these", "those",
-    "的", "了", "在", "是", "我", "有", "和", "就", "不", "人", "都",
-    "一", "一个", "上", "也", "很", "到", "说", "要", "去", "你",
-    "会", "着", "没有", "看", "好", "自己", "这", "那", "啊",
-}
-
-
-def _extract_keywords(text: str) -> Set[str]:
-    """从文本中提取关键词（简单启发式）"""
-    # 英文单词
-    words = re.findall(r"[a-zA-Z]{2,}", text.lower())
-    # 中文字符：提取单个中文字符（去掉停用词）+ 2-8字连续序列
-    zh_words = set()
-    zh_chars = re.findall(r"[\u4e00-\u9fff]", text)
-    for c in zh_chars:
-        if c not in _STOP_WORDS:
-            zh_words.add(c)
-    zh_seqs = re.findall(r"[\u4e00-\u9fff]{2,8}", text)
-    zh_words.update(zh_seqs)
-    # 合并并过滤停用词
-    all_words = set(words) | zh_words
-    return all_words - _STOP_WORDS
-
-
-def _jaccard_similarity(a: Set[str], b: Set[str]) -> float:
+def _jaccard_similarity(a: set[str], b: set[str]) -> float:
     """计算 Jaccard 相似度"""
     if not a and not b:
         return 1.0
@@ -133,7 +100,7 @@ def _edit_distance(s1: str, s2: str) -> int:
             curr.append(
                 min(
                     prev[j + 1] + 1,  # 删除
-                    curr[j] + 1,      # 插入
+                    curr[j] + 1,  # 插入
                     prev[j] + (c1 != c2),  # 替换
                 )
             )
@@ -152,33 +119,21 @@ class KnowledgeLinker:
     def __init__(self, wiki: WikiManager, index=None):
         self.wiki = wiki
         self.index = index  # Optional[EmbeddingIndex]
-        self._keyword_cache: Dict[str, Set[str]] = {}
-
-    def _get_keywords(self, page: WikiPage) -> Set[str]:
-        """获取页面的关键词缓存"""
-        cache_key = page.path.name
-        if cache_key not in self._keyword_cache:
-            text = f"{page.title} {' '.join(page.tags)} {page.content}"
-            self._keyword_cache[cache_key] = _extract_keywords(text)
-        return self._keyword_cache[cache_key]
-
-    def _clear_cache(self):
-        """清除关键词缓存"""
-        LOG.debug("Clearing keyword cache")
-        self._keyword_cache.clear()
 
     def find_related(
         self,
         query: str,
-        query_tags: Optional[List[str]] = None,
-        query_content: Optional[str] = None,
+        query_tags: list[str] | None = None,
+        query_content: str | None = None,
         top_k: int = 5,
         min_score: float = 0.3,
         use_embedding: bool = True,
         keyword_weight: float = 0.4,
         vector_weight: float = 0.4,
         link_weight: float = 0.2,
-    ) -> List[PageRelation]:
+        cached_pages: list[WikiPage] | None = None,
+        cached_corpus: BM25 | None = None,
+    ) -> list[PageRelation]:
         """
         发现与 query 内容最相关的 wiki 页面。
 
@@ -192,13 +147,22 @@ class KnowledgeLinker:
             keyword_weight: keyword match 权重
             vector_weight: vector match 权重
             link_weight: link proximity 权重
+            cached_pages: 可选已加载的页面列表（避免重复读取磁盘）
+            cached_corpus: 可选已构建的 BM25 语料（避免重复分词）
 
         Returns:
             按 score 降序排列的 PageRelation 列表
         """
-        LOG.info("find_related: query=%s mode=kw_w=%.1f vec_w=%.1f link_w=%.1f top_k=%d min_score=%.2f",
-                 query, keyword_weight, vector_weight, link_weight, top_k, min_score)
-        pages = self.wiki.list_pages()
+        LOG.info(
+            "find_related: query=%s mode=kw_w=%.1f vec_w=%.1f link_w=%.1f top_k=%d min_score=%.2f",
+            query,
+            keyword_weight,
+            vector_weight,
+            link_weight,
+            top_k,
+            min_score,
+        )
+        pages = cached_pages if cached_pages is not None else self.wiki.list_pages()
         if not pages:
             LOG.warning("Wiki has no pages")
             return []
@@ -208,14 +172,27 @@ class KnowledgeLinker:
         if query_content:
             full_query = f"{query}\n{query_content}"
         query_tags_set = set(query_tags or [])
-        query_keywords = _extract_keywords(full_query)
+        query_keywords = set(tokenize(full_query))
         LOG.debug("Query keywords extracted: %d terms", len(query_keywords))
 
-        scores: Dict[str, float] = {}
-        evidence: Dict[str, List[str]] = {}
+        scores: dict[str, float] = {}
+        evidence: dict[str, list[str]] = {}
 
-        # 1. Keyword Match
+        # 1. Keyword Match:标题/标签/内容引用启发式 + BM25 内容相关性
         LOG.debug("Phase 1: keyword match (weight=%.1f)", keyword_weight)
+        corpus = (
+            cached_corpus
+            if cached_corpus is not None
+            else BM25(
+                [tokenize(f"{p.title} {' '.join(p.tags)} {p.content}") for p in pages]
+            )
+        )
+        raw_scores = corpus.scores(tokenize(full_query))
+        # s/(s+k1) 压缩到 (0,1):弱匹配保持弱,不随查询内最大值虚高
+        bm25_scores = {
+            page.title: (raw / (raw + corpus.k1) if raw > 0 else 0.0)
+            for page, raw in zip(pages, raw_scores)
+        }
         for page in pages:
             kw_score = 0.0
             page_evidence = []
@@ -231,21 +208,22 @@ class KnowledgeLinker:
             page_tags = set(page.tags)
             shared_tags = query_tags_set & page_tags
             if shared_tags:
-                tag_ratio = len(shared_tags) / max(len(query_tags_set), len(page_tags), 1)
+                tag_ratio = len(shared_tags) / max(
+                    len(query_tags_set), len(page_tags), 1
+                )
                 kw_score += 0.3 * tag_ratio
                 page_evidence.append(f"共享标签: {', '.join(shared_tags)}")
 
-            # 关键词重叠
-            page_keywords = self._get_keywords(page)
-            if page_keywords and query_keywords:
-                overlap = _jaccard_similarity(page_keywords, query_keywords)
-                kw_score += 0.3 * overlap
-                if overlap > 0.1:
-                    page_evidence.append(f"关键词重叠: {overlap:.0%}")
+            # BM25 内容相关性(替代 Jaccard 关键词重叠)
+            bm25_rel = bm25_scores.get(page.title, 0.0)
+            if bm25_rel > 0:
+                kw_score += 0.3 * bm25_rel
+                if bm25_rel > 0.3:
+                    page_evidence.append(f"BM25 相关度: {bm25_rel:.0%}")
 
             # 内容包含
             query_lower = full_query.lower()
-            page_lower = page.content.lower()
+            page.content.lower()
             if norm_page in query_lower:
                 kw_score += 0.2
                 page_evidence.append(f"内容引用: {page.title}")
@@ -274,26 +252,33 @@ class KnowledgeLinker:
                 LOG.debug("Vector search returned %d results", len(vec_results))
                 for title, vec_score in vec_results:
                     if title in scores:
-                        scores[title] = scores.get(title, 0.0) + vec_score * vector_weight
+                        scores[title] = (
+                            scores.get(title, 0.0) + vec_score * vector_weight
+                        )
                         if vec_score > 0.5:
-                            evidence.setdefault(title, []).append(f"语义相似度: {vec_score:.2f}")
+                            evidence.setdefault(title, []).append(
+                                f"语义相似度: {vec_score:.2f}"
+                            )
             except Exception:
                 LOG.warning("Vector search failed, skipping", exc_info=True)
         else:
-            LOG.debug("Phase 2: vector match skipped (use_embedding=%s index=%s)",
-                      use_embedding, self.index is not None)
+            LOG.debug(
+                "Phase 2: vector match skipped (use_embedding=%s index=%s)",
+                use_embedding,
+                self.index is not None,
+            )
 
         # 3. Link Proximity
         if link_weight > 0:
             LOG.debug("Phase 3: link proximity (weight=%.1f)", link_weight)
             # 从 query 内容中提取链接
-            query_links: Set[str] = set()
+            query_links: set[str] = set()
             link_pattern = r"\[\[([^\]]+)\]\]"
             query_links = set(re.findall(link_pattern, full_query))
             LOG.debug("Query links found: %s", query_links)
 
             # 1-hop 传播
-            link_boosts: Dict[str, float] = {}
+            link_boosts: dict[str, float] = {}
             page_map = {p.title: p for p in pages}
 
             for link_title in query_links:
@@ -301,7 +286,9 @@ class KnowledgeLinker:
                 if link_page:
                     for neighbor in link_page.links:
                         if neighbor in page_map and neighbor != query:
-                            link_boosts[neighbor] = link_boosts.get(neighbor, 0.0) + link_weight * 0.5
+                            link_boosts[neighbor] = (
+                                link_boosts.get(neighbor, 0.0) + link_weight * 0.5
+                            )
 
             # 2-hop 传播
             hop1 = set(link_boosts.keys())
@@ -309,8 +296,14 @@ class KnowledgeLinker:
                 hop1_page = page_map.get(hop1_title)
                 if hop1_page:
                     for neighbor in hop1_page.links:
-                        if neighbor in page_map and neighbor != query and neighbor not in hop1:
-                            link_boosts[neighbor] = link_boosts.get(neighbor, 0.0) + link_weight * 0.25
+                        if (
+                            neighbor in page_map
+                            and neighbor != query
+                            and neighbor not in hop1
+                        ):
+                            link_boosts[neighbor] = (
+                                link_boosts.get(neighbor, 0.0) + link_weight * 0.25
+                            )
 
             LOG.debug("Link proximity boosts: %d pages affected", len(link_boosts))
             for title, boost in link_boosts.items():
@@ -357,13 +350,16 @@ class KnowledgeLinker:
 
         # 按 score 降序，限制数量
         relations.sort(key=lambda r: r.score, reverse=True)
-        LOG.info("find_related complete: %d relations above min_score (returning top %d)",
-                 len(relations), top_k)
+        LOG.info(
+            "find_related complete: %d relations above min_score (returning top %d)",
+            len(relations),
+            top_k,
+        )
         return relations[:top_k]
 
     def build_relation_graph(
         self,
-        new_pages: List[str],
+        new_pages: list[str],
         mode: str = "deep",
         max_depth: int = 2,
         top_k: int = 10,
@@ -382,11 +378,25 @@ class KnowledgeLinker:
         Returns:
             RelationGraph 包含所有发现的关联
         """
-        LOG.info("build_relation_graph: %d new pages, mode=%s, top_k=%d", len(new_pages), mode, top_k)
-        all_relations: List[PageRelation] = []
+        LOG.info(
+            "build_relation_graph: %d new pages, mode=%s, top_k=%d",
+            len(new_pages),
+            mode,
+            top_k,
+        )
+        pages = self.wiki.list_pages()
+        if not pages:
+            LOG.warning("Wiki has no pages")
+            return RelationGraph(relations=[])
+
+        corpus = BM25(
+            [tokenize(f"{p.title} {' '.join(p.tags)} {p.content}") for p in pages]
+        )
+        page_dict = {p.title: p for p in pages}
+        all_relations: list[PageRelation] = []
 
         for page_title in new_pages:
-            page = self.wiki.get_page(page_title)
+            page = page_dict.get(page_title) or self.wiki.get_page(page_title)
             if not page:
                 LOG.warning("Page not found in graph build: %s", page_title)
                 continue
@@ -403,6 +413,8 @@ class KnowledgeLinker:
                     keyword_weight=0.6,
                     vector_weight=0.0,
                     link_weight=0.4,
+                    cached_pages=pages,
+                    cached_corpus=corpus,
                 )
             else:  # deep
                 rels = self.find_related(
@@ -415,18 +427,22 @@ class KnowledgeLinker:
                     keyword_weight=0.4,
                     vector_weight=0.4,
                     link_weight=0.2,
+                    cached_pages=pages,
+                    cached_corpus=corpus,
                 )
 
             all_relations.extend(rels)
 
-        LOG.info("build_relation_graph complete: %d total relations", len(all_relations))
+        LOG.info(
+            "build_relation_graph complete: %d total relations", len(all_relations)
+        )
         return RelationGraph(relations=all_relations)
 
     def classify_relation(
         self,
         source: WikiPage,
         target: WikiPage,
-        content_similarity: Optional[float] = None,
+        content_similarity: float | None = None,
     ) -> RelationType:
         """
         基于启发式规则推断两个页面之间的关系类型。
@@ -443,9 +459,14 @@ class KnowledgeLinker:
         t_title = _normalize_title(target.title)
 
         # UPDATES: 标题高度相似（编辑距离 < 3 且标题长度 > 3）
-        dist = _edit_distance(s_title, t_title)
-        if dist < 3 and len(s_title) > 3 and len(t_title) > 3:
-            return RelationType.UPDATES
+        if (
+            len(s_title) > 3
+            and len(t_title) > 3
+            and abs(len(s_title) - len(t_title)) < 3
+        ):
+            dist = _edit_distance(s_title, t_title)
+            if dist < 3:
+                return RelationType.UPDATES
 
         # CONTRASTS: 新标题包含旧标题（通常是 "X vs Y" 形式）
         if t_title in s_title and s_title != t_title:
@@ -463,8 +484,8 @@ class KnowledgeLinker:
         t_tags = set(target.tags)
         shared_tags = s_tags & t_tags
         if content_similarity is None:
-            s_kw = _extract_keywords(source.content)
-            t_kw = _extract_keywords(target.content)
+            s_kw = set(tokenize(source.content))
+            t_kw = set(tokenize(target.content))
             content_similarity = _jaccard_similarity(s_kw, t_kw)
 
         if len(shared_tags) >= 2 and content_similarity > 0.3:
@@ -476,23 +497,21 @@ class KnowledgeLinker:
         """根据关系类型生成建议操作"""
         suggestions = {
             RelationType.EXTENDS: (
-                f"在 {target} 的\"相关页面\"添加 {source} 链接，"
+                f'在 {target} 的"相关页面"添加 {source} 链接，'
                 f"考虑在 {source} 中引用 {target} 的方法对比"
             ),
             RelationType.CONTRASTS: (
-                f"在双方页面的\"相关页面\"添加互链，"
-                f"考虑在 {target} 中添加\"与 {source} 的对比\"章节"
+                f'在双方页面的"相关页面"添加互链，'
+                f'考虑在 {target} 中添加"与 {source} 的对比"章节'
             ),
             RelationType.DEPENDS: (
-                f"在 {source} 的\"来源\"中明确引用 {target}，"
-                f"在 {target} 的\"相关页面\"添加 {source}"
+                f'在 {source} 的"来源"中明确引用 {target}，'
+                f'在 {target} 的"相关页面"添加 {source}'
             ),
             RelationType.UPDATES: (
                 f"检查 {target} 中的信息是否需要由 {source} 更新，"
                 f"在 {target} 的变更日志中记录"
             ),
-            RelationType.RELATED: (
-                f"在 {target} 的\"相关页面\"中添加 {source} 链接"
-            ),
+            RelationType.RELATED: (f'在 {target} 的"相关页面"中添加 {source} 链接'),
         }
         return suggestions.get(rel_type, "")

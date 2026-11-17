@@ -1,44 +1,60 @@
-## Description: <br>
-Using fixed home cameras in bedroom and dining areas, this skill analyzes multi-day behavior patterns for older adults or solo-living people and reports long immobility and appetite-change markers as behavioral observations, not medical diagnoses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes multi-day bedroom and dining-area camera footage for changes in time in bed and eating behavior, and produces reports for caregiver follow-up.
 
-## Publisher: <br>
-[18072937735](https://clawhub.ai/user/18072937735) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[18072937735](https://clawhub.ai/user/18072937735)
 
-## Use Case: <br>
-External users, caregivers, community doctors, and developers use this skill to analyze 24-hour or longer home-camera footage for behavior reports about prolonged bed time, reduced eating activity, and related alerts. The output is intended to support human follow-up and care coordination, not to diagnose depression or prescribe treatment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles highly sensitive bedroom and dining-area camera footage or URLs and sends analysis requests to a vendor cloud service. <br>
-Mitigation: Use only with explicit informed consent from the monitored person, confirm the deployment is appropriate for the care setting, and avoid submitting footage unless the privacy and vendor-cloud data flow are acceptable. <br>
-Risk: The skill may silently create or reuse a cloud-linked identity and local tokens for analysis and history queries. <br>
-Mitigation: Review local token storage and identity-linking behavior before deployment, and restrict history-report queries to cases where retrieving cloud records is intended. <br>
-Risk: Behavioral markers such as long immobility or appetite change can be mistaken for a medical diagnosis. <br>
-Mitigation: Present outputs as behavioral observations only and require family, caregiver, community doctor, or qualified clinician review for interpretation and follow-up. <br>
+## Use Case:
 
+Family caregivers and community care staff can review multi-day changes in an older or solo-living person's time in bed and eating behavior. The report is an observational prompt for follow-up, not a medical diagnosis.
 
-## Reference(s): <br>
-- [API interface documentation](references/api_doc.md) <br>
-- [Skill demo](https://lifeemergence.com/sample.html) <br>
-- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-depression-behavioral-markers-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON-style structured analysis reports, with shell command examples for execution and history queries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may include behavior metrics, risk-signal levels, recommended follow-up actions, cloud report links, and history-query tables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata; artifact frontmatter reports 1.0.3) <br>
+Risk: Bedroom and dining-area footage can reveal highly sensitive personal and health-related information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Obtain the subject's informed consent, enable silhouette and face masking, and retain anonymized metrics instead of raw video.
+
+Risk: The security review rates this skill suspicious and flags possible undisclosed account or credential handling and behavior outside its stated analysis purpose.
+
+Mitigation: Review account and credential handling and confirm where footage and results are sent before use; limit credentials and access to what the task requires.
+
+Risk: Behavioral changes alone cannot establish depression or another diagnosis.
+
+Mitigation: Use reports to prompt follow-up with family or a qualified clinician, and seek urgent local help for self-harm concerns.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/18072937735/skills/smyx-depression-behavioral-markers-analysis)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+- [API interface documentation](artifact/references/api_doc.md)
+- [Analysis API documentation](artifact/skills/smyx_analysis/references/api_doc.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, JSON, Markdown, Guidance]
+
+**Output Format:** [Structured JSON results and Markdown summaries or reports with optional report links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Analyzes continuous 24-hour-or-longer footage covering bedroom and dining areas; comparison uses a 7–14-day personal baseline when available.]
+
+## Skill Version(s):
+
+1.0.20 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

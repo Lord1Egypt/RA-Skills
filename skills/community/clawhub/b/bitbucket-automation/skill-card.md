@@ -1,40 +1,56 @@
-## Description: <br>
-Automate Bitbucket repositories, pull requests, branches, issues, and workspace management via Rube MCP (Composio). Always search tools first for current schemas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate Bitbucket repositories, pull requests, branches, issues, and workspace management via Rube MCP (Composio). Always search tools first for current schemas.
 
-## Publisher: <br>
-[sohamganatra](https://clawhub.ai/user/sohamganatra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sohamganatra](https://clawhub.ai/user/sohamganatra)
 
-## Use Case: <br>
-Developers and engineers use this skill to manage Bitbucket repositories, pull requests, branches, issues, and workspace administration through Rube MCP after connecting a Bitbucket workspace. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Connected Bitbucket workspaces can be changed through high-impact actions such as repository or issue deletion. <br>
-Mitigation: Use least-privileged Bitbucket access, review OAuth authorization, and require explicit confirmation before deletion or public-facing comments. <br>
-Risk: Tool schemas and Bitbucket parameters may change or vary by operation. <br>
-Mitigation: Search current Rube tool schemas before each operation and resolve workspace, repository, branch, member, pull request, and issue identifiers before making changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sohamganatra/bitbucket-automation) <br>
-- [Rube MCP endpoint](https://rube.app/mcp) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to operate Bitbucket workspaces and repositories through Rube MCP, including pull request workflows, branch creation, issue management, repository administration, and reviewer lookup.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown] <br>
-**Output Format:** [Markdown guidance with MCP tool names, workflow steps, and parameter notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Rube MCP and an active Bitbucket connection before workflows can run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Rube MCP access can operate on connected Bitbucket accounts or workspaces.
+
+Mitigation: Review OAuth scopes during connection and use the least-privileged Bitbucket account practical.
+
+Risk: Repository and issue deletion operations are permanent.
+
+Mitigation: Require explicit user confirmation before calling Bitbucket delete tools.
+
+Risk: Stale tool parameters can cause incorrect Bitbucket operations.
+
+Mitigation: Search Rube MCP tools first and use the current returned schemas before running workflows.
+
+## Reference(s):
+
+- [Rube MCP endpoint](https://rube.app/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown guidance with MCP tool names, parameter notes, and workflow steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be based on current Rube MCP tool schemas and may include Bitbucket operation plans or MCP tool calls.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Searches Shopify products for shoes, clothes, and bags and presents matching deals as image-rich product cards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Shopify products across shoes, clothes, and bags and presents matching results as image-and-text product cards.
 
-## Publisher: <br>
-[carlos-zen](https://clawhub.ai/user/carlos-zen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[carlos-zen](https://clawhub.ai/user/carlos-zen)
 
-## Use Case: <br>
-External users and shopping agents use this skill to search for fashion products, apply category or price filters, and present useful product cards with images, prices, brands, stores, and links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shopping searches, budgets, and filters are sent to LumenShop. <br>
-Mitigation: Avoid including sensitive personal details in shopping queries. <br>
-Risk: Changing the API URL while using a real API key can expose credentials to an untrusted host. <br>
-Mitigation: Use the default or another trusted API URL, and do not pass real credentials to untrusted endpoints. <br>
+## Use Case:
 
+External shoppers use this skill to search LumenShop-indexed Shopify products by keyword, category, price range, and quantity, then compare product cards with image, title, price, brand, store, and link.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/carlos-zen/lumenshop-deals) <br>
-- [LumenShop API](https://lumenshop.vercel.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [JSON search results with Markdown product-card presentation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Filters can include keyword, category, result limit, and USD price range.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Shopping searches, filters, and bearer credentials can be sent to a configurable remote endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted HTTPS API origin, avoid real API keys unless the endpoint is approved, and prefer environment-managed credentials over command-line arguments.
+
+Risk: Returned product links and image URLs are external content.
+
+Mitigation: Treat product links and images as untrusted, review destinations before opening, and avoid presenting results as endorsed vendors.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/carlos-zen/skills/lumenshop-deals)
+- [LumenShop API endpoint](https://lumenshop.vercel.app)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Markdown]
+
+**Output Format:** [Raw JSON from the search script, followed by Markdown product cards with image links and product metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The agent usually presents up to 12 product cards; the script supports keyword, category, price range, limit, API URL, and API key options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

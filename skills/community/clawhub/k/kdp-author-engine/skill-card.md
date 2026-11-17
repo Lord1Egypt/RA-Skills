@@ -1,51 +1,62 @@
-## Description: <br>
-KDP Author Engine helps agents write, edit, format, publish, and market indie books for Amazon KDP and IngramSpark using a structured six-agent workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+KDP Author Engine guides agents through indie book writing, editing, KDP/IngramSpark publishing, Amazon keyword research, and launch marketing using a six-agent workflow.
 
-## Publisher: <br>
-[droteng](https://clawhub.ai/user/droteng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[droteng](https://clawhub.ai/user/droteng)
 
-## Use Case: <br>
-External users and indie-author agents use this skill to plan books, draft and review chapters, prepare KDP or IngramSpark publishing materials, research Amazon keywords, and run launch marketing workflows. It is intended for human-in-the-loop book production with explicit approval gates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated manuscripts, metadata packages, or launch files could overwrite existing work if the output directory is unsafe or reused carelessly. <br>
-Mitigation: Configure BOOKS_DIR to a dedicated project directory, keep backups of manuscripts, and review target filenames before allowing file writes or pandoc exports. <br>
-Risk: Reader, reviewer, or ARC contact lists may contain personal data. <br>
-Mitigation: Collect contacts only with permission, store them securely, use them only for the intended campaign, and delete them when no longer needed. <br>
-Risk: Publishing, pricing, keyword, category, or health-related book guidance can become inaccurate or may require current external validation. <br>
-Mitigation: Verify market data, platform rules, categories, pricing, medical claims, and legal or tax implications against authoritative current sources before publication. <br>
+## Use Case:
 
+External indie authors and agent operators use this skill to plan, draft, review, format, publish, and market books for Amazon KDP and related distribution channels. The workflow supports manuscript creation, metadata preparation, keyword research, launch planning, and performance reporting with human approval gates.
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [Humanization Rules](references/humanization-rules.md) <br>
-- [Quality Checklist](references/quality-checklist.md) <br>
-- [Genre Playbooks](references/genre-playbooks.md) <br>
-- [Chapter Workflow](references/chapter-workflow.md) <br>
-- [KDP Publishing and Formatting Reference](references/kdp-publishing.md) <br>
-- [Amazon Keyword Research for KDP](references/keyword-research.md) <br>
-- [Book Marketing and Launch Strategy](references/book-marketing.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/droteng/kdp-author-engine) <br>
-- [Project Homepage](https://discord.gg/yGyXDwdHU9) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with templates, checklists, shell commands, and document-generation instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local .docx manuscript, metadata, launch plan, and performance report files when used with a configured BOOKS_DIR and pandoc.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release metadata) <br>
+Risk: The skill is intentionally broad and may activate for many book-related writing, publishing, and marketing tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep human approval enabled for KDP uploads, pricing, KDP Select decisions, Amazon Ads spend, emails, social posts, ARC outreach, and any public or account-changing action.
+
+Risk: Publishing, marketing, health, legal, or technical guidance can affect public listings, reader trust, account status, or reader safety if claims are wrong or unverified.
+
+Mitigation: Review source notes, resolve all NEEDS VERIFICATION markers, and confirm platform rules, factual claims, disclaimers, pricing, and ad budgets before publication or outreach.
+
+## Reference(s):
+
+- [KDP Author Engine on ClawHub](https://clawhub.ai/droteng/skills/kdp-author-engine)
+- [KDP Author Engine community](https://discord.gg/yGyXDwdHU9)
+- [KDP Author Engine package](https://oteng.link/kdp-author-engine)
+- [Humanization Rules](references/humanization-rules.md)
+- [Quality Checklist](references/quality-checklist.md)
+- [Genre Playbooks](references/genre-playbooks.md)
+- [Chapter Workflow](references/chapter-workflow.md)
+- [KDP Publishing and Formatting Reference](references/kdp-publishing.md)
+- [Amazon Keyword Research for KDP](references/keyword-research.md)
+- [Book Marketing and Launch Strategy](references/book-marketing.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, document templates, manuscript drafts, metadata packages, launch plans, review reports, and inline shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce .docx files through pandoc when BOOKS_DIR is configured; account-changing and public actions require human approval.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

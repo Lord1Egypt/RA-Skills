@@ -1,44 +1,55 @@
-## Description: <br>
-Analyzes a user's workflow, breaks it into automatable subprocesses, rates OpenClaw implementation difficulty, confirms third-party data dependencies, and suggests a practical rollout path. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes a user's workflow, breaks it into automatable subprocesses, rates OpenClaw implementation difficulty, confirms third-party data dependencies, and recommends an incremental adoption path.
 
-## Publisher: <br>
-[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder)
 
-## Use Case: <br>
-External users, developers, and OpenClaw adopters use this skill to identify which parts of a workflow can be automated with OpenClaw, what dependencies must be confirmed, and which improvements to attempt first. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask about APIs, accounts, OAuth, or API keys while analyzing third-party data dependencies. <br>
-Mitigation: Describe credential availability, access constraints, and approval status without sharing actual secrets during the analysis step. <br>
-Risk: Workflow automation recommendations may be incomplete or incorrect if data access, network reachability, permissions, rate limits, or costs are unclear. <br>
-Mitigation: Confirm each third-party dependency before treating an automation path or difficulty rating as actionable. <br>
-Risk: The skill is advisory and does not implement or execute the proposed automation. <br>
-Mitigation: Use its output as planning guidance, then perform implementation, credential handling, and execution in a separate trusted workflow. <br>
+## Use Case:
 
+External users and developers use this skill to evaluate which parts of a personal or team workflow are suitable for OpenClaw automation and what dependencies or learning steps are needed before implementation.
 
-## Reference(s): <br>
-- [OpenClaw capabilities matrix](references/openclaw-capabilities.md) <br>
-- [ClawHub skill page](https://clawhub.ai/fangshan101-coder/openclaw-workflow-analyzer) <br>
-- [Project homepage](https://github.com/fangshan101-coder/openclaw-workflow-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown workflow analysis report with tables, difficulty ratings, dependency checks, rollout recommendations, and learning-path guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill produces advisory text only; it does not execute automation tasks or require credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and artifact frontmatter) <br>
+Risk: Automation recommendations may involve credentials, private systems, browser login, APIs, memory, or scheduled jobs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill output as planning guidance and confirm credentials, permissions, privacy impact, and approval boundaries before implementing automation.
+
+Risk: Workflow assessments can be incomplete when third-party data access, API availability, or network reachability are unclear.
+
+Mitigation: Ask the user to confirm APIs, authentication, export rights, network access, rate limits, costs, and browser automation feasibility before rating those steps.
+
+## Reference(s):
+
+- [OpenClaw capability matrix](references/openclaw-capabilities.md)
+- [Project homepage](https://github.com/fangshan101-coder/openclaw-workflow-analyzer)
+- [ClawHub skill page](https://clawhub.ai/fangshan101-coder/skills/openclaw-workflow-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown workflow analysis report with tables and prioritized recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include clarifying questions before the final analysis when workflow details or third-party data access are unclear.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

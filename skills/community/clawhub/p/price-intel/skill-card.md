@@ -1,41 +1,57 @@
-## Description: <br>
-Monitor and analyze competitor pricing movements, discount patterns, and bundle strategies to inform your own pricing decisions without a race to the bottom. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor and analyze competitor pricing movements, discount patterns, and bundle strategies to inform your own pricing decisions without a race to the bottom.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External ecommerce sellers and marketplace operators use Price Intel to monitor competitor prices, classify discount events, map bundle value, and make pricing decisions that protect margins. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pricing recommendations may be incorrect or misleading if competitor data, margins, or marketplace rules are inaccurate. <br>
-Mitigation: Use the skill as decision support and verify competitor data, margins, and marketplace rules before changing live prices. <br>
+## Use Case:
 
+External ecommerce operators, TikTok Shop sellers, and Amazon merchants use this skill to monitor competitor pricing, classify discount patterns, map bundle value, and make pricing decisions with documented price floors and review gates.
 
-## Reference(s): <br>
-- [Price Intel Report Template](artifact/output-template.md) <br>
-- [Price History Tracker](artifact/price-history-tracker.md) <br>
-- [90-Day Competitor Promotional Calendar Guide](artifact/promo-calendar-guide.md) <br>
-- [Price Intel Quality Checklist](artifact/quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown pricing analysis, checklists, and report templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code, credential use, or hidden behavior reported by the security scan.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Users may expose sensitive margin, cost, account, or credential data when using third-party pricing tools alongside the skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only the minimum data needed for analysis, avoid credentials and unnecessary account details, and review third-party tool privacy terms before uploading business data.
+
+Risk: Pricing recommendations may be misleading if competitor data is stale, incomplete, or missing promotional context.
+
+Mitigation: Refresh the competitive set, confirm current pricing and promotions, apply the quality checklist, and keep price floors documented before making changes.
+
+## Reference(s):
+
+- [Price Intel skill page](https://clawhub.ai/leooooooow/skills/price-intel)
+- [Price Intel Report Template](artifact/output-template.md)
+- [Price History Tracker](artifact/price-history-tracker.md)
+- [90-Day Competitor Promotional Calendar Guide](artifact/promo-calendar-guide.md)
+- [Price Intel Quality Checklist](artifact/quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance, tables, templates, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; produces business-analysis guidance for pricing review workflows.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

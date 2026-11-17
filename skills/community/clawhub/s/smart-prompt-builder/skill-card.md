@@ -1,41 +1,60 @@
-## Description: <br>
-Smart Prompt Builder generates structured Chinese fiction-writing prompts from scene type, context, corpus snippets, and optional voice-profile style settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart Prompt Builder generates structured writing prompts for fiction scenes using corpus results, scene context, and optional voice profile settings.
 
-## Publisher: <br>
-[yuzhihui886](https://clawhub.ai/user/yuzhihui886) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuzhihui886](https://clawhub.ai/user/yuzhihui886)
 
-## Use Case: <br>
-External users, writers, and agent builders use this skill to assemble reusable writing prompts for description, dialogue, action, and emotion scenes. It can incorporate story context, retrieved corpus examples, and voice-profile configuration before handing the prompt to a downstream generation step. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional LLM builder can send writing context and voice-profile style data to DashScope when DASHSCOPE_API_KEY is configured. <br>
-Mitigation: Use the local scripts/build_prompt.py path for local-only prompt construction, or review and approve any context before running scripts/build_prompt_llm.py. <br>
-Risk: License evidence is inconsistent between server metadata and artifact documentation. <br>
-Mitigation: Confirm the authoritative license before publishing or relying on redistribution terms. <br>
+## Use Case:
 
+Developers and writing-agent users use this skill to build reusable prompts for fiction description, dialogue, action, and emotion scenes. It can incorporate scene context, character state, retrieved corpus excerpts, and style preferences before passing the prompt to a downstream writer.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuzhihui886/smart-prompt-builder) <br>
-- [DashScope chat completions endpoint](https://coding.dashscope.aliyuncs.com/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text or JSON prompt structures with optional Markdown-style command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local prompt construction can produce terminal or file output; the optional LLM builder sends context and style data to DashScope when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: ClawHub release metadata) <br>
+Risk: The bundled LLM script can send writing context and style files to Aliyun DashScope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the local build_prompt.py path for local-only prompt construction, and run build_prompt_llm.py only with data intended for that provider.
+
+Risk: Private manuscripts, personal data, proprietary style guides, or secrets may be exposed if provided to the LLM variant.
+
+Mitigation: Review inputs before execution and avoid passing sensitive or confidential material to build_prompt_llm.py.
+
+Risk: Dependencies are not fully pinned for sensitive environments.
+
+Mitigation: Review and pin dependencies before installing or deploying this skill in controlled environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yuzhihui886/skills/smart-prompt-builder)
+- [Publisher Profile](https://clawhub.ai/user/yuzhihui886)
+- [Skill README](artifact/SKILL.md)
+- [Script README](artifact/scripts/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or JSON prompt structures, with Markdown usage guidance and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local prompt builder can export plain text; bundled LLM variant can write JSON prompt data.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

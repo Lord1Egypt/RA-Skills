@@ -1,44 +1,58 @@
-## Description: <br>
-Manage temporary email addresses and messages using the chat-tempmail.com API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage temporary email addresses and messages using the chat-tempmail.com API. Use when the user wants to create disposable emails, check inbox messages, or manage webhooks.
 
-## Publisher: <br>
-[Selenium39](https://clawhub.ai/user/Selenium39) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[selenium39](https://clawhub.ai/user/selenium39)
 
-## Use Case: <br>
-External users and developers use this skill to create disposable email addresses, check inbox messages, delete temporary addresses or messages, and configure message webhooks through the chat-tempmail.com API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can request or use a chat-tempmail.com API key. <br>
-Mitigation: Configure TEMP_EMAIL_API_KEY through an environment variable or secret manager instead of pasting secrets into chat. <br>
-Risk: Webhook configuration can forward email contents and metadata to a configured endpoint. <br>
-Mitigation: Configure webhooks only for trusted endpoints that you control and that are approved to receive message content. <br>
-Risk: Delete operations can remove temporary email addresses or individual messages. <br>
-Mitigation: Confirm exact email and message IDs before running delete requests. <br>
+## Use Case:
 
+Developers and external users use this skill to create disposable email addresses, inspect temporary inbox messages, and manage message notification webhooks through the chat-tempmail.com API.
 
-## Reference(s): <br>
-- [Temporary Email skill page](https://clawhub.ai/Selenium39/temp-email) <br>
-- [chat-tempmail.com API](https://chat-tempmail.com) <br>
-- [chat-tempmail.com API Reference](artifact/reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with curl commands and readable summaries of JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TEMP_EMAIL_API_KEY for authenticated requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill sends an API key and temporary mailbox contents to chat-tempmail.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the user trusts chat-tempmail.com with the API key and mailbox contents, and keep TEMP_EMAIL_API_KEY scoped to trusted environments.
+
+Risk: Configured webhooks may forward future message contents to the supplied URL.
+
+Mitigation: Treat webhook URLs as sensitive, confirm the destination before enabling a webhook, and disable webhooks when message forwarding is no longer needed.
+
+Risk: Deletion operations and user-supplied URL path values can affect emails or messages if IDs are wrong or unsafe.
+
+Mitigation: Require confirmation of exact email and message IDs before deletion, and safely encode or validate user-provided values before building curl requests.
+
+## Reference(s):
+
+- [chat-tempmail.com API Reference](artifact/reference.md)
+- [Temporary Email on ClawHub](https://clawhub.ai/selenium39/skills/temp-email)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline curl commands and readable summaries of JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TEMP_EMAIL_API_KEY for authenticated chat-tempmail.com API calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

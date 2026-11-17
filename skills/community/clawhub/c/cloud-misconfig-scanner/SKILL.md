@@ -19,7 +19,7 @@ Ideal users include organizations managing infrastructure across AWS, Azure, Goo
 {
   "provider": "aws",
   "credentials": {
-    "access_key_id": "AKIAIOSFODNN7EXAMPLE",
+    "access_key_id": "REDACTED-SECRET",
     "secret_access_key": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
     "region": "us-east-1"
   }

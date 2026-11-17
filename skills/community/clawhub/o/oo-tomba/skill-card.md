@@ -1,43 +1,60 @@
-## Description: <br>
-Operates Tomba through an OOMOL-connected account for domain email discovery, email verification, enrichment, company search, LinkedIn contact lookup, and technology detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and read Tomba contact and company data through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to run Tomba searches, verification, enrichment, account lookup, company search, and technology detection through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a connected Tomba account and sensitive credentials managed through OOMOL. <br>
-Mitigation: Use a scoped OOMOL/Tomba connection and follow the setup guidance so raw tokens are not handled directly. <br>
-Risk: Tomba lookups can return personal or company contact data. <br>
-Mitigation: Run only the requested lookup actions and review results for privacy, policy, and contractual handling requirements before sharing. <br>
+## Use Case:
 
+Agents use this skill to search for and read contact and company information in Tomba, including domain searches, email lookups and verification, enrichment, and technology discovery.
 
-## Reference(s): <br>
-- [ClawHub Tomba skill page](https://clawhub.ai/oomol/oo-tomba) <br>
-- [Tomba homepage](https://tomba.io) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can execute Tomba connector actions through the oo CLI and return JSON responses when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server evidence and frontmatter) <br>
+Risk: First-time CLI setup may execute downloaded software whose installer and binary behavior have not been verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately before allowing setup to execute downloaded code.
+
+Risk: CLI startup may synchronize additional agent skills, a broader change not described in detail by the skill.
+
+Mitigation: Set OO_SKILLS_SYNC_DISABLED=1 to prevent startup synchronization, and review the CLI environment controls.
+
+Risk: Contact data sent through the service is processed by OOMOL and Tomba, and use may incur charges.
+
+Mitigation: Submit only contact data you intend both services to process, and consider applicable usage charges.
+
+## Reference(s):
+
+- [OO CLI commands and environment controls](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md#environment-variables)
+- [Tomba](https://tomba.io)
+- [Tomba API documentation](https://docs.tomba.io/)
+- [Tomba skill release](https://clawhub.ai/oomol/skills/oo-tomba)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Structured Tomba results with concise text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the connected Tomba account, the live action schema, and available service data.]
+
+## Skill Version(s):
+
+1.0.6 (source: skill frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-Delegate longer user-facing text generation to Upstage Solar Pro3 while keeping the primary model for planning and tool calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Delegate longer user-facing text generation to Upstage Solar Pro3 while keeping the primary model for planning and tool calls.
 
-## Publisher: <br>
-[upstage-deployment](https://clawhub.ai/user/upstage-deployment) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[upstage-deployment](https://clawhub.ai/user/upstage-deployment)
 
-## Use Case: <br>
-Developers and teams use this skill to route substantial user-facing drafts, explanations, reports, and summaries to Upstage Solar Pro3 while retaining the primary model for planning and tool use. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persistent model gateway configuration and service restarts can disrupt an existing OpenClaw setup. <br>
-Mitigation: Back up existing configuration and require explicit user confirmation before applying persistent changes or restarting services. <br>
-Risk: OpenRouter API keys may be exposed if copied into checked-in JSON or shared configuration. <br>
-Mitigation: Store API keys through environment variables or a secret store rather than committing credentials. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Solar Delegation Setup Guide](references/setup-guide.md) <br>
-- [Upstage Solar Pro3 model reference](https://openrouter.ai/upstage/solar-pro-3) <br>
-- [ClawHub release page](https://clawhub.ai/upstage-deployment/solar-delegation) <br>
+## Use Case:
 
+Developers and agent operators use this skill to delegate long-form explanations, reports, summaries, and similar user-facing drafts to Upstage Solar Pro3 while keeping planning, reasoning, and tool use with the primary model.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Delegates only when the current session is enabled and the estimated output meets the configured token threshold; falls back to direct response if delegated generation is unavailable.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Long responses may be delegated to OpenRouter or Upstage, including broadly defined session context.
+
+Mitigation: Keep delegation disabled or use a high threshold for confidential work and shared messenger channels, and send only the minimum context needed.
+
+Risk: OpenRouter API key handling guidance is limited.
+
+Mitigation: Store the OpenRouter key in a protected secret mechanism and do not commit or share configuration files containing secrets.
+
+Risk: Delegated text can be forwarded into user-facing channels.
+
+Mitigation: Review delegated output before forwarding it to Slack, Telegram, or other shared channels.
+
+## Reference(s):
+
+- [Solar Delegation Setup Guide](references/setup-guide.md)
+- [Upstage Solar Pro3 model reference](https://openrouter.ai/upstage/solar-pro-3)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline text, JSON, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May pass delegated model output through directly without extra formatting or metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

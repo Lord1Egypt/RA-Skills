@@ -1,41 +1,59 @@
-## Description: <br>
-从可抓取信息源（新浪科技、IT之家等）拉取当日科技新闻标题，生成简报并输出。无需 API Key，适合定时任务与手动触发。当用户要求执行每日科技播报、科技新闻简报、今日科技要闻时使用此技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches daily technology headlines from configurable public sources such as Sina Tech and IT Home, then prints a short Chinese-language digest without requiring an API key.
 
-## Publisher: <br>
-[wangyaok1](https://clawhub.ai/user/wangyaok1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wangyaok1](https://clawhub.ai/user/wangyaok1)
 
-## Use Case: <br>
-External users and operators use this skill to generate a daily technology news digest from configurable public news sources for manual requests or scheduled channel delivery. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound requests to third-party news sources. <br>
-Mitigation: Install only where outbound requests to those sources are acceptable, especially for scheduled execution. <br>
-Risk: Scheduled delivery can publish third-party news summaries into shared or public channels without review. <br>
-Mitigation: Configure cron delivery only for appropriate channels and consider reviewing output before posting in shared or public spaces. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wangyaok1/daily-tech-broadcast) <br>
-- [Sina Tech](https://tech.sina.com.cn/) <br>
-- [IT Home](https://www.ithome.com/) <br>
+## Use Case:
 
+Developers and operators use this skill to generate a daily technology-news digest for cron delivery or manual agent-triggered broadcasts. It is suited for Chinese-language channel updates where a concise headline list is enough.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-formatted plain text digest printed to stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches up to 12 headlines from configured sources and emits fallback text when fetching fails.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The runtime performs outbound requests to Sina Tech and IT Home.
+
+Mitigation: Deploy only where outbound web requests to those sources are acceptable, and review the configured NEWS_SOURCES before use.
+
+Risk: Optional publishing documentation includes token-based command examples that may expose credentials in sensitive environments.
+
+Mitigation: Use a pinned, trusted ClawHub CLI and avoid passing tokens directly on the command line.
+
+Risk: Scraped headline output can be incomplete or unavailable if source pages change or network access fails.
+
+Mitigation: Treat the digest as a convenience broadcast, monitor cron output, and rely on the built-in fallback message when source fetching fails.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangyaok1/skills/daily-tech-broadcast)
+- [Publisher profile](https://clawhub.ai/user/wangyaok1)
+- [Sina Tech](https://tech.sina.com.cn/)
+- [IT Home](https://www.ithome.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style Chinese text digest printed to stdout, with setup and cron guidance in Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Python 3.11 standard library modules, requires no API key, fetches public pages from Sina Tech and IT Home, and emits fallback text if all sources fail.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

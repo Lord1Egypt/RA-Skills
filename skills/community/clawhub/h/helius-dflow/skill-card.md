@@ -1,59 +1,81 @@
-## Description: <br>
-Build Solana trading applications combining DFlow trading APIs with Helius infrastructure, including spot swaps, prediction markets, real-time market streaming, Proof KYC, transaction submission via Sender, fee optimization, LaserStream, and wallet intelligence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build Solana trading applications combining DFlow trading APIs with Helius infrastructure, including spot swaps, prediction markets, real-time streaming, Proof KYC, transaction submission, fee optimization, LaserStream, and wallet intelligence.
 
-## Publisher: <br>
-[0xIchigo](https://clawhub.ai/user/0xIchigo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xichigo](https://clawhub.ai/user/0xichigo)
 
-## Use Case: <br>
-Developers and engineers use this skill to build Solana trading, prediction-market, wallet-intelligence, and real-time streaming applications that combine DFlow trading APIs with Helius infrastructure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated trading code could sign or submit transactions before the user has reviewed amounts, tokens, slippage, fees, and spending limits. <br>
-Mitigation: Require explicit user approval before signing or submitting transactions, and surface amounts, token mints, slippage, fees, and spend limits in the application workflow. <br>
-Risk: API keys, JWTs, or keypair files used by Helius, DFlow, or local tooling could be exposed in source code, logs, or shared configuration. <br>
-Mitigation: Use project-scoped installation where possible, store credentials in environment variables or approved secret stores, and never embed private keys or API keys in code or logs. <br>
-Risk: Prediction-market features may require KYC, geoblocking, market-status checks, and maintenance-window handling. <br>
-Mitigation: Gate prediction-market trades with Proof KYC and jurisdiction checks, confirm market status before ordering, and avoid order submission during documented maintenance windows. <br>
-Risk: Production use of DFlow dev endpoints, raw browser calls, or unverified MCP packages can cause reliability, CORS, rate-limit, or supply-chain issues. <br>
-Mitigation: Verify external MCP packages before installation, use backend proxies for DFlow Trade API calls from web apps, and move production workloads to appropriate API keys and plan tiers. <br>
+## Use Case:
 
+Developers and engineers use this skill to build Solana trading applications that combine DFlow trading APIs with Helius infrastructure for swaps, prediction-market workflows, streaming, transaction submission, fee estimation, and wallet or asset intelligence.
 
-## Reference(s): <br>
-- [DFlow Prediction Markets - Discovery, Trading & Redemption](references/dflow-prediction-markets.md) <br>
-- [DFlow Proof KYC - Identity Verification](references/dflow-proof-kyc.md) <br>
-- [DFlow Spot Trading - Token Swaps on Solana](references/dflow-spot-trading.md) <br>
-- [DFlow WebSockets - Real-Time Market Data](references/dflow-websockets.md) <br>
-- [DAS API - Digital Asset Standard](references/helius-das.md) <br>
-- [LaserStream - High-Performance gRPC Streaming](references/helius-laserstream.md) <br>
-- [Onboarding - Account Setup, API Keys & Plans](references/helius-onboarding.md) <br>
-- [Priority Fees - Transaction Landing Optimization](references/helius-priority-fees.md) <br>
-- [Helius Sender - Transaction Submission](references/helius-sender.md) <br>
-- [Wallet API - Wallet Intelligence & Investigation](references/helius-wallet-api.md) <br>
-- [WebSockets - Real-Time Solana Streaming](references/helius-websockets.md) <br>
-- [Integration Patterns - Helius x DFlow](references/integration-patterns.md) <br>
-- [Helius Docs](https://www.helius.dev/docs) <br>
-- [Helius LLM-Optimized Docs](https://www.helius.dev/docs/llms.txt) <br>
-- [DFlow MCP Server](https://pond.dflow.net/mcp) <br>
-- [DFlow API Key](https://pond.dflow.net/build/api-key) <br>
+### Deployment Geography for Use:
 
+Global, subject to jurisdictional restrictions for prediction-market trading.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline code blocks, shell commands, configuration snippets, and API guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference Helius MCP tools, DFlow MCP tooling, REST APIs, WebSocket APIs, and local reference files depending on the user's task.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, target metadata, and SKILL.md frontmatter) <br>
+Risk: The skill asks users to install mutable external MCP tooling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, trusted Helius MCP version and restrict the server's filesystem and network access before installing.
+
+Risk: Trading, signup, renewal, upgrade, and transaction-signing flows may involve real funds or account changes.
+
+Mitigation: Require explicit human approval before any payment, account-plan change, or transaction signing.
+
+Risk: Wallet keys, JWTs, API keys, or KYC data could be exposed if handled on shared machines or in client-side code.
+
+Mitigation: Keep secrets in environment variables or backend secret storage, avoid shared machines for sensitive wallet material, and use backend handling for API keys and KYC flows.
+
+Risk: Generated transaction instructions can be incorrect or unsafe for a user's intent.
+
+Mitigation: Validate DFlow transaction instructions, amounts, mints, market status, KYC status, and fees before signing.
+
+## Reference(s):
+
+- [DFlow Spot Trading](references/dflow-spot-trading.md)
+- [DFlow Prediction Markets](references/dflow-prediction-markets.md)
+- [DFlow Proof KYC](references/dflow-proof-kyc.md)
+- [DFlow WebSockets](references/dflow-websockets.md)
+- [Helius Sender](references/helius-sender.md)
+- [Helius Priority Fees](references/helius-priority-fees.md)
+- [Helius WebSockets](references/helius-websockets.md)
+- [Helius LaserStream](references/helius-laserstream.md)
+- [Helius DAS API](references/helius-das.md)
+- [Helius Wallet API](references/helius-wallet-api.md)
+- [Helius Onboarding](references/helius-onboarding.md)
+- [Integration Patterns](references/integration-patterns.md)
+- [Helius Docs](https://www.helius.dev/docs)
+- [Helius API Reference](https://www.helius.dev/docs/api-reference)
+- [Helius LLM-Optimized Docs](https://www.helius.dev/docs/llms.txt)
+- [DFlow Docs](https://pond.dflow.net/introduction)
+- [DFlow MCP Docs](https://pond.dflow.net/build/mcp)
+- [DFlow Cookbook](https://github.com/DFlowProtocol/cookbook)
+- [DFlow Proof Docs](https://pond.dflow.net/learn/proof)
+- [Helius LaserStream SDK](https://github.com/helius-labs/laserstream-sdk)
+- [ClawHub Skill Page](https://clawhub.ai/0xichigo/skills/helius-dflow)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose API calls, MCP server setup, environment variables, transaction-handling patterns, and implementation guidance for Solana trading applications.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

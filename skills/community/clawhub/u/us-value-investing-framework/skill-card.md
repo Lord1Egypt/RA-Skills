@@ -1,41 +1,57 @@
-## Description: <br>
-This skill applies a deterministic, bilingual value-investing framework to user-provided US stock financial data and produces an A/B/C/D investment rating with rule-level reasons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+US stock valuation model skill (English-first + 中文) based on financial report data that applies explicit rules for ROE, debt ratio, free cash flow conversion, and moat assessment, then outputs an A/B/C/D investment rating with reasons.
 
-## Publisher: <br>
-[spyfree](https://clawhub.ai/user/spyfree) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[spyfree](https://clawhub.ai/user/spyfree)
 
-## Use Case: <br>
-Investors, analysts, and agent workflows use this skill to evaluate structured US stock financial inputs against explicit quality, leverage, cash-conversion, and moat rules. It is intended to support research and review rather than replace independent investment judgment. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated stock ratings could be treated as definitive investment advice. <br>
-Mitigation: Use the ratings as analytical support and review the reasoning before making any investment decision. <br>
-Risk: Incorrect or stale financial inputs can produce misleading valuation results. <br>
-Mitigation: Verify the source financial data, JSON fields, and output paths before running the evaluator. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/spyfree/us-value-investing-framework) <br>
-- [Framework guide](references/framework-guide.md) <br>
-- [Input template](references/input-template.json) <br>
+## Use Case:
 
+External users and investment-analysis agents use this skill to evaluate US stock financial report data against a fixed value-investing framework. It produces a bilingual rating and rule-by-rule explanation for buy, watch, or avoid decisions and monitoring.
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Markdown, Text, Shell commands, Guidance] <br>
-**Output Format:** [JSON result files and Markdown summaries with English reasons and a Chinese summary.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Deterministic local evaluation of user-provided financial data; no network access is described.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may treat the A/B/C/D rating as financial advice or as a complete investment decision.
+
+Mitigation: Present the rating as a rule-based analysis aid and require human review before acting on buy, watch, avoid, or position-sizing conclusions.
+
+Risk: Incorrect or stale financial inputs can produce misleading rule results and ratings.
+
+Mitigation: Verify the company financial data, dates, and moat scores before relying on the generated JSON or Markdown output.
+
+Risk: The deterministic framework may omit market, legal, tax, liquidity, portfolio, or company-specific risks outside the encoded rules.
+
+Mitigation: Use the output alongside broader due diligence and document any additional risks that are not captured by the fixed framework.
+
+## Reference(s):
+
+- [US Value Investing Framework - Extended Guide](references/framework-guide.md)
+- [Input Template](references/input-template.json)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, JSON, Shell commands]
+
+**Output Format:** [JSON result file and Markdown report with English-first bilingual text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs a deterministic A/B/C/D rating, pass count, English reasons, Chinese summary, and per-rule results from user-provided company financial JSON.]
+
+## Skill Version(s):
+
+1.1.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

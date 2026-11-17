@@ -1,43 +1,59 @@
-## Description: <br>
-YahooClaw integrates Yahoo Finance market data into OpenClaw for stock quotes, financial data, dividends, news, and market analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Yahoo Finance API integration for OpenClaw. Use when users ask for stock prices, company financials, historical data, dividends, or market data. Supports real-time quotes, financial statements, and market analysis.
 
-## Publisher: <br>
-[leohuang8688](https://clawhub.ai/user/leohuang8688) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[leohuang8688](https://clawhub.ai/user/leohuang8688)
 
-## Use Case: <br>
-Developers and OpenClaw users use YahooClaw to retrieve stock quotes, historical prices, financial statements, dividends, news sentiment, and technical indicators for market-data workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ticker symbols and news searches are sent to Yahoo Finance through the package dependency. <br>
-Mitigation: Use the skill only for symbols and searches appropriate to share with the upstream market-data provider. <br>
-Risk: BUY, SELL, confidence, and sentiment labels may be mistaken for financial advice. <br>
-Mitigation: Present generated analysis as informational market data and require human review before any investment decision. <br>
-Risk: API keys or secrets can be exposed if stored in tracked files or copied into logs. <br>
-Mitigation: Store optional API keys in environment variables or a secret manager, and avoid committing .env files or sharing logs that contain secrets. <br>
+## Use Case:
 
+Developers and external OpenClaw users use YahooClaw to retrieve market quotes, historical prices, technical indicators, dividends, and stock-related news for finance-oriented agent workflows. Its market analysis and buy/sell wording should be treated as informational output, not financial advice.
 
-## Reference(s): <br>
-- [Yahoo Finance](https://finance.yahoo.com/) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON-like JavaScript objects with human-readable status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include market data, quote and history arrays, news metadata, sentiment labels, and technical indicator recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release evidence) <br>
+Risk: Queried symbols are sent to Yahoo Finance and returned market data may be delayed or inaccurate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inform users that results are third-party market data, verify time-sensitive prices against authoritative sources, and avoid using the output as the only basis for trading decisions.
+
+Risk: The artifact includes buy/sell recommendation wording from technical indicators.
+
+Mitigation: Present recommendations as informational analysis only and add product-level review or disclaimers before exposing them in finance workflows.
+
+Risk: The package uses third-party dependencies for market data retrieval.
+
+Mitigation: Pin and review dependencies in controlled environments before deployment.
+
+## Reference(s):
+
+- [YahooClaw on ClawHub](https://clawhub.ai/leohuang8688/skills/yahoo-claw)
+- [Yahoo Finance](https://finance.yahoo.com/)
+- [OpenClaw Documentation](https://docs.openclaw.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, configuration, guidance]
+
+**Output Format:** [JSON-style JavaScript objects and concise natural-language responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Network-backed market data responses may include delayed prices, historical quotes, technical indicators, news sentiment, and error messages.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

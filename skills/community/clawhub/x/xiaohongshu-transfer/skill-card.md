@@ -1,44 +1,63 @@
-## Description: <br>
-自动化搬运小红书笔记到 Facebook 和 WordPress，包括文本提取、图片处理、上传准备和发布步骤。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小红书笔记搬运到 Facebook 和 WordPress 的自动化流程。当用户要求搬运小红书笔记、发布小红书内容到 Facebook/WordPress 时使用。
 
-## Publisher: <br>
-[weilixiong](https://clawhub.ai/user/weilixiong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weilixiong](https://clawhub.ai/user/weilixiong)
 
-## Use Case: <br>
-External content operators use this skill to transfer Xiaohongshu note text and images into Facebook and WordPress publishing workflows for accounts and destinations they control. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish content to live Facebook and WordPress destinations with weak confirmation and scoping controls. <br>
-Mitigation: Use it only for destinations you control, verify account and site IDs before posting, prefer drafts or explicit confirmation before publish, and review the upload directory contents before any live upload. <br>
-Risk: The GUI upload automation can select unintended files or operate on the wrong macOS file dialog. <br>
-Mitigation: Run GUI automation only when the target file dialog is visibly correct, and clear and inspect /tmp/openclaw/uploads before each upload. <br>
-Risk: WordPress publishing depends on a bearer token with posting authority. <br>
-Mitigation: Use a least-privilege token, keep it in the WP_TOKEN environment variable, and rotate or revoke it if exposed. <br>
+## Use Case:
 
+Content operators and developers use this skill to move Xiaohongshu note text and images into Facebook Meta Business Suite and WordPress publishing workflows. It provides steps, scripts, and platform-specific handling for image downloads, upload preparation, and WordPress posting.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/weilixiong/xiaohongshu-transfer) <br>
-- [Platform configuration](references/platforms.md) <br>
-- [Pitfalls and safeguards](references/pitfalls.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell, Python, AppleScript, and API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local image files, temporary upload directories, and WordPress API requests when the user executes the generated steps or bundled scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence, package.json, CHANGELOG) <br>
+Risk: The skill can publish content to real Facebook and WordPress accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use test or draft publishing first and confirm target accounts before every run.
+
+Risk: Local image and content files are staged in a shared upload directory.
+
+Mitigation: Validate titles and image URLs before invoking scripts, clear only the intended upload directory, and avoid placing sensitive content there.
+
+Risk: WP_TOKEN is a live publishing credential when provided.
+
+Mitigation: Store WP_TOKEN outside the skill files, scope it to the required site, and avoid exposing it in command output or logs.
+
+Risk: The workflow reposts Xiaohongshu material to other platforms.
+
+Mitigation: Install and use it only when authorized to repost the source material to the configured destinations.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/weilixiong/skills/xiaohongshu-transfer)
+- [Platform configuration reference](references/platforms.md)
+- [Pitfalls reference](references/pitfalls.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell, Python, AppleScript, and REST API snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local content and image files and publish posts when executed with account access and credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json, CHANGELOG, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

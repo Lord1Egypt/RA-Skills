@@ -1,39 +1,54 @@
-## Description: <br>
-Displays the first lines of files for quickly previewing file contents, checking headers, or sampling data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Display the first lines of files. Use for quickly previewing file contents, checking headers, or sampling data.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers, operators, and agents use this skill to preview the beginning of text files such as logs, CSVs, and configuration files without loading the full file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The beginning of a selected file may be displayed in the agent conversation, including sensitive content if the user points the skill at credentials, private records, or similar files. <br>
-Mitigation: Use the skill only on files whose initial contents are acceptable to reveal, and avoid credentials, private records, and other sensitive data. <br>
-Risk: Previewing very large files may still expose more content than intended if a large line count is requested. <br>
-Mitigation: Keep preview sizes small and review command arguments before running the skill on large files. <br>
+## Use Case:
 
+Developers and operators use this skill to preview the beginning of local text files, logs, CSVs, configuration files, or stdin before deciding whether to inspect more content.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text file preview with Markdown command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Displays the beginning of user-specified files or stdin; default behavior is the first 10 lines.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The implementation reads the full input before returning the requested first lines, which can cause unnecessary resource use on very large files or unbounded streams.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use bounded files or streams for local previews until the implementation is changed to stop reading after the requested number of lines.
+
+Risk: Some documented options are not implemented by the bundled script.
+
+Mitigation: Verify actual command behavior before relying on byte-count mode, quiet mode, or multiple-file behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/head-tool)
+- [Publisher profile](https://clawhub.ai/user/dinghaibin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text file previews with Markdown command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to the first 10 lines; the implementation supports a line-count option and single file or stdin input.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

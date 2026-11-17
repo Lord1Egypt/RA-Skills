@@ -1,48 +1,66 @@
-## Description: <br>
-Use when running SafeFlow against the shared Sui package with owner-assisted provisioning. Trigger for tasks such as creating an agent execution address with local Sui CLI, asking owner to fund gas and finish web-side wallet/session setup, saving walletId/sessionCapId for autonomous payments, syncing package id to SQL, and running Publish API plus Walrus end-to-end tests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safeflow Sui Skill helps agents run owner-assisted SafeFlow workflows for Sui test payments, Publish API and Walrus end-to-end tests, and SQL package ID synchronization.
 
-## Publisher: <br>
-[FWangZil](https://clawhub.ai/user/FWangZil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fwangzil](https://clawhub.ai/user/fwangzil)
 
-## Use Case: <br>
-Developers and operators use this skill to coordinate owner-assisted SafeFlow setup on Sui, persist wallet and session capability identifiers, run controlled payment tests, and exercise Publish API plus Walrus end-to-end flows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can execute real Sui payment test flows and stores delegated wallet/session capability data. <br>
-Mitigation: Use testnet or tightly capped funds, verify recipient addresses and payment amounts before execution, keep generated .safeflow files private and out of version control, and rotate or revoke session capabilities after testing. <br>
-Risk: The Publish API and Walrus end-to-end flow depends on surrounding agent scripts and package dependencies. <br>
-Mitigation: Inspect the surrounding agent_scripts and package dependencies before running the end-to-end flow, and use explicit operator-provided API URLs and credentials. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Owner-Handoff Flow](references/owner-handoff-flow.md) <br>
-- [Publish API Test Flow](references/publish-api-test-flow.md) <br>
-- [Package ID SQL Sync](references/sql-sync.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [Sui CLI install guide](https://docs.sui.io/guides/developer/getting-started/sui-install) <br>
-- [Sui CLI reference](https://docs.sui.io/references/cli) <br>
-- [SafeFlow producer endpoint](https://producer.safeflow.space) <br>
-- [SafeFlow dashboard](https://dash.safeflow.space) <br>
-- [Walrus testnet publisher](https://publisher.walrus-testnet.walrus.space) <br>
-- [Walrus testnet aggregator](https://aggregator.walrus-testnet.walrus.space) <br>
+## Use Case:
 
+Developers and operators use this skill to coordinate owner-assisted SafeFlow setup, configure Sui wallet/session identifiers, execute controlled test payments, run Publish API and Walrus integration checks, and sync package IDs into SQL-backed runtime configuration.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and generated local configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces owner handoff JSON, SafeFlow runtime configuration, environment exports, payment test results, SQL package-id sync entries, and Publish API status output.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can execute blockchain payments.
+
+Mitigation: Use a dedicated testnet wallet with limited funds and review the recipient and amount before every run.
+
+Risk: The skill stores wallet and session capability identifiers used for payment operations.
+
+Mitigation: Treat saved wallet/session capability files as sensitive operational data and restrict access to the local workspace.
+
+Risk: Publish API flows may pass API keys or requests to operator-provided URLs.
+
+Mitigation: Avoid passing API keys to untrusted URLs and verify the Publish API endpoint before running integration tests.
+
+Risk: Npx-based flows can resolve executable dependencies at runtime.
+
+Mitigation: Pin the tsx dependency locally before using npx-based flows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fwangzil/skills/safe-flow-sui-skill)
+- [Owner Handoff Flow](references/owner-handoff-flow.md)
+- [Publish API Test Flow](references/publish-api-test-flow.md)
+- [Package ID SQL Sync](references/sql-sync.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [Sui CLI Installation](https://docs.sui.io/guides/developer/getting-started/sui-install)
+- [Sui CLI Reference](https://docs.sui.io/references/cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with bash commands and JSON configuration artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local operational files such as agent address, owner handoff, SafeFlow config, environment exports, and SQL runtime configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

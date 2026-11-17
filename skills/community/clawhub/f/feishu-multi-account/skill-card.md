@@ -1,41 +1,53 @@
-## Description: <br>
-Supports configuring independent Feishu bot accounts for multiple OpenClaw sub-agents so messages route to the account-bound agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a guide for configuring independent Feishu bot accounts for OpenClaw sub-agents so messages route to the correct agent.
 
-## Publisher: <br>
-[zhili007](https://clawhub.ai/user/zhili007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhili007](https://clawhub.ai/user/zhili007)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to configure multiple Feishu bot accounts, bind each account to the intended sub-agent, and troubleshoot message routing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Feishu AppSecret values may be exposed if copied into source control, logs, or screenshots while following the configuration guide. <br>
-Mitigation: Back up openclaw.json, keep AppSecret values out of source control, logs, and screenshots, and rotate any secret that may have been exposed. <br>
-Risk: Incorrect account-to-agent bindings can route Feishu messages to the wrong OpenClaw sub-agent. <br>
-Mitigation: Verify each Feishu account is bound to the intended agent, ensure bindings are top-level configuration entries, restart the gateway, and confirm routing in logs. <br>
+## Use Case:
 
+Developers and operators use this skill to configure multiple Feishu bot accounts in OpenClaw and bind each account to the intended sub-agent. It is most useful when setting up multi-agent Feishu routing or troubleshooting messages that are routed to the wrong agent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhili007/feishu-multi-account) <br>
-- [Skill guide](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, configuration, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes OpenClaw openclaw.json account, binding, agent, restart, and log-check guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact config.json) <br>
+Risk: Real Feishu appSecret values could be exposed if copied into shared repositories, screenshots, or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep real secrets out of shared material, redact configuration examples, and rotate any appSecret that is accidentally exposed.
+
+Risk: Incorrect Feishu account bindings can route messages to the wrong OpenClaw sub-agent.
+
+Mitigation: Verify top-level bindings for every Feishu account and test routing logs before relying on the configuration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhili007/skills/feishu-multi-account)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON configuration examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup steps, validation commands, troubleshooting notes, and an example openclaw.json configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact config.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

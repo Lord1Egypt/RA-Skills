@@ -1,0 +1,118 @@
+{
+  "_description": "Detection signatures for AI Agent Skill Scanner. These patterns search for TEXT FRAGMENTS that are commonly associated with security risks in AI agent skills.",
+  "_note": "This file is read by the scanner (not executed). It is a signature database, similar to YARA or Snort rules.",
+  "signatures": [
+    {
+      "id": "hardcoded-api-key",
+      "category": "secrets",
+      "severity": "high",
+      "fragments": ["api_key", "api-key", "apikey", "API_KEY", "APIKEY"],
+      "message": "Possible hardcoded API key"
+    },
+    {
+      "id": "hardcoded-secret",
+      "category": "secrets",
+      "severity": "high",
+      "fragments": ["secret_key", "secret-token", "auth_token", "access_token", "bearer_token"],
+      "message": "Possible hardcoded secret or token"
+    },
+    {
+      "id": "hardcoded-password",
+      "category": "secrets",
+      "severity": "high",
+      "fragments": ["password", "passwd", "PASSWORD"],
+      "message": "Possible hardcoded password"
+    },
+    {
+      "id": "unsafe-eval",
+      "category": "execution",
+      "severity": "critical",
+      "fragments": ["eval("],
+      "message": "eval() can execute arbitrary code"
+    },
+    {
+      "id": "unsafe-exec",
+      "category": "execution",
+      "severity": "critical",
+      "fragments": ["exec("],
+      "message": "exec() can execute arbitrary code"
+    },
+    {
+      "id": "unsafe-os-system",
+      "category": "execution",
+      "severity": "critical",
+      "fragments": ["os.system("],
+      "message": "os.system() can execute shell commands"
+    },
+    {
+      "id": "unsafe-subprocess-shell",
+      "category": "execution",
+      "severity": "high",
+      "fragments": ["shell=True", "shell=true"],
+      "message": "subprocess with shell=True is vulnerable to shell injection"
+    },
+    {
+      "id": "pipe-to-shell",
+      "category": "execution",
+      "severity": "critical",
+      "fragments": ["curl", "wget"],
+      "message": "Remote code execution risk: downloading and piping to shell"
+    },
+    {
+      "id": "sudo-elevation",
+      "category": "privilege",
+      "severity": "high",
+      "fragments": ["sudo ", "sudo\t"],
+      "message": "Sudo/privilege escalation requested"
+    },
+    {
+      "id": "destructive-command",
+      "category": "destructive",
+      "severity": "critical",
+      "fragments": ["rm -rf /", "rm -rf ~", "rm -rf /*", "mkfs.", "dd if=", "> /dev/sd"],
+      "message": "Potentially destructive filesystem command"
+    },
+    {
+      "id": "permission-override",
+      "category": "privilege",
+      "severity": "medium",
+      "fragments": ["chmod 777", "chmod 666"],
+      "message": "Overly permissive file permissions"
+    },
+    {
+      "id": "credential-file-access",
+      "category": "secrets",
+      "severity": "high",
+      "fragments": [".ssh/", ".aws/", ".gcloud/", ".kube/", ".docker/"],
+      "message": "Access to credential/config directories"
+    },
+    {
+      "id": "git-config-access",
+      "category": "secrets",
+      "severity": "high",
+      "fragments": [".git/config"],
+      "message": "Access to git config (may contain credentials)"
+    },
+    {
+      "id": "base64-obfuscation",
+      "category": "obfuscation",
+      "severity": "high",
+      "fragments": ["base64.b64decode(", "base64_decode", "base64 -d"],
+      "message": "Potential code obfuscation via base64"
+    },
+    {
+      "id": "raw-network",
+      "category": "network",
+      "severity": "medium",
+      "fragments": ["urllib.request", "requests.post", "requests.get", "requests.put", "requests.delete"],
+      "message": "Raw network call found"
+    },
+    {
+      "id": "prompt-injection",
+      "category": "prompt_injection",
+      "severity": "critical",
+      "fragments": ["ignore previous instructions", "ignore the above", "ignore all instructions", "override instructions", "you are now"],
+      "message": "Potential prompt injection language"
+    }
+  ]
+}

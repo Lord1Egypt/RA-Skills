@@ -1,44 +1,60 @@
-## Description: <br>
-Recognizes degree certificates and extracts the certificate holder name, degree type, issuing institution, and grant date. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recognizes degree certificate images or PDFs and extracts structured fields such as certificate holder, university, major, degree, certificate number, issue date, and confidence-related result data.
 
-## Publisher: <br>
-[scnet-sugon](https://clawhub.ai/user/scnet-sugon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[scnet-sugon](https://clawhub.ai/user/scnet-sugon)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to run OCR on degree certificate images or PDFs and receive structured fields for document review or data entry. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Degree certificate images or PDFs and extracted OCR data are sent to Scnet's remote API. <br>
-Mitigation: Use the skill only when third-party handling of the documents is acceptable for privacy, compliance, and organizational requirements. <br>
-Risk: The skill requires a sensitive SCNET_API_KEY credential. <br>
-Mitigation: Store the key in an environment variable or protected config file and avoid pasting it into chats or logs. <br>
+## Use Case:
 
+External users and developers use this skill to send degree certificate files to the Scnet OCR service and receive structured recognition results for downstream review, record extraction, or workflow automation.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/scnet-sugon/degree-certificate-ocr) <br>
-- [scnet-sugon publisher profile](https://clawhub.ai/user/scnet-sugon) <br>
-- [Sugon-Scnet OCR API docs summary](references/api-docs.md) <br>
-- [Degree certificate OCR field summary](assets/templates/fields-summary.md) <br>
-- [Scnet website](https://www.scnet.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON on stdout, with text error guidance on failure] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SCNET_API_KEY; sends selected degree certificate files to Scnet's remote OCR API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, changelog, release metadata) <br>
+Risk: Degree certificates can contain personal data, and the security evidence notes that files are uploaded to Scnet or the configured API base.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with appropriate consent, avoid uploading unnecessary sensitive certificates, and keep SCNET_API_BASE at the documented HTTPS Scnet endpoint unless another server is intentionally trusted.
+
+Risk: The skill requires SCNET_API_KEY for remote OCR access.
+
+Mitigation: Protect the API key in environment variables or config/.env with restricted permissions, and do not paste credentials into chats or shared logs.
+
+Risk: The documented OCR service has request-rate limits.
+
+Mitigation: Call the skill serially for batches and retry later when rate-limit errors persist.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/scnet-sugon/skills/degree-certificate-ocr)
+- [Sugon-Scnet OCR API documentation](references/api-docs.md)
+- [Degree certificate OCR fields](assets/templates/fields-summary.md)
+- [Scnet website](https://www.scnet.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The JSON contains OCR recognition data returned from the Scnet service, with fields varying by OCR type.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, skill.yaml, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

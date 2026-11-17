@@ -1,42 +1,64 @@
-## Description: <br>
-MainCtrl is a runtime safety guard for OpenClaw multi-agent workflows that blocks configured destructive tool calls for controlled agents and redirects them toward sub-agent delegation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runtime safety guard for OpenClaw multi-agent workflows that blocks destructive tools for controlled agents and redirects those operations to sub-agents.
 
-## Publisher: <br>
-[ifeel-is-a-mouse](https://clawhub.ai/user/ifeel-is-a-mouse) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ifeel-is-a-mouse](https://clawhub.ai/user/ifeel-is-a-mouse)
 
-## Use Case: <br>
-Developers and operators using OpenClaw multi-agent workflows use MainCtrl to keep orchestration agents in read and delegation mode while preserving execution access for configured sub-agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: MainCtrl is a workflow guard, not a hard security sandbox, so uncontrolled agents or unsuitable permissions can still allow destructive actions. <br>
-Mitigation: Use it as a delegation guard, keep sub-agent permissions appropriate, and verify controlled agents and status before relying on the protection. <br>
-Risk: Plugin install, plugin remove, and refresh-memory commands intentionally change the local OpenClaw environment or memory files. <br>
-Mitigation: Run those commands only when those local changes are intended, then review MainCtrl status after the operation. <br>
+## Use Case:
 
+Developers and agent operators use Mainctrl to manage runtime tool access for OpenClaw multi-agent workflows. It helps keep orchestration agents in a read-and-delegate posture while allowing configured sub-agents to perform execution tasks.
 
-## Reference(s): <br>
-- [MainCtrl on ClawHub](https://clawhub.ai/ifeel-is-a-mouse/skills/mainctrl) <br>
-- [README.md](artifact/README.md) <br>
-- [plugin/README.md](artifact/plugin/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update local OpenClaw plugin installation state, MainCtrl state, or workspace memory when the documented commands are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Blocked destructive actions are automatically delegated to sub-agents, which may still have broad permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review sub-agent permissions before enabling Mainctrl and restrict controlled agents and blocked tools to the workflow policy you intend to enforce.
+
+Risk: The exec allow-except feature is a convenience control and should not be treated as a strong security boundary.
+
+Mitigation: Keep exec blocked for sensitive workflows, minimize allow-except entries, and verify status before relying on command filtering.
+
+Risk: The refresh-memory command writes Mainctrl state into persistent future agent context.
+
+Mitigation: Use refresh-memory only when persistent state is desired and review the memory file after running it.
+
+Risk: If the plugin state file is missing or corrupted, the plugin falls back to allowing tool calls.
+
+Mitigation: Run the status command after installation or configuration changes and verify blocking behavior before depending on the guardrail.
+
+## Reference(s):
+
+- [Mainctrl ClawHub skill page](https://clawhub.ai/ifeel-is-a-mouse/skills/mainctrl)
+- [Publisher profile](https://clawhub.ai/user/ifeel-is-a-mouse)
+- [Skill README](artifact/README.md)
+- [Plugin README](artifact/plugin/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational instructions for toggling tool blocking, configuring controlled agents, managing exec allow-except rules, and installing or removing the companion plugin.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-A persona and decision-advice skill that simulates Zhang Xuefeng's public style and frameworks for discussing education choices, career planning, and social mobility. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill gives agents a Zhang Xuefeng-inspired persona and decision framework for education choices, career planning, and social mobility questions.
 
-## Publisher: <br>
-[taotao666720](https://clawhub.ai/user/taotao666720) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[taotao666720](https://clawhub.ai/user/taotao666720)
 
-## Use Case: <br>
-External users invoke this skill when they want a Zhang Xuefeng-style perspective on education, major selection, career planning, or class mobility decisions. The skill provides roleplay-style guidance based on the artifact's summarized public-facing viewpoints and heuristics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake roleplay output for verified statements from Zhang Xuefeng. <br>
-Mitigation: Make clear that responses are simulated from public-facing viewpoints and are not statements from Zhang Xuefeng. <br>
-Risk: The skill may provide forceful education or career guidance that is not neutral professional advice. <br>
-Mitigation: For important decisions, ask for neutral, source-backed analysis or exit the role before relying on the response. <br>
+## Use Case:
 
+External users and agents use this skill to answer education, career planning, and class mobility questions through a Zhang Xuefeng-inspired roleplay perspective based on the skill's documented mental models, decision heuristics, and speaking style.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/taotao666720/zhangxuefeng-local) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only roleplay responses; no code execution, data access, persistence, or tool use indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact _meta.json) <br>
+Risk: Users may mistake the generated first-person Zhang Xuefeng-style roleplay for verified quotes, the person's own statements, or authoritative education, career, or financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as generated roleplay and analysis, verify important claims independently, and use documented exit phrases to return to normal assistant behavior.
+
+Risk: The skill may continue speaking in first-person Zhang Xuefeng style after only one disclaimer.
+
+Mitigation: Ensure users see the initial roleplay disclaimer and can exit the persona with the documented exit phrases.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/taotao666720/skills/zhangxuefeng-local)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are generated roleplay and analysis, not verified quotes or the person's own statements.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

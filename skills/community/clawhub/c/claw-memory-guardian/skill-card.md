@@ -1,45 +1,60 @@
-## Description: <br>
-Claw Memory Guardian helps OpenClaw users preserve local working memory through Markdown memory files, JSON indexes, backups, search, and Git-based save points. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claw Memory Guardian helps OpenClaw users maintain local long-term memory, daily work logs, search indexes, backups, and git-based recovery points.
 
-## Publisher: <br>
-[BetsyMalthus](https://clawhub.ai/user/BetsyMalthus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[betsymalthus](https://clawhub.ai/user/betsymalthus)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to initialize and maintain durable local memory for project notes, daily logs, searchable records, and recovery after interrupted sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates durable local memory files, backups, and Git history that may retain sensitive or regulated information. <br>
-Mitigation: Do not store secrets, regulated data, or customer financial or contract details unless authorized and covered by a retention plan. <br>
-Risk: The generated auto-save script can continue running in the background and repeatedly update local memory state. <br>
-Mitigation: Run background auto-save only when the operator knows how to stop it and has reviewed the configured save interval. <br>
-Risk: Git commits or workspace sharing can expose saved memory content beyond the local machine. <br>
-Mitigation: Review Git status and repository contents before pushing, sharing, or publishing the workspace. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to preserve session context, record project progress, search prior notes, and create local backups after interruptions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/BetsyMalthus/claw-memory-guardian) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [EXAMPLES.md](artifact/EXAMPLES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [CLI text plus Markdown memory files, JSON index files, shell scripts, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates durable local files and may create Git commits in the OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and package.json) <br>
+Risk: The skill stores long-lived local memory, backups, and git history that may contain sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing secrets, regulated data, customer details, or confidential business information unless storage, backup, and sharing controls have been reviewed.
+
+Risk: The generated autosave script can run in the background and operate on workspace memory files.
+
+Mitigation: Review workspace configuration before running autosave, monitor running autosave processes, and stop them manually before uninstalling or changing storage policy.
+
+Risk: Installation replaces an existing skill directory or memory-guardian executable in the configured workspace.
+
+Mitigation: Check for existing memory-guardian binaries and skill directories before installation, and back up any existing memory data first.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/betsymalthus/skills/claw-memory-guardian)
+- [README](README.md)
+- [Usage Examples](EXAMPLES.md)
+- [Skill Documentation](SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and CLI text with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates local memory files, backup directories, search indexes, and git commits in the configured OpenClaw workspace.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

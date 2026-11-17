@@ -1,38 +1,48 @@
-## Description: <br>
-Dropshipping Operations helps Shopify and WooCommerce store owners manage order tracking, supplier communication, customer service, product research, competitor analysis, financial tracking, and store optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dropshipping business operations for Shopify/WooCommerce store owners sourcing from AliExpress, CJDropshipping, or US suppliers. Order tracking, supplier communication templates, customer service automation, product research briefs, and margin tracking. Built for solo dropshippers scaling past $10K/mo.
 
-## Publisher: <br>
-[joshbuildswithdoit](https://clawhub.ai/user/joshbuildswithdoit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[joshbuildswithdoit](https://clawhub.ai/user/joshbuildswithdoit)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External Shopify and WooCommerce dropshipping store owners use this skill to manage order follow-up, customer service responses, product research, supplier operations, store optimization, and margin tracking while scaling a small ecommerce business.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill asks for store URLs, supplier contacts, product revenue, ad spend, ROAS targets, and margin targets that may be business-sensitive.
+
+Mitigation: Provide only the business context needed for the task, use supplier aliases or redacted contacts where possible, and avoid sharing confidential details unless required.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Shopify and WooCommerce dropshippers use this skill to structure daily operations, including fulfillment tracking, supplier outreach, customer service responses, product research, competitor review, and margin monitoring. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share sensitive supplier, customer, or financial details while requesting operations guidance. <br>
-Mitigation: Share only the minimum business details needed, redact supplier personal contact details where possible, use ranges when exact margins or ad spend are unnecessary, and avoid providing marketplace credentials or private account access. <br>
+**Output Format:** [Markdown and structured operational guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/joshbuildswithdoit/dropship-ops) <br>
+**Other Properties Related to Output:** [Produces checklists, templates, scorecards, research briefs, response drafts, tracking frameworks, and setup guidance.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance, checklists, and reusable business templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Business operations content may include supplier communications, product research briefs, scorecards, checklists, and financial tracking prompts.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

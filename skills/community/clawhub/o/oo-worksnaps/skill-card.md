@@ -1,45 +1,55 @@
-## Description: <br>
-Uses OOMOL's oo CLI connector to search and read Worksnaps profiles, projects, tasks, assignments, and time-tracking data through a connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill to search and read Worksnaps data through a connected OOMOL account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and business users use this skill to inspect Worksnaps account, project, task, assignment, and time-entry information through an already connected Worksnaps account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads Worksnaps business and time-tracking data through a connected account. <br>
-Mitigation: Install it only when the user trusts OOMOL and intends the agent to access Worksnaps data through that account. <br>
-Risk: First-time CLI installation, sign-in, or Worksnaps connection steps could expose sensitive account setup flows to an agent. <br>
-Mitigation: Have the user perform first-time install, login, and Worksnaps API-key connection steps directly. <br>
-Risk: Future connector actions labeled write or destructive could change or remove Worksnaps data. <br>
-Mitigation: Require explicit user approval of the exact payload and effect before running any write or destructive action. <br>
+## Use Case:
 
+People using a connected OOMOL account can retrieve Worksnaps projects, tasks, assignments, time entries, and reports.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/oomol/oo-worksnaps) <br>
-- [Publisher Profile](https://clawhub.ai/user/oomol) <br>
-- [Worksnaps Homepage](https://www.worksnaps.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses read-only Worksnaps connector actions unless a future action is explicitly labeled write or destructive.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: CLI setup can execute unreviewed remote code and introduce additional persistent agent skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin the CLI before installation, approve installation separately, and set OO_SKILLS_SYNC_DISABLED=1 before invoking a compatible CLI to disable startup skill synchronization.
+
+Risk: Connecting OOMOL mediates access to the Worksnaps account and work records; hosted connector and external installer behavior are unverified.
+
+Mitigation: Review the setup and access before connecting, and do not assume external installer contents or hosted connector behavior have been verified.
+
+## Reference(s):
+
+- [Worksnaps](https://www.worksnaps.com)
+- [Worksnaps API documentation](https://api.worksnaps.com/api_docs/)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Text summaries and JSON connector results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only Worksnaps data for supported project, task, assignment, time entry, and report actions.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,29 @@
+{
+  "skill_name": "backup-chain",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Our sandbox got reset overnight and half my project directory rolled back — the worklog is here but my scripts folder and the last few days of docs are gone. I have some old tarballs in downloads but I honestly don't know which is the newest or which ones I can trust. Help me get back on my feet and set things up so this can't blindside me again.",
+      "expected_output": "Agent uses backup-chain: inventories surviving state, verifies/recovers from archives (drill, check, per-member restore, recheck), then initializes a chain with members and a ledger, and builds a fresh generation carrying the heal note.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I'm about to do a risky refactor of our deployment configs. Before I start, snapshot the workspace so if it all goes sideways we can recover — and I want to be actually sure the snapshot works, not just that a file exists. If it helps, I can wire the log of snapshots into our team gist.",
+      "expected_output": "Agent uses backup-chain: init + member add (critical members) + build with a carries note; points at the drill PASS output as the recovery guarantee; mentions the command adapter as the gist-integration path (user-owned commands, identity filtering inside the command).",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Someone uploaded workspace-backup-g7.tar.gz to our shared drive from an older machine. I want to pull just the docs/ folder out of it into a fresh directory, and I don't want anything else touched — and if this archive is actually older than what we have now, I want it to say so rather than silently roll us back.",
+      "expected_output": "Agent uses backup-chain: check (fencing gate — refuses stale handoffs), then restore with --target and per-member selection rather than bulk extraction; explains the refuse/force semantics instead of overriding silently.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Our backup chain has been growing for months and it's about to hit a size limit. I can see old bulk data in there that probably doesn't need to ride along anymore, plus a couple of directories full of generated junk. Slim the chain down for me, but do NOT lose anything — and I'd like to know this doesn't creep up on us again.",
+      "expected_output": "Agent uses backup-chain v1.2: status to show raw member/archive weight, evict for the bulk members WITH a custody destination (--stow-to/--stow-cmd, refuses to drop custody silently), member add --exclude for the generated-junk directories (opt-in, no structural defaults assumed), one verification build reading the DETECT lines, and notes the thresholds are configurable (detect) while detections never gate.",
+      "files": []
+    }
+  ]
+}

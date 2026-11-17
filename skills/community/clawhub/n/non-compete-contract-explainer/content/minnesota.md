@@ -2,20 +2,22 @@
 jurisdiction: "Minnesota"
 slug: minnesota
 countryCode: US
-snapshotAsOf: "2026-06-08"
-lastReviewed: "2026-05-27"
-canonicalUrl: https://openagreements.org/legal/non-compete/minnesota
+content_packaged_at: "2026-09-05"
+law_checked_through: "2026-05-27"
+human_reviewed_at: null
+next_review_due: "2026-11-23"
+canonicalUrl: https://openagreements.org/practice-guides/non-compete/us/minnesota
 license: CC BY 4.0
 stale: false
 ---
 
 > [!IMPORTANT]
-> **Informational only — not legal advice.** This is a snapshot of an OpenAgreements practice note,
+> **Informational only — not legal advice.** This is a snapshot of an OpenAgreements practice guide,
 > provided for general information. It is not legal advice, does not create an attorney-client
 > relationship, and is not a substitute for a licensed attorney in the relevant jurisdiction.
 > Laws change; verify against the canonical version before relying on it.
 >
-> **Canonical:** https://openagreements.org/legal/non-compete/minnesota · **Snapshot as of:** 2026-06-08 · License: CC BY 4.0 · © UseJunior
+> **Canonical:** https://openagreements.org/practice-guides/non-compete/us/minnesota · **Snapshot as of:** 2026-09-05 · License: CC BY 4.0 · © openagreements.org
 
 # Employment Non-Competes in Minnesota[^about]
 
@@ -34,13 +36,13 @@ A question-by-question summary of Minnesota's 2023 non-compete statute, legacy M
 | **Can a court narrow it?** | No |
 | **Applies to contractors?** | Yes |
 
-## Are employee non-compete agreements enforceable in Minnesota? {#employee-noncompetes}
+## Are employee non-compete agreements enforceable in Minnesota? {#employee-non-compete-enforceability}
 
 **Short answer.** Usually no, for agreements entered into on or after July 1, 2023. Minn. Stat. § 181.988 makes covered covenants not to compete void and unenforceable[^minn-181-988-voids-employment-noncompetes], unless a sale-of-business or dissolution exception applies.
 
 The statute covers employees and independent contractors. It defines an employee as any individual who performs services for an employer, "including independent contractors"[^minn-181-988-includes-independent-contractors], and commentary treats that scope as broader than wage-threshold statutes in many other states [^cooley-minn-181-988-independent-contractors][^littler-minn-181-988-complete-prohibition].
 
-For a standard post-employment employee non-compete signed on or after July 1, 2023, the practical answer is to remove it rather than revise the duration, territory, or employee class. Those older drafting variables matter mainly for pre-July 1, 2023 agreements and for the statute's narrow business-sale and dissolution exceptions.
+For a standard post-employment employee non-compete signed on or after July 1, 2023, the practical answer is to remove it rather than revise the duration, territory, or employee class. Those older drafting variables matter mainly for pre-July 1, 2023 agreements and for the statute's narrow business-sale and dissolution exceptions. For a clause-by-clause pass over a specific agreement under both regimes, the [Minnesota non-compete reviewer checklist](/checklists/non-compete/us/minnesota) walks the full covenant suite item by item with each requirement's force level.
 
 ## What law governs Minnesota non-compete agreements signed before July 1, 2023? {#pre-2023-agreements}
 
@@ -106,7 +108,7 @@ The statute includes independent contractors in its employee definition and requ
 
 **Short answer.** Minnesota changed from a common-law enforceability regime to a prospective statutory ban in 2023, then added a service-contract restriction in 2024.
 
-**May 24, 2023:** Governor Tim Walz signed SF 3035, adding Minn. Stat. § 181.988 and prohibiting most new employee and independent-contractor non-competes [^stinson-minn-181-988-signed-effective].
+**May 24, 2023:** Governor Tim Walz signed SF 3035, adding Minn. Stat. § 181.988 and prohibiting most new employee and independent-contractor non-competes [^minn-181-988-void-recent][^stinson-minn-181-988-signed-effective].
 
 **July 1, 2023:** The ban took effect for new agreements. Commentary treats pre-July 1, 2023 agreements as still governed by the preexisting common-law framework [^cooley-minn-181-988-not-retroactive-development][^littler-minn-181-988-existing-agreements].
 
@@ -114,7 +116,7 @@ The statute includes independent contractors in its employee definition and requ
 
 **2025 legislative context:** A 2025 bill proposed additional exceptions to section 181.988 for certain high-compensation employees [^minn-hf1768-proposed-exceptions]; it has not been enacted as of this article's publication.
 
-[^about]: By Steven Obiajulu, J.D. Published by [openagreements.org](https://openagreements.org) · Maintained by [UseJunior](https://usejunior.com). Last reviewed 2026-05-27. License: CC BY 4.0. Steven Obiajulu, J.D. is admitted in New York, not Minnesota. This article synthesizes Minnesota primary law and is not legal advice from a Minnesota-admitted attorney. This article is for informational purposes only and does not create an attorney-client relationship.
+[^about]: By Steven Obiajulu, J.D. Published by [openagreements.org](https://openagreements.org). Last reviewed 2026-05-27. License: CC BY 4.0. Steven Obiajulu, J.D. is admitted in New York, not Minnesota. This article synthesizes Minnesota primary law and is not legal advice from a Minnesota-admitted attorney. This article is for informational purposes only and does not create an attorney-client relationship. CC BY 4.0. Cite as Steven Obiajulu, *Employment Non-Competes in Minnesota*, OpenAgreements (last updated May 27, 2026), https://openagreements.org/practice-guides/non-compete/us/minnesota.
 
 [^minn-181-988-voids-employment-noncompetes]: **Minn. Stat. § 181.988, subd. 2(a)** — "Any covenant not to compete contained in a contract or agreement is void and unenforceable." *Minn. Stat. § 181.988, subd. 2(a) (2025).* <https://www.revisor.mn.gov/statutes/cite/181.988>
 
@@ -159,6 +161,8 @@ The statute includes independent contractors in its employee definition and requ
 [^minn-181-9881-employee-notice]: **Minn. Stat. § 181.9881, subd. 2(c)** — "the service provider must provide notice to their employees of this section and the restrictive covenant in the existing contract that violates this section." *Minn. Stat. § 181.9881, subd. 2(c) (2025).* <https://www.revisor.mn.gov/statutes/cite/181.9881>
 
 [^minn-181-9881-software-consulting-exemption]: **Minn. Stat. § 181.9881, subd. 3** — "This section does not apply to workers providing professional business consulting for computer software development and related services" *Minn. Stat. § 181.9881, subd. 3 (2025).* <https://www.revisor.mn.gov/statutes/cite/181.9881>
+
+[^minn-181-988-void-recent]: **Minn. Stat. § 181.988, subd. 2(a)** — "Any covenant not to compete contained in a contract or agreement is void and unenforceable." *Minn. Stat. § 181.988, subd. 2(a) (2025).* <https://www.revisor.mn.gov/statutes/cite/181.988>
 
 [^stinson-minn-181-988-signed-effective]: **Stinson commentary** — "MN SF 3035, signed by Governor Walz on May 24, 2023, restricts employers from entering into noncompetition agreements on or after July 1, 2023" *Stinson, Minnesota Non-Compete Ban Signed into Law and Effective July 1, 2023 (2023).* <https://www.stinson.com/newsroom-publications-minnesota-non-compete-ban-signed-into-law-and-effective-july-1-2023>
 

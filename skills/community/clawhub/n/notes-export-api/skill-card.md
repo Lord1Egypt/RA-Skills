@@ -1,43 +1,59 @@
-## Description: <br>
-Exports Markdown notes to Smartisan-style long PNG images through a configurable notes-export-api endpoint, optionally uploading referenced local images first. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects to an explicitly configured Smartisan Notes service with username or email credentials so an agent can manage cloud notes, folders, starred and pinned states, trash recovery, WeChat-ready HTML, and Markdown-to-PNG long-image exports.
 
-## Publisher: <br>
-[zhaoolee](https://clawhub.ai/user/zhaoolee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaoolee](https://clawhub.ai/user/zhaoolee)
 
-## Use Case: <br>
-Developers and note-taking users use this skill to export inline Markdown or local Markdown files as Smartisan-style PNG note images. It is useful for batch note image generation, including Markdown files that reference local images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Markdown note content may be sent to a remote export service when no trusted local endpoint is configured. <br>
-Mitigation: Use an explicit local or trusted endpoint through --endpoint or NOTES_EXPORT_API_BASE_URL before exporting sensitive notes. <br>
-Risk: Local images referenced by Markdown files can be uploaded to the same export service during export. <br>
-Mitigation: Review Markdown image references before export and avoid private local images unless the configured service is trusted. <br>
-Risk: Local .env files are sourced during execution and can change the export endpoint. <br>
-Mitigation: Inspect repository and skill .env files before running the script and set the intended endpoint explicitly. <br>
+## Use Case:
 
+Developers and external users can use this skill to operate their own configured Notes service from an agent: list, query, create, update, classify, star, pin, delete, restore, and export notes. It is also useful for producing WeChat-compatible HTML or PNG long images from Markdown content.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/zhaoolee/notes-export-api) <br>
-- [notes-export-api project link from skill artifact](https://github.com/zhaoolee/notes) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; script output is a PNG file path.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports inline Markdown or a UTF-8 Markdown file, optional filename, optional theme, and endpoint configuration through command arguments or NOTES_EXPORT_API_BASE_URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: Untrusted env files used with export_note.sh can execute shell commands when sourced.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted env files, inspect them before use, keep them outside version control, and prefer process environment variables or explicit CLI parameters when practical.
+
+Risk: Markdown export can upload local files referenced by Markdown image paths.
+
+Mitigation: Review Markdown image references before export, process only trusted Markdown files, and use inline Markdown only for remote image URLs when local uploads are not intended.
+
+Risk: Reusable account credentials may be sent to a configured Notes service over plain HTTP.
+
+Mitigation: Use HTTPS for non-local Notes servers, verify the service operator is trusted, and avoid putting passwords in shell history, logs, or committed files.
+
+## Reference(s):
+
+- [Workspace API and command reference](references/workspace-api.md)
+- [ClawHub skill page](https://clawhub.ai/zhaoolee/skills/notes-export-api)
+- [Publisher profile](https://clawhub.ai/user/zhaoolee)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, API Calls, Files, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands; invoked scripts can return JSON, HTML, Markdown, or PNG files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an explicitly configured Notes service URL and credentials; no default service endpoint is used.]
+
+## Skill Version(s):
+
+0.3.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

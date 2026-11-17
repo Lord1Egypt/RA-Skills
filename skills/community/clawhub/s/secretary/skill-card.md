@@ -1,45 +1,60 @@
-## Description: <br>
-Manage calendar, draft communications, and track preferences with explicit confirmation before actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage calendar, draft communications, and track preferences with explicit confirmation before actions.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Employees and external users can use this secretary-style skill to draft communications, suggest calendar actions, track commitments, and maintain explicitly stated preferences. Deployment should enforce confirmation before messages, calendar changes, bookings, RSVPs, or memory updates. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Artifact behavior may direct the agent to send messages, change calendars, book travel, handle RSVPs, or mutate inbox state without clear approval controls. <br>
-Mitigation: Restrict the skill to drafting and suggestions unless the user personally confirms each external action. <br>
-Risk: The skill maintains detailed local memory about people, preferences, schedules, and work patterns. <br>
-Mitigation: Store only preferences and relationship notes the user explicitly approves, and let the user review or remove local memory files. <br>
-Risk: Communications written in the user's voice could damage relationships or create obligations if sent without review. <br>
-Mitigation: Require review for legally binding, emotional, negotiation, client-sensitive, or relationship-sensitive messages. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/secretary) <br>
-- [Calendar Management](artifact/calendar.md) <br>
-- [Daily Operations](artifact/operations.md) <br>
-- [Writing On Your Behalf](artifact/writing.md) <br>
-- [Memory System Guide](artifact/memory-guide.md) <br>
+## Use Case:
 
+Individuals and teams use this skill as an administrative assistant for calendar planning, communication drafting, reminders, travel coordination, and preference tracking. It is intended to operate through the user's configured tools with explicit confirmation before external actions.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown or plain text with occasional inline shell commands for local setup] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local secretary memory files only when explicitly approved by the user.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Support files describe sending messages, changing calendars, and booking travel without clear user approval.
+
+Mitigation: Require explicit confirmation for every send, archive, RSVP, calendar edit, booking, and rebooking before granting tool access.
+
+Risk: The skill may store or update personal preferences and relationship context in local memory files.
+
+Mitigation: Require user approval for each memory write and review the contents of ~/secretary/ periodically.
+
+Risk: Broad email, calendar, travel, or document permissions could let the skill take high-impact actions.
+
+Mitigation: Use host-level approval controls and grant only the narrow permissions needed for the current task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/secretary)
+- [Calendar Management](artifact/calendar.md)
+- [Memory System Guide](artifact/memory-guide.md)
+- [Daily Operations](artifact/operations.md)
+- [Writing On Your Behalf](artifact/writing.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and plain text with occasional inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create and update local files under ~/secretary/ when the user allows memory storage.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,7 +1,7 @@
 ---
 name: architecture-paradigm-microservices
 description: Applies microservices for independent deployment and per-service scaling
-version: 1.9.8
+version: 1.10.3
 triggers:
   - architecture
   - microservices
@@ -14,17 +14,8 @@ source: claude-night-market
 source_plugin: archetypes
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/archetypes](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/archetypes](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
-
-## Table of Contents
-
-- [When to Employ This Paradigm](#when-to-employ-this-paradigm)
-- [When NOT to Use This Paradigm](#when-not-to-use-this-paradigm)
-- [Adoption Steps](#adoption-steps)
-- [Key Deliverables](#key-deliverables)
-- [Technology Guidance](#technology-guidance)
-- [Risks & Mitigations](#risks-mitigations)
 
 # The Microservices Architecture Paradigm
 
@@ -90,13 +81,20 @@ source_plugin: archetypes
 
 ## Concrete Components
 
-These vocabulary items name the concrete tools and abstractions
-that show up when the paradigm is implemented. They are not
-required dependencies and they are not part of the skill's
-``tools:`` frontmatter (which is reserved for Claude Code tool
-restrictions). Use this list to disambiguate during architecture
-discussions.
+Vocabulary for the tools and abstractions an implementation of this
+paradigm tends to carry. Not dependencies, and not ``tools:`` frontmatter.
 
-- ``service-boundary-analyzer`` -- finds candidate seams via call-graph and data-ownership analysis
-- ``api-contract-generator`` -- OpenAPI/protobuf scaffolding for new service boundaries
-- ``resilience-patterns`` -- retry, circuit breaker, bulkhead, and timeout libraries
+- ``service-boundary-analyzer``: finds candidate seams via call-graph and data-ownership analysis
+- ``api-contract-generator``: OpenAPI/protobuf scaffolding for new service boundaries
+- ``resilience-patterns``: retry, circuit breaker, bulkhead, and timeout libraries
+
+## Exit Criteria
+
+- [ ] An ADR catalogs all service boundaries with their data stores and communication patterns
+  (synchronous API vs. asynchronous events) before any service is deployed independently.
+- [ ] Each service owns its own database or persistence mechanism. No service reads another
+  service's tables directly (verified via data-ownership review).
+- [ ] Resilience patterns (timeout, retry, circuit breaker, bulkhead) are documented and
+  implemented for every inter-service call before the service goes to production.
+- [ ] "Golden path" runbooks for creating and operating new services exist before a second team
+  begins adopting the architecture.

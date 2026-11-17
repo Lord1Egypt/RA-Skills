@@ -1,40 +1,53 @@
-## Description: <br>
-Full-stack application builder that creates web apps, APIs, mobile apps, and more from natural language requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full-stack application builder that creates web apps, APIs, mobile apps, and more from natural language requests.
 
-## Publisher: <br>
-[ericn26-star](https://clawhub.ai/user/ericn26-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ericn26-star](https://clawhub.ai/user/ericn26-star)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan, scaffold, implement, test, and deploy full-stack applications or features from natural language requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide production deployment and external service integration without a clear final consent checkpoint. <br>
-Mitigation: Require explicit approval before deployment, public exposure, costs, secrets, authentication, payment settings, data sources, or connecting real accounts. <br>
-Risk: Generated application code or configuration may be unsuitable for live use without review. <br>
-Mitigation: Review generated code and configuration before publishing, deploying, or connecting production data. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan, scaffold, modify, test, and deploy full-stack applications from natural language requests.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ericn26-star/christy-app-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with implementation plans, code snippets, shell commands, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include project structure recommendations, dependency choices, deployment guidance, and safety checkpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and target metadata) <br>
+Risk: The skill may guide an agent toward scaffolding, modifying, testing, or deploying applications.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review implementation plans and require approval before code changes, dependency installation, service configuration, or deployment.
+
+Risk: Requests involving external services, databases, payments, or production deployment can create operational or security exposure.
+
+Mitigation: Validate service configuration, credentials handling, authorization, payment flows, and deployment settings before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ericn26-star/skills/christy-app-builder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with implementation plans, code snippets, shell commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose dependency installation, external service setup, database changes, testing, and deployment steps.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

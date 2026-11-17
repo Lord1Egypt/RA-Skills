@@ -1,0 +1,71 @@
+part: CH32V303RCT6
+link_status: verified_2026-06-30 (family-page-extract)
+expected_family: "WCH CH32V303 \u2014 industrial-grade high-end RISC-V MCU (QingKe V4F with FPU)"
+main_page: https://www.wch-ic.com/products/CH32V303.html
+datasheet_path_expected: ../../embedded_dev/wch/datasheet/CH32V303_datasheet.pdf
+datasheet_source_note: "CH32V303 family datasheet (CH32V307DS0.PDF \u2014 note: V303 datasheet is shared with V307 in WCH\
+  \ naming) is at wch-ic.com/downloads/CH32V307DS0_PDF.html. EVT reference at CH32V307EVT.ZIP. Family-level representative:\
+  \ RCT6 is the LQFP64M package variant; family covers LQFP48/LQFP64M/LQFP100 with shared peripheral set."
+related_parts:
+  CH32V303 family: LQFP48, LQFP64M, LQFP100 packages
+specs:
+  cores:
+  - QingKe V4F RISC-V @ up to 144 MHz (with FPU, hardware mul/div)
+  memory:
+    sram: 64 KB
+    flash: 256 KB (CodeFlash)
+  peripherals:
+    usb: USB 2.0 FS host/device
+    can: 1x CAN 2.0B active
+    opamps: 4 sets of OPA
+    trng: 1x TRNG
+    uart: 3x USART + 5x UART (8 total)
+    i2c: 2x I2C
+    spi: 3x SPI
+    i2s: 2x I2S
+    sdio: 1x SDIO
+    fsmc: 1x FSMC
+    adc: 2 units x 16-channel 12-bit ADC + 16-channel TouchKey
+    timers: 10 sets
+    dma: 2x 18-channel DMA
+    io_pins: 80
+    external_interrupts: 16 (mappable)
+  power:
+    supply_voltage_v: 2.5/3.3
+    modes:
+    - Sleep
+    - Stop
+    - Standby
+  features:
+  - POR/PDR + Programmable Voltage Detector (PVD)
+  - 96-bit unique ID
+  - CRC calculation unit
+  - 2-wire serial debug
+  packages:
+  - LQFP48
+  - LQFP64M
+  - LQFP100
+unverified:
+- exact_active_mode_current_per_mhz
+- exact_package_pin_count_per_variant
+- operating_temperature_c
+- exact_flash_size_per_variant
+- fpu_double_precision_support
+- sdio_speed_grade
+- fsmc_max_bus_speed
+notes:
+- "Promoted from \"missing yaml\" to verified_2026-06-30 \u2014 extracted from wch-ic.com CH32V303 family page via Firecrawl\
+  \ (8.9KB raw \u2192 5.5KB clean)."
+- 'Use case: high-performance RISC-V MCU with FPU, motor timers, SDIO, FSMC. Replaces STM32F4 in modern designs for industrial
+  / motor control.'
+- "Family differentiator vs CH32V203: V303 has FPU, 4\xD7 SRAM (20\u219264KB), 4\xD7 Flash (64\u2192256KB), 2\xD7 timers (4\u2192\
+  10), SDIO + FSMC, double ADC, 2\xD7 DMA."
+- 'Family differentiator vs CH32V307: V303 is the same chip but lower USB (FS only); V307 adds USB HS + Ethernet MAC+PHY.
+  For designs without USB HS / Ethernet, V303 is cheaper.'
+- '2026-07-01 search via Tavily: no accessible datasheet PDF found for CH32V303RCT6. Vendor PDF returns 404/myPortal login
+  or only summary. Status kept as legacy; re-verify when vendor publishes accessible datasheet.'
+extracted_at: '2026-06-30T00:48:00+08:00'
+extracted_from_pages: []
+extraction_method: firecrawl-extract of wch-ic.com product page markdown
+extraction_source: references/semiconductor-vendor/WCH/firecrawl-snapshots/CH32V303_clean.md
+extraction_credits_used: 0 (cache hit from 2026-06-29 run)

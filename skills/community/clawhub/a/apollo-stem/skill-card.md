@@ -1,43 +1,57 @@
-## Description: <br>
-Apollo Stem helps an OpenClaw agent check whether its core skills and self-improvement records need renewal while preserving existing experience. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apollo Stem helps an OpenClaw agent assess and plan self-renewal of its skill library while preserving useful experience.
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to review core skill freshness, self-improvement records, workflow status, and script implementation coverage before deciding whether to update or create skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation language and an open-ended self-update workflow could lead an agent to change skills without a clear approval step. <br>
-Mitigation: Run this skill manually for maintenance and require explicit human review before applying any proposed skill changes. <br>
-Risk: The bundled status script reads hard-coded /root/.openclaw/workspace paths and writes .stem/state.json, exposing local workspace metadata to the maintenance flow. <br>
-Mitigation: Execute it only in the intended OpenClaw workspace, review the paths before running, and treat the generated state file as local workspace metadata. <br>
-Risk: Skill updates suggested by the maintenance workflow could introduce incorrect or misleading guidance. <br>
-Mitigation: Review and scan changed skills before deployment. <br>
+## Use Case:
 
+Developers and OpenClaw users can use this skill to review whether an agent skill library needs updates, rebuilding, or new specialized skills. It is intended for capability maintenance workflows that balance core skill renewal with retention of existing useful experience.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nic-yuan/apollo-stem) <br>
-- [Publisher profile](https://clawhub.ai/user/nic-yuan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance; optional shell-script status report and JSON state file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled status script reads OpenClaw workspace status files and writes .stem/state.json when run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Broad self-modification guidance could lead an agent to update, rebuild, or generate skills beyond the user's intent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before update, generation, or rewrite steps, and keep triggers limited to clear user commands.
+
+Risk: The bundled script reads OpenClaw workspace metadata and writes a local renewal status report.
+
+Mitigation: Review the script before installation and run it only in workspaces where inspecting skill, workflow, and learning metadata is acceptable.
+
+Risk: The security review notes limited disclosure and guardrails around local state inspection and reporting.
+
+Mitigation: Document every file the skill reads or writes and serialize saved state in a controlled, reviewable location.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nic-yuan/skills/apollo-stem)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash script output and JSON status data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled script writes a local OpenClaw renewal status JSON file.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[TITLE] — Code Visual Review</title>
+<style>
+  /* ─── CSS Variables (GitHub Dark Theme) ─── */
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --border: #30363d;
+    --text: #c9d1d9;
+    --text-muted: #8b949e;
+    --accent: #58a6ff;
+    --green: #2ea043;
+    --red: #da3633;
+    --yellow: #d29922;
+    --diff-add-bg: rgba(46,160,67,0.15);
+    --diff-del-bg: rgba(218,54,51,0.15);
+    --diff-add-line: #2ea043;
+    --diff-del-line: #da3633;
+  }
+
+  /* ─── Reset & Base ─── */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 24px 16px;
+  }
+  h1 { font-size: 24px; margin-bottom: 4px; }
+  h2 { font-size: 20px; margin: 32px 0 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+  h3 { font-size: 16px; margin: 16px 0 8px; }
+  p { margin: 8px 0; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ─── Meta Info ─── */
+  .meta { color: var(--text-muted); font-size: 14px; margin-bottom: 16px; }
+  .meta span { margin-right: 16px; }
+
+  /* ═══════════════════════════════════════════
+     REVIEW MODE COMPONENTS
+     ═══════════════════════════════════════════ */
+
+  /* ─── Risk Badges ─── */
+  .risk { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 12px; font-weight: 600; }
+  .risk-safe { background: rgba(46,160,67,0.2); color: var(--green); }
+  .risk-worth { background: rgba(210,153,34,0.2); color: var(--yellow); }
+  .risk-attention { background: rgba(218,54,51,0.2); color: var(--red); }
+
+  /* ─── Risk Map ─── */
+  .risk-map { display: flex; gap: 16px; flex-wrap: wrap; margin: 12px 0; }
+  .risk-map-item { padding: 8px 16px; border-radius: 8px; background: var(--surface); border: 1px solid var(--border); }
+
+  /* ─── Diff Block ─── */
+  .file-block { margin: 16px 0; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .file-header {
+    background: var(--surface);
+    padding: 8px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .file-path { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 13px; }
+  .file-stats { color: var(--text-muted); font-size: 12px; }
+  .diff-line {
+    font-family: "SFMono-Regular", Consolas, monospace;
+    font-size: 12px;
+    padding: 2px 16px;
+    white-space: pre;
+  }
+  .diff-add { background: var(--diff-add-bg); border-left: 3px solid var(--diff-add-line); }
+  .diff-del { background: var(--diff-del-bg); border-left: 3px solid var(--diff-del-line); }
+  .diff-ctx { border-left: 3px solid transparent; }
+
+  /* ─── Before/After Comparison ─── */
+  .comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+  .comparison-col { padding: 16px; border-radius: 8px; }
+  .comparison-col.before { background: var(--diff-del-bg); border: 1px solid var(--red); }
+  .comparison-col.after { background: var(--diff-add-bg); border: 1px solid var(--green); }
+  .comparison-col h4 { margin-bottom: 8px; }
+  .comparison-col ul { padding-left: 20px; }
+  .comparison-col li { margin: 4px 0; }
+
+  /* ═══════════════════════════════════════════
+     WALKTHROUGH MODE COMPONENTS
+     ═══════════════════════════════════════════ */
+
+  /* ─── Request Path Diagram ─── */
+  .request-path { display: flex; align-items: center; gap: 8px; margin: 16px 0; flex-wrap: wrap; }
+  .path-node {
+    padding: 8px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 13px;
+  }
+  .path-node.trust { border-color: var(--green); }
+  .path-node.untrusted { border-color: var(--yellow); }
+  .path-arrow { color: var(--text-muted); font-size: 18px; }
+
+  /* ─── Call Stack Steps ─── */
+  .step {
+    margin: 16px 0;
+    padding: 16px;
+    background: var(--surface);
+    border-radius: 8px;
+    border-left: 4px solid var(--accent);
+  }
+  .step-num {
+    display: inline-block;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--bg);
+    text-align: center;
+    line-height: 24px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-right: 8px;
+  }
+  .step-title { font-weight: 600; }
+  .step-file { font-family: monospace; font-size: 12px; color: var(--text-muted); }
+  .step-desc { color: var(--text-muted); margin: 8px 0; }
+
+  /* ─── Collapsible Code ─── */
+  details { margin: 8px 0; }
+  summary { cursor: pointer; color: var(--accent); font-size: 13px; padding: 8px 0; }
+  summary:hover { text-decoration: underline; }
+  pre {
+    background: var(--bg);
+    padding: 12px;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+
+  /* ─── Trust Boundary ─── */
+  .trust-boundary {
+    padding: 12px 16px;
+    margin: 12px 0;
+    border: 2px dashed var(--yellow);
+    border-radius: 8px;
+    background: rgba(210,153,34,0.05);
+  }
+  .trust-boundary strong { color: var(--yellow); }
+
+  /* ─── Annotation ─── */
+  .annotation {
+    padding: 8px 12px;
+    margin: 8px 0;
+    background: rgba(88,166,255,0.1);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 6px 6px 0;
+    font-size: 13px;
+  }
+
+  /* ═══════════════════════════════════════════
+     RESPONSIVE
+     ═══════════════════════════════════════════ */
+  @media (max-width: 640px) {
+    .comparison { grid-template-columns: 1fr; }
+    .request-path { flex-direction: column; }
+    .path-arrow { transform: rotate(90deg); }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       CONTENT STARTS HERE
+       Replace this section with actual content
+       ═══════════════════════════════════════════ -->
+
+  <h1>[PR Title / Module Name]</h1>
+  <div class="meta">
+    <span>PR #XXX</span>
+    <span>Author: @username</span>
+    <span>Date: YYYY-MM-DD</span>
+  </div>
+
+  <p>TL;DR: [One sentence summary]</p>
+
+  <!-- ═══ REVIEW MODE: Risk Map ═══ -->
+  <h2>Risk Map</h2>
+  <div class="risk-map">
+    <div class="risk-map-item">
+      <span class="risk risk-safe">🟢 safe</span> src/utils.ts
+    </div>
+    <div class="risk-map-item">
+      <span class="risk risk-worth">🟡 worth a look</span> src/auth.ts
+    </div>
+    <div class="risk-map-item">
+      <span class="risk risk-attention">🔴 needs attention</span> src/payment.ts
+    </div>
+  </div>
+
+  <!-- ═══ REVIEW MODE: Diff Block ═══ -->
+  <h2>Code Changes</h2>
+  <div class="file-block">
+    <div class="file-header">
+      <span class="file-path">src/auth.ts</span>
+      <span class="file-stats">+12 -3</span>
+    </div>
+    <div class="diff-line diff-ctx">  function verifyToken(token: string) {</div>
+    <div class="diff-line diff-del">-   return jwt.verify(token, SECRET);</div>
+    <div class="diff-line diff-add">+   const decoded = jwt.verify(token, SECRET);</div>
+    <div class="diff-line diff-add">+   if (!decoded.sub) throw new AuthError('Invalid token');</div>
+    <div class="diff-line diff-add">+   return decoded;</div>
+    <div class="diff-line diff-ctx">  }</div>
+  </div>
+
+  <!-- ═══ REVIEW MODE: Before/After ═══ -->
+  <h2>Behavior Change</h2>
+  <div class="comparison">
+    <div class="comparison-col before">
+      <h4>Before</h4>
+      <ul>
+        <li>Token without 'sub' claim accepted</li>
+        <li>No validation on decoded payload</li>
+      </ul>
+    </div>
+    <div class="comparison-col after">
+      <h4>After</h4>
+      <ul>
+        <li>Token must have 'sub' claim</li>
+        <li>Explicit AuthError on invalid token</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ WALKTHROUGH MODE: Request Path ═══ -->
+  <h2>Request Path</h2>
+  <div class="request-path">
+    <div class="path-node untrusted">[Browser]</div>
+    <span class="path-arrow">→</span>
+    <div class="path-node untrusted">[Load Balancer]</div>
+    <span class="path-arrow">→</span>
+    <div class="path-node">[API /api/session]</div>
+    <span class="path-arrow">→</span>
+    <div class="path-node trust">[verifyToken]</div>
+    <span class="path-arrow">→</span>
+    <div class="path-node trust">[SessionStore]</div>
+  </div>
+
+  <!-- ═══ WALKTHROUGH MODE: Call Stack ═══ -->
+  <h2>Call Stack Walkthrough</h2>
+  <div class="step">
+    <span class="step-num">1</span>
+    <span class="step-title">src/app/providers/AuthProvider.tsx:22-48</span>
+    <div class="step-desc">On mount, the React provider issues GET /api/session to check auth status.</div>
+    <details>
+      <summary>show source</summary>
+      <pre><code>useEffect(() => {
+  fetch('/api/session')
+    .then(r => r.json())
+    .then(setUser);
+}, []);</code></pre>
+    </details>
+  </div>
+
+  <div class="step">
+    <span class="step-num">2</span>
+    <span class="step-title">src/middleware/auth.ts:14-31</span>
+    <span class="risk risk-attention">⚠️ TRUST BOUNDARY</span>
+    <div class="step-desc">This is the trust boundary. verifyToken reads the signed cookie and validates it.</div>
+    <details>
+      <summary>show source</summary>
+      <pre><code>function verifyToken(token: string) {
+  const decoded = jwt.verify(token, SECRET);
+  if (!decoded.sub) throw new AuthError('Invalid token');
+  return decoded;
+}</code></pre>
+    </details>
+  </div>
+
+  <!-- ═══ WALKTHROUGH MODE: Trust Boundary ═══ -->
+  <h2>Trust Boundary</h2>
+  <div class="trust-boundary">
+    <strong>⚠️ Trust Boundary</strong>
+    <p>Everything below verifyToken is trusted. Everything above it is not.</p>
+  </div>
+
+  <!-- ═══ WALKTHROUGH MODE: Annotation ═══ -->
+  <div class="annotation">
+    This is where the JWT token is validated against the secret. Any tampering here compromises the entire session.
+  </div>
+
+</body>
+</html>

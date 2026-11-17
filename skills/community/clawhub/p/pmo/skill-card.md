@@ -1,42 +1,57 @@
-## Description: <br>
-PMO is an OpenClaw project-management skill that connects to tools such as GitHub Issues and Notion to summarize portfolio status, generate weekly reports, and surface cross-project risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PMO is an AI-native project-management office skill for OpenClaw that connects to project tools, summarizes status, sends alerts, and surfaces cross-project risks.
 
-## Publisher: <br>
-[guytogay](https://clawhub.ai/user/guytogay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guytogay](https://clawhub.ai/user/guytogay)
 
-## Use Case: <br>
-Developers, engineering managers, and project teams use this skill to review portfolio health, sync project status from configured tools, generate weekly reports, and identify stale projects or cross-project risks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: GitHub access tokens are required for repository issue syncing. <br>
-Mitigation: Use least-privilege tokens supplied through environment variables and avoid passing tokens directly on the command line. <br>
-Risk: Local PMO memory files can contain internal project metadata, event history, and risk summaries. <br>
-Mitigation: Review memory/PMO contents before sharing or backup, and avoid storing sensitive customer, financial, or personnel details in those files. <br>
-Risk: Configured alert channels can send project or risk summaries to external recipients. <br>
-Mitigation: Enable Telegram, Feishu, or similar channels only after confirming recipients and payload sensitivity. <br>
+## Use Case:
 
+Developers, project managers, and delivery teams use this skill to query portfolio status, generate weekly reports, run risk checks, and track project intake across configured project-management sources.
 
-## Reference(s): <br>
-- [PMO ClawHub listing](https://clawhub.ai/guytogay/pmo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports and tables, JSON from helper scripts, and YAML or command examples for configuration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local PMO project, event, risk, and cache files and may send configured alerts when enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.1 (source: server release metadata; artifact frontmatter reports 2.2.0) <br>
+Risk: The skill can read connected project-management data and retain local project and risk summaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where that access is acceptable, prefer fine-grained read-only tokens, and review retained project, event, risk, and cache files.
+
+Risk: The skill may send reports or alerts to configured external channels.
+
+Mitigation: Disable or review automatic channel sending and confirm alert channels in configuration before use.
+
+Risk: The GitHub integration requires an access token.
+
+Mitigation: Provide tokens through environment variables such as GH_TOKEN and use a fine-grained read-only token.
+
+## Reference(s):
+
+- [PMO ClawHub listing](https://clawhub.ai/guytogay/skills/pmo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown status reports and summaries, with JSON from integration scripts when fetching GitHub issue data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read configured project-management sources and write local project, event, risk, and cache files for PMO workflows.]
+
+## Skill Version(s):
+
+2.2.1 (source: server release metadata; artifact frontmatter is 2.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

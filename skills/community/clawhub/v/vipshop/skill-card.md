@@ -1,40 +1,54 @@
-## Description: <br>
-Provides lightweight summaries and comparisons of public Vipshop product and activity pages, including prices, promotions, specifications, and review highlights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents retrieve and summarize public Vipshop product and promotion page information, including prices, reviews, specifications, and simple comparisons.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-External users and analysts use this skill for user-directed research on public Vipshop pages, including keyword product-list summaries, product detail extraction, and similar-product comparisons. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Vipshop prices, promotions, and availability can change after collection. <br>
-Mitigation: Include the collection time in summaries and verify current product pages before relying on price or promotion details. <br>
-Risk: Automated access beyond public, user-directed research may violate platform rules or trigger verification controls. <br>
-Mitigation: Use the skill only on public pages, avoid purchases or login-only content, do not bypass verification, and avoid bulk scraping. <br>
+## Use Case:
 
+External users and shopping-research agents use this skill to summarize publicly available Vipshop product listings, promotion pages, item details, and comparable products. It is intended for lightweight analysis and reminders, not purchasing, account actions, reverse engineering, or bulk collection.
 
-## Reference(s): <br>
-- [Vipshop homepage](https://www.vip.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown summaries and comparison notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include product links, prices, promotions, specifications, review highlights, and collection timestamps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Prices, promotions, and availability can change quickly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Include the collection time with summaries and treat price or promotion details as time-sensitive.
+
+Risk: Automating login-gated actions, purchases, or bulk collection could violate platform rules or trigger anti-abuse controls.
+
+Mitigation: Keep use to explicitly requested public pages, avoid account actions and purchases, and use frequency limits.
+
+## Reference(s):
+
+- [Vipshop homepage](https://www.vip.com/)
+- [ClawHub skill page](https://clawhub.ai/codekungfu/skills/vipshop)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text summaries with links, extracted fields, comparisons, and collection-time notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include product titles, links, image URLs, prices, promotions, review counts, shop names, brands, specifications, and review-highlight keywords.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

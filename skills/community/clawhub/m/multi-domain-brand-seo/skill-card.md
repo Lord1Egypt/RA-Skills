@@ -1,41 +1,50 @@
-## Description: <br>
-Helps agents optimize brand search across parent and product domains so the company domain ranks first for brand queries while product domains target product keywords. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps optimize brand search for companies with multiple domains by keeping the parent or company domain primary for brand queries while positioning product domains for product-specific search.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-External SEO practitioners, marketers, and developers use this skill to separate hub and spoke domain responsibilities, reduce brand-query cannibalization, and produce practical brand SERP optimization guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SEO recommendations could negatively affect live brand search performance if applied without review. <br>
-Mitigation: Review proposed changes with site owners before changing titles, metadata, schema, redirects, or internal links on production websites. <br>
-Risk: Related skills referenced by this skill may have different behavior or risk profiles. <br>
-Mitigation: Evaluate any related skill separately before using it in the same workflow. <br>
+## Use Case:
 
+External users and marketing or SEO teams use this skill to plan hub-and-spoke domain positioning, on-page optimization, schema markup, internal linking, and cannibalization checks for companies with separate company and product domains.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/multi-domain-brand-seo) <br>
-- [Schema.org](https://schema.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with checklists, domain mappings, internal linking plans, and JSON-LD schema examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only SEO guidance; no code execution, credentials, persistence, or broad access requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: Suggested titles, schema, links, or brand-positioning changes may affect public search visibility and brand presentation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations with the site owner or SEO lead before publishing changes to production websites.
+
+## Reference(s):
+
+- [Schema.org](https://schema.org)
+- [ClawHub skill release](https://clawhub.ai/kostja94/skills/multi-domain-brand-seo)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with structured checklists, domain mappings, linking plans, and JSON-LD schema examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advisory SEO recommendations for review before applying changes to public websites.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

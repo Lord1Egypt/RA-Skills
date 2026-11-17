@@ -1,48 +1,62 @@
-## Description: <br>
-Tencent Maps location services skill for POI search, nearby search, route planning, travel planning, and map or trail visualization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tencent Maps location services for POI search, nearby search, route planning, travel planning, trajectory visualization, and map data visualization.
 
-## Publisher: <br>
-[vajraBodhi](https://clawhub.ai/user/vajraBodhi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vajrabodhi](https://clawhub.ai/user/vajrabodhi)
 
-## Use Case: <br>
-External developers and agent users use this skill to turn map-related requests into Tencent Maps CLI commands, map links, POI results, route summaries, travel plans, and trail visualizations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tencent Maps API keys may be exposed or over-scoped when configuring the CLI or sharing transcripts. <br>
-Mitigation: Use a limited or temporary Tencent Maps API key, configure it through a secure environment or secret store where possible, and never print or share the key. <br>
-Risk: Location, route, trail, or home and work coordinates can reveal sensitive personal movement patterns. <br>
-Mitigation: Avoid sensitive coordinates and private GPS traces; use generalized or non-sensitive locations when possible. <br>
-Risk: The trail visualization feature can use user-provided data URLs, including internal or credential-bearing links. <br>
-Mitigation: Use public, non-sensitive JSON data URLs only and avoid signed URLs, internal links, or URLs carrying credentials. <br>
+## Use Case:
 
+External users and developers use this skill to search Tencent Maps POIs, find nearby places, plan routes or travel itineraries, and generate map or trajectory visualization links through the tmap-lbs CLI.
 
-## Reference(s): <br>
-- [Tencent Maps Web Service API Overview](https://lbs.qq.com/service/webService/webServiceGuide/webServiceOverview) <br>
-- [Tencent Location Service](https://lbs.qq.com/) <br>
-- [Nearby Search Scenario](references/scene1-nearby-search.md) <br>
-- [POI Search Scenario](references/scene2-poi-search.md) <br>
-- [Route Planning Scenario](references/scene3-route-planning.md) <br>
-- [Travel Planning Scenario](references/scene4-travel-planner.md) <br>
-- [Trail Visualization Scenario](references/scene5-trail-map.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with inline shell commands, Tencent Maps links, formatted text summaries, and optional JSON from raw CLI output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the tmap-lbs CLI and TMAP_WEBSERVICE_KEY for API-backed searches, route planning, and travel planning; trail visualization uses a user-provided JSON data URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: The skill installs and uses an unpinned global CLI for map operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated or local installation, pin the CLI package version where possible, and review the package before deployment.
+
+Risk: The skill uses a Tencent Maps API key with location, route, and itinerary data.
+
+Mitigation: Use a restricted API key, avoid sharing secrets in chat, and limit requests to data appropriate for Tencent Maps services.
+
+Risk: The skill can form shell commands from user-supplied places, coordinates, and trail-data URLs.
+
+Mitigation: Review generated commands before execution and treat shell metacharacters or untrusted trail-data URLs as unsafe input.
+
+## Reference(s):
+
+- [Tencent Maps Web Service API overview](https://lbs.qq.com/service/webService/webServiceGuide/webServiceOverview)
+- [Scene 1: Nearby search](references/scene1-nearby-search.md)
+- [Scene 2: POI search](references/scene2-poi-search.md)
+- [Scene 3: Route planning](references/scene3-route-planning.md)
+- [Scene 4: Travel planning](references/scene4-travel-planner.md)
+- [Scene 5: Trail map visualization](references/scene5-trail-map.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration guidance]
+
+**Output Format:** [Markdown responses with tmap-lbs shell commands, Tencent Maps links, and optional JSON output from CLI raw mode.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the tmap-lbs CLI for most operations and TMAP_WEBSERVICE_KEY for Tencent Maps API-backed search, route, and travel workflows.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

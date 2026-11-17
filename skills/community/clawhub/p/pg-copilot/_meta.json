@@ -1,6 +1,27 @@
 {
-  "ownerId": "kn7ccj56mw5e0rd39dtevasj8n82x06a",
+  "ownerId": "user",
   "slug": "pg-copilot",
-  "version": "1.0.3",
-  "publishedAt": 1773481920367
+  "version": "1.3.0",
+  "publishedAt": null,
+  "description": "PostgreSQL AI 助手 - 自然语言转 SQL、SQL 转自然语言、ERD、性能优化、分区管理、实时同步（支持 MySQL）、数据校验、冲突处理、生产环境特性",
+  "features": [
+    "数据库连接配置（多配置、连接池）",
+    "Schema 自动获取",
+    "自然语言转 SQL",
+    "SQL 转自然语言（LLM + 简单解析）",
+    "SQL 执行（危险操作拦截）",
+    "EXPLAIN 性能分析",
+    "ERD 可视化（Mermaid）",
+    "Range/List/Hash 分区管理",
+    "实时同步（PostgreSQL → MySQL/PG）",
+    "触发器自动记录变更",
+    "同步日志（按月分区）",
+    "密码加密存储 + 环境变量覆盖",
+    "自动重试机制",
+    "Webhook 告警通知",
+    "数据一致性校验",
+    "冲突处理策略（update/ignore/error）",
+    "自动清理旧记录"
+  ],
+  "requires": ["psycopg2-binary", "pymysql"]
 }

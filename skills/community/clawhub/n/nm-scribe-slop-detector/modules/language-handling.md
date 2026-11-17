@@ -9,7 +9,7 @@ estimated_tokens: 1100
 
 Two related concerns are bundled in one module:
 
-1. **Language detection and calibration** -- which languages are
+1. **Language detection and calibration** — which languages are
    supported, how to detect them, and how to calibrate scores.
 2. **Concrete pattern sets** for non-English slop (German, French,
    Spanish, with extension hooks for Portuguese and Italian).
@@ -29,7 +29,7 @@ Merged from `language-support.md` and `i18n-patterns.md` (P-14).
 
 ## Part 2: Language Selection
 
-### Step 1 -- Check config
+### Step 1 — Check config
 
 Look for a `languages` key in `.slop-config.yaml`:
 
@@ -42,7 +42,7 @@ languages:
 If `languages` is set, scan only those pattern sets. If absent, fall back to
 heuristic detection.
 
-### Step 2 -- Heuristic (no config)
+### Step 2 — Heuristic (no config)
 
 Sample the first 200 words. Count function-word hits:
 
@@ -88,7 +88,30 @@ phrases:
   filler:
     score: 2
     patterns: [...]
+tier5:
+  contrastive_parallelism:
+    score: 2
+    confidence: low
+    ignore_case: false
+    patterns: [...]   # regex strings
+  negative_parallelism:
+    score: 3
+    confidence: high
+    ignore_case: true
+    patterns: [...]
 ```
+
+The optional `tier5` section holds the 2026 structural tells
+(spatial copula, negative parallelism, contrastive parallelism,
+three-fragment burst, smart quotes, and similar) as regex rather
+than word lists. Each category carries a `score`, a `confidence`
+level (`high`, or `low` for judgment-level patterns that must
+never auto-apply), and an `ignore_case` flag. `pattern_loader`
+exposes the section through `get_tier5_patterns()`. A language
+without a `tier5` section returns an empty list, so detection
+degrades to vocabulary and phrase tiers until the pack is
+translated. English (`en.yaml`) is the reference pack; the other
+languages carry no `tier5` patterns yet.
 
 ## Part 4: Cultural Calibration
 
@@ -99,6 +122,12 @@ Slop perception varies by culture:
 - **Spanish**: Formal transitions are standard in academic writing
 - **Portuguese**: Academic norms closely follow Spanish; formal phrasing less penalised
 - **Italian**: Literary style is culturally valued, similar to French calibration
+
+The factor in the Calibration column multiplies the score that
+`scripts/slop_score.py --lang <code>` reports, so a French document
+scoring 4.0 on raw hits reports 3.2. `--lang auto` detects the
+language per file. The `--ratchet` gate always scores English, since
+it compares a file with its own history.
 
 Structural metrics (em dashes, bullet ratios) are language-agnostic.
 
@@ -115,19 +144,19 @@ phrases score 4 each, normalised per 100 words.
 
 ```python
 DE_TIER1_PATTERNS = [
-    r'\bumfassend\w*\b',    # umfassend, umfassende, umfassender ...
-    r'\bnutzen\b',
-    r'\bvielf[äa]ltig\w*\b',
-    r'\btiefgreifend\w*\b',
-    r'\bbahnbrechend\w*\b',
-    r'\bganzheitlich\w*\b',
-    r'\bmaßgeblich\w*\b',
-    r'\bwegweisend\w*\b',
+    r"\bumfassend\w*\b",  # umfassend, umfassende, umfassender ...
+    r"\bnutzen\b",
+    r"\bvielf[äa]ltig\w*\b",
+    r"\btiefgreifend\w*\b",
+    r"\bbahnbrechend\w*\b",
+    r"\bganzheitlich\w*\b",
+    r"\bmaßgeblich\w*\b",
+    r"\bwegweisend\w*\b",
 ]
 
 DE_PHRASE_PATTERNS = [
-    r'in der heutigen schnelllebigen welt',  # vapid opener
-    r'es sei darauf hingewiesen',            # filler
+    r"in der heutigen schnelllebigen welt",  # vapid opener
+    r"es sei darauf hingewiesen",  # filler
 ]
 ```
 
@@ -137,17 +166,17 @@ DE_PHRASE_PATTERNS = [
 
 ```python
 FR_TIER1_PATTERNS = [
-    r'\btirer parti de\b',
-    r'\bexhaustif(?:ve)?\b|\bexhaustive\b',  # exhaustif / exhaustive
-    r'\bpolyvalent\w*\b',
-    r'\bincontournable[s]?\b',
-    r'\bnovateur\b|\bnovatrice\b',
-    r'\bprimordial\w*\b',
+    r"\btirer parti de\b",
+    r"\bexhaustif(?:ve)?\b|\bexhaustive\b",  # exhaustif / exhaustive
+    r"\bpolyvalent\w*\b",
+    r"\bincontournable[s]?\b",
+    r"\bnovateur\b|\bnovatrice\b",
+    r"\bprimordial\w*\b",
 ]
 
 FR_PHRASE_PATTERNS = [
     r"dans le monde d'aujourd'hui",  # vapid opener
-    r'il convient de noter que',     # filler
+    r"il convient de noter que",  # filler
 ]
 ```
 
@@ -155,17 +184,17 @@ FR_PHRASE_PATTERNS = [
 
 ```python
 ES_TIER1_PATTERNS = [
-    r'\baprovechar?\b',          # aprovechar
-    r'\bintegral[e-z]?\b',       # integral
-    r'\bpolifac[eé]tico[s]?\b',  # polifacético
-    r'\binnovador[a-z]?\b',      # innovador
-    r'\bfundamental[e-z]?\b',    # fundamental
-    r'\bimprescindible[s]?\b',   # imprescindible
+    r"\baprovechar?\b",  # aprovechar
+    r"\bintegral[e-z]?\b",  # integral
+    r"\bpolifac[eé]tico[s]?\b",  # polifacético
+    r"\binnovador[a-z]?\b",  # innovador
+    r"\bfundamental[e-z]?\b",  # fundamental
+    r"\bimprescindible[s]?\b",  # imprescindible
 ]
 
 ES_PHRASE_PATTERNS = [
-    r'en el mundo acelerado de hoy',  # vapid opener
-    r'cabe destacar que',             # filler
+    r"en el mundo acelerado de hoy",  # vapid opener
+    r"cabe destacar que",  # filler
 ]
 ```
 

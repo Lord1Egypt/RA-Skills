@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "sceneKey": "onboarding-guide",
+  "version": "1.0.0",
+  "kind": "page",
+  "audience": "work",
+  "license": "MIT-0",
+  "minimumCreatorVersion": "0.2.0",
+  "artifactProtocolVersion": 1,
+  "dataModes": [
+    "local",
+    "controlled-cloud"
+  ],
+  "locales": {
+    "zh-CN": {
+      "title": "入门与交接指南",
+      "goal": "把散落资料变成可按步骤完成的工作指南。",
+      "optionalInputs": [
+        {
+          "key": "audience",
+          "question": "读者的角色和已有基础是什么？"
+        },
+        {
+          "key": "outcome",
+          "question": "完成指南后应能独立做什么？"
+        },
+        {
+          "key": "resources",
+          "question": "有哪些工具、资料和联系人？"
+        },
+        {
+          "key": "sequence",
+          "question": "是否有先后依赖、截止时间或常见卡点？"
+        }
+      ],
+      "sections": [
+        "目标和适用人群",
+        "准备事项",
+        "分步操作",
+        "常见问题",
+        "完成检查与后续资料"
+      ],
+      "qualityChecks": [
+        "使用清楚的步骤和进度导航，桌面目录与手机折叠目录一致。",
+        "个人勾选默认只保存在本机，并明确说明；团队共建才选受控云端模式。",
+        "不将内部账号、访问密钥和未获授权的联系人信息放进成品。"
+      ],
+      "missingInformationPolicy": "所有问题均可跳过；使用已有资料，显式列出影响结果的假设，未知事实保留待确认。"
+    },
+    "en": {
+      "title": "Onboarding guide",
+      "goal": "Turn scattered material into a practical sequence people can follow.",
+      "optionalInputs": [
+        {
+          "key": "audience",
+          "question": "What is the reader’s role and starting knowledge?"
+        },
+        {
+          "key": "outcome",
+          "question": "What should they be able to do independently afterward?"
+        },
+        {
+          "key": "resources",
+          "question": "Which tools, references and contacts are available?"
+        },
+        {
+          "key": "sequence",
+          "question": "Are there dependencies, deadlines or common blockers?"
+        }
+      ],
+      "sections": [
+        "Goal and audience",
+        "Preparation",
+        "Step-by-step tasks",
+        "Troubleshooting",
+        "Completion checks and references"
+      ],
+      "qualityChecks": [
+        "Use ordered steps and consistent desktop/mobile progress navigation.",
+        "Personal checkmarks stay on the device by default; choose controlled cloud only for team participation.",
+        "Do not embed internal credentials or contact details without authorization."
+      ],
+      "missingInformationPolicy": "All questions may be skipped. Use known material, state consequential assumptions, and leave unknown facts unresolved."
+    }
+  }
+}

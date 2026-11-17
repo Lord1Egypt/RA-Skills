@@ -1,0 +1,318 @@
+{
+  "version": "2.4.0",
+  "source_id": "tableau",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:02:15.030Z",
+  "entry": {
+    "url": "https://www.tableau.com/",
+    "final_url": "https://www.tableau.com/",
+    "title": "Business Intelligence and Analytics Software | Tableau",
+    "status": "accessible",
+    "http_status": null,
+    "checked_at": "2026-10-09T09:02:15.030Z",
+    "identity": {
+      "declared_name": "Tableau",
+      "hostname": "www.tableau.com",
+      "domain_matches": true
+    },
+    "links": [],
+    "frames": [
+      {
+        "src": "about:blank",
+        "id": "",
+        "name": "",
+        "title": ""
+      }
+    ]
+  },
+  "controls": [
+    {
+      "tag": "button",
+      "type": null,
+      "text": "Toggle sub-navigation for Products",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Toggle sub-navigation for Products",
+        "exact": true
+      },
+      "observed_url": "https://www.tableau.com/",
+      "observed_at": "2026-10-09T09:02:14.990Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "Toggle sub-navigation for Customers",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Toggle sub-navigation for Customers",
+        "exact": true
+      },
+      "observed_url": "https://www.tableau.com/",
+      "observed_at": "2026-10-09T09:02:14.990Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "Toggle sub-navigation for Solutions",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Toggle sub-navigation for Solutions",
+        "exact": true
+      },
+      "observed_url": "https://www.tableau.com/",
+      "observed_at": "2026-10-09T09:02:14.990Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "Toggle sub-navigation for Resources",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Toggle sub-navigation for Resources",
+        "exact": true
+      },
+      "observed_url": "https://www.tableau.com/",
+      "observed_at": "2026-10-09T09:02:14.990Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "Toggle sub-navigation for Pricing",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Toggle sub-navigation for Pricing",
+        "exact": true
+      },
+      "observed_url": "https://www.tableau.com/",
+      "observed_at": "2026-10-09T09:02:14.990Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "tableau:record-lookup",
+      "source_id": "tableau",
+      "task_kind": "record-lookup",
+      "status": "entry_observed",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.tableau.com/",
+      "controls": [
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Toggle sub-navigation for Products",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Toggle sub-navigation for Products",
+            "exact": true
+          },
+          "observed_url": "https://www.tableau.com/",
+          "observed_at": "2026-10-09T09:02:14.990Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Toggle sub-navigation for Customers",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Toggle sub-navigation for Customers",
+            "exact": true
+          },
+          "observed_url": "https://www.tableau.com/",
+          "observed_at": "2026-10-09T09:02:14.990Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Toggle sub-navigation for Solutions",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Toggle sub-navigation for Solutions",
+            "exact": true
+          },
+          "observed_url": "https://www.tableau.com/",
+          "observed_at": "2026-10-09T09:02:14.990Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Toggle sub-navigation for Resources",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Toggle sub-navigation for Resources",
+            "exact": true
+          },
+          "observed_url": "https://www.tableau.com/",
+          "observed_at": "2026-10-09T09:02:14.990Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Toggle sub-navigation for Pricing",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Toggle sub-navigation for Pricing",
+            "exact": true
+          },
+          "observed_url": "https://www.tableau.com/",
+          "observed_at": "2026-10-09T09:02:14.990Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [
+    {
+      "kind": "network_error",
+      "attempt": 1,
+      "detail": "page.goto: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://www.tableau.com/\", waiting until \"domcontentloaded\"\u001b[22m\n"
+    }
+  ],
+  "provenance": {
+    "catalog_source_id": "tableau",
+    "quiz_entries": [],
+    "example_ids": [],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:02:15.030Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/tableau-partial.json",
+      "original_entry_snapshot": "validation/site-audit-v24/tableau-partial.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

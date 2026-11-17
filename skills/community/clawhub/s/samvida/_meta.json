@@ -2,5 +2,35 @@
   "ownerId": "kn7ea55pw3sqbs524pbzydhn2n8204sh",
   "slug": "samvida",
   "version": "0.3.3",
-  "publishedAt": 1772391768153
+  "publishedAt": 1772269795789,
+  "credentials": [
+    {
+      "name": "Cloudflare API Token",
+      "required": false,
+      "scope": "deploy",
+      "description": "Required only when deploying via Cloudflare Workers. Prompted at runtime, never persisted."
+    },
+    {
+      "name": "Cloudflare Account ID",
+      "required": false,
+      "scope": "deploy",
+      "description": "Required only when deploying via Cloudflare Workers. Prompted at runtime, never persisted."
+    },
+    {
+      "name": "Cloudflare Zone ID",
+      "required": false,
+      "scope": "deploy",
+      "description": "Required only when deploying via Cloudflare Workers. Prompted at runtime, never persisted."
+    },
+    {
+      "name": "Webflow Site API Token",
+      "required": false,
+      "scope": "deploy",
+      "description": "Required only when deploying via Webflow. Prompted at runtime, never persisted."
+    }
+  ],
+  "dataHandling": {
+    "pii": "Crawled pages may contain publicly available contact details (emails, names). These are included in the llms.txt output and sent to your configured OpenClaw LLM provider for generation. No data is stored by the skill beyond the generated file at /tmp/samvida_llms.txt.",
+    "credentialPersistence": "Deploy credentials (Cloudflare, Webflow tokens) are passed as CLI arguments at runtime only. They are not written to disk, environment, or any config file by the skill."
+  }
 }

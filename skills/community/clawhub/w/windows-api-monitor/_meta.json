@@ -1,6 +1,46 @@
 {
-  "ownerId": "kn7d8pcxzx9w95v6tr05xb4869837sed",
-  "slug": "windows-api-monitor",
+  "name": "windows-api-monitor",
   "version": "1.0.0",
-  "publishedAt": 1774844015322
+  "description": "Windows专用API使用监控技能",
+  "author": "阿康的私人助理",
+  "created_at": "2026-03-22",
+  "platform": "windows",
+  "dependencies": [
+    "python>=3.8",
+    "openclaw>=1.0"
+  ],
+  "tags": ["monitoring", "api", "windows", "efficiency", "analytics"],
+  "skills": {
+    "api_monitor": {
+      "description": "API使用监控脚本",
+      "file": "scripts/api_monitor.py",
+      "commands": [
+        "python scripts/api_monitor.py --mode current",
+        "python scripts/api_monitor.py --mode today",
+        "python scripts/api_monitor.py --mode week",
+        "python scripts/api_monitor.py --mode all"
+      ]
+    },
+    "daily_check": {
+      "description": "每日自动检查",
+      "file": "scripts/daily_check.py",
+      "commands": [
+        "python scripts/daily_check.py --period today",
+        "python scripts/daily_check.py --period week",
+        "python scripts/daily_check.py --period month"
+      ]
+    }
+  },
+  "compatibility": {
+    "os": ["windows10", "windows11"],
+    "python": ["3.8", "3.9", "3.10", "3.11", "3.12", "3.13"],
+    "openclaw": ["1.x"]
+  },
+  "license": "MIT",
+  "repository": "https://github.com/openclaw/skills/windows-api-monitor",
+  "issues": "https://github.com/openclaw/skills/issues",
+  "support": {
+    "email": "",
+    "docs": "skills/windows-api-monitor/SKILL.md"
+  }
 }

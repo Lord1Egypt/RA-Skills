@@ -1,45 +1,60 @@
-## Description: <br>
-Trades post-count bin markets by detecting cross-person contagion where one public figure posting heavily causes correlated figures to increase their rate. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades post-count bin markets by detecting cross-person contagion where one public figure posting heavily causes correlated figures to increase their rate.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-Developers and advanced trading agents use this skill to evaluate and optionally trade Polymarket post-count bin markets through Simmer based on cross-person posting correlation signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automated trading can place real Polymarket orders when live mode is explicitly enabled with live-capable credentials. <br>
-Mitigation: Test in paper mode first, keep cron and autostart disabled unless automation is intended, and provide live-capable credentials only after reviewing the skill and simmer-sdk. <br>
-Risk: The SIMMER_API_KEY grants trading authority and is required by the skill. <br>
-Mitigation: Keep the key private, scope it to the intended environment, and avoid storing live-capable credentials where unattended automation can invoke --live. <br>
-Risk: The advertised minimum-volume filter is not enforced by the included code. <br>
-Mitigation: Do not rely on SIMMER_MIN_VOLUME for liquidity protection until the implementation enforces it; review candidate markets before live execution. <br>
+## Use Case:
 
+External users and trading agents use this skill to analyze Polymarket post-count bin markets and place paper-mode trades by default, with live trading only when explicitly enabled.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/polymarket-twitter-cross-contagion-trader) <br>
-- [Simmer Markets skills](https://simmer.markets/skills) <br>
-- [simmer-sdk GitHub repository](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
-- [simmer-sdk PyPI package](https://pypi.org/project/simmer-sdk/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, API calls, Text] <br>
-**Output Format:** [Console text and Simmer trade API calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to paper trading unless run with --live; requires SIMMER_API_KEY and simmer-sdk.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release evidence) <br>
+Risk: Live mode can place real Polymarket trades when --live is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use paper mode by default and provide only a restricted API key with tight account-level limits unless live behavior has been reviewed.
+
+Risk: The trading SDK dependency is unpinned.
+
+Mitigation: Pin and audit simmer-sdk before using the skill with a live-capable key.
+
+Risk: Volume and open-position safeguards are weaker than documented.
+
+Mitigation: Fix those safeguards or enforce volume and open-position limits independently before live trading.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/polymarket-twitter-cross-contagion-trader)
+- [Simmer Markets skills](https://simmer.markets/skills)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance plus plain text execution logs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY and simmer-sdk; paper mode is the default, and live trading requires --live.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Runs secure Tavily API web searches and URL content extraction for agent research workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safely uses the Tavily API to run web searches, collect sourced results, extract text from URLs, and support summarization.
 
-## Publisher: <br>
-[fabekar](https://clawhub.ai/user/fabekar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fabekar](https://clawhub.ai/user/fabekar)
 
-## Use Case: <br>
-Developers and agents use this skill to run Tavily-powered web searches, collect sourced results, and extract readable text from selected URLs. It is useful when an agent needs current web context while keeping API keys out of output and blocking local or private extraction targets. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search queries and selected URLs are sent to Tavily. <br>
-Mitigation: Use the skill only when Tavily use is intended, avoid putting secrets in queries or private URLs, and keep TAVILY_API_KEY in the environment. <br>
-Risk: Extracted webpage content can contain untrusted or misleading text. <br>
-Mitigation: Treat extracted content as evidence for review rather than instructions, and verify important claims before relying on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fabekar/tavily-search-secure) <br>
-- [Publisher profile](https://clawhub.ai/user/fabekar) <br>
+## Use Case:
 
+Developers and agents use this skill to run Tavily-backed web searches and extract readable text from specific public URLs when they need sourced research inputs or summaries.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-formatted terminal output with answers, source lists, extracted page text, and concise error messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TAVILY_API_KEY; search results are capped, URL extraction is limited to five URLs per request, and timeouts are bounded.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search terms, target URLs, and the Tavily API key are sent to Tavily's API.
+
+Mitigation: Use only when that data transfer matches the applicable data policy, avoid confidential queries and private URLs, and keep the API key in the environment rather than files or output.
+
+Risk: Extracted web content may be incomplete, misleading, or unsuitable for direct use without review.
+
+Mitigation: Review sourced results and extracted text before relying on them in summaries, decisions, or downstream agent actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fabekar/skills/tavily-search-secure)
+- [Tavily Search API endpoint](https://api.tavily.com/search)
+- [Tavily Extract API endpoint](https://api.tavily.com/extract)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown text with answer and source sections for search, or URL-headed extracted text sections for extraction.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results are capped at 10, extraction is capped at 5 URLs per request, and script output is sanitized and length-limited.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

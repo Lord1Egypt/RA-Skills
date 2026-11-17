@@ -1,46 +1,63 @@
-## Description: <br>
-Expert-level Windows batch file skill for writing, debugging, and maintaining CMD scripts and .bat/.cmd automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert-level Windows batch file skill for writing, debugging, and maintaining .bat and .cmd scripts for cmd.exe automation.
 
-## Publisher: <br>
-[jhauga](https://clawhub.ai/user/jhauga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jhauga](https://clawhub.ai/user/jhauga)
 
-## Use Case: <br>
-Developers, automation engineers, and Windows administrators use this skill to create, debug, and maintain batch scripts for command-line tools, scheduled tasks, file operations, deployments, backups, and system administration workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review notes under-scoped Windows login or recovery bypass and persistence guidance in the reference material. <br>
-Mitigation: Use those examples only when authorized to administer the affected systems, and test commands in a safe environment before applying them. <br>
-Risk: Batch automation guidance can affect files, credentials, startup behavior, network access, and identity logging when copied into real scripts. <br>
-Mitigation: Review generated commands before execution, avoid storing credentials in scripts, validate destructive paths, and prefer dry-run or test targets for administrative workflows. <br>
+## Use Case:
 
+Developers, system administrators, and automation engineers use this skill to create, troubleshoot, and maintain Windows cmd.exe batch scripts for file operations, scheduled tasks, CLI utilities, and integration with external tools.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jhauga/batch-files) <br>
-- [Batch Files, Scripts, and Functions](references/batch-files-and-functions.md) <br>
-- [Windows Commands Reference (A-Z)](references/windows-commands.md) <br>
-- [Windows Tools and Resources](references/tools-and-resources.md) <br>
-- [Cygwin Reference](references/cygwin.md) <br>
-- [MSYS2 Reference](references/msys2.md) <br>
-- [Windows Subsystem for Linux (WSL) Reference](references/windows-subsystem-on-linux.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Windows batch code blocks and inline cmd.exe commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include reusable batch file templates, command examples, troubleshooting steps, and safety notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Unsafe administrator-access or persistence guidance could be applied without authorization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated commands before use, and avoid recovery-account, SYSTEM-shell, AutoRun/startup, or similar patterns unless explicitly authorized with a rollback plan.
+
+Risk: Starter batch templates may be unsafe when adapted to untrusted inputs.
+
+Mitigation: Add input validation, quote paths and variables carefully, and test scripts in a non-production environment before deployment.
+
+Risk: Plaintext FTP patterns can expose credentials or sensitive data.
+
+Mitigation: Avoid plaintext FTP for sensitive workflows and prefer authenticated secure transfer tools or managed credential storage.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jhauga/skills/batch-files)
+- [Batch Files, Scripts, and Functions](artifact/references/batch-files-and-functions.md)
+- [Windows Commands Reference](artifact/references/windows-commands.md)
+- [Tools and Resources](artifact/references/tools-and-resources.md)
+- [Cygwin Reference](artifact/references/cygwin.md)
+- [MSYS2 Reference](artifact/references/msys2.md)
+- [Windows Subsystem for Linux Reference](artifact/references/windows-subsystem-on-linux.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Windows batch code blocks and reusable .bat/.cmd templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Windows cmd.exe focused; generated commands and templates should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

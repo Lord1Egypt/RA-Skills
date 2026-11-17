@@ -1,51 +1,71 @@
-## Description: <br>
-Use Paegents through the published SDK and API surface to register services, create usage agreements, activate bilateral escrow, route metered usage, and settle with the recommended execution mode. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Paegents through the published SDK and API surface to register services, create usage agreements, activate bilateral escrow, route metered usage, and settle with the recommended execution mode.
 
-## Publisher: <br>
-[markmcdaniels](https://clawhub.ai/user/markmcdaniels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[markmcdaniels](https://clawhub.ai/user/markmcdaniels)
 
-## Use Case: <br>
-Developers, operators, and buyer or seller agents use this skill to integrate Paegents payments through the public SDK and API. It helps register services, create and activate bilateral escrow agreements, route metered usage, and choose settlement actions from current agreement state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide payment, escrow activation, and settlement workflows that may move or lock real funds. <br>
-Mitigation: Use sandbox or testnet flows first, verify agreement amounts and state from live responses, and require explicit review before activating escrow or initiating settlement. <br>
-Risk: Paegents API keys, seller API keys, wallet private keys, and other credentials could be exposed during setup or troubleshooting. <br>
-Mitigation: Use least-privilege scoped keys stored in the environment or a secret manager, and keep secrets out of chat, logs, repositories, and shell history. <br>
-Risk: Service registration, proxy traffic, webhooks, auto-accept behavior, and seller credentials can authorize external actions beyond a simple read-only integration. <br>
-Mitigation: Review endpoint URLs, webhook creation, seller credentials, auto-accept settings, and approval policy before enabling them in production. <br>
+## Use Case:
 
+Developers, operators, buyer agents, and seller agents use this skill to transact through Paegents using the public SDK and API surface for service registration, bilateral escrow agreements, metered usage, and settlement decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/markmcdaniels/agent-payment-processor) <br>
-- [Publisher profile](https://clawhub.ai/user/markmcdaniels) <br>
-- [Paegents homepage](https://paegents.com) <br>
-- [Skill metadata repository](https://github.com/MarkMcDaniels/paegents-pay-skill) <br>
-- [Quick Start](references/QUICK_START.md) <br>
-- [Payment Flows](references/PAYMENT_FLOWS.md) <br>
-- [SDK Usage](references/SDK_USAGE.md) <br>
-- [API Reference](references/API_REFERENCE.md) <br>
-- [Error Codes](references/ERROR_CODES.md) <br>
-- [Rate Limits](references/RATE_LIMITS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with SDK examples, API references, shell commands, and configuration steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Paegents environment variables and supervised handling of payment and wallet credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.9.1 (source: server release evidence and skill metadata) <br>
+Risk: Authenticated calls and wallet signatures can affect Paegents payment, escrow, service, and settlement workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use scoped API keys, verify account and wallet context, keep private keys outside chat and broad process access, and require human review before creating agreements, signing permits, activating escrow, settling funds, deactivating services, creating webhooks, sending invites, or handling shipping addresses.
+
+Risk: Incorrect API URL or environment configuration could send authenticated requests to the wrong endpoint or agent context.
+
+Mitigation: Verify PAEGENTS_API_URL, PAEGENTS_API_KEY, and PAEGENTS_AGENT_ID before running authenticated calls, and prefer the published SDK over hand-built HTTP when available.
+
+Risk: Escrow activation and settlement depend on live state such as nonces, fee permits, funding options, agreement status, and settlement availability.
+
+Mitigation: Fetch live activation packages and settlement options, avoid hardcoded payment assumptions, poll for confirmed agreement and escrow status, and retry only through documented public flows.
+
+Risk: Rate limits, asynchronous activation, or state errors can leave a transaction incomplete or temporarily blocked.
+
+Mitigation: Use bounded retries with backoff, honor Retry-After when present, surface persistent throttling or unresolved activation states to a human operator, and avoid bursty polling or usage recording.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/markmcdaniels/skills/agent-payment-processor)
+- [Paegents Homepage](https://paegents.com)
+- [Paegents API](https://app.paegents.com/api)
+- [Repository Metadata](https://github.com/MarkMcDaniels/paegents-pay-skill)
+- [Quick Start](references/QUICK_START.md)
+- [Payment Flows](references/PAYMENT_FLOWS.md)
+- [SDK Usage](references/SDK_USAGE.md)
+- [API Reference](references/API_REFERENCE.md)
+- [Error Codes](references/ERROR_CODES.md)
+- [Rate Limits](references/RATE_LIMITS.md)
+- [OpenAPI Subset](assets/openapi-subset.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with SDK examples, API references, shell commands, and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide authenticated payment, escrow, service, webhook, invite, and settlement workflows that require scoped environment credentials and human approval.]
+
+## Skill Version(s):
+
+2.9.1 (source: SKILL.md frontmatter, OpenAPI info, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

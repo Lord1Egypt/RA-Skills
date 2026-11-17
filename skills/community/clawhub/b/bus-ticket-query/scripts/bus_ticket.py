@@ -2,7 +2,7 @@ import os
 # -*- coding: utf-8 -*-
 """
 汽车票查询与预订 - ClawHub技能脚本
-零配置即装即用，通过SCF代理调用同程+高德+飞猪API
+零配置即装即用，通过SCF代理调用同程+高德API
 3个工具：汽车票查询、去汽车站交通、住宿推荐
 """
 import json
@@ -14,7 +14,6 @@ from datetime import datetime, timedelta
 # ============ 配置 ============
 TC_PROXY = "https://1439498936-7vqpkiipef.ap-guangzhou.tencentscf.com"
 GAODE_PROXY = "https://1439498936-bl10af74fl.ap-guangzhou.tencentscf.com"
-FLIGGY_PROXY = "https://1439498936-6sysdjjt99.ap-guangzhou.tencentscf.com"
 PROXY_TOKEN = os.environ.get("PROXY_TOKEN", "")
 TIMEOUT = 30
 
@@ -51,9 +50,6 @@ def _call_proxy(url, rtype, params, timeout=None):
 def _call_tc(rtype, params):
     return _call_proxy(TC_PROXY, rtype, params)
 
-
-def _call_fliggy(rtype, params, timeout=None):
-    return _call_proxy(FLIGGY_PROXY, rtype, params, timeout=timeout)
 
 
 def _call_gaode(api, params):
@@ -353,7 +349,7 @@ def recommend_hotel(params):
     query = params.get("query", "")
     if not query: return "请描述你的住宿需求，如：住哪个区域，预算多少，有什么偏好？"
 
-    result = _call_fliggy("fliggy_ai_search", {"query": query}, timeout=60)
+    result = _call_tc("tongcheng_travel_search", {"query": query}, timeout=60)
     if isinstance(result, dict) and "error" in result:
         return "住宿推荐失败: " + result["error"]
 

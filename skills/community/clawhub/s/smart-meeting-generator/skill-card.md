@@ -1,41 +1,59 @@
-## Description: <br>
-Generates structured meeting minutes from PDF or Word meeting transcripts using multi-pass extraction, validation, and output formatting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts PDF or Word meeting transcripts into structured, detailed meeting minutes using a multi-pass extraction, validation, supplementation, and final review workflow.
 
-## Publisher: <br>
-[crayfish153](https://clawhub.ai/user/crayfish153) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[crayfish153](https://clawhub.ai/user/crayfish153)
 
-## Use Case: <br>
-Employees and external teams use this skill to turn raw meeting transcripts into complete, structured meeting minutes with topics, decisions, details, and formatted deliverables. It is suited to PDF or Word transcripts that need detailed notes, completeness checks, and optional PDF or Word output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting transcripts may contain confidential, personal, or regulated information that could be processed by an external AI service. <br>
-Mitigation: Redact sensitive content before use and confirm that organizational policy permits third-party AI processing for the transcript. <br>
-Risk: Generated names, numbers, decisions, deadlines, action items, and company-name validations may be inaccurate or incomplete. <br>
-Mitigation: Manually verify the final notes against the original transcript before sharing or relying on them. <br>
+## Use Case:
 
+Employees and external teams use this skill to turn raw meeting transcripts into formal meeting minutes with discussion topics, participants, decisions, and action items. It is intended for detailed meeting-record cleanup rather than terse summarization.
 
-## Reference(s): <br>
-- [AI prompt templates](references/ai-prompts.md) <br>
-- [Meeting notes output format specifications](references/format-specs.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, Guidance] <br>
-**Output Format:** [Structured meeting minutes in text, PDF, or Word format] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a four-pass extraction, comparison, supplementation, and final review process; default output targets detailed notes of at least 2000 words or characters when source content supports it.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Full meeting transcripts may contain confidential, regulated, personal, legal, financial, or internal information before they are sent for DeepSeek processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with organizational approval for DeepSeek processing, and redact or avoid sensitive transcripts unless that processing path is approved.
+
+Risk: Auxiliary packaging and verification utilities are flagged for unsafe archive handling.
+
+Mitigation: Treat included scripts as developer utilities only, and avoid verifying untrusted .skill archives or packaging directories that may contain secrets until the archive extraction and file inclusion logic is fixed.
+
+Risk: The artifact asks for exhaustive coverage and a minimum output length, which can encourage overly long notes if source material is sparse.
+
+Mitigation: Review generated minutes against the source transcript before use, especially when the transcript is short or incomplete.
+
+## Reference(s):
+
+- [AI Prompt Templates](artifact/references/ai-prompts.md)
+- [Output Format Specifications](artifact/references/format-specs.md)
+- [ClawHub Skill Page](https://clawhub.ai/crayfish153/skills/smart-meeting-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured meeting minutes, with optional PDF or Word formatting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Targets a minimum length of 2000 words or characters and may include validation summaries when the full workflow is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, _meta.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

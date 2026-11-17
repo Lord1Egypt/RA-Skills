@@ -1,0 +1,336 @@
+/**
+ * Star Planet 星球风格 Markdown 预览样式
+ * 基于 YunYouJun/star-markdown-css planet 主题
+ * 紫色星球风格
+ */
+
+:root {
+    --smc-font-sans: Raleway, -apple-system, 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;
+    --smc-font-serif: 'Songti SC', 'Noto Serif SC', STZhongsong, STKaiti, KaiTi, Roboto, serif;
+    --smc-font-mono: Menlo, Monaco, Consolas, 'Courier New', monospace;
+    --smc-c-primary-light: rgb(127.5, 127.5, 127.5);
+    --smc-c-primary-lighter: #999999;
+    --smc-c-primary: #000000;
+    --smc-theme-name: planet;
+    --smc-line-height: 1.5;
+    --smc-c-primary-rgb: 0, 0, 0;
+    --smc-c-text: #24292e;
+    --smc-c-text-light: #555;
+    --smc-c-text-lighter: #666;
+    --smc-header-bottom-color: #eaecef;
+    --smc-border-color: var(--smc-c-primary-light);
+    --smc-code-bg-color: #f6f8fa;
+    --smc-link-color: hsl(0, 0%, -10%);
+    --smc-bg-color: #ffffff;
+}
+
+html.dark {
+    --smc-c-text: #f2f2f2;
+    --smc-c-text-light: #ddd;
+    --smc-c-text-lighter: #eee;
+    --smc-code-bg-color: #242424;
+    --smc-link-color: rgb(25.5, 25.5, 25.5);
+    --smc-header-bottom-color: #333;
+    --smc-bg-color: #1a1a2e;
+}
+
+.markdown-body.star-planet {
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    background: var(--smc-bg-color);
+    color: var(--smc-c-text);
+    font-family: var(--smc-font-sans);
+    font-size: 1rem;
+    line-height: var(--smc-line-height);
+    overflow-wrap: break-word;
+}
+
+.markdown-body.star-planet * {
+    box-sizing: border-box;
+}
+
+.markdown-body.star-planet a {
+    background-color: transparent;
+}
+
+.markdown-body.star-planet a:active,
+.markdown-body.star-planet a:hover {
+    outline-width: 0;
+}
+
+.markdown-body.star-planet hr {
+    background-color: #333;
+    height: 0.1rem;
+    margin: 1.5rem 0;
+}
+
+.markdown-body.star-planet kbd {
+    display: inline-block;
+    padding: 3px 6px;
+    line-height: 10px;
+    color: #444d56;
+    vertical-align: middle;
+    background-color: #fafbfc;
+    border: solid 1px #d1d5da;
+    border-bottom-color: #c6cbd1;
+    border-radius: 3px;
+    box-shadow: inset 0 -1px 0 #d1c6c7;
+}
+
+.markdown-body.star-planet dl {
+    padding: 0;
+}
+
+.markdown-body.star-planet dl dt {
+    padding: 0;
+    margin-top: 16px;
+    font-size: 1rem;
+    font-style: italic;
+    font-weight: 600;
+}
+
+.markdown-body.star-planet dl dd {
+    padding: 0 16px;
+    margin-bottom: 16px;
+}
+
+.markdown-body.star-planet blockquote {
+    margin: 1rem 0;
+    padding: 0 1rem;
+    border-left: 0.25em solid var(--smc-border-color);
+}
+
+.markdown-body.star-planet code,
+.markdown-body.star-planet pre {
+    font-family: 'Source Code Pro', Consolas, Monaco, SFMono-Regular, 'Ubuntu Mono', Menlo, monospace;
+}
+
+.markdown-body.star-planet h1 > code,
+.markdown-body.star-planet h2 > code,
+.markdown-body.star-planet h3 > code,
+.markdown-body.star-planet h4 > code {
+    font-size: 0.9em;
+}
+
+.markdown-body.star-planet code {
+    padding: 3px 6px;
+    font-size: 0.85rem;
+    color: var(--smc-c-text-light);
+    background: var(--smc-code-bg-color);
+    border-radius: 3px;
+}
+
+.markdown-body.star-planet pre {
+    margin-top: 0;
+    margin-bottom: 0;
+    overflow-wrap: normal;
+    /* padding: 1rem; */
+    overflow: auto;
+    background-color: var(--smc-code-bg-color);
+    border-radius: 3px;
+}
+
+.markdown-body.star-planet pre > code {
+    font-size: 0.85rem;
+    white-space: pre;
+}
+
+.markdown-body.star-planet pre code {
+    display: block;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    line-height: inherit;
+    word-break: normal;
+    background-color: transparent;
+    border: 0;
+}
+
+.markdown-body.star-planet img {
+    display: block;
+    margin: 1rem auto;
+    max-width: 92%;
+    max-height: 600px;
+    border-radius: 0.2rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+    transition: 0.4s;
+}
+
+.markdown-body.star-planet img:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+.markdown-body.star-planet img[align=right] {
+    margin-left: 1rem;
+    margin-right: 0.5rem;
+}
+
+.markdown-body.star-planet img[align=left] {
+    margin-left: 0.5rem;
+    margin-right: 1rem;
+}
+
+.markdown-body.star-planet img + em {
+    display: block;
+    text-align: center;
+    color: var(--smc-c-text-light, #333);
+    font-size: 0.9rem;
+}
+
+.markdown-body.star-planet figure {
+    margin: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.markdown-body.star-planet figcaption {
+    display: block;
+    margin-top: 5px;
+    text-align: center;
+    color: #888;
+    font-size: 14px;
+}
+
+.markdown-body.star-planet figure a {
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.markdown-body.star-planet figure a img {
+    margin: 16px auto;
+}
+
+
+
+.markdown-body.star-planet a {
+    color: var(--smc-c-primary);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s ease-in-out;
+}
+
+.markdown-body.star-planet a:hover {
+    color: var(--smc-link-color);
+    border-bottom: 1px solid var(--smc-link-color);
+}
+
+.markdown-body.star-planet ol,
+.markdown-body.star-planet ul {
+    padding-left: 2em;
+}
+
+.markdown-body.star-planet ol ol,
+.markdown-body.star-planet ol ul,
+.markdown-body.star-planet ul ol,
+.markdown-body.star-planet ul ul {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.markdown-body.star-planet li {
+    overflow-wrap: break-all;
+    margin-top: 0.25em;
+}
+
+.markdown-body.star-planet li > p {
+    margin-top: 16px;
+}
+
+.markdown-body.star-planet table {
+    width: 100%;
+    overflow: auto;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+.markdown-body.star-planet table td,
+.markdown-body.star-planet table th {
+    padding: 6px 13px;
+    border: 1px solid var(--smc-c-primary-light, #999);
+}
+
+.markdown-body.star-planet table thead th {
+    font-weight: 600;
+}
+
+.markdown-body.star-planet table > tbody > tr:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.markdown-body.star-planet strong {
+    font-family: var(--smc-font-serif);
+    font-weight: 900;
+}
+
+.markdown-body.star-planet p {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.markdown-body.star-planet h1,
+.markdown-body.star-planet h2,
+.markdown-body.star-planet h3,
+.markdown-body.star-planet h4,
+.markdown-body.star-planet h5,
+.markdown-body.star-planet h6 {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 300;
+    line-height: 1.5;
+}
+
+.markdown-body.star-planet h1 {
+    font-size: 3rem;
+    border-bottom: 1px solid var(--smc-header-bottom-color);
+}
+
+.markdown-body.star-planet h2 {
+    font-size: 2.6rem;
+    border-bottom: 1px solid var(--smc-header-bottom-color);
+}
+
+.markdown-body.star-planet h3 {
+    font-size: 2.2rem;
+}
+
+.markdown-body.star-planet h4 {
+    font-size: 1.8rem;
+}
+
+.markdown-body.star-planet h5 {
+    font-size: 1.4rem;
+}
+
+.markdown-body.star-planet h6 {
+    font-size: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+    .markdown-body.star-planet h1 {
+        font-size: 2rem;
+    }
+    .markdown-body.star-planet h2 {
+        font-size: 1.8rem;
+    }
+    .markdown-body.star-planet h3 {
+        font-size: 1.6rem;
+    }
+    .markdown-body.star-planet h4 {
+        font-size: 1.4rem;
+    }
+    .markdown-body.star-planet h5 {
+        font-size: 1.2rem;
+    }
+}
+
+html.dark .markdown-body.star-planet {
+    background: #1a1a2e;
+}

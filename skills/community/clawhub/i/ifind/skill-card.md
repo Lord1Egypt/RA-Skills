@@ -1,45 +1,60 @@
-## Description: <br>
-Uses a local Python wrapper to call official iFinD QuantAPI HTTP endpoints for market, macro, fund, code-conversion, calendar, report, and portfolio data while checking refresh_token setup and local storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses a local Python wrapper to call the official iFinD QuantAPI HTTP endpoints for market, macro, fund, code-conversion, calendar, report, and portfolio data while checking refresh-token setup before requests.
 
-## Publisher: <br>
-[YannLong](https://clawhub.ai/user/YannLong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yannlong](https://clawhub.ai/user/yannlong)
 
-## Use Case: <br>
-Developers and analysts use this skill to query iFinD QuantAPI data through local Python scripts, presets, and direct endpoint calls. It supports dependency checks, refresh_token setup, secure local token storage, and response reporting for credential-backed API requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses broad credential-backed iFinD API access and stores a long-lived refresh_token locally. <br>
-Mitigation: Use the token store helper, keep file permissions owner-only, prefer scoped preset commands, and remove or rotate the token when it is no longer needed. <br>
-Risk: Agent-assisted token acquisition may expose the user's iFinD account page or refresh_token. <br>
-Mitigation: Use only the official iFinD QuantAPI site or documented client flow, stop after storing the token, and avoid printing or pasting the token into chat or shell history. <br>
-Risk: Direct endpoint calls can send arbitrary endpoint names and JSON payloads using the configured account. <br>
-Mitigation: Review endpoint names, payloads, symbol lists, and date ranges before execution; prefer documented presets for common market-data queries. <br>
+## Use Case:
 
+Developers and analysts use this skill to make authenticated iFinD QuantAPI HTTP requests through bundled Python scripts for market, macro, fund, code-conversion, calendar, report, and portfolio workflows.
 
-## Reference(s): <br>
-- [iFind API Reference](references/iFind_API_Reference.md) <br>
-- [refresh_token acquisition and storage](references/token-and-storage.md) <br>
-- [iFinD QuantAPI](https://quantapi.51ifind.com) <br>
-- [ClawHub release page](https://clawhub.ai/YannLong/ifind) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [API output depends on the selected iFinD endpoint, account permissions, token validity, requested symbols, and date range.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill persistently handles a long-lived iFinD account refresh token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-scope token when possible, avoid passing the token on the command line, and verify credential file permissions before use.
+
+Risk: The skill can make broad authenticated QuantAPI calls, including generic endpoint calls.
+
+Mitigation: Review the requested endpoint, payload, symbol universe, and date range before allowing calls, especially when using generic endpoint mode.
+
+Risk: Authenticated API results may be used in downstream analysis without sufficient context.
+
+Mitigation: Report the endpoint, code list, requested date range or timestamp, and returned API metadata such as perf or dataVol when using results.
+
+## Reference(s):
+
+- [iFinD API Reference](references/iFind_API_Reference.md)
+- [refresh_token acquisition and storage](references/token-and-storage.md)
+- [iFinD QuantAPI](https://quantapi.51ifind.com)
+- [iFinD QuantAPI v1 endpoint base](https://quantapi.51ifind.com/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, Python usage, configuration steps, and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an iFinD refresh_token and network access to quantapi.51ifind.com.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

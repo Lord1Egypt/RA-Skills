@@ -1,38 +1,48 @@
-## Description: <br>
-Fast lightweight verification pass for recent work. Use proactively after medium or large tasks, coding passes, app changes, or long replies when you need a quick check for missed asks, partial completion, stale status, or unsupported 'done' claims without a long audit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fast lightweight verification pass for recent work. Use proactively after medium or large tasks, coding passes, app changes, or long replies when you need a quick check for missed asks, partial completion, stale status, or unsupported 'done' claims without a long audit.
 
-## Publisher: <br>
-[noahfleming](https://clawhub.ai/user/noahfleming) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[noahfleming](https://clawhub.ai/user/noahfleming)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent operators use this skill after medium or large work sessions to quickly verify whether the original request was satisfied. It checks for missed asks, partial completion, unsupported completion claims, and stale statuses without redoing the work.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: A quick verification pass may mark work as incomplete or unsupported when the available evidence is stale, missing, or too broad to check confidently.
+
+Mitigation: Treat uncertain findings as prompts for review and confirm them against current tool output, code changes, created files, or observed runtime behavior.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill after medium or large tasks to verify whether the original request was completed, identify unsupported completion claims, and flag stale status. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Scanner evidence was clean, but the expected target skill artifact was not available to verify what users would install. <br>
-Mitigation: Do not install this release until ClawHub can rescan or review the actual packaged skill files. <br>
+**Output Format:** [Markdown checklist with concise verdict sections]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/noahfleming/simple-verifier) <br>
+**Other Properties Related to Output:** [Evidence-based verification summary; does not redo the task or add new content.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown checklist with verdict] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Concise evidence-based verification summary; does not redo the task.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

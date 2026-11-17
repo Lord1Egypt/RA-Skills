@@ -1,44 +1,59 @@
-## Description: <br>
-Query and control Databricks jobs from plain text, including run status, failures, retries, cancellations, logs, Unity Catalog exploration, and read-only SQL through the Databricks REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query and control Databricks jobs from plain text by checking status, listing recent runs, finding failures, triggering pipelines, browsing Unity Catalog, and running read-only SQL through the Databricks REST API.
 
-## Publisher: <br>
-[Nerikko](https://clawhub.ai/user/Nerikko) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nerikko](https://clawhub.ai/user/nerikko)
 
-## Use Case: <br>
-Developers and data platform operators use this skill to inspect Databricks job health, diagnose failed or long-running runs, trigger or repair jobs, cancel active runs, browse Unity Catalog objects, and run bounded SQL queries from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can trigger, retry, repair, or cancel live Databricks job runs. <br>
-Mitigation: Require manual confirmation before job trigger, retry, repair, or cancellation commands and use a token limited to the smallest Databricks permissions needed. <br>
-Risk: Run details, logs, notebook output, and SQL results may expose sensitive operational or data content. <br>
-Mitigation: Review log and output requests before execution, avoid sharing results outside trusted contexts, and prefer CAN_VIEW or similarly scoped read permissions for routine inspection. <br>
-Risk: SQL execution can modify data if DATABRICKS_ALLOW_WRITE_SQL is enabled. <br>
-Mitigation: Keep DATABRICKS_ALLOW_WRITE_SQL unset for normal use, rely on the default read-only SQL guardrails, and set row and timeout limits for exploration queries. <br>
+## Use Case:
 
+Developers, data engineers, and operations teams use this skill to inspect Databricks job health, investigate failures, trigger or manage runs, review SLA status, explore catalog objects, and run bounded SQL checks without opening the Databricks UI.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Nerikko/databricks-helper) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and Markdown with inline shell commands and tabular command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Databricks run output may include statuses, URLs, error snippets, logs, catalog listings, and SQL result rows; SQL output is row-limited by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata, README changelog, script __version__) <br>
+Risk: The skill uses powerful Databricks workspace credentials and can trigger, retry, or cancel runs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted publisher, use a least-privilege Databricks token, and require human confirmation before run, retry, or cancel actions.
+
+Risk: Misconfigured host or secret exposure could route credentials to the wrong workspace or expose tokens during installation and use.
+
+Mitigation: Set DATABRICKS_HOST only to the intended HTTPS Databricks workspace and avoid running installation or commands in environments containing unrelated secrets.
+
+Risk: The SQL denylist is a best-effort guard and should not be treated as a security boundary.
+
+Mitigation: Enforce read-only access through Databricks permissions and keep DATABRICKS_ALLOW_WRITE_SQL unset unless write SQL is explicitly approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nerikko/skills/databricks-helper)
+- [README](artifact/README.md)
+- [Skill documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include job statuses, run IDs, run URLs, error snippets, log snippets, SLA summaries, catalog lists, and bounded tabular SQL results.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata, README, SKILL.md, and script __version__)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

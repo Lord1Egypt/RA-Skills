@@ -1,43 +1,60 @@
-## Description: <br>
-Use when a user wants to review, polish, or proofread Chinese articles through a structured editorial workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when user wants to review, polish, or proofread articles. Triggers include「帮我改文章」「检查一下」「润色」「帮我改改」「校对一下」「看看文章」.
 
-## Publisher: <br>
-[niracler](https://clawhub.ai/user/niracler) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[niracler](https://clawhub.ai/user/niracler)
 
-## Use Case: <br>
-Writers and editors use this skill to review Chinese Markdown articles for structure, reader context, language quality, source support, personal style consistency, and optional Markdown formatting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Optional file edits and Markdown formatting can change user-authored articles. <br>
-Mitigation: Confirm the exact file and review the diff before accepting automatic formatting or applying edits. <br>
-Risk: Optional external setup for markdown linting may add dependencies or configuration. <br>
-Mitigation: Assess the markdown-lint setup separately before installing or enabling it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Chinese style guide](references/chinese-style.md) <br>
-- [Personal style guide](references/personal-style.md) <br>
-- [Source verification guide](references/source-verification.md) <br>
-- [Structure review guide](references/structure-review.md) <br>
-- [ClawHub skill page](https://clawhub.ai/niracler/nini-writing-proofreading) <br>
+## Use Case:
 
+Writers and editors use this skill to review Chinese Markdown articles through a structured six-step proofreading workflow covering organization, reader context, language clarity, source verification, personal style, and Markdown formatting.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown review notes, suggested edits, source-checking guidance, and optional markdownlint-cli2 commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill asks for confirmation before applying substantive edits and reviews one or two Markdown sections at a time.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The optional Markdown autofix command may change article formatting in ways the writer did not intend.
+
+Mitigation: Run the lint check first, review any proposed or generated diff, and accept fixes only after user confirmation.
+
+Risk: The external setup command can retrieve code outside this release artifact.
+
+Mitigation: Inspect the external package or use a pinned, lockfile-managed version before running setup commands.
+
+Risk: Proofreading suggestions and source-verification guidance can still introduce incorrect wording or weak citations.
+
+Mitigation: Discuss each source-backed change with the user, prefer authoritative sources, and keep detailed claims in footnotes.
+
+## Reference(s):
+
+- [Writing Proofreading on ClawHub](https://clawhub.ai/niracler/skills/nini-writing-proofreading)
+- [中文写作规范](references/chinese-style.md)
+- [结构诊断与读者 Context 检查](references/structure-review.md)
+- [信源查证与脚注规范](references/source-verification.md)
+- [个人风格指南](references/personal-style.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown prose with checklists, editing suggestions, source notes, and optional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The workflow asks the agent to review one or two Markdown sections at a time and wait for user confirmation before making changes.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

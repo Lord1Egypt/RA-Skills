@@ -1,42 +1,58 @@
-## Description: <br>
-Payment Skill helps agents create payment requests, check payment status, and initiate refunds through a configured payment API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides AI-native payment tools for creating payment requests, checking payment status, and initiating refunds.
 
-## Publisher: <br>
-[neverSatRabbit](https://clawhub.ai/user/neverSatRabbit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neversatrabbit](https://clawhub.ai/user/neversatrabbit)
 
-## Use Case: <br>
-Developers and agents use this skill to integrate payment workflows that create payment authorization requests, query transaction status, and initiate refunds through configured credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use payment credentials to create payments and initiate refunds. <br>
-Mitigation: Use least-privilege, low-limit credentials and require manual approval outside the skill before any payment creation or refund. <br>
-Risk: Endpoint and permission ambiguity can send payment operations to an unintended API domain. <br>
-Mitigation: Verify the intended payment API domain before installation and before setting PAYMENT_API_URL. <br>
-Risk: Diagnostics and local logs may expose live secrets or sensitive payment metadata. <br>
-Mitigation: Avoid running diagnostics with live secrets in captured logs and treat local logs as sensitive. <br>
+## Use Case:
 
+Developers and commerce teams can use this skill to let an agent create payment requests, query transaction status, and initiate refunds through a configured payment API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/neverSatRabbit/payment-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON payment operation responses with setup and environment configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires payment API credentials and network access to the configured payment API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can handle payment API keys and signing secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for trusted publishers, provide secrets through controlled environment variables, avoid running setup with real payment credentials loaded, and rotate any credentials whose fragments may have appeared in logs.
+
+Risk: The refund tool can initiate monetary actions without strong built-in safeguards.
+
+Mitigation: Require an explicit approval workflow for refunds before allowing production use.
+
+Risk: Payment traffic and dependencies require operational hardening before production use.
+
+Mitigation: Require HTTPS-only API endpoints and update vulnerable dependencies before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/neversatrabbit/skills/payment-skill)
+- [Publisher Profile](https://clawhub.ai/user/neversatrabbit)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration]
+
+**Output Format:** [JSON objects emitted by CLI tool calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires payment API credentials in environment variables; refund operations should be gated by external approval controls.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

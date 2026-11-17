@@ -1,38 +1,54 @@
-## Description: <br>
-Manage end-to-end logistics workflows including shipment tracking, route optimization, carrier coordination, warehouses, customs, returns, fleet operations, and KPI monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage end-to-end logistics operations including shipment tracking, warehouse management, route optimization, carrier coordination, order fulfillment, customs documentation, fleet management, reverse logistics, and KPI monitoring.
 
-## Publisher: <br>
-[rithythul](https://clawhub.ai/user/rithythul) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rithythul](https://clawhub.ai/user/rithythul)
 
-## Use Case: <br>
-Logistics, operations, warehouse, fleet, and supply chain teams use this skill to coordinate shipments, inventory, carriers, routing, order fulfillment, customs documents, returns, and KPI monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Proof-of-delivery workflows can involve recipient names, signatures or photos, GPS coordinates, timestamps, and driver contact details. <br>
-Mitigation: Confirm where that data is sent, who can access it, how long it is retained, and that parties have appropriate notice or consent before using the skill in delivery workflows. <br>
+## Use Case:
 
+Logistics, warehouse, fulfillment, and supply chain teams use this skill to monitor shipments, coordinate carriers and warehouses, plan routes, handle customs and returns, and report operational KPIs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rithythul/koompi-logistics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with operational checklists, logistics templates, status workflows, and KPI reporting structures.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may propose customer-facing status updates, supplier communications, purchase orders, customs submissions, reroutes, and proof-of-delivery uploads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require authenticated integrations, role-based permissions, audit logging, and human approval before any external message or operational system change is sent.
+
+Risk: The skill handles sensitive logistics data such as shipment locations, GPS coordinates, signatures, contact details, and tax IDs.
+
+Mitigation: Limit access to sensitive fields, apply data minimization, and route outputs through privacy review controls appropriate for shipment and customer records.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rithythul/skills/koompi-logistics)
+- [Publisher profile](https://clawhub.ai/user/rithythul)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with structured checklists, tables, templates, status summaries, and operational recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May draft customer or supplier messages, shipment updates, purchase orders, customs documents, route plans, carrier comparisons, and KPI reports for human review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

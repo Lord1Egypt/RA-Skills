@@ -1,41 +1,52 @@
-## Description: <br>
-Daily Life Autopilot helps agents proactively manage daily logistics, including briefings, message triage, follow-ups, bills, files, meetings, and reviews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Life Autopilot helps agents proactively produce briefings, triage messages, track follow-ups and bills, prepare for meetings, organize files, and summarize daily or weekly commitments for busy users.
 
-## Publisher: <br>
-[AGIstack](https://clawhub.ai/user/AGIstack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[agistack](https://clawhub.ai/user/agistack)
 
-## Use Case: <br>
-External users such as busy professionals, founders, parents, and people returning from time away use this skill to have an agent summarize schedules, triage messages, track follow-ups, monitor bills, prepare meetings, organize files, and review the day or week. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks an agent to read and summarize sensitive email, calendar, billing, task, and local file data. <br>
-Mitigation: Restrict connected accounts, folders, and integrations where possible, and enable only the data sources needed for the intended workflow. <br>
-Risk: Broad automatic briefings and triage can expose more personal information than a user expects. <br>
-Mitigation: Disable automatic briefings or make them opt-in until the user has reviewed the connected data scope. <br>
-Risk: Actions related to messages, archives, files, or billing can affect personal records or communications. <br>
-Mitigation: Keep sending, archiving, file moves, subscription changes, and billing-related actions confirmation-only. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Daily Life Autopilot on ClawHub](https://clawhub.ai/AGIstack/daily-life-autopilot) <br>
+## Use Case:
 
+External users such as busy professionals, entrepreneurs, parents, and people returning from time away use this skill to have an agent monitor schedules, messages, follow-ups, bills, meetings, files, and daily priorities while keeping user approval in the loop.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown briefings, summaries, draft responses, checklists, and action proposals] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended to stay confirmation-gated for message sending, archiving, file moves, and billing-related actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks an agent to access sensitive personal sources such as email, calendar, files, bills, and commitments.
+
+Mitigation: Limit connected accounts and folders to data the user is comfortable exposing, and require explicit opt-in before enabling briefings, bill tracking, weekly summaries, and file organization.
+
+Risk: Automatic briefings and tracking can surface or act on private information more broadly than intended.
+
+Mitigation: Keep user approval gates for outbound messages, file moves, billing insights, and other sensitive actions, and review the skill before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agistack/skills/daily-life-autopilot)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown and concise plain-language summaries, drafts, plans, and confirmations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include email drafts, priority lists, meeting briefs, subscription summaries, file organization proposals, and daily or weekly reviews.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

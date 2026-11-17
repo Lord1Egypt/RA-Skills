@@ -1,40 +1,59 @@
-## Description: <br>
-Interact with GitLab API for managing projects, issues, merge requests, branches, pipelines, users, groups, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with GitLab API for managing projects, issues, merge requests, branches, pipelines, users, groups, and more.
 
-## Publisher: <br>
-[jonasgao](https://clawhub.ai/user/jonasgao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jonasgao](https://clawhub.ai/user/jonasgao)
 
-## Use Case: <br>
-Developers and GitLab administrators use this skill to let an agent query and manage GitLab projects, issues, merge requests, branches, repositories, pipelines, groups, users, labels, milestones, tags, releases, snippets, runners, and webhooks through GitLab REST API v4. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad GitLab write, delete, merge, approve, retry, cancel, and webhook authority through the provided token. <br>
-Mitigation: Use a read-only or narrowly scoped token when possible, and require explicit confirmation of exact project IDs, branches, files, issues, merge requests, pipeline IDs, and webhook URLs before any mutating action. <br>
-Risk: The GitLab token can be exposed if it is printed, placed in URLs, or committed with environment files. <br>
-Mitigation: Do not print or echo GITLAB_TOKEN, do not put tokens in URLs, keep .env out of version control, and have the user set the token manually. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to let an agent operate against GitLab REST API v4 for repository, issue, merge request, branch, pipeline, group, user, label, milestone, release, snippet, search, runner, and webhook workflows.
 
-## Reference(s): <br>
-- [GitLab REST API v4 Reference Manual](https://gitlab.fullnine.com.cn/help/api/index.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with gitlab-client shell commands; command output is JSON or plain text for raw logs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GITLAB_URL and GITLAB_TOKEN in .env; list operations support pagination.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and package.json) <br>
+Risk: The skill can perform write, delete, merge, pipeline, and webhook operations against real GitLab resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the least-privilege GitLab token that fits the task and require explicit user confirmation before destructive or state-changing operations.
+
+Risk: Credential-safety gaps could expose or misuse a GitLab personal access token.
+
+Mitigation: Keep GITLAB_TOKEN out of URLs and logs, set it manually in .env, and use read_api for read-only work.
+
+Risk: A misconfigured GitLab endpoint could send authenticated requests to an untrusted server.
+
+Mitigation: Configure only a trusted HTTPS GITLAB_URL before running gitlab-client commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jonasgao/skills/gitlab-api-client)
+- [Publisher Profile](https://clawhub.ai/user/jonasgao)
+- [GitLab REST API v4 Reference](https://gitlab.fullnine.com.cn/help/api/index.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON API responses from gitlab-client]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GITLAB_URL and a user-provided GITLAB_TOKEN in .env; API command output is JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

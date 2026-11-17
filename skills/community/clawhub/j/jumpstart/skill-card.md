@@ -1,42 +1,54 @@
-## Description: <br>
-Sets up and manages a long-running agent harness for complex, multi-session coding projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sets up and manages a long-running agent harness for complex, multi-session coding projects.
 
-## Publisher: <br>
-[kzac313](https://clawhub.ai/user/kzac313) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kzac313](https://clawhub.ai/user/kzac313)
 
-## Use Case: <br>
-Developers and engineers use Jumpstart to structure substantial coding projects into design documents, generated feature lists, progress logs, checkpoints, and repeatable implementation sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow directs an agent to actively modify project files, run local scripts, and make git commits. <br>
-Mitigation: Use it on a clean branch or disposable workspace, inspect generated files, and review git status before relying on commits. <br>
-Risk: The generated init.sh script may execute project-local commands during smoke testing. <br>
-Mitigation: Review init.sh before execution and keep secrets out of the repository. <br>
-Risk: Batch sessions can make multiple changes before stopping when jumploop is used. <br>
-Mitigation: Start with small jumploop --n values and use checkpoint reviews before continuing through major milestones. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to structure substantial coding projects into repeatable agent sessions with progress tracking, verification checkpoints, and per-feature commits.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kzac313/jumpstart) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown instructions with inline shell commands and JSON file schemas] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to create or update project files, run a local smoke-test script, and make git commits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: The workflow can run a generated init.sh script and make broad repository commits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill in a clean branch or disposable clone, review init.sh before running it, and inspect git status and staged diffs before accepting commits.
+
+Risk: Repository-local secrets or private files could be included in broad commits.
+
+Mitigation: Keep secrets outside the repository or protected by .gitignore before using the skill.
+
+## Reference(s):
+
+- [Jumpstart Skill README](artifact/README.md)
+- [ClawHub skill page](https://clawhub.ai/kzac313/skills/jumpstart)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown instructions with JSON file specifications and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces project scaffolding guidance for init.sh, feature_list.json, progress.txt, checkpoints, and git commits.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,61 @@
-## Description: <br>
-Diagnoses Huawei Cloud CCE autoscaling failures across HPA, CCE elastic engine or Cluster Autoscaler, metrics, resource requests, Pending Pods, scheduling constraints, node pool limits, subnet IP, quota, and IAM permission signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnoses Huawei Cloud CCE autoscaling failures across HPA, Cluster Autoscaler or CCE elastic engine behavior, metrics, resource requests, Pending Pods, scheduling constraints, node pool limits, subnet IPs, quotas, and IAM permission signals.
 
-## Publisher: <br>
-[pintudeyudi](https://clawhub.ai/user/pintudeyudi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pintudeyudi](https://clawhub.ai/user/pintudeyudi)
 
-## Use Case: <br>
-Developers and site reliability engineers use this skill to diagnose Huawei Cloud CCE autoscaling failures, gather HPA, Cluster Autoscaler, node pool, Pod, event, and metric evidence, and produce a Markdown report with conclusions, confidence, data gaps, and recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled dispatcher exposes broader cloud administration, credential-return, secret-reading, and state-changing actions beyond the advertised read-only autoscaling diagnosis behavior. <br>
-Mitigation: Review the dispatcher surface before installation, allow only the intended diagnosis actions, and run with least-privilege, preferably read-only Huawei Cloud/IAM credentials. <br>
-Risk: The skill requires sensitive Huawei Cloud credentials, and broad production AK/SK credentials would increase impact if misused. <br>
-Mitigation: Use scoped IAM users or temporary credentials, avoid broad production AK/SK values, and do not expose credentials in commands, logs, files, or responses. <br>
-Risk: Recommendations or generated configuration previews could be applied incorrectly and affect workload scaling, node pool capacity, cost, or availability. <br>
-Mitigation: Treat remediation as a separate reviewed change: require explicit customer approval, validate business impact and rollback plans, and prefer preview or manual change workflows. <br>
+## Use Case:
 
+Developers and platform engineers use this skill to investigate why Huawei Cloud CCE workloads or nodes are not scaling as expected and to produce an evidence-backed Markdown diagnosis report with conclusions, confidence, data gaps, and next-step recommendations.
 
-## Reference(s): <br>
-- [Workflow](references/workflow.md) <br>
-- [Output Schema](references/output-schema.md) <br>
-- [Capability Map](references/capability-map.md) <br>
-- [Risk Rules](references/risk-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown diagnosis report with structured evidence and optional JSON response fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include HPA, Cluster Autoscaler, node pool, Pod, event, metric, issue, confidence, recommendation, and data-gap details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release evidence) <br>
+Risk: The package is described as read-only diagnosis, but server security evidence says the packaged dispatcher can also read Kubernetes Secrets and perform destructive cloud or Kubernetes changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only with tightly scoped read-only Huawei IAM and Kubernetes RBAC permissions, exclude Secret access and mutation permissions, and narrow the package to a diagnosis-only dispatcher before routine use.
+
+Risk: Credential exposure or over-privileged cloud access could affect Huawei Cloud resources during diagnosis.
+
+Mitigation: Use a dedicated least-privilege IAM identity, avoid root credentials, keep AK/SK values in environment variables only, and do not include credential values in reports or logs.
+
+Risk: Generated HTML reports may include remote scripts that create unnecessary network exposure when opened.
+
+Mitigation: Do not open generated HTML reports with network access until remote scripts are removed or integrity-pinned.
+
+## Reference(s):
+
+- [Workflow](artifact/references/workflow.md)
+- [Output Schema](artifact/references/output-schema.md)
+- [Capability Map](artifact/references/capability-map.md)
+- [Risk Rules](artifact/references/risk-rules.md)
+- [ClawHub Skill Page](https://clawhub.ai/pintudeyudi/skills/huawei-cloud-cce-autoscaling-diagnoser)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown diagnosis report with structured JSON evidence from dispatcher actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes diagnosis process, key evidence, root cause conclusion, confidence, data gaps, and recommendations.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

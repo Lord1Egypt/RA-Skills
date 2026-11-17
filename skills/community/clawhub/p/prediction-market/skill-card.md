@@ -1,45 +1,60 @@
-## Description: <br>
-Helps agents read and participate in a Base mainnet garden temperature prediction market by checking market state and preparing HIGHER or LOWER ETH bet transactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents read and participate in Garden Temp Market, a daily Base prediction market for whether the 18:00 UTC garden temperature will be higher than yesterday's.
 
-## Publisher: <br>
-[Potdealer](https://clawhub.ai/user/Potdealer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[potdealer](https://clawhub.ai/user/potdealer)
 
-## Use Case: <br>
-External users and agents use this skill to inspect the daily GTM market state, decide whether to bet HIGHER or LOWER on the 18:00 UTC garden temperature result, and prepare transaction payloads or commands for manual submission. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce ready-to-use Base mainnet betting transactions that spend ETH and may be irreversible. <br>
-Mitigation: Use a separate low-balance wallet, verify every transaction field manually, and require explicit approval before submission. <br>
-Risk: Raw private-key command examples can encourage unsafe handling of wallet credentials. <br>
-Mitigation: Never paste a main wallet private key into chat, shared terminals, logs, or agent-managed shell sessions. <br>
-Risk: The market depends on a trusted keeper to submit off-chain temperature readings for settlement. <br>
-Mitigation: Review the contract address, market rules, keeper trust model, and current on-chain state independently before betting. <br>
+## Use Case:
 
+Developers and AI-agent operators use this skill to inspect GTM market state, build HIGHER or LOWER bet transaction payloads, and produce commands for interacting with the Base contract.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Potdealer/prediction-market) <br>
-- [Publisher profile](https://clawhub.ai/user/Potdealer) <br>
-- [DailyTempMarket contract on Basescan](https://basescan.org/address/0xA3F09E6792351e95d1fd9d966447504B5668daF6) <br>
-- [SensorNet contract on Basescan](https://basescan.org/address/0xf873D168e2cD9bAC70140eDD6Cae704Ed05AdEe0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON transaction objects, shell command examples, and JavaScript helper output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Base mainnet transaction payloads that spend ETH if submitted by the user or wallet tool.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The skill can generate ready-to-submit Base transaction payloads that spend ETH on prediction-market bets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an explicit spending limit, a dedicated low-value wallet, and human approval for every transaction.
+
+Risk: Examples include raw private-key command patterns that could expose funds if copied into prompts, logs, or shared terminals.
+
+Mitigation: Do not use production private keys; prefer a wallet, hardware signer, or managed keystore that displays chain, contract address, calldata, and ETH value before signing.
+
+Risk: Market settlement depends on a trusted keeper submitting the temperature value.
+
+Mitigation: Treat participation as accepting the keeper trust model and verify the contract, keeper model, and market terms before betting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/potdealer/skills/prediction-market)
+- [Publisher profile](https://clawhub.ai/user/potdealer)
+- [DailyTempMarket contract on Basescan](https://basescan.org/address/0xA3F09E6792351e95d1fd9d966447504B5668daF6)
+- [SensorNet contract on Basescan](https://basescan.org/address/0xf873D168e2cD9bAC70140eDD6Cae704Ed05AdEe0)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON transaction payloads, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JavaScript helper output, and JSON transaction payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce ready-to-submit Base transaction payloads; use human approval before any ETH-spending transaction.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact package.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

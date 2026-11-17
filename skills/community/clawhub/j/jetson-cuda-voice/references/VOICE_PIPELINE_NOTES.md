@@ -146,7 +146,7 @@ voice/
 
 4. **Security Issues** 🔓
    - Groq API key hardcoded: `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`
-   - OpenRouter key hardcoded: `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`
+   - OpenRouter key hardcoded: `REDACTED-SECRET`
    - **Action:** Move to environment variables / systemd service
 
 ---
@@ -267,7 +267,7 @@ Total latency: ~1.0-1.5s (wake detection already done)
 ### Current (Hardcoded - SECURITY ISSUE)
 ```
 GROQ_API_KEY = "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"
-OPENROUTER_API_KEY = "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"
+OPENROUTER_API_KEY = "REDACTED-SECRET"
 ```
 
 ### To Obtain

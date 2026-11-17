@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn7at8xzc1cae788t3b0g27x5x81tk8e",
-  "slug": "lt",
-  "version": "1.0.0",
-  "publishedAt": 1772247621847
+  "owner": "0isone",
+  "slug": "0protocol",
+  "displayName": "0.protocol",
+  "latest": {
+    "version": "0.1.0",
+    "publishedAt": 1771108365406,
+    "commit": "https://github.com/openclaw/skills/commit/73afeae1a58e6d4e29d6bd1e9ca9e6240ca9162e"
+  },
+  "history": []
 }

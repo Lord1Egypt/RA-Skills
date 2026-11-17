@@ -1,42 +1,53 @@
-## Description: <br>
-Extracts and returns plain text from PDF, Word, and Excel bid or tender documents for analysis, search, or summarisation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts and returns plain text from PDF, Word, and Excel bid documents for analysis, search, or summarisation.
 
-## Publisher: <br>
-[ezhencacao-dotcom](https://clawhub.ai/user/ezhencacao-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ezhencacao-dotcom](https://clawhub.ai/user/ezhencacao-dotcom)
 
-## Use Case: <br>
-Agents, developers, and procurement teams use this skill to extract readable text from bid and tender files before search, summarisation, or downstream document analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unreviewed or changing document-parsing dependencies could introduce dependency-hygiene issues. <br>
-Mitigation: Install the skill in an isolated environment and pin reviewed dependency versions before regular use. <br>
-Risk: Bid documents from outside parties may contain sensitive or untrusted content that becomes visible to the calling agent after extraction. <br>
-Mitigation: Only process files whose extracted text may be exposed to the agent and its output. <br>
-Risk: Spreadsheet tables and complex document layouts may be flattened or lose formatting during extraction. <br>
-Mitigation: Review extracted text before relying on it for decisions that depend on table structure or layout. <br>
+## Use Case:
 
+Developers and bid/tender analysts use Bid Reader to extract plain text from PDF, Word, and Excel bid documents so agents can search, summarize, or analyze the content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ezhencacao-dotcom/bid-reader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text] <br>
-**Output Format:** [Plain text emitted to stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Extracted text may flatten tables, omit complex formatting, and only supports PDF, DOCX, XLSX, and XLS inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Unpinned Python dependencies may change behavior or introduce vulnerable transitive packages over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a dedicated virtual environment or container, and pin and review dependency versions before use.
+
+Risk: Extracted bid document text may be exposed to the surrounding agent workflow.
+
+Mitigation: Run the skill only on documents whose full text is appropriate for the intended workflow.
+
+## Reference(s):
+
+- [Bid Reader ClawHub listing](https://clawhub.ai/ezhencacao-dotcom/skills/bid-reader)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [Plain text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads local PDF, DOCX, XLSX, or XLS files and returns extracted document text; tables are flattened and complex formatting is not preserved.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

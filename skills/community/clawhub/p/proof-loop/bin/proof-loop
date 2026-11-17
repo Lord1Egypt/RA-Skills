@@ -98,7 +98,6 @@ def cmd_doctor(args: argparse.Namespace) -> int:
         ("verdict schema", ROOT / "schemas" / "verdict.schema.json"),
         ("evidence schema", ROOT / "schemas" / "evidence.schema.json"),
         ("demo fixture", ROOT / "examples" / "demo-repo" / "nav_labels.json"),
-        ("test workflow", ROOT / ".github" / "workflows" / "test.yml"),
     ]
     missing = []
     for label, path in checks:
@@ -110,16 +109,8 @@ def cmd_doctor(args: argparse.Namespace) -> int:
     return 0 if not missing else 1
 
 
-def schema_validate_json(data: Any, schema: dict[str, Any], path: str) -> list[str]:
-    errors: list[str] = []
-    required = schema.get("required", [])
-    if isinstance(data, dict):
-        for key in required:
-            if key not in data:
-                errors.append(f"{path}: missing required key {key}")
-    else:
-        errors.append(f"{path}: expected object")
-    return errors
+sys.path.insert(0, str(ROOT / "scripts"))
+from artifact_validation import validate as schema_validate_json
 
 
 def cmd_validate(args: argparse.Namespace) -> int:

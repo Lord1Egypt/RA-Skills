@@ -1,0 +1,27 @@
+{
+  "id": "vertical",
+  "name": "竖屏",
+  "description": "为 9:16 竖屏优化，字号收敛+底部留白抬高避开平台UI，适合抖音/快手/视频号",
+  "ass": {
+    "font": "Microsoft YaHei",
+    "size": 44,
+    "primary": "&H00FFFFFF",
+    "secondary": "&H000000FF",
+    "outline": "&H00000000",
+    "back": "&H80000000",
+    "bold": -1,
+    "italic": 0,
+    "border_style": 1,
+    "outline_width": 3,
+    "shadow": 1,
+    "alignment": 2,
+    "margin_l": 60,
+    "margin_r": 60,
+    "margin_v": 220,
+    "encoding": 1
+  },
+  "bilingual": {
+    "orig": {"primary": "&H00E0E0E0", "size": 36, "margin_v": 330, "alignment": 2, "outline_width": 2},
+    "trans": {"primary": "&H00FFFFFF", "size": 44, "margin_v": 215, "alignment": 2, "outline_width": 3}
+  }
+}

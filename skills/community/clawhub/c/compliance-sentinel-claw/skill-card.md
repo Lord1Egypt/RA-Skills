@@ -1,50 +1,61 @@
-## Description: <br>
-合规哨兵监控虾 monitors suppliers and customers for business registration changes, litigation, dishonest-executor records, and related compliance risk signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps assess partner compliance risk by organizing checks for business-record changes, litigation, dishonest-debtor listings, risk scoring, and Feishu-style alerts.
 
-## Publisher: <br>
-[tujinsama](https://clawhub.ai/user/tujinsama) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tujinsama](https://clawhub.ai/user/tujinsama)
 
-## Use Case: <br>
-Compliance, procurement, legal, and operations teams use this skill to review partner onboarding risk, monitor supplier or customer changes, batch-scan company lists, and produce risk summaries or monthly monitoring reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles partner company names, unified social credit codes, Feishu compliance records, and commercial data-source credentials. <br>
-Mitigation: Use least-privilege Feishu and commercial API credentials, restrict monitoring to authorized companies, and define who may view, retain, export, or delete compliance records. <br>
-Risk: Free or public data sources may be delayed, rate limited, or incomplete, especially for judicial records and overseas companies. <br>
-Mitigation: Confirm significant findings against authoritative sources, tune query frequency to data-source limits, and configure appropriate commercial or overseas data sources when higher coverage is required. <br>
-Risk: Automated risk scores and alert templates can overstate or understate partner compliance risk. <br>
-Mitigation: Require human review by the responsible compliance, procurement, or legal owner before pausing cooperation, payments, or contracts. <br>
+## Use Case:
 
+Employees in compliance, procurement, or legal teams use this skill to query or organize monitoring of suppliers and customers for Chinese business-record and legal-risk signals. It supports single-company review, bulk import, risk scoring, alert drafting, and monthly report drafting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tujinsama/compliance-sentinel-claw) <br>
-- [Risk rules](references/risk-rules.md) <br>
-- [Data sources](references/data-sources.md) <br>
-- [Notification templates](references/notification-templates.md) <br>
-- [National Enterprise Credit Information Publicity System](https://www.gsxt.gov.cn/) <br>
-- [China Judgments Online](https://wenshu.court.gov.cn/) <br>
-- [Dishonest Judgment Debtors Query](https://zxgk.court.gov.cn/shixin/) <br>
-- [Qichacha Open API](https://openapi.qcc.com/) <br>
-- [Tianyancha Open API](https://open.tianyancha.com/) <br>
+### Deployment Geography for Use:
 
+China-focused; non-China company monitoring requires separately configured data sources.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and terminal text with optional JSON query output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include company risk levels, scores, source notes, Feishu notification content, CSV import summaries, and monthly report templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may mistake the artifact for a working compliance monitor even though server security evidence identifies it as incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and add real data-source queries, tested Feishu integration, scheduling, alerting, and report generation before relying on it for monitoring.
+
+Risk: API keys, Feishu tokens, alert recipients, and partner-list storage may expose sensitive business or personal data if deployed without controls.
+
+Mitigation: Limit credential scopes, define who receives alerts, confirm partner-list storage with data owners, and document retention and deletion controls.
+
+## Reference(s):
+
+- [Risk rules](references/risk-rules.md)
+- [Data sources](references/data-sources.md)
+- [Notification templates](references/notification-templates.md)
+- [National Enterprise Credit Information Publicity System](https://www.gsxt.gov.cn/)
+- [China Judgments Online](https://wenshu.court.gov.cn/)
+- [Dishonest Judgment Debtors Query](https://zxgk.court.gov.cn/shixin/)
+- [State Taxation Administration](https://www.chinatax.gov.cn/)
+- [Qichacha Open API](https://openapi.qcc.com/)
+- [Tianyancha Open Platform](https://open.tianyancha.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, terminal text, JSON summaries, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference CSV partner imports, commercial API keys, Feishu table fields, alert templates, and monthly report fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

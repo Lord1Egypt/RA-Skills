@@ -1,7 +1,7 @@
 {
   "name": "basemail-skill",
-  "version": "1.8.0",
-  "description": "BaseMail - Email for AI Agents",
+  "version": "1.9.0",
+  "description": "BaseMail \u2014 email for AI agents on Base. Register a @basemail.ai address with a wallet signature, send and read mail.",
   "scripts": {
     "setup": "node scripts/setup.js",
     "register": "node scripts/register.js",
@@ -10,8 +10,22 @@
     "audit": "node scripts/audit.js"
   },
   "dependencies": {
-    "ethers": "^6.0.0"
+    "ethers": "^6.16.0"
   },
-  "keywords": ["basemail", "email", "ai-agent", "web3", "base"],
-  "license": "MIT"
+  "keywords": [
+    "basemail",
+    "email",
+    "ai-agent",
+    "web3",
+    "base"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "homepage": "https://basemail.ai",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dAAAb/BaseMail-Skill"
+  }
 }

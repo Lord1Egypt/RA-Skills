@@ -1,46 +1,61 @@
-## Description: <br>
-Daily AI image generation from Wikipedia On This Day events using local ComfyUI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily AI image generation from Wikipedia On This Day events using local ComfyUI.
 
-## Publisher: <br>
-[asimons81](https://clawhub.ai/user/asimons81) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[asimons81](https://clawhub.ai/user/asimons81)
 
-## Use Case: <br>
-Developers and creators use this skill to configure and run a local Windows/WSL ComfyUI workflow that turns daily Wikipedia On This Day events into historical image prompts and generated images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ComfyUI may be exposed or accessed over the local network. <br>
-Mitigation: Bind or firewall ComfyUI, verify the configured host and port, and avoid exposing the API to the internet. <br>
-Risk: The workflow contacts Wikipedia and may be configured to post generated output to Discord. <br>
-Mitigation: Review the destination channel, bot permissions, and scheduled posting settings before enabling automation. <br>
-Risk: Prompt, event, and image history may be retained on local storage. <br>
-Mitigation: Review the configured memory and output paths and apply appropriate cleanup or retention controls. <br>
+## Use Case:
 
+Developers and AI-agent users use this skill to configure a local Windows/WSL ComfyUI workflow that selects Wikipedia On This Day events and generates daily historical images for local use or Discord posting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/asimons81/on-this-day-art) <br>
-- [ComfyUI setup guide](references/SETUP.md) <br>
-- [ComfyUI](https://github.com/comfyanonymous/ComfyUI) <br>
-- [StabilityMatrix](https://lynxhou.io/StabilityMatrix) <br>
-- [Wikipedia On This Day API](https://en.wikipedia.org/api/rest_v1/feed/onthisday/events/{date}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May queue local ComfyUI image jobs and reference generated image files when the provided scripts are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and frontmatter) <br>
+Risk: The workflow can start an unauthenticated ComfyUI service on all network interfaces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep ComfyUI bound to localhost or a restricted interface, and firewall port 8188 before use.
+
+Risk: Wikipedia event text and generated prompts are untrusted inputs that can influence image generation and downstream posts.
+
+Mitigation: Review selected events, prompts, and generated images before enabling unattended Discord posting.
+
+Risk: The JSONL run log may retain event text, prompts, image paths, and timestamps.
+
+Mitigation: Periodically delete or protect the run log according to local privacy and retention needs.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/asimons81/skills/on-this-day-art)
+- [ComfyUI Workflow - Detailed Setup Guide](references/SETUP.md)
+- [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
+- [StabilityMatrix](https://lynxhou.io/StabilityMatrix)
+- [Wikipedia On This Day API](https://en.wikipedia.org/api/rest_v1/feed/onthisday/events/${date_param})
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with shell commands and generated image file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create PNG image outputs and JSONL run logs on the local machine.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

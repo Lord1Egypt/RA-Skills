@@ -1,52 +1,67 @@
-## Description: <br>
-Openclaw Auto Dream helps OpenClaw agents consolidate daily logs into structured long-term memory with importance scoring, insight reports, dashboard updates, and notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cognitive memory architecture for OpenClaw agents that runs periodic dream cycles to consolidate daily logs into structured long-term memory with importance scoring, insights, and push notifications.
 
-## Publisher: <br>
-[myclaw-ai](https://clawhub.ai/user/myclaw-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[myclaw-ai](https://clawhub.ai/user/myclaw-ai)
 
-## Use Case: <br>
-External OpenClaw users and developers use this skill to run scheduled or manual memory consolidation that turns workspace daily logs into long-term memory, procedural notes, episodic records, archive entries, and status reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill persists and restructures potentially sensitive memory content from MEMORY.md and memory/ logs. <br>
-Mitigation: Review or redact sensitive entries before installation, keep notification channels private, and install only when a scheduled memory job is desired. <br>
-Risk: Generated dashboards and migration bundles can expose or carry private memory content. <br>
-Mitigation: Sanitize memory content before opening dashboards or sharing exports, and import only bundles the user explicitly selected and trusts. <br>
-Risk: Automated consolidation changes long-term memory files and indexes. <br>
-Mitigation: Use the skill's documented backup behavior for large MEMORY.md changes, index updates, and imports, and review dream reports after consolidation. <br>
+## Use Case:
 
+OpenClaw users and agent operators use this skill to initialize and run recurring memory consolidation over their workspace memory logs. It helps maintain long-term memory files, dream reports, stale-thread reminders, health scoring, dashboards, and migration bundles.
 
-## Reference(s): <br>
-- [Openclaw Auto Dream on ClawHub](https://clawhub.ai/myclaw-ai/openclaw-auto-dream) <br>
-- [MyClaw.ai](https://myclaw.ai) <br>
-- [Auto-Dream Lite - Quick Memory Consolidation](references/dream-prompt-lite.md) <br>
-- [Auto-Dream Cycle - Execution Prompt v3.0](references/dream-prompt.md) <br>
-- [First Dream - Post-Install Memory Scan](references/first-dream-prompt.md) <br>
-- [Memory Templates v3.0](references/memory-template.md) <br>
-- [Scoring and Forgetting - Memory Evaluation Algorithms v3.0](references/scoring.md) <br>
-- [Cross-Instance Memory Migration v3.0](references/migration-cross-instance.md) <br>
-- [Migration Guide v1 to v2](references/migration-v1-to-v2.md) <br>
-- [Migration Guide v1 to v2 to v3](references/migration-v2-to-v3.md) <br>
-- [Dashboard Template](references/dashboard-template.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with inline shell commands, configuration snippets, and generated memory files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May append or update MEMORY.md and files under memory/ when the agent follows the skill workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.4 (source: ClawHub release evidence) <br>
+Risk: The skill persistently reads and rewrites broad memory history in the workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the cron schedule before enabling it, keep backups of memory files, and install only where recurring memory consolidation is intended.
+
+Risk: Imported memory bundles can introduce untrusted or unwanted content into long-term memory.
+
+Mitigation: Do not import memory bundles from untrusted sources, and test selective imports before performing a full import.
+
+Risk: Generated dashboards may expose or render memory-derived content.
+
+Mitigation: Avoid opening, sharing, or publishing generated dashboards unless memory-derived HTML is sanitized and the content is appropriate to disclose.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/myclaw-ai/skills/openclaw-auto-dream)
+- [MyClaw.ai](https://myclaw.ai)
+- [First Dream - Post-Install Memory Scan](artifact/references/first-dream-prompt.md)
+- [Auto-Dream Lite - Quick Memory Consolidation](artifact/references/dream-prompt-lite.md)
+- [Auto-Dream Cycle - Execution Prompt](artifact/references/dream-prompt.md)
+- [Memory Templates](artifact/references/memory-template.md)
+- [Scoring and Forgetting](artifact/references/scoring.md)
+- [Cross-Instance Memory Migration](artifact/references/migration-cross-instance.md)
+- [Migration Guide v1 to v2](artifact/references/migration-v1-to-v2.md)
+- [Migration Guide v1 to v2 to v3](artifact/references/migration-v2-to-v3.md)
+- [Dashboard Template](artifact/references/dashboard-template.html)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with shell commands, JSON configuration examples, memory file templates, migration guidance, and generated HTML dashboard content.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workspace memory artifacts such as MEMORY.md updates, memory index JSON, dream reports, migration bundles, and optional dashboard HTML.]
+
+## Skill Version(s):
+
+4.0.4 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

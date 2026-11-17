@@ -1,37 +1,49 @@
-## Description: <br>
-A simple Excel and CSV helper skill for reading, creating, editing, and performing basic data operations with pandas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simple Excel helps agents read, create, edit, and summarize .xlsx and .csv files for basic spreadsheet data tasks.
 
-## Publisher: <br>
-[anmu14641](https://clawhub.ai/user/anmu14641) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anmu14641](https://clawhub.ai/user/anmu14641)
 
-## Use Case: <br>
-Developers and data users use this skill for basic Excel and CSV tasks, including reading files, writing outputs, filtering rows, adding columns, grouping, sorting, and generating simple tables. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Spreadsheet write examples can overwrite or replace important Excel or CSV files if used with unintended file paths. <br>
-Mitigation: Use intentional output paths, keep backups of important data, and review generated files before relying on them. <br>
+## Use Case:
 
+Developers and external users can use this skill to guide agents through common Pandas-based Excel and CSV workflows, including reading files, exporting files, filtering rows, grouping data, sorting data, and basic summaries.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown guidance with Python pandas code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; examples may include local file paths for Excel and CSV operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Spreadsheet examples may lead an agent to read local Excel or CSV files and write exported files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit input and output paths, review target filenames before execution, and avoid exporting over important existing files unless replacement is intended.
+
+## Reference(s):
+
+- [Simple Excel ClawHub Skill Page](https://clawhub.ai/anmu14641/skills/simple-excel)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown guidance with inline Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide an agent to read local Excel or CSV files and write exported .xlsx or .csv files.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

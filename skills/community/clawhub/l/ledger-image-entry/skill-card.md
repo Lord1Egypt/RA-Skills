@@ -1,40 +1,53 @@
-## Description: <br>
-Ledger Image Entry extracts merchant, date, amount, and line-item details from receipt, order, or invoice images and converts them into structured ledger records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identifies receipt, order, or invoice details from images and converts merchant, date, amount, and item details into structured ledger entries.
 
-## Publisher: <br>
-[shing19](https://clawhub.ai/user/shing19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shing19](https://clawhub.ai/user/shing19)
 
-## Use Case: <br>
-External users use this skill to turn receipt, order, or invoice images into ledger-ready expense rows with merchant, date, category, amount, and notes. It is suited for personal or operational expense-entry workflows where the user reviews the extracted table before recording it. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Receipt, order, or invoice images may be blurry, incomplete, or ambiguous, which can lead to incorrect merchant, date, category, item, or amount extraction. <br>
-Mitigation: Ask the user to confirm unclear fields and review the generated confirmation table before treating the rows as final ledger entries. <br>
-Risk: When the image does not include a clear date, the skill defaults to the current date, which may not match the transaction date. <br>
-Mitigation: Expose the defaulted date in the confirmation table and let the user correct it before recording the entry. <br>
+## Use Case:
 
+External users can use this skill to convert receipt, order, or invoice images into itemized bookkeeping entries, including merchant, date, category, amount, notes, and a confirmation table.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shing19/ledger-image-entry) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown] <br>
-**Output Format:** [Markdown confirmation table with a total amount summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Amounts are formatted to two decimal places; unclear image content should be confirmed with the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Receipt, order, or invoice images may contain sensitive purchase data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if users are comfortable sending images to the configured image-recognition model, and review sensitive receipts manually.
+
+Risk: Image recognition may miss unclear details or infer categories or dates incorrectly.
+
+Mitigation: Review extracted entries before bookkeeping; ask the user to confirm unclear receipts or categories and use the current date only when no date is visible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shing19/skills/ledger-image-entry)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown confirmation table with ledger rows and total amount]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Amounts use two decimal places; ambiguous dates or categories may require user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

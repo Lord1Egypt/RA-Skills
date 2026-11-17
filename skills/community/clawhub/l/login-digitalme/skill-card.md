@@ -1,43 +1,55 @@
-## Description: <br>
-This skill helps agents send SMS verification codes and complete phone-based login or registration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables SMS verification-code login or registration by sending a phone code and exchanging the submitted code for an authenticated session.
 
-## Publisher: <br>
-[guolai806](https://clawhub.ai/user/guolai806) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guolai806](https://clawhub.ai/user/guolai806)
 
-## Use Case: <br>
-External users, developers, and support agents use this skill when a workflow needs to send an SMS verification code and authenticate or register a phone-number user. The skill expects a configured SMS_LOGIN_BASE_URL, curl, jq, and explicit user-provided phone and SMS code values. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Phone login factors may be sent to an unclear raw IP endpoint. <br>
-Mitigation: Install only after verifying that SMS_LOGIN_BASE_URL points to the intended authentication service over HTTPS. <br>
-Risk: Phone numbers, SMS codes, bearer tokens, and cookies are sensitive authentication material. <br>
-Mitigation: Avoid logging full responses, redact token and cookie values, and show at most a truncated token when output is needed. <br>
-Risk: Repeated or automated SMS-code attempts could create account-abuse or rate-limit issues. <br>
-Mitigation: Require explicit user-provided phone and SMS code values, validate phone format, respect the 60-second resend rule, and do not brute force verification codes. <br>
+## Use Case:
 
+Developers and agents use this skill when a user requests phone-number login, SMS-code login, or phone-number registration against the configured SMS login service. It guides the agent through requesting a verification code, submitting the code, and handling common error responses without exposing complete tokens.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guolai806/login-digitalme) <br>
-- [Publisher profile](https://clawhub.ai/user/guolai806) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, Configuration guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and response-handling guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, SMS_LOGIN_BASE_URL, and user-provided phone number and SMS code; token and cookie values should be redacted in output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: The configured SMS login endpoint receives phone numbers and SMS verification codes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted, approved HTTPS endpoint and make users explicitly confirm that their phone number and SMS code will be sent to that service.
+
+Risk: Login responses, cookie jars, or tokens may expose full session credentials.
+
+Mitigation: Avoid printing raw login responses or cookie jars, redact tokens from all output, and show at most a short token prefix when needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guolai806/skills/login-digitalme)
+- [ClawHub publisher profile](https://clawhub.ai/user/guolai806)
+- [Clawdis primary environment](http://180.184.28.174:30080)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash curl examples and JSON response handling notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SMS_LOGIN_BASE_URL plus curl and jq; handles phone numbers, SMS codes, cookies, and tokens.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

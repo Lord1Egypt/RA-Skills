@@ -1,42 +1,60 @@
-## Description: <br>
-TencentCloud OCR calls Tencent Cloud GeneralAccurateOCR to extract text from images, image URLs, and single-page PDFs, with optional word-level data and resume parsing guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TencentCloud OCR calls Tencent Cloud GeneralAccurateOCR to extract text from images, image URLs, and single-page PDFs, with optional word-level details and resume parsing guidance.
 
-## Publisher: <br>
-[zt1314p-design](https://clawhub.ai/user/zt1314p-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zt1314p-design](https://clawhub.ai/user/zt1314p-design)
 
-## Use Case: <br>
-Developers and agent users use this skill to OCR uploaded images, image URLs, screenshots, and PDF pages, then return extracted text as JSON. It also provides guidance for converting OCR text from multilingual resumes into readable Markdown. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Images, PDFs, image URLs, and resume contents may be sent to Tencent Cloud for OCR processing. <br>
-Mitigation: Install only when that processing path is acceptable, require confirmation for sensitive documents, and avoid processing IDs, legal files, resumes, or screenshots without user approval. <br>
-Risk: Tencent Cloud API credentials are required for operation. <br>
-Mitigation: Use a dedicated least-privilege Tencent Cloud API key, keep credentials in environment variables, avoid logging or committing secrets, and monitor quota and billing. <br>
+## Use Case:
 
+Developers and agents use this skill to run Tencent Cloud GeneralAccurateOCR on user-provided images, image URLs, and PDFs, then return extracted text or structured resume summaries.
 
-## Reference(s): <br>
-- [Tencent Cloud GeneralAccurateOCR API documentation](https://cloud.tencent.com/document/api/866/37831) <br>
-- [Multilingual resume parsing guidance](references/resume-parsing.md) <br>
-- [ClawHub skill page](https://clawhub.ai/zt1314p-design/tencentcloud-ocr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [JSON OCR results and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Tencent Cloud credentials in environment variables; image inputs are capped at 10MB and PDF OCR is single-page.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Submitted images, PDFs, URLs, and resume contents may be processed by Tencent Cloud using the installer's Tencent Cloud OCR credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where Tencent Cloud processing is approved, avoid highly sensitive documents unless authorized, and require explicit user confirmation before OCR runs on attachments or links.
+
+Risk: Overbroad cloud credentials could expose more Tencent Cloud permissions than this OCR workflow requires.
+
+Mitigation: Use least-privilege OCR-only Tencent Cloud credentials stored in TENCENTCLOUD_SECRET_ID and TENCENTCLOUD_SECRET_KEY.
+
+Risk: The Tencent Cloud SDK dependency may change behavior if installed without version control.
+
+Mitigation: Pin tencentcloud-sdk-python in the runtime environment and review updates before deployment.
+
+## Reference(s):
+
+- [Tencent Cloud GeneralAccurateOCR API documentation](https://cloud.tencent.com/document/api/866/37831)
+- [Resume parsing guidance](references/resume-parsing.md)
+- [Tencent Cloud API key management](https://console.cloud.tencent.com/cam/capi)
+- [Tencent Cloud OCR purchase page](https://buy.cloud.tencent.com/iai_ocr)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON OCR results and Markdown resume summaries, with setup guidance and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [OCR output includes raw_text and RequestId; no-text results include an explanatory message.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

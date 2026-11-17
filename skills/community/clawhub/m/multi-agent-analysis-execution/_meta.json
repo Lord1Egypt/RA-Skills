@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn7bs9nc8zp7kweyhjdvmxv17n841ymq",
-  "slug": "multi-agent-analysis-execution",
-  "version": "1.0.4",
-  "publishedAt": 1775125294261
+  "name": "multi agent analysis and execution",
+  "description": "Orchestrate complex multi-agent workflows with explicit coordinator planning, execution governance, and *automatic output management*. Each skill run creates its own isolated output namespace to prevent file accumulation and confusion from repeated executions.",
+  "version": "1.0.0",
+  "keywords": [
+    "multi-agent",
+    "orchestration",
+    "workflow",
+    "coordinator",
+    "execution",
+    "planning",
+    "validation",
+    "reporting"
+  ],
+  "author": "Vanessa-bot",
+  "license": "MIT"
 }

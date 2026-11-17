@@ -1,42 +1,53 @@
-## Description: <br>
-帮助求职者分析目标岗位所需技能，评估技能差距，规划学习路径及面试准备建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+求职技能顾问 helps job seekers analyze target-role skill requirements, assess skill gaps, plan learning priorities, and prepare for interviews.
 
-## Publisher: <br>
-[pxyyqm626529-afk](https://clawhub.ai/user/pxyyqm626529-afk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pxyyqm626529-afk](https://clawhub.ai/user/pxyyqm626529-afk)
 
-## Use Case: <br>
-Job seekers and career changers use this skill to compare their current skills against target roles, prioritize gaps, plan learning paths, and prepare for interviews. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A payment/API key is published in the skill content. <br>
-Mitigation: Remove the exposed key from public skill text, rotate it, and use a secure authorization flow before release. <br>
-Risk: Per-use billing details are present but user authorization and charge behavior are unclear. <br>
-Mitigation: Document when charges can occur, how users approve them, and how billing can be disabled or audited. <br>
-Risk: Career guidance can become outdated or mismatched to a user's market, background, or target role. <br>
-Mitigation: Present recommendations as advisory, encourage users to verify requirements against current job postings, and avoid guaranteeing employment outcomes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pxyyqm626529-afk/job-skills-advisor) <br>
-- [Publisher profile](https://clawhub.ai/user/pxyyqm626529-afk) <br>
+## Use Case:
 
+Job seekers and career changers use this skill to compare their current skills with target roles in technology, product, data, operations, marketing, finance, and related fields. It provides role-skill analysis, learning-path guidance, prioritization, practical project suggestions, and interview preparation advice.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown career guidance with structured recommendations and examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory output only; it does not guarantee hiring outcomes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The artifact publishes a payment/API key directly in its documentation.
+
+Mitigation: Treat the published key as compromised and remove or replace it with secure per-user credential handling before distribution.
+
+Risk: Career guidance may be incomplete or become outdated as role requirements and market demand change.
+
+Mitigation: Use the output as planning guidance and verify recommendations against current job postings, employer requirements, and trusted learning resources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pxyyqm626529-afk/skills/job-skills-advisor)
+- [Publisher profile](https://clawhub.ai/user/pxyyqm626529-afk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose with structured recommendations and examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Career-development guidance only; the skill does not guarantee employment outcomes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact version section)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

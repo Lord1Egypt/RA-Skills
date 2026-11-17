@@ -1,53 +1,65 @@
-## Description: <br>
-Provides negotiation coaching for preparation, live responses, objection handling, diplomatic drafting, and debriefs across commercial, workplace, recruitment, collective bargaining, and cross-cultural contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Influence and Negotiation helps agents prepare, coach live responses, and debrief professional negotiations across sales, salary, management, labor, cross-cultural, and recruiting contexts.
 
-## Publisher: <br>
-[samber](https://clawhub.ai/user/samber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samber](https://clawhub.ai/user/samber)
 
-## Use Case: <br>
-Employees and external professionals use this skill to prepare negotiation strategy, coach live responses, triage objections, draft diplomatic replies, and debrief outcomes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may request or use internal communications, CRM records, cloud documents, calendars, profile data, and persistent local memory files. <br>
-Mitigation: Approve each source explicitly, restrict searches to the minimum counterparties and date ranges, and avoid unnecessary HR, legal, compensation, or third-party personal data. <br>
-Risk: Negotiation memory can contain sensitive strategy, counterparties, and workplace information. <br>
-Mitigation: Store any memory only in an approved private location and define a deletion plan before use. <br>
-Risk: The security verdict is suspicious because the skill asks agents to pull broad private workplace data and persist sensitive negotiation records without enough explicit user control. <br>
-Mitigation: Review and constrain tool access before deployment, and require user confirmation before collecting, searching, or storing sensitive negotiation context. <br>
+## Use Case:
 
+Employees, external-facing teams, managers, recruiters, and negotiation coaches use this skill to prepare mandates, map stakeholders, draft diplomatic responses, handle objections, and debrief outcomes in active professional negotiations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samber/influence-and-negotiation) <br>
-- [OpenClaw homepage](https://github.com/samber/cc-skills) <br>
-- [Context intake](artifact/references/context-intake.md) <br>
-- [Preparation & Discovery](artifact/references/prepare.md) <br>
-- [Tactics](artifact/references/tactics.md) <br>
-- [Objections](artifact/references/objections.md) <br>
-- [Playbooks](artifact/references/playbooks.md) <br>
-- [Cognitive biases and ethical influence](artifact/references/biases-and-influence.md) <br>
-- [Manipulation taxonomy and counter-protocols](artifact/references/manipulation.md) <br>
-- [Team negotiation](artifact/references/team-negotiation.md) <br>
-- [Debrief](artifact/references/debrief.md) <br>
-- [Worked scenarios](artifact/references/scenarios.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown and plain-text coaching, questions, scripts, plans, and debriefs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include prompts to gather negotiation context and may suggest reading or using local memory files when continuing prior work.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence release.version and artifact frontmatter metadata.version) <br>
+Risk: The skill may ask to collect broad negotiation context from connected workplace systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict connectors, approve each source and date range, and avoid HR, legal, privileged, or third-party private data unless clearly authorized.
+
+Risk: The skill may create persistent plaintext local notes for ongoing negotiations.
+
+Mitigation: Choose a private storage location, disable persistence for sensitive matters, or remove stored notes after the negotiation no longer requires them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samber/skills/influence-and-negotiation)
+- [Project homepage](https://github.com/samber/cc-skills)
+- [Preparation & Discovery](references/prepare.md)
+- [Tactics](references/tactics.md)
+- [Objections](references/objections.md)
+- [Playbooks](references/playbooks.md)
+- [Team negotiation](references/team-negotiation.md)
+- [Cognitive biases and ethical influence](references/biases-and-influence.md)
+- [Manipulation - taxonomy and counter-protocols](references/manipulation.md)
+- [Context intake](references/context-intake.md)
+- [Negotiation Memory System](references/memory.md)
+- [Debrief](references/debrief.md)
+- [Worked scenarios](references/scenarios.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown or plain text with structured questions, scripts, plans, and debrief notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May request user input one question at a time and may produce persistent local negotiation notes when the environment supports file writing.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

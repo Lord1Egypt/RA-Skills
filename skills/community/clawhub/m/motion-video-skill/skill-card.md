@@ -1,47 +1,63 @@
-## Description: <br>
-Generates structured explainer animation videos from text, scripts, or Markdown by building editable movie.json projects, rendering web previews, and exporting MP4 only after explicit confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured explainer animation videos from text, scripts, or Markdown, with narration-driven timing, web preview editing, optional TTS, and MP4 export only after explicit confirmation.
 
-## Publisher: <br>
-[mr-q526](https://clawhub.ai/user/mr-q526) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mr-q526](https://clawhub.ai/user/mr-q526)
 
-## Use Case: <br>
-Creators, educators, marketers, and agent users can turn scripts, Markdown, or raw text into editable narrated animation projects for knowledge explainers, product introductions, tutorial steps, subtitle-forward videos, and data storytelling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a local Node, Playwright, and ffmpeg toolchain for preview and export. <br>
-Mitigation: Install and run it only in an environment where that local media toolchain is acceptable, and use preview mode before export. <br>
-Risk: Cloud TTS configuration can use third-party voice synthesis providers and store a provider key locally. <br>
-Mitigation: Configure TTS only with an API key approved for that provider, confirm provider and voice before synthesis, and remove ~/.codex/motion-video-skill/secrets.json when the saved key should no longer be retained. <br>
-Risk: MP4 export can create rendered media files from the project. <br>
-Mitigation: Export only after explicit user confirmation and review the generated preview before running export commands. <br>
+## Use Case:
 
+Creators, educators, product teams, and developers use this skill to turn written material into editable animated explainer video projects with synchronized narration timing, preview HTML, optional voice audio, and confirmed MP4 export.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mr-q526/motion-video-skill) <br>
-- [Movie Schema](references/movie-schema.md) <br>
-- [Animation Rules](references/animation-rules.md) <br>
-- [Template Catalog](references/template-catalog.md) <br>
-- [TTS Catalog](references/tts-catalog.md) <br>
-- [Prompt Patterns](references/prompt-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, code, shell commands, files] <br>
-**Output Format:** [Markdown guidance with shell commands plus generated movie.json, preview HTML, optional audio tracks, and confirmed MP4 export files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preview projects use structured movie.json data, 16:9 1280 x 720 scenes, narration-derived timing, optional user-confirmed TTS, and export confirmation before MP4 generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Crafted movie.json project content may write outside the project or run script in generated previews.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted project files only, keep projects in a controlled workspace, and review generated previews before sharing or opening them in broader environments.
+
+Risk: TTS and export commands perform local file-writing operations and may use external voice providers.
+
+Mitigation: Avoid placing secrets in projects or chat, configure provider credentials outside project files, and run TTS or export commands only after explicit user confirmation.
+
+Risk: Installing dependencies or browser components from an untrusted source can change the local execution environment.
+
+Mitigation: Review the skill before installing, prefer a trusted npm registry, and install only the required Node.js, Playwright Chromium, and ffmpeg components for the intended workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mr-q526/skills/motion-video-skill)
+- [Publisher profile](https://clawhub.ai/user/mr-q526)
+- [Movie Schema](references/movie-schema.md)
+- [Animation Rules](references/animation-rules.md)
+- [Prompt Patterns](references/prompt-patterns.md)
+- [Template Catalog](references/template-catalog.md)
+- [TTS Catalog](references/tts-catalog.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands plus JSON movie project files, preview HTML, optional audio tracks, and confirmed MP4 export.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js; MP4 export also requires Playwright Chromium and ffmpeg. Cloud TTS requires user-provided provider credentials and explicit voice confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence; artifact package.json reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

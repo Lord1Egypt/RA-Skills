@@ -1,40 +1,56 @@
-## Description: <br>
-Comprehensive system diagnostics and health check for Linux servers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+System Doctor runs Linux-focused system diagnostics for disk usage, memory, CPU load, network interfaces, running services, and system information, with text, JSON, and HTML report output.
 
-## Publisher: <br>
-[ericlooi504](https://clawhub.ai/user/ericlooi504) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ericlooi504](https://clawhub.ai/user/ericlooi504)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and system administrators use this skill to check server health, investigate resource or connectivity issues, and generate shareable or machine-readable health reports.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: A narrow --check option can still run broader diagnostics before selecting the requested result.
+
+Mitigation: Change option handling so each --check value invokes only its matching diagnostic before using the skill in monitored, private, or air-gapped environments.
+
+Risk: The network diagnostic performs a google.com DNS lookup even though the skill documentation claims fully offline operation.
+
+Mitigation: Remove the DNS lookup or make it explicit and opt-in before deploying where external network lookups are restricted.
+
+Risk: The macOS fallback depends on psutil without a pinned dependency in the artifact.
+
+Mitigation: Pin and review psutil before enabling the macOS fallback path.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, operators, and server administrators use this skill to inspect Linux system health, diagnose resource pressure, and generate local diagnostic reports. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, JSON, shell commands, files]
 
-## Known Risks and Mitigations: <br>
-Risk: Diagnostic output can reveal sensitive local system details such as hostnames, IP addresses, routes, filesystems, services, and logged-in users. <br>
-Mitigation: Treat terminal, JSON, and HTML reports as sensitive; redact or restrict them before sharing outside the operational team. <br>
-Risk: The default network check performs a DNS lookup for google.com. <br>
-Mitigation: Avoid the network check in air-gapped or no-egress environments, or review and edit the DNS target before running it. <br>
+**Output Format:** [Plain text report, JSON object, or generated HTML report file]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub System Doctor listing](https://clawhub.ai/ericlooi504/sys-doctor) <br>
+**Other Properties Related to Output:** [HTML reports may be written to a timestamped or user-specified file; critical disk usage exits with code 2.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files, Shell commands] <br>
-**Output Format:** [Terminal text, JSON, or HTML report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may include hostnames, IP addresses, mounted filesystems, running services, logged-in users, and DNS check timing.] <br>
+1.0.0 (source: release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

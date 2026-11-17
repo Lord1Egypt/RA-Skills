@@ -1,41 +1,55 @@
-## Description: <br>
-Learning Loop helps an agent keep local journals, decision logs, correction records, lessons, and memory tiers so it can reflect on work and reduce repeated mistakes over time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Learning Loop helps an agent maintain workspace-local journals, decision logs, lessons, reviews, and memory tiers so it can learn from corrections and reflect over time.
 
-## Publisher: <br>
-[clawmage](https://clawhub.ai/user/clawmage) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawmage](https://clawhub.ai/user/clawmage)
 
-## Use Case: <br>
-Agents and their users use Learning Loop to maintain visible local learning records, review decisions and corrections, extract reusable lessons, and keep working memory organized inside the workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates persistent local notes about work, decisions, corrections, and lessons, which may capture sensitive context if used carelessly. <br>
-Mitigation: Review the brain/ and memory/ files periodically, avoid credentials and sensitive personal data, and use the skill's archive or forget flow when information should no longer influence behavior. <br>
-Risk: Incorrect reflections or overgeneralized lessons could steer future agent behavior in the wrong direction. <br>
-Mitigation: Review promoted rules and recurring lessons before relying on them, especially when corrections reach the threshold for permanent memory. <br>
+## Use Case:
 
+Developers and agent operators use this skill to give an agent a structured, transparent learning loop for journaling, decision tracking, correction review, lesson lifecycle management, and memory tiering inside a workspace.
 
-## Reference(s): <br>
-- [ClawMage homepage](https://clawmage.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/clawmage/clawmage-learning-loop) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Files, Configuration] <br>
-**Output Format:** [Markdown files and concise text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local brain/ and memory/ workspace files; evidence reports no executable code, dependencies, or network access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill is intended to persist journals, lessons, and memory in the workspace over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Periodically review brain/ and MEMORY.md, and avoid storing sensitive personal data, credentials, financial data, medical data, biometrics, or location routines.
+
+Risk: Corrections can be promoted into longer-lived behavioral rules.
+
+Mitigation: Use scoped confirmations such as project-only or domain-only rules when making a correction permanent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clawmage/skills/clawmage-learning-loop)
+- [ClawMage homepage](https://clawmage.ai)
+- [ClawMage publisher profile](https://clawhub.ai/user/clawmage)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, configuration, guidance]
+
+**Output Format:** [Markdown and workspace-local file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill is designed to create and maintain brain/, memory/, and related workspace-local notes without external services.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,51 @@
-## Description: <br>
-Extracts PNG/JPG images from a URL and generates a PDF while preserving the source image order. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts images from a webpage URL and generates a PDF while preserving the source order.
 
-## Publisher: <br>
-[JerryLiu3502](https://clawhub.ai/user/JerryLiu3502) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jerryliu3502](https://clawhub.ai/user/jerryliu3502)
 
-## Use Case: <br>
-Developers and external users can use this skill to convert webpage-hosted images, especially article images, into a local PDF file. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A crafted URL can trigger unintended local shell command execution. <br>
-Mitigation: Use only fully trusted URLs, review before installing, and prefer a patched implementation that validates URLs and avoids shell interpolation. <br>
-Risk: Network fetches and file generation can overwrite or create local files unexpectedly. <br>
-Mitigation: Run in a constrained working directory and prefer a patched implementation with timeouts and overwrite protection. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JerryLiu3502/url-images-to-pdf) <br>
+## Use Case:
+
+Developers and external users can use this skill to extract PNG/JPG images from supported article pages and package them into a PDF file.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: A crafted URL could cause unintended shell command execution through the current curl invocation.
+
+Mitigation: Run only on trusted URLs in a low-privilege or sandboxed environment until the script validates http/https URLs and replaces shell interpolation with argument-safe process APIs or native Node HTTP fetching.
+
+Risk: The skill fetches remote webpage and image content from the network.
+
+Mitigation: Review target URLs before use and avoid pages from unknown or untrusted sources.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, files, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and a generated PDF file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a PDF in the working directory and uses a temporary image download directory.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release metadata) <br>
+**Output Type(s):** [text, shell commands, files, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Console text with a generated PDF file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The script writes a PDF to the current working directory or specified output path and may download up to 50 images.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

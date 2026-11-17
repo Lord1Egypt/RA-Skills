@@ -1,0 +1,42 @@
+{
+  "name": "agent-task-takeover",
+  "version": "1.2.0",
+  "description": "Cross-agent task takeover & handoff skill: read another AI coding agent's session (opencode, ZCode, Codex, Claude Code, Gemini CLI, Cursor, Trae, VS Code Copilot...), reconstruct its task state from transcripts or artifacts, verify on disk, and continue the work.",
+  "keywords": [
+    "agent-skill",
+    "skill",
+    "ai-agent",
+    "takeover",
+    "handoff",
+    "cross-agent",
+    "session",
+    "opencode",
+    "claude-code",
+    "codex",
+    "cursor",
+    "trae",
+    "gemini-cli",
+    "continuity"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/lawson2019/agent-task-takeover",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lawson2019/agent-task-takeover.git"
+  },
+  "bin": {
+    "agent-task-takeover": "install.mjs"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "LICENSE",
+    "references/",
+    "scripts/",
+    "tests/",
+    "install.mjs"
+  ],
+  "engines": {
+    "node": ">=18"
+  }
+}

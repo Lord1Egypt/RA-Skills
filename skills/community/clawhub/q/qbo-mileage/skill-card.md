@@ -1,44 +1,54 @@
-## Description: <br>
-Generate QuickBooks Online mileage CSV files from Airtable, Outlook, or Google Calendar records using the local qbo-mileage CLI and user-owned credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate QuickBooks Online mileage CSV files from Airtable, Outlook, or Google Calendar records using the local qbo-mileage CLI and user-owned credentials.
 
-## Publisher: <br>
-[oasiseng](https://clawhub.ai/user/oasiseng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oasiseng](https://clawhub.ai/user/oasiseng)
 
-## Use Case: <br>
-External users and agents use this skill to generate, review, or schedule QuickBooks Online mileage CSV files from calendar or inspection records. It helps produce deterministic CSV exports and run reports from user-owned configuration and credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use mileage, address, calendar or inspection data, distance APIs, and configured email or OAuth credentials. <br>
-Mitigation: Install and run it only when that access is acceptable, and keep credentials intentionally configured and protected. <br>
-Risk: Email delivery can send mileage reports and CSV attachments to a configured recipient. <br>
-Mitigation: Keep email disabled unless delivery is intended, verify the recipient, and use dry-run or skip-email before unattended runs. <br>
-Risk: Generated mileage CSV files and deduction totals may affect bookkeeping or tax workflows. <br>
-Mitigation: Review run_report.md and warnings before using the CSV for bookkeeping or taxes. <br>
+## Use Case:
 
+External users and operators use this skill to generate, review, or schedule QuickBooks Online mileage CSV exports from calendar or inspection data. It guides the agent to run the deterministic local CLI, inspect the run report, and surface skipped events, missing addresses, distance failures, and personal-mileage deduction checks.
 
-## Reference(s): <br>
-- [QuickBooks Mileage CSV on ClawHub](https://clawhub.ai/oasiseng/qbo-mileage) <br>
-- [Microsoft Graph sendMail endpoint](https://graph.microsoft.com/v1.0/me/sendMail) <br>
-- [Gmail API send message endpoint](https://gmail.googleapis.com/gmail/v1/users/me/messages/send) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [CSV files, Markdown run reports, and concise execution guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are normally written under quickbooks_mileage/YYYY-MM/ and may be emailed when email output is enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: CHANGELOG, pyproject.toml, plugin.json, package __version__, released 2026-06-10) <br>
+Risk: Mileage source data and generated CSV or report attachments can be sent through the configured SMTP, Microsoft Graph, or Gmail account when email output is enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep email disabled for local-only use, verify the configured recipient and mail account before running, and review generated attachments before sharing.
+
+Risk: Incorrect month, home base, vehicle, addresses, distance failures, or personal-trip classification can produce misleading mileage records.
+
+Mitigation: Confirm the requested month, home base, vehicle, skipped events, missing addresses, distance warnings, and PERSONAL legs in run_report.md before using the CSV.
+
+## Reference(s):
+
+- [QuickBooks Mileage CSV Skill Page](https://clawhub.ai/oasiseng/skills/qbo-mileage)
+- [Publisher Profile](https://clawhub.ai/user/oasiseng)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; generated artifacts include QuickBooks mileage CSV files and run reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are written under the configured output directory, normally quickbooks_mileage/YYYY-MM/.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata, pyproject.toml, plugin.json, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

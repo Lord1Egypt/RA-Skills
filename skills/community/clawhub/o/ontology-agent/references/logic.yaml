@@ -1,0 +1,167 @@
+# Logic layer · Logic graph template (Action + Workflow), thickened version
+# Bilingual note: the Chinese counterpart of this file is `logic.zh.yaml`.
+# References: department_actions.yaml (authoritative department action list) + action_specs.yaml (full action specs)
+# Action execution paradigm: borrows the toolset organization paradigm of A2 (ibl.ai) (source/tools/toolsets layering)
+# Workflow template: six-stage state machine (the idea originates from easychen's orchestrator; this product independently rewrites the expression and does not copy its text)
+# Instantiation: after user activation, init.py hydrates this template + packs/*.yaml + action_specs into an instance
+
+meta:
+  version: 0.2.0
+  references:
+    - department_actions.yaml     # department / action list (slug+name+source)
+    - action_specs.yaml           # full action specs: desc/inputs/outputs/uses_entities/skill_ref
+
+# ───────────────────────── Action execution paradigm (borrowed from A2 toolset) ─────────────────────────
+action_execution:
+  model: toolset
+  layers:
+    source:    # data / system sources
+      - type: knowledge_base
+        desc: WorkBuddy library four tables (to-dos / department matrix / finance calendar / operations daily report)
+      - type: local_file
+        desc: The user's instance.yaml and local documents
+      - type: connector
+        desc: Reserved connectors/ (DingTalk / WeCom / Feishu); enabled at the enterprise stage
+    tool:      # single-step capability: taken from each action in department_actions; full definition in action_specs.yaml
+      desc: Each action maps to one callable tool with structured input and machine-readable output (inputs/outputs already defined)
+    toolset:   # a group of collaborating actions (aggregated by department or scenario)
+      desc: Orchestrated automatically by init.py by department / scenario; the following are ready-to-use examples
+  example_toolsets:                 # Examples: aggregating isolated actions into collaboration units
+    - id: finance_month_close       # Finance month-close toolset
+      pack: opc
+      actions: [finance-planner, finance-cost-analyst, legal-compliance-checker, sales-crm]
+      desc: "Monthly: plan cash flow → calculate costs → compliance check → reconcile collections"
+    - ecommerce_fulfill:            # E-commerce fulfilment toolset
+      pack: ecommerce
+      actions: [mkt-distributor, sales-crm, support-customer-service, finance-planner]
+      desc: "Listing & distribution → order intake → customer service → settlement"
+    - sme_hire_grow:                # SME hiring & growth toolset
+      pack: sme
+      actions: [hr-recruiter, hr-performance, growth-first-customers, sales-strategist]
+      desc: "Hire → performance → acquire customers → sell"
+
+# ───────────────────────── Generic stage state machine (independently rewritten) ─────────────────────────
+# Six stages, supporting session resume (continue from breakpoint) and stage boundaries
+# (each stage produces a gate artifact; without it the next stage cannot start)
+stage_state_machine:
+  stages:
+    - id: discovery      # Discovery: enterprise profile collection
+      name: Enterprise Profile Collection
+      entry: "User starts the Skill and follows the six-step GUIDE onboarding"
+      gate: instance.yaml
+      outputs: [enterprise instance (legal form / region / departments / profile)]
+      tools: [lead, strategy]
+    - id: design         # Design: choose pack + departments + workflow
+      name: Architecture Design
+      entry: instance.yaml generated
+      gate: blueprint.yaml
+      outputs: [industry pack selection, department list, workflow blueprint]
+      tools: [strategy, lead]
+    - id: build          # Build: create the expert team + inject knowledge
+      name: Expert Team Construction
+      entry: blueprint.yaml generated
+      gate: experts_deployed
+      outputs: [department AI employees in place, knowledge injected]
+      tools: [all departments]
+    - id: validate       # Validate: run one real process
+      name: End-to-end Validation
+      entry: experts_deployed
+      gate: validation_log
+      outputs: [validation records, bottleneck list]
+      tools: [finance, legal, sales]
+    - id: operate        # Operate: daily business loop
+      name: Daily Operations
+      entry: validation_log passed
+      gate: daily_report
+      outputs: [operations daily report, to-do inbox]
+      tools: [admin, finance, sales, support]
+    - id: grow           # Grow: optimization suggestions + upgrade packs
+      name: Optimization & Growth
+      entry: operate running stably
+      gate: optimization_pack
+      outputs: [optimization suggestions, closed-source deep pack recommendations]
+      tools: [strategy, growth, data]
+  session_resume: Persist stage + gate at the end of each stage; on restart continue from the latest gate (avoiding duplicated work)
+  boundary: Strong constraints between stages — without reaching the gate the next stage does not start (avoiding half-finished output)
+
+# ───────────────────────── Industry workflow templates (instantiated per pack) ─────────────────────────
+# Each core_loop step maps to a concrete action slug in action_specs, ensuring the "verb" is executable
+workflows:
+  opc_build:                      # One-person company setup (first pack)
+    pack: opc
+    pipeline: [discovery, design, build, validate, operate, grow]
+    core_loop:                    # Daily business loop (actions reference action_specs)
+      - step: order intake
+        action_ref: sales-crm
+        trigger: "customer intent"
+      - step: invoicing
+        action_ref: finance-planner
+        trigger: "deal confirmed"
+        guard: "PII red line: invoice images never enter the graph in plain text (see decision.yaml)"
+      - step: bookkeeping
+        action_ref: finance-cost-analyst
+        trigger: "invoice generated"
+      - step: tax filing
+        action_ref: legal-compliance-checker
+        trigger: "filing period (linked to the Tianjin tax calendar)"
+        guard: "requires second confirmation by owner (tax_filing_confirm)"
+      - step: review
+        action_ref: personal-review
+        trigger: "end of period"
+    hooks:
+      - Tianjin tax calendar linkage (finance & tax calendar table)
+      - PII red line interception (invoices / national IDs never enter the graph in plain text)
+      - One-click creation of the department expert team (experts-template/department_experts.yaml)
+
+  ecommerce_ops:                  # E-commerce operations (pack)
+    pack: ecommerce
+    pipeline: [discovery, design, build, validate, operate, grow]
+    core_loop:
+      - step: listing
+        action_ref: content-creator
+        trigger: "new product ready"
+      - step: order intake
+        action_ref: sales-crm
+        trigger: "user places an order"
+      - step: shipping
+        action_ref: support-customer-service
+        trigger: "order paid"
+      - step: review
+        action_ref: brand-reputation
+        trigger: "after delivery"
+      - step: repurchase
+        action_ref: growth-user-ops
+        trigger: "repurchase cycle"
+    hooks:
+      - E-commerce law real-name and invoicing obligations (ecommerce_law)
+      - Shop / product / order entities are provided by packs/ecommerce.yaml
+
+  sme_growth:                     # SME growth (pack)
+    pack: sme
+    pipeline: [discovery, design, build, validate, operate, grow]
+    core_loop:
+      - step: lead
+        action_ref: growth-first-customers
+        trigger: "acquisition campaign"
+      - step: conversion
+        action_ref: sales-strategist
+        trigger: "lead enters"
+      - step: delivery
+        action_ref: support-technical
+        trigger: "contract signed"
+      - step: collection
+        action_ref: finance-planner
+        trigger: "delivery complete"
+      - step: headcount expansion
+        action_ref: hr-recruiter
+        trigger: "capacity bottleneck"
+    hooks:
+      - Multiple employees and multiple roles (the employee role is reserved in roles.yaml)
+      - Reminder of the 25% social insurance subsidy for hiring employees
+
+# ───────────────────────── Instantiation conventions ─────────────────────────
+instantiation:
+  principle: template and instance are strictly separated; this file ships with the Skill, the instance is generated at user runtime
+  by_pack: After selecting packs/<pack>.yaml, merge its industry entities / departments / workflows into the instance
+  by_action: User selects departments → extract that department's action set from department_actions → reference action_specs to generate expert capabilities
+  by_toolset: Aggregate actions into toolsets by scenario (see action_execution.example_toolsets)

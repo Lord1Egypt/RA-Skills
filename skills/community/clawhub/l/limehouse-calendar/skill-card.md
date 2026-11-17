@@ -1,43 +1,59 @@
-## Description: <br>
-Read and write calendar events with granular per-calendar permissions. Users control which calendars an agent can access and whether it can read, create, update, or delete events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read and write calendar events with granular per-calendar permissions. Users control which calendars an agent can access and whether it can read, create, update, or delete events.
 
-## Publisher: <br>
-[MadeleineNakada](https://clawhub.ai/user/MadeleineNakada) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[madeleinenakada](https://clawhub.ai/user/madeleinenakada)
 
-## Use Case: <br>
-External agents and developers use this skill to help users inspect, create, update, and delete calendar events through Limehouse calendar APIs after the user grants calendar-specific permissions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and change user-approved calendars, which may expose private event details or alter calendar data. <br>
-Mitigation: Install only if the publisher is trusted, grant the minimum calendars and permissions needed, and confirm exact events before updates or deletes. <br>
-Risk: Travel-time routing can process saved home, work, or custom addresses for directions. <br>
-Mitigation: Avoid travel-time routing with saved home or work addresses unless the user is comfortable with those locations being processed. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent authenticate to Limehouse Calendar and manage calendar events subject to per-calendar permissions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MadeleineNakada/limehouse-calendar) <br>
-- [Publisher profile](https://clawhub.ai/user/MadeleineNakada) <br>
-- [Limehouse calendar API base](https://cal.limehouse.io/api/v1) <br>
-- [Limehouse calendar connection setup](https://cal.limehouse.io/connect) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with JSON examples and bash curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses CAL_API_KEY and curl; API actions depend on user-approved calendar permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill uses credentialed access to calendar data through CAL_API_KEY and returned agent_token values.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat tokens like passwords, store them only in approved secret storage, and grant the narrowest calendar permissions needed.
+
+Risk: Calendar access can include event deletion when can_delete is granted.
+
+Mitigation: Avoid granting delete access unless required and confirm event details before any delete operation.
+
+Risk: Using the skill shares authorized calendar data with cal.limehouse.io.
+
+Mitigation: Install only when the user trusts Limehouse Calendar with the calendar data made available to the agent.
+
+## Reference(s):
+
+- [Limehouse Calendar ClawHub listing](https://clawhub.ai/madeleinenakada/skills/limehouse-calendar)
+- [Limehouse Calendar API base endpoint](https://cal.limehouse.io/api/v1)
+- [Limehouse Calendar setup flow](https://cal.limehouse.io/connect)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with HTTP endpoint examples, JSON schemas, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CAL_API_KEY and curl; API responses are JSON from the Limehouse Calendar service.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact _meta.json lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,12 +1,14 @@
-# Openquok CLI — JSON post examples
+# OpenQuok CLI — JSON post examples
 
 Copy-paste payloads for `openquok posts:create --json ./examples/<file>.json`. Each file uses the **POST /public/posts** shape (`scheduledAt`, `status`, `body`, `integrationIds`, optional `media`, `providerSettingsByIntegrationId`, …).
 
 ## Before you post
 
 1. Replace `<integration-id>` with a UUID from `openquok integrations:list`.
-2. Replace `<media-id>` and `https://cdn.example.com/…` paths with `{id, path}` from `openquok upload` or `openquok upload-from-url` (Rule 2 in [SKILL.md](../../SKILL.md)).
+2. Replace `<media-id>`, `<reply-media-id>`, and `https://cdn.example.com/…` paths with `{id, path}` from `openquok upload` or `openquok upload-from-url` (Rule 2 in [SKILL.md](../../SKILL.md)). Follow-up reply images use the same `media` shape on `replies[]` rows — upload each file before `posts:create`.
 3. Run `openquok integrations:settings <integration-id>` for `maxLength`, `rules`, and allow-listed `integrations:trigger` methods.
+
+Global plugs (likes-threshold channel rules) are configured with `plugs:*` commands — see [plugs.md](../plugs.md).
 
 ```bash
 openquok posts:create --json ./examples/threads-text-only.json
@@ -19,9 +21,11 @@ openquok posts:create --json ./examples/threads-text-only.json
 | [threads-text-only.json](./threads-text-only.json) | Text-only scheduled post |
 | [threads-with-image.json](./threads-with-image.json) | Single image |
 | [threads-media-carousel.json](./threads-media-carousel.json) | Multi-image carousel |
-| [threads-follow-up-replies.json](./threads-follow-up-replies.json) | `threads.replies` chain |
+| [threads-follow-up-replies.json](./threads-follow-up-replies.json) | `threads.replies` chain (text only) |
+| [threads-follow-up-reply-with-image.json](./threads-follow-up-reply-with-image.json) | `threads.replies` with image on a reply row |
 | [threads-thread-finisher.json](./threads-thread-finisher.json) | Finisher + follow-ups |
-| [threads-engagement-plug.json](./threads-engagement-plug.json) | `threads.internalEngagementPlug` |
+| [threads-engagement-plug.json](./threads-engagement-plug.json) | Internal plug — `threads.internalEngagementPlug` (same-account delayed reply) |
+| [threads-cross-account-plug.json](./threads-cross-account-plug.json) | Internal plug — `threads.crossAccountPlugs` (comment from other Threads channels) |
 
 ## Facebook Page
 
@@ -31,8 +35,10 @@ openquok posts:create --json ./examples/threads-text-only.json
 | [facebook-with-image.json](./facebook-with-image.json) | Single photo |
 | [facebook-link-preview.json](./facebook-link-preview.json) | Link preview (`url`) |
 | [facebook-reel.json](./facebook-reel.json) | Reel from MP4 |
+| [facebook-story.json](./facebook-story.json) | Story (`post_type: story`) |
 | [facebook-multi-photo.json](./facebook-multi-photo.json) | Multi-photo carousel |
-| [facebook-follow-up-comment.json](./facebook-follow-up-comment.json) | Follow-up comments via `replies` |
+| [facebook-follow-up-comment.json](./facebook-follow-up-comment.json) | Follow-up comments via `replies` (text only) |
+| [facebook-follow-up-comment-with-image.json](./facebook-follow-up-comment-with-image.json) | Follow-up comment with one image on `facebook.replies[]` |
 
 ## Instagram
 
@@ -75,10 +81,35 @@ Shared recipes — use the same JSON with `instagram-standalone` or `instagram-b
 | [linkedin-follow-up-comment.json](./linkedin-follow-up-comment.json) | Text follow-up comments |
 | [linkedin-page-document-carousel.json](./linkedin-page-document-carousel.json) | Page document carousel (`linkedin.postAsImagesCarousel`) |
 
+## X
+
+| File | Scenario |
+| --- | --- |
+| [x-follow-up-replies.json](./x-follow-up-replies.json) | Quote-less reply chain via `x.replies` (text only) |
+| [x-follow-up-reply-with-image.json](./x-follow-up-reply-with-image.json) | Follow-up reply with image on `x.replies[]` |
+| [x-cross-account-repost.json](./x-cross-account-repost.json) | Internal plug — `x.crossAccountPlugs` (repost from other X channels) |
+
+## Dev.to
+
+| File | Scenario |
+| --- | --- |
+| [devto-article-title-tags.json](./devto-article-title-tags.json) | Markdown article + title + tags |
+| [devto-series.json](./devto-series.json) | Free-text series name |
+| [devto-canonical.json](./devto-canonical.json) | Canonical URL syndication |
+| [devto-organization.json](./devto-organization.json) | Organization id + cover `mainImage.path` |
+
+## Bluesky
+
+| File | Scenario |
+| --- | --- |
+| [bluesky-text-only.json](./bluesky-text-only.json) | Text-only scheduled post |
+| [bluesky-images.json](./bluesky-images.json) | Multi-image post |
+| [bluesky-follow-up.json](./bluesky-follow-up.json) | `bluesky.replies` follow-up |
+
 ## Multi-channel
 
 | File | Scenario |
 | --- | --- |
 | [multi-platform-campaign.json](./multi-platform-campaign.json) | Per-channel bodies + settings |
 
-Per-channel feature matrices and CLI flags: `../{identifier}-examples.md` and [provider-settings.md](../provider-settings.md).
+Per-channel feature matrices and CLI flags: `../{identifier}-examples.md`, [provider-settings.md](../provider-settings.md), and [plugs.md](../plugs.md).

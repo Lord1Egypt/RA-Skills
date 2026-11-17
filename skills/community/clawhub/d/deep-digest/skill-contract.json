@@ -1,0 +1,158 @@
+{
+  "name": "deep-digest",
+  "version": "0.2.0",
+  "description": "Extracts cognitive patterns, key insights, and action signals from any text input. Turns raw content into structured, actionable digests.",
+  
+  "invocation_conditions": [
+    {
+      "condition": "input_length_min",
+      "description": "Input text should be at least 200 characters to produce meaningful patterns",
+      "type": "number",
+      "value": 200
+    },
+    {
+      "condition": "input_type",
+      "description": "Supported input types",
+      "type": "array",
+      "values": ["chat_logs", "meeting_notes", "articles", "research_papers", "personal_notes", "conversation_transcripts"]
+    },
+    {
+      "condition": "language",
+      "description": "Primary language for pattern recognition",
+      "type": "string",
+      "default": "zh-CN",
+      "values": ["zh-CN", "en-US"]
+    }
+  ],
+  
+  "contraindications": [
+    {
+      "condition": "input_length_too_short",
+      "description": "Input < 200 characters likely produces trivial patterns",
+      "action": "suggest_longer_input",
+      "fallback": "Return summary-only mode"
+    },
+    {
+      "condition": "structured_data_input",
+      "description": "Already structured data (JSON, tables) doesn't benefit from pattern extraction",
+      "action": "pass_through",
+      "fallback": "Return input with metadata wrapper"
+    },
+    {
+      "condition": "sensitive_content_detected",
+      "description": "PII, credentials, or sensitive data in input",
+      "action": "redact_and_warn",
+      "fallback": "Return redacted digest with warning"
+    }
+  ],
+  
+  "inputs": {
+    "type": "object",
+    "properties": {
+      "content": {
+        "type": "string",
+        "description": "Raw text content to digest",
+        "minLength": 200
+      },
+      "focus_areas": {
+        "type": "array",
+        "items": {"type": "string"},
+        "description": "Optional: Specific areas to focus pattern extraction",
+        "default": ["cognitive_shifts", "action_signals", "hidden_assumptions"]
+      },
+      "output_format": {
+        "type": "string",
+        "enum": ["markdown", "json"],
+        "default": "markdown"
+      }
+    },
+    "required": ["content"]
+  },
+  
+  "outputs": {
+    "type": "object",
+    "properties": {
+      "fact_layer": {
+        "type": "object",
+        "description": "What happened - factual summary",
+        "properties": {
+          "timeline": {"type": "array"},
+          "key_entities": {"type": "array"},
+          "event_sequence": {"type": "array"},
+          "data_references": {"type": "array"}
+        }
+      },
+      "pattern_layer": {
+        "type": "object",
+        "description": "What patterns exist - the valuable part",
+        "properties": {
+          "recurring_themes": {"type": "array"},
+          "implicit_assumptions": {"type": "array"},
+          "cognitive_shifts": {
+            "type": "array",
+            "description": "Moments where worldview was broken or reshaped"
+          },
+          "behavioral_patterns": {"type": "array"}
+        }
+      },
+      "signal_layer": {
+        "type": "object",
+        "description": "What to do - actionable signals",
+        "properties": {
+          "immediate_actions": {"type": "array"},
+          "follow_ups": {"type": "array"},
+          "risk_signals": {"type": "array"},
+          "exploration_directions": {"type": "array"}
+        }
+      }
+    }
+  },
+  
+  "execution": {
+    "runtime": "openclaw-skill",
+    "timeout_ms": 30000,
+    "memory_limit_mb": 512,
+    "requires_llm": true,
+    "llm_requirements": {
+      "min_context_window": 8000,
+      "recommended_model": "claude-3-sonnet"
+    }
+  },
+  
+  "confidence_score": {
+    "calculation": "weighted_average",
+    "factors": [
+      {"name": "input_clarity", "weight": 0.3},
+      {"name": "pattern_strength", "weight": 0.4},
+      {"name": "actionability", "weight": 0.3}
+    ],
+    "threshold_low": 0.5,
+    "threshold_high": 0.8,
+    "action_on_low": "add_uncertainty_disclaimer"
+  },
+  
+  "supporting_evidence": [
+    {
+      "source": "intake-2026-06-26.md",
+      "timestamp": "2026-06-26T02:05+08:00",
+      "finding": "Three-layer structure (fact/pattern/signal) proven effective for cognitive pattern extraction in group chat scenarios"
+    },
+    {
+      "source": "INDEX_COGNITION.md",
+      "entry": "认知转变提取需要行为证据支持",
+      "timestamp": "2026-06-25"
+    }
+  ],
+  
+  "metadata": {
+    "author": "溯",
+    "created": "2026-06-23",
+    "last_updated": "2026-06-26T05:40+08:00",
+    "tags": ["digest", "pattern-recognition", "cognitive-extraction", "signal-detection"],
+    "maturity": "experimental",
+    "compliance": {
+      "pii_handling": "redact",
+      "data_retention": "none"
+    }
+  }
+}

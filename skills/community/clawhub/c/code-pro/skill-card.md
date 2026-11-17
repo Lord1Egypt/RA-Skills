@@ -1,40 +1,52 @@
-## Description: <br>
-Code Pro provides a structured coding workflow for deep code analysis, code review, iterative debugging, long-context project analysis, and code generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Code Pro is a coding workflow skill for deep code analysis, multi-perspective review, iterative debugging, long-context project analysis, and code generation.
 
-## Publisher: <br>
-[smseow001](https://clawhub.ai/user/smseow001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[smseow001](https://clawhub.ai/user/smseow001)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to structure code review, debugging, large-project analysis, and code-generation work into explicit analysis, implementation, and verification steps.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad coding prompts such as debug, implement, or full review may cause the agent to inspect or reason over more repository content than intended.
+
+Mitigation: When working in sensitive repositories, specify the files, directories, and stopping point before invoking the workflow.
+
+Risk: Generated code, fixes, or review findings may be incomplete or incorrect.
+
+Mitigation: Review proposed changes and run the suggested verification steps and tests before applying them to production work.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to structure coding sessions for code review, architecture and dependency analysis, debugging, large-project assessment, implementation planning, and test suggestion. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation phrases may invoke the workflow during ordinary coding requests. <br>
-Mitigation: Confirm user intent before applying a Code Pro mode when the request does not explicitly ask for deep analysis, review, debugging, or code generation. <br>
-Risk: Generated code, fixes, or debugging steps may be incorrect or unsuitable for important projects. <br>
-Mitigation: Review and test proposed changes before applying them to production, security-sensitive, or otherwise high-impact code. <br>
+**Output Format:** [Markdown with code blocks and step-by-step guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Code Pro ClawHub listing](https://clawhub.ai/smseow001/code-pro) <br>
+**Other Properties Related to Output:** [May include alternative implementation plans, diagnostics, verification steps, and test suggestions.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with structured sections and fenced code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include review findings, debugging plans, implementation alternatives, verification steps, and generated test cases.] <br>
+1.0.0 (source: frontmatter and release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

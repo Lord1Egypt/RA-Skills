@@ -1,41 +1,58 @@
-## Description: <br>
-Manage Discord servers with a narrow, medium-risk scope using direct Bot API calls for channel, category, role, and member-role administration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Discord servers with direct Bot API calls for focused channel, category, role, and member-role administration.
 
-## Publisher: <br>
-[datarxdacted](https://clawhub.ai/user/datarxdacted) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[datarxdacted](https://clawhub.ai/user/datarxdacted)
 
-## Use Case: <br>
-Developers, operators, and community administrators use this skill to let an agent inspect and make targeted Discord server channel and role changes with explicit guild, channel, role, and user IDs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change Discord server channels and roles when used with a bot token. <br>
-Mitigation: Use a dedicated bot with only the minimum Discord permissions needed and avoid Administrator when practical. <br>
-Risk: Deletes, role reorders, or role assignments can affect the wrong server object if IDs are incorrect. <br>
-Mitigation: Confirm exact guild, channel, role, and user IDs before writes, test in a non-production server first, and require explicit confirmation for destructive or privilege-changing actions. <br>
+## Use Case:
 
+External developers and Discord community administrators use this skill to inspect and make targeted channel, category, role, and member-role changes through a dedicated bot with explicit IDs.
 
-## Reference(s): <br>
-- [Discord API v10](https://discord.com/api/v10) <br>
-- [ClawHub skill page](https://clawhub.ai/datarxdacted/discord-server-admin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and Discord API JSON responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DISCORD_BOT_TOKEN or --token, exact Discord IDs, and Discord integer permission bitfields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can make real Discord channel and role changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated bot with the minimum needed permissions and review every delete, role reorder, and member-role change before running it.
+
+Risk: A bot token can be exposed through command arguments, logs, or shell history.
+
+Mitigation: Prefer DISCORD_BOT_TOKEN over the --token argument and keep tokens out of files, logs, and command history.
+
+Risk: Incorrect IDs or Discord role hierarchy limits can cause failed or unintended administrative actions.
+
+Mitigation: Start with channel-list or role-list, confirm exact IDs before writes, and check bot permissions and role hierarchy on 403 responses.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/datarxdacted/skills/discord-server-admin)
+- [Discord API v10 endpoint](https://discord.com/api/v10)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and Discord API JSON responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Discord bot token and explicit guild, channel, role, or user IDs for write actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

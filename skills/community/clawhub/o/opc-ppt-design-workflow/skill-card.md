@@ -1,43 +1,59 @@
-## Description: <br>
-交互式PPT设计全流程管控，基于create-ppt技能，增加需求确认、风格预览、正式生成三阶段交互。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through a three-stage interactive PPT design workflow for requirement confirmation, style previews, full slide generation, and delivery checks.
 
-## Publisher: <br>
-[golngod](https://clawhub.ai/user/golngod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[golngod](https://clawhub.ai/user/golngod)
 
-## Use Case: <br>
-External users and presentation creators use this skill to gather PPT requirements, compare style previews, and guide create-ppt through full deck generation with QA checks for page structure, data accuracy, and text rendering. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: One optional Vaporwave visual style may add Japanese decorative text, which can be unsuitable for presentations that must stay in one language or satisfy strict localization requirements. <br>
-Mitigation: Review or edit the Vaporwave style template before using that style in localized or compliance-sensitive presentations. <br>
-Risk: AI-generated slide imagery can render Chinese text, numbers, or embedded labels incorrectly. <br>
-Mitigation: Use the skill's HTML text-layer workflow and post-generation QA checklist to render important text outside the image layer and verify structure, data, and encoding before delivery. <br>
+## Use Case:
 
+Developers, presentation-building agents, and business users use this skill to manage Chinese-first PPT creation through structured requirements intake, 1-2 page style previews, full generation, and QA before delivery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/golngod/opc-ppt-design-workflow) <br>
-- [QA checklist](references/qa_checklist.md) <br>
-- [8 style prompt templates](references/style_templates.md) <br>
-- [8 PPT style templates V2.0](references/style_templates_v2.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with prompt templates, HTML/CSS patterns, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only workflow guidance that may direct a separate create-ppt skill to generate PPTX-style HTML files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Mandatory QA shell templates can be command-injected through a crafted presentation title.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use sanitized generated filenames, quote file paths, avoid Python -c string interpolation, and run generation and validation in a least-privilege workspace.
+
+Risk: Chinese-first and optional Japanese vaporwave styling may produce locale or readability mismatches for some audiences.
+
+Mitigation: Review generated slide text, filenames, and style selections against the intended audience and delivery language before release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/golngod/skills/opc-ppt-design-workflow)
+- [Publisher profile](https://clawhub.ai/user/golngod)
+- [OPC platform](https://opc.cn)
+- [Coze platform](https://coze.cn)
+- [Quality checklist](artifact/references/qa_checklist.md)
+- [8-style prompt templates](artifact/references/style_templates.md)
+- [8-style prompt templates V2.0](artifact/references/style_templates_v2.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with prompt templates, QA checklists, and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-first workflow that depends on create-ppt generation behavior and user approval gates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release, target metadata, and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

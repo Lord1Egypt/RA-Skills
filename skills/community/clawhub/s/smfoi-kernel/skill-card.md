@@ -1,44 +1,61 @@
-## Description: <br>
-SMFOI-KERNEL provides a local, auditable 5-step orientation protocol that helps autonomous agents maintain workspace awareness, safety constraints, and turn-level logging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SMFOI-KERNEL provides a 5-step orientation protocol that helps agents track workspace boundaries, safety constraints, user intent, action priority, and local audit logging.
 
-## Publisher: <br>
-[rigeneproject](https://clawhub.ai/user/rigeneproject) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rigeneproject](https://clawhub.ai/user/rigeneproject)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add an every-turn orientation routine that keeps an agent focused on workspace boundaries, active safety constraints, task intent, and a local audit trail. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs on every turn and may create a persistent local audit trail from conversation-derived task context. <br>
-Mitigation: Install it only in workspaces where persistent turn-level logs are acceptable, and periodically review or delete ./memory/kernel/state.md. <br>
-Risk: Protocol-change suggestions could be mistaken for self-executing changes. <br>
-Mitigation: Treat Level 3 recursion output as a human-reviewed text proposal only, consistent with the artifact's non-executable boundary. <br>
+## Use Case:
 
+External users and agent developers use this skill to add a repeatable orientation check to autonomous agent workflows. It is intended to keep each turn grounded in workspace limits, active constraints, user intent, and human-reviewed protocol evolution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rigeneproject/smfoi-kernel) <br>
-- [README](README.md) <br>
-- [Skill definition](SKILL.md) <br>
-- [Orientation logic](kernel_v0.2.txt) <br>
-- [Changelog](CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and structured text with local file path references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May maintain a persistent local audit trail at ./memory/kernel/state.md when installed in an agent workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence; artifact content version 0.2.2) <br>
+Risk: Every-turn activation can affect all agent interactions after installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before deployment and install it only where an always-on orientation layer is desired.
+
+Risk: Local audit logs may retain orientation outcomes across turns.
+
+Mitigation: Review or clear ./memory/kernel/state.md when retained orientation history is not wanted.
+
+Risk: Protocol optimization suggestions could be mistaken for self-executing changes.
+
+Mitigation: Treat Level 3 proposals as human-reviewed text suggestions and apply changes manually only after review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rigeneproject/skills/smfoi-kernel)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+- [Orientation logic](artifact/kernel_v0.2.txt)
+- [Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown and plain text procedural guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Activates every turn and may record orientation outcomes under ./memory/kernel/state.md when local logging is used.]
+
+## Skill Version(s):
+
+1.0.4 (source: ClawHub release metadata; artifact files identify protocol version 0.2.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

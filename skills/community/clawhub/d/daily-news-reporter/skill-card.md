@@ -1,44 +1,59 @@
-## Description: <br>
-An AI-assisted international news reporting toolkit that guides agents through web-based source collection, multi-source verification, Markdown report drafting, and PDF generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An AI-assisted international news reporting toolkit that helps agents create daily reports using structured workflows, source verification, Markdown templates, and PDF generation.
 
-## Publisher: <br>
-[YWWZZsgit](https://clawhub.ai/user/YWWZZsgit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ywwzzsgit](https://clawhub.ai/user/ywwzzsgit)
 
-## Use Case: <br>
-External users and AI agents use this skill to produce daily international news briefings by collecting current public sources, verifying facts across source tiers, drafting analysis in Markdown, and generating a PDF. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Current-news reports can contain stale, incomplete, or unverified information when search results lag or sources disagree. <br>
-Mitigation: Use timestamped sources, prioritize Tier 1-2 references, cross-check critical facts, and review the final report before relying on it. <br>
-Risk: Local Markdown and PDF generation writes report files and depends on the installed PDF library and runtime environment. <br>
-Mitigation: Confirm input and output paths before execution, install reportlab from a trusted source, and inspect the generated PDF. <br>
-Risk: The workflow is not intended to replace professional journalism or support real-time trading or other critical decisions by itself. <br>
-Mitigation: Keep human review in the loop and treat generated analysis as briefing material rather than a sole source of truth. <br>
+## Use Case:
 
+External users and AI agents use this skill to prepare international daily news briefings from current public sources, organize evidence by source reliability, draft Markdown analysis, and optionally generate a PDF report.
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [Source Directory](references/source_directory.md) <br>
-- [Daily Report Template](assets/templates/daily_report_template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Files] <br>
-**Output Format:** [Markdown reports, generated PDF files, and concise shell commands for PDF conversion.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an AI agent with web search capability; final reports should include source tiers, timestamps, attribution, and review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: News reports can contain incomplete, stale, or misleading information from public search results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated reports as drafts and verify critical claims against multiple high-reliability sources before relying on them.
+
+Risk: Sensitive private context could be exposed through external news-search queries.
+
+Mitigation: Avoid including private, confidential, or personal data in search prompts or report inputs.
+
+Risk: The bundled PDF utility may generate sample-style Chinese report content rather than faithfully converting the provided Markdown input.
+
+Mitigation: Review generated PDFs against the source Markdown before distributing or using them for decisions.
+
+## Reference(s):
+
+- [Source Directory](references/source_directory.md)
+- [Daily Report Template](assets/templates/daily_report_template.md)
+- [ClawHub Skill Page](https://clawhub.ai/ywwzzsgit/skills/daily-news-reporter)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown report content with optional PDF output and source-attributed analysis.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an AI agent with web search capability for data collection; PDF generation uses the bundled Python utility.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

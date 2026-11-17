@@ -1,40 +1,53 @@
-## Description: <br>
-Guides agents to create and optimize publish-ready LinkedIn post copy, LinkedIn articles, professional posts, B2B LinkedIn content, and related LinkedIn marketing content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in creating and optimizing LinkedIn post copy, including hooks, character counts, hashtags, and image specifications.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Copy and design agents use this skill to draft LinkedIn posts with hooks, character counts, hashtags, and optional image specifications for professional publishing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated LinkedIn copy can overstate claims or use a tone that does not fit the user's brand or compliance needs. <br>
-Mitigation: Review the final post for factual accuracy, brand voice, legal or compliance fit, and accessibility before publishing. <br>
-Risk: LinkedIn character limits, image requirements, and engagement heuristics may change after this release. <br>
-Mitigation: Confirm current platform requirements before relying on specific limits, dimensions, or engagement guidance. <br>
+## Use Case:
 
+Content, marketing, and copy agents use this skill to produce publish-ready LinkedIn posts with structured hooks, full post copy, hashtags, character counts, and optional image specifications.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/linkedin-posts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with a first-line hook, full post copy, character count, hashtags, and optional image specifications] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes LinkedIn character-limit guidance and mobile-first image sizing notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: frontmatter and server evidence) <br>
+Risk: Broad trigger wording may cause this skill to be selected for generic professional-post requests outside LinkedIn.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Specify LinkedIn when requesting this guidance and choose a different writing skill for other platforms.
+
+Risk: Generated LinkedIn guidance may be unsuitable for a specific brand, jurisdiction, or compliance context.
+
+Mitigation: Review post copy, claims, hashtags, and image recommendations before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/linkedin-posts)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can include first-line hook text, full post copy with character count, hashtags, and LinkedIn image specifications.]
+
+## Skill Version(s):
+
+1.1.1 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

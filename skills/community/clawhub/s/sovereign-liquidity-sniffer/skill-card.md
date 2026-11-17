@@ -1,38 +1,57 @@
-## Description: <br>
-Runs an OpenClaw order book imbalance scanner that claims to identify market maker footprints across OKX and Binance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Institutional-grade L2 Orderbook Imbalance (OBI) detector. Captures market maker footprints across OKX and Binance with millisecond precision.
 
-## Publisher: <br>
-[tmstudio667-commits](https://clawhub.ai/user/tmstudio667-commits) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tmstudio667-commits](https://clawhub.ai/user/tmstudio667-commits)
 
-## Use Case: <br>
-External users and developers use this skill to request target-specific crypto order book imbalance analysis and cross-exchange liquidity signals. Its trading-signal claims should be treated as unverified unless the publisher provides methodology, data-source, and limitation details. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The paid trading-analysis claims and market signals are not verifiable from the provided artifacts. <br>
-Mitigation: Do not rely on the outputs for financial decisions unless the publisher provides verifiable methodology, data sources, limitations, and operating details. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tmstudio667-commits/sovereign-liquidity-sniffer) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/tmstudio667-commits) <br>
+## Use Case:
 
+External users and trading-tool developers use this skill to request L2 orderbook imbalance analysis for crypto markets, including market-maker footprint and cross-exchange liquidity pattern detection.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts a target market symbol such as BTC; paid trading-analysis claims are not verified by the provided evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The usage example runs an unpinned npx command.
+
+Mitigation: Use a pinned and trusted OpenClaw CLI version before installing or running the skill.
+
+Risk: Trading-performance claims are not supported by bundled auditable scanner code.
+
+Mitigation: Treat market-scan outputs and performance claims as unverified until independently reviewed against trusted data and execution logs.
+
+Risk: The release describes a paid scan flow.
+
+Mitigation: Confirm the payment and service provider details before authorizing any USDC transaction.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tmstudio667-commits/skills/sovereign-liquidity-sniffer)
+- [Publisher Profile](https://clawhub.ai/user/tmstudio667-commits)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scanner behavior and trading-performance claims are not backed by bundled auditable scanner code.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-根据论文链接（arXiv / Google Scholar / Nature 等）自动抓取全部作者列表，并行搜集每位作者的公开信息（所在机构、研究方向、教育背景、Google Scholar / GitHub / LinkedIn / 个人主页），生成双 Sheet Redoc 在线文档：Sheet1 为作者个人信息表（含账号链接），Sheet2 为按学校背景分组汇总。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+根据论文链接（arXiv / Google Scholar / Nature 等）自动抓取全部作者列表，并行搜集每位作者的公开信息（所在机构、研究方向、教育背景、Google Scholar / GitHub / LinkedIn / 个人主页），生成双 Sheet Redoc 在线文档：Sheet1 为作者个人信息表（含账号链接），Sheet2 为按学校背景分组汇总。
 
-## Publisher: <br>
-[mc6680000](https://clawhub.ai/user/mc6680000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mc6680000](https://clawhub.ai/user/mc6680000)
 
-## Use Case: <br>
-Researchers, analysts, and agents use this skill to collect public author profile information for large multi-author papers and organize it into a two-sheet Redoc document for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review verdict is suspicious and flags powerful maintenance workflows in the reviewed skill set. <br>
-Mitigation: Install only in a trusted ClawHub maintainer environment and review behavior before enabling the skill. <br>
-Risk: Review helpers may run with relaxed sandboxing or send code diffs to external model tools. <br>
-Mitigation: Use sandbox-preserving review settings when available and avoid sending sensitive code or data to external tools. <br>
-Risk: The skill collects public author profile information from the web, which may be stale or ambiguous. <br>
-Mitigation: Use public sources only, omit private contact details, and mark unconfirmed affiliations or background information as pending confirmation. <br>
+## Use Case:
 
+Researchers, analysts, and developers use this skill to turn a paper link for a large multi-author publication into structured author profiles and grouped institutional summaries in a Redoc document.
 
-## Reference(s): <br>
-- [Semantic Scholar Graph API paper authors endpoint](https://api.semanticscholar.org/graph/v1/paper/arXiv:{arxiv_id}?fields=authors) <br>
-- [ClawHub skill page](https://clawhub.ai/mc6680000/paper-author-profiler-redoc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown instructions for producing a two-sheet Redoc author profile document] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs public author profile fields and grouped school-background summaries; unavailable or unconfirmed information is marked for confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Public author-profile data may be inaccurate, stale, or sensitive when aggregated into a shareable document.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated profiles before sharing and keep uncertain details marked as pending confirmation.
+
+Risk: The workflow may search public web sources, use Semantic Scholar, spawn subagents for large papers, and publish results to Redoc.
+
+Mitigation: Install and run the skill only in environments where these network, delegation, and document-publishing behaviors are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mc6680000/skills/paper-author-profiler-redoc)
+- [Semantic Scholar Graph API paper authors endpoint](https://api.semanticscholar.org/graph/v1/paper/arXiv:{arxiv_id}?fields=authors)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown guidance and structured two-sheet Redoc document content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Profiles may include public affiliation, research area, education background, Google Scholar, GitHub, LinkedIn, and personal homepage fields; unavailable details are marked as pending confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

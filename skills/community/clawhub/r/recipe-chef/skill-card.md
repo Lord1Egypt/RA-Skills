@@ -1,47 +1,63 @@
-## Description: <br>
-Discover, compare, and tailor recipes from available ingredients, kitchen gear, dietary goals, and taste preferences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover, compare, and tailor recipes from available ingredients, kitchen gear, dietary goals, and taste preferences.
 
-## Publisher: <br>
-[adamsellers](https://clawhub.ai/user/adamsellers) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adamsellers](https://clawhub.ai/user/adamsellers)
 
-## Use Case: <br>
-External users use this skill to turn pantry items, food photos, dietary goals, and household preferences into recipe options, meal plans, shopping lists, and practical cooking steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can remember stable food, nutrition, household, and child-related preferences across sessions. <br>
-Mitigation: Only save durable cooking preferences that are needed for personalization, avoid sensitive medical or household details unless necessary, and review or clear remembered preferences where the agent supports it. <br>
-Risk: Ingredient recognition from photos and nutrition estimates can be uncertain. <br>
-Mitigation: Separate visible ingredients from pantry assumptions, label uncertain items, and present nutrition values as rough decision-useful estimates rather than exact measurements. <br>
+## Use Case:
 
+External users use this skill to turn typed ingredients, kitchen photos, dietary goals, and household preferences into practical recipe options, meal plans, and shopping lists. It supports family-friendly planning, macro-aware cooking guidance, surprise meal ideas, and recipe comparison from web sources.
 
-## Reference(s): <br>
-- [Recipe Chef ClawHub page](https://clawhub.ai/adamsellers/recipe-chef) <br>
-- [Profile template](references/profile-template.md) <br>
-- [Search patterns for recipe discovery](references/search-patterns.md) <br>
-- [Photo to meal plan flow](references/photo-meal-flow.md) <br>
-- [Meal-plan mode](references/meal-plan-mode.md) <br>
-- [Preference memory](references/preference-memory.md) <br>
-- [Shopping list optimization](references/shopping-list-optimization.md) <br>
-- [Macro and nutrition structure](references/macros.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with concise bullets, meal plans, recipe steps, shopping lists, and rough nutrition estimates when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include image-grounded ingredient confidence buckets and approximate macro ranges; does not provide medical nutrition advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may store durable nutrition goals, child-related meal constraints, household eating patterns, and kitchen setup preferences without an explicit consent step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review memory behavior before installation, disable or restrict memory where possible, and ask users before saving sensitive or household-specific food preferences.
+
+Risk: Photo analysis and web recipe search are expected parts of the skill and may expose kitchen context, ingredients, or dietary constraints to connected tools.
+
+Mitigation: Use photo analysis and web search only when needed for the user's request, avoid sharing unnecessary personal context, and summarize uncertain image findings conservatively.
+
+Risk: Nutrition and macro estimates can be imprecise when users do not provide weighed ingredients, product labels, or exact portions.
+
+Mitigation: Present nutrition values as approximate ranges and encourage exact tracking only when the user provides sufficient measurement details.
+
+## Reference(s):
+
+- [Photo to meal plan flow](references/photo-meal-flow.md)
+- [Meal-plan mode](references/meal-plan-mode.md)
+- [Preference memory](references/preference-memory.md)
+- [Search patterns for recipe discovery](references/search-patterns.md)
+- [Shopping list optimization](references/shopping-list-optimization.md)
+- [Macro and nutrition structure](references/macros.md)
+- [Food profile template](references/profile-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Analysis]
+
+**Output Format:** [Markdown with concise bullets, short recipe plans, meal schedules, grouped shopping lists, and approximate nutrition notes when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include rough nutrition estimates, ranked recipe options, visible-versus-assumed ingredient distinctions, substitutions, and store-section shopping groups.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

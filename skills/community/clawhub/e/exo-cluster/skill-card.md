@@ -1,43 +1,60 @@
-## Description: <br>
-Exo Cluster guides agents through combining Mac, PC, WSL2, and Windows devices into a local distributed AI cluster for running large language models such as DeepSeek, Qwen, and LLaMA. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Exo distributed AI cluster guidance for combining multiple Mac, PC, and WSL2 devices into a unified local GPU cluster for running large language models such as DeepSeek, Qwen, and LLaMA.
 
-## Publisher: <br>
-[smseow001](https://clawhub.ai/user/smseow001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smseow001](https://clawhub.ai/user/smseow001)
 
-## Use Case: <br>
-Developers and engineers use this skill to set up, start, join, manage, and call a local Exo distributed inference cluster across supported devices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides users to run a local cluster and model API services that may expose ports on trusted networks. <br>
-Mitigation: Run the cluster only on trusted networks, restrict exposed ports with firewall rules or localhost binding where possible, and avoid sending sensitive prompts or data until access controls are understood. <br>
-Risk: The setup flow includes cloning and running external Exo repositories. <br>
-Mitigation: Install only from trusted Exo sources, review cloned repositories before running them, and pin known-good versions when reproducibility matters. <br>
+## Use Case:
 
+Developers and engineers use this skill to set up and manage an Exo-based local AI inference cluster across Mac, PC, WSL2, Windows, and Linux systems. It provides installation, cluster startup, model deployment, API usage, dashboard, and troubleshooting guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smseow001/exo-cluster) <br>
-- [Exo website](https://exolabs.net/) <br>
-- [Exo GitHub repository](https://github.com/exo-explore/exo) <br>
-- [Exo Windows GitHub repository](https://github.com/tensorsofthewall/exo_windows) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash and curl command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill asks users to run third-party installers and high-impact installation commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution, prefer pinned releases or reviewed commits, and run setup in a dedicated virtual environment or under an unprivileged account.
+
+Risk: The skill starts dashboard and API services that may be reachable on a local network.
+
+Mitigation: Restrict dashboard and API access to trusted hosts, use network isolation where possible, and avoid exposing service ports beyond the intended LAN.
+
+Risk: Prompts and model traffic may contain sensitive information when sent to local API endpoints.
+
+Mitigation: Avoid sending sensitive prompts unless authentication, network isolation, and transport protections are in place.
+
+## Reference(s):
+
+- [Exo official website](https://exolabs.net/)
+- [Exo GitHub repository](https://github.com/exo-explore/exo)
+- [Exo Windows community repository](https://github.com/tensorsofthewall/exo_windows)
+- [ClawHub skill page](https://clawhub.ai/smseow001/skills/exo-cluster)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and curl command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes local cluster setup, model deployment, API usage, dashboard, and troubleshooting instructions.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

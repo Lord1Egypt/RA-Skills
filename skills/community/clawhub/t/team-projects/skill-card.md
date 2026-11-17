@@ -1,47 +1,64 @@
-## Description: <br>
-Team Projects helps OpenClaw users coordinate multi-agent work with project boards, work breakdown structures, @-mention routing, task dispatch, and a Control UI projects tab with Team Chat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Team Projects helps OpenClaw agents plan, assign, dispatch, track, and discuss multi-agent project work with task boards, work breakdown structures, @-mention routing, and optional Control UI views.
 
-## Publisher: <br>
-[maverick-software](https://clawhub.ai/user/maverick-software) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maverick-software](https://clawhub.ai/user/maverick-software)
 
-## Use Case: <br>
-Developers and teams use this skill to plan, assign, dispatch, and track work across multiple OpenClaw agents. It is intended for coordinated projects where a lead agent manages phases, dependencies, task status, and inter-agent communication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad agent allowlists and broad session visibility can expose more agents or sessions than a project requires. <br>
-Mitigation: Replace wildcard allowlists with explicit project-team agents and avoid broad session visibility unless the deployment needs it. <br>
-Risk: Source patches and local execution paths change OpenClaw UI and project-management behavior. <br>
-Mitigation: Review the source patches before installing and rebuild only from reviewed files. <br>
-Risk: Dashboard refresh through a silent sessions.send command can be under-scoped for read-only project status updates. <br>
-Mitigation: Use a dedicated read-only project API for dashboard refresh behavior. <br>
-Risk: The optional localhost HTTP API can mutate project data and is not suitable to enable without additional controls. <br>
-Mitigation: Do not enable the optional localhost HTTP API unless authentication, restricted CORS, and clear mutation controls are added. <br>
+## Use Case:
 
+Developers and agent operators use this skill to coordinate multi-agent projects in OpenClaw, create phases and tasks, assign work to specialist agents, route inter-agent messages, and track progress through CLI tools and optional UI components.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/maverick-software/team-projects) <br>
-- [Team Projects Walkthrough](artifact/references/walkthrough.md) <br>
-- [Example OpenClaw Configuration](artifact/references/example-config.json) <br>
-- [Gateway Plugin Build Registration](artifact/gateway-plugin/BUILD_REGISTRATION.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples, shell command blocks, JavaScript and TypeScript files, and prompt templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes optional Control UI plugin files and local JSON project-state workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+Risk: Broad wildcard agent and tool permissions can give spawned agents more authority than a project requires.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace wildcard allowlists with explicit agent and tool allowlists before enabling the skill.
+
+Risk: The optional local API behavior can expose project and chat operations without sufficient access controls if enabled casually.
+
+Mitigation: Keep TEAM_PROJECTS_PORT disabled unless the API is protected with authentication and strict origin restrictions.
+
+Risk: Project tasks and team chat may carry sensitive project details between agents.
+
+Mitigation: Avoid placing secrets or sensitive business data in tasks, comments, chat messages, or generated project artifacts.
+
+Risk: Spawned-agent tasks may request file writes or powerful tool use as part of project execution.
+
+Mitigation: Review each dispatch plan and task prompt before allowing agents to write files or use privileged tools.
+
+## Reference(s):
+
+- [ClawHub Team Projects release page](https://clawhub.ai/maverick-software/skills/team-projects)
+- [Team Projects walkthrough](artifact/references/walkthrough.md)
+- [Example OpenClaw configuration](artifact/references/example-config.json)
+- [Gateway plugin build registration](artifact/gateway-plugin/BUILD_REGISTRATION.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON, JavaScript/TypeScript, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write or update local JSON project state and chat logs under the configured Team Projects data directory when commands are executed.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

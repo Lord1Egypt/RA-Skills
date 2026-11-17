@@ -1,41 +1,58 @@
-## Description: <br>
-Premium Product Hunt outreach agent that automates community discovery, profile enrichment, and LinkedIn engagement locally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Premium PH outreach agent - automates community discovery, enrichment, and LinkedIn engagement locally.
 
-## Publisher: <br>
-[techievena](https://clawhub.ai/user/techievena) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[techievena](https://clawhub.ai/user/techievena)
 
-## Use Case: <br>
-External launch teams and operators use this skill to run local Product Hunt outreach workflows, enrich prospect profiles, review generated messages, and monitor campaign status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests account-impacting LinkedIn automation through missing server code, broad triggers, scheduling, and a saved browser session. <br>
-Mitigation: Review the referenced server files from a trusted source before running setup or automation, use a dedicated LinkedIn browser profile, and confirm what messages or connection requests can be sent automatically. <br>
-Risk: The local scheduler and saved browser profile can continue outreach behavior or retain account data after setup. <br>
-Mitigation: Verify how the cron schedule is installed and removed, and document how to delete the saved browser profile and prospect data. <br>
+## Use Case:
 
+External founders, marketers, and launch teams use this skill to run local Product Hunt outreach workflows: discovering community prospects, enriching profiles, generating LinkedIn messages, and monitoring campaign status from a local dashboard.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/techievena/ph-wingman) <br>
-- [Product Hunt Wingman homepage](https://producthunt.eonik.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with local command and dashboard references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require local environment variables, a browser session, and review of generated outreach before action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill enables recurring LinkedIn-facing outreach automation with broad triggers and unclear safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm how scheduled runs are enabled or removed, set conservative outreach limits, and require human approval before connection requests or direct messages are sent.
+
+Risk: The skill stores a local LinkedIn browser session for authentication.
+
+Mitigation: Use a dedicated browser profile where possible, restrict local filesystem access, and clear the saved session when the campaign is complete.
+
+Risk: The installed package is expected to execute server-side local files that are not present in the submitted artifact.
+
+Mitigation: Review the installed server files before first execution, especially network calls, data handling, scheduler behavior, and dashboard endpoints.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/techievena/skills/ph-wingman)
+- [ProductHunt Wingman Homepage](https://producthunt.eonik.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with local setup commands, status summaries, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May trigger local service checks, scheduled outreach workflows, browser-based LinkedIn authentication, and local dashboard interactions.]
+
+## Skill Version(s):
+
+1.6.1 (source: SKILL.md frontmatter, skill.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

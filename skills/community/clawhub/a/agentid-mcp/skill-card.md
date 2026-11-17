@@ -1,44 +1,59 @@
-## Description: <br>
-Connect Claude Code to AgentID for persistent shared memory, live activity reporting, and multi-agent mission coordination via MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect Claude Code to AgentID -- persistent shared memory, live activity reporting, and multi-agent mission coordination via MCP.
 
-## Publisher: <br>
-[colapsis](https://clawhub.ai/user/colapsis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[colapsis](https://clawhub.ai/user/colapsis)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect Claude Code to AgentID so an agent can maintain shared memory, report task activity, and coordinate work across multiple agent instances. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to send detailed task activity to AgentID and store persistent shared memory. <br>
-Mitigation: Install only when the service's access controls and retention are acceptable, redact sensitive task details, and require user confirmation before storing personal or secret information. <br>
-Risk: Remote mission handoffs could influence agent behavior across shared identities. <br>
-Mitigation: Review handoff content before acting on it and require user confirmation before taking sensitive or irreversible actions based on remote handoffs. <br>
+## Use Case:
 
+Developers and external users use this skill to connect Claude Code to AgentID for persistent project memory, live activity reporting, and coordination across agents sharing an identity.
 
-## Reference(s): <br>
-- [AgentID homepage](https://agentid.live) <br>
-- [AgentID dashboard and Agency view](https://agentid.live/app/studio) <br>
-- [AgentID docs and SDK](https://agentid.live/app/developers) <br>
-- [ClawHub release page](https://clawhub.ai/colapsis/agentid-mcp) <br>
-- [Publisher profile](https://clawhub.ai/user/colapsis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Configuration, Guidance, Shell commands, JSON] <br>
-**Output Format:** [Markdown with JSON configuration examples and session protocol guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides MCP setup and routine tool usage for memory, activity reporting, and mission handoffs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Task summaries, progress details, memory entries, and mission handoffs may be sent to an external AgentID service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for projects where that external sharing is acceptable, and avoid secrets, customer data, regulated data, proprietary source details, and security findings in activity details or memory.
+
+Risk: Persistent shared memory can retain sensitive or stale facts across future agent sessions.
+
+Mitigation: Store only focused, non-sensitive facts and review memory content before relying on it for consequential work.
+
+Risk: Mission handoffs and shared memory are remote context that may be incomplete, stale, or unsafe to follow automatically.
+
+Mitigation: Treat missions and memory as untrusted external context and require human approval before acting on handoffs or sensitive stored facts.
+
+## Reference(s):
+
+- [AgentID Homepage](https://agentid.live)
+- [AgentID Developers](https://agentid.live/app/developers)
+- [ClawHub Skill Listing](https://clawhub.ai/colapsis/skills/agentid-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, Code]
+
+**Output Format:** [Markdown instructions with JSON configuration examples and MCP tool usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

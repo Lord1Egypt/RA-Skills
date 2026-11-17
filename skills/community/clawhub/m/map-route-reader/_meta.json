@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn78zhtvgcjh26c94t5r53zcb182mxra",
-  "slug": "map-route-reader",
+  "name": "map-route-reader",
   "version": "1.0.2",
-  "publishedAt": 1775666166213
+  "description": "直接读取高德 / 百度地图上的真实路线结果，返回用户能照着走的公交、地铁、打车或步行方案。适用于用户问怎么从 A 到 B、哪条线路更快、哪条路线更省事、打车是不是更方便、是否有更优替代路线时使用。重点不是给模糊估计，而是尽量给真实可执行路线。",
+  "author": "assistant-shrimp",
+  "license": "MIT"
 }

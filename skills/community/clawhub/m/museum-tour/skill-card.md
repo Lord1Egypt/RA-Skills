@@ -1,45 +1,60 @@
-## Description: <br>
-Find museums, art galleries, and exhibitions in any city, with ticket links and visiting tips powered by Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find museums, art galleries, and exhibitions in any city, with ticket links and visiting tips, and support related travel booking tasks through Fliggy-powered flyai CLI results.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External users use this skill to search for museums, galleries, exhibitions, and related travel options, then receive concise Markdown results with booking links and visit guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to install and run an unpinned global flyai CLI. <br>
-Mitigation: Use manual approval for installation and pin or verify the package where possible before execution. <br>
-Risk: Travel-search details may be sent to the flyai or Fliggy provider. <br>
-Mitigation: Avoid entering sensitive personal or booking information unless the provider is trusted for the intended use. <br>
-Risk: The artifact describes persisting raw user queries in a local .flyai-execution-log.json file. <br>
-Mitigation: Manage, disable, or remove the local log file and avoid storing sensitive request details. <br>
+## Use Case:
 
+External travelers and planning agents use this skill to find museums, galleries, exhibitions, and related travel options for a city using live flyai CLI results. It formats recommendations as user-facing Markdown with booking links and visiting tips.
 
-## Reference(s): <br>
-- [templates.md](references/templates.md) <br>
-- [playbooks.md](references/playbooks.md) <br>
-- [fallbacks.md](references/fallbacks.md) <br>
-- [runbook.md](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with booking links and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai CLI output for travel data and should not include raw JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill may install a global third-party npm CLI and run shell commands for travel searches.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in an isolated workspace or container, and manually approve any package installation.
+
+Risk: The skill can show third-party booking links and requires travel results to include booking URLs.
+
+Mitigation: Review booking links before use and avoid treating prices, availability, or terms as final until confirmed on the provider site.
+
+Risk: The skill may keep local plaintext execution logs that include raw user requests.
+
+Mitigation: Avoid entering sensitive travel, identity, payment, or itinerary details unless logging is removed or disabled.
+
+## Reference(s):
+
+- [Templates](references/templates.md)
+- [Playbooks](references/playbooks.md)
+- [Fallbacks](references/fallbacks.md)
+- [Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with booking links, comparison tables, tips, and inline shell commands when setup or recovery is needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires flyai CLI output for travel data and may keep local plaintext execution logs when filesystem writes are available.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

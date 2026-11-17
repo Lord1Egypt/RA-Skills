@@ -1,36 +1,52 @@
-## Description: <br>
-AI language tutor for learning any language through conversation, vocabulary drills, grammar lessons, flashcards, translation support, cultural context, exam preparation, and immersive practice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI language tutor for learning any language through conversation, vocabulary drills, grammar lessons, flashcards, and immersive practice.
 
-## Publisher: <br>
-[Chipagosfinest](https://clawhub.ai/user/Chipagosfinest) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chipagosfinest](https://clawhub.ai/user/chipagosfinest)
 
-## Use Case: <br>
-External learners use this skill to study a target language through adaptive lessons, vocabulary practice, grammar explanations, conversation scenarios, flashcard drills, writing-system help, cultural notes, and language-exam preparation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The tutor defaults to English explanations and translations, which may reduce immersion or accessibility for learners who prefer another support language. <br>
-Mitigation: Ask the tutor to use a specific support language, increase target-language immersion, or omit translations when appropriate. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External learners use this skill for adaptive language tutoring, including vocabulary study, grammar practice, conversation roleplay, flashcard drills, writing-system help, cultural context, travel phrases, translation support, and exam preparation.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text lesson responses with target-language text, transliteration when helpful, English translation, pronunciation notes, exercises, corrections, quizzes, and cultural notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only responses; no external tools, scripts, credential use, or API calls were detected in the provided artifact.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad routing may send ambiguous language, translation, grammar, or travel-phrase requests into a tutoring workflow.
+
+Mitigation: Enable the skill only where language tutoring is an expected behavior, and ask users to clarify intent when a request could be either casual translation or structured instruction.
+
+Risk: Language, pronunciation, exam-prep, and cultural guidance may be incomplete or overgeneralized, especially for dialects, minority languages, or formal assessments.
+
+Mitigation: Use the tutor for practice and drafting support, and verify high-stakes translations, exam claims, or culturally sensitive guidance with authoritative language resources or a qualified speaker.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chipagosfinest/skills/language-learning)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown tutoring responses with target-language text, transliteration, English translation, pronunciation notes, quizzes, and practice prompts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces conversational educational content; no files, shell commands, credentials, or external actions are required by the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

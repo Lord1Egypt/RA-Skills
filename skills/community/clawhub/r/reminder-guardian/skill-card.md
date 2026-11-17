@@ -1,42 +1,52 @@
-## Description: <br>
-Helps users remember things by keeping a list of reminders, creating scheduled-job blueprints, and tracking which reminders are done. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps you remember things by keeping a list of reminders, creating the scheduled jobs to alert you, and tracking which ones are done.
 
-## Publisher: <br>
-[a-suraj-bhatti](https://clawhub.ai/user/a-suraj-bhatti) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[a-suraj-bhatti](https://clawhub.ai/user/a-suraj-bhatti)
 
-## Use Case: <br>
-Employees, external users, and developers can use this skill to log reminder requests, generate human-reviewed OpenClaw cron blueprints, and keep reminder status records current. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The script computes the time-helper path incorrectly and may execute Python code outside the reviewed skill package. <br>
-Mitigation: Review or fix the time-helper path before installing or running the skill. <br>
-Risk: Reminder text and notes are stored in a local reminder log and may contain sensitive information. <br>
-Mitigation: Avoid putting secrets in reminder text and remove reminder log entries when they are no longer needed. <br>
-Risk: Cron blueprints can create scheduled jobs if copied into OpenClaw without review. <br>
-Mitigation: Inspect the generated cron blueprint before adding it and remove scheduled jobs when they are no longer needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/a-suraj-bhatti/reminder-guardian) <br>
-- [Skill documentation](artifact/skill.md) <br>
+## Use Case:
 
+External users and developers use this skill to log reminder requests, produce a ready-to-run OpenClaw cron blueprint, and track reminder status after scheduling or delivery.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style instructions with shell commands and JSON cron blueprints] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a local reminder log and prints cron blueprints that must be reviewed and added manually with openclaw cron add.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server evidence release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Reminder messages and notes may contain private information because they are saved to a local JSON file.
+
+Mitigation: Review the log path and file permissions before use, and avoid storing sensitive reminder text unless the local environment is appropriate.
+
+Risk: Reminders will not run until a user manually creates the OpenClaw cron job from the printed blueprint.
+
+Mitigation: After adding a reminder, review the blueprint, create the cron job with openclaw cron add, and mark the reminder as scheduled only after the job exists.
+
+## Reference(s):
+
+- [Reminder Guardian on ClawHub](https://clawhub.ai/a-suraj-bhatti/skills/reminder-guardian)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Text and JSON cron blueprints with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reminder entries are stored in a local JSON log; cron jobs are not created automatically.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

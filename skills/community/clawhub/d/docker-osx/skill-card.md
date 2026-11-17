@@ -1,42 +1,69 @@
-## Description: <br>
-Run macOS in Docker on a Linux host with Docker and KVM so developers can access a macOS environment for iOS builds and macOS-only software. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run macOS in Docker on Linux with KVM for iOS app builds and macOS-only software workflows.
 
-## Publisher: <br>
-[NightVibes3](https://clawhub.ai/user/NightVibes3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nightvibes3](https://clawhub.ai/user/nightvibes3)
 
-## Use Case: <br>
-Developers and engineers use this skill to start, stop, inspect, and connect to a Docker-OSX macOS VM on Linux for iOS build workflows or macOS-only tools. It is intended for hosts with Docker, KVM, and sufficient CPU, memory, and disk resources. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose SSH and VNC access to a privileged macOS VM. <br>
-Mitigation: Run it only on a trusted Linux host, bind SSH and VNC to localhost or firewall them, and change the default password immediately. <br>
-Risk: Docker and KVM access can affect host security boundaries. <br>
-Mitigation: Review the Docker-OSX image source and use the skill only where Docker and KVM risks are acceptable. <br>
-Risk: Stopping or restarting the VM may remove unpersisted VM state. <br>
-Mitigation: Back up or persist important VM work before stopping or recreating the container. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Docker-OSX project homepage](https://github.com/sickcodes/Docker-OSX) <br>
-- [ClawHub release page](https://clawhub.ai/NightVibes3/docker-osx) <br>
+## Use Case:
 
+Developers and engineers use this skill to start, stop, inspect, and connect to a Docker-hosted macOS VM on Linux hosts with KVM support, especially for iOS build and macOS-only software workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON responses with status text, connection commands, and troubleshooting details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include SSH/VNC connection details, a default password, Docker status, and recent container logs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Starts a high-trust macOS VM container with Docker and KVM access.
+
+Mitigation: Install only on a dedicated, trusted Linux host where Docker and KVM use are acceptable.
+
+Risk: SSH and VNC can expose access to the VM if reachable from untrusted networks.
+
+Mitigation: Bind SSH and VNC to localhost or restrict access with firewall rules.
+
+Risk: Uses weak default VM credentials.
+
+Mitigation: Change or disable the default password before use.
+
+Risk: The Docker image reference is not pinned to a reviewed digest.
+
+Mitigation: Prefer a reviewed and pinned Docker-OSX image digest.
+
+Risk: The Docker install shortcut uses a curl-to-shell pattern.
+
+Mitigation: Avoid the curl-to-shell Docker install shortcut and use a reviewed installation path.
+
+Risk: Stopping the VM removes the container rather than only pausing it.
+
+Mitigation: Treat the stop command as container removal and preserve needed state outside the container.
+
+## Reference(s):
+
+- [Docker-OSX project](https://github.com/sickcodes/Docker-OSX)
+- [ClawHub skill page](https://clawhub.ai/nightvibes3/skills/docker-osx)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON-style command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Docker and KVM; exposes SSH and VNC connection details for the VM.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

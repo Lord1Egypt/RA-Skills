@@ -1,49 +1,64 @@
-## Description: <br>
-GUI Agent automates desktop interfaces through visual detection for clicking, typing, reading content, navigating menus, and filling forms on macOS and Linux. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GUI automation via visual detection for clicking, typing, reading content, navigating menus, and filling forms through a screenshot, detect, and act workflow that supports macOS and Linux.
 
-## Publisher: <br>
-[alfredjamesli](https://clawhub.ai/user/alfredjamesli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alfredjamesli](https://clawhub.ai/user/alfredjamesli)
 
-## Use Case: <br>
-Developers and automation users use GUI Agent to let an OpenClaw agent observe a desktop screen, learn reusable UI components, execute GUI actions, verify changes, and record visual memory for later workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad screen capture, keyboard, accessibility, and remote-VM control can expose or modify sensitive desktop state. <br>
-Mitigation: Run the skill in a dedicated VM or non-sensitive desktop session and grant permissions only when that level of control is acceptable. <br>
-Risk: Visual memory may store screenshots, cropped UI components, contact names, messages, or business data. <br>
-Mitigation: Avoid using the skill on sensitive content and periodically review or delete local memory, screenshot, component, and report files. <br>
-Risk: Remote VM endpoints can expand the execution surface if pointed at an untrusted or overly broad service. <br>
-Mitigation: Review and restrict remote endpoints before use, and prefer isolated VM targets with limited privileges. <br>
-Risk: Tasks involving account settings, deletion, messages, passwords, or business data can have high user impact. <br>
-Mitigation: Require explicit human review before irreversible actions, credential handling, message sending, or account changes. <br>
+## Use Case:
 
+Developers and agents use GUI Agent to operate desktop and browser interfaces in OpenClaw by observing screenshots, detecting UI elements, taking actions, verifying results, and saving visual memory for repeated workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alfredjamesli/gui-claw) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Core Principles](artifact/docs/core.md) <br>
-- [OSWorld benchmark notes](artifact/benchmarks/osworld/README.md) <br>
-- [OpenClaw runtime](https://github.com/openclaw/openclaw) <br>
-- [Salesforce GPA-GUI-Detector](https://huggingface.co/Salesforce/GPA-GUI-Detector) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands, Python snippets, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce GUI action commands plus local visual memory and task report files through the agent runtime.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can control the desktop and capture screenshots, which may expose sensitive applications or documents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in trusted sessions, avoid sensitive screens, and disable or regularly delete visual memory when handling private content.
+
+Risk: Remote GUI control can be unsafe when pointed at arbitrary HTTP endpoints.
+
+Mitigation: Use remote mode only with trusted, isolated virtual machines or endpoints that you control.
+
+Risk: Security evidence calls out command-injection paths through shell=True and remote python3 -c usage.
+
+Mitigation: Review and harden those execution paths before passing untrusted task parameters to the skill.
+
+Risk: Setup installs latest packages and model artifacts without pinned hashes.
+
+Mitigation: Pin and review dependencies or install in an isolated environment before operational use.
+
+## Reference(s):
+
+- [ClawHub GUI Agent release page](https://clawhub.ai/alfredjamesli/skills/gui-claw)
+- [GPA-GUI-Detector model](https://huggingface.co/Salesforce/GPA-GUI-Detector)
+- [Core principles](docs/core.md)
+- [OSWorld benchmark notes](benchmarks/osworld/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include GUI action commands, detected UI targets, setup steps, verification guidance, and local visual-memory workflow notes.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

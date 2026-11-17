@@ -1,40 +1,50 @@
-## Description: <br>
-Write clear, credible, conversion-focused copy for Mobazha store pages, including storefront profiles, About sections, banners, campaigns, email copy, and social copy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps write and refine clear, credible, conversion-focused copy for Mobazha store profiles, storefront banners, landing pages, campaigns, email, and social posts.
 
-## Publisher: <br>
-[fengzie](https://clawhub.ai/user/fengzie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fengzie](https://clawhub.ai/user/fengzie)
 
-## Use Case: <br>
-External store owners and operators use this skill to draft or improve store-level Mobazha marketing copy, including profile text, storefront banners, collection pages, and campaigns. The skill guides the agent through context gathering, a confirmed copy brief, structured copy delivery, headline and CTA alternatives, and annotations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated store copy could include unsupported claims, testimonials, guarantees, or exaggerated certainty if the user has not supplied proof. <br>
-Mitigation: Confirm the copy brief before writing, mark missing facts as placeholders, and review all copy before publishing. <br>
-Risk: Store copy may be used with separate store-management or publishing tools that can change live profile data. <br>
-Mitigation: Review any separate publishing tool before granting account access, and do not provide secrets to this skill. <br>
+## Use Case:
 
+External Mobazha store owners and operators use this skill to create or improve store-level marketing copy, including store profiles, About sections, banners, campaign pages, and linked email or social copy. The skill gathers context, confirms a copy brief, and then returns structured copy with headline and CTA alternatives.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fengzie/mobazha-store-copywriting) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with labeled copy sections, alternatives, rationales, and annotations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a confirmed brief, headline and CTA alternatives, body copy, assumptions, placeholders for missing facts, and review guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Generated marketing copy could include incorrect or unsupported claims about proof, escrow, payment methods, ratings, guarantees, or delivery promises.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated copy against store evidence before publication and replace unsupported claims with verified facts or marked placeholders.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fengzie/skills/mobazha-store-copywriting)
+- [Publisher Profile](https://clawhub.ai/user/fengzie)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown copy sections with alternatives, rationales, annotations, and marked placeholders]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a confirmed copy brief before drafting; emphasizes review of claims, proof, guarantees, payment methods, and delivery promises.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

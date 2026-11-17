@@ -1,41 +1,56 @@
-## Description: <br>
-Modifies FIT files so their device manufacturer and Garmin product IDs are recognized as Garmin Edge 500 China files by Garmin Connect. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Modify FIT ride files so their device identifiers report Garmin manufacturer 1 and Garmin Edge 500 China product ID 1030 for Garmin Connect recognition.
 
-## Publisher: <br>
-[CKboss](https://clawhub.ai/user/CKboss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ckboss](https://clawhub.ai/user/ckboss)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and cycling data users use this skill to run a local Python workflow that creates modified copies of FIT files for Garmin Connect compatibility while preserving the original files.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated FIT files can be corrupted by simple binary editing or invalid field replacement.
+
+Mitigation: Run the script on copies, keep backups of original FIT files, and validate generated files before relying on or uploading them.
+
+Risk: Existing _GM.fit outputs may be overwritten when the same input path is processed again.
+
+Mitigation: Avoid running the script in directories where existing _GM.fit files must be preserved, or move generated files before reprocessing.
+
+Risk: The script depends on the local Python environment and the fitparse package.
+
+Mitigation: Use a virtual environment and pin or review fitparse before execution.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and technically comfortable users can run this local Python utility to convert third-party cycling FIT activity files into Garmin Edge 500 China device identity format for Garmin Connect recognition. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, shell commands, code, files]
 
-## Known Risks and Mitigations: <br>
-Risk: The utility runs local Python code over personal FIT activity files. <br>
-Mitigation: Install fitparse from a trusted Python environment, pass a specific file or directory, keep originals, and inspect generated _GM.fit files before uploading or sharing them. <br>
-Risk: The utility changes device identity fields in copied activity files. <br>
-Mitigation: Use it only when Garmin Edge 500 China identity is intended and verify Garmin Connect behavior on the generated copy before wider use. <br>
+**Output Format:** [Markdown guidance with shell commands and Python script usage]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CKboss/fit-device-id-modifier) <br>
-- [Publisher profile](https://clawhub.ai/user/CKboss) <br>
+**Other Properties Related to Output:** [Produces modified FIT files with a _GM.fit suffix and leaves source FIT files unchanged.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance, files] <br>
-**Output Format:** [Markdown guidance with Python command examples; execution creates modified FIT file copies.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates new files with a _GM.fit suffix, preserves original FIT files, skips previously processed outputs, and recalculates FIT CRC values.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

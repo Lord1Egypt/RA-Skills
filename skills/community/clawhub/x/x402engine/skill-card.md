@@ -1,48 +1,62 @@
-## Description: <br>
-Pay-per-call API gateway skill that calls paid APIs for LLMs, image and video generation, travel, crypto, web search, and similar tasks through x402 micropayments with a local policy engine for spend controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pay-per-call API gateway skill that calls paid APIs for LLMs, image and video generation, travel, crypto, web search, code execution, audio, storage, and wallet data via x402 micropayments.
 
-## Publisher: <br>
-[agentc22](https://clawhub.ai/user/agentc22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[agentc22](https://clawhub.ai/user/agentc22)
 
-## Use Case: <br>
-Developers and agent builders use this skill to route natural-language requests to paid external APIs while returning results and cost information to the agent. It is intended for workflows where a configured wallet may spend small amounts on API calls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically spend from a funded wallet when broad everyday requests are routed to paid APIs. <br>
-Mitigation: Use a dedicated low-balance wallet and require user confirmation that shows the selected service and estimated cost before paid calls. <br>
-Risk: Without a configured policy file, spending limits are not enforced beyond the wallet balance. <br>
-Mitigation: Set X402_POLICY_PATH to a strict policy with per-transaction caps, daily caps, rate limits, and recipient allowlists before use. <br>
-Risk: Disabling autopreflight can bypass policy checks before payment signing. <br>
-Mitigation: Keep X402_AUTOPREFLIGHT enabled and treat policy limits as authoritative. <br>
-Risk: The EVM private key signs payment transactions. <br>
-Mitigation: Store only a dedicated wallet key in EVM_PRIVATE_KEY or EVM_PRIVATE_KEY_FILE and never use a primary wallet. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agentc22/x402engine) <br>
-- [Publisher profile](https://clawhub.ai/user/agentc22) <br>
-- [x402engine homepage](https://x402engine.app) <br>
-- [x402 service catalog](https://x402engine.app/.well-known/x402.json) <br>
-- [README](artifact/README.md) <br>
-- [Policy example](artifact/POLICY.example.json) <br>
+## Use Case:
 
+Developers and agents use this skill to route natural-language requests to paid x402 API services while signing micropayments from a configured wallet. It is suited to service access workflows where the agent must present results with payment cost and respect configured spend policy controls.
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Natural-language responses with structured service result data and cost context] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include paid API result data, selected service metadata, and wallet or policy error reason codes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.2 (source: SKILL.md frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can spend real wallet funds through x402 payments.
+
+Mitigation: Use a dedicated wallet with minimal funds and require the agent to show cost and destination before any paid call.
+
+Risk: Spend protections may be weak if no policy file is configured.
+
+Mitigation: Configure X402_POLICY_PATH with strict per-transaction caps, daily caps, and recipient allowlists before enabling paid access.
+
+Risk: The discovery catalog controls available services and payment recipients.
+
+Mitigation: Verify the discovery endpoint and catalog recipients, or use a trusted self-hosted catalog through X402_DISCOVERY_URL.
+
+Risk: Disabling autopreflight can bypass local policy checks before signing payments.
+
+Mitigation: Keep X402_AUTOPREFLIGHT enabled unless a separate reviewed control provides equivalent preflight enforcement.
+
+## Reference(s):
+
+- [X402engine homepage](https://x402engine.app)
+- [X402engine service catalog](https://x402engine.app/.well-known/x402.json)
+- [ClawHub skill page](https://clawhub.ai/agentc22/skills/x402engine)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or structured JSON returned from paid API calls, with natural-language summaries and cost disclosure.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute paid network requests through x402 and return service metadata including service id, name, and price.]
+
+## Skill Version(s):
+
+1.3.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

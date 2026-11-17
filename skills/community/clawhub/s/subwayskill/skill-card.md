@@ -1,45 +1,60 @@
-## Description: <br>
-Fetches NYC subway departure times for all subway lines using MTA realtime feeds with scheduled fallback for future times. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch NYC subway departure times for subway, commute, next-train, and NYC transit schedule questions across NYC subway and SIR lines.
 
-## Publisher: <br>
-[nyluke](https://clawhub.ai/user/nyluke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nyluke](https://clawhub.ai/user/nyluke)
 
-## Use Case: <br>
-External users, developers, and transit-focused agents use this skill to answer questions about NYC subway departures, commute timing, next trains, station matches, direction filters, and future scheduled service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts MTA data services to retrieve realtime and schedule data. <br>
-Mitigation: Run it in an environment where outbound access to public MTA endpoints is permitted and expected. <br>
-Risk: The skill stores downloaded schedule data in a local cache. <br>
-Mitigation: Review local cache policy for the runtime environment and clear ~/.cache/subwayskill if cached transit data should not persist. <br>
-Risk: Transit predictions and scheduled fallbacks can be stale, delayed, or unavailable depending on MTA feed status. <br>
-Mitigation: Treat outputs as trip-planning guidance and verify time-sensitive travel decisions with an authoritative transit source when necessary. <br>
+## Use Case:
 
+External users and agent operators use this skill to answer NYC subway departure questions by running the subwayskill CLI for default or requested stations, lines, directions, and times.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nyluke/subwayskill) <br>
-- [Publisher Profile](https://clawhub.ai/user/nyluke) <br>
-- [SubwaySkill GitHub Repository](https://github.com/nyluke/subwayskill) <br>
-- [MTA Data API](https://api.mta.info/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Plain text transit summaries or structured JSON from the subwayskill CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include station names, routes, directions, departure times, source labels, and station suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Installation uses a mutable upstream Go module reference.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install from a pinned, reviewed version or checksum-backed release instead of an unpinned latest reference.
+
+Risk: The CLI makes outbound requests to MTA-related endpoints and downloads schedule data.
+
+Mitigation: Run the skill only where those network calls are expected, and consider endpoint allowlisting for automated environments.
+
+Risk: The CLI writes GTFS cache files under the user's cache directory.
+
+Mitigation: Run with normal user privileges and resource limits, and monitor or clear `~/.cache/subwayskill/` where cache persistence matters.
+
+## Reference(s):
+
+- [ClawHub SubwaySkill listing](https://clawhub.ai/nyluke/skills/subwayskill)
+- [Publisher profile](https://clawhub.ai/user/nyluke)
+- [Skill homepage](https://github.com/nyluke/subwayskill)
+- [MTA static GTFS API](https://api.mta.info/)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Plain text subway departure summaries or structured JSON from the subwayskill CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results may include realtime or scheduled source labels, station names, routes, directions, departure times, and minutes away.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

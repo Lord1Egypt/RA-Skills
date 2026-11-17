@@ -1,0 +1,9 @@
+[1,2,{"progname":"ncdu","progver":"1.19","timestamp":1790156510},
+[{"name":"examples/sample-data","asize":4096,"dsize":4096,"dev":66306},
+[{"name":"backup","asize":4096,"dsize":4096},
+[{"name":"models","asize":4096,"dsize":4096},
+{"name":"model.gguf","asize":100000,"dsize":102400}]],
+[{"name":"models","asize":4096,"dsize":4096},
+{"name":"model.gguf","asize":100000,"dsize":102400}],
+[{"name":"downloads","asize":4096,"dsize":4096},
+{"name":"pack.bin.part","asize":900000,"dsize":901120}]]]

@@ -1,40 +1,56 @@
-## Description: <br>
-Organize a photo folder by cleaning non-photo files, removing bad exposures, detecting blur and burst shots, and classifying photos into numbered subfolders using AI vision analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organize a photo folder by cleaning non-photo files, removing bad exposures, detecting blur and burst shots, and classifying photos into numbered subfolders using AI vision analysis.
 
-## Publisher: <br>
-[lemondepat](https://clawhub.ai/user/lemondepat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[lemondepat](https://clawhub.ai/user/lemondepat)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to organize a single photo folder by separating non-photo files, identifying low-quality images, grouping burst shots, and sorting remaining photos into numbered categories. It is suited for guided cleanup workflows where the user reviews proposed file moves or deletions before they are applied.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Automatic installation of unpinned Python packages can introduce unexpected dependency changes.
+
+Mitigation: Use an isolated virtual environment with pinned dependencies and avoid the automatic pip-install snippets.
+
+Risk: Predictable /tmp analysis files can influence later file move or deletion steps.
+
+Mitigation: Review generated analysis files and verify the exact photo paths before approving cleanup actions.
+
+Risk: Photo cleanup can permanently delete user files if deletion options are approved incorrectly.
+
+Mitigation: Prefer moving rejected photos into review folders over permanent deletion.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users use this skill to organize a selected photo folder by separating non-photo files, reviewing poor exposures, detecting blur and burst groups, and sorting photos into numbered content categories. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can move or delete photos and other files in the selected folder. <br>
-Mitigation: Use a backed-up copy first, review all proposed changes, and prefer move-to-review options instead of deletion when possible. <br>
-Risk: The skill may install Python image-processing packages if dependencies are missing. <br>
-Mitigation: Preinstall the listed packages in a virtual environment before running the skill. <br>
+**Output Format:** [Markdown guidance with shell commands, Python snippets, summary tables, and JSON analysis artifacts]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lemondepat/organise-photos) <br>
+**Other Properties Related to Output:** [May propose local file moves or deletions after user confirmation; Python analysis writes /tmp/photo_analysis.json.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell and Python code blocks, summaries, and confirmation prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May move or delete files in the selected folder after user confirmation; supports language-matched folder names.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

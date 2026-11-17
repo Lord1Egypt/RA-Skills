@@ -1,0 +1,4 @@
+interface:
+  display_name: "Clone a section"
+  short_description: "Rebuild any section of a live site as Tailwind, React, Vue or HTML"
+  brand_color: "#6366F1"

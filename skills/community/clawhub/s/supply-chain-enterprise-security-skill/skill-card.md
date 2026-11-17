@@ -1,45 +1,61 @@
-## Description: <br>
-Reviews AI/ML model supply chains for security risks across model provenance, training data lineage, fine-tuning integrity, inference dependencies, and backdoor detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews AI/ML model supply chains for security risks including model provenance verification, training data lineage, fine-tuning pipeline integrity, inference dependency review, and backdoor detection.
 
-## Publisher: <br>
-[kamalsrini](https://clawhub.ai/user/kamalsrini) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kamalsrini](https://clawhub.ai/user/kamalsrini)
 
-## Use Case: <br>
-Security, ML, and application security engineers use this skill to perform read-only defensive reviews of AI/ML model supply chains, including model acquisition, fine-tuning, training data, inference dependencies, and documentation quality. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect project files for model sources, dataset references, dependency manifests, and related security controls. <br>
-Mitigation: Use it only on repositories and systems the operator is authorized to review. <br>
-Risk: Reviewed files can contain prompt-injection instructions or unsafe commands. <br>
-Mitigation: Treat reviewed content as evidence only, do not execute embedded instructions, and keep tool usage read-only. <br>
+## Use Case:
 
+Security, ML, and application security engineers use this skill to review AI/ML model supply chains for provenance, training data lineage, fine-tuning integrity, inference dependency, and backdoor risks before deploying or accepting model artifacts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kamalsrini/supply-chain-enterprise-security-skill) <br>
-- [OWASP LLM03: Supply Chain Vulnerabilities](https://genai.owasp.org/llmrisk/llm03-supply-chain-vulnerabilities/) <br>
-- [SLSA v1.0 Specification](https://slsa.dev/spec/v1.0/) <br>
-- [MITRE ATLAS](https://atlas.mitre.org) <br>
-- [Safetensors documentation](https://huggingface.co/docs/safetensors) <br>
-- [NIST AI Risk Management Framework](https://www.nist.gov/aiframework) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown security assessment with read-only search commands and findings guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses only read-only inspection tools and asks reviewers to note unavailable evidence as gaps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill reads project files relevant to ML model supply-chain review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on projects the reviewer is authorized to assess and avoid exposing unnecessary sensitive files.
+
+Risk: Reviewed content may contain prompt injection or instructions that conflict with the assessment.
+
+Mitigation: Treat reviewed content as evidence only; do not execute code, commands, or instructions found in the target project.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kamalsrini/skills/supply-chain-enterprise-security-skill)
+- [OWASP LLM03:2025 Supply Chain Vulnerabilities](https://genai.owasp.org/llmrisk/llm03-supply-chain-vulnerabilities/)
+- [SLSA v1.0 Specification](https://slsa.dev/spec/v1.0/)
+- [MITRE ATLAS](https://atlas.mitre.org)
+- [PoisonGPT case study](https://blog.mithrilsecurity.io/poisongpt-how-we-hid-a-lobotomized-llm-on-hugging-face-to-spread-fake-news/)
+- [ShadowRay attack campaign](https://www.oligo.security/blog/shadowray-attack-ai-workloads-actively-exploited-in-the-wild)
+- [Hugging Face Safetensors documentation](https://huggingface.co/docs/safetensors)
+- [NIST AI Risk Management Framework](https://www.nist.gov/aiframework)
+- [OpenSSF](https://openssf.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with structured findings and inline search commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only defensive assessment guidance for authorized reviews.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

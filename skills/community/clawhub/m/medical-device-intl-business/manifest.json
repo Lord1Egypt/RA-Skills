@@ -1,0 +1,44 @@
+{
+  "schema": "ownership-attestation/1.0",
+  "package": "medical-device-intl-business",
+  "version": "1.0.1",
+  "author": "注册老炮@MedXpert",
+  "year": "2026",
+  "timestamp_utc": "2026-08-31T09:28:33.021113+00:00",
+  "timestamp_local": "2026-08-31T17:28:33.021122",
+  "package_fingerprint_sha256": "352d7c83b0b71dcdc513df09a04e5e855ee6ade393a2c63cfce1cdf42d081403",
+  "files": [
+    {
+      "path": "LICENSE.md",
+      "sha256": "5416746360f13e79761cd77b2a7655ff5446803e513f206e31e93a7abd3091ac"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "0306bf5fa5251ce1f7051b4634001500755325408f36d2b7b74bbfe1e18a8697"
+    },
+    {
+      "path": "references/出海战略与市场选择.md",
+      "sha256": "b8b6f6e1450bb1a0d73ffe4c3b15f1e9bd0c35cdb0038abedfe9c5e9917feaaf"
+    },
+    {
+      "path": "references/国际业务全景与市场准入分层.md",
+      "sha256": "e3162625d449686aad8cc74a16c329f36574572ba1f2ee5695bc157fe455b938"
+    },
+    {
+      "path": "references/国际合规与贸易.md",
+      "sha256": "cd25c9ca79b55e042f1f07a76049cea5347a8a9fc196a971d2006548a736de09"
+    },
+    {
+      "path": "references/国际商务与渠道管理.md",
+      "sha256": "845da4c1ae169821c7c05304fd0fc122167601c8898196ae7af54155e92ba094"
+    },
+    {
+      "path": "security-radar.svg",
+      "sha256": "fd0acdd918f938ee56f9037b07cbeb4696da4d5fc0641c3a384271e1f3bb64a5"
+    },
+    {
+      "path": "security_results.json",
+      "sha256": "27929254caa6cac4386a4287fe4851cb28120599f02387291c99f27a5c0b0749"
+    }
+  ]
+}

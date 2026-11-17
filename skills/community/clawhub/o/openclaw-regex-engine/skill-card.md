@@ -1,43 +1,59 @@
-## Description: <br>
-OpenClaw Regex Engine helps agents test, explain, build, browse, and replace JavaScript-compatible regular expressions through a disclosed remote MCP service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Regex Engine gives agents MCP tools to test regex patterns, explain them in plain English, build patterns from natural-language descriptions, browse curated examples, and perform regex find-and-replace.
 
-## Publisher: <br>
-[yedanyagamiai-cmd](https://clawhub.ai/user/yedanyagamiai-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yedanyagamiai-cmd](https://clawhub.ai/user/yedanyagamiai-cmd)
 
-## Use Case: <br>
-Developers and external agent users use this skill to test, explain, generate, browse, and apply regex patterns for code, validation, and text transformation workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Regex patterns and sample text are sent to the disclosed remote MCP service for processing. <br>
-Mitigation: Avoid sending secrets, tokens, customer records, or private production documents unless the provider and its privacy claims are trusted. <br>
-Risk: Complex or poorly designed regex patterns can cause slow matching or timeouts. <br>
-Mitigation: Review generated patterns, test with representative positive and negative inputs, and avoid catastrophic backtracking patterns. <br>
-Risk: Regex-based checks can be misleading if treated as complete security validation. <br>
-Mitigation: Use regex for format checks and pair it with application-side validation for security-sensitive workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw Regex Engine on ClawHub](https://clawhub.ai/yedanyagamiai-cmd/openclaw-regex-engine) <br>
-- [OpenClaw MCP servers homepage](https://github.com/yedanyagamiai-cmd/openclaw-mcp-servers) <br>
-- [Regex Engine MCP endpoint](https://regex-engine-mcp.yagami8095.workers.dev/mcp) <br>
+## Use Case:
 
+Developers and agent users use this skill when they need to test, explain, generate, browse, or apply JavaScript-compatible regular expressions through a remote MCP service.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance and JSON-like tool results containing regex patterns, matches, explanations, test cases, and replacement previews] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated or transformed regular expressions, capture group details, named groups, flags, and before/after replacement previews.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: User regex patterns and sample text can be sent to an external MCP service.
+
+Mitigation: Use the skill only with content suitable for external processing, and avoid secrets, credentials, regulated personal data, proprietary code, and confidential documents.
+
+Risk: The skill privacy wording may understate external disclosure because processing happens through a remote service.
+
+Mitigation: Prefer explicit confirmation before invoking regex tools on pasted or sensitive-looking content.
+
+Risk: Regexes generated or selected by the skill may be incomplete for security validation or complex parsing.
+
+Mitigation: Treat generated patterns as implementation aids, test them against positive and negative examples, and combine format checks with application-side validation.
+
+## Reference(s):
+
+- [OpenClaw Regex Engine on ClawHub](https://clawhub.ai/yedanyagamiai-cmd/skills/openclaw-regex-engine)
+- [Publisher profile](https://clawhub.ai/user/yedanyagamiai-cmd)
+- [OpenClaw homepage](https://github.com/yedanyagamiai-cmd/openclaw-mcp-servers)
+- [Regex Engine MCP endpoint](https://regex-engine-mcp.yagami8095.workers.dev/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON tool results and regex code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tool calls may send pattern and input text to a remote MCP service; avoid secrets and regulated or confidential data.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

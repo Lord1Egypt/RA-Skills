@@ -1,40 +1,53 @@
-## Description: <br>
-Helps users discover market gaps, validate product ideas, and decide what website or WeChat Mini Program to build. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users discover, validate, and score monetizable product opportunities for websites or WeChat Mini Programs through structured market and competitor research.
 
-## Publisher: <br>
-[qiu-difeng](https://clawhub.ai/user/qiu-difeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiu-difeng](https://clawhub.ai/user/qiu-difeng)
 
-## Use Case: <br>
-External builders and developers use this skill to research candidate product categories, validate demand and monetization, compare competitor weaknesses, and select promising website or WeChat Mini Program opportunities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market research outputs may be incomplete, stale, or misleading. <br>
-Mitigation: Review cited search and page-fetch evidence before committing time or money to a product opportunity. <br>
-Risk: The workflow relies on web search and page fetching for market and competitor research. <br>
-Mitigation: Installers should expect external research activity and review outputs before making business decisions. <br>
+## Use Case:
 
+External founders, indie builders, and product teams use this skill to identify promising website or WeChat Mini Program opportunities, validate demand, compare competitor weaknesses, and decide whether to proceed.
 
-## Reference(s): <br>
-- [Opportunity Finder on ClawHub](https://clawhub.ai/qiu-difeng/opportunity-finder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance] <br>
-**Output Format:** [Markdown opportunity report with scored tables and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses web search and page fetching to gather market and competitor evidence; users should review outputs before making business decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+Risk: Broad product-ideation prompts may activate the skill and rely on web research that can be incomplete or outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm demand, pricing, and competitor findings with current primary sources before making product or investment decisions.
+
+Risk: The scoring workflow is heuristic and can overstate confidence in a market opportunity.
+
+Mitigation: Use the report as an initial screening artifact, then run focused competitor analysis and user validation before committing.
+
+## Reference(s):
+
+- [Opportunity Finder ClawHub Skill Page](https://clawhub.ai/qiu-difeng/skills/opportunity-finder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown opportunity report with scored categories and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses web research signals; no executable artifacts are produced.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

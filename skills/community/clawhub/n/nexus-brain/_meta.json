@@ -1,6 +1,16 @@
 {
-  "ownerId": "kn7bh2rt7ccj6br85c8e29pf6n81b8bf",
-  "slug": "nexus-brain",
-  "version": "0.1.1",
-  "publishedAt": 1771901563217
+  "name": "nexus-orchestrator",
+  "description": "AI-Driven SRE Orchestrator. Connects local diagnostics with AI reasoning for logical self-healing and log analysis.",
+  "version": "1.1.0",
+  "author": "mrnsmh",
+  "entrypoint": "SKILL.md",
+  "requirements": {
+    "binaries": ["docker", "pm2", "opencode"],
+    "pythonPackages": ["psutil"]
+  },
+  "permissions": {
+    "filesystem": ["read", "write:~/.nexus-safe/"],
+    "network": ["outbound:opencode.ai"],
+    "commands": ["docker", "pm2", "opencode"]
+  }
 }

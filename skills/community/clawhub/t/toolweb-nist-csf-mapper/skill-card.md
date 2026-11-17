@@ -1,42 +1,52 @@
-## Description: <br>
-Maps an organization's security controls and tooling to NIST CSF 2.0 and returns coverage scores, gap analysis, maturity tier rating, regulatory crosswalks, and a prioritized improvement roadmap. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maps an organization's security controls and tools to NIST CSF 2.0 and produces coverage scoring, gap analysis, maturity tiering, regulatory crosswalks, and a prioritized improvement roadmap.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Security and compliance practitioners use this skill to map an organization's current controls and security tools to NIST CSF 2.0, identify coverage gaps, and generate a prioritized improvement roadmap. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends security-posture details and an API key to a third-party compliance API. <br>
-Mitigation: Verify ToolWeb.in's privacy and retention terms, use a dedicated API key, avoid hardcoding or logging the key, and redact sensitive details before use. <br>
+## Use Case:
 
+Security, compliance, and risk practitioners use this skill to map current controls and security tools to NIST CSF 2.0, identify coverage gaps, and prioritize remediation work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-nist-csf-mapper) <br>
-- [ToolWeb NIST CSF Mapper API](https://portal.toolweb.in/apis/compliance/nist-csf-mapper) <br>
-- [ToolWeb](https://toolweb.in) <br>
-- [ToolWeb Portal](https://portal.toolweb.in) <br>
-- [ToolWeb MCP Server](https://hub.toolweb.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON request and response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires organization profile, current tools, control posture flags, regulatory requirements, and an API key for ToolWeb's third-party API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requests sensitive details about security tooling, control gaps, incident response, continuity, encryption, and regulatory obligations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only information the user is authorized to share with ToolWeb.in, and review the provider's privacy, retention, and deletion terms before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-nist-csf-mapper)
+- [ToolWeb NIST CSF Mapper API](https://portal.toolweb.in/apis/compliance/nist-csf-mapper)
+- [ToolWeb](https://toolweb.in)
+- [ToolWeb MCP Server](https://hub.toolweb.in)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance]
+
+**Output Format:** [JSON-style assessment output with coverage scores, gap maps, tool mappings, regulatory crosswalks, and roadmap guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires organization security posture inputs and ToolWeb API authentication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

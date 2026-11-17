@@ -1,40 +1,54 @@
-## Description: <br>
-释空悟之家 coordinates named collaborators and subagents under a shared role, scheduling, and communication protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+释空悟之家 coordinates 彧哥, 空空, 小蜂, and partner sub-agents under a shared Chinese-language role and communication protocol.
 
-## Publisher: <br>
-[markma84](https://clawhub.ai/user/markma84) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[markma84](https://clawhub.ai/user/markma84)
 
-## Use Case: <br>
-Users who work with this agent setup use the skill to keep named roles aligned on planning, architecture support, content work, message passing, and subagent coordination. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill establishes standing multi-agent coordination behavior that can spawn current or future subagents without clear user approval. <br>
-Mitigation: Use it only when subagent delegation is expected, and require explicit approval before spawning subagents or sharing task context with another agent. <br>
+## Use Case:
 
+Agents and users who want a Chinese-language coordination protocol use this skill to define roles, direct communication paths, sub-agent delegation, and conflict-resolution expectations for a small collaborative agent team.
 
-## Reference(s): <br>
-- [Skill Overview](artifact/SKILL.md) <br>
-- [Roles and Relationships](artifact/ROLES.md) <br>
-- [Scheduling and Communication Protocol](artifact/PROTOCOL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only coordination protocol; no code or generated files are produced by the skill itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks to shape every conversation through a standing role protocol, which may affect user control over delegation and communication flow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this behavior is intentional, and review the every-conversation loading rule before use.
+
+Risk: The skill defines sub-agent scheduling and role boundaries that may influence context sharing between agents.
+
+Mitigation: Confirm delegation boundaries before scheduling sub-agents, and share only the context needed for the task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/markma84/skills/iron-triangle-home)
+- [Publisher profile](https://clawhub.ai/user/markma84)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown guidance for role coordination and delegation behavior]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language role protocol; no executable code is included.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.json release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

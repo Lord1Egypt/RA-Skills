@@ -1,40 +1,53 @@
-## Description: <br>
-Investment risk scanner using Buffett and Porter's Five Forces frameworks with OCF quality, hidden liabilities, supply chain finance, valuation, and structural risk checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Investment risk scanner using Buffett and Porter's Five Forces frameworks, with checks for operating cash flow quality, hidden liabilities, supply chain finance risk, valuation, management incentives, and business model durability.
 
-## Publisher: <br>
-[gold3bear](https://clawhub.ai/user/gold3bear) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gold3bear](https://clawhub.ai/user/gold3bear)
 
-## Use Case: <br>
-External users and investment researchers use this skill to structure preliminary risk assessments for public companies, projects, and business models before making further due diligence decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce buy, watch, or avoid style investment analysis that may be mistaken for professional financial advice. <br>
-Mitigation: Use it only as a screening framework, verify market data independently, and consult qualified financial professionals before trading or investing. <br>
-Risk: Broad triggers such as valuation or stock purchase questions may invoke the framework when a narrower factual answer is needed. <br>
-Mitigation: Confirm the user's intent and scope before applying the full checklist, especially when current prices, filings, or account-specific decisions are involved. <br>
+## Use Case:
 
+External users and developers use this skill to guide investment risk reviews for companies, stocks, and business models using Buffett-style quality checks, Porter's Five Forces, OCF quality analysis, and hidden-liability screening. Its output should be treated as analytical guidance, not personalized financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gold3bear/investment-risk-scanner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown risk assessment with tables, scorecards, and concise recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; users should verify market data and treat assessments as informational, not professional financial advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence) <br>
+Risk: The skill may produce strongly opinionated investment conclusions based on case judgments that can become dated or may not cite current data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current financial statements, market data, and source assumptions independently before relying on the analysis.
+
+Risk: Users could mistake the generated investment risk assessment for personalized financial advice.
+
+Mitigation: Present outputs as educational or analytical guidance and require human review before any investment decision.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gold3bear/skills/investment-risk-scanner)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown risk assessment with tables, scorecards, and concise recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include risk labels, qualitative scores, financial metric checks, and comparison tables.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

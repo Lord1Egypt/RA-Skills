@@ -1,43 +1,59 @@
-## Description: <br>
-This skill provides semantic search over your memory files using a local vector database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill provides semantic search over your memory files using a local vector database.
 
-## Publisher: <br>
-[royhk920](https://clawhub.ai/user/royhk920) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[royhk920](https://clawhub.ai/user/royhk920)
 
-## Use Case: <br>
-Developers and OpenClaw users use Memory Pro to index local memory files and query them with semantic or hybrid search while managing a local search service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can index broad workspace memory and core files that may contain private content. <br>
-Mitigation: Set MEMORY_PRO_DATA_DIR, MEMORY_PRO_EXTRA_MD_DIRS, and MEMORY_PRO_CORE_FILES to only the content intended for indexing before running the skill. <br>
-Risk: Remote reranking can send search queries and selected memory snippets to a configured endpoint. <br>
-Mitigation: Keep remote reranking disabled unless the endpoint is trusted and the user accepts that selected content may leave the local machine. <br>
-Risk: Generated index artifacts may expose information from indexed memory files if synced or shared. <br>
-Mitigation: Store generated index files in a private local directory and avoid syncing or sharing them. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to index local memory Markdown files and retrieve relevant memories through semantic or hybrid search.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/royhk920/memory-pro) <br>
-- [Memory Pro README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and optional JSON search results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local memory paths, index artifacts, and optional reranking configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.5.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can index private memory and additional workspace Markdown directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review configured source directories before installation and set MEMORY_PRO_EXTRA_MD_DIRS to an empty value unless extra workspace Markdown should be indexed.
+
+Risk: Optional reranking can send search queries and retrieved memory snippets to a configured external provider.
+
+Mitigation: Keep MEMORY_PRO_ENABLE_RERANK disabled unless external reranking is intended, and use only trusted rerank endpoints.
+
+Risk: BM25 pickle artifacts and benchmark outputs can contain sensitive local-memory data.
+
+Mitigation: Treat BM25 artifacts and /tmp benchmark outputs as sensitive local files and avoid sharing them.
+
+## Reference(s):
+
+- [Memory Pro ClawHub page](https://clawhub.ai/royhk920/skills/memory-pro)
+- [Artifact README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration]
+
+**Output Format:** [Plain text or JSON search results, with shell commands and configuration guidance in Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search responses include ranked memory snippets and scores; hybrid mode can include debug scoring metadata.]
+
+## Skill Version(s):
+
+2.5.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,50 @@
-## Description: <br>
-Retrieves the device's current public IP address by running a Python script. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieves the local machine's current public IP address by running a Python script that queries public IP lookup services.
 
-## Publisher: <br>
-[ZhangEnsure](https://clawhub.ai/user/ZhangEnsure) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangensure](https://clawhub.ai/user/zhangensure)
 
-## Use Case: <br>
-Users and operators use this skill to check the current public IP address visible from the local machine. It is useful for network troubleshooting, connectivity checks, and confirming outbound IP identity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public IP lookup services receive the request and can observe the caller's public IP address. <br>
-Mitigation: Use only where outbound requests to public IP lookup services are acceptable, or replace the endpoints with an approved internal service. <br>
+## Use Case:
 
+Developers and end users use this skill when they need an agent to check and report the local machine's public IP address.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands] <br>
-**Output Format:** [Plain text public IP address or failure message] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs a Python 3 script that makes outbound HTTPS requests to public IP lookup services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill contacts third-party public IP lookup services to determine the machine's public IP address.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only where that outbound network contact is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangensure/skills/query-local-public-ip-address)
+- [Publisher profile](https://clawhub.ai/user/zhangensure)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text public IP output, with concise Markdown guidance when used by an agent]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3.8 or higher and outbound HTTPS access to public IP lookup services.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

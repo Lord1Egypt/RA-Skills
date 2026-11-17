@@ -1,39 +1,52 @@
-## Description: <br>
-Write Dutch that sounds human. Not formal, not robotic, not AI-generated. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write Dutch that sounds human. Not formal, not robotic, not AI-generated.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and writers use this skill to make Dutch text sound more natural, direct, and conversational. It helps avoid overly formal or AI-like phrasing by applying casual Dutch register, particles, fillers, idioms, and punctuation conventions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill defaults to a casual Dutch style that may be inappropriate for workplace, customer support, legal, medical, academic, elder-directed, or unfamiliar-recipient messages. <br>
-Mitigation: Ask explicitly for formal Dutch and u/uw wording before using the skill in formal or sensitive contexts. <br>
-Risk: Dutch and Belgian Dutch conventions can differ, and mixing them may produce unnatural wording for the intended audience. <br>
-Mitigation: Specify whether the target audience is Dutch or Belgian before asking the skill to adapt tone or expressions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/dutch) <br>
+## Use Case:
 
+Writers, translators, and agents use this skill to produce Dutch text that sounds natural, direct, and appropriately informal unless a formal register is requested.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Plain text or Markdown prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, tools, system access, or external service calls.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Dutch text may be too informal for customer-service, elderly-audience, or other formal contexts.
+
+Mitigation: Ask explicitly for formal Dutch, customer-service tone, or u-vorm when that register is required.
+
+Risk: Regional Dutch may sound inconsistent if Belgian Dutch or Netherlands Dutch is not specified.
+
+Mitigation: Specify the intended regional variant and avoid mixing Belgian and Netherlands Dutch conventions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/dutch)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Natural-language Dutch writing guidance or Dutch prose in plain text or Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, tools, persistence, credential use, or hidden data access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,62 @@
-## Description: <br>
-auto-remotion guides agents through turning existing screen recordings or product demo videos into Remotion promotional videos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through turning existing screen recordings or product demo videos into Remotion promotional videos with storyboard, edit-spec, subtitle, voiceover, BGM, and render steps.
 
-## Publisher: <br>
-[16miku](https://clawhub.ai/user/16miku) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[16miku](https://clawhub.ai/user/16miku)
 
-## Use Case: <br>
-Developers and video-producing agents use this skill to plan and implement promotional videos from existing recordings, including constraint gathering, storyboard and edit-spec creation, Remotion implementation, subtitles, voiceover, background music, and rendering. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup instructions may install npm or pip packages, including optional global or forced installs. <br>
-Mitigation: Run the workflow in a dedicated project directory, review packages before installation, and avoid global or --force installs unless they are required. <br>
-Risk: The workflow may process confidential recordings, audio, screenshots, transcripts, or filmstrip images with external transcription or AI services. <br>
-Mitigation: Obtain permission before uploading sensitive media, redact private content where possible, and use approved services for confidential material. <br>
+## Use Case:
 
+Developers, video producers, and agent users can use this skill to plan and implement promotional edits from existing recordings or demo footage. It helps structure the workflow before Remotion coding, including source clip selection, storyboard and edit-spec files, subtitle and voiceover alignment, BGM, and final rendering.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/16miku/auto-remotion) <br>
-- [Remotion documentation](https://www.remotion.dev/) <br>
-- [Remotion Skills documentation](https://www.remotion.dev/docs/ai/skills) <br>
-- [Remotion with Claude Code](https://www.remotion.dev/docs/ai/claude-code) <br>
-- [video-use project](https://github.com/browser-use/video-use) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with JSON, TypeScript, Python, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces planning artifacts such as edit scripts, storyboard JSON, edit-spec JSON, subtitle cues, voiceover scripts, and Remotion implementation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Mutable package and skill install commands can change what code or guidance is pulled into the environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution, prefer pinned package versions, and avoid --force unless necessary.
+
+Risk: Cloud transcription and TTS workflows may expose recordings, transcripts, or narration content to external services.
+
+Mitigation: Use cloud transcription or TTS only for material approved for that handling, and choose local alternatives when privacy requirements demand it.
+
+Risk: Third-party companion skills may add behavior outside this skill's reviewed workflow.
+
+Mitigation: Inspect and approve third-party skills before installing them globally or using them in a production workflow.
+
+## Reference(s):
+
+- [ClawHub auto-remotion Skill](https://clawhub.ai/16miku/auto-remotion)
+- [Remotion](https://www.remotion.dev/)
+- [Remotion + Claude Code](https://www.remotion.dev/docs/ai/claude-code)
+- [Remotion Skills](https://www.remotion.dev/docs/ai/skills)
+- [video-use](https://github.com/browser-use/video-use)
+- [remotion-video-toolkit](https://clawhub.ai/shreefentsar/remotion-video-toolkit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON, TypeScript, Python, and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce storyboard.json, edit-spec.json, subtitle-track.json, voiceover-script.json, Remotion component code, and rendering commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

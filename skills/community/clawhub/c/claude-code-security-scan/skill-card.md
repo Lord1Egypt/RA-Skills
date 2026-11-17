@@ -1,44 +1,58 @@
-## Description: <br>
-Audit Claude Code configuration for security vulnerabilities, misconfigurations, and injection risks using AgentShield across settings, MCP servers, hooks, agents, and hardcoded secrets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits Claude Code configuration for security vulnerabilities, misconfigurations, and injection risks with AgentShield.
 
-## Publisher: <br>
-[djc00p](https://clawhub.ai/user/djc00p) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djc00p](https://clawhub.ai/user/djc00p)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to audit Claude Code project configuration before setup, onboarding, commits, or periodic security hygiene reviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to run a third-party npm scanner. <br>
-Mitigation: Install only if the package is acceptable for the environment; prefer npx or a pinned package version. <br>
-Risk: Scanning the wrong path can expose or act on unintended Claude configuration files. <br>
-Mitigation: Scan only the intended Claude configuration path. <br>
-Risk: Automatic fixes or initialization can modify local configuration. <br>
-Mitigation: Review proposed changes before using --fix or init. <br>
-Risk: Optional deep analysis may send sensitive configuration context to an external model service. <br>
-Mitigation: Avoid ANTHROPIC_API_KEY deep-analysis mode for sensitive configs unless external analysis is acceptable. <br>
+## Use Case:
 
+Developers use this skill to review Claude Code project settings, MCP servers, hooks, agents, and instructions for security issues before onboarding, committing changes, or during periodic security checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/djc00p/claude-code-security-scan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and security review guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May instruct the agent to run AgentShield with optional JSON, Markdown, or HTML report formats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The scan depends on a third-party npm package whose code can change between releases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the exact pinned version project-locally, keep the lockfile, and invoke it with npx --no-install.
+
+Risk: The --fix and init commands can write changes to Claude Code configuration.
+
+Mitigation: Review a plain scan and proposed changes first, and use a version-controlled or throwaway work tree before applying changes.
+
+Risk: Optional deep analysis requires an Anthropic API key, and the data it sends should be understood before use.
+
+Mitigation: Check what the analysis transmits before enabling it and use a limited API key.
+
+## Reference(s):
+
+- [Commands, Severity Grades, and Findings](references/commands-and-findings.md)
+- [ClawHub release](https://clawhub.ai/djc00p/skills/claude-code-security-scan)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown security findings and guidance with example shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings may be emitted as text, JSON, or Markdown by the scanner.]
+
+## Skill Version(s):
+
+1.0.3 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,56 @@
-## Description: <br>
-Query Polymarket prediction markets. Check odds, find trending markets, search events, track price movements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Polymarket prediction markets, check odds, find trending markets, search events, and track price movements.
 
-## Publisher: <br>
-[xvolica](https://clawhub.ai/user/xvolica) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xvolica](https://clawhub.ai/user/xvolica)
 
-## Use Case: <br>
-External users and agents use this skill to inspect public Polymarket market data, monitor watched markets, review price movements, and maintain a local paper-trading portfolio without placing real trades. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Watched markets and simulated trades are stored locally in ~/.polymarket. <br>
-Mitigation: Review or remove the local JSON files when needed, especially on shared systems. <br>
-Risk: Cron examples can create recurring background checks for alerts or digests. <br>
-Mitigation: Add scheduled checks only intentionally and review the cron entries after setup. <br>
-Risk: Market odds and paper-trading results may be mistaken for financial advice or real trading activity. <br>
-Mitigation: Treat outputs as informational only; the skill does not perform wallet actions, blockchain transactions, or real trades. <br>
+## Use Case:
 
+External users and developers use this skill to inspect public Polymarket market data, monitor price movement, configure local watchlist alerts, and simulate paper trades without connecting a wallet or executing real trades.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xvolica/polymarket-trade-1-0-6) <br>
-- [Polymarket](https://polymarket.com) <br>
-- [Polymarket documentation](https://docs.polymarket.com) <br>
-- [Step-by-step guide](https://telegra.ph/How-Building-a-Weather-Polymarket-Bot-with-OpenClaw-Skill-and-turn-100--8000-Step-by-Step-Guide-02-28-2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style CLI text with market summaries and local JSON watchlist and portfolio files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads public Polymarket data over HTTPS and can store watchlists and simulated trades in ~/.polymarket.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact _meta.json reports package version 1.0.6) <br>
+Risk: The skill fetches public Polymarket data and can create local watchlist and paper-trading records under ~/.polymarket.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the commands before running them, keep cron alerts limited to intended markets, and inspect or remove the local JSON files when no longer needed.
+
+Risk: Users may confuse paper-trading output or market odds with real trading capability or financial advice.
+
+Mitigation: Treat results as informational market data and local simulation only; the skill does not connect wallets, use credentials, or execute real-money trades.
+
+## Reference(s):
+
+- [Polymarket](https://polymarket.com)
+- [Polymarket Docs](https://docs.polymarket.com)
+- [Public Gamma API](https://gamma-api.polymarket.com)
+- [ClawHub Skill Page](https://clawhub.ai/xvolica/skills/polymarket-trade-1-0-6)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with command examples and terminal text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local watchlist and paper-trading JSON files under ~/.polymarket when the user runs those commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

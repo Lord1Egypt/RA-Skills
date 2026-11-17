@@ -1,38 +1,49 @@
-## Description: <br>
-AI image geolocation via visual analysis, with no GPS or EXIF metadata required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI image geolocation via visual analysis - no GPS or EXIF needed. Requires GEOINFER_API_KEY.
 
-## Publisher: <br>
-[samtin0x](https://clawhub.ai/user/samtin0x) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[samtin0x](https://clawhub.ai/user/samtin0x)
 
-## Use Case: <br>
-External users, developers, and investigators use this skill to submit local image files to GeoInfer and receive location predictions with coordinates and confidence scores. It supports OSINT, digital forensics, investigative journalism, and security workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected local images are sent to an external GeoInfer API for geolocation analysis. <br>
-Mitigation: Use only images approved for external processing, avoid private or confidential images unless authorized, and keep GEOINFER_API_KEY in the environment rather than pasting it into chat. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [GeoInfer API key setup](https://app.geoinfer.com/en/api) <br>
-- [ClawHub skill page](https://clawhub.ai/samtin0x/geoinfer-image-geolocation) <br>
+## Use Case:
 
+External users, investigators, OSINT analysts, digital forensics teams, journalists, and security practitioners use this skill to submit local images to GeoInfer and receive likely location predictions for visual geolocation workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [JSON responses from GeoInfer API commands, with Markdown usage guidance in the skill documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GEOINFER_API_KEY; prediction commands accept a local image path, optional model_id, and optional top_n value from 1 to 15.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The prediction script can upload any readable local file path supplied to it to an external GeoInfer API without strong MIME/type validation, size enforcement, or an explicit upload warning.
+
+Mitigation: Only run predictions on intentionally selected, non-sensitive image files; do not let untrusted prompts choose file paths, and prefer adding MIME/type checks, size enforcement, and upload confirmation before broader deployment.
+
+## Reference(s):
+
+- [GeoInfer API Access](https://app.geoinfer.com/en/api)
+- [ClawHub Skill Page](https://clawhub.ai/samtin0x/skills/geoinfer-image-geolocation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown usage guidance and shell commands; prediction, model, and credit tools return JSON API responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GEOINFER_API_KEY and local image files; predict.sh accepts image_path, model_id, and top_n.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

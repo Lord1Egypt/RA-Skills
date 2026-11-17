@@ -1,47 +1,67 @@
-## Description: <br>
-Helps teams identify, evaluate, and recommend local e-invoicing compliance channel partners for a target country using regulatory checks, official registries, multi-round filtering, POC criteria, and negotiation guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents identify, evaluate, and recommend local e-invoicing compliance channel partners for a target country, including official registry checks, multi-round filtering, POC acceptance planning, and negotiation guidance.
 
-## Publisher: <br>
-[tangxf0927](https://clawhub.ai/user/tangxf0927) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tangxf0927](https://clawhub.ai/user/tangxf0927)
 
-## Use Case: <br>
-External product, compliance, and partnership teams use this skill when expanding an e-invoicing SaaS platform into a new country and needing a traceable shortlist of local compliance channel partners. It supports partner discovery, qualification filtering, POC acceptance planning, and commercial negotiation preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Regulatory and partner recommendations may become outdated or incomplete because the workflow depends on live web research, public registries, and changing local e-invoicing rules. <br>
-Mitigation: Verify conclusions against current official sources and local counsel before contracting, integration work, or production launch. <br>
-Risk: Generated partner shortlists, POC criteria, and negotiation guidance could be mistaken for final compliance or procurement approval. <br>
-Mitigation: Treat the output as research support and route the report through product, legal, compliance, and partnership review before acting on it. <br>
-Risk: The skill generates a local .docx report that may contain sensitive commercial analysis about candidate partners. <br>
-Mitigation: Store generated reports according to the user's internal document handling policy and review sharing scope before distribution. <br>
+## Use Case:
 
+External business, product, compliance, and partner teams use this skill when expanding an e-invoicing SaaS platform into a new country and need a traceable partner-selection report. It guides the agent through country confirmation, official registry review, candidate filtering, scoring, POC design, and go-to-market actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tangxf0927/partner-selection) <br>
-- [Country regulatory reference](reference/country_regulatory_reference.md) <br>
-- [Partner scoring matrix](reference/partner_scoring_matrix.md) <br>
-- [POC acceptance scripts](reference/poc_acceptance_scripts.md) <br>
-- [Peppol Singapore and Malaysia authority page](https://peppol.org/peppolauthority/singapore-and-malaysia/) <br>
-- [IMDA Nationwide E-invoicing Framework](https://www.imda.gov.sg/how-we-can-help/nationwide-e-invoicing-framework) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Simplified Chinese partner-selection report, typically rendered as a .docx file with structured sections, tables, scores, and clickable source URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires current web research, reads bundled reference files, and produces traceable recommendations that should be reviewed before contracting or production launch.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata; artifact frontmatter and README show 1.1) <br>
+Risk: Official e-invoicing registries and regulatory requirements can change after the artifact's reference data is published.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify official registry pages and recent regulatory updates during each use, and keep clickable source URLs in the final report.
+
+Risk: Partner recommendations may influence compliance, commercial, or go-to-market decisions.
+
+Mitigation: Require human review by product, compliance, legal, and commercial owners before treating the report as an execution plan.
+
+Risk: Some markets require written confirmation that multi-tenant proxy submission is legally acceptable before production use.
+
+Mitigation: Obtain local legal confirmation before launch whenever proxy legality is pending or jurisdiction-specific.
+
+Risk: The skill needs web access and creates a report file.
+
+Mitigation: Run it with scoped web and filesystem permissions and review the generated report before sharing it externally.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tangxf0927/skills/partner-selection)
+- [Country regulatory reference](reference/country_regulatory_reference.md)
+- [Partner scoring matrix](reference/partner_scoring_matrix.md)
+- [POC acceptance scripts](reference/poc_acceptance_scripts.md)
+- [OpenPeppol member directory for Malaysia](https://peppol.org/members/?country=Malaysia)
+- [OpenPeppol Singapore and Malaysia authority page](https://peppol.org/peppolauthority/singapore-and-malaysia/)
+- [IMDA nationwide e-invoicing framework](https://www.imda.gov.sg/how-we-can-help/nationwide-e-invoicing-framework)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Intermediate Simplified Chinese analysis and a final .docx report with tables, clickable URLs, scoring, POC scripts, and negotiation guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a report file named partner_selection_[country]_[YYYYMMDD].docx when a compatible document-generation capability is available.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence; artifact frontmatter and README report 1.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

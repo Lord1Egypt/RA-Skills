@@ -1,48 +1,62 @@
-## Description: <br>
-智护运维平台 AIOps 集成技能，提供资产中心、CMDB 资产发现、监控告警、展示中心、VictoriaMetrics、Categraf SNMP 指标、操作系统监控添加和纳管设备智能巡检相关 API 参考与工作流。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+智护运维平台 AIOps 集成技能，提供资产中心、CMDB 资产发现、监控告警、展示中心、VictoriaMetrics、Categraf SNMP 指标、操作系统监控添加和纳管设备智能巡检相关 API 参考与工作流。
 
-## Publisher: <br>
-[luckypig1209](https://clawhub.ai/user/luckypig1209) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luckypig1209](https://clawhub.ai/user/luckypig1209)
 
-## Use Case: <br>
-IT operations engineers and platform operators use this skill to ask an agent for Zhihu AIOps API guidance, monitoring queries, alarm summaries, asset discovery workflows, managed-device inspection steps, and operating-system monitor onboarding support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles Zhihu platform credentials, VictoriaMetrics endpoints, and SSH or WinRM connection details. <br>
-Mitigation: Configure credentials through environment variables or a secret manager, avoid pasting production secrets into chat, and prefer temporary or least-privilege accounts. <br>
-Risk: Some documented workflows can create, update, delete, restart, or otherwise change monitored assets and scan tasks. <br>
-Mitigation: Review proposed API calls and request bodies before execution, especially write actions and actions against production monitoring environments. <br>
+## Use Case:
 
+Operations teams and developers use this skill to query Zhihu AIOps assets, alarms, CMDB discovery data, VictoriaMetrics metrics, and SNMP device metrics, and to follow workflows for managed-device inspection and operating-system monitoring onboarding.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luckypig1209/zhihu-aiops-skill) <br>
-- [Asset Center API reference](artifact/references/api_asset.md) <br>
-- [CMDB and asset discovery API reference](artifact/references/api_cmdb.md) <br>
-- [Dashboard API reference](artifact/references/api_dashboard.md) <br>
-- [Monitor API reference](artifact/references/api_monitor.md) <br>
-- [VictoriaMetrics API reference](artifact/references/api_victoriametrics.md) <br>
-- [Categraf SNMP metrics reference](artifact/references/api_snmp_metrics.md) <br>
-- [Managed-device inspection workflow](artifact/references/inspection-run.md) <br>
-- [Operating-system monitor onboarding workflow](artifact/references/add-os-monitor.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline JSON and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API request examples, PromQL queries, environment variable guidance, and operational checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence) <br>
+Risk: The skill can guide state-changing AIOps platform actions such as create, update, delete, import, export, and scan task operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege platform accounts and require explicit operator confirmation before running state-changing requests.
+
+Risk: The skill handles platform tokens and host passwords and includes non-HTTPS local or internal endpoint defaults.
+
+Mitigation: Use HTTPS for non-local endpoints, keep secrets in environment variables, avoid reusable host passwords where possible, and redact tokens and passwords from logs.
+
+## Reference(s):
+
+- [资产中心 API 详细参数](references/api_asset.md)
+- [CMDB 扫描 API 详细参数](references/api_cmdb.md)
+- [展示中心 API 详细参数](references/api_dashboard.md)
+- [监控中心 API 详细参数](references/api_monitor.md)
+- [VictoriaMetrics API 参考](references/api_victoriametrics.md)
+- [Categraf SNMP 指标 API 参考](references/api_snmp_metrics.md)
+- [纳管设备巡检 Skill](references/inspection-run.md)
+- [操作系统监控添加工作流](references/add-os-monitor.md)
+- [ClawHub skill page](https://clawhub.ai/luckypig1209/skills/zhihu-aiops-skill)
+- [ClawHub publisher profile](https://clawhub.ai/user/luckypig1209)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions, API calls]
+
+**Output Format:** [Markdown with inline bash, JSON, and PromQL examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses environment variables for platform API, credentials, and VictoriaMetrics endpoint.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata; artifact frontmatter reports 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

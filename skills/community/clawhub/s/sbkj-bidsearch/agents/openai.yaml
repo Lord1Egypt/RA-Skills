@@ -1,0 +1,6 @@
+interface:
+  display_name: "保标招标接口助手"
+  short_description: "世舶科技保标招标自然语言检索与项目接口业务流程助手"
+  default_prompt: "使用 $sbkj-bidsearch，按保标招标业务场景完成自然语言检索、项目详情、企业画像或拟在建项目接口处理。"
+policy:
+  allow_implicit_invocation: true

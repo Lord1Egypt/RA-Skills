@@ -1,0 +1,139 @@
+# =============================================================================
+# FluidGraph 示例网络
+#
+# 拓扑结构（与需求文档一致）：
+#
+#          [P1]  泵，出口定压 400 kPa
+#           |
+#        MainPipe
+#           |
+#          [J1]  三通分流点
+#         /    \
+#       [V1]   [V2]        理想阀
+#        |       |
+#       [N1]   [N2]        阀门出口 / 支路进口
+#        |       |
+#     PipeA    PipeB
+#        |       |
+#       [L1]   [L2]        负载
+#
+# 单位（全局 SI）：
+#   压力     Pa            (配置里刻意用 Pa 而不是 bar，避免量纲歧义)
+#   流量     m³/s
+#   直径     m
+#   长度     m
+#   流阻 R   Pa·s²/m⁶      —— 使 ΔP = R·Q² 量纲成立
+#   流速     m/s           —— 由 V = Q/A 导出，不在配置里指定
+#
+# 注意：本阶段是"定流量需求"模型 —— Load 的 min_flow 同时充当额定需求，
+#      求解器按它反推各管段流量。详见 README 的"已知限制"。
+# =============================================================================
+
+[network]
+id = "demo-network"
+name = "泵 - 主干管 - 并联双支路 演示网络"
+
+
+# ----------------------------- 节点 ------------------------------------------
+# type 取值：pump / junction / load
+
+[[nodes]]
+id = "P1"
+type = "pump"
+pressure = 400000.0          # Pa，泵出口固定压力
+
+[[nodes]]
+id = "J1"
+type = "junction"
+
+[[nodes]]
+id = "N1"
+type = "junction"            # V1 与 PipeA 之间的连接点（理想阀无压降，不影响结果）
+
+[[nodes]]
+id = "N2"
+type = "junction"            # V2 与 PipeB 之间的连接点
+
+# 注意：本阶段负载按"定流量需求"建模 —— 求解时用 required_flow 决定各管段流量，
+#      功能判定时用 min_flow 作阈值。两者当前取值相同，但语义已经分开，
+#      为后续引入 P-Q 特性曲线或可变负载留出扩展空间。
+#      supply_limit 是可选字段：填写后该负载最多只能取用这么多流量，
+#      这才是 LOW_FLOW（流量不足）状态在正常树状网络里真实的来源。
+
+[[nodes]]
+id = "L1"
+type = "load"
+min_pressure = 300000.0      # Pa，最低供液压力
+min_flow = 0.002             # m³/s，最低工作流量阈值
+required_flow = 0.002        # m³/s，当前工况下该负载需要的实际流量
+
+[[nodes]]
+id = "L2"
+type = "load"
+min_pressure = 300000.0
+min_flow = 0.0015
+required_flow = 0.0015
+
+
+# ----------------------------- 管路 ------------------------------------------
+# R 经过选取，使得正常工况下压降约为：MainPipe 19.6 kPa / PipeA 30 kPa / PipeB 24.75 kPa
+# 于是 J1 ≈ 380 kPa、L1 ≈ 350 kPa、L2 ≈ 356 kPa，均高于 300 kPa 阈值。
+
+[[pipes]]
+id = "MainPipe"
+from = "P1"
+to = "J1"
+resistance = 1.6e9           # Pa·s²/m⁶
+diameter = 0.05              # m
+length = 20.0                # m（仅供展示）
+
+[[pipes]]
+id = "PipeA"
+from = "N1"
+to = "L1"
+resistance = 7.5e9
+diameter = 0.04
+length = 15.0
+
+[[pipes]]
+id = "PipeB"
+from = "N2"
+to = "L2"
+resistance = 1.1e10
+diameter = 0.04
+length = 25.0
+
+
+# ----------------------------- 阀门 ------------------------------------------
+# 阀门只声明"在哪两个节点之间"；开/关由场景决定，见下面的 valve_states。
+
+[[valves]]
+id = "V1"
+from = "J1"
+to = "N1"
+
+[[valves]]
+id = "V2"
+from = "J1"
+to = "N2"
+
+
+# ----------------------------- 工况 ------------------------------------------
+# 未在 valve_states 中列出的阀门默认视为**开启**。
+
+[[scenarios]]
+id = "normal"
+name = "正常工况：双支路全开"
+
+[[scenarios]]
+id = "v1_failure"
+name = "故障工况：V1 关闭（仅 PipeB 支路供液）"
+
+[scenarios.valve_states]
+V1 = false
+V2 = true
+
+# 下面两个是给后续阶段预留的扩展位，当前求解器只保留、不消费。
+# [[scenarios.failures]]
+# kind = "valve_closed"
+# target = "V1"

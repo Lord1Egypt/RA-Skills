@@ -1,46 +1,57 @@
-## Description: <br>
-Software Installation Assistant uses x-cmd's install module to look up supported software, return installation commands, and explain installation options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents and users query x-cmd's install module for software installation methods, package-specific install commands, and supported package listings.
 
-## Publisher: <br>
-[lunrenyi](https://clawhub.ai/user/lunrenyi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lunrenyi](https://clawhub.ai/user/lunrenyi)
 
-## Use Case: <br>
-Developers, operators, and shell users use this skill to query x-cmd installation recipes, list supported software, and choose installation commands before installing packages. It is useful when an agent needs to propose or explain install commands with explicit user consent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installation guidance may involve downloading and executing remote code, including an automatic curl-to-shell path. <br>
-Mitigation: Prefer Homebrew or a download-review-execute workflow; avoid automatic curl-to-shell installation on sensitive machines unless the user explicitly accepts the supply-chain risk. <br>
-Risk: x-cmd installation may leave user-local files or shell configuration changes after use. <br>
-Mitigation: Use the documented user-local installation path and check shell configuration if x-cmd is later removed. <br>
-Risk: An agent could propose software installation without adequate user intent. <br>
-Mitigation: Require explicit user consent before installation and present the installation method so the user can choose or decline it. <br>
+## Use Case:
 
+Developers, operators, and agent users use this skill to look up installation commands for software packages and list packages supported by x-cmd before performing installations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lunrenyi/x-install) <br>
-- [x-cmd skill repository](https://github.com/x-cmd/skill) <br>
-- [x-cmd Installation Guide](data/install.md) <br>
-- [x-cmd release downloads](https://github.com/x-cmd/release) <br>
-- [x-cmd installer endpoint](https://get.x-cmd.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands that download or install software; installation method should be selected with user consent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence, artifact metadata) <br>
+Risk: The skill can lead users toward installer flows that download and execute live internet-sourced code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer Homebrew or a staged download-review-execute flow; avoid direct curl-to-shell installation in sensitive environments.
+
+Risk: Running an installation in an environment with secrets or important local state can increase supply-chain impact.
+
+Mitigation: Use disposable environments with no sensitive credentials for higher-risk install methods, or ask the user to install x-cmd manually.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lunrenyi/skills/x-install)
+- [x-cmd Skill Repository](https://github.com/x-cmd/skill)
+- [x-cmd Installation Guide](data/install.md)
+- [x-cmd Release Binaries](https://github.com/x-cmd/release)
+- [x-cmd Install Script Source](https://get.x-cmd.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include installation safety guidance and command examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

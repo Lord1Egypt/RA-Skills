@@ -4,7 +4,7 @@
 
 让 AI Agent 帮你管理 **微信公众号** 与 **X（Twitter）账号** 的 RSS 订阅 —— 一句话订阅、自然语言查找、按需读历史文章 / 推文 / 长文。
 
-本仓库是 [Mp2rss](https://mp2rss.bugcode.dev) 服务的 OpenClaw Agent Skill 包，基于 [`mp2rss` CLI](https://github.com/areyoubugcoder/mp2rss-cli) 实现。
+本目录是 [Mp2rss](https://mp2rss.bugcode.dev) 服务的 OpenClaw Agent Skill 包，随 [`mp2rss` CLI](https://github.com/areyoubugcoder/mp2rss-cli) 同仓库维护（`openclaw/mp2rss/` 子目录），发布到 ClawHub（slug：`mp2rss`）。Claude Code 用户请改用仓库根的 `skills/`（插件市场 / `npx skills add` 安装），见主仓库 README。
 
 ---
 
@@ -108,8 +108,8 @@ openclaw skills install mp2rss
 # 方式 B：手动
 mkdir -p ~/.openclaw/workspace/skills/mp2rss
 cd ~/.openclaw/workspace/skills/mp2rss
-curl -sL https://raw.githubusercontent.com/areyoubugcoder/mp2rss-openclaw/main/SKILL.md -o SKILL.md
-curl -sL https://raw.githubusercontent.com/areyoubugcoder/mp2rss-openclaw/main/package.json -o package.json
+curl -sL https://raw.githubusercontent.com/areyoubugcoder/mp2rss-cli/main/openclaw/mp2rss/SKILL.md -o SKILL.md
+curl -sL https://raw.githubusercontent.com/areyoubugcoder/mp2rss-cli/main/openclaw/mp2rss/package.json -o package.json
 # 视需要再拉 references/ 子文档
 ```
 

@@ -7,6 +7,7 @@
 - `url`：被诊断 URL
 - `ratingId`：`s1`–`s5`
 - `coreIssuesIds`：`ci1`–`ci10` 子集
+- `priorityPlan[]`：第四节行动计划，**必填**。按本站未满分项编写，禁止套用固定清单
 - `modules[]`：`{ id, score, items[] }`
 - `items[]`：`{ id, score, status, issue, suggestion }`
 - `status` 枚举：`Excellent` | `Good` | `Normal` | `Poor` | `Full` | `NeedImprove` | `Absent`
@@ -36,6 +37,39 @@
 | ci8  | 网站语言与广告不一致     |
 | ci9  | 缺少社媒分享入口         |
 | ci10 | 品牌风格不统一           |
+
+## priorityPlan（第四节行动计划，必写）
+
+`website-diagnosis render` 在 `priorityPlan` 为空时直接失败，不会再用固定的「核心 Banner / 转化跟踪 / 移动端适配」清单。
+
+只收录本站 `status` 为 `Poor` / `NeedImprove` / `Absent` / `Normal` 且未满分的子项，以及已勾选的 `coreIssuesIds`。满分项不要写进去。没有未满分项时，只写一档 `低`，说明保持现状，不要编造问题。
+
+| `priority` | 放什么                         | `period` |
+| ---------- | ------------------------------ | -------- |
+| `高`       | Poor / Absent，或影响转化、广告 | `1-2周`  |
+| `中`       | NeedImprove，或未满分的结构问题 | `2-4周`  |
+| `低`       | 其余未满分的体验、品牌项       | `1-3个月` |
+
+空档不要输出。每一档：
+
+```json
+{
+  "priority": "高",
+  "period": "1-2周",
+  "impact": "首页没有表单，广告点击无法变成询盘",
+  "items": [
+    {
+      "itemId": "m1i8",
+      "direction": "首页补上询盘表单",
+      "task": "signals.hasForm=false。在首页首屏下增加不超过 4 个必填项的表单，并接到现有联系邮箱。",
+      "adImpact": "没有表单时，落地页点击无法计成转化，自动出价没有信号。"
+    }
+  ]
+}
+```
+
+- `direction` / `task` / `adImpact` 必须写本站事实（页面、signals 字段或第三节的 issue），禁止「优化体验」「提升质量分」这类空话。
+- `meta.lang=en` 时这三个字段用英文。`priority` 仍用 `高` / `中` / `低`。
 
 ## m1 · 网站内容及结构（9 项）
 
@@ -96,4 +130,12 @@
 | m6i2 | 内容可分享性 | 2    |
 | m6i3 | 视觉风格统一 | 1    |
 
-> 各子项**判断规则**与**评分规则**全文见后端 `website_guide.py`；Agent 须按 HTML/Lighthouse 证据打分，不得照抄示例分。
+> 各子项**判断规则**与**评分规则**全文见后端 `website_guide.py`；Agent 须按 **`collect.signals` / `dataAvailability`** 证据打分，不得照抄示例分。
+
+## 证据与数据缺失（CLI 已结构化）
+
+1. **优先读** `website-diagnosis collect` 落盘中的 `signals`（HTTPS、title、nav、form、mailto/tel、GTM、社媒、Lighthouse 分数等）与 `dataAvailability`。
+2. **推荐**先跑 `website-diagnosis prepare --collect …`，在脚手架上只改 `needsAgent=true` 项。
+3. `dataAvailability.unavailableItemIds`（常见：`m2i1`、`m5i1`）→ `status=Absent`、`score=0`，**禁止**编造 Lighthouse 分；**禁止**无证据勾选 `ci4`。
+4. 每条 `issue` 尽量引用 signals 字段（如「signals.hasForm=false」）；`suggestion` 须含可执行动作与页面位置，禁止空话「建议优化体验」。
+5. 表单/导航等结构信号来自 collect 的完整 HTML；`htmlPreview`（8KB）仅供人眼扫一眼，**禁止**用 preview 判断有无表单。`--include-html` 只影响落盘体积。

@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn7ccpt5p0gppc2makfv238fp5828dpf",
-  "slug": "simmer-signal-service",
+  "name": "polymarket-signal-service",
   "version": "1.0.1",
-  "publishedAt": 1772643582897
+  "displayName": "Polymarket Signal Service",
+  "description": "Professional Polymarket trading signals powered by Simmer and Binance. Get BUY/SELL/HOLD recommendations with confidence scores for BTC, ETH, SOL fast markets.",
+  "author": "Clawd Agent",
+  "tags": ["polymarket", "trading", "signals", "prediction-markets", "simmer", "crypto"],
+  "difficulty": "beginner"
 }

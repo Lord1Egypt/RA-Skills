@@ -8,7 +8,7 @@
     {"id": "systems-and-data-access-checklist", "stage": "readiness", "type": "checklist"},
     {"id": "tool-api-readiness-checklist", "stage": "readiness", "type": "checklist"},
     {"id": "human-approval-gate-checklist", "stage": "risk", "type": "checklist"},
-    {"id": "risk-and-excluded-use-checklist", "stage": "risk", "type": "checklist"},
+    {"id": "riREDACTED-SECRET", "stage": "risk", "type": "checklist"},
     {"id": "success-criteria-worksheet", "stage": "evaluation", "type": "worksheet"},
     {"id": "evaluation-example-worksheet", "stage": "evaluation", "type": "worksheet"},
     {"id": "pilot-readiness-scorecard", "stage": "readiness", "type": "scorecard"},

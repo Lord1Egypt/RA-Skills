@@ -1,0 +1,745 @@
+{
+  "ok": true,
+  "meta": {
+    "period": "2026-07（7/1–7/7）",
+    "store_info": {
+      "city_tier": "新一线",
+      "seat_num": 120,
+      "format": "正餐"
+    },
+    "format": "正餐"
+  },
+  "benchmarks": {
+    "format": "正餐",
+    "label": "正餐 / 商务餐饮",
+    "gm_low": 0.65,
+    "gm_high": 0.72,
+    "ptr_target": 0.32,
+    "elasticity": -0.8,
+    "rationale": "客单价与体验属性强，食材+人工摊销占比相对可控，毛利率较高；消费决策受场景/社交驱动，价格敏感度低，需求弹性较小。"
+  },
+  "dishes": [
+    {
+      "name": "招牌酸菜鱼",
+      "category": "主菜",
+      "raw_cost": 18.0,
+      "seasoning_cost": 2.0,
+      "labor_apportionment": 4.0,
+      "price": 68.0,
+      "sales_volume": 210,
+      "return_rate": 0.0,
+      "is_signature": true,
+      "net_volume": 210,
+      "total_cost": 24.0,
+      "cm": 44.0,
+      "cm_pct": 0.6471,
+      "ptr": 0.3235,
+      "revenue": 14280.0,
+      "total_cm": 9240.0,
+      "sales_mix": 0.2581,
+      "cm_mix": 0.2985,
+      "is_popular": true,
+      "is_profitable": true,
+      "category_key": "star",
+      "category_cn": "明星 Star"
+    },
+    {
+      "name": "黑椒牛排",
+      "category": "主菜",
+      "raw_cost": 30.0,
+      "seasoning_cost": 3.0,
+      "labor_apportionment": 5.0,
+      "price": 88.0,
+      "sales_volume": 175,
+      "return_rate": 0.0,
+      "is_signature": true,
+      "net_volume": 175,
+      "total_cost": 38.0,
+      "cm": 50.0,
+      "cm_pct": 0.5682,
+      "ptr": 0.3977,
+      "revenue": 15400.0,
+      "total_cm": 8750.0,
+      "sales_mix": 0.2784,
+      "cm_mix": 0.2827,
+      "is_popular": true,
+      "is_profitable": true,
+      "category_key": "star",
+      "category_cn": "明星 Star"
+    },
+    {
+      "name": "蒜香排骨",
+      "category": "主菜",
+      "raw_cost": 22.0,
+      "seasoning_cost": 2.0,
+      "labor_apportionment": 3.0,
+      "price": 58.0,
+      "sales_volume": 70,
+      "return_rate": 0.0,
+      "is_signature": false,
+      "net_volume": 70,
+      "total_cost": 27.0,
+      "cm": 31.0,
+      "cm_pct": 0.5345,
+      "ptr": 0.431,
+      "revenue": 4060.0,
+      "total_cm": 2170.0,
+      "sales_mix": 0.0734,
+      "cm_mix": 0.0701,
+      "is_popular": false,
+      "is_profitable": true,
+      "category_key": "cash_cow",
+      "category_cn": "金牛 Cow"
+    },
+    {
+      "name": "秘制炖蹄花",
+      "category": "主菜",
+      "raw_cost": 26.0,
+      "seasoning_cost": 2.0,
+      "labor_apportionment": 4.0,
+      "price": 48.0,
+      "sales_volume": 25,
+      "return_rate": 0.0,
+      "is_signature": false,
+      "net_volume": 25,
+      "total_cost": 32.0,
+      "cm": 16.0,
+      "cm_pct": 0.3333,
+      "ptr": 0.625,
+      "revenue": 1200.0,
+      "total_cm": 400.0,
+      "sales_mix": 0.0217,
+      "cm_mix": 0.0129,
+      "is_popular": false,
+      "is_profitable": false,
+      "category_key": "dog",
+      "category_cn": "瘦狗 Dog"
+    },
+    {
+      "name": "白灼菜心",
+      "category": "素菜",
+      "raw_cost": 12.0,
+      "seasoning_cost": 1.0,
+      "labor_apportionment": 2.0,
+      "price": 28.0,
+      "sales_volume": 260,
+      "return_rate": 0.0,
+      "is_signature": false,
+      "net_volume": 260,
+      "total_cost": 15.0,
+      "cm": 13.0,
+      "cm_pct": 0.4643,
+      "ptr": 0.5,
+      "revenue": 7280.0,
+      "total_cm": 3380.0,
+      "sales_mix": 0.1316,
+      "cm_mix": 0.1092,
+      "is_popular": true,
+      "is_profitable": false,
+      "category_key": "puzzle",
+      "category_cn": "问题 Puzzle",
+      "elasticity": -0.8,
+      "scenarios": [
+        {
+          "increase_pct": 5.0,
+          "new_price": 29.4,
+          "new_cm": 14.4,
+          "pred_volume_drop_pct": 4.0,
+          "pred_volume": 249.6,
+          "new_total_cm": 3594.24,
+          "delta_cm": 214.24,
+          "break_even_drop_pct": 9.72,
+          "break_even_volume": 234.7,
+          "within_tolerance": true
+        },
+        {
+          "increase_pct": 10.0,
+          "new_price": 30.8,
+          "new_cm": 15.8,
+          "pred_volume_drop_pct": 8.0,
+          "pred_volume": 239.2,
+          "new_total_cm": 3779.36,
+          "delta_cm": 399.36,
+          "break_even_drop_pct": 17.72,
+          "break_even_volume": 213.9,
+          "within_tolerance": true
+        },
+        {
+          "increase_pct": 15.0,
+          "new_price": 32.2,
+          "new_cm": 17.2,
+          "pred_volume_drop_pct": 12.0,
+          "pred_volume": 228.8,
+          "new_total_cm": 3935.36,
+          "delta_cm": 555.36,
+          "break_even_drop_pct": 24.42,
+          "break_even_volume": 196.5,
+          "within_tolerance": true
+        }
+      ],
+      "recommend": {
+        "action": "Price +15%",
+        "new_price": 32.2,
+        "pred_volume_drop_pct": 12.0,
+        "delta_cm": 555.36,
+        "break_even_drop_pct": 24.42,
+        "within_tolerance": true,
+        "price_viable": true
+      }
+    },
+    {
+      "name": "例汤",
+      "category": "汤品",
+      "raw_cost": 8.0,
+      "seasoning_cost": 1.0,
+      "labor_apportionment": 1.0,
+      "price": 18.0,
+      "sales_volume": 400,
+      "return_rate": 0.0,
+      "is_signature": false,
+      "net_volume": 400,
+      "total_cost": 10.0,
+      "cm": 8.0,
+      "cm_pct": 0.4444,
+      "ptr": 0.5,
+      "revenue": 7200.0,
+      "total_cm": 3200.0,
+      "sales_mix": 0.1302,
+      "cm_mix": 0.1034,
+      "is_popular": true,
+      "is_profitable": false,
+      "category_key": "puzzle",
+      "category_cn": "问题 Puzzle",
+      "elasticity": -0.8,
+      "scenarios": [
+        {
+          "increase_pct": 5.0,
+          "new_price": 18.9,
+          "new_cm": 8.9,
+          "pred_volume_drop_pct": 4.0,
+          "pred_volume": 384.0,
+          "new_total_cm": 3417.6,
+          "delta_cm": 217.6,
+          "break_even_drop_pct": 10.11,
+          "break_even_volume": 359.6,
+          "within_tolerance": true
+        },
+        {
+          "increase_pct": 10.0,
+          "new_price": 19.8,
+          "new_cm": 9.8,
+          "pred_volume_drop_pct": 8.0,
+          "pred_volume": 368.0,
+          "new_total_cm": 3606.4,
+          "delta_cm": 406.4,
+          "break_even_drop_pct": 18.37,
+          "break_even_volume": 326.5,
+          "within_tolerance": true
+        },
+        {
+          "increase_pct": 15.0,
+          "new_price": 20.7,
+          "new_cm": 10.7,
+          "pred_volume_drop_pct": 12.0,
+          "pred_volume": 352.0,
+          "new_total_cm": 3766.4,
+          "delta_cm": 566.4,
+          "break_even_drop_pct": 25.23,
+          "break_even_volume": 299.1,
+          "within_tolerance": true
+        }
+      ],
+      "recommend": {
+        "action": "Price +15%",
+        "new_price": 20.7,
+        "pred_volume_drop_pct": 12.0,
+        "delta_cm": 566.4,
+        "break_even_drop_pct": 25.23,
+        "within_tolerance": true,
+        "price_viable": true
+      }
+    },
+    {
+      "name": "杨枝甘露",
+      "category": "甜品",
+      "raw_cost": 9.0,
+      "seasoning_cost": 1.0,
+      "labor_apportionment": 1.0,
+      "price": 32.0,
+      "sales_volume": 95,
+      "return_rate": 0.0,
+      "is_signature": false,
+      "net_volume": 95,
+      "total_cost": 11.0,
+      "cm": 21.0,
+      "cm_pct": 0.6562,
+      "ptr": 0.3125,
+      "revenue": 3040.0,
+      "total_cm": 1995.0,
+      "sales_mix": 0.055,
+      "cm_mix": 0.0644,
+      "is_popular": false,
+      "is_profitable": false,
+      "category_key": "dog",
+      "category_cn": "瘦狗 Dog"
+    },
+    {
+      "name": "橙汁",
+      "category": "饮品",
+      "raw_cost": 6.0,
+      "seasoning_cost": 1.0,
+      "labor_apportionment": 1.0,
+      "price": 22.0,
+      "sales_volume": 130,
+      "return_rate": 0.0,
+      "is_signature": false,
+      "net_volume": 130,
+      "total_cost": 8.0,
+      "cm": 14.0,
+      "cm_pct": 0.6364,
+      "ptr": 0.3182,
+      "revenue": 2860.0,
+      "total_cm": 1820.0,
+      "sales_mix": 0.0517,
+      "cm_mix": 0.0588,
+      "is_popular": false,
+      "is_profitable": false,
+      "category_key": "dog",
+      "category_cn": "瘦狗 Dog"
+    }
+  ],
+  "profit_diagnostics": {
+    "n": 8,
+    "avg_sales_mix": 0.125,
+    "avg_cm": 24.62,
+    "total_revenue": 55320.0,
+    "total_cm": 30955.0,
+    "overall_gm": 0.5596,
+    "overall_ptr": 0.4039,
+    "counts": {
+      "star": 2,
+      "cash_cow": 1,
+      "puzzle": 2,
+      "dog": 3
+    },
+    "cm_by_cat": {
+      "star": 17990.0,
+      "cash_cow": 2170.0,
+      "puzzle": 6580.0,
+      "dog": 4215.0
+    },
+    "star_share": 0.25,
+    "dog_share": 0.375,
+    "star_cm_share": 0.5812,
+    "dog_cm_share": 0.1362,
+    "pareto": {
+      "top20_k": 2,
+      "top20_cm_share": 0.5812,
+      "pareto80_k": 5,
+      "tail_k": 2,
+      "tail_cm_share": 0.0717,
+      "tail_prime_share": 0.0743,
+      "tail_dishes": [
+        "橙汁",
+        "秘制炖蹄花"
+      ]
+    },
+    "menu_efficiency_score": 34.2,
+    "menu_delta_cm_puzzle10": 1121.76,
+    "menu_net_impact_pct_puzzle10": 3.62,
+    "key_findings": [
+      "Puzzles（问题菜）共 2 道，正在稀释整体利润率，其贡献毛利占比仅 21.3%，建议立即干预（提价测试或成本重构）。",
+      "Dogs（瘦狗菜）占比 37.5% 超过 20% 预警线，占用菜单与后厨产能，建议下架或重新配方。"
+    ],
+    "bench": {
+      "format": "正餐",
+      "label": "正餐 / 商务餐饮",
+      "gm_low": 0.65,
+      "gm_high": 0.72,
+      "ptr_target": 0.32,
+      "elasticity": -0.8,
+      "rationale": "客单价与体验属性强，食材+人工摊销占比相对可控，毛利率较高；消费决策受场景/社交驱动，价格敏感度低，需求弹性较小。"
+    }
+  },
+  "sales_diagnostics": {
+    "n": 112,
+    "n_dishes": 8,
+    "n_days": 7,
+    "date_min": "2026-07-01",
+    "date_max": "2026-07-07",
+    "total_qty": 1365.0,
+    "total_revenue": 55320.0,
+    "avg_daily_qty": 195.0,
+    "ranked": [
+      {
+        "dish": "例汤",
+        "qty": 400.0,
+        "rev": 7200.0,
+        "share": 0.29304029304029305,
+        "avg_day": 57.142857142857146
+      },
+      {
+        "dish": "白灼菜心",
+        "qty": 260.0,
+        "rev": 7280.0,
+        "share": 0.19047619047619047,
+        "avg_day": 37.142857142857146
+      },
+      {
+        "dish": "招牌酸菜鱼",
+        "qty": 210.0,
+        "rev": 14280.0,
+        "share": 0.15384615384615385,
+        "avg_day": 30.0
+      },
+      {
+        "dish": "黑椒牛排",
+        "qty": 175.0,
+        "rev": 15400.0,
+        "share": 0.1282051282051282,
+        "avg_day": 25.0
+      },
+      {
+        "dish": "橙汁",
+        "qty": 130.0,
+        "rev": 2860.0,
+        "share": 0.09523809523809523,
+        "avg_day": 18.571428571428573
+      },
+      {
+        "dish": "杨枝甘露",
+        "qty": 95.0,
+        "rev": 3040.0,
+        "share": 0.0695970695970696,
+        "avg_day": 13.571428571428571
+      },
+      {
+        "dish": "蒜香排骨",
+        "qty": 70.0,
+        "rev": 4060.0,
+        "share": 0.05128205128205128,
+        "avg_day": 10.0
+      },
+      {
+        "dish": "秘制炖蹄花",
+        "qty": 25.0,
+        "rev": 1200.0,
+        "share": 0.018315018315018316,
+        "avg_day": 3.5714285714285716
+      }
+    ],
+    "top": [
+      {
+        "dish": "例汤",
+        "qty": 400.0,
+        "rev": 7200.0,
+        "share": 0.29304029304029305,
+        "avg_day": 57.142857142857146
+      },
+      {
+        "dish": "白灼菜心",
+        "qty": 260.0,
+        "rev": 7280.0,
+        "share": 0.19047619047619047,
+        "avg_day": 37.142857142857146
+      },
+      {
+        "dish": "招牌酸菜鱼",
+        "qty": 210.0,
+        "rev": 14280.0,
+        "share": 0.15384615384615385,
+        "avg_day": 30.0
+      },
+      {
+        "dish": "黑椒牛排",
+        "qty": 175.0,
+        "rev": 15400.0,
+        "share": 0.1282051282051282,
+        "avg_day": 25.0
+      },
+      {
+        "dish": "橙汁",
+        "qty": 130.0,
+        "rev": 2860.0,
+        "share": 0.09523809523809523,
+        "avg_day": 18.571428571428573
+      }
+    ],
+    "slow": [
+      {
+        "dish": "秘制炖蹄花",
+        "qty": 25.0,
+        "rev": 1200.0,
+        "share": 0.018315018315018316,
+        "avg_day": 3.5714285714285716
+      },
+      {
+        "dish": "蒜香排骨",
+        "qty": 70.0,
+        "rev": 4060.0,
+        "share": 0.05128205128205128,
+        "avg_day": 10.0
+      }
+    ],
+    "avg_dish_qty": 170.62,
+    "daily_series": [
+      [
+        "2026-07-01",
+        196.0
+      ],
+      [
+        "2026-07-02",
+        189.0
+      ],
+      [
+        "2026-07-03",
+        195.0
+      ],
+      [
+        "2026-07-04",
+        190.0
+      ],
+      [
+        "2026-07-05",
+        195.0
+      ],
+      [
+        "2026-07-06",
+        180.0
+      ],
+      [
+        "2026-07-07",
+        220.0
+      ]
+    ],
+    "trend_overall": 0.1224,
+    "rising": [
+      {
+        "dish": "秘制炖蹄花",
+        "slope": 0.10714285714285716,
+        "change": 0.2727272727272727,
+        "first": 11.0,
+        "second": 14.0
+      },
+      {
+        "dish": "杨枝甘露",
+        "slope": 0.5000000000000001,
+        "change": 0.2619047619047619,
+        "first": 42.0,
+        "second": 53.0
+      },
+      {
+        "dish": "蒜香排骨",
+        "slope": 0.21428571428571427,
+        "change": 0.1875,
+        "first": 32.0,
+        "second": 38.0
+      },
+      {
+        "dish": "橙汁",
+        "slope": 0.14285714285714285,
+        "change": 0.16666666666666666,
+        "first": 60.0,
+        "second": 70.0
+      },
+      {
+        "dish": "黑椒牛排",
+        "slope": 0.0,
+        "change": 0.10843373493975904,
+        "first": 83.0,
+        "second": 92.0
+      }
+    ],
+    "falling": [],
+    "cat_list": [
+      {
+        "category": "主菜",
+        "qty": 480.0,
+        "share": 0.3516483516483517,
+        "n_dishes": 4,
+        "avg_dish": 120.0,
+        "dishes": [
+          "招牌酸菜鱼",
+          "秘制炖蹄花",
+          "蒜香排骨",
+          "黑椒牛排"
+        ]
+      },
+      {
+        "category": "汤品",
+        "qty": 400.0,
+        "share": 0.29304029304029305,
+        "n_dishes": 1,
+        "avg_dish": 400.0,
+        "dishes": [
+          "例汤"
+        ]
+      },
+      {
+        "category": "素菜",
+        "qty": 260.0,
+        "share": 0.19047619047619047,
+        "n_dishes": 1,
+        "avg_dish": 260.0,
+        "dishes": [
+          "白灼菜心"
+        ]
+      },
+      {
+        "category": "饮品",
+        "qty": 130.0,
+        "share": 0.09523809523809523,
+        "n_dishes": 1,
+        "avg_dish": 130.0,
+        "dishes": [
+          "橙汁"
+        ]
+      },
+      {
+        "category": "甜品",
+        "qty": 95.0,
+        "share": 0.0695970695970696,
+        "n_dishes": 1,
+        "avg_dish": 95.0,
+        "dishes": [
+          "杨枝甘露"
+        ]
+      }
+    ],
+    "period_list": [
+      {
+        "period": "晚市",
+        "qty": 805.0,
+        "share": 0.5897435897435898
+      },
+      {
+        "period": "午市",
+        "qty": 560.0,
+        "share": 0.41025641025641024
+      }
+    ],
+    "peak_period": "晚市",
+    "findings": [
+      "销量冠军为「例汤」，累计 400 份，占全菜单 29.3%，存在一定集中度。",
+      "滞销末端为「秘制炖蹄花」，仅 25 份，约为冠军的 6.2%。",
+      "整体日销量由 196 份升至 220 份，区间2026-07-01~2026-07-07整体上升 12.2%。",
+      "品类集中度：主菜 占比 35.2%（4 道），品类结构较均衡。",
+      "高峰时段为「晚市」，贡献 59.0% 销量，建议在该时段强化备货与前厅主推。",
+      "上升趋势菜品：秘制炖蹄花、杨枝甘露、蒜香排骨，可重点培养为下一波招牌。"
+    ]
+  },
+  "joint_rows": [
+    {
+      "name": "招牌酸菜鱼",
+      "rank": 3,
+      "share": 0.15384615384615385,
+      "qty": 210.0,
+      "trend": "—",
+      "key": "star",
+      "category_cn": "明星 Star",
+      "cm": 44.0,
+      "cm_mix": 0.2985,
+      "sales_mix": 0.2581,
+      "verdict": "双优 · 放大",
+      "action": "金三角置顶 + 前厅主推，最大化利润捕获"
+    },
+    {
+      "name": "黑椒牛排",
+      "rank": 4,
+      "share": 0.1282051282051282,
+      "qty": 175.0,
+      "trend": "+11% ↑",
+      "key": "star",
+      "category_cn": "明星 Star",
+      "cm": 50.0,
+      "cm_mix": 0.2827,
+      "sales_mix": 0.2784,
+      "verdict": "双优 · 放大",
+      "action": "金三角置顶 + 前厅主推，最大化利润捕获"
+    },
+    {
+      "name": "蒜香排骨",
+      "rank": 7,
+      "share": 0.05128205128205128,
+      "qty": 70.0,
+      "trend": "+19% ↑",
+      "key": "cash_cow",
+      "category_cn": "金牛 Cow",
+      "cm": 31.0,
+      "cm_mix": 0.0701,
+      "sales_mix": 0.0734,
+      "verdict": "金牛 · 勿误杀",
+      "action": "价值话术 + 黄金视线位主推；销量低≠该下架，它是利润引擎"
+    },
+    {
+      "name": "秘制炖蹄花",
+      "rank": 8,
+      "share": 0.018315018315018316,
+      "qty": 25.0,
+      "trend": "+27% ↑",
+      "key": "dog",
+      "category_cn": "瘦狗 Dog",
+      "cm": 16.0,
+      "cm_mix": 0.0129,
+      "sales_mix": 0.0217,
+      "verdict": "双弱 · 裁剪",
+      "action": "下架 / 重做，回收菜单位与后厨产能"
+    },
+    {
+      "name": "白灼菜心",
+      "rank": 2,
+      "share": 0.19047619047619047,
+      "qty": 260.0,
+      "trend": "—",
+      "key": "puzzle",
+      "category_cn": "问题 Puzzle",
+      "cm": 13.0,
+      "cm_mix": 0.1092,
+      "sales_mix": 0.1316,
+      "verdict": "高销低利 · 提利",
+      "action": "Price +15%；勿仅看销量当英雄菜，悄悄漏利润"
+    },
+    {
+      "name": "例汤",
+      "rank": 1,
+      "share": 0.29304029304029305,
+      "qty": 400.0,
+      "trend": "—",
+      "key": "puzzle",
+      "category_cn": "问题 Puzzle",
+      "cm": 8.0,
+      "cm_mix": 0.1034,
+      "sales_mix": 0.1302,
+      "verdict": "高销低利 · 提利",
+      "action": "Price +15%；勿仅看销量当英雄菜，悄悄漏利润"
+    },
+    {
+      "name": "杨枝甘露",
+      "rank": 6,
+      "share": 0.0695970695970696,
+      "qty": 95.0,
+      "trend": "+26% ↑",
+      "key": "dog",
+      "category_cn": "瘦狗 Dog",
+      "cm": 21.0,
+      "cm_mix": 0.0644,
+      "sales_mix": 0.055,
+      "verdict": "双弱 · 裁剪",
+      "action": "下架 / 重做，回收菜单位与后厨产能"
+    },
+    {
+      "name": "橙汁",
+      "rank": 5,
+      "share": 0.09523809523809523,
+      "qty": 130.0,
+      "trend": "+17% ↑",
+      "key": "dog",
+      "category_cn": "瘦狗 Dog",
+      "cm": 14.0,
+      "cm_mix": 0.0588,
+      "sales_mix": 0.0517,
+      "verdict": "双弱 · 裁剪",
+      "action": "下架 / 重做，回收菜单位与后厨产能"
+    }
+  ]
+}

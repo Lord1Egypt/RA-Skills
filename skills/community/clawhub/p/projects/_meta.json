@@ -1,6 +1,15 @@
 {
-  "ownerId": "kn73vp5rarc3b14rc7wjcw8f8580t5d1",
+  "owner": "clawic",
   "slug": "projects",
-  "version": "1.0.0",
-  "publishedAt": 1770767550435
+  "displayName": "Projects",
+  "latest": {
+    "version": "1.0.1",
+    "publishedAt": 1785140325500
+  },
+  "history": [
+    {
+      "version": "1.0.0",
+      "publishedAt": 1770767550435
+    }
+  ]
 }

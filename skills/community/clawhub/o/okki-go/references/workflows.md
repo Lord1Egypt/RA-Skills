@@ -6,7 +6,7 @@ Compatibility index for older references. Prefer the mode-specific owner:
 - L1 result review: `result-review.md`
 - L2 guided strategy and low-yield diagnosis: `search-strategy.md`
 - Expansion: `expansion-playbook.md`
-- Paid unlock, contact search, email send, and balance commands: `paid-actions.md`
+- Paid unlock, retired contact search handling, email send, and balance commands: `paid-actions.md`
 - Compact stdout, raw/debug/detail behavior, and field ownership: `output-contracts.md`
 - Merchant Profile memory and local profile lifecycle: `merchant-profile-playbook.md`
 - Authentication and secure API-key setup: `authentication.md`

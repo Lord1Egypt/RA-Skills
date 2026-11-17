@@ -1,40 +1,59 @@
-## Description: <br>
-Downloads videos from a user's Bilibili favorites, with pagination, size filtering, list-only export, and batch downloading through yt-dlp. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads or lists videos from a user's Bilibili favorites collection with pagination, size filtering, resume support, and yt-dlp-based highest-available-quality downloads.
 
-## Publisher: <br>
-[hhjin](https://clawhub.ai/user/hhjin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hhjin](https://clawhub.ai/user/hhjin)
 
-## Use Case: <br>
-External users and developers use this skill to back up, review, or download publicly accessible Bilibili favorites for offline use. It can also list favorites without downloading videos. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may download many videos and use substantial bandwidth and disk space. <br>
-Mitigation: Start with list-only mode, then use a small maximum download count, an explicit output folder, and a size limit before larger runs. <br>
-Risk: Users may be tempted to provide account secrets while preparing a Bilibili favorites URL. <br>
-Mitigation: Provide only the Bilibili favorites URL or ID; do not provide cookies, passwords, or account tokens. <br>
+## Use Case:
 
+External users and developers use this skill to back up, list, or download videos from a Bilibili favorites collection for local offline access and organization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hhjin/bilibili-favorites-downloader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and local command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create MP4 video files locally and print download or list-only summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill contacts Bilibili and invokes yt-dlp, which can consume network bandwidth and depend on remote service availability.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run in list-only mode first and set a maximum download count before downloading a full favorites collection.
+
+Risk: Downloaded videos can consume substantial local storage.
+
+Mitigation: Choose an explicit output directory and set a size limit before running downloads.
+
+Risk: The user may download content subject to Bilibili terms, access restrictions, or local legal requirements.
+
+Mitigation: Use the skill only for content the user is allowed to access and download, and review Bilibili terms before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hhjin/skills/bilibili-favorites-downloader)
+- [Bilibili Favorites URL Pattern](https://space.bilibili.com/{user_id}/favlist?fid={fav_id})
+- [Bilibili Video URL Pattern](https://www.bilibili.com/video/{bvid})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and local file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The script can print a video list, write MP4 files to a local output directory, and emit download status summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

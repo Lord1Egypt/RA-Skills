@@ -1,44 +1,55 @@
-## Description: <br>
-Design videos for cultural resonance on Bilibili by analyzing danmu psychology, meme triggers, collective reaction points, and community-native emotional beats to increase deep engagement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bilibili helps creators design Bilibili-native videos by analyzing danmu psychology, meme triggers, collective reaction points, and community-specific emotional beats.
 
-## Publisher: <br>
-[AGImodel](https://clawhub.ai/user/AGImodel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agimodel](https://clawhub.ai/user/agimodel)
 
-## Use Case: <br>
-External creators, video operators, and scriptwriters use this skill to plan Bilibili-native videos that invite danmu participation, shared jokes, emotional resonance, and repeatable community response. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ambiguous engagement requests may activate Bilibili-specific advice when the user intended general video optimization. <br>
-Mitigation: Clarify whether the user wants Bilibili-native resonance design before applying the skill. <br>
-Risk: Content strategy guidance may miss copyright, platform policy, or community moderation requirements. <br>
-Mitigation: Review outputs against copyright obligations, Bilibili policy, and moderation judgment before publishing. <br>
-Risk: Trend, fandom, or niche cultural references may be inaccurate when the user does not provide enough audience context. <br>
-Mitigation: State uncertainty clearly and ask for more audience or community context instead of inventing cultural certainty. <br>
+## Use Case:
 
+External creators, video operators, and scriptwriters use this skill to assess Bilibili video concepts, scripts, or outlines for danmu participation, meme potential, and community-native resonance. It is best suited to Bilibili or Chinese-language creator workflows rather than generic multi-platform growth strategy.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/AGImodel/bilibili) <br>
-- [README](artifact/README.md) <br>
-- [Examples](artifact/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured assessment sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Bilibili resonance assessments, danmu moment suggestions, trigger analysis, risk notes, and recommended content fixes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, skill.json, release metadata) <br>
+Risk: The skill may be less reliable for current trends, niche fandom references, or platform-specific cultural signals that the user does not provide.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for audience context and avoid claiming cultural certainty when source material does not support it.
+
+Risk: The skill can improve scripts and resonance planning, but it does not replace copyright review, platform policy interpretation, editing execution, or community moderation.
+
+Mitigation: Use the output as content-strategy guidance and run separate review for legal, policy, production, and moderation decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agimodel/skills/bilibili)
+- [README](artifact/README.md)
+- [Examples](artifact/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured assessment sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces video goals, audience mode, resonance type, core triggers, danmu moments, resonance risks, recommended fixes, and a next step.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact frontmatter, skill.json, and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

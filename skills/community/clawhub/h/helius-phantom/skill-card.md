@@ -1,52 +1,85 @@
-## Description: <br>
-Build frontend Solana applications with Phantom Connect SDK and Helius infrastructure, including React, React Native, browser SDK integration, transaction signing, API key proxying, token gating, NFT minting, crypto payments, real-time updates, and secure frontend architecture. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build frontend Solana applications with Phantom Connect SDK and Helius infrastructure. Covers React, React Native, and browser SDK integration, transaction signing via Helius Sender, API key proxying, token gating, NFT minting, crypto payments, real-time updates, and secure frontend architecture.
 
-## Publisher: <br>
-[0xIchigo](https://clawhub.ai/user/0xIchigo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xichigo](https://clawhub.ai/user/0xichigo)
 
-## Use Case: <br>
-Developers building Solana web or mobile applications use this skill to connect Phantom wallets, integrate Helius infrastructure, submit and verify transactions, query portfolio and asset data, and apply frontend security patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill covers real Solana transaction signing and submission workflows. <br>
-Mitigation: Require explicit user confirmation before any transfer, mint, message signature, signup, upgrade, renewal, or paid operation. <br>
-Risk: API keys, local credentials, and keypairs may be used during Helius setup and integration. <br>
-Mitigation: Keep secrets in restricted local or server-side storage, avoid client-exposed environment variables, and inspect generated code for leaked credentials. <br>
-Risk: API-provided transactions can request high-impact wallet actions. <br>
-Mitigation: Inspect transaction contents before signing and prefer devnet or test flows while developing. <br>
+## Use Case:
 
+Developers and engineers use this skill to build Solana web and mobile applications that connect Phantom wallets, proxy Helius APIs, submit and verify transactions, query wallet and asset data, and implement token gating, NFT minting, payments, and real-time updates.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/0xIchigo/helius-phantom) <br>
-- [React SDK Reference](references/react-sdk.md) <br>
-- [React Native SDK Reference](references/react-native-sdk.md) <br>
-- [Browser SDK Reference](references/browser-sdk.md) <br>
-- [Frontend Security - API Keys, CORS and Proxying](references/frontend-security.md) <br>
-- [Integration Patterns - Phantom and Helius](references/integration-patterns.md) <br>
-- [Transaction Patterns Reference](references/transactions.md) <br>
-- [Helius Sender - Transaction Submission](references/helius-sender.md) <br>
-- [Helius Docs](https://www.helius.dev/docs) <br>
-- [Phantom Developer Docs](https://docs.phantom.com) <br>
-- [Phantom Portal](https://phantom.com/portal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with code snippets, command examples, configuration notes, and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose wallet, transaction, API proxy, and key-management flows that require user review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Payment-capable and transaction-signing workflows can spend funds if applied without explicit user consent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require clear user confirmation before signup, upgrades, renewals, wallet auto-confirm, or any transaction that spends funds.
+
+Risk: Helius API keys, JWTs, and wallet-related secrets may be exposed if placed in browser bundles or loosely stored.
+
+Mitigation: Keep secrets in restricted server-side storage and route non-browser-safe Helius calls through authenticated backend proxies.
+
+Risk: Proxy, payment-verification, token-gating, and SSE examples are starting points and may be under-scoped for production.
+
+Mitigation: Harden examples with authentication, allowlists, schema validation, durable rate limits, nonce-based signing, exact payment verification, replay protection, and user-facing disclosure.
+
+Risk: Install guidance uses mutable package versions such as @latest.
+
+Mitigation: Pin MCP and starter package versions before installation or production reuse.
+
+## Reference(s):
+
+- [Browser SDK Reference](references/browser-sdk.md)
+- [Frontend Security](references/frontend-security.md)
+- [DAS API](references/helius-das.md)
+- [Enhanced Transactions](references/helius-enhanced-transactions.md)
+- [Helius Onboarding](references/helius-onboarding.md)
+- [Priority Fees](references/helius-priority-fees.md)
+- [Helius Sender](references/helius-sender.md)
+- [Helius Wallet API](references/helius-wallet-api.md)
+- [Helius WebSockets](references/helius-websockets.md)
+- [Integration Patterns](references/integration-patterns.md)
+- [NFT Minting](references/nft-minting.md)
+- [Crypto Payments](references/payments.md)
+- [React Native SDK Reference](references/react-native-sdk.md)
+- [React SDK Reference](references/react-sdk.md)
+- [Token-Gated Access](references/token-gating.md)
+- [Transaction Patterns Reference](references/transactions.md)
+- [Phantom Developer Docs](https://docs.phantom.com)
+- [Phantom Portal](https://phantom.com/portal)
+- [Helius Docs](https://www.helius.dev/docs)
+- [Helius API Reference](https://www.helius.dev/docs/api-reference)
+- [Helius Rate Limits](https://www.helius.dev/docs/billing/rate-limits.md)
+- [Phantom React SDK](https://www.npmjs.com/package/@phantom/react-sdk)
+- [Phantom Browser SDK](https://www.npmjs.com/package/@phantom/browser-sdk)
+- [Phantom React Native SDK](https://www.npmjs.com/package/@phantom/react-native-sdk)
+- [Solana Kit](https://www.npmjs.com/package/@solana/kit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose frontend, backend proxy, wallet integration, transaction, and MCP setup patterns; user review is required before executing generated commands or fund-moving transactions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

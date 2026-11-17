@@ -1,47 +1,62 @@
-## Description: <br>
-一键部署2026世界杯实时比分系统，双数据源（worldcup26.ir + 直播吧），免API Key，纯前端+Node.js <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+一键部署2026世界杯实时比分系统，双数据源（worldcup26.ir + 直播吧），免API Key，纯前端+Node.js。
 
-## Publisher: <br>
-[liuboacean](https://clawhub.ai/user/liuboacean) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuboacean](https://clawhub.ai/user/liuboacean)
 
-## Use Case: <br>
-Developers and operators use this skill to deploy a Chinese-language 2026 FIFA World Cup live scores site with schedules, standings, team squads, live events, and match statistics from free data sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup script pulls changing external code before installation. <br>
-Mitigation: Review the referenced repository, pin it to a known commit, and run installation in a container or disposable host. <br>
-Risk: The setup script can terminate any process already using port 3001. <br>
-Mitigation: Check port usage before running the script and avoid one-click setup on hosts where port 3001 may be used by another service. <br>
-Risk: The deployed Node.js server is started as a background process. <br>
-Mitigation: Confirm how to inspect logs and stop the process before installation, or run it under an explicit process manager. <br>
+## Use Case:
 
+Developers and site operators use this skill to deploy a Node.js and static frontend site for 2026 FIFA World Cup live scores, schedules, standings, squads, match events, and statistics. The skill is intended for users who want a no-API-key deployment backed by the declared free data sources.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/liuboacean/worldcup-2026-scores) <br>
-- [Referenced deployment repository](https://github.com/liuboacean/WorldCup-2026) <br>
-- [worldcup26.ir data source](https://worldcup26.ir) <br>
-- [qiumibao live data source](https://s.qiumibao.com) <br>
-- [qiumibao detail data source](https://dc.qiumibao.com) <br>
-- [qiumibao score data source](https://bifen4m.qiumibao.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May clone and run an external Node.js application; review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The setup flow can run unpinned remote code and install dependencies before local review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin the external repository and dependency versions, inspect the checkout and dependency manifest, and run only in an isolated or disposable environment.
+
+Risk: The setup script can kill any process currently using port 3001.
+
+Mitigation: Remove or explicitly confirm the port-killing behavior before execution, and choose a managed port allocation when deploying on shared hosts.
+
+Risk: The service is started in the background without clear lifecycle controls.
+
+Mitigation: Prefer foreground execution during review or run it under a managed service with explicit start, stop, status, and log handling.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liuboacean/skills/worldcup-2026-scores)
+- [Declared project repository](https://github.com/liuboacean/WorldCup-2026)
+- [worldcup26.ir data source](https://worldcup26.ir)
+- [qiumibao live data endpoint](https://s.qiumibao.com)
+- [qiumibao detail data endpoint](https://dc.qiumibao.com)
+- [qiumibao mobile score endpoint](https://bifen4m.qiumibao.com)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and deployment notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May start a local Node.js service on port 3001 when the bundled setup script is run.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

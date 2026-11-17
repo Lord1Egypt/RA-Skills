@@ -1,43 +1,58 @@
-## Description: <br>
-Use this skill to query Solana blockchain data via the Solscan Pro API across accounts, tokens, NFTs, transactions, blocks, markets, DeFi activity, programs, and API usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill to query Solana blockchain data through the Solscan Pro API for accounts, tokens, NFTs, transactions, blocks, DeFi activity, markets, programs, and API usage.
 
-## Publisher: <br>
-[tiennv3](https://clawhub.ai/user/tiennv3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tiennv3](https://clawhub.ai/user/tiennv3)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to retrieve read-only Solana on-chain data for wallet, token, transaction, NFT, DeFi, block, program, and market investigations through Solscan Pro. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Solana addresses, token mints, transaction signatures, query filters, and the Solscan API key are sent to Solscan Pro. <br>
-Mitigation: Use a dedicated Solscan API key, avoid logging request headers, and limit lookups tied to real people or sensitive investigations. <br>
-Risk: Blockchain lookup results may be used in privacy-sensitive investigations. <br>
-Mitigation: Review outputs before sharing and avoid exposing wallet activity that can identify people or sensitive activity. <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to inspect Solana wallets, tokens, NFTs, transactions, DeFi activity, markets, blocks, and programs through Solscan Pro. It supports targeted blockchain lookups, token and NFT analysis, transaction review, and API usage checks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tiennv3/solscan-market-by-solscan) <br>
-- [Solscan Pro API documentation](https://pro-api.solscan.io/pro-api-docs/v2.0) <br>
-- [Solscan Pro API FAQ](https://pro-api.solscan.io/pro-api-docs/v2.0/faq.md) <br>
-- [Solscan Pro API base URL](https://pro-api.solscan.io/v2.0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, API calls] <br>
-**Output Format:** [Markdown guidance with Python CLI commands, JSON API responses, and CSV export data where supported.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only Solscan Pro lookups require a SOLSCAN_API_KEY environment variable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Wallet addresses, token identifiers, filters, and the Solscan API key are sent to Solscan Pro for lookups.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for legitimate wallet or token investigations, avoid unnecessary sensitive lookups, and protect the SOLSCAN_API_KEY value.
+
+Risk: Some documented commands may be inaccurate, unsupported, or affected by Solscan API changes.
+
+Mitigation: Validate important results against Solscan Pro documentation or direct API responses, and handle API errors before relying on the output.
+
+Risk: Export and lookup requests can be constrained by Solscan API limits or authentication failures.
+
+Mitigation: Check API key status, respect documented rate limits, and retry only with appropriate backoff.
+
+## Reference(s):
+
+- [Solscan Pro API Docs](https://pro-api.solscan.io/pro-api-docs/v2.0)
+- [Solscan Pro API FAQs](https://pro-api.solscan.io/pro-api-docs/v2.0/faq.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SOLSCAN_API_KEY and sends read-only lookup requests to Solscan Pro.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter says 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

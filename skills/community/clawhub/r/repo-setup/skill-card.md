@@ -1,42 +1,52 @@
-## Description: <br>
-Fork, clone, and set up a GitHub repository for development or contribution, including fork creation, authenticated cloning, upstream remote configuration, feature branch creation, and dependency installation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fork, clone, and set up a GitHub repository for development or contribution by handling fork creation, clone authentication, upstream remote configuration, branch creation from upstream, and dependency installation.
 
-## Publisher: <br>
-[sliverp](https://clawhub.ai/user/sliverp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[sliverp](https://clawhub.ai/user/sliverp)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to prepare GitHub repositories for contribution, onboarding, or codebase exploration by forking, cloning, configuring remotes, creating branches, and installing project dependencies.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: GitHub tokens can be exposed if cloned through token-in-URL patterns or stored in shell profiles.
+
+Mitigation: Use GitHub CLI authentication, SSH, or a credential helper, and avoid storing GH_TOKEN in a shell profile.
+
+Risk: Dependency installation and build commands from target repositories can execute untrusted project logic in the user's normal environment.
+
+Mitigation: Run install and build commands only for trusted repositories, or use an isolated environment without unrelated secrets.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to prepare a local GitHub repository for contribution or exploration, including forking, cloning, upstream remote setup, branch creation, and dependency installation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: GitHub token handling could expose an account token, especially with token-in-URL cloning or printed remotes. <br>
-Mitigation: Prefer GitHub CLI login, SSH, or a credential helper; avoid token-in-URL cloning and avoid printing remotes that may contain secrets. <br>
-Risk: Dependency installation commands run code or package hooks from the target repository. <br>
-Mitigation: Run dependency installs only for repositories you trust or inside an isolated development environment. <br>
-Risk: Persisting tokens in shell profiles can leave long-lived credentials on disk. <br>
-Mitigation: Use a credential helper or scoped authentication flow instead of storing tokens directly in shell profile files. <br>
+**Output Format:** [Markdown with inline bash code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [repo-setup ClawHub page](https://clawhub.ai/sliverp/repo-setup) <br>
+**Other Properties Related to Output:** [Produces a local repository setup workflow with command examples and verification steps.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell command blocks and setup instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a ready-to-develop local repository setup plan with remotes, branch, and dependencies configured.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

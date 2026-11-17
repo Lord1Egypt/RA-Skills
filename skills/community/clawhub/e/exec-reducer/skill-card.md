@@ -1,38 +1,48 @@
-## Description: <br>
-Provides reusable tools to batch process files for reading, writing, and searching, reducing exec command usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides reusable tools to batch process files for reading, writing, listing, and searching, reducing repeated exec command usage.
 
-## Publisher: <br>
-[jaxint](https://clawhub.ai/user/jaxint) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jaxint](https://clawhub.ai/user/jaxint)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent operators use this skill to wrap simple local file operations in reusable commands when reading, writing, listing, or searching files during automation workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can read and overwrite arbitrary accessible files without clear scope limits or overwrite safeguards.
+
+Mitigation: Review target paths and content before running commands, and avoid sensitive directories, credentials, configuration files, or important files unless the write is intentional.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill to batch common local file operations, including reading, listing, searching, and writing files, through a small Python helper. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Shell commands, Code, Text]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read, search, list, and overwrite local files without clear limits. <br>
-Mitigation: Use it only in a constrained workspace, verify paths before each operation, and avoid sensitive directories or important files unless backups are available. <br>
+**Output Format:** [Markdown guidance with Python command examples and plain text command output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jaxint/exec-reducer) <br>
+**Other Properties Related to Output:** [Commands operate on local filesystem paths available to the agent.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Code] <br>
-**Output Format:** [Plain text command output and Python helper usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can modify local files when used with write operations.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

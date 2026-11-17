@@ -1,41 +1,54 @@
-## Description: <br>
-Sends scheduled noon and bedtime wellness reminders, supports sleep check-ins with points and streaks, and can post a weekly sleep check-in summary for WeChat or QQ channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Schedules Chinese-language midday and bedtime wellness reminders for WeChat or QQ, with sleep check-ins, points, streak tracking, and a weekly summary.
 
-## Publisher: <br>
-[devioslang](https://clawhub.ai/user/devioslang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[devioslang](https://clawhub.ai/user/devioslang)
 
-## Use Case: <br>
-External users and bot operators use this skill to schedule gentle rest reminders, encourage earlier sleep, track sleep check-ins, and send a short weekly progress summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled reminders may be delivered to the wrong chat if sample account or recipient IDs are reused. <br>
-Mitigation: Review and replace the account and recipient IDs before enabling schedules, and enable them only for intended chats. <br>
-Risk: The points file stores personal habit data about sleep check-ins. <br>
-Mitigation: Treat points.json as personal habit data and prefer direct-message or explicit-command use when the bot is present in group conversations. <br>
+## Use Case:
 
+External OpenClaw users use this skill to set up recurring wellness prompts that encourage lunch breaks, rest, and earlier sleep. It also provides guidance for sleep check-ins, point tracking, and weekly progress summaries.
 
-## Reference(s): <br>
-- [Anti 996 Reminder on ClawHub](https://clawhub.ai/devioslang/anti-996-reminder) <br>
-- [devioslang publisher profile](https://clawhub.ai/user/devioslang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and scheduled chat message text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces randomized reminder text from JSON content pools and updates local check-in point state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Persistent scheduled messages may be sent to the wrong account or WeChat recipient if the sample account, recipient, or channel values are reused.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each cron command before installation, replace the account, recipient, and channel values, and confirm how to list or remove scheduled tasks.
+
+Risk: The points and check-in behavior may require additional OpenClaw handling beyond the included files.
+
+Mitigation: Confirm the OpenClaw check-in flow and state updates in a controlled account before enabling recurring reminders.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/devioslang/skills/anti-996-reminder)
+- [ClawHub publisher profile](https://clawhub.ai/user/devioslang)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with inline shell commands and Chinese reminder text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes cron scheduling guidance, JSON content pools, check-in state data, and recipient-configuration risk guidance.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Query real-time road conditions, closures, and traffic issues in Norway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query real-time road conditions, closures, and traffic issues in Norway.
 
-## Publisher: <br>
-[GeoffreyCasaubon](https://clawhub.ai/user/GeoffreyCasaubon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[geoffreycasaubon](https://clawhub.ai/user/geoffreycasaubon)
 
-## Use Case: <br>
-External users and agents use this skill to check Norwegian road closures, barriers, and route conditions before planning travel. It supports route, city, road, and JSON-output queries against public Statens Vegvesen NVDB road data. <br>
-
-### Deployment Geography for Use: <br>
-Norway <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Road-condition output may omit current traffic, weather, or safety-critical incidents that are not present in NVDB. <br>
-Mitigation: Treat results as planning assistance and verify safety-critical travel with official live road sources such as Vegvesen before relying on them. <br>
-Risk: Using the skill contacts the public NVDB road-data service at runtime. <br>
-Mitigation: Install and run the skill only in environments where outbound requests to the disclosed public road-data API are acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Norway Roads API Reference](references/api-docs.md) <br>
-- [Statens Vegvesen NVDB API](https://nvdbapiles-v3.atlas.vegvesen.no) <br>
-- [ClawHub skill page](https://clawhub.ai/GeoffreyCasaubon/norway-roads) <br>
-- [Publisher profile](https://clawhub.ai/user/GeoffreyCasaubon) <br>
+## Use Case:
 
+External users and developers use this skill to check Norway road closures, barriers, and route-relevant road condition information from public Statens Vegvesen NVDB data.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; runtime results are plain text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Queries a public NVDB road-data service at runtime and does not require an API key.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Norway
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill makes live HTTPS requests to Statens Vegvesen's NVDB API, so availability, latency, and returned road data can vary at runtime.
+
+Mitigation: Confirm time-sensitive travel decisions against official Vegvesen channels when road safety or schedule impact is significant.
+
+Risk: The skill reports registered NVDB closures and barriers and may not include every recent traffic incident.
+
+Mitigation: Use the output as a planning aid and check live traffic sources for urgent or safety-critical trips.
+
+## Reference(s):
+
+- [Norway Roads API Reference](references/api-docs.md)
+- [Statens Vegvesen NVDB API](https://nvdbapiles-v3.atlas.vegvesen.no)
+- [Norway Roads on ClawHub](https://clawhub.ai/geoffreycasaubon/skills/norway-roads)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, JSON, guidance]
+
+**Output Format:** [Markdown or JSON road condition summaries with optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include live closure counts, locations, counties, municipalities, closure periods, causes, and timestamps from the public NVDB API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,55 @@
-## Description: <br>
-Queries the QWeather API for current weather, hourly and daily forecasts, air quality, and alerts for cities in China. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the QWeather API to answer weather, forecast, precipitation, wind, alert, and air quality questions for locations in China.
 
-## Publisher: <br>
-[royalmetoo](https://clawhub.ai/user/royalmetoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[royalmetoo](https://clawhub.ai/user/royalmetoo)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve QWeather-backed weather reports, forecasts, air quality, and alerts for Chinese cities after configuring a QWeather API host and key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global use; weather lookup is limited to cities in China. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The QWeather API key can be exposed through the local config file, request URLs, logs, or shared transcripts. <br>
-Mitigation: Keep qweather_config.json private, avoid sharing transcripts or logs that include request URLs, and rotate the key if exposure is suspected. <br>
-Risk: Weather responses depend on a valid QWeather API host and key and may be unavailable when configuration or API calls fail. <br>
-Mitigation: Check api_host and api_key before use, use the official QWeather console values, and report configuration or API failures without inventing weather data. <br>
+## Use Case:
 
+External users and agent builders use this skill to retrieve and format QWeather data for Chinese cities, including current conditions, hourly and daily forecasts, air quality, and weather alerts.
 
-## Reference(s): <br>
-- [QWeather API reference](artifact/references/api_reference.md) <br>
-- [QWeather console](https://console.qweather.com) <br>
-- [ClawHub skill page](https://clawhub.ai/royalmetoo/qweather-query) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/royalmetoo) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, API Calls, Configuration guidance] <br>
-**Output Format:** [Markdown weather summaries with structured fields and source attribution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided QWeather API host and key; omits unavailable fields instead of fabricating data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: A configured QWeather API key is stored locally and can be exposed through committed files, broad filesystem access, or shared command output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the real key out of version control, restrict access to qweather_config.json, and avoid sharing logs or full request URLs that include the key.
+
+Risk: Weather responses may be incomplete or unavailable if QWeather returns errors or omits fields.
+
+Mitigation: Follow the skill behavior of omitting missing fields, stopping on failed city lookup, and citing QWeather as the data source.
+
+## Reference(s):
+
+- [QWeather API Reference](artifact/references/api_reference.md)
+- [QWeather Developer Console](https://console.qweather.com)
+- [ClawHub Skill Page](https://clawhub.ai/royalmetoo/skills/qweather-query)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, API Calls, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs cite QWeather as the data source, omit missing fields, and only support cities in China.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

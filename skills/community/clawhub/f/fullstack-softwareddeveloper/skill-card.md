@@ -1,38 +1,49 @@
-## Description: <br>
-Design and develop secure Golang backend and Angular frontend web applications with role-based access control, user registration, vehicle information management, and JWT authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents design and implement secure Golang backend and Angular frontend web applications with role-based access, user registration, vehicle information management, and JWT authentication.
 
-## Publisher: <br>
-[WesLon1987](https://clawhub.ai/user/WesLon1987) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weslon1987](https://clawhub.ai/user/weslon1987)
 
-## Use Case: <br>
-Developers use this skill to plan and implement full-stack Golang and Angular web applications, especially systems with role-based access control, registration, vehicle information management, and JWT-based security. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated authentication, authorization, or JWT code may be incomplete or unsuitable for a production system. <br>
-Mitigation: Review, test, and adapt generated security code before production use, including input validation, token handling, and role-based access checks. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to plan and build Golang and Angular web applications that need registration, role-based access control, vehicle information workflows, and JWT-based security.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/WesLon1987/fullstack-softwareddeveloper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with code snippets and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Architecture plans, security explanations, and draft Golang and Angular implementation snippets should be reviewed before production use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated authentication and authorization code can be security-sensitive and may not fully match a project's production threat model.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated RBAC and JWT code before production use, add project-specific tests, and validate input handling, token lifecycle, and role boundaries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/weslon1987/skills/fullstack-softwareddeveloper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with code blocks and implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include architecture plans, backend and frontend code snippets, security explanations, and deployment-oriented guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

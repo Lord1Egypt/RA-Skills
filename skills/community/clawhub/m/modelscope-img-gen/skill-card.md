@@ -1,45 +1,54 @@
-## Description: <br>
-Generates AI images through the ModelScope API with model selection and optional LoRA configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates AI images through the ModelScope API, with model selection and single or multiple LoRA configurations.
 
-## Publisher: <br>
-[netyingxiao](https://clawhub.ai/user/netyingxiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[netyingxiao](https://clawhub.ai/user/netyingxiao)
 
-## Use Case: <br>
-Developers and creators use this skill to generate image files from text prompts through ModelScope, including optional model and LoRA selection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and model settings are sent to ModelScope. <br>
-Mitigation: Use only prompts and settings that are appropriate to share with ModelScope. <br>
-Risk: The ModelScope API key can be exposed through command-line history or a saved local key file. <br>
-Mitigation: Prefer MODELSCOPE_API_KEY or a secure secret store, and avoid --api-key or --save-key when shared systems or logs are in scope. <br>
-Risk: A generated image can overwrite an existing file at the chosen output path. <br>
-Mitigation: Check the output path before running the generator and choose a unique filename when preserving existing files matters. <br>
+## Use Case:
 
+Developers and creators use this skill to prompt ModelScope image-generation models, choose a model, optionally apply LoRA weights, and save the generated image to a local file.
 
-## Reference(s): <br>
-- [ModelScope AI Image Generator on ClawHub](https://clawhub.ai/netyingxiao/modelscope-img-gen) <br>
-- [Publisher profile: netyingxiao](https://clawhub.ai/user/netyingxiao) <br>
-- [ModelScope access token page](https://modelscope.cn/my/myaccesstoken) <br>
-- [ModelScope inference API endpoint](https://api-inference.modelscope.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration] <br>
-**Output Format:** [Generated image file plus terminal status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default output is result_image.jpg; users can choose a model, output path, and optional LoRA settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Image prompts and generation requests are sent to ModelScope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive or regulated content in prompts and confirm ModelScope is acceptable for the intended data.
+
+Risk: API keys can be exposed if passed on the command line or saved without appropriate local file protections.
+
+Mitigation: Prefer an environment variable or secret manager, avoid command-line keys, and protect permissions before using --save-key.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/netyingxiao/skills/modelscope-img-gen)
+- [ModelScope access token page](https://modelscope.cn/my/myaccesstoken)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Image file with console status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a ModelScope API key and may store it in ~/.modelscope/api_key when --save-key is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

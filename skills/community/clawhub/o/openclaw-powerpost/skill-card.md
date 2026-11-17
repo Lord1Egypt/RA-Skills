@@ -1,45 +1,56 @@
-## Description: <br>
-Generate social media content and publish to all major platforms from one command. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate social media content and publish to all major platforms from one command.
 
-## Publisher: <br>
-[tarekhoury](https://clawhub.ai/user/tarekhoury) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tarekhoury](https://clawhub.ai/user/tarekhoury)
 
-## Use Case: <br>
-External users and teams use Powerpost to have an agent draft, generate media for, schedule, publish, and analyze social media posts across connected accounts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish, schedule, cancel, and delete content in connected social accounts. <br>
-Mitigation: Use draft-only or narrowly scoped API keys by default, and require explicit user confirmation before live publishing or destructive calendar actions. <br>
-Risk: The skill requires a PowerPost API key and workspace ID that grant access to workspace content and connected social accounts. <br>
-Mitigation: Store credentials in the configured skill secret or environment paths, avoid displaying them, and prefer the least-privilege scopes needed for the task. <br>
-Risk: Content, image, video, and publishing actions may spend PowerPost credits. <br>
-Mitigation: Check the credit balance before generation or publishing and confirm credit-spending actions with the user. <br>
+## Use Case:
 
+External users and developers use Powerpost to have an agent draft, generate media for, schedule, publish, and review analytics for social media posts across connected platforms.
 
-## Reference(s): <br>
-- [PowerPost Homepage](https://powerpost.ai) <br>
-- [PowerPost API Documentation](https://powerpost.ai/docs) <br>
-- [ClawHub Skill Page](https://clawhub.ai/tarekhoury/openclaw-powerpost) <br>
-- [Publisher Profile](https://clawhub.ai/user/tarekhoury) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with curl commands and JSON request and response examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires POWERPOST_API_KEY, POWERPOST_WORKSPACE_ID, and curl; can post externally and spend credits when authorized.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: frontmatter, changelog, server release evidence) <br>
+Risk: The skill can publish or schedule content to connected social media accounts and may spend PowerPost credits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use draft-only or read-only API key scopes unless publication is intended, and review each draft before approving publication or scheduling.
+
+Risk: Prompts, uploaded media, URLs, generated content, API key, and workspace ID are sent to PowerPost to perform the requested workflows.
+
+Mitigation: Install only when this data sharing is acceptable, avoid sensitive inputs, and use the minimum API key scopes needed for the task.
+
+## Reference(s):
+
+- [PowerPost Homepage](https://powerpost.ai)
+- [PowerPost API Docs](https://powerpost.ai/docs)
+- [PowerPost Support](https://powerpost.ai/contact)
+- [ClawHub Skill Page](https://clawhub.ai/tarekhoury/skills/openclaw-powerpost)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash examples, API request examples, generated social copy, media links, scheduling status, and analytics summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a PowerPost API key, workspace ID, credits, and connected social accounts; publication and scheduling should be reviewed before approval.]
+
+## Skill Version(s):
+
+0.4.0 (source: frontmatter, changelog, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

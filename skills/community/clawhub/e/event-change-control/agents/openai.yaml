@@ -1,0 +1,3 @@
+interface:
+  display_name: "Event Change Control"
+  short_description: "Replan an event when headcount, budget, weather, timing, supplies or helpers change. Produce a concrete change list and viable alternatives while preserving existing commitments."

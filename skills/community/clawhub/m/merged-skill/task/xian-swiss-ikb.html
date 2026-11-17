@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="indigo-porcelain">
+<head>
+  <meta charset="utf-8">
+  <title>西安文旅 — 小红书测评 (IKB 风格)</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500,700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    /* Theme tokens - IKB Klein Blue */
+    :root, [data-theme="indigo-porcelain"] {
+      --paper: #0a1628; --paper-2: #0f2038; --ink: #ffffff; --muted: rgba(255,255,255,0.6);
+      --line: rgba(255,255,255,0.2); --accent: #00b8d8; --accent-soft: rgba(0,184,216,0.1);
+      --ink-rgb: 255,255,255; --paper-rgb: 10,22,40; --accent-rgb: 0,184,216;
+    }
+
+    /* Typography */
+    :root {
+      --serif-zh: "Noto Serif SC", "Songti SC", serif;
+      --serif-en: "Playfair Display", serif;
+      --sans-zh: "Noto Sans SC", -apple-system, "PingFang SC", sans-serif;
+      --sans-en: "Inter", sans-serif;
+      --mono: "IBM Plex Mono", monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #0a1628; font-family: var(--sans-zh); padding: 0; display: flex; flex-direction: column; align-items: center; }
+
+    /* Poster base */
+    .poster { position: relative; width: 1080px; height: 1440px; overflow: hidden; isolation: isolate; }
+    .content { position: relative; width: 100%; height: 100%; padding: 96px 88px; display: flex; flex-direction: column; z-index: 2; }
+
+    /* Components */
+    .label-tag {
+      display: inline-block; font-family: var(--mono); font-size: 12px;
+      letter-spacing: 0.15em; color: var(--accent); border: 1px solid var(--line);
+      padding: 6px 14px; margin-bottom: 28px; align-self: flex-start;
+    }
+    .hero-title {
+      font-family: var(--serif-zh); font-size: 96px; font-weight: 900;
+      line-height: 1.05; color: var(--ink); margin-bottom: 16px;
+    }
+    .hero-sub {
+      font-family: var(--serif-en); font-size: 28px; font-weight: 400;
+      font-style: italic; color: var(--muted); margin-bottom: 32px;
+    }
+    .hero-image {
+      width: calc(100% + 144px); margin-left: -72px; height: 420px;
+      overflow: hidden; margin-bottom: 48px; position: relative;
+    }
+    .hero-image img { width: 100%; height: 100%; object-fit: cover; }
+    .section-label {
+      font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em;
+      color: var(--accent); text-transform: uppercase; margin-bottom: 20px;
+    }
+    .body-text {
+      font-family: var(--sans-zh); font-size: 26px; line-height: 1.7; color: var(--ink);
+    }
+    .divider { width: 60px; height: 1px; background: var(--accent); margin: 40px 0; }
+    .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .feature-item { padding: 28px; border: 1px solid var(--line); }
+    .feature-num {
+      font-family: var(--mono); font-size: 44px; font-weight: 500;
+      color: var(--accent); margin-bottom: 12px;
+    }
+    .feature-title {
+      font-family: var(--sans-zh); font-size: 20px; font-weight: 700;
+      color: var(--ink); margin-bottom: 8px;
+    }
+    .feature-desc { font-family: var(--sans-zh); font-size: 15px; color: var(--muted); line-height: 1.5; }
+    .pull-quote {
+      font-family: var(--serif-zh); font-size: 32px; font-weight: 700;
+      line-height: 1.5; color: var(--ink); border-left: 3px solid var(--accent);
+      padding-left: 28px; margin-top: auto;
+    }
+    .tag-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
+    .tag {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em;
+      padding: 6px 14px; border: 1px solid var(--accent); color: var(--accent);
+    }
+    .footer-band {
+      position: absolute; bottom: 0; left: 0; right: 0; padding: 28px 88px;
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid var(--line); background: var(--paper); z-index: 10;
+    }
+    .footer-text { font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; color: var(--muted); }
+
+    /* Swiss grid layout */
+    .swiss-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+    }
+    .swiss-item {
+      border: 1px solid var(--line); padding: 24px;
+    }
+    .swiss-stat {
+      font-family: var(--mono); font-size: 36px; font-weight: 700;
+      color: var(--accent); margin-bottom: 8px;
+    }
+    .swiss-label {
+      font-family: var(--sans-zh); font-size: 16px; font-weight: 500;
+      color: var(--ink); margin-bottom: 12px;
+    }
+    .swiss-desc {
+      font-family: var(--sans-zh); font-size: 14px; color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* Hero section with overlay */
+    .hero-section {
+      position: relative; margin-bottom: 48px;
+    }
+    .hero-overlay {
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6));
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative; z-index: 2; color: #fff; text-align: center;
+      padding: 60px 0;
+    }
+    .hero-title-large {
+      font-family: var(--serif-zh); font-size: 120px; font-weight: 900;
+      color: #fff; margin-bottom: 16px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+    .hero-subtitle {
+      font-family: var(--serif-en); font-size: 32px; color: #fff;
+      margin-bottom: 32px; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== 海报 1: 封面页 ==================== -->
+  <div class="poster" id="poster-1">
+    <div class="hero-section">
+      <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1080&h=600&fit=crop" alt="Xi'an Snow Mountain" />
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div class="label-tag">小红书测评</div>
+        <h1 class="hero-title-large">西安</h1>
+        <div class="hero-subtitle">XI'AN CULTURAL TOURISM</div>
+      </div>
+    </div>
+
+    <div class="section-label">核心数据</div>
+    <div class="swiss-grid">
+      <div class="swiss-item">
+        <div class="swiss-stat">3100</div>
+        <div class="swiss-label">建城历史</div>
+        <div class="swiss-desc">三千多年，十三朝古都</div>
+      </div>
+      <div class="swiss-item">
+        <div class="swiss-stat">1.2M</div>
+        <div class="swiss-label">年游客量</div>
+        <div class="swiss-desc">年均游客数量</div>
+      </div>
+      <div class="swiss-item">
+        <div class="swiss-stat">5A</div>
+        <div class="swiss-label">世界遗产</div>
+        <div class="swiss-desc">兵马俑、大雁塔等</div>
+      </div>
+      <div class="swiss-item">
+        <div class="swiss-stat">2.5M</div>
+        <div class="swiss-label">美食收入</div>
+        <div class="swiss-desc">年美食旅游收入</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section-label">热门景点</div>
+    <div class="feature-grid">
+      <div class="feature-item">
+        <div class="feature-num">01</div>
+        <div class="feature-title">兵马俑</div>
+        <div class="feature-desc">世界第八大奇迹，震撼体验</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-num">02</div>
+        <div class="feature-title">古城墙</div>
+        <div class="feature-desc">明代城墙遗址，骑行最佳</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-num">03</div>
+        <div class="feature-title">大雁塔</div>
+        <div class="feature-desc">唐代佛塔建筑，禅意之选</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-num">04</div>
+        <div class="feature-title">回民街</div>
+        <div class="feature-desc">千年美食文化，味道之源</div>
+      </div>
+    </div>
+
+    <div class="pull-quote">
+      「千年古都，雪山之下<br>文化与自然交织辉映。」
+    </div>
+
+    <div class="tag-row">
+      <div class="tag">历史古都</div>
+      <div class="tag">文化遗产</div>
+      <div class="tag">美食之都</div>
+      <div class="tag">旅游胜地</div>
+    </div>
+
+    <div class="footer-band">
+      <div class="footer-text">小红书测评 · XI'AN CULTURAL TOURISM</div>
+      <div class="footer-text">2026</div>
+    </div>
+  </div>
+
+</body>
+</html>

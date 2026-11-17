@@ -1,39 +1,56 @@
-## Description: <br>
-Analyze creative performance post-launch across Meta (Facebook/Instagram), TikTok Ads, YouTube Ads, Google Ads, and Amazon Ads inventory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze creative performance post-launch across Meta (Facebook/Instagram), TikTok Ads, YouTube Ads, Google Ads, and Amazon Ads inventory.
 
-## Publisher: <br>
-[danyangliu-sandwichlab](https://clawhub.ai/user/danyangliu-sandwichlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[danyangliu-sandwichlab](https://clawhub.ai/user/danyangliu-sandwichlab)
 
-## Use Case: <br>
-External marketing teams and growth practitioners use this skill to analyze post-launch ad creative performance, identify winners and losers, detect fatigue, and plan channel-aware next tests across major ad platforms. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Budget or optimization recommendations could affect live campaign spend if applied without review. <br>
-Mitigation: Review recommendations manually before making changes in an ad account, and include rollback or stop-loss conditions when spend risk exists. <br>
-Risk: Creative performance analysis can be misleading when campaign metrics or context are missing. <br>
-Mitigation: Provide real campaign context and metrics, and keep observed facts separate from assumptions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/danyangliu-sandwichlab/creative-performance-analyzer) <br>
+## Use Case:
 
+Marketing teams, growth operators, and advertisers use this skill to turn ad creative inputs and performance context into channel-aware winner/loser detection, fatigue signals, and next-test plans. It supports creative planning and QA across major ad platforms, with performance judgments grounded in user-provided data.
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown with structured sections, test matrices, QA notes, and escalation handoff details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not execute commands, request credentials, or mutate ad accounts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can produce weak or misleading performance judgments if users omit actual campaign metrics.
+
+Mitigation: Require users to provide current performance data for performance judgments and label assumptions separately from observed facts.
+
+Risk: Budget, campaign, or platform action guidance may affect advertising spend if followed without review.
+
+Mitigation: Treat spend and campaign recommendations as advisory until validated against platform data and internal approval workflows.
+
+Risk: Ad policy, billing, or tracking issues can require specialist review beyond creative planning.
+
+Mitigation: Escalate high-risk policy, billing, or tracking breakage with a structured handoff before changing live campaigns.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/danyangliu-sandwichlab/skills/creative-performance-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces creative objectives, angle and hook sets, asset specifications, test variant plans, and creative QA notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

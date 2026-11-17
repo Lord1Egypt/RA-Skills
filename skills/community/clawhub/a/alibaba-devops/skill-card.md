@@ -1,46 +1,59 @@
-## Description: <br>
-Alibaba Cloud Yunxiao DevOps MCP Server provides code management, project management, pipeline, application delivery, artifact management, and test management capabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Alibaba Cloud Yunxiao DevOps MCP Server skill that helps agents work with code repositories, projects, pipelines, application delivery, artifacts, and test management.
 
-## Publisher: <br>
-[huangbowen521](https://clawhub.ai/user/huangbowen521) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huangbowen521](https://clawhub.ai/user/huangbowen521)
 
-## Use Case: <br>
-Developers and DevOps engineers use this skill to discover and call Alibaba Cloud Yunxiao MCP tools for repositories, merge requests, projects, work items, pipelines, deployments, applications, artifacts, and tests. It supports command-line workflows with mcporter and a token-backed Yunxiao connection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad token-backed access can modify repositories, work items, pipelines, deployments, resources, ownership, applications, and test assets. <br>
-Mitigation: Use a minimally scoped YUNXIAO_ACCESS_TOKEN and restrict the agent to the organizations, projects, and repositories required for the task. <br>
-Risk: Delete, deploy, pipeline-run, resource-member, validation, and ownership-change actions can cause operational or access-control changes. <br>
-Mitigation: Require explicit human approval before those actions and review tool names and parameters before execution. <br>
-Risk: Tokens passed in prompts or logged shell commands can be exposed. <br>
-Mitigation: Provide tokens through a secure environment mechanism and avoid pasting real tokens into prompts, chat history, or shared command logs. <br>
-Risk: The skill invokes an external npm MCP package. <br>
-Mitigation: Install only if you trust the external npm MCP package and are comfortable giving an agent access to Alibaba Cloud Yunxiao. <br>
+## Use Case:
 
+Developers and DevOps teams use this skill to inspect and operate Alibaba Cloud Yunxiao resources, including repositories, merge requests, work items, pipelines, deployments, packages, and tests, through MCP tool calls.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/huangbowen521/alibaba-devops) <br>
-- [Alibaba Cloud Yunxiao product documentation](https://help.aliyun.com/product/153China) <br>
-- [Alibaba Cloud Yunxiao API documentation](https://help.aliyun.com/document_detail/China) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and MCP tool-call parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes environment-variable guidance for YUNXIAO_ACCESS_TOKEN and examples for mcporter commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill exposes broad DevOps mutation authority, including write, delete, pipeline, deployment, ownership, and variable-management actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation and rollback planning for production-impacting actions, and use short-lived least-privilege Yunxiao tokens.
+
+Risk: Runtime package execution is described with unpinned mcporter and alibabacloud-devops-mcp-server packages.
+
+Mitigation: Use reviewed and pinned versions of mcporter and alibabacloud-devops-mcp-server before installation or invocation.
+
+Risk: Token examples may encourage direct entry of real access tokens in commands.
+
+Mitigation: Prefer a secret manager or protected environment injection instead of pasting real tokens directly into command lines.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huangbowen521/skills/alibaba-devops)
+- [Alibaba Cloud Yunxiao documentation](https://help.aliyun.com/product/153China)
+- [Alibaba Cloud Yunxiao API documentation](https://help.aliyun.com/document_detail/China)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and MCP tool names]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include command examples, environment variable guidance, and tool-selection guidance for Alibaba Cloud Yunxiao DevOps operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

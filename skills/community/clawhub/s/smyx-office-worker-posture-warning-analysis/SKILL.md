@@ -1,7 +1,7 @@
 ---
 name: "smyx-office-worker-posture-warning-analysis"
 description: "Using a fixed camera in the office (aimed at the workstation), the system analyzes office workers' sitting-posture video in real time, detecting continuous sitting duration, neck forward angle (head offset relative to shoulders), and back curvature (hunchback degree). | 通过办公区固定摄像头（对准工位）实时分析办公人员的坐姿视频，检测连续坐姿时间、颈部前倾角度（头部相对于肩部的偏移）、背部弯曲度（驼背程度）。当久坐时间超过预设阈值（默认1小时）且未起身活动时，输出'久坐提醒'；当颈部前倾角>20°或背部弯曲超过阈值时，输出'姿态异常提醒'。"
-version: "1.0.3"
+version: "1.0.19"
 license: "MIT-0"
 ---
 

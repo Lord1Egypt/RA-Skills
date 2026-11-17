@@ -1,0 +1,65 @@
+{
+  "name": "memory-store-skill",
+  "version": "1.1.1",
+  "description": "Conversation memory skill for multi-agent AI workflows — store, share, and recall across sessions and agents",
+  "keywords": [
+    "memory",
+    "agent",
+    "ai",
+    "claude",
+    "skill",
+    "conversation",
+    "llm",
+    "multi-agent",
+    "memory-store",
+    "codex",
+    "claude-code",
+    "opencode",
+    "antigravity",
+    "cursor",
+    "windsurf",
+    "gemini",
+    "qoderworkcn",
+    "trae-cn"
+  ],
+  "homepage": "https://github.com/Revolves/memory-store-skill",
+  "bugs": "https://github.com/Revolves/memory-store-skill/issues",
+  "license": "MIT",
+  "author": "xws",
+  "bin": {
+    "memory-store": "scripts/memory_cli.js",
+    "memory-store-install": "scripts/install.js",
+    "memory-store-update": "scripts/update.js"
+  },
+  "files": [
+    "SKILL.md",
+    "SECURITY.md",
+    "CHEATSHEET.md",
+    "FAQ.md",
+    "scripts/memory_cli.js",
+    "scripts/install.js",
+    "scripts/update.js",
+    "references",
+    "examples",
+    "agents"
+  ],
+  "scripts": {
+    "test": "node test/smoke.js && node test/config_contract.js && node test/cli_experience_contract.js && node test/install_contract.js && node test/security_contract.js && node test/release_contract.js",
+    "test:config": "node test/config_contract.js",
+    "test:cli": "node test/cli_experience_contract.js",
+    "test:install": "node test/install_contract.js",
+    "test:security": "node test/security_contract.js",
+    "test:release": "node test/release_contract.js",
+    "prepublishOnly": "npm test"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Revolves/memory-store-skill.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

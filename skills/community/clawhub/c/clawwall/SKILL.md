@@ -146,7 +146,7 @@ disabled_patterns: []      # disable specific built-in patterns by name
 ```bash
 curl -s -X POST http://localhost:8642/api/v1/scan \
   -H "Content-Type: application/json" \
-  -d '{"content": "key=AKIAIOSFODNN7EXAMPLE", "destination": "api.example.com"}'
+  -d '{"content": "key=REDACTED-SECRET", "destination": "api.example.com"}'
 ```
 
 Response:

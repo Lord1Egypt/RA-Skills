@@ -1,40 +1,50 @@
-## Description: <br>
-Living World Filter guides agents to weave world lore into immersive prose through sensory detail, autonomous world behavior, progressive disclosure, and anti-dump constraints instead of exposition. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Living world filter for immersive prose. Reads lore from a lorebook, controls how lore seeps into prose without dumps or exposition, and generates pressure, mystery, and organic conflict via autonomous NPCs, factions, and environmental systems.
 
-## Publisher: <br>
-[kaibazax-dev](https://clawhub.ai/user/kaibazax-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaibazax-dev](https://clawhub.ai/user/kaibazax-dev)
 
-## Use Case: <br>
-Creative writers and narrative agents use this skill to transform lorebook or world-bible material into scene-level prose that reveals setting through character senses, NPC behavior, environmental pressure, and delayed disclosure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill strongly shapes prose style by limiting exposition, enforcing sensory-first lore reveals, and tracking fictional scene consequences. <br>
-Mitigation: Review the anti-dump, sensory-priority, and world-memory rules before using it when direct worldbuilding narration is preferred. <br>
+## Use Case:
 
+External writers and agent users use this skill to turn lorebook or world-bible material into immersive scene guidance that reveals world details through sensory cues, NPC behavior, environmental pressure, and progressive disclosure.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaibazax-dev/vn-lorefilter) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/kaibazax-dev) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance for creative prose generation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only creative-writing guidance; no code execution, credentials, network access, or system changes requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill is oriented toward a Vietnamese creative-writing workflow, including task naming and preferred sensory ordering.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Override the task naming or sensory priority when using the skill in a language-neutral or non-Vietnamese workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaibazax-dev/skills/vn-lorefilter)
+- [ClawHub publisher profile](https://clawhub.ai/user/kaibazax-dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose guidance and revision constraints]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, persistence, credential use, or unrelated system behavior was identified in server security evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: skill frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

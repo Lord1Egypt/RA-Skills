@@ -1,45 +1,61 @@
-## Description: <br>
-A clinical infectious-disease reference skill pack based on People's Medical Publishing House Infectious Disease, 10th Edition, covering diagnosis, staging, treatment, complications, infection control, and public-health workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A clinical infectious-disease skill bundle based on the 10th edition of People's Medical Publishing House's Infectious Diseases, covering pathogen assessment, clinical classification, laboratory diagnosis, antimicrobial and antiviral treatment, complication management, and infection control.
 
-## Publisher: <br>
-[xllgreen](https://clawhub.ai/user/xllgreen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xllgreen](https://clawhub.ai/user/xllgreen)
 
-## Use Case: <br>
-Clinicians, medical learners, public-health workers, infection-control practitioners, and supervised agents use this skill as reference material for infectious-disease diagnosis, treatment planning, complication assessment, and infection-control workflows. Outputs require qualified medical or public-health review before use in patient care, emergency care, prescribing, dosing, invasive procedures, or bioweapon-risk decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contains actionable clinical treatment, dosing, critical-care, invasive-procedure, public-health, and bioweapon-classification guidance. <br>
-Mitigation: Use only as supervised educational or clinician-reviewed reference material and verify recommendations against current official guidelines, local protocols, and qualified specialists. <br>
-Risk: The source content does not consistently enforce runtime safety boundaries for medical decision-making. <br>
-Mitigation: Apply system-level policies requiring escalation to qualified clinicians for diagnosis, prescribing, dosing, emergency care, invasive procedures, self-treatment decisions, and public-health response. <br>
+## Use Case:
 
+Clinicians, medical students, public-health workers, infection-control personnel, and critical-care teams use this skill bundle as educational or clinician-reviewed reference support for infectious-disease diagnosis, treatment planning, prevention, and escalation workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xllgreen/skills/epidemiology-of-infectious-diseases-pmph-10edition) <br>
-- [English README](artifact/README_EN.md) <br>
-- [Core skill registry](artifact/SKILL.md) <br>
-- [Antimicrobial therapy drug selection reference](artifact/antimicrobial-therapy-management/references/drug-selection-detail.md) <br>
-- [Sepsis antibiotic strategy reference](artifact/sepsis-septic-shock-management/references/antibiotic-strategy-detail.md) <br>
-- [Bioweapon pathogen classification reference](artifact/bioweapon-pathogen-classification/references/pathogen-details.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain-language clinical reference guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include clinical reasoning, triage considerations, dosing details, isolation guidance, and workflow steps that require expert review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill contains detailed infectious-disease diagnosis, dosing, emergency treatment, isolation, and public-health guidance that could be mistaken for independent medical advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in controlled clinical or educational settings with qualified clinician review, current official guidance, and local protocols before diagnosis, prescribing, dosing, or emergency-care decisions.
+
+Risk: The bundle includes bioweapon pathogen classification and threat-assessment content that could be misapplied outside appropriate public-health contexts.
+
+Mitigation: Restrict that module to lawful public-health, biosafety, biodefense, or emergency-preparedness use by authorized personnel.
+
+Risk: The server security verdict is suspicious because the package is Markdown-only but includes high-risk medical treatment and bioweapon-related content.
+
+Mitigation: Review the skill before installation, apply system-level medical safety policy, and prohibit self-diagnosis, self-medication, automatic prescribing, and unsupervised emergency decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xllgreen/skills/epidemiology-of-infectious-diseases-pmph-10edition)
+- [Publisher profile: xllgreen](https://clawhub.ai/user/xllgreen)
+- [Artifact README](artifact/README.md)
+- [Artifact English README](artifact/README_EN.md)
+- [Root skill registry](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Configuration, Shell commands]
+
+**Output Format:** [Markdown responses with tables, clinical checklists, decision steps, and occasional inline shell command examples for installation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only skill content; outputs require clinician review for medical decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

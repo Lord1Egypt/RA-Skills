@@ -1,41 +1,53 @@
-## Description: <br>
-GitHub操作助手 provides PR, issue, code search, repository management, CI status monitoring, release management, and code review assistance through the GitHub CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GitHub操作助手 - PR/Issue/代码搜索/仓库管理，基于gh CLI。v2新增：CI状态监控、Release管理、Code Review辅助
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to operate GitHub repositories from an agent workflow, including PR handling, issue management, repository inspection, code search, CI status checks, release management, and code review assistance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to use the logged-in GitHub CLI context for repository-changing actions such as merging PRs, closing issues, creating releases, or posting comments. <br>
-Mitigation: Require an explicit repository, PR or issue number, and user confirmation before allowing state-changing GitHub operations. <br>
-Risk: Examples include repository actions without consistent scoping guidance, which can cause changes to be applied to the wrong repository or target. <br>
-Mitigation: Prefer commands and wrapper calls that specify the repository or verify the current repository before execution. <br>
+## Use Case:
 
+Developers and engineers use this skill to operate GitHub repositories with gh CLI commands for pull requests, issues, repository browsing, code search, code review support, CI status monitoring, and release management.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/laosi-github) <br>
-- [Publisher profile](https://clawhub.ai/user/534422530) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with bash and Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Assumes an authenticated GitHub CLI (`gh`) context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can guide an agent to use an authenticated GitHub CLI session for repository-changing actions such as merging pull requests or closing issues.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege GitHub account or token, verify the target repository before commands run, and require explicit user confirmation before write actions.
+
+Risk: The skill depends on the local gh CLI authentication context, so commands may affect whichever GitHub account and repository are active.
+
+Mitigation: Confirm gh authentication status and repository scope before use, especially in shared or multi-repository workspaces.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/534422530/skills/laosi-github)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash commands and Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the GitHub CLI binary and an authenticated gh session.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

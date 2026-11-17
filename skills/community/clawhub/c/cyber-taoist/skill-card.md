@@ -1,42 +1,54 @@
-## Description: <br>
-Cyber Taoist is a multi-scale decision-thinking framework based on the N/R/T/EC/NI five-factor model, combining cybernetic feedback with Taoist ideas about natural order. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language evolutionary analysis framework that uses the N/R/T/EC/NI five-factor model to support multi-scale decision analysis for career, product, organizational, and civilizational scenarios.
 
-## Publisher: <br>
-[imjszhang](https://clawhub.ai/user/imjszhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imjszhang](https://clawhub.ai/user/imjszhang)
 
-## Use Case: <br>
-External users use this skill to structure career, product, startup, industry, or civilization-level decisions through a seven-step N/R/T/EC/NI analysis and a keep-vs-break heuristic. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat framework output as authoritative career, product, historical, or strategic advice. <br>
-Mitigation: Use the output as a philosophical decision framework and validate conclusions with domain evidence, expert review, and the user's own risk tolerance. <br>
-Risk: Server-resolved GitHub import provenance is unavailable for this version. <br>
-Mitigation: Verify the ClawHub publisher profile and external source site before relying on publisher provenance. <br>
+## Use Case:
 
+External users and agents use this skill to structure Chinese-language decision analysis around the relationship between objective trends, rules, transactions, ecosystems, and niche position. It is suited to reflective analysis of personal career choices, startup or product strategy, historical cases, and philosophical interpretation.
 
-## Reference(s): <br>
-- [Cyber Taoist source site](https://cyber-taoist.ai) <br>
-- [ClawHub release page](https://clawhub.ai/imjszhang/cyber-taoist) <br>
-- [CONSTITUTION.md](artifact/CONSTITUTION.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only reasoning aid; no code execution, install hooks, credentials, or hidden system access are described in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The framework uses metaphorical language about breaking rules and survival risk that could be misread as permission to bypass legal, safety, or operational requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the framework as a decision-analysis lens only and keep real-world actions subject to applicable law, policy, and safety review.
+
+Risk: The skill provides philosophical and strategic analysis rather than domain-specific professional advice.
+
+Mitigation: Use its conclusions as prompts for further review, especially for legal, financial, medical, safety, or operational decisions.
+
+## Reference(s):
+
+- [Cyber Taoist source](https://cyber-taoist.ai)
+- [Cyber Taoist ClawHub skill page](https://clawhub.ai/imjszhang/skills/cyber-taoist)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language framework guidance; no executable code, tool calls, persistence, or credential use are part of the skill.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

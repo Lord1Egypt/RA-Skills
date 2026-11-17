@@ -1,8 +1,8 @@
 ---
 name: kpainter
-description: Explain any topic with explainer videos, slides, images, and interactive lessons. Latest image support includes GPT-Image-2.
+description: Explain any topic with precision. Use KPainter to turn PDFs, PPTs, web links, and other documents into precise, clearly structured explainer videos and interactive lessons, then monitor or refine the results.
 metadata:
-  version: "0.6.9"
+  version: "0.8.0"
   homepage: https://kpainter.ai/
   skill_url: https://kpainter.ai/skill.md
   docs_url: https://kpainter.ai/docs/skills
@@ -12,7 +12,7 @@ metadata:
 
 # KPainter Skill
 
-Use this skill to create explainer videos, slides, images, or interactive lessons from one prompt. Latest image support includes GPT-Image-2.
+Use KPainter to explain any topic with precision: turn PDFs, PPTs, web links, and other documents into precise, clearly structured explainer videos and interactive lessons.
 
 ## Official URLs
 
@@ -24,343 +24,299 @@ Use this skill to create explainer videos, slides, images, or interactive lesson
 | OpenAPI docs | `https://kpainter.ai/docs/openapi` |
 | API Key | `https://kpainter.ai/api-key` |
 
-## Primary goals
-
-- connect the user's own KPainter account and API key
-- help the user choose the right output type
-- collect only the missing information needed to create or refine the result
-- stay in normal user language unless the user asks for technical details
-
 ## Setup
 
-If KPainter is not connected yet, guide setup before trying to create content.
+If KPainter is not connected:
 
-1. Ask whether the user already has a KPainter account.
-2. If not, tell the user to sign up or sign in at `https://kpainter.ai/`.
-3. Send the user to `https://kpainter.ai/api-key`.
-4. Ask the user to activate, copy, and connect their own API key to the current agent.
-5. Only say setup is complete after the user confirms the key is connected.
+1. Ask the user to sign up or sign in at `https://kpainter.ai/`.
+2. Send the user to `https://kpainter.ai/api-key`.
+3. Ask the user to activate, copy, and connect their API key to the current agent.
+4. Confirm setup only after the user says the key is connected.
 
-Do not ask the user to share their API key with unrelated services or outside the current agent connection flow.
+Keep the key inside the current agent connection flow. Never ask the user to send it to unrelated services.
 
-## What KPainter can create
+## Products And Public API Types
 
-- Explainer Video
-- Explainer Video (Slide-based)
-- Vector Animation
-- Slides
-- Image
-- Interactive Lesson
+Explainer Video and Read Aloud Video are independent products. Never present them as Standard and Lite modes.
 
-## How the agent should choose the output type
+| Product | Public API type | Best for |
+| --- | --- | --- |
+| Explainer Video | `explainer_video` | continuous animated scenes and narration for explainers, brand communication, and stories |
+| Read Aloud Video | `read_aloud_video` | narrated visuals and page-by-page structure for courses, training, SOPs, science, and longer topics |
+| Vector Animation | `vector_animation` | precise vector explanations when the user explicitly requests Vector Animation |
+| AI Image | `image` | covers, posters, illustrations, and visual summaries |
+| AI Video | `ai_video` | storyboard videos, cinematic shots, and short videos |
+| AI PPT | `slides` | editable PPT/PDF presentations |
+| AI App | `interactive_lesson` | clickable apps, lessons, demos, exercises, and learning experiences |
 
-Always route by the result the user wants first.
+Use the public types in this table. Do not describe Read Aloud Video as “Lite” or a mode under Explainer Video.
 
-1. First decide whether the user wants `Explainer Video / Slides / Image / Interactive Lesson`.
-2. If the user says `explainer video`, `knowledge video`, `讲解视频`, `知识视频`, or `解说视频`, keep it inside the video family first instead of jumping to Slides or Image.
-3. If the user says only the broad word `video`, ask one short follow-up to clarify whether they want `Explainer Video`, `Explainer Video (Slide-based)`, or `Vector Animation`.
-4. Then choose the video style inside that family:
-   - `Explainer Video` for something polished, story-led, narrated, social-friendly, or closer to a finished short video
-   - `Explainer Video (Slide-based)` for something illustrated, static, PPT-style, slide-based, classroom-friendly, training-friendly, or step by step
-   - `Vector Animation` for process, mechanism, structure, workflow, principle, science, math, or system explanation
-5. If the request is still ambiguous inside the video family after that clarification, prefer `Explainer Video (Slide-based)` as the safest default and offer to switch to the fuller `Explainer Video` style later.
-6. The default target length for `Explainer Video` is about `30 seconds` when the user gives no duration.
-7. Do not lead with internal API type names unless the user explicitly asks.
+## Choose The Product
 
-## Trigger guidance
+Route by the result the user wants.
 
-### Video family
+1. Map an explicit “Explainer Video,” “解说视频,” or “讲解视频” request to `explainer_video`.
+2. Map an explicit “Read Aloud Video” or “绘本视频” request to `read_aloud_video`.
+3. Use `vector_animation` only when the user explicitly says “Vector Animation” or “矢量动画.” Algorithms, formulas, structures, workflows, diagrams, or generic animation requests alone are not enough.
+4. Map AI Image, poster, cover, illustration, or single-visual requests to `image`.
+5. Map storyboard-video, cinematic-shot, or short-video requests to `ai_video`.
+6. Map AI PPT, presentation, and slide-deck requests to `slides`.
+7. Map AI App, clickable lesson, app, interactive page, quiz, or simulation requests to `interactive_lesson`.
+8. Treat PDFs, PPTs, URLs, images, and documents as source formats, not output-type signals.
+9. If the user only says “video,” ask whether they want an Explainer Video, Read Aloud Video, or AI Video. Do not offer or select Vector Animation unless the user explicitly requests it.
+10. Never switch products silently because of credits or unsupported parameters.
 
-Treat requests like these as part of the video family first:
+Do not expose API type names unless the user asks for technical details.
 
-- make an explainer video
-- make a knowledge video
-- make a narrated explainer
-- 帮我做一个讲解视频
-- 帮我做一个解说视频
-- 做一个知识视频把这件事讲清楚
+## Explainer Video
 
-### Explainer Video
+Choose Explainer Video when the user wants:
 
-Prefer `Explainer Video` for requests like:
+- continuous animated scenes and narration
+- clear explanation with visual pacing
+- science communication or brand storytelling
+- a short piece designed to be watched and shared
+- children’s stories or other story-led knowledge
 
-- make a knowledge video
-- make an explainer video
-- make it more polished
-- make it more story-led
-- make it more social-friendly
-- make it feel like a finished short video
-- make a narrated explainer video
-- 做一个更像成片的讲解视频
-- 做一个更适合传播的解说视频
+Examples:
 
-### Explainer Video (Slide-based)
+- Make a 30-second Explainer Video about MCP with continuous animated scenes and narration.
+- Turn this topic into an Explainer Video with continuous visual storytelling.
+- 做一个 30 秒左右的解说视频，用连续动态画面和旁白讲清楚 MCP。
+- 做一个适合传播的解说视频成片。
 
-Prefer `Explainer Video (Slide-based)` for requests like:
+When the user gives no duration, suggest about 30 seconds first. Read current duration limits from the catalog.
 
-- illustrated
-- static
-- PPT-style video
-- PPT video
-- slide-based video
-- slide-like
-- explain this step by step
-- classroom explainer
-- training explainer
-- 图解版
-- PPT视频
-- 课件视频
-- 分步骤讲解
+## Read Aloud Video
 
-### Vector Animation
+Choose Read Aloud Video when the user wants:
 
-Prefer `Vector Animation` for requests like:
+- clear, page-by-page explanation
+- narrated visuals
+- course or classroom content
+- training, SOP, or product walkthroughs
+- longer topics with stable information density
+- a lower-cost alternative to Explainer Video
 
-- vector animation
-- flow animation
-- mechanism animation
-- architecture animation
-- animate this process or principle
-- 用动画讲这个流程
-- 用动画讲这个机制
+Examples:
 
-### Slides
+- Make a Read Aloud Video that teaches MCP in 6 pages.
+- Turn this training manual into a narrated Read Aloud Video.
+- 做一个绘本视频，用 6 页分步骤讲清楚 MCP。
+- 把这份培训手册做成绘本视频。
 
-- Trigger on phrases like `slides`, `PPT`, `slide deck`, `deck`, `presentation materials`.
+Load valid page counts, voices, styles, ratios, and qualities from the catalog.
 
-### Image
+## Vector Animation
 
-- Trigger on phrases like `image`, `poster`, `cover`, `cover image`, `visual summary`.
+Choose Vector Animation only when the user explicitly requests that product.
 
-### Interactive Lesson
+Examples:
 
-- Trigger on phrases like `interactive lesson`, `app`, `web app`, `interactive page`, `interactive demo`, `learning app`.
+- Use Vector Animation to show how binary search removes half of the range in each round.
+- Use Vector Animation to animate this system architecture and data flow.
+- 用矢量动画讲清楚二分查找。
+- 请用矢量动画展示这个机制和状态变化。
 
-## Credit fallback guidance
+## AI Image Models
 
-If the user wants `Explainer Video` but does not have enough credits, the agent should proactively suggest `Explainer Video (Slide-based)` as the cheaper fallback.
+Read `image.generation_models` from `/catalog` and use a model-specific request.
 
-Recommended behavior:
+- Nano Banana 2: `provider=gemini`, `model=nano-banana-2`; use only its listed ratios.
+- GPT Image 2: `provider=azure_openai`, `model=gpt-image-2`; `quality=low|medium|high` is separate from top-level `output_quality`.
 
-1. Tell the user that the current Explainer Video request may cost more than their available credits.
-2. Offer `Explainer Video (Slide-based)` as the lower-cost alternative.
-3. Ask for confirmation instead of silently switching formats.
+Never send the internal `extra_config.output` shape. Use top-level `aspect_ratio` and `output_quality`.
 
-Good fallback phrasing:
+## AI Video Models
 
-- You may not have enough credits for a full Explainer Video right now. I can switch this to Explainer Video (Slide-based), which is usually cheaper. Do you want me to do that?
-- Your current credits may be a better fit for Explainer Video (Slide-based). If you want, I can keep the same topic and switch only the format.
+Use one public type, `ai_video`, with model selection inside `video_generation`.
 
-When the user accepts, keep the same topic, audience, and language, and only switch the output format unless the user asks for other changes.
+| Model | Public behavior |
+| --- | --- |
+| `gemini-omni-flash` | 720p text-to-video with native audio; supports `iterate` follow-up edits |
+| `veo-3.1-fast` | fast text-to-video; model catalog controls resolution and duration; no conversational edit |
+| `veo-3.1-standard` | quality-first text-to-video; model catalog controls resolution and duration; no conversational edit |
 
-## How the agent should talk to the user
+Example:
 
-- Ask one follow-up at a time.
-- Keep questions short and concrete.
-- Use normal language instead of technical labels whenever possible.
-- Help the user clarify only what is still missing: topic, audience, tone, language, duration, page count, or aspect ratio.
-- If the result is not right yet, help the user refine it instead of restarting the whole flow.
-- Do not silently change the output type, audience, language, or format.
-- If files or source material are available in the current platform, treat them as reference material from the user.
+```json
+{
+  "type": "ai_video",
+  "prompt": "Move slowly through a futuristic city on a rainy night with natural ambient audio",
+  "aspect_ratio": "16:9",
+  "video_generation": {
+    "model": "gemini-omni-flash",
+    "task": "text_to_video",
+    "resolution": "720p",
+    "duration_seconds": 8,
+    "native_audio": true
+  }
+}
+```
 
-## Minimal information to collect
+For an Omni follow-up, read `editable_actions`, then send:
 
-Only ask for what is still missing:
+```json
+{
+  "action": "iterate",
+  "prompt": "Keep the camera motion and make the lighting warmer"
+}
+```
+
+Never expose or ask the user for `previous_interaction_id`; KPainter manages it server-side. Do not attempt `iterate` with Veo.
+
+The current Public OpenAPI supports text-to-video only. Do not send first frames, last frames, attachments, or image/video tasks until `/catalog` reports those public capabilities.
+
+## Credit Fallback
+
+If the user wants Explainer Video but does not have enough credits:
+
+1. Explain that the current Explainer Video may exceed the available credits.
+2. Offer Read Aloud Video as the lower-cost alternative.
+3. Keep the topic, audience, and language unchanged.
+4. Ask before switching.
+
+Recommended wording:
+
+- Your current credits may not cover a full Explainer Video. I can keep the same topic and language and switch to a clear, lower-cost Read Aloud Video. Would you like me to switch?
+- 当前积分可能不够生成完整解说视频。我可以保留主题和语言，改成结构清晰、成本更低的绘本视频，要切换吗？
+
+## Collect Only Missing Information
+
+Ask one short question at a time and only for missing details:
 
 - topic
 - audience
-- language
-- duration or page count
+- output language
+- duration or scene/page count
 - tone or visual direction
-- source files or reference material
+- aspect ratio
+- source files or URLs
 
 If the user already gave enough information, create first and refine after.
 
-## Multilingual support
+## Use Source Material
 
-KPainter supports creation and refinement workflows in the user's preferred language.
+Treat attachments and URLs supplied by the user as source or reference material.
 
-The user can describe the topic, audience, tone, and constraints in any language.
-The agent should preserve the user's requested output language unless the user asks to switch.
-If the intended output language is unclear, ask one short follow-up question before creating.
+Direct public API upload is not currently available. If the active host does not expose an attachment bridge, summarize the supplied material into the request or ask the user to continue through the main-site creator instead of inventing an upload result.
 
-## Multilingual examples
+- Preserve the user’s requested facts and terminology.
+- Do not invent claims that are not supported by the source.
+- Ask which source takes priority if references conflict.
+- Keep the requested output language unless the user asks to switch.
 
-Examples only, not a language allowlist.
+## API Workflow
 
-### English
+For OpenAPI or MCP integrations:
 
-> Make an explainer video that explains MCP clearly.
+1. Validate the user API key.
+2. Read `/catalog` before choosing type-specific parameters.
+3. Create the result.
+4. Poll the job until it succeeds or fails.
+5. Read the final creation detail for URLs, artifacts, and scenes.
+6. Before scene editing, inspect `editable_actions` and existing scenes.
 
-### Chinese
+Use catalog values as the source of truth for:
 
-> 帮我做一个讲清楚 MCP 的知识视频。
+- public content types
+- languages and voices
+- styles
+- aspect ratios and qualities
+- generation models, tasks, resolutions, and durations
+- duration limits
+- scene/page limits
 
-### Japanese
+Parameter rules:
 
-> MCP をわかりやすく説明する知識動画を作ってください。
+- `explainer_video` uses `duration_seconds`.
+- `read_aloud_video` uses `scene_count`.
+- `slides` uses `scene_count`.
+- `ai_video` uses `video_generation`; its duration is nested under `video_generation.duration_seconds`.
+- Never send `duration_seconds` to `read_aloud_video` or `vector_animation`.
+- Never send `scene_count` to `explainer_video`.
+- Never send raw `extra_config`, internal source records, or provider interaction IDs.
 
-### Arabic
+## Refinement
 
-> أنشئ فيديو معرفيًا يشرح MCP بشكل واضح.
+After the first result, help the user:
 
-### Spanish
+- shorten or expand it
+- revise narration
+- change voice or visual direction
+- regenerate a selected scene
+- switch products
 
-> Crea un video de conocimiento que explique MCP con claridad.
+Confirm before switching products. Never silently change type, audience, language, or format.
 
-### Korean
+## Multilingual Support
 
-> MCP를 명확하게 설명하는 지식 영상을 만들어 주세요.
+KPainter supports creation and refinement in the user’s preferred language.
 
-### French
+Examples:
 
-> Crée une vidéo de connaissance qui explique clairement le MCP.
+- Make an Explainer Video about AI agents with continuous animated scenes and narration.
+- Make a Read Aloud Video that explains MCP page by page.
+- 帮我做一个解说视频，用连续动态画面讲清楚 MCP。
+- 做一个绘本视频，逐页讲解 MCP。
+- MCP を段階的に説明する解説動画を作ってください。
+- أنشئ فيديو معرفيًا مصقولًا يشرح MCP.
+- Crea un video explicativo paso a paso sobre MCP.
+- MCP를 단계별로 설명하는 해설 영상을 만들어 주세요.
+- Crée une vidéo de connaissance soignée sur MCP.
 
-## Example user requests
+These are examples, not a language allowlist.
 
-### Explainer Video
-
-- Explain what MCP is as an explainer video
-- Make an explainer video for new product managers about AI agents
-- Make an explainer video around 30 seconds that explains MCP clearly
-- Make an explainer video that walks through MCP
-- 帮我做一个讲解视频，把 MCP 讲清楚
-- 帮我做一个解说视频，适合发在社媒上
-
-### Explainer Video (Slide-based)
-
-- Make a slide-based explainer video that explains this step by step
-- 做一个 PPT 视频，分步骤讲解 MCP
-- 做一个课件视频，给新员工培训用
-
-### Vector Animation
-
-- Create a vector-style animation that explains how attention works
-- 用矢量动画讲清楚这个机制
-
-### Slides
-
-- Create an onboarding deck about MCP
-- Make a teaching slide deck about prompt engineering
-
-### Image
-
-- Create a course cover image about MCP
-- Make a social poster about prompt engineering
-
-### Interactive Lesson
-
-- Build an interactive lesson that explains the MCP flow
-- Create a small learning app about attention
-
-## Refinement examples
-
-After the first result, the user may say things like:
-
-- make it shorter
-- make it more polished
-- switch it to Explainer Video (Slide-based)
-- switch it to vector animation
-- keep it as an explainer video but make it feel more like a finished short video
-- keep the same topic but change the tone
-- make it more suitable for classroom use
-
-## Install options
+## Install
 
 ### OpenClaw / ClawHub
-
-Install this skill natively in OpenClaw with:
 
 ```bash
 openclaw skills install kpainter
 ```
 
-Publish and registry workflows use ClawHub, while the runtime install path uses OpenClaw's native skills commands.
-
 ### Skills CLI
-
-Quick install while this repository contains one public skill:
-
-```bash
-npx skills add OriginwiseAI/skills
-```
-
-Install this skill explicitly:
 
 ```bash
 npx skills add OriginwiseAI/skills --skill kpainter
 ```
 
-Install all skills in this repository explicitly:
+While this repository contains one public skill, this also works:
 
 ```bash
-npx skills add OriginwiseAI/skills --all
+npx skills add OriginwiseAI/skills
 ```
-
-You can preview discovery before installing:
-
-```bash
-npx skills add OriginwiseAI/skills --list
-```
-
-### Legacy Bun command
-
-For teams that still use the old package name, the legacy Bun command is:
-
-```bash
-bunx add-skill OriginwiseAI/skills
-bunx add-skill OriginwiseAI/skills --skill kpainter
-```
-
-Prefer `npx skills add` for new documentation and examples.
 
 ### Direct URL
 
-Give the agent this file directly:
+Give the agent:
 
 `https://kpainter.ai/skill.md`
 
-### Local skill folder
-
-For agents that support local skill folders, save this file as a local skill.
-
-Example:
+### Local Folder
 
 ```bash
 mkdir -p ~/.codex/skills/kpainter
 curl -s https://kpainter.ai/skill.md > ~/.codex/skills/kpainter/SKILL.md
 ```
 
-If the agent platform uses a different skills directory, save the same file there instead.
+## Security
 
-### Where to read more
+- The API key belongs to the user.
+- Do not send it to unrelated services.
+- Do not present the agent as the account owner.
+- If the key is reset, ask the user to reconnect it.
 
-- `https://kpainter.ai/docs/skills`
-- `https://kpainter.ai/docs/openapi`
-- `https://kpainter.ai/api-key`
+## Success Criteria
 
-## Security rules
+The skill succeeds when the agent can:
 
-- the API key belongs to the user
-- the agent should not ask the user to share the key with unrelated services
-- the agent should not present itself as the KPainter account owner
-- if the user resets the key, the agent should ask the user to reconnect it
-
-## Update guidance
-
-If KPainter skills stop working or the user changes keys, the agent should:
-
-1. reread this file or refresh the local skill
-2. ask the user to reconnect the latest API key
-3. confirm the available output types again
-4. ask what the user wants to create now
-
-## Success state
-
-The setup is successful when the agent can:
-
-- guide the user through account and API key setup
-- explain the available output types in simple language
-- choose the right video style when the request is ambiguous, including `讲解视频 / 解说视频 / PPT视频` style requests, without treating bare `video` as an automatic Explainer Video trigger
-- ask clarifying questions in normal language
-- help the user create a first result and refine it
+- explain Explainer Video and Read Aloud Video as independent products
+- use the current public API type names
+- choose the appropriate product from user intent
+- choose Vector Animation only after an explicit Vector Animation or 矢量动画 request
+- ask only for missing information
+- create, poll, read, and refine results
+- choose AI Image and AI Video models from the catalog and use model-specific parameters
+- use Omni `iterate` only when the selected model exposes conversational editing
+- offer Read Aloud Video as a confirmed lower-cost fallback when appropriate

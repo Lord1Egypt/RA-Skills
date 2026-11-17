@@ -4,6 +4,14 @@
 
 Convert a user’s cooking request into the smallest useful path from question to dish.
 
+## Capability priority
+
+When multiple answer styles are possible, prioritize:
+
+1. high-frequency answer stability
+2. practical dish coverage for common home bundles
+3. sauce profile detail
+
 ## Entry modes
 
 ### 1. Craving mode

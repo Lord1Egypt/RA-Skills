@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nvidia-llm"
+version = "1.1.0"
+description = "英伟达 NIM 大模型智能路由 Skill — 50+ 模型自动路由+降级, 订阅VIP+微信支付+邀请奖励"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+authors = [
+    {name = "用户"},
+]
+keywords = ["nvidia", "nim", "llm", "nemotron", "deepseek", "qwen", "llama", "mistral", "ai", "skill", "router", "circuit-breaker"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "requests>=2.28.0",
+]
+
+[project.optional-dependencies]
+openai = ["openai>=1.0.0"]
+all = ["openai>=1.0.0"]
+
+[project.urls]
+Homepage = "https://github.com/user/nvidia-llm"
+Repository = "https://github.com/user/nvidia-llm"
+Issues = "https://github.com/user/nvidia-llm/issues"
+
+[project.scripts]
+nvidia-llm = "nvidia_llm.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+
+[tool.setuptools.package-data]
+nvidia_llm = ["wechat_qr.jpg"]

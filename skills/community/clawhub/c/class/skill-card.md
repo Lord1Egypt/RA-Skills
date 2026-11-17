@@ -1,41 +1,55 @@
-## Description: <br>
-Class & OOP reference for inheritance, polymorphism, composition, SOLID principles, design patterns, class hierarchy design, object-oriented refactoring, and learning OOP concepts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Class & OOP reference for inheritance, polymorphism, composition, SOLID principles, and design patterns when designing class hierarchies, refactoring object-oriented code, or learning OOP concepts.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and engineers use this skill as a quick OOP reference when designing class hierarchies, comparing inheritance with composition, applying SOLID principles, selecting common design patterns, or reviewing OOP behavior across programming languages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes a local shell script that executes the selected reference command. <br>
-Mitigation: Run only the documented subcommands and review the script before deployment in managed environments. <br>
-Risk: Educational OOP guidance can be incomplete or mismatched to a specific codebase or language version. <br>
-Mitigation: Treat the output as reference guidance and validate design decisions against project standards and language documentation. <br>
+## Use Case:
 
+Developers and engineers use this skill as a quick reference for object-oriented programming concepts, SOLID refactoring, design pattern selection, and language comparisons across Java, Python, TypeScript, C++, Go, and Rust.
 
-## Reference(s): <br>
-- [Class on ClawHub](https://clawhub.ai/ckchzh/class) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text reference guidance from shell commands, with Markdown command examples in the skill documentation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local shell script selects one documented OOP reference topic per invocation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill ships a shell script, so accidental or unintended command execution could confuse users even though the inspected behavior is static reference output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only the documented script commands intentionally and review the static reference output before relying on it.
+
+Risk: Educational OOP guidance may be incomplete for a specific codebase, language version, framework, or architecture decision.
+
+Mitigation: Treat the output as reference material and validate design choices against project requirements and language-specific documentation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/class)
+- [Publisher profile](https://clawhub.ai/user/ckchzh)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style reference text printed by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static educational content; no external service calls or credential handling are indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

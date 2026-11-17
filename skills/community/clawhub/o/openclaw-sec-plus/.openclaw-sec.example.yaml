@@ -70,7 +70,7 @@ openclaw_security:
       # Slack integration
       slack:
         enabled: false
-        webhook_url: "https://hooks.slack.com/services/YOUR/WEBHOOK/URL"
+        webhook_url: "REDACTED-SECRET"
 
       # Discord integration
       discord:

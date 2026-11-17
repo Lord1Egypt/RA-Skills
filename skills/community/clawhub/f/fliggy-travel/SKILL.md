@@ -1,155 +1,196 @@
 ---
-name: fliggy-travel
-display_name: "飞猪旅行"
-description: 飞猪官方数据直连，11项工具覆盖酒店/机票/门票/火车票/万豪/美食/交通/行程规划，含图片和预订链接，零配置即装即用。飞猪暑期酒店特惠，旅行一站式预订
-version: 1.3.2
-tags: [飞猪旅行, 飞猪酒店, 飞猪机票, 飞猪火车票, 万豪酒店]
+name: 智能旅行助手
+display_name: 智能旅行助手
+description: 多源聚合旅行助手——覆盖行程规划、酒店/机票/火车票/景点门票搜索、品牌酒店、美食推荐、市内交通9大功能，数据源整合途牛+TourMind+高德，零配置即装即用
+version: "1.4.7"
+author: mako2026
+license: MIT-0
+tags:
+  - travel
+  - hotel
+  - flight
+  - train
+  - 旅行
+  - 门票
+  - 途牛
+  - 多源聚合
 tools:
-  - name: travel_plan
-    description: 飞猪行程规划，智能推荐行程方案
-    primaryEnv: FLIGGY_PROXY_URL
-    env:
-      - name: FLIGGY_PROXY_URL
-        description: 飞猪代理URL（自动配置，无需手动设置）
+  - name: travelPlan
+    description: 行程规划，用自然语言描述旅行需求，智能推荐含交通住宿景点的行程方案
+    parameters:
+      - name: query
+        type: string
+        description: 旅行需求，自然语言，如"三亚5天亲子游"、"周末杭州2日游"
+        required: true
+  - name: fastSearch
+    description: 极速搜索，快速搜索全品类旅行产品（酒店/机票/景点/火车票）
+    parameters:
+      - name: query
+        type: string
+        description: 搜索关键词，如"上海迪士尼门票"、"北京到上海机票"
+        required: true
+  - name: hotelSearch
+    description: 搜索酒店，返回酒店列表含价格、评分和预订链接
+    parameters:
+      - name: destination
+        type: string
+        description: 目的地城市，如"上海"、"北京"
+        required: true
+      - name: extra
+        type: string
+        description: 补充信息，如"外滩附近 明天入住"
         required: false
-      - name: PROXY_TOKEN
-        description: 代理认证Token（自动配置，无需手动设置）
+  - name: flightSearch
+    description: 机票查询，查国内航班实时票价、航班号和起降时间
+    parameters:
+      - name: origin
+        type: string
+        description: 出发地城市，如"北京"
+        required: true
+      - name: destination
+        type: string
+        description: 目的地城市，如"上海"
         required: false
-    parameters:
-      - name: params
+      - name: depDate
         type: string
-        description: 自然语言查询，如"3天2晚上海游"
-        required: true
-  - name: search_train
-    description: 搜索飞猪火车票
-    parameters:
-      - name: params
+        description: 出发日期，格式YYYY-MM-DD
+        required: false
+      - name: backDate
         type: string
-        description: 自然语言查询，如"北京到上海明天的火车"
-        required: true
-  - name: search_flight
-    description: 搜索飞猪机票
-    parameters:
-      - name: params
+        description: 回程日期，格式YYYY-MM-DD
+        required: false
+      - name: seatClass
         type: string
-        description: 自然语言查询，如"上海到三亚7月1号机票"
-        required: true
-  - name: search_hotel
-    description: 搜索飞猪酒店
+        description: 舱位等级，如经济舱、公务舱
+        required: false
+      - name: directOnly
+        type: boolean
+        description: 是否只看直飞
+        required: false
+  - name: trainSearch
+    description: 火车票查询，查高铁/动车/火车票余票、票价和时刻表
     parameters:
-      - name: params
+      - name: origin
         type: string
-        description: 自然语言查询，如"杭州西湖附近酒店"
+        description: 出发地城市，如"北京"
         required: true
-  - name: search_poi
-    description: 搜索飞猪景点门票
+      - name: destination
+        type: string
+        description: 目的地城市，如"上海"
+        required: false
+      - name: depDate
+        type: string
+        description: 出发日期，格式YYYY-MM-DD
+        required: false
+      - name: seatClass
+        type: string
+        description: 座位等级，如商务座、一等座、二等座
+        required: false
+      - name: trainType
+        type: string
+        description: 车型，如高铁、动车、火车
+        required: false
+      - name: onlyHasStock
+        type: boolean
+        description: 是否只看有票
+        required: false
+  - name: poiSearch
+    description: 景点门票搜索，查景点门票价格、评分和预订链接
     parameters:
-      - name: params
+      - name: destination
         type: string
-        description: 自然语言查询，如"上海迪士尼门票"
+        description: 目的地城市，如"北京"
         required: true
-  - name: search_food
-    description: 搜索附近美食推荐
+      - name: keyword
+        type: string
+        description: 景点关键词，如"迪士尼"
+        required: false
+  - name: brandHotelSearch
+    description: 品牌酒店搜索，搜热门品牌酒店含价格和预订链接
     parameters:
-      - name: params
+      - name: destination
         type: string
-        description: 自然语言查询，如"外滩附近美食"
+        description: 目的地城市，如"上海"、"北京"
         required: true
-  - name: search_transport
-    description: 查询市内交通方案
+      - name: extra
+        type: string
+        description: 补充信息，如"行政酒廊"
+        required: false
+  - name: brandHotelDetail
+    description: 品牌酒店详情，获取单个酒店的详细信息和房型
     parameters:
-      - name: params
+      - name: hotelId
         type: string
-        description: 自然语言查询，如"从虹桥到浦东怎么走"
+        description: 酒店ID，从搜索结果获取
         required: true
-  - name: search_fast
-    description: 极速搜索酒店+景点
+  - name: brandPackageSearch
+    description: 品牌套餐搜索，搜酒店套餐产品
     parameters:
-      - name: params
+      - name: destination
         type: string
-        description: 自然语言查询，如"三亚酒店和景点"
+        description: 目的地城市，如"三亚"
         required: true
-  - name: search_marriott_hotel
-    description: 搜索万豪集团酒店
+      - name: extra
+        type: string
+        description: 补充信息，如"亲子套餐"
+        required: false
+  - name: foodSearch
+    description: 美食推荐，推荐目的地周边美食餐厅含评分和人均
     parameters:
-      - name: params
+      - name: destination
         type: string
-        description: 自然语言查询，如"上海万豪酒店"
+        description: 目的地/地标，如"上海外滩"
         required: true
-  - name: get_marriott_hotel_info
-    description: 获取万豪酒店详情
+      - name: keyword
+        type: string
+        description: 美食类型，如"火锅"
+        required: false
+  - name: transportSearch
+    description: 市内交通，查询城市内两地公交/地铁路线
     parameters:
-      - name: params
+      - name: origin
         type: string
-        description: 酒店名称或关键词
+        description: 出发地，如"上海虹桥站"
         required: true
-  - name: search_marriott_package
-    description: 搜索万豪酒店套餐
-    parameters:
-      - name: params
+      - name: destination
         type: string
-        description: 自然语言查询，如"万豪含早套餐"
+        description: 目的地，如"外滩"
         required: true
+      - name: city
+        type: string
+        description: 所在城市，如"上海"
+        required: false
 ---
 
-# 飞猪旅行 — 官方数据直连，11项工具玩转全品类
+# 智能旅行助手
 
-> 行程规划/酒店/机票/门票/火车票/万豪/美食/交通全覆盖，飞猪官方数据源，含图片和预订链接。
+多源聚合旅行技能，覆盖行程规划、酒店、机票、火车票、景点门票、品牌酒店、美食推荐、市内交通9大品类。数据源整合途牛、TourMind、高德，价格真实、带预订链接。
 
-🔥 **核心亮点：**
-- **飞猪官方数据** — 直连飞猪旅行API，数据权威价格真实
-- **11项工具** — 酒店/机票/门票/火车票/万豪/美食/交通/行程规划全覆盖
-- **行程规划** — 智能推荐多日行程方案，涵盖景点+酒店+交通
-- **极速搜索** — 一次查询同时返回酒店+景点结果
-- **零配置** — 免申请Key，装上就能用
+## ✅ 能做什么
 
-## 快速入门
+| 功能 | 说明 |
+|------|------|
+| 🗺 行程规划 | 自然语言描述需求，智能生成含交通住宿景点的完整行程 |
+| 🏨 酒店搜索 | 按城市/区域查酒店，返回价格/评分/预订链接（途牛+TourMind双源） |
+| ✈️ 机票查询 | 查国内航班价格/时刻/航司，支持单程往返 |
+| 🚄 火车票查询 | 查高铁/动车/普速车次余票、票价和坐席 |
+| 🎫 景点门票 | 查景点门票价格和预订链接 |
+| 🏢 品牌酒店 | 品牌酒店搜索、详情、套餐 |
+| 🍜 美食推荐 | 周边美食餐厅推荐，含评分人均地址 |
+| 🚇 市内交通 | 公交/地铁路线查询，含打车参考 |
+| ⚡ 极速搜索 | 全品类快速智能检索 |
 
-**3个开场白示例，复制即用：**
+## ⚠️ 不能做什么
 
-1. "帮我规划一个3天2晚的上海游"
-2. "杭州西湖附近500元以内的酒店"
-3. "上海迪士尼门票多少钱"
+- 不支持在线下单/支付，预订链接跳转对应平台完成
+- 日期请用自然语言或YYYY-MM-DD格式描述
 
-## 核心能力
+## 🔒 数据安全
 
-1. **行程规划** — 智能推荐多日行程方案，涵盖景点+酒店+交通
-2. **酒店搜索** — 按城市/区域/品牌查酒店，含价格、图片和预订链接
-3. **机票搜索** — 查航班价格、时刻、航司，支持多种排序
-4. **火车票搜索** — 查车次、票价、余票，支持高铁/动车筛选
-5. **景点门票** — 查景点门票价格和预订链接
-6. **美食推荐** — 搜索附近美食，含评分和距离（高德数据）
-7. **市内交通** — 查询公交/地铁/驾车/步行路线（高德数据）
-8. **万豪酒店** — 搜索万豪集团旗下酒店详情和套餐
-9. **极速搜索** — 一次查询同时返回酒店+景点
+所有查询通过云端代理转发，API密钥仅存储在服务端，客户端零密钥，保障数据安全。代理不存储用户数据。
 
-## 能做什么
+## 💡 使用提示
 
-- 智能规划多日行程方案
-- 搜索酒店/机票/门票/火车票，含价格和预订链接
-- 搜索万豪集团旗下酒店详情和套餐
-- 搜索附近美食和市内交通方案
-- 极速搜索一次返回酒店+景点
-
-## 不能做什么
-
-- 不支持在线下单/支付（预订链接跳转飞猪APP或网页完成）
-- 部分小城市数据覆盖可能不完整，建议用大城市名查询
-- 不支持查询已预订订单状态
-
-## 使用提示
-
-- 行程规划工具可一次推荐多日行程，无需分天查询
-- 美食搜索基于高德地图数据，自动定位周边
-- 火车票搜索支持高铁/动车筛选
-- 价格实时变动，以预订页面为准
-
-## 🔗 搭配使用
-
-- **酒店聪明订** — 飞猪之外再比途牛/RG/同程
-- **高铁查询** — 12306官方数据余票更准
-- **景点智能推荐** — 景点+酒店+交通+美食更完整的组合
-
-## 数据流向
-
-用户输入 → 本技能 → 云端代理 → 飞猪/高德API → 返回结果。代理不存储用户数据。
+- 酒店搜索支持补充区域、星级、日期，如`extra="外滩附近 明天入住"`
+- 机票搜索可筛选舱位和直飞，如`seatClass="经济舱", directOnly=true`
+- 行程规划支持复杂需求，如`query="三亚5天亲子游 预算1万"`

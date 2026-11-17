@@ -1,43 +1,56 @@
-## Description: <br>
-Safely operate and improve the Keet CLI project and Keet ↔ OpenClaw bridge for read-only inspection, debugging, documentation, release checks, bridge supervision, and explicitly approved messaging workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safely operate and improve the Keet CLI project and Keet <-> OpenClaw bridge for read-only inspection, debugging, documentation, release checks, bridge supervision, and explicitly approved messaging workflows.
 
-## Publisher: <br>
-[projectreturn](https://clawhub.ai/user/projectreturn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[projectreturn](https://clawhub.ai/user/projectreturn)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to operate or improve Keet CLI and Keet <-> OpenClaw bridge workflows while keeping messaging, profile storage, daemon, bridge, and Git operations behind explicit approval.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can guide access to private Keet profile storage and chat content.
+
+Mitigation: Require explicit confirmation of the profile path and target chat, avoid printing private messages unless requested, and redact secrets or private content in summaries.
+
+Risk: Messaging, file-send, invite, chat creation, bridge, daemon, and watch workflows can change external state or keep a process running.
+
+Mitigation: Confirm the exact target, action, message or file, and long-running process behavior before execution, and provide stop guidance when a process remains active.
+
+Risk: Git pushes can publish unintended changes or sensitive local state.
+
+Mitigation: Confirm the repository, branch, commit diff, and credential identity before pushing, and do not commit live profile storage, generated state, logs, screenshots, or private message content.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to inspect, debug, document, release-check, and supervise Keet CLI and Keet to OpenClaw bridge workflows. It is intended to keep live messaging actions gated by explicit user confirmation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Outbound messages, file shares, invite actions, chat creation, bridge or daemon processes, and Git pushes can change external state or expose private information. <br>
-Mitigation: Require explicit user confirmation of the exact profile path, target chat, message or file, process lifetime, repository, branch, and diff before those actions. <br>
-Risk: Keet profile storage, private messages, invite codes, recovery material, bridge state, and logs may contain sensitive data. <br>
-Mitigation: Keep this data private, avoid printing message contents unless specifically requested, and redact secrets and private messages in summaries and errors. <br>
-Risk: Concurrent Keet Desktop and CLI access can conflict with profile storage locks. <br>
-Mitigation: Use one explicitly approved long-running daemon owner when repeated access is needed, and route commands through the daemon socket instead of spawning competing sessions. <br>
+**Output Format:** [Markdown with inline bash commands, code or configuration snippets, and concise operational guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/projectreturn/keet-cli) <br>
-- [Project Source Listed by Skill](https://github.com/projectreturn/Keet-cli) <br>
+**Other Properties Related to Output:** [State-changing messaging, bridge, daemon, invite, chat, file-send, and Git push actions require explicit user confirmation.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include explicit confirmation prompts before state-changing messaging, file sharing, bridge, daemon, invite, chat creation, or Git push actions.] <br>
+0.3.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-0.3.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

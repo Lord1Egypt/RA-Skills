@@ -1,42 +1,52 @@
-## Description: <br>
-Tailor resumes and project bullets to a target role, quantify gaps, and prepare an interview-ready evidence map. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tailor resumes and project bullets to a target role, quantify gaps, and prepare an interview-ready evidence map.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Job seekers, career coaches, and agents assisting with career materials use this skill to compare resume content with a target job description, identify gaps, draft truthful resume bullets, and prepare an interview evidence map.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Resume and job materials can contain sensitive personal or employer information.
+
+Mitigation: Redact addresses, phone numbers, private employer data, and details not needed for matching before using the skill.
+
+Risk: Rewritten bullets or match summaries could overstate experience if treated as final without review.
+
+Mitigation: Review generated bullets, scorecards, and evidence maps against the user's actual experience, and keep uncertain claims marked for confirmation.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to compare a resume with a target job description, identify keyword and evidence gaps, rewrite bullets without fabricating claims, and prepare interview-ready support material. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Resumes and job materials can contain sensitive personal information. <br>
-Mitigation: Run the helper only on files the user intends to analyze, keep inputs local unless the session task explicitly requires otherwise, and avoid including unnecessary personal details in shared outputs. <br>
-Risk: The helper script writes to a user-specified output path and could overwrite an existing file. <br>
-Mitigation: Choose a clear output path, preview the command before running it, and confirm before overwriting existing files. <br>
-Risk: Registry metadata and SKILL.md frontmatter disagree on the release version. <br>
-Mitigation: Verify the installed release version before relying on changelog or compatibility claims. <br>
+**Output Format:** [Markdown guidance with an optional JSON keyword-overlap report]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/resume-job-match-lab) <br>
+**Other Properties Related to Output:** [The bundled local Python helper accepts explicit resume and job-description text files and can write a JSON report containing a score, missing keywords, and top job-description keywords.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown analysis with optional JSON output from the local helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces match scorecards, rewritten bullets, gap analysis, interview evidence maps, and missing-keyword JSON when the helper script is used.] <br>
+1.0.0 (source: server release metadata; artifact frontmatter reports 1.1.0)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and CHANGELOG; SKILL.md frontmatter lists 1.1.0) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

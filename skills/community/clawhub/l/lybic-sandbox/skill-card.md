@@ -1,49 +1,62 @@
-## Description: <br>
-Lybic Sandbox is a cloud sandbox built for agents and automation workflows, letting agents create disposable cloud computers, automate desktop or Android GUIs, execute code and commands, manage files, expose HTTP services, and observe or stop runs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lybic Sandbox is a cloud sandbox built for agents and automation workflows, providing disposable cloud computers for GUI automation, code execution, file operations, network port mapping, and sandbox management.
 
-## Publisher: <br>
-[AEnjoy](https://clawhub.ai/user/AEnjoy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[aenjoy](https://clawhub.ai/user/aenjoy)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to control Lybic cloud sandboxes for isolated code execution, GUI automation, Android automation, file processing, web service testing, and project or sandbox lifecycle management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Agents can create and control Lybic cloud sandboxes, including GUI actions and process execution. <br>
-Mitigation: Install only for workflows that require sandbox control, use least-privileged Lybic credentials, and monitor or stop runs when needed. <br>
-Risk: Credentials are required through LYBIC_ORG_ID and LYBIC_API_KEY. <br>
-Mitigation: Provide credentials through environment variables or a secret manager and never commit real credentials to source files or examples. <br>
-Risk: The skill can download files into sandboxes and process them. <br>
-Mitigation: Validate downloaded files before processing and avoid using untrusted inputs in sensitive workflows. <br>
-Risk: HTTP port mappings can expose sandbox services through public URLs. <br>
-Mitigation: Expose only intended services, require authentication where appropriate, and remove mappings when work is complete. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to create and operate Lybic cloud sandboxes, run code or shell commands, automate desktop and Android GUIs, move files, and expose sandbox services through HTTP port mappings.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/AEnjoy/lybic-sandbox) <br>
-- [Publisher Profile](https://clawhub.ai/user/AEnjoy) <br>
-- [Lybic Homepage](https://lybic.ai) <br>
-- [Lybic Python SDK Docs](https://docs.lybic.cn/en/sdk/python) <br>
-- [Lybic Action Space Docs](https://docs.lybic.cn/en/sandbox/action) <br>
-- [Lybic Code Execution Docs](https://docs.lybic.cn/en/sandbox/code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include async Python examples, environment variable setup, sandbox action payloads, and cleanup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata) <br>
+Risk: An agent can create, operate, and delete cloud sandboxes, projects, files, and processes through the user's Lybic account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privileged API key, supervise destructive actions, and review commands before deleting projects or sandboxes.
+
+Risk: HTTP port mappings can expose sandbox services to the internet.
+
+Mitigation: Create mappings only for intended services, avoid exposing sensitive local endpoints, and delete mappings when they are no longer needed.
+
+Risk: Credential handling is required through Lybic organization and API key settings.
+
+Mitigation: Provide credentials through environment variables or a managed secret store, avoid hardcoding them in examples or scripts, and prefer a dedicated pinned SDK environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aenjoy/skills/lybic-sandbox)
+- [Lybic Homepage](https://lybic.ai)
+- [Lybic Documentation](https://docs.lybic.cn)
+- [Python SDK Reference](https://docs.lybic.cn/en/sdk/python)
+- [Sandbox Actions](https://docs.lybic.cn/en/sandbox/action)
+- [Code Execution Docs](https://docs.lybic.cn/en/sandbox/code)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include async Python SDK examples, sandbox action JSON snippets, environment variable setup, and operational cleanup guidance.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

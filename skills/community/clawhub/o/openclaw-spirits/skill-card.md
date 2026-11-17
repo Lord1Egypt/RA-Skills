@@ -1,42 +1,54 @@
-## Description: <br>
-Companion spirit system for OpenClaw agents that deterministically generates a unique virtual companion from a user identity seed and supports spirit display, stats, conversation, and bilingual card output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Companion spirit system for OpenClaw agents that deterministically generates and displays a unique spirit profile from a user identity seed.
 
-## Publisher: <br>
-[ahaaiclub](https://clawhub.ai/user/ahaaiclub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ahaaiclub](https://clawhub.ai/user/ahaaiclub)
 
-## Use Case: <br>
-External users and agent developers use this skill to add a lightweight companion presence to OpenClaw-style agents. It produces deterministic spirit profiles, formatted spirit cards, stats, and brief in-character companion responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill generates a companion from a stable user identifier or username and saves companion data locally in the skill directory. <br>
-Mitigation: Use the least sensitive stable identifier available, avoid secrets or private identifiers as seeds, and review or remove assets/companion.json when local storage is not desired. <br>
-Risk: Passive companion messages may distract users or appear when companion behavior is not wanted. <br>
-Mitigation: Configure the agent to respond only to explicit commands such as `spirit`, `spirit show`, or `spirit talk` when unsolicited companion messages would be distracting. <br>
+## Use Case:
 
+External users and agent developers use this skill to add a local companion feature that can show a bilingual spirit card, generate personality details, track simple profile state, and respond briefly in character when invoked.
 
-## Reference(s): <br>
-- [OpenClaw Spirits skill page](https://clawhub.ai/ahaaiclub/openclaw-spirits) <br>
-- [OpenClaw Spirits product spec](artifact/openclaw-spirits/SPEC.md) <br>
-- [OpenClaw Spirits species guide](artifact/openclaw-spirits/references/species-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text with ASCII sprites, command guidance, and JSON companion data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save companion data locally in assets/companion.json; deterministic output is seeded by a user identity or username.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.2 (source: server release evidence) <br>
+Risk: The skill may use a platform ID, username, or name as a deterministic seed and save a local companion profile in the skill directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a stable non-sensitive identifier when possible, avoid secrets or private data as seeds, and review the saved companion profile before sharing the skill directory.
+
+Risk: Passive companion appearances may interrupt serious work contexts.
+
+Mitigation: Prefer explicit commands such as spirit show, spirit stats, spirit talk, or spirit rename, and keep passive appearances limited or disabled when interruptions matter.
+
+## Reference(s):
+
+- [OpenClaw Spirits Complete Species Guide](artifact/openclaw-spirits/references/species-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/ahaaiclub/skills/openclaw-spirits)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with inline shell commands, ASCII cards, and JSON companion data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save a local companion profile in the skill directory.]
+
+## Skill Version(s):
+
+1.3.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

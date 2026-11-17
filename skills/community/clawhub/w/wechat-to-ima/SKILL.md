@@ -27,62 +27,9 @@ Save a WeChat article into IMA with two user-facing flows:
 
 ## Requirements
 
-- IMA credentials are required. Configure either:
-  - environment variables: `IMA_OPENAPI_CLIENTID` and `IMA_OPENAPI_APIKEY`
-  - or local files: `~/.config/ima/client_id` and `~/.config/ima/api_key`
-- Python 3 and Node.js must be available.
+- `IMA_OPENAPI_CLIENTID` and `IMA_OPENAPI_APIKEY` must be available in the environment, or stored in `~/.config/ima/client_id` and `~/.config/ima/api_key`.
 - Run `npm install` once inside this skill directory so the bundled extractor dependencies are available.
 - `skills/ima-skill/ima_api.cjs` is used when present, so this skill stays aligned with the latest IMA OpenAPI wrapper and error handling.
-
-## Setup
-
-### Option A: environment variables
-
-```bash
-export IMA_OPENAPI_CLIENTID="<your_client_id>"
-export IMA_OPENAPI_APIKEY="<your_api_key>"
-```
-
-### Option B: local credential files
-
-```bash
-mkdir -p ~/.config/ima
-printf '%s' '<your_client_id>' > ~/.config/ima/client_id
-printf '%s' '<your_api_key>' > ~/.config/ima/api_key
-```
-
-### Install dependencies
-
-```bash
-cd skills/wechat-to-ima
-npm install
-```
-
-## Quick start
-
-### Save to IMA notes
-
-```bash
-python3 scripts/save_wechat_to_ima.py "https://mp.weixin.qq.com/s/xxxxx"
-```
-
-### Save to a named IMA knowledge base
-
-```bash
-python3 scripts/save_wechat_to_ima.py "https://mp.weixin.qq.com/s/xxxxx" "知识库名称"
-```
-
-Behavior:
-
-- without a knowledge-base argument → save to **IMA notes**
-- with a knowledge-base name or ID → save to **that knowledge base only**, without creating an extra user-visible note
-
-## Common errors
-
-- `missing env: ...` → IMA credentials are not configured yet
-- `knowledge base not found: ...` → the specified knowledge base name/ID cannot be resolved
-- `knowledge base ambiguous: ...` → multiple knowledge bases matched; use the exact name or ID
-- extractor/dependency errors → run `npm install` in this skill directory first
 
 ## Output
 

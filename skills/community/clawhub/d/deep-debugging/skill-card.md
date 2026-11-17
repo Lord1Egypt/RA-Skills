@@ -1,45 +1,56 @@
-## Description: <br>
-Evidence-first debugging and incident triage for unclear, recurring, production-like, or high-risk software bugs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evidence-first debugging and incident triage for AI coding agents with concise workflow, progressive checklists, and safe local snapshots.
 
-## Publisher: <br>
-[brasco05](https://clawhub.ai/user/brasco05) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brasco05](https://clawhub.ai/user/brasco05)
 
-## Use Case: <br>
-Developers and AI coding agents use Deep Debugging to investigate unclear, recurring, production-like, or high-risk software failures through evidence collection, one testable hypothesis at a time, minimal reversible fixes, and verified prevention steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Debugging evidence may contain secrets, customer data, cookies, tokens, or raw production payloads. <br>
-Mitigation: Review and redact logs or snapshot output before sharing; collect environment key names only and omit secret values. <br>
-Risk: Rollback, deploy, migration, credential, external API, or data repair actions can change production state. <br>
-Mitigation: Require explicit user approval before any production write or third-party action, and prefer reversible stabilization steps. <br>
-Risk: A root cause may be asserted before enough evidence has been collected. <br>
-Mitigation: Follow the evidence-first workflow: state one testable hypothesis, prove or disprove it, verify the exact failure path, and report remaining risk. <br>
+## Use Case:
 
+Developers and AI coding agents use this skill to debug unclear, recurring, production-like, or high-risk software failures by stabilizing incidents, collecting evidence, testing one hypothesis at a time, and verifying the root cause before changing code.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/brasco05/deep-debugging) <br>
-- [Incident-First Debugging Reference](references/incident-first.md) <br>
-- [Output Templates](references/output-templates.md) <br>
-- [Stack Checklists](references/stack-checklists.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with plain-text report templates and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use an optional local diagnostic snapshot helper that prints environment key names only and omits secret values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: Debugging may expose logs, git metadata, dependency versions, listening ports, and environment variable names.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use redacted diagnostic evidence, print environment key names only, and omit secrets, tokens, cookies, customer data, and raw production payloads.
+
+Risk: Production writes, deploys, rollbacks, database actions, or external API changes can affect live systems.
+
+Mitigation: Require explicit user approval before production-changing actions and prefer evidence collection, feature flags, rollback planning, and minimal reversible fixes.
+
+## Reference(s):
+
+- [Incident-First Debugging Reference](references/incident-first.md)
+- [Output Templates](references/output-templates.md)
+- [Stack Checklists](references/stack-checklists.md)
+- [Deep Debugging ClawHub release](https://clawhub.ai/brasco05/skills/deep-debugging)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, incident snapshots, checklists, code changes, configuration notes, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include redacted diagnostic evidence and safe environment metadata; secrets, tokens, cookies, customer data, and raw production payloads should be omitted.]
+
+## Skill Version(s):
+
+2.2.0 (source: SKILL.md frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,48 @@
-## Description: <br>
-QQBot Send Local Media stages disposable copies of local files so agents can send files, images, audio, video, or URLs through QQBot while preserving the original file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safely send local files, images, audio, video, and other media through QQBot by staging a disposable copy, sending it with <qqmedia>, and cleaning up only the staged file.
 
-## Publisher: <br>
-[zjuncher](https://clawhub.ai/user/zjuncher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zjuncher](https://clawhub.ai/user/zjuncher)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Agents use this skill to send user-requested local files or URL media through QQBot while preserving the original local file. It is intended for workflows that need a complete stage, send, and temporary cleanup flow rather than returning a local path.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The cleanup helper can delete files inside ~/.openclaw/media/qqbot/ when invoked with --cleanup.
+
+Mitigation: Use cleanup only with the exact staged path printed during the same send operation, and never with original source paths, guessed paths, URLs, or earlier staged files.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Agent operators and end users use this skill when a local file path, attachment, or media URL should be sent through QQBot instead of merely returned as text. It is suited for sending desktop, downloads, or absolute-path media while keeping the original file unchanged. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: An agent could send the wrong local file or QQ destination if it stages an unintended path. <br>
-Mitigation: Verify the source path and QQ destination before sending, especially for sensitive documents. <br>
-Risk: Changing the bundled staging script could weaken cleanup behavior or cause unsafe file handling. <br>
-Mitigation: Keep the bundled staging script unchanged and clean up only the staged path returned by the script. <br>
+**Output Format:** [Markdown with inline shell commands and <qqmedia> media references]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [QQBot Send Local Media on ClawHub](https://clawhub.ai/zjuncher/qqbot-send-local-media) <br>
+**Other Properties Related to Output:** [Stages local files up to 100 MB into the QQBot media relay directory and cleans up only the staged copy.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Text, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and <qqmedia> tags] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stages a temporary local copy, sends the staged path or URL, then cleans up only the staged copy returned by the staging script.] <br>
+1.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

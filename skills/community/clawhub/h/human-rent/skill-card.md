@@ -1,44 +1,60 @@
-## Description: <br>
-Human-as-a-Service for OpenClaw - Dispatch verified human agents to perform physical world tasks and sensory validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Human-as-a-Service for OpenClaw - Dispatch verified human agents to perform physical world tasks and sensory validation
 
-## Publisher: <br>
-[zhenstaff](https://clawhub.ai/user/zhenstaff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zhenstaff](https://clawhub.ai/user/zhenstaff)
 
-## Use Case: <br>
-External developers and agents use Human-Rent to request paid human workers for physical verification, photos, inspections, phone calls, and other real-world tasks that require explicit user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States (select cities) <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can dispatch paid human workers for physical-world tasks and send task details, locations, budgets, and worker-selection data to an external service involving real people. <br>
-Mitigation: Install and use it only when that behavior is intended; require clear user approval, spending limits, audit logs, and task-safety controls before dispatch. <br>
-Risk: Auto-confirmation can bypass interactive approval for human dispatches. <br>
-Mitigation: Keep HUMAN_RENT_AUTO_CONFIRM disabled unless separate approvals, budget controls, and monitoring are already in place. <br>
-Risk: The security guidance flags unsafe cleanup, secret-printing, NODE_DEBUG, and exec-based integration examples as patterns that need review. <br>
-Mitigation: Review those examples before reuse and avoid copying patterns that expose secrets or execute untrusted input. <br>
+## Use Case:
 
+External users and developers use Human-Rent to let an agent dispatch paid, verified human workers for physical-world tasks such as photo evidence, address checks, equipment inspections, phone calls, and document scans.
 
-## Reference(s): <br>
-- [ZhenRent Documentation](https://docs.zhenrent.com) <br>
-- [ZhenRent API Keys](https://www.zhenrent.com/api/keys) <br>
-- [ClawHub Human-Rent Listing](https://clawhub.ai/zhenstaff/human-rent) <br>
+### Deployment Geography for Use:
 
+United States (select cities)
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, API calls, Text, Guidance] <br>
-**Output Format:** [CLI text with task identifiers, worker listings, status updates, and human-provided result data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ZHENRENT_API_KEY and ZHENRENT_API_SECRET; ZHENRENT_BASE_URL is optional and defaults to the ZhenRent API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release metadata; artifact version files report 0.2.1) <br>
+Risk: The skill can create paid real-world tasks and requires API credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the publisher is trusted, store credentials in a secret manager or a 0600 environment file, and keep explicit confirmation enabled for normal use.
+
+Risk: The security review says the documentation includes an unsafe exec() agent-integration pattern.
+
+Mitigation: Use argument-array process execution or a direct API wrapper instead of the documented exec() pattern.
+
+Risk: Auto-confirm mode can bypass dispatch prompts for real-world tasks.
+
+Mitigation: Leave HUMAN_RENT_AUTO_CONFIRM unset unless the account has tight spending limits and runs in a controlled environment.
+
+## Reference(s):
+
+- [ClawHub Human-Rent Skill Page](https://clawhub.ai/zhenstaff/skills/human-rent)
+- [ZhenRent Documentation](https://docs.zhenrent.com)
+- [ZhenRent API Credentials](https://www.zhenrent.com/api/keys)
+- [ZhenRent API Endpoint](https://www.zhenrent.com/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and JSON-like task/status results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ZHENRENT_API_KEY and ZHENRENT_API_SECRET; may create paid real-world tasks after user confirmation.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata; artifact frontmatter, package.json, and CHANGELOG report 0.2.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

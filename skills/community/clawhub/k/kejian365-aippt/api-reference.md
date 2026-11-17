@@ -73,14 +73,24 @@ Creates the PPT record and starts generation in one call.
 {
   "topic": "人工智能发展趋势",
   "themeId": "649757396252045312",
-  "outline": [
-    { "pageNumber": 1, "pageType": "封面", "title": "人工智能发展趋势", "content": "" },
-    { "pageNumber": 2, "pageType": "目录", "title": "目录", "content": "1.概述\n2.应用" },
-    { "pageNumber": 3, "pageType": "章节", "title": "第一章 概述", "content": "", "chapterNumber": "01" },
-    { "pageNumber": 4, "pageType": "内容", "title": "AI定义", "content": "...", "chapterNumber": "01" },
-    { "pageNumber": 5, "pageType": "内容", "title": "发展历程", "content": "...", "chapterNumber": "01" },
-    { "pageNumber": 6, "pageType": "结束", "title": "谢谢观看", "content": "" }
-  ],
+  "outline": {
+    "main_title": "人工智能发展趋势",
+    "narrative": {
+      "objective": "让受众了解AI发展现状与未来方向",
+      "core_message": "AI正在重塑各行各业",
+      "mode": "教学式",
+      "mode_behavior": "从概念到案例逐层递进",
+      "reading_mode": "均衡阅读"
+    },
+    "pages": [
+      { "pageNumber": 1, "pageType": "封面", "title": "人工智能发展趋势", "content": "" },
+      { "pageNumber": 2, "pageType": "目录", "title": "目录", "content": "1.概述\n2.应用" },
+      { "pageNumber": 3, "pageType": "章节", "title": "第一章 概述", "content": "", "chapterNumber": "01" },
+      { "pageNumber": 4, "pageType": "内容", "title": "AI定义", "content": "...", "chapterNumber": "01" },
+      { "pageNumber": 5, "pageType": "内容", "title": "发展历程", "content": "...", "chapterNumber": "01" },
+      { "pageNumber": 6, "pageType": "结束", "title": "谢谢观看", "content": "" }
+    ]
+  },
   "requirements": "商务风格，适合高管汇报",
   "material": "# 调研资料\n\n## AI发展概述\n人工智能...",
   "themeConfig": {
@@ -104,7 +114,7 @@ Creates the PPT record and starts generation in one call.
 |-------|----------|------|---------|-------------|
 | `topic` | ✅ | string | — | PPT theme / title |
 | `themeId` | ✅ | string | — | Template ID from `/skill/themes` |
-| `outline` | ✅ | array | — | Page array (see outline rules) |
+| `outline` | ✅ | object | — | OutlineModel（含 main_title/narrative/pages，见下方说明） |
 | `requirements` | | string | `null` | Style / content hint |
 | `material` | | string | `null` | Research/summary markdown |
 | `themeConfig` | | object | all defaults | Generation config |

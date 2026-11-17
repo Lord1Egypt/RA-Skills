@@ -1,40 +1,56 @@
-## Description: <br>
-Creating algorithmic art using p5.js with seeded randomness and interactive parameter exploration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Algorithmic Art helps agents create original p5.js generative art by first drafting an algorithmic philosophy, then producing seeded, interactive HTML/JavaScript artwork.
 
-## Publisher: <br>
-[darinouyang](https://clawhub.ai/user/darinouyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[darinouyang](https://clawhub.ai/user/darinouyang)
 
-## Use Case: <br>
-Developers, artists, and creative coding users use this skill to turn an art prompt into an original algorithmic philosophy and a self-contained p5.js generative art viewer with seeded variation and adjustable parameters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML artifacts may contact cdnjs and Google Fonts when opened. <br>
-Mitigation: Review network dependencies before sharing or deployment, and replace remote assets with approved local copies when offline or restricted execution is required. <br>
-Risk: The bundled viewer template references Anthropic-style branding. <br>
-Mitigation: Remove or replace third-party branding before public distribution unless the user has permission to use it. <br>
+## Use Case:
 
+Developers, creative technologists, and external users use this skill to guide an agent through original algorithmic-art ideation and implementation. It produces a concise philosophy plus interactive p5.js artifacts with seeded variation and tunable parameters.
 
-## Reference(s): <br>
-- [p5.js runtime CDN](https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown or text philosophy plus self-contained HTML and JavaScript code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated HTML is intended to run in a browser or Claude artifact environment and may load p5.js and fonts from external CDNs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Generated HTML/JavaScript viewers are executable artifacts and may load public CDN resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated artifacts before sharing or deployment, and bundle or integrity-pin CDN dependencies when using them in controlled environments.
+
+Risk: Generated viewers may use an Anthropic-styled template, which can make user-generated outputs look more official than they are.
+
+Mitigation: Treat shared HTML artifacts as user-generated content and avoid implying endorsement by Anthropic, NVIDIA, or the hosting platform.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/darinouyang/skills/algorithmic-art-2)
+- [p5.js runtime CDN](https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js)
+- [Viewer template](artifact/templates/viewer.html)
+- [Generator template](artifact/templates/generator_template.js)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Files, Guidance]
+
+**Output Format:** [Markdown plus self-contained HTML/JavaScript artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses seeded p5.js randomness and interactive parameter controls; generated viewers may rely on public CDN resources unless modified.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

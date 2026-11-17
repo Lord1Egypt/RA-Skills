@@ -1,39 +1,52 @@
-## Description: <br>
-Create a comprehensive synthesis of the week's work and thinking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a comprehensive synthesis of the week's work and thinking.
 
-## Publisher: <br>
-[ItsFlow](https://clawhub.ai/user/ItsFlow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[itsflow](https://clawhub.ai/user/itsflow)
 
-## Use Case: <br>
-External users and developers use this skill to review notes and active projects from the current week, identify themes and insights, and produce a structured weekly synthesis for planning. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill reviews weekly notes and project activity, which may include private or sensitive workspace content. <br>
-Mitigation: Use it only in notes workspaces where agent review is acceptable, and review the generated synthesis before sharing it. <br>
-Risk: Follow-up actions such as archiving projects, cleaning inboxes, or updating project status can change workspace organization. <br>
-Mitigation: Confirm before allowing the agent to archive projects, clean an inbox, or change project status. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Weekly Synthesis on ClawHub](https://clawhub.ai/ItsFlow/weekly-synthesis) <br>
+## Use Case:
 
+External users and knowledge workers use this skill to have an agent review notes and project activity from the week, identify themes and insights, assess progress, and draft a structured weekly synthesis note.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown weekly synthesis note] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes weekly themes, insights, project progress, questions, energy audit, connections, intentions, and items to process.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may require the agent to read personal notes and project activity to produce the synthesis.
+
+Mitigation: Run it only in workspaces whose notes the agent is allowed to inspect, and review the generated synthesis before sharing it.
+
+Risk: Follow-up actions such as archiving completed projects, cleaning an inbox, or updating project status could change a workspace if executed automatically.
+
+Mitigation: Treat follow-up actions as recommendations and approve any workspace changes before they are applied.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/itsflow/skills/weekly-synthesis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown weekly synthesis note with structured sections and follow-up guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include project summaries, themes, insights, energy audit observations, next-week intentions, and suggested follow-up actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

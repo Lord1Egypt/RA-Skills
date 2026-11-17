@@ -1,0 +1,814 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/kadubon/asi-proxy-phase-skill/blob/main/asi-proxy-phase-skill/assets/intervention-packet.schema.json",
+  "title": "ASI-Proxy Phase Intervention Packet",
+  "description": "An evidence-gated, protocol-relative intervention record. Validity does not certify ASI or a real phase transition.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "objective",
+    "scope",
+    "authority_boundary",
+    "phase_assessment",
+    "candidate_gate",
+    "sources",
+    "interventions",
+    "execution",
+    "rollback",
+    "validation",
+    "residuals",
+    "outcome_status",
+    "next_binding_dimension",
+    "non_claims"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "objective": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scope": {
+      "$ref": "#/$defs/scope"
+    },
+    "authority_boundary": {
+      "$ref": "#/$defs/authorityBoundary"
+    },
+    "phase_assessment": {
+      "$ref": "#/$defs/phaseAssessment"
+    },
+    "candidate_gate": {
+      "$ref": "#/$defs/candidateGate"
+    },
+    "sources": {
+      "$ref": "#/$defs/sources"
+    },
+    "interventions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/intervention"
+      }
+    },
+    "execution": {
+      "$ref": "#/$defs/execution"
+    },
+    "rollback": {
+      "$ref": "#/$defs/rollback"
+    },
+    "validation": {
+      "$ref": "#/$defs/validation"
+    },
+    "residuals": {
+      "$ref": "#/$defs/residuals"
+    },
+    "outcome_status": {
+      "enum": [
+        "planned",
+        "improved",
+        "no_evidenced_improvement",
+        "halted",
+        "failed",
+        "inconclusive"
+      ]
+    },
+    "next_binding_dimension": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/dimension"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "non_claims": {
+      "$ref": "#/$defs/stringArray"
+    }
+  },
+  "$defs": {
+    "stringArray": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "dimension": {
+      "enum": [
+        "provenance_integrity",
+        "trust_quorum",
+        "temporal_integrity",
+        "structural_reachability",
+        "causal_formation",
+        "dimensional_consistency",
+        "exact_self_maintenance",
+        "finite_horizon_resource_persistence",
+        "target_bound_generative_catalysis",
+        "verification_capacity",
+        "effective_independence",
+        "coordination_protocol_integrity",
+        "perturbation_robustness"
+      ]
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "workspace",
+        "systems",
+        "in_scope",
+        "out_of_scope",
+        "evaluation_horizon"
+      ],
+      "properties": {
+        "workspace": {
+          "type": "string",
+          "minLength": 1
+        },
+        "systems": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "in_scope": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "out_of_scope": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "evaluation_horizon": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "authorityBoundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "allowed_actions",
+        "approval_required",
+        "prohibited_actions"
+      ],
+      "properties": {
+        "allowed_actions": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "approval_required": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "prohibited_actions": {
+          "$ref": "#/$defs/stringArray"
+        }
+      }
+    },
+    "assessment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "evidence_refs",
+        "rationale"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "observed",
+            "bounded",
+            "unknown"
+          ]
+        },
+        "value": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "lower_bound": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "upper_bound": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "evidence_refs": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "observed"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "required": [
+              "value"
+            ],
+            "properties": {
+              "value": {
+                "type": "number"
+              },
+              "evidence_refs": {
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "unknown"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "bounded"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "required": [
+              "lower_bound",
+              "upper_bound"
+            ],
+            "properties": {
+              "lower_bound": {
+                "type": "number"
+              },
+              "upper_bound": {
+                "type": "number"
+              },
+              "evidence_refs": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "phaseAssessment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "provenance_integrity",
+        "trust_quorum",
+        "temporal_integrity",
+        "structural_reachability",
+        "causal_formation",
+        "dimensional_consistency",
+        "exact_self_maintenance",
+        "finite_horizon_resource_persistence",
+        "target_bound_generative_catalysis",
+        "verification_capacity",
+        "effective_independence",
+        "coordination_protocol_integrity",
+        "perturbation_robustness"
+      ],
+      "properties": {
+        "provenance_integrity": {
+          "$ref": "#/$defs/assessment"
+        },
+        "trust_quorum": {
+          "$ref": "#/$defs/assessment"
+        },
+        "temporal_integrity": {
+          "$ref": "#/$defs/assessment"
+        },
+        "structural_reachability": {
+          "$ref": "#/$defs/assessment"
+        },
+        "causal_formation": {
+          "$ref": "#/$defs/assessment"
+        },
+        "dimensional_consistency": {
+          "$ref": "#/$defs/assessment"
+        },
+        "exact_self_maintenance": {
+          "$ref": "#/$defs/assessment"
+        },
+        "finite_horizon_resource_persistence": {
+          "$ref": "#/$defs/assessment"
+        },
+        "target_bound_generative_catalysis": {
+          "$ref": "#/$defs/assessment"
+        },
+        "verification_capacity": {
+          "$ref": "#/$defs/assessment"
+        },
+        "effective_independence": {
+          "$ref": "#/$defs/assessment"
+        },
+        "coordination_protocol_integrity": {
+          "$ref": "#/$defs/assessment"
+        },
+        "perturbation_robustness": {
+          "$ref": "#/$defs/assessment"
+        }
+      }
+    },
+    "gateCondition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "criterion",
+        "evidence_refs",
+        "rationale"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "pass",
+            "fail",
+            "unknown"
+          ]
+        },
+        "observed_value": {},
+        "criterion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_refs": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "unknown": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "description",
+        "critical",
+        "evidence_refs"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "critical": {
+          "type": "boolean"
+        },
+        "evidence_refs": {
+          "$ref": "#/$defs/stringArray"
+        }
+      }
+    },
+    "candidateGate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "conditions",
+        "unknowns",
+        "candidate_regime"
+      ],
+      "properties": {
+        "conditions": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "phase_readiness",
+            "capability_reproduction",
+            "residual_ratio",
+            "verification_coverage",
+            "resource_floor",
+            "critical_unknowns",
+            "hold_period"
+          ],
+          "properties": {
+            "phase_readiness": {
+              "$ref": "#/$defs/gateCondition"
+            },
+            "capability_reproduction": {
+              "$ref": "#/$defs/gateCondition"
+            },
+            "residual_ratio": {
+              "$ref": "#/$defs/gateCondition"
+            },
+            "verification_coverage": {
+              "$ref": "#/$defs/gateCondition"
+            },
+            "resource_floor": {
+              "$ref": "#/$defs/gateCondition"
+            },
+            "critical_unknowns": {
+              "$ref": "#/$defs/gateCondition"
+            },
+            "hold_period": {
+              "$ref": "#/$defs/gateCondition"
+            }
+          }
+        },
+        "unknowns": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/unknown"
+          }
+        },
+        "candidate_regime": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "candidate_regime": {
+                "const": true
+              }
+            },
+            "required": [
+              "candidate_regime"
+            ]
+          },
+          "then": {
+            "properties": {
+              "conditions": {
+                "properties": {
+                  "phase_readiness": {
+                    "properties": {
+                      "status": {
+                        "const": "pass"
+                      }
+                    }
+                  },
+                  "capability_reproduction": {
+                    "properties": {
+                      "status": {
+                        "const": "pass"
+                      }
+                    }
+                  },
+                  "residual_ratio": {
+                    "properties": {
+                      "status": {
+                        "const": "pass"
+                      }
+                    }
+                  },
+                  "verification_coverage": {
+                    "properties": {
+                      "status": {
+                        "const": "pass"
+                      }
+                    }
+                  },
+                  "resource_floor": {
+                    "properties": {
+                      "status": {
+                        "const": "pass"
+                      }
+                    }
+                  },
+                  "critical_unknowns": {
+                    "properties": {
+                      "status": {
+                        "const": "pass"
+                      }
+                    }
+                  },
+                  "hold_period": {
+                    "properties": {
+                      "status": {
+                        "const": "pass"
+                      }
+                    }
+                  }
+                }
+              },
+              "unknowns": {
+                "not": {
+                  "contains": {
+                    "properties": {
+                      "critical": {
+                        "const": true
+                      }
+                    },
+                    "required": [
+                      "critical"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "paperSource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "doi",
+        "catalog_sha256"
+      ],
+      "properties": {
+        "doi": {
+          "type": "string",
+          "minLength": 1
+        },
+        "catalog_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "repositorySource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "url",
+        "head_sha"
+      ],
+      "properties": {
+        "url": {
+          "type": "string",
+          "pattern": "^https://github\\.com/kadubon/"
+        },
+        "head_sha": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        }
+      }
+    },
+    "sources": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "papers",
+        "repositories"
+      ],
+      "properties": {
+        "papers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/paperSource"
+          }
+        },
+        "repositories": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/repositorySource"
+          }
+        }
+      }
+    },
+    "cost": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "implementation",
+        "operation",
+        "unit",
+        "uncertainty"
+      ],
+      "properties": {
+        "implementation": {
+          "type": "number",
+          "minimum": 0
+        },
+        "operation": {
+          "type": "number",
+          "minimum": 0
+        },
+        "unit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "uncertainty": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "intervention": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "target_dimensions",
+        "mechanism",
+        "effect_overlap_group",
+        "cost",
+        "dependencies",
+        "expected_effect",
+        "evidence_refs",
+        "non_claims"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "target_dimensions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/dimension"
+          },
+          "uniqueItems": true
+        },
+        "mechanism": {
+          "type": "string",
+          "minLength": 1
+        },
+        "effect_overlap_group": {
+          "type": "string",
+          "minLength": 1
+        },
+        "cost": {
+          "$ref": "#/$defs/cost"
+        },
+        "dependencies": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "expected_effect": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_refs": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "non_claims": {
+          "$ref": "#/$defs/stringArray"
+        }
+      }
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "actions",
+        "artifacts"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "planned",
+            "executed",
+            "partial",
+            "not_executed"
+          ]
+        },
+        "actions": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "artifacts": {
+          "$ref": "#/$defs/stringArray"
+        }
+      }
+    },
+    "rollback": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "available",
+        "trigger",
+        "steps"
+      ],
+      "properties": {
+        "available": {
+          "type": "boolean"
+        },
+        "trigger": {
+          "type": "string",
+          "minLength": 1
+        },
+        "steps": {
+          "$ref": "#/$defs/stringArray"
+        }
+      }
+    },
+    "check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "status",
+        "evidence_refs"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "passed",
+            "failed",
+            "not_run"
+          ]
+        },
+        "evidence_refs": {
+          "$ref": "#/$defs/stringArray"
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "checks"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "not_run",
+            "passed",
+            "failed",
+            "partial"
+          ]
+        },
+        "checks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/check"
+          }
+        }
+      }
+    },
+    "residuals": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "evidence_refs",
+        "unresolved"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "observed",
+            "bounded",
+            "unknown"
+          ]
+        },
+        "evidence_refs": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "unresolved": {
+          "$ref": "#/$defs/stringArray"
+        }
+      }
+    }
+  }
+}

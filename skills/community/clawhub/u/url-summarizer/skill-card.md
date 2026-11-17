@@ -1,37 +1,52 @@
-## Description: <br>
-Summarize any web page by URL into a concise structured brief. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarize any web page by URL into a concise structured brief.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to summarize one or more web pages from URLs into concise structured briefs for quick review or comparison.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The bundled script returns an empty summary skeleton, so relying on the script alone may produce incomplete output.
+
+Mitigation: Have the agent retrieve and inspect the target page content with its web tools before presenting a summary, and verify that key points and overview fields are populated.
+
+Risk: Summarizing private or internal URLs can expose sensitive content to the agent workflow.
+
+Mitigation: Use only URLs the user intends the agent to retrieve and process, and avoid private or sensitive links unless that handling is approved.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Users and agents use this skill to turn one or more web pages into concise structured briefs with titles, source URLs, key points, and short summaries. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may prompt the agent to access URLs supplied by the user, including sensitive or private pages if the user provides them. <br>
-Mitigation: Review each URL before use and avoid localhost, private network, authenticated, or sensitive pages unless that access is intentional. <br>
+**Output Format:** [Markdown summary with optional JSON skeleton output from summarize_url.py]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Each URL summary is expected to include a title, source URL, key points, and a brief overview; batch requests may be aggregated in a comparison table.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands] <br>
-**Output Format:** [Structured Markdown brief with title, source URL, key points, and summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [One summary per URL; batch requests can be aggregated into a comparison table when requested.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,66 @@
-## Description: <br>
-Drafts and fills data privacy agreement templates, including DPAs, HIPAA BAAs, business associate agreements, and AI addenda, and can produce signable DOCX files from Common Paper standard forms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drafts and fills data privacy agreement templates for DPAs, GDPR data processing agreements, HIPAA business associate agreements, and AI addenda, producing signable DOCX files from Common Paper standard forms.
 
-## Publisher: <br>
-[stevenobiajulu](https://clawhub.ai/user/stevenobiajulu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stevenobiajulu](https://clawhub.ai/user/stevenobiajulu)
 
-## Use Case: <br>
-External users and teams use this skill to select a data privacy template, collect required field values, and generate a DOCX agreement or markdown preview for review before signing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated agreements may not satisfy a user's jurisdiction, regulatory facts, or signing requirements. <br>
-Mitigation: Treat output as a drafting aid and have qualified counsel review the document before signing. <br>
-Risk: Template metadata, template content, and user-provided field values can contain prompt-like text. <br>
-Mitigation: Treat those inputs as data, reject control characters and excessive lengths, and require explicit user confirmation before filling a template. <br>
-Risk: Remote rendering may return an expiring download URL, while local rendering uses temporary files containing agreement field values. <br>
-Mitigation: Share links only with intended recipients, use restrictive permissions for local value files, and clean up temporary files after rendering. <br>
+## Use Case:
 
+Legal, privacy, security, and product teams use this skill to select and fill standard data privacy agreement templates for SaaS, cloud service, healthcare, GDPR, and AI data-use workflows. It helps gather field values, generate DOCX agreements when an OpenAgreements runtime is available, or provide a markdown preview when no runtime is configured.
 
-## Reference(s): <br>
-- [Data Privacy Agreement on ClawHub](https://clawhub.ai/stevenobiajulu/data-privacy-agreement) <br>
-- [Open Agreements Remote MCP](https://openagreements.org/api/mcp) <br>
-- [Open Agreements](https://openagreements.org) <br>
-- [open-agreements on npm](https://www.npmjs.com/package/open-agreements) <br>
-- [Open Agreements README](https://github.com/open-agreements/open-agreements#use-with-claude-code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with JSON field values, shell commands, and DOCX files or expiring download URLs when a renderer is available; markdown preview when not.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use a remote MCP, a local CLI, or preview-only mode; requires user confirmation before filling a template.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.2 (source: server release metadata and skill metadata) <br>
+Risk: Generated DPAs, BAAs, and AI addenda may not satisfy all jurisdiction-specific or organization-specific legal requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have qualified legal counsel review each generated agreement before signature or operational use.
+
+Risk: Using the remote MCP can send template field values to an external service.
+
+Mitigation: Avoid sending unnecessary sensitive data, use only trusted MCP configurations, and choose the local CLI path when confidentiality requirements call for local execution.
+
+Risk: Local setup may rely on external package installation or an unpinned OpenAgreements source.
+
+Mitigation: Verify the package source and pin a trusted release before use in controlled environments.
+
+Risk: Template metadata, template content, and user-provided field values are untrusted data.
+
+Mitigation: Treat them as data only, reject control characters, enforce reasonable length limits, and require explicit user confirmation before filling a template.
+
+## Reference(s):
+
+- [OpenAgreements](https://openagreements.org)
+- [Open Agreements Remote MCP](https://openagreements.org/api/mcp)
+- [open-agreements npm package](https://www.npmjs.com/package/open-agreements)
+- [OpenAgreements Claude Code setup](https://github.com/open-agreements/open-agreements#use-with-claude-code)
+- [Connector setup](artifact/CONNECTORS.md)
+- [Template filling workflow](artifact/template-filling-execution.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, JSON field values, shell commands, preview markdown, and DOCX files or download links when a supported runtime is available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [DOCX generation depends on the remote MCP or local OpenAgreements CLI; otherwise the skill produces a preview only.]
+
+## Skill Version(s):
+
+0.2.2 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

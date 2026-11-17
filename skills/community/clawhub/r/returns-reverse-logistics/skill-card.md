@@ -1,46 +1,61 @@
-## Description: <br>
-Codified expertise for returns authorization, receipt and inspection, disposition decisions, refund processing, fraud detection, and warranty claims management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Codified expertise for returns authorization, receipt and inspection, disposition decisions, refund processing, fraud detection, and warranty claims management.
 
-## Publisher: <br>
-[nocodemf](https://clawhub.ai/user/nocodemf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[nocodemf](https://clawhub.ai/user/nocodemf)
 
-## Use Case: <br>
-Returns operations, customer service, loss prevention, and vendor recovery teams use this skill to evaluate return requests, inspect and grade returned items, choose disposition paths, process refunds, identify fraud patterns, and manage warranty or vendor recovery claims. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Operational guidance could be applied directly to real customers without policy review. <br>
-Mitigation: Require human or audited policy controls for refunds, denials, fraud holds, and returnless refunds. <br>
-Risk: Customer or manufacturer communications may expose unnecessary customer data. <br>
-Mitigation: Minimize customer data shared with manufacturers and use approved secure channels. <br>
-Risk: Templates may not match the organization's current legal, compliance, or customer-experience requirements. <br>
-Mitigation: Treat templates as drafts and review them before production use. <br>
+## Use Case:
 
+Returns, customer operations, logistics, and commerce teams use this skill to evaluate return requests, inspect and grade returned products, choose disposition paths, process refunds, detect fraud patterns, and manage vendor recovery or warranty claims.
 
-## Reference(s): <br>
-- [Decision Frameworks](references/decision-frameworks.md) <br>
-- [Edge Cases Reference](references/edge-cases.md) <br>
-- [Communication Templates](references/communication-templates.md) <br>
-- [Evaluation Rubric](evals/rubric.md) <br>
-- [Evaluation Results](evals/results/eval_results.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown or structured operational guidance with checklists, decision logic, calculations, and communication drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include return disposition recommendations, fraud review criteria, refund or restocking-fee calculations, vendor recovery guidance, and customer or vendor communication templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Customer, order, warranty, or fraud details may expose sensitive information if copied into prompts or outputs unnecessarily.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Minimize or mask customer data, keep fraud notes internal, and follow company privacy rules before sharing or storing outputs.
+
+Risk: Refund approvals, claim denials, seller actions, or fraud holds can affect customers and revenue if applied without review.
+
+Mitigation: Use the skill as decision support and require human approval before issuing refunds, denying claims, suspending sellers, or reporting customers.
+
+Risk: Returns, warranty, hazmat, and cross-border recommendations may depend on regional law and company policy.
+
+Mitigation: Verify recommendations against applicable law, carrier requirements, vendor agreements, and the organization's current returns policy.
+
+## Reference(s):
+
+- [Decision Frameworks](references/decision-frameworks.md)
+- [Communication Templates](references/communication-templates.md)
+- [Edge Cases Reference](references/edge-cases.md)
+- [Evaluation Rubric](evals/rubric.md)
+- [Evaluation Results](evals/results/eval_results.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured text with operational recommendations, decision frameworks, and communication drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include policy checks, grading rationale, disposition economics, fraud indicators, escalation guidance, and customer or internal message templates.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,50 @@
-## Description: <br>
-Provides sanitization guidelines for external content in skills and hooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides sanitization guidelines for external content in skills and hooks.
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and agent builders use this skill to handle untrusted web, GitHub, and user-provided content safely before including it in skills, hooks, or agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may assume the referenced sanitization hook is installed automatically. <br>
-Mitigation: Install and verify the source plugin separately before relying on automated sanitization; otherwise follow the checklist manually. <br>
-Risk: Untrusted external content may contain prompt injection or hidden instructions. <br>
-Mitigation: Treat external content as data, truncate it, strip instruction-like patterns, and wrap it in explicit boundary markers before reuse. <br>
+## Use Case:
 
+Developers and skill authors use these guidelines when processing external content in skills and hooks to reduce prompt injection and unsafe execution risks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-leyline-content-sanitization) <br>
-- [Metadata homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with checklists and safety rules] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable files are included in the scanned artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: ClawHub release evidence) <br>
+Risk: The security review was partial because two local references could not be matched to bundled files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill and verify referenced material before relying on its guidance.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-leyline-content-sanitization)
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown checklists and policy guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes sanitization steps, code execution safeguards, and exit criteria.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

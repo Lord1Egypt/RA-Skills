@@ -1,42 +1,58 @@
-## Description: <br>
-Generate dark fantasy artwork, grimdark illustrations, and gothic horror scenes from text prompts via the Neta AI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates dark fantasy, grimdark, and gothic horror image URLs from text prompts via the Neta AI image generation API.
 
-## Publisher: <br>
-[omactiengartelle](https://clawhub.ai/user/omactiengartelle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[omactiengartelle](https://clawhub.ai/user/omactiengartelle)
 
-## Use Case: <br>
-External users, developers, and creative teams use this skill to generate dark fantasy, gothic horror, and grimdark concept art from short text prompts, with optional image sizing and reference-image style inheritance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and the user's Neta API token are sent to api.talesofai.com. <br>
-Mitigation: Use an environment variable such as --token "$NETA_TOKEN" instead of typing raw tokens directly, and review the provider's terms, quota, and billing expectations before use. <br>
-Risk: Generated image availability and completion depend on the Neta service, including moderation, quota, and polling behavior. <br>
-Mitigation: Treat the returned URL as provider-hosted output, handle timeouts or failed tasks, and retry only after checking provider status or quota. <br>
+## Use Case:
 
+External users and developers use this skill to generate dark fantasy, grimdark, and gothic horror artwork from short text prompts for creative projects such as tabletop campaigns, album covers, game concepts, and novel covers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/omactiengartelle/dark-fantasy-art-generator) <br>
-- [Neta API token page](https://www.neta.art/open/) <br>
-- [Neta image generation endpoint](https://api.talesofai.com/v3/make_image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Shell commands] <br>
-**Output Format:** [Plain text image URL printed to stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The command accepts a text prompt, required Neta API token, optional size preset, and optional reference image UUID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Prompts, reference IDs, and the API token are sent to the external Neta/api.talesofai.com service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting sensitive prompts or reference identifiers, and use tokens with the minimum needed scope and lifetime.
+
+Risk: The npx installer path is not pinned in the provided usage examples.
+
+Mitigation: Prefer the ClawHub install path, or verify and pin the package before installing with npx.
+
+Risk: Passing a long-lived API token directly on the command line can expose it through shell history or process listings.
+
+Mitigation: Use shell expansion or another safer credential handling method instead of typing raw long-lived tokens into commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/omactiengartelle/skills/dark-fantasy-art-generator)
+- [Neta AI token access](https://www.neta.art/open/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands]
+
+**Output Format:** [Plain text image URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Neta API token; accepts optional size and reference image UUID parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

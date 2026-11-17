@@ -1,0 +1,20 @@
+{
+  "mode": "dataflow",
+  "title": "Product Analytics Data Flow",
+  "summary": "Events move from application capture through queue, warehouse, and downstream reporting.",
+  "nodes": [
+    { "id": "app", "label": "Product App", "subtitle": "event source", "kind": "service", "x": 120, "y": 160 },
+    { "id": "collector", "label": "Collector", "subtitle": "schema check", "kind": "service", "x": 360, "y": 160 },
+    { "id": "queue", "label": "Event Queue", "subtitle": "durable stream", "kind": "memory", "x": 600, "y": 160 },
+    { "id": "warehouse", "label": "Warehouse", "subtitle": "curated tables", "kind": "memory", "x": 840, "y": 160 },
+    { "id": "dashboard", "label": "Dashboard", "subtitle": "read-only", "kind": "service", "x": 840, "y": 320 },
+    { "id": "privacy", "label": "Privacy Gate", "subtitle": "PII filter", "kind": "agent", "x": 600, "y": 320 }
+  ],
+  "edges": [
+    { "from": "app", "to": "collector", "kind": "primary-data", "label": "events", "label_offset": [0, -28] },
+    { "from": "collector", "to": "queue", "kind": "memory-write", "label": "append", "label_offset": [0, -28] },
+    { "from": "queue", "to": "privacy", "kind": "control", "label": "filter" },
+    { "from": "privacy", "to": "warehouse", "kind": "memory-write", "label": "load", "source_side": "top", "target_side": "bottom" },
+    { "from": "warehouse", "to": "dashboard", "kind": "primary-data", "label": "query" }
+  ]
+}

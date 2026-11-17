@@ -1,43 +1,55 @@
-## Description: <br>
-Professional email outreach on behalf of your human. Branded signatures, Reply-To routing, CC tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional email outreach on behalf of your human with branded signatures, Reply-To routing, CC tracking, and inbox monitoring.
 
-## Publisher: <br>
-[MouseRider](https://clawhub.ai/user/MouseRider) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mouserider](https://clawhub.ai/user/mouserider)
 
-## Use Case: <br>
-Employees and personal assistant agents use STM Assistant to send routine professional outreach from a dedicated agent inbox while keeping the human copied, routing replies to the human, and requiring approval for high-stakes messages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The agent can send email from a dedicated assistant inbox on behalf of a human. <br>
-Mitigation: Use a dedicated inbox, CC the human on every outbound message, keep Reply-To routed to the human, and limit recipients and topics that may be sent without review. <br>
-Risk: High-stakes messages could expose sensitive personal, legal, financial, or employment information or create unwanted commitments. <br>
-Mitigation: Draft high-stakes messages for explicit human approval before sending, and avoid sensitive content unless the human approves the final message. <br>
-Risk: Incorrect email parameters or missing routing could result in empty emails or replies going to the wrong inbox. <br>
-Mitigation: Test CC and Reply-To behavior before use, use the documented text or html fields, and retain the sent-on-behalf disclosure signature. <br>
+## Use Case:
 
+Developers and personal agent users use STM Assistant to configure an agent-controlled inbox for routine professional outreach, including scheduling, follow-ups, vendor inquiries, and similar messages sent on a user's behalf.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MouseRider/stm-assistant) <br>
-- [AgentMail](https://agentmail.to) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and HTML email signature snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces outbound email procedures, approval rules, inbox-monitoring commands, and signature configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill supports sending routine emails from a configured inbox without case-by-case approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval for outbound messages or define a narrow pre-approved workflow with allowed recipients, templates, rate limits, and logging.
+
+Risk: High-stakes messages could create legal, financial, employment, or reputational consequences if sent without review.
+
+Mitigation: Require explicit human approval before sending high-stakes messages and ask first when the category is unclear.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mouserider/skills/stm-assistant)
+- [Publisher profile](https://clawhub.ai/user/mouserider)
+- [AgentMail](https://agentmail.to)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and an HTML signature template]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides email sending and inbox monitoring through a configured provider such as AgentMail via mcporter.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

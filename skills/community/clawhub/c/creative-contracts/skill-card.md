@@ -1,43 +1,57 @@
-## Description: <br>
-Generate photography, videography, and creative professional contracts -- client agreements, model releases, usage licences, and rights documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates UK-law-grounded photography, videography, and creative professional contracts, including client agreements, model releases, usage licences, and rights documentation.
 
-## Publisher: <br>
-[jamespatrickthom2003-star](https://clawhub.ai/user/jamespatrickthom2003-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jamespatrickthom2003-star](https://clawhub.ai/user/jamespatrickthom2003-star)
 
-## Use Case: <br>
-External creative professionals use this skill to draft UK-law-grounded photography, videography, licensing, release, print-sale, exhibition, and social-media usage documents in Markdown. It can ask for missing project details before producing a complete contract or shorter release form for review and signature. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated contracts may be mistaken for legal advice or used without review. <br>
-Mitigation: Treat outputs as drafting aids, review generated terms carefully, and use a qualified solicitor before signing important, unusual, or high-value agreements. <br>
-Risk: The skill is grounded in a UK legal context that may not fit every user or transaction. <br>
-Mitigation: Confirm that the UK jurisdiction and governing-law assumptions fit the specific situation before using the document. <br>
-Risk: Contract drafting can involve client, model, location, or project details that may be sensitive personal data. <br>
-Mitigation: Avoid entering unnecessary sensitive personal data and keep only the details needed to draft the agreement. <br>
+## Use Case:
 
+External creative professionals, agencies, models, galleries, and clients use this skill to draft UK-focused creative contracts, releases, and usage licences from plain-language project details. It is intended to produce strong starting documents that should be reviewed for high-value, unusual, or complex engagements.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jamespatrickthom2003-star/creative-contracts) <br>
-- [Publisher profile](https://clawhub.ai/user/jamespatrickthom2003-star) <br>
+### Deployment Geography for Use:
 
+United Kingdom
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown contract, release form, licence agreement, or related legal-drafting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask up to three clarifying questions; outputs are drafting aids that require review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generated contracts may be incomplete, unsuitable for unusual facts, or insufficient for high-value engagements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as drafting starting points and have important or unusual contracts reviewed by qualified UK legal counsel before signing.
+
+Risk: Prompts for contracts, releases, or client details may involve personal or sensitive information.
+
+Mitigation: Use placeholders where possible and avoid providing unnecessary personal or sensitive data.
+
+Risk: The skill is focused on UK legal context and may not fit non-UK jurisdictions without adaptation.
+
+Mitigation: Use it for UK-focused creative work, and seek local legal review before using generated terms elsewhere.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jamespatrickthom2003-star/skills/creative-contracts)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown contract, release form, or licence agreement with numbered clauses and signature blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask up to three clarifying questions; uses UK English and includes a solicitor-review disclaimer.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

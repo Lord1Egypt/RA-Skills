@@ -1,12 +1,12 @@
 import crypto from "node:crypto";
-import fs from "node:fs";
 import path from "node:path";
+import { SafeFiles, relativeParts } from "./safe-fs.ts";
 
 const FALLBACK_WORKSPACE_DIR = process.env.OPENCLAW_WORKSPACE_DIR || process.cwd();
-const HOOK_VERSION = "2026-06-10-privacy-minimized-logging-v3";
-// Set HUI_YI_HOOK_DEBUG=1 to restore verbose diagnostics (per-event alive/skipped
-// entries with raw identifiers and body previews). Default logging persists no
-// message content and only hashed scope identifiers.
+const HOOK_VERSION = "1.2.13";
+// A fixed import marker lets operators verify the deployed version on restart.
+console.info(`[hui-yi-signal-hook] loaded v${HOOK_VERSION}`);
+// Debug adds lifecycle counts only; it never enables raw message/identifier logs.
 const DEBUG_LOG = process.env.HUI_YI_HOOK_DEBUG === "1";
 const MAX_LOG_BYTES = 256 * 1024;
 const KEEP_LOG_BYTES = 128 * 1024;
@@ -17,10 +17,12 @@ const FIELD_WEIGHTS: Record<string, number> = {
   semantic_context: 1.8,
   tags: 1.0,
   triggers: 1.2,
-  scenarios: 1.1
+  scenarios: 1.1,
+  aliases: 2.2
 };
 const TRIGGER_DEFAULTS: Record<TriggerSource, { minRelevance: number; minConfidence: Confidence; limit: number }> = {
   skill_hit: { minRelevance: 0.30, minConfidence: "medium", limit: 3 },
+  explicit_command: { minRelevance: 0.30, minConfidence: "medium", limit: 3 },
   heuristic_fallback: { minRelevance: 0.55, minConfidence: "high", limit: 2 },
   manual_probe: { minRelevance: 0.30, minConfidence: "medium", limit: 3 }
 };
@@ -36,7 +38,7 @@ const DEFAULT_SESSION_SIGNALS: SessionSignals = {
 type Confidence = "none" | "low" | "medium" | "high";
 type ScopeType = "user" | "chat";
 type SignalStrength = "weak" | "medium" | "strong";
-type TriggerSource = "skill_hit" | "heuristic_fallback" | "manual_probe";
+type TriggerSource = "skill_hit" | "explicit_command" | "heuristic_fallback" | "manual_probe";
 
 type SessionSignals = {
   current_session_hits: number;
@@ -51,6 +53,8 @@ type MatchMeta = {
   overlap_terms: string[];
   raw_score: number;
   confidence: Confidence;
+  query_coverage: number;
+  match_eligible: boolean;
 };
 
 type SignalCandidate = {
@@ -69,28 +73,6 @@ type TagsPayload = {
   _meta?: Record<string, unknown>;
   notes?: Record<string, any>[];
 };
-
-function looksLikeHuiYiIntent(text: string): boolean {
-  const q = (text || "").toLowerCase();
-  if (!q.trim()) return false;
-  const patterns = [
-    /(?:之前|以前).*(?:聊过|说过|提过|做过|处理|决定|记录)/,
-    /有记录吗/,
-    /你记得吗/,
-    /回忆(?:一下|下|之前|以前|历史)?/,
-    /(?:历史|以前|之前).*(?:对话|聊天|记录|决定|方案|上下文)/,
-    /(?:延续|接着).*(?:之前|以前|上次|历史)/,
-    /archive this/i,
-    /cool this down/i,
-    /hui\s*-?yi/i,
-    /cold memory/i,
-    /do you remember/i,
-    /remember (?:when|what|how|that time)/i,
-    /as (?:we|i) (?:discussed|mentioned) (?:before|earlier|previously)/i,
-    /what did we do before/i
-  ];
-  return patterns.some((pattern) => pattern.test(text));
-}
 
 function extractSkillNames(value: unknown): string[] {
   if (Array.isArray(value)) {
@@ -129,6 +111,16 @@ function hasExplicitHuiYiSkillHit(event: any): boolean {
     }
   }
   return false;
+}
+
+function explicitCommandQuery(event: any): string | null {
+  // Use the mapped inbound body only. Processed agent text, quotations,
+  // embedded examples, and conversational history words do not authorize I/O.
+  // Providers that wrap Body in an envelope need an explicit host adapter.
+  const body = event?.context?.body;
+  if (typeof body !== "string") return null;
+  const match = /^\/(?:hui-yi|hui_yi)[ \t]+([\s\S]+)$/i.exec(body);
+  return match?.[1].trim() || null;
 }
 
 function parseFromAddress(rawFrom: unknown): { channel?: string; id?: string } {
@@ -194,22 +186,18 @@ function resolveWorkspaceDir(event: any): string {
 
 function appendHookLog(workspaceDir: string, payload: Record<string, unknown>): void {
   try {
-    const logPath = path.join(workspaceDir, "hooks", "hui-yi-signal-hook", "hook.log");
-    fs.mkdirSync(path.dirname(logPath), { recursive: true });
-
-    if (fs.existsSync(logPath)) {
-      const stats = fs.statSync(logPath);
-      if (stats.size > MAX_LOG_BYTES) {
-        const buffer = fs.readFileSync(logPath);
-        const tail = buffer.subarray(Math.max(0, buffer.length - KEEP_LOG_BYTES));
-        const newlineIndex = tail.indexOf(0x0a);
-        fs.writeFileSync(logPath, newlineIndex >= 0 ? tail.subarray(newlineIndex + 1) : tail);
-      }
+    const files = new SafeFiles(path.join(workspaceDir, "hooks", "hui-yi-signal-hook"));
+    const checked = files.check("hook.log", true);
+    let previous = checked.stats ? files.read("hook.log") : "";
+    if (Buffer.byteLength(previous, "utf8") > MAX_LOG_BYTES) {
+      const buffer = Buffer.from(previous, "utf8");
+      const tail = buffer.subarray(Math.max(0, buffer.length - KEEP_LOG_BYTES));
+      const newlineIndex = tail.indexOf(0x0a);
+      previous = (newlineIndex >= 0 ? tail.subarray(newlineIndex + 1) : Buffer.alloc(0)).toString("utf8");
     }
-
-    fs.appendFileSync(logPath, `${JSON.stringify(payload)}\n`, "utf8");
-  } catch (error) {
-    console.warn(`[hui-yi-signal-hook] log write error: ${error instanceof Error ? error.message : String(error)}`);
+    files.write("hook.log", `${previous}${JSON.stringify(payload)}\n`);
+  } catch {
+    console.warn("[hui-yi-signal-hook] log write refused or unavailable");
   }
 }
 
@@ -221,101 +209,130 @@ function todayIsoDate(): string {
   return `${yyyy}-${mm}-${dd}`;
 }
 
-function readJsonFile<T>(filePath: string, fallback: T): T {
-  try {
-    if (!fs.existsSync(filePath)) return fallback;
-    return JSON.parse(fs.readFileSync(filePath, "utf8")) as T;
-  } catch {
-    return fallback;
+// Keep lexical rules aligned with core/matching.py and the shared fixture.
+// Match confidence describes retrieval evidence, never the truth of a claim.
+const FIELD_QUALITY: Record<string, number> = {
+  title: 1.0, summary: 0.9, semantic_context: 0.85,
+  tags: 0.95, triggers: 0.9, scenarios: 0.8, aliases: 1.0
+};
+const STRONG_FIELDS = new Set(["title", "summary", "tags", "triggers", "aliases"]);
+const HAN_RUN = /[\u3400-\u4dbf\u4e00-\u9fff\u{20000}-\u{2fa1f}]+/gu;
+const HAN_CHAR = /^[\u3400-\u4dbf\u4e00-\u9fff\u{20000}-\u{2fa1f}]$/u;
+const EN_FILLER = new Set(`a an and are as at be been being but by can could did do does for from
+  had has have how i if in is it its me my of on or our please remember
+  recall so that the their them then there these they this those to us
+  was we were what when where which who why will with would you your
+  about again before earlier previously last time tell help some any
+  information context thing things issue issues problem problems details
+  note notes memory memories solution solutions situation`.split(/\s+/));
+const ZH_FILLER = [
+  "你还记得", "还记得", "回忆一下", "回忆下", "请帮我", "帮我", "请问",
+  "告诉我", "能不能", "可不可以", "有没有", "为什么", "是什么",
+  "什么时候", "上一次", "怎么回事", "之前", "以前", "上次", "曾经",
+  "当时", "最近", "目前", "现在", "回忆", "记得", "记忆", "一下",
+  "怎样", "怎么", "如何", "哪里", "哪些", "什么", "是否", "还是",
+  "已经", "仍然", "就是", "那个", "这个", "这些", "那些", "关于",
+  "有关", "相关", "我们", "你们", "他们", "我的", "你的", "用户",
+  "麻烦", "以及", "然后", "的话", "时候", "可以", "需要", "希望",
+  "问题", "解决", "处理", "方法", "记录", "笔记", "内容", "信息",
+  "东西", "事情", "经验", "情况", "步骤", "帮助", "告诉"
+].sort((a, b) => b.length - a.length || (a < b ? -1 : a > b ? 1 : 0));
+const ZH_SPLIT = new RegExp(ZH_FILLER.join("|"), "u");
+const ZH_PARTICLES = new Set(Array.from("的了呢吗啊吧呀着是和与及把被对从到这那有我你他"));
+
+function normalizeMatchText(text: string | null | undefined): string {
+  // NFKC covers full-width/compatibility forms. JS lacks casefold; include
+  // common expanding/final-form folds in addition to Unicode lowercasing.
+  return (text || "").normalize("NFKC").toLowerCase().replace(/ß/g, "ss").replace(/ς/g, "σ");
+}
+
+export function tokenize(text: string | null | undefined): string[] {
+  const normalized = normalizeMatchText(text);
+  const tokens: string[] = [];
+  for (const run of normalized.matchAll(HAN_RUN)) {
+    for (const phrase of run[0].split(ZH_SPLIT)) {
+      const characters = Array.from(phrase.replace(/[的了呢吗啊吧呀]+$/u, ""));
+      for (let index = 0; index < characters.length - 1; index++) {
+        const pair = characters.slice(index, index + 2);
+        if (!pair.every(character => ZH_PARTICLES.has(character))) tokens.push(pair.join(""));
+      }
+    }
   }
-}
-
-function saveJsonFile(filePath: string, payload: unknown): void {
-  fs.writeFileSync(filePath, `${JSON.stringify(payload, null, 2)}\n`, "utf8");
-}
-
-function tokenize(text: string | null | undefined): string[] {
-  if (!text) return [];
-  return text
-    .toLowerCase()
-    .split(/[^\w\-\u4e00-\u9fff]+/g)
-    .map((part) => part.trim())
-    .filter(Boolean);
+  const nonHan = normalized.replace(HAN_RUN, " ");
+  for (const word of nonHan.match(/(?<![\p{L}\p{N}_])[a-z](?:\+\+|#)(?![\p{L}\p{N}_])/gu) || []) tokens.push(word);
+  for (const word of nonHan.match(/[\p{L}\p{N}]+(?:[_.+-][\p{L}\p{N}]+)*/gu) || []) {
+    if (!EN_FILLER.has(word) && Array.from(word).length >= 2) tokens.push(word);
+  }
+  return [...new Set(tokens)];
 }
 
 function fieldText(note: Record<string, any>, field: string): string {
   const value = note[field];
-  if (Array.isArray(value)) return value.map((item) => String(item ?? "")).join(" ");
+  if (Array.isArray(value)) return value.filter(item => item != null).map(String).join(" \n ");
   if (value == null) return "";
   return String(value);
 }
 
-function detectMatch(note: Record<string, any>, query: string): [number, MatchMeta] {
-  const queryTerms = tokenize(query);
-  if (!queryTerms.length) {
-    return [0.0, { matched_fields: [], overlap_terms: [], raw_score: 0.0, confidence: "none" }];
-  }
+export function noteIsRetrievable(note: Record<string, any>): boolean {
+  if (note.active === false || note.superseded_by) return false;
+  if (["superseded", "retracted", "deleted", "inactive"].includes(String(note.status || "").toLowerCase())) return false;
+  if (note.is_fixture === true || note.fixture === true) return false;
+  return !["fixture", "test_fixture"].includes(String(note.memory_type ?? note.type ?? "").toLowerCase());
+}
 
-  const matchedFields = new Set<string>();
+function containsAlias(query: string, value: unknown): boolean {
+  const alias = normalizeMatchText(String(value)).trim();
+  if (!alias || !tokenize(alias).length) return false;
+  const identifierChar = (character: string): boolean => Boolean(character) &&
+    ("_.+-".includes(character) || (/^[\p{L}\p{N}]$/u.test(character) && !HAN_CHAR.test(character)));
+  const characters = Array.from(alias);
+  for (let index = query.indexOf(alias); index >= 0; index = query.indexOf(alias, index + 1)) {
+    const before = Array.from(query.slice(0, index)).at(-1) || "";
+    const after = Array.from(query.slice(index + alias.length))[0] || "";
+    if (identifierChar(characters[0]) && identifierChar(before)) continue;
+    if (identifierChar(characters.at(-1) || "") && identifierChar(after)) continue;
+    return true;
+  }
+  return false;
+}
+
+export function detectMatch(note: Record<string, any>, query: string): [number, MatchMeta] {
+  const queryTerms = new Set(tokenize(query));
+  if (!queryTerms.size || !noteIsRetrievable(note)) {
+    return [0.0, { matched_fields: [], overlap_terms: [], raw_score: 0.0,
+      confidence: "none", query_coverage: 0.0, match_eligible: false }];
+  }
+  const matchedFields: string[] = [];
   const overlapTerms = new Set<string>();
   let rawScore = 0.0;
-
+  let fieldQuality = 0.0;
+  const normalizedQuery = normalizeMatchText(query);
   for (const [field, weight] of Object.entries(FIELD_WEIGHTS)) {
-    const text = fieldText(note, field);
-    const fieldLower = text.toLowerCase();
+    let text = fieldText(note, field);
+    if (field === "aliases") {
+      const aliases = typeof note.aliases === "string" ? [note.aliases] : note.aliases;
+      text = Array.isArray(aliases) ? aliases.filter(alias => containsAlias(normalizedQuery, alias)).map(String).join(" \n ") : "";
+    }
     const fieldTerms = new Set(tokenize(text));
-    let fieldHits = 0;
-
-    for (const term of queryTerms) {
-      if (fieldLower.includes(term)) {
-        rawScore += weight;
-        fieldHits += 1;
-        overlapTerms.add(term);
-      } else if (fieldTerms.has(term)) {
-        rawScore += weight * 0.8;
-        fieldHits += 1;
-        overlapTerms.add(term);
-      }
-    }
-
-    if (fieldHits) {
-      matchedFields.add(field);
-      rawScore += Math.min(fieldHits, 3) * 0.15;
+    const hits = [...queryTerms].filter(term => fieldTerms.has(term));
+    if (hits.length) {
+      matchedFields.push(field);
+      for (const term of hits) overlapTerms.add(term);
+      rawScore += weight * hits.length / queryTerms.size;
+      fieldQuality = Math.max(fieldQuality, FIELD_QUALITY[field]);
     }
   }
-
-  const combinedTerms = new Set(tokenize(`${fieldText(note, "semantic_context")} ${fieldText(note, "summary")}`));
-  if (combinedTerms.size) {
-    const uniqueQueryTerms = new Set(queryTerms);
-    let overlapCount = 0;
-    for (const term of uniqueQueryTerms) {
-      if (combinedTerms.has(term)) overlapCount += 1;
-    }
-    rawScore += (overlapCount / Math.max(uniqueQueryTerms.size, 1)) * 2.0;
-  }
-
-  const relevance = Math.min(1.0, rawScore <= 0 ? 0.0 : Math.log1p(rawScore) / Math.log(10));
-  const strongFields = new Set(["title", "summary", "tags", "triggers"]);
-  const hasStrongField = [...matchedFields].some((field) => strongFields.has(field));
-
+  const coverage = overlapTerms.size / queryTerms.size;
+  const confirmation = Math.min(Math.max(matchedFields.length - 1, 0), 2) / 2;
+  const relevance = Math.min(1.0, coverage * (0.70 + 0.20 * fieldQuality + 0.10 * confirmation));
   let confidence: Confidence = "none";
-  if (relevance >= 0.60 && hasStrongField) {
-    confidence = "high";
-  } else if (relevance >= 0.30 && (hasStrongField || matchedFields.size >= 2)) {
-    confidence = "medium";
-  } else if (relevance >= 0.15) {
-    confidence = "low";
-  }
-
-  return [
-    relevance,
-    {
-      matched_fields: [...matchedFields].sort(),
-      overlap_terms: [...overlapTerms].sort(),
-      raw_score: rawScore,
-      confidence
-    }
-  ];
+  if (relevance >= 0.60 && matchedFields.some(field => STRONG_FIELDS.has(field))) confidence = "high";
+  else if (relevance >= 0.30) confidence = "medium";
+  else if (relevance >= 0.15) confidence = "low";
+  return [relevance, {
+    matched_fields: matchedFields.sort(), overlap_terms: [...overlapTerms].sort(), raw_score: rawScore,
+    confidence, query_coverage: coverage, match_eligible: confidence === "medium" || confidence === "high"
+  }];
 }
 
 function parseIsoDay(value: unknown): Date | null {
@@ -369,15 +386,16 @@ function repetitionSignal(note: Record<string, any>, todayIso: string): number {
   return Math.max(0.0, Math.min(score, 1.0));
 }
 
-function loadTagsPayload(memoryRoot: string): TagsPayload {
-  const payload = readJsonFile<TagsPayload>(path.join(memoryRoot, "tags.json"), { _meta: { version: 5 }, notes: [] });
+function loadTagsPayload(files: SafeFiles): TagsPayload {
+  if (!files.check("tags.json", true).stats) return { _meta: { version: 5 }, notes: [] };
+  const payload = JSON.parse(files.read("tags.json")) as TagsPayload;
   if (!payload || typeof payload !== "object" || !Array.isArray(payload.notes)) {
-    return { _meta: { version: 5 }, notes: [] };
+    throw new Error("Invalid cold-memory metadata");
   }
   return payload;
 }
 
-function collectCandidates(
+export function collectCandidates(
   notes: Record<string, any>[],
   queryText: string,
   minRelevance: number,
@@ -389,6 +407,7 @@ function collectCandidates(
 
   for (const note of notes) {
     const [relevance, meta] = detectMatch(note, queryText);
+    if (!meta.match_eligible) continue;
     if (relevance < minRelevance) continue;
     if (meta.confidence === "none") continue;
     if (CONFIDENCE_ORDER[meta.confidence] < CONFIDENCE_ORDER[minConfidence]) continue;
@@ -428,22 +447,15 @@ function slugify(text: string): string {
   return value || "session";
 }
 
-function noteFilePath(memoryRoot: string, note: Record<string, any>): string {
-  let raw = String(note.path || "").replace(/\\/g, "/").trim();
+function noteFilePath(files: SafeFiles, note: Record<string, any>): string {
+  let raw = String(note.path || "").replace(/\\/g, "/");
   if (!raw) throw new Error("note path is empty");
   if (raw.startsWith("memory/cold/")) raw = raw.slice("memory/cold/".length);
-  if (path.isAbsolute(raw)) throw new Error(`absolute note paths are not allowed: ${raw}`);
-  const parts = raw.split("/").filter(Boolean);
-  if (!parts.length || parts.some((part) => part === ".." || part === ".")) {
-    throw new Error(`unsafe note path outside memory root: ${raw}`);
-  }
-  const root = path.resolve(memoryRoot);
-  const resolved = path.resolve(root, ...parts);
-  const relative = path.relative(root, resolved);
-  if (relative.startsWith("..") || path.isAbsolute(relative)) {
-    throw new Error(`note path escapes memory root: ${raw}`);
-  }
-  return resolved;
+  const parts = relativeParts(raw);
+  const leaf = parts[parts.length - 1].toLowerCase();
+  if (!leaf.endsWith(".md") || ["index.md", "retrieval-log.md", "_template.md"].includes(leaf)) throw new Error("Invalid note target");
+  files.check(raw, true);
+  return raw;
 }
 
 function sessionFingerprint(sessionKey: string): string {
@@ -555,7 +567,7 @@ function replaceOrInsertSectionMetrics(text: string, heading: string, values: Re
 
 function applyCandidate(
   payload: TagsPayload,
-  memoryRoot: string,
+  files: SafeFiles,
   candidate: SignalCandidate,
   sessionKey: string,
   strength: SignalStrength,
@@ -564,13 +576,15 @@ function applyCandidate(
 ): { applied: string | null; skipped?: string; changed: boolean } {
   const notes = Array.isArray(payload.notes) ? payload.notes : [];
   const noteRef = candidate.path || candidate.title || "";
-  const matched = noteRef ? findNote(notes, noteRef) : null;
+  // Candidates originate from metadata paths; do not re-resolve them through
+  // fuzzy title/suffix matching after the same paths have been preflighted.
+  const matched = candidate.path ? notes.find(note => note.path === candidate.path) : null;
   if (!matched) return { applied: null, skipped: `Note not found: ${noteRef}`, changed: false };
 
-  const notePath = noteFilePath(memoryRoot, matched);
-  if (!fs.existsSync(notePath)) return { applied: null, skipped: `Backing note file missing: ${notePath}`, changed: false };
+  const notePath = noteFilePath(files, matched);
+  if (!files.check(notePath, true).stats) return { applied: null, skipped: "Backing note file missing", changed: false };
 
-  const text = fs.readFileSync(notePath, "utf8");
+  const text = files.read(notePath);
   const signals = parseSessionSignals(text);
   const sessionHash = sessionFingerprint(sessionKey);
   const dedupKey = `${sessionHash}|${slugify(path.parse(notePath).name)}|${todayIso}|${source}`;
@@ -610,7 +624,7 @@ function applyCandidate(
     consecutive_session_count: signals.consecutive_session_count,
     last_activated: signals.last_activated
   });
-  fs.writeFileSync(notePath, newText, "utf8");
+  files.write(notePath, newText);
 
   matched.session_signals = signals;
   matched.last_seen = todayIso;
@@ -625,7 +639,8 @@ function applyCandidate(
 function runSignalPipeline(workspaceDir: string, query: string, sessionKey: string, triggerSource: TriggerSource): Record<string, unknown> {
   const defaults = TRIGGER_DEFAULTS[triggerSource] || TRIGGER_DEFAULTS.manual_probe;
   const memoryRoot = path.join(workspaceDir, "memory", "cold");
-  const payload = loadTagsPayload(memoryRoot);
+  const files = new SafeFiles(memoryRoot);
+  const payload = loadTagsPayload(files);
   const notes = Array.isArray(payload.notes) ? payload.notes : [];
   const todayIso = todayIsoDate();
   const candidates = collectCandidates(notes, query, defaults.minRelevance, defaults.minConfidence, defaults.limit, todayIso);
@@ -633,15 +648,19 @@ function runSignalPipeline(workspaceDir: string, query: string, sessionKey: stri
   const skipped: string[] = [];
   let changed = false;
 
+  // Reject poisoned destinations before making any note changes.
+  files.check("tags.json", true);
+  for (const candidate of candidates) noteFilePath(files, { path: candidate.path });
+
   for (const candidate of candidates) {
-    const result = applyCandidate(payload, memoryRoot, candidate, sessionKey, "weak", "signal_pipeline", todayIso);
+    const result = applyCandidate(payload, files, candidate, sessionKey, "weak", "signal_pipeline", todayIso);
     if (result.applied) applied.push(result.applied);
     if (result.skipped) skipped.push(result.skipped);
     if (result.changed) changed = true;
   }
 
   if (changed) {
-    saveJsonFile(path.join(memoryRoot, "tags.json"), payload);
+    files.write("tags.json", `${JSON.stringify(payload, null, 2)}\n`);
   }
 
   return {
@@ -651,7 +670,6 @@ function runSignalPipeline(workspaceDir: string, query: string, sessionKey: stri
     dryRun: false,
     triggerSource,
     pipeline: {
-      query,
       candidates,
       applied,
       skipped
@@ -666,39 +684,31 @@ const handler = async (event: any) => {
       ts: new Date().toISOString(),
       stage: "alive",
       hookVersion: HOOK_VERSION,
-      seenType: event?.type || null,
-      seenAction: event?.action || null,
-      contextDump: {
-        channelId: event?.context?.channelId ?? null,
-        from: event?.context?.from ?? null,
-        parsedFrom: parseFromAddress(event?.context?.from),
-        metadata: event?.context?.metadata ?? null,
-        hasBodyForAgent: typeof event?.context?.bodyForAgent === "string",
-        bodyPreview: typeof event?.context?.bodyForAgent === "string" ? event.context.bodyForAgent.slice(0, 120) : null
-      }
+      isMessage: event?.type === "message",
+      isPreprocessed: event?.action === "preprocessed",
+      hasBodyForAgent: typeof event?.context?.bodyForAgent === "string"
     });
   }
 
   if (event?.type !== "message" || event?.action !== "preprocessed") return;
-  const body = String(event?.context?.bodyForAgent || "");
   const workspaceDir = bootstrapWorkspaceDir;
   const explicitSkillHit = hasExplicitHuiYiSkillHit(event);
-  const heuristicIntent = looksLikeHuiYiIntent(body);
-
-  if (!explicitSkillHit && !heuristicIntent) {
+  const commandQuery = explicitCommandQuery(event);
+  // A selected skill or a leading explicit command authorizes this operation.
+  // Native OpenClaw 2026.9.5 events do not carry skill-selection metadata.
+  if (!explicitSkillHit && commandQuery === null) {
     if (DEBUG_LOG) {
       appendHookLog(workspaceDir, {
         ts: new Date().toISOString(),
         stage: "skipped",
         hookVersion: HOOK_VERSION,
-        reason: "no_skill_hit_or_intent_match",
-        action: event?.action,
-        type: event?.type,
-        bodyPreview: body.slice(0, 200)
+        reason: "no_explicit_invocation"
       });
     }
     return;
   }
+  const body = commandQuery ?? String(event?.context?.bodyForAgent || "");
+  const triggerSource: TriggerSource = commandQuery !== null ? "explicit_command" : "skill_hit";
 
   const scopeType = inferScopeType(event);
   const scopeId = inferScopeId(event, scopeType);
@@ -708,8 +718,7 @@ const handler = async (event: any) => {
         ts: new Date().toISOString(),
         stage: "skipped",
         hookVersion: HOOK_VERSION,
-        reason: "missing_scope_id",
-        bodyPreview: body.slice(0, 200)
+        reason: "missing_scope_id"
       });
     }
     return;
@@ -720,20 +729,15 @@ const handler = async (event: any) => {
   const threadId = typeof event?.context?.metadata?.threadId === "string" ? event.context.metadata.threadId : undefined;
 
   const sessionKey = buildSessionKey(channel, scopeType, scopeId, threadId);
-  // Default logs keep only hashed scope material: raw scope/thread identifiers
-  // and message previews are persisted solely under HUI_YI_HOOK_DEBUG=1.
+  // Channel values can contain identifiers too; keep only the fingerprint.
   appendHookLog(workspaceDir, {
     ts: new Date().toISOString(),
     stage: "triggered",
     hookVersion: HOOK_VERSION,
-    triggerSource: explicitSkillHit ? "skill_hit" : "heuristic_fallback",
-    channel,
+    triggerSource,
     scopeType,
     sessionHash: sessionFingerprint(sessionKey),
-    hasThread: Boolean(threadId),
-    ...(DEBUG_LOG
-      ? { scopeId, threadId: threadId || null, bodyPreview: body.slice(0, 200) }
-      : {})
+    hasThread: Boolean(threadId)
   });
 
   try {
@@ -741,14 +745,16 @@ const handler = async (event: any) => {
       workspaceDir,
       body,
       sessionKey,
-      explicitSkillHit ? "skill_hit" : "heuristic_fallback"
+      triggerSource
     );
-    const pipelineForLog = result.pipeline as Record<string, unknown>;
+    const pipelineForLog = result.pipeline as { candidates: unknown[]; applied: unknown[]; skipped: unknown[] };
     appendHookLog(workspaceDir, {
       ts: new Date().toISOString(),
       stage: "completed",
       hookVersion: HOOK_VERSION,
-      result: DEBUG_LOG ? result : { ...result, pipeline: { ...pipelineForLog, query: undefined } }
+      candidateCount: pipelineForLog.candidates.length,
+      appliedCount: pipelineForLog.applied.length,
+      skippedCount: pipelineForLog.skipped.length
     });
 
     const pipeline = result.pipeline as { applied?: string[]; candidates?: SignalCandidate[] };
@@ -762,9 +768,9 @@ const handler = async (event: any) => {
       ts: new Date().toISOString(),
       stage: "pipeline_error",
       hookVersion: HOOK_VERSION,
-      error: error instanceof Error ? error.message : String(error)
+      error: "filesystem_or_pipeline_error"
     });
-    console.warn(`[hui-yi-signal-hook] pipeline error: ${error instanceof Error ? error.message : String(error)}`);
+    console.warn("[hui-yi-signal-hook] pipeline refused or failed; inspect local filesystem and metadata");
   }
 };
 

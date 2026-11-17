@@ -1,44 +1,56 @@
-## Description: <br>
-Provides friction-reduction patterns for agents helping humans with disabilities, including voice-first workflows, smart home templates, and efficiency automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Friction-reduction patterns for agents helping humans with disabilities. Voice-first workflows, smart home templates, efficiency automation.
 
-## Publisher: <br>
-[stavrostsamadias](https://clawhub.ai/user/stavrostsamadias) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[stavrostsamadias](https://clawhub.ai/user/stavrostsamadias)
 
-## Use Case: <br>
-External users and developers use this skill to help agents design accessibility-focused workflows, reduce repeated manual effort, document voice-first interactions, and draft smart home automation templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Smart home templates may affect physical security when applied to locks, doors, alarms, medical routines, or other high-impact actions. <br>
-Mitigation: Require confirmations or strict allowlists for high-impact actions, and manually adapt templates before deployment. <br>
-Risk: Example access codes or recovery instructions may expose sensitive information if copied into a live agent workflow. <br>
-Mitigation: Replace example codes with placeholders or secret storage before use. <br>
-Risk: Conversation-history analysis can expose private accessibility, health, or routine data. <br>
-Mitigation: Use explicit consent, minimize retained data, and set privacy limits before analyzing conversation history. <br>
+## Use Case:
 
+External users and developers use this skill to guide agents that support people with physical disabilities through voice-first workflows, friction audits, smart-home templates, batch operations, and clear status reporting.
 
-## Reference(s): <br>
-- [Apple Accessibility](https://www.apple.com/accessibility/) <br>
-- [Home Assistant Accessibility](https://www.home-assistant.io/docs/accessibility/) <br>
-- [Apple Human Interface Guidelines: Accessibility](https://developer.apple.com/design/human-interface-guidelines/accessibility) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration, Code] <br>
-**Output Format:** [Markdown guidance with YAML and checklist examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Home Assistant scene and automation examples, friction-audit checklists, voice-command documentation patterns, and status/error communication templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, server release evidence) <br>
+Risk: Smart-home examples include automatic door unlocking and access-code disclosure patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit authenticated approval or multiple local presence signals for locks, avoid exposing access codes in chat or notifications, and review all lock automations before use.
+
+Risk: Broad confirmation-free behavior can execute unintended actions when an agent has smart-home authority.
+
+Mitigation: Limit confirmation-free execution to a clear allowlist of low-risk, reversible actions and require confirmation for security-sensitive or irreversible actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/stavrostsamadias/skills/accessibility-toolkit-1-0-0)
+- [Apple Accessibility](https://www.apple.com/accessibility/)
+- [Home Assistant Accessibility](https://www.home-assistant.io/docs/accessibility/)
+- [Apple Human Interface Guidelines: Accessibility](https://developer.apple.com/design/human-interface-guidelines/accessibility)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown with prose, checklists, voice-command examples, and Home Assistant YAML snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

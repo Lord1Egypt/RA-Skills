@@ -1,41 +1,55 @@
-## Description: <br>
-Text-to-speech conversion using Zhipu AI (BigModel) GLM-TTS model with multiple voice options, speed control, and WAV or PCM output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Text-to-speech conversion using Zhipu AI (BigModel) GLM-TTS model for Chinese speech synthesis with multiple voice personas, speed control, and WAV or PCM output.
 
-## Publisher: <br>
-[franklu0819-lang](https://clawhub.ai/user/franklu0819-lang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[franklu0819-lang](https://clawhub.ai/user/franklu0819-lang)
 
-## Use Case: <br>
-Developers and content creators use this skill to convert Chinese text into spoken audio for narration, announcements, virtual assistants, video dubbing, games, and radio-style content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Text submitted for synthesis is sent to the third-party Zhipu AI API. <br>
-Mitigation: Use a dedicated, revocable API key and avoid submitting secrets, regulated data, or confidential content unless approved for that service. <br>
-Risk: Chosen output filenames can overwrite or remove existing files during audio generation or error handling. <br>
-Mitigation: Use deliberate, unused output paths and review generated files before relying on them. <br>
+## Use Case:
 
+Developers and content creators use this skill to convert Chinese text into audio files for narration, announcements, virtual assistants, dubbing, and character voice workflows.
 
-## Reference(s): <br>
-- [Zhipu AI API key console](https://bigmodel.cn/usercenter/proj-mgmt/apikeys) <br>
-- [Zhipu AI speech API endpoint](https://open.bigmodel.cn/api/paas/v4/audio/speech) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples; generated audio files are WAV or PCM.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires jq and a ZHIPU_API_KEY environment variable; input text is limited to 1024 characters per request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json, release evidence) <br>
+Risk: Text provided to the skill and the Zhipu API authorization token are sent to Zhipu AI's external service for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where that external processing is approved, and avoid submitting secrets, confidential business text, personal data, or regulated content unless permitted by the deployment environment.
+
+Risk: The skill requires jq and a ZHIPU_API_KEY to run successfully.
+
+Mitigation: Install jq through the normal package-management process and provide the API key through the environment rather than embedding it in scripts or prompts.
+
+## Reference(s):
+
+- [Zhipu AI API Key Console](https://bigmodel.cn/usercenter/proj-mgmt/apikeys)
+- [Zhipu AI Audio Speech API Endpoint](https://open.bigmodel.cn/api/paas/v4/audio/speech)
+- [ClawHub Skill Page](https://clawhub.ai/franklu0819-lang/skills/zhipu-tts)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands and generated audio files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces WAV or PCM audio files from text input; requires jq and ZHIPU_API_KEY.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Guides configuration and auditing of robots.txt for search engine and AI crawler control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides configuration and auditing of robots.txt for search engine and AI crawler control.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Developers, site owners, and SEO practitioners use this skill to audit crawler access and prepare robots.txt recommendations for search engines and AI crawlers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Project context files may contain private business details when the skill asks the agent to read .claude/project-context.md or .cursor/project-context.md. <br>
-Mitigation: Review those files before use and remove confidential details that are not needed for robots.txt guidance. <br>
-Risk: robots.txt is public, advisory, and does not reliably prevent indexing or protect sensitive content. <br>
-Mitigation: Use authentication, noindex directives, or X-Robots-Tag where appropriate, and verify crawler and indexing behavior after changes. <br>
+## Use Case:
 
+Developers, site owners, and SEO practitioners use this skill to audit crawler access and produce robots.txt recommendations for search engines and AI crawlers.
 
-## Reference(s): <br>
-- [Google robots.txt documentation](https://developers.google.com/search/docs/crawling-indexing/robots/create-robots-txt) <br>
-- [Vercel AI crawler study](https://vercel.com/blog/the-rise-of-the-ai-crawler) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown with robots.txt examples, audit findings, checklists, and references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a full recommended robots.txt file, current-state audit, compliance checklist, and crawler-specific notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata and skill metadata) <br>
+Risk: The skill can activate on broad crawler-related requests where indexing, metadata, sitemap, or general crawlability guidance may be more appropriate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user is asking for robots.txt crawl control before applying recommendations, and redirect to the more specific indexing or crawlability topic when needed.
+
+Risk: Incorrect robots.txt recommendations can accidentally block important site resources or pages from crawler access.
+
+Mitigation: Review proposed disallow rules against the site's indexing goals and verify that assets required for rendering remain crawlable.
+
+## Reference(s):
+
+- [Vercel/MERJ AI crawler study](https://vercel.com/blog/the-rise-of-the-ai-crawler)
+- [Google robots.txt documentation](https://developers.google.com/search/docs/crawling-indexing/robots/create-robots-txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown with robots.txt examples and compliance checklist]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include current-state audit notes, a recommended robots.txt file, and crawler-specific allow or disallow guidance.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

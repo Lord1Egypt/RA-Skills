@@ -1,40 +1,56 @@
-## Description: <br>
-Deep analysis of unusual options activity and walls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep analysis of unusual options activity and walls.
 
-## Publisher: <br>
-[ssidharhubble](https://clawhub.ai/user/ssidharhubble) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ssidharhubble](https://clawhub.ai/user/ssidharhubble)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to request ticker-based options activity and wall signals from a remote service. Outputs should be treated as third-party financial signals that require independent review before trading or payment decisions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill is marketed as deep options analysis while relying on opaque third-party financial-signal output.
+
+Mitigation: Treat outputs as unverified third-party financial signals and independently validate them before making trading decisions.
+
+Risk: Premium responses may include cryptocurrency payment instructions.
+
+Mitigation: Do not follow payment instructions unless the publisher and remote service have been independently trusted.
+
+Risk: The skill depends on a remote API rather than transparent local analysis.
+
+Mitigation: Review the remote API behavior and service terms before installing or using it in a workflow.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use Options Brain to request unusual options activity and options wall signals for a supplied ticker through an agent. Treat the output as third-party trading content rather than independently verified financial analysis. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, JSON, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends ticker queries to an external financial-signal service and returns opaque trading signals. <br>
-Mitigation: Review outputs as third-party trading content and do not treat them as independently verified financial advice. <br>
-Risk: Premium results require direct cryptocurrency payment for access. <br>
-Mitigation: Confirm the publisher, payment destination, and access terms before sending funds or enabling the workflow for users. <br>
+**Output Format:** [JSON response or text payment-required response]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Options Brain on ClawHub](https://clawhub.ai/ssidharhubble/options-brain) <br>
+**Other Properties Related to Output:** [Takes a ticker symbol and fetches third-party remote signal data; premium responses may include payment instructions.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, text, guidance] <br>
-**Output Format:** [JSON response or payment-required message] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a ticker input and network access to an external financial-signal service.] <br>
+1.1.2 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,49 @@
+{
+  "name": "onepilot-skill",
+  "version": "0.1.24",
+  "description": "OnePilot CLI for local agents: event recommendations, consent-based memory and feedback, application help, and organizer-only event management or registration export. Official website: https://onepilot.zeabur.app",
+  "type": "module",
+  "bin": {
+    "onepilot-agent": "./scripts/onepilot-agent.mjs"
+  },
+  "files": [
+    "SKILL.md",
+    "VERSION",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "SECURITY.md",
+    "agents/",
+    "references/",
+    "scripts/",
+    "qwen-extension.json",
+    ".claude-plugin/"
+  ],
+  "scripts": {
+    "version": "node scripts/onepilot-agent.mjs version",
+    "check-update": "node scripts/onepilot-agent.mjs check-update",
+    "status": "node scripts/onepilot-agent.mjs status"
+  },
+  "keywords": [
+    "onepilot",
+    "agent",
+    "skill",
+    "qwen-code",
+    "claude-code",
+    "workbuddy",
+    "codebuddy",
+    "skillhub",
+    "openclaw",
+    "clawhub",
+    "codex"
+  ],
+  "homepage": "https://onepilot.zeabur.app",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/y09749204-gif/onepilot-skill.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  }
+}

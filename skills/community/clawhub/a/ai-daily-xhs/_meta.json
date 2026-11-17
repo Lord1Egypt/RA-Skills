@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn7ccyhxr1y5q4arv8g0k5ntsx82n122",
-  "slug": "ai-daily-xhs",
+  "name": "ai-daily-brief",
   "version": "1.0.0",
-  "publishedAt": 1776344616511
+  "installedAt": "2026-03-15T02:26:00+08:00",
+  "source": "user-request",
+  "author": "user",
+  "schedule": "0 8 * * *",
+  "description": "AI 每日简报 - 每天上午 8:00 推送前一天 AI 行业重要新闻"
 }

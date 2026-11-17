@@ -1,0 +1,21 @@
+{
+  "name": "hype-shorts-remix",
+  "displayName": "Hype Shorts Remix",
+  "version": "0.1.1",
+  "license": "MIT-0",
+  "runtime": {
+    "node": ">=22",
+    "tools": [
+      "ffmpeg",
+      "ffprobe"
+    ]
+  },
+  "dependencies": [],
+  "provider": {
+    "apiBase": "https://api.apisrouter.com/v1",
+    "credentialEnvironment": "APISROUTER_API_KEY"
+  },
+  "price": "free",
+  "apiUsageBilledSeparately": true,
+  "projectFormat": "JSON and local media files"
+}

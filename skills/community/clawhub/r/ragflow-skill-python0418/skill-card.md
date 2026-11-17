@@ -1,43 +1,54 @@
-## Description: <br>
-Use for RAGFlow dataset tasks: create, list, inspect, update, or delete datasets; upload, list, update, or delete documents; start or stop parsing; check parse status; retrieve chunks with search.py; and list configured models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages RAGFlow datasets and documents, including creation, updates, upload, parsing, retrieval, and model listing.
 
-## Publisher: <br>
-[liberalchang](https://clawhub.ai/user/liberalchang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liberalchang](https://clawhub.ai/user/liberalchang)
 
-## Use Case: <br>
-Developers and operators use this skill to manage RAGFlow datasets, documents, parsing jobs, retrieval queries, and configured models through bundled Python scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The RAGFlow API key and uploaded files are sent to the configured RAGFLOW_API_URL. <br>
-Mitigation: Install only when the configured RAGFlow endpoint is trusted and use the least-privileged RAGFlow key available. <br>
-Risk: Dataset and document delete actions can remove RAGFlow resources. <br>
-Mitigation: List exact target items first and require explicit user confirmation before executing delete commands. <br>
-Risk: Uploads and update commands can send or modify user-selected dataset and document content. <br>
-Mitigation: Confirm dataset IDs, document IDs, and file paths before running upload or update commands. <br>
+## Use Case:
 
+Developers and operators use this skill to manage RAGFlow datasets, documents, parsing, retrieval, and configured models through bundled Python command-line scripts.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/liberalchang/ragflow-skill-python0418) <br>
-- [Output Format Reference](artifact/reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with JSON code blocks and shell commands; bundled scripts can emit JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 plus RAGFLOW_API_URL and RAGFLOW_API_KEY; prefers exact API fields and JSON output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: API keys and uploaded documents may be exposed if the skill is pointed at a plain HTTP RAGFlow server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an HTTPS RAGFLOW_API_URL, install only for trusted RAGFlow servers, and prefer a dedicated least-privilege API key.
+
+Risk: Dataset and document commands can modify or delete remote RAGFlow data.
+
+Mitigation: Confirm exact dataset or document IDs before destructive operations and require explicit user confirmation for delete actions.
+
+## Reference(s):
+
+- [Output Format Reference](artifact/reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/liberalchang/skills/ragflow-skill-python0418)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with optional JSON code blocks and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prefers JSON output from bundled scripts and preserves API error fields exactly.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

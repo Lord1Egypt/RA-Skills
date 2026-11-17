@@ -1,44 +1,62 @@
-## Description: <br>
-RMN Soul builds a recursive memory network from an agent workspace, archives memory data through IPFS-compatible storage, and anchors memory integrity metadata to an ERC-8004 identity on Base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically creates a recursive neural memory network, stores it on IPFS, and anchors its Merkle root on Base chain as an ERC-8004 identity NFT.
 
-## Publisher: <br>
-[weidadong2359](https://clawhub.ai/user/weidadong2359) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[weidadong2359](https://clawhub.ai/user/weidadong2359)
 
-## Use Case: <br>
-Developers and agent operators use this skill to turn local agent memory files into a layered memory graph, periodically compute integrity proofs, and restore or verify an agent from anchored identity metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles private agent memory and may archive it into rmn-soul-data and IPFS-addressed storage. <br>
-Mitigation: Review and redact memory, identity, and issue files before setup or anchoring; use local-only/manual anchoring when permanence or public retrieval is not acceptable. <br>
-Risk: On-chain anchoring uses wallet signing and private-key configuration for Base transactions. <br>
-Mitigation: Avoid funded private keys until shell execution and transaction behavior are reviewed; prefer a limited-purpose wallet and manual calldata review. <br>
-Risk: Restore flows fetch memory data from IPFS gateways and overwrite local rmn-soul-data state. <br>
-Mitigation: Verify the expected agent ID, owner, and Merkle root before trusting restored data, and keep a backup of existing local memory files. <br>
+## Use Case:
 
+Developers and agent operators use this skill to convert local agent memory files into a layered memory graph, persist the resulting data locally or through IPFS, and anchor verifiable memory identifiers on Base chain.
 
-## Reference(s): <br>
-- [RMN Soul on ClawHub](https://clawhub.ai/weidadong2359/rmn-soul) <br>
-- [Publisher profile](https://clawhub.ai/user/weidadong2359) <br>
-- [ERC-8004 registration reference](https://eips.ethereum.org/EIPS/eip-8004#registration-v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON configuration and shell commands; scripts produce JSON files, console reports, IPFS references, and on-chain transaction metadata.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update rmn-soul-data files in the workspace and may use local command-line tools for IPFS and Base chain interactions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and package.json) <br>
+Risk: Sensitive agent memory, private user data, proprietary logs, or issue content may be ingested into persistent memory artifacts and publication workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact memory files before installing or running the skill, and use an isolated workspace that does not contain secrets or private data.
+
+Risk: Wallet and sponsor-key handling can authorize Base chain transactions or expose credentials if stored in generated configuration.
+
+Mitigation: Provide keys only through environment variables, avoid storing RMN_SPONSOR_KEY in generated config, and use limited-funds wallets.
+
+Risk: Shell command execution and suggested external installer commands require human review before use.
+
+Mitigation: Review commands before execution, avoid curl-to-bash installers, and install dependencies through trusted, pinned channels.
+
+Risk: Restored memory and visualization output may contain untrusted data from IPFS, chain metadata, or local files.
+
+Mitigation: Verify integrity checks and inspect restored JSON before feeding it to an agent or using it in downstream workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/weidadong2359/skills/rmn-soul)
+- [ERC-8004 registration reference](https://eips.ethereum.org/EIPS/eip-8004#registration-v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands plus JSON and configuration file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local rmn-soul-data JSON files and may issue IPFS and Base chain transactions when configured.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

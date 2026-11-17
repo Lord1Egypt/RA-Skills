@@ -1,41 +1,60 @@
-## Description: <br>
-Track and optimize brand visibility across AI search engines by monitoring brand mentions, comparing competitors, running GEO audits, and generating optimization reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track and optimize brand visibility across AI search engines including ChatGPT, Perplexity, Gemini, Google AI Overview, and Claude.
 
-## Publisher: <br>
-[X-RayLuan](https://clawhub.ai/user/X-RayLuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[x-rayluan](https://clawhub.ai/user/x-rayluan)
 
-## Use Case: <br>
-Marketing, growth, and content teams use this skill to measure how AI engines mention a brand, compare visibility against competitors, and identify content changes that may improve generative search visibility. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Brand-monitoring prompts, brand names, competitor names, and generated reports may include confidential strategy, personal data, regulated data, or other sensitive business information that could be sent to external AI providers. <br>
-Mitigation: Avoid secrets, personal data, regulated data, and confidential strategy in prompts; review provider terms for selected engines before use. <br>
-Risk: Scheduled or batch audits can repeatedly call external AI provider APIs under the user's API keys and may save potentially sensitive reports locally. <br>
-Mitigation: Set API spending limits, review scheduled runs, and save reports only in locations appropriate for the sensitivity of the audit data. <br>
+## Use Case:
 
+External users, developers, and marketing teams use this skill to query AI engines for brand and competitor visibility, score mentions, and produce optimization reports for generative engine optimization work.
 
-## Reference(s): <br>
-- [GEO Optimization Guide](references/geo-optimization.md) <br>
-- [GEO Prompts Library](references/prompts.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Terminal summaries, Markdown audit reports, and optional JSON results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on user-selected brand names, competitor names, prompts, engines, API keys, and optional scheduled runs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Prompts and brand information may be sent to third-party AI providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only audit prompts and brand data that are appropriate to share with OpenAI, Perplexity, Google, and Anthropic.
+
+Risk: Dependency or environment drift could affect script behavior.
+
+Mitigation: Install the skill in a virtual environment and pin dependencies where possible.
+
+Risk: Google AI Overview and scheduling capabilities may be limited in practice.
+
+Mitigation: Treat Google AI Overview support and scheduled monitoring as limited unless the runtime environment provides the required support.
+
+## Reference(s):
+
+- [GEO Optimization Guide](references/geo-optimization.md)
+- [GEO Prompts Library](references/prompts.txt)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [GEO Tracker on ClawHub](https://clawhub.ai/x-rayluan/skills/geo-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Console text, optional JSON, and optional Markdown audit report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include per-engine mention counts, visibility scores, competitor comparisons, source prompts, and optimization recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

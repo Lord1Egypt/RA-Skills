@@ -1,0 +1,57 @@
+{
+  "SessionID": "askjsjfh76b34lk",
+  "APICustomerKey": "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
+  "RequestType": "ORDER",
+  "Autowarehouse": "YES",
+  "RequestErrors": null,
+  "Orders": [
+    {
+      "PO": "TEST ORDER, DO NOT PROCESS (UNCORFB)",
+      "OrderType": "STOCK",
+      "ShipToLastName": "JOE",
+      "ShipToFirstName": "DOW",
+      "Address": "220 STREET AVE",
+      "Address2": "",
+      "City": "MYCITY",
+      "StateCode": "ST",
+      "ZIPCode": "24153",
+      "CountryCode": "USA",
+      "Phone": "1234567890",
+      "IsResidential": true,
+      "LeadTime": null,
+      "ProofFileURL": null,
+      "TeamColor": null,
+      "CostTotal": 43.62,
+      "OrderItems": [
+        {"SKU": "BS25YGRBM", "Warehouse": "IL", "Quantity": 2, "Cost": null},
+        {"SKU": "HJ2ABM", "Warehouse": "IL", "Quantity": 3, "Cost": null},
+        {"SKU": "A068RYL", "Warehouse": "IL", "Quantity": 8, "Cost": null},
+        {"SKU": "BP62YGHBPS", "Warehouse": "CA", "Quantity": 1, "Cost": null},
+        {"SKU": "BBS44ABS", "Warehouse": "CA", "Quantity": 3, "Cost": null}
+      ],
+      "OrderErrors": [
+        {"Response": "E2.8.3: BP62YGHBPS - Not enough Inventory."},
+        {"Response": "E2.8.3: A068RYL - Not enough Inventory."}
+      ],
+      "SubOrders": [
+        {
+          "Warehouse": "CA",
+          "SubOrderID": 1212121,
+          "SubOrderItems": [
+            {"SKU": "BBS44ABS", "TeamName": "", "PlayerName": "", "PlayerNumber": "", "Quantity": 3, "Warehouse": "CA", "Cost": 10.17}
+          ],
+          "SubOrderErrors": null
+        },
+        {
+          "Warehouse": "IL",
+          "SubOrderID": 1212133,
+          "SubOrderItems": [
+            {"SKU": "HJ2ABM", "TeamName": "", "PlayerName": "", "PlayerNumber": "", "Quantity": 3, "Warehouse": "IL", "Cost": 19.47},
+            {"SKU": "BS25YGRBM", "TeamName": "", "PlayerName": "", "PlayerNumber": "", "Quantity": 2, "Warehouse": "IL", "Cost": 13.98}
+          ],
+          "SubOrderErrors": null
+        }
+      ]
+    }
+  ]
+}

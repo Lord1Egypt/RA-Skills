@@ -1,44 +1,58 @@
-## Description: <br>
-LongbridgeAssistant monitors Longbridge brokerage holdings, generates portfolio visualizations, checks price alerts, and summarizes portfolio analysis guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors a Longbridge brokerage portfolio, generates portfolio charts, and provides price-alert and portfolio-analysis guidance.
 
-## Publisher: <br>
-[p3dp](https://clawhub.ai/user/p3dp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[p3dp](https://clawhub.ai/user/p3dp)
 
-## Use Case: <br>
-External users with Longbridge OpenAPI credentials use this skill to inspect brokerage holdings, generate Hong Kong and U.S. portfolio charts, and receive price-alert and concentration guidance. The artifact describes monitoring and analysis only, not trade execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles brokerage API credentials and reads them from a local Longbridge environment file. <br>
-Mitigation: Use a least-privilege or read-only Longbridge token when available, store ~/.longbridge/env with restrictive permissions, and avoid sharing credential files or logs. <br>
-Risk: Generated charts and console output may expose portfolio holdings and financial account details. <br>
-Mitigation: Treat generated portfolio charts and logs as sensitive financial data and avoid uploading or sharing them unless intentionally disclosed. <br>
-Risk: Bundled monetization material discusses user financial data and higher-risk financial services. <br>
-Mitigation: Review the monetization content and remove or constrain any data-use practices that are not acceptable for the intended deployment. <br>
+## Use Case:
 
+External users and developers use this skill to inspect Longbridge brokerage holdings, produce portfolio visualizations, and receive configurable price alerts and investment-analysis guidance. It requires Longbridge OpenAPI credentials and should be treated as informational rather than trade execution.
 
-## Reference(s): <br>
-- [Longbridge Open Platform](https://open.longportapp.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/p3dp/longbridge-assistant) <br>
-- [Publisher Profile](https://clawhub.ai/user/p3dp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Console text with setup guidance and a generated PNG portfolio chart] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and Longbridge API credentials in LONGBRIDGE_APP_KEY, LONGBRIDGE_APP_SECRET, and LONGBRIDGE_ACCESS_TOKEN.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill uses brokerage API credentials and reads real holdings data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a minimally scoped read-only Longbridge token and store ~/.longbridge/env with owner-only permissions.
+
+Risk: Bundled examples and alert rules may expose or imply personal portfolio details.
+
+Mitigation: Remove or replace personal alert rules and portfolio examples before publishing or sharing the package.
+
+Risk: Setup installs dependencies before the user has reviewed exact package versions.
+
+Mitigation: Pin and review dependencies before running setup.sh.
+
+## Reference(s):
+
+- [Longbridge OpenAPI](https://open.longportapp.com)
+- [ClawHub skill listing](https://clawhub.ai/p3dp/skills/longbridge-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Console text with setup commands, configuration snippets, portfolio analysis, alert messages, and generated chart files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a local portfolio_chart.png file and depends on Longbridge API responses and matplotlib availability.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata; artifact documentation also references v2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

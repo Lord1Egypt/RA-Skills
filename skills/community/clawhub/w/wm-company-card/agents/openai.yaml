@@ -1,0 +1,7 @@
+interface:
+  display_name: "公司卡片"
+  short_description: "公司一页纸摸底（行情+身份+估值成长）。深度研读/备忘请走 Role"
+  default_prompt: "Use $wm-company-card to help with: 公司一页纸摸底（行情+身份+估值成长）。深度研读/备忘请走 Role"
+
+policy:
+  allow_implicit_invocation: true

@@ -1,40 +1,53 @@
-## Description: <br>
-Automatically gathers potential customer information for lead research, including multi-platform collection, cleaning, deduplication, classification, scoring, and export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lead Scraper helps agents collect, clean, deduplicate, classify, score, and export prospective customer lead information from public business, B2B, social, and event sources.
 
-## Publisher: <br>
-[wensen2024](https://clawhub.ai/user/wensen2024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wensen2024](https://clawhub.ai/user/wensen2024)
 
-## Use Case: <br>
-Sales and business development teams use this skill to guide compliant agent-assisted collection, cleaning, deduplication, classification, scoring, and export of public lead data for prospect research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scraping sources without permission or contrary to platform terms can create compliance risk. <br>
-Mitigation: Confirm each source permits scraping, honor robots.txt and platform terms, and avoid social-platform scraping unless explicitly allowed. <br>
-Risk: Exported lead or contact files may contain personal or sensitive business contact data. <br>
-Mitigation: Minimize collected fields and volume, obtain required consent before marketing, and protect or delete exported contact files according to privacy and marketing laws. <br>
+## Use Case:
 
+External users and sales teams use this skill to guide agents through public lead collection, cleaning, deduplication, scoring, export, and CRM-oriented follow-up preparation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wensen2024/lead-scraper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text reports with optional JSON configuration and exported lead-file details.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include spreadsheet, CSV, JSON, or CRM export details when the agent has appropriate tools and permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill can collect and export contact data from broad public sources, creating privacy, consent, retention, and platform-terms risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only public, legally permitted sources; confirm platform terms, consent, retention, access controls, and export fields before collecting or syncing leads to a CRM.
+
+Risk: Insufficient scoping or user controls can lead to overbroad scraping or collection of private profiles or sensitive personal data.
+
+Mitigation: Require explicit source, jurisdiction, allowed fields, rate limits, and exclusion criteria before use; avoid private profiles and sensitive personal data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wensen2024/skills/lead-scraper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, configuration, guidance]
+
+**Output Format:** [Markdown or plain-text lead reports, with exported Excel, CSV, or JSON files when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include lead source summaries, quality scores, suggested follow-up timing, CRM export fields, and generated outreach guidance.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

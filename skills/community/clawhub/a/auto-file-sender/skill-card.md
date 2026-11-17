@@ -1,42 +1,57 @@
-## Description: <br>
-Automatically send workspace files to Feishu/Lark when files are generated or updated. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically send files from a workspace to Feishu/Lark when files are generated or updated.
 
-## Publisher: <br>
-[timyljob2011-sudo](https://clawhub.ai/user/timyljob2011-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[timyljob2011-sudo](https://clawhub.ai/user/timyljob2011-sudo)
 
-## Use Case: <br>
-Developers and workspace automation users use this skill to identify generated files, create file-send tool calls, and optionally watch a workspace directory for new files to deliver to Feishu/Lark recipients. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic or broad file-transfer workflows can send unintended workspace files to Feishu/Lark. <br>
-Mitigation: Use explicit file paths or narrow file patterns, avoid watching directories that may contain secrets or unrelated work, and stop watch mode as soon as the task is complete. <br>
-Risk: Files may be delivered to the wrong Feishu/Lark recipient if the open_id is incorrect. <br>
-Mitigation: Confirm the recipient open_id before every send operation. <br>
+## Use Case:
 
+External users, employees, and developers can use this skill to prepare Feishu/Lark file delivery workflows for generated workspace documents, PDFs, images, and batches of supported files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/timyljob2011-sudo/auto-file-sender) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Auto-send helper script](artifact/scripts/auto_send.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with JSON and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces file-send instructions and helper-script commands; the helper script prints JSON send commands rather than sending files directly.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Automatic external sharing can expose unintended workspace files when broad directories or patterns are watched.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict the watched directory and file pattern, avoid sensitive workspaces, and review the file list before executing any send tool call.
+
+Risk: Files can be sent to the wrong Feishu/Lark recipient if the target open_id is incorrect or omitted.
+
+Mitigation: Verify the recipient before sending and use explicit recipient configuration for deliberate delivery workflows.
+
+Risk: Unattended watch mode can continue generating send commands for newly created files.
+
+Mitigation: Do not run watch mode unattended; treat the helper as a command generator that still requires review before delivery.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/timyljob2011-sudo/skills/auto-file-sender)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with JSON-style send tool call examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces file-delivery instructions and send-command JSON for an agent or user to review before execution.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

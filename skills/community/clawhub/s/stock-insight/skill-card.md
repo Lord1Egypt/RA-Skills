@@ -1,44 +1,56 @@
-## Description: <br>
-Stock Insight guides an agent to produce Chinese-language stock research reports using current market data checks, structured analysis, and actionable scenarios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+股票深度分析Skill，遵循「起手式→总分总→可执行结论」三段式分析范式。输出专业感强、有人味、有惊喜的研判报告，检验标准：专业感、更懂用户、有惊喜、本质逻辑、高信噪比、事实准确。触发词：分析一下、研究、深度分析、怎么看、值不值得买、能不能涨、研判、洞察。
 
-## Publisher: <br>
-[karlinmoon](https://clawhub.ai/user/karlinmoon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[karlinmoon](https://clawhub.ai/user/karlinmoon)
 
-## Use Case: <br>
-External users, investors, and analysts use this skill to request concise stock research in Chinese. The agent gathers current market, fundamental, industry, fund-flow, and technical signals, then returns a stance, score, and concrete watch or action scenarios with risk language. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce concrete buy, sell, target-price, stop-loss, and position-sizing suggestions that users may mistake for personalized financial advice. <br>
-Mitigation: Present outputs as informational analysis, include clear risk language, and require users to verify decisions independently against their own circumstances and qualified advice. <br>
-Risk: Stock analysis can become misleading when market, financial, or industry data is stale, incomplete, or not source-labeled. <br>
-Mitigation: Use current market data, label source and retrieval time for key figures, and explicitly mark unavailable data instead of estimating it. <br>
-Risk: Broad Chinese trigger phrases may activate the skill when the user did not intend a full stock research workflow. <br>
-Mitigation: Narrow activation triggers or ask a clarifying question when accidental activation would be disruptive. <br>
+## Use Case:
 
+External users and analysts use this skill to produce Chinese-language stock research reports that combine intent clarification, fundamentals, industry catalysts, capital flows, technical analysis, and actionable next steps. It is intended as analysis support and not as professional financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/karlinmoon/stock-insight) <br>
-- [Industry leading indicators](references/industry-leading-indicators.md) <br>
-- [Analysis examples](references/analysis-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese Markdown stock research report with dated data notes, a core stance, four-part analysis, score, and actionable scenarios.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires current market data and source/time labels; outputs should be treated as informational analysis, not personalized financial advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may produce concrete buy, sell, target-price, stop-loss, or position-size suggestions that could be mistaken for professional financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as analysis support only, preserve the investment-risk disclaimer, and verify decisions with current data and qualified advice before acting.
+
+Risk: Stock analysis can be misleading if the request is not actually about a stock or if market and financial data are stale or missing.
+
+Mitigation: Confirm the activation is stock-related, fetch current data during use, cite source timestamps, and mark missing data as unavailable rather than estimating it.
+
+## Reference(s):
+
+- [Analysis Examples](references/analysis-examples.md)
+- [Industry Leading Indicators](references/industry-leading-indicators.md)
+- [ClawHub Skill Page](https://clawhub.ai/karlinmoon/skills/stock-insight)
+- [Publisher Profile](https://clawhub.ai/user/karlinmoon)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown stock research report in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires current market data, source attribution, timestamps, explicit assumptions, and an investment-risk disclaimer.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

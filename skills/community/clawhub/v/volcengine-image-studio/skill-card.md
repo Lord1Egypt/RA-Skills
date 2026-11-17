@@ -1,43 +1,58 @@
-## Description: <br>
-Practical image generation workflow for Volcengine/ARK-compatible APIs for poster creation, text-to-image generation, reference-image generation, local image upload, multi-image runs, and automatic result downloads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Practical image generation workflow for Volcengine/ARK-compatible APIs for poster creation, text-to-image, reference-image generation, local image upload, multi-image runs, and automatic result downloads.
 
-## Publisher: <br>
-[jinhuadeng](https://clawhub.ai/user/jinhuadeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jinhuadeng](https://clawhub.ai/user/jinhuadeng)
 
-## Use Case: <br>
-Developers, designers, and content teams use this skill to run Volcengine/ARK-compatible image generation from prompts, reference images, and local image files, then save generated results locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local reference images are sent to a remote Volcengine/ARK-compatible API and may include sensitive content. <br>
-Mitigation: Use scoped API keys, verify the endpoint, and avoid private or regulated reference images. <br>
-Risk: Failed requests may expose prompts or base64-encoded local image data in logs or chat output. <br>
-Mitigation: Review error output before sharing it and redact prompts, request payloads, and encoded image data when needed. <br>
-Risk: Generated image URLs are downloaded automatically to the Desktop by default. <br>
-Mitigation: Set download options to disable automatic downloads or redirect output to an approved directory. <br>
+## Use Case:
 
+External users, developers, and creative teams use this skill to generate and download images through a configured Volcengine/ARK-compatible image endpoint, including prompt-only, reference-image, and multi-image workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jinhuadeng/volcengine-image-studio) <br>
-- [Sources](references/sources.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call a remote image API, download returned images to local files, and report saved paths or API errors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Configured endpoints receive API keys, prompts, and any supplied reference images.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted HTTPS Volcengine/ARK-compatible endpoints and avoid confidential prompts or sensitive local images.
+
+Risk: Failed runs can print request details that may include encoded reference images or sensitive prompt content.
+
+Mitigation: Redact logs before sharing them and avoid publishing failure output from runs that used private inputs.
+
+Risk: Automatic downloads can write remote image results to local folders with limited controls.
+
+Mitigation: Disable automatic downloads or set a controlled download directory when handling untrusted prompts or endpoints.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jinhuadeng/skills/volcengine-image-studio)
+- [Sources](references/sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated image file paths or URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May trigger API calls, create local image files, download remote image URLs, and open a local download folder when configured.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

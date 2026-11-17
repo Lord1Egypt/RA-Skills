@@ -1,41 +1,50 @@
-## Description: <br>
-Generate Leaf templates for FOSMVVM WebApps. Create full-page views and HTML-over-the-wire fragments that render ViewModels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate Leaf templates for FOSMVVM WebApps. Create full-page views and HTML-over-the-wire fragments that render ViewModels.
 
-## Publisher: <br>
-[foscomputerservices](https://clawhub.ai/user/foscomputerservices) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[foscomputerservices](https://clawhub.ai/user/foscomputerservices)
 
-## Use Case: <br>
-Developers and engineers use this skill to generate Vapor Leaf full-page and fragment templates aligned with FOSMVVM ViewModels, including localized display values and HTML-over-the-wire update patterns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated Leaf fragments can expose identifiers or state through data attributes that are visible to clients. <br>
-Mitigation: Review generated HTML before use and include only identifiers and state values that are safe to expose client-side. <br>
-Risk: Template proposals may be incorrect if the conversation context does not accurately describe the ViewModel, localization, or fragment type. <br>
-Mitigation: Keep the request focused on the target ViewModel and verify generated templates against the actual server and ViewModel code. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/foscomputerservices/fosmvvm-leaf-view-generator) <br>
-- [FOSUtilities homepage](https://github.com/foscomputerservices/FOSUtilities) <br>
-- [Reference templates](artifact/reference.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to create Leaf full-page views and HTML-over-the-wire fragments that align with FOSMVVM ViewModels. It helps map ViewModel properties to localized display output, raw data attributes, fragment structure, and route rendering patterns.
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Markdown, Guidance] <br>
-**Output Format:** [Markdown with Leaf, HTML, Swift, and JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates template proposals from conversation context for user review before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.6 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated templates may not match the active ViewModel properties, localization behavior, or JavaScript data attributes in the target project.
+
+Mitigation: Invoke the skill only with relevant project context loaded, then review generated templates for data attributes, localized values, language settings, and ViewModel alignment before committing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/foscomputerservices/skills/fosmvvm-leaf-view-generator)
+- [Project Homepage](https://github.com/foscomputerservices/FOSUtilities)
+- [Reference Templates](artifact/reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with Leaf, HTML, Swift, JavaScript, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces template guidance that should be reviewed against the active ViewModel structure, localization settings, and JavaScript data attribute needs.]
+
+## Skill Version(s):
+
+2.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

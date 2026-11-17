@@ -1,41 +1,54 @@
-## Description: <br>
-Docx Tools helps agents read, write, convert, and merge local DOCX and Markdown documents without network access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Docx Tools helps agents read, write, convert, and combine Word DOCX and Markdown documents through local Python utilities.
 
-## Publisher: <br>
-[jirboy](https://clawhub.ai/user/jirboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jirboy](https://clawhub.ai/user/jirboy)
 
-## Use Case: <br>
-Developers and document-processing agents use this skill to read DOCX content, create or update Word files, convert between DOCX and Markdown, and assemble multi-section documents such as proposals or papers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads and writes local DOCX and Markdown files, so incorrect paths could expose or overwrite unintended documents. <br>
-Mitigation: Review input and output paths before running conversions or write operations, and avoid sensitive folders unless those documents are intended for processing. <br>
-Risk: The skill depends on local Python document-processing packages. <br>
-Mitigation: Install dependencies in a virtual environment and review the package set before use. <br>
+## Use Case:
 
+Developers and document automation users use this skill to extract text from DOCX files, create DOCX files, convert between DOCX and Markdown, and assemble multi-section Word documents such as proposals or papers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jirboy/docx-tools) <br>
-- [Publisher profile](https://clawhub.ai/user/jirboy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples, plus generated DOCX or Markdown files when helper scripts are run.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local file reads and writes are expected; output paths should be reviewed before running conversion or write operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact skill.json) <br>
+Risk: The skill reads and writes local document paths supplied by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit input and output filenames, run it in an isolated environment, and keep backups of important documents before writing or converting files.
+
+Risk: Document conversion can lose complex formatting, tables, or unsupported Markdown constructs.
+
+Mitigation: Review converted DOCX and Markdown outputs before using them as final documents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jirboy/skills/docx-tools)
+- [Publisher profile](https://clawhub.ai/user/jirboy)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces or modifies local DOCX and Markdown files at user-provided paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

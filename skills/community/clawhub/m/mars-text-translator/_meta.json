@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn7740t803q0gs64gkpfm8hf8n87h3ky",
-  "slug": "mars-text-translator",
-  "version": "2.1.0",
-  "publishedAt": 1780135920659
+  "name": "mars-text-translator",
+  "displayName": "火星文转换器",
+  "version": "1.0.0",
+  "description": "将正常中文文本随机转换为火星文（非主流风格），每个汉字有多个替代选项随机选取，保留原文趣味性",
+  "author": "cantoneyes",
+  "tags": ["fun", "chinese", "novelty", "social"],
+  "license": "MIT"
 }

@@ -1,0 +1,13 @@
+{
+  "items": [
+    {"sku": "MISSING-LEAD", "current_stock": 8, "recent_sales": 20, "sales_days": 10, "target_stock": 25},
+    {"sku": "MISSING-STOCK", "recent_sales": 12, "sales_days": 6, "lead_time_days": 3, "target_stock": 18}
+  ],
+  "expected": {
+    "unprocessed": {
+      "MISSING-LEAD": ["lead_time_days"],
+      "MISSING-STOCK": ["current_stock"]
+    },
+    "no_reorder_recommendations_for": ["MISSING-LEAD", "MISSING-STOCK"]
+  }
+}

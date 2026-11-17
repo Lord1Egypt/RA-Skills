@@ -1,0 +1,28 @@
+{
+  "name": "skill-standardization",
+  "version": "2.102.9",
+  "description": "Skill 标准化规范引擎。支持 R-01~R-26 规范审查（audit / create / update / refactor / bump / readonly 六模式），含权限扫描、数据目录合规检查、渐进式加载、LLM 二次筛分类。",
+  "author": "wUwproject",
+  "tags": [
+    "standardization",
+    "skill-builder",
+    "skill-audit",
+    "validation",
+    "json-loader",
+    "refactor",
+    "version-bump",
+    "changelog-auto",
+    "data-dir"
+  ],
+  "data_dir": "skills/.standardization/skill-standardization/data/",
+  "triggers": [
+    "帮我看看这个技能写得怎么样",
+    "检查这个技能是否规范",
+    "审计 skill",
+    "创建新技能",
+    "更新 skill",
+    "重构技能",
+    "skill 规范",
+    "R-规则"
+  ]
+}

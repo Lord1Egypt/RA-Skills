@@ -1,0 +1,4 @@
+interface:
+  display_name: "AIScope"
+  short_description: "Audit conflicting AI coding instructions"
+  default_prompt: "Use $aiscope to audit this project's AI coding instructions."

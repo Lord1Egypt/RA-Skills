@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "sourceSkill": "jishudb",
+  "sourceVersion": "0.1.28",
+  "generator": "scripts/bundle-task-setup.py",
+  "files": [
+    {
+      "path": "references/cnb-macos-installation.md",
+      "sha256": "4a3c08565fe38bca5951fb6ed8ff0a9d6abd98446c17b7f9cfb5d2dc29e7fad3",
+      "mode": "644"
+    },
+    {
+      "path": "references/connection-recovery.md",
+      "sha256": "f9e085e8724b220419f7c6dc950d1f3b3ab417cce2fa87384cdb46edd03e4044",
+      "mode": "644"
+    },
+    {
+      "path": "references/installation-contract.md",
+      "sha256": "e008125ce6757eac7236a5cf0b8737527d66996a8a6a2aedf3d73442c58c6146",
+      "mode": "644"
+    },
+    {
+      "path": "references/setup-quickstart.md",
+      "sha256": "038511f191d6646274ba3218b1481750723b336d1f48fcc208170a4781b0d3f2",
+      "mode": "644"
+    },
+    {
+      "path": "scripts/install-macos-cnb.cjs",
+      "sha256": "635bf91ec65f04595fa0aa3d971225da03fbc46361d115f56b472eff4961880f",
+      "mode": "644"
+    },
+    {
+      "path": "scripts/install-macos.sh",
+      "sha256": "be1029d915c5de8addc3ca512ef3e44c44bd7406ba4cae9e876f38c4f7e72453",
+      "mode": "755"
+    },
+    {
+      "path": "scripts/install-windows.js",
+      "sha256": "63df472417c50fad98ac401d90b4684621541464f47a97b37b836c1e9ca5be18",
+      "mode": "755"
+    },
+    {
+      "path": "scripts/release-mirror-catalog.cjs",
+      "sha256": "f07eba5f541e9432258f036fe83bd44e20568900575b958f7c59c5fd5bbc4c63",
+      "mode": "644"
+    },
+    {
+      "path": "scripts/release-mirror-trust.json",
+      "sha256": "a9672efb3f1ea6f1d48eeba174c5e7e444c9103cd141cad67c476c1c83c1a14d",
+      "mode": "644"
+    },
+    {
+      "path": "setup.md",
+      "sha256": "04473b302e096e229700e6cc73ff46f6667d6fadacad547a275b4d17d0b90f4a",
+      "mode": "644"
+    },
+    {
+      "path": "task-execution.md",
+      "sha256": "f57ad28e39fe08fe21e4c40c3bd97b79a6ba08926f03a913fd73a50ac3e1ed23",
+      "mode": "644"
+    }
+  ]
+}

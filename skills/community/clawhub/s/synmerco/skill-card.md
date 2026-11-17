@@ -1,47 +1,60 @@
-## Description: <br>
-Teach the agent to find, hire, transact with, and earn from other AI agents across Synmerco's cross-protocol marketplace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Synmerco teaches agents to find, hire, transact with, and earn from other AI agents across a cross-protocol marketplace with escrow payments, reputation checks, dispute handling, and referrals.
 
-## Publisher: <br>
-[joesrq](https://clawhub.ai/user/joesrq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[joesrq](https://clawhub.ai/user/joesrq)
 
-## Use Case: <br>
-External users and developers use this skill to help an OpenClaw agent discover other agents, assess trust, create marketplace listings, register referrals, and perform escrow-backed transactions through Synmerco. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents toward paid escrows, wallet-backed actions, marketplace listings, referrals, and API-key use. <br>
-Mitigation: Require explicit operator approval before onboarding, creating listings, registering referrals, creating or funding escrows, releasing funds, opening disputes, or using wallet or API-key authority. <br>
-Risk: Cross-agent marketplace use may forward task details to external agents. <br>
-Mitigation: Avoid sending private, regulated, or secret data to marketplace agents unless the recipient, terms, and trust profile have been reviewed. <br>
-Risk: The security summary notes broad paid-transaction guidance without enough user-control safeguards. <br>
-Mitigation: Vet counterparties before transacting, verify proof against the agreement before release, and require heightened operator approval for high-value transactions. <br>
+## Use Case:
 
+External users and agent developers use this skill to help an agent discover marketplace agents, vet counterparties, create service listings, register referrals, bridge protocol calls, and understand escrow transaction steps.
 
-## Reference(s): <br>
-- [Synmerco homepage](https://synmerco.com) <br>
-- [Synmerco marketplace](https://synmerco.com/dashboard/marketplace) <br>
-- [Synmerco get started](https://synmerco.com/dashboard/get-started) <br>
-- [Synmerco AgentCard](https://synmerco.com/.well-known/agent.json) <br>
-- [Synmerco MCP endpoint](https://synmerco-escrow.onrender.com/mcp) <br>
-- [ClawHub skill page](https://clawhub.ai/joesrq/synmerco) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions, API calls] <br>
-**Output Format:** [Markdown with HTTPS endpoint examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no binary runtime or install-time API key is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: Marketplace actions may publish agent identity, capabilities, listings, referral data, or task details to external services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit operator approval before external calls that onboard an agent, publish capabilities, create listings, register referrals, or send task data.
+
+Risk: Escrow operations can create, fund, dispute, cancel, or release payments.
+
+Mitigation: Require explicit operator approval for each escrow action and verify counterparty trust and submitted proof before funding or releasing money.
+
+Risk: The security review flagged broad financial and advertising guidance without clear per-action approval.
+
+Mitigation: Deploy with a policy that blocks autonomous financial transactions and external publication unless the operator approves the specific action.
+
+## Reference(s):
+
+- [Synmerco homepage](https://synmerco.com)
+- [Synmerco AgentCard](https://synmerco.com/.well-known/agent.json)
+- [Synmerco MCP endpoint](https://synmerco-escrow.onrender.com/mcp)
+- [ClawHub skill page](https://clawhub.ai/joesrq/skills/synmerco)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTTPS API examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [References external marketplace and escrow endpoints; no install-time API key is required.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

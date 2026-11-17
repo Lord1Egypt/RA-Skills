@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mu-skill-creator · Skill创作发明家</title>
+  <meta name="description" content="AI Agent 技能的质量守门员：56 项 10 层审计模型、39 条反模式与 8 阶段门控创建工作流。">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#faf9f7;--warm:#f5f0eb;--card:#fff;--text:#2d2a26;--secondary:#6b6560;--muted:#9e9690;--border:#e8e2db;--accent:#c96442;--accent-bg:rgba(201,100,66,.08);--nav:rgba(250,249,247,.9);--font:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;--serif:Georgia,"Noto Serif SC",serif}
+    html[data-theme="dark"]{color-scheme:dark;--bg:#191816;--warm:#23211e;--card:#211f1c;--text:#f1ece5;--secondary:#c5beb5;--muted:#958d84;--border:#3b3732;--accent:#e68b65;--accent-bg:rgba(230,139,101,.12);--nav:rgba(25,24,22,.9)}
+    html{scroll-behavior:smooth}body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased}a{color:var(--accent);text-decoration:none}.container{width:min(100% - 40px,960px);margin:auto}
+    nav{position:fixed;inset:0 0 auto;z-index:10;background:var(--nav);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}.nav-inner{height:56px;display:flex;align-items:center;justify-content:space-between;gap:16px}.nav-logo{font-size:1rem;font-weight:700;color:var(--text)}.nav-links{display:flex;gap:22px;list-style:none}.nav-links a{font-size:.82rem;color:var(--secondary)}.nav-right{display:flex;align-items:center;gap:9px}.lang-switch{display:flex;border:1px solid var(--border);border-radius:6px;overflow:hidden;font-size:.76rem;cursor:pointer}.lang-switch span{padding:4px 9px;color:var(--muted)}.lang-switch .active{background:var(--accent);color:white}.theme-toggle,.nav-cta{border:1px solid var(--border);border-radius:7px;background:var(--card);color:var(--text);cursor:pointer}.theme-toggle{width:32px;height:30px;font-size:1rem}.nav-cta{padding:5px 12px;font-size:.78rem;font-weight:600}
+    .hero{padding:142px 0 92px;text-align:center}.hero-badge{display:inline-block;padding:5px 14px;border:1px solid var(--border);background:var(--accent-bg);border-radius:20px;color:var(--accent);font-size:.78rem;margin-bottom:26px}.hero h1{font-family:var(--serif);font-size:clamp(2.15rem,5.2vw,3.35rem);line-height:1.25;margin-bottom:18px}.hero em,.cta em{font-style:normal;color:var(--accent)}.hero-sub{max-width:610px;margin:0 auto 34px;color:var(--secondary);font-size:1.04rem}.actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}.btn{display:inline-block;padding:11px 22px;border-radius:8px;font-weight:650;font-size:.9rem}.primary{background:var(--text);color:var(--bg)}.secondary{background:var(--card);border:1px solid var(--border);color:var(--text)}.stats{display:grid;grid-template-columns:repeat(4,1fr);margin:68px auto 0;max-width:720px;border:1px solid var(--border);border-radius:12px;overflow:hidden}.stat{padding:22px 10px;background:var(--card);border-right:1px solid var(--border)}.stat:last-child{border:none}.stat b{display:block;color:var(--accent);font-family:var(--serif);font-size:1.65rem}.stat span{font-size:.72rem;color:var(--muted);letter-spacing:.05em}
+    section{padding:82px 0}.warm{background:var(--warm)}.section-head{text-align:center;margin:0 auto 42px}.eyebrow{color:var(--accent);font-size:.73rem;font-weight:700;letter-spacing:.08em;margin-bottom:10px}.section-head h2{font-family:var(--serif);font-size:clamp(1.55rem,3.5vw,2.2rem);line-height:1.3;margin-bottom:10px}.section-head p{max-width:650px;margin:auto;color:var(--secondary);font-size:.94rem}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px}.card .icon{font-size:1.35rem;margin-bottom:12px}.card h3{font-size:1rem;margin-bottom:8px}.card p{font-size:.84rem;color:var(--secondary)}
+    .table-wrap{overflow-x:auto}.table{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--border);border-radius:12px;overflow:hidden}.table th,.table td{padding:13px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--border);font-size:.85rem;background:var(--card)}.table th{background:var(--warm);font-size:.75rem;color:var(--secondary);letter-spacing:.04em}.table tbody tr:last-child td{border-bottom:none}.table td:first-child{font-weight:650}.comparison{min-width:900px}.comparison th:nth-child(2){color:var(--accent)}
+    .workflow{max-width:760px;margin:auto;display:grid;gap:10px}.flow-row{display:grid;grid-template-columns:28% 29% 1fr;gap:15px;align-items:start;padding:15px 17px;border:1px solid var(--border);border-radius:9px;background:var(--card)}.flow-row code{font-family:var(--font);font-size:.8rem;color:var(--accent);font-weight:700}.flow-row span{font-size:.88rem}.flow-row p{font-size:.84rem;color:var(--secondary)}.stat b .stat-emoji{font-family:var(--font);font-size:inherit;line-height:inherit;margin-right:3px;vertical-align:baseline}.nav-emoji{margin-right:3px}
+    .cta{text-align:center;padding:92px 0}.cta h2{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.5rem);line-height:1.3;margin-bottom:12px}.cta p{color:var(--secondary);margin-bottom:30px}footer{border-top:1px solid var(--border);padding:38px 0;text-align:center;color:var(--muted);font-size:.78rem}.badges{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:15px}
+    @media(max-width:760px){.nav-links,.nav-cta{display:none}.cards{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2){border-right:none}.stat:nth-child(-n+2){border-bottom:1px solid var(--border)}.flow-row{grid-template-columns:28% 29% 1fr;gap:8px;padding:13px 11px}.flow-row code,.flow-row span,.flow-row p{font-size:.73rem;line-height:1.55}.hero{padding-top:112px}section{padding:64px 0}}
+  </style>
+</head>
+<body>
+  <nav><div class="container nav-inner"><div class="nav-logo">mu-skill-creator · Skill创作发明家</div><ul class="nav-links"><li><a href="#usecases"><span class="nav-emoji">💡</span>使用场景</a></li><li><a href="#highlights"><span class="nav-emoji">✨</span>核心亮点</a></li><li><a href="#comparison"><span class="nav-emoji">📌</span>工具对比</a></li><li><a href="#workflow"><span class="nav-emoji">🚀</span>工作流</a></li></ul><div class="nav-right"><div class="lang-switch" id="langSwitch"><span class="active" data-lang="zh">中文</span><span data-lang="en">EN</span></div><button class="theme-toggle" id="themeToggle" aria-label="切换深色模式" title="切换深色模式">☾</button><a class="nav-cta" href="https://muippt.github.io/mu-skill-hub/">Skill合集</a></div></div></nav>
+  <main>
+    <section class="hero"><div class="container"><div class="hero-badge">v4.1.9 · 开源 · MIT 协议 · 本地运行</div><h1>AI Agent 技能的<br><em>质量守门员</em>。</h1><p class="hero-sub">内置 56 项 10 层审计模型、39 条反模式与 8 阶段门控创建工作流。</p><div class="actions"><a class="btn primary" href="https://github.com/muippt/mu-skill-creator/archive/refs/heads/main.zip">下载 Skill</a><a class="btn secondary" href="https://github.com/muippt/mu-skill-creator" target="_blank">查看源码</a></div><div class="stats"><div class="stat"><b><span class="stat-emoji">✅</span>56</b><span>审计项</span></div><div class="stat"><b><span class="stat-emoji">📐</span>10</b><span>审计层级</span></div><div class="stat"><b><span class="stat-emoji">🛡️</span>39</b><span>反模式</span></div><div class="stat"><b><span class="stat-emoji">🎯</span>8</b><span>门控阶段</span></div></div></div></section>
+    <section id="usecases" class="warm"><div class="container"><header class="section-head"><div class="eyebrow">💡 使用场景示例</div><h2>从创建到发布的全流程质量门控</h2><p>无论是从零创建、质量审计还是发布前检查，都有对应的工作流与质量标准。</p></header><div class="table-wrap"><table class="table"><thead><tr><th>场景</th><th>你说的话</th><th>实际效果</th></tr></thead><tbody><tr><td>🆕 从零创建新技能</td><td>“创建一个把 Markdown 转排版的 Skill”</td><td>完整 8 阶段门控流程：需求 → 规划 → L1/L2/L3 编写 → 审计 → 发布</td></tr><tr><td>🔍 审计已有技能</td><td>“帮我审计 my-skill 的质量”</td><td>10 层 56 项逐项检查，自动脚本扫描 + 人工判断项</td></tr><tr><td>🚫 修复反模式</td><td>“检查我的 Skill 有没有反模式”</td><td>扫描 AP-1 至 AP-39 反模式目录，逐条标注根因与修复方案</td></tr><tr><td>🎯 优化触发词</td><td>“我的 Skill 总是不被触发，帮我修”</td><td>触发词分析：禁用词扫描、覆盖率测试、Pushy 原则检查</td></tr><tr><td>📊 批量扫描多个技能</td><td><code>bash scripts/skill-audit.sh skill-a skill-b</code></td><td>一条命令完成多技能结构健康检查</td></tr><tr><td>✂️ 重构臃肿技能</td><td>“我的 SKILL.md 有 400 行，帮我瘦身”</td><td>应用三层模型：L2 控制在 ≤ 300 行，参考资料下沉到 L3</td></tr></tbody></table></div></div></section>
+    <section id="highlights"><div class="container"><header class="section-head"><div class="eyebrow">✨ 核心亮点</div><h2>每条规则都追溯至真实事故</h2><p>不是抽象建议，而是覆盖创建、审计、重构与发布的完整质量体系。</p></header><div class="cards"><article class="card"><div class="icon">✅</div><h3>56 项 10 层审计模型</h3><p>30 项可通过脚本自动扫描，26 项需人工判断，覆盖从文档结构到内容质量。</p></article><article class="card"><div class="icon">📐</div><h3>三层架构</h3><p>L1 触发层始终加载，L2 工作流层激活时加载且 ≤300 行，L3 参考层按需加载。</p></article><article class="card"><div class="icon">🛡️</div><h3>39 条反模式目录</h3><p>AP-1 至 AP-39 均关联真实事故、设计原则与具体修复方案，并在审计周期中自动扫描。</p></article><article class="card"><div class="icon">🔍</div><h3>自动化审计脚本</h3><p><code>skill-audit.sh</code> 扫描 IRON LAW、description、安全风险、行数、代码质量与断链引用。</p></article><article class="card"><div class="icon">⚠️</div><h3>停滞检测规则</h3><p>用 stale_count、时间限制和失败阈值防止无限循环与静默失败；停滞时切换结构而非只调参数。</p></article><article class="card"><div class="icon">🔒</div><h3>安全优先设计</h3><p>发布前拦截凭据、人员数据与受限系统访问；<code>.skillignore</code> 避免用户态文件进入版本控制。</p></article></div></div></section>
+    <section id="comparison" class="warm"><div class="container"><header class="section-head"><div class="eyebrow">📌 与同类工具对比</div><h2>AI Agent 技能的质量守门员</h2><p>把“写出来”变成“可验证、可复用、可发布”的工程流程。</p></header><div class="table-wrap"><table class="table comparison"><thead><tr><th>维度</th><th>mu-skill-creator</th><th>手工编写</th><th>通用提示模板</th><th>AI Agent 框架</th></tr></thead><tbody><tr><td>审计模型</td><td>56 项 10 层</td><td>无</td><td>无</td><td>不定</td></tr><tr><td>自动化扫描</td><td>✅ Shell 脚本</td><td>❌</td><td>❌</td><td>少见</td></tr><tr><td>反模式目录</td><td>39 条，追溯事故</td><td>无</td><td>无</td><td>较少</td></tr><tr><td>上下文感知加载</td><td>✅ 三层 L1/L2/L3</td><td>❌ 单文件</td><td>❌</td><td>不定</td></tr><tr><td>门控工作流</td><td>✅ 8 阶段入口/出口</td><td>❌</td><td>❌</td><td>少见</td></tr><tr><td>停滞检测</td><td>✅ 量化信号</td><td>❌</td><td>❌</td><td>❌</td></tr><tr><td>安全扫描</td><td>✅ 发布前</td><td>仅人工</td><td>❌</td><td>不定</td></tr><tr><td>触发词优化</td><td>✅ 10+10 测试，覆盖率检查</td><td>❌</td><td>❌</td><td>❌</td></tr><tr><td>已知局限标准</td><td>✅ 三要素 + P/D/E + ≤3 条</td><td>❌</td><td>❌</td><td>❌</td></tr></tbody></table></div></div></section>
+    <section id="workflow"><div class="container"><header class="section-head"><div class="eyebrow">🚀 工作流</div><h2>按场景触发相应工作流</h2><p>根据你的任务选择对应入口，让技能创建、审计和交付都有清晰路径。</p></header><div class="workflow"><div class="flow-row"><code>🆕 创建新技能</code><span>从零构建技能</span><p>“创建一个做 X 的 Skill”</p></div><div class="flow-row"><code>🔍 审计已有技能</code><span>交付前质量检查</span><p>“帮我审计 my-skill 的质量”</p></div><div class="flow-row"><code>🚫 修复反模式</code><span>诊断技能退化</span><p>“检查我的 Skill 有没有反模式”</p></div><div class="flow-row"><code>🎯 优化触发词</code><span>技能不被可靠触发</span><p>“我的 Skill 不触发”</p></div><div class="flow-row"><code>✂️ 重构臃肿技能</code><span>SKILL.md 超过 300 行</span><p>“帮我瘦身 SKILL.md”</p></div><div class="flow-row"><code>📊 批量扫描</code><span>多技能健康检查</span><p><code>bash scripts/skill-audit.sh skill-a skill-b</code></p></div><div class="flow-row"><code>🚀 交付</code><span>最终安全扫描 + 打包，发布委托专用工具</span><p>“交付 my-skill”</p></div></div></div></section>
+    <section class="cta warm"><div class="container"><h2>别再目测了。<br><em>用工程方法。</em></h2><p>AI Agent 技能的质量守门员 —— 56 项，10 层，39 条反模式，零妥协。</p><div class="actions"><a class="btn primary" href="https://muippt.github.io/mu-skill-hub/">mu-skill集合</a><a class="btn secondary" href="https://github.com/muippt/mu-skill-creator/archive/refs/heads/main.zip">下载 Skill</a></div></div></section>
+  </main>
+  <footer><div class="container"><div class="badges"><a href="https://mp.weixin.qq.com/s/YLtXENt_7WzO2DgJCFUtPA" target="_blank"><img src="https://img.shields.io/badge/muippt-07C160?logo=wechat&logoColor=white" alt="微信公众号" height="20"></a><a href="https://xhslink.com/m/ESxtgUNMdl" target="_blank"><img src="https://img.shields.io/badge/muippt-FF2442?logo=xiaohongshu&logoColor=white" alt="小红书" height="20"></a><a href="https://item.m.jd.com/product/14547345.html" target="_blank"><img src="https://img.shields.io/badge/书籍-图解团队管理-BBDDE5?logo=bookstack&logoColor=white" alt="图解团队管理" height="20"></a><a href="https://muippt.github.io/mu-skill-hub/" target="_blank"><img src="https://img.shields.io/badge/mu--skill集合-9E95B7?logo=refinedgithub&logoColor=white" data-en-src="https://img.shields.io/badge/mu--skillhub-9E95B7?logo=refinedgithub&logoColor=white" data-zh-src="https://img.shields.io/badge/mu--skill集合-9E95B7?logo=refinedgithub&logoColor=white" alt="mu-skillhub" height="20"></a><a href="https://github.com/muippt" target="_blank"><img src="https://img.shields.io/badge/muippt-181717?logo=github&logoColor=white" alt="GitHub" height="20"></a></div></div></footer>
+  <script>
+    (function(){
+      var root=document.documentElement;
+      var toggle=document.getElementById('themeToggle');
+      var media=window.matchMedia('(prefers-color-scheme: dark)');
+      function applyTheme(theme){
+        root.setAttribute('data-theme',theme);
+        var dark=theme==='dark';
+        toggle.textContent=dark?'☀':'☾';
+        toggle.title=dark?'切换浅色模式':'切换深色模式';
+        toggle.setAttribute('aria-label',toggle.title);
+      }
+      applyTheme('light');
+      toggle.addEventListener('click',function(){
+        var next=root.getAttribute('data-theme')==='dark'?'light':'dark';
+        localStorage.setItem('mu-sc-theme',next);
+        applyTheme(next);
+      });
+      media.addEventListener('change',function(event){if(!localStorage.getItem('mu-sc-theme'))applyTheme(event.matches?'dark':'light')});
+
+      var translations={
+        '使用场景':'Use cases','核心亮点':'Highlights','工具对比':'Comparison','工作流':'Workflows','下载 Skill':'Download Skill','查看源码':'View source','审计项':'Audit items','审计层级':'Audit layers','反模式':'Anti-patterns','门控阶段':'Gated stages',
+        'AI Agent 技能的质量守门员。':'The quality gatekeeper for AI agent skills.','内置 56 项 10 层审计模型、39 条反模式与 8 阶段门控创建工作流。':'A 56-item, 10-layer audit model, 39 anti-patterns, and an 8-stage gated workflow.',
+        '从创建到发布的全流程质量门控':'Quality gates from creation to release','无论是从零创建、质量审计还是发布前检查，都有对应的工作流与质量标准。':'Find a clear workflow and quality standard for creation, auditing, and pre-release checks.','场景':'Scenario','你说的话':'What you say','实际效果':'What happens',
+        '🆕 从零创建新技能':'🆕 Create a new skill','🔍 审计已有技能':'🔍 Audit an existing skill','🚫 修复反模式':'🚫 Fix anti-patterns','🎯 优化触发词':'🎯 Optimize triggers','📊 批量扫描多个技能':'📊 Batch scan skills','✂️ 重构臃肿技能':'✂️ Refactor a bloated skill',
+        '每条规则都追溯至真实事故':'Every rule traces to a real incident','不是抽象建议，而是覆盖创建、审计、重构与发布的完整质量体系。':'Not abstract advice—a complete quality system for creation, auditing, refactoring, and publishing.','56 项 10 层审计模型':'56-item, 10-layer audit model','三层架构':'Three-layer architecture','39 条反模式目录':'39 anti-pattern catalog','自动化审计脚本':'Automated audit script','停滞检测规则':'Stall detection','安全优先设计':'Security-first design','已知局限标准':'Known limitation standard',
+        'AI Agent 技能的质量守门员':'The quality gatekeeper for AI agent skills','把“写出来”变成“可验证、可复用、可发布”的工程流程。':'Turn authoring into a verifiable, reusable, publishable engineering process.','维度':'Dimension','手工编写':'Manual authoring','通用提示模板':'Generic prompt templates','AI Agent 框架':'AI agent frameworks',
+        '按场景触发相应工作流':'Choose the workflow for your task','根据你的任务选择对应入口，让技能创建、审计和发布都有清晰路径。':'Choose the right entry point for clear creation, audit, and release paths.','从零构建技能':'Build from scratch','发布前质量检查':'Pre-release quality check','诊断技能退化':'Diagnose skill degradation','技能不被可靠触发':'Skill does not trigger reliably','SKILL.md 超过 300 行':'SKILL.md exceeds 300 lines','多技能健康检查':'Multi-skill health check','最终安全扫描 + 打包':'Final security scan + package',
+        '别再目测了。':'Stop eyeballing.','用工程方法。':'Start engineering.','AI Agent 技能的质量守门员 —— 56 项，10 层，39 条反模式，零妥协。':'The quality gatekeeper for AI agent skills — 56 items, 10 layers, 39 anti-patterns, zero compromises.','mu-skill集合':'mu-skillhub','Skill合集':'Skill collection'
+      };
+      var originals=[];
+      var walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,null,false);
+      var node;
+      while((node=walker.nextNode())){if(node.nodeValue.trim())originals.push({node:node,zh:node.nodeValue});}
+      function applyLang(lang){
+        originals.forEach(function(item){
+          if(lang==='zh'){item.node.nodeValue=item.zh;return;}
+          var key=item.zh.trim();
+          if(translations[key]){item.node.nodeValue=item.zh.replace(key,translations[key]);}
+        });
+        document.querySelectorAll('img[data-'+lang+'-src]').forEach(function(img){var s=img.getAttribute('data-'+lang+'-src');if(s)img.src=s;});
+        var english=lang==='en';
+        var heroTitle=document.querySelector('.hero h1');
+        var heroSub=document.querySelector('.hero-sub');
+        var heroButtons=document.querySelectorAll('.hero .actions a');
+        if(english){
+          heroTitle.innerHTML='The <em>quality gatekeeper</em><br>for AI agent skills.';
+          heroSub.textContent='A 56-item, 10-layer audit model, 39 anti-patterns, and an 8-stage gated workflow.';
+          heroButtons[0].textContent='Download Skill';heroButtons[1].textContent='View source';
+        }else{
+          heroTitle.innerHTML='AI Agent 技能的<br><em>质量守门员</em>。';
+          heroSub.textContent='内置 56 项 10 层审计模型、39 条反模式与 8 阶段门控创建工作流。';
+          heroButtons[0].textContent='下载 Skill';heroButtons[1].textContent='查看源码';
+        }
+        document.querySelectorAll('#langSwitch span').forEach(function(item){item.classList.toggle('active',item.getAttribute('data-lang')===lang)});
+        root.lang=english?'en':'zh';
+        localStorage.setItem('mu-sc-lang',lang);
+      }
+      document.querySelectorAll('#langSwitch span').forEach(function(item){item.addEventListener('click',function(){applyLang(item.getAttribute('data-lang'))})});
+      applyLang('zh');
+    })();
+  </script>
+</body>
+</html>

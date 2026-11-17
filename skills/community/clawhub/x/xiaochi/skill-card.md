@@ -1,43 +1,54 @@
-## Description: <br>
-XiaoChi helps agents summarize and compare public Meituan Waimai merchant and product information, including ratings, prices, delivery details, and sales signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+XiaoChi helps agents review public Meituan Waimai merchant and product pages and summarize ratings, prices, delivery details, and sales signals.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-Developers and end users use XiaoChi to review public Meituan Waimai pages and produce lightweight merchant, product, pricing, delivery, and promotion summaries for comparison and reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prices, delivery fees, availability, and delivery estimates can change by time and region. <br>
-Mitigation: Include collection time and region or address context in outputs, and confirm time-sensitive details before relying on them. <br>
-Risk: Using precise home address or account-specific data can expose sensitive location or personal information. <br>
-Mitigation: Avoid entering precise home addresses unless necessary, and limit use to public merchant and product pages. <br>
-Risk: Large-scale scraping, platform-control bypass, or ordering workflows could violate platform rules or change user state. <br>
-Mitigation: Use the skill only for lightweight public-page research; do not use it for ordering, API reverse engineering, bypassing protections, or bulk scraping. <br>
+## Use Case:
 
+External users and developers use this skill to collect lightweight summaries and comparisons from public Meituan Waimai merchant, product, and activity pages for internal analysis and reminders.
 
-## Reference(s): <br>
-- [Meituan Waimai](https://waimai.meituan.com/) <br>
-- [ClawHub release page](https://clawhub.ai/CodeKungfu/xiaochi) <br>
+### Deployment Geography for Use:
 
+Global, subject to Meituan Waimai service availability and local platform rules.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown summaries and comparison tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include source links, collection time, and region or address context when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Prices, delivery windows, promotions, and availability can vary by time and region.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Capture collection time, region, and source links when summarizing merchant or product details.
+
+Risk: Browsing automation could be misused for ordering, logged-in account actions, bulk scraping, or bypassing platform controls.
+
+Mitigation: Limit use to public pages, avoid account actions and high-volume collection, and follow platform and location authorization rules.
+
+## Reference(s):
+
+- [Meituan Waimai](https://waimai.meituan.com/)
+- [XiaoChi on ClawHub](https://clawhub.ai/codekungfu/skills/xiaochi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summaries and comparison notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes source links and should note collection time and region when prices or delivery details are summarized.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

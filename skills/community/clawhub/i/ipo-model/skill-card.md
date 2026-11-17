@@ -1,41 +1,54 @@
-## Description: <br>
-IPO Model helps agents analyze tasks as recursive input-process-output structures and choose between direct reasoning and tool-assisted execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+IPO Model gives agents a recursive Input-Process-Output framework for structuring tasks, deciding when tools are needed, and producing text, plans, code, commands, or tool-use guidance.
 
-## Publisher: <br>
-[wangjiaocheng](https://clawhub.ai/user/wangjiaocheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangjiaocheng](https://clawhub.ai/user/wangjiaocheng)
 
-## Use Case: <br>
-External users and developers use this skill to structure writing, analysis, planning, coding, file operations, and tool-selection tasks with the IPO framework. It is most useful when an agent needs a repeatable way to decompose a broad request into inputs, processing steps, outputs, and optional tool use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad process-control guidance could influence an agent to modify files or handle private data without enough safeguards. <br>
-Mitigation: Require explicit previews, approved directories, backups, and confirmation before changes. <br>
-Risk: Tool-assisted IPO workflows may result in API calls or generated reports leaving the local environment. <br>
-Mitigation: Require clear user consent before any API call or report is sent outside the local environment. <br>
+## Use Case:
 
+Developers, operators, and external agent users can use this skill to break down broad tasks into recursive IPO trees, choose an execution mode, and decide whether a response should stay cognitive or use commands, scripts, tools, skills, or MCPs.
 
-## Reference(s): <br>
-- [IPO Model on ClawHub](https://clawhub.ai/wangjiaocheng/ipo-model) <br>
-- [IPO Model Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown or plain text with optional code blocks and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include IPO trees when the user asks for expanded analysis; otherwise returns final results directly.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The framework can lead an agent to propose commands, scripts, tool calls, skills, or MCP use for tasks that affect files or external services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep normal confirmations, scoped permissions, and review in place before executing any proposed action.
+
+Risk: A broad task-structuring method may produce plausible but incorrect plans when the input context is incomplete.
+
+Mitigation: Review the generated IPO breakdown and final output against the user's actual constraints before relying on it.
+
+## Reference(s):
+
+- [IPO Model examples](artifact/references/examples.md)
+- [ClawHub IPO Model skill page](https://clawhub.ai/wangjiaocheng/skills/ipo-model)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown text with IPO trees, code blocks, and shell commands when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to final results unless the user asks to see the IPO breakdown.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and release changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

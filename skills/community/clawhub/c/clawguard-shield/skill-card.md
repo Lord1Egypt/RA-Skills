@@ -1,38 +1,55 @@
-## Description: <br>
-ClawGuard Shield v3 provides active defense for prompt injection detection, intent validation, zero-width character detection, and intent integrity verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawGuard Shield v3 provides active defense with prompt injection detection, intent validation, zero-width character detection, and intent integrity verification.
 
-## Publisher: <br>
-[stardreaming](https://clawhub.ai/user/stardreaming) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stardreaming](https://clawhub.ai/user/stardreaming)
 
-## Use Case: <br>
-Developers and agent operators use this skill to review user text for prompt injection, role hijacking, jailbreak attempts, hidden encoding, and intent drift before continuing an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording may cause the skill to be invoked for ordinary content review when a focused security check was not intended. <br>
-Mitigation: Use explicit requests such as security check or prompt-injection analysis, and keep normal proofreading or general content review separate unless that behavior is intended. <br>
+## Use Case:
 
+Developers and agent operators use this skill to screen user input for prompt injection, role hijacking, jailbreak, chain hijacking, encoding, and intent drift risks before acting on the input. It can also suggest or produce hardened configuration output for supported agent settings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stardreaming/clawguard-shield) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown or terminal-style text reports, with optional JSON configuration output for hardening workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes risk scores, threat categories, and recommended handling actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata and package.json) <br>
+Risk: The security evidence says the CLI depends on unaudited JavaScript outside the package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing or running, and do not run the CLI unless the external shared rules file is trusted and packaged with the skill.
+
+Risk: The security evidence says harden/fix can duplicate full configuration contents into output files.
+
+Mitigation: Avoid using harden/fix on configurations containing tokens, passwords, or private endpoints unless output handling redacts secrets and restricts file permissions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/stardreaming/skills/clawguard-shield)
+- [README](artifact/README.md)
+- [Skill instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style text reports and JSON configuration output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CLI output can include risk scores, threat findings, recommendations, validation results, and hardened configuration JSON.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-CinePrompt builds structured AI video prompts and share links from natural language shot descriptions or CinePrompt state JSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CinePrompt helps agents build structured AI video prompts and share links from natural-language shot descriptions or CinePrompt state JSON.
 
-## Publisher: <br>
-[BelafonteLabs](https://clawhub.ai/user/BelafonteLabs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[belafontelabs](https://clawhub.ai/user/belafontelabs)
 
-## Use Case: <br>
-Filmmakers, prompt designers, and agents use this skill to convert shot ideas or CinePrompt state JSON into structured cinematography prompts and share links for AI video workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompt text, state JSON, media references, and provider-generation data may be sent to CinePrompt and third-party providers. <br>
-Mitigation: Avoid confidential or regulated content and review provider data handling before use. <br>
-Risk: The artifact includes a privileged Supabase service-key path intended for internal or owner use. <br>
-Mitigation: Use scoped CinePrompt API keys for normal workflows and expose service-role credentials only in verified internal environments. <br>
-Risk: The security summary says sensitive uploads are under-disclosed. <br>
-Mitigation: Confirm expected data flows with the publisher documentation before installing or running workflows that include media or provider generation. <br>
+## Use Case:
 
+Creators, cinematographers, and developers use CinePrompt to turn shot ideas into detailed AI video prompt state, prompt text, and share links for editing or generation workflows.
 
-## Reference(s): <br>
-- [CinePrompt](https://cineprompt.io) <br>
-- [CinePrompt Guides](https://cineprompt.io/guides) <br>
-- [CinePrompt Models](https://cineprompt.io/models) <br>
-- [CinePrompt on ClawHub](https://clawhub.ai/BelafonteLabs/cineprompt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON state examples and shell commands; CLI operations return JSON share-link payloads.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a CinePrompt API key for public share-link creation; generated prompts and state may be sent to CinePrompt and third-party providers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release evidence) <br>
+Risk: The security summary flags an unpinned global CLI install path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned local CLI install when available and do not run npm install with elevated privileges.
+
+Risk: Prompt text, state JSON, reference images, saved subjects, and BYOK provider keys may be sent to CinePrompt/Supabase or listed generation providers.
+
+Mitigation: Use only credentials and content appropriate for those services, and keep provider keys scoped to the intended workflow.
+
+Risk: The artifact includes an internal service-key path for direct share-link creation.
+
+Mitigation: Do not place CINEPROMPT_SERVICE_KEY in general agent environments; prefer the normal API-key path for routine use.
+
+## Reference(s):
+
+- [CinePrompt ClawHub skill](https://clawhub.ai/belafontelabs/skills/cineprompt)
+- [CinePrompt](https://cineprompt.io)
+- [CinePrompt guides](https://cineprompt.io/guides)
+- [CinePrompt models](https://cineprompt.io/models)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON state examples and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce CinePrompt state JSON, generated prompt text, and share-link command guidance.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

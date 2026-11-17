@@ -1,0 +1,309 @@
+ROSTemplateFormatVersion: '2015-09-01'
+Description: 'qwencloud single-host + RDS MySQL: 1 ECS + EIP + VPC + SG + RDS MySQL. UserData is inlined via Fn::Sub to bake the RDS internal address/port into the boot script.'
+
+Parameters:
+  AppName:
+    Type: String
+    Description: App name (used for resource naming), lowercase alphanumeric and hyphens only
+    Default: app
+    AllowedPattern: '^[a-z][a-z0-9-]{0,30}$'
+  InstanceType:
+    Type: String
+  ImageId:
+    Type: String
+    Default: aliyun_3_x64_20G_alibase_20240528.vhd
+  Password:
+    Type: String
+    NoEcho: true
+    MinLength: 8
+    MaxLength: 30
+  SystemDiskSize:
+    Type: Number
+    Default: 40
+    MinValue: 20
+    MaxValue: 500
+  ZoneId:
+    Type: String
+    Description: Availability zone ID (the ECS ∩ RDS intersection zone, see reference/deploy/08_check_stock.md)
+  AppPort:
+    Type: Number
+    Default: 8080
+  DbInstanceClass:
+    Type: String
+    Description: RDS MySQL instance class
+  DbInstanceStorage:
+    Type: Number
+    MinValue: 20
+    MaxValue: 6000
+    Description: RDS storage size in GB
+  DbName:
+    Type: String
+    Default: appdb
+    AllowedPattern: '^[a-z][a-z0-9_]{0,62}$'
+  DbAccount:
+    Type: String
+    Default: appuser
+    AllowedPattern: '^[a-z][a-z0-9_]{0,15}$'
+  DbPassword:
+    Type: String
+    NoEcho: true
+    MinLength: 8
+    MaxLength: 32
+    Description: RDS account password (8-32 characters, must include uppercase + lowercase + digits + special characters)
+
+Resources:
+  Vpc:
+    Type: ALIYUN::ECS::VPC
+    Properties:
+      VpcName:
+        Fn::Sub: qwencloud-${AppName}-vpc
+      CidrBlock: 10.0.0.0/16
+      Tags:
+        - Key: from
+          Value: qwencloud
+        - Key: qwencloud-appName
+          Value:
+            Ref: AppName
+
+  VSwitch:
+    Type: ALIYUN::ECS::VSwitch
+    Properties:
+      VpcId:
+        Ref: Vpc
+      ZoneId:
+        Ref: ZoneId
+      CidrBlock: 10.0.1.0/24
+      VSwitchName:
+        Fn::Sub: qwencloud-${AppName}-vsw
+      Tags:
+        - Key: from
+          Value: qwencloud
+
+  SecurityGroup:
+    Type: ALIYUN::ECS::SecurityGroup
+    Properties:
+      SecurityGroupName:
+        Fn::Sub: qwencloud-${AppName}-sg
+      VpcId:
+        Ref: Vpc
+      SecurityGroupIngress:
+        - PortRange: 80/80
+          Priority: 1
+          IpProtocol: tcp
+          SourceCidrIp: 0.0.0.0/0
+          NicType: intranet
+        - PortRange: 443/443
+          Priority: 1
+          IpProtocol: tcp
+          SourceCidrIp: 0.0.0.0/0
+          NicType: intranet
+      Tags:
+        - Key: from
+          Value: qwencloud
+
+  RdsInstance:
+    Type: ALIYUN::RDS::DBInstance
+    Properties:
+      Engine: MySQL
+      EngineVersion: '8.0'
+      DBInstanceClass:
+        Ref: DbInstanceClass
+      DBInstanceStorage:
+        Ref: DbInstanceStorage
+      DBInstanceStorageType: cloud_essd
+      PayType: Postpaid
+      DBInstanceDescription:
+        Fn::Sub: qwencloud-${AppName}-rds
+      VpcId:
+        Ref: Vpc
+      VSwitchId:
+        Ref: VSwitch
+      ZoneId:
+        Ref: ZoneId
+      SecurityIPList: 10.0.0.0/16
+      DeletionProtection: false
+      Tags:
+        from: qwencloud
+
+  RdsDatabase:
+    Type: ALIYUN::RDS::Database
+    Properties:
+      DBInstanceId:
+        Ref: RdsInstance
+      DBName:
+        Ref: DbName
+      CharacterSetName: utf8mb4
+    DependsOn: RdsInstance
+
+  RdsAccount:
+    Type: ALIYUN::RDS::Account
+    Properties:
+      DBInstanceId:
+        Ref: RdsInstance
+      AccountName:
+        Ref: DbAccount
+      AccountPassword:
+        Ref: DbPassword
+      AccountType: Normal
+    DependsOn: RdsDatabase
+
+  RdsAccountPrivilege:
+    Type: ALIYUN::RDS::AccountPrivilege
+    Properties:
+      DBInstanceId:
+        Ref: RdsInstance
+      AccountName:
+        Ref: DbAccount
+      DBName:
+        Ref: DbName
+      AccountPrivilege: ReadWrite
+    DependsOn: RdsAccount
+
+  EcsInstance:
+    Type: ALIYUN::ECS::InstanceGroup
+    Properties:
+      ImageId:
+        Ref: ImageId
+      InstanceType:
+        Ref: InstanceType
+      InstanceChargeType: PostPaid
+      Password:
+        Ref: Password
+      SecurityGroupId:
+        Ref: SecurityGroup
+      VSwitchId:
+        Ref: VSwitch
+      VpcId:
+        Ref: Vpc
+      InstanceName:
+        Fn::Sub: qwencloud-${AppName}-ecs-[1,2]
+      HostName:
+        Fn::Sub: qwencloud-${AppName}-ecs-[1,2]
+      MaxAmount: 1
+      MinAmount: 1
+      SystemDiskCategory: cloud_essd
+      SystemDiskSize:
+        Ref: SystemDiskSize
+      AllocatePublicIP: false
+      UserData:
+        Fn::Sub:
+          - |
+            #!/bin/bash
+            set -euxo pipefail
+            # The bootstrap log may contain database connection details; create it
+            # with tight permissions before writing (the default umask yields 644,
+            # readable by any local user).
+            install -m 600 /dev/null /var/log/qwencloud-bootstrap.log 2>/dev/null || \
+              { touch /var/log/qwencloud-bootstrap.log; chmod 600 /var/log/qwencloud-bootstrap.log; }
+            exec >> /var/log/qwencloud-bootstrap.log 2>&1
+            echo "[$(date -u +%FT%TZ)] === qwencloud bootstrap (with RDS) start ==="
+
+            # Disable xtrace while writing/loading the password, otherwise -x
+            # echoes DB_PASSWORD in cleartext into the log.
+            set +x
+            mkdir -p /etc/qwencloud
+            cat > /etc/qwencloud/db.env <<DBENV
+            DATABASE_URL="mysql://${DbAccount}:${DbPassword}@${RdsAddr}:${RdsPort}/${DbName}"
+            DB_HOST="${RdsAddr}"
+            DB_PORT="${RdsPort}"
+            DB_NAME="${DbName}"
+            DB_USER="${DbAccount}"
+            DB_PASSWORD="${DbPassword}"
+            DBENV
+            chmod 600 /etc/qwencloud/db.env
+
+            set -a
+            . /etc/qwencloud/db.env
+            set +a
+            set -x
+            echo "[bootstrap] /etc/qwencloud/db.env written (contents omitted)"
+
+            # ↓↓↓ generate_template.py injects base64-encoded bootstrap script (decoded and sourced at runtime, inheriting db.env) ↓↓↓
+            __USERDATA_BODY__
+          - RdsAddr:
+              Fn::GetAtt: [RdsInstance, InnerConnectionString]
+            RdsPort:
+              Fn::GetAtt: [RdsInstance, InnerPort]
+      Tags:
+        - Key: from
+          Value: qwencloud
+        - Key: qwencloud-appName
+          Value:
+            Ref: AppName
+    DependsOn: RdsAccountPrivilege
+
+  Eip:
+    Type: ALIYUN::VPC::EIP
+    Properties:
+      Name:
+        Fn::Sub: qwencloud-${AppName}-eip
+      InternetChargeType: PayByTraffic
+      Bandwidth: 5
+      Tags:
+        - Key: from
+          Value: qwencloud
+
+  EipAssoc:
+    Type: ALIYUN::VPC::EIPAssociation
+    Properties:
+      AllocationId:
+        Ref: Eip
+      InstanceId:
+        Fn::Select:
+          - 0
+          - Fn::GetAtt:
+              - EcsInstance
+              - InstanceIds
+
+Outputs:
+  PublicIp:
+    Description: Public access IP (static http://<IP>/, app http://<IP>/api/)
+    Value:
+      Fn::GetAtt:
+        - Eip
+        - EipAddress
+  EcsInstanceIds:
+    Description: ECS instance ID list
+    Value:
+      Fn::GetAtt:
+        - EcsInstance
+        - InstanceIds
+  EcsPrivateIps:
+    Value:
+      Fn::GetAtt:
+        - EcsInstance
+        - PrivateIps
+  SecurityGroupId:
+    Description: ECS security group ID (ingress rule check / authorize)
+    Value:
+      Fn::GetAtt:
+        - SecurityGroup
+        - SecurityGroupId
+  EipAllocationId:
+    Description: EIP allocation ID (EIP status query / re-bind)
+    Value:
+      Fn::GetAtt:
+        - Eip
+        - AllocationId
+  DbInstanceId:
+    Description: RDS instance ID
+    Value:
+      Ref: RdsInstance
+  DbConnectionAddress:
+    Description: RDS internal connection address
+    Value:
+      Fn::GetAtt:
+        - RdsInstance
+        - InnerConnectionString
+  DbPort:
+    Description: RDS internal port
+    Value:
+      Fn::GetAtt:
+        - RdsInstance
+        - InnerPort
+  DbAccount:
+    Value:
+      Ref: DbAccount
+  StackName:
+    Value:
+      Ref: ALIYUN::StackName

@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn7ers0mgs9t4jm7cy6s7fpktd82kzr0",
-  "slug": "llama-params-optimizer",
+  "name": "llama-params-optimizer",
   "version": "3.1.0",
-  "publishedAt": 1777374463048
+  "description": "标准化的 llama.cpp 启动参数优化评估流程，通过严格的控制变量测试，找到最佳的性能/质量平衡点",
+  "author": "风来 & 越无零",
+  "tags": ["llama.cpp", "optimization", "benchmark", "performance"],
+  "created_at": "2026-04-26",
+  "last_updated": "2026-04-28"
 }

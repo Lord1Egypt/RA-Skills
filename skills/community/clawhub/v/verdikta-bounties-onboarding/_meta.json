@@ -1,6 +1,132 @@
 {
   "ownerId": "kn70kt901qt3bjzwb1v3q90jm181xhyf",
   "slug": "verdikta-bounties-onboarding",
-  "version": "1.4.1",
-  "publishedAt": 1775782901591
+  "version": "1.9.0",
+  "description": "Hot-wallet Verdikta Bounties operator for Base. Creates/imports Ethereum keys into an encrypted keystore whose password is never stored (it comes from VERDIKTA_WALLET_PASSWORD via a secret store or a prompt), keeps an API key locally, uploads public bounty/work data, calls the reviewed Verdikta API and Base RPC, and can sign irreversible mainnet/testnet transactions within an owner spend policy. Places mutual wagers (two directed bounties as a bet, on a game or a YES/NO question) with wager.js only after the owner approves the exact terms in chat. Withdraws the wallet's ETH (or leftover LINK) only to the owner address recorded at onboarding.",
+  "permissions": {
+    "shell": {
+      "binaries": [
+        "node",
+        "npm"
+      ],
+      "purpose": "Run local helper scripts and install JavaScript dependencies."
+    },
+    "network": {
+      "required": [
+        "https://bounties.verdikta.org",
+        "https://bounties-testnet.verdikta.org",
+        "https://mainnet.base.org",
+        "https://sepolia.base.org"
+      ],
+      "notes": "The Verdikta API origin is fixed per network by deployments.json; the bot API key is never sent to any other origin. Optional Base RPC overrides are subject to chain and bytecode checks."
+    },
+    "filesystem": {
+      "read": [
+        "~/.config/verdikta-bounties/.env",
+        "~/.config/verdikta-bounties/verdikta-bounties-bot.json",
+        "~/.config/verdikta-bounties/verdikta-wallet.json",
+        "scripts/*.json",
+        "operator-selected work files for submission",
+        "operator-selected spend policy and approved work-order draft",
+        "../verdikta-discover/scripts/*",
+        "../verdikta-discover/schemas/*",
+        "../verdikta-discover/templates/*",
+        "../verdikta-discover/node_modules/**",
+        "../verdikta-discover/references/fulfilment.md",
+        "~/.config/verdikta-bounties/wager-defaults.json",
+        "~/.config/verdikta-bounties/wagers/**"
+      ],
+      "write": [
+        "~/.config/verdikta-bounties/.env",
+        "~/.config/verdikta-bounties/verdikta-bounties-bot.json",
+        "~/.config/verdikta-bounties/verdikta-wallet.json",
+        "operator-selected commission/submission recovery state",
+        "~/.config/verdikta-bounties/wagers/** (wager terms, the owner's approval line, creation state, claim.md)"
+      ],
+      "notes": "Config is read from exported environment variables and the stable config path only. scripts/.env is intentionally ignored."
+    },
+    "cryptoWallet": {
+      "hotWalletSigning": true,
+      "walletCreation": true,
+      "privateKeyImport": true,
+      "chains": [
+        {
+          "name": "base",
+          "chainId": 8453
+        },
+        {
+          "name": "base-sepolia",
+          "chainId": 84532
+        }
+      ],
+      "transactionTypes": [
+        "create/fund bounty",
+        "submit work",
+        "start evaluation with payable ETH prepay",
+        "finalize or claim payout",
+        "creator approval payout",
+        "force-fail timed-out submission",
+        "recover deferred ETH refund",
+        "withdraw pull-ledger balance",
+        "close expired bounty",
+        "withdraw ETH or leftover LINK to the owner address recorded at onboarding (the only non-escrow destination)"
+      ]
+    }
+  },
+  "requiredEnvVars": [
+    "VERDIKTA_WALLET_PASSWORD",
+    "VERDIKTA_NETWORK",
+    "VERDIKTA_KEYSTORE_PATH",
+    "VERDIKTA_SPEND_POLICY"
+  ],
+  "requiredConfigPaths": [
+    "~/.config/verdikta-bounties/.env",
+    "~/.config/verdikta-bounties/verdikta-bounties-bot.json"
+  ],
+  "primaryCredential": {
+    "type": "file",
+    "path": "~/.config/verdikta-bounties/.env",
+    "fields": [
+      "VERDIKTA_NETWORK",
+      "VERDIKTA_KEYSTORE_PATH",
+      "VERDIKTA_SPEND_POLICY"
+    ],
+    "required": [
+      "VERDIKTA_NETWORK",
+      "VERDIKTA_KEYSTORE_PATH",
+      "VERDIKTA_SPEND_POLICY"
+    ],
+    "optional": [
+      "BASE_RPC_URL",
+      "BASE_SEPOLIA_RPC_URL",
+      "OFFBOT_ADDRESS",
+      "VERDIKTA_BOUNTIES_BASE_URL",
+      "VERDIKTA_WALLET_PASSWORD_FILE"
+    ],
+    "sensitive": true,
+    "notes": "Configuration only: the .env holds no secret. VERDIKTA_WALLET_PASSWORD is never stored by the skill; it comes from the process environment (another secret manager, or an OpenClaw SecretRef on skills.entries.verdikta-bounties-onboarding.apiKey for runtimes that inject it), from a mode-600 file outside the skill named by VERDIKTA_WALLET_PASSWORD_FILE, or from a no-echo terminal prompt, and decrypts the keystore in memory only when signing. Scripts refuse to run while the .env still contains it. Private keys are never written to disk or logs. The bot API key is stored separately at ~/.config/verdikta-bounties/verdikta-bounties-bot.json (chmod 600) and sent only to the reviewed API origin. Grant the wallet minimal funds only (hot wallet posture)."
+  },
+  "credentialSetup": {
+    "type": "interactive",
+    "description": "Run 'node scripts/onboard.js' for guided setup: records the owner withdrawal address (OFFBOT_ADDRESS), creates or imports an encrypted wallet keystore (the password is typed without echo or taken from the environment, and never stored), waits for human funding, registers and persists a bot API key. No secrets are hardcoded."
+  },
+  "securityNotes": [
+    "Use a fresh low-balance bot wallet; do not import high-value personal wallets.",
+    "Transaction-capable scripts require interactive confirmation or --yes/--confirm-spend.",
+    "Use --dry-run where available before signing.",
+    "Bounty metadata, submitted work files, CIDs, wallet addresses, and transaction hashes may become public via IPFS, Verdikta API records, and blockchain state.",
+    "Work orders (draft handoff and submissions to a work-order bounty) execute the sibling verdikta-discover code and locked dependencies in the signing process; plain bounties, other submissions and wagers never load it. Install both from the same reviewed repository revision and protect them from untrusted replacement. Signed recovery state can broadcast the exact approved transaction; keep it private.",
+    "Withdrawals (withdraw_to_owner.js) go only to the owner address recorded at onboarding as OFFBOT_ADDRESS in ~/.config/verdikta-bounties/.env. The address is read from that file, never from an exported variable, and there is no destination argument. Only `node onboard.js --set-owner`, run in a terminal, changes it. Anything running as the same user can still rewrite the file or use the keystore directly, so keep the balance low."
+  ],
+  "requires": {
+    "anyBinaries": [
+      "node",
+      "npm"
+    ],
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ]
+  }
 }

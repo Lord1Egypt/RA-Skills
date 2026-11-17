@@ -1,47 +1,62 @@
-## Description: <br>
-根据用户主诉、病史、地区和就诊偏好推荐合适的医院与医生，并在可行时生成模拟挂号与陪诊安排。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps match users to appropriate hospitals and doctors from chief complaint, medical history, location, and visit preferences, with simulated registration and escort arrangements when requested.
 
-## Publisher: <br>
-[sunlinlin-aragon](https://clawhub.ai/user/sunlinlin-aragon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunlinlin-aragon](https://clawhub.ai/user/sunlinlin-aragon)
 
-## Use Case: <br>
-External users and healthcare support agents use this skill to triage non-emergency symptoms into likely departments, compare hospital and doctor options, and produce structured appointment guidance. It can generate simulated registration and escort arrangements when the user asks for those services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT License
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive medical and location information. <br>
-Mitigation: Collect and share only the minimum details needed for routing and recommendations. <br>
-Risk: Doctor and hospital recommendations may be mistaken for diagnosis or treatment advice. <br>
-Mitigation: Present results as care navigation guidance and direct urgent symptoms to emergency services. <br>
-Risk: Generated registration or escort order numbers may be mistaken for real bookings. <br>
-Mitigation: Label booking and escort outputs as mock results unless a real booking service is separately connected. <br>
+## Use Case:
 
+External users can use this skill for healthcare navigation: symptom-informed specialty routing, hospital and doctor matching, and simulated appointment or escort planning. It is informational guidance and does not replace diagnosis, treatment, prescriptions, emergency triage, or clinician judgment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sunlinlin-aragon/medical-doctor-matcher) <br>
-- [Workflow](references/workflow.md) <br>
-- [Symptom to Specialty](references/symptom_to_specialty.md) <br>
-- [Output Template](references/output_template.md) <br>
-- [Request Schema](schemas/request_schema.json) <br>
-- [Response Schema](schemas/response_schema.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Structured Markdown or JSON with risk level, recommended specialties, Top 3 hospital and doctor matches, and optional simulated booking details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses mock hospital, doctor, slot, and escort data unless connected to real services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may treat healthcare navigation output as medical diagnosis, treatment advice, prescription guidance, or emergency triage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: State that the output is informational navigation help only, recommend clinician evaluation, and direct serious or worsening symptoms to emergency services.
+
+Risk: The skill uses simulated hospital, appointment, and escort data rather than live provider systems.
+
+Mitigation: Label registration and escort outputs as simulated and require confirmation through real hospital, appointment, or service channels before acting.
+
+Risk: Healthcare matching can involve sensitive health and location details.
+
+Mitigation: Ask only for details needed for routing and matching, and avoid collecting unnecessary personal health or precise location information.
+
+## Reference(s):
+
+- [Workflow](references/workflow.md)
+- [Symptom To Specialty](references/symptom_to_specialty.md)
+- [Output Template](references/output_template.md)
+- [Request Schema](schemas/request_schema.json)
+- [Response Schema](schemas/response_schema.json)
+- [ClawHub Skill Page](https://clawhub.ai/sunlinlin-aragon/skills/medical-doctor-matcher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance and JSON-compatible recommendation records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Top 3 hospital and doctor recommendations may include risk level, specialty suggestions, match scores, simulated registration details, simulated escort details, and safety notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

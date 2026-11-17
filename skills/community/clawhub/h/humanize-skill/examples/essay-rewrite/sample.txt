@@ -1,0 +1,15 @@
+I write essays for engineering managers and tech leads. Short paragraphs, direct, no hype. I prefer concrete examples over abstractions and I will say "I don't know" before I make a claim I'm not sure about.
+
+I started writing these in 2019. Back then I did the same job I do now: run a 9-person infra team at a mid-size fintech.
+
+Things I keep doing in my essays:
+- Lead with the actual problem I saw
+- Give a number, a date, or a name when I have one
+- End with what I'm still uncertain about, not with a grand conclusion
+- Swear occasionally when it fits. Not for show.
+
+Things I avoid:
+- Universal claims ("every team", "all managers")
+- Fake stats
+- "In conclusion" / "the future of" framings
+- Promotional language

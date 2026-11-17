@@ -1,45 +1,59 @@
-## Description: <br>
-Twitter keyword search, monitoring, and trend analysis via GraphQL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Twitter keyword search, monitoring, and trend analysis via GraphQL.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-External users and developers use this skill to search Twitter/X by keyword, monitor configured topics over time, and produce structured trend reports from collected tweets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to Twitter/X browser session cookies. <br>
-Mitigation: Use a low-risk account where possible, keep the cookie file out of shared folders and source control, and restrict file permissions. <br>
-Risk: The skill depends on unpinned external rnet_twitter.py code. <br>
-Mitigation: Review the external code before use and pin or vendor a trusted revision for repeatable operation. <br>
-Risk: Scheduled monitoring may store collected tweet data locally. <br>
-Mitigation: Review what monitor state and daily output files contain before enabling scheduled collection. <br>
+## Use Case:
 
+Developers and analysts use this skill to search Twitter/X keywords, monitor configured topics, and turn collected high-engagement tweets into structured trend reports.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/PHY041/twitter-intel) <br>
-- [Publisher Profile](https://clawhub.ai/user/PHY041) <br>
-- [Skill Homepage](https://canlah.ai) <br>
-- [rnet Twitter Client](https://github.com/PHY041/rnet-twitter-client) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with inline Python, shell, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can guide cookie setup, monitoring configuration, search filtering, and trend-report generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill relies on live Twitter/X browser session cookies, which can expose the account if the cookie file is leaked or committed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-risk account, store the cookie file outside the project with restrictive permissions, never share or commit it, and revoke sessions if exposure is suspected.
+
+Risk: The setup references unpinned external code and a pre-release dependency, increasing supply-chain and behavior-change risk.
+
+Mitigation: Pin and review dependency versions before repeated use, and prefer an official OAuth/API flow for ongoing monitoring.
+
+Risk: Unofficial GraphQL access may fail as query IDs, cookies, rate limits, or platform behavior change.
+
+Mitigation: Monitor 403, 404, and rate-limit failures, pause automation when failures occur, and refresh credentials only through an intentional reviewed process.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/twitter-intel)
+- [Project homepage](https://canlah.ai)
+- [rnet Twitter client](https://github.com/PHY041/rnet-twitter-client)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with Python, shell, and JSON configuration snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include filtered tweet summaries, monitoring configuration, state-file guidance, and trend narratives.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

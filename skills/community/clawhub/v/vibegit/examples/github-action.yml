@@ -1,0 +1,27 @@
+name: vibegit
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  slop:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: vibegit report
+        run: python3 vibegit.py . --format md > vibegit.md
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: vibegit-report
+          path: vibegit.md
+          retention-days: 14
+
+      # Optional CI gate: fail when the slop score exceeds the threshold.
+      - name: vibegit gate
+        run: python3 vibegit.py . --max-score 40 --format json > vibegit.json

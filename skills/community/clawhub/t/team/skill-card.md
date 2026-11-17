@@ -1,36 +1,51 @@
-## Description: <br>
-The Autonomous Orchestration Framework (AOF) defines hierarchy, collaboration logic, and reward distribution for human-agent hybrid organizations and task-force swarms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Team is the Autonomous Orchestration Framework (AOF), defining hierarchy, collaboration logic, and reward distribution for human-agent hybrid organizations and task-force swarms.
 
-## Publisher: <br>
-[AGIstack](https://clawhub.ai/user/AGIstack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[agistack](https://clawhub.ai/user/agistack)
 
-## Use Case: <br>
-External users and developers use this skill to structure multi-agent collaboration, including role allocation, conflict handling, reward routing, and lifecycle coordination for human-agent teams. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses broad autonomous team-management language that could affect delegation, information sharing, persistence, or resource and credit decisions. <br>
-Mitigation: Set explicit boundaries for delegation, sensitive information sharing, persistence, and resource or credit decisions before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers and agent builders use this skill for conceptual framing of multi-agent team formation, role allocation, conflict arbitration, reward routing, and operational lifecycle planning.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill describes broad team and multi-agent orchestration concepts that could be over-applied to sensitive decisions.
+
+Mitigation: Require explicit user approval and task-specific limits before allocating money, credits, assets, permissions, or agents.
+
+Risk: The skill has vague scope and may produce framing guidance that is not specific enough for a particular deployment.
+
+Mitigation: Review generated plans against the concrete task, available permissions, and organizational governance requirements before use.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown prose with structured orchestration concepts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only teamwork prompt; no code, install commands, credential use, or hidden data access were identified by the security evidence.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [guidance, markdown]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with conceptual framework examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, install behavior, persistence, credentials, network access, or hidden actions were identified in the provided security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

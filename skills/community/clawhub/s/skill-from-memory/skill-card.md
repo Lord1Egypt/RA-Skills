@@ -1,41 +1,51 @@
-## Description: <br>
-Convert memory, conversation history, or completed tasks into publishable OpenClaw skills for reusable workflows, lessons, solved problems, and GitHub or ClawHub releases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert memory, conversation history, or completed tasks into publishable OpenClaw skills.
 
-## Publisher: <br>
-[zfanmy](https://clawhub.ai/user/zfanmy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zfanmy](https://clawhub.ai/user/zfanmy)
 
-## Use Case: <br>
-Developers and agent builders use this skill to turn useful conversation history, memory notes, or completed work into reusable OpenClaw skills. It helps generate skill structure, markdown documentation, scripts, and optional publishing steps for GitHub and ClawHub. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Private conversations, memory files, or extracted code may be converted into publishable skill content without built-in redaction. <br>
-Mitigation: Use narrow source files where possible, review all generated files, and remove secrets, private details, and sensitive context before publishing. <br>
-Risk: Publishing workflows can push generated content to GitHub or ClawHub when publish scripts are run with repository or slug options. <br>
-Mitigation: Confirm the target GitHub repository, ClawHub slug, version, and generated content before running publish.sh or create-and-publish.sh. <br>
-Risk: Generated skill drafts may include incomplete scripts, placeholders, or misleading extracted guidance. <br>
-Mitigation: Manually inspect and test SKILL.md, README.md, generated scripts, extracted summaries, and any copied code before reuse or release. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zfanmy/skill-from-memory) <br>
+## Use Case:
+
+Developers and engineers use this skill to turn reusable workflows from conversation history or memory files into OpenClaw skill drafts, then optionally prepare those drafts for GitHub and ClawHub publication.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can turn private session or memory content into publishable skill files.
+
+Mitigation: Use it only with source files you are comfortable exposing, and review generated SKILL.md and scripts for secrets, personal data, internal paths, and prompt-injection text before publishing.
+
+Risk: The one-step publish flow can upload generated content with too little review.
+
+Mitigation: Avoid the automatic publish path for private work; use a clean output directory, inspect the generated files, and publish only after review and scanning.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and shell-script files with command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create skill directories, SKILL.md files, README.md files, helper scripts, extracted conversation summaries, and optional GitHub or ClawHub publishing commands.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with shell commands and generated skill files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local files and publishing commands for generated skills.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

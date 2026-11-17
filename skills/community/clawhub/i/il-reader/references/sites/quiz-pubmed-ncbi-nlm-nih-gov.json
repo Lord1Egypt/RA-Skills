@@ -1,0 +1,449 @@
+{
+  "version": "2.4.0",
+  "source_id": "quiz-pubmed-ncbi-nlm-nih-gov",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:06:53.092Z",
+  "entry": {
+    "url": "https://pubmed.ncbi.nlm.nih.gov/advanced/",
+    "final_url": "https://pubmed.ncbi.nlm.nih.gov/advanced/",
+    "title": "Advanced Search Results - PubMed",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:06:53.092Z",
+    "identity": {
+      "declared_name": "PubMed 高级检索",
+      "hostname": "pubmed.ncbi.nlm.nih.gov",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "Help",
+        "href": "https://support.nlm.nih.gov/?pagename=pubmed%3Apubmed%3Aadvanced-search%3ANONE",
+        "target": ""
+      }
+    ],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "button",
+      "type": null,
+      "text": "Here's how you know",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Here's how you know",
+        "exact": true
+      },
+      "observed_url": "https://pubmed.ncbi.nlm.nih.gov/advanced/",
+      "observed_at": "2026-10-09T09:06:51.626Z"
+    },
+    {
+      "tag": "select",
+      "type": null,
+      "text": "Field Selector:",
+      "label": "Field Selector:",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "field-selector",
+      "css": "#field-selector",
+      "role": null,
+      "form_action": "https://pubmed.ncbi.nlm.nih.gov/",
+      "locator": {
+        "css": "#field-selector"
+      },
+      "observed_url": "https://pubmed.ncbi.nlm.nih.gov/advanced/",
+      "observed_at": "2026-10-09T09:06:51.626Z"
+    },
+    {
+      "tag": "input",
+      "type": "search",
+      "text": "Search Term:",
+      "label": "Search Term:",
+      "aria_label": null,
+      "placeholder": "Enter a search term",
+      "name": null,
+      "id": "id_term",
+      "css": "#id_term",
+      "role": null,
+      "form_action": "https://pubmed.ncbi.nlm.nih.gov/",
+      "locator": {
+        "css": "#id_term"
+      },
+      "observed_url": "https://pubmed.ncbi.nlm.nih.gov/advanced/",
+      "observed_at": "2026-10-09T09:06:51.626Z"
+    },
+    {
+      "tag": "select",
+      "type": null,
+      "text": "Select indexed value",
+      "label": "Select indexed value",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "index-selector",
+      "css": "#index-selector",
+      "role": null,
+      "form_action": "https://pubmed.ncbi.nlm.nih.gov/",
+      "locator": {
+        "css": "#index-selector"
+      },
+      "observed_url": "https://pubmed.ncbi.nlm.nih.gov/advanced/",
+      "observed_at": "2026-10-09T09:06:51.626Z"
+    },
+    {
+      "tag": "button",
+      "type": "submit",
+      "text": "ADD",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "https://pubmed.ncbi.nlm.nih.gov/",
+      "locator": {
+        "role": "button",
+        "name": "ADD",
+        "exact": true
+      },
+      "observed_url": "https://pubmed.ncbi.nlm.nih.gov/advanced/",
+      "observed_at": "2026-10-09T09:06:51.626Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "add-arrow-button",
+      "css": "#add-arrow-button",
+      "role": null,
+      "form_action": "https://pubmed.ncbi.nlm.nih.gov/",
+      "locator": {
+        "css": "#add-arrow-button"
+      },
+      "observed_url": "https://pubmed.ncbi.nlm.nih.gov/advanced/",
+      "observed_at": "2026-10-09T09:06:51.626Z"
+    },
+    {
+      "tag": "textarea",
+      "type": null,
+      "text": "Query box",
+      "label": "Query box",
+      "aria_label": null,
+      "placeholder": "Enter / edit your search query here",
+      "name": "term",
+      "id": "query-box-input",
+      "css": "#query-box-input",
+      "role": null,
+      "form_action": "https://pubmed.ncbi.nlm.nih.gov/",
+      "locator": {
+        "css": "#query-box-input"
+      },
+      "observed_url": "https://pubmed.ncbi.nlm.nih.gov/advanced/",
+      "observed_at": "2026-10-09T09:06:51.626Z"
+    },
+    {
+      "tag": "button",
+      "type": "submit",
+      "text": "Search",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "https://pubmed.ncbi.nlm.nih.gov/",
+      "locator": {
+        "role": "button",
+        "name": "Search",
+        "exact": true
+      },
+      "observed_url": "https://pubmed.ncbi.nlm.nih.gov/advanced/",
+      "observed_at": "2026-10-09T09:06:51.626Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "search-arrow-button",
+      "css": "#search-arrow-button",
+      "role": null,
+      "form_action": "https://pubmed.ncbi.nlm.nih.gov/",
+      "locator": {
+        "css": "#search-arrow-button"
+      },
+      "observed_url": "https://pubmed.ncbi.nlm.nih.gov/advanced/",
+      "observed_at": "2026-10-09T09:06:51.626Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "quiz-pubmed-ncbi-nlm-nih-gov:record-lookup",
+      "source_id": "quiz-pubmed-ncbi-nlm-nih-gov",
+      "task_kind": "record-lookup",
+      "status": "entry_observed",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://pubmed.ncbi.nlm.nih.gov/advanced/",
+      "controls": [
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Here's how you know",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Here's how you know",
+            "exact": true
+          },
+          "observed_url": "https://pubmed.ncbi.nlm.nih.gov/advanced/",
+          "observed_at": "2026-10-09T09:06:51.626Z"
+        },
+        {
+          "tag": "select",
+          "type": null,
+          "text": "Field Selector:",
+          "label": "Field Selector:",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "field-selector",
+          "css": "#field-selector",
+          "role": null,
+          "form_action": "https://pubmed.ncbi.nlm.nih.gov/",
+          "locator": {
+            "css": "#field-selector"
+          },
+          "observed_url": "https://pubmed.ncbi.nlm.nih.gov/advanced/",
+          "observed_at": "2026-10-09T09:06:51.626Z"
+        },
+        {
+          "tag": "input",
+          "type": "search",
+          "text": "Search Term:",
+          "label": "Search Term:",
+          "aria_label": null,
+          "placeholder": "Enter a search term",
+          "name": null,
+          "id": "id_term",
+          "css": "#id_term",
+          "role": null,
+          "form_action": "https://pubmed.ncbi.nlm.nih.gov/",
+          "locator": {
+            "css": "#id_term"
+          },
+          "observed_url": "https://pubmed.ncbi.nlm.nih.gov/advanced/",
+          "observed_at": "2026-10-09T09:06:51.626Z"
+        },
+        {
+          "tag": "select",
+          "type": null,
+          "text": "Select indexed value",
+          "label": "Select indexed value",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "index-selector",
+          "css": "#index-selector",
+          "role": null,
+          "form_action": "https://pubmed.ncbi.nlm.nih.gov/",
+          "locator": {
+            "css": "#index-selector"
+          },
+          "observed_url": "https://pubmed.ncbi.nlm.nih.gov/advanced/",
+          "observed_at": "2026-10-09T09:06:51.626Z"
+        },
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "ADD",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": "https://pubmed.ncbi.nlm.nih.gov/",
+          "locator": {
+            "role": "button",
+            "name": "ADD",
+            "exact": true
+          },
+          "observed_url": "https://pubmed.ncbi.nlm.nih.gov/advanced/",
+          "observed_at": "2026-10-09T09:06:51.626Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "add-arrow-button",
+          "css": "#add-arrow-button",
+          "role": null,
+          "form_action": "https://pubmed.ncbi.nlm.nih.gov/",
+          "locator": {
+            "css": "#add-arrow-button"
+          },
+          "observed_url": "https://pubmed.ncbi.nlm.nih.gov/advanced/",
+          "observed_at": "2026-10-09T09:06:51.626Z"
+        },
+        {
+          "tag": "textarea",
+          "type": null,
+          "text": "Query box",
+          "label": "Query box",
+          "aria_label": null,
+          "placeholder": "Enter / edit your search query here",
+          "name": "term",
+          "id": "query-box-input",
+          "css": "#query-box-input",
+          "role": null,
+          "form_action": "https://pubmed.ncbi.nlm.nih.gov/",
+          "locator": {
+            "css": "#query-box-input"
+          },
+          "observed_url": "https://pubmed.ncbi.nlm.nih.gov/advanced/",
+          "observed_at": "2026-10-09T09:06:51.626Z"
+        },
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "Search",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": "https://pubmed.ncbi.nlm.nih.gov/",
+          "locator": {
+            "role": "button",
+            "name": "Search",
+            "exact": true
+          },
+          "observed_url": "https://pubmed.ncbi.nlm.nih.gov/advanced/",
+          "observed_at": "2026-10-09T09:06:51.626Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "search-arrow-button",
+          "css": "#search-arrow-button",
+          "role": null,
+          "form_action": "https://pubmed.ncbi.nlm.nih.gov/",
+          "locator": {
+            "css": "#search-arrow-button"
+          },
+          "observed_url": "https://pubmed.ncbi.nlm.nih.gov/advanced/",
+          "observed_at": "2026-10-09T09:06:51.626Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": null,
+    "quiz_entries": [
+      "quiz-entry-129"
+    ],
+    "example_ids": [],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:06:53.092Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/quiz-pubmed-ncbi-nlm-nih-gov-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/quiz-pubmed-ncbi-nlm-nih-gov-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

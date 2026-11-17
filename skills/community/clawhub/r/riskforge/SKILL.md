@@ -54,7 +54,7 @@ output-format: report
     - 若输入明确包含"不要生成单元测试用例"或"--test=false"等否定指令，记录意图为"跳过单测"，**禁止**调用 AskUserQuestion 询问
     - 若输入未明确要求生成单测时调用 AskUserQuestion 询问用户
 4. **风险分析（含回溯校验）** - 执行风险识别，使用依赖影响分析器和运行时异常检测器发现潜在风险
-   - **重要**: 每个风险生成后必须立即执行回溯校验（详见`references/risk-backtracking-validator.md`）
+   - **重要**: 每个风险生成后必须立即执行回溯校验（详见`references/riREDACTED-SECRET.md`）
    - 校验内容包括：描述准确性、建议有效性、行号精确性、影响清晰度
    - 低置信度风险需要重新分析，不可降低标准输出
 5. **生成测试报告** - 生成 Markdown 格式测试报告，记录具有可操作建议的发现
@@ -73,7 +73,7 @@ output-format: report
 | 金融AI风险 | `references/financial-ai-risk-playbook.md` | 金融、支付、风控、信贷、保险、财富、交易、反欺诈、KYC/AML、LLM/Agent/RAG |
 | 编写单测 | `references/unit-testing.md`           | 生成单元测试用例 |
 | 风险分析 | `references/dependency-impact-analyzer.md` | 风险分析、缺陷分析、漏洞分析 |
-| 风险验证 | `references/risk-backtracking-validator.md` | 风险回溯校验、准确性验证 |
+| 风险验证 | `references/riREDACTED-SECRET.md` | 风险回溯校验、准确性验证 |
 | 测试报告 | `references/test-reports/test-reports.md` | 报告模板、发现 |
 | 报告上传 | `references/test-reports/upload-platform.md` | 报告上传、API接口、平台集成 |
 | QA方法论 | `references/qa-methodology.md` | 手动测试、质量倡导、左移、持续测试 |

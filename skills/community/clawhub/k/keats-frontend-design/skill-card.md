@@ -1,41 +1,52 @@
-## Description: <br>
-Creates distinctive, production-grade frontend interfaces and visual web artifacts with polished code and strong design direction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create distinctive, production-grade frontend interfaces with high design quality.
 
-## Publisher: <br>
-[corbin-breton](https://clawhub.ai/user/corbin-breton) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[corbin-breton](https://clawhub.ai/user/corbin-breton)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and designers use this skill to guide agents when creating or refining browser-based interfaces, including components, pages, dashboards, landing pages, and visual web artifacts.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad web UI triggers may influence many frontend requests toward bolder visual design choices than the user intended.
+
+Mitigation: Use tighter activation wording or review generated UI direction when a request needs narrow, conventional styling.
+
+Risk: Generated frontend proposals can still introduce incorrect, inaccessible, or unsuitable interface choices.
+
+Mitigation: Review generated code and design output before deployment, including accessibility, responsive behavior, and project fit.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill to design and implement browser-based interfaces, components, dashboards, landing pages, and other web UI artifacts. It is intended for frontend work and excludes backend logic, data modeling, infrastructure, deployment, and terminal UI tasks. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated frontend code can introduce incorrect behavior, unnecessary dependencies, external assets, or animation-heavy changes. <br>
-Mitigation: Review generated code, dependencies, assets, and performance-sensitive changes before merging. <br>
-Risk: The skill is not intended for backend logic, authentication, deployment, infrastructure, or data modeling work. <br>
-Mitigation: Keep those tasks outside this skill's scope and review any mixed frontend/backend request with separate engineering controls. <br>
+**Output Format:** [Markdown with code snippets and implementation guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/corbin-breton/keats-frontend-design) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/corbin-breton) <br>
+**Other Properties Related to Output:** [Generated output is expected to stay within the user's specified project directory and does not require external services, credentials, or network access.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with frontend code, implementation notes, and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated work is scoped to frontend project files; no credentials, persistence, hidden data access, or external services are required by the skill.] <br>
+1.0.2 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

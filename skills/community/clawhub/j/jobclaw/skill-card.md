@@ -1,40 +1,60 @@
-## Description: <br>
-Job Hunter helps agents search public LinkedIn job listings, filter by role, technology, location, remote preference, and experience, and optionally score matches with Gemini. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Job Hunter helps agents search public LinkedIn job listings, filter by role, technology, location, and experience, and optionally score matches with Google Gemini.
 
-## Publisher: <br>
-[keepfit44](https://clawhub.ai/user/keepfit44) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[keepfit44](https://clawhub.ai/user/keepfit44)
 
-## Use Case: <br>
-Job seekers and career-support agents use this skill to run targeted LinkedIn searches, compare matching jobs, save promising listings, and revisit previous searches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes network requests to LinkedIn and Gemini during job search and scoring. <br>
-Mitigation: Use it only when those requests are acceptable for the user task, and review returned listings before relying on them. <br>
-Risk: Local files may contain job-search history, saved listings, and an optional Gemini API key. <br>
-Mitigation: Use a dedicated Gemini API key, avoid storing secrets in job notes, and delete local job-hunter files when they are no longer needed. <br>
+## Use Case:
 
+Job seekers and career-support agents use this skill to search job postings, narrow results by technology and geography, score fit against stated criteria, save interesting jobs, and revisit prior searches.
 
-## Reference(s): <br>
-- [Job Hunter Data Formats](references/search_format.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May store configuration, search history, and saved jobs under ~/.openclaw/job-hunter/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Gemini API keys, saved jobs, and search history are stored locally in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on trusted machines, avoid command-line key setup on shared or logged systems, restrict file permissions where possible, and rotate the Gemini key if exposure is suspected.
+
+Risk: When AI scoring is enabled, job listings and user criteria are sent to Google Gemini.
+
+Mitigation: Do not include sensitive personal details in free-text criteria, and enable AI scoring only when this external processing is acceptable.
+
+Risk: The skill scrapes public LinkedIn job pages and may encounter rate limits or access changes.
+
+Mitigation: Expect slower searches, pause after scraping errors or rate limits, and review use against applicable site terms before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/keepfit44/skills/jobclaw)
+- [Search Format Reference](references/search_format.md)
+- [Google AI Studio API Keys](https://aistudio.google.com/apikey)
+- [LinkedIn Jobs Search](https://www.linkedin.com/jobs/search/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON job-search results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results are scored, sorted, and capped for presentation; saved jobs and search history are retained locally.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

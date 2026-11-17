@@ -227,6 +227,7 @@ If taking salary from your company:
 - Progressive rates: 0-35%
 - First 150,000 THB: 0%
 - Above 5M THB: 35%
+- Full brackets, the 180-day residency rule, and foreign-income remittance rules: `taxes.md`
 
 ### Withholding Tax
 Various rates on payments to contractors, etc.

@@ -43,6 +43,11 @@ COS 存储约定：
       --cloth-url "https://example.com/cloth-front.jpg" \\
       --cloth-url "https://example.com/cloth-back.jpg"
 
+  # 本地文件换装（自动上传 COS 后传入 API，需配置 TENCENTCLOUD_COS_BUCKET）
+  python3 scripts/mps_image_tryon.py \\
+      --model-local /data/model.jpg \\
+      --cloth-local /data/cloth.jpg
+
   # 附加提示词
   python3 scripts/mps_image_tryon.py \\
       --model-url "https://example.com/model.jpg" \\
@@ -82,10 +87,10 @@ import argparse
 import json
 import os
 import sys
-from mps_auto_upgrade import check_sdk_version
 
 _SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, _SCRIPT_DIR)
+from mps_auto_upgrade import check_sdk_version
 
 try:
     from mps_load_env import ensure_env_loaded as _ensure_env_loaded
@@ -94,7 +99,7 @@ except ImportError:
     _LOAD_ENV_AVAILABLE = False
 
 try:
-    from mps_poll_task import poll_image_task
+    from mps_poll_task import poll_image_task, auto_upload_local_file
     _POLL_AVAILABLE = True
 except ImportError:
     _POLL_AVAILABLE = False
@@ -127,10 +132,11 @@ DEFAULT_TIMEOUT = 600
 # =============================================================================
 
 def get_credentials():
-    """从环境变量获取腾讯云凭证，若缺失则尝试自动加载。"""
+    """从环境变量获取腾讯云凭证。若缺失则尝试从 dotenv 文件自动加载后重试。"""
     secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID", "")
     secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY", "")
     if not secret_id or not secret_key:
+        # 凭证可能写在 ~/.env 等 dotenv 文件中而未导出，先尝试加载再重试
         if _LOAD_ENV_AVAILABLE:
             print("[load_env] 环境变量未设置，尝试从系统文件自动加载...", file=sys.stderr)
             _ensure_env_loaded(verbose=True)
@@ -143,7 +149,7 @@ def get_credentials():
             else:
                 print(
                     "\n错误：TENCENTCLOUD_SECRET_ID / TENCENTCLOUD_SECRET_KEY 未设置。\n"
-                    "请在 ~/.env、~/.profile 等文件中添加这些变量。\n",
+                    "请在 ~/.env、~/.bashrc、~/.profile 或 <SKILL_DIR>/.env 中添加这些变量。\n",
                     file=sys.stderr,
                 )
             sys.exit(1)
@@ -164,6 +170,7 @@ def create_mps_client(cred, region):
     """创建 MPS 客户端。"""
     http_profile = HttpProfile()
     http_profile.endpoint = os.environ.get("TENCENTCLOUD_MPS_ENDPOINT", "mps.tencentcloudapi.com")
+    http_profile.reqMethod = "POST"
     client_profile = ClientProfile()
     client_profile.httpProfile = http_profile
     return mps_client.MpsClient(cred, region, client_profile)
@@ -220,7 +227,7 @@ def build_request_payload(args):
         cloth_inputs.append({"Image": build_cos_input(key, args.cloth_cos_bucket, args.cloth_cos_region)})
 
     if not cloth_inputs:
-        print("错误：请至少指定一张服装图（--cloth-url 或 --cloth-cos-key）", file=sys.stderr)
+        print("错误：请至少指定一张服装图（--cloth-url / --cloth-cos-key / --cloth-local）", file=sys.stderr)
         sys.exit(1)
 
     if len(cloth_inputs) > 4:
@@ -296,6 +303,10 @@ def parse_args():
         "--model-cos-key",
         help="模特图 COS 对象 Key（如 /input/model.jpg），与 --model-url 二选一",
     )
+    model_group.add_argument(
+        "--model-local",
+        help="模特图本地文件路径，自动上传 COS 后传入 API（需配置 TENCENTCLOUD_COS_BUCKET）；与 --model-url / --model-cos-key 三选一",
+    )
     input_group.add_argument(
         "--model-cos-bucket",
         help="模特图 COS Bucket（默认读取 TENCENTCLOUD_COS_BUCKET）",
@@ -312,6 +323,10 @@ def parse_args():
     input_group.add_argument(
         "--cloth-cos-key", action="append", default=[],
         help="服装图 COS 对象 Key，可重复传入 1-4 次；与 --cloth-url 可混用",
+    )
+    input_group.add_argument(
+        "--cloth-local", action="append", default=[],
+        help="服装图本地文件路径，可重复传入 1-4 次，自动上传 COS 后传入 API；与 --cloth-url / --cloth-cos-key 可混用",
     )
     input_group.add_argument(
         "--cloth-cos-bucket",
@@ -397,9 +412,35 @@ def parse_args():
 
     args = parser.parse_args()
 
+    # 本地文件自动上传（先上传到 COS，再以 COS Key 传入 API）
+    if args.model_local or args.cloth_local:
+        if not _POLL_AVAILABLE:
+            print("错误：--model-local / --cloth-local 需要 mps_poll_task 模块支持", file=sys.stderr)
+            sys.exit(1)
+
+    if args.model_local:
+        upload_result = auto_upload_local_file(args.model_local)
+        if not upload_result:
+            sys.exit(1)
+        args.model_cos_key = upload_result["Key"]
+        args.model_cos_bucket = upload_result["Bucket"]
+        args.model_cos_region = upload_result["Region"]
+
+    if args.cloth_local:
+        for local_path in args.cloth_local:
+            upload_result = auto_upload_local_file(local_path)
+            if not upload_result:
+                sys.exit(1)
+            args.cloth_cos_key.append(upload_result["Key"])
+            # 服装图统一使用同一 Bucket/Region（auto_upload_local_file 依据环境变量上传）
+            if not args.cloth_cos_bucket:
+                args.cloth_cos_bucket = upload_result["Bucket"]
+            if not args.cloth_cos_region:
+                args.cloth_cos_region = upload_result["Region"]
+
     # 校验：服装图至少一张
     if not args.cloth_url and not args.cloth_cos_key:
-        parser.error("请至少指定一张服装图：--cloth-url 或 --cloth-cos-key")
+        parser.error("请至少指定一张服装图：--cloth-url / --cloth-cos-key / --cloth-local")
 
     return args
 
@@ -417,16 +458,6 @@ def main():
         except Exception:
             pass
     args = parse_args()
-
-    # 命令行传入的 secret 覆盖环境变量
-    if args.secret_id:
-        os.environ["TENCENTCLOUD_SECRET_ID"] = args.secret_id
-    if args.secret_key:
-        os.environ["TENCENTCLOUD_SECRET_KEY"] = args.secret_key
-
-    cred = get_credentials()
-    region = args.region
-    client = create_mps_client(cred, region)
 
     payload = build_request_payload(args)
 
@@ -454,6 +485,10 @@ def main():
         print("\n【dry-run】请求体预览：")
         print(json.dumps(payload, ensure_ascii=False, indent=2))
         return
+
+    # 正常执行：需要密钥
+    cred = get_credentials()
+    client = create_mps_client(cred, region)
 
     try:
         submit_result = submit_process_image(client, payload)

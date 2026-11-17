@@ -1,40 +1,48 @@
-## Description: <br>
-Builds and runs Python-based options strategy backtests for iron condors, strangles, calendar spreads, and vertical credit spreads, reporting simulated metrics such as win rate, Sharpe ratio, drawdown, expectancy, and estimated profit and loss. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds Python options strategy backtesting simulations for iron condors, strangles, calendar spreads, and vertical credit spreads, with outputs such as win rate, Sharpe ratio, drawdown, expectancy, and equity curve.
 
-## Publisher: <br>
-[ssidharhubble](https://clawhub.ai/user/ssidharhubble) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ssidharhubble](https://clawhub.ai/user/ssidharhubble)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and analysts use this skill to draft and run Python-based options strategy simulations, test parameters, and summarize synthetic backtest-style metrics. Outputs should be reviewed before being used for trading decisions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may mistake simplified or synthetic options backtest outputs for realistic historical trading evidence or investment advice.
+
+Mitigation: Treat outputs as synthetic simulations unless real data ingestion, strategy logic, risk filters, and financial disclaimers are independently reviewed and implemented.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, analysts, and trading researchers use this skill to ask an agent to prepare or run Python options strategy backtests and summarize simulated performance metrics for strategy exploration. Review outputs before any trading use because the server security summary says the skill overstates realistic financial backtesting capability. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat synthetic or simplified backtest outputs as realistic trading evidence. <br>
-Mitigation: Treat outputs as synthetic demonstration data unless the missing strategy logic, historical data loading, and documented risk checks are implemented and independently verified. <br>
-Risk: The skill may overstate its financial backtesting completeness. <br>
-Mitigation: Independently verify strategy logic, data sources, slippage, commissions, implied-volatility behavior, and risk filters before relying on results. <br>
+**Output Format:** [Markdown with Python, bash, and JSON snippets]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/ssidharhubble/options-trading-backtester) <br>
+**Other Properties Related to Output:** [May produce synthetic options backtest metrics and optional JSON result files when an output path is configured.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Python and shell command blocks, plus optional JSON backtest output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce simulated financial metrics and generated configuration examples; results require independent review before use.] <br>
+1.0.18 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.18 (source: SKILL.md frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

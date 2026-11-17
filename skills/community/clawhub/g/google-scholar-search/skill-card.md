@@ -1,43 +1,57 @@
-## Description: <br>
-Searches academic papers through the Semantic Scholar API and returns paper metadata, citation counts, abstracts, links, and optional JSON output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches academic papers using the Semantic Scholar API and returns paper metadata including citations, abstracts, authors, and open-access PDF links when available.
 
-## Publisher: <br>
-[zhoujc11](https://clawhub.ai/user/zhoujc11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhoujc11](https://clawhub.ai/user/zhoujc11)
 
-## Use Case: <br>
-Developers, researchers, and agents use this skill to search academic literature by topic, year, and citation filters, then retrieve paper metadata or details for follow-up review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research queries are sent to Semantic Scholar. <br>
-Mitigation: Use the skill only when that network disclosure is acceptable; avoid submitting sensitive or confidential research queries. <br>
-Risk: The skill name may imply Google Scholar, but the implementation uses Semantic Scholar and may return different coverage or PDF availability. <br>
-Mitigation: Treat results as Semantic Scholar metadata and verify important citations, abstracts, and open-access PDF links against the source venue before relying on them. <br>
+## Use Case:
 
+Developers, researchers, and agents use this skill to search academic literature, retrieve paper metadata, inspect citations and abstracts, and get open-access PDF links when available.
 
-## Reference(s): <br>
-- [Semantic Scholar API Reference](references/API.md) <br>
-- [Semantic Scholar](https://www.semanticscholar.org) <br>
-- [Semantic Scholar API](https://api.semanticscholar.org) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhoujc11/google-scholar-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with CLI examples; command output as plain text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns paper titles, authors, years, venues, citation counts, abstracts, Semantic Scholar URLs, paper IDs, and open-access PDF links when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Academic search terms and paper IDs are sent to Semantic Scholar.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use confidential project names, sensitive research topics, or private identifiers as queries unless third-party API sharing is acceptable.
+
+Risk: Semantic Scholar rate limits can interrupt searches.
+
+Mitigation: Retry after a short delay or reduce request frequency when the API returns rate-limit errors.
+
+## Reference(s):
+
+- [Semantic Scholar](https://www.semanticscholar.org)
+- [Semantic Scholar API](https://api.semanticscholar.org)
+- [Semantic Scholar API Product Page](https://www.semanticscholar.org/product/api)
+- [API Reference](references/API.md)
+- [ClawHub Skill Page](https://clawhub.ai/zhoujc11/skills/google-scholar-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Plain text or JSON paper-search results, with Markdown usage examples in the skill documentation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results may include paper titles, authors, years, venues, citation counts, abstracts, Semantic Scholar URLs, open-access PDF links, and paper IDs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

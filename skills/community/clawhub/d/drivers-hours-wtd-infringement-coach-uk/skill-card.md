@@ -1,43 +1,56 @@
-## Description: <br>
-Creates a 1-page driver-facing tacho/WTD infringement note plus corrective actions and review date. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates a 1-page driver-facing tacho/WTD infringement note plus corrective actions and review date.
 
-## Publisher: <br>
-[KOwl64](https://clawhub.ai/user/KOwl64) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kowl64](https://clawhub.ai/user/kowl64)
 
-## Use Case: <br>
-Transport managers, compliance staff, and fleet operators use this skill to turn supplied tacho or WTD infringement evidence into a driver-facing coaching note, corrective action plan, and review date. It is intended for evidence-based coaching and follow-up scheduling, not standalone legal or disciplinary advice. <br>
-
-### Deployment Geography for Use: <br>
-United Kingdom <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive driver and employment-context information. <br>
-Mitigation: Provide only necessary driver data and have a manager or compliance owner review outputs before using them in any formal HR or disciplinary process. <br>
-Risk: RAG escalation depends on the user's internal policy and prior infringement history. <br>
-Mitigation: Confirm the RAG escalation rule, lookback window, authorisation path, and prior amber or red counts before relying on the proposed status or review schedule. <br>
-Risk: Generated notes could overstate responsibility or legal thresholds if source records are incomplete. <br>
-Mitigation: Use supplied records and internal policy only, resolve conflicting sources before drafting, and keep outputs factual and coaching-focused. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Company RAG Escalation Rule](references/rag-escalation-rule.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/KOwl64/drivers-hours-wtd-infringement-coach-uk) <br>
-- [Publisher Profile](https://clawhub.ai/user/KOwl64) <br>
+## Use Case:
 
+Fleet managers, transport compliance teams, and driver supervisors use this skill to turn supplied tacho/WTD infringement evidence into driver-facing coaching notes and corrective action plans with review dates.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown documents for a driver infringement note and corrective action plan] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces driver-infringement-note.md and corrective-action-plan.md; the driver note is intended to stay around one page.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+United Kingdom
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may draft coaching material that could be used in employment or disciplinary decisions.
+
+Mitigation: Use outputs as factual coaching drafts only; have a responsible manager or compliance lead review them before any employment action.
+
+Risk: RAG escalation depends on the organization's own policy and prior infringement history.
+
+Mitigation: Confirm the escalation rule, lookback window, prior amber/red counts, authorization path, and evidence bundle before applying an escalation.
+
+Risk: Missing or conflicting driver-hours records can lead to incorrect coaching notes.
+
+Mitigation: Provide driver ID, date range, infringement types, source records, and resolve source conflicts before using the output.
+
+## Reference(s):
+
+- [Company RAG escalation rule](references/rag-escalation-rule.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown documents]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a driver infringement note and a corrective action plan using supplied facts, internal policy, and a review date.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

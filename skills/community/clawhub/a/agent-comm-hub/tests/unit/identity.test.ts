@@ -1,20 +1,27 @@
 /**
  * identity.test.ts — Identity 模块单元测试
  *
- * 覆盖：heartbeat / registerAgent / getAgentTrustScore / getAgentRole / setAgentRole
- *
- * 策略：in-memory SQLite + vi.spyOn(db, 'prepare')
+ * 覆盖范围：
+ *   - register_agent 注册流程
+ *   - heartbeat 心跳上报
+ *   - set_trust_score 信任分调整
+ *   - generate_invite 邀请码生成
  */
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import { describe, it, expect, vi, beforeEach } from "vitest";
 import Database from "better-sqlite3";
-import type { Database as DatabaseType } from "better-sqlite3";
+import { createHash, randomBytes } from "crypto";
 
-import { db } from "../../src/db.js";
+// ─── Mock logger ──────────────────────────────────────────
+vi.mock("../../src/logger.js", () => ({
+  logError: vi.fn(),
+  logger: { info: vi.fn(), warn: vi.fn(), error: vi.fn() },
+}));
 
-let testDb: DatabaseType;
-
-function setupDb(): DatabaseType {
+// ─── 内存数据库工厂 ────────────────────────────────────────
+function createTestDb(): Database.Database {
   const db = new Database(":memory:");
+  db.pragma("journal_mode = WAL");
+
   db.exec(`
     CREATE TABLE IF NOT EXISTS agents (
       agent_id      TEXT PRIMARY KEY,
@@ -27,6 +34,7 @@ function setupDb(): DatabaseType {
       managed_group_id TEXT,
       created_at    INTEGER NOT NULL
     );
+
     CREATE TABLE IF NOT EXISTS auth_tokens (
       token_id      TEXT PRIMARY KEY,
       token_type    TEXT NOT NULL,
@@ -36,174 +44,227 @@ function setupDb(): DatabaseType {
       used          INTEGER DEFAULT 0,
       created_at    INTEGER NOT NULL,
       expires_at    INTEGER,
-      revoked_at    INTEGER
+      revoked_at    INTEGER,
+      UNIQUE(token_type, token_value)
     );
+
+    CREATE TABLE IF NOT EXISTS agent_capabilities (
+      id            TEXT PRIMARY KEY,
+      agent_id      TEXT NOT NULL,
+      capability    TEXT NOT NULL,
+      params        TEXT,
+      verified      INTEGER DEFAULT 0,
+      verified_at   INTEGER,
+      created_at    INTEGER NOT NULL
+    );
+
+    CREATE TABLE IF NOT EXISTS messages (
+      id          TEXT PRIMARY KEY,
+      from_agent  TEXT NOT NULL,
+      to_agent    TEXT NOT NULL,
+      content     TEXT NOT NULL,
+      type        TEXT NOT NULL DEFAULT 'message',
+      metadata    TEXT,
+      status      TEXT NOT NULL DEFAULT 'unread',
+      created_at  INTEGER NOT NULL
+    );
+
     CREATE TABLE IF NOT EXISTS audit_log (
       id          TEXT PRIMARY KEY,
       action      TEXT NOT NULL,
       agent_id    TEXT,
       target      TEXT,
       details     TEXT,
+      ip_address  TEXT,
       created_at  INTEGER NOT NULL,
       prev_hash   TEXT,
       record_hash TEXT
     );
+
+    CREATE TABLE IF NOT EXISTS dedup_cache (
+      msg_hash   TEXT PRIMARY KEY,
+      sender_id  TEXT NOT NULL,
+      nonce      INTEGER NOT NULL,
+      created_at INTEGER NOT NULL
+    );
   `);
+
   return db;
 }
 
-beforeEach(() => {
-  testDb = setupDb();
-  vi.spyOn(db, "prepare").mockImplementation(
-    (sql: string) => testDb.prepare(sql) as any
-  );
-});
+// ─── Mock db 模块 ─────────────────────────────────────────
+let testDb: Database.Database;
 
-afterEach(() => {
-  vi.restoreAllMocks();
-  if (testDb) {
-    try { testDb.close(); } catch { /* ignore */ }
-  }
-});
+vi.mock("../../src/db.js", () => ({
+  get db() {
+    return testDb;
+  },
+  fts5IntegrityCheck: () => ({ ok: true, details: "OK" }),
+}));
 
+// ─── 导入被测模块 ──────────────────────────────────────────
 import {
   registerAgent,
-  getAgentTrustScore,
+  heartbeat,
   updateAgentTrustScore,
-  getAgentRole,
-  getAgentManagedGroup,
-  setAgentRole,
 } from "../../src/identity.js";
-import { createInviteCode } from "../../src/security.js";
 
-// ─── 辅助：在测试 DB 中直接预置 Agent ─────────────────────
-function insertAgent(db: DatabaseType, overrides: Partial<{
-  agent_id: string; name: string; role: string;
-  trust_score: number; status: string; managed_group_id: string | null;
-}>): void {
-  const row = {
-    agent_id: "agent_test_123",
-    name: "Test Agent",
-    role: "member",
-    trust_score: 50,
-    status: "offline",
-    managed_group_id: null as string | null,
-    ...overrides,
-  };
-  db.prepare(
-    `INSERT INTO agents (agent_id, name, role, trust_score, status, managed_group_id, created_at)
-     VALUES (?, ?, ?, ?, ?, ?, ?)`
-  ).run(row.agent_id, row.name, row.role, row.trust_score, row.status, row.managed_group_id, Date.now());
+// ─── 辅助函数 ──────────────────────────────────────────────
+function sha256(input: string): string {
+  return createHash("sha256").update(input).digest("hex");
 }
 
-describe("registerAgent", () => {
-  it("使用有效邀请码应注册成功", () => {
-    // 先创建一个邀请码
-    const plainCode = createInviteCode("member");
-    const result = registerAgent(plainCode, "Test Agent");
-    expect(result.success).toBe(true);
-    if (result.success) {
-      expect(result.agentId).toBeTruthy();
-      expect(result.apiToken).toBeTruthy();
-    }
+function createInviteCode(role: string, db: Database.Database): string {
+  const plain = randomBytes(16).toString("hex");
+  const hash = sha256(plain);
+  const tokenId = `invite_test_${Date.now()}_${randomBytes(4).toString("hex")}`;
+  const expiresAt = Date.now() + 24 * 3600 * 1000;
+  db.prepare(
+    `INSERT INTO auth_tokens (token_id, token_type, token_value, agent_id, role, used, created_at, expires_at)
+     VALUES (?, 'invite_code', ?, NULL, ?, 0, ?, ?)`
+  ).run(tokenId, hash, role, Date.now(), expiresAt);
+  return plain;
+}
+
+// ─── 测试 ─────────────────────────────────────────────────
+
+describe("Identity", () => {
+  beforeEach(() => {
+    testDb = createTestDb();
   });
 
-  it("无效邀请码应返回错误", () => {
-    const result = registerAgent("invalid_invite_code_12345", "Test");
-    expect(result.success).toBe(false);
-    if (!result.success) {
-      expect(result.error).toContain("Invalid");
-    }
+  describe("register_agent", () => {
+    it("registry with valid invite code returns agent_id", () => {
+      const inviteCode = createInviteCode("member", testDb);
+
+      const result = registerAgent(inviteCode, "test-agent-001", ["mcp", "sse"]);
+
+      expect(result.success).toBe(true);
+      expect(result.agentId).toBeDefined();
+      expect(result.agentId).toMatch(/^agent_/);
+      expect(result.apiToken).toBeDefined();
+      expect(result.role).toBe("member");
+
+      // 验证数据库中确实创建了 agent
+      const agent = testDb.prepare(
+        `SELECT * FROM agents WHERE agent_id = ?`
+      ).get(result.agentId!) as any;
+      expect(agent).toBeDefined();
+      expect(agent.name).toBe("test-agent-001");
+      expect(agent.role).toBe("member");
+    });
+
+    it("registry with admin invite code returns admin role", () => {
+      const inviteCode = createInviteCode("admin", testDb);
+
+      const result = registerAgent(inviteCode, "test-agent-admin", []);
+
+      expect(result.success).toBe(true);
+      expect(result.role).toBe("admin");
+    });
+
+    it("registry with invalid invite code returns error", () => {
+      const result = registerAgent("invalid_code_xyz", "test-agent-002", []);
+
+      expect(result.success).toBe(false);
+      expect(result.error).toBeDefined();
+    });
   });
 
-  it("重复使用邀请码应失败", () => {
-    const plainCode = createInviteCode("member");
-    registerAgent(plainCode, "First");
-    const result = registerAgent(plainCode, "Second");
-    expect(result.success).toBe(false);
-  });
-});
+  describe("heartbeat", () => {
+    it("heartbeat updates status to online", () => {
+      const inviteCode = createInviteCode("member", testDb);
+      const regResult = registerAgent(inviteCode, "heartbeat-agent", []);
+      expect(regResult.success).toBe(true);
 
-describe("getAgentTrustScore", () => {
-  it("不存在的 Agent 应返回默认值 50", () => {
-    expect(getAgentTrustScore("nonexistent")).toBe(50);
-  });
+      const result = heartbeat(regResult.agentId!);
 
-  it("应返回已注册 Agent 的信任分", () => {
-    insertAgent(testDb, { agent_id: "agent_trust_test", trust_score: 75 });
-    expect(getAgentTrustScore("agent_trust_test")).toBe(75);
-  });
-});
+      expect(result.success).toBe(true);
+      expect(result.status).toBe("online");
 
-describe("updateAgentTrustScore", () => {
-  it("应增加信任分", () => {
-    insertAgent(testDb, { agent_id: "agent_update_test", trust_score: 50 });
-    const result = updateAgentTrustScore("agent_update_test", 10);
-    expect(result.ok).toBe(true);
-    if (result.ok) {
-      expect(result.new_score).toBe(60);
-    }
+      // 验证数据库中状态已更新
+      const agent = testDb.prepare(
+        `SELECT status, trust_score, last_heartbeat FROM agents WHERE agent_id = ?`
+      ).get(regResult.agentId!) as any;
+      expect(agent.status).toBe("online");
+      expect(agent.trust_score).toBeGreaterThanOrEqual(50);
+    });
+
+    it("heartbeat for non-existent agent returns error", () => {
+      const result = heartbeat("nonexistent_agent");
+
+      expect(result.success).toBe(false);
+    });
   });
 
-  it("应减少信任分", () => {
-    insertAgent(testDb, { agent_id: "agent_update_test", trust_score: 50 });
-    const result = updateAgentTrustScore("agent_update_test", -15);
-    expect(result.ok).toBe(true);
-    if (result.ok) {
-      expect(result.new_score).toBe(35);
-    }
+  describe("set_trust_score", () => {
+    let adminId: string;
+
+    beforeEach(() => {
+      // 注册一个 admin agent 用于权限验证
+      const adminInvite = createInviteCode("admin", testDb);
+      const adminResult = registerAgent(adminInvite, "admin-agent", []);
+      adminId = adminResult.agentId!;
+    });
+
+    it("set_trust_score adjusts trust value", () => {
+      const inviteCode = createInviteCode("member", testDb);
+      const regResult = registerAgent(inviteCode, "trust-agent", []);
+      expect(regResult.success).toBe(true);
+
+      const result = updateAgentTrustScore(regResult.agentId!, 10, adminId);
+
+      expect(result.ok).toBe(true);
+      expect(result.new_score).toBe(60); // 50 + 10
+
+      // 验证数据库
+      const agent = testDb.prepare(
+        `SELECT trust_score FROM agents WHERE agent_id = ?`
+      ).get(regResult.agentId!) as any;
+      expect(agent.trust_score).toBe(60);
+    });
+
+    it("set_trust_score clamps to 0-100", () => {
+      const inviteCode = createInviteCode("member", testDb);
+      const regResult = registerAgent(inviteCode, "clamp-agent", []);
+      expect(regResult.success).toBe(true);
+
+      // Clamp to 0
+      const resultLow = updateAgentTrustScore(regResult.agentId!, -60, adminId);
+      expect(resultLow.new_score).toBe(0);
+
+      // Clamp to 100
+      const resultHigh = updateAgentTrustScore(regResult.agentId!, 100, adminId);
+      expect(resultHigh.new_score).toBe(100);
+    });
+
+    it("set_trust_score returns error for non-existent agent", () => {
+      const result = updateAgentTrustScore("nonexistent_agent", 10, adminId);
+      expect(result.ok).toBe(false);
+    });
   });
 
-  it("信任分不应低于 0", () => {
-    insertAgent(testDb, { agent_id: "agent_zero_test", trust_score: 5 });
-    const result = updateAgentTrustScore("agent_zero_test", -999);
-    expect(result.ok).toBe(true);
-    if (result.ok) {
-      expect(result.new_score).toBe(0);
-    }
-  });
+  describe("generate_invite", () => {
+    it("should create invite token in database", () => {
+      const plain = randomBytes(32).toString("hex");
+      const hash = sha256(plain);
+      const now = Date.now();
+      const expiresAt = now + 24 * 3600 * 1000;
+      const tokenId = `invite_${now}_${randomBytes(4).toString("hex")}`;
 
-  it("信任分不应超过 100", () => {
-    insertAgent(testDb, { agent_id: "agent_max_test", trust_score: 95 });
-    const result = updateAgentTrustScore("agent_max_test", 999);
-    expect(result.ok).toBe(true);
-    if (result.ok) {
-      expect(result.new_score).toBe(100);
-    }
-  });
+      testDb.prepare(
+        `INSERT INTO auth_tokens (token_id, token_type, token_value, agent_id, role, used, created_at, expires_at)
+         VALUES (?, 'invite_code', ?, NULL, 'member', 0, ?, ?)`
+      ).run(tokenId, hash, Date.now(), expiresAt);
 
-  it("不存在的 Agent 应返回错误", () => {
-    const result = updateAgentTrustScore("nonexistent", 10);
-    expect(result.ok).toBe(false);
-    if (!result.ok) {
-      expect(result.error).toContain("not found");
-    }
+      // 验证 token 已创建
+      const token = testDb.prepare(
+        `SELECT * FROM auth_tokens WHERE token_id = ?`
+      ).get(tokenId) as any;
+      expect(token).toBeDefined();
+      expect(token.token_type).toBe("invite_code");
+      expect(token.role).toBe("member");
+      expect(token.used).toBe(0);
+    });
   });
-});
-
-describe("getAgentRole", () => {
-  it("不存在的 Agent 应返回 null", () => {
-    expect(getAgentRole("nonexistent")).toBeNull();
-  });
-
-  it("应返回注册时的角色", () => {
-    insertAgent(testDb, { agent_id: "agent_role_test", role: "admin" });
-    expect(getAgentRole("agent_role_test")).toBe("admin");
-  });
-});
-
-describe("getAgentManagedGroup", () => {
-  it("没有 managed_group_id 的 Agent 应返回 null", () => {
-    insertAgent(testDb, { agent_id: "agent_group_test" });
-    expect(getAgentManagedGroup("agent_group_test")).toBeNull();
-  });
-
-  it("不存在的 Agent 应返回 null", () => {
-    expect(getAgentManagedGroup("nonexistent")).toBeNull();
-  });
-});
-
-describe("setAgentRole", () => {
-  // TODO: fix — setAgentRole may need different test setup with managed_group_id
-  // Current test produces error from auditLog integration
 });

@@ -1,48 +1,62 @@
-## Description: <br>
-Yunlv Customs Scout helps agents prepare customs-data trade intelligence, buyer discovery, competitor-customer mining, lead scoring, and outreach drafts for B2B export workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Yunlv Customs Scout helps users analyze customs trade signals to identify import and export buyers, competitor customers, market intelligence, scoring insights, and outreach drafts.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-External trade, sales, and business-development users use this skill to structure customs-data research, identify active buyers in target markets, score opportunities, and draft compliant outreach for human review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat heuristic or simulated buyer information as verified customs data. <br>
-Mitigation: Require explicit user-provided data or cited lawful sources before presenting buyer or competitor findings as factual. <br>
-Risk: Customer and competitor profiling may create privacy or unfair-competition concerns. <br>
-Mitigation: Review profiling outputs for privacy compliance and lawful business purpose before use. <br>
-Risk: Outreach drafts could be sent to inappropriate recipients, channels, or regions. <br>
-Mitigation: Keep outreach as drafts until a human approves the recipients, channel, region, legal basis, and message content. <br>
+## Use Case:
 
+External B2B trade-development teams use this skill to prospect importers, compare competitor customer relationships, score buyer opportunities, and prepare outreach from customs-data signals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangm-a3/yunlv-customs-scout) <br>
-- [Publisher profile](https://clawhub.ai/user/wangm-a3) <br>
-- [Yunlv AI homepage](https://yunlvai.com) <br>
-- [Yunlv customs data API reference](https://api.yunlvai.com) <br>
-- [Customer scoring model](references/customer_scoring_model.md) <br>
-- [Data filter rules](references/data_filter_rules.md) <br>
-- [Outreach templates](references/outreach_templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with structured lead-scoring reports, JSON examples, outreach drafts, and optional shell-command examples for the bundled analyzer script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No required environment variable is declared in the server evidence; outreach and customer profiling should remain drafts until reviewed by a human.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: Customs and contact data may be heuristic, stale, or overstated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify underlying customs records, contact sources, and scoring inputs before acting on any lead or opportunity recommendation.
+
+Risk: Sensitive business prospecting queries or lead lists may use unclear local or remote data paths.
+
+Mitigation: Confirm whether query data is sent to Yunlv's remote API and obtain explicit user approval before exporting lead lists.
+
+Risk: Generated outreach can trigger email, WhatsApp, or LinkedIn contact obligations.
+
+Mitigation: Require user approval before outreach and review messages for GDPR, CAN-SPAM, and applicable local-market requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangm-a3/skills/yunlv-customs-scout)
+- [Yunlv homepage](https://yunlvai.com)
+- [Yunlv customs data API](https://api.yunlvai.com)
+- [Data filter rules](references/data_filter_rules.md)
+- [Customer scoring model](references/customer_scoring_model.md)
+- [Outreach templates](references/outreach_templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown reports, JSON analysis objects, and concise outreach drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include buyer scores, market-heat assessments, competitor-customer recommendations, and contact or outreach templates.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,54 @@
-## Description: <br>
-Fetches the top 50 Douyin hot-search entries with heat scores and structured ranking data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically fetches the Douyin hot-search Top 50 list with heat values.
 
-## Publisher: <br>
-[yangjinghua0127](https://clawhub.ai/user/yangjinghua0127) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangjinghua0127](https://clawhub.ai/user/yangjinghua0127)
 
-## Use Case: <br>
-Developers and users use this skill to retrieve current Douyin hot-search rankings, heat values, labels, and descriptions for reporting or trend-monitoring workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts Douyin to fetch public hot-search data. <br>
-Mitigation: Use it only in environments where outbound requests to Douyin are acceptable. <br>
-Risk: The skill saves a local JSON copy of the fetched hot-search results. <br>
-Mitigation: Delete workspace/scripts/douyin-hot-clean.json if retained search-result data is not desired. <br>
-Risk: The Douyin API endpoint or response shape may change. <br>
-Mitigation: Review failures and update the fetch or parsing logic before relying on the output. <br>
+## Use Case:
 
+External users and agent operators use this skill to retrieve the latest Douyin hot-search topics, formatted with rankings and heat values, and save a local JSON copy for later use.
 
-## Reference(s): <br>
-- [Douyin Hot Search](https://www.douyin.com/hot/) <br>
-- [ClawHub skill page](https://clawhub.ai/yangjinghua0127/tiktok-hot-cn) <br>
-- [Publisher profile](https://clawhub.ai/user/yangjinghua0127) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, files] <br>
-**Output Format:** [Console text plus a saved JSON file containing ranked Douyin hot-search entries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saves results to workspace/scripts/douyin-hot-clean.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Running the skill makes a network request to Douyin using browser-like headers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review network access expectations before installation and run only in environments where outbound requests to Douyin are acceptable.
+
+Risk: The skill writes the latest results to workspace/scripts/douyin-hot-clean.json and replaces any prior file at that path.
+
+Mitigation: Back up or redirect the output file when prior saved results must be retained.
+
+## Reference(s):
+
+- [Douyin Hot](https://www.douyin.com/hot/)
+- [ClawHub skill page](https://clawhub.ai/yangjinghua0127/skills/tiktok-hot-cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, files]
+
+**Output Format:** [Console text and structured JSON file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and network access; writes results to workspace/scripts/douyin-hot-clean.json.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

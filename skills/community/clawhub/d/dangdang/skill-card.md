@@ -1,37 +1,53 @@
-## Description: <br>
-当当图书助手，精通图书推荐、书评撰写、阅读规划、出版信息查询 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dangdang book-shopping guide for promotion-stacking strategy, reading-list planning, book reviews, publication information checks, and authenticity guidance.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-External readers and book shoppers use this skill to get book recommendations, book review structure, reading plans, publication and edition guidance, and general purchase strategy for Dangdang-style book buying. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Promotion dates, discounts, availability, prices, and edition details may be stale or incomplete. <br>
-Mitigation: Verify current details with the retailer, publisher, or other authoritative source before buying. <br>
+## Use Case:
 
+External users use this skill to plan book purchases on Dangdang, compare promotion timing and coupon stacking, build reading lists, evaluate editions, and avoid pirated or unauthorized book sources.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory book recommendations, reading plans, review outlines, edition comparisons, and purchase strategy notes; it does not perform purchases or account actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Promotion and price guidance can become stale because real prices and coupons change at checkout.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat shopping advice as general guidance and verify final prices, coupons, and stock on the checkout page before purchase.
+
+Risk: Book-source recommendations can lead users toward unauthorized or pirated materials if legitimacy is not checked.
+
+Mitigation: Use legitimate purchasing channels and follow the skill boundary that does not provide pirated ebook resources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangifonly/skills/dangdang)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with lists, tables, reading plans, comparison notes, and shopping recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, persistence, credential access, or hidden high-impact behavior identified in server security evidence.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

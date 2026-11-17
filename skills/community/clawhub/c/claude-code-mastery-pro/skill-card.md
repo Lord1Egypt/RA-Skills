@@ -1,41 +1,57 @@
-## Description: <br>
-Complete guide to mastering Claude Code CLI, from installation to production workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete guide to mastering Claude Code CLI, from installation to production workflows.
 
-## Publisher: <br>
-[abhinas90](https://clawhub.ai/user/abhinas90) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abhinas90](https://clawhub.ai/user/abhinas90)
 
-## Use Case: <br>
-Developers and engineering teams use this skill as Claude Code guidance and reusable command templates for setup, code review, test generation, code explanation, security audit prompts, and MCP-oriented workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package appears to overpromise paid contents, including deliverables that are not present in the artifact evidence. <br>
-Mitigation: Review the included files before installing or paying, and rely only on the packaged SKILL.md and templates unless additional materials are independently verified. <br>
-Risk: The artifact references MCP setup scripts that are not included in the package. <br>
-Mitigation: Do not run external MCP setup scripts unless their source is trusted, their contents are reviewed, and their permissions are limited. <br>
+## Use Case:
 
+Developers, engineering managers, and teams use this skill for practical Claude Code CLI setup, configuration, MCP guidance, workflow patterns, troubleshooting, and reusable command templates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abhinas90/claude-code-mastery-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/abhinas90) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Configuration] <br>
-**Output Format:** [Markdown guidance and JSON command templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The artifact includes four JSON command templates; referenced MCP setup scripts and additional deliverables are not present in the artifact evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, skill.json, release metadata) <br>
+Risk: The security summary identifies this as lightweight guidance and prompt templates rather than a complete production package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the guidance against current Claude Code documentation and local project requirements before adopting it for production workflows.
+
+Risk: MCP servers added separately may receive broad credentials, database access, or file-system permissions.
+
+Mitigation: Use trusted MCP sources, prefer read-only or least-privilege credentials, and avoid connecting production databases or broad file-system access unless necessary.
+
+Risk: The security summary notes incomplete or missing advertised materials.
+
+Mitigation: Verify that required templates, MCP setup scripts, and sample configuration files are present before relying on the package as a complete guide.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abhinas90/skills/claude-code-mastery-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JSON command templates and inline command or configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable guide content; bundled templates provide reusable prompt commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, skill.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

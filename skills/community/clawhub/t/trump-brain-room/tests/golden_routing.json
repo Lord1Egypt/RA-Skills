@@ -1,0 +1,532 @@
+{
+  "note": "路由 golden snapshot —— 只记选了谁/什么顺序/多大声。",
+  "profile_hash": "97bc904e17d4",
+  "fixture": "canonical-v1",
+  "rows": [
+    {
+      "topic": "对伊朗动武，军事打击",
+      "expected_route": "military",
+      "routed": "rule",
+      "selected_raw": [
+        "qisha",
+        "zhengguan",
+        "jiecai"
+      ],
+      "selected": [
+        "qisha",
+        "jiecai",
+        "zhengguan"
+      ],
+      "names": [
+        "七杀",
+        "劫财",
+        "正官"
+      ],
+      "loudness": [
+        "旺",
+        "中",
+        "中"
+      ]
+    },
+    {
+      "topic": "战争迷雾：导弹与航母",
+      "expected_route": "military",
+      "routed": "rule",
+      "selected_raw": [
+        "qisha",
+        "zhengguan",
+        "jiecai"
+      ],
+      "selected": [
+        "qisha",
+        "jiecai",
+        "zhengguan"
+      ],
+      "names": [
+        "七杀",
+        "劫财",
+        "正官"
+      ],
+      "loudness": [
+        "旺",
+        "中",
+        "中"
+      ]
+    },
+    {
+      "topic": "关税谈判与贸易协议",
+      "expected_route": "deal",
+      "routed": "rule",
+      "selected_raw": [
+        "shishen",
+        "zhengcai",
+        "piancai"
+      ],
+      "selected": [
+        "shishen",
+        "piancai",
+        "zhengcai"
+      ],
+      "names": [
+        "食神",
+        "偏财",
+        "正财"
+      ],
+      "loudness": [
+        "弱",
+        "弱",
+        "弱"
+      ]
+    },
+    {
+      "topic": "这笔交易合同能不能签，谈判破裂",
+      "expected_route": "deal",
+      "routed": "rule",
+      "selected_raw": [
+        "shishen",
+        "zhengcai",
+        "piancai"
+      ],
+      "selected": [
+        "shishen",
+        "piancai",
+        "zhengcai"
+      ],
+      "names": [
+        "食神",
+        "偏财",
+        "正财"
+      ],
+      "loudness": [
+        "弱",
+        "弱",
+        "弱"
+      ]
+    },
+    {
+      "topic": "假新闻：媒体和记者的报道",
+      "expected_route": "media",
+      "routed": "rule",
+      "selected_raw": [
+        "shangguan",
+        "bijian",
+        "pianyin"
+      ],
+      "selected": [
+        "bijian",
+        "pianyin",
+        "shangguan"
+      ],
+      "names": [
+        "比肩",
+        "偏印",
+        "伤官"
+      ],
+      "loudness": [
+        "旺",
+        "旺",
+        "中"
+      ]
+    },
+    {
+      "topic": "电视台收视下滑，报纸不印了",
+      "expected_route": "media",
+      "routed": "rule",
+      "selected_raw": [
+        "shangguan",
+        "bijian",
+        "pianyin"
+      ],
+      "selected": [
+        "bijian",
+        "pianyin",
+        "shangguan"
+      ],
+      "names": [
+        "比肩",
+        "偏印",
+        "伤官"
+      ],
+      "loudness": [
+        "旺",
+        "旺",
+        "中"
+      ]
+    },
+    {
+      "topic": "我最强大，史上最伟大，政绩第一",
+      "expected_route": "ego",
+      "routed": "rule",
+      "selected_raw": [
+        "bijian",
+        "pianyin",
+        "jiecai"
+      ],
+      "selected": [
+        "bijian",
+        "pianyin",
+        "jiecai"
+      ],
+      "names": [
+        "比肩",
+        "偏印",
+        "劫财"
+      ],
+      "loudness": [
+        "旺",
+        "旺",
+        "中"
+      ]
+    },
+    {
+      "topic": "我是谁？我最棒，历史属于我",
+      "expected_route": "ego",
+      "routed": "rule",
+      "selected_raw": [
+        "bijian",
+        "pianyin",
+        "jiecai"
+      ],
+      "selected": [
+        "bijian",
+        "pianyin",
+        "jiecai"
+      ],
+      "names": [
+        "比肩",
+        "偏印",
+        "劫财"
+      ],
+      "loudness": [
+        "旺",
+        "旺",
+        "中"
+      ]
+    },
+    {
+      "topic": "边境移民非法驱逐，对手国家",
+      "expected_route": "rival",
+      "routed": "rule",
+      "selected_raw": [
+        "jiecai",
+        "qisha",
+        "shangguan"
+      ],
+      "selected": [
+        "qisha",
+        "jiecai",
+        "shangguan"
+      ],
+      "names": [
+        "七杀",
+        "劫财",
+        "伤官"
+      ],
+      "loudness": [
+        "旺",
+        "中",
+        "中"
+      ]
+    },
+    {
+      "topic": "竞争对手在挖我的客户，敌人出现",
+      "expected_route": "rival",
+      "routed": "rule",
+      "selected_raw": [
+        "jiecai",
+        "qisha",
+        "shangguan"
+      ],
+      "selected": [
+        "qisha",
+        "jiecai",
+        "shangguan"
+      ],
+      "names": [
+        "七杀",
+        "劫财",
+        "伤官"
+      ],
+      "loudness": [
+        "旺",
+        "中",
+        "中"
+      ]
+    },
+    {
+      "topic": "家族传承：父亲的儿子女儿与遗产",
+      "expected_route": "family",
+      "routed": "rule",
+      "selected_raw": [
+        "zhengyin",
+        "bijian",
+        "pianyin"
+      ],
+      "selected": [
+        "bijian",
+        "pianyin",
+        "zhengyin"
+      ],
+      "names": [
+        "比肩",
+        "偏印",
+        "正印"
+      ],
+      "loudness": [
+        "旺",
+        "旺",
+        "中"
+      ]
+    },
+    {
+      "topic": "家族产业的继承问题，遗产分配",
+      "expected_route": "family",
+      "routed": "rule",
+      "selected_raw": [
+        "zhengyin",
+        "bijian",
+        "pianyin"
+      ],
+      "selected": [
+        "bijian",
+        "pianyin",
+        "zhengyin"
+      ],
+      "names": [
+        "比肩",
+        "偏印",
+        "正印"
+      ],
+      "loudness": [
+        "旺",
+        "旺",
+        "中"
+      ]
+    },
+    {
+      "topic": "地产项目的利润与收入，品牌的商业价值",
+      "expected_route": "money",
+      "routed": "rule",
+      "selected_raw": [
+        "piancai",
+        "zhengcai",
+        "shishen"
+      ],
+      "selected": [
+        "piancai",
+        "shishen",
+        "zhengcai"
+      ],
+      "names": [
+        "偏财",
+        "食神",
+        "正财"
+      ],
+      "loudness": [
+        "弱",
+        "弱",
+        "弱"
+      ]
+    },
+    {
+      "topic": "这笔生意赚了多少利润，商业地产",
+      "expected_route": "money",
+      "routed": "rule",
+      "selected_raw": [
+        "piancai",
+        "zhengcai",
+        "shishen"
+      ],
+      "selected": [
+        "piancai",
+        "shishen",
+        "zhengcai"
+      ],
+      "names": [
+        "偏财",
+        "食神",
+        "正财"
+      ],
+      "loudness": [
+        "弱",
+        "弱",
+        "弱"
+      ]
+    },
+    {
+      "topic": "选举与政策法案，president 对 america",
+      "expected_route": "policy",
+      "routed": "rule",
+      "selected_raw": [
+        "zhengguan",
+        "bijian",
+        "pianyin"
+      ],
+      "selected": [
+        "bijian",
+        "pianyin",
+        "zhengguan"
+      ],
+      "names": [
+        "比肩",
+        "偏印",
+        "正官"
+      ],
+      "loudness": [
+        "旺",
+        "旺",
+        "中"
+      ]
+    },
+    {
+      "topic": "总统选举，democrat 与 republican 的政策",
+      "expected_route": "policy",
+      "routed": "rule",
+      "selected_raw": [
+        "zhengguan",
+        "bijian",
+        "pianyin"
+      ],
+      "selected": [
+        "bijian",
+        "pianyin",
+        "zhengguan"
+      ],
+      "names": [
+        "比肩",
+        "偏印",
+        "正官"
+      ],
+      "loudness": [
+        "旺",
+        "旺",
+        "中"
+      ]
+    },
+    {
+      "topic": "社交媒体与科技平台",
+      "expected_route": "tech",
+      "routed": "rule",
+      "selected_raw": [
+        "pianyin",
+        "shishen",
+        "shangguan"
+      ],
+      "selected": [
+        "pianyin",
+        "shangguan",
+        "shishen"
+      ],
+      "names": [
+        "偏印",
+        "伤官",
+        "食神"
+      ],
+      "loudness": [
+        "旺",
+        "中",
+        "弱"
+      ]
+    },
+    {
+      "topic": "推特发文，社交媒体科技公司",
+      "expected_route": "tech",
+      "routed": "rule",
+      "selected_raw": [
+        "pianyin",
+        "shishen",
+        "shangguan"
+      ],
+      "selected": [
+        "pianyin",
+        "shangguan",
+        "shishen"
+      ],
+      "names": [
+        "偏印",
+        "伤官",
+        "食神"
+      ],
+      "loudness": [
+        "旺",
+        "中",
+        "弱"
+      ]
+    },
+    {
+      "topic": "今天天气不错",
+      "expected_route": null,
+      "routed": "fallback",
+      "selected_raw": [
+        "bijian",
+        "qisha",
+        "pianyin"
+      ],
+      "selected": [
+        "bijian",
+        "qisha",
+        "pianyin"
+      ],
+      "names": [
+        "比肩",
+        "七杀",
+        "偏印"
+      ],
+      "loudness": [
+        "旺",
+        "旺",
+        "旺"
+      ]
+    },
+    {
+      "topic": "随便聊聊",
+      "expected_route": null,
+      "routed": "fallback",
+      "selected_raw": [
+        "bijian",
+        "qisha",
+        "pianyin"
+      ],
+      "selected": [
+        "bijian",
+        "qisha",
+        "pianyin"
+      ],
+      "names": [
+        "比肩",
+        "七杀",
+        "偏印"
+      ],
+      "loudness": [
+        "旺",
+        "旺",
+        "旺"
+      ]
+    },
+    {
+      "topic": "怎么办才好呢",
+      "expected_route": null,
+      "routed": "fallback",
+      "selected_raw": [
+        "bijian",
+        "qisha",
+        "pianyin"
+      ],
+      "selected": [
+        "bijian",
+        "qisha",
+        "pianyin"
+      ],
+      "names": [
+        "比肩",
+        "七杀",
+        "偏印"
+      ],
+      "loudness": [
+        "旺",
+        "旺",
+        "旺"
+      ]
+    }
+  ]
+}

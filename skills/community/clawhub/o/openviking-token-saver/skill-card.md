@@ -1,48 +1,66 @@
-## Description: <br>
-OpenViking Token Saver helps agents manage an OpenViking context database with layered L0/L1/L2 loading, semantic search, file-system memory, and token-use tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenViking Token Saver helps OpenClaw agents use OpenViking for layered L0/L1/L2 context loading, semantic search, local memory management, and token-use comparison.
 
-## Publisher: <br>
-[cnoder-wgh](https://clawhub.ai/user/cnoder-wgh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cnoder-wgh](https://clawhub.ai/user/cnoder-wgh)
 
-## Use Case: <br>
-Developers and agent users use this skill to install and operate OpenViking as a local context database, search project or knowledge-base content, browse layered summaries and full reads, and compare token consumption. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persistently ingest local or remote content into a local knowledge base. <br>
-Mitigation: Add only intended directories or URLs, avoid broad paths such as home folders or full repositories with secrets, and review stored workspace content periodically. <br>
-Risk: Setup can store model-provider API keys in local OpenViking configuration. <br>
-Mitigation: Use restricted provider keys where possible and inspect permissions on ~/.openviking/ov.conf after configuration. <br>
-Risk: Installer and setup scripts can modify the local environment. <br>
-Mitigation: Review shell scripts before execution and run them in a controlled environment when evaluating the skill. <br>
-Risk: Broad trigger phrases may cause the skill to activate for general search or project-inspection requests. <br>
-Mitigation: Use product-specific prompts when invoking OpenViking and confirm the target resource before adding, searching, or reading content. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to install and configure OpenViking, import project knowledge, search context with layered summaries and overviews, and compare token consumption against full-context loading.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/cnoder-wgh/openviking-token-saver) <br>
-- [OpenViking GitHub](https://github.com/volcengine/OpenViking) <br>
-- [OpenViking website](https://www.openviking.ai) <br>
-- [LiteLLM provider documentation](https://docs.litellm.ai/docs/providers) <br>
-- [NVIDIA NIM API](https://build.nvidia.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and command-line text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local OpenViking configuration, workspace data, and token statistics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release evidence and artifact metadata) <br>
+Risk: The skill can run installers and optionally fetch an OpenViking CLI installer through a curl-to-bash path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scripts before execution, avoid the optional curl-to-bash path when possible, and pin or verify dependencies before installing.
+
+Risk: Configuration setup writes API keys into the local OpenViking configuration directory.
+
+Mitigation: Restrict permissions on ~/.openviking/ov.conf, avoid shared machines for setup, and rotate any key that may have been exposed.
+
+Risk: The add workflow can import broad local file trees into the OpenViking workspace.
+
+Mitigation: Import only intended directories and remove secrets, credentials, private keys, and unrelated sensitive files before indexing.
+
+Risk: The optional API server and Console Web UI start background local services.
+
+Mitigation: Start services only when needed, keep them bound to local interfaces, and define a clear stop plan.
+
+## Reference(s):
+
+- [OpenViking GitHub](https://github.com/volcengine/OpenViking)
+- [OpenViking Website](https://www.openviking.ai)
+- [LiteLLM Provider Documentation](https://docs.litellm.ai/docs/providers)
+- [NVIDIA NIM API](https://build.nvidia.com/)
+- [OpenClaw Skill Documentation](https://docs.openclaw.ai/tools/creating-skills)
+- [ClawHub Skill Page](https://clawhub.ai/cnoder-wgh/skills/openviking-token-saver)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown and terminal-oriented text with inline shell commands and configuration paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include token-count estimates, search results, file paths, and OpenViking command output.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

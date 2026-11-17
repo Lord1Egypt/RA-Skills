@@ -1,39 +1,57 @@
-## Description: <br>
-Draft Diversity, Equity, and Inclusion statements for academic applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Draft Diversity, Equity, and Inclusion statements for academic applications.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Academic applicants, researchers, and grant writers use this skill to draft structured DEI statements, section prompts, and best-practice guidance for faculty, postdoc, or grant contexts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read a user-selected experiences file and include its contents in the generated statement. <br>
-Mitigation: Use only an experiences file intended for the draft, and review the generated text before sharing it. <br>
-Risk: The optional output path can write a file in the workspace. <br>
-Mitigation: Choose an output path that will not overwrite important work. <br>
+## Use Case:
 
+External users preparing academic applications use this skill to draft structured DEI statement material for faculty, postdoctoral, and grant contexts from optional experience notes. Users should review and revise generated statements before sharing them.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text or Markdown-style text printed to stdout, optionally saved to a file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports faculty, postdoc, and grant templates, with optional inclusion of a user-provided experiences file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: ClawHub release evidence) <br>
+Risk: DEI application material may contain sensitive personal or professional details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep input and output files in trusted workspace locations and avoid including unnecessary sensitive personal details.
+
+Risk: Generated statements may be inaccurate, generic, or unsuitable for a specific application.
+
+Mitigation: Review and revise generated statements before sharing, submitting, or committing them.
+
+Risk: The local Python helper reads optional input files and can write output files.
+
+Mitigation: Use trusted file paths and inspect generated output files before further use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/dei-statement-drafter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text with Markdown-style section structure]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read an optional experiences file and write the generated statement to an output file when requested.]
+
+## Skill Version(s):
+
+0.1.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

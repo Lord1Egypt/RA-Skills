@@ -1,45 +1,59 @@
-## Description: <br>
-Guides agents to answer OpenClaw product, configuration, API, skill development, and troubleshooting questions by checking the official OpenClaw documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent to access and query the official OpenClaw documentation at https://docs.openclaw.ai/ for accurate, sourced product information.
 
-## Publisher: <br>
-[uynewnas](https://clawhub.ai/user/uynewnas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[uynewnas](https://clawhub.ai/user/uynewnas)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to locate official documentation, produce source-linked answers, and provide actionable steps for OpenClaw configuration, APIs, skills, and troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OpenClaw answers can become stale or incorrect if the agent relies on memory instead of current documentation. <br>
-Mitigation: Verify each OpenClaw answer against the official documentation, include source links and version or date context when available, and state clearly when the documentation does not answer the question. <br>
-Risk: Suggested commands or configuration changes can affect local services, deployment settings, or security-sensitive production behavior. <br>
-Mitigation: Review commands and configuration changes before running them, especially examples involving restarts, Docker deployment, local APIs, or production security settings. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to answer questions about OpenClaw features, configuration, troubleshooting, APIs, and deployment by consulting official documentation and returning source-linked Markdown guidance.
 
-## Reference(s): <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai/) <br>
-- [OpenClaw Getting Started](https://docs.openclaw.ai/getting-started) <br>
-- [OpenClaw Gateway Configuration](https://docs.openclaw.ai/configuration/gateway) <br>
-- [OpenClaw Skills](https://docs.openclaw.ai/skills) <br>
-- [OpenClaw API Reference](https://docs.openclaw.ai/api) <br>
-- [OpenClaw Troubleshooting](https://docs.openclaw.ai/troubleshooting) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown answers with source links and optional code or shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires web access for documentation verification and should include source URLs plus validity notes when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Copy-ready Gateway, Docker, API, or Nginx examples could expose an unauthenticated OpenClaw management API if reused in production as-is.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review examples before operational use; require authentication, bind management APIs to loopback or a private network, use HTTPS, and restrict access with firewall or network controls.
+
+Risk: Documentation answers may become stale or incomplete if the official OpenClaw documentation changes or does not cover the requested topic.
+
+Mitigation: Consult the official documentation at answer time, include source links and applicable version details, and clearly state when documentation does not contain an answer.
+
+## Reference(s):
+
+- [OpenClaw official documentation](https://docs.openclaw.ai/)
+- [OpenClaw getting started](https://docs.openclaw.ai/getting-started)
+- [OpenClaw Gateway configuration](https://docs.openclaw.ai/configuration/gateway)
+- [OpenClaw skills documentation](https://docs.openclaw.ai/skills)
+- [OpenClaw API reference](https://docs.openclaw.ai/api)
+- [OpenClaw troubleshooting](https://docs.openclaw.ai/troubleshooting)
+- [ClawHub skill page](https://clawhub.ai/uynewnas/skills/openclaw-docs-online)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with source links and optional command or configuration code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Answers should cite official documentation, state version or freshness when available, and say when requested information is not found.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

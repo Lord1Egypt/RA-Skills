@@ -1,39 +1,53 @@
-## Description: <br>
-Provides plain-text DevOps Bash Tools reference guidance for intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for DevOps Bash Tools concepts, quickstart material, patterns, debugging, performance, security, migration, and cheatsheet guidance.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and DevOps engineers use this skill to quickly retrieve concise Bash and DevOps reference material, best practices, troubleshooting steps, security considerations, and migration checklists without external services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: This is a shell-based helper, so running it executes artifact code in the user's environment. <br>
-Mitigation: Review the shell script before installation or execution and run only the reviewed version; the provided security evidence reports no system changes, credential handling, network access, or local data access. <br>
+## Use Case:
 
+Developers and operations engineers use this skill as a quick reference for DevOps Bash Tools topics, including setup, patterns, troubleshooting, performance, security, migration, and command cheatsheets.
 
-## Reference(s): <br>
-- [Devops Bash Tools on ClawHub](https://clawhub.ai/xueyetianya/devops-bash-tools) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text with Markdown-style headings, lists, tables, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference content printed by command; no credentials, network access, local data access, or system setting changes are identified in the reviewed evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.4 (source: server release evidence) <br>
+Risk: Generic DevOps reference guidance may be mistaken for executable automation or environment-specific operational advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as reference material and review commands, access requirements, and environment assumptions before applying them.
+
+Risk: Command-name and version inconsistencies may confuse users about available commands or the active release.
+
+Mitigation: Check the installed skill help and server release metadata before relying on command names or version text.
+
+## Reference(s):
+
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown-style reference documentation emitted by Bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static heredoc content; no API keys, network access, credentials, or local data access expected.]
+
+## Skill Version(s):
+
+2.0.4 (source: server release metadata; artifact frontmatter reports 2.0.3 and script reports 2.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

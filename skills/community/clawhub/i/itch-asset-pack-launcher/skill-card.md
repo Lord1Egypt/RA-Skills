@@ -1,43 +1,56 @@
-## Description: <br>
-Create high-converting itch.io asset pack pages for game assets, including titles, descriptions, tags, pricing notes, screenshots plan, cover prompts, page colors, launch checklist, and safe license wording. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create high-converting itch.io asset pack pages for game assets, including titles, descriptions, tags, pricing notes, screenshots plan, cover prompts, page colors, launch checklist, and safe license wording.
 
-## Publisher: <br>
-[abdullah944](https://clawhub.ai/user/abdullah944) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abdullah944](https://clawhub.ai/user/abdullah944)
 
-## Use Case: <br>
-External creators and game asset publishers use this skill to prepare paste-ready itch.io asset pack pages, including marketplace copy, tags, license wording, pricing notes, visual prompts, screenshot plans, and launch checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketplace copy may overstate asset contents, compatibility, license terms, pricing expectations, or sales outcomes. <br>
-Mitigation: Review all generated store copy against the actual asset files and intended license before publishing. <br>
-Risk: Prompts or copy based on famous games, characters, brands, or trademarked themes may create IP concerns. <br>
-Mitigation: Convert references to original style descriptions and remove copyrighted or trademarked names from final page copy. <br>
-Risk: The skill includes visible creator store and PayPal donation links. <br>
-Mitigation: Review external links before installing or sharing the skill in an organization-managed environment. <br>
+## Use Case:
 
+External creators and developers use this skill to prepare paste-ready itch.io or similar marketplace pages for game asset packs. It helps draft titles, descriptions, feature lists, license wording, tags, cover prompts, screenshot plans, pricing suggestions, and launch checklists.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abdullah944/itch-asset-pack-launcher) <br>
-- [Creator itch.io store](https://kwhades.itch.io/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured marketplace copy, checklists, tags, prompts, and pricing notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated copy should be reviewed for accurate asset claims, license wording, pricing, and avoidance of copyrighted or trademarked IP before publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Generated store-page text could claim unsupported asset formats, engine compatibility, license terms, or included files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated listing against the actual asset pack before publishing, especially included assets, file formats, engine compatibility, price, and license text.
+
+Risk: The skill includes promotional creator-store and donation links.
+
+Mitigation: Treat the itch.io store and donation links as disclosed promotional content and verify they are appropriate for the release context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abdullah944/skills/itch-asset-pack-launcher)
+- [Publisher profile](https://clawhub.ai/user/abdullah944)
+- [Creator itch.io store](https://kwhades.itch.io/)
+- [Donation link](https://www.paypal.com/donate/?hosted_button_id=MJHCRZA9Z4X7Y)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown sections with short prose, bullet lists, tags, prompts, and checklist items]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include promotional store and donation links disclosed in the skill source.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

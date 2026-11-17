@@ -1,44 +1,59 @@
-## Description: <br>
-A self-evolution engine for AI agents that analyzes runtime history to identify improvements and applies protocol-constrained evolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Capability Evolver is a self-evolution engine for AI agents that analyzes runtime history to identify improvements and applies protocol-constrained evolution.
 
-## Publisher: <br>
-[toller892](https://clawhub.ai/user/toller892) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[toller892](https://clawhub.ai/user/toller892)
 
-## Use Case: <br>
-Developers and agent teams use this skill to inspect agent runtime history, turn recurring failures or prompt changes into auditable evolution assets, and guide protocol-constrained repair or optimization work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan classifies this release as suspicious because it can run persistently and change agent code or memory with weak default review controls. <br>
-Mitigation: Run it only in a sandbox or disposable branch with backups, prefer review or dry-run behavior, and inspect proposed changes before applying them. <br>
-Risk: Loop and automated modes can repeatedly modify or guide changes without sufficient human oversight. <br>
-Mitigation: Avoid default automated or loop modes in production, use `--review` for sensitive environments, and keep version-controlled rollback points. <br>
-Risk: Dynamic local-skill and external asset ingestion can expand the skill's effective behavior beyond the packaged release. <br>
-Mitigation: Disable dynamic local-skill and external asset ingestion unless needed, restrict memory and history paths, and use least-privilege short-lived tokens for release workflows. <br>
+## Use Case:
 
+Developers and agent teams use this skill to inspect runtime history, extract recurring failure or improvement signals, and produce GEP-guided evolution prompts and assets for reviewable agent maintenance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/toller892/evolver-official) <br>
-- [EvoMap](https://evomap.ai) <br>
-- [EvoMap documentation](https://evomap.ai/wiki) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and structured text with command examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate protocol-bound prompts, reusable evolution assets, and reviewable repair or optimization guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.20.4 (source: server release metadata and package.json) <br>
+Risk: The security verdict is suspicious because the skill is designed for self-evolving agent workflows with unclear safeguards around code and memory changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in an isolated test workspace with version control, no secrets in memory or log files, and human review of every proposed memory or code change.
+
+Risk: Continuous loop or self-modification behavior can amplify unintended changes or instability.
+
+Mitigation: Avoid long-running loop mode and do not enable self-modification unless rollback, containment, and review-mode workflows are in place.
+
+Risk: Generated evolution guidance or validation commands may introduce incorrect or unsafe changes if accepted without review.
+
+Mitigation: Use review or dry-run style workflows, inspect generated prompts and assets before applying them, and scan proposed changes before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/toller892/skills/evolver-official)
+- [EvoMap](https://evomap.ai)
+- [EvoMap Documentation](https://evomap.ai/wiki)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal text with inline shell commands, JSON snippets, and generated evolution guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read logs and local memory, emit GEP-guided prompts, record evolution assets, and run loop, solidify, or distill modes depending on command-line options.]
+
+## Skill Version(s):
+
+1.20.4 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

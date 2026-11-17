@@ -1,46 +1,51 @@
-## Description: <br>
-Find carbon emission factors for any material or process. 1M+ LCA datasets (HiQLCD, Ecoinvent, CarbonMinds). AI-powered BOM carbon footprint calculation and material comparison. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find source-backed life-cycle emission factors and published EPDs for material and product footprints, BOM accounting, production-route comparisons, multi-indicator LCIA, CBAM, and EN 15804 work.
 
-## Publisher: <br>
-[KirbyInGitHub](https://clawhub.ai/user/KirbyInGitHub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kirbyingithub](https://clawhub.ai/user/kirbyingithub)
 
-## Use Case: <br>
-Developers, sustainability analysts, and OpenClaw agents use this skill to search LCA datasets, answer carbon-footprint questions, compare materials, and estimate BOM emissions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends LCA questions, material lists, BOM details, and the HIQ_API_KEY to HiQ service endpoints. <br>
-Mitigation: Use it only under an approved data-sharing policy, avoid confidential product or supplier data unless authorized, and store the API key in environment or OpenClaw configuration rather than prompts. <br>
-Risk: Some dataset results may be restricted or require separate authorization. <br>
-Mitigation: Confirm access rights for restricted LCA datasets before relying on or redistributing returned values. <br>
-Risk: Carbon-footprint calculations and material comparisons depend on dataset choice, region, system boundary, and LCA methodology. <br>
-Mitigation: Review generated results against the intended ISO/LCA methodology and document assumptions before using them in reports or decisions. <br>
+## Use Case:
 
+LCA practitioners and product sustainability teams use this skill to find source-backed emission factors and published EPDs, account for bills of materials, compare production routes, and assess multiple LCIA indicators. Results must retain their database, version, system model, geography, and reference unit.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/KirbyInGitHub/hiq-cortex) <br>
-- [HiQLCD platform](https://www.hiqlcd.com) <br>
-- [HiQ Cortex web app](https://carbonx.hiqlcd.com/cortex) <br>
-- [HiQ Cortex MCP endpoint](https://x.hiqlcd.com/api/deck/mcp) <br>
-- [HiQ Cortex search API](https://x.hiqlcd.com/api/deck/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Plain text and Markdown with command examples and optional JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and HIQ_API_KEY; search results may include dataset names, sources, regions, units, GWP100 values, quality fit, and links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: release metadata) <br>
+Risk: The installer instructions use remote shell scripts, and the security scan was partial because referenced paths were unavailable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Download the installer into a new directory, verify its published SHA-256 checksum, review the script, and then run it; do not pipe a remote script directly to a shell.
+
+## Reference(s):
+
+- [HiQ Agent Skills](https://github.com/HiQ-AI/agent-skills)
+- [Environmental Data CLI](https://github.com/HiQ-AI/environmental-data)
+- [HiQ LCA Data](https://www.hiqlcd.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown responses with cited dataset details and inline CLI commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [LCA values include their database, version, system model, geography, and reference unit; the skill does not supply remembered values.]
+
+## Skill Version(s):
+
+1.11.0 (source: frontmatter; matches server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,58 @@
-## Description: <br>
-Navigate Bangkok as visitor, resident, digital nomad, expat, or entrepreneur with neighborhoods, transport, costs, visas, and local insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plans Bangkok trips, relocations, and nomad stays with guidance on neighborhoods, visas, costs, transport, food, local services, safety, taxes, property, work, healthcare, culture, and itineraries.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Visitors, residents, digital nomads, expats, teachers, retirees, and entrepreneurs use this skill to get practical Bangkok guidance on neighborhoods, transport, costs, food, visas, safety, business setup, and local culture. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; guidance is specific to Bangkok, Thailand. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can provide Bangkok visa, work-authorization, business, nightlife, and local-law guidance that may be wrong, outdated, or unsafe to rely on as professional advice. <br>
-Mitigation: Treat those outputs as general orientation only and verify Thai immigration, labor, alcohol, and local-law requirements with official sources or qualified counsel. <br>
-Risk: Some source material discusses remote work and other local-law gray areas in ways the security review says may normalize or help conceal violations. <br>
-Mitigation: Do not use the skill to plan hidden work activity, bypass work-permit requirements, or evade local rules; prefer explicitly legal visa and work-authorization paths. <br>
+## Use Case:
 
+External users and agents use this skill to plan Bangkok visits, relocations, remote-work stays, family moves, retirement, teaching, tech work, business setup, and local logistics. It helps tailor recommendations by role, timeline, budget, neighborhood, transport posture, dietary needs, and legal or visa posture.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/bangkok) <br>
-- [Skill homepage](https://clawic.com/skills/bangkok) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance and structured recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only responses; no tools, binaries, device access, account access, or file access are required by the skill metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may keep Bangkok-specific preferences and observations in a local Clawic data directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or clear ~/Clawic/data/bangkok/ as needed and avoid storing sensitive personal data in config.yaml or memory.md.
+
+Risk: Visa, tax, work, alcohol, and cannabis guidance can become outdated and may affect immigration, legal, or financial decisions.
+
+Mitigation: Use the skill as a planning aid and verify current rules with official sources or qualified professionals before spending money, working, filing taxes, or making immigration decisions.
+
+Risk: The package is Bangkok-focused and includes only limited side guidance for other Thai destinations.
+
+Mitigation: Use a dedicated Thailand or destination-specific skill for beaches, islands, Chiang Mai, or other Thai bases.
+
+## Reference(s):
+
+- [ClawHub Bangkok skill page](https://clawhub.ai/ivangdavila/skills/bangkok)
+- [Clawic Bangkok skill page](https://clawic.com/skills/bangkok)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown guidance with lists, tables, ranges, and concise recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference or update Bangkok-specific user preferences in ~/Clawic/data/bangkok/ when the host agent supports local memory.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,62 @@
-## Description: <br>
-CareMax OCR uploads medical report files to the CareMax Health API, runs OCR on the same session, streams progress, and helps agents review and save extracted structured reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CareMax OCR helps agents upload medical report files to the CareMax Health API, run OCR, review structured results, and save confirmed reports.
 
-## Publisher: <br>
-[kittenyang](https://clawhub.ai/user/kittenyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kittenyang](https://clawhub.ai/user/kittenyang)
 
-## Use Case: <br>
-External users and agents use this skill to upload medical PDFs and images, run CareMax OCR, review extracted lab, genetic, imaging, pathology, or other report data, and confirm records only after user approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive medical reports and sends them through CareMax upload and OCR workflows. <br>
-Mitigation: Use it only with reports the user is comfortable sending to CareMax, and confirm that the CareMax account and auth helper are appropriate before upload. <br>
-Risk: The skill can delete individual health records or entire sessions. <br>
-Mitigation: Require a separate explicit confirmation that names the exact session_id or record_id before running any delete operation. <br>
-Risk: The skill depends on a sibling caremax-auth helper package for API calls and credential handling. <br>
-Mitigation: Inspect and install the required caremax-auth helper before use, and stop if credentials are missing or unexpected. <br>
+## Use Case:
 
+External users and care workflows use this skill to upload PDF, JPG, PNG, or HEIC medical reports, extract structured OCR results, review them, and save confirmed reports. Agents can also resume interrupted OCR sessions and help manage pending sessions.
 
-## Reference(s): <br>
-- [CareMax OCR ClawHub listing](https://clawhub.ai/kittenyang/caremax-ocr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, JSON] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Streams OCR progress line by line, summarizes extracted reports for review, and waits for approval before saving.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow can upload sensitive health files and extracted health data to an external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user consent before upload or OCR, and use the skill only when the user trusts CareMax Health and the configured endpoint.
+
+Risk: Broad activation terms may cause the agent to start upload or OCR when the user's intent is ambiguous.
+
+Mitigation: Use explicit invocation or confirmation before processing medical files, especially in conversations that only mention upload, scan, or extraction generally.
+
+Risk: The skill depends on the external caremax-auth sibling package for API calls, upload, OCR streaming, and authentication.
+
+Mitigation: Pin or verify the caremax-auth source before installation and review how it handles credentials and medical data.
+
+Risk: Delete operations can remove individual records or entire sessions.
+
+Mitigation: Require a strong confirmation step before any record or session deletion.
+
+## Reference(s):
+
+- [CareMax OCR ClawHub listing](https://clawhub.ai/kittenyang/skills/caremax-ocr)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with shell command examples and JSON progress/result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the caremax-auth sibling dependency; streams OCR progress and waits for user approval before saving extracted reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

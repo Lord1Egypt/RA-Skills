@@ -1,50 +1,68 @@
-## Description: <br>
-Embed interactive flight price trend charts into AI responses. Requires SerpAPI key for real-time data. Use when users want to visualize 60-day price history for specific flight routes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Embed interactive flight price trend charts into AI responses. Requires SerpAPI key for real-time data. Use when users want to visualize 60-day price history for specific flight routes.
 
-## Publisher: <br>
-[keyikoi](https://clawhub.ai/user/keyikoi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[keyikoi](https://clawhub.ai/user/keyikoi)
 
-## Use Case: <br>
-Developers and engineers use this skill to add interactive flight price history charts and buy-or-wait price analysis to AI responses after a route-specific flight search result is available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Real price history depends on SerpAPI configuration, and simulated or partial data can be mistaken for guaranteed market history. <br>
-Mitigation: Clearly label simulated, partial, and real data in responses and avoid presenting chart output as guaranteed historical pricing. <br>
-Risk: The artifact describes route-level price search snapshots being stored locally without retention or deletion controls. <br>
-Mitigation: Add retention and deletion controls before using storage or scheduled-collection examples in production. <br>
-Risk: SerpAPI keys are required for real-time data and could be exposed if placed in committed configuration files. <br>
-Mitigation: Keep API keys out of committed files and use local or secret-managed configuration for credentials. <br>
+## Use Case:
 
+Developers and engineers use this skill to add flight price trend charts and buy/wait guidance to AI or agent flight-search responses with confirmed origin-destination pairs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/keyikoi/flight-price-chart) <br>
-- [Price Trend Technical References](references/README.md) <br>
-- [Configure SerpAPI](references/configure-serpapi.md) <br>
-- [Price Trend Data Sources](references/data-sources.md) <br>
-- [Price Trend API Reference](references/price-api.md) <br>
-- [Price Analysis Logic Reference](references/price-analysis.md) <br>
-- [PriceChart Component Reference](references/price-chart-component.md) <br>
-- [SerpAPI](https://serpapi.com/) <br>
-- [SerpAPI Google Flights API](https://serpapi.com/google-flights-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with React or HTML component integration snippets and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May render an embedded React or HTML price trend chart when supplied with route and price-history data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Unsafe browser rendering patterns can expose users to injected content when AI output or untrusted data is rendered as HTML.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the React chart component with validated structured data, avoid the raw HTML rendering examples unless sanitization is added, and do not render AI output through innerHTML or dangerouslySetInnerHTML.
+
+Risk: API keys may be exposed if SerpAPI or related credentials are stored in committed JSON configuration files.
+
+Mitigation: Store API keys outside committed files, use environment or secret-management configuration, and review configuration before release.
+
+Risk: Stored flight-search and price-history data can create privacy or retention obligations.
+
+Mitigation: Enable price-history storage or scheduled collection only after defining retention, access, and privacy controls.
+
+Risk: Simulated or partial flight-price history can make buy/wait guidance sound more certain than the data supports.
+
+Mitigation: Label estimated, partial, and real data clearly, include confidence wording, and avoid strong purchase recommendations when route history is insufficient.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/keyikoi/skills/flight-price-chart)
+- [SerpAPI configuration guide](references/configure-serpapi.md)
+- [PriceChart component reference](references/price-chart-component.md)
+- [Price trend API reference](references/price-api.md)
+- [Price analysis logic reference](references/price-analysis.md)
+- [Data sources reference](references/data-sources.md)
+- [SerpAPI documentation](https://serpapi.com/)
+- [SerpAPI Google Flights API](https://serpapi.com/google-flights-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSX, HTML, JavaScript, and JSON data examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides agents to append an interactive price chart and concise buy/wait recommendation; real-time price data requires a SerpAPI key, and simulated or partial data should be disclosed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

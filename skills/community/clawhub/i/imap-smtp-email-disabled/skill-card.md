@@ -1,45 +1,62 @@
-## Description: <br>
-Read and send email via IMAP/SMTP, including checking, fetching, searching, changing read state, and sending messages with attachments on standard IMAP/SMTP servers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read and send email via IMAP/SMTP, including checking unread messages, fetching content, searching mailboxes, marking messages read or unread, downloading attachments, and sending emails with attachments.
 
-## Publisher: <br>
-[welderjustin](https://clawhub.ai/user/welderjustin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[welderjustin](https://clawhub.ai/user/welderjustin)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent inspect mailbox contents, download email attachments, manage read state, and send SMTP messages from a configured account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores mailbox credentials locally and can access the configured mailbox. <br>
-Mitigation: Install only for publishers you trust, prefer a dedicated mailbox or revocable app password, and do not commit the .env file. <br>
-Risk: The skill can send email, download attachments, and change read or unread state. <br>
-Mitigation: Require human review before sending messages, attaching files, downloading attachments, or changing message state. <br>
-Risk: Attachment and file-body operations can read from or write to local paths. <br>
-Mitigation: Keep ALLOWED_READ_DIRS and ALLOWED_WRITE_DIRS limited to the minimum directories needed. <br>
-Risk: The setup flow tests SMTP by sending a message to the configured account. <br>
-Mitigation: Run setup only when a test email is acceptable and review the resulting configuration before use. <br>
+## Use Case:
 
+Developers and other agent users use this skill to connect an agent to a configured IMAP/SMTP mailbox for reading, searching, managing, and sending email through standard mail servers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/welderjustin/imap-smtp-email-disabled) <br>
-- [Google App Passwords](https://myaccount.google.com/apppasswords) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files, Shell commands, Configuration] <br>
-**Output Format:** [JSON CLI output, setup/configuration guidance, shell commands, and downloaded attachment files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires IMAP and SMTP credentials plus explicit read/write directory allowlists for file access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill handles full mailbox credentials and can access real mailbox content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use provider app passwords or scoped credentials where available, keep .env out of version control, and review the skill before connecting a real mailbox.
+
+Risk: Outbound SMTP support can send email and attachments from the configured account.
+
+Mitigation: Avoid sending sensitive attachments, confirm recipients and content before use, and restrict attachment reads with narrow ALLOWED_READ_DIRS values.
+
+Risk: Disabling certificate verification weakens IMAP or SMTP transport security.
+
+Mitigation: Keep IMAP_REJECT_UNAUTHORIZED and SMTP_REJECT_UNAUTHORIZED enabled unless there is a deliberate, reviewed need for self-signed certificates.
+
+Risk: Attachment download and file attachment features depend on local file boundary configuration.
+
+Mitigation: Set ALLOWED_WRITE_DIRS and ALLOWED_READ_DIRS to narrow directories controlled by the user.
+
+## Reference(s):
+
+- [Gmail App Passwords](https://myaccount.google.com/apppasswords)
+- [ClawHub Skill Page](https://clawhub.ai/welderjustin/skills/imap-smtp-email-disabled)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may read mailbox content, download attachments, and send outbound email when configured with mailbox credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

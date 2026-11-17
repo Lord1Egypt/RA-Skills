@@ -1,45 +1,58 @@
-## Description: <br>
-OpenClaw agent-system routes user tasks through planning, execution, review, self-healing, and metrics flows based on task complexity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent System is an OpenClaw orchestration skill that routes multi-step tasks through planning, execution, review, self-healing, and metrics guidance.
 
-## Publisher: <br>
-[xiaxianb](https://clawhub.ai/user/xiaxianb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaxianb](https://clawhub.ai/user/xiaxianb)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add an OpenClaw-oriented orchestration layer that classifies task intent, estimates complexity, and routes work through planner, executor, reviewer, and self-heal steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill acts as a broad planning layer that can influence how an agent routes and executes many task types. <br>
-Mitigation: Keep explicit approval requirements for file changes, account actions, external posting, financial or business mutations, and other irreversible work. <br>
-Risk: The skill instructs agents to continue with defaults or inferred values when information is missing. <br>
-Mitigation: Require confidence labels for inferred conclusions and review outputs before using them for high-impact decisions. <br>
-Risk: Logs, metrics, or learning-state paths may capture task content. <br>
-Mitigation: Avoid passing secrets or sensitive user content through the skill's logging or metrics flows. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to structure complex requests into planned execution, review, retry/self-heal, and JSON-style reporting workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaxianb/agent-system) <br>
-- [orchestrator-reference.md](references/orchestrator-reference.md) <br>
-- [README.md](README.md) <br>
-- [AGENT_RULES.md](AGENT_RULES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Structured JSON responses and Markdown guidance, with optional JavaScript code and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include task plans, intent and complexity labels, quality metrics, self-heal status, degraded-mode status, and truncation markers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence, package.json, openclaw.plugin.json) <br>
+Risk: The skill may proceed with inferred defaults instead of asking for clarification or confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in narrowed contexts and require explicit confirmation for destructive, financial, privacy-sensitive, deployment, messaging, or account-affecting actions.
+
+Risk: The skill's instructions overreach by claiming system-level orchestration control.
+
+Mitigation: Treat the skill as local workflow guidance and keep host system policies, tool permissions, and reviewer judgment authoritative.
+
+Risk: Self-heal and retry behavior can reinforce low-quality or speculative outputs.
+
+Mitigation: Review generated plans and results, preserve confidence labels, and cap retries for consequential workflows.
+
+## Reference(s):
+
+- [Agent System reference implementation](references/orchestrator-reference.md)
+- [ClawHub skill page](https://clawhub.ai/xiaxianb/skills/agent-system)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance and JSON-style structured results, with occasional JavaScript and shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The artifact describes a 2000-token output cap when token control is applied.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, package.json, openclaw.plugin.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

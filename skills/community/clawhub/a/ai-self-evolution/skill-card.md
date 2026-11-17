@@ -1,48 +1,63 @@
-## Description: <br>
-Records agent learnings, errors, user corrections, feature requests, and better practices so future sessions can review and promote durable knowledge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Records agent learnings, errors, corrections, and feature requests in `.learnings/`, then prompts review and promotion of reusable lessons before and after major tasks.
 
-## Publisher: <br>
-[AndyLue](https://clawhub.ai/user/AndyLue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andylue](https://clawhub.ai/user/andylue)
 
-## Use Case: <br>
-Developers and coding-agent operators use this skill to maintain a persistent learning loop across agent sessions. It guides agents to log corrections, command failures, feature requests, knowledge gaps, and reusable practices into project memory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent learning files can capture conversation details, command output, or errors that include sensitive information. <br>
-Mitigation: Keep .learnings private or gitignored by default, and do not store secrets, credentials, customer data, raw prompts, or sensitive command parameters in these files. <br>
-Risk: Hook-based reminders and error detection may run during agent workflows and surface tool output into persistent logging decisions. <br>
-Mitigation: Enable hooks only intentionally, review hook configuration before use, and keep hook output limited to reminders rather than automatic commits or promotions. <br>
-Risk: Promoting logged entries into shared memory files or new skills can spread incorrect, stale, or sensitive content. <br>
-Mitigation: Require human review before committing logs or promoting content into CLAUDE.md, AGENTS.md, SOUL.md, TOOLS.md, or new skills. <br>
+## Use Case:
 
+Developers and agent operators use this skill to maintain project-local learning logs and reminders for recurring errors, user corrections, knowledge gaps, and reusable workflow improvements.
 
-## Reference(s): <br>
-- [Agent Setup Guide](references/agent-setup.md) <br>
-- [OpenClaw Integration Guide](references/openclaw-integration.md) <br>
-- [Hook Setup Guide](references/hooks-setup.md) <br>
-- [Skill Extraction Guide](references/skill-extraction.md) <br>
-- [Entry Examples](references/examples.md) <br>
-- [Agent Skills Specification](https://agentskills.io/specification) <br>
-- [ClawHub Skill Page](https://clawhub.ai/AndyLue/ai-self-evolution) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and structured file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update .learnings Markdown files and promote selected entries to CLAUDE.md, AGENTS.md, SOUL.md, TOOLS.md, or new skill files when the agent follows the workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Conversation-derived lessons may persist sensitive project details or secrets in `.learnings/` files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep `.learnings/` project-local or gitignored unless intentionally shared, and redact secrets or sensitive project details before storing entries.
+
+Risk: Logged lessons can be promoted into future agent instructions without strong review controls.
+
+Mitigation: Review every write and promotion before committing or installing it globally.
+
+Risk: Global hooks or full system-prompt installation can make the learning workflow broader than intended.
+
+Mitigation: Prefer project-local use and avoid global hooks or full system-prompt installation unless explicitly needed.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/andylue/skills/ai-self-evolution)
+- [Agent Skills Specification](https://agentskills.io/specification)
+- [Agent setup guide](references/agent-setup.md)
+- [Hook setup guide](references/hooks-setup.md)
+- [OpenClaw integration guide](references/openclaw-integration.md)
+- [Skill extraction guide](references/skill-extraction.md)
+- [Entry examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide creation or update of `.learnings/` entries when enabled by the agent or hooks.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

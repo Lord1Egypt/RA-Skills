@@ -1,43 +1,58 @@
-## Description: <br>
-Generate images using Black Forest Labs FLUX.2-pro via Azure AI Foundry with configurable dimensions, seeds, and optional Chinese text overlay. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images using Black Forest Labs FLUX.2-pro via Azure AI Foundry, with support for custom dimensions, reproducible seeds, and optional Chinese text overlay through Node.js Canvas.
 
-## Publisher: <br>
-[zwcih](https://clawhub.ai/user/zwcih) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zwcih](https://clawhub.ai/user/zwcih)
 
-## Use Case: <br>
-Developers and agent users use this skill to generate PNG images from text prompts through a configured Azure AI Foundry FLUX.2-pro endpoint. It also provides guidance for direct API calls, reproducible seeds, common dimensions, and CJK text overlay. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A misconfigured endpoint or overly broad API key could send prompts to the wrong Azure resource or expose unnecessary access. <br>
-Mitigation: Use a scoped FLUX_API_KEY and confirm FLUX_ENDPOINT points to the intended Azure resource before running generation. <br>
-Risk: Prompts may contain sensitive information that is sent to the configured image service. <br>
-Mitigation: Avoid including confidential, personal, or regulated information in prompts. <br>
-Risk: Optional Canvas dependencies and font files add supply-chain risk when installed from untrusted sources. <br>
-Mitigation: Install Canvas and CJK font files only from trusted package and font sources. <br>
+## Use Case:
 
+Developers and creative agents use this skill to produce image files from text prompts through a configured FLUX.2-pro Azure AI Foundry endpoint.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zwcih/azure-flux-image-gen) <br>
-- [Azure AI Foundry FLUX API Reference](references/api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with shell and JavaScript examples; script output is a PNG image file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FLUX_ENDPOINT and FLUX_API_KEY; image generation is serialized with a 180 second timeout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Prompts are sent to the configured FLUX/Azure endpoint and may contain sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not include secrets, private data, or regulated information in prompts.
+
+Risk: The script sends FLUX_API_KEY to the URL stored in FLUX_ENDPOINT.
+
+Mitigation: Set FLUX_ENDPOINT only to a trusted Azure AI Foundry endpoint before running the skill.
+
+Risk: The optional Canvas overlay path can add npm dependency exposure.
+
+Mitigation: Pin optional npm dependencies when using Canvas-based text overlay.
+
+## Reference(s):
+
+- [Azure AI Foundry FLUX API Reference](artifact/references/api.md)
+- [ClawHub Skill Page](https://clawhub.ai/zwcih/skills/azure-flux-image-gen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JavaScript examples; the bundled script writes PNG image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated image output depends on FLUX_ENDPOINT, FLUX_API_KEY, prompt, width, height, output path, and optional seed.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

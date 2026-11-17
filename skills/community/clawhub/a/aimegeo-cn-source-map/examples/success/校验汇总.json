@@ -1,0 +1,20 @@
+{
+  "claims_total": 3,
+  "sources_total": 3,
+  "evidence_rows": 5,
+  "claims_with_usable_material": 2,
+  "claims_with_direct_support": 0,
+  "claims_without_usable_material": [
+    "C3"
+  ],
+  "decisions": {
+    "cite": 2,
+    "pending": 1,
+    "reject": 2
+  },
+  "access_statuses": {
+    "fetched": 2,
+    "supplied": 1
+  },
+  "meaning": "仅统计输入台账；可用背景或企业自述不等于论点获直接证实，也不是AI引用检测结果。"
+}

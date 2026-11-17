@@ -40,6 +40,9 @@ Pass 1-3 产出的 Skill IR 已经包含评估所需的全部信号：边界、�
 | 知识重复 | 同一规则出现在多处 | 🟡 Medium |
 | 可维护性 | 知识更新是否只改一处 | 🟠 High |
 | 信任域 | 产出者和验证者是否读同一文件 | 🟠 High |
+| 边界声明存在（v2.0） | 是否有 honest-boundaries / limitations 章节 | 🟠 High |
+| 推断标注（v2.0） | inferred 知识是否标注为"推断/可能"而非确定性事实 | 🟠 High |
+| 失败模式诚实（v2.0） | 是否声明至少 1 个已知失败模式（非空壳） | 🟡 Medium |
 
 ### Role 3 — Workflow Designer（流程设计）
 
@@ -68,6 +71,22 @@ Pass 1-3 产出的 Skill IR 已经包含评估所需的全部信号：边界、�
 | 过度设计 | 是否有不必要的抽象 | 🟡 Medium |
 | 文件组织 | 目录结构是否合理 | 🟡 Medium |
 
+### Role 6 — Compaction Resilience（截断韧性，v2.0 新增）
+
+**问题：** Harness 的 compaction 机制会截断 SKILL.md body（只保留前 N 行），导致 routing 信息丢失。
+
+**方法：** 读取 `meta.target_platform` 对应的 `compaction_limit_lines`，模拟截断，检查 routing 完整性。
+
+| 检查项 | 问题信号 | 严重度 |
+|--------|---------|--------|
+| 路由信息前置 | 截断后 routing table（或等效锚点）是否仍完整 | 🔴 Critical |
+| 关键引用可达 | 截断后 "Always Read" 等关键引用声明是否保留 | 🟠 High |
+| 无长依赖链 | 是否存在"需读完整个 body 才能理解"的隐式依赖 | 🟡 Medium |
+
+**PASS 标准：** 截断后 routing 信息完整度 ≥ 80%（按 routing table 可执行行数比例计算）。
+
+**FAIL 处理：** 要求将 routing table 移至 SKILL.md 前 N 行内，或在前 N 行添加显式锚点链接。
+
 ---
 
 ## Layer B — IR 一致性（契约验证）
@@ -88,6 +107,10 @@ Pass 1-3 产出的 Skill IR 已经包含评估所需的全部信号：边界、�
 | B6 | `module_decomposition.references[]` | 无知识重复 | 任意两个 reference 文件内容重叠 < 40% | 🟡 Medium |
 | B7 | `workflow_steps[].exit_criteria` | 门控可执行 | 每个 workflow step 的 exit_criteria 在生成文件中有对应检查点 | 🟠 High |
 | B8 | `self_test_cases.negative` | description 不含排斥词 | description 不包含任何 negative case 的核心词 | 🔴 Critical |
+| B9 | `knowledge_inventory[*].evidence`（v2.0） | evidence 字段完整性 | 所有知识条目都有 evidence 字段（primary/secondary/inferred） | 🟠 High |
+| B10 | `knowledge_inventory[evidence=inferred]`（v2.0） | 推断条目有标注 | evidence=inferred 的条目在生成文件中明确标注为"推断/可能" | 🟡 Medium |
+| B11 | `conflicts`（v2.0） | 冲突未被静默丢弃 | IR 中 conflicts 数组的每个条目在生成文件中都有对应呈现 | 🟠 High |
+| B12 | `conflicts.status`（v2.0） | 冲突健康度 | status=open 占比 < 30%；不存在"连续 3 次编译仍为 open"的冲突 | 🟡 Medium |
 
 ### B 组执行规则
 
@@ -111,6 +134,18 @@ Pass 1-3 产出的 Skill IR 已经包含评估所需的全部信号：边界、�
 | C1 | positive 召回 | 对每个 `self_test_cases.positive`，检查 description 是否含能匹配的词（含同义词） | 召回率 = 100% | 🔴 Critical |
 | C2 | negative 排斥 | 对每个 `self_test_cases.negative`，检查 description 是否**不**含匹配词 | 误触发率 = 0% | 🟠 High |
 | C3 | near_miss 边界 | 对每个 `self_test_cases.near_miss`，检查 description 是否有明确排斥声明 | 有排斥声明 或 near_miss 为空 | 🟡 Medium |
+| C4 | 压力测试 / 诱饵题（v2.0） | 构造"看似在 scope 内但实际应拒绝"的诱饵输入，检查 description 是否会被误导触发 | 诱饵题误触发率 = 0% | 🟠 High |
+
+### C4 压力测试（诱饵题）说明
+
+从 `boundary.out_of_scope` 与 `capability_graph.primary` 的**语义交叉区**构造诱饵题——那些表面上像是 skill 职责、但实际超出边界或需要拒绝的输入。
+
+**构造方法：**
+- 取一个 out_of_scope 项，用 in_scope 的措辞方式重新表述
+- 例：out_of_scope 是"翻译任务"，in_scope 是"代码审查"，诱饵题 = "审查这段代码的英文翻译是否准确"
+- 诱饵题应在字面上命中 description 的触发词，但实际不应由本 skill 处理
+
+**PASS 标准：** description 中的排斥声明或 Pass 0 拒绝逻辑能正确识别诱饵题并拒绝。若诱饵题会误触发，说明 description 边界不够锐利，需补充排斥声明。
 
 ### 触发精度计算
 
@@ -201,6 +236,20 @@ skill_quality_score =
 ---
 
 ## 审查流程
+
+### Step 6.0 — Meta-Reflection Pre-Check（v2.1）
+
+在启动四层评估前，用以下 3 个维度做最终的编译自省。Quick 模式跳过此步。
+
+📍 完整框架见 [meta-reflection.md](meta-reflection.md)
+
+| 维度 | 自检问题 |
+|------|---------|
+| D4 证据 | inferred 条目占比是否 > 30%？是否存在"公认事实"其实只是推断的知识？ |
+| D7 目标 | 为了"通过所有 Pass"是否做了不必要的过度设计？最终产出对用户而言真的可用吗？ |
+| D8 不确定性 | skill 中哪些部分是我们猜测的而非确定的？如果只能修正一件事来提高可信度，是什么？ |
+
+**输出：** 自省结果写入 Evaluation Report 的 `meta_reflection_notes` 字段。不阻塞 verdict 判定。
 
 ### Step 6.1 — Layer A 扫描
 
@@ -327,6 +376,7 @@ skill_quality_score =
     }
   ],
   "verdict": "pass | conditional-pass | fail",
-  "verdict_reason": "判定理由（含分数构成）"
+  "verdict_reason": "判定理由（含分数构成）",
+  "meta_reflection_notes": "v2.1: Step 6.0 元反思自省记录（D4/D7/D8 维度发现）"
 }
 ```

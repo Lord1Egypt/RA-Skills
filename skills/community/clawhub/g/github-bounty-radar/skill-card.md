@@ -1,38 +1,49 @@
-## Description: <br>
-Generates a step-by-step plan to fix a GitHub issue based on its title and description. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a step-by-step plan to fix a GitHub issue from its title and description.
 
-## Publisher: <br>
-[JINJIN2024UX](https://clawhub.ai/user/JINJIN2024UX) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jinjin2024ux](https://clawhub.ai/user/jinjin2024ux)
 
-## Use Case: <br>
-Developers, open source contributors, and bounty hunters use this skill to turn a GitHub issue title and description into a step-by-step fix plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Issue descriptions are echoed into the generated plan, so secrets, private vulnerability details, or confidential project information entered as input may appear in the output. <br>
-Mitigation: Use public or non-sensitive issue text, and redact secrets or confidential details before running the skill. <br>
+## Use Case:
 
+Developers, open source contributors, and bounty hunters use this skill to turn a GitHub issue title and description into a structured fix plan.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/JINJIN2024UX/github-bounty-radar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [String containing a Markdown-style issue fix plan] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes the submitted issue title and description in the returned plan.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: The generated plan may be generic because the skill does not inspect repository contents or validate the issue.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the plan against the target repository and issue context before implementing changes.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/jinjin2024ux/skills/github-bounty-radar)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style plain text containing the issue title, ordered fix steps, and issue details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Template-style plan generated from provided issue text; it does not inspect the repository or validate the issue.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

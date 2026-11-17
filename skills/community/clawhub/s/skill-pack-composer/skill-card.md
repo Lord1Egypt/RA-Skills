@@ -1,44 +1,54 @@
-## Description: <br>
-Combines multiple Skills into a bundle and checks for slug, dependency, resource, and positioning conflicts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Pack Composer helps agents combine multiple skills into a bundle and check slug, dependency, resource, and positioning conflicts.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Developers and skill maintainers use this agent to review Skill bundles before release, including slug, dependency, resource, and responsibility conflicts. It produces auditable drafts, checklists, and next-step guidance rather than publishing or changing external systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad directory inputs may include unrelated sensitive files in generated audit summaries. <br>
-Mitigation: Run the skill only against the specific Skill or bundle directories intended for review and inspect generated reports before sharing. <br>
-Risk: Generated bundle recommendations may be incomplete if the input directories or file lists are partial. <br>
-Mitigation: Treat outputs as review drafts, confirm missing items, and verify dependency and resource conflicts before release. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to prepare skill bundles, audit directory structure, and surface dependency, resource, slug, and positioning conflicts before release.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/52YuanChangXing/skill-pack-composer) <br>
-- [README](README.md) <br>
-- [Specification](resources/spec.json) <br>
-- [Output Template](resources/template.md) <br>
-- [Smoke Test](tests/smoke-test.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reports, optional JSON output, and review-oriented shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local, review-oriented outputs; optional files are written only when the user supplies an output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill's bundle checks are fairly shallow and may miss conflicts or packaging issues.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the generated report as a review aid and manually inspect dependencies, resources, and publishing constraints before release.
+
+Risk: Generated guidance could be mistaken for an automated approval to publish or modify external systems.
+
+Mitigation: Keep the workflow audit-only, review the output before acting, and require explicit human approval for publishing or system changes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/52yuanchangxing/skills/skill-pack-composer)
+- [Publisher Profile](https://clawhub.ai/user/52yuanchangxing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports or JSON summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Audit-oriented output intended for human review before packaging or publishing decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

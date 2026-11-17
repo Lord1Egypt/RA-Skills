@@ -1,45 +1,56 @@
-## Description: <br>
-Choose the right payment method, optimize rewards, handle disputes, and manage bills safely. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Choose the right payment method, optimize rewards, handle disputes, and manage bills safely.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users can use Pay to choose payment methods, compare card rewards, manage bill payment choices, and prepare dispute or fraud-response steps while keeping actual payments and account changes under their direct control. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Payment, reward, or dispute guidance may not match a specific issuer's current policies or the user's account terms. <br>
-Mitigation: Verify dispute steps, reward categories, fees, and deadlines with the bank, card issuer, or merchant before relying on the guidance. <br>
-Risk: Users may expose sensitive payment information while seeking help. <br>
-Mitigation: Do not share full card numbers, credentials, one-time codes, or account access details; use official bank apps or known support numbers for account actions. <br>
-Risk: Advice about payments, refunds, or account changes could be mistaken for authorization to act. <br>
-Mitigation: Keep real payments, refunds, disputes, and account changes under direct user control, with explicit confirmation required before any real-world action. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Pay on ClawHub](https://clawhub.ai/ivangdavila/pay) <br>
-- [Card Selection Guide](cards.md) <br>
-- [Disputes & Chargebacks](disputes.md) <br>
-- [Rewards Optimization](rewards.md) <br>
-- [Payment Security](security.md) <br>
+## Use Case:
 
+External users use this skill to choose payment methods and card rewards, prepare disputes or chargebacks, manage bill payment decisions, and respond to fraud or card-security issues.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown text with checklists, comparison tables, and suggested scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advice only; the skill does not execute payments or access financial accounts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Payment, dispute, fraud, rewards, or bill guidance could be mistaken for personalized financial advice.
+
+Mitigation: Treat outputs as general guidance and confirm details with the relevant bank, card issuer, merchant, or billing provider before acting.
+
+Risk: An agent could attempt to initiate payments, account changes, or other financial actions from the guidance.
+
+Mitigation: Require explicit user approval for any payment-related action and keep account access and payment authorization outside the skill.
+
+## Reference(s):
+
+- [Pay Skill Page](https://clawhub.ai/ivangdavila/skills/pay)
+- [Card Selection Guide](artifact/cards.md)
+- [Disputes & Chargebacks](artifact/disputes.md)
+- [Rewards Optimization](artifact/rewards.md)
+- [Payment Security](artifact/security.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with checklists, tables, and short scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not take payments, access accounts, or authorize payment actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

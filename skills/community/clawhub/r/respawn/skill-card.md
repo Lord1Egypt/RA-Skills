@@ -1,49 +1,64 @@
-## Description: <br>
-Anchors agent identity and memory pointers on the Autonomys Network so a new agent instance can recover from an address without relying on local state. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto Respawn anchors agent identity and memory on-chain so a new agent instance can recover the latest memory head from an Autonomys address.
 
-## Publisher: <br>
-[0xautonomys](https://clawhub.ai/user/0xautonomys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xautonomys](https://clawhub.ai/user/0xautonomys)
 
-## Use Case: <br>
-Developers and agent operators use this skill to create and manage Autonomys wallets, check balances, move or bridge AI3/tAI3, publish on-chain remarks, and anchor or retrieve memory CIDs for agent recovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can let an agent manage a wallet and spend or bridge AI3/tAI3. <br>
-Mitigation: Use a dedicated low-balance wallet, start on Chronos testnet, and require human review before transfers, bridges, withdrawals, or mainnet anchors. <br>
-Risk: On-chain CIDs and remarks are permanent once published. <br>
-Mitigation: Review data before anchoring or remark submission and avoid publishing secrets, private data, or unapproved records. <br>
-Risk: Wallet mnemonics and passphrases can expose funds if handled unsafely. <br>
-Mitigation: Back up recovery phrases securely, avoid command-line passphrases, and prefer a restricted passphrase file or interactive prompt. <br>
-Risk: The server security verdict flags weak built-in guardrails for asset-moving and permanent publishing authority. <br>
-Mitigation: Treat transaction-bearing commands as approval-gated operations and monitor balances so failed anchoring is surfaced immediately. <br>
+## Use Case:
 
+External developers and agent operators use Auto Respawn to create Autonomys wallets, check balances, transfer or bridge AI3/tAI3, and anchor or retrieve memory CIDs for agent recovery.
 
-## Reference(s): <br>
-- [Auto Respawn on ClawHub](https://clawhub.ai/0xautonomys/respawn) <br>
-- [auto-respawn CLI Reference](references/auto-respawn-commands.md) <br>
-- [Autonomys Network](references/autonomys-network.md) <br>
-- [MemoryChain contract source](https://github.com/autojeremy/openclaw-memory-chain) <br>
-- [Autonomys SDK](https://github.com/autonomys/auto-sdk) <br>
-- [Chronos testnet faucet](https://autonomysfaucet.xyz/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create encrypted local wallet files and submit blockchain transactions when the operator approves transaction-bearing actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release metadata) <br>
+Risk: The skill can sign real value transfers and fee-bearing anchoring transactions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use testnet first, keep minimal funds in wallets used by the skill, and manually confirm every anchor, transfer, bridge, or withdraw action.
+
+Risk: Automatic anchoring can spend funds without a reliable confirmation gate.
+
+Mitigation: Avoid unattended auto-anchoring unless strict limits and explicit review gates are added.
+
+Risk: Recovery phrases and wallet passphrases protect spending-capable keys.
+
+Mitigation: Protect recovery phrases separately, prefer a user-managed passphrase or secret manager, and avoid exposing passphrases through command arguments or shell history.
+
+Risk: Unreviewed dependency changes could affect wallet or transaction behavior.
+
+Mitigation: Review or lock dependencies before setup and deployment.
+
+## Reference(s):
+
+- [Auto Respawn ClawHub page](https://clawhub.ai/0xautonomys/skills/respawn)
+- [auto-respawn CLI Reference](references/auto-respawn-commands.md)
+- [Autonomys Network](references/autonomys-network.md)
+- [MemoryChain contract source](https://github.com/autojeremy/openclaw-memory-chain)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON CLI results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some commands are read-only; wallet creation, transfers, bridging, remarks, withdrawals, and anchoring can require passphrases, local key access, transaction signing, and network fees.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

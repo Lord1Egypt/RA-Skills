@@ -1,0 +1,50 @@
+{
+  "name": "qianlima-bidding-search",
+  "display_name": "招投标信息查询｜千里马·乙方宝",
+  "version": "1.0.1",
+  "description": "当用户需要搜索招标信息、招投标数据或标讯，查询招标公告、中标公告、中标结果、政府采购公告及采购意向，查找招标项目、采购项目、早期项目、前期线索、临期项目或合同到期机会，识别潜在的周期性采购商机，以及查询公告详情、项目正文、附件、招中标进展、原文链接时使用。或开展招投标视角的企业分析、查询企业中标记录、合作甲方、合作供应商、采购与中标地区分布、竞争对手及工商信息时，使用千里马招标网+乙方宝官方技能；支持工程招标、电力招标、消防设备招标、医疗设备招标、物业招标、安保服务招标和办公用品采购等场景。查询企业联系人、企业电话或当前账号积分权益、用量及剩余额度时也使用；也用于会话内手机号验证码注册／登录及 API Key 自动配置。普通标讯基础列表支持免注册、免 Key 免费查询，深度信息按账号权益使用积分。",
+  "entrypoint": "SKILL.md",
+  "license": "Proprietary",
+  "author": "Qianlima Skill V1",
+  "runtime": {
+    "language": "python",
+    "requires": "Python 3.10+",
+    "scripts": [
+      "scripts/qianlima_skill.py",
+      "scripts/complex_query_plan.py",
+      "scripts/package_skill.py",
+      "scripts/live_validate.py",
+      "scripts/area_resolver.py",
+      "scripts/qianlima_account.py"
+    ],
+    "environment": [
+      "QIANLIMA_API_KEY",
+      "QIANLIMA_BASE_URL",
+      "QIANLIMA_SKILL_SESSION_ID",
+      "QIANLIMA_SKILL_STATE_DIR"
+    ]
+  },
+  "capabilities": [
+    "search_projects",
+    "guest_project_search",
+    "search_purchase_intentions",
+    "search_expiring_projects",
+    "enterprise_intelligence",
+    "continue_next_page",
+    "project_detail_follow_up",
+    "source_url_lookup",
+    "enterprise_contact_lookup",
+    "account_entitlement_lookup",
+    "search_company_candidates",
+    "project_full_text",
+    "project_attachments",
+    "project_timeline",
+    "sms_account_login",
+    "codex_environment_configuration"
+  ],
+  "store_compatibility": [
+    "OpenClaw ClawHub skill folder",
+    "Agent Skills SKILL.md package",
+    "SkillHub style skill folder"
+  ]
+}

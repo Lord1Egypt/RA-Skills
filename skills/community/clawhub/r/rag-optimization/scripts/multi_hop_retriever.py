@@ -80,8 +80,9 @@ class SubQueryGenerator:
         Returns:
             (下一跳查询, 推理过程)
         """
+        # Bug 9 修复：无 LLM 时使用规则模式生成子查询（基于关键词提取）
         if not self.llm:
-            return None, "LLM未配置，无法生成子查询"
+            return self._rule_generate(original_query, current_info), "规则模式生成子查询"
         
         # 构建历史摘要
         history_summary = self._build_history_summary(hop_history)
@@ -141,6 +142,23 @@ class SubQueryGenerator:
             summaries.append(f"第{hop.hop_index}跳: 查询'{hop.query}' → 获取'{hop.extracted_info[:100]}...'")
         
         return "\n".join(summaries)
+    
+    def _rule_generate(self, original_query: str, current_info: str) -> Optional[str]:
+        """规则模式子查询生成（无 LLM 时的降级方案）
+        
+        基于关键词提取，生成下一跳查询。
+        当当前信息足够时返回 None（表示终止）。
+        """
+        if not current_info or len(current_info.strip()) < 10:
+            # 信息太少，继续搜索
+            return original_query
+        
+        # 简单启发式：如果当前信息长度 > 200 字符，认为信息可能足够
+        if len(current_info) > 200:
+            return None  # 终止：信息足够
+        
+        # 否则继续用原查询扩展搜索
+        return original_query
 
 
 class TerminationChecker:

@@ -1,45 +1,61 @@
-## Description: <br>
-Use when the user wants browser automation, web scraping, form filling, clicking, or desktop GUI automation, including mixed workflows that move between web pages and local applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user wants browser automation, web scraping, form filling, clicking, or desktop GUI automation, including mixed workflows that move between web pages and local applications.
 
-## Publisher: <br>
-[lurui808](https://clawhub.ai/user/lurui808) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lurui808](https://clawhub.ai/user/lurui808)
 
-## Use Case: <br>
-Developers and operators use this skill to guide agents through browser automation, desktop GUI automation, and mixed workflows that move files or state between websites and local applications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: This is a disclosed browser and desktop automation helper, but it gives an agent powerful controls that users should apply only to specific tasks. <br>
-Mitigation: Use the skill only for specific tasks, keep instructions narrow, and review planned actions before execution. <br>
-Risk: Automation may perform sensitive actions such as logins, submissions, uploads, downloads, purchases, deletions, account changes, or edits to important local files. <br>
-Mitigation: Install only if you want agents to control browsers and desktop apps. Keep tasks narrowly specified, review any dependency versions in your environment, and require explicit confirmation before logins, submissions, uploads, downloads, purchases, deletions, account changes, or edits to important local files. <br>
+## Use Case:
 
+Developers and operators use this skill to plan and run supervised browser, desktop, and mixed browser-to-desktop workflows such as scraping, form filling, downloads, local app actions, and uploads.
 
-## Reference(s): <br>
-- [Browser Workflows](references/browser-workflows.md) <br>
-- [Desktop Workflows](references/desktop-workflows.md) <br>
-- [Mixed Flows](references/mixed-flows.md) <br>
-- [Real-World Mixed Example](references/mixed-example.md) <br>
-- [Dependencies and Installation](references/dependencies.md) <br>
-- [Minimal Python Requirements](requirements.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with Python code templates and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce Playwright and PyAutoGUI automation scripts or phased browser and desktop workflow plans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can enable login flows, file transfers, screenshots, form submissions, uploads, and desktop typing or clicking.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for supervised browser and desktop automation, and clearly approve the exact action and target before sensitive or irreversible steps.
+
+Risk: Desktop automation may act on the wrong window, field, or coordinates when UI state changes.
+
+Mitigation: Verify the active page or window after each phase, prefer stable selectors or application-aware controls, and stop before actions that risk data loss.
+
+Risk: The automation dependencies expand the local execution surface.
+
+Mitigation: Install in an isolated virtual environment, pin and review dependencies before production use, and install only when supervised browser plus desktop automation is needed.
+
+## Reference(s):
+
+- [Browser Workflows](references/browser-workflows.md)
+- [Desktop Workflows](references/desktop-workflows.md)
+- [Mixed Flows](references/mixed-flows.md)
+- [Real-World Mixed Example](references/mixed-example.md)
+- [Dependencies and Installation](references/dependencies.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with Python code templates and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce supervised browser, desktop, or mixed automation plans and scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

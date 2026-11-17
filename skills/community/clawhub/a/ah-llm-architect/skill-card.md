@@ -1,39 +1,53 @@
-## Description: <br>
-Expert LLM architect specializing in large language model architecture, deployment, and optimization. Masters LLM system design, fine-tuning strategies, and production serving with focus on building scalable, efficient, and safe LLM applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert LLM architect specializing in large language model architecture, deployment, and optimization. Masters LLM system design, fine-tuning strategies, and production serving with focus on building scalable, efficient, and safe LLM applications.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan, review, and optimize production LLM systems, including model selection, RAG design, fine-tuning strategy, serving infrastructure, safety controls, monitoring, and cost management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide production LLM infrastructure decisions that affect cost, data handling, safety, and operations. <br>
-Mitigation: Review proposed architecture, cost controls, data handling, safety mechanisms, and operational changes before applying them. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan, implement, optimize, and review production LLM systems, including model selection, RAG, fine-tuning, serving, safety controls, monitoring, and cost management.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mtsatryan/ah-llm-architect) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/mtsatryan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with possible code, shell command, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only advisory output; no installer, persistence, credential access, or direct tool execution is included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may propose infrastructure, deployment, fine-tuning, monitoring, or cost changes that affect production LLM systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed changes before applying them, and validate performance, safety, and cost claims against the target environment.
+
+Risk: Architecture guidance for safety controls, retrieval, or model serving may be incomplete for regulated or sensitive use cases.
+
+Mitigation: Apply organization-specific safety, privacy, compliance, and audit requirements before production release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mtsatryan/skills/ah-llm-architect)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional code, shell-command, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include architecture recommendations, implementation steps, validation checklists, and review guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

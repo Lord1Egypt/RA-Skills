@@ -1,40 +1,49 @@
-## Description: <br>
-Bug Bounty helps security researchers and white-hat testers scan for common vulnerabilities, draft reports, and track bounty activity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bug Bounty helps security researchers and white-hat testers scan for common vulnerabilities, generate vulnerability reports, and track bounty activity.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-External security researchers and white-hat testers use this skill to structure authorized bug bounty work, including common vulnerability checks, report drafting, remediation suggestions, and bounty tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages website vulnerability scanning that can be unauthorized or out of scope. <br>
-Mitigation: Use it only for assets you own, lab or CTF environments, or bug bounty programs where testing is explicitly authorized; confirm target scope, allowed techniques, rate limits, and reporting rules before scanning. <br>
-Risk: Generated reports or findings may be incomplete or inaccurate. <br>
-Mitigation: Manually verify each finding, reproduction step, severity assessment, and remediation recommendation before submitting a report. <br>
+## Use Case:
 
+Security researchers and authorized white-hat testers use this skill to plan common vulnerability checks, draft bug bounty reports with reproduction steps and remediation guidance, and track bounty program activity.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/bug-bounty) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown with suggested commands, findings, report text, and tracking guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; users must provide authorized targets and scope.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill can encourage vulnerability scanning without explicit authorization, target scope, or safe scanning limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for systems you own or are explicitly authorized to test, and define permitted targets, test windows, rate limits, and passive-only requirements before scanning.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/bug-bounty)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with vulnerability-check guidance, report text, and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be reviewed before use against live systems.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; SKILL.md frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

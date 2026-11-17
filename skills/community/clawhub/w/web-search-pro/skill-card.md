@@ -1,44 +1,60 @@
-## Description: <br>
-Agent-first web search and retrieval for live web search, news search, docs lookup, code lookup, company research, site crawl, site map, and structured evidence packs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent-first web search and retrieval for live web search, news search, docs lookup, code lookup, company research, site crawl, site map, and structured evidence packs, with a no-key baseline and optional provider integrations for wider coverage.
 
-## Publisher: <br>
-[Zjianru](https://clawhub.ai/user/Zjianru) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zjianru](https://clawhub.ai/user/zjianru)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add live web search, news search, documentation lookup, extraction, crawling, site mapping, and research-pack assembly to an agent workflow. It supports a no-key baseline and optional provider credentials for broader retrieval coverage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries, submitted URLs, and retrieved content may be sent to configured third-party search or retrieval providers. <br>
-Mitigation: Configure only provider API keys and endpoints that are acceptable for the intended data, and avoid private URLs or secret-bearing query strings. <br>
-Risk: Live web retrieval can return incomplete, stale, or misleading content from external sources. <br>
-Mitigation: Use the skill's routing diagnostics, citations, and federated-search signals to review important outputs before relying on them. <br>
-Risk: Network-capable crawling and extraction can expand the amount of untrusted web content processed by the agent. <br>
-Mitigation: Keep the documented safe-fetch boundary enabled, including HTTP(S)-only access, redirect revalidation, blocked localhost/private/metadata targets, and disabled JavaScript execution. <br>
+## Use Case:
 
+Developers and agents use this skill to run live search, news search, documentation lookup, code lookup, extraction, crawl, site map, and research-pack workflows from a local Node runtime.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Zjianru/web-search-pro) <br>
-- [ClawHub compliance notes](docs/clawhub-compliance.md) <br>
-- [Project homepage](https://github.com/Zjianru/web-search-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON or Markdown from local Node CLI commands, including search results, extracted page text, crawl or map summaries, routing diagnostics, and research packs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node. The baseline runs without API keys; optional provider credentials and endpoints widen retrieval coverage and may send queries, URLs, and retrieved content to configured providers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.4 (source: server release metadata, released 2026-03-14T07:38:43Z) <br>
+Risk: Network retrieval could expose private network targets or provider API credentials in some configurations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing in environments with internal HTTP services, cloud metadata, or valuable provider keys, and run with network restrictions where possible.
+
+Risk: Search text, target URLs, and retrieval requests may be sent to configured external providers or custom gateways.
+
+Mitigation: Use only trusted provider credentials and gateway endpoints, and avoid sensitive search text unless provider transmission is acceptable.
+
+Risk: Custom gateway overrides can change where retrieval traffic and credentials are sent.
+
+Mitigation: Disable custom gateway overrides unless the endpoint is trusted and intentionally configured.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zjianru/skills/web-search-pro)
+- [Publisher profile](https://clawhub.ai/user/zjianru)
+- [Artifact-declared project homepage](https://github.com/Zjianru/web-search-pro)
+- [ClawHub compliance notes](docs/clawhub-compliance.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search and retrieval outputs may include provider routing summaries, cache telemetry, extracted page text, crawl maps, and structured research packs.]
+
+## Skill Version(s):
+
+2.1.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

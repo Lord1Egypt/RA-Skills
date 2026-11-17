@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI职业机会与学习路线"
+  short_description: "读取简历并生成最新AI职业机会、能力差距和可选时长学习计划"
+  default_prompt: "使用 $generate-ai-career-roadmap 分析我的简历，研究最新AI与泛AI工作机会，并生成适合我的职业和学习报告。"

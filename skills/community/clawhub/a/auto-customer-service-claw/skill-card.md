@@ -1,44 +1,64 @@
-## Description: <br>
-自动客服应答虾 helps an agent configure and operate an automated customer-service reply system with intent classification, FAQ matching, human handoff rules, and conversation management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+自动客服应答虾 helps agents build and operate a Chinese customer-service bot for intent classification, FAQ matching, response templating, multi-turn handling, and human handoff decisions.
 
-## Publisher: <br>
-[tujinsama](https://clawhub.ai/user/tujinsama) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tujinsama](https://clawhub.ai/user/tujinsama)
 
-## Use Case: <br>
-Developers and customer-support operators use this skill to configure FAQ content, intent rules, response templates, and service commands for automated replies across support channels. It is intended for customer inquiry triage, routine answer generation, and escalation to human support for sensitive or unresolved cases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can handle sensitive customer conversations and conversation logs. <br>
-Mitigation: Define privacy rules before deployment, including what customer data is logged, retention limits, access controls, and deletion procedures. <br>
-Risk: The bundled service script can expose a local web service without built-in authentication. <br>
-Mitigation: Bind the service to localhost or place it behind authentication and network controls before use in a live support environment. <br>
-Risk: Knowledge-base import and service-control commands can modify live support behavior. <br>
-Mitigation: Require operator review or confirmation before importing FAQ data, reloading knowledge, or changing a running support service. <br>
+## Use Case:
 
+External support teams, operators, and developers use this skill to configure FAQ knowledge, intent rules, reply templates, and service commands for automated customer support workflows.
 
-## Reference(s): <br>
-- [FAQ 知识库](references/faq-database.md) <br>
-- [意图识别规则](references/intent-rules.md) <br>
-- [回复话术库](references/response-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and customer-service response text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local service management commands, FAQ import/export guidance, and generated customer reply text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The service can expose an unauthenticated customer-service endpoint if deployed beyond localhost.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the service bound to localhost for testing, and add authentication, authorization, network controls, and production hardening before any external deployment.
+
+Risk: FAQ import handling may be unsafe with untrusted file names or untrusted source files.
+
+Mitigation: Review import scripts before use, restrict imports to trusted files, validate file paths and formats, and avoid running the scripts with elevated privileges.
+
+Risk: Real customer conversations may contain personal or sensitive information.
+
+Mitigation: Define privacy, retention, access-control, and logging rules before using the skill with customer data.
+
+Risk: Unpinned runtime dependencies can change behavior or introduce vulnerable packages over time.
+
+Mitigation: Install dependencies in a virtual environment with pinned versions and review dependency updates before deployment.
+
+## Reference(s):
+
+- [FAQ Knowledge Base](references/faq-database.md)
+- [Intent Rules](references/intent-rules.md)
+- [Response Templates](references/response-templates.md)
+- [ClawHub Skill Page](https://clawhub.ai/tujinsama/skills/auto-customer-service-claw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration-oriented text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces customer-service replies, FAQ and intent-rule guidance, service-management commands, and handoff recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

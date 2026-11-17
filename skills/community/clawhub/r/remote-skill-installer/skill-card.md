@@ -1,40 +1,57 @@
-## Description: <br>
-Installs, updates, lists, imports, and removes remote OpenClaw skills for selected agent workspaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs, manages, and updates OpenClaw skills from remote URLs or an official hub for selected agents, with batch import, retry behavior, and basic validation safeguards.
 
-## Publisher: <br>
-[ysy88092144](https://clawhub.ai/user/ysy88092144) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ysy88092144](https://clawhub.ai/user/ysy88092144)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to install, update, remove, and bulk-import skills into local agent workspaces from remote URLs or configured skill hubs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persistently install or overwrite local agent skills from remote URLs and mirrors without strong source verification or overwrite confirmation. <br>
-Mitigation: Install only from trusted HTTPS sources, review downloaded SKILL.md files before enabling them, and back up OpenClaw workspaces before import, update, or remove operations. <br>
-Risk: Remote skill installation can change future agent behavior in ways that are not obvious from the command invocation alone. <br>
-Mitigation: Review the installed skill content and recorded source metadata after installation, then remove unexpected or untrusted skills before use. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add, update, remove, list, and batch import remote OpenClaw skills across local agent workspaces.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ysy88092144/remote-skill-installer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and command output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe local filesystem changes under OpenClaw workspaces and remote source metadata recorded for installed skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Remote installation or update can persistently overwrite active agent skill instructions from untrusted or mutable sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted, pinned, reviewed source URLs and inspect changes before updating installed skills.
+
+Risk: Custom hub configuration or mirror fallback can redirect official imports to content that has not been independently verified.
+
+Mitigation: Keep OPENCLAW_SKILLS_HUB_BASE and ~/.openclaw/skills-hub-url pointed at trusted locations, and avoid mirror fallback unless the mirrored content is verified.
+
+Risk: Validation and checksum records do not establish publisher identity or whether downloaded instructions are appropriate to run.
+
+Mitigation: Treat checksums as integrity records only, and review the downloaded skill and its security posture before enabling it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ysy88092144/skills/remote-skill-installer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and command output text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local skill files and source metadata in OpenClaw workspaces when its commands are executed.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

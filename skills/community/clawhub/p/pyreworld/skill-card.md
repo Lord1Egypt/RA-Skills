@@ -1,48 +1,67 @@
-## Description: <br>
-Pyre World is an agent-first Solana faction warfare kit that wraps Torch Market primitives for faction launch, trading, stronghold custody, war loans, liquidation, intelligence, and on-chain agent identity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pyre World lets agents query and build actions for a Solana-based faction warfare game that maps Torch Market primitives into game concepts.
 
-## Publisher: <br>
-[mrsirg97-rgb](https://clawhub.ai/user/mrsirg97-rgb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrsirg97-rgb](https://clawhub.ai/user/mrsirg97-rgb)
 
-## Use Case: <br>
-Developers and agent operators use this skill to query Pyre World and Torch Market state, build Solana transactions for faction gameplay and DeFi actions, and manage agent identity through read-only or externally signed workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can build high-impact Solana DeFi transactions, including withdrawals, authority transfers, borrowing, liquidation, and DEX actions. <br>
-Mitigation: Review every generated transaction before signing and prefer read-only or unsigned transaction-building workflows unless direct signing is required. <br>
-Risk: Supplying a funded wallet or vault authority key would increase the impact of key exposure or mistaken signing. <br>
-Mitigation: Use only a fresh disposable controller key with minimal gas and keep vault authority keys outside the agent runtime. <br>
-Risk: Token lookups and SAID checks can make outbound web requests. <br>
-Mitigation: Use trusted network settings and account for outbound requests when operating in restricted or sensitive environments. <br>
+## Use Case:
 
+External agents and developers use Pyre World to inspect faction state, build unsigned Solana transactions, and optionally act through a disposable controller for Torch Market faction gameplay.
 
-## Reference(s): <br>
-- [ClawHub release](https://clawhub.ai/mrsirg97-rgb/pyreworld) <br>
-- [Pyre World website](https://pyre.world) <br>
-- [Pyre World source](https://github.com/mrsirg97-rgb/pyre) <br>
-- [Torch Market documentation](https://torch-market-docs.vercel.app) <br>
-- [Torch Market whitepaper](https://torch.market/whitepaper) <br>
-- [Pyre World Kit on npm](https://www.npmjs.com/package/pyre-world-kit) <br>
-- [Torch SDK on npm](https://www.npmjs.com/package/torchsdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration, JSON, Transactions] <br>
-**Output Format:** [Markdown guidance with TypeScript examples, JSON metadata, configuration requirements, and Solana transaction-building instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can operate in read-only mode with SOLANA_RPC_URL or build unsigned/directly signed Solana transactions when a disposable controller key is supplied.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-10.2.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The dependency or install path may not match the bundled-audit claim.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and verify exact dependencies, and prefer read-only mode until the local kit imports the bundled SDK by explicit relative path.
+
+Risk: Configured signing can perform real Solana game-finance actions.
+
+Mitigation: Never provide a funded wallet or vault authority private key; use only a fresh disposable controller with gas funds.
+
+Risk: High-impact actions such as withdrawals, authority transfers, borrowing, liquidation, and trades can move value or alter control.
+
+Mitigation: Require human review of decoded transactions before signing or broadcasting them.
+
+Risk: Creator-controlled metadata URL fetches may reach unintended network locations.
+
+Mitigation: Run the skill in an environment where metadata fetches cannot access private services.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mrsirg97-rgb/skills/pyreworld)
+- [Pyre World Website](https://pyre.world)
+- [Pyre World Program Security Audit](artifact/audit_program_pyre.md)
+- [Pyre World Formal Verification Report](artifact/verification_pyre.md)
+- [Torch Market Security Audit Summary](artifact/audit_program_torch.md)
+- [Torch Market Formal Verification Report](artifact/verification_torch.md)
+- [Torch SDK Security Audit](artifact/audit_sdk.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with TypeScript examples and Solana transaction guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return read-only query guidance, unsigned transaction-building steps, or signing instructions depending on configured keys.]
+
+## Skill Version(s):
+
+10.2.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

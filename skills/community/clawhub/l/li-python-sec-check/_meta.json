@@ -1,6 +1,34 @@
 {
-  "ownerId": "kn70jzhmjk80051ypj2sespqy582fmfx",
-  "slug": "li-python-sec-check",
+  "name": "Li_python_sec_check",
   "version": "0.0.2",
-  "publishedAt": 1774091964828
+  "author": "北京老李",
+  "description": "Python 安全规范检查工具 - 基于 CloudBase 规范 + 腾讯安全指南 + LLM 智能分析（LLM 功能默认禁用，本地执行优先）",
+  "category": "security",
+  "tags": ["security", "python", "static-analysis", "devsecops", "code-quality", "privacy", "llm"],
+  "createdAt": "2026-03-21T17:52:00+08:00",
+  "updatedAt": "2026-03-21T19:15:00+08:00",
+  "license": "MIT",
+  "repository": "https://github.com/your-repo/Li_python_sec_check",
+  "entry": "scripts/python_sec_check.py",
+  "requirements": {
+    "python": ">=3.8",
+    "optional": ["flake8", "bandit", "pip-audit", "requests"]
+  },
+  "features": {
+    "privacy_check": true,
+    "data_security_check": true,
+    "llm_analysis": "optional-disabled-by-default"
+  },
+  "security": {
+    "network_access": "optional",
+    "network_description": "LLM 功能默认禁用，仅在显式使用 --llm 参数时调用外部 API",
+    "data_handling": "所有核心检查（14 项）在本地执行。启用 --llm 后代码片段会发送到配置的 API 端点",
+    "credentials": {
+      "LLM_API_KEY": "optional",
+      "LLM_API_BASE": "optional"
+    },
+    "privacy_notice": "扫描敏感代码时建议禁用 --llm 参数，或使用私有 API 端点",
+    "default_behavior": "local-only",
+    "llm_warning": "显式启用 --llm 时会在控制台显示警告"
+  }
 }

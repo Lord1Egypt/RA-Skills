@@ -1,41 +1,54 @@
-## Description: <br>
-Math and statistics graphing, computation, visualization, and validation engine. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Math & statistics graphing, computation, visualization and validation engine.
 
-## Publisher: <br>
-[architectds](https://clawhub.ai/user/architectds) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[architectds](https://clawhub.ai/user/architectds)
 
-## Use Case: <br>
-Developers, educators, students, and analysts use this skill to create interactive graphs, validate mathematical results visually, and compute descriptive statistics, regressions, distribution fits, and hypothesis tests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted formulas or datasets are sent to a declared remote MathTalking service and may be exposed through an interactive link. <br>
-Mitigation: Avoid confidential business data, regulated records, private student or person-level datasets, and formulas that should not be shared with MathTalking or through an interactive URL. <br>
-Risk: Computed graphs or statistical results can be misread or used without checking assumptions. <br>
-Mitigation: Review visualizations and statistical outputs before relying on them for teaching, reporting, or decision support. <br>
+## Use Case:
 
+External users, educators, analysts, and developers use this skill to plot mathematical functions, visualize geometry, compute descriptive statistics, fit regressions or distributions, and inspect hypothesis-test results through interactive graphs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/architectds/mathgraphs) <br>
-- [MathTalking homepage](https://mathtalking.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Interactive links, Visualizations] <br>
-**Output Format:** [Markdown response with interactive graph URLs and computed math or statistics results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Interactive URLs may allow graph exploration such as zooming, panning, adding functions, and adjusting sliders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Requested math, formulas, or datasets are sent to MathTalking's external MCP service for graphing and computation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not send confidential datasets, private student records, proprietary formulas, or other sensitive analysis unless external processing is acceptable.
+
+Risk: The skill returns shareable interactive graph URLs.
+
+Mitigation: Share generated graph links only with audiences who are allowed to view the underlying math, data, and analysis.
+
+## Reference(s):
+
+- [MathTalking](https://mathtalking.com)
+- [ClawHub skill page](https://clawhub.ai/architectds/skills/mathgraphs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with interactive graph URLs and numeric results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Graph URLs are live and shareable; users can zoom, pan, add functions, and adjust sliders.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,62 @@
-## Description: <br>
-完整的 uctoo 后端 API 集成技能。将自然语言请求转换为 uctoo-backend API 调用，支持用户管理、产品管理、订单管理、登录认证等功能。使用时用户提及 "uctoo"、"后端API"、"用户管理"、"产品"、"订单"、"登录"、"认证" 等关键词时，你应该直接使用 http_request 工具发起实际的 API 请求。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects an agent to the UCTOO backend API, translating natural-language requests into authenticated HTTP calls for login, user, product, order, and entity CRUD operations.
 
-## Publisher: <br>
-[UCTooCom](https://clawhub.ai/user/UCTooCom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[uctoocom](https://clawhub.ai/user/uctoocom)
 
-## Use Case: <br>
-Developers and operators use this skill to turn natural-language requests into authenticated UCTOO backend API calls for login, user management, product management, order management, and entity CRUD workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Authenticated API actions can create, update, delete, bulk edit, or force-delete UCTOO records from broad natural-language requests. <br>
-Mitigation: Require the agent to show the exact endpoint, request body, and target record before executing create, update, delete, bulk, or force-delete actions. <br>
-Risk: Credentials, access tokens, request bodies, and API responses may appear in chat logs or tool output. <br>
-Mitigation: Use limited-permission accounts and avoid production credentials unless the environment protects chat logs and tool output. <br>
-Risk: The skill depends on trust in the live UCTOO backend and its authorization behavior. <br>
-Mitigation: Install only after confirming the target UCTOO backend and account permissions are appropriate for the deployment. <br>
+## Use Case:
 
+Developers and external users can use this skill to operate the UCTOO backend through natural-language requests that the agent turns into HTTP API calls. It is intended for login, data lookup, and authenticated create, update, and delete workflows across supported UCTOO resources.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/UCTooCom/uctoo-api-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/UCTooCom) <br>
-- [Uctoo API Spec](references/api_spec.md) <br>
-- [Usage Examples](references/examples.md) <br>
-- [UCTOO API Design](references/uctoo_api_design.md) <br>
-- [UCTOO backend API](https://javatoarktsapi.uctoo.com) <br>
-- [Apifox API documentation](https://apifox.com/apidoc/shared/9a22079c-a59f-4b65-a7f6-678f0643e7f6/api-170720939) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with JSON request examples and API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May issue authenticated create, update, delete, bulk, or force-delete API requests through the agent's HTTP request tool.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: ClawHub release metadata; artifact metadata declares 7.0.0) <br>
+Risk: Authenticated API calls can create, edit, or delete backend records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a low-privilege test account and require explicit confirmation before any write or delete request.
+
+Risk: The skill handles credentials and bearer-token based authentication.
+
+Mitigation: Avoid production passwords in chat, do not pass real bearer tokens on the command line, and use trusted HTTPS endpoints.
+
+Risk: The backend connector was flagged for review by security evidence.
+
+Mitigation: Install only when contacting the UCTOO backend is intended, and review the backend URL and permissions before deployment.
+
+## Reference(s):
+
+- [UCTOO API specification](artifact/references/api_spec.md)
+- [UCTOO API usage examples](artifact/references/examples.md)
+- [UCTOO API design notes](artifact/references/uctoo_api_design.md)
+- [UCTOO backend API documentation](https://apifox.com/apidoc/shared/9a22079c-a59f-4b65-a7f6-678f0643e7f6/api-170720939)
+- [Prisma filtering and sorting reference](https://www.prisma.io/docs/concepts/components/prisma-client/filtering-and-sorting#filtering)
+- [UMI API design reference](https://mp.weixin.qq.com/s/ja0jfsfkyIK2hdW6bDg2Ow)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, API calls, shell commands, code, configuration, guidance]
+
+**Output Format:** [Markdown or text guidance with JSON HTTP request payloads and API responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access to the UCTOO backend; authenticated requests can create, edit, or delete backend records.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata; artifact metadata.version is 7.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

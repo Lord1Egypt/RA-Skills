@@ -7,12 +7,20 @@
 # Usage: ./scripts/diff.sh [--workspace /path/to/workspace]
 
 set -euo pipefail
+if (( BASH_VERSINFO[0] < 4 )); then
+  echo "Spacesuit requires Bash 4 or newer; select that bash explicitly." >&2
+  exit 1
+fi
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SPACESUIT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 BASE_DIR="$SPACESUIT_DIR/base"
-VERSION="$(cat "$SPACESUIT_DIR/VERSION")"
+VERSION_FILE="$SPACESUIT_DIR/VERSION"
+[[ -f "$VERSION_FILE" ]] || VERSION_FILE="$SPACESUIT_DIR/version.txt"
+VERSION="$(cat "$VERSION_FILE")"
 
+if [[ "${1:-}" == "--workspace" ]]; then shift; fi
+[[ $# -le 1 ]] || { echo "Usage: bash diff.sh [--workspace PATH | PATH]" >&2; exit 1; }
 WORKSPACE="${1:-$(cd "$SPACESUIT_DIR/../.." && pwd)}"
 
 echo "🔍 Spacesuit Diff — v${VERSION}"
@@ -63,8 +71,8 @@ for section in "${!SECTION_MAP[@]}"; do
   fi
 
   if ! grep -qF "$begin_marker" "$target_file"; then
-    echo "  📌 ${TARGET_MAP[$section]} — no SPACESUIT markers (would add on upgrade)"
-    ((DIFFS++))
+    echo "  📌 ${TARGET_MAP[$section]} — no SPACESUIT markers (preserved unless --adopt-unmarked is selected)"
+    DIFFS=$((DIFFS + 1))
     continue
   fi
 
@@ -83,7 +91,7 @@ for section in "${!SECTION_MAP[@]}"; do
     echo "  📝 ${TARGET_MAP[$section]} — differences found:"
     diff --unified=3 <(echo "$current_section") "$base_file" | head -60 || true
     echo ""
-    ((DIFFS++))
+    DIFFS=$((DIFFS + 1))
   fi
 done
 

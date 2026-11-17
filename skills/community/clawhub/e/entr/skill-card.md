@@ -1,36 +1,51 @@
-## Description: <br>
-Run arbitrary commands when files change. Useful for watching files and triggering builds or tests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run arbitrary commands when files change. Useful for watching files and triggering builds or tests.
 
-## Publisher: <br>
-[gumadeiras](https://clawhub.ai/user/gumadeiras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gumadeiras](https://clawhub.ai/user/gumadeiras)
 
-## Use Case: <br>
-Developers and engineers use this skill to run build, test, or server commands automatically when watched files change. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill helps an agent run user-chosen commands when files change, including shell-evaluated commands with entr -s. <br>
-Mitigation: Review commands before execution, avoid shell-evaluated -s commands unless needed, and stop background watchers when they are no longer required. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers and engineers use this skill to ask an agent for entr-based watch workflows that rerun builds, tests, or long-running processes when files change.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: entr can run arbitrary commands, including shell-evaluated commands with -s.
+
+Mitigation: Treat watched directories and commands as trusted input and review generated entr invocations before execution.
+
+Risk: entr blocks the terminal and watch processes can keep running in the background.
+
+Mitigation: Run watch sessions deliberately and stop any background watch process after the task is complete.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill provides command examples and notes that entr blocks the terminal while watching files.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Shell commands, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

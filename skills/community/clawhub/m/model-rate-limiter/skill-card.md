@@ -1,41 +1,49 @@
-## Description: <br>
-Helps an agent manage local model request rate limits using a workspace JSON state file with configurable enablement, request count, and time window settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Limits AI model request frequency to a configured maximum per minute, defaulting to five requests.
 
-## Publisher: <br>
-[mazhimin-123](https://clawhub.ai/user/mazhimin-123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mazhimin-123](https://clawhub.ai/user/mazhimin-123)
 
-## Use Case: <br>
-Developers and agent users use this skill to inspect and adjust a local rate-limit state file so model requests stay within a configured per-minute limit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create or update a local workspace file named rate-limit-state.json. <br>
-Mitigation: Use it only in workspaces where local persistent rate-limit settings are expected, and review the file before relying on its values. <br>
-Risk: Broad Chinese trigger wording such as "限速" may activate the skill in conversations about rate limits. <br>
-Mitigation: Confirm the requested rate-limit action before changing enablement, maxPerMinute, windowMs, or timestamps. <br>
+## Use Case:
 
+Developers and agent operators use this skill to enable, disable, adjust, and reset workspace-level request throttling so model calls stay within an intended per-minute limit.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mazhimin-123/model-rate-limiter) <br>
-- [Publisher profile](https://clawhub.ai/user/mazhimin-123) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [Markdown text with JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local workspace file named rate-limit-state.json for persistent rate-limit state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Workspace-level throttling state may continue to affect later model requests after it is enabled or changed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the desired limit before enabling the skill, and disable or reset rate-limit-state.json when throttling is no longer intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mazhimin-123/skills/model-rate-limiter)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, guidance]
+
+**Output Format:** [Plain text or Markdown with JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update rate-limit-state.json fields such as enabled, maxPerMinute, windowMs, and timestamps.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

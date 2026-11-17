@@ -1,49 +1,63 @@
-## Description: <br>
-Installs Alibaba Cloud CLI (aliyun) and guides deployment of applications or AI agents to Alibaba Cloud ECS with aliyun appmanager commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploys application and AI agent projects to Alibaba Cloud ECS with aliyun appmanager, including environment checks, pricing, initialization, deployment, verification, and retry guidance.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and engineers use this skill to deploy local projects or Git repositories to Alibaba Cloud ECS, configure aliyun and appmanager prerequisites, generate deployment scripts, confirm costs, and verify deployments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Alibaba Cloud regions listed by the skill: cn-shanghai, cn-hangzhou, cn-beijing, cn-shenzhen, cn-guangzhou, cn-chengdu, cn-nanjing, and cn-hongkong. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires broad Alibaba Cloud deployment authority that can create, modify, or delete ECS and related resources. <br>
-Mitigation: Use OAuth, temporary credentials, or an ECS RAM role where possible, and scope the RAM policy to the needed regions and resources before deployment. <br>
-Risk: Sensitive cloud credentials or model API keys may be mishandled during setup. <br>
-Mitigation: Configure credentials out of band through aliyun's default credential chain or environment configuration, and do not paste API keys or access keys into chat, command arguments, logs, or config files. <br>
-Risk: Deployment can incur recurring ECS and OSS charges or affect an existing ECS instance. <br>
-Mitigation: Review the price output, OSS billing reminder, and existing-ECS warning before deploy; keep the delete command available for cleanup. <br>
-Risk: CLI installation or PATH changes can alter the local execution environment. <br>
-Mitigation: Confirm upgrades for existing aliyun installations, verify the effective aliyun binary on PATH, and prefer a clean project directory or isolated clone path. <br>
+## Use Case:
 
+Developers and engineers use this skill to deploy local projects or cloned repositories as Alibaba Cloud ECS applications or AI agents. It guides the agent through CLI checks, credential setup, configuration generation, cost confirmation, deployment, verification, and operational follow-up.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/sdk-team/alibabacloud-ecs-code-deploy) <br>
-- [Deploy Output & Management Reference](references/deploy-output-and-management.md) <br>
-- [Init & Credentials Reference](references/init-and-credentials.md) <br>
-- [RAM Policies Reference](references/ram-policies.md) <br>
-- [Script Templates & Language Reference](references/script-templates.md) <br>
-- [Step 0: Resolve $SKILL_DIR](references/skill-dir-resolution.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated deployment script/configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include cost reminders, console links, status/delete commands, and deployment verification summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill can deploy projects to Alibaba Cloud ECS and create or modify paid cloud resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before deployment, price acceptance, existing-ECS use, group overwrite, or resource deletion.
+
+Risk: Cloud credentials and model API keys could be exposed if users paste secrets into chat or command arguments.
+
+Mitigation: Use OAuth, RAM roles, environment variables, or a secrets manager, and keep AccessKeys and model API keys out of chat and command examples.
+
+Risk: CLI installation, appmanager environment repair, Docker configuration, and root-runtime actions can change local or remote system state.
+
+Mitigation: Ask for approval before upgrades, virtual environment deletion, Docker or system configuration changes, and destructive .appmanager operations.
+
+## Reference(s):
+
+- [Deploy Output & Management Reference](references/deploy-output-and-management.md)
+- [Init & Credentials Reference](references/init-and-credentials.md)
+- [RAM Policies Reference](references/ram-policies.md)
+- [Script Templates & Language Reference](references/script-templates.md)
+- [Skill Directory Resolution Reference](references/skill-dir-resolution.md)
+- [Deployment Failure Lessons](references/lessons-learned.md)
+- [Step-by-Step Flask Deployment Tutorial](references/tutorial-flask-app.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown guidance with shell commands and YAML or Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify .appmanager/config.yaml and deployment start/stop scripts during use.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-抓取 Solidot 热门和最新文章，推送到飞书。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+抓取 Solidot 热门和最新文章，推送到飞书。
 
-## Publisher: <br>
-[n0nsense11](https://clawhub.ai/user/n0nsense11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[n0nsense11](https://clawhub.ai/user/n0nsense11)
 
-## Use Case: <br>
-Developers and personal automation users use this skill to collect Solidot headlines and publish them to a Feishu document or local Markdown file for daily reading. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A Feishu document token can grant write access to the target document. <br>
-Mitigation: Use a token scoped to the intended document and keep it out of shared logs or prompts. <br>
-Risk: When no Feishu token is configured, the skill writes $WORKSPACE/solidot-push.md and may replace an existing file at that path. <br>
-Mitigation: Run it in the intended workspace and preserve any existing file before execution if its contents matter. <br>
-Risk: The optional cron example runs the skill on a recurring daily schedule. <br>
-Mitigation: Add the cron job only when daily execution is desired, and remove or disable it when the automation is no longer needed. <br>
+## Use Case:
 
+External users and developers use this skill to collect current Solidot article links and publish a concise daily news digest to Feishu or a local Markdown file.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/n0nsense11/solidot-push) <br>
-- [Solidot](https://www.solidot.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown document with article titles and links, plus command-line status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes to Feishu when FEISHU_DOC_TOKEN is set; otherwise writes $WORKSPACE/solidot-push.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The Feishu document token can be exposed to local process listings when passed to the Feishu write command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped Feishu document token, run only in trusted environments, and rotate the token if exposure is suspected.
+
+Risk: The skill can write generated content to a Feishu document or to the local workspace.
+
+Mitigation: Confirm the intended document token and workspace path before execution, and review the generated digest before sharing it broadly.
+
+Risk: The optional cron setup creates recurring daily writes.
+
+Mitigation: Add the cron job only when recurring daily publication is desired and remove or disable it when the workflow is no longer needed.
+
+## Reference(s):
+
+- [Solidot](https://www.solidot.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown document with terminal status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches up to 15 Solidot article links and writes to Feishu when FEISHU_DOC_TOKEN is configured; otherwise writes solidot-push.md in the workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

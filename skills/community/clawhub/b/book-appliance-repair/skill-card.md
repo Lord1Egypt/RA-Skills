@@ -1,39 +1,53 @@
-## Description: <br>
-Book appliance-repair services through Lokuli MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book appliance-repair services through Lokuli's MCP server, including provider search, availability checks, and booking creation.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users use this skill to search for appliance-repair providers, check availability, and create a booking through Lokuli. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Booking requests may share personal contact details with Lokuli. <br>
-Mitigation: Confirm the exact customer name, email, and phone number with the user before creating a booking. <br>
-Risk: A booking may be created for the wrong provider, service, date, time, or terms. <br>
-Mitigation: Confirm the provider, service, date, time, price or cancellation terms when available before submitting the booking. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users use this skill to search for appliance-repair providers, check appointment availability, and create a booking through Lokuli's external MCP service.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls] <br>
-**Output Format:** [Markdown instructions with JSON-RPC examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user confirmation before sharing booking contact details.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Booking through this skill may send customer name, email, phone number, preferred time, and repair request details to Lokuli's external MCP service.
+
+Mitigation: Use the skill only when the user intends to search or book appliance repair through Lokuli, and confirm the exact booking details before creating a booking.
+
+Risk: An incorrect provider, service, date, time slot, or contact detail could create an unwanted or inaccurate booking.
+
+Mitigation: Present the proposed booking details for user confirmation before calling the create_booking tool.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/edwardrodriguez703-design/skills/book-appliance-repair)
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Configuration]
+
+**Output Format:** [Markdown guidance with JSON-RPC examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include provider, service, time slot, customer contact details, and repair request details needed for booking.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

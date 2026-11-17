@@ -1,37 +1,53 @@
-## Description: <br>
-Review one supported site's exported snapshot records without reopening live browser automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review one supported site's exported snapshot records without reopening live browser automation.
 
-## Publisher: <br>
-[xiaojiou176](https://clawhub.ai/user/xiaojiou176) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaojiou176](https://clawhub.ai/user/xiaojiou176)
 
-## Use Case: <br>
-Developers and operators use this skill to review exported Campus Copilot workspace snapshots for one selected site, summarize records, and identify high-signal assignments, messages, or events without touching live site state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Exported workspace snapshots may contain private school or workspace information. <br>
-Mitigation: Use the skill only with intended snapshot files and confirm the agent is allowed to read that data before installation or execution. <br>
+## Use Case:
 
+Developers, operators, and reviewers use this skill to summarize an exported Campus Copilot workspace snapshot for one supported site, including record counts and high-signal assignments, messages, or events, without treating the snapshot as live browser truth.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summary with counts and highlighted snapshot records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only review of provided snapshot data; does not claim live browser state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Snapshot reports may expose or summarize private site records such as assignments, messages, or events.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only snapshots the user is authorized to review and keep outputs scoped to the selected exported site data.
+
+Risk: A snapshot can be mistaken for current live browser state.
+
+Mitigation: Treat outputs as read-only summaries of exported snapshot data and avoid claims about live browser truth.
+
+## Reference(s):
+
+- [Site Snapshot Review ClawHub listing](https://clawhub.ai/xiaojiou176/skills/site-snapshot-review)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or concise text summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only; based only on exported snapshot data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

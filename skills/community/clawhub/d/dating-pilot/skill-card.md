@@ -1,41 +1,58 @@
-## Description: <br>
-Tinder dating assistant - swipe with filters (age/distance), conversation manager with smart replies, follow-up messaging. Use when user wants help managing their Tinder profile and conversations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tinder dating assistant - swipe with filters (age/distance), conversation manager with smart replies, follow-up messaging. Use when user wants help managing their Tinder profile and conversations.
 
-## Publisher: <br>
-[seraphetx](https://clawhub.ai/user/seraphetx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[seraphetx](https://clawhub.ai/user/seraphetx)
 
-## Use Case: <br>
-External users and their agents use this skill to manage Tinder activity from a logged-in browser session, including filtered swiping, chat monitoring, smart replies, proactive follow-ups, and profile photo diagnosis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A closed-source npm package can operate a logged-in Tinder session, including swiping and sending messages. <br>
-Mitigation: Use a dedicated browser profile, keep --like-count and --max-chats small, review behavior frequently, and stop the chat manager when finished. <br>
-Risk: Conversation data is sent to the user-configured AI endpoint for smart replies and photo diagnosis. <br>
-Mitigation: Use a trusted AI endpoint and a dedicated scoped API key instead of a primary or broadly privileged key. <br>
+## Use Case:
 
+External users use this skill to manage Tinder profile review, filtered swiping, chat monitoring, smart reply drafting, follow-up messaging, and profile photo diagnosis through the dating-pilot CLI.
 
-## Reference(s): <br>
-- [Dating Pilot on ClawHub](https://clawhub.ai/seraphetx/dating-pilot) <br>
-- [tinder-automation npm package](https://www.npmjs.com/package/tinder-automation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance, Text] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands operate through a logged-in browser session and may run as a long-running background task.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The npm package source is unavailable and the release installs an executable that can access a logged-in Tinder session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package before deployment, run it in a separate browser profile when possible, and avoid trusting it automatically.
+
+Risk: The skill can swipe and send real messages from the user's Tinder account.
+
+Mitigation: Start with small chat limits, review message quality before scaling, and avoid proactive messaging unless the user accepts that behavior.
+
+Risk: The skill handles sensitive dating data and AI API credentials.
+
+Mitigation: Use a dedicated low-privilege AI API key, avoid cleartext HTTP endpoints, and keep configuration local.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/seraphetx/skills/dating-pilot)
+- [tinder-automation npm package](https://www.npmjs.com/package/tinder-automation)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON command output with brief Markdown summaries for heartbeat monitoring]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may operate a logged-in Tinder browser session, call a user-configured Anthropic-format AI endpoint, and store configuration locally.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

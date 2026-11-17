@@ -1,45 +1,60 @@
-## Description: <br>
-Captures vulnerabilities, misconfigurations, access control violations, compliance gaps, incident response patterns, and threat intelligence to enable continuous security improvement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents record and review security findings, incidents, compliance gaps, and recurring remediation patterns in local Markdown logs.
 
-## Publisher: <br>
-[jose-compu](https://clawhub.ai/user/jose-compu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jose-compu](https://clawhub.ai/user/jose-compu)
 
-## Use Case: <br>
-Developers, security engineers, and agent operators use this skill to record security findings, incidents, compliance gaps, remediation notes, and hardening requests in local learning files. It supports continuous improvement by turning repeated or broadly useful findings into security guidance, runbooks, checklists, or agent instructions after review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security learning logs can accidentally preserve sensitive data if findings are copied without redaction. <br>
-Mitigation: Redact secrets, tokens, keys, credentials, and PII before logging; store only the type, location, impact, and remediation details. <br>
-Risk: Optional hooks and command-output scanning can add broad reminders or pattern checks in projects where that behavior is not wanted. <br>
-Mitigation: Keep hooks disabled unless useful, prefer narrow security matchers, and enable command-output scanning only in trusted projects. <br>
-Risk: Promoting findings into persistent agent guidance can introduce incorrect or misleading instructions if entries are not reviewed. <br>
-Mitigation: Manually review and scan entries before promoting them into AGENTS.md, SOUL.md, TOOLS.md, CLAUDE.md, runbooks, or reusable skills. <br>
+## Use Case:
 
+Developers and security teams use this skill to capture redacted vulnerability, access-control, incident-response, and compliance findings in workspace-local logs, then review recurring patterns for possible promotion into security guidance.
 
-## Reference(s): <br>
-- [OpenClaw Security Integration](references/openclaw-integration.md) <br>
-- [Hooks Setup](references/hooks-setup.md) <br>
-- [Examples](references/examples.md) <br>
-- [ClawHub release page](https://clawhub.ai/jose-compu/self-improving-security) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown entries, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates local security learning files and may provide optional hook reminders when explicitly enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server evidence release.version) <br>
+Risk: Persistent security logs could expose sensitive incident details or secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact credentials and personal data before logging; keep learning files private unless reviewed and sanitized.
+
+Risk: Optional hooks or automated detection could operate outside the intended workspace or encounter sensitive tool output.
+
+Mitigation: Use project-scoped hooks only and avoid the optional PostToolUse detector in sensitive environments.
+
+Risk: Promoted findings or generated skills could change agent behavior without sufficient review.
+
+Mitigation: Require explicit approval of a reviewed diff before changing agent instructions, hooks, rules, or generated skills.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/jose-compu/skills/self-improving-security)
+- [Security logging examples](references/examples.md)
+- [Hook setup](references/hooks-setup.md)
+- [OpenClaw integration](references/openclaw-integration.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown entries and instructions with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Workspace-local security logs; optional project-scoped reminder hooks and reviewed promotion of recurring findings.]
+
+## Skill Version(s):
+
+1.2.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

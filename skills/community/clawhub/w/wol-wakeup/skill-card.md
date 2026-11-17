@@ -1,44 +1,63 @@
-## Description: <br>
-WoL Wakeup helps an OpenClaw agent manage saved Wake-on-LAN devices, guide users through adding or removing devices, and send wake packets by device name or number. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WoL Wakeup lets an OpenClaw agent manage Wake-on-LAN devices and wake saved machines through keyword-triggered chat commands and guided workflows.
 
-## Publisher: <br>
-[xunone11](https://clawhub.ai/user/xunone11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xunone11](https://clawhub.ai/user/xunone11)
 
-## Use Case: <br>
-OpenClaw users and operators use this skill to keep a local list of Wake-on-LAN devices, trigger wake requests from chat messages, and run guided workflows for adding or deleting saved devices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The persistent OpenClaw hook can inspect inbound messages and may log local message data. <br>
-Mitigation: Enable the hook service only when that visibility is acceptable, keep it bound to localhost, and review local logs and retention settings. <br>
-Risk: Hardcoded or reused hook tokens can allow unauthorized local hook requests. <br>
-Mitigation: Generate a unique hook token for each installation, avoid example tokens, and pass secrets through environment variables or protected configuration. <br>
-Risk: OpenClaw configuration and WoL state files may expose device MAC addresses or hook credentials. <br>
-Mitigation: Restrict filesystem permissions on OpenClaw config files and the WoL state directory. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to list, add, remove, and wake LAN devices from chat messages. It is intended for trusted local-network automation where target devices support Wake-on-LAN.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xunone11/wol-wakeup) <br>
-- [Publisher profile](https://clawhub.ai/user/xunone11) <br>
-- [OpenClaw hook endpoint](http://127.0.0.1:8765/hook) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Wake-on-LAN workflow responses and local setup guidance; runtime behavior depends on OpenClaw hooks, Python 3, and the wakeonlan package.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, frontmatter, and changelog) <br>
+Risk: The persistent local message hook can process Wake-on-LAN commands and may be exposed to misuse if authentication is weak, disabled, or reused from published examples.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the hook only for trusted local users, bind it to localhost, generate and rotate a unique hook token, and avoid using the published fixed token.
+
+Risk: The skill stores device data and workflow state under ~/.openclaw and logs message-related hook activity.
+
+Mitigation: Protect ~/.openclaw files with private permissions, use a least-privilege service account, and disable or redact message-body logging where practical.
+
+Risk: Wake-on-LAN commands can affect physical devices on the local network.
+
+Mitigation: Restrict who can send WoL commands, keep the saved device list limited to intended machines, and use the skill only on trusted local networks.
+
+## Reference(s):
+
+- [WoL Wakeup on ClawHub](https://clawhub.ai/xunone11/skills/wol-wakeup)
+- [Publisher profile](https://clawhub.ai/user/xunone11)
+- [Default OpenClaw hook endpoint](http://127.0.0.1:8765/hook)
+- [Default OpenClaw hook health endpoint](http://127.0.0.1:8765/health)
+- [README](artifact/README.md)
+- [Workflow guide](artifact/WORKFLOW.md)
+- [Integration guide](artifact/INTEGRATION_GUIDE.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration]
+
+**Output Format:** [Plain text responses with JSON configuration and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local device-management responses and Wake-on-LAN actions; requires python3 and the wakeonlan package.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, frontmatter, changelog released 2026-03-23)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

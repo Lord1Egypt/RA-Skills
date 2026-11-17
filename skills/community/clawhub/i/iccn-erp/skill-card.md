@@ -1,40 +1,57 @@
-## Description: <br>
-Provides ERP business-data lookup guidance for the Zero One Wenjie IC ERP foreign trade management system, including orders, purchases, demand records, warehouse movements, customers, suppliers, and inventory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+iccn-erp helps agents query the Lingyi Wenjie IC ERP foreign-trade management system for orders, purchase orders, demand records, inbound and outbound records, customers, suppliers, inventory, and stock availability.
 
-## Publisher: <br>
-[jexm](https://clawhub.ai/user/jexm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jexm](https://clawhub.ai/user/jexm)
 
-## Use Case: <br>
-Employees or agents supporting ERP operations use this skill to map natural-language business queries to the appropriate ERP table and request parameters, then summarize returned ERP records for review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: ERP lookups can expose sensitive business records if the endpoint or token is overbroad or untrusted. <br>
-Mitigation: Use only a trusted ERP_API_BASE_URL and a read-only, least-privilege ERP_API_TOKEN scoped to authorized users and records. <br>
-Risk: Broad or ambiguous queries may return more customer, supplier, order, or inventory data than intended. <br>
-Mitigation: Confirm ambiguous requests, prefer specific filters, and treat all returned ERP data as confidential. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Order Detail UI Reference](references/order-detail-ui.md) <br>
-- [ClawHub skill page](https://clawhub.ai/jexm/iccn-erp) <br>
+## Use Case:
 
+Agents serving ERP users use this skill to route natural-language business data lookup requests to a configured ERP API and present matching business records. It is intended for order, purchasing, customer, supplier, and inventory lookup workflows where the operator controls the ERP endpoint and token scope.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Markdown, Code] <br>
-**Output Format:** [Markdown guidance with JavaScript request examples and tabular ERP results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ERP_API_TOKEN and ERP_API_BASE_URL environment variables. Returned ERP data should be treated as confidential.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can use a bearer token to query sensitive ERP business records.
+
+Mitigation: Install it only for controlled ERP endpoints and configure a narrowly scoped read-only token.
+
+Risk: Broad automatic lookups may expose customer, supplier, order, or inventory data beyond the user's intent.
+
+Mitigation: Ask for confirmation before broad or ambiguous lookups involving sensitive business records.
+
+Risk: The reference UI includes a dev.iccn.cc endpoint that is not suitable for production business data.
+
+Mitigation: Use a trusted HTTPS ERP base URL from configuration and do not reuse the dev.iccn.cc reference endpoint for production.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jexm/skills/iccn-erp)
+- [Order detail UI reference](references/order-detail-ui.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Markdown, Guidance]
+
+**Output Format:** [Markdown tables and concise text based on JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ERP_API_TOKEN and ERP_API_BASE_URL environment variables.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

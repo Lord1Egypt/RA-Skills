@@ -1,46 +1,64 @@
-## Description: <br>
-Live sports alerts for Soccer, NFL, NBA, NHL, MLB, F1 and more. Real-time scoring with FREE ESPN API. Track any team from any major league worldwide. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Live sports alerts for Soccer, NFL, NBA, NHL, MLB, F1 and more. Real-time scoring with the free ESPN API. Track any team from any major league worldwide.
 
-## Publisher: <br>
-[robbyczgw-cla](https://clawhub.ai/user/robbyczgw-cla) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[robbyczgw-cla](https://clawhub.ai/user/robbyczgw-cla)
 
-## Use Case: <br>
-External users and developers use Sports Ticker to configure team tracking, check live scores, generate match-day alert schedules, and receive concise sports event updates across supported leagues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence rates the release as suspicious because it can create recurring match-alert workflows. <br>
-Mitigation: Review generated cron configurations before enabling alerts and keep only the schedules, destinations, and teams the user explicitly wants. <br>
-Risk: The security evidence notes optional third-party search calls and possible reuse of a search API key from another skill. <br>
-Mitigation: Use explicitly provided BRAVE_SEARCH_API_KEY or SERPER_API_KEY values for this skill, and avoid letting it read another skill's .env credentials. <br>
-Risk: The skill can cache sports results locally after ESPN or search lookups. <br>
-Mitigation: Review local cache contents and remove stale or unwanted score data when changing tracked teams or sharing the workspace. <br>
+## Use Case:
 
+External users and developers use this skill to configure team tracking, fetch live and scheduled sports updates, and prepare OpenClaw automations for match-day reminders and monitoring.
 
-## Reference(s): <br>
-- [ClawHub Sports Ticker Release Page](https://clawhub.ai/robbyczgw-cla/sports-ticker) <br>
-- [OpenClaw](https://openclaw.com) <br>
-- [Public ESPN API Documentation](https://github.com/pseudo-r/Public-ESPN-API) <br>
-- [ESPN OpenAPI Spec](https://github.com/zuplo/espn-openapi) <br>
-- [ESPN API Explorer](https://zudoku.dev/demo?api-url=https://raw.githubusercontent.com/zuplo/espn-openapi/refs/heads/main/espn_openapi_soccer_league_path.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown alert text, command guidance, and JSON cron or configuration objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local configuration, cron configuration JSON, and score-cache files when scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: SKILL.md frontmatter, package.json, CHANGELOG, server release evidence) <br>
+Risk: The skill contacts ESPN plus Brave or Serper for sports results and search fallback behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when those external services are acceptable for the deployment, and review network behavior before use.
+
+Risk: The skill can read a Serper API key from another installed skill's .env file.
+
+Mitigation: Remove the web-search-plus .env fallback or require a sports-ticker-specific key before deployment.
+
+Risk: Generated automations can execute the live monitor and require OpenClaw approval grants.
+
+Mitigation: Review generated automations before applying them and approve only the intended exec grant.
+
+Risk: The skill stores local score and configuration state.
+
+Mitigation: Review the local config and score cache files for sensitive or stale information during operation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/robbyczgw-cla/skills/sports-ticker)
+- [OpenClaw](https://openclaw.com)
+- [Public ESPN API Documentation](https://github.com/pseudo-r/Public-ESPN-API)
+- [ESPN OpenAPI Spec](https://github.com/zuplo/espn-openapi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, shell commands, and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate local config.json, score cache state, and OpenClaw automation definitions for review.]
+
+## Skill Version(s):
+
+3.3.0 (source: frontmatter, changelog, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

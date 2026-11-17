@@ -1,40 +1,55 @@
-## Description: <br>
-Discovers, searches, and installs agent skills from multiple marketplaces using the SkillKit CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discovers, searches, and installs agent skills from multiple marketplaces using the SkillKit CLI.
 
-## Publisher: <br>
-[miknasbh-stack](https://clawhub.ai/user/miknasbh-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[miknasbh-stack](https://clawhub.ai/user/miknasbh-stack)
 
-## Use Case: <br>
-Developers and agent users use this skill to find, compare, and install marketplace skills for domains such as testing, DevOps, security, APIs, and frontend development. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide users toward installing third-party agent skills that may persist and affect future agent behavior. <br>
-Mitigation: Use it only for explicit discovery requests, manually approve each install command, prefer trusted repositories, and review target skills before installation. <br>
+## Use Case:
 
+Developers and agents use this skill to find relevant agent skills, browse skill marketplaces, present install options, and install selected skills from partner or community repositories.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/miknasbh-stack/miknas-find-skills) <br>
-- [SkillKit website](https://agentskills.com) <br>
-- [SkillKit GitHub repository](https://github.com/rohitg00/skillkit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include install commands and repository references for third-party skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can encourage broad discovery and installation of third-party skills that may affect future agent behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review target repositories and skill contents before installation, and require explicit user confirmation before installing or enabling skills.
+
+Risk: The documented commands use latest package resolution for SkillKit, which can change behavior over time.
+
+Mitigation: Prefer pinned and reviewed SkillKit versions in managed or production environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/miknasbh-stack/skills/miknas-find-skills)
+- [SkillKit website](https://agentskills.com)
+- [SkillKit GitHub repository](https://github.com/rohitg00/skillkit)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include marketplace search results, repository references, installation commands, and cautionary installation guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, _meta.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

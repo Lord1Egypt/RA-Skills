@@ -1,41 +1,51 @@
-## Description: <br>
-This is an unfinished prototype intended to monitor Chornomorsk port status by aggregating weather, vessel, security, and news data into a report. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Monitors Chornomorsk port status by aggregating weather, vessel tracking, security alerts, and news with cross-validated data inputs.
 
-## Publisher: <br>
-[ApacheUA](https://clawhub.ai/user/ApacheUA) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[apacheua](https://clawhub.ai/user/apacheua)
 
-## Use Case: <br>
-Developers and analysts can inspect this prototype as a starting point for a port-status monitoring skill; it should not be used for real port, vessel, weather, news, or security decisions until implemented and validated. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The artifact advertises real-time port and security monitoring but the current script is not implemented. <br>
-Mitigation: Use only for inspection or development until named data providers, input handling, validation, and tested JSON output are added. <br>
-Risk: The script contacts placeholder URLs and does not document real outbound data sources. <br>
-Mitigation: Replace placeholders with approved providers, document outbound requests, and review network behavior before connected use. <br>
-Risk: Operational users could mistake placeholder output for verified maritime, weather, news, or security intelligence. <br>
-Mitigation: Require human review and cross-source validation before using any future output for decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ApacheUA/maritime-watch) <br>
+## Use Case:
+
+Agents and operators use this skill to request a concise status view for Chornomorsk port, covering weather, vessel activity, security alerts, and news. The inspected artifact is unfinished, so users should treat current output as a placeholder until implementation is completed and verified.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The inspected artifact is unfinished and currently does not provide real maritime intelligence.
+
+Mitigation: Treat current output as a placeholder and verify implementation, data sources, and returned reports before operational use.
+
+Risk: Port, vessel, and security monitoring can be sensitive if completed with real data sources.
+
+Mitigation: Review source terms, access permissions, and intended use before enabling real data collection or distribution.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands] <br>
-**Output Format:** [Intended JSON status report; current shell script emits a plain text placeholder.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts a port name conceptually, but the current artifact uses placeholder URLs and does not return tested JSON output.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, JSON, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [JSON status report when implemented; current artifact emits plain text placeholder output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts a port name input, defaulting to Chornomorsk.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

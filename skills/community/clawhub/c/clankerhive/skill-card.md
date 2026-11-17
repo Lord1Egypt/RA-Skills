@@ -1,40 +1,53 @@
-## Description: <br>
-ClankerHive is a SQLite-backed shared context store for coordinating state across multiple agent sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClankerHive provides a local SQLite-backed context store for coordinating facts, alerts, and task claims across multiple agent sessions.
 
-## Publisher: <br>
-[pfrederiksen](https://clawhub.ai/user/pfrederiksen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pfrederiksen](https://clawhub.ai/user/pfrederiksen)
 
-## Use Case: <br>
-Developers and agent operators use ClankerHive to coordinate OpenClaw sessions, share short-lived facts, pass alerts, and claim tasks to avoid duplicate work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shared facts and alerts can expose sensitive or stale local state if the database path is readable by others or retained too long. <br>
-Mitigation: Keep the database path private, use restrictive file permissions, prefer short TTLs, and avoid storing secrets or sensitive user data. <br>
-Risk: Agents may make automated decisions from outdated or unvalidated coordination values. <br>
-Mitigation: Validate stored values before using them to trigger actions, and expire coordination facts with TTLs where possible. <br>
+## Use Case:
 
+Developers and agent operators use ClankerHive to share short-lived state, queue alerts, and reduce duplicate work across cron, heartbeat, sub-agent, and interactive sessions.
 
-## Reference(s): <br>
-- [ClankerHive ClawHub release](https://clawhub.ai/pfrederiksen/clankerhive) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; CLI commands return plain text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands coordinate through a local SQLite database selected by CLANKERHIVE_DB or the default ~/.openclaw/hive.db path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The persistent SQLite store can retain coordination data and expose facts or alerts if placed in a shared or weakly protected path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the database in a private per-user location, avoid storing secrets or sensitive personal data, and restrict permissions when overriding CLANKERHIVE_DB.
+
+Risk: Task claiming is intended for coordination and deduplication, not security-sensitive locking or exactly-once workflow execution.
+
+Mitigation: Use task claims as best-effort coordination and add stronger locking or transactional controls for critical workflows.
+
+## Reference(s):
+
+- [ClankerHive ClawHub skill page](https://clawhub.ai/pfrederiksen/skills/clankerhive)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON or plain-text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Python 3 standard library commands and a persistent same-user SQLite database.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

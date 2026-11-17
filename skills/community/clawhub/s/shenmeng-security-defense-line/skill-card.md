@@ -1,45 +1,58 @@
-## Description: <br>
-Security Defense Line 安全防线 is a paid crypto-security skill that helps agents produce smart-contract, wallet, transaction, phishing, multisig, and incident-response security guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security Defense Line is a third-party crypto security skill for smart contract checks, wallet and transaction risk review, phishing detection, multisig workflows, and incident response guidance.
 
-## Publisher: <br>
-[shenmeng](https://clawhub.ai/user/shenmeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenmeng](https://clawhub.ai/user/shenmeng)
 
-## Use Case: <br>
-Developers, crypto operators, and security reviewers use this skill to request contract-audit checklists, wallet and transaction risk reviews, phishing checks, multisig workflow guidance, and incident-response plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan reports that the skill presents demo-grade or simulated checks as real wallet and contract protection. <br>
-Mitigation: Treat outputs as educational guidance until independently verified by trusted tooling or qualified security reviewers. <br>
-Risk: The skill handles crypto workflows and is tagged as requiring wallet access and sensitive credentials. <br>
-Mitigation: Do not paste private keys, seed phrases, or unreleased transaction data into the skill. <br>
-Risk: The skill uses SkillPay billing with possible automatic per-call charging and third-party user-ID transmission. <br>
-Mitigation: Review billing terms and required environment variables before installation or execution. <br>
+## Use Case:
 
+External crypto users and developers use this skill to generate security-oriented checks, reports, command guidance, and configuration examples for contracts, wallets, transactions, phishing risks, multisig operations, and incident handling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shenmeng/shenmeng-security-defense-line) <br>
-- [Publisher profile](https://clawhub.ai/user/shenmeng) <br>
-- [智能合约安全审计技术手册](references/contract-auditing.md) <br>
-- [SkillPay billing provider](https://skillpay.me) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with command examples, code snippets, configuration examples, and security report text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include paid SkillPay billing prompts and security-risk guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2025.4.15 (source: server release evidence) <br>
+Risk: The artifact presents critical crypto protections while the security evidence reports mock or random security results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use outputs only as preliminary guidance; verify findings with maintained security tools and qualified human review before wallet, contract, transaction, or incident-response decisions.
+
+Risk: The security evidence reports under-scoped billing behavior with a hardcoded billing credential and potential immediate charging during payment verification.
+
+Mitigation: Review payment behavior before installation, replace hardcoded credentials with environment-managed secrets, and require explicit user consent before charges.
+
+Risk: The artifact documents a security_monitor.py workflow, but that script is not present in the release evidence.
+
+Mitigation: Confirm available files before relying on monitoring workflows and avoid treating missing commands as supported release functionality.
+
+## Reference(s):
+
+- [Security Defense Line on ClawHub](https://clawhub.ai/shenmeng/skills/shenmeng-security-defense-line)
+- [Smart Contract Security Auditing Technical Manual](references/contract-auditing.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, CLI-oriented text reports, code snippets, shell commands, and JSON-like script outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Paid SkillPay flow is described as 0.01 USDT per call; security outputs require independent review before operational use.]
+
+## Skill Version(s):
+
+2025.4.15 (source: server release evidence; artifact _meta.json reports 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Guides developers through debugging I2C, I2S, UART, GPIO, FPGA access, device tree configuration, kernel modules, user-space tools, cross-compilation, and common hardware issues on Xilinx Zynq Linux systems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zynq Linux Hardware Debug helps agents provide debugging guidance for Xilinx Zynq-7000 and Zynq UltraScale+ Linux systems, including I2C, I2S, UART, GPIO, FPGA access, device tree examples, kernel module commands, cross-compilation, and troubleshooting.
 
-## Publisher: <br>
-[johnwoosz](https://clawhub.ai/user/johnwoosz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnwoosz](https://clawhub.ai/user/johnwoosz)
 
-## Use Case: <br>
-Developers and hardware engineers use this skill to generate or review Zynq Linux debugging commands, device tree snippets, kernel module build commands, and troubleshooting guidance for board bring-up and peripheral debugging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can suggest commands that write registers, GPIO values, FPGA bitstreams, I2C registers, or kernel module state on live hardware. <br>
-Mitigation: Verify every address, register, GPIO number, bitstream, bus, and module action against board documentation, and prefer read-only checks before write operations. <br>
-Risk: Incorrect low-level hardware commands can disrupt development boards or production systems. <br>
-Mitigation: Use the guidance on non-production or recoverable systems first, and review commands with an engineer familiar with the target Zynq board. <br>
+## Use Case:
 
+Developers and hardware engineers use this skill to ask an agent for Zynq Linux peripheral debugging workflows, example shell commands, device tree snippets, kernel-module build commands, user-space access examples, and troubleshooting checks for PetaLinux, Debian, or custom Linux deployments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/johnwoosz/zynq-linux-dev) <br>
-- [Publisher profile](https://clawhub.ai/user/johnwoosz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash, C, and device tree code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include hardware-mutating commands that require board-specific verification before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The skill can suggest hardware writes, FPGA loads, kernel module changes, and devmem/devmem2 commands that may affect a real board.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit operator approval before executing any write, FPGA load, kernel module change, or direct memory access command, and confirm the board, register map, bus numbers, and peripheral effects first.
+
+Risk: Example bus numbers, addresses, GPIO lines, and register values may not match the target hardware.
+
+Mitigation: Treat commands as templates and verify target-specific values against the board design, device tree, and hardware documentation before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/johnwoosz/skills/zynq-linux-dev)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/johnwoosz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash, C, and device tree code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include hardware access commands that should be reviewed before execution on real boards.]
+
+## Skill Version(s):
+
+0.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

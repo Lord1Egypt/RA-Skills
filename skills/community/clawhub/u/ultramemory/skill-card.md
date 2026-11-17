@@ -1,43 +1,62 @@
-## Description: <br>
-Ultramemory provides structured AI agent memory with temporal versioning, relational tracking, and semantic search for storing facts, recalling context, searching past conversations, tracking knowledge changes, and building entity profiles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ultramemory provides structured AI agent memory with temporal versioning, relational tracking, and semantic search.
 
-## Publisher: <br>
-[jared-goering](https://clawhub.ai/user/jared-goering) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jared-goering](https://clawhub.ai/user/jared-goering)
 
-## Use Case: <br>
-Developers and agent operators use Ultramemory to add structured long-term memory, semantic and temporal recall, relation tracking, and entity profiles to AI agent workflows across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Long-term conversation facts may be stored, searched later, and resurfaced in future agent contexts. <br>
-Mitigation: Avoid storing secrets, credentials, regulated personal data, or private client material unless explicit approval and a deletion process are in place. <br>
-Risk: Ingest can send memory content to Anthropic or OpenAI for LLM fact extraction. <br>
-Mitigation: Use explicit per-item ingest and review data sensitivity before ingestion. <br>
-Risk: Automatic transcript ingest or startup prompt injection can expose or amplify stale or sensitive context. <br>
-Mitigation: Prefer explicit recall and ingest workflows, and review recalled context before relying on it. <br>
+## Use Case:
 
+Developers and agent operators use this skill to store, search, recall, and version conversation-derived facts across sessions. It supports entity profiles, temporal lookup, relation tracking, and startup context hydration for agents that need persistent memory.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jared-goering/ultramemory) <br>
-- [Ultramemory GitHub repository](https://github.com/jared-goering/ultramemory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, Python examples, compact text recall blocks, and JSON CLI responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recall output is compact prompt context; search, graph, stats, history, and profile commands can return JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.4 (source: server release metadata) <br>
+Risk: Conversation-derived facts are stored locally and may include sensitive or regulated information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated database per user or agent and avoid ingesting secrets, regulated data, or other sensitive content.
+
+Risk: Ingest can send conversation-derived text to an external LLM provider.
+
+Mitigation: Install only where the chosen provider is approved for the data being processed and configure API keys intentionally.
+
+Risk: Recalled memories can be reintroduced into an agent session as untrusted context.
+
+Mitigation: Treat recalled memories as context rather than instructions and review them before relying on high-impact outputs.
+
+Risk: The released package depends on the separately installed ultramemory library.
+
+Mitigation: Pin the dependency to a reviewed version before deployment.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/jared-goering/skills/ultramemory)
+- [ClawHub publisher profile](https://clawhub.ai/user/jared-goering)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration]
+
+**Output Format:** [CLI output as compact text or JSON, with Markdown documentation and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a local SQLite database path and requires an Anthropic or OpenAI API key for ingest.]
+
+## Skill Version(s):
+
+0.2.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

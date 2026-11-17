@@ -1,42 +1,54 @@
-## Description: <br>
-Extracts the repeatable player action-feedback-reward-motivation loop from a game, feature set, or pitch and identifies where the loop is weak, bloated, or incomplete. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract the actual core loop from a game, feature set, or pitch based on repeated player actions, feedback, rewards, and renewed motivation.
 
-## Publisher: <br>
-[stanestane](https://clawhub.ai/user/stanestane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stanestane](https://clawhub.ai/user/stanestane)
 
-## Use Case: <br>
-Game designers, product teams, and developers use this skill to clarify the real repeatable loop behind a game concept, feature set, prototype, or pitch. It produces a structured diagnosis of loop steps, motivational drivers, weak points, and practical design implications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may produce an incorrect or misleading core-loop diagnosis if the user provides incomplete game, prototype, or playtest evidence. <br>
-Mitigation: Require outputs to state assumptions, tie conclusions to provided design evidence, and be reviewed by the design team before product changes are made. <br>
-Risk: Recommendations may over-simplify a design by treating progression, economy, retention, or social loops as secondary when they are important to the product goal. <br>
-Mitigation: Review the extracted top-level loop against supporting loops and business goals before cutting or de-prioritizing systems. <br>
+## Use Case:
 
+Game designers, product teams, and developers use this skill to identify the repeatable action-feedback-motivation cycle in a game concept, feature set, prototype, or pitch. It helps separate the real core loop from support systems, progression wrappers, and disconnected feature lists.
 
-## Reference(s): <br>
-- [Family Conventions](artifact/references/family-conventions.md) <br>
-- [Output Patterns](artifact/references/output-patterns.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/stanestane/game-design-core-loop-extractor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown with structured diagnostic sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default sections cover extraction target, extracted core loop, loop step breakdown, loop drivers, loop breaks, design implications, and a minimal loop fix.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may produce direct design criticism that is incomplete or misleading when the input lacks playtest observations, prototype behavior, or clear scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as design-review guidance and validate major conclusions against the actual game build, design documentation, and player evidence before changing the product.
+
+Risk: The skill can over-focus on loop clarity and underweight goals outside the core loop, such as narrative pacing, accessibility, production constraints, or business requirements.
+
+Mitigation: Use the extracted loop as one review lens and have designers compare recommendations against the broader creative, production, and audience goals.
+
+## Reference(s):
+
+- [Family Conventions](references/family-conventions.md)
+- [Output Patterns](references/output-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured analysis sections and concise recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, persistence, external integration, or data access is added by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

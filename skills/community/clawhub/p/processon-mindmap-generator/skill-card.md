@@ -1,46 +1,60 @@
-## Description: <br>
-ProcessOn Mindmap Generator converts natural language, Markdown, long-form text, documents, webpages, and image text into editable ProcessOn mind maps and related knowledge-structure diagrams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ProcessOn Mindmap Generator helps agents transform natural language, Markdown, long text, documents, webpages, and image text into structured, editable ProcessOn mind maps.
 
-## Publisher: <br>
-[leilizhang](https://clawhub.ai/user/leilizhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leilizhang](https://clawhub.ai/user/leilizhang)
 
-## Use Case: <br>
-Employees, students, researchers, and knowledge workers use this skill to summarize source material, preserve document structure, and generate concise Markdown mind-map content that can be rendered into editable ProcessOn diagrams. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Markdown content is sent to ProcessOn's cloud service for rendering. <br>
-Mitigation: Avoid confidential or regulated content unless ProcessOn's data handling is acceptable for the intended use. <br>
-Risk: The skill checks a remote version source before use and can ask the agent to run a force update command. <br>
-Mitigation: Review the source and update command before approving any agent-initiated installation or forced update. <br>
-Risk: The release security verdict is suspicious because runtime network behavior and cloud upload behavior have limited upfront disclosure. <br>
-Mitigation: Scan and review the skill before deployment, and restrict network or shell execution permissions where the host environment supports those controls. <br>
+## Use Case:
 
+External users, employees, and developers can use this skill to summarize and reorganize source material into concise Markdown outlines for ProcessOn mind maps, including brainstorming maps, task breakdowns, problem analysis, study notes, meeting summaries, timelines, tree diagrams, and organization charts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leilizhang/processon-mindmap-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/leilizhang) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [ProcessOn Markdown transform API](https://smart.processon.com/v1/api/transform/md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown mind-map content, shell command examples, and ProcessOn image and edit links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include ProcessOn-hosted image and online editing URLs after cloud rendering.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.10 (source: frontmatter, release evidence, version files) <br>
+Risk: The skill sends mind-map source text to ProcessOn's cloud service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with content approved for that data flow; avoid confidential, regulated, or proprietary material unless organizational policy allows the upload.
+
+Risk: A persistent local partner identifier may correlate skill usage.
+
+Mitigation: Review whether that tracking is acceptable before deployment and manage or remove the local ProcessOn partner identifier according to endpoint policy.
+
+Risk: The skill includes automatic update instructions that install from an unpinned remote source.
+
+Mitigation: Review the exact source version before accepting updates and prefer pinned, reviewed releases in managed environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leilizhang/skills/processon-mindmap-generator)
+- [ClawHub publisher profile](https://clawhub.ai/user/leilizhang)
+- [ProcessOn skills repository referenced by README](https://github.com/processonai/processon-skills/tree/main/skills/processon-mindmap-generator)
+- [ProcessOn Markdown transform API used by client](https://smart.processon.com/v1/api/transform/md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown mind-map outline with ProcessOn online view and image URLs; shell commands may be used for installation, updates, and API submission.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports seven ProcessOn structures: mind_free, mind_right, mind_org, mind_ishikawa_left, mind_timeline_h, mind_tree_free, and mind_treeTable_left_title.]
+
+## Skill Version(s):
+
+1.1.10 (source: frontmatter, release evidence, version files)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

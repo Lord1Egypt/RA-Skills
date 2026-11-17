@@ -1,45 +1,60 @@
-## Description: <br>
-IMA personal-note API skill for searching, browsing, reading, creating, and appending to a user's IMA notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agent guidance for managing IMA personal notes through the IMA OpenAPI, including searching notes, browsing notebooks, reading note content, creating notes, and appending content.
 
-## Publisher: <br>
-[yzswk](https://clawhub.ai/user/yzswk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yzswk](https://clawhub.ai/user/yzswk)
 
-## Use Case: <br>
-Users and agents with authorized IMA credentials use this skill to search personal notes, browse notebooks, read note content, create Markdown notes, and append content through the IMA OpenAPI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access and modify private IMA notes, and evidence flags broad activation with write access as needing user review. <br>
-Mitigation: Use explicit prompts for searches and writes, and review the target notebook or note plus the exact content before any create or append action. <br>
-Risk: Personal note content may be exposed in shared or group-chat contexts. <br>
-Mitigation: Show only titles and summaries in group contexts, and avoid displaying full note content unless the user explicitly authorizes it in an appropriate private context. <br>
-Risk: Vague requests such as saving or finding prior writing could be misinterpreted as note operations. <br>
-Mitigation: Confirm intent before writes or broad searches, especially when the request does not explicitly mention IMA notes. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent search, read, create, and append content in their authenticated IMA personal notes. It is intended for personal note and knowledge-base workflows that require IMA OpenAPI credentials.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yzswk/ima-skills-1-0-4) <br>
-- [IMA homepage](https://ima.qq.com) <br>
-- [IMA agent interface](https://ima.qq.com/agent-interface) <br>
-- [IMA note API reference](references/api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON API request bodies and shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses IMA_OPENAPI_CLIENTID and IMA_OPENAPI_APIKEY; read and write actions operate on the user's IMA notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The agent receives authenticated access to private IMA notes and can read note content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use credentials only when needed, scope access where possible, and avoid displaying note bodies in shared or group contexts.
+
+Risk: Create and append operations can permanently modify personal notes.
+
+Mitigation: Manually confirm the target note or folder and the exact content before any write operation.
+
+Risk: Persisting API credentials in shell startup files can increase exposure if the environment is shared or compromised.
+
+Mitigation: Prefer a secret manager or temporary environment injection for IMA_OPENAPI_CLIENTID and IMA_OPENAPI_APIKEY.
+
+## Reference(s):
+
+- [IMA Notes API Reference](references/api.md)
+- [IMA](https://ima.qq.com)
+- [IMA Agent Interface](https://ima.qq.com/agent-interface)
+- [ClawHub Skill Page](https://clawhub.ai/yzswk/skills/ima-skills-1-0-4)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON API payloads and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses IMA_OPENAPI_CLIENTID and IMA_OPENAPI_APIKEY environment variables for authenticated IMA OpenAPI requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

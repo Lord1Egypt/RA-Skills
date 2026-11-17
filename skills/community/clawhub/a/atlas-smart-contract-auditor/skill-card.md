@@ -1,42 +1,55 @@
-## Description: <br>
-Smart Contract Audit Workflow by Atlas helps agents triage Solidity and EVM smart contract scopes, map attack surface, prioritize vulnerability classes, and generate structured audit checklists and security reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart Contract Audit Workflow by Atlas helps agents triage Solidity/EVM and DeFi audit targets by mapping attack surfaces, prioritizing vulnerability classes, and generating structured audit checklists and reports.
 
-## Publisher: <br>
-[n8gendegen](https://clawhub.ai/user/n8gendegen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[n8gendegen](https://clawhub.ai/user/n8gendegen)
 
-## Use Case: <br>
-Developers, security reviewers, auditors, and bug bounty researchers use this skill to perform a fast first-pass review of Solidity/EVM smart contracts, prioritize likely vulnerability classes, and produce structured audit triage notes before deeper manual review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated vulnerability reports may be incomplete or misleading if treated as final audit findings. <br>
-Mitigation: Manually verify generated reports against the contract code before submission, remediation, or business decisions. <br>
-Risk: The workflow is a triage aid rather than a guaranteed vulnerability finder. <br>
-Mitigation: Use it to prioritize manual review and validate candidate findings with a proof of concept before reporting them. <br>
+## Use Case:
 
+External developers, auditors, and bug bounty researchers use this skill to perform first-pass smart contract audit triage, prioritize DeFi vulnerability classes, and produce structured audit notes before deeper manual review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/n8gendegen/atlas-smart-contract-auditor) <br>
-- [Atlas Agent Suite skill page](https://atlasagentsuite.com/skills.html?utm_source=clawhub&utm_medium=skill&utm_campaign=atlas-smart-contract-auditor) <br>
-- [Concierge install](https://atlasagentsuite.com/concierge.html?utm_source=clawhub&utm_medium=skill&utm_campaign=atlas-smart-contract-auditor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown audit triage report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes target overview, attack surface map, prioritized vulnerability classes, contract-by-contract checklist, recommended deep-dive order, and quick-win review items.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The generated audit report may include Atlas attribution and tracked promotional links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the report footer before sharing externally and remove promotional attribution or tracked links when they are not appropriate.
+
+Risk: The workflow is a checklist aid and may surface candidate issues that are not validated vulnerabilities.
+
+Mitigation: Manually verify findings and produce proof-of-concept evidence before submitting or relying on audit conclusions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/n8gendegen/skills/atlas-smart-contract-auditor)
+- [Atlas Agent Suite skill page](https://atlasagentsuite.com/skills.html?utm_source=clawhub&utm_medium=skill&utm_campaign=atlas-smart-contract-auditor)
+- [Atlas concierge install](https://atlasagentsuite.com/concierge.html?utm_source=clawhub&utm_medium=skill&utm_campaign=atlas-smart-contract-auditor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown audit triage report and checklist guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a first-pass triage report with target overview, attack surface summary, vulnerability priorities, deep-dive order, and quick-win checklist.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,63 @@
-## Description: <br>
-Provides ISFP-focused growth coaching that switches between reflective coaching questions and concrete advisory steps for confidence, planning, focus, and career direction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps ISFP users work through growth, career, learning, confidence, and planning concerns using a coaching mode for reflection and an advisor mode for concrete action steps.
 
-## Publisher: <br>
-[lj22503](https://clawhub.ai/user/lj22503) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lj22503](https://clawhub.ai/user/lj22503)
 
-## Use Case: <br>
-External users and employees can use this skill for ISFP-oriented personal growth conversations, including reflection, career or learning direction, confidence issues, and short action plans. The skill is advisory and should not be used as a substitute for professional mental health care. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release mixes ISFP and INTP coaching material, which can lead to inconsistent or poorly matched guidance. <br>
-Mitigation: Review the skill before installation and ask the maintainer to align the persona content to the intended ISFP use case. <br>
-Risk: The skill instructs the agent to keep personal coaching records, which may include goals, struggles, actions, and insights without explicit consent or deletion controls. <br>
-Mitigation: Use only with clear user consent for memory behavior, avoid storing sensitive personal details, and add explicit save, forget, and no-memory instructions before deployment. <br>
-Risk: The skill provides personal growth advice and may receive mental health-adjacent user concerns. <br>
-Mitigation: Keep the documented boundary that it does not replace professional counseling, and direct severe psychological concerns to qualified professionals. <br>
+## Use Case:
 
+External users and agents use this skill to provide ISFP-oriented coaching conversations, practical growth advice, and follow-up action planning. It is not a substitute for professional mental health support or a tool for making decisions on the user's behalf.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lj22503/lj22503-isfp-coach) <br>
-- [Publisher profile](https://clawhub.ai/user/lj22503) <br>
-- [ISFP traits reference](references/isfp-traits.md) <br>
-- [INTP insights reference](references/intp-insights.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown conversation responses with questions, action steps, and brief coaching summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses are instructed to stay concise, with shorter coaching replies and longer but bounded advisory plans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.0 (source: server release metadata) <br>
+Risk: The README install command names `intp-coach` instead of the reviewed `isfp-coach` package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the reviewed package slug `isfp-coach` for installation and verify package identity before enabling the skill.
+
+Risk: The artifact contains inconsistent ISFP and INTP identity and advice, which can make coaching guidance unreliable.
+
+Mitigation: Align the README, references, tags, and examples to ISFP before release and review responses for personality-type mismatch.
+
+Risk: The skill describes saving personal coaching profiles without clear consent or deletion controls.
+
+Mitigation: Tell users before retaining any profile details, request explicit consent, and provide a deletion or opt-out path.
+
+Risk: Users may treat coaching output as professional mental health advice.
+
+Mitigation: Keep the professional-support boundary visible and direct users with serious mental health concerns to qualified professionals.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lj22503/skills/lj22503-isfp-coach)
+- [ISFP Traits and Cognitive Functions](artifact/references/isfp-traits.md)
+- [INTP Insights Reference](artifact/references/intp-insights.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Concise conversational Markdown with questions, suggested actions, and brief risk notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Coaching replies target 200 Chinese characters or fewer; advisor replies target 400 Chinese characters or fewer.]
+
+## Skill Version(s):
+
+1.8.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

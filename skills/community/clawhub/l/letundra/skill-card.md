@@ -1,46 +1,58 @@
-## Description: <br>
-Universal AI travel assistant for visa information, travel and aviation news, RSS feeds, holidays, and currency information from letundra.com. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Russian-language travel assistant skill for visa guidance, travel news, RSS feeds, holidays, and currency information using public Letundra.com pages.
 
-## Publisher: <br>
-[leninws](https://clawhub.ai/user/leninws) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[leninws](https://clawhub.ai/user/leninws)
 
-## Use Case: <br>
-External users and travel-support agents use this skill to answer travel questions about visas, country holidays, exchange rates, aviation news, and Letundra news RSS feeds. It is not intended for booking travel, hotels, or other reservations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Travel-related country, tag, or currency lookups are sent to letundra.com. <br>
-Mitigation: Use the skill only when sharing those lookup terms with Letundra is acceptable. <br>
-Risk: Visa and travel requirements can change and may be incomplete or outdated on third-party pages. <br>
-Mitigation: Verify critical visa and entry requirements with official government or carrier sources before travel. <br>
-Risk: Bundled publishing scripts can publish skills through an authenticated ClawHub account. <br>
-Mitigation: Do not run publishing scripts unless you intentionally maintain these skills and understand the authenticated publishing action. <br>
+## Use Case:
 
+External users and travel-focused agents use this skill to answer Russian-language questions about visa requirements, travel and aviation news, country holidays, RSS feeds, and currency rates from Letundra.com. It is not intended for booking travel or hotels.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leninws/letundra) <br>
-- [Publisher profile](https://clawhub.ai/user/leninws) <br>
-- [Letundra homepage](https://letundra.com) <br>
-- [Letundra news page](https://letundra.com/ru/news/) <br>
-- [Letundra country page pattern](https://letundra.com/ru/countries/{slug}/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, RSS XML, and concise travel guidance based on fetched Letundra pages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include links, dates, tags, visa fields, currency conversion values, holiday lists, and RSS items.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata) <br>
+Risk: The skill fetches public travel information that may be unavailable, stale, incomplete, or unsuitable as the sole basis for travel decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat responses as informational and verify visa, holiday, currency, and travel-change details against official or current sources before acting.
+
+Risk: The artifact includes maintainer publishing tooling that uses an authenticated ClawHub CLI session.
+
+Mitigation: Do not run publish-all.sh unless intentionally publishing these skills from an authenticated maintainer environment.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/leninws/skills/letundra)
+- [Letundra.com](https://letundra.com)
+- [Letundra country pages](https://letundra.com/ru/countries/{slug}/)
+- [Letundra news](https://letundra.com/ru/news/)
+- [Letundra news by tag](https://letundra.com/ru/news/?taglist={tag})
+- [Letundra public news feed](https://letundra.com/?yandex_feed=news)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, XML, guidance]
+
+**Output Format:** [Markdown and XML snippets with links to source pages where applicable]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires access to public Letundra.com pages; the artifact metadata lists node as a required binary for bundled scripts.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

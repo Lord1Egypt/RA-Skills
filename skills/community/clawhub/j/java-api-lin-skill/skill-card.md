@@ -1,41 +1,52 @@
-## Description: <br>
-调用 JavaSkillController 提供的 HTTP 接口，供 OpenClaw/OpenLaw 执行业务操作、健康检查。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+调用 JavaSkillController 提供的 HTTP 接口，供 OpenClaw/OpenLaw 执行业务操作、健康检查。
 
-## Publisher: <br>
-[lintqiu](https://clawhub.ai/user/lintqiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[lintqiu](https://clawhub.ai/user/lintqiu)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to call trusted JavaSkillController HTTP endpoints for OpenClaw/OpenLaw business operations, data queries, submissions, and health checks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can send user and business data to a user-configured Java backend over HTTP endpoints.
+
+Mitigation: Install only when you control and trust JAVA_API_URL; prefer HTTPS except for local development and avoid sending sensitive data unless the backend and transport are protected.
+
+Risk: Broad triggers and submit-style actions may perform state-changing operations.
+
+Mitigation: Require explicit user confirmation before submit or other state-changing actions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill to call a trusted JavaSkillController backend for OpenClaw/OpenLaw business actions, data submission or query flows, and service health checks. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [API Calls, Shell commands, Configuration, JSON]
 
-## Known Risks and Mitigations: <br>
-Risk: The configured Java backend could receive sensitive or unnecessary user data. <br>
-Mitigation: Set JAVA_API_URL only to a backend you control or trust, prefer HTTPS, and avoid sending unnecessary personal or confidential fields. <br>
-Risk: The execute and submit actions may change backend data or trigger business or legal workflows. <br>
-Mitigation: Require explicit confirmation before non-read-only operations and scope allowed actions to the intended workflow. <br>
+**Output Format:** [JSON responses and Markdown guidance with inline shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lintqiu/java-api-lin-skill) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/lintqiu) <br>
+**Other Properties Related to Output:** [Requires JAVA_API_URL to point to a trusted backend; supports execute, execute-v2, and health endpoints.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON request and response examples plus optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JAVA_API_URL to point to a trusted backend before API calls are made.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

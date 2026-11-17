@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 hotel-price-monitor: 多平台酒店比价 + 降价监控
-通过SCF代理查询飞猪/RG/途牛/同程4个平台实时价格
+通过SCF代理查询TourMind/RG/途牛/同程4个平台实时价格
 
 用法:
   python3 compare.py search --city "上海" --check-in 2026-07-01 --check-out 2026-07-03 [--keyword "外滩"] [--adults 2] [--rooms 1] [--price-max 800] [--star-ratings "4,5"]
@@ -21,11 +21,12 @@ import time
 # 配置
 # ============================================================
 
-PROXY_TOKEN = os.environ.get("PROXY_TOKEN", "")
+PROXY_TOKEN = "tp_8k2mX9vQ4z"
 
 # 代理地址
 SCF_HOTEL_URL = "https://1439498936-4wdncmn2oj.ap-guangzhou.tencentscf.com"
-SCF_FLIGGY_URL = "https://1439498936-6sysdjjt99.ap-guangzhou.tencentscf.com"
+TOURMIND_PROXY = "https://1439498936-6cmx3jxanz.ap-guangzhou.tencentscf.com"
+TOURMIND_TOKEN = "tp_8k2mX9vQ4z"
 SCF_TUNIU_URL = "https://1439498936-0junm3maxj.ap-guangzhou.tencentscf.com"
 
 HEADERS = {
@@ -148,49 +149,35 @@ def http_post(url, body, timeout=20):
 # 数据源查询
 # ============================================================
 
-def search_fliggy(city, check_in, check_out, keyword=None, adults=2):
-    """飞猪酒店搜索 - 浏览列表（有价格+链接）"""
+def search_tourmind(city, check_in, check_out, keyword=None, adults=2):
+    """TourMind酒店搜索 - 两步调用"""
     try:
-        params = {
-            "destName": city,
-            "checkInDate": check_in,
-            "checkOutDate": check_out,
-            "adultCount": adults,
-        }
-        if keyword:
-            params["keyWords"] = keyword
-
-        resp = http_post(SCF_FLIGGY_URL, {
-            "type": "search_hotels",
-            "params": params,
-        })
-        data = resp.get("data", {})
-        hotels = data.get("itemList", []) or data.get("hotelList", [])
-
+        loc_body = {"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"tourmind_location_search","arguments":{"keyword":city}}}
+        loc_resp = http_post(TOURMIND_PROXY, loc_body, timeout=20)
+        region_id = None
+        regions = ((loc_resp.get("data") or {}).get("data") or {}).get("regions") or []
+        for reg in regions:
+            if reg.get("region_type") == "City":
+                region_id = str(reg.get("region_id", ""))
+                break
+        if not region_id:
+            return {"source": "TourMind", "results": [], "error": "未找到城市region_id"}
+        hotel_body = {"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"tourmind_hotel_search","arguments":{"region_id":region_id,"check_in_date":check_in,"check_out_date":check_out,"adults":adults,"limit":30}}}
+        resp = http_post(TOURMIND_PROXY, hotel_body, timeout=25)
+        d2 = (resp.get("data") or {}).get("data") or {}
+        hotels_raw = d2.get("hotels") or []
+        web_url = d2.get("web_url", "")
         results = []
-        for h in hotels:
-            price = h.get("price", 0)
-            if isinstance(price, str):
-                price = re.sub(r'[¥￥,\s]', '', price)
-                try:
-                    price = float(price)
-                except (ValueError, TypeError):
-                    price = 0
-
-            results.append({
-                "source": "飞猪",
-                "name": h.get("name", ""),
-                "star": h.get("star", ""),
-                "brand": h.get("brandName", ""),
-                "price": price,
-                "address": h.get("address", ""),
-                "poi": h.get("interestsPoi", ""),
-                "url": h.get("detailUrl", ""),
-                "image": h.get("mainPic", ""),
-            })
-        return {"source": "飞猪", "results": results, "error": None}
+        for h in hotels_raw[:30]:
+            name = (h.get("hotel_name_cn") or h.get("hotel_name") or "").strip()
+            if not name: continue
+            try: price = float(h.get("min_price", 0))
+            except: price = 0
+            if price <= 0: continue
+            results.append({"hotel_name": name, "price": price, "address": h.get("address_cn") or "", "star": str(h.get("star_rating") or ""), "source": "TourMind", "url": web_url or f"https://www.tourmind.cn/hotel/{h.get('hotel_id','')}", "rating": h.get("score") or h.get("rating") or ""})
+        return {"source": "TourMind", "results": results, "error": None}
     except Exception as e:
-        return {"source": "飞猪", "results": [], "error": str(e)}
+        return {"source": "TourMind", "results": [], "error": str(e)}
 
 
 def search_tuniu(city, check_in, check_out, keyword=None, adults=2, rooms=1, price_max=None, star_ratings=None, page_num=1):
@@ -242,62 +229,40 @@ def search_tuniu(city, check_in, check_out, keyword=None, adults=2, rooms=1, pri
         return {"source": "途牛", "results": [], "error": str(e)}
 
 
-def compare_fliggy(hotel_name, city, check_in, check_out, adults=2):
-    """飞猪精确比价"""
+def compare_tourmind(hotel_name, city, check_in, check_out, adults=2):
+    """TourMind精确比价"""
     try:
-        resp = http_post(SCF_FLIGGY_URL, {
-            "type": "search_hotels",
-            "params": {
-                "destName": city,
-                "checkInDate": check_in,
-                "checkOutDate": check_out,
-                "keyWords": hotel_name,
-                "adultCount": adults,
-            },
-        })
-
-        data = resp.get("data", {})
-        hotels = data.get("itemList", []) or data.get("hotelList", [])
-
-        results = []
-        for h in hotels:
-            h_name = h.get("name", "")
-            sim = hotel_name_similarity(hotel_name, h_name)
-            if sim < 0.3:
-                continue
-
-            price = h.get("price", 0)
-            if isinstance(price, str):
-                price = re.sub(r'[¥￥,\s]', '', price)
-                try:
-                    price = float(price)
-                except (ValueError, TypeError):
-                    price = 0
-
-            results.append({
-                "name": h_name,
-                "price": price,
-                "star": h.get("star", ""),
-                "url": h.get("detailUrl", ""),
-                "similarity": round(sim, 2),
-            })
-
-        results.sort(key=lambda x: x.get("similarity", 0), reverse=True)
-        if results:
-            best = results[0]
-            return {
-                "source": "飞猪",
-                "matched": True,
-                "name": best["name"],
-                "price": best["price"],
-                "star": best["star"],
-                "url": best["url"],
-                "similarity": best["similarity"],
-                "error": None,
-            }
-        return {"source": "飞猪", "matched": False, "price": None, "url": None, "error": "未找到匹配酒店"}
+        loc_body = {"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"tourmind_location_search","arguments":{"keyword":city}}}
+        loc_resp = http_post(TOURMIND_PROXY, loc_body, timeout=20)
+        region_id = None
+        regions = ((loc_resp.get("data") or {}).get("data") or {}).get("regions") or []
+        for reg in regions:
+            if reg.get("region_type") == "City":
+                region_id = str(reg.get("region_id", ""))
+                break
+        if not region_id:
+            return {"source": "TourMind", "matched": False, "price": None, "url": None, "error": "未找到城市region_id"}
+        hotel_body = {"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"tourmind_hotel_search","arguments":{"region_id":region_id,"check_in_date":check_in,"check_out_date":check_out,"adults":adults,"limit":50}}}
+        resp = http_post(TOURMIND_PROXY, hotel_body, timeout=25)
+        d2 = (resp.get("data") or {}).get("data") or {}
+        hotels_raw = d2.get("hotels") or []
+        web_url = d2.get("web_url", "")
+        best, best_score = None, 0
+        target_clean = hotel_name.replace("酒店","").replace("公寓","").strip()
+        for h in hotels_raw:
+            name = (h.get("hotel_name_cn") or h.get("hotel_name") or "").strip()
+            if not name: continue
+            score = hotel_name_similarity(target_clean, name.replace("酒店","").replace("公寓","").strip())
+            if score > best_score:
+                best_score = score
+                best = h
+        if best and best_score >= 0.3:
+            try: price = float(best.get("min_price", 0))
+            except: price = 0
+            return {"source": "TourMind", "matched": True, "price": price if price > 0 else None, "url": web_url or f"https://www.tourmind.cn/hotel/{best.get('hotel_id','')}", "error": None}
+        return {"source": "TourMind", "matched": False, "price": None, "url": None, "error": "未找到匹配酒店"}
     except Exception as e:
-        return {"source": "飞猪", "matched": False, "price": None, "url": None, "error": str(e)}
+        return {"source": "TourMind", "matched": False, "price": None, "url": None, "error": str(e)}
 
 
 def compare_rg(hotel_name, city, check_in, check_out, adults=2, rooms=1):
@@ -521,32 +486,32 @@ def compare_tc(hotel_name, city, check_in, check_out, adults=2):
 
 def cmd_search(args):
     """搜索酒店列表"""
-    # 飞猪有价格和链接，途牛信息最全——两个都搜，合并去重
-    fliggy_result = search_fliggy(
+    # TourMind有价格和链接，途牛信息最全——两个都搜，合并去重
+    tourmind_result = search_tourmind(
         city=args.city,
-        check_in=args.check_in,
-        check_out=args.check_out,
+        check_in=args.checkIn,
+        check_out=args.checkOut,
         keyword=args.keyword,
         adults=args.adults,
     )
     tuniu_result = search_tuniu(
         city=args.city,
-        check_in=args.check_in,
-        check_out=args.check_out,
+        check_in=args.checkIn,
+        check_out=args.checkOut,
         keyword=args.keyword,
         adults=args.adults,
         rooms=args.rooms,
-        price_max=args.price_max,
-        star_ratings=args.star_ratings,
+        price_max=args.priceMax,
+        star_ratings=args.starRatings,
     )
 
     hotels = []
     # 途牛信息更全（评分、距离、取消政策），先放途牛
     if tuniu_result.get("results"):
         hotels.extend(tuniu_result["results"])
-    # 飞猪补充（有预订链接和价格）
-    if fliggy_result.get("results"):
-        hotels.extend(fliggy_result["results"])
+    # TourMind补充（有预订链接和价格）
+    if tourmind_result.get("results"):
+        hotels.extend(tourmind_result["results"])
 
     # 去重（按酒店名相似度）
     seen = []
@@ -569,8 +534,8 @@ def cmd_search(args):
         "success": True,
         "action": "search",
         "city": args.city,
-        "check_in": args.check_in,
-        "check_out": args.check_out,
+        "check_in": args.checkIn,
+        "check_out": args.checkOut,
         "count": len(unique),
         "hotels": unique,
         "tip": "以上为浏览价格，选定酒店后告诉我酒店名，立刻启动多旅游平台比价！",
@@ -582,15 +547,15 @@ def cmd_compare(args):
     """多平台精确比价"""
     hotel_name = args.hotel
     city = args.city
-    check_in = args.check_in
-    check_out = args.check_out
+    check_in = args.checkIn
+    check_out = args.checkOut
     adults = args.adults or 2
     rooms = args.rooms or 1
 
     results = []
 
-    # 飞猪（精确keyword搜索 + 预订链接）
-    results.append(compare_fliggy(hotel_name, city, check_in, check_out, adults))
+    # TourMind（精确keyword搜索 + 预订链接）
+    results.append(compare_tourmind(hotel_name, city, check_in, check_out, adults))
 
     # RG（佣金5% + booking链接）
     results.append(compare_rg(hotel_name, city, check_in, check_out, adults, rooms))
@@ -605,8 +570,8 @@ def cmd_compare(args):
     priced = [r for r in results if r.get("matched") and r.get("price") and isinstance(r["price"], (int, float)) and r["price"] > 0]
     unpriced = [r for r in results if r not in priced]
 
-    # 佣金优先级：RG(5%) > 飞猪(分佣) > 途牛 > 同程
-    commission_order = {"RG": 0, "飞猪": 1, "途牛": 2, "同程": 3}
+    # 佣金优先级：RG(5%) > TourMind(分佣) > 途牛 > 同程
+    commission_order = {"RG": 0, "TourMind": 1, "途牛": 2, "同程": 3}
     priced.sort(key=lambda x: (x["price"], commission_order.get(x.get("source", ""), 9)))
 
     all_sorted = priced + unpriced
@@ -636,19 +601,19 @@ def main():
 
     search_parser = subparsers.add_parser("search", help="搜索酒店列表")
     search_parser.add_argument("--city", required=True, help="城市名")
-    search_parser.add_argument("--check-in", required=True, help="入住日期 YYYY-MM-DD")
-    search_parser.add_argument("--check-out", required=True, help="离店日期 YYYY-MM-DD")
+    search_parser.add_argument("--checkIn", required=True, help="入住日期 YYYY-MM-DD")
+    search_parser.add_argument("--checkOut", required=True, help="离店日期 YYYY-MM-DD")
     search_parser.add_argument("--keyword", default=None, help="关键词/地标")
     search_parser.add_argument("--adults", type=int, default=2, help="入住人数")
     search_parser.add_argument("--rooms", type=int, default=1, help="房间数")
-    search_parser.add_argument("--price-max", type=int, default=None, help="最高价格")
-    search_parser.add_argument("--star-ratings", default=None, help="星级筛选，如 '4,5'")
+    search_parser.add_argument("--priceMax", type=int, default=None, help="最高价格")
+    search_parser.add_argument("--starRatings", default=None, help="星级筛选，如 '4,5'")
 
     compare_parser = subparsers.add_parser("compare", help="多平台精确比价")
     compare_parser.add_argument("--hotel", required=True, help="酒店名称")
     compare_parser.add_argument("--city", required=True, help="城市名")
-    compare_parser.add_argument("--check-in", required=True, help="入住日期 YYYY-MM-DD")
-    compare_parser.add_argument("--check-out", required=True, help="离店日期 YYYY-MM-DD")
+    compare_parser.add_argument("--checkIn", required=True, help="入住日期 YYYY-MM-DD")
+    compare_parser.add_argument("--checkOut", required=True, help="离店日期 YYYY-MM-DD")
     compare_parser.add_argument("--adults", type=int, default=2, help="入住人数")
     compare_parser.add_argument("--rooms", type=int, default=1, help="房间数")
 

@@ -1,40 +1,52 @@
-## Description: <br>
-Ml Visualizer is a command-line tool for recording ML and data workflow notes, searches, summaries, and exports in local plaintext logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A command-line activity journal for recording and exporting machine learning data pipeline, schema, validation, profiling, and visualization notes.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers can use this skill to log ML data preparation, validation, profiling, and visualization activity from the command line. It is best treated as a local workflow journal rather than a real visualization or model-selection engine.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The release evidence flags this skill as suspicious because it is presented as an ML visualization or model-selection tool while behaving as a local plaintext logging tool.
+
+Mitigation: Review the artifact before installing and set user expectations that it records notes and command activity rather than generating model diagnostics.
+
+Risk: Users may enter secrets, customer data, private dataset paths, proprietary schema details, credentials, or sensitive model notes into logs stored in plaintext.
+
+Mitigation: Avoid entering sensitive information and redirect ML_VISUALIZER_DIR to an approved local location with appropriate access controls when logging is necessary.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and data practitioners use this skill to keep a lightweight local journal of ML data ingestion, transformation, validation, profiling, visualization requests, and pipeline activity. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: User-entered workflow notes are stored as plaintext local logs and can be searched or exported. <br>
-Mitigation: Avoid entering secrets, credentials, or sensitive dataset details; set ML_VISUALIZER_DIR to an appropriate protected location when needed. <br>
-Risk: The visualizer branding may imply model diagnostics or chart generation beyond the artifact behavior. <br>
-Mitigation: Treat the skill as a workflow logger and validate any actual model analysis or visualization with separate tools. <br>
+**Output Format:** [Plain text command output with optional JSON, CSV, or TXT exports]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/bytesagain-lab/ml-visualizer) <br>
+**Other Properties Related to Output:** [Writes plaintext logs under ~/.local/share/ml-visualizer by default; ML_VISUALIZER_DIR can override the data directory.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files] <br>
-**Output Format:** [Plain text CLI output plus local log and export files in JSON, CSV, or TXT.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes logs under ~/.local/share/ml-visualizer by default; ML_VISUALIZER_DIR can override the data directory.] <br>
+1.0.0 (source: release evidence and SKILL.md frontmatter)
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and SKILL.md frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

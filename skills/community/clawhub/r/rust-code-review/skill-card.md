@@ -1,55 +1,66 @@
-## Description: <br>
-Reviews Rust code for ownership, borrowing, lifetime, error handling, trait design, unsafe usage, and common mistakes. Use when reviewing .rs files, checking borrow checker issues, error handling patterns, or trait implementations. Covers Rust 2024 edition patterns and modern idioms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews Rust code for ownership, borrowing, lifetimes, error handling, trait design, unsafe usage, common mistakes, and Rust 2024 idioms.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill to review Rust source, Cargo manifests, unsafe code, concurrency patterns, error handling, trait design, and Rust 2024 idioms before acting on code-review findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may cause an agent to read Rust source files and Cargo manifests during review. <br>
-Mitigation: Use it only in repositories where Rust review access is intended, and follow the host environment's handling rules for sensitive code. <br>
-Risk: Review output can include incorrect or overstated findings if the agent reports before checking full functions, crate context, and severity calibration. <br>
-Mitigation: Apply the artifact's gates before acting on findings: read the relevant Cargo manifest, inspect the full cited code region, and match severity to the documented calibration. <br>
-Risk: The skill references related review skills that may add separate guidance if present. <br>
-Mitigation: Treat referenced skills as separate inputs and review their guidance before relying on combined review output. <br>
+## Use Case:
 
+Developers and engineers use this skill to review Rust projects for ownership and borrowing issues, lifetime design, error handling, trait and interface design, unsafe code, and concurrency risks before changes are merged.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anderskev/rust-code-review) <br>
-- [Ownership and Borrowing](references/ownership-borrowing.md) <br>
-- [Lifetime Variance](references/lifetime-variance.md) <br>
-- [Error Handling](references/error-handling.md) <br>
-- [Async and Concurrency](references/async-concurrency.md) <br>
-- [Concurrency Primitives](references/concurrency-primitives.md) <br>
-- [Memory Ordering](references/memory-ordering.md) <br>
-- [Lock-Free Patterns](references/lock-free-patterns.md) <br>
-- [Concurrency Models](references/concurrency-models.md) <br>
-- [Types and Layout](references/types-layout.md) <br>
-- [Interface Design](references/interface-design.md) <br>
-- [Patterns in the Wild](references/patterns-in-the-wild.md) <br>
-- [Unsafe Code, API Design, and Derive Patterns](references/common-mistakes.md) <br>
-- [Unsafe Code: Deep Review](references/unsafe-deep.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown code-review findings with file and line references, severity labels, and prose explanations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings follow the artifact's FILE:LINE, severity, and description format.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: The skill may recommend standard Rust checks or shell commands against code that is not trusted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed commands before execution and run them in a trusted sandbox or disposable checkout when code is untrusted.
+
+Risk: Review guidance can be incorrect or incomplete for complex ownership, unsafe, or concurrency cases.
+
+Mitigation: Treat findings as review assistance and verify material issues against the relevant Rust source, tests, and project constraints before making changes.
+
+## Reference(s):
+
+- [Rust Code Review](SKILL.md)
+- [Ownership and Borrowing](references/ownership-borrowing.md)
+- [Lifetime Variance](references/lifetime-variance.md)
+- [Error Handling](references/error-handling.md)
+- [Async and Concurrency](references/async-concurrency.md)
+- [Concurrency Primitives](references/concurrency-primitives.md)
+- [Memory Ordering](references/memory-ordering.md)
+- [Lock-Free Patterns: Hand-Rolled Concurrency Review](references/lock-free-patterns.md)
+- [Concurrency Models](references/concurrency-models.md)
+- [Types and Layout](references/types-layout.md)
+- [Interface Design](references/interface-design.md)
+- [Patterns in the Wild](references/patterns-in-the-wild.md)
+- [Unsafe Code, API Design, and Derive Patterns](references/common-mistakes.md)
+- [Unsafe Code: Deep Review](references/unsafe-deep.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands]
+
+**Output Format:** [Markdown review report with file-line findings, severity labels, concise explanations, and optional suggested Rust checks.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No generated files are required.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

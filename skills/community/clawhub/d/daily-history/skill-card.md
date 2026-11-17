@@ -1,43 +1,50 @@
-## Description: <br>
-Today in history: 3-5 major events on this date with context and lasting impact, delivered as a bilingual English/Chinese timeline card with daily morning push support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Today in history -- 3-5 major events on this date with context and lasting impact, presented as a bilingual English/Chinese timeline card with daily morning push support.
 
-## Publisher: <br>
-[jiajiaoy](https://clawhub.ai/user/jiajiaoy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiajiaoy](https://clawhub.ai/user/jiajiaoy)
 
-## Use Case: <br>
-External users use Daily History to generate shareable bilingual history timeline cards for the current date, including context and lasting impact. Developers or operators can optionally enable scheduled morning and evening push prompts across supported messaging channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional push scheduling can send twice-daily notifications after a user enables it. <br>
-Mitigation: Confirm the userId, channel, timezone, and morning/evening times before enabling push, and use the documented off command to remove scheduled jobs. <br>
-Risk: Broad history-related trigger keywords may activate the skill from generic history requests in some agent routers. <br>
-Mitigation: Require explicit invocation or narrow trigger routing when automatic skill activation is enabled. <br>
-Risk: Generated historical summaries may omit context or include inaccuracies from retrieved sources. <br>
-Mitigation: Review the selected events and supporting sources before publishing or sharing the timeline. <br>
+## Use Case:
 
+External users use this skill to generate concise daily history timeline content in English and Chinese, including notable events, context, and lasting impact. Users may also configure recurring morning and evening push messages for supported channels.
 
-## Reference(s): <br>
-- [Daily History on ClawHub](https://clawhub.ai/jiajiaoy/daily-history) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Files, Shell commands, Configuration] <br>
-**Output Format:** [Single-file HTML artifact with bilingual timeline content, plus shell command output for optional push scheduling] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The main artifact is saved as /mnt/user-data/outputs/daily-history.html; optional push scripts emit OpenClaw cron add/remove directives.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill can configure persistent scheduled push jobs and recurring outbound messages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the destination channel, recipient user ID, schedule, timezone, and disable path before enabling push jobs; avoid environments where skill output can create cron tasks without explicit authorization.
+
+## Reference(s):
+
+- [Daily History ClawHub Skill Page](https://clawhub.ai/jiajiaoy/skills/daily-history)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Bilingual markdown guidance and generated single-file HTML timeline output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May emit scheduler control commands for recurring push messages when push management is used.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence, released 2026-04-27)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

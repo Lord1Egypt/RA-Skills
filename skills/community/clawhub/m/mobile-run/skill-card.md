@@ -1,47 +1,70 @@
-## Description: <br>
-Mobilerun helps agents control connected Android devices through the Mobilerun API for screenshots, UI-state inspection, taps, swipes, typing, app management, and optional Droidrun task execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls real Android phones through the Mobilerun API, including screenshots, UI-tree inspection, tapping, swiping, typing, app management, and AI-agent tasks.
 
-## Publisher: <br>
-[johnmalek312](https://clawhub.ai/user/johnmalek312) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnmalek312](https://clawhub.ai/user/johnmalek312)
 
-## Use Case: <br>
-Developers and users with a Mobilerun API key use this skill to automate or remotely operate Android devices, including observing screens, interacting with mobile apps, provisioning supported devices, and troubleshooting setup or billing issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad visibility into and control over a connected Android device, including screenshots, UI accessibility data, taps, typing, and app actions. <br>
-Mitigation: Use a test phone or cloud device for risky workflows, avoid sensitive apps and screens unless necessary, and review device actions before allowing high-impact changes. <br>
-Risk: Sensitive actions such as purchases, messages, account changes, app installs or uninstalls, webhook setup, and feedback submission may not be guarded strongly enough. <br>
-Mitigation: Require explicit user confirmation before those actions and revoke the API key, disable Accessibility, or log out of Portal when finished. <br>
-Risk: Screenshots and UI trees can expose private personal data from the device. <br>
-Mitigation: Share device observations only with the user, do not expose the API key, and minimize collection or display of sensitive screen contents. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent remotely operate an Android device through Mobilerun for app interaction, mobile workflow automation, troubleshooting, and AI-agent phone tasks.
 
-## Reference(s): <br>
-- [Mobilerun on ClawHub](https://clawhub.ai/johnmalek312/mobile-run) <br>
-- [Mobilerun Platform API](api.md) <br>
-- [Phone Control API Reference](phone-api.md) <br>
-- [Mobilerun Setup](setup.md) <br>
-- [Mobilerun Subscription](subscription.md) <br>
-- [Droidrun Portal Source](https://github.com/droidrun/droidrun-portal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Guidance, Configuration, Text] <br>
-**Output Format:** [Markdown with HTTP request examples and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses MOBILERUN_API_KEY and may return device status, screenshots, UI accessibility data, task identifiers, and setup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can let an agent see and control an Android device, including sensitive screen content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with devices and accounts the user is comfortable exposing to Mobilerun, and avoid banking, password, health, and private-message screens.
+
+Risk: Setup may involve a sideloaded APK with Android Accessibility access.
+
+Mitigation: Prefer a verified APK source with a known signature or checksum, and revoke Accessibility permission when the session is no longer needed.
+
+Risk: API keys can grant programmatic access to connected devices.
+
+Mitigation: Never print, log, or share MOBILERUN_API_KEY, and revoke or rotate the key after exposure or when access is no longer needed.
+
+Risk: The skill can support actions that may spend credits, uninstall apps, submit feedback, create AI-agent tasks, or configure webhooks.
+
+Mitigation: Confirm app uninstall, cloud-device spending, AI-agent task, webhook, and feedback submission actions with the user before executing them.
+
+## Reference(s):
+
+- [Mobilerun ClawHub Skill](https://clawhub.ai/johnmalek312/skills/mobile-run)
+- [Phone Control API Reference](artifact/phone-api.md)
+- [Mobilerun Platform API](artifact/api.md)
+- [Mobilerun Setup](artifact/setup.md)
+- [Mobilerun Plans and Subscriptions](artifact/subscription.md)
+- [Mobilerun API](https://api.mobilerun.ai/v1)
+- [Droidrun Portal](https://droidrun.ai/portal)
+- [Droidrun Portal GitHub Repository](https://github.com/droidrun/droidrun-portal)
+- [Mobilerun API Keys](https://cloud.mobilerun.ai/api-keys)
+- [Mobilerun Billing](https://cloud.mobilerun.ai/billing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTTP request examples and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MOBILERUN_API_KEY and a connected Mobilerun device; screenshots and UI trees may contain sensitive personal data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

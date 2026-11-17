@@ -1,6 +1,20 @@
 {
-  "ownerId": "kn71jd2rmwfqxg0qsd1r2p308982baa2",
-  "slug": "memeanalyzer",
-  "version": "1.0.1",
-  "publishedAt": 1772695661477
+  "name": "solana-meme-analyzer",
+  "slug": "solana-meme-analyzer",
+  "description": "Analyze Solana meme token risk: detect insider wallets (老鼠仓), measure holder concentration, and get a risk score for any token CA.",
+  "version": "1.0.0",
+  "author": "your-github-username",
+  "license": "MIT",
+  "tags": ["solana", "crypto", "meme", "risk-analysis", "defi", "rug-detection", "onchain"],
+  "category": "crypto",
+  "requires": {
+    "bins": ["python3"],
+    "python": ">=3.8"
+  },
+  "env": {
+    "HELIUS_API_KEY": {
+      "description": "Helius RPC API key for reliable Solana data. Get free at helius.xyz",
+      "required": false
+    }
+  }
 }

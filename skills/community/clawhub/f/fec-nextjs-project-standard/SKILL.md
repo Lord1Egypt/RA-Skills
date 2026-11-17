@@ -3,43 +3,44 @@ name: fec-nextjs-project-standard
 description: Use when creating or reviewing Next.js 14+ App Router projects, file routes, layouts, server/client component boundaries, SSR/SSG/ISR, streaming, metadata, middleware, server actions, or Next-specific data fetching. For generic client React component architecture, apply the project's React conventions separately; Chinese triggers include Next.js, App Router.
 ---
 
-# Next.js 项目规范
+# Next.js project specifications
 
-适用于使用 Next.js 14+ 与 App Router 的仓库。
+For repositories using Next.js 14+ with App Router.
 
 ## Purpose
 
-规范 Next.js 14+ 项目中 App Router、SSR/SSG/ISR 渲染模式、数据获取、路由布局、中间件和 SEO 元数据的工程实践，确保服务端优先、性能优化和可维护性。
+Standardize engineering practices for App Router, SSR/SSG/ISR rendering modes, data acquisition, route layout, middleware and SEO metadata in Next.js 14+ projects to ensure server-side priority, performance optimization and maintainability.
 
 ## Procedure
 
-1. 先识别目标属于 App Router、布局、服务端数据、middleware、metadata 还是客户端交互。
-2. 默认服务端组件优先；只有需要浏览器 API、交互状态或事件处理时才使用 `'use client'`。
-3. 明确 SSR / SSG / ISR / CSR 渲染模式和 Next fetch/cache 策略。
-4. 为路由补齐 `loading.tsx`、`error.tsx`、`not-found.tsx`、metadata 和敏感逻辑的服务端边界。
-5. 引入第三方库前检查是否支持 Server Component；浏览器专属、动效、图表、编辑器和 WebGL 库必须放进客户端叶子组件并按需加载。
-6. 客户端组件架构问题分流到 React 项目 workflow。
+1. First identify whether the target belongs to App Router, layout, server data, middleware, metadata or client interaction.
+2. Default server-side components take precedence; use `'use client'` only when browser API, interactive state or event handling is required.
+3. Clarify SSR / SSG / ISR / CSR rendering mode and Next fetch/cache strategy.
+4. Complete the server-side boundaries of `loading.tsx`, `error.tsx`, `not-found.tsx`, metadata and sensitive logic for routing.
+5. Check whether Server Component is supported before introducing third-party libraries; browser-specific, animation, chart, editor and WebGL libraries must be placed into client leaf components and loaded on demand.
+6. Prioritize evidence review for dynamic rendering, cache invalidation, RSC serialization, route handler, middleware, and first-screen bundles; first collect build, trace, headers, or routing behavior evidence when unsure.
+7. Client component architecture issues are offloaded to the React project workflow.
 
-## 项目结构
+## Project structure
 
 ```
 src/
 ├── app/                        # App Router
-│   ├── layout.tsx              # 根布局
-│   ├── page.tsx                # 首页
-│   ├── loading.tsx              # 全局 loading UI
-│   ├── error.tsx                # 全局错误边界
+│ ├── layout.tsx # Root layout
+│ ├── page.tsx # Home page
+│ ├── loading.tsx # Global loading UI
+│ ├── error.tsx # Global error boundary
 │   ├── not-found.tsx           # 404
 │   ├── globals.css
 │   │
-│   ├── (auth)/                 # 路由组
+│ ├── (auth)/ # Routing group
 │   │   ├── login/
 │   │   │   └── page.tsx
 │   │   └── register/
 │   │       └── page.tsx
 │   │
-│   ├── (dashboard)/            # 仪表盘路由组
-│   │   ├── layout.tsx          # 共享布局
+│ ├── (dashboard)/ # Dashboard routing group
+│ │ ├── layout.tsx # Shared layout
 │   │   ├── dashboard/
 │   │   │   └── page.tsx
 │   │   └── users/
@@ -51,67 +52,72 @@ src/
 │       └── users/
 │           └── route.ts
 │
-├── components/                 # 共享组件
-├── lib/                        # 工具、配置
+├── components/ # Shared components
+├── lib/ # Tools, configuration
 ├── hooks/
 ├── services/
 └── types/
 ```
 
-## 渲染模式
+## Rendering mode
 
-| 模式    | 使用场景         | 实现方式                                        |
+| Patterns | Usage scenarios | Implementation methods |
 | ------- | ---------------- | ----------------------------------------------- |
-| **SSR** | 动态、需实时数据 | 默认，`fetch` 不缓存或 `cache: 'no-store'`      |
-| **SSG** | 静态内容         | `generateStaticParams` + 静态 `fetch`           |
-| **ISR** | 定期更新         | `revalidate` 或 `revalidatePath`                |
-| **CSR** | 客户端交互       | `'use client'` + `useEffect` 或 SWR/React Query |
+| **SSR** | Dynamic, real-time data required | Default, `fetch` does not cache or `cache: 'no-store'` |
+| **SSG** | Static content | `generateStaticParams` + static `fetch` |
+| **ISR** | Periodically updated | `revalidate` or `revalidatePath` |
+| **CSR** | Client interaction | `'use client'` + `useEffect` or SWR/React Query |
 
-## 数据获取
+## Data acquisition
 
-- 服务端组件：直接 `async` 或 `fetch`，不暴露 `useEffect`
-- 客户端组件：`useEffect` + `useState`，或 SWR / React Query
-- 优先在服务端获取数据，减少客户端水合
-- 使用 `loading.tsx` 和 Suspense 包裹异步区块，提供流式体验
+- Server component: directly `async` or `fetch`, without exposing `useEffect`
+- Client component: `useEffect` + `useState`, or SWR / React Query
+- Prioritize data acquisition on the server side to reduce hydration on the client side
+- Use `loading.tsx` and Suspense to wrap asynchronous blocks to provide streaming experience
+- The cache policy must include `force-cache`, `no-store`, `revalidate`, tag/path revalidation or user private data constraints
+- Any read that will change the route from static to dynamic (cookies, headers, searchParams, uncached fetch) must explain the reason and verification method
 
-## 路由与布局
+## Routing and layout
 
-- 路由组 `(auth)` 不改变 URL，只影响布局
-- 动态路由 `[id]` 配合 `generateStaticParams` 做 SSG
-- `layout.tsx` 包裹子路由，共享 UI 与布局
-- `page.tsx` 为叶子路由，不可嵌套
+- Routing group `(auth)` does not change the URL, only affects the layout
+- Dynamic routing `[id]` cooperates with `generateStaticParams` to do SSG
+- `layout.tsx` wraps sub-routes to share UI and layout
+- `page.tsx` is a leaf route and cannot be nested
 
-## 中间件
+## Middleware
 
-- 放在 `middleware.ts` 根目录
-- 用于鉴权、重定向、rewrite、Header 修改
-- 尽量短小，避免阻塞请求
+- Place it in the root directory of `middleware.ts`
+- Used for authentication, redirection, rewrite, and Header modification
+- Keep it as short as possible to avoid blocking requests
 
-## 元数据与 SEO
+## Metadata and SEO
 
-- 使用 `metadata` 或 `generateMetadata` 导出
-- 支持 `title`、`description`、`openGraph`、`twitter` 等
-- 动态路由用 `generateMetadata(params)` 生成
+- Export using `metadata` or `generateMetadata`
+- Supports `title`, `description`, `openGraph`, `twitter`, etc.
+- Dynamic routes are generated using `generateMetadata(params)`
 
 ## Constraints
 
-- 服务端组件默认，仅在需要客户端交互时加 `'use client'`
-- 不在服务端组件中直接使用 `useState`、`useEffect`、浏览器 API
-- 敏感逻辑（如鉴权）放在服务端或 API Route，不暴露在客户端
-- 图片使用 `next/image`，字体使用 `next/font`
-- 不把密钥、内部 API 地址或服务端 token 放入 `NEXT_PUBLIC_` 环境变量。
-- 不让大型动效库、3D 场景、富文本编辑器或地图 SDK 进入根布局同步 bundle。
-- 首屏媒体必须有确定尺寸、真实资源和合理 priority；不要用远程占位图撑布局。
+- Server component defaults, add `'use client'` only when client interaction is required.
+- Do not use `useState`, `useEffect`, and browser API directly in server components
+- Sensitive logic (such as authentication) is placed on the server or API Route and is not exposed to the client
+- Use `next/image` for images and `next/font` for fonts
+- Do not put keys, internal API addresses or server tokens in the `NEXT_PUBLIC_` environment variable.
+- Don't let large animation libraries, 3D scenes, rich text editors or map SDKs go into the root layout sync bundle.
+- The first screen media must have a certain size, real resources and reasonable priority; do not use remote placeholder images to support the layout.
+- Don't assert that a route is "cached" or "must be dynamic" without evidence of metrics, response headers, build output, or route behavior.
+- Middleware only handles lightweight decision-making at the routing level and does not carry heavy authentication queries, log batch processing, or business logic that can be placed in the route handler.
 
-## 与客户端 UI 模式的分工
+## Division of labor with client UI mode
 
-- **服务端**：渲染模式、数据获取与缓存、`loading.tsx` / `error.tsx`、路由与布局等以本 skill 为准。
-- **`'use client'` 组件**：组合与复合组件、表单、客户端状态、列表虚拟化、动效与键盘/焦点等，与纯 React 项目一致，遵循项目中的 React 规则（如 `.claude/rules/fec-react.md`）。
-- **权限与客户端数据**：鉴权、RBAC、redirect、客户端 server state 和缓存失效应按对应专项 workflow 处理；Next 服务端 fetch/cache 仍以本 skill 为准。
+- **Server**: Rendering mode, data acquisition and caching, `loading.tsx` / `error.tsx`, routing and layout, etc. are subject to this skill.
+- **`'use client'` component**: combined and composite components, forms, client state, list virtualization, animation and keyboard/focus, etc., consistent with pure React projects, following the React rules in the project (such as `.claude/rules/fec-react.md`).
+- **Permissions and client data**: Authentication, RBAC, redirect, client server state, and cache failure should be handled according to the corresponding special workflow; Next server fetch/cache is still subject to this skill.
 
 ## Expected Output
 
-- 页面组件按 App Router 约定组织（`app/` 目录、`page.tsx`、`layout.tsx`、`loading.tsx`、`error.tsx`）
-- 渲染模式选择正确（SSR/SSG/ISR/CSR），数据获取路径清晰
-- 元数据和 SEO 配置完整（title、description、openGraph）
-- 敏感逻辑在服务端，客户端组件仅处理交互
+- Page components are organized according to App Router conventions (`app/` directory, `page.tsx`, `layout.tsx`, `loading.tsx`, `error.tsx`)
+- The rendering mode is selected correctly (SSR/SSG/ISR/CSR) and the data acquisition path is clear
+- Complete metadata and SEO configuration (title, description, openGraph)
+- Sensitive logic is on the server side, client components only handle interactions
+- There is reviewable evidence for caching, dynamic rendering and above-the-fold bundle decisions, and performance risks can be offloaded to dedicated performance workflows

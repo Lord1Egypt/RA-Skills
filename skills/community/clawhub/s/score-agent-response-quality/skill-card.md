@@ -1,42 +1,59 @@
-## Description: <br>
-Score an AI agent response 0-100 across 6 quality dimensions with improvement suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scores an AI agent response 0-100 across six quality dimensions and returns targeted improvement suggestions.
 
-## Publisher: <br>
-[operon](https://clawhub.ai/user/operon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[operon](https://clawhub.ai/user/operon)
 
-## Use Case: <br>
-Developers, agent builders, and QA reviewers use this skill to score a pasted agent response, understand quality gaps, and identify the most useful improvements. It is especially oriented toward evaluating whether responses have enough depth, sourcing, structure, trust signals, and recommendation surface for monetized agent experiences. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pasted agent responses may contain personal, customer, confidential, or credential-like information. <br>
-Mitigation: Redact sensitive content before using the skill to evaluate a response. <br>
-Risk: The monetization readiness score is rubric-based guidance and does not guarantee revenue or fill probability. <br>
-Mitigation: Treat monetization output as planning guidance and validate revenue expectations separately before relying on it. <br>
+## Use Case:
 
+External developers, agent builders, and QA reviewers use this skill to evaluate a sample agent response for quality, monetization readiness, and actionable improvements.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/operon/score-agent-response-quality) <br>
-- [Operon homepage](https://operon.so) <br>
-- [Operon developers](https://operon.so/developers?utm_source=skill-score-quality&utm_medium=skill&utm_campaign=skills-distribution) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown score report with a scoring table, improvement list, and monetization context.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a normalized 0-100 score, dimension-level notes, and top improvement suggestions from a pasted agent response.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill includes vendor-specific monetization framing and Operon demand-pool claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review monetization context separately and adjust expectations for the actual agent vertical and current advertiser availability.
+
+Risk: Sample agent responses may contain personal or sensitive information.
+
+Mitigation: Redact sensitive personal data before submitting a response for scoring.
+
+Risk: The score is rubric-based and does not measure factual accuracy, RAG performance, latency, or hallucination rate.
+
+Mitigation: Pair this review with domain-specific factuality, retrieval, latency, or hallucination evaluation when those qualities matter.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/operon/skills/score-agent-response-quality)
+- [Operon homepage](https://operon.so)
+- [Operon developer documentation](https://operon.so/developers?utm_source=skill-score-quality&utm_medium=skill&utm_campaign=skills-distribution)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with a score summary, dimension table, improvement list, and monetization context]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a normalized 0-100 score, six dimension notes, top three improvement suggestions, and monetization context.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,13 @@
+{
+  "kind": "saved_Omni_output_replay",
+  "counts": {
+    "sources": 2,
+    "entities": 1,
+    "definitions": 18,
+    "assertions": 96,
+    "facts": 83
+  },
+  "new_facts": 36,
+  "additional_support": 13,
+  "new_live_calls": 0
+}

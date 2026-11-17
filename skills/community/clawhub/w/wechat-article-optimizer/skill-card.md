@@ -1,40 +1,53 @@
-## Description: <br>
-微信公众号文章优化，标题生成、封面建议、排版优化、发布时间推荐。适合自媒体运营、内容创作者。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimizes WeChat public account articles by generating title options, recommending cover treatments, improving layout, suggesting publishing times, and adding summaries and SEO keywords.
 
-## Publisher: <br>
-[275254cl-hash](https://clawhub.ai/user/275254cl-hash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[275254cl-hash](https://clawhub.ai/user/275254cl-hash)
 
-## Use Case: <br>
-Content creators, WeChat account operators, and social media editors use this skill to improve WeChat articles with title ideas, cover guidance, layout suggestions, publishing-time recommendations, summaries, and keyword optimization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Draft content may be confidential or unpublished. <br>
-Mitigation: Avoid pasting sensitive drafts unless the user trusts the agent environment. <br>
-Risk: The declared Node requirement may be unnecessary for this instruction-only package. <br>
-Mitigation: Treat Node as a declared environment requirement but confirm whether it is actually needed before deployment. <br>
+## Use Case:
 
+Content creators, media operators, and marketing teams use this skill to improve WeChat public account articles before publication. It provides title variants, cover recommendations, formatting guidance, publishing-time suggestions, summaries, and SEO keyword ideas.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/275254cl-hash/wechat-article-optimizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style text with title options, cover recommendations, layout guidance, timing suggestions, summaries, and keyword suggestions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No files or code are produced; the skill returns editorial recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Broad prompts about cover images or publishing times may invoke the skill when WeChat article optimization is not intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill when specifically optimizing a WeChat article and check that the response matches the intended publishing channel.
+
+Risk: Generated title, timing, SEO, and engagement suggestions may be inaccurate for a specific account or audience.
+
+Mitigation: Review recommendations against the account's audience analytics, editorial standards, and content quality before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/275254cl-hash/skills/wechat-article-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style text with article title options, cover recommendations, layout guidance, publishing-time suggestions, summaries, SEO keywords, and expected-effect notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node according to metadata; evidence reports no executable code, install actions, persistence, or sensitive access.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact/SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

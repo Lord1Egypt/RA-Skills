@@ -1,40 +1,49 @@
-## Description: <br>
-Summarize Pro helps an agent summarize text, articles, documents, meetings, emails, transcripts, reports, conversations, and other long content in formats such as bullets, TL;DR, ELI5, key takeaways, action items, executive summaries, comparisons, translations, and custom-length summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarize Pro helps an agent summarize text, articles, documents, meetings, emails, transcripts, reports, conversations, and other long-form content in multiple concise formats while operating locally without artifact evidence of network access.
 
-## Publisher: <br>
-[xvolica](https://clawhub.ai/user/xvolica) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xvolica](https://clawhub.ai/user/xvolica)
 
-## Use Case: <br>
-External users and developers use this skill to convert long or dense content into concise summaries, action items, takeaways, comparisons, and language-specific summaries. The skill also supports local summary history, saved summaries, templates, preferences, and usage statistics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores preferences, statistics, saved summaries, templates, and recent summary history locally, which may include sensitive metadata or summary content. <br>
-Mitigation: Use it only on content appropriate for local retention, and periodically review or clear ~/.openclaw/summarize-pro/ when handling sensitive material. <br>
-Risk: Broad summary-related activation phrases can trigger the skill when a user intended only a casual or unrelated request. <br>
-Mitigation: Confirm the summarization task and target content before creating or updating local summary history. <br>
+## Use Case:
 
+External users and developers use this skill to turn long content into TL;DRs, bullet summaries, executive summaries, action items, meeting notes, email summaries, comparison summaries, translated summaries, and custom-length summaries. It can also maintain local summary history, saved summaries, preferences, templates, and usage statistics.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xvolica/summarize-pro-1-0-0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown summaries with local JSON configuration and history files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local files under ~/.openclaw/summarize-pro/ for preferences, stats, saved summaries, templates, and recent summary history.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and artifact metadata) <br>
+Risk: The skill can keep local summary metadata, statistics, saved summaries, templates, topics, timestamps, and word counts under ~/.openclaw/summarize-pro/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid summarizing sensitive content if those local records are unacceptable, or periodically review and delete the local data directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xvolica/skills/summarize-pro-1-0-0)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown summaries with structured headings, lists, tables, and word-count statistics]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and write local JSON files for settings, history, saved summaries, templates, and usage statistics under ~/.openclaw/summarize-pro/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

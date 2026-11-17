@@ -1,40 +1,50 @@
-## Description: <br>
-Audits HTTP security headers for user-specified websites, grades their posture A-F, and reports missing headers or server information leakage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits HTTP security headers for websites, grades missing protections from A-F, and flags server header information leakage.
 
-## Publisher: <br>
-[rogue-agent1](https://clawhub.ai/user/rogue-agent1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rogue-agent1](https://clawhub.ai/user/rogue-agent1)
 
-## Use Case: <br>
-Developers and security engineers use this skill to check websites they own or are authorized to test for common HTTP security headers, A-F posture grades, and obvious server information leakage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends HTTP requests to each user-specified target site, which may be visible to that site. <br>
-Mitigation: Run it only against sites you own or are authorized to check. <br>
-Risk: Header presence and grading are a narrow signal and may not represent the full security posture of a website. <br>
-Mitigation: Use the results as triage guidance and confirm important findings with a broader security review. <br>
+## Use Case:
 
+Developers, security reviewers, and site operators use this skill to audit public website HTTP security headers, review missing protections, and identify server information leakage.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rogue-agent1/headers) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text CLI report or JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports URL status, present and missing headers, severity labels, information-leak headers, score percentage, and A-F grade.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill makes outbound web requests to domains supplied by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for domains you intend to inspect, and avoid private internal services unless testing them from this environment is intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rogue-agent1/skills/headers)
+- [Publisher profile](https://clawhub.ai/user/rogue-agent1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May make outbound HTTP requests to user-supplied domains during audits.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

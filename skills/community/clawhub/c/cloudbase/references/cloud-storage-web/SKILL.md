@@ -1,18 +1,16 @@
 ---
 name: cloud-storage-web
 description: Complete guide for CloudBase cloud storage using Web SDK (@cloudbase/js-sdk) - upload, download, temporary URLs, file management, and best practices.
-version: 2.23.6
+version: 2.36.0
+license: MIT
 alwaysApply: false
 ---
 
-## Standalone Install Note
+## Sibling skills (local only)
 
-If this environment only installed the current skill, start from the CloudBase main entry and use the published `cloudbase/references/...` paths for sibling skills.
+Sibling CloudBase skills ship beside this skill. Use local relative paths such as `../auth-tool-cloudbase/SKILL.md`.
 
-- CloudBase main entry: `https://cnb.cool/tencent/cloud/cloudbase/cloudbase-skills/-/git/raw/main/skills/cloudbase/SKILL.md`
-- Current skill raw source: `https://cnb.cool/tencent/cloud/cloudbase/cloudbase-skills/-/git/raw/main/skills/cloudbase/references/cloud-storage-web/SKILL.md`
-
-Keep local `references/...` paths for files that ship with the current skill directory. When this file points to a sibling skill such as `auth-tool` or `web-development`, use the standalone fallback URL shown next to that reference.
+If a referenced sibling skill file is missing from this environment, ask the user to install the full CloudBase plugin (or the missing skill). Do **not** HTTP-fetch remote skill or protocol markdown into the agent context.
 
 # Cloud Storage Web SDK
 
@@ -30,9 +28,9 @@ Keep local `references/...` paths for files that ship with the current skill dir
 
 ### Then also read
 
-- Web login and identity -> `../auth-web/SKILL.md` (standalone fallback: `https://cnb.cool/tencent/cloud/cloudbase/cloudbase-skills/-/git/raw/main/skills/cloudbase/references/auth-web/SKILL.md`)
-- General Web app setup -> `../web-development/SKILL.md` (standalone fallback: `https://cnb.cool/tencent/cloud/cloudbase/cloudbase-skills/-/git/raw/main/skills/cloudbase/references/web-development/SKILL.md`)
-- Direct storage management through MCP tools -> `../cloudbase-platform/SKILL.md` (standalone fallback: `https://cnb.cool/tencent/cloud/cloudbase/cloudbase-skills/-/git/raw/main/skills/cloudbase/references/cloudbase-platform/SKILL.md`)
+- Web login and identity -> `../auth-web-cloudbase/SKILL.md`
+- General Web app setup -> `../web-development/SKILL.md`
+- Direct storage management through MCP tools -> `../cloudbase-platform/SKILL.md`
 
 ### Do NOT use for
 
@@ -63,13 +61,13 @@ Keep local `references/...` paths for files that ship with the current skill dir
 
 When the app runs on a local browser origin and must upload files from the frontend:
 
-1. Use `envQuery` with `action="domains"` to inspect the current security-domain whitelist.
+1. Use `queryEnv` with `action="domains"` to inspect the current security-domain whitelist.
 2. Convert the browser origin into the CloudBase whitelist entry format:
    - Browser origin `http://127.0.0.1:4173` -> whitelist entry `127.0.0.1:4173`
    - Browser origin `http://localhost:5173` -> whitelist entry `localhost:5173`
 3. If the exact current host entry is missing, call `envDomainManagement` with `action="create"` and add that host entry before relying on `app.uploadFile()`.
 4. If the runtime port may change between runs, do not assume any fixed default port list is sufficient. Re-check the actual browser origin you are really using for testing or final validation, then add that exact `host:port`.
-5. Tell the user that security-domain changes may take several minutes to propagate.
+5. Tell the user that security-domain changes may take a few minutes to propagate; poll `queryEnv(action="domains")` rather than blind-sleeping for a fixed long interval.
 6. Only after that should you implement and test browser-side `app.uploadFile()` flows.
 
 If `app.uploadFile()` returns `STORAGE_NOT_EXIST`, stop editing frontend code and fix the environment-side storage resource first. Re-check the environment storage list, create or select an available bucket if the task allows it, then retry the same SDK upload flow.
@@ -112,6 +110,27 @@ Use instead:
 - ✅ `app.storage.from('covers').upload('file', file)` — PG 模式上传
 - ✅ `app.storage.from('covers').createSignedUrl('file', 3600)` — 获取签名 URL（返回 `fullSignedURL` 字段）
 
+**Return shapes differ between modes (v3 SDK) — copy the right column:**
+
+| call | 传统模式 (`from()` 无参, `cloud://` fileID) | PG 模式 (`from('bucket')`, bucket 内对象名) |
+|---|---|---|
+| `upload(path, file)` | `{ data: { id, path, fullPath } }`；`upsert` 默认 **true** | `{ data: { id, ... } }`；`upsert` 默认 **false** |
+| `createSignedUrl(path, expiresIn)` | `await` → `{ data: { signedUrl } }` | `await` → `{ data: { fullSignedURL } }` |
+| `getPublicUrl(path)` | `await` → `{ data: { publicUrl } }` | **同步调用（不 await）** → `{ data: { publicUrl } }` |
+
+Source: [webv3/classic/storage.md](https://docs.cloudbase.net/api-reference/webv3/classic/storage.md) · [webv3/storage.md](https://docs.cloudbase.net/api-reference/webv3/storage.md)（raw markdown）。
+
+### PG mode URL resolution: 公开桶直链 vs 签名 URL
+
+| Bucket 类型 | URL 策略 | 代码 |
+|---|---|---|
+| 公开桶（`storage.buckets.public = true`） | 直链，无需登录态，可直接进 `<img src>` | `app.storage.from('covers').getPublicUrl('a.png')` → `{ data: { publicUrl } }` |
+| 私有桶 | 签名 URL，带过期时间 | `app.storage.from('covers').createSignedUrl('a.png', 3600)` |
+
+- 公开桶直链能否访问取决于 `storage.objects` 的 RLS SELECT 策略是否放行 anon —— 建桶 SQL 与策略模板见 `postgresql-development-cloudbase/references/storage-pg.md` "Public-read bucket template"。
+- 展示层做 `onerror` 兜底（直链被策略拦下时降级到签名 URL），不要硬依赖单一取址流程。
+- 业务表只存 bucket + key（或 SDK 解析出的最终 URL），不要在浏览器手工拼接 URL。
+
 ### Post-bucket: storage RLS (mandatory in PG / pgstore environments)
 
 In **PG / pgstore** environments, storage access control is enforced through **PostgreSQL Row Level Security (RLS) on `storage.buckets` / `storage.objects`** — exactly like Supabase Storage. These tables are already granted to `anon`, `authenticated`, and `service_role`; RLS is the permission gate. Traditional storage permission labels (`READONLY` / `PRIVATE` / `CUSTOM`) and JSON storage safe rules do not apply. The default RLS policy is deny all, so even if the bucket exists, `app.storage.from('covers').upload()` from a browser will fail with `STORAGE_PERMISSION_DENIED` unless you configure policies.
@@ -124,12 +143,12 @@ ALTER TABLE storage.objects ENABLE ROW LEVEL SECURITY;
 -- Allow authenticated users to upload files
 CREATE POLICY "authenticated_upload" ON storage.objects
   FOR INSERT TO authenticated
-  WITH CHECK (auth.role() = 'authenticated');
+  WITH CHECK (true);
 
 -- Allow authenticated users to read/download files
 CREATE POLICY "authenticated_read" ON storage.objects
   FOR SELECT TO authenticated
-  USING (auth.role() = 'authenticated');
+  USING (true);
 
 -- Optional: allow users to update/delete their own files
 CREATE POLICY "users_manage_own" ON storage.objects
@@ -156,16 +175,20 @@ Typical tasks:
 
 ## SDK initialization
 
+Init reference: [webv3/initialization.md](https://docs.cloudbase.net/api-reference/webv3/initialization.md)
+
 ```javascript
 import cloudbase from "@cloudbase/js-sdk";
 
 const app = cloudbase.init({
-  env: "your-env-id"
+  env: "your-env-id",
+  accessKey: import.meta.env.VITE_PUBLISHABLE_KEY, // publishable key — auto-provisioned, see below
 });
 ```
 
 Initialization rules:
 
+- **Publishable key auto-provisioning (do not ask the user):** browser-side storage requests are data-plane calls that require a publishable `accessKey`. Before writing client code, call `queryAppAuth(action="getPublishableKey")`; if empty, call `manageAppAuth(action="ensurePublishableKey")`; then write the key to `.env.local` as `VITE_PUBLISHABLE_KEY` (create the file if missing) and read it via `import.meta.env.VITE_PUBLISHABLE_KEY`. Never hardcode the key into source files. Only fall back to the console (`https://tcb.cloud.tencent.com/dev?envId={env}#/env/apikey`) if both MCP calls fail.
 - Use synchronous initialization with a shared app instance.
 - Do not re-initialize in every component.
 - If the operation depends on user identity, handle auth before storage operations.
@@ -194,7 +217,7 @@ const result = await app.uploadFile({
 - Validate file type and size before upload.
 - Show upload progress for larger files when UX matters.
 - On local dev origins, confirm the exact frontend origin already exists in environment security domains before assuming the upload path is usable.
-- Match against the whitelist entry format returned by `envQuery(action="domains")`, which is typically `host:port` instead of a full `http://...` URL.
+- Match against the whitelist entry format returned by `queryEnv(action="domains")`, which is typically `host:port` instead of a full `http://...` URL.
 - If the environment has no storage bucket or the SDK returns `STORAGE_NOT_EXIST` / `STORAGE_BUCKET_NOT_FOUND`, use CloudBase management/MCP storage tools to create or choose a bucket before retrying. Do not treat this as a successful optional upload.
 - After `app.uploadFile()` succeeds, do **not** fabricate a public-looking URL by concatenating `envId`, bucket domain, or `cloudPath`. Use the returned `fileID` with `app.getTempFileURL()` and store or display the SDK-resolved URL instead.
 
@@ -269,7 +292,7 @@ Use this for browser-initiated downloads. For programmatic rendering or preview,
 To avoid CORS problems, add your frontend domain in CloudBase security domains. In MCP-enabled workflows, prefer checking and updating this through tools before coding browser uploads.
 
 ```json
-{ "tool": "envQuery", "action": "domains" }
+{ "tool": "queryEnv", "action": "domains" }
 ```
 
 Use the actual browser origin when deciding what to add. If the page is running on a custom domain or a local dev port, add that exact `host:port` value instead of guessing from a hard-coded list.
@@ -282,7 +305,7 @@ Use the actual browser origin when deciding what to add. If the page is running 
 }
 ```
 
-Match the real browser origin to the whitelist entry format returned by `envQuery(action="domains")`. For local Vite and preview servers, the port can vary between runs, so avoid assuming any fixed default port is sufficient.
+Match the real browser origin to the whitelist entry format returned by `queryEnv(action="domains")`. For local Vite and preview servers, the port can vary between runs, so avoid assuming any fixed default port is sufficient.
 
 Typical examples:
 

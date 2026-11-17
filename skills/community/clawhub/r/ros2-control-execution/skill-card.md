@@ -1,40 +1,53 @@
-## Description: <br>
-Execute ROS 2 Control state-changing commands (load, switch, unload) in a sandboxed environment. Supports parameter profiles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute ROS 2 Control state-changing commands (load, switch, unload) in a sandboxed environment. Supports parameter profiles.
 
-## Publisher: <br>
-[bigrobinson](https://clawhub.ai/user/bigrobinson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bigrobinson](https://clawhub.ai/user/bigrobinson)
 
-## Use Case: <br>
-Developers and robotics engineers use this skill to run approved ROS 2 Control state-changing operations such as loading, switching, unloading, and setting controller or hardware component state through a wrapper-driven workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change ROS 2 controller and hardware state in a real robot, lab system, or production ROS environment. <br>
-Mitigation: Review each action before execution and require human approval or local guardrails for hardware-affecting commands. <br>
-Risk: The security evidence reports a real command-injection weakness and broad runtime authority in the wrapper boundary. <br>
-Mitigation: Use only a trusted ROS installation and trusted config/config.json, and avoid untrusted profiles or params files. <br>
+## Use Case:
 
+Developers and robotics engineers use this skill to configure and execute allowed ROS 2 Control controller-management operations such as load, switch, unload, and state changes through a wrapper script.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bigrobinson/ros2-control-execution) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Invocations route through a local Python wrapper and may update ROS 2 controller or hardware state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security review reports a command-execution weakness in a high-impact robotics context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use only in a trusted ROS workspace, inspect config/config.json before each use, and do not run with elevated privileges.
+
+Risk: The skill performs state-changing ROS 2 Control operations that can affect controllers and hardware behavior.
+
+Mitigation: Do not run against real hardware until setup path handling is fixed and operational safeguards such as confirmation or dry-run are added.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bigrobinson/skills/ros2-control-execution)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces command guidance for a ROS 2 workspace and may direct use of local configuration files.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

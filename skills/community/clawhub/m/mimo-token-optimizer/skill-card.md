@@ -1,43 +1,57 @@
-## Description: <br>
-Token消耗优化器 helps developers audit API, RAG, Agent, and tool-output token usage, then produce prioritized optimization plans with cost estimates, Pre-LLM compression, and CCR reversible-compression guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Token消耗优化器 helps agents audit token usage, estimate API costs, and produce prioritized optimization plans using prompt slimming, history management, tool-output compression, caching, model routing, and CCR-style reversible compression.
 
-## Publisher: <br>
-[qqyougitcom](https://clawhub.ai/user/qqyougitcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qqyougitcom](https://clawhub.ai/user/qqyougitcom)
 
-## Use Case: <br>
-Developers and AI operations teams use this skill to diagnose token spend, compare model costs, plan budgets, compress large contexts or tool outputs, and define quality-checked cost-reduction steps for API, RAG, and multi-agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect sensitive failure or session logs while diagnosing token usage. <br>
-Mitigation: Use it only in trusted environments, redact logs before analysis, and avoid exposing secrets or sensitive user data. <br>
-Risk: Self-repair or configuration guidance could alter agent behavior if applied without review. <br>
-Mitigation: Prefer dry-run recommendations, back up configuration, and require explicit approval before any configuration writes. <br>
-Risk: Aggressive compression, truncation, or model routing can reduce available context and affect output quality. <br>
-Mitigation: Validate changes with A/B checks, keep quality-drop thresholds explicit, and preserve original data for CCR retrieval when completeness matters. <br>
+## Use Case:
 
+Developers and agent operators use this skill to diagnose high token/API costs and generate quantified cost-reduction plans for prompts, tool outputs, RAG, conversation history, model routing, caching, and budget forecasting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qqyougitcom/mimo-token-optimizer) <br>
-- [Token optimization details reference](artifact/references/details.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Chinese Markdown with tables, checklists, estimates, and optional code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces quantitative token and cost estimates, prioritized mitigations, and quality checks; configuration or execution changes require the calling agent or user to apply them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: frontmatter and server release evidence) <br>
+Risk: Cache sharing across agents may expose private code, logs, or workspace context beyond the intended scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable cache sharing only with explicit opt-in, per-workspace isolation, secret redaction, and short retention.
+
+Risk: Failed-session analysis may process sensitive logs or conversation history.
+
+Mitigation: Apply secret redaction and retention limits before analysis, and restrict access to approved workspaces.
+
+Risk: Automatic configuration changes may degrade agent behavior or token efficiency if applied without review.
+
+Mitigation: Require human-approved configuration diffs and keep a rollback path for any applied changes.
+
+## Reference(s):
+
+- [Token消耗优化器 detailed reference](references/details.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with tables, checklists, code snippets, command examples, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to Chinese output; guidance expects quantified savings estimates and quality checks.]
+
+## Skill Version(s):
+
+1.5.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

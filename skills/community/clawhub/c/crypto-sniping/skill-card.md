@@ -1,40 +1,58 @@
-## Description: <br>
-Automated Binance bot using RSI, MACD, volume spikes, and whale tracking to generate signals, execute trades, and manage risk on BTC, ETH, and SOL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated Binance trading bot that scans BTC, ETH, and SOL markets with technical indicators and whale tracking to generate signals, place trades, and report status.
 
-## Publisher: <br>
-[dorjenorbulim](https://clawhub.ai/user/dorjenorbulim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dorjenorbulim](https://clawhub.ai/user/dorjenorbulim)
 
-## Use Case: <br>
-Developers or technically skilled traders use this skill to configure and run a Binance trading bot that scans markets, sends alerts, and can execute paper or live trades with position sizing and loss limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can place automated trades that affect real funds. <br>
-Mitigation: Start in paper or read-only mode, verify symbols, position sizing, and daily loss limits, and enable live mode only after accepting the trading risk. <br>
-Risk: The skill requires sensitive Binance credentials and may use Telegram notification credentials. <br>
-Mitigation: Use narrowly scoped Binance keys with withdrawals disabled, protect environment variables, and verify the Telegram destination before running alerts. <br>
+## Use Case:
 
+Developers and crypto operators use this skill to configure and run a Binance-focused trading assistant that scans market data, surfaces signals, tracks large-market activity, and can execute automated trades when enabled.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dorjenorbulim/crypto-sniping) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands, YAML configuration examples, and Python code behavior] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Binance and optional Telegram credentials; paper mode is the safer default, while live mode can place real trades.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md) <br>
+Risk: The skill can place real Binance trades automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start without live trading and use a dedicated restricted Binance API key with no withdrawal permission.
+
+Risk: Advertised stop-loss and take-profit behavior may not provide reliable live exit protection.
+
+Mitigation: Do not rely on those controls until live exit-order behavior and paper-mode credential handling are reviewed and fixed.
+
+Risk: Telegram alerts may reveal trading activity.
+
+Mitigation: Use Telegram notifications only with a trusted bot token and chat, and treat alert content as sensitive.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dorjenorbulim/skills/crypto-sniping)
+- [Publisher Profile](https://clawhub.ai/user/dorjenorbulim)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with command examples, YAML configuration, and text status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May place Binance orders and send Telegram alerts when configured for live operation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

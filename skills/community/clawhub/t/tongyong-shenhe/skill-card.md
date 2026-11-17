@@ -1,43 +1,61 @@
-## Description: <br>
-A configurable content moderation skill for d.php-based admin sites that applies local rules and can optionally use an approved moderation API for a second review pass. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tongyong Shenhe helps agents configure and run rule-based content moderation workflows for d.php admin sites, with optional API-assisted review.
 
-## Publisher: <br>
-[wulooongcha](https://clawhub.ai/user/wulooongcha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wulooongcha](https://clawhub.ai/user/wulooongcha)
 
-## Use Case: <br>
-Internal moderation operators and site teams use this skill to configure and run automated review workflows for d.php-based backend sites. It reviews pending content with configurable rules, supports dry-run checks, and can submit approve or reject decisions when live mode is used. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires admin credentials, TOTP seeds, and optional API keys. <br>
-Mitigation: Use a least-privilege account, store config.json as a secret, and never commit or share TOTP seeds or API keys. <br>
-Risk: Live mode can change moderation decisions on production backend sites. <br>
-Mitigation: Run dry-run first, limit batches and modules, review rule changes carefully, and enable live submission only after the output matches policy expectations. <br>
-Risk: External decision files and optional API integration can affect approve or reject outcomes. <br>
-Mitigation: Use trusted decision files only and enable the external API only when the endpoint and data-handling policy are approved. <br>
+## Use Case:
 
+Internal moderation operators and developers use this skill to configure site credentials and rules, test moderation decisions in dry-run or fetch-only mode, and submit decisions for compatible d.php admin sites.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wulooongcha/tongyong-shenhe) <br>
-- [Publisher profile](https://clawhub.ai/user/wulooongcha) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration, Python code, and runtime text logs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce pending review JSON files and submit moderation decisions when configured for live operation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill uses administrator credentials and a reusable TOTP seed for live moderation workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for approved internal moderation workflows, use a least-privileged service account, and protect config files with strict permissions.
+
+Risk: Live mode can submit moderation approvals or rejections to configured sites.
+
+Mitigation: Run dry-run or fetch-only first, review decisions, and enable live submission only after site-specific rules are validated.
+
+Risk: Optional API-assisted review can send submitted content to a configured external moderation endpoint.
+
+Mitigation: Verify or replace the API endpoint before setting an API key and confirm that content sharing is approved for the deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wulooongcha/skills/tongyong-shenhe)
+- [Usage guide](artifact/USAGE.md)
+- [Deployment guide](artifact/DEPLOY.md)
+- [Example configuration](artifact/config.example.json)
+- [Default moderation rules](artifact/rules.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown instructions with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate pending_review.json in fetch-only mode and consume decisions.json in submit mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

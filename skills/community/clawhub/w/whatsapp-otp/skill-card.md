@@ -1,40 +1,53 @@
-## Description: <br>
-Sends WhatsApp one-time password messages through the CMI OmniChannel RCS API using a preconfigured template. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send WhatsApp OTP (one-time password) messages via CMI OmniChannel RCS API.
 
-## Publisher: <br>
-[picccabo-art](https://clawhub.ai/user/picccabo-art) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[picccabo-art](https://clawhub.ai/user/picccabo-art)
 
-## Use Case: <br>
-Developers and operations teams use this skill to send WhatsApp verification or authentication codes through CMI CPaaS when they have approved tenant and application credentials. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles OTP-sending credentials and application secrets. <br>
-Mitigation: Use least-privilege or test CMI credentials, avoid placing long-lived secrets in chat or shell history, and rotate credentials according to operational policy. <br>
-Risk: The server security summary reports disabled normal network protections, including TLS verification changes and proxy bypass behavior. <br>
-Mitigation: Review before installing, confirm the recipient before sending, and do not use in production unless the security or operations team accepts the network behavior. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/picccabo-art/whatsapp-otp) <br>
-- [CMI OmniChannel RCS singleSend endpoint](https://cpaas-rcs.cmidict.com:7081/singleSend) <br>
+## Use Case:
 
+Developers and operators use this skill to send verification, OTP, or authentication codes over WhatsApp through a pre-configured CMI OmniChannel RCS template.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command invocations and plain-text script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Sends one WhatsApp OTP per invocation and requires CMI tenant credentials, application credentials, recipient number, and OTP code.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: API secrets and OTPs are sent by an implementation that disables important network security protections.
+
+Mitigation: Use only in approved environments with direct access to the CMI endpoint, fix certificate validation and proxy handling before real OTP use, and rotate any credentials already used with this implementation.
+
+Risk: Credentials may be exposed when passed as command-line arguments.
+
+Mitigation: Prefer environment variables, a secret manager, or another non-logged secret delivery path instead of passing credentials directly on the command line.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/picccabo-art/skills/whatsapp-otp)
+- [CMI OmniChannel RCS singleSend endpoint](https://cpaas-rcs.cmidict.com:7081/singleSend)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, guidance]
+
+**Output Format:** [Markdown with inline shell commands and command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CMI tenant credentials, application credentials, recipient phone number, and OTP code.]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

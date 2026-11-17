@@ -1,44 +1,51 @@
-## Description: <br>
-Guides users through DeepSeek-Reasonix and DeepSeek-based PPT tutorial workflows learned from Bilibili creator videos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill guides agents on DeepSeek-Reasonix usage and DeepSeek-based presentation generation based on Bilibili tutorial sources.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and learners use this skill to get tutorial-style guidance for exploring DeepSeek-Reasonix as an AI programming agent and for applying DeepSeek to presentation-generation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad DeepSeek-related activation keywords may cause the skill to be selected for general DeepSeek requests where a tutorial helper is not intended. <br>
-Mitigation: Review the matched request for relevance before using the guidance, and narrow or disable the trigger if accidental activation is a concern. <br>
-Risk: Video-derived tutorial guidance may omit context or become outdated as DeepSeek-Reasonix workflows change. <br>
-Mitigation: Treat the output as learning support and verify current tool behavior, pricing, and workflow details against the linked sources or official product documentation before relying on it. <br>
+## Use Case:
 
+Developers and external users use this skill to get concise guidance for DeepSeek-Reasonix workflows and DeepSeek-assisted presentation generation. It is most relevant when users ask about DeepSeek, Reasonix, or related AI programming-agent tutorials.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/deepseek-reasonix-f074f8) <br>
-- [Publisher profile](https://clawhub.ai/user/534422530) <br>
-- [DeepSeek-Reasonix Bilibili tutorial by KunpengTalk](https://www.bilibili.com/video/BV1sCVN6xEan) <br>
-- [DeepSeek-Reasonix Bilibili tutorial by Programmer Xiao Liu](https://www.bilibili.com/video/BV1RtGU6hEDd) <br>
-- [DeepSeek PPT Bilibili tutorial by Da Mao Dong](https://www.bilibili.com/video/BV1dh9VYqE5w) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style tutorial guidance with steps, examples, and reference links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Activates on DeepSeek, Reasonix, and related tutorial keywords; no credentials, code execution, or external tool calls are required by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad DeepSeek-related trigger terms may activate the skill during unrelated conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow the trigger terms before deployment if accidental activation would be distracting.
+
+## Reference(s):
+
+- [Bilibili: DeepSeek-Reasonix experience by KunpengTalk](https://www.bilibili.com/video/BV1sCVN6xEan)
+- [Bilibili: DeepSeek-Reasonix tutorial by Chengxuyuan Xiaoliu](https://www.bilibili.com/video/BV1RtGU6hEDd)
+- [Bilibili: DeepSeek presentation generation methods by Damao Dong](https://www.bilibili.com/video/BV1dh9VYqE5w)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only skill with no executable code or privileged behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

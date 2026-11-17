@@ -1,44 +1,59 @@
-## Description: <br>
-Expose local web pages and HTTP services to the public internet via secure tunnels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expose local web pages and HTTP services to the public internet via secure tunnels.
 
-## Publisher: <br>
-[ctz168](https://clawhub.ai/user/ctz168) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ctz168](https://clawhub.ai/user/ctz168)
 
-## Use Case: <br>
-Developers and agents use this skill to publish a local web page, dashboard, HTTP service, webhook endpoint, or local API through an AiTun public tunnel for previews, demos, and integration testing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Publishing a local service can expose non-sensitive previews or test endpoints to the public internet. <br>
-Mitigation: Use the skill only when public access is intended, prefer temporary non-sensitive previews or test webhooks, and stop the tunnel when finished. <br>
-Risk: TCP forwarding for SSH, RDP, or databases can expose powerful services if used without adequate controls. <br>
-Mitigation: Avoid --tcp-ports for SSH, RDP, and databases unless the operator fully understands the exposure and has appropriate access controls. <br>
-Risk: Remote shell installers increase supply-chain risk compared with package-manager installation. <br>
-Mitigation: Prefer pip or uv installation over curl-to-shell or PowerShell remote installer commands. <br>
+## Use Case:
 
+Developers and agents use this skill to share locally running web pages, dashboards, HTTP services, webhook endpoints, and APIs through public tunnel URLs for review, demos, and integration testing.
 
-## Reference(s): <br>
-- [AiTun Homepage](https://aitun.cc) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ctz168/skills/aitun-tunnel) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/ctz168) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce a public tunnel URL for a running local service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.5 (source: server release evidence and skill frontmatter) <br>
+Risk: A third-party tunneling tool can make chosen local services publicly reachable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for services intended to be shared, avoid sensitive local endpoints, and stop the tunnel or daemon when sharing is no longer needed.
+
+Risk: Installer commands such as curl-to-bash or irm-to-iex can execute remote code directly.
+
+Mitigation: Prefer the documented pip or uv install path and review package source or provenance where possible before installation.
+
+Risk: Forwarding administrative, debug, database, SSH, or RDP ports can expose sensitive systems.
+
+Mitigation: Avoid forwarding privileged or sensitive ports and limit tunnels to the specific local HTTP service needed for the task.
+
+## Reference(s):
+
+- [AiTun Homepage](https://aitun.cc)
+- [ClawHub Skill Page](https://clawhub.ai/ctz168/skills/aitun-tunnel)
+- [ClawHub Metadata Link](https://clawhub.ai/ctz168/aitun-tunnel)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include public tunnel URLs and cleanup commands for the selected local service.]
+
+## Skill Version(s):
+
+4.0.5 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

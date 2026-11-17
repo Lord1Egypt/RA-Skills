@@ -1,25 +1,27 @@
 # Promotion and Demotion Rules
 
-## Promotion Logic — Promote to hot cache when:
+HOT promotion is an explicit user-authorized indexing decision, not an automatic consequence of score, veto, recency, frequency, or a hook.
 
-**Keyword triggers**: referenced in 3+ conversations within 7 days; significant movement (5+ positions); targeted in new active campaign; driving traffic spike.
-**Competitor triggers**: mentioned in 3+ recent analyses; showing aggressive SEO activity; launching competing content.
-**Metric triggers**: requested frequently; showing anomalous behavior; tied to active priority.
+## Promote to HOT
 
-**Promotion action:**
-1. Add item to relevant section in memory/hot-cache.md
-2. Add note: "Promoted [date] - [reason]"
-3. Keep detailed data in cold storage
-4. Set reminder to review in 30 days
+Promote only a current conclusion needed across sessions, such as an approved priority, active safety block, or high-value pointer. The entry:
 
-## Demotion Logic — Demote to cold storage when:
+- is three lines or fewer;
+- records `last_updated` and the permission/decision reference;
+- links to an accepted registry record or dated WARM artifact;
+- contains no raw personal data, credential, or large dataset.
 
-**Keyword triggers**: not referenced in 30+ days; target rank achieved and stable 60+ days; no longer in active strategy; replaced by higher-priority target.
-**Competitor triggers**: no significant activity in 60+ days; fell out of top 5 by relevance; no longer targeting same keywords.
-**Campaign triggers**: completed 30+ days ago; cancelled or postponed indefinitely.
+Auditors and registry owners do not receive an automatic HOT exception.
 
-**Demotion action:**
-1. Remove from memory/hot-cache.md
-2. Archive full data in memory/[category]/archive/
-3. Add line: "Last reviewed [category]: [date]"
-4. Keep 1-line summary if historically significant
+## Demote
+
+- Review HOT entries older than 30 days; move the detail back to its WARM source and remove stale pointers after permission.
+- Review WARM artifacts older than 90 days for COLD archival, subject to retention/legal hold.
+- Preserve original path, content hash, and source links in archive metadata.
+- Registry events/projections and live consent suppression never participate in HOT/WARM/COLD demotion.
+
+## Supersede
+
+For comparable non-canonical notes, mark the older note `superseded_by: <artifact/date>` and keep both until normal retention. If unit, window, denominator, source meaning, or authority differs, preserve both and open a conflict.
+
+Registry facts change only through the owner event protocol with current revision. Working-memory consolidation may submit a proposal but may not edit the stream, projection, or generated human view.

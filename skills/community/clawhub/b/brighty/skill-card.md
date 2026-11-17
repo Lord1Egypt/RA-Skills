@@ -1,44 +1,59 @@
-## Description: <br>
-Banking interface for AI bots and automation. Get a bank account, issue a Mastercard, buy and sell crypto, send payments and invoices via API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Banking interface for AI bots and automation. Get a bank account, issue a Mastercard, buy and sell crypto, send payments and invoices - all via API.
 
-## Publisher: <br>
-[Maay](https://clawhub.ai/user/Maay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[maay](https://clawhub.ai/user/maay)
 
-## Use Case: <br>
-Developers, automation builders, and Brighty business or freelance account owners use this skill to connect an agent to Brighty banking workflows, including account lookup, card operations, crypto exchange, payouts, invoices, and team management. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill runs an unpinned remote MCP server from the Maay/brighty_mcp repository. <br>
-Mitigation: Install only from a trusted Brighty publisher and repository, and prefer a pinned, reviewed MCP server version before use. <br>
-Risk: The Brighty API key can enable money movement and account management. <br>
-Mitigation: Use the least-privileged API token available, keep it in environment configuration only, keep it out of chat and memory, and monitor account activity. <br>
-Risk: Payments, transfers, card changes, account termination, and team-management actions can have direct financial or access-control impact. <br>
-Mitigation: Require explicit user confirmation before every payment, transfer, card, account, or team-management action, with amounts and recipients shown clearly. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Maay/brighty) <br>
-- [Brighty MCP Server Repository](https://github.com/Maay/brighty_mcp) <br>
-- [Brighty API Documentation](https://apidocs.brighty.app/docs/api/brighty-api) <br>
-- [Brighty Business Portal](https://business.brighty.app/auth?signup=true) <br>
+## Use Case:
 
+External developers and automation operators use this skill to connect an agent to Brighty business or freelance banking workflows, including account, card, transfer, payout, and team-management tasks.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and MCP tool references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires mcporter and BRIGHTY_API_KEY; banking, payment, card, account, and team-management actions should be confirmed explicitly before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill auto-runs mutable GitHub code while using a sensitive Brighty owner API token.
+
+Mitigation: Install only after reviewing a pinned commit or vetted package release, use the least-privileged revocable token available, and rotate or monitor the token when the dependency changes.
+
+Risk: Banking actions can move funds or close accounts if executed without clear owner approval.
+
+Mitigation: Keep payout confirmations outside the MCP server, show amounts and recipients clearly, and require explicit confirmation before payouts or account termination.
+
+Risk: The BRIGHTY_API_KEY can expose banking access if stored in skill text, memory files, or chat history.
+
+Mitigation: Store the key only in the local environment or local MCP configuration and avoid including it in prompts, logs, memory, or committed files.
+
+## Reference(s):
+
+- [Brighty MCP homepage](https://github.com/Maay/brighty_mcp)
+- [Brighty API documentation](https://apidocs.brighty.app/docs/api/brighty-api)
+- [Brighty](https://brighty.app)
+- [ClawHub skill page](https://clawhub.ai/maay/skills/brighty)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and MCP tool-call guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires mcporter and BRIGHTY_API_KEY for live Brighty API access.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

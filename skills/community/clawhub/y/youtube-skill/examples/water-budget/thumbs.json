@@ -1,0 +1,40 @@
+{
+  "video": "water.mp4",
+  "title": "How Much Water Is on Earth? Only 0.01% Is in Lakes and Rivers",
+  "channel": "Your channel",
+  "accent": "#FFD43B",
+  "options": [
+    {
+      "name": "a",
+      "frame": 8.2,
+      "text": "All of it in one drop",
+      "highlight": "one drop",
+      "layout": "side",
+      "side": "left",
+      "focus": [
+        0.4,
+        0.5
+      ],
+      "zoom": 1.12
+    },
+    {
+      "name": "b",
+      "frame": 66,
+      "text": "96.5% is salt water",
+      "highlight": "salt",
+      "layout": "side",
+      "side": "right",
+      "focus": [
+        0.6,
+        0.5
+      ],
+      "zoom": 1.15
+    },
+    {
+      "name": "c",
+      "frame": 4.5,
+      "layout": "none",
+      "zoom": 1.0
+    }
+  ]
+}

@@ -1,38 +1,58 @@
-## Description: <br>
-Weekly AI roundup that curates the 5 most significant AI stories from the week in Sol's voice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Weekly AI roundup that curates the 5 most significant AI stories from the week, written in Sol's voice.
 
-## Publisher: <br>
-[amrree](https://clawhub.ai/user/amrree) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amrree](https://clawhub.ai/user/amrree)
 
-## Use Case: <br>
-Developers and content maintainers use this skill to generate a weekly AI news roundup for a Jekyll site, selecting high-engagement AI/ML Hacker News stories and drafting commentary in Sol's voice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify a repository and publish changes to GitHub through commits or pushes. <br>
-Mitigation: Require a visible diff and explicit confirmation before any commit or push, and verify the repository, branch, and GitHub credentials before execution. <br>
+## Use Case:
 
+Developers and content publishers use this skill to generate a weekly AI news roundup from recent Hacker News AI/ML stories, write contextual commentary with MiniMax, and create a Jekyll post for a configured site repository.
 
-## Reference(s): <br>
-- [Sol Weekly Roundup on ClawHub](https://clawhub.ai/amrree/skills/sol-weekly-roundup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown Jekyll post plus concise operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a dated post file and may commit or push repository changes when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill reads a local MiniMax API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in an environment where that key is intended for this workflow, and use a scoped or replaceable credential.
+
+Risk: The skill modifies a named Jekyll repository and may commit and push generated content without a separate review step.
+
+Mitigation: Run against a controlled branch or staging repository, and require review or CI checks before publication.
+
+Risk: The server security summary flags under-scoped permissions and limited user control for the scheduled publishing workflow.
+
+Mitigation: Review the requested permissions and configured repository path before installation, and disable unattended scheduling unless it matches the intended release process.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/amrree/skills/sol-weekly-roundup)
+- [ClawHub publisher profile](https://clawhub.ai/user/amrree)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands]
+
+**Output Format:** [Jekyll Markdown post and repository update actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates _posts/YYYY-MM-DD-ai-weekly-roundup.md and may commit and push generated content to GitHub.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

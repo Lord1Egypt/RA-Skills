@@ -1,40 +1,51 @@
-## Description: <br>
-Generate polished 1080x1920 TikTok/Reels/Shorts video ads from product clips and images, with Clean, Meme, and UGC styles using local Python and ffmpeg processing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate polished 1080x1920 TikTok/Reels/Shorts video ads from product clips and images with Clean, Meme, and UGC styles using local Python and ffmpeg processing.
 
-## Publisher: <br>
-[Zero2Ai-hub](https://clawhub.ai/user/Zero2Ai-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zero2ai-hub](https://clawhub.ai/user/zero2ai-hub)
 
-## Use Case: <br>
-Developers, marketers, and creator teams use this skill to prepare configuration-driven short-form product video ads from local media assets for TikTok, Reels, and Shorts campaigns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The reviewed artifact references requirements.txt and scripts/render.py, but those files are not included in the artifact evidence. <br>
-Mitigation: Install only from a complete trusted package and review the included requirements.txt and scripts/render.py before running the skill. <br>
-Risk: The skill performs local media processing with Python and ffmpeg. <br>
-Mitigation: Process trusted media inputs in a controlled local environment and review generated ads before publication. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Zero2Ai-hub/skill-ad-creative-engine) <br>
-- [Publisher profile](https://clawhub.ai/user/Zero2Ai-hub) <br>
+## Use Case:
+
+External marketers, creators, and developers use this skill to turn product clips and images into short-form vertical video ads with preset styles, local ffmpeg rendering, and optional beat-sync music timing.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The package is incomplete because the referenced renderer and assets are missing.
+
+Mitigation: Confirm the renderer, examples, fonts, and other referenced assets are present before relying on the skill in a production workflow.
+
+Risk: Python dependencies are not pinned.
+
+Mitigation: Install in an isolated virtual environment or container and review or create a pinned requirements file before installing dependencies.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides local generation of 1080x1920, 30 FPS H.264/AAC video ads; optional beat sync requires librosa.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+**Output Type(s):** [Guidance, Shell commands, Configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides local 1080x1920 vertical video-ad rendering; package evidence notes the referenced renderer and assets are missing.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

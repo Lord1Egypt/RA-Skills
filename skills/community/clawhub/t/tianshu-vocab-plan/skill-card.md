@@ -1,38 +1,48 @@
-## Description: <br>
-Generates a local Markdown spaced-repetition vocabulary study plan from a line-based word or phrase list. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a Markdown spaced-repetition study schedule from a word list, assigning new-word days and review batches at +1, +2, +4, +7, and +15 days.
 
-## Publisher: <br>
-[wangshengli0421](https://clawhub.ai/user/wangshengli0421) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wangshengli0421](https://clawhub.ai/user/wangshengli0421)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Students and language learners use this skill to turn a plain word or phrase list into a local study calendar for vocabulary review or exam preparation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Untrusted word-list entries containing unusual Markdown or HTML may appear in the generated table when rendered or shared.
+
+Mitigation: Use trusted word lists and review or sanitize entries before sharing the generated Markdown schedule.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Students, educators, and language-learning users use this skill to turn a plain text vocabulary list into a day-by-day study and review schedule. It is intended for vocabulary review planning and exam preparation, not app integrations or minute-level reminders. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The generated Markdown includes the words or phrases from the input file, so private or unrelated document contents could be exposed in the output. <br>
-Mitigation: Use only vocabulary lists intended for study planning as the --file input, and review the generated Markdown before sharing or storing it. <br>
+**Output Format:** [Markdown table with brief usage guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Tianshu Vocab Plan on ClawHub](https://clawhub.ai/wangshengli0421/tianshu-vocab-plan) <br>
+**Other Properties Related to Output:** [Reads a local word list and emits a dated schedule to standard output.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown table with brief usage notes and an example command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads a user-supplied local word-list file and prints the schedule to standard output.] <br>
+1.0.0 (source: server release metadata and clawhub.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

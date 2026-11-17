@@ -1,40 +1,58 @@
-## Description: <br>
-Database Tester helps agents validate relational database operations, data integrity, SQL behavior, migrations, and performance across MySQL, PostgreSQL, SQLite, and other RDBMS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Database testing for data integrity, SQL validation, migration verification, and performance across MySQL, PostgreSQL, SQLite, and other RDBMS.
 
-## Publisher: <br>
-[zhanghengyi1986-afk](https://clawhub.ai/user/zhanghengyi1986-afk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhanghengyi1986-afk](https://clawhub.ai/user/zhanghengyi1986-afk)
 
-## Use Case: <br>
-Developers and QA engineers use this skill to generate and review database validation steps for CRUD behavior, constraints, transactions, migrations, slow queries, and post-API data consistency checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes copyable SQL examples that can delete data, mutate records, run migrations, create deadlocks, or change server-wide MySQL settings. <br>
-Mitigation: Use the skill only against staging, local, or disposable databases with least-privilege test accounts; explicitly review DELETE, UPDATE, migration, deadlock, API mutation, and SET GLOBAL examples before execution. <br>
+## Use Case:
 
+Developers and engineers use this skill to validate database operations, constraints, migrations, transactions, and performance behavior. It helps produce SQL checks, shell commands, and Python test patterns for relational database testing.
 
-## Reference(s): <br>
-- [MySQL Specific Tests](references/mysql-tests.md) <br>
-- [PostgreSQL Specific Tests](references/postgresql-tests.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhanghengyi1986-afk/db-tester) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with SQL, Bash, and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces executable examples that require review before use against any database.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: SQL examples can delete or change real database data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run tests only against isolated non-production databases with disposable records, least-privileged credentials, and explicit transactions or snapshots.
+
+Risk: Some MySQL examples alter server-wide settings or exercise deadlock behavior.
+
+Mitigation: Require DBA approval before server-wide settings changes and do not run SET GLOBAL or deadlock examples against shared or production systems as written.
+
+Risk: Database examples are templates that may not fit a user's schema or safety controls as written.
+
+Mitigation: Review and adapt every SQL, shell, and Python example before execution.
+
+## Reference(s):
+
+- [MySQL Specific Tests](references/mysql-tests.md)
+- [PostgreSQL Specific Tests](references/postgresql-tests.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with SQL, bash, and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Database examples require adaptation before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

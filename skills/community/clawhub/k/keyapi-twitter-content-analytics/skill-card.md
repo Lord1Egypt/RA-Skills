@@ -1,43 +1,63 @@
-## Description: <br>
-Explore and analyze Twitter/X content at scale by retrieving user profiles, tweets, comments, replies, media, search results, trending topics, and follower or following networks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explore and analyze Twitter/X content at scale by retrieving user profiles, tweets, comments, replies, media, search results, trends, and follower/following networks.
 
-## Publisher: <br>
-[lycici](https://clawhub.ai/user/lycici) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lycici](https://clawhub.ai/user/lycici)
 
-## Use Case: <br>
-Developers, analysts, and research teams use this skill to collect and summarize Twitter/X profiles, tweets, replies, comments, trends, search results, and social graph data through the KeyAPI MCP service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a KeyAPI token for Twitter/X research and can load or save that token locally. <br>
-Mitigation: Set KEYAPI_TOKEN in the shell when possible, keep any .env file private, and avoid committing the skill directory. <br>
-Risk: Cached Twitter/X lookup results can remain on disk after analysis. <br>
-Mitigation: Use --no-cache for sensitive lookups and periodically delete .keyapi-cache when cached social data should not remain locally. <br>
+## Use Case:
 
+Developers, analysts, and social-media researchers use this skill to gather Twitter/X posts, profiles, comments, trends, and social graph data through KeyAPI MCP, then summarize engagement, conversation, and discovery findings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lycici/keyapi-twitter-content-analytics) <br>
-- [Publisher profile](https://clawhub.ai/user/lycici) <br>
-- [KeyAPI](https://keyapi.ai/) <br>
-- [KeyAPI Twitter MCP endpoint](https://mcp.keyapi.ai/twitter/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write API responses to local cache files and optional output files when the runner is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requires a KeyAPI token and may load it from a local .env file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set KEYAPI_TOKEN in the shell where possible, and protect or delete any .env file created in the skill directory.
+
+Risk: Twitter/X query results can be stored in a local cache.
+
+Mitigation: Treat cached results as potentially sensitive social data and delete or protect the .keyapi-cache directory when analysis is complete.
+
+Risk: KEYAPI_SERVER_URL can point the runner at a non-default endpoint.
+
+Mitigation: Use the default KeyAPI MCP endpoint unless you trust the alternate server.
+
+Risk: The security summary says the bundled runner is broader than the Twitter-only description.
+
+Mitigation: Review the bundled runner and limit use to intended KeyAPI Twitter/X workflows before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lycici/skills/keyapi-twitter-content-analytics)
+- [KeyAPI](https://keyapi.ai/)
+- [KeyAPI Twitter MCP endpoint](https://mcp.keyapi.ai/twitter/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a local cache for retrieved KeyAPI results; requires KEYAPI_TOKEN and Node.js.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

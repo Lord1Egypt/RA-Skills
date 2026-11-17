@@ -1,40 +1,54 @@
-## Description: <br>
-Train and calibrate Skip, a web-development-specific AI operator for skipsai. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Train and calibrate Skip, a web-development-specific AI operator for skipsai, for system prompts, readiness checks, calibration tasks, memory files, debugging drills, performance-budget workflows, progressive-enhancement exercises, and AI-assisted webdev studio procedures.
 
-## Publisher: <br>
-[lorchissimo](https://clawhub.ai/user/lorchissimo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lorchissimo](https://clawhub.ai/user/lorchissimo)
 
-## Use Case: <br>
-Developers and AI-assisted web development teams use this skill to create training prompts, readiness checks, calibration tasks, memory notes, debugging drills, performance-budget workflows, and operating procedures for Skip. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated memory files could capture secrets, private client information, or unverified claims. <br>
-Mitigation: Review generated memory files before reuse, keep them scoped to the intended project, and avoid storing secrets, private client information, or unverified claims. <br>
-Risk: Training or calibration outputs could be reused without validating that Skip followed the intended web development constraints. <br>
-Mitigation: Review readiness reports, calibration reports, and verification checklists before relying on the resulting operator behavior. <br>
+## Use Case:
 
+Developers and AI operators use this skill to train, calibrate, and evaluate Skip for static-first web development work, including readiness checks, memory preparation, debugging drills, performance-budget workflows, and supervised calibration tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lorchissimo/skip-trainer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance, prompts, checklists, reports, memory file outlines, and web development task instructions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; may direct the agent to create or update project memory files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may create or update persistent Skip/skipsai training memory that can shape future agent behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review target memory files before use, prefer a project-scoped memory directory, and require explicit confirmation before overwriting existing memory doctrine.
+
+Risk: Training guidance and calibration outputs could be treated as production-ready web development decisions without adequate review.
+
+Mitigation: Use the generated readiness reports, calibration reports, and verification checklists as review inputs before applying them to client or production work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lorchissimo/skills/skip-trainer)
+- [Publisher profile](https://clawhub.ai/user/lorchissimo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, prompts, checklists, code examples, shell commands, and memory-file guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose creation or updates of durable Skip/skipsai memory files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

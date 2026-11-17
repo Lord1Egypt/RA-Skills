@@ -14,7 +14,7 @@ from urllib.request import Request, urlopen
 
 SKILL_TITLE = "陈旧伤审核"
 DEFAULT_API_URL = "https://maas-api.hivoice.cn/v1/chat/completions"
-DEFAULT_MODEL = "u1-insuremed"
+DEFAULT_MODEL = "u2-med"
 DEFAULT_SYSTEM_PROMPT = (
     f"你是保险理赔与影像、骨科相关临床辅助专家。用户会给出影像或检查报告文字、"
     f"指定部位及任务说明，要求判断该部位伤情类别。\n"

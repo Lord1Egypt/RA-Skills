@@ -1,44 +1,53 @@
-## Description: <br>
-Automates 12306 train-ticket workflows, including browser-based login, ticket search, and booking-oriented actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides utilities for logging in to the 12306 rail ticketing service and querying train tickets.
 
-## Publisher: <br>
-[Feiyang2007](https://clawhub.ai/user/Feiyang2007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[feiyang2007](https://clawhub.ai/user/feiyang2007)
 
-## Use Case: <br>
-Developers and operators working with China Railway 12306 can use this skill to automate login and ticket-search workflows. Booking or payment-related actions should remain supervised and require explicit user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, for workflows involving the China Railway 12306 service. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate against a real 12306 travel account and may reach booking-related workflows. <br>
-Mitigation: Require explicit user confirmation before booking, purchase, or payment actions, and keep browser automation supervised. <br>
-Risk: Reusable login cookies may be saved in 12306_cookies.json. <br>
-Mitigation: Store the workspace securely, do not share generated session files, and delete 12306_cookies.json when the session should no longer be retained. <br>
-Risk: Credentials are supplied through RAILWAY_12306_USERNAME and RAILWAY_12306_PASSWORD environment variables. <br>
-Mitigation: Avoid logging or exposing these values in prompts, command output, screenshots, or shared artifacts. <br>
+## Use Case:
 
+Developers and agents use this skill to automate 12306 login setup and ticket-search workflows from Python while managing required account credentials and browser state.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Feiyang2007/12306-conflict) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python snippets and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May involve Playwright browser automation, 12306 account credentials from environment variables, and a reusable cookie file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill handles 12306 credentials and can store session cookies in a predictable plaintext file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated or low-risk 12306 account where possible, keep credentials and cookie files out of source control, restrict local file access, and delete 12306_cookies.json after use.
+
+Risk: The release claims purchase automation while the reviewed evidence shows a gap between that claim and the login/query implementation.
+
+Mitigation: Review the skill behavior before relying on purchase workflows and require human confirmation before any ticket purchase or account-impacting action.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/feiyang2007/skills/12306-conflict)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, configuration, guidance]
+
+**Output Format:** [Python code, shell commands, and concise Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a local 12306_cookies.json session-cookie file when login runs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

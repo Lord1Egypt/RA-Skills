@@ -1,45 +1,61 @@
-## Description: <br>
-Structured AI-assisted development workflows - discovery, planning, execution, code reviews, and testing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan Flow provides structured AI-assisted development workflows for discovery, planning, execution, code reviews, and testing.
 
-## Publisher: <br>
-[brunoscardoso](https://clawhub.ai/user/brunoscardoso) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[brunoscardoso](https://clawhub.ai/user/brunoscardoso)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to structure AI-assisted software work through discovery, planning, execution, review, and testing workflows with persistent project notes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can create and modify repository files as part of planning, execution, review, and testing workflows. <br>
-Mitigation: Review generated files and diffs before committing, and run the workflow only in repositories where automated edits are acceptable. <br>
-Risk: The project ledger stores persistent notes in flow/ledger.md and may capture project or preference details across sessions. <br>
-Mitigation: Do not store secrets or sensitive business details in the ledger, and periodically review, prune, or remove ledger content. <br>
-Risk: Autopilot mode can chain workflow steps for feature requests when enabled. <br>
-Mitigation: Keep autopilot disabled unless automatic workflow chaining is explicitly desired, and require review of discovery and plan artifacts before execution. <br>
-Risk: The contract workflow can fetch or read API documentation URLs supplied by the user. <br>
-Mitigation: Use trusted documentation URLs and review generated contracts before relying on extracted schemas, authentication details, or examples. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brunoscardoso/plan-flow) <br>
-- [Project homepage](https://github.com/brunoscardoso/plan-flow) <br>
-- [Publisher profile](https://clawhub.ai/user/brunoscardoso) <br>
+## Use Case:
 
+Developers and engineering teams use Plan Flow to structure AI-assisted software work across project setup, requirements discovery, implementation planning, plan execution, code and PR review, API contract drafting, and test generation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions and generated project files, with inline shell commands and code examples when relevant.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates files under flow/ and may create .plan-flow.yml or flow/.autopilot when directed by the workflow.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.8 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The workflow can direct an agent to create or edit repository files automatically.
+
+Mitigation: Review generated changes before committing or deploying them, especially after autopilot or plan execution workflows.
+
+Risk: The ledger behavior can silently retain project-specific memory in flow/ledger.md.
+
+Mitigation: Keep flow/ledger.md out of sensitive contexts, review its contents periodically, and prune entries that may expose private project details.
+
+Risk: The configuration example places an API key in .plan-flow.yml.
+
+Mitigation: Do not store real API keys in project configuration files; use environment variables or an approved secret-management mechanism.
+
+Risk: The contract workflow can fetch or process API documentation URLs.
+
+Mitigation: Avoid using /create-contract on internal or untrusted URLs unless the environment controls network access and the target is approved.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/brunoscardoso/skills/plan-flow)
+- [Project Homepage](https://github.com/brunoscardoso/plan-flow)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown documents, code snippets, shell commands, and YAML configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates workflow files under flow/; some workflows require git or the GitHub CLI.]
+
+## Skill Version(s):
+
+1.0.8 (source: SKILL.md frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

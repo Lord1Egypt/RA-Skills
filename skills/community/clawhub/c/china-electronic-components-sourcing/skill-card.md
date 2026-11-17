@@ -1,41 +1,49 @@
-## Description: <br>
-Comprehensive electronic components industry sourcing guide for international buyers that provides information about China's semiconductor, passive component, PCB, connector, and sensor manufacturing clusters, supply chain structure, regional specializations, and 2026 industry trends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+China Electronic Components Sourcing helps international electronics buyers navigate Chinese electronic-components manufacturing clusters, supply-chain structure, subsector trends, and supplier evaluation practices.
 
-## Publisher: <br>
-[1970168137](https://clawhub.ai/user/1970168137) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1970168137](https://clawhub.ai/user/1970168137)
 
-## Use Case: <br>
-External buyers, sourcing teams, and developers use this skill to query structured guidance about China's electronic component supply chain, manufacturing regions, subsectors, supplier evaluation criteria, FAQs, and glossary terms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is from a third-party publisher with a low trust tier. <br>
-Mitigation: Review the publisher profile, artifact hashes, and visible source files before deployment. <br>
-Risk: Sourcing and market data may become stale or may require buyer-specific verification. <br>
-Mitigation: Validate recommendations against current supplier certifications, audits, and official industry sources before making purchasing decisions. <br>
+## Use Case:
 
+International electronics buyers, sourcing teams, and supply-chain analysts use this skill to review China's electronic-components clusters, subsectors, supplier-evaluation criteria, and common sourcing questions.
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/1970168137/china-electronic-components-sourcing) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/1970168137) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, code, guidance] <br>
-**Output Format:** [Natural-language answers and structured Python dictionary or list results from local JSON data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads static cluster-level data from data.json and does not include individual factory contacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Market and supplier facts may be outdated, incomplete, or unsuitable as the sole basis for purchasing decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Independently verify supplier claims, certifications, and sourcing facts before using the guidance for procurement decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/1970168137/skills/china-electronic-components-sourcing)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Code]
+
+**Output Format:** [Markdown guidance and structured Python dictionary/list results from bundled JSON data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local lookup over bundled reference data; no external service calls are required.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

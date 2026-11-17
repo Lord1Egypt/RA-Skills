@@ -1,47 +1,60 @@
-## Description: <br>
-Debug failing Power Automate cloud flows using the FlowStudio MCP server by inspecting action-level inputs and outputs to identify root causes hidden by top-level status codes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Debug failing Power Automate cloud flows using the FlowStudio MCP server by inspecting action-level inputs and outputs to identify root causes beyond top-level Graph API status codes.
 
-## Publisher: <br>
-[ninihen1](https://clawhub.ai/user/ninihen1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ninihen1](https://clawhub.ai/user/ninihen1)
 
-## Use Case: <br>
-Developers and automation operators use this skill to investigate failed Power Automate cloud flow runs, inspect runtime action inputs and outputs, trace expression, connector, and HTTP failures, and verify proposed fixes through FlowStudio MCP. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to update and rerun live Power Automate flows, which may affect production automations. <br>
-Mitigation: Require explicit approval after the agent shows the target flow, proposed change, expected downstream effects, rollback plan, and test-environment verification plan. <br>
-Risk: The skill requires a FlowStudio MCP token and access to sensitive automation data. <br>
-Mitigation: Use a least-privilege token, provide it only through the configured environment variable, and install the skill only when the FlowStudio MCP server is trusted. <br>
-Risk: Power Automate action outputs can include large or sensitive payloads while debugging. <br>
-Mitigation: Inspect only the fields needed for diagnosis, limit printed output, and avoid retaining credentials, personal data, or unrelated payload contents in agent responses. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to diagnose and repair failing Microsoft Power Automate cloud flows through FlowStudio MCP diagnostics. It helps trace failed runs, inspect action inputs and outputs, identify connector or expression failures, apply fixes, and verify them by resubmitting prior runs.
 
-## Reference(s): <br>
-- [FlowStudio MCP](https://mcp.flowstudio.app) <br>
-- [FlowStudio MCP - Common Power Automate Errors](references/common-errors.md) <br>
-- [FlowStudio MCP - Debug Workflow](references/debug-workflow.md) <br>
-- [Expression error in child flow](https://github.com/ninihen1/power-automate-mcp-skills/blob/main/examples/fix-expression-error.md) <br>
-- [Data entry, not a flow bug](https://github.com/ninihen1/power-automate-mcp-skills/blob/main/examples/data-not-flow.md) <br>
-- [Null value crashes child flow](https://github.com/ninihen1/power-automate-mcp-skills/blob/main/examples/null-child-flow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, API calls, Configuration] <br>
-**Output Format:** [Markdown with Python code blocks and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FlowStudio MCP access and FLOWSTUDIO_MCP_TOKEN; agents should confirm current tool names and schemas with tools/list before making calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: server release metadata) <br>
+Risk: The skill can guide an agent to update, resubmit, or trigger live Power Automate flows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human approval before any flow update, resubmit, or trigger action, especially for production flows.
+
+Risk: Resubmitting or triggering flows can duplicate side effects such as emails, writes, approvals, or downstream API calls.
+
+Mitigation: Review the target flow's downstream actions before replaying a run and use controlled test payloads or non-production environments when possible.
+
+Risk: Run inputs and outputs may contain tokens, business records, or other sensitive data.
+
+Mitigation: Redact secrets and sensitive payload fields before placing diagnostic details into prompts, logs, or shared summaries.
+
+## Reference(s):
+
+- [Power Automate Debug Skill Page](https://clawhub.ai/ninihen1/skills/power-automate-debug)
+- [FlowStudio MCP](https://mcp.flowstudio.app)
+- [Common Power Automate Errors](references/common-errors.md)
+- [FlowStudio MCP Debug Workflow](references/debug-workflow.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with Python examples, diagnostic decision trees, and Power Automate configuration recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require access to a FlowStudio MCP server with a valid JWT and a FlowStudio MCP subscription.]
+
+## Skill Version(s):
+
+1.2.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,59 @@
-## Description: <br>
-Give your agent a virtual board of 8 specialized reasoning frameworks (strategy, risk, market, operations, ethics, forecasting, execution, AI-engineering) that independently evaluate a decision and synthesize a go/hold/kill verdict with confidence and concrete findings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Give your agent a virtual board of 8 specialized reasoning frameworks (strategy, risk, market, operations, ethics, forecasting, execution, AI-engineering) that independently evaluate a decision and synthesize a go/hold/kill verdict with confidence and concrete findings.
 
-## Publisher: <br>
-[roberthill0475-lang](https://clawhub.ai/user/roberthill0475-lang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roberthill0475-lang](https://clawhub.ai/user/roberthill0475-lang)
 
-## Use Case: <br>
-Developers and operators use this skill to run LLM-backed decision gates across business, product, campaign, venture, or AI-engineering decisions before proceeding. It returns structured council findings, risks, confidence, and a synthesized go/hold/kill verdict. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Decision prompts and optional context are submitted to OpenRouter and downstream model providers using the user's API key. <br>
-Mitigation: Avoid confidential, regulated, customer-identifying, or secret data unless provider terms and local policy allow it. <br>
-Risk: Local prompt-preview, cost, and execution logs may expose sensitive decision context if retained or shared. <br>
-Mitigation: Disable or tighten local logging, keep logs in controlled storage, and apply retention rules appropriate for the data. <br>
+## Use Case:
 
+Developers and agents use this skill to run structured decision reviews for ventures, campaigns, content, and business choices. It returns council-by-council findings plus a synthesized go, hold, kill, or iterate recommendation with confidence and cost estimates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/roberthill0475-lang/skills/multi-council-decision-engine) <br>
-- [OpenRouter model catalog](https://openrouter.ai/models) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [Structured Python dictionaries and concise text summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Council outputs include recommendations, confidence scores, findings, concerns, cost estimates, and synthesized go/hold/kill verdicts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Submitted prompts, campaign briefs, venture ideas, and context are sent to OpenRouter and possible downstream model providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with an approved external-model data-handling path, and do not submit secrets, customer records, regulated data, or confidential strategy.
+
+Risk: The artifact can write local prompt, application, and cost logs.
+
+Mitigation: Review log contents and retention behavior before use, and disable or restrict logging when sensitive business context may be present.
+
+Risk: The setup text suggests installing dependencies with a system pip override.
+
+Mitigation: Install in a virtual environment with pinned dependencies and review dependency versions before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/roberthill0475-lang/skills/multi-council-decision-engine)
+- [Publisher profile](https://clawhub.ai/user/roberthill0475-lang)
+- [OpenRouter model catalog](https://openrouter.ai/models)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Python-returned dictionaries and dataclass objects containing JSON-like council results, synthesized verdict text, flags, confidence, and cost fields.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and OPENROUTER_API_KEY; sends prompts to OpenRouter-backed models and may write local prompt, application, and cost logs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Manages accountability items on a configured Monday.com board for item creation, status checks, work sessions, and owner-assigned accountability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage accountability items on the configured Monday.com board. Use when creating new accountability items, checking on existing ones, running work sessions, or when a cron job fires. Also use when the owner assigns accountability or asks about status.
 
-## Publisher: <br>
-[novalystrix](https://clawhub.ai/user/novalystrix) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[novalystrix](https://clawhub.ai/user/novalystrix)
 
-## Use Case: <br>
-Developers and operators use this skill to configure an agent to create, review, update, and work through accountability items on a Monday.com board, including cron-triggered work sessions and daily summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run recurring autonomous work sessions that change Monday.com data, contact people, and delegate tasks. <br>
-Mitigation: Install only when scheduled autonomous accountability work is intended, and require human approval before outreach, configuration changes, Done status transitions, or spawning sub-agents. <br>
-Risk: A broadly scoped Monday.com token could expose or modify more board data than intended. <br>
-Mitigation: Use a least-privileged Monday.com token restricted to the intended board and required operations. <br>
-Risk: Sensitive information placed in accountability item details could be read by the agent or passed into delegated work. <br>
-Mitigation: Avoid storing secrets or unnecessary sensitive information in Monday.com item details, updates, and sub-agent task context. <br>
+## Use Case:
 
+Employees, developers, and external teams use this skill to manage accountability work on a configured Monday.com board, including creating items, reviewing active work, planning subtasks, posting updates, and preparing daily summaries.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/novalystrix/monday-accountability) <br>
-- [Monday.com API v2 endpoint](https://api.monday.com/v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with GraphQL and bash command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured Monday.com API token, board ID, and column IDs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Recurring authenticated access to a Monday.com board could modify real work records or post updates beyond the user's intent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Monday.com token, review configured board and column IDs before installation, and require approval before high-impact status or message changes.
+
+Risk: Board Details or Doc text can contain untrusted instructions that influence work sessions, sub-agent prompts, or outbound messages.
+
+Mitigation: Treat Monday.com board text as untrusted input, keep higher-priority operating rules intact, and review details before delegating work or sending messages.
+
+Risk: The helper script can read a Monday.com token from ~/.openclaw/.env if the environment variable is not set.
+
+Mitigation: Prefer scoped environment variables or a secrets manager, avoid broad persistent tokens in ~/.openclaw/.env, and rotate tokens if exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/novalystrix/skills/monday-accountability)
+- [Monday.com API v2 endpoint](https://api.monday.com/v2)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown guidance with inline shell and GraphQL examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update Monday.com items, sub-items, statuses, last-checked dates, and item updates when configured with Monday.com credentials.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

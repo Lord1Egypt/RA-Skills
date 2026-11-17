@@ -1,41 +1,54 @@
-## Description: <br>
-Generates clean, structured Markdown API documentation from a plain text list of REST API endpoints, with inferred descriptions and parameter details when they are not provided. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate clean, structured markdown API documentation from a plain text list of REST endpoints with inferred descriptions and parameter details.
 
-## Publisher: <br>
-[rydako1052](https://clawhub.ai/user/rydako1052) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rydako1052](https://clawhub.ai/user/rydako1052)
 
-## Use Case: <br>
-Developers and small teams use this skill to convert pasted REST endpoint lists into README-ready API reference documentation without hand-formatting each endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pasted API keys, tokens, or sensitive internal URLs may appear in the generated documentation. <br>
-Mitigation: Redact secrets and sensitive internal URLs before using the skill or before sharing the generated Markdown. <br>
-Risk: Inferred endpoint descriptions may be too generic when the input omits descriptions. <br>
-Mitigation: Review generated descriptions before publishing or handing off the documentation. <br>
+## Use Case:
 
+Developers, solo builders, and small teams use this skill to turn plain text REST endpoint lists into README-ready markdown API documentation.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/rydako1052/api-docs-gen-pro) <br>
-- [Publisher Profile](https://clawhub.ai/user/rydako1052) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Guidance] <br>
-**Output Format:** [Markdown document with endpoint sections, URL parameter lists, example response statuses, and notes for skipped or flagged lines.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Output language follows the input descriptions; the skill is intended to emit Markdown only.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Generated documentation can contain inaccurate inferred descriptions or parameter details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated markdown for accuracy before publishing or sharing it.
+
+Risk: Lines without recognized HTTP methods may be skipped, and apparent method typos require confirmation.
+
+Mitigation: Check the generated Notes section and confirm flagged endpoint methods before using the documentation.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/rydako1052/skills/api-docs-gen-pro)
+- [ClawHub publisher profile](https://clawhub.ai/user/rydako1052)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes notes for skipped lines or endpoint methods that appear mistyped.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

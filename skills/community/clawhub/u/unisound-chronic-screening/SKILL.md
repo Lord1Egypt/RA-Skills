@@ -70,7 +70,7 @@ python3 clinic/public-health-mgmt/chronic-screening/scripts/run.py \
 - `--appkey STRING`：**必填**。调用内部医疗大模型的鉴权 key，由平台分配。
 - `--output PATH`：输出文件路径（默认：打印到 stdout）。
 - `--base URL`：内部大模型 base URL（默认：`https://maas-api.hivoice.cn/v1`）。
-- `--model STRING`：模型名称（默认：`u1-insuremed`）。
+- `--model STRING`：模型名称（默认：`u2-med`）。
 - `--timeout SECONDS`：HTTP 超时秒数；`0` 表示一直等待（默认：0）。
 - `--encoding STRING`：输入文件编码（默认：`utf-8`）。
 

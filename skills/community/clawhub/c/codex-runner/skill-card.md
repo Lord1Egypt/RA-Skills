@@ -1,41 +1,53 @@
-## Description: <br>
-Runs long-running Codex CLI coding tasks in the background for git repositories, including task logs, status checks, process stopping, and sandbox-bypass execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs Codex CLI coding tasks in the background for long-running development work, with commands for starting, monitoring, logging, and stopping jobs.
 
-## Publisher: <br>
-[tianyn1990](https://clawhub.ai/user/tianyn1990) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tianyn1990](https://clawhub.ai/user/tianyn1990)
 
-## Use Case: <br>
-Developers use this skill to launch and manage long-running Codex coding work in a local git repository while keeping the main OpenClaw session available. It is intended for implementation, test, and build workflows that may continue in the background. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Unsandboxed background Codex jobs can modify local files without ongoing approval. <br>
-Mitigation: Use only in a dedicated, backed-up git repository with no secrets or sensitive files, and review resulting changes before relying on them. <br>
-Risk: Arbitrary task text or target paths can cause unintended work in the wrong directory. <br>
-Mitigation: Use trusted task descriptions and known target directories; avoid passing untrusted input or sensitive paths to the command scripts. <br>
-Risk: Background processes may continue after the initiating session returns. <br>
-Mitigation: Monitor ~/.codex-logs, check process status, stop the Codex process when finished, and verify it has exited. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tianyn1990/codex-runner) <br>
+## Use Case:
 
+Developers use this skill to delegate long-running coding, build, and test tasks to Codex CLI while monitoring progress through logs and process commands.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and JSON session payloads; command scripts emit plain text logs and status output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May start background processes and write task logs under ~/.codex-logs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Background Codex tasks can run with sandbox and approval protections disabled.
+
+Mitigation: Use the skill only in isolated throwaway workspaces or containers, and avoid running it against sensitive repositories or normal home directories.
+
+Risk: Shell wrappers accept task names, paths, and task text without robust validation or safe encoding.
+
+Mitigation: Rewrite the wrappers to validate inputs, safely encode JSON, quote shell arguments, and track only their own process IDs before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tianyn1990/skills/codex-runner)
+- [Publisher profile](https://clawhub.ai/user/tianyn1990)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces background-task launch instructions, process status, and log excerpts.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

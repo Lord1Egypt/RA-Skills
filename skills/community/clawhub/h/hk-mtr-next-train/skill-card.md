@@ -1,42 +1,55 @@
-## Description: <br>
-Provides Hong Kong MTR next-train ETA lookup with fuzzy station matching, multi-line support, and bilingual Traditional Chinese/English output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides fast Hong Kong MTR next-train ETA lookups with fuzzy station matching, multi-line support, and bilingual Traditional Chinese/English output.
 
-## Publisher: <br>
-[tomfong](https://clawhub.ai/user/tomfong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tomfong](https://clawhub.ai/user/tomfong)
 
-## Use Case: <br>
-External users and transit-focused agents use this skill to answer Hong Kong MTR arrival-time questions, including station-only, station-and-line, and multi-station ETA requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts public Hong Kong transit-data endpoints and depends on their availability and freshness. <br>
-Mitigation: Use the returned ETA data only for transit lookup responses, and present service-hour or no-information fallbacks when the public API has no result. <br>
-Risk: The station dictionary can be refreshed by writing a CSV file inside the skill directory. <br>
-Mitigation: Limit refreshes to the documented station-list CSV path and run the sync command only when installation or station-data updates require it. <br>
+## Use Case:
 
+External users and agents use this skill to answer Hong Kong transit questions by retrieving real-time MTR arrivals for stations or lines in English or Traditional Chinese.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tomfong/hk-mtr-next-train) <br>
-- [MTR Trains ETA API](https://rt.data.gov.hk/v1/transport/mtr/getSchedule.php) <br>
-- [MTR lines and stations CSV](https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Concise Markdown or plain text with bilingual ETA summaries and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should not fabricate ETA values; live results depend on public Hong Kong transit-data endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and skill changelog, released 2026-03-22) <br>
+Risk: The skill makes outbound requests to disclosed Hong Kong MTR and DATA GOV HK endpoints for live ETA and station data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm those endpoints are acceptable before installation and keep network access limited to opendata.mtr.com.hk and rt.data.gov.hk.
+
+Risk: Refreshing station data writes a local CSV cache inside the skill directory.
+
+Mitigation: Permit only the disclosed skill-local write scope, especially scripts/mtr_lines_and_stations.csv and scripts/__pycache__/.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tomfong/skills/hk-mtr-next-train)
+- [DATA GOV HK MTR train ETA endpoint](https://rt.data.gov.hk/v1/transport/mtr/getSchedule.php)
+- [MTR lines and stations CSV](https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Concise plain text or Markdown grouped by station, line, platform, destination, and ETA.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses live transit data when available and a local station CSV cache for matching; the skill directs agents not to fabricate ETA values.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and artifact changelog, released 2026-03-22)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

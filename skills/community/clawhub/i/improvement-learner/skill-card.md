@@ -1,42 +1,57 @@
-## Description: <br>
-Improvement Learner evaluates agent skill quality, tracks score changes, and can run guarded self-improvement loops for SKILL.md structure and supporting files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Improvement Learner evaluates agent skill quality, proposes or applies targeted skill improvements, protects against score regressions with a Pareto front, and tracks score trends over time.
 
-## Publisher: <br>
-[lanyasheng](https://clawhub.ai/user/lanyasheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanyasheng](https://clawhub.ai/user/lanyasheng)
 
-## Use Case: <br>
-Developers and agent-skill maintainers use this skill to score skill quality across documented dimensions, diagnose weak checklist areas, track progress, and apply iterative improvements with Pareto-front regression checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running the skill can modify the selected skill directory and create best-effort git commits. <br>
-Mitigation: Run it on a version-controlled copy of the intended skill, inspect diffs and commits, and keep backups before relying on generated changes. <br>
-Risk: Default evaluation can send SKILL.md content through Claude for LLM-based judging. <br>
-Mitigation: Use --mock when skill content should not be sent to Claude, accepting the lower-fidelity regex fallback described by the skill. <br>
-Risk: The skill can run tests for the target skill and should not be treated as a read-only scorer. <br>
-Mitigation: Use it only when active improvement behavior is acceptable, and sandbox untrusted skills before evaluation or self-improvement. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to evaluate an agent skill across quality dimensions, identify where points are lost, run guarded self-improvement loops, and generate progress reports for trend analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lanyasheng/improvement-learner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON score reports, Markdown progress reports, and proposed or applied skill-file changes with shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Evaluation outputs include per-dimension scores and checklist details; self-improvement outputs may include iteration decisions, diffs, memory statistics, and final scores.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The security scan reports that the skill can run target code, rewrite files, delete and restore directories, and auto-commit changes with insufficient safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in a disposable workspace or sandbox, keep the target skill under version control, and inspect all diffs before accepting or publishing changes.
+
+Risk: The skill may submit skill contents to an external LLM CLI during default accuracy evaluation.
+
+Mitigation: Use mock mode for local checks when external submission is not approved, and avoid evaluating directories that contain secrets or confidential material.
+
+Risk: The security verdict is suspicious despite no individual risk findings being listed.
+
+Mitigation: Prefer restricted execution and review test execution, file mutation, external LLM calls, and git commit behavior before using the skill on trusted work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lanyasheng/skills/improvement-learner)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON score reports, Markdown progress reports, and direct file changes or command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May mutate the target skill directory, create memory or state files, run subprocesses, and call an external LLM judge unless mock mode is used.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

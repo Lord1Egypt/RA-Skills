@@ -1,6 +1,12 @@
 {
-  "ownerId": "kn7cdcy2p8khe8rmecadchbrvd83kjv9",
-  "slug": "skill-forge-va",
+  "name": "skill-forge",
   "version": "1.3.0",
-  "publishedAt": 1774441093741
+  "description": "A powerful tool for forging high-quality skills with best practices, templates, and intelligent guidance. Includes structure templates, documentation standards, and quality assurance checklists.",
+  "author": "@Variya",
+  "keywords": ["skill", "creation", "template", "best-practices", "forge"],
+  "dependencies": {},
+  "requires": {
+    "bins": [],
+    "tools": []
+  }
 }

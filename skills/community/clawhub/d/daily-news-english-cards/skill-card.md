@@ -1,46 +1,64 @@
-## Description: <br>
-Generates daily bilingual English learning cards with vocabulary, summaries, and AI-created comic illustrations from recent news. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates bilingual English learning cards with vocabulary, summaries, and AI-created comic illustrations from recent news.
 
-## Publisher: <br>
-[jasonruan](https://clawhub.ai/user/jasonruan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jasonruan](https://clawhub.ai/user/jasonruan)
 
-## Use Case: <br>
-Learners, educators, and agents use this skill to create news-based English study cards with simple bilingual summaries, vocabulary, and comic-style illustrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses paid external APIs and requires API keys. <br>
-Mitigation: Use dedicated low-privilege keys with spending limits and avoid sharing keys in prompts, logs, or generated files. <br>
-Risk: The generator can install Python packages at runtime. <br>
-Mitigation: Run it in an isolated virtual environment and review dependencies before allowing installation. <br>
-Risk: News-derived prompts and generated text are sent to external providers. <br>
-Mitigation: Avoid using sensitive personal or proprietary text as input. <br>
+## Use Case:
 
+Learners, educators, and developers use this skill to generate news-based English study cards with simple bilingual summaries, vocabulary, and illustrations. It is suited for creating daily English-learning materials from selected news categories.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jasonruan/daily-news-english-cards) <br>
-- [Publisher profile](https://clawhub.ai/user/jasonruan) <br>
-- [Tavily Search](https://tavily.com) <br>
-- [DeepSeek API](https://platform.deepseek.com) <br>
-- [OpenRouter](https://openrouter.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, files] <br>
-**Output Format:** [Markdown instructions with bash commands; runtime outputs include PNG learning cards, PNG comic images, and JSON content data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Tavily, DeepSeek, and OpenRouter API keys; supports custom categories and output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may install mutable Python dependencies at runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Preinstall pinned dependencies in an isolated environment before running the script.
+
+Risk: The script can load API keys from .env files in nearby directories.
+
+Mitigation: Run it from a clean workspace and provide only trusted API keys through the intended environment.
+
+Risk: Model-supplied image URLs are fetched during generation.
+
+Mitigation: Run with network controls appropriate for untrusted remote media and review generated files before sharing.
+
+Risk: Generated cards include fixed branding not disclosed in the public instructions.
+
+Mitigation: Review outputs and modify the code or branding before use in external materials.
+
+## Reference(s):
+
+- [Daily News English Cards on ClawHub](https://clawhub.ai/jasonruan/skills/daily-news-english-cards)
+- [Tavily Search API](https://tavily.com)
+- [DeepSeek Platform](https://platform.deepseek.com)
+- [OpenRouter](https://openrouter.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Image files, JSON, Files]
+
+**Output Format:** [PNG learning-card images, PNG comic illustrations, and structured JSON content files written to an output directory]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Tavily, DeepSeek, and OpenRouter API keys; categories and output directory can be customized.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

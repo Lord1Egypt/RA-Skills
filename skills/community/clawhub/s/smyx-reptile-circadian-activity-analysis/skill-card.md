@@ -1,43 +1,54 @@
-## Description: <br>
-Analyzes fixed-camera reptile enclosure video to produce 24-hour circadian activity reports, including hourly motion patterns, peak activity periods, rhythm alignment, alert level, and non-medical husbandry guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes reptile enclosure video to report hourly activity patterns and potential circadian disruptions.
 
-## Publisher: <br>
-[18072937735](https://clawhub.ai/user/18072937735) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[18072937735](https://clawhub.ai/user/18072937735)
 
-## Use Case: <br>
-External reptile keepers, breeders, husbandry teams, researchers, and app developers use this skill to analyze 24-hour or multi-day enclosure videos and compare reptile motion patterns with species-specific day, night, or crepuscular rhythms. It helps produce structured rhythm reports and non-medical recommendations for checking lighting schedules, disturbances, observation quality, and follow-up needs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may upload reptile enclosure videos, public video URLs, and a user identifier to configured remote API services. <br>
-Mitigation: Use only authorized footage, avoid private household or facility video unless the service is trusted, and confirm retention and sharing practices before installation. <br>
-Risk: The bundled api-key/open-id flow and local token database are sensitive credential handling surfaces. <br>
-Mitigation: Protect open-id and API-key values, review configuration files before use, and limit access to any local token storage. <br>
-Risk: The skill provides health-adjacent husbandry guidance based on motion statistics. <br>
-Mitigation: Treat outputs as non-medical rhythm analysis; persistent abnormalities or visible health signs should be reviewed by a qualified reptile veterinarian. <br>
+## Use Case:
 
+Reptile keepers and husbandry teams use the skill to review enclosure video, compare activity with species-specific day/night patterns, and inspect reports and historical results.
 
-## Reference(s): <br>
-- [API Interface Documentation](artifact/references/api_doc.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/18072937735/smyx-reptile-circadian-activity-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown summaries and JSON-like structured analysis reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may include hourly activity arrays, peak hours, consistency scores, alert levels, report links, and non-medical recommended actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata; artifact frontmatter lists 1.0.1) <br>
+Risk: Enclosure videos or their URLs are sent to an external cloud service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated workspace and avoid sensitive media; review the service's uploaded-media retention before use.
+
+Risk: The skill creates or reuses a persistent local identity and stores tokens for report history.
+
+Mitigation: Review local identity and token storage before installation and use a dedicated account.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/18072937735/skills/smyx-reptile-circadian-activity-analysis)
+- [Reptile circadian analysis API documentation](references/api_doc.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Report links]
+
+**Output Format:** [JSON or Markdown text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured activity results, alerts, and optional saved report file or historical report links.]
+
+## Skill Version(s):
+
+1.0.16 (source: ClawHub release; bundled frontmatter lists 1.0.17)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

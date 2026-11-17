@@ -1,40 +1,53 @@
-## Description: <br>
-Call management system with preparation, real-time capture, and follow-up tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call management system with preparation, real-time capture, and follow-up tracking.
 
-## Publisher: <br>
-[pratilsudra](https://clawhub.ai/user/pratilsudra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pratilsudra](https://clawhub.ai/user/pratilsudra)
 
-## Use Case: <br>
-Employees and external users use this skill to prepare for calls and meetings, capture conversation notes, track decisions and commitments, and draft follow-ups while keeping call data local. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Call notes, contacts, commitments, and follow-up history may contain sensitive conversation data stored locally. <br>
-Mitigation: Keep the local memory/calls records protected, review retained records regularly, and delete data that should no longer be kept. <br>
-Risk: The reviewed artifact includes only the call preparation helper, while other documented workflow scripts are not present. <br>
-Mitigation: Verify the required helper scripts exist and behave as expected before relying on workflows beyond call preparation. <br>
+## Use Case:
 
+External users and developers use this skill to prepare for calls, capture notes and decisions, track commitments, and draft follow-up messages while keeping call data local.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/pratilsudra/call-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and plain text with optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local call preparation notes, summaries, follow-up drafts, and commitment tracking guidance; no external sharing is described in the evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill stores and reads sensitive call notes, contact context, commitments, and follow-ups in local memory files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when local storage of this information is acceptable, and periodically review or delete stored call records that are no longer needed.
+
+Risk: Some advertised workflows reference scripts that are not present in the reviewed artifact.
+
+Mitigation: Confirm required workflow scripts are available before relying on capture, call closing, follow-up, history, or commitment-status workflows.
+
+## Reference(s):
+
+- [ClawHub skill page for call-pro](https://clawhub.ai/pratilsudra/skills/call-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown and terminal-style text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference or summarize locally stored call notes, contacts, commitments, and follow-ups.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "v0"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["v0"]
   icon: "https://static.oomol.com/logo/third-party/V0.svg"
 ---
@@ -48,7 +48,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `delete_env_vars` — Delete one or more environment variables from a v0 project. [destructive]
 - `delete_hook` — Delete a webhook hook by hook ID. [destructive]
 - `delete_project` — Delete a v0 project by project ID. [destructive]
-- `favorite_chat` — Mark or unmark a v0 chat as favorite.
+- `favorite_chat` — Mark or unmark a v0 chat as favorite. [write]
 - `find_chats` — List chats in the connected v0 workspace with optional filters.
 - `find_deployment_errors` — Get the current error summary for a v0 deployment.
 - `find_deployment_logs` — List logs for a v0 deployment, optionally continuing from a previous timestamp.
@@ -60,7 +60,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `find_rate_limit` — Get current v0 rate-limit information for the workspace or a specific scope.
 - `find_vercel_projects` — List Vercel projects linked to the connected v0 workspace.
 - `find_versions` — List generated versions for a v0 chat.
-- `fork_chat` — Fork an existing v0 chat into a new chat workspace.
+- `fork_chat` — Fork an existing v0 chat into a new chat workspace. [write]
 - `get_billing` — Get current v0 billing and quota information.
 - `get_chat` — Get a single v0 chat, including the current messages when v0 returns them.
 - `get_deployment` — Get a single deployment by deployment ID.
@@ -74,7 +74,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `get_user` — Get the authenticated v0 user profile for the connected API key.
 - `get_user_scopes` — List workspaces and scopes accessible to the connected v0 user.
 - `get_version` — Get a single v0 chat version, optionally including default deployment files.
-- `init_chat` — Initialize a new v0 chat from files, a repository, a registry, a zip archive, or a template.
+- `init_chat` — Initialize a new v0 chat from files, a repository, a registry, a zip archive, or a template. [write]
 - `resume_message` — Resume a previously asynchronous v0 message generation. [write]
 - `send_message` — Send a follow-up message to an existing v0 chat. [write]
 - `update_chat` — Update a v0 chat's metadata such as its name or privacy. [write]
@@ -112,11 +112,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — v0 is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=v0
+  https://console.oomol.com/connections/v0
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - v0 homepage: https://v0.dev
+- API documentation: https://v0.dev/docs/api

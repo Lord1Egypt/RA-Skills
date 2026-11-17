@@ -1,37 +1,53 @@
-## Description: <br>
-Provides general A-share stock position-management guidance that adjusts exposure based on market strength, volatility, and weakness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language A-share position-sizing guidance that adjusts exposure based on market strength, volatility, and weakness signals.
 
-## Publisher: <br>
-[haohanyang92](https://clawhub.ai/user/haohanyang92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haohanyang92](https://clawhub.ai/user/haohanyang92)
 
-## Use Case: <br>
-Traders or analysts can ask for general A-share position sizing guidance, such as whether to add, reduce, or hold exposure based on market sentiment signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Outputs may be mistaken for personalized investment advice. <br>
-Mitigation: Treat outputs as general A-share position-management heuristics and consider risk tolerance, time horizon, capital constraints, and local regulations before acting. <br>
+## Use Case:
 
+External users and agents use this skill as a Chinese-language reference for A-share position management, including whether to add, reduce, or limit exposure under common market conditions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no account access, trading automation, or hidden behavior is indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Users may treat the percentage limits and stop-loss rules as personalized investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the rules as educational heuristics and require independent confirmation before acting on any trading recommendation.
+
+Risk: Static market-condition rules may not reflect current A-share market data or an individual portfolio.
+
+Mitigation: Check live market conditions and portfolio constraints before applying any suggested exposure level.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/haohanyang92/skills/position-management)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, markdown]
+
+**Output Format:** [Markdown guidance in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Educational A-share position-sizing heuristics; no code execution, data access, persistence, or account-control behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

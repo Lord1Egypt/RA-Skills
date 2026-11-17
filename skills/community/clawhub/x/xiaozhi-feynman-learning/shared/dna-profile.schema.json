@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xiaozhi-skills.openclaw.dev/schemas/dna-profile.schema.json",
+  "title": "LearningDNAProfile",
+  "x-distributed-to": "xiaozhi-feynman-learning",
+  "x-skill-scope": {
+    "note": "本副本随 xiaozhi-feynman-learning 分发，已按其 SKILL.md 裁剪：只保留正文在非否定语境下提到的字段（共 1 项，删去 12 个顶层字段）。完整定义在归属技能处。读/写权限与授权位以 SKILL.md 为准。",
+    "paths": [
+      "extensions.understanding"
+    ]
+  },
+  "description": "学习DNA 档案结构——随 xiaozhi-feynman-learning 分发的裁剪副本，只含 extensions.understanding；完整定义见归属技能 xiaozhi-learning-dna 的 dna-profile.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "extensions": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "通用扩展档案：notes 由康奈尔笔记写入，focus 由时间与专注力教练写入，plans 由 30 天学习计划制定师写入，projects 由跨学科侦探周写入，understanding 由费曼学习法写入。各分支只由对应 SKILL 写入，写入一律经 handover 的 subject_profile_writeback",
+      "properties": {
+        "understanding": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "concept": {
+                "type": "string",
+                "maxLength": 100
+              },
+              "subject": {
+                "type": "string",
+                "maxLength": 20
+              },
+              "depth": {
+                "$ref": "#/$defs/masteryLevel"
+              },
+              "stuckAt": {
+                "type": "string",
+                "maxLength": 100,
+                "description": "费曼卡住的位置，不写原话"
+              },
+              "lastTestedDate": {
+                "type": "string",
+                "format": "date"
+              },
+              "nextSuggestion": {
+                "type": "string",
+                "maxLength": 100
+              }
+            },
+            "required": [
+              "concept",
+              "depth"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "required": [],
+  "$defs": {
+    "masteryLevel": {
+      "type": "string",
+      "enum": [
+        "会复述",
+        "会解释",
+        "真正掌握"
+      ],
+      "description": "掌握度三档（shared/vocab.md §6）"
+    }
+  }
+}

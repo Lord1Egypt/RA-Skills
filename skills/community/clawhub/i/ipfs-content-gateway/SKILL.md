@@ -1,7 +1,7 @@
 ---
 name: ipfs-content-gateway
 description: "IPFS Content Gateway: Fetch content from IPFS by CID with automatic failover across 7 gateways. Upload files up to 10MB with pinning. List upload history. Use when an agent needs ipfs content gateway, ipfs content retrieval, decentralized storage access, cid content lookup, ipfs gateway access, list, retrieve, cid through AgentPMT-hosted remote tool calls. Discovery terms: ipfs content gateway, ipfs content retrieval, decentralized storage access, cid content lookup, ipfs gateway access, list."
-version: 1.0.0
+version: 1.0.1
 homepage: https://www.agentpmt.com/marketplace/ipfs-content-gateway
 compatibility: "Agent instructions for AgentPMT-hosted remote tool calls. Follow this skill body for supported account, wallet, and setup routes. No local command runtime is declared."
 metadata: {"author":"agentpmt","openclaw":{"homepage":"https://www.agentpmt.com/marketplace/ipfs-content-gateway"}}
@@ -9,7 +9,7 @@ metadata: {"author":"agentpmt","openclaw":{"homepage":"https://www.agentpmt.com/
 # IPFS Content Gateway
 
 ## Freshness
-Last updated: `2026-06-10`.
+Last updated: `2026-10-06`.
 
 If the current date is more than 7 days after the last updated date, reinstall this skill from skills.sh or ClawHub before relying on endpoints, schemas, setup steps, or examples.
 
@@ -153,7 +153,7 @@ Complete generated action schema: `./schema.md`.
 Supported action count: `3`.
 x402 availability: not enabled for this product.
 
-- `list` (action slug: `list`): List all files previously uploaded through this tool, sorted by most recent first. Returns upload history with CIDs, filenames, sizes, dates, and gateway URLs. Price: `20` credits. Parameters: none.
+- `list` (action slug: `list`): List all files previously uploaded through this tool, sorted by most recent first. Returns upload history with CIDs, filenames, sizes, dates, and gateway URLs. Price: `3` credits. Parameters: none.
 - `retrieve` (action slug: `retrieve`): Fetch content from IPFS by its Content Identifier (CID). Supports both CIDv0 (Qm...) and CIDv1 (bafy...) formats. Multiple gateways are tried automatically for reliability. Price: `20` credits. Parameters: `cid`.
 - `upload` (action slug: `upload`): Upload a file to IPFS. The file is pinned so it remains available on the network. Maximum file size is 10MB. Files must be base64-encoded before uploading. Price: `20` credits. Parameters: `content`, `filename`, `pinning_api_key`, `pinning_service`.
 

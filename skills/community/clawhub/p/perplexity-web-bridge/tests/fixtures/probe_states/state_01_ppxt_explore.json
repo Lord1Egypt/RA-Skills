@@ -1,0 +1,1 @@
+{"site": "ppxt", "label": "ppxt_explore", "observe": {"table": {"rows": [{"idx": 0, "role": "button", "name": "返回首页", "value": "", "ops": ["CLICK"]}], "url": "https://www.perplexity.ai/explore"}, "state": {"url": "https://www.perplexity.ai/explore", "title": "Perplexity", "text_len": 27}}}

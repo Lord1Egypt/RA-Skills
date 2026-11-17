@@ -1,45 +1,58 @@
-## Description: <br>
-Switches OpenClaw heartbeat requests to a local Ollama model and installs a local guard that reverts unauthorized heartbeat configuration changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Switches OpenClaw heartbeat configuration to a local Ollama model and deploys a local guard that reverts unauthorized heartbeat model changes.
 
-## Publisher: <br>
-[halfmoon82](https://clawhub.ai/user/halfmoon82) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[halfmoon82](https://clawhub.ai/user/halfmoon82)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to reduce cloud token usage by routing heartbeat checks to local Ollama and monitoring heartbeat configuration for unauthorized changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup can install a user-level background guard that enforces the configured heartbeat model. <br>
-Mitigation: Install only when persistent local enforcement is desired, review selected OpenClaw instances during setup, and use --uninstall to remove the guard. <br>
-Risk: The skill modifies OpenClaw configuration and can revert later heartbeat model changes that are not reflected in the guard configuration. <br>
-Mitigation: Keep generated backups and update heartbeat-guard.conf.json before intentionally changing heartbeat.model. <br>
-Risk: The documented Linux Ollama installation path includes a curl-to-shell command. <br>
-Mitigation: Prefer a trusted package manager or review the installer before running it. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to reduce paid cloud token usage from heartbeat calls by configuring a local Ollama model and monitoring heartbeat settings for unauthorized changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/halfmoon82/heartbeat-ollama-guard) <br>
-- [Publisher profile](https://clawhub.ai/user/halfmoon82) <br>
-- [MIT-0 license](https://opensource.org/licenses/MIT-0) <br>
-- [Ollama](https://ollama.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown instructions with CLI commands and local configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May install a user-level background guard and write OpenClaw configuration, backup, service, and log files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, clawhub.yaml, _meta.json, package.json) <br>
+Risk: Installs an always-running local guard that can overwrite OpenClaw heartbeat configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that behavior is intended, review generated guard files and configuration before use, and use --uninstall when the service is no longer needed.
+
+Risk: Setup guidance includes curl piped to sh for Ollama installation.
+
+Mitigation: Prefer safer Ollama installation methods or review installation scripts before execution.
+
+Risk: Guard configuration determines which heartbeat values are treated as authorized.
+
+Mitigation: Keep heartbeat-guard.conf.json writable only by the intended user and review expected values before changing OpenClaw configuration.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/halfmoon82/skills/heartbeat-ollama-guard)
+- [Ollama](https://ollama.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and Python-based local configuration actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [When executed, it can produce local OpenClaw configuration changes, backups, a guard daemon script, and LaunchAgent or systemd service files.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release metadata, clawhub.yaml, package.json, _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

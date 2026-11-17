@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn70jf7w9b0nqceqq2zgc2b4qx80c681",
-  "slug": "ai-presentation-maker",
+  "name": "ai-presentation-maker",
   "version": "1.0.0",
-  "publishedAt": 1771653850272
+  "description": "AI Presentation Maker — interview-driven pitch deck generator. Tell it what you built, who you're presenting to, pick an angle — get a complete slide deck with speaker notes and factual validation. No made-up ROI. Exports to Markdown, PPTX, and PDF.",
+  "author": "Jeff J Hunter",
+  "homepage": "https://jeffjhunter.com",
+  "license": "MIT",
+  "tags": ["presentation", "slides", "pitch-deck", "keynote", "speaker", "deck", "export", "pptx", "pdf", "factual"],
+  "emoji": "🎤"
 }

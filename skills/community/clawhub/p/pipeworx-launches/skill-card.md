@@ -1,38 +1,50 @@
-## Description: <br>
-Launches MCP wraps the Launch Library 2 API for free, no-auth space launch lookup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Launches MCP wraps the Launch Library 2 API for free, unauthenticated launch data access.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Developers and agents use this skill to query upcoming, past, and specific space launch information through the Pipeworx Launches MCP integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The connector uses mcp-remote@latest and a remote Pipeworx MCP gateway, which can change independently of the skill artifact. <br>
-Mitigation: Install only if you trust Pipeworx and mcp-remote; for stricter supply-chain control, pin the connector version and review the remote MCP provider before enabling it. <br>
+## Use Case:
 
+External users and developers use this skill to connect an agent to Pipeworx launch-data MCP tools for upcoming, past, specific, and searched space launches.
 
-## Reference(s): <br>
-- [Pipeworx Launches](https://pipeworx.io/packs/launches) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Configuration] <br>
-**Output Format:** [MCP tool responses and JSON MCP server configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a remote Pipeworx MCP gateway through mcp-remote; no API key is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Setup uses an unpinned npm-based MCP bridge that can run code from the local account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin mcp-remote to a reviewed version and run the MCP server in a restricted environment without unnecessary access to sensitive files or credentials.
+
+## Reference(s):
+
+- [Pipeworx Launches](https://pipeworx.io/packs/launches)
+- [ClawHub skill page](https://clawhub.ai/brucegutman/skills/pipeworx-launches)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration]
+
+**Output Format:** [Text responses from MCP tool calls and JSON MCP server configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Launch data is accessed through a Pipeworx MCP endpoint; no API key is described in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

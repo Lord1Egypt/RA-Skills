@@ -1,0 +1,36 @@
+{
+  "fixture": "合成离线失败样例，非真实平台记录",
+  "commands": [
+    {
+      "command": "prepare",
+      "exit_code": 0,
+      "result": {
+        "command": "prepare",
+        "reused": false,
+        "targets": 2,
+        "draft_sha256": "4dd80c72715ce50a5bb416afaadf30fedc3e1c17683705de01227f75385a3fab"
+      }
+    },
+    {
+      "command": "record",
+      "exit_code": 0,
+      "result": {
+        "command": "record",
+        "target": "3034745896c95dde6d83",
+        "applied": true,
+        "duplicate": false,
+        "state": "unknown"
+      }
+    },
+    {
+      "command": "intent",
+      "exit_code": 2,
+      "result": {
+        "error": "READBACK_REQUIRED",
+        "detail": "须先完成原生预填回读；未知、审核中或失败不能直接投稿"
+      }
+    }
+  ],
+  "final_state": "unknown",
+  "intent_count": 0
+}

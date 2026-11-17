@@ -1,45 +1,55 @@
-## Description: <br>
-Wiza (wiza.co). Use this skill for Wiza requests, including reading, creating, and updating Wiza data through the OOMOL-connected `oo` CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wiza (wiza.co). Use this skill for ANY Wiza request — reading, creating, and updating data. Whenever a task involves Wiza, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to operate Wiza through an OOMOL-connected account. It can inspect action schemas, check credits, retrieve reveal and list results, search prospects, and start individual contact enrichment after confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on a one-time CLI installer and OOMOL-brokered Wiza access. <br>
-Mitigation: Review the `oo` CLI installation command before running it and install only when OOMOL should broker Wiza access. <br>
-Risk: The `start_individual_reveal` action can change Wiza state or consume Wiza resources. <br>
-Mitigation: Confirm the exact payload and expected effect with the user before running write actions. <br>
-Risk: Using the wrong connected Wiza account or an expired connection can produce failed or unintended operations. <br>
-Mitigation: Connect only the intended Wiza account and resolve connection, scope, or credential errors before retrying. <br>
+## Use Case:
 
+External users with a connected Wiza account use this skill to check credits, search prospects, retrieve list and reveal results, and start an individual contact reveal.
 
-## Reference(s): <br>
-- [Wiza homepage](https://wiza.co) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-wiza) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads or responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the `oo` CLI to call Wiza connector actions; responses include connector data and an execution id.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: Setup directs users to run a remote installer whose behavior is unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup behavior, install a verified CLI release yourself, require approval before any remote installer runs, and check whether the CLI installs or synchronizes additional agent skills.
+
+Risk: Starting an individual reveal changes Wiza state.
+
+Mitigation: Confirm the exact action and payload with the user before running it.
+
+## Reference(s):
+
+- [Wiza API documentation](https://docs.wiza.co/)
+- [Wiza](https://wiza.co)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON connector responses with task-oriented text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read actions return Wiza data; starting an individual reveal is a write action.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,91 @@
+{
+  "meta": {
+    "name": "明珠湾区",
+    "tone_family": "modern-urban",
+    "tone_variant": "都市金融",
+    "version": 1,
+    "note": "现代都市骨架版：财团/金融资本/媒体/政界/军方承包商五方在明珠湾区互算，灰桥旧埠为独立调查者与匿名线人的中立交汇点。"
+  },
+  "continents": [
+    {
+      "id": "continent_mingzhu",
+      "name": "明珠湾区",
+      "summary": "滨海超大城市群核心，金融街、写字楼、城中村与地下酒吧在同一片天际线下分层共存。"
+    }
+  ],
+  "nations": [
+    {
+      "id": "nation_dongpu",
+      "name": "东浦集团",
+      "continent": "continent_mingzhu",
+      "summary": "以港口地产与供应链起家的产业财团，靠政商旋转门攫取旧埠改造特许权，与市政互为表里。",
+      "tension_seeds": [
+        "旧埠改造补偿款被层层截留，原住居民与财团对峙",
+        "财团向市政输送的竞选献金被匿名线人披露，牵连多名议员"
+      ]
+    },
+    {
+      "id": "nation_dingfeng",
+      "name": "鼎丰资本",
+      "continent": "continent_mingzhu",
+      "summary": "管理千亿规模的投行基金，靠杠杆与监管套利生长，与军方承包商共享资金通道。",
+      "tension_seeds": [
+        "一只结构化产品的估值被人为抬升，监管审查延迟让泡沫多撑了三个月",
+        "资本通过离岸过桥账户为军方承包商垫付回扣，账面显示为咨询费"
+      ]
+    },
+    {
+      "id": "nation_gangwan",
+      "name": "港湾传媒",
+      "continent": "continent_mingzhu",
+      "summary": "都市头部媒体集团，既要做调查报道的招牌，又被资本与市政的广告投放掐住咽喉。",
+      "tension_seeds": [
+        "一篇直指鼎丰资本估值造假的调查稿被总部临时撤下，广告部施压",
+        "媒体老板的关联账户承接了鼎丰资本交易员的异常头寸，独立性存疑"
+      ]
+    },
+    {
+      "id": "nation_ningchuan",
+      "name": "宁川市政",
+      "continent": "continent_mingzhu",
+      "summary": "城市权力机器，换届在即，竞选献金、旧埠改造特许与监管审查节奏都从这里流出。",
+      "tension_seeds": [
+        "多名议员收受东浦集团献金的线索在换届前泄露，引发倒阁危机",
+        "市政以'治安外包'名义把清场授权给军方承包商，回避议会监督"
+      ]
+    },
+    {
+      "id": "nation_weishi",
+      "name": "卫戍承包",
+      "continent": "continent_mingzhu",
+      "summary": "承接城市治安外包与海外安保的私营军事公司，靠合同与回扣在军政缝隙生长。",
+      "tension_seeds": [
+        "清场合同回扣经鼎丰资本过桥账户洗白，三方共享一条资金链",
+        "承包商私下向市政承诺压下劳工纠纷，换取绕开议会的授权"
+      ]
+    }
+  ],
+  "neutral_port": {
+    "id": "port_huiqiao",
+    "name": "灰桥旧埠",
+    "continent": "continent_mingzhu",
+    "summary": "旧港区改造遗留下的法外地带，独立调查者、中间人与匿名线人混居；谁的消息都在这交换，谁也管不了这里。"
+  },
+  "faction_matrix": {
+    "nation_dingfeng|nation_dongpu": { "relation": 38, "note": "资本与财团在旧埠项目上既合作又争利，鼎丰想分改造红利" },
+    "nation_dingfeng|nation_gangwan": { "relation": 64, "note": "鼎丰是港湾最大广告主，但港湾压下的那篇做空报道是双方都不敢碰的暗伤" },
+    "nation_dingfeng|nation_ningchuan": { "relation": -22, "note": "监管审查被市政拖延，资本视为默契，市政视为选情风险" },
+    "nation_dingfeng|nation_weishi": { "relation": 47, "note": "过桥账户洗回扣，共生但鼎丰怕承包商哪天把账交出去" },
+    "nation_dingfeng|port_huiqiao": { "relation": 9, "note": "灰桥的旧账贩子向鼎丰合规兜售审查内幕，买卖时有时无" },
+    "nation_dongpu|nation_gangwan": { "relation": -58, "note": "东浦的旧埠强拆被港湾调查记者盯死，媒体随时准备掀翻财团" },
+    "nation_dongpu|nation_ningchuan": { "relation": 33, "note": "财团与市政互为表里，献金换改造特许，账面上是咨询费" },
+    "nation_dongpu|nation_weishi": { "relation": 26, "note": "清场合同把钉子户麻烦转成生意，双方各取所需" },
+    "nation_dongpu|port_huiqiao": { "relation": -13, "note": "灰桥是旧埠原住民最后据点，财团想清掉这块心病" },
+    "nation_gangwan|nation_ningchuan": { "relation": -41, "note": "媒体想掀献金丑闻，市政全力灭火，换届前剑拔弩张" },
+    "nation_gangwan|nation_weishi": { "relation": -64, "note": "港湾曝光承包商绕议会授权，双方已撕破脸" },
+    "nation_gangwan|port_huiqiao": { "relation": 52, "note": "港湾总编把线索转交灰桥独立调查者，灰色同盟——但媒体绝不肯署名" },
+    "nation_ningchuan|nation_weishi": { "relation": 71, "note": "市政绕议会把授权直批承包商，深度绑定——代价是私下压下一起劳工纠纷" },
+    "nation_ningchuan|port_huiqiao": { "relation": -30, "note": "灰桥线人泄露审查时间表给鼎丰，市政恨之入骨" },
+    "nation_weishi|port_huiqiao": { "relation": 18, "note": "承包商把承诺函副本藏灰桥，既依赖中间人又怕被反咬" }
+  }
+}

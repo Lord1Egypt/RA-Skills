@@ -47,7 +47,6 @@ const session = client.liveV2().startSession({
   post_processing: {
     summarization: true,
     summarization_config: { type: "bullet_points" },
-    chapterization: true,
   },
 
   // Message filtering
@@ -88,7 +87,7 @@ session = live_client.start_session(
             translation=True,
             sentiment_analysis=True,
         ),
-        post_processing=LiveV2PostProcessing(summarization=True, chapterization=True),
+        post_processing=LiveV2PostProcessing(summarization=True),
         messages_config=LiveV2MessagesConfig(
             receive_partial_transcripts=True,
             receive_speech_events=True,

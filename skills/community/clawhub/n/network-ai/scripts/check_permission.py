@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
-# SECURITY: This script makes NO network calls and spawns NO subprocesses.
+# SECURITY: Local-only. No network access and no child processes.
 # All I/O is local file operations only:
 #   READS:  data[/<env>]/active_grants.json, data[/<env>]/audit_log.jsonl,
 #           data[/<env>]/.signing_key (HMAC key; auto-created on first run)
 #   WRITES: data[/<env>]/active_grants.json, data[/<env>]/audit_log.jsonl,
-#           data[/<env>]/.signing_key (on first run only; chmod 0o600)
-# Imports used: argparse, json, re, sys, uuid, hmac, hashlib, datetime, pathlib, typing
-# No imports of: requests, socket, subprocess, urllib, http, ssl, ftplib, smtplib
+#           data[/<env>]/.signing_key (on first run only; created owner-only, mode 0o600)
+#   <env> must be one of dev|st|sit|qa|sandbox|preprod|prod (anything else is
+#   rejected). Writes must stay inside data/ and never follow a symlink.
+# Imports used: argparse, json, os, re, sys, uuid, hmac, hashlib, datetime, pathlib, typing
+# Standard library only; no networking or process-spawning modules are imported.
 #
 # SECURITY: Justification strings supplied via --justification are truncated to
 # _JUSTIFICATION_MAX_LOG_LEN characters before being written to audit_log.jsonl.
@@ -16,10 +18,21 @@
 # shown at issuance time; listing commands (--active-grants) always mask tokens
 # to a short prefix.
 """
-AuthGuardian Permission Checker
+AuthGuardian Permission Checker (advisory, local-only)
 
-Evaluates permission requests for accessing sensitive resources
-(DATABASE, PAYMENTS, EMAIL, FILE_EXPORT).
+The permission-gating component of the Network-AI skill. Blackboard
+coordination, token budgets, and project context live in the sibling scripts
+(blackboard.py, swarm_guard.py, context_manager.py); this script only scores
+each permission request, records advisory grants, and summarizes the audit log.
+
+Scores every permission request against abstract local resource labels
+(DATABASE, PAYMENTS, EMAIL, FILE_EXPORT) using a weighted model
+(justification 40%, trust 30%, risk 30%) and records advisory grant tokens in
+local files. It holds no credentials and never touches a real database,
+payment system, mailbox, or export target: the output is a scoring decision for
+the caller to enforce, not an authorization. The caller-supplied --agent
+identity is not verified. PAYMENTS, DATABASE, and FILE_EXPORT additionally
+require --confirm-high-risk.
 
 Usage:
     python check_permission.py --agent AGENT_ID --resource RESOURCE_TYPE \
@@ -46,22 +59,51 @@ import sys
 import uuid
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any, Optional, cast
 import os
 
 # Configuration
 GRANT_TOKEN_TTL_MINUTES = 5
 
-def _resolve_data_dir(env: str = "") -> "Path":
-    """Return the active data directory, scoped to <env> when set."""
-    import re as _re
-    _env = env or os.environ.get("NETWORK_AI_ENV", "")
-    base = Path(__file__).parent.parent / "data"
-    if _env:
-        if not _re.match(r'^[a-zA-Z0-9_-]+$', _env):
-            raise ValueError(f"Invalid NETWORK_AI_ENV value: {_env!r}")
-        return base / _env
-    return base
+_DATA_ROOT = Path(__file__).resolve().parent.parent / "data"
+
+# The only environments a data/<env>/ directory is used for.
+_ENVIRONMENTS = ("dev", "st", "sit", "qa", "sandbox", "preprod", "prod")
+
+
+def _resolve_data_dir(env: str = "") -> Path:
+    """Return data/, or data/<env>/ for one of the documented environments."""
+    requested = env or os.environ.get("NETWORK_AI_ENV", "")
+    if not requested:
+        return _DATA_ROOT
+    for name in _ENVIRONMENTS:
+        if requested == name:
+            return _DATA_ROOT / name  # built from the fixed list, not the input
+    raise ValueError(
+        f"Unknown environment {requested!r}; expected one of: {', '.join(_ENVIRONMENTS)}"
+    )
+
+
+_O_NOFOLLOW = getattr(os, "O_NOFOLLOW", 0)
+_O_BINARY = getattr(os, "O_BINARY", 0)
+
+
+def _write_confined(path: Path, text: str, append: bool = False,
+                    exclusive: bool = False) -> None:
+    """Write or append `text` inside data/ only, never through a symlink."""
+    real_root = _DATA_ROOT.resolve()
+    real_dir = path.parent.resolve()
+    if real_dir != real_root and real_root not in real_dir.parents:
+        raise PermissionError(f"Refusing to write outside {real_root}: {path}")
+    if path.is_symlink():
+        raise PermissionError(f"Refusing to write through a symlink: {path}")
+    if exclusive:
+        mode = os.O_EXCL
+    else:
+        mode = os.O_APPEND if append else os.O_TRUNC
+    fd = os.open(path, os.O_WRONLY | os.O_CREAT | mode | _O_NOFOLLOW | _O_BINARY, 0o600)
+    with os.fdopen(fd, "a" if append else "w", encoding="utf-8") as fh:
+        fh.write(text)
 
 _DATA_DIR = _resolve_data_dir()
 GRANTS_FILE = _DATA_DIR / "active_grants.json"
@@ -75,7 +117,7 @@ AUDIT_LOG = _DATA_DIR / "audit_log.jsonl"
 # of identity, and SHOULD require a separate authenticated session or human
 # approval before honouring access to sensitive resources.
 #
-# For PAYMENTS, DATABASE (write), and FILE_EXPORT the caller must also pass
+# For PAYMENTS, DATABASE (any scope), and FILE_EXPORT the caller must also pass
 # --confirm-high-risk to acknowledge the advisory-only nature of the grant.
 
 # Default trust levels for known agents
@@ -117,9 +159,8 @@ RESTRICTIONS = {
 
 def ensure_data_dir():
     """Ensure the active (env-scoped) data directory exists."""
-    data_dir = _resolve_data_dir()
-    data_dir.mkdir(parents=True, exist_ok=True)
-    return data_dir
+    _DATA_DIR.mkdir(parents=True, exist_ok=True)
+    return _DATA_DIR
 
 
 def detect_injection(justification: str) -> bool:
@@ -286,8 +327,9 @@ def _load_signing_key() -> bytes:
     Load or create the local HMAC-SHA256 signing key for grant tokens.
 
     The key is stored at data[/<env>]/.signing_key as a 32-byte hex string.
-    It is auto-generated with os.urandom(32) on first use and restricted to
-    mode 0o600.  It lives inside the env-scoped data dir so multi-environment
+    It is auto-generated with os.urandom(32) on first use and created with
+    mode 0o600, so it is never readable by other users (POSIX; Windows ignores
+    the mode).  It lives inside the env-scoped data dir so multi-environment
     deployments each have an independent key.
     """
     key_file = _DATA_DIR / ".signing_key"
@@ -298,13 +340,9 @@ def _load_signing_key() -> bytes:
             pass  # Corrupt key file — regenerate below
     key = os.urandom(32)
     _DATA_DIR.mkdir(parents=True, exist_ok=True)
-    key_file.write_text(key.hex())
-    try:
-        key_file.chmod(0o600)  # Restrict to owner; no-op on Windows
-    except OSError:
-        # chmod is not supported on all platforms (e.g. Windows NTFS);
-        # the key is still functional — caller must protect the data directory.
-        pass
+    # Remove any corrupt file or stray link first: the mode argument applies only on creation.
+    key_file.unlink(missing_ok=True)
+    _write_confined(key_file, key.hex(), exclusive=True)
     return key
 
 
@@ -336,8 +374,7 @@ def log_audit(action: str, details: dict[str, Any]) -> None:
         "action": action,
         "details": details
     }
-    with open(AUDIT_LOG, "a") as f:
-        f.write(json.dumps(entry) + "\n")
+    _write_confined(AUDIT_LOG, json.dumps(entry) + "\n", append=True)
 
 
 def save_grant(grant: dict[str, Any]) -> None:
@@ -351,7 +388,7 @@ def save_grant(grant: dict[str, Any]) -> None:
             grants = {}
     
     grants[grant["token"]] = grant
-    GRANTS_FILE.write_text(json.dumps(grants, indent=2))
+    _write_confined(GRANTS_FILE, json.dumps(grants, indent=2))
 
 
 def evaluate_permission(
@@ -546,7 +583,8 @@ def evaluate_permission(
 
 def list_active_grants(agent_filter: Optional[str] = None, as_json: bool = False) -> int:
     """
-    Show which agents currently hold access to which APIs with expiry times.
+    Show which agents currently hold advisory grants for which abstract resource
+    labels (DATABASE, PAYMENTS, EMAIL, FILE_EXPORT), with expiry times.
 
     Reads data/active_grants.json, filters out expired grants,
     and displays remaining grants with TTL.
@@ -573,10 +611,12 @@ def list_active_grants(agent_filter: Optional[str] = None, as_json: bool = False
 
     for token, grant in grants.items():
         try:
-            expires_at = datetime.fromisoformat(grant["expires_at"])
+            expires_at = datetime.fromisoformat(str(grant["expires_at"]).replace("Z", "+00:00"))
         except (KeyError, ValueError):
             expired_count += 1
             continue
+        if expires_at.tzinfo is None:
+            expires_at = expires_at.replace(tzinfo=timezone.utc)
 
         if expires_at <= now:
             expired_count += 1
@@ -637,19 +677,19 @@ def list_active_grants(agent_filter: Optional[str] = None, as_json: bool = False
 
 def audit_summary(last_n: int = 20, as_json: bool = False) -> int:
     """
-    Summarize recent permission requests, grants, and denials.
+    Summarize recent permission activity: requested, granted, and denied.
 
     Parses data/audit_log.jsonl and produces per-agent and per-resource
     breakdowns plus recent activity.  Denial counts are read directly from
     ``permission_denied`` log entries — they are NOT inferred as
-    requests minus grants.  This preserves accuracy when log lines are
+    requested minus granted.  This preserves accuracy when log lines are
     missing, replayed, or arrive out of order.
     """
     if not AUDIT_LOG.exists():
         if as_json:
             print(json.dumps({"entries": 0, "summary": {}, "recent": []}))
         else:
-            print("No audit log found. (No permission requests recorded yet.)")
+            print("No audit log found. (No permission activity recorded yet.)")
         return 0
 
     entries: list[dict[str, Any]] = []
@@ -691,22 +731,22 @@ def audit_summary(last_n: int = 20, as_json: bool = False) -> int:
 
         if action == "permission_request":
             total_requests += 1
-            by_agent.setdefault(agent_id, {"requests": 0, "grants": 0, "denials": 0})
-            by_agent[agent_id]["requests"] += 1
-            by_resource.setdefault(resource_type, {"requests": 0, "grants": 0, "denials": 0})
-            by_resource[resource_type]["requests"] += 1
+            by_agent.setdefault(agent_id, {"requested": 0, "granted": 0, "denied": 0})
+            by_agent[agent_id]["requested"] += 1
+            by_resource.setdefault(resource_type, {"requested": 0, "granted": 0, "denied": 0})
+            by_resource[resource_type]["requested"] += 1
         elif action == "permission_granted":
             total_grants += 1
-            by_agent.setdefault(agent_id, {"requests": 0, "grants": 0, "denials": 0})
-            by_agent[agent_id]["grants"] += 1
-            by_resource.setdefault(resource_type, {"requests": 0, "grants": 0, "denials": 0})
-            by_resource[resource_type]["grants"] += 1
+            by_agent.setdefault(agent_id, {"requested": 0, "granted": 0, "denied": 0})
+            by_agent[agent_id]["granted"] += 1
+            by_resource.setdefault(resource_type, {"requested": 0, "granted": 0, "denied": 0})
+            by_resource[resource_type]["granted"] += 1
         elif action == "permission_denied":
             total_denials += 1
-            by_agent.setdefault(agent_id, {"requests": 0, "grants": 0, "denials": 0})
-            by_agent[agent_id]["denials"] += 1
-            by_resource.setdefault(resource_type, {"requests": 0, "grants": 0, "denials": 0})
-            by_resource[resource_type]["denials"] += 1
+            by_agent.setdefault(agent_id, {"requested": 0, "granted": 0, "denied": 0})
+            by_agent[agent_id]["denied"] += 1
+            by_resource.setdefault(resource_type, {"requested": 0, "granted": 0, "denied": 0})
+            by_resource[resource_type]["denied"] += 1
 
     # Recent entries (last N)
     recent = entries[-last_n:]
@@ -716,12 +756,18 @@ def audit_summary(last_n: int = 20, as_json: bool = False) -> int:
     last_ts = entries[-1].get("timestamp", "unknown")
 
     if as_json:
-        # Omit justification text from summary output to avoid re-exposing
-        # sensitive content that was logged earlier (SkillSpector Ssd3).
+        # Omit justification text and mask grant tokens/signatures in summary
+        # output so it never re-exposes sensitive or live values (SkillSpector Ssd3).
         def _redact_entry(e: dict[str, Any]) -> dict[str, Any]:
-            if "details" not in e or "justification" not in e["details"]:
+            raw_details = e.get("details")
+            if not isinstance(raw_details, dict):
                 return e
-            return {**e, "details": {k: v for k, v in e["details"].items() if k != "justification"}}
+            details = cast(dict[str, Any], raw_details)
+            clean: dict[str, Any] = {k: v for k, v in details.items() if k not in ("justification", "_sig")}
+            token = clean.get("token")
+            if isinstance(token, str):
+                clean["token"] = token[:16] + "..." if len(token) > 16 else token
+            return {**e, "details": clean}
 
         output: dict[str, Any] = {
             "total_entries": len(entries),
@@ -742,29 +788,27 @@ def audit_summary(last_n: int = 20, as_json: bool = False) -> int:
         print(f"  Time range:   {first_ts}")
         print(f"                {last_ts}")
         print(f"")
-        print(f"  Requests:     {total_requests}")
-        print(f"  Grants:       {total_grants}")
-        print(f"  Denials:      {total_denials}")
+        print(f"  Requested:    {total_requests}")
+        print(f"  Granted:      {total_grants}")
+        print(f"  Denied:       {total_denials}")
         grant_rate = (total_grants / total_requests * 100) if total_requests > 0 else 0
         print(f"  Grant Rate:   {grant_rate:.0f}%")
 
         if by_agent:
             print(f"\n  By Agent:")
             print(f"  {'-'*50}")
-            print(f"  {'Agent':<20} {'Requests':>10} {'Grants':>10} {'Denials':>10}")
+            print(f"  {'Agent':<20} {'Requested':>10} {'Granted':>10} {'Denied':>10}")
             print(f"  {'-'*50}")
             for agent_id, stats in sorted(by_agent.items()):
-                denials = stats["denials"]
-                print(f"  {agent_id:<20} {stats['requests']:>10} {stats['grants']:>10} {denials:>10}")
+                print(f"  {agent_id:<20} {stats['requested']:>10} {stats['granted']:>10} {stats['denied']:>10}")
 
         if by_resource:
             print(f"\n  By Resource:")
             print(f"  {'-'*50}")
-            print(f"  {'Resource':<20} {'Requests':>10} {'Grants':>10} {'Denials':>10}")
+            print(f"  {'Resource':<20} {'Requested':>10} {'Granted':>10} {'Denied':>10}")
             print(f"  {'-'*50}")
             for resource_type, stats in sorted(by_resource.items()):
-                denials = stats["denials"]
-                print(f"  {resource_type:<20} {stats['requests']:>10} {stats['grants']:>10} {denials:>10}")
+                print(f"  {resource_type:<20} {stats['requested']:>10} {stats['granted']:>10} {stats['denied']:>10}")
 
         print(f"\n  Recent Activity (last {min(last_n, len(recent))}):")
         print(f"  {'-'*66}")
@@ -782,7 +826,10 @@ def audit_summary(last_n: int = 20, as_json: bool = False) -> int:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="AuthGuardian Permission Checker",
+        description=(
+            "AuthGuardian Permission Checker — advisory local scoring over abstract "
+            "resource labels. Issues advisory tokens only; holds no credentials."
+        ),
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
@@ -846,7 +893,8 @@ Examples:
         action="store_true",
         dest="confirm_high_risk",
         help=(
-            "Required for PAYMENTS and DATABASE resources. Acknowledges that the issued "
+            "Required for PAYMENTS, DATABASE, and FILE_EXPORT resources (any scope). "
+            "Acknowledges that the issued "
             "token is advisory only and that the caller-supplied agent identity was not "
             "cryptographically verified."
         ),
@@ -859,10 +907,12 @@ Examples:
 
     args = parser.parse_args()
 
-    # Re-resolve data paths if --env was provided explicitly.
+    # Re-resolve every data path (grants, audit log, signing key) from one
+    # env-scoped directory when --env is given.
     # Use globals() to avoid Pyright reportConstantRedefinition on uppercase names.
     if args.env:
         _data = _resolve_data_dir(args.env)
+        globals()['_DATA_DIR'] = _data
         globals()['GRANTS_FILE'] = _data / "active_grants.json"
         globals()['AUDIT_LOG'] = _data / "audit_log.jsonl"
 

@@ -1,42 +1,58 @@
-## Description: <br>
-Queries FEEDAX for industry news and public-opinion signals, including sentiment, industry classifications, heat metrics, and result summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+IndustryInformation queries FEEDAX industry news and public-opinion data by keyword, industry classification, sentiment, and popularity to help agents summarize industry trends and risks.
 
-## Publisher: <br>
-[longgggggg](https://clawhub.ai/user/longgggggg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[longgggggg](https://clawhub.ai/user/longgggggg)
 
-## Use Case: <br>
-Analysts and business users use this skill to research industry trends, monitor positive and negative public opinion, compare industries, assess investment or policy risk, and export FEEDAX query results for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: FEEDAX API keys can be exposed if pasted into chat, printed from environment files, stored insecurely, or sent over plain HTTP. <br>
-Mitigation: Use a scoped, rotatable key in an environment variable, avoid commands that print complete environment files, prefer --no-output for sensitive searches, and rotate any key that may have been exposed. <br>
-Risk: Search queries and credentials are sent to the configured FEEDAX endpoint. <br>
-Mitigation: Use the skill only when sharing the query terms and credentials with that endpoint is acceptable under the user's data-handling requirements. <br>
+## Use Case:
 
+External users and analysts use this skill to monitor industry news, compare sector sentiment, assess emerging risks, and export query results for further review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/longgggggg/industry-information) <br>
-- [FEEDAX](https://www.feedax.cn) <br>
-- [FEEDAX industry information API endpoint](http://221.6.15.90:18011) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [Conversational summaries with optional CSV and Markdown result files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a FEEDAX API key supplied by command-line argument, FEEDAX_API_KEY, or a local config file; --no-output can suppress result file generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: API credentials may be exposed through unsafe key handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a secure environment variable or secret store, do not paste keys into chat, do not print `.env`, and rotate any FEEDAX key already used with this version.
+
+Risk: The server security summary reports plaintext HTTP transmission for API requests.
+
+Mitigation: Use this skill only after the endpoint is changed to HTTPS or the request path is otherwise protected for the deployment environment.
+
+Risk: Industry news and sentiment outputs can be incomplete, stale, or unsuitable as sole support for investment or risk decisions.
+
+Mitigation: Treat results as monitoring inputs and verify important claims against authoritative sources before acting on them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/longgggggg/skills/industry-information)
+- [FEEDAX](https://www.feedax.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration guidance]
+
+**Output Format:** [Conversation summaries plus generated CSV and Markdown result files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a FEEDAX API key and returns time-bounded industry news, sentiment, classification, importance, and popularity fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,55 @@
-## Description: <br>
-Generate speech on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `elevenlabs-tts-turbo-2-5`, text-to-speech, voice selection, speech speed, stability, similarity boost, style, timestamps, language code, async task submission, callbacks, and task status retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate speech on PoYo using the elevenlabs-tts-turbo-2-5 text-to-speech model, with guidance for payload preparation, voice controls, async submission, callbacks, and result retrieval.
 
-## Publisher: <br>
-[coolhackboy](https://clawhub.ai/user/coolhackboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolhackboy](https://clawhub.ai/user/coolhackboy)
 
-## Use Case: <br>
-Developers and agents use this skill to prepare PoYo ElevenLabs TTS Turbo 2.5 request payloads, choose voice and delivery parameters, submit trusted server-side text-to-speech jobs, and explain task status retrieval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PoYo API keys, customer text, callback URLs, task ids, or generated audio URLs may be exposed if copied into browser code, public repositories, logs, screenshots, or chat output. <br>
-Mitigation: Keep POYO_API_KEY in server-side environment variables or a backend secret manager, and avoid logging private request or result data unless product policy explicitly allows it. <br>
-Risk: A live submission sends text-to-speech content to the PoYo API and may affect production queues or callbacks. <br>
-Mitigation: Make live API calls only when the user explicitly asks, provides a trusted server-side environment, and confirms the prepared payload. <br>
-Risk: Model-specific options may change or be unsupported for a given request. <br>
-Mitigation: Verify current field support in the PoYo documentation before relying on voice, timestamp, language, or delivery-control parameters. <br>
+## Use Case:
 
+Developers and agents use this skill to prepare PoYo text-to-speech requests, tune voice and delivery parameters, submit trusted server-side payloads, and explain how to retrieve task results.
 
-## Reference(s): <br>
-- [PoYo ElevenLabs TTS Turbo 2.5 API Reference](references/api.md) <br>
-- [PoYo ElevenLabs TTS Turbo 2.5 Documentation](https://docs.poyo.ai/api-manual/music-series/elevenlabs-tts-turbo-2-5) <br>
-- [PoYo ElevenLabs TTS Turbo 2.5 Model Page](https://poyo.ai/models/elevenlabs-tts-turbo-2-5) <br>
-- [ClawHub Skill Page](https://clawhub.ai/coolhackboy/skills/poyo-elevenlabs-tts-turbo-2-5) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON payloads and bash/curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include model id, voice and language choices, changed delivery controls, a final payload or parameter summary, returned task_id, and the next retrieval step.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: PoYo API keys could be exposed if copied into browser code, public repositories, logs, screenshots, or chat output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep POYO_API_KEY server-side in environment variables or a backend secret manager and avoid printing it in generated examples.
+
+Risk: Text payloads, callback URLs, task ids, and generated audio URLs may contain private or customer-sensitive information.
+
+Mitigation: Submit only policy-approved content to PoYo and avoid logging private scripts, callback URLs, task ids, or generated audio URLs unless explicitly allowed.
+
+## Reference(s):
+
+- [PoYo ElevenLabs TTS Turbo 2.5 API Reference](references/api.md)
+- [PoYo model page](https://poyo.ai/models/elevenlabs-tts-turbo-2-5)
+- [PoYo API docs](https://docs.poyo.ai/api-manual/music-series/elevenlabs-tts-turbo-2-5)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON payload examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include model id, voice and language choices, delivery controls, final payload summary, returned task_id, and next retrieval step.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

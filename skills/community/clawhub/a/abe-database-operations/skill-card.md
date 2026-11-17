@@ -1,44 +1,54 @@
-## Description: <br>
-Database Operations helps developers design schemas, write migrations, optimize SQL queries, fix N+1 problems, create indexes, configure PostgreSQL and EF Core, and implement caching or partitioning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when designing database schemas, writing migrations, optimizing SQL queries, fixing N+1 problems, creating indexes, setting up PostgreSQL, configuring EF Core, implementing caching, partitioning tables, or any database performance question.
 
-## Publisher: <br>
-[alvisdunlop](https://clawhub.ai/user/alvisdunlop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alvisdunlop](https://clawhub.ai/user/alvisdunlop)
 
-## Use Case: <br>
-Developers and engineers use this skill for implementation-level database design, PostgreSQL query optimization, indexing, EF Core migrations, caching, partitioning, monitoring, and rollback planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a third-party API key and shows code that can send query plans to an external service. <br>
-Mitigation: Only provide a scoped SkillBoss API key after trusting the provider and confirming privacy terms, token scope, and redaction expectations. <br>
-Risk: Production schemas, SQL, logs, or query plans may contain sensitive operational or customer data. <br>
-Mitigation: Redact sensitive database details before using external analysis and avoid sending production material unless the data handling process is approved. <br>
-Risk: Generated SQL, index changes, or migration guidance can cause outages or data loss if applied directly. <br>
-Mitigation: Treat output as advisory, test migrations outside production, maintain backups, and verify rollback plans before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill for implementation-level database design, migration planning, PostgreSQL query optimization, EF Core migration guidance, indexing, partitioning, caching, and database performance troubleshooting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alvisdunlop/abe-database-operations) <br>
-- [Publisher profile](https://clawhub.ai/user/alvisdunlop) <br>
-- [SkillBoss API Hub endpoint](https://api.heybossai.com/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with SQL, shell, C#, TypeScript, and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory database examples and migration patterns; generated SQL should be reviewed and tested before production use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: artifact frontmatter and server release evidence) <br>
+Risk: External API examples may send sensitive query plans or schema details to a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the external API snippets only when the service is approved, and redact query plans, schema names, tenant identifiers, literals, credentials, and connection details before sharing.
+
+Risk: Database migration and optimization guidance can affect production reliability if applied without review.
+
+Mitigation: Review proposed changes, test rollback paths, and validate performance with non-sensitive representative data before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alvisdunlop/skills/abe-database-operations)
+- [SkillBoss API endpoint](https://api.heybossai.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with SQL, shell, C#, TypeScript, and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include database design patterns, migration steps, query-analysis guidance, and code snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

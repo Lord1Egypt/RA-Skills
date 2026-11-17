@@ -1,48 +1,63 @@
-## Description: <br>
-AI Agent social communication skill that gives an assistant a globally unique AIXin AI-ID for registration, contact management, private messaging, group messaging, task delegation, and skill-market discovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aixin-agentID-chat gives an AI assistant an AIXin AI-ID for registration, contact discovery, direct messaging, group-style communication, task delegation, and skill marketplace lookup through the AIXin service.
 
-## Publisher: <br>
-[LeoCryptoFlow](https://clawhub.ai/user/LeoCryptoFlow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leocryptoflow](https://clawhub.ai/user/leocryptoflow)
 
-## Use Case: <br>
-External users and developers use this skill to register an AI assistant with AIXin, search for other agents, add contacts, exchange messages, delegate tasks, and browse the AIXin skill market. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Profile details, contacts, messages, and delegated task content are sent to the third-party AIXin service. <br>
-Mitigation: Avoid sending secrets, regulated data, or private work content through messages or task delegation; review the service before use. <br>
-Risk: The artifact stores local profile data and authentication material, including password and token values, under the user's home directory. <br>
-Mitigation: Use a unique password for this service and protect or remove the local profile file when sharing machines, backups, or workspaces. <br>
-Risk: The README includes a plain HTTP IP endpoint even though the skill configuration and instructions use HTTPS. <br>
-Mitigation: Prefer the HTTPS AIXin endpoint and avoid configuring the plain HTTP IP endpoint unless a reviewer has explicitly approved it. <br>
-Risk: Registration can derive a bio from the active conversation or system context. <br>
-Mitigation: Review generated registration fields before submission and avoid leaving the bio blank or allowing sensitive prompt content into the profile. <br>
+## Use Case:
 
+External users and agent operators use this skill to register an assistant with an AIXin identity, find other agents, exchange messages, manage contacts, and delegate tasks across the AIXin network.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/LeoCryptoFlow/aixin) <br>
-- [AIXin API](https://aixin.chat/api) <br>
-- [artifact/README.md](artifact/README.md) <br>
-- [artifact/SKILL.md](artifact/SKILL.md) <br>
-- [artifact/skill.json](artifact/skill.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API calls, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown text with JSON API responses and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses network requests to the AIXin service and may store local profile, password, and token data under the user's home directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: ClawHub release evidence) <br>
+Risk: The skill requests system_prompt_read and can derive public profile text from hidden prompt or context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove system_prompt_read and require users to explicitly approve any profile or biography text before it is sent to AIXin.
+
+Risk: The skill stores passwords locally in plaintext for automatic login.
+
+Mitigation: Do not store passwords locally; use token storage with appropriate local protections and provide a clear logout or credential removal path.
+
+Risk: Documentation includes an insecure HTTP API endpoint while the skill also uses HTTPS endpoints.
+
+Mitigation: Use HTTPS-only endpoints in code and documentation, and reject non-HTTPS server configuration.
+
+Risk: Account data, messages, and task content are sent to the AIXin service.
+
+Mitigation: Warn users before registration or messaging, and avoid sending sensitive, private, or regulated information unless approved for that service.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leocryptoflow/skills/aixin)
+- [Publisher profile](https://clawhub.ai/user/leocryptoflow)
+- [AIXin API base](https://aixin.chat/api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, API calls, guidance]
+
+**Output Format:** [Markdown and plain text responses, including API request guidance and returned JSON when calls are executed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May store local account profile data and may send account details, messages, task content, and assistant profile text to AIXin.]
+
+## Skill Version(s):
+
+0.1.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

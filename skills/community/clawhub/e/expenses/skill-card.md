@@ -1,37 +1,54 @@
-## Description: <br>
-Build a personal expense tracking system for daily spending, shared costs, business expenses, and project budgets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expenses helps an agent record, split, categorize, reconcile, and report spending across daily expenses, shared costs, reimbursements, receipts, project budgets, and trip budgets.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to log and organize personal, shared, business, reimbursement, project, and travel expenses, then review spending patterns, balances, and summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Expense logs and receipt images can contain sensitive personal or financial information stored under ~/expenses/. <br>
-Mitigation: Confirm before creating files or saving entries, and avoid storing unnecessary card numbers, bank account details, or highly sensitive personal information. <br>
+## Use Case:
 
+External users use this skill with an agent to maintain local expense records, including purchases, refunds, shared balances, reimbursement claims, receipts, bounded budgets, travel spend, and statement reconciliation. It is intended for expense tracking and reporting, not net worth planning, debt planning, bookkeeping, invoicing, or payment processing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/expenses) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and structured expense log entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local files under ~/expenses/ when the agent is asked to save expense records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can direct durable edits to local financial records, including ledgers, shared balances, claims, budgets, statement imports, and related configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before use, require preview and user approval for file writes, deletions, migrations, recategorization, statement imports, and shared contact or account updates.
+
+Risk: Expense workflows may involve sensitive financial information or credentials pasted by the user.
+
+Mitigation: Keep records local, avoid saving credential values, and store only pointer references for secrets such as keychain, password-manager, environment-variable, or file locators.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/expenses)
+- [Clawic Expenses homepage](https://clawic.com/skills/expenses)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Concise natural-language responses and structured Markdown records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains local expense data under declared configuration paths and reports amounts with currencies and as-of dates.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

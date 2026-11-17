@@ -1,41 +1,54 @@
-## Description: <br>
-Web search and scraping via the Firecrawl API for search, single-page scraping, site crawling, and structured web extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Firecrawl Search provides web search and scraping via the Firecrawl API for searching the web, scraping pages, crawling sites, and extracting structured page data.
 
-## Publisher: <br>
-[ashwingupy](https://clawhub.ai/user/ashwingupy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ashwingupy](https://clawhub.ai/user/ashwingupy)
 
-## Use Case: <br>
-Developers and agent builders use this skill to search the web, scrape pages, crawl websites, and collect Firecrawl results for downstream analysis or content extraction. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search terms, URLs, and retrieved page content are sent to Firecrawl under the configured API key. <br>
-Mitigation: Avoid internal, private, token-bearing, or regulated URLs unless that data sharing is approved. <br>
-Risk: Crawl commands can consume Firecrawl quota or create billing exposure. <br>
-Mitigation: Set conservative crawl limits and monitor Firecrawl usage and billing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Firecrawl API Reference](references/api.md) <br>
-- [Firecrawl pricing](https://firecrawl.dev/pricing) <br>
-- [ClawHub release page](https://clawhub.ai/ashwingupy/firecrawl-search) <br>
+## Use Case:
 
+Developers and agents use this skill to search the web, scrape individual pages, crawl websites, and retrieve structured page content through Firecrawl.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON responses from Firecrawl-backed command-line workflows.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FIRECRAWL_API_KEY and sends search terms, target URLs, and retrieved page content to Firecrawl.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends search queries and target URLs to Firecrawl as an external web search and scraping service.
+
+Mitigation: Use it only for data your organization approves sharing with Firecrawl; avoid secret-bearing URLs, internal-only links, authenticated pages, customer data, and regulated content unless approved.
+
+Risk: The Firecrawl API key is required for operation and could be exposed if handled carelessly.
+
+Mitigation: Keep FIRECRAWL_API_KEY out of source control and rotate it if exposed.
+
+## Reference(s):
+
+- [Firecrawl API Reference](references/api.md)
+- [Firecrawl pricing](https://firecrawl.dev/pricing)
+- [ClawHub skill page](https://clawhub.ai/ashwingupy/skills/firecrawl-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown or JSON returned from Firecrawl helper commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FIRECRAWL_API_KEY and sends submitted search queries or URLs to Firecrawl.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

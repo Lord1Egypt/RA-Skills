@@ -11,7 +11,7 @@ Usage:
 Env: WP_URL/WP_SITE_URL, WP_USERNAME/WP_USER, WP_APP_PASSWORD
 """
 import argparse, json, os, sys
-from security import warn_insecure_wp_url
+from security import SafetyError, TEXT_MAX_BYTES, die_safety, validate_local_file, require_secure_wp_url
 
 # NB: the write-path modules (acf_fields/jetengine_fields) import `requests`, and
 # the image path needs upload_media. They are imported lazily inside seed() so the
@@ -50,6 +50,14 @@ def _resolve_image(url, user, pw, fi, allow_remote):
     return res.get('id') if isinstance(res, dict) else None
 
 
+def _field_error(result):
+    """Return an error string if an acf/jet write returned an error dict, else None."""
+    if isinstance(result, dict) and result.get('error'):
+        details = result.get('details')
+        return f"{result['error']}{(' ' + json.dumps(details)) if details else ''}"
+    return None
+
+
 def seed(url, user, pw, dataset, allow_remote=False):
     """Execute the seed. Returns {created: [...], failed: [...]}."""
     import create_post as _cp
@@ -57,21 +65,40 @@ def seed(url, user, pw, dataset, allow_remote=False):
     import jetengine_fields as _jet
     import upload_media as _media
     created, failed = [], []
+    base = url.rstrip('/')
+    auth = _cp._auth(user, pw)
+    rest_base_cache = {}
+
+    def _rest_base(post_type):
+        # Resolve (and cache) the post type's REST base so ACF/Jet/featured-media
+        # writes hit the CPT's own route instead of the post-only /posts/ route.
+        if post_type not in rest_base_cache:
+            rest_base_cache[post_type] = _cp.resolve_rest_base(base, auth, post_type)
+        return rest_base_cache[post_type]
+
     for e in dataset:
         try:
+            post_type = e.get('post_type', 'post')
             post = _cp.create_post(
                 url, user, pw, e['title'], e.get('content', ''),
-                e.get('status', 'draft'), post_type=e.get('post_type', 'post'),
+                e.get('status', 'draft'), post_type=post_type,
                 terms=e.get('terms'))
             pid = post['id']
+            rest_base = _rest_base(post_type)
             if e.get('acf'):
-                _acf.set_acf_fields(url, user, pw, pid, e['acf'])
+                res = _acf.set_acf_fields(url, user, pw, pid, e['acf'], rest_base=rest_base)
+                err = _field_error(res)
+                if err:
+                    raise RuntimeError(f"ACF write failed: {err}")
             if e.get('jet'):
-                _jet.set_jetengine_fields(url, user, pw, pid, e['jet'])
+                res = _jet.set_jetengine_fields(url, user, pw, pid, e['jet'], rest_base=rest_base)
+                err = _field_error(res)
+                if err:
+                    raise RuntimeError(f"JetEngine write failed: {err}")
             if e.get('featured_image') is not None:
                 mid = _resolve_image(url, user, pw, e['featured_image'], allow_remote)
                 if mid:
-                    _media.set_featured_image(url, user, pw, pid, mid)
+                    _media.set_featured_image(url, user, pw, pid, mid, rest_base=rest_base)
             created.append({'id': pid, 'title': e['title']})
         except Exception as ex:
             failed.append({'title': e.get('title', '(no title)'), 'error': str(ex)})
@@ -88,7 +115,11 @@ def main():
     p.add_argument('--allow-remote-url', action='store_true', help='Permit remote image fetches')
     a = p.parse_args()
 
-    with open(a.dataset) as f:
+    try:
+        dataset_path = validate_local_file(a.dataset, purpose="dataset", max_bytes=TEXT_MAX_BYTES)
+    except SafetyError as e:
+        die_safety(e)
+    with open(dataset_path, encoding="utf-8") as f:
         dataset = json.load(f)
     if not isinstance(dataset, list):
         print(json.dumps({"error": "dataset must be a JSON array"}), file=sys.stderr); sys.exit(1)
@@ -99,7 +130,7 @@ def main():
 
     if not all([a.url, a.username, a.app_password]):
         print(json.dumps({"error": "Missing required credentials"}), file=sys.stderr); sys.exit(1)
-    warn_insecure_wp_url(a.url)
+    require_secure_wp_url(a.url)
     result = seed(a.url, a.username, a.app_password, dataset, allow_remote=a.allow_remote_url)
     print(json.dumps(result, indent=2))
     if result['failed']:

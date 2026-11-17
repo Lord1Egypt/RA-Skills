@@ -373,7 +373,7 @@ Learn:
 
 Risk:
 
-- raw screenshots and walls of text are weak
+- unedited screenshots and walls of text are weak
 
 ### G. High-Production Creator
 

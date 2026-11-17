@@ -1,43 +1,60 @@
-## Description: <br>
-Spec-Kit SDD guides agents through GitHub Spec-Kit based spec-driven development workflows, including project initialization, constitution management, specifications, plans, task breakdowns, implementation, analysis, extension management, and Paperclip issue handoff. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GitHub Spec-Kit integration for Spec-Driven Development workflows, including project initialization, constitution management, feature specifications, implementation planning, task breakdowns, implementation support, clarification, analysis, extension and preset management, and Paperclip issue reassignment.
 
-## Publisher: <br>
-[james-code-hash](https://clawhub.ai/user/james-code-hash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[james-code-hash](https://clawhub.ai/user/james-code-hash)
 
-## Use Case: <br>
-Developers and engineers use this skill to run a structured Spec-Kit SDD workflow from project setup through specification, planning, tasks, implementation, and consistency review. It also provides operational guidance for Paperclip issue reassignment when coordinating work across agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Paperclip PATCH/POST commands or the helper script can change issue ownership or add comments. <br>
-Mitigation: Confirm the issue ID, assignee, API URL, and credentials before running Paperclip commands or helper scripts. <br>
-Risk: The workflow may propose specification, plan, task, or implementation changes that drift from the project constitution or current code. <br>
-Mitigation: Review generated artifacts against the project constitution and run the analyze and checklist steps before implementation or release. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to run a Spec-Driven Development workflow from constitution and specification through plans, tasks, implementation, review checks, and related Paperclip issue handoffs.
 
-## Reference(s): <br>
-- [Constitution Management Guide](references/constitution-guide.md) <br>
-- [GitHub Spec-Kit repository](https://github.com/github/spec-kit) <br>
-- [GitHub blog: Spec-driven development with AI](https://github.blog/ai-and-ml/generative-ai/spec-driven-development-with-ai-get-started-with-a-new-open-source-toolkit/) <br>
-- [Addy Osmani: How to write a good software design doc](https://addyosmani.com/blog/good-spec/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline command examples, file paths, tables, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose project files, specification artifacts, implementation tasks, API calls, and Paperclip reassignment commands for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill can guide state-changing Paperclip issue operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat reassignment and comment commands as explicit user-approved actions before execution.
+
+Risk: The bundled Paperclip fallback script can send PAPERCLIP_API_KEY to the configured PAPERCLIP_API_URL.
+
+Mitigation: Run the script with PAPERCLIP_API_KEY only after verifying that PAPERCLIP_API_URL is the intended HTTPS or loopback development endpoint.
+
+Risk: Spec-Kit workflows can create or modify project files.
+
+Mitigation: Install and use the skill only when the publisher is trusted and the agent is expected to perform Spec-Kit file-generation or file-editing workflows.
+
+## Reference(s):
+
+- [Spec-Kit official repository](https://github.com/github/spec-kit)
+- [GitHub Spec-Driven Development blog post](https://github.blog/ai-and-ml/generative-ai/spec-driven-development-with-ai-get-started-with-a-new-open-source-toolkit/)
+- [Addy Osmani's spec writing guide](https://addyosmani.com/blog/good-spec/)
+- [Constitution Management Guide](references/constitution-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands, CLI references, and generated project artifact descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update Spec-Kit project files and may issue Paperclip reassignment or comment commands when explicitly invoked.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,8 @@
+interface:
+  display_name: "aispace"
+  short_description: "Secure storage, sealed delivery, and agent handoffs"
+  brand_color: "#2563EB"
+  default_prompt: "Use $aispace to choose the safest suitable storage or handoff workflow for this artifact."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,42 +1,60 @@
-## Description: <br>
-CareerMax AI generates tailored cover letters from resume text and job descriptions for cover letters, application letters, role-specific pitches, and customized job application messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CareerMax AI generates tailored cover letters from resume text and job descriptions for cover letters, application letters, role-specific pitches, and customized job application messages.
 
-## Publisher: <br>
-[rahulphenomenon](https://clawhub.ai/user/rahulphenomenon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rahulphenomenon](https://clawhub.ai/user/rahulphenomenon)
 
-## Use Case: <br>
-Job seekers and career-focused agents use this skill to generate cover letters that connect a candidate resume to a specific job description. It can also use a stored CareerMax job ID through the CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to a CareerMax API key. <br>
-Mitigation: Install only in environments where the agent process may access CAREERMAX_API_KEY, and avoid exposing the key in logs or shared command history. <br>
-Risk: Cover-letter generation sends resume and job-description content to CareerMax. <br>
-Mitigation: Use the skill only when the user is comfortable sharing that application content with CareerMax. <br>
-Risk: The documented MCP and CLI commands install @careermax/agent-toolkit@latest at runtime. <br>
-Mitigation: For stricter environments, review and pin the npm package version before use. <br>
+## Use Case:
 
+External users and agents use this skill to generate tailored cover letters by matching a candidate resume with a specific job description. It supports CareerMax API-backed cover letter generation with preview and credit-cost confirmation before creation.
 
-## Reference(s): <br>
-- [CareerMax AI Agent](https://careermax.ai/ai-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and generated cover letter text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CAREERMAX_API_KEY and uses preview/confirm before AI-generation operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter lists 0.1.2) <br>
+Risk: The setup invokes a mutable @careermax/agent-toolkit package while using the user's CareerMax API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and review the @careermax/agent-toolkit version before installation or execution.
+
+Risk: The skill requires a CareerMax API key for operation.
+
+Mitigation: Use a narrowly scoped CareerMax API key if available and rotate the key if package or account compromise is suspected.
+
+Risk: Cover letter generation can consume CareerMax credits.
+
+Mitigation: Review the preview summary and credit-cost confirmation before approving generation.
+
+## Reference(s):
+
+- [CareerMax AI Agent](https://careermax.ai/ai-agent)
+- [CareerMax](https://careermax.ai)
+- [ClawHub Skill Page](https://clawhub.ai/rahulphenomenon/skills/cover-letter-writer)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/rahulphenomenon)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CAREERMAX_API_KEY and npx; cover letter generation uses preview and credit-cost confirmation before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter reports 0.1.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

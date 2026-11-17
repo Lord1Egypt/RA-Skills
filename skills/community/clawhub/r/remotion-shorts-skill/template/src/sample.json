@@ -1,0 +1,13 @@
+{
+  "theme": "ink",
+  "footer": "Data: USGS Water Science School",
+  "handle": "@yourhandle",
+  "scenes": [
+    { "type": "hook", "text": "Only 1% of Earth's water is water you can drink", "highlight": "1%" },
+    { "type": "stat", "value": "96.5", "suffix": "%", "label": "is salt water in the oceans" },
+    { "type": "stat", "value": "68.7", "suffix": "%", "label": "of the fresh water is frozen in ice caps and glaciers", "highlight": "frozen" },
+    { "type": "item", "rank": 1, "title": "Groundwater holds most of the rest", "text": "About 30% of fresh water sits underground in aquifers." },
+    { "type": "quote", "text": "Lakes and rivers hold a tiny sliver of it all", "author": "USGS" },
+    { "type": "end", "text": "Save this for your next trivia night", "sub": "Part 2: where the water goes", "highlight": "Save this" }
+  ]
+}

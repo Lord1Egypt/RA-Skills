@@ -1,48 +1,53 @@
-## Description: <br>
-Interact with Twitter/X through TwitterAPI.io for tweet search, user lookup, posting, likes, retweets, follows, direct messages, webhooks, streams, and related account actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with Twitter/X via TwitterAPI.io — search tweets, get user info, post tweets, like, retweet, follow, send DMs, and more. Covers all 76 active endpoints. Use when the user wants to read or write Twitter data.
 
-## Publisher: <br>
-[dorukardahan](https://clawhub.ai/user/dorukardahan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dorukardahan](https://clawhub.ai/user/dorukardahan)
 
-## Use Case: <br>
-Developers and external users use this skill to have an agent construct TwitterAPI.io requests for reading Twitter/X data and performing authenticated account actions. It is suited for workflows that need endpoint guidance, curl examples, request fields, pagination notes, pricing, and operational caveats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent through live Twitter/X operations with broad account authority. <br>
-Mitigation: Require manual confirmation before every post, direct message, follow, delete, upload, profile change, community action, or monitoring rule change. <br>
-Risk: The skill requires sensitive credentials such as TwitterAPI.io API keys, login cookies, account credentials, 2FA secrets, and proxy details for write actions. <br>
-Mitigation: Use a dedicated or low-risk account, store secrets outside chat and logs, avoid raw shell history exposure, and rotate credentials if they may have been exposed. <br>
-Risk: Twitter/X platform behavior and third-party API availability can degrade or change, including documented search pagination and date-range issues. <br>
-Mitigation: Validate results before relying on them, use documented timestamp workarounds where applicable, and prefer official Twitter/X APIs for mission-critical posting. <br>
+## Use Case:
 
+Developers and analysts use this skill to search and analyze Twitter/X data through TwitterAPI.io, and to perform account actions when explicitly requested for the exact action and account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dorukardahan/twitterapi-io) <br>
-- [TwitterAPI.io documentation](https://docs.twitterapi.io) <br>
-- [TwitterAPI.io dashboard](https://twitterapi.io/dashboard) <br>
-- [Endpoint index](references/endpoint-index.md) <br>
-- [Read endpoints](references/read-endpoints.md) <br>
-- [Write endpoints](references/write-endpoints.md) <br>
-- [Webhook and stream endpoints](references/webhook-stream-endpoints.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may include API request construction, endpoint selection, pagination handling, authentication setup, and operational warnings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.8.5 (source: frontmatter, changelog, server release evidence) <br>
+Risk: The security review flags an unpinned, automatically approved MCP install and notes that analysis was partial.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package and use a fixed version before installing. Withhold passwords, reusable 2FA seeds, and session cookies unless you are comfortable with the provider receiving those credentials.
+
+## Reference(s):
+
+- [TwitterAPI.io API documentation](https://docs.twitterapi.io)
+- [Endpoint index](references/endpoint-index.md)
+- [Read endpoint reference](references/read-endpoints.md)
+- [Write endpoint reference](references/write-endpoints.md)
+- [Webhook and stream endpoint reference](references/webhook-stream-endpoints.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Shell commands, Code, Configuration instructions]
+
+**Output Format:** [Markdown with inline curl, shell, JSON, and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only by default; state-changing actions require explicit confirmation for the exact action and account.]
+
+## Skill Version(s):
+
+3.8.32 (source: frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

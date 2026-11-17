@@ -1,52 +1,70 @@
-## Description: <br>
-Use when YouTube data is needed through MyBrandMetrics: search YouTube videos, get video metadata, inspect channel info, browse playlists, list comments, check live broadcasts, query YouTube Analytics, and work with YouTube Reporting jobs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+YouTube API helps agents use MyBrandMetrics to search YouTube, retrieve video and channel data, browse playlists and comments, check live broadcasts, query YouTube Analytics, and work with YouTube Reporting jobs.
 
-## Publisher: <br>
-[clawbus](https://clawhub.ai/user/clawbus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawbus](https://clawhub.ai/user/clawbus)
 
-## Use Case: <br>
-Developers and agents use this skill to choose YouTube Data, Analytics, and Reporting endpoints and prepare MyBrandMetrics Discovery API requests for connected YouTube accounts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can prepare requests for connected YouTube accounts with write, upload, moderation, administration, live, branding, and account-linking capabilities. <br>
-Mitigation: Require explicit confirmation of the connected account, target resource, request parameters, and intended result before any upload, update, delete, moderation, live, branding, account-linking, or reporting-job action. <br>
-Risk: MyBrandMetrics API keys and connected YouTube account identifiers are sensitive credentials or account data. <br>
-Mitigation: Keep API keys out of skill files, examples, logs, and chat replies; scope keys as narrowly as possible and show only non-sensitive account labels during account selection. <br>
-Risk: Using the full skill for read-only analytics can expose high-impact endpoints that are unnecessary for that workflow. <br>
-Mitigation: For read-only analytics use cases, disable or separate upload, write, delete, moderation, live, branding, and account-linking endpoints before installation. <br>
+## Use Case:
 
+External developers and agents use this skill to choose YouTube Data API, YouTube Analytics API, and YouTube Reporting API endpoints and build MyBrandMetrics Discovery API requests for connected YouTube accounts.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/clawbus/clawbus-youtube-unified-api) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/clawbus) <br>
-- [YouTube Unified API References](references/index.md) <br>
-- [Curl Usage](references/curl.md) <br>
-- [MyBrandMetrics Discovery API](references/mybrandmetrics-api.md) <br>
-- [YouTube Data API v3](references/services/youtube-data-v3.md) <br>
-- [YouTube Analytics API v2](references/services/youtube-analytics-v2.md) <br>
-- [YouTube Reporting API v1](references/services/youtube-reporting-v1.md) <br>
-- [Endpoint catalog](references/catalog.json) <br>
-- [MyBrandMetrics](https://mybrandmetrics.com/) <br>
-- [Clawbus](https://www.clawbus.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline curl examples, endpoint routes, request parameters, and account-selection guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include JSON request bodies, API routes, query parameters, and credential-handling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.4 (source: server release evidence) <br>
+Risk: The skill can guide account-changing YouTube operations, including upload, update, delete, moderation, subscription, playlist, live-stream, and reporting-job actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation of the connected account, endpoint, target resource ID, request parameters, and intended result before running any account-changing request.
+
+Risk: A MyBrandMetrics API key may carry YouTube read, write, upload, analytics, or reporting authority for connected accounts.
+
+Mitigation: Use only a key whose granted YouTube permissions are acceptable for the task, never expose keys in files or chat, and reconnect YouTube with narrower permissions when appropriate.
+
+Risk: Changing the API base URL could route credentialed requests away from the intended MyBrandMetrics host.
+
+Mitigation: Keep MYBRANDMETRICS_API_BASE_URL fixed to https://api.mybrandmetrics.com unless the publisher provides a verified replacement.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clawbus/skills/clawbus-youtube-unified-api)
+- [ClawHub publisher profile](https://clawhub.ai/user/clawbus)
+- [MyBrandMetrics](https://mybrandmetrics.com/)
+- [clawbus](https://www.clawbus.com/)
+- [YouTube Unified API References](artifact/references/index.md)
+- [Curl Usage](artifact/references/curl.md)
+- [MyBrandMetrics Discovery API](artifact/references/mybrandmetrics-api.md)
+- [YouTube Data API v3 endpoint reference](artifact/references/services/youtube-data-v3.md)
+- [YouTube Analytics API v2 endpoint reference](artifact/references/services/youtube-analytics-v2.md)
+- [YouTube Reporting API v1 endpoint reference](artifact/references/services/youtube-reporting-v1.md)
+- [Endpoint catalog](artifact/references/catalog.json)
+- [YouTube Data API v3 discovery document](https://youtube.googleapis.com/$discovery/rest?version=v3)
+- [YouTube Analytics API v2 discovery document](https://youtubeanalytics.googleapis.com/$discovery/rest?version=v2)
+- [YouTube Reporting API v1 discovery document](https://youtubereporting.googleapis.com/$discovery/rest?version=v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown text with curl command examples, API endpoint paths, query parameters, and JSON request guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include MyBrandMetrics account selectors, request bodies, upload/download notes, and error-handling guidance; does not provide YouTube transcripts.]
+
+## Skill Version(s):
+
+1.2.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

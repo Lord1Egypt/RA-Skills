@@ -1,45 +1,58 @@
-## Description: <br>
-Manages Instagram Business and Creator accounts through the Instagram Graph API for publishing, media retrieval, insights, comment moderation, direct messages, and story monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Instagram Business and Creator accounts by publishing content, reviewing insights, moderating comments, and handling direct messages.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-External social media operators, marketers, and developers use this skill to manage connected Instagram Business or Creator accounts, inspect account and post performance, publish content, moderate comments, and handle existing direct-message conversations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an OAuth connection for a connected Instagram Business or Creator account, giving ClawLink access to sensitive account capabilities. <br>
-Mitigation: Review the ClawLink permissions before connecting an account and use only the intended Business or Creator account. <br>
-Risk: The skill can publish posts, moderate comments, send direct messages, delete content, mark messages as read, and change messaging configuration. <br>
-Mitigation: Require a clear preview and explicit user approval before any write, delete, DM, mark-read, or messaging-configuration action. <br>
+## Use Case:
 
+Social media managers and other external users can manage connected Instagram Business or Creator accounts, review engagement, and look up public Instagram content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hith3sh/instagram-posts) <br>
-- [Instagram Graph API overview](https://developers.facebook.com/docs/instagram-api) <br>
-- [Instagram Media Publishing API](https://developers.facebook.com/docs/instagram-api/reference/ig-media) <br>
-- [Instagram Insights API](https://developers.facebook.com/docs/instagram-api/reference/ig-user/insights) <br>
-- [Instagram Messaging API](https://developers.facebook.com/docs/instagram-api/reference/ig-user/conversations) <br>
-- [ClawLink OpenClaw documentation](https://docs.claw-link.dev/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and structured tool-call parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide authenticated ClawLink calls that read Instagram account data or perform user-approved write actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server-resolved release evidence) <br>
+Risk: Publishing, messaging, comment deletion, and inbox configuration can change the connected account or contact other users.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Preview the intended action and confirm its target and effect with the user before executing any write.
+
+Risk: Public-content lookups incur charges against the user's ClawLink credit.
+
+Mitigation: Disclose the credit cost before making public-data lookups.
+
+## Reference(s):
+
+- [Instagram skill on ClawHub](https://clawhub.ai/hith3sh/skills/instagram-posts)
+- [ClawLink OpenClaw documentation](https://docs.claw-link.dev/openclaw)
+- [Instagram Graph API overview](https://developers.facebook.com/docs/instagram-api)
+- [Instagram media publishing API](https://developers.facebook.com/docs/instagram-api/reference/ig-media)
+- [Instagram insights API](https://developers.facebook.com/docs/instagram-api/reference/ig-user/insights)
+- [Instagram messaging API](https://developers.facebook.com/docs/instagram-api/reference/ig-user/conversations)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Shell commands]
+
+**Output Format:** [Markdown with inline shell commands and account data summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Public-data lookups use ClawLink credit; account management requires a connected Business or Creator account.]
+
+## Skill Version(s):
+
+1.0.7 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

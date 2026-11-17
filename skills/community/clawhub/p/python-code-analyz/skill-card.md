@@ -1,45 +1,57 @@
-## Description: <br>
-Analyzes Python code for syntax, security, reliability, performance, and quality issues, then provides prioritized findings and directly usable improvement guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Python code for syntax errors, security risks, performance concerns, code quality issues, and refactoring opportunities with severity-ranked findings and fix suggestions.
 
-## Publisher: <br>
-[sujian0606-cpu](https://clawhub.ai/user/sujian0606-cpu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sujian0606-cpu](https://clawhub.ai/user/sujian0606-cpu)
 
-## Use Case: <br>
-Developers and code-review agents use this skill to inspect Python files or pasted code, rank issues from P0 to P3, and obtain concrete remediation suggestions or refactored code. It is suited for local review workflows where generated fixes are inspected before use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The publisher is not verified by NVIDIA and server-resolved GitHub provenance is unavailable. <br>
-Mitigation: Install only if you trust the ClawHub publisher handle, and treat placeholder source links as non-authoritative. <br>
-Risk: Generated fixes or refactoring suggestions may alter behavior or introduce incorrect changes. <br>
-Mitigation: Review generated code before applying it and run the project's normal tests or static checks after changes. <br>
-Risk: The artifact includes a publishing helper that can publish to ClawHub if run deliberately. <br>
-Mitigation: Do not run the publishing helper unless you intend to publish with your own ClawHub account. <br>
+## Use Case:
 
+Developers and engineers use this skill to review Python files for syntax errors, static security findings, reliability issues, and code quality improvements. It returns prioritized P0/P1/P2/P3 findings with remediation guidance and optional JSON output for tool workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sujian0606-cpu/python-code-analyz) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [CHANGELOG.md](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain-text analysis reports with code blocks; JSON output is available for CLI use.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings are grouped by P0/P1/P2/P3 severity and may include line numbers, rule identifiers, suggestions, and generated replacement code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, skill.yaml, package.json, CHANGELOG released 2026-03-21) <br>
+Risk: The skill analyzes local Python files supplied by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on code intended for review and avoid submitting private source or secrets outside an approved environment.
+
+Risk: The included example writes to a fixed /tmp/sample.py path, which can be unsafe on shared multi-user systems.
+
+Mitigation: Change the example to use a private temporary path before running it in shared environments.
+
+Risk: Publishing instructions and scripts rely on the ClawHub CLI.
+
+Mitigation: Pin and isolate the CLI used for publishing, and review publish commands before executing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sujian0606-cpu/skills/python-code-analyz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, JSON, guidance]
+
+**Output Format:** [Plain text or JSON analysis reports, with Markdown guidance and Python code suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Severity-ranked findings include line numbers, rule identifiers, and remediation suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact skill.yaml, artifact package.json, and artifact CHANGELOG.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

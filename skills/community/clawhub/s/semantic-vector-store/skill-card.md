@@ -1,43 +1,53 @@
-## Description: <br>
-Provides text embedding, persistent vector storage, and cosine-similarity semantic search with incremental indexing and pluggable backend support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides text embedding, persistent vector storage, and cosine-similarity semantic search with incremental indexing and multiple backend adapters.
 
-## Publisher: <br>
-[whoisme007](https://clawhub.ai/user/whoisme007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whoisme007](https://clawhub.ai/user/whoisme007)
 
-## Use Case: <br>
-Developers and engineers use this skill to add semantic memory search to agent systems by embedding memory text, storing vectors locally, and retrieving relevant memories by similarity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Memory text, embeddings, and metadata are persisted under the configured local database path. <br>
-Mitigation: Use a trusted local path with appropriate file permissions and avoid storing sensitive memory data unless local persistence is acceptable. <br>
-Risk: Stored vector and ID-map files are reloaded from disk using an unsafe serialization format. <br>
-Mitigation: Do not import or share database, FAISS, or ID-map files from untrusted sources; regenerate indexes from trusted memory data when possible. <br>
-Risk: Future Pinecone or Weaviate backends may move memory data to external storage. <br>
-Mitigation: Review backend documentation, credentials, data retention, and privacy controls before enabling cloud vector storage. <br>
+## Use Case:
 
+Developers and engineers use this skill to add semantic memory retrieval to agent systems by embedding text, storing vectors, and searching memories by similarity.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/whoisme007/semantic-vector-store) <br>
-- [Publisher profile](https://clawhub.ai/user/whoisme007) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown documentation with Python examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent guidance for embedding text, storing vectors, searching memories, configuring storage paths and models, and running maintenance commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Persisted FAISS sidecar files or vector database contents can trigger unsafe pickle loading if modified by an untrusted user or process.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted local vector-store files, restrict file permissions, and replace pickle persistence with a safe serialization format before broad deployment.
+
+Risk: Sensitive memory text may be exposed if embeddings are generated with a remote model or service.
+
+Mitigation: Confirm whether embeddings are local or remote before storing sensitive memories, and avoid sending regulated or confidential content to unapproved services.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/whoisme007/skills/semantic-vector-store)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe or use local SQLite and FAISS vector-store files, embedding model configuration, and semantic search results.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

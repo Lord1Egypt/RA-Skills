@@ -1,45 +1,61 @@
-## Description: <br>
-Manage Zendesk support tickets, users, organizations, macros, and helpdesk workflows via the Zendesk REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Zendesk support tickets, users, organizations, macros, and helpdesk workflows via the Zendesk REST API.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-Support teams, operators, and developers use this skill to search Zendesk records, inspect tickets and users, and carry out confirmed support-desk changes from an agent chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on OAuth access to a connected Zendesk account. <br>
-Mitigation: Install only when the publisher and ClawLink broker are trusted, and review the requested Zendesk permissions during connection. <br>
-Risk: Write, delete, and bulk support-desk operations can change or remove Zendesk records. <br>
-Mitigation: Use previews and require explicit user confirmation before approving create, update, delete, or bulk changes. <br>
-Risk: The available Zendesk tool catalog is resolved at runtime and may differ from examples in the skill text. <br>
-Mitigation: List or search the live Zendesk tools before use, and describe unfamiliar tools before calling them. <br>
+## Use Case:
 
+Support teams and developers use this skill to manage Zendesk tickets, users, organizations, macros, and helpdesk workflows from an agent session through ClawLink-authenticated Zendesk tools.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hith3sh/zendesk-support) <br>
-- [Zendesk REST API Docs](https://developer.zendesk.com/api-reference/) <br>
-- [Zendesk API Reference](https://developer.zendesk.com/api-reference/ticketing/introduction/) <br>
-- [ClawLink Docs](https://docs.claw-link.dev/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and agent tool-call guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Zendesk REST workflow guidance, ClawLink setup commands, and confirmation steps for write operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: Connected Zendesk account access can expose or affect support data within the permissions granted during OAuth.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review Zendesk OAuth permissions before connecting, use an account with appropriate scope, and revoke the connection when it is no longer needed.
+
+Risk: Write, destructive, and bulk operations can create, update, or delete Zendesk records.
+
+Mitigation: Use the preview and confirmation flow for every write or destructive action, and review target resources and intended effects before execution.
+
+Risk: The integration depends on trust in ClawLink and the ClawHub plugin source for credential handling.
+
+Mitigation: Install only if the user trusts ClawLink and the plugin source with Zendesk account access.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hith3sh/skills/zendesk-support)
+- [Zendesk REST API Docs](https://developer.zendesk.com/api-reference/)
+- [Zendesk Ticketing API Reference](https://developer.zendesk.com/api-reference/ticketing/introduction/)
+- [ClawLink OpenClaw Docs](https://docs.claw-link.dev/openclaw)
+- [ClawLink Verification](https://claw-link.dev/verify)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON parameter examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides agents to discover live Zendesk tools, preview write actions, and require user confirmation before create, update, delete, or bulk operations.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,63 @@
-## Description: <br>
-Automates Windows desktop interactions by simulating mouse and keyboard input, capturing screenshots, managing clipboard text, launching applications, running local commands, and reporting basic system information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Windows desktop interactions by simulating mouse and keyboard input, managing the clipboard, taking screenshots, launching applications, running commands, and reporting system information.
 
-## Publisher: <br>
-[HJx378](https://clawhub.ai/user/HJx378) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[hjx378](https://clawhub.ai/user/hjx378)
 
-## Use Case: <br>
-Developers and agent users can use this skill to automate local Windows GUI workflows, inspect screen and cursor state, move text through the clipboard, launch applications, and execute PowerShell or cmd commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent Windows desktop control, screenshots, clipboard access, application launch capability, and unrestricted local command execution as the current user. <br>
-Mitigation: Install only when that level of local control is intended, require explicit approval before screenshots, clipboard reads, app launches, or shell commands, and avoid sensitive financial, administrative, credential, or destructive workflows without separate safeguards. <br>
-Risk: The mouse failsafe is disabled, so automated pointer movement and clicks may be harder to interrupt if the agent acts unexpectedly. <br>
-Mitigation: Keep a separate interruption path available before running automation and review planned mouse and keyboard actions before execution. <br>
-Risk: Clipboard and screenshot operations can expose sensitive visible information or copied text to the agent. <br>
-Mitigation: Clear sensitive windows and clipboard contents before use and approve each operation that reads the screen or clipboard. <br>
+## Use Case:
 
+Developers and operators use this skill to let an agent control a Windows desktop session for GUI workflows, application launching, clipboard tasks, screenshots, and command execution. It is best suited to supervised automation where the user can confirm sensitive actions before execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/HJx378/windows-automation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline code examples and tool-call guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Tool functions return strings, dictionaries, or screenshot files depending on the operation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can run PowerShell commands, launch applications, control the GUI, read the clipboard, and capture screenshots.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before commands or actions that modify files, access private data, use the network, install software, or interact with privileged applications.
+
+Risk: The artifact disables the PyAutoGUI failsafe, reducing the user's ability to interrupt unintended mouse or keyboard automation.
+
+Mitigation: Prefer a reviewed version that keeps the PyAutoGUI failsafe enabled or adds an equivalent emergency stop before deployment.
+
+Risk: Unrestricted command execution can run arbitrary PowerShell input.
+
+Mitigation: Use an allowlist for permitted commands and review command strings before execution.
+
+Risk: Clipboard reads and screenshots may expose private information from the active Windows session.
+
+Mitigation: Document screenshot and clipboard handling and require consent before collecting or sharing screen or clipboard contents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hjx378/skills/windows-automation)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with code examples, command strings, file paths, and structured status values.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can cause desktop side effects such as GUI input, application launch, command execution, clipboard changes, and screenshot file creation.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

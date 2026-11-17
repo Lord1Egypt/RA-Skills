@@ -1,0 +1,48 @@
+# AI 音乐创作引擎 Python 依赖包
+# 
+# 注意：部分包需要特定版本以确保兼容性
+# 安装命令：pip install -r requirements.txt
+
+torch>=2.0.0,!=2.1.0
+torchaudio>=2.0.0
+numpy>=1.24.0,<2.0.0
+scipy>=1.10.0
+aiohttp[speedups]>=3.8.0
+redis>=4.5.0
+aiofiles>=23.0.0
+PyJWT>=2.6.0
+bcrypt>=4.0.0
+tqdm>=4.65.0
+pydub>=0.25.1
+librosa>=0.10.0
+soundfile>=0.12.0
+ffmpeg-python>=0.2.0
+pyyaml>=6.0
+python-dotenv>=1.0.0
+requests>=2.31.0
+click>=8.1.0
+
+typed-ast>=1.5.0
+astroid>=2.15.0  # 用于代码分析
+
+# GPU 加速相关
+nvidia-ml-py>=11.450.51  # GPU 监控
+pycuda>=2022.2.2; platform_system!="Windows"  # CUDA 支持
+
+# 音频处理增强
+webrtcvad>=2.0.10  # 语音活动检测
+pyloudnorm>=0.1.0  # 音频标准化
+
+# 异步和并发
+async-timeout>=4.0.0
+aiohttp-retry>=2.8.0
+aioredis>=2.0.0
+
+# 性能优化
+orjson>=3.8.0  # 快速JSON处理
+uvloop>=0.17.0; platform_system!="Windows"  # 异步事件循环优化
+
+# 监控和日志
+prometheus-client>=0.16.0
+opentelemetry-api>=1.15.0
+opentelemetry-sdk>=1.15.0

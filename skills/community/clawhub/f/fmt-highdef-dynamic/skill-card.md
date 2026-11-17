@@ -1,43 +1,53 @@
-## Description: <br>
-FMT高清动态图生成器 v6.0 guides agents to create FMT gut microbiota transplant educational 4K PNG illustrations, 1080P videos, batch page outputs, style references, and quality checks for Chinese-language science communication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FMT肠菌移植科普高清动态图生成器（插画版+4K静态图+1080P动态视频+批量模式+风格一致）。生成配套数字手绘插画静态PNG（4K超清），并转化为高清晰度1080P动态视频。风格活泼生动，适合科普教育。触发词：生成FMT动态图 / 生成高清动态 / 插画转高清视频。
 
-## Publisher: <br>
-[zmy1006-sudo](https://clawhub.ai/user/zmy1006-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zmy1006-sudo](https://clawhub.ai/user/zmy1006-sudo)
 
-## Use Case: <br>
-External educators and content creators use this skill to generate FMT gut microbiota transplant educational illustrations, short image-to-video animations, batch page assets, and quality-check guidance for Chinese-language science communication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may execute local Python and a generator script from another installed skill. <br>
-Mitigation: Review the referenced nano-banana-pro script and generated commands before running the workflow. <br>
-Risk: Large batch jobs can create many image, video, and metadata files. <br>
-Mitigation: Choose an explicit output folder, confirm expected page counts and file counts, and inspect outputs before sharing. <br>
-Risk: Generated Chinese text or medical education visuals may be unclear or inaccurate. <br>
-Mitigation: Use the skill's quality checklist, regenerate failed assets, and have a qualified reviewer approve educational content before publication. <br>
+## Use Case:
 
+External users and content creators use this skill to create FMT education assets, including style-anchored 4K static illustrations, 1080P animated videos, page metadata, and generation reports.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/zmy1006-sudo/fmt-highdef-dynamic) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/zmy1006-sudo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown instructions with inline commands and JSON file examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces prompts and workflow guidance for 4K PNG images, 1080P or fallback 768P MP4 videos, and per-page metadata JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-6.0.0 (source: frontmatter and release evidence) <br>
+Risk: Fallback behavior can run local shell or Python commands using prompt or topic text derived from the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation, sanitize page titles and prompts, avoid shell interpolation, and prefer fixed scripts or structured APIs.
+
+Risk: Generated media files are written under /workspace paths and may affect shared workspace contents.
+
+Mitigation: Run the skill in a dedicated workspace directory and keep all outputs contained to an expected output folder.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zmy1006-sudo/skills/fmt-highdef-dynamic)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with tool calls, shell command examples, JSON metadata, PNG images, and MP4 videos]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates a style guide image, per-page static illustrations, animated videos, page metadata, and summary reports under /workspace paths.]
+
+## Skill Version(s):
+
+6.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,60 @@
-## Description: <br>
-Mev Engine provides an OpenClaw-native workflow framework for Mission-Environment-Verification reasoning, delivery gates, sign-off expectations, and lesson lifecycle management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MEV Engine v8.0 provides an OpenClaw-native thinking framework, delivery gate convention, and lesson lifecycle for guiding agent work.
 
-## Publisher: <br>
-[meta-evo-creator](https://clawhub.ai/user/meta-evo-creator) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[meta-evo-creator](https://clawhub.ai/user/meta-evo-creator)
 
-## Use Case: <br>
-Developers and agent operators use this skill to structure agent work with MEV reasoning layers, delivery checks, sign-off expectations, and learning capture. When configured, it can guide IMA delivery workflows that require explicit credentialed upload steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is marked for review because it under-discloses a bundled helper that can upload local Markdown or text files to an external IMA knowledge base using credentials. <br>
-Mitigation: Review before installing, keep IMA credentials unset unless needed, require explicit confirmation before any upload or push, and verify the exact file path and knowledge-base ID before use. <br>
+## Use Case:
 
+Developers and agent operators use this skill to apply the MEV five-layer method, G0-G4 delivery checks, sign-off expectations, evidence mapping, and lesson promotion workflow to OpenClaw-based agent tasks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/meta-evo-creator/mev-engine) <br>
-- [Eval Loop for Self-Improvement](references/eval-loop.md) <br>
-- [Promotion Guide](references/promotion-guide.md) <br>
-- [Learning Schema](references/schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with checklist text, command examples, and optional JSON status from the IMA upload helper.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Credentialed IMA upload behavior is optional and should require explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-8.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: Broad persistent agent-policy changes could alter memory, operating rules, or delivery workflows beyond the user's intent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that influence is intended, and remove or narrowly scope SOUL.md, AGENTS.md, and TOOLS.md promotion workflows before use.
+
+Risk: Upload or push delivery behavior could affect external systems.
+
+Mitigation: Require explicit user approval before any IMA upload or push delivery.
+
+Risk: The IMA upload script depends on credential handling and a separate ima-skill helper.
+
+Mitigation: Review credential handling and the helper dependency before enabling the upload workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/meta-evo-creator/skills/mev-engine)
+- [Eval Loop for Self-Improvement](references/eval-loop.md)
+- [Promotion Guide](references/promotion-guide.md)
+- [Learning Schema](references/schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with checklists, schemas, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose persistent agent-policy, memory, promotion, upload, and delivery workflow changes that should be reviewed before adoption.]
+
+## Skill Version(s):
+
+8.0.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

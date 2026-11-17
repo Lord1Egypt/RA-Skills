@@ -1,39 +1,48 @@
-## Description: <br>
-Compute MD5 cryptographic hash values for files and text. Use for file integrity verification and checksum validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compute MD5 cryptographic hash values for files and text.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and external users can compute MD5 digests for file and text fingerprinting in legacy checksum workflows. It should not be used for security-sensitive authenticity or tamper decisions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: MD5 is unsuitable for security-sensitive integrity or authenticity decisions.
+
+Mitigation: Use this skill only for legacy checksum compatibility or non-security fingerprinting; prefer SHA-256, HMAC, or signature verification for security workflows.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to generate MD5 checksums for local files or text when checking basic file integrity or validating expected checksum values. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: MD5 is not appropriate for security-sensitive integrity checks or tamper resistance when adversarial modification is a concern. <br>
-Mitigation: Use SHA-256 or a stronger hash for security-sensitive workflows, and limit this skill to basic local checksum generation. <br>
+**Output Format:** [Plain text hash strings and Markdown with inline shell command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dinghaibin/md5-tool) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/dinghaibin) <br>
+**Other Properties Related to Output:** [Outputs MD5 digests for supplied file paths or standard input.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text checksum output and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local file or standard input and prints a single MD5 hexadecimal digest.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

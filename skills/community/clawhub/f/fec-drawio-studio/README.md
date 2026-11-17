@@ -6,7 +6,7 @@ Editable draw.io / diagrams.net workflow for technical diagrams, official shape 
 
 - ID: `fec-drawio-studio`
 - Category: `design-ui`
-- Version: `2.8.0`
+- Version: `2.9.0`
 - Source: `skills/fec-drawio-studio/SKILL.md`
 
 ## Description

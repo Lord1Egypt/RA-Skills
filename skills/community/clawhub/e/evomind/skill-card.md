@@ -1,39 +1,53 @@
-## Description: <br>
-EvoMind provides a five-layer local SQLite memory engine for agents, including persistent facts, reusable skills, session cache, curation, and full-text recall. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evomind provides a five-layer memory and self-improvement engine that lets agents persist facts, save reusable skills, cache session data, curate stored knowledge, and search across memory.
 
-## Publisher: <br>
-[thebuddha5566](https://clawhub.ai/user/thebuddha5566) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thebuddha5566](https://clawhub.ai/user/thebuddha5566)
 
-## Use Case: <br>
-Developers and agent builders use EvoMind to add persistent local memory, reusable skill storage, session cache, curation, and recall to Python-based agents without external services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agent memories may persist sensitive prompts, personal data, or secrets in a local SQLite database. <br>
-Mitigation: Do not store passwords, API keys, private prompts, or personal data unless local retention is intended; choose the database path deliberately and review backups. <br>
-Risk: Deletion and curation commands can remove or alter stored memories and reusable skills. <br>
-Mitigation: Review deletion calls before execution, use the built-in confirmations where available, and keep backups when the memory database is important. <br>
+## Use Case:
 
+Developers and agent builders use Evomind to add local SQLite-backed memory to agents, including durable facts, saved skill text, session cache, curation, and full-text recall.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and Python code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update a local SQLite database at the configured db_path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: frontmatter and server release metadata) <br>
+Risk: Long-lived local memory can retain sensitive or proprietary text on disk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not store API keys, passwords, private customer data, or proprietary files unless local retention in ~/.agent_memory.db is acceptable.
+
+Risk: Saved memories and skill text can influence later agent behavior after the original session ends.
+
+Mitigation: Review recalled entries and delete or curate stored content when it is stale, sensitive, or no longer appropriate.
+
+## Reference(s):
+
+- [ClawHub Evomind Skill Page](https://clawhub.ai/thebuddha5566/skills/evomind)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with Python and shell snippets; runtime output is CLI text and local SQLite data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates a local SQLite memory database, defaulting to ~/.agent_memory.db.]
+
+## Skill Version(s):
+
+1.1.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

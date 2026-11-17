@@ -1,38 +1,52 @@
-## Description: <br>
-该技能介绍如何通过App外包实现变现；当你计划从事或优化App外包时调用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+该技能介绍如何通过App外包实现变现；当你计划从事或优化App外包时调用。
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mike47512](https://clawhub.ai/user/mike47512)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and teams use this skill for practical guidance on planning and operating an App outsourcing business, including positioning, MVP validation, customer acquisition, delivery workflow, metrics, and compliance checkpoints.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may treat general monetization, marketing, contract, invoice, or intellectual-property guidance as complete legal or platform-compliance advice.
+
+Mitigation: Review plans against applicable laws, platform policies, contract terms, invoice requirements, and intellectual-property obligations before acting.
+
+Risk: Outsourcing workflows can create misleading advertising, unauthorized traffic manipulation, or infringement risk if applied without compliance checks.
+
+Mitigation: Avoid false promotion, traffic manipulation, and infringement; define copyright and delivery terms clearly in contracts and quality checklists.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Chinese-speaking entrepreneurs, freelancers, and small teams use this skill as a practical checklist for planning, launching, tracking, and iterating an app outsourcing monetization workflow. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Text]
 
-## Known Risks and Mitigations: <br>
-Risk: The business checklist may omit legal, tax, contractual, copyright, advertising, or platform-policy requirements that apply to a specific market or client engagement. <br>
-Mitigation: Treat the guidance as general planning support and independently verify obligations with qualified advisors and current platform policies before acting. <br>
+**Output Format:** [Markdown advisory checklist and operating plan]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mike47512/app-outsourcing) <br>
+**Other Properties Related to Output:** [Produces business-planning guidance only; it does not execute code, request credentials, or require local system access.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown checklist and structured guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No command execution, code generation, or configuration changes are described by the release evidence.] <br>
+0.1.0 (source: server-resolved release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

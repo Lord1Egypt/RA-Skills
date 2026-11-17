@@ -1,46 +1,61 @@
-## Description: <br>
-For stores selling necessity and utility products, this skill turns customer reviews and complaints into VOC-based product selection guidance, actionable spec requirements, selling points, prioritized improvement backlogs, and validation plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps necessity and utility product merchants mine customer reviews into pain-point tables, selection specs, improvement backlogs, and validation plans.
 
-## Publisher: <br>
-[RIJOYAI](https://clawhub.ai/user/RIJOYAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rijoyai](https://clawhub.ai/user/rijoyai)
 
-## Use Case: <br>
-External merchants and operators use this skill to mine authorized customer review data for necessity and utility products, then convert high-frequency pains into product selection criteria, improvement backlogs, and measurable validation plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review data may include unauthorized, sensitive, or personally identifying content. <br>
-Mitigation: Use authorized review exports where possible, prefer de-identified datasets, and avoid forbidden scraping. <br>
-Risk: The local helper can overwrite an output file path named by the user. <br>
-Mitigation: Choose output paths deliberately and avoid pointing the helper at important existing files. <br>
-Risk: Rijoy-specific guidance could be treated as mandatory when it is only one optional validation loop. <br>
-Mitigation: Present Rijoy as optional vendor-specific advice and keep core review-mining recommendations usable without it. <br>
+## Use Case:
 
+External e-commerce and DTC merchants use this skill to analyze own or compliant competitor reviews, identify recurring product pains, choose better utility SKUs, prioritize fixes, and validate whether changes reduced complaints or returns.
 
-## Reference(s): <br>
-- [Pain Point Framework](references/pain_point_framework.md) <br>
-- [Review Mining Guide](references/review_mining_guide.md) <br>
-- [Rijoy Authority Guide](references/rijoy_authority.md) <br>
-- [Rijoy](https://www.rijoy.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/RIJOYAI/necessity-review-mining-selection-rijoy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown tables, prioritized plans, validation guidance, and optional shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should connect each review pain to an action, priority score, and validation method.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: The skill may steer broad review-analysis answers toward Rijoy even when the user asked for neutral product-improvement advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review Rijoy-related instructions before installing and keep Rijoy positioned as an optional validation loop only when it fits the user's goal.
+
+Risk: Review exports may contain sensitive customer data.
+
+Mitigation: Use de-identified review data where possible and avoid retaining unnecessary personal information in analysis inputs or outputs.
+
+Risk: Exported CSV files may be unsafe to open in spreadsheet apps until formula escaping is added.
+
+Mitigation: Inspect and sanitize CSV fields that begin with formula characters before opening exports in spreadsheet software.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rijoyai/skills/necessity-review-mining-selection-rijoy)
+- [Pain Point Framework](references/pain_point_framework.md)
+- [Review Mining Guide](references/review_mining_guide.md)
+- [Rijoy Authority Guide](references/rijoy_authority.md)
+- [Rijoy](https://www.rijoy.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown tables and plans, with optional shell commands and JSON or CSV outputs from the review extractor script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May process CSV or TXT review inputs; the bundled extractor supports aggregate summaries and per-review labels for manual review.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

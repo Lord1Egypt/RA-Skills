@@ -1,45 +1,55 @@
-## Description: <br>
-This skill guides an agent through a staged workflow for reorganizing, critiquing, deepening, and formatting journal papers with chapter-level argumentation, literature support, consistency checks, and Word document output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill guides an agent through a structured Chinese academic-paper workflow for reorganizing journal manuscripts, deepening chapters, checking outline quality, supporting claims with literature, and preparing a final Word document.
 
-## Publisher: <br>
-[innocencexy](https://clawhub.ai/user/innocencexy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[innocencexy](https://clawhub.ai/user/innocencexy)
 
-## Use Case: <br>
-Researchers, students, and academic writing assistants use this skill to restructure journal manuscripts, refine outlines, deepen individual chapters with literature-supported argumentation, and prepare a formatted paper draft. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unpublished or confidential manuscript text may be exposed if full paper content is sent to external search or writing services. <br>
-Mitigation: Use trusted processing environments and avoid sending sensitive full-text manuscripts to external services unless the user has approved that disclosure. <br>
-Risk: Literature search and citation generation can produce inaccurate, outdated, or unverifiable references. <br>
-Mitigation: Review every generated citation against authoritative databases or publisher pages before using the final paper. <br>
-Risk: The final Word document output depends on a document-generation tool outside this instruction-only skill. <br>
-Mitigation: Use a trusted .docx generation tool and inspect formatting, references, and content before submission. <br>
+## Use Case:
 
+External users and academic writers use this skill to restructure, critique, and deepen journal-paper drafts in a staged Chinese-language workflow. It is suited to manuscript outline revision, chapter-by-chapter argument expansion, literature-supported writing, and final consistency checks.
 
-## Reference(s): <br>
-- [Outline Criteria](references/outline_criteria.md) <br>
-- [Workflow Prompts](references/workflow_prompts.md) <br>
-- [ClawHub skill page](https://clawhub.ai/innocencexy/paper-reorganizer) <br>
-- [Publisher profile](https://clawhub.ai/user/innocencexy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance, structured checklists, revised manuscript sections, and document formatting instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May request or produce a .docx manuscript when a trusted document-generation tool is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The workflow is Chinese-oriented and may be too rigid for lightweight literature search or non-Chinese journal workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target language, journal expectations, citation style, and desired level of structure before using the full staged process.
+
+Risk: The skill can produce a final Word document, which may need formatting and citation verification before submission.
+
+Mitigation: Review the generated .docx against the target journal's style guide and verify references, page layout, fonts, and citation format before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/innocencexy/skills/paper-reorganizer)
+- [期刊论文大纲评审标准与深化规范](references/outline_criteria.md)
+- [各阶段标准提示词模板](references/workflow_prompts.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration, files]
+
+**Output Format:** [Markdown guidance, structured review reports, revised manuscript text, and optionally a .docx file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are staged and interactive; the workflow pauses for user confirmation between major phases and asks for target citation and formatting requirements before Word export.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

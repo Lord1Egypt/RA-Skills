@@ -1,38 +1,58 @@
-## Description: <br>
-AI桌面宠物 opens a browser-based 3D desktop pet that lets users interact with a dog or cat companion through emotion-triggered reactions, animations, photo-based color extraction, and floating-window mode. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI桌面宠物 is a browser-based 3D desktop pet with emotion detection, letting an interactive dog or cat react to mood text, actions, and uploaded pet photos.
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-External users and personal-productivity agents use this skill to launch a local 3D pet companion, switch dog or cat modes, react to Chinese emotion text, customize pet colors from uploaded photos, and open a floating pet window. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases may open or show the pet when a user mentions emotional-support or pet-related terms. <br>
-Mitigation: Review the configured triggers before enabling the skill, and narrow or disable them if surprise UI activity would be disruptive. <br>
+## Use Case:
 
+External users and developers use this skill to open or embed a static browser-based 3D dog/cat companion that responds to Chinese emotion keywords, manual pet actions, and photo-derived colors.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/ai-desktop-pet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands] <br>
-**Output Format:** [Markdown instructions with inline JavaScript API examples and file-launch commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces guidance for opening and controlling a local HTML desktop pet app; the artifact includes an interactive index.html.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The browser UI loads Three.js from the unpkg CDN.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill in environments where that CDN dependency is acceptable, or pin and host the dependency internally for controlled deployments.
+
+Risk: Photo color extraction and emotion keyword input may involve personal images or mood text, and the current UX is Chinese-focused.
+
+Mitigation: Tell users what local browser processing is expected, avoid sensitive inputs, and verify the language behavior fits the intended audience.
+
+Risk: WebGL, local-file image handling, and floating-window mode can be restricted by browser settings.
+
+Mitigation: Run the skill in a modern browser, serve it over HTTP when local file access causes limits, and allow popups only when floating mode is needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/ai-desktop-pet)
+- [Three.js 0.157 CDN dependency](https://unpkg.com/three@0.157.0/build/three.module.js)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown with inline shell and JavaScript snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static browser UI backed by a local HTML file and optional JavaScript petAPI calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

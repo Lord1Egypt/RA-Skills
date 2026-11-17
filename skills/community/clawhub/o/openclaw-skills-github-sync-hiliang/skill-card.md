@@ -1,39 +1,52 @@
-## Description: <br>
-Synchronizes OpenClaw skills to GitHub through a manually confirmed workflow for Windows, Linux, and Mac. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Skills GitHub Sync helps users manually synchronize OpenClaw skill repositories to GitHub after creating or modifying skills.
 
-## Publisher: <br>
-[Hi-Jiajun](https://clawhub.ai/user/Hi-Jiajun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hi-jiajun](https://clawhub.ai/user/hi-jiajun)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to configure local private and public skill repositories, review changes, and manually commit and push skill updates to GitHub. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Security evidence marks the release as suspicious and warns that repo-maintenance workflows can mutate accounts, GitHub state, or production data. <br>
-Mitigation: Install only from trusted publishers, inspect pending changes with git status before confirming sync, and confirm any moderation, PR commenting, publishing, or migration commands before allowing mutation. <br>
-Risk: Security guidance notes that fallback review workflows may send local diffs to reviewers. <br>
-Mitigation: Avoid running review helpers on sensitive repositories, and prefer non-bypass review settings where applicable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Hi-Jiajun/openclaw-skills-github-sync-hiliang) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to configure local private and public skill repositories, review pending changes, and push selected repository updates to GitHub after manual confirmation.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown instructions with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup and sync workflow guidance; bundled scripts may write local config and run Git commands after user confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The sync script can commit and push broad local repository contents from configured skill repositories.
+
+Mitigation: Run git status and git diff before syncing, verify repository visibility, and confirm that .gitignore excludes credentials, .env files, tokens, keys, logs, and other sensitive files.
+
+Risk: The generated scripts/config.sh file stores local repository paths and is sourced by the sync script.
+
+Mitigation: Treat scripts/config.sh as security-sensitive configuration and review it before running synchronization commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hi-jiajun/skills/openclaw-skills-github-sync-hiliang)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides local setup and sync workflows; scripts may create configuration files, update .gitignore, commit repository changes, and push to GitHub after confirmation.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

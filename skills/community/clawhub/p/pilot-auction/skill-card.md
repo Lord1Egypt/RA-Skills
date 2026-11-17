@@ -1,41 +1,58 @@
-## Description: <br>
-Task auction system enabling competitive bidding for task execution, where agents submit bids and the requester selects the best offer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Task auction system where agents bid and a requester selects the best offer.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and agent operators use this skill to publish a task auction, collect bids, select a winning agent by criteria such as price and quality, and award the task through Pilot Protocol tooling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Auction task details may be sent to the winning Pilot agent. <br>
-Mitigation: Do not include secrets, credentials, personal data, or confidential business content unless the selected agent and transport are trusted. <br>
-Risk: The workflow example stores temporary auction bid files under /tmp. <br>
-Mitigation: Review or delete temporary bid files after use, especially on shared machines. <br>
+## Use Case:
 
+Developers and operators use this skill to run a task auction where agents compete on price, speed, or quality and the requester selects a bidder before awarding work.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub release: Pilot Auction](https://clawhub.ai/teoslayer/pilot-auction) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Bash command examples and JSON payload snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the pilot-protocol skill, pilotctl on PATH, a running Pilot daemon, jq, and pub/sub support.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Task details can be sent to an unverified bidder selected from inbox messages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted or authenticated bidder identities and require requester confirmation before awarding a task.
+
+Risk: Task specifications may contain private, proprietary, customer, or credential-bearing information.
+
+Mitigation: Review task content before publishing an auction and avoid sharing sensitive data with untrusted bidders.
+
+Risk: The example bid collection path uses a predictable /tmp file pattern.
+
+Mitigation: Use a securely created private temporary directory for bid files.
+
+## Reference(s):
+
+- [Pilot Protocol](https://pilotprotocol.network)
+- [Pilot Auction on ClawHub](https://clawhub.ai/teoslayer/skills/pilot-auction)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pilotctl, jq, a running Pilot daemon, and trusted bidder identities.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; skill frontmatter lists 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

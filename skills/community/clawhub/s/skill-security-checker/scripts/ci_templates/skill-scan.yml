@@ -1,0 +1,64 @@
+name: Skill Security Scan
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run skill-security-checker
+        run: |
+          python scripts/audit.py . \
+            --format sarif \
+            -o sarif-output.sarif \
+            --skip-update
+        continue-on-error: true
+      - name: Upload SARIF to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: sarif-output.sarif
+      - name: Gate on quality score
+        run: |
+          SCORE=$(python scripts/audit.py . --format json --skip-update \
+                  | python -c "import sys,json; print(json.load(sys.stdin)['score'])")
+          echo "Quality Score: $SCORE"
+          if [ "$SCORE" -lt 70 ]; then
+            echo "Score below threshold (70), failing."
+            exit 1
+          fi
+      - name: Comment PR with scan results
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = JSON.parse(
+              fs.readFileSync('sarif-output.sarif', 'utf8')
+            );
+            const stats = report.runs[0]?.results?.length ?? 0;
+            const body = [
+              '## 🔒 Skill Security Scan',
+              '',
+              `Found **${stats}** issue(s).`,
+              '',
+              'Full details in the **Security → Code Scanning** tab.',
+            ].join('\n');
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: body,
+            });

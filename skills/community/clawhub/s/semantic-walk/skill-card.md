@@ -1,39 +1,52 @@
-## Description: <br>
-Semantic Walk guides a human and Claude through a collaborative semantic navigation exercise to make difficult insights, creative connections, or new perspectives more visible. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Semantic Walk guides an agent and user through a collaborative, stepwise semantic exploration where domain tokens are excavated to make difficult ideas, problems, or creative directions more visible.
 
-## Publisher: <br>
-[liet-codes](https://clawhub.ai/user/liet-codes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[liet-codes](https://clawhub.ai/user/liet-codes)
 
-## Use Case: <br>
-External users use this skill for exploratory conversation, creative work, problem-solving, and preparing to approach ideas that are hard to reach directly. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill is intended for metaphorical, exploratory conversation and may be inappropriate for factual, urgent, or safety-sensitive tasks. <br>
-Mitigation: Use it for creative or conceptual exploration, and ask the assistant to return to normal direct mode for factual, urgent, or safety-sensitive work. <br>
-Risk: Semantic walks take time, require participation, and may not produce a clear arrival. <br>
-Mitigation: Use it when exploratory dialogue is acceptable; slow down, revisit the intention, or switch modes when a direct answer is needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/liet-codes/semantic-walk) <br>
+## Use Case:
 
+External users and developers use Semantic Walk for deliberate creative exploration, problem framing, and reaching hard-to-state insights through collaborative, stepwise conversation.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Conversational text or Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; it does not require tools, credentials, files, or persistence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can shift the assistant into an alternate exploratory mode without clear opt-in or safety boundaries.
+
+Mitigation: Invoke it explicitly for deliberate creative exploration, and return to direct assistant behavior when factual, task-focused, or predictable responses are needed.
+
+Risk: The exploratory mode may be unsuitable for sensitive, safety-critical, legal, medical, financial, or security decisions.
+
+Mitigation: Avoid using it for those decisions unless normal safeguards and direct-answer behavior are clearly preserved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liet-codes/skills/semantic-walk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Conversational Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces exploratory guidance and position reports; it does not run code or access data.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/policy.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "caption"],
+  "properties": {
+    "$schema": {"type": "string"},
+    "version": {"const": "1.2.0"},
+    "caption": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["maxLines", "automaticWrapAllowed", "allowedSourceVariants", "requireWordLevelAudit", "hardMinDurationMs", "normalMinDurationMs", "shortCardAllowedPattern", "shortCardMinCharacters", "shortCardMaxCharacters", "maxReplacementCharacters", "maxTraditionalChineseHits", "traditionalCharacters"],
+      "properties": {
+        "maxLines": {"const": 2},
+        "automaticWrapAllowed": {"const": true},
+        "allowedSourceVariants": {"const": ["original"]},
+        "requireWordLevelAudit": {"const": true},
+        "hardMinDurationMs": {"const": 450},
+        "normalMinDurationMs": {"const": 800},
+        "shortCardAllowedPattern": {
+          "const": "^[A-Za-z0-9][A-Za-z0-9+&._/ -]*$",
+          "description": "Hard type gate applied after exact whitelist matching; profiles and terminology files cannot weaken it."
+        },
+        "shortCardMinCharacters": {"const": 2},
+        "shortCardMaxCharacters": {"const": 16},
+        "maxReplacementCharacters": {
+          "const": 4,
+          "description": "Hard display-override ceiling; a profile may only select a lower effective value."
+        },
+        "maxTraditionalChineseHits": {"const": 0},
+        "traditionalCharacters": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

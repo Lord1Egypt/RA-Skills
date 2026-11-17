@@ -1,43 +1,58 @@
-## Description: <br>
-Use Etherscan MCP through UXC for onchain address, token holder, transaction, and contract lookup investigations with help-first schema inspection and bearer-key authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Etherscan MCP through UXC for address balance checks, token holder analysis, transaction inspection, and contract lookup tasks.
 
-## Publisher: <br>
-[jolestar](https://clawhub.ai/user/jolestar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jolestar](https://clawhub.ai/user/jolestar)
 
-## Use Case: <br>
-Developers and agents use this skill to configure and run Etherscan MCP workflows through UXC for read-first onchain investigations, including address balance checks, token holder analysis, transaction inspection, and contract metadata lookup. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Etherscan API key exposure or overbroad credential binding. <br>
-Mitigation: Use a dedicated Etherscan API key, bind bearer authentication only to https://mcp.etherscan.io/mcp, and verify the credential and binding before calls. <br>
-Risk: Etherscan MCP schema changes or plan-gated tools can cause failed or misleading calls. <br>
-Mitigation: Inspect operation help before execution, start with one read-only chain, address, token, or transaction at a time, and handle tier-gated responses explicitly. <br>
-Risk: Contract verification can behave like a write or publication action. <br>
-Mitigation: Require explicit user confirmation before any contract verification action. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Usage Patterns](references/usage-patterns.md) <br>
-- [Etherscan MCP endpoint](https://mcp.etherscan.io/mcp) <br>
-- [ClawHub skill page](https://clawhub.ai/jolestar/etherscan-mcp-skill) <br>
+## Use Case:
 
+Developers and analysts use this skill to run Etherscan MCP workflows for onchain address investigation, token holder analysis, transaction inspection, and contract lookup. It emphasizes help-first schema inspection, bearer-token authentication, and read-first handling before broader automation.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires uxc, network access to Etherscan MCP, and an Etherscan API key for authenticated calls.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires access to an Etherscan API key and configures a UXC authentication binding for the Etherscan MCP endpoint.
+
+Mitigation: Install only when that access is acceptable, prefer environment or secret-manager backed credentials, and verify the auth binding before use.
+
+Risk: The verifySourceCode operation is a submission-style action rather than a passive lookup.
+
+Mitigation: Require explicit user confirmation before invoking verifySourceCode.
+
+Risk: Some Etherscan MCP tools may be plan-gated or may change schemas independently of this wrapper skill.
+
+Mitigation: Run operation-specific help before first use and handle API plan or schema errors in the returned response.
+
+## Reference(s):
+
+- [Usage Patterns](references/usage-patterns.md)
+- [Etherscan MCP endpoint](https://mcp.etherscan.io/mcp)
+- [ClawHub skill page](https://clawhub.ai/jolestar/skills/etherscan-mcp-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides an agent to inspect operation help, configure bearer authentication, and parse JSON envelopes from Etherscan MCP responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

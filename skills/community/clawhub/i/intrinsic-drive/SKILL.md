@@ -1,7 +1,7 @@
 ---
 name: intrinsic-drive
 description: "Activate when: user says 'I've lost motivation', 'I'm burning out', 'the excitement is gone', 'I keep starting things but can't sustain them', 'I'm going through the motions', 'I don't know what drives me anymore', or describes a flat feeling after achieving a major goal.
-  Do NOT activate when: person shows signs of clinical depression or burnout requiring professional treatment; or external constraints (no resources, structural barriers) are blocking execution rather than motivation."
+  Do NOT activate when: person shows signs of clinical depression or burnout requiring professional treatment; or external constraints (no resources, structural barriers) are blocking execution rather than motivation. More: deciqai.com/c/intrinsic-drive"
 ---
 
 # Intrinsic Drive
@@ -113,4 +113,6 @@ Next audit: [date]
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/intrinsic-drive** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/intrinsic-drive.json*

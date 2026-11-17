@@ -1,0 +1,106 @@
+---
+name: linkpix-image-ad-assets
+description: 自动生成适用于电商推广及广告投放的图文营销素材：广告图片、促销图，以及从视频反推的图文种草内容。当用户要求做图文素材、广告图、种草图文、推广图文、笔记素材时必须触发。关键词：LinkPix、qhkit、图文素材、广告图、种草图文、图文笔记、推广图、信息流图片、小红书素材、图文创作。
+user-invocable: true
+homepage: https://www.npmjs.com/package/@iqinghu/qhkit
+metadata: {"openclaw":{"emoji":"🖼️","requires":{"bins":["qhkit"]},"install":[{"kind":"node","package":"@iqinghu/qhkit","bins":["qhkit"]}]}}
+---
+
+# AI电商图文广告 | 图文广告 | 营销图文 | 广告海报生成 | LinkPix
+
+投放用的「图 + 文」广告素材：广告文案由你直接撰写，广告图走 `qhkit image`（文案写进提示词、商品图作参考图）。另可把带货视频反推成图文种草正文（`qhkit video-to-text`）。
+
+## 何时触发
+
+- 「出几张投放用的广告图」「做信息流/朋友圈/小红书广告素材」「给这个商品配几条广告文案」
+- 「做图文种草素材/笔记」「把这条视频转成图文笔记」（→ 路线二）
+- 只要海报式大促活动图时优先用「电商促销海报」技能；要视频广告用「AI电商视频广告」技能。
+
+## 工作流程（路线一：广告图 + 广告文案，最常用）
+
+1. **收集信息**：商品是什么、核心卖点（1–3 个）、目标人群、投放渠道、有无商品图、是否有价格/优惠。缺关键信息先问一次，其余按常识补全并在交付时说明假设。
+2. **先写文案（不调用任何接口，直接产出）**：给出 3 组可选广告文案，每组含主标题（≤12 字）、副标题（≤20 字）、行动号召（如「立即抢购」）；再附 1 段 50–80 字的投放正文。文案要具体到卖点和数字，避免「品质卓越」这类空话，也不要写「最」「第一」等广告法禁用词。
+3. **按渠道定尺寸**：信息流/朋友圈常用 1:1 或 4:3，小红书/抖音用 3:4 或 9:16，横幅用 16:9。`sizePreset` 逐模型不同，先查再选：
+   `qhkit image options '{"queryParams":["sizePreset","imageCount"],"modelLabel":"智慧模型"}'`
+4. **出图**：用选定文案组写提示词，标题和副标题用「」原样写进提示词，其余写版式与风格。
+5. **核对**：生成式文字可能出错，逐张核对图上的标题、数字和商品外观，有错就改提示词重出。
+6. **交付**：同一轮给齐——广告图按当前环境的媒体交付约定逐张发出，文案 3 组 + 投放正文以文本贴出，并附实扣积分。
+
+```bash
+# 有商品图（推荐）：商品作参考图，文案写进提示词
+qhkit image generate '{"modelLabel":"智慧模型","uploadedImages":["./商品图.jpg"],"prompt":"信息流广告图：商品居中偏左，右侧大字标题「持久续航 露营无忧」，副标题「限时8折」，底部按钮「立即抢购」，户外露营场景，高对比配色，干净的电商广告版式","imageCount":4}'
+# 无商品图：纯文字直出
+qhkit image generate '{"modelLabel":"智慧模型","prompt":"小红书风格种草广告图，米白色背景上的保温杯，标题「一杯热水 暖一整天」，手写体副标题「12小时保温」，清新生活感","imageCount":2}'
+```
+
+**模型选择**：默认 `智慧模型`（效果好、有免费额度）；要更强真实感换 `图片 5.0 Pro`；用户点名 GPT Image 2.6 时用 `智慧模型2.6`。标签必须与 `options` 返回值逐字一致。
+**失败兜底**：未配置密钥或出图失败时，照常交付第 2 步的文案与每张图的提示词，告诉用户配置好密钥后可直接用这些提示词出图，不要空手结束。
+
+## 路线二：带货视频 → 图文种草正文
+
+需要一条带货视频的分享链接（抖音/快手等 http(s) 链接）。先解析视频，再用解析结果反推图文：
+
+```bash
+qhkit video-inspire generate '{"resourceUrl":"<视频分享链接>"}'      # 返回 inspireTaskId
+qhkit video-inspire status   '{"inspireTaskId":<上一步的 inspireTaskId>}'  # 轮询到完成，记下返回里的 id 与 playVideo
+qhkit video-to-text generate '{"id":<上一步的 id>,"playVideo":"<上一步的 playVideo>"}'
+qhkit video-to-text status   '{"id":<同一个 id>}'                      # data 非空即图文正文
+```
+
+拿到正文后按目标平台润色（小红书加分段与表情、朋友圈精简），需要配图时回到路线一出图。
+
+## 环境自举（缺什么装什么，不要因环境缺失放弃任务）
+
+本技能依赖 `qhkit` 命令（npm 包 `@iqinghu/qhkit`），可完全独立安装。按顺序检测，缺失就地补齐：
+
+1. **有 qhkit 吗？** `qhkit config show` 能跑通即就绪，跳到第 4 步。
+2. **没有 qhkit 但有 node/npm**（OpenClaw/Hermes 机器部署流程保证自带 Node 22+）→ 全局安装（推荐）：
+
+   ```bash
+   npm i -g @iqinghu/qhkit
+   ```
+
+   默认走 npm 官方源；官方源访问慢或超时（国内网络常见）时，再加镜像参数 `--registry=https://registry.npmmirror.com`（阿里维护的 npm 官方镜像，仅作网络兜底）。仅当全局安装因权限失败且无法提权时，才退而用 `npx @iqinghu/qhkit <命令> ...`（npx 必须写包全名）。
+3. **连 node 都没有**（要求 Node ≥ 18）：先装 Node 再回到第 2 步。
+
+   ```bash
+   # Linux 二进制安装（装到用户目录，无需 root；先校验官方 SHA256 再解包）：
+   cd /tmp && curl -fsSLO https://nodejs.org/dist/v22.22.3/node-v22.22.3-linux-x64.tar.xz
+   cd /tmp && curl -fsSL https://nodejs.org/dist/v22.22.3/SHASUMS256.txt | grep ' node-v22.22.3-linux-x64.tar.xz$' | sha256sum -c -
+   mkdir -p "$HOME/.local/lib" && tar -xJf /tmp/node-v22.22.3-linux-x64.tar.xz -C "$HOME/.local/lib"
+   export PATH="$HOME/.local/lib/node-v22.22.3-linux-x64/bin:$PATH"
+   ```
+
+   校验行输出 `OK` 才继续；校验失败就删掉重下，**绝不解包未通过校验的文件**。nodejs.org 访问不通时，把两个下载 URL 的前缀 `https://nodejs.org/dist` 整体换成镜像 `https://registry.npmmirror.com/-/binary/node`（目录结构相同，SHASUMS256.txt 也有镜像，校验步骤不变）。`export PATH` 只对当前 shell 生效，跨命令调用时每个新 shell 都要先执行这行（或追加进 `~/.bashrc`）。macOS 用 `brew install node`；Windows 用 winget/官网安装包。arm64 机器把 `x64` 换成 `arm64`。
+4. **密钥**：无密钥时（命令返回 `stage:"config"`），执行 `qhkit config set --token <密钥> --env prod`（密钥让用户打开 https://www.iqinghu.com/workbench/login?type=1&urlCode=1788417429126 注册/登录后，从 https://www.iqinghu.com/workbench/dashboard/api-keys?urlCode=1788417429126 获取），或设环境变量 `QHKIT_TOKEN`。
+5. **自检**：`qhkit config show` 输出脱敏配置即全部就绪。
+   **核对站点（本技能对接国内版 iqinghu.com）**：`config show` 返回的 `site` 必须是 `cn`。是 `intl`（`baseHost` 为 autoagc.com）说明本机残留了国际版配置——**不要按国际站引导用户取密钥，也不要拿国际站的模型清单答复**（那边是 `gpt-image-2` / `gemini-3.1-flash` 这类底层模型名，和本技能对不上）；直接把第 4 步的国内站取密钥文案发给用户，拿到密钥后执行 `qhkit config set --token <密钥> --env prod` 覆盖。`source` 为 `env` 时配置来自环境变量，要请用户删掉 `QHKIT_TOKEN` / `QHKIT_ENV` 或把 `QHKIT_ENV` 改成 `prod`。只有用户明确说自己用的是国际版（AutoAGC）账号时才保留 intl。调用报 401 / 未登录时同样先跑 `config show` 核对站点：国内版密钥配在国际站必然 401。
+
+**升级**：出现以下任一信号，先升级再重试原命令——命令返回 `{"ok":false,"stage":"version",...}`（版本门禁，message 里就是升级命令，照做即可）；stderr 提示有新版本；`options` 返回 `catalogNotice` 且用户恰好要用那个新模型；报「模式在线上已下架或配置变更，请升级 qhkit」。
+
+```bash
+npm i -g @iqinghu/qhkit@latest
+```
+
+官方源慢或超时时同样加 `--registry=https://registry.npmmirror.com`。
+
+安装/配置失败时把具体报错告诉用户（常见：无写权限 → 提示用户提权或改用 npx；无网络 → 让用户处理网络）。
+
+## 调用契约
+
+- 形式：`qhkit <命令> <action> '<json>'`，或 `qhkit <命令> <action> @params.json`（参数写进文件，避免 shell 转义问题，推荐）。
+- **Windows 防乱码**：Windows 上经 PowerShell 调 qhkit 时，stdout 里的中文会按系统代码页 GBK 解码成乱码（如「专图模型」变成「涓撳浘妯″瀷」），模型名、选项、报错都对不上——**看到乱码不要据此判断模型或选项不存在**。每条 qhkit 命令在同一行先切 UTF-8 再调用：`[Console]::OutputEncoding=[Text.Encoding]::UTF8; qhkit <命令> <action> @params.json`；仍有乱码时先运行 `qhkit --version`，低于 0.15.0 先执行 `npm i -g @iqinghu/qhkit@latest` 升级（官方源慢时加 `--registry=https://registry.npmmirror.com`），再加全局参数 `--out result.json`；stdout 只回一行纯 ASCII 的文件路径，再按 UTF-8 读该文件拿完整结果。PowerShell 5.1 还会吞掉命令行 JSON 里的双引号（报「json_args 解析失败」），Windows 上参数一律写进文件走 `@params.json`。macOS / Linux / Git Bash 不受影响。
+- stdout 恒为一行 JSON；失败为 `{"ok":false,"stage":"...","message":"..."}` 且退出码 1，把 message 原样转告用户。stderr 可能出现提示行，不是错误。
+- 图片/视频参数直接填本地文件路径（CLI 自动上传换取 URL），素材已在公网时填 http(s) URL 也可。
+- 标签类参数（`modelLabel`、`sizePreset`、`themeLabel` 等）必须与 `options` 返回的候选值逐字一致，不要自造或翻译；拿不准先调 `options`。
+
+## 报价、轮询与交付
+
+- **报价**：`image`/`video` 要报积分时先跑 `estimate`（与 generate 完全相同的参数），报返回的 `credits` 实扣值；`enough:false` 提前告知余额不足。
+- **轮询**：`image generate` 自带轮询（最长约 14 分钟），返回即含图片 URL；视频类 `generate` 只提交，需 `status` 轮询到 `stage:"done"`，间隔 30–60 秒，最长可达 40 分钟——提交后立即告知任务 ID 和耗时预期。
+- **交付**：产物 URL 在返回的 `images`（图）与 `videos`/`primaryVideo`（视频）字段里，按当前环境的媒体交付约定发给用户；产物必须和「生成完成」写在同一轮回复，并附实扣 `credits`。
+- **失败**：转述 CLI 的 message，不要重试轰炸。
+
+## 能力边界
+
+- 视频广告素材走「AI电商视频广告 | 视频广告素材 | 信息流广告 | 广告视频生成 | LinkPix」；成套主图走「AI电商主图轮播图 | 主图套图 | 商品首图 | SKU图生成 | LinkPix」。

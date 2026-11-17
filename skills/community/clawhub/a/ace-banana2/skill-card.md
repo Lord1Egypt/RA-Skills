@@ -1,46 +1,54 @@
-## Description: <br>
-Generate and edit images using the AceData Nano Banana API with configurable models, aspect ratios, resolutions, batch generation, and local image edit inputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ace Banana2 generates and edits images through the AceData Nano Banana API, supporting text-to-image, image-to-image, batch generation, local image upload, custom aspect ratios, and 2K/4K resolutions.
 
-## Publisher: <br>
-[xiyunnet](https://clawhub.ai/user/xiyunnet) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiyunnet](https://clawhub.ai/user/xiyunnet)
 
-## Use Case: <br>
-External users and developers use this skill to generate images from text prompts or edit existing images through the AceData Nano Banana API. It is intended for workflows that need script-driven image generation, local or remote image inputs, and saved image outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The server security review reports an unrelated backup routine that could copy the saved API key file outside the skill directory. <br>
-Mitigation: Review or remove the backup routine before use, especially any behavior that copies `.env` or other credential files. <br>
-Risk: The skill uses a bearer token for AceData and may save it in a local `.env` file. <br>
-Mitigation: Use a revocable AceData API key, restrict its permissions where possible, and rotate it if it may have been exposed. <br>
-Risk: Local image inputs can be uploaded to AceData CDN/API for editing, which may expose sensitive image content to external processing. <br>
-Mitigation: Avoid submitting confidential images unless the user accepts AceData and CDN processing for those inputs. <br>
-Risk: Generated outputs are written to a dated Desktop folder. <br>
-Mitigation: Check the Desktop output folder after use and move or delete generated images according to local data handling requirements. <br>
+## Use Case:
 
+External users and developers use this skill to generate new images from prompts or edit local and remote images with AceData Nano Banana models. The skill can upload local images to AceData CDN, submit generation requests, and save returned image files locally.
 
-## Reference(s): <br>
-- [Nano Banana Images API Documentation](references/api_docs.md) <br>
-- [AceData Cloud Platform](https://share.acedata.cloud/r/1uN88BrUTQ) <br>
-- [ClawHub skill page](https://clawhub.ai/xiyunnet/ace-banana2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, API calls, files] <br>
-**Output Format:** [Markdown instructions and Python CLI output, with generated image files saved locally.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompts for an AceData API key when missing, can upload local images to AceData CDN/API for editing, and saves generated images to a dated Desktop folder.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill can store the AceData API key in a plaintext .env file and includes backup code that could copy that file to a predictable D:/backup location if invoked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set ACEDATA_API_KEY in the environment instead of passing --api_key or entering it interactively, and remove or disable backup_skill_files before use.
+
+Risk: Local images used for editing may be uploaded to AceData CDN or sent to AceData services.
+
+Mitigation: Avoid sensitive images unless the user accepts sending them to AceData/CDN services.
+
+## Reference(s):
+
+- [Nano Banana Images API Documentation](references/api_docs.md)
+- [AceData Cloud Platform](https://share.acedata.cloud/r/1uN88BrUTQ)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with shell commands and generated image files saved locally]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses an AceData API key, may upload local input images to AceData CDN, prints JSON API responses, and saves output PNG files to a dated desktop folder.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

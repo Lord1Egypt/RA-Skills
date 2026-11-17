@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+
+# 日志记录
+__version__ = "1.0.0"
+
+import logging
+logger = logging.getLogger(__name__)
 """
 历史记录管理脚本
 
@@ -16,6 +22,8 @@ import os
 import argparse
 from datetime import datetime, timezone
 from typing import Dict, List, Optional
+from interfaces import TraceContext, create_trace_context
+from validation_framework import ValidationError, validate_params, validate_params
 
 
 class HistoryManager:

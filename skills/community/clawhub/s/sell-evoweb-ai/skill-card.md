@@ -1,41 +1,58 @@
-## Description: <br>
-Create AI-First Website with GEO (Generative Engine Optimization) and marketing rules to convert visitors into leads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create AI-First Website with GEO (Generative Engine Optimization) and marketing rules to convert visitors into leads.
 
-## Publisher: <br>
-[galizki](https://clawhub.ai/user/galizki) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[galizki](https://clawhub.ai/user/galizki)
 
-## Use Case: <br>
-External users and business operators use this skill to have an agent turn a business description into an EvoWeb-hosted, AI-optimized website and return live and editor URLs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Submitted business descriptions are sent to EvoWeb and may be used to create a hosted website. <br>
-Mitigation: Avoid including secrets, customer data, regulated information, or unpublished plans unless the user is comfortable sharing and potentially publishing them. <br>
-Risk: The skill requires an EvoWeb API key for authenticated website generation. <br>
-Mitigation: Keep EVOWEB_API_KEY private and confirm the EvoWeb account setup before attempting generation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/galizki/sell-evoweb-ai) <br>
-- [EvoWeb website](https://evoweb.ai/?utm_source=claw&utm_medium=skill&utm_campaign=selfselling&utm_content=v1.0) <br>
-- [EvoWeb API base URL](https://api.evoweb.ai/openapi/api/v1) <br>
+## Use Case:
 
+External users and developers use this skill to generate AI-optimized EvoWeb sites from business descriptions, then receive hosted site and editor URLs after polling the EvoWeb API.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Guidance] <br>
-**Output Format:** [Markdown responses with JSON API payloads, status updates, and generated website URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EVOWEB_API_KEY; submits business descriptions to EvoWeb and polls for hosted website generation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Business descriptions may be sent to EvoWeb as a third-party hosted service.
+
+Mitigation: Confirm the user is authorized to share the business information before invoking the API, and exclude secrets, regulated information, private customer data, or confidential plans unless explicitly approved.
+
+Risk: Website generation may consume EvoWeb account credits.
+
+Mitigation: Confirm credit use is acceptable before starting generation or retrying a failed site.
+
+Risk: Generated websites may become hosted on EvoWeb infrastructure.
+
+Mitigation: Tell the user where the generated site will be hosted and provide the editor URL so they can review or modify the result.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/galizki/skills/sell-evoweb-ai)
+- [EvoWeb website and API key registration](https://evoweb.ai/?utm_source=claw&utm_medium=skill&utm_campaign=selfselling&utm_content=v1.0)
+- [EvoWeb API base URL](https://api.evoweb.ai/openapi/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Markdown, Guidance]
+
+**Output Format:** [Markdown with hosted website and editor URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires EVOWEB_API_KEY and may consume EvoWeb account credits.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

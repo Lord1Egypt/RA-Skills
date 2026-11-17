@@ -1,40 +1,52 @@
-## Description: <br>
-OpenClaw plugin that prepends custom text to every user message before it reaches the agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw plugin that prepends configured text to every user message before it reaches the agent across configured workspace channels.
 
-## Publisher: <br>
-[Harukaon](https://clawhub.ai/user/Harukaon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[harukaon](https://clawhub.ai/user/harukaon)
 
-## Use Case: <br>
-Developers and workspace operators use this skill to enforce persistent context, reminders, or policy text before agent replies across OpenClaw channels. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can silently add operator-chosen instructions to every user message across a workspace. <br>
-Mitigation: Install only in controlled workspaces, keep injected text visible to affected users, and confirm a disable or rollback path before enabling it on shared channels. <br>
-Risk: Injected text could override user intent or weaken expected safeguards if misconfigured. <br>
-Mitigation: Avoid content that overrides user intent or disables safeguards, and review configured prependText before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Harukaon/message-injector) <br>
-- [Publisher profile](https://clawhub.ai/user/Harukaon) <br>
+## Use Case:
 
+Workspace administrators and developers use this plugin to apply a consistent prompt prefix, such as persistent project context, safety reminders, or required retrieval steps, before user messages reach the agent.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Configuration, Guidance] <br>
-**Output Format:** [Prepended text context configured through JSON and applied to user messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Applies only when enabled and prependText is configured.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Configured prompt prefixes affect every user prompt in configured channels and can persistently steer agent behavior.
+
+Mitigation: Install only when a trusted workspace administrator intentionally wants a shared visible policy or context, and disclose the behavior to affected users.
+
+Risk: Broad prompt rewriting can be inappropriate for sensitive workspaces if configuration changes are not controlled.
+
+Mitigation: Restrict who can edit prependText and prefer narrower scoping or audit logs before deployment in sensitive environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harukaon/skills/message-injector)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, shell commands, guidance]
+
+**Output Format:** [Markdown instructions with JSON configuration and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces configured prompt-prefix text that OpenClaw prepends to user messages when enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

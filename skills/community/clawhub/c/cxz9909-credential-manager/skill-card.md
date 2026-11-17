@@ -1,44 +1,65 @@
-## Description: <br>
-Credential Manager scans for scattered API keys and credential files, backs them up, consolidates them into a protected OpenClaw .env file, and validates permissions and git protection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Consolidates scattered OpenClaw credentials into a centralized ~/.openclaw/.env file with scanning, backup, permission validation, cleanup, and enforcement helpers.
 
-## Publisher: <br>
-[cxz9909](https://clawhub.ai/user/cxz9909) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cxz9909](https://clawhub.ai/user/cxz9909)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to audit local credential sprawl, migrate supported service credentials into a single secured OpenClaw .env file, and enforce credential-loading expectations for other skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for broad authority over sensitive secrets, including scanning, copying, centralizing, and deleting credential files. <br>
-Mitigation: Run scan-only first, review every detected path, avoid --yes and cleanup until the migration plan is reviewed, and verify backups before deleting old files. <br>
-Risk: Centralizing credentials into a plaintext .env file creates a high-value local secret store. <br>
-Mitigation: Keep the file at mode 600, ensure it is git-ignored, encrypt backups, and use an encrypted secret manager for high-value credentials such as wallet seed phrases or private keys unless plaintext storage is explicitly accepted. <br>
+## Use Case:
 
+Developers and operators use this skill to locate scattered credential files, migrate values into the OpenClaw root .env file, validate file permissions and git-ignore protection, and remove old credential files after review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cxz9909/cxz9909-credential-manager) <br>
-- [Core Principle: Centralized Credential Management](CORE-PRINCIPLE.md) <br>
-- [Credential Consolidation Rule](CONSOLIDATION-RULE.md) <br>
-- [Security Best Practices](references/security.md) <br>
-- [Supported Services](references/supported-services.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON scan output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify local credential files, backups, .gitignore, and .env.example when the described scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact metadata and docs mention 1.3.0) <br>
+Risk: Centralizing credentials can concentrate impact if the generated .env file or its backups are exposed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect migrated values, keep permissions at 600, ensure .env is git-ignored, and secure or encrypt backups before relying on the consolidated store.
+
+Risk: Cleanup modes can delete old credential files after migration.
+
+Mitigation: Run scan and backup-only or dry-run modes first, verify backups, test applications against the new credential store, and avoid force or auto-confirm cleanup until migration is confirmed.
+
+Risk: Shell sourcing of .env files can expose secrets through shell behavior or unsafe file contents.
+
+Mitigation: Prefer controlled loaders, avoid sourcing the generated .env in an interactive shell, and review file contents before any shell-based loading.
+
+Risk: Wallet seed phrases and private keys are difficult or impossible to recover if exposed.
+
+Mitigation: Do not centralize irreplaceable wallet seed phrases or private keys unless that storage model is explicitly accepted and protected with stronger operational controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cxz9909/skills/cxz9909-credential-manager)
+- [Credential security best practices](references/security.md)
+- [Supported credential service patterns](references/supported-services.md)
+- [Core centralized credential management principle](CORE-PRINCIPLE.md)
+- [Credential consolidation rule](CONSOLIDATION-RULE.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and Python helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update credential files, backups, .env.example, and .gitignore when the bundled scripts are run by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact documentation reports 1.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,58 @@
-## Description: <br>
-Read, query, update, and manage Feishu Bitable data using SQL-like commands with automatic URL parameter extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read, query, update, and manage Feishu Bitable data through SQL-like CLI commands with URL parameter extraction.
 
-## Publisher: <br>
-[xjli360](https://clawhub.ai/user/xjli360) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xjli360](https://clawhub.ai/user/xjli360)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect Feishu Bitable schemas, query records, aggregate table data, and create, update, or delete records through command-line workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can update or delete live Feishu Bitable records. <br>
-Mitigation: Preview matching records before update or delete operations, avoid filter-based destructive commands until the match set is verified, and keep backups or exports for important tables. <br>
-Risk: The skill uses Feishu app credentials and caches tenant access tokens. <br>
-Mitigation: Use least-privilege Feishu app permissions and treat FEISHU_APP_SECRET and cached tenant tokens as sensitive credentials. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect Feishu Bitable schemas, query records, aggregate table data, and perform controlled insert, update, or delete operations.
 
-## Reference(s): <br>
-- [Feishu Open Platform](https://open.feishu.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands require FEISHU_APP_ID and FEISHU_APP_SECRET, and can read or modify live Feishu Bitable records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can directly change or delete live business data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Scope the Feishu app to the minimum required tables and permissions, inspect schemas and records before writes, and avoid broad filter-based deletes unless intentionally bounded.
+
+Risk: Feishu credentials and cached bearer tokens may be exposed on shared machines.
+
+Mitigation: Protect FEISHU_APP_ID and FEISHU_APP_SECRET, review or disable the token cache on shared systems, and clear cached tokens when access is no longer needed.
+
+Risk: A custom FEISHU_API_HOST could send requests or credentials to an untrusted endpoint.
+
+Mitigation: Use the default Feishu API host or only set FEISHU_API_HOST to a trusted Feishu endpoint.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xjli360/skills/feishu-bitable-database)
+- [Feishu Open Platform](https://open.feishu.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may read, create, update, or delete live Feishu Bitable records when executed with valid credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -6,8 +6,9 @@
  *   2. MPP  — WWW-Authenticate: Payment request=<base64-json> header
  *
  * Usage:
- *   npx tsx skills/pay-per-call/run.ts <url> [--method POST] [--body '{}'] [--yes]
+ *   ./node_modules/.bin/tsx skills/pay-per-call/run.ts <url> [--method POST] [--body '{}'] [--yes]
  *                                        [--max-auto <usd>] [--receipt-out <path>]
+ *                                        [--dialect mpp|x402]
  *                                        [--json] [base flags]
  *
  * Base flags: --secret-file, --network, --rpc-url (see cli-config.ts)
@@ -26,6 +27,15 @@ import { parseBase, type BaseConfig } from "../../scripts/src/cli-config.js";
 import { loadSecretFromBase } from "../../scripts/src/secret.js";
 import { Keypair } from "@stellar/stellar-sdk";
 import { readBalances, totalUsdc } from "../../scripts/src/balance.js";
+import { decodeReceipt, explorerUrl } from "../../scripts/src/receipt.js";
+import { parseRefundHeaders, formatRefundLines } from "../../scripts/src/refund.js";
+
+/** Consecutive ownership-proof failures tolerated before giving up on a poll loop. */
+const MAX_AUTH_FAILURES = 3;
+
+/** Domain tag the router binds job-ownership proofs to. Must match
+ * rozo-mpprouter src/routes/job-status.ts. */
+const OWNERSHIP_DOMAIN = "mpprouter-job-ownership-v1";
 
 interface CmdArgs {
   url?: string;
@@ -36,12 +46,24 @@ interface CmdArgs {
   /** Session-only autopay ceiling. Payments ≤ this amount are signed without prompting. Not persisted. */
   maxAutoUsd?: number;
   receiptOut?: string;
+  /** Force a 402 dialect when the server offers both. Default: prefer MPP. */
+  dialect?: "mpp" | "x402";
   /** Expected 402 challenge fields. Any mismatch aborts before signing. */
   expectPayTo?: string;
   expectAsset?: string;
   expectAmountUsdc?: string;
   expectAmountTolerance?: number;
 }
+
+/**
+ * Hard upper bound on the session-only `--max-auto` ceiling, in USD.
+ *
+ * Unattended signing is a convenience for scripted pipelines paying
+ * per-call API prices (fractions of a cent to a few cents). Anything
+ * approaching real money should cost a human confirmation, so the flag
+ * refuses values above this cap rather than silently honouring them.
+ */
+export const MAX_AUTO_CEILING_USD = 5;
 
 function parseCmdArgs(rest: string[]): CmdArgs {
   const a: CmdArgs = { method: "GET", json: false, yes: false };
@@ -57,8 +79,31 @@ function parseCmdArgs(rest: string[]): CmdArgs {
         console.error("--max-auto must be a non-negative number");
         process.exit(1);
       }
+      if (v > MAX_AUTO_CEILING_USD) {
+        console.error(
+          `❌ --max-auto $${v.toFixed(2)} exceeds the hard cap of $${MAX_AUTO_CEILING_USD.toFixed(2)}.`,
+        );
+        console.error(
+          "   Unattended signing is capped on purpose: a wide ceiling lets a",
+        );
+        console.error(
+          "   compromised or misconfigured 402 server drain the wallet without",
+        );
+        console.error(
+          "   a single prompt. Lower the value, or confirm each payment manually.",
+        );
+        process.exit(1);
+      }
       a.maxAutoUsd = v;
     } else if (k === "--receipt-out") a.receiptOut = rest[++i];
+    else if (k === "--dialect") {
+      const v = rest[++i];
+      if (v !== "mpp" && v !== "x402") {
+        console.error(`--dialect must be "mpp" or "x402" (got ${v ?? "nothing"})`);
+        process.exit(1);
+      }
+      a.dialect = v;
+    }
     else if (k === "--expect-pay-to") a.expectPayTo = rest[++i];
     else if (k === "--expect-asset") a.expectAsset = rest[++i];
     else if (k === "--expect-amount") a.expectAmountUsdc = rest[++i];
@@ -113,41 +158,27 @@ async function promptConfirm(message: string): Promise<boolean> {
   return ans.trim().toLowerCase() === "yes";
 }
 
-async function promptLine(message: string): Promise<string> {
-  const readline = await import("node:readline/promises");
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  });
-  const ans = await rl.question(message);
-  rl.close();
-  return ans.trim();
-}
-
 /**
- * Decide whether this payment needs a human confirmation, and offer
- * to enroll the wallet in autopay after the first confirmed mainnet
- * payment.
+ * Decide whether this payment needs a human confirmation.
  *
  * Ordering, least-surprising-first:
  *   1. Testnet or --yes → no prompt.
- *   2. --no-autopay → always prompt (defeats saved ceiling for one call).
- *   3. Explicit --max-auto N → auto-pay if amount ≤ N, else prompt.
- *      Does NOT touch the saved ceiling.
- *   4. Saved autopay-ceiling-usd in secret file → auto-pay if amount ≤ it.
- *   5. No ceiling → prompt. After user confirms, offer to save a
- *      ceiling so future small payments are silent.
+ *   2. Explicit --max-auto N → auto-pay if amount ≤ N, else prompt.
+ *      Session-only: never read from or written to disk.
+ *   3. Otherwise → prompt.
  *
- * Auto-pay always logs `[autopay] $X to G...` to stderr so there is a
- * trail, even when silent.
+ * There is no persistent autopay ceiling. Unattended signing is opt-in
+ * per process, bounded by MAX_AUTO_CEILING_USD, and every auto-signed
+ * payment logs a `[autopay]` line to stderr so there is always a trail.
  */
 async function gateMainnetPayment(opts: {
   amountUsd: number;
   humanAmount: string;
+  payTo: string;
   args: CmdArgs;
   network: "testnet" | "pubnet";
 }): Promise<void> {
-  const { amountUsd, humanAmount, args, network } = opts;
+  const { amountUsd, humanAmount, payTo, args, network } = opts;
 
   if (network !== "pubnet") return;
   if (args.yes) return;
@@ -155,7 +186,9 @@ async function gateMainnetPayment(opts: {
   if (args.maxAutoUsd !== undefined) {
     if (amountUsd <= args.maxAutoUsd) {
       console.error(
-        `[autopay] $${humanAmount} USDC (≤ --max-auto $${args.maxAutoUsd.toFixed(2)})`,
+        `[autopay] $${humanAmount} USDC → ${payTo} auto-signed ` +
+          `(--max-auto $${args.maxAutoUsd.toFixed(2)}, session-only, ` +
+          `no confirmation asked — drop the flag to restore prompts)`,
       );
       return;
     }
@@ -209,12 +242,71 @@ async function preflightPayerReady(opts: {
   console.error("Use an existing funded wallet with --identity <name> or --secret-file <path>.");
   console.error("Check readiness with:");
   console.error(
-    `   npx tsx skills/onboard/run.ts ${opts.base.identity ? `--identity ${opts.base.identity}` : `--secret-file ${opts.base.secretFile}`} --network ${opts.base.network}`,
+    `   ./node_modules/.bin/tsx skills/onboard/run.ts ${opts.base.identity ? `--identity ${opts.base.identity}` : `--secret-file ${opts.base.secretFile}`} --network ${opts.base.network}`,
   );
   process.exit(4);
 }
 
+/**
+ * Print what was actually paid and where to verify it. Falls back to the
+ * 402 challenge for amount/recipient when the receipt does not carry them,
+ * so the summary is always populated after a successful payment.
+ */
+function reportReceipt(opts: {
+  receipt: string;
+  challenge: ParsedChallenge;
+  network: "testnet" | "pubnet";
+  showRaw: boolean;
+  jsonMode: boolean;
+}): void {
+  const { receipt, challenge, network, showRaw, jsonMode } = opts;
+  const decoded = decodeReceipt(receipt);
+
+  const amount = decoded.amount ?? baseUnitsToUsdc(challenge.amount);
+  const payTo = decoded.payTo ?? challenge.payTo;
+  const when = decoded.timestamp ? ` (${decoded.timestamp})` : "";
+  console.error(`📝 Payment: ${amount} USDC → ${payTo}${when}`);
+
+  if (decoded.txHash) {
+    console.error(`🔗 Explorer: ${explorerUrl(decoded.txHash, network)}`);
+  } else {
+    console.error("   (receipt carried no transaction reference)");
+  }
+
+  if (showRaw) {
+    console.error(`   Payment-Receipt: ${receipt}`);
+  }
+
+  // Machine-readable line for calling agents. Stays on stderr so stdout
+  // remains exactly the merchant response body.
+  if (jsonMode) {
+    console.error(
+      `PAYMENT_RECEIPT_JSON ${JSON.stringify({
+        amount,
+        payTo,
+        txHash: decoded.txHash ?? null,
+        timestamp: decoded.timestamp ?? null,
+        explorer: decoded.txHash ? explorerUrl(decoded.txHash, network) : null,
+        receipt,
+      })}`,
+    );
+  }
+}
+
+/**
+ * Surface an automatic refund. The router reports it only in headers, so a
+ * client that prints just the body strands the payer without the id needed
+ * to fetch the signed receipt from `GET /v1/refunds/{id}`.
+ */
+function reportRefund(res: Response, jsonMode: boolean): void {
+  const refund = parseRefundHeaders(res.headers, res.url);
+  if (!refund) return;
+  for (const line of formatRefundLines(refund)) console.error(line);
+  if (jsonMode) console.error(`REFUND_JSON ${JSON.stringify(refund)}`);
+}
+
 async function dumpResponse(res: Response, jsonMode: boolean) {
+  reportRefund(res, jsonMode);
   if (!res.ok && res.status !== 202) {
     console.error(`❌ ${res.status} ${res.statusText}`);
     console.error(await res.text());
@@ -230,32 +322,133 @@ async function dumpResponse(res: Response, jsonMode: boolean) {
 }
 
 /**
+ * Fetch a fresh ownership challenge for a job and sign it.
+ *
+ * The router burns the nonce on every successful poll (single-use, short TTL),
+ * so this has to run before each poll — the payment headers from the original
+ * request are NOT accepted here.
+ */
+async function buildJobAuthHeaders(
+  pollUrl: string,
+  jobId: string,
+  keypair: Keypair,
+): Promise<Record<string, string> | { error: string }> {
+  const owner = keypair.publicKey();
+
+  // The payment has already settled by the time we get here, so a blip
+  // fetching or parsing the challenge must never abort the run — it has to
+  // come back as an error the poll loop can retry and eventually report.
+  let res: Response;
+  try {
+    res = await fetch(`${pollUrl}/challenge`, {
+      headers: { "X-Stellar-Owner": owner },
+    });
+  } catch (err) {
+    return { error: `challenge request failed — ${(err as Error).message}` };
+  }
+
+  if (!res.ok) {
+    let detail = "";
+    try {
+      detail = ((await res.json()) as any)?.error ?? "";
+    } catch {
+      /* non-JSON body */
+    }
+    return { error: `challenge ${res.status}${detail ? ` — ${detail}` : ""}` };
+  }
+
+  let body: { nonce?: string };
+  try {
+    body = (await res.json()) as { nonce?: string };
+  } catch {
+    return { error: "challenge response was not JSON" };
+  }
+  if (!body.nonce) return { error: "challenge response had no nonce" };
+
+  // NEVER sign the bare nonce bytes. This is the payer's spending key, and
+  // every Stellar signing payload — transactions, Soroban auth entries — is a
+  // bare 32-byte hash. A service that could choose the raw bytes we sign could
+  // hand back a transaction hash as the "nonce" and walk away with a valid
+  // signature over a transfer out of this wallet. Signing a printable,
+  // job-bound preimage instead makes the signature useless for anything else.
+  const message = new TextEncoder().encode(
+    `${OWNERSHIP_DOMAIN}:${jobId}:${body.nonce}`,
+  );
+  if (message.length === 32) {
+    return { error: "refusing to sign a 32-byte payload" };
+  }
+
+  const signature = keypair.sign(Buffer.from(message)).toString("base64");
+
+  return {
+    "X-Stellar-Owner": owner,
+    "X-Stellar-Nonce": body.nonce,
+    "X-Stellar-Signature": signature,
+  };
+}
+
+/**
  * Poll an async job until it completes or times out.
- * Uses the same auth headers from the initial request so the
- * router can verify the caller is the original payer.
+ *
+ * Each poll proves ownership of the paying Stellar account by signing a
+ * one-shot nonce from the router's /challenge endpoint.
  */
 async function pollJobStatus(
   pollUrl: string,
-  authHeaders: HeadersInit,
+  jobId: string,
+  keypair: Keypair,
   jsonMode: boolean,
-  intervalMs = 5000,
+  intervalMs = 15000,
   timeoutMs = 600000, // 10 minutes
 ): Promise<boolean> {
   const start = Date.now();
   let attempt = 0;
+  let lastLine = "";
+  /** Consecutive auth failures. A few are transient (nonce race); a wall of
+   * them means the client and router disagree and retrying will never help. */
+  let authFailures = 0;
+
+  // Only narrate when something actually changed, so a long job does not
+  // scroll a wall of identical lines past the payer.
+  const say = (line: string) => {
+    if (line === lastLine) return;
+    lastLine = line;
+    console.error(`   ${line}`);
+  };
 
   while (Date.now() - start < timeoutMs) {
     attempt++;
     await new Promise((r) => setTimeout(r, intervalMs));
 
-    const res = await fetch(pollUrl, { headers: authHeaders });
+    const authHeaders = await buildJobAuthHeaders(pollUrl, jobId, keypair);
+    if ("error" in authHeaders) {
+      authFailures++;
+      say(`ownership challenge failed (${authHeaders.error})`);
+      if (authFailures >= MAX_AUTH_FAILURES) {
+        console.error(
+          `❌ Could not prove job ownership after ${authFailures} attempts. ` +
+            `The payment settled — check the refund with verify-refund.mjs.`,
+        );
+        process.exit(1);
+      }
+      continue;
+    }
+
+    let res: Response;
+    try {
+      res = await fetch(pollUrl, { headers: authHeaders });
+    } catch (err) {
+      say(`poll request failed (${(err as Error).message}), retrying...`);
+      continue;
+    }
 
     if (res.status === 202 || res.status === 200) {
+      authFailures = 0;
       let body: any;
       try {
         body = await res.json();
       } catch {
-        console.error(`   Attempt ${attempt}: non-JSON response (${res.status})`);
+        say(`non-JSON response (${res.status})`);
         continue;
       }
 
@@ -265,12 +458,13 @@ async function pollJobStatus(
         status === "processing" ||
         status === "in_progress"
       ) {
-        console.error(`   Attempt ${attempt}: ${status}...`);
+        say(`${status}...`);
         continue;
       }
 
       // Job completed (or unknown status) — dump result
       console.error(`✅ Job completed after ${attempt} polls`);
+      reportRefund(res, jsonMode);
       console.log(
         jsonMode ? JSON.stringify(body) : JSON.stringify(body, null, 2),
       );
@@ -282,9 +476,29 @@ async function pollJobStatus(
       process.exit(1);
     }
 
-    console.error(
-      `   Attempt ${attempt}: unexpected status ${res.status}, retrying...`,
-    );
+    // An async job that failed after payment is refunded by the router, which
+    // reports it in headers on the (non-2xx) poll response. Terminal — stop
+    // polling and hand the payer the refund id.
+    if (parseRefundHeaders(res.headers, res.url)) {
+      await dumpResponse(res, jsonMode);
+      return true;
+    }
+
+    if (res.status === 401 || res.status === 403) {
+      authFailures++;
+      say(`poll rejected (${res.status}) — ownership proof not accepted`);
+      if (authFailures >= MAX_AUTH_FAILURES) {
+        console.error(
+          `❌ Router rejected ownership proof ${authFailures} times in a row. ` +
+            `The payment settled — check the refund with verify-refund.mjs.`,
+        );
+        process.exit(1);
+      }
+      continue;
+    }
+
+    authFailures = 0;
+    say(`unexpected status ${res.status}, retrying...`);
   }
 
   console.error(`❌ Timeout after ${timeoutMs / 1000}s waiting for job`);
@@ -489,7 +703,9 @@ async function runPayFlow(inputs: RunInputs): Promise<void> {
     return;
   }
 
-  const challenge: ParsedChallenge | null = await parse402(res);
+  const challenge: ParsedChallenge | null = await parse402(res, {
+    prefer: args.dialect,
+  });
   if (!challenge) {
     console.error("❌ Got 402 but could not parse challenge.");
     console.error("   Body:", await res.text());
@@ -497,7 +713,9 @@ async function runPayFlow(inputs: RunInputs): Promise<void> {
   }
 
   const humanAmount = baseUnitsToUsdc(challenge.amount);
-  console.error(`💸 Payment required (${challenge.dialect})`);
+  console.error(
+    `💸 Payment required (${challenge.dialect}${args.dialect ? ", forced by --dialect" : ""})`,
+  );
   console.error(`   Amount: ${humanAmount} USDC`);
   console.error(`   To:     ${challenge.payTo}`);
   console.error(`   Asset:  ${challenge.asset}`);
@@ -542,6 +760,7 @@ async function runPayFlow(inputs: RunInputs): Promise<void> {
   await gateMainnetPayment({
     amountUsd,
     humanAmount,
+    payTo: challenge.payTo,
     args,
     network: signerConfig.network,
   });
@@ -554,12 +773,19 @@ async function runPayFlow(inputs: RunInputs): Promise<void> {
   res = await fetch(args.url!, { ...init, headers: retryHeaders });
 
   const receipt = res.headers.get("payment-receipt");
-  if (receipt && args.receiptOut) {
-    const fs = await import("node:fs/promises");
-    await fs.writeFile(args.receiptOut, receipt);
-    console.error(`📝 Receipt saved to ${args.receiptOut}`);
-  } else if (receipt) {
-    console.error(`📝 Payment-Receipt: ${receipt}`);
+  if (receipt) {
+    if (args.receiptOut) {
+      const fs = await import("node:fs/promises");
+      await fs.writeFile(args.receiptOut, receipt);
+      console.error(`📝 Receipt saved to ${args.receiptOut}`);
+    }
+    reportReceipt({
+      receipt,
+      challenge,
+      network: signerConfig.network,
+      showRaw: args.receiptOut === undefined,
+      jsonMode: args.json,
+    });
   }
 
   // Handle async 202 — poll until job completes
@@ -569,7 +795,14 @@ async function runPayFlow(inputs: RunInputs): Promise<void> {
     if (pollUrl) {
       console.error(`⏳ Async job started (id=${jobId ?? "unknown"})`);
       console.error(`   Poll URL: ${pollUrl}`);
-      const result = await pollJobStatus(pollUrl, retryHeaders, args.json);
+      // The router binds the proof to the job id in the poll path, so take it
+      // from there rather than the (optional) X-Job-Id header.
+      const result = await pollJobStatus(
+        pollUrl,
+        new URL(pollUrl).pathname.split("/").pop() ?? "",
+        Keypair.fromSecret(signerConfig.secret),
+        args.json,
+      );
       if (result) return;
     } else {
       // No poll URL — just dump the 202 body

@@ -1,45 +1,58 @@
-## Description: <br>
-Strict Father is a Ziwei Doushu 12-palace self-analysis skill that asks for birth details, computes a chart, and produces direct behavioral blind-spot analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Strict Father guides an agent through a Zi Wei Dou Shu twelve-palace self-analysis workflow that uses birth-profile inputs and chart output to surface personal blind spots in a deliberately direct style.
 
-## Publisher: <br>
-[0xcii](https://clawhub.ai/user/0xcii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xcii](https://clawhub.ai/user/0xcii)
 
-## Use Case: <br>
-External users use this skill for structured self-reflection based on Ziwei Doushu chart data, behavioral history, and direct diagnostic prompts. It is aimed at users seeking personal blind-spot analysis rather than general counseling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installation flow can download files and install npm packages, including through a curl-to-shell command. <br>
-Mitigation: Use manual installation, inspect the downloaded files first, and install dependencies only from trusted sources. <br>
-Risk: The skill asks for exact birth details and can reuse chart data for later sessions or reminders without clearly documented storage or deletion behavior. <br>
-Mitigation: Provide birth details only if comfortable with reuse in future analysis, and avoid enabling reminders or external delivery destinations unless their privacy handling is understood. <br>
-Risk: The skill uses a deliberately forceful diagnostic persona that may produce harsh personal feedback. <br>
-Mitigation: Treat outputs as self-reflection prompts, not clinical, financial, legal, or medical advice, and avoid using the skill with vulnerable users without additional safeguards. <br>
+## Use Case:
 
+External users use this skill for structured self-reflection: the agent asks for birth details, runs or interprets a Zi Wei Dou Shu chart, displays the chart, and then provides concise diagnostic guidance about behavior patterns and blind spots.
 
-## Reference(s): <br>
-- [Strict Father ClawHub listing](https://clawhub.ai/0xcii/strict-father-v2) <br>
-- [Publisher profile](https://clawhub.ai/user/0xcii) <br>
-- [12-palace behavior pattern matrix](references/palace-pattern-matrix.md) <br>
-- [Author contact](https://t.me/yongzhuan_bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with structured text and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call a local Node.js chart calculation script that returns JSON before producing human-readable analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The installer pattern can run mutable remote code from an unpinned branch.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review local artifact files before installation, avoid one-line curl-to-bash installation, and pin any remote source and dependency versions used in deployment.
+
+Risk: The workflow asks for and may reuse sensitive birth-profile details for charting and optional reminders.
+
+Mitigation: Collect only the details needed for the requested analysis, explain any persistence or reminder behavior, and let the user decline or clear stored profile data.
+
+Risk: The skill intentionally uses blunt personal diagnostic language that may be unsuitable for some users or contexts.
+
+Mitigation: Frame outputs as reflective guidance rather than professional advice and keep user control over whether to continue after the chart is displayed.
+
+## Reference(s):
+
+- [Palace Pattern Matrix](references/palace-pattern-matrix.md)
+- [ClawHub Skill Page](https://clawhub.ai/0xcii/skills/strict-father-v2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with optional structured JSON chart output and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-provided birth date, time, gender, and optional birthplace; daily reminders are optional and should be enabled only after user consent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

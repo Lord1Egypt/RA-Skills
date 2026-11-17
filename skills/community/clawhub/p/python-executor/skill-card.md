@@ -1,46 +1,60 @@
-## Description: <br>
-Execute Python code in a sandboxed inference.sh environment with common data, scraping, visualization, media, document, and automation libraries pre-installed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute Python code through inference.sh in a sandboxed Python 3.10 environment with pre-installed libraries for data processing, web scraping, media processing, document generation, API calls, and automation.
 
-## Publisher: <br>
-[okaris](https://clawhub.ai/user/okaris) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[okaris](https://clawhub.ai/user/okaris)
 
-## Use Case: <br>
-Developers and automation agents use this skill to run Python scripts for data processing, web scraping, visualization, image and video generation, 3D processing, PDF creation, API calls, and file-producing automation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill executes remote Python code and may send code, data, network requests, and generated files through the provider. <br>
-Mitigation: Install only when the provider is trusted, review code before execution, and avoid submitting secrets, private datasets, or sensitive outputs unless that transfer is intended. <br>
-Risk: The quick-start install command pipes a remote installer into a shell. <br>
-Mitigation: Prefer the documented manual install and SHA-256 checksum verification path before running the CLI. <br>
-Risk: User-provided Python can make network requests and interact with external services. <br>
-Mitigation: Review scripts for outbound requests and API usage before execution, especially when handling credentials or confidential data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Python Executor ClawHub Page](https://clawhub.ai/okaris/python-executor) <br>
-- [inference.sh](https://inference.sh) <br>
-- [Running Apps](https://inference.sh/docs/apps/running) <br>
-- [App Code](https://inference.sh/docs/extend/app-code) <br>
-- [Sandboxed Code Execution](https://inference.sh/blog/tools/sandboxed-execution) <br>
-- [CLI Checksums](https://dist.inference.sh/cli/checksums.txt) <br>
+## Use Case:
 
+Developers and agents use this skill to run bounded Python scripts for data analysis, scraping, image, video, and 3D processing, PDF generation, API calls, and automation without managing a local Python environment.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, Code, Shell commands, Configuration] <br>
-**Output Format:** [Command output, generated files, and Markdown guidance with bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs Python 3.10 in a CPU-only environment with configurable timeout and 8GB or 16GB RAM variants.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The documented quick start pipes a mutable remote installer into a shell.
+
+Mitigation: Download and inspect the CLI installer separately, verify its checksum against the published checksums, and run it only when the inference.sh delivery path is trusted.
+
+Risk: Executed Python code can contact external services or process sensitive data if the submitted script does so.
+
+Mitigation: Review code before execution and avoid passing secrets or private data unless outbound service calls are intended.
+
+Risk: Generated files and captured output may reflect untrusted web, API, or user-provided input.
+
+Mitigation: Review returned files and stdout before using them in downstream workflows.
+
+## Reference(s):
+
+- [Python Executor on ClawHub](https://clawhub.ai/okaris/skills/python-executor)
+- [Running Apps](https://inference.sh/docs/apps/running)
+- [App Code](https://inference.sh/docs/extend/app-code)
+- [Sandboxed Code Execution](https://inference.sh/blog/tools/sandboxed-execution)
+- [CLI Checksums](https://dist.inference.sh/cli/checksums.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Shell commands, Files, Configuration]
+
+**Output Format:** [Markdown guidance with inline bash and JSON examples; executed app responses may include stdout text and generated files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Python code supports a 1-300 second timeout, optional output capture, an optional working directory, and automatic return of files saved under outputs/.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

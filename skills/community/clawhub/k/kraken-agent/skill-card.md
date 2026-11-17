@@ -1,44 +1,55 @@
-## Description: <br>
-Guides agents through discovering and using the official Kraken CLI for market data, paper trading, MCP integration, and optional authenticated trading workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover and use the official Kraken CLI — an AI-native trading tool for crypto, stocks, forex, and derivatives. Use when the user explicitly asks about Kraken specifically: setting up a Kraken trading agent, Kraken paper trading, Kraken market data, or connecting to the Kraken API via MCP.
 
-## Publisher: <br>
-[djc00p](https://clawhub.ai/user/djc00p) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djc00p](https://clawhub.ai/user/djc00p)
 
-## Use Case: <br>
-Developers and agents use this skill to set up Kraken CLI workflows for live market data, paper trading, and MCP client configuration. Users can also follow the credential guidance when enabling authenticated Kraken API access for live trading. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live trading or broad MCP scopes can expose account actions that may have financial impact. <br>
-Mitigation: Start with paper trading or market,paper MCP scope, and enable account or live trading tools only when they are explicitly needed. <br>
-Risk: Kraken API credentials can grant sensitive account access if over-permissioned or exposed. <br>
-Mitigation: Use least-privilege Kraken API keys and prefer the documented setup or environment-variable flows instead of passing secrets directly in shell commands. <br>
-Risk: The skill points users to an external CLI maintained outside this skill artifact. <br>
-Mitigation: Install from the official Kraken CLI documentation and review the CLI behavior before using it in production workflows. <br>
+## Use Case:
 
+Developers and users use this skill to set up Kraken's CLI and MCP integration, inspect market data, and work through paper trading or explicitly approved live trading workflows.
 
-## Reference(s): <br>
-- [Kraken CLI repository](https://github.com/krakenfx/kraken-cli) <br>
-- [Kraken CLI installation instructions](https://github.com/krakenfx/kraken-cli#installation) <br>
-- [Kraken](https://www.kraken.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no bundled executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Authenticated commands and live orders can affect a funded Kraken account; API keys can allow real trades that lose money.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start with paper trading and the market,paper MCP scope, keep approval prompts enabled, limit API key permissions, and explicitly approve each live trade.
+
+Risk: The external CLI binary and release-specific safeguards were outside the artifact review.
+
+Mitigation: Check the relevant upstream documentation and safeguards before using authenticated functionality.
+
+## Reference(s):
+
+- [Kraken CLI repository](https://github.com/krakenfx/kraken-cli)
+- [Kraken CLI installation instructions](https://github.com/krakenfx/kraken-cli#installation)
+- [Kraken](https://www.kraken.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with shell command examples and JSON configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands can return structured JSON when invoked with -o json.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

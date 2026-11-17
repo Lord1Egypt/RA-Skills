@@ -1,47 +1,60 @@
-## Description: <br>
-Feishu Speaker helps an agent transcribe Chinese voice messages locally and send generated voice replies through Feishu using TTS and Feishu APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feishu Speaker lets an agent transcribe Feishu voice messages with Whisper and send text-to-speech voice replies through Feishu.
 
-## Publisher: <br>
-[tel18610240060-collab](https://clawhub.ai/user/tel18610240060-collab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tel18610240060-collab](https://clawhub.ai/user/tel18610240060-collab)
 
-## Use Case: <br>
-Developers and AI assistant operators use this skill to turn Feishu voice messages into text and send synthesized voice replies through a configured Feishu app. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT License
 
-## Known Risks and Mitigations: <br>
-Risk: The release can upload and send audio through Feishu using a local app secret. <br>
-Mitigation: Use a minimally scoped Feishu app secret and treat any audio passed to the script as data that may leave the local machine. <br>
-Risk: The artifact defaults to hardcoded Feishu app and recipient identifiers. <br>
-Mitigation: Replace the bundled app_id and receiver_id with explicit local configuration and require a recipient for every send. <br>
-Risk: The security summary says the skill ships less functionality than it advertises. <br>
-Mitigation: Verify the installed commands and scripts before relying on advertised listen, say, reply, or reply-voice workflows. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add Feishu voice interaction workflows, including local voice transcription, text-to-speech generation, and sending voice replies to configured Feishu recipients.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tel18610240060-collab/feishu-speaker) <br>
-- [Publisher profile](https://clawhub.ai/user/tel18610240060-collab) <br>
-- [Feishu Open Platform app console](https://open.feishu.cn/app/) <br>
-- [Feishu tenant access token API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal) <br>
-- [Feishu file upload API](https://open.feishu.cn/open-apis/im/v1/files) <br>
-- [Feishu message send API](https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type=open_id) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke local shell tooling that uploads audio to Feishu and requires a local app secret plus network access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can send audio through Feishu using a local app secret and an embedded default recipient.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only Feishu apps and recipient IDs you control, remove embedded default app and recipient values, and require explicit recipient and file inputs before sending.
+
+Risk: Secrets may be exposed through command arguments or shell process details during Feishu API calls.
+
+Mitigation: Keep the Feishu app secret in a protected local credential file and avoid passing secrets through process arguments or logs.
+
+Risk: Unpinned dependencies and shell interpolation behavior can make execution results harder to review before installation.
+
+Mitigation: Pin dependencies, review the shell script before use, and fix the python3 -c interpolation issue identified by the security guidance.
+
+## Reference(s):
+
+- [Feishu Developer Console](https://open.feishu.cn/app/)
+- [Feishu Tenant Access Token API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal)
+- [Feishu File Upload API](https://open.feishu.cn/open-apis/im/v1/files)
+- [Feishu Message Send API](https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type=open_id)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May transcribe local audio files, generate speech audio, and send audio messages when the generated commands are executed.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

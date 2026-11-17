@@ -1,40 +1,56 @@
-## Description: <br>
-Messages manages incoming email, chat, and other communications by triaging urgency, drafting replies for review, tracking threads awaiting responses, reducing notification noise, and summarizing the user's communication landscape. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A comprehensive AI agent skill for managing incoming messages across email, chat, and other communication channels by triaging urgency, drafting replies, tracking threads, reducing notification noise, and producing a daily communication overview.
 
-## Publisher: <br>
-[EthAgent](https://clawhub.ai/user/EthAgent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ethagent](https://clawhub.ai/user/ethagent)
 
-## Use Case: <br>
-Employees and external users use Messages to triage incoming email and chat, draft responses for review, track conversations needing follow-up, and review communication patterns across connected channels. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill implies broad, ongoing access to private email, chat, and cross-channel communication data. <br>
-Mitigation: Require explicit approval for each connected channel, scope access to only necessary folders or contacts, and exclude sensitive sources before use. <br>
-Risk: Voice matching and relationship views may create behavioral profiles from sent messages and conversation history. <br>
-Mitigation: Limit or disable sent-message profiling unless needed, and confirm that message history, relationship profiles, and behavior summaries can be reviewed and deleted. <br>
-Risk: Draft replies, follow-ups, unsubscribe actions, and mute actions could affect external communications if executed without review. <br>
-Mitigation: Require user confirmation for each sent message, mute, unsubscribe, or cleanup action, including review of the exact text before sending. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users use this skill to triage incoming communications across connected email, chat, and messaging channels, draft replies for approval, track follow-ups, reduce notification noise, and review communication patterns.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or structured text summaries and draft replies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs can include daily briefings, reply drafts, follow-up prompts, noise-reduction recommendations, and weekly communication reviews.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill aggregates and profiles sensitive communications across email, chat, and other messaging channels.
+
+Mitigation: Connect only accounts and channels the user is comfortable having analyzed, and prefer controls that exclude sensitive contacts or channels.
+
+Risk: The skill reads sent messages and relationship context to draft replies in the user's voice.
+
+Mitigation: Require review and explicit approval of the exact outgoing text before any message is sent.
+
+Risk: The security evidence notes limited scoping and retention controls for communication history and cross-channel mappings.
+
+Mitigation: Limit message history where possible and look for controls to delete stored profiles, relationship context, and cross-channel mappings.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ethagent/skills/messages)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured text summaries with draft message content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft replies, follow-ups, unsubscribe, mute, and clearing actions require user confirmation before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,55 @@
-## Description: <br>
-Query Strava activities, stats, and workout data using Python/stravalib with interactive setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Strava activities, stats, and workout data using Python/stravalib with interactive setup.
 
-## Publisher: <br>
-[abclark](https://clawhub.ai/user/abclark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[abclark](https://clawhub.ai/user/abclark)
 
-## Use Case: <br>
-External users and developers use this skill to let an OpenClaw agent query their Strava activities, weekly/monthly running and cycling stats, and last workout after an interactive OAuth setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The Strava OAuth setup requests broad read access, including private activity and profile data. <br>
-Mitigation: Install only if that access is acceptable, review the requested scopes during authorization, and revoke the Strava app authorization when access is no longer needed. <br>
-Risk: The setup stores Strava tokens and the client secret in a plaintext local credentials file. <br>
-Mitigation: Restrict ~/.strava_credentials.json to the local user account, avoid shared or untrusted machines, and revoke or rotate credentials if the file may have been exposed. <br>
+## Use Case:
 
+External users and developers use this skill to connect an agent to a personal Strava account, run OAuth setup, and request recent activities, last workout details, and running or cycling stats.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abclark/strava-python) <br>
-- [Strava](https://www.strava.com) <br>
-- [Strava API app settings](https://www.strava.com/settings/api) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact changelog](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text summaries with setup and command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local Strava OAuth credentials and the stravalib Python package.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and changelog, released 2026-02-12) <br>
+Risk: The skill stores broad Strava OAuth credentials in a plaintext home-directory file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Strava API app, grant only scopes the user is comfortable with, protect or replace ~/.strava_credentials.json with secure secret storage or owner-only permissions, and revoke authorization when done.
+
+Risk: The dependency is installed as an unpinned Python package.
+
+Mitigation: Prefer an isolated Python environment and pin the stravalib version before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/abclark/skills/strava-python)
+- [Strava](https://www.strava.com)
+- [Strava API App Settings](https://www.strava.com/settings/api)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads Strava activity and athlete data after user-configured OAuth credentials; outputs depend on account data and Strava API limits.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, changelog, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

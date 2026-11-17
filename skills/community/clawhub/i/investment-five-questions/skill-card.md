@@ -1,43 +1,53 @@
-## Description: <br>
-通过五个价值投资问题引导代理评估投资标的、生成筛选结论和分析报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通过五个关键问题系统评估投资标的，筛选符合巴芒价值投资标准的公司，并给出买入、观望或放弃建议。
 
-## Publisher: <br>
-[valuemoon2025](https://clawhub.ai/user/valuemoon2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[valuemoon2025](https://clawhub.ai/user/valuemoon2025)
 
-## Use Case: <br>
-Individual investors or analysts use this skill to walk an agent through a five-question value-investing checklist, screen companies one by one or in batches, and produce a structured Markdown assessment with buy, watch, or abandon labels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Investment labels may be mistaken for personalized financial advice. <br>
-Mitigation: Treat buy, watch, and abandon labels as educational screening output only, and make investment decisions independently or with a qualified adviser. <br>
-Risk: Financial data or valuation assumptions may be stale, incomplete, or incorrect. <br>
-Mitigation: Verify company reports, market prices, ROIC, PE, PB, and valuation assumptions with current independent sources before relying on the analysis. <br>
-Risk: Optional market-data API keys or portfolio details may expose sensitive information. <br>
-Mitigation: Use trusted data sources, protect API credentials, and avoid sharing sensitive portfolio details in prompts or logs. <br>
+## Use Case:
 
+External users and analysts use this Chinese-language framework to structure single-company or batch investment screening around business simplicity, capital returns, moat durability, ten-year survivability, and price discipline.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/valuemoon2025/investment-five-questions) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/valuemoon2025) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown reports, checklist prompts, comparison tables, and concise decision labels] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational screening guidance; may depend on public financial data or optional market-data API inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact SKILL.md metadata) <br>
+Risk: Users may treat buy, watch, or abandon labels as personalized financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as decision-support guidance only and require review by the user or a qualified advisor before any investment action.
+
+Risk: Market data, dates, and valuation calculations used in an analysis may be stale or incorrect.
+
+Mitigation: Verify all financial data, filings, prices, dates, and calculations against current authoritative sources before relying on the analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/valuemoon2025/skills/investment-five-questions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports, checklist-style judgments, and comparison tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include investment labels such as buy, watch, or abandon; users should independently verify all market data, dates, and calculations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

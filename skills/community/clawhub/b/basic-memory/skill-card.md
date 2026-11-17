@@ -1,41 +1,54 @@
-## Description: <br>
-Gives OpenClaw agents persistent memory across conversations by organizing long-term facts, preferences, action items, learned patterns, and daily logs in workspace markdown files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gives OpenClaw agents persistent memory across conversations by organizing, loading, saving, retrieving, and pruning entries in MEMORY.md and daily memory files.
 
-## Publisher: <br>
-[billyhetech](https://clawhub.ai/user/billyhetech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[billyhetech](https://clawhub.ai/user/billyhetech)
 
-## Use Case: <br>
-External users and developers use this skill to help an OpenClaw agent save, retrieve, summarize, and prune persistent user and project memory across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill persists user context and may automatically save personal details such as names, preferences, locations, family details, project context, or inferred patterns. <br>
-Mitigation: Review the auto-save behavior before installation, limit what the agent is allowed to remember, and avoid storing sensitive data. <br>
-Risk: Stored memory can become stale, duplicated, or larger than intended over time. <br>
-Mitigation: Use the included memory hygiene guidance for deduplication, archiving, size limits, and user confirmation before overwriting conflicting facts. <br>
+## Use Case:
 
+External users and developers use this skill to give OpenClaw agents persistent, structured memory for facts, preferences, action items, decisions, and recurring context across sessions.
 
-## Reference(s): <br>
-- [Memory Hygiene Reference](references/memory-hygiene.md) <br>
-- [ClawHub skill page](https://clawhub.ai/billyhetech/basic-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Files, Text] <br>
-**Output Format:** [Markdown memory entries and concise text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates MEMORY.md and daily markdown logs in the local OpenClaw workspace; confirms saved entries and asks before deleting remembered topics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill automatically saves and reuses personal context across sessions, which can retain sensitive or unwanted details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review saved memory regularly, use forget or deletion workflows for unwanted entries, and install only when automatic personal-memory behavior is acceptable.
+
+Risk: Users may ask the agent to store secrets or highly sensitive personal data.
+
+Mitigation: Do not store passwords, API keys, national IDs, payment details, or health data; acknowledge the request and skip the write.
+
+## Reference(s):
+
+- [Memory Hygiene Reference](references/memory-hygiene.md)
+- [ClawHub skill page](https://clawhub.ai/billyhetech/skills/basic-memory)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown files and concise natural-language confirmations or summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update MEMORY.md and daily memory logs; sensitive secrets, financial identifiers, and health data should not be stored.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

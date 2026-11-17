@@ -1,43 +1,58 @@
-## Description: <br>
-Automatically trims single-speaker videos by detecting and removing silence and filler to produce rough cuts with quality scoring and transcript-based deduplication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically trims single-speaker videos by detecting silence and filler, scoring candidate segments, and producing rough-cut video outputs with reports.
 
-## Publisher: <br>
-[zhuchenggong19851114-design](https://clawhub.ai/user/zhuchenggong19851114-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuchenggong19851114-design](https://clawhub.ai/user/zhuchenggong19851114-design)
 
-## Use Case: <br>
-Developers and content creators use this skill to rough-cut single-speaker videos such as vlogs, tutorials, podcasts, and knowledge-sharing clips. It helps select candidate segments, remove repeated transcript content, produce edited MP4 clips, and generate processing reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Batch mode can recursively delete a user-specified work directory without containment checks. <br>
-Mitigation: Run the skill only in a dedicated empty work directory, and do not pass home, project, downloads, or other valuable directories as the batch work directory. <br>
-Risk: Generated reports and work files may contain transcripts from source videos. <br>
-Mitigation: Treat reports, transcript files, and working directories as sensitive content and restrict or remove them after review. <br>
-Risk: The Whisper dependency is unpinned, which can affect reproducibility and supply-chain review. <br>
-Mitigation: Pin and review the openai-whisper dependency before controlled or repeatable deployments. <br>
+## Use Case:
 
+Creators and video-production teams use this skill to rough-cut single-speaker videos such as vlogs, tutorials, podcasts, and knowledge-sharing clips. It is not positioned for multi-person interviews or music-heavy/B-roll-heavy footage.
 
-## Reference(s): <br>
-- [Auto Video Cut on ClawHub](https://clawhub.ai/zhuchenggong19851114-design/auto-video-cut) <br>
-- [FFmpeg Downloads](https://ffmpeg.org/download.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and generated file descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled workflow can produce edited MP4 clips, Markdown reports, temporary transcript files, and batch concatenation outputs when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Batch mode can recursively delete the selected working directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only on copies of videos, use a dedicated empty working directory, and avoid passing any important folder as the third argument.
+
+Risk: Generated transcripts and reports may contain private speech from source videos.
+
+Mitigation: Treat transcripts and reports as sensitive and store or share them only where appropriate for the source content.
+
+Risk: Dependency installation and media processing can affect the local environment.
+
+Mitigation: Install dependencies in a virtual environment and review the skill before running it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhuchenggong19851114-design/skills/auto-video-cut)
+- [FFmpeg download](https://ffmpeg.org/download.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, configuration notes, generated video files, transcripts, and processing reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces clipped MP4 files and Markdown reports; batch mode can concatenate deduplicated clips.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

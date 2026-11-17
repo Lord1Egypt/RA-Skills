@@ -1,42 +1,56 @@
-## Description: <br>
-Monitor home lab servers via Beszel (PocketBase). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor home lab servers via Beszel (PocketBase).
 
-## Publisher: <br>
-[karakuscem](https://clawhub.ai/user/karakuscem) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[karakuscem](https://clawhub.ai/user/karakuscem)
 
-## Use Case: <br>
-External users and home lab operators use this skill to query Beszel for server health and container CPU usage from an agent workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles Beszel credentials and may expose monitoring access if broad credentials are used or stored in shared shell startup files. <br>
-Mitigation: Use a limited Beszel account, keep credentials out of broadly loaded shell startup files, and rotate credentials if access is exposed. <br>
-Risk: The skill contains unexplained guidance that could lead users to share Beszel server access with an unknown Gmail account. <br>
-Mitigation: Do not share the Beszel server with jenny@gmail.com unless you personally know and trust that account. <br>
-Risk: The default Beszel endpoint is local HTTP, which may be inappropriate for remote or shared networks. <br>
-Mitigation: Prefer a local-only endpoint or an HTTPS-only Beszel endpoint before using the skill with real monitoring data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Beszel Check on ClawHub](https://clawhub.ai/karakuscem/beszel-check) <br>
-- [karakuscem ClawHub profile](https://clawhub.ai/user/karakuscem) <br>
+## Use Case:
 
+Developers, homelab operators, and infrastructure maintainers use this skill to check Beszel system status and identify containers with high CPU usage from an agent session.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown-formatted terminal text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and Beszel connection credentials supplied through environment variables.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Reusable Beszel credentials may be exposed through broadly inherited or logged environment variables.
+
+Mitigation: Use a least-privilege Beszel account, scope credentials narrowly to the agent runtime, and rotate credentials after testing or suspected exposure.
+
+Risk: Connections to an untrusted or remote Beszel instance may expose credentials or monitoring data if HTTPS is not used correctly.
+
+Mitigation: Use this skill only with a trusted local Beszel instance unless the code and deployment are updated to enforce HTTPS transport correctly.
+
+Risk: Documented commands source the user's shell profile before execution, which may run unrelated local configuration.
+
+Mitigation: Run the script directly with the required environment variables instead of sourcing the full shell profile.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/karakuscem/skills/beszel-check)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-formatted terminal text with command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and Beszel connection credentials provided through environment variables.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

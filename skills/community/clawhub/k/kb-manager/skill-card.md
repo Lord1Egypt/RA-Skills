@@ -1,45 +1,60 @@
-## Description: <br>
-Build and maintain a structured local knowledge base. Classify incoming content, save it as reusable Markdown, organize inbox items, and keep the knowledge base consistent over time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and maintain a structured local knowledge base. Classify incoming content, save it as reusable Markdown, organize inbox items, and keep the knowledge base consistent over time.
 
-## Publisher: <br>
-[Shaochuanchao](https://clawhub.ai/user/Shaochuanchao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shaochuanchao](https://clawhub.ai/user/shaochuanchao)
 
-## Use Case: <br>
-External users, developers, and knowledge workers use this skill to initialize and maintain a local Markdown knowledge base, classify incoming notes or documents by purpose, and keep reusable entries organized over time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create and reorganize local Markdown files, so large organization tasks may place content in unexpected paths or categories. <br>
-Mitigation: Use a dedicated workspace or knowledge/ directory and review generated paths before large reorganizations. <br>
-Risk: Stored knowledge entries may preserve sensitive content or reusable prompts from untrusted sources. <br>
-Mitigation: Avoid saving secrets, preserve source attribution, and review stored prompt or instruction entries before reuse. <br>
+## Use Case:
 
+External users and developers use this skill to initialize and maintain a local Markdown knowledge base, classify incoming notes or documents, and organize uncertain items through an inbox workflow.
 
-## Reference(s): <br>
-- [Classification Rules](artifact/docs/classification-rules.md) <br>
-- [Naming Rules](artifact/docs/naming-rules.md) <br>
-- [Default Entry Template](artifact/templates/default-entry.md) <br>
-- [Project Entry Template](artifact/templates/project-entry.md) <br>
-- [Research Entry Template](artifact/templates/research-entry.md) <br>
-- [Reference Entry Template](artifact/templates/reference-entry.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Guidance, Configuration] <br>
-**Output Format:** [Structured Markdown entries, local file paths, folder plans, and concise organization guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local files inside a dedicated knowledge/ directory when the agent has workspace file access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can create or update local files under knowledge/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in a dedicated or clearly chosen workspace and review proposed paths before writing.
+
+Risk: Bulk inbox organization can move many files or mark low-value items for removal.
+
+Mitigation: Review organization reports first, prefer archiving, and require explicit confirmation before deletion.
+
+Risk: Content may be misclassified or saved with uncertain source attribution.
+
+Mitigation: Use the inbox fallback for medium or low confidence items and preserve source, confidence, and related metadata in each entry.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shaochuanchao/skills/kb-manager)
+- [README](README.md)
+- [Classification Rules](docs/classification-rules.md)
+- [Naming Rules](docs/naming-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown entries, directory structures, save paths, filenames, organization reports, and occasional shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates local files under knowledge/ when asked; uses inbox, archive, templates, and confidence notes to preserve reviewability.]
+
+## Skill Version(s):
+
+0.2.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

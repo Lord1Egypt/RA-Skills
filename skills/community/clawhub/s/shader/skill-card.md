@@ -1,45 +1,62 @@
-## Description: <br>
-Helps developers write, adapt, port, and debug practical browser-friendly shaders for GLSL, WebGL, Three.js ShaderMaterial, React Three Fiber, postprocess passes, and ShaderToy-style fragment effects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shader Helper helps agents write, explain, adapt, debug, and scaffold practical browser-friendly shader code for GLSL, WebGL, Three.js ShaderMaterial, React Three Fiber, postprocess-style effects, and ShaderToy-style fragment shaders.
 
-## Publisher: <br>
-[jvy](https://clawhub.ai/user/jvy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jvy](https://clawhub.ai/user/jvy)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn visual effect requests into runnable shader code, host integration steps, and targeted debugging guidance. It is useful for creating effects, porting ShaderToy-style fragments to browser runtimes, wiring uniforms, and troubleshooting blank output or shader compile issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Demo templates and generated setup steps may include npm dependencies or local development servers. <br>
-Mitigation: Review dependencies before use, avoid elevated privileges, and keep Vite development servers local unless network access is intentional. <br>
-Risk: Generated shader code may fail visually because uniforms, varyings, precision, color space, or runtime assumptions do not match the host application. <br>
-Mitigation: Start from the smallest visible shader, verify draw path and uniform data, and add effects incrementally using the bundled debugging checklist. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn shader ideas into runnable code, host-side glue, demo scaffolds, and focused troubleshooting steps. It is intended for practical browser shader work across raw WebGL, Three.js, React Three Fiber, postprocess-style passes, and ShaderToy-style ports.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jvy/shader) <br>
-- [GLSL Quick Reference](references/glsl-quick-reference.md) <br>
-- [Black Screen Checklist](references/black-screen-checklist.md) <br>
-- [Runtime Translation](references/runtime-translation.md) <br>
-- [Shader Snippets](references/snippets.md) <br>
-- [Shader Effect Starters](references/effect-starters-zh.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with GLSL, JavaScript, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference bundled snippets, local demo templates, and runtime-specific integration steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Browser demo templates may expose a development server beyond localhost when configured for host binding.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer localhost-only Vite serving unless LAN access is needed, and review the server configuration before sharing a demo.
+
+Risk: React Three Fiber demo scaffolds depend on npm packages that may change over time.
+
+Mitigation: Review and pin npm dependencies before installing or adapting the R3F template.
+
+Risk: CDN-backed browser demos may load third-party scripts into the browser session.
+
+Mitigation: Review imported scripts and avoid running CDN-backed demos in sensitive browser sessions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jvy/skills/shader)
+- [GLSL Quick Reference](references/glsl-quick-reference.md)
+- [Black Screen Checklist](references/black-screen-checklist.md)
+- [Runtime Translation](references/runtime-translation.md)
+- [Shader Snippets](references/snippets.md)
+- [Shader Effect Starters](references/effect-starters-zh.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code blocks, shell commands, file paths, and optional JSON from helper commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May point to bundled shader snippets and demo templates for WebGL, Three.js, React Three Fiber, and postprocess-style workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

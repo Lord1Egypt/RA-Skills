@@ -1,0 +1,13 @@
+{
+  "name": "广东智言科技有限公司",
+  "credit_code": "91440300MA5GXXXXXX",
+  "industries": ["C05"],
+  "location": "广东省深圳市南山区",
+  "certifications": ["CMMI3", "ISO9001", "信息系统集成及服务资质"],
+  "history_projects": [
+    {"name": "某局政务大模型运维", "category": "C05", "amount": 120, "year": 2025},
+    {"name": "某公司AI中台升级", "category": "C05", "amount": 95, "year": 2024}
+  ],
+  "avg_bid_amount": 150,
+  "budget_range": "80-200万"
+}

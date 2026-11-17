@@ -1,45 +1,56 @@
-## Description: <br>
-Vidu helps agents use vwu.ai-hosted Vidu video-generation models for text-to-video, image-to-video, task status checks, and video downloads through command-line helpers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Vidu helps agents use vwu.ai video-generation models for text-to-video and image-to-video workflows through shell commands that create, poll, and download generation tasks.
 
-## Publisher: <br>
-[a3273283](https://clawhub.ai/user/a3273283) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a3273283](https://clawhub.ai/user/a3273283)
 
-## Use Case: <br>
-Developers and agents use this skill to configure a vwu.ai API key, create Vidu video-generation jobs from text prompts or reference images, poll asynchronous task status, and download generated MP4 videos. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: vwu.ai API keys could be exposed if committed to files, shared in logs, or stored permanently in shell startup files. <br>
-Mitigation: Use a dedicated, revocable API key, keep it out of source control, and prefer a secret manager or session-scoped environment variable. <br>
-Risk: Prompts and reference images are sent to vwu.ai for generation and may contain sensitive content. <br>
-Mitigation: Avoid sending sensitive images or prompts and review provider terms and data-handling expectations before use. <br>
-Risk: Video generation consumes API quota and asynchronous jobs may take several minutes or fail. <br>
-Mitigation: Monitor account quota, use short test jobs first, and check task status before retrying or creating additional jobs. <br>
+## Use Case:
 
+Developers and agent users can use this skill to configure a VWU API key, submit Vidu video prompts, optionally include a reference image, check task status, and download generated MP4 files.
 
-## Reference(s): <br>
-- [ClawHub Vidu Skill](https://clawhub.ai/a3273283/vwu-vidu) <br>
-- [vwu.ai Console](https://vwu.ai) <br>
-- [Vidu Image-to-Video Documentation](https://platform.vidu.cn/docs/image-to-video) <br>
-- [New API Documentation](https://docs.newapi.ai/en) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with shell commands; helper scripts return CLI text and can download MP4 video files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires VWU_API_KEY and sends user-provided prompts or images to vwu.ai.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Prompts, selected images, and the VWU API key may be sent to the configured API service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only the intended HTTPS vwu.ai endpoint, avoid submitting sensitive prompts or images, and leave VWU_BASE_URL unset unless a trusted endpoint is required.
+
+Risk: Persistent plaintext storage of VWU_API_KEY in shell startup files can expose the token.
+
+Mitigation: Prefer a session-scoped environment variable or a local secret manager, and rotate the token if it may have been exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/a3273283/skills/vwu-vidu)
+- [vwu.ai console](https://vwu.ai)
+- [Vidu image-to-video documentation](https://platform.vidu.cn/docs/image-to-video)
+- [New API documentation](https://docs.newapi.ai/en)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with inline shell commands and command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce task identifiers, status messages, and downloaded MP4 files when the shell commands are executed.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and artifact changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

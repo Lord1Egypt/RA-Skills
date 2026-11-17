@@ -1,46 +1,57 @@
-## Description: <br>
-Guides developers through creating, maintaining, debugging, and reviewing Playwright or Cypress end-to-end tests for critical browser user journeys, CI reporting, flaky tests, visual regression, and payment or wallet scenarios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers create, maintain, and debug real-browser end-to-end tests with Playwright or Cypress, including CI reporting and visual regression.
 
-## Publisher: <br>
-[bovinphang](https://clawhub.ai/user/bovinphang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bovinphang](https://clawhub.ai/user/bovinphang)
 
-## Use Case: <br>
-Developers and QA engineers use this skill to plan, implement, debug, and review real-browser E2E coverage for critical web application flows. It helps structure Playwright or Cypress tests, Page Object patterns, CI artifacts, visual regression checks, and safer handling of payment, wallet, and other high-risk scenarios. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: E2E examples for wallet, payment, or financial flows could be adapted to real accounts, production environments, or real funds. <br>
-Mitigation: Use staging environments, mocks, seeded test accounts, and explicit production skips; keep real payments, private wallet keys, and production accounts out of E2E runs. <br>
-Risk: CI screenshots, traces, videos, and reports can expose sensitive customer data or credentials if tests use realistic secrets or production data. <br>
-Mitigation: Use sanitized fixtures and scoped test data, avoid secrets in browser-visible flows, and keep CI artifact retention narrow and deliberate. <br>
-Risk: Flaky waits, random data, or order-dependent tests can create misleading E2E results. <br>
-Mitigation: Prefer locator auto-waiting, network or visible-state assertions, repeatable seed data, teardown cleanup, trace review, and issue-linked isolation for flaky cases. <br>
+## Use Case:
 
+Developers and test engineers use this skill to build and debug repeatable browser tests for critical user journeys and collect actionable CI failure evidence.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bovinphang/fec-e2e-testing) <br>
-- [Playwright / Cypress E2E Patterns](references/playwright-patterns.md) <br>
-- [E2E CI and Reporting](references/e2e-ci-reporting.md) <br>
-- [E2E Special Scenarios](references/e2e-special-scenarios.md) <br>
-- [E2E Visual Regression Testing](references/e2e-visual-regression.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with TypeScript, YAML, shell command, and report-template examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes testing workflow guidance, CI artifact recommendations, flaky-test debugging commands, and safer patterns for wallet, payment, and visual-regression scenarios.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.7.0 (source: server release evidence and artifact metadata) <br>
+Risk: Test traces, reports, screenshots, videos, or visual baselines may expose sensitive data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run against staging or sanitized test data and review artifacts before sharing or committing them.
+
+Risk: Tests covering payments or financial flows could execute real transactions.
+
+Mitigation: Use staging or mocks and do not run real financial transactions in production.
+
+## Reference(s):
+
+- [Playwright and Cypress patterns](references/playwright-patterns.md)
+- [E2E CI and reporting](references/e2e-ci-reporting.md)
+- [Special E2E scenarios](references/e2e-special-scenarios.md)
+- [Visual regression](references/e2e-visual-regression.md)
+- [Project homepage (listed in package metadata)](https://github.com/bovinphang/frontend-craft)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Configuration instructions, Shell commands, Markdown, Guidance]
+
+**Output Format:** [Markdown with code and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include test reports and instructions for reviewing CI traces, screenshots, and videos.]
+
+## Skill Version(s):
+
+2.9.0 (source: release evidence, package.json, metadata.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

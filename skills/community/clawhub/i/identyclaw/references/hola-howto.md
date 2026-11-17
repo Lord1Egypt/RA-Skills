@@ -6,7 +6,7 @@ Linear path from **IdentyClaw Passport holder** to **peer-verified HOLA**. For f
 
 | Clock | Typical TTL | Source | Used for |
 | --- | --- | --- | --- |
-| **JWT session** | ~1 hour | `POST /api/login` | Bearer auth on protected endpoints (`/api/holanonce16ts`, `/api/identity/verify`, …) |
+| **JWT session** | ~1 hour | `POST /api/login` | Bearer auth on protected endpoints (`/api/holanonce16ts`, `/api/identity/token/{tokenId}/full`, …) |
 | **HOLA nonce freshness** | ~5 minutes | `GET /api/holanonce16ts` | Timestamp + nonce inside each HOLA line |
 
 “Session broke after a few minutes” usually means the **HOLA timestamp/nonce** expired, not the JWT. Fetch a **new nonce immediately before each HOLA** you sign.
@@ -76,15 +76,26 @@ Deliver the complete HOLA string out of band (message, webhook, MCP tool result,
 
 ---
 
-## Step 5 — Peer verifies via the API
+## Step 5 — Peer verifies (verify before execute, offline P2P)
 
-Your peer (with their own JWT) calls:
+Your peer verifies **independently** — HOLA is exchanged **directly between agents** on whatever private channel carries the conversation. It is **not** sent through this API for mutual authentication.
+
+**Rule:** Do not execute `task.payload` (or honor a private trade offer) until full HOLA validation succeeds on the receiving peer.
+
+**Verify path (peer's choice):**
+
+- **IdentyClaw API** — `POST /api/identity/verify` (public; optional JWT for `RECIPIENT_MISMATCH`).
+- **Direct NEAR RPC** — `@rodit/rodit-auth-be` (or equivalent) + your RPC endpoint.
+
+Same proof bar on both paths. See [`identity-verification-policy.md`](identity-verification-policy.md) and [`verify-hola-recipes.md`](verify-hola-recipes.md).
+
+**Example — IdentyClaw API path** (if the peer chose it):
 
 ```bash
 curl -sS -X POST https://api.identyclaw.com/api/identity/verify \
-  -H "Authorization: Bearer ${PEER_JWT}" \
   -H "Content-Type: application/json" \
   -d '{"hola":"<HOLA line you sent>"}'
+# Optional: -H "Authorization: Bearer ${PEER_JWT}" when the verifier is logged in
 ```
 
 HTTP **200** with `"verified": true` means format, checksum, freshness, nonce, token, and signature checks passed. On failure, `failureDetails` includes **`hint`** per reason code; `nonce_replay` also returns **`nonceReplayDetails`** (`holaTimestamp`, `maxAgeMs`, optional `firstSeenAt`).

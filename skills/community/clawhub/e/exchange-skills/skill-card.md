@@ -1,45 +1,61 @@
-## Description: <br>
-Manages Microsoft Exchange/Outlook email, calendar, contacts, tasks, and notes for an agent through a terminal CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Exchange Skills helps agents manage Microsoft Exchange/Outlook email, calendar events, contacts, tasks, and notes from a terminal, including reading, replying, archiving, and batch mark-read operations.
 
-## Publisher: <br>
-[derekhsu](https://clawhub.ai/user/derekhsu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[derekhsu](https://clawhub.ai/user/derekhsu)
 
-## Use Case: <br>
-Employees or agents acting for a mailbox owner use this skill to list, read, reply to, mark, and archive Exchange/Outlook emails and to inspect calendar events, contacts, tasks, and notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make broad mailbox changes, including batch archive and mark-read operations. <br>
-Mitigation: List the affected messages first and avoid batch commands unless the mailbox owner has confirmed the exact scope. <br>
-Risk: Exchange credentials may be exposed if environment variables or a local .env file are handled carelessly. <br>
-Mitigation: Keep any .env file private and out of source control, and use only Exchange accounts appropriate for mailbox-management access. <br>
-Risk: Disabling SSL verification can weaken transport security. <br>
-Mitigation: Leave SSL verification enabled unless an approved corporate certificate workflow requires EXCHANGE_DISABLE_SSL_VERIFY=1. <br>
-Risk: The security summary notes that archive behavior may move mail to Deleted Items without clear warning. <br>
-Mitigation: Verify or clearly accept archive behavior before relying on it for cleanup workflows. <br>
+## Use Case:
 
+Employees, developers, and agent operators use this skill to inspect and act on Microsoft Exchange/Outlook mailbox data from a terminal. It supports everyday mailbox workflows such as listing unread mail, reading messages, replying, archiving, viewing calendars, searching contacts, and listing tasks or notes.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/derekhsu/exchange-skills) <br>
-- [Publisher profile](https://clawhub.ai/user/derekhsu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration] <br>
-**Output Format:** [Terminal text or JSON, with markdown command examples and configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Exchange connection environment variables and can read or mutate mailbox state through reply, mark-read, and archive commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill has full access to the configured Exchange mailbox.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for mailboxes where this access is acceptable, and store EXCHANGE_PASSWORD and related credentials carefully.
+
+Risk: Reply, mark-read, and archive commands can make broad mailbox changes, especially with batch flags.
+
+Mitigation: Review the exact command and target flags before allowing replies or batch mark-read/archive actions.
+
+Risk: The archive command may move messages into deletion folders when the archive folder fallback is used.
+
+Mitigation: Avoid or tightly review archive use until the Archive folder behavior is fixed or clearly configured.
+
+Risk: TLS certificate verification can be disabled with EXCHANGE_DISABLE_SSL_VERIFY=1.
+
+Mitigation: Keep TLS verification enabled unless a reviewed corporate certificate exception is required.
+
+## Reference(s):
+
+- [Exchange Skills on ClawHub](https://clawhub.ai/derekhsu/skills/exchange-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; CLI output is plain text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Exchange connection environment variables, including EXCHANGE_SERVER, EXCHANGE_EMAIL, EXCHANGE_USERNAME, and EXCHANGE_PASSWORD.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

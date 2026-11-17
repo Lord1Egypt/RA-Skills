@@ -1,0 +1,88 @@
+{
+  "name": "考试刷题统计",
+  "description": "刷题进度追踪：记录每日刷题数据 → 统计正确率/薄弱知识点 → 生成学习报告 → 推荐复习计划。适用于公考/考研/职业资格考试备考。",
+  "category": "analysis",
+  "version": "1.0",
+  "tags": ["考试", "刷题", "统计", "学习"],
+  "three_elements": {
+    "time_estimate": "3-5 分钟",
+    "api_key_required": "不需要",
+    "output_files": ["exam_report.md", "exam_stats_state.json"]
+  },
+  "dependencies": [],
+  "pipeline": {
+    "pipeline_name": "考试刷题统计",
+    "version": "1.0",
+    "description": "每日刷题数据汇总与学习报告生成",
+    "agents": [
+      {
+        "id": "data_loader",
+        "name": "刷题数据加载Agent",
+        "role": "加载今日刷题记录（题目数/正确数/用时/科目/知识点）",
+        "type": "task",
+        "inputs": ["exam_data_file"],
+        "outputs": ["today_records"],
+        "depends_on": [],
+        "retry": 2,
+        "timeout": 30,
+        "fallback": "default",
+        "default_value": {"today_records": []}
+      },
+      {
+        "id": "stats_calculator",
+        "name": "统计计算Agent",
+        "role": "计算正确率、各科目用时分布、知识点掌握度、连续正确/错误 streak",
+        "type": "task",
+        "inputs": ["today_records"],
+        "outputs": ["daily_stats"],
+        "depends_on": ["data_loader"],
+        "retry": 2,
+        "timeout": 30,
+        "fallback": "default",
+        "default_value": {"daily_stats": {}}
+      },
+      {
+        "id": "weakness_analyzer",
+        "name": "薄弱点分析Agent",
+        "role": "按知识点聚合错误率，识别 Top 5 薄弱知识模块",
+        "type": "task",
+        "inputs": ["daily_stats"],
+        "outputs": ["weakness_ranking"],
+        "depends_on": ["stats_calculator"],
+        "retry": 2,
+        "timeout": 30,
+        "fallback": "default",
+        "default_value": {"weakness_ranking": []}
+      },
+      {
+        "id": "trend_comparator",
+        "name": "趋势对比Agent",
+        "role": "与过去 7 天/30 天数据对比，识别进步/退步趋势",
+        "type": "task",
+        "inputs": ["daily_stats"],
+        "outputs": ["trend_analysis"],
+        "depends_on": ["stats_calculator"],
+        "retry": 2,
+        "timeout": 30,
+        "fallback": "default",
+        "default_value": {"trend_analysis": {}}
+      },
+      {
+        "id": "reporter",
+        "name": "学习报告Agent",
+        "role": "生成结构化学习报告：今日概览、薄弱点、趋势、明日复习建议",
+        "type": "task",
+        "inputs": ["daily_stats", "weakness_ranking", "trend_analysis"],
+        "outputs": ["exam_report"],
+        "depends_on": ["weakness_analyzer", "trend_comparator"],
+        "retry": 2,
+        "timeout": 60,
+        "fallback": "abort"
+      }
+    ],
+    "state_store": {
+      "type": "json",
+      "path": "./exam_stats_state.json"
+    }
+  }
+}

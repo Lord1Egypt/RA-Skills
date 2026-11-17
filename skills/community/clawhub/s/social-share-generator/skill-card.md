@@ -1,39 +1,52 @@
-## Description: <br>
-Helps developers add, optimize, or audit social share buttons for platforms such as X, LinkedIn, Facebook, WhatsApp, and Telegram. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents add, optimize, or audit social share buttons, including placement, platform selection, share URLs, icon guidance, accessibility, and native Web Share API fallbacks.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kostja94](https://clawhub.ai/user/kostja94)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, designers, and content teams use this skill to guide agents that implement share buttons for articles, posts, products, and other web pages. It helps choose appropriate placements, platforms, share intent URLs, icon handling, and accessibility requirements.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated share URLs may encode the wrong destination, message, or tracking parameters.
+
+Mitigation: Review generated URLs before release and confirm that encoded text, destinations, and tracking parameters match privacy and analytics expectations.
+
+Risk: Generated icon recommendations may drift from current platform brand requirements.
+
+Mitigation: Use official platform brand assets and verify icon sizes, colors, and naming before publishing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and content-site teams use this skill to choose social share button placement, platforms, intent URLs, brand icon guidance, native sharing fallback behavior, and accessibility checks. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, code]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated share copy or platform intent URLs may not match the target page or current platform behavior. <br>
-Mitigation: Review generated share text, encoded URLs, and platform-specific intent links before publishing. <br>
-Risk: Share icons or controls may miss brand, accessibility, or mobile usability requirements. <br>
-Mitigation: Use official brand assets and verify labels, keyboard access, and touch target sizing during implementation review. <br>
+**Output Format:** [Markdown with URL examples and inline JavaScript snippets]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Produces placement, platform, share URL, icon, and accessibility recommendations; no files are written by the skill itself.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with JavaScript snippets, URL patterns, checklists, and implementation recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include platform-specific share URL examples, placement recommendations, icon guidance, and accessibility checks.] <br>
+1.0.1 (source: SKILL.md frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and SKILL.md frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

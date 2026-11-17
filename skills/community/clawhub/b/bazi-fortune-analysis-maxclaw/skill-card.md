@@ -1,38 +1,54 @@
-## Description: <br>
-Provides Chinese BaZi fortune analysis, including chart construction, five-element analysis, Ten Gods interpretation, pattern assessment, luck-cycle readings, and focused guidance on relationships, career, finances, health, children, and education. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides cultural BaZi fortune analysis, including birth chart construction, five-element and ten-god interpretation, luck-cycle analysis, and topic-specific guidance for relationships, career, wealth, health, children, and study.
 
-## Publisher: <br>
-[skben8-beep](https://clawhub.ai/user/skben8-beep) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skben8-beep](https://clawhub.ai/user/skben8-beep)
 
-## Use Case: <br>
-External users use this skill to request culturally framed BaZi astrology readings from birth date, time, place, and gender details. The skill produces chart tables, interpretive analysis, and practical guidance that should be treated as cultural or entertainment guidance rather than professional advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for birth details and may discuss sensitive life areas such as health, finances, and relationships. <br>
-Mitigation: Share only details needed for the reading, use approximate or limited information where appropriate, and treat outputs as cultural or entertainment guidance rather than professional advice. <br>
+## Use Case:
 
+External users use this skill to request structured BaZi readings from birth date, birth time, location, calendar type, and gender. Treat results as cultural or entertainment guidance, not as a basis for medical, financial, relationship, or life-planning decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/skben8-beep/bazi-fortune-analysis-maxclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured BaZi chart, five-element analysis, fortune interpretation, luck-cycle notes, and practical guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and artifact _meta.json) <br>
+Risk: The skill asks for personal birth details, including birth date, birth time, location, calendar type, and gender.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use only when sharing those details is acceptable for the intended cultural or entertainment analysis.
+
+Risk: Fortune-analysis output could be mistaken for authoritative medical, financial, relationship, or life-planning advice.
+
+Mitigation: Present the output as cultural or entertainment guidance and avoid using it as the sole basis for consequential decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/skben8-beep/skills/bazi-fortune-analysis-maxclaw)
+- [ClawHub publisher profile](https://clawhub.ai/user/skben8-beep)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown analysis with tables and bullet-point guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requests personal birth details for the reading; no code execution, persistence, or data exfiltration is evidenced.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

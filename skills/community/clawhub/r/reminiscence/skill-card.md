@@ -1,40 +1,58 @@
-## Description: <br>
-Local memory semantic search for OpenClaw workspace memory files, using BM25 and multi-signal reranking without external APIs or model dependencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reminiscence-追忆 provides local semantic memory search over OpenClaw memory files using BM25 and multi-signal reranking without external APIs or model dependencies.
 
-## Publisher: <br>
-[indivisible2025](https://clawhub.ai/user/indivisible2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[indivisible2025](https://clawhub.ai/user/indivisible2025)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to search local memory records, previous decisions, configuration notes, and daily markdown memory files. It is intended for explicit memory or history retrieval where file paths, line ranges, scores, and content previews help the user inspect matching records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording may activate memory search for ambiguous prompts and expose private local memory content. <br>
-Mitigation: Use the skill only for explicit memory or history retrieval, tighten trigger rules if needed, and review search output before sharing it. <br>
-Risk: The skill creates local memory index and token cache files that can contain searchable representations of private notes. <br>
-Mitigation: Review and protect ~/.openclaw/memory_bm25_index.json and ~/.openclaw/memory_bm25_token_cache.json, and remove or rebuild them when the underlying memory files should no longer be searchable. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to search local workspace memory records, including MEMORY.md and daily memory markdown files, for prior decisions, configurations, and historical notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/indivisible2025/reminiscence) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text search results with file paths, line ranges, relevance scores, and content previews] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally against ~/.openclaw/workspace/MEMORY.md and ~/.openclaw/workspace/memory/*.md; builds JSON index and token cache files under ~/.openclaw.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-7.0.0 (source: server release metadata) <br>
+Risk: The skill can read local OpenClaw memory files that may contain secrets, private conversations, client data, or credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and invoke it only when local memory search is intended, and keep the ~/.openclaw directory private to the user account.
+
+Risk: The skill creates persistent plaintext search indexes and token caches from memory content.
+
+Mitigation: Inspect or delete ~/.openclaw/memory_bm25_index.json and ~/.openclaw/memory_bm25_token_cache.json when retention is not desired.
+
+Risk: Loose activation wording may cause memory search to run in broad recall scenarios.
+
+Mitigation: Review search requests before execution when the workspace memory may contain sensitive information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/indivisible2025/skills/reminiscence)
+- [Publisher profile](https://clawhub.ai/user/indivisible2025)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown and terminal-style search results with file paths, line ranges, scores, and excerpts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search output is ranked and deduplicated, with up to eight results by default.]
+
+## Skill Version(s):
+
+7.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

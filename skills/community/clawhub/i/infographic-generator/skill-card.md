@@ -1,43 +1,55 @@
-## Description: <br>
-Tạo ảnh infographic, banner hoặc poster trực tiếp bằng một prompt gửi tới API tạo ảnh qua 9Router. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tạo ảnh infographic, banner hoặc poster trực tiếp bằng 1 prompt gửi tới API tạo ảnh qua 9Router.
 
-## Publisher: <br>
-[tuanminhhole](https://clawhub.ai/user/tuanminhhole) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tuanminhhole](https://clawhub.ai/user/tuanminhhole)
 
-## Use Case: <br>
-Agents use this skill to gather required infographic details from a user, compose a detailed image prompt, and run a local Node.js generator that creates Vietnamese infographic, poster, or banner images through 9Router. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses sensitive 9Router/OpenClaw API credentials and sends prompts to the configured 9Router endpoint. <br>
-Mitigation: Install only when that credential and endpoint use is acceptable, verify the base URL, and scope credentials according to local policy. <br>
-Risk: Image prompts can contain private or sensitive information. <br>
-Mitigation: Keep prompts free of sensitive private data before invoking the generator. <br>
-Risk: A chosen image output path could overwrite another file. <br>
-Mitigation: Use a normal, intentional image output path and review the filename before running the command. <br>
+## Use Case:
 
+External users and developers use this skill to have an agent gather required infographic details, compose an English image-generation prompt, and run a Node.js generator for Vietnamese infographics, banners, newsletters, or posters.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tuanminhhole/infographic-generator) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/tuanminhhole) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with shell commands that produce image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated images depend on the configured 9Router endpoint, selected image model, prompt detail, credentials, and output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and package.json) <br>
+Risk: The skill handles API credentials and sends prompts to a configured 9Router image-generation endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, use it only in trusted workspaces, configure a known HTTPS 9Router endpoint, and avoid sensitive prompt content.
+
+Risk: Generated images are instructed to include the publisher footer unless the skill is changed.
+
+Mitigation: Confirm the footer is acceptable for the intended use or modify the skill before publishing generated images.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tuanminhhole/skills/infographic-generator)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline Node.js shell commands; the generator writes a PNG image file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js, network access to a configured 9Router endpoint, and valid 9Router credentials.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

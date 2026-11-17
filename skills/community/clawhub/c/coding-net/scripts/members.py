@@ -1,4 +1,4 @@
-"""Coding 开放平台 Open API — 团队成员接口。"""
+"""Coding Open API — team member endpoints."""
 
 from __future__ import annotations
 
@@ -26,11 +26,12 @@ def get_team_members_id_and_name(
     timeout: int = DEFAULT_TIMEOUT,
 ) -> list[dict[str, Any]]:
     """
-    DescribeTeamMembers：拉取全量团队成员，返回 [{'id': int, 'name': str}, ...]。
-    返回项中的 id 可用作 describe_issue_list(assignee_ids=[...]) 的过滤条件。
+    DescribeTeamMembers: fetch all team members, returning [{'id': int, 'name': str}, ...].
+    The `id` in each returned item can be used as a filter for describe_issue_list(assignee_ids=[...]).
 
-    注意：部分 token 无 DescribeTeamMembers 权限，会抛出 CodingAPIError。
-    替代方案：先调 describe_issue_list，再用 extract_members_from_issue_list 从 Assignees 字段反查成员 ID。
+    Note: some tokens lack the DescribeTeamMembers permission, which raises CodingAPIError.
+    Fallback: call describe_issue_list first, then use extract_members_from_issue_list to look up
+    member IDs from the Assignees field.
     """
     t = _resolve_token(token)
     merged: list[dict[str, Any]] = []
@@ -56,5 +57,5 @@ def get_team_members_id_and_name(
             page += 1
         return merged
     except (KeyError, TypeError) as e:
-        logger.error("解析团队成员 Id/Name 失败\n%s", traceback.format_exc())
-        raise CodingAPIError("响应中缺少 Data/TeamMembers 或 Id/Name 字段") from e
+        logger.error("Failed to parse Id/Name from team members\n%s", traceback.format_exc())
+        raise CodingAPIError("Response is missing Data/TeamMembers or Id/Name fields") from e

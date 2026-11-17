@@ -1,38 +1,51 @@
-## Description: <br>
-Helps an agent complete user-delegated data analysis tasks using files intentionally uploaded into the working directory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent complete user-delegated data analysis tasks over uploaded files in the working directory.
 
-## Publisher: <br>
-[realRoc](https://clawhub.ai/user/realRoc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[realroc](https://clawhub.ai/user/realroc)
 
-## Use Case: <br>
-External users and developers use this skill to delegate data analysis tasks to an agent, including analysis that reads uploaded working-directory files by filename. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Uploaded datasets are visible to the agent session and may contain sensitive data. <br>
-Mitigation: Upload only files intended for analysis and avoid sensitive data unless processing in the agent session is acceptable. <br>
-Risk: Generated analysis, code, or shell commands may produce incorrect or misleading results for a dataset. <br>
-Mitigation: Review generated outputs and commands before relying on them or running them against uploaded files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+External users and developers use this skill to delegate data analysis tasks to an agent, including analysis work over explicitly uploaded files.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: User-provided datasets may contain sensitive information.
+
+Mitigation: Only provide datasets appropriate for the surrounding agent environment and the tools it may use.
+
+Risk: File-based analysis can fail or target the wrong file if uploaded filenames are not referenced directly.
+
+Mitigation: Reference intentionally provided files by their uploaded filename and avoid relying on external paths.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown responses with optional code blocks and file references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses uploaded filenames directly when code operates on user-provided files.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown or plain text, with code or shell snippets when file analysis requires them.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Assumes user-provided files are available by filename in the working directory.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

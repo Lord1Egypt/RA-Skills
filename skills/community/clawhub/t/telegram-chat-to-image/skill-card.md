@@ -1,41 +1,60 @@
-## Description: <br>
-Convert Telegram chat exports into a long screenshot-style image with bubble-style message rendering, avatars, timestamps, and text wrapping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Telegram Desktop JSON chat exports into long screenshot-style PNG images with bubble-style message rendering, avatars, timestamps, and text wrapping.
 
-## Publisher: <br>
-[reetyo](https://clawhub.ai/user/reetyo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[reetyo](https://clawhub.ai/user/reetyo)
 
-## Use Case: <br>
-External users and developers use this skill to convert local Telegram Desktop JSON chat exports into shareable screenshot-style PNG images. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Telegram chat exports and generated images may contain sensitive conversation records. <br>
-Mitigation: Review and redact the JSON input and generated PNG or ZIP before sharing. <br>
-Risk: Long generated images can become blurry if Telegram compresses them as images. <br>
-Mitigation: Package long PNG outputs as ZIP files or use message limits before sending. <br>
-Risk: The skill depends on Pillow in the local Python environment. <br>
-Mitigation: Install Pillow only from a trusted Python package environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/reetyo/telegram-chat-to-image) <br>
+## Use Case:
 
+External users and developers use this skill to turn trusted Telegram Desktop JSON chat exports into shareable screenshot-style PNG images for reviewing or sharing conversation history.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands; generated artifact is a PNG image file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes Telegram Desktop JSON exports locally; supports message limits, custom fonts, width selection, and HD image scaling.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Untrusted Telegram export files may contain unexpected content or very large message sets.
+
+Mitigation: Run the tool only on Telegram exports you trust and use message limits for large conversations.
+
+Risk: Very large exports or extreme width values can create very tall images and consume significant local resources.
+
+Mitigation: Use conservative width values, HD mode only when needed, and generate partial exports with --limit when appropriate.
+
+Risk: The output path can overwrite an existing file.
+
+Mitigation: Choose an output path that will not replace important files.
+
+Risk: The skill depends on Pillow being installed in the execution environment.
+
+Mitigation: Install Pillow in a virtual environment and consider pinning the dependency version before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/reetyo/skills/telegram-chat-to-image)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with CLI examples; generated output is a PNG image file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Telegram Desktop JSON export and Pillow; optional inputs include message limit, sender identity, width, HD mode, and custom font.]
+
+## Skill Version(s):
+
+1.2.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

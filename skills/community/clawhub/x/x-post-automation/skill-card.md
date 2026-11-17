@@ -1,40 +1,49 @@
-## Description: <br>
-Automates identifying trends on X (Twitter), generating opinionated content, and posting selected content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates identifying trends on X (Twitter), generating opinionated candidate posts, and publishing selected content through an active browser session.
 
-## Publisher: <br>
-[harshhmaniya](https://clawhub.ai/user/harshhmaniya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[harshhmaniya](https://clawhub.ai/user/harshhmaniya)
 
-## Use Case: <br>
-External users and creators use this skill to research X trends, draft candidate posts, and publish selected content from their X account. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish public X posts from the user's account without a final approval step. <br>
-Mitigation: Require manual approval of the exact post text and destination account before posting. <br>
-Risk: The skill uses the user's logged-in X browser session to read trends and publish posts. <br>
-Mitigation: Use a dedicated browser profile or test account and confirm the active account before publication. <br>
-Risk: Candidate posts and errors may be retained in memory logs. <br>
-Mitigation: Review and clear the memory logs periodically. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users and content operators use this skill to research current X trends, draft engagement-oriented posts, log candidates, and publish the selected post.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance, Files, Browser actions] <br>
-**Output Format:** [Text instructions, candidate post text, browser actions, and memory log entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May publish public X posts and write candidate or error logs to memory files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can publish AI-generated public posts through a logged-in X browser session without a built-in final approval step.
+
+Mitigation: Require the agent to show the final draft, account, and destination, then obtain explicit user confirmation before posting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harshhmaniya/skills/x-post-automation)
+- [Publisher profile](https://clawhub.ai/user/harshhmaniya)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Candidate post text, markdown-style log entries, and success or failure notifications.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May publish selected text to X through the active browser session.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

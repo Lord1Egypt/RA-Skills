@@ -1,44 +1,57 @@
-## Description: <br>
-Video Transcriber is a workflow for Bilibili and YouTube videos that retrieves existing subtitles or downloads audio and transcribes it with Whisper when subtitles are unavailable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Video Transcriber helps an agent retrieve Bilibili or YouTube captions when available, translate subtitles when needed, or download audio and transcribe it with whisper.cpp when captions are unavailable.
 
-## Publisher: <br>
-[xing2xian](https://clawhub.ai/user/xing2xian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xing2xian](https://clawhub.ai/user/xing2xian)
 
-## Use Case: <br>
-Developers, operators, and end users can use this skill to summarize video content, retrieve captions, or transcribe Bilibili and YouTube videos in Chinese or English. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example download commands weaken connection security by using --no-check-certificate. <br>
-Mitigation: Prefer removing --no-check-certificate and use the workflow only with trusted Bilibili or YouTube links. <br>
-Risk: The workflow can create temporary local audio and transcript files. <br>
-Mitigation: Run it in a workspace where temporary media files are acceptable and can be reviewed or deleted after use. <br>
-Risk: The workflow depends on local tools and a referenced watcher extension. <br>
-Mitigation: Install only when those dependencies are expected and acceptable for the target agent environment. <br>
+## Use Case:
 
+External users and developers use this skill to help an agent summarize videos, retrieve subtitles, or create transcripts for Bilibili and YouTube content.
 
-## Reference(s): <br>
-- [Artifact Skill Definition](artifact/SKILL.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/xing2xian/video-transcriber) <br>
-- [Publisher Profile](https://clawhub.ai/user/xing2xian) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and transcript or summary text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or reference local temporary audio and transcript files during transcription workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The documented workflow uses unsafe download command patterns for user-supplied video URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review video URLs before execution, allowlist supported platforms, avoid shell string interpolation, and run downloads in isolated temporary directories.
+
+Risk: The workflow disables certificate verification in download commands.
+
+Mitigation: Remove --no-check-certificate unless a reviewer approves a specific exception.
+
+Risk: Downloaded audio and generated transcript files may be retained locally.
+
+Mitigation: Make retention behavior clear to users and clean temporary audio/subtitle files after use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xing2xian/skills/video-transcriber)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with shell command examples and transcript or summary text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce subtitle text, translated captions, audio transcription output, or video summaries depending on caption availability.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,59 @@
-## Description: <br>
-Generates HSE-compliant UK risk assessments from plain English descriptions of work activities and environments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates HSE-compliant UK risk assessments from plain English descriptions of work activities and environments.
 
-## Publisher: <br>
-[jamespatrickthom2003-star](https://clawhub.ai/user/jamespatrickthom2003-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jamespatrickthom2003-star](https://clawhub.ai/user/jamespatrickthom2003-star)
 
-## Use Case: <br>
-External users such as small business owners, facilities managers, construction contractors, and health and safety consultants use this skill to draft UK workplace risk assessments, COSHH assessments, fire risk assessments, method statements, and related safety documents for competent review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United Kingdom <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated safety documents may be incomplete, overly generic, or mismatched to site-specific hazards, controls, personnel, equipment, and current regulations. <br>
-Mitigation: Treat outputs as drafts and require a competent health and safety professional or competent person to adapt and approve them before use. <br>
-Risk: Users may mistake the generated assessment for legal advice or sufficient evidence of workplace compliance. <br>
-Mitigation: Keep the skill's disclaimer with each assessment and use the output as a starting point for formal review, implementation planning, and record keeping. <br>
+## Use Case:
 
+External users such as small business owners, facilities managers, consultants, and contractors use this skill to draft UK workplace risk assessments, COSHH assessments, fire risk assessments, method statements, and related health and safety documents for competent-person review.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+United Kingdom
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, guidance] <br>
-**Output Format:** [Markdown risk assessment documents with tables, action plans, legal references, review guidance, and disclaimers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are drafting aids and require review by a competent person before implementation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated assessments may miss site-specific hazards, controls, or operational details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have a competent person review and tailor every assessment before implementation.
+
+Risk: High-risk activities such as construction, COSHH, fire safety, confined spaces, and work at height require specialist judgment.
+
+Mitigation: Use qualified health and safety professional review before relying on outputs for high-risk work.
+
+Risk: The skill is framed for UK health and safety contexts and may not fit non-UK legal requirements.
+
+Mitigation: Use it only for UK-context drafts unless a qualified reviewer adapts the output for another jurisdiction.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jamespatrickthom2003-star/skills/health-safety-risk-assessment)
+- [README](artifact/README.md)
+- [Listing](artifact/listing.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown risk assessment draft with tables, legal references, action-plan fields, review guidance, and disclaimer]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are drafts for review and adaptation before workplace use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

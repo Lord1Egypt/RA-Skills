@@ -1,44 +1,59 @@
-## Description: <br>
-Analyzes frontend resource-position conversion funnel data, decomposes exposure, CTR, and CVR fluctuations with the Sequential Substitution method, and generates Markdown findings and recommendations across day-over-day, week-over-week, or custom comparison periods. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes frontend resource-position conversion funnels from exposure, click, and business conversion data, using sequential substitution to attribute fluctuations and generate findings and recommendations.
 
-## Publisher: <br>
-[wuyi-ding](https://clawhub.ai/user/wuyi-ding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuyi-ding](https://clawhub.ai/user/wuyi-ding)
 
-## Use Case: <br>
-Developers, data analysts, and operations teams use this skill to run local Excel-based conversion funnel attribution for banners, cards, popups, and other frontend resource positions. It helps compare periods, identify the main drivers behind conversion changes, and draft operational recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The analysis script may install missing Python dependencies at runtime. <br>
-Mitigation: Run it in a virtual environment and consider installing reviewed versions of pandas and openpyxl before execution. <br>
-Risk: Excel inputs may contain sensitive business metrics. <br>
-Mitigation: Use approved local data-handling practices and verify that files are appropriate for local processing before running the script. <br>
-Risk: Attribution and recommendations can be misleading if the input columns, date ranges, or funnel assumptions are wrong. <br>
-Mitigation: Review the input schema, comparison periods, and generated findings before using the report for operational decisions. <br>
+## Use Case:
 
+Growth, product operations, and data analysts use this skill to compare resource-position funnel performance across day-over-day, week-over-week, or custom periods. It produces attribution findings and recommendations for banners, cards, popups, and similar frontend placements.
 
-## Reference(s): <br>
-- [README.md](README.md) <br>
-- [report-template.md](report-template.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/wuyi-ding/resource-position-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with tables, factor contribution analysis, key findings, and prioritized recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes local Excel input and may write the generated report to a user-specified Markdown file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The analysis script can auto-install missing Python dependencies without pinning exact versions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a controlled virtual environment and preinstall reviewed, pinned versions of pandas and openpyxl.
+
+Risk: Input workbooks may contain confidential business or user data.
+
+Mitigation: Review Excel files for sensitive data and process them only in an approved environment.
+
+Risk: The installation instructions include an unpinned npx command.
+
+Mitigation: Use the command only when the installer source and registry configuration are trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wuyi-ding/skills/resource-position-analysis)
+- [README](artifact/README.md)
+- [Report template](artifact/report-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with command-line usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads Excel .xlsx inputs and can write the report to stdout or a Markdown file.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact/SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

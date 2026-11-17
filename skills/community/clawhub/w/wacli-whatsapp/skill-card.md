@@ -1,42 +1,61 @@
-## Description: <br>
-Helps an agent use wacli to authenticate, sync, search WhatsApp history, and send WhatsApp text, reactions, quoted replies, or files from the command line. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send WhatsApp messages or files from the command line using wacli, including text, replies, reactions, media with captions, authentication, synchronization, and message search.
 
-## Publisher: <br>
-[prantikmedhi](https://clawhub.ai/user/prantikmedhi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[prantikmedhi](https://clawhub.ai/user/prantikmedhi)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent operate wacli for WhatsApp messaging tasks. It supports checking installation, authenticating and syncing, finding chats or message IDs, and sending text, reactions, quoted replies, or files only after explicit user direction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: WhatsApp messages, reactions, or files could be sent to the wrong recipient or with unintended content. <br>
-Mitigation: Require an explicit user request with both recipient and message or file content, and ask one clarifying question when recipient, chat, message ID, or attachment details are ambiguous. <br>
-Risk: Authentication and background syncing can leave WhatsApp session data on the local machine. <br>
-Mitigation: Install and authenticate wacli only on a trusted machine; stop background sync and remove the local store when the user no longer wants WhatsApp session data kept on the device. <br>
-Risk: Replies or reactions can target the wrong prior message if the message ID is stale or unclear. <br>
-Mitigation: Use wacli message search, list, show, or context commands to verify the chat and message ID before sending replies or reactions. <br>
+## Use Case:
 
+Developers and agent users use this skill to operate the wacli command-line tool for WhatsApp messaging workflows, including sending messages or files, replying to messages, reacting to messages, and searching chats or message history. It is intended for explicit user-directed WhatsApp actions where recipient, content, and attachments are confirmed before execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/prantikmedhi/wacli-whatsapp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes executable wacli commands and safety checks; the skill itself does not produce standalone files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can trigger external WhatsApp messaging actions that expose private content or contact the wrong recipient.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation of recipient, message or file content, and attachment paths before running any send or reaction command.
+
+Risk: Dynamic command templates may be unsafe if recipient, message, or file values are interpolated into shell strings.
+
+Mitigation: Use argument-array execution or robust escaping for all command arguments, especially message text, paths, captions, and recipient identifiers.
+
+Risk: The suggested Homebrew tap and local wacli dependency are unpinned third-party software.
+
+Mitigation: Install only after reviewing and trusting the wacli package source, version, and tap, and prefer pinned or audited releases where available.
+
+Risk: The local wacli store may contain sensitive WhatsApp account state and message history.
+
+Mitigation: Protect the store directory, limit access permissions, and treat ~/.wacli or any custom WACLI_STORE_DIR as sensitive account data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/prantikmedhi/skills/wacli-whatsapp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes privacy-sensitive external messaging guidance and command examples for local wacli execution.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

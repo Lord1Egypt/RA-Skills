@@ -3,10 +3,10 @@ name: golang-swagger
 description: "Golang OpenAPI/Swagger documentation with swaggo/swag — annotation comments (@Summary, @Param, @Success, @Router, @Security), swag init code generation, framework integrations (gin, echo, fiber, chi, net/http), security definitions (Bearer/JWT, OAuth2, API key), and struct tags (swaggertype, enums, example, swaggerignore). Apply when adding or maintaining Swagger/OpenAPI docs in a Go project, or when the codebase imports github.com/swaggo/swag, github.com/swaggo/gin-swagger, github.com/swaggo/echo-swagger, github.com/swaggo/http-swagger, or github.com/swaggo/files."
 user-invocable: true
 license: MIT
-compatibility: Designed for Claude Code or similar AI coding agents. Requires go and swag CLI.
+compatibility: Designed for Claude Code, Codex or similar harness. Requires go and swag CLI.
 metadata:
   author: samber
-  version: "1.0.0"
+  version: "1.1.0"
   openclaw:
     emoji: "📋"
     homepage: https://github.com/samber/cc-skills-golang
@@ -19,7 +19,9 @@ metadata:
         package: github.com/swaggo/swag/cmd/swag@latest
         bins: [swag]
     skill-library-version: "2.0.0-rc5"
-allowed-tools: Read Edit Write Glob Grep Bash(go:*) Bash(golangci-lint:*) Bash(git:*) Agent WebFetch mcp__context7__resolve-library-id mcp__context7__query-docs Bash(swag:*) AskUserQuestion
+allowed-tools: Read Edit Write Glob Grep Bash(go:*) Bash(golangci-lint:*) Bash(git:*) Agent WebFetch mcp__context7__resolve-library-id mcp__context7__query-docs Bash(swag:*) AskUserQuestion Bash(godig:*) Bash(gopls:*) LSP mcp__gopls__*
+paths:
+  - "**/*.go"
 ---
 
 **Persona:** You are a Go API documentation engineer. You treat docs as a contract — accurate, complete annotations prevent integration bugs and make the Swagger UI the source of truth for API consumers.
@@ -28,6 +30,10 @@ allowed-tools: Read Edit Write Glob Grep Bash(go:*) Bash(golangci-lint:*) Bash(g
 
 - **Build** — adding Swagger to a new or existing Go project: set up the toolchain, annotate handlers, generate docs, wire the UI endpoint.
 - **Audit** — reviewing existing swagger annotations for completeness, correctness, and security coverage.
+
+**Dependencies:**
+
+- swag: `go install github.com/swaggo/swag/cmd/swag@latest`
 
 ## Setup
 
@@ -219,6 +225,6 @@ type CreateUserRequest struct {
 - → See `samber/cc-skills-golang@golang-security` for securing the Swagger UI endpoint in production (disable or gate with auth middleware).
 - → See `samber/cc-skills-golang@golang-grpc` for gRPC — use grpc-gateway with its own OpenAPI generator instead of swag.
 
-This skill is not exhaustive. Refer to the swaggo/swag documentation and code examples for up-to-date API signatures and usage patterns. Context7 can help as a discoverability platform.
+This skill is not exhaustive. Refer to the swaggo/swag documentation and code examples for up-to-date API signatures and usage patterns. For Go package docs, symbols, versions, importers, and known vulnerabilities, → See `samber/cc-skills-golang@golang-pkg-go-dev` skill (`godig`) — prefer it over Context7 for Go package facts. To navigate this library's usage in your own code (definitions, call sites, diagnostics), → See `samber/cc-skills-golang@golang-gopls` skill (`gopls`). Context7 remains a fallback for docs not indexed on pkg.go.dev.
 
 If you encounter a bug or unexpected behavior in swag, open an issue at <https://github.com/swaggo/swag/issues>.

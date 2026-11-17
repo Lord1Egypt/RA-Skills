@@ -1,44 +1,59 @@
-## Description: <br>
-UnifiedStock provides a unified interface for querying Chinese A-share realtime quotes, historical K-lines, sector rankings and constituents, financial data, and sector search across pytdx, Tonghuashun, Eastmoney, akshare, and Sina Finance with automatic source fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieves Chinese stock and sector quotes, historical prices, and financial data through multiple public market-data providers with automatic fallback.
 
-## Publisher: <br>
-[clementgu](https://clawhub.ai/user/clementgu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clementgu](https://clawhub.ai/user/clementgu)
 
-## Use Case: <br>
-Developers and analysts use this skill to ask an agent for Chinese A-share market data, including live quotes, K-line history, sector rankings, sector constituents, financial summaries, source status checks, and JSON-formatted results for downstream workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends stock codes, sector searches, and status checks to third-party Chinese financial-data services. <br>
-Mitigation: Use an isolated Python environment and avoid private watchlists or sensitive research patterns when those queries should not be exposed to external market-data providers. <br>
-Risk: Realtime and sector data can be unavailable, delayed, rate-limited, or zero outside normal market hours. <br>
-Mitigation: Check source status, review returned source labels and errors, and treat market data as informational rather than authoritative trading advice. <br>
+## Use Case:
 
+Agents and developers use this skill to look up Chinese stock and index prices, historical candles, sector rankings and constituents, and financial data. Additional commands cover ETFs, futures, and market breadth.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clementgu/stock-unified) <br>
-- [Data source reference](references/data_sources.md) <br>
-- [Eastmoney datacenter API endpoint](https://datacenter.eastmoney.com/api/data/v1/get) <br>
-- [Eastmoney data portal](https://data.eastmoney.com/) <br>
-- [Sina Finance quote endpoint](https://hq.sinajs.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples, Python API examples, tabular CLI text, and optional JSON data output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on live third-party market-data services and may include realtime quote fields, K-line records, sector lists, constituent stocks, financial summaries, and source status results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Market-data queries send requested symbols and network metadata to external finance providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only where outbound requests to those providers are acceptable; avoid querying sensitive holdings or watchlists.
+
+Risk: Additional finance commands are not fully described in the skill overview.
+
+Mitigation: Review the script help before enabling or relying on those commands.
+
+Risk: Provider data can be delayed, unavailable, or subject to request limits.
+
+Mitigation: Check timestamps and corroborate important figures with an authoritative market source before acting.
+
+## Reference(s):
+
+- [ClawHub stock-unified release](https://clawhub.ai/clementgu/skills/stock-unified)
+- [Data source reference](references/data_sources.md)
+- [Eastmoney market-data endpoint](https://datacenter.eastmoney.com/api/data/v1/get)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [Plain text tables or JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Market-data results depend on provider availability and may be delayed.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

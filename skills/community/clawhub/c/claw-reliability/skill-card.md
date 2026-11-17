@@ -1,44 +1,61 @@
-## Description: <br>
-Agent observability — monitors tool invocations, LLM calls, token usage, costs, and anomalies with pluggable alerts and a real-time dashboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent observability that monitors tool invocations, LLM calls, token usage, costs, and anomalies with pluggable alerts and a real-time dashboard.
 
-## Publisher: <br>
-[fiddyrod](https://clawhub.ai/user/fiddyrod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fiddyrod](https://clawhub.ai/user/fiddyrod)
 
-## Use Case: <br>
-Developers and operators use this skill to monitor OpenClaw agent health, tool reliability, token usage, cost trends, anomalies, and alert delivery during normal agent operation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads OpenClaw session transcripts that may include sensitive tool arguments, errors, file paths, and usage data. <br>
-Mitigation: Install only where local transcript monitoring is acceptable, and restrict access to the workspace and generated SQLite metrics database. <br>
-Risk: Configured Discord or other webhook alerts can send sanitized alert text to an external destination. <br>
-Mitigation: Use a dedicated trusted webhook, keep config.yaml out of source control and shared workspaces, and rotate the webhook if it may have been exposed. <br>
-Risk: The dashboard frontend can load React and Babel from public CDNs, which may not fit air-gapped or high-security environments. <br>
-Mitigation: Serve required frontend assets locally in restricted environments. <br>
+## Use Case:
 
+Developers and operators use this skill to monitor OpenClaw agent activity, review tool and LLM metrics, detect reliability anomalies, configure alerts, and inspect a local dashboard.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fiddyrod/claw-reliability) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and local dashboard/report outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local SQLite-backed metrics, CLI summaries, anomaly reports, alert configuration, and localhost dashboard views.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: Agent transcripts may contain secrets, customer data, or sensitive file paths that are read and retained by the observability store.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing in sensitive environments, add redaction before storage, set retention limits, and restrict local database file permissions.
+
+Risk: External webhook alerts can send sanitized but still sensitive operational context to a third-party endpoint.
+
+Mitigation: Configure only trusted webhook destinations and do not commit config.yaml after adding a webhook URL.
+
+Risk: Dashboard exposure can reveal local agent activity if it is bound beyond localhost.
+
+Mitigation: Keep the dashboard bound to localhost unless an explicit access-control plan is in place.
+
+Risk: Frontend CDN dependencies may be unsuitable for air-gapped or high-security deployments.
+
+Mitigation: Bundle and serve frontend assets locally in restricted environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fiddyrod/skills/claw-reliability)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, configuration snippets, reports, and local dashboard instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local observability reports and setup guidance; metrics are stored in local SQLite unless external alerts are configured.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-Helps an agent perform lightweight, user-directed analysis of public Xiaohongshu notes and creator profile pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents summarize public Xiaohongshu notes and author pages for keyword, topic, performance, and content theme analysis.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-External users and agents use this skill to summarize public Xiaohongshu search results, topics, notes, and creator-profile content for lightweight trend and performance analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Use for bulk scraping, platform-control bypass, downloading content, or automatic account actions could violate the documented release boundaries. <br>
-Mitigation: Limit use to small, user-directed analysis of public pages and do not perform downloads, reverse engineering, bulk collection, or account actions. <br>
-Risk: Logged-in browsing may expose account-specific page context to the agent. <br>
-Mitigation: Prefer public-page review where possible and avoid sharing sensitive account state or private content during analysis. <br>
-Risk: Dynamic pages and human checks can make extracted engagement metrics incomplete or stale. <br>
-Mitigation: Treat outputs as lightweight summaries and verify important findings against the live Xiaohongshu page before relying on them. <br>
+## Use Case:
 
+External users and analysts use this skill for user-directed research on public Xiaohongshu notes, author pages, keyword or topic result sets, engagement metrics, and content theme distributions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CodeKungfu/xiaohongshu-hot-trend) <br>
-- [Xiaohongshu homepage](https://www.xiaohongshu.com/) <br>
-- [Xiaohongshu explore page](https://www.xiaohongshu.com/explore) <br>
-- [Xiaohongshu search page](https://www.xiaohongshu.com/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or concise text summaries with analysis notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include summarized engagement metrics, topic/category distributions, creator-profile comparisons, and compliance reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Using logged-in browser context or personal pages could expose account-scoped or personal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep use limited to public or personally authorized pages, and confirm before using logged-in browser context.
+
+Risk: Bulk or high-frequency collection could violate platform rules or trigger anti-abuse controls.
+
+Mitigation: Avoid downloading, interface reverse engineering, and bulk scraping; keep collection lightweight and control request frequency.
+
+Risk: Engagement summaries and manual content classifications can be incomplete or misleading if source pages change or fields are unavailable.
+
+Mitigation: Treat outputs as analysis summaries and verify important claims against the source pages before acting on them.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/codekungfu/skills/xiaohongshu-hot-trend)
+- [Xiaohongshu homepage](https://www.xiaohongshu.com/)
+- [Xiaohongshu explore](https://www.xiaohongshu.com/explore)
+- [Xiaohongshu search](https://www.xiaohongshu.com/search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include note IDs, author links, topic tags, engagement counts, timing comparisons, and compliance reminders when supported by public page evidence.]
+
+## Skill Version(s):
+
+0.1.0 (source: server evidence release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

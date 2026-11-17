@@ -1,43 +1,54 @@
-## Description: <br>
-diy-pc-master helps users generate custom PC build recommendations, query parts from DIYZP.cn, and assess hardware compatibility for budgets and use cases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+电脑DIY装机大师技能。用于帮助用户进行电脑配置推荐、装机方案分析、配件兼容性判断。当用户询问装机配置、电脑推荐、预算配置、配件分析、配置测评等问题时触发此技能。
 
-## Publisher: <br>
-[huangzbin90-source](https://clawhub.ai/user/huangzbin90-source) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huangzbin90-source](https://clawhub.ai/user/huangzbin90-source)
 
-## Use Case: <br>
-External users and PC builders use this skill to request budget-based desktop PC configurations, retrieve matching component options, and receive compatibility notes before considering a build. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; practical purchase-link coverage depends on DIYZP.cn and JD availability. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a hardcoded shared token and raw SQL queries against DIYZP.cn. <br>
-Mitigation: Install only where contacting DIYZP.cn is acceptable; the publisher should move the token out of the skill text and keep the API limited to safe read-only product lookups. <br>
-Risk: Generated recommendations can include JD purchase links that may be monetized. <br>
-Mitigation: Review links before use and require clear disclosure if links are affiliate or otherwise monetized. <br>
-Risk: Part availability, prices, and compatibility guidance depend on external data and model reasoning. <br>
-Mitigation: Treat recommendations as reference material and independently verify component compatibility, prices, and availability before purchase. <br>
+## Use Case:
 
+External users and agents use this skill to recommend custom PC builds, evaluate existing PC configurations, and check basic hardware compatibility for user budgets and workloads.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huangzbin90-source/diy-pc-master) <br>
-- [DIYZP.cn SQL API endpoint](https://www.diyzp.cn/api/sql_api.php) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, SQL queries, API calls, Guidance] <br>
-**Output Format:** [Markdown recommendations with JSON SQL query snippets, compatibility notes, and purchase links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include JD purchase links and a DIYZP.cn data-source note.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill exposes a reusable API token and asks the agent to send raw SQL to a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review carefully before installing; prefer a scoped product-search endpoint, credentials kept out of skill text, server-side query limits, and clear disclosure of data sent externally.
+
+Risk: The skill can return third-party product data and purchase links that may be incomplete, outdated, or commercially influenced.
+
+Mitigation: Keep the DIYZP.cn source disclosure, and verify pricing, compatibility, and purchase links before using the recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huangzbin90-source/skills/diy-pc-master)
+- [DIYZP.cn SQL API endpoint referenced by the skill](https://www.diyzp.cn/api/sql_api.php)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown responses and JSON SQL query objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include PC part recommendations, compatibility notes, third-party product data, and purchase links from DIYZP.cn.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

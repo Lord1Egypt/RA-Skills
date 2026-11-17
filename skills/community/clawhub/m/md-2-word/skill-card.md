@@ -1,40 +1,56 @@
-## Description: <br>
-Convert Markdown files to formatted Word documents (.docx). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Markdown files into formatted Word documents (.docx).
 
-## Publisher: <br>
-[frankxpj](https://clawhub.ai/user/frankxpj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[frankxpj](https://clawhub.ai/user/frankxpj)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, writers, and document authors use this skill to convert Markdown source files into formatted Word documents for sharing, review, or publication workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The converter writes a local .docx file at the selected output path and may overwrite an existing file.
+
+Mitigation: Choose an explicit output path, check for existing files before conversion, and keep backups for important documents.
+
+Risk: The skill depends on python-docx being installed in the execution environment.
+
+Mitigation: Install python-docx in an isolated virtual environment, preferably from pinned dependency metadata.
+
+Risk: The generated document uses default Chinese font formatting that may not match every document style guide.
+
+Mitigation: Review the generated Word document formatting before distributing it.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and document authors use this skill to convert a specified Markdown file into a formatted Word document, including headings, tables, lists, blockquotes, and basic bold text. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [shell commands, guidance, files]
 
-## Known Risks and Mitigations: <br>
-Risk: The converter reads a user-specified Markdown file and writes a .docx file, which can overwrite an existing output path. <br>
-Mitigation: Confirm the exact Markdown input file and intended .docx output path before execution, especially when the output file already exists. <br>
-Risk: The skill depends on python-docx when the package is not already installed. <br>
-Mitigation: Install python-docx only from a trusted package source. <br>
+**Output Format:** [Markdown guidance with shell commands that produce a local .docx file]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/frankxpj/md-2-word) <br>
+**Other Properties Related to Output:** [The converter accepts an input Markdown path and an optional output .docx path.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and a generated .docx file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads a local Markdown input path and writes a local .docx output path.] <br>
+3.112.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

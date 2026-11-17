@@ -1,46 +1,60 @@
-## Description: <br>
-iCloud Calendar skill via CalDAV (RFC 4791) - works on macOS/Linux, and Windows with env/keyring auth. Supports event CRUD, multi-calendar queries, managed attachments (RFC 8607), and free/busy lookups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+iCloud Calendar skill via CalDAV (RFC 4791) for event CRUD, multi-calendar queries, managed attachments (RFC 8607), and free/busy lookups across macOS, Linux, and Windows.
 
-## Publisher: <br>
-[xushen-ma](https://clawhub.ai/user/xushen-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[xushen-ma](https://clawhub.ai/user/xushen-ma)
 
-## Use Case: <br>
-Developers and calendar automation users use this skill to let an agent list, create, update, and delete iCloud Calendar events, query multiple calendars, manage event attachments, and check availability. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and modify iCloud Calendar data. <br>
-Mitigation: Install it only when that access is intended, and review create, update, delete, and attachment commands before execution. <br>
-Risk: Calendar access depends on an Apple app-specific password or local credential store. <br>
-Mitigation: Use an app-specific password and prefer keyring or macOS Keychain over storing APPLECAL_PASSWORD in a persistent shell profile. <br>
-Risk: Attachment commands can upload local files into calendar events. <br>
-Mitigation: Use APPLECAL_ATTACH_DIR to limit attachable files and rely on the skill's extension allowlist and sensitive path/name blocking. <br>
+## Use Case:
 
+Developers and agents use this skill to manage iCloud calendars through a Python CLI that lists, creates, updates, and deletes events, handles managed attachments, and checks availability.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xushen-ma/apple-calendar-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/xushen-ma) <br>
-- [Skill homepage](https://github.com/xushen-ma/apple-calendar-pro) <br>
-- [Apple app-specific passwords](https://appleid.apple.com) <br>
-- [iCloud CalDAV endpoint](https://caldav.icloud.com/.well-known/caldav) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON from the calendar CLI, with Markdown command examples in the skill documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, requests, an iCloud account with Calendar enabled, and APPLECAL_PASSWORD or keyring/Keychain credential access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+Risk: The skill uses an Apple app-specific password to access iCloud calendars, and the security evidence reports a URL-validation weakness that could expose that credential.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated revocable app-specific password, prefer keyring or Keychain storage over shell profiles, and avoid broad or unattended use until URL validation is fixed.
+
+Risk: Create, update, delete, and attachment commands can change real calendar data.
+
+Mitigation: Review command arguments before execution, verify target calendars and event IDs with list or get commands first, and restrict use to calendars where changes are intended.
+
+Risk: Attachment upload commands can send local files to calendar entries.
+
+Mitigation: Use the built-in attachment extension allowlist and sensitive path blocking, and set APPLECAL_ATTACH_DIR to a narrow approved attachment directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xushen-ma/skills/apple-calendar-pro)
+- [README](artifact/README.md)
+- [Apple app-specific passwords](https://appleid.apple.com)
+- [iCloud CalDAV well-known endpoint](https://caldav.icloud.com/.well-known/caldav)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration, API calls]
+
+**Output Format:** [JSON from Python CLI commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may read or modify live iCloud calendar data and require APPLECAL_PASSWORD or a supported keyring.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

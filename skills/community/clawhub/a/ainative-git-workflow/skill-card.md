@@ -1,42 +1,56 @@
-## Description: <br>
-Provides Git commit, pull request, and branch naming standards with a strict rule against AI-tool attribution in repository content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Git commit, pull request, and branch workflow guidance with strict removal of AI-tool attribution from repository-facing content.
 
-## Publisher: <br>
-[urbantech](https://clawhub.ai/user/urbantech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[urbantech](https://clawhub.ai/user/urbantech)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to standardize commit messages, pull request descriptions, branch names, and review checklists for repository work. It also guides removal of AI or tool attribution where an organization explicitly permits that practice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to omit AI or tool attribution, which can conflict with policy, contract, client expectations, or law. <br>
-Mitigation: Install only where omission is explicitly allowed and review repository content for required disclosure before publishing. <br>
-Risk: The skill may encourage amending, rebasing, or force-pushing commits to remove attribution. <br>
-Mitigation: Require explicit user approval before any history rewrite and use safer Git practices such as force-with-lease. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to draft branch names, commits, and pull request descriptions according to prescribed Git workflow standards. It is also used to check repository-facing content against a policy that forbids AI-tool attribution.
 
-## Reference(s): <br>
-- [AI Attribution Enforcement](references/ai-attribution-enforcement.md) <br>
-- [Branch Naming Conventions](references/branch-conventions.md) <br>
-- [PR Templates](references/pr-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline git and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent-facing Git workflow standards; no external tools or API calls required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill broadly instructs agents to remove AI-use disclosures, which can mislead collaborators or weaken audit trails.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in repositories where policy explicitly forbids AI-tool attribution and confirm disclosure, authorship, and audit requirements before applying the guidance.
+
+Risk: The skill includes amend, rebase, hook installation, and force-push workflows that can disrupt shared Git history.
+
+Mitigation: Require explicit approval and repository-policy confirmation before amending commits, rebasing, installing hooks, or force-pushing.
+
+## Reference(s):
+
+- [AI Attribution Enforcement](references/ai-attribution-enforcement.md)
+- [PR Templates](references/pr-templates.md)
+- [Branch Naming Conventions](references/branch-conventions.md)
+- [ClawHub Skill Page](https://clawhub.ai/urbantech/skills/ainative-git-workflow)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline Git and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose commit messages, PR descriptions, branch names, review checklists, and Git history-editing commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

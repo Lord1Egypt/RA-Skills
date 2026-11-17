@@ -1,39 +1,54 @@
-## Description: <br>
-Manages local clipboard history so users can save, search, pin, paste, and clear recent clipboard text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clipboard Manager stores clipboard history so users can search, pin, paste, and clear copied text.
 
-## Publisher: <br>
-[SxLiuYu](https://clawhub.ai/user/SxLiuYu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sxliuyu](https://clawhub.ai/user/sxliuyu)
 
-## Use Case: <br>
-Developers and end users use this skill to manage frequently copied text through a local command-line clipboard history, including search, pinning, replaying entries to the clipboard, and clearing stored history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Clipboard contents may include sensitive text and can be saved in plaintext to local history. <br>
-Mitigation: Avoid monitoring while copying secrets or private information, and clear ~/.clipboard_history.json on shared or sensitive machines. <br>
+## Use Case:
 
+External users and developers use this skill to manage local clipboard history, search previous copied text, pin frequently reused snippets, restore an item to the clipboard, or clear stored history.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SxLiuYu/clipboard-manager) <br>
-- [Publisher profile](https://clawhub.ai/user/SxLiuYu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Command-line text and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores clipboard history in a local JSON file and uses CLIPBOARD_MAX to limit saved entries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, _meta.json, server release metadata) <br>
+Risk: Clipboard history can persist sensitive copied content, including passwords, API keys, private messages, financial details, or recovery codes, in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on a trusted single-user machine, clear history regularly, and prefer a hardened version with monitoring warnings, restrictive permissions or encryption, secret filtering, and expiration.
+
+Risk: The skill monitors clipboard changes and stores copied text without clear access-control hardening.
+
+Mitigation: Review the script before use and avoid running monitoring mode on shared, unmanaged, or high-sensitivity systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sxliuyu/skills/clipboard-manager)
+- [ClawHub publisher profile](https://clawhub.ai/user/sxliuyu)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create and update a local plaintext clipboard history file when its script is run.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, metadata, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-Generate TikTok-style short-form ad videos with animated pill captions and built-in product presets for TikTok ads, Reels, and YouTube Shorts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate TikTok-style short-form ad videos by overlaying animated captions on a base MP4 with built-in product presets.
 
-## Publisher: <br>
-[Zero2Ai-hub](https://clawhub.ai/user/Zero2Ai-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zero2ai-hub](https://clawhub.ai/user/zero2ai-hub)
 
-## Use Case: <br>
-External creators, marketers, and developers use this skill to turn a base MP4 into short-form product ad content with animated caption overlays and product-specific callouts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Local video rendering can consume noticeable CPU, memory, and disk resources. <br>
-Mitigation: Run the skill on media files you choose in an environment with adequate local resources and available output storage. <br>
-Risk: Untrusted input videos or font files may increase media-processing risk. <br>
-Mitigation: Prefer trusted videos and fonts, and review inputs before rendering. <br>
+## Use Case:
 
+Creators, marketers, and developers use this skill to produce short-form product ad videos for TikTok, Reels, and YouTube Shorts from an existing MP4. It supports preset product scripts and caption styles for fast ad-video generation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Zero2Ai-hub/skill-tiktok-ads-video) <br>
-- [Publisher profile](https://clawhub.ai/user/Zero2Ai-hub) <br>
-- [uv runtime requirement](artifact/SKILL.md) <br>
-- [Example captions JSON](artifact/scripts/example_captions.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and file path references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides an agent to run local video-processing commands that produce an MP4 output file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill runs a local Python video-processing script that resolves third-party packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a locked dependency environment or sandbox before running it in sensitive environments.
+
+Risk: The implementation is narrower than the README for background audio mixing and captions JSON handling.
+
+Mitigation: Review the current script behavior and test the intended workflow before relying on those documented options.
+
+Risk: Built-in ad copy includes UAE/AED-specific text.
+
+Mitigation: Review and adjust product presets before using generated ads in other markets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zero2ai-hub/skills/skill-tiktok-ads-video)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and generated video file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill produces a local MP4 output when its Python overlay script is run with a source video, product preset, and caption style.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

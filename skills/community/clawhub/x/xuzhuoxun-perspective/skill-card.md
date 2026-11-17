@@ -1,49 +1,67 @@
-## Description: <br>
-Provides a Chinese-language A-share market commentary persona that responds in a Xu Zhuoxun-style first-person voice using investing models, trading heuristics, case studies, and trading psychology references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language, stylized A-share market analysis framework based on Xu Zhuoxun's investment models, heuristics, cases, and trading psychology.
 
-## Publisher: <br>
-[thinkpeace](https://clawhub.ai/user/thinkpeace) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thinkpeace](https://clawhub.ai/user/thinkpeace)
 
-## Use Case: <br>
-External users and agent builders use this skill to answer A-share market questions in Chinese with a named investing persona, including market analysis, position sizing, stop-loss discipline, fund-flow interpretation, trend judgment, and trading psychology. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce forceful A-share trading directions in a named persona. <br>
-Mitigation: Treat outputs as educational commentary, require independent financial judgment, and avoid using responses as personalized investment advice. <br>
-Risk: The skill may not repeat risk disclaimers after first activation. <br>
-Mitigation: Surface a financial-risk disclaimer at deployment or session level and remind users that market decisions remain their responsibility. <br>
-Risk: The skill roleplays a named private fund manager. <br>
-Mitigation: Confirm the persona and source-rights posture before public deployment, and clearly label generated responses as AI-generated educational commentary. <br>
+## Use Case:
 
+External users and agents use this skill to answer A-share market questions in Chinese with a structured investment-framework style covering market analysis, strategy, trading psychology, position sizing, trend judgment, fund flows, and risk discipline.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/thinkpeace/xuzhuoxun-perspective) <br>
-- [Publisher Profile](https://clawhub.ai/user/thinkpeace) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
-- [Models Reference Set](artifact/references/models/) <br>
-- [Heuristics Reference Set](artifact/references/heuristics/) <br>
-- [Case Studies Reference Set](artifact/references/cases/) <br>
-- [Trading Psychology](artifact/references/psychology/00-index.md) <br>
-- [Expression Guidance](artifact/references/expression/00-index.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose in Chinese, often with a conclusion, short reasons, cited mental model or heuristic, and action-oriented next steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include trading posture language such as buy, sell, hold, wait, stop-loss, and position-sizing guidance; the skill says it does not answer individual stock buy or sell recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may mistake the stylized first-person persona for the real fund manager speaking.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disclose that outputs are AI-generated educational commentary and avoid representing responses as statements from the real person.
+
+Risk: Action-oriented trading, stop-loss, or position-sizing guidance can be misconstrued as personalized financial advice.
+
+Mitigation: Keep outputs educational, include clear risk warnings when trading guidance appears, and require users to make independent investment decisions.
+
+Risk: Market commentary can become stale or misleading when timely A-share data is unavailable.
+
+Mitigation: Use current, cited market data for time-sensitive claims, or state uncertainty and avoid definitive trade calls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/thinkpeace/skills/xuzhuoxun-perspective)
+- [Publisher profile](https://clawhub.ai/user/thinkpeace)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+- [Core mental models](artifact/references/models/01-odds-over-probability.md)
+- [Spring theory](artifact/references/models/02-spring-theory.md)
+- [Capital flow indicators](artifact/references/models/10-capital-flow-indicators.md)
+- [Decision heuristics: loss-based sizing](artifact/references/heuristics/01-loss-based-sizing.md)
+- [Decision heuristics: stop-loss discipline](artifact/references/heuristics/02-two-night-stop.md)
+- [Trading psychology](artifact/references/psychology/00-index.md)
+- [Historical cases](artifact/references/cases/00-index.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese-language Markdown prose with conclusion, reasons, evidence, and action steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include educational market commentary, risk warnings, and position-sizing or stop-loss guidance; should not provide personalized financial advice or individual stock buy/sell calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

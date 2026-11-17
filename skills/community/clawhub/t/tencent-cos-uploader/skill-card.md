@@ -1,40 +1,62 @@
-## Description: <br>
-Uploads a local file to Tencent Cloud COS and returns presigned URLs for browser preview and file download. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Upload local files to Tencent COS and generate presigned links for browser preview and download.
 
-## Publisher: <br>
-[hoyt-tian](https://clawhub.ai/user/hoyt-tian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hoyt-tian](https://clawhub.ai/user/hoyt-tian)
 
-## Use Case: <br>
-Developers and operators use this skill to upload selected local files to Tencent Cloud COS buckets and share time-limited view or download links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Presigned view and download links can expose uploaded COS objects if they are shared too broadly or remain valid too long. <br>
-Mitigation: Confirm the file, bucket, object key, and expiration before running; keep signed links short-lived, prefer HTTPS, and delete uploaded objects when they are no longer needed. <br>
-Risk: Tencent Cloud credentials used by the script can grant upload and signing access to a bucket. <br>
-Mitigation: Use least-privilege or temporary credentials and avoid passing long-lived secrets unless the execution environment protects them. <br>
+## Use Case:
 
+Developers and engineers use this skill to upload a chosen local file to a Tencent COS bucket and return signed view and download URLs for temporary sharing.
 
-## Reference(s): <br>
-- [Tencent COS Uploader on ClawHub](https://clawhub.ai/hoyt-tian/tencent-cos-uploader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Tencent COS credentials, region, bucket, local file path, optional object key, expiration seconds, and HTTPS scheme by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Files are uploaded to a Tencent COS bucket and shared through signed URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the selected local file, destination bucket, and object key before running the upload.
+
+Risk: Long-lived signed URLs can be forwarded or exposed after generation.
+
+Mitigation: Keep link expirations short and share generated URLs only with intended recipients.
+
+Risk: Tencent COS credentials provide access to cloud storage resources.
+
+Mitigation: Use least-privilege or temporary COS credentials and prefer environment variables over command-line secrets.
+
+Risk: Using HTTP can expose request details for real data.
+
+Mitigation: Use the default HTTPS scheme for real uploads and sharing links.
+
+## Reference(s):
+
+- [Tencent COS Uploader on ClawHub](https://clawhub.ai/hoyt-tian/skills/tencent-cos-uploader)
+- [Publisher profile: hoyt-tian](https://clawhub.ai/user/hoyt-tian)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The helper script emits JSON containing bucket, region, object key, local file path, file size, expiration, generation timestamp, presigned view URL, presigned download URL, and Tencent COS upload response.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

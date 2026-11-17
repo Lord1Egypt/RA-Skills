@@ -1,46 +1,56 @@
-## Description: <br>
-中华术数推演系统（八字/紫微/六爻/梅花/奇门/称骨/铁板/解梦）。当用户提到算命/算八字/排八字/看命盘/紫微斗数/六爻/占卜/梅花易数/奇门遁甲/称骨/铁板神数/解梦/算一卦/帮我算算/看看运势/什么命/命理时触发。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+中华术数推演系统（八字/紫微/六爻/梅花/奇门/称骨/铁板/解梦）。当用户提到算命/算八字/排八字/看命盘/紫微斗数/六爻/占卜/梅花易数/奇门遁甲/称骨/铁板神数/解梦/算一卦/帮我算算/看看运势/什么命/命理时触发。
 
-## Publisher: <br>
-[xgimiapoll-code](https://clawhub.ai/user/xgimiapoll-code) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[xgimiapoll-code](https://clawhub.ai/user/xgimiapoll-code)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users invoke this skill through an agent to collect birth, event, or dream details, call the publisher's divination service, and receive natural-language Chinese metaphysics readings or optional HTML reports. It is intended for astrology/divination-style interpretation workflows rather than factual, medical, legal, or financial advice.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Personal birth details, names, questions, dream descriptions, and generated reports may be sent to the publisher's remote service.
+
+Mitigation: Use only with informed user consent and avoid entering sensitive personal data unless that transmission is acceptable.
+
+Risk: The evidence reports plaintext HTTP transport and an embedded shared bearer token.
+
+Mitigation: Prefer a deployment that uses HTTPS, validates the API host, and supplies a private API key through environment configuration.
+
+Risk: Divination and health-related readings can be mistaken for authoritative advice.
+
+Mitigation: Present outputs as interpretive or entertainment-oriented guidance and keep health disclaimers when discussing wellness topics.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and agents use this skill to collect birth, event, or dream inputs, call deterministic Chinese divination engines, and produce natural-language interpretations from the returned data. It supports fate analysis, Liuyao, Meihua, Qimen, dream interpretation, engine discovery, and HTML report generation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, HTML, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive personal inputs such as birth details, birthplace, gender, name, dreams, and questions are sent to an external service. <br>
-Mitigation: Use the skill only when users consent to sharing that data with the configured service, and avoid collecting identifying information unless it is necessary. <br>
-Risk: The configured default API endpoint uses unencrypted HTTP transport. <br>
-Mitigation: Prefer an HTTPS-only service endpoint before production use, especially when sending personal or sensitive inputs. <br>
-Risk: The helper script includes a shared default bearer token. <br>
-Mitigation: Configure a publisher-managed credential through MAXIANER_API_KEY and remove reliance on embedded shared credentials. <br>
-Risk: Privacy, retention, and API credential handling are not explained in the evidence. <br>
-Mitigation: Confirm the publisher's privacy, retention, and credential handling practices before deployment. <br>
+**Output Format:** [Natural-language Chinese Markdown with script-invocation examples and optional HTML report output.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xgimiapoll-code/maxianer) <br>
-- [Publisher profile](https://clawhub.ai/user/xgimiapoll-code) <br>
-- [Server-resolved provenance](unavailable) <br>
+**Other Properties Related to Output:** [Remote API responses may return JSON for agent interpretation; final user-facing readings should avoid exposing raw JSON field names.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and natural-language interpretations; script calls return JSON or HTML depending on the endpoint.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a Node.js helper script to call an external API; fate, event, dream, engines, and report endpoints are supported.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

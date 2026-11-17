@@ -1,40 +1,49 @@
-## Description: <br>
-Body Clock helps users align sleep, meals, exercise, and work with their natural body clock for sleep schedules, jet lag, energy dips, and daily routine optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Circadian rhythm and biological clock optimization guide. Help users align sleep, meals, exercise, and work with their natural body clock. Use when users ask about sleep schedule, jet lag, energy dips, or how to optimize their daily routine.
 
-## Publisher: <br>
-[jiwenbing](https://clawhub.ai/user/jiwenbing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiwenbing](https://clawhub.ai/user/jiwenbing)
 
-## Use Case: <br>
-External users use this skill to get general wellness guidance for sleep timing, jet lag adjustment, energy dips, chronotype-aware routines, and timing of meals, exercise, and focus work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sleep and circadian suggestions may be mistaken for medical advice for chronic insomnia, shift-work disorder, medication timing, or other health conditions. <br>
-Mitigation: Frame outputs as general wellness guidance and advise users to consult a qualified clinician for medical concerns or treatment decisions. <br>
-Risk: Routine timing recommendations can be misleading if the agent lacks user context such as chronotype, current schedule, travel direction, or constraints. <br>
-Mitigation: Ask targeted chronotype and schedule questions before giving personalized timing recommendations, and use gradual schedule changes when appropriate. <br>
+## Use Case:
 
+External users use this skill to get general circadian-rhythm guidance for sleep schedules, jet lag, energy dips, and timing meals, exercise, and focus work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiwenbing/body-clock) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [General wellness timing recommendations; not medical advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Users may treat general sleep and circadian guidance as medical advice for serious, persistent, or medically complex sleep problems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present recommendations as general wellness guidance and advise users to seek qualified medical advice for serious, persistent, or medically complex sleep issues.
+
+## Reference(s):
+
+- [Body Clock ClawHub skill page](https://clawhub.ai/jiwenbing/skills/body-clock)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text]
+
+**Output Format:** [Markdown or plain text advice]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask 3-4 chronotype questions before giving timed recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{文章标题}}</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background-color: #f5f5f5; font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; }
+  .nav-bar { position: sticky; top: 0; background: #2c2520; padding: 10px 20px; display: flex; gap: 12px; align-items: center; z-index: 100; flex-wrap: wrap; }
+  .nav-bar a { color: #d4a574; text-decoration: none; font-size: 14px; padding: 6px 14px; border-radius: 4px; cursor: pointer; }
+  .nav-bar a:hover { background: #3d3530; }
+  .nav-bar a.active { background: #8b4513; color: #fff; }
+  .copy-btn { background: #8b4513; color: #fff; border: none; padding: 8px 20px; border-radius: 6px; font-size: 14px; cursor: pointer; margin-left: auto; }
+  .copy-btn:hover { background: #a0522d; }
+  .article-wrapper { max-width: 680px; margin: 0 auto; background: #fff; padding: 40px 30px; min-height: 80vh; }
+</style>
+</head>
+<body>
+
+<!-- 导航栏：多篇文章时复制此段，修改 data-target -->
+<nav class="nav-bar">
+  <a data-target="content1" class="active">第1篇</a>
+  <!-- <a data-target="content2">第2篇</a> -->
+  <button class="copy-btn" onclick="copyArticle('content1', this)">📋 复制此篇全文</button>
+</nav>
+
+<!-- ============ 文章内容开始 ============ -->
+<!-- 注意：所有带样式的容器必须用 <section>，不能用 <div> -->
+<!-- 公众号编辑器会剥离 <div> 上的 background-color，但保留 <section> 上的 -->
+<section class="article-wrapper" id="content1">
+
+  <!-- 文章标题 -->
+  <h1 style="font-size:24px;font-weight:700;color:#2c2c2c;margin:0 0 8px;line-height:1.4;text-align:center;">{{文章标题}}</h1>
+  <p style="font-size:13px;color:#999;text-align:center;margin:0 0 32px;">{{副标题/日期/作者}}</p>
+
+  <!-- 音乐卡片（table布局，公众号兼容） -->
+  <table style="width:100%;background-color:#faf6f0;border:1px solid #e8ddd0;border-radius:8px;margin-bottom:28px;border-collapse:collapse;">
+    <tr>
+      <td style="padding:12px 16px;width:52px;vertical-align:middle;">
+        <section style="width:44px;height:44px;border-radius:50%;background-color:#8b4513;"></section>
+      </td>
+      <td style="padding:12px 16px;vertical-align:middle;">
+        <p style="margin:0;font-size:15px;color:#8b4513;font-weight:600;">🎵 {{歌曲名}}</p>
+        <p style="margin:4px 0 0;font-size:13px;color:#b08968;">{{歌手名}} · {{年份}}</p>
+      </td>
+    </tr>
+  </table>
+
+  <!-- 正文段落 -->
+  <p style="font-size:16px;line-height:2.0;color:#3f3f3f;margin:0 0 18px;text-align:justify;letter-spacing:0.3px;">{{正文段落内容}}</p>
+
+  <!-- 小标题 -->
+  <h2 style="font-size:18px;font-weight:700;color:#2c2c2c;margin:36px 0 20px;padding-left:14px;border-left:4px solid #8b4513;line-height:1.5;">{{小标题}}</h2>
+
+  <!-- 歌词引用块 -->
+  <section style="background-color:#faf6f0;border-left:3px solid #d4a574;padding:16px 20px;margin:20px 0;font-size:16px;line-height:1.9;color:#6b5544;font-style:italic;border-radius:0 6px 6px 0;">{{歌词/引用内容}}</section>
+
+  <!-- 正文段落（带行内强调） -->
+  <p style="font-size:16px;line-height:2.0;color:#3f3f3f;margin:0 0 18px;text-align:justify;letter-spacing:0.3px;">正文内容，其中<span style="color:#8b4513;font-weight:600;">关键词</span>用 span 强调。</p>
+
+  <!-- 重点高亮块 -->
+  <section style="background-color:#faf6f0;border:1px solid #e8ddd0;border-radius:10px;padding:20px 22px;margin:28px 0 20px;">
+    <p style="font-size:15px;line-height:1.9;color:#3f3f3f;margin:0;">{{重点内容}}</p>
+  </section>
+
+  <!-- 金句块 -->
+  <section style="background-color:#f5f0e8;padding:14px 20px;margin:18px 0;border-radius:6px;font-size:16px;line-height:2.0;color:#4a3f35;">{{金句内容}}</section>
+
+  <!-- 互动引导框 -->
+  <section style="background-color:#2c2520;border-radius:8px;padding:16px 20px;margin-top:16px;color:#d4a574;font-size:13px;line-height:1.8;">{{互动引导文字，如：你最喜欢哪首歌？评论区聊聊}}</section>
+
+</section>
+<!-- ============ 文章内容结束 ============ -->
+
+<script>
+// 复制函数：使用 execCommand，在 file:// 下可正常工作
+// 不要用 ClipboardItem API，它在本地文件下不可用
+function copyArticle(id, btn) {
+  var el = document.getElementById(id);
+  var originalText = btn.innerHTML;
+
+  // 选中文章内容
+  var range = document.createRange();
+  range.selectNodeContents(el);
+  var sel = window.getSelection();
+  sel.removeAllRanges();
+  sel.addRange(range);
+
+  // 执行复制
+  var ok = document.execCommand('copy');
+  sel.removeAllRanges();
+
+  if (ok) {
+    btn.innerHTML = '✅ 已复制！去公众号Ctrl+V粘贴';
+    btn.style.backgroundColor = '#2e7d32';
+  } else {
+    btn.innerHTML = '⚠️ 请手动选中内容复制';
+    btn.style.backgroundColor = '#c62828';
+  }
+  setTimeout(function() {
+    btn.innerHTML = originalText;
+    btn.style.backgroundColor = '#8b4513';
+  }, 3000);
+}
+
+// 导航栏切换（多篇文章时启用）
+document.querySelectorAll('.nav-bar a[data-target]').forEach(function(link) {
+  link.addEventListener('click', function() {
+    document.querySelectorAll('.nav-bar a').forEach(function(a) { a.classList.remove('active'); });
+    this.classList.add('active');
+    var target = document.getElementById(this.dataset.target);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+      // 更新复制按钮指向
+      var btn = document.querySelector('.copy-btn');
+      btn.setAttribute('onclick', "copyArticle('" + this.dataset.target + "', this)");
+    }
+  });
+});
+</script>
+
+</body>
+</html>

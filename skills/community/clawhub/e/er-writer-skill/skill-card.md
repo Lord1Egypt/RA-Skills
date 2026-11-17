@@ -1,44 +1,51 @@
-## Description: <br>
-模仿 ER 个人写作风格的 skill，将口语、素材或草稿改写为富有诗意与哲思的散文或情书体文章。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+writER rewrites spoken notes, source material, or drafts into ER-style poetic and philosophical prose, love letters, and reflective essays.
 
-## Publisher: <br>
-[jewelroam](https://clawhub.ai/user/jewelroam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jewelroam](https://clawhub.ai/user/jewelroam)
 
-## Use Case: <br>
-Writers and agent users use writER to transform oral notes, drafts, and source material into ER-style poetic prose, love letters, philosophical essays, dream narratives, or related literary forms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad Chinese writing prompts may activate this poetic rewrite style unintentionally. <br>
-Mitigation: Invoke the skill only when an ER-style poetic rewrite is desired, and review outputs for task fit before using them. <br>
-Risk: Inputs for prose or love-letter rewriting may contain sensitive personal text. <br>
-Mitigation: Avoid submitting highly sensitive personal content unless the user is comfortable with the agent and model provider processing it. <br>
-Risk: A strong literary style can shift meaning, emphasis, or emotional tone from the original draft. <br>
-Mitigation: Compare the generated prose with the source material and edit for factual and emotional accuracy before sharing. <br>
+## Use Case:
 
+External users and writers use writER to transform oral notes, rough drafts, diary material, love letters, and reflective ideas into poetic prose with ER-style imagery, rhythm, and philosophical tone.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jewelroam/er-writer-skill) <br>
-- [口语转诗意散文规则](references/oral-to-prose.md) <br>
-- [意象典故列表](references/imagery.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creative prose rewrites; no code execution or external tool calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Broad writing triggers may cause the ER style to be applied unexpectedly to neutral prose requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask explicitly for another style or disable the skill when neutral writing is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jewelroam/skills/er-writer-skill)
+- [口语转诗意散文规则](references/oral-to-prose.md)
+- [意象典故列表](references/imagery.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose with headings, poetic line breaks, and optional separators]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Transforms user-provided material into selected prose genres and style modes.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,64 @@
-## Description: <br>
-Build and deploy autonomous TypeScript agents for the OpenServ platform using the OpenServ SDK, companion OpenServ client, runnable and runless capabilities, platform-delegated generation, and workflow provisioning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and deploy autonomous AI agents using the OpenServ SDK (@openserv-labs/sdk).
 
-## Publisher: <br>
-[issa-me-sush](https://clawhub.ai/user/issa-me-sush) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[issa-me-sush](https://clawhub.ai/user/issa-me-sush)
 
-## Use Case: <br>
-Developers use this skill to create, provision, run, deploy, and troubleshoot OpenServ agents that expose capabilities, handle platform tasks, use platform-delegated generation, and participate in workflows or paid x402 calls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Agents may rely on local secrets such as wallet private keys, OpenServ API keys, auth tokens, and optional LLM provider keys. <br>
-Mitigation: Keep .env files and wallet keys out of version control, restrict local secret access, and rotate any exposed tokens. <br>
-Risk: Local development can expose an agent through a WebSocket tunnel, and production agents can expose public endpoints. <br>
-Mitigation: Review webhook and tunnel exposure before running agents, and use DISABLE_TUNNEL=true with a controlled public endpoint for production deployments. <br>
-Risk: Capabilities can delete files, trigger paid x402 calls, or perform on-chain ERC-8004 registration that requires funded wallets. <br>
-Mitigation: Add authorization or confirmation checks around file deletion, paid, and on-chain actions, and wrap registration in error handling so failures do not prevent the agent from starting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/issa-me-sush/openserv-agent-sdk) <br>
-- [OpenServ SDK Reference](reference.md) <br>
-- [OpenServ SDK Troubleshooting](troubleshooting.md) <br>
-- [Basic agent example](examples/basic-agent.ts) <br>
-- [Task management example](examples/task-management.ts) <br>
-- [File operations example](examples/file-operations.ts) <br>
+## Use Case:
 
+Developers and engineers use this skill to build TypeScript agents for the OpenServ platform, define runnable or runless capabilities, provision workflows, and run agents locally or in production.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with TypeScript, shell, JSON, and environment-variable examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes agent setup patterns, SDK/API usage examples, deployment notes, troubleshooting guidance, and security-sensitive credential handling notes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill normalizes storing wallet and API credentials in plaintext environment files.
+
+Mitigation: Use a sandbox or dedicated project, keep .env out of version control, rotate credentials as needed, and review generated environment handling before deployment.
+
+Risk: The examples include wallet funding and on-chain registration flows with financial implications.
+
+Mitigation: Use a low-value dedicated wallet, avoid funding it until registration is required, and review each transaction before signing.
+
+Risk: The file operation examples include upload and deletion patterns that can affect workspace files.
+
+Mitigation: Add confirmations, path validation, and scope restrictions before enabling file upload or deletion capabilities in production agents.
+
+Risk: The security verdict is suspicious because broad update, file, deletion, and secret-handling patterns need review.
+
+Mitigation: Install only after reviewing the skill, pin package and skill versions where possible, and run it first in a sandbox.
+
+## Reference(s):
+
+- [OpenServ SDK Reference](artifact/reference.md)
+- [OpenServ SDK Troubleshooting](artifact/troubleshooting.md)
+- [Basic Agent Example](artifact/examples/basic-agent.ts)
+- [File Operations Example](artifact/examples/file-operations.ts)
+- [ClawHub Skill Page](https://clawhub.ai/issa-me-sush/skills/openserv-agent-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with TypeScript examples, shell commands, and environment configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces implementation guidance for agents that use OpenServ SDK and client packages.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

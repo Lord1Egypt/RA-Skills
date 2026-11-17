@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
-# SECURITY: This script makes NO network calls and spawns NO subprocesses.
+# SECURITY: Local-only. No network access and no child processes.
 # All I/O is local file operations only:
 #   READS:  data[/<env>]/active_grants.json, data[/<env>]/audit_log.jsonl
 #   WRITES: data[/<env>]/active_grants.json, data[/<env>]/audit_log.jsonl
-# Imports used: argparse, json, os, re, sys, datetime, pathlib, typing
-# No imports of: requests, socket, subprocess, urllib, http, ssl, ftplib, smtplib
+#   <env> must be one of dev|st|sit|qa|sandbox|preprod|prod (anything else is
+#   rejected). Writes must stay inside data/ and never follow a symlink.
+# Imports used: argparse, json, os, sys, datetime, pathlib, typing
+# Standard library only; no networking or process-spawning modules are imported.
 """
 Revoke Grant Token & TTL Enforcement
 
@@ -23,22 +25,47 @@ Example:
 import argparse
 import json
 import os
-import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
 
+_DATA_ROOT = Path(__file__).resolve().parent.parent / "data"
+
+# The only environments a data/<env>/ directory is used for.
+_ENVIRONMENTS = ("dev", "st", "sit", "qa", "sandbox", "preprod", "prod")
+
+
 def _resolve_data_dir(env: str = "") -> Path:
-    """Return the active data directory, scoped to <env> when set."""
-    _env = env or os.environ.get("NETWORK_AI_ENV", "")
-    base = Path(__file__).parent.parent / "data"
-    if _env:
-        if not re.match(r'^[a-zA-Z0-9_-]+$', _env):
-            raise ValueError(f"Invalid NETWORK_AI_ENV value: {_env!r}")
-        return base / _env
-    return base
+    """Return data/, or data/<env>/ for one of the documented environments."""
+    requested = env or os.environ.get("NETWORK_AI_ENV", "")
+    if not requested:
+        return _DATA_ROOT
+    for name in _ENVIRONMENTS:
+        if requested == name:
+            return _DATA_ROOT / name  # built from the fixed list, not the input
+    raise ValueError(
+        f"Unknown environment {requested!r}; expected one of: {', '.join(_ENVIRONMENTS)}"
+    )
+
+
+_O_NOFOLLOW = getattr(os, "O_NOFOLLOW", 0)
+_O_BINARY = getattr(os, "O_BINARY", 0)
+
+
+def _write_confined(path: Path, text: str, append: bool = False) -> None:
+    """Write or append `text` inside data/ only, never through a symlink."""
+    real_root = _DATA_ROOT.resolve()
+    real_dir = path.parent.resolve()
+    if real_dir != real_root and real_root not in real_dir.parents:
+        raise PermissionError(f"Refusing to write outside {real_root}: {path}")
+    if path.is_symlink():
+        raise PermissionError(f"Refusing to write through a symlink: {path}")
+    flags = os.O_WRONLY | os.O_CREAT | (os.O_APPEND if append else os.O_TRUNC)
+    fd = os.open(path, flags | _O_NOFOLLOW | _O_BINARY, 0o600)
+    with os.fdopen(fd, "a" if append else "w", encoding="utf-8") as fh:
+        fh.write(text)
 
 
 GRANTS_FILE = _resolve_data_dir() / "active_grants.json"
@@ -47,14 +74,13 @@ AUDIT_LOG = _resolve_data_dir() / "audit_log.jsonl"
 
 def log_audit(action: str, details: dict[str, Any]) -> None:
     """Append entry to audit log."""
-    AUDIT_LOG.parent.mkdir(exist_ok=True)
+    AUDIT_LOG.parent.mkdir(parents=True, exist_ok=True)
     entry: dict[str, Any] = {
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "action": action,
         "details": details
     }
-    with open(AUDIT_LOG, "a") as f:
-        f.write(json.dumps(entry) + "\n")
+    _write_confined(AUDIT_LOG, json.dumps(entry) + "\n", append=True)
 
 
 def revoke_token(token: str) -> dict[str, Any]:
@@ -80,7 +106,7 @@ def revoke_token(token: str) -> dict[str, Any]:
         }
     
     grant = grants.pop(token)
-    GRANTS_FILE.write_text(json.dumps(grants, indent=2))
+    _write_confined(GRANTS_FILE, json.dumps(grants, indent=2))
     
     log_audit("permission_revoked", {
         "token": token,
@@ -94,15 +120,17 @@ def revoke_token(token: str) -> dict[str, Any]:
 
 
 def is_token_expired(grant: dict[str, Any]) -> bool:
-    """Check if a grant token has expired."""
+    """Check if a grant token has expired. Missing or unparseable expiry counts as expired."""
     expires_at = grant.get("expires_at")
-    if not expires_at:
-        return False
+    if not isinstance(expires_at, str) or not expires_at.strip():
+        return True
     try:
-        expiry_time = datetime.fromisoformat(expires_at.replace("Z", "+00:00"))
-        return datetime.now(timezone.utc) > expiry_time
-    except (ValueError, AttributeError):
-        return False
+        expiry_time = datetime.fromisoformat(expires_at.strip().replace("Z", "+00:00"))
+    except ValueError:
+        return True
+    if expiry_time.tzinfo is None:
+        expiry_time = expiry_time.replace(tzinfo=timezone.utc)
+    return datetime.now(timezone.utc) >= expiry_time
 
 
 def list_expired_tokens() -> dict[str, Any]:
@@ -171,7 +199,7 @@ def cleanup_expired_tokens() -> dict[str, Any]:
         grants.pop(token)
     
     # Write back cleaned grants
-    GRANTS_FILE.write_text(json.dumps(grants, indent=2))
+    _write_confined(GRANTS_FILE, json.dumps(grants, indent=2))
     
     # Log the cleanup
     if expired_tokens:

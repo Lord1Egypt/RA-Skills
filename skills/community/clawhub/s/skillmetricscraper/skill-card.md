@@ -1,42 +1,62 @@
-## Description: <br>
-Tracks trending ClawHub skills, stores metrics snapshots, ranks movers and rockets, and generates weekly Markdown reports and voice-ready video scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SkillMetricScraper tracks trending ClawHub skills from API snapshots and generates weekly intelligence reports and voice-ready video scripts.
 
-## Publisher: <br>
-[ademczuk](https://clawhub.ai/user/ademczuk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ademczuk](https://clawhub.ai/user/ademczuk)
 
-## Use Case: <br>
-Developers, maintainers, and ecosystem analysts use this skill to monitor ClawHub skill trends, preserve time-series metrics, and produce weekly summaries or scripts for reporting workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches public ClawHub, social, and GitHub data and persists analytics outputs locally. <br>
-Mitigation: Run it only where local report, JSON, text, and SQLite outputs are expected, and review output locations and retention before scheduled use. <br>
-Risk: The skill may use authenticated services, Docker access, and an external X search helper. <br>
-Mitigation: Provide least-privilege credentials only for intended modes, and review or disable Docker bridge behavior and X_SEARCH_SCRIPT before running in sensitive environments. <br>
-Risk: Broad triggers and cron or hourly setup can collect data or generate reports more often than intended. <br>
-Mitigation: Enable only the needed triggers and schedules, and monitor snapshot and report jobs when automation is configured. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ademczuk/skillmetricscraper) <br>
-- [ClawHub public skills API](https://clawhub.ai/api/v1/skills) <br>
+## Use Case:
 
+Developers and content operators use this skill to collect ClawHub skill metrics, rank trending skills, and produce weekly Markdown reports, JSON data, and voice-ready briefing scripts.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration] <br>
-**Output Format:** [Markdown reports, text scripts, JSON metrics data, SQLite snapshots, and terminal summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write local report, script, JSON, and SQLite files; script generation depends on configured API credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The default workflow can use Docker access to copy metrics data from a running container.
+
+Mitigation: Run in a least-privileged environment and use --no-bridge unless container database copying is explicitly intended.
+
+Risk: Optional community capture and public skill content can influence generated Markdown, JSON, and scripts.
+
+Mitigation: Treat generated artifacts as untrusted drafts and review them before publishing or feeding them into downstream pipelines.
+
+Risk: Optional X/Twitter capture and script generation can require external API keys.
+
+Mitigation: Provide only the keys needed for the selected mode and use --skip-x when X/Twitter capture is not required.
+
+Risk: Dependency installation may pull packages from the configured Python package index.
+
+Mitigation: Inspect or pin dependencies before running pip install in shared or production environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ademczuk/skills/skillmetricscraper)
+- [Publisher Profile](https://clawhub.ai/user/ademczuk)
+- [ClawHub Skills API](https://clawhub.ai/api/v1/skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [Markdown reports, plain-text video scripts, JSON data files, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update a local SQLite metrics database and dated report artifacts.]
+
+## Skill Version(s):
+
+1.3.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

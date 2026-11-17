@@ -1,46 +1,62 @@
-## Description: <br>
-Auto-generated skill for amap-maps-streamableHTTP tools via OneKey Gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-generated skill for amap-maps-streamableHTTP tools via OneKey Gateway.
 
-## Publisher: <br>
-[AI-Hub-Admin](https://clawhub.ai/user/AI-Hub-Admin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ai-hub-admin](https://clawhub.ai/user/ai-hub-admin)
 
-## Use Case: <br>
-Developers and agents use this skill to call Amap mapping tools through OneKey Gateway for route planning, geocoding, reverse geocoding, POI search, distance lookup, weather lookup, IP location, and generated Amap client links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Location-related inputs such as map queries, coordinates, routes, addresses, POI searches, weather locations, or IP lookups are sent to OneKey Gateway/Amap. <br>
-Mitigation: Use the skill only when that data sharing is acceptable for the task and organization. <br>
-Risk: The scripts can fall back to a demo access key when DEEPNLP_ONEKEY_ROUTER_ACCESS is not configured. <br>
-Mitigation: Configure your own DEEPNLP_ONEKEY_ROUTER_ACCESS key before use, especially for production or sensitive workflows. <br>
-Risk: Runtime dependencies are installed from external package registries. <br>
-Mitigation: Use pinned dependencies or an isolated environment for production use. <br>
+## Use Case:
 
+Developers and external agents use this skill to run AMap map, route, geocoding, POI search, weather, IP location, and map URI tools through a OneKey Gateway access key.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/AI-Hub-Admin/amap-maps-streamablehttp) <br>
-- [OneKey MCP Router Doc](https://www.deepnlp.org/doc/onekey_mcp_router) <br>
-- [OneKey Gateway Doc](https://deepnlp.org/doc/onekey_agent_router) <br>
-- [OneKey Gateway Keys](https://www.deepnlp.org/workspace/keys) <br>
-- [AI Agent Marketplace GitHub](https://github.com/aiagenta2z/ai-agent-marketplace) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Shell commands, Code, Configuration instructions, Guidance] <br>
-**Output Format:** [JSON responses from tool calls, shell command examples, Python wrapper scripts, and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Tool calls require JSON payloads and a DEEPNLP_ONEKEY_ROUTER_ACCESS key; scripts print JSON results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: release evidence) <br>
+Risk: Map queries, coordinates, addresses, routes, IP addresses, and extra JSON fields may contain sensitive location data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending sensitive locations unless the provider logging, retention, and access policies are acceptable for the deployment.
+
+Risk: The artifact includes a shared demo credential fallback when DEEPNLP_ONEKEY_ROUTER_ACCESS is not set.
+
+Mitigation: Set a dedicated DEEPNLP_ONEKEY_ROUTER_ACCESS key before use and avoid relying on the demo fallback.
+
+Risk: The Python dependency is specified with a lower bound rather than a pinned version.
+
+Mitigation: Install in an isolated environment and pin dependencies during production deployment review.
+
+## Reference(s):
+
+- [OneKey MCP Router Documentation](https://www.deepnlp.org/doc/onekey_mcp_router)
+- [OneKey Gateway Documentation](https://deepnlp.org/doc/onekey_agent_router)
+- [OneKey Gateway Keys](https://www.deepnlp.org/workspace/keys)
+- [AI Agent Marketplace](https://www.deepnlp.org/store/ai-agent)
+- [GitHub AI Agent Marketplace](https://github.com/aiagenta2z/ai-agent-marketplace)
+- [ClawHub Skill Page](https://clawhub.ai/ai-hub-admin/skills/amap-maps-streamablehttp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands, Python script usage, and JSON tool payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tool calls may return JSON results or map application URI links depending on the selected AMap capability.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

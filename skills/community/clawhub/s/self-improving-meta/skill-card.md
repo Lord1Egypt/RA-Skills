@@ -1,45 +1,60 @@
-## Description: <br>
-Improves agent infrastructure including prompt files, skill definitions, hooks, rules, extensions, and memory management when agents misread instructions, hooks fail, skills do not activate, rules conflict, context is bloated, memory is stale, or templates are unclear. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Logs agent-infrastructure issues such as prompt drift, rule conflicts, hook failures, and context bloat, with optional project-scoped reminders and reviewed-diff safeguards.
 
-## Publisher: <br>
-[jose-compu](https://clawhub.ai/user/jose-compu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jose-compu](https://clawhub.ai/user/jose-compu)
 
-## Use Case: <br>
-Developers and agent maintainers use this skill to capture recurring infrastructure learnings, log hook or skill activation issues, and propose reviewed improvements to shared prompt, memory, hook, rule, and skill files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persistently steer or change agent prompts, hooks, memory, rules, and skill files. <br>
-Mitigation: Require an explicit reviewed diff before edits to shared infrastructure, and keep changes scoped to the identified issue. <br>
-Risk: Hook reminders and learning logs may capture sensitive context if raw outputs or secrets are copied into markdown files. <br>
-Mitigation: Do not log secrets, environment variables, tokens, private keys, raw command output, or full transcripts; prefer short redacted summaries. <br>
-Risk: Broad or global hook activation could add unwanted persistent behavior across workspaces. <br>
-Mitigation: Keep hooks project-scoped, avoid empty or global matchers, and enable the optional OpenClaw hook only where the reminder workflow is intended. <br>
+## Use Case:
 
+Developers and agent maintainers use this skill to record recurring agent-infrastructure issues, keep redacted learning logs, and propose reviewed improvements to prompt files, hooks, memory policies, and skill templates.
 
-## Reference(s): <br>
-- [Self-Improving Meta ClawHub Page](https://clawhub.ai/jose-compu/self-improving-meta) <br>
-- [OpenClaw Integration](references/openclaw-integration.md) <br>
-- [Hooks Setup](references/hooks-setup.md) <br>
-- [Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional hook reminder text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local .learnings markdown logs and may propose reviewed changes to shared agent infrastructure files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata) <br>
+Risk: Persistent infrastructure logs can capture sensitive prompt, command, or environment details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep .learnings entries short and redacted; do not log secrets, tokens, private keys, environment variables, raw hook output, or full transcripts.
+
+Risk: Optional hooks run with agent permissions and may inspect command output when enabled.
+
+Mitigation: Keep hooks project-scoped, enable them only when needed, and avoid the optional PostToolUse output detector in untrusted workspaces.
+
+Risk: Generated skill scaffolds may contain incomplete or unsuitable guidance if kept without review.
+
+Mitigation: Review generated SKILL.md files before keeping or publishing them, and apply infrastructure changes only from a reviewed diff requested in the current session.
+
+## Reference(s):
+
+- [Hook Setup Guide](references/hooks-setup.md)
+- [OpenClaw Integration](references/openclaw-integration.md)
+- [Entry Examples](references/examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/jose-compu/skills/self-improving-meta)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, learning-log templates, and optional skill scaffold text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default behavior is log-only; file creation and skill scaffolding are user-gated and should be reviewed before publishing.]
+
+## Skill Version(s):
+
+1.2.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

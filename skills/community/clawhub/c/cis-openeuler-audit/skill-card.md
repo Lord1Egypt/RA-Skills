@@ -1,40 +1,55 @@
-## Description: <br>
-Audits OpenEuler systems against corresponding RHEL CIS Benchmark mappings and generates compliance reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits OpenEuler systems against the corresponding RHEL CIS Benchmark mapping and produces a compliance difference report.
 
-## Publisher: <br>
-[0x008](https://clawhub.ai/user/0x008) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0x008](https://clawhub.ai/user/0x008)
 
-## Use Case: <br>
-Security engineers and system administrators use this skill to collect OpenEuler baseline data, compare it with RHEL CIS Benchmark mappings, and produce Markdown compliance reports for authorized hosts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated baselines and reports may include sensitive local security configuration, including sudo policy, user and account details, SSH settings, firewall state, audit rules, and limited shadow-derived indicators. <br>
-Mitigation: Run the skill only on OpenEuler systems the operator is authorized to audit, store generated baseline and report directories with restrictive permissions, and limit sharing to approved reviewers. <br>
+## Use Case:
 
+System administrators and security engineers use this skill to collect OpenEuler host baselines, map them to RHEL CIS Benchmark expectations, and generate Markdown compliance reports for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0x008/cis-openeuler-audit) <br>
-- [OpenEuler to RHEL version matrix](references/version-matrix.md) <br>
-- [CIS RHEL Benchmark to OpenEuler mapping](references/cis-rhel-benchmark-mapping.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown audit reports with shell command guidance and baseline file summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates timestamped baseline directories and reports; the documented workflow is audit-only and does not modify target system configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The baseline collection workflow uses privileged host-audit commands and can expose sensitive system details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on systems you administer, review commands before execution, and store generated baselines and reports in private, access-controlled directories.
+
+Risk: Generated compliance findings may be incomplete or misleading when an OpenEuler check has no direct RHEL CIS equivalent.
+
+Mitigation: Review manual or unavailable mappings before relying on the report for compliance decisions.
+
+## Reference(s):
+
+- [OpenEuler to RHEL Version Matrix](references/version-matrix.md)
+- [CIS RHEL Benchmark to OpenEuler Check Mapping](references/cis-rhel-benchmark-mapping.md)
+- [ClawHub Skill Page](https://clawhub.ai/0x008/skills/cis-openeuler-audit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, guidance]
+
+**Output Format:** [Markdown compliance reports with supporting shell-command and script guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include pass, fail, and manual-review findings derived from collected baseline files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

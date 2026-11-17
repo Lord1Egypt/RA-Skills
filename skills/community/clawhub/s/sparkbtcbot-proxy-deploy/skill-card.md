@@ -1,43 +1,58 @@
-## Description: <br>
-Deploy a serverless Spark Bitcoin L2 proxy on Vercel with spending limits, auth, and Redis logging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy a serverless Spark Bitcoin L2 proxy on Vercel with spending limits, auth, and Redis logging.
 
-## Publisher: <br>
-[echennells](https://clawhub.ai/user/echennells) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[echennells](https://clawhub.ai/user/echennells)
 
-## Use Case: <br>
-Developers and operators use this skill to deploy and manage a Vercel-hosted Spark Bitcoin L2 proxy with Upstash Redis, authenticated REST endpoints, scoped tokens, and spending limits. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The deployment handles Bitcoin wallet and provider secrets, including a Spark mnemonic, Upstash credentials, and API tokens. <br>
-Mitigation: Use a fresh low-balance wallet, keep admin tokens private, avoid pasting real mnemonics or provider tokens into chat, and prefer provider dashboards or local secret tooling for secret entry. <br>
-Risk: The skill deploys unpinned remote code from an external repository. <br>
-Mitigation: Pin and review the external repository before deployment. <br>
-Risk: The deployed proxy can spend Bitcoin through admin-only payment, transfer, and L402 routes. <br>
-Mitigation: Set low per-transaction and daily spending caps, use scoped invoice-only tokens for agents, and reserve the admin token for trusted operators. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/echennells/sparkbtcbot-proxy-deploy) <br>
-- [sparkbtcbot-proxy Repository](https://github.com/echennells/sparkbtcbot-proxy.git) <br>
-- [Lightning L402 Documentation](https://docs.lightning.engineering/the-lightning-network/l402) <br>
+## Use Case:
 
+Developers and engineers use this skill to deploy and configure a Vercel-hosted Spark Bitcoin L2 proxy with Upstash Redis logging, bearer-token access control, and spend limits for agent wallet operations.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash, curl, JSON, and environment-variable examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces deployment and operations instructions; it does not directly execute the deployment.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The deployment flow involves wallet recovery words and cloud deployment secrets.
+
+Mitigation: Enter mnemonics, Vercel tokens, Upstash keys, and bearer tokens directly in a local terminal or provider dashboard, not in chat.
+
+Risk: The proxy can spend funds through Spark and Lightning operations.
+
+Mitigation: Use a fresh low-value wallet, conservative per-transaction and daily spending caps, scoped tokens, and a documented token rotation process.
+
+Risk: Mutable deployment tooling and upstream proxy changes can alter behavior after the skill is published.
+
+Mitigation: Review the upstream proxy and deployment flow before installation, pin repository and CLI versions where practical, and restrict L402 payments with domain allowlists.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/echennells/skills/sparkbtcbot-proxy-deploy)
+- [sparkbtcbot-proxy GitHub repository referenced by the skill](https://github.com/echennells/sparkbtcbot-proxy.git)
+- [Lightning L402 documentation](https://docs.lightning.engineering/the-lightning-network/l402)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash, curl, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes deployment steps, environment-variable configuration, token-management commands, and operational guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

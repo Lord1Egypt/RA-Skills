@@ -1,46 +1,61 @@
-## Description: <br>
-用户给出选题，小龙虾爬取信息、整理成一篇深度有创新的文章，展示给用户确认后一键发布到知乎。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates a Zhihu article from a user-provided topic, presents the draft for confirmation, then uses browser or API automation to publish it to the user's Zhihu account.
 
-## Publisher: <br>
-[kelcey2023](https://clawhub.ai/user/kelcey2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kelcey2023](https://clawhub.ai/user/kelcey2023)
 
-## Use Case: <br>
-External users and content operators use this skill to research a topic, draft a Zhihu article, review it, and publish it to a logged-in Zhihu account after explicit confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish content to a user's Zhihu account. <br>
-Mitigation: Require explicit user confirmation before publishing and review the generated article before replying with the publish command. <br>
-Risk: Browser Relay could operate on the wrong Zhihu tab if attached broadly. <br>
-Mitigation: Attach Browser Relay only to the intended, already-open Zhihu editor tab before running the browser publishing script. <br>
-Risk: A broad or long-lived Zhihu access token could expose account publishing capability in shared environments. <br>
-Mitigation: Use the narrowest practical token scope and avoid leaving ZHIHU_ACCESS_TOKEN configured in shared or persistent shells. <br>
+## Use Case:
 
+External users and content operators use this skill to research a topic, draft a structured Zhihu article, review it, and publish only after explicit confirmation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kelcey2023/zeelin-zhihu-autopost) <br>
-- [Zhihu developer portal](https://dev.zhihu.com/) <br>
-- [Zhihu article API endpoint](https://api.zhihu.com/v4/articles) <br>
-- [OpenClaw Browser Relay documentation](https://learnclawdbot.org/docs/tools/chrome-extension) <br>
-- [Referenced ClawHub Zhihu posting skill](https://clawhub.ai/InuyashaYang/zhihu-post) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown article draft, shell command guidance, and publication status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a reviewed article body to a temporary Markdown file before invoking the publishing script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill can publish content to a live Zhihu account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the full article before confirming publication, and do not approve publishing unless the draft is ready to post.
+
+Risk: Browser or API publishing can target the wrong destination if environment overrides are set or Browser Relay is attached to the wrong tab.
+
+Mitigation: Avoid setting ZHIHU_API_BASE or ZHIHU_BASE, and attach Browser Relay only to the real Zhihu editor tab.
+
+Risk: API mode uses a Zhihu access token.
+
+Mitigation: Use a narrowly scoped, short-lived Zhihu token when API publishing is enabled.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kelcey2023/skills/zeelin-zhihu-autopost)
+- [Zhihu Open Platform](https://dev.zhihu.com/)
+- [Zhihu Article API Endpoint](https://api.zhihu.com/v4/articles)
+- [OpenClaw Browser Relay Documentation](https://learnclawdbot.org/docs/tools/chrome-extension)
+- [Referenced ClawHub Zhihu Posting Skill](https://clawhub.ai/InuyashaYang/zhihu-post)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, API Calls, Guidance]
+
+**Output Format:** [Markdown draft text with shell commands or API/browser publishing actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Publishes only after user confirmation; browser mode depends on an authenticated Zhihu editor tab and OpenClaw Browser Relay.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

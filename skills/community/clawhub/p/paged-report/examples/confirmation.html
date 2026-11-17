@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>示例 — 运费规则确认</title>
+<style>
+/* ============================================
+   Paged Report — Design System v1
+   github.com/mfang0126/paged-report
+   github.com/mfang0126/paged-report
+   ============================================ */
+
+:root {
+  --bg: #fbfcfd;
+  --paper: #ffffff;
+  --ink: #182026;
+  --muted: #626d78;
+  --line: #dde3e8;
+  --line-strong: #1f4e5f;
+  --line-soft: #edf1f4;
+  --accent: #1f4e5f;
+  --accent-dark: #173948;
+  --accent-soft: #eef6f8;
+  --blue: #225b76;
+  --green: #246257;
+  --amber: #80602e;
+  --red: #8a3b35;
+  --soft: #f6f8fa;
+  --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--font); line-height: 1.85; font-size: 16px; font-weight: 400;
+}
+
+a { color: var(--ink); text-decoration: none; border-bottom: 1px solid #c8c8c8; }
+a:hover { text-decoration: underline; }
+
+/* Page container */
+.page { max-width: 960px; margin: 46px auto; padding: 0 34px 60px; }
+
+/* Report page = one logical authoring boundary; verify physical pagination */
+.report-page {
+  position: relative;
+  margin: 0 0 30px;
+  padding: 54px 58px 62px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  box-shadow: 0 18px 44px rgba(27,43,54,0.06);
+  min-height: 880px;
+}
+.report-page:last-child { margin-bottom: 0; }
+
+/* Flex layout for short pages: content fills middle; footer may move after content when space allows */
+.report-page.flex-col { display: flex; flex-direction: column; }
+.report-page.flex-col > .content-area { flex: 1; }
+.report-page.flex-col > .footer-area { margin-top: auto; }
+
+/* Hero */
+.hero { border-bottom: 3px solid var(--accent); padding: 0 0 48px; margin-bottom: 58px; }
+.hero .eyebrow { margin: 0 0 18px; color: var(--muted); font-size: 12px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; }
+.hero h1 { margin: 0; font-size: 46px; line-height: 1.12; font-weight: 620; }
+.hero .subtitle { margin: 26px 0 0; color: var(--muted); font-size: 18px; line-height: 1.75; }
+.hero .meta { display: flex; flex-wrap: wrap; gap: 10px 18px; margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--line); }
+.hero .meta span { font-size: 12px; font-weight: 650; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-dark); }
+
+/* TOC */
+.toc { margin: 0 0 70px; padding: 28px 0 34px; border-bottom: 1px solid var(--line); border-top: 1px solid var(--line-soft); }
+.toc h2 { margin: 0 0 18px; padding: 0; border: 0; border-left: 0; color: var(--accent); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.22em; }
+.toc ol { display: block; margin: 0; padding: 0; list-style-position: inside; font-size: 15px; column-count: 2; column-gap: 56px; }
+.toc li { margin: 8px 0; break-inside: avoid; }
+.toc a { color: var(--ink); border-bottom: 1px dotted #b8c4ca; }
+.toc a:hover { color: var(--accent); text-decoration: none; }
+
+/* Section */
+section { margin: 0 0 62px; padding: 0; }
+h2 { margin: 0 0 26px; padding: 0 0 0 24px; border-left: 5px solid var(--accent); font-size: 25px; line-height: 1.28; font-weight: 630; }
+h3 { margin: 28px 0 10px; font-size: 15px; line-height: 1.45; letter-spacing: 0.08em; font-weight: 700; text-transform: uppercase; }
+p { margin: 0 0 24px; line-height: 1.9; }
+ul, ol { margin: 12px 0 0; padding-left: 22px; }
+li { margin: 7px 0; }
+
+/* Grid + Card */
+.grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin: 34px 0; }
+.grid.two { grid-template-columns: repeat(2,1fr); }
+.card { padding: 0 0 0 18px; border-left: 2px solid var(--line); background: transparent; }
+.card h3 { margin-top: 0; }
+.card p:last-child { margin-bottom: 0; }
+
+/* Callout */
+.callout { margin: 32px 0; padding: 18px 22px 18px 24px; border: 1px solid var(--line); border-left: 4px solid var(--accent); background: var(--accent-soft); }
+.callout.green { border-left-color: var(--green); background: #eef7f4; }
+.callout.amber { border-left-color: var(--amber); background: #fbf7ed; }
+.callout.red   { border-left-color: var(--red); background: #fbf1f0; }
+.callout strong { color: var(--ink); }
+
+/* Table */
+table { width: 100%; border-collapse: collapse; margin: 38px 0 44px; font-size: 14.5px; background: var(--paper); }
+th, td { padding: 15px 12px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+th { background: #f2f6f8; color: var(--accent-dark); font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border-bottom: 2px solid var(--accent); }
+tr:last-child td { border-bottom: 0; }
+tbody tr:nth-child(even) td { background: #fbfdfe; }
+
+/* Compare Table */
+.compare-table th:first-child { width: 30%; }
+.compare-table .old { color: var(--red); }
+.compare-table .new { color: var(--green); font-weight: 600; }
+
+/* Tag */
+.tag { display: inline-flex; padding: 2px 7px; border: 1px solid var(--line); font-size: 11px; font-weight: 600; white-space: nowrap; }
+.tag.green { background: #eef7f4; border-color: #c9e1da; color: var(--green); }
+.tag.blue  { background: #eef6fb; border-color: #c7dce6; color: var(--blue); }
+.tag.amber { background: #fbf6e9; border-color: #e2d1a9; color: var(--amber); }
+.tag.red   { background: #fbf1f0; border-color: #e0b8b5; color: var(--red); }
+
+/* KPI */
+.kpi { font-size: 42px; font-weight: 620; line-height: 1.1; }
+.kpi .unit { font-size: 18px; font-weight: 400; color: var(--muted); }
+
+/* Progress Bar */
+.progress-bar { height: 8px; background: var(--line-soft); overflow: hidden; }
+.progress-bar .fill { height: 100%; background: var(--accent); }
+.progress-bar.green .fill { background: var(--green); }
+.progress-bar.amber .fill { background: var(--amber); }
+.progress-bar.red .fill   { background: var(--red); }
+
+/* Status Row */
+.status-row { display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--line-soft); }
+.status-row:last-child { border-bottom: 0; }
+.status-row .label { flex: 1; font-size: 15px; }
+.status-row .value { font-weight: 600; }
+
+/* Checklist */
+.checklist { list-style: none; padding: 0; margin: 20px 0; }
+.checklist li { padding: 10px 0 10px 32px; position: relative; border-bottom: 1px solid var(--line-soft); }
+.checklist li::before { content: "☐"; position: absolute; left: 0; font-size: 18px; color: var(--muted); }
+.checklist li.done::before { content: "☑"; color: var(--green); }
+
+/* Footer */
+.footer { margin-top: auto; padding-top: 22px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; line-height: 1.7; }
+
+/* Divider */
+hr { border: 0; border-top: 1px solid var(--line); margin: 44px 0; }
+
+/* Page label */
+.page-label { margin: 0 0 34px; padding-bottom: 14px; border-bottom: 1px solid var(--line-soft); color: var(--muted); font-size: 11px; font-weight: 650; letter-spacing: 0.18em; text-transform: uppercase; }
+
+/* Responsive */
+@media (max-width: 860px) {
+  .page { max-width: none; margin: 34px auto; padding: 0 16px 52px; }
+  .report-page { padding: 28px 20px 36px; min-height: auto; }
+  .hero h1 { font-size: 32px; }
+  h2 { font-size: 20px; }
+  .grid, .grid.two { grid-template-columns: 1fr; }
+  .toc ol { column-count: 1; }
+}
+
+/* Print — A4 */
+@media print {
+  @page { size: A4; margin: 18mm 16mm; }
+  body { background: white; font-size: 11pt; line-height: 1.6; color: #000; }
+  .page { max-width: none; margin: 0; padding: 0; }
+  .report-page { box-shadow: none; border: 0; padding: 0; margin: 0; min-height: auto; page-break-after: always; }
+  .report-page:last-child { page-break-after: auto; }
+  .report-page.cover { page-break-after: always; }
+  section, .callout, .card, .grid, .checklist, .compare-table { page-break-inside: avoid; }
+  h2, h3 { page-break-after: avoid; }
+  table { page-break-inside: auto; }
+  thead { display: table-header-group; }
+  tr { page-break-inside: avoid; }
+  * { box-shadow: none !important; }
+  a { border-bottom: 0; color: inherit; }
+}
+
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="report-page cover">
+    <div class="hero">
+      <p class="eyebrow">Example Client · 运营确认</p>
+      <h1>运费规则变更确认</h1>
+      <p class="subtitle">请确认以下运费规则调整，确认后将正式生效</p>
+      <div class="meta">
+        <span>2026-08-31</span>
+        <span>v2.0</span>
+        <span>Example Client</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="report-page flex-col">
+    <div class="content-area">
+      <section id="s1">
+        <h2>规则变更对比</h2>
+        <table class="compare-table">
+          <thead>
+            <tr><th>项目</th><th>变更前</th><th>变更后</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>免运门槛</td><td class="old">$200</td><td class="new">$150</td></tr>
+            <tr><td>大件计费</td><td class="old">按件固定 $49</td><td class="new">按重量阶梯</td></tr>
+            <tr><td>偏远地区</td><td class="old">不配送</td><td class="new">加收 $25</td></tr>
+            <tr><td>重量数据</td><td class="old">38% 缺失</td><td class="new">100% 已补全</td></tr>
+          </tbody>
+        </table>
+        <div class="callout amber">
+          <strong>注意：</strong>新规则将于确认后 48 小时内生效，请确保所有测试订单已完成。
+        </div>
+      </section>
+      <section id="s2">
+        <h2>上线确认清单</h2>
+        <ul class="checklist">
+          <li class="done">运费规则已在后台配置</li>
+          <li class="done">测试订单 3 笔，运费计算正确</li>
+          <li class="done">大件商品已标记特殊运费标签</li>
+          <li>客户确认邮件已发送</li>
+          <li>监控 7 天，无异常后正式上线</li>
+        </ul>
+      </section>
+    </div>
+    <div class="footer-area">
+      <div class="footer"><p>Example Client · 运费确认 · 2026-08-31 · 请回复确认或提出修改意见</p></div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

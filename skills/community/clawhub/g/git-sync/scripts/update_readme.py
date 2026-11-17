@@ -35,11 +35,11 @@ def load_config():
             return json.load(f)
     return {}
 
-def get_clone_urls(config):
-    """从 config.json 生成 gitee/github clone URL"""
+def get_clone_urls(repo_cfg):
+    """从仓库配置生成 gitee/github clone URL（v2.37.0 多仓库）"""
     urls = {'gitee': '', 'github': ''}
-    gitee_cfg = config.get('gitee', {})
-    github_cfg = config.get('github', {})
+    gitee_cfg = repo_cfg.get('gitee', {})
+    github_cfg = repo_cfg.get('github', {})
     if gitee_cfg.get('user') and gitee_cfg.get('repo'):
         urls['gitee'] = f"https://gitee.com/{gitee_cfg['user']}/{gitee_cfg['repo']}.git"
     if github_cfg.get('user') and github_cfg.get('repo'):
@@ -81,17 +81,179 @@ def extract_desc(skill_dir):
 
     return "技能描述"
 
-def generate_readme(repo_path, readme_path):
-    """全量生成 README.md"""
-    skills_dir = os.path.join(repo_path, "skills")
+
+def _extract_agent_desc(agent_dir):
+    """提取智能体描述：README.md 引言 → __init__.py docstring（v2.38.0）"""
+    # 优先级 1：README.md 标题下第一段（引言 blockquote 或正文首段）
+    readme = os.path.join(agent_dir, "README.md")
+    is_protocol = False
+    if not os.path.exists(readme):
+        # 回退：PROTOCOL.md（Orchestrator 等无 README 的智能体）
+        readme = os.path.join(agent_dir, "PROTOCOL.md")
+        is_protocol = True
+    if os.path.exists(readme):
+        try:
+            content = open(readme, "r", encoding="utf-8").read()
+            lines = content.split("\n")
+            # 跳过标题（# 开头）和 frontmatter
+            start = 0
+            for i, ln in enumerate(lines):
+                if ln.startswith("#"):
+                    start = i + 1
+                elif ln.strip() and not ln.startswith("<!--"):
+                    start = i
+                    break
+            # 收集标题后的首个非空 blockquote（> 开头）或首段正文
+            quote_parts = []
+            para_parts = []
+            # PROTOCOL.md：直接定位"概述"章节下的正文
+            overview_mode = False
+            for ln in lines[start:]:
+                s = ln.strip()
+                if is_protocol:
+                    if s.startswith("##") and ("概述" in s or "Overview" in s.lower()):
+                        overview_mode = True
+                        continue
+                    if overview_mode and s.startswith("##"):
+                        break  # 概述章节结束
+                    if not overview_mode:
+                        continue
+                    if not s:
+                        continue
+                    if s.startswith("-") or s.startswith(">"):
+                        continue
+                    para_parts.append(s)
+                    if len(para_parts) >= 2:
+                        break
+                else:
+                    if not s:
+                        if quote_parts or para_parts:
+                            break
+                        continue
+                    # PROTOCOL.md：跳过版本/更新等元信息 blockquote
+                    if is_protocol and s.startswith(">") and (
+                        s.lstrip("> ").startswith("版本") or s.lstrip("> ").startswith("更新")):
+                        continue
+                    if s.startswith(">"):
+                        quote_parts.append(s.lstrip("> ").strip())
+                    elif not s.startswith("---") and not s.startswith("[") and not s.startswith("#"):
+                        para_parts.append(s)
+                    if len(quote_parts) >= 2 or len(para_parts) >= 2:
+                        break
+            # PROTOCOL.md 优先取正文段（跳过目录行），README.md 优先取引言
+            if is_protocol:
+                desc = " ".join(para_parts).strip() if para_parts else " ".join(quote_parts).strip()
+            else:
+                desc = " ".join(quote_parts).strip() if quote_parts else (para_parts[0].strip() if para_parts else "")
+            if len(desc) > 150:
+                desc = desc[:147].rstrip() + "..."
+            if desc:
+                return desc
+        except Exception:
+            pass
+
+    # 优先级 2：__init__.py docstring 首行
+    init_py = None
+    for root, dirs, files in os.walk(agent_dir):
+        dirs[:] = [d for d in dirs if d not in ("__pycache__", ".git", "vendor", "tools", "static", "data")]
+        if "__init__.py" in files:
+            init_py = os.path.join(root, "__init__.py")
+            break
+    if init_py and os.path.exists(init_py):
+        try:
+            content = open(init_py, "r", encoding="utf-8").read()
+            m = re.search(r'"""(.*?)"""', content, re.DOTALL)
+            if m:
+                desc = m.group(1).strip().split("\n")[0][:150]
+                if desc:
+                    return desc
+        except Exception:
+            pass
+
+    return "智能体"
+
+def generate_readme(repo_path, readme_path, repo_name="maby_skills"):
+    """全量生成 README.md（v2.37.0 多仓库：按仓库类型扫描）"""
+    # 从 config.json 读取仓库配置（banner / title / desc / repo_name）
+    config = load_config()
+    repos_cfg = config.get("repos", {})
+    repo_cfg = repos_cfg.get(repo_name, {})
+    repo_type = repo_cfg.get("type", "skills")   # skills / agents
+    readme_cfg = repo_cfg.get("readme", config.get("readme", {}))
+    banner = readme_cfg.get("banner", "")
+    banner_block = ""
+    if banner:
+        banner_lines = [("> " + l if l.strip() else ">") for l in banner.split("\n")]
+        banner_block = "\n".join(banner_lines) + "\n\n"
+
     today = date.today().isoformat()
 
+    if repo_type == "agents":
+        # ── 智能体仓库：扫描仓库根下直接是智能体目录 ──
+        repo_dir = Path(repo_path)
+        actual_agents = []
+        for entry in sorted(os.listdir(repo_dir)):
+            full = os.path.join(repo_dir, entry)
+            if os.path.isdir(full) and entry not in (".git", ".dist", ".standardization", ".github"):
+                # 描述提取优先级：README.md 引言 → __init__.py docstring
+                desc = _extract_agent_desc(full)
+                actual_agents.append((entry, desc))
+        _safe_print(f"扫描到 {len(actual_agents)} 个智能体目录:")
+
+        agent_table_lines = []
+        for name, desc in actual_agents:
+            agent_table_lines.append(f"| `{name}` | {desc} |")
+        agent_table = "\n".join(agent_table_lines)
+
+        new_readme = f"""# {readme_cfg.get('title', 'Maby Agent')}
+
+> **用户智能体仓库** — 由 git-sync 自动同步维护。
+> 最后更新：{today}
+
+{readme_cfg.get('description', '本仓库托管 wUwproject 智能体项目，码云（Gitee）和 GitHub 双平台同步。')}
+
+{banner_block}---
+
+## 智能体列表
+
+以下为仓库中实际存在的智能体项目：
+
+| 智能体名 | 描述 |
+|----------|------|
+{agent_table}
+
+---
+
+## 目录结构
+
+```
+{readme_cfg.get('repo_name', 'maby_agent')}/
+{chr(10).join('├── ' + n + '/' for n, _ in actual_agents[:-1])}
+{('└── ' + actual_agents[-1][0] + '/') if actual_agents else ''}
+```
+
+---
+
+## 维护说明
+
+- 本仓库由 **git-sync** 技能自动维护
+- README.md 由 `update_readme.py` **从仓库实际文件全量生成**，不手动编辑
+- 许可证：Apache License 2.0
+"""
+        with open(readme_path, "w", encoding="utf-8") as f:
+            f.write(new_readme)
+        _safe_print(f"  README.md 已全量重新生成: {readme_path}")
+        return
+
+    # ── 技能仓库：扫描仓库根下直接是技能目录 ──
+    skills_dir = repo_path
+
     if not os.path.isdir(skills_dir):
-        print(f"❌ skills/ 目录不存在: {skills_dir}")
+        print(f"❌ 技能仓库目录不存在: {skills_dir}")
         sys.exit(1)
 
     # 扫描实际技能目录（排除非技能目录）
-    SKIP_DIRS = {".dist", ".standardization", "skills"}
+    SKIP_DIRS = {".dist", ".standardization", "skills", ".git", "__pycache__", ".github"}
     actual_skills = []
     for entry in sorted(os.listdir(skills_dir)):
         full = os.path.join(skills_dir, entry)
@@ -109,31 +271,21 @@ def generate_readme(repo_path, readme_path):
         table_lines.append(f"| `{name}` | {desc} |")
     table = "\n".join(table_lines)
 
-    # 生成目录树（从仓库根目录实际扫描）
-    SKIP_ROOT = {".git", "__pycache__", ".gitignore", "README.md.bak"}
-    root_entries = []
-    for entry in sorted(os.listdir(repo_path)):
-        if entry in SKIP_ROOT or entry.startswith("."):
-            continue
-        full = os.path.join(repo_path, entry)
-        suffix = "/" if os.path.isdir(full) else ""
-        root_entries.append((entry, suffix))
+    # 生成目录树
     tree_lines = []
-    for entry, suffix in root_entries[:-1]:
-        tree_lines.append(f"├── {entry}{suffix}")
-    if root_entries:
-        tree_lines.append(f"└── {root_entries[-1][0]}{root_entries[-1][1]}")
+    for entry, _ in actual_skills[:-1]:
+        tree_lines.append(f"├── {entry}/")
+    if actual_skills:
+        tree_lines.append(f"└── {actual_skills[-1][0]}/")
     tree = "\n".join(tree_lines)
 
     # 读取配置中的 clone URL 和 README 文案
-    config = load_config()
-    urls = get_clone_urls(config)
+    urls = get_clone_urls(repo_cfg)
     gitee_url = urls['gitee'] or "https://gitee.com/USER/REPO.git"
     github_url = urls['github'] or "https://github.com/USER/REPO.git"
-    readme_cfg = get_readme_config(config)
-    readme_title = readme_cfg.get('title', 'WorkBuddy Skills Repository')
-    readme_desc = readme_cfg.get('description', '本仓库托管技能合集，码云（Gitee）和 GitHub 双平台同步。')
-    readme_repo_name = readme_cfg.get('repo_name', 'workbuddy-skills')
+    readme_title = readme_cfg.get('title', 'Maby Skills')
+    readme_desc = readme_cfg.get('description', '本仓库托管 wUwproject 技能合集，码云（Gitee）和 GitHub 双平台同步。')
+    readme_repo_name = readme_cfg.get('repo_name', 'maby_skills')
 
     # 构建新的 README.md
     new_readme = f"""# {readme_title}
@@ -143,7 +295,7 @@ def generate_readme(repo_path, readme_path):
 
 {readme_desc}
 
----
+{banner_block}---
 
 ## 技能列表
 
@@ -170,7 +322,7 @@ def generate_readme(repo_path, readme_path):
 ```bash
 cd ~/.workbuddy/skills
 git clone {gitee_url} temp-skills
-cp -r temp-skills/skills/* .
+cp -r temp-skills/* .
 rm -rf temp-skills
 ```
 
@@ -178,7 +330,7 @@ rm -rf temp-skills
 ```bash
 cd ~/.workbuddy/skills/
 git clone {github_url} temp-skills
-cp -r temp-skills/skills/* .
+cp -r temp-skills/* .
 rm -rf temp-skills
 ```
 
@@ -193,12 +345,7 @@ rm -rf temp-skills
 - README.md 由 `update_readme.py` **从仓库实际文件全量生成**，不手动编辑
 - 维护清单：`skills/.standardization/git-sync/data/manifest.json`（记录计划管理的技能全集）
 - 三单一致原则：**清单 ⊇ 仓库 = README.md**
-
----
-
-## 许可证
-
-MIT License
+- 许可证：MIT License
 """
 
     # 写回文件
@@ -249,4 +396,4 @@ if __name__ == "__main__":
         print(f"❌ 仓库路径不存在: {repo_path}")
         sys.exit(1)
 
-    generate_readme(repo_path, readme_path)
+    generate_readme(repo_path, readme_path, repo_name)

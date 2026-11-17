@@ -1,40 +1,52 @@
-## Description: <br>
-Deep Planning Skill helps agents plan complex architecture, algorithm, system-design, logic, and research tasks by comparing a baseline plan with domain-shifted alternatives and producing a self-contained execution blueprint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep Planning guides an agent through a high-latency planning workflow for complex architecture, algorithm, system-design, logic, or research-planning tasks and produces a self-contained execution blueprint.
 
-## Publisher: <br>
-[bobertneek](https://clawhub.ai/user/bobertneek) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[bobertneek](https://clawhub.ai/user/bobertneek)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, engineers, and research agents use this skill to create robust execution blueprints before complex implementation, architecture, algorithm, logic, or research-planning work begins. It is intended for high-complexity planning tasks where ordinary linear planning may miss constraints, failure modes, or alternative mechanisms.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can add latency and additional subagent or model usage because it performs an expanded planning workflow.
+
+Mitigation: Use it for complex architecture, algorithm, system-design, logic, or research-planning tasks; use normal tactical workflows for routine bug fixes, simple refactors, factual lookup, and straightforward API usage.
+
+Risk: If subagent isolation is unavailable, the Domain Questioner step is lower confidence because true blank-context separation did not occur.
+
+Mitigation: Clearly label simulated Domain Questioner results as lower confidence and preserve the context-separation rules as much as the environment allows.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, architects, researchers, and agent operators use this skill when ordinary linear planning is likely to miss constraints or produce brittle designs. It guides an agent through baseline planning, structural abstraction, isolated domain questioning, comparison, hardening, and final blueprint generation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Complex planning runs may add latency and token cost because the skill can ask the agent to use an isolated subagent. <br>
-Mitigation: Use the skill for complex, novel, or high-risk planning tasks rather than routine bug fixes, simple refactors, factual lookup, or straightforward implementation. <br>
-Risk: The planning benefit depends on keeping the Domain Questioner isolated from source-domain context. <br>
-Mitigation: Provide the Domain Questioner only the selected domain, the domain-native problem statement, and its role payload; avoid repo access, source terminology, file paths, and project context unless external reference is required. <br>
+**Output Format:** [Markdown blueprint with structured sections, scorecards, validation steps, logs, and final receipt requirements]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bobertneek/deep-planning-skill) <br>
+**Other Properties Related to Output:** [Instruction-only workflow; may increase latency and subagent or model usage when a real Domain Questioner is available.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown execution blueprint with structured sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include milestones, validation checks, recovery steps, progress logs, decision logs, and a final receipt.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,10 @@
+# Python
+__pycache__/
+*.pyc
+
+# Local capture artifacts (never committed)
+*.mp4
+*.wav
+.teach_frames_*/
+teach_audio_*/
+teach_whisper_*/

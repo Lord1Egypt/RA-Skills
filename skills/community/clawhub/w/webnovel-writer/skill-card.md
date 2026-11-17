@@ -1,49 +1,64 @@
-## Description: <br>
-Long-form web novel creation engine for writing, continuation, editorial review, consistency checking, contradiction detection, and character state management across serialized fiction projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Novel Writer helps agents plan, draft, continue, review, and quality-check long-form web novels with structured context, character state tracking, consistency checks, and writing guidance.
 
-## Publisher: <br>
-[zyuanjia](https://clawhub.ai/user/zyuanjia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zyuanjia](https://clawhub.ai/user/zyuanjia)
 
-## Use Case: <br>
-Authors, editors, and agent developers use this skill to plan, draft, continue, and review long-form web novels while maintaining outlines, timelines, character state, foreshadowing, and continuity records. It also provides local checking scripts for consistency, rhythm, dialogue quality, hooks, titles, repetition, and related manuscript quality signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local manuscript and project files and can write review notes, reports, tracking tables, caches, and backups. <br>
-Mitigation: Confirm the active novel directory before use and review generated files before relying on them. <br>
-Risk: Generated continuity reports or JSON tracking updates may be incomplete or inaccurate for a long-running story. <br>
-Mitigation: Compare generated outputs against the manuscript, outline, and character state records before accepting them as authoritative. <br>
+## Use Case:
 
+External authors and agent users use this skill to produce and revise long-form web novel projects, maintain continuity across chapters, and run local checks for style, pacing, dialogue, hooks, outlines, repetition, and foreshadowing.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/zyuanjia/webnovel-writer) <br>
-- [README](README.md) <br>
-- [Skill Definition](SKILL.md) <br>
-- [Usage Examples](references/usage_examples.md) <br>
-- [Chapter Checklist](references/checklist.md) <br>
-- [Deep Reading Guide](references/deep_reading_guide.md) <br>
-- [Character State Machine](references/character_state_machine.md) <br>
-- [Foreshadowing Management](references/foreshadowing.md) <br>
-- [Outline Design](references/outline_design.md) <br>
-- [Writing Tips](references/writing_tips.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, generated review notes, reports, JSON tracking data, backups, and configuration updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include local report, cache, tracking, state, and backup files in the active novel project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.3.0 (source: server release metadata) <br>
+Risk: The command launcher can be abused to run unintended local Python files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution, use only documented CLI aliases, and avoid arbitrary command names or --scripts values.
+
+Risk: The skill reads manuscript files and creates local reports, backups, configuration, and cache files.
+
+Mitigation: Run it in a dedicated project or virtual environment and review generated files before sharing.
+
+Risk: Optional dependencies can change behavior if installed loosely.
+
+Mitigation: Pin optional dependencies such as jieba before installation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zyuanjia/skills/webnovel-writer)
+- [README](README.md)
+- [Usage Examples](references/usage_examples.md)
+- [Context Loader](references/context_loader.md)
+- [Character State Machine](references/character_state_machine.md)
+- [Continuity](references/continuity.md)
+- [Deep Reading Guide](references/deep_reading_guide.md)
+- [Writing Tips](references/writing_tips.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown prose with inline shell commands, structured reports, local configuration guidance, and optional JSON or HTML outputs from checks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read manuscript files and write local reports, backups, configuration, and cache files.]
+
+## Skill Version(s):
+
+3.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

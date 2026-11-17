@@ -1,0 +1,52 @@
+{
+  "auth": "Authorization: Bearer YOUR_FETCHER_KEY",
+  "gateway": "https://api.replynodes.com",
+  "operations": [
+    {
+      "name": "stories_top",
+      "route": "/v1/hackernews/stories_top",
+      "summary": "List top public Hacker News stories"
+    },
+    {
+      "name": "stories_new",
+      "route": "/v1/hackernews/stories_new",
+      "summary": "List newest public Hacker News stories"
+    },
+    {
+      "name": "stories_best",
+      "route": "/v1/hackernews/stories_best",
+      "summary": "List best public Hacker News stories"
+    },
+    {
+      "name": "stories_ask",
+      "route": "/v1/hackernews/stories_ask",
+      "summary": "List public Ask HN stories"
+    },
+    {
+      "name": "stories_show",
+      "route": "/v1/hackernews/stories_show",
+      "summary": "List public Show HN stories"
+    },
+    {
+      "name": "stories_job",
+      "route": "/v1/hackernews/stories_job",
+      "summary": "List public Hacker News job stories"
+    },
+    {
+      "name": "item",
+      "route": "/v1/hackernews/item/{id}",
+      "summary": "Fetch one public Hacker News item"
+    },
+    {
+      "name": "user",
+      "route": "/v1/hackernews/user/{handle}",
+      "summary": "Fetch one public Hacker News user"
+    },
+    {
+      "name": "search",
+      "route": "/v1/hackernews/search",
+      "summary": "Search public Hacker News discussions"
+    }
+  ],
+  "payment_mode": "prepaid_credit"
+}

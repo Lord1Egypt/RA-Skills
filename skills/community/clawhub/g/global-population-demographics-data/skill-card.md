@@ -1,45 +1,65 @@
-## Description: <br>
-Global Population & Demographics Data helps agents query population totals, growth rates, age structure, fertility, migration, and urban-rural demographic indicators through AgentPMT-hosted remote tool calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query population totals, growth rates, age structure, fertility rates, migration data, and urban-rural indicators through AgentPMT-hosted remote tool calls.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve and compare World Bank population and demographic indicators for countries or regions, including population size, growth, age structure, fertility, migration, and urban-rural splits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AgentPMT account credentials or payment headers could be exposed if copied into prompts or logs. <br>
-Mitigation: Keep credentials and payment headers out of prompts and logs, and use the referenced AgentPMT setup skill for credential handling. <br>
-Risk: Use depends on AgentPMT hosted service access, account setup, and credit cost. <br>
-Mitigation: Confirm the intended AgentPMT service, account route, enabled tool, and credit cost before installation or production use. <br>
-Risk: Population and demographic data may lag the current year or be unavailable for some countries, regions, or indicators. <br>
-Mitigation: Check the returned time period, warnings, and live schema before relying on results for current-year analysis. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to query country or region demographic data, compare population profiles, analyze fertility and migration trends, and build demographic reports from World Bank Data360 indicators.
 
-## Reference(s): <br>
-- [Global Population & Demographics Data Schema](artifact/schema.md) <br>
-- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/global-population-demographics-data) <br>
-- [AgentPMT marketplace product](https://www.agentpmt.com/marketplace/population-demographics) <br>
-- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, API calls, JSON] <br>
-**Output Format:** [Markdown instructions with JSON request bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Remote responses are JSON returned by AgentPMT-hosted tool calls; no local command runtime is declared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The skill relies on AgentPMT-hosted remote calls and live schema or instruction lookups that can change after release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use ClawHub-reviewed setup routes, fetch the live schema before production integration, and verify remotely returned instructions before relying on them.
+
+Risk: Account secrets, wallet private keys, mnemonics, signatures, or payment headers may be exposed if copied into prompts or logs.
+
+Mitigation: Use the referenced setup skills for credential handling and keep secrets and payment material out of prompts and logs.
+
+Risk: The artifact recommends unpinned external setup installs.
+
+Mitigation: Prefer pinned or ClawHub-reviewed installation routes when configuring AgentPMT access.
+
+Risk: World Bank demographic indicators may lag the current year or be unavailable for some countries and periods.
+
+Mitigation: Check returned years and availability notes, and avoid presenting unavailable or older observations as current data.
+
+## Reference(s):
+
+- [Generated action schema](artifact/schema.md)
+- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/global-population-demographics-data)
+- [AgentPMT marketplace product](https://www.agentpmt.com/marketplace/population-demographics)
+- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup)
+- [What AgentPMT is](https://clawhub.ai/agentpmt/what-is-agentpmt)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, JSON]
+
+**Output Format:** [Markdown instructions with JSON request examples and remote JSON responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defines one query_population_data action with country_or_region, demographic_aspect, calculate_dependency_ratios, include_urban_rural, and time_period parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

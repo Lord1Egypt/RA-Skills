@@ -1,11 +1,11 @@
 ---
 name: oo-cutt-ly
-description: "Cuttly (cutt.ly). Use this skill for ANY Cuttly request — searching and reading data. Whenever a task involves Cuttly, use this skill instead of calling the API directly."
+description: "Cuttly (cutt.ly). Use this skill for ANY Cuttly request — reading, creating, and updating data. Whenever a task involves Cuttly, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "Cuttly"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["cutt_ly"]
   icon: "https://static.oomol.com/logo/third-party/Cutt.ly.svg"
 ---
@@ -38,7 +38,7 @@ Each action is listed below with a one-line description; actions that change sta
 ## Available actions
 
 - `get_link_analytics` — Retrieve click analytics for a Cuttly short URL.
-- `shorten_url` — Create a short URL with the Cuttly Regular API.
+- `shorten_url` — Create a short URL with the Cuttly Regular API. [write]
 
 ## Safety
 
@@ -69,11 +69,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Cuttly is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=cutt_ly
+  https://console.oomol.com/connections/cutt_ly
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Cuttly homepage: https://cutt.ly
+- API documentation: https://cutt.ly/api-documentation/cuttly-links-api

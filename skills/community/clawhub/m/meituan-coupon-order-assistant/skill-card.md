@@ -1,44 +1,59 @@
-## Description: <br>
-A Meituan coupon and ordering assistant that helps users find restaurants or group-buying deals, claim coupons, review product options, and place confirmed orders through the conversation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Meituan coupon and ordering assistant that helps users find nearby dining deals, claim coupons, compare product options, and initiate orders in conversation.
 
-## Publisher: <br>
-[meituan-union](https://clawhub.ai/user/meituan-union) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[meituan-union](https://clawhub.ai/user/meituan-union)
 
-## Use Case: <br>
-External users use this skill to search nearby Meituan dining deals, claim coupons, compare product options, and place orders after explicit confirmation. The skill is intended for consumer dining and coupon workflows tied to a Meituan account and location context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may require Meituan account login and location access. <br>
-Mitigation: Use only when the publisher is trusted, review the service rules before use, and confirm location sharing choices before enabling recent-location lookup. <br>
-Risk: The skill can retain local authentication, location, and device state. <br>
-Mitigation: Use account logout and device reset flows when access should be revoked, and avoid installing on shared or untrusted devices. <br>
-Risk: Security evidence flags under-disclosed background updating, device fingerprinting, token/location persistence, broad automatic triggers, and a suspicious verdict. <br>
-Mitigation: Review the skill carefully before installing and require explicit confirmation before any order or payment action. <br>
+## Use Case:
 
+External Meituan users use this skill through an agent to claim coupons, search nearby dining group-buy products, review options, and start order flows without switching applications.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/meituan-union/meituan-coupon-order-assistant) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/meituan-union) <br>
-- [Skill service use rules](references/terms-of-service.md) <br>
+### Deployment Geography for Use:
 
+Mainland China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Conversational Markdown with product lists, confirmation prompts, links, and QR code images when needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user confirmation before order or payment actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill can access a Meituan account, use location-based search, and mutate account state by claiming coupons or starting order flows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with an account and environment approved for this commerce workflow, and require explicit user confirmation before coupon or order actions.
+
+Risk: Security evidence flags hidden background execution, host fingerprinting, obfuscated CLIGuard code, and a background updater.
+
+Mitigation: Review the publisher, run the skill only in non-sensitive agent environments, and deploy it only when background execution and updater behavior are documented and controllable.
+
+Risk: The skill uses broad triggers, shortened promotional links, and persistent location authorization.
+
+Mitigation: Keep user consent visible, avoid permanent location authorization unless required, and inspect destination links before presenting or opening them.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/meituan-union/skills/meituan-coupon-order-assistant)
+- [Publisher profile](https://clawhub.ai/user/meituan-union)
+- [Skill service terms](artifact/references/terms-of-service.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown responses with links, QR-code images, and JSON-parsed command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May initiate account authorization, coupon claims, location-based search, and order creation through local scripts.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

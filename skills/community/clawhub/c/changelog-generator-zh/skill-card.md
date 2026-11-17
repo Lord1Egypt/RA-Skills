@@ -1,41 +1,54 @@
-## Description: <br>
-Generates structured Chinese changelogs and release notes from Git commit records, feature lists, or code changes, with categories such as added, fixed, optimized, and breaking changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured Chinese changelogs and release notes from Git commits, feature lists, or code-change summaries, with categories such as additions, fixes, optimizations, and breaking changes.
 
-## Publisher: <br>
-[olina1ye](https://clawhub.ai/user/olina1ye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[olina1ye](https://clawhub.ai/user/olina1ye)
 
-## Use Case: <br>
-Developers, product managers, release managers, and operations teams use this skill to turn commits or change lists into clear Chinese changelogs and release notes for version releases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence reports a suspicious verdict for this release. <br>
-Mitigation: Install only after confirming trust in the publisher and the need for the workflow. <br>
-Risk: The security guidance warns that some review behavior may allow broad filesystem access when approvals are bypassed. <br>
-Mitigation: Use approval-preserving settings for review workflows unless broader access is intentional and reviewed. <br>
+## Use Case:
 
+Developers, product managers, technical leads, and operations teams use this skill to draft Chinese changelogs and release notes from commit logs, feature lists, or code-change summaries before a release.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/olina1ye/changelog-generator-zh) <br>
-- [Publisher profile](https://clawhub.ai/user/olina1ye) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown changelog or release-note prose, with optional Word document export when document tools are available.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can organize changes by categories such as added, fixed, optimized, breaking changes, and other changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Generated release notes may expose sensitive internal commit details or code-change summaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact generated text before publishing.
+
+Risk: Automated summaries can misclassify or overstate release changes.
+
+Mitigation: Compare generated changelog entries against the source commits or change list before release.
+
+## Reference(s):
+
+- [Artifact skill definition](artifact/SKILL.md)
+- [ClawHub skill page](https://clawhub.ai/olina1ye/skills/changelog-generator-zh)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files]
+
+**Output Format:** [Chinese Markdown changelog or release notes; Word document export when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can organize changes by additions, fixes, optimizations, breaking changes, and other release-note categories.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

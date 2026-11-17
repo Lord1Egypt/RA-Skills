@@ -1,48 +1,58 @@
-## Description: <br>
-本技能应在用户收到法院短信（文书送达、立案通知、开庭提醒等）时使用，自动提取案号、当事人、下载链接，下载文书并归档到对应案件目录。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+本技能应在用户收到法院短信（文书送达、立案通知、开庭提醒等）时使用，自动提取案号、当事人、下载链接，下载文书并归档到对应案件目录。
 
-## Publisher: <br>
-[cat-xierluo](https://clawhub.ai/user/cat-xierluo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[cat-xierluo](https://clawhub.ai/user/cat-xierluo)
 
-## Use Case: <br>
-Legal practitioners and legal support staff use this skill to process Chinese court SMS notices, extract case and service-link details, download served documents, and archive them into the relevant case folder. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Court SMS messages, delivery links, downloaded documents, and archive JSON records may contain client-confidential legal data. <br>
-Mitigation: Use only in a trusted workspace with client-confidential data controls, and remove bundled examples or retained raw SMS/API records that are not strictly needed. <br>
-Risk: Reusable delivery URLs, credentials, or verification codes could allow unintended access to court documents. <br>
-Mitigation: Confirm senders and links manually, avoid storing reusable delivery URLs or verification secrets, and rotate or delete any exposed credentials promptly. <br>
-Risk: Automated browser or API download flows may fetch and store sensitive court records with limited user review. <br>
-Mitigation: Review the workflow before installation, restrict execution to intended case workspaces, and verify archived files before relying on them. <br>
+## Use Case:
 
+Legal professionals and their agents use this skill to process Chinese court SMS notices, extract case and delivery-link details, download available court documents, and organize the resulting files and records in the relevant case folder.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cat-xierluo/court-sms) <br>
-- [Project homepage](https://github.com/cat-xierluo/legal-skills) <br>
-- [Attribution](references/ATTRIBUTION.md) <br>
-- [SMS pattern rules](references/sms-patterns.json) <br>
-- [Archive format](references/archive-format.md) <br>
-- [Report format](references/report-format.md) <br>
-- [FachuanHybridSystem reference project](https://github.com/Lawyer-ray/FachuanHybridSystem) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown reports with shell commands, downloaded PDFs, and JSON archive records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create case folders, save court-document PDFs, and write internal archive JSON records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: frontmatter, CHANGELOG, ClawHub release metadata) <br>
+Risk: The release includes bundled archive records for legal-document processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the archive records or replace them with fully synthetic examples before installing or publishing the skill.
+
+Risk: The skill handles court links, access parameters, passwords, verification codes, downloads, and persistent case records.
+
+Mitigation: Confirm target folders before writes, avoid storing raw SMS text or court access parameters, prefer user-entered authentication values, require HTTPS-only downloads, and pin Playwright or MCP dependencies.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cat-xierluo/skills/court-sms)
+- [Project Homepage](https://github.com/cat-xierluo/legal-skills)
+- [SMS Pattern Reference](references/sms-patterns.json)
+- [Archive Format](references/archive-format.md)
+- [Report Format](references/report-format.md)
+- [Attribution](references/ATTRIBUTION.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown status reports with inline shell commands, downloaded document files, and JSON archive records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write court-document PDFs and per-message JSON archive records, and may propose optional PDF merge or rename post-processing when split documents are detected.]
+
+## Skill Version(s):
+
+1.5.0 (source: frontmatter, CHANGELOG, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Converts image sequences or grid sprite sheets into GIF animations with configurable FPS, looping, layout slicing, and optional size compression. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将序列帧图片或精灵表（Sprite Sheet）转换为高质量 GIF 动画。支持自定义 FPS、布局切分及循环播放。
 
-## Publisher: <br>
-[guanyang](https://clawhub.ai/user/guanyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[guanyang](https://clawhub.ai/user/guanyang)
 
-## Use Case: <br>
-Developers and agents use this skill to generate GIFs from ordered image frames or grid sprite sheets, including sticker-style GIFs that need FPS, loop, layout, and file-size controls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local shell and Python code, creates a virtual environment, and installs Pillow. <br>
-Mitigation: Review the scripts before use, install from trusted sources, and keep Pillow current or pinned to a reviewed version. <br>
-Risk: The skill reads user-supplied image files, which carries ordinary file-processing risk for malformed or untrusted images. <br>
-Mitigation: Use trusted input images where possible and run the skill in a constrained working directory containing only the files needed for the GIF. <br>
-Risk: Optional size compression invokes the system gifsicle binary when max-size compression is requested. <br>
-Mitigation: Install gifsicle from a trusted package source and verify it is available before relying on compression behavior. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Gif Maker on ClawHub](https://clawhub.ai/guanyang/gif-maker) <br>
-- [guanyang publisher profile](https://clawhub.ai/user/guanyang) <br>
+## Use Case:
+
+Developers, creators, and agent users use this skill to convert image sequences or grid sprite sheets into GIF animations with configurable frame rate, layout splitting, looping, and optional size targeting for sticker workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: First use may install Python packages into a local virtual environment, and the Pillow dependency is not pinned.
+
+Mitigation: Review package installation policy for the environment and pin or preinstall dependencies before deployment.
+
+Risk: Compression relies on the external gifsicle tool when max-size targeting is requested.
+
+Mitigation: Install gifsicle only from trusted operating-system package sources and verify availability before relying on compression.
+
+Risk: Image processing can expose the runtime to malformed or untrusted input files.
+
+Mitigation: Run the skill on trusted images or inside a contained workspace.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, code, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; generated GIF files on disk] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports directory image sequences, single sprite sheets with layout, FPS, output path, and optional max-size compression settings.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [code, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline bash code blocks and generated GIF files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local GIF output files from trusted image inputs; optional compression depends on gifsicle.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

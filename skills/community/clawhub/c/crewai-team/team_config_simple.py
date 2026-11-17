@@ -10,7 +10,7 @@ import os
 
 # 使用阿里云 DashScope (Qwen 模型)
 # API Key 已配置在 ~/.openclaw/openclaw.json 中
-dashscope_api_key = "sk-sp-e0fb4e4a6dba43fb9bd707b8ef48bd6b"
+dashscope_api_key = "REDACTED-SECRET"
 
 os.environ["OPENAI_API_KEY"] = dashscope_api_key
 os.environ["OPENAI_API_BASE"] = "https://coding.dashscope.aliyuncs.com/v1"

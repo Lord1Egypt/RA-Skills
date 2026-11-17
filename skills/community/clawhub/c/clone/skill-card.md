@@ -1,42 +1,57 @@
-## Description: <br>
-Guides agents through cloning and synchronizing GitHub repositories with Git, including authentication choices, branch and submodule handling, shallow clones, updates, and common troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through cloning and synchronizing GitHub repositories with Git, including SSH or HTTPS authentication, branch and submodule options, shallow clones, updates, and troubleshooting.
 
-## Publisher: <br>
-[DuanC-Chao](https://clawhub.ai/user/DuanC-Chao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duanc-chao](https://clawhub.ai/user/duanc-chao)
 
-## Use Case: <br>
-Developers and coding agents use this skill to choose safe, effective Git clone and sync commands for GitHub repositories. It helps with SSH or HTTPS authentication, branch selection, submodules, shallow clones, repository updates, and troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Repository URLs, destination paths, and recursive clone options can affect local files or pull unexpected content. <br>
-Mitigation: Confirm the repository URL, branch, submodule behavior, and destination folder before running clone or sync commands. <br>
-Risk: Authentication guidance may involve sensitive credentials such as SSH keys or personal access tokens. <br>
-Mitigation: Do not paste private keys or tokens into chat, and prefer least-privileged personal access tokens when HTTPS authentication is required. <br>
-Risk: Global Git proxy or SSL configuration changes can affect other repositories and tools. <br>
-Mitigation: Avoid global proxy or SSL changes unless the user understands the impact and how to undo the settings. <br>
+## Use Case:
 
+Developers and technical users use this skill to have an agent choose and explain GitHub clone and sync workflows for public or private repositories based on authentication, branch, submodule, and network needs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DuanC-Chao/clone) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline Git and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include authentication, proxy, and Git configuration advice that should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Git clone and sync commands can create, update, or replace local repository directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm repository URLs and target paths before execution, and require explicit approval before deleting folders or replacing existing directories.
+
+Risk: Authentication guidance can expose private keys, tokens, or credentials if handled carelessly.
+
+Mitigation: Use trusted repository URLs, rely on SSH agents or credential managers, and avoid sharing private keys or tokens in prompts, logs, or command history.
+
+Risk: Global Git proxy or certificate settings can weaken network security or affect unrelated repositories.
+
+Mitigation: Avoid changing global proxy or certificate verification settings unless required and approved; prefer scoped repository configuration when possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/duanc-chao/skills/clone)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands should be adapted to the repository URL, branch, authentication method, and local path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

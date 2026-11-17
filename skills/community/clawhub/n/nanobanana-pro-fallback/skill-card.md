@@ -1,41 +1,59 @@
-## Description: <br>
-Nanobanana Pro generates and edits images through Google's Gemini Image API with automatic model fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nanobanana Pro helps agents generate, edit, and compose images through the Gemini Image API with automatic model fallback.
 
-## Publisher: <br>
-[yazelin](https://clawhub.ai/user/yazelin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[yazelin](https://clawhub.ai/user/yazelin)
 
-## Use Case: <br>
-Developers and external users use this skill to generate new images, edit existing images, or compose up to 14 input images through Gemini while saving the result locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and selected input images are sent to Google's Gemini service. <br>
-Mitigation: Use the skill only with prompts and images that are appropriate to share with that service. <br>
-Risk: Generated files may overwrite existing local outputs when filenames are reused. <br>
-Mitigation: Save outputs to a dedicated folder or use unique filenames, such as timestamped names. <br>
+## Use Case:
 
+Developers and external agent users use this skill to produce new images, edit one image, or compose up to 14 input images while letting the script try a configured Gemini model fallback chain.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yazelin/nanobanana-pro-fallback) <br>
-- [uv Documentation](https://docs.astral.sh/uv/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and local PNG image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires uv and GEMINI_API_KEY; supports 1K, 2K, and 4K output requests; prints a MEDIA line for supported OpenClaw chat providers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.4 (source: frontmatter and server release evidence) <br>
+Risk: Prompts and selected input images are sent to Google's Gemini API for external processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only data approved for external processing, avoid confidential or regulated images unless authorized, and disclose this dependency to users.
+
+Risk: Gemini API keys may be exposed if passed directly on the command line or stored insecurely.
+
+Mitigation: Set GEMINI_API_KEY in the environment or approved agent configuration rather than passing keys as command arguments.
+
+Risk: Unpinned dependency ranges can reduce repeatability across installs.
+
+Mitigation: Review dependencies before deployment and consider pinning versions or using a lockfile for controlled environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yazelin/skills/nanobanana-pro-fallback)
+- [yazelin publisher profile](https://clawhub.ai/user/yazelin)
+- [uv documentation](https://docs.astral.sh/uv/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands and saved image file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May emit a MEDIA line pointing to the generated PNG file for supported OpenClaw chat providers.]
+
+## Skill Version(s):
+
+0.4.4 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

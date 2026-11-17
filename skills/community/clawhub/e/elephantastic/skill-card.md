@@ -1,47 +1,57 @@
-## Description: <br>
-Elephantastic is a Taskwarrior-based executive-function stack for AI agents that supports task capture, prioritization, session handoff, learning review, and vitality checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Executive function stack for AI agents: GTD-style task management, error/learning capture, and periodic self-review using Taskwarrior.
 
-## Publisher: <br>
-[lux-sp4rk](https://clawhub.ai/user/lux-sp4rk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lux-sp4rk](https://clawhub.ai/user/lux-sp4rk)
 
-## Use Case: <br>
-Developers and agent operators use this skill to give an AI agent a local, auditable task-management loop with Taskwarrior-backed next actions, error capture, periodic review, and session continuity. It is useful when an agent needs structured persistence across sessions instead of relying only on volatile context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The server security summary reports that this release presents a deprecated rename notice while still bundling active scripts that can read activity data and change or delete local Taskwarrior tasks. <br>
-Mitigation: Install elephantastic directly when only the renamed skill is needed; otherwise review the bundled scripts before invocation and run them only against Taskwarrior data you are prepared to let the agent inspect or modify. <br>
-Risk: The security guidance says the package can inspect Timewarrior or heartbeat activity and participate in scheduled monitoring if cron is configured. <br>
-Mitigation: Configure heartbeat monitoring deliberately, review mission-hour and silence-threshold settings, and avoid enabling scheduled execution until local notification and privacy expectations are clear. <br>
-Risk: Taskwarrior actions can modify or delete local tasks, including agent memory and operational backlog entries. <br>
-Mitigation: Keep Taskwarrior backups or versioned exports, use gated tasks for actions requiring approval, and review proposed task changes before allowing destructive operations. <br>
+## Use Case:
 
+Developers and agent operators use Elephantastic to give autonomous agents a local task-management and review workflow for preserving focus, capturing errors and learnings, and resuming work across sessions.
 
-## Reference(s): <br>
-- [Elephantastic ClawHub listing](https://clawhub.ai/lux-sp4rk/elephantastic) <br>
-- [Taskwarrior](https://taskwarrior.org) <br>
-- [Taskwarrior Schema Reference](references/taskwarrior-schema.md) <br>
-- [Periodic Review Runbook](references/review-runbook.md) <br>
-- [Vitality Heartbeat](references/vitality-heartbeat.md) <br>
-- [Sovereign Agent Executive Stack](references/executive-stack.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, Taskwarrior configuration snippets, and JSON command output from bundled helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read or update local Taskwarrior data and may inspect Timewarrior or heartbeat activity when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release metadata) <br>
+Risk: The release may appear to be only a deprecation or rename notice, but evidence shows it includes active workflows and scripts that can change local state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package before installing and use it only when a local executive-function system with Taskwarrior, heartbeat checks, and persistent-memory workflows is intended.
+
+Risk: Task deletion, heartbeat cron setup, and edits to persistent agent memory files can affect agent behavior or local records.
+
+Mitigation: Require explicit approval before task deletion, cron setup, or edits to AGENTS.md, SOUL.md, TOOLS.md, identity files, or equivalent memory files.
+
+## Reference(s):
+
+- [Taskwarrior](https://taskwarrior.org)
+- [Taskwarrior Schema Reference](references/taskwarrior-schema.md)
+- [Periodic Review Runbook](references/review-runbook.md)
+- [Vitality Heartbeat](references/vitality-heartbeat.md)
+- [Sovereign Agent Executive Stack](references/executive-stack.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and bundled Python and Bash scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local Taskwarrior changes, heartbeat checks, and session handoff summaries when its scripts or workflows are executed.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Run local agent-first SEO scoring, search-intent classification, and opportunity prioritization before content changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run local agent-first SEO scoring, search-intent classification, and opportunity prioritization before content changes.
 
-## Publisher: <br>
-[davidmosiah](https://clawhub.ai/user/davidmosiah) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davidmosiah](https://clawhub.ai/user/davidmosiah)
 
-## Use Case: <br>
-Developers, content teams, and AI agents use this skill to install and configure Agent SEO Engine, run local SEO scoring, classify search intent, rank GSC-style opportunities, and check privacy boundaries before content changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may involve OAuth tokens, API keys, service-account files, customer content, or search-console exports. <br>
-Mitigation: Keep credentials and private data scoped and redacted, and avoid printing tokens, service-account JSON, local token files, or private user data. <br>
-Risk: The runnable code is supplied by a linked GitHub CLI rather than executable files in the artifact. <br>
-Mitigation: Review or trust the linked CLI before installing, and prefer doctor, manifest, privacy audit, connection-status, and dry-run checks before live provider calls or writes. <br>
+## Use Case:
 
+Developers and SEO practitioners use this skill to install, configure, and troubleshoot Agent SEO Engine for local SEO scoring, search-intent classification, opportunity ranking, privacy audit, and safety-boundary checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/davidmosiah/agent-seo-engine) <br>
-- [Agent SEO Engine repository (declared by artifact)](https://github.com/davidmosiah/agent-seo-engine) <br>
-- [Agent SEO Engine docs/site (declared by artifact)](https://github.com/davidmosiah/agent-seo-engine) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include setup steps, privacy checks, troubleshooting guidance, and safe-use boundaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The setup flow installs mutable remote code from a GitHub repository that was not included in the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the repository before installing, prefer a pinned commit or signed release, and run setup commands only in trusted environments.
+
+Risk: SEO content, Google Search Console exports, OAuth tokens, API keys, service-account JSON, local token files, or customer data could be exposed during troubleshooting.
+
+Mitigation: Use doctor, connection-status, manifest, privacy-audit, or dry-run checks first, and avoid running commands in directories or environments containing sensitive data unless the package version is trusted.
+
+## Reference(s):
+
+- [Agent SEO Engine repository](https://github.com/davidmosiah/agent-seo-engine)
+- [Agent SEO Engine ClawHub page](https://clawhub.ai/davidmosiah/skills/agent-seo-engine)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include setup checks, privacy-audit guidance, troubleshooting steps, and explicit handling boundaries for private data.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

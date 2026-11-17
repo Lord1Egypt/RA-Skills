@@ -1,7 +1,7 @@
 ---
 name: "smyx-pet-drying-box-heat-stress-analysis"
 description: "Triggers when a user provides a pet drying box area video URL or file for analysis; supports local video uploads or network URLs to call server-side APIs for pet heat stress signal detection, analyzing open-mouth panting intensity, tongue color (pink/cyanotic), and body movement frequency to identify early heat stress signals, outputting risk levels and supporting auto-cooling or stopping drying. Application scenarios: pet drying boxes, pet grooming stores, pet hospitals. Development reason: prevent heatstroke and improve safety. | 当用户提供宠物烘干箱区域的视频URL或文件时，触发本技能进行烘干箱内热应激预警分析；支持通过上传本地视频或网络视频URL，调用服务端API进行热应激信号识别，分析张口喘气强度、舌体颜色（粉红/紫绀）、身体移动频率，识别热应激早期信号，输出风险等级，支持自动降温或停止烘干。应用场景：宠物烘干箱、宠物美容店、宠物医院。"
-version: "1.0.3"
+version: "1.0.19"
 license: "MIT-0"
 ---
 

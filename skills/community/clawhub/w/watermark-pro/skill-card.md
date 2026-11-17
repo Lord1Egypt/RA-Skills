@@ -1,41 +1,58 @@
-## Description: <br>
-Watermark Pro helps agents add text or logo watermarks to images, Word documents, PowerPoint files, and PDFs with diagonal, centered, or tiled layouts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Watermark Pro helps agents add text or logo watermarks to images, Word documents, PowerPoint files, and PDFs with diagonal, centered, or tiled layouts.
 
-## Publisher: <br>
-[tobewin](https://clawhub.ai/user/tobewin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-Developers and agents use this skill to prepare local watermarking code and commands for image, Word, PowerPoint, and PDF files. It is useful when a user asks to add Chinese or English text watermarks, logo watermarks, or denser layout patterns to existing documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Watermarking modifies document or media outputs and may overwrite important files if output paths are chosen carelessly. <br>
-Mitigation: Use explicit output filenames, keep backups of originals, and review generated files before relying on them. <br>
-Risk: The PDF workflow briefly writes a local _temp_wm.png file in the output directory. <br>
-Mitigation: Run the workflow in a controlled output directory and verify temporary files are removed after processing. <br>
-Risk: The skill depends on Python packages for image and document processing. <br>
-Mitigation: Install only the listed packages from trusted package indexes and maintain normal dependency review practices. <br>
+## Use Case:
 
+Developers and agent users use this skill to generate or adapt local Python watermarking helpers for image, DOCX, PPTX, and PDF files. It is suited to adding visible ownership, confidentiality, or branding marks to documents before sharing.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with Python code blocks and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and the pillow, python-docx, python-pptx, and pymupdf Python packages; generated watermarked files are local outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: frontmatter and server release metadata) <br>
+Risk: Watermarking libraries read and rewrite local images, Office documents, and PDFs, which may include sensitive content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only on files the user has permission to process and use a private output directory for generated or rewritten documents.
+
+Risk: Unpinned Python dependencies may change behavior or introduce compatibility issues over time.
+
+Mitigation: Install dependencies in an isolated virtual environment and pin package versions before operational use.
+
+Risk: PDF watermarking creates a temporary watermark image in the output directory during processing.
+
+Mitigation: Use a controlled output directory and remove temporary files if a run is interrupted before cleanup completes.
+
+## Reference(s):
+
+- [Watermark Pro on ClawHub](https://clawhub.ai/tobewin/skills/watermark-pro)
+- [tobewin publisher profile](https://clawhub.ai/user/tobewin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python code blocks and dependency installation commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and Python packages including pillow, python-docx, python-pptx, and pymupdf; generated helpers read and rewrite local media or document files.]
+
+## Skill Version(s):
+
+1.0.4 (source: artifact frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

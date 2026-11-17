@@ -1,39 +1,56 @@
-## Description: <br>
-Personal knowledge wiki manager that organizes notes into structured Markdown wiki pages with concept pages, summaries, and cross-references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal knowledge wiki manager that organizes notes into structured Markdown pages with concept pages, summaries, and cross-references.
 
-## Publisher: <br>
-[lifei68801](https://clawhub.ai/user/lifei68801) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[lifei68801](https://clawhub.ai/user/lifei68801)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and individual knowledge-base users use this skill to save links or files into a local Markdown wiki, summarize sources into concept and summary pages, query existing knowledge with citations, and run health checks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can write outside its stated knowledge folder when category, slug, or raw-file paths are untrusted.
+
+Mitigation: Use only trusted category, slug, and raw-file inputs until containment validation is added; review generated file paths before execution.
+
+Risk: URL ingestion is presented as offline behavior but normal link ingestion expects the agent to fetch web content.
+
+Mitigation: Treat link ingestion as a network operation and apply the same review, source trust, and data handling controls used for fetched content.
+
+Risk: Persistent logs, summaries, and analyses can retain sensitive material in the knowledge base.
+
+Mitigation: Avoid ingesting sensitive content unless persistent local storage is acceptable for the workspace.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to maintain a local Markdown knowledge wiki, add links or documents, summarize sources, create concept pages, answer queries with citations, and run wiki health checks. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill persistently creates, updates, and logs local wiki files. <br>
-Mitigation: Review KNOWLEDGE_BASE_DIR before use and run the skill only on knowledge-base directories intended for persistent local storage. <br>
-Risk: Sensitive source material added to the wiki will be retained locally in Markdown files and logs. <br>
-Mitigation: Avoid ingesting sensitive content unless local retention in the knowledge directory is intended. <br>
+**Output Format:** [Markdown files, text answers, and shell command output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Writes raw documents, summaries, concept pages, analyses, indexes, and operation logs under the configured knowledge base directory.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown wiki files, textual reports, and shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local files under KNOWLEDGE_BASE_DIR or the default ~/.openclaw/workspace/knowledge path.] <br>
+1.2.0 (source: SKILL.md frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

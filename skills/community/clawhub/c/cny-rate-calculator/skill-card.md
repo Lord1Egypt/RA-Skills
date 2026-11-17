@@ -1,42 +1,54 @@
-## Description: <br>
-Fetches Bank of Taiwan CNY exchange rates, calculates tiered pricing with configured discounts, and sends scheduled notifications through selected messaging channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches Bank of Taiwan CNY exchange rates, calculates tiered Prairie Grasslands pricing, and sends scheduled notifications through configured messaging channels.
 
-## Publisher: <br>
-[9Starmax](https://clawhub.ai/user/9Starmax) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[9starmax](https://clawhub.ai/user/9starmax)
 
-## Use Case: <br>
-External users and operators use this skill to monitor Bank of Taiwan CNY exchange rates, calculate tiered prices, and deliver alerts through configured OpenClaw messaging channels on a schedule. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read OpenClaw messaging configuration, use channel credentials, and send exchange-rate notifications to selected destinations. <br>
-Mitigation: Review configured channels, webhook URLs, TELEGRAM_BOT_TOKEN, OPENCLAW_GATEWAY_TOKEN, and OPENCLAW_GATEWAY_URL before enabling notifications. <br>
-Risk: The skill can create or update a recurring OpenClaw cron job for scheduled execution. <br>
-Mitigation: Confirm the cron expression, destination channels, and expected schedule before enabling auto-setup or scheduled notifications. <br>
+## Use Case:
 
+External users and operators use this skill to monitor Bank of Taiwan CNY exchange rates, calculate tiered prices, and deliver recurring exchange-rate notifications to selected channels.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/9Starmax/cny-rate-calculator) <br>
-- [Bank of Taiwan exchange rates](https://rate.bot.com.tw/xrt) <br>
-- [Prairie Grasslands calculator reference](https://78lion.com/CNY.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown-style messages, terminal output, JSON channel status, and messaging API requests] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create or update local OpenClaw cron configuration and send messages to configured channels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server-resolved release evidence) <br>
+Risk: The skill stores notification targets, reads OpenClaw messaging configuration, and can create recurring outbound messaging jobs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review configured channels before enabling the skill, avoid untrusted webhook URLs, and use least-privilege bot or gateway tokens.
+
+Risk: Scheduled notifications include under-disclosed automatic behavior and an extra shortened-link message.
+
+Mitigation: Inspect scheduled message content before deployment and remove or disable the shortened-link message if it is not wanted.
+
+## Reference(s):
+
+- [Bank of Taiwan Exchange Rates](https://rate.bot.com.tw/xrt)
+- [Prairie Grasslands CNY Calculator Reference](https://78lion.com/CNY.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown-like notification text, JSON channel status, and shell command invocations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires configured notification channels and schedule settings; can send outbound messages through supported chat, gateway, and webhook channels.]
+
+## Skill Version(s):
+
+1.0.8 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,56 @@
-## Description: <br>
-Integrate with Qingyun/Lightcloud API to manage form documents by helping agents fetch access tokens and retrieve, create, update, or delete form data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates with Qingyun/Lightcloud (轻云) APIs to fetch access tokens and retrieve, create, update, or delete form documents through curl or PowerShell commands.
 
-## Publisher: <br>
-[wzy2008a](https://clawhub.ai/user/wzy2008a) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wzy2008a](https://clawhub.ai/user/wzy2008a)
 
-## Use Case: <br>
-Developers and operators use this skill to prepare Lightcloud API calls from natural-language requests, including authentication and form document retrieval, creation, update, and deletion workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill helps construct API calls that use Lightcloud credentials and access tokens. <br>
-Mitigation: Use least-privilege credentials and avoid pasting production secrets into shared chats, logs, or transcripts. <br>
-Risk: Some generated commands can create, update, or delete Lightcloud form records. <br>
-Mitigation: Manually verify workspace, form, and record IDs before running any record-changing command. <br>
+## Use Case:
 
+Developers and operations teams use this skill to turn natural-language Qingyun/Lightcloud requests into authenticated API commands for form document retrieval, creation, update, and deletion.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wzy2008a/lightcloud-ai) <br>
-- [轻云开放API参考文档](references/api_reference.md) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with curl, PowerShell, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include credential placeholders, timestamps, API endpoints, request bodies, and verification guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill handles application secrets, access tokens, and refresh tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted package source, keep secrets out of chat and shell history, prefer environment variables or a secret manager, and redact tokens from output.
+
+Risk: The skill can generate commands that update or delete Qingyun/Lightcloud business records.
+
+Mitigation: Require explicit confirmation of the operation, workspace ID, form code ID, and exact record IDs before running any update or delete command.
+
+## Reference(s):
+
+- [轻云开放API参考文档](artifact/references/api_reference.md)
+- [ClawHub skill page](https://clawhub.ai/wzy2008a/skills/lightcloud-ai)
+- [Publisher profile](https://clawhub.ai/user/wzy2008a)
+- [OpenClaw project](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Bash and PowerShell command blocks plus JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses placeholders for credentials, access tokens, workspace IDs, form IDs, and record IDs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

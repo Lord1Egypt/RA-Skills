@@ -1,43 +1,60 @@
-## Description: <br>
-Use when the user asks to create, improve, fix, or audit a README.md file, score their README, document an open source project, or set up new project docs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Better README helps agents create, improve, fix, and audit README.md files with quality scoring, project-type templates, and pre-publish checks.
 
-## Publisher: <br>
-[thomaszhou22](https://clawhub.ai/user/thomaszhou22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thomaszhou22](https://clawhub.ai/user/thomaszhou22)
 
-## Use Case: <br>
-Developers and agents use this skill to audit, score, and generate README files for open source projects, libraries, CLI tools, apps, agent skills, and data resources. It helps classify project type, choose a README template, produce Markdown, and run a pre-publish checklist. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The onboarding flow can inventory public GitHub repositories if the user agrees to repo-wide README evaluation. <br>
-Mitigation: Decline repo-wide evaluation unless it is needed, or select specific repositories before the skill audits README files. <br>
-Risk: Generated README content or proposed documentation edits may be inaccurate, incomplete, or not match the project maintainer's intent. <br>
-Mitigation: Review the README preview and checklist results before allowing file changes or publishing generated documentation. <br>
+## Use Case:
 
+Developers and documentation maintainers use this skill to audit README quality, select a project-specific README template, generate improved README content, and run pre-publish readiness checks.
 
-## Reference(s): <br>
-- [Better Readme on ClawHub](https://clawhub.ai/thomaszhou22/better-readme) <br>
-- [Scoring Rubric](references/scoring-rubric.md) <br>
-- [README Templates](references/templates.md) <br>
-- [Pre-Publish Checklist](references/pre-publish-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown README content, audit reports, JSON score output, and shell command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce English README.md by default and additional language README files only when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill inspects the current project to score or generate README content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in workspaces whose README-relevant files may be reviewed by the agent.
+
+Risk: First-use onboarding can evaluate public repository names and README contents in bulk.
+
+Mitigation: Decline onboarding or select only specific public repositories when broad review is not desired.
+
+Risk: Generated README changes may contain inaccurate project details if the detected project metadata is incomplete.
+
+Mitigation: Review generated Markdown, commands, badges, and links before publishing.
+
+## Reference(s):
+
+- [Scoring Rubric](artifact/references/scoring-rubric.md)
+- [README Templates](artifact/references/templates.md)
+- [Pre-Publish Checklist](artifact/references/pre-publish-checklist.md)
+- [ClawHub Skill Page](https://clawhub.ai/thomaszhou22/skills/better-readme)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, README content, code blocks, shell commands, and optional JSON audit reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May inspect project files and, during optional onboarding, review selected public GitHub repository READMEs.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence; artifact frontmatter says 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,57 @@
-## Description: <br>
-Creates and manages stock and crypto portfolios with AISA live pricing and profit/loss tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates and manages stock and crypto portfolios with AISA-based price and profit/loss tracking.
 
-## Publisher: <br>
-[bibaofeng](https://clawhub.ai/user/bibaofeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bibaofeng](https://clawhub.ai/user/bibaofeng)
 
-## Use Case: <br>
-External users and developers use this skill to create, update, list, rename, delete, and review local investment portfolios, including current value and profit/loss estimates from AISA live price lookups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Portfolio names, tickers, quantities, and cost basis are stored in a local JSON file. <br>
-Mitigation: Use an appropriate local state directory, protect the file with normal filesystem permissions, and avoid entering sensitive account or credential data. <br>
-Risk: Ticker symbols are sent to AISA when fetching live prices. <br>
-Mitigation: Only request prices for tickers you are comfortable sharing with the configured AISA endpoint. <br>
-Risk: AISA_BASE_URL can redirect price requests to a different endpoint. <br>
-Mitigation: Keep AISA_BASE_URL unset unless you intentionally trust the alternate endpoint. <br>
-Risk: Live prices are informational and may be incomplete or unsuitable for trading decisions. <br>
-Mitigation: Treat returned prices and profit/loss estimates as informational, not trading-grade financial advice. <br>
+## Use Case:
 
+External users and developers use this skill to create, update, rename, delete, and review local stock and crypto portfolios from a command-line workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bibaofeng/stock-portfolio-zh) <br>
-- [AISA API endpoint](https://api.aisa.one/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and command-line text output; local portfolio state is JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and AISA_API_KEY; stores portfolio names, tickers, quantities, and cost basis in a local JSON file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: The AISA API key may be sent to a configurable API endpoint if AISA_BASE_URL is changed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped AISA API key and set AISA_BASE_URL only to endpoints you fully trust.
+
+Risk: Displayed prices and profit/loss values may be inaccurate because they come through AISA/model responses.
+
+Mitigation: Check an authoritative market-data source before relying on displayed prices or profit/loss for financial decisions.
+
+Risk: Remove and delete commands permanently change local portfolio data.
+
+Mitigation: Back up the local portfolio state file before destructive portfolio operations.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/bibaofeng/skills/stock-portfolio-zh)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text CLI output and Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and AISA_API_KEY; writes local portfolio state under CLAWDBOT_STATE_DIR or ./.clawdbot.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

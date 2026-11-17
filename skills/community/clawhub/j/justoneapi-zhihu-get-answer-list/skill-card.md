@@ -1,44 +1,52 @@
-## Description: <br>
-Call GET /api/zhihu/get-answer-list/v1 for Zhihu Answer List through JustOneAPI with questionId. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/zhihu/get-answer-list/v1 for Zhihu Answer List through JustOneAPI with questionId.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and analysts use this skill to call JustOneAPI's Zhihu answer-list endpoint for a question ID, then summarize answer content, author profiles, and interaction metrics for question analysis and answer research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The API token may be exposed through command arguments or request URLs. <br>
-Mitigation: Use only in a trusted local environment, avoid logging full commands or request URLs, and rotate the token if it may have appeared in logs. <br>
-Risk: The helper sends the token as a query parameter for the JustOneAPI request. <br>
-Mitigation: Prefer a revised version that reads the token from a secure source and sends it in an Authorization or API-key header if the provider supports it. <br>
+## Use Case:
 
+Developers and external users use this skill to call JustOneAPI's Zhihu answer-list endpoint for a specific question ID and retrieve answer content, author profile data, and interaction metrics for question analysis and answer research.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/justoneapi/justoneapi-zhihu-get-answer-list) <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_zhihu_get_answer_list&utm_content=project_link) <br>
-- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_zhihu_get_answer_list&utm_content=project_link) <br>
-- [Generated operations reference](artifact/generated/operations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summary with optional raw JSON response and inline shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and a questionId; optional cursor, offset, order, and sessionId query parameters are supported.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The JustOneAPI token is passed to api.justoneapi.com as a query parameter and supplied to the helper as a command-line argument.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a low-scope, revocable token; avoid shell tracing and shared logs; and rotate the token if it may have appeared in process listings, command history, traces, or URL logs.
+
+## Reference(s):
+
+- [JustOneAPI Homepage](https://api.justoneapi.com)
+- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_zhihu_get_answer_list&utm_content=project_link)
+- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_zhihu_get_answer_list&utm_content=project_link)
+- [ClawHub Skill Page](https://clawhub.ai/justoneapi/skills/justoneapi-zhihu-get-answer-list)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Text, Shell commands, Guidance]
+
+**Output Format:** [JSON API response with a short endpoint-specific summary when used by an agent]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the getAnswerListV1 operation with required questionId and optional cursor, offset, order, and sessionId query parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

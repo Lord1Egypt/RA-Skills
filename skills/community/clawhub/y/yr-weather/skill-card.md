@@ -1,40 +1,54 @@
-## Description: <br>
-Fetches current weather conditions and forecasts from MET Norway's yr.no API for user-provided latitude and longitude coordinates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches coordinate-based weather forecasts from MET Norway's yr.no Locationforecast API, including current conditions and tomorrow forecast summaries.
 
-## Publisher: <br>
-[Brandon2255p](https://clawhub.ai/user/Brandon2255p) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[brandon2255p](https://clawhub.ai/user/brandon2255p)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve weather forecasts, current conditions, temperature, precipitation, and wind information for specific coordinates. It is suitable when an agent needs a coordinate-based weather lookup rather than city-name geocoding. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Weather lookups disclose the latitude and longitude, and optional altitude, to MET Norway. <br>
-Mitigation: Use approximate coordinates when exact location privacy matters. <br>
-Risk: Installing from a GitHub pip command can fetch code outside the validated ClawHub artifact. <br>
-Mitigation: Install the reviewed ClawHub release artifact, or pin a reviewed GitHub release or commit. <br>
+## Use Case:
 
+External users, employees, and developers use this skill when an agent needs current weather conditions or forecast summaries for a user-supplied latitude and longitude.
 
-## Reference(s): <br>
-- [ClawHub Yr Weather release page](https://clawhub.ai/Brandon2255p/yr-weather) <br>
-- [MET Norway Locationforecast API](https://api.met.no/weatherapi/locationforecast/2.0/compact) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text weather summaries with command-line usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires latitude and longitude; optional altitude may be sent with the forecast request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and target metadata) <br>
+Risk: The documented unpinned Git-based pip install can execute mutable external code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a reviewed commit hash or verified release artifact that matches the expected source.
+
+Risk: Latitude, longitude, and optional altitude are sent to MET Norway when forecasts are fetched.
+
+Mitigation: Use coordinates only when sharing that location data with MET Norway is acceptable for the user and deployment context.
+
+## Reference(s):
+
+- [ClawHub Yr Weather Skill Page](https://clawhub.ai/brandon2255p/skills/yr-weather)
+- [MET Norway Locationforecast API endpoint](https://api.met.no/weatherapi/locationforecast/2.0/compact)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text weather summaries and command-line guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires latitude and longitude; optional altitude is passed to MET Norway.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact package version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

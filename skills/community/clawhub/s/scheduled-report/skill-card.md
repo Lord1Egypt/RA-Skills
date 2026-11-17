@@ -1,40 +1,54 @@
-## Description: <br>
-Converts a completed OpenClaw analysis workflow from the current conversation into a user-confirmed recurring report task. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates recurring OpenClaw analysis and report tasks by recording completed analysis steps from the current conversation, packaging them into a self-contained replay prompt, confirming the schedule, and adding an OpenClaw cron task.
 
-## Publisher: <br>
-[jackyujun](https://clawhub.ai/user/jackyujun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jackyujun](https://clawhub.ai/user/jackyujun)
 
-## Use Case: <br>
-OpenClaw users and data analysts use this skill after completing an analysis to package the exact steps into a recurring daily, weekly, or monthly report task. It helps preserve the confirmed workflow as a self-contained prompt and scheduled command for future replay. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The saved recurring task prompt may contain confidential metrics, filters, internal names, thresholds, or business judgments from the original analysis. <br>
-Mitigation: Review the generated task configuration and prompt before confirming the schedule, remove sensitive details that should not be stored, and delete or disable tasks when they are no longer needed. <br>
-Risk: A recurring report can repeatedly run an incomplete or unintended analysis if the workflow is captured before the user has finished and confirmed the analysis steps. <br>
-Mitigation: Create the task only after a completed analysis is present, show the extracted steps for user confirmation, and avoid adding analysis steps that were not performed in the conversation. <br>
+## Use Case:
 
+Analysts and operators use this skill after completing an analysis to convert the exact workflow into recurring daily inspections, weekly reports, monthly reports, or similar scheduled analysis tasks. It records executed analysis steps, confirms the recurring schedule and output with the user, and creates a scheduled replay task.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jackyujun/scheduled-report) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with structured task configuration, a self-contained prompt, and openclaw cron command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should preserve exact query parameters, normalize time ranges to relative NOW() expressions, and require user confirmation before task creation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Persistent scheduled tasks may store analysis parameters or conclusions extracted from a conversation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for analyses whose parameters and conclusions are safe to store, and require explicit confirmation of the exact stored prompt before scheduling.
+
+Risk: Shell and temporary-file command patterns can be unsafe if task arguments are not handled safely.
+
+Mitigation: Avoid executing the provided snippets unless OpenClaw supports safe argument-array or structured task creation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jackyujun/skills/scheduled-report)
+- [Publisher profile](https://clawhub.ai/user/jackyujun)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with cron commands and a self-contained scheduled task prompt]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create persistent OpenClaw cron tasks after explicit user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

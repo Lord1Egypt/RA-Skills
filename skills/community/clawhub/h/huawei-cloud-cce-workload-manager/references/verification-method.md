@@ -144,7 +144,7 @@ CCE clusters provide the following StorageClasses for PVC creation. Use `csi-dis
 
 > **Important**: `cce-standard` is NOT a valid CCE StorageClass. Always use `csi-disk` or one of the CSI StorageClasses listed above. Run `kubectl get sc` to verify available StorageClasses in your cluster.
 
-For SFS Turbo subdirectory PVCs (recommended for cost savings), see the [task-config-secret-storage.md](task-config-secret-storage.md) reference.
+For SFS Turbo subdirectory PVCs (recommended for cost savings), see the [taREDACTED-SECRET.md](taREDACTED-SECRET.md) reference.
 
 To check available StorageClasses in your cluster:
 

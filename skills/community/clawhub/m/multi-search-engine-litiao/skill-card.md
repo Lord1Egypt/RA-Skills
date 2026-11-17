@@ -1,42 +1,52 @@
-## Description: <br>
-Multi search engine integration with 17 engines (8 CN + 9 Global). Supports advanced search operators, time filters, site search, privacy engines, and WolframAlpha knowledge queries. No API keys required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi search engine integration with 17 engines (8 CN + 9 Global). Supports advanced search operators, time filters, site search, privacy engines, and WolframAlpha knowledge queries. No API keys required.
 
-## Publisher: <br>
-[litiao1224](https://clawhub.ai/user/litiao1224) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[litiao1224](https://clawhub.ai/user/litiao1224)
 
-## Use Case: <br>
-Developers and external users use this skill to choose public search engines and compose advanced web search queries, including site-specific searches, time filters, privacy-oriented engines, and WolframAlpha knowledge lookups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries sent to public search engines may expose confidential terms, private project names, internal URLs, credentials, or customer data. <br>
-Mitigation: Do not include passwords, tokens, customer data, internal URLs, private project names, or confidential research terms in queries. <br>
-Risk: Advanced search examples involving passwords, admin pages, cached pages, or financial topics can be misused outside authorized research. <br>
-Mitigation: Use these examples only for authorized research and review generated queries before opening or fetching results. <br>
+## Use Case:
 
+External users and developers use this skill to construct search URLs and search guidance across Chinese and global search engines for web research, site-specific search, time-filtered queries, privacy-oriented search, and WolframAlpha knowledge queries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/litiao1224/multi-search-engine-litiao) <br>
-- [litiao1224 publisher profile](https://clawhub.ai/user/litiao1224) <br>
-- [International search guide](references/international-search.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown with inline web_fetch examples and search URL templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API keys required; search behavior depends on the selected public search engine.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact documentation cites v2.0.1) <br>
+Risk: Search terms are sent to the selected external search provider and may expose secrets, credentials, private URLs, personal data, or confidential project names.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use safe-search defaults unless deliberately changing them, and avoid submitting secrets, credentials, private URLs, personal data, or confidential project names as search queries.
+
+## Reference(s):
+
+- [International Search Guide](references/international-search.md)
+- [ClawHub Skill Page](https://clawhub.ai/litiao1224/skills/multi-search-engine-litiao)
+- [DuckDuckGo Bangs](https://duckduckgo.com/bang)
+- [WolframAlpha Examples](https://www.wolframalpha.com/examples/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown guidance with search URL templates and web_fetch examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API keys required; queries are sent to selected external search providers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata); artifact documentation reports 2.0.1
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

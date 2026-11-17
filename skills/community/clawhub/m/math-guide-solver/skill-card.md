@@ -1,46 +1,61 @@
-## Description: <br>
-Math Guide Solver helps agents extract math from images or text, normalize formulas to LaTeX, render formulas as PNGs, and provide Socratic, detailed, or quick solution guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete mathematical problem solving workflow with OCR, LaTeX formula extraction, PNG rendering, and guided solutions.
 
-## Publisher: <br>
-[yshajoy](https://clawhub.ai/user/yshajoy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yshajoy](https://clawhub.ai/user/yshajoy)
 
-## Use Case: <br>
-Students, teachers, tutors, and agent developers use this skill to turn math problem images, markdown, or text into extracted formulas, rendered mathematical notation, and solution guidance across common math domains. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The included GitHub update script can alter and publish a repository using local credentials if run. <br>
-Mitigation: Review the script and run it only in an intended repository with appropriate credentials and branch protections. <br>
-Risk: Math images or notes may contain homework, student records, or personal information that could be processed by OCR or model integrations. <br>
-Mitigation: Avoid submitting sensitive educational or personal data unless the deployment's data-handling terms and retention controls are acceptable. <br>
-Risk: OCR and LaTeX conversion can misread formulas, especially for poor handwriting, complex diagrams, or incomplete problems. <br>
-Mitigation: Ask users to verify extracted formulas and rerun with clearer images or manual LaTeX input when confidence is low. <br>
+## Use Case:
 
+Students, teachers, tutors, and developers use this skill to extract math from images or text, render LaTeX formulas, and produce Socratic hints, detailed explanations, or quick answers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yshajoy/math-guide-solver) <br>
-- [SKILL.md](SKILL.md) <br>
-- [Math Solver Installation & Quick Start](references/QUICKSTART.md) <br>
-- [EXAMPLES.md](references/EXAMPLES.md) <br>
-- [README.md](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, PNG images, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or JSON guidance with optional PNG formula renderings and shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports Socratic, detailed, and quick modes; configurable themes, formula size, DPI, language, and batch processing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and changelog, released 2026-03-21) <br>
+Risk: The artifact includes release automation that can modify files, create tags, and push to GitHub, which is outside ordinary math-solving behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not run GITHUB_UPDATE_SCRIPT.sh unless you are the maintainer and have verified the repository, source files, staged diff, and tag policy.
+
+Risk: Uploaded images or documents may contain sensitive content and can be processed by OCR, LLM, or optional API services.
+
+Mitigation: Avoid uploading sensitive images or documents unless that processing path is acceptable for the data.
+
+Risk: OCR, LaTeX extraction, and generated solution guidance can misread handwriting or formulas and produce incorrect math.
+
+Mitigation: Review extracted formulas, validate final answers, and request clearer input or manual LaTeX when confidence is low.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yshajoy/skills/math-guide-solver)
+- [Quick Start Guide](references/QUICKSTART.md)
+- [Usage Examples](references/EXAMPLES.md)
+- [Changelog](CHANGELOG.md)
+- [README v1.1.0](README_v1.1.0.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown, JSON, HTML, PNG file references, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May process uploaded images or documents through OCR and optional APIs; formula images may be embedded as base64 in HTML or JSON outputs.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata, target metadata, changelog released 2026-03-21)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

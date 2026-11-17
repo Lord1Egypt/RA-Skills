@@ -1,41 +1,53 @@
-## Description: <br>
-Interactively generate personalized agent rules by asking about tech stack, work style, and preferences, then writing customized rule files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interactively generate personalized agent rules by asking about tech stack, work style, and preferences, then writing customized rule files.
 
-## Publisher: <br>
-[clarezoe](https://clawhub.ai/user/clarezoe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clarezoe](https://clawhub.ai/user/clarezoe)
 
-## Use Case: <br>
-Developers and agent users use this skill to set up reusable, personalized agent rules for Skill Genie through a short interview and generated Markdown rule files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can replace persistent agent rule files. <br>
-Mitigation: Review the generated rule changes and keep or inspect the backup before accepting replacement rules. <br>
-Risk: The skill instructs the agent to run an unscoped setup.sh script. <br>
-Mitigation: Inspect the exact setup.sh in the active Skill Genie directory before running it, or manually copy the generated Markdown into rules/. <br>
+## Use Case:
 
+Developers and agent users use this skill to bootstrap personalized, persistent agent rules through a short interview, especially when setting up Skill Genie or refreshing universal workflow preferences.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/clarezoe/init-rules) <br>
-- [Skill Genie](https://github.com/Fei2-Labs/skill-genie) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown rule files and concise setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates multiple Skill Genie rules files and may run setup.sh to apply them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server metadata and skill frontmatter metadata) <br>
+Risk: The skill asks the agent to run an unspecified setup script from an external Skill Genie dependency.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install Skill Genie only from a trusted source and confirm the resolved setup.sh path before allowing execution.
+
+Risk: The skill changes persistent agent rules that can affect future agent behavior.
+
+Mitigation: Review existing and generated rules before applying changes, and keep the backup created before replacing the rules directory.
+
+## Reference(s):
+
+- [Skill Genie](https://github.com/Fei2-Labs/skill-genie)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Configuration, Shell commands, Guidance]
+
+**Output Format:** [Markdown rule files with concise setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates skill-genie rule files and may back up an existing rules directory before applying changes.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,57 @@
-## Description: <br>
-Practical skill vetting workflow for AI agents. Prioritizes clear yes/no risk judgments, concise conclusions, and business-aware risk tolerance before installing a skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Practical skill vetting workflow for AI agents. Prioritizes clear yes/no risk judgments, concise conclusions, and business-aware risk tolerance before installing a skill.
 
-## Publisher: <br>
-[waytobetter619](https://clawhub.ai/user/waytobetter619) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[waytobetter619](https://clawhub.ai/user/waytobetter619)
 
-## Use Case: <br>
-Developers, engineers, and reviewers use this skill to perform quick first-pass safety reviews of agent skills before installation or portfolio-wide screening. It produces concise yes/no risk judgments, an overall risk level, and an installation verdict. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is an advisory triage helper and may miss issues that require deeper review. <br>
-Mitigation: Use it for quick first-pass screening and perform stricter manual review for skills that handle credentials, account mutations, publishing, or other high-impact actions. <br>
-Risk: The bundled scanner reads files in the target directory to look for risk patterns. <br>
-Mitigation: Run the scanner only on the specific skill directory intended for evaluation. <br>
+## Use Case:
 
+Developers and agent users use this skill to quickly vet agent skills before installation, producing concise risk judgments and installation recommendations. It is intended for quick install checks, portfolio-wide skill reviews, and second-opinion risk screening.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, Shell commands, JSON] <br>
-**Output Format:** [Concise text or Markdown risk report with optional scanner JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes yes/no risk flags, risk level, installation verdict, and short notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The bundled scanner can overread local files when pointed at an untrusted skill directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run scans in a sandbox or on a copy of the target directory with symlinks removed.
+
+Risk: Raw scanner output may expose matched lines that contain secrets or sensitive local paths.
+
+Mitigation: Review and redact raw JSON or text findings before sharing or publishing them.
+
+Risk: The skill is a manual triage aid and should not be treated as a final security authority.
+
+Mitigation: Pair its conclusion with manual inspection of SKILL.md prose, helper scripts, and any files excluded by the scanner.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/waytobetter619/skills/hiic-skill-vetter)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, JSON]
+
+**Output Format:** [Concise Markdown or text risk report, with optional JSON scanner output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scanner output may include matched source lines; treat raw findings as sensitive.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

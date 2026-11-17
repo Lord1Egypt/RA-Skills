@@ -1,43 +1,53 @@
-## Description: <br>
-Generates alternative task plans for complex multi-step work, coordinates available tools or skills, and records concise task reports for later optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent analyze complex tasks, generate multiple execution plans, request clarification when needed, and archive compact task reports for future planning.
 
-## Publisher: <br>
-[louisding9527](https://clawhub.ai/user/louisding9527) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[louisding9527](https://clawhub.ai/user/louisding9527)
 
-## Use Case: <br>
-Developers and agent operators use this skill to break complex requests into short, medium, or long plans, compare execution strategies, ask focused clarification questions, and archive compact task reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local task reports may retain sensitive task details in shared or synced workspaces. <br>
-Mitigation: Use the skill only where local task_reports retention is acceptable, and review or remove reports for sensitive work. <br>
-Risk: The skill may read planning resource files from the workspace, parent directory, or home resource path and rely on stale resource records. <br>
-Mitigation: Review plan_source.md contents and stale entries before relying on generated resource choices. <br>
-Risk: Generated plans and success-rate estimates are advisory and may choose unsuitable tools or underestimate execution risk. <br>
-Mitigation: Review proposed plans, resource choices, and clarification questions before execution. <br>
+## Use Case:
 
+Developers and agent operators use this skill to plan multi-step tasks, compare execution strategies, and preserve concise task outcomes that can inform future planning.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/louisding9527/task-plan-generator) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/louisding9527) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown task plans, clarification prompts, and compact task-report summaries with structured DATA blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local task report content intended for task_reports/YYYYMM and may reference plan_source.md lookup paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill reads planning-resource files such as plan_source.md, which may contain sensitive paths, endpoints, credentials, or private project details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep sensitive values out of plan_source.md unless they are intentionally available for agent planning.
+
+Risk: The skill writes task reports under task_reports/, which may preserve operational context from previous tasks.
+
+Mitigation: Review archived reports before sharing a workspace and remove private details that should not be reused in future planning.
+
+## Reference(s):
+
+- [ClawHub Skill Release Page](https://clawhub.ai/louisding9527/skills/task-plan-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown plans and compact Markdown task reports with structured JSON data blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Task reports are intended to be concise, with a structured DATA block and a short human-readable SUMMARY.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

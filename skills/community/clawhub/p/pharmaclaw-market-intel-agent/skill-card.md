@@ -1,46 +1,57 @@
-## Description: <br>
-Fetches and analyzes openFDA FAERS adverse event data and ClinicalTrials.gov study data for drug safety, trial pipeline, and market intelligence workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches and analyzes FAERS data from openFDA, resolves SMILES through PubChem, and generates drug safety event lists, yearly trends, top reactions, and top outcomes as JSON summaries and PNG charts.
 
-## Publisher: <br>
-[Cheminem](https://clawhub.ai/user/Cheminem) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cheminem](https://clawhub.ai/user/cheminem)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to query public post-market safety reports and clinical trial records for drugs, compounds, conditions, and competitive landscape research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Drug names, SMILES strings, and conditions are sent to public openFDA, PubChem, and ClinicalTrials.gov endpoints. <br>
-Mitigation: Use the skill only when public endpoint disclosure is acceptable, and avoid proprietary compounds or sensitive research queries unless disclosure has been approved. <br>
-Risk: Report filenames are built from user-provided queries and may be unsafe or confusing when queries contain unusual characters. <br>
-Mitigation: Run the skill in a constrained workspace, choose an explicit safe output directory, and review generated filenames before relying on or sharing outputs. <br>
-Risk: The release metadata under-discloses the ClinicalTrials.gov workflow. <br>
-Mitigation: Review the clinical trial querying behavior and expected public API calls before deployment. <br>
+## Use Case:
 
+External users and developers use this skill to gather post-market safety and clinical trial landscape summaries for drugs, including adverse event trends, reactions, outcomes, sample reports, and trial status or phase summaries.
 
-## Reference(s): <br>
-- [FAERS Fields Reference](references/faers_fields.md) <br>
-- [ClinicalTrials.gov API v2 Reference](references/clinicaltrials_fields.md) <br>
-- [openFDA Drug Event API](https://open.fda.gov/apis/drug/event/) <br>
-- [ClinicalTrials.gov API v2](https://clinicaltrials.gov/data-api/api) <br>
-- [PubChem PUG REST](https://pubchem.ncbi.nlm.nih.gov/docs/pug-rest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Analysis] <br>
-**Output Format:** [JSON summaries, PNG charts, and status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes reports and visualizations to a user-selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Path-like drug names can influence generated output filenames and may write files outside the intended output folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted drug names or resolved names, avoid path separators and path-like input, and run the skill in a disposable workspace until filename sanitization is fixed.
+
+Risk: The skill queries public biomedical APIs and writes result files locally.
+
+Mitigation: Review generated JSON and PNG outputs before using them for market, safety, or competitive decisions, and keep generated files separate from important workspace data.
+
+## Reference(s):
+
+- [FAERS Fields Reference](artifact/references/faers_fields.md)
+- [ClinicalTrials.gov API v2 Reference](artifact/references/clinicaltrials_fields.md)
+- [openFDA Drug Event API](https://open.fda.gov/apis/drug/event/)
+- [ClinicalTrials.gov API v2](https://clinicaltrials.gov/data-api/api)
+- [PubChem PUG REST](https://pubchem.ncbi.nlm.nih.gov/docs/pug-rest)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, files]
+
+**Output Format:** [Markdown guidance with inline shell commands; generated artifacts are JSON summaries and PNG charts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Queries public biomedical APIs and writes local result files under the requested output directory when inputs are safe.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

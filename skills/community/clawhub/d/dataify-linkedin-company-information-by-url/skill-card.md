@@ -1,42 +1,54 @@
-## Description: <br>
-Prepare Dataify builder requests for the linkedin.com scraper family rooted at linkedin_company_information_by-url, including tool selection, parameter collection, and curl request generation for scraperapi.dataify.com/builder. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects structured LinkedIn company information from one or more known company URLs, excluding personal profiles, jobs, and Crunchbase URLs.
 
-## Publisher: <br>
-[dataify-server](https://clawhub.ai/user/dataify-server) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataify-server](https://clawhub.ai/user/dataify-server)
 
-## Use Case: <br>
-Developers and operators use this skill to prepare Dataify LinkedIn scraper builder requests after selecting a supported scraper tool and supplying the needed parameters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated curl output can expose a live Dataify API token if the helper prints the Authorization header with the token value. <br>
-Mitigation: Use commands that keep Authorization as Bearer $DATAIFY_API_TOKEN, avoid sharing generated terminal output, and remove tokens from any logs or examples before redistribution. <br>
-Risk: Scraper inputs may contain sensitive personal or regulated data. <br>
-Mitigation: Only provide LinkedIn scraping parameters that are appropriate for the intended use, and avoid sensitive personal or regulated data in scraper inputs. <br>
+## Use Case:
 
+Developers and operators use this skill to prepare and execute Dataify Builder requests for collecting company-level LinkedIn data from known company URLs, then wait for and return the final JSON result.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dataify-server/dataify-linkedin-company-information-by-url) <br>
-- [Dataify Dashboard](https://dashboard.dataify.com?utm_source=skill) <br>
-- [Dataify builder endpoint](https://scraperapi.dataify.com/builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline curl and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates Dataify builder curl requests and can normalize spider_parameters JSON through the helper script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill is presented as a LinkedIn company URL lookup tool, but its instructions and catalog allow broader Dataify scraping requests with weak validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only when scoped to the linkedin_company_information_by-url tool with a real LinkedIn company URL and parameter validation.
+
+Risk: Persistent token setup guidance may expose a Dataify token to this workflow.
+
+Mitigation: Use session-scoped DATAIFY_API_TOKEN setup where possible, never paste tokens into chat, and rotate any token that may have been exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dataify-server/skills/dataify-linkedin-company-information-by-url)
+- [Tool parameter catalog](artifact/references/tool-params.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, JSON]
+
+**Output Format:** [Markdown with shell commands and JSON results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can preview a normalized curl request, submit a Dataify task, return a task ID for no-wait flows, or wait for and return the final collected JSON result.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

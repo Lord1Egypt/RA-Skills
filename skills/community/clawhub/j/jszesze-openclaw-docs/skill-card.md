@@ -1,42 +1,51 @@
-## Description: <br>
-OpenClaw Docs helps agents cache the live OpenClaw docs index, search page titles and URLs, fetch raw Markdown pages, build a local full-text docs cache, and track index snapshots over time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Docs helps agents cache, search, fetch, and track OpenClaw documentation so answers can cite current docs links and page text.
 
-## Publisher: <br>
-[jszesze](https://clawhub.ai/user/jszesze) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jszesze](https://clawhub.ai/user/jszesze)
 
-## Use Case: <br>
-Developers and technical support agents use this skill to answer OpenClaw setup, configuration, CLI, channel, automation, architecture, and troubleshooting questions with grounded docs links and current page text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper scripts fetch public web content and write a local docs cache. <br>
-Mitigation: Keep fetches to docs.openclaw.ai unless intentionally retrieving another URL, and review shell script execution in environments with strict network or shell controls. <br>
-Risk: Cached snippets or documentation pages can become stale. <br>
-Mitigation: Refresh or fetch the current OpenClaw documentation before giving operational configuration guidance. <br>
+## Use Case:
 
+Developers and agents use this skill to answer OpenClaw setup, configuration, CLI, channel, automation, architecture, and troubleshooting questions with grounded documentation lookups.
 
-## Reference(s): <br>
-- [OpenClaw Docs index](https://docs.openclaw.ai/llms.txt) <br>
-- [OpenClaw Telegram docs](https://docs.openclaw.ai/channels/telegram) <br>
-- [OpenClaw Docs release page](https://clawhub.ai/jszesze/jszesze-openclaw-docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with documentation links, fetched page excerpts, inline shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a local cache of public OpenClaw documentation when its helper scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Shell commands can accept broad URL or path-like inputs and may fetch from non-doc services, write outside the intended cache, or print local file contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in controlled environments, avoid untrusted command inputs, avoid full URLs or local file paths, and prefer a version constrained to docs.openclaw.ai with cache path validation.
+
+## Reference(s):
+
+- [OpenClaw docs index](https://docs.openclaw.ai/llms.txt)
+- [OpenClaw Telegram docs](https://docs.openclaw.ai/channels/telegram)
+- [OpenClaw Docs ClawHub release](https://clawhub.ai/jszesze/skills/jszesze-openclaw-docs)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and documentation links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include cached documentation paths, search results, fetched Markdown excerpts, and snapshot comparisons.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

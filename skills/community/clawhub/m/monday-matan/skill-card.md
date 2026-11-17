@@ -1,45 +1,60 @@
-## Description: <br>
-Access the Monday.com API through Maton Gateway to manage boards, items, columns, groups, users, and workspaces with GraphQL and managed OAuth authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access the Monday.com API via Maton Gateway to manage boards, items, columns, groups, users, and workspaces using GraphQL with OAuth authentication.
 
-## Publisher: <br>
-[otman-ai](https://clawhub.ai/user/otman-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[otman-ai](https://clawhub.ai/user/otman-ai)
 
-## Use Case: <br>
-Developers and automation operators use this skill to prepare Monday.com GraphQL calls through Maton Gateway, including OAuth connection setup and common board, item, column, group, user, and workspace operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide create, update, delete, and connection-removal actions against Monday.com data. <br>
-Mitigation: Require explicit approval before mutations, verify target board, item, and connection IDs, and test read-only queries first. <br>
-Risk: Use depends on Maton as the OAuth and API intermediary. <br>
-Mitigation: Install only where Maton is trusted for the workflow and use the least-privileged Monday.com connection practical. <br>
-Risk: The MATON_API_KEY grants access to Maton-mediated operations. <br>
-Mitigation: Store the key in a secret manager or protected environment variable and avoid exposing it in prompts, logs, or shared files. <br>
+## Use Case:
 
+Developers and operations teams use this skill to query and manage Monday.com workspaces through Maton Gateway using OAuth-backed GraphQL requests. It supports common board, item, column, group, user, workspace, and connection-management workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/otman-ai/monday-matan) <br>
-- [Maton](https://maton.ai) <br>
-- [Maton Connection Management](https://ctrl.maton.ai) <br>
-- [Maton Monday Gateway Endpoint](https://gateway.maton.ai/monday/v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with cURL and GraphQL examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a MATON_API_KEY and may require a Maton Monday OAuth connection ID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill includes commands that can create, update, or delete Monday.com boards, items, columns, groups, and Maton OAuth connections.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before any create, update, delete, or connection-management command, and test first on non-production boards.
+
+Risk: MATON_API_KEY exposure could grant access to connected Monday.com data.
+
+Mitigation: Store MATON_API_KEY as a secret, avoid printing or pasting it, and do not use the documented echo pattern in shared logs or terminals.
+
+Risk: Use depends on a third-party Maton Gateway between the agent and Monday.com.
+
+Mitigation: Install only if the user trusts Maton for this access path and uses the least-privileged OAuth scopes available.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/otman-ai/skills/monday-matan)
+- [Maton sign-in](https://maton.ai)
+- [Maton connection control plane](https://ctrl.maton.ai)
+- [Maton Monday GraphQL endpoint](https://gateway.maton.ai/monday/v2)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style operational guidance with curl and GraphQL examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses MATON_API_KEY and optional Maton-Connection headers; examples may read, create, update, or delete Monday.com resources.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

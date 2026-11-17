@@ -1,46 +1,59 @@
-## Description: <br>
-Share anonymized OpenClaw configurations with the OpenSoul community. Use when user wants to share their agent setup, discover how others use OpenClaw, or get inspiration for new capabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Share anonymized OpenClaw configurations with the OpenSoul community for sharing agent setups, discovering community examples, and finding inspiration for new capabilities.
 
-## Publisher: <br>
-[fnaser](https://clawhub.ai/user/fnaser) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fnaser](https://clawhub.ai/user/fnaser)
 
-## Use Case: <br>
-External developers and OpenClaw users use this skill to preview, anonymize, share, browse, import, and delete community agent setup profiles for inspiration and reuse. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive workspace data when preparing a shareable OpenClaw setup. <br>
-Mitigation: Run `opensoul share --preview` before upload and inspect the complete anonymized output before confirming any share. <br>
-Risk: Credentials stored in `~/.opensoul/credentials.json` identify the user to OpenSoul. <br>
-Mitigation: Keep the credentials file private and do not include it in shared, imported, or published files. <br>
-Risk: Imported community files may contain unsafe or unsuitable instructions. <br>
-Mitigation: Treat imported files as untrusted reference material and review them before adapting any patterns or instructions. <br>
-Risk: Remote `OLLAMA_URL` settings can expose workspace summaries to an unintended service. <br>
-Mitigation: Prefer local Ollama configuration and avoid remote `OLLAMA_URL` values unless the endpoint is trusted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenSoul API Reference](artifact/references/api.md) <br>
-- [OpenSoul Schema Reference](artifact/references/schema.md) <br>
-- [OpenSoul Website](https://opensoul.cloud) <br>
-- [ClawHub Skill Page](https://clawhub.ai/fnaser/opensoul-cloud) <br>
+## Use Case:
 
+External users and developers use this skill to register with OpenSoul, preview and share anonymized OpenClaw workspace profiles, browse or import community profiles for inspiration, and manage their shared entries.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands, text summaries, and optional JSON output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save imported community files locally and may upload anonymized workspace profiles after preview and confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Anonymized workspace sharing may still miss secrets or private operating details.
+
+Mitigation: Preview the generated output before sharing, avoid using the skill on workspaces that contain credentials or private memories, and remove any sensitive content before upload.
+
+Risk: The OpenSoul API key is stored in a local credentials file and could be reused if exposed.
+
+Mitigation: Protect the local credentials file and rotate the OpenSoul API key if the file may have been disclosed.
+
+Risk: Imported community profiles may contain untrusted instructions or patterns.
+
+Mitigation: Treat imported files as reference material only and review them before allowing an agent to use or follow their contents.
+
+## Reference(s):
+
+- [OpenSoul API Reference](references/api.md)
+- [OpenSoul Schema Reference](references/schema.md)
+- [OpenSoul Website](https://opensoul.cloud)
+- [OpenSoul ClawHub Skill Page](https://clawhub.ai/fnaser/skills/opensoul-cloud)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON-producing CLI workflows]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CLI commands can print human-readable text or JSON, write imported profile files locally, and upload summarized profile data when sharing is confirmed.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

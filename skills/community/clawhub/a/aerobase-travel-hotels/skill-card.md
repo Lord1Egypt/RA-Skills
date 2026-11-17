@@ -1,44 +1,55 @@
-## Description: <br>
-Aerobase Travel Hotels helps agents search hotels, compare rates, manage bookings, handle amendments, use loyalty vouchers, and recommend layover-friendly stays. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hotel search, booking, amendments, loyalty vouchers, and jetlag-friendly layover stays.
 
-## Publisher: <br>
-[kurosh87](https://clawhub.ai/user/kurosh87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kurosh87](https://clawhub.ai/user/kurosh87)
 
-## Use Case: <br>
-External travel-assistant users and agents use this skill to find airport or city hotels, prioritize layover and recovery needs, compare rates, and complete approved booking, amendment, cancellation, and loyalty voucher workflows through the Aerobase API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Booking, cancellation, amendment, rebooking, and loyalty redemption actions can affect a user's travel account or stored value. <br>
-Mitigation: Require explicit user confirmation before those actions and show the cancellation policy before booking. <br>
-Risk: The skill requires an Aerobase API key for hotel search and account-affecting travel actions. <br>
-Mitigation: Install only when the agent may use an Aerobase API key, never print raw API keys, and redact secrets in responses. <br>
-Risk: Browser-powered Pro comparison behavior is described but the scanned evidence does not clarify which third-party sites are accessed or what data is shared. <br>
-Mitigation: Treat that capability as unclear unless Aerobase documents the accessed sites and data-sharing behavior. <br>
+## Use Case:
 
+External travel users and travel-support agents use this skill to search hotels, compare layover-friendly stays, check rates, and manage hotel bookings through Aerobase APIs.
 
-## Reference(s): <br>
-- [Aerobase homepage](https://aerobase.app) <br>
-- [Aerobase OpenClaw travel agent setup](https://aerobase.app/openclaw-travel-agent) <br>
-- [ClawHub skill page](https://clawhub.ai/kurosh87/aerobase-travel-hotels) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown responses with Aerobase API request guidance and concise hotel recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AEROBASE_API_KEY; booking, cancellation, amendment, rebooking, and loyalty redemption actions require explicit user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.3.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can initiate or change hotel bookings, including cancellations, rebooks, amendments, voucher redemptions, and payments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before any high-impact action, show the exact booking, policy, fees, and action being taken, then get explicit user confirmation.
+
+Risk: The skill requires trust in Aerobase with hotel-search and booking-management authority.
+
+Mitigation: Install only when the user trusts Aerobase for this authority, keep API keys redacted, and keep the interaction focused on public booking metadata and user constraints.
+
+## Reference(s):
+
+- [Aerobase homepage](https://aerobase.app)
+- [Aerobase OpenClaw travel agent setup](https://aerobase.app/openclaw-travel-agent)
+- [ClawHub skill page](https://clawhub.ai/kurosh87/skills/aerobase-travel-hotels)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown text with structured API request guidance and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AEROBASE_API_KEY. Booking, cancellation, amendment, rebooking, voucher redemption, and payment actions should be shown to the user and explicitly confirmed before execution.]
+
+## Skill Version(s):
+
+3.3.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,36 +1,53 @@
-## Description: <br>
-Automated funding rate arbitrage and delta-neutral hedging. Simultaneously manages positions on OKX and Binance to harvest fee premiums. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated funding rate arbitrage and delta-neutral hedging. Simultaneously manages positions on OKX and Binance to harvest fee premiums.
 
-## Publisher: <br>
-[tmstudio667-commits](https://clawhub.ai/user/tmstudio667-commits) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tmstudio667-commits](https://clawhub.ai/user/tmstudio667-commits)
 
-## Use Case: <br>
-External users and developers use this skill to guide automated funding-rate arbitrage workflows across OKX and Binance while attempting to maintain delta-neutral exposure. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The security evidence flags the skill as suspicious because it describes hands-off crypto trading across OKX and Binance without defining credentials, trade limits, dry-run behavior, or approval checkpoints. <br>
-Mitigation: Review carefully before installing or running, and do not connect live exchange credentials unless read/trade-only permissions, disabled withdrawals, strict capital and asset limits, dry-run testing, explicit order confirmations, and an emergency stop path are enforced. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External developers and trading automation operators use this skill to identify funding-rate arbitrage opportunities across OKX and Binance and manage delta-neutral spot/futures positions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill describes autonomous crypto trading behavior and should be reviewed before use with live exchange accounts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: High-impact trading automation may create financial loss if run without clear exchange-side limits or prior testing.
+
+Mitigation: Use sandbox or paper trading first, avoid withdrawal-enabled API keys, and set exchange-side position and IP restrictions.
+
+Risk: The usage command invokes an unpinned runtime package.
+
+Mitigation: Do not run the npx command unless the OpenClaw package version is pinned and verified.
+
+## Reference(s):
+
+- [ClawHub Skill Release](https://clawhub.ai/tmstudio667-commits/skills/multi-exchange-hedge-core)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/tmstudio667-commits)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Trading automation guidance should be reviewed before execution and tested with sandbox or paper-trading accounts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

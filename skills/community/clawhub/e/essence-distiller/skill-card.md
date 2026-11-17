@@ -1,41 +1,54 @@
-## Description: <br>
-Find what actually matters in content: the ideas that survive rephrasing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find what actually matters in your content - the ideas that survive any rephrasing.
 
-## Publisher: <br>
-[leegitw](https://clawhub.ai/user/leegitw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leegitw](https://clawhub.ai/user/leegitw)
 
-## Use Case: <br>
-External users and knowledge workers use this skill to distill longer content into core principles, confidence levels, supporting evidence, and compression notes for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Input documents may contain confidential, regulated, or sensitive content that is processed by the agent's configured model provider. <br>
-Mitigation: Use only model provider and retention settings that are appropriate for the submitted content, and avoid submitting sensitive material otherwise. <br>
-Risk: Extracted principles are observations from the supplied content, not verified facts or final judgments. <br>
-Mitigation: Review outputs with human judgment and validate important principles against independent sources before relying on them. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to distill substantial text into core principles, supporting evidence, confidence levels, and concise next steps. It is intended for interpretation and clarity, not factual verification or authoritative judgment.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/leegitw/essence-distiller) <br>
-- [Project Homepage](https://github.com/live-neon/skills/tree/main/pbd/essence-distiller) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [Markdown prose with optional JSON structure] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No files, external tools, credentials, or persistence are requested by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill extracts patterns and principles from content but does not verify whether those principles are true.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs as interpretations and apply human judgment before relying on them for factual, legal, medical, business, or other consequential decisions.
+
+Risk: Distilled summaries can omit nuance from source material.
+
+Mitigation: Compare extracted principles against the provided supporting evidence and source content before reusing or publishing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leegitw/skills/essence-distiller)
+- [Project homepage](https://github.com/live-neon/skills/tree/main/pbd/essence-distiller)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Markdown with optional JSON structure for extracted principles, confidence, evidence, metadata, and next steps.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are interpretive distillations of user-provided content and may include normalized principle statements, confidence labels, source evidence snippets, compression ratio, source hash, and validation-oriented next steps.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release; artifact frontmatter remains 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

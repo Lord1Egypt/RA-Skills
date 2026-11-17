@@ -1,39 +1,53 @@
-## Description: <br>
-Browse Bring! shopping app recipe inspirations, including recipe names, authors, types, images, links, tags, filters, and JSON output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browse Bring! recipe inspirations, recipe metadata, images, links, and tags from the CLI, with JSON output for scripting.
 
-## Publisher: <br>
-[darkdevelopers](https://clawhub.ai/user/darkdevelopers) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[darkdevelopers](https://clawhub.ai/user/darkdevelopers)
 
-## Use Case: <br>
-External users and developers with Bring! credentials use this skill to discover recipe inspirations, inspect recipe metadata, filter by all or mine tags, and produce JSON for scripting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Bring! account credentials are required via environment variables and could be exposed in shared shells, profiles, CI logs, or command history. <br>
-Mitigation: Use trusted local shells, avoid storing the password in shared profiles or CI, unset credentials when finished, and rotate the password if exposure is suspected. <br>
-Risk: The Bring! Inspirations API returns recipe metadata only, so the skill cannot provide ingredient lists or manage shopping lists directly. <br>
-Mitigation: Use the skill for recipe discovery and metadata review only, then verify recipe details before manually adding items elsewhere. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/darkdevelopers/bring-recipes) <br>
+## Use Case:
 
+External Bring! users and developers use this skill to discover recipe inspirations, inspect recipe metadata, filter all or personal recipes, and obtain JSON output for scripting.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and optional JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18+ and Bring! account credentials; recipe browsing is metadata-only.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires Bring account credentials, including a password, for recipe browsing.
+
+Mitigation: Set BRING_EMAIL and BRING_PASSWORD only for the current terminal session, avoid committing them to files, and do not store the password in shared shell profiles or logs.
+
+Risk: Users may expect ingredient lists or shopping-list changes that the Bring! Inspirations API does not provide.
+
+Mitigation: Use the skill only for browsing recipe metadata and manually add needed items to a shopping list.
+
+## Reference(s):
+
+- [Bring Recipes on ClawHub](https://clawhub.ai/darkdevelopers/skills/bring-recipes)
+- [darkdevelopers ClawHub profile](https://clawhub.ai/user/darkdevelopers)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Browse-only; recipe ingredient lists are not provided by the Bring! Inspirations API.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

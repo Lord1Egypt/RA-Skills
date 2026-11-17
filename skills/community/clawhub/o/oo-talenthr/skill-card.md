@@ -1,44 +1,56 @@
-## Description: <br>
-TalentHR (talenthr.io). Use this skill for ANY TalentHR request: searching, reading data, and changing an employee role through the OOMOL TalentHR connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use TalentHR through an OOMOL-connected account to change an employee's user role.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Employees and HR operators use this skill to route TalentHR requests through an OOMOL-connected account, including schema-checked execution of the employee role change action. The skill requires explicit confirmation before state-changing actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence flags a mismatch between the skill's read/search-oriented description and its role-changing TalentHR action. <br>
-Mitigation: Review before installing and require explicit confirmation of the employee, new role, and business reason before running the role change action. <br>
-Risk: The skill requires sensitive connected-account credentials to operate TalentHR through OOMOL. <br>
-Mitigation: Use only with an intentionally connected OOMOL account and avoid exposing raw credentials in prompts, files, or command output. <br>
+## Use Case:
 
+HR staff and administrators use this skill to change an employee's TalentHR role through their connected account. Confirm the employee and intended role before making the change.
 
-## Reference(s): <br>
-- [ClawHub TalentHR skill listing](https://clawhub.ai/oomol/oo-talenthr) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
-- [TalentHR homepage](https://www.talenthr.io/) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance, JSON] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before action execution; state-changing payloads require user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: Setup guidance includes downloaded CLI installation commands, and the installer and hosted connector were not verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install the CLI separately; avoid the automatic download-and-execute fallback. Check whether OO_SKILLS_SYNC_DISABLED is appropriate using the oo CLI command reference.
+
+Risk: Changing an employee role can alter account access.
+
+Mitigation: Confirm the employee and intended role with the user before every change.
+
+## Reference(s):
+
+- [TalentHR API documentation](https://apidocs.talenthr.io/)
+- [oo CLI command reference](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+- [TalentHR homepage](https://www.talenthr.io/)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [JSON connector responses and shell command instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Role changes require confirmation of the employee and intended role before execution.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

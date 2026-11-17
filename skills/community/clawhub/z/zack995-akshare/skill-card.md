@@ -1,43 +1,55 @@
-## Description: <br>
-Use AKShare for Chinese market and macro-finance data via Python. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AKShare helps agents fetch and summarize Chinese market and macro-finance data through a local Python environment.
 
-## Publisher: <br>
-[Zack995](https://clawhub.ai/user/Zack995) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zack995](https://clawhub.ai/user/zack995)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to bootstrap an AKShare Python environment, run targeted public-market and macro-finance queries, and summarize the returned data for Chinese equities, funds, indexes, rates, bonds, commodities, futures, and related datasets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The query helper can run arbitrary Python code if it receives a dangerous expression. <br>
-Mitigation: Run only trusted expressions, avoid expressions copied from untrusted sources, and prefer a sandboxed environment or a future version with explicit validated AKShare commands. <br>
-Risk: AKShare endpoints depend on public upstream data sources that may change or become temporarily unavailable. <br>
-Mitigation: Start with narrow queries, report the AKShare method and date range used, and treat endpoint failures or partial results as non-authoritative. <br>
+## Use Case:
 
+Developers and analysts use this skill to bootstrap AKShare and run focused public-market data queries for Chinese equities, funds, macro indicators, rates, bonds, futures, commodities, and related financial datasets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Zack995/zack995-akshare) <br>
-- [Publisher profile](https://clawhub.ai/user/Zack995) <br>
-- [Homepage from metadata](https://github.com/Zack995) <br>
-- [Common AKShare recipes](references/common-recipes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown guidance with inline shell commands; helper output may be CSV, JSON, or text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The helper prints a limited preview of tabular results by default and can be configured with --max-rows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The query helper can execute arbitrary Python expressions on the user's machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted expressions, keep prompts and market-data text out of the expression path, and prefer an allowlisted AKShare function dispatcher for higher-risk environments.
+
+Risk: The bootstrap script installs the latest AKShare package without pinned dependency versions.
+
+Mitigation: Review the environment before deployment and pin package versions when reproducibility or change control is required.
+
+## Reference(s):
+
+- [AKShare common recipes](references/common-recipes.md)
+- [Publisher homepage](https://github.com/Zack995)
+- [ClawHub skill page](https://clawhub.ai/zack995/skills/zack995-akshare)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, Python expressions, and summarized tabular data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return CSV or JSON snippets from AKShare queries, usually truncated to a small number of rows.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-Novai360 跨境电商智能分析 provides AI-assisted cross-border ecommerce market, product, competition, financial, and brand go-to-market analysis using NOVAI360 market data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides NOVAI360-powered cross-border e-commerce analysis for market opportunities, product evaluation, competitor analysis, financial feasibility, and brand expansion planning.
 
-## Publisher: <br>
-[chopinau](https://clawhub.ai/user/chopinau) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chopinau](https://clawhub.ai/user/chopinau)
 
-## Use Case: <br>
-External sellers, ecommerce operators, and market analysts use this skill to ask product, ASIN, keyword, or market questions and receive ecommerce opportunity, competition, product, finance, and brand expansion analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user prompts and surrounding agent context to a remote NOVAI360 or configured custom endpoint without clear documented transmission limits. <br>
-Mitigation: Use only when market questions, product ideas, and surrounding context are appropriate to share with that endpoint; avoid confidential plans, customer data, credentials, private messages, and sensitive identifiers. <br>
-Risk: The security verdict is suspicious because the remote API behavior is purpose-aligned but not fully disclosed. <br>
-Mitigation: Review the publisher documentation and configured endpoint before installing, and keep conversations scoped to non-sensitive ecommerce analysis tasks. <br>
+## Use Case:
 
+External ClawHub users and e-commerce operators use this skill to ask market, product, competitive, financial, and brand-expansion questions and receive AI analysis backed by NOVAI360 market data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chopinau/amazonasinanalysis) <br>
-- [Publisher profile](https://clawhub.ai/user/chopinau) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [JSON-like response object containing success status, analysis text, and optional intent or market data fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return structured error messages when the remote analysis request fails.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The security review says the skill sends the full execution context to NOVAI360 or the configured NOVAI360_API_URL without clear disclosure or minimization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive market questions unless the publisher documents transmitted fields and the configured API origin has been validated.
+
+Risk: The configured NOVAI360_API_URL can redirect requests to a custom remote API.
+
+Mitigation: Keep the default endpoint unless there is an approved and reviewed alternative endpoint.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chopinau/skills/amazonasinanalysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Natural-language analysis report, with optional structured intent and data returned by the remote API]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include market, product, competition, finance, and brand strategy analysis.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

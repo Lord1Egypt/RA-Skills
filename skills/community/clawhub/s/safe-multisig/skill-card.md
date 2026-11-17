@@ -1,45 +1,60 @@
-## Description: <br>
-Propose, confirm, and execute Safe multisig transactions using the Safe{Core} SDK (protocol-kit v6 / api-kit v4). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Propose, confirm, and execute Safe multisig transactions using the Safe{Core} SDK and TypeScript CLI scripts.
 
-## Publisher: <br>
-[openclaw-consensus-bot](https://clawhub.ai/user/openclaw-consensus-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[openclaw-consensus-bot](https://clawhub.ai/user/openclaw-consensus-bot)
 
-## Use Case: <br>
-Developers and operators use this skill to manage Safe smart accounts from an agent-assisted CLI workflow, including Safe creation, state lookup, pending transaction review, proposal, approval, and on-chain execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: This skill can propose, approve, deploy, or execute Safe transactions and can therefore affect funds or permissions. <br>
-Mitigation: Use a low-privilege signer where possible and independently verify the Safe address, chain, nonce, transaction hash, RPC URL, and transaction JSON before signing or execution. <br>
-Risk: Signer private keys are required for proposal, approval, deployment, or execution workflows. <br>
-Mitigation: Keep private keys out of chat and provide them only through intentional local environment or file-based secret handling. <br>
-Risk: An unintended transaction file or chain setting could cause the agent to operate on the wrong transaction or network. <br>
-Mitigation: Pass only transaction files you intentionally selected and confirm the chain slug or transaction service URL before running a command. <br>
+## Use Case:
 
+Developers and operators use this skill to create or inspect Safe smart accounts, list pending transactions, and propose, approve, or execute multisig transactions across supported EVM chains.
 
-## Reference(s): <br>
-- [Safe Multisig Skill on ClawHub](https://clawhub.ai/openclaw-consensus-bot/safe-multisig) <br>
-- [Examples](references/examples.md) <br>
-- [SafeTxRequest schema](references/tx_request.schema.json) <br>
-- [Safe Transaction Service chain slugs](references/tx_service_slugs.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scripts validate addresses, transaction hashes, chain slugs, transaction files, and API key format before performing Safe operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: package.json and server release evidence) <br>
+Risk: The skill handles Safe owner keys and signatures for actions that can deploy accounts, approve transactions, or execute on-chain transactions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start with testnet or low-privilege signer keys, verify the Safe address, chain ID, RPC endpoint, nonce, and transaction contents before signing, approving, deploying, or executing.
+
+Risk: The skill can send transaction data and confirmations to a configured transaction service URL.
+
+Mitigation: Prefer official Safe Transaction Service URLs and only use --tx-service-url when the endpoint is controlled and trusted.
+
+Risk: Dependencies are installed and executed locally before sensitive wallet operations.
+
+Mitigation: Install or update dependencies using an immutable lockfile workflow and review the package lock before running signing or execution commands.
+
+## Reference(s):
+
+- [Examples](references/examples.md)
+- [SafeTxRequest Schema](references/tx_request.schema.json)
+- [Safe Transaction Service Chain Slugs](references/tx_service_slugs.md)
+- [Example Transaction Request](references/example.tx.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON request files, and JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CLI operations may read Safe state, submit signatures to a transaction service, deploy Safes, or execute on-chain transactions.]
+
+## Skill Version(s):
+
+2.1.0 (source: release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

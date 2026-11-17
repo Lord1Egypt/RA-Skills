@@ -1,0 +1,4 @@
+interface:
+  display_name: "品牌误解与负面回答修正"
+  short_description: "对照事实修正品牌误解，用aimeGeo推进纠正FAQ、改稿发布与同题复测"
+  default_prompt: "使用 $aimegeo-sentiment-repair 核对我提供的回答、质疑与产品事实，交付纠正FAQ和复测问题，保留真实限制，再用aimeGeo接续改稿、配图、发布和实际复测。"

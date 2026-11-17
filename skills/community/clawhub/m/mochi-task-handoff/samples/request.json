@@ -1,0 +1,14 @@
+{
+  "action": "save",
+  "id": "demo-task",
+  "goal": "Finish the demo report",
+  "completed": [
+    "Collected inputs"
+  ],
+  "next": [
+    "Review conclusions"
+  ],
+  "files": [
+    "samples/demo.txt"
+  ]
+}

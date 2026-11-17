@@ -1,48 +1,59 @@
-## Description: <br>
-Generate accurate Volcengine SDK examples by locating an API with the bundled local ranker, fetching its API Explorer swagger, and calling api/common/explorer/make-code with user-provided Params. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate accurate Volcengine SDK examples by locating an API through API Explorer search, fetching its swagger, and calling api/common/explorer/make-code with user-provided Params.
 
-## Publisher: <br>
-[volc-sdk-team](https://clawhub.ai/user/volc-sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volc-sdk-team](https://clawhub.ai/user/volc-sdk-team)
 
-## Use Case: <br>
-Developers and engineers use this skill to generate Volcengine SDK examples and configuration guidance for Python, Go, Java, PHP, cURL, and Node.js API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API queries and user Params are sent to Volcengine services. <br>
-Mitigation: Avoid pasting real secrets unless sharing them with Volcengine is intended; prefer environment variables, temporary credentials, and least-privilege accounts. <br>
-Risk: Broad aliases or ambiguous requests can lead to generated code for destructive, security-sensitive, or account-level cloud API actions. <br>
-Mitigation: Verify the selected service, API action, region, and Params before running generated code, especially for create, delete, security, and account operations. <br>
-Risk: Some reference examples disable or weaken transport security. <br>
-Mitigation: Do not copy SSL-disabling or HTTP examples into production; keep TLS verification enabled unless there is a reviewed exception. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate Volcengine API SDK call examples and related SDK configuration guidance for Python, Go, Java, PHP, cURL, and Node.js.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/volc-sdk-team/skills/volcengine-sdk-generator) <br>
-- [Query aliases](references/query_aliases.json) <br>
-- [Go SDK integration reference](references/sdk-integration-go.md) <br>
-- [Java SDK integration reference](references/sdk-integration-java.md) <br>
-- [Node.js SDK integration reference](references/sdk-integration-nodejs.md) <br>
-- [PHP SDK integration reference](references/sdk-integration-php.md) <br>
-- [Python SDK integration reference](references/sdk-integration-python.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with generated SDK code blocks and concise guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include mocked required top-level parameters when the user omits them; generated examples should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: The skill includes copy-ready SDK configuration examples that disable TLS or certificate verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep HTTPS and certificate verification enabled, and use disable-SSL or verify-false settings only in tightly controlled test scenarios.
+
+Risk: User-supplied API Params are sent to Volcengine API Explorer during code generation.
+
+Mitigation: Do not include secrets or sensitive production data in Params passed to the skill.
+
+## Reference(s):
+
+- [Volcengine SDK Generator Skill](https://clawhub.ai/volc-sdk-team/skills/volcengine-sdk-generator)
+- [Volcengine API Explorer common API](https://api.volcengine.com/api/common)
+- [Go SDK Integration Reference](references/sdk-integration-go.md)
+- [Python SDK Integration Reference](references/sdk-integration-python.md)
+- [Java SDK Integration Reference](references/sdk-integration-java.md)
+- [Node.js SDK Integration Reference](references/sdk-integration-nodejs.md)
+- [PHP SDK Integration Reference](references/sdk-integration-php.md)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with SDK code blocks and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include mocked required top-level API parameters when the user omits them; user-supplied Params are sent to Volcengine API Explorer.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

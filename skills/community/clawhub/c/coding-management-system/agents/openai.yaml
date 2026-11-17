@@ -1,0 +1,4 @@
+interface:
+  display_name: "CMS Project Governance"
+  short_description: "Align goals and authorize compact agent work"
+  default_prompt: "Use $cms-project-governance to clarify the intended outcome, bootstrap legacy CMS state without reading all history, classify delivery evidence, size the work, authorize bounded autonomy and isolated workers, check alignment, and preserve independent final QA."

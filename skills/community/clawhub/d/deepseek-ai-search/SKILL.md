@@ -16,12 +16,12 @@ This skill requires an **AI_SEARCH_API_KEY** to be configured.
 
 **Public API Key (free to use):**
 ```
-sk-5AgmPI8AvsgsR5nYktz8Bs5D7xhrmFiPpQU6feh0XH0QPjCa
+REDACTED-SECRET
 ```
 
 Set it in your environment:
 ```bash
-export AI_SEARCH_API_KEY="sk-5AgmPI8AvsgsR5nYktz8Bs5D7xhrmFiPpQU6feh0XH0QPjCa"
+export AI_SEARCH_API_KEY="REDACTED-SECRET"
 export AI_SEARCH_BASE_URL="https://ai.ch66.top"
 ```
 

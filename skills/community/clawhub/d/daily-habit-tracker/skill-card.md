@@ -1,41 +1,49 @@
-## Description: <br>
-Build and track daily habits with accountability systems and progress visualization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and track daily habits with accountability systems and progress visualization.
 
-## Publisher: <br>
-[huajianjiu000](https://clawhub.ai/user/huajianjiu000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huajianjiu000](https://clawhub.ai/user/huajianjiu000)
 
-## Use Case: <br>
-External users use this skill to design measurable daily habits, log check-ins, review streaks and trends, and create accountability structures for habit formation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may enter sensitive medical, financial, or private details while tracking personal habits. <br>
-Mitigation: Avoid collecting sensitive details and keep habit notes limited to information needed for personal productivity tracking. <br>
-Risk: Accountability contracts may encourage punitive or irreversible consequences. <br>
-Mitigation: Use mild, reversible, non-punitive accountability consequences. <br>
+## Use Case:
 
+External users can use this skill to design habit systems, create daily and weekly tracking templates, review progress patterns, and define accountability routines for personal productivity and wellness goals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huajianjiu000/daily-habit-tracker) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/huajianjiu000) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown habit plans, trackers, checklists, tables, and review templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only productivity guidance; no executable code or install-time behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Cold-shower or cold-exposure habit suggestions may be unsafe for some users.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat cold exposure as optional, avoid it when health risks may apply, and seek medical advice for cardiovascular, blood pressure, respiratory, neurological, or similar concerns.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huajianjiu000/skills/daily-habit-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with habit plans, tracking templates, review checklists, tables, and progress summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable guidance; no API keys, tool calls, or shell commands are required.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

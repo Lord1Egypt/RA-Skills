@@ -1,42 +1,53 @@
-## Description: <br>
-Automated form generation from roadflow.rf_form with similarity-based copying for HTML templates, dynamic forms, client-side validation, and multi-step wizard forms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates HTML form creation from roadflow.rf_form using similarity matching, with support for client validation, multi-step wizards, and conditional fields.
 
-## Publisher: <br>
-[ericyang1234](https://clawhub.ai/user/ericyang1234) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ericyang1234](https://clawhub.ai/user/ericyang1234)
 
-## Use Case: <br>
-Developers and engineers use this skill to generate accessible, responsive HTML forms, JSON-backed form definitions, client-side validation logic, and RoadFlow rf_form-based form variants from existing similar forms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact exposes a database password and database connection details. <br>
-Mitigation: Remove the exposed secret, rotate the password before any use, move credentials to secure runtime configuration, and use a least-privilege database account. <br>
-Risk: The skill describes writing generated forms into roadflow.rf_form. <br>
-Mitigation: Require explicit user confirmation and human review before any insert or update, especially when operating against a real RoadFlow database. <br>
-Risk: Generated client-side validators can improve usability but are not sufficient for security-sensitive validation. <br>
-Mitigation: Enforce equivalent server-side validation for submitted form data, uploaded files, and authorization-dependent fields. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate HTML forms, validation behavior, wizard flows, and related form configuration from field definitions, JSON schema, or similar RoadFlow form records.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ericyang1234/form-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with HTML, JavaScript, and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include similarity match summaries and generated form configuration for RoadFlow rf_form workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: package.json and server release metadata) <br>
+Risk: The release publishes PostgreSQL credentials for a RoadFlow database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the published password as compromised, rotate it, and use dedicated least-privilege credentials from a secret manager or environment variables.
+
+Risk: The skill describes creating new records in roadflow.rf_form without clear safeguards.
+
+Mitigation: Require a dry run, explicit confirmation, and review of generated form content before any database write.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ericyang1234/skills/form-builder)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown or text containing HTML, JavaScript, JSON configuration, and implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include similarity match summaries, generated form markup, field JSON, validation code, and database write guidance.]
+
+## Skill Version(s):
+
+2.0.0 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

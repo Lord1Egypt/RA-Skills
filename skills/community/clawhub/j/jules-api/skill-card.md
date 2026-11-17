@@ -1,43 +1,57 @@
-## Description: <br>
-Create and manage Google Jules AI coding sessions via the Jules REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage Google Jules AI coding sessions via the Jules REST API. Start tasks, monitor progress, approve plans, send messages, list sources/repos, and retrieve session activities/artifacts.
 
-## Publisher: <br>
-[arthbhalodiya](https://clawhub.ai/user/arthbhalodiya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[arthbhalodiya](https://clawhub.ai/user/arthbhalodiya)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to start, monitor, guide, and inspect Google Jules coding sessions against connected GitHub repositories. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Jules API key tied to connected GitHub repositories and can initiate coding sessions that change repository content. <br>
-Mitigation: Install only when this access is intended, keep the API key scoped and protected, and review generated plans and diffs before accepting changes. <br>
-Risk: AUTO_CREATE_PR can allow autonomous pull request creation after a session completes. <br>
-Mitigation: Use AUTO_CREATE_PR only for repositories and tasks where autonomous PR creation is acceptable; prefer plan approval for important repositories. <br>
-Risk: Deleting or messaging the wrong session could affect an unrelated Jules task. <br>
-Mitigation: Verify session IDs before destructive actions or follow-up messages. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Google Jules API Reference](https://jules.google/docs/api/reference/) <br>
-- [Google Jules](https://jules.google) <br>
-- [ClawHub Skill Page](https://clawhub.ai/arthbhalodiya/jules-api) <br>
+## Use Case:
 
+Developers and engineers use this skill to create, monitor, guide, and retrieve results from Google Jules coding sessions connected to GitHub repositories.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses JULES_API_KEY and curl to call the Jules REST API; jq is used by the helper script for JSON construction and optional formatting.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can start autonomous coding work against repositories connected to the user's Jules account.
+
+Mitigation: Use plan approval for normal workflows, review prompts and target branches before creating sessions, and avoid auto-PR mode unless it is explicitly needed.
+
+Risk: The skill requires a Jules API key that may grant access to repository operations in connected sources.
+
+Mitigation: Install only for accounts and repositories where this access is intended, and keep the API key in the JULES_API_KEY environment variable rather than hard-coding it.
+
+Risk: The helper script can delete remote Jules sessions without an additional confirmation step.
+
+Mitigation: Check the session ID and current task state before using the delete command.
+
+## Reference(s):
+
+- [Jules API reference](https://jules.google/docs/api/reference/)
+- [Jules](https://jules.google)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the JULES_API_KEY environment variable and curl; helper script output is JSON when API calls succeed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

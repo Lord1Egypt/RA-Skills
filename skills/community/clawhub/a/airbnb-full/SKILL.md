@@ -1,141 +1,187 @@
 ---
 name: airbnb-full
-version: 1.0.1
-description: Complete Airbnb stay data toolkit via StayingAPI.com — id/URL/address lookup, sub-resources, listing search with presets, async batch jobs, job polling, webhook management, and account/usage. Plus the hosted MCP server's five tools.
+description: "Complete Airbnb toolkit — search, availability, listing detail, price, cross-OTA price comparison and reviews, all in one unified schema. Install this when an agent needs broad Airbnb coverage. Powered by StayingAPI."
+version: "1.0.0"
 license: MIT-0
-author: Staying API
+author: StayingAPI
 homepage: https://stayingapi.com
-repository: https://github.com/nikhonit/airbnb-skills
-tags:
-  - airbnb
-  - short-term-rental
-  - vacation-rental
-  - listings
-  - reviews
-  - batch
-  - webhooks
-  - api
-  - mcp
-metadata:
-  openclaw:
-    primaryEnv: STAYINGAPI_KEY
-    homepage: https://stayingapi.com
-    requires:
-      env:
-        - STAYINGAPI_KEY
+repository: https://github.com/stayingapi/airbnb-skills
+user-invocable: true
+compatibility: Requires internet access to reach api.stayingapi.com. No additional runtimes or dependencies needed.
+required_environment_variables:
+  - name: STAYINGAPI_KEY
+    prompt: Your StayingAPI key (starts with stay_)
+    help: Free key at https://stayingapi.com/signup — no card. A stay_test_ sandbox key returns fixtures at zero cost.
+    required_for: all API requests
+tags: ["airbnb", "airbnb-api", "search", "availability", "reviews", "price-comparison", "travel", "accommodation"]
+metadata: {"openclaw":{"emoji":"🧰","requires":{"env":["STAYINGAPI_KEY"]},"primaryEnv":"STAYINGAPI_KEY","homepage":"https://stayingapi.com"},"hermes":{"tags":["airbnb","airbnb-api","search","availability","reviews","price-comparison","travel","accommodation"],"category":"integrations"}}
 ---
 
-# airbnb-full
+# Airbnb — complete toolkit
 
-Complete Airbnb stay data toolkit via StayingAPI.com. Use when the user **explicitly asks** about an Airbnb listing, its price, reviews or availability, listings to book in a place, or bulk/automated stay-data jobs.
+The everything skill for Airbnb: search, availability, listing detail, price, cross-OTA price comparison and reviews — one key, one schema. Install the focused skills instead when you want a minimal tool surface.
+
+## Setup
+
+If `$STAYINGAPI_KEY` is not set, read [references/auth-setup.md](references/auth-setup.md) and follow it to get and store the key. A `stay_test_` sandbox key works for evaluation at zero cost.
 
 ## When to use this skill
 
-Each tool call consumes Staying API credits, so this skill activates only when the user's request is genuinely about Airbnb stay data — not when a listing link or place name merely appears in passing.
+**DO use when the user asks:**
 
-**DO use when the user:**
-
-- Pastes an Airbnb URL and asks about that listing → `lookup_stay_by_url`
-- Gives a listing id or address and asks about the place, its reviews, or availability → `lookup_stay_by_id` / `lookup_stay_by_address`
-- Asks for a specific facet (photos, reviews, host, amenities, availability, pricing, location, rating) → `get_stay_*`
-- Asks to find stays matching criteria (location, dates, price, beds, capacity) → `search_stays` (or `search_superhost` / `search_instant_book` / `search_luxury`)
-- Wants to resolve many listings at once → `batch_stays`
-- Wants to be notified when an async job finishes → `create_webhook`
-- Asks about their credit balance or usage → `get_account` / `get_usage`
+- Any Airbnb data task — the agent picks the right call
 
 **Do NOT use when:**
 
-- An Airbnb link or address appears incidentally (email signatures, news articles, unrelated content)
-- The user is discussing travel abstractly without asking for data on a specific listing or search
-- The user has not signaled they want a lookup
+- You want the smallest possible tool surface — install a focused skill
 
-When intent is ambiguous, ask the user to confirm before calling a tool. These tools cost credits and return large records.
+## Required headers
+
+Every request needs:
+
+- **Authorization:** `Bearer $STAYINGAPI_KEY`
+- **User-Agent:** your agent's name (e.g. `ClaudeCode/1.0`).
+
+Base URL: `https://api.stayingapi.com/v1`.
 
 ## Tools
 
-All tools return a Python dict — the API response on success, or `{"error": ..., "detail": ...}` on failure. The `get_stay_*` sub-resource tools accept `stay_id` (cheapest), `url`, or `address`.
+### `GET /v1/search`
 
-### Lookup
+Discover properties matching a location, dates, occupancy and filters across one or more platforms. Results from every requested platform are normalized to the same Property shape and merged into a single, cursor-paginated list. This is the breadth / funnel endpoint — and the clearest demonstration of "one schema, every platform".
 
-- **`lookup_stay_by_id(stay_id, fields=None)`** — 1 credit. Full canonical `Stay` record.
-- **`lookup_stay_by_url(url, fields=None)`** — 1 credit. Same, from an `airbnb.com/rooms/<id>` URL.
-- **`lookup_stay_by_address(address, fields=None)`** — 3 credits. Resolve from a street address.
+Key parameters:
+- `location` — **Required.** Place name ("Split, HR") or "lat,lng".
+- `checkIn` — YYYY-MM-DD; required if checkOut given; not in the past.
+- `checkOut` — YYYY-MM-DD; required if checkIn given; must be after checkIn.
+- `adults` — ≥ 1.
+- `children` — ≥ 0.
+- `childAges[]` — Length must equal children. Coarsened for Vrbo/Airbnb.
+- `platforms[]` — Drives fan-out + per-platform billing.
 
-### Sub-resources (1 credit each)
+### `GET /v1/availability`
 
-- **`get_stay_photos(...)`** — photo gallery
-- **`get_stay_reviews(...)`** — reviews + rating breakdown
-- **`get_stay_host(...)`** — host profile
-- **`get_stay_amenities(...)`** — amenities by category
-- **`get_stay_availability(...)`** — 12-month availability calendar
-- **`get_stay_pricing(...)`** — nightly rate, fees, currency
-- **`get_stay_location(...)`** — coordinates and address
-- **`get_stay_rating(...)`** — star rating and review-count summary
+Get day-by-day availability for a known listing (or a batch of listings) on one platform over a date window. Each day reports whether it is available, its minimum-night requirement, and whether check-in / check-out / booking is allowed.
 
-### Search
+Key parameters:
+- `platform` — **Required.** vrbo | booking | airbnb | google. Single platform (not a fan-out endpoint). Use the API value, not the brand name — "booking", not "booking-com"; "google", not "google-hotels".
+- `listingId` — A single listing id on platform.
+- `listingIds[]` — A batch of listing ids on platform.
+- `url` — Full listing URL (alternative to an id).
+- `startDate` — **Required.** YYYY-MM-DD; not in the past.
+- `endDate` — **Required.** After startDate; window ≤ 365 days.
 
-- **`search_stays(location=None, search_urls=None, check_in=None, check_out=None, price_min=None, price_max=None, min_beds=None, min_bedrooms=None, min_bathrooms=None, adults=None, children=None, infants=None, pets=None, currency=None, locale=None, max_items=50, fields=None)`** — 1 credit per result, `max_items` up to 240.
-- **`search_superhost(...)` / `search_instant_book(...)` / `search_luxury(...)`** — same filters, preset segments.
-- **`search_stays_with_details(...)`** — async; returns a job envelope (poll with `get_job` / `get_job_results`).
+### `GET /v1/listing/{platform}/{id}`
 
-### Batch + jobs
+Full normalized detail for one listing: amenities (canonical taxonomy), photos, host, geo, ratings, and — when you pass dates — an embedded live price. The detail body is cached 24 h; any embedded live price is cached at the 1 h price TTL and composed at read time, so a stale price never rides on fresh detail.
 
-- **`batch_stays(targets, webhook_id=None)`** — async. `targets` is a list of ids, URLs, and/or addresses (up to 500). Returns a job envelope.
-- **`list_jobs(status=None, type=None, since=None, limit=50, offset=0)`** — list async jobs.
-- **`get_job(job_id)`** — job status.
-- **`get_job_results(job_id, limit=50, offset=0, format="json")`** — paginated results (`json` | `csv` | `ndjson`).
+Key parameters:
+- `platform` — **Required.** vrbo | booking | airbnb | google.
+- `id` — **Required.** Platform-native listing id (case-sensitive, verbatim from source). A bare booking.com slug needs a country — without one it returns 400 needs_country (booking slugs are not globally unique).
+- `country` — ISO-3166 alpha-2 (booking). Disambiguates a bare booking slug without the %2F-encoded /hotel/{cc}/{slug} id — e.g. ?country=co.
+- `checkIn` — Pairs with checkOut; presence embeds a best-effort live price (may be null; the call still bills).
+- `checkOut` — Must be after checkIn.
+- `adults` — ≥ 1 (only used with dates).
 
-### Webhooks
+### `GET /v1/price`
 
-- **`create_webhook(url, events, description=None)`** — `events` from: `job.queued`, `job.running`, `job.succeeded`, `job.failed`, `stay.cached`. Deliveries are HMAC-signed.
-- **`list_webhooks()`** · **`get_webhook(webhook_id)`** · **`delete_webhook(webhook_id)`** · **`get_webhook_deliveries(webhook_id)`**
+Quote one listing for specific dates and occupancy. Pass the platform-native platformListingId returned by /v1/search — numeric on Airbnb and Vrbo, a slug string on Booking.com and Google (e.g. "abramovic2") — or a full listing URL. On a live key the response is always a real numeric price or a typed error — never a wrong property's price. Note this guarantee covers live calls: sandbox (stay_test_) responses are canned fixtures and may echo a different listing, dates or occupancy than you requested, so do not assert identity against a sandbox response.
 
-### Account
+Key parameters:
+- `platform` — **Required.** vrbo | booking | airbnb | google.
+- `listingId` — **Required.** Platform-native id from /v1/search platformListingId — numeric (Airbnb/Vrbo) or a slug string (Booking.com/Google). Or pass a url.
+- `checkIn` — **Required.** YYYY-MM-DD; not in the past.
+- `checkOut` — **Required.** Must be after checkIn.
+- `adults` — ≥ 1.
+- `children` — ≥ 0.
 
-- **`get_account()`** — account, plan, and credit balance (`GET /v1/me`).
-- **`get_usage(since=None, limit=50)`** — recent metered calls.
+### `GET /v1/price-compare`
 
-## Equivalent MCP tools
+Rate-shop one property in a single call, resolved through the Google Hotels backbone. The response carries the offers the backbone exposes for that property plus StayingAPI-computed min and median over those offers as first-class fields, so you can read the cheapest rate without re-deriving it. Coverage varies by property: some resolve to several OTA offers, others to a single aggregated-lowest offer (then offers has one entry, min equals median, and the entry may be a direct-supplier rate rather than an OTA). Read offers.length before presenting a result as a multi-platform comparison — the schema does not guarantee more than one.
 
-The hosted MCP server (`https://api.stayingapi.com/mcp`, streamable-HTTP, Bearer `sk_...` or OAuth 2.1 PKCE scope `mcp:access`) exposes five tools — an alternative to this skill: `lookup_stay_by_id`, `lookup_stay_by_url`, `search_stays`, `get_stay_photos`, `get_stay_reviews`.
+Key parameters:
+- `name` — Property name to resolve.
+- `googleHotelId` — Precise Google Hotels id.
+- `location` — Disambiguating place / "lat,lng".
+- `checkIn` — **Required.** YYYY-MM-DD; not in the past.
+- `checkOut` — **Required.** Must be after checkIn.
+- `adults` — ≥ 1.
 
-## Authentication
+### `GET /v1/reviews`
 
-Set `STAYINGAPI_KEY` to your Staying API key. Keys are `sk_...` strings.
+Normalized, paginated reviews for one listing on one platform. Native rating scales are preserved and echoed alongside each rating (TripAdvisor/Airbnb/Vrbo use 5; Booking.com/Expedia/Hotels.com use 10) — never silently rescaled.
 
-```bash
-export STAYINGAPI_KEY="sk_..."
-```
+Key parameters:
+- `platform` — **Required.** vrbo | booking | airbnb. Note google is NOT enabled for reviews (400 platform_not_enabled). Use the API value, not the brand name — "booking", not "booking-com".
+- `listingId` — Listing id on platform.
+- `url` — Full listing URL.
+- `limit` — 1–100.
+- `cursor` — Opaque base64 cursor.
+- `language` — ISO-639-1 filter.
 
-Get a free key with 100 credits at <https://stayingapi.com/app/keys> — no card required.
 
-## Pricing
+> Filter results to Airbnb by passing `platforms=airbnb` to the search call.
 
-| Plan | Price | Credits | Rate limit |
-|---|---|---|---|
-| Free | $0 | 100 (one-time) | 20/min |
-| Monthly | $5/mo | 400/month | 200/min |
-| Annual | $54/yr | 5,000/year | 300/min |
-| Enterprise | Custom | Custom | 1,500/min |
+## MCP (no key pasted into the agent)
 
-One credit per stay record returned. Search bills 1 credit per result; `by-address` and address batch entries weigh 3. Failed calls (`4xx`/`5xx`) do not consume credits. Credits roll forward and don't expire.
+On an MCP-capable runtime, connect `https://mcp.stayingapi.com/mcp` (OAuth 2.1 + PKCE) and use: `search_stays`, `check_availability`, `get_listing`, `get_price`, `compare_prices`, `get_reviews`.
 
-## Errors
+## Platform × endpoint support
 
-All functions return a Python dict. On success it contains the API response. On failure it contains an `error` key:
+Not every endpoint supports every platform. Verified:
 
-- `{"error": "auth", ...}` — `STAYINGAPI_KEY` is missing or invalid
-- `{"error": "HTTP 404", ...}` — listing or job not found
-- `{"error": "HTTP 429", ...}` — rate-limited; back off and retry
-- `{"error": "network", ...}` — DNS/connection failure
+| platform | search | availability | price | price-compare | listing | reviews |
+|---|---|---|---|---|---|---|
+| `airbnb` | yes | yes | yes | yes | yes | yes |
+| `booking` | yes | yes | yes | yes | yes | yes |
+| `vrbo` | yes | yes | yes | yes | yes | yes |
+| `google` | yes | yes | yes | yes | **no** | **no** |
 
-## API reference
+`GET /v1/listing/google/…` and `GET /v1/reviews?platform=google` return
+`400 platform_not_enabled` ("google is not enabled for this endpoint"). Use `booking`,
+`airbnb` or `vrbo` for listing detail and reviews; use `google` for search, price and
+cross-OTA price-compare.
 
-- OpenAPI spec: <https://stayingapi.com/openapi.json>
-- Hosted MCP server (alternative to this skill): <https://api.stayingapi.com/mcp>
-- MCP server card: <https://stayingapi.com/.well-known/mcp/server-card.json>
-- Quickstart: <https://stayingapi.com/quickstart/>
+## The cross-OTA advantage
+
+StayingAPI is **cross-platform**: Airbnb data comes back in the *same unified schema* as Booking.com, Vrbo and Google Hotels, so one integration covers them all. `/v1/price-compare` resolves a property through the Google Hotels backbone and returns the offers it exposes plus a StayingAPI-computed **min** and **median** over those offers, as first-class fields.
+
+> Coverage varies by property and by what the backbone returns: some properties come back with several OTA offers, others with a single aggregated-lowest offer (in which case `min` equals `median` and `offers` has one entry, sometimes a direct-supplier rate rather than an OTA). Read `offers.length` before describing a result as a multi-platform comparison.
+
+## Async & partial failures
+
+A live call that has to scrape returns `202` with `data.jobId`, `data.pollUrl` and
+`data.estimatedSeconds` (the `202` itself charges 0). Poll `GET /v1/jobs/{jobId}` (free)
+until `data.status` is TERMINAL — `completed` **or** `failed`.
+
+- **`completed`** → the payload is at `data.result` (the same schema the sync call returns;
+  `data` itself is just `{jobId, result, status}`). `meta` carries `partial`,
+  `platformResults[]` and `warnings[]`. A completed job may still return an **empty**
+  result (`data.result: []`) — the reason is in `meta.warnings[]` (e.g. `no_results`), and
+  empty results charge 0.
+- **`failed`** → HTTP is still **200**, not an HTTP error. The failure is nested at
+  `data.error` (`code`, `type`, `message`, `retryable`). Detect it with
+  `data.status === "failed"`, **not** a top-level `error`. `creditsCharged` is 0, and `meta`
+  carries only `{requestId, creditsCharged, platforms}` — do **not** read `partial`,
+  `platformResults` or `warnings` on a failed job.
+
+Pace your polling: honour the `Retry-After` header, back off between attempts, and cap the
+number of attempts. A tight loop hits `429 rate_limit_exceeded` (120 requests/minute).
+
+## Known limitations
+
+- **Pagination:** `limit`/`cursor` are accepted where documented, but availability depends on the endpoint and the upstream source — treat `meta.pagination` as authoritative and stop when `hasMore` is false or `nextCursor` is null.
+- **Externally-sourced ids:** a Vrbo id obtained somewhere other than `/v1/search` may not resolve upstream and can produce a failed job (`all_actors_failed`). Prefer ids from `/v1/search` (`platformListingId`).
+- **Platform gaps:** see the support matrix above — `google` has no listing or reviews endpoint.
+
+## Credits
+
+Number-free by design — **failed, empty and blocked calls are never billed**, and `stay_test_` sandbox calls are always free. Current costs: <https://stayingapi.com/pricing> · full contract: <https://api.stayingapi.com/openapi.json>.
 
 ## Trademark
 
-Staying API is an independent service and is not affiliated with, endorsed by, or sponsored by Airbnb, Inc. "Airbnb" is a registered trademark of Airbnb, Inc.
+StayingAPI is an independent service and is not affiliated with, endorsed by, or sponsored by Airbnb. Airbnb is a trademark of its respective owner.
+
+---
+
+**Get your free key → https://stayingapi.com/signup** · Docs: https://stayingapi.com/docs

@@ -1,41 +1,57 @@
-## Description: <br>
-Puddlefish gives agents curl-based guidance for registering with animalhouse.ai, adopting a duck named Puddlefish, checking status, and caring for it through the service API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill guides an agent through registering with animalhouse.ai, adopting a Duck named Puddlefish, and checking and caring for it through the service API.
 
-## Publisher: <br>
-[liveneon](https://clawhub.ai/user/liveneon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liveneon](https://clawhub.ai/user/liveneon)
 
-## Use Case: <br>
-External users and agent operators use this skill to adopt and care for a Puddlefish virtual pet on animalhouse.ai through documented API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow uses an animalhouse.ai service token and sends profile and pet-care data to that service. <br>
-Mitigation: Treat the ah_ token like a password, keep it out of logs, chats, screenshots, and repositories, and avoid entering sensitive personal, corporate, or regulated information. <br>
+## Use Case:
 
+Agents use this skill to create an animalhouse.ai account, adopt a virtual Duck, and manage its status and care actions using the documented API examples.
 
-## Reference(s): <br>
-- [Puddlefish on ClawHub](https://clawhub.ai/liveneon/puddlefish) <br>
-- [animalhouse.ai](https://animalhouse.ai) <br>
-- [Animal House Creatures](https://animalhouse.ai/creatures) <br>
-- [Animal House Graveyard](https://animalhouse.ai/graveyard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, API Calls] <br>
-**Output Format:** [Markdown with inline bash/curl code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes account registration, adoption, status, care, and endpoint guidance for a remote virtual pet service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Registration sends a username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the registration details before sending them and avoid including sensitive information.
+
+Risk: The virtual pet's hunger changes over time, and the documented experience includes permanent death.
+
+Mitigation: Understand the care cadence and accept the possibility of permanent loss before adopting.
+
+## Reference(s):
+
+- [Animalhouse website](https://animalhouse.ai)
+- [Animalhouse creatures](https://animalhouse.ai/creatures)
+- [Animalhouse graveyard](https://animalhouse.ai/graveyard)
+- [Project repository](https://github.com/geeks-accelerator/animal-house-ai-tamagotchi)
+- [ClawHub release page](https://clawhub.ai/liveneon/skills/puddlefish)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown with curl examples and endpoint/action tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instructions for registration, adoption, status checks, and care actions.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

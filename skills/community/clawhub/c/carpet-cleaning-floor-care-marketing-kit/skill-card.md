@@ -1,50 +1,63 @@
-## Description: <br>
-Generates marketing copy, service pages, review/referral messaging, digital ads, and B2B outreach templates for carpet cleaning and floor care businesses with built-in claim guardrails for certifications, equipment specs, and advertising compliance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates marketing copy and outreach systems for carpet cleaning and floor care businesses, including seasonal campaigns, service pages with schema, review and referral sequences, digital ads, and B2B outreach with compliance guardrails.
 
-## Publisher: <br>
-[gitflopez](https://clawhub.ai/user/gitflopez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gitflopez](https://clawhub.ai/user/gitflopez)
 
-## Use Case: <br>
-Marketing teams, agencies, and carpet cleaning or floor care operators use this skill to draft localized campaign assets, service-page copy, schema snippets, review requests, and outreach templates while preserving required business, certification, product, and consent checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing claims can be inaccurate or noncompliant if license numbers, certifications, EPA registration numbers, testimonials, consent status, or local advertising rules are wrong or missing. <br>
-Mitigation: Require human review before publication or outreach, and verify all business credentials, product registrations, testimonials, opt-out handling, and jurisdiction-specific advertising requirements against authoritative records. <br>
-Risk: Outreach templates could be misused for unsolicited or automated email or SMS campaigns. <br>
-Mitigation: Use the generated copy only with documented consent, working unsubscribe or STOP handling, and a human approval step before any messages are sent. <br>
-Risk: The artifact contains guidance about regulated or technical carpet-care claims that may vary by service scope, product, location, and customer facts. <br>
-Mitigation: Treat generated claims as drafts and confirm drying-time ranges, equipment specifications, fiber-care language, and health or allergen statements with qualified business staff before use. <br>
+## Use Case:
 
+Carpet cleaning and floor care business owners, operators, and marketing agencies use this skill to draft local marketing assets that reflect IICRC credentials, equipment details, service scope, and communication compliance requirements. It is intended for publication workflows where generated claims are reviewed against real licenses, certifications, sanitizer registrations, review counts, and customer consent records.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/gitflopez/carpet-cleaning-floor-care-marketing-kit) <br>
-- [README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Marketing plan](artifact/MARKETING.md) <br>
-- [Seasonal campaign and emergency hook prompt](artifact/prompts/01-lsa-gbp-hook.md) <br>
-- [Service pages and schema prompt](artifact/prompts/02-service-pages-schema.md) <br>
-- [Reputation and referral prompt](artifact/prompts/03-reputation-referral.md) <br>
-- [Digital ads and B2B outreach prompt](artifact/prompts/04-b2b-outreach-system.md) <br>
-- [Example output: Desert Fresh Carpet Care](artifact/example/desert_fresh_carpet_care_henderson.md) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown prompts and generated marketing assets, with JSON-LD code blocks where schema output is requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on user-supplied business details, certifications, equipment specifications, product registrations, review data, and commercial targets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Generated SMS, email, and outreach copy may conflict with consent, unsubscribe, or physical-address requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit all outreach before use; send SMS only with documented prior express written consent and include unsubscribe and physical-address footers where required.
+
+Risk: Generated marketing claims about drying time, sanitizer efficacy, certifications, review counts, insurance, or service scope may be inaccurate if placeholders or examples are published unchanged.
+
+Mitigation: Verify all factual claims against current business records, equipment specifications, EPA registration data, certifications, customer reviews, and insurance documentation before publishing.
+
+Risk: Example outputs are drafts and are not compliance-approved final copy.
+
+Mitigation: Treat examples and generated assets as starting points for professional review rather than as ready-to-publish legal or regulatory determinations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gitflopez/skills/carpet-cleaning-floor-care-marketing-kit)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+- [Seasonal Campaign + Emergency Hook prompt](artifact/prompts/01-lsa-gbp-hook.md)
+- [Service Pages + IICRC Compliance + JSON-LD Schema prompt](artifact/prompts/02-service-pages-schema.md)
+- [Reputation Engine + Referral System prompt](artifact/prompts/03-reputation-referral.md)
+- [Digital Ads + B2B Outreach System prompt](artifact/prompts/04-b2b-outreach-system.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown campaign and outreach drafts with JSON-LD/schema code blocks, ad copy, email/SMS templates, checklists, and proposal text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only outputs depend on user-supplied business credentials, equipment details, EPA registration data, review counts, and consent/compliance review before publication.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

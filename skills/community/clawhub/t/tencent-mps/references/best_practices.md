@@ -34,6 +34,7 @@
     - [18.2 任务状态查询](#182-任务状态查询)
     - [18.3 环境变量检查](#183-环境变量检查)
 19. [效果对比](#19-效果对比-mps_gen_comparepy)
+20. [套图生成](#20-套图生成-mps_image_poster_suitepy)
 
 ---
 
@@ -191,7 +192,7 @@
 
 ## 7. 图片换装 (`mps_image_tryon.py`)
 
-**核心能力**：图片换装、AI 试衣、服装替换、模特换装、虚拟试穿。普通场景支持 1-2 张服装图；内衣场景（`--schedule-id 30101`）仅支持 1 张服装图。支持 URL、COS key、本地文件三种输入方式。
+**核心能力**：图片换装、AI 试衣、服装替换、模特换装、虚拟试穿。普通场景支持 1-2 张服装图；内衣场景需用 `--prompt` 说明品类且仅支持 1 张服装图。支持 URL、COS key、本地文件三种输入方式（本地文件通过 `--model-local` / `--cloth-local` 传入，脚本自动上传 COS）。
 
 **典型场景**：
 
@@ -202,13 +203,13 @@
 3. 这是服装供应链的平铺白底图，帮我合成到标准模特身上生成主图。
    → `python3 scripts/mps_image_tryon.py --model-url <模特图URL> --cloth-url <平铺图URL>`
 4. 我们是内衣品牌，要做虚拟试穿，只替换上装内衣一件即可。
-   → `python3 scripts/mps_image_tryon.py --model-url <模特图URL> --cloth-url <内衣图URL> --schedule-id 30101`
+   → `python3 scripts/mps_image_tryon.py --model-url <模特图URL> --cloth-url <内衣图URL> --prompt "内衣换装"`
 5. 产品拍摄预算不够，想先用 AI 换装生成详情页主图看看效果。
    → `python3 scripts/mps_image_tryon.py --model-cos-key input/model.jpg --cloth-cos-key input/cloth.jpg`
 6. 同一个模特姿势，帮我批量换 5 款 SKU 的服装，输出 5 张不同款式的模特图。
    → `python3 scripts/mps_image_tryon.py --model-url <模特图URL> --cloth-url <服装1URL>` × 5 次
 7. 本地图片换装，模特图：`/data/model.jpg`，服装图：`/data/cloth.jpg`。
-   → `python3 scripts/mps_image_tryon.py --local-file /data/model.jpg /data/cloth.jpg`（或先上传到 COS 再换装）
+   → `python3 scripts/mps_image_tryon.py --model-local /data/model.jpg --cloth-local /data/cloth.jpg`（脚本自动上传 COS，需配置 `TENCENTCLOUD_COS_BUCKET`）
 
 ---
 
@@ -349,6 +350,11 @@
    → `python3 scripts/mps_dedupe.py --cos-input-key input/vertical.mp4 --mode VerticalExtend`
 4. 短剧同一集要在多个平台分发，每个平台判重严，请做一次视频去重处理。
    → `python3 scripts/mps_dedupe.py --cos-input-key input/drama.mp4 --mode PicInPic`
+
+> ⚠️ **不要把「横竖屏转换」误当去重**：`VerticalExtend` / `HorizontalExtend` 只是给画面加填充边以改变视频指纹（去重手段），**画面内容不变**。
+> 若用户要的是把画面方向真正转换（横→竖 或 竖→横），应使用 `mps_orientation_convert.py`（ROI 智能裁剪 / AIGC 补全），详见 [mps_orientation_convert.md](mps_orientation_convert.md)。
+> 例1："把这个横屏视频转成竖屏" → `python3 scripts/mps_orientation_convert.py --cos-input-key input/landscape.mp4 --algorithm-type 2`
+> 例2："把这个竖屏视频转成横屏" → `python3 scripts/mps_orientation_convert.py --cos-input-key input/portrait.mp4 --algorithm-type 7 --ratio 16:9`
 5. 把视频画面做扩展填充，上下左右扩展到目标分辨率。
    → `python3 scripts/mps_dedupe.py --url <URL> --mode BackgroundExtend`
 6. 视频去重，等待结果完成，画中画模式。
@@ -520,7 +526,37 @@
 6. 视频去字幕前后的效果，要生成 HTML 对比文件。
    → `python3 scripts/mps_gen_compare.py --original <原始URL> --enhanced <去字幕后URL>`
 7. 同一段视频跑了两种增强模板（真人 vs 漫剧），帮我生成 3 路对比页面。
-   → `python3 scripts/mps_gen_compare.py --original <原始URL> --enhanced <真人增强URL> --enhanced2 <漫剧增强URL>`
+   → 多组对比须用 `--pairs`（每组格式 `原始URL,增强URL`）：`python3 scripts/mps_gen_compare.py --pairs "<原始URL>,<真人增强URL>" "<原始URL>,<漫剧增强URL>" --labels 原始 增强后`
+
+---
+
+## 20. 套图生成 (`mps_image_poster_suite.py`)
+
+**核心能力**：上传商品图按主题批量生成广告海报 panel，支持 auto（自动提取变量）/ modify（基于 ExtPrompt 生成）双模式，覆盖六大平台。**`--definition` 平台映射**：`50`=淘宝/天猫、`51`=亚马逊Amazon、`52`=京东、`53`=拼多多、`54`=Temu、`55`=TikTok。标准主题 6 类：hero（主图）、selling（卖点图）、scene（场景图）、detail（细节图）、angles（多角度图）、atmosphere（氛围图）。
+
+**典型场景**：
+
+1. 帮我把这个商品图做成淘宝主图套图：`<URL>`，要 hero 2 张 + detail 2 张。
+   → `python3 scripts/mps_image_poster_suite.py --product-url <URL> --definition 50 --recipe hero:2 --recipe detail:2`
+2. 帮我生成一套京东广告海报，6 张：hero + selling + detail 各 2 张。
+   → `python3 scripts/mps_image_poster_suite.py --product-url <URL> --definition 52 --recipe hero:2 --recipe selling:2 --recipe detail:2`
+3. 为这个商品生成 TikTok 海报套图，竖版 9:16，分辨率 2K。
+   → `python3 scripts/mps_image_poster_suite.py --product-url <URL> --definition 55 --recipe hero:2 --recipe detail:2 --panel-ratio 9:16 --panel-resolution 2K`
+4. 帮我把品牌名和卖点信息塞到海报里：品牌 AURASKIN，标题"持续焕活"，商品图是 `<URL>`。
+   → `python3 scripts/mps_image_poster_suite.py --product-url <URL> --definition 50 --recipe hero:2 --recipe detail:2 --ext-prompt BrandName AURASKIN --ext-prompt Headline "持续焕活"`
+5. 第一次用 auto 生成一套，然后改改 Headline 字段再用 modify 生成一次（modify 必须回填所有 9 个标准变量，**`--output-dir` 要与 auto 不同避免覆盖**）。
+   → 第一次：`python3 scripts/mps_image_poster_suite.py --product-url <URL> --definition 50 --recipe hero:2 --recipe detail:2 --output-dir /output/poster_suite_auto/`
+   → 第二次：`python3 scripts/mps_image_poster_suite.py --product-url <URL> --definition 50 --recipe hero:2 --recipe detail:2 --mode modify --output-dir /output/poster_suite_modify/ --ext-prompt BrandName AURASKIN --ext-prompt Headline "敏感肌也能用的高效精华" --ext-prompt SellingPointsText "保湿 / 紧致 / 抗氧化" --ext-prompt ProductCategory "美妆-护肤" --ext-prompt ProductVisualIdentity "matte glass dropper bottle, amber" --ext-prompt TextureDescription "silky cream" --ext-prompt ColorPalette "#F5C2C7,#A8DADC,#F1FAEE" --ext-prompt TargetAudience "都市白领女性 22-35 岁" --ext-prompt SceneContext "晨间梳妆台" --user-prompt "Headline 字号再加大一档"`
+6. 帮我做拼多多海报，要 8 张：hero 2 + selling 2 + scene 2 + detail 2。
+   → `python3 scripts/mps_image_poster_suite.py --product-url <URL> --definition 53 --recipe hero:2 --recipe selling:2 --recipe scene:2 --recipe detail:2`
+7. 商品图在 COS 上：`input/product.jpg`，帮我生成亚马逊海报套图。
+   → `python3 scripts/mps_image_poster_suite.py --product-cos-key input/product.jpg --definition 51 --recipe hero:2 --recipe detail:2`
+8. 帮我生成英文文案的亚马逊海报，品牌 AURASKIN。
+   → `python3 scripts/mps_image_poster_suite.py --product-url <URL> --definition 51 --recipe hero:2 --recipe detail:2 --language en-US --ext-prompt BrandName AURASKIN --ext-prompt Headline "Revitalize Your Skin"`
+9. 多视角图我都有了，帮我做套图：主图 + 3 张视角图，生成 Temu 海报。
+   → `python3 scripts/mps_image_poster_suite.py --product-url <主图URL> --image-url <视角1> --image-url <视角2> --image-url <视角3> --definition 54 --recipe hero:2 --recipe angles:2 --recipe detail:2`
+10. 先帮我预演一下参数对不对，不要真调用。
+    → `python3 scripts/mps_image_poster_suite.py --product-url <URL> --definition 50 --recipe hero:2 --recipe detail:2 --dry-run`
 
 ---
 
@@ -536,9 +572,11 @@
 8. **输入源判断**：URL 用 `--url`；用户明确说 COS 用 `--cos-input-key`；其余一律 `--local-file`，不要反问用户是不是 COS。
 9. **换装任务状态查询**统一使用 `mps_get_image_task.py`（不用 `mps_get_video_task.py`）。
 10. **背景融合任务状态查询**也使用 `mps_get_image_task.py`。
-11. **dry-run / no-wait 场景**：dry-run 只预览不执行；no-wait 提交后不轮询等待结果但任务已创建，可通过 `mps_get_video_task.py` / `mps_get_image_task.py` 手动查询。
-12. **多步骤请求**：当用户要求同时做两件或多件事（如转码+字幕提取、质检+增强），应分别生成对应的多条脚本命令。
-13. **用户明确指定 ffmpeg 时不应触发 MPS**，直接给出 ffmpeg 命令。
+11. **套图生成任务状态查询**也使用 `mps_get_image_task.py`；modify 模式必须回填 auto 获得的所有 9 个标准变量（不可只传子集）；auto → modify 迭代时从响应 `[0].Output.Content` 解析变量回显后全部塞回 `AddOnParameter`。
+12. **套图生成 vs 单张海报边界**：`mps_image_poster_suite.py` 仅处理"批量生成多张海报 panel"的场景。单张 AI 海报生成 → `mps_aigc_image.py`；商品换背景 → `mps_image_bg_fusion.py`；海报图片超分/降噪 → `mps_imageprocess.py`。
+13. **dry-run / no-wait 场景**：dry-run 只预览不执行；no-wait 提交后不轮询等待结果但任务已创建，可通过 `mps_get_video_task.py` / `mps_get_image_task.py` 手动查询。
+14. **多步骤请求**：当用户要求同时做两件或多件事（如转码+字幕提取、质检+增强），应分别生成对应的多条脚本命令。
+15. **用户明确指定 ffmpeg 时不应触发 MPS**，直接给出 ffmpeg 命令。
 14. **用户只是询问工具推荐或产品对比，不需要实际处理时不触发 MPS**。
 
 ---

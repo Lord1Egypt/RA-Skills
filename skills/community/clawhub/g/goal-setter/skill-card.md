@@ -1,41 +1,54 @@
-## Description: <br>
-Goal Setter helps users track goals, milestones, progress, reviews, and motivation in a local command-line workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Goal Setter helps agents manage local personal goals, milestones, progress updates, reviews, and simple motivation prompts.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Individuals use this skill to manage personal goals from an agent or shell session, including setting deadlines, adding milestones, updating progress, reviewing active goals, and viewing statistics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crafted goal, milestone, or deadline text could run unintended local code. <br>
-Mitigation: Install only from a trusted publisher, avoid untrusted goal text, and update the script to pass user input as data instead of embedding it into Python source before broad use. <br>
-Risk: Goal data is stored locally and may contain personal planning details. <br>
-Mitigation: Review local data handling before use on shared systems and avoid storing sensitive goals unless the local account and backups are appropriately protected. <br>
+## Use Case:
 
+External users and personal productivity agents use this skill to create, update, review, and archive goals in local JSON storage without external accounts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain1/goal-setter) <br>
-- [Tips for Goal Setter](tips.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration] <br>
-**Output Format:** [Command-line text with local JSON-backed goal data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores goal data locally under the user's goals directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Crafted goal names, milestones, deadlines, or progress values can cause unintended local Python code execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use this skill with untrusted text or automated inputs until the command script passes user values to Python as data rather than source code.
+
+Risk: Goal data is stored locally under $HOME/.goals by default.
+
+Mitigation: Review local storage expectations before use and set GOAL_DIR when goals should be isolated to a specific directory.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bytesagain1/skills/goal-setter)
+- [Tips for Goal Setter](tips.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown and plain text with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local goal data stored under $HOME/.goals by default.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

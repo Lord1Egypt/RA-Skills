@@ -1,7 +1,7 @@
 ---
 name: "respiratory_symptom_recognition_analysis"
 description: "Based on computer vision, automatically detects coughing, phlegm, and wheezing frequency, counts the frequency of episodes, used for early health anomaly alerts, helping to detect respiratory diseases in a timely manner. | 呼吸道症状智能识别技能，基于计算机视觉自动检测咳嗽、咳痰、喘息频率，统计发作频次，用于健康异常早期提醒，帮助及时发现呼吸道疾病"
-version: "1.0.6"
+version: "1.0.26"
 license: "MIT-0"
 ---
 

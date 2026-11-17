@@ -1,40 +1,55 @@
-## Description: <br>
-Plan, prioritize, and design rigorous A/B tests using the Test Velocity Method for landing pages, CTAs, emails, signup flows, pricing pages, and other digital experiences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan, prioritize, and design rigorous A/B tests using the Test Velocity Method; this skill produces dev-ready test plans with hypotheses, sample size estimates, duration guidance, segmentation strategy, and guardrail metrics.
 
-## Publisher: <br>
-[flynndavid](https://clawhub.ai/user/flynndavid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[flynndavid](https://clawhub.ai/user/flynndavid)
 
-## Use Case: <br>
-External marketing, product, growth, and experimentation teams use this skill to convert test ideas into structured A/B test plans with hypotheses, prioritization, sample-size estimates, duration guidance, segmentation strategy, guardrail metrics, and dev handoff notes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for broad testing or hypothesis requests even when the user did not explicitly mean an A/B test. <br>
-Mitigation: Confirm the user's intended experiment type before producing a full A/B test plan. <br>
-Risk: Experiment recommendations can be misleading if based on weak data, insufficient traffic, or missing guardrail metrics. <br>
-Mitigation: Review recommendations before acting, require supporting evidence for hypotheses, and verify sample-size, duration, segmentation, and guardrail assumptions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/flynndavid/ab-test-architect) <br>
-- [Publisher profile](https://clawhub.ai/user/flynndavid) <br>
+## Use Case:
+
+Marketing, product, growth, and experimentation teams use this skill to plan and prioritize A/B tests for landing pages, CTAs, emails, signup flows, pricing pages, and other digital experiences. It helps produce structured hypotheses, sample size and duration estimates, segmentation recommendations, guardrail metrics, dev handoff notes, and results log formats.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may ask users for business metrics such as traffic, conversion rates, and testing-tool context.
+
+Mitigation: Provide only the minimum metrics needed for planning and avoid entering sensitive customer, account, or confidential revenue data unless approved for the agent environment.
+
+Risk: The activation wording is broad and may trigger on generic requests about tests or hypotheses.
+
+Mitigation: Confirm the user is asking for marketing or product experimentation planning before applying the A/B testing workflow.
+
+Risk: Experiment recommendations and sample size estimates could be incorrect or misleading if the user's baseline data is incomplete or weak.
+
+Mitigation: Review hypotheses, metrics, guardrails, and statistical assumptions before launch, and treat weak-data plans as directional until validated.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown test plans, prioritization tables, calculations, QA checklists, and results-log templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include sample-size estimates, recommended duration, segmentation decisions, analytics instrumentation notes, and guardrail metrics.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with tables, structured test plans, calculations, checklists, and handoff notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces planning guidance only; no shell commands, code execution, file access, or system changes are indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

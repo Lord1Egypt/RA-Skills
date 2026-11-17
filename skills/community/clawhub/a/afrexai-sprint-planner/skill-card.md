@@ -1,41 +1,53 @@
-## Description: <br>
-Generates agile sprint plans with capacity math, prioritized backlog, sprint goals, daily standup templates, and retro prompts to help teams plan focused delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates agile sprint plans with capacity math, RICE-prioritized backlog items, sprint goals, standup templates, and retro prompts.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Engineering managers, tech leads, founders, and delivery teams use this skill to turn a backlog, team capacity, deadlines, and dependencies into a practical sprint plan with prioritization, buffer math, success criteria, standup prompts, and retrospective prompts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Sprint planning inputs can contain confidential backlog, customer, roadmap, or personnel details. <br>
-Mitigation: Redact sensitive details before sharing backlog data with the agent environment, or use only information approved for that environment. <br>
-Risk: Generated plans may overstate certainty in estimates, prioritization scores, or delivery commitments. <br>
-Mitigation: Have the team review capacity math, RICE inputs, dependencies, and success criteria before committing to the sprint plan. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Sprint Planner on ClawHub](https://clawhub.ai/1kalin/afrexai-sprint-planner) <br>
-- [Publisher profile: 1kalin](https://clawhub.ai/user/1kalin) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+Engineering managers, tech leads, and founders use this skill to turn a backlog and team availability into a capacity-calculated sprint plan for small agile teams.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown sprint plan with tables, checklists, and short planning prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include capacity calculations, RICE scores, committed items, stretch goals, risks, dependencies, success criteria, standup templates, and retrospective prompts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Backlogs, roadmap details, deadlines, and staffing availability may include sensitive business information.
+
+Mitigation: Review and redact sensitive planning details before sharing them with an agent using this skill.
+
+Risk: A generated sprint plan may rely on incomplete estimates, stale priorities, or optimistic assumptions.
+
+Mitigation: Have the team review capacity, RICE scores, dependencies, and commitments before using the plan to run a sprint.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/1kalin/skills/afrexai-sprint-planner)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown sprint plan with tables, checklists, and short planning sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes capacity calculations, prioritization scores, sprint goals, risks, dependencies, success criteria, standup prompts, and retro prompts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,49 @@
-## Description: <br>
-Executes the paid ShowMeTheMoney premium action through a merchant backend, using StablePay when payment is required before retrying the protected action. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Executes the paid ShowMeTheMoney premium action through a merchant backend, using StablePay when the backend returns an x402 payment requirement.
 
-## Publisher: <br>
-[bubblevan](https://clawhub.ai/user/bubblevan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bubblevan](https://clawhub.ai/user/bubblevan)
 
-## Use Case: <br>
-External users and agents use this skill to run a protected ShowMeTheMoney action, handle required StablePay payment, and present the unlocked result or store information returned by the backend. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can initiate StablePay payments for the premium action and for individual reports. <br>
-Mitigation: Review the displayed price and currency, rely only on backend-returned payment requirements, and keep local StablePay limits and confirmation settings enabled. <br>
-Risk: Optional request text may be forwarded to the merchant backend. <br>
-Mitigation: Do not include secrets or confidential text in q or prompt fields, and install only when the local merchant backend is trusted. <br>
+## Use Case:
 
+External users use this skill to unlock and run the protected ShowMeTheMoney premium capability. After purchase, the skill can present unlocked store information and guide separate x402 payment flows for individual research reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bubblevan/showmethemoney-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Text, Guidance] <br>
-**Output Format:** [Markdown or plain text response based on the backend result] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May initiate a StablePay purchase flow and retries the protected action once after successful payment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: An unauthenticated local backend can choose payment details for StablePay payment flows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with a trusted backend on 127.0.0.1:8787 and rely on StablePay limits or approval prompts to prevent unwanted charges.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bubblevan/skills/showmethemoney-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Text, JSON]
+
+**Output Format:** [Markdown or plain text summaries of backend responses, with payment-flow details when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include unlocked store details after a successful purchase; each research report requires a separate x402 payment flow.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

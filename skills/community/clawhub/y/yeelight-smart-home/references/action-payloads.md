@@ -22,4 +22,4 @@ Before guessing nested action, condition, item, operation, button-event, or ligh
 }
 ```
 
-Use returned `requestSchema`, `payloadGuide.payloadShape`, `examples`, `nextStep`, `editablePayload`, or `updateShape` as authoritative. Do not retry guessed variants blindly.
+In `invoke --stdin` responses, read the contract under `result.intentExplanation`. Use returned `requestSchema`, `payloadGuide.payloadShape`, `requestSchema.examples`, `nextStep`, `editablePayload`, or `updateShape` as authoritative. Do not retry guessed variants blindly.

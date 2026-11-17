@@ -1,41 +1,53 @@
-## Description: <br>
-Build or initialize team-style project context directories for context engineering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds team-style project context directories, module notes, agent notes, and entrypoint references for a selected codebase.
 
-## Publisher: <br>
-[lywhlao2025](https://clawhub.ai/user/lywhlao2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lywhlao2025](https://clawhub.ai/user/lywhlao2025)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to scaffold project context workspaces linked to a local code directory, then populate navigation, module, agent, decision, and entrypoint documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill inspects a user-provided local code directory and may capture sensitive project details in generated context files. <br>
-Mitigation: Run it only against intended project folders and review generated documentation before sharing or relying on it. <br>
-Risk: Generated memory, decision, and module files are persistent and could accidentally include secrets if users add them during follow-up population. <br>
-Mitigation: Do not store secrets in the generated context workspace and scan or review the files before distribution. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to scaffold and populate reusable project context around an existing code directory, including module navigation, agent role notes, decisions, and entrypoint references.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lywhlao2025/context-engineering-for-projects-skill) <br>
-- [Extraction rules reference](references/extraction-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated project context files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates persistent context documentation under the selected target root and avoids overwriting existing files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: An unsafe project name can cause the scaffold script to create persistent files outside the intended project folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use simple project names containing only letters, digits, dots, underscores, or hyphens, and avoid untrusted project names until the script validates path containment.
+
+Risk: The skill reads a chosen code directory and writes persistent context files.
+
+Mitigation: Install and run it only for code directories and target roots where that read/write behavior is acceptable.
+
+## Reference(s):
+
+- [Content Extraction Rules](references/extraction-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated Markdown or JSONL context files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates persistent project context files under the selected target root and does not overwrite existing files.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

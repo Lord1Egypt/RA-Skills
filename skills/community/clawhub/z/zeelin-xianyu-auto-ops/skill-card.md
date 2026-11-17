@@ -1,46 +1,58 @@
-## Description: <br>
-ZeeLin 闲鱼自运营 helps sellers operate a logged-in Xianyu web session by drafting buyer replies, negotiation responses, listing copy, sales follow-up language, and browser-assisted actions that require user confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ZeeLin 闲鱼自运营 helps agents support a logged-in Xianyu/Goofish web session with buyer reply drafts, negotiation responses, listing copy, listing optimization, common post-sale or pickup language, batch conversation review, and browser-assisted marketplace operations.
 
-## Publisher: <br>
-[kelcey2023](https://clawhub.ai/user/kelcey2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kelcey2023](https://clawhub.ai/user/kelcey2023)
 
-## Use Case: <br>
-External marketplace sellers use this skill to handle Xianyu customer-service and listing workflows, including reply drafts, price-negotiation wording, item descriptions, follow-up messages, and confirmed browser-side publishing or sending actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can view and operate a logged-in Xianyu browser session. <br>
-Mitigation: Use it only with an intended account session and review the selected chat, item, price, and final text before approving any send, edit, or publish action. <br>
-Risk: A wrong conversation, seller or buyer role, item, or price could lead to an inappropriate marketplace reply. <br>
-Mitigation: Confirm the current conversation identity, item details, recent message context, and seller/buyer role before sending; stop and ask the user when details do not match. <br>
-Risk: Batch replies can create account or customer-service risk in disputes, high-value transactions, or unclear conversations. <br>
-Mitigation: Keep confirmation enabled, process small batches, and avoid direct batch sending for disputes, high-value items, or ambiguous conversations. <br>
+## Use Case:
 
+External marketplace sellers use this skill to draft and confirm Xianyu/Goofish buyer replies, negotiation responses, item listings, and browser-assisted store operations from an already logged-in web session. It is intended to keep human review enabled for sends, publishing, prices, after-sales promises, and conversation identity checks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kelcey2023/zeelin-xianyu-auto-ops) <br>
-- [Xianyu Web Marketplace](https://www.goofish.com/) <br>
-- [Browser Execution SOP](references/browser-sop.md) <br>
-- [Listing Playbook](references/listing-playbook.md) <br>
-- [Reply Playbook](references/reply-playbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Shell commands] <br>
-**Output Format:** [Markdown drafts, concise recommendations, browser-operation steps, and simple JSON from the message classifier script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires review and confirmation before account-affecting sends, edits, or publishes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: An agent could act in the wrong account, product, buyer/seller role, or conversation when operating a logged-in marketplace browser session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the account, product, role, and conversation before any send or publish action, and stop for user confirmation when the page context does not match the requested task.
+
+Risk: Generated replies could include incorrect prices, after-sales promises, or marketplace actions the seller did not approve.
+
+Mitigation: Keep review enabled for replies, prices, after-sales commitments, and publishing; use drafts by default and require explicit approval before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kelcey2023/skills/zeelin-xianyu-auto-ops)
+- [Publisher Profile](https://clawhub.ai/user/kelcey2023)
+- [Xianyu/Goofish Web](https://www.goofish.com/)
+- [买家回复与议价手册](references/reply-playbook.md)
+- [商品上新与文案手册](references/listing-playbook.md)
+- [浏览器执行 SOP](references/browser-sop.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown text with reply drafts, listing copy, operational guidance, and optional JSON intent classification]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be reviewed before marketplace send, publish, price, or after-sales actions.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence; artifact _meta.json lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

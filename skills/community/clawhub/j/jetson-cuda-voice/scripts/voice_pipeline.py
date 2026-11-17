@@ -369,7 +369,7 @@ def transcribe_stream(stream, speech_rms: float = None, silence_rms: float = Non
 # Alfred via /v1/chat/completions  (proper text responses)
 # ─────────────────────────────────────────────────────────────────────────────
 _OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
-_OPENROUTER_KEY = os.environ.get("OPENROUTER_API_KEY", "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")
+_OPENROUTER_KEY = os.environ.get("OPENROUTER_API_KEY", "REDACTED-SECRET")
 
 def _local_context() -> str:
     """Fast local context injected into every query — no API call needed."""

@@ -1,42 +1,53 @@
-## Description: <br>
-Frames coding-agent implementation sessions with explicit intent capture, drift checks, and resolution records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Frames coding-agent work sessions with explicit intent capture and drift monitoring. Use when a session transitions from planning/Q&A to implementation for coding tasks, refactors, feature builds, bug fixes, or other multi-step execution where scope drift is a risk.
 
-## Publisher: <br>
-[Xiao1804](https://clawhub.ai/user/Xiao1804) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xiao1804](https://clawhub.ai/user/xiao1804)
 
-## Use Case: <br>
-Developers and coding agents use this skill when moving from planning into non-trivial code changes to establish an execution contract, monitor scope drift, and record the outcome. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The artifact includes npx installation commands from an external source. <br>
-Mitigation: Verify the package or repository source before running installation commands. <br>
-Risk: Intent records may include sensitive project details and can be captured in session transcripts when Entire CLI is configured. <br>
-Mitigation: Avoid placing secrets or confidential data in intent frames, and review transcript retention before enabling capture. <br>
-Risk: The skill may check local Entire CLI status when tool access is available. <br>
-Mitigation: Allow only the documented status check and continue without CLI integration if the tool is unavailable or unexpected. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Intent Framed Agent on ClawHub](https://clawhub.ai/Xiao1804/intent-framed-agent) <br>
-- [Entire CLI](https://github.com/entireio/cli) <br>
+## Use Case:
 
+Developers and coding agents use this skill to make implementation intent explicit before non-trivial code changes, monitor for scope drift during execution, and record how each work session resolved.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with structured intent, drift-check, and resolution blocks plus optional shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves fixed block headers and fields for parseability.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Unpinned install commands may resolve to changed content over time.
+
+Mitigation: Use pinned or reviewed install commands, and scan the skill before deployment.
+
+Risk: The skill may perform a low-impact local Entire CLI availability check when it activates.
+
+Mitigation: Review tool permissions and allow local command checks only in trusted workspaces.
+
+## Reference(s):
+
+- [Intent Framed Agent on ClawHub](https://clawhub.ai/xiao1804/skills/intent-framed-agent)
+- [Entire CLI](https://github.com/entireio/cli)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with structured intent, drift-check, and resolution blocks plus optional inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves fixed block headers and fields for parseable session records.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

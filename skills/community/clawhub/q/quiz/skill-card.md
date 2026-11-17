@@ -1,42 +1,50 @@
-## Description: <br>
-Design engaging quizzes with effective questions, scoring logic, and results that drive learning or conversions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design engaging quizzes with effective questions, scoring logic, and results that drive learning or conversions.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers, educators, marketers, and content creators use this skill to design knowledge, personality, assessment, lead-generation, and trivia quizzes with clearer questions, scoring logic, user experience patterns, and result design. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Lead-generation quiz patterns may collect participant email addresses or related personal data without enough transparency. <br>
-Mitigation: Clearly disclose what data is collected, why results may be gated, how the data will be used, and how long it will be retained. <br>
-Risk: Gamification choices such as timers or leaderboards can increase anxiety or discourage some participants. <br>
-Mitigation: Use timers, competition, and rewards only where they match the quiz purpose and audience; prefer progress indicators and useful feedback for learning contexts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Quiz on ClawHub](https://clawhub.ai/ivangdavila/quiz) <br>
-- [Quiz Implementation](implementation.md) <br>
-- [Writing Effective Quiz Questions](questions.md) <br>
-- [Quiz Types](types.md) <br>
+## Use Case:
 
+Employees, external creators, educators, marketers, and developers use this skill to design quiz questions, scoring models, results, and implementation plans for learning, assessment, entertainment, or conversion workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance with checklists, tables, scoring patterns, and implementation notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no executable behavior or external tool calls.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Quiz implementation advice may be applied in privacy-sensitive settings such as education, hiring, certification, health, or experiences involving minors.
+
+Mitigation: Add privacy notices, consent where required, data minimization, retention limits, access controls, accommodations, and appeal paths before deploying quizzes in sensitive settings.
+
+## Reference(s):
+
+- [Quiz Implementation](artifact/implementation.md)
+- [Writing Effective Quiz Questions](artifact/questions.md)
+- [Quiz Types](artifact/types.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration, code]
+
+**Output Format:** [Markdown guidance with examples, checklists, scoring formulas, and implementation structures]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code is included in the skill artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

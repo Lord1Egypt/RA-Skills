@@ -1,45 +1,60 @@
-## Description: <br>
-Connects OpenClaw or other OpenAI-compatible clients to Kiro CLI's ACP backend through a local bridge with streaming responses and tool calls. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Connects OpenClaw or other OpenAI-compatible clients to a local kiro-cli ACP backend with streaming responses and tool-call support.
 
-## Publisher: <br>
-[luoshixi](https://clawhub.ai/user/luoshixi) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-CC BY-NC 4.0 <br>
+## Publisher:
 
+[luoshixi](https://clawhub.ai/user/luoshixi)
 
-## Use Case: <br>
-Developers use this skill to run a local ACP-to-OpenAI bridge so OpenClaw or another OpenAI-compatible client can send requests to Kiro CLI. It is suited to local development workflows where the user controls the project directory and Kiro account being used. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)
 
-## Known Risks and Mitigations: <br>
-Risk: The local bridge can give a Kiro agent broad ability to read and write project files and run shell commands as the current user. <br>
-Mitigation: Use it only when that authority is intended, run it in a disposable or tightly scoped project directory, and review auto-approval behavior before using it on private repositories or credentialed systems. <br>
-Risk: Connecting untrusted clients or channels to the bridge could expose local agent capabilities beyond the intended workflow. <br>
-Mitigation: Keep the service bound to 127.0.0.1 and avoid connecting untrusted chat channels or network-accessible clients. <br>
-Risk: Prompts, responses, and logs may contain sensitive project or account information. <br>
-Mitigation: Treat prompts and logs as sensitive, avoid submitting secrets, and review outputs before relying on or sharing them. <br>
+## Use Case:
 
+Developers and engineers use this skill to run a local bridge that translates OpenAI or Anthropic-compatible chat requests into Kiro CLI ACP sessions for project work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luoshixi/skills/kiro-cli-openclaw-bridge) <br>
-- [Project homepage](https://github.com/LuoShiXi/kiro-cli-openclaw-bridge) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [Kiro](https://kiro.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local bridge guidance assumes kiro-cli is installed, authenticated, and available to the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata) <br>
+Risk: Any process able to reach the local bridge may be able to drive Kiro with local file and command privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the service bound to 127.0.0.1 and do not expose the port through tunnels, proxies, containers, or shared machines.
+
+Risk: Weakly controlled local APIs and auto-approved permissions can allow unintended file or command actions.
+
+Mitigation: Use a dedicated low-privilege workspace without secrets and review activity before using it on sensitive projects.
+
+Risk: Real authentication, explicit per-action approval, project-directory containment, and restricted command execution are not evidenced.
+
+Mitigation: Prefer versions that add those controls before broader use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/luoshixi/skills/kiro-cli-openclaw-bridge)
+- [Project Homepage](https://github.com/LuoShiXi/kiro-cli-openclaw-bridge)
+- [Kiro](https://kiro.dev)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON configuration and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local setup, run, verification, and OpenClaw provider configuration guidance.]
+
+## Skill Version(s):
+
+1.2.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

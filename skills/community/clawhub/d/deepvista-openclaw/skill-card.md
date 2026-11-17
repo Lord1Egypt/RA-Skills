@@ -1,38 +1,57 @@
-## Description: <br>
-DeepVista Openclaw helps OpenClaw agents capture notable user statements, decisions, and insights into a DeepVista knowledge base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DeepVista auto-capture and knowledge integration for OpenClaw agents that saves notable user statements, decisions, and insights to a DeepVista knowledge base.
 
-## Publisher: <br>
-[jingconan](https://clawhub.ai/user/jingconan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jingconan](https://clawhub.ai/user/jingconan)
 
-## Use Case: <br>
-OpenClaw users and agent operators use this skill to preserve conversation facts, decisions, plans, and meeting highlights in DeepVista for later recall and maintenance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Conversation details may be saved to DeepVista automatically without clear per-item consent or user control. <br>
-Mitigation: Use only when automatic external memory capture is acceptable, avoid confidential personal or business information, and prefer versions that require explicit user commands or confirmations before saving. <br>
+## Use Case:
 
+External users and developers use this skill to have an OpenClaw agent preserve facts, decisions, plans, meeting highlights, and relationship context in DeepVista during conversations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jingconan/deepvista-openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce DeepVista CLI commands and concise note content for external storage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0-alpha.21 (source: server release metadata) <br>
+Risk: Automatic capture can store personal, meeting, relationship, planning, and business-strategy details externally without clear user consent or review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit opt-in and per-note confirmation before saving conversation content to DeepVista.
+
+Risk: Authentication guidance in the artifact asks the user to share a login code in chat.
+
+Mitigation: Direct users to complete DeepVista authentication outside the chat and do not request or handle authentication codes.
+
+Risk: Shell commands that interpolate note content can mishandle sensitive or adversarial text.
+
+Mitigation: Use documented safe CLI invocation patterns and avoid shell interpolation for user-provided note content.
+
+## Reference(s):
+
+- [Deepvista Openclaw on ClawHub](https://clawhub.ai/jingconan/skills/deepvista-openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call the DeepVista CLI to create or update external notes when configured.]
+
+## Skill Version(s):
+
+0.1.0-alpha.21 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

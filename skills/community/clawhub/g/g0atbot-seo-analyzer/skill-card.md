@@ -1,38 +1,49 @@
-## Description: <br>
-Analyzes websites for SEO factors including meta tags, headings, keywords, competitor comparison, site audits, and ranking checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze public website pages for SEO factors including meta tags, headings, content structure, keywords, competitor comparison, site audits, and ranking checks.
 
-## Publisher: <br>
-[G0atfac3](https://clawhub.ai/user/G0atfac3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[g0atfac3](https://clawhub.ai/user/g0atfac3)
 
-## Use Case: <br>
-Freelancers, small agencies, bloggers, and marketing users use this skill to inspect pages for common on-page SEO issues, compare competitors, research keywords, and produce actionable optimization guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms, URLs, and browsing targets may be sent to external web or search services such as Brave Search. <br>
-Mitigation: Use only approved public or non-sensitive targets unless the user has authorization to submit the target URL or query to third-party services. <br>
+## Use Case:
 
+Freelancers, small agencies, bloggers, and other external users use this skill to evaluate public web pages for common on-page and technical SEO issues and to get optimization suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/G0atfac3/g0atbot-seo-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style SEO analysis with issue lists, warnings, recommendations, scores, and command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include URLs, keyword topics, competitor comparisons, ranking checks, and site audit observations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The bundled analyzer can fetch arbitrary URLs from the host running it, including internal or metadata endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for public websites, and prefer network egress controls or code changes that block loopback, private, link-local, and metadata addresses and cap response size.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/g0atfac3/skills/g0atbot-seo-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Console text and Markdown-style analysis with recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports page metadata, heading structure, word count, link counts, image alt-text checks, issues, warnings, recommendations, and an SEO score.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

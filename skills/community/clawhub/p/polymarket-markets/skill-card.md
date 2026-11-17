@@ -1,47 +1,61 @@
-## Description: <br>
-Browse prediction markets, inspect books and balances, and manage orders or positions in Polymarket - powered by ClawLink. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browse prediction markets, inspect books and balances, and manage orders or positions in Polymarket - powered by ClawLink.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-External users and developers use this skill to connect Polymarket through ClawLink, browse market data, inspect account state, and preview or manage orders with confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Polymarket order placement or cancellation can affect the user's portfolio. <br>
-Mitigation: Preview write actions through ClawLink and require explicit user confirmation before placing or canceling orders. <br>
-Risk: Credentials or pairing secrets could be exposed if pasted into chat. <br>
-Mitigation: Use ClawLink's pairing and hosted connection flow, keep credentials out of chat, and never echo ClawLink credentials. <br>
-Risk: Available Polymarket capabilities can vary by connected account, permissions, scopes, and current ClawLink tool catalog. <br>
-Mitigation: Discover and describe live ClawLink tools before use, and report real tool errors instead of guessing capabilities. <br>
+## Use Case:
 
+External users and developers use this skill to work with Polymarket from chat: discovering markets, reviewing balances and positions, previewing orders, and managing orders after confirmation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hith3sh/polymarket-markets) <br>
-- [ClawLink](https://claw-link.dev) <br>
-- [ClawLink Docs](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink Verification](https://claw-link.dev/verify) <br>
-- [ClawLink Source](https://github.com/hith3sh/clawlink) <br>
-- [Polymarket Docs](https://docs.polymarket.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and ClawLink tool-call guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the live ClawLink tool catalog as the source of truth; trading writes require preview and user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: Using the skill requires trusting ClawLink with Polymarket access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review connected-account scopes before use and revoke the ClawLink device or Polymarket connection when it is no longer needed.
+
+Risk: Order placement, cancellation, or similar portfolio-affecting actions can affect the user's Polymarket account.
+
+Mitigation: Keep write actions confirmation-only and preview order changes before execution.
+
+Risk: Credential exposure can occur if users paste raw credentials into chat.
+
+Mitigation: Use the hosted ClawLink pairing and connection flows and do not request or repeat raw credentials.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hith3sh/skills/polymarket-markets)
+- [ClawLink](https://claw-link.dev)
+- [ClawLink Docs](https://docs.claw-link.dev/openclaw)
+- [ClawLink Source](https://github.com/hith3sh/clawlink)
+- [Polymarket Docs](https://docs.polymarket.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and user-facing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes confirmation prompts before portfolio-affecting actions.]
+
+## Skill Version(s):
+
+0.1.0 (source: release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

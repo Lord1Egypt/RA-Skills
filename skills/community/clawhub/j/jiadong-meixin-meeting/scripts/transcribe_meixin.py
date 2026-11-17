@@ -6,7 +6,7 @@
 """
 import sys, os, json, time, urllib.request, urllib.error
 
-API_KEY = os.getenv("DASHSCOPE_API_KEY", "sk-46dec88b0761409dbd416405d53f73a5")
+API_KEY = os.getenv("DASHSCOPE_API_KEY", "REDACTED-SECRET")
 OUTPUT_DIR = sys.argv[2] if len(sys.argv) > 2 else "/workspace/memory/meetings"
 
 def submit_task(audio_url: str) -> str:

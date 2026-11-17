@@ -1,10 +1,16 @@
----
+﻿---
 name: poyo-tripo-3d
 description: Tripo3D asset generation on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `tripo3d-h3.1-text-to-3d`, `tripo3d-h3.1-image-to-3d`, `tripo3d-h3.1-multiview-to-3d`, `tripo3d-p1-text-to-3d`, `tripo3d-p1-image-to-3d`, text-to-3D, image-to-3D, multiview-to-3D, mesh options, polling, and webhooks.
-metadata: {"openclaw":{"homepage":"https://docs.poyo.ai/api-manual/3d-series/tripo-h31-3d","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
+metadata: {"openclaw":{"homepage":"https://poyo.ai/models/tripo-h31-3d","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo Tripo3D Asset Generation
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/tripo-h31-3d>
+- API docs: <https://docs.poyo.ai/api-manual/3d-series/tripo-h31-3d>
+- API key page: <https://poyo.ai/dashboard/api-key>
+
 
 Use this skill for Tripo3D jobs on PoYo. It covers H3.1 high-detail workflows and P1 lightweight workflows for text-to-3D, image-to-3D, and multiview-to-3D asset generation.
 

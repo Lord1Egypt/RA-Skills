@@ -1,41 +1,56 @@
-## Description: <br>
-Helps an agent analyze delegation, outsourcing, build-versus-buy, and team-allocation decisions using comparative advantage and opportunity-cost ratios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users compare opportunity costs and transaction costs when deciding how to divide work, delegate, or outsource.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-Operators, founders, managers, and agents use this skill to decide who should perform which work when there are multiple producers, multiple tasks, and meaningful opportunity costs. It guides users through productivity estimates, opportunity-cost ratios, transaction costs, and re-evaluation triggers before recommending specialization or in-house production. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat the skill's allocation recommendation as authoritative business advice. <br>
-Mitigation: Verify assumptions, productivity estimates, transaction costs, and quality risks before using the recommendation for hiring, outsourcing, delegation, or team-allocation decisions. <br>
-Risk: Sensitive company details could be included in manually maintained examples or notes while applying the framework. <br>
-Mitigation: Avoid entering confidential company information into examples or notes unless the surrounding agent environment is approved for that data. <br>
+## Use Case:
 
+Founders, team leads, and operators use this skill to compare who should handle competing tasks, and to assess whether delegation or outsourcing benefits outweigh coordination and quality costs.
 
-## Reference(s): <br>
-- [Sources - comparative-advantage](references/sources.md) <br>
-- [Ricardo 1817 England-Portugal + Modern Applications](examples/ricardo-1817-england-portugal-modern-applications.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with structured recommendation fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include opportunity-cost ratios, transaction-cost caveats, specialization recommendations, and re-evaluation triggers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and target metadata) <br>
+Risk: Recommendations rely on productivity estimates and assumptions that may be inaccurate or change over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check the underlying estimates and revisit the allocation when productivity ratios or transaction costs change.
+
+Risk: Saved real-use examples could expose confidential business details.
+
+Mitigation: Avoid including confidential details in saved examples.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/deciqai/skills/comparative-advantage)
+- [Comparative Advantage skill overview](https://www.deciqai.com/c/comparative-advantage)
+- [Comparative Advantage machine-readable metadata](https://www.deciqai.com/s/comparative-advantage.json)
+- [Sources](artifact/references/sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Markdown with a structured allocation analysis and recommendation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-provided productivity estimates and transaction-cost assumptions.]
+
+## Skill Version(s):
+
+1.0.6 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

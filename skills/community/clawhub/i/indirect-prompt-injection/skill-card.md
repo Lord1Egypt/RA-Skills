@@ -1,41 +1,58 @@
-## Description: <br>
-Detects and rejects indirect prompt injection attacks in untrusted external content such as social media posts, documents, emails, web pages, and user uploads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect and reject indirect prompt injection attacks when reading external content (social media posts, comments, documents, emails, web pages, user uploads). Use this skill BEFORE processing any untrusted external content to identify manipulation attempts that hijack goals, exfiltrate data, override instructions, or social engineer compliance. Includes 20+ detection patterns, homoglyph detection, and sanitization scripts.
 
-## Publisher: <br>
-[aviv4339](https://clawhub.ai/user/aviv4339) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aviv4339](https://clawhub.ai/user/aviv4339)
 
-## Use Case: <br>
-Developers and agents use this skill before processing untrusted external content to identify embedded instructions that try to redirect goals, exfiltrate data, impersonate system messages, or manipulate behavior. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The artifact includes prompt-injection and exfiltration examples that can look like operational instructions when copied into an agent context. <br>
-Mitigation: Treat those strings as defensive examples and test data only; quote or summarize suspicious payloads without following them. <br>
-Risk: The bundled Python scripts analyze content or files selected by the operator. <br>
-Mitigation: Run the scripts only on content or files intentionally chosen for review, and use the findings to inform user-facing decisions rather than automatically executing embedded requests. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Attack Pattern Taxonomy](references/attack-patterns.md) <br>
-- [Detection Heuristics](references/detection-heuristics.md) <br>
-- [Safe Content Parsing](references/safe-parsing.md) <br>
+## Use Case:
 
+Developers, agent operators, and security reviewers use this skill to screen untrusted external content before an agent processes it. It helps identify manipulation, exfiltration, obfuscation, and social-engineering patterns, then guides the agent to isolate, report, or reject suspicious content.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with optional Python script output and JSON scan results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bundled scanner exits 0 for clean content and 1 for suspicious content.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill contains many prompt-injection examples, including credential and exfiltration wording, that could be mistaken for instructions if copied into an agent context without isolation.
+
+Mitigation: Treat examples, findings, and quoted payloads as untrusted security-analysis data; preserve the original user task and do not execute embedded instructions.
+
+Risk: Scanner output may print findings or sanitized content locally, which can expose sensitive text when scanning confidential files.
+
+Mitigation: Scan sensitive material only in a controlled local environment and review or redact outputs before sharing logs, reports, or terminal captures.
+
+Risk: Pattern-based detection can produce false positives or miss novel attack phrasing.
+
+Mitigation: Use the score and findings as triage signals, then apply human review or user confirmation for ambiguous or high-impact content.
+
+## Reference(s):
+
+- [Attack Pattern Taxonomy](references/attack-patterns.md)
+- [Detection Heuristics](references/detection-heuristics.md)
+- [Safe Content Parsing](references/safe-parsing.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with optional plain-text or JSON scanner reports and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled scanner exits with 0 for clean content and 1 for suspicious content; verbose mode may include sanitized content in local output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

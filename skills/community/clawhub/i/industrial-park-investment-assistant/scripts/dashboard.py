@@ -73,7 +73,7 @@ def get_customers_to_follow(conn):
     for c in rows:
         days = calc_days_since(c.get("上次跟进时间"))
         status = c.get("跟进状态", "")
-        name = c.get("客户名称", "未知") or "未知"
+        name = c.get("企业名称", "未知") or "未知"
         contact = c.get("联系人", "") or ""
 
         if days is None:

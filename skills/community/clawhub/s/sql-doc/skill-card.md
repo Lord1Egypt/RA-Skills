@@ -1,44 +1,56 @@
-## Description: <br>
-Queries a database API, analyzes selected table data, and generates a multi-section Word analysis report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries database tables through an API, analyzes selected data, and generates a Word analysis report.
 
-## Publisher: <br>
-[rm-ra](https://clawhub.ai/user/rm-ra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[rm-ra](https://clawhub.ai/user/rm-ra)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and analysts use sql-doc to look up mapped database tables, run authorized SQL queries through a database API, and produce Word reports summarizing incident-style records.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can query broad database tables and generate reports containing sensitive incident-style records.
+
+Mitigation: Use only approved database endpoints and tables, restrict queries to authorized scope, and redact or aggregate sensitive fields before report generation.
+
+Risk: The documented database API call uses plaintext HTTP to an internal endpoint.
+
+Mitigation: Revise deployments to use authenticated HTTPS and least-privilege access controls before handling sensitive data.
+
+Risk: Generated reports are written to a fixed workspace path and may expose unredacted content.
+
+Mitigation: Require a user-approved protected output path and apply appropriate file permissions and retention controls.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and analysts use this skill to query authorized database tables, summarize incident-style records, and produce a Word report with counts, categories, dates, organizations, contact fields, conclusions, and raw rows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Files, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can query sensitive database records, including police-style incident data. <br>
-Mitigation: Use only an authorized, preferably read-only database endpoint and limit queries to approved tables and fields. <br>
-Risk: The examples use broad SQL patterns such as SELECT * that may expose unnecessary sensitive columns. <br>
-Mitigation: Replace broad queries with explicit field lists and filters before running the skill. <br>
-Risk: The analysis script includes hard-coded sample incident data and writes raw rows into the generated report. <br>
-Mitigation: Replace sample data with user-approved query input and redact personal identifiers before export. <br>
-Risk: The script persists the report to a fixed Word document path. <br>
-Mitigation: Choose an explicit output location and retention policy before generating reports. <br>
+**Output Format:** [Markdown guidance with shell commands and generated DOCX report files]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rm-ra/sql-doc) <br>
+**Other Properties Related to Output:** [May include database query results and unredacted report content; use only with authorized data and protected output locations.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and Python code references; generated runtime artifact is a Word document.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes report output to a fixed .docx path unless the script is changed.] <br>
+1.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

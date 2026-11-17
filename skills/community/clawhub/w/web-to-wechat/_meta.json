@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn7eq0sb14a4nrncm3sqhe4vmn89js83",
   "slug": "web-to-wechat",
-  "version": "1.0.0",
-  "publishedAt": 1782893824848
+  "displayName": "Web to WeChat",
+  "description": "抓取任意网页内容，AI 智能整理格式，自动生成封面图，发布到微信公众号草稿箱。支持微信公众号文章、新闻网站、技术博客等，自动适配排版风格。",
+  "tags": ["wechat", "web-scraping", "article", "publishing", "chinese", "公众号", "网页抓取"],
+  "prerequisites": ["anything-to-wechat", "file-to-wechat"],
+  "scripts": [
+    "scripts/scrape_web.py",
+    "scripts/compress_image.py"
+  ]
 }

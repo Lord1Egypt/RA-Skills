@@ -1,38 +1,61 @@
-## Description: <br>
-Search flights, hotels, tickets, and holiday tours on Fliggy with support for one-way and round-trip flights, detailed travel results, and headless searches after login. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search flights, hotels, scenic tickets, and holiday travel products on Fliggy using the Fliggy CLI after checking login state.
 
-## Publisher: <br>
-[nodermachine](https://clawhub.ai/user/nodermachine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nodermachine](https://clawhub.ai/user/nodermachine)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to run Fliggy CLI searches for flights, hotels, scenic tickets, and holiday products after checking or establishing Fliggy login state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a third-party Fliggy CLI and stores Fliggy login state in ~/.fliggy-session.json, which may expose account access if shared or backed up. <br>
-Mitigation: Install only if you accept using the third-party CLI with your Fliggy account, protect ~/.fliggy-session.json as sensitive login material, and clear saved state with fliggy login --clear when it is no longer needed. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to search Fliggy for flights, hotels, scenic tickets, and holiday tours. It helps prepare account-linked CLI searches and summarize travel product details.
 
-## Reference(s): <br>
-- [Fliggy Search on ClawHub](https://clawhub.ai/nodermachine/fliggy-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and CLI output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search output may include travel product names, prices, ratings, sales counts, tags, and Fliggy links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill asks the agent to install an unpinned global npm package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package before installation, install only in a trusted environment, and pin or verify the package version when operational controls require reproducibility.
+
+Risk: The skill creates or reuses a Fliggy login session stored at ~/.fliggy-session.json.
+
+Mitigation: Treat the session file as sensitive account state, avoid sharing or logging it, exclude it from backups, and clear it with fliggy login --clear when no longer needed.
+
+Risk: Searches may be account-linked and can lead toward booking workflows.
+
+Mitigation: Require explicit user confirmation before login, booking, purchase, or other account-linked actions.
+
+Risk: Headless mode can use saved login state or open a browser when login is needed.
+
+Mitigation: Run the CLI in a controlled session and confirm the expected login and browser behavior before allowing background searches.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nodermachine/skills/fliggy-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and CLI output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May depend on a saved Fliggy session file and headless browser behavior.]
+
+## Skill Version(s):
+
+1.0.2 (source: evidence.json release metadata; artifact/SKILL.md frontmatter says 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

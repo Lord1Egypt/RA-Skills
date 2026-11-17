@@ -1,41 +1,49 @@
-## Description: <br>
-Execute ROS 2 Control read-only introspection commands (list, view) in a sandboxed environment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute ROS 2 Control read-only introspection commands (list, view) in a sandboxed environment. Supports parameter profiles.
 
-## Publisher: <br>
-[bigrobinson](https://clawhub.ai/user/bigrobinson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bigrobinson](https://clawhub.ai/user/bigrobinson)
 
-## Use Case: <br>
-Developers and robotics engineers use this skill to inspect ROS 2 Control controller managers, hardware components, interfaces, and controller chains without loading, switching, or modifying controllers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The wrapper sources a local ROS 2 setup path, so an untrusted ROS environment could influence command execution. <br>
-Mitigation: Install only in trusted ROS 2 environments and review the generated config.json on unusual systems. <br>
-Risk: Profile and --params-file inputs can alter ROS arguments passed to the introspection command. <br>
-Mitigation: Use only trusted profile and parameter files, and treat the wrapper as a read-oriented guard rather than a complete security sandbox. <br>
+## Use Case:
 
+Developers and robotics engineers use this skill to inspect ROS 2 Control controllers, controller types, hardware components, hardware interfaces, and controller chains through read-only commands.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/bigrobinson/ros2-control-introspection) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/bigrobinson) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces read-only ROS 2 Control command invocations through the safe wrapper script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The wrapper can execute unintended local shell commands if the generated ROS setup path is tampered with or contains shell-special characters.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the local ROS installation and generated config/config.json are trusted; review or fix the wrapper so the setup path is strictly validated or passed as a quoted positional argument, and avoid privileged shells.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bigrobinson/skills/ros2-control-introspection)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and plain-text command output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only ROS 2 Control introspection using an allowlisted wrapper]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-Checks whether a user's QA request includes a clear requirement, enough context, and readable supporting inputs before test design begins. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks whether a testing request includes clear requirements and enough context before test design begins, and asks for missing information when needed.
 
-## Publisher: <br>
-[kokxi](https://clawhub.ai/user/kokxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kokxi](https://clawhub.ai/user/kokxi)
 
-## Use Case: <br>
-QA engineers, testers, and developer agents use this skill as an entry gate before requirement review or test design. It scores input quality, identifies missing requirement details, and asks focused clarification questions when the request is too vague. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may interrupt QA workflows if it is activated too broadly for requests that already contain enough context. <br>
-Mitigation: Use it as the first QA workflow gate and continue once the validation result is pass or the user has answered the clarification questions. <br>
-Risk: Fallback test cases may be weak when the user refuses or cannot provide missing requirement details. <br>
-Mitigation: Review fallback output carefully and mark high-risk or uncovered areas before using it for test design. <br>
-Risk: The skill may read supplied files or fetch supplied requirement URLs as part of input validation. <br>
-Mitigation: Provide only requirement sources intended for the agent to inspect and paste inaccessible URL content directly when needed. <br>
+## Use Case:
 
+QA practitioners and developers use this skill before test design to check whether a request has enough detail to test. It scores input quality and identifies missing requirements and follow-up questions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kokxi/skills/qa-input-validation) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/kokxi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, JSON, Guidance] <br>
-**Output Format:** [Structured JSON or Markdown summaries with validation status, quality score, missing information, clarification questions, and recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask the user to provide missing requirements, readable files, or accessible requirement URLs before continuing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: frontmatter and release evidence) <br>
+Risk: Testing requests may contain customer, payment, identity, or production data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Mask sensitive information before providing requests, attachments, or links.
+
+Risk: The optional related-skill installation suggestion uses an unpinned npx command.
+
+Mitigation: Use a pinned version or a trusted source if installing the broader skill set.
+
+## Reference(s):
+
+- [Input validation output formats](references/output-formats.md)
+- [ClawHub skill page](https://clawhub.ai/kokxi/skills/qa-input-validation)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Guidance]
+
+**Output Format:** [Structured JSON validation result with a quality score, missing information, and clarification questions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Result is pass, need_more_info, or fail; input quality is scored from 1 to 10.]
+
+## Skill Version(s):
+
+1.8.0 (source: frontmatter and ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

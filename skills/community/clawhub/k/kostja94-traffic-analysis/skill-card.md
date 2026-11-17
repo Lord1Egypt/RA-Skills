@@ -1,44 +1,56 @@
-## Description: <br>
-Guides website traffic analysis across channels, including traffic source attribution, dark traffic identification, UTM tagging, segmentation, and multi-channel reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides website traffic analysis across organic, paid, social, referral, direct, and email channels, including attribution, dark traffic, UTM tagging, and reporting segmentation.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Marketing, analytics, and growth teams use this skill to analyze website traffic sources, estimate dark traffic, improve UTM practices, and structure attribution reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Marketing attribution guidance can affect reporting and budget decisions if applied without validation. <br>
-Mitigation: Review recommendations against source analytics data, campaign tagging conventions, and business reporting requirements before making decisions. <br>
-Risk: Dark traffic estimates and channel classifications can be misleading when UTM data or referrer data is incomplete. <br>
-Mitigation: Segment direct traffic, standardize UTM naming, and document assumptions when reporting attribution results. <br>
+## Use Case:
 
+Marketing analysts, growth teams, and site owners use this skill to interpret traffic sources, estimate dark traffic, improve UTM tagging, and structure channel attribution reports.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kostja94/kostja94-traffic-analysis) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/kostja94) <br>
-- [GA4 Default Channel Grouping](https://support.google.com/analytics/answer/9756891) <br>
-- [UTM.io: utm_medium, utm_campaign & utm_source Optimization](https://web.utm.io/blog/utm_medium-utm_campaign-utm_source/) <br>
-- [UTM.io: UTMs for Marketing Attribution](https://web.utm.io/blog/utms-for-marketing-attribution/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with tables, recommendations, and analysis steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces traffic source breakdowns, dark traffic estimates, UTM recommendations, and segmentation approaches.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Broad analytics trigger terms may invoke the skill for general analytics requests where traffic attribution is not the user's intent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user wants web traffic source, attribution, dark traffic, or UTM reporting guidance before applying the skill's recommendations.
+
+Risk: Traffic attribution recommendations can be misleading if bot traffic, internal visits, or untagged campaign links are mixed into performance reporting.
+
+Mitigation: Segment bot and internal traffic, standardize UTM conventions, and treat dark traffic estimates as estimates rather than exact source attribution.
+
+## Reference(s):
+
+- [GA4 Default Channel Grouping](https://support.google.com/analytics/answer/9756891)
+- [UTM.io - utm_medium, utm_campaign & utm_source Optimization](https://web.utm.io/blog/utm_medium-utm_campaign-utm_source/)
+- [UTMs for Marketing Attribution](https://web.utm.io/blog/utms-for-marketing-attribution/)
+- [ClawHub Skill Page](https://clawhub.ai/kostja94/skills/kostja94-traffic-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance and analysis checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tool execution; markdown-only guidance based on user-provided analytics context.]
+
+## Skill Version(s):
+
+1.1.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

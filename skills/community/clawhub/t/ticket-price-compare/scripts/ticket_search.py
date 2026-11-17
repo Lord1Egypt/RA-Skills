@@ -592,23 +592,43 @@ class FirecrawlScraper:
         self.api_key = os.environ.get("FIRECRAWL_API_KEY", "")
         self.is_configured = bool(self.api_key)
 
-    def _call_api(self, url, mobile=True, wait_ms=15000):
-        """Make a Firecrawl scrape API call and return markdown content."""
-        payload = json.dumps({
+    def _call_api(self, url, mobile=True, wait_ms=15000, is_international=False):
+        """Make a Firecrawl v2 scrape API call and return markdown content.
+
+        Uses v2 features:
+        - `maxAge`: 5-minute cache window for balance between freshness and credit usage
+        - `location`: geo + language targeting for international routes
+        - `actions`: explicit wait action for reliable JS rendering
+        - `timeout`: 60s to accommodate v2's JS rendering pipeline
+        """
+        payload = {
             "url": url,
             "formats": ["markdown"],
             "onlyMainContent": True,
             "waitFor": wait_ms,
-            "timeout": 30000,
+            "timeout": 60000,  # v2: ms; 60s for JS-heavy Ctrip pages
             "mobile": mobile,
             "proxy": "basic",
             "blockAds": True,
             "storeInCache": True,
-        }).encode("utf-8")
+            "maxAge": 300000,  # v2: 5-min cache window for real-time prices
+            "actions": [
+                {"type": "wait", "milliseconds": wait_ms},
+            ],
+        }
+
+        # v2: location targeting — international routes benefit from US geo
+        # to get English content and avoid region-locked pricing.
+        if is_international:
+            payload["location"] = {"country": "US", "languages": ["en", "zh"]}
+        else:
+            payload["location"] = {"country": "CN", "languages": ["zh", "en"]}
+
+        data = json.dumps(payload).encode("utf-8")
 
         req = urllib.request.Request(
             self.API_URL,
-            data=payload,
+            data=data,
             headers={
                 "Authorization": f"Bearer {self.api_key}",
                 "Content-Type": "application/json",
@@ -692,7 +712,7 @@ class FirecrawlScraper:
         url = f"https://flights.ctrip.com/online/list/oneway-{dep_iata}-{arr_iata}?depdate={date}&cabin=y"
 
         print(f"[Firecrawl-PC] Scraping Ctrip PC flight list: {url}", file=sys.stderr)
-        markdown = self._call_api(url, mobile=False, wait_ms=15000)
+        markdown = self._call_api(url, mobile=False, wait_ms=15000, is_international=is_international)
 
         if not markdown:
             return []
@@ -722,7 +742,7 @@ class FirecrawlScraper:
         url = f"https://m.ctrip.com/html5/flight/swift/domestic/{dep_iata}-{arr_iata}?date={date}"
 
         print(f"[Firecrawl-Mobile] Scraping Ctrip mobile price calendar: {url}", file=sys.stderr)
-        markdown = self._call_api(url, mobile=True, wait_ms=10000)
+        markdown = self._call_api(url, mobile=True, wait_ms=10000, is_international=False)
 
         if not markdown:
             return []

@@ -1,0 +1,13 @@
+<!-- ══════════════════════════════════════════════════════════════
+  片段:单行垂直居中徽章(固定高条内文字居中)
+  参数:
+    {{X}} {{Y}} {{W}} {{H}}   位置尺寸(H 常用 44~56)
+    {{BG}}        底色(变量名) {{FG}}      文字色(变量名)
+    {{TEXT}}      徽章文字    {{RADIUS}}  圆角(如 6px;胶囊用 calc({{H}} / 2))
+  机制: line-height = {{H}} → 转换器识别为单行,垂直居中(见 html-spec 4.3)
+  z 序: 底条 z-index:5 < 文字 z-index:10
+  ══════════════════════════════════════════════════════════════ -->
+<div data-object="true" data-object-type="shape" style="position:absolute;left:{{X}};top:{{Y}};width:{{W}};height:{{H}};background:{{BG}};border-radius:{{RADIUS}};z-index:5;"></div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:{{X}};top:{{Y}};width:{{W}};height:{{H}};text-align:center;z-index:10;">
+  <div style="font-size:20px;font-weight:800;color:{{FG}};line-height:{{H}};letter-spacing:2px;">{{TEXT}}</div>
+</div>

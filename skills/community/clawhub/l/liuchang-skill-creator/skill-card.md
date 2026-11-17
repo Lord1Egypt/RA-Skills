@@ -1,43 +1,56 @@
-## Description: <br>
-Create, edit, improve, or audit AgentSkills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, edit, improve, or audit AgentSkills.
 
-## Publisher: <br>
-[liuchang8877](https://clawhub.ai/user/liuchang8877) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuchang8877](https://clawhub.ai/user/liuchang8877)
 
-## Use Case: <br>
-Developers and agent builders use this skill to create new AgentSkills, refine existing SKILL.md files, validate skill structure, and package skills for sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or edited skill guidance may be incomplete, misleading, or unsuitable for a particular agent workflow. <br>
-Mitigation: Review generated SKILL.md changes before reuse and test the skill on representative tasks. <br>
-Risk: Packaging a skill directory may include files that were not intended for sharing. <br>
-Mitigation: Inspect .skill archives before sharing and run packaging only on skill directories intended for release. <br>
+## Use Case:
 
+Developers and engineers use this skill to create new AgentSkills, improve or audit existing skill directories, validate skill structure, and package skills for distribution.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/liuchang8877/liuchang-skill-creator) <br>
-- [Agent Skill Design Patterns](references/patterns.md) <br>
-- [Workflow Patterns](references/workflows.md) <br>
-- [Output Patterns & Templates](references/output-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code blocks and optional generated skill files or shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create, validate, or package local skill directories when its bundled scripts are run by the agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Risk: Generated or edited skill content could add incorrect guidance, persistent memory, hooks, or secrets that affect later agent behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated skill changes before use or publication, avoid embedding real secrets, and scan skills before deployment.
+
+Risk: Packaging a local skill directory could distribute unintended files if the source folder is not reviewed first.
+
+Mitigation: Package only reviewed skill directories, use the bundled validation and packaging checks, and inspect archive contents before distribution.
+
+## Reference(s):
+
+- [Agent Skill Design Patterns](references/patterns.md)
+- [Workflow Patterns](references/workflows.md)
+- [Output Patterns & Templates](references/output-patterns.md)
+- [Skill Creator on ClawHub](https://clawhub.ai/liuchang8877/skills/liuchang-skill-creator)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with code blocks, generated files, and command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify skill directories and produce .skill package archives when its bundled scripts are used.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

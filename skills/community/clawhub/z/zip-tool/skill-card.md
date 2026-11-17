@@ -1,40 +1,57 @@
-## Description: <br>
-Creates local ZIP archives from specified files; the release documentation also describes broader archive-management features that are not implemented in the included script. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a small local helper for creating ZIP archives from specified files; its documentation also claims broader archive-management features that the bundled script does not implement.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and automation agents use this skill to create simple local ZIP archives from selected files. Reviewers should independently verify any broader archive-management behavior before relying on it for extraction, encryption, update, delete, or confidential-archive workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release documentation advertises password/encryption, list, extract, update, and delete features that the included script does not implement. <br>
-Mitigation: Use it only as a simple local ZIP creator unless the release is independently verified against the claimed archive-management behavior. <br>
-Risk: Putting real passwords directly in command-line arguments can expose secrets through shell history or process listings. <br>
-Mitigation: Avoid command-line password arguments for confidential archives; use a vetted archive tool with secure secret handling when encryption is required. <br>
+## Use Case:
 
+Developers and agents can use this skill when they need to package selected local files into a ZIP archive. Review claimed archive-management options before relying on them because release security evidence says the included implementation is a small ZIP creation helper, not a full archive manager.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dinghaibin/zip-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, files, text, JSON] <br>
-**Output Format:** [Command-line output, ZIP archive files, and optional JSON metadata described by the release documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local filesystem archive operations; advertised password and archive-management features require independent verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The release documentation substantially overstates the included script's capabilities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate archive behavior against the bundled script before relying on extraction, listing, deletion, update, recursion, compression-level, password, or JSON features.
+
+Risk: Password examples in the documentation may encourage exposing secrets on the command line.
+
+Mitigation: Avoid command-line password examples and use reviewed secret-handling practices before adding password-protected archive workflows.
+
+Risk: Archive operations can overwrite or package unintended local files if paths are not reviewed.
+
+Mitigation: Review requested file paths and archive destinations before execution, especially when operating in shared or sensitive directories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/zip-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, guidance]
+
+**Output Format:** [Markdown with inline shell commands and code references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local ZIP archive creation commands or invoke the bundled Python helper.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-Uploads CSV data and generates common ggplot2 charts, including scatter plots, bar charts, box plots, line charts, histograms, facet plots, and publication-style figures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+R ggplot Quickplot helps an agent generate common ggplot2 charts from uploaded CSV data, with documented local, Docker, and Singularity workflows.
 
-## Publisher: <br>
-[kenthompson2088](https://clawhub.ai/user/kenthompson2088) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kenthompson2088](https://clawhub.ai/user/kenthompson2088)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to turn CSV files into ggplot2 visualizations without writing plotting code. It is suited for quick exploratory charts and repeatable chart generation from tabular data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local run path may install ggplot2 from CRAN when the package is missing. <br>
-Mitigation: Preinstall or pin R dependencies in controlled environments before running the skill. <br>
-Risk: The security guidance notes that run_plot.R, Dockerfile, and Singularity.def are not present in the release evidence even though documented execution paths depend on them. <br>
-Mitigation: Verify those assets from a trusted source before relying on local, Docker, or Singularity execution. <br>
-Risk: The Docker build script can push an image when DOCKER_USERNAME is set. <br>
-Mitigation: Review the target registry and authentication state, or unset DOCKER_USERNAME, before running the Docker publishing path. <br>
+## Use Case:
 
+Developers, analysts, and data science users can use this skill to turn CSV datasets into scatter plots, bar charts, box plots, line plots, histograms, faceted plots, and publication-style ggplot2 outputs. It is useful when an agent needs to provide plotting commands, configuration guidance, or generated chart files without hand-authoring R visualization code.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kenthompson2088/r-ggplot-quickplot) <br>
-- [Input data format](input/DATA_FORMAT.md) <br>
-- [R Project CRAN](https://cran.r-project.org/) <br>
-- [Docker installation documentation](https://docs.docker.com/get-docker/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Chart image files with command-line status text and configuration-driven options] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Expected chart outputs include PNG by default, with documented support for PDF and SVG configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The local workflow may install the ggplot2 R package from the network at runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a controlled environment with reviewed or pinned R dependencies before installing or running the skill.
+
+Risk: The container workflow is described by the skill but the release evidence reports it as incomplete or requiring verification of missing build/runtime files.
+
+Mitigation: Verify required container files and prefer a reviewed container image before relying on Docker or Singularity execution.
+
+Risk: Running the skill from a broad working directory can expose unrelated local files to container mounts or script execution.
+
+Mitigation: Run it from a dedicated directory that contains only the intended CSV input and output folders.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kenthompson2088/skills/r-ggplot-quickplot)
+- [R Project CRAN](https://cran.r-project.org/)
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+- [Docker installation documentation](https://docs.docker.com/get-docker/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with shell commands; generated chart files are PNG by default with documented PDF and SVG options.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create an output directory containing up to nine chart files from a CSV input.]
+
+## Skill Version(s):
+
+3.1.0 (source: server release metadata and root artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

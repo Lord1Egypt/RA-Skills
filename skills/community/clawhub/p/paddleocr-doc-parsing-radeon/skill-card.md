@@ -1,42 +1,62 @@
-## Description: <br>
-Parses PDFs and document images with PaddleOCR-VL 1.5 on an AMD Radeon Cloud endpoint to extract structured text, Markdown, JSON, tables, formulas, figures, and reading order. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PaddleOCR Doc Parsing Radeon extracts structured Markdown and JSON from PDFs and document images using PaddleOCR-VL 1.5 through an AMD Radeon Cloud endpoint.
 
-## Publisher: <br>
-[aiwork4me](https://clawhub.ai/user/aiwork4me) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aiwork4me](https://clawhub.ai/user/aiwork4me)
 
-## Use Case: <br>
-Developers and agents use this skill to parse selected PDFs or document images into structured content for extraction, review, search indexing, RAG, and downstream document workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected documents or fetched URLs are sent to the configured PaddleOCR/Radeon Cloud endpoint. <br>
-Mitigation: Use a trusted HTTPS endpoint and avoid submitting confidential documents unless its retention, logging, and access practices are acceptable. <br>
-Risk: Document parsing can be incomplete or inaccurate for complex layouts, low-quality scans, unsupported formats, or large files. <br>
-Mitigation: Review extracted text, tables, formulas, confidence values, and errors before relying on the output in downstream workflows. <br>
+## Use Case:
 
+Developers, analysts, and document-processing agents use this skill to parse PDFs and document images into structured text, Markdown, tables, formulas, and layout data. It is best suited for complex documents such as invoices, financial reports, academic papers, charts, and multi-column layouts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/aiwork4me/paddleocr-doc-parsing-radeon) <br>
-- [PaddleOCR Document Parsing Output Schema](references/output_schema.md) <br>
-- [uv Documentation](https://docs.astral.sh/uv/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON envelope with extracted text and page-level Markdown; optional saved JSON file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Output may include raw provider response data, layout regions, table structure, formulas, figures, confidence values, and error details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+Risk: Documents may be uploaded to a third-party or untrusted parsing endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with a parsing endpoint you control and trust, and avoid confidential, regulated, financial, personal, or internal documents unless that endpoint is approved for the data.
+
+Risk: The configured endpoint may use unencrypted HTTP, exposing uploaded documents and parser responses to network observers.
+
+Mitigation: Configure PADDLEOCR_DOC_PARSING_API_URL with an HTTPS endpoint before handling sensitive content.
+
+Risk: The --file-url workflow can fetch arbitrary URLs supplied by a user.
+
+Mitigation: Accept URL inputs only from trusted users or approved domains, and prefer local files or pre-vetted URLs in shared environments.
+
+## Reference(s):
+
+- [ClawHub Skill Homepage](https://clawhub.ai/aiwork4me/paddleocr-doc-parsing-radeon)
+- [ClawHub Skill Page](https://clawhub.ai/aiwork4me/skills/paddleocr-doc-parsing-radeon)
+- [PaddleOCR Document Parsing Output Schema](references/output_schema.md)
+- [Original ClawHub PaddleOCR Document Parsing Skill](https://clawhub.ai/bobholamovic/paddleocr-doc-parsing)
+- [PEP 723 Inline Script Metadata](https://peps.python.org/pep-0723/)
+- [uv Documentation](https://docs.astral.sh/uv/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON envelope with extracted text, raw parsing results, and errors; agents may present the extracted content as Markdown or text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can save JSON results to a caller-selected output file; supports URL or local file inputs, PDF/image file type selection, image optimization, and PDF page splitting.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

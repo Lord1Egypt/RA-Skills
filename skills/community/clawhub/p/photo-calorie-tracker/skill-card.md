@@ -1,40 +1,57 @@
-## Description: <br>
-Photo Calorie Tracker recognizes food photos, logs daily calorie intake, and generates date-range calorie reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recognizes food photos, logs daily calorie intake, and generates date-range calorie reports.
 
-## Publisher: <br>
-[bobo23456](https://clawhub.ai/user/bobo23456) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bobo23456](https://clawhub.ai/user/bobo23456)
 
-## Use Case: <br>
-External users can ask an agent to identify meal photos, estimate calories, save local daily meal records, and summarize calorie intake over requested date ranges. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meal photos and calorie history are saved in the local OpenClaw workspace. <br>
-Mitigation: Review or delete /root/.openclaw/workspace/temp_qqdata/ and /root/.openclaw/workspace/memory/ when local retention is not desired. <br>
-Risk: Photo-based food recognition and calorie estimates can be inaccurate. <br>
-Mitigation: Treat reports as tracking aids and review estimated meal items and calories before relying on them. <br>
+## Use Case:
 
+External users use this skill to estimate calories from meal photos, log daily intake, and review lunch, dinner, and snack calories across a requested date range.
 
-## Reference(s): <br>
-- [Photo Calorie Tracker on ClawHub](https://clawhub.ai/bobo23456/photo-calorie-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands] <br>
-**Output Format:** [Markdown-style calorie reports and local daily record files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local OpenClaw workspace paths for temporary meal photos, daily records, and target calorie configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Private meal records and temporary food images may be stored in shared workspace locations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store records and temporary images in a skill-private directory with clear retention and deletion practices.
+
+Risk: Raw meal images may remain after calorie logging.
+
+Mitigation: Delete raw images after processing unless the user explicitly asks to retain them.
+
+Risk: Report generation can read loosely scoped workspace files.
+
+Mitigation: Validate report date and range arguments, and restrict reads to expected skill-owned record paths.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bobo23456/skills/photo-calorie-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown-style calorie tracking report with kcal values, target comparison, and incomplete-day status labels.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a daily calorie target of 2100 kcal unless configuration changes; breakfast is excluded from calculations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

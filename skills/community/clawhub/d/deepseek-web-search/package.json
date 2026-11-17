@@ -1,0 +1,32 @@
+{
+  "name": "deepseek-web-search",
+  "version": "1.0.0",
+  "description": "Install the DeepSeek Web Search skill into Claude Code / Codex / Gemini CLI / Copilot CLI.",
+  "type": "module",
+  "bin": {
+    "deepseek-web-search": "./bin/install.mjs"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "MingZeng"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mingzeng21/deepseek-web-search.git"
+  },
+  "keywords": [
+    "skill",
+    "claude-code",
+    "codex",
+    "deepseek",
+    "web-search",
+    "agent-skills"
+  ],
+  "files": [
+    "bin",
+    "SKILL.md",
+    "search.mjs",
+    "config.example.json",
+    ".claude-plugin"
+  ]
+}

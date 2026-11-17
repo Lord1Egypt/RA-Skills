@@ -55,7 +55,7 @@ Amazon Ads 报告自动化获取（SP / SB 覆盖；SD / ST / DSP 暂未覆盖�
 |------|------|------|
 | `reportId` | 无 | 若显式传入，脚本进入**仅轮询模式**：跳过创建步骤，直接对该 reportId 轮询与下载。此时只要 `profileId` / `region` + `reportId`，其他字段可省 |
 | `pollInterval` | 30 | 轮询间隔秒 |
-| `maxAttempts` | 20 | 最大轮询次数（默认 10 分钟上限） |
+| `maxAttempts` | 15 | 最大轮询次数（默认约 7.5 分钟上限） |
 | `skipDepCheck` | false | 跳过依赖检查 |
 | `serveExtractedFileHttp` | true | 是否启本机 HTTP 服务 |
 | `serveHost` | `127.0.0.1` | 绑定地址（仅本机可访问） |
@@ -125,9 +125,9 @@ Amazon Ads 报告自动化获取（SP / SB 覆盖；SD / ST / DSP 暂未覆盖�
   "reportTypeId": "spCampaigns",
   "profileId": 1234567890,
   "lastStatus": "PROCESSING",
-  "pollAttempts": 20,
-  "elapsedSeconds": 600,
-  "message": "客户端已等 ~600 秒（20 次轮询）报告仍在 Amazon 侧生成，并未失败。用 reportId 切换到仅轮询模式即可继续等待。",
+  "pollAttempts": 15,
+  "elapsedSeconds": 450,
+  "message": "客户端已等 ~450 秒（15 次轮询）报告仍在 Amazon 侧生成，并未失败。用 reportId 切换到仅轮询模式即可继续等待。",
   "resumeHint": {
     "mode": "poll-only",
     "note": "传入 reportId + 更大的 maxAttempts 继续轮询同一份报告",
@@ -144,7 +144,8 @@ Amazon Ads 报告自动化获取（SP / SB 覆盖；SD / ST / DSP 暂未覆盖�
 |-------------------|------|------|
 | 200 | 成功 | 消费 `extractedFileHttpUrl` 或 `downloadPath` |
 | 400 | 入参错（日期超限 / reportTypeId 非法 / columns 不适配） | 按 `detail` 修正 |
-| 401 | accessToken 过期 | 调 ads-auth 的 `refresh_token.py` 后重试 |
+| 401 | accessToken 过期 | HTTP 401 或 authorized error：按 SKILL.md 的 **## 解决认证和算力问题** 处理。 |
+| 402 | 算力或余额不足 | HTTP 402：按 SKILL.md 的 **## 解决认证和算力问题** 处理。 |
 | 403 | profileId 无权限 | 核对 profileId |
 | 404 | reportId 不存在或已过期 | 重新发起报告 |
 | 422 | columns / groupBy 与 reportTypeId 不适配 | 对照 `report-types/<adProduct-dir>/<reportTypeId>.md` 的 Base metrics / frontmatter 核对 |

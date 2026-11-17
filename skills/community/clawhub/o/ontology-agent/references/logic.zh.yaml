@@ -1,0 +1,165 @@
+# 逻辑层 · 逻辑图谱模板（Action + Workflow）加厚版
+# 引用：department_actions.yaml（权威部门动作清单） + action_specs.yaml（141 动作完整 spec）
+# 动作执行范式：借鉴 A2(ibl.ai) 的 toolset 组织范式（source/tools/toolsets 分层）
+# 工作流模板：六阶段状态机（思路源自 easychen 编排器；本产品独立重写表达，不复制其文本）
+# 实例化：用户激活后，由 init.py 将本模板 + packs/*.yaml + action_specs hydrate 成 instance
+
+meta:
+  version: 0.2.0
+  references:
+    - department_actions.yaml     # 12 部门 / 141 动作清单（slug+name+source）
+    - action_specs.yaml           # 141 动作完整 spec：desc/inputs/outputs/uses_entities/skill_ref
+
+# ───────────────────────── 动作执行范式（A2 toolset 借鉴） ─────────────────────────
+action_execution:
+  model: toolset
+  layers:
+    source:    # 数据/系统源
+      - type: knowledge_base
+        desc: WorkBuddy 资料库四表（待办/部门矩阵/财务日历/运营日报）
+      - type: local_file
+        desc: 用户 instance.yaml 与本地文档
+      - type: connector
+        desc: 预留 connectors/（钉钉/企业微信/飞书），企业期启用
+    tool:      # 单步能力：取自 department_actions 中每个 action，其完整定义见 action_specs.yaml
+      desc: 每个 action 对应一个可调用工具，输入结构化、输出机器可读（inputs/outputs 已定义）
+    toolset:   # 一组协作动作（按部门或按场景聚合）
+      desc: 由 init.py 按部门/场景自动编排；以下是可直接套用的范例
+  example_toolsets:                 # 范例：把孤立动作聚合成协作单元
+    - id: finance_month_close       # 财务月结 toolset
+      pack: opc
+      actions: [finance-planner, finance-cost-analyst, legal-compliance-checker, sales-crm]
+      desc: "月度：规划现金流 → 核算成本 → 合规体检 → 对账回款"
+    - ecommerce_fulfill:            # 电商履约 toolset
+      pack: ecommerce
+      actions: [mkt-distributor, sales-crm, support-customer-service, finance-planner]
+      desc: "上架分发 → 接单 → 客服 → 结算"
+    - sme_hire_grow:                # 小微招聘增长 toolset
+      pack: sme
+      actions: [hr-recruiter, hr-performance, growth-first-customers, sales-strategist]
+      desc: "招人 → 绩效 → 获客 → 销售"
+
+# ───────────────────────── 通用阶段状态机（独立重写） ─────────────────────────
+# 六阶段，支持会话恢复（断点续跑）与阶段边界（每阶段产出 gate 物，未达不进下一阶段）
+stage_state_machine:
+  stages:
+    - id: discovery      # 发现：企业画像采集
+      name: 企业画像采集
+      entry: "用户启动 Skill，走 GUIDE 六步引导"
+      gate: instance.yaml
+      outputs: [企业实例（法律形态/地区/部门/画像）]
+      tools: [lead, strategy]
+    - id: design         # 设计：选 pack + 部门 + 工作流
+      name: 架构设计
+      entry: instance.yaml 已生成
+      gate: blueprint.yaml
+      outputs: [行业包选型, 部门清单, 工作流蓝图]
+      tools: [strategy, lead]
+    - id: build          # 构建：建专家团 + 注入知识
+      name: 专家团构建
+      entry: blueprint.yaml 已生成
+      gate: experts_deployed
+      outputs: [12 部门 AI 员工就位, 知识注入]
+      tools: [all departments]
+    - id: validate       # 验证：跑一个真实流程
+      name: 端到端验证
+      entry: experts_deployed
+      gate: validation_log
+      outputs: [验证记录, 卡点清单]
+      tools: [finance, legal, sales]
+    - id: operate        # 运营：日常业务循环
+      name: 日常运营
+      entry: validation_log 通过
+      gate: daily_report
+      outputs: [运营日报, 待办收件箱]
+      tools: [admin, finance, sales, support]
+    - id: grow           # 增长：优化建议 + 升级包
+      name: 优化增长
+      entry: operate 稳定运行
+      gate: optimization_pack
+      outputs: [优化建议, 闭源深度包推荐]
+      tools: [strategy, growth, data]
+  session_resume: 每阶段结束持久化 stage + gate；重启时从最近 gate 续跑（避免重复劳动）
+  boundary: 阶段间强约束，未达 gate 不进下一阶段（避免半成品）
+
+# ───────────────────────── 行业工作流模板（按 pack 实例化） ─────────────────────────
+# 每个 core_loop 步骤映射到 action_specs 中的具体 action slug，保证"动词"可执行
+workflows:
+  opc_build:                      # 一人公司搭建（首发 pack）
+    pack: opc
+    pipeline: [discovery, design, build, validate, operate, grow]
+    core_loop:                    # 日常经营循环（动作引用 action_specs）
+      - step: 接单
+        action_ref: sales-crm
+        trigger: "客户意向"
+      - step: 开票
+        action_ref: finance-planner
+        trigger: "成交确认"
+        guard: "PII 红线：发票影像不进图谱明文（见 decision.yaml）"
+      - step: 记账
+        action_ref: finance-cost-analyst
+        trigger: "票据生成"
+      - step: 报税
+        action_ref: legal-compliance-checker
+        trigger: "申报期（天津税务日历联动）"
+        guard: "须经 owner 二次确认（tax_filing_confirm）"
+      - step: 复盘
+        action_ref: personal-review
+        trigger: "周期末"
+    hooks:
+      - 天津税务日历联动（财务税务日历表）
+      - PII 红线拦截（票据/身份证不进图谱明文）
+      - 一键建 12 专家团（experts-template/department_experts.yaml）
+
+  ecommerce_ops:                  # 电商运营（pack）
+    pack: ecommerce
+    pipeline: [discovery, design, build, validate, operate, grow]
+    core_loop:
+      - step: 上架
+        action_ref: content-creator
+        trigger: "新品就绪"
+      - step: 接单
+        action_ref: sales-crm
+        trigger: "用户下单"
+      - step: 发货
+        action_ref: support-customer-service
+        trigger: "订单付款"
+      - step: 评价
+        action_ref: brand-reputation
+        trigger: "签收后"
+      - step: 复购
+        action_ref: growth-user-ops
+        trigger: "复购周期"
+    hooks:
+      - 电商法实名与开票义务（ecommerce_law）
+      - 店铺/商品/订单实体由 packs/ecommerce.yaml 提供
+
+  sme_growth:                     # 小微增长（pack）
+    pack: sme
+    pipeline: [discovery, design, build, validate, operate, grow]
+    core_loop:
+      - step: 线索
+        action_ref: growth-first-customers
+        trigger: "获客活动"
+      - step: 转化
+        action_ref: sales-strategist
+        trigger: "线索进入"
+      - step: 交付
+        action_ref: support-technical
+        trigger: "合同签署"
+      - step: 回款
+        action_ref: finance-planner
+        trigger: "交付完成"
+      - step: 扩员
+        action_ref: hr-recruiter
+        trigger: "产能瓶颈"
+    hooks:
+      - 多员工多角色（roles.yaml 的 employee 预留）
+      - 招用员工社保 25% 补贴提示
+
+# ───────────────────────── 实例化约定 ─────────────────────────
+instantiation:
+  principle: template 与 instance 严格分离；本文件随 Skill 发，instance 用户运行时生成
+  by_pack: 选择 packs/<pack>.yaml 后，合并其行业实体/部门/工作流到 instance
+  by_action: 用户选部门 → 从 department_actions 抽取该部门 action 集 → 引用 action_specs 生成专家团能力
+  by_toolset: 按场景聚 action 为 toolset（见 action_execution.example_toolsets）

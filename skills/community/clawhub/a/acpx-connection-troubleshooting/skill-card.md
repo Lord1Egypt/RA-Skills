@@ -1,42 +1,49 @@
-## Description: <br>
-Troubleshoots acpx bridge connection failures, initialization timeouts, gateway.token issues, Claude Code authentication failures, and ACP channel routing problems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers diagnose acpx bridge connection failures, initialization timeouts, gateway token issues, Claude Code authentication failures, channel routing problems, and model endpoint configuration mistakes.
 
-## Publisher: <br>
-[roger0808](https://clawhub.ai/user/roger0808) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roger0808](https://clawhub.ai/user/roger0808)
 
-## Use Case: <br>
-Developers and operators use this skill to diagnose acpx/OpenClaw Gateway bridge failures, verify Claude Code CLI and ACP configuration, restore gateway token files, and test model endpoint or network connectivity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect or propose changes to local credential files such as ~/.openclaw/gateway.token, ~/.openclaw/openclaw.json, and ~/.claude/config.json. <br>
-Mitigation: Redact API keys, app secrets, and gateway tokens from all outputs; back up existing files; require manual approval before writing credential files. <br>
-Risk: Incorrect troubleshooting commands or endpoint configuration could overwrite a working acpx, OpenClaw Gateway, or Claude Code setup. <br>
-Mitigation: Review proposed commands before execution, confirm the target channel and endpoint, and test connectivity with non-destructive status checks first. <br>
+## Use Case:
 
+Developers and operators use this skill to troubleshoot OpenClaw ACP/acpx bridge connectivity, token setup, Claude Code CLI configuration, channel compatibility, and gateway reachability issues.
 
-## Reference(s): <br>
-- [ACP bridge configuration reference](references/acp-bridge-config-reference.md) <br>
-- [ClawHub skill page](https://clawhub.ai/roger0808/acpx-connection-troubleshooting) <br>
-- [Bailian Anthropic-compatible endpoint](https://coding.dashscope.aliyuncs.com/apps/anthropic) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline JSON and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include proposed edits to local acpx, OpenClaw Gateway, and Claude Code configuration files; secrets should be redacted before sharing or execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill includes credential-handling guidance that could overwrite an existing persistent gateway token or encourage unsafe token sharing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up or verify any existing gateway token before changing it, use only the intended token from trusted local configuration, avoid the hardcoded example value, set restrictive file permissions, and do not paste token or API key contents into chat.
+
+## Reference(s):
+
+- [ACP Bridge Config Reference](references/acp-bridge-config-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include diagnostic steps, configuration examples, and token-file handling guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.
